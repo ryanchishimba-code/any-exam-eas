@@ -59,10 +59,10 @@ else
 fi
 
 npx prisma generate
-rm -rf .next
 
 echo ""
 echo "Open http://localhost:3000"
+echo "Do not use --turbopack (causes edge cache errors with auth)."
 echo ""
 
 npm run dev
