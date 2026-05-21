@@ -457,6 +457,8 @@ export function getBankQuestions(params: {
 
   if (fieldId === "medicine" && BANK[subjectKey]?.length) {
     pools.push(...tagWithSubject(BANK[subjectKey], subjectKey));
+  } else if (fieldId === "medicine") {
+    pools.push(...tagWithSubject(GENERAL_MEDICINE, subjectKey));
   }
 
   const fieldBank = FIELD_QUESTION_BANKS[fieldId] ?? [];
@@ -525,9 +527,6 @@ export function buildOfflineExam(params: {
   subjectId?: string;
   medicineMode?: boolean;
 }): GeneratedExam {
-  const isMedicine =
-    params.medicineMode ?? params.field.toLowerCase() === "medicine";
-
   const subjectId = params.subjectId ?? params.subjectArea ?? "";
   const questions = getBankQuestions({
     field: params.field,

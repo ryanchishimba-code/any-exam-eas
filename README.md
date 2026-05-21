@@ -63,7 +63,8 @@ Open [http://localhost:3000](http://localhost:3000).
    - `NEXTAUTH_URL` — `https://your-project.vercel.app` (update after first deploy)
    - `NEXTAUTH_SECRET` — `openssl rand -base64 32`
    - `OPENAI_API_KEY`, `TAVILY_API_KEY`, `STRIPE_*` as needed
-4. Deploy. The build runs `prisma db push` then `next build` (see `vercel.json`).
+4. Deploy. The build runs `prisma migrate deploy` (only when `DATABASE_URL` starts with `postgresql://` or `postgres://`), then `next build`.
+   - **Do not** use `file:./dev.db` on Vercel — that was for old local SQLite and will fail or skip migrations.
 5. After deploy, set `NEXTAUTH_URL` to your real URL and redeploy if needed.
 6. Optional: **Stripe webhook** → `https://your-domain.com/api/stripe/webhook`; custom domain in Vercel → Domains.
 

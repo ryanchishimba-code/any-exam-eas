@@ -1,6 +1,5 @@
 import type { BankItem } from "./question-bank";
 import type { FieldSubject } from "./field-subjects";
-import { getFieldMeta } from "./fields";
 
 function mc(
   subjectId: string,
@@ -280,7 +279,6 @@ export function generateProceduralQuestions(params: {
   count: number;
   existingQuestions: Set<string>;
 }): BankItem[] {
-  const fieldId = getFieldMeta(params.field)?.id ?? params.field;
   const key = params.subject.id;
   const gen = PROCEDURAL[key];
 
