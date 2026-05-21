@@ -54,14 +54,18 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Go live (recommended path)
+## Go live (Vercel)
 
-1. Push the repo to **GitHub**
-2. Import the project on **[Vercel](https://vercel.com)** (free tier works)
-3. Add all `.env` variables in Vercel project settings
-4. Switch `DATABASE_URL` to **PostgreSQL** (Neon, Supabase, or Vercel Postgres) and update `prisma/schema.prisma` provider to `postgresql`
-5. Set up **Stripe webhook** → `https://your-domain.com/api/stripe/webhook`
-6. Buy a domain and connect it in Vercel → Domains
+1. Create a free **[Neon](https://neon.tech)** or **Vercel Postgres** database and copy the connection string.
+2. On **[Vercel](https://vercel.com)** → **Add New Project** → import `ryanchishimba-code/any-exam-eas` from GitHub.
+3. In **Environment Variables**, add everything from `.env.example` (production values):
+   - `DATABASE_URL` — your Postgres URL (`?sslmode=require` for Neon)
+   - `NEXTAUTH_URL` — `https://your-project.vercel.app` (update after first deploy)
+   - `NEXTAUTH_SECRET` — `openssl rand -base64 32`
+   - `OPENAI_API_KEY`, `TAVILY_API_KEY`, `STRIPE_*` as needed
+4. Deploy. The build runs `prisma db push` then `next build` (see `vercel.json`).
+5. After deploy, set `NEXTAUTH_URL` to your real URL and redeploy if needed.
+6. Optional: **Stripe webhook** → `https://your-domain.com/api/stripe/webhook`; custom domain in Vercel → Domains.
 
 ## Stripe setup
 

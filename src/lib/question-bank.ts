@@ -1,4 +1,4 @@
-import type { ExamQuestion } from "./ai";
+import type { ExamQuestion, GeneratedExam } from "./ai";
 import type { SearchResult } from "./search";
 import { getFieldMeta } from "./fields";
 import {

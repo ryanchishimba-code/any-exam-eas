@@ -80,5 +80,3 @@ function LegalPage({
     </div>
   );
 }
-
-export { LegalPage };
