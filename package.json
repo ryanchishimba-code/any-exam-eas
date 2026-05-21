@@ -5,13 +5,13 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "prisma generate && next build",
-    "vercel-build": "bash scripts/vercel-build.sh",
+    "vercel-build": "node scripts/vercel-build.mjs",
     "start": "next start",
     "lint": "next lint",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
     "test:questions": "tsx scripts/test-question-counts.mjs",
-    "postinstall": "bash scripts/postinstall.sh"
+    "postinstall": "node scripts/prisma-generate.mjs"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",
