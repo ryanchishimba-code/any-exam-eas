@@ -1,13 +1,12 @@
 export const BUILD_PLACEHOLDER_DATABASE_URL =
   "postgresql://build:build@127.0.0.1:5432/build?schema=public";
 
+const BUILD_PLACEHOLDER_RE =
+  /^postgres(ql)?:\/\/build:build@127\.0\.0\.1:5432\/build/;
+
 /** @returns {boolean} true if using the build-time placeholder (not a real DB) */
 export function isPlaceholderDatabaseUrl(url = process.env.DATABASE_URL ?? "") {
-  return (
-    !url ||
-    url === BUILD_PLACEHOLDER_DATABASE_URL ||
-    /^postgres(ql)?:\/\/build:build@127\.0\.0\.1:5432\/build/.test(url)
-  );
+  return !url || url === BUILD_PLACEHOLDER_DATABASE_URL || BUILD_PLACEHOLDER_RE.test(url);
 }
 
 /** @returns {boolean} true if using the build-time placeholder (not a real DB) */

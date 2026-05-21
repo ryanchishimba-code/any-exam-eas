@@ -1,4 +1,9 @@
 import { PrismaClient } from "@prisma/client";
+import { assertRuntimeDatabaseUrl } from "@/lib/database-url";
+
+if (process.env.VERCEL) {
+  assertRuntimeDatabaseUrl();
+}
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 
