@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { assertRuntimeDatabaseUrl } from "@/lib/database-url";
 
-if (process.env.VERCEL || process.env.NODE_ENV === "development") {
+if (process.env.VERCEL) {
   assertRuntimeDatabaseUrl();
 }
 

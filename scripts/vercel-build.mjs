@@ -10,6 +10,7 @@ function run(command, args) {
   if (result.status !== 0) process.exit(result.status ?? 1);
 }
 
+run("node", ["scripts/set-prisma-provider.mjs", "postgresql"]);
 ensureDatabaseUrl();
 run("npx", ["prisma", "generate"]);
 

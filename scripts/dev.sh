@@ -21,37 +21,45 @@ if [ ! -f .env ]; then
   echo "Created .env — review before production."
 fi
 
-# Local Postgres via Docker (matches prisma postgresql provider)
-LOCAL_DB_URL="postgresql://postgres:postgres@localhost:5432/anyexameasy"
+LOCAL_PG_URL="postgresql://postgres:postgres@localhost:5432/anyexameasy"
+LOCAL_SQLITE_URL="file:./dev.db"
 
-if grep -q 'file:./dev.db' .env 2>/dev/null; then
-  if command -v docker >/dev/null 2>&1; then
-    echo "Updating .env DATABASE_URL for local PostgreSQL (was SQLite)."
+use_postgres() {
+  node scripts/set-prisma-provider.mjs postgresql
+  if grep -q 'file:./dev.db' .env 2>/dev/null; then
     if sed --version 2>/dev/null | grep -q GNU; then
-      sed -i "s|DATABASE_URL=.*|DATABASE_URL=\"${LOCAL_DB_URL}\"|" .env
+      sed -i "s|DATABASE_URL=.*|DATABASE_URL=\"${LOCAL_PG_URL}\"|" .env
     else
-      sed -i '' "s|DATABASE_URL=.*|DATABASE_URL=\"${LOCAL_DB_URL}\"|" .env
+      sed -i '' "s|DATABASE_URL=.*|DATABASE_URL=\"${LOCAL_PG_URL}\"|" .env
     fi
-  else
-    echo "ERROR: .env uses SQLite but this app needs PostgreSQL."
-    echo "Install Docker and re-run ./scripts/dev.sh, or set DATABASE_URL to a Neon postgresql:// URL in .env"
-    exit 1
   fi
-fi
-
-if command -v docker >/dev/null 2>&1; then
-  echo "Starting local PostgreSQL (docker compose)..."
+  export DATABASE_URL="${LOCAL_PG_URL}"
   docker compose up -d db
   sleep 2
-  export DATABASE_URL="${DATABASE_URL:-$LOCAL_DB_URL}"
   npx prisma migrate deploy
+}
+
+use_sqlite() {
+  echo "Using local SQLite (dev.db) — no Docker required."
+  node scripts/set-prisma-provider.mjs sqlite
+  if sed --version 2>/dev/null | grep -q GNU; then
+    sed -i "s|DATABASE_URL=.*|DATABASE_URL=\"${LOCAL_SQLITE_URL}\"|" .env
+  else
+    sed -i '' "s|DATABASE_URL=.*|DATABASE_URL=\"${LOCAL_SQLITE_URL}\"|" .env
+  fi
+  export DATABASE_URL="${LOCAL_SQLITE_URL}"
+  npx prisma db push
+}
+
+if command -v docker >/dev/null 2>&1 && docker info >/dev/null 2>&1; then
+  echo "Starting local PostgreSQL (Docker)..."
+  use_postgres
 else
-  echo "Docker not found — using DATABASE_URL from .env (use Neon or local Postgres)."
-  npx prisma migrate deploy || {
-    echo "Could not migrate. Set DATABASE_URL in .env to a working postgresql:// URL."
-    exit 1
-  }
+  use_sqlite
 fi
+
+npx prisma generate
+rm -rf .next
 
 echo ""
 echo "Open http://localhost:3000"

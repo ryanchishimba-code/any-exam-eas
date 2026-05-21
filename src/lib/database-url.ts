@@ -12,10 +12,9 @@ export function isSqliteDatabaseUrl(url = process.env.DATABASE_URL ?? "") {
 export function assertRuntimeDatabaseUrl() {
   const url = process.env.DATABASE_URL ?? "";
 
-  if (isSqliteDatabaseUrl(url)) {
+  if (isSqliteDatabaseUrl(url) && process.env.VERCEL) {
     throw new Error(
-      "DATABASE_URL uses SQLite (file:./dev.db) but this project requires PostgreSQL. " +
-        "Run ./scripts/dev.sh (starts Docker Postgres) or set DATABASE_URL to your Neon postgresql:// URL in .env."
+      "DATABASE_URL uses SQLite on Vercel. Set a Neon postgresql:// URL in Project → Environment Variables."
     );
   }
 

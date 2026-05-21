@@ -28,6 +28,7 @@ export function LoginForm() {
       setError("Invalid email or password");
       return;
     }
+    router.refresh();
     router.push("/dashboard");
   }
 
