@@ -1,0 +1,216 @@
+"use client";
+
+import { useEffect, useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import type { GeneratedExam } from "@/lib/ai";
+import { FIELD_LABELS, getFieldMeta } from "@/lib/fields";
+import { getSubjectsForField, buildScopedTopic } from "@/lib/field-subjects";
+import {
+  QUESTION_COUNT_OPTIONS,
+  type QuestionCount,
+} from "@/lib/medicine-subjects";
+import { ExamQuiz } from "./ExamQuiz";
+import { Button } from "./ui/Button";
+
+export function ExamGenerator() {
+  const [field, setField] = useState("Mathematics");
+  const [subjectId, setSubjectId] = useState("");
+  const [topic, setTopic] = useState("");
+  const [difficulty, setDifficulty] = useState("medium");
+  const [count, setCount] = useState<QuestionCount>(10);
+  const [loading, setLoading] = useState(false);
+  const [exam, setExam] = useState<GeneratedExam | null>(null);
+  const [error, setError] = useState("");
+  const [status, setStatus] = useState("");
+  const [sourcesReviewed, setSourcesReviewed] = useState<number | null>(null);
+
+  const fieldMeta = getFieldMeta(field);
+  const subjects = useMemo(() => getSubjectsForField(field), [field]);
+  const selectedSubject = subjects.find((s) => s.id === subjectId);
+
+  useEffect(() => {
+    const list = getSubjectsForField(field);
+    if (list.length > 0) setSubjectId(list[0].id);
+    else setSubjectId("");
+    setTopic("");
+  }, [field]);
+
+  function resolveTopic(): string {
+    if (!subjectId) return topic.trim();
+    return buildScopedTopic(field, subjectId, topic);
+  }
+
+  async function handleGenerate(e: React.FormEvent) {
+    e.preventDefault();
+
+    if (!subjectId) {
+      setError("Please select a subject/topic for this field.");
+      return;
+    }
+
+    const resolvedTopic = resolveTopic();
+
+    setLoading(true);
+    setError("");
+    setExam(null);
+    setSourcesReviewed(null);
+    setStatus(
+      `Studying ${selectedSubject?.textbookRefs ?? "OER textbooks"} for ${selectedSubject?.label}…`
+    );
+
+    try {
+      const res = await fetch("/api/exams/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          field,
+          topic: resolvedTopic,
+          subjectId,
+          difficulty,
+          questionCount: count,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "Generation failed");
+      setExam(data.exam);
+      setSourcesReviewed(data.sourcesReviewed ?? data.sources?.length ?? null);
+      setStatus("");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong");
+      setStatus("");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="mt-10">
+      <form onSubmit={handleGenerate} className="space-y-6 rounded-3xl bg-white p-8 shadow-sm">
+        <div>
+          <label className="text-xs font-medium uppercase tracking-wider text-[var(--color-ink-muted)]">
+            Field
+          </label>
+          <select
+            value={field}
+            onChange={(e) => setField(e.target.value)}
+            className="mt-2 w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm outline-none focus:border-[var(--color-accent)]"
+          >
+            {FIELD_LABELS.map((f) => (
+              <option key={f}>{f}</option>
+            ))}
+          </select>
+          {fieldMeta && (
+            <p className="mt-2 text-xs text-[var(--color-ink-muted)]">{fieldMeta.examFocus}</p>
+          )}
+        </div>
+
+        <div>
+          <label className="text-xs font-medium uppercase tracking-wider text-[var(--color-ink-muted)]">
+            Subject / topic in {field}
+          </label>
+          <select
+            required
+            value={subjectId}
+            onChange={(e) => setSubjectId(e.target.value)}
+            className="mt-2 w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm outline-none focus:border-[var(--color-accent)]"
+          >
+            {subjects.map((s) => (
+              <option key={s.id} value={s.id}>
+                {s.label}
+              </option>
+            ))}
+          </select>
+          {selectedSubject && (
+            <p className="mt-2 text-xs text-[var(--color-ink-muted)]">
+              Textbooks: {selectedSubject.textbookRefs} · Questions will be{" "}
+              <strong>only</strong> about {selectedSubject.label}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <label className="text-xs font-medium uppercase tracking-wider text-[var(--color-ink-muted)]">
+            Narrow focus (optional)
+          </label>
+          <input
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+            placeholder={selectedSubject?.focusPlaceholder ?? "e.g. Specific unit"}
+            className="mt-2 w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm outline-none focus:border-[var(--color-accent)]"
+          />
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label className="text-xs font-medium uppercase tracking-wider text-[var(--color-ink-muted)]">
+              Difficulty
+            </label>
+            <select
+              value={difficulty}
+              onChange={(e) => setDifficulty(e.target.value)}
+              className="mt-2 w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm"
+            >
+              <option value="easy">Easy</option>
+              <option value="medium">Medium</option>
+              <option value="hard">Hard</option>
+            </select>
+          </div>
+          <div>
+            <label className="text-xs font-medium uppercase tracking-wider text-[var(--color-ink-muted)]">
+              Number of questions
+            </label>
+            <select
+              value={count}
+              onChange={(e) => setCount(Number(e.target.value) as QuestionCount)}
+              className="mt-2 w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm"
+            >
+              {QUESTION_COUNT_OPTIONS.map((n) => (
+                <option key={n} value={n}>
+                  {n} questions
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <Button type="submit" disabled={loading || !subjectId} className="w-full">
+          {loading
+            ? `Generating ${count} ${selectedSubject?.label ?? field} questions…`
+            : `Start ${count}-question ${selectedSubject?.label ?? field} quiz`}
+        </Button>
+
+        {loading && status && (
+          <p className="text-center text-xs text-[var(--color-ink-muted)]">{status}</p>
+        )}
+
+        {error && (
+          <p className="text-center text-sm text-red-600">
+            {error}. <a href="/signup" className="underline">Sign in</a> to generate.
+          </p>
+        )}
+      </form>
+
+      <AnimatePresence>
+        {exam && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mt-10 space-y-6"
+          >
+            <div className="rounded-3xl bg-white p-8 shadow-sm">
+              <h2 className="text-2xl font-semibold">{exam.title}</h2>
+              <p className="mt-2 text-sm text-[var(--color-ink-muted)]">{exam.studyNotes}</p>
+              {sourcesReviewed != null && sourcesReviewed > 0 && (
+                <p className="mt-2 text-xs text-[var(--color-accent)]">
+                  {exam.questions.length} questions · {sourcesReviewed} textbook/web sources
+                </p>
+              )}
+            </div>
+
+            <ExamQuiz key={`${exam.title}-${exam.questions.length}`} exam={exam} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
