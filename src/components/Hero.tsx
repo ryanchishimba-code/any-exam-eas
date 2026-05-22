@@ -5,14 +5,12 @@ import { Button } from "./ui/Button";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 pt-12 text-center">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#f5f5f7] via-white to-white" />
-
+    <section className="apple-hero-glow relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pt-14 text-center">
       <motion.p
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="relative text-sm font-medium text-[var(--color-accent)]"
+        transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+        className="apple-eyebrow relative"
       >
         Any field. Any exam. Easier.
       </motion.p>
@@ -20,8 +18,8 @@ export function Hero() {
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.1 }}
-        className="relative mt-4 max-w-4xl text-5xl font-semibold tracking-tight md:text-7xl md:leading-[1.05]"
+        transition={{ duration: 0.8, delay: 0.08, ease: [0.25, 0.1, 0.25, 1] }}
+        className="relative mt-5 max-w-[14ch] text-[clamp(2.75rem,8vw,5.5rem)] font-semibold leading-[1.02] tracking-[-0.04em] md:max-w-none"
       >
         Any Exam Easy.
       </motion.h1>
@@ -29,18 +27,18 @@ export function Hero() {
       <motion.p
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2 }}
-        className="relative mt-6 max-w-2xl text-lg text-[var(--color-ink-muted)] md:text-xl"
+        transition={{ duration: 0.8, delay: 0.16, ease: [0.25, 0.1, 0.25, 1] }}
+        className="relative mt-6 max-w-2xl text-[clamp(1.0625rem,2.5vw,1.375rem)] leading-[1.45] text-[var(--color-ink-muted)]"
       >
-        Generate practice exams grounded in live web research. Learn with an
-        adaptive quilt of flashcards and quizzes — your way.
+        Generate practice exams grounded in live research. Learn with an adaptive quilt
+        of flashcards and quizzes — calm, focused, and built for how you study.
       </motion.p>
 
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.35 }}
-        className="relative mt-10 flex flex-wrap items-center justify-center gap-4"
+        transition={{ duration: 0.8, delay: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
+        className="relative mt-11 flex flex-wrap items-center justify-center gap-4"
       >
         <Button href="/signup">Start 7-day free trial</Button>
         <Button href="/generate" variant="secondary">
@@ -51,8 +49,8 @@ export function Hero() {
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        className="relative mt-6 text-xs text-[var(--color-ink-muted)]"
+        transition={{ delay: 0.45, duration: 0.6 }}
+        className="relative mt-7 text-xs tracking-wide text-[var(--color-ink-muted)]"
       >
         Then $9/month · Cancel anytime · 18+ only
       </motion.p>

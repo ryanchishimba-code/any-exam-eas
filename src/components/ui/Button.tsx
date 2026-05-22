@@ -5,9 +5,11 @@ type Variant = "primary" | "secondary" | "ghost";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)]",
-  secondary: "bg-[var(--color-ink)] text-white hover:bg-neutral-800",
-  ghost: "bg-transparent text-[var(--color-accent)] hover:underline",
+    "bg-[var(--color-accent)] text-white shadow-[0_1px_3px_rgba(0,113,227,0.35)] hover:bg-[var(--color-accent-hover)] hover:shadow-[0_4px_14px_rgba(0,113,227,0.35)] active:scale-[0.98]",
+  secondary:
+    "border border-black/[0.08] bg-white/90 text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] hover:bg-[var(--color-surface)] hover:border-black/[0.12] active:scale-[0.98]",
+  ghost:
+    "bg-transparent text-[var(--color-accent)] hover:opacity-80 active:scale-[0.98]",
 };
 
 export function Button({
@@ -23,7 +25,7 @@ export function Button({
   className?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>) {
   const base =
-    "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition-all duration-200";
+    "inline-flex items-center justify-center rounded-full px-7 py-3 text-[0.9375rem] font-medium tracking-tight transition-all duration-300 ease-[var(--ease-apple)]";
 
   const classes = `${base} ${variants[variant]} ${className}`;
 

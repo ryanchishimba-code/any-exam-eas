@@ -54,13 +54,13 @@ export function SignupForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-10 space-y-5 rounded-3xl bg-white p-8 shadow-sm">
+    <form onSubmit={handleSubmit} className="apple-card mt-10 space-y-5 p-8 md:p-10">
       <input
         required
         placeholder="Full name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm"
+        className="apple-input"
       />
       <input
         required
@@ -68,7 +68,7 @@ export function SignupForm() {
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm"
+        className="apple-input"
       />
       <input
         required
@@ -77,22 +77,24 @@ export function SignupForm() {
         placeholder="Password (min 8 characters)"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm"
+        className="apple-input"
       />
       <div>
-        <label className="text-xs text-[var(--color-ink-muted)]">Date of birth (18+ required)</label>
+        <label className="apple-label">Date of birth (18+ required)</label>
         <input
           required
           type="date"
           value={dob}
           onChange={(e) => setDob(e.target.value)}
-          className="mt-1 w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm"
+          className="apple-input mt-2"
         />
       </div>
 
       <LegalCheckbox checked={accepted} onChange={setAccepted} />
 
-      <p className="text-xs text-[var(--color-ink-muted)]">{LEGAL_DISCLAIMERS.ageRequirement}</p>
+      <p className="text-xs leading-relaxed text-[var(--color-ink-muted)]">
+        {LEGAL_DISCLAIMERS.ageRequirement}
+      </p>
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
@@ -102,7 +104,7 @@ export function SignupForm() {
 
       <p className="text-center text-xs text-[var(--color-ink-muted)]">
         Already have an account?{" "}
-        <a href="/login" className="text-[var(--color-accent)]">
+        <a href="/login" className="font-medium text-[var(--color-accent)] hover:underline">
           Log in
         </a>
       </p>

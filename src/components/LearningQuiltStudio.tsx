@@ -50,27 +50,25 @@ export function LearningQuiltStudio() {
 
   return (
     <div className="mt-10">
-      <form onSubmit={buildQuilt} className="rounded-3xl bg-[var(--color-surface)] p-8">
+      <form onSubmit={buildQuilt} className="apple-card p-8 md:p-10">
         <div className="grid gap-6 md:grid-cols-2">
           <input
             value={field}
             onChange={(e) => setField(e.target.value)}
             placeholder="Field"
-            className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm"
+            className="apple-input"
             required
           />
           <input
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             placeholder="Topic"
-            className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm"
+            className="apple-input"
             required
           />
         </div>
 
-        <p className="mt-6 text-xs font-medium uppercase tracking-wider text-[var(--color-ink-muted)]">
-          Preferred learning mode
-        </p>
+        <p className="apple-label mt-6">Preferred learning mode</p>
         <div className="mt-3 flex flex-wrap gap-2">
           {(["flashcards", "quiz", "mixed"] as Mode[]).map((m) => (
             <button

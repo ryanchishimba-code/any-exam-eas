@@ -7,60 +7,61 @@ const features = [
   {
     icon: Globe,
     title: "Deep OER + web research",
-    desc: "Scans OpenStax, LibreTexts, Wikibooks, and the web — synthesizes sources, then builds high-yield exam questions.",
+    desc: "Scans OpenStax, LibreTexts, Wikibooks, and the web — then builds high-yield questions.",
   },
   {
     icon: Brain,
     title: "Any field",
-    desc: "Anatomy for med students, calculus for engineers, pharmacology, nursing, K–12 — you name it.",
+    desc: "Medicine, engineering, nursing, pharmacy, K–12 — structured by subject, not generic AI fluff.",
   },
   {
     icon: Layers,
     title: "Learning quilt",
-    desc: "Interlocking flashcards and quiz tiles. Choose flashcards, quizzes, or a mixed path.",
+    desc: "Interlocking flashcards and quiz tiles. Flashcards, quizzes, or a mixed path.",
   },
   {
     icon: GraduationCap,
     title: "Lesson plans",
-    desc: "Build structured plans from kindergarten through professional programs.",
+    desc: "Structured plans from kindergarten through professional programs.",
   },
   {
     icon: LineChart,
     title: "Progress tracking",
-    desc: "Your account remembers exams, quilts, and completion so you always know where you stand.",
+    desc: "Your account remembers exams, quilts, and completion in one calm dashboard.",
   },
   {
     icon: BookOpen,
     title: "Study modes",
-    desc: "Pick how you learn best — visual tiles flip, quizzes challenge, and progress adapts.",
+    desc: "Tiles flip, quizzes challenge, and your path adapts to how you learn best.",
   },
 ];
 
 export function FeatureGrid() {
   return (
-    <section className="bg-[var(--color-surface)] py-24">
-      <div className="mx-auto max-w-6xl px-6">
-        <h2 className="text-center text-3xl font-semibold tracking-tight md:text-4xl">
-          Built for how you actually study.
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl text-center text-[var(--color-ink-muted)]">
-          Clean, focused, and dynamic — designed to feel as effortless as the tools
-          you already love.
+    <section className="bg-[var(--color-surface)] py-[clamp(4rem,10vw,7rem)]">
+      <div className="mx-auto max-w-[980px] px-6">
+        <p className="apple-eyebrow text-center">Designed for focus</p>
+        <h2 className="apple-headline mt-3 text-center">Built for how you actually study.</h2>
+        <p className="apple-lede mx-auto mt-5 text-center">
+          Spacious layout, subtle motion, and zero clutter — the same quiet confidence you
+          expect from the best tools on your desk.
         </p>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
             <motion.article
               key={f.title}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="rounded-3xl bg-white p-8 shadow-sm"
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ delay: i * 0.06, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              className="apple-card apple-card-hover p-8"
             >
-              <f.icon className="text-[var(--color-accent)]" size={28} strokeWidth={1.5} />
-              <h3 className="mt-4 text-lg font-semibold">{f.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--color-surface)]">
+                <f.icon className="text-[var(--color-accent)]" size={24} strokeWidth={1.5} />
+              </div>
+              <h3 className="mt-5 text-[1.0625rem] font-semibold tracking-tight">{f.title}</h3>
+              <p className="mt-2 text-[0.9375rem] leading-relaxed text-[var(--color-ink-muted)]">
                 {f.desc}
               </p>
             </motion.article>

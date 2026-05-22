@@ -84,16 +84,14 @@ export function ExamGenerator() {
   }
 
   return (
-    <div className="mt-10">
-      <form onSubmit={handleGenerate} className="space-y-6 rounded-3xl bg-white p-8 shadow-sm">
+    <div>
+      <form onSubmit={handleGenerate} className="apple-card mt-10 space-y-6 p-8 md:p-10">
         <div>
-          <label className="text-xs font-medium uppercase tracking-wider text-[var(--color-ink-muted)]">
-            Field
-          </label>
+          <label className="apple-label">Field</label>
           <select
             value={field}
             onChange={(e) => setField(e.target.value)}
-            className="mt-2 w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm outline-none focus:border-[var(--color-accent)]"
+            className="apple-input mt-2"
           >
             {FIELD_LABELS.map((f) => (
               <option key={f}>{f}</option>
@@ -105,14 +103,12 @@ export function ExamGenerator() {
         </div>
 
         <div>
-          <label className="text-xs font-medium uppercase tracking-wider text-[var(--color-ink-muted)]">
-            Subject / topic in {field}
-          </label>
+          <label className="apple-label">Subject / topic in {field}</label>
           <select
             required
             value={subjectId}
             onChange={(e) => setSubjectId(e.target.value)}
-            className="mt-2 w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm outline-none focus:border-[var(--color-accent)]"
+            className="apple-input mt-2"
           >
             {subjects.map((s) => (
               <option key={s.id} value={s.id}>
@@ -129,26 +125,22 @@ export function ExamGenerator() {
         </div>
 
         <div>
-          <label className="text-xs font-medium uppercase tracking-wider text-[var(--color-ink-muted)]">
-            Narrow focus (optional)
-          </label>
+          <label className="apple-label">Narrow focus (optional)</label>
           <input
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             placeholder={selectedSubject?.focusPlaceholder ?? "e.g. Specific unit"}
-            className="mt-2 w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm outline-none focus:border-[var(--color-accent)]"
+            className="apple-input mt-2"
           />
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label className="text-xs font-medium uppercase tracking-wider text-[var(--color-ink-muted)]">
-              Difficulty
-            </label>
+            <label className="apple-label">Difficulty</label>
             <select
               value={difficulty}
               onChange={(e) => setDifficulty(e.target.value)}
-              className="mt-2 w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm"
+              className="apple-input mt-2"
             >
               <option value="easy">Easy</option>
               <option value="medium">Medium</option>
@@ -156,13 +148,11 @@ export function ExamGenerator() {
             </select>
           </div>
           <div>
-            <label className="text-xs font-medium uppercase tracking-wider text-[var(--color-ink-muted)]">
-              Number of questions
-            </label>
+            <label className="apple-label">Number of questions</label>
             <select
               value={count}
               onChange={(e) => setCount(Number(e.target.value) as QuestionCount)}
-              className="mt-2 w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm"
+              className="apple-input mt-2"
             >
               {QUESTION_COUNT_OPTIONS.map((n) => (
                 <option key={n} value={n}>
@@ -197,7 +187,7 @@ export function ExamGenerator() {
             animate={{ opacity: 1, y: 0 }}
             className="mt-10 space-y-6"
           >
-            <div className="rounded-3xl bg-white p-8 shadow-sm">
+            <div className="apple-card p-8 md:p-10">
               <h2 className="text-2xl font-semibold">{exam.title}</h2>
               <p className="mt-2 text-sm text-[var(--color-ink-muted)]">{exam.studyNotes}</p>
               {sourcesReviewed != null && sourcesReviewed > 0 && (

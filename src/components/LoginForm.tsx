@@ -33,14 +33,14 @@ export function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mt-10 space-y-5 rounded-3xl bg-white p-8 shadow-sm">
+    <form onSubmit={handleSubmit} className="apple-card mt-10 space-y-5 p-8 md:p-10">
       <input
         required
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        className="w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm"
+        className="apple-input"
       />
       <input
         required
@@ -48,15 +48,15 @@ export function LoginForm() {
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-3 text-sm"
+        className="apple-input"
       />
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-center text-sm text-red-600">{error}</p>}
       <Button type="submit" disabled={loading} className="w-full">
         {loading ? "Signing in…" : "Log in"}
       </Button>
       <p className="text-center text-xs text-[var(--color-ink-muted)]">
         New here?{" "}
-        <a href="/signup" className="text-[var(--color-accent)]">
+        <a href="/signup" className="font-medium text-[var(--color-accent)] hover:underline">
           Start free trial
         </a>
       </p>

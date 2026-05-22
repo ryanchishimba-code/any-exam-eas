@@ -51,8 +51,8 @@ export function DashboardClient() {
 
   return (
     <div className="mt-10 grid gap-10 lg:grid-cols-2">
-      <section className="rounded-3xl bg-white p-8 shadow-sm">
-        <h2 className="text-xl font-semibold">Quick actions</h2>
+      <section className="apple-card p-8">
+        <h2 className="text-xl font-semibold tracking-tight">Quick actions</h2>
         <div className="mt-6 flex flex-col gap-3">
           <Button href="/generate">Generate exam</Button>
           <Button href="/learn" variant="secondary">
@@ -64,42 +64,42 @@ export function DashboardClient() {
         </div>
       </section>
 
-      <section className="rounded-3xl bg-white p-8 shadow-sm">
-        <h2 className="text-xl font-semibold">New lesson plan</h2>
+      <section className="apple-card p-8">
+        <h2 className="text-xl font-semibold tracking-tight">New lesson plan</h2>
         <form onSubmit={createPlan} className="mt-6 space-y-4">
           <input
             required
             placeholder="Plan title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-2 text-sm"
+            className="apple-input"
           />
           <input
             required
             placeholder="Field (e.g. Nursing, Grade 5 Math)"
             value={field}
             onChange={(e) => setField(e.target.value)}
-            className="w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-2 text-sm"
+            className="apple-input"
           />
           <input
             placeholder="Grade level (optional)"
             value={gradeLevel}
             onChange={(e) => setGradeLevel(e.target.value)}
-            className="w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-2 text-sm"
+            className="apple-input"
           />
           <textarea
             required
             placeholder="Subjects / units (comma-separated)"
             value={subjects}
             onChange={(e) => setSubjects(e.target.value)}
-            className="w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-2 text-sm"
+            className="apple-input min-h-[4.5rem] resize-y"
             rows={2}
           />
           <textarea
             placeholder="Learning goals (optional)"
             value={goals}
             onChange={(e) => setGoals(e.target.value)}
-            className="w-full rounded-xl border border-black/10 bg-[var(--color-surface)] px-4 py-2 text-sm"
+            className="apple-input min-h-[4.5rem] resize-y"
             rows={2}
           />
           <Button type="submit">Save lesson plan</Button>
@@ -107,8 +107,8 @@ export function DashboardClient() {
         {message && <p className="mt-3 text-sm text-[var(--color-ink-muted)]">{message}</p>}
       </section>
 
-      <section className="lg:col-span-2 rounded-3xl bg-white p-8 shadow-sm">
-        <h2 className="text-xl font-semibold">Your lesson plans</h2>
+      <section className="apple-card lg:col-span-2 p-8">
+        <h2 className="text-xl font-semibold tracking-tight">Your lesson plans</h2>
         {plans.length === 0 ? (
           <p className="mt-4 text-sm text-[var(--color-ink-muted)]">
             No plans yet. Create one to organize exams by subject.

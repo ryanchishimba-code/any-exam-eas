@@ -23,23 +23,27 @@ export default async function DashboardPage() {
     : null;
 
   return (
-    <div className="min-h-screen bg-[var(--color-surface)] pt-24 pb-20">
-      <div className="mx-auto max-w-5xl px-6">
-        <h1 className="text-4xl font-semibold tracking-tight">
+    <div className="apple-page">
+      <div className="mx-auto max-w-5xl px-6 pb-24 pt-[var(--page-top)]">
+        <p className="apple-eyebrow">Dashboard</p>
+        <h1 className="apple-title mt-2">
           Hello{session.user.name ? `, ${session.user.name}` : ""}.
         </h1>
-        <p className="mt-2 text-[var(--color-ink-muted)]">
+        <p className="apple-lede mt-3">
           Track progress, manage lesson plans, and jump back into studying.
         </p>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
           <Stat label="Exams generated" value={exams} />
           <Stat label="Learning quilts" value={quilts} />
           <Stat label="Progress events" value={progress} />
         </div>
 
-        <p className="mt-6 text-sm text-[var(--color-ink-muted)]">
-          Subscription: <span className="font-medium text-[var(--color-ink)]">{subscription?.status ?? "none"}</span>
+        <p className="mt-6 text-[0.875rem] text-[var(--color-ink-muted)]">
+          Subscription:{" "}
+          <span className="font-medium text-[var(--color-ink)]">
+            {subscription?.status ?? "none"}
+          </span>
           {trialEnd && subscription?.status === "trialing" && (
             <> · Trial ends {trialEnd}</>
           )}
@@ -53,8 +57,8 @@ export default async function DashboardPage() {
 
 function Stat({ label, value }: { label: string; value: number }) {
   return (
-    <div className="rounded-2xl bg-white p-6 shadow-sm">
-      <p className="text-3xl font-semibold">{value}</p>
+    <div className="apple-card p-6">
+      <p className="text-3xl font-semibold tracking-tight">{value}</p>
       <p className="mt-1 text-sm text-[var(--color-ink-muted)]">{label}</p>
     </div>
   );

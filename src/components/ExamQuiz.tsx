@@ -46,7 +46,7 @@ function QuestionCard({
     ) ?? -1;
 
   return (
-    <article className="rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+    <article className="apple-card p-6 sm:p-8">
       <p className="text-xs uppercase text-[var(--color-ink-muted)]">
         Question {question.id} · {field}
         {question.highYield && (
@@ -247,7 +247,7 @@ export function ExamQuiz({ exam }: { exam: GeneratedExam }) {
 
   return (
     <div className="mt-10 space-y-6">
-      <div className="rounded-3xl bg-white p-6 shadow-sm sm:p-8">
+      <div className="apple-card p-6 sm:p-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
             <p className="text-xs font-medium uppercase tracking-wider text-[var(--color-ink-muted)]">
@@ -299,7 +299,7 @@ export function ExamQuiz({ exam }: { exam: GeneratedExam }) {
       </div>
 
       {totalPages > 1 && (
-        <div className="flex flex-wrap items-center justify-between gap-4 rounded-3xl bg-white px-6 py-4 shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-4 apple-card px-6 py-4">
           <button
             type="button"
             onClick={() => setPage((p) => Math.max(0, p - 1))}
