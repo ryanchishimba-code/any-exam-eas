@@ -3,7 +3,11 @@ import { auth } from "@/auth";
 import { getFieldMeta } from "@/lib/fields";
 import { getFieldSubject } from "@/lib/field-subjects";
 import { countActiveQuestions, fetchQuestionBankItems } from "@/lib/question-bank-db";
-import { getLastQuestionBankSync } from "@/lib/sync-question-bank";
+import { MIN_QUESTIONS_PER_SUBJECT } from "@/lib/bulk-question-generator";
+import {
+  getLastQuestionBankSync,
+  getSubjectQuestionCount,
+} from "@/lib/sync-question-bank";
 import { toQuizletStyleQuestion } from "@/lib/question-format";
 import type { ExamQuestion } from "@/lib/ai";
 
@@ -50,8 +54,9 @@ export async function GET(req: Request) {
       })
     );
 
-  const [totalActive, lastSync] = await Promise.all([
+  const [totalActive, subjectTotal, lastSync] = await Promise.all([
     countActiveQuestions(fieldId),
+    getSubjectQuestionCount(fieldId, subjectId),
     getLastQuestionBankSync(),
   ]);
 
@@ -63,7 +68,9 @@ export async function GET(req: Request) {
     questions,
     meta: {
       returned: questions.length,
-      availableForSubject: items.length,
+      availableForSubject: subjectTotal,
+      minimumPerSubject: MIN_QUESTIONS_PER_SUBJECT,
+      meetsMinimum: subjectTotal >= MIN_QUESTIONS_PER_SUBJECT,
       totalActiveInField: totalActive,
       lastSyncedAt: lastSync?.finishedAt ?? null,
       lastSyncStatus: lastSync?.status ?? null,

@@ -12,6 +12,7 @@
     "lint": "next lint",
     "db:push": "prisma db push",
     "db:sync-questions": "node scripts/sync-question-bank.mjs",
+    "db:verify-questions": "npx tsx scripts/verify-question-bank.ts",
     "db:studio": "prisma studio",
     "test:questions": "tsx scripts/test-question-counts.mjs",
     "postinstall": "node scripts/prisma-generate.mjs"

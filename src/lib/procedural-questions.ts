@@ -229,7 +229,6 @@ function generateFromSubjectMeta(
   const items: BankItem[] = [];
   for (let i = 0; i < count * 3; i++) {
     const concept = concepts[i % concepts.length] ?? subject.label;
-    const variant = i + 1;
     const correct = `Accurate statement about ${concept} (${subject.label})`;
     items.push(
       mc(

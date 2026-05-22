@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { syncQuestionBank } from "@/lib/sync-question-bank";
 
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 function isAuthorized(req: Request): boolean {
   const secret = process.env.CRON_SECRET;

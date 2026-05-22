@@ -1,4 +1,5 @@
 import type { BankItem } from "./question-bank";
+import { FIELD_SUBJECTS, type FieldSubject } from "./field-subjects";
 import {
   getHealthBankItems,
   getHealthBankSubjectIds,
@@ -42,4 +43,15 @@ export function collectSeedQuestionRows(): SeedQuestionRow[] {
   }
 
   return rows;
+}
+
+/** Every field + subject area that must meet the minimum bank size. */
+export function collectAllSubjectAreas(): { fieldId: string; subject: FieldSubject }[] {
+  const areas: { fieldId: string; subject: FieldSubject }[] = [];
+  for (const [fieldId, subjects] of Object.entries(FIELD_SUBJECTS)) {
+    for (const subject of subjects) {
+      areas.push({ fieldId, subject });
+    }
+  }
+  return areas;
 }
