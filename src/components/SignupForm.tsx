@@ -1,11 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { LegalCheckbox } from "./LegalCheckbox";
 import { Button } from "./ui/Button";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
+import {
+  fetchAuthHealthWarning,
+  messageForSignInError,
+  messageFromUnknownAuthError,
+} from "@/lib/auth-client";
 
 export function SignupForm() {
   const router = useRouter();
@@ -15,7 +20,12 @@ export function SignupForm() {
   const [dob, setDob] = useState("");
   const [accepted, setAccepted] = useState(false);
   const [error, setError] = useState("");
+  const [configWarning, setConfigWarning] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    fetchAuthHealthWarning().then(setConfigWarning);
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -23,38 +33,54 @@ export function SignupForm() {
     setLoading(true);
 
     try {
+      const trimmedEmail = email.trim();
       const res = await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name,
-          email,
+          name: name.trim(),
+          email: trimmedEmail,
           password,
           dateOfBirth: dob,
           acceptedTerms: accepted,
         }),
       });
-      const data = await res.json();
+      const text = await res.text();
+      let data: { error?: string } = {};
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        throw new Error(
+          "Registration returned an unexpected response (server may be missing DATABASE_URL on Vercel)."
+        );
+      }
       if (!res.ok) throw new Error(data.error ?? "Registration failed");
 
       const signInRes = await signIn("credentials", {
-        email,
+        email: trimmedEmail,
         password,
         redirect: false,
       });
 
-      if (signInRes?.error) throw new Error("Account created but sign-in failed");
+      if (signInRes?.error) {
+        throw new Error(messageForSignInError(signInRes.error));
+      }
 
       router.push("/dashboard");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Registration failed");
+      setError(messageFromUnknownAuthError(err));
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <form onSubmit={handleSubmit} className="apple-card mt-10 space-y-5 p-8 md:p-10">
+    <form onSubmit={handleSubmit} noValidate className="apple-card mt-10 space-y-5 p-8 md:p-10">
+      {configWarning && (
+        <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          {configWarning}
+        </p>
+      )}
       <input
         required
         placeholder="Full name"
@@ -64,7 +90,9 @@ export function SignupForm() {
       />
       <input
         required
-        type="email"
+        type="text"
+        inputMode="email"
+        autoComplete="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -98,7 +126,7 @@ export function SignupForm() {
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
-      <Button type="submit" disabled={loading || !accepted} className="w-full">
+      <Button type="submit" disabled={loading || !accepted || !!configWarning} className="w-full">
         {loading ? "Creating account…" : "Start 7-day free trial"}
       </Button>
 
