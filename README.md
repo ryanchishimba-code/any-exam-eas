@@ -58,15 +58,17 @@ Open [http://localhost:3000](http://localhost:3000).
 
 1. Create a free **[Neon](https://neon.tech)** or **Vercel Postgres** database and copy the connection string.
 2. On **[Vercel](https://vercel.com)** → **Add New Project** → import `ryanchishimba-code/any-exam-eas` from GitHub.
-3. In **Environment Variables**, add everything from `.env.example` (production values):
-   - `DATABASE_URL` — your Postgres URL (`?sslmode=require` for Neon)
-   - `NEXTAUTH_URL` — `https://your-project.vercel.app` (update after first deploy)
-   - `NEXTAUTH_SECRET` — `openssl rand -base64 32`
+3. In **Environment Variables**, add everything from `.env.example` (production values). Enable each variable for **Production** and **Build** (especially `DATABASE_URL`):
+   - `DATABASE_URL` — Neon/Vercel Postgres URL (`postgresql://…`, add `?sslmode=require` for Neon)
+   - `NEXTAUTH_URL` — `https://any-exam-eas.vercel.app` (your real deployment URL)
+   - `NEXTAUTH_SECRET` (or `AUTH_SECRET`) — `openssl rand -base64 32`
+   - `CRON_SECRET` — another random string (weekly question-bank sync)
    - `OPENAI_API_KEY`, `TAVILY_API_KEY`, `STRIPE_*` as needed
-4. Deploy. The build runs `prisma migrate deploy` (only when `DATABASE_URL` starts with `postgresql://` or `postgres://`), then `next build`.
-   - **Do not** use `file:./dev.db` on Vercel — that was for old local SQLite and will fail or skip migrations.
-5. After deploy, set `NEXTAUTH_URL` to your real URL and redeploy if needed.
-6. Optional: **Stripe webhook** → `https://your-domain.com/api/stripe/webhook`; custom domain in Vercel → Domains.
+4. Deploy (or **Redeploy** after pushing to `main`). Build runs `prisma migrate deploy`, syncs the question bank when Postgres is configured, then `next build`.
+   - **Do not** use `file:./dev.db` on Vercel.
+5. Verify: open `https://your-domain.vercel.app/api/health` — should return `"ok": true` with `databaseUrl: "postgresql"` and `nextauthSecret: "ok"`.
+6. If `questionBank` is `empty-run-cron-sync`, call once: `GET /api/cron/sync-question-bank` with header `Authorization: Bearer <CRON_SECRET>` (or wait for the weekly cron on Pro).
+7. Optional: **Stripe webhook** → `https://your-domain.com/api/stripe/webhook`; custom domain in Vercel → Domains.
 
 ## Stripe setup
 
