@@ -1,7 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import { assertRuntimeDatabaseUrl } from "@/lib/database-url";
 
-if (process.env.VERCEL) {
+const isNextBuild = process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD;
+
+if (process.env.VERCEL && !isNextBuild) {
   assertRuntimeDatabaseUrl();
 }
 
