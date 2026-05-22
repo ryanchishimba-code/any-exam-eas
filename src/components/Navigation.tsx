@@ -1,18 +1,35 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const links = [
-  { href: "/generate", label: "Generate" },
-  { href: "/learn", label: "Learn" },
+  { href: "/study", label: "Study" },
+  { href: "/learn", label: "Flashcards" },
+  { href: "/generate", label: "Exams" },
+  { href: "/progress", label: "Progress" },
   { href: "/pricing", label: "Pricing" },
   { href: "/dashboard", label: "Dashboard" },
 ];
 
+function navClass(active: boolean) {
+  return active
+    ? "text-[var(--color-ink)] font-medium"
+    : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]";
+}
+
 export function Navigation() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const { data: session } = useSession();
+
+  function isActive(href: string) {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  }
 
   return (
     <header className="apple-glass fixed top-0 z-50 w-full">
@@ -24,24 +41,33 @@ export function Navigation() {
           Any Exam Easy
         </Link>
 
-        <ul className="hidden items-center gap-9 md:flex">
+        <ul className="hidden items-center gap-7 md:flex">
           {links.map((l) => (
             <li key={l.href}>
               <Link
                 href={l.href}
-                className="text-xs text-[var(--color-ink-muted)] transition-colors duration-200 hover:text-[var(--color-ink)]"
+                className={`text-xs transition-colors duration-200 ${navClass(isActive(l.href))}`}
               >
                 {l.label}
               </Link>
             </li>
           ))}
           <li>
-            <Link
-              href="/signup"
-              className="rounded-full bg-[var(--color-accent)] px-4 py-1.5 text-xs font-medium text-white transition-all duration-300 hover:bg-[var(--color-accent-hover)] hover:shadow-[0_2px_10px_rgba(0,113,227,0.35)]"
-            >
-              Start free trial
-            </Link>
+            {session?.user ? (
+              <Link
+                href="/dashboard"
+                className="rounded-full border border-black/[0.08] px-4 py-1.5 text-xs font-medium text-[var(--color-ink)]"
+              >
+                Account
+              </Link>
+            ) : (
+              <Link
+                href="/signup"
+                className="rounded-full bg-[var(--color-accent)] px-4 py-1.5 text-xs font-medium text-white transition-all duration-300 hover:bg-[var(--color-accent-hover)] hover:shadow-[0_2px_10px_rgba(0,113,227,0.35)]"
+              >
+                Start free trial
+              </Link>
+            )}
           </li>
         </ul>
 
@@ -61,18 +87,18 @@ export function Navigation() {
             <Link
               key={l.href}
               href={l.href}
-              className="block py-2.5 text-[0.9375rem] text-[var(--color-ink)]"
+              className={`block py-2.5 text-[0.9375rem] ${navClass(isActive(l.href))}`}
               onClick={() => setOpen(false)}
             >
               {l.label}
             </Link>
           ))}
           <Link
-            href="/signup"
+            href={session?.user ? "/dashboard" : "/signup"}
             className="mt-3 inline-block text-[0.9375rem] font-medium text-[var(--color-accent)]"
             onClick={() => setOpen(false)}
           >
-            Start free trial
+            {session?.user ? "Account" : "Start free trial"}
           </Link>
         </div>
       )}

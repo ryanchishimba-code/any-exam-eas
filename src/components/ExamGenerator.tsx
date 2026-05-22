@@ -20,6 +20,7 @@ export function ExamGenerator() {
   const [count, setCount] = useState<QuestionCount>(10);
   const [loading, setLoading] = useState(false);
   const [exam, setExam] = useState<GeneratedExam | null>(null);
+  const [examId, setExamId] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [status, setStatus] = useState("");
   const [sourcesReviewed, setSourcesReviewed] = useState<number | null>(null);
@@ -53,6 +54,7 @@ export function ExamGenerator() {
     setLoading(true);
     setError("");
     setExam(null);
+    setExamId(null);
     setSourcesReviewed(null);
     setStatus(
       `Studying ${selectedSubject?.textbookRefs ?? "OER textbooks"} for ${selectedSubject?.label}…`
@@ -73,6 +75,7 @@ export function ExamGenerator() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Generation failed");
       setExam(data.exam);
+      setExamId(data.examId ?? null);
       setSourcesReviewed(data.sourcesReviewed ?? data.sources?.length ?? null);
       setStatus("");
     } catch (err) {
@@ -197,7 +200,11 @@ export function ExamGenerator() {
               )}
             </div>
 
-            <ExamQuiz key={`${exam.title}-${exam.questions.length}`} exam={exam} />
+            <ExamQuiz
+              key={`${exam.title}-${exam.questions.length}`}
+              exam={exam}
+              examId={examId ?? undefined}
+            />
           </motion.div>
         )}
       </AnimatePresence>

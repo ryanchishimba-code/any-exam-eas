@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ExamQuestion, GeneratedExam } from "@/lib/ai";
 import { cleanOptionText, formatChoiceLabel, getSolutionSteps } from "@/lib/question-format";
 
@@ -183,10 +183,17 @@ function QuestionCard({
   );
 }
 
-export function ExamQuiz({ exam }: { exam: GeneratedExam }) {
+export function ExamQuiz({
+  exam,
+  examId,
+}: {
+  exam: GeneratedExam;
+  examId?: string;
+}) {
   const [answers, setAnswers] = useState<Record<number, AnswerState>>({});
   const [page, setPage] = useState(0);
   const [openSolutionIds, setOpenSolutionIds] = useState<Set<number>>(new Set());
+  const progressSaved = useRef(false);
 
   const mathMode = isMathematicsField(exam.field);
 
@@ -244,6 +251,30 @@ export function ExamQuiz({ exam }: { exam: GeneratedExam }) {
 
   const allDone = score.answered === score.total;
   const pageChecked = pageQuestions.filter((q) => getState(q.id).revealed).length;
+  const scorePercent =
+    score.total > 0 ? Math.round((score.correct / score.total) * 100) : 0;
+
+  useEffect(() => {
+    if (!allDone || !examId || progressSaved.current) return;
+    progressSaved.current = true;
+    fetch("/api/progress", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        entityType: "exam",
+        entityId: examId,
+        score: scorePercent,
+        completed: true,
+        metadata: {
+          action: "completed",
+          title: exam.title,
+          field: exam.field,
+          correct: score.correct,
+          total: score.total,
+        },
+      }),
+    }).catch(() => {});
+  }, [allDone, examId, scorePercent, exam.title, exam.field, score.correct, score.total]);
 
   return (
     <div className="mt-10 space-y-6">
@@ -277,9 +308,16 @@ export function ExamQuiz({ exam }: { exam: GeneratedExam }) {
         <div className="rounded-3xl bg-green-50 p-6 text-center">
           <p className="text-lg font-semibold text-green-900">Exam complete</p>
           <p className="mt-1 text-green-800">
-            You got {score.correct} out of {score.total} correct (
-            {Math.round((score.correct / score.total) * 100)}%)
+            You got {score.correct} out of {score.total} correct ({scorePercent}%)
           </p>
+          {examId && (
+            <p className="mt-2 text-sm text-green-800">
+              Progress saved.{" "}
+              <a href="/progress" className="font-medium underline">
+                View tracker
+              </a>
+            </p>
+          )}
         </div>
       )}
 

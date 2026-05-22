@@ -14,8 +14,8 @@ const next = schema.replace(
 );
 
 if (next === schema) {
-  console.error("Could not update provider in prisma/schema.prisma");
-  process.exit(1);
+  console.log(`Prisma datasource provider already ${provider}`);
+  process.exit(0);
 }
 
 writeFileSync(path, next);

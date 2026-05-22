@@ -60,9 +60,19 @@ fi
 
 npx prisma generate
 
+# Free ports 3000/3001 so a crashed/old dev server does not block the new one
+if command -v lsof >/dev/null 2>&1; then
+  for port in 3000 3001; do
+    lsof -ti ":$port" 2>/dev/null | while read -r pid; do
+      kill -9 "$pid" 2>/dev/null || true
+    done
+  done
+fi
+
 echo ""
 echo "Open http://localhost:3000"
 echo "Do not use --turbopack (causes edge cache errors with auth)."
+echo "If the page looks unstyled, stop all dev servers and run this script again."
 echo ""
 
 npm run dev

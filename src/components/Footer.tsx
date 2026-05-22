@@ -15,13 +15,23 @@ export function Footer() {
           <p className="apple-label">Product</p>
           <ul className="mt-4 space-y-2.5 text-[0.875rem] text-[var(--color-ink-muted)]">
             <li>
-              <Link className="transition-colors hover:text-[var(--color-ink)]" href="/generate">
-                Generate exams
+              <Link className="transition-colors hover:text-[var(--color-ink)]" href="/study">
+                Study hub
               </Link>
             </li>
             <li>
               <Link className="transition-colors hover:text-[var(--color-ink)]" href="/learn">
-                Learning quilt
+                Flashcards
+              </Link>
+            </li>
+            <li>
+              <Link className="transition-colors hover:text-[var(--color-ink)]" href="/generate">
+                Exam questions
+              </Link>
+            </li>
+            <li>
+              <Link className="transition-colors hover:text-[var(--color-ink)]" href="/progress">
+                Progress tracker
               </Link>
             </li>
             <li>

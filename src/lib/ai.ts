@@ -38,6 +38,9 @@ export type QuiltTile = {
   front: string;
   back: string;
   hint?: string;
+  /** Quiz tiles: exactly 4 MCQ options when type is quiz */
+  options?: string[];
+  correctAnswer?: string;
 };
 
 export type LearningQuiltContent = {
@@ -238,7 +241,10 @@ ${params.researchBrief}
 SOURCES (${params.sources.length}):
 ${context}
 
-Create 14-18 tiles: alternating flashcard (term → definition/application) and quiz (question → answer).
+Create 14-18 tiles. If preferredMode is "flashcards", use only flashcard tiles. If "quiz", use only quiz tiles with MCQ. If "mixed", alternate both.
+- flashcard: front = term/question, back = definition/answer
+- quiz: front = question stem, options = exactly 4 strings, correctAnswer = one option verbatim, back = explanation (optional duplicate of correctAnswer)
+
 Order tiles from foundations → application → exam-style checkpoints.
 recommendedMode: best fit based on content and user preference.
 
@@ -247,7 +253,7 @@ Return valid JSON:
   "title": string,
   "recommendedMode": "flashcards" | "quiz" | "mixed",
   "tiles": [
-    { "id": string, "type": "flashcard" | "quiz", "front": string, "back": string, "hint": string optional }
+    { "id": string, "type": "flashcard" | "quiz", "front": string, "back": string, "hint": string optional, "options": string[] optional (required for quiz), "correctAnswer": string optional (required for quiz) }
   ]
 }`;
 
@@ -274,13 +280,33 @@ function demoQuilt(params: {
   topic: string;
   preferredMode: string;
 }): LearningQuiltContent {
-  const tiles: QuiltTile[] = Array.from({ length: 10 }, (_, i) => ({
-    id: `tile-${i + 1}`,
-    type: i % 2 === 0 ? "flashcard" : "quiz",
-    front: `${params.topic} — core concept ${i + 1}`,
-    back: `OER-backed explanation ${i + 1} for ${params.field}.`,
-    hint: "From research brief",
-  }));
+  const mode = params.preferredMode;
+  const tiles: QuiltTile[] = Array.from({ length: 10 }, (_, i) => {
+    const isQuiz = mode === "quiz" || (mode === "mixed" && i % 2 === 1);
+    if (isQuiz) {
+      const correct = `Key fact ${i + 1} about ${params.topic}`;
+      return {
+        id: `tile-${i + 1}`,
+        type: "quiz" as const,
+        front: `${params.topic}: concept check ${i + 1}?`,
+        back: correct,
+        options: [
+          correct,
+          `Misconception A for ${params.topic}`,
+          `Misconception B for ${params.topic}`,
+          `Misconception C for ${params.topic}`,
+        ],
+        correctAnswer: correct,
+      };
+    }
+    return {
+      id: `tile-${i + 1}`,
+      type: "flashcard" as const,
+      front: `${params.topic} — core concept ${i + 1}`,
+      back: `OER-backed explanation ${i + 1} for ${params.field}.`,
+      hint: "From research brief",
+    };
+  });
 
   return {
     title: `${params.topic} Learning Quilt`,

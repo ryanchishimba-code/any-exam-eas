@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { BookOpen, Brain, Globe, Layers, GraduationCap, LineChart } from "lucide-react";
 
 const features = [
@@ -48,15 +45,8 @@ export function FeatureGrid() {
         </p>
 
         <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((f, i) => (
-            <motion.article
-              key={f.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ delay: i * 0.06, duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              className="apple-card apple-card-hover p-8"
-            >
+          {features.map((f) => (
+            <article key={f.title} className="apple-card apple-card-hover p-8">
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--color-surface)]">
                 <f.icon className="text-[var(--color-accent)]" size={24} strokeWidth={1.5} />
               </div>
@@ -64,7 +54,7 @@ export function FeatureGrid() {
               <p className="mt-2 text-[0.9375rem] leading-relaxed text-[var(--color-ink-muted)]">
                 {f.desc}
               </p>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>

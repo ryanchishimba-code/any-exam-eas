@@ -10,7 +10,7 @@ export default function LearnPage() {
     <PageShell
       eyebrow="Learn"
       title="Learning quilt."
-      description="A patchwork of flashcards and quiz tiles that connect as you learn. Choose flashcards, quizzes, or mixed."
+      description="Build a learning quilt: flip flashcards or answer mini-quiz tiles. Switch to Exams for full multiple-choice practice."
       maxWidth="max-w-5xl"
     >
       <LearningQuiltStudio />

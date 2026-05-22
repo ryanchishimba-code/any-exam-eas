@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Any Exam Easy — AI Exams & Learning Quilts",
   description:
     "Generate practice exams from any field with web-informed AI. Learn with adaptive flashcard quilts. 7-day free trial, then $9/month.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

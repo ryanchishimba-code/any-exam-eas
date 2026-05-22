@@ -1,59 +1,36 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Button } from "./ui/Button";
+import { HeroVisual } from "./HeroVisual";
 
 export function Hero() {
   return (
-    <section className="apple-hero-glow relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pt-14 text-center">
-      <motion.p
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-        className="apple-eyebrow relative"
-      >
-        Any field. Any exam. Easier.
-      </motion.p>
+    <section className="apple-hero-glow relative overflow-hidden pb-20 pt-14">
+      <div className="mx-auto flex max-w-[980px] flex-col items-center px-6 text-center">
+        <p className="apple-eyebrow apple-animate-in">Any field. Any exam. Easier.</p>
 
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.08, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative mt-5 max-w-[14ch] text-[clamp(2.75rem,8vw,5.5rem)] font-semibold leading-[1.02] tracking-[-0.04em] md:max-w-none"
-      >
-        Any Exam Easy.
-      </motion.h1>
+        <h1 className="apple-animate-in apple-animate-in-delay-1 mt-5 max-w-[14ch] text-[clamp(2.75rem,8vw,5.5rem)] font-semibold leading-[1.02] tracking-[-0.04em] text-[var(--color-ink)] md:max-w-none">
+          Any Exam Easy.
+        </h1>
 
-      <motion.p
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.16, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative mt-6 max-w-2xl text-[clamp(1.0625rem,2.5vw,1.375rem)] leading-[1.45] text-[var(--color-ink-muted)]"
-      >
-        Generate practice exams grounded in live research. Learn with an adaptive quilt
-        of flashcards and quizzes — calm, focused, and built for how you study.
-      </motion.p>
+        <p className="apple-animate-in apple-animate-in-delay-2 mx-auto mt-6 max-w-2xl text-[clamp(1.0625rem,2.5vw,1.375rem)] leading-[1.45] text-[var(--color-ink-muted)]">
+          Generate practice exams grounded in live research. Learn with an adaptive quilt
+          of flashcards and quizzes — calm, focused, and built for how you study.
+        </p>
 
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.28, ease: [0.25, 0.1, 0.25, 1] }}
-        className="relative mt-11 flex flex-wrap items-center justify-center gap-4"
-      >
-        <Button href="/signup">Start 7-day free trial</Button>
-        <Button href="/generate" variant="secondary">
-          Try exam generator
-        </Button>
-      </motion.div>
+        <div className="apple-animate-in apple-animate-in-delay-3 mt-11 flex flex-wrap items-center justify-center gap-4">
+          <Button href="/study">Start studying</Button>
+          <Button href="/signup" variant="secondary">
+            Start 7-day free trial
+          </Button>
+        </div>
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.45, duration: 0.6 }}
-        className="relative mt-7 text-xs tracking-wide text-[var(--color-ink-muted)]"
-      >
-        Then $9/month · Cancel anytime · 18+ only
-      </motion.p>
+        <p className="apple-animate-in apple-animate-in-delay-4 mt-7 text-xs tracking-wide text-[var(--color-ink-muted)]">
+          Then $9/month · Cancel anytime · 18+ only
+        </p>
+
+        <div className="apple-animate-in apple-animate-in-delay-4 w-full">
+          <HeroVisual />
+        </div>
+      </div>
     </section>
   );
 }
