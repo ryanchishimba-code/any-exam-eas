@@ -15,6 +15,9 @@
     "db:verify-questions": "npx tsx scripts/verify-question-bank.ts",
     "db:studio": "prisma studio",
     "test:questions": "tsx scripts/test-question-counts.mjs",
+    "vercel:setup": "node scripts/vercel-setup.mjs",
+    "test:smoke": "node scripts/smoke-test.mjs",
+    "test:smoke:prod": "node scripts/smoke-test.mjs https://any-exam-eas.vercel.app",
     "postinstall": "node scripts/prisma-generate.mjs"
   },
   "dependencies": {

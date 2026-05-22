@@ -13,11 +13,14 @@ export async function GET() {
 
   const url = process.env.DATABASE_URL ?? "";
   if (!url) checks.databaseUrl = "missing";
-  else if (url.startsWith("file:")) checks.databaseUrl = "sqlite-not-supported-on-vercel";
+  else if (url.startsWith("file:"))
+    checks.databaseUrl = process.env.VERCEL
+      ? "sqlite-not-supported-on-vercel"
+      : "sqlite-local";
   else if (/build:build@127\.0\.0\.1/.test(url)) checks.databaseUrl = "build-placeholder";
   else if (/^postgres(ql)?:\/\//.test(url)) checks.databaseUrl = "postgresql";
 
-  if (checks.databaseUrl === "postgresql") {
+  if (checks.databaseUrl === "postgresql" || checks.databaseUrl === "sqlite-local") {
     try {
       const { prisma } = await import("@/lib/prisma");
       await prisma.$queryRaw`SELECT 1`;
@@ -32,10 +35,9 @@ export async function GET() {
     checks.questionBank = "skipped";
   }
 
-  const ok =
-    checks.nextauthSecret === "ok" &&
-    checks.databaseUrl === "postgresql" &&
-    checks.prisma === "ok";
+  const dbOk =
+    checks.databaseUrl === "postgresql" || checks.databaseUrl === "sqlite-local";
+  const ok = checks.nextauthSecret === "ok" && dbOk && checks.prisma === "ok";
 
   return NextResponse.json(
     { ok, checks, vercel: !!process.env.VERCEL },

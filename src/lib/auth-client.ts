@@ -23,7 +23,7 @@ export async function fetchAuthHealthWarning(): Promise<string | null> {
     if (data.checks?.nextauthSecret === "missing") missing.push("NEXTAUTH_SECRET");
     if (data.checks?.databaseUrl === "missing") missing.push("DATABASE_URL");
     if (missing.length > 0) {
-      return `This deployment is missing required settings: ${missing.join(", ")}. Add them in Vercel → Environment Variables, then redeploy.`;
+      return `This deployment is missing required settings: ${missing.join(", ")}. Run \`npm run vercel:setup\` for copy-paste values, add them in Vercel → Environment Variables (Production + Build), then redeploy.`;
     }
     return "This deployment is not fully configured yet. Check /api/health or redeploy after setting environment variables.";
   } catch {
