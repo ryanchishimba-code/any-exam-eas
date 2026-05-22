@@ -13,7 +13,7 @@ import { ExamQuiz } from "./ExamQuiz";
 import { Button } from "./ui/Button";
 
 export function ExamGenerator() {
-  const [field, setField] = useState("Mathematics");
+  const [field, setField] = useState("Medicine");
   const [subjectId, setSubjectId] = useState("");
   const [topic, setTopic] = useState("");
   const [difficulty, setDifficulty] = useState("medium");
@@ -101,7 +101,13 @@ export function ExamGenerator() {
             ))}
           </select>
           {fieldMeta && (
-            <p className="mt-2 text-xs text-[var(--color-ink-muted)]">{fieldMeta.examFocus}</p>
+            <p className="mt-2 text-xs text-[var(--color-ink-muted)]">
+              <span className="font-medium text-[var(--color-accent)]">
+                {fieldMeta.boardExam}
+              </span>
+              {" · "}
+              {fieldMeta.examFocus}
+            </p>
           )}
         </div>
 
@@ -121,6 +127,14 @@ export function ExamGenerator() {
           </select>
           {selectedSubject && (
             <p className="mt-2 text-xs text-[var(--color-ink-muted)]">
+              {selectedSubject.contentArea && (
+                <>
+                  <span className="font-medium text-[var(--color-accent)]">
+                    {selectedSubject.contentArea}
+                  </span>
+                  {" · "}
+                </>
+              )}
               Textbooks: {selectedSubject.textbookRefs} · Questions will be{" "}
               <strong>only</strong> about {selectedSubject.label}
             </p>

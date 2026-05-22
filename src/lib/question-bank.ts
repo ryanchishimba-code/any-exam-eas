@@ -5,7 +5,7 @@ import {
   getFieldSubject,
   subjectMatchesQuestion,
 } from "./field-subjects";
-import { FIELD_QUESTION_BANKS } from "./field-question-banks";
+import { getHealthBankItems } from "./health-sciences-question-bank";
 import { generateProceduralQuestions } from "./procedural-questions";
 import { toQuizletStyleQuestion } from "./question-format";
 
@@ -455,15 +455,13 @@ export function getBankQuestions(params: {
   const tagWithSubject = (items: BankItem[], defaultSubject: string) =>
     items.map((i) => ({ ...i, subjectId: i.subjectId ?? defaultSubject }));
 
+  // Stratified health sciences database (medicine, nursing, pharmacy)
+  pools.push(...getHealthBankItems(fieldId, subjectKey));
+
   if (fieldId === "medicine" && BANK[subjectKey]?.length) {
     pools.push(...tagWithSubject(BANK[subjectKey], subjectKey));
-  } else if (fieldId === "medicine") {
+  } else if (fieldId === "medicine" && pools.length === 0) {
     pools.push(...tagWithSubject(GENERAL_MEDICINE, subjectKey));
-  }
-
-  const fieldBank = FIELD_QUESTION_BANKS[fieldId] ?? [];
-  for (const item of fieldBank) {
-    if (item.subjectId === subjectKey) pools.push(item);
   }
 
   const topicLower = params.topic.toLowerCase();

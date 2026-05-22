@@ -7,8 +7,7 @@ export function Footer() {
         <div className="md:col-span-2">
           <p className="text-[1.0625rem] font-semibold tracking-tight">Any Exam Easy</p>
           <p className="mt-3 max-w-md text-[0.875rem] leading-relaxed text-[var(--color-ink-muted)]">
-            AI-powered exams and adaptive learning quilts for every field — from K–12 to
-            medicine, nursing, pharmacy, and engineering.
+            AI-powered exams and adaptive learning quilts for medicine, nursing, and pharmacy.
           </p>
         </div>
         <div>

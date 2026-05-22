@@ -70,6 +70,22 @@ Rules:
 - Explanations teach why correct and why others fail.
 - Output only valid JSON.`;
 
+const NURSING_EXAM_SYSTEM = `You are an NCLEX-RN item writer. Emphasize prioritization, safety, infection control, therapeutic communication, and pharmacology in nursing scope.
+Rules:
+- EVERY question must be type "multiple_choice" with exactly 4 unique options.
+- Include prioritization-style stems when appropriate (who to see first, best nursing action).
+- Distractors reflect common nursing misconceptions.
+- Ground content in the research brief; align with NCLEX Client Needs categories.
+- Output only valid JSON.`;
+
+const PHARMACY_EXAM_SYSTEM = `You are a NAPLEX-style pharmacy item writer. Emphasize pharmacokinetics, drug interactions, dosing, compounding calculations, patient counseling, and therapeutic class selection.
+Rules:
+- EVERY question must be type "multiple_choice" with exactly 4 unique options.
+- Include calculation or clinical application stems when appropriate for the subject.
+- Distractors reflect common dispensing and counseling errors.
+- Ground content in the research brief.
+- Output only valid JSON.`;
+
 const MEDICINE_EXAM_SYSTEM = `You are a USMLE/board-style medical item writer. Style: Quizlet study sets — clear "Question:" stem, four distinct choices labeled A–D in meaning (store option text without the letter prefix).
 Rules:
 - EVERY question must be type "multiple_choice" with exactly 4 options.
@@ -159,12 +175,20 @@ Return valid JSON:
     return buildOfflineExam({ ...params, subjectId: sid });
   }
 
+  const fieldLower = params.field.toLowerCase();
+  const boardSystem =
+    fieldLower === "nursing"
+      ? NURSING_EXAM_SYSTEM
+      : fieldLower === "pharmacy"
+        ? PHARMACY_EXAM_SYSTEM
+        : MEDICINE_EXAM_SYSTEM;
+
   const completion = await openai.chat.completions.create({
     model: "gpt-4o-mini",
     messages: [
       {
         role: "system",
-        content: `${EXAM_SYSTEM}\n${MEDICINE_EXAM_SYSTEM}\nNever include questions outside the specified subject scope.`,
+        content: `${EXAM_SYSTEM}\n${boardSystem}\nNever include questions outside the specified subject scope.`,
       },
       { role: "user", content: prompt },
     ],

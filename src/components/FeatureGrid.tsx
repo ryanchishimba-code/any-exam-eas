@@ -9,7 +9,7 @@ const features = [
   {
     icon: Brain,
     title: "Any field",
-    desc: "Medicine, engineering, nursing, pharmacy, K–12 — structured by subject, not generic AI fluff.",
+    desc: "Medicine, nursing, and pharmacy — each with stratified subject areas and board-style MCQs.",
   },
   {
     icon: Layers,

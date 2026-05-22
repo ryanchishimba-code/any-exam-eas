@@ -11,7 +11,7 @@ const included = [
   "Unlimited AI exam generation",
   "Web-informed source gathering",
   "Learning quilt with flashcards & quizzes",
-  "Lesson plans (K–12 & professional)",
+  "Lesson plans by subject area",
   "Progress tracking dashboard",
 ];
 

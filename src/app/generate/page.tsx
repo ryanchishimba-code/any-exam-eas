@@ -12,7 +12,7 @@ export default function GeneratePage() {
     <PageShell
       eyebrow="Exam generator"
       title="Generate an exam."
-      description="Pick a field and subject. Questions are scoped to your topic using OER textbooks and web research — answers stay hidden until you check."
+      description="Choose Medicine, Nursing, or Pharmacy, then a subject area. Questions follow USMLE, NCLEX, and NAPLEX-style stratification with OER-backed research."
       maxWidth="max-w-3xl"
     >
       <StudySubnav />
