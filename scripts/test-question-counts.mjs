@@ -14,7 +14,7 @@ for (const field of FIELD_LABELS) {
   }
   for (const subject of subjects) {
     for (const count of COUNTS) {
-      const questions = getBankQuestions({
+      const questions = await getBankQuestions({
         field,
         subjectId: subject.id,
         topic: subject.label,

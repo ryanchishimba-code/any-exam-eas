@@ -50,10 +50,12 @@ export function shuffleAnswerOptions(
   return { options: shuffled, correctAnswer: correct };
 }
 
+/** Strip a leading "Question:" / "Question N:" prefix from stems (UI shows question number separately). */
 export function formatQuestionLabel(question: string): string {
-  const q = question.trim();
-  if (/^question\s*:/i.test(q)) return q;
-  return `Question: ${q}`;
+  return question
+    .trim()
+    .replace(/^question\s*\d*\s*:\s*/i, "")
+    .trim();
 }
 
 export function formatChoiceLabel(index: number, text: string): string {
@@ -90,7 +92,7 @@ export function toQuizletStyleQuestion(q: ExamQuestion): ExamQuestion {
   );
   return {
     ...q,
-    question: formatQuestionLabel(q.question.replace(/^question\s*:/i, "").trim()),
+    question: formatQuestionLabel(q.question),
     options,
     correctAnswer,
   };

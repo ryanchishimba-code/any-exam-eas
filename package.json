@@ -11,6 +11,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:push": "prisma db push",
+    "db:sync-questions": "node scripts/sync-question-bank.mjs",
     "db:studio": "prisma studio",
     "test:questions": "tsx scripts/test-question-counts.mjs",
     "postinstall": "node scripts/prisma-generate.mjs"
@@ -40,6 +41,7 @@
     "eslint-config-next": "^15.1.6",
     "prisma": "^6.3.1",
     "tailwindcss": "^4.0.0",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   }
 }

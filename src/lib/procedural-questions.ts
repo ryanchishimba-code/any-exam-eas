@@ -234,7 +234,7 @@ function generateFromSubjectMeta(
     items.push(
       mc(
         subject.id,
-        `Question ${variant}: In ${subject.label}, which best describes ${concept}?`,
+        `In ${subject.label}, which best describes ${concept}?`,
         [
           correct,
           `An outdated misconception about ${concept}`,

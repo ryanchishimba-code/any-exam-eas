@@ -1,6 +1,12 @@
 {
   "buildCommand": "npm run vercel-build",
   "installCommand": "npm install",
+  "crons": [
+    {
+      "path": "/api/cron/sync-question-bank",
+      "schedule": "0 5 * * 0"
+    }
+  ],
   "build": {
     "env": {
       "DATABASE_URL": "postgresql://build:build@127.0.0.1:5432/build?schema=public"

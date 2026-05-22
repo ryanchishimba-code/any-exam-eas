@@ -110,6 +110,6 @@ TOPIC: ${topic}
 DISCIPLINE FOCUS: ${meta?.examFocus ?? "core curriculum"}
 STYLE: ${style.systemAddendum}
 QUESTION RULES: ${style.questionRules}
-FORMAT: Quizlet-style — stem begins with "Question: "; exactly ${count} multiple_choice items; 4 unique option strings (no letter prefix); highYield true for most items.
+FORMAT: Quizlet-style — plain question stem (no "Question:" prefix); exactly ${count} multiple_choice items; 4 unique option strings (no letter prefix); highYield true for most items.
 ALL questions must be multiple_choice with exactly 4 options.`;
 }

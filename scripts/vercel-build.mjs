@@ -17,6 +17,8 @@ run("npx", ["prisma", "generate"]);
 if (shouldRunMigrations()) {
   console.log("Applying database migrations...");
   run("npx", ["prisma", "migrate", "deploy"]);
+  console.log("Syncing question bank into database...");
+  run("node", ["scripts/sync-question-bank.mjs"]);
 } else {
   console.log(
     "Skipping prisma migrate deploy until a real DATABASE_URL is set on Vercel."

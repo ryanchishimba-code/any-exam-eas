@@ -65,7 +65,7 @@ Rules:
 - Ground every question in the research brief and sources.
 - Exactly 4 UNIQUE options per question; one best answer; store option text without "A)" prefix.
 - Do NOT always place the correct answer as the first option — vary its position across questions.
-- Question stem starts with "Question: "
+- Question stem is plain text only (no "Question:" prefix)
 - Distractors = realistic wrong answers for that field (math: common computation errors; law: wrong elements; etc.).
 - Explanations teach why correct and why others fail.
 - Output only valid JSON.`;
@@ -86,7 +86,7 @@ Rules:
 - Ground content in the research brief.
 - Output only valid JSON.`;
 
-const MEDICINE_EXAM_SYSTEM = `You are a USMLE/board-style medical item writer. Style: Quizlet study sets — clear "Question:" stem, four distinct choices labeled A–D in meaning (store option text without the letter prefix).
+const MEDICINE_EXAM_SYSTEM = `You are a USMLE/board-style medical item writer. Style: Quizlet study sets — clear stem text (no "Question:" prefix), four distinct choices labeled A–D in meaning (store option text without the letter prefix).
 Rules:
 - EVERY question must be type "multiple_choice" with exactly 4 options.
 - ALL questions must have "highYield": true.
@@ -172,7 +172,7 @@ Return valid JSON:
 }`;
 
   if (!openai) {
-    return buildOfflineExam({ ...params, subjectId: sid });
+    return await buildOfflineExam({ ...params, subjectId: sid });
   }
 
   const fieldLower = params.field.toLowerCase();
