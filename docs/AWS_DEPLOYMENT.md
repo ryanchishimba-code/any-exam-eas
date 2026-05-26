@@ -45,9 +45,10 @@ Next.js App Router with Prisma, long-running OpenAI calls, and large question-ba
    ```
 
 2. **Database**
-   - Create RDS PostgreSQL 16 (Multi-AZ for production).
-   - Set `DATABASE_URL=postgresql://user:pass@host:5432/anyexameasy?sslmode=require`.
-   - Run migrations from a one-off ECS task or CI: `npx prisma migrate deploy`.
+   - Create RDS PostgreSQL 16 — **full guide: [AWS_RDS.md](./AWS_RDS.md)**
+   - Set `DATABASE_URL=postgresql://user:pass@host:5432/anyexameasy?sslmode=require`
+   - Local setup: `cp .env.rds.example .env` then `npm run db:rds -- --sync --seed-admin`
+   - Run migrations from CI or a one-off ECS task: `npx prisma migrate deploy`
 
 3. **ECS task definition**
    - CPU: 512–1024, Memory: 1024–2048 MB (scale with load tests).
@@ -120,5 +121,6 @@ Open http://localhost:3000 — Postgres on `localhost:5432`, app on `3000`.
 ## Related docs
 
 - [APPLICATION_AUDIT.md](./APPLICATION_AUDIT.md)
+- [AWS_RDS.md](./AWS_RDS.md) — RDS setup, connection strings, migration from SQLite
 - [QUESTION_SYSTEM.md](./QUESTION_SYSTEM.md)
 - [README.md](../README.md)

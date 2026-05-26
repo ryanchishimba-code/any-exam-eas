@@ -18,7 +18,7 @@ export function ensureDatabaseUrl() {
       "Warning: DATABASE_URL is not set. Using a build-time placeholder."
     );
     console.warn(
-      "Add your Neon Postgres URL in Vercel → Settings → Environment Variables."
+      "Add your PostgreSQL URL (AWS RDS or Neon) in environment variables."
     );
     return true;
   }

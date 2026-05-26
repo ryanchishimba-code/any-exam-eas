@@ -31,6 +31,19 @@ docker compose up --build
 
 See [docs/AWS_DEPLOYMENT.md](docs/AWS_DEPLOYMENT.md) for AWS architecture.
 
+### AWS RDS (recommended for AWS hosting)
+
+1. Create **RDS PostgreSQL 16** in the AWS Console (private VPC, no public access).
+2. Copy `.env.rds.example` → `.env` and set `DATABASE_URL` to your RDS endpoint.
+3. Run:
+
+```bash
+npm run db:rds -- --sync --seed-admin
+npm run dev
+```
+
+Full steps: [docs/AWS_RDS.md](docs/AWS_RDS.md)
+
 ## Quick start
 
 ### 1. Install Node.js

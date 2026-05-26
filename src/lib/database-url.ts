@@ -14,19 +14,19 @@ export function assertRuntimeDatabaseUrl() {
 
   if (isSqliteDatabaseUrl(url) && process.env.VERCEL) {
     throw new Error(
-      "DATABASE_URL uses SQLite on Vercel. Set a Neon postgresql:// URL in Project → Environment Variables."
+      "DATABASE_URL uses SQLite on Vercel. Set a postgresql:// URL (Neon or AWS RDS) in environment variables."
     );
   }
 
   if (!url) {
     throw new Error(
-      "DATABASE_URL is not set. Run ./scripts/dev.sh or add a postgresql:// URL to .env (see .env.example)."
+      "DATABASE_URL is not set. Add an AWS RDS or PostgreSQL URL to .env (see docs/AWS_RDS.md)."
     );
   }
 
   if (isBuildPlaceholderDatabaseUrl(url)) {
     throw new Error(
-      "DATABASE_URL is still the build placeholder (127.0.0.1). Add your real Neon postgresql:// URL in Vercel or .env."
+      "DATABASE_URL is still the build placeholder. Set your real RDS postgresql:// URL in .env or Secrets Manager."
     );
   }
 }

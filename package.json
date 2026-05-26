@@ -11,6 +11,8 @@
     "start": "next start",
     "lint": "next lint",
     "db:push": "prisma db push",
+    "db:migrate": "npx prisma migrate deploy",
+    "db:rds": "node scripts/setup-rds.mjs",
     "db:sync-questions": "node scripts/sync-question-bank.mjs",
     "db:verify-questions": "npx tsx scripts/verify-question-bank.ts",
     "db:studio": "prisma studio",
