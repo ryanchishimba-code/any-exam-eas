@@ -1,6 +1,16 @@
 # AWS deployment architecture — Any Exam Easy
 
-This document describes a **production-grade AWS layout** for the Next.js app (standalone Docker image). It does not copy Vercel’s model; it targets teams that want VPC control, RDS, and predictable scaling.
+**Primary production target** (replacing Vercel). See [MIGRATE_VERCEL_TO_AWS.md](./MIGRATE_VERCEL_TO_AWS.md) for cutover steps.
+
+Quick start:
+
+```bash
+npm run aws:setup
+npm run db:rds -- --sync --seed-admin   # after RDS is created
+npm run aws:deploy -- --region us-east-1 --account YOUR_ACCOUNT_ID
+```
+
+This document describes a **production-grade AWS layout** for the Next.js app (standalone Docker image).
 
 ## Recommended architecture
 

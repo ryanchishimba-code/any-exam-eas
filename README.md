@@ -88,7 +88,21 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Go live (Vercel)
+## Go live on AWS (recommended)
+
+Production hosting: **ECS Fargate + RDS PostgreSQL** (Docker image in ECR).
+
+```bash
+npm run aws:setup          # secrets checklist + generated NEXTAUTH_SECRET / CRON_SECRET
+# 1. Create RDS — docs/AWS_RDS.md
+# 2. Secrets Manager — aws/secrets.template.json
+# 3. Push image — npm run aws:deploy -- --region us-east-1 --account YOUR_ACCOUNT_ID
+# 4. ECS task — aws/ecs-task-definition.json
+```
+
+Full guide: [docs/MIGRATE_VERCEL_TO_AWS.md](docs/MIGRATE_VERCEL_TO_AWS.md)
+
+## Go live (Vercel) — legacy
 
 1. Create a free **[Neon](https://neon.tech)** or **Vercel Postgres** database and copy the connection string.
 2. On **[Vercel](https://vercel.com)** → **Add New Project** → import `ryanchishimba-code/any-exam-eas` from GitHub.
