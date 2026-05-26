@@ -21,6 +21,7 @@
     "db:expire-trial": "node scripts/expire-user-trial.mjs",
     "test:questions": "tsx scripts/test-question-counts.mjs",
     "vercel:setup": "node scripts/vercel-setup.mjs",
+    "vercel:db": "node scripts/vercel-database.mjs",
     "aws:setup": "node scripts/aws-setup.mjs",
     "aws:deploy": "node scripts/aws-deploy.mjs",
     "aws:bootstrap": "bash scripts/bootstrap-aws.sh",

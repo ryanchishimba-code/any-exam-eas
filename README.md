@@ -88,35 +88,35 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Go live on AWS (recommended)
+## Go live on Vercel (recommended)
 
-Production hosting: **ECS Fargate + RDS PostgreSQL** (Docker image in ECR).
+**Hosting:** [Vercel](https://vercel.com) · **Database:** [Neon](https://neon.tech) PostgreSQL
 
-```bash
-npm run aws:setup          # secrets checklist + generated NEXTAUTH_SECRET / CRON_SECRET
-# 1. Create RDS — docs/AWS_RDS.md
-# 2. Secrets Manager — aws/secrets.template.json
-# 3. Push image — npm run aws:deploy -- --region us-east-1 --account YOUR_ACCOUNT_ID
-# 4. ECS task — aws/ecs-task-definition.json
-```
+**Full guide:** [docs/VERCEL_DATABASE.md](docs/VERCEL_DATABASE.md)
 
-Full guide: [docs/MIGRATE_VERCEL_TO_AWS.md](docs/MIGRATE_VERCEL_TO_AWS.md)
+### Quick steps
 
-## Go live (Vercel) — legacy
+1. **Neon** → [console.neon.tech](https://console.neon.tech) → New project → copy **pooled** connection string (`?sslmode=require`).
+2. **Secrets locally:** `npm run vercel:setup` → copy `NEXTAUTH_SECRET` and `CRON_SECRET`.
+3. **Vercel** → Project → **Environment Variables** → add for **Production**, **Preview**, and **Build**:
 
-1. Create a free **[Neon](https://neon.tech)** or **Vercel Postgres** database and copy the connection string.
-2. On **[Vercel](https://vercel.com)** → **Add New Project** → import `ryanchishimba-code/any-exam-eas` from GitHub.
-3. In **Environment Variables**, add everything from `.env.example` (production values). Enable each variable for **Production** and **Build** (especially `DATABASE_URL`):
-   - `DATABASE_URL` — Neon/Vercel Postgres URL (`postgresql://…`, add `?sslmode=require` for Neon)
-   - `NEXTAUTH_URL` — `https://any-exam-eas.vercel.app` (your real deployment URL)
-   - `NEXTAUTH_SECRET` (or `AUTH_SECRET`) — `openssl rand -base64 32`
-   - `CRON_SECRET` — another random string (weekly question-bank sync)
-   - `OPENAI_API_KEY`, `TAVILY_API_KEY`, `STRIPE_*` as needed
-4. Deploy (or **Redeploy** after pushing to `main`). Build runs `prisma migrate deploy`, syncs the question bank when Postgres is configured, then `next build`.
-   - **Do not** use `file:./dev.db` on Vercel.
-5. Verify: open `https://your-domain.vercel.app/api/health` — should return `"ok": true` with `databaseUrl: "postgresql"` and `nextauthSecret: "ok"`.
-6. If `questionBank` is `empty-run-cron-sync`, call once: `GET /api/cron/sync-question-bank` with header `Authorization: Bearer <CRON_SECRET>` (or wait for the weekly cron on Pro).
-7. Optional: **Stripe webhook** → `https://your-domain.com/api/stripe/webhook`; custom domain in Vercel → Domains.
+   | Variable | Value |
+   |----------|--------|
+   | `DATABASE_URL` | Neon pooled URL |
+   | `NEXTAUTH_URL` | `https://any-exam-eas.vercel.app` |
+   | `NEXTAUTH_SECRET` | from step 2 |
+   | `CRON_SECRET` | from step 2 |
+
+4. **Redeploy** (Deployments → ⋯ → Redeploy).
+5. **Schema (if needed):** paste same `DATABASE_URL` in local `.env` → `npm run vercel:db`.
+6. **Verify:** `https://any-exam-eas.vercel.app/api/health` → `"ok": true`.
+7. **Question bank (once):** `curl -H "Authorization: Bearer CRON_SECRET" https://any-exam-eas.vercel.app/api/cron/sync-question-bank`
+
+Do **not** use `file:./dev.db` on Vercel.
+
+## AWS (optional)
+
+ECS + RDS for self-hosted production: [docs/MIGRATE_VERCEL_TO_AWS.md](docs/MIGRATE_VERCEL_TO_AWS.md) · `npm run aws:bootstrap`
 
 ## Stripe setup (cards, Apple Pay, Google Pay, Link)
 

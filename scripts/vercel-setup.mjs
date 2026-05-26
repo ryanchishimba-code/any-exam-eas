@@ -18,9 +18,9 @@ const cronSecret = secret();
 console.log(`
 === Any Exam Easy — Vercel production setup ===
 
-1) Database (pick one)
-   • Neon: https://console.neon.tech → create project → copy pooled connection string
-   • Vercel Postgres: Project → Storage → Create Database → connect to project
+1) Database — see docs/VERCEL_DATABASE.md
+   • Neon (recommended): https://console.neon.tech → New project → copy POOLED connection string
+   • Or Vercel Postgres: Project → Storage → Create Database
 
 2) Vercel → Project → Settings → Environment Variables
    Add each variable for Production AND Build:
