@@ -29,6 +29,8 @@ console.log(`
    NEXTAUTH_URL     = ${PROD_URL}
    NEXTAUTH_SECRET  = ${nextauthSecret}
    CRON_SECRET      = ${cronSecret}
+   RESEND_API_KEY   = (from https://resend.com — password reset emails)
+   EMAIL_FROM       = your verified sender (e.g. noreply@yourdomain.com)
 
 3) Deployments → latest → ⋯ → Redeploy
 

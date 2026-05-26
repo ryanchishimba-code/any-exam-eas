@@ -12,6 +12,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const { enforceUserRateLimit } = await import("@/lib/api-rate-limit");
+  const limited = enforceUserRateLimit(session.user.id, "learn-quilt", 8, 60_000);
+  if (limited) return limited;
+
+  const { getSubscriptionAccess } = await import("@/lib/subscription-access");
+  const { subscriptionRequiredResponse } = await import("@/lib/api-subscription");
+  const access = await getSubscriptionAccess(session.user.id);
+  if (!access.hasAccess) {
+    return subscriptionRequiredResponse(access);
+  }
+
   const { field, topic, preferredMode } = await req.json();
   if (!field || !topic) {
     return NextResponse.json({ error: "Field and topic required" }, { status: 400 });

@@ -3,18 +3,20 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
+/// Core account for email + password sign-in (see src/lib/user-auth.ts).
 model User {
   id            String    @id @default(cuid())
   name          String?
-  email         String    @unique
+  email         String    @unique // stored lowercase via register/login
   emailVerified DateTime?
-  passwordHash  String?
+  passwordHash  String?   // bcrypt; required for credentials login
   image         String?
   dateOfBirth   DateTime
+  lastLoginAt   DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
@@ -59,6 +61,17 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+/// One-time tokens for forgot-password flow (hashed at rest).
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  email     String
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([email])
 }
 
 model Subscription {

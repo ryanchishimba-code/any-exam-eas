@@ -65,7 +65,7 @@ export function Navigation() {
                 href="/signup"
                 className="rounded-full bg-[var(--color-accent)] px-4 py-1.5 text-xs font-medium text-white transition-all duration-300 hover:bg-[var(--color-accent-hover)] hover:shadow-[0_2px_10px_rgba(0,113,227,0.35)]"
               >
-                Start free trial
+                Sign up
               </Link>
             )}
           </li>
@@ -98,7 +98,7 @@ export function Navigation() {
             className="mt-3 inline-block text-[0.9375rem] font-medium text-[var(--color-accent)]"
             onClick={() => setOpen(false)}
           >
-            {session?.user ? "Account" : "Start free trial"}
+            {session?.user ? "Account" : "Sign up"}
           </Link>
         </div>
       )}

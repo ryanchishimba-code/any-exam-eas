@@ -73,7 +73,14 @@ export function ExamGenerator() {
         }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Generation failed");
+      if (!res.ok) {
+        if (data.code === "SUBSCRIPTION_REQUIRED") {
+          throw new Error(
+            "Your free trial has ended. Subscribe from Pricing or your dashboard to keep generating exams."
+          );
+        }
+        throw new Error(data.error ?? "Generation failed");
+      }
       setExam(data.exam);
       setExamId(data.examId ?? null);
       setSourcesReviewed(data.sourcesReviewed ?? data.sources?.length ?? null);

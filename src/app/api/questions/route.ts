@@ -17,6 +17,13 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const { getSubscriptionAccess } = await import("@/lib/subscription-access");
+  const { subscriptionRequiredResponse } = await import("@/lib/api-subscription");
+  const access = await getSubscriptionAccess(session.user.id);
+  if (!access.hasAccess) {
+    return subscriptionRequiredResponse(access);
+  }
+
   const { searchParams } = new URL(req.url);
   const field = searchParams.get("field");
   const subjectId = searchParams.get("subjectId");

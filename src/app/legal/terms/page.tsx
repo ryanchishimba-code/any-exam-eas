@@ -13,7 +13,11 @@ export default function TermsPage() {
         </p>
       </section>
       <section>
-        <h2>2. Service description</h2>
+        <h2>2. Beta</h2>
+        <p>{LEGAL_DISCLAIMERS.beta}</p>
+      </section>
+      <section>
+        <h2>3. Service description</h2>
         <p>{LEGAL_DISCLAIMERS.educationalPurpose}</p>
       </section>
       <section>

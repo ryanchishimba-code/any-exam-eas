@@ -1,4 +1,5 @@
 import { ExamGenerator } from "@/components/ExamGenerator";
+import { PremiumGate } from "@/components/PremiumGate";
 import { StudySubnav } from "@/components/StudySubnav";
 import { StudyModePicker } from "@/components/StudyModePicker";
 import { PageShell } from "@/components/PageShell";
@@ -16,13 +17,15 @@ export default function GeneratePage() {
       maxWidth="max-w-3xl"
     >
       <StudySubnav />
-      <div className="mt-8">
-        <p className="apple-label">Study format</p>
-        <div className="mt-3">
-          <StudyModePicker active="exam" compact />
+      <PremiumGate>
+        <div className="mt-8">
+          <p className="apple-label">Study format</p>
+          <div className="mt-3">
+            <StudyModePicker active="exam" compact />
+          </div>
         </div>
-      </div>
-      <ExamGenerator />
+        <ExamGenerator />
+      </PremiumGate>
     </PageShell>
   );
 }

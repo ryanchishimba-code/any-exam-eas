@@ -7,11 +7,13 @@ const base = (process.argv[2] ?? "http://localhost:3000").replace(/\/$/, "");
 const routes = [
   { path: "/", expect: 200 },
   { path: "/login", expect: 200 },
+  { path: "/forgot-password", expect: 200 },
   { path: "/signup", expect: 200 },
-  { path: "/study", expect: 200 },
-  { path: "/learn", expect: 200 },
-  { path: "/generate", expect: 200 },
+  { path: "/study", expect: [200, 307] },
+  { path: "/learn", expect: [200, 307] },
+  { path: "/generate", expect: [200, 307] },
   { path: "/pricing", expect: 200 },
+  { path: "/checkout", expect: [200, 307] },
   { path: "/api/health", expect: [200, 503] },
 ];
 
@@ -40,6 +42,16 @@ try {
   console.log(`FAIL /api/auth/csrf (${e instanceof Error ? e.message : e})`);
   failed++;
 }
+
+const signupHtml = await fetch(`${base}/signup`).then((r) => r.text());
+const hasPlanChoice =
+  signupHtml.includes("Choose how to start") &&
+  (signupHtml.includes("free trial") || signupHtml.includes("Subscribe"));
+const hasBeta = signupHtml.includes("Beta");
+console.log(`${hasPlanChoice ? "OK" : "FAIL"} signup plan choice UI`);
+console.log(`${hasBeta ? "OK" : "FAIL"} signup beta notice`);
+if (!hasPlanChoice) failed++;
+if (!hasBeta) failed++;
 
 if (failed) {
   console.log(`\n${failed} check(s) failed for ${base}`);

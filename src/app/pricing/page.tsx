@@ -1,6 +1,8 @@
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
-import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/stripe";
+import { TRIAL_DAYS, MONTHLY_PRICE_USD } from "@/lib/stripe";
+import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
 import { PricingActions } from "@/components/PricingActions";
+import { PaymentMethodsList } from "@/components/PaymentMethodsList";
 import { PageShell } from "@/components/PageShell";
 
 export const metadata = {
@@ -31,7 +33,7 @@ export default function PricingPage() {
           <span className="text-lg font-normal text-[var(--color-ink-muted)]">/mo</span>
         </p>
         <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-          {TRIAL_DAYS}-day free trial included
+          {formatTrialLabel()} or subscribe today
         </p>
 
         <ul className="mt-8 space-y-3.5 text-left text-[0.9375rem]">
@@ -43,13 +45,16 @@ export default function PricingPage() {
           ))}
         </ul>
 
+        <PaymentMethodsList />
+
         <div className="mt-9">
           <PricingActions />
         </div>
       </div>
 
       <p className="mt-8 text-left text-xs leading-relaxed text-[var(--color-ink-muted)]">
-        {LEGAL_DISCLAIMERS.subscription} {LEGAL_DISCLAIMERS.limitationOfLiability}
+        {LEGAL_DISCLAIMERS.beta} {LEGAL_DISCLAIMERS.subscription}{" "}
+        {LEGAL_DISCLAIMERS.limitationOfLiability}
       </p>
     </PageShell>
   );

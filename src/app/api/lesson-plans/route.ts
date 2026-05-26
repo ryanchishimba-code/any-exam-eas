@@ -22,6 +22,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
+  const { getSubscriptionAccess } = await import("@/lib/subscription-access");
+  const { subscriptionRequiredResponse } = await import("@/lib/api-subscription");
+  const access = await getSubscriptionAccess(session.user.id);
+  if (!access.hasAccess) {
+    return subscriptionRequiredResponse(access);
+  }
+
   const { title, field, gradeLevel, subjects, goals, schedule } = await req.json();
 
   if (!title || !field || !subjects) {

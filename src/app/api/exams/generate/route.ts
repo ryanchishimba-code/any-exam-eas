@@ -14,15 +14,20 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const sub = await prisma.subscription.findUnique({
-    where: { userId: session.user.id },
-  });
+  const { enforceUserRateLimit } = await import("@/lib/api-rate-limit");
+  const limited = enforceUserRateLimit(
+    session.user.id,
+    "exam-generate",
+    8,
+    60_000
+  );
+  if (limited) return limited;
 
-  if (!sub || !["trialing", "active"].includes(sub.status)) {
-    return NextResponse.json(
-      { error: "Active subscription or trial required" },
-      { status: 403 }
-    );
+  const { getSubscriptionAccess } = await import("@/lib/subscription-access");
+  const { subscriptionRequiredResponse } = await import("@/lib/api-subscription");
+  const access = await getSubscriptionAccess(session.user.id);
+  if (!access.hasAccess) {
+    return subscriptionRequiredResponse(access);
   }
 
   const { field, topic, subjectId, difficulty, questionCount, lessonPlanId } =

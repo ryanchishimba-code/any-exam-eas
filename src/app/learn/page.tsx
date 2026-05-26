@@ -1,4 +1,5 @@
 import { LearningQuiltStudio } from "@/components/LearningQuiltStudio";
+import { PremiumGate } from "@/components/PremiumGate";
 import { PageShell } from "@/components/PageShell";
 
 export const metadata = {
@@ -13,7 +14,9 @@ export default function LearnPage() {
       description="Build a learning quilt: flip flashcards or answer mini-quiz tiles. Switch to Exams for full multiple-choice practice."
       maxWidth="max-w-5xl"
     >
-      <LearningQuiltStudio />
+      <PremiumGate>
+        <LearningQuiltStudio />
+      </PremiumGate>
     </PageShell>
   );
 }

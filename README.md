@@ -8,7 +8,7 @@ AI-powered exam generation and adaptive learning quilts — Apple-inspired, dyna
 - **Learning quilt** — Flashcard and quiz tiles; choose flashcards, quiz, or mixed mode
 - **Accounts** — Email signup, 18+ verification, progress tracking
 - **Lesson plans** — K–12 and professional (medicine, nursing, pharmacy, engineering, etc.)
-- **Billing** — 7-day free trial, then $9/month via Stripe
+- **Billing** — 2-day free trial (no card) or $3.99/month via Stripe
 - **Legal** — Terms, Privacy, and liability disclaimers (review with a lawyer before launch)
 
 ## Quick start
@@ -38,7 +38,8 @@ Edit `.env`:
 | `NEXTAUTH_SECRET` | Random string — `openssl rand -base64 32` |
 | `OPENAI_API_KEY` | Exam & quilt generation |
 | `TAVILY_API_KEY` | Web + OER search (OpenStax, LibreTexts, Wikibooks, etc.) — [tavily.com](https://tavily.com) |
-| `STRIPE_*` | Payments — create a $9/mo price with 7-day trial in Stripe Dashboard |
+| `STRIPE_*` | **Required for paid access after trial** — $3.99/mo subscription (see Stripe setup below) |
+| `RESEND_API_KEY` | Password reset emails (optional in dev) |
 
 ### 4. Database
 
@@ -70,12 +71,16 @@ Open [http://localhost:3000](http://localhost:3000).
 6. If `questionBank` is `empty-run-cron-sync`, call once: `GET /api/cron/sync-question-bank` with header `Authorization: Bearer <CRON_SECRET>` (or wait for the weekly cron on Pro).
 7. Optional: **Stripe webhook** → `https://your-domain.com/api/stripe/webhook`; custom domain in Vercel → Domains.
 
-## Stripe setup
+## Stripe setup (cards, Apple Pay, Google Pay, Link)
 
-1. Create a Product → recurring Price at **$9/month**
-2. Copy Price ID → `STRIPE_PRICE_ID`
-3. Enable **trial period** on Checkout (already set to 7 days in code)
-4. Webhook events: `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`
+1. Create a Product → recurring Price at **$3.99/month** → copy **Price ID** → `STRIPE_PRICE_ID`
+2. Add env vars: `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_WEBHOOK_SECRET`
+3. In [Stripe Dashboard → Settings → Payment methods](https://dashboard.stripe.com/settings/payment_methods), enable **Cards**, **Apple Pay**, **Google Pay**, and **Link**
+4. **Apple Pay:** register your domain under Stripe → Settings → Payment methods → Apple Pay (required for Safari / iOS)
+5. Checkout UI: users pay at `/checkout` (embedded) or via hosted Stripe Checkout
+6. Webhook URL: `https://your-domain.com/api/stripe/webhook`  
+   Events: `checkout.session.completed`, `customer.subscription.updated`, `customer.subscription.deleted`, `invoice.paid`, `invoice.payment_failed`
+7. Free trial is handled in-app (2 days); paid checkout uses Stripe at **$3.99/month**
 
 ## Legal note
 

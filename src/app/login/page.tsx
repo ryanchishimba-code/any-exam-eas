@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { LoginForm } from "@/components/LoginForm";
 import { PageShell } from "@/components/PageShell";
 
@@ -8,7 +9,9 @@ export const metadata = {
 export default function LoginPage() {
   return (
     <PageShell title="Welcome back." align="center" maxWidth="max-w-md">
-      <LoginForm />
+      <Suspense fallback={null}>
+        <LoginForm />
+      </Suspense>
     </PageShell>
   );
 }

@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import {
+  stripe,
+  resolveUserIdFromStripeSubscription,
+  applySubscriptionFromStripe,
+} from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import type Stripe from "stripe";
+
+export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   if (!stripe) {
@@ -28,12 +34,23 @@ export async function POST(req: Request) {
       const session = event.data.object as Stripe.Checkout.Session;
       const userId = session.metadata?.userId;
       if (userId && session.customer) {
+        let stripeSub: Stripe.Subscription | null = null;
+        if (session.subscription) {
+          stripeSub = await stripe.subscriptions.retrieve(String(session.subscription));
+        }
+
         await prisma.subscription.update({
           where: { userId },
           data: {
             stripeCustomerId: String(session.customer),
             stripeSubscriptionId: String(session.subscription ?? ""),
-            status: "active",
+            status: stripeSub?.status ?? "active",
+            ...(stripeSub?.trial_end
+              ? { trialEndsAt: new Date(stripeSub.trial_end * 1000) }
+              : {}),
+            ...(stripeSub?.current_period_end
+              ? { currentPeriodEnd: new Date(stripeSub.current_period_end * 1000) }
+              : {}),
           },
         });
       }
@@ -42,15 +59,48 @@ export async function POST(req: Request) {
     case "customer.subscription.updated":
     case "customer.subscription.deleted": {
       const sub = event.data.object as Stripe.Subscription;
-      const userId = sub.metadata?.userId;
+      const userId = await resolveUserIdFromStripeSubscription(sub);
       if (userId) {
-        await prisma.subscription.update({
-          where: { userId },
-          data: {
-            status: sub.status,
-            currentPeriodEnd: new Date(sub.current_period_end * 1000),
-          },
-        });
+        const customerId =
+          typeof sub.customer === "string" ? sub.customer : sub.customer?.id;
+        await applySubscriptionFromStripe(userId, sub, customerId);
+      }
+      break;
+    }
+    case "invoice.payment_failed": {
+      const invoice = event.data.object as Stripe.Invoice;
+      const subId =
+        typeof invoice.subscription === "string"
+          ? invoice.subscription
+          : invoice.subscription?.id;
+      if (subId) {
+        const stripeSub = await stripe.subscriptions.retrieve(subId);
+        const userId = await resolveUserIdFromStripeSubscription(stripeSub);
+        if (userId) {
+          await prisma.subscription.update({
+            where: { userId },
+            data: { status: "past_due" },
+          });
+        }
+      }
+      break;
+    }
+    case "invoice.paid": {
+      const invoice = event.data.object as Stripe.Invoice;
+      const subId =
+        typeof invoice.subscription === "string"
+          ? invoice.subscription
+          : invoice.subscription?.id;
+      if (subId) {
+        const stripeSub = await stripe.subscriptions.retrieve(subId);
+        const userId = await resolveUserIdFromStripeSubscription(stripeSub);
+        if (userId) {
+          const customerId =
+            typeof stripeSub.customer === "string"
+              ? stripeSub.customer
+              : stripeSub.customer?.id;
+          await applySubscriptionFromStripe(userId, stripeSub, customerId);
+        }
       }
       break;
     }

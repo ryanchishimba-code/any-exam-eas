@@ -1,7 +1,9 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { getSubscriptionAccess } from "@/lib/subscription-access";
 import { DashboardClient } from "@/components/DashboardClient";
+import { SubscriptionBanner } from "@/components/SubscriptionBanner";
 
 export const metadata = {
   title: "Dashboard — Any Exam Easy",
@@ -11,16 +13,12 @@ export default async function DashboardPage() {
   const session = await auth();
   if (!session?.user?.id) redirect("/login");
 
-  const [exams, quilts, progress, subscription] = await Promise.all([
+  const [exams, quilts, progress, access] = await Promise.all([
     prisma.exam.count({ where: { userId: session.user.id } }),
     prisma.learningQuilt.count({ where: { userId: session.user.id } }),
     prisma.progressRecord.count({ where: { userId: session.user.id } }),
-    prisma.subscription.findUnique({ where: { userId: session.user.id } }),
+    getSubscriptionAccess(session.user.id),
   ]);
-
-  const trialEnd = subscription?.trialEndsAt
-    ? new Date(subscription.trialEndsAt).toLocaleDateString()
-    : null;
 
   return (
     <div className="apple-page">
@@ -39,17 +37,9 @@ export default async function DashboardPage() {
           <Stat label="Progress events" value={progress} />
         </div>
 
-        <p className="mt-6 text-[0.875rem] text-[var(--color-ink-muted)]">
-          Subscription:{" "}
-          <span className="font-medium text-[var(--color-ink)]">
-            {subscription?.status ?? "none"}
-          </span>
-          {trialEnd && subscription?.status === "trialing" && (
-            <> · Trial ends {trialEnd}</>
-          )}
-        </p>
+        <SubscriptionBanner access={access} />
 
-        <DashboardClient />
+        <DashboardClient access={access} />
       </div>
     </div>
   );

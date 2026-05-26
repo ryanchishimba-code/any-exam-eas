@@ -1,3 +1,4 @@
+import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
 import { Button } from "./ui/Button";
 import { HeroVisual } from "./HeroVisual";
 
@@ -17,14 +18,17 @@ export function Hero() {
         </p>
 
         <div className="apple-animate-in apple-animate-in-delay-3 mt-11 flex flex-wrap items-center justify-center gap-4">
-          <Button href="/study">Start studying</Button>
-          <Button href="/signup" variant="secondary">
-            Start 7-day free trial
+          <Button href="/signup?plan=trial">{formatTrialLabel()}</Button>
+          <Button href="/signup?plan=subscribe" variant="secondary">
+            Subscribe — {formatMonthlyPrice()}/mo
+          </Button>
+          <Button href="/login" variant="ghost">
+            Log in
           </Button>
         </div>
 
         <p className="apple-animate-in apple-animate-in-delay-4 mt-7 text-xs tracking-wide text-[var(--color-ink-muted)]">
-          Then $9/month · Cancel anytime · 18+ only
+          Beta · {formatTrialLabel()} or {formatMonthlyPrice()}/month · Cancel anytime · 18+ only
         </p>
 
         <div className="apple-animate-in apple-animate-in-delay-4 w-full">

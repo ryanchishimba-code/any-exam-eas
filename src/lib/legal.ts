@@ -10,7 +10,9 @@ export const LEGAL_DISCLAIMERS = {
   limitationOfLiability:
     "To the maximum extent permitted by applicable law, Any Exam Easy and its operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from use of the platform, including reliance on generated content.",
   subscription:
-    "After your 7-day trial, your subscription renews at $9 USD per month unless canceled before the renewal date. Charges are processed through Stripe and tied to the email on your account.",
+    "After your free trial ends, your subscription renews at the monthly price shown at signup unless canceled before renewal. Charges are processed through Stripe and tied to the email on your account.",
+  beta:
+    "This product is in beta. Features, pricing, and availability may change. Content is for study support only and is not medical, nursing, or pharmacy advice.",
   ageRequirement:
     "You must be at least 18 years old to create an account. By registering you represent that you meet this requirement.",
 } as const;

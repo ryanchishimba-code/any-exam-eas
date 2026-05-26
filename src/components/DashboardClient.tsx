@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import type { SubscriptionAccess } from "@/lib/subscription-access";
 import { Button } from "./ui/Button";
+import { ManageBillingButton } from "./ManageBillingButton";
 import { ProgressTracker } from "./ProgressTracker";
+import { SubscribeButton } from "./SubscribeButton";
 
 type LessonPlan = {
   id: string;
@@ -13,7 +16,7 @@ type LessonPlan = {
   goals: string | null;
 };
 
-export function DashboardClient() {
+export function DashboardClient({ access }: { access: SubscriptionAccess }) {
   const [plans, setPlans] = useState<LessonPlan[]>([]);
   const [title, setTitle] = useState("");
   const [field, setField] = useState("");
@@ -58,13 +61,19 @@ export function DashboardClient() {
           Choose flashcards or full exam practice — progress saves automatically.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <Button href="/study">Study hub</Button>
-          <Button href="/learn" variant="secondary">
-            Flashcards
-          </Button>
-          <Button href="/generate" variant="secondary">
-            Exam questions
-          </Button>
+          {access.hasAccess ? (
+            <>
+              <Button href="/study">Study hub</Button>
+              <Button href="/learn" variant="secondary">
+                Flashcards
+              </Button>
+              <Button href="/generate" variant="secondary">
+                Exam questions
+              </Button>
+            </>
+          ) : (
+            <SubscribeButton />
+          )}
           <Button href="/progress" variant="ghost">
             View progress
           </Button>
@@ -76,9 +85,23 @@ export function DashboardClient() {
       <div className="grid gap-10 lg:grid-cols-2">
         <section className="apple-card p-8">
           <h2 className="text-xl font-semibold tracking-tight">Subscription</h2>
-          <div className="mt-6">
+          <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
+            {access.status === "active"
+              ? "Your paid plan is active."
+              : access.status === "trialing"
+                ? "You are on a free trial."
+                : access.status === "trial_expired"
+                  ? "Your trial ended — subscribe to continue."
+                  : "Choose a plan to unlock study features."}
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {access.status === "active" ? (
+              <ManageBillingButton />
+            ) : access.canStartCheckout ? (
+              <SubscribeButton variant="secondary" />
+            ) : null}
             <Button href="/pricing" variant="ghost">
-              Manage subscription
+              View pricing
             </Button>
           </div>
         </section>

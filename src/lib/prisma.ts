@@ -16,4 +16,20 @@ export const prisma =
     log: process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
   });
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+if (process.env.NODE_ENV !== "production") {
+  globalForPrisma.prisma = prisma;
+}
+
+const dbUrl = process.env.DATABASE_URL ?? "";
+// SQLite tuning is only useful in local development.
+if (process.env.NODE_ENV === "development" && dbUrl.startsWith("file:")) {
+  void Promise.all([
+    prisma.$executeRawUnsafe("PRAGMA journal_mode=WAL"),
+    prisma.$executeRawUnsafe("PRAGMA busy_timeout=10000"),
+  ]).catch(() => {});
+}
+
+/**
+ * Serverless / concurrent users: use a pooled Postgres URL (Neon pooler, Supabase pooler).
+ * Append `?connection_limit=5` if your host supports it to avoid exhausting connections.
+ */

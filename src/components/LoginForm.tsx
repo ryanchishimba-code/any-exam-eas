@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import {
   fetchAuthHealthWarning,
   messageForSignInError,
@@ -12,6 +13,8 @@ import { Button } from "./ui/Button";
 
 export function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const resetSuccess = searchParams.get("reset") === "success";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -68,6 +71,11 @@ export function LoginForm() {
       noValidate
       className="apple-card mt-10 space-y-5 p-8 md:p-10"
     >
+      {resetSuccess && (
+        <p className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-900">
+          Your password was updated. Log in with your new password.
+        </p>
+      )}
       {configWarning && (
         <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
           {configWarning}
@@ -92,14 +100,19 @@ export function LoginForm() {
         onChange={(e) => setPassword(e.target.value)}
         className="apple-input"
       />
+      <p className="text-right text-xs">
+        <Link href="/forgot-password" className="font-medium text-[var(--color-accent)] hover:underline">
+          Forgot password?
+        </Link>
+      </p>
       {error && <p className="text-center text-sm text-red-600">{error}</p>}
       <Button type="submit" disabled={loading || !!configWarning} className="w-full">
         {loading ? "Signing in…" : "Log in"}
       </Button>
       <p className="text-center text-xs text-[var(--color-ink-muted)]">
         New here?{" "}
-        <a href="/signup" className="font-medium text-[var(--color-accent)] hover:underline">
-          Start free trial
+        <a href="/signup?plan=trial" className="font-medium text-[var(--color-accent)] hover:underline">
+          Sign up
         </a>
       </p>
     </form>

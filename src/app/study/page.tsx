@@ -1,3 +1,4 @@
+import { PremiumGate } from "@/components/PremiumGate";
 import { StudyModePicker } from "@/components/StudyModePicker";
 import { StudySubnav } from "@/components/StudySubnav";
 import { PageShell } from "@/components/PageShell";
@@ -15,9 +16,11 @@ export default function StudyPage() {
       maxWidth="max-w-3xl"
     >
       <StudySubnav />
-      <div className="mt-10">
-        <StudyModePicker />
-      </div>
+      <PremiumGate>
+        <div className="mt-10">
+          <StudyModePicker />
+        </div>
+      </PremiumGate>
     </PageShell>
   );
 }

@@ -2,22 +2,31 @@
 
 import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { LegalCheckbox } from "./LegalCheckbox";
+import { PlanChoice } from "./PlanChoice";
 import { Button } from "./ui/Button";
+import { BETA_MESSAGE, formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
+import type { SignupPlan } from "@/lib/validators/auth";
 import {
   fetchAuthHealthWarning,
   messageForSignInError,
   messageFromUnknownAuthError,
 } from "@/lib/auth-client";
 
+async function redirectToCheckout(): Promise<void> {
+  window.location.href = "/checkout";
+}
+
 export function SignupForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [dob, setDob] = useState("");
+  const [plan, setPlan] = useState<SignupPlan | "">("");
   const [accepted, setAccepted] = useState(false);
   const [error, setError] = useState("");
   const [configWarning, setConfigWarning] = useState<string | null>(null);
@@ -27,9 +36,20 @@ export function SignupForm() {
     fetchAuthHealthWarning().then(setConfigWarning);
   }, []);
 
+  useEffect(() => {
+    const p = searchParams.get("plan");
+    if (p === "trial" || p === "subscribe") setPlan(p);
+  }, [searchParams]);
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+
+    if (!plan) {
+      setError("Choose a free trial or subscribe to continue.");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -43,10 +63,11 @@ export function SignupForm() {
           password,
           dateOfBirth: dob,
           acceptedTerms: accepted,
+          plan,
         }),
       });
       const text = await res.text();
-      let data: { error?: string } = {};
+      let data: { error?: string; plan?: SignupPlan } = {};
       try {
         data = text ? JSON.parse(text) : {};
       } catch {
@@ -66,6 +87,11 @@ export function SignupForm() {
         throw new Error(messageForSignInError(signInRes.error));
       }
 
+      if (data.plan === "subscribe" || plan === "subscribe") {
+        await redirectToCheckout();
+        return;
+      }
+
       router.push("/dashboard");
     } catch (err) {
       setError(messageFromUnknownAuthError(err));
@@ -74,13 +100,27 @@ export function SignupForm() {
     }
   }
 
+  const submitLabel =
+    plan === "subscribe"
+      ? `Continue to pay ${formatMonthlyPrice()}/mo`
+      : plan === "trial"
+        ? `Start ${formatTrialLabel()}`
+        : "Create account";
+
   return (
     <form onSubmit={handleSubmit} noValidate className="apple-card mt-10 space-y-5 p-8 md:p-10">
+      <p className="rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-xs leading-relaxed text-violet-950">
+        <strong className="font-semibold">Beta.</strong> {BETA_MESSAGE}
+      </p>
+
       {configWarning && (
         <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
           {configWarning}
         </p>
       )}
+
+      <PlanChoice value={plan} onChange={setPlan} disabled={loading} />
+
       <input
         required
         placeholder="Full name"
@@ -126,8 +166,12 @@ export function SignupForm() {
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
-      <Button type="submit" disabled={loading || !accepted || !!configWarning} className="w-full">
-        {loading ? "Creating account…" : "Start 7-day free trial"}
+      <Button
+        type="submit"
+        disabled={loading || !accepted || !plan || !!configWarning}
+        className="w-full"
+      >
+        {loading ? "Please wait…" : submitLabel}
       </Button>
 
       <p className="text-center text-xs text-[var(--color-ink-muted)]">

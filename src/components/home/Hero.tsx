@@ -37,7 +37,7 @@ export function Hero() {
         transition={{ duration: 0.7, delay: 0.35 }}
         className="mt-10 flex flex-wrap items-center justify-center gap-4"
       >
-        <Button href="/signup">Start 7-day free trial</Button>
+        <Button href="/signup?plan=trial">Start 2-day free trial</Button>
         <Button href="/generate" variant="ghost">
           Try generating →
         </Button>
@@ -48,7 +48,7 @@ export function Hero() {
         transition={{ delay: 0.5 }}
         className="mt-6 text-sm text-[var(--color-ink-muted)]"
       >
-        Then $9/month · Cancel anytime · Ages 18+
+        Beta · $3.99/month after trial · Cancel anytime · Ages 18+
       </motion.p>
     </section>
   );
