@@ -34,6 +34,7 @@ yarn-error.log*
 .env
 .env*.local
 .env.docker
+scripts/.vercel-neon-env.json
 
 # local sqlite (dev)
 dev.db

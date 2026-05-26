@@ -2,6 +2,31 @@
 
 Production hosting stays on **Vercel**. The database is **PostgreSQL on Neon** (free tier works to start).
 
+## Connect Neon ↔ Vercel (fastest)
+
+### Automated prep (local)
+
+```bash
+npm run vercel:connect-neon
+```
+
+Prints copy-paste values and saves `scripts/.vercel-neon-env.json`.
+
+### Official Vercel + Neon integration
+
+1. [Vercel Dashboard](https://vercel.com/dashboard) → project **any-exam-eas**
+2. **Storage** → **Create Database** → **Neon** → **Continue**
+3. Select Neon project **`any-exam-easy`** (or create new)
+4. Vercel injects **`DATABASE_URL`** automatically
+5. Add auth secrets manually (**Production + Preview + Build**):
+   - `NEXTAUTH_URL` = `https://any-exam-eas.vercel.app`
+   - `NEXTAUTH_SECRET` / `CRON_SECRET` from `npm run vercel:setup`
+6. **Deployments** → **Redeploy**
+
+Docs: [Neon — Vercel integration](https://neon.tech/docs/guides/vercel)
+
+---
+
 ## Part 1 — Create the database (Neon)
 
 1. Open **[console.neon.tech](https://console.neon.tech)** and sign in (GitHub is fine).
