@@ -17,16 +17,37 @@ model User {
   image         String?
   dateOfBirth   DateTime
   lastLoginAt   DateTime?
+  lastActiveAt  DateTime?
+  role          String    @default("user") // user | support_staff | moderator | admin | super_admin
+  accountStatus String    @default("active") // active | suspended | deleted
+  mfaEnabled    Boolean   @default(false)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts      Account[]
-  sessions      Session[]
-  subscription  Subscription?
-  lessonPlans   LessonPlan[]
-  exams         Exam[]
-  progress      ProgressRecord[]
-  learningQuilts LearningQuilt[]
+  accounts           Account[]
+  sessions           Session[]
+  subscription       Subscription?
+  lessonPlans        LessonPlan[]
+  exams              Exam[]
+  progress           ProgressRecord[]
+  learningQuilts     LearningQuilt[]
+  userSessions       UserSession[]
+  activityLogs       ActivityLog[]
+  analyticsEvents    AnalyticsEvent[]
+  preferences        UserPreference?
+  generationHistory  GenerationHistory[]
+  supportNotes       SupportNote[]       @relation("SupportNoteSubject")
+  supportNotesAuthored SupportNote[]     @relation("SupportNoteAuthor")
+  internalTags       UserInternalTag[]
+  bookmarksReceived  UserBookmark[]      @relation("BookmarkedUser")
+  bookmarksCreated   UserBookmark[]      @relation("BookmarkEmployee")
+  deviceHistory      DeviceHistory[]
+  usageMetrics       UserUsageMetrics?
+  adminActions       AdminAction[]       @relation("AdminActionActor")
+  feedbackSubmissions UserFeedback[]
+  feedbackResolved   UserFeedback[]      @relation("FeedbackResolvedBy")
+  studySessions      StudySession[]
+  questionAttempts   QuestionAttempt[]
 }
 
 model Account {
@@ -80,11 +101,22 @@ model Subscription {
   stripeCustomerId     String?  @unique
   stripeSubscriptionId String?  @unique
   status               String   @default("trialing")
+  planInterval         String   @default("monthly") // monthly | yearly
   trialEndsAt          DateTime?
   currentPeriodEnd     DateTime?
+  gracePeriodEndsAt    DateTime?
+  compAccessUntil      DateTime? // admin-granted complimentary access
+  canceledAt           DateTime?
   createdAt            DateTime @default(now())
   updatedAt            DateTime @updatedAt
   user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+/// One free trial per email (prevents re-signup abuse).
+model TrialEligibility {
+  email     String   @id
+  usedAt    DateTime @default(now())
+  userId    String?
 }
 
 model LessonPlan {
@@ -173,4 +205,248 @@ model QuestionBankSync {
   itemsRetired Int      @default(0)
   errorMessage String?
   finishedAt   DateTime @default(now())
+}
+
+// --- Analytics & internal CRM (event-driven, staff-only UI at /internal) ---
+
+/// Extended session telemetry (beyond NextAuth Session).
+model UserSession {
+  id         String    @id @default(cuid())
+  userId     String
+  startedAt  DateTime  @default(now())
+  endedAt    DateTime?
+  lastSeenAt DateTime  @default(now())
+  userAgent  String?
+  browser    String?
+  os         String?
+  deviceType String?
+  ipHash     String?
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, startedAt])
+  @@index([lastSeenAt])
+}
+
+model DeviceHistory {
+  id          String   @id @default(cuid())
+  userId      String
+  userAgent   String?
+  browser     String?
+  os          String?
+  deviceType  String?
+  ipHash      String?
+  firstSeenAt DateTime @default(now())
+  lastSeenAt  DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, lastSeenAt])
+}
+
+/// Append-only event store for analytics at scale.
+model AnalyticsEvent {
+  id         String   @id @default(cuid())
+  userId     String?
+  sessionId  String?
+  eventType  String
+  category   String   @default("general")
+  metadata   String?
+  ipHash     String?
+  createdAt  DateTime @default(now())
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([eventType, createdAt])
+  @@index([userId, createdAt])
+  @@index([category, createdAt])
+  @@index([createdAt])
+}
+
+/// Pre-aggregated metrics (cron / on-demand rollup).
+model AnalyticsDailySummary {
+  id          String   @id @default(cuid())
+  date        String
+  metricKey   String
+  metricValue Float
+  dimensions  String?
+  createdAt   DateTime @default(now())
+
+  @@unique([date, metricKey, dimensions])
+  @@index([date, metricKey])
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  userId    String
+  action    String
+  summary   String
+  metadata  String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model GenerationHistory {
+  id            String   @id @default(cuid())
+  userId        String
+  examId        String?  @unique
+  quiltId       String?
+  field         String
+  subjectId     String?
+  topic         String
+  difficulty    String   @default("medium")
+  questionCount Int      @default(0)
+  status        String   @default("success")
+  durationMs    Int?
+  errorMessage  String?
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([field, createdAt])
+  @@index([subjectId, createdAt])
+}
+
+model UserPreference {
+  userId            String   @id
+  preferredFields   String?
+  defaultDifficulty String?
+  metadata          String?
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserUsageMetrics {
+  userId              String    @id
+  generationCount     Int       @default(0)
+  examCount           Int       @default(0)
+  quiltCount          Int       @default(0)
+  loginCount          Int       @default(0)
+  lastGenerationAt    DateTime?
+  totalSessionSeconds Int       @default(0)
+  updatedAt           DateTime  @updatedAt
+  user                User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model SupportNote {
+  id        String   @id @default(cuid())
+  userId    String
+  authorId  String
+  body      String
+  pinned    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation("SupportNoteSubject", fields: [userId], references: [id], onDelete: Cascade)
+  author    User     @relation("SupportNoteAuthor", fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+model UserInternalTag {
+  id          String   @id @default(cuid())
+  userId      String
+  tag         String
+  createdById String
+  createdAt   DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, tag])
+  @@index([tag])
+}
+
+model UserBookmark {
+  id         String   @id @default(cuid())
+  employeeId String
+  userId     String
+  note       String?
+  createdAt  DateTime @default(now())
+  employee   User     @relation("BookmarkEmployee", fields: [employeeId], references: [id], onDelete: Cascade)
+  user       User     @relation("BookmarkedUser", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([employeeId, userId])
+}
+
+/// Audit trail for employee/admin actions (including CRM views).
+model AdminAction {
+  id         String   @id @default(cuid())
+  actorId    String
+  action     String
+  targetType String?
+  targetId   String?
+  metadata   String?
+  ipHash     String?
+  createdAt  DateTime @default(now())
+  actor      User     @relation("AdminActionActor", fields: [actorId], references: [id], onDelete: Cascade)
+
+  @@index([actorId, createdAt])
+  @@index([action, createdAt])
+  @@index([targetType, targetId])
+}
+
+/// User-submitted product feedback (public form + staff inbox).
+model UserFeedback {
+  id           String    @id @default(cuid())
+  name         String?
+  email        String?
+  category     String
+  message      String
+  rating       Int
+  status       String    @default("open") // open | resolved
+  userId       String?
+  ipHash       String?
+  userAgent    String?
+  resolvedAt   DateTime?
+  resolvedById String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  user         User?     @relation(fields: [userId], references: [id], onDelete: SetNull)
+  resolvedBy   User?     @relation("FeedbackResolvedBy", fields: [resolvedById], references: [id], onDelete: SetNull)
+
+  @@index([category, createdAt])
+  @@index([status, createdAt])
+  @@index([rating])
+  @@index([createdAt])
+}
+
+/// Per-question study attempts for analytics and adaptive review.
+model QuestionAttempt {
+  id              String   @id @default(cuid())
+  userId          String
+  questionKey     String
+  bankItemId      String?
+  fieldId         String
+  subjectId       String?
+  questionType    String   @default("multiple_choice")
+  stemPreview     String?
+  correct         Boolean
+  confidence      Int?
+  durationMs      Int?
+  selectedAnswer  String?
+  sessionId       String?
+  createdAt       DateTime @default(now())
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, fieldId, createdAt])
+  @@index([userId, correct, createdAt])
+  @@index([questionKey, correct])
+  @@index([bankItemId])
+}
+
+/// Persisted study session state (resume across devices when synced).
+model StudySession {
+  id         String   @id @default(cuid())
+  userId     String
+  sourceType String
+  sourceId   String?
+  fieldId    String
+  subjectId  String?
+  mode       String   @default("practice")
+  stateJson  String
+  completed  Boolean  @default(false)
+  score      Float?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, updatedAt])
+  @@index([userId, completed])
 }

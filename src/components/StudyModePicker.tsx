@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, Layers } from "lucide-react";
+import { BookOpen, Layers, Zap } from "lucide-react";
 
-export type StudyFormat = "flashcards" | "exam";
+export type StudyFormat = "flashcards" | "exam" | "review";
 
 const modes: {
   id: StudyFormat;
@@ -20,9 +20,16 @@ const modes: {
     icon: Layers,
   },
   {
+    id: "review",
+    title: "Quick review",
+    description: "Bank questions one at a time — practice, rapid, or timed. Shuffled and confidence-aware.",
+    href: "/study/practice",
+    icon: Zap,
+  },
+  {
     id: "exam",
-    title: "Exam questions",
-    description: "Full multiple-choice practice exams with scoring, explanations, and check-your-work flow.",
+    title: "AI exam",
+    description: "Generate a fresh multiple-choice set from textbooks and sources for any subject.",
     href: "/generate",
     icon: BookOpen,
   },
@@ -59,7 +66,7 @@ export function StudyModePicker({
   }
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {modes.map((m) => {
         const Icon = m.icon;
         const isActive = active === m.id;

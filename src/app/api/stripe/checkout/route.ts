@@ -42,12 +42,15 @@ export async function POST(req: Request) {
 
   const body = await req.json().catch(() => ({}));
   const embedded = body?.embedded === true;
+  const interval =
+    body?.interval === "yearly" ? ("yearly" as const) : ("monthly" as const);
 
   const baseParams = {
     customerEmail: session.user.email,
     userId: session.user.id,
     stripeCustomerId: sub?.stripeCustomerId,
     includeTrial: false,
+    interval,
     successUrl: embedded
       ? `${origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`
       : `${origin}/dashboard?checkout=success`,

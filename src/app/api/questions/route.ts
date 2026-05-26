@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
 import { getFieldMeta } from "@/lib/fields";
 import { getFieldSubject } from "@/lib/field-subjects";
 import { countActiveQuestions, fetchQuestionBankItems } from "@/lib/question-bank-db";
@@ -8,21 +7,16 @@ import {
   getLastQuestionBankSync,
   getSubjectQuestionCount,
 } from "@/lib/sync-question-bank";
-import { toQuizletStyleQuestion } from "@/lib/question-format";
+import { prepareQuestionsForSession } from "@/lib/questions/prepare";
 import type { ExamQuestion } from "@/lib/ai";
+import { trackEvent } from "@/lib/analytics/events";
+import { EVENT_TYPES } from "@/lib/analytics/types";
 
 export async function GET(req: Request) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const { getSubscriptionAccess } = await import("@/lib/subscription-access");
-  const { subscriptionRequiredResponse } = await import("@/lib/api-subscription");
-  const access = await getSubscriptionAccess(session.user.id);
-  if (!access.hasAccess) {
-    return subscriptionRequiredResponse(access);
-  }
+  const { requirePremiumApi } = await import("@/lib/api-access");
+  const premium = await requirePremiumApi();
+  if (!premium.ok) return premium.response;
+  const userId = premium.userId;
 
   const { searchParams } = new URL(req.url);
   const field = searchParams.get("field");
@@ -45,21 +39,39 @@ export async function GET(req: Request) {
   const fieldId = meta?.id ?? field.toLowerCase().replace(/\s+/g, "-");
 
   const items = await fetchQuestionBankItems({ fieldId, subjectId });
-  const questions: ExamQuestion[] = items
-    .slice(0, limit)
-    .map((item, i) =>
-      toQuizletStyleQuestion({
-        id: i + 1,
-        type: "multiple_choice",
-        question: item.question,
-        options: [...item.options],
-        correctAnswer: item.correctAnswer,
-        explanation: item.explanation,
-        solutionSteps: item.solutionSteps,
-        tags: item.tags,
-        highYield: true,
-      })
-    );
+  const raw: ExamQuestion[] = items.slice(0, limit).map((item, i) => ({
+    id: i + 1,
+    type: "multiple_choice" as const,
+    question: item.question,
+    options: [...item.options],
+    correctAnswer: item.correctAnswer,
+    explanation: item.explanation,
+    solutionSteps: item.solutionSteps,
+    tags: item.tags,
+    highYield: true,
+  }));
+
+  const prepared = prepareQuestionsForSession(
+    raw.map((q, i) => ({
+      ...q,
+      field,
+      subjectId,
+      bankItemId: items[i]?.id ?? undefined,
+    })),
+    { shuffleOrder: true }
+  );
+
+  const questions: ExamQuestion[] = prepared.map((p, i) => ({
+    id: i + 1,
+    type: p.type === "true_false" ? "true_false" : "multiple_choice",
+    question: p.stem,
+    options: p.options,
+    correctAnswer: p.correctAnswers[0] ?? "",
+    explanation: p.explanation,
+    solutionSteps: p.solutionSteps,
+    tags: p.tags,
+    highYield: p.highYield,
+  }));
 
   const [totalActive, subjectTotal, lastSync] = await Promise.all([
     countActiveQuestions(fieldId),
@@ -67,12 +79,27 @@ export async function GET(req: Request) {
     getLastQuestionBankSync(),
   ]);
 
+  trackEvent({
+    userId,
+    eventType: EVENT_TYPES.QUESTION_BANK_FETCH,
+    category: "education",
+    metadata: {
+      field,
+      fieldId,
+      subjectId,
+      requestedLimit: limit,
+      returned: questions.length,
+    },
+    req,
+  });
+
   return NextResponse.json({
     field,
     fieldId,
     subjectId,
     subjectLabel: subject.label,
     questions,
+    bankItemIds: prepared.map((p) => p.bankItemId).filter(Boolean),
     meta: {
       returned: questions.length,
       availableForSubject: subjectTotal,

@@ -33,6 +33,11 @@ yarn-error.log*
 # env files
 .env
 .env*.local
+.env.docker
+
+# local sqlite (dev)
+dev.db
+dev.db-*
 
 # vercel
 .vercel

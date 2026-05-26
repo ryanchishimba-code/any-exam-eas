@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EmployeeAccessLink } from "@/components/EmployeeAccessLink";
 
 export function Footer() {
   return (
@@ -38,6 +39,11 @@ export function Footer() {
                 Pricing
               </Link>
             </li>
+            <li>
+              <Link className="transition-colors hover:text-[var(--color-ink)]" href="/feedback">
+                Feedback
+              </Link>
+            </li>
           </ul>
         </div>
         <div>
@@ -64,10 +70,13 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <p className="mx-auto mt-14 max-w-[980px] px-6 text-center text-[0.75rem] text-[var(--color-ink-muted)]">
-        © {new Date().getFullYear()} Any Exam Easy. For users 18+. Not affiliated with
-        accrediting bodies or licensure boards.
-      </p>
+      <div className="mx-auto mt-10 flex max-w-[980px] flex-col items-center gap-3 px-6 sm:flex-row sm:justify-between">
+        <EmployeeAccessLink />
+        <p className="text-center text-[0.75rem] text-[var(--color-ink-muted)] sm:text-right">
+          © {new Date().getFullYear()} Any Exam Easy. For users 18+. Not affiliated with
+          accrediting bodies or licensure boards.
+        </p>
+      </div>
     </footer>
   );
 }

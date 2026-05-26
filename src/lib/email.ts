@@ -47,3 +47,47 @@ export async function sendPasswordResetEmail({
     throw new Error(`Failed to send email (${res.status}): ${body}`);
   }
 }
+
+type VerificationEmailParams = {
+  to: string;
+  verifyUrl: string;
+};
+
+export async function sendVerificationEmail({
+  to,
+  verifyUrl,
+}: VerificationEmailParams): Promise<void> {
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.EMAIL_FROM ?? "onboarding@resend.dev";
+
+  if (!apiKey) {
+    if (process.env.NODE_ENV === "production") {
+      console.error("[email] RESEND_API_KEY missing — verification email not sent.");
+    }
+    return;
+  }
+
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from,
+      to: [to],
+      subject: "Verify your Any Exam Easy email",
+      html: `
+        <p>Thanks for signing up. Please verify your email to unlock full access.</p>
+        <p><a href="${verifyUrl}">Verify email address</a></p>
+        <p>This link expires in 48 hours.</p>
+        <p style="color:#666;font-size:12px">${verifyUrl}</p>
+      `,
+    }),
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Failed to send verification email (${res.status}): ${body}`);
+  }
+}

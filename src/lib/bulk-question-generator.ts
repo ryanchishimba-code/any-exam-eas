@@ -1,5 +1,8 @@
 import type { BankItem } from "./question-bank";
-import type { FieldSubject } from "./field-subjects";
+import type { SubjectArea } from "./subjects/types";
+
+/** @deprecated Use SubjectArea */
+type FieldSubject = SubjectArea;
 
 /** Minimum active MCQs required per field + subject area. */
 export const MIN_QUESTIONS_PER_SUBJECT = 2000;

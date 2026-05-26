@@ -1,12 +1,19 @@
 import Stripe from "stripe";
 import { prisma } from "@/lib/prisma";
+import type { BillingInterval } from "@/lib/billing-config";
+
+export {
+  TRIAL_DAYS,
+  GRACE_PERIOD_DAYS,
+  MONTHLY_PRICE_USD,
+  YEARLY_PRICE_USD,
+  gracePeriodEnd,
+  type BillingInterval,
+} from "@/lib/billing-config";
 
 export const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY)
   : null;
-
-export const TRIAL_DAYS = 2;
-export const MONTHLY_PRICE_USD = 3.99;
 
 type CheckoutBaseParams = {
   customerEmail: string;
@@ -14,11 +21,15 @@ type CheckoutBaseParams = {
   successUrl: string;
   cancelUrl: string;
   includeTrial?: boolean;
+  interval?: BillingInterval;
   stripeCustomerId?: string | null;
 };
 
-function getPriceId(): string {
-  const priceId = process.env.STRIPE_PRICE_ID;
+function getPriceId(interval: BillingInterval = "monthly"): string {
+  const priceId =
+    interval === "yearly"
+      ? process.env.STRIPE_PRICE_ID_YEARLY ?? process.env.STRIPE_PRICE_ID
+      : process.env.STRIPE_PRICE_ID;
   if (!priceId) throw new Error("STRIPE_PRICE_ID is required");
   return priceId;
 }
@@ -31,7 +42,7 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
     mode: "subscription" as const,
     customer: params.stripeCustomerId ?? undefined,
     customer_email: params.stripeCustomerId ? undefined : params.customerEmail,
-    line_items: [{ price: getPriceId(), quantity: 1 }],
+    line_items: [{ price: getPriceId(params.interval ?? "monthly"), quantity: 1 }],
     subscription_data: {
       metadata: { userId: params.userId },
       ...(includeTrial ? { trial_period_days: TRIAL_DAYS } : {}),
@@ -129,6 +140,8 @@ export async function applySubscriptionFromStripe(
   stripeSub: Stripe.Subscription,
   stripeCustomerId?: string
 ) {
+  const isPaid = stripeSub.status === "active" || stripeSub.status === "trialing";
+
   await prisma.subscription.update({
     where: { userId },
     data: {
@@ -139,6 +152,8 @@ export async function applySubscriptionFromStripe(
       ...(stripeSub.trial_end
         ? { trialEndsAt: new Date(stripeSub.trial_end * 1000) }
         : {}),
+      ...(isPaid ? { gracePeriodEndsAt: null } : {}),
+      ...(stripeSub.status === "canceled" ? { canceledAt: new Date() } : {}),
     },
   });
 }

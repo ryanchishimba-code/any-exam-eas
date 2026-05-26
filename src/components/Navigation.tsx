@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { EmployeeAccessLink } from "@/components/EmployeeAccessLink";
 
 const links = [
   { href: "/study", label: "Study" },
@@ -53,10 +54,13 @@ export function Navigation() {
             </li>
           ))}
           <li>
+            <EmployeeAccessLink className="hidden lg:inline" />
+          </li>
+          <li>
             {session?.user ? (
               <Link
                 href="/dashboard"
-                className="rounded-full border border-black/[0.08] px-4 py-1.5 text-xs font-medium text-[var(--color-ink)]"
+                className="rounded-full border border-black/[0.08] px-4 py-1.5 text-xs font-medium text-[var(--color-ink)] transition-colors hover:border-black/[0.14]"
               >
                 Account
               </Link>
@@ -100,6 +104,9 @@ export function Navigation() {
           >
             {session?.user ? "Account" : "Sign up"}
           </Link>
+          <div className="mt-4 border-t border-black/[0.06] pt-4">
+            <EmployeeAccessLink className="text-[0.875rem]" />
+          </div>
         </div>
       )}
     </header>

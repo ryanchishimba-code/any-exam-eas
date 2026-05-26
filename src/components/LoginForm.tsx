@@ -10,6 +10,7 @@ import {
   messageFromUnknownAuthError,
 } from "@/lib/auth-client";
 import { Button } from "./ui/Button";
+import { GoogleSignInButton } from "./GoogleSignInButton";
 
 export function LoginForm() {
   const router = useRouter();
@@ -109,6 +110,11 @@ export function LoginForm() {
       <Button type="submit" disabled={loading || !!configWarning} className="w-full">
         {loading ? "Signing in…" : "Log in"}
       </Button>
+      <div className="relative py-2 text-center text-xs text-[var(--color-ink-muted)]">
+        <span className="bg-white px-2">or</span>
+        <div className="absolute inset-x-0 top-1/2 -z-10 border-t border-black/10" />
+      </div>
+      <GoogleSignInButton />
       <p className="text-center text-xs text-[var(--color-ink-muted)]">
         New here?{" "}
         <a href="/signup?plan=trial" className="font-medium text-[var(--color-accent)] hover:underline">

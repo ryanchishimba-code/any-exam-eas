@@ -3,13 +3,12 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
 export async function GET() {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const { requirePremiumApi } = await import("@/lib/api-access");
+  const premium = await requirePremiumApi();
+  if (!premium.ok) return premium.response;
 
   const plans = await prisma.lessonPlan.findMany({
-    where: { userId: session.user.id },
+    where: { userId: premium.userId },
     orderBy: { updatedAt: "desc" },
   });
 
@@ -17,17 +16,10 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const { getSubscriptionAccess } = await import("@/lib/subscription-access");
-  const { subscriptionRequiredResponse } = await import("@/lib/api-subscription");
-  const access = await getSubscriptionAccess(session.user.id);
-  if (!access.hasAccess) {
-    return subscriptionRequiredResponse(access);
-  }
+  const { requirePremiumApi } = await import("@/lib/api-access");
+  const premium = await requirePremiumApi();
+  if (!premium.ok) return premium.response;
+  const userId = premium.userId;
 
   const { title, field, gradeLevel, subjects, goals, schedule } = await req.json();
 
@@ -40,7 +32,7 @@ export async function POST(req: Request) {
 
   const plan = await prisma.lessonPlan.create({
     data: {
-      userId: session.user.id,
+      userId,
       title,
       field,
       gradeLevel: gradeLevel ?? null,

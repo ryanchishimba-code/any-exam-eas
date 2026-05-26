@@ -5,8 +5,9 @@ import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/study", label: "Study hub" },
+  { href: "/study/practice", label: "Quick review" },
   { href: "/learn", label: "Flashcards" },
-  { href: "/generate", label: "Exams" },
+  { href: "/generate", label: "AI exams" },
   { href: "/progress", label: "Progress" },
   { href: "/dashboard", label: "Dashboard" },
 ];
@@ -23,7 +24,8 @@ export function StudySubnav() {
         const active =
           pathname === l.href ||
           (l.href === "/learn" && pathname.startsWith("/learn")) ||
-          (l.href === "/generate" && pathname.startsWith("/generate"));
+          (l.href === "/generate" && pathname.startsWith("/generate")) ||
+          (l.href === "/study/practice" && pathname.startsWith("/study/practice"));
         return (
           <Link
             key={l.href}

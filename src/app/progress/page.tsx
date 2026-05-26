@@ -1,5 +1,4 @@
-import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { PremiumGate } from "@/components/PremiumGate";
 import { ProgressTracker } from "@/components/ProgressTracker";
 import { StudySubnav } from "@/components/StudySubnav";
 import { PageShell } from "@/components/PageShell";
@@ -9,9 +8,6 @@ export const metadata = {
 };
 
 export default async function ProgressPage() {
-  const session = await auth();
-  if (!session?.user?.id) redirect("/login");
-
   return (
     <PageShell
       eyebrow="Progress"
@@ -19,8 +15,10 @@ export default async function ProgressPage() {
       description="See exams completed, quilt tiles mastered, and scores over time."
       maxWidth="max-w-4xl"
     >
-      <StudySubnav />
-      <ProgressTracker />
+      <PremiumGate>
+        <StudySubnav />
+        <ProgressTracker />
+      </PremiumGate>
     </PageShell>
   );
 }

@@ -4,6 +4,8 @@ import { BetaBanner } from "@/components/BetaBanner";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SessionProvider } from "@/components/SessionProvider";
+import { PageViewTrackerBoundary } from "@/components/analytics/PageViewTrackerBoundary";
+import { EmployeeAccessFab } from "@/components/EmployeeAccessFab";
 import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -24,10 +26,12 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen antialiased">
         <SessionProvider>
+          <PageViewTrackerBoundary />
           <Navigation />
           <BetaBanner />
           <main>{children}</main>
           <Footer />
+          <EmployeeAccessFab />
         </SessionProvider>
       </body>
     </html>

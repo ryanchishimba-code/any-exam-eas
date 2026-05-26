@@ -23,10 +23,15 @@ if (process.env.NODE_ENV !== "production") {
 const dbUrl = process.env.DATABASE_URL ?? "";
 // SQLite tuning is only useful in local development.
 if (process.env.NODE_ENV === "development" && dbUrl.startsWith("file:")) {
-  void Promise.all([
-    prisma.$executeRawUnsafe("PRAGMA journal_mode=WAL"),
-    prisma.$executeRawUnsafe("PRAGMA busy_timeout=10000"),
-  ]).catch(() => {});
+  void (async () => {
+    try {
+      await prisma.$queryRawUnsafe("PRAGMA journal_mode=WAL");
+      await prisma.$queryRawUnsafe("PRAGMA busy_timeout=30000");
+      await prisma.$queryRawUnsafe("PRAGMA synchronous=NORMAL");
+    } catch {
+      /* ignore pragma errors on first connect */
+    }
+  })();
 }
 
 /**

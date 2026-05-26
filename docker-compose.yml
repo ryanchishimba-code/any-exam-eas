@@ -10,6 +10,45 @@ services:
       POSTGRES_DB: anyexameasy
     volumes:
       - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d anyexameasy"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  migrate:
+    image: node:20-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/anyexameasy
+    command: >
+      sh -c "npm ci &&
+      node scripts/set-prisma-provider.mjs postgresql &&
+      npx prisma generate &&
+      npx prisma migrate deploy"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - path: .env.docker
+        required: false
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/anyexameasy
+      NEXTAUTH_URL: http://localhost:3000
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-docker-dev-secret-min-16-chars}
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
 
 volumes:
   pgdata:

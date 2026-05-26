@@ -2,6 +2,9 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
+let bankCountCache: { count: number; at: number } | null = null;
+const BANK_COUNT_TTL_MS = 30_000;
+
 /** Lightweight check for Vercel / uptime monitors (no secrets returned). */
 export async function GET() {
   const checks: Record<string, string> = {
@@ -25,7 +28,14 @@ export async function GET() {
       const { prisma } = await import("@/lib/prisma");
       await prisma.$queryRaw`SELECT 1`;
       checks.prisma = "ok";
-      const count = await prisma.questionBankItem.count({ where: { active: true } });
+      const now = Date.now();
+      if (!bankCountCache || now - bankCountCache.at > BANK_COUNT_TTL_MS) {
+        const count = await prisma.questionBankItem.count({
+          where: { active: true },
+        });
+        bankCountCache = { count, at: now };
+      }
+      const count = bankCountCache.count;
       checks.questionBank = count > 0 ? `ok (${count} active)` : "empty-run-cron-sync";
     } catch (e) {
       checks.prisma = e instanceof Error ? e.message : "error";
@@ -39,8 +49,16 @@ export async function GET() {
     checks.databaseUrl === "postgresql" || checks.databaseUrl === "sqlite-local";
   const ok = checks.nextauthSecret === "ok" && dbOk && checks.prisma === "ok";
 
+  let env: Record<string, string> | undefined;
+  try {
+    const { envSummary } = await import("@/lib/env");
+    env = envSummary();
+  } catch {
+    env = undefined;
+  }
+
   return NextResponse.json(
-    { ok, checks, vercel: !!process.env.VERCEL },
+    { ok, checks, env, vercel: !!process.env.VERCEL },
     { status: ok ? 200 : 503 }
   );
 }

@@ -3,17 +3,29 @@ import { Prisma } from "@prisma/client";
 import type { User } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { isAtLeast18 } from "@/lib/age";
-import { TRIAL_DAYS } from "@/lib/stripe";
+import { TRIAL_DAYS } from "@/lib/billing-config";
 import { signUpSchema, normalizeEmail, type SignUpInput } from "@/lib/validators/auth";
+import { recordTrialUsed } from "@/lib/trial-eligibility";
 
 const BCRYPT_ROUNDS = 12;
-const REGISTER_RETRIES = 4;
+const REGISTER_RETRIES = 6;
 
 function isTransientDbError(e: unknown): boolean {
-  if (!(e instanceof Prisma.PrismaClientKnownRequestError)) return false;
-  if (e.code === "P2034") return true;
-  const msg = e.message.toLowerCase();
-  return msg.includes("database is locked") || msg.includes("sqlite_busy");
+  if (e instanceof Prisma.PrismaClientKnownRequestError) {
+    if (e.code === "P2034") return true;
+    const msg = e.message.toLowerCase();
+    if (msg.includes("database is locked") || msg.includes("sqlite_busy")) return true;
+    if (msg.includes("socket timeout") || msg.includes("timed out")) return true;
+  }
+  if (e instanceof Error) {
+    const msg = e.message.toLowerCase();
+    return (
+      msg.includes("database is locked") ||
+      msg.includes("sqlite_busy") ||
+      msg.includes("socket timeout")
+    );
+  }
+  return false;
 }
 
 async function withRegisterRetry<T>(fn: () => Promise<T>): Promise<T> {
@@ -24,7 +36,7 @@ async function withRegisterRetry<T>(fn: () => Promise<T>): Promise<T> {
     } catch (e) {
       lastError = e;
       if (!isTransientDbError(e) || attempt === REGISTER_RETRIES - 1) throw e;
-      await new Promise((r) => setTimeout(r, 40 * (attempt + 1)));
+      await new Promise((r) => setTimeout(r, 80 * (attempt + 1) ** 2));
     }
   }
   throw lastError;
@@ -113,8 +125,16 @@ export async function registerUser(
             },
           });
         },
-        { maxWait: 10_000, timeout: 20_000 }
+        { maxWait: 15_000, timeout: 45_000 }
       )
+    );
+
+    if (parsed.plan === "trial") {
+      await recordTrialUsed(parsed.email, user.id);
+    }
+
+    void import("@/lib/email-verification").then((m) =>
+      m.sendEmailVerification(user.id, user.email)
     );
 
     return { ...toSafeUser(user), plan: parsed.plan };

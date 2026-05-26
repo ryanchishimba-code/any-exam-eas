@@ -1,4 +1,5 @@
 import type { ExamQuestion } from "./ai";
+import { normalizeStem } from "./questions/stem";
 
 const OPTION_PREFIX = /^[A-Da-d][.)]\s*/;
 
@@ -52,10 +53,7 @@ export function shuffleAnswerOptions(
 
 /** Strip a leading "Question:" / "Question N:" prefix from stems (UI shows question number separately). */
 export function formatQuestionLabel(question: string): string {
-  return question
-    .trim()
-    .replace(/^question\s*\d*\s*:\s*/i, "")
-    .trim();
+  return normalizeStem(question);
 }
 
 export function formatChoiceLabel(index: number, text: string): string {

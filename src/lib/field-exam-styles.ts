@@ -1,4 +1,5 @@
 import { getFieldMeta } from "./fields";
+import { resolveSubjectModule } from "./subjects/registry";
 
 export type FieldExamStyle = {
   systemAddendum: string;
@@ -91,14 +92,13 @@ const STYLES: Record<string, FieldExamStyle> = {
 export function getFieldExamStyle(fieldLabel: string): FieldExamStyle {
   const meta = getFieldMeta(fieldLabel);
   const id = meta?.id ?? fieldLabel.toLowerCase().replace(/\s+/g, "-");
-  return (
-    STYLES[id] ?? {
-      allMultipleChoice: true,
-      systemAddendum: "Standard academic exam.",
-      questionRules:
-        "High-yield multiple choice with 4 unique options. Match conventions of the discipline.",
-    }
-  );
+  if (STYLES[id]) return STYLES[id];
+  const subjectModule = resolveSubjectModule(id);
+  return {
+    allMultipleChoice: subjectModule.capabilities.allMultipleChoice ?? true,
+    systemAddendum: subjectModule.metadata.boardExam ?? "Standard academic exam.",
+    questionRules: subjectModule.metadata.examFocus,
+  };
 }
 
 export function buildFieldPromptBlock(fieldLabel: string, topic: string, count: number): string {

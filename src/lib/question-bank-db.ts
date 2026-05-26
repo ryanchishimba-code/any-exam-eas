@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { ensureQuestionBankSeeded } from "@/lib/sync-question-bank";
 
 function rowToBankItem(row: {
+  id: string;
   subjectId: string;
   question: string;
   options: string;
@@ -13,6 +14,7 @@ function rowToBankItem(row: {
 }): BankItem {
   const options = JSON.parse(row.options) as string[];
   return {
+    id: row.id,
     subjectId: row.subjectId,
     question: row.question,
     options: options as [string, string, string, string],

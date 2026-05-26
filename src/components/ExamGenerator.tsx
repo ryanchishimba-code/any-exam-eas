@@ -18,6 +18,7 @@ export function ExamGenerator() {
   const [topic, setTopic] = useState("");
   const [difficulty, setDifficulty] = useState("medium");
   const [count, setCount] = useState<QuestionCount>(10);
+  const [studyMode, setStudyMode] = useState<"practice" | "rapid" | "timed">("practice");
   const [loading, setLoading] = useState(false);
   const [exam, setExam] = useState<GeneratedExam | null>(null);
   const [examId, setExamId] = useState<string | null>(null);
@@ -158,7 +159,19 @@ export function ExamGenerator() {
           />
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <label className="apple-label">Study mode</label>
+            <select
+              value={studyMode}
+              onChange={(e) => setStudyMode(e.target.value as typeof studyMode)}
+              className="apple-input mt-2"
+            >
+              <option value="practice">Practice — explanations & confidence</option>
+              <option value="rapid">Rapid — instant feedback</option>
+              <option value="timed">Timed — 45s per question</option>
+            </select>
+          </div>
           <div>
             <label className="apple-label">Difficulty</label>
             <select
@@ -222,9 +235,10 @@ export function ExamGenerator() {
             </div>
 
             <ExamQuiz
-              key={`${exam.title}-${exam.questions.length}`}
+              key={`${exam.title}-${exam.questions.length}-${studyMode}`}
               exam={exam}
               examId={examId ?? undefined}
+              mode={studyMode}
             />
           </motion.div>
         )}

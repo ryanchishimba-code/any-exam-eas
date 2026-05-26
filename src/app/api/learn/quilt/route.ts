@@ -1,27 +1,25 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { gatherStudyMaterial } from "@/lib/research";
 import { generateLearningQuilt } from "@/lib/ai";
+import {
+  trackEvent,
+  logActivity,
+  recordGeneration,
+} from "@/lib/analytics/events";
+import { EVENT_TYPES } from "@/lib/analytics/types";
 
 export const maxDuration = 120;
 
 export async function POST(req: Request) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const { requirePremiumApi } = await import("@/lib/api-access");
+  const premium = await requirePremiumApi();
+  if (!premium.ok) return premium.response;
+  const userId = premium.userId;
 
   const { enforceUserRateLimit } = await import("@/lib/api-rate-limit");
-  const limited = enforceUserRateLimit(session.user.id, "learn-quilt", 8, 60_000);
+  const limited = enforceUserRateLimit(userId, "learn-quilt", 8, 60_000);
   if (limited) return limited;
-
-  const { getSubscriptionAccess } = await import("@/lib/subscription-access");
-  const { subscriptionRequiredResponse } = await import("@/lib/api-subscription");
-  const access = await getSubscriptionAccess(session.user.id);
-  if (!access.hasAccess) {
-    return subscriptionRequiredResponse(access);
-  }
 
   const { field, topic, preferredMode } = await req.json();
   if (!field || !topic) {
@@ -39,13 +37,35 @@ export async function POST(req: Request) {
 
   const saved = await prisma.learningQuilt.create({
     data: {
-      userId: session.user.id,
+      userId: userId,
       title: quilt.title,
       field,
       topic,
       preferredMode: quilt.recommendedMode,
       tiles: JSON.stringify(quilt.tiles),
     },
+  });
+
+  trackEvent({
+    userId: userId,
+    eventType: EVENT_TYPES.QUILT_GENERATED,
+    category: "education",
+    metadata: { field, topic, tileCount: quilt.tiles.length },
+    req,
+  });
+  void logActivity({
+    userId: userId,
+    action: "quilt_generated",
+    summary: `Learning quilt: ${topic}`,
+    metadata: { quiltId: saved.id, field },
+  });
+  void recordGeneration({
+    userId: userId,
+    quiltId: saved.id,
+    field,
+    topic,
+    difficulty: "medium",
+    questionCount: quilt.tiles.length,
   });
 
   return NextResponse.json({ quilt, quiltId: saved.id });

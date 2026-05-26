@@ -10,9 +10,12 @@ const routes = [
   { path: "/forgot-password", expect: 200 },
   { path: "/signup", expect: 200 },
   { path: "/study", expect: [200, 307] },
+  { path: "/study/practice", expect: [200, 307] },
   { path: "/learn", expect: [200, 307] },
   { path: "/generate", expect: [200, 307] },
   { path: "/pricing", expect: 200 },
+  { path: "/feedback", expect: 200 },
+  { path: "/employee/login", expect: 200 },
   { path: "/checkout", expect: [200, 307] },
   { path: "/api/health", expect: [200, 503] },
 ];

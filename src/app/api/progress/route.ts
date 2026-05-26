@@ -1,28 +1,29 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { trackEvent } from "@/lib/analytics/events";
+import { EVENT_TYPES } from "@/lib/analytics/types";
 
 export async function GET() {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const { requirePremiumApi } = await import("@/lib/api-access");
+  const premium = await requirePremiumApi();
+  if (!premium.ok) return premium.response;
+  const userId = premium.userId;
 
   const records = await prisma.progressRecord.findMany({
-    where: { userId: session.user.id },
+    where: { userId },
     orderBy: { createdAt: "desc" },
     take: 50,
   });
 
   const exams = await prisma.exam.findMany({
-    where: { userId: session.user.id },
+    where: { userId },
     orderBy: { createdAt: "desc" },
     take: 10,
     select: { id: true, title: true, field: true, topic: true, questionCount: true, createdAt: true },
   });
 
   const quilts = await prisma.learningQuilt.findMany({
-    where: { userId: session.user.id },
+    where: { userId },
     orderBy: { createdAt: "desc" },
     take: 10,
     select: { id: true, title: true, field: true, topic: true, preferredMode: true, createdAt: true },
@@ -60,10 +61,10 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const { requirePremiumApi } = await import("@/lib/api-access");
+  const premium = await requirePremiumApi();
+  if (!premium.ok) return premium.response;
+  const userId = premium.userId;
 
   const body = await req.json();
   const { entityType, entityId, score, completed, metadata } = body;
@@ -74,13 +75,21 @@ export async function POST(req: Request) {
 
   const record = await prisma.progressRecord.create({
     data: {
-      userId: session.user.id,
+      userId,
       entityType: String(entityType),
       entityId: String(entityId),
       score: score != null ? Number(score) : null,
       completed: Boolean(completed),
       metadata: metadata ? JSON.stringify(metadata) : null,
     },
+  });
+
+  trackEvent({
+    userId,
+    eventType: EVENT_TYPES.PROGRESS_UPDATED,
+    category: "engagement",
+    metadata: { entityType: String(entityType), entityId: String(entityId), score, completed: Boolean(completed) },
+    req,
   });
 
   return NextResponse.json({

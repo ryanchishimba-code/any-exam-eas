@@ -11,6 +11,7 @@ import { generateProceduralQuestions } from "./procedural-questions";
 import { toQuizletStyleQuestion } from "./question-format";
 
 export type BankItem = {
+  id?: string;
   question: string;
   options: [string, string, string, string];
   correctAnswer: string;

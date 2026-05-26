@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { getSubscriptionAccess } from "@/lib/subscription-access";
+import { getUserAccess } from "@/lib/access-control";
 import { DashboardClient } from "@/components/DashboardClient";
 import { SubscriptionBanner } from "@/components/SubscriptionBanner";
 
@@ -17,7 +17,7 @@ export default async function DashboardPage() {
     prisma.exam.count({ where: { userId: session.user.id } }),
     prisma.learningQuilt.count({ where: { userId: session.user.id } }),
     prisma.progressRecord.count({ where: { userId: session.user.id } }),
-    getSubscriptionAccess(session.user.id),
+    getUserAccess(session.user.id),
   ]);
 
   return (
@@ -37,9 +37,9 @@ export default async function DashboardPage() {
           <Stat label="Progress events" value={progress} />
         </div>
 
-        <SubscriptionBanner access={access} />
+        <SubscriptionBanner access={access.subscription} />
 
-        <DashboardClient access={access} />
+        <DashboardClient access={access.subscription} />
       </div>
     </div>
   );

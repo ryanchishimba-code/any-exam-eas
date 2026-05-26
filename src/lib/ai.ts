@@ -1,10 +1,6 @@
 import OpenAI from "openai";
 import type { SearchResult } from "./search";
-import { getFieldMeta } from "./fields";
-import { getFieldSubject } from "./field-subjects";
-import { buildFieldPromptBlock } from "./field-exam-styles";
-import { buildOfflineExam } from "./question-bank";
-import { normalizeQuestionOptions, toQuizletStyleQuestion } from "./question-format";
+import { runExamGenerationPipeline } from "./engine/pipeline";
 
 const openai = process.env.OPENAI_API_KEY
   ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
@@ -60,44 +56,6 @@ function buildContext(sources: SearchResult[]): string {
     .join("\n\n");
 }
 
-const EXAM_SYSTEM = `You are a senior examiner. Write discipline-specific multiple-choice exams (Quizlet study-set style).
-Rules:
-- Ground every question in the research brief and sources.
-- Exactly 4 UNIQUE options per question; one best answer; store option text without "A)" prefix.
-- Do NOT always place the correct answer as the first option — vary its position across questions.
-- Question stem is plain text only (no "Question:" prefix)
-- Distractors = realistic wrong answers for that field (math: common computation errors; law: wrong elements; etc.).
-- Explanations teach why correct and why others fail.
-- Output only valid JSON.`;
-
-const NURSING_EXAM_SYSTEM = `You are an NCLEX-RN item writer. Emphasize prioritization, safety, infection control, therapeutic communication, and pharmacology in nursing scope.
-Rules:
-- EVERY question must be type "multiple_choice" with exactly 4 unique options.
-- Include prioritization-style stems when appropriate (who to see first, best nursing action).
-- Distractors reflect common nursing misconceptions.
-- Ground content in the research brief; align with NCLEX Client Needs categories.
-- Output only valid JSON.`;
-
-const PHARMACY_EXAM_SYSTEM = `You are a NAPLEX-style pharmacy item writer. Emphasize pharmacokinetics, drug interactions, dosing, compounding calculations, patient counseling, and therapeutic class selection.
-Rules:
-- EVERY question must be type "multiple_choice" with exactly 4 unique options.
-- Include calculation or clinical application stems when appropriate for the subject.
-- Distractors reflect common dispensing and counseling errors.
-- Ground content in the research brief.
-- Output only valid JSON.`;
-
-const MEDICINE_EXAM_SYSTEM = `You are a USMLE/board-style medical item writer. Style: Quizlet study sets — clear stem text (no "Question:" prefix), four distinct choices labeled A–D in meaning (store option text without the letter prefix).
-Rules:
-- EVERY question must be type "multiple_choice" with exactly 4 options.
-- ALL questions must have "highYield": true.
-- Each option string must be UNIQUE within that question (no duplicates, no near-duplicates, no overlapping wording).
-- Options must be parallel in grammar and length where possible; one best answer only.
-- Distractors must reflect common misconceptions or related but wrong diagnoses/facts.
-- Prefer brief clinical vignettes when appropriate for the subject area.
-- correctAnswer must exactly match one of the four options (verbatim). Vary which position (A–D) holds the correct answer across questions.
-- Ground content in the research brief; do not fabricate obscure facts.
-- Output only valid JSON.`;
-
 export async function generateExam(params: {
   field: string;
   topic: string;
@@ -109,139 +67,15 @@ export async function generateExam(params: {
   subjectId?: string;
   medicineMode?: boolean;
 }): Promise<GeneratedExam> {
-  const meta = getFieldMeta(params.field);
-  const context = buildContext(params.sources);
-  const sid = params.subjectId ?? params.subjectArea;
-  const subject = sid ? getFieldSubject(params.field, sid) : undefined;
-
-  const fieldBlock = buildFieldPromptBlock(
-    params.field,
-    params.topic,
-    params.questionCount
-  );
-
-  const scopeBlock = `
-STRICT SUBJECT SCOPE (mandatory):
-- Subject: ${subject?.label ?? params.topic}
-- ONLY generate questions about this subject. Do NOT include questions from other subjects in ${params.field}.
-- Example: if subject is Calculus, NO algebra-only or geometry-only items unless they are part of a calculus technique.
-- Textbooks to align with: ${subject?.textbookRefs ?? "OpenStax / LibreTexts OER"}
-- Exam focus for this subject: ${subject?.examHints ?? meta?.examFocus}
-- Optional sub-focus within subject: ${params.topic}`;
-
-  const prompt = `Create a ${params.questionCount}-question practice exam.
-
-Difficulty: ${params.difficulty}
-${fieldBlock}
-${scopeBlock}
-
-RESEARCH BRIEF (synthesized from OER textbooks + web — treat as primary guide):
-${params.researchBrief}
-
-RAW SOURCES (${params.sources.length} documents reviewed):
-${context}
-
-Requirements:
-1. 100% multiple_choice — exactly 4 unique options each; correct answer must appear in varied positions (not always option A).
-2. Every question must be clearly about ${subject?.label ?? params.topic} — reject cross-topic drift.
-3. No duplicate concepts; cover breadth within this subject.
-4. ${params.difficulty === "hard" ? "Include multi-step reasoning where appropriate for this field." : "Fair single-best-answer items."}
-5. studyNotes: summarize coverage (do not reveal answers in studyNotes).
-${params.field.toLowerCase() === "mathematics" ? `6. MATHEMATICS: Every question MUST include "solutionSteps" — an array of 3–6 clear strings, each one step deriving the correct answer (e.g. "Identify u and du", "Apply power rule", "Simplify to 2x").` : ""}
-
-Return valid JSON:
-{
-  "title": string,
-  "field": string,
-  "topic": string,
-  "studyNotes": string,
-  "sourcesReviewed": number,
-  "questions": [
-    {
-      "id": number,
-      "type": "multiple_choice",
-      "question": string,
-      "options": [string, string, string, string],
-      "correctAnswer": string,
-      "explanation": string,
-      "solutionSteps": string[] (required for Mathematics, optional otherwise),
-      "tags": string[],
-      "highYield": boolean
-    }
-  ]
-}`;
-
-  if (!openai) {
-    return await buildOfflineExam({ ...params, subjectId: sid });
-  }
-
-  const fieldLower = params.field.toLowerCase();
-  const boardSystem =
-    fieldLower === "nursing"
-      ? NURSING_EXAM_SYSTEM
-      : fieldLower === "pharmacy"
-        ? PHARMACY_EXAM_SYSTEM
-        : MEDICINE_EXAM_SYSTEM;
-
-  const completion = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [
-      {
-        role: "system",
-        content: `${EXAM_SYSTEM}\n${boardSystem}\nNever include questions outside the specified subject scope.`,
-      },
-      { role: "user", content: prompt },
-    ],
-    temperature: 0.35,
-    max_tokens: params.questionCount > 25 ? 16000 : 8000,
-    response_format: { type: "json_object" },
+  return runExamGenerationPipeline({
+    field: params.field,
+    topic: params.topic,
+    difficulty: params.difficulty,
+    questionCount: params.questionCount,
+    sources: params.sources,
+    researchBrief: params.researchBrief,
+    subjectId: params.subjectId ?? params.subjectArea,
   });
-
-  const raw = completion.choices[0]?.message?.content ?? "{}";
-  let exam = JSON.parse(raw) as GeneratedExam;
-  exam.sourcesReviewed = params.sources.length;
-
-  const isMath = params.field.toLowerCase() === "mathematics";
-  exam = enforceMultipleChoiceExam(exam, params.questionCount, isMath);
-  exam.studyNotes = `${exam.questions.length} ${subject?.label ?? params.topic} questions (${params.field} only). Select an answer, then check.${
-    isMath ? " For math, use Show how solved on the correct answer after checking." : ""
-  }`;
-
-  return exam;
-}
-
-function enforceMultipleChoiceExam(
-  exam: GeneratedExam,
-  targetCount: number,
-  isMath: boolean
-): GeneratedExam {
-  const questions = exam.questions.slice(0, targetCount).map((q, idx) => {
-    const { options, correctAnswer } = normalizeQuestionOptions(
-      q.options ?? [],
-      q.correctAnswer
-    );
-
-    const base = toQuizletStyleQuestion({
-      ...q,
-      id: idx + 1,
-      type: "multiple_choice",
-      options,
-      correctAnswer,
-      highYield: q.highYield ?? true,
-    });
-
-    if (isMath && (!base.solutionSteps || base.solutionSteps.length === 0)) {
-      base.solutionSteps = base.explanation
-        .split(/(?<=[.!?])\s+/)
-        .map((s) => s.trim())
-        .filter((s) => s.length > 5)
-        .slice(0, 5);
-    }
-
-    return base;
-  });
-
-  return { ...exam, questions };
 }
 
 const QUILT_SYSTEM = `You are an expert learning designer building a "learning quilt" — tiles that connect like patches.

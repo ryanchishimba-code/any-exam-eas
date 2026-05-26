@@ -11,6 +11,26 @@ AI-powered exam generation and adaptive learning quilts — Apple-inspired, dyna
 - **Billing** — 2-day free trial (no card) or $3.99/month via Stripe
 - **Legal** — Terms, Privacy, and liability disclaimers (review with a lawyer before launch)
 
+## Testing
+
+```bash
+npm run test:unit      # Vitest — question engine, stems, sessions
+npm run test:smoke     # HTTP smoke (dev server on :3000)
+npm test               # unit + smoke
+```
+
+CI runs lint, unit tests, and production build on push (`.github/workflows/ci.yml`).
+
+## Docker (local production-like)
+
+```bash
+cp .env.docker.example .env.docker
+# Edit NEXTAUTH_SECRET and API keys
+docker compose up --build
+```
+
+See [docs/AWS_DEPLOYMENT.md](docs/AWS_DEPLOYMENT.md) for AWS architecture.
+
 ## Quick start
 
 ### 1. Install Node.js

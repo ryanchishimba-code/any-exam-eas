@@ -3,9 +3,12 @@ import {
   stripe,
   resolveUserIdFromStripeSubscription,
   applySubscriptionFromStripe,
+  gracePeriodEnd,
 } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import type Stripe from "stripe";
+import { trackEvent } from "@/lib/analytics/events";
+import { EVENT_TYPES } from "@/lib/analytics/types";
 
 export const runtime = "nodejs";
 
@@ -53,6 +56,12 @@ export async function POST(req: Request) {
               : {}),
           },
         });
+        trackEvent({
+          userId,
+          eventType: EVENT_TYPES.BILLING_CHECKOUT,
+          category: "billing",
+          metadata: { status: stripeSub?.status ?? "active" },
+        });
       }
       break;
     }
@@ -64,6 +73,12 @@ export async function POST(req: Request) {
         const customerId =
           typeof sub.customer === "string" ? sub.customer : sub.customer?.id;
         await applySubscriptionFromStripe(userId, sub, customerId);
+        trackEvent({
+          userId,
+          eventType: EVENT_TYPES.BILLING_SUBSCRIPTION_UPDATED,
+          category: "billing",
+          metadata: { status: sub.status, event: event.type },
+        });
       }
       break;
     }
@@ -79,7 +94,15 @@ export async function POST(req: Request) {
         if (userId) {
           await prisma.subscription.update({
             where: { userId },
-            data: { status: "past_due" },
+            data: {
+              status: "past_due",
+              gracePeriodEndsAt: gracePeriodEnd(),
+            },
+          });
+          trackEvent({
+            userId,
+            eventType: EVENT_TYPES.BILLING_PAYMENT_FAILED,
+            category: "billing",
           });
         }
       }
