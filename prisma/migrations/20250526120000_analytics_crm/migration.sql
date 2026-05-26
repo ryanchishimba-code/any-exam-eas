@@ -1,6 +1,6 @@
 -- Analytics, CRM, and staff roles (incremental; safe on existing User rows)
 
-ALTER TABLE "User" ADD COLUMN "lastActiveAt" DATETIME;
+ALTER TABLE "User" ADD COLUMN "lastActiveAt" TIMESTAMP(3);
 ALTER TABLE "User" ADD COLUMN "role" TEXT NOT NULL DEFAULT 'user';
 ALTER TABLE "User" ADD COLUMN "accountStatus" TEXT NOT NULL DEFAULT 'active';
 ALTER TABLE "User" ADD COLUMN "mfaEnabled" BOOLEAN NOT NULL DEFAULT false;
@@ -8,9 +8,9 @@ ALTER TABLE "User" ADD COLUMN "mfaEnabled" BOOLEAN NOT NULL DEFAULT false;
 CREATE TABLE "UserSession" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "userId" TEXT NOT NULL,
-    "startedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "endedAt" DATETIME,
-    "lastSeenAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "startedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "endedAt" TIMESTAMP(3),
+    "lastSeenAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "userAgent" TEXT,
     "browser" TEXT,
     "os" TEXT,
@@ -27,8 +27,8 @@ CREATE TABLE "DeviceHistory" (
     "os" TEXT,
     "deviceType" TEXT,
     "ipHash" TEXT,
-    "firstSeenAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "lastSeenAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "firstSeenAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "lastSeenAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "DeviceHistory_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -40,7 +40,7 @@ CREATE TABLE "AnalyticsEvent" (
     "category" TEXT NOT NULL DEFAULT 'general',
     "metadata" TEXT,
     "ipHash" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "AnalyticsEvent_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
@@ -50,7 +50,7 @@ CREATE TABLE "AnalyticsDailySummary" (
     "metricKey" TEXT NOT NULL,
     "metricValue" REAL NOT NULL,
     "dimensions" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE "ActivityLog" (
@@ -59,7 +59,7 @@ CREATE TABLE "ActivityLog" (
     "action" TEXT NOT NULL,
     "summary" TEXT NOT NULL,
     "metadata" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "ActivityLog_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -76,7 +76,7 @@ CREATE TABLE "GenerationHistory" (
     "status" TEXT NOT NULL DEFAULT 'success',
     "durationMs" INTEGER,
     "errorMessage" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "GenerationHistory_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -85,7 +85,7 @@ CREATE TABLE "UserPreference" (
     "preferredFields" TEXT,
     "defaultDifficulty" TEXT,
     "metadata" TEXT,
-    "updatedAt" DATETIME NOT NULL,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     CONSTRAINT "UserPreference_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -95,9 +95,9 @@ CREATE TABLE "UserUsageMetrics" (
     "examCount" INTEGER NOT NULL DEFAULT 0,
     "quiltCount" INTEGER NOT NULL DEFAULT 0,
     "loginCount" INTEGER NOT NULL DEFAULT 0,
-    "lastGenerationAt" DATETIME,
+    "lastGenerationAt" TIMESTAMP(3),
     "totalSessionSeconds" INTEGER NOT NULL DEFAULT 0,
-    "updatedAt" DATETIME NOT NULL,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     CONSTRAINT "UserUsageMetrics_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -107,8 +107,8 @@ CREATE TABLE "SupportNote" (
     "authorId" TEXT NOT NULL,
     "body" TEXT NOT NULL,
     "pinned" BOOLEAN NOT NULL DEFAULT false,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
     CONSTRAINT "SupportNote_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "SupportNote_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -118,7 +118,7 @@ CREATE TABLE "UserInternalTag" (
     "userId" TEXT NOT NULL,
     "tag" TEXT NOT NULL,
     "createdById" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "UserInternalTag_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -127,7 +127,7 @@ CREATE TABLE "UserBookmark" (
     "employeeId" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "note" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "UserBookmark_employeeId_fkey" FOREIGN KEY ("employeeId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE,
     CONSTRAINT "UserBookmark_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -140,7 +140,7 @@ CREATE TABLE "AdminAction" (
     "targetId" TEXT,
     "metadata" TEXT,
     "ipHash" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT "AdminAction_actorId_fkey" FOREIGN KEY ("actorId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
 );
 
