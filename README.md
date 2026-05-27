@@ -92,7 +92,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 **Hosting:** [Vercel](https://vercel.com) · **Database:** [Neon](https://neon.tech) PostgreSQL
 
-**Full guide:** [docs/VERCEL_DATABASE.md](docs/VERCEL_DATABASE.md)
+**Full guide:** [docs/VERCEL_DATABASE.md](docs/VERCEL_DATABASE.md) · **Launch status:** [docs/GO_LIVE_STATUS.md](docs/GO_LIVE_STATUS.md)
 
 ### Quick steps
 
