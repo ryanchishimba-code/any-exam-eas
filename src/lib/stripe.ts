@@ -1,6 +1,9 @@
 import Stripe from "stripe";
 import { prisma } from "@/lib/prisma";
-import type { BillingInterval } from "@/lib/billing-config";
+import {
+  TRIAL_DAYS,
+  type BillingInterval,
+} from "@/lib/billing-config";
 
 export {
   TRIAL_DAYS,

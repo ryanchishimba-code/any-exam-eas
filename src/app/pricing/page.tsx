@@ -1,6 +1,6 @@
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
+import { formatTrialLabel } from "@/lib/site";
 import { TRIAL_DAYS, MONTHLY_PRICE_USD } from "@/lib/stripe";
-import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
 import { PricingActions } from "@/components/PricingActions";
 import { PaymentMethodsList } from "@/components/PaymentMethodsList";
 import { PageShell } from "@/components/PageShell";

@@ -1,6 +1,6 @@
 "use client";
 
-import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+import { formatMonthlyPrice } from "@/lib/site";
 import { TRIAL_DAYS } from "@/lib/stripe";
 import type { SignupPlan } from "@/lib/validators/auth";
 

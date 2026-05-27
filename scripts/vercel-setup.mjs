@@ -6,7 +6,7 @@
 import { spawnSync } from "node:child_process";
 import { randomBytes } from "node:crypto";
 
-const PROD_URL = (process.argv[2] ?? "https://any-exam-eas.vercel.app").replace(/\/$/, "");
+const PROD_URL = (process.argv[2] ?? "https://anyexameasy.com").replace(/\/$/, "");
 
 function secret() {
   return randomBytes(32).toString("base64");

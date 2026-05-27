@@ -10,7 +10,7 @@ import { spawnSync } from "node:child_process";
 import { writeFileSync } from "node:fs";
 import { randomBytes as rb } from "node:crypto";
 
-const PROD_URL = (process.env.VERCEL_URL ?? "https://any-exam-eas.vercel.app").replace(
+const PROD_URL = (process.env.VERCEL_URL ?? "https://anyexameasy.com").replace(
   /\/$/,
   ""
 );
