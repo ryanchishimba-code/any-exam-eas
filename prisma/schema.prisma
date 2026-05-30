@@ -48,6 +48,8 @@ model User {
   feedbackResolved   UserFeedback[]      @relation("FeedbackResolvedBy")
   studySessions      StudySession[]
   questionAttempts   QuestionAttempt[]
+  learningProfile    LearningProfile?
+  conceptMasteries   ConceptMastery[]
 }
 
 model Account {
@@ -409,26 +411,63 @@ model UserFeedback {
 
 /// Per-question study attempts for analytics and adaptive review.
 model QuestionAttempt {
-  id              String   @id @default(cuid())
-  userId          String
-  questionKey     String
-  bankItemId      String?
-  fieldId         String
-  subjectId       String?
-  questionType    String   @default("multiple_choice")
-  stemPreview     String?
-  correct         Boolean
-  confidence      Int?
-  durationMs      Int?
-  selectedAnswer  String?
-  sessionId       String?
-  createdAt       DateTime @default(now())
-  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                  String   @id @default(cuid())
+  userId              String
+  questionKey         String
+  bankItemId          String?
+  fieldId             String
+  subjectId           String?
+  questionType        String   @default("multiple_choice")
+  stemPreview         String?
+  correct             Boolean
+  confidence          Int?
+  durationMs          Int?
+  selectedAnswer      String?
+  sessionId           String?
+  tagsJson            String?
+  mistakeCategory     String?
+  guessedCorrect      Boolean  @default(false)
+  difficultyAtAttempt String?
+  createdAt           DateTime @default(now())
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, fieldId, createdAt])
   @@index([userId, correct, createdAt])
   @@index([questionKey, correct])
   @@index([bankItemId])
+  @@index([userId, mistakeCategory])
+}
+
+/// Aggregated learner state — readiness, streaks, AI-ready metadata blob.
+model LearningProfile {
+  id              String   @id @default(cuid())
+  userId          String   @unique
+  readinessScore  Float    @default(0)
+  studyStreakDays Int      @default(0)
+  lastStudiedAt   DateTime?
+  metadataJson    String   @default("{}")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+/// Per-concept mastery (tag or subject topic) for adaptive routing.
+model ConceptMastery {
+  id                    String   @id @default(cuid())
+  userId                String
+  fieldId               String
+  conceptKey            String
+  masteryScore          Float    @default(0)
+  retentionStrength     Float    @default(0)
+  confidenceReliability Float    @default(0)
+  attempts              Int      @default(0)
+  correct               Int      @default(0)
+  lastAttemptAt         DateTime?
+  updatedAt             DateTime @updatedAt
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, fieldId, conceptKey])
+  @@index([userId, fieldId, masteryScore])
 }
 
 /// Persisted study session state (resume across devices when synced).

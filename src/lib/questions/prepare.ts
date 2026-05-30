@@ -1,30 +1,37 @@
-import type { ExamQuestion } from "@/lib/ai";
 import {
   cleanOptionText,
   normalizeQuestionOptions,
   shuffleAnswerOptions,
 } from "@/lib/question-format";
 import { normalizeStem } from "./stem";
+import { inferStudyQuestionType } from "./ngn-map";
 import type { RawQuestionInput, StudyQuestion, StudyQuestionType } from "./types";
 
-function inferType(q: ExamQuestion): StudyQuestionType {
-  if (q.type === "true_false") return "true_false";
-  if (q.type === "short_answer") return "short_answer";
-  return "multiple_choice";
-}
-
 function toCorrectAnswers(type: StudyQuestionType, correct: string): string[] {
-  if (type === "select_all") {
-    return correct.split(",").map((s) => cleanOptionText(s.trim())).filter(Boolean);
+  if (type === "select_all" || type === "ordered_response") {
+    return correct
+      .split(",")
+      .map((s) => cleanOptionText(s.trim()))
+      .filter(Boolean);
   }
   return [cleanOptionText(correct)];
+}
+
+function buildExplanationDetail(q: RawQuestionInput) {
+  if (!q.distractorRationale && !q.clinicalReasoning) return undefined;
+  return {
+    summary: q.explanation?.trim() ?? "",
+    whyCorrect: q.explanation?.trim() ?? "",
+    whyIncorrect: q.distractorRationale,
+    pearls: q.references,
+  };
 }
 
 export function examQuestionToStudy(
   q: RawQuestionInput,
   index: number
 ): StudyQuestion {
-  const type = inferType(q);
+  const type = inferStudyQuestionType(q);
   let options = q.options ?? [];
   let correctAnswer = q.correctAnswer;
 
@@ -32,29 +39,48 @@ export function examQuestionToStudy(
     options = ["True", "False"];
     const c = cleanOptionText(correctAnswer).toLowerCase();
     correctAnswer = c.startsWith("t") ? "True" : "False";
-  } else {
+  } else if (type !== "ordered_response" && type !== "select_all") {
     const normalized = normalizeQuestionOptions(options, correctAnswer);
     const shuffled = shuffleAnswerOptions(normalized.options, normalized.correctAnswer);
     options = shuffled.options;
     correctAnswer = shuffled.correctAnswer;
+  } else if (type === "select_all") {
+    options = options.map(cleanOptionText);
+  } else if (type === "ordered_response") {
+    options = options.map(cleanOptionText);
   }
 
   const stem = normalizeStem(q.question);
+  let vignette = q.vignette?.trim();
+  if (!vignette && q.vignette === undefined && stem.includes("\n\n")) {
+    const parts = stem.split("\n\n");
+    if (parts[0].length > 80) {
+      vignette = parts[0];
+    }
+  }
 
   return {
     id: `q-${index + 1}-${hashStem(stem)}`,
     sourceIndex: q.id ?? index + 1,
     type,
     stem,
+    vignette,
+    ngnFormat: q.ngnFormat ?? q.type,
+    caseStep: q.caseStep,
     options,
     correctAnswers: toCorrectAnswers(type, correctAnswer),
     explanation: q.explanation?.trim() ?? "",
+    explanationDetail: buildExplanationDetail(q),
+    clinicalReasoning: q.clinicalReasoning,
+    distractorRationale: q.distractorRationale,
+    references: q.references,
     solutionSteps: q.solutionSteps,
     tags: q.tags,
     highYield: q.highYield,
     field: q.field,
     subjectId: q.subjectId,
     bankItemId: q.bankItemId,
+    qualityScore: q.qualityScore,
   };
 }
 
@@ -82,6 +108,13 @@ export function isAnswerCorrect(
   const normalizedSelected = selected.map(cleanOptionText);
   const normalizedCorrect = question.correctAnswers.map(cleanOptionText);
 
+  if (question.type === "ordered_response") {
+    if (normalizedSelected.length !== normalizedCorrect.length) return false;
+    return normalizedSelected.every(
+      (s, i) => s.toLowerCase() === normalizedCorrect[i]?.toLowerCase()
+    );
+  }
+
   if (question.type === "select_all") {
     if (normalizedSelected.length !== normalizedCorrect.length) return false;
     return normalizedCorrect.every((c) =>
@@ -89,18 +122,13 @@ export function isAnswerCorrect(
     );
   }
 
-  return (
-    normalizedSelected.some((s) =>
-      normalizedCorrect.some((c) => s.toLowerCase() === c.toLowerCase())
-    )
+  return normalizedSelected.some((s) =>
+    normalizedCorrect.some((c) => s.toLowerCase() === c.toLowerCase())
   );
 }
 
 function hashStem(stem: string): string {
   let h = 0;
-  for (let i = 0; i < stem.length; i++) {
-    h = (h << 5) - h + stem.charCodeAt(i);
-    h |= 0;
-  }
-  return Math.abs(h).toString(36).slice(0, 8);
+  for (let i = 0; i < stem.length; i++) h = (h * 31 + stem.charCodeAt(i)) | 0;
+  return Math.abs(h).toString(36);
 }

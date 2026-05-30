@@ -1,66 +1,55 @@
 /**
- * Health sciences fields — Medicine, Nursing, Pharmacy only.
- * Each maps to OER domains and board-exam focus areas (USMLE, NCLEX, NAPLEX).
+ * Study fields — derived from registered subject modules (not hardcoded).
+ * Add a discipline by registering a module in subjects/registry.ts.
  */
+import {
+  getRegisteredSubjectIds,
+  resolveSubjectModule,
+} from "./subjects/registry";
+
 export type StudyField = {
   id: string;
   label: string;
-  category: "professional";
+  category: "professional" | "stem";
   oerDomains: string[];
   examFocus: string;
   topicPlaceholder: string;
   boardExam: string;
 };
 
-export const STUDY_FIELDS: StudyField[] = [
-  {
-    id: "medicine",
-    label: "Medicine",
-    category: "professional",
-    boardExam: "USMLE / board-style clinical exams",
-    oerDomains: [
-      "openstax.org",
-      "med.libretexts.org",
-      "nih.gov",
-      "ncbi.nlm.nih.gov",
-      "cdc.gov",
-    ],
-    examFocus:
-      "clinical vignettes, pathophysiology, diagnostics, pharmacology, anatomy, physiology, pathology, microbiology",
-    topicPlaceholder: "Select a subject area below (e.g. Cardiology, Pharmacology)",
-  },
-  {
-    id: "nursing",
-    label: "Nursing",
-    category: "professional",
-    boardExam: "NCLEX-RN",
-    oerDomains: ["openstax.org", "openrn.org", "med.libretexts.org", "nih.gov", "cdc.gov"],
-    examFocus:
-      "NCLEX prioritization, safety, infection control, pharmacology, med-surg, maternal-child, psychosocial care",
-    topicPlaceholder: "Select NCLEX category (e.g. Pharmacological Therapies)",
-  },
-  {
-    id: "pharmacy",
-    label: "Pharmacy",
-    category: "professional",
-    boardExam: "NAPLEX",
-    oerDomains: [
-      "chem.libretexts.org",
-      "med.libretexts.org",
-      "nih.gov",
-      "ncbi.nlm.nih.gov",
-      "fda.gov",
-    ],
-    examFocus:
-      "pharmacokinetics, pharmacodynamics, drug interactions, dosing, compounding, patient counseling, therapeutic classes",
-    topicPlaceholder: "Select NAPLEX area (e.g. Cardiovascular Pharmacotherapy)",
-  },
-];
+function moduleToStudyField(fieldId: string): StudyField {
+  const mod = resolveSubjectModule(fieldId);
+  const meta = mod.metadata;
+  const category: StudyField["category"] =
+    meta.category === "stem" ? "stem" : "professional";
+
+  return {
+    id: meta.id,
+    label: meta.label,
+    category,
+    boardExam: meta.boardExam ?? "Board-style exams",
+    oerDomains: meta.oerDomains,
+    examFocus: meta.examFocus,
+    topicPlaceholder: meta.topicPlaceholder,
+  };
+}
+
+/** All registered disciplines in stable registry order. */
+export const STUDY_FIELDS: StudyField[] = getRegisteredSubjectIds().map(moduleToStudyField);
 
 export const FIELD_LABELS = STUDY_FIELDS.map((f) => f.label);
 
-export function getFieldMeta(label: string): StudyField | undefined {
-  return STUDY_FIELDS.find(
-    (f) => f.label.toLowerCase() === label.toLowerCase()
+export function getFieldMeta(labelOrId: string): StudyField | undefined {
+  const normalized = labelOrId.toLowerCase().replace(/\s+/g, "-");
+  return (
+    STUDY_FIELDS.find(
+      (f) =>
+        f.label.toLowerCase() === labelOrId.toLowerCase() ||
+        f.id === normalized
+    ) ?? STUDY_FIELDS.find((f) => f.id === labelOrId)
   );
+}
+
+export function getFieldMetaById(fieldId: string): StudyField | undefined {
+  return STUDY_FIELDS.find((f) => f.id === fieldId);
 }

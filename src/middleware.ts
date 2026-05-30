@@ -21,6 +21,8 @@ export const config = {
     "/generate/:path*",
     "/progress",
     "/progress/:path*",
+    "/engine",
+    "/engine/:path*",
     "/checkout",
     "/checkout/:path*",
   ],

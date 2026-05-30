@@ -23,6 +23,16 @@ type Overview = {
   trialsActive: number;
   signupsToday: number;
   dailyTrend: { date: string; dau: number; generations: number }[];
+  billing?: {
+    activeSubscribers: number;
+    activeTrials: number;
+    trialExpired: number;
+    pastDue: number;
+    churnedLast30d: number;
+    estimatedMrr: number;
+    avgQuizScore: number | null;
+    examCompletions: number;
+  };
 };
 
 const PIE_COLORS = ["#0ea5e9", "#8b5cf6", "#22c55e", "#f97316", "#ec4899", "#64748b"];
@@ -65,7 +75,16 @@ export default function AnalyticsDashboard() {
       const overviewJson = await overviewRes.json().catch(() => ({}));
       if (!dashRes.ok) throw new Error(dashJson?.error ?? `HTTP ${dashRes.status}`);
       setDashboard(dashJson.dashboard as AnalyticsDashboardData);
-      if (overviewRes.ok) setOverview(overviewJson.overview as Overview);
+      if (overviewRes.ok) {
+        const o = overviewJson.overview as Overview & { billing?: Overview["billing"] };
+        setOverview({
+          generationsToday: (overviewJson.overview as { generationsToday?: number }).generationsToday ?? 0,
+          trialsActive: (overviewJson.overview as { trialsActive?: number }).trialsActive ?? 0,
+          signupsToday: (overviewJson.overview as { signupsToday?: number }).signupsToday ?? 0,
+          dailyTrend: (overviewJson.overview as { dailyTrend?: Overview["dailyTrend"] }).dailyTrend ?? [],
+          billing: o.billing,
+        });
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
     } finally {
@@ -188,11 +207,38 @@ export default function AnalyticsDashboard() {
       </section>
 
       {overview && (
-        <section className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <StatCard label="Generations today" value={overview.generationsToday} />
-          <StatCard label="Trials active" value={overview.trialsActive} />
-          <StatCard label="Signups today" value={overview.signupsToday} />
-        </section>
+        <>
+          <section className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <StatCard label="Generations today" value={overview.generationsToday} />
+            <StatCard label="Trials active" value={overview.trialsActive} />
+            <StatCard label="Signups today" value={overview.signupsToday} />
+          </section>
+
+          {overview.billing && (
+            <section>
+              <h2 className="mb-3 text-sm font-semibold">Revenue & retention</h2>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <StatCard
+                  label="Est. MRR"
+                  value={`$${overview.billing.estimatedMrr.toLocaleString()}`}
+                />
+                <StatCard label="Paid subscribers" value={overview.billing.activeSubscribers} />
+                <StatCard label="Churn (30d)" value={overview.billing.churnedLast30d} />
+                <StatCard label="Past due" value={overview.billing.pastDue} />
+                <StatCard label="Trial expired" value={overview.billing.trialExpired} />
+                <StatCard
+                  label="Avg quiz score"
+                  value={
+                    overview.billing.avgQuizScore != null
+                      ? `${overview.billing.avgQuizScore}%`
+                      : "—"
+                  }
+                />
+                <StatCard label="Exams completed" value={overview.billing.examCompletions} />
+              </div>
+            </section>
+          )}
+        </>
       )}
 
       <section className="grid grid-cols-1 gap-4 lg:grid-cols-2">

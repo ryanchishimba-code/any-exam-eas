@@ -50,7 +50,7 @@ function HostedSubscribeButton({
       const res = await fetch("/api/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ embedded: false }),
+        body: JSON.stringify({ embedded: false, plan: "subscribe" }),
       });
       const data = await res.json();
       if (data.url) {

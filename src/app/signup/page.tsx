@@ -1,24 +1,38 @@
-import { Suspense } from "react";
 import { SignupForm } from "@/components/SignupForm";
 import { PageShell } from "@/components/PageShell";
-import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+import { AuthCard } from "@/components/ui/AuthCard";
+import { formatPricingHeadline } from "@/lib/site";
+import type { SignupPlan } from "@/lib/validators/auth";
 
 export const metadata = {
   title: "Sign Up — Any Exam Easy",
 };
 
-export default function SignupPage() {
+function parseInitialPlan(plan?: string): SignupPlan | "" {
+  if (plan === "trial" || plan === "subscribe") return plan;
+  return "";
+}
+
+export default async function SignupPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ plan?: string }>;
+}) {
+  const { plan } = await searchParams;
+  const initialPlan = parseInitialPlan(plan);
+
   return (
     <PageShell
-      eyebrow="Get started · Beta"
+      eyebrow="Get started"
       title="Create your account."
-      description={`Choose ${formatTrialLabel()} or subscribe at ${formatMonthlyPrice()}/month. Must be 18 or older.`}
+      description={`${formatPricingHeadline()} · Must be 18 or older.`}
       align="center"
       maxWidth="max-w-lg"
+      variant="premium"
     >
-      <Suspense fallback={null}>
-        <SignupForm />
-      </Suspense>
+      <AuthCard>
+        <SignupForm initialPlan={initialPlan} />
+      </AuthCard>
     </PageShell>
   );
 }

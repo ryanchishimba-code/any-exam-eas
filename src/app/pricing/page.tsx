@@ -1,43 +1,54 @@
+import { Suspense } from "react";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
-import { formatTrialLabel } from "@/lib/site";
-import { TRIAL_DAYS, MONTHLY_PRICE_USD } from "@/lib/stripe";
+import { formatPricingHeadline, formatTrialLabel } from "@/lib/site";
+import { MONTHLY_PRICE_USD, TRIAL_INTRO_PRICE_USD, TRIAL_DAYS } from "@/lib/stripe";
 import { PricingActions } from "@/components/PricingActions";
 import { PaymentMethodsList } from "@/components/PaymentMethodsList";
 import { PageShell } from "@/components/PageShell";
+import { PaywallNotice } from "@/components/PaywallNotice";
 
 export const metadata = {
   title: "Pricing — Any Exam Easy",
 };
 
-const included = [
-  "Unlimited AI exam generation",
-  "Web-informed source gathering",
-  "Learning quilt with flashcards & quizzes",
-  "Lesson plans by subject area",
-  "Progress tracking dashboard",
-];
+export default async function PricingPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ paywall?: string; return?: string }>;
+}) {
+  const { paywall } = await searchParams;
 
-export default function PricingPage() {
   return (
     <PageShell
       eyebrow="Pricing"
-      title="Simple pricing."
-      description={`Start with a ${TRIAL_DAYS}-day free trial. Then $${MONTHLY_PRICE_USD}/month, billed to the email on your account.`}
+      title="Invest in your score."
+      description={formatPricingHeadline()}
       align="center"
       maxWidth="max-w-lg"
     >
-      <div className="apple-card mt-12 p-10">
-        <p className="text-sm font-medium text-[var(--color-accent)]">Pro</p>
+      {paywall && <PaywallNotice reason={paywall} />}
+
+      <div className="apple-bento mt-8 p-10 shadow-[var(--shadow-apple-sm)]">
+        <p className="text-sm font-medium text-[var(--color-accent)]">Pro · anyexameasy.com</p>
         <p className="mt-3 text-5xl font-semibold tracking-tight">
-          ${MONTHLY_PRICE_USD}
-          <span className="text-lg font-normal text-[var(--color-ink-muted)]">/mo</span>
+          ${TRIAL_INTRO_PRICE_USD.toFixed(2)}
+          <span className="text-lg font-normal text-[var(--color-ink-muted)]">
+            {" "}
+            / {TRIAL_DAYS}-day trial
+          </span>
         </p>
-        <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-          {formatTrialLabel()} or subscribe today
+        <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
+          Then ${MONTHLY_PRICE_USD.toFixed(2)}/month · {formatTrialLabel()} or subscribe today
         </p>
 
         <ul className="mt-8 space-y-3.5 text-left text-[0.9375rem]">
-          {included.map((item) => (
+          {[
+            "Advanced RAG question engine (NCLEX NGN, NAPLEX, USMLE, INBDE, SAT)",
+            "Unlimited AI exam generation",
+            "Adaptive weak-area targeting + analytics",
+            "Premium student dashboard",
+            "OER-backed rationales with source citations",
+          ].map((item) => (
             <li key={item} className="flex gap-3 text-[var(--color-ink-muted)]">
               <span className="font-medium text-[var(--color-accent)]">✓</span>
               <span>{item}</span>
@@ -48,7 +59,9 @@ export default function PricingPage() {
         <PaymentMethodsList />
 
         <div className="mt-9">
-          <PricingActions />
+          <Suspense fallback={null}>
+            <PricingActions />
+          </Suspense>
         </div>
       </div>
 

@@ -7,6 +7,7 @@ import {
   getLastQuestionBankSync,
   getSubjectQuestionCount,
 } from "@/lib/sync-question-bank";
+import { adaptQuestionOrder } from "@/lib/learning/engine";
 import { prepareQuestionsForSession } from "@/lib/questions/prepare";
 import type { ExamQuestion } from "@/lib/ai";
 import { trackEvent } from "@/lib/analytics/events";
@@ -22,6 +23,13 @@ export async function GET(req: Request) {
   const field = searchParams.get("field");
   const subjectId = searchParams.get("subjectId");
   const limit = Math.min(Number(searchParams.get("limit") ?? 50), 100);
+  const modeParam = searchParams.get("mode");
+  const adaptiveMode =
+    modeParam === "adaptive" || modeParam === "weak"
+      ? modeParam
+      : modeParam === "weak_area"
+        ? "weak"
+        : null;
 
   if (!field || !subjectId) {
     return NextResponse.json(
@@ -51,15 +59,24 @@ export async function GET(req: Request) {
     highYield: true,
   }));
 
-  const prepared = prepareQuestionsForSession(
+  let prepared = prepareQuestionsForSession(
     raw.map((q, i) => ({
       ...q,
       field,
       subjectId,
       bankItemId: items[i]?.id ?? undefined,
     })),
-    { shuffleOrder: true }
+    { shuffleOrder: !adaptiveMode }
   );
+
+  if (adaptiveMode) {
+    prepared = await adaptQuestionOrder(
+      userId,
+      fieldId,
+      prepared,
+      adaptiveMode === "weak" ? "weak_area" : "adaptive"
+    );
+  }
 
   const questions: ExamQuestion[] = prepared.map((p, i) => ({
     id: i + 1,

@@ -5,6 +5,8 @@ export const PREMIUM_PAGE_PREFIXES = [
   "/generate",
   "/progress",
   "/checkout",
+  "/dashboard",
+  "/engine",
 ] as const;
 
 export function isPremiumPage(path: string): boolean {

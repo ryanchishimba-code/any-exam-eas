@@ -107,7 +107,7 @@ export function LearningQuiltStudio() {
       <div className="mt-8">
         <p className="apple-label">Study format</p>
         <div className="mt-3">
-          <StudyModePicker active="flashcards" compact />
+          <StudyModePicker active="practice" compact />
         </div>
         <p className="mt-3 text-xs text-[var(--color-ink-muted)]">
           On this page: flashcards and mini-quiz tiles. For full timed exams, switch to{" "}

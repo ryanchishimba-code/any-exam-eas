@@ -1,12 +1,9 @@
 /** Decorative product-style graphic for the hero (pure SVG, no external assets). */
 export function HeroVisual() {
   return (
-    <div
-      className="relative mx-auto mt-14 w-full max-w-3xl px-4"
-      aria-hidden
-    >
-      <div className="apple-card overflow-hidden p-6 shadow-[var(--shadow-apple-lg)] md:p-8">
-        <div className="flex items-center justify-between border-b border-black/[0.06] pb-4">
+    <div className="relative w-full" aria-hidden>
+      <div className="apple-card overflow-hidden shadow-[var(--shadow-apple-lg)]">
+        <div className="flex items-center justify-between border-b border-black/[0.06] px-6 py-4 dark:border-white/10">
           <div className="flex gap-2">
             <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
             <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
@@ -17,7 +14,7 @@ export function HeroVisual() {
           </span>
         </div>
 
-        <div className="mt-6 grid gap-4 md:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid gap-4 p-6 md:grid-cols-[1.1fr_0.9fr] md:p-8">
           <div className="space-y-3 rounded-2xl bg-[var(--color-surface)] p-5">
             <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-accent)]">
               Question 3 of 10

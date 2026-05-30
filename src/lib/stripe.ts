@@ -7,10 +7,12 @@ import {
 
 export {
   TRIAL_DAYS,
+  TRIAL_INTRO_PRICE_USD,
   GRACE_PERIOD_DAYS,
   MONTHLY_PRICE_USD,
   YEARLY_PRICE_USD,
   gracePeriodEnd,
+  estimateMrr,
   type BillingInterval,
 } from "@/lib/billing-config";
 
@@ -23,7 +25,8 @@ type CheckoutBaseParams = {
   userId: string;
   successUrl: string;
   cancelUrl: string;
-  includeTrial?: boolean;
+  /** trial = $17.99 intro + 14-day period before $29.99/mo; subscribe = bill immediately */
+  plan?: "trial" | "subscribe";
   interval?: BillingInterval;
   stripeCustomerId?: string | null;
 };
@@ -39,18 +42,27 @@ function getPriceId(interval: BillingInterval = "monthly"): string {
 
 /** Shared Checkout settings: cards, Apple Pay, Google Pay, Link (via Stripe automatic methods). */
 function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
-  const includeTrial = params.includeTrial ?? false;
+  const isTrialPlan = params.plan === "trial";
+  const introPriceId = process.env.STRIPE_TRIAL_INTRO_PRICE_ID;
+
+  const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [
+    { price: getPriceId(params.interval ?? "monthly"), quantity: 1 },
+  ];
+
+  if (isTrialPlan && introPriceId) {
+    lineItems.unshift({ price: introPriceId, quantity: 1 });
+  }
 
   return {
     mode: "subscription" as const,
     customer: params.stripeCustomerId ?? undefined,
     customer_email: params.stripeCustomerId ? undefined : params.customerEmail,
-    line_items: [{ price: getPriceId(params.interval ?? "monthly"), quantity: 1 }],
+    line_items: lineItems,
     subscription_data: {
       metadata: { userId: params.userId },
-      ...(includeTrial ? { trial_period_days: TRIAL_DAYS } : {}),
+      ...(isTrialPlan ? { trial_period_days: TRIAL_DAYS } : {}),
     },
-    metadata: { userId: params.userId },
+    metadata: { userId: params.userId, plan: params.plan ?? "subscribe" },
     automatic_payment_methods: { enabled: true },
     payment_method_options: {
       card: {

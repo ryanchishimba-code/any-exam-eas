@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { Button } from "./ui/Button";
 import { SubscribeButton } from "./SubscribeButton";
-import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+import { formatMonthlyPrice, formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
 
 type AccessInfo = {
   hasAccess: boolean;
@@ -26,49 +26,36 @@ export function PricingActions() {
   }, [session?.user]);
 
   if (session?.user) {
-    if (access?.status === "active") {
-      return (
-        <p className="text-sm text-[var(--color-ink-muted)]">
-          You have an active subscription. Manage it from your{" "}
-          <a href="/dashboard" className="text-[var(--color-accent)] hover:underline">
-            dashboard
-          </a>
-          .
-        </p>
-      );
-    }
-
-    if (access?.status === "trialing" && access.hasAccess) {
+    if (access?.hasAccess) {
       return (
         <div className="flex flex-col gap-3">
           <p className="text-sm text-[var(--color-ink-muted)]">
-            {formatTrialLabel()} active
-            {access.daysRemaining != null
-              ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left`
-              : ""}
-            .
+            {access.status === "trialing"
+              ? `${formatTrialLabel()} active${access.daysRemaining != null ? ` · ${access.daysRemaining} days left` : ""}`
+              : "Your subscription is active."}
           </p>
           <Button href="/study">Continue studying</Button>
-          <SubscribeButton label={`Subscribe now — ${formatMonthlyPrice()}/mo`} variant="secondary" />
         </div>
       );
     }
 
     return (
       <div className="flex flex-col gap-3">
-        <SubscribeButton />
-        <Button href="/dashboard" variant="ghost">
-          Back to dashboard
+        <Button href="/checkout?plan=trial">
+          Start {formatTrialLabel()} — {formatTrialIntroPrice()}
         </Button>
+        <SubscribeButton label={`Subscribe Now — ${formatMonthlyPrice()}/mo`} variant="secondary" />
       </div>
     );
   }
 
   return (
     <div className="flex flex-col gap-3">
-      <Button href="/signup?plan=trial">{formatTrialLabel()} — no card</Button>
+      <Button href="/signup?plan=trial">
+        Start {formatTrialLabel()} — {formatTrialIntroPrice()}
+      </Button>
       <Button href="/signup?plan=subscribe" variant="secondary">
-        Subscribe — {formatMonthlyPrice()}/month
+        Subscribe Now — {formatMonthlyPrice()}/month
       </Button>
       <p className="text-center text-xs text-[var(--color-ink-muted)]">
         Already have an account?{" "}

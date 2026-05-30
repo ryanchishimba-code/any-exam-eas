@@ -1,61 +1,98 @@
-import { BookOpen, Brain, Globe, Layers, GraduationCap, LineChart } from "lucide-react";
+"use client";
 
-const features = [
+import { motion } from "framer-motion";
+import { AppleLink } from "@/components/ui/AppleLink";
+
+const highlights = [
   {
-    icon: Globe,
-    title: "Deep OER + web research",
-    desc: "Scans OpenStax, LibreTexts, Wikibooks, and the web — then builds high-yield questions.",
+    eyebrow: "Questions",
+    title: "Best-in-class. OER-backed.",
+    desc: "RAG from Open RN, OpenStax, and NCSBN-style NGN prompts — with citations in every rationale.",
+    href: "/study/practice",
+    linkLabel: "Try question bank",
+    span: "lg:col-span-2",
   },
   {
-    icon: Brain,
-    title: "Any field",
-    desc: "Medicine, nursing, and pharmacy — each with stratified subject areas and board-style MCQs.",
+    eyebrow: "Adaptive",
+    title: "Difficulty that follows you.",
+    desc: "Weak-area focus, mastery scoring, and remediation after every miss.",
+    href: "/study/practice?mode=adaptive",
+    linkLabel: "Start adaptive",
+    span: "",
   },
   {
-    icon: Layers,
-    title: "Learning quilt",
-    desc: "Interlocking flashcards and quiz tiles. Flashcards, quizzes, or a mixed path.",
+    eyebrow: "Analytics",
+    title: "Know when you're ready.",
+    desc: "Accuracy trends, readiness score, streaks, and test history on one dashboard.",
+    href: "/study/analytics",
+    linkLabel: "View analytics",
+    span: "",
   },
-  {
-    icon: GraduationCap,
-    title: "Lesson plans",
-    desc: "Structured plans from kindergarten through professional programs.",
-  },
-  {
-    icon: LineChart,
-    title: "Progress tracking",
-    desc: "Your account remembers exams, quilts, and completion in one calm dashboard.",
-  },
-  {
-    icon: BookOpen,
-    title: "Study modes",
-    desc: "Tiles flip, quizzes challenge, and your path adapts to how you learn best.",
-  },
+];
+
+const disciplines = [
+  "Medicine",
+  "Nursing",
+  "Pharmacy",
+  "Dentistry",
+  "SAT",
+  "Biology",
+  "Chemistry",
+  "Math",
 ];
 
 export function FeatureGrid() {
   return (
-    <section className="bg-[var(--color-surface)] py-[clamp(4rem,10vw,7rem)]">
+    <section className="apple-section apple-section-alt">
       <div className="mx-auto max-w-[980px] px-6">
-        <p className="apple-eyebrow text-center">Designed for focus</p>
-        <h2 className="apple-headline mt-3 text-center">Built for how you actually study.</h2>
-        <p className="apple-lede mx-auto mt-5 text-center">
-          Spacious layout, subtle motion, and zero clutter — the same quiet confidence you
-          expect from the best tools on your desk.
-        </p>
+        <div className="text-center">
+          <h2 className="apple-headline">Built for how you actually study.</h2>
+          <p className="apple-subhead mx-auto mt-4 max-w-xl">
+            No clutter. Just board-aligned prep, deep rationales, and performance
+            you can trust on exam day.
+          </p>
+        </div>
 
-        <div className="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((f) => (
-            <article key={f.title} className="apple-card apple-card-hover p-8">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--color-surface)]">
-                <f.icon className="text-[var(--color-accent)]" size={24} strokeWidth={1.5} />
-              </div>
-              <h3 className="mt-5 text-[1.0625rem] font-semibold tracking-tight">{f.title}</h3>
-              <p className="mt-2 text-[0.9375rem] leading-relaxed text-[var(--color-ink-muted)]">
-                {f.desc}
+        <div className="mt-14 grid gap-4 lg:grid-cols-2">
+          {highlights.map((item, i) => (
+            <motion.article
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
+              className={`apple-bento flex flex-col ${item.span}`}
+            >
+              <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-ink-muted)]">
+                {item.eyebrow}
               </p>
-            </article>
+              <h3 className="mt-2 text-[clamp(1.375rem,3vw,1.75rem)] font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
+                {item.title}
+              </h3>
+              <p className="mt-3 flex-1 text-[0.9375rem] leading-relaxed text-[var(--color-ink-muted)]">
+                {item.desc}
+              </p>
+              <div className="mt-5">
+                <AppleLink href={item.href}>{item.linkLabel}</AppleLink>
+              </div>
+            </motion.article>
           ))}
+        </div>
+
+        <div className="mt-16 text-center">
+          <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-ink-muted)]">
+            Eight disciplines
+          </p>
+          <ul className="mt-5 flex flex-wrap justify-center gap-x-8 gap-y-3">
+            {disciplines.map((d) => (
+              <li
+                key={d}
+                className="text-[1.0625rem] font-medium tracking-tight text-[var(--color-ink)]"
+              >
+                {d}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

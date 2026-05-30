@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { recordQuestionAttempt } from "@/lib/questions/analytics-server";
+import { processLearningAttempt } from "@/lib/learning/engine";
+import { getFieldMeta } from "@/lib/fields";
 import type { StudyQuestion } from "@/lib/questions/types";
 
 export const runtime = "nodejs";
@@ -17,6 +18,20 @@ const bodySchema = z.object({
     bankItemId: z.string().optional(),
     field: z.string().optional(),
     subjectId: z.string().optional(),
+    tags: z.array(z.string()).optional(),
+    difficulty: z.string().optional(),
+    highYield: z.boolean().optional(),
+    explanationDetail: z
+      .object({
+        summary: z.string(),
+        whyCorrect: z.string(),
+        whyIncorrect: z.record(z.string()).optional(),
+        keyTakeaways: z.array(z.string()).optional(),
+        pearls: z.array(z.string()).optional(),
+        relatedConcepts: z.array(z.string()).optional(),
+        difficultyLabel: z.string().optional(),
+      })
+      .optional(),
   }),
   correct: z.boolean(),
   confidence: z.number().int().min(1).max(5).optional(),
@@ -32,16 +47,28 @@ export async function POST(req: Request) {
 
   try {
     const body = bodySchema.parse(await req.json());
-    await recordQuestionAttempt({
+    const question = body.question as StudyQuestion;
+    const fieldLabel = question.field ?? "Medicine";
+    const meta = getFieldMeta(fieldLabel);
+    const fieldId = meta?.id ?? fieldLabel.toLowerCase().replace(/\s+/g, "-");
+
+    const result = await processLearningAttempt({
       userId: premium.userId,
-      question: body.question as StudyQuestion,
+      question,
       correct: body.correct,
       confidence: body.confidence,
       durationMs: body.durationMs,
       selectedAnswer: body.selectedAnswer,
       sessionId: body.sessionId,
+      fieldId,
     });
-    return NextResponse.json({ ok: true });
+
+    return NextResponse.json({
+      ok: true,
+      insight: result.insight,
+      remediation: result.remediation,
+      attemptId: result.attemptId,
+    });
   } catch {
     return NextResponse.json({ error: "Invalid attempt payload." }, { status: 400 });
   }

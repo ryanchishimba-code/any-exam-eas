@@ -6,6 +6,8 @@ import {
 } from "./search";
 import { getFieldMeta } from "./fields";
 import { getFieldSubject } from "./field-subjects";
+import { cacheGetOrSet, cacheKey, CACHE_TTL } from "./cache";
+import { gatherAdvancedStudyMaterial } from "./rag";
 import OpenAI from "openai";
 
 const openai = process.env.OPENAI_API_KEY
@@ -16,9 +18,41 @@ export type StudyResearch = {
   sources: SearchResult[];
   researchBrief: string;
   sourceCounts: Record<string, number>;
+  advanced?: Awaited<ReturnType<typeof gatherAdvancedStudyMaterial>>;
 };
 
 export async function gatherStudyMaterial(
+  field: string,
+  topic: string,
+  subjectId?: string,
+  options?: { useAdvancedRag?: boolean }
+): Promise<StudyResearch> {
+  const useAdvanced = options?.useAdvancedRag !== false;
+  const cacheId = cacheKey(["research", useAdvanced ? "v2" : "v1", field, topic, subjectId]);
+  return cacheGetOrSet(cacheId, CACHE_TTL.researchBrief, async () => {
+    if (useAdvanced) {
+      const advanced = await gatherAdvancedStudyMaterial(field, topic, subjectId);
+      return {
+        sources: advanced.sources,
+        researchBrief: advanced.researchBrief,
+        sourceCounts: advanced.sourceCounts,
+        advanced,
+      };
+    }
+    const legacy = await gatherStudyMaterialLegacy(field, topic, subjectId);
+    return { ...legacy, advanced: undefined };
+  });
+}
+
+async function gatherStudyMaterialLegacy(
+  field: string,
+  topic: string,
+  subjectId?: string
+): Promise<Omit<StudyResearch, "advanced">> {
+  return gatherStudyMaterialUncached(field, topic, subjectId);
+}
+
+async function gatherStudyMaterialUncached(
   field: string,
   topic: string,
   subjectId?: string

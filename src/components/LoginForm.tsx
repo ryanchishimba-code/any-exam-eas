@@ -16,6 +16,7 @@ export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const resetSuccess = searchParams.get("reset") === "success";
+  const callbackUrl = searchParams.get("callbackUrl") ?? "/study";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -57,8 +58,15 @@ export function LoginForm() {
         return;
       }
 
+      const statusRes = await fetch("/api/subscription/status");
+      const status = statusRes.ok ? await statusRes.json() : { hasAccess: false };
+
       router.refresh();
-      router.push("/dashboard");
+      if (status.hasAccess) {
+        router.push(callbackUrl);
+      } else {
+        router.push("/pricing?paywall=1");
+      }
     } catch (err) {
       setError(messageFromUnknownAuthError(err));
     } finally {
@@ -82,10 +90,21 @@ export function LoginForm() {
           {configWarning}
         </p>
       )}
+
+      <GoogleSignInButton callbackUrl={callbackUrl} />
+
+      <div className="relative py-2">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-black/[0.06]" />
+        </div>
+        <p className="relative mx-auto w-fit bg-white px-3 text-xs text-[var(--color-ink-muted)] dark:bg-[var(--color-surface-elevated)]">
+          or email
+        </p>
+      </div>
+
       <input
         required
-        type="text"
-        inputMode="email"
+        type="email"
         autoComplete="email"
         placeholder="Email"
         value={email}
@@ -101,25 +120,24 @@ export function LoginForm() {
         onChange={(e) => setPassword(e.target.value)}
         className="apple-input"
       />
-      <p className="text-right text-xs">
-        <Link href="/forgot-password" className="font-medium text-[var(--color-accent)] hover:underline">
+
+      <div className="flex justify-end">
+        <Link href="/forgot-password" className="text-xs text-[var(--color-accent)] hover:underline">
           Forgot password?
         </Link>
-      </p>
-      {error && <p className="text-center text-sm text-red-600">{error}</p>}
+      </div>
+
+      {error && <p className="text-sm text-red-600">{error}</p>}
+
       <Button type="submit" disabled={loading || !!configWarning} className="w-full">
         {loading ? "Signing in…" : "Log in"}
       </Button>
-      <div className="relative py-2 text-center text-xs text-[var(--color-ink-muted)]">
-        <span className="bg-white px-2">or</span>
-        <div className="absolute inset-x-0 top-1/2 -z-10 border-t border-black/10" />
-      </div>
-      <GoogleSignInButton />
+
       <p className="text-center text-xs text-[var(--color-ink-muted)]">
-        New here?{" "}
-        <a href="/signup?plan=trial" className="font-medium text-[var(--color-accent)] hover:underline">
-          Sign up
-        </a>
+        Need access?{" "}
+        <Link href="/signup?plan=trial" className="font-medium text-[var(--color-accent)] hover:underline">
+          Start trial
+        </Link>
       </p>
     </form>
   );

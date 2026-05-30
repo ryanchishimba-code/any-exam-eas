@@ -6,17 +6,36 @@ const openai = process.env.OPENAI_API_KEY
   ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
   : null;
 
+export type NgnQuestionFormat =
+  | "multiple_choice"
+  | "select_all"
+  | "bow_tie"
+  | "matrix"
+  | "unfolding_case"
+  | "highlight"
+  | "ordered_response"
+  | "drag_drop"
+  | "true_false"
+  | "short_answer";
+
 export type ExamQuestion = {
   id: number;
-  type: "multiple_choice" | "short_answer" | "true_false";
+  type: NgnQuestionFormat;
+  vignette?: string;
   question: string;
   options?: string[];
   correctAnswer: string;
   explanation: string;
-  /** Mathematics: numbered steps deriving the correct answer */
+  clinicalReasoning?: string;
+  distractorRationale?: Record<string, string>;
+  references?: string[];
+  bloomLevel?: string;
+  ngnFormat?: string;
+  caseStep?: number;
   solutionSteps?: string[];
   tags?: string[];
   highYield?: boolean;
+  qualityScore?: number;
 };
 
 export type GeneratedExam = {
@@ -26,6 +45,7 @@ export type GeneratedExam = {
   questions: ExamQuestion[];
   studyNotes: string;
   sourcesReviewed?: number;
+  qualityReport?: import("./rag/types").GenerationQualityReport;
 };
 
 export type QuiltTile = {
@@ -66,6 +86,8 @@ export async function generateExam(params: {
   subjectArea?: string;
   subjectId?: string;
   medicineMode?: boolean;
+  advancedContext?: import("./rag").AdvancedStudyContext;
+  mode?: "production" | "test";
 }): Promise<GeneratedExam> {
   return runExamGenerationPipeline({
     field: params.field,
@@ -75,6 +97,8 @@ export async function generateExam(params: {
     sources: params.sources,
     researchBrief: params.researchBrief,
     subjectId: params.subjectId ?? params.subjectArea,
+    advancedContext: params.advancedContext,
+    mode: params.mode,
   });
 }
 

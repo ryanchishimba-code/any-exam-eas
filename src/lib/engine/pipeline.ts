@@ -2,64 +2,26 @@ import OpenAI from "openai";
 import type { SearchResult } from "../search";
 import type { GeneratedExam } from "../ai";
 import { buildOfflineExam } from "../question-bank";
-import { normalizeQuestionOptions, toQuizletStyleQuestion } from "../question-format";
 import { getFieldMeta } from "../fields";
 import { resolveSubjectModule, getSubjectArea } from "../subjects/registry";
 import type { ExamGenerationContext } from "../subjects/types";
 import { composeExamSystemPrompt, composeExamUserPrompt } from "./prompts/compose";
 import { buildFieldPromptBlock } from "../field-exam-styles";
 import { deduplicateExamQuestions } from "./stages/deduplication";
+import { normalizeExamQuestionsFromAi } from "./stages/normalize-ai-output";
 import { scoreExamQuality } from "./stages/quality";
+import { normalizeGeneratedExam } from "./stages/format-normalize";
+import { runSelfEvaluationLoop } from "./stages/self-evaluate";
+import { NGN_JSON_SCHEMA, NGN_SYSTEM_AUGMENTATION } from "./prompts/ngn-schema";
+import {
+  buildRetrievalContext,
+  formatPatternProfileForPrompt,
+  type AdvancedStudyContext,
+} from "../rag";
 
 const openai = process.env.OPENAI_API_KEY
   ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
   : null;
-
-function buildContext(sources: SearchResult[]): string {
-  if (sources.length === 0) return "No external sources available.";
-  return sources
-    .slice(0, 25)
-    .map(
-      (s, i) =>
-        `[${i + 1}] (${s.sourceType}) ${s.title}\n${s.content.slice(0, 800)}\nSource: ${s.url}`
-    )
-    .join("\n\n");
-}
-
-function enforceMultipleChoiceExam(
-  exam: GeneratedExam,
-  targetCount: number,
-  requireSolutionSteps: boolean
-): GeneratedExam {
-  const questions = exam.questions.slice(0, targetCount).map((q, idx) => {
-    const { options, correctAnswer } = normalizeQuestionOptions(
-      q.options ?? [],
-      q.correctAnswer
-    );
-
-    const base = toQuizletStyleQuestion({
-      ...q,
-      id: idx + 1,
-      type: "multiple_choice",
-      question: q.question,
-      options,
-      correctAnswer,
-      highYield: q.highYield ?? true,
-    });
-
-    if (requireSolutionSteps && (!base.solutionSteps || base.solutionSteps.length === 0)) {
-      base.solutionSteps = base.explanation
-        .split(/(?<=[.!?])\s+/)
-        .map((s) => s.trim())
-        .filter((s) => s.length > 5)
-        .slice(0, 5);
-    }
-
-    return base;
-  });
-
-  return { ...exam, questions };
-}
 
 export type ExamPipelineParams = {
   field: string;
@@ -69,11 +31,13 @@ export type ExamPipelineParams = {
   sources: SearchResult[];
   researchBrief: string;
   subjectId?: string;
+  advancedContext?: AdvancedStudyContext;
+  mode?: "production" | "test";
+  skipSelfEval?: boolean;
 };
 
 /**
- * AI-orchestrated generation pipeline. Subject modules inject domain intelligence;
- * shared stages handle retrieval output → composition → validation → dedup → scoring.
+ * Advanced generation pipeline: RAG context + pattern analysis + NGN formats + Self-RAG QC.
  */
 export async function runExamGenerationPipeline(
   params: ExamPipelineParams
@@ -97,13 +61,16 @@ export async function runExamGenerationPipeline(
     researchBrief: params.researchBrief,
   };
 
-  // Stage: concept extraction (feeds future blueprint; logged in brief extension for now)
   const concepts = await subjectModule.extractConcepts({
     topic: params.topic,
     subjectId: params.subjectId,
     researchBrief: params.researchBrief,
     sources: params.sources,
   });
+
+  const patternBlock = params.advancedContext
+    ? formatPatternProfileForPrompt(params.advancedContext.patternProfile)
+    : "";
 
   const conceptBlock =
     concepts.concepts.length > 0
@@ -122,16 +89,24 @@ export async function runExamGenerationPipeline(
     params.topic,
     params.questionCount
   );
-  const context = buildContext(params.sources);
+
+  const context = params.advancedContext
+    ? buildRetrievalContext(params.advancedContext.retrievedChunks)
+    : buildLegacyContext(params.sources);
 
   const extraRequirements = [
     conceptBlock,
+    patternBlock ? `\n${patternBlock}` : "",
+    NGN_JSON_SCHEMA,
     difficultyEval.adjustments?.length
       ? `Difficulty guidance: ${difficultyEval.adjustments.join(" ")}`
       : "",
     subjectModule.capabilities.defaultHighYield
       ? "Mark most items highYield: true."
       : "",
+    fieldId === "nursing"
+      ? "Include ~30% NGN formats (unfolding_case, bow_tie, select_all, matrix)."
+      : "Include clinical vignettes where appropriate for this discipline.",
   ]
     .filter(Boolean)
     .join("\n");
@@ -147,7 +122,7 @@ export async function runExamGenerationPipeline(
     });
   }
 
-  const system = composeExamSystemPrompt(subjectModule);
+  const system = `${composeExamSystemPrompt(subjectModule)}\n${NGN_SYSTEM_AUGMENTATION}`;
   const user = composeExamUserPrompt(subjectModule, ctx, {
     fieldBlock,
     context,
@@ -160,27 +135,56 @@ export async function runExamGenerationPipeline(
       { role: "system", content: system },
       { role: "user", content: user },
     ],
-    temperature: 0.35,
-    max_tokens: params.questionCount > 25 ? 16000 : 8000,
+    temperature: 0.32,
+    max_tokens: params.questionCount > 25 ? 16000 : 12000,
     response_format: { type: "json_object" },
   });
 
   const raw = completion.choices[0]?.message?.content ?? "{}";
   let exam = JSON.parse(raw) as GeneratedExam;
   exam.sourcesReviewed = params.sources.length;
+  exam.questions = normalizeExamQuestionsFromAi(exam.questions);
 
   const requireSteps = Boolean(subjectModule.capabilities.requiresFormulaValidation);
-  exam = enforceMultipleChoiceExam(exam, params.questionCount, requireSteps);
+  exam = normalizeGeneratedExam(exam, params.questionCount, requireSteps);
   exam = deduplicateExamQuestions(exam);
 
-  const validation = subjectModule.validateExam({ exam, subjectId: params.subjectId, field: params.field });
+  const validation = subjectModule.validateExam({
+    exam,
+    subjectId: params.subjectId,
+    field: params.field,
+  });
   if (!validation.valid && validation.errors.length > 0) {
     exam.studyNotes = `${exam.studyNotes ?? ""} [QA: ${validation.warnings.slice(0, 2).join("; ")}]`.trim();
   }
 
   scoreExamQuality(exam, subjectModule, ctx);
 
-  exam.studyNotes = `${exam.questions.length} ${subject?.label ?? params.topic} questions (${params.field} only). Select an answer, then check.`;
+  if (!params.skipSelfEval && params.advancedContext) {
+    const { exam: evaluated, report } = await runSelfEvaluationLoop(exam, {
+      fieldId,
+      field: params.field,
+      topic: params.topic,
+      difficulty: params.difficulty,
+      chunks: params.advancedContext.retrievedChunks,
+      mode: params.mode ?? "production",
+    });
+    exam = evaluated;
+    exam.qualityReport = report;
+  }
+
+  exam.studyNotes = `${exam.questions.length} ${subject?.label ?? params.topic} questions (${params.field}). ${exam.qualityReport?.passed ? "QC passed." : "Review recommended."}`;
 
   return exam;
+}
+
+function buildLegacyContext(sources: SearchResult[]): string {
+  if (sources.length === 0) return "No external sources available.";
+  return sources
+    .slice(0, 25)
+    .map(
+      (s, i) =>
+        `[${i + 1}] (${s.sourceType}) ${s.title}\n${s.content.slice(0, 800)}\nSource: ${s.url}`
+    )
+    .join("\n\n");
 }

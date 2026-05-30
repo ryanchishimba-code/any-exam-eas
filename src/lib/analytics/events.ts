@@ -30,7 +30,7 @@ export async function touchUserSession(
   durationSec?: number
 ): Promise<void> {
   try {
-    await prisma.userSession.update({
+    await prisma.userSession.updateMany({
       where: { id: sessionId },
       data: {
         lastSeenAt: new Date(),

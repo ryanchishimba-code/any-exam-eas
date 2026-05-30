@@ -23,7 +23,7 @@ export async function POST(req: Request) {
   const limited = enforceUserRateLimit(userId, "exam-generate", 8, 60_000);
   if (limited) return limited;
 
-  const { field, topic, subjectId, difficulty, questionCount, lessonPlanId } =
+  const { field, topic, subjectId, difficulty, questionCount, lessonPlanId, userNotes, generatorMode } =
     await req.json();
 
   if (!field || !subjectId) {
@@ -50,11 +50,18 @@ export async function POST(req: Request) {
 
   const started = Date.now();
 
-  const { sources, researchBrief, sourceCounts } = await gatherStudyMaterial(
+  const { sources, researchBrief, sourceCounts, advanced } = await gatherStudyMaterial(
     field,
     resolvedTopic,
     subjectId
   );
+
+  const notesBlock =
+    typeof userNotes === "string" && userNotes.trim().length > 0
+      ? `\n\nUSER-PROVIDED MATERIAL (${generatorMode ?? "upload"}):\n${userNotes.trim().slice(0, 12_000)}`
+      : "";
+
+  const enrichedBrief = `${researchBrief}${notesBlock}`;
 
   let exam;
   try {
@@ -65,7 +72,8 @@ export async function POST(req: Request) {
       difficulty: difficulty ?? "medium",
       questionCount: count,
       sources,
-      researchBrief,
+      researchBrief: enrichedBrief,
+      advancedContext: advanced,
     });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Generation failed";
@@ -162,5 +170,7 @@ export async function POST(req: Request) {
     })),
     sourceCounts,
     sourcesReviewed: sources.length,
+    qualityReport: exam.qualityReport,
+    retrievalMeta: advanced?.retrievalMeta,
   });
 }

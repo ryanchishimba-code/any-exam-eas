@@ -1,9 +1,10 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from "@stripe/react-stripe-js";
 import { loadStripe, type Stripe } from "@stripe/stripe-js";
-import { formatMonthlyPrice } from "@/lib/site";
+import { formatMonthlyPrice, formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
 import { PaymentMethodsList } from "./PaymentMethodsList";
 
 let stripePromise: Promise<Stripe | null> | null = null;
@@ -16,6 +17,9 @@ function getStripe(publishableKey: string) {
 }
 
 export function EmbeddedStripeCheckout() {
+  const searchParams = useSearchParams();
+  const plan = searchParams.get("plan") === "trial" ? "trial" : "subscribe";
+
   const [publishableKey, setPublishableKey] = useState<string | null>(null);
   const [configured, setConfigured] = useState(true);
   const [error, setError] = useState("");
@@ -34,14 +38,14 @@ export function EmbeddedStripeCheckout() {
     const res = await fetch("/api/stripe/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ embedded: true }),
+      body: JSON.stringify({ embedded: true, plan }),
     });
     const data = await res.json();
     if (!res.ok) {
       throw new Error(data.error ?? "Could not start checkout");
     }
     return data.clientSecret as string;
-  }, []);
+  }, [plan]);
 
   if (error) {
     return <p className="text-sm text-red-600">{error}</p>;
@@ -59,14 +63,16 @@ export function EmbeddedStripeCheckout() {
     return <p className="text-sm text-[var(--color-ink-muted)]">Loading secure checkout…</p>;
   }
 
+  const headline =
+    plan === "trial"
+      ? `${formatTrialIntroPrice()} intro · ${formatTrialLabel()} · then ${formatMonthlyPrice()}/mo`
+      : `${formatMonthlyPrice()}/month · full access immediately`;
+
   return (
     <div className="space-y-6">
-      <p className="text-sm text-[var(--color-ink-muted)]">
-        Subscribe for {formatMonthlyPrice()}/month. Choose card, Apple Pay, Google Pay, or Link
-        below.
-      </p>
+      <p className="text-sm text-[var(--color-ink-muted)]">{headline}</p>
       <PaymentMethodsList compact />
-      <div className="overflow-hidden rounded-2xl border border-black/[0.08] bg-white shadow-[var(--shadow-apple-sm)]">
+      <div className="overflow-hidden rounded-2xl border border-black/[0.08] bg-white shadow-[var(--shadow-apple-sm)] dark:border-white/10">
         <EmbeddedCheckoutProvider
           stripe={getStripe(publishableKey)}
           options={{ fetchClientSecret }}
@@ -75,8 +81,7 @@ export function EmbeddedStripeCheckout() {
         </EmbeddedCheckoutProvider>
       </div>
       <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-        Payments are encrypted and processed by Stripe. We do not store full card numbers on our
-        servers.
+        Payments are encrypted and processed by Stripe. Cancel anytime from your dashboard.
       </p>
     </div>
   );

@@ -1,17 +1,82 @@
 /** Universal examiner rules — discipline-agnostic. Subject modules augment this layer. */
-export const UNIVERSAL_EXAM_SYSTEM = `You are a senior examiner. Write discipline-specific multiple-choice exams in a modern study-app style.
+export const UNIVERSAL_EXAM_SYSTEM = `You are an expert exam creator with 20+ years experience writing high-stakes test questions (SAT, MCAT, GRE, NCLEX, NAPLEX, INBDE, professional certifications).
+
+Generate high-quality practice questions grounded in the research brief and sources.
+
 Rules:
+- Questions must test understanding, not just recall. Use Bloom's taxonomy: remember, understand, apply, analyze — mix levels across the set.
+- For MCQs: exactly 4 UNIQUE options, 1 correct, 3 plausible distractors based on common misconceptions.
+- Always include a clear, concise explanation for the correct answer and why key distractors fail.
+- Vary difficulty as requested; ensure items are original — do not copy real exam questions verbatim.
 - Ground every question in the research brief and sources.
-- Exactly 4 UNIQUE options per question; one best answer; store option text without "A)" prefix.
-- Do NOT always place the correct answer as the first option — vary its position across questions.
-- Stems must feel natural and fluid — NOT robotic. Avoid repetitive patterns.
-- Do NOT start most questions with "A patient presents", "Case:", "Scenario:", or long clinical vignettes unless truly necessary.
-- Prefer direct, clear stems (e.g. "Which enzyme catalyzes…?", "What is the mechanism of…?", "Select the best initial treatment for…").
-- Mix ~60% direct recall and ~40% application; vary sentence structure across items.
-- Question stem is plain text only (no "Question:" prefix).
-- Distractors = realistic wrong answers for that field (common misconceptions, plausible errors).
-- Explanations teach why correct and why others fail — concise, friendly tone.
+- Store option text without "A)" prefix; vary correct-answer position across questions.
+- Stems must feel natural — avoid repetitive "A patient presents", "Case:", "Scenario:" openers unless necessary.
+- Mix ~40% direct recall and ~60% application/analysis where appropriate for the subject.
 - Output only valid JSON.`;
+
+export type QuestionTypePreference = "multiple_choice" | "true_false" | "short_answer";
+
+export function buildExpertExamUserPrompt(params: {
+  topicOrNotes: string;
+  questionCount: number;
+  difficulty: string;
+  questionTypes?: QuestionTypePreference[];
+  subjectExam?: string;
+  fieldBlock?: string;
+  scopeBlock?: string;
+  researchBrief?: string;
+  context?: string;
+}): string {
+  const types =
+    params.questionTypes?.length
+      ? params.questionTypes.join(", ")
+      : "multiple_choice (primary), true_false or short_answer if requested";
+
+  return `Generate ${params.questionCount} high-quality practice questions.
+
+User topic / notes:
+${params.topicOrNotes}
+
+Number of questions: ${params.questionCount}
+Difficulty: ${params.difficulty}
+Question types: ${types}
+Subject / exam: ${params.subjectExam ?? "General"}
+
+${params.fieldBlock ?? ""}
+${params.scopeBlock ?? ""}
+
+${params.researchBrief ? `RESEARCH BRIEF:\n${params.researchBrief}\n` : ""}
+${params.context ? `SOURCES:\n${params.context}\n` : ""}
+
+Requirements:
+1. Original items only — no copied real exam questions.
+2. MCQ: 4 options, 1 correct, distractors = plausible misconceptions.
+3. True/false: unambiguous stem; explanation clarifies the principle.
+4. Short answer: concise acceptable answer key in correctAnswer.
+5. Tag each question with bloomLevel: "remember" | "understand" | "apply" | "analyze".
+
+Return valid JSON:
+{
+  "title": string,
+  "field": string,
+  "topic": string,
+  "studyNotes": string,
+  "sourcesReviewed": number,
+  "questions": [
+    {
+      "id": number,
+      "type": "multiple_choice" | "true_false" | "short_answer",
+      "question": string,
+      "options": [string, string, string, string] | [{ "text": string, "isCorrect": boolean }],
+      "correctAnswer": string,
+      "explanation": string,
+      "bloomLevel": string,
+      "tags": string[],
+      "highYield": boolean
+    }
+  ]
+}`;
+}
 
 export function buildUniversalScopeBlock(params: {
   subjectLabel: string;
@@ -54,11 +119,12 @@ RAW SOURCES (${params.sourceCount} documents reviewed):
 ${params.context}
 
 Requirements:
-1. 100% multiple_choice — exactly 4 unique options each; correct answer must appear in varied positions (not always option A).
+1. Mix formats per NGN/schema instructions — default multiple_choice with NGN items when specified.
 2. Every question must be clearly about ${params.subjectLabel} — reject cross-topic drift.
 3. No duplicate concepts; cover breadth within this subject.
 4. ${params.difficulty === "hard" ? "Include multi-step reasoning where appropriate for this field." : "Fair single-best-answer items."}
 5. studyNotes: summarize coverage (do not reveal answers in studyNotes).
+6. Tag each question with bloomLevel: remember | understand | apply | analyze.
 ${params.extraRequirements ?? ""}
 
 Return valid JSON:
@@ -76,6 +142,7 @@ Return valid JSON:
       "options": [string, string, string, string],
       "correctAnswer": string,
       "explanation": string,
+      "bloomLevel": string (optional),
       "solutionSteps": string[] (optional),
       "tags": string[],
       "highYield": boolean

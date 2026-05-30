@@ -5,9 +5,34 @@ export type StudyQuestionType =
   | "multiple_choice"
   | "true_false"
   | "select_all"
-  | "short_answer";
+  | "short_answer"
+  | "matching"
+  | "ordered_response"
+  | "fill_blank"
+  | "calculation"
+  | "image_interpretation"
+  | "chart_table"
+  | "clinical_reasoning";
 
-export type StudyMode = "practice" | "rapid" | "timed";
+export type StudyMode =
+  | "practice"
+  | "rapid"
+  | "timed"
+  | "adaptive"
+  | "tutor"
+  | "weak_area"
+  | "mock";
+
+/** Rich explanation payload for tutor mode & review. */
+export type QuestionExplanation = {
+  summary: string;
+  whyCorrect: string;
+  whyIncorrect?: Record<string, string>;
+  keyTakeaways?: string[];
+  pearls?: string[];
+  relatedConcepts?: string[];
+  difficultyLabel?: string;
+};
 
 export type ConfidenceLevel = 1 | 2 | 3 | 4 | 5;
 
@@ -16,16 +41,28 @@ export type StudyQuestion = {
   sourceIndex: number;
   type: StudyQuestionType;
   stem: string;
+  /** Case vignette shown above the stem (NGN / clinical items). */
+  vignette?: string;
+  ngnFormat?: string;
+  caseStep?: number;
   options: string[];
   correctAnswers: string[];
   explanation: string;
+  explanationDetail?: QuestionExplanation;
+  clinicalReasoning?: string;
+  distractorRationale?: Record<string, string>;
+  references?: string[];
   solutionSteps?: string[];
+  markedForReview?: boolean;
+  imageUrl?: string;
+  chartData?: Record<string, unknown>;
   tags?: string[];
   highYield?: boolean;
   field?: string;
   subjectId?: string;
   bankItemId?: string;
   difficulty?: string;
+  qualityScore?: number;
 };
 
 export type SessionAnswer = {

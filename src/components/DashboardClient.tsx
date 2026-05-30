@@ -16,7 +16,13 @@ type LessonPlan = {
   goals: string | null;
 };
 
-export function DashboardClient({ access }: { access: SubscriptionAccess }) {
+export function DashboardClient({
+  access,
+  compact = false,
+}: {
+  access: SubscriptionAccess;
+  compact?: boolean;
+}) {
   const [plans, setPlans] = useState<LessonPlan[]>([]);
   const [title, setTitle] = useState("");
   const [field, setField] = useState("");
@@ -55,32 +61,38 @@ export function DashboardClient({ access }: { access: SubscriptionAccess }) {
 
   return (
     <div className="mt-10 space-y-12">
-      <section className="apple-card p-8">
-        <h2 className="text-xl font-semibold tracking-tight">Start studying</h2>
-        <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-          Choose flashcards or full exam practice — progress saves automatically.
-        </p>
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          {access.hasAccess ? (
-            <>
-              <Button href="/study">Study hub</Button>
-              <Button href="/learn" variant="secondary">
-                Flashcards
-              </Button>
-              <Button href="/generate" variant="secondary">
-                Exam questions
-              </Button>
-            </>
-          ) : (
-            <SubscribeButton />
-          )}
-          <Button href="/progress" variant="ghost">
-            View progress
-          </Button>
-        </div>
-      </section>
+      {!compact && (
+        <section className="apple-card p-8">
+          <h2 className="text-xl font-semibold tracking-tight">Start studying</h2>
+          <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
+            Adaptive question banks, timed exams, and mastery analytics — progress saves
+            automatically.
+          </p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            {access.hasAccess ? (
+              <>
+                <Button href="/study/practice">Question bank</Button>
+                <Button href="/study/practice?mode=adaptive" variant="secondary">
+                  Adaptive exam
+                </Button>
+                <Button href="/generate" variant="secondary">
+                  AI mock exam
+                </Button>
+                <Button href="/study/analytics" variant="ghost">
+                  Analytics
+                </Button>
+              </>
+            ) : (
+              <SubscribeButton />
+            )}
+            <Button href="/progress" variant="ghost">
+              View progress
+            </Button>
+          </div>
+        </section>
+      )}
 
-      <ProgressTracker embedded />
+      {!compact && <ProgressTracker embedded />}
 
       <div className="grid gap-10 lg:grid-cols-2">
         <section className="apple-card p-8">

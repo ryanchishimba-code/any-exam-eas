@@ -1,6 +1,10 @@
 import type { BankItem } from "./question-bank";
 import { FIELD_SUBJECTS, type FieldSubject } from "./field-subjects";
 import {
+  getDentistryBankItems,
+  getDentistryBankSubjectIds,
+} from "./dentistry-question-bank";
+import {
   getHealthBankItems,
   getHealthBankSubjectIds,
   HEALTH_QUESTION_BANK,
@@ -39,6 +43,12 @@ export function collectSeedQuestionRows(): SeedQuestionRow[] {
       for (const item of getHealthBankItems(fieldId, subjectId)) {
         push(fieldId, subjectId, item);
       }
+    }
+  }
+
+  for (const subjectId of getDentistryBankSubjectIds()) {
+    for (const item of getDentistryBankItems(subjectId)) {
+      push("dentistry", subjectId, item);
     }
   }
 

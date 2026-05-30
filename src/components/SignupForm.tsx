@@ -2,11 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
 import { LegalCheckbox } from "./LegalCheckbox";
 import { PlanChoice } from "./PlanChoice";
 import { Button } from "./ui/Button";
-import { BETA_MESSAGE, formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+import { BETA_MESSAGE, formatMonthlyPrice, formatTrialIntroPrice } from "@/lib/site";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
 import type { SignupPlan } from "@/lib/validators/auth";
 import {
@@ -15,18 +14,12 @@ import {
   messageFromUnknownAuthError,
 } from "@/lib/auth-client";
 
-async function redirectToCheckout(): Promise<void> {
-  window.location.href = "/checkout";
-}
-
-export function SignupForm() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+export function SignupForm({ initialPlan = "" }: { initialPlan?: SignupPlan | "" }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [dob, setDob] = useState("");
-  const [plan, setPlan] = useState<SignupPlan | "">("");
+  const [plan, setPlan] = useState<SignupPlan | "">(initialPlan);
   const [accepted, setAccepted] = useState(false);
   const [error, setError] = useState("");
   const [configWarning, setConfigWarning] = useState<string | null>(null);
@@ -37,16 +30,15 @@ export function SignupForm() {
   }, []);
 
   useEffect(() => {
-    const p = searchParams.get("plan");
-    if (p === "trial" || p === "subscribe") setPlan(p);
-  }, [searchParams]);
+    if (initialPlan) setPlan(initialPlan);
+  }, [initialPlan]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
 
     if (!plan) {
-      setError("Choose a free trial or subscribe to continue.");
+      setError("Choose a trial or subscription plan to continue.");
       return;
     }
 
@@ -87,12 +79,7 @@ export function SignupForm() {
         throw new Error(messageForSignInError(signInRes.error));
       }
 
-      if (data.plan === "subscribe" || plan === "subscribe") {
-        await redirectToCheckout();
-        return;
-      }
-
-      router.push("/dashboard");
+      window.location.href = `/checkout?plan=${plan}`;
     } catch (err) {
       setError(messageFromUnknownAuthError(err));
     } finally {
@@ -102,14 +89,14 @@ export function SignupForm() {
 
   const submitLabel =
     plan === "subscribe"
-      ? `Continue to pay ${formatMonthlyPrice()}/mo`
+      ? `Subscribe — ${formatMonthlyPrice()}/mo`
       : plan === "trial"
-        ? `Start ${formatTrialLabel()}`
-        : "Create account";
+        ? `Start trial — ${formatTrialIntroPrice()}`
+        : "Create account & subscribe";
 
   return (
     <form onSubmit={handleSubmit} noValidate className="apple-card mt-10 space-y-5 p-8 md:p-10">
-      <p className="rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-xs leading-relaxed text-violet-950">
+      <p className="rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-xs leading-relaxed text-violet-950 dark:border-violet-500/30 dark:bg-violet-950/30 dark:text-violet-100">
         <strong className="font-semibold">Beta.</strong> {BETA_MESSAGE}
       </p>
 
@@ -161,7 +148,7 @@ export function SignupForm() {
       <LegalCheckbox checked={accepted} onChange={setAccepted} />
 
       <p className="text-xs leading-relaxed text-[var(--color-ink-muted)]">
-        {LEGAL_DISCLAIMERS.ageRequirement}
+        {LEGAL_DISCLAIMERS.ageRequirement} All exam features require an active subscription.
       </p>
 
       {error && <p className="text-sm text-red-600">{error}</p>}

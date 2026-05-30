@@ -2,7 +2,6 @@ import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
 import { auth } from "@/auth";
 import { getUserAccess } from "@/lib/access-control";
-import { SubscriptionPaywall } from "./SubscriptionPaywall";
 import { AccessBlockedNotice } from "./AccessBlockedNotice";
 
 /** Renders children only when the user has trial, paid, staff, or comp access. */
@@ -23,7 +22,7 @@ export async function PremiumGate({ children }: { children: ReactNode }) {
   }
 
   if (!access.hasPremiumAccess) {
-    return <SubscriptionPaywall access={access.subscription} />;
+    redirect("/pricing?paywall=1");
   }
 
   return <>{children}</>;

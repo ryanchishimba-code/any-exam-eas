@@ -1,5 +1,4 @@
-import { PremiumGate } from "@/components/PremiumGate";
-import { StudyModePicker } from "@/components/StudyModePicker";
+import { StudentHub } from "@/components/study/StudentHub";
 import { StudySubnav } from "@/components/StudySubnav";
 import { PageShell } from "@/components/PageShell";
 
@@ -11,16 +10,12 @@ export default function StudyPage() {
   return (
     <PageShell
       eyebrow="Study"
-      title="Choose how you want to study."
-      description="Pick flashcards for quick recall, or exam-style multiple choice for full practice tests. Your progress is saved as you go."
-      maxWidth="max-w-3xl"
+      title="Your exam prep hub."
+      description="Adaptive banks, AI mock exams, and mastery tracking — all in one place."
+      maxWidth="max-w-4xl"
     >
       <StudySubnav />
-      <PremiumGate>
-        <div className="mt-10">
-          <StudyModePicker />
-        </div>
-      </PremiumGate>
+      <StudentHub />
     </PageShell>
   );
 }

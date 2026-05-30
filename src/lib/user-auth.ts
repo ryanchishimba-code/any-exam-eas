@@ -3,7 +3,6 @@ import { Prisma } from "@prisma/client";
 import type { User } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { isAtLeast18 } from "@/lib/age";
-import { TRIAL_DAYS } from "@/lib/billing-config";
 import { signUpSchema, normalizeEmail, type SignUpInput } from "@/lib/validators/auth";
 import { recordTrialUsed } from "@/lib/trial-eligibility";
 
@@ -80,8 +79,8 @@ export async function recordUserLogin(userId: string): Promise<void> {
 }
 
 /**
- * Create a new account with hashed password and chosen plan.
- * `trial` — in-app free trial; `subscribe` — pay via Stripe checkout (no access until paid).
+ * Create a new account with hashed password.
+ * Subscription stays inactive until Stripe checkout completes (webhook).
  */
 export async function registerUser(
   input: SignUpInput
@@ -95,14 +94,7 @@ export async function registerUser(
 
   const passwordHash = await bcrypt.hash(parsed.password, BCRYPT_ROUNDS);
 
-  const subscriptionData =
-    parsed.plan === "trial"
-      ? (() => {
-          const trialEndsAt = new Date();
-          trialEndsAt.setDate(trialEndsAt.getDate() + TRIAL_DAYS);
-          return { status: "trialing" as const, trialEndsAt };
-        })()
-      : { status: "inactive" as const, trialEndsAt: null };
+  const subscriptionData = { status: "inactive" as const, trialEndsAt: null };
 
   try {
     const user = await withRegisterRetry(() =>

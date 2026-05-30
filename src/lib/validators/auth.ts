@@ -6,7 +6,7 @@ export function normalizeEmail(email: string): string {
 }
 
 export const signupPlanSchema = z.enum(["trial", "subscribe"], {
-  errorMap: () => ({ message: "Choose a free trial or subscribe to continue." }),
+  errorMap: () => ({ message: "Choose a trial or subscription plan to continue." }),
 });
 
 export const signUpSchema = z.object({

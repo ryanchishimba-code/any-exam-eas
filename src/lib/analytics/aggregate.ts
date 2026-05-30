@@ -1,4 +1,6 @@
 import { prisma } from "@/lib/prisma";
+import { getBillingMetrics } from "@/lib/analytics/billing-metrics";
+import { estimateMrr } from "@/lib/billing-config";
 
 function dayKey(d = new Date()): string {
   return d.toISOString().slice(0, 10);
@@ -90,6 +92,16 @@ export type PlatformOverview = {
   dailyTrend: { date: string; dau: number; generations: number }[];
   subjectPopularity: { field: string; count: number }[];
   difficultyDistribution: { difficulty: string; count: number }[];
+  billing: {
+    activeSubscribers: number;
+    activeTrials: number;
+    trialExpired: number;
+    pastDue: number;
+    churnedLast30d: number;
+    estimatedMrr: number;
+    avgQuizScore: number | null;
+    examCompletions: number;
+  };
 };
 
 export async function getPlatformOverview(days = 14): Promise<PlatformOverview> {
@@ -109,6 +121,7 @@ export async function getPlatformOverview(days = 14): Promise<PlatformOverview> 
     dailySummaries,
     subjectGroups,
     difficultyGroups,
+    billing,
   ] = await Promise.all([
     prisma.user.count({ where: { accountStatus: "active" } }),
     prisma.user.count({
@@ -142,6 +155,7 @@ export async function getPlatformOverview(days = 14): Promise<PlatformOverview> 
       where: { createdAt: { gte: monthStart } },
       _count: { difficulty: true },
     }),
+    getBillingMetrics(monthStart, new Date()),
   ]);
 
   const byDate = new Map<string, { dau: number; generations: number }>();
@@ -174,5 +188,15 @@ export async function getPlatformOverview(days = 14): Promise<PlatformOverview> 
       difficulty: g.difficulty,
       count: g._count.difficulty,
     })),
+    billing: {
+      activeSubscribers: billing.activeSubscribers,
+      activeTrials: billing.activeTrials,
+      trialExpired: billing.trialExpired,
+      pastDue: billing.pastDue,
+      churnedLast30d: billing.churnedLast30d,
+      estimatedMrr: estimateMrr(billing.activeSubscribers, billing.activeTrials),
+      avgQuizScore: billing.avgQuizScore,
+      examCompletions: billing.examCompletions,
+    },
   };
 }

@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { LoginForm } from "@/components/LoginForm";
 import { PageShell } from "@/components/PageShell";
+import { AuthCard } from "@/components/ui/AuthCard";
 
 export const metadata = {
   title: "Log In — Any Exam Easy",
@@ -8,10 +9,19 @@ export const metadata = {
 
 export default function LoginPage() {
   return (
-    <PageShell title="Welcome back." align="center" maxWidth="max-w-md">
-      <Suspense fallback={null}>
-        <LoginForm />
-      </Suspense>
+    <PageShell
+      eyebrow="Welcome back"
+      title="Log in to continue."
+      description="Your progress, streaks, and generated exams sync across devices."
+      align="center"
+      maxWidth="max-w-md"
+      variant="premium"
+    >
+      <AuthCard>
+        <Suspense fallback={null}>
+          <LoginForm />
+        </Suspense>
+      </AuthCard>
     </PageShell>
   );
 }

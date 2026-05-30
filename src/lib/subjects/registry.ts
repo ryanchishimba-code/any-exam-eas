@@ -6,11 +6,21 @@ import type {
 import { medicineModule } from "./medicine";
 import { nursingModule } from "./nursing";
 import { pharmacyModule } from "./pharmacy";
+import { dentistryModule } from "./dentistry";
+import { mathModule } from "./math";
+import { biologyModule } from "./biology";
+import { chemistryModule } from "./chemistry";
+import { satModule } from "./sat";
 
 const MODULES: Record<string, SubjectModule> = {
   medicine: medicineModule,
   nursing: nursingModule,
   pharmacy: pharmacyModule,
+  dentistry: dentistryModule,
+  sat: satModule,
+  math: mathModule,
+  biology: biologyModule,
+  chemistry: chemistryModule,
 };
 
 /** Capability registry — controls generation behavior per discipline. */

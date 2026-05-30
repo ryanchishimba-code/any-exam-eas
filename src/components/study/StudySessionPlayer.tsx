@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { GeneratedExam } from "@/lib/ai";
-import { cleanOptionText } from "@/lib/question-format";
 import {
   advanceSession,
   createStudySession,
@@ -21,6 +20,12 @@ import type {
   StudyQuestion,
   StudySessionState,
 } from "@/lib/questions/types";
+import type { LearningInsight, RemediationRecommendation } from "@/lib/learning/types";
+import { InsightPanel } from "./InsightPanel";
+import {
+  ExplanationPanel,
+  QuestionRenderer,
+} from "./questions/QuestionRenderer";
 
 type Props = {
   field: string;
@@ -62,6 +67,8 @@ export function StudySessionPlayer({
 
   const [selected, setSelected] = useState<string[]>([]);
   const [showConfidence, setShowConfidence] = useState(false);
+  const [insight, setInsight] = useState<LearningInsight | null>(null);
+  const [remediation, setRemediation] = useState<RemediationRecommendation[]>([]);
   const [timerSec, setTimerSec] = useState(initial.session.timedSecondsPerQuestion ?? 0);
   const startedAt = useRef<number>(Date.now());
   const progressSaved = useRef(false);
@@ -89,6 +96,38 @@ export function StudySessionPlayer({
     [questionList]
   );
 
+  const submitAttempt = useCallback(
+    async (
+      q: StudyQuestion,
+      correct: boolean,
+      choices: string[],
+      durationMs: number,
+      confidence?: ConfidenceLevel
+    ) => {
+      const res = await fetch("/api/study/attempt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          question: q,
+          correct,
+          confidence,
+          durationMs,
+          selectedAnswer: choices.join(", "),
+          sessionId: sessionState.sessionId,
+        }),
+      });
+      if (res.ok) {
+        const data = (await res.json()) as {
+          insight?: LearningInsight;
+          remediation?: RemediationRecommendation[];
+        };
+        if (data.insight) setInsight(data.insight);
+        if (data.remediation) setRemediation(data.remediation);
+      }
+    },
+    [sessionState.sessionId]
+  );
+
   const revealAnswer = useCallback(
     async (choices: string[]) => {
       if (!current) return;
@@ -96,25 +135,17 @@ export function StudySessionPlayer({
       const next = recordSessionAnswer(sessionState, current, choices, { durationMs });
       setSessionState(next);
       persist(next);
+      setInsight(null);
+      setRemediation([]);
 
       const correct = isAnswerCorrect(current, choices);
 
-      if (sessionState.mode === "practice") {
+      if (sessionState.mode === "practice" || sessionState.mode === "adaptive" || sessionState.mode === "weak_area" || sessionState.mode === "tutor") {
         setShowConfidence(true);
         return;
       }
 
-      void fetch("/api/study/attempt", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          question: current,
-          correct,
-          durationMs,
-          selectedAnswer: choices.join(", "),
-          sessionId: sessionState.sessionId,
-        }),
-      });
+      void submitAttempt(current, correct, choices, durationMs);
 
       if (sessionState.mode === "rapid") {
         setTimeout(() => {
@@ -124,7 +155,7 @@ export function StudySessionPlayer({
         }, 500);
       }
     },
-    [current, sessionState, persist]
+    [current, sessionState, persist, submitAttempt]
   );
 
   useEffect(() => {
@@ -132,6 +163,8 @@ export function StudySessionPlayer({
     startedAt.current = Date.now();
     setSelected([]);
     setShowConfidence(false);
+    setInsight(null);
+    setRemediation([]);
     if (sessionState.mode === "timed") {
       setTimerSec(sessionState.timedSecondsPerQuestion ?? 45);
     }
@@ -162,6 +195,14 @@ export function StudySessionPlayer({
 
   function toggleSelect(option: string) {
     if (answer?.revealed || !current) return;
+    if (option === "__clear__") {
+      setSelected([]);
+      return;
+    }
+    if (current.type === "ordered_response") {
+      setSelected((prev) => (prev.includes(option) ? prev : [...prev, option]));
+      return;
+    }
     if (current.type === "select_all") {
       setSelected((prev) =>
         prev.includes(option) ? prev.filter((o) => o !== option) : [...prev, option]
@@ -182,18 +223,13 @@ export function StudySessionPlayer({
     });
     setSessionState(next);
     setShowConfidence(false);
-    void fetch("/api/study/attempt", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        question: current,
-        correct: answer.correct === true,
-        confidence: level,
-        durationMs: answer.durationMs,
-        selectedAnswer: answer.selected.join(", "),
-        sessionId: sessionState.sessionId,
-      }),
-    });
+    void submitAttempt(
+      current,
+      answer.correct === true,
+      answer.selected,
+      answer.durationMs ?? 0,
+      level
+    );
     persist(next);
   }
 
@@ -288,68 +324,48 @@ export function StudySessionPlayer({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.2 }}
-          className="rounded-2xl border border-black/[0.08] bg-white p-6 shadow-sm sm:p-8"
+          className="rounded-2xl border border-black/[0.08] bg-white p-6 shadow-sm dark:border-white/10 dark:bg-[var(--color-surface-elevated)] sm:p-8"
         >
-          <p className="text-xl font-medium leading-snug sm:text-2xl">{current.stem}</p>
-
-          <ul className="mt-6 space-y-2.5">
-            {current.options.map((opt, i) => {
-              const isSel = selected.includes(opt);
-              const revealed = answer?.revealed;
-              const isCorrect = current.correctAnswers.some(
-                (c) =>
-                  cleanOptionText(c).toLowerCase() === cleanOptionText(opt).toLowerCase()
-              );
-              let row = "border-black/[0.08] bg-[var(--color-surface)]";
-              if (revealed) {
-                row = isCorrect
-                  ? "border-emerald-300 bg-emerald-50"
-                  : isSel
-                    ? "border-red-300 bg-red-50"
-                    : "border-black/5 opacity-50";
-              } else if (isSel) {
-                row = "border-[var(--color-accent)] bg-sky-50 ring-2 ring-sky-200";
-              }
-
-              return (
-                <li key={i}>
-                  <button
-                    type="button"
-                    disabled={revealed}
-                    onClick={() => toggleSelect(opt)}
-                    className={`flex w-full gap-3 rounded-xl border px-4 py-3.5 text-left text-sm ${row}`}
-                  >
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-black/[0.05] text-xs font-semibold">
-                      {i + 1}
-                    </span>
-                    {cleanOptionText(opt)}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+          <QuestionRenderer
+            question={current}
+            selected={selected}
+            revealed={!!answer?.revealed}
+            onToggle={toggleSelect}
+          />
 
           {!answer?.revealed && sessionState.mode !== "rapid" && (
             <button
               type="button"
-              disabled={!selected.length}
+              disabled={
+                !selected.length ||
+                (current.type === "ordered_response" &&
+                  selected.length !== current.correctAnswers.length)
+              }
               onClick={() => void revealAnswer(selected)}
               className="mt-8 rounded-full bg-[var(--color-accent)] px-10 py-3 text-sm font-medium text-white disabled:opacity-40"
             >
-              Check
+              {current.type === "ordered_response" &&
+              selected.length !== current.correctAnswers.length
+                ? `Select ${current.correctAnswers.length - selected.length} more`
+                : "Check"}
             </button>
           )}
 
           {answer?.revealed && (
-            <div className="mt-6 space-y-3">
+            <div className="space-y-3">
               <p
                 className={`text-sm font-semibold ${answer.correct ? "text-emerald-700" : "text-red-700"}`}
               >
                 {answer.correct ? "Correct" : "Review"}
               </p>
-              <p className="rounded-xl bg-[var(--color-surface)] p-4 text-sm text-[var(--color-ink-muted)]">
-                {current.explanation}
-              </p>
+              <ExplanationPanel question={current} />
+              {insight && (
+                <InsightPanel
+                  insight={insight}
+                  remediation={remediation}
+                  correct={answer.correct === true}
+                />
+              )}
             </div>
           )}
 
