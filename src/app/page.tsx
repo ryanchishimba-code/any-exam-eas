@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { Hero } from "@/components/Hero";
 import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
 import { HomeBottomCta } from "@/components/home/HomeBottomCta";
+import { HomeLivePulse } from "@/components/home/HomeLivePulse";
 import { buildHomeMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildHomeMetadata();
@@ -23,9 +24,6 @@ const HowWeCompare = dynamic(() =>
 const ChooseYourExam = dynamic(() =>
   import("@/components/home/ChooseYourExam").then((m) => m.ChooseYourExam)
 );
-const SubjectsShowcase = dynamic(() =>
-  import("@/components/home/SubjectsShowcase").then((m) => m.SubjectsShowcase)
-);
 const WelcomeBackSection = dynamic(() =>
   import("@/components/home/WelcomeBackSection").then((m) => m.WelcomeBackSection)
 );
@@ -35,12 +33,12 @@ export default function HomePage() {
     <>
       <HomeJsonLd />
       <Hero />
-      <LandingFeatures />
+      <HomeLivePulse />
+      <ChooseYourExam />
       <Top300DrugsMastery />
+      <LandingFeatures />
       <Testimonials />
       <HowWeCompare />
-      <ChooseYourExam />
-      <SubjectsShowcase />
       <WelcomeBackSection />
       <HomeBottomCta />
     </>

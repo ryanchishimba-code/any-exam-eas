@@ -1782,3 +1782,378 @@ body {
 .dark .aee-exam-card[data-theme="others"] .aee-exam-subtitle {
   color: #a5b4fc;
 }
+
+/* ——— Premium nav & avatar ——— */
+
+.aee-nav {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.dark .aee-nav {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.aee-nav-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 980px;
+  background: linear-gradient(180deg, #14b8a6 0%, #0d9488 100%);
+  padding: 0.4375rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  box-shadow: var(--shadow-apple-sm);
+  transition: transform 0.3s var(--ease-apple-smooth), box-shadow 0.3s var(--ease-apple);
+}
+
+.aee-nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-apple-md);
+}
+
+.aee-avatar-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 980px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.85);
+  padding: 0.25rem 0.625rem 0.25rem 0.25rem;
+  box-shadow: var(--shadow-apple-sm);
+  transition: box-shadow 0.25s var(--ease-apple), border-color 0.25s;
+}
+
+.aee-avatar-trigger:hover {
+  box-shadow: var(--shadow-apple-md);
+  border-color: rgba(13, 148, 136, 0.2);
+}
+
+.dark .aee-avatar-trigger {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(28, 28, 30, 0.85);
+}
+
+.aee-avatar-circle {
+  display: flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #0d9488 0%, #0284c7 100%);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: white;
+}
+
+.aee-avatar-menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  z-index: 60;
+  min-width: 16.5rem;
+  overflow: hidden;
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+
+.dark .aee-avatar-menu {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(28, 28, 30, 0.96);
+}
+
+.aee-avatar-menu-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  transition: background 0.2s;
+}
+
+.aee-avatar-menu-item:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.dark .aee-avatar-menu-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.aee-avatar-menu-icon {
+  display: flex;
+  margin-top: 0.125rem;
+  height: 2rem;
+  width: 2rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background: rgba(13, 148, 136, 0.1);
+  color: #0f766e;
+}
+
+.dark .aee-avatar-menu-icon {
+  background: rgba(20, 184, 166, 0.15);
+  color: #5eead4;
+}
+
+.aee-avatar-signout {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  background: var(--a11y-error-bg);
+  border: 1px solid var(--a11y-error-border);
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--a11y-error-fg);
+  transition: opacity 0.2s;
+}
+
+.aee-avatar-signout:hover {
+  opacity: 0.92;
+}
+
+.aee-mobile-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.625rem 0;
+  font-size: 0.875rem;
+  color: var(--color-ink);
+}
+
+.aee-mobile-nav-signout {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--a11y-error-border);
+  background: var(--a11y-error-bg);
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--a11y-error-fg);
+}
+
+/* ——— Live pulse bar ——— */
+
+.aee-live-pulse {
+  border-block: 1px solid rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding-block: 1rem;
+}
+
+.dark .aee-live-pulse {
+  border-color: rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.aee-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 980px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: white;
+  padding: 0.5rem 1rem;
+  box-shadow: var(--shadow-apple-sm);
+}
+
+.dark .aee-live-pill {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(28, 28, 30, 0.8);
+}
+
+.aee-live-dot {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 9999px;
+  background: var(--a11y-success);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  animation: aee-pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes aee-pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.92); }
+}
+
+.aee-achievement-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 980px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: white;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  box-shadow: var(--shadow-apple-sm);
+}
+
+.dark .aee-achievement-badge {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(28, 28, 30, 0.8);
+}
+
+/* ——— Hero premium ——— */
+
+.aee-hero-premium {
+  background: linear-gradient(180deg, #fbfbfd 0%, #f5f5f7 100%);
+}
+
+.dark .aee-hero-premium {
+  background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
+}
+
+.aee-hero-trust-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 980px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.85);
+  padding: 0.4375rem 0.875rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  box-shadow: var(--shadow-apple-sm);
+}
+
+.dark .aee-hero-trust-pill {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(28, 28, 30, 0.75);
+}
+
+/* ——— Hero showcase cards ——— */
+
+.aee-showcase-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12);
+}
+
+.dark .aee-showcase-frame {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.aee-showcase-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.82) 0%, rgba(15, 23, 42, 0.18) 50%, transparent 100%);
+}
+
+.aee-showcase-card {
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.96);
+  padding: 0.875rem 1rem;
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dark .aee-showcase-card {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(28, 28, 30, 0.95);
+}
+
+.aee-showcase-icon {
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.625rem;
+  color: white;
+}
+
+.aee-showcase-icon-info {
+  background: linear-gradient(135deg, #2563eb 0%, #0d9488 100%);
+}
+
+.aee-showcase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 980px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 0.375rem 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-apple-sm);
+  backdrop-filter: blur(8px);
+}
+
+.aee-showcase-badge--warm {
+  background: var(--a11y-warning-bg);
+  border-color: var(--a11y-warning-border);
+  color: var(--a11y-warning-fg);
+}
+
+.aee-showcase-badge--info {
+  background: var(--a11y-info-bg);
+  border-color: var(--a11y-info-border);
+  color: var(--a11y-info-fg);
+}
+
+.aee-showcase-badge--success {
+  background: var(--a11y-success-bg);
+  border-color: var(--a11y-success-border);
+  color: var(--a11y-success-fg);
+}
+
+.aee-showcase-glow {
+  height: 8rem;
+  width: 8rem;
+  border-radius: 9999px;
+  background: rgba(37, 99, 235, 0.15);
+  filter: blur(48px);
+}
+
+/* ——— Drug class flashcard chips ——— */
+
+.aee-drug-class-chip {
+  border-radius: 0.875rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.625rem 0.5rem;
+  text-align: center;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.aee-drug-class-chip:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.aee-drug-class-chip .aee-class-dot {
+  display: block;
+  margin: 0 auto 0.375rem;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 9999px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.aee-exam-card-premium {
+  border-radius: 1.25rem;
+}

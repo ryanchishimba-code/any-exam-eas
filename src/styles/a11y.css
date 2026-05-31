@@ -25,6 +25,9 @@
   --a11y-grade-1-bg: #c2410c;
   --a11y-grade-2-bg: #1d4ed8;
   --a11y-grade-3-bg: #312e81;
+  --a11y-info: var(--a11y-info-border);
+  --a11y-success: var(--a11y-success-border);
+  --a11y-warning: var(--a11y-warning-border);
 }
 
 .dark {

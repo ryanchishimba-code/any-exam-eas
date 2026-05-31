@@ -4,16 +4,14 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  GraduationCap,
   HeartPulse,
-  LayoutGrid,
   Pill,
   Sparkles,
   Stethoscope,
   type LucideIcon,
 } from "lucide-react";
 
-type ExamTheme = "nclex" | "usmle" | "naplex" | "inbde" | "others";
+type ExamTheme = "nclex" | "usmle" | "naplex";
 
 type ExamCard = {
   id: string;
@@ -24,7 +22,6 @@ type ExamCard = {
   icon: LucideIcon;
   theme: ExamTheme;
   tags: string[];
-  span: string;
   popular?: boolean;
 };
 
@@ -39,7 +36,6 @@ const exams: ExamCard[] = [
     icon: HeartPulse,
     theme: "nclex",
     tags: ["NGN formats", "Pharmacology", "Med-surg"],
-    span: "lg:col-span-2",
     popular: true,
   },
   {
@@ -52,7 +48,6 @@ const exams: ExamCard[] = [
     icon: Stethoscope,
     theme: "usmle",
     tags: ["Step 1", "Step 2 CK", "Clinical vignettes"],
-    span: "lg:col-span-2",
     popular: true,
   },
   {
@@ -65,31 +60,7 @@ const exams: ExamCard[] = [
     icon: Pill,
     theme: "naplex",
     tags: ["Dosing", "Interactions", "Therapeutics"],
-    span: "lg:col-span-2",
-  },
-  {
-    id: "inbde",
-    title: "INBDE",
-    subtitle: "Integrated dental boards",
-    description:
-      "Oral pathology, radiology, restorative dentistry, pharmacology, and treatment planning.",
-    href: "/study?field=dentistry",
-    icon: GraduationCap,
-    theme: "inbde",
-    tags: ["Radiographs", "Pathology", "Restorative"],
-    span: "lg:col-span-3",
-  },
-  {
-    id: "others",
-    title: "Others",
-    subtitle: "SAT · Biology · Chemistry · Math",
-    description:
-      "Explore every discipline — adaptive banks, analytics, and mock exams across STEM and pre-professional prep.",
-    href: "/study",
-    icon: LayoutGrid,
-    theme: "others",
-    tags: ["SAT", "Sciences", "All subjects"],
-    span: "lg:col-span-3",
+    popular: true,
   },
 ];
 
@@ -104,15 +75,15 @@ export function ChooseYourExam() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="aee-section-label">Start here</p>
           <h2 id="choose-exam-heading" className="aee-headline mt-4">
-            Exams We Help You Ace
+            Three boards. One adaptive engine.
           </h2>
           <p className="aee-section-lede mx-auto max-w-xl">
-            Pick your board and jump straight into adaptive questions, analytics,
-            and study plans tailored to your exam.
+            NCLEX NGN, USMLE, and NAPLEX — each with tailored question formats,
+            analytics, and study plans built for your licensure exam.
           </p>
         </div>
 
-        <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-6 lg:gap-6">
+        <ul className="mt-16 grid gap-6 lg:grid-cols-3 lg:gap-8">
           {exams.map((exam, i) => {
             const Icon = exam.icon;
             return (
@@ -121,19 +92,18 @@ export function ChooseYourExam() {
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.45, delay: i * 0.06 }}
-                className={exam.span}
+                transition={{ duration: 0.45, delay: i * 0.08 }}
               >
                 <Link
                   href={exam.href}
                   data-theme={exam.theme}
-                  className="aee-exam-card group block h-full"
+                  className="aee-exam-card aee-exam-card-premium group block h-full"
                   aria-label={`Start ${exam.title} prep — ${exam.subtitle}`}
                 >
                   {exam.popular && (
                     <span className="aee-exam-popular-badge">
                       <Sparkles className="h-3 w-3" aria-hidden />
-                      Most Popular
+                      Board ready
                     </span>
                   )}
 
