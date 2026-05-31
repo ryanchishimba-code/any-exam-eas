@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { NGN_DEMO_QUESTIONS } from "@/lib/demo/ngn-samples";
-import { formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
 import { examQuestionToStudy, isAnswerCorrect } from "@/lib/questions/prepare";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { bowTieSelectionValid, parseBowTieLayout, parseMatrixKey } from "@/lib/questions/ngn-structures";
@@ -195,7 +194,7 @@ export function NgnInteractiveDemo() {
               href="/signup?plan=trial"
               className="text-sm font-semibold text-[var(--color-accent)] hover:underline"
             >
-              Start {formatTrialLabel()} — {formatTrialIntroPrice()}
+              Start 14-day trial — $17.99
             </Link>
           </div>
         </div>
