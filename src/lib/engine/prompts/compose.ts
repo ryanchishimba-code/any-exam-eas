@@ -4,6 +4,7 @@ import {
   buildUniversalScopeBlock,
   buildUniversalExamUserPrompt,
 } from "./base";
+import { buildHighYieldJsonShape, buildHighYieldRequirements } from "./high-yield";
 
 export function composeExamSystemPrompt(subjectModule: SubjectModule): string {
   return `${UNIVERSAL_EXAM_SYSTEM}\n${subjectModule.getExamSystemAugmentation()}\nNever include questions outside the specified subject scope.`;
@@ -28,6 +29,7 @@ export function composeExamUserPrompt(
   });
 
   const augmentation = subjectModule.getExamUserAugmentation(ctx);
+  const highYieldBlock = buildHighYieldRequirements(subjectModule, ctx);
 
   return buildUniversalExamUserPrompt({
     questionCount: ctx.questionCount,
@@ -38,6 +40,7 @@ export function composeExamUserPrompt(
     sourceCount: ctx.sources.length,
     context: params.context,
     subjectLabel: subject?.label ?? ctx.topic,
-    extraRequirements: params.extraRequirements,
+    extraRequirements: [highYieldBlock, params.extraRequirements].filter(Boolean).join("\n\n"),
+    jsonShapeExtra: buildHighYieldJsonShape(),
   });
 }

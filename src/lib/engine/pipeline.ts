@@ -11,8 +11,9 @@ import { deduplicateExamQuestions } from "./stages/deduplication";
 import { normalizeExamQuestionsFromAi } from "./stages/normalize-ai-output";
 import { scoreExamQuality } from "./stages/quality";
 import { normalizeGeneratedExam } from "./stages/format-normalize";
+import { enrichGeneratedExam } from "./stages/enrich-questions";
 import { runSelfEvaluationLoop } from "./stages/self-evaluate";
-import { NGN_JSON_SCHEMA, NGN_SYSTEM_AUGMENTATION } from "./prompts/ngn-schema";
+import { NGN_SYSTEM_AUGMENTATION } from "./prompts/ngn-schema";
 import {
   buildRetrievalContext,
   formatPatternProfileForPrompt,
@@ -97,16 +98,9 @@ export async function runExamGenerationPipeline(
   const extraRequirements = [
     conceptBlock,
     patternBlock ? `\n${patternBlock}` : "",
-    NGN_JSON_SCHEMA,
     difficultyEval.adjustments?.length
       ? `Difficulty guidance: ${difficultyEval.adjustments.join(" ")}`
       : "",
-    subjectModule.capabilities.defaultHighYield
-      ? "Mark most items highYield: true."
-      : "",
-    fieldId === "nursing"
-      ? "Include ~30% NGN formats (unfolding_case, bow_tie, select_all, matrix)."
-      : "Include clinical vignettes where appropriate for this discipline.",
   ]
     .filter(Boolean)
     .join("\n");
@@ -147,6 +141,7 @@ export async function runExamGenerationPipeline(
 
   const requireSteps = Boolean(subjectModule.capabilities.requiresFormulaValidation);
   exam = normalizeGeneratedExam(exam, params.questionCount, requireSteps);
+  exam = enrichGeneratedExam(exam);
   exam = deduplicateExamQuestions(exam);
 
   const validation = subjectModule.validateExam({

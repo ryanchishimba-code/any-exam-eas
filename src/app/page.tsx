@@ -14,6 +14,9 @@ const LandingFeatures = dynamic(() =>
 const Testimonials = dynamic(() =>
   import("@/components/home/Testimonials").then((m) => m.Testimonials)
 );
+const HowWeCompare = dynamic(() =>
+  import("@/components/home/HowWeCompare").then((m) => m.HowWeCompare)
+);
 const ChooseYourExam = dynamic(() =>
   import("@/components/home/ChooseYourExam").then((m) => m.ChooseYourExam)
 );
@@ -34,6 +37,7 @@ export default function HomePage() {
       <Hero />
       <LandingFeatures />
       <Testimonials />
+      <HowWeCompare />
       <ChooseYourExam />
       <SubjectsShowcase />
       <FeatureGrid />

@@ -988,6 +988,122 @@ body {
   border-color: rgba(45, 212, 191, 0.2);
 }
 
+/* How we compare — pricing table */
+.aee-compare-highlight {
+  border-radius: 1rem;
+  border: 1px solid rgba(13, 148, 136, 0.15);
+  background: linear-gradient(145deg, rgba(240, 253, 250, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+  padding: 1.25rem 1.375rem;
+  box-shadow: 0 2px 12px rgba(13, 148, 136, 0.06);
+}
+
+.dark .aee-compare-highlight {
+  border-color: rgba(45, 212, 191, 0.15);
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.8) 0%, rgba(19, 78, 74, 0.15) 100%);
+}
+
+.aee-compare-highlight-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.625rem;
+  background: rgba(13, 148, 136, 0.1);
+  margin-bottom: 0.75rem;
+}
+
+.aee-compare-table-wrap {
+  border-radius: 1.25rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: white;
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+.dark .aee-compare-table-wrap {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.aee-compare-table {
+  font-size: 0.9375rem;
+}
+
+.aee-compare-th {
+  padding: 1rem 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #64748b;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  background: #f8fafc;
+}
+
+.dark .aee-compare-th {
+  color: #94a3b8;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.aee-compare-th-aee {
+  color: #0f766e;
+  background: linear-gradient(180deg, #f0fdfa 0%, #ecfdf5 100%);
+}
+
+.dark .aee-compare-th-aee {
+  color: #5eead4;
+  background: linear-gradient(180deg, rgba(19, 78, 74, 0.35) 0%, rgba(15, 23, 42, 0.8) 100%);
+}
+
+.aee-compare-td-label {
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  color: #334155;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  white-space: nowrap;
+}
+
+.dark .aee-compare-td-label {
+  color: #e2e8f0;
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.aee-compare-td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  vertical-align: top;
+}
+
+.dark .aee-compare-td {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+.aee-compare-td-aee {
+  background: rgba(240, 253, 250, 0.5);
+}
+
+.dark .aee-compare-td-aee {
+  background: rgba(19, 78, 74, 0.12);
+}
+
+.aee-compare-row-highlight .aee-compare-td-label,
+.aee-compare-row-highlight .aee-compare-td {
+  background-image: linear-gradient(90deg, rgba(13, 148, 136, 0.04), transparent);
+}
+
+.dark .aee-compare-row-highlight .aee-compare-td-label,
+.dark .aee-compare-row-highlight .aee-compare-td {
+  background-image: linear-gradient(90deg, rgba(45, 212, 191, 0.06), transparent);
+}
+
+.aee-compare-table tbody tr:last-child .aee-compare-td,
+.aee-compare-table tbody tr:last-child .aee-compare-td-label {
+  border-bottom: none;
+}
+
 /* Exam picker — "Exams We Help You Ace" */
 .aee-exams-section {
   background:

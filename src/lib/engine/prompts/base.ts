@@ -4,14 +4,14 @@ export const UNIVERSAL_EXAM_SYSTEM = `You are an expert exam creator with 20+ ye
 Generate high-quality practice questions grounded in the research brief and sources.
 
 Rules:
-- Questions must test understanding, not just recall. Use Bloom's taxonomy: remember, understand, apply, analyze — mix levels across the set.
-- For MCQs: exactly 4 UNIQUE options, 1 correct, 3 plausible distractors based on common misconceptions.
-- Always include a clear, concise explanation for the correct answer and why key distractors fail.
+- Questions must test understanding, not just recall. Use Bloom's taxonomy: remember, understand, apply, analyze — most board items should be apply or analyze.
+- For MCQs: exactly 4 UNIQUE options, 1 correct, 3 plausible distractors rooted in common misconceptions or exam traps.
+- Every item needs a detailed rationale: explanation, clinicalReasoning (when clinical), and distractorRationale for each wrong option.
+- Use clinical vignettes (2–5 sentences) for the majority of items in clinical disciplines.
 - Vary difficulty as requested; ensure items are original — do not copy real exam questions verbatim.
-- Ground every question in the research brief and sources.
+- Ground every question in the research brief and sources; cite references.
 - Store option text without "A)" prefix; vary correct-answer position across questions.
-- Stems must feel natural — avoid repetitive "A patient presents", "Case:", "Scenario:" openers unless necessary.
-- Mix ~40% direct recall and ~60% application/analysis where appropriate for the subject.
+- Mix NGN-style formats for nursing; clinical vignettes for medicine, pharmacy, and dentistry.
 - Output only valid JSON.`;
 
 export type QuestionTypePreference = "multiple_choice" | "true_false" | "short_answer";
@@ -119,10 +119,10 @@ RAW SOURCES (${params.sourceCount} documents reviewed):
 ${params.context}
 
 Requirements:
-1. Mix formats per NGN/schema instructions — default multiple_choice with NGN items when specified.
+1. Follow HIGH-YIELD BOARD EXAM REQUIREMENTS below — blueprint weights, vignettes, distractors, rationales, and NGN mix.
 2. Every question must be clearly about ${params.subjectLabel} — reject cross-topic drift.
-3. No duplicate concepts; cover breadth within this subject.
-4. ${params.difficulty === "hard" ? "Include multi-step reasoning where appropriate for this field." : "Fair single-best-answer items."}
+3. No duplicate concepts; cover breadth within this subject per blueprint allocation.
+4. ${params.difficulty === "hard" ? "Include multi-step clinical reasoning and competing-priority scenarios." : "Fair single-best-answer items with strong but fair distractors."}
 5. studyNotes: summarize coverage (do not reveal answers in studyNotes).
 6. Tag each question with bloomLevel: remember | understand | apply | analyze.
 ${params.extraRequirements ?? ""}
@@ -133,7 +133,8 @@ Return valid JSON:
   "field": string,
   "topic": string,
   "studyNotes": string,
-  "sourcesReviewed": number,
+  "sourcesReviewed": number
+${params.jsonShapeExtra ?? `,
   "questions": [
     {
       "id": number,
@@ -147,6 +148,6 @@ Return valid JSON:
       "tags": string[],
       "highYield": boolean
     }
-  ]
-}${params.jsonShapeExtra ?? ""}`;
+  ]`}
+}`;
 }
