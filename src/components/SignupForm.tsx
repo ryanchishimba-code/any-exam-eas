@@ -108,7 +108,7 @@ export function SignupForm({ initialPlan = "" }: { initialPlan?: SignupPlan | ""
 
   return (
     <form onSubmit={handleSubmit} noValidate className="apple-card mt-10 space-y-5 p-8 md:p-10">
-      <p className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-relaxed text-slate-700 dark:border-slate-700 dark:bg-slate-900/40 dark:text-slate-300">
+      <p className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-relaxed text-slate-700">
         {MARKETING_DISCLAIMER}
       </p>
 

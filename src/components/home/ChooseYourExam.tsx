@@ -118,7 +118,7 @@ export function ChooseYourExam() {
 
                   <h3 className="aee-exam-title mt-5">{exam.title}</h3>
                   <p className="aee-exam-subtitle mt-1">{exam.subtitle}</p>
-                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-slate-600 dark:text-slate-400">
+                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-slate-600">
                     {exam.description}
                   </p>
 

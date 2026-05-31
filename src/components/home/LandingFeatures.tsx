@@ -55,7 +55,7 @@ const benefits = [
 export function LandingFeatures() {
   return (
     <section
-      className="aee-landing-section relative overflow-hidden bg-white dark:bg-black"
+      className="aee-landing-section relative overflow-hidden bg-white"
       aria-labelledby="landing-features-heading"
     >
       <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
@@ -94,13 +94,13 @@ export function LandingFeatures() {
                   >
                     <Icon className="h-5 w-5 text-white" strokeWidth={2} />
                   </span>
-                  <p className="mt-5 text-[0.6875rem] font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
+                  <p className="mt-5 text-[0.6875rem] font-semibold uppercase tracking-wider text-teal-700">
                     {benefit.outcome}
                   </p>
-                  <h3 className="mt-2 text-lg font-semibold tracking-[-0.02em] text-slate-900 dark:text-white">
+                  <h3 className="mt-2 text-lg font-semibold tracking-[-0.02em] text-slate-900">
                     {benefit.title}
                   </h3>
-                  <p className="mt-2.5 flex-1 text-[0.9375rem] leading-relaxed text-slate-600 dark:text-slate-400">
+                  <p className="mt-2.5 flex-1 text-[0.9375rem] leading-relaxed text-slate-600">
                     {benefit.description}
                   </p>
                   <span

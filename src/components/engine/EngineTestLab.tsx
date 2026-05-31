@@ -223,8 +223,8 @@ export function EngineTestLab() {
                   onClick={() => setActiveQ(i)}
                   className={`flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm transition ${
                     activeQ === i
-                      ? "bg-[var(--color-ink)] text-white dark:bg-white dark:text-black"
-                      : "hover:bg-black/[0.04] dark:hover:bg-white/10"
+                      ? "bg-[var(--color-ink)] text-white"
+                      : "hover:bg-black/[0.04]"
                   }`}
                 >
                   <span>Q{i + 1}</span>
@@ -282,7 +282,7 @@ export function EngineTestLab() {
               <ExplanationPanel question={studyQ} />
 
               {report?.perQuestion[activeQ] && (
-                <div className="mt-6 rounded-xl border border-black/[0.06] p-4 dark:border-white/10">
+                <div className="mt-6 rounded-xl border border-black/[0.06] p-4">
                   <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
                     Self-RAG reflection
                   </p>

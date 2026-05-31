@@ -185,7 +185,7 @@ export function NgnInteractiveDemo() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/study/practice?mode=cat"
-              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-white dark:text-slate-900"
+              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
             >
               Start NCLEX-style adaptive mock
               <ArrowRight className="h-4 w-4" aria-hidden />

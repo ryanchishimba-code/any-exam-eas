@@ -45,8 +45,8 @@ export function PlanChoice({
               onClick={() => onChange(plan.id)}
               className={`rounded-2xl border p-4 text-left transition-all duration-200 ${
                 selected
-                  ? "border-[var(--color-accent)] bg-blue-50/50 shadow-[0_0_0_3px_rgba(0,113,227,0.12)] dark:bg-blue-950/20"
-                  : "border-black/[0.08] bg-[var(--color-surface-elevated)] hover:border-black/[0.12] dark:border-white/10"
+                  ? "border-[var(--color-accent)] bg-blue-50/50 shadow-[0_0_0_3px_rgba(0,113,227,0.12)]"
+                  : "border-black/[0.08] bg-[var(--color-surface-elevated)] hover:border-black/[0.12]"
               }`}
             >
               <div className="flex items-start justify-between gap-2">

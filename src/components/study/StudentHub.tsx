@@ -105,12 +105,12 @@ export function StudentHub() {
         )}
 
         {session?.user && loading && (
-          <div className="h-24 w-24 animate-pulse rounded-full bg-black/[0.04] dark:bg-white/10" />
+          <div className="h-24 w-24 animate-pulse rounded-full bg-black/[0.04]" />
         )}
       </motion.section>
 
       {session?.user && (
-        <section className="flex flex-wrap gap-x-8 gap-y-2 border-y border-black/[0.06] py-6 dark:border-white/10">
+        <section className="flex flex-wrap gap-x-8 gap-y-2 border-y border-black/[0.06] py-6">
           <AppleLink href="/study/drugs300">Top 500 Drugs</AppleLink>
           <AppleLink href="/study/practice?mode=weak">Weak areas</AppleLink>
           <AppleLink href="/generate">New test</AppleLink>
@@ -161,7 +161,7 @@ export function StudentHub() {
             </h3>
             <AppleLink href="/dashboard">View dashboard</AppleLink>
           </div>
-          <ul className="mt-4 divide-y divide-black/[0.06] dark:divide-white/10">
+          <ul className="mt-4 divide-y divide-black/[0.06]">
             {dashboard.recentTests.slice(0, 3).map((t) => (
               <li key={t.id} className="flex items-center justify-between py-3.5 text-sm">
                 <span className="truncate text-[var(--color-ink)]">{t.title}</span>

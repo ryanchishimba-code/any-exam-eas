@@ -141,8 +141,8 @@ function OptionRow({
         : "border-black/5 opacity-50";
   } else if (selected) {
     row = multi
-      ? "border-[var(--color-accent)] bg-sky-50 ring-2 ring-sky-200/80 dark:bg-sky-950/20"
-      : "border-[var(--color-accent)] bg-sky-50 ring-2 ring-sky-200 dark:bg-sky-950/20";
+      ? "border-[var(--color-accent)] bg-sky-50 ring-2 ring-sky-200/80"
+      : "border-[var(--color-accent)] bg-sky-50 ring-2 ring-sky-200";
   }
 
   return (
@@ -153,7 +153,7 @@ function OptionRow({
         onClick={onToggle}
         className={`flex w-full gap-3 rounded-xl border px-4 py-3.5 text-left text-sm transition ${row}`}
       >
-        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-black/[0.05] text-xs font-semibold dark:bg-white/10">
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-black/[0.05] text-xs font-semibold">
           {multi && selected ? "✓" : index + 1}
         </span>
         <span className="min-w-0 flex-1">

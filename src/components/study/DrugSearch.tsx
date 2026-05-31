@@ -16,8 +16,6 @@ import { searchDrugs, type DrugSearchHit } from "@/lib/drugs300/search";
 import { cn } from "@/lib/utils";
 
 type DrugSearchProps = {
-  /** Visual theme — dark for landing hero, default for study page */
-  variant?: "default" | "dark";
   /** Called when user picks a drug from suggestions */
   onSelect?: (drug: DrugSearchHit) => void;
   /** Navigate to study page with ?drug= when selecting (landing) */
@@ -27,7 +25,6 @@ type DrugSearchProps = {
 };
 
 export function DrugSearch({
-  variant = "default",
   onSelect,
   linkToStudy = false,
   className,
@@ -122,23 +119,10 @@ export function DrugSearch({
     }
   }
 
-  const isDark = variant === "dark";
-
   return (
     <div ref={containerRef} className={cn("aee-drug-search", className)}>
-      <div
-        className={cn(
-          "aee-drug-search-field",
-          isDark && "aee-drug-search-field--dark"
-        )}
-      >
-        <Search
-          className={cn(
-            "aee-drug-search-icon",
-            isDark && "aee-drug-search-icon--dark"
-          )}
-          aria-hidden
-        />
+      <div className="aee-drug-search-field">
+        <Search className="aee-drug-search-icon" aria-hidden />
         <input
           ref={inputRef}
           type="search"
@@ -158,10 +142,7 @@ export function DrugSearch({
           }}
           onFocus={() => query.trim() && setOpen(true)}
           onKeyDown={onKeyDown}
-          className={cn(
-            "aee-drug-search-input",
-            isDark && "aee-drug-search-input--dark"
-          )}
+          className="aee-drug-search-input"
           autoComplete="off"
           spellCheck={false}
         />
@@ -169,10 +150,7 @@ export function DrugSearch({
           <button
             type="button"
             onClick={clear}
-            className={cn(
-              "aee-drug-search-clear",
-              isDark && "aee-drug-search-clear--dark"
-            )}
+            className="aee-drug-search-clear"
             aria-label="Clear search"
           >
             <X className="h-4 w-4" aria-hidden />
@@ -181,12 +159,7 @@ export function DrugSearch({
       </div>
 
       {showDropdown && (
-        <div
-          className={cn(
-            "aee-drug-search-dropdown",
-            isDark && "aee-drug-search-dropdown--dark"
-          )}
-        >
+        <div className="aee-drug-search-dropdown">
           {results.length === 0 ? (
             <p className="aee-drug-search-empty">No drugs match &ldquo;{query.trim()}&rdquo;</p>
           ) : (

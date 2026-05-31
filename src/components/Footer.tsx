@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { EmployeeAccessLink } from "@/components/EmployeeAccessLink";
 import { MARKETING_DISCLAIMER } from "@/lib/site";
 
 const columns = [
@@ -33,7 +32,7 @@ const columns = [
 export function Footer() {
   return (
     <footer
-      className="apple-footer border-t border-black/[0.08] py-8 dark:border-white/[0.08]"
+      className="apple-footer border-t border-black/[0.08] py-8"
       role="contentinfo"
     >
       <div className="mx-auto max-w-[980px] px-6">
@@ -58,8 +57,7 @@ export function Footer() {
             </nav>
           ))}
         </div>
-        <div className="mt-8 flex flex-col gap-3 border-t border-black/[0.06] pt-6 dark:border-white/[0.08] sm:flex-row sm:items-center sm:justify-between">
-          <EmployeeAccessLink className="text-xs" />
+        <div className="mt-8 border-t border-black/[0.06] pt-6">
           <p className="text-xs text-[var(--color-ink-muted)]">
             For users 18+. Not affiliated with accrediting bodies or licensure boards.{" "}
             {MARKETING_DISCLAIMER}

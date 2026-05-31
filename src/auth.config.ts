@@ -1,7 +1,7 @@
 import type { NextAuthConfig } from "next-auth";
 import { NextResponse } from "next/server";
 import { isPremiumPage } from "@/lib/premium-routes";
-import { EMPLOYEE_LOGIN_PATH, isInternalPath } from "@/lib/staff-routes";
+import { isInternalPath, staffLoginUrl } from "@/lib/staff-routes";
 import { isStaffRole } from "@/lib/permissions";
 
 /** Edge-safe config — used by middleware only (no Prisma/bcrypt). */
@@ -24,11 +24,13 @@ export const authConfig = {
 
       if (isInternal) {
         if (!isLoggedIn) {
-          return NextResponse.redirect(new URL(EMPLOYEE_LOGIN_PATH, request.nextUrl));
+          return NextResponse.redirect(
+            new URL(staffLoginUrl(path), request.nextUrl)
+          );
         }
         if (!isStaffRole(role)) {
           return NextResponse.redirect(
-            new URL(`${EMPLOYEE_LOGIN_PATH}?error=staff_only`, request.nextUrl)
+            new URL("/study?error=staff_only", request.nextUrl)
           );
         }
         return true;

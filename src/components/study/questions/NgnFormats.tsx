@@ -21,7 +21,7 @@ type BaseProps = {
 function revealedClass(selected: boolean, isCorrect: boolean, revealed: boolean): string {
   if (!revealed) {
     return selected
-      ? "border-[var(--color-accent)] bg-sky-50 ring-2 ring-sky-200/80 dark:bg-sky-950/20"
+      ? "border-[var(--color-accent)] bg-sky-50 ring-2 ring-sky-200/80"
       : "border-black/[0.08] bg-[var(--color-surface)] hover:border-[var(--color-accent)]/40";
   }
   if (isCorrect) return "a11y-correct";
@@ -65,7 +65,7 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
       </p>
 
       <div className="grid gap-3 lg:grid-cols-[1fr_auto_1fr] lg:items-stretch">
-        <div className="rounded-xl border border-black/[0.08] bg-[var(--color-surface)] p-4 dark:border-white/10">
+        <div className="rounded-xl border border-black/[0.08] bg-[var(--color-surface)] p-4">
           <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent)]">
             Actions to take
           </p>
@@ -102,8 +102,8 @@ export function BowTieQuestion({ question, selected, revealed, onToggle }: BaseP
           </div>
         </div>
 
-        <div className="rounded-xl border border-black/[0.08] bg-[var(--color-surface)] p-4 dark:border-white/10">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-teal-700 dark:text-teal-400">
+        <div className="rounded-xl border border-black/[0.08] bg-[var(--color-surface)] p-4">
+          <p className="text-[10px] font-bold uppercase tracking-wider text-teal-700">
             Conditions to monitor
           </p>
           <ul className="mt-3 space-y-2">
@@ -157,13 +157,13 @@ export function MatrixQuestion({ question, selected, revealed, onToggle }: BaseP
       <table className="w-full min-w-[480px] border-collapse text-sm">
         <thead>
           <tr>
-            <th className="border border-black/10 bg-black/[0.03] px-3 py-2 text-left text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)] dark:border-white/10">
+            <th className="border border-black/10 bg-black/[0.03] px-3 py-2 text-left text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
               Finding
             </th>
             {layout.columns.map((col) => (
               <th
                 key={col}
-                className="border border-black/10 bg-black/[0.03] px-3 py-2 text-center text-xs font-semibold text-[var(--color-ink)] dark:border-white/10"
+                className="border border-black/10 bg-black/[0.03] px-3 py-2 text-center text-xs font-semibold text-[var(--color-ink)]"
               >
                 {col}
               </th>
@@ -173,7 +173,7 @@ export function MatrixQuestion({ question, selected, revealed, onToggle }: BaseP
         <tbody>
           {layout.rows.map((row) => (
             <tr key={row}>
-              <td className="border border-black/10 px-3 py-2 font-medium text-[var(--color-ink)] dark:border-white/10">
+              <td className="border border-black/10 px-3 py-2 font-medium text-[var(--color-ink)]">
                 {row}
               </td>
               {layout.columns.map((col) => {
@@ -183,7 +183,7 @@ export function MatrixQuestion({ question, selected, revealed, onToggle }: BaseP
                   (c) => c.toLowerCase() === key.toLowerCase()
                 );
                 return (
-                  <td key={col} className="border border-black/10 p-1 dark:border-white/10">
+                  <td key={col} className="border border-black/10 p-1">
                     <button
                       type="button"
                       disabled={revealed}
@@ -221,7 +221,7 @@ export function HighlightQuestion({ question, selected, revealed, onToggle }: Ba
       <p className="mb-3 text-xs text-[var(--color-ink-muted)]">
         Tap the sentence(s) that answer the question.
       </p>
-      <div className="space-y-2 rounded-xl border border-black/[0.08] bg-[var(--color-surface)] p-4 dark:border-white/10">
+      <div className="space-y-2 rounded-xl border border-black/[0.08] bg-[var(--color-surface)] p-4">
         {layout.segments.map((seg) => {
           const isSelected = selected.includes(seg.text);
           const isCorrect = question.correctAnswers.some(
@@ -250,8 +250,8 @@ export function UnfoldingCaseBanner({ question }: { question: StudyQuestion }) {
   }
   const step = question.caseStep ?? 1;
   return (
-    <div className="mb-4 flex items-center gap-2 rounded-xl border border-sky-200/80 bg-sky-50/80 px-4 py-2.5 dark:border-sky-900/40 dark:bg-sky-950/30">
-      <span className="text-[10px] font-bold uppercase tracking-wider text-sky-700 dark:text-sky-300">
+    <div className="mb-4 flex items-center gap-2 rounded-xl border border-sky-200/80 bg-sky-50/80 px-4 py-2.5">
+      <span className="text-[10px] font-bold uppercase tracking-wider text-sky-700">
         Unfolding case
       </span>
       <span className="text-xs text-[var(--color-ink-muted)]">·</span>

@@ -1,6 +1,6 @@
 /** Client-only hints for returning visitors (localStorage). */
 
-export type LoginMethod = "google" | "apple" | "email" | "magic";
+export type LoginMethod = "google" | "email" | "apple" | "magic";
 
 export type ReturningUserHint = {
   email: string;

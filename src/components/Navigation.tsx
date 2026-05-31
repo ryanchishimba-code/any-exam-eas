@@ -5,8 +5,6 @@ import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { BarChart3, LogOut, Menu, Settings, User, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
-import { EmployeeAccessLink } from "@/components/EmployeeAccessLink";
-import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { SignOutConfirmDialog } from "@/components/auth/SignOutConfirmDialog";
 import { AvatarDropdown } from "@/components/navigation/AvatarDropdown";
@@ -74,7 +72,7 @@ export function Navigation() {
     <>
       <header
         ref={headerRef}
-        className="apple-glass aee-nav fixed top-0 z-50 w-full dark:border-white/5"
+        className="apple-glass aee-nav fixed top-0 z-50 w-full"
       >
         <nav
           className="mx-auto flex h-12 max-w-[1080px] items-center justify-between px-5 sm:px-6 md:h-[3.25rem]"
@@ -100,15 +98,9 @@ export function Navigation() {
               </li>
             ))}
             <li>
-              <EmployeeAccessLink className="hidden xl:inline text-xs opacity-80" />
-            </li>
-            <li>
-              <ThemeToggle />
-            </li>
-            <li>
               {!authReady ? (
                 <span
-                  className="inline-block h-8 w-20 animate-pulse rounded-full bg-black/[0.06] dark:bg-white/10"
+                  className="inline-block h-8 w-20 animate-pulse rounded-full bg-black/[0.06]"
                   aria-hidden
                 />
               ) : isAuthenticated ? (
@@ -128,10 +120,9 @@ export function Navigation() {
 
           <div className="flex items-center gap-2 lg:hidden">
             {authReady && isAuthenticated && <AvatarDropdown />}
-            <ThemeToggle />
             <button
               type="button"
-              className="rounded-lg p-1.5 text-[var(--color-ink)] opacity-80 transition hover:bg-black/[0.04] hover:opacity-100 dark:hover:bg-white/10"
+              className="rounded-lg p-1.5 text-[var(--color-ink)] opacity-80 transition hover:bg-black/[0.04] hover:opacity-100"
               onClick={() => setOpen(!open)}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
@@ -145,7 +136,7 @@ export function Navigation() {
         {open && (
           <div
             id={mobileMenuId}
-            className="aee-mobile-nav border-t border-black/[0.04] bg-[rgba(251,251,253,0.98)] px-5 py-4 backdrop-blur-xl dark:border-white/10 dark:bg-[rgba(0,0,0,0.98)] lg:hidden"
+            className="aee-mobile-nav border-t border-black/[0.04] bg-[rgba(251,251,253,0.98)] px-5 py-4 backdrop-blur-xl lg:hidden"
           >
             {links.map((l) => (
               <Link
@@ -176,7 +167,7 @@ export function Navigation() {
               </>
             )}
             {authReady && isAuthenticated && (
-              <div className="mt-3 space-y-1 border-t border-black/[0.06] pt-3 dark:border-white/10">
+              <div className="mt-3 space-y-1 border-t border-black/[0.06] pt-3">
                 <Link href="/dashboard" className="aee-mobile-nav-item" onClick={() => setOpen(false)}>
                   <User className="h-4 w-4" aria-hidden /> Profile
                 </Link>
@@ -201,9 +192,6 @@ export function Navigation() {
                 </button>
               </div>
             )}
-            <div className="mt-3 border-t border-black/[0.06] pt-3 dark:border-white/10">
-              <EmployeeAccessLink className="text-xs" />
-            </div>
           </div>
         )}
       </header>

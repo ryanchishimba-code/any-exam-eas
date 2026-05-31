@@ -12,7 +12,7 @@ export function LoginPromoGraphic() {
         aria-hidden
       />
 
-      <div className="relative overflow-hidden rounded-[1.75rem] border border-teal-100 bg-white p-8 shadow-[0_24px_64px_rgba(8,145,178,0.15)] transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_32px_80px_rgba(8,145,178,0.22)] dark:border-teal-900/40 dark:bg-[#0f172a] md:p-10">
+      <div className="relative overflow-hidden rounded-[1.75rem] border border-teal-100 bg-white p-8 shadow-[0_24px_64px_rgba(8,145,178,0.15)] transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-[0_32px_80px_rgba(8,145,178,0.22)] md:p-10">
         <div
           className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-teal-500 via-cyan-500 to-sky-500 opacity-80"
           aria-hidden
@@ -23,7 +23,7 @@ export function LoginPromoGraphic() {
             <User className="h-7 w-7" strokeWidth={2} aria-hidden />
           </div>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-teal-600 dark:text-teal-400">
+            <p className="text-xs font-semibold uppercase tracking-wider text-teal-600">
               Returning student
             </p>
             <p className="text-lg font-semibold tracking-tight text-[var(--color-ink)]">
@@ -33,7 +33,7 @@ export function LoginPromoGraphic() {
         </div>
 
         <p className="mt-6 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-          One tap to continue with Google, Apple, magic link, or your password.
+          One tap with Google, or log in with your email and password.
         </p>
 
         <div className="mt-8 flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 py-4 text-[1.0625rem] font-semibold text-white shadow-[0_8px_28px_rgba(8,145,178,0.35)] transition-all duration-300 group-hover:from-teal-500 group-hover:to-cyan-500">

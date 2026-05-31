@@ -17,7 +17,7 @@ export function NgnFormatBadge({ question }: { question: StudyQuestion }) {
 
 export function VignetteBlock({ text }: { text: string }) {
   return (
-    <div className="mb-5 rounded-xl border border-black/[0.06] bg-[var(--color-surface)] px-4 py-3.5 dark:border-white/10">
+    <div className="mb-5 rounded-xl border border-black/[0.06] bg-[var(--color-surface)] px-4 py-3.5">
       <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
         Clinical scenario
       </p>

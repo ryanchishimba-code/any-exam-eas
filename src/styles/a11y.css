@@ -30,26 +30,6 @@
   --a11y-warning: var(--a11y-warning-border);
 }
 
-.dark {
-  --a11y-focus: #60a5fa;
-  --a11y-success-fg: #bfdbfe;
-  --a11y-success-bg: #172554;
-  --a11y-success-border: #3b82f6;
-  --a11y-error-fg: #fed7aa;
-  --a11y-error-bg: #431407;
-  --a11y-error-border: #ea580c;
-  --a11y-warning-fg: #fde68a;
-  --a11y-warning-bg: #451a03;
-  --a11y-warning-border: #f59e0b;
-  --a11y-info-fg: #99f6e4;
-  --a11y-info-bg: #042f2e;
-  --a11y-info-border: #14b8a6;
-  --a11y-correct-fg: #bfdbfe;
-  --a11y-correct-bg: #1e3a8a;
-  --a11y-incorrect-fg: #fed7aa;
-  --a11y-incorrect-bg: #7c2d12;
-}
-
 /* Global focus — WCAG 2.4.7 / 2.4.11 focus not obscured */
 :where(
   a,
@@ -207,10 +187,6 @@
   flex-shrink: 0;
 }
 
-.dark .a11y-class-dot {
-  border-color: rgba(255, 255, 255, 0.35);
-}
-
 /* High-contrast mode boost */
 @media (prefers-contrast: more) {
   :root {
@@ -230,9 +206,5 @@
 @media (prefers-contrast: more) {
   .apple-glass {
     background: rgba(255, 255, 255, 0.95);
-  }
-
-  .dark .apple-glass {
-    background: rgba(0, 0, 0, 0.95);
   }
 }

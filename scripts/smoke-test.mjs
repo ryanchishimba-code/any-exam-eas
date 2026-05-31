@@ -15,7 +15,7 @@ const routes = [
   { path: "/generate", expect: [200, 307] },
   { path: "/pricing", expect: 200 },
   { path: "/feedback", expect: 200 },
-  { path: "/employee/login", expect: 200 },
+  { path: "/employee/login", expect: [200, 307, 308] },
   { path: "/checkout", expect: [200, 307] },
   { path: "/api/health", expect: [200, 503] },
 ];

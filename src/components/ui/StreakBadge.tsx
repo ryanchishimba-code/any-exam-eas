@@ -13,7 +13,7 @@ export function StreakBadge({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-gradient-to-r from-amber-500/15 to-orange-500/10 px-3 py-1 text-xs font-semibold text-amber-800 dark:text-amber-300",
+        "inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-gradient-to-r from-amber-500/15 to-orange-500/10 px-3 py-1 text-xs font-semibold text-amber-800",
         className
       )}
     >

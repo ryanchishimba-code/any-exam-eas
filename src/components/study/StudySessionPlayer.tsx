@@ -370,7 +370,7 @@ export function StudySessionPlayer({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.2 }}
-          className="rounded-2xl border border-black/[0.08] bg-white p-6 shadow-sm dark:border-white/10 dark:bg-[var(--color-surface-elevated)] sm:p-8"
+          className="rounded-2xl border border-black/[0.08] bg-white p-6 shadow-sm sm:p-8"
         >
           <QuestionRenderer
             question={current}

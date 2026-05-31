@@ -42,7 +42,7 @@ export function ReturningUserHeroBanner() {
       role="region"
       aria-label="Returning student"
     >
-      <div className="overflow-hidden rounded-2xl border border-teal-200/80 bg-gradient-to-r from-teal-50 via-cyan-50/90 to-sky-50 shadow-[0_8px_32px_rgba(8,145,178,0.12)] dark:border-teal-500/25 dark:from-teal-950/60 dark:via-cyan-950/40 dark:to-sky-950/30">
+      <div className="overflow-hidden rounded-2xl border border-teal-200/80 bg-gradient-to-r from-teal-50 via-cyan-50/90 to-sky-50 shadow-[0_8px_32px_rgba(8,145,178,0.12)]">
         <div
           className="h-1 bg-gradient-to-r from-teal-600 via-cyan-500 to-sky-500"
           aria-hidden
@@ -53,7 +53,7 @@ export function ReturningUserHeroBanner() {
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-teal-600 to-cyan-600 text-white shadow-[0_4px_14px_rgba(8,145,178,0.35)] sm:h-11 sm:w-11">
               <BookOpen className="h-5 w-5" strokeWidth={2.25} aria-hidden />
             </span>
-            <p className="text-left text-[0.9375rem] font-semibold leading-snug text-teal-950 dark:text-teal-50 sm:text-base md:text-[1.0625rem]">
+            <p className="text-left text-[0.9375rem] font-semibold leading-snug text-teal-950 sm:text-base md:text-[1.0625rem]">
               {headline}
             </p>
           </div>

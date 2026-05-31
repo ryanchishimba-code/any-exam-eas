@@ -73,7 +73,7 @@ export function WelcomeBackSection() {
 
   return (
     <section
-      className="apple-section aee-landing-section border-y border-teal-100/60 bg-white dark:border-teal-900/30 dark:bg-black"
+      className="apple-section aee-landing-section border-y border-teal-100/60 bg-white"
       aria-labelledby="welcome-back-heading"
     >
       <div className="mx-auto grid max-w-[980px] items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
@@ -138,24 +138,28 @@ export function WelcomeBackSection() {
                 <p className="text-xs text-[var(--color-ink-muted)]">
                   Last signed in with{" "}
                   <span className="font-medium capitalize text-[var(--color-ink)]">
-                    {preferredMethod === "magic" ? "magic link" : preferredMethod}
+                    {preferredMethod === "magic" || preferredMethod === "email"
+                      ? "email & password"
+                      : preferredMethod === "apple"
+                        ? "Google"
+                        : preferredMethod}
                   </span>
                 </p>
               )}
 
               <LoginModalTrigger className="login-modal-btn-primary w-full sm:w-auto sm:min-w-[14rem]">
-                {displayName ? `Welcome back, ${displayName}` : "Sign in securely"}
+                {displayName ? `Welcome back, ${displayName}` : "Log in"}
               </LoginModalTrigger>
 
               <p className="text-xs text-[var(--color-ink-muted)]">
-                Google · Apple · Magic link · Email
+                Google · Email & password
               </p>
             </div>
           )}
 
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-[var(--color-ink-muted)] lg:justify-start">
             <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="h-3.5 w-3.5 text-teal-600 dark:text-teal-400" aria-hidden />
+              <ShieldCheck className="h-3.5 w-3.5 text-teal-600" aria-hidden />
               Encrypted · Security-first infrastructure
             </span>
             {!session?.user && (

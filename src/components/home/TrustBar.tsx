@@ -8,27 +8,17 @@ const items = [
 ];
 
 type TrustBarProps = {
-  variant?: "light" | "dark";
   className?: string;
 };
 
-export function TrustBar({ variant = "light", className = "" }: TrustBarProps) {
-  const isDark = variant === "dark";
-
+export function TrustBar({ className = "" }: TrustBarProps) {
   return (
     <ul
-      className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 text-xs ${
-        isDark ? "text-slate-400" : "text-slate-500 dark:text-slate-400"
-      } ${className}`}
+      className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 text-xs text-slate-500 ${className}`}
     >
       {items.map(({ icon: Icon, label }) => (
         <li key={label} className="inline-flex items-center gap-1.5">
-          <Icon
-            className={`h-3.5 w-3.5 shrink-0 ${
-              isDark ? "text-teal-400" : "text-teal-600 dark:text-teal-400"
-            }`}
-            aria-hidden
-          />
+          <Icon className="h-3.5 w-3.5 shrink-0 text-teal-600" aria-hidden />
           {label}
         </li>
       ))}

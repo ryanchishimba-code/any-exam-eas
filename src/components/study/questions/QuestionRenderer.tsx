@@ -119,7 +119,7 @@ export function QuestionRenderer({ question, selected, revealed, onToggle }: Pro
 export function ExplanationPanel({ question }: { question: StudyQuestion }) {
   return (
     <div className="mt-6 space-y-4">
-      <div className="rounded-xl bg-[var(--color-surface)] p-4 dark:border dark:border-white/10">
+      <div className="rounded-xl bg-[var(--color-surface)] p-4">
         <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
           Rationale
         </p>
@@ -141,7 +141,7 @@ export function ExplanationPanel({ question }: { question: StudyQuestion }) {
 
       {question.distractorRationale &&
         Object.keys(question.distractorRationale).length > 0 && (
-          <div className="rounded-xl border border-black/[0.06] p-4 dark:border-white/10">
+          <div className="rounded-xl border border-black/[0.06] p-4">
             <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
               Why each distractor fails
             </p>

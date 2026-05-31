@@ -33,7 +33,7 @@ export function ReadinessRing({
           fill="none"
           stroke="currentColor"
           strokeWidth={stroke}
-          className="text-black/[0.06] dark:text-white/10"
+          className="text-black/[0.06]"
         />
         <circle
           cx={size / 2}

@@ -220,21 +220,21 @@ export function CatMockPractice() {
             {band.hint}
           </p>
           <dl className="mx-auto mt-8 grid max-w-sm grid-cols-2 gap-4 text-left">
-            <div className="rounded-xl bg-black/[0.03] px-4 py-3 dark:bg-white/5">
+            <div className="rounded-xl bg-black/[0.03] px-4 py-3">
               <dt className="text-xs text-[var(--color-ink-muted)]">Questions</dt>
               <dd className="text-lg font-bold tabular-nums">{catState.questionNumber}</dd>
             </div>
-            <div className="rounded-xl bg-black/[0.03] px-4 py-3 dark:bg-white/5">
+            <div className="rounded-xl bg-black/[0.03] px-4 py-3">
               <dt className="text-xs text-[var(--color-ink-muted)]">Accuracy</dt>
               <dd className="text-lg font-bold tabular-nums">{accuracy}%</dd>
             </div>
-            <div className="rounded-xl bg-black/[0.03] px-4 py-3 dark:bg-white/5">
+            <div className="rounded-xl bg-black/[0.03] px-4 py-3">
               <dt className="text-xs text-[var(--color-ink-muted)]">{PRACTICE_PROGRESS_LABEL}</dt>
               <dd className="text-lg font-bold tabular-nums">
                 {Math.round((catState.ability + 1) * 50)}%
               </dd>
             </div>
-            <div className="rounded-xl bg-black/[0.03] px-4 py-3 dark:bg-white/5">
+            <div className="rounded-xl bg-black/[0.03] px-4 py-3">
               <dt className="text-xs text-[var(--color-ink-muted)]">Stop reason</dt>
               <dd className="text-sm font-semibold capitalize">
                 {catState.stopReason ?? "complete"}
@@ -267,7 +267,7 @@ export function CatMockPractice() {
               item range · difficulty adapts to your answers
             </p>
           </div>
-          <span className="rounded-full bg-teal-100 px-3 py-1 text-xs font-medium text-teal-900 dark:bg-teal-950 dark:text-teal-200">
+          <span className="rounded-full bg-teal-100 px-3 py-1 text-xs font-medium text-teal-900">
             Target: {targetDifficulty(catState)}
           </span>
         </div>

@@ -69,7 +69,7 @@ export function StudyModePicker({
               href={m.href}
               className={`rounded-full px-4 py-2 text-xs transition ${
                 isActive
-                  ? "bg-[var(--color-ink)] text-white dark:bg-white dark:text-black"
+                  ? "bg-[var(--color-ink)] text-white"
                   : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
               }`}
             >

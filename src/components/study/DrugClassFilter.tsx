@@ -20,8 +20,8 @@ export function DrugClassFilter({ classes, activeClass, onSelect }: Props) {
             onClick={() => onSelect(cls.id)}
             className={`group w-full rounded-xl px-3 py-2.5 text-left transition ${
               active
-                ? "bg-white shadow-sm ring-1 ring-teal-200 dark:bg-slate-900 dark:ring-teal-800"
-                : "hover:bg-white/70 dark:hover:bg-slate-900/50"
+                ? "bg-white shadow-sm ring-1 ring-teal-200"
+                : "hover:bg-white/70"
             }`}
           >
             <div className="flex items-center justify-between gap-2">
@@ -33,7 +33,7 @@ export function DrugClassFilter({ classes, activeClass, onSelect }: Props) {
                 />
                 <span
                   className={`truncate text-sm font-medium ${
-                    active ? "text-slate-900 dark:text-white" : "text-slate-700 dark:text-slate-300"
+                    active ? "text-slate-900" : "text-slate-700"
                   }`}
                 >
                   {cls.shortLabel}
@@ -43,14 +43,14 @@ export function DrugClassFilter({ classes, activeClass, onSelect }: Props) {
                 {cls.mastered}/{cls.total}
               </span>
             </div>
-            <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200/80 dark:bg-slate-700/60">
+            <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-200/80">
               <div
                 className="h-full rounded-full transition-all duration-500"
                 style={{ width: `${cls.progressPct}%`, backgroundColor: cls.color }}
               />
             </div>
             {cls.due > 0 && (
-              <p className="mt-1 text-[0.6875rem] font-medium text-teal-700 dark:text-teal-400">
+              <p className="mt-1 text-[0.6875rem] font-medium text-teal-700">
                 {cls.due} due now
               </p>
             )}
@@ -75,7 +75,7 @@ export function DrugClassFilterPills({ classes, activeClass, onSelect }: Props) 
             className={`flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition ${
               active
                 ? "bg-teal-600 text-white shadow-md"
-                : "bg-white text-slate-700 ring-1 ring-slate-200 dark:bg-slate-900 dark:text-slate-300 dark:ring-slate-700"
+                : "bg-white text-slate-700 ring-1 ring-slate-200"
             }`}
           >
             <span

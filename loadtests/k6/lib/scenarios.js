@@ -10,7 +10,7 @@ import {
   ENABLE_AI_HEAVY,
   ENABLE_REGISTRATION,
 } from '../config.js';
-import { loginWithCredentials, requestMagicLink } from './auth.js';
+import { loginWithCredentials } from './auth.js';
 import { reqParams, JSON_HEADERS } from './http.js';
 import {
   pageHomepage,
@@ -92,14 +92,7 @@ export function scenarioAuthFlow(jar) {
     return jar;
   }
 
-  if (Math.random() < 0.7) {
-    return loginWithCredentials();
-  }
-
-  const email = `load-${__VU}-${__ITER}@loadtest.anyexameasy.test`;
-  requestMagicLink(email);
-  thinkTime();
-  return null;
+  return loginWithCredentials();
 }
 
 export function scenarioPracticeQuestions(jar) {

@@ -91,7 +91,7 @@ export function QuestionPreview({ exam, sourcesReviewed, timed, onStart }: Props
                 {open && (
                   <div className="space-y-3 border-t border-black/[0.06] bg-[var(--color-surface)]/50 px-6 pb-4 pt-2">
                     {q.vignette && (
-                      <p className="rounded-lg bg-white/80 p-3 text-xs leading-relaxed text-[var(--color-ink-muted)] dark:bg-black/20">
+                      <p className="rounded-lg bg-white/80 p-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
                         {q.vignette}
                       </p>
                     )}
@@ -131,7 +131,7 @@ export function QuestionPreview({ exam, sourcesReviewed, timed, onStart }: Props
           })}
         </ul>
 
-        <div className="border-t border-black/[0.06] bg-white p-6 dark:bg-[var(--color-surface-elevated)]">
+        <div className="border-t border-black/[0.06] bg-white p-6">
           <Button type="button" className="w-full !rounded-xl" onClick={onStart}>
             Start test →
           </Button>

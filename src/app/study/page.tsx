@@ -11,8 +11,8 @@ const StudentHub = dynamic(
   {
     loading: () => (
       <div className="mt-10 space-y-6">
-        <div className="h-32 animate-pulse rounded-2xl bg-black/[0.04] dark:bg-white/10" />
-        <div className="h-48 animate-pulse rounded-2xl bg-black/[0.04] dark:bg-white/10" />
+        <div className="h-32 animate-pulse rounded-2xl bg-black/[0.04]" />
+        <div className="h-48 animate-pulse rounded-2xl bg-black/[0.04]" />
       </div>
     ),
   }

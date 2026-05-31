@@ -65,7 +65,7 @@ export function HowWeCompare() {
   return (
     <section
       id="how-we-compare"
-      className="aee-landing-section border-b border-black/[0.04] bg-white dark:border-white/[0.06] dark:bg-[var(--color-surface)]"
+      className="aee-landing-section border-b border-black/[0.04] bg-white"
       aria-labelledby="compare-heading"
     >
       <div className="mx-auto max-w-[880px] px-5 sm:px-6 lg:px-8">
@@ -88,25 +88,25 @@ export function HowWeCompare() {
           className="aee-compare-price-banner mt-10"
         >
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
+            <p className="text-xs font-semibold uppercase tracking-wider text-teal-700">
               Any Exam Easy
             </p>
-            <p className="mt-1 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+            <p className="mt-1 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
               {formatTrialIntroPrice()}
             </p>
-            <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
+            <p className="mt-0.5 text-sm text-slate-500">
               {formatTrialLabel()}, then {formatMonthlyPrice()}/mo
             </p>
           </div>
-          <div className="hidden h-12 w-px bg-slate-200 dark:bg-slate-700 sm:block" aria-hidden />
+          <div className="hidden h-12 w-px bg-slate-200 sm:block" aria-hidden />
           <div className="sm:text-right">
             <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
               Major competitors
             </p>
-            <p className="mt-1 text-3xl font-bold tracking-tight text-slate-400 line-through decoration-slate-300 dark:text-slate-500 sm:text-4xl">
+            <p className="mt-1 text-3xl font-bold tracking-tight text-slate-400 line-through decoration-slate-300 sm:text-4xl">
               $99–$329+
             </p>
-            <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
+            <p className="mt-0.5 text-sm text-slate-500">
               Typical upfront or monthly bundles
             </p>
           </div>
@@ -167,7 +167,7 @@ export function HowWeCompare() {
           </Link>
           <Link
             href="/pricing"
-            className="text-sm font-semibold text-teal-700 underline-offset-4 hover:underline dark:text-teal-400"
+            className="text-sm font-semibold text-teal-700 underline-offset-4 hover:underline"
           >
             Full pricing
           </Link>
@@ -196,26 +196,26 @@ function StatusCell({
   const Icon = status === "yes" ? Check : status === "no" ? X : Minus;
   const iconClass =
     status === "yes"
-      ? "text-emerald-600 dark:text-emerald-400"
+      ? "text-emerald-600"
       : status === "no"
-        ? "text-red-500 dark:text-red-400"
-        : "text-amber-500 dark:text-amber-400";
+        ? "text-red-500"
+        : "text-amber-500";
 
   return (
     <span
       className={`inline-flex items-start gap-2.5 text-sm leading-snug ${
         featured
-          ? "font-semibold text-slate-900 dark:text-white"
-          : "text-slate-600 dark:text-slate-400"
+          ? "font-semibold text-slate-900"
+          : "text-slate-600"
       }`}
     >
       <span
         className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
           status === "yes"
-            ? "bg-emerald-50 dark:bg-emerald-950/50"
+            ? "bg-emerald-50"
             : status === "no"
-              ? "bg-red-50 dark:bg-red-950/40"
-              : "bg-amber-50 dark:bg-amber-950/40"
+              ? "bg-red-50"
+              : "bg-amber-50"
         }`}
         aria-hidden
       >

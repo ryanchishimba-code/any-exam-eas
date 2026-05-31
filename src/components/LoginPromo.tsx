@@ -6,7 +6,7 @@ import { formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
 export function LoginPromo() {
   return (
     <section
-      className="apple-section apple-section-alt border-y border-black/[0.04] dark:border-white/[0.06]"
+      className="apple-section apple-section-alt border-y border-black/[0.04]"
       aria-labelledby="login-promo-heading"
     >
       <div className="mx-auto grid max-w-[980px] items-center gap-12 px-6 md:grid-cols-2 md:gap-16">

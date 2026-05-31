@@ -54,45 +54,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
         rememberMe: { label: "Remember me", type: "text" },
-        magicToken: { label: "Magic token", type: "text" },
       },
       async authorize(credentials, request) {
-        const magicToken =
-          typeof credentials?.magicToken === "string"
-            ? credentials.magicToken.trim()
-            : "";
-
-        if (magicToken) {
-          const { consumeMagicLinkToken } = await import("@/lib/magic-link");
-          const magicUser = await consumeMagicLinkToken(magicToken);
-          if (!magicUser) return null;
-
-          await recordUserLogin(magicUser.id);
-          const req = request as Request | undefined;
-          const sessionId = await startUserSession(magicUser.id, req);
-          trackEvent({
-            userId: magicUser.id,
-            sessionId,
-            eventType: EVENT_TYPES.USER_LOGIN,
-            category: "auth",
-            metadata: { method: "magic_link" },
-            req,
-          });
-          void logActivity({
-            userId: magicUser.id,
-            action: "login",
-            summary: "Signed in with magic link",
-          });
-
-          return {
-            id: magicUser.id,
-            email: magicUser.email,
-            name: magicUser.name,
-            role: magicUser.role,
-            rememberMe: true,
-          };
-        }
-
         const parsed = loginSchema.safeParse(credentials);
         if (!parsed.success) return null;
 

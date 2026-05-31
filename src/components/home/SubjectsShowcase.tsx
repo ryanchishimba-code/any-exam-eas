@@ -29,7 +29,7 @@ export function SubjectsShowcase() {
   const subjects = data?.subjects ?? [];
 
   return (
-    <section id="subjects" className="apple-section aee-landing-section bg-white dark:bg-black">
+    <section id="subjects" className="apple-section aee-landing-section bg-white">
       <div className="mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
         <div className="text-center">
           <p className="aee-section-label">Exam coverage</p>
@@ -45,7 +45,7 @@ export function SubjectsShowcase() {
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div
                 key={i}
-                className="h-44 animate-pulse rounded-2xl bg-teal-50/50 dark:bg-teal-950/20"
+                className="h-44 animate-pulse rounded-2xl bg-teal-50/50"
               />
             ))}
           </div>
@@ -83,29 +83,29 @@ function SubjectTile({
       transition={{ duration: 0.45, delay: index * 0.04 }}
       className="aee-card group flex flex-col p-6 text-left"
     >
-      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-teal-50 text-teal-600 transition-colors group-hover:bg-teal-100 dark:bg-teal-950/50 dark:text-teal-400">
+      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-teal-50 text-teal-600 transition-colors group-hover:bg-teal-100">
         <GraduationCap className="h-4 w-4" strokeWidth={2} aria-hidden />
       </span>
       <h3 className="mt-4 text-lg font-semibold tracking-[-0.015em] text-[var(--color-ink)]">
         {subject.label}
       </h3>
-      <p className="mt-1 text-sm font-medium text-teal-700/80 dark:text-teal-400/80">
+      <p className="mt-1 text-sm font-medium text-teal-700/80">
         {subject.boardExam}
       </p>
       <p className="mt-3 flex-1 text-[0.8125rem] leading-relaxed text-[var(--color-ink-muted)]">
         {subject.description}
       </p>
       <div className="mt-4 flex flex-wrap gap-2 text-[0.6875rem] font-medium text-slate-400">
-        <span className="rounded-full bg-slate-100 px-2.5 py-0.5 dark:bg-slate-800">
+        <span className="rounded-full bg-slate-100 px-2.5 py-0.5">
           {subject.questionCount ?? "—"} questions
         </span>
-        <span className="rounded-full bg-slate-100 px-2.5 py-0.5 dark:bg-slate-800">
+        <span className="rounded-full bg-slate-100 px-2.5 py-0.5">
           {subject.topicCount} topics
         </span>
       </div>
       <Link
         href={`/study?field=${subject.fieldId}`}
-        className="mt-5 text-sm font-semibold text-teal-600 transition-colors hover:text-teal-700 dark:text-teal-400"
+        className="mt-5 text-sm font-semibold text-teal-600 transition-colors hover:text-teal-700"
       >
         Learn more →
       </Link>

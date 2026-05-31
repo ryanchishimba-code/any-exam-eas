@@ -162,7 +162,7 @@ export function AvatarDropdown() {
           role="menu"
           aria-label="Account"
         >
-          <div className="border-b border-black/[0.06] px-4 py-3 dark:border-white/10">
+          <div className="border-b border-black/[0.06] px-4 py-3">
             <p className="truncate text-sm font-semibold text-[var(--color-ink)]">
               {name ?? display}
             </p>
@@ -202,7 +202,7 @@ export function AvatarDropdown() {
             })}
           </ul>
 
-          <div className="border-t border-black/[0.06] p-2 dark:border-white/10">
+          <div className="border-t border-black/[0.06] p-2">
             <button
               type="button"
               role="menuitem"

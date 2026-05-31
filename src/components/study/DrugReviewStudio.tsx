@@ -173,7 +173,7 @@ export function DrugReviewStudio() {
   return (
     <div className="mt-8 space-y-6">
       {dashboard.resetApplied && (
-        <div className="rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-900 dark:border-cyan-800 dark:bg-cyan-950/40 dark:text-cyan-100">
+        <div className="rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-900">
           <RefreshCw className="mr-2 inline h-4 w-4" aria-hidden />
           New quarterly cycle — progress reset for {cycle.key}.
         </div>
@@ -187,25 +187,25 @@ export function DrugReviewStudio() {
       </div>
 
       {/* Cycle overview */}
-      <div className="aee-drugs-progress-card rounded-2xl border border-teal-100 bg-gradient-to-br from-teal-50/90 via-white to-cyan-50/60 p-5 sm:p-6 dark:border-teal-900/40 dark:from-teal-950/30 dark:via-slate-950 dark:to-cyan-950/20">
+      <div className="aee-drugs-progress-card rounded-2xl border border-teal-100 bg-gradient-to-br from-teal-50/90 via-white to-cyan-50/60 p-5 sm:p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <p className="text-[0.6875rem] font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-wider text-teal-700">
               {cycle.label}
             </p>
-            <p className="mt-1 flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+            <p className="mt-1 flex items-center gap-2 text-sm text-slate-600">
               <CalendarClock className="h-4 w-4 text-teal-600" aria-hidden />
               {cycle.daysRemaining} days left in cycle · spaced repetition active
             </p>
           </div>
           <div className="text-right">
-            <p className="text-3xl font-bold tabular-nums text-teal-700 dark:text-teal-300">
+            <p className="text-3xl font-bold tabular-nums text-teal-700">
               {stats.progressPct}%
             </p>
             <p className="text-xs text-slate-500">{stats.mastered} of {stats.total} mastered</p>
           </div>
         </div>
-        <div className="mt-4 h-2 overflow-hidden rounded-full bg-teal-100 dark:bg-teal-900/50">
+        <div className="mt-4 h-2 overflow-hidden rounded-full bg-teal-100">
           <div
             className="h-full rounded-full bg-gradient-to-r from-teal-500 to-cyan-500 transition-all duration-700"
             style={{ width: `${stats.progressPct}%` }}
@@ -218,7 +218,7 @@ export function DrugReviewStudio() {
       <div className="grid gap-6 lg:grid-cols-[260px_1fr] lg:gap-8">
         {/* Class sidebar — desktop */}
         <aside className="hidden lg:block">
-          <div className="sticky top-24 rounded-2xl border border-slate-200/80 bg-slate-50/80 p-3 dark:border-slate-800 dark:bg-slate-900/40">
+          <div className="sticky top-24 rounded-2xl border border-slate-200/80 bg-slate-50/80 p-3">
             <p className="mb-3 flex items-center gap-2 px-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
               <Layers className="h-3.5 w-3.5" aria-hidden />
               Drug class
@@ -246,20 +246,20 @@ export function DrugReviewStudio() {
           </div>
 
           {activeClassStats && activeClass !== "all" && (
-            <div className="flex flex-wrap items-center gap-3 rounded-xl border border-slate-200/80 bg-white px-4 py-3 dark:border-slate-800 dark:bg-slate-900/40">
+            <div className="flex flex-wrap items-center gap-3 rounded-xl border border-slate-200/80 bg-white px-4 py-3">
               <span
                 className="h-3 w-3 rounded-full"
                 style={{ backgroundColor: activeClassStats.color }}
                 aria-hidden
               />
-              <span className="text-sm font-semibold text-slate-900 dark:text-white">
+              <span className="text-sm font-semibold text-slate-900">
                 {activeClassStats.label}
               </span>
               <span className="text-sm text-slate-500">
                 {activeClassStats.mastered}/{activeClassStats.total} mastered ·{" "}
                 {activeClassStats.due} due
               </span>
-              <div className="ml-auto h-2 w-24 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+              <div className="ml-auto h-2 w-24 overflow-hidden rounded-full bg-slate-200">
                 <div
                   className="h-full rounded-full transition-all"
                   style={{
@@ -274,12 +274,12 @@ export function DrugReviewStudio() {
           {cardsLoading ? (
             <div className="aee-drugs-skeleton mx-auto h-[420px] max-w-lg rounded-3xl" />
           ) : !current ? (
-            <div className="rounded-2xl border border-teal-100 bg-white p-12 text-center dark:border-teal-900/40 dark:bg-slate-900/40">
+            <div className="rounded-2xl border border-teal-100 bg-white p-12 text-center">
               <Pill className="mx-auto h-12 w-12 text-teal-500" aria-hidden />
-              <p className="mt-4 text-lg font-semibold text-slate-900 dark:text-white">
+              <p className="mt-4 text-lg font-semibold text-slate-900">
                 All caught up{activeClass !== "all" ? " in this class" : ""}!
               </p>
-              <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
+              <p className="mt-2 text-sm text-slate-600">
                 Spaced repetition will schedule your next review. Try another class or check back
                 later.
               </p>
@@ -290,7 +290,7 @@ export function DrugReviewStudio() {
                 <span>
                   Card {index + 1} of {cards.length}
                   {current.due && (
-                    <span className="ml-2 rounded-full bg-teal-100 px-2 py-0.5 text-xs font-semibold text-teal-800 dark:bg-teal-900/50 dark:text-teal-200">
+                    <span className="ml-2 rounded-full bg-teal-100 px-2 py-0.5 text-xs font-semibold text-teal-800">
                       Due
                     </span>
                   )}
@@ -318,7 +318,7 @@ export function DrugReviewStudio() {
                     setFlipped(false);
                     setMnemonic(null);
                   }}
-                  className="rounded-xl border border-slate-200 p-2.5 text-slate-600 transition hover:bg-slate-50 disabled:opacity-30 dark:border-slate-700 dark:text-slate-400"
+                  className="rounded-xl border border-slate-200 p-2.5 text-slate-600 transition hover:bg-slate-50 disabled:opacity-30"
                   aria-label="Previous card"
                 >
                   <ChevronLeft className="h-5 w-5" />
@@ -329,7 +329,7 @@ export function DrugReviewStudio() {
                     setFlipped(false);
                     setMnemonic(null);
                   }}
-                  className="flex items-center gap-1.5 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300"
+                  className="flex items-center gap-1.5 rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
                 >
                   <RotateCcw className="h-4 w-4" aria-hidden />
                   Reset flip
@@ -342,7 +342,7 @@ export function DrugReviewStudio() {
                     setFlipped(false);
                     setMnemonic(null);
                   }}
-                  className="rounded-xl border border-slate-200 p-2.5 text-slate-600 transition hover:bg-slate-50 disabled:opacity-30 dark:border-slate-700 dark:text-slate-400"
+                  className="rounded-xl border border-slate-200 p-2.5 text-slate-600 transition hover:bg-slate-50 disabled:opacity-30"
                   aria-label="Next card"
                 >
                   <ChevronRight className="h-5 w-5" />

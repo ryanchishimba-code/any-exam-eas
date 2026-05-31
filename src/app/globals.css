@@ -38,67 +38,14 @@
   --ring: #005fcc;
 }
 
-.dark {
-  --color-ink: #f1f5f9;
-  --color-ink-muted: #94a3b8;
-  --color-surface: #0f172a;
-  --color-surface-elevated: #1e293b;
-  --color-bg: #020617;
-  --color-accent: #2dd4bf;
-  --color-accent-hover: #14b8a6;
-  --color-border: rgba(255, 255, 255, 0.12);
-  --background: #0a0a0a;
-  --foreground: #f5f5f7;
-  --card: #1c1c1e;
-  --card-foreground: #f5f5f7;
-  --muted: #2c2c2e;
-  --muted-foreground: #98989d;
-  --primary: #2dd4bf;
-  --primary-foreground: #042f2e;
-  --border: rgba(255, 255, 255, 0.12);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: #2dd4bf;
-}
-
-.dark .apple-glass {
-  background: rgba(28, 28, 30, 0.82);
-  border-bottom-color: rgba(255, 255, 255, 0.06);
-}
-
-.dark .apple-card {
-  background: #1c1c1e;
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
-.dark .apple-page {
-  background: linear-gradient(180deg, #1c1c1e 0%, #000000 32%);
-}
-
-.dark .apple-input {
-  background: #2c2c2e;
-  border-color: rgba(255, 255, 255, 0.12);
-  color: #f5f5f7;
-}
-
-.dark .apple-input:focus {
-  background: #1c1c1e;
-}
-
-.dark .apple-pill {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.1);
-  color: #98989d;
-}
-
-.dark .apple-glass-card {
-  background: rgba(28, 28, 30, 0.75);
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
 @media (min-width: 768px) {
   :root {
     --nav-height: 3.25rem;
   }
+}
+
+html {
+  color-scheme: light;
 }
 
 /* ——— Apple.com layout system ——— */
@@ -109,15 +56,6 @@
 
 .apple-section-alt {
   background: var(--color-surface);
-}
-
-.dark .apple-section-alt {
-  background: #000000;
-}
-
-.apple-section-dark {
-  background: #000000;
-  color: #f5f5f7;
 }
 
 .apple-display {
@@ -171,19 +109,10 @@
   transform: scale(1.01);
 }
 
-.dark .apple-tile {
-  background: #1c1c1e;
-  border-color: rgba(255, 255, 255, 0.08);
-}
-
 .apple-bento {
   border-radius: 1.25rem;
   background: #ffffff;
   padding: clamp(1.75rem, 4vw, 2.5rem);
-}
-
-.dark .apple-bento {
-  background: #1c1c1e;
 }
 
 .apple-product-nav {
@@ -207,10 +136,6 @@
     flex-wrap: wrap;
     overflow-x: visible;
   }
-}
-
-.dark .apple-product-nav {
-  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
 .apple-product-nav a {
@@ -237,11 +162,6 @@
   color: var(--color-ink-muted);
 }
 
-.dark .apple-footer {
-  background: #000000;
-  border-top-color: rgba(255, 255, 255, 0.08);
-}
-
 .apple-footer a:hover {
   text-decoration: underline;
 }
@@ -250,12 +170,6 @@
   background:
     radial-gradient(ellipse 80% 55% at 50% -20%, rgba(20, 184, 166, 0.06), transparent 70%),
     linear-gradient(180deg, #fbfbfd 0%, #ffffff 72%);
-}
-
-.dark .apple-hero-premium {
-  background:
-    radial-gradient(ellipse 70% 45% at 50% -10%, rgba(20, 184, 166, 0.05), transparent 65%),
-    linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
 }
 
 @theme inline {
@@ -517,17 +431,6 @@ body {
   box-shadow: 0 0 0 3px rgb(20 184 166 / 0.15);
 }
 
-.dark .login-modal-input {
-  border-color: rgb(19 78 74 / 0.5);
-  background: rgb(15 23 42);
-  color: rgb(241 245 249);
-}
-
-.dark .login-modal-input:focus {
-  border-color: rgb(45 212 191);
-  box-shadow: 0 0 0 3px rgb(45 212 191 / 0.12);
-}
-
 .login-modal-btn-primary {
   display: inline-flex;
   align-items: center;
@@ -577,16 +480,6 @@ body {
   opacity: 0.6;
 }
 
-.dark .login-modal-btn-secondary {
-  border-color: rgb(19 78 74);
-  background: rgb(15 23 42);
-  color: rgb(94 234 212);
-}
-
-.dark .login-modal-btn-secondary:hover:not(:disabled) {
-  background: rgb(19 78 74 / 0.4);
-}
-
 /* ——— Landing page — Apple-refined medical teal ——— */
 
 .aee-landing-section {
@@ -616,12 +509,6 @@ body {
   box-shadow: var(--shadow-apple-sm);
 }
 
-.dark .aee-badge {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(28, 28, 30, 0.65);
-  color: #5eead4;
-}
-
 .aee-display-xl {
   font-size: clamp(2.75rem, 7.5vw, 4.5rem);
   font-weight: 600;
@@ -636,10 +523,6 @@ body {
   letter-spacing: -0.024em;
   line-height: 1.08;
   color: var(--color-ink);
-}
-
-.aee-headline-light {
-  color: #f5f5f7;
 }
 
 /* Premium pill CTAs — Apple store inspired */
@@ -697,12 +580,6 @@ body {
 
 .aee-btn-hero-secondary:active {
   transform: scale(0.985);
-}
-
-.dark .aee-btn-hero-secondary {
-  border-color: rgba(255, 255, 255, 0.1);
-  background: rgba(28, 28, 30, 0.75);
-  color: #5eead4;
 }
 
 .aee-social-btn {
@@ -795,10 +672,6 @@ body {
   color: #0f766e;
 }
 
-.dark .aee-pricing-note {
-  color: #5eead4;
-}
-
 .aee-btn-primary {
   border-radius: 980px;
   background: linear-gradient(180deg, #14b8a6 0%, #0d9488 100%);
@@ -848,18 +721,6 @@ body {
   transform: scale(0.985);
 }
 
-.aee-btn-login-dark {
-  border-color: rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.06);
-  color: white;
-  box-shadow: none;
-}
-
-.aee-btn-login-dark:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.28);
-}
-
 .aee-btn-secondary {
   display: block;
   border-radius: 980px;
@@ -883,26 +744,12 @@ body {
   transform: translateY(-1px);
 }
 
-.aee-btn-secondary-dark {
-  border-color: rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.92);
-}
-
-.aee-btn-secondary-dark:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
 .aee-section-label {
   font-size: 0.8125rem;
   font-weight: 500;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #0d9488;
-}
-
-.dark .aee-section-label {
-  color: #2dd4bf;
 }
 
 .aee-card {
@@ -920,22 +767,8 @@ body {
   box-shadow: var(--shadow-apple-md);
 }
 
-.dark .aee-card {
-  border-color: rgba(255, 255, 255, 0.06);
-  background: #1c1c1e;
-}
-
-.aee-section-dark {
-  background: #000000;
-  color: #f5f5f7;
-}
-
 .aee-section-alt {
   background: #fbfbfd;
-}
-
-.dark .aee-section-alt {
-  background: #000000;
 }
 
 @keyframes aee-fade-up {
@@ -982,16 +815,6 @@ body {
   box-shadow: var(--shadow-apple-md);
 }
 
-.dark .aee-feature-card {
-  border-color: rgba(255, 255, 255, 0.06);
-  background: rgba(28, 28, 30, 0.85);
-}
-
-.dark .aee-feature-card:hover {
-  border-color: rgba(45, 212, 191, 0.15);
-  box-shadow: var(--shadow-apple-md);
-}
-
 .aee-feature-icon {
   display: inline-flex;
   height: 2.75rem;
@@ -1032,11 +855,6 @@ body {
   box-shadow: var(--shadow-apple-sm);
 }
 
-.dark .aee-compare-highlight {
-  border-color: rgba(45, 212, 191, 0.15);
-  background: linear-gradient(145deg, rgba(15, 23, 42, 0.8) 0%, rgba(19, 78, 74, 0.15) 100%);
-}
-
 .aee-compare-highlight-icon {
   display: inline-flex;
   align-items: center;
@@ -1056,12 +874,6 @@ body {
   overflow: hidden;
 }
 
-.dark .aee-compare-table-wrap {
-  border-color: rgba(255, 255, 255, 0.06);
-  background: rgba(28, 28, 30, 0.85);
-  box-shadow: var(--shadow-apple-md);
-}
-
 .aee-compare-table {
   font-size: 0.9375rem;
 }
@@ -1077,20 +889,9 @@ body {
   background: #f8fafc;
 }
 
-.dark .aee-compare-th {
-  color: #94a3b8;
-  border-bottom-color: rgba(255, 255, 255, 0.08);
-  background: rgba(15, 23, 42, 0.8);
-}
-
 .aee-compare-th-aee {
   color: #0f766e;
   background: linear-gradient(180deg, #f0fdfa 0%, #ecfdf5 100%);
-}
-
-.dark .aee-compare-th-aee {
-  color: #5eead4;
-  background: linear-gradient(180deg, rgba(19, 78, 74, 0.35) 0%, rgba(15, 23, 42, 0.8) 100%);
 }
 
 .aee-compare-td-label {
@@ -1101,37 +902,19 @@ body {
   white-space: nowrap;
 }
 
-.dark .aee-compare-td-label {
-  color: #e2e8f0;
-  border-bottom-color: rgba(255, 255, 255, 0.06);
-}
-
 .aee-compare-td {
   padding: 1rem 1.25rem;
   border-bottom: 1px solid rgba(15, 23, 42, 0.06);
   vertical-align: top;
 }
 
-.dark .aee-compare-td {
-  border-bottom-color: rgba(255, 255, 255, 0.06);
-}
-
 .aee-compare-td-aee {
   background: rgba(240, 253, 250, 0.5);
-}
-
-.dark .aee-compare-td-aee {
-  background: rgba(19, 78, 74, 0.12);
 }
 
 .aee-compare-row-highlight .aee-compare-td-label,
 .aee-compare-row-highlight .aee-compare-td {
   background-image: linear-gradient(90deg, rgba(13, 148, 136, 0.04), transparent);
-}
-
-.dark .aee-compare-row-highlight .aee-compare-td-label,
-.dark .aee-compare-row-highlight .aee-compare-td {
-  background-image: linear-gradient(90deg, rgba(45, 212, 191, 0.06), transparent);
 }
 
 .aee-compare-table tbody tr:last-child .aee-compare-td,
@@ -1141,10 +924,6 @@ body {
 
 .aee-compare-row-highlight .aee-compare-td-aee {
   background: rgba(204, 251, 241, 0.45);
-}
-
-.dark .aee-compare-row-highlight .aee-compare-td-aee {
-  background: rgba(19, 78, 74, 0.22);
 }
 
 .aee-compare-price-banner {
@@ -1165,11 +944,6 @@ body {
     flex-direction: row;
     align-items: center;
   }
-}
-
-.dark .aee-compare-price-banner {
-  border-color: rgba(45, 212, 191, 0.2);
-  background: linear-gradient(135deg, rgba(19, 78, 74, 0.25) 0%, rgba(15, 23, 42, 0.9) 100%);
 }
 
 .aee-compare-table-3col .aee-compare-th,
@@ -1197,17 +971,6 @@ body {
     #0d9488 28%,
     #0891b2 62%,
     #0284c7 100%
-  );
-}
-
-.dark .aee-drugs-section {
-  border-color: rgba(45, 212, 191, 0.2);
-  background: linear-gradient(
-    135deg,
-    #042f2e 0%,
-    #0f766e 30%,
-    #0e7490 65%,
-    #0369a1 100%
   );
 }
 
@@ -1384,13 +1147,13 @@ body {
   transform: translateY(-1px);
 }
 
-.aee-drug-search-field--dark {
+.aee-drugs-section .aee-drug-search-field {
   border-color: rgba(255, 255, 255, 0.16);
   background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 12px 40px rgba(15, 23, 42, 0.25);
 }
 
-.aee-drug-search-field--dark:focus-within {
+.aee-drugs-section .aee-drug-search-field:focus-within {
   border-color: rgba(125, 211, 252, 0.5);
   box-shadow:
     0 0 0 4px rgba(56, 189, 248, 0.15),
@@ -1406,7 +1169,7 @@ body {
   pointer-events: none;
 }
 
-.aee-drug-search-icon--dark {
+.aee-drugs-section .aee-drug-search-icon {
   color: rgba(186, 230, 253, 0.85);
 }
 
@@ -1425,11 +1188,11 @@ body {
   color: #94a3b8;
 }
 
-.aee-drug-search-input--dark {
+.aee-drugs-section .aee-drug-search-input {
   color: #fff;
 }
 
-.aee-drug-search-input--dark::placeholder {
+.aee-drugs-section .aee-drug-search-input::placeholder {
   color: rgba(226, 232, 240, 0.55);
 }
 
@@ -1450,11 +1213,11 @@ body {
   color: #64748b;
 }
 
-.aee-drug-search-clear--dark {
+.aee-drugs-section .aee-drug-search-clear {
   color: rgba(226, 232, 240, 0.7);
 }
 
-.aee-drug-search-clear--dark:hover {
+.aee-drugs-section .aee-drug-search-clear:hover {
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
 }
@@ -1476,7 +1239,7 @@ body {
   animation: aee-drug-search-in 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.aee-drug-search-dropdown--dark {
+.aee-drugs-section .aee-drug-search-dropdown {
   border-color: rgba(255, 255, 255, 0.12);
   background: rgba(15, 23, 42, 0.92);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
@@ -1499,7 +1262,7 @@ body {
   color: #64748b;
 }
 
-.aee-drug-search-dropdown--dark .aee-drug-search-empty {
+.aee-drugs-section .aee-drug-search-empty {
   color: rgba(226, 232, 240, 0.65);
 }
 
@@ -1526,8 +1289,8 @@ body {
   background: rgba(13, 148, 136, 0.08);
 }
 
-.aee-drug-search-dropdown--dark .aee-drug-search-option:hover,
-.aee-drug-search-dropdown--dark .aee-drug-search-option--active {
+.aee-drugs-section .aee-drug-search-option:hover,
+.aee-drugs-section .aee-drug-search-option--active {
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -1537,7 +1300,7 @@ body {
   color: #0f172a;
 }
 
-.aee-drug-search-dropdown--dark .aee-drug-search-generic {
+.aee-drugs-section .aee-drug-search-generic {
   color: #fff;
 }
 
@@ -1557,7 +1320,7 @@ body {
   text-overflow: ellipsis;
 }
 
-.aee-drug-search-dropdown--dark .aee-drug-search-brand {
+.aee-drugs-section .aee-drug-search-brand {
   color: rgba(226, 232, 240, 0.65);
 }
 
@@ -1578,7 +1341,7 @@ body {
   text-overflow: ellipsis;
 }
 
-.aee-drug-search-dropdown--dark .aee-drug-search-class {
+.aee-drugs-section .aee-drug-search-class {
   background: rgba(255, 255, 255, 0.08);
   color: rgba(226, 232, 240, 0.85);
 }
@@ -1604,16 +1367,6 @@ body {
   animation: aee-drug-search-in 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.dark .aee-drug-search-preview {
-  border-color: rgba(45, 212, 191, 0.2);
-  background: linear-gradient(
-    135deg,
-    rgba(19, 78, 74, 0.35) 0%,
-    rgba(15, 23, 42, 0.95) 55%,
-    rgba(8, 47, 73, 0.4) 100%
-  );
-}
-
 .aee-drug-search-skeleton {
   background: linear-gradient(
     90deg,
@@ -1628,10 +1381,6 @@ body {
 /* Exam picker — "Exams We Help You Ace" */
 .aee-exams-section {
   background: #fbfbfd;
-}
-
-.dark .aee-exams-section {
-  background: #000000;
 }
 
 .aee-exam-card {
@@ -1651,11 +1400,6 @@ body {
 .aee-exam-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-apple-md);
-}
-
-.dark .aee-exam-card {
-  background: rgba(15, 23, 42, 0.65);
-  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .aee-exam-popular-badge {
@@ -1724,10 +1468,6 @@ body {
   color: rgb(15 23 42);
 }
 
-.dark .aee-exam-title {
-  color: white;
-}
-
 .aee-exam-subtitle {
   font-size: 0.875rem;
   font-weight: 600;
@@ -1787,21 +1527,6 @@ body {
   color: #7c3aed;
 }
 
-.dark .aee-exam-card[data-theme="nclex"] {
-  background: linear-gradient(160deg, rgba(76, 29, 149, 0.25) 0%, rgba(15, 23, 42, 0.8) 55%);
-  border-color: rgba(167, 139, 250, 0.25);
-}
-
-.dark .aee-exam-card[data-theme="nclex"] .aee-exam-tag {
-  border-color: rgba(167, 139, 250, 0.3);
-  background: rgba(76, 29, 149, 0.35);
-  color: #ddd6fe;
-}
-
-.dark .aee-exam-card[data-theme="nclex"] .aee-exam-subtitle {
-  color: #c4b5fd;
-}
-
 /* USMLE — teal */
 .aee-exam-card[data-theme="usmle"] {
   background: linear-gradient(160deg, #f0fdfa 0%, #ffffff 55%);
@@ -1838,21 +1563,6 @@ body {
 
 .aee-exam-card[data-theme="usmle"]:hover .aee-exam-arrow {
   color: #0d9488;
-}
-
-.dark .aee-exam-card[data-theme="usmle"] {
-  background: linear-gradient(160deg, rgba(19, 78, 74, 0.3) 0%, rgba(15, 23, 42, 0.8) 55%);
-  border-color: rgba(45, 212, 191, 0.25);
-}
-
-.dark .aee-exam-card[data-theme="usmle"] .aee-exam-tag {
-  border-color: rgba(45, 212, 191, 0.3);
-  background: rgba(19, 78, 74, 0.4);
-  color: #99f6e4;
-}
-
-.dark .aee-exam-card[data-theme="usmle"] .aee-exam-subtitle {
-  color: #5eead4;
 }
 
 /* NAPLEX — emerald */
@@ -1893,21 +1603,6 @@ body {
   color: #059669;
 }
 
-.dark .aee-exam-card[data-theme="naplex"] {
-  background: linear-gradient(160deg, rgba(6, 78, 59, 0.28) 0%, rgba(15, 23, 42, 0.8) 55%);
-  border-color: rgba(52, 211, 153, 0.22);
-}
-
-.dark .aee-exam-card[data-theme="naplex"] .aee-exam-tag {
-  border-color: rgba(52, 211, 153, 0.28);
-  background: rgba(6, 78, 59, 0.35);
-  color: #a7f3d0;
-}
-
-.dark .aee-exam-card[data-theme="naplex"] .aee-exam-subtitle {
-  color: #6ee7b7;
-}
-
 /* INBDE — sky */
 .aee-exam-card[data-theme="inbde"] {
   background: linear-gradient(160deg, #f0f9ff 0%, #ffffff 55%);
@@ -1944,21 +1639,6 @@ body {
 
 .aee-exam-card[data-theme="inbde"]:hover .aee-exam-arrow {
   color: #0284c7;
-}
-
-.dark .aee-exam-card[data-theme="inbde"] {
-  background: linear-gradient(160deg, rgba(12, 74, 110, 0.28) 0%, rgba(15, 23, 42, 0.8) 55%);
-  border-color: rgba(56, 189, 248, 0.22);
-}
-
-.dark .aee-exam-card[data-theme="inbde"] .aee-exam-tag {
-  border-color: rgba(56, 189, 248, 0.28);
-  background: rgba(12, 74, 110, 0.35);
-  color: #bae6fd;
-}
-
-.dark .aee-exam-card[data-theme="inbde"] .aee-exam-subtitle {
-  color: #7dd3fc;
 }
 
 /* Others — indigo */
@@ -1999,29 +1679,10 @@ body {
   color: #4f46e5;
 }
 
-.dark .aee-exam-card[data-theme="others"] {
-  background: linear-gradient(160deg, rgba(49, 46, 129, 0.25) 0%, rgba(15, 23, 42, 0.8) 55%);
-  border-color: rgba(129, 140, 248, 0.22);
-}
-
-.dark .aee-exam-card[data-theme="others"] .aee-exam-tag {
-  border-color: rgba(129, 140, 248, 0.28);
-  background: rgba(49, 46, 129, 0.35);
-  color: #c7d2fe;
-}
-
-.dark .aee-exam-card[data-theme="others"] .aee-exam-subtitle {
-  color: #a5b4fc;
-}
-
 /* ——— Premium nav & avatar ——— */
 
 .aee-nav {
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-}
-
-.dark .aee-nav {
-  border-bottom-color: rgba(255, 255, 255, 0.06);
 }
 
 .aee-nav-cta {
@@ -2070,11 +1731,6 @@ body {
   box-shadow: var(--shadow-apple-md);
 }
 
-.dark .aee-avatar-trigger {
-  border-color: rgba(255, 255, 255, 0.1);
-  background: rgba(28, 28, 30, 0.85);
-}
-
 .aee-avatar-circle {
   display: flex;
   height: 2rem;
@@ -2104,11 +1760,6 @@ body {
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
 }
 
-.dark .aee-avatar-menu {
-  border-color: rgba(255, 255, 255, 0.1);
-  background: rgba(28, 28, 30, 0.96);
-}
-
 .aee-avatar-menu-item {
   display: flex;
   align-items: flex-start;
@@ -2119,10 +1770,6 @@ body {
 
 .aee-avatar-menu-item:hover {
   background: rgba(0, 0, 0, 0.04);
-}
-
-.dark .aee-avatar-menu-item:hover {
-  background: rgba(255, 255, 255, 0.06);
 }
 
 .aee-avatar-menu-icon {
@@ -2136,11 +1783,6 @@ body {
   border-radius: 0.5rem;
   background: rgba(13, 148, 136, 0.1);
   color: #0f766e;
-}
-
-.dark .aee-avatar-menu-icon {
-  background: rgba(20, 184, 166, 0.15);
-  color: #5eead4;
 }
 
 .aee-avatar-signout {
@@ -2222,10 +1864,6 @@ body {
   cursor: pointer;
 }
 
-.dark .aee-signout-dialog-backdrop {
-  background: rgba(0, 0, 0, 0.65);
-}
-
 .aee-signout-dialog-panel {
   position: relative;
   z-index: 1;
@@ -2236,11 +1874,6 @@ body {
   padding: 1.5rem;
   box-shadow: var(--shadow-apple-lg);
   animation: aee-drug-search-in 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.dark .aee-signout-dialog-panel {
-  border-color: rgba(255, 255, 255, 0.1);
-  background: rgb(28, 28, 30);
 }
 
 .aee-signout-dialog-cancel,
@@ -2299,11 +1932,6 @@ body {
   padding-block: 1rem;
 }
 
-.dark .aee-live-pulse {
-  border-color: rgba(255, 255, 255, 0.06);
-  background: rgba(0, 0, 0, 0.4);
-}
-
 .aee-live-pill {
   display: inline-flex;
   align-items: center;
@@ -2313,11 +1941,6 @@ body {
   background: white;
   padding: 0.5rem 1rem;
   box-shadow: var(--shadow-apple-sm);
-}
-
-.dark .aee-live-pill {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(28, 28, 30, 0.8);
 }
 
 .aee-live-dot {
@@ -2348,19 +1971,10 @@ body {
   box-shadow: var(--shadow-apple-sm);
 }
 
-.dark .aee-achievement-badge {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(28, 28, 30, 0.8);
-}
-
 /* ——— Hero premium ——— */
 
 .aee-hero-premium {
   background: linear-gradient(180deg, #fbfbfd 0%, #f5f5f7 100%);
-}
-
-.dark .aee-hero-premium {
-  background: linear-gradient(180deg, #000 0%, #0a0a0a 100%);
 }
 
 .aee-hero-trust-pill {
@@ -2377,11 +1991,6 @@ body {
   box-shadow: var(--shadow-apple-sm);
 }
 
-.dark .aee-hero-trust-pill {
-  border-color: rgba(255, 255, 255, 0.08);
-  background: rgba(28, 28, 30, 0.75);
-}
-
 /* ——— Hero showcase cards ——— */
 
 .aee-showcase-frame {
@@ -2390,10 +1999,6 @@ body {
   border-radius: 1.25rem;
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12);
-}
-
-.dark .aee-showcase-frame {
-  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .aee-showcase-overlay {
@@ -2410,11 +2015,6 @@ body {
   box-shadow: 0 12px 40px rgba(15, 23, 42, 0.1);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-}
-
-.dark .aee-showcase-card {
-  border-color: rgba(255, 255, 255, 0.1);
-  background: rgba(28, 28, 30, 0.95);
 }
 
 .aee-showcase-icon {

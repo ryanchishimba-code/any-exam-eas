@@ -112,7 +112,7 @@ export function Top300DrugsMastery() {
                 <Search className="h-4 w-4 text-sky-300" aria-hidden />
                 Search all 500 drugs
               </p>
-              <DrugSearch variant="dark" linkToStudy />
+              <DrugSearch linkToStudy />
             </div>
           </motion.div>
 

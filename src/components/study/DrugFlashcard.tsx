@@ -89,7 +89,7 @@ export function DrugFlashcard({
             onGenerateMnemonic();
           }}
           disabled={mnemonicLoading || Boolean(mnemonic || card.customMnemonic)}
-          className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-teal-200/80 bg-white/80 px-4 py-2.5 text-sm font-medium text-teal-800 backdrop-blur transition hover:bg-teal-50 disabled:opacity-50 dark:border-teal-800 dark:bg-slate-900/80 dark:text-teal-200"
+          className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-teal-200/80 bg-white/80 px-4 py-2.5 text-sm font-medium text-teal-800 backdrop-blur transition hover:bg-teal-50 disabled:opacity-50"
         >
           <Brain className="h-4 w-4" aria-hidden />
           {mnemonicLoading ? "Generating alternate…" : "AI alternate mnemonic"}

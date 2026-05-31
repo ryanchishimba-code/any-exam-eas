@@ -97,7 +97,7 @@ export function EmbeddedStripeCheckout() {
     <div className="space-y-6">
       <p className="text-sm text-[var(--color-ink-muted)]">{headline}</p>
       <PaymentMethodsList compact />
-      <div className="overflow-hidden rounded-2xl border border-black/[0.08] bg-white shadow-[var(--shadow-apple-sm)] dark:border-white/10">
+      <div className="overflow-hidden rounded-2xl border border-black/[0.08] bg-white shadow-[var(--shadow-apple-sm)]">
         <EmbeddedCheckoutProvider
           stripe={getStripe(publishableKey)}
           options={{ fetchClientSecret }}
