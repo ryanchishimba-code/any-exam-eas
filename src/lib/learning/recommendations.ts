@@ -47,7 +47,7 @@ export function buildRemediationRecommendations(params: {
   recs.push({
     type: "timed_practice",
     title: "Timed pressure set",
-    description: "Exam-day pacing with per-question clock.",
+    description: "Timed practice pacing with per-question clock.",
     href: `/study/practice?mode=timed&${fieldQ}${subjectParam}`,
     priority: 4,
   });
@@ -55,7 +55,7 @@ export function buildRemediationRecommendations(params: {
   recs.push({
     type: "mock_exam",
     title: "Mock board block",
-    description: "Full mixed-topic AI exam with analytics.",
+    description: "Full mixed-topic AI practice exam with analytics. Verify content independently.",
     href: `/generate?${fieldQ}`,
     priority: 5,
   });

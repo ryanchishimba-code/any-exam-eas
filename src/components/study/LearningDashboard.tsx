@@ -5,6 +5,8 @@ import Link from "next/link";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_MODES } from "@/lib/exam/modes";
 import { Button } from "@/components/ui/Button";
+import { ProgressMetricsNotice } from "@/components/legal/ProgressMetricsNotice";
+import { PRACTICE_PROGRESS_HINT, PRACTICE_PROGRESS_LABEL } from "@/lib/site";
 
 export function LearningDashboard() {
   const [profile, setProfile] = useState<LearningProfileSnapshot | null>(null);
@@ -31,7 +33,7 @@ export function LearningDashboard() {
   if (!profile) {
     return (
       <p className="mt-6 text-sm text-[var(--color-ink-muted)]">
-        Complete a practice session to unlock your mastery dashboard.
+        Complete a practice session to unlock your progress dashboard.
       </p>
     );
   }
@@ -39,12 +41,12 @@ export function LearningDashboard() {
   return (
     <div className="mt-8 space-y-10">
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <MetricCard label="Readiness" value={`${profile.readinessScore}%`} hint="Exam readiness index" />
+        <MetricCard label={PRACTICE_PROGRESS_LABEL} value={`${profile.readinessScore}%`} hint={PRACTICE_PROGRESS_HINT} />
         <MetricCard label="Study streak" value={`${profile.studyStreakDays}d`} hint="Consecutive study days" />
         <MetricCard
           label="Weak areas"
           value={String(profile.weakestConcepts.length)}
-          hint="Concepts below mastery threshold"
+          hint="Concepts below practice threshold"
         />
         <MetricCard
           label="Fields tracked"
@@ -55,7 +57,7 @@ export function LearningDashboard() {
 
       {profile.fieldReadiness.length > 0 && (
         <section className="apple-card p-6">
-          <h3 className="text-lg font-semibold">Subject mastery</h3>
+          <h3 className="text-lg font-semibold">Topic progress</h3>
           <ul className="mt-4 space-y-3">
             {profile.fieldReadiness.map((f) => (
               <li key={f.fieldId}>
@@ -109,6 +111,8 @@ export function LearningDashboard() {
           ))}
         </div>
       </section>
+
+      <ProgressMetricsNotice />
     </div>
   );
 }

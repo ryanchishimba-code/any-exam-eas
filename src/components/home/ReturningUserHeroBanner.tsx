@@ -23,7 +23,7 @@ export function ReturningUserHeroBanner() {
 
   if (!ready || status === "loading") return null;
 
-  const isReturning = Boolean(session?.user || hint);
+  const isReturning = Boolean(session?.user || (!session?.user && hint));
   if (!isReturning) return null;
 
   const displayName = session?.user?.name

@@ -27,6 +27,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { ProgressMetricsNotice } from "@/components/legal/ProgressMetricsNotice";
+import { PRACTICE_PROGRESS_LABEL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const WEAK_COLORS = ["#0071e3", "#5856d6", "#ff9500", "#ff375f", "#30d158", "#64d2ff"];
@@ -119,7 +121,7 @@ export function StudentDashboard() {
             </h2>
             <div className="mt-5 flex flex-wrap gap-4 text-sm">
               <StatPill
-                label="Readiness"
+                label={PRACTICE_PROGRESS_LABEL}
                 value={`${headline.readinessScore}%`}
                 icon={Target}
               />
@@ -253,7 +255,7 @@ export function StudentDashboard() {
                             <div className="rounded-xl border border-black/[0.06] bg-white px-3 py-2 text-xs shadow-md">
                               <p className="font-medium text-[var(--color-ink)]">{row.name}</p>
                               <p className="text-[var(--color-ink-muted)]">
-                                {row.masteryScore}% mastery · {row.attempts} attempts
+                                {row.masteryScore}% topic progress · {row.attempts} attempts
                               </p>
                             </div>
                           );
@@ -352,6 +354,8 @@ export function StudentDashboard() {
           )}
         </CardContent>
       </Card>
+
+      <ProgressMetricsNotice className="mt-2" />
     </div>
   );
 }

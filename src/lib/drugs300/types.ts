@@ -1,7 +1,7 @@
 import type { ExamRelevance } from "./schema";
 import { inferExamRelevance, mergeExamRelevance } from "./exam-relevance";
 
-/** High-yield drug card aligned to ClinCalc Top 300 prescribing data. */
+/** High-yield drug card aligned to ClinCalc Top 500 prescribing data. */
 export type DrugEntry = {
   id: string;
   rank: number;

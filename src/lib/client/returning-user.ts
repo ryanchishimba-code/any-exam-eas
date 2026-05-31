@@ -61,6 +61,16 @@ export function isReturningUser(): boolean {
   return loadReturningUserHint() !== null;
 }
 
+/** Clear stored returning-user hint (call on sign-out). */
+export function clearReturningUserHint(): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    /* ignore storage errors */
+  }
+}
+
 export function maskEmail(email: string): string {
   const [local, domain] = email.split("@");
   if (!local || !domain) return email;

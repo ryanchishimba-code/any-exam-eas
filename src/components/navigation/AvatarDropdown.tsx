@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { signOut, useSession } from "next-auth/react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useSession } from "next-auth/react";
 import {
   BarChart3,
   ChevronDown,
@@ -11,6 +11,8 @@ import {
   User,
 } from "lucide-react";
 import { firstName } from "@/lib/client/returning-user";
+import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
+import { SignOutConfirmDialog } from "@/components/auth/SignOutConfirmDialog";
 
 function initials(name?: string | null, email?: string | null) {
   if (name?.trim()) {
@@ -26,29 +28,23 @@ function initials(name?: string | null, email?: string | null) {
 
 export function AvatarDropdown() {
   const { data: session } = useSession();
+  const menuId = useId();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const {
+    confirmOpen,
+    signingOut,
+    requestSignOut,
+    cancelSignOut,
+    confirmSignOut,
+  } = useSignOutConfirm({ callbackUrl: "/" });
 
-  useEffect(() => {
-    function onPointerDown(e: MouseEvent) {
-      if (!rootRef.current?.contains(e.target as Node)) setOpen(false);
-    }
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
-    }
-    document.addEventListener("mousedown", onPointerDown);
-    document.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("mousedown", onPointerDown);
-      document.removeEventListener("keydown", onKeyDown);
-    };
+  const close = useCallback(() => {
+    setOpen(false);
+    triggerRef.current?.focus();
   }, []);
-
-  if (!session?.user) return null;
-
-  const name = session.user.name ?? undefined;
-  const email = session.user.email ?? undefined;
-  const display = name ? firstName(name) : email?.split("@")[0] ?? "Account";
 
   const menuItems = [
     {
@@ -60,24 +56,89 @@ export function AvatarDropdown() {
     {
       href: "/study/analytics",
       label: "Progress & Analytics",
-      description: "Readiness, streaks, weak areas",
+      description: "Progress, streaks, weak areas",
       icon: BarChart3,
     },
     {
-      href: "/dashboard",
+      href: "/pricing",
       label: "Settings",
-      description: "Preferences & billing",
+      description: "Plan & billing",
       icon: Settings,
     },
   ] as const;
 
+  const focusMenuItem = useCallback((index: number) => {
+    const items = menuRef.current?.querySelectorAll<HTMLElement>('[role="menuitem"]');
+    items?.[index]?.focus();
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+
+    function onPointerDown(e: PointerEvent) {
+      if (!rootRef.current?.contains(e.target as Node)) close();
+    }
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        close();
+        return;
+      }
+      if (!menuRef.current?.contains(e.target as Node) && e.key !== "Tab") return;
+
+      const items = menuRef.current?.querySelectorAll<HTMLElement>('[role="menuitem"]');
+      if (!items?.length) return;
+
+      const currentIndex = Array.from(items).findIndex((el) => el === document.activeElement);
+
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        const next = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
+        focusMenuItem(next);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        const prev = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+        focusMenuItem(prev);
+      } else if (e.key === "Home") {
+        e.preventDefault();
+        focusMenuItem(0);
+      } else if (e.key === "End") {
+        e.preventDefault();
+        focusMenuItem(items.length - 1);
+      }
+    }
+
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    requestAnimationFrame(() => focusMenuItem(0));
+
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [close, focusMenuItem, open]);
+
+  async function handleSignOutRequest() {
+    close();
+    requestSignOut();
+  }
+
+  if (!session?.user) return null;
+
+  const name = session.user.name ?? undefined;
+  const email = session.user.email ?? undefined;
+  const display = name ? firstName(name) : email?.split("@")[0] ?? "Account";
+
   return (
+    <>
     <div ref={rootRef} className="relative">
       <button
+        ref={triggerRef}
         type="button"
         className="aee-avatar-trigger"
         aria-expanded={open}
         aria-haspopup="menu"
+        aria-controls={menuId}
         aria-label={`Account menu for ${display}`}
         onClick={() => setOpen((v) => !v)}
       >
@@ -94,7 +155,13 @@ export function AvatarDropdown() {
       </button>
 
       {open && (
-        <div className="aee-avatar-menu" role="menu" aria-label="Account">
+        <div
+          ref={menuRef}
+          id={menuId}
+          className="aee-avatar-menu"
+          role="menu"
+          aria-label="Account"
+        >
           <div className="border-b border-black/[0.06] px-4 py-3 dark:border-white/10">
             <p className="truncate text-sm font-semibold text-[var(--color-ink)]">
               {name ?? display}
@@ -114,6 +181,7 @@ export function AvatarDropdown() {
                   <Link
                     href={item.href}
                     role="menuitem"
+                    tabIndex={-1}
                     className="aee-avatar-menu-item"
                     onClick={() => setOpen(false)}
                   >
@@ -138,11 +206,9 @@ export function AvatarDropdown() {
             <button
               type="button"
               role="menuitem"
+              tabIndex={-1}
               className="aee-avatar-signout"
-              onClick={() => {
-                setOpen(false);
-                void signOut({ callbackUrl: "/" });
-              }}
+              onClick={handleSignOutRequest}
             >
               <LogOut className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
               Sign out
@@ -151,5 +217,13 @@ export function AvatarDropdown() {
         </div>
       )}
     </div>
+
+    <SignOutConfirmDialog
+      open={confirmOpen}
+      loading={signingOut}
+      onCancel={cancelSignOut}
+      onConfirm={() => void confirmSignOut()}
+    />
+    </>
   );
 }

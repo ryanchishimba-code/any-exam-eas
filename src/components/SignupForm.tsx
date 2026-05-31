@@ -6,7 +6,7 @@ import { LegalCheckbox } from "./LegalCheckbox";
 import { PlanChoice } from "./PlanChoice";
 import { Button } from "./ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
-import { BETA_MESSAGE, formatMonthlyPrice, formatTrialIntroPrice } from "@/lib/site";
+import { MARKETING_DISCLAIMER, formatMonthlyPrice, formatTrialIntroPrice } from "@/lib/site";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
 import type { SignupPlan } from "@/lib/validators/auth";
 import {
@@ -108,8 +108,8 @@ export function SignupForm({ initialPlan = "" }: { initialPlan?: SignupPlan | ""
 
   return (
     <form onSubmit={handleSubmit} noValidate className="apple-card mt-10 space-y-5 p-8 md:p-10">
-      <p className="rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-xs leading-relaxed text-violet-950 dark:border-violet-500/30 dark:bg-violet-950/30 dark:text-violet-100">
-        <strong className="font-semibold">Beta.</strong> {BETA_MESSAGE}
+      <p className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-relaxed text-slate-700 dark:border-slate-700 dark:bg-slate-900/40 dark:text-slate-300">
+        {MARKETING_DISCLAIMER}
       </p>
 
       {configWarning && (

@@ -3,10 +3,13 @@ import dynamic from "next/dynamic";
 import { Hero } from "@/components/Hero";
 import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
 import { HomeBottomCta } from "@/components/home/HomeBottomCta";
-import { HomeLivePulse } from "@/components/home/HomeLivePulse";
 import { buildHomeMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildHomeMetadata();
+
+const HomeLivePulse = dynamic(() =>
+  import("@/components/home/HomeLivePulse").then((m) => m.HomeLivePulse)
+);
 
 /** Below-the-fold sections — code-split to reduce initial JS bundle. */
 const LandingFeatures = dynamic(() =>
@@ -14,9 +17,6 @@ const LandingFeatures = dynamic(() =>
 );
 const Top300DrugsMastery = dynamic(() =>
   import("@/components/home/Top300DrugsMastery").then((m) => m.Top300DrugsMastery)
-);
-const Testimonials = dynamic(() =>
-  import("@/components/home/Testimonials").then((m) => m.Testimonials)
 );
 const HowWeCompare = dynamic(() =>
   import("@/components/home/HowWeCompare").then((m) => m.HowWeCompare)
@@ -37,7 +37,6 @@ export default function HomePage() {
       <ChooseYourExam />
       <Top300DrugsMastery />
       <LandingFeatures />
-      <Testimonials />
       <HowWeCompare />
       <WelcomeBackSection />
       <HomeBottomCta />

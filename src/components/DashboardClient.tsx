@@ -65,18 +65,18 @@ export function DashboardClient({
         <section className="apple-card p-8">
           <h2 className="text-xl font-semibold tracking-tight">Start studying</h2>
           <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-            Adaptive question banks, timed exams, and mastery analytics — progress saves
-            automatically.
+            Board-style question banks, timed practice, and progress tracking — your activity
+            saves automatically.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {access.hasAccess ? (
               <>
                 <Button href="/study/practice">Question bank</Button>
                 <Button href="/study/practice?mode=adaptive" variant="secondary">
-                  Adaptive exam
+                  Personalized practice
                 </Button>
                 <Button href="/generate" variant="secondary">
-                  AI mock exam
+                  AI practice exam
                 </Button>
                 <Button href="/study/analytics" variant="ghost">
                   Analytics

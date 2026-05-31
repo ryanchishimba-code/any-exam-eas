@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { EmployeeAccessLink } from "@/components/EmployeeAccessLink";
+import { MARKETING_DISCLAIMER } from "@/lib/site";
 
 const columns = [
   {
@@ -60,7 +61,8 @@ export function Footer() {
         <div className="mt-8 flex flex-col gap-3 border-t border-black/[0.06] pt-6 dark:border-white/[0.08] sm:flex-row sm:items-center sm:justify-between">
           <EmployeeAccessLink className="text-xs" />
           <p className="text-xs text-[var(--color-ink-muted)]">
-            For users 18+. Not affiliated with accrediting bodies or licensure boards.
+            For users 18+. Not affiliated with accrediting bodies or licensure boards.{" "}
+            {MARKETING_DISCLAIMER}
           </p>
         </div>
       </div>

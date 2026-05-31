@@ -24,7 +24,7 @@ export const EXAM_MODES: ExamModeDefinition[] = [
   {
     id: "timed",
     label: "Timed exam",
-    description: "Fixed clock per question — exam-day pressure without distractions.",
+    description: "Fixed clock per question — timed practice pacing without distractions.",
     href: "/study/practice?mode=timed",
     studyMode: "timed",
     param: "timed",
@@ -39,8 +39,8 @@ export const EXAM_MODES: ExamModeDefinition[] = [
   },
   {
     id: "adaptive",
-    label: "Adaptive exam",
-    description: "Difficulty and topic order adjust to your weak areas and confidence.",
+    label: "Personalized practice",
+    description: "Question order can emphasize topics where you need more review.",
     href: "/study/practice?mode=adaptive",
     studyMode: "practice",
     param: "adaptive",
@@ -63,8 +63,8 @@ export const EXAM_MODES: ExamModeDefinition[] = [
   },
   {
     id: "mock_board",
-    label: "Mock board exam",
-    description: "Full-length mixed-topic block with timed sections.",
+    label: "Mock practice exam",
+    description: "Full-length mixed-topic block with timed sections for self-assessment.",
     href: "/generate?mode=mock",
     studyMode: "timed",
     param: "mock",

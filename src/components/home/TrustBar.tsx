@@ -3,7 +3,7 @@ import { BookOpen, Lock, ShieldCheck, Stethoscope } from "lucide-react";
 const items = [
   { icon: Stethoscope, label: "NCLEX · USMLE · NAPLEX" },
   { icon: BookOpen, label: "OER-backed rationales" },
-  { icon: ShieldCheck, label: "SOC 2-ready infra" },
+  { icon: ShieldCheck, label: "Security-first infra" },
   { icon: Lock, label: "Encrypted & private" },
 ];
 

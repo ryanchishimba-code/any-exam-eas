@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -9,8 +10,17 @@ import {
   Layers,
   Pill,
   RefreshCw,
+  Search,
 } from "lucide-react";
 import { DRUG_CLASSES } from "@/lib/drugs300/drug-classes";
+
+const DrugSearch = dynamic(
+  () => import("@/components/study/DrugSearch").then((m) => m.DrugSearch),
+  {
+    ssr: false,
+    loading: () => <div className="aee-drug-search-skeleton h-[3.25rem] rounded-2xl" />,
+  }
+);
 
 const DRUG_REVIEW_HREF = "/study/drugs300";
 
@@ -20,6 +30,8 @@ const highlights = [
   "NCLEX prioritization and NAPLEX calculation-style items",
 ];
 
+const flashcardClasses = DRUG_CLASSES.filter((c) => c.id !== "all").slice(0, 8);
+
 const sampleDrugs = [
   { name: "Metformin", tag: "Endocrine" },
   { name: "Warfarin", tag: "Cardiovascular" },
@@ -28,8 +40,6 @@ const sampleDrugs = [
   { name: "Furosemide", tag: "Loop diuretic" },
   { name: "Albuterol", tag: "SABA" },
 ];
-
-const flashcardClasses = DRUG_CLASSES.filter((c) => c.id !== "all").slice(0, 8);
 
 export function Top300DrugsMastery() {
   return (
@@ -57,13 +67,13 @@ export function Top300DrugsMastery() {
               id="top-300-drugs-heading"
               className="mt-5 text-[clamp(2rem,4.5vw,3rem)] font-bold leading-[1.08] tracking-[-0.03em] text-white"
             >
-              Top 300 Drugs Mastery
+              Top 500 Drugs Review
             </h2>
 
             <p className="mt-4 max-w-xl text-[1.0625rem] leading-relaxed text-slate-100/90">
-              Master high-yield medications with{" "}
+              Review high-yield medications with{" "}
               <strong className="font-semibold text-white">flashcards by class</strong>{" "}
-              — refreshed every 3 months so your NCLEX and NAPLEX prep stays current.
+              — refreshed every 3 months to support NCLEX and NAPLEX pharmacology prep.
             </p>
 
             <div className="mt-5 flex flex-wrap gap-2.5">
@@ -95,6 +105,14 @@ export function Top300DrugsMastery() {
                 <CalendarClock className="h-4 w-4 shrink-0 text-sky-300" aria-hidden />
                 New drug set every 3 months
               </p>
+            </div>
+
+            <div className="mt-8">
+              <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-sky-100">
+                <Search className="h-4 w-4 text-sky-300" aria-hidden />
+                Search all 500 drugs
+              </p>
+              <DrugSearch variant="dark" linkToStudy />
             </div>
           </motion.div>
 
@@ -141,7 +159,7 @@ export function Top300DrugsMastery() {
                   <p className="text-[0.6875rem] font-semibold uppercase tracking-wider text-sky-200/90">
                     Current cycle
                   </p>
-                  <p className="mt-1 text-2xl font-bold text-white">300 drugs</p>
+                  <p className="mt-1 text-2xl font-bold text-white">500 drugs</p>
                 </div>
                 <div className="flex items-center gap-2 rounded-xl bg-white/10 px-3 py-2 text-xs font-medium text-slate-100">
                   <RefreshCw className="h-3.5 w-3.5 text-sky-300" aria-hidden />
@@ -165,7 +183,7 @@ export function Top300DrugsMastery() {
               </ul>
 
               <p className="mt-5 text-center text-xs text-slate-200/70">
-                + 294 more in your adaptive drug review queue
+                + 494 more in your personalized drug review queue
               </p>
             </div>
           </motion.div>

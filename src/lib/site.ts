@@ -7,10 +7,18 @@ import {
 export const SITE_NAME = "Any Exam Easy";
 export const SITE_DOMAIN = "anyexameasy.com";
 
-export const SITE_IN_BETA = true;
+/** Short disclaimer for signup and marketing surfaces. */
+export const MARKETING_DISCLAIMER =
+  "Any Exam Easy is a study support tool. We do not guarantee exam results, licensure, or employment outcomes.";
 
-export const BETA_MESSAGE =
-  "Any Exam Easy is in beta. Features may change, and you may run into occasional issues while we improve the product.";
+/** User-facing label for in-app progress scores (not exam readiness claims). */
+export const PRACTICE_PROGRESS_LABEL = "Practice progress";
+
+export const PRACTICE_PROGRESS_HINT =
+  "In-app practice metric only — not a predictor of board exam results.";
+
+export const PROGRESS_METRICS_DISCLAIMER =
+  "Practice scores and progress metrics reflect activity on this platform only. They do not predict licensure exam performance.";
 
 export function formatMonthlyPrice(): string {
   return `$${MONTHLY_PRICE_USD.toFixed(2)}`;

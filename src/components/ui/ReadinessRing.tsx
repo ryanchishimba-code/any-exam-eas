@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { PRACTICE_PROGRESS_LABEL } from "@/lib/site";
 
 type Props = {
   score: number;
@@ -14,7 +15,7 @@ export function ReadinessRing({
   score,
   size = 88,
   stroke = 7,
-  label = "Readiness",
+  label = PRACTICE_PROGRESS_LABEL,
   className,
 }: Props) {
   const r = (size - stroke) / 2;

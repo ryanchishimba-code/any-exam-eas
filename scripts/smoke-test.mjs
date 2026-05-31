@@ -50,11 +50,13 @@ const signupHtml = await fetch(`${base}/signup`).then((r) => r.text());
 const hasPlanChoice =
   signupHtml.includes("Choose your plan") &&
   (signupHtml.includes("day trial") || signupHtml.includes("Subscribe"));
-const hasBeta = signupHtml.includes("Beta");
+const hasMarketingDisclaimer =
+  signupHtml.includes("study support tool") ||
+  signupHtml.includes("do not guarantee");
 console.log(`${hasPlanChoice ? "OK" : "FAIL"} signup plan choice UI`);
-console.log(`${hasBeta ? "OK" : "FAIL"} signup beta notice`);
+console.log(`${hasMarketingDisclaimer ? "OK" : "FAIL"} signup marketing disclaimer`);
 if (!hasPlanChoice) failed++;
-if (!hasBeta) failed++;
+if (!hasMarketingDisclaimer) failed++;
 
 if (failed) {
   console.log(`\n${failed} check(s) failed for ${base}`);

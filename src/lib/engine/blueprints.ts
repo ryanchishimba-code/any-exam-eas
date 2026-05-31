@@ -201,7 +201,7 @@ const NAPLEX: ExamBlueprint = {
       weight: 0.33,
       subjectIds: ["pharmacology", "pharmacokinetics", "pharmaceutics", "compounding-calculations"],
       highYieldTopics: [
-        "Top 300 drug classes",
+        "Top 500 drug classes",
         "PK/PD",
         "calculations",
         "mechanism of action",

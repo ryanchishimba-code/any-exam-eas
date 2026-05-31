@@ -75,11 +75,11 @@ export function ChooseYourExam() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="aee-section-label">Start here</p>
           <h2 id="choose-exam-heading" className="aee-headline mt-4">
-            Three boards. One adaptive engine.
+            Three boards. One study platform.
           </h2>
           <p className="aee-section-lede mx-auto max-w-xl">
             NCLEX NGN, USMLE, and NAPLEX — each with tailored question formats,
-            analytics, and study plans built for your licensure exam.
+            progress tracking, and study paths designed to support licensure exam prep.
           </p>
         </div>
 
@@ -103,7 +103,7 @@ export function ChooseYourExam() {
                   {exam.popular && (
                     <span className="aee-exam-popular-badge">
                       <Sparkles className="h-3 w-3" aria-hidden />
-                      Board ready
+                      Popular
                     </span>
                   )}
 

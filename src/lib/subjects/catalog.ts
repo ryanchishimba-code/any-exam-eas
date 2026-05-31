@@ -117,7 +117,7 @@ export function getSubjectCatalog(): SubjectCatalogEntry[] {
       accentMuted: override?.accentMuted ?? "rgba(0, 113, 227, 0.12)",
       topicCount: mod.subjectAreas.length,
       difficultyLevels: DEFAULT_DIFFICULTIES,
-      features: override?.features ?? ["Adaptive exams", "Question bank", "Analytics"],
+      features: override?.features ?? ["Personalized practice", "Question bank", "Analytics"],
       trending: override?.trending,
       recommended: override?.recommended,
     };

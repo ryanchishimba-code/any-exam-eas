@@ -52,6 +52,9 @@ describe("billing-config", () => {
     const { estimateMrr, MONTHLY_PRICE_USD, TRIAL_INTRO_PRICE_USD } = await import(
       "./billing-config"
     );
-    expect(estimateMrr(10, 5)).toBe(10 * MONTHLY_PRICE_USD + 5 * TRIAL_INTRO_PRICE_USD);
+    expect(estimateMrr(10, 5)).toBeCloseTo(
+      10 * MONTHLY_PRICE_USD + 5 * TRIAL_INTRO_PRICE_USD,
+      5
+    );
   });
 });

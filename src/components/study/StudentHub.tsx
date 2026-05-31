@@ -11,6 +11,7 @@ import { ReadinessRing } from "@/components/ui/ReadinessRing";
 import { StreakBadge } from "@/components/ui/StreakBadge";
 import { Button } from "@/components/ui/Button";
 import { AppleLink } from "@/components/ui/AppleLink";
+import { ProgressMetricsNotice } from "@/components/legal/ProgressMetricsNotice";
 import { formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
 
 export function StudentHub() {
@@ -63,7 +64,7 @@ export function StudentHub() {
           </h2>
           <p className="apple-subhead mt-3 max-w-md">
             {headline?.motivationalMessage ??
-              "Adaptive question banks, AI mock exams, and mastery analytics — built for board day."}
+              "Board-style question banks, practice exams, and progress tracking — built to support your exam prep."}
           </p>
 
           {!session?.user && (
@@ -77,9 +78,10 @@ export function StudentHub() {
         </div>
 
         {session?.user && !loading && headline && (
-          <div className="flex items-center gap-10">
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-10">
             <ReadinessRing score={headline.readinessScore} />
-            <dl className="space-y-3 text-sm">
+            <div className="space-y-3">
+              <dl className="space-y-3 text-sm">
               <StatRow
                 label="Accuracy"
                 value={
@@ -96,7 +98,9 @@ export function StudentHub() {
                   highlight={headline.trendDelta >= 0}
                 />
               )}
-            </dl>
+              </dl>
+              <ProgressMetricsNotice className="max-w-xs text-center sm:text-left" />
+            </div>
           </div>
         )}
 
@@ -107,7 +111,7 @@ export function StudentHub() {
 
       {session?.user && (
         <section className="flex flex-wrap gap-x-8 gap-y-2 border-y border-black/[0.06] py-6 dark:border-white/10">
-          <AppleLink href="/study/drugs300">Top 300 Drugs</AppleLink>
+          <AppleLink href="/study/drugs300">Top 500 Drugs</AppleLink>
           <AppleLink href="/study/practice?mode=weak">Weak areas</AppleLink>
           <AppleLink href="/generate">New test</AppleLink>
           <AppleLink href="/study/practice?mode=adaptive">Adaptive session</AppleLink>

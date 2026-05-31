@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { getCycleKey } from "./cycles";
-import { TOP_300_COUNT } from "./catalog";
+import { TOP_500_COUNT } from "./catalog";
 import { applySpacedRepetition, initialSpacedRepetitionState } from "./spaced-repetition";
 
 describe("drugs300", () => {
-  it("catalog has 300 drugs", () => {
-    expect(TOP_300_COUNT).toBe(300);
+  it("catalog has 500 drugs", () => {
+    expect(TOP_500_COUNT).toBe(500);
   });
 
   it("uses quarterly cycle keys", () => {

@@ -1,7 +1,7 @@
 import { getPrisma } from "@/lib/prisma";
 import {
-  TOP_300_COUNT,
-  TOP_300_DRUGS,
+  TOP_500_COUNT,
+  TOP_500_DRUGS,
   classifyDrug,
   DRUG_CLASSES,
   drugMatchesClass,
@@ -111,8 +111,8 @@ function computeClassProgress(
   return DRUG_CLASSES.map((cls) => {
     const pool =
       cls.id === "all"
-        ? TOP_300_DRUGS
-        : TOP_300_DRUGS.filter((d) => classifyDrug(d.therapeuticClass) === cls.id);
+        ? TOP_500_DRUGS
+        : TOP_500_DRUGS.filter((d) => classifyDrug(d.therapeuticClass) === cls.id);
 
     let mastered = 0;
     let due = 0;
@@ -170,7 +170,7 @@ export async function ensureDrugReviewCycle(userId: string): Promise<{ resetAppl
       cycleKey: cycle.key,
       startedAt: cycle.startedAt,
       endsAt: cycle.endsAt,
-      drugsTotal: TOP_300_COUNT,
+      drugsTotal: TOP_500_COUNT,
     },
   });
 
@@ -196,7 +196,7 @@ export async function getDrugReviewDashboard(userId: string): Promise<DrugReview
   let due = 0;
   let mastered = 0;
 
-  for (const drug of TOP_300_DRUGS) {
+  for (const drug of TOP_500_DRUGS) {
     const row = progressByDrug.get(drug.id);
     if (!row) {
       due += 1;
@@ -208,7 +208,7 @@ export async function getDrugReviewDashboard(userId: string): Promise<DrugReview
 
   const reviewed = progress.filter((p) => p.repetitions > 0).length;
   const progressPct =
-    TOP_300_COUNT > 0 ? Math.round((mastered / TOP_300_COUNT) * 100) : 0;
+    TOP_500_COUNT > 0 ? Math.round((mastered / TOP_500_COUNT) * 100) : 0;
 
   const classProgress = computeClassProgress(progressByDrug, now);
 
@@ -222,7 +222,7 @@ export async function getDrugReviewDashboard(userId: string): Promise<DrugReview
       refreshNote: cycle.refreshNote,
     },
     stats: {
-      total: TOP_300_COUNT,
+      total: TOP_500_COUNT,
       due,
       mastered,
       reviewed,
@@ -248,7 +248,7 @@ export async function getDueDrugCards(
   });
   const progressByDrug = new Map(progress.map((p) => [p.drugId, p]));
 
-  const pool = TOP_300_DRUGS.filter((d) => drugMatchesClass(d.therapeuticClass, classId));
+  const pool = TOP_500_DRUGS.filter((d) => drugMatchesClass(d.therapeuticClass, classId));
 
   const dueDrugs: DrugCardDto[] = [];
 
@@ -291,7 +291,7 @@ export async function recordDrugReview(
   await ensureDrugReviewCycle(userId);
   const cycle = getCurrentDrugCycle();
   const now = new Date();
-  const drug = TOP_300_DRUGS.find((d) => d.id === drugId);
+  const drug = TOP_500_DRUGS.find((d) => d.id === drugId);
   if (!drug) throw new Error("Unknown drug");
 
   const existing = await prisma.drugCardProgress.findUnique({
@@ -363,7 +363,7 @@ export async function getOrCreateMnemonic(userId: string, drugId: string): Promi
   const prisma = getPrisma();
   await ensureDrugReviewCycle(userId);
   const cycle = getCurrentDrugCycle();
-  const drug = TOP_300_DRUGS.find((d) => d.id === drugId);
+  const drug = TOP_500_DRUGS.find((d) => d.id === drugId);
   if (!drug) throw new Error("Unknown drug");
 
   const existing = await prisma.drugCardProgress.findUnique({

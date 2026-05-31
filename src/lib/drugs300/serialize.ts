@@ -35,7 +35,7 @@ export function recordToDrugEntry(record: Top300DrugRecord): DrugEntry {
 export function buildCatalogDocument(drugs: DrugEntry[]): Top300DrugCatalogDocument {
   return {
     version: "1.0.0",
-    source: "ClinCalc Top 300 (Any Exam Easy)",
+    source: "ClinCalc Top 500 (Any Exam Easy)",
     updatedAt: new Date().toISOString(),
     count: drugs.length,
     drugs: drugs.map(drugEntryToRecord),

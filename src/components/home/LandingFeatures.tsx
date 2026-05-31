@@ -12,42 +12,42 @@ import {
 const benefits = [
   {
     icon: CircleCheckBig,
-    outcome: "First-attempt ready",
-    title: "Know when you're ready to pass",
+    outcome: "Focused prep",
+    title: "Track your progress over time",
     description:
-      "Readiness scores and practice trends show when your prep is solid — so you can schedule with confidence, not guesswork.",
+      "Practice trends and topic summaries help you see where you are improving in-app — so you can study with more intention, not more guesswork.",
     accent: "from-teal-500 to-cyan-500",
   },
   {
     icon: CalendarClock,
-    outcome: "Hours back every week",
-    title: "Spend time only on what you miss",
+    outcome: "Efficient sessions",
+    title: "Spend time on what you miss",
     description:
-      "Adaptive practice skips what you've mastered and doubles down on weak areas — less re-reading, more progress per session.",
+      "Practice modes can emphasize weaker areas so you spend less time on topics you already know and more on what needs review.",
     accent: "from-cyan-500 to-sky-500",
   },
   {
     icon: ShieldCheck,
-    outcome: "Exam-day calm",
-    title: "Practice that feels like the real thing",
+    outcome: "Exam familiarity",
+    title: "Practice that mirrors board formats",
     description:
-      "Board-style vignettes and NCLEX NGN formats build familiarity before test day — so the actual exam feels familiar, not frightening.",
+      "Board-style vignettes and NCLEX NGN item types help you get comfortable with question formats used on licensing exams.",
     accent: "from-sky-500 to-blue-500",
   },
   {
     icon: Sparkles,
-    outcome: "Confidence after every question",
+    outcome: "Clear feedback",
     title: "Understand why — not just what",
     description:
-      "Every answer comes with a clear rationale, so wrong choices become learning moments instead of lingering doubt.",
+      "Rationales aim to explain the reasoning behind each answer so missed questions become learning opportunities.",
     accent: "from-teal-600 to-teal-400",
   },
   {
     icon: TrendingUp,
-    outcome: "Momentum you can see",
-    title: "Watch your score climb",
+    outcome: "Visible momentum",
+    title: "See your effort add up",
     description:
-      "Track accuracy, streaks, and topic mastery in one place — proof that your effort is paying off as exam day approaches.",
+      "Track accuracy, streaks, and topic coverage in one place as you work through your study plan.",
     accent: "from-cyan-600 to-teal-500",
   },
 ];
@@ -60,14 +60,14 @@ export function LandingFeatures() {
     >
       <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="aee-section-label">Why students stick with us</p>
+          <p className="aee-section-label">Why learners use Any Exam Easy</p>
           <h2 id="landing-features-heading" className="aee-headline mt-4">
-            Better outcomes.{" "}
+            Better prep habits.{" "}
             <span className="aee-display-accent">Less overwhelm.</span>
           </h2>
           <p className="aee-section-lede mx-auto max-w-xl">
-            You don&apos;t need another app full of buttons — you need prep that
-            saves time, builds confidence, and helps you pass.
+            Focused tools that support consistent, self-directed board exam
+            preparation — not a substitute for accredited instruction.
           </p>
         </div>
 

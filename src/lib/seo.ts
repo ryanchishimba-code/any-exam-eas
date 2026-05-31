@@ -33,13 +33,13 @@ const HOME_KEYWORDS = [
   "INBDE prep",
   "nursing board exam",
   "medical board exam",
-  "adaptive question bank",
-  "AI exam prep",
+  "personalized question bank",
+  "board exam study tool",
 ];
 
 export function buildHomeMetadata(): Metadata {
   const title = `${SITE_NAME} — NCLEX, USMLE & Board Exam Prep`;
-  const description = `Adaptive AI question banks for NCLEX NGN, USMLE, NAPLEX, INBDE & SAT. OER-backed rationales, weak-area targeting, readiness analytics. ${formatTrialLabel()} from ${formatTrialIntroPrice()}, then ${formatMonthlyPrice()}/mo.`;
+  const description = `Board exam study support for NCLEX NGN, USMLE, and NAPLEX. OER-backed rationales, personalized practice, and progress tracking. ${formatTrialLabel()} from ${formatTrialIntroPrice()}, then ${formatMonthlyPrice()}/mo.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 
@@ -66,7 +66,7 @@ export function buildHomeMetadata(): Metadata {
           url: ogImage,
           width: 1200,
           height: 800,
-          alt: "Healthcare student using Any Exam Easy for NCLEX and USMLE board exam preparation",
+          alt: "Healthcare student using Any Exam Easy for board-style NCLEX and USMLE study practice",
         },
       ],
     },
@@ -94,10 +94,10 @@ export function buildRootMetadata(): Metadata {
   return {
     metadataBase: new URL(getSiteUrl()),
     title: {
-      default: `${SITE_NAME} — AI Board Exam Prep`,
+      default: `${SITE_NAME} — Board Exam Study Support`,
       template: `%s | ${SITE_NAME}`,
     },
-    description: `NCLEX NGN, USMLE, NAPLEX, INBDE & SAT prep with adaptive AI and OER-backed rationales.`,
+    description: `NCLEX NGN, USMLE, and NAPLEX study support with personalized practice and OER-backed rationales.`,
     icons: {
       icon: "/favicon.svg",
       apple: "/favicon.svg",
@@ -122,7 +122,7 @@ export function buildHomeJsonLd() {
         url,
         logo: absoluteUrl("/favicon.svg"),
         description:
-          "Adaptive AI board exam preparation for nursing, medical, pharmacy, and dental students.",
+          "Board exam study support for nursing, medical, and pharmacy students preparing for NCLEX, USMLE, and NAPLEX.",
       },
       {
         "@type": "WebSite",
@@ -152,7 +152,7 @@ export function buildHomeJsonLd() {
           description: `${TRIAL_DAYS}-day trial available from ${formatTrialIntroPrice()}`,
         },
         description:
-          "Board exam prep with adaptive AI questions, analytics, and OER-backed explanations for NCLEX, USMLE, NAPLEX, and INBDE.",
+          "Board exam study support with personalized practice, progress tracking, and OER-backed explanations for NCLEX, USMLE, and NAPLEX.",
       },
     ],
   };

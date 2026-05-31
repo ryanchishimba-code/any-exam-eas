@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { BetaBanner } from "@/components/BetaBanner";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { SessionProvider } from "@/components/SessionProvider";
@@ -28,7 +27,6 @@ export default function RootLayout({
             <LoginModalRoot>
               <PageViewTrackerBoundary />
               <Navigation />
-              <BetaBanner />
               <main id="main-content">{children}</main>
               <Footer />
               <EmployeeAccessFab />

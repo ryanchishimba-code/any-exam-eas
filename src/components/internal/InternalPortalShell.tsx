@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import {
   LayoutDashboard,
   BarChart3,
@@ -14,6 +14,7 @@ import {
   X,
 } from "lucide-react";
 import { useState } from "react";
+import { signOutAndCleanup } from "@/lib/client/sign-out";
 
 const navItems = [
   { href: "/internal", label: "Overview", icon: LayoutDashboard, exact: true },
@@ -33,6 +34,7 @@ export function InternalPortalShell({ children }: { children: React.ReactNode })
   const pathname = usePathname();
   const { data: session } = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [signingOut, setSigningOut] = useState(false);
 
   function isActive(href: string, exact?: boolean) {
     if (exact) return pathname === href;
@@ -83,11 +85,16 @@ export function InternalPortalShell({ children }: { children: React.ReactNode })
         </Link>
         <button
           type="button"
-          onClick={() => void signOut({ callbackUrl: "/" })}
-          className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-[var(--color-ink-muted)] transition-colors hover:bg-black/[0.04] hover:text-[var(--color-ink)]"
+          disabled={signingOut}
+          onClick={async () => {
+            setSigningOut(true);
+            await signOutAndCleanup({ callbackUrl: "/" });
+            setSigningOut(false);
+          }}
+          className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-[var(--color-ink-muted)] transition-colors hover:bg-black/[0.04] hover:text-[var(--color-ink)] disabled:opacity-60"
         >
           <LogOut size={16} />
-          Sign out
+          {signingOut ? "Signing out…" : "Sign out"}
         </button>
       </div>
     </aside>

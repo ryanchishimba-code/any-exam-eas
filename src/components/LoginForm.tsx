@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   fetchAuthHealthWarning,
@@ -31,7 +31,15 @@ export function LoginForm() {
   const [loading, setLoading] = useState(false);
   const [magicLoading, setMagicLoading] = useState(false);
 
+  const { data: session, status } = useSession();
+
   const [preferredMethod, setPreferredMethod] = useState<LoginMethod | undefined>();
+
+  useEffect(() => {
+    if (status === "authenticated" && session?.user) {
+      router.replace(callbackUrl);
+    }
+  }, [status, session?.user, callbackUrl, router]);
 
   useEffect(() => {
     fetchAuthHealthWarning().then(setConfigWarning);

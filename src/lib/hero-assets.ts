@@ -2,4 +2,4 @@
 export const HERO_IMAGE_PATH = "/images/hero.jpg";
 
 export const HERO_IMAGE_ALT =
-  "Nursing student studying for the NCLEX board exam with Any Exam Easy adaptive prep platform on a tablet";
+  "Healthcare student using Any Exam Easy for board-style NCLEX and USMLE study practice";

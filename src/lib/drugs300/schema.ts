@@ -1,4 +1,4 @@
-/** Board exams that reference Top 300 high-yield drugs. */
+/** Board exams that reference Top 500 high-yield drugs. */
 export const EXAM_CODES = ["NCLEX", "USMLE", "NAPLEX"] as const;
 
 export type ExamCode = (typeof EXAM_CODES)[number];
@@ -13,7 +13,7 @@ export const DEFAULT_EXAM_RELEVANCE: ExamRelevance = {
 };
 
 /**
- * Canonical JSON/API shape for a Top 300 drug record.
+ * Canonical JSON/API shape for a Top 500 drug record.
  * `class` = pharmacologic/therapeutic class (e.g. "ACE inhibitor").
  */
 export type Top300DrugRecord = {

@@ -30,14 +30,14 @@ export function Hero() {
               id="hero-heading"
               className="aee-display-xl aee-reveal aee-reveal-delay-1 mt-8"
             >
-              Pass your board exam{" "}
-              <span className="aee-display-accent">the first time.</span>
+              Focused prep for your{" "}
+              <span className="aee-display-accent">board exam journey.</span>
             </h1>
 
             <p className="aee-lede aee-reveal aee-reveal-delay-2 mx-auto mt-6 max-w-xl lg:mx-0">
-              Adaptive AI question banks with OER-backed rationales — built
-              exclusively for NCLEX NGN, USMLE, and NAPLEX students who need
-              results, not another generic study app.
+              Board-style practice with OER-backed rationales and personalized
+              study recommendations — designed to support self-directed NCLEX
+              NGN, USMLE, and NAPLEX review.
             </p>
 
             <p className="aee-pricing-note aee-reveal aee-reveal-delay-2 mt-4 text-base font-semibold">
@@ -51,7 +51,8 @@ export function Hero() {
             <HeroTrustSignals className="aee-reveal aee-reveal-delay-4 mt-8" />
 
             <p className="aee-reveal aee-reveal-delay-5 mt-6 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-              Free account · Payment required for exam features · Cancel anytime · 18+
+              Free account · Payment required for exam features · Cancel anytime · 18+ · Study
+              support only; individual results vary; no guarantee of exam scores or licensure
             </p>
           </header>
 

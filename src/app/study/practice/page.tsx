@@ -13,7 +13,7 @@ export default function StudyPracticePage() {
     <PageShell
       eyebrow="Study"
       title="Question bank"
-      description="Board-style practice with adaptive ordering, confidence tracking, and deep explanations after each item."
+      description="Board-style practice with personalized ordering, confidence tracking, and cited explanations after each item."
       maxWidth="max-w-3xl"
     >
       <StudySubnav />

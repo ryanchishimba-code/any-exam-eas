@@ -19,6 +19,7 @@ import {
   saveReturningUserHint,
   type LoginMethod,
 } from "@/lib/client/returning-user";
+import { PRACTICE_PROGRESS_LABEL } from "@/lib/site";
 import { InlineError } from "@/components/ui/StatusMessage";
 
 type LoginModalProps = {
@@ -230,7 +231,7 @@ export function LoginModal({ open, onClose, callbackUrl = "/study" }: LoginModal
                     Continue as{" "}
                     <span className="font-medium text-white">{maskEmail(hint.email)}</span>
                     {hint.readinessScore != null && (
-                      <> · last readiness {hint.readinessScore}%</>
+                      <> · last {PRACTICE_PROGRESS_LABEL.toLowerCase()} {hint.readinessScore}%</>
                     )}
                   </>
                 ) : (
@@ -389,7 +390,7 @@ export function LoginModal({ open, onClose, callbackUrl = "/study" }: LoginModal
 
               <p className="mt-5 flex items-center justify-center gap-1.5 text-center text-[0.6875rem] text-slate-500 dark:text-slate-400">
                 <ShieldCheck className="h-3.5 w-3.5 text-teal-600" aria-hidden />
-                HIPAA-aware encryption · Trusted by healthcare students
+                HIPAA-aware encryption · Encrypted study data
               </p>
 
               <p className="mt-4 text-center text-xs text-slate-500 dark:text-slate-400">

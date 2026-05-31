@@ -1,4 +1,4 @@
-export { TOP_300_DRUGS, TOP_300_COUNT, getTop300DrugCatalog, type DrugEntry } from "./catalog";
+export { TOP_500_DRUGS, TOP_500_COUNT, TOP_300_DRUGS, TOP_300_COUNT, getTop500DrugCatalog, getTop300DrugCatalog, type DrugEntry } from "./catalog";
 export { getCurrentDrugCycle, getCycleKey, type DrugReviewCycleInfo } from "./cycles";
 export { GRADE_LABELS, type ReviewGrade } from "./spaced-repetition";
 export {
@@ -34,3 +34,4 @@ export {
 } from "./serialize";
 export { inferExamRelevance, mergeExamRelevance } from "./exam-relevance";
 export { dbRowFromRecord, recordFromDbRow, examRelevanceFromDb } from "./db-mapper";
+export { searchDrugs, getDrugSearchHitById, type DrugSearchHit } from "./search";

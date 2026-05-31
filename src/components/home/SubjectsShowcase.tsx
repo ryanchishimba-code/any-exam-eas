@@ -33,9 +33,9 @@ export function SubjectsShowcase() {
       <div className="mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
         <div className="text-center">
           <p className="aee-section-label">Exam coverage</p>
-          <h2 className="aee-headline mt-4">Prep for every board.</h2>
+          <h2 className="aee-headline mt-4">Study support across boards.</h2>
           <p className="aee-section-lede mx-auto mt-4 max-w-xl">
-            Adaptive exams, question banks, and analytics — medicine, nursing,
+            Personalized practice, question banks, and analytics — medicine, nursing,
             pharmacy, dentistry, and core sciences.
           </p>
         </div>

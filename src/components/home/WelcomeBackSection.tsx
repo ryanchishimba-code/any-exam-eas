@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { AppleLink } from "@/components/ui/AppleLink";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { LoginPromoGraphic } from "@/components/LoginPromoGraphic";
-import { formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
+import { formatTrialIntroPrice, formatTrialLabel, PRACTICE_PROGRESS_LABEL } from "@/lib/site";
 import {
   firstName,
   loadReturningUserHint,
@@ -73,7 +73,7 @@ export function WelcomeBackSection() {
 
   return (
     <section
-      className="apple-section aee-section-alt border-y border-teal-100/60 dark:border-teal-900/30"
+      className="apple-section aee-landing-section border-y border-teal-100/60 bg-white dark:border-teal-900/30 dark:bg-black"
       aria-labelledby="welcome-back-heading"
     >
       <div className="mx-auto grid max-w-[980px] items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">
@@ -102,7 +102,7 @@ export function WelcomeBackSection() {
           <p className="apple-subhead mx-auto mt-4 max-w-md lg:mx-0">
             {session?.user && welcome?.hasAccess && welcome.headline ? (
               <>
-                Readiness {welcome.headline.readinessScore}% ·{" "}
+                {PRACTICE_PROGRESS_LABEL} {welcome.headline.readinessScore}% (in-app only) ·{" "}
                 {welcome.headline.studyStreakDays > 0
                   ? `${welcome.headline.studyStreakDays}-day streak`
                   : `${welcome.headline.totalAttempts} questions answered`}
@@ -115,7 +115,7 @@ export function WelcomeBackSection() {
               <>
                 Sign in as <span className="font-medium text-[var(--color-ink)]">{maskEmail(hint.email)}</span>
                 {hint.readinessScore != null && (
-                  <> · last readiness score {hint.readinessScore}%</>
+                  <> · last {PRACTICE_PROGRESS_LABEL.toLowerCase()} {hint.readinessScore}%</>
                 )}
               </>
             ) : (
@@ -156,7 +156,7 @@ export function WelcomeBackSection() {
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-[var(--color-ink-muted)] lg:justify-start">
             <span className="inline-flex items-center gap-1.5">
               <ShieldCheck className="h-3.5 w-3.5 text-teal-600 dark:text-teal-400" aria-hidden />
-              Encrypted · SOC 2-ready infrastructure
+              Encrypted · Security-first infrastructure
             </span>
             {!session?.user && (
               <>

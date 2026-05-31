@@ -19,7 +19,7 @@ function resolveModeFromParam(param: string | null): {
   const map: Record<string, { studyMode: StudyMode; apiMode: string | null; label: string }> = {
     timed: { studyMode: "timed", apiMode: null, label: "Timed challenge" },
     rapid: { studyMode: "rapid", apiMode: null, label: "Rapid review" },
-    adaptive: { studyMode: "adaptive", apiMode: "adaptive", label: "Adaptive exam" },
+    adaptive: { studyMode: "adaptive", apiMode: "adaptive", label: "Personalized practice" },
     weak: { studyMode: "weak_area", apiMode: "weak", label: "Weak-area drill" },
     weak_area: { studyMode: "weak_area", apiMode: "weak", label: "Weak-area drill" },
     tutor: { studyMode: "practice", apiMode: null, label: "Tutor mode" },

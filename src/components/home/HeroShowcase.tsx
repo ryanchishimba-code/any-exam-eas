@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Award, BarChart3, CheckCircle2, Flame, TrendingUp } from "lucide-react";
+import { Award, BookOpen, CheckCircle2, Flame } from "lucide-react";
 import { HERO_IMAGE_ALT, HERO_IMAGE_PATH } from "@/lib/hero-assets";
 
 const highlights = [
@@ -11,9 +11,9 @@ const highlights = [
 ];
 
 const badges = [
-  { label: "14-day streak", icon: Flame, tone: "warm" as const },
-  { label: "NGN Master", icon: Award, tone: "info" as const },
-  { label: "+18% readiness", icon: TrendingUp, tone: "success" as const },
+  { label: "Study streaks", icon: Flame, tone: "warm" as const },
+  { label: "Top 500 Drugs", icon: Award, tone: "info" as const },
+  { label: "Weak-area focus", icon: BookOpen, tone: "success" as const },
 ];
 
 export function HeroShowcase() {
@@ -36,7 +36,7 @@ export function HeroShowcase() {
               Any Exam Easy
             </p>
             <p className="mt-1 text-lg font-semibold leading-snug text-white sm:text-xl">
-              Study like you&apos;re already on the wards.
+              Board-style practice for real exam formats.
             </p>
             <ul className="mt-3 space-y-1.5" aria-label="Platform highlights">
               {highlights.map((item) => (
@@ -56,34 +56,33 @@ export function HeroShowcase() {
       <div
         className="aee-showcase-card aee-showcase-card-readiness absolute -left-2 top-8 z-10 sm:-left-6"
         role="img"
-        aria-label="Sample readiness score: 78 percent, up 12 percent this week"
+        aria-label="Illustrative example of a practice progress tracker"
       >
         <div className="flex items-center gap-3">
           <span className="aee-showcase-icon aee-showcase-icon-info">
-            <BarChart3 className="h-5 w-5" strokeWidth={2.25} aria-hidden />
+            <BookOpen className="h-5 w-5" strokeWidth={2.25} aria-hidden />
           </span>
           <div>
             <p className="text-[0.6875rem] font-medium uppercase tracking-wider text-[var(--color-ink-muted)]">
-              Readiness
+              Practice progress
             </p>
-            <p className="text-xl font-bold text-[var(--color-ink)]">78%</p>
+            <p className="text-sm font-semibold text-[var(--color-ink)]">Track your prep</p>
           </div>
         </div>
-        <p className="mt-2 flex items-center gap-1 text-xs font-semibold text-[var(--a11y-success)]">
-          <TrendingUp className="h-3.5 w-3.5" aria-hidden />
-          <span>+12% this week</span>
+        <p className="mt-2 text-xs text-[var(--color-ink-muted)]">
+          Illustrative example — not a guarantee of exam results.
         </p>
       </div>
 
       <aside
         className="aee-showcase-card absolute -right-2 bottom-28 z-10 sm:-right-4 sm:bottom-24"
-        aria-label="Next recommended study topic: Pharmacology question 4"
+        aria-label="Example study suggestion: Pharmacology review"
       >
         <p className="text-[0.6875rem] font-semibold uppercase tracking-wider text-[var(--color-ink-muted)]">
-          Next up
+          Suggested focus
         </p>
         <p className="mt-0.5 text-sm font-bold text-[var(--color-ink)]">
-          Pharmacology · Q4
+          Pharmacology review
         </p>
         <p className="mt-2 text-xs font-semibold text-[var(--a11y-info)]">
           Pick up where you left off →
@@ -92,7 +91,7 @@ export function HeroShowcase() {
 
       <ul
         className="absolute -bottom-3 left-1/2 z-10 flex -translate-x-1/2 flex-wrap justify-center gap-2 sm:-bottom-4"
-        aria-label="Sample achievement badges"
+        aria-label="Study feature highlights"
       >
         {badges.map((badge) => {
           const Icon = badge.icon;

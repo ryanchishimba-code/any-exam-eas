@@ -30,7 +30,7 @@ export function DrugFlashcard({
         className="aee-flip-scene w-full text-left"
         aria-label={flipped ? "Hide answer" : "Reveal answer"}
       >
-        <div className={`aee-flip-card min-h-[380px] ${flipped ? "is-flipped" : ""}`}>
+        <div className={`aee-flip-card min-h-[min(380px,70dvh)] ${flipped ? "is-flipped" : ""}`}>
           <div className="aee-flip-face aee-flip-front aee-drug-flashcard-front">
             <div className="flex h-full flex-col items-center justify-center p-8 text-center">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-[0.625rem] font-bold uppercase tracking-widest text-teal-100">

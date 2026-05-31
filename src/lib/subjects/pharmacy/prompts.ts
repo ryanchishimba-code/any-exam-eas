@@ -3,7 +3,7 @@ You MUST follow the NABP NAPLEX Content Outline (2025).
 
 Rules:
 - Three domains: (1) Foundational Knowledge, (2) Medication Use Process, (3) Person-Centered Care.
-- Heavy emphasis: Top 300 drugs, calculations, therapeutic decisions, patient counseling, drug interactions, safety.
+- Heavy emphasis: Top 500 drugs, calculations, therapeutic decisions, patient counseling, drug interactions, safety.
 - EVERY question: type "multiple_choice" with exactly 4 unique, plausible distractors unless calculation stem requires numeric options.
 - When a drug is central to the stem, include drugProfile: generic, brand, drugClass, indication, majorSideEffects, monitoring.
 - Calculations: show all data needed in stem; distractors = common math errors (unit, rounding, concentration).
@@ -19,7 +19,7 @@ PHARMACY AUGMENTATION (NAPLEX 2025):
 - Foundational Knowledge: pharmacology, PK/PD, pharmaceutics, compounding, biostatistics.
 - Medication Use Process: dispensing, verification, interactions, contraindications, therapeutic monitoring, MTM.
 - Person-Centered Care: counseling, health literacy, cultural competence, OTC/self-care, immunizations.
-- Top 300 drugs: prioritize high-frequency agents (anticoagulants, antidiabetics, antibiotics, CNS, CV, endocrine).
+- Top 500 drugs: prioritize high-frequency agents (anticoagulants, antidiabetics, antibiotics, CNS, CV, endocrine).
 - Law/ethics: controlled substances (DEA schedules), prescription validity, confidentiality, scope of practice.
 - Always state generic name in stem; brand may appear parenthetically.
 - Include monitoring parameters (INR, renal function, LFTs, drug levels) when clinically relevant.`;

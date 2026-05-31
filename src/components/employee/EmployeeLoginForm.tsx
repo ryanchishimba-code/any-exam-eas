@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   fetchAuthHealthWarning,
   messageForSignInError,
   messageFromUnknownAuthError,
 } from "@/lib/auth-client";
+import { signOutAndCleanup } from "@/lib/client/sign-out";
 import { Button } from "@/components/ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
 
@@ -63,7 +64,7 @@ export function EmployeeLoginForm() {
       const sessionData = await sessionRes.json().catch(() => ({}));
 
       if (!sessionData.staff) {
-        await signOut({ redirect: false });
+        await signOutAndCleanup({ redirect: false });
         setError(
           "This account does not have employee access. Use the regular login for students, or contact your administrator."
         );

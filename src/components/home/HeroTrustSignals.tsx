@@ -1,25 +1,25 @@
-import { Award, BookOpen, ShieldCheck, TrendingUp } from "lucide-react";
+import { Award, BookOpen, ShieldCheck, Sparkles } from "lucide-react";
 
 const signals = [
   {
     icon: BookOpen,
-    value: "12,000+",
-    label: "Board-style questions",
+    value: "Board-style",
+    label: "Practice questions",
   },
   {
-    icon: TrendingUp,
-    value: "Adaptive",
-    label: "AI difficulty engine",
+    icon: Sparkles,
+    value: "Personalized",
+    label: "Study recommendations",
   },
   {
     icon: Award,
     value: "NCLEX NGN",
-    label: "USMLE · NAPLEX · INBDE",
+    label: "USMLE · NAPLEX",
   },
   {
     icon: ShieldCheck,
     value: "Encrypted",
-    label: "HIPAA-aware · Cancel anytime",
+    label: "Cancel anytime",
   },
 ];
 
@@ -51,4 +51,3 @@ export function HeroTrustSignals({ className = "" }: HeroTrustSignalsProps) {
     </div>
   );
 }
-

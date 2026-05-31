@@ -55,13 +55,13 @@ function buildMotivationalMessage(
   trendDelta: number | null,
   overallAccuracy: number | null
 ): string {
-  if (streak >= 7) return "A full week of consistency — you're building real exam stamina.";
-  if (streak >= 3) return "Nice streak! Small daily sessions compound into big score gains.";
-  if (trendDelta != null && trendDelta >= 8) return "Your accuracy is climbing — keep that momentum going.";
-  if (trendDelta != null && trendDelta <= -8) return "Scores dip sometimes — a focused weak-area session will help.";
-  if (overallAccuracy != null && overallAccuracy >= 80) return "Strong accuracy — challenge yourself with a timed mock.";
-  if (overallAccuracy != null && overallAccuracy < 60) return "Every question teaches you something — weak-area practice is your edge.";
-  return "Ready when you are — one focused session today moves the needle.";
+  if (streak >= 7) return "A full week of consistency — keep building your study rhythm.";
+  if (streak >= 3) return "Nice streak! Small daily sessions can add up over time.";
+  if (trendDelta != null && trendDelta >= 8) return "Your in-app accuracy is trending up — keep practicing.";
+  if (trendDelta != null && trendDelta <= -8) return "Practice scores dip sometimes — a focused review session may help.";
+  if (overallAccuracy != null && overallAccuracy >= 80) return "Strong in-app accuracy — try a timed practice set.";
+  if (overallAccuracy != null && overallAccuracy < 60) return "Every question is practice — weak-area review can help you learn.";
+  return "One focused session today is a step in your prep journey.";
 }
 
 async function getAccuracyTrend(userId: string): Promise<AccuracyTrendPoint[]> {

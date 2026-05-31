@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   CalendarClock,
   ChevronLeft,
@@ -14,11 +15,15 @@ import type { DrugCardDto, DrugClassId, DrugReviewDashboard, ReviewGrade } from 
 import { GRADE_LABELS } from "@/lib/drugs300";
 import { DrugClassFilter, DrugClassFilterPills } from "@/components/study/DrugClassFilter";
 import { DrugFlashcard } from "@/components/study/DrugFlashcard";
+import { DrugSearch } from "@/components/study/DrugSearch";
+import { DrugSearchPreview } from "@/components/study/DrugSearchPreview";
 import { InlineError } from "@/components/ui/StatusMessage";
+import { getDrugSearchHitById, type DrugSearchHit } from "@/lib/drugs300/search";
 
 const GRADES: ReviewGrade[] = [0, 1, 2, 3];
 
 export function DrugReviewStudio() {
+  const searchParams = useSearchParams();
   const [dashboard, setDashboard] = useState<DrugReviewDashboard | null>(null);
   const [cards, setCards] = useState<DrugCardDto[]>([]);
   const [activeClass, setActiveClass] = useState<DrugClassId>("all");
@@ -30,6 +35,7 @@ export function DrugReviewStudio() {
   const [cardsLoading, setCardsLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [selectedDrug, setSelectedDrug] = useState<DrugSearchHit | null>(null);
 
   const current = cards[index];
   const activeClassStats = dashboard?.classProgress.find((c) => c.id === activeClass);
@@ -72,6 +78,17 @@ export function DrugReviewStudio() {
   useEffect(() => {
     void load();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps -- initial load only
+
+  useEffect(() => {
+    const drugId = searchParams.get("drug");
+    if (!drugId) return;
+    const hit = getDrugSearchHitById(drugId);
+    if (hit) setSelectedDrug(hit);
+  }, [searchParams]);
+
+  const handleDrugSelect = useCallback((drug: DrugSearchHit) => {
+    setSelectedDrug(drug);
+  }, []);
 
   async function selectClass(classId: DrugClassId) {
     if (classId === activeClass) return;
@@ -161,6 +178,13 @@ export function DrugReviewStudio() {
           New quarterly cycle — progress reset for {cycle.key}.
         </div>
       )}
+
+      <div className="space-y-4">
+        <DrugSearch onSelect={handleDrugSelect} />
+        {selectedDrug && (
+          <DrugSearchPreview drug={selectedDrug} onClose={() => setSelectedDrug(null)} />
+        )}
+      </div>
 
       {/* Cycle overview */}
       <div className="aee-drugs-progress-card rounded-2xl border border-teal-100 bg-gradient-to-br from-teal-50/90 via-white to-cyan-50/60 p-5 sm:p-6 dark:border-teal-900/40 dark:from-teal-950/30 dark:via-slate-950 dark:to-cyan-950/20">

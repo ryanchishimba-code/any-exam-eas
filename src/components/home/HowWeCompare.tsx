@@ -42,7 +42,7 @@ const rows: CompareRow[] = [
   },
   {
     label: "Question bank",
-    aee: "12,000+",
+    aee: "Board-style (growing)",
     uworld: "Large (exam-specific)",
     archer: "Large (exam-specific)",
   },
@@ -53,7 +53,7 @@ const rows: CompareRow[] = [
     archer: "Proprietary",
   },
   {
-    label: "Adaptive AI engine",
+    label: "Personalized practice",
     aee: "Included",
     uworld: "Limited / add-on",
     archer: "Varies",
@@ -69,8 +69,9 @@ const rows: CompareRow[] = [
 const highlights = [
   {
     icon: Sparkles,
-    title: "Up to 90% less than UWorld",
-    description: "Board-quality prep without the $300+ price tag.",
+    title: "Accessible monthly pricing",
+    description:
+      "Straightforward subscription pricing designed to be accessible compared to many premium board-prep bundles.",
   },
   {
     icon: Shield,
@@ -80,7 +81,7 @@ const highlights = [
   {
     icon: BookOpen,
     title: "Open, citable content",
-    description: "Explanations tied to Open RN, OpenStax, and other trusted OER sources.",
+    description: "Explanations tied to Open RN, OpenStax, and other openly licensed OER sources.",
   },
 ];
 
@@ -88,20 +89,19 @@ export function HowWeCompare() {
   return (
     <section
       id="how-we-compare"
-      className="aee-landing-section relative overflow-hidden bg-white dark:bg-black"
+      className="aee-landing-section aee-section-alt relative overflow-hidden border-t border-black/[0.04] dark:border-white/[0.06]"
       aria-labelledby="compare-heading"
     >
       <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="aee-section-label">How we compare</p>
           <h2 id="compare-heading" className="aee-headline mt-4">
-            Same board prep.{" "}
-            <span className="aee-display-accent">Fraction of the price.</span>
+            Board-focused prep.{" "}
+            <span className="aee-display-accent">Clear pricing.</span>
           </h2>
           <p className="aee-section-lede mx-auto max-w-xl">
-            Premium competitors charge hundreds upfront. We keep pricing simple,
-            transparent, and accessible — with a full question bank and OER-backed
-            explanations included.
+            Compare features and pricing at a glance. We aim to offer strong study
+            tools without the complexity of large upfront bundles.
           </p>
         </div>
 
@@ -200,8 +200,9 @@ export function HowWeCompare() {
 
         <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed text-slate-400">
           Competitor pricing reflects publicly listed rates as of {new Date().getFullYear()} and
-          may vary by exam, subscription length, and promotions. Any Exam Easy is not affiliated
-          with UWorld or Archer Review.
+          may vary by exam, subscription length, and promotions. Comparisons are for general
+          information only and are not guarantees of equivalent content, outcomes, or exam
+          performance. Any Exam Easy is not affiliated with UWorld or Archer Review.
         </p>
       </div>
     </section>
@@ -209,7 +210,7 @@ export function HowWeCompare() {
 }
 
 function CompareCell({ value, featured = false }: { value: string; featured?: boolean }) {
-  const isIncluded = value === "Included" || value === "Listed upfront" || value.startsWith("OER");
+  const isIncluded = value === "Included" || value === "Listed upfront" || value.startsWith("OER") || value.startsWith("Board-style");
   const isLimited = value.startsWith("Limited") || value === "Varies" || value === "Varies by plan" || value === "Varies by exam";
 
   return (

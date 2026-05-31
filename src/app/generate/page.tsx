@@ -12,7 +12,7 @@ export default function GeneratePage() {
     <PageShell
       eyebrow="Exam generator"
       title="Build your practice test."
-      description="Generate board-style questions from a topic, uploaded notes, or a custom blueprint — then preview before you start."
+      description="Generate board-style questions from a topic, uploaded notes, or a custom blueprint — then preview before you start. AI content may contain errors; verify independently."
       maxWidth="max-w-4xl"
       variant="premium"
     >

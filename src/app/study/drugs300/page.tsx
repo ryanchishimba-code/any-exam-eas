@@ -1,20 +1,33 @@
+import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { PageShell } from "@/components/PageShell";
 import { StudySubnav } from "@/components/StudySubnav";
-import { DrugReviewStudio } from "@/components/study/DrugReviewStudio";
 
 export const metadata = {
-  title: "Top 300 Drugs — Any Exam Easy",
+  title: "Top 500 Drugs — Any Exam Easy",
   description:
-    "Spaced-repetition flashcard review for the top 300 board exam drugs. Generic to brand and indication, refreshed every 3 months.",
+    "Spaced-repetition flashcard review for the top 500 board exam drugs. Generic to brand and indication, refreshed every 3 months.",
 };
+
+const DrugReviewStudio = dynamic(
+  () => import("@/components/study/DrugReviewStudio").then((m) => m.DrugReviewStudio),
+  {
+    loading: () => (
+      <div className="mt-8 space-y-4">
+        <div className="aee-drugs-skeleton h-12 rounded-2xl" />
+        <div className="aee-drugs-skeleton h-32 rounded-2xl" />
+        <div className="aee-drugs-skeleton h-[420px] rounded-3xl" />
+      </div>
+    ),
+  }
+);
 
 export default function Drugs300Page() {
   return (
     <PageShell
       eyebrow="Pharmacology"
-      title="Top 300 Drugs Mastery"
-      description="Flashcard review with spaced repetition: generic → brand, class, indications & side effects. Filter by drug class and track mastery per category."
+      title="Top 500 Drugs Review"
+      description="Flashcard review with spaced repetition: generic → brand, class, indications & side effects. Filter by drug class and track review progress per category."
       maxWidth="max-w-6xl"
     >
       <StudySubnav />

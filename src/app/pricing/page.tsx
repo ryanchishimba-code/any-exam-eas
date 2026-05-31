@@ -21,7 +21,7 @@ export default async function PricingPage({
   return (
     <PageShell
       eyebrow="Pricing"
-      title="Invest in your score."
+      title="Straightforward pricing for your prep."
       description={formatPricingHeadline()}
       align="center"
       maxWidth="max-w-lg"
@@ -43,10 +43,10 @@ export default async function PricingPage({
 
         <ul className="mt-8 space-y-3.5 text-left text-[0.9375rem]">
           {[
-            "Advanced RAG question engine (NCLEX NGN, NAPLEX, USMLE, INBDE, SAT)",
-            "Unlimited AI exam generation",
-            "Adaptive weak-area targeting + analytics",
-            "Premium student dashboard",
+            "Board-style question practice (NCLEX NGN, NAPLEX, USMLE)",
+            "AI-assisted exam generation (verify content independently)",
+            "Weak-area practice modes + progress tracking",
+            "Student dashboard and analytics",
             "OER-backed rationales with source citations",
           ].map((item) => (
             <li key={item} className="flex gap-3 text-[var(--color-ink-muted)]">
@@ -66,8 +66,8 @@ export default async function PricingPage({
       </div>
 
       <p className="mt-8 text-left text-xs leading-relaxed text-[var(--color-ink-muted)]">
-        {LEGAL_DISCLAIMERS.beta} {LEGAL_DISCLAIMERS.subscription}{" "}
-        {LEGAL_DISCLAIMERS.limitationOfLiability}
+        {LEGAL_DISCLAIMERS.noGuarantee} {LEGAL_DISCLAIMERS.aiGenerated}{" "}
+        {LEGAL_DISCLAIMERS.subscription} {LEGAL_DISCLAIMERS.limitationOfLiability}
       </p>
     </PageShell>
   );

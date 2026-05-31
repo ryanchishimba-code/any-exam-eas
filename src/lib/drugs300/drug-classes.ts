@@ -1,4 +1,4 @@
-/** High-yield pharmacology buckets for Top 300 filtering & progress. */
+/** High-yield pharmacology buckets for Top 500 filtering & progress. */
 export const DRUG_CLASSES = [
   { id: "all", label: "All Drugs", shortLabel: "All", color: "#0d9488" },
   { id: "cardiovascular", label: "Cardiovascular", shortLabel: "CV", color: "#dc2626" },

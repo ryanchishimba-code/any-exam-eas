@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/study", label: "Overview" },
-  { href: "/study/drugs300", label: "Top 300 Drugs" },
+  { href: "/study/drugs300", label: "Top 500 Drugs" },
   { href: "/study/practice", label: "Question bank" },
-  { href: "/study/practice?mode=adaptive", label: "Adaptive" },
-  { href: "/generate", label: "AI exams" },
+  { href: "/study/practice?mode=adaptive", label: "Personalized" },
+  { href: "/generate", label: "AI practice" },
   { href: "/engine/test", label: "Engine lab" },
   { href: "/study/analytics", label: "Analytics" },
 ];
