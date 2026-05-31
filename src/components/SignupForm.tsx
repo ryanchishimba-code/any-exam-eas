@@ -13,6 +13,8 @@ import {
   messageForSignInError,
   messageFromUnknownAuthError,
 } from "@/lib/auth-client";
+import { MemberLoginLink } from "@/components/auth/MemberLoginLink";
+import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/lib/client/returning-user";
 
 export function SignupForm({ initialPlan = "" }: { initialPlan?: SignupPlan | "" }) {
   const [name, setName] = useState("");
@@ -27,6 +29,9 @@ export function SignupForm({ initialPlan = "" }: { initialPlan?: SignupPlan | ""
 
   useEffect(() => {
     fetchAuthHealthWarning().then(setConfigWarning);
+    const hint = loadReturningUserHint();
+    if (hint?.email) setEmail(hint.email);
+    if (hint?.name) setName(hint.name);
   }, []);
 
   useEffect(() => {
@@ -79,6 +84,12 @@ export function SignupForm({ initialPlan = "" }: { initialPlan?: SignupPlan | ""
         throw new Error(messageForSignInError(signInRes.error));
       }
 
+      saveReturningUserHint({
+        email: trimmedEmail,
+        name: name.trim(),
+        lastMethod: "email",
+      });
+
       window.location.href = `/checkout?plan=${plan}`;
     } catch (err) {
       setError(messageFromUnknownAuthError(err));
@@ -123,6 +134,7 @@ export function SignupForm({ initialPlan = "" }: { initialPlan?: SignupPlan | ""
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        onBlur={(e) => rememberEmail(e.target.value, { name: name.trim() || undefined })}
         className="apple-input"
       />
       <input
@@ -161,12 +173,7 @@ export function SignupForm({ initialPlan = "" }: { initialPlan?: SignupPlan | ""
         {loading ? "Please wait…" : submitLabel}
       </Button>
 
-      <p className="text-center text-xs text-[var(--color-ink-muted)]">
-        Already have an account?{" "}
-        <a href="/login" className="font-medium text-[var(--color-accent)] hover:underline">
-          Log in
-        </a>
-      </p>
+      <MemberLoginLink callbackUrl="/dashboard" className="text-center" showEmailHint />
     </form>
   );
 }

@@ -10,22 +10,59 @@ import {
   messageFromUnknownAuthError,
 } from "@/lib/auth-client";
 import { Button } from "./ui/Button";
-import { GoogleSignInButton } from "./GoogleSignInButton";
+import { QuickSignIn } from "./auth/QuickSignIn";
+import { completeLoginFlow, signInWithMagicToken } from "@/lib/client/post-login";
+import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/lib/client/returning-user";
+import type { LoginMethod } from "@/lib/client/returning-user";
 
 export function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const resetSuccess = searchParams.get("reset") === "success";
   const callbackUrl = searchParams.get("callbackUrl") ?? "/study";
+  const magicToken = searchParams.get("magicToken");
+  const emailParam = searchParams.get("email");
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [configWarning, setConfigWarning] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [magicLoading, setMagicLoading] = useState(false);
+
+  const [preferredMethod, setPreferredMethod] = useState<LoginMethod | undefined>();
 
   useEffect(() => {
     fetchAuthHealthWarning().then(setConfigWarning);
+    const hint = loadReturningUserHint();
+    setPreferredMethod(hint?.lastMethod);
   }, []);
+
+  useEffect(() => {
+    const hint = loadReturningUserHint();
+    const initial = emailParam ?? hint?.email ?? "";
+    if (initial) setEmail(initial);
+  }, [emailParam]);
+
+  useEffect(() => {
+    if (!magicToken) return;
+    let cancelled = false;
+    setMagicLoading(true);
+    void signInWithMagicToken(magicToken, router, callbackUrl).then((err) => {
+      if (cancelled) return;
+      if (err) setError(err);
+      setMagicLoading(false);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [magicToken, router, callbackUrl]);
+
+  function rememberMethod(method: LoginMethod) {
+    if (!email.trim()) return;
+    saveReturningUserHint({ email: email.trim(), lastMethod: method });
+    setPreferredMethod(method);
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -58,15 +95,12 @@ export function LoginForm() {
         return;
       }
 
-      const statusRes = await fetch("/api/subscription/status");
-      const status = statusRes.ok ? await statusRes.json() : { hasAccess: false };
-
-      router.refresh();
-      if (status.hasAccess) {
-        router.push(callbackUrl);
-      } else {
-        router.push("/pricing?paywall=1");
-      }
+      await completeLoginFlow({
+        router,
+        callbackUrl,
+        email: trimmedEmail,
+        method: "email",
+      });
     } catch (err) {
       setError(messageFromUnknownAuthError(err));
     } finally {
@@ -85,20 +119,31 @@ export function LoginForm() {
           Your password was updated. Log in with your new password.
         </p>
       )}
+      {magicLoading && (
+        <p className="rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900">
+          Verifying your secure sign-in link…
+        </p>
+      )}
       {configWarning && (
         <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
           {configWarning}
         </p>
       )}
 
-      <GoogleSignInButton callbackUrl={callbackUrl} />
+      <QuickSignIn
+        callbackUrl={callbackUrl}
+        preferredMethod={preferredMethod}
+        defaultEmail={email}
+        compact
+        onMethodUsed={rememberMethod}
+      />
 
       <div className="relative py-2">
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-black/[0.06]" />
         </div>
         <p className="relative mx-auto w-fit bg-white px-3 text-xs text-[var(--color-ink-muted)] dark:bg-[var(--color-surface-elevated)]">
-          or email
+          or email & password
         </p>
       </div>
 
@@ -109,6 +154,7 @@ export function LoginForm() {
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        onBlur={(e) => rememberEmail(e.target.value, { lastMethod: preferredMethod })}
         className="apple-input"
       />
       <input
@@ -129,7 +175,7 @@ export function LoginForm() {
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
-      <Button type="submit" disabled={loading || !!configWarning} className="w-full">
+      <Button type="submit" disabled={loading || magicLoading || !!configWarning} className="w-full">
         {loading ? "Signing in…" : "Log in"}
       </Button>
 

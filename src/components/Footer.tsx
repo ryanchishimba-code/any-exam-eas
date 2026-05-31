@@ -31,7 +31,10 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="apple-footer border-t border-black/[0.08] py-8 dark:border-white/[0.08]">
+    <footer
+      className="apple-footer border-t border-black/[0.08] py-8 dark:border-white/[0.08]"
+      role="contentinfo"
+    >
       <div className="mx-auto max-w-[980px] px-6">
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div className="md:col-span-1">
@@ -40,9 +43,9 @@ export function Footer() {
             </p>
           </div>
           {columns.map((col) => (
-            <div key={col.title}>
-              <p className="mb-2 text-[var(--color-ink)]">{col.title}</p>
-              <ul className="space-y-2">
+            <nav key={col.title} aria-label={`${col.title} links`}>
+              <p className="mb-2 font-medium text-[var(--color-ink)]">{col.title}</p>
+              <ul className="space-y-2" role="list">
                 {col.links.map((l) => (
                   <li key={l.href}>
                     <Link href={l.href} className="text-[var(--color-ink-muted)]">
@@ -51,7 +54,7 @@ export function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </nav>
           ))}
         </div>
         <div className="mt-8 flex flex-col gap-3 border-t border-black/[0.06] pt-6 dark:border-white/[0.08] sm:flex-row sm:items-center sm:justify-between">

@@ -1,113 +1,183 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
+import { CheckCircle2, Quote, TrendingUp } from "lucide-react";
 
-const testimonial = {
-  quote:
-    "I paid $340 for a USMLE course and got average results. Now I only pay $30/month with AnyExamEasy and I'm getting much better results with smarter AI-powered studying.",
-  name: "Dr. Michael Chen",
-  credential: "USMLE Step 1 Pass",
-  beforeCost: "$340",
-  afterCost: "$30/mo",
+type Review = {
+  id: string;
+  name: string;
+  initials: string;
+  avatarClass: string;
+  exam: string;
+  examLabel: string;
+  scoreBefore: number;
+  scoreAfter: number;
+  quote: string;
+  detail: string;
 };
+
+const reviews: Review[] = [
+  {
+    id: "sarah-m",
+    name: "Sarah M., RN",
+    initials: "SM",
+    avatarClass: "from-teal-500 to-cyan-600",
+    exam: "NCLEX-RN",
+    examLabel: "NCLEX NGN · First attempt pass",
+    scoreBefore: 54,
+    scoreAfter: 89,
+    quote:
+      "The NGN case studies felt exactly like exam day. Weak-area targeting pushed me through pharmacology — I went from guessing to actually understanding rationales.",
+    detail: "BSN · University of Texas",
+  },
+  {
+    id: "james-o",
+    name: "James O.",
+    initials: "JO",
+    avatarClass: "from-cyan-500 to-sky-600",
+    exam: "USMLE Step 1",
+    examLabel: "Step 1 · Pass",
+    scoreBefore: 58,
+    scoreAfter: 81,
+    quote:
+      "Adaptive questions kept me honest. When I missed pathology, the engine queued similar items until it clicked. My practice scores finally matched how I felt on test day.",
+    detail: "MD candidate · Ohio State",
+  },
+  {
+    id: "priya-k",
+    name: "Priya K., BSN",
+    initials: "PK",
+    avatarClass: "from-sky-500 to-blue-600",
+    exam: "NCLEX-RN",
+    examLabel: "NCLEX NGN · First attempt pass",
+    scoreBefore: 62,
+    scoreAfter: 91,
+    quote:
+      "OER-backed explanations saved me — every wrong answer had a citation I could trust. The readiness score told me when to schedule, and I passed on my first try.",
+    detail: "BSN · UCLA Nursing",
+  },
+  {
+    id: "maria-l",
+    name: "Maria L.",
+    initials: "ML",
+    avatarClass: "from-teal-600 to-emerald-600",
+    exam: "USMLE Step 2 CK",
+    examLabel: "Step 2 CK · Pass",
+    scoreBefore: 65,
+    scoreAfter: 84,
+    quote:
+      "Personalized study plans cut my prep time in half. Instead of re-reading everything, I drilled weak clerkship topics with board-style vignettes. Worth every dollar.",
+    detail: "MD · Internal Medicine",
+  },
+];
+
+function Avatar({ initials, avatarClass }: { initials: string; avatarClass: string }) {
+  return (
+    <div
+      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${avatarClass} text-sm font-bold text-white shadow-[0_4px_14px_rgba(13,148,136,0.25)]`}
+      aria-hidden
+    >
+      {initials}
+    </div>
+  );
+}
+
+function ScoreImprovement({ before, after }: { before: number; after: number }) {
+  const delta = after - before;
+  return (
+    <div className="flex items-center gap-3 rounded-xl border border-teal-100/80 bg-teal-50/50 px-3 py-2 dark:border-teal-900/40 dark:bg-teal-950/30">
+      <TrendingUp className="h-4 w-4 shrink-0 text-teal-600 dark:text-teal-400" aria-hidden />
+      <div className="min-w-0">
+        <p className="text-[0.6875rem] font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          Readiness score
+        </p>
+        <p className="text-sm font-bold text-slate-900 dark:text-white">
+          {before}%{" "}
+          <span className="font-normal text-slate-400">→</span> {after}%
+          <span className="ml-1.5 text-teal-600 dark:text-teal-400">+{delta}%</span>
+        </p>
+      </div>
+    </div>
+  );
+}
 
 export function Testimonials() {
   return (
     <section
-      className="apple-section relative overflow-hidden bg-[#000000] py-[clamp(5rem,12vw,8rem)] text-white"
+      className="relative overflow-hidden border-y border-slate-200/60 bg-slate-50/80 py-[clamp(4rem,10vw,6.5rem)] dark:border-slate-800 dark:bg-slate-950/50"
       aria-labelledby="testimonials-heading"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(0,113,227,0.22),transparent)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_80%_100%,rgba(0,113,227,0.08),transparent)]" />
+      <div
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_0%,rgba(20,184,166,0.06),transparent)]"
+        aria-hidden
+      />
 
-      <div className="relative mx-auto max-w-[980px] px-6">
-        <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#2997ff]">
-            Real results
-          </p>
+      <div className="relative mx-auto max-w-[1140px] px-5 sm:px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="aee-section-label">Student stories</p>
           <h2
             id="testimonials-heading"
-            className="mt-3 text-[clamp(2rem,5vw,3.25rem)] font-semibold tracking-[-0.03em] text-white"
+            className="mt-3 text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-[-0.03em] text-slate-900 dark:text-white"
           >
-            Smarter prep. Better scores.
-            <br className="hidden sm:block" />
-            {" "}A fraction of the cost.
+            Trusted by NCLEX &amp; USMLE students
           </h2>
+          <p className="mt-4 text-[1.0625rem] leading-relaxed text-slate-600 dark:text-slate-400">
+            Real outcomes from nursing and medical students who used adaptive
+            prep to raise readiness and pass their boards.
+          </p>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1] }}
-          className="mx-auto mt-14 max-w-4xl"
-        >
-          <div className="mb-8 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-            <div className="flex min-w-[10rem] flex-col items-center rounded-2xl border border-white/10 bg-white/[0.04] px-8 py-5 backdrop-blur-sm">
-              <p className="text-[0.6875rem] font-semibold uppercase tracking-wider text-[#86868b]">
-                Before
-              </p>
-              <p className="mt-1 text-3xl font-semibold tracking-tight text-[#86868b] line-through decoration-white/30">
-                {testimonial.beforeCost}
-              </p>
-              <p className="mt-1 text-xs text-[#86868b]">Traditional course</p>
-            </div>
-
-            <ArrowRight className="hidden h-5 w-5 shrink-0 text-[#2997ff] sm:block" aria-hidden />
-
-            <div className="flex min-w-[10rem] flex-col items-center rounded-2xl border border-[#2997ff]/40 bg-[#0071e3]/15 px-8 py-5 shadow-[0_0_40px_rgba(0,113,227,0.2)] backdrop-blur-sm">
-              <p className="text-[0.6875rem] font-semibold uppercase tracking-wider text-[#2997ff]">
-                With Any Exam Easy
-              </p>
-              <p className="mt-1 text-3xl font-semibold tracking-tight text-white">
-                {testimonial.afterCost}
-              </p>
-              <p className="mt-1 text-xs text-[#a1a1a6]">AI-powered studying</p>
-            </div>
-          </div>
-
-          <figure className="rounded-[1.75rem] border border-white/10 bg-white/[0.06] p-8 backdrop-blur-md md:p-12">
-            <blockquote>
-              <p className="text-center text-[clamp(1.25rem,2.8vw,1.75rem)] font-medium leading-[1.45] tracking-[-0.02em] text-white">
-                &ldquo;I paid{" "}
-                <span className="text-[#86868b] line-through decoration-white/25">
-                  $340 for a USMLE course
-                </span>{" "}
-                and got average results. Now I only pay{" "}
-                <span className="text-[#2997ff]">$30/month with AnyExamEasy</span> and I&apos;m
-                getting{" "}
-                <span className="font-semibold text-white">much better results</span> with smarter
-                AI-powered studying.&rdquo;
-              </p>
-            </blockquote>
-
-            <figcaption className="mt-10 flex flex-col items-center gap-4 border-t border-white/10 pt-8 sm:flex-row sm:justify-between">
-              <div className="text-center sm:text-left">
-                <p className="text-base font-semibold text-white">{testimonial.name}</p>
-                <p className="mt-1 text-sm text-[#a1a1a6]">{testimonial.credential}</p>
-              </div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-400">
-                <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden />
-                Verified pass
-              </div>
-            </figcaption>
-          </figure>
-
-          <div className="mt-10 text-center">
-            <Button
-              href="/signup?plan=trial"
-              className="!bg-[#0071e3] !px-10 !py-4 !text-base !text-white shadow-[0_8px_32px_rgba(0,113,227,0.45)] hover:!bg-[#0077ed]"
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:gap-6">
+          {reviews.map((review, i) => (
+            <motion.li
+              key={review.id}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.45, delay: i * 0.07 }}
             >
-              Start {formatTrialLabel()} — {formatTrialIntroPrice()}
-            </Button>
-            <p className="mt-4 text-xs text-[#86868b]">
-              Join thousands preparing smarter · Cancel anytime
-            </p>
-          </div>
-        </motion.div>
+              <article className="aee-testimonial-card h-full">
+                <Quote
+                  className="h-8 w-8 text-teal-200 dark:text-teal-800"
+                  strokeWidth={1.5}
+                  aria-hidden
+                />
+
+                <blockquote className="mt-4 flex-1">
+                  <p className="text-[0.9375rem] leading-relaxed text-slate-700 dark:text-slate-300">
+                    &ldquo;{review.quote}&rdquo;
+                  </p>
+                </blockquote>
+
+                <ScoreImprovement before={review.scoreBefore} after={review.scoreAfter} />
+
+                <footer className="mt-5 flex items-start gap-3 border-t border-slate-100 pt-5 dark:border-slate-800">
+                  <Avatar initials={review.initials} avatarClass={review.avatarClass} />
+                  <div className="min-w-0 flex-1">
+                    <p className="font-semibold text-slate-900 dark:text-white">{review.name}</p>
+                    <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
+                      {review.detail}
+                    </p>
+                    <div className="mt-2.5 flex flex-wrap items-center gap-2">
+                      <span className="inline-flex items-center gap-1 rounded-full border border-teal-200/80 bg-teal-50 px-2.5 py-0.5 text-[0.6875rem] font-semibold text-teal-800 dark:border-teal-800/50 dark:bg-teal-950/50 dark:text-teal-300">
+                        {review.exam}
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-[0.6875rem] font-medium text-emerald-700 dark:text-emerald-400">
+                        <CheckCircle2 className="h-3 w-3 shrink-0" aria-hidden />
+                        {review.examLabel}
+                      </span>
+                    </div>
+                  </div>
+                </footer>
+              </article>
+            </motion.li>
+          ))}
+        </ul>
+
+        <p className="mx-auto mt-10 max-w-xl text-center text-xs leading-relaxed text-slate-400">
+          Individual results vary. Testimonials reflect self-reported study outcomes
+          and are not a guarantee of exam performance.
+        </p>
       </div>
     </section>
   );

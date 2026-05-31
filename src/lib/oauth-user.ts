@@ -4,14 +4,16 @@ import { isAtLeast18 } from "@/lib/age";
 
 const DEFAULT_DOB = new Date("1990-01-01");
 
-/** Link or create a user from Google OAuth (email pre-verified by provider). */
+/** Link or create a user from OAuth (email pre-verified by provider). */
 export async function findOrCreateGoogleUser(params: {
   email: string;
   name?: string | null;
   image?: string | null;
   providerAccountId: string;
+  provider?: "google" | "apple";
 }): Promise<{ id: string; role: string }> {
   const email = normalizeEmail(params.email);
+  const provider = params.provider ?? "google";
 
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) {
@@ -21,15 +23,15 @@ export async function findOrCreateGoogleUser(params: {
         data: { emailVerified: new Date() },
       });
     }
-    const hasGoogle = await prisma.account.findFirst({
-      where: { userId: existing.id, provider: "google" },
+    const hasProvider = await prisma.account.findFirst({
+      where: { userId: existing.id, provider },
     });
-    if (!hasGoogle) {
+    if (!hasProvider) {
       await prisma.account.create({
         data: {
           userId: existing.id,
           type: "oauth",
-          provider: "google",
+          provider,
           providerAccountId: params.providerAccountId,
         },
       });
@@ -50,7 +52,7 @@ export async function findOrCreateGoogleUser(params: {
       accounts: {
         create: {
           type: "oauth",
-          provider: "google",
+          provider,
           providerAccountId: params.providerAccountId,
         },
       },

@@ -1,52 +1,63 @@
-import { formatMonthlyPrice, formatPricingHeadline, formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
-import { Button } from "./ui/Button";
-import { HeroVisual } from "./HeroVisual";
+import { formatPricingHeadline } from "@/lib/site";
+import { ReturningUserHeroBanner } from "@/components/home/ReturningUserHeroBanner";
+import { HeroPrimaryCta } from "@/components/home/HeroPrimaryCta";
+import { HeroTrustSignals } from "@/components/home/HeroTrustSignals";
+import { HeroShowcase } from "@/components/home/HeroShowcase";
+import { Star } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="apple-section relative overflow-hidden pt-8 text-center md:pt-12">
-      <div className="pointer-events-none absolute inset-0 apple-hero-premium" />
+    <section
+      className="aee-hero relative overflow-hidden"
+      aria-labelledby="hero-heading"
+    >
+      <div className="pointer-events-none absolute inset-0 apple-hero-premium" aria-hidden />
 
-      <div className="relative mx-auto max-w-[980px] px-6">
-        <p className="apple-eyebrow apple-animate-in">Any Exam Easy</p>
+      <ReturningUserHeroBanner />
 
-        <h1 className="apple-display apple-animate-in apple-animate-in-delay-1 mt-2">
-          Pass your board exam.
-          <br className="hidden sm:block" />
-          {" "}Faster.
-        </h1>
+      <div className="relative mx-auto max-w-[1140px] px-5 sm:px-6">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 xl:gap-16">
+          <header className="text-center lg:text-left">
+            <div className="aee-reveal mx-auto flex flex-wrap items-center justify-center gap-2 lg:mx-0 lg:justify-start">
+              <p className="aee-badge">NCLEX · USMLE · NAPLEX</p>
+              <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-800 dark:bg-amber-950/40 dark:text-amber-300">
+                <Star className="h-3 w-3 fill-amber-400 text-amber-400" aria-hidden />
+                Built for healthcare students
+              </span>
+            </div>
 
-        <p className="apple-subhead apple-animate-in apple-animate-in-delay-2 mx-auto mt-5 max-w-[28rem]">
-          NCLEX NGN, NAPLEX, USMLE, INBDE, and SAT — adaptive AI questions from
-          Open RN, OpenStax, and board-style sources.
-        </p>
+            <h1
+              id="hero-heading"
+              className="aee-display-xl aee-reveal aee-reveal-delay-1 mt-6"
+            >
+              Pass your board exam{" "}
+              <span className="aee-display-accent">the first time.</span>
+            </h1>
 
-        <p className="apple-animate-in apple-animate-in-delay-2 mt-4 text-sm font-medium text-[var(--color-ink)]">
-          {formatPricingHeadline()}
-        </p>
+            <p className="aee-lede aee-reveal aee-reveal-delay-2 mx-auto mt-5 max-w-xl lg:mx-0">
+              Adaptive AI question banks with OER-backed rationales — built for
+              nursing, medical, pharmacy, and dental students who need results,
+              not another generic study app.
+            </p>
 
-        <div className="apple-animate-in apple-animate-in-delay-3 mx-auto mt-10 flex max-w-md flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center">
-          <Button
-            href="/signup?plan=trial"
-            className="!px-10 !py-4 !text-base shadow-[0_8px_30px_rgba(0,113,227,0.35)]"
-          >
-            Start {formatTrialLabel()} — {formatTrialIntroPrice()}
-          </Button>
-          <Button
-            href="/signup?plan=subscribe"
-            variant="secondary"
-            className="!px-10 !py-4 !text-base"
-          >
-            Subscribe Now — {formatMonthlyPrice()}/mo
-          </Button>
-        </div>
+            <p className="aee-pricing-note aee-reveal aee-reveal-delay-2 mt-4 text-base font-semibold">
+              {formatPricingHeadline()}
+            </p>
 
-        <p className="apple-animate-in apple-animate-in-delay-4 mt-5 text-xs text-[var(--color-ink-muted)]">
-          Free account · Payment required for all exam features · Cancel anytime · 18+ only
-        </p>
+            <div className="aee-reveal aee-reveal-delay-3 mx-auto mt-8 max-w-lg lg:mx-0 lg:max-w-none">
+              <HeroPrimaryCta callbackUrl="/dashboard" />
+            </div>
 
-        <div className="apple-animate-in apple-animate-in-delay-4 mx-auto mt-14 max-w-3xl">
-          <HeroVisual />
+            <HeroTrustSignals className="aee-reveal aee-reveal-delay-4 mt-8" />
+
+            <p className="aee-reveal aee-reveal-delay-5 mt-6 text-[0.6875rem] leading-relaxed text-slate-400">
+              Free account · Payment required for exam features · Cancel anytime · 18+
+            </p>
+          </header>
+
+          <div className="aee-reveal aee-reveal-delay-3 mx-auto w-full lg:mx-0">
+            <HeroShowcase />
+          </div>
         </div>
       </div>
     </section>

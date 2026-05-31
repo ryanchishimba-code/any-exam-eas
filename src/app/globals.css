@@ -3,17 +3,18 @@
 @theme {
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
     "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --color-ink: #1d1d1f;
-  --color-ink-muted: #86868b;
-  --color-surface: #f5f5f7;
-  --color-surface-elevated: #fbfbfd;
+  --color-ink: #0f172a;
+  --color-ink-muted: #64748b;
+  --color-surface: #f0fdfa;
+  --color-surface-elevated: #f8fafc;
   --color-bg: #ffffff;
-  --color-accent: #0071e3;
-  --color-accent-hover: #0077ed;
-  --color-border: rgba(0, 0, 0, 0.08);
-  --shadow-apple-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-apple-md: 0 4px 24px rgba(0, 0, 0, 0.06);
-  --shadow-apple-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --color-accent: #0d9488;
+  --color-accent-hover: #0f766e;
+  --color-accent-light: #14b8a6;
+  --color-border: rgba(15, 23, 42, 0.08);
+  --shadow-apple-sm: 0 2px 8px rgba(13, 148, 136, 0.06);
+  --shadow-apple-md: 0 4px 24px rgba(13, 148, 136, 0.08);
+  --shadow-apple-lg: 0 12px 40px rgba(13, 148, 136, 0.1);
   --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
   --page-top: 7.25rem;
 
@@ -24,19 +25,21 @@
   --card-foreground: #1d1d1f;
   --muted: #f5f5f7;
   --muted-foreground: #86868b;
-  --primary: #0071e3;
+  --primary: #0d9488;
   --primary-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.08);
-  --input: rgba(0, 0, 0, 0.08);
-  --ring: #0071e3;
+  --border: rgba(15, 23, 42, 0.08);
+  --input: rgba(15, 23, 42, 0.08);
+  --ring: #14b8a6;
 }
 
 .dark {
-  --color-ink: #f5f5f7;
-  --color-ink-muted: #98989d;
-  --color-surface: #1c1c1e;
-  --color-surface-elevated: #2c2c2e;
-  --color-bg: #000000;
+  --color-ink: #f1f5f9;
+  --color-ink-muted: #94a3b8;
+  --color-surface: #0f172a;
+  --color-surface-elevated: #1e293b;
+  --color-bg: #020617;
+  --color-accent: #2dd4bf;
+  --color-accent-hover: #14b8a6;
   --color-border: rgba(255, 255, 255, 0.12);
   --background: #0a0a0a;
   --foreground: #f5f5f7;
@@ -44,11 +47,11 @@
   --card-foreground: #f5f5f7;
   --muted: #2c2c2e;
   --muted-foreground: #98989d;
-  --primary: #0a84ff;
-  --primary-foreground: #ffffff;
+  --primary: #2dd4bf;
+  --primary-foreground: #042f2e;
   --border: rgba(255, 255, 255, 0.12);
   --input: rgba(255, 255, 255, 0.12);
-  --ring: #0a84ff;
+  --ring: #2dd4bf;
 }
 
 .dark .apple-glass {
@@ -234,11 +237,16 @@
 }
 
 .apple-hero-premium {
-  background: linear-gradient(180deg, #fbfbfd 0%, #ffffff 55%, #f5f5f7 100%);
+  background:
+    radial-gradient(ellipse 70% 50% at 50% -10%, rgba(20, 184, 166, 0.12), transparent),
+    radial-gradient(ellipse 40% 40% at 100% 50%, rgba(8, 145, 178, 0.06), transparent),
+    linear-gradient(180deg, #f0fdfa 0%, #ffffff 55%, #f8fafc 100%);
 }
 
 .dark .apple-hero-premium {
-  background: linear-gradient(180deg, #1c1c1e 0%, #000000 100%);
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(20, 184, 166, 0.08), transparent),
+    linear-gradient(180deg, #0f172a 0%, #020617 100%);
 }
 
 @theme inline {
@@ -259,6 +267,38 @@ html {
   scroll-behavior: smooth;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only:focus,
+.skip-link:focus {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 100;
+  width: auto;
+  height: auto;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  border-radius: 0.5rem;
+  background: #0d9488;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
 body {
   font-family: var(--font-sans);
   color: var(--color-ink);
@@ -269,7 +309,7 @@ body {
 }
 
 ::selection {
-  background: rgba(0, 113, 227, 0.18);
+  background: rgba(13, 148, 136, 0.2);
 }
 
 /* Apple design utilities — plain CSS so they always load in dev & prod */
@@ -340,7 +380,7 @@ body {
 
 .apple-select:focus {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.12);
+  box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.12);
   background: #fff;
 }
 
@@ -380,7 +420,7 @@ body {
 
 .apple-input:focus {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.12);
+  box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.12);
   background: #fff;
 }
 
@@ -408,7 +448,7 @@ body {
 }
 
 .apple-pill:hover {
-  border-color: rgba(0, 113, 227, 0.35);
+  border-color: rgba(13, 148, 136, 0.35);
   color: var(--color-accent);
   background: #fff;
 }
@@ -457,4 +497,534 @@ body {
 }
 .apple-animate-in-delay-4 {
   animation-delay: 0.44s;
+}
+
+/* Login modal — medical blue/teal theme */
+.login-modal-input {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(204 251 241);
+  background: rgb(240 253 250 / 0.5);
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+  color: rgb(15 23 42);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.login-modal-input::placeholder {
+  color: rgb(100 116 139);
+}
+
+.login-modal-input:focus {
+  border-color: rgb(20 184 166);
+  box-shadow: 0 0 0 3px rgb(20 184 166 / 0.15);
+}
+
+.dark .login-modal-input {
+  border-color: rgb(19 78 74 / 0.5);
+  background: rgb(15 23 42);
+  color: rgb(241 245 249);
+}
+
+.dark .login-modal-input:focus {
+  border-color: rgb(45 212 191);
+  box-shadow: 0 0 0 3px rgb(45 212 191 / 0.12);
+}
+
+.login-modal-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #0e7490 0%, #0891b2 50%, #0284c7 100%);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: white;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.login-modal-btn-primary:hover:not(:disabled) {
+  opacity: 0.95;
+}
+
+.login-modal-btn-primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.login-modal-btn-primary:disabled {
+  opacity: 0.6;
+}
+
+.login-modal-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(153 246 228);
+  background: white;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgb(15 118 110);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.login-modal-btn-secondary:hover:not(:disabled) {
+  background: rgb(240 253 250);
+  border-color: rgb(94 234 212);
+}
+
+.login-modal-btn-secondary:disabled {
+  opacity: 0.6;
+}
+
+.dark .login-modal-btn-secondary {
+  border-color: rgb(19 78 74);
+  background: rgb(15 23 42);
+  color: rgb(94 234 212);
+}
+
+.dark .login-modal-btn-secondary:hover:not(:disabled) {
+  background: rgb(19 78 74 / 0.4);
+}
+
+/* ——— Landing page — medical teal system ——— */
+
+.aee-hero {
+  padding-block: clamp(3rem, 8vw, 5rem);
+  padding-top: clamp(4.5rem, 10vw, 6rem);
+}
+
+.aee-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(13, 148, 136, 0.25);
+  background: rgba(240, 253, 250, 0.8);
+  padding: 0.375rem 0.875rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0f766e;
+}
+
+.dark .aee-badge {
+  border-color: rgba(45, 212, 191, 0.25);
+  background: rgba(19, 78, 74, 0.3);
+  color: #5eead4;
+}
+
+.aee-display-xl {
+  font-size: clamp(2.5rem, 7vw, 4.25rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--color-ink);
+}
+
+.aee-btn-hero {
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #0d9488 0%, #0891b2 50%, #0284c7 100%);
+  padding: 1.125rem 1.75rem;
+  font-size: clamp(1.0625rem, 2.5vw, 1.1875rem);
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 12px 40px rgba(13, 148, 136, 0.4);
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.aee-btn-hero:hover {
+  box-shadow: 0 16px 48px rgba(13, 148, 136, 0.48);
+  opacity: 0.97;
+}
+
+.aee-btn-hero:active {
+  transform: scale(0.985);
+}
+
+.aee-btn-hero-secondary {
+  border-radius: 1rem;
+  border: 2px solid rgba(13, 148, 136, 0.2);
+  background: white;
+  padding: 0.9375rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #0f766e;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.aee-btn-hero-secondary:hover {
+  background: #f0fdfa;
+  border-color: rgba(13, 148, 136, 0.4);
+}
+
+.aee-btn-hero-secondary:active {
+  transform: scale(0.985);
+}
+
+.dark .aee-btn-hero-secondary {
+  border-color: rgba(45, 212, 191, 0.25);
+  background: rgba(15, 23, 42, 0.6);
+  color: #5eead4;
+}
+
+.aee-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.875rem;
+  padding: 0.875rem 1rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+}
+
+.aee-social-btn:active {
+  transform: scale(0.98);
+}
+
+.aee-social-google {
+  border: 1.5px solid rgba(15, 23, 42, 0.12);
+  background: white;
+  color: #1e293b;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.aee-social-google:hover {
+  background: #f8fafc;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+}
+
+.aee-social-apple {
+  border: 1.5px solid #0f172a;
+  background: #0f172a;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.aee-social-apple:hover {
+  background: #1e293b;
+}
+
+.aee-social-email {
+  border: 1.5px solid rgba(13, 148, 136, 0.35);
+  background: #f0fdfa;
+  color: #0f766e;
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.1);
+}
+
+.aee-social-email:hover {
+  background: #ccfbf1;
+  border-color: rgba(13, 148, 136, 0.55);
+}
+
+.aee-display {
+  font-size: clamp(2.25rem, 6.5vw, 3.75rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  color: var(--color-ink);
+}
+
+.aee-display-accent {
+  background: linear-gradient(135deg, #0d9488 0%, #0891b2 50%, #0284c7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.aee-lede {
+  font-size: clamp(1.0625rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+  max-width: 32rem;
+}
+
+.aee-pricing-note {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #0f766e;
+}
+
+.dark .aee-pricing-note {
+  color: #5eead4;
+}
+
+.aee-btn-primary {
+  border-radius: 0.875rem;
+  background: linear-gradient(135deg, #0d9488 0%, #0891b2 55%, #0284c7 100%);
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 8px 28px rgba(13, 148, 136, 0.35);
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.aee-btn-primary:hover {
+  box-shadow: 0 12px 36px rgba(13, 148, 136, 0.42);
+  opacity: 0.96;
+}
+
+.aee-btn-primary:active {
+  transform: scale(0.98);
+}
+
+.aee-btn-login {
+  border-radius: 0.875rem;
+  border: 2px solid rgba(13, 148, 136, 0.35);
+  background: white;
+  font-weight: 600;
+  color: #0f766e;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.aee-btn-login:hover {
+  background: #f0fdfa;
+  border-color: rgba(13, 148, 136, 0.55);
+}
+
+.aee-btn-login:active {
+  transform: scale(0.98);
+}
+
+.aee-btn-login-dark {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.aee-btn-login-dark:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.aee-btn-secondary {
+  display: block;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.aee-btn-secondary:hover {
+  background: white;
+  border-color: rgba(13, 148, 136, 0.25);
+}
+
+.aee-btn-secondary-dark {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.aee-btn-secondary-dark:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.aee-section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0d9488;
+}
+
+.dark .aee-section-label {
+  color: #2dd4bf;
+}
+
+.aee-card {
+  border-radius: 1.25rem;
+  border: 1px solid rgba(13, 148, 136, 0.12);
+  background: white;
+  box-shadow: 0 4px 24px rgba(13, 148, 136, 0.06);
+  transition: transform 0.35s var(--ease-apple), box-shadow 0.35s var(--ease-apple);
+}
+
+.aee-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(13, 148, 136, 0.1);
+}
+
+.dark .aee-card {
+  border-color: rgba(45, 212, 191, 0.12);
+  background: #0f172a;
+}
+
+.aee-section-dark {
+  background: linear-gradient(180deg, #0f172a 0%, #042f2e 100%);
+  color: #f8fafc;
+}
+
+.aee-section-alt {
+  background: linear-gradient(180deg, #f0fdfa 0%, #f8fafc 100%);
+}
+
+.dark .aee-section-alt {
+  background: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+}
+
+@keyframes aee-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.aee-reveal {
+  animation: aee-fade-up 0.7s var(--ease-apple) both;
+}
+
+.aee-reveal-delay-1 { animation-delay: 0.08s; }
+.aee-reveal-delay-2 { animation-delay: 0.16s; }
+.aee-reveal-delay-3 { animation-delay: 0.24s; }
+.aee-reveal-delay-4 { animation-delay: 0.32s; }
+.aee-reveal-delay-5 { animation-delay: 0.4s; }
+
+/* Feature cards — landing */
+.aee-feature-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(13, 148, 136, 0.12);
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1.75rem;
+  box-shadow: 0 4px 20px rgba(13, 148, 136, 0.05);
+  transition:
+    transform 0.35s var(--ease-apple),
+    box-shadow 0.35s var(--ease-apple),
+    border-color 0.35s var(--ease-apple);
+}
+
+.aee-feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(13, 148, 136, 0.28);
+  box-shadow: 0 16px 48px rgba(13, 148, 136, 0.12);
+}
+
+.dark .aee-feature-card {
+  border-color: rgba(45, 212, 191, 0.12);
+  background: rgba(15, 23, 42, 0.6);
+}
+
+.dark .aee-feature-card:hover {
+  border-color: rgba(45, 212, 191, 0.3);
+  box-shadow: 0 16px 48px rgba(20, 184, 166, 0.1);
+}
+
+.aee-feature-icon {
+  display: inline-flex;
+  height: 2.75rem;
+  width: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.875rem;
+  box-shadow: 0 6px 20px rgba(13, 148, 136, 0.25);
+  transition: transform 0.35s var(--ease-apple), box-shadow 0.35s var(--ease-apple);
+}
+
+.aee-feature-card:hover .aee-feature-icon {
+  transform: scale(1.06);
+  box-shadow: 0 8px 28px rgba(13, 148, 136, 0.35);
+}
+
+.aee-feature-accent-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-apple);
+}
+
+.aee-feature-card:hover .aee-feature-accent-bar {
+  transform: scaleX(1);
+}
+
+/* Testimonial cards */
+.aee-testimonial-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: white;
+  padding: 1.75rem;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  transition:
+    transform 0.35s var(--ease-apple),
+    box-shadow 0.35s var(--ease-apple),
+    border-color 0.35s var(--ease-apple);
+}
+
+.aee-testimonial-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(13, 148, 136, 0.2);
+  box-shadow: 0 12px 40px rgba(13, 148, 136, 0.08);
+}
+
+.dark .aee-testimonial-card {
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.dark .aee-testimonial-card:hover {
+  border-color: rgba(45, 212, 191, 0.2);
+}
+
+/* Exam picker cards */
+.aee-exam-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(13, 148, 136, 0.12);
+  background: white;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(13, 148, 136, 0.05);
+  transition:
+    transform 0.35s var(--ease-apple),
+    box-shadow 0.35s var(--ease-apple),
+    border-color 0.35s var(--ease-apple);
+}
+
+.aee-exam-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(13, 148, 136, 0.28);
+  box-shadow: 0 16px 48px rgba(13, 148, 136, 0.12);
+}
+
+.dark .aee-exam-card {
+  border-color: rgba(45, 212, 191, 0.12);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.aee-exam-card-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(0.3);
+  transform-origin: left;
+  transition: transform 0.4s var(--ease-apple);
+}
+
+.aee-exam-card:hover .aee-exam-card-bar {
+  transform: scaleX(1);
 }

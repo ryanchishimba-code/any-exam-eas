@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
+import Apple from "next-auth/providers/apple";
 import { authConfig } from "@/auth.config";
 import { verifyUserPassword, recordUserLogin } from "@/lib/user-auth";
 import { loginSchema } from "@/lib/validators/auth";
@@ -23,6 +24,9 @@ const SESSION_MONTH_SEC = 30 * 24 * 60 * 60;
 const googleEnabled =
   !!process.env.GOOGLE_CLIENT_ID && !!process.env.GOOGLE_CLIENT_SECRET;
 
+const appleEnabled =
+  !!process.env.APPLE_ID && !!process.env.APPLE_SECRET;
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
   providers: [
@@ -35,14 +39,60 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }),
       ]
     : []),
+  ...(appleEnabled
+    ? [
+        Apple({
+          clientId: process.env.APPLE_ID!,
+          clientSecret: process.env.APPLE_SECRET!,
+          allowDangerousEmailAccountLinking: true,
+        }),
+      ]
+    : []),
     Credentials({
       name: "credentials",
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
         rememberMe: { label: "Remember me", type: "text" },
+        magicToken: { label: "Magic token", type: "text" },
       },
       async authorize(credentials, request) {
+        const magicToken =
+          typeof credentials?.magicToken === "string"
+            ? credentials.magicToken.trim()
+            : "";
+
+        if (magicToken) {
+          const { consumeMagicLinkToken } = await import("@/lib/magic-link");
+          const magicUser = await consumeMagicLinkToken(magicToken);
+          if (!magicUser) return null;
+
+          await recordUserLogin(magicUser.id);
+          const req = request as Request | undefined;
+          const sessionId = await startUserSession(magicUser.id, req);
+          trackEvent({
+            userId: magicUser.id,
+            sessionId,
+            eventType: EVENT_TYPES.USER_LOGIN,
+            category: "auth",
+            metadata: { method: "magic_link" },
+            req,
+          });
+          void logActivity({
+            userId: magicUser.id,
+            action: "login",
+            summary: "Signed in with magic link",
+          });
+
+          return {
+            id: magicUser.id,
+            email: magicUser.email,
+            name: magicUser.name,
+            role: magicUser.role,
+            rememberMe: true,
+          };
+        }
+
         const parsed = loginSchema.safeParse(credentials);
         if (!parsed.success) return null;
 
@@ -102,13 +152,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     ...authConfig.callbacks,
     async signIn({ user, account, profile }) {
-      if (account?.provider === "google" && user.email) {
-        const googleProfile = profile as { sub?: string } | undefined;
+      if (
+        (account?.provider === "google" || account?.provider === "apple") &&
+        user.email
+      ) {
+        const oauthProfile = profile as { sub?: string } | undefined;
         const linked = await findOrCreateGoogleUser({
           email: user.email,
           name: user.name,
           image: user.image,
-          providerAccountId: googleProfile?.sub ?? user.email,
+          providerAccountId: oauthProfile?.sub ?? user.email,
+          provider: account.provider === "apple" ? "apple" : "google",
         });
         const dbUser = await prisma.user.findUnique({
           where: { id: linked.id },
@@ -127,7 +181,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const remember = (user as { rememberMe?: boolean }).rememberMe === true;
         const maxAge = remember ? SESSION_MONTH_SEC : SESSION_DAY_SEC;
         token.exp = Math.floor(Date.now() / 1000) + maxAge;
-      } else if (account?.provider === "google" && token.email) {
+      } else if (
+        (account?.provider === "google" || account?.provider === "apple") &&
+        token.email
+      ) {
         const dbUser = await prisma.user.findUnique({
           where: { email: String(token.email).toLowerCase() },
           select: { id: true, role: true },

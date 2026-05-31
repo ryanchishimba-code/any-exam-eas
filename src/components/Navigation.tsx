@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { EmployeeAccessLink } from "@/components/EmployeeAccessLink";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 
 const links = [
   { href: "/study", label: "Study" },
@@ -33,15 +34,18 @@ export function Navigation() {
 
   return (
     <header className="apple-glass fixed top-0 z-50 w-full dark:border-white/5">
-      <nav className="mx-auto flex h-11 max-w-[980px] items-center justify-between px-6 md:h-12">
+      <nav
+        className="mx-auto flex h-11 max-w-[980px] items-center justify-between px-6 md:h-12"
+        aria-label="Main navigation"
+      >
         <Link
           href="/"
-          className="text-[0.8125rem] font-normal tracking-tight text-[var(--color-ink)] opacity-90 transition-opacity hover:opacity-100"
+          className="text-[0.8125rem] font-semibold tracking-tight text-[var(--color-ink)] transition-opacity hover:opacity-80"
         >
           Any Exam Easy
         </Link>
 
-        <ul className="hidden items-center gap-7 md:flex">
+        <ul className="hidden items-center gap-7 md:flex" role="list">
           {links.map((l) => (
             <li key={l.href}>
               <Link
@@ -67,12 +71,17 @@ export function Navigation() {
                 Account
               </Link>
             ) : (
-              <Link
-                href="/signup"
-                className="text-xs text-[var(--color-accent)] transition-opacity hover:opacity-80"
-              >
-                Sign up
-              </Link>
+              <div className="flex items-center gap-3">
+                <LoginModalTrigger className="text-xs font-medium text-[var(--color-ink)] opacity-80 transition-opacity hover:opacity-100">
+                  Log in
+                </LoginModalTrigger>
+                <Link
+                  href="/signup?plan=trial"
+                  className="rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 px-4 py-1.5 text-xs font-semibold text-white shadow-[0_2px_12px_rgba(13,148,136,0.35)] transition-opacity hover:opacity-90"
+                >
+                  Sign up free
+                </Link>
+              </div>
             )}
           </li>
         </ul>
@@ -102,13 +111,31 @@ export function Navigation() {
               {l.label}
             </Link>
           ))}
-          <Link
-            href={session?.user ? "/dashboard" : "/signup"}
-            className="mt-2 block py-2.5 text-sm text-[var(--color-accent)]"
-            onClick={() => setOpen(false)}
-          >
-            {session?.user ? "Account" : "Sign up"}
-          </Link>
+          {session?.user ? (
+            <Link
+              href="/dashboard"
+              className="mt-2 block py-2.5 text-sm text-[var(--color-ink)]"
+              onClick={() => setOpen(false)}
+            >
+              Account
+            </Link>
+          ) : (
+            <LoginModalTrigger
+              className="mt-2 block w-full py-2.5 text-left text-sm text-[var(--color-ink)]"
+              onClick={() => setOpen(false)}
+            >
+              Log in
+            </LoginModalTrigger>
+          )}
+          {!session?.user && (
+            <Link
+              href="/signup?plan=trial"
+              className="mt-3 block rounded-xl bg-gradient-to-r from-teal-600 to-cyan-600 py-3 text-center text-sm font-semibold text-white"
+              onClick={() => setOpen(false)}
+            >
+              Sign up free
+            </Link>
+          )}
           <div className="mt-3 border-t border-black/[0.06] pt-3 dark:border-white/10">
             <EmployeeAccessLink className="text-xs" />
           </div>

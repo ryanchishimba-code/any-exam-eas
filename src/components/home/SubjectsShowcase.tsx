@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { GraduationCap } from "lucide-react";
 import type { SubjectCatalogEntry } from "@/lib/subjects/catalog";
 import { AppleLink } from "@/components/ui/AppleLink";
+import { PageMemberAccess } from "@/components/home/PageMemberAccess";
 
 type CatalogResponse = {
   subjects: (SubjectCatalogEntry & { questionCount?: number })[];
@@ -28,9 +30,10 @@ export function SubjectsShowcase() {
 
   return (
     <section id="subjects" className="apple-section">
-      <div className="mx-auto max-w-[980px] px-6">
+      <div className="mx-auto max-w-[1100px] px-5 sm:px-6">
         <div className="text-center">
-          <h2 className="apple-headline">Prep for every board.</h2>
+          <p className="aee-section-label">Exam coverage</p>
+          <h2 className="apple-headline mt-3">Prep for every board.</h2>
           <p className="apple-subhead mx-auto mt-4 max-w-xl">
             Adaptive exams, question banks, and analytics — medicine, nursing,
             pharmacy, dentistry, and core sciences.
@@ -38,15 +41,18 @@ export function SubjectsShowcase() {
         </div>
 
         {loading && (
-          <div className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="h-40 animate-pulse rounded-2xl bg-black/[0.04] dark:bg-white/[0.06]" />
+              <div
+                key={i}
+                className="h-44 animate-pulse rounded-2xl bg-teal-50/50 dark:bg-teal-950/20"
+              />
             ))}
           </div>
         )}
 
         {!loading && subjects.length > 0 && (
-          <div className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {subjects.map((subject, i) => (
               <SubjectTile key={subject.fieldId} subject={subject} index={i} />
             ))}
@@ -56,6 +62,7 @@ export function SubjectsShowcase() {
         <p className="mt-12 text-center">
           <AppleLink href="/study">Open study hub</AppleLink>
         </p>
+        <PageMemberAccess className="mt-6 text-center" />
       </div>
     </section>
   );
@@ -70,29 +77,37 @@ function SubjectTile({
 }) {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.45, delay: index * 0.04 }}
-      className="apple-tile group flex flex-col p-6 text-center"
+      className="aee-card group flex flex-col p-6 text-left"
     >
-      <h3 className="text-[1.3125rem] font-semibold tracking-[-0.015em] text-[var(--color-ink)]">
+      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-teal-50 text-teal-600 transition-colors group-hover:bg-teal-100 dark:bg-teal-950/50 dark:text-teal-400">
+        <GraduationCap className="h-4 w-4" strokeWidth={2} aria-hidden />
+      </span>
+      <h3 className="mt-4 text-lg font-semibold tracking-[-0.015em] text-[var(--color-ink)]">
         {subject.label}
       </h3>
-      <p className="mt-1 text-sm text-[var(--color-ink-muted)]">{subject.boardExam}</p>
+      <p className="mt-1 text-sm font-medium text-teal-700/80 dark:text-teal-400/80">
+        {subject.boardExam}
+      </p>
       <p className="mt-3 flex-1 text-[0.8125rem] leading-relaxed text-[var(--color-ink-muted)]">
         {subject.description}
       </p>
-      <div className="mt-5 flex flex-wrap justify-center gap-2 text-[0.6875rem] text-[var(--color-ink-muted)]">
-        <span>{subject.questionCount ?? "—"} questions</span>
-        <span aria-hidden>·</span>
-        <span>{subject.topicCount} topics</span>
+      <div className="mt-4 flex flex-wrap gap-2 text-[0.6875rem] font-medium text-slate-400">
+        <span className="rounded-full bg-slate-100 px-2.5 py-0.5 dark:bg-slate-800">
+          {subject.questionCount ?? "—"} questions
+        </span>
+        <span className="rounded-full bg-slate-100 px-2.5 py-0.5 dark:bg-slate-800">
+          {subject.topicCount} topics
+        </span>
       </div>
       <Link
         href={`/study?field=${subject.fieldId}`}
-        className="mt-5 text-[var(--color-accent)] text-[0.9375rem] hover:underline"
+        className="mt-5 text-sm font-semibold text-teal-600 transition-colors hover:text-teal-700 dark:text-teal-400"
       >
-        Learn more
+        Learn more →
       </Link>
     </motion.article>
   );
