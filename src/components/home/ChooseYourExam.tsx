@@ -8,9 +8,12 @@ import {
   HeartPulse,
   LayoutGrid,
   Pill,
+  Sparkles,
   Stethoscope,
   type LucideIcon,
 } from "lucide-react";
+
+type ExamTheme = "nclex" | "usmle" | "naplex" | "inbde" | "others";
 
 type ExamCard = {
   id: string;
@@ -19,10 +22,10 @@ type ExamCard = {
   description: string;
   href: string;
   icon: LucideIcon;
-  gradient: string;
-  iconBg: string;
+  theme: ExamTheme;
   tags: string[];
   span: string;
+  popular?: boolean;
 };
 
 const exams: ExamCard[] = [
@@ -34,10 +37,10 @@ const exams: ExamCard[] = [
       "Unfolding cases, bow-tie, matrix grids, SATA, and classic prioritization items.",
     href: "/study?field=nursing",
     icon: HeartPulse,
-    gradient: "from-violet-500 to-purple-600",
-    iconBg: "bg-violet-500/10 text-violet-600 dark:text-violet-400",
+    theme: "nclex",
     tags: ["NGN formats", "Pharmacology", "Med-surg"],
     span: "lg:col-span-2",
+    popular: true,
   },
   {
     id: "usmle",
@@ -47,10 +50,10 @@ const exams: ExamCard[] = [
       "High-yield vignettes, pathophysiology, diagnostics, and Step 2 CK-style decision-making.",
     href: "/study?field=medicine",
     icon: Stethoscope,
-    gradient: "from-teal-500 to-cyan-600",
-    iconBg: "bg-teal-500/10 text-teal-600 dark:text-teal-400",
+    theme: "usmle",
     tags: ["Step 1", "Step 2 CK", "Clinical vignettes"],
     span: "lg:col-span-2",
+    popular: true,
   },
   {
     id: "naplex",
@@ -60,8 +63,7 @@ const exams: ExamCard[] = [
       "Calculations, drug interactions, therapeutic alternatives, and patient counseling scenarios.",
     href: "/study?field=pharmacy",
     icon: Pill,
-    gradient: "from-emerald-500 to-teal-600",
-    iconBg: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+    theme: "naplex",
     tags: ["Dosing", "Interactions", "Therapeutics"],
     span: "lg:col-span-2",
   },
@@ -73,8 +75,7 @@ const exams: ExamCard[] = [
       "Oral pathology, radiology, restorative dentistry, pharmacology, and treatment planning.",
     href: "/study?field=dentistry",
     icon: GraduationCap,
-    gradient: "from-cyan-500 to-sky-600",
-    iconBg: "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400",
+    theme: "inbde",
     tags: ["Radiographs", "Pathology", "Restorative"],
     span: "lg:col-span-3",
   },
@@ -86,8 +87,7 @@ const exams: ExamCard[] = [
       "Explore every discipline — adaptive banks, analytics, and mock exams across STEM and pre-professional prep.",
     href: "/study",
     icon: LayoutGrid,
-    gradient: "from-sky-500 to-blue-600",
-    iconBg: "bg-sky-500/10 text-sky-600 dark:text-sky-400",
+    theme: "others",
     tags: ["SAT", "Sciences", "All subjects"],
     span: "lg:col-span-3",
   },
@@ -97,22 +97,17 @@ export function ChooseYourExam() {
   return (
     <section
       id="choose-exam"
-      className="relative overflow-hidden py-[clamp(4rem,10vw,6.5rem)]"
+      className="aee-exams-section relative overflow-hidden py-[clamp(4.5rem,11vw,7rem)]"
       aria-labelledby="choose-exam-heading"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_100%,rgba(8,145,178,0.06),transparent)]"
-        aria-hidden
-      />
-
       <div className="relative mx-auto max-w-[1140px] px-5 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <p className="aee-section-label">Start here</p>
           <h2
             id="choose-exam-heading"
-            className="mt-3 text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-[-0.03em] text-slate-900 dark:text-white"
+            className="mt-3 text-[clamp(1.875rem,4vw,2.875rem)] font-bold tracking-[-0.03em] text-slate-900 dark:text-white"
           >
-            Choose Your Exam
+            Exams We Help You Ace
           </h2>
           <p className="mt-4 text-[1.0625rem] leading-relaxed text-slate-600 dark:text-slate-400">
             Pick your board and jump straight into adaptive questions, analytics,
@@ -120,60 +115,57 @@ export function ChooseYourExam() {
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-6 lg:gap-5">
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-6 lg:gap-6">
           {exams.map((exam, i) => {
             const Icon = exam.icon;
             return (
               <motion.li
                 key={exam.id}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.45, delay: i * 0.06 }}
                 className={exam.span}
               >
-                <Link href={exam.href} className="aee-exam-card group block h-full" aria-label={`Start ${exam.title} prep — ${exam.subtitle}`}>
-                  <span
-                    className={`aee-exam-card-bar bg-gradient-to-r ${exam.gradient}`}
-                    aria-hidden
-                  />
+                <Link
+                  href={exam.href}
+                  data-theme={exam.theme}
+                  className="aee-exam-card group block h-full"
+                  aria-label={`Start ${exam.title} prep — ${exam.subtitle}`}
+                >
+                  {exam.popular && (
+                    <span className="aee-exam-popular-badge">
+                      <Sparkles className="h-3 w-3" aria-hidden />
+                      Most Popular
+                    </span>
+                  )}
+
+                  <span className="aee-exam-card-bar" aria-hidden />
 
                   <div className="flex items-start justify-between gap-3">
-                    <span
-                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${exam.iconBg}`}
-                    >
-                      <Icon className="h-5 w-5" strokeWidth={2} aria-hidden />
+                    <span className="aee-exam-icon-wrap">
+                      <Icon className="h-8 w-8" strokeWidth={1.75} aria-hidden />
                     </span>
-                    <ArrowRight
-                      className="h-5 w-5 shrink-0 text-slate-300 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-teal-500 dark:text-slate-600 dark:group-hover:text-teal-400"
-                      aria-hidden
-                    />
+                    <ArrowRight className="aee-exam-arrow h-6 w-6 shrink-0" aria-hidden />
                   </div>
 
-                  <h3 className="mt-4 text-xl font-bold tracking-tight text-slate-900 dark:text-white">
-                    {exam.title}
-                  </h3>
-                  <p className="mt-1 text-sm font-medium text-teal-700 dark:text-teal-400">
-                    {exam.subtitle}
-                  </p>
+                  <h3 className="aee-exam-title mt-5">{exam.title}</h3>
+                  <p className="aee-exam-subtitle mt-1">{exam.subtitle}</p>
                   <p className="mt-3 text-[0.9375rem] leading-relaxed text-slate-600 dark:text-slate-400">
                     {exam.description}
                   </p>
 
-                  <ul className="mt-4 flex flex-wrap gap-1.5">
+                  <ul className="mt-5 flex flex-wrap gap-2">
                     {exam.tags.map((tag) => (
-                      <li
-                        key={tag}
-                        className="rounded-full border border-slate-200/80 bg-slate-50 px-2.5 py-0.5 text-[0.6875rem] font-medium text-slate-600 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-400"
-                      >
+                      <li key={tag} className="aee-exam-tag">
                         {tag}
                       </li>
                     ))}
                   </ul>
 
-                  <span className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-teal-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:text-teal-400">
+                  <span className="aee-exam-cta mt-6 inline-flex items-center gap-1.5 text-sm font-semibold">
                     Start studying
-                    <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                    <ArrowRight className="h-4 w-4" aria-hidden />
                   </span>
                 </Link>
               </motion.li>
