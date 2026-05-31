@@ -49,6 +49,8 @@ export type ExamQuestion = {
   };
   highYield?: boolean;
   qualityScore?: number;
+  /** Structured layout for NGN formats (bow-tie, matrix, highlight). */
+  chartData?: Record<string, unknown>;
 };
 
 export type GeneratedExam = {

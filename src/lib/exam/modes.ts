@@ -6,6 +6,7 @@ export type ExamModeId =
   | "rapid"
   | "weak_area"
   | "mock_board"
+  | "cat_mock"
   | "subject"
   | "mixed";
 
@@ -14,7 +15,7 @@ export type ExamModeDefinition = {
   label: string;
   description: string;
   href: string;
-  studyMode: "practice" | "rapid" | "timed";
+  studyMode: "practice" | "rapid" | "timed" | "cat";
   /** Query param for generators / practice */
   param?: string;
   premium?: boolean;
@@ -60,6 +61,16 @@ export const EXAM_MODES: ExamModeDefinition[] = [
     href: "/study/practice?mode=weak",
     studyMode: "practice",
     param: "weak",
+  },
+  {
+    id: "cat_mock",
+    label: "NCLEX-style CAT mock",
+    description:
+      "Adaptive question count (75–145) with difficulty that ramps based on your answers — self-assessment practice.",
+    href: "/study/practice?mode=cat",
+    studyMode: "cat",
+    param: "cat",
+    premium: true,
   },
   {
     id: "mock_board",

@@ -4,6 +4,13 @@ import type { StudyQuestion } from "@/lib/questions/types";
 import { cleanOptionText } from "@/lib/question-format";
 import { NgnFormatBadge, VignetteBlock } from "./NgnChrome";
 import {
+  BowTieQuestion,
+  HighlightQuestion,
+  MatrixQuestion,
+  UnfoldingCaseBanner,
+  formatMatrixAnswer,
+} from "./NgnFormats";
+import {
   McqOptions,
   OrderedResponseOptions,
   SelectAllOptions,
@@ -41,9 +48,40 @@ export function QuestionRenderer({ question, selected, revealed, onToggle }: Pro
         )}
       </div>
 
-      {question.vignette && <VignetteBlock text={question.vignette} />}
+      <UnfoldingCaseBanner question={question} />
+
+      {question.vignette && question.type !== "highlight" && (
+        <VignetteBlock text={question.vignette} />
+      )}
 
       <p className="text-xl font-medium leading-snug sm:text-2xl">{question.stem}</p>
+
+      {question.type === "bow_tie" && (
+        <BowTieQuestion
+          question={question}
+          selected={selected}
+          revealed={revealed}
+          onToggle={handleToggle}
+        />
+      )}
+
+      {question.type === "matrix" && (
+        <MatrixQuestion
+          question={question}
+          selected={selected}
+          revealed={revealed}
+          onToggle={handleToggle}
+        />
+      )}
+
+      {question.type === "highlight" && (
+        <HighlightQuestion
+          question={question}
+          selected={selected}
+          revealed={revealed}
+          onToggle={handleToggle}
+        />
+      )}
 
       {question.type === "select_all" && (
         <SelectAllOptions
@@ -65,6 +103,7 @@ export function QuestionRenderer({ question, selected, revealed, onToggle }: Pro
 
       {(question.type === "multiple_choice" ||
         question.type === "clinical_reasoning" ||
+        question.type === "unfolding_case" ||
         question.type === "true_false") && (
         <McqOptions
           question={question}
@@ -125,6 +164,17 @@ export function ExplanationPanel({ question }: { question: StudyQuestion }) {
           <ul className="mt-1 list-inside list-disc">
             {question.references.map((r, i) => (
               <li key={i}>{r}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {question.type === "matrix" && question.correctAnswers.length > 0 && (
+        <div className="text-xs text-[var(--color-ink-muted)]">
+          <span className="font-semibold uppercase tracking-wide">Correct cells</span>
+          <ul className="mt-1 list-inside list-disc">
+            {question.correctAnswers.map((k) => (
+              <li key={k}>{formatMatrixAnswer(k)}</li>
             ))}
           </ul>
         </div>

@@ -1,7 +1,7 @@
 {
   "name": "Any Exam Easy",
   "short_name": "AnyExamEasy",
-  "description": "NCLEX, USMLE, NAPLEX & INBDE board exam prep with adaptive AI questions.",
+  "description": "NCLEX, USMLE, NAPLEX board exam prep with NGN formats and adaptive practice.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

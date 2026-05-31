@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { AppleLink } from "@/components/ui/AppleLink";
 
-export type StudyFormat = "practice" | "adaptive" | "exam" | "analytics";
+export type StudyFormat = "practice" | "adaptive" | "exam" | "analytics" | "cat";
 
 const modes: {
   id: StudyFormat;
@@ -26,6 +26,14 @@ const modes: {
     description: "Questions can emphasize topics where you need more review based on your attempts.",
     href: "/study/practice?mode=adaptive",
     linkLabel: "Start personalized session",
+  },
+  {
+    id: "cat",
+    title: "NCLEX-style CAT mock",
+    description:
+      "Adaptive 75–145 question mock with difficulty that ramps to your performance — self-assessment only.",
+    href: "/study/practice?mode=cat",
+    linkLabel: "Start adaptive mock",
   },
   {
     id: "exam",

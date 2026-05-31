@@ -27,6 +27,9 @@ const ChooseYourExam = dynamic(() =>
 const WelcomeBackSection = dynamic(() =>
   import("@/components/home/WelcomeBackSection").then((m) => m.WelcomeBackSection)
 );
+const NgnInteractiveDemo = dynamic(() =>
+  import("@/components/home/NgnInteractiveDemo").then((m) => m.NgnInteractiveDemo)
+);
 
 export default function HomePage() {
   return (
@@ -34,6 +37,7 @@ export default function HomePage() {
       <HomeJsonLd />
       <Hero />
       <HomeLivePulse />
+      <NgnInteractiveDemo />
       <ChooseYourExam />
       <Top300DrugsMastery />
       <LandingFeatures />

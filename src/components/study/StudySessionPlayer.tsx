@@ -12,6 +12,7 @@ import {
   summarizeSession,
 } from "@/lib/questions/session-engine";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
+import { bowTieSelectionValid, parseBowTieLayout, parseMatrixKey } from "@/lib/questions/ngn-structures";
 import { persistSessionLocally } from "@/lib/questions/storage";
 import type {
   ConfidenceLevel,
@@ -204,16 +205,60 @@ export function StudySessionPlayer({
       setSelected((prev) => (prev.includes(option) ? prev : [...prev, option]));
       return;
     }
-    if (current.type === "select_all") {
+    if (current.type === "select_all" || current.type === "highlight") {
       setSelected((prev) =>
         prev.includes(option) ? prev.filter((o) => o !== option) : [...prev, option]
       );
+      return;
+    }
+    if (current.type === "matrix") {
+      setSelected((prev) => {
+        if (prev.includes(option)) return prev.filter((o) => o !== option);
+        const { row } = parseMatrixKey(option);
+        const withoutRow = prev.filter((o) => parseMatrixKey(o).row !== row);
+        return [...withoutRow, option];
+      });
+      return;
+    }
+    if (current.type === "bow_tie") {
+      const layout = parseBowTieLayout(current);
+      setSelected((prev) => {
+        if (prev.includes(option)) return prev.filter((o) => o !== option);
+        if (layout.actions.includes(option)) {
+          const next = prev.filter((o) => !layout.actions.includes(o));
+          return [...next, option];
+        }
+        if (layout.monitors.includes(option)) {
+          let next = prev.filter((o) => !layout.monitors.includes(o));
+          const monitors = prev.filter((o) => layout.monitors.includes(o));
+          if (monitors.length >= layout.monitorPickCount) {
+            next = prev.filter((o) => o !== monitors[0]);
+          }
+          return [...next, option];
+        }
+        return [...prev, option];
+      });
       return;
     }
     setSelected([option]);
     if (sessionState.mode === "rapid") {
       void revealAnswer([option]);
     }
+  }
+
+  function canSubmitSelection(): boolean {
+    if (!current || selected.length === 0) return false;
+    if (current.type === "ordered_response") {
+      return selected.length === current.correctAnswers.length;
+    }
+    if (current.type === "bow_tie") {
+      const layout = parseBowTieLayout(current);
+      return bowTieSelectionValid(selected, layout);
+    }
+    if (current.type === "matrix") {
+      return selected.length === current.correctAnswers.length;
+    }
+    return true;
   }
 
   function onConfidence(level: ConfidenceLevel) {
@@ -337,18 +382,18 @@ export function StudySessionPlayer({
           {!answer?.revealed && sessionState.mode !== "rapid" && (
             <button
               type="button"
-              disabled={
-                !selected.length ||
-                (current.type === "ordered_response" &&
-                  selected.length !== current.correctAnswers.length)
-              }
+              disabled={!canSubmitSelection()}
               onClick={() => void revealAnswer(selected)}
               className="mt-8 rounded-full bg-[var(--color-accent)] px-10 py-3 text-sm font-medium text-white disabled:opacity-40"
             >
               {current.type === "ordered_response" &&
               selected.length !== current.correctAnswers.length
                 ? `Select ${current.correctAnswers.length - selected.length} more`
-                : "Check"}
+                : current.type === "bow_tie" && !canSubmitSelection()
+                  ? "Complete bow-tie selections"
+                  : current.type === "matrix" && !canSubmitSelection()
+                    ? `Select ${current.correctAnswers.length} cells`
+                    : "Check"}
             </button>
           )}
 

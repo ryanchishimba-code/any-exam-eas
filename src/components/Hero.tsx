@@ -1,7 +1,7 @@
 import { formatPricingHeadline } from "@/lib/site";
 import { ReturningUserHeroBanner } from "@/components/home/ReturningUserHeroBanner";
 import { HeroPrimaryCta } from "@/components/home/HeroPrimaryCta";
-import { HeroTrustSignals } from "@/components/home/HeroTrustSignals";
+import { LiveBankStats } from "@/components/home/LiveBankStats";
 import { HeroShowcase } from "@/components/home/HeroShowcase";
 import { Award } from "lucide-react";
 
@@ -48,7 +48,7 @@ export function Hero() {
               <HeroPrimaryCta callbackUrl="/dashboard" />
             </div>
 
-            <HeroTrustSignals className="aee-reveal aee-reveal-delay-4 mt-8" />
+            <LiveBankStats className="aee-reveal aee-reveal-delay-4 mt-8" />
 
             <p className="aee-reveal aee-reveal-delay-5 mt-6 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
               Free account · Payment required for exam features · Cancel anytime · 18+ · Study

@@ -6,6 +6,7 @@ import { FIELD_LABELS, getFieldMeta } from "@/lib/fields";
 import { getSubjectsForField } from "@/lib/field-subjects";
 import { EXAM_MODES } from "@/lib/exam/modes";
 import { StudySessionPlayer } from "./StudySessionPlayer";
+import { CatMockPractice } from "./CatMockPractice";
 import type { RawQuestionInput, StudyMode } from "@/lib/questions/types";
 import type { ExamQuestion } from "@/lib/ai";
 import { Button } from "@/components/ui/Button";
@@ -24,6 +25,7 @@ function resolveModeFromParam(param: string | null): {
     weak_area: { studyMode: "weak_area", apiMode: "weak", label: "Weak-area drill" },
     tutor: { studyMode: "practice", apiMode: null, label: "Tutor mode" },
     practice: { studyMode: "practice", apiMode: null, label: "Practice" },
+    cat: { studyMode: "cat", apiMode: null, label: "NCLEX-style CAT mock" },
   };
   return map[param ?? "practice"] ?? map.practice;
 }
@@ -34,6 +36,7 @@ export function StudyBankPractice() {
   const fieldParam = searchParams.get("field");
 
   const { studyMode, apiMode, label } = resolveModeFromParam(modeParam);
+  const isCatMode = modeParam === "cat";
 
   const [field, setField] = useState("Medicine");
   const [subjectId, setSubjectId] = useState("");
@@ -113,6 +116,10 @@ export function StudyBankPractice() {
     }
   }
 
+  if (isCatMode) {
+    return <CatMockPractice />;
+  }
+
   if (questions) {
     return (
       <StudySessionPlayer
@@ -129,7 +136,7 @@ export function StudyBankPractice() {
   return (
     <div className="mt-8 space-y-6">
       <div className="flex flex-wrap gap-2">
-        {EXAM_MODES.slice(0, 5).map((m) => (
+        {EXAM_MODES.slice(0, 6).map((m) => (
           <a
             key={m.id}
             href={m.href}

@@ -34,21 +34,41 @@ const bodySchema = z.object({
 });
 
 function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQuestion {
+  const ngnType = prepared.ngnFormat ?? prepared.type;
+  const typeMap: Record<string, ExamQuestion["type"]> = {
+    bow_tie: "bow_tie",
+    matrix: "matrix",
+    highlight: "highlight",
+    unfolding_case: "unfolding_case",
+    select_all: "select_all",
+    ordered_response: "ordered_response",
+    true_false: "true_false",
+    short_answer: "short_answer",
+  };
+  const type = typeMap[ngnType] ?? typeMap[prepared.type] ?? "multiple_choice";
+
   return {
     id: prepared.sourceIndex,
-    type:
-      prepared.type === "true_false"
-        ? "true_false"
-        : prepared.type === "short_answer"
-          ? "short_answer"
-          : "multiple_choice",
+    type,
+    ngnFormat: prepared.ngnFormat,
+    vignette: prepared.vignette,
     question: prepared.stem,
     options: prepared.options,
-    correctAnswer: prepared.correctAnswers[0] ?? "",
+    correctAnswer:
+      prepared.type === "select_all" ||
+      prepared.type === "bow_tie" ||
+      prepared.type === "matrix" ||
+      prepared.type === "highlight" ||
+      prepared.type === "ordered_response"
+        ? prepared.correctAnswers.join(",")
+        : (prepared.correctAnswers[0] ?? ""),
     explanation: prepared.explanation,
+    clinicalReasoning: prepared.clinicalReasoning,
     solutionSteps: prepared.solutionSteps,
     tags: prepared.tags,
     highYield: prepared.highYield,
+    chartData: prepared.chartData,
+    caseStep: prepared.caseStep,
   };
 }
 

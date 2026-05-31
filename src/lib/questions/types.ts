@@ -12,7 +12,11 @@ export type StudyQuestionType =
   | "calculation"
   | "image_interpretation"
   | "chart_table"
-  | "clinical_reasoning";
+  | "clinical_reasoning"
+  | "bow_tie"
+  | "matrix"
+  | "highlight"
+  | "unfolding_case";
 
 export type StudyMode =
   | "practice"
@@ -21,7 +25,8 @@ export type StudyMode =
   | "adaptive"
   | "tutor"
   | "weak_area"
-  | "mock";
+  | "mock"
+  | "cat";
 
 /** Rich explanation payload for tutor mode & review. */
 export type QuestionExplanation = {

@@ -5,10 +5,21 @@ import {
 } from "@/lib/question-format";
 import { normalizeStem } from "./stem";
 import { inferStudyQuestionType } from "./ngn-map";
+import {
+  matrixOptionsFromLayout,
+  parseBowTieLayout,
+  parseMatrixLayout,
+} from "./ngn-structures";
 import type { RawQuestionInput, StudyQuestion, StudyQuestionType } from "./types";
 
 function toCorrectAnswers(type: StudyQuestionType, correct: string): string[] {
-  if (type === "select_all" || type === "ordered_response") {
+  if (
+    type === "select_all" ||
+    type === "ordered_response" ||
+    type === "bow_tie" ||
+    type === "matrix" ||
+    type === "highlight"
+  ) {
     return correct
       .split(",")
       .map((s) => cleanOptionText(s.trim()))
@@ -39,6 +50,14 @@ export function examQuestionToStudy(
     options = ["True", "False"];
     const c = cleanOptionText(correctAnswer).toLowerCase();
     correctAnswer = c.startsWith("t") ? "True" : "False";
+  } else if (type === "bow_tie") {
+    const layout = parseBowTieLayout(q);
+    options = [...layout.actions, ...layout.monitors];
+  } else if (type === "matrix") {
+    const layout = parseMatrixLayout(q);
+    options = matrixOptionsFromLayout(layout);
+  } else if (type === "highlight") {
+    options = toCorrectAnswers(type, correctAnswer);
   } else if (type !== "ordered_response" && type !== "select_all") {
     const normalized = normalizeQuestionOptions(options, correctAnswer);
     const shuffled = shuffleAnswerOptions(normalized.options, normalized.correctAnswer);
@@ -81,6 +100,8 @@ export function examQuestionToStudy(
     subjectId: q.subjectId,
     bankItemId: q.bankItemId,
     qualityScore: q.qualityScore,
+    difficulty: q.difficultyLabel?.toLowerCase(),
+    chartData: q.chartData,
   };
 }
 
@@ -115,7 +136,12 @@ export function isAnswerCorrect(
     );
   }
 
-  if (question.type === "select_all") {
+  if (
+    question.type === "select_all" ||
+    question.type === "bow_tie" ||
+    question.type === "matrix" ||
+    question.type === "highlight"
+  ) {
     if (normalizedSelected.length !== normalizedCorrect.length) return false;
     return normalizedCorrect.every((c) =>
       normalizedSelected.some((s) => s.toLowerCase() === c.toLowerCase())
