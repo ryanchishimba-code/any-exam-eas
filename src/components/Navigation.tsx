@@ -6,7 +6,6 @@ import { useSession } from "next-auth/react";
 import { BarChart3, LogOut, Menu, Settings, User, X } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
-import { SignOutConfirmDialog } from "@/components/auth/SignOutConfirmDialog";
 import { AvatarDropdown } from "@/components/navigation/AvatarDropdown";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 
@@ -30,13 +29,7 @@ export function Navigation() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const { data: session, status } = useSession();
-  const {
-    confirmOpen,
-    signingOut,
-    requestSignOut,
-    cancelSignOut,
-    confirmSignOut,
-  } = useSignOutConfirm({ callbackUrl: "/" });
+  const { signingOut, requestSignOut } = useSignOutConfirm({ callbackUrl: "/" });
 
   const isAuthenticated = status === "authenticated" && Boolean(session?.user);
   const authReady = status !== "loading";
@@ -69,139 +62,128 @@ export function Navigation() {
   }
 
   return (
-    <>
-      <header
-        ref={headerRef}
-        className="apple-glass aee-nav fixed top-0 z-50 w-full"
+    <header
+      ref={headerRef}
+      className="apple-glass aee-nav fixed top-0 z-50 w-full"
+    >
+      <nav
+        className="mx-auto flex h-12 max-w-[1080px] items-center justify-between gap-4 px-5 sm:px-6 md:h-[3.25rem]"
+        aria-label="Main navigation"
       >
-        <nav
-          className="mx-auto flex h-12 max-w-[1080px] items-center justify-between px-5 sm:px-6 md:h-[3.25rem]"
-          aria-label="Main navigation"
+        <Link
+          href="/"
+          className="shrink-0 text-[0.8125rem] font-semibold tracking-tight text-[var(--color-ink)] transition-opacity hover:opacity-80"
         >
-          <Link
-            href="/"
-            className="text-[0.8125rem] font-semibold tracking-tight text-[var(--color-ink)] transition-opacity hover:opacity-80"
-          >
-            Any Exam Easy
-          </Link>
+          Any Exam Easy
+        </Link>
 
-          <ul className="hidden items-center gap-6 lg:flex" role="list">
-            {links.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className={`text-xs transition-opacity duration-200 ${navClass(isActive(l.href))}`}
-                  aria-current={isActive(l.href) ? "page" : undefined}
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-            <li>
-              {!authReady ? (
-                <span
-                  className="inline-block h-8 w-20 animate-pulse rounded-full bg-black/[0.06]"
-                  aria-hidden
-                />
-              ) : isAuthenticated ? (
-                <AvatarDropdown />
-              ) : (
-                <div className="flex items-center gap-3">
-                  <LoginModalTrigger className="text-xs font-medium text-[var(--color-ink)] opacity-80 transition-opacity hover:opacity-100">
-                    Log in
-                  </LoginModalTrigger>
-                  <Link href="/signup?plan=trial" className="aee-nav-cta">
-                    Start free trial
-                  </Link>
-                </div>
-              )}
-            </li>
-          </ul>
-
-          <div className="flex items-center gap-2 lg:hidden">
-            {authReady && isAuthenticated && <AvatarDropdown />}
-            <button
-              type="button"
-              className="rounded-lg p-1.5 text-[var(--color-ink)] opacity-80 transition hover:bg-black/[0.04] hover:opacity-100"
-              onClick={() => setOpen(!open)}
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
-              aria-controls={mobileMenuId}
-            >
-              {open ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
-            </button>
-          </div>
-        </nav>
-
-        {open && (
-          <div
-            id={mobileMenuId}
-            className="aee-mobile-nav border-t border-black/[0.04] bg-[rgba(251,251,253,0.98)] px-5 py-4 backdrop-blur-xl lg:hidden"
-          >
-            {links.map((l) => (
+        <ul className="hidden min-w-0 flex-1 items-center justify-center gap-6 lg:flex" role="list">
+          {links.map((l) => (
+            <li key={l.href}>
               <Link
-                key={l.href}
                 href={l.href}
-                className={`block py-2.5 text-sm ${navClass(isActive(l.href))}`}
+                className={`text-xs transition-opacity duration-200 ${navClass(isActive(l.href))}`}
                 aria-current={isActive(l.href) ? "page" : undefined}
-                onClick={() => setOpen(false)}
               >
                 {l.label}
               </Link>
-            ))}
-            {authReady && !isAuthenticated && (
-              <>
-                <LoginModalTrigger
-                  className="mt-2 block w-full py-2.5 text-left text-sm text-[var(--color-ink)]"
-                  onClick={() => setOpen(false)}
-                >
-                  Log in
-                </LoginModalTrigger>
-                <Link
-                  href="/signup?plan=trial"
-                  className="aee-nav-cta mt-3 block py-3 text-center text-sm"
-                  onClick={() => setOpen(false)}
-                >
-                  Start free trial
-                </Link>
-              </>
-            )}
-            {authReady && isAuthenticated && (
-              <div className="mt-3 space-y-1 border-t border-black/[0.06] pt-3">
-                <Link href="/dashboard" className="aee-mobile-nav-item" onClick={() => setOpen(false)}>
-                  <User className="h-4 w-4" aria-hidden /> Profile
-                </Link>
-                <Link
-                  href="/study/analytics"
-                  className="aee-mobile-nav-item"
-                  onClick={() => setOpen(false)}
-                >
-                  <BarChart3 className="h-4 w-4" aria-hidden /> Progress &amp; Analytics
-                </Link>
-                <Link href="/pricing" className="aee-mobile-nav-item" onClick={() => setOpen(false)}>
-                  <Settings className="h-4 w-4" aria-hidden /> Settings
-                </Link>
-                <button
-                  type="button"
-                  className="aee-mobile-nav-signout"
-                  disabled={signingOut}
-                  onClick={handleMobileSignOutRequest}
-                >
-                  <LogOut className="h-4 w-4" aria-hidden />
-                  Sign out
-                </button>
-              </div>
-            )}
-          </div>
-        )}
-      </header>
+            </li>
+          ))}
+        </ul>
 
-      <SignOutConfirmDialog
-        open={confirmOpen}
-        loading={signingOut}
-        onCancel={cancelSignOut}
-        onConfirm={() => void confirmSignOut()}
-      />
-    </>
+        <div className="flex shrink-0 items-center gap-2">
+          {!authReady ? (
+            <span
+              className="inline-block h-8 w-20 animate-pulse rounded-full bg-black/[0.06]"
+              aria-hidden
+            />
+          ) : isAuthenticated ? (
+            <AvatarDropdown />
+          ) : (
+            <>
+              <LoginModalTrigger className="hidden text-xs font-medium text-[var(--color-ink)] opacity-80 transition-opacity hover:opacity-100 lg:inline">
+                Log in
+              </LoginModalTrigger>
+              <Link href="/signup?plan=trial" className="aee-nav-cta hidden lg:inline-flex">
+                Start free trial
+              </Link>
+            </>
+          )}
+
+          <button
+            type="button"
+            className="rounded-lg p-1.5 text-[var(--color-ink)] opacity-80 transition hover:bg-black/[0.04] hover:opacity-100 lg:hidden"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls={mobileMenuId}
+          >
+            {open ? <X size={18} strokeWidth={1.5} /> : <Menu size={18} strokeWidth={1.5} />}
+          </button>
+        </div>
+      </nav>
+
+      {open && (
+        <div
+          id={mobileMenuId}
+          className="aee-mobile-nav border-t border-black/[0.04] bg-[rgba(251,251,253,0.98)] px-5 py-4 backdrop-blur-xl lg:hidden"
+        >
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className={`block py-2.5 text-sm ${navClass(isActive(l.href))}`}
+              aria-current={isActive(l.href) ? "page" : undefined}
+              onClick={() => setOpen(false)}
+            >
+              {l.label}
+            </Link>
+          ))}
+          {authReady && !isAuthenticated && (
+            <>
+              <LoginModalTrigger
+                className="mt-2 block w-full py-2.5 text-left text-sm text-[var(--color-ink)]"
+                onClick={() => setOpen(false)}
+              >
+                Log in
+              </LoginModalTrigger>
+              <Link
+                href="/signup?plan=trial"
+                className="aee-nav-cta mt-3 block py-3 text-center text-sm"
+                onClick={() => setOpen(false)}
+              >
+                Start free trial
+              </Link>
+            </>
+          )}
+          {authReady && isAuthenticated && (
+            <div className="mt-3 space-y-1 border-t border-black/[0.06] pt-3">
+              <Link href="/dashboard" className="aee-mobile-nav-item" onClick={() => setOpen(false)}>
+                <User className="h-4 w-4" aria-hidden /> Profile
+              </Link>
+              <Link
+                href="/study/analytics"
+                className="aee-mobile-nav-item"
+                onClick={() => setOpen(false)}
+              >
+                <BarChart3 className="h-4 w-4" aria-hidden /> Progress &amp; Analytics
+              </Link>
+              <Link href="/pricing" className="aee-mobile-nav-item" onClick={() => setOpen(false)}>
+                <Settings className="h-4 w-4" aria-hidden /> Settings
+              </Link>
+              <button
+                type="button"
+                className="aee-mobile-nav-signout"
+                disabled={signingOut}
+                onClick={handleMobileSignOutRequest}
+              >
+                <LogOut className="h-4 w-4" aria-hidden />
+                {signingOut ? "Signing out…" : "Sign out"}
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+    </header>
   );
 }

@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/Button";
+import { loginCompleteUrl, sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 
 type GoogleSignInButtonProps = {
   callbackUrl?: string;
@@ -18,22 +20,28 @@ export function GoogleSignInButton({
   onClick,
   className = "",
 }: GoogleSignInButtonProps) {
+  const [loading, setLoading] = useState(false);
+
   if (process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED !== "true") return null;
+
+  const oauthCallback = loginCompleteUrl(sanitizeCallbackUrl(callbackUrl));
 
   return (
     <Button
       type="button"
       variant="secondary"
+      disabled={loading}
       className={`w-full gap-2.5 ${large ? "!py-3.5 !text-base" : ""} ${
         highlighted ? "ring-2 ring-[var(--color-accent)]/30" : ""
       } ${className}`}
       onClick={() => {
         onClick?.();
-        void signIn("google", { callbackUrl });
+        setLoading(true);
+        void signIn("google", { callbackUrl: oauthCallback });
       }}
     >
       <GoogleIcon />
-      Continue with Google
+      {loading ? "Redirecting…" : "Continue with Google"}
     </Button>
   );
 }

@@ -1751,6 +1751,7 @@ body {
   top: calc(100% + 0.5rem);
   z-index: 60;
   min-width: 16.5rem;
+  max-width: min(16.5rem, calc(100vw - 2.5rem));
   overflow: hidden;
   border-radius: 1rem;
   border: 1px solid rgba(0, 0, 0, 0.06);
@@ -1758,6 +1759,22 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+  transform-origin: top right;
+}
+
+.aee-avatar-menu-enter {
+  animation: aee-avatar-menu-in 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes aee-avatar-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .aee-avatar-menu-item {
@@ -1801,8 +1818,13 @@ body {
   transition: opacity 0.2s;
 }
 
-.aee-avatar-signout:hover {
+.aee-avatar-signout:hover:not(:disabled) {
   opacity: 0.92;
+}
+
+.aee-avatar-signout:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .aee-mobile-nav-item {
@@ -1847,7 +1869,7 @@ body {
 .aee-signout-dialog-root {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 250;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1873,7 +1895,6 @@ body {
   background: white;
   padding: 1.5rem;
   box-shadow: var(--shadow-apple-lg);
-  animation: aee-drug-search-in 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .aee-signout-dialog-cancel,

@@ -10,6 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { useSearchParams } from "next/navigation";
+import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { LoginModal } from "./LoginModal";
 
 type LoginModalContextValue = {
@@ -37,7 +38,9 @@ export function LoginModalProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (searchParams.get("login") === "1") {
-      openLoginModal(searchParams.get("callbackUrl") ?? "/study");
+      openLoginModal(
+        sanitizeCallbackUrl(searchParams.get("callbackUrl"))
+      );
     }
   }, [searchParams, openLoginModal]);
 

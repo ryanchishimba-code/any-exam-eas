@@ -7,3 +7,5 @@ export { LoginModalTrigger } from "./LoginModalTrigger";
 export { LoginPanel } from "./LoginPanel";
 export { MemberLoginLink } from "./MemberLoginLink";
 export { ReturningQuickSignIn } from "./ReturningQuickSignIn";
+export { SignOutConfirmDialog } from "./SignOutConfirmDialog";
+export { SignOutConfirmProvider } from "./SignOutConfirmProvider";

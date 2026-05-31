@@ -10,6 +10,7 @@ import {
   messageForSignInError,
   messageFromUnknownAuthError,
 } from "@/lib/auth-client";
+import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { completeLoginFlow } from "@/lib/client/post-login";
 import {
   firstName,
@@ -18,6 +19,7 @@ import {
   rememberEmail,
   saveReturningUserHint,
   type LoginMethod,
+  type ReturningUserHint,
 } from "@/lib/client/returning-user";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 import { InlineError, StatusMessage } from "@/components/ui/StatusMessage";
@@ -36,7 +38,8 @@ function displayMethod(method?: LoginMethod): string | null {
 
 export function LoginPanel({ callbackUrl = "/study", onSuccess }: LoginPanelProps) {
   const router = useRouter();
-  const [hint, setHint] = useState(loadReturningUserHint());
+  const safeCallbackUrl = sanitizeCallbackUrl(callbackUrl);
+  const [hint, setHint] = useState<ReturningUserHint | null>(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -95,7 +98,7 @@ export function LoginPanel({ callbackUrl = "/study", onSuccess }: LoginPanelProp
       onSuccess?.();
       await completeLoginFlow({
         router,
-        callbackUrl,
+        callbackUrl: safeCallbackUrl,
         email: trimmedEmail,
         method: "email",
       });
@@ -122,7 +125,7 @@ export function LoginPanel({ callbackUrl = "/study", onSuccess }: LoginPanelProp
 
       {googleEnabled && (
         <GoogleSignInButton
-          callbackUrl={callbackUrl}
+          callbackUrl={safeCallbackUrl}
           highlighted={googleHighlighted}
           large
           onClick={() => rememberMethod("google")}

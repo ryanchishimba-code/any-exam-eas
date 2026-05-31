@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 import { firstName } from "@/lib/client/returning-user";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
-import { SignOutConfirmDialog } from "@/components/auth/SignOutConfirmDialog";
 
 function initials(name?: string | null, email?: string | null) {
   if (name?.trim()) {
@@ -30,16 +29,15 @@ export function AvatarDropdown() {
   const { data: session } = useSession();
   const menuId = useId();
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const {
-    confirmOpen,
-    signingOut,
-    requestSignOut,
-    cancelSignOut,
-    confirmSignOut,
-  } = useSignOutConfirm({ callbackUrl: "/" });
+  const { signingOut, requestSignOut } = useSignOutConfirm({ callbackUrl: "/" });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const close = useCallback(() => {
     setOpen(false);
@@ -118,7 +116,7 @@ export function AvatarDropdown() {
     };
   }, [close, focusMenuItem, open]);
 
-  async function handleSignOutRequest() {
+  function handleSignOutRequest() {
     close();
     requestSignOut();
   }
@@ -130,7 +128,6 @@ export function AvatarDropdown() {
   const display = name ? firstName(name) : email?.split("@")[0] ?? "Account";
 
   return (
-    <>
     <div ref={rootRef} className="relative">
       <button
         ref={triggerRef}
@@ -138,8 +135,9 @@ export function AvatarDropdown() {
         className="aee-avatar-trigger"
         aria-expanded={open}
         aria-haspopup="menu"
-        aria-controls={menuId}
+        aria-controls={open ? menuId : undefined}
         aria-label={`Account menu for ${display}`}
+        disabled={signingOut}
         onClick={() => setOpen((v) => !v)}
       >
         <span className="aee-avatar-circle" aria-hidden>
@@ -154,11 +152,11 @@ export function AvatarDropdown() {
         />
       </button>
 
-      {open && (
+      {mounted && open && (
         <div
           ref={menuRef}
           id={menuId}
-          className="aee-avatar-menu"
+          className="aee-avatar-menu aee-avatar-menu-enter"
           role="menu"
           aria-label="Account"
         >
@@ -208,22 +206,15 @@ export function AvatarDropdown() {
               role="menuitem"
               tabIndex={-1}
               className="aee-avatar-signout"
+              disabled={signingOut}
               onClick={handleSignOutRequest}
             >
               <LogOut className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
-              Sign out
+              {signingOut ? "Signing out…" : "Sign out"}
             </button>
           </div>
         </div>
       )}
     </div>
-
-    <SignOutConfirmDialog
-      open={confirmOpen}
-      loading={signingOut}
-      onCancel={cancelSignOut}
-      onConfirm={() => void confirmSignOut()}
-    />
-    </>
   );
 }
