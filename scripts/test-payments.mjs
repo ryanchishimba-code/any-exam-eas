@@ -135,8 +135,8 @@ if (!configured) {
       ok("STRIPE_PRICE_ID_YEARLY", yearly.active ? "active" : "inactive");
     }
 
-    // Smoke-create embedded checkout session (no charge — validates price + API shape)
-    const session = await stripe.checkout.sessions.create({
+    // Smoke-create embedded checkout sessions (matches src/lib/stripe.ts params)
+    const sessionParams = {
       mode: "subscription",
       ui_mode: "embedded",
       return_url: "http://localhost:3000/checkout/return?session_id={CHECKOUT_SESSION_ID}",
@@ -145,7 +145,10 @@ if (!configured) {
         metadata: { userId: "payment-test-script", plan: "subscribe" },
       },
       metadata: { userId: "payment-test-script", plan: "subscribe" },
-    });
+      payment_method_types: ["card"],
+    };
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     if (session.client_secret) {
       ok("Embedded checkout session", `created ${session.id}`);
@@ -153,6 +156,28 @@ if (!configured) {
       ok("Session cleanup", "expired test session");
     } else {
       fail("Embedded checkout session", "no client_secret returned");
+    }
+
+    const introPriceId = process.env.STRIPE_TRIAL_INTRO_PRICE_ID;
+    if (introPriceId) {
+      const trialSession = await stripe.checkout.sessions.create({
+        ...sessionParams,
+        line_items: [
+          { price: introPriceId, quantity: 1 },
+          { price: priceId, quantity: 1 },
+        ],
+        subscription_data: {
+          metadata: { userId: "payment-test-script", plan: "trial" },
+          trial_period_days: 14,
+        },
+        metadata: { userId: "payment-test-script", plan: "trial" },
+      });
+      if (trialSession.client_secret) {
+        ok("Trial checkout session", `created ${trialSession.id}`);
+        await stripe.checkout.sessions.expire(trialSession.id);
+      } else {
+        fail("Trial checkout session", "no client_secret returned");
+      }
     }
   } catch (e) {
     fail("Stripe API", e instanceof Error ? e.message : String(e));

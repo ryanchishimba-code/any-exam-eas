@@ -40,7 +40,7 @@ function getPriceId(interval: BillingInterval = "monthly"): string {
   return priceId;
 }
 
-/** Shared Checkout settings: cards, Apple Pay, Google Pay, Link (via Stripe automatic methods). */
+/** Shared Checkout settings for subscription mode (cards; wallets via Stripe Dashboard). */
 function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
   const isTrialPlan = params.plan === "trial";
   const introPriceId = process.env.STRIPE_TRIAL_INTRO_PRICE_ID;
@@ -63,7 +63,7 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
       ...(isTrialPlan ? { trial_period_days: TRIAL_DAYS } : {}),
     },
     metadata: { userId: params.userId, plan: params.plan ?? "subscribe" },
-    automatic_payment_methods: { enabled: true },
+    payment_method_types: ["card"],
     payment_method_options: {
       card: {
         request_three_d_secure: "automatic" as const,

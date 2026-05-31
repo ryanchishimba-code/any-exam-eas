@@ -43,9 +43,16 @@ export function EmbeddedStripeCheckout() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ embedded: true, plan }),
     });
-    const data = await res.json();
+    const data = await res.json().catch(() => ({}));
     if (!res.ok) {
-      throw new Error(data.error ?? "Could not start checkout");
+      throw new Error(
+        typeof data.error === "string"
+          ? data.error
+          : "Could not start checkout. Check Stripe keys and restart the server."
+      );
+    }
+    if (!data.clientSecret) {
+      throw new Error("Checkout did not return a client secret.");
     }
     return data.clientSecret as string;
   }, [plan]);
