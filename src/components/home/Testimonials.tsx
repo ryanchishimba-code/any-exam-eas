@@ -74,7 +74,7 @@ const reviews: Review[] = [
 function Avatar({ initials, avatarClass }: { initials: string; avatarClass: string }) {
   return (
     <div
-      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${avatarClass} text-sm font-bold text-white shadow-[0_4px_14px_rgba(13,148,136,0.25)]`}
+      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${avatarClass} text-sm font-semibold text-white shadow-sm`}
       aria-hidden
     >
       {initials}
@@ -104,30 +104,22 @@ function ScoreImprovement({ before, after }: { before: number; after: number }) 
 export function Testimonials() {
   return (
     <section
-      className="relative overflow-hidden border-y border-slate-200/60 bg-slate-50/80 py-[clamp(4rem,10vw,6.5rem)] dark:border-slate-800 dark:bg-slate-950/50"
+      className="aee-landing-section relative overflow-hidden bg-[#fbfbfd] dark:bg-[#0a0a0a]"
       aria-labelledby="testimonials-heading"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_50%_40%_at_50%_0%,rgba(20,184,166,0.06),transparent)]"
-        aria-hidden
-      />
-
-      <div className="relative mx-auto max-w-[1140px] px-5 sm:px-6">
+      <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="aee-section-label">Student stories</p>
-          <h2
-            id="testimonials-heading"
-            className="mt-3 text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-[-0.03em] text-slate-900 dark:text-white"
-          >
+          <h2 id="testimonials-heading" className="aee-headline mt-4">
             Trusted by NCLEX &amp; USMLE students
           </h2>
-          <p className="mt-4 text-[1.0625rem] leading-relaxed text-slate-600 dark:text-slate-400">
+          <p className="aee-section-lede mx-auto max-w-xl">
             Real outcomes from nursing and medical students who used adaptive
             prep to raise readiness and pass their boards.
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:gap-6">
+        <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:gap-8">
           {reviews.map((review, i) => (
             <motion.li
               key={review.id}
@@ -162,7 +154,7 @@ export function Testimonials() {
                       <span className="inline-flex items-center gap-1 rounded-full border border-teal-200/80 bg-teal-50 px-2.5 py-0.5 text-[0.6875rem] font-semibold text-teal-800 dark:border-teal-800/50 dark:bg-teal-950/50 dark:text-teal-300">
                         {review.exam}
                       </span>
-                      <span className="inline-flex items-center gap-1 text-[0.6875rem] font-medium text-emerald-700 dark:text-emerald-400">
+                      <span className="inline-flex items-center gap-1 rounded-full border border-blue-200 bg-blue-50 px-2.5 py-0.5 text-[0.6875rem] font-semibold text-blue-900 dark:border-blue-800/50 dark:bg-blue-950/50 dark:text-blue-200">
                         <CheckCircle2 className="h-3 w-3 shrink-0" aria-hidden />
                         {review.examLabel}
                       </span>

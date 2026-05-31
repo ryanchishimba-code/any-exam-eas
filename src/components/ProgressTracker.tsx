@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ChartLine, Layers, BookOpen } from "lucide-react";
+import { ChartLine, Layers, BookOpen, CheckCircle2 } from "lucide-react";
+import { InlineError } from "@/components/ui/StatusMessage";
 
 type ProgressSummary = {
   totalEvents: number;
@@ -54,9 +55,9 @@ export function ProgressTracker({ embedded = false }: { embedded?: boolean }) {
 
   if (error) {
     return (
-      <p className={`text-sm text-red-600 ${embedded ? "mt-6" : "mt-10"}`}>
+      <InlineError className={embedded ? "mt-6" : "mt-10"}>
         {error}. <Link href="/login" className="underline">Sign in</Link> to track progress.
-      </p>
+      </InlineError>
     );
   }
 
@@ -131,7 +132,10 @@ export function ProgressTracker({ embedded = false }: { embedded?: boolean }) {
                     </span>
                   )}
                   {e.completed && (
-                    <span className="ml-2 text-green-700">Complete</span>
+                    <span className="ml-2 inline-flex items-center gap-1 font-medium text-[var(--a11y-correct-fg)]">
+                      <CheckCircle2 className="h-3.5 w-3.5" aria-hidden />
+                      Complete
+                    </span>
                   )}
                 </div>
               </li>

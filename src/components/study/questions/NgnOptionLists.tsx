@@ -2,6 +2,7 @@
 
 import { cleanOptionText } from "@/lib/question-format";
 import type { StudyQuestion } from "@/lib/questions/types";
+import { Check, X } from "lucide-react";
 
 type OptionProps = {
   question: StudyQuestion;
@@ -134,9 +135,9 @@ function OptionRow({
   let row = "border-black/[0.08] bg-[var(--color-surface)]";
   if (revealed) {
     row = isCorrect
-      ? "border-emerald-300 bg-emerald-50 dark:bg-emerald-950/30"
+      ? "a11y-correct"
       : selected
-        ? "border-red-300 bg-red-50 dark:bg-red-950/30"
+        ? "a11y-incorrect"
         : "border-black/5 opacity-50";
   } else if (selected) {
     row = multi
@@ -155,7 +156,21 @@ function OptionRow({
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-black/[0.05] text-xs font-semibold dark:bg-white/10">
           {multi && selected ? "✓" : index + 1}
         </span>
-        {cleanOptionText(option)}
+        <span className="min-w-0 flex-1">
+          {cleanOptionText(option)}
+          {revealed && isCorrect && (
+            <span className="mt-1 flex items-center gap-1 text-xs font-semibold a11y-correct-text">
+              <Check className="h-3.5 w-3.5" aria-hidden />
+              Correct answer
+            </span>
+          )}
+          {revealed && selected && !isCorrect && (
+            <span className="mt-1 flex items-center gap-1 text-xs font-semibold a11y-incorrect-text">
+              <X className="h-3.5 w-3.5" aria-hidden />
+              Your answer — incorrect
+            </span>
+          )}
+        </span>
       </button>
     </li>
   );

@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Check, X } from "lucide-react";
 import type { QuiltTile } from "@/lib/ai";
 import { cleanOptionText } from "@/lib/question-format";
 import { normalizeStem } from "@/lib/questions/stem";
+import { AnswerFeedbackLabel } from "@/components/ui/StatusMessage";
 
 export function QuiltTileViewer({
   tile,
@@ -87,9 +89,9 @@ function QuizTile({
           let row = "border-black/[0.08] bg-[var(--color-surface)]";
           if (revealed) {
             row = isCorr
-              ? "border-emerald-300 bg-emerald-50"
+              ? "a11y-correct"
               : isSel
-                ? "border-red-300 bg-red-50"
+                ? "a11y-incorrect"
                 : "border-black/5 opacity-50";
           } else if (isSel) {
             row = "border-[var(--color-accent)] bg-sky-50 ring-2 ring-sky-200";
@@ -106,6 +108,18 @@ function QuizTile({
                   {i + 1}
                 </span>
                 {cleanOptionText(o)}
+                {revealed && isCorr && (
+                  <span className="mt-1 flex items-center gap-1 text-xs font-semibold a11y-correct-text">
+                    <Check className="h-3.5 w-3.5" aria-hidden />
+                    Correct answer
+                  </span>
+                )}
+                {revealed && isSel && !isCorr && (
+                  <span className="mt-1 flex items-center gap-1 text-xs font-semibold a11y-incorrect-text">
+                    <X className="h-3.5 w-3.5" aria-hidden />
+                    Your answer — incorrect
+                  </span>
+                )}
               </button>
             </li>
           );
@@ -129,10 +143,8 @@ function QuizTile({
             animate={{ opacity: 1, y: 0 }}
             className="mt-6 space-y-3"
           >
-            <p
-              className={`text-sm font-semibold ${isCorrect ? "text-emerald-700" : "text-red-700"}`}
-            >
-              {isCorrect ? "Correct" : "Review"}
+            <p className="text-sm">
+              <AnswerFeedbackLabel correct={!!isCorrect} />
             </p>
             {!isCorrect && (
               <p className="text-sm text-[var(--color-ink-muted)]">

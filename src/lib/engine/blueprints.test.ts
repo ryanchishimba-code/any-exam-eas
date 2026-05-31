@@ -9,7 +9,21 @@ describe("exam blueprints", () => {
   it("returns NCLEX blueprint for nursing", () => {
     const bp = getExamBlueprint("nursing");
     expect(bp?.examName).toBe("NCLEX-RN");
+    expect(bp?.sourceNote).toContain("CJMM");
     const totalWeight = bp!.categories.reduce((n, c) => n + c.weight, 0);
+    expect(totalWeight).toBeCloseTo(1, 2);
+  });
+
+  it("NAPLEX 2025 domains sum to 1", () => {
+    const bp = getExamBlueprint("pharmacy")!;
+    expect(bp.sourceNote).toContain("2025");
+    const totalWeight = bp.categories.reduce((n, c) => n + c.weight, 0);
+    expect(totalWeight).toBeCloseTo(1, 2);
+  });
+
+  it("USMLE organ-system weights sum to 1", () => {
+    const bp = getExamBlueprint("medicine")!;
+    const totalWeight = bp.categories.reduce((n, c) => n + c.weight, 0);
     expect(totalWeight).toBeCloseTo(1, 2);
   });
 

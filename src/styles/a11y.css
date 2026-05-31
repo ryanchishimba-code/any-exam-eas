@@ -1,0 +1,235 @@
+/**
+ * WCAG 2.2 AA + color-blind-safe design tokens.
+ * Success = blue, Error = orange, Warning = amber (never red vs green alone).
+ */
+:root {
+  --a11y-focus: #005fcc;
+  --a11y-focus-offset: 3px;
+  --a11y-success-fg: #1e3a8a;
+  --a11y-success-bg: #eff6ff;
+  --a11y-success-border: #2563eb;
+  --a11y-error-fg: #7c2d12;
+  --a11y-error-bg: #fff7ed;
+  --a11y-error-border: #c2410c;
+  --a11y-warning-fg: #78350f;
+  --a11y-warning-bg: #fffbeb;
+  --a11y-warning-border: #d97706;
+  --a11y-info-fg: #115e59;
+  --a11y-info-bg: #f0fdfa;
+  --a11y-info-border: #0f766e;
+  --a11y-correct-fg: #1e40af;
+  --a11y-correct-bg: #dbeafe;
+  --a11y-incorrect-fg: #9a3412;
+  --a11y-incorrect-bg: #ffedd5;
+  --a11y-grade-0-bg: #5b21b6;
+  --a11y-grade-1-bg: #c2410c;
+  --a11y-grade-2-bg: #1d4ed8;
+  --a11y-grade-3-bg: #312e81;
+}
+
+.dark {
+  --a11y-focus: #60a5fa;
+  --a11y-success-fg: #bfdbfe;
+  --a11y-success-bg: #172554;
+  --a11y-success-border: #3b82f6;
+  --a11y-error-fg: #fed7aa;
+  --a11y-error-bg: #431407;
+  --a11y-error-border: #ea580c;
+  --a11y-warning-fg: #fde68a;
+  --a11y-warning-bg: #451a03;
+  --a11y-warning-border: #f59e0b;
+  --a11y-info-fg: #99f6e4;
+  --a11y-info-bg: #042f2e;
+  --a11y-info-border: #14b8a6;
+  --a11y-correct-fg: #bfdbfe;
+  --a11y-correct-bg: #1e3a8a;
+  --a11y-incorrect-fg: #fed7aa;
+  --a11y-incorrect-bg: #7c2d12;
+}
+
+/* Global focus — WCAG 2.4.7 / 2.4.11 focus not obscured */
+:where(
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  [role="button"],
+  [role="tab"],
+  [role="menuitem"],
+  [tabindex]:not([tabindex="-1"])
+):focus {
+  outline: none;
+}
+
+:where(
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  [role="button"],
+  [role="tab"],
+  [role="menuitem"],
+  [tabindex]:not([tabindex="-1"])
+):focus-visible {
+  outline: 3px solid var(--a11y-focus);
+  outline-offset: var(--a11y-focus-offset);
+  box-shadow: 0 0 0 1px var(--color-bg, #fff);
+}
+
+/* Status banners — icon + text label, not color alone */
+.a11y-banner {
+  display: flex;
+  gap: 0.625rem;
+  align-items: flex-start;
+  border-radius: 0.75rem;
+  border: 1px solid;
+  border-left-width: 4px;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.a11y-banner svg {
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.125rem;
+}
+
+.a11y-banner--success {
+  color: var(--a11y-success-fg);
+  background: var(--a11y-success-bg);
+  border-color: var(--a11y-success-border);
+}
+
+.a11y-banner--error {
+  color: var(--a11y-error-fg);
+  background: var(--a11y-error-bg);
+  border-color: var(--a11y-error-border);
+}
+
+.a11y-banner--warning {
+  color: var(--a11y-warning-fg);
+  background: var(--a11y-warning-bg);
+  border-color: var(--a11y-warning-border);
+}
+
+.a11y-banner--info {
+  color: var(--a11y-info-fg);
+  background: var(--a11y-info-bg);
+  border-color: var(--a11y-info-border);
+}
+
+/* Quiz / answer feedback — blue vs orange (deuteranopia-safe) */
+.a11y-correct {
+  color: var(--a11y-correct-fg);
+  background: var(--a11y-correct-bg);
+  border: 1px solid var(--a11y-success-border);
+}
+
+.a11y-incorrect {
+  color: var(--a11y-incorrect-fg);
+  background: var(--a11y-incorrect-bg);
+  border: 1px solid var(--a11y-error-border);
+}
+
+.a11y-correct-text {
+  color: var(--a11y-correct-fg);
+  font-weight: 600;
+}
+
+.a11y-incorrect-text {
+  color: var(--a11y-incorrect-fg);
+  font-weight: 600;
+}
+
+/* Spaced-repetition grades — distinct hue + label (no red/green pair) */
+.a11y-grade-btn {
+  min-height: 2.75rem;
+  border-radius: 0.75rem;
+  border: 2px solid transparent;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.a11y-grade-btn:focus-visible {
+  outline: 3px solid var(--a11y-focus);
+  outline-offset: 2px;
+}
+
+.a11y-grade-btn--0 {
+  background: var(--a11y-grade-0-bg);
+  border-color: #4c1d95;
+}
+
+.a11y-grade-btn--1 {
+  background: var(--a11y-grade-1-bg);
+  border-color: #9a3412;
+}
+
+.a11y-grade-btn--2 {
+  background: var(--a11y-grade-2-bg);
+  border-color: #1e3a8a;
+}
+
+.a11y-grade-btn--3 {
+  background: var(--a11y-grade-3-bg);
+  border-color: #1e1b4b;
+}
+
+.a11y-grade-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-apple-sm);
+}
+
+.a11y-grade-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Class filter — pattern + color for progress bars */
+.a11y-class-dot {
+  display: inline-block;
+  height: 0.625rem;
+  width: 0.625rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+}
+
+.dark .a11y-class-dot {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* High-contrast mode boost */
+@media (prefers-contrast: more) {
+  :root {
+    --color-ink-muted: #3d3d3d;
+    --color-border: rgba(0, 0, 0, 0.2);
+  }
+
+  .a11y-banner,
+  .a11y-grade-btn,
+  .aee-btn-primary,
+  .aee-btn-hero {
+    border-width: 2px;
+  }
+}
+
+/* Reduced transparency for readability */
+@media (prefers-contrast: more) {
+  .apple-glass {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .dark .apple-glass {
+    background: rgba(0, 0, 0, 0.95);
+  }
+}

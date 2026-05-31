@@ -14,17 +14,14 @@ export function HomeBottomCta() {
       />
       <div className="relative mx-auto max-w-[1100px] px-5 sm:px-6">
         <p className="aee-section-label !text-teal-400">Get started today</p>
-        <h2
-          id="home-cta-heading"
-          className="mt-3 text-[clamp(1.875rem,4.5vw,3rem)] font-bold tracking-[-0.03em] text-white"
-        >
+        <h2 id="home-cta-heading" className="aee-headline aee-headline-light mt-4">
           Ready when you are.
         </h2>
-        <p className="mx-auto mt-4 max-w-lg text-[1.0625rem] leading-relaxed text-slate-400">
+        <p className="mx-auto mt-5 max-w-lg text-[1.1875rem] font-normal leading-[1.47059] tracking-[-0.022em] text-slate-400">
           {formatTrialIntroPrice()} for {formatTrialLabel()}, then {formatMonthlyPrice()}/month.
           Full access to the advanced question engine, adaptive exams, and analytics.
         </p>
-        <div className="mx-auto mt-10 max-w-md">
+        <div className="mx-auto mt-12 max-w-md">
           <LandingAuthCta variant="dark" callbackUrl="/dashboard" />
         </div>
         <TrustBar variant="dark" className="mt-8" />

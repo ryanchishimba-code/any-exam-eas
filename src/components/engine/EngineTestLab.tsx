@@ -10,6 +10,7 @@ import { getSubjectsForField, buildScopedTopic } from "@/lib/field-subjects";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
 import { Button } from "@/components/ui/Button";
 import { AppleLink } from "@/components/ui/AppleLink";
+import { InlineError } from "@/components/ui/StatusMessage";
 import { NgnFormatBadge, VignetteBlock } from "@/components/study/questions/NgnChrome";
 import { ExplanationPanel } from "@/components/study/questions/QuestionRenderer";
 
@@ -174,11 +175,7 @@ export function EngineTestLab() {
           <AppleLink href="/generate">Production generator</AppleLink>
         </div>
 
-        {error && (
-          <p className="mt-4 text-sm text-red-600" role="alert">
-            {error}
-          </p>
-        )}
+        {error && <InlineError className="mt-4">{error}</InlineError>}
       </section>
 
       {result && report && (
@@ -271,11 +268,12 @@ export function EngineTestLab() {
                       key={j}
                       className={`rounded-lg px-3 py-2 text-sm ${
                         correct
-                          ? "bg-emerald-500/10 text-emerald-800 dark:text-emerald-300"
+                          ? "a11y-correct font-medium"
                           : "text-[var(--color-ink-muted)]"
                       }`}
                     >
                       {opt}
+                      {correct && " — Correct answer"}
                     </li>
                   );
                 })}
@@ -323,7 +321,7 @@ function MetricCard({
         <Icon
           className={`mx-auto h-5 w-5 ${
             tone === "ok"
-              ? "text-emerald-600"
+              ? "text-blue-700"
               : tone === "warn"
                 ? "text-amber-600"
                 : "text-[var(--color-accent)]"

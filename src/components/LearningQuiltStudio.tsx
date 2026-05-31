@@ -6,6 +6,7 @@ import { Button } from "./ui/Button";
 import { StudyModePicker } from "./StudyModePicker";
 import { StudySubnav } from "./StudySubnav";
 import { QuiltTileViewer } from "./QuiltTileViewer";
+import { InlineError } from "@/components/ui/StatusMessage";
 
 type TileFilter = "flashcards" | "quiz" | "all";
 
@@ -172,9 +173,9 @@ export function LearningQuiltStudio() {
           )}
         </div>
         {error && (
-          <p className="mt-4 text-sm text-red-600">
+          <InlineError className="mt-4">
             {error}. <a href="/signup" className="underline">Create an account</a>.
-          </p>
+          </InlineError>
         )}
       </form>
 
@@ -214,13 +215,24 @@ export function LearningQuiltStudio() {
                 onClick={() => setActiveIndex(i)}
                 className={`aspect-square rounded-2xl border-2 p-3 text-left text-xs transition ${
                   i === activeIndex
-                    ? "border-[var(--color-accent)] bg-blue-50"
+                    ? "border-[var(--color-accent)] bg-blue-50 ring-2 ring-[var(--a11y-focus)]"
                     : masteredIds.has(t.id)
-                      ? "border-green-300 bg-green-50"
+                      ? "border-blue-600 bg-blue-50"
                       : "border-black/10 bg-[var(--color-surface)] hover:border-black/20"
                 }`}
+                aria-current={i === activeIndex ? "true" : undefined}
+                aria-label={
+                  masteredIds.has(t.id)
+                    ? `${t.type} tile ${i + 1}, mastered`
+                    : `${t.type} tile ${i + 1}`
+                }
               >
                 <span className="font-medium capitalize">{t.type}</span>
+                {masteredIds.has(t.id) && (
+                  <span className="mt-0.5 block text-[0.625rem] font-semibold uppercase tracking-wide text-[var(--a11y-correct-fg)]">
+                    Mastered
+                  </span>
+                )}
                 <p className="mt-1 line-clamp-3 text-[var(--color-ink-muted)]">{t.front}</p>
               </button>
             ))}

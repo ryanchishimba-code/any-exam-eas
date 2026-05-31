@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Check, AlertTriangle } from "lucide-react";
 import type { LearningInsight, RemediationRecommendation } from "@/lib/learning/types";
 import { mistakeCategoryLabel } from "@/lib/learning/mistake-analysis";
 import Link from "next/link";
@@ -21,18 +22,19 @@ export function InsightPanel({ insight, remediation, correct }: Props) {
       <div className="flex items-start gap-3">
         <span
           className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm ${
-            correct ? "bg-emerald-100 text-emerald-800" : "bg-amber-100 text-amber-900"
+            correct ? "a11y-correct" : "a11y-incorrect"
           }`}
+          aria-hidden
         >
-          {correct ? "✓" : "!"}
+          {correct ? <Check className="h-4 w-4" /> : <AlertTriangle className="h-4 w-4" />}
         </span>
         <div>
           <p className="text-sm font-semibold text-[var(--color-ink)]">
-            {correct ? "Insight" : "Learn from this miss"}
+            {correct ? "Insight — correct" : "Learn from this miss"}
           </p>
           <p className="mt-1 text-sm text-[var(--color-ink-muted)]">{insight.summary}</p>
           {insight.mistakeAnalysis && (
-            <p className="mt-2 text-xs font-medium text-amber-800">
+            <p className="mt-2 text-xs font-medium text-[var(--a11y-warning-fg)]">
               {mistakeCategoryLabel(insight.mistakeAnalysis.category)}
             </p>
           )}
@@ -41,7 +43,7 @@ export function InsightPanel({ insight, remediation, correct }: Props) {
 
       <div className="space-y-2 text-sm">
         <p>
-          <span className="font-medium text-emerald-800">Why correct: </span>
+          <span className="font-medium text-[var(--a11y-correct-fg)]">Why correct: </span>
           <span className="text-[var(--color-ink-muted)]">{insight.whyCorrect}</span>
         </p>
         {insight.keyTakeaways.length > 0 && (

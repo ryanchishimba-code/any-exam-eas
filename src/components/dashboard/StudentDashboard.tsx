@@ -32,9 +32,9 @@ import { cn } from "@/lib/utils";
 const WEAK_COLORS = ["#0071e3", "#5856d6", "#ff9500", "#ff375f", "#30d158", "#64d2ff"];
 
 function scoreBg(score: number): string {
-  if (score >= 80) return "bg-emerald-500/10 text-emerald-700";
+  if (score >= 80) return "bg-blue-100 text-blue-900";
   if (score >= 60) return "bg-[var(--color-accent)]/10 text-[var(--color-accent)]";
-  return "bg-amber-500/10 text-amber-700";
+  return "bg-amber-100 text-amber-900";
 }
 
 export function StudentDashboard() {
@@ -372,7 +372,7 @@ function StatPill({
       <Icon
         className={cn(
           "h-4 w-4",
-          highlight ? "text-emerald-600" : "text-[var(--color-accent)]"
+          highlight ? "text-blue-700" : "text-[var(--color-accent)]"
         )}
       />
       <div>

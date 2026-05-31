@@ -84,7 +84,7 @@ export function LearningDashboard() {
                 <span className="text-[var(--color-ink-muted)]">
                   {c.conceptKey.replace(/^(tag|subject):/, "")}
                 </span>
-                <span className="font-medium text-red-600">{c.masteryScore}%</span>
+                <span className="font-medium text-[var(--a11y-error-fg)]">{c.masteryScore}%</span>
               </li>
             ))}
           </ul>

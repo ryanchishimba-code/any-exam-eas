@@ -11,6 +11,7 @@ import {
 } from "@/lib/medicine-subjects";
 import { ExamQuiz } from "./ExamQuiz";
 import { Button } from "./ui/Button";
+import { InlineError } from "@/components/ui/StatusMessage";
 
 export function ExamGenerator() {
   const [field, setField] = useState("Medicine");
@@ -211,9 +212,9 @@ export function ExamGenerator() {
         )}
 
         {error && (
-          <p className="text-center text-sm text-red-600">
+          <InlineError className="text-center">
             {error}. <a href="/signup" className="underline">Sign in</a> to generate.
-          </p>
+          </InlineError>
         )}
       </form>
 

@@ -6,6 +6,7 @@ import { EmbeddedCheckout, EmbeddedCheckoutProvider } from "@stripe/react-stripe
 import { loadStripe, type Stripe } from "@stripe/stripe-js";
 import { formatMonthlyPrice, formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
 import { PaymentMethodsList } from "./PaymentMethodsList";
+import { InlineError, StatusMessage } from "@/components/ui/StatusMessage";
 
 let stripePromise: Promise<Stripe | null> | null = null;
 
@@ -22,6 +23,7 @@ export function EmbeddedStripeCheckout() {
 
   const [publishableKey, setPublishableKey] = useState<string | null>(null);
   const [configured, setConfigured] = useState(true);
+  const [missingKeys, setMissingKeys] = useState<string[]>([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -30,6 +32,7 @@ export function EmbeddedStripeCheckout() {
       .then((data) => {
         setConfigured(data.configured);
         setPublishableKey(data.publishableKey);
+        if (Array.isArray(data.missing)) setMissingKeys(data.missing);
       })
       .catch(() => setError("Could not load payment configuration."));
   }, []);
@@ -48,14 +51,29 @@ export function EmbeddedStripeCheckout() {
   }, [plan]);
 
   if (error) {
-    return <p className="text-sm text-red-600">{error}</p>;
+    return <InlineError>{error}</InlineError>;
   }
 
   if (!configured) {
     return (
-      <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+      <StatusMessage variant="warning">
         Payments are not configured on this server. Add Stripe API keys to enable checkout.
-      </p>
+        {missingKeys.length > 0 && (
+          <span className="mt-2 block text-xs">
+            Missing in <code className="rounded bg-black/5 px-1">.env</code>:{" "}
+            {missingKeys.join(", ")}. Get keys from{" "}
+            <a
+              href="https://dashboard.stripe.com/test/apikeys"
+              className="font-medium underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Stripe Dashboard
+            </a>
+            , then restart the dev server.
+          </span>
+        )}
+      </StatusMessage>
     );
   }
 

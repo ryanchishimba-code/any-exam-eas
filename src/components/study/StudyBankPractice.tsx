@@ -9,6 +9,7 @@ import { StudySessionPlayer } from "./StudySessionPlayer";
 import type { RawQuestionInput, StudyMode } from "@/lib/questions/types";
 import type { ExamQuestion } from "@/lib/ai";
 import { Button } from "@/components/ui/Button";
+import { InlineError } from "@/components/ui/StatusMessage";
 
 function resolveModeFromParam(param: string | null): {
   studyMode: StudyMode;
@@ -174,7 +175,7 @@ export function StudyBankPractice() {
           Mode: <span className="font-medium text-[var(--color-ink)]">{label}</span>
           {apiMode && " — questions ordered by your weak areas."}
         </p>
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && <InlineError>{error}</InlineError>}
         <Button
           type="button"
           disabled={loading || !subjectId}

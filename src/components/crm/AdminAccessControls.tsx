@@ -59,7 +59,7 @@ export function AdminAccessControls({ userId }: { userId: string }) {
         <button
           type="button"
           disabled={busy}
-          className="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs text-emerald-900 hover:bg-emerald-100"
+          className="rounded-lg border border-blue-300 bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-900 hover:bg-blue-100"
           onClick={() => void patch({ grantCompDays: 30 })}
         >
           Grant 30d comp access
@@ -67,7 +67,7 @@ export function AdminAccessControls({ userId }: { userId: string }) {
         <button
           type="button"
           disabled={busy}
-          className="rounded-lg border border-red-200 bg-red-50 px-3 py-1.5 text-xs text-red-800 hover:bg-red-100"
+          className="rounded-lg border border-orange-300 bg-orange-50 px-3 py-1.5 text-xs font-medium text-orange-900 hover:bg-orange-100"
           onClick={() => void patch({ revokeCompAccess: true, subscriptionStatus: "inactive" })}
         >
           Revoke comp access

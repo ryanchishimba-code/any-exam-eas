@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/Button";
+import { InlineError, StatusMessage } from "@/components/ui/StatusMessage";
 import type { LoginMethod } from "@/lib/client/returning-user";
 import { saveReturningUserHint, rememberEmail } from "@/lib/client/returning-user";
 
@@ -130,11 +131,11 @@ export function MagicLinkForm({
         {loading ? "Sending…" : "Email me a sign-in link"}
       </Button>
       {message && (
-        <p className="rounded-xl border border-green-200 bg-green-50 px-3 py-2 text-xs text-green-900 dark:border-green-500/30 dark:bg-green-950/30 dark:text-green-100">
+        <StatusMessage variant="success" className="text-xs">
           {message}
-        </p>
+        </StatusMessage>
       )}
-      {error && <p className="text-xs text-red-600">{error}</p>}
+      {error && <InlineError className="text-xs">{error}</InlineError>}
     </form>
   );
 }

@@ -97,25 +97,22 @@ export function ChooseYourExam() {
   return (
     <section
       id="choose-exam"
-      className="aee-exams-section relative overflow-hidden py-[clamp(4.5rem,11vw,7rem)]"
+      className="aee-exams-section aee-landing-section relative overflow-hidden"
       aria-labelledby="choose-exam-heading"
     >
-      <div className="relative mx-auto max-w-[1140px] px-5 sm:px-6">
+      <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="aee-section-label">Start here</p>
-          <h2
-            id="choose-exam-heading"
-            className="mt-3 text-[clamp(1.875rem,4vw,2.875rem)] font-bold tracking-[-0.03em] text-slate-900 dark:text-white"
-          >
+          <h2 id="choose-exam-heading" className="aee-headline mt-4">
             Exams We Help You Ace
           </h2>
-          <p className="mt-4 text-[1.0625rem] leading-relaxed text-slate-600 dark:text-slate-400">
+          <p className="aee-section-lede mx-auto max-w-xl">
             Pick your board and jump straight into adaptive questions, analytics,
             and study plans tailored to your exam.
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-6 lg:gap-6">
+        <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-6 lg:gap-6">
           {exams.map((exam, i) => {
             const Icon = exam.icon;
             return (

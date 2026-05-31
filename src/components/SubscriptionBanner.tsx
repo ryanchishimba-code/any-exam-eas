@@ -53,7 +53,11 @@ export function SubscriptionBanner({ access }: { access: SubscriptionAccess }) {
   if (access.status === "active") {
     return (
       <p className="mt-6 text-sm text-[var(--color-ink-muted)]">
-        Subscription: <span className="font-medium text-green-700">Active</span>
+        Subscription:{" "}
+        <span className="inline-flex items-center gap-1 font-medium text-[var(--a11y-correct-fg)]">
+          <span className="h-2 w-2 rounded-full bg-[var(--a11y-success-border)]" aria-hidden />
+          Active
+        </span>
       </p>
     );
   }

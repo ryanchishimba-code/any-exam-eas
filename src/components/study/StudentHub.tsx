@@ -107,6 +107,7 @@ export function StudentHub() {
 
       {session?.user && (
         <section className="flex flex-wrap gap-x-8 gap-y-2 border-y border-black/[0.06] py-6 dark:border-white/10">
+          <AppleLink href="/study/drugs300">Top 300 Drugs</AppleLink>
           <AppleLink href="/study/practice?mode=weak">Weak areas</AppleLink>
           <AppleLink href="/generate">New test</AppleLink>
           <AppleLink href="/study/practice?mode=adaptive">Adaptive session</AppleLink>

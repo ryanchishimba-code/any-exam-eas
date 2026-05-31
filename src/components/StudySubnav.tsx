@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 const links = [
   { href: "/study", label: "Overview" },
+  { href: "/study/drugs300", label: "Top 300 Drugs" },
   { href: "/study/practice", label: "Question bank" },
   { href: "/study/practice?mode=adaptive", label: "Adaptive" },
   { href: "/generate", label: "AI exams" },
@@ -17,6 +18,7 @@ export function StudySubnav() {
 
   function isActive(href: string) {
     if (href === "/study") return pathname === "/study";
+    if (href === "/study/drugs300") return pathname.startsWith("/study/drugs300");
     if (href === "/study/practice") {
       return pathname.startsWith("/study/practice") && !pathname.includes("analytics");
     }

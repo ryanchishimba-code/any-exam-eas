@@ -6,6 +6,7 @@ import {
   subjectMatchesQuestion,
 } from "./field-subjects";
 import { getHealthBankItems } from "./health-sciences-question-bank";
+import { ANATOMY_QUESTION_BANK } from "./medicine-anatomy-question-bank";
 import { fetchQuestionBankItems } from "./question-bank-db";
 import { generateProceduralQuestions } from "./procedural-questions";
 import { toQuizletStyleQuestion } from "./question-format";
@@ -24,99 +25,7 @@ export type BankItem = {
 
 /** High-yield items modeled after common study-set / board-style MCQs */
 const BANK: Record<string, BankItem[]> = {
-  anatomy: [
-    {
-      subjectId: "anatomy",
-      question: "Blood belongs to which of the four primary tissue types?",
-      options: ["Epithelial tissue", "Connective tissue", "Muscle tissue", "Nervous tissue"],
-      correctAnswer: "Connective tissue",
-      explanation:
-        "Blood is a specialized fluid connective tissue. The four primary tissues are epithelial, connective, muscle, and nervous.",
-      tags: ["histology", "high-yield"],
-    },
-    {
-      question: "Which structure passes through the anatomical snuffbox?",
-      options: ["Ulnar artery", "Radial artery", "Basilic vein", "Median nerve"],
-      correctAnswer: "Radial artery",
-      explanation: "The radial artery crosses the floor of the anatomical snuffbox at the wrist.",
-      tags: ["upper limb"],
-    },
-    {
-      question: "The serratus anterior is innervated by which nerve?",
-      options: ["Axillary nerve", "Long thoracic nerve", "Thoracodorsal nerve", "Suprascapular nerve"],
-      correctAnswer: "Long thoracic nerve",
-      explanation: "Long thoracic nerve (C5–C7) injury causes winged scapula.",
-      tags: ["upper limb", "high-yield"],
-    },
-    {
-      question: "Which chamber of the heart forms most of the heart's posterior surface?",
-      options: ["Right atrium", "Left atrium", "Right ventricle", "Left ventricle"],
-      correctAnswer: "Left atrium",
-      explanation: "The left atrium is the most posterior cardiac chamber.",
-      tags: ["thorax"],
-    },
-    {
-      question: "The ductus arteriosus normally closes to become the:",
-      options: ["Ligamentum arteriosum", "Ligamentum teres", "Ligamentum venosum", "Median umbilical ligament"],
-      correctAnswer: "Ligamentum arteriosum",
-      explanation: "Postnatal closure of the ductus arteriosus forms the ligamentum arteriosum.",
-      tags: ["embryology"],
-    },
-    {
-      question: "Which cranial nerve carries parasympathetic fibers to the lacrimal gland?",
-      options: ["CN III", "CN V", "CN VII", "CN IX"],
-      correctAnswer: "CN VII",
-      explanation: "Greater petrosal (CN VII) → pterygopalatine ganglion → lacrimal secretion.",
-      tags: ["head/neck"],
-    },
-    {
-      question: "The femoral nerve is primarily derived from which spinal segments?",
-      options: ["L2–L4", "L4–S3", "S1–S3", "T12–L2"],
-      correctAnswer: "L2–L4",
-      explanation: "Femoral nerve (L2–L4) innervates quadriceps and hip flexors.",
-      tags: ["lower limb"],
-    },
-    {
-      question: "Which meniscus is more commonly torn in knee twisting injuries?",
-      options: ["Medial meniscus", "Lateral meniscus", "Both equally", "Neither—patella only"],
-      correctAnswer: "Medial meniscus",
-      explanation: "Medial meniscus is tightly attached to the joint capsule and is injured more often.",
-      tags: ["lower limb"],
-    },
-    {
-      question: "The portal triad in the liver consists of:",
-      options: [
-        "Hepatic artery, portal vein, bile duct",
-        "Hepatic vein, portal vein, bile duct",
-        "Hepatic artery, hepatic vein, cystic duct",
-        "Splenic artery, portal vein, gallbladder",
-      ],
-      correctAnswer: "Hepatic artery, portal vein, bile duct",
-      explanation: "Portal triad: proper hepatic artery, portal vein, common bile duct (in hepatoduodenal ligament).",
-      tags: ["abdomen"],
-    },
-    {
-      question: "Which layer of the epidermis contains desmosomes prominent on histology?",
-      options: ["Stratum basale", "Stratum spinosum", "Stratum granulosum", "Stratum corneum"],
-      correctAnswer: "Stratum spinosum",
-      explanation: "Desmosomes create the 'spiny' appearance of keratinocytes in stratum spinosum.",
-      tags: ["histology"],
-    },
-    {
-      question: "The carotid pulse is best palpated at the level of:",
-      options: ["Cricoid cartilage", "Thyroid cartilage (C4)", "Hyoid bone", "C6 vertebral body"],
-      correctAnswer: "Thyroid cartilage (C4)",
-      explanation: "Common carotid bifurcation is near C4; clinical palpation taught at thyroid cartilage level.",
-      tags: ["head/neck"],
-    },
-    {
-      question: "Which bone articulates with the talus at the ankle mortise?",
-      options: ["Calcaneus only", "Tibia and fibula", "Navicular", "Cuboid"],
-      correctAnswer: "Tibia and fibula",
-      explanation: "The ankle joint mortise is formed by the distal tibia, fibula, and trochlea of the talus.",
-      tags: ["lower limb"],
-    },
-  ],
+  anatomy: ANATOMY_QUESTION_BANK,
   physiology: [
     {
       question: "Which phase of the cardiac cycle has the lowest ventricular volume?",

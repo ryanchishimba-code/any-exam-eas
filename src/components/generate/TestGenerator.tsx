@@ -25,6 +25,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
+import { InlineError } from "@/components/ui/StatusMessage";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
@@ -379,7 +380,7 @@ export function TestGenerator() {
                 </AnimatePresence>
 
                 {error && (
-                  <p className="text-center text-sm text-red-600">{error}</p>
+                  <InlineError className="text-center">{error}</InlineError>
                 )}
               </div>
             </form>

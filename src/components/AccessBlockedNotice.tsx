@@ -27,9 +27,9 @@ export function AccessBlockedNotice({
 
   if (reason === "suspended") {
     return (
-      <div className="apple-card mt-10 border-red-200/60 bg-red-50/50 p-8 text-center">
-        <h2 className="text-xl font-semibold text-red-950">Account suspended</h2>
-        <p className="mt-3 text-sm text-red-900/80">
+      <div className="apple-card mt-10 a11y-banner a11y-banner--error flex-col items-center p-8 text-center">
+        <h2 className="text-xl font-semibold">Account suspended</h2>
+        <p className="mt-3 text-sm">
           Your account has been suspended. Contact support if you believe this is an error.
         </p>
       </div>

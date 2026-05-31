@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "./ui/Button";
+import { InlineError } from "@/components/ui/StatusMessage";
 
 export function ForgotPasswordForm() {
   const [email, setEmail] = useState("");
@@ -73,7 +74,7 @@ export function ForgotPasswordForm() {
         onChange={(e) => setEmail(e.target.value)}
         className="apple-input"
       />
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <InlineError>{error}</InlineError>}
       <Button type="submit" disabled={loading} className="w-full">
         {loading ? "Sending…" : "Send reset link"}
       </Button>

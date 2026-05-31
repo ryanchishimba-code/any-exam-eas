@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "./ui/Button";
+import { InlineError } from "@/components/ui/StatusMessage";
 
 export function ResetPasswordForm() {
   const router = useRouter();
@@ -53,9 +54,7 @@ export function ResetPasswordForm() {
   if (!token) {
     return (
       <div className="apple-card mt-10 space-y-4 p-8 md:p-10 text-center">
-        <p className="text-sm text-red-600">
-          This reset link is missing or invalid.
-        </p>
+        <InlineError>This reset link is missing or invalid.</InlineError>
         <Link
           href="/forgot-password"
           className="inline-block text-sm font-medium text-[var(--color-accent)]"
@@ -88,7 +87,7 @@ export function ResetPasswordForm() {
         onChange={(e) => setConfirm(e.target.value)}
         className="apple-input"
       />
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <InlineError>{error}</InlineError>}
       <Button type="submit" disabled={loading} className="w-full">
         {loading ? "Updating…" : "Update password"}
       </Button>

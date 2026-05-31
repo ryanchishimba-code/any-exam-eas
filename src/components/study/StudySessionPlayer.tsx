@@ -22,6 +22,7 @@ import type {
 } from "@/lib/questions/types";
 import type { LearningInsight, RemediationRecommendation } from "@/lib/learning/types";
 import { InsightPanel } from "./InsightPanel";
+import { AnswerFeedbackLabel } from "@/components/ui/StatusMessage";
 import {
   ExplanationPanel,
   QuestionRenderer,
@@ -353,10 +354,8 @@ export function StudySessionPlayer({
 
           {answer?.revealed && (
             <div className="space-y-3">
-              <p
-                className={`text-sm font-semibold ${answer.correct ? "text-emerald-700" : "text-red-700"}`}
-              >
-                {answer.correct ? "Correct" : "Review"}
+              <p className="text-sm">
+                <AnswerFeedbackLabel correct={answer.correct === true} />
               </p>
               <ExplanationPanel question={current} />
               {insight && (

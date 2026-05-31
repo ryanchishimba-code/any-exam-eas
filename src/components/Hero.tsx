@@ -15,10 +15,10 @@ export function Hero() {
 
       <ReturningUserHeroBanner />
 
-      <div className="relative mx-auto max-w-[1140px] px-5 sm:px-6">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 xl:gap-16">
+      <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20 xl:gap-24">
           <header className="text-center lg:text-left">
-            <div className="aee-reveal mx-auto flex flex-wrap items-center justify-center gap-2 lg:mx-0 lg:justify-start">
+            <div className="aee-reveal mx-auto flex flex-wrap items-center justify-center gap-2.5 lg:mx-0 lg:justify-start">
               <p className="aee-badge">NCLEX · USMLE · NAPLEX</p>
               <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-800 dark:bg-amber-950/40 dark:text-amber-300">
                 <Star className="h-3 w-3 fill-amber-400 text-amber-400" aria-hidden />
@@ -28,13 +28,13 @@ export function Hero() {
 
             <h1
               id="hero-heading"
-              className="aee-display-xl aee-reveal aee-reveal-delay-1 mt-6"
+              className="aee-display-xl aee-reveal aee-reveal-delay-1 mt-8"
             >
               Pass your board exam{" "}
               <span className="aee-display-accent">the first time.</span>
             </h1>
 
-            <p className="aee-lede aee-reveal aee-reveal-delay-2 mx-auto mt-5 max-w-xl lg:mx-0">
+            <p className="aee-lede aee-reveal aee-reveal-delay-2 mx-auto mt-6 max-w-xl lg:mx-0">
               Adaptive AI question banks with OER-backed rationales — built for
               nursing, medical, pharmacy, and dental students who need results,
               not another generic study app.
@@ -44,7 +44,7 @@ export function Hero() {
               {formatPricingHeadline()}
             </p>
 
-            <div className="aee-reveal aee-reveal-delay-3 mx-auto mt-8 max-w-lg lg:mx-0 lg:max-w-none">
+            <div className="aee-reveal aee-reveal-delay-3 mx-auto mt-10 max-w-lg lg:mx-0 lg:max-w-none">
               <HeroPrimaryCta callbackUrl="/dashboard" />
             </div>
 

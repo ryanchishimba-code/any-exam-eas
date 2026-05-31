@@ -19,6 +19,7 @@ import {
   saveReturningUserHint,
   type LoginMethod,
 } from "@/lib/client/returning-user";
+import { InlineError } from "@/components/ui/StatusMessage";
 
 type LoginModalProps = {
   open: boolean;
@@ -365,11 +366,7 @@ export function LoginModal({ open, onClose, callbackUrl = "/study" }: LoginModal
                         Forgot password?
                       </Link>
                     </div>
-                    {error && (
-                      <p className="rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-800 dark:border-red-500/30 dark:bg-red-950/40 dark:text-red-200">
-                        {error}
-                      </p>
-                    )}
+                    {error && <InlineError className="text-xs">{error}</InlineError>}
                     <button type="submit" disabled={loading} className="login-modal-btn-primary w-full">
                       <Lock className="h-4 w-4" aria-hidden />
                       {loading ? "Signing in…" : "Log in"}
@@ -387,9 +384,7 @@ export function LoginModal({ open, onClose, callbackUrl = "/study" }: LoginModal
               )}
 
               {!showPasswordForm && error && (
-                <p className="mt-3 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-800 dark:border-red-500/30 dark:bg-red-950/40 dark:text-red-200">
-                  {error}
-                </p>
+                <InlineError className="mt-3 text-xs">{error}</InlineError>
               )}
 
               <p className="mt-5 flex items-center justify-center gap-1.5 text-center text-[0.6875rem] text-slate-500 dark:text-slate-400">

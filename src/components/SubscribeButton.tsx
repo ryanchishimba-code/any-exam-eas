@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { formatMonthlyPrice } from "@/lib/site";
 import { Button } from "./ui/Button";
+import { InlineError } from "@/components/ui/StatusMessage";
 
 type Props = {
   label?: string;
@@ -75,7 +76,7 @@ function HostedSubscribeButton({
       >
         {loading ? "Redirecting…" : label}
       </Button>
-      {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+      {error && <InlineError className="mt-2">{error}</InlineError>}
     </div>
   );
 }

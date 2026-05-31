@@ -11,6 +11,9 @@ export const metadata: Metadata = buildHomeMetadata();
 const LandingFeatures = dynamic(() =>
   import("@/components/home/LandingFeatures").then((m) => m.LandingFeatures)
 );
+const Top300DrugsMastery = dynamic(() =>
+  import("@/components/home/Top300DrugsMastery").then((m) => m.Top300DrugsMastery)
+);
 const Testimonials = dynamic(() =>
   import("@/components/home/Testimonials").then((m) => m.Testimonials)
 );
@@ -23,9 +26,6 @@ const ChooseYourExam = dynamic(() =>
 const SubjectsShowcase = dynamic(() =>
   import("@/components/home/SubjectsShowcase").then((m) => m.SubjectsShowcase)
 );
-const FeatureGrid = dynamic(() =>
-  import("@/components/FeatureGrid").then((m) => m.FeatureGrid)
-);
 const WelcomeBackSection = dynamic(() =>
   import("@/components/home/WelcomeBackSection").then((m) => m.WelcomeBackSection)
 );
@@ -36,11 +36,11 @@ export default function HomePage() {
       <HomeJsonLd />
       <Hero />
       <LandingFeatures />
+      <Top300DrugsMastery />
       <Testimonials />
       <HowWeCompare />
       <ChooseYourExam />
       <SubjectsShowcase />
-      <FeatureGrid />
       <WelcomeBackSection />
       <HomeBottomCta />
     </>

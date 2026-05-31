@@ -34,6 +34,19 @@ export type ExamQuestion = {
   caseStep?: number;
   solutionSteps?: string[];
   tags?: string[];
+  /** Easy | Medium | Hard — board-exam calibrated difficulty. */
+  difficultyLabel?: "Easy" | "Medium" | "Hard";
+  /** Blueprint category (e.g. Management of Care, Pharmacotherapy). */
+  topicCategory?: string;
+  /** Required for NAPLEX pharmacotherapy items when a drug is central to the stem. */
+  drugProfile?: {
+    generic: string;
+    brand?: string;
+    drugClass: string;
+    indication: string;
+    majorSideEffects: string[];
+    monitoring?: string[];
+  };
   highYield?: boolean;
   qualityScore?: number;
 };

@@ -11,6 +11,7 @@ import {
 } from "@/lib/auth-client";
 import { Button } from "./ui/Button";
 import { QuickSignIn } from "./auth/QuickSignIn";
+import { InlineError, StatusMessage } from "@/components/ui/StatusMessage";
 import { completeLoginFlow, signInWithMagicToken } from "@/lib/client/post-login";
 import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/lib/client/returning-user";
 import type { LoginMethod } from "@/lib/client/returning-user";
@@ -115,19 +116,17 @@ export function LoginForm() {
       className="apple-card mt-10 space-y-5 p-8 md:p-10"
     >
       {resetSuccess && (
-        <p className="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-900">
+        <StatusMessage variant="success">
           Your password was updated. Log in with your new password.
-        </p>
+        </StatusMessage>
       )}
       {magicLoading && (
-        <p className="rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-900">
+        <StatusMessage variant="info" label="Loading">
           Verifying your secure sign-in link…
-        </p>
+        </StatusMessage>
       )}
       {configWarning && (
-        <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-          {configWarning}
-        </p>
+        <StatusMessage variant="warning">{configWarning}</StatusMessage>
       )}
 
       <QuickSignIn
@@ -173,7 +172,7 @@ export function LoginForm() {
         </Link>
       </div>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <InlineError>{error}</InlineError>}
 
       <Button type="submit" disabled={loading || magicLoading || !!configWarning} className="w-full">
         {loading ? "Signing in…" : "Log in"}

@@ -1,0 +1,4760 @@
+{
+  "version": "1.0.0",
+  "source": "ClinCalc Top 300 (Any Exam Easy)",
+  "updatedAt": "2026-05-31T03:42:37.517Z",
+  "count": 297,
+  "drugs": [
+    {
+      "id": "atorvastatin",
+      "rank": 1,
+      "generic": "Atorvastatin",
+      "brand": "Lipitor",
+      "class": "HMG-CoA reductase inhibitor (statin)",
+      "indications": "Hyperlipidemia, ASCVD primary/secondary prevention",
+      "sideEffects": "Myopathy/rhabdo, hepatotoxicity, ↑LFTs, diabetes risk",
+      "mnemonic": "A TORpedo sinks cholesterol — watch liver & muscles (CK/LFTs)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "levothyroxine",
+      "rank": 2,
+      "generic": "Levothyroxine",
+      "brand": "Synthroid, Levoxyl",
+      "class": "Synthetic T4 thyroid hormone",
+      "indications": "Hypothyroidism, thyroid cancer suppression",
+      "sideEffects": "Palpitations, arrhythmias, osteoporosis (over-replacement)",
+      "mnemonic": "Levo lifts your metabolism — too much = tachycardia & bone loss",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "lisinopril",
+      "rank": 3,
+      "generic": "Lisinopril",
+      "brand": "Prinivil, Zestril",
+      "class": "ACE inhibitor",
+      "indications": "Hypertension, heart failure, post-MI, diabetic nephropathy",
+      "sideEffects": "Dry cough, hyperkalemia, angioedema, teratogenic (D)",
+      "mnemonic": "Lisinopril Lisin' the cough away — ACE = Angioedema Cough Elevated K+",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "metformin",
+      "rank": 4,
+      "generic": "Metformin",
+      "brand": "Glucophage",
+      "class": "Biguanide",
+      "indications": "Type 2 diabetes, PCOS, prediabetes",
+      "sideEffects": "GI upset, lactic acidosis (rare), B12 deficiency",
+      "mnemonic": "METformin = METabolic fix; avoid if kidneys fail (lactic acidosis)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "amlodipine",
+      "rank": 5,
+      "generic": "Amlodipine",
+      "brand": "Norvasc",
+      "class": "Dihydropyridine calcium channel blocker",
+      "indications": "Hypertension, angina",
+      "sideEffects": "Peripheral edema, flushing, gingival hyperplasia, reflex tachycardia",
+      "mnemonic": "Am-LO-dipine causes ankle LOw swelling (edema)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "metoprolol",
+      "rank": 6,
+      "generic": "Metoprolol",
+      "brand": "Lopressor, Toprol-XL",
+      "class": "Beta-1 selective blocker",
+      "indications": "Hypertension, angina, heart failure, post-MI, arrhythmias",
+      "sideEffects": "Bradycardia, fatigue, bronchospasm (less with β1-selective), mask hypoglycemia",
+      "mnemonic": "Meto-PROLOL slows PRO athletes — bradycardia & fatigue",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "albuterol",
+      "rank": 7,
+      "generic": "Albuterol",
+      "brand": "ProAir, Ventolin",
+      "class": "Short-acting β2 agonist (SABA)",
+      "indications": "Acute bronchospasm, asthma, COPD rescue",
+      "sideEffects": "Tremor, tachycardia, hypokalemia, paradoxical bronchospasm",
+      "mnemonic": "Al-but-ALL open airways — tremor + tachycardia = β2 price",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "omeprazole",
+      "rank": 8,
+      "generic": "Omeprazole",
+      "brand": "Prilosec",
+      "class": "Proton pump inhibitor (PPI)",
+      "indications": "GERD, PUD, H. pylori triple therapy, erosive esophagitis",
+      "sideEffects": "C. diff risk, hypomagnesemia, B12 deficiency, fracture risk",
+      "mnemonic": "Ome-PRAZOLE = PRAY for acid relief; long-term = C. diff & low Mg",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "losartan",
+      "rank": 9,
+      "generic": "Losartan",
+      "brand": "Cozaar",
+      "class": "Angiotensin II receptor blocker (ARB)",
+      "indications": "Hypertension, diabetic nephropathy, heart failure",
+      "sideEffects": "Hyperkalemia, dizziness, teratogenic (D); no cough vs ACE-I",
+      "mnemonic": "LOsartan LOses the pressure without the ACE cough",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "gabapentin",
+      "rank": 10,
+      "generic": "Gabapentin",
+      "brand": "Neurontin",
+      "class": "Anticonvulsant / neuropathic pain agent",
+      "indications": "Neuropathic pain, postherpetic neuralgia, partial seizures",
+      "sideEffects": "Sedation, dizziness, ataxia, peripheral edema, misuse potential",
+      "mnemonic": "GABA-pentin grabs pain — sedating & dizzying",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "hydrochlorothiazide",
+      "rank": 11,
+      "generic": "Hydrochlorothiazide",
+      "brand": "Microzide",
+      "class": "Thiazide diuretic",
+      "indications": "Hypertension, edema, nephrolithiasis (calcium stones)",
+      "sideEffects": "Hypokalemia, hyperuricemia (gout), hyperglycemia, photosensitivity",
+      "mnemonic": "HCTZ = Hypo-K+, hyperUricemia, hyperCalcemia, hyperGlucose",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "sertraline",
+      "rank": 12,
+      "generic": "Sertraline",
+      "brand": "Zoloft",
+      "class": "SSRI antidepressant",
+      "indications": "MDD, OCD, PTSD, panic disorder, social anxiety",
+      "sideEffects": "GI upset, sexual dysfunction, serotonin syndrome, bleeding risk",
+      "mnemonic": "Sertraline = Serotonin up; watch SI early & serotonin syndrome",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "simvastatin",
+      "rank": 13,
+      "generic": "Simvastatin",
+      "brand": "Zocor",
+      "class": "HMG-CoA reductase inhibitor (statin)",
+      "indications": "Hyperlipidemia, ASCVD prevention",
+      "sideEffects": "Myopathy (especially with CYP3A4 inhibitors), hepatotoxicity",
+      "mnemonic": "SIMvastatin + SIMvastatin drugs (gemfibrozil/azoles) = SIMultaneous myopathy",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "montelukast",
+      "rank": 14,
+      "generic": "Montelukast",
+      "brand": "Singulair",
+      "class": "Leukotriene receptor antagonist",
+      "indications": "Asthma maintenance, allergic rhinitis, exercise-induced bronchospasm",
+      "sideEffects": "Neuropsychiatric effects (FDA boxed warning), headache",
+      "mnemonic": "Montelukast = mental health watch — mood & dream changes",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "escitalopram",
+      "rank": 15,
+      "generic": "Escitalopram",
+      "brand": "Lexapro",
+      "class": "SSRI antidepressant",
+      "indications": "MDD, generalized anxiety disorder",
+      "sideEffects": "Sexual dysfunction, QT prolongation (high dose), SI early in teens",
+      "mnemonic": "Escitalopram exits anxiety — SSRI sexual side effects common",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "acetaminophen",
+      "rank": 16,
+      "generic": "Acetaminophen",
+      "brand": "Tylenol",
+      "class": "Analgesic / antipyretic",
+      "indications": "Mild-moderate pain, fever",
+      "sideEffects": "Hepatotoxicity (NAPQI) at >4 g/day or with alcohol/CYP2E1 inducers",
+      "mnemonic": "Acetaminophen attacks the liver at 4g — NAPQI needs glutathione",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "rosuvastatin",
+      "rank": 17,
+      "generic": "Rosuvastatin",
+      "brand": "Crestor",
+      "class": "HMG-CoA reductase inhibitor (statin)",
+      "indications": "Hyperlipidemia, ASCVD prevention",
+      "sideEffects": "Myopathy, proteinuria, hepatotoxicity; potent statin",
+      "mnemonic": "ROSuvastatin = ROSES to the top (potent LDL drop) — still watch CK",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "bupropion",
+      "rank": 18,
+      "generic": "Bupropion",
+      "brand": "Wellbutrin",
+      "class": "NDRI antidepressant / smoking cessation",
+      "indications": "MDD, seasonal affective disorder, smoking cessation",
+      "sideEffects": "Seizure risk (dose-dependent), insomnia, agitation, no sexual SE",
+      "mnemonic": "BuPROPion = PROpagates energy; no weight/sex SE but seizure risk",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "furosemide",
+      "rank": 19,
+      "generic": "Furosemide",
+      "brand": "Lasix",
+      "class": "Loop diuretic",
+      "indications": "Edema (CHF, cirrhosis, renal), acute pulmonary edema, hypercalcemia",
+      "sideEffects": "Hypokalemia, ototoxicity, dehydration, hyperuricemia",
+      "mnemonic": "Furosemide = FAST urine (loop) — LOSE K+ & hearing at high doses",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "pantoprazole",
+      "rank": 20,
+      "generic": "Pantoprazole",
+      "brand": "Protonix",
+      "class": "Proton pump inhibitor (PPI)",
+      "indications": "GERD, PUD, Zollinger-Ellison, stress ulcer prophylaxis",
+      "sideEffects": "C. diff, hypomagnesemia, B12 deficiency, fracture risk",
+      "mnemonic": "Panto-PRAZOLE pants acid away — same PPI long-term risks",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "trazodone",
+      "rank": 21,
+      "generic": "Trazodone",
+      "brand": "Desyrel",
+      "class": "Serotonin antagonist/reuptake inhibitor (SARI)",
+      "indications": "Major depression, insomnia (low dose)",
+      "sideEffects": "Sedation, orthostatic hypotension, priapism (rare emergency)",
+      "mnemonic": "TraZODone = ZZZ OD — sedating; priapism is emergency",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "doxycycline",
+      "rank": 22,
+      "generic": "Doxycycline",
+      "brand": "Vibramycin, Doryx",
+      "class": "Tetracycline antibiotic",
+      "indications": "Acne, CAP, tick-borne illness, chlamydia, MRSA skin",
+      "sideEffects": "Photosensitivity, esophageal ulcer (take upright), tooth discoloration <8yo",
+      "mnemonic": "Doxy = don't take lying down (esophagitis) + sun sensitivity",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "prednisone",
+      "rank": 23,
+      "generic": "Prednisone",
+      "brand": "Deltasone",
+      "class": "Systemic corticosteroid",
+      "indications": "Inflammation, asthma exacerbation, autoimmune flares, transplant",
+      "sideEffects": "Hyperglycemia, osteoporosis, immunosuppression, Cushingoid, mood",
+      "mnemonic": "PREDnisone = PREDator on bones & glucose — taper don't stop abruptly",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "insulin-glargine",
+      "rank": 24,
+      "generic": "Insulin glargine",
+      "brand": "Lantus, Basaglar",
+      "class": "Long-acting basal insulin analog",
+      "indications": "Type 1 & type 2 diabetes basal coverage",
+      "sideEffects": "Hypoglycemia, weight gain, lipodystrophy at injection sites",
+      "mnemonic": "Glargine = GLide all day (24h basal) — hypoglycemia if no meal plan",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "tramadol",
+      "rank": 25,
+      "generic": "Tramadol",
+      "brand": "Ultram",
+      "class": "Weak opioid + SNRI activity",
+      "indications": "Moderate pain",
+      "sideEffects": "Seizures, serotonin syndrome, respiratory depression, dependence",
+      "mnemonic": "TraMADol = MAD combo (opioid + serotonin) — seizure & SS risk",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "tamsulosin",
+      "rank": 26,
+      "generic": "Tamsulosin",
+      "brand": "Flomax",
+      "class": "Alpha-1A selective blocker",
+      "indications": "BPH (LUTS), ureteral stone expulsion",
+      "sideEffects": "Orthostatic hypotension (less than non-selective), intraoperative floppy iris",
+      "mnemonic": "Tamsulosin = TAMs open prostate flow — IFIS in cataract surgery",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "meloxicam",
+      "rank": 27,
+      "generic": "Meloxicam",
+      "brand": "Mobic",
+      "class": "NSAID (COX preferential)",
+      "indications": "Osteoarthritis, rheumatoid arthritis",
+      "sideEffects": "GI bleed, renal injury, CV events, fluid retention",
+      "mnemonic": "Meloxicam = MELT joints but MELT kidneys/GI too (NSAID rules)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "citalopram",
+      "rank": 28,
+      "generic": "Citalopram",
+      "brand": "Celexa",
+      "class": "SSRI antidepressant",
+      "indications": "Major depressive disorder",
+      "sideEffects": "QT prolongation (max 40 mg), SI early, sexual dysfunction",
+      "mnemonic": "Citalopram = Caution QT — max 40 mg (20 if QTc long/elderly)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "duloxetine",
+      "rank": 29,
+      "generic": "Duloxetine",
+      "brand": "Cymbalta",
+      "class": "SNRI",
+      "indications": "MDD, GAD, diabetic neuropathy, fibromyalgia, chronic pain",
+      "sideEffects": "Nausea, hypertension, serotonin syndrome, withdrawal syndrome",
+      "mnemonic": "DULoxetine = DUAL reuptake — don't stop abruptly (brain zaps)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "potassium-chloride",
+      "rank": 30,
+      "generic": "Potassium chloride",
+      "brand": "K-Dur, Klor-Con",
+      "class": "Electrolyte supplement",
+      "indications": "Hypokalemia prevention/treatment",
+      "sideEffects": "GI ulceration (slow-release better), hyperkalemia if renal failure",
+      "mnemonic": "K+ = Kill if too high; give slow-release & check renal function",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "fluticasone",
+      "rank": 31,
+      "generic": "Fluticasone",
+      "brand": "Flovent, Flonase",
+      "class": "Inhaled/intranasal corticosteroid",
+      "indications": "Asthma (ICS), allergic rhinitis",
+      "sideEffects": "Oral candidiasis (rinse mouth), epistaxis (nasal), adrenal suppression (high dose)",
+      "mnemonic": "Fluticasone = FLUsh inflammation locally — rinse mouth after inhaler",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "azithromycin",
+      "rank": 32,
+      "generic": "Azithromycin",
+      "brand": "Z-Pak, Zithromax",
+      "class": "Macrolide antibiotic",
+      "indications": "CAP, atypical pneumonia, STIs, MAC prophylaxis",
+      "sideEffects": "QT prolongation, GI upset, hepatotoxicity, C. diff",
+      "mnemonic": "A-Zithromycin = Z-Pak 5 days — QT & liver watch",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "clopidogrel",
+      "rank": 33,
+      "generic": "Clopidogrel",
+      "brand": "Plavix",
+      "class": "P2Y12 inhibitor (antiplatelet)",
+      "indications": "ACS, post-stent, stroke/TIA prevention",
+      "sideEffects": "Bleeding, TTP (rare), reduced effect if CYP2C19 poor metabolizer",
+      "mnemonic": "Clopidogrel = CLOts Plavix — needs CYP2C19 to activate",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "amoxicillin",
+      "rank": 34,
+      "generic": "Amoxicillin",
+      "brand": "Amoxil",
+      "class": "Aminopenicillin",
+      "indications": "Otitis media, strep pharyngitis, CAP, H. pylori",
+      "sideEffects": "Rash (EBV mono), diarrhea, allergic reactions",
+      "mnemonic": "Amoxicillin = AMOXing bacteria — rash if mono (EBV)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "quetiapine",
+      "rank": 35,
+      "generic": "Quetiapine",
+      "brand": "Seroquel",
+      "class": "Atypical antipsychotic",
+      "indications": "Schizophrenia, bipolar, MDD adjunct, insomnia (off-label)",
+      "sideEffects": "Sedation, metabolic syndrome, orthostatic hypotension, QT prolongation",
+      "mnemonic": "QueTIAPine = Quiet AP — sedating & metabolic weight gain",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "ibuprofen",
+      "rank": 36,
+      "generic": "Ibuprofen",
+      "brand": "Advil, Motrin",
+      "class": "NSAID (non-selective COX inhibitor)",
+      "indications": "Pain, fever, inflammation, dysmenorrhea",
+      "sideEffects": "GI bleed, renal injury, CV events, aspirin interaction",
+      "mnemonic": "IBUprofen = I Beat Ulcers if misused — take with food, avoid in CKD/CVD",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "carvedilol",
+      "rank": 37,
+      "generic": "Carvedilol",
+      "brand": "Coreg",
+      "class": "Non-selective β-blocker + α1 block",
+      "indications": "Heart failure, hypertension, post-MI",
+      "sideEffects": "Bradycardia, hypotension, bronchospasm, mask hypoglycemia",
+      "mnemonic": "Carvedilol = CORE heart drug — blocks β AND α (HF benefit)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "pravastatin",
+      "rank": 38,
+      "generic": "Pravastatin",
+      "brand": "Pravachol",
+      "class": "HMG-CoA reductase inhibitor (statin)",
+      "indications": "Hyperlipidemia, ASCVD prevention",
+      "sideEffects": "Myopathy, hepatotoxicity; fewer CYP interactions",
+      "mnemonic": "PRAVastatin = PRAVent interactions — hydrophilic statin",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "allopurinol",
+      "rank": 39,
+      "generic": "Allopurinol",
+      "brand": "Zyloprim",
+      "class": "Xanthine oxidase inhibitor",
+      "indications": "Gout prophylaxis, tumor lysis syndrome",
+      "sideEffects": "Stevens-Johnson (HLA-B*5801 in Asians), rash, hepatotoxicity",
+      "mnemonic": "ALLOpurinol ALLOws uric acid down — HLA-B*5801 before starting (Asians)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "cyclobenzaprine",
+      "rank": 40,
+      "generic": "Cyclobenzaprine",
+      "brand": "Flexeril",
+      "class": "Centrally acting muscle relaxant",
+      "indications": "Acute musculoskeletal spasm",
+      "sideEffects": "Sedation, anticholinergic effects, serotonin syndrome with MAOIs/SSRIs",
+      "mnemonic": "CycloBENZaprine = BENZed out & sedated — structurally TCA-like",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "methylphenidate",
+      "rank": 41,
+      "generic": "Methylphenidate",
+      "brand": "Ritalin, Concerta",
+      "class": "CNS stimulant (DAT/NET inhibitor)",
+      "indications": "ADHD, narcolepsy",
+      "sideEffects": "Insomnia, appetite loss, tachycardia, abuse potential",
+      "mnemonic": "Methylphenidate = METHod to focus — schedule II, appetite ↓",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "glimepiride",
+      "rank": 42,
+      "generic": "Glimepiride",
+      "brand": "Amaryl",
+      "class": "Sulfonylurea",
+      "indications": "Type 2 diabetes",
+      "sideEffects": "Hypoglycemia (especially elderly), weight gain",
+      "mnemonic": "Glimepiride = GLIedes sugar down — hypoglycemia risk (sulfa)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "apixaban",
+      "rank": 43,
+      "generic": "Apixaban",
+      "brand": "Eliquis",
+      "class": "Direct factor Xa inhibitor (DOAC)",
+      "indications": "AFib stroke prevention, DVT/PE treatment & prophylaxis",
+      "sideEffects": "Bleeding; no routine monitoring; avoid in severe renal/hepatic disease",
+      "mnemonic": "APIxaban = API for clots — Eliquis exits without warfarin monitoring",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "alprazolam",
+      "rank": 44,
+      "generic": "Alprazolam",
+      "brand": "Xanax",
+      "class": "Benzodiazepine (short-acting)",
+      "indications": "Panic disorder, anxiety (short-term)",
+      "sideEffects": "Sedation, dependence, withdrawal seizures, respiratory depression + opioids",
+      "mnemonic": "ALPRAZolam = ALmost PRAY for anxiety — short half-life = addictive",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "spironolactone",
+      "rank": 45,
+      "generic": "Spironolactone",
+      "brand": "Aldactone",
+      "class": "Potassium-sparing diuretic / aldosterone antagonist",
+      "indications": "Heart failure, ascites, hyperaldosteronism, hirsutism/PCOS",
+      "sideEffects": "Hyperkalemia, gynecomastia, menstrual irregularities",
+      "mnemonic": "Spiro = saves K+ but grows moobs (gynecomastia)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "warfarin",
+      "rank": 46,
+      "generic": "Warfarin",
+      "brand": "Coumadin",
+      "class": "Vitamin K antagonist",
+      "indications": "AFib, mechanical valves, DVT/PE, antiphospholipid syndrome",
+      "sideEffects": "Bleeding, skin necrosis (protein C def), teratogenic; many interactions",
+      "mnemonic": "WARFarin = WARFare on INR — monitor INR 2-3, vitamin K reverses",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "venlafaxine",
+      "rank": 47,
+      "generic": "Venlafaxine",
+      "brand": "Effexor",
+      "class": "SNRI antidepressant",
+      "indications": "MDD, GAD, panic disorder, social anxiety",
+      "sideEffects": "Hypertension (dose-related), withdrawal syndrome, serotonin syndrome",
+      "mnemonic": "Venlafaxine = VENture high BP at high dose — taper to stop",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "clonazepam",
+      "rank": 48,
+      "generic": "Clonazepam",
+      "brand": "Klonopin",
+      "class": "Benzodiazepine (long-acting)",
+      "indications": "Panic disorder, seizures, movement disorders",
+      "sideEffects": "Sedation, dependence, respiratory depression with opioids",
+      "mnemonic": "ClonazePAM = CLONe calm long-lasting — seizure & panic",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "celecoxib",
+      "rank": 49,
+      "generic": "Celecoxib",
+      "brand": "Celebrex",
+      "class": "COX-2 selective NSAID",
+      "indications": "OA, RA, acute pain, familial adenomatous polyposis",
+      "sideEffects": "CV events, GI bleed (less than non-selective), sulfa allergy cross-reactivity",
+      "mnemonic": "CeleCOXib = COX-2 celeb — less GI but still CV risk",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "lorazepam",
+      "rank": 50,
+      "generic": "Lorazepam",
+      "brand": "Ativan",
+      "class": "Benzodiazepine (intermediate-acting)",
+      "indications": "Anxiety, status epilepticus, alcohol withdrawal, preprocedure sedation",
+      "sideEffects": "Sedation, dependence, respiratory depression",
+      "mnemonic": "LORazepam = LORries away — Ativan for seizures & alcohol WD",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "empagliflozin",
+      "rank": 51,
+      "generic": "Empagliflozin",
+      "brand": "Jardiance",
+      "class": "SGLT2 inhibitor",
+      "indications": "Type 2 diabetes, HFrEF, CKD",
+      "sideEffects": "Genital mycotic infections, euglycemic DKA, volume depletion",
+      "mnemonic": "EMPA = EMPty glucose in urine — Jardiance helps heart & kidney too",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "insulin-aspart",
+      "rank": 52,
+      "generic": "Insulin aspart",
+      "brand": "NovoLog",
+      "class": "Rapid-acting insulin analog",
+      "indications": "Mealtime glucose control in diabetes",
+      "sideEffects": "Hypoglycemia, weight gain, injection site reactions",
+      "mnemonic": "Aspart = A SPART of mealtime insulin — rapid onset",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "insulin-lispro",
+      "rank": 53,
+      "generic": "Insulin lispro",
+      "brand": "Humalog",
+      "class": "Rapid-acting insulin analog",
+      "indications": "Mealtime glucose control in diabetes",
+      "sideEffects": "Hypoglycemia, lipodystrophy, weight gain",
+      "mnemonic": "Lispro = LISten for meal — rapid insulin analog",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "ezetimibe",
+      "rank": 54,
+      "generic": "Ezetimibe",
+      "brand": "Zetia",
+      "class": "Cholesterol absorption inhibitor",
+      "indications": "Hyperlipidemia (add-on to statin), sitosterolemia",
+      "sideEffects": "Diarrhea, myopathy (with statin), hepatotoxicity (rare)",
+      "mnemonic": "Ezetimibe = EZ cholesterol absorption in gut",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "atenolol",
+      "rank": 55,
+      "generic": "Atenolol",
+      "brand": "Tenormin",
+      "class": "Beta-1 selective blocker",
+      "indications": "Hypertension, angina, post-MI",
+      "sideEffects": "Bradycardia, fatigue, mask hypoglycemia; hydrophilic",
+      "mnemonic": "Atenolol = A TEN out of ten for HTN — hydrophilic β1",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "buspirone",
+      "rank": 56,
+      "generic": "Buspirone",
+      "brand": "Buspar",
+      "class": "5-HT1A partial agonist (anxiolytic)",
+      "indications": "Generalized anxiety disorder",
+      "sideEffects": "Dizziness, nausea; takes 2-4 weeks; no sedation/dependence like benzos",
+      "mnemonic": "BusPIRone = BUSy serotonin — no benzo buzz, slow onset",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "cephalexin",
+      "rank": 57,
+      "generic": "Cephalexin",
+      "brand": "Keflex",
+      "class": "First-generation cephalosporin",
+      "indications": "Skin/soft tissue, UTI, strep pharyngitis",
+      "sideEffects": "Diarrhea, allergic cross-reactivity with penicillin (~1-10%)",
+      "mnemonic": "CEPHalexin = CEPHalo for skin infections",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "clonidine",
+      "rank": 58,
+      "generic": "Clonidine",
+      "brand": "Catapres",
+      "class": "Central α2 agonist",
+      "indications": "Hypertension, ADHD, opioid withdrawal",
+      "sideEffects": "Sedation, rebound hypertension if stopped abruptly, bradycardia",
+      "mnemonic": "Clonidine = CLONe down BP centrally — never stop cold turkey",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "finasteride",
+      "rank": 59,
+      "generic": "Finasteride",
+      "brand": "Proscar, Propecia",
+      "class": "5α-reductase inhibitor",
+      "indications": "BPH, male pattern baldness",
+      "sideEffects": "Sexual dysfunction, gynecomastia; teratogenic (handled by women pregnant)",
+      "mnemonic": "Finasteride = FINish DHT — shrinks prostate, watch sexual SE",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "fluoxetine",
+      "rank": 60,
+      "generic": "Fluoxetine",
+      "brand": "Prozac",
+      "class": "SSRI antidepressant",
+      "indications": "MDD, OCD, bulimia, panic disorder",
+      "sideEffects": "Long half-life, activating, SI early, serotonin syndrome",
+      "mnemonic": "FLUoxetine = FLU long half-life — activating SSRI",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "hydrocodone-acetaminophen",
+      "rank": 61,
+      "generic": "Hydrocodone/acetaminophen",
+      "brand": "Norco, Vicodin",
+      "class": "Opioid + analgesic combination",
+      "indications": "Moderate-severe pain",
+      "sideEffects": "Respiratory depression, dependence, hepatotoxicity (acetaminophen component)",
+      "mnemonic": "Norco = NARCOTIC + liver hit — limit acetaminophen daily",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "hydroxyzine",
+      "rank": 62,
+      "generic": "Hydroxyzine",
+      "brand": "Vistaril, Atarax",
+      "class": "First-gen antihistamine / anxiolytic",
+      "indications": "Anxiety, pruritus, nausea, sedation pre-op",
+      "sideEffects": "Sedation, anticholinergic effects, QT prolongation (high dose)",
+      "mnemonic": "HYDROxyzine = HYDRO sedation — antihistamine anxiolytic",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "latanoprost",
+      "rank": 63,
+      "generic": "Latanoprost",
+      "brand": "Xalatan",
+      "class": "Prostaglandin F2α analog",
+      "indications": "Open-angle glaucoma, ocular hypertension",
+      "sideEffects": "Iris darkening, eyelash growth, macular edema risk",
+      "mnemonic": "Latanoprost = LASH growth & LATent iris color change",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "levetiracetam",
+      "rank": 64,
+      "generic": "Levetiracetam",
+      "brand": "Keppra",
+      "class": "Antiepileptic (SV2A modulator)",
+      "indications": "Partial & generalized seizures",
+      "sideEffects": "Behavioral changes (irritability), somnolence, no hepatic metabolism",
+      "mnemonic": "KEPPRA = KEeps epilepsy PRActical — mood changes watch",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "methotrexate",
+      "rank": 65,
+      "generic": "Methotrexate",
+      "brand": "Trexall, Rheumatrex",
+      "class": "Antimetabolite (folate antagonist)",
+      "indications": "RA, psoriasis, cancer, ectopic pregnancy",
+      "sideEffects": "Hepatotoxicity, myelosuppression, pulmonary fibrosis, teratogenic",
+      "mnemonic": "MethoTREXate = TREX on folate — give folic acid, pregnancy X",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "mirtazapine",
+      "rank": 66,
+      "generic": "Mirtazapine",
+      "brand": "Remeron",
+      "class": "Atypical antidepressant (α2 antagonist)",
+      "indications": "Major depression, appetite stimulation",
+      "sideEffects": "Weight gain, sedation, increased appetite, agranulocytosis (rare)",
+      "mnemonic": "Mirtazapine = MORE eating & sleeping — good for depressed + anorexic",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "naproxen",
+      "rank": 67,
+      "generic": "Naproxen",
+      "brand": "Aleve, Naprosyn",
+      "class": "NSAID (propionic acid)",
+      "indications": "Pain, inflammation, dysmenorrhea, gout flares",
+      "sideEffects": "GI bleed, renal injury, CV events, delayed healing",
+      "mnemonic": "NAProxen = NAP long duration NSAID — take with food",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "oxycodone",
+      "rank": 68,
+      "generic": "Oxycodone",
+      "brand": "OxyContin, Roxicodone",
+      "class": "Opioid agonist",
+      "indications": "Moderate-severe pain",
+      "sideEffects": "Respiratory depression, dependence, constipation, miosis",
+      "mnemonic": "OXY = OXYgen steal (respiratory depression) — schedule II",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "paroxetine",
+      "rank": 69,
+      "generic": "Paroxetine",
+      "brand": "Paxil",
+      "class": "SSRI antidepressant",
+      "indications": "MDD, anxiety disorders, PTSD, premature ejaculation",
+      "sideEffects": "Weight gain, anticholinergic, worst SSRI withdrawal, teratogenic",
+      "mnemonic": "PAXil = PAX worst withdrawal — fat & dry mouth SSRI",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "phentermine",
+      "rank": 70,
+      "generic": "Phentermine",
+      "brand": "Adipex-P",
+      "class": "Sympathomimetic appetite suppressant",
+      "indications": "Short-term obesity adjunct",
+      "sideEffects": "Tachycardia, hypertension, insomnia, primary pulmonary hypertension (rare)",
+      "mnemonic": "PHENtermine = PHENomenal weight loss but PHEN heart rate ↑",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "pregabalin",
+      "rank": 71,
+      "generic": "Pregabalin",
+      "brand": "Lyrica",
+      "class": "Gabapentinoid (α2δ ligand)",
+      "indications": "Neuropathic pain, fibromyalgia, partial seizures",
+      "sideEffects": "Sedation, dizziness, peripheral edema, dependence (DEA schedule V)",
+      "mnemonic": "PREgabalin = PRE-GABA pain — Lyrica sedates & swells ankles",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "propranolol",
+      "rank": 72,
+      "generic": "Propranolol",
+      "brand": "Inderal",
+      "class": "Non-selective β-blocker",
+      "indications": "Hypertension, migraine prophylaxis, essential tremor, hyperthyroidism, performance anxiety",
+      "sideEffects": "Bronchospasm, mask hypoglycemia, fatigue, bradycardia",
+      "mnemonic": "PROpranolol = PROpranolol blocks β1+β2 — asthma caution",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "risperidone",
+      "rank": 73,
+      "generic": "Risperidone",
+      "brand": "Risperdal",
+      "class": "Atypical antipsychotic",
+      "indications": "Schizophrenia, bipolar mania, irritability in autism",
+      "sideEffects": "Extrapyramidal symptoms, hyperprolactinemia, metabolic syndrome",
+      "mnemonic": "RISperidone = RISk EPS & prolactin — antipsychotic classic",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "sulfamethoxazole-trimethoprim",
+      "rank": 74,
+      "generic": "Sulfamethoxazole/trimethoprim",
+      "brand": "Bactrim, Septra",
+      "class": "Folate synthesis inhibitor combo",
+      "indications": "UTI, MRSA skin, PCP prophylaxis, traveler's diarrhea",
+      "sideEffects": "Hyperkalemia, Stevens-Johnson, myelosuppression, renal crystals",
+      "mnemonic": "Bactrim = BACteria trim — watch K+ & sulfa rash",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "topiramate",
+      "rank": 75,
+      "generic": "Topiramate",
+      "brand": "Topamax",
+      "class": "Antiepileptic / migraine prophylactic",
+      "indications": "Seizures, migraine prevention, weight loss (off-label)",
+      "sideEffects": "Cognitive slowing ('Dopamax'), kidney stones, metabolic acidosis, teratogenic",
+      "mnemonic": "Topiramate = TOPaMAX slows brain — stones & word-finding trouble",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "zolpidem",
+      "rank": 76,
+      "generic": "Zolpidem",
+      "brand": "Ambien",
+      "class": "Non-benzodiazepine hypnotic (Z-drug)",
+      "indications": "Insomnia (short-term)",
+      "sideEffects": "Complex sleep behaviors, next-day impairment, dependence",
+      "mnemonic": "Zolpidem = ZZZ land — Ambien amnesia & sleepwalking",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "aripiprazole",
+      "rank": 77,
+      "generic": "Aripiprazole",
+      "brand": "Abilify",
+      "class": "Atypical antipsychotic (partial D2 agonist)",
+      "indications": "Schizophrenia, bipolar, MDD adjunct, irritability in autism",
+      "sideEffects": "Akathisia, activation, less metabolic than olanzapine",
+      "mnemonic": "ARIPIprazole = ARIse ability — partial agonist = activating AP",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "aspirin",
+      "rank": 78,
+      "generic": "Aspirin",
+      "brand": "Bayer, Ecotrin",
+      "class": "Antiplatelet / NSAID",
+      "indications": "ACS, secondary stroke prevention, pain/fever (low dose antiplatelet)",
+      "sideEffects": "GI bleed, Reye syndrome (children), tinnitus (salicylism)",
+      "mnemonic": "Aspirin = ASPIRin prevents clots at 81mg — Reye in kids",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "baclofen",
+      "rank": 79,
+      "generic": "Baclofen",
+      "brand": "Lioresal",
+      "class": "GABA-B agonist (muscle relaxant)",
+      "indications": "Spasticity (MS, spinal cord injury)",
+      "sideEffects": "Sedation, withdrawal seizures if stopped abruptly",
+      "mnemonic": "BAClofen = BACK relax — don't stop abruptly (seizures)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "benazepril",
+      "rank": 80,
+      "generic": "Benazepril",
+      "brand": "Lotensin",
+      "class": "ACE inhibitor",
+      "indications": "Hypertension",
+      "sideEffects": "Dry cough, hyperkalemia, angioedema",
+      "mnemonic": "Benazepril = BENefit BP — ACE cough/K+ like lisinopril",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "chlorthalidone",
+      "rank": 81,
+      "generic": "Chlorthalidone",
+      "brand": "Thalitone",
+      "class": "Thiazide-like diuretic",
+      "indications": "Hypertension, edema",
+      "sideEffects": "Hypokalemia, hyperuricemia, hyperglycemia; long half-life",
+      "mnemonic": "Chlorthalidone = CHLORide out — thiazide-like, long acting",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "ciprofloxacin",
+      "rank": 82,
+      "generic": "Ciprofloxacin",
+      "brand": "Cipro",
+      "class": "Fluoroquinolone antibiotic",
+      "indications": "UTI, prostatitis, GI infections, anthrax",
+      "sideEffects": "Tendon rupture, QT prolongation, C. diff, aortic dissection (rare)",
+      "mnemonic": "CIPRO = CIP tendon ROPture — fluoroquinolone black box",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "diltiazem",
+      "rank": 83,
+      "generic": "Diltiazem",
+      "brand": "Cardizem, Tiazac",
+      "class": "Non-dihydropyridine calcium channel blocker",
+      "indications": "Hypertension, angina, rate control in AFib",
+      "sideEffects": "Bradycardia, constipation, edema, heart block",
+      "mnemonic": "DILTiazem = DILate coronaries, DILay AV node — rate control",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "doxazosin",
+      "rank": 84,
+      "generic": "Doxazosin",
+      "brand": "Cardura",
+      "class": "Alpha-1 blocker",
+      "indications": "BPH, hypertension",
+      "sideEffects": "First-dose orthostatic hypotension, dizziness",
+      "mnemonic": "DOXazosin = DOXα1 for prostate — orthostatic first dose",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "famotidine",
+      "rank": 85,
+      "generic": "Famotidine",
+      "brand": "Pepcid",
+      "class": "H2 receptor antagonist",
+      "indications": "GERD, PUD, heartburn",
+      "sideEffects": "Headache, constipation; less potent than PPI",
+      "mnemonic": "FAMotidine = FAMous acid block — H2 before PPI era",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "fenofibrate",
+      "rank": 86,
+      "generic": "Fenofibrate",
+      "brand": "Tricor, Fenoglide",
+      "class": "Fibrate (PPAR-α agonist)",
+      "indications": "Hypertriglyceridemia, mixed dyslipidemia",
+      "sideEffects": "Myopathy (with statin), hepatotoxicity, gallstones",
+      "mnemonic": "FENOfibrate = FENOmenal TG drop — gallstones & myopathy",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "fluticasone-salmeterol",
+      "rank": 87,
+      "generic": "Fluticasone/salmeterol",
+      "brand": "Advair",
+      "class": "ICS + LABA combination",
+      "indications": "Asthma, COPD maintenance",
+      "sideEffects": "Oral candidiasis, tremor, increased asthma mortality if LABA alone",
+      "mnemonic": "Advair = ADd LABA to steroid — never LABA alone in asthma",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "folic-acid",
+      "rank": 88,
+      "generic": "Folic acid",
+      "brand": "Folvite",
+      "class": "B vitamin supplement",
+      "indications": "Folate deficiency, pregnancy neural tube defect prevention, methotrexate co-therapy",
+      "sideEffects": "Generally safe; masks B12 deficiency anemia",
+      "mnemonic": "Folic acid = FOLlow pregnancy — prevents neural tube defects",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "glipizide",
+      "rank": 89,
+      "generic": "Glipizide",
+      "brand": "Glucotrol",
+      "class": "Sulfonylurea",
+      "indications": "Type 2 diabetes",
+      "sideEffects": "Hypoglycemia, weight gain",
+      "mnemonic": "Glipizide = GLIP sugar down fast — short-acting sulfa",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "haloperidol",
+      "rank": 90,
+      "generic": "Haloperidol",
+      "brand": "Haldol",
+      "class": "Typical (high-potency) antipsychotic",
+      "indications": "Schizophrenia, acute agitation, Tourette syndrome",
+      "sideEffects": "EPS, neuroleptic malignant syndrome, QT prolongation, tardive dyskinesia",
+      "mnemonic": "HALoperidol = HALt psychosis — HALt movement (EPS) too",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "hydralazine",
+      "rank": 91,
+      "generic": "Hydralazine",
+      "brand": "Apresoline",
+      "class": "Direct vasodilator",
+      "indications": "Hypertension (especially with nitrates in HF), preeclampsia",
+      "sideEffects": "Reflex tachycardia, lupus-like syndrome, headache",
+      "mnemonic": "Hydralazine = HYDRA vasodilator — drug-induced lupus possible",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "insulin-detemir",
+      "rank": 92,
+      "generic": "Insulin detemir",
+      "brand": "Levemir",
+      "class": "Long-acting basal insulin analog",
+      "indications": "Basal glucose control in diabetes",
+      "sideEffects": "Hypoglycemia, weight gain",
+      "mnemonic": "Detemir = DEtermine basal level — Levemir long acting",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "isosorbide-mononitrate",
+      "rank": 93,
+      "generic": "Isosorbide mononitrate",
+      "brand": "Imdur",
+      "class": "Long-acting nitrate",
+      "indications": "Angina prophylaxis, heart failure",
+      "sideEffects": "Headache, hypotension, tolerance (need nitrate-free interval)",
+      "mnemonic": "Imdur = IMprove DURable angina — nitrate headache & tolerance",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "lamotrigine",
+      "rank": 94,
+      "generic": "Lamotrigine",
+      "brand": "Lamictal",
+      "class": "Antiepileptic / mood stabilizer",
+      "indications": "Bipolar maintenance, partial seizures, Lennox-Gastaut",
+      "sideEffects": "Stevens-Johnson (slow titration), rash, aseptic meningitis",
+      "mnemonic": "LAMictal = LAM slow titrate — SJS if titrate too fast",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "loratadine",
+      "rank": 95,
+      "generic": "Loratadine",
+      "brand": "Claritin",
+      "class": "Second-generation antihistamine",
+      "indications": "Allergic rhinitis, urticaria",
+      "sideEffects": "Minimal sedation; headache, dry mouth",
+      "mnemonic": "LORatadine = LOR non-sedating allergy relief",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "lovastatin",
+      "rank": 96,
+      "generic": "Lovastatin",
+      "brand": "Mevacor",
+      "class": "HMG-CoA reductase inhibitor (statin)",
+      "indications": "Hyperlipidemia",
+      "sideEffects": "Myopathy, hepatotoxicity; take with evening meal",
+      "mnemonic": "LOVastatin = LOVe liver checks — take at bedtime with food",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "memantine",
+      "rank": 97,
+      "generic": "Memantine",
+      "brand": "Namenda",
+      "class": "NMDA receptor antagonist",
+      "indications": "Moderate-severe Alzheimer dementia",
+      "sideEffects": "Dizziness, headache, confusion, constipation",
+      "mnemonic": "Memantine = MEMory NMDA block — Namenda for Alzheimer",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "methylprednisolone",
+      "rank": 98,
+      "generic": "Methylprednisolone",
+      "brand": "Medrol, Solu-Medrol",
+      "class": "Systemic corticosteroid",
+      "indications": "Inflammatory conditions, MS relapse, transplant rejection",
+      "sideEffects": "Hyperglycemia, immunosuppression, mood, osteoporosis",
+      "mnemonic": "Medrol = MEDrol dose pack — steroid side effect bundle",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "metoclopramide",
+      "rank": 99,
+      "generic": "Metoclopramide",
+      "brand": "Reglan",
+      "class": "Prokinetic / antiemetic (D2 antagonist)",
+      "indications": "Gastroparesis, GERD, chemotherapy nausea",
+      "sideEffects": "Tardive dyskinesia (black box), extrapyramidal symptoms",
+      "mnemonic": "Metoclopramide = Meta movement risk — tardive dyskinesia limit 12 weeks",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "metronidazole",
+      "rank": 100,
+      "generic": "Metronidazole",
+      "brand": "Flagyl",
+      "class": "Nitroimidazole antibiotic/antiprotozoal",
+      "indications": "Anaerobic infections, C. diff, trichomoniasis, H. pylori",
+      "sideEffects": "Disulfiram-like reaction with alcohol, metallic taste, neuropathy",
+      "mnemonic": "Flagyl = FLAG no alcohol — disulfiram reaction",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "nitrofurantoin",
+      "rank": 101,
+      "generic": "Nitrofurantoin",
+      "brand": "Macrobid, Macrodantin",
+      "class": "Urinary antiseptic antibiotic",
+      "indications": "Uncomplicated UTI prophylaxis and treatment",
+      "sideEffects": "Pulmonary fibrosis (chronic), hemolytic anemia in G6PD deficiency",
+      "mnemonic": "MacroBID = MACRO urinary bugs — avoid if CrCl <30 for treatment",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "nortriptyline",
+      "rank": 102,
+      "generic": "Nortriptyline",
+      "brand": "Pamelor",
+      "class": "Tricyclic antidepressant (secondary amine)",
+      "indications": "Neuropathic pain, depression",
+      "sideEffects": "Anticholinergic, QT prolongation, orthostatic hypotension, lethal in overdose",
+      "mnemonic": "Nortriptyline = NORt pain nor depression — TCA overdose lethal",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "olanzapine",
+      "rank": 103,
+      "generic": "Olanzapine",
+      "brand": "Zyprexa",
+      "class": "Atypical antipsychotic",
+      "indications": "Schizophrenia, bipolar mania",
+      "sideEffects": "Metabolic syndrome, weight gain, sedation, increased mortality in elderly dementia",
+      "mnemonic": "OLANzapine = OLANt of weight gain — Zyprexa metabolic",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "ondansetron",
+      "rank": 104,
+      "generic": "Ondansetron",
+      "brand": "Zofran",
+      "class": "5-HT3 antagonist antiemetic",
+      "indications": "Chemotherapy/radiation nausea, post-op nausea",
+      "sideEffects": "QT prolongation, constipation, serotonin syndrome (with serotonergic drugs)",
+      "mnemonic": "ONDA = ON DAnsetron no vomit — QT watch at high IV doses",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "oxcarbazepine",
+      "rank": 105,
+      "generic": "Oxcarbazepine",
+      "brand": "Trileptal",
+      "class": "Antiepileptic (carbamazepine analog)",
+      "indications": "Partial seizures, bipolar (off-label)",
+      "sideEffects": "Hyponatremia, dizziness, rash (cross-reactivity with carbamazepine)",
+      "mnemonic": "OXcarbazepine = OX low sodium — Trileptal cousin of Tegretol",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "pioglitazone",
+      "rank": 106,
+      "generic": "Pioglitazone",
+      "brand": "Actos",
+      "class": "Thiazolidinedione (PPAR-γ agonist)",
+      "indications": "Type 2 diabetes",
+      "sideEffects": "Fluid retention, heart failure exacerbation, bladder cancer concern, fractures",
+      "mnemonic": "PIO = Puff up (edema) — avoid in HF, TZD class",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "polyethylene-glycol",
+      "rank": 107,
+      "generic": "Polyethylene glycol",
+      "brand": "MiraLAX",
+      "class": "Osmotic laxative",
+      "indications": "Constipation",
+      "sideEffects": "Bloating, diarrhea; generally safe",
+      "mnemonic": "MiraLAX = MIRAcle laxative osmotic pull water",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": false,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "potassium-citrate",
+      "rank": 108,
+      "generic": "Potassium citrate",
+      "brand": "Urocit-K",
+      "class": "Urinary alkalinizer / potassium supplement",
+      "indications": "Renal tubular acidosis, calcium oxalate stone prevention",
+      "sideEffects": "Hyperkalemia, GI upset",
+      "mnemonic": "Citrate = CITrate alkalinizes urine — stones hate it",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "torsemide",
+      "rank": 109,
+      "generic": "Torsemide",
+      "brand": "Demadex",
+      "class": "Loop diuretic",
+      "indications": "Edema, heart failure, hypertension",
+      "sideEffects": "Hypokalemia, ototoxicity; longer acting than furosemide",
+      "mnemonic": "TORsemide = TORrent of urine — loop diuretic cousin of Lasix",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "promethazine",
+      "rank": 110,
+      "generic": "Promethazine",
+      "brand": "Phenergan",
+      "class": "First-gen antihistamine / antiemetic",
+      "indications": "Nausea/vomiting, motion sickness, sedation",
+      "sideEffects": "Severe tissue injury if given intra-arterially/SC, sedation, EPS",
+      "mnemonic": "Phenergan = PHENomenal sedation — never give IA/SC (gangrene)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "quinapril",
+      "rank": 111,
+      "generic": "Quinapril",
+      "brand": "Accupril",
+      "class": "ACE inhibitor",
+      "indications": "Hypertension, heart failure",
+      "sideEffects": "Dry cough, hyperkalemia, angioedema",
+      "mnemonic": "QUINapril = QUINtessential ACE — cough & K+",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "rabeprazole",
+      "rank": 112,
+      "generic": "Rabeprazole",
+      "brand": "Aciphex",
+      "class": "Proton pump inhibitor",
+      "indications": "GERD, PUD, H. pylori",
+      "sideEffects": "C. diff, hypomagnesemia, B12 deficiency",
+      "mnemonic": "Rabe-PRAZOLE = Rabe acid away — PPI class effects",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "rivaroxaban",
+      "rank": 113,
+      "generic": "Rivaroxaban",
+      "brand": "Xarelto",
+      "class": "Direct factor Xa inhibitor (DOAC)",
+      "indications": "AFib, DVT/PE, post-hip/knee VTE prophylaxis",
+      "sideEffects": "Bleeding; take with food (15/20 mg); renal dose adjust",
+      "mnemonic": "Xarelto = X marks clot spot — take 15/20 mg with food",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "ropinirole",
+      "rank": 114,
+      "generic": "Ropinirole",
+      "brand": "Requip",
+      "class": "Dopamine agonist (non-ergot)",
+      "indications": "Parkinson disease, restless legs syndrome",
+      "sideEffects": "Impulse control disorders, nausea, orthostatic hypotension, somnolence",
+      "mnemonic": "Requip = REQuire impulse control watch — gambling urges",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "eplerenone",
+      "rank": 115,
+      "generic": "Eplerenone",
+      "brand": "Inspra",
+      "class": "Selective aldosterone antagonist",
+      "indications": "Heart failure post-MI, hypertension",
+      "sideEffects": "Hyperkalemia; less gynecomastia than spironolactone",
+      "mnemonic": "Eplerenone = EPLEct selective aldosterone — Inspra HF post-MI",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "sildenafil",
+      "rank": 116,
+      "generic": "Sildenafil",
+      "brand": "Viagra, Revatio",
+      "class": "PDE-5 inhibitor",
+      "indications": "Erectile dysfunction, pulmonary hypertension",
+      "sideEffects": "Headache, flushing, hypotension with nitrates (contraindicated), priapism",
+      "mnemonic": "Sildenafil = SILence ED — never with nitrates (fatal hypotension)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "sitagliptin",
+      "rank": 117,
+      "generic": "Sitagliptin",
+      "brand": "Januvia",
+      "class": "DPP-4 inhibitor",
+      "indications": "Type 2 diabetes",
+      "sideEffects": "Upper respiratory infections, pancreatitis (rare), joint pain",
+      "mnemonic": "Sita-GLIPtin = SIT glucose steady — DPP-4 incretin boost",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "sumatriptan",
+      "rank": 118,
+      "generic": "Sumatriptan",
+      "brand": "Imitrex",
+      "class": "5-HT1B/1D agonist (triptan)",
+      "indications": "Acute migraine",
+      "sideEffects": "Chest tightness, coronary vasospasm, serotonin syndrome; limit frequency",
+      "mnemonic": "Sumatriptan = SUM up migraine — triptan not for CAD",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "tadalafil",
+      "rank": 119,
+      "generic": "Tadalafil",
+      "brand": "Cialis, Adcirca",
+      "class": "PDE-5 inhibitor (long-acting)",
+      "indications": "Erectile dysfunction, BPH, pulmonary hypertension",
+      "sideEffects": "Headache, back pain, hypotension with nitrates (contraindicated)",
+      "mnemonic": "Cialis = CIALis long half-life — daily ED option",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "temazepam",
+      "rank": 120,
+      "generic": "Temazepam",
+      "brand": "Restoril",
+      "class": "Benzodiazepine hypnotic",
+      "indications": "Insomnia (short-term)",
+      "sideEffects": "Sedation, dependence, next-day impairment",
+      "mnemonic": "Temazepam = TEMA sleep — benzo hypnotic",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "terazosin",
+      "rank": 121,
+      "generic": "Terazosin",
+      "brand": "Hytrin",
+      "class": "Alpha-1 blocker",
+      "indications": "BPH, hypertension",
+      "sideEffects": "First-dose syncope, dizziness, orthostatic hypotension",
+      "mnemonic": "Terazosin = TERrific α1 block — syncope first dose",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "timolol",
+      "rank": 122,
+      "generic": "Timolol",
+      "brand": "Timoptic, Blocadren",
+      "class": "Non-selective β-blocker",
+      "indications": "Glaucoma (topical), hypertension, migraine prophylaxis",
+      "sideEffects": "Bronchospasm (systemic), bradycardia, mask hypoglycemia",
+      "mnemonic": "Timolol = TIMe to block β — topical for glaucoma",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "triamcinolone",
+      "rank": 123,
+      "generic": "Triamcinolone",
+      "brand": "Kenalog, Nasacort",
+      "class": "Corticosteroid (topical/inhaled/intra-articular)",
+      "indications": "Inflammatory dermatoses, allergic rhinitis, joint injections",
+      "sideEffects": "Skin atrophy (topical), adrenal suppression (systemic absorption)",
+      "mnemonic": "Triamcinolone = TRIam topical steroid workhorse",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "valacyclovir",
+      "rank": 124,
+      "generic": "Valacyclovir",
+      "brand": "Valtrex",
+      "class": "Antiviral (acyclovir prodrug)",
+      "indications": "Herpes zoster, genital herpes, cold sores",
+      "sideEffects": "Headache, nausea, nephrotoxicity (high dose/dehydration)",
+      "mnemonic": "VALacyclovir = VALiant herpes VALtrex — better PO bioavailability",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "valproic-acid",
+      "rank": 125,
+      "generic": "Valproic acid",
+      "brand": "Depakote",
+      "class": "Antiepileptic / mood stabilizer",
+      "indications": "Epilepsy, bipolar mania, migraine prophylaxis",
+      "sideEffects": "Hepatotoxicity, teratogenic (neural tube defects), thrombocytopenia, weight gain",
+      "mnemonic": "Depakote = DEPosit weight & liver — pregnancy category X (teratogen)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "verapamil",
+      "rank": 126,
+      "generic": "Verapamil",
+      "brand": "Calan, Isoptin",
+      "class": "Non-dihydropyridine calcium channel blocker",
+      "indications": "Hypertension, angina, SVT/AFib rate control",
+      "sideEffects": "Constipation (worst in class), bradycardia, heart block",
+      "mnemonic": "Verapamil = VERy constipated — non-DHP CCB",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "dabigatran",
+      "rank": 127,
+      "generic": "Dabigatran",
+      "brand": "Pradaxa",
+      "class": "Direct thrombin inhibitor (DOAC)",
+      "indications": "AFib stroke prevention, DVT/PE",
+      "sideEffects": "Bleeding, dyspepsia; dialyzable; watch renal function",
+      "mnemonic": "Pradaxa = PRAY for dabigatran — first DOAC, dyspepsia common",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "ziprasidone",
+      "rank": 128,
+      "generic": "Ziprasidone",
+      "brand": "Geodon",
+      "class": "Atypical antipsychotic",
+      "indications": "Schizophrenia, bipolar mania",
+      "sideEffects": "QT prolongation, EPS, take with food (absorption)",
+      "mnemonic": "Geodon = GEOdon needs food — QT watch AP",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "acyclovir",
+      "rank": 129,
+      "generic": "Acyclovir",
+      "brand": "Zovirax",
+      "class": "Antiviral (guanosine analog)",
+      "indications": "Herpes simplex, varicella-zoster",
+      "sideEffects": "Nephrotoxicity (crystalluria), headache; hydrate well",
+      "mnemonic": "Acyclovir = A CYclo of herpes — hydrate kidneys",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "alendronate",
+      "rank": 130,
+      "generic": "Alendronate",
+      "brand": "Fosamax",
+      "class": "Bisphosphonate",
+      "indications": "Osteoporosis, Paget disease",
+      "sideEffects": "Esophagitis (take upright 30 min), osteonecrosis of jaw, atypical femur fracture",
+      "mnemonic": "Fosamax = FOStay upright 30 min — bisphosphonate esophagus burn",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "amiodarone",
+      "rank": 131,
+      "generic": "Amiodarone",
+      "brand": "Pacerone, Cordarone",
+      "class": "Class III antiarrhythmic",
+      "indications": "Ventricular arrhythmias, AFib rhythm control",
+      "sideEffects": "Pulmonary fibrosis, thyroid dysfunction, hepatotoxicity, corneal deposits, blue skin",
+      "mnemonic": "Amiodarone = AMIODARone affects almost all organs — thyroid/lung/liver/eyes",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "amitriptyline",
+      "rank": 132,
+      "generic": "Amitriptyline",
+      "brand": "Elavil",
+      "class": "Tricyclic antidepressant",
+      "indications": "Neuropathic pain, migraine prophylaxis, depression",
+      "sideEffects": "Anticholinergic, sedation, QT prolongation, lethal overdose",
+      "mnemonic": "Elavil = ELEVated sedation & anticholinergic — TCA overdose lethal",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "amphetamine-dextroamphetamine",
+      "rank": 133,
+      "generic": "Amphetamine/dextroamphetamine",
+      "brand": "Adderall",
+      "class": "CNS stimulant (mixed amphetamine salts)",
+      "indications": "ADHD, narcolepsy",
+      "sideEffects": "Insomnia, appetite loss, tachycardia, psychosis, abuse (Schedule II)",
+      "mnemonic": "Adderall = ADD focus — Schedule II stimulant",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "aprepitant",
+      "rank": 134,
+      "generic": "Aprepitant",
+      "brand": "Emend",
+      "class": "NK1 receptor antagonist antiemetic",
+      "indications": "Chemotherapy-induced nausea (highly emetogenic regimens)",
+      "sideEffects": "Fatigue, hiccups; CYP3A4 substrate/interaction",
+      "mnemonic": "Emend = EMEND vomit with NK1 block",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "atomoxetine",
+      "rank": 135,
+      "generic": "Atomoxetine",
+      "brand": "Strattera",
+      "class": "Norepinephrine reuptake inhibitor",
+      "indications": "ADHD (non-stimulant)",
+      "sideEffects": "Suicidal ideation (boxed warning), liver injury, slow onset",
+      "mnemonic": "Strattera = STRAtegy non-stimulant ADHD — not controlled substance",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "azelastine",
+      "rank": 136,
+      "generic": "Azelastine",
+      "brand": "Astelin, Astepro",
+      "class": "Antihistamine nasal spray",
+      "indications": "Allergic rhinitis",
+      "sideEffects": "Bitter taste, somnolence",
+      "mnemonic": "Azelastine = Aste nose spray — bitter taste common",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "budesonide",
+      "rank": 137,
+      "generic": "Budesonide",
+      "brand": "Pulmicort, Rhinocort",
+      "class": "Inhaled/nasal corticosteroid",
+      "indications": "Asthma, allergic rhinitis, IBD (Entocort)",
+      "sideEffects": "Oral candidiasis (inhaled), adrenal suppression (high dose)",
+      "mnemonic": "Budesonide = BUDesonide breathed in — rinse mouth",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "budesonide-formoterol",
+      "rank": 138,
+      "generic": "Budesonide/formoterol",
+      "brand": "Symbicort",
+      "class": "ICS + LABA combination",
+      "indications": "Asthma, COPD maintenance",
+      "sideEffects": "Tremor, oral candidiasis; LABA requires ICS in asthma",
+      "mnemonic": "Symbicort = SYMbiotic steroid + LABA combo",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "calcitriol",
+      "rank": 139,
+      "generic": "Calcitriol",
+      "brand": "Rocaltrol",
+      "class": "Active vitamin D analog",
+      "indications": "Secondary hyperparathyroidism in CKD, hypoparathyroidism",
+      "sideEffects": "Hypercalcemia, hyperphosphatemia",
+      "mnemonic": "Calcitriol = active CALCIum regulator — watch Ca & Phos",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "carbamazepine",
+      "rank": 140,
+      "generic": "Carbamazepine",
+      "brand": "Tegretol",
+      "class": "Antiepileptic / mood stabilizer",
+      "indications": "Trigeminal neuralgia, bipolar, partial seizures",
+      "sideEffects": "Stevens-Johnson (HLA-B*1502 in Asians), hyponatremia, aplastic anemia",
+      "mnemonic": "Tegretol = TEGretol toxic to blood & skin — HLA-B*1502 screen",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "carbidopa-levodopa",
+      "rank": 141,
+      "generic": "Carbidopa/levodopa",
+      "brand": "Sinemet",
+      "class": "Dopamine precursor + peripheral decarboxylase inhibitor",
+      "indications": "Parkinson disease",
+      "sideEffects": "Dyskinesias, on-off phenomenon, orthostatic hypotension",
+      "mnemonic": "Sinemet = SINE wave ON/OFF — gold standard Parkinson",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "cefdinir",
+      "rank": 142,
+      "generic": "Cefdinir",
+      "brand": "Omnicef",
+      "class": "Third-generation cephalosporin",
+      "indications": "Community respiratory infections, skin infections",
+      "sideEffects": "Diarrhea, red stool discoloration with iron",
+      "mnemonic": "Omnicef = OMNI cephalosporin — red poop with iron",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "cefuroxime",
+      "rank": 143,
+      "generic": "Cefuroxime",
+      "brand": "Ceftin",
+      "class": "Second-generation cephalosporin",
+      "indications": "Community pneumonia, sinusitis, Lyme disease",
+      "sideEffects": "Diarrhea, rash, C. diff",
+      "mnemonic": "Ceftin = CEF second-gen workhorse",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "chlorhexidine",
+      "rank": 144,
+      "generic": "Chlorhexidine",
+      "brand": "Peridex, Hibiclens",
+      "class": "Antiseptic mouthwash/topical",
+      "indications": "Gingivitis, skin antisepsis, surgical scrub",
+      "sideEffects": "Tooth staining, taste alteration, otoxicity if middle ear exposure",
+      "mnemonic": "Peridex = PERmanent tooth stain — chlorhexidine rinse",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "fluvoxamine",
+      "rank": 145,
+      "generic": "Fluvoxamine",
+      "brand": "Luvox",
+      "class": "SSRI antidepressant",
+      "indications": "OCD, social anxiety disorder",
+      "sideEffects": "Sedation, GI upset, many CYP1A2/2C19 interactions",
+      "mnemonic": "Luvox = LOVE OCD control — SSRI with heavy CYP interactions",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "clindamycin",
+      "rank": 146,
+      "generic": "Clindamycin",
+      "brand": "Cleocin",
+      "class": "Lincosamide antibiotic",
+      "indications": "Anaerobic infections, MRSA skin, dental prophylaxis",
+      "sideEffects": "C. diff colitis (high risk), rash",
+      "mnemonic": "ClindaMYCin = C. diff MY worst enemy",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "cyanocobalamin",
+      "rank": 147,
+      "generic": "Cyanocobalamin",
+      "brand": "Vitamin B12",
+      "class": "Vitamin B12 supplement",
+      "indications": "B12 deficiency, pernicious anemia",
+      "sideEffects": "Hypokalemia during initial correction, acne (rare)",
+      "mnemonic": "B12 = B-twelve for nerves & blood — give with folate context",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "desvenlafaxine",
+      "rank": 148,
+      "generic": "Desvenlafaxine",
+      "brand": "Pristiq",
+      "class": "SNRI antidepressant (venlafaxine metabolite)",
+      "indications": "Major depressive disorder",
+      "sideEffects": "Nausea, hypertension, withdrawal if stopped abruptly",
+      "mnemonic": "Pristiq = PRISTine SNRI — active metabolite of Effexor",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "dexamethasone",
+      "rank": 149,
+      "generic": "Dexamethasone",
+      "brand": "Decadron",
+      "class": "Potent systemic corticosteroid",
+      "indications": "Cerebral edema, chemotherapy antiemetic, croup, inflammation",
+      "sideEffects": "Hyperglycemia, immunosuppression, psychosis, adrenal suppression",
+      "mnemonic": "Decadron = DECA potent steroid — many uses",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "dexlansoprazole",
+      "rank": 150,
+      "generic": "Dexlansoprazole",
+      "brand": "Dexilant",
+      "class": "PPI (dual delayed release)",
+      "indications": "GERD, erosive esophagitis",
+      "sideEffects": "C. diff, hypomagnesemia, fracture risk",
+      "mnemonic": "Dexilant = DEXilant dual-release PPI",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "diazepam",
+      "rank": 151,
+      "generic": "Diazepam",
+      "brand": "Valium",
+      "class": "Long-acting benzodiazepine",
+      "indications": "Anxiety, muscle spasm, alcohol withdrawal, status epilepticus",
+      "sideEffects": "Sedation, dependence, respiratory depression",
+      "mnemonic": "Valium = VALium long half-life benzo — alcohol WD",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "digoxin",
+      "rank": 152,
+      "generic": "Digoxin",
+      "brand": "Lanoxin",
+      "class": "Cardiac glycoside",
+      "indications": "Heart failure, AFib rate control",
+      "sideEffects": "Narrow therapeutic index, toxicity (vision changes, arrhythmias), nausea",
+      "mnemonic": "Digoxin = DIG toxicity = yellow vision & arrhythmias — check K+/Mg",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "diphenhydramine",
+      "rank": 153,
+      "generic": "Diphenhydramine",
+      "brand": "Benadryl",
+      "class": "First-gen antihistamine",
+      "indications": "Allergic reactions, insomnia, motion sickness, extrapyramidal reactions",
+      "sideEffects": "Sedation, anticholinergic, confusion in elderly (Beers list)",
+      "mnemonic": "Benadryl = BENd and dry — anticholinergic sedative",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "donepezil",
+      "rank": 154,
+      "generic": "Donepezil",
+      "brand": "Aricept",
+      "class": "Acetylcholinesterase inhibitor",
+      "indications": "Alzheimer dementia",
+      "sideEffects": "Bradycardia, GI upset, vivid dreams, urinary urgency",
+      "mnemonic": "Donepezil = DONE for Alzheimer — cholinergic side effects",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "dulaglutide",
+      "rank": 155,
+      "generic": "Dulaglutide",
+      "brand": "Trulicity",
+      "class": "GLP-1 receptor agonist",
+      "indications": "Type 2 diabetes, ASCVD risk reduction",
+      "sideEffects": "Nausea, pancreatitis (rare), thyroid C-cell tumors (rodents)",
+      "mnemonic": "Trulicity = TRUE weekly GLP-1 — GI nausea early",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "enalapril",
+      "rank": 156,
+      "generic": "Enalapril",
+      "brand": "Vasotec",
+      "class": "ACE inhibitor",
+      "indications": "Hypertension, heart failure",
+      "sideEffects": "Dry cough, hyperkalemia, angioedema",
+      "mnemonic": "Enalapril = ENALble BP down — ACE class effects",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "enoxaparin",
+      "rank": 157,
+      "generic": "Enoxaparin",
+      "brand": "Lovenox",
+      "class": "Low-molecular-weight heparin",
+      "indications": "DVT/PE treatment & prophylaxis, ACS",
+      "sideEffects": "Bleeding, HIT (less than UFH), osteoporosis (long-term)",
+      "mnemonic": "Lovenox = LOVE no monitoring LMWH — subQ anticoagulant",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "esomeprazole",
+      "rank": 158,
+      "generic": "Esomeprazole",
+      "brand": "Nexium",
+      "class": "Proton pump inhibitor",
+      "indications": "GERD, PUD, erosive esophagitis",
+      "sideEffects": "C. diff, hypomagnesemia, B12 deficiency",
+      "mnemonic": "Nexium = NEXt-gen omeprazole — S-omeprazole",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "estradiol",
+      "rank": 159,
+      "generic": "Estradiol",
+      "brand": "Estrace, Climara",
+      "class": "Estrogen hormone replacement",
+      "indications": "Menopausal symptoms, hypoestrogenism, osteoporosis prevention",
+      "sideEffects": "VTE, breast cancer risk, endometrial hyperplasia (without progesterone)",
+      "mnemonic": "Estradiol = ESTrogen STROke/VTE risk — add progesterone if uterus",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "ethinyl-estradiol-levonorgestrel",
+      "rank": 160,
+      "generic": "Ethinyl estradiol/levonorgestrel",
+      "brand": "Seasonique, many OCPs",
+      "class": "Combined hormonal contraceptive",
+      "indications": "Contraception, menstrual regulation",
+      "sideEffects": "VTE, stroke (smokers >35), hypertension",
+      "mnemonic": "OCP = Oral Contraceptive Problems if smoker + age >35",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "etonogestrel",
+      "rank": 161,
+      "generic": "Etonogestrel",
+      "brand": "Nexplanon",
+      "class": "Progestin contraceptive implant",
+      "indications": "Long-acting reversible contraception",
+      "sideEffects": "Irregular bleeding, weight change, insertion site complications",
+      "mnemonic": "Nexplanon = NEXt 3-year implant — irregular bleeding",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "exenatide",
+      "rank": 162,
+      "generic": "Exenatide",
+      "brand": "Byetta, Bydureon",
+      "class": "GLP-1 receptor agonist",
+      "indications": "Type 2 diabetes",
+      "sideEffects": "Nausea, vomiting, pancreatitis (rare), weight loss",
+      "mnemonic": "Byetta = BYE appetite — injectable GLP-1",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "felodipine",
+      "rank": 163,
+      "generic": "Felodipine",
+      "brand": "Plendil",
+      "class": "Dihydropyridine calcium channel blocker",
+      "indications": "Hypertension",
+      "sideEffects": "Peripheral edema, flushing, gingival hyperplasia",
+      "mnemonic": "Plendil = PLENty of ankle edema — DHP CCB",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "fentanyl",
+      "rank": 164,
+      "generic": "Fentanyl",
+      "brand": "Duragesic, Sublimaze",
+      "class": "Potent opioid agonist",
+      "indications": "Severe chronic pain (transdermal), anesthesia",
+      "sideEffects": "Respiratory depression, constipation, fatal with CYP3A4 inhibitors",
+      "mnemonic": "Fentanyl = FATAL if patch heat/misuse — ultra-potent opioid",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "ferrous-sulfate",
+      "rank": 165,
+      "generic": "Ferrous sulfate",
+      "brand": "Feosol",
+      "class": "Oral iron supplement",
+      "indications": "Iron deficiency anemia",
+      "sideEffects": "Constipation, black stools, GI upset; take with vitamin C",
+      "mnemonic": "Iron = IRON gut constipation — black tarry stools",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "fluconazole",
+      "rank": 166,
+      "generic": "Fluconazole",
+      "brand": "Diflucan",
+      "class": "Azole antifungal",
+      "indications": "Candidiasis, cryptococcal meningitis prophylaxis",
+      "sideEffects": "Hepatotoxicity, QT prolongation, teratogenic (high dose)",
+      "mnemonic": "Diflucan = DIFuse candida —azole liver & QT",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "flunisolide",
+      "rank": 167,
+      "generic": "Flunisolide",
+      "brand": "Aerospan",
+      "class": "Inhaled corticosteroid",
+      "indications": "Asthma maintenance",
+      "sideEffects": "Oral candidiasis, hoarseness",
+      "mnemonic": "Aerospan = AERO steroid inhaler",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "fluoxetine-olanzapine",
+      "rank": 168,
+      "generic": "Fluoxetine/olanzapine",
+      "brand": "Symbyax",
+      "class": "SSRI + atypical antipsychotic combo",
+      "indications": "Treatment-resistant depression, bipolar depression",
+      "sideEffects": "Metabolic effects (olanzapine), serotonin syndrome",
+      "mnemonic": "Symbyax = SYMbiotic fluoxetine + olanzapine for resistant depression",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "formoterol",
+      "rank": 169,
+      "generic": "Formoterol",
+      "brand": "Foradil",
+      "class": "Long-acting β2 agonist (LABA)",
+      "indications": "Asthma/COPD maintenance (with ICS in asthma)",
+      "sideEffects": "Tremor, tachycardia; never alone in asthma",
+      "mnemonic": "Foradil = FORced air LABA — must pair with ICS",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "fosinopril",
+      "rank": 170,
+      "generic": "Fosinopril",
+      "brand": "Monopril",
+      "class": "ACE inhibitor (lipophilic)",
+      "indications": "Hypertension, heart failure",
+      "sideEffects": "Dry cough, hyperkalemia, angioedema",
+      "mnemonic": "Monopril = MONO ACE inhibitor — hepatic & renal elimination",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "bumetanide",
+      "rank": 171,
+      "generic": "Bumetanide",
+      "brand": "Bumex",
+      "class": "Loop diuretic",
+      "indications": "Edema, heart failure",
+      "sideEffects": "Hypokalemia, ototoxicity; ~40× more potent than furosemide mg-for-mg",
+      "mnemonic": "Bumex = BUMp out fluid — potent loop diuretic",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "gemfibrozil",
+      "rank": 172,
+      "generic": "Gemfibrozil",
+      "brand": "Lopid",
+      "class": "Fibrate",
+      "indications": "Hypertriglyceridemia",
+      "sideEffects": "Myopathy with statins (contraindicated combo), gallstones",
+      "mnemonic": "Gemfibrozil + statin = GEM of myopathy — avoid combo",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "glucagon",
+      "rank": 173,
+      "generic": "Glucagon",
+      "brand": "GlucaGen",
+      "class": "Counter-regulatory hormone",
+      "indications": "Severe hypoglycemia (unconscious)",
+      "sideEffects": "Nausea, vomiting, hyperglycemia rebound",
+      "mnemonic": "Glucagon = GLUCose gone up emergency kit",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "glyburide",
+      "rank": 174,
+      "generic": "Glyburide",
+      "brand": "Diabeta, Micronase",
+      "class": "Sulfonylurea (long-acting)",
+      "indications": "Type 2 diabetes",
+      "sideEffects": "Prolonged hypoglycemia (especially elderly/renal), weight gain",
+      "mnemonic": "GlyBURIDE = BURy elderly in hypoglycemia — long-acting sulfa",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "glycopyrrolate",
+      "rank": 175,
+      "generic": "Glycopyrrolate",
+      "brand": "Robinul",
+      "class": "Anticholinergic",
+      "indications": "Preoperative drying secretions, peptic ulcer (historical), drooling",
+      "sideEffects": "Dry mouth, tachycardia, urinary retention, confusion",
+      "mnemonic": "Robinul = ROBIN dries all secretions — anticholinergic",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "granisetron",
+      "rank": 176,
+      "generic": "Granisetron",
+      "brand": "Kytril",
+      "class": "5-HT3 antagonist antiemetic",
+      "indications": "Chemotherapy nausea",
+      "sideEffects": "Headache, constipation, QT prolongation",
+      "mnemonic": "Kytril = KYt nausea control — 5-HT3 block",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "guanfacine",
+      "rank": 177,
+      "generic": "Guanfacine",
+      "brand": "Tenex, Intuniv",
+      "class": "Central α2 agonist",
+      "indications": "Hypertension (Tenex), ADHD (Intuniv extended-release)",
+      "sideEffects": "Sedation, hypotension, bradycardia",
+      "mnemonic": "Intuniv = INhibit impulses — α2 for ADHD",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "hydrochlorothiazide-triamterene",
+      "rank": 178,
+      "generic": "Hydrochlorothiazide/triamterene",
+      "brand": "Maxzide, Dyazide",
+      "class": "Thiazide + potassium-sparing diuretic combo",
+      "indications": "Hypertension, hypokalemia prevention on thiazide",
+      "sideEffects": "Hyperkalemia (triamterene), hyponatremia, kidney stones (triamterene)",
+      "mnemonic": "Dyazide = DYAd thiazide + triamterene K+ sparing",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "hydrocodone",
+      "rank": 179,
+      "generic": "Hydrocodone",
+      "brand": "Hysingla, Zohydro ER",
+      "class": "Opioid agonist",
+      "indications": "Severe pain",
+      "sideEffects": "Respiratory depression, dependence, constipation",
+      "mnemonic": "Hydrocodone = HYDRO opioid — schedule II",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "hydrocortisone",
+      "rank": 180,
+      "generic": "Hydrocortisone",
+      "brand": "Cortef, topical generics",
+      "class": "Systemic/topical corticosteroid",
+      "indications": "Adrenal insufficiency, inflammation, dermatitis",
+      "sideEffects": "Cushingoid effects (systemic), skin atrophy (topical)",
+      "mnemonic": "Cortef = CORTisol replacement — physiologic steroid",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "hydroxychloroquine",
+      "rank": 181,
+      "generic": "Hydroxychloroquine",
+      "brand": "Plaquenil",
+      "class": "Antimalarial / DMARD",
+      "indications": "RA, SLE, malaria prophylaxis",
+      "sideEffects": "Retinal toxicity (annual eye exam), QT prolongation, myopathy",
+      "mnemonic": "Plaquenil = PLAN eye exams — hydroxychloroquine retinopathy",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "hyoscyamine",
+      "rank": 182,
+      "generic": "Hyoscyamine",
+      "brand": "Levsin",
+      "class": "Anticholinergic antispasmodic",
+      "indications": "IBS spasms, GI hypermotility",
+      "sideEffects": "Dry mouth, urinary retention, confusion",
+      "mnemonic": "Levsin = LEVitates anticholinergic — dries & slows gut",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "insulin-degludec",
+      "rank": 183,
+      "generic": "Insulin degludec",
+      "brand": "Tresiba",
+      "class": "Ultra-long basal insulin analog",
+      "indications": "Basal diabetes control",
+      "sideEffects": "Hypoglycemia, weight gain",
+      "mnemonic": "Tresiba = TRES long 42h basal insulin",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "insulin-glulisine",
+      "rank": 184,
+      "generic": "Insulin glulisine",
+      "brand": "Apidra",
+      "class": "Rapid-acting insulin analog",
+      "indications": "Mealtime glucose control",
+      "sideEffects": "Hypoglycemia",
+      "mnemonic": "Apidra = APID rapid meal insulin",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "insulin-nph",
+      "rank": 185,
+      "generic": "Insulin NPH",
+      "brand": "Humulin N, Novolin N",
+      "class": "Intermediate-acting insulin",
+      "indications": "Basal-prandial regimens (with regular/rapid insulin)",
+      "sideEffects": "Hypoglycemia, peak effect unpredictable",
+      "mnemonic": "NPH = Not Particularly Helpful peak — intermediate insulin",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "insulin-regular",
+      "rank": 186,
+      "generic": "Insulin regular",
+      "brand": "Humulin R, Novolin R",
+      "class": "Short-acting human insulin",
+      "indications": "Mealtime coverage, IV drips (hyperkalemia with dextrose)",
+      "sideEffects": "Hypoglycemia",
+      "mnemonic": "Regular insulin = REGular meal coverage & K+ shift IV",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "ipratropium",
+      "rank": 187,
+      "generic": "Ipratropium",
+      "brand": "Atrovent",
+      "class": "Anticholinergic bronchodilator",
+      "indications": "COPD, asthma adjunct",
+      "sideEffects": "Dry mouth, urinary retention; less tachycardia than β2 agonists",
+      "mnemonic": "Atrovent = ATROphy dry mouth — anticholinergic inhaler",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "ipratropium-albuterol",
+      "rank": 188,
+      "generic": "Ipratropium/albuterol",
+      "brand": "Combivent, Duoneb",
+      "class": "Anticholinergic + SABA combo",
+      "indications": "COPD bronchospasm",
+      "sideEffects": "Tremor, dry mouth, tachycardia",
+      "mnemonic": "Combivent = COMBO COPD rescue — SABA + SAMA",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "iron-sucrose",
+      "rank": 189,
+      "generic": "Iron sucrose",
+      "brand": "Venofer",
+      "class": "IV iron replacement",
+      "indications": "Iron deficiency anemia (oral intolerant/failed)",
+      "sideEffects": "Hypotension with rapid infusion, anaphylaxis (rare)",
+      "mnemonic": "Venofer = VENOus iron for severe deficiency",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "isosorbide-dinitrate",
+      "rank": 190,
+      "generic": "Isosorbide dinitrate",
+      "brand": "Isordil",
+      "class": "Nitrate vasodilator",
+      "indications": "Angina prophylaxis, heart failure",
+      "sideEffects": "Headache, hypotension, tolerance",
+      "mnemonic": "Isordil = ISOdilate coronaries — nitrate headache",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "ketoconazole",
+      "rank": 191,
+      "generic": "Ketoconazole",
+      "brand": "Nizoral",
+      "class": "Azole antifungal (also CYP inhibitor)",
+      "indications": "Fungal infections (topical/systemic limited)",
+      "sideEffects": "Hepatotoxicity, QT prolongation, endocrine effects (systemic)",
+      "mnemonic": "Nizoral = NIghtmare liver — systemic ketoconazole largely replaced",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "ketorolac",
+      "rank": 192,
+      "generic": "Ketorolac",
+      "brand": "Toradol",
+      "class": "NSAID (parenteral/oral)",
+      "indications": "Short-term moderate-severe pain (≤5 days)",
+      "sideEffects": "GI bleed, renal failure; limit 5 days",
+      "mnemonic": "Toradol = TORn kidney in 5 days max — potent NSAID",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "labetalol",
+      "rank": 193,
+      "generic": "Labetalol",
+      "brand": "Trandate, Normodyne",
+      "class": "Alpha/beta blocker",
+      "indications": "Hypertensive emergency, pregnancy hypertension",
+      "sideEffects": "Orthostatic hypotension, bronchospasm, neonatal bradycardia if used late pregnancy",
+      "mnemonic": "Labetalol = LABile BP in emergency — α+β block",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "lansoprazole",
+      "rank": 194,
+      "generic": "Lansoprazole",
+      "brand": "Prevacid",
+      "class": "Proton pump inhibitor",
+      "indications": "GERD, PUD",
+      "sideEffects": "C. diff, hypomagnesemia, B12 deficiency",
+      "mnemonic": "Prevacid = PREVent acid — PPI class",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "lanthanum",
+      "rank": 195,
+      "generic": "Lanthanum",
+      "brand": "Fosrenol",
+      "class": "Non-calcium phosphate binder",
+      "indications": "Hyperphosphatemia in CKD",
+      "sideEffects": "GI upset, constipation",
+      "mnemonic": "Fosrenol = PHOSphorus lanthanum lock",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "leflunomide",
+      "rank": 196,
+      "generic": "Leflunomide",
+      "brand": "Arava",
+      "class": "DMARD (pyrimidine synthesis inhibitor)",
+      "indications": "Rheumatoid arthritis",
+      "sideEffects": "Hepatotoxicity, teratogenic (cholestyramine washout needed), diarrhea",
+      "mnemonic": "Arava = ARAthritis but teratogen — washout with cholestyramine",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "levocetirizine",
+      "rank": 197,
+      "generic": "Levocetirizine",
+      "brand": "Xyzal",
+      "class": "Third-generation antihistamine",
+      "indications": "Allergic rhinitis, chronic urticaria",
+      "sideEffects": "Somnolence (less than first-gen), fatigue",
+      "mnemonic": "Xyzal = XY allergy axis block — active enantiomer of cetirizine",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "levofloxacin",
+      "rank": 198,
+      "generic": "Levofloxacin",
+      "brand": "Levaquin",
+      "class": "Fluoroquinolone antibiotic",
+      "indications": "CAP, UTI, prostatitis, anthrax",
+      "sideEffects": "Tendon rupture, QT prolongation, C. diff, neuropathy",
+      "mnemonic": "Levaquin = LEVitate tendons to rupture — fluoroquinolone boxed warnings",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "desmopressin",
+      "rank": 199,
+      "generic": "Desmopressin",
+      "brand": "DDAVP",
+      "class": "ADH analog",
+      "indications": "Diabetes insipidus, nocturnal enuresis, von Willebrand disease",
+      "sideEffects": "Hyponatremia (fluid restriction needed), headache",
+      "mnemonic": "DDAVP = Don't Drink excessively — ADH holds water, hyponatremia risk",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "lidocaine",
+      "rank": 200,
+      "generic": "Lidocaine",
+      "brand": "Xylocaine, Lidoderm",
+      "class": "Local anesthetic / class IB antiarrhythmic",
+      "indications": "Local/regional anesthesia, ventricular arrhythmias (IV), neuropathic pain patch",
+      "sideEffects": "CNS toxicity (seizures), cardiac depression at high doses",
+      "mnemonic": "Lidocaine = LIDO numb & stop V-tach — mg/kg toxicity",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "linezolid",
+      "rank": 201,
+      "generic": "Linezolid",
+      "brand": "Zyvox",
+      "class": "Oxazolidinone antibiotic",
+      "indications": "MRSA, VRE infections",
+      "sideEffects": "Thrombocytopenia, serotonin syndrome with SSRIs, peripheral/optic neuropathy (prolonged)",
+      "mnemonic": "Zyvox = ZY line against MRSA — MAOI-like serotonin syndrome",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "liothyronine",
+      "rank": 202,
+      "generic": "Liothyronine",
+      "brand": "Cytomel",
+      "class": "Synthetic T3 thyroid hormone",
+      "indications": "Hypothyroidism (adjunct), myxedema coma",
+      "sideEffects": "Palpitations, arrhythmias, bone loss — shorter half-life than T4",
+      "mnemonic": "Cytomel = CYTomet T3 fast — more cardiac stimulation than T4",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "liraglutide",
+      "rank": 203,
+      "generic": "Liraglutide",
+      "brand": "Victoza, Saxenda",
+      "class": "GLP-1 receptor agonist",
+      "indications": "Type 2 diabetes (Victoza), obesity (Saxenda)",
+      "sideEffects": "Nausea, pancreatitis (rare), gallstones, thyroid C-cell tumors (rodents)",
+      "mnemonic": "Victoza = VICtory over glucose & weight — daily GLP-1",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "lithium",
+      "rank": 204,
+      "generic": "Lithium",
+      "brand": "Lithobid, Eskalith",
+      "class": "Mood stabilizer",
+      "indications": "Bipolar disorder maintenance",
+      "sideEffects": "Narrow therapeutic index, nephrogenic DI, hypothyroidism, tremor, teratogenic (Ebstein anomaly)",
+      "mnemonic": "Lithium = Lithi-UM needs level monitoring — thirst & tremor",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "loperamide",
+      "rank": 205,
+      "generic": "Loperamide",
+      "brand": "Imodium",
+      "class": "Opioid agonist (peripheral, antidiarrheal)",
+      "indications": "Acute/chronic diarrhea",
+      "sideEffects": "Constipation, toxic megacolon in severe colitis (avoid in C. diff/dysentery)",
+      "mnemonic": "Imodium = IMmediate ODium stop — don't use in invasive diarrhea",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "loratadine-pseudoephedrine",
+      "rank": 206,
+      "generic": "Loratadine/pseudoephedrine",
+      "brand": "Claritin-D",
+      "class": "Antihistamine + decongestant combo",
+      "indications": "Allergic rhinitis with congestion",
+      "sideEffects": "Insomnia, tachycardia, hypertension (pseudoephedrine)",
+      "mnemonic": "Claritin-D = D for decongest — pseudoephedrine stimulates",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "lurasidone",
+      "rank": 207,
+      "generic": "Lurasidone",
+      "brand": "Latuda",
+      "class": "Atypical antipsychotic",
+      "indications": "Schizophrenia, bipolar depression",
+      "sideEffects": "Akathisia, nausea; take with food (≥350 kcal for absorption)",
+      "mnemonic": "Latuda = LATe food required — take with 350+ calories",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "magnesium-oxide",
+      "rank": 208,
+      "generic": "Magnesium oxide",
+      "brand": "Mag-Ox",
+      "class": "Magnesium supplement / antacid",
+      "indications": "Hypomagnesemia, constipation, dyspepsia",
+      "sideEffects": "Diarrhea, hypermagnesemia in renal failure",
+      "mnemonic": "Mag-Ox = MAGnesium oxide moves bowels",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "meclizine",
+      "rank": 209,
+      "generic": "Meclizine",
+      "brand": "Antivert, Bonine",
+      "class": "Antihistamine antiemetic",
+      "indications": "Vertigo, motion sickness",
+      "sideEffects": "Sedation, dry mouth, anticholinergic",
+      "mnemonic": "Meclizine = MECLs vertigo — antihistamine vestibular",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "medroxyprogesterone",
+      "rank": 210,
+      "generic": "Medroxyprogesterone",
+      "brand": "Provera, Depo-Provera",
+      "class": "Progestin",
+      "indications": "Abnormal uterine bleeding, amenorrhea, contraception (Depo)",
+      "sideEffects": "Weight gain, bone density loss (Depo), mood changes, irregular bleeding",
+      "mnemonic": "Depo = DEPOsit weight & bone loss with long-acting progestin",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "melatonin",
+      "rank": 211,
+      "generic": "Melatonin",
+      "brand": "Various OTC",
+      "class": "Hormone supplement (sleep)",
+      "indications": "Insomnia, jet lag",
+      "sideEffects": "Daytime somnolence, vivid dreams; generally safe",
+      "mnemonic": "Melatonin = MELLow tone for sleep — OTC hormone",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": false,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "mesalamine",
+      "rank": 212,
+      "generic": "Mesalamine",
+      "brand": "Lialda, Asacol",
+      "class": "5-ASA anti-inflammatory",
+      "indications": "Ulcerative colitis maintenance",
+      "sideEffects": "Headache, renal dysfunction, pancreatitis (rare)",
+      "mnemonic": "Mesalamine = MESs with UC inflammation — 5-ASA colon delivery",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "metformin-sitagliptin",
+      "rank": 213,
+      "generic": "Metformin/sitagliptin",
+      "brand": "Janumet",
+      "class": "Biguanide + DPP-4 inhibitor combo",
+      "indications": "Type 2 diabetes",
+      "sideEffects": "GI upset (metformin), pancreatitis (rare)",
+      "mnemonic": "Janumet = JANUary metformin + sitagliptin combo pill",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "methadone",
+      "rank": 214,
+      "generic": "Methadone",
+      "brand": "Methadose, Dolophine",
+      "class": "Long-acting opioid",
+      "indications": "Opioid use disorder maintenance, chronic pain",
+      "sideEffects": "QT prolongation, respiratory depression, constipation; long half-life",
+      "mnemonic": "Methadone = METHadone long half-life — QT & overdose risk",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "methocarbamol",
+      "rank": 215,
+      "generic": "Methocarbamol",
+      "brand": "Robaxin",
+      "class": "Centrally acting muscle relaxant",
+      "indications": "Acute musculoskeletal spasm",
+      "sideEffects": "Sedation, dizziness, hypotension",
+      "mnemonic": "Robaxin = ROBAx muscles relax — sedating",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "dicyclomine",
+      "rank": 217,
+      "generic": "Dicyclomine",
+      "brand": "Bentyl",
+      "class": "Anticholinergic antispasmodic",
+      "indications": "IBS spasms",
+      "sideEffects": "Dry mouth, tachycardia, urinary retention, confusion",
+      "mnemonic": "Bentyl = BEND spasms with anticholinergic — IBS cramps",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "metoprolol-hydrochlorothiazide",
+      "rank": 218,
+      "generic": "Metoprolol/hydrochlorothiazide",
+      "brand": "Dutoprol, Lopressor HCT",
+      "class": "Beta blocker + thiazide combo",
+      "indications": "Hypertension",
+      "sideEffects": "Bradycardia, hypokalemia, fatigue",
+      "mnemonic": "Dutoprol = DUal beta + thiazide BP combo",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "cefpodoxime",
+      "rank": 219,
+      "generic": "Cefpodoxime",
+      "brand": "Vantin",
+      "class": "Third-generation cephalosporin",
+      "indications": "Community respiratory infections, otitis media",
+      "sideEffects": "Diarrhea, rash; take with food for absorption",
+      "mnemonic": "Vantin = VANtage oral cephalosporin — take with food",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "minocycline",
+      "rank": 220,
+      "generic": "Minocycline",
+      "brand": "Minocin, Solodyn",
+      "class": "Tetracycline antibiotic",
+      "indications": "Acne, MRSA, tick-borne disease",
+      "sideEffects": "Dizziness, drug-induced lupus, hyperpigmentation, teeth staining",
+      "mnemonic": "Minocycline = MINOr lupus & vertigo — tetracycline",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "mirabegron",
+      "rank": 221,
+      "generic": "Mirabegron",
+      "brand": "Myrbetriq",
+      "class": "Beta-3 agonist",
+      "indications": "Overactive bladder",
+      "sideEffects": "Hypertension, urinary retention, headache",
+      "mnemonic": "Myrbetriq = MY bladder relax — β3 not anticholinergic",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "modafinil",
+      "rank": 222,
+      "generic": "Modafinil",
+      "brand": "Provigil",
+      "class": "Wakefulness-promoting agent",
+      "indications": "Narcolepsy, shift-work sleep disorder, OSA adjunct",
+      "sideEffects": "Headache, anxiety, rare Stevens-Johnson; lowers hormonal contraceptive efficacy",
+      "mnemonic": "Provigil = PROmote vigilance — CYP3A4 inducer (OCP failure)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "mometasone",
+      "rank": 223,
+      "generic": "Mometasone",
+      "brand": "Nasonex, Asmanex",
+      "class": "Inhaled/nasal corticosteroid",
+      "indications": "Allergic rhinitis, asthma",
+      "sideEffects": "Epistaxis, oral candidiasis (inhaled)",
+      "mnemonic": "Nasonex = NOSE mometasone spray",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "morphine",
+      "rank": 224,
+      "generic": "Morphine",
+      "brand": "MS Contin, Roxanol",
+      "class": "Opioid agonist (gold standard)",
+      "indications": "Severe pain, palliative care",
+      "sideEffects": "Respiratory depression, constipation, miosis, dependence",
+      "mnemonic": "Morphine = MORphine MS Contin slow release — opioid prototype",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "moxifloxacin",
+      "rank": 225,
+      "generic": "Moxifloxacin",
+      "brand": "Avelox",
+      "class": "Fluoroquinolone antibiotic",
+      "indications": "CAP, sinusitis, skin infections",
+      "sideEffects": "Tendon rupture, QT prolongation, C. diff, hepatotoxicity",
+      "mnemonic": "Avelox = AVEoid unless needed — broad fluoroquinolone",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "multivitamin",
+      "rank": 226,
+      "generic": "Multivitamin",
+      "brand": "Centrum, etc.",
+      "class": "Vitamin/mineral supplement",
+      "indications": "Nutritional supplementation",
+      "sideEffects": "Generally safe; avoid excess iron/fat-soluble vitamins",
+      "mnemonic": "Multivitamin = MULTI nothing if diet adequate — but widely prescribed",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": false,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "mycophenolate",
+      "rank": 227,
+      "generic": "Mycophenolate",
+      "brand": "CellCept, Myfortic",
+      "class": "Immunosuppressant (IMPDH inhibitor)",
+      "indications": "Transplant rejection prophylaxis, autoimmune (lupus nephritis)",
+      "sideEffects": "GI upset, myelosuppression, teratogenic (pregnancy X)",
+      "mnemonic": "CellCept = CELL rejection Cept — pregnancy X teratogen",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "nabumetone",
+      "rank": 228,
+      "generic": "Nabumetone",
+      "brand": "Relafen",
+      "class": "NSAID (prodrug)",
+      "indications": "Osteoarthritis, RA",
+      "sideEffects": "GI bleed, renal injury, edema",
+      "mnemonic": "Relafen = RELief fan — prodrug NSAID",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "nadolol",
+      "rank": 229,
+      "generic": "Nadolol",
+      "brand": "Corgard",
+      "class": "Non-selective beta blocker (long-acting)",
+      "indications": "Hypertension, angina, migraine prophylaxis",
+      "sideEffects": "Bradycardia, bronchospasm, mask hypoglycemia",
+      "mnemonic": "Nadolol = NAil down HR long-acting β-block",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "naloxone",
+      "rank": 230,
+      "generic": "Naloxone",
+      "brand": "Narcan",
+      "class": "Opioid antagonist",
+      "indications": "Opioid overdose reversal",
+      "sideEffects": "Acute withdrawal, pulmonary edema (rapid reversal), recurrence (short half-life)",
+      "mnemonic": "Narcan = NARCAN wakes the dead — opioid reversal",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "naltrexone",
+      "rank": 231,
+      "generic": "Naltrexone",
+      "brand": "ReVia, Vivitrol",
+      "class": "Opioid antagonist",
+      "indications": "Alcohol/opioid use disorder",
+      "sideEffects": "Precipitated withdrawal if opioids on board; hepatotoxicity (high dose)",
+      "mnemonic": "Vivitrol = VIVitrol blocks opioid high — must be opioid-free first",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "nateglinide",
+      "rank": 232,
+      "generic": "Nateglinide",
+      "brand": "Starlix",
+      "class": "Meglitinide",
+      "indications": "Postprandial glucose control in T2DM",
+      "sideEffects": "Hypoglycemia, weight gain",
+      "mnemonic": "Starlix = STARt meal insulin release — rapid secretagogue",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "nebivolol",
+      "rank": 233,
+      "generic": "Nebivolol",
+      "brand": "Bystolic",
+      "class": "Beta-1 selective blocker with NO activity",
+      "indications": "Hypertension, heart failure",
+      "sideEffects": "Bradycardia, fatigue; fewer metabolic effects",
+      "mnemonic": "Bystolic = BYstolic β1 + nitric oxide vasodilation",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "neomycin-polymyxin-hydrocortisone",
+      "rank": 234,
+      "generic": "Neomycin/polymyxin/hydrocortisone",
+      "brand": "Cortisporin",
+      "class": "Topical antibiotic/steroid otic",
+      "indications": "Otitis externa",
+      "sideEffects": "Ototoxicity if tympanic membrane perforated",
+      "mnemonic": "Cortisporin = CORT ear infection combo — otic only",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "nicotine-patch",
+      "rank": 235,
+      "generic": "Nicotine patch",
+      "brand": "Nicoderm",
+      "class": "Nicotine replacement therapy",
+      "indications": "Smoking cessation",
+      "sideEffects": "Local skin irritation, insomnia/vivid dreams",
+      "mnemonic": "Nicoderm = NICOtine derm delivery — taper patch strength",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "nifedipine",
+      "rank": 236,
+      "generic": "Nifedipine",
+      "brand": "Procardia, Adalat",
+      "class": "Dihydropyridine calcium channel blocker",
+      "indications": "Hypertension, angina (immediate-release for hypertensive urgency cautiously)",
+      "sideEffects": "Reflex tachycardia, edema, flushing",
+      "mnemonic": "Nifedipine = NIfedipine ankles swell — DHP CCB",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "nitroglycerin",
+      "rank": 237,
+      "generic": "Nitroglycerin",
+      "brand": "Nitrostat, Nitro-Dur",
+      "class": "Nitrate vasodilator",
+      "indications": "Angina acute relief & prophylaxis",
+      "sideEffects": "Headache, hypotension, tolerance; contraindicated with PDE-5 inhibitors",
+      "mnemonic": "Nitro = NItrates relieve chest — never with Viagra",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "norethindrone",
+      "rank": 238,
+      "generic": "Norethindrone",
+      "brand": "Micronor, Camila",
+      "class": "Progestin contraceptive",
+      "indications": "Progestin-only pill, abnormal bleeding",
+      "sideEffects": "Irregular bleeding, mood changes, weight change",
+      "mnemonic": "Micronor = MICRO progestin-only pill",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "desipramine",
+      "rank": 239,
+      "generic": "Desipramine",
+      "brand": "Norpramin",
+      "class": "Tricyclic antidepressant (secondary amine)",
+      "indications": "Depression, ADHD (off-label), neuropathic pain",
+      "sideEffects": "Anticholinergic, cardiotoxic overdose, less sedating than amitriptyline",
+      "mnemonic": "Norpramin = NORpramin less sedating TCA — imipramine metabolite",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "olmesartan",
+      "rank": 240,
+      "generic": "Olmesartan",
+      "brand": "Benicar",
+      "class": "ARB",
+      "indications": "Hypertension",
+      "sideEffects": "Hyperkalemia, sprue-like enteropathy (rare)",
+      "mnemonic": "Benicar = BENefit ARB — sprue-like diarrhea rare",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "olmesartan-hydrochlorothiazide",
+      "rank": 241,
+      "generic": "Olmesartan/hydrochlorothiazide",
+      "brand": "Benicar HCT",
+      "class": "ARB + thiazide combo",
+      "indications": "Hypertension",
+      "sideEffects": "Hyperkalemia vs hypokalemia balance, dizziness",
+      "mnemonic": "Benicar HCT = BENefit dual BP combo",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "olopatadine",
+      "rank": 242,
+      "generic": "Olopatadine",
+      "brand": "Patanol, Pataday",
+      "class": "Antihistamine/mast cell stabilizer (ocular)",
+      "indications": "Allergic conjunctivitis",
+      "sideEffects": "Headache, ocular burning",
+      "mnemonic": "Pataday = PAT ocular allergy day relief",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "omega-3-acid-ethyl-esters",
+      "rank": 243,
+      "generic": "Omega-3 acid ethyl esters",
+      "brand": "Lovaza, Vascepa",
+      "class": "Fish oil lipid regulator",
+      "indications": "Hypertriglyceridemia",
+      "sideEffects": "Fishy burp, bleeding risk at high doses",
+      "mnemonic": "Lovaza = LOVE fish oil TG lowering",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "omeprazole-sodium-bicarbonate",
+      "rank": 244,
+      "generic": "Omeprazole/sodium bicarbonate",
+      "brand": "Zegerid",
+      "class": "PPI + antacid combo",
+      "indications": "GERD",
+      "sideEffects": "Same PPI risks; sodium load",
+      "mnemonic": "Zegerid = ZERO wait acid relief — immediate bicarb buffer",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "oxybutynin",
+      "rank": 245,
+      "generic": "Oxybutynin",
+      "brand": "Ditropan, Oxytrol",
+      "class": "Anticholinergic",
+      "indications": "Overactive bladder",
+      "sideEffects": "Dry mouth, constipation, confusion (elderly), urinary retention",
+      "mnemonic": "Oxybutynin = OXY dry mouth bladder relax — anticholinergic",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "oxycodone-acetaminophen",
+      "rank": 246,
+      "generic": "Oxycodone/acetaminophen",
+      "brand": "Percocet",
+      "class": "Opioid + analgesic combo",
+      "indications": "Moderate-severe pain",
+      "sideEffects": "Respiratory depression, hepatotoxicity (acetaminophen)",
+      "mnemonic": "Percocet = PERilous combo opioid + liver acetaminophen",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "paliperidone",
+      "rank": 247,
+      "generic": "Paliperidone",
+      "brand": "Invega",
+      "class": "Atypical antipsychotic (risperidone metabolite)",
+      "indications": "Schizophrenia, schizoaffective disorder",
+      "sideEffects": "EPS, hyperprolactinemia, QT prolongation",
+      "mnemonic": "Invega = INVEstigate prolactin — active risperidone metabolite",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "ibandronate",
+      "rank": 248,
+      "generic": "Ibandronate",
+      "brand": "Boniva",
+      "class": "Bisphosphonate",
+      "indications": "Osteoporosis prevention/treatment",
+      "sideEffects": "Esophagitis, osteonecrosis of jaw, atypical femur fracture",
+      "mnemonic": "Boniva = BONE iva monthly bisphosphonate — stay upright",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "vilazodone",
+      "rank": 249,
+      "generic": "Vilazodone",
+      "brand": "Viibryd",
+      "class": "SSRI + 5-HT1A partial agonist",
+      "indications": "Major depressive disorder",
+      "sideEffects": "Diarrhea, insomnia, serotonin syndrome; take with food",
+      "mnemonic": "Viibryd = VIBrant mood — take with food for absorption",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "penicillin-v-potassium",
+      "rank": 250,
+      "generic": "Penicillin V potassium",
+      "brand": "Veetids",
+      "class": "Natural penicillin",
+      "indications": "Strep pharyngitis, syphilis, dental prophylaxis",
+      "sideEffects": "Allergic reactions, diarrhea",
+      "mnemonic": "Pen VK = PENicillin kills strep — oral dental/pharyngitis",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "phenobarbital",
+      "rank": 251,
+      "generic": "Phenobarbital",
+      "brand": "Luminal",
+      "class": "Barbiturate antiepileptic",
+      "indications": "Seizures, neonatal withdrawal",
+      "sideEffects": "Sedation, dependence, enzyme induction, cognitive effects",
+      "mnemonic": "Phenobarbital = PHENObarb sedates & induces CYP",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "phentermine-topiramate",
+      "rank": 252,
+      "generic": "Phentermine/topiramate",
+      "brand": "Qsymia",
+      "class": "Sympathomimetic + antiepileptic combo",
+      "indications": "Chronic weight management",
+      "sideEffects": "Tachycardia, cognitive effects (topiramate), teratogenic",
+      "mnemonic": "Qsymia = Qsymia quit obesity — topiramate + phentermine",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "phenytoin",
+      "rank": 253,
+      "generic": "Phenytoin",
+      "brand": "Dilantin",
+      "class": "Antiepileptic (sodium channel blocker)",
+      "indications": "Seizures, status epilepticus",
+      "sideEffects": "Gingival hyperplasia, hirsutism, ataxia, zero-order kinetics, teratogenic",
+      "mnemonic": "Dilantin = DILate gums & zero-order kinetics — narrow window",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "phytonadione",
+      "rank": 254,
+      "generic": "Phytonadione",
+      "brand": "Vitamin K (Mephyton)",
+      "class": "Vitamin K supplement",
+      "indications": "Warfarin reversal, vitamin K deficiency",
+      "sideEffects": "Anaphylaxis (IV rapid), hypercoagulability if overdose",
+      "mnemonic": "Vitamin K = Klotting reversal for warfarin",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "pilocarpine",
+      "rank": 255,
+      "generic": "Pilocarpine",
+      "brand": "Salagen",
+      "class": "Direct cholinergic agonist",
+      "indications": "Xerostomia (Sjögren), glaucoma (ophthalmic)",
+      "sideEffects": "Sweating, bradycardia, bronchospasm",
+      "mnemonic": "Salagen = SALiva again — cholinergic sweats",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "canagliflozin",
+      "rank": 256,
+      "generic": "Canagliflozin",
+      "brand": "Invokana",
+      "class": "SGLT2 inhibitor",
+      "indications": "Type 2 diabetes, diabetic kidney disease",
+      "sideEffects": "Genital mycotic infections, euglycemic DKA, amputations concern (class)",
+      "mnemonic": "Invokana = IN Vain glucose stays in urine — SGLT2",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "pitavastatin",
+      "rank": 257,
+      "generic": "Pitavastatin",
+      "brand": "Livalo",
+      "class": "HMG-CoA reductase inhibitor",
+      "indications": "Hyperlipidemia",
+      "sideEffects": "Myopathy, hepatotoxicity; minimal CYP interactions",
+      "mnemonic": "Livalo = LIVALO low interaction statin",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "polyethylene-glycol-electrolytes",
+      "rank": 258,
+      "generic": "Polyethylene glycol/electrolytes",
+      "brand": "GoLytely, MiraPrep",
+      "class": "Bowel prep solution",
+      "indications": "Colonoscopy preparation",
+      "sideEffects": "Nausea, bloating, electrolyte shifts",
+      "mnemonic": "GoLytely = GO before colonoscopy — bowel prep",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "pramipexole",
+      "rank": 260,
+      "generic": "Pramipexole",
+      "brand": "Mirapex",
+      "class": "Dopamine agonist",
+      "indications": "Parkinson disease, restless legs syndrome",
+      "sideEffects": "Impulse control disorders, somnolence, orthostatic hypotension",
+      "mnemonic": "Mirapex = MIRacle legs but gamble urges — D2 agonist",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "prasugrel",
+      "rank": 261,
+      "generic": "Prasugrel",
+      "brand": "Effient",
+      "class": "P2Y12 inhibitor",
+      "indications": "ACS with PCI (stent)",
+      "sideEffects": "Bleeding (more than clopidogrel), avoid if stroke/TIA history",
+      "mnemonic": "Effient = EFFicient platelet block — more bleeding than Plavix",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "prednisolone",
+      "rank": 262,
+      "generic": "Prednisolone",
+      "brand": "Prelone, Orapred",
+      "class": "Systemic corticosteroid (active metabolite)",
+      "indications": "Asthma exacerbation, inflammation (pediatric liquid)",
+      "sideEffects": "Same corticosteroid class effects",
+      "mnemonic": "Orapred = ORAL pred for kids — liquid steroid",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "gabapentin-enacarbil",
+      "rank": 263,
+      "generic": "Gabapentin enacarbil",
+      "brand": "Horizant",
+      "class": "Gabapentin prodrug",
+      "indications": "Restless legs syndrome, postherpetic neuralgia",
+      "sideEffects": "Sedation, dizziness, driving impairment",
+      "mnemonic": "Horizant = HORIZontal sleep — RLS gabapentin prodrug",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "primidone",
+      "rank": 264,
+      "generic": "Primidone",
+      "brand": "Mysoline",
+      "class": "Barbiturate antiepileptic",
+      "indications": "Essential tremor, seizures",
+      "sideEffects": "Sedation, ataxia; metabolized to phenobarbital",
+      "mnemonic": "Mysoline = MY tremor SOLINE — converts to phenobarbital",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "prochlorperazine",
+      "rank": 265,
+      "generic": "Prochlorperazine",
+      "brand": "Compazine",
+      "class": "Typical antipsychotic/antiemetic (D2 block)",
+      "indications": "Severe nausea/vomiting, psychosis",
+      "sideEffects": "EPS, dystonia, QT prolongation",
+      "mnemonic": "Compazine = COMbat nausea — EPS like haloperidol",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "progesterone",
+      "rank": 266,
+      "generic": "Progesterone",
+      "brand": "Prometrium",
+      "class": "Natural progestin",
+      "indications": "Menopausal HRT (uterine protection), amenorrhea",
+      "sideEffects": "Drowsiness, breast tenderness, mood changes",
+      "mnemonic": "Prometrium = PROgesterone protects endometrium on estrogen",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "propofol",
+      "rank": 267,
+      "generic": "Propofol",
+      "brand": "Diprivan",
+      "class": "IV anesthetic",
+      "indications": "General anesthesia induction, ICU sedation",
+      "sideEffects": "Hypotension, respiratory depression, propofol infusion syndrome (high dose)",
+      "mnemonic": "Diprivan = DIP into anesthesia — egg allergy caution (lipid emulsion)",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "propoxyphene",
+      "rank": 268,
+      "generic": "Propoxyphene",
+      "brand": "Darvon (withdrawn US)",
+      "class": "Weak opioid (historical)",
+      "indications": "Pain (removed from US market due to cardiac toxicity)",
+      "sideEffects": "Cardiotoxicity, overdose; largely replaced",
+      "mnemonic": "Darvon = DARvon DARk history — withdrawn; know for exams",
+      "examRelevance": {
+        "NCLEX": false,
+        "USMLE": false,
+        "NAPLEX": false
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "propranolol-hydrochlorothiazide",
+      "rank": 269,
+      "generic": "Propranolol/hydrochlorothiazide",
+      "brand": "Inderide",
+      "class": "Beta blocker + thiazide combo",
+      "indications": "Hypertension",
+      "sideEffects": "Bradycardia, hypokalemia",
+      "mnemonic": "Inderide = Inderal + thiazide dual BP",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "pseudoephedrine",
+      "rank": 270,
+      "generic": "Pseudoephedrine",
+      "brand": "Sudafed",
+      "class": "Alpha agonist decongestant",
+      "indications": "Nasal congestion",
+      "sideEffects": "Insomnia, tachycardia, hypertension; pseudoephedrine diversion concerns",
+      "mnemonic": "Sudafed = SUDafed behind counter — sympathomimetic",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "respiratory"
+    },
+    {
+      "id": "psyllium",
+      "rank": 271,
+      "generic": "Psyllium",
+      "brand": "Metamucil",
+      "class": "Bulk-forming fiber laxative",
+      "indications": "Constipation, hyperlipidemia adjunct",
+      "sideEffects": "Bloating, choke hazard if inadequate fluid",
+      "mnemonic": "Metamucil = META mucil fiber bulk — drink water",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": false,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "quinapril-hydrochlorothiazide",
+      "rank": 272,
+      "generic": "Quinapril/hydrochlorothiazide",
+      "brand": "Accuretic",
+      "class": "ACE inhibitor + thiazide combo",
+      "indications": "Hypertension",
+      "sideEffects": "Cough, electrolyte abnormalities",
+      "mnemonic": "Accuretic = ACCurate BP dual ACE/HCTZ",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "raloxifene",
+      "rank": 273,
+      "generic": "Raloxifene",
+      "brand": "Evista",
+      "class": "SERM",
+      "indications": "Osteoporosis prevention/treatment, breast cancer risk reduction",
+      "sideEffects": "Hot flashes, VTE risk, no endometrial stimulation",
+      "mnemonic": "Evista = EVIST bone & breast SERM — VTE risk",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "ramipril",
+      "rank": 274,
+      "generic": "Ramipril",
+      "brand": "Altace",
+      "class": "ACE inhibitor",
+      "indications": "Hypertension, heart failure, post-MI, diabetic nephropathy",
+      "sideEffects": "Dry cough, hyperkalemia, angioedema",
+      "mnemonic": "Altace = ALTimate ACE post-MI benefit — HOPE trial drug",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "ranitidine",
+      "rank": 275,
+      "generic": "Ranitidine",
+      "brand": "Zantac (withdrawn/reformulated)",
+      "class": "H2 antagonist (largely replaced)",
+      "indications": "GERD, PUD (historical)",
+      "sideEffects": "Headache; NDMA contamination led to withdrawals",
+      "mnemonic": "Zantac = ZANtac histamine block — largely replaced by PPIs",
+      "examRelevance": {
+        "NCLEX": false,
+        "USMLE": false,
+        "NAPLEX": false
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "repaglinide",
+      "rank": 276,
+      "generic": "Repaglinide",
+      "brand": "Prandin",
+      "class": "Meglitinide",
+      "indications": "Postprandial glucose in T2DM",
+      "sideEffects": "Hypoglycemia, weight gain",
+      "mnemonic": "Prandin = PRANDial glucose — take before meals",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "rifampin",
+      "rank": 277,
+      "generic": "Rifampin",
+      "brand": "Rifadin",
+      "class": "Rifamycin antibiotic",
+      "indications": "TB, latent TB, staphylococcal prosthetic infections (combo)",
+      "sideEffects": "Hepatotoxicity, orange body fluids, potent CYP inducer (many interactions)",
+      "mnemonic": "Rifampin = RIFampin RIFs through CYP — orange tears/urine",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "risedronate",
+      "rank": 278,
+      "generic": "Risedronate",
+      "brand": "Actonel",
+      "class": "Bisphosphonate",
+      "indications": "Osteoporosis, Paget disease",
+      "sideEffects": "Esophagitis, osteonecrosis of jaw, atypical femur fracture",
+      "mnemonic": "Actonel = ACT on bone — stay upright after dose",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "ritonavir",
+      "rank": 280,
+      "generic": "Ritonavir",
+      "brand": "Norvir",
+      "class": "Protease inhibitor (often boosting)",
+      "indications": "HIV (boost other PIs)",
+      "sideEffects": "GI upset, hepatotoxicity, major CYP3A4 inhibition (drug interactions)",
+      "mnemonic": "Norvir = NOR virus but YES interactions — CYP3A4 bomb",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "edoxaban",
+      "rank": 281,
+      "generic": "Edoxaban",
+      "brand": "Savaysa",
+      "class": "Factor Xa inhibitor (DOAC)",
+      "indications": "AFib, DVT/PE treatment",
+      "sideEffects": "Bleeding; reduced efficacy if CrCl >95 mL/min (unique)",
+      "mnemonic": "Savaysa = SAVE saya from clots — edoxaban CrCl paradox >95",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "ropivacaine",
+      "rank": 282,
+      "generic": "Ropivacaine",
+      "brand": "Naropin",
+      "class": "Local anesthetic (amide)",
+      "indications": "Local/regional anesthesia, epidural",
+      "sideEffects": "CNS/cardiac toxicity at high doses; less motor block than bupivacaine",
+      "mnemonic": "Naropin = NARopin nerve block — amide anesthetic",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "rosuvastatin-ezetimibe",
+      "rank": 283,
+      "generic": "Rosuvastatin/ezetimibe",
+      "brand": "Roszet",
+      "class": "Statin + ezetimibe combo",
+      "indications": "Hyperlipidemia",
+      "sideEffects": "Myopathy, hepatotoxicity",
+      "mnemonic": "Roszet = ROSuvastatin + ezetimibe dual LDL hit",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "sacubitril-valsartan",
+      "rank": 284,
+      "generic": "Sacubitril/valsartan",
+      "brand": "Entresto",
+      "class": "ARNI (neprilysin inhibitor + ARB)",
+      "indications": "HFrEF (replaces ACE-I/ARB)",
+      "sideEffects": "Hypotension, hyperkalemia, angioedema; contraindicated with ACE-I",
+      "mnemonic": "Entresto = ENTer heart failure success — PARADIGM-HF game changer",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "scopolamine",
+      "rank": 285,
+      "generic": "Scopolamine",
+      "brand": "Transderm-Scop",
+      "class": "Anticholinergic antiemetic patch",
+      "indications": "Motion sickness prophylaxis",
+      "sideEffects": "Dry mouth, confusion, urinary retention, mydriasis",
+      "mnemonic": "Scopolamine = SCOopolamine patch — anticholinergic motion",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "semaglutide",
+      "rank": 286,
+      "generic": "Semaglutide",
+      "brand": "Ozempic, Wegovy, Rybelsus",
+      "class": "GLP-1 receptor agonist",
+      "indications": "Type 2 diabetes (Ozempic/Rybelsus), obesity (Wegovy)",
+      "sideEffects": "Nausea, pancreatitis (rare), gallstones, thyroid C-cell tumors (rodents)",
+      "mnemonic": "Ozempic = OZempic obesity craze — weekly GLP-1",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "senna",
+      "rank": 287,
+      "generic": "Senna",
+      "brand": "Senokot",
+      "class": "Stimulant laxative",
+      "indications": "Constipation",
+      "sideEffects": "Cramping, melanosis coli (chronic), dependence",
+      "mnemonic": "Senokot = SENna stimulates colon — short-term laxative",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "vardenafil",
+      "rank": 288,
+      "generic": "Vardenafil",
+      "brand": "Levitra, Staxyn",
+      "class": "PDE-5 inhibitor",
+      "indications": "Erectile dysfunction",
+      "sideEffects": "Headache, flushing, hypotension with nitrates (contraindicated)",
+      "mnemonic": "Levitra = LEVitate ED — never combine with nitrates",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "silver-sulfadiazine",
+      "rank": 289,
+      "generic": "Silver sulfadiazine",
+      "brand": "Silvadene",
+      "class": "Topical antimicrobial",
+      "indications": "Burn wound prophylaxis",
+      "sideEffects": "Leukopenia, sulfa allergy, argyria (rare)",
+      "mnemonic": "Silvadene = SILver SILvadene burns — sulfa cream",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "antibiotics"
+    },
+    {
+      "id": "simethicone",
+      "rank": 290,
+      "generic": "Simethicone",
+      "brand": "Gas-X, Mylicon",
+      "class": "Antifoaming agent",
+      "indications": "Gas, bloating",
+      "sideEffects": "Very safe; no systemic absorption",
+      "mnemonic": "Gas-X = GAS eXpel foam — inert simethicone",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": false,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "simvastatin-ezetimibe",
+      "rank": 291,
+      "generic": "Simvastatin/ezetimibe",
+      "brand": "Vytorin",
+      "class": "Statin + ezetimibe combo",
+      "indications": "Hyperlipidemia",
+      "sideEffects": "Myopathy, hepatotoxicity",
+      "mnemonic": "Vytorin = VY dual gut + liver cholesterol block",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "sirolimus",
+      "rank": 292,
+      "generic": "Sirolimus",
+      "brand": "Rapamune",
+      "class": "mTOR inhibitor immunosuppressant",
+      "indications": "Transplant rejection prophylaxis",
+      "sideEffects": "Hyperlipidemia, myelosuppression, impaired wound healing",
+      "mnemonic": "Rapamune = RAPamycin mTOR — transplant & wound healing issues",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "sodium-polystyrene-sulfonate",
+      "rank": 293,
+      "generic": "Sodium polystyrene sulfonate",
+      "brand": "Kayexalate",
+      "class": "Potassium binder",
+      "indications": "Hyperkalemia",
+      "sideEffects": "Constipation, intestinal necrosis (with sorbitol), hypokalemia",
+      "mnemonic": "Kayexalate = KAY excretes K+ — resin binder",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "solifenacin",
+      "rank": 294,
+      "generic": "Solifenacin",
+      "brand": "Vesicare",
+      "class": "Anticholinergic",
+      "indications": "Overactive bladder",
+      "sideEffects": "Dry mouth, constipation, urinary retention",
+      "mnemonic": "Vesicare = VESicare bladder — anticholinergic dry mouth",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "spironolactone-hydrochlorothiazide",
+      "rank": 295,
+      "generic": "Spironolactone/hydrochlorothiazide",
+      "brand": "Aldactazide",
+      "class": "K-sparing + thiazide combo",
+      "indications": "Hypertension, ascites",
+      "sideEffects": "Hyperkalemia risk, gynecomastia (spironolactone)",
+      "mnemonic": "Aldactazide = ALDACTone + thiazide — K+ balance",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    },
+    {
+      "id": "sucralfate",
+      "rank": 296,
+      "generic": "Sucralfate",
+      "brand": "Carafate",
+      "class": "Mucosal protective agent",
+      "indications": "PUD, gastritis",
+      "sideEffects": "Constipation, aluminum load; take separate from other meds",
+      "mnemonic": "Carafate = CARafate coats ulcer — take on empty stomach",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "gastrointestinal"
+    },
+    {
+      "id": "tacrolimus",
+      "rank": 297,
+      "generic": "Tacrolimus",
+      "brand": "Prograf, Envarsus",
+      "class": "Calcineurin inhibitor immunosuppressant",
+      "indications": "Transplant rejection prophylaxis",
+      "sideEffects": "Nephrotoxicity, neurotoxicity, hyperglycemia, hypertension",
+      "mnemonic": "Prograf = PROtect graft — tacrolimus nephrotoxic",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "pain-inflammation"
+    },
+    {
+      "id": "alfuzosin",
+      "rank": 298,
+      "generic": "Alfuzosin",
+      "brand": "Uroxatral",
+      "class": "Alpha-1 blocker",
+      "indications": "BPH (LUTS)",
+      "sideEffects": "Dizziness, orthostatic hypotension, IFIS in cataract surgery",
+      "mnemonic": "Uroxatral = URO X alpha block — BPH flow without much BP drop",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "tapentadol",
+      "rank": 299,
+      "generic": "Tapentadol",
+      "brand": "Nucynta",
+      "class": "Opioid + NE reuptake inhibitor",
+      "indications": "Moderate-severe acute pain",
+      "sideEffects": "Seizures, serotonin syndrome, respiratory depression",
+      "mnemonic": "Nucynta = NUclear dual mechanism opioid — seizure risk",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "telmisartan",
+      "rank": 300,
+      "generic": "Telmisartan",
+      "brand": "Micardis",
+      "class": "ARB",
+      "indications": "Hypertension, CV risk reduction",
+      "sideEffects": "Hyperkalemia, dizziness; long half-life",
+      "mnemonic": "Micardis = MICardis long half-life ARB — once daily",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cardiovascular"
+    }
+  ]
+}

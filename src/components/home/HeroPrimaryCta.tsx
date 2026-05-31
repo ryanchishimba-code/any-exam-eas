@@ -20,7 +20,7 @@ export function HeroPrimaryCta({
   className = "",
 }: HeroPrimaryCtaProps) {
   return (
-    <div className={`space-y-5 ${className}`}>
+    <div className={`space-y-6 ${className}`}>
       <Link
         href="/signup?plan=trial"
         className="aee-btn-hero group flex w-full items-center justify-center gap-2.5"

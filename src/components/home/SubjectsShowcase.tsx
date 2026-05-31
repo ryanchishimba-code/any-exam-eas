@@ -29,12 +29,12 @@ export function SubjectsShowcase() {
   const subjects = data?.subjects ?? [];
 
   return (
-    <section id="subjects" className="apple-section">
-      <div className="mx-auto max-w-[1100px] px-5 sm:px-6">
+    <section id="subjects" className="apple-section aee-landing-section bg-white dark:bg-black">
+      <div className="mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
         <div className="text-center">
           <p className="aee-section-label">Exam coverage</p>
-          <h2 className="apple-headline mt-3">Prep for every board.</h2>
-          <p className="apple-subhead mx-auto mt-4 max-w-xl">
+          <h2 className="aee-headline mt-4">Prep for every board.</h2>
+          <p className="aee-section-lede mx-auto mt-4 max-w-xl">
             Adaptive exams, question banks, and analytics — medicine, nursing,
             pharmacy, dentistry, and core sciences.
           </p>

@@ -10,6 +10,7 @@ import {
   messageFromUnknownAuthError,
 } from "@/lib/auth-client";
 import { Button } from "@/components/ui/Button";
+import { InlineError } from "@/components/ui/StatusMessage";
 
 export function EmployeeLoginForm() {
   const router = useRouter();
@@ -138,11 +139,7 @@ export function EmployeeLoginForm() {
         </Link>
       </p>
 
-      {error && (
-        <p className="rounded-lg bg-red-50 px-3 py-2 text-center text-sm text-red-700" role="alert">
-          {error}
-        </p>
-      )}
+      {error && <InlineError className="text-center">{error}</InlineError>}
 
       <Button type="submit" disabled={loading || !!configWarning} className="w-full">
         {loading ? "Verifying access…" : "Sign in to portal"}

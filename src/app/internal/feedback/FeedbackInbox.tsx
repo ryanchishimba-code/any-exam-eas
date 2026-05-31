@@ -6,6 +6,7 @@ import {
   type FeedbackListItem,
   type FeedbackSort,
 } from "@/lib/feedback/types";
+import { InlineError } from "@/components/ui/StatusMessage";
 
 export default function FeedbackInbox() {
   const [items, setItems] = useState<FeedbackListItem[]>([]);
@@ -136,7 +137,7 @@ export default function FeedbackInbox() {
         {loading ? "Loading…" : `${total} submission${total === 1 ? "" : "s"}`}
       </p>
 
-      {error && <p className="text-sm text-red-700">{error}</p>}
+      {error && <InlineError>{error}</InlineError>}
 
       {!loading && items.length === 0 && (
         <div className="rounded-xl border border-dashed border-black/15 bg-white/60 p-12 text-center text-sm text-black/50">
@@ -164,8 +165,8 @@ export default function FeedbackInbox() {
                   <span
                     className={
                       item.status === "resolved"
-                        ? "text-emerald-700"
-                        : "text-sky-700"
+                        ? "font-medium text-blue-800"
+                        : "font-medium text-sky-800"
                     }
                   >
                     {item.status}
@@ -193,7 +194,7 @@ export default function FeedbackInbox() {
                 </button>
                 <button
                   type="button"
-                  className="rounded-full border border-red-200 px-3 py-1 text-xs text-red-700 hover:bg-red-50"
+                  className="rounded-full border border-orange-300 px-3 py-1 text-xs font-medium text-orange-900 hover:bg-orange-50"
                   onClick={() => void remove(item.id)}
                 >
                   Delete

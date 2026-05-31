@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { InlineError } from "@/components/ui/StatusMessage";
 import {
   LineChart,
   Line,
@@ -142,7 +143,7 @@ export default function AnalyticsDashboard() {
   }
 
   if (error && !dashboard) {
-    return <p className="text-sm text-red-700">Failed: {error}</p>;
+    return <InlineError>Failed: {error}</InlineError>;
   }
 
   if (!dashboard) {

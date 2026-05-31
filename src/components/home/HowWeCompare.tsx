@@ -88,32 +88,24 @@ export function HowWeCompare() {
   return (
     <section
       id="how-we-compare"
-      className="relative overflow-hidden border-y border-slate-200/60 bg-white py-[clamp(4rem,10vw,6.5rem)] dark:border-slate-800 dark:bg-slate-950"
+      className="aee-landing-section relative overflow-hidden bg-white dark:bg-black"
       aria-labelledby="compare-heading"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_45%_at_50%_100%,rgba(20,184,166,0.06),transparent)]"
-        aria-hidden
-      />
-
-      <div className="relative mx-auto max-w-[1140px] px-5 sm:px-6">
+      <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="aee-section-label">How we compare</p>
-          <h2
-            id="compare-heading"
-            className="mt-3 text-[clamp(1.75rem,4vw,2.75rem)] font-bold tracking-[-0.03em] text-slate-900 dark:text-white"
-          >
+          <h2 id="compare-heading" className="aee-headline mt-4">
             Same board prep.{" "}
             <span className="aee-display-accent">Fraction of the price.</span>
           </h2>
-          <p className="mt-4 text-[1.0625rem] leading-relaxed text-slate-600 dark:text-slate-400">
+          <p className="aee-section-lede mx-auto max-w-xl">
             Premium competitors charge hundreds upfront. We keep pricing simple,
             transparent, and accessible — with a full question bank and OER-backed
             explanations included.
           </p>
         </div>
 
-        <ul className="mt-10 grid gap-4 sm:grid-cols-3">
+        <ul className="mt-14 grid gap-5 sm:grid-cols-3 lg:gap-6">
           {highlights.map((item, i) => {
             const Icon = item.icon;
             return (

@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { FEEDBACK_CATEGORIES } from "@/lib/feedback/types";
+import { InlineError } from "@/components/ui/StatusMessage";
 
 function StarRating({
   value,
@@ -20,6 +22,7 @@ function StarRating({
           type="button"
           role="radio"
           aria-checked={value === n}
+          aria-label={`${n} star${n === 1 ? "" : "s"}`}
           onClick={() => onChange(n)}
           className={`h-10 w-10 rounded-lg text-lg transition-colors ${
             n <= value
@@ -72,14 +75,11 @@ export function FeedbackForm() {
 
   if (success) {
     return (
-      <div
-        className="rounded-2xl border border-emerald-200/80 bg-emerald-50/80 p-8 text-center"
-        role="status"
-      >
-        <p className="text-lg font-semibold text-emerald-900">Thank you!</p>
-        <p className="mt-2 text-sm text-emerald-800/90">
-          Your feedback was received. We read every submission and use it to improve Any Exam
-          Easy.
+      <div className="a11y-banner a11y-banner--success flex-col items-center rounded-2xl p-8 text-center" role="status">
+        <CheckCircle2 className="mx-auto" aria-hidden />
+        <p className="mt-3 text-lg font-semibold">Thank you</p>
+        <p className="mt-2 text-sm">
+          Your feedback was received. We read every submission and use it to improve Any Exam Easy.
         </p>
         <Button
           type="button"
@@ -161,11 +161,7 @@ export function FeedbackForm() {
         />
       </label>
 
-      {error && (
-        <p className="text-sm text-red-700" role="alert">
-          {error}
-        </p>
-      )}
+      {error && <InlineError>{error}</InlineError>}
 
       <Button type="submit" disabled={loading} className="w-full sm:w-auto">
         {loading ? "Sending…" : "Submit feedback"}

@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import { LegalCheckbox } from "./LegalCheckbox";
 import { PlanChoice } from "./PlanChoice";
 import { Button } from "./ui/Button";
+import { InlineError } from "@/components/ui/StatusMessage";
 import { BETA_MESSAGE, formatMonthlyPrice, formatTrialIntroPrice } from "@/lib/site";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
 import type { SignupPlan } from "@/lib/validators/auth";
@@ -163,7 +164,7 @@ export function SignupForm({ initialPlan = "" }: { initialPlan?: SignupPlan | ""
         {LEGAL_DISCLAIMERS.ageRequirement} All exam features require an active subscription.
       </p>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <InlineError>{error}</InlineError>}
 
       <Button
         type="submit"

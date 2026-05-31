@@ -18,8 +18,8 @@ const links = [
 
 function navClass(active: boolean) {
   return active
-    ? "text-[var(--color-ink)] opacity-100"
-    : "text-[var(--color-ink)] opacity-80 hover:opacity-100";
+    ? "font-semibold text-[var(--color-ink)] underline decoration-2 underline-offset-4 decoration-[var(--color-accent)]"
+    : "text-[var(--color-ink)] opacity-80 hover:opacity-100 hover:underline hover:underline-offset-4";
 }
 
 export function Navigation() {
@@ -51,6 +51,7 @@ export function Navigation() {
               <Link
                 href={l.href}
                 className={`text-xs transition-opacity duration-200 ${navClass(isActive(l.href))}`}
+                aria-current={isActive(l.href) ? "page" : undefined}
               >
                 {l.label}
               </Link>
@@ -106,6 +107,7 @@ export function Navigation() {
               key={l.href}
               href={l.href}
               className={`block py-2.5 text-sm ${navClass(isActive(l.href))}`}
+              aria-current={isActive(l.href) ? "page" : undefined}
               onClick={() => setOpen(false)}
             >
               {l.label}

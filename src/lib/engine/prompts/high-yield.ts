@@ -6,8 +6,13 @@ DETAILED RATIONALE (required for every item):
 - explanation: 2–4 sentences — why the correct answer is best; cite mechanism, priority, or guideline.
 - clinicalReasoning: numbered steps (recognize cues → analyze → prioritize → act → evaluate) when clinical.
 - distractorRationale: object mapping EACH incorrect option text → 1 sentence why it fails (common misconception or why it is lower priority / unsafe).
-- references: array of "Source [n]" or brief OER titles from provided sources.
-- bloomLevel: remember | understand | apply | analyze (most items should be apply or analyze).`;
+- references: array citing BOTH retrieved OER sources ("Source [n]") AND the official blueprint when applicable:
+  • Nursing: NCSBN NCLEX-RN Test Plan / Clinical Judgment Measurement Model
+  • Medicine: USMLE Content Outline / NBME-style clinical science
+  • Pharmacy: NABP NAPLEX Content Outline (2025)
+- bloomLevel: remember | understand | apply | analyze (most items should be apply or analyze).
+- difficultyLabel: "Easy" | "Medium" | "Hard" (calibrated to board exam — Easy = single fact/priority; Medium = 2-step reasoning; Hard = competing priorities or multi-step integration).
+- topicCategory: blueprint category label (e.g. "Management of Care", "Internal Medicine", "Medication Use Process").`;
 
 const CLINICAL_VIGNETTE_RULES = `
 CLINICAL VIGNETTE RULES:
@@ -53,11 +58,14 @@ ITEM FORMAT MIX:
   const ngnTarget = Math.max(1, Math.round(questionCount * 0.3));
   return `
 NGN ITEM REQUIREMENTS (NCLEX Next Gen — ~${ngnTarget} of ${questionCount} items):
+Prioritize Clinical Judgment Model (CJMM): recognize cues → analyze cues → prioritize hypotheses → generate solutions → take action → evaluate outcomes.
+High-yield NCLEX themes: prioritization, delegation, infection control, pharmacology, safety, ABCs, Maslow.
 - unfolding_case: progressive case across 2–3 linked items; set caseStep 1/2/3; reveal new data each step.
 - bow_tie: central condition; options split between actions TO take and conditions TO monitor (describe clearly in stem).
-- select_all: 5–6 options; multiple correct; correctAnswer = comma-separated best answers.
+- select_all (SATA): 5–6 options; multiple correct; correctAnswer = comma-separated best answers.
 - matrix: row/column judgments represented as labeled select_all options.
-- highlight / ordered_response: use when testing priority sequencing or finding recognition.
+- drag_drop / ordered_response: priority sequencing, delegation scope, or care steps — correctAnswer = comma-separated ordered list.
+- highlight: finding recognition in vignette text when appropriate.
 - Set ngnFormat on every NGN item; classic MCQ for the remainder.`;
 }
 
@@ -76,9 +84,12 @@ export function buildHighYieldJsonShape(): string {
       "distractorRationale": { "incorrect option text": "why wrong", ... },
       "references": [string],
       "bloomLevel": "remember" | "understand" | "apply" | "analyze",
+      "difficultyLabel": "Easy" | "Medium" | "Hard",
+      "topicCategory": string,
       "ngnFormat": string (optional),
       "caseStep": number (optional, for unfolding_case),
       "solutionSteps": string[] (optional),
+      "drugProfile": { "generic": string, "brand": string, "drugClass": string, "indication": string, "majorSideEffects": string[], "monitoring": string[] } (required when stem centers on a drug — NAPLEX / nursing pharm),
       "tags": string[],
       "highYield": boolean
     }

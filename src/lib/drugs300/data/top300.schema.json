@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://anyexameasy.com/schemas/top300-drugs.json",
+  "title": "Top300DrugCatalog",
+  "description": "ClinCalc-aligned Top 300 prescribed drugs for board exam pharmacology review.",
+  "type": "object",
+  "required": ["version", "source", "updatedAt", "count", "drugs"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "examples": ["1.0.0"]
+    },
+    "source": { "type": "string" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "count": { "type": "integer", "minimum": 1, "maximum": 300 },
+    "drugs": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 300,
+      "items": { "$ref": "#/$defs/Top300DrugRecord" }
+    }
+  },
+  "$defs": {
+    "ExamRelevance": {
+      "type": "object",
+      "required": ["NCLEX", "USMLE", "NAPLEX"],
+      "additionalProperties": false,
+      "properties": {
+        "NCLEX": {
+          "type": "boolean",
+          "description": "Relevant for NCLEX-RN/PN pharmacology and patient safety"
+        },
+        "USMLE": {
+          "type": "boolean",
+          "description": "Relevant for USMLE Step 1/2 CK pharmacology"
+        },
+        "NAPLEX": {
+          "type": "boolean",
+          "description": "Relevant for NAPLEX dispensing and clinical pharmacy"
+        }
+      }
+    },
+    "Top300DrugRecord": {
+      "type": "object",
+      "required": [
+        "id",
+        "rank",
+        "generic",
+        "brand",
+        "class",
+        "indications",
+        "sideEffects",
+        "mnemonic",
+        "examRelevance"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "URL-safe slug derived from generic name",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "rank": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 300,
+          "description": "ClinCalc prescribing rank (1 = most prescribed)"
+        },
+        "generic": { "type": "string", "minLength": 1 },
+        "brand": { "type": "string", "minLength": 1 },
+        "class": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Pharmacologic/therapeutic class"
+        },
+        "indications": { "type": "string", "minLength": 1 },
+        "sideEffects": { "type": "string", "minLength": 1 },
+        "mnemonic": { "type": "string", "minLength": 1 },
+        "examRelevance": { "$ref": "#/$defs/ExamRelevance" },
+        "category": {
+          "type": "string",
+          "enum": [
+            "cardiovascular",
+            "endocrine",
+            "antibiotics",
+            "cns-psych",
+            "respiratory",
+            "gastrointestinal",
+            "pain-inflammation",
+            "immunologic-other"
+          ],
+          "description": "High-yield study bucket for filtering"
+        }
+      }
+    }
+  }
+}

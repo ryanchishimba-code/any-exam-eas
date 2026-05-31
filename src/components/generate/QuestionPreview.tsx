@@ -40,11 +40,11 @@ export function QuestionPreview({ exam, sourcesReviewed, timed, onStart }: Props
               <Badge
                 className={
                   qc.passed
-                    ? "border-emerald-500/20 bg-emerald-500/10 text-emerald-800"
-                    : "border-amber-500/20 bg-amber-500/10 text-amber-800"
+                    ? "border-blue-600/30 bg-blue-50 text-blue-900"
+                    : "border-amber-600/30 bg-amber-50 text-amber-900"
                 }
               >
-                QC {(qc.averageScore * 100).toFixed(0)}%
+                QC {qc.passed ? "Pass" : "Review"} {(qc.averageScore * 100).toFixed(0)}%
               </Badge>
             )}
             {timed && (
@@ -107,12 +107,12 @@ export function QuestionPreview({ exam, sourcesReviewed, timed, onStart }: Props
                             className={cn(
                               "rounded-lg px-3 py-2 text-xs",
                               isCorrect
-                                ? "bg-emerald-500/10 text-emerald-800"
+                                ? "a11y-correct font-medium"
                                 : "text-[var(--color-ink-muted)]"
                             )}
                           >
                             {cleanOptionText(opt)}
-                            {isCorrect && " ✓"}
+                            {isCorrect && " — Correct answer"}
                           </li>
                         );
                       })}

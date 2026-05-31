@@ -330,7 +330,9 @@ export default function UserProfileCRM({ profile }: { profile: Profile }) {
                   {g.difficulty} • {g.questionCount} questions • {g.status}
                 </div>
                 {g.errorMessage && (
-                  <div className="mt-2 text-xs text-red-700">{g.errorMessage}</div>
+                  <div className="mt-2 text-xs a11y-incorrect-text">
+                    <strong>Error:</strong> {g.errorMessage}
+                  </div>
                 )}
               </div>
             ))}

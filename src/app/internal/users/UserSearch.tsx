@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { InlineError } from "@/components/ui/StatusMessage";
 
 type InternalUserRow = {
   id: string;
@@ -68,7 +69,7 @@ export default function UserSearch() {
         </button>
       </form>
 
-      {error && <p className="text-sm text-red-700">Failed: {error}</p>}
+      {error && <InlineError>Failed: {error}</InlineError>}
 
       {loading ? (
         <p className="text-sm text-black/60">Searching…</p>

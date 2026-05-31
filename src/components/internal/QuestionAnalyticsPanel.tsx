@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { InlineError } from "@/components/ui/StatusMessage";
 
 type Overview = {
   totalAttempts: number;
@@ -58,7 +59,7 @@ export function QuestionAnalyticsPanel() {
       </div>
 
       {loading && <p className="text-sm text-[var(--color-ink-muted)]">Loading…</p>}
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <InlineError>{error}</InlineError>}
 
       {overview && !loading && (
         <>

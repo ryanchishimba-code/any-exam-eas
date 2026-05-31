@@ -4,6 +4,7 @@
  * Content modeled on board exam content outlines and high-yield OER topics.
  */
 import type { BankItem } from "./question-bank";
+import { ANATOMY_QUESTION_BANK } from "./medicine-anatomy-question-bank";
 
 function q(
   subjectId: string,
@@ -28,14 +29,7 @@ export const HEALTH_QUESTION_BANK: Record<
   Record<string, BankItem[]>
 > = {
   medicine: {
-    anatomy: [
-      q("anatomy", "Blood belongs to which primary tissue type?", ["Epithelial", "Connective", "Muscle", "Nervous"], "Connective", "Blood is specialized fluid connective tissue.", ["histology"]),
-      q("anatomy", "The radial artery is palpated in the:", ["Anatomical snuffbox", "Cubital fossa medially", "Femoral triangle", "Popliteal fossa"], "Anatomical snuffbox", "Radial artery crosses the snuffbox at the wrist.", ["upper limb"]),
-      q("anatomy", "Long thoracic nerve injury causes:", ["Winged scapula", "Foot drop", "Claw hand", "Bell palsy"], "Winged scapula", "Innervates serratus anterior (C5–C7).", ["brachial plexus"]),
-      q("anatomy", "The portal triad contains:", ["Hepatic artery, portal vein, bile duct", "Hepatic vein, cystic duct, lymphatics", "Splenic artery only", "IVC and bile duct"], "Hepatic artery, portal vein, bile duct", "Within the hepatoduodenal ligament.", ["abdomen"]),
-      q("anatomy", "Desmosomes are most prominent in which epidermal layer?", ["Stratum basale", "Stratum spinosum", "Stratum lucidum", "Stratum corneum"], "Stratum spinosum", "Spiny appearance from desmosomal connections.", ["skin"]),
-      q("anatomy", "The ankle mortise is formed by:", ["Tibia, fibula, talus", "Calcaneus and navicular", "Femur and tibia only", "Talus and cuboid only"], "Tibia, fibula, talus", "Talocrural joint articulation.", ["lower limb"]),
-    ],
+    anatomy: ANATOMY_QUESTION_BANK,
     physiology: [
       q("physiology", "End-systole corresponds to:", ["Lowest ventricular volume", "Maximal ventricular volume", "Mitral valve opening only", "Aortic valve opening only"], "Lowest ventricular volume", "Before diastolic filling begins.", ["cardiovascular"]),
       q("physiology", "ADH increases water reabsorption via:", ["Aquaporin-2 insertion", "Na/K pump blockade", "Aldosterone inhibition", "ANP release"], "Aquaporin-2 insertion", "Collecting duct permeability increases.", ["renal"]),

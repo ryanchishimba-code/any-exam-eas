@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { PortalOverview } from "@/lib/internal/overview";
+import { InlineError } from "@/components/ui/StatusMessage";
 
 export function PortalHomeDashboard() {
   const [overview, setOverview] = useState<PortalOverview | null>(null);
@@ -35,7 +36,7 @@ export function PortalHomeDashboard() {
   }
 
   if (error) {
-    return <p className="text-sm text-red-700">Could not load overview: {error}</p>;
+    return <InlineError>Could not load overview: {error}</InlineError>;
   }
 
   if (!overview) {
