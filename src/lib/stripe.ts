@@ -63,7 +63,7 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
       ...(isTrialPlan ? { trial_period_days: TRIAL_DAYS } : {}),
     },
     metadata: { userId: params.userId, plan: params.plan ?? "subscribe" },
-    payment_method_types: ["card"],
+    payment_method_types: ["card"] as Stripe.Checkout.SessionCreateParams["payment_method_types"],
     payment_method_options: {
       card: {
         request_three_d_secure: "automatic" as const,
