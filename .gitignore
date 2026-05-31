@@ -10,6 +10,8 @@
 
 # testing
 /coverage
+loadtests/k6/reports/*
+!loadtests/k6/reports/.gitkeep
 
 # next.js
 /.next/
