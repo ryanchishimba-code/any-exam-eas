@@ -2,86 +2,62 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  BadgeCheck,
-  BookOpen,
-  Check,
-  Minus,
-  Shield,
-  Sparkles,
-} from "lucide-react";
+import { ArrowRight, Check, Minus, X } from "lucide-react";
 import {
   formatMonthlyPrice,
   formatTrialIntroPrice,
   formatTrialLabel,
 } from "@/lib/site";
 
+type CompetitorCell = {
+  text: string;
+  status: "yes" | "no" | "partial";
+};
+
 type CompareRow = {
-  label: string;
-  aee: string;
-  uworld: string;
-  archer: string;
-  highlight?: boolean;
+  feature: string;
+  aee: { text: string };
+  competitors: CompetitorCell;
+  priceRow?: boolean;
 };
 
 const rows: CompareRow[] = [
   {
-    label: "Starting price",
-    aee: `${formatTrialIntroPrice()} trial`,
-    uworld: "$149–$329",
-    archer: "$99–$199",
-    highlight: true,
+    feature: "Starting price",
+    priceRow: true,
+    aee: { text: `${formatTrialIntroPrice()} trial` },
+    competitors: { text: "$99–$329+ upfront", status: "no" },
   },
   {
-    label: "Monthly after trial",
-    aee: `${formatMonthlyPrice()}/mo`,
-    uworld: "Varies by exam",
-    archer: "Varies by plan",
-    highlight: true,
+    feature: "Monthly after trial",
+    priceRow: true,
+    aee: { text: `${formatMonthlyPrice()}/mo — listed upfront` },
+    competitors: { text: "$39–$89+/mo or bundle tiers", status: "no" },
   },
   {
-    label: "Question bank",
-    aee: "Board-style (growing)",
-    uworld: "Large (exam-specific)",
-    archer: "Large (exam-specific)",
+    feature: "Adaptive AI practice",
+    aee: { text: "Targets weak areas automatically" },
+    competitors: { text: "Limited or add-on pricing", status: "partial" },
   },
   {
-    label: "Content sourcing",
-    aee: "OER-backed + citations",
-    uworld: "Proprietary",
-    archer: "Proprietary",
+    feature: "Top 500 Drug flashcards",
+    aee: { text: "Dedicated mastery module included" },
+    competitors: { text: "Scattered pharm content only", status: "no" },
   },
   {
-    label: "Personalized practice",
-    aee: "Included",
-    uworld: "Limited / add-on",
-    archer: "Varies",
+    feature: "OER-backed rationales",
+    aee: { text: "Citations you can verify" },
+    competitors: { text: "Proprietary explanations only", status: "partial" },
   },
   {
-    label: "Pricing transparency",
-    aee: "Listed upfront",
-    uworld: "Tiered bundles",
-    archer: "Bundle packages",
-  },
-];
-
-const highlights = [
-  {
-    icon: Sparkles,
-    title: "Accessible monthly pricing",
-    description:
-      "Straightforward subscription pricing designed to be accessible compared to many premium board-prep bundles.",
+    feature: "NCLEX · USMLE · NAPLEX",
+    aee: { text: "All three on one platform" },
+    competitors: { text: "Separate products or NCLEX-only", status: "no" },
   },
   {
-    icon: Shield,
-    title: "No surprise fees",
-    description: `${formatTrialIntroPrice()} to start, then ${formatMonthlyPrice()}/mo — always shown before checkout.`,
-  },
-  {
-    icon: BookOpen,
-    title: "Open, citable content",
-    description: "Explanations tied to Open RN, OpenStax, and other openly licensed OER sources.",
+    feature: "Cancel anytime",
+    aee: { text: "Self-serve, no phone call" },
+    competitors: { text: "Varies by provider", status: "partial" },
   },
 ];
 
@@ -89,97 +65,96 @@ export function HowWeCompare() {
   return (
     <section
       id="how-we-compare"
-      className="aee-landing-section aee-section-alt relative overflow-hidden border-t border-black/[0.04] dark:border-white/[0.06]"
+      className="aee-landing-section border-b border-black/[0.04] bg-white dark:border-white/[0.06] dark:bg-[var(--color-surface)]"
       aria-labelledby="compare-heading"
     >
-      <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="aee-section-label">How we compare</p>
-          <h2 id="compare-heading" className="aee-headline mt-4">
-            Board-focused prep.{" "}
-            <span className="aee-display-accent">Clear pricing.</span>
+      <div className="mx-auto max-w-[880px] px-5 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h2 id="compare-heading" className="aee-headline tracking-tight">
+            Better Value.{" "}
+            <span className="aee-display-accent">Better Results.</span>
           </h2>
-          <p className="aee-section-lede mx-auto max-w-xl">
-            Compare features and pricing at a glance. We aim to offer strong study
-            tools without the complexity of large upfront bundles.
+          <p className="aee-section-lede mx-auto mt-4 max-w-xl">
+            Same board exams. Fraction of the cost. See how Any Exam Easy compares
+            to UWorld, Archer Review, and SimpleNursing.
           </p>
         </div>
 
-        <ul className="mt-14 grid gap-5 sm:grid-cols-3 lg:gap-6">
-          {highlights.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <motion.li
-                key={item.title}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
-                className="aee-compare-highlight"
-              >
-                <span className="aee-compare-highlight-icon" aria-hidden>
-                  <Icon className="h-4 w-4 text-teal-600 dark:text-teal-400" strokeWidth={2} />
-                </span>
-                <p className="font-semibold text-slate-900 dark:text-white">{item.title}</p>
-                <p className="mt-1.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                  {item.description}
-                </p>
-              </motion.li>
-            );
-          })}
-        </ul>
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.4 }}
+          className="aee-compare-price-banner mt-10"
+        >
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-teal-700 dark:text-teal-400">
+              Any Exam Easy
+            </p>
+            <p className="mt-1 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+              {formatTrialIntroPrice()}
+            </p>
+            <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
+              {formatTrialLabel()}, then {formatMonthlyPrice()}/mo
+            </p>
+          </div>
+          <div className="hidden h-12 w-px bg-slate-200 dark:bg-slate-700 sm:block" aria-hidden />
+          <div className="sm:text-right">
+            <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+              Major competitors
+            </p>
+            <p className="mt-1 text-3xl font-bold tracking-tight text-slate-400 line-through decoration-slate-300 dark:text-slate-500 sm:text-4xl">
+              $99–$329+
+            </p>
+            <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
+              Typical upfront or monthly bundles
+            </p>
+          </div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.45 }}
-          className="aee-compare-table-wrap mt-10"
+          transition={{ duration: 0.45, delay: 0.05 }}
+          className="aee-compare-table-wrap mt-8"
         >
-          <div className="overflow-x-auto">
-            <table className="aee-compare-table w-full min-w-[640px] border-collapse text-left">
-              <caption className="sr-only">
-                Price and feature comparison between Any Exam Easy, UWorld, and Archer Review
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col" className="aee-compare-th">
-                    Feature
+          <table className="aee-compare-table aee-compare-table-3col w-full border-collapse text-left">
+            <caption className="sr-only">
+              Comparison of Any Exam Easy versus major board exam prep competitors
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" className="aee-compare-th">
+                  Feature
+                </th>
+                <th scope="col" className="aee-compare-th aee-compare-th-aee">
+                  Any Exam Easy
+                </th>
+                <th scope="col" className="aee-compare-th">
+                  Major Competitors
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row) => (
+                <tr
+                  key={row.feature}
+                  className={row.priceRow ? "aee-compare-row-highlight" : undefined}
+                >
+                  <th scope="row" className="aee-compare-td-label">
+                    {row.feature}
                   </th>
-                  <th scope="col" className="aee-compare-th aee-compare-th-aee">
-                    <span className="inline-flex items-center gap-1.5">
-                      <BadgeCheck className="h-4 w-4 text-teal-600 dark:text-teal-400" aria-hidden />
-                      Any Exam Easy
-                    </span>
-                  </th>
-                  <th scope="col" className="aee-compare-th">
-                    UWorld
-                  </th>
-                  <th scope="col" className="aee-compare-th">
-                    Archer Review
-                  </th>
+                  <td className="aee-compare-td aee-compare-td-aee">
+                    <StatusCell text={row.aee.text} status="yes" featured />
+                  </td>
+                  <td className="aee-compare-td">
+                    <StatusCell text={row.competitors.text} status={row.competitors.status} />
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {rows.map((row) => (
-                  <tr key={row.label} className={row.highlight ? "aee-compare-row-highlight" : undefined}>
-                    <th scope="row" className="aee-compare-td-label">
-                      {row.label}
-                    </th>
-                    <td className="aee-compare-td aee-compare-td-aee">
-                      <CompareCell value={row.aee} featured />
-                    </td>
-                    <td className="aee-compare-td">
-                      <CompareCell value={row.uworld} />
-                    </td>
-                    <td className="aee-compare-td">
-                      <CompareCell value={row.archer} />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </motion.div>
 
         <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
@@ -194,33 +169,59 @@ export function HowWeCompare() {
             href="/pricing"
             className="text-sm font-semibold text-teal-700 underline-offset-4 hover:underline dark:text-teal-400"
           >
-            See full pricing details
+            Full pricing
           </Link>
         </div>
 
         <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed text-slate-400">
-          Competitor pricing reflects publicly listed rates as of {new Date().getFullYear()} and
-          may vary by exam, subscription length, and promotions. Comparisons are for general
-          information only and are not guarantees of equivalent content, outcomes, or exam
-          performance. Any Exam Easy is not affiliated with UWorld or Archer Review.
+          Competitor pricing reflects publicly listed UWorld, Archer Review, and SimpleNursing
+          plans as of {new Date().getFullYear()} and may vary. Comparisons are for general
+          information only — not guarantees of equivalent content or exam outcomes. Any Exam Easy
+          is not affiliated with these providers.
         </p>
       </div>
     </section>
   );
 }
 
-function CompareCell({ value, featured = false }: { value: string; featured?: boolean }) {
-  const isIncluded = value === "Included" || value === "Listed upfront" || value.startsWith("OER") || value.startsWith("Board-style");
-  const isLimited = value.startsWith("Limited") || value === "Varies" || value === "Varies by plan" || value === "Varies by exam";
+function StatusCell({
+  text,
+  status,
+  featured = false,
+}: {
+  text: string;
+  status: "yes" | "no" | "partial";
+  featured?: boolean;
+}) {
+  const Icon = status === "yes" ? Check : status === "no" ? X : Minus;
+  const iconClass =
+    status === "yes"
+      ? "text-emerald-600 dark:text-emerald-400"
+      : status === "no"
+        ? "text-red-500 dark:text-red-400"
+        : "text-amber-500 dark:text-amber-400";
 
   return (
-    <span className={`inline-flex items-start gap-2 ${featured ? "font-semibold text-teal-900 dark:text-teal-100" : "text-slate-600 dark:text-slate-400"}`}>
-      {featured && isIncluded ? (
-        <Check className="mt-0.5 h-4 w-4 shrink-0 text-teal-600 dark:text-teal-400" aria-hidden />
-      ) : isLimited ? (
-        <Minus className="mt-0.5 h-4 w-4 shrink-0 text-slate-300 dark:text-slate-600" aria-hidden />
-      ) : null}
-      {value}
+    <span
+      className={`inline-flex items-start gap-2.5 text-sm leading-snug ${
+        featured
+          ? "font-semibold text-slate-900 dark:text-white"
+          : "text-slate-600 dark:text-slate-400"
+      }`}
+    >
+      <span
+        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
+          status === "yes"
+            ? "bg-emerald-50 dark:bg-emerald-950/50"
+            : status === "no"
+              ? "bg-red-50 dark:bg-red-950/40"
+              : "bg-amber-50 dark:bg-amber-950/40"
+        }`}
+        aria-hidden
+      >
+        <Icon className={`h-3 w-3 ${iconClass}`} strokeWidth={2.5} />
+      </span>
+      {text}
     </span>
   );
 }

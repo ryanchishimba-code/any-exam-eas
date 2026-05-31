@@ -1139,6 +1139,55 @@ body {
   border-bottom: none;
 }
 
+.aee-compare-row-highlight .aee-compare-td-aee {
+  background: rgba(204, 251, 241, 0.45);
+}
+
+.dark .aee-compare-row-highlight .aee-compare-td-aee {
+  background: rgba(19, 78, 74, 0.22);
+}
+
+.aee-compare-price-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(13, 148, 136, 0.15);
+  background: linear-gradient(135deg, #f0fdfa 0%, #ffffff 50%, #f8fafc 100%);
+  padding: 1.75rem 2rem;
+  box-shadow: var(--shadow-apple-sm);
+}
+
+@media (min-width: 640px) {
+  .aee-compare-price-banner {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.dark .aee-compare-price-banner {
+  border-color: rgba(45, 212, 191, 0.2);
+  background: linear-gradient(135deg, rgba(19, 78, 74, 0.25) 0%, rgba(15, 23, 42, 0.9) 100%);
+}
+
+.aee-compare-table-3col .aee-compare-th,
+.aee-compare-table-3col .aee-compare-td,
+.aee-compare-table-3col .aee-compare-td-label {
+  padding: 1.125rem 1.5rem;
+}
+
+.aee-compare-table-3col .aee-compare-th:first-child,
+.aee-compare-table-3col .aee-compare-td-label {
+  width: 34%;
+}
+
+.aee-compare-table-3col .aee-compare-th-aee,
+.aee-compare-table-3col .aee-compare-td-aee {
+  width: 33%;
+}
+
 /* Top 300 Drugs Mastery — flagship section */
 .aee-drugs-section {
   border-y: 1px solid rgba(13, 148, 136, 0.25);

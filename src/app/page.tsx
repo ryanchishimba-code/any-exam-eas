@@ -7,6 +7,9 @@ import { buildHomeMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildHomeMetadata();
 
+const HowWeCompare = dynamic(() =>
+  import("@/components/home/HowWeCompare").then((m) => m.HowWeCompare)
+);
 const HomeLivePulse = dynamic(() =>
   import("@/components/home/HomeLivePulse").then((m) => m.HomeLivePulse)
 );
@@ -17,9 +20,6 @@ const LandingFeatures = dynamic(() =>
 );
 const Top300DrugsMastery = dynamic(() =>
   import("@/components/home/Top300DrugsMastery").then((m) => m.Top300DrugsMastery)
-);
-const HowWeCompare = dynamic(() =>
-  import("@/components/home/HowWeCompare").then((m) => m.HowWeCompare)
 );
 const ChooseYourExam = dynamic(() =>
   import("@/components/home/ChooseYourExam").then((m) => m.ChooseYourExam)
@@ -36,12 +36,12 @@ export default function HomePage() {
     <>
       <HomeJsonLd />
       <Hero />
+      <HowWeCompare />
       <HomeLivePulse />
       <NgnInteractiveDemo />
       <ChooseYourExam />
       <Top300DrugsMastery />
       <LandingFeatures />
-      <HowWeCompare />
       <WelcomeBackSection />
       <HomeBottomCta />
     </>
