@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { NGN_DEMO_QUESTIONS } from "@/lib/demo/ngn-samples";
+import { formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
 import { examQuestionToStudy, isAnswerCorrect } from "@/lib/questions/prepare";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { bowTieSelectionValid, parseBowTieLayout, parseMatrixKey } from "@/lib/questions/ngn-structures";
@@ -191,10 +192,10 @@ export function NgnInteractiveDemo() {
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link
-              href="/signup"
+              href="/signup?plan=trial"
               className="text-sm font-semibold text-[var(--color-accent)] hover:underline"
             >
-              Create free account
+              Start {formatTrialLabel()} — {formatTrialIntroPrice()}
             </Link>
           </div>
         </div>
