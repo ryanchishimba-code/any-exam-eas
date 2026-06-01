@@ -1,5 +1,6 @@
 import { ForgotPasswordForm } from "@/components/ForgotPasswordForm";
 import { PageShell } from "@/components/PageShell";
+import { AuthCard } from "@/components/ui/AuthCard";
 
 export const metadata = {
   title: "Forgot Password — Any Exam Easy",
@@ -8,12 +9,16 @@ export const metadata = {
 export default function ForgotPasswordPage() {
   return (
     <PageShell
-      title="Reset your password."
-      description="We will email you a secure link to choose a new password."
+      eyebrow="Account recovery"
+      title="Forgot your password?"
+      description="Enter your email and we'll send you a link to reset it."
       align="center"
       maxWidth="max-w-md"
+      variant="premium"
     >
-      <ForgotPasswordForm />
+      <AuthCard>
+        <ForgotPasswordForm />
+      </AuthCard>
     </PageShell>
   );
 }

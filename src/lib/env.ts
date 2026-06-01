@@ -49,6 +49,8 @@ export function envSummary(): Record<string, string> {
     openai: process.env.OPENAI_API_KEY ? "set" : "missing",
     tavily: process.env.TAVILY_API_KEY ? "set" : "missing",
     stripe: process.env.STRIPE_SECRET_KEY ? "set" : "missing",
+    resend: process.env.RESEND_API_KEY ? "set" : "missing",
+    emailFrom: process.env.EMAIL_FROM ? "set" : "default",
     authSecret:
       process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET ? "set" : "missing",
   };

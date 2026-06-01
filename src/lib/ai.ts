@@ -38,14 +38,25 @@ export type ExamQuestion = {
   difficultyLabel?: "Easy" | "Medium" | "Hard";
   /** Blueprint category (e.g. Management of Care, Pharmacotherapy). */
   topicCategory?: string;
-  /** Required for NAPLEX pharmacotherapy items when a drug is central to the stem. */
+  /** Structured pharmacology metadata — required for NAPLEX / NCLEX pharm items. */
   drugProfile?: {
     generic: string;
+    /** Common brand/trade names */
+    brandNames?: string[];
+    /** @deprecated Use brandNames */
     brand?: string;
-    drugClass: string;
+    therapeuticClass?: string;
+    /** @deprecated Use therapeuticClass */
+    drugClass?: string;
     indication: string;
+    /** Signs/symptoms the drug treats */
+    conditionSymptoms?: string[];
+    /** Etiology/pathophysiology of the condition */
+    conditionEtiology?: string;
     majorSideEffects: string[];
     monitoring?: string[];
+    /** NCLEX nursing actions, teaching, monitoring */
+    nursingConsiderations?: string[];
   };
   highYield?: boolean;
   qualityScore?: number;

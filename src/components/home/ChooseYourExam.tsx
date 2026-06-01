@@ -17,23 +17,31 @@ const exams: ExamCard[] = [
   {
     id: "nclex",
     title: "NCLEX NGN",
-    href: "/study?field=nursing",
+    href: "/study/practice?field=nursing",
     icon: HeartPulse,
     theme: "nclex",
     tagline: "Next-gen case studies & SATA",
   },
   {
-    id: "usmle",
-    title: "USMLE",
-    href: "/study?field=medicine",
+    id: "usmle-step-1",
+    title: "USMLE Step 1",
+    href: "/study/practice?field=usmle-step-1",
     icon: Stethoscope,
     theme: "usmle",
-    tagline: "Step 1 & 2 CK vignettes",
+    tagline: "Basic sciences & mechanisms",
+  },
+  {
+    id: "usmle-step-2",
+    title: "USMLE Step 2",
+    href: "/study/practice?field=usmle-step-2",
+    icon: Stethoscope,
+    theme: "usmle",
+    tagline: "Clinical vignettes & management",
   },
   {
     id: "naplex",
     title: "NAPLEX",
-    href: "/study?field=pharmacy",
+    href: "/study/practice?field=pharmacy",
     icon: Pill,
     theme: "naplex",
     tagline: "Calculations & therapeutics",
@@ -50,12 +58,12 @@ export function ChooseYourExam() {
       <div className="mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-xl text-center">
           <h2 id="choose-exam-heading" className="aee-headline">
-            Three boards.{" "}
+            Four boards.{" "}
             <span className="aee-display-accent">One platform.</span>
           </h2>
         </div>
 
-        <ul className="mt-12 grid gap-5 sm:grid-cols-3 sm:gap-6">
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
           {exams.map((exam, i) => {
             const Icon = exam.icon;
             return (

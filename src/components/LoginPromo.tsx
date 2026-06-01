@@ -23,7 +23,7 @@ export function LoginPromo() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:justify-start">
             <Button href="/login">Log in</Button>
-            <AppleLink href="/forgot-password">Forgot password</AppleLink>
+            <AppleLink href="/forgot-password">Forgot Password?</AppleLink>
           </div>
           <p className="mt-6 text-sm text-[var(--color-ink-muted)]">
             New here?{" "}

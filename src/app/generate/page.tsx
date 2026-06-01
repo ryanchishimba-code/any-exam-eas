@@ -17,7 +17,7 @@ export default function GeneratePage() {
       variant="premium"
     >
       <StudySubnav />
-      <PremiumGate>
+      <PremiumGate callbackPath="/generate">
         <TestGenerator />
       </PremiumGate>
     </PageShell>

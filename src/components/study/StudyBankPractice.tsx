@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { FIELD_LABELS, getFieldMeta } from "@/lib/fields";
+import { FIELD_LABELS, DEFAULT_STUDY_FIELD_LABEL, getFieldMeta, getFieldMetaById } from "@/lib/fields";
 import { getSubjectsForField } from "@/lib/field-subjects";
 import { EXAM_MODES } from "@/lib/exam/modes";
 import { StudySessionPlayer } from "./StudySessionPlayer";
@@ -38,7 +38,7 @@ export function StudyBankPractice() {
   const { studyMode, apiMode, label } = resolveModeFromParam(modeParam);
   const isCatMode = modeParam === "cat";
 
-  const [field, setField] = useState("Medicine");
+  const [field, setField] = useState(DEFAULT_STUDY_FIELD_LABEL);
   const [subjectId, setSubjectId] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -48,7 +48,7 @@ export function StudyBankPractice() {
 
   useEffect(() => {
     if (fieldParam) {
-      const meta = getFieldMeta(fieldParam);
+      const meta = getFieldMeta(fieldParam) ?? getFieldMetaById(fieldParam);
       if (meta) setField(meta.label);
     }
   }, [fieldParam]);

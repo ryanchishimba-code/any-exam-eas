@@ -5,7 +5,6 @@ import type { CSSProperties } from "react";
 import {
   ArrowRight,
   BarChart3,
-  Brain,
   ClipboardList,
   Pill,
   Stethoscope,
@@ -14,17 +13,24 @@ import {
 export const premiumFeatures = [
   {
     href: "/study/practice?field=nursing",
-    label: "Start NCLEX Practice",
+    label: "Start NCLEX NGN Practice",
     description: "NGN cases, SATA & prioritization",
     icon: ClipboardList,
     accent: "#5856d6",
   },
   {
-    href: "/study/practice?field=medicine",
-    label: "Start USMLE Practice",
-    description: "Clinical vignettes & organ systems",
+    href: "/study/practice?field=usmle-step-1",
+    label: "Start USMLE Step 1",
+    description: "Basic sciences & mechanisms",
     icon: Stethoscope,
     accent: "#0071e3",
+  },
+  {
+    href: "/study/practice?field=usmle-step-2",
+    label: "Start USMLE Step 2",
+    description: "Clinical vignettes & management",
+    icon: Stethoscope,
+    accent: "#0a84ff",
   },
   {
     href: "/study/practice?field=pharmacy",
@@ -46,13 +52,6 @@ export const premiumFeatures = [
     description: "Streaks, trends & weak areas",
     icon: BarChart3,
     accent: "#ff9500",
-  },
-  {
-    href: "/study/practice?mode=adaptive",
-    label: "Personalized Study Plan",
-    description: "Adaptive AI question sessions",
-    icon: Brain,
-    accent: "#af52de",
   },
 ] as const;
 

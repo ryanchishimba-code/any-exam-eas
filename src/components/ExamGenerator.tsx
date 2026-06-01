@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { GeneratedExam } from "@/lib/ai";
-import { FIELD_LABELS, getFieldMeta } from "@/lib/fields";
+import { FIELD_LABELS, DEFAULT_STUDY_FIELD_LABEL, getFieldMeta } from "@/lib/fields";
 import { getSubjectsForField, buildScopedTopic } from "@/lib/field-subjects";
 import {
   QUESTION_COUNT_OPTIONS,
@@ -14,7 +14,7 @@ import { Button } from "./ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
 
 export function ExamGenerator() {
-  const [field, setField] = useState("Medicine");
+  const [field, setField] = useState(DEFAULT_STUDY_FIELD_LABEL);
   const [subjectId, setSubjectId] = useState("");
   const [topic, setTopic] = useState("");
   const [difficulty, setDifficulty] = useState("medium");

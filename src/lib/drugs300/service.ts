@@ -183,14 +183,9 @@ export async function getDrugReviewDashboard(userId: string): Promise<DrugReview
   const cycle = getCurrentDrugCycle();
   const now = new Date();
 
-  const [cycleRow, progress] = await Promise.all([
-    prisma.drugReviewCycle.findUnique({
-      where: { userId_cycleKey: { userId, cycleKey: cycle.key } },
-    }),
-    prisma.drugCardProgress.findMany({
-      where: { userId, cycleKey: cycle.key },
-    }),
-  ]);
+  const progress = await prisma.drugCardProgress.findMany({
+    where: { userId, cycleKey: cycle.key },
+  });
 
   const progressByDrug = new Map(progress.map((p) => [p.drugId, p]));
   let due = 0;

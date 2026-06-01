@@ -14,7 +14,7 @@ export default function LearnPage() {
       description="Build a learning quilt: flip flashcards or answer mini-quiz tiles. Switch to Exams for full multiple-choice practice."
       maxWidth="max-w-5xl"
     >
-      <PremiumGate>
+      <PremiumGate callbackPath="/learn">
         <LearningQuiltStudio />
       </PremiumGate>
     </PageShell>

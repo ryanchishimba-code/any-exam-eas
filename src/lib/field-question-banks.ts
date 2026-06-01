@@ -12,7 +12,8 @@ function flattenField(fieldId: string): BankItem[] {
 }
 
 export const FIELD_QUESTION_BANKS: Record<string, BankItem[]> = {
-  medicine: flattenField("medicine"),
+  "usmle-step-1": flattenField("usmle-step-1"),
+  "usmle-step-2": flattenField("usmle-step-2"),
   nursing: flattenField("nursing"),
   pharmacy: flattenField("pharmacy"),
 };

@@ -5,6 +5,10 @@
  */
 import type { BankItem } from "./question-bank";
 import { ANATOMY_QUESTION_BANK } from "./medicine-anatomy-question-bank";
+import {
+  isUsmleStep1Subject,
+  isUsmleStep2Subject,
+} from "./subjects/medicine/subject-splits";
 
 function q(
   subjectId: string,
@@ -27,8 +31,8 @@ function q(
 export const HEALTH_QUESTION_BANK: Record<
   string,
   Record<string, BankItem[]>
-> = {
-  medicine: {
+> = (() => {
+  const medicineBank: Record<string, BankItem[]> = {
     anatomy: ANATOMY_QUESTION_BANK,
     physiology: [
       q("physiology", "End-systole corresponds to:", ["Lowest ventricular volume", "Maximal ventricular volume", "Mitral valve opening only", "Aortic valve opening only"], "Lowest ventricular volume", "Before diastolic filling begins.", ["cardiovascular"]),
@@ -110,8 +114,19 @@ export const HEALTH_QUESTION_BANK: Record<
       q("emergency-medicine", "Tension pneumothorax immediate management:", ["Needle decompression", "Chest CT first", "ABG first", "Bronchodilator trial"], "Needle decompression", "Do not delay for imaging.", ["trauma"]),
       q("emergency-medicine", "ABCDE assessment prioritizes:", ["Airway first", "Circulation first", "Disability first", "Exposure first"], "Airway first", "Airway before breathing and circulation.", ["resuscitation"]),
     ],
-  },
-  nursing: {
+  };
+
+  const usmleStep1: Record<string, BankItem[]> = {};
+  const usmleStep2: Record<string, BankItem[]> = {};
+  for (const [subjectId, items] of Object.entries(medicineBank)) {
+    if (isUsmleStep1Subject(subjectId)) usmleStep1[subjectId] = items;
+    else if (isUsmleStep2Subject(subjectId)) usmleStep2[subjectId] = items;
+  }
+
+  return {
+    "usmle-step-1": usmleStep1,
+    "usmle-step-2": usmleStep2,
+    nursing: {
     "management-of-care": [
       q("management-of-care", "When delegating to UAP, the nurse retains:", ["Accountability for overall care", "No responsibility", "Physician accountability only", "Pharmacy accountability"], "Accountability for overall care", "RN remains accountable; delegate appropriate tasks.", ["delegation"]),
       q("management-of-care", "Highest priority among four clients:", ["Unstable airway/breathing threat", "Routine medication refill", "Discharge teaching stable patient", "Chronic pain 2/10"], "Unstable airway/breathing threat", "Use ABCs and instability first.", ["prioritization"]),
@@ -216,7 +231,8 @@ export const HEALTH_QUESTION_BANK: Record<
       q("pharmacy-law", "HIPAA allows disclosure without authorization for:", ["Treatment, payment, operations (TPO)", "Marketing to third parties freely", "Social media posting", "Sale of data"], "Treatment, payment, operations (TPO)", "Privacy rule permitted uses.", ["privacy"]),
     ],
   },
-};
+  };
+})();
 
 /** Flatten all items for a field+subject */
 export function getHealthBankItems(

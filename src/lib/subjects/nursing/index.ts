@@ -13,9 +13,9 @@ import { extractNursingConcepts } from "./concepts";
 export const nursingModule: SubjectModule = {
   metadata: {
     id: "nursing",
-    label: "Nursing",
+    label: "NCLEX NGN",
     category: "professional",
-    boardExam: "NCLEX-RN",
+    boardExam: "NCLEX NGN",
     examFocus:
       "NCLEX prioritization, safety, infection control, pharmacology, med-surg, maternal-child, psychosocial care",
     topicPlaceholder: "Select NCLEX category (e.g. Pharmacological Therapies)",
@@ -31,8 +31,15 @@ export const nursingModule: SubjectModule = {
     defaultHighYield: true,
   },
   cognitiveFramework: {
-    name: "NCLEX Clinical Judgment",
-    levels: ["recognize cues", "analyze", "prioritize hypotheses", "generate solutions", "evaluate"],
+    name: "NCLEX Clinical Judgment (CJMM)",
+    levels: [
+      "recognize cues",
+      "analyze cues",
+      "prioritize hypotheses",
+      "generate solutions",
+      "take action",
+      "evaluate outcomes",
+    ],
     difficultyMapping: {
       easy: "single client, clear priority",
       medium: "multiple findings, one best action",

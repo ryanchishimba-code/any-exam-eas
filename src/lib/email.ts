@@ -1,50 +1,121 @@
+import {
+  appBaseUrl,
+  getEmailFromAddress,
+  isEmailConfigured,
+  type EmailDeliveryResult,
+} from "@/lib/email/config";
+
 type PasswordResetEmailParams = {
   to: string;
   resetUrl: string;
 };
 
+function passwordResetHtml(resetUrl: string): string {
+  return `<!DOCTYPE html>
+<html lang="en">
+<body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#1d1d1f;margin:0;padding:0;background:#f5f5f7;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f7;padding:32px 16px;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:480px;background:#ffffff;border-radius:16px;padding:32px 28px;border:1px solid rgba(0,0,0,0.06);">
+          <tr>
+            <td>
+              <p style="margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#64748b;">Any Exam Easy</p>
+              <h1 style="margin:0 0 16px;font-size:22px;font-weight:600;color:#0f172a;">Reset your password</h1>
+              <p style="margin:0 0 20px;font-size:15px;color:#475569;">You requested a password reset. Tap the button below to choose a new password.</p>
+              <p style="margin:0 0 24px;text-align:center;">
+                <a href="${resetUrl}" style="display:inline-block;background:linear-gradient(135deg,#0e7490,#0891b2);color:#ffffff;text-decoration:none;font-weight:600;font-size:15px;padding:14px 28px;border-radius:12px;">Reset password</a>
+              </p>
+              <p style="margin:0 0 8px;font-size:13px;color:#64748b;">This link expires in 1 hour. If you did not request this, you can ignore this email.</p>
+              <p style="margin:0;font-size:12px;color:#94a3b8;word-break:break-all;">Or copy this URL:<br>${resetUrl}</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
+
+function passwordResetText(resetUrl: string): string {
+  return [
+    "Reset your Any Exam Easy password",
+    "",
+    "You requested a password reset. Open the link below to choose a new password:",
+    resetUrl,
+    "",
+    "This link expires in 1 hour. If you did not request this, ignore this email.",
+  ].join("\n");
+}
+
 /**
  * Sends password reset email via Resend when RESEND_API_KEY is set.
- * In development without Resend, logs the link (see password-reset.ts).
+ * Returns a delivery result for server-side logging (never expose to clients in production).
  */
 export async function sendPasswordResetEmail({
   to,
   resetUrl,
-}: PasswordResetEmailParams): Promise<void> {
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM ?? "onboarding@resend.dev";
+}: PasswordResetEmailParams): Promise<EmailDeliveryResult> {
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  const from = getEmailFromAddress();
 
   if (!apiKey) {
     if (process.env.NODE_ENV === "production") {
       console.error(
-        "[email] RESEND_API_KEY is not set — password reset email was not sent."
+        "[email] RESEND_API_KEY is not set — password reset email was not sent.",
+        { toDomain: to.split("@")[1] ?? "unknown" }
       );
+    } else {
+      console.warn("[email] RESEND_API_KEY not set — password reset email skipped (dev).");
     }
-    return;
+    return { ok: false, reason: "not_configured" };
   }
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      subject: "Reset your Any Exam Easy password",
-      html: `
-        <p>You requested a password reset for your Any Exam Easy account.</p>
-        <p><a href="${resetUrl}">Reset your password</a></p>
-        <p>This link expires in 1 hour. If you did not request this, you can ignore this email.</p>
-        <p style="color:#666;font-size:12px">Or copy this URL: ${resetUrl}</p>
-      `,
-    }),
-  });
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [to],
+        subject: "Reset your Any Exam Easy password",
+        html: passwordResetHtml(resetUrl),
+        text: passwordResetText(resetUrl),
+      }),
+    });
 
-  if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`Failed to send email (${res.status}): ${body}`);
+    const bodyText = await res.text();
+    if (!res.ok) {
+      console.error("[email] Resend password reset failed:", res.status, bodyText);
+      return {
+        ok: false,
+        reason: "send_failed",
+        detail: `${res.status}: ${bodyText.slice(0, 200)}`,
+      };
+    }
+
+    let messageId: string | undefined;
+    try {
+      const parsed = JSON.parse(bodyText) as { id?: string };
+      messageId = parsed.id;
+    } catch {
+      /* ignore */
+    }
+
+    console.info("[email] Password reset sent via Resend", {
+      toDomain: to.split("@")[1] ?? "unknown",
+      messageId,
+    });
+
+    return { ok: true, provider: "resend", messageId };
+  } catch (err) {
+    const detail = err instanceof Error ? err.message : String(err);
+    console.error("[email] Password reset send error:", detail);
+    return { ok: false, reason: "send_failed", detail };
   }
 }
 
@@ -56,38 +127,49 @@ type VerificationEmailParams = {
 export async function sendVerificationEmail({
   to,
   verifyUrl,
-}: VerificationEmailParams): Promise<void> {
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM ?? "onboarding@resend.dev";
+}: VerificationEmailParams): Promise<EmailDeliveryResult> {
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  const from = getEmailFromAddress();
 
   if (!apiKey) {
     if (process.env.NODE_ENV === "production") {
       console.error("[email] RESEND_API_KEY missing — verification email not sent.");
     }
-    return;
+    return { ok: false, reason: "not_configured" };
   }
 
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      subject: "Verify your Any Exam Easy email",
-      html: `
-        <p>Thanks for signing up. Please verify your email to unlock full access.</p>
-        <p><a href="${verifyUrl}">Verify email address</a></p>
-        <p>This link expires in 48 hours.</p>
-        <p style="color:#666;font-size:12px">${verifyUrl}</p>
-      `,
-    }),
-  });
+  try {
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from,
+        to: [to],
+        subject: "Verify your Any Exam Easy email",
+        html: `
+          <p>Thanks for signing up. Please verify your email to unlock full access.</p>
+          <p><a href="${verifyUrl}">Verify email address</a></p>
+          <p>This link expires in 48 hours.</p>
+          <p style="color:#666;font-size:12px">${verifyUrl}</p>
+        `,
+        text: `Verify your Any Exam Easy email:\n${verifyUrl}\n\nThis link expires in 48 hours.`,
+      }),
+    });
 
-  if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`Failed to send verification email (${res.status}): ${body}`);
+    if (!res.ok) {
+      const body = await res.text();
+      console.error("[email] Verification send failed:", res.status, body);
+      return { ok: false, reason: "send_failed", detail: body.slice(0, 200) };
+    }
+
+    return { ok: true, provider: "resend" };
+  } catch (err) {
+    const detail = err instanceof Error ? err.message : String(err);
+    return { ok: false, reason: "send_failed", detail };
   }
 }
+
+export { isEmailConfigured, appBaseUrl };

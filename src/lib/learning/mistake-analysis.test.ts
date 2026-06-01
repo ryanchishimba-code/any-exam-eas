@@ -19,7 +19,7 @@ describe("analyzeMistake", () => {
       userId: "u1",
       question: baseQuestion,
       correct: false,
-      fieldId: "medicine",
+      fieldId: "usmle-step-2",
       durationMs: 8000,
     });
     expect(result.category).toBe("calculation_error");
@@ -31,7 +31,7 @@ describe("analyzeMistake", () => {
       question: { ...baseQuestion, stem: "What is the first-line therapy?" },
       correct: false,
       confidence: 5,
-      fieldId: "medicine",
+      fieldId: "usmle-step-2",
     });
     expect(result.guessedCorrect).toBe(true);
     expect(result.category).toBe("overconfidence");

@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Activity, ShieldCheck, X } from "lucide-react";
+import { Activity, ArrowLeft, KeyRound, Mail, ShieldCheck, X } from "lucide-react";
 import {
   firstName,
   loadReturningUserHint,
   maskEmail,
 } from "@/lib/client/returning-user";
+import { ForgotPasswordPanel, type ForgotPasswordStep } from "@/components/auth/ForgotPasswordPanel";
 import { LoginPanel } from "@/components/auth/LoginPanel";
 
 type LoginModalProps = {
@@ -17,8 +18,19 @@ type LoginModalProps = {
   callbackUrl?: string;
 };
 
+type ModalView = "login" | "forgot";
+
+const panelMotion = {
+  initial: { opacity: 0, x: 16 },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: -16 },
+  transition: { duration: 0.22, ease: [0.25, 0.1, 0.25, 1] as const },
+};
+
 export function LoginModal({ open, onClose, callbackUrl = "/dashboard" }: LoginModalProps) {
   const [hint, setHint] = useState<ReturnType<typeof loadReturningUserHint>>(null);
+  const [view, setView] = useState<ModalView>("login");
+  const [forgotStep, setForgotStep] = useState<ForgotPasswordStep>("form");
 
   useEffect(() => {
     if (!open) return;
@@ -26,24 +38,73 @@ export function LoginModal({ open, onClose, callbackUrl = "/dashboard" }: LoginM
   }, [open]);
 
   useEffect(() => {
+    if (!open) {
+      setView("login");
+      setForgotStep("form");
+    }
+  }, [open]);
+
+  useEffect(() => {
     if (!open) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        if (view === "forgot" && forgotStep === "success") {
+          setView("login");
+          setForgotStep("form");
+          return;
+        }
+        if (view === "forgot") {
+          setView("login");
+          return;
+        }
+        onClose();
+      }
     };
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
     };
-  }, [open, onClose]);
+  }, [open, onClose, view, forgotStep]);
 
   const displayName = hint?.name
     ? firstName(hint.name)
     : hint?.email
       ? firstName(null, hint.email)
       : null;
+
+  const header =
+    view === "login"
+      ? {
+          eyebrow: "Log in",
+          title: displayName ? `Welcome back, ${displayName}` : "Welcome back",
+          subtitle: hint?.email ? (
+            <>
+              Continue as{" "}
+              <span className="font-medium text-white">{maskEmail(hint.email)}</span>
+            </>
+          ) : (
+            <>One tap to your dashboard — practice exams, drugs, and progress.</>
+          ),
+          icon: Activity,
+        }
+      : forgotStep === "success"
+        ? {
+            eyebrow: "Email sent",
+            title: "Check your inbox",
+            subtitle: <>We sent password reset instructions if an account exists for that email.</>,
+            icon: Mail,
+          }
+        : {
+            eyebrow: "Account recovery",
+            title: "Forgot your password?",
+            subtitle: <>Enter your email and we&apos;ll send a secure reset link.</>,
+            icon: KeyRound,
+          };
+
+  const HeaderIcon = header.icon;
 
   return (
     <AnimatePresence>
@@ -79,50 +140,94 @@ export function LoginModal({ open, onClose, callbackUrl = "/dashboard" }: LoginM
                 <X className="h-4 w-4" />
               </button>
 
-              <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm">
-                  <Activity className="h-5 w-5" strokeWidth={2.25} aria-hidden />
-                </span>
-                <div>
-                  <p className="text-xs font-medium uppercase tracking-wider text-teal-100/90">
-                    Log in
-                  </p>
-                  <h2 id="login-modal-title" className="text-xl font-semibold tracking-tight">
-                    {displayName ? `Welcome back, ${displayName}` : "Welcome back"}
-                  </h2>
-                </div>
-              </div>
+              {view === "forgot" && forgotStep === "form" && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setView("login");
+                    setForgotStep("form");
+                  }}
+                  className="absolute left-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25"
+                  aria-label="Back to login"
+                >
+                  <ArrowLeft className="h-4 w-4" aria-hidden />
+                </button>
+              )}
 
-              <p className="mt-3 text-sm leading-relaxed text-teal-50/90">
-                {hint?.email ? (
-                  <>
-                    Continue as{" "}
-                    <span className="font-medium text-white">{maskEmail(hint.email)}</span>
-                  </>
-                ) : (
-                  <>One tap to your dashboard — practice exams, drugs, and progress.</>
-                )}
-              </p>
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={`${view}-${forgotStep}`}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.18 }}
+                  className="flex items-center gap-3"
+                >
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm">
+                    <HeaderIcon className="h-5 w-5" strokeWidth={2.25} aria-hidden />
+                  </span>
+                  <div className={view === "forgot" && forgotStep === "form" ? "pl-8 sm:pl-0" : undefined}>
+                    <p className="text-xs font-medium uppercase tracking-wider text-teal-100/90">
+                      {header.eyebrow}
+                    </p>
+                    <h2 id="login-modal-title" className="text-xl font-semibold tracking-tight">
+                      {header.title}
+                    </h2>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              <motion.p
+                key={`sub-${view}-${forgotStep}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="mt-3 text-sm leading-relaxed text-teal-50/90"
+              >
+                {header.subtitle}
+              </motion.p>
             </div>
 
             <div className="flex-1 overflow-y-auto px-6 py-6">
-              <LoginPanel callbackUrl={callbackUrl} onSuccess={onClose} />
+              <AnimatePresence mode="wait" initial={false}>
+                {view === "login" ? (
+                  <motion.div key="login-panel" {...panelMotion}>
+                    <LoginPanel
+                      callbackUrl={callbackUrl}
+                      onSuccess={onClose}
+                      onForgotPassword={() => setView("forgot")}
+                      forgotLinkClassName="text-teal-600 hover:text-teal-700"
+                    />
 
-              <p className="mt-5 flex items-center justify-center gap-1.5 text-center text-[0.6875rem] text-slate-500">
-                <ShieldCheck className="h-3.5 w-3.5 text-teal-600" aria-hidden />
-                Encrypted · Security-first infrastructure
-              </p>
+                    <p className="mt-5 flex items-center justify-center gap-1.5 text-center text-[0.6875rem] text-slate-500">
+                      <ShieldCheck className="h-3.5 w-3.5 text-teal-600" aria-hidden />
+                      Encrypted · Security-first infrastructure
+                    </p>
 
-              <p className="mt-4 text-center text-xs text-slate-500">
-                New here?{" "}
-                <Link
-                  href="/signup?plan=trial"
-                  onClick={onClose}
-                  className="font-semibold text-teal-600 hover:text-teal-700"
-                >
-                  Start your trial
-                </Link>
-              </p>
+                    <p className="mt-4 text-center text-xs text-slate-500">
+                      New here?{" "}
+                      <Link
+                        href="/signup?plan=trial"
+                        onClick={onClose}
+                        className="font-semibold text-teal-600 hover:text-teal-700"
+                      >
+                        Start your trial
+                      </Link>
+                    </p>
+                  </motion.div>
+                ) : (
+                  <motion.div key="forgot-panel" {...panelMotion}>
+                    <ForgotPasswordPanel
+                      variant="modal"
+                      defaultEmail={hint?.email ?? ""}
+                      onBackToLogin={() => {
+                        setView("login");
+                        setForgotStep("form");
+                      }}
+                      onStepChange={setForgotStep}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
         </div>

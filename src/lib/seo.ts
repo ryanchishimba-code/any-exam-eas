@@ -30,7 +30,6 @@ const HOME_KEYWORDS = [
   "USMLE Step 1",
   "USMLE Step 2 CK",
   "NAPLEX study",
-  "INBDE prep",
   "nursing board exam",
   "medical board exam",
   "personalized question bank",

@@ -27,6 +27,9 @@ import { InlineError, StatusMessage } from "@/components/ui/StatusMessage";
 type LoginPanelProps = {
   callbackUrl?: string;
   onSuccess?: () => void;
+  /** When set, forgot-password stays in the current surface (e.g. modal). */
+  onForgotPassword?: () => void;
+  forgotLinkClassName?: string;
 };
 
 function displayMethod(method?: LoginMethod): string | null {
@@ -36,7 +39,12 @@ function displayMethod(method?: LoginMethod): string | null {
   return method;
 }
 
-export function LoginPanel({ callbackUrl = "/dashboard", onSuccess }: LoginPanelProps) {
+export function LoginPanel({
+  callbackUrl = "/dashboard",
+  onSuccess,
+  onForgotPassword,
+  forgotLinkClassName = "text-[var(--color-accent)] hover:underline",
+}: LoginPanelProps) {
   const router = useRouter();
   const safeCallbackUrl = sanitizeCallbackUrl(callbackUrl);
   const [hint, setHint] = useState<ReturningUserHint | null>(null);
@@ -183,12 +191,22 @@ export function LoginPanel({ callbackUrl = "/dashboard", onSuccess }: LoginPanel
           className="apple-input"
         />
         <div className="flex justify-end">
-          <Link
-            href="/forgot-password"
-            className="text-xs font-medium text-[var(--color-accent)] hover:underline"
-          >
-            Forgot password?
-          </Link>
+          {onForgotPassword ? (
+            <button
+              type="button"
+              onClick={onForgotPassword}
+              className={`-my-1 inline-flex min-h-[44px] items-center py-2 text-sm font-medium ${forgotLinkClassName}`}
+            >
+              Forgot Password?
+            </button>
+          ) : (
+            <Link
+              href="/forgot-password"
+              className={`-my-1 inline-flex min-h-[44px] items-center py-2 text-sm font-medium ${forgotLinkClassName}`}
+            >
+              Forgot Password?
+            </Link>
+          )}
         </div>
         {error && <InlineError>{error}</InlineError>}
         <button

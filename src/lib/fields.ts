@@ -6,6 +6,7 @@ import {
   getRegisteredSubjectIds,
   resolveSubjectModule,
 } from "./subjects/registry";
+import { normalizeFieldId } from "./subjects/field-ids";
 
 export type StudyField = {
   id: string;
@@ -37,10 +38,13 @@ function moduleToStudyField(fieldId: string): StudyField {
 /** All registered disciplines in stable registry order. */
 export const STUDY_FIELDS: StudyField[] = getRegisteredSubjectIds().map(moduleToStudyField);
 
+/** Default field label for study/generate UI when none is selected. */
+export const DEFAULT_STUDY_FIELD_LABEL = STUDY_FIELDS[0]?.label ?? "NCLEX NGN";
+
 export const FIELD_LABELS = STUDY_FIELDS.map((f) => f.label);
 
 export function getFieldMeta(labelOrId: string): StudyField | undefined {
-  const normalized = labelOrId.toLowerCase().replace(/\s+/g, "-");
+  const normalized = normalizeFieldId(labelOrId);
   return (
     STUDY_FIELDS.find(
       (f) =>
@@ -51,5 +55,6 @@ export function getFieldMeta(labelOrId: string): StudyField | undefined {
 }
 
 export function getFieldMetaById(fieldId: string): StudyField | undefined {
-  return STUDY_FIELDS.find((f) => f.id === fieldId);
+  const normalized = normalizeFieldId(fieldId);
+  return STUDY_FIELDS.find((f) => f.id === normalized);
 }

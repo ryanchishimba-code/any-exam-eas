@@ -166,7 +166,7 @@ export function WelcomeBackSection() {
               <>
                 <span aria-hidden>·</span>
                 <AppleLink href="/forgot-password" className="!text-xs">
-                  Forgot password?
+                  Forgot Password?
                 </AppleLink>
               </>
             )}

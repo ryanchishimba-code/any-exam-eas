@@ -3,6 +3,7 @@ import type { SearchResult } from "../search";
 import type { GeneratedExam } from "../ai";
 import { buildOfflineExam } from "../question-bank";
 import { getFieldMeta } from "../fields";
+import { normalizeFieldId } from "../subjects/field-ids";
 import { resolveSubjectModule, getSubjectArea } from "../subjects/registry";
 import type { ExamGenerationContext } from "../subjects/types";
 import { composeExamSystemPrompt, composeExamUserPrompt } from "./prompts/compose";
@@ -44,7 +45,7 @@ export async function runExamGenerationPipeline(
   params: ExamPipelineParams
 ): Promise<GeneratedExam> {
   const meta = getFieldMeta(params.field);
-  const fieldId = meta?.id ?? params.field.toLowerCase().replace(/\s+/g, "-");
+  const fieldId = normalizeFieldId(meta?.id ?? params.field);
   const subjectModule = resolveSubjectModule(fieldId);
   const subject = params.subjectId
     ? getSubjectArea(fieldId, params.subjectId)
@@ -141,7 +142,7 @@ export async function runExamGenerationPipeline(
 
   const requireSteps = Boolean(subjectModule.capabilities.requiresFormulaValidation);
   exam = normalizeGeneratedExam(exam, params.questionCount, requireSteps);
-  exam = enrichGeneratedExam(exam);
+  exam = enrichGeneratedExam(exam, fieldId);
   exam = deduplicateExamQuestions(exam);
 
   const validation = subjectModule.validateExam({

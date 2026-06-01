@@ -1,4 +1,4 @@
-import { buildDrugEntry, type DrugEntry, type DrugEntryInput } from "../types";
+import { buildDrugEntry, type DrugEntry } from "../types";
 
 /** Shorthand for catalog rows — rank + 6 pharmacology fields. */
 export function d(

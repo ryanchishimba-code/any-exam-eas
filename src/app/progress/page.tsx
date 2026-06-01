@@ -15,7 +15,7 @@ export default async function ProgressPage() {
       description="See exams completed, quilt tiles mastered, and scores over time."
       maxWidth="max-w-4xl"
     >
-      <PremiumGate>
+      <PremiumGate callbackPath="/progress">
         <StudySubnav />
         <ProgressTracker />
       </PremiumGate>

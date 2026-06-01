@@ -6,14 +6,14 @@ import {
   PHARMACY_EXAM_SYSTEM_AUGMENTATION,
   getPharmacyUserAugmentation,
 } from "./prompts";
-import { validatePharmacyExam } from "./validation";
+import { validatePharmacyExam, scorePharmacyQuestionQuality } from "./validation";
 import { evaluatePharmacyDifficulty } from "./difficulty";
 import { extractPharmacyConcepts } from "./concepts";
 
 export const pharmacyModule: SubjectModule = {
   metadata: {
     id: "pharmacy",
-    label: "Pharmacy",
+    label: "NAPLEX",
     category: "professional",
     boardExam: "NAPLEX",
     examFocus:
@@ -67,4 +67,5 @@ export const pharmacyModule: SubjectModule = {
   extractConcepts: extractPharmacyConcepts,
   evaluateDifficulty: evaluatePharmacyDifficulty,
   validateExam: validatePharmacyExam,
+  scoreQuestionQuality: scorePharmacyQuestionQuality,
 };

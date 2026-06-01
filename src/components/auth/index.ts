@@ -1,4 +1,6 @@
 /** Auth UI — modular login surface (modal, page panel, social buttons). */
+export { ForgotPasswordPanel } from "./ForgotPasswordPanel";
+export type { ForgotPasswordStep } from "./ForgotPasswordPanel";
 export { GoogleSignInButton } from "./GoogleSignInButton";
 export { LoginModal } from "./LoginModal";
 export { LoginModalProvider, useLoginModal, useLoginModalOptional } from "./LoginModalProvider";

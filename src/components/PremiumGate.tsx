@@ -5,10 +5,16 @@ import { getUserAccess } from "@/lib/access-control";
 import { AccessBlockedNotice } from "./AccessBlockedNotice";
 
 /** Renders children only when the user has trial, paid, staff, or comp access. */
-export async function PremiumGate({ children }: { children: ReactNode }) {
+export async function PremiumGate({
+  children,
+  callbackPath = "/study",
+}: {
+  children: ReactNode;
+  callbackPath?: string;
+}) {
   const session = await auth();
   if (!session?.user?.id) {
-    redirect("/login?callbackUrl=/study");
+    redirect(`/login?callbackUrl=${encodeURIComponent(callbackPath)}`);
   }
 
   const access = await getUserAccess(session.user.id);
@@ -22,7 +28,7 @@ export async function PremiumGate({ children }: { children: ReactNode }) {
   }
 
   if (!access.hasPremiumAccess) {
-    redirect("/pricing?paywall=1");
+    redirect(`/pricing?paywall=1&return=${encodeURIComponent(callbackPath)}`);
   }
 
   return <>{children}</>;

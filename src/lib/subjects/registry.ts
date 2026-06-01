@@ -3,24 +3,21 @@ import type {
   SubjectCapabilities,
   SubjectModule,
 } from "./types";
-import { medicineModule } from "./medicine";
 import { nursingModule } from "./nursing";
 import { pharmacyModule } from "./pharmacy";
-import { dentistryModule } from "./dentistry";
-import { mathModule } from "./math";
-import { biologyModule } from "./biology";
-import { chemistryModule } from "./chemistry";
-import { satModule } from "./sat";
+import { usmleStep1Module } from "./usmle-step-1";
+import { usmleStep2Module } from "./usmle-step-2";
+import {
+  EXAM_FIELD_IDS,
+  FIELD_ID_ALIASES,
+  normalizeFieldId,
+} from "./field-ids";
 
 const MODULES: Record<string, SubjectModule> = {
-  medicine: medicineModule,
   nursing: nursingModule,
+  "usmle-step-1": usmleStep1Module,
+  "usmle-step-2": usmleStep2Module,
   pharmacy: pharmacyModule,
-  dentistry: dentistryModule,
-  sat: satModule,
-  math: mathModule,
-  biology: biologyModule,
-  chemistry: chemistryModule,
 };
 
 /** Capability registry — controls generation behavior per discipline. */
@@ -35,27 +32,35 @@ export function registerSubjectModule(module: SubjectModule): void {
 }
 
 export function getRegisteredSubjectIds(): string[] {
-  return Object.keys(MODULES);
+  return [...EXAM_FIELD_IDS];
 }
 
 export function resolveSubjectModule(fieldId: string): SubjectModule {
-  const id = fieldId.toLowerCase().replace(/\s+/g, "-");
-  return (
-    MODULES[id] ??
-    MODULES.medicine // fallback for unknown fields until a module is added
-  );
+  const id = normalizeFieldId(fieldId);
+  return MODULES[id] ?? usmleStep2Module;
 }
 
 export function getSubjectModuleByLabel(fieldLabel: string): SubjectModule {
+  const normalized = fieldLabel.toLowerCase();
   const found = Object.values(MODULES).find(
-    (m) => m.metadata.label.toLowerCase() === fieldLabel.toLowerCase()
+    (m) =>
+      m.metadata.label.toLowerCase() === normalized ||
+      m.metadata.boardExam?.toLowerCase() === normalized
   );
-  return found ?? medicineModule;
+  if (found) return found;
+
+  for (const [alias, canonical] of Object.entries(FIELD_ID_ALIASES)) {
+    if (alias === normalized && MODULES[canonical]) {
+      return MODULES[canonical];
+    }
+  }
+
+  return usmleStep2Module;
 }
 
 export function getAllFieldSubjects(): Record<string, SubjectArea[]> {
   return Object.fromEntries(
-    Object.entries(MODULES).map(([id, m]) => [id, m.subjectAreas])
+    EXAM_FIELD_IDS.map((id) => [id, MODULES[id].subjectAreas])
   );
 }
 

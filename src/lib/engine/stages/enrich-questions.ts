@@ -1,4 +1,12 @@
 import type { ExamQuestion, GeneratedExam } from "@/lib/ai";
+import { normalizeFieldId } from "@/lib/subjects/field-ids";
+import {
+  formatDrugProfileForExplanation,
+  isDrugCenteredQuestion,
+  isDrugProfileComplete,
+  normalizeDrugProfile,
+} from "@/lib/engine/prompts/pharm-drug-profile";
+import { splitCombinedStem } from "@/lib/engine/prompts/vignette";
 
 const NGN_TYPES = new Set([
   "select_all",
@@ -14,15 +22,16 @@ const NGN_TYPES = new Set([
  * Post-process AI output: merge vignette into display stem, fill missing rationales,
  * and flag high-yield items lacking board-style depth.
  */
-export function enrichGeneratedExam(exam: GeneratedExam): GeneratedExam {
+export function enrichGeneratedExam(exam: GeneratedExam, fieldId?: string): GeneratedExam {
+  const normalizedField = fieldId ? normalizeFieldId(fieldId) : undefined;
   return {
     ...exam,
-    questions: exam.questions.map(enrichQuestion),
+    questions: exam.questions.map((q) => enrichQuestion(q, normalizedField)),
   };
 }
 
-export function enrichQuestion(q: ExamQuestion): ExamQuestion {
-  const enriched = { ...q };
+export function enrichQuestion(q: ExamQuestion, fieldId?: string): ExamQuestion {
+  const enriched = splitCombinedStem({ ...q });
 
   if (enriched.vignette?.trim()) {
     const vignette = enriched.vignette.trim();
@@ -31,17 +40,18 @@ export function enrichQuestion(q: ExamQuestion): ExamQuestion {
     }
   }
 
-  enriched.distractorRationale = enrichDistractorRationale(enriched);
+  enriched.distractorRationale = enrichDistractorRationale(enriched, fieldId);
   enriched.clinicalReasoning =
     enriched.clinicalReasoning?.trim() ||
-    deriveClinicalReasoning(enriched);
+    deriveClinicalReasoning(enriched, fieldId);
+  enriched.drugProfile = enrichDrugProfile(enriched, fieldId);
   enriched.explanation = enrichExplanationText(enriched);
   enriched.highYield = enriched.highYield ?? inferHighYield(enriched);
 
   return enriched;
 }
 
-function enrichDistractorRationale(q: ExamQuestion): Record<string, string> {
+function enrichDistractorRationale(q: ExamQuestion, fieldId?: string): Record<string, string> {
   const existing = q.distractorRationale ?? {};
   const options = q.options ?? [];
   if (options.length === 0) return existing;
@@ -53,37 +63,132 @@ function enrichDistractorRationale(q: ExamQuestion): Record<string, string> {
   const result = { ...existing };
   for (const opt of incorrect) {
     if (result[opt]?.trim()) continue;
-    result[opt] = inferDistractorWhy(opt, q);
+    result[opt] = inferDistractorWhy(opt, q, fieldId);
   }
 
   return result;
 }
 
-function inferDistractorWhy(option: string, q: ExamQuestion): string {
-  const stem = q.question.slice(0, 120);
-  return `Incorrect — "${option}" does not best address the clinical priority or key finding in this scenario. Review the discriminating data in the stem. Context: ${stem}${stem.length >= 120 ? "…" : ""}`;
-}
+function inferDistractorWhy(option: string, q: ExamQuestion, fieldId?: string): string {
+  const stem = (q.vignette ?? q.question).slice(0, 140);
+  const id = fieldId ?? "";
 
-function deriveClinicalReasoning(q: ExamQuestion): string {
-  if (!q.vignette && q.question.length < 80) return "";
-
-  const steps = [
-    "1. Recognize cues: identify abnormal findings and client context from the vignette.",
-    "2. Analyze: link findings to the underlying problem or nursing/medical priority.",
-    "3. Prioritize: apply ABCs, Maslow, or safety-first principles to rank actions.",
-    "4. Act: select the single best intervention or answer supported by evidence.",
-  ];
-
-  if (q.explanation.length > 40) {
-    steps.push(`5. Evaluate: ${q.explanation.slice(0, 180)}${q.explanation.length > 180 ? "…" : ""}`);
+  if (id === "pharmacy") {
+    if (/share|family member/i.test(option)) {
+      return `Incorrect — medications must not be shared; counseling requires patient-specific safety and monitoring.`;
+    }
+    if (/without review|ignore|dispense without/i.test(option)) {
+      return `Incorrect — pharmacists must verify interactions, contraindications, and dosing before dispensing (Medication Use Process).`;
+    }
+    if (/no monitoring|never requires|no adverse/i.test(option)) {
+      return `Incorrect — all drug therapy requires appropriate monitoring and adverse-effect counseling per NAPLEX Person-Centered Care standards.`;
+    }
+    if (/double|maximum dose above|unlimited refill/i.test(option)) {
+      return `Incorrect — dosing and refill practices must follow legal limits, renal/hepatic adjustment, and prescriber authorization.`;
+    }
+    const profile = normalizeDrugProfile(q.drugProfile);
+    if (profile && /inhibitor|blocker|agonist|antagonist/i.test(option)) {
+      if (!option.toLowerCase().includes(profile.generic.toLowerCase())) {
+        return `Incorrect — this mechanism/class does not match ${profile.generic} (${profile.therapeuticClass}) for the patient's indication.`;
+      }
+    }
   }
 
-  return steps.join("\n");
+  return `Incorrect — "${option}" does not best address the clinical priority, mechanism, or key finding in this scenario. The stem data support a different answer. Context: ${stem}${stem.length >= 140 ? "…" : ""}`;
+}
+
+function deriveClinicalReasoning(q: ExamQuestion, fieldId?: string): string {
+  if (!q.vignette && q.question.length < 80) return "";
+
+  const id = fieldId ? normalizeFieldId(fieldId) : "";
+
+  if (id === "nursing") {
+    return [
+      "1. Recognize cues: identify abnormal vs normal client data from the vignette.",
+      "2. Analyze cues: cluster findings; infer pathophysiology and etiology.",
+      "3. Prioritize hypotheses: rank problems by urgency (ABCs, Maslow, safety).",
+      "4. Generate solutions: identify evidence-based nursing actions.",
+      "5. Take action: select the single best nursing intervention.",
+      q.explanation.length > 40
+        ? `6. Evaluate outcomes: ${q.explanation.slice(0, 160)}${q.explanation.length > 160 ? "…" : ""}`
+        : "6. Evaluate outcomes: anticipate expected improvement and reassessment.",
+    ].join("\n");
+  }
+
+  if (id === "usmle-step-1") {
+    return [
+      "1. Identify presenting signs/symptoms and key lab/exam findings.",
+      "2. Link findings to underlying mechanism, pathology, or pharmacology.",
+      "3. Apply basic science to select the most likely cause or best answer.",
+      q.explanation.length > 40
+        ? `4. Confirm: ${q.explanation.slice(0, 160)}${q.explanation.length > 160 ? "…" : ""}`
+        : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+  }
+
+  if (id === "usmle-step-2" || id === "pharmacy") {
+    const steps = [
+      "1. Recognize cues: extract discriminating signs/symptoms and patient context.",
+      id === "pharmacy"
+        ? "2. Analyze: match condition etiology and patient factors to therapeutic options."
+        : "2. Analyze: form differential using pathophysiology and epidemiology.",
+      id === "pharmacy"
+        ? "3. Select therapy: choose drug/dose/counseling based on guidelines and safety."
+        : "3. Prioritize: determine next best step in diagnosis or management.",
+      "4. Act: select the single best answer supported by evidence.",
+    ];
+    if (q.explanation.length > 40) {
+      steps.push(
+        `5. Evaluate: ${q.explanation.slice(0, 160)}${q.explanation.length > 160 ? "…" : ""}`
+      );
+    }
+    return steps.join("\n");
+  }
+
+  return [
+    "1. Recognize cues: identify abnormal findings and client context from the vignette.",
+    "2. Analyze: link findings to the underlying problem or priority.",
+    "3. Prioritize: apply safety-first principles to rank actions.",
+    "4. Act: select the single best intervention or answer supported by evidence.",
+  ].join("\n");
+}
+
+function enrichDrugProfile(
+  q: ExamQuestion,
+  fieldId?: string
+): ExamQuestion["drugProfile"] {
+  const normalized = normalizeDrugProfile(q.drugProfile);
+  if (!normalized) return q.drugProfile;
+
+  const id = fieldId ? normalizeFieldId(fieldId) : "";
+  const isPharmField = id === "pharmacy" || id === "nursing";
+
+  if (isPharmField && isDrugCenteredQuestion(q) && !isDrugProfileComplete(normalized)) {
+    if (!normalized.conditionEtiology && normalized.indication) {
+      normalized.conditionEtiology = `Pathophysiology related to ${normalized.indication.toLowerCase()}.`;
+    }
+    if (normalized.conditionSymptoms.length === 0 && normalized.indication) {
+      normalized.conditionSymptoms = [normalized.indication];
+    }
+  }
+
+  return normalized;
 }
 
 function enrichExplanationText(q: ExamQuestion): string {
   let text = q.explanation?.trim() ?? "";
   if (!text) return text;
+
+  const profile = normalizeDrugProfile(q.drugProfile);
+  if (
+    profile &&
+    isDrugProfileComplete(profile) &&
+    !text.toLowerCase().includes(profile.generic.toLowerCase())
+  ) {
+    text = `${text}\n\n${formatDrugProfileForExplanation(profile)}`;
+  }
 
   const hasDistractorSection = /why (other|incorrect|wrong)/i.test(text);
   const rationales = q.distractorRationale ?? {};

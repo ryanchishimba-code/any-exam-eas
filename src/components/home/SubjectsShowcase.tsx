@@ -35,8 +35,8 @@ export function SubjectsShowcase() {
           <p className="aee-section-label">Exam coverage</p>
           <h2 className="aee-headline mt-4">Study support across boards.</h2>
           <p className="aee-section-lede mx-auto mt-4 max-w-xl">
-            Personalized practice, question banks, and analytics — medicine, nursing,
-            pharmacy, dentistry, and core sciences.
+            Personalized practice, question banks, and analytics for NCLEX NGN,
+            USMLE Step 1 & 2, and NAPLEX.
           </p>
         </div>
 
@@ -104,7 +104,7 @@ function SubjectTile({
         </span>
       </div>
       <Link
-        href={`/study?field=${subject.fieldId}`}
+        href={`/study/practice?field=${subject.fieldId}`}
         className="mt-5 text-sm font-semibold text-teal-600 transition-colors hover:text-teal-700"
       >
         Learn more →

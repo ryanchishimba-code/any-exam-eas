@@ -18,7 +18,7 @@ export type MedicineSubjectArea = {
 };
 
 export const MEDICINE_SUBJECT_AREAS: MedicineSubjectArea[] =
-  getSubjectsForFieldId("medicine").map((s) => ({
+  getSubjectsForFieldId("usmle-step-2").map((s) => ({
     id: s.id,
     label: s.label,
     topicPlaceholder: s.focusPlaceholder,

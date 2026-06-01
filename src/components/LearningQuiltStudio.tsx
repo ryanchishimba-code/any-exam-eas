@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { LearningQuiltContent, QuiltTile } from "@/lib/ai";
+import { DEFAULT_STUDY_FIELD_LABEL } from "@/lib/fields";
 import { Button } from "./ui/Button";
 import { StudyModePicker } from "./StudyModePicker";
 import { StudySubnav } from "./StudySubnav";
@@ -11,7 +12,7 @@ import { InlineError } from "@/components/ui/StatusMessage";
 type TileFilter = "flashcards" | "quiz" | "all";
 
 export function LearningQuiltStudio() {
-  const [field, setField] = useState("Medicine");
+  const [field, setField] = useState(DEFAULT_STUDY_FIELD_LABEL);
   const [topic, setTopic] = useState("");
   const [tileFilter, setTileFilter] = useState<TileFilter>("flashcards");
   const [loading, setLoading] = useState(false);

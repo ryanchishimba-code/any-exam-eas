@@ -28,22 +28,32 @@ const DISPLAY_OVERRIDES: Partial<
     >
   >
 > = {
-  medicine: {
-    description:
-      "Board-style clinical items across organ systems — adaptive vignettes without repetitive stems.",
-    accent: "#0071e3",
-    accentMuted: "rgba(0, 113, 227, 0.12)",
-    trending: true,
-    recommended: true,
-    features: ["Clinical reasoning", "Timed mocks", "Weak-area review"],
-  },
   nursing: {
     description:
       "NCLEX NGN unfolding cases, bow-tie, matrix items — plus classic prioritization and SATA.",
     accent: "#5856d6",
     accentMuted: "rgba(88, 86, 214, 0.12)",
     trending: true,
+    recommended: true,
     features: ["Prioritization", "Select-all-that-apply", "Rapid review"],
+  },
+  "usmle-step-1": {
+    description:
+      "Basic-science vignettes across anatomy, pathology, pharmacology, biochemistry, and microbiology.",
+    accent: "#0071e3",
+    accentMuted: "rgba(0, 113, 227, 0.12)",
+    trending: true,
+    recommended: true,
+    features: ["Mechanisms & pathology", "Timed mocks", "Weak-area review"],
+  },
+  "usmle-step-2": {
+    description:
+      "Clinical vignettes across organ systems — diagnosis, management, and complications.",
+    accent: "#0a84ff",
+    accentMuted: "rgba(10, 132, 255, 0.12)",
+    trending: true,
+    recommended: true,
+    features: ["Clinical reasoning", "Organ systems", "Mock exams"],
   },
   pharmacy: {
     description:
@@ -51,45 +61,6 @@ const DISPLAY_OVERRIDES: Partial<
     accent: "#34c759",
     accentMuted: "rgba(52, 199, 89, 0.12)",
     features: ["Dosing calculations", "Drug interactions", "Mock exams"],
-  },
-  dentistry: {
-    description:
-      "INBDE-style coverage: oral pathology, radiology, restorative, pharmacology, and treatment planning.",
-    accent: "#00c7be",
-    accentMuted: "rgba(0, 199, 190, 0.12)",
-    trending: true,
-    recommended: true,
-    features: ["Radiograph interpretation", "Treatment planning", "Oral pathology"],
-  },
-  math: {
-    description:
-      "Equations, graphs, and timed calculations with LaTeX-friendly notation.",
-    accent: "#ff9500",
-    accentMuted: "rgba(255, 149, 0, 0.12)",
-    features: ["Calculations", "Graph interpretation", "Adaptive difficulty"],
-  },
-  biology: {
-    description:
-      "Genetics, physiology, and molecular biology with diagram-based application items.",
-    accent: "#30b0c7",
-    accentMuted: "rgba(48, 176, 199, 0.12)",
-    features: ["Pedigree analysis", "Pathway questions", "Data interpretation"],
-  },
-  chemistry: {
-    description:
-      "Organic mechanisms, biochemistry pathways, stoichiometry, and reaction logic.",
-    accent: "#af52de",
-    accentMuted: "rgba(175, 82, 222, 0.12)",
-    features: ["Mechanisms", "Scientific notation", "Calculation drills"],
-  },
-  sat: {
-    description:
-      "Digital SAT Reading & Writing and Math — adaptive module strategy and College Board tone.",
-    accent: "#ff2d55",
-    accentMuted: "rgba(255, 45, 85, 0.12)",
-    trending: true,
-    recommended: true,
-    features: ["Reading & Writing", "Math", "Adaptive modules"],
   },
 };
 

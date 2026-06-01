@@ -1,5 +1,6 @@
 import { getFieldMeta } from "./fields";
 import { resolveSubjectModule } from "./subjects/registry";
+import { normalizeFieldId } from "./subjects/field-ids";
 
 export type FieldExamStyle = {
   systemAddendum: string;
@@ -8,17 +9,23 @@ export type FieldExamStyle = {
 };
 
 const STYLES: Record<string, FieldExamStyle> = {
-  medicine: {
-    allMultipleChoice: true,
-    systemAddendum: "USMLE/board style. Brief vignettes when appropriate.",
-    questionRules:
-      "Clinical reasoning, anatomy, pathophys, pharm. All items high-yield multiple choice, 4 unique distractors.",
-  },
   nursing: {
     allMultipleChoice: true,
-    systemAddendum: "NCLEX-style prioritization and safety.",
+    systemAddendum: "NCLEX NGN prioritization, safety, and next-gen formats.",
     questionRules:
       "ABC priorities, infection control, patient advocacy, pharmacology nursing implications. One best action.",
+  },
+  "usmle-step-1": {
+    allMultipleChoice: true,
+    systemAddendum: "USMLE Step 1 basic-science style.",
+    questionRules:
+      "Mechanisms, pathology, pharmacology, biochemistry, microbiology. High-yield multiple choice with 4 unique distractors.",
+  },
+  "usmle-step-2": {
+    allMultipleChoice: true,
+    systemAddendum: "USMLE Step 2 CK clinical vignette style.",
+    questionRules:
+      "Clinical reasoning, diagnosis, management, complications. Brief vignettes with 4 unique distractors.",
   },
   pharmacy: {
     allMultipleChoice: true,
@@ -91,7 +98,7 @@ const STYLES: Record<string, FieldExamStyle> = {
 
 export function getFieldExamStyle(fieldLabel: string): FieldExamStyle {
   const meta = getFieldMeta(fieldLabel);
-  const id = meta?.id ?? fieldLabel.toLowerCase().replace(/\s+/g, "-");
+  const id = normalizeFieldId(meta?.id ?? fieldLabel);
   if (STYLES[id]) return STYLES[id];
   const subjectModule = resolveSubjectModule(id);
   return {

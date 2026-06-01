@@ -53,10 +53,10 @@ export function pickScenario() {
 }
 
 export const EXAM_FIELDS = [
-  { field: 'nursing', subjectId: 'pharmacology-nursing', label: 'NCLEX' },
-  { field: 'medicine', subjectId: 'pathology', label: 'USMLE' },
+  { field: 'nursing', subjectId: 'pharmacology-nursing', label: 'NCLEX NGN' },
+  { field: 'usmle-step-1', subjectId: 'pathology', label: 'USMLE Step 1' },
+  { field: 'usmle-step-2', subjectId: 'cardiology', label: 'USMLE Step 2' },
   { field: 'pharmacy', subjectId: 'pharmacology', label: 'NAPLEX' },
-  { field: 'dentistry', subjectId: 'oral-pathology', label: 'INBDE' },
 ];
 
 export const PUBLIC_PAGES = [
@@ -69,8 +69,8 @@ export const PUBLIC_PAGES = [
 
 export const EXAM_CATEGORY_PAGES = [
   '/study?field=nursing',
-  '/study?field=medicine',
+  '/study?field=usmle-step-1',
+  '/study?field=usmle-step-2',
   '/study?field=pharmacy',
-  '/study?field=dentistry',
   '/#choose-exam',
 ];

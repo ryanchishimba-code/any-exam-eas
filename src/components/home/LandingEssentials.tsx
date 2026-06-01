@@ -12,21 +12,28 @@ const exams: { id: string; title: string; href: string; icon: LucideIcon; benefi
   {
     id: "nclex",
     title: "NCLEX NGN",
-    href: "/study?field=nursing",
+    href: "/study/practice?field=nursing",
     icon: HeartPulse,
     benefit: "Bow-tie, matrix & case studies",
   },
   {
-    id: "usmle",
-    title: "USMLE",
-    href: "/study?field=medicine",
+    id: "usmle-step-1",
+    title: "USMLE Step 1",
+    href: "/study/practice?field=usmle-step-1",
     icon: Stethoscope,
-    benefit: "Step 1 & 2 CK vignettes",
+    benefit: "Basic sciences & mechanisms",
+  },
+  {
+    id: "usmle-step-2",
+    title: "USMLE Step 2",
+    href: "/study/practice?field=usmle-step-2",
+    icon: Stethoscope,
+    benefit: "Clinical vignettes & management",
   },
   {
     id: "naplex",
     title: "NAPLEX",
-    href: "/study?field=pharmacy",
+    href: "/study/practice?field=pharmacy",
     icon: Pill,
     benefit: "Calculations & therapeutics",
   },
@@ -63,12 +70,12 @@ export function LandingEssentials() {
             More prep. Less wasted time.
           </h2>
           <p className="mx-auto mt-2 max-w-lg text-sm text-slate-600">
-            One subscription covers NCLEX NGN, USMLE, and NAPLEX — with progress
+            One subscription covers NCLEX NGN, USMLE Step 1 & 2, and NAPLEX — with progress
             that follows you across devices.
           </p>
         </div>
 
-        <ul className="mt-10 grid gap-3 sm:grid-cols-3">
+        <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {exams.map(({ id, title, href, icon: Icon, benefit }) => (
             <li key={id}>
               <Link

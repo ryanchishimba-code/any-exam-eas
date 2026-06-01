@@ -1,6 +1,7 @@
 import type { ExamQuestion, GeneratedExam } from "./ai";
 import type { SearchResult } from "./search";
 import { getFieldMeta } from "./fields";
+import { normalizeFieldId } from "./subjects/field-ids";
 import {
   getFieldSubject,
   subjectMatchesQuestion,
@@ -357,7 +358,7 @@ export async function getBankQuestions(params: {
   count: number;
 }): Promise<ExamQuestion[]> {
   const meta = getFieldMeta(params.field);
-  const fieldId = meta?.id ?? params.field.toLowerCase().replace(/\s+/g, "-");
+  const fieldId = normalizeFieldId(meta?.id ?? params.field);
   const subject = getFieldSubject(params.field, params.subjectId);
   const subjectKey = subject?.id ?? params.subjectId;
 
@@ -374,9 +375,12 @@ export async function getBankQuestions(params: {
   if (pools.length === 0) {
     pools.push(...getHealthBankItems(fieldId, subjectKey));
 
-    if (fieldId === "medicine" && BANK[subjectKey]?.length) {
+    if (
+      (fieldId === "usmle-step-1" || fieldId === "usmle-step-2") &&
+      BANK[subjectKey]?.length
+    ) {
       pools.push(...tagWithSubject(BANK[subjectKey], subjectKey));
-    } else if (fieldId === "medicine") {
+    } else if (fieldId === "usmle-step-2") {
       pools.push(...tagWithSubject(GENERAL_MEDICINE, subjectKey));
     }
   }

@@ -1,10 +1,6 @@
 import type { BankItem } from "./question-bank";
 import { FIELD_SUBJECTS, type FieldSubject } from "./field-subjects";
 import {
-  getDentistryBankItems,
-  getDentistryBankSubjectIds,
-} from "./dentistry-question-bank";
-import {
   getHealthBankItems,
   getHealthBankSubjectIds,
   HEALTH_QUESTION_BANK,
@@ -16,8 +12,6 @@ export type SeedQuestionRow = {
   item: BankItem;
   source: "seed";
 };
-
-const HEALTH_FIELD_IDS = Object.keys(HEALTH_QUESTION_BANK);
 
 /**
  * All static questions shipped in the repo — used to populate and refresh the database.
@@ -38,17 +32,11 @@ export function collectSeedQuestionRows(): SeedQuestionRow[] {
     });
   };
 
-  for (const fieldId of HEALTH_FIELD_IDS) {
+  for (const fieldId of Object.keys(HEALTH_QUESTION_BANK)) {
     for (const subjectId of getHealthBankSubjectIds(fieldId)) {
       for (const item of getHealthBankItems(fieldId, subjectId)) {
         push(fieldId, subjectId, item);
       }
-    }
-  }
-
-  for (const subjectId of getDentistryBankSubjectIds()) {
-    for (const item of getDentistryBankItems(subjectId)) {
-      push("dentistry", subjectId, item);
     }
   }
 

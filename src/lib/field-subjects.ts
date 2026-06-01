@@ -4,6 +4,7 @@ import {
   getSubjectArea as getRegistrySubjectArea,
   getSubjectsForFieldId,
 } from "./subjects/registry";
+import { normalizeFieldId } from "./subjects/field-ids";
 import type { SubjectArea } from "./subjects/types";
 
 /** @deprecated Use SubjectArea from subjects/types — kept for backward compatibility */
@@ -17,7 +18,7 @@ export const FIELD_SUBJECTS: Record<string, FieldSubject[]> = getAllFieldSubject
 
 export function getSubjectsForField(fieldLabel: string): FieldSubject[] {
   const meta = getFieldMeta(fieldLabel);
-  const id = meta?.id ?? fieldLabel.toLowerCase().replace(/\s+/g, "-");
+  const id = normalizeFieldId(meta?.id ?? fieldLabel);
   return getSubjectsForFieldId(id);
 }
 
@@ -26,7 +27,7 @@ export function getFieldSubject(
   subjectId: string
 ): FieldSubject | undefined {
   const meta = getFieldMeta(fieldLabel);
-  const id = meta?.id ?? fieldLabel.toLowerCase().replace(/\s+/g, "-");
+  const id = normalizeFieldId(meta?.id ?? fieldLabel);
   return getRegistrySubjectArea(id, subjectId);
 }
 

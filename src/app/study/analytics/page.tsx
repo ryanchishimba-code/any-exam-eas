@@ -1,3 +1,4 @@
+import { PremiumGate } from "@/components/PremiumGate";
 import { PageShell } from "@/components/PageShell";
 import { StudySubnav } from "@/components/StudySubnav";
 import { StudentDashboard } from "@/components/dashboard/StudentDashboard";
@@ -16,7 +17,9 @@ export default function StudyAnalyticsPage() {
       maxWidth="max-w-[980px]"
     >
       <StudySubnav />
-      <StudentDashboard />
+      <PremiumGate callbackPath="/study/analytics">
+        <StudentDashboard />
+      </PremiumGate>
     </PageShell>
   );
 }

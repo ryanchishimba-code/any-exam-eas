@@ -3,6 +3,8 @@
  * Used to steer question mix toward high-yield, exam-realistic coverage.
  */
 
+import { normalizeFieldId } from "@/lib/subjects/field-ids";
+
 export type BlueprintCategory = {
   id: string;
   label: string;
@@ -31,7 +33,7 @@ export type ExamBlueprint = {
 /** NCSBN NCLEX-RN Client Needs (approximate item distribution). */
 const NCLEX_RN: ExamBlueprint = {
   fieldId: "nursing",
-  examName: "NCLEX-RN",
+  examName: "NCLEX NGN",
   sourceNote: "NCSBN NCLEX-RN Test Plan + Clinical Judgment Measurement Model (CJMM)",
   vignetteMinRatio: 0.65,
   ngnMix: [
@@ -101,11 +103,63 @@ const NCLEX_RN: ExamBlueprint = {
   ],
 };
 
-/** USMLE / clinical board-style mix (Step 2 CK–oriented when clinical). */
-const USMLE_CLINICAL: ExamBlueprint = {
-  fieldId: "medicine",
-  examName: "USMLE / clinical boards",
-  sourceNote: "USMLE Content Outline (Step 1 & Step 2 CK) — NBME clinical science",
+/** USMLE Step 1 — basic sciences. */
+const USMLE_STEP_1: ExamBlueprint = {
+  fieldId: "usmle-step-1",
+  examName: "USMLE Step 1",
+  sourceNote: "USMLE Content Outline — Step 1 basic sciences",
+  vignetteMinRatio: 0.55,
+  categories: [
+    {
+      id: "anatomy",
+      label: "Anatomy",
+      weight: 0.18,
+      subjectIds: ["anatomy"],
+      highYieldTopics: ["regional anatomy", "embryology", "histology", "cranial nerves"],
+    },
+    {
+      id: "physiology",
+      label: "Physiology",
+      weight: 0.18,
+      subjectIds: ["physiology"],
+      highYieldTopics: ["cardiovascular", "renal", "respiratory", "endocrine", "acid-base"],
+    },
+    {
+      id: "pathology",
+      label: "Pathology",
+      weight: 0.18,
+      subjectIds: ["pathology"],
+      highYieldTopics: ["inflammation", "neoplasia", "hemodynamics", "mechanisms of disease"],
+    },
+    {
+      id: "pharmacology",
+      label: "Pharmacology",
+      weight: 0.16,
+      subjectIds: ["pharmacology"],
+      highYieldTopics: ["MOA", "adverse effects", "interactions", "autonomic drugs"],
+    },
+    {
+      id: "biochemistry",
+      label: "Biochemistry",
+      weight: 0.15,
+      subjectIds: ["biochemistry"],
+      highYieldTopics: ["metabolic pathways", "enzymes", "nutrition", "genetics"],
+    },
+    {
+      id: "microbiology",
+      label: "Microbiology & Immunology",
+      weight: 0.15,
+      subjectIds: ["microbiology"],
+      highYieldTopics: ["bacteria", "viruses", "hypersensitivity", "vaccines"],
+    },
+  ],
+};
+
+/** USMLE Step 2 CK — clinical sciences. */
+const USMLE_STEP_2: ExamBlueprint = {
+  fieldId: "usmle-step-2",
+  examName: "USMLE Step 2 CK",
+  sourceNote: "USMLE Content Outline — Step 2 CK clinical sciences",
   vignetteMinRatio: 0.75,
   categories: [
     {
@@ -140,7 +194,7 @@ const USMLE_CLINICAL: ExamBlueprint = {
       id: "infectious-disease",
       label: "Infectious Disease",
       weight: 0.07,
-      subjectIds: ["internal-medicine", "microbiology"],
+      subjectIds: ["internal-medicine"],
       highYieldTopics: ["sepsis", "HIV", "UTI", "meningitis", "antibiotic selection"],
     },
     {
@@ -152,9 +206,9 @@ const USMLE_CLINICAL: ExamBlueprint = {
     },
     {
       id: "surgery",
-      label: "Surgery",
+      label: "Surgery & Acute Care",
       weight: 0.14,
-      subjectIds: ["surgery", "emergency-medicine"],
+      subjectIds: ["emergency-medicine"],
       highYieldTopics: ["acute abdomen", "trauma", "post-op complications", "wound care"],
     },
     {
@@ -179,11 +233,11 @@ const USMLE_CLINICAL: ExamBlueprint = {
       highYieldTopics: ["mood disorders", "psychosis", "substance use", "suicide risk"],
     },
     {
-      id: "basic-sciences",
-      label: "Basic Sciences",
+      id: "emergency-medicine",
+      label: "Emergency Medicine",
       weight: 0.07,
-      subjectIds: ["pathology", "pharmacology", "microbiology", "physiology", "anatomy", "biochemistry"],
-      highYieldTopics: ["mechanism of disease", "drug MOA", "microbial virulence", "physiologic integration"],
+      subjectIds: ["emergency-medicine"],
+      highYieldTopics: ["anaphylaxis", "shock", "toxicology", "ACLS"],
     },
   ],
 };
@@ -243,60 +297,15 @@ const NAPLEX: ExamBlueprint = {
   ],
 };
 
-/** INBDE / dental board content areas. */
-const INBDE: ExamBlueprint = {
-  fieldId: "dentistry",
-  examName: "INBDE",
-  sourceNote: "JCNDE INBDE content outline (approximate)",
-  vignetteMinRatio: 0.5,
-  categories: [
-    {
-      id: "diagnosis",
-      label: "Diagnosis & Treatment Planning",
-      weight: 0.25,
-      subjectIds: ["oral-pathology", "treatment-planning", "radiology"],
-      highYieldTopics: ["radiographic interpretation", "differential diagnosis", "periodontal staging"],
-    },
-    {
-      id: "oral-health",
-      label: "Oral Health & Prevention",
-      weight: 0.2,
-      subjectIds: ["dental-anatomy", "periodontics"],
-      highYieldTopics: ["caries risk", "fluoride", "anatomy landmarks"],
-    },
-    {
-      id: "pharmacology",
-      label: "Dental Pharmacology",
-      weight: 0.15,
-      subjectIds: ["dental-pharmacology"],
-      highYieldTopics: ["local anesthetics", "analgesics", "antibiotics", "medical emergencies"],
-    },
-    {
-      id: "restorative",
-      label: "Restorative & Prosthodontics",
-      weight: 0.2,
-      subjectIds: ["restorative-dentistry"],
-      highYieldTopics: ["material selection", "crown prep", "occlusion"],
-    },
-    {
-      id: "specialty",
-      label: "Endodontics, Perio, Oral Surgery",
-      weight: 0.2,
-      subjectIds: ["endodontics", "periodontics"],
-      highYieldTopics: ["abscess management", "SRP indications", "extraction complications"],
-    },
-  ],
-};
-
 const BLUEPRINTS: Record<string, ExamBlueprint> = {
   nursing: NCLEX_RN,
-  medicine: USMLE_CLINICAL,
+  "usmle-step-1": USMLE_STEP_1,
+  "usmle-step-2": USMLE_STEP_2,
   pharmacy: NAPLEX,
-  dentistry: INBDE,
 };
 
 export function getExamBlueprint(fieldId: string): ExamBlueprint | undefined {
-  return BLUEPRINTS[fieldId];
+  return BLUEPRINTS[normalizeFieldId(fieldId)];
 }
 
 export type QuestionSlot = {
@@ -338,7 +347,7 @@ export function allocateQuestionsByBlueprint(
 
   const ngnSlots = assignNgnFormats(questionCount, blueprint);
 
-  return floors.flatMap((f, i) => {
+  return floors.flatMap((f) => {
     const slots: QuestionSlot[] = [];
     for (let q = 0; q < f.count; q++) {
       const ngn = ngnSlots.shift();
@@ -412,7 +421,6 @@ export function buildBlueprintPromptBlock(
   }
 
   const slots = allocateQuestionsByBlueprint(questionCount, blueprint, focusSubjectId);
-  const vignetteCount = Math.ceil(questionCount * blueprint.vignetteMinRatio);
 
   const lines = [
     `EXAM BLUEPRINT (${blueprint.examName} — ${blueprint.sourceNote}):`,
@@ -442,7 +450,9 @@ export function buildBlueprintPromptBlock(
     }
   }
 
-  lines.push(`- At least ${vignetteCount} of ${questionCount} items MUST include a clinical vignette (2–5 sentences of client/patient data before the question stem).`);
+  lines.push(
+    `- ALL ${questionCount} items MUST include a separate vignette field (2–4 concise sentences: demographics, pertinent history, signs/symptoms, etiology clues). The question field is the lead-in stem only.`
+  );
 
   if (blueprint.ngnMix?.length) {
     const ngnCount = slots.filter((s) => s.ngnFormat).length;
@@ -453,4 +463,31 @@ export function buildBlueprintPromptBlock(
   }
 
   return lines.join("\n");
+}
+
+/** Per-question blueprint slot assignment for the LLM to follow item-by-item. */
+export function buildDetailedSlotAllocationBlock(
+  fieldId: string,
+  questionCount: number,
+  focusSubjectId?: string
+): string {
+  const blueprint = getExamBlueprint(fieldId);
+  if (!blueprint) return "";
+
+  const slots = allocateQuestionsByBlueprint(questionCount, blueprint, focusSubjectId);
+  const lines = slots.map((slot, i) => {
+    const parts = [
+      `Q${i + 1}: ${slot.categoryLabel}`,
+      slot.subjectIds?.length ? `subjects: ${slot.subjectIds.join(", ")}` : "",
+      slot.highYieldTopics?.length
+        ? `high-yield: ${slot.highYieldTopics.slice(0, 3).join(", ")}`
+        : "",
+      slot.ngnFormat ? `format: ${slot.ngnFormat}` : "format: multiple_choice + vignette",
+    ];
+    return `  ${parts.filter(Boolean).join(" | ")}`;
+  });
+
+  return `
+ITEM-BY-ITEM ALLOCATION (generate each question to match its slot):
+${lines.join("\n")}`;
 }

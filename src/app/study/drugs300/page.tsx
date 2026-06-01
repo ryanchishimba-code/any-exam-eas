@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import { PremiumGate } from "@/components/PremiumGate";
 import { PageShell } from "@/components/PageShell";
 import { StudySubnav } from "@/components/StudySubnav";
 
@@ -31,9 +32,11 @@ export default function Drugs300Page() {
       maxWidth="max-w-6xl"
     >
       <StudySubnav />
-      <Suspense fallback={<p className="mt-8 text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
-        <DrugReviewStudio />
-      </Suspense>
+      <PremiumGate callbackPath="/study/drugs300">
+        <Suspense fallback={<p className="mt-8 text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
+          <DrugReviewStudio />
+        </Suspense>
+      </PremiumGate>
     </PageShell>
   );
 }

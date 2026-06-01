@@ -1,4 +1,9 @@
 import type { ValidationInput, ValidationResult } from "../types";
+import {
+  isDrugCenteredQuestion,
+  isDrugProfileComplete,
+  normalizeDrugProfile,
+} from "../../engine/prompts/pharm-drug-profile";
 
 export function validateNursingExam(input: ValidationInput): ValidationResult {
   const errors: string[] = [];
@@ -10,6 +15,17 @@ export function validateNursingExam(input: ValidationInput): ValidationResult {
     }
     if (q.options && !q.options.includes(q.correctAnswer)) {
       errors.push(`Question ${q.id}: correctAnswer must match an option.`);
+    }
+
+    if (input.subjectId === "pharmacology-nursing" || isDrugCenteredQuestion(q)) {
+      const profile = normalizeDrugProfile(q.drugProfile);
+      if (!profile) {
+        warnings.push(`Question ${q.id}: NCLEX pharm item missing drugProfile.`);
+      } else if (!isDrugProfileComplete(profile)) {
+        warnings.push(`Question ${q.id}: incomplete drugProfile for pharmacology item.`);
+      } else if (!profile.nursingConsiderations?.length) {
+        warnings.push(`Question ${q.id}: add nursingConsiderations to drugProfile (teaching/monitoring/hold criteria).`);
+      }
     }
   }
 

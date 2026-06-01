@@ -611,6 +611,8 @@ export function buildBulkQuestion(
       return buildNursingQuestion(subject, index);
     case "pharmacy":
       return buildPharmacyQuestion(subject, index);
+    case "usmle-step-1":
+    case "usmle-step-2":
     case "medicine":
     default:
       return buildMedicineQuestion(subject, index);
