@@ -1,25 +1,49 @@
 "use client";
 
-import { getSession } from "next-auth/react";
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { getSession } from "next-auth/react";
 import type { LoginMethod } from "@/lib/client/returning-user";
 import { saveReturningUserHint } from "@/lib/client/returning-user";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 
+export type ClientSubscriptionStatus = {
+  hasAccess?: boolean;
+  status?: string;
+  daysRemaining?: number | null;
+  trialEndsAt?: string | null;
+  trialDays?: number;
+};
+
+export async function fetchSubscriptionStatus(): Promise<ClientSubscriptionStatus | null> {
+  try {
+    const statusRes = await fetch("/api/subscription/status", { cache: "no-store" });
+    if (!statusRes.ok) return null;
+    return (await statusRes.json()) as ClientSubscriptionStatus;
+  } catch {
+    return null;
+  }
+}
+
 export async function resolvePostLoginDestination(
-  callbackUrl: string
+  callbackUrl: string,
+  status: ClientSubscriptionStatus | null
 ): Promise<string> {
   const safe = sanitizeCallbackUrl(callbackUrl);
 
-  try {
-    const statusRes = await fetch("/api/subscription/status", { cache: "no-store" });
-    const status = statusRes.ok
-      ? ((await statusRes.json()) as { hasAccess?: boolean })
-      : { hasAccess: false };
-    return status.hasAccess ? safe : "/pricing?paywall=1";
-  } catch {
+  if (!status?.hasAccess) {
+    return "/pricing?paywall=1";
+  }
+
+  if (
+    safe.startsWith("/study") ||
+    safe.startsWith("/generate") ||
+    safe.startsWith("/learn") ||
+    safe.startsWith("/dashboard")
+  ) {
     return safe;
   }
+
+  return "/dashboard";
 }
 
 async function fetchAccountName(): Promise<string | undefined> {
@@ -33,13 +57,18 @@ async function fetchAccountName(): Promise<string | undefined> {
   }
 }
 
+export type CompleteLoginResult = {
+  destination: string;
+  isPremium: boolean;
+};
+
 export async function completeLoginFlow(params: {
   router: AppRouterInstance;
   callbackUrl: string;
   email: string;
   name?: string | null;
   method: LoginMethod;
-}): Promise<void> {
+}): Promise<CompleteLoginResult> {
   const safeCallback = sanitizeCallbackUrl(params.callbackUrl);
   const name = params.name?.trim() || (await fetchAccountName());
 
@@ -52,6 +81,13 @@ export async function completeLoginFlow(params: {
   await getSession();
   params.router.refresh();
 
-  const destination = await resolvePostLoginDestination(safeCallback);
+  const status = await fetchSubscriptionStatus();
+  const destination = await resolvePostLoginDestination(safeCallback, status);
+
   params.router.push(destination);
+
+  return {
+    destination,
+    isPremium: Boolean(status?.hasAccess),
+  };
 }

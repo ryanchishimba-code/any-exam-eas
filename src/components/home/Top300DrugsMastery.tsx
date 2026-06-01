@@ -45,7 +45,7 @@ export function Top300DrugsMastery() {
   return (
     <section
       id="top-300-drugs"
-      className="aee-drugs-section aee-landing-section relative overflow-hidden"
+      className="aee-drugs-section aee-landing-section relative overflow-x-hidden"
       aria-labelledby="top-300-drugs-heading"
     >
       <div className="aee-drugs-section-glow pointer-events-none absolute inset-0" aria-hidden />

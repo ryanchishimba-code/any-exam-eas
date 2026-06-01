@@ -1,34 +1,136 @@
-import { LandingAuthCta } from "@/components/home/LandingAuthCta";
-import { TrustBar } from "@/components/home/TrustBar";
-import { formatMonthlyPrice, formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import { ArrowRight, LogIn } from "lucide-react";
+import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
+import {
+  firstName,
+  loadReturningUserHint,
+  type ReturningUserHint,
+} from "@/lib/client/returning-user";
+import { useUserAccess } from "@/lib/client/use-user-access";
+import {
+  formatMonthlyPrice,
+  formatTrialIntroPrice,
+  formatTrialLabel,
+} from "@/lib/site";
 
 export function HomeBottomCta() {
+  const { data: session, status } = useSession();
+  const { hasPremiumAccess, loading: accessLoading } = useUserAccess();
+  const [hint, setHint] = useState<ReturningUserHint | null>(null);
+
+  useEffect(() => {
+    setHint(loadReturningUserHint());
+  }, []);
+
+  const isAuthed = status === "authenticated" && Boolean(session?.user);
+  const isReturning = !isAuthed && Boolean(hint?.email);
+  const displayName = hint ? firstName(hint.name, hint.email) : null;
+
+  if (accessLoading) return null;
+
+  if (isAuthed && hasPremiumAccess) {
+    return (
+      <section
+        className="aee-bottom-cta relative overflow-hidden text-center"
+        aria-labelledby="home-cta-heading"
+      >
+        <div className="aee-bottom-cta-bg pointer-events-none absolute inset-0" aria-hidden />
+        <div className="relative mx-auto max-w-[640px] px-5 py-16 sm:px-6 sm:py-20">
+          <h2 id="home-cta-heading" className="aee-headline text-white">
+            Keep the momentum going.
+          </h2>
+          <p className="mt-3 text-base text-teal-100/90">
+            Every session builds familiarity with the formats you&apos;ll see on exam day.
+          </p>
+          <Link
+            href="/study/practice?mode=adaptive"
+            className="aee-btn-hero-xl aee-btn-hero-light group mt-8 inline-flex items-center justify-center gap-2"
+          >
+            Start adaptive practice
+            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
+          </Link>
+        </div>
+      </section>
+    );
+  }
+
+  if (isReturning) {
+    return (
+      <section
+        className="aee-bottom-cta relative overflow-hidden text-center"
+        aria-labelledby="home-cta-heading"
+      >
+        <div className="aee-bottom-cta-bg pointer-events-none absolute inset-0" aria-hidden />
+        <div className="relative mx-auto max-w-[640px] px-5 py-16 sm:px-6 sm:py-20">
+          <p className="text-xs font-bold uppercase tracking-wider text-teal-200">
+            Welcome back{displayName ? `, ${displayName}` : ""}
+          </p>
+          <h2 id="home-cta-heading" className="aee-headline mt-2 text-white">
+            Your dashboard is ready.
+          </h2>
+          <p className="mt-3 text-base text-teal-100/90">
+            Log in to pick up practice exams, drug review, and your progress stats.
+          </p>
+          <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+            <LoginModalTrigger
+              callbackUrl="/dashboard"
+              className="aee-btn-hero-xl aee-btn-hero-light group inline-flex items-center justify-center gap-2"
+            >
+              <LogIn className="h-5 w-5" aria-hidden />
+              Log in to dashboard
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
+            </LoginModalTrigger>
+            <Link
+              href="/signup?plan=trial"
+              className="aee-btn-hero-ghost aee-btn-hero-ghost-on-dark inline-flex items-center justify-center gap-2"
+            >
+              New here? Start {formatTrialLabel()}
+            </Link>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section
-      className="apple-section apple-section-alt relative overflow-hidden text-center"
+      className="aee-bottom-cta relative overflow-hidden text-center"
       aria-labelledby="home-cta-heading"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_100%,rgba(20,184,166,0.08),transparent)]"
-        aria-hidden
-      />
-      <div className="relative mx-auto max-w-[1100px] px-5 sm:px-6">
-        <p className="aee-section-label">Get started today</p>
-        <h2 id="home-cta-heading" className="aee-headline mt-4">
-          Start when it works for you.
-        </h2>
-        <p className="mx-auto mt-5 max-w-lg text-[1.1875rem] font-normal leading-[1.47059] tracking-[-0.022em] text-slate-600">
-          {formatTrialIntroPrice()} for {formatTrialLabel()}, then {formatMonthlyPrice()}/month.
-          Access to question practice, AI-assisted exams (verify content independently), and
-          progress tracking.
+      <div className="aee-bottom-cta-bg pointer-events-none absolute inset-0" aria-hidden />
+      <div className="relative mx-auto max-w-[640px] px-5 py-16 sm:px-6 sm:py-20">
+        <p className="text-xs font-bold uppercase tracking-wider text-teal-200">
+          Start before test day catches up
         </p>
-        <div className="mx-auto mt-12 max-w-md">
-          <LandingAuthCta callbackUrl="/dashboard" />
+        <h2 id="home-cta-heading" className="aee-headline mt-2 text-white">
+          Invest {formatTrialIntroPrice()} in passing the first time.
+        </h2>
+        <p className="mt-3 text-base text-teal-100/90">
+          {formatTrialLabel()} of full access — adaptive practice, progress tracking,
+          and 130K+ questions for {formatMonthlyPrice()}/mo after.
+        </p>
+        <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+          <Link
+            href="/signup?plan=trial"
+            className="aee-btn-hero-xl aee-btn-hero-light group inline-flex items-center justify-center gap-2"
+          >
+            Start {formatTrialLabel()} — {formatTrialIntroPrice()}
+            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
+          </Link>
+          <LoginModalTrigger
+            callbackUrl="/dashboard"
+            className="aee-btn-hero-ghost aee-btn-hero-ghost-on-dark inline-flex items-center justify-center gap-2"
+          >
+            <LogIn className="h-4 w-4" aria-hidden />
+            Already subscribed? Log in
+          </LoginModalTrigger>
         </div>
-        <TrustBar className="mt-8" />
-        <p className="mx-auto mt-6 max-w-lg text-center text-[0.6875rem] leading-relaxed text-slate-500">
-          Study support only. Individual results vary. No guarantee of exam scores,
-          licensure, or employment outcomes.
+        <p className="mx-auto mt-6 max-w-sm text-xs text-teal-200/70">
+          Join students across NCLEX, USMLE, and NAPLEX who prep smarter — not longer.
         </p>
       </div>
     </section>

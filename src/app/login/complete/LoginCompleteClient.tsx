@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
@@ -11,6 +11,7 @@ export function LoginCompleteClient() {
   const searchParams = useSearchParams();
   const { data: session, status } = useSession();
   const started = useRef(false);
+  const [message, setMessage] = useState("Signing you in…");
 
   const callbackUrl = sanitizeCallbackUrl(searchParams.get("callbackUrl"));
 
@@ -28,18 +29,25 @@ export function LoginCompleteClient() {
     if (!email) return;
 
     started.current = true;
-    void completeLoginFlow({
-      router,
-      callbackUrl,
-      email,
-      name: session.user?.name,
-      method: "google",
-    });
+    void (async () => {
+      const result = await completeLoginFlow({
+        router,
+        callbackUrl,
+        email,
+        name: session.user?.name,
+        method: "google",
+      });
+      setMessage(
+        result.isPremium
+          ? "Welcome back! Opening your dashboard…"
+          : "Welcome back! Almost there…"
+      );
+    })();
   }, [callbackUrl, router, session?.user?.email, session?.user?.name, status]);
 
   return (
     <div
-      className="flex min-h-[40vh] flex-col items-center justify-center gap-3 px-6 pt-24"
+      className="flex min-h-[40vh] flex-col items-center justify-center gap-4 px-6 pt-24"
       aria-live="polite"
       aria-busy="true"
     >
@@ -47,7 +55,7 @@ export function LoginCompleteClient() {
         className="inline-block h-8 w-8 animate-spin rounded-full border-2 border-[var(--color-accent)] border-t-transparent"
         aria-hidden
       />
-      <p className="text-sm text-[var(--color-ink-muted)]">Signing you in…</p>
+      <p className="max-w-sm text-center text-sm text-[var(--color-ink-muted)]">{message}</p>
     </div>
   );
 }

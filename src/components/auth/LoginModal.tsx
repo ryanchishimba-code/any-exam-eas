@@ -17,7 +17,7 @@ type LoginModalProps = {
   callbackUrl?: string;
 };
 
-export function LoginModal({ open, onClose, callbackUrl = "/study" }: LoginModalProps) {
+export function LoginModal({ open, onClose, callbackUrl = "/dashboard" }: LoginModalProps) {
   const [hint, setHint] = useState<ReturnType<typeof loadReturningUserHint>>(null);
 
   useEffect(() => {
@@ -100,7 +100,7 @@ export function LoginModal({ open, onClose, callbackUrl = "/study" }: LoginModal
                     <span className="font-medium text-white">{maskEmail(hint.email)}</span>
                   </>
                 ) : (
-                  <>Pick up your exams, streaks, and board prep where you left off.</>
+                  <>One tap to your dashboard — practice exams, drugs, and progress.</>
                 )}
               </p>
             </div>

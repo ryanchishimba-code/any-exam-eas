@@ -14,7 +14,7 @@ import { AppleLink } from "@/components/ui/AppleLink";
 import { ProgressMetricsNotice } from "@/components/legal/ProgressMetricsNotice";
 import { formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
 
-export function StudentHub() {
+export function StudentHub({ suppressHero = false }: { suppressHero?: boolean }) {
   const { data: session } = useSession();
   const [dashboard, setDashboard] = useState<StudentDashboardData | null>(null);
   const [subjects, setSubjects] = useState<SubjectCatalogEntry[]>([]);
@@ -45,6 +45,7 @@ export function StudentHub() {
 
   return (
     <div className="space-y-16">
+      {!suppressHero && (
       <motion.section
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -108,6 +109,7 @@ export function StudentHub() {
           <div className="h-24 w-24 animate-pulse rounded-full bg-black/[0.04]" />
         )}
       </motion.section>
+      )}
 
       {session?.user && (
         <section className="flex flex-wrap gap-x-8 gap-y-2 border-y border-black/[0.06] py-6">

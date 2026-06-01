@@ -1,39 +1,11 @@
-import Link from "next/link";
 import type { SubscriptionAccess } from "@/lib/subscription-access";
-import { formatMonthlyPrice } from "@/lib/site";
+import Link from "next/link";
 import { SubscribeButton } from "./SubscribeButton";
 
+/** Monetization banners — hidden for users with full premium access. */
 export function SubscriptionBanner({ access }: { access: SubscriptionAccess }) {
-  if (access.status === "trialing" && access.hasAccess && access.daysRemaining != null) {
-    const urgent = access.daysRemaining <= 2;
-    return (
-      <div
-        className={`mt-8 rounded-2xl border px-5 py-4 ${
-          urgent
-            ? "border-amber-300 bg-amber-50"
-            : "border-[var(--color-border)] bg-[var(--color-surface-elevated)]"
-        }`}
-      >
-        <p className="text-sm font-medium text-[var(--color-ink)]">
-          Free trial · {access.daysRemaining} day{access.daysRemaining === 1 ? "" : "s"} left
-        </p>
-        <p className="mt-1 text-xs text-[var(--color-ink-muted)]">
-          After your trial, access continues at {formatMonthlyPrice()}/month.{" "}
-          <Link href="/pricing" className="text-[var(--color-accent)] hover:underline">
-            View pricing
-          </Link>
-        </p>
-        {urgent && (
-          <div className="mt-3">
-            <SubscribeButton
-              label="Subscribe before trial ends"
-              variant="secondary"
-              className="!inline-block"
-            />
-          </div>
-        )}
-      </div>
-    );
+  if (access.hasAccess) {
+    return null;
   }
 
   if (access.status === "trial_expired") {
@@ -50,17 +22,22 @@ export function SubscriptionBanner({ access }: { access: SubscriptionAccess }) {
     );
   }
 
-  if (access.status === "active") {
-    return (
-      <p className="mt-6 text-sm text-[var(--color-ink-muted)]">
-        Subscription:{" "}
-        <span className="inline-flex items-center gap-1 font-medium text-[var(--a11y-correct-fg)]">
-          <span className="h-2 w-2 rounded-full bg-[var(--a11y-success-border)]" aria-hidden />
-          Active
-        </span>
-      </p>
-    );
+  if (!access.canStartCheckout) {
+    return null;
   }
 
-  return null;
+  return (
+    <div className="mt-8 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-5 py-4">
+      <p className="text-sm font-medium text-[var(--color-ink)]">Unlock full study access</p>
+      <p className="mt-1 text-xs text-[var(--color-ink-muted)]">
+        Get board-style exams, adaptive practice, and progress tracking.{" "}
+        <Link href="/pricing" className="text-[var(--color-accent)] hover:underline">
+          View plans
+        </Link>
+      </p>
+      <div className="mt-3">
+        <SubscribeButton variant="secondary" />
+      </div>
+    </div>
+  );
 }

@@ -25,9 +25,9 @@ const LoginModalContext = createContext<LoginModalContextValue | null>(null);
 export function LoginModalProvider({ children }: { children: ReactNode }) {
   const searchParams = useSearchParams();
   const [open, setOpen] = useState(false);
-  const [callbackUrl, setCallbackUrl] = useState("/study");
+  const [callbackUrl, setCallbackUrl] = useState("/dashboard");
 
-  const openLoginModal = useCallback((url = "/study") => {
+  const openLoginModal = useCallback((url = "/dashboard") => {
     setCallbackUrl(url);
     setOpen(true);
   }, []);

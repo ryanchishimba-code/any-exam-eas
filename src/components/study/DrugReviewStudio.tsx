@@ -180,7 +180,7 @@ export function DrugReviewStudio() {
       )}
 
       <div className="space-y-4">
-        <DrugSearch onSelect={handleDrugSelect} />
+        <DrugSearch onSelect={handleDrugSelect} portaled={false} />
         {selectedDrug && (
           <DrugSearchPreview drug={selectedDrug} onClose={() => setSelectedDrug(null)} />
         )}

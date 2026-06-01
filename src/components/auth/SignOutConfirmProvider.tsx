@@ -39,9 +39,11 @@ export function SignOutConfirmProvider({ children }: { children: ReactNode }) {
   const confirmSignOut = useCallback(async () => {
     if (signingOut) return;
     setSigningOut(true);
-    await signOutAndCleanup(optionsRef.current);
-    setSigningOut(false);
-    setConfirmOpen(false);
+    const result = await signOutAndCleanup(optionsRef.current);
+    if (!result.ok || !optionsRef.current.redirect) {
+      setSigningOut(false);
+      setConfirmOpen(false);
+    }
   }, [signingOut]);
 
   const value = useMemo(

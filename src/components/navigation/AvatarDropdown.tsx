@@ -2,16 +2,21 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   BarChart3,
+  BookOpen,
   ChevronDown,
+  LayoutDashboard,
   LogOut,
-  Settings,
   User,
 } from "lucide-react";
 import { firstName } from "@/lib/client/returning-user";
+import { useUserAccess } from "@/lib/client/use-user-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
+import { useClickOutside } from "@/hooks/useClickOutside";
 
 function initials(name?: string | null, email?: string | null) {
   if (name?.trim()) {
@@ -26,44 +31,69 @@ function initials(name?: string | null, email?: string | null) {
 }
 
 export function AvatarDropdown() {
+  const pathname = usePathname();
   const { data: session } = useSession();
+  const { hasPremiumAccess } = useUserAccess();
   const menuId = useId();
   const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const { signingOut, requestSignOut } = useSignOutConfirm({ callbackUrl: "/" });
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   const close = useCallback(() => {
     setOpen(false);
-    triggerRef.current?.focus();
   }, []);
 
-  const menuItems = [
-    {
-      href: "/dashboard",
-      label: "Profile",
-      description: "Account & subscription",
-      icon: User,
-    },
-    {
-      href: "/study/analytics",
-      label: "Progress & Analytics",
-      description: "Progress, streaks, weak areas",
-      icon: BarChart3,
-    },
-    {
-      href: "/pricing",
-      label: "Settings",
-      description: "Plan & billing",
-      icon: Settings,
-    },
-  ] as const;
+  useClickOutside(rootRef, close, open);
+
+  useEffect(() => {
+    close();
+  }, [close, pathname]);
+
+  useEffect(() => {
+    function onCloseMenus() {
+      close();
+    }
+    document.addEventListener("aee:close-menus", onCloseMenus);
+    return () => document.removeEventListener("aee:close-menus", onCloseMenus);
+  }, [close]);
+
+  const menuItems = hasPremiumAccess
+    ? [
+        {
+          href: "/dashboard",
+          label: "Dashboard",
+          description: "Your study command center",
+          icon: LayoutDashboard,
+        },
+        {
+          href: "/study",
+          label: "Study hub",
+          description: "Practice modes & subjects",
+          icon: BookOpen,
+        },
+        {
+          href: "/study/analytics",
+          label: "Progress & Analytics",
+          description: "Streaks, trends & weak areas",
+          icon: BarChart3,
+        },
+      ]
+    : [
+        {
+          href: "/dashboard",
+          label: "Profile",
+          description: "Account overview",
+          icon: User,
+        },
+        {
+          href: "/study/analytics",
+          label: "Progress & Analytics",
+          description: "Progress, streaks, weak areas",
+          icon: BarChart3,
+        },
+      ];
 
   const focusMenuItem = useCallback((index: number) => {
     const items = menuRef.current?.querySelectorAll<HTMLElement>('[role="menuitem"]');
@@ -73,13 +103,11 @@ export function AvatarDropdown() {
   useEffect(() => {
     if (!open) return;
 
-    function onPointerDown(e: PointerEvent) {
-      if (!rootRef.current?.contains(e.target as Node)) close();
-    }
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") {
         e.preventDefault();
         close();
+        triggerRef.current?.focus();
         return;
       }
       if (!menuRef.current?.contains(e.target as Node) && e.key !== "Tab") return;
@@ -106,15 +134,16 @@ export function AvatarDropdown() {
       }
     }
 
-    document.addEventListener("pointerdown", onPointerDown);
     document.addEventListener("keydown", onKeyDown);
     requestAnimationFrame(() => focusMenuItem(0));
 
-    return () => {
-      document.removeEventListener("pointerdown", onPointerDown);
-      document.removeEventListener("keydown", onKeyDown);
-    };
+    return () => document.removeEventListener("keydown", onKeyDown);
   }, [close, focusMenuItem, open]);
+
+  function handleToggle() {
+    if (signingOut) return;
+    setOpen((v) => !v);
+  }
 
   function handleSignOutRequest() {
     close();
@@ -138,7 +167,7 @@ export function AvatarDropdown() {
         aria-controls={open ? menuId : undefined}
         aria-label={`Account menu for ${display}`}
         disabled={signingOut}
-        onClick={() => setOpen((v) => !v)}
+        onClick={handleToggle}
       >
         <span className="aee-avatar-circle" aria-hidden>
           {initials(name, email)}
@@ -152,69 +181,75 @@ export function AvatarDropdown() {
         />
       </button>
 
-      {mounted && open && (
-        <div
-          ref={menuRef}
-          id={menuId}
-          className="aee-avatar-menu aee-avatar-menu-enter"
-          role="menu"
-          aria-label="Account"
-        >
-          <div className="border-b border-black/[0.06] px-4 py-3">
-            <p className="truncate text-sm font-semibold text-[var(--color-ink)]">
-              {name ?? display}
-            </p>
-            {email && (
-              <p className="mt-0.5 truncate text-xs text-[var(--color-ink-muted)]">
-                {email}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            ref={menuRef}
+            id={menuId}
+            className="aee-avatar-menu"
+            role="menu"
+            aria-label="Account"
+            initial={{ opacity: 0, y: -6, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -4, scale: 0.98 }}
+            transition={{ duration: 0.18, ease: [0.2, 0.8, 0.2, 1] }}
+          >
+            <div className="border-b border-black/[0.06] px-4 py-3">
+              <p className="truncate text-sm font-semibold text-[var(--color-ink)]">
+                {name ?? display}
               </p>
-            )}
-          </div>
+              {email && (
+                <p className="mt-0.5 truncate text-xs text-[var(--color-ink-muted)]">
+                  {email}
+                </p>
+              )}
+            </div>
 
-          <ul className="py-1.5" role="none">
-            {menuItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <li key={item.label} role="none">
-                  <Link
-                    href={item.href}
-                    role="menuitem"
-                    tabIndex={-1}
-                    className="aee-avatar-menu-item"
-                    onClick={() => setOpen(false)}
-                  >
-                    <span className="aee-avatar-menu-icon" aria-hidden>
-                      <Icon className="h-4 w-4" strokeWidth={2} />
-                    </span>
-                    <span>
-                      <span className="block text-sm font-medium text-[var(--color-ink)]">
-                        {item.label}
+            <ul className="py-1.5" role="none">
+              {menuItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <li key={item.label} role="none">
+                    <Link
+                      href={item.href}
+                      role="menuitem"
+                      tabIndex={-1}
+                      className="aee-avatar-menu-item"
+                      onClick={close}
+                    >
+                      <span className="aee-avatar-menu-icon" aria-hidden>
+                        <Icon className="h-4 w-4" strokeWidth={2} />
                       </span>
-                      <span className="block text-[0.6875rem] text-[var(--color-ink-muted)]">
-                        {item.description}
+                      <span>
+                        <span className="block text-sm font-medium text-[var(--color-ink)]">
+                          {item.label}
+                        </span>
+                        <span className="block text-[0.6875rem] text-[var(--color-ink-muted)]">
+                          {item.description}
+                        </span>
                       </span>
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
 
-          <div className="border-t border-black/[0.06] p-2">
-            <button
-              type="button"
-              role="menuitem"
-              tabIndex={-1}
-              className="aee-avatar-signout"
-              disabled={signingOut}
-              onClick={handleSignOutRequest}
-            >
-              <LogOut className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
-              {signingOut ? "Signing out…" : "Sign out"}
-            </button>
-          </div>
-        </div>
-      )}
+            <div className="border-t border-black/[0.06] p-2">
+              <button
+                type="button"
+                role="menuitem"
+                tabIndex={-1}
+                className="aee-avatar-signout"
+                disabled={signingOut}
+                onClick={handleSignOutRequest}
+              >
+                <LogOut className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
+                {signingOut ? "Signing out…" : "Sign out"}
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

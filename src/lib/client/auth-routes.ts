@@ -1,7 +1,7 @@
 /** Safe in-app redirect target after sign-in (blocks open redirects and auth loops). */
 export function sanitizeCallbackUrl(
   raw: string | null | undefined,
-  fallback = "/study"
+  fallback = "/dashboard"
 ): string {
   if (!raw || typeof raw !== "string") return fallback;
   const trimmed = raw.trim();

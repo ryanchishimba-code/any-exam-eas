@@ -36,7 +36,7 @@ function displayMethod(method?: LoginMethod): string | null {
   return method;
 }
 
-export function LoginPanel({ callbackUrl = "/study", onSuccess }: LoginPanelProps) {
+export function LoginPanel({ callbackUrl = "/dashboard", onSuccess }: LoginPanelProps) {
   const router = useRouter();
   const safeCallbackUrl = sanitizeCallbackUrl(callbackUrl);
   const [hint, setHint] = useState<ReturningUserHint | null>(null);
@@ -45,6 +45,8 @@ export function LoginPanel({ callbackUrl = "/study", onSuccess }: LoginPanelProp
   const [error, setError] = useState("");
   const [configWarning, setConfigWarning] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [redirecting, setRedirecting] = useState(false);
+  const [redirectMessage, setRedirectMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const stored = loadReturningUserHint();
@@ -88,23 +90,32 @@ export function LoginPanel({ callbackUrl = "/study", onSuccess }: LoginPanelProp
 
       if (!res) {
         setError("Sign-in service did not respond. Try again in a moment.");
+        setLoading(false);
         return;
       }
       if (res.error) {
         setError(messageForSignInError(res.error));
+        setLoading(false);
         return;
       }
 
       onSuccess?.();
-      await completeLoginFlow({
+      setRedirecting(true);
+      const result = await completeLoginFlow({
         router,
         callbackUrl: safeCallbackUrl,
         email: trimmedEmail,
         method: "email",
       });
+      setRedirectMessage(
+        result.isPremium
+          ? "Welcome back! Opening your dashboard…"
+          : "Welcome back! Almost there…"
+      );
     } catch (err) {
+      setRedirecting(false);
+      setRedirectMessage(null);
       setError(messageFromUnknownAuthError(err));
-    } finally {
       setLoading(false);
     }
   }
@@ -112,9 +123,13 @@ export function LoginPanel({ callbackUrl = "/study", onSuccess }: LoginPanelProp
   const googleEnabled = process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED === "true";
   const googleHighlighted = hint?.lastMethod === "google" || hint?.lastMethod === "apple";
 
+  const busy = loading || redirecting;
+
   return (
     <div className="space-y-5">
-      {lastMethodLabel && (
+      {redirectMessage && <StatusMessage variant="success">{redirectMessage}</StatusMessage>}
+
+      {lastMethodLabel && !redirecting && (
         <p className="text-center text-xs text-[var(--color-ink-muted)]">
           Last signed in with{" "}
           <span className="font-medium capitalize text-[var(--color-ink)]">{lastMethodLabel}</span>
@@ -150,6 +165,7 @@ export function LoginPanel({ callbackUrl = "/study", onSuccess }: LoginPanelProp
           autoComplete="email"
           placeholder="Email"
           value={email}
+          disabled={busy}
           onChange={(e) => setEmail(e.target.value)}
           onBlur={(e) =>
             rememberEmail(e.target.value, { name: hint?.name, lastMethod: hint?.lastMethod })
@@ -162,6 +178,7 @@ export function LoginPanel({ callbackUrl = "/study", onSuccess }: LoginPanelProp
           autoComplete="current-password"
           placeholder="Password"
           value={password}
+          disabled={busy}
           onChange={(e) => setPassword(e.target.value)}
           className="apple-input"
         />
@@ -176,11 +193,17 @@ export function LoginPanel({ callbackUrl = "/study", onSuccess }: LoginPanelProp
         {error && <InlineError>{error}</InlineError>}
         <button
           type="submit"
-          disabled={loading || !!configWarning}
+          disabled={busy || !!configWarning}
           className="login-modal-btn-primary w-full"
         >
           <Lock className="h-4 w-4" aria-hidden />
-          {loading ? "Signing in…" : displayName ? `Log in as ${displayName}` : "Log in"}
+          {redirecting
+            ? "Welcome back…"
+            : loading
+              ? "Signing in…"
+              : displayName
+                ? `Continue as ${displayName}`
+                : "Log in"}
         </button>
       </form>
 

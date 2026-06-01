@@ -59,6 +59,10 @@ export function DashboardClient({
     }
   }
 
+  if (compact && access.hasAccess) {
+    return null;
+  }
+
   return (
     <div className="mt-10 space-y-12">
       {!compact && (

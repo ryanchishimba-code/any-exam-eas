@@ -3,24 +3,44 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { BarChart3, LogOut, Menu, Settings, User, X } from "lucide-react";
-import { useEffect, useId, useRef, useState } from "react";
+import {
+  BarChart3,
+  LayoutDashboard,
+  LogIn,
+  LogOut,
+  Menu,
+  X,
+} from "lucide-react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { AvatarDropdown } from "@/components/navigation/AvatarDropdown";
+import { useUserAccess } from "@/lib/client/use-user-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
+import { useClickOutside } from "@/hooks/useClickOutside";
 
-const links = [
+type NavLink = { href: string; label: string };
+
+const guestLinks: NavLink[] = [
   { href: "/study", label: "Study" },
   { href: "/generate", label: "Exams" },
   { href: "/study/drugs300", label: "Top 500 Drugs" },
-  { href: "/dashboard", label: "Dashboard" },
   { href: "/pricing", label: "Pricing" },
+];
+
+const premiumLinks: NavLink[] = [
+  { href: "/dashboard", label: "Dashboard" },
+  { href: "/study", label: "Study" },
+  { href: "/generate", label: "Exams" },
+  { href: "/study/drugs300", label: "Top 500 Drugs" },
+  { href: "/study/analytics", label: "Analytics" },
 ];
 
 function navClass(active: boolean) {
   return active
     ? "font-semibold text-[var(--color-ink)] underline decoration-2 underline-offset-4 decoration-[var(--color-accent)]"
-    : "text-[var(--color-ink)] opacity-80 hover:opacity-100 hover:underline hover:underline-offset-4";
+    : "text-[var(--color-ink)] opacity-80 hover:opacity-100 hover:underline hover:underline-offset-4 transition-opacity duration-200";
 }
 
 export function Navigation() {
@@ -29,10 +49,21 @@ export function Navigation() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const { data: session, status } = useSession();
+  const { hasPremiumAccess, loading: accessLoading } = useUserAccess();
   const { signingOut, requestSignOut } = useSignOutConfirm({ callbackUrl: "/" });
 
   const isAuthenticated = status === "authenticated" && Boolean(session?.user);
-  const authReady = status !== "loading";
+  const authReady = status !== "loading" && !accessLoading;
+
+  const links = useMemo(
+    () => (isAuthenticated && hasPremiumAccess ? premiumLinks : guestLinks),
+    [hasPremiumAccess, isAuthenticated]
+  );
+
+  const closeMobile = useCallback(() => setOpen(false), []);
+
+  useBodyScrollLock(open);
+  useClickOutside(headerRef, closeMobile, open);
 
   function isActive(href: string) {
     if (href === "/") return pathname === "/";
@@ -40,26 +71,34 @@ export function Navigation() {
   }
 
   useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+    closeMobile();
+  }, [closeMobile, pathname]);
 
   useEffect(() => {
     if (!open) return;
 
-    function onPointerDown(event: PointerEvent) {
-      if (!headerRef.current?.contains(event.target as Node)) {
-        setOpen(false);
-      }
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") closeMobile();
     }
 
-    document.addEventListener("pointerdown", onPointerDown);
-    return () => document.removeEventListener("pointerdown", onPointerDown);
-  }, [open]);
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [closeMobile, open]);
+
+  function toggleMobile() {
+    setOpen((v) => {
+      const next = !v;
+      if (next) document.dispatchEvent(new CustomEvent("aee:close-menus"));
+      return next;
+    });
+  }
 
   function handleMobileSignOutRequest() {
-    setOpen(false);
+    closeMobile();
     requestSignOut();
   }
+
+  const brandHref = isAuthenticated && hasPremiumAccess ? "/dashboard" : "/";
 
   return (
     <header
@@ -67,22 +106,19 @@ export function Navigation() {
       className="apple-glass aee-nav fixed top-0 z-50 w-full"
     >
       <nav
-        className="mx-auto flex h-12 max-w-[1080px] items-center justify-between gap-4 px-5 sm:px-6 md:h-[3.25rem]"
+        className="aee-nav-inner mx-auto max-w-[1140px] px-5 sm:px-6"
         aria-label="Main navigation"
       >
-        <Link
-          href="/"
-          className="shrink-0 text-[0.8125rem] font-semibold tracking-tight text-[var(--color-ink)] transition-opacity hover:opacity-80"
-        >
+        <Link href={brandHref} className="aee-nav-brand">
           Any Exam Easy
         </Link>
 
-        <ul className="hidden min-w-0 flex-1 items-center justify-center gap-6 lg:flex" role="list">
+        <ul className="aee-nav-links hidden lg:flex" role="list">
           {links.map((l) => (
             <li key={l.href}>
               <Link
                 href={l.href}
-                className={`text-xs transition-opacity duration-200 ${navClass(isActive(l.href))}`}
+                className={`text-xs ${navClass(isActive(l.href))}`}
                 aria-current={isActive(l.href) ? "page" : undefined}
               >
                 {l.label}
@@ -91,29 +127,35 @@ export function Navigation() {
           ))}
         </ul>
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="aee-nav-actions">
           {!authReady ? (
             <span
-              className="inline-block h-8 w-20 animate-pulse rounded-full bg-black/[0.06]"
+              className="inline-block h-9 w-28 animate-pulse rounded-full bg-black/[0.06]"
               aria-hidden
             />
           ) : isAuthenticated ? (
             <AvatarDropdown />
           ) : (
-            <>
-              <LoginModalTrigger className="hidden text-xs font-medium text-[var(--color-ink)] opacity-80 transition-opacity hover:opacity-100 lg:inline">
+            <div className="aee-nav-auth-group">
+              <LoginModalTrigger
+                callbackUrl="/dashboard"
+                className="aee-nav-login"
+                aria-label="Log in to your account"
+              >
+                <LogIn className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden />
                 Log in
               </LoginModalTrigger>
-              <Link href="/signup?plan=trial" className="aee-nav-cta hidden lg:inline-flex">
-                Start free trial
+              <Link href="/signup?plan=trial" className="aee-nav-cta">
+                <span className="hidden min-[420px]:inline">Start free trial</span>
+                <span className="min-[420px]:hidden">Start trial</span>
               </Link>
-            </>
+            </div>
           )}
 
           <button
             type="button"
-            className="rounded-lg p-1.5 text-[var(--color-ink)] opacity-80 transition hover:bg-black/[0.04] hover:opacity-100 lg:hidden"
-            onClick={() => setOpen(!open)}
+            className="aee-nav-menu-btn lg:hidden"
+            onClick={toggleMobile}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             aria-controls={mobileMenuId}
@@ -123,67 +165,79 @@ export function Navigation() {
         </div>
       </nav>
 
-      {open && (
-        <div
-          id={mobileMenuId}
-          className="aee-mobile-nav border-t border-black/[0.04] bg-[rgba(251,251,253,0.98)] px-5 py-4 backdrop-blur-xl lg:hidden"
-        >
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className={`block py-2.5 text-sm ${navClass(isActive(l.href))}`}
-              aria-current={isActive(l.href) ? "page" : undefined}
-              onClick={() => setOpen(false)}
-            >
-              {l.label}
-            </Link>
-          ))}
-          {authReady && !isAuthenticated && (
-            <>
-              <LoginModalTrigger
-                className="mt-2 block w-full py-2.5 text-left text-sm text-[var(--color-ink)]"
-                onClick={() => setOpen(false)}
-              >
-                Log in
-              </LoginModalTrigger>
-              <Link
-                href="/signup?plan=trial"
-                className="aee-nav-cta mt-3 block py-3 text-center text-sm"
-                onClick={() => setOpen(false)}
-              >
-                Start free trial
-              </Link>
-            </>
-          )}
-          {authReady && isAuthenticated && (
-            <div className="mt-3 space-y-1 border-t border-black/[0.06] pt-3">
-              <Link href="/dashboard" className="aee-mobile-nav-item" onClick={() => setOpen(false)}>
-                <User className="h-4 w-4" aria-hidden /> Profile
-              </Link>
-              <Link
-                href="/study/analytics"
-                className="aee-mobile-nav-item"
-                onClick={() => setOpen(false)}
-              >
-                <BarChart3 className="h-4 w-4" aria-hidden /> Progress &amp; Analytics
-              </Link>
-              <Link href="/pricing" className="aee-mobile-nav-item" onClick={() => setOpen(false)}>
-                <Settings className="h-4 w-4" aria-hidden /> Settings
-              </Link>
-              <button
-                type="button"
-                className="aee-mobile-nav-signout"
-                disabled={signingOut}
-                onClick={handleMobileSignOutRequest}
-              >
-                <LogOut className="h-4 w-4" aria-hidden />
-                {signingOut ? "Signing out…" : "Sign out"}
-              </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id={mobileMenuId}
+            className="aee-mobile-nav border-t border-black/[0.04] bg-[rgba(251,251,253,0.98)] px-5 backdrop-blur-xl lg:hidden"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
+          >
+            <div className="overflow-hidden py-4">
+              {links.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className={`block py-2.5 text-sm ${navClass(isActive(l.href))}`}
+                  aria-current={isActive(l.href) ? "page" : undefined}
+                  onClick={closeMobile}
+                >
+                  {l.label}
+                </Link>
+              ))}
+              {authReady && !isAuthenticated && (
+                <div className="mt-3 space-y-2 border-t border-black/[0.06] pt-3">
+                  <LoginModalTrigger
+                    callbackUrl="/dashboard"
+                    className="aee-nav-login aee-nav-login-mobile w-full"
+                    onClick={closeMobile}
+                  >
+                    <LogIn className="h-4 w-4" strokeWidth={2.25} aria-hidden />
+                    Log in
+                  </LoginModalTrigger>
+                  <Link
+                    href="/signup?plan=trial"
+                    className="aee-nav-cta block py-3 text-center text-sm"
+                    onClick={closeMobile}
+                  >
+                    Start free trial
+                  </Link>
+                </div>
+              )}
+              {authReady && isAuthenticated && (
+                <div className="mt-3 space-y-1 border-t border-black/[0.06] pt-3">
+                  <Link href="/dashboard" className="aee-mobile-nav-item" onClick={closeMobile}>
+                    <LayoutDashboard className="h-4 w-4" aria-hidden /> Dashboard
+                  </Link>
+                  <Link
+                    href="/study/analytics"
+                    className="aee-mobile-nav-item"
+                    onClick={closeMobile}
+                  >
+                    <BarChart3 className="h-4 w-4" aria-hidden /> Progress &amp; Analytics
+                  </Link>
+                  {!hasPremiumAccess && (
+                    <Link href="/pricing" className="aee-mobile-nav-item" onClick={closeMobile}>
+                      Pricing
+                    </Link>
+                  )}
+                  <button
+                    type="button"
+                    className="aee-mobile-nav-signout"
+                    disabled={signingOut}
+                    onClick={handleMobileSignOutRequest}
+                  >
+                    <LogOut className="h-4 w-4" aria-hidden />
+                    {signingOut ? "Signing out…" : "Sign out"}
+                  </button>
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

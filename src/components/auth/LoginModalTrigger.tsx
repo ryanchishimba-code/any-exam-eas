@@ -1,20 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { useLoginModalOptional } from "./LoginModalProvider";
 
 type LoginModalTriggerProps = {
-  children: React.ReactNode;
+  children: ReactNode;
   callbackUrl?: string;
   className?: string;
   onClick?: () => void;
-};
+} & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick" | "className" | "children">;
 
 export function LoginModalTrigger({
   children,
-  callbackUrl = "/study",
+  callbackUrl = "/dashboard",
   className,
   onClick,
+  ...props
 }: LoginModalTriggerProps) {
   const modal = useLoginModalOptional();
 
@@ -34,6 +36,7 @@ export function LoginModalTrigger({
         onClick?.();
         modal.openLoginModal(callbackUrl);
       }}
+      {...props}
     >
       {children}
     </button>
