@@ -33,7 +33,7 @@ export type ExamBlueprint = {
 /** NCSBN NCLEX-RN Client Needs (approximate item distribution). */
 const NCLEX_RN: ExamBlueprint = {
   fieldId: "nursing",
-  examName: "NCLEX NGN",
+  examName: "NCLEX",
   sourceNote: "NCSBN NCLEX-RN Test Plan + Clinical Judgment Measurement Model (CJMM)",
   vignetteMinRatio: 0.65,
   ngnMix: [

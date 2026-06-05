@@ -13,9 +13,9 @@ import { extractNursingConcepts } from "./concepts";
 export const nursingModule: SubjectModule = {
   metadata: {
     id: "nursing",
-    label: "NCLEX NGN",
+    label: "NCLEX",
     category: "professional",
-    boardExam: "NCLEX NGN",
+    boardExam: "NCLEX",
     examFocus:
       "NCLEX prioritization, safety, infection control, pharmacology, med-surg, maternal-child, psychosocial care",
     topicPlaceholder: "Select NCLEX category (e.g. Pharmacological Therapies)",

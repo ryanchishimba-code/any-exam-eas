@@ -13,7 +13,7 @@ const signals = [
   },
   {
     icon: Award,
-    value: "NCLEX NGN",
+    value: "NCLEX",
     label: "USMLE · NAPLEX",
   },
   {

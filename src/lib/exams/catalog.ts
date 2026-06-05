@@ -20,7 +20,7 @@ export type ExamHubConfig = ExamHubMeta & {
 export const EXAM_HUBS: ExamHubConfig[] = [
   {
     slug: "nclex",
-    title: "NCLEX NGN Prep",
+    title: "NCLEX",
     subtitle: "Clinical judgment, NGN formats, and high-yield nursing scenarios.",
     fieldId: "nursing",
     icon: Activity,

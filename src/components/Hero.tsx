@@ -88,7 +88,7 @@ export function Hero() {
           <header className="text-center lg:text-left">
             <p className="aee-hero-exam-pill aee-reveal mx-auto lg:mx-0">
               <Sparkles className="h-3 w-3" aria-hidden />
-              NCLEX NGN · USMLE · NAPLEX
+              NCLEX · USMLE · NAPLEX
             </p>
 
             <h1

@@ -13,7 +13,7 @@ import {
 export const premiumFeatures = [
   {
     href: "/study/practice?field=nursing",
-    label: "Start NCLEX NGN Practice",
+    label: "Start NCLEX Practice",
     description: "NGN cases, SATA & prioritization",
     icon: ClipboardList,
     accent: "#5856d6",

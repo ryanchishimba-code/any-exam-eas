@@ -30,7 +30,7 @@ const DISPLAY_OVERRIDES: Partial<
 > = {
   nursing: {
     description:
-      "NCLEX NGN unfolding cases, bow-tie, matrix items — plus classic prioritization and SATA.",
+      "NCLEX unfolding cases, bow-tie, matrix items — plus classic prioritization and SATA.",
     accent: "#5856d6",
     accentMuted: "rgba(88, 86, 214, 0.12)",
     trending: true,

@@ -42,7 +42,7 @@ export default async function DashboardPage() {
         <section>
           <h2 className="text-lg font-semibold text-slate-900">Choose your exam</h2>
           <p className="mt-1 text-sm text-slate-600">
-            NCLEX NGN, USMLE, NAPLEX, and Top 500 — one adaptive engine.
+            NCLEX, USMLE, NAPLEX, and Top 500 — one adaptive engine.
           </p>
           <div className="mt-4">
             <ExamSelectorCards />

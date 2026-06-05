@@ -40,7 +40,7 @@ export function LiveBankStats({ className = "" }: { className?: string }) {
     },
     {
       icon: Layers,
-      value: nursing > 0 ? formatCount(nursing) : "NCLEX NGN",
+      value: nursing > 0 ? formatCount(nursing) : "NCLEX",
       label: "Nursing bank",
     },
   ];

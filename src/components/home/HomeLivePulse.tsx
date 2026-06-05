@@ -16,7 +16,7 @@ export function HomeLivePulse() {
     >
       <div className="mx-auto flex max-w-[1080px] flex-col gap-4 px-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
         <p className="text-sm text-[var(--color-ink-muted)]">
-          Built for NCLEX NGN, USMLE, and NAPLEX prep — with board-style practice,
+          Built for NCLEX, USMLE, and NAPLEX prep — with board-style practice,
           OER-backed rationales, and tools to help you focus on what matters most.
         </p>
 

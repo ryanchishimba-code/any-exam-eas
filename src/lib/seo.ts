@@ -25,7 +25,7 @@ export function absoluteUrl(path: string): string {
 }
 
 const HOME_KEYWORDS = [
-  "NCLEX NGN prep",
+  "NCLEX prep",
   "NCLEX practice questions",
   "USMLE Step 1",
   "USMLE Step 2 CK",
@@ -38,7 +38,7 @@ const HOME_KEYWORDS = [
 
 export function buildHomeMetadata(): Metadata {
   const title = `${SITE_NAME} — NCLEX, USMLE & Board Exam Prep`;
-  const description = `Board exam study support for NCLEX NGN, USMLE, and NAPLEX. OER-backed rationales, personalized practice, and progress tracking. ${formatTrialLabel()} from ${formatTrialIntroPrice()}, then ${formatMonthlyPrice()}/mo.`;
+  const description = `Board exam study support for NCLEX, USMLE, and NAPLEX. OER-backed rationales, personalized practice, and progress tracking. ${formatTrialLabel()} from ${formatTrialIntroPrice()}, then ${formatMonthlyPrice()}/mo.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 
@@ -96,7 +96,7 @@ export function buildRootMetadata(): Metadata {
       default: `${SITE_NAME} — Board Exam Study Support`,
       template: `%s | ${SITE_NAME}`,
     },
-    description: `NCLEX NGN, USMLE, and NAPLEX study support with personalized practice and OER-backed rationales.`,
+    description: `NCLEX, USMLE, and NAPLEX study support with personalized practice and OER-backed rationales.`,
     icons: {
       icon: "/favicon.svg",
       apple: "/favicon.svg",

@@ -43,7 +43,7 @@ export default async function PricingPage({
 
         <ul className="mt-8 space-y-3.5 text-left text-[0.9375rem]">
           {[
-            "Board-style question practice (NCLEX NGN, NAPLEX, USMLE)",
+            "Board-style question practice (NCLEX, NAPLEX, USMLE)",
             "AI-assisted exam generation (verify content independently)",
             "Weak-area practice modes + progress tracking",
             "Student dashboard and analytics",

@@ -99,7 +99,7 @@ export function NgnInteractiveDemo() {
             Try it — no signup
           </p>
           <h2 id="ngn-demo-heading" className="aee-display-md mt-5">
-            Real NCLEX NGN formats,{" "}
+            Real NCLEX formats,{" "}
             <span className="aee-display-accent">not generic MCQ.</span>
           </h2>
           <p className="aee-lede mx-auto mt-4">

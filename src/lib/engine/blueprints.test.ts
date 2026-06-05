@@ -7,9 +7,9 @@ import {
 } from "./blueprints";
 
 describe("exam blueprints", () => {
-  it("returns NCLEX NGN blueprint for nursing", () => {
+  it("returns NCLEX blueprint for nursing", () => {
     const bp = getExamBlueprint("nursing");
-    expect(bp?.examName).toBe("NCLEX NGN");
+    expect(bp?.examName).toBe("NCLEX");
     expect(bp?.sourceNote).toContain("CJMM");
     const totalWeight = bp!.categories.reduce((n, c) => n + c.weight, 0);
     expect(totalWeight).toBeCloseTo(1, 2);

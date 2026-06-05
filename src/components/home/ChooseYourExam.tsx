@@ -16,7 +16,7 @@ type ExamCard = {
 const exams: ExamCard[] = [
   {
     id: "nclex",
-    title: "NCLEX NGN",
+    title: "NCLEX",
     href: "/study/practice?field=nursing",
     icon: HeartPulse,
     theme: "nclex",

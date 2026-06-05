@@ -11,7 +11,7 @@ import {
 const exams: { id: string; title: string; href: string; icon: LucideIcon; benefit: string }[] = [
   {
     id: "nclex",
-    title: "NCLEX NGN",
+    title: "NCLEX",
     href: "/study/practice?field=nursing",
     icon: HeartPulse,
     benefit: "Bow-tie, matrix & case studies",
@@ -70,7 +70,7 @@ export function LandingEssentials() {
             More prep. Less wasted time.
           </h2>
           <p className="mx-auto mt-2 max-w-lg text-sm text-slate-600">
-            One subscription covers NCLEX NGN, USMLE Step 1 & 2, and NAPLEX — with progress
+            One subscription covers NCLEX, USMLE Step 1 & 2, and NAPLEX — with progress
             that follows you across devices.
           </p>
         </div>

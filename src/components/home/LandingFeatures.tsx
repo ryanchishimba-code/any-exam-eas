@@ -31,7 +31,7 @@ const benefits = [
     outcome: "Exam familiarity",
     title: "Practice that mirrors board formats",
     description:
-      "Board-style vignettes and NCLEX NGN item types help you get comfortable with question formats used on licensing exams.",
+      "Board-style vignettes and NCLEX item types help you get comfortable with question formats used on licensing exams.",
     accent: "from-sky-500 to-blue-500",
   },
   {
