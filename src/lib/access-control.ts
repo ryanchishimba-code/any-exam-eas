@@ -100,6 +100,7 @@ export async function getUserAccess(userId: string): Promise<UserAccess> {
   }
 
   const emailVerified = !!user.emailVerified;
+  // Premium access is never reduced for discount codes — only subscription/account state.
   let hasPremiumAccess = subscription.hasAccess && user.accountStatus === "active";
   let blockReason: UserAccess["blockReason"];
 

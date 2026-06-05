@@ -18,6 +18,7 @@ export const signUpSchema = z.object({
     errorMap: () => ({ message: "You must accept the terms to create an account." }),
   }),
   plan: signupPlanSchema,
+  promoCode: z.string().trim().max(32).optional(),
 });
 
 export const loginSchema = z.object({

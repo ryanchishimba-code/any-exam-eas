@@ -46,12 +46,28 @@ export async function POST(req: Request) {
   const interval =
     body?.interval === "yearly" ? ("yearly" as const) : ("monthly" as const);
 
+  let stripeCouponId: string | null = null;
+  let promoValidation = null;
+  if (typeof body?.promoCode === "string" && body.promoCode.trim()) {
+    const { validateDiscount } = await import("@/lib/discount");
+    const promo = await validateDiscount({
+      code: body.promoCode.trim(),
+      plan,
+      userId: session.user.id,
+    });
+    promoValidation = promo;
+    if (promo.valid && promo.stripeCouponId) {
+      stripeCouponId = promo.stripeCouponId;
+    }
+  }
+
   const baseParams = {
     customerEmail: session.user.email,
     userId: session.user.id,
     stripeCustomerId: sub?.stripeCustomerId,
     plan,
     interval,
+    stripeCouponId,
     successUrl: embedded
       ? `${origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`
       : `${origin}/dashboard?checkout=success`,
@@ -67,11 +83,19 @@ export async function POST(req: Request) {
           { status: 500 }
         );
       }
-      return NextResponse.json({ clientSecret: checkout.client_secret });
+      return NextResponse.json({
+        clientSecret: checkout.client_secret,
+        promo: promoValidation,
+        fullAccessIncluded: true,
+      });
     }
 
     const checkout = await createCheckoutSession(baseParams);
-    return NextResponse.json({ url: checkout.url });
+    return NextResponse.json({
+      url: checkout.url,
+      promo: promoValidation,
+      fullAccessIncluded: true,
+    });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Checkout failed";
     return NextResponse.json({ error: message }, { status: 500 });

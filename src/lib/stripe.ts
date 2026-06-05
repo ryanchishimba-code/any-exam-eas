@@ -29,6 +29,8 @@ type CheckoutBaseParams = {
   plan?: "trial" | "subscribe";
   interval?: BillingInterval;
   stripeCustomerId?: string | null;
+  /** Stripe Coupon id from validated promo code */
+  stripeCouponId?: string | null;
 };
 
 function getPriceId(interval: BillingInterval = "monthly"): string {
@@ -57,12 +59,19 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
     mode: "subscription" as const,
     customer: params.stripeCustomerId ?? undefined,
     customer_email: params.stripeCustomerId ? undefined : params.customerEmail,
+    ...(params.stripeCouponId
+      ? { discounts: [{ coupon: params.stripeCouponId }] }
+      : {}),
     line_items: lineItems,
     subscription_data: {
       metadata: { userId: params.userId },
       ...(isTrialPlan ? { trial_period_days: TRIAL_DAYS } : {}),
     },
-    metadata: { userId: params.userId, plan: params.plan ?? "subscribe" },
+    metadata: {
+      userId: params.userId,
+      plan: params.plan ?? "subscribe",
+      fullAccess: "true",
+    },
     payment_method_types: ["card"] as Stripe.Checkout.SessionCreateParams["payment_method_types"],
     payment_method_options: {
       card: {

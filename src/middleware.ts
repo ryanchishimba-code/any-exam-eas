@@ -25,5 +25,10 @@ export const config = {
     "/engine/:path*",
     "/checkout",
     "/checkout/:path*",
+    "/prep",
+    "/prep/:path*",
+    "/exam",
+    "/exam/:path*",
+    "/analytics",
   ],
 };

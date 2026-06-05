@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { PremiumGate } from "@/components/PremiumGate";
 import { StudyBankPractice } from "@/components/study/StudyBankPractice";
@@ -22,6 +23,8 @@ export default async function StudyPracticePage({
   searchParams: Promise<{ field?: string; mode?: string }>;
 }) {
   const params = await searchParams;
+  if (params.field === "drugs300") redirect("/study/drugs300");
+
   const callbackPath = practiceCallbackPath(params);
 
   return (

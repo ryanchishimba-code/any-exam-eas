@@ -74,6 +74,44 @@ function pickDrug(index: number): DrugEntry {
   return TOP_500_DRUGS[index % TOP_500_DRUGS.length]!;
 }
 
+function pickDistractorDrugs(primary: DrugEntry, count: number, seed: number): DrugEntry[] {
+  const pool = TOP_500_DRUGS.filter((d) => d.id !== primary.id);
+  const out: DrugEntry[] = [];
+  for (let i = 0; i < count; i++) {
+    out.push(pool[(seed + i * 17) % pool.length]!);
+  }
+  return out;
+}
+
+function formatDrugOption(drug: DrugEntry, suffix = ""): string {
+  const brands = brandList(drug.brand).slice(0, 1).join("");
+  const brandPart = brands ? ` (${brands})` : "";
+  return `${drug.generic}${brandPart}${suffix}`;
+}
+
+function lacksDrugDetails(item: BankItem): boolean {
+  if (scoreNaplexBankItem(item) >= 0.68) return false;
+
+  const combined = `${item.question} ${item.explanation}`.toLowerCase();
+  const mentionsTopDrug = TOP_500_DRUGS.some((d) => combined.includes(d.generic.toLowerCase()));
+  const hasMonitoring = /monitor|creatinine|potassium|inr|a1c|lab|blood pressure|lft|ck/i.test(
+    item.explanation
+  );
+  const hasBrandOrClass = /brand|generic|\([A-Z][a-z]+\)|therapeutic class|ace inhibitor|statin|ssri|ppi/i.test(
+    `${item.question} ${item.explanation}`
+  );
+  const hasPatientCentered = /counsel|adherence|patient|dispens|why other options|incorrect because/i.test(
+    item.explanation
+  );
+  return (
+    !mentionsTopDrug ||
+    !hasMonitoring ||
+    !hasBrandOrClass ||
+    item.explanation.length < 160 ||
+    !hasPatientCentered
+  );
+}
+
 function inferDrugFromText(text: string): DrugEntry | null {
   const hits = searchDrugs(text, undefined, 3);
   if (hits.length === 0) return null;
@@ -149,7 +187,7 @@ function stripPrefix(question: string): string {
   return question.replace(NAPLEX_PREFIX, "").trim();
 }
 
-function detectTemplate(stem: string): string {
+function detectTemplate(stem: string, seed = 0): string {
   if (/calculate|mg\/kg|dose|concentration|infusion rate/i.test(stem)) return "calculation";
   if (/mechanism of action|MOA|how .* supports management/i.test(stem)) return "moa";
   if (/interaction|concurrent|new medication/i.test(stem)) return "interaction";
@@ -157,49 +195,55 @@ function detectTemplate(stem: string): string {
   if (/adverse effect|dispensing .* for/i.test(stem)) return "adr";
   if (/professional practice|controlled|legal|DEA/i.test(stem)) return "law";
   if (/therapeutic choice|most appropriate/i.test(stem)) return "therapy";
-  return "general";
+  const pool = ["moa", "counseling", "interaction", "adr", "therapy", "calculation", "law"] as const;
+  return pool[Math.abs(seed) % pool.length]!;
 }
 
 function rebuildFromTemplate(
   stem: string,
   template: string,
   drug: DrugEntry,
-  subjectLabel: string
+  subjectLabel: string,
+  seed = 0
 ): { vignette: string; question: string; options: [string, string, string, string]; correctAnswer: string } {
   const brands = brandList(drug.brand).slice(0, 2).join(" / ");
-  const age = 45 + (drug.rank % 25);
-  const sex = drug.rank % 2 === 0 ? "man" : "woman";
+  const age = 45 + ((drug.rank + seed) % 25);
+  const sex = (drug.rank + seed) % 2 === 0 ? "man" : "woman";
+  const encounter = 1000 + (Math.abs(seed) % 9000);
 
   const vignette = [
-    `A ${age}-year-old ${sex} with ${drug.indications.split(/[;,]/)[0]?.trim().toLowerCase() ?? "a chronic condition"} is seen in the outpatient pharmacy.`,
+    `A ${age}-year-old ${sex} with ${drug.indications.split(/[;,]/)[0]?.trim().toLowerCase() ?? "a chronic condition"} is seen in the outpatient pharmacy (encounter ${encounter}).`,
     `Current medications include ${drug.generic}${brands ? ` (${brands})` : ""} and other chronic therapies.`,
     `Relevant assessment: no known drug allergies; renal and hepatic function within patient-specific targets unless noted.`,
   ].join(" ");
 
   switch (template) {
     case "moa": {
-      const correct = `${drug.therapeuticClass} — ${drug.generic} mechanism aligned to ${drug.indications.split(/[;,]/)[0]?.trim() ?? "indication"}`;
+      const indication = drug.indications.split(/[;,]/)[0]?.trim() ?? "indication";
+      const correct = `${drug.generic} — ${drug.therapeuticClass} targeting ${indication.toLowerCase()}`;
+      const distractors = pickDistractorDrugs(drug, 3, drug.rank + seed);
       return {
         vignette,
-        question: "Which mechanism of action best explains the therapeutic benefit of the highlighted medication in this patient?",
+        question: `Which mechanism of action best explains the therapeutic benefit of ${formatDrugOption(drug)} in this patient?`,
         options: [
           correct,
-          "Non-selective histamine blockade without vascular effect",
-          "Direct thrombin inhibition unrelated to this indication",
-          "Dopamine reuptake inhibition in the CNS",
+          `${distractors[0]!.generic} — non-selective histamine blockade without vascular effect`,
+          `${distractors[1]!.generic} — direct thrombin inhibition unrelated to this indication`,
+          `${distractors[2]!.generic} — dopamine reuptake inhibition in the CNS`,
         ],
         correctAnswer: correct,
       };
     }
     case "interaction": {
-      const correct = `Screen for interactions, assess renal/hepatic function, and counsel on ${drug.generic} safety before dispensing the new prescription`;
+      const interactant = pickDistractorDrugs(drug, 1, drug.rank + seed + 3)[0]!;
+      const correct = `Screen ${drug.generic}–${interactant.generic} interactions, verify renal/hepatic function, and counsel on warning signs before dispensing`;
       return {
-        vignette: `${vignette} A new prescription is submitted that may interact with ${drug.generic}.`,
+        vignette: `${vignette} A new ${interactant.generic} prescription may interact with ${formatDrugOption(drug)}.`,
         question: "What is the pharmacist's priority action before release to the patient?",
         options: [
           correct,
-          "Dispense without review because the prescriber is always responsible",
-          "Recommend doubling the dose without contacting the prescriber",
+          `Dispense both ${drug.generic} and ${interactant.generic} without review — prescriber is solely responsible`,
+          `Recommend doubling ${drug.generic} without contacting the prescriber`,
           "Discontinue all chronic medications indefinitely",
         ],
         correctAnswer: correct,
@@ -207,28 +251,30 @@ function rebuildFromTemplate(
     }
     case "counseling": {
       const adr = drug.sideEffects.split(/[;,]/)[0]?.trim() ?? "adverse effects";
-      const correct = `Counsel on ${drug.generic} adherence, expected benefits, how to recognize ${adr}, and when to contact the pharmacist or prescriber`;
+      const monitor = inferMonitoring(drug)[0] ?? "therapeutic response";
+      const correct = `Counsel on ${drug.generic} adherence, expected benefits, recognizing ${adr}, monitoring ${monitor}, and when to call the pharmacist or prescriber`;
       return {
-        vignette: `${vignette} The patient picks up a new ${drug.generic} prescription.`,
+        vignette: `${vignette} The patient picks up a new ${formatDrugOption(drug)} prescription.`,
         question: "Which counseling point is most essential before the patient leaves the pharmacy?",
         options: [
           correct,
           "Encourage sharing unused tablets with family members with similar symptoms",
-          "Advise stopping the drug without calling anyone if any question arises",
-          "State that no monitoring or follow-up is ever required",
+          `Advise stopping ${drug.generic} without calling anyone if any question arises`,
+          "State that no monitoring or follow-up is ever required for this medication",
         ],
         correctAnswer: correct,
       };
     }
     case "adr": {
       const adr = drug.sideEffects.split(/[;,]/)[0]?.trim() ?? "serious adverse effect";
-      const correct = `Educate the patient to recognize ${adr} and report it promptly — hold therapy and contact the prescriber if severe`;
+      const secondAdr = drug.sideEffects.split(/[;,]/)[1]?.trim() ?? adr;
+      const correct = `Educate the patient to recognize ${adr} on ${drug.generic} and report it promptly — hold therapy and contact the prescriber if severe`;
       return {
-        vignette: `${vignette} The patient asks which warning signs to watch for on ${drug.generic}.`,
+        vignette: `${vignette} The patient asks which warning signs to watch for on ${formatDrugOption(drug)}.`,
         question: "Which adverse-effect counseling is most appropriate?",
         options: [
           correct,
-          "Reassure that no adverse effects have ever been reported with this drug",
+          `Reassure that ${adr} and ${secondAdr} have never been reported with ${drug.generic}`,
           "Advise ignoring muscle pain, bleeding, or rash unless symptoms become unbearable",
           "Recommend adding OTC sedatives nightly to mask side effects",
         ],
@@ -236,27 +282,54 @@ function rebuildFromTemplate(
       };
     }
     case "therapy": {
-      const correct = `${drug.generic} — guideline-supported ${drug.therapeuticClass.toLowerCase()} for this presentation`;
+      const indication = drug.indications.split(/[;,]/)[0]?.trim() ?? subjectLabel.toLowerCase();
+      const correct = `${formatDrugOption(drug)} — guideline-supported ${drug.therapeuticClass.toLowerCase()} for ${indication.toLowerCase()}`;
+      const distractors = pickDistractorDrugs(drug, 3, drug.rank + seed + 11);
       return {
         vignette,
-        question: `Which medication is the most appropriate pharmacist-recommended therapy for this ${subjectLabel.toLowerCase()} scenario?`,
+        question: `Which medication is the most appropriate pharmacist-recommended therapy for this ${subjectLabel.toLowerCase()} presentation?`,
         options: [
           correct,
-          "A drug with no evidence for this indication",
-          "Maximum dose above labeled limits without justification",
-          "Therapy that requires no monitoring in all patients",
+          `${formatDrugOption(distractors[0]!)} — no evidence for this indication`,
+          `${formatDrugOption(distractors[1]!)} — maximum dose above labeled limits without justification`,
+          `${formatDrugOption(distractors[2]!)} — requires no monitoring in all patients`,
         ],
         correctAnswer: correct,
       };
     }
-    case "calculation":
-    default:
+    case "calculation": {
+      const dosePerKg = 2 + ((drug.rank + seed) % 8);
+      const weight = 55 + ((drug.rank + seed) % 35);
+      const total = dosePerKg * weight;
+      const correct = `${total} mg/day in divided doses`;
+      const q = `A ${weight}-kg patient receives ${drug.generic} at ${dosePerKg} mg/kg/day for ${drug.indications.split(/[;,]/)[0]?.trim().toLowerCase() ?? "therapy"}. What is the total daily dose?`;
       return {
-        vignette: "",
-        question: stripPrefix(stem),
-        options: ["", "", "", ""] as [string, string, string, string],
-        correctAnswer: "",
+        vignette: `A clinical pharmacist verifies dosing for ${formatDrugOption(drug)} before dispensing.`,
+        question: q,
+        options: [
+          correct,
+          `${dosePerKg} mg once daily regardless of weight`,
+          `${weight} mg daily`,
+          `${(dosePerKg + weight).toFixed(0)} mg every 12 hours`,
+        ],
+        correctAnswer: correct,
       };
+    }
+    case "law":
+    default: {
+      const correct = `Verify indication, quantity, patient identity, and DEA requirements before dispensing controlled medications related to ${drug.therapeuticClass.toLowerCase()}`;
+      return {
+        vignette: `${vignette} A controlled-substance prescription for ${drug.generic} requires verification.`,
+        question: "Which professional practice standard applies before dispensing?",
+        options: [
+          correct,
+          "Allow unlimited refills without documentation or PDMP review",
+          "Share prescription data publicly to expedite dispensing",
+          "Bypass inventory controls when the patient appears in a hurry",
+        ],
+        correctAnswer: correct,
+      };
+    }
   }
 }
 
@@ -292,14 +365,15 @@ function examToBankItem(base: BankItem, exam: ExamQuestion): BankItem {
 export function polishNaplexBankItem(
   item: BankItem,
   subjectId: string,
-  subjectLabel = "NAPLEX pharmacotherapy"
+  subjectLabel = "NAPLEX pharmacotherapy",
+  seed = 0
 ): NaplexPolishResult {
   const qualityBefore = scoreNaplexBankItem(item);
   const hasWeakPatterns =
     WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer)) ||
     item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)));
 
-  if (!needsNaplexPolish(item) && !hasWeakPatterns) {
+  if (!needsNaplexPolish(item) && !hasWeakPatterns && !lacksDrugDetails(item)) {
     return { item, changed: false, qualityBefore, qualityAfter: qualityBefore };
   }
 
@@ -307,7 +381,8 @@ export function polishNaplexBankItem(
   const isWeak =
     qualityBefore < 0.55 ||
     WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer)) ||
-    NAPLEX_PREFIX.test(item.question);
+    NAPLEX_PREFIX.test(item.question) ||
+    lacksDrugDetails(item);
 
   let working: BankItem = { ...item, question: stem };
 
@@ -315,10 +390,10 @@ export function polishNaplexBankItem(
     const drug =
       inferDrugFromText(stem) ??
       inferDrugFromText(item.correctAnswer) ??
-      pickDrug(stem.length + (item.subjectId?.length ?? 0));
+      pickDrug(stem.length + (item.subjectId?.length ?? 0) + seed);
 
-    const template = detectTemplate(stem);
-    const rebuilt = rebuildFromTemplate(stem, template, drug, subjectLabel);
+    const template = detectTemplate(stem, seed);
+    const rebuilt = rebuildFromTemplate(stem, template, drug, subjectLabel, seed);
 
     if (rebuilt.correctAnswer && rebuilt.options.every(Boolean)) {
       working = {
@@ -401,5 +476,9 @@ function buildNaplexExplanation(
 }
 
 export function needsNaplexPolish(item: BankItem): boolean {
-  return scoreNaplexBankItem(item) < 0.62 || NAPLEX_PREFIX.test(item.question);
+  return (
+    scoreNaplexBankItem(item) < 0.62 ||
+    NAPLEX_PREFIX.test(item.question) ||
+    lacksDrugDetails(item)
+  );
 }

@@ -73,6 +73,39 @@ function inferDistractorWhy(option: string, q: ExamQuestion, fieldId?: string): 
   const stem = (q.vignette ?? q.question).slice(0, 140);
   const id = fieldId ?? "";
 
+  if (id === "nursing") {
+    if (/stable|chronic|routine|discharge teaching only|3\/10|142 mg/i.test(option)) {
+      return `Incorrect — stable, chronic, or scheduled needs are lower priority than the client with acute, unstable cues in the vignette.`;
+    }
+    if (/comprehensive assessment|insulin|triage|teaching a new/i.test(option)) {
+      return `Incorrect — assessment, teaching, and triage exceed UAP scope or address the wrong priority; the RN retains accountability.`;
+    }
+    if (/without verifying|another client|before giving|skip hand|reuse|shouldn't feel|not talk|overreacting/i.test(option)) {
+      return `Incorrect — violates nursing safety standards, therapeutic communication principles, or scope of practice.`;
+    }
+    if (/wait until|delay|restrict all oral|comfort measures for all other/i.test(option)) {
+      return `Incorrect — delays necessary intervention for unstable findings supported by the vignette data.`;
+    }
+    if (/hand rub alone|negative-pressure|droplet only/i.test(option)) {
+      return `Incorrect — wrong infection control precaution level for this presentation.`;
+    }
+  }
+
+  if (id === "usmle-step-1" || id === "usmle-step-2") {
+    if (/defer|discharge|6 months|without imaging|reassure only|no testing/i.test(option)) {
+      return `Incorrect — unsafe delay or inadequate evaluation for a potentially serious condition.`;
+    }
+    if (/NSAID|antibiotic|diuretic|PCI|thrombolysis|anticoagulation/i.test(option) && /alone|only|without|defer/i.test(option)) {
+      return `Incorrect — incomplete or contraindicated management that fails to address the underlying diagnosis.`;
+    }
+    if (/random|psychological only|nutritional deficiency|benign finding never|artifact that invalidates/i.test(option)) {
+      return `Incorrect — fails to integrate pathophysiology with clinical findings; a common USMLE trap.`;
+    }
+    if (/related diagnosis|wrong next step|premature|contraindicated/i.test(stem)) {
+      return `Incorrect — plausible differential or management option but not the single best answer given discriminating data.`;
+    }
+  }
+
   if (id === "pharmacy") {
     if (/share|family member/i.test(option)) {
       return `Incorrect — medications must not be shared; counseling requires patient-specific safety and monitoring.`;

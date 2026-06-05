@@ -8,7 +8,7 @@ import {
 } from "./field-subjects";
 import { getHealthBankItems } from "./health-sciences-question-bank";
 import { ANATOMY_QUESTION_BANK } from "./medicine-anatomy-question-bank";
-import { fetchQuestionBankItems } from "./question-bank-db";
+import { sampleQuestionBankItems } from "./question-bank-db";
 import { generateProceduralQuestions } from "./procedural-questions";
 import { toQuizletStyleQuestion } from "./question-format";
 
@@ -367,8 +367,14 @@ export async function getBankQuestions(params: {
   const tagWithSubject = (items: BankItem[], defaultSubject: string) =>
     items.map((i) => ({ ...i, subjectId: i.subjectId ?? defaultSubject }));
 
-  // Primary: database (synced from seed bundle on a schedule)
-  const dbItems = await fetchQuestionBankItems({ fieldId, subjectId: subjectKey });
+  // Primary: database — random sample large enough for topic ranking
+  const sampleSize = Math.min(500, Math.max(params.count * 8, 80));
+  const dbItems = await sampleQuestionBankItems({
+    fieldId,
+    subjectId: subjectKey,
+    count: sampleSize,
+    poolMultiplier: 2,
+  });
   pools.push(...dbItems);
 
   // Fallback: in-repo banks if DB is empty (e.g. before first sync)

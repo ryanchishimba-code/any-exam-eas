@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getFieldMeta } from "@/lib/fields";
 import { getFieldSubject } from "@/lib/field-subjects";
-import { countActiveQuestions, fetchQuestionBankItems } from "@/lib/question-bank-db";
+import { countActiveQuestions, sampleQuestionBankItems } from "@/lib/question-bank-db";
 import { MIN_QUESTIONS_PER_SUBJECT } from "@/lib/bulk-question-generator";
 import {
   getLastQuestionBankSync,
@@ -46,8 +46,8 @@ export async function GET(req: Request) {
   const meta = getFieldMeta(field);
   const fieldId = meta?.id ?? field.toLowerCase().replace(/\s+/g, "-");
 
-  const items = await fetchQuestionBankItems({ fieldId, subjectId });
-  const raw: ExamQuestion[] = items.slice(0, limit).map((item, i) => ({
+  const items = await sampleQuestionBankItems({ fieldId, subjectId, count: limit });
+  const raw: ExamQuestion[] = items.map((item, i) => ({
     id: i + 1,
     type: "multiple_choice" as const,
     question: item.question,

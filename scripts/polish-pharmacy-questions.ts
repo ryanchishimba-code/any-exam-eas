@@ -42,6 +42,12 @@ function rowToItem(row: {
   };
 }
 
+function seedFromId(id: string): number {
+  let h = 0;
+  for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) | 0;
+  return Math.abs(h);
+}
+
 async function main() {
   const rows = await prisma.questionBankItem.findMany({
     where: { fieldId: "pharmacy", active: true },
@@ -58,6 +64,8 @@ async function main() {
   let errors = 0;
   let avgBefore = 0;
   let avgAfter = 0;
+
+  let collisions = 0;
 
   for (const row of rows) {
     scanned++;
@@ -76,7 +84,28 @@ async function main() {
     const label = subject?.label ?? row.subjectId;
 
     try {
-      const result = polishNaplexBankItem(item, row.subjectId, label);
+      let result = polishNaplexBankItem(item, row.subjectId, label, seedFromId(row.id));
+      let finalItem = result.item;
+
+      for (let attempt = 0; attempt < 8; attempt++) {
+        if (!result.changed) break;
+
+        const newHash = questionContentHash("pharmacy", row.subjectId, finalItem.question);
+        const hashCollision = await prisma.questionBankItem.findFirst({
+          where: { contentHash: newHash, NOT: { id: row.id } },
+        });
+
+        if (!hashCollision) break;
+
+        result = polishNaplexBankItem(
+          item,
+          row.subjectId,
+          label,
+          seedFromId(row.id) + attempt * 7919 + scanned
+        );
+        finalItem = result.item;
+      }
+
       avgAfter += result.qualityAfter;
 
       if (!result.changed) {
@@ -84,13 +113,13 @@ async function main() {
         continue;
       }
 
-      const newHash = questionContentHash("pharmacy", row.subjectId, result.item.question);
-      const hashCollision = await prisma.questionBankItem.findFirst({
-        where: { contentHash: newHash, NOT: { id: row.id } },
+      const finalHash = questionContentHash("pharmacy", row.subjectId, finalItem.question);
+      const stillCollides = await prisma.questionBankItem.findFirst({
+        where: { contentHash: finalHash, NOT: { id: row.id } },
       });
 
-      if (hashCollision) {
-        console.warn(`  skip id=${row.id} — hash collision with ${hashCollision.id}`);
+      if (stillCollides) {
+        collisions++;
         skipped++;
         continue;
       }
@@ -106,12 +135,12 @@ async function main() {
       await prisma.questionBankItem.update({
         where: { id: row.id },
         data: {
-          question: result.item.question,
-          options: JSON.stringify(result.item.options),
-          correctAnswer: result.item.correctAnswer,
-          explanation: result.item.explanation,
-          tags: result.item.tags ? JSON.stringify(result.item.tags) : row.tags,
-          contentHash: newHash,
+          question: finalItem.question,
+          options: JSON.stringify(finalItem.options),
+          correctAnswer: finalItem.correctAnswer,
+          explanation: finalItem.explanation,
+          tags: finalItem.tags ? JSON.stringify(finalItem.tags) : row.tags,
+          contentHash: finalHash,
           source: "polished",
         },
       });
@@ -129,6 +158,7 @@ async function main() {
   console.log(`Candidates:  ${candidates}`);
   console.log(`${dryRun ? "Would update" : "Updated"}:   ${updated}`);
   console.log(`Skipped:     ${skipped}`);
+  console.log(`Hash collisions: ${collisions}`);
   console.log(`Errors:      ${errors}`);
   console.log(`Avg quality: ${avgBefore.toFixed(3)} → ${avgAfter.toFixed(3)}`);
   console.log("");

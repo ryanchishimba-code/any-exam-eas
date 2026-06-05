@@ -2,7 +2,10 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getFieldSubject, getSubjectsForField } from "@/lib/field-subjects";
 import { getFieldMeta } from "@/lib/fields";
-import { fetchQuestionBankItems } from "@/lib/question-bank-db";
+import {
+  ADAPTIVE_QUESTION_POOL_PER_SUBJECT,
+  sampleQuestionBankItems,
+} from "@/lib/question-bank-db";
 import {
   selectAdaptiveQuestions,
   topicPerformanceFromWeakness,
@@ -102,7 +105,12 @@ export async function POST(req: Request) {
       const subject = getFieldSubject(body.field, subjectId);
       if (!subject) continue;
 
-      const items = await fetchQuestionBankItems({ fieldId, subjectId });
+      const items = await sampleQuestionBankItems({
+        fieldId,
+        subjectId,
+        count: ADAPTIVE_QUESTION_POOL_PER_SUBJECT,
+        poolMultiplier: 2,
+      });
       for (let i = 0; i < items.length; i++) {
         const item = items[i];
         pool.push(

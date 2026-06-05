@@ -84,7 +84,7 @@ export async function recordUserLogin(userId: string): Promise<void> {
  */
 export async function registerUser(
   input: SignUpInput
-): Promise<SafeUser & { plan: "trial" | "subscribe" }> {
+): Promise<SafeUser & { plan: "trial" | "subscribe"; promoCode?: string }> {
   const parsed = signUpSchema.parse(input);
   const dob = new Date(parsed.dateOfBirth);
 
@@ -129,7 +129,17 @@ export async function registerUser(
       m.sendEmailVerification(user.id, user.email)
     );
 
-    return { ...toSafeUser(user), plan: parsed.plan };
+    if (parsed.promoCode?.trim()) {
+      void import("@/lib/promo").then((m) =>
+        m.redeemPromoCode(user.id, parsed.promoCode!.trim())
+      );
+    }
+
+    return {
+      ...toSafeUser(user),
+      plan: parsed.plan,
+      promoCode: parsed.promoCode?.trim() || undefined,
+    };
   } catch (e) {
     if (
       e instanceof Prisma.PrismaClientKnownRequestError &&

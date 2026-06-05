@@ -1,5 +1,9 @@
 import type { BankItem } from "./question-bank";
 import type { SubjectArea } from "./subjects/types";
+import { TOP_500_DRUGS } from "./drugs300/catalog";
+import { polishNaplexBankItem } from "./engine/polish/naplex-polish";
+import { polishNclexBankItem } from "./engine/polish/nclex-polish";
+import { polishUsmleBankItem } from "./engine/polish/usmle-polish";
 
 /** @deprecated Use SubjectArea */
 type FieldSubject = SubjectArea;
@@ -148,7 +152,7 @@ function expandConcepts(subject: FieldSubject): string[] {
   return out;
 }
 
-function buildMedicineQuestion(subject: FieldSubject, index: number): BankItem {
+function buildMedicineQuestion(subject: FieldSubject, index: number, fieldId: string): BankItem {
   const concepts = expandConcepts(subject);
   const concept = pick(concepts, index, 3);
   const age = pick(AGES, index, 1);
@@ -159,11 +163,13 @@ function buildMedicineQuestion(subject: FieldSubject, index: number): BankItem {
   const template = index % 8;
   const slot = index % 4;
 
+  let seed: BankItem;
+
   switch (template) {
     case 0: {
       const correct = `Focused ${concept} evaluation with targeted history and exam`;
       const q = `Case ${index + 1}: A ${age}-year-old ${sex} in the ${setting} reports ${symptom}. Which initial approach is most appropriate for suspected ${concept}?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -178,11 +184,12 @@ function buildMedicineQuestion(subject: FieldSubject, index: number): BankItem {
         correct,
         `${subject.label}: ${concept} requires structured assessment (${subject.textbookRefs}).`
       );
+      break;
     }
     case 1: {
       const correct = `${lab} consistent with the leading diagnosis`;
       const q = `Case ${index + 1}: During workup for ${concept} in ${subject.label}, labs show ${lab}. Which interpretation is most accurate?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -197,11 +204,12 @@ function buildMedicineQuestion(subject: FieldSubject, index: number): BankItem {
         correct,
         `Integrate ${lab} with clinical context for ${concept} (${subject.examHints}).`
       );
+      break;
     }
     case 2: {
       const correct = `Pathophysiology of ${concept} explains the dominant finding`;
       const q = `Case ${index + 1}: A student reviewing ${subject.label} asks why ${symptom} may occur in ${concept}. Which explanation is best?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -216,11 +224,12 @@ function buildMedicineQuestion(subject: FieldSubject, index: number): BankItem {
         correct,
         `Mechanism-based teaching for ${concept} (${subject.textbookRefs}).`
       );
+      break;
     }
     case 3: {
       const correct = `Order the test that directly clarifies ${concept}`;
       const q = `Case ${index + 1}: Which diagnostic step is most appropriate next for ${concept} when ${symptom} is the chief concern?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -235,11 +244,12 @@ function buildMedicineQuestion(subject: FieldSubject, index: number): BankItem {
         correct,
         `Evidence-aligned workup for ${subject.label} (${subject.examHints}).`
       );
+      break;
     }
     case 4: {
       const correct = `First-line therapy targeting ${concept}`;
       const q = `Case ${index + 1}: Stable ${sex} with ${concept}-related ${symptom}. Which management principle is most appropriate?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -254,11 +264,12 @@ function buildMedicineQuestion(subject: FieldSubject, index: number): BankItem {
         correct,
         `Therapeutic approach for ${concept} in ${subject.label}.`
       );
+      break;
     }
     case 5: {
       const correct = `Recognize complication linked to ${concept}`;
       const q = `Case ${index + 1}: A hospitalized patient with ${concept} develops worsening ${symptom}. Which complication should be highest on the differential?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -273,11 +284,12 @@ function buildMedicineQuestion(subject: FieldSubject, index: number): BankItem {
         correct,
         `Monitor for complications when managing ${concept}.`
       );
+      break;
     }
     case 6: {
       const correct = `Patient safety measure specific to ${concept}`;
       const q = `Case ${index + 1}: Which safety consideration is most relevant when caring for a patient with ${concept}?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -292,11 +304,12 @@ function buildMedicineQuestion(subject: FieldSubject, index: number): BankItem {
         correct,
         `Safety and quality care for ${subject.label} topics.`
       );
+      break;
     }
     default: {
       const correct = `High-yield fact about ${concept} in ${subject.label}`;
       const q = `Case ${index + 1}: Which statement about ${concept} is most accurate for ${subject.label} board preparation?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -313,6 +326,8 @@ function buildMedicineQuestion(subject: FieldSubject, index: number): BankItem {
       );
     }
   }
+
+  return polishUsmleBankItem(seed, fieldId, subject.id, subject.label, index).item;
 }
 
 function buildNursingQuestion(subject: FieldSubject, index: number): BankItem {
@@ -322,11 +337,13 @@ function buildNursingQuestion(subject: FieldSubject, index: number): BankItem {
   const template = index % 7;
   const slot = index % 4;
 
+  let seed: BankItem;
+
   switch (template) {
     case 0: {
       const correct = `Unstable airway, breathing, or circulation related to ${concept}`;
       const q = `NCLEX ${index + 1}: Four clients are assigned to you. Which client should be assessed first based on ${concept}?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -341,11 +358,12 @@ function buildNursingQuestion(subject: FieldSubject, index: number): BankItem {
         correct,
         `NCLEX prioritization: address life-threatening problems first (${subject.contentArea}).`
       );
+      break;
     }
     case 1: {
       const correct = `Delegate only tasks within scope; RN retains accountability for ${concept}`;
       const q = `NCLEX ${index + 1}: The RN delegates tasks for a ${client}. Which action related to ${concept} is appropriate to delegate to unlicensed assistive personnel?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -360,11 +378,12 @@ function buildNursingQuestion(subject: FieldSubject, index: number): BankItem {
         correct,
         `Delegation rules for ${subject.label} (${subject.examHints}).`
       );
+      break;
     }
     case 2: {
       const correct = `Standard precautions plus transmission-based precautions when indicated for ${concept}`;
       const q = `NCLEX ${index + 1}: Which infection control measure is most appropriate for ${concept}?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -379,11 +398,12 @@ function buildNursingQuestion(subject: FieldSubject, index: number): BankItem {
         correct,
         `Safety & infection control: ${subject.textbookRefs}.`
       );
+      break;
     }
     case 3: {
       const correct = `Therapeutic communication supporting ${concept}`;
       const q = `NCLEX ${index + 1}: A client with ${client} expresses anxiety about ${concept}. Which nurse response is most therapeutic?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -398,11 +418,12 @@ function buildNursingQuestion(subject: FieldSubject, index: number): BankItem {
         correct,
         `Psychosocial integrity and communication (${subject.examHints}).`
       );
+      break;
     }
     case 4: {
       const correct = `Verify rights, dose, route, time, and client for ${concept}`;
       const q = `NCLEX ${index + 1}: Before medication administration involving ${concept}, which nursing action is essential?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -417,11 +438,12 @@ function buildNursingQuestion(subject: FieldSubject, index: number): BankItem {
         correct,
         `Pharmacological therapies: safe medication administration.`
       );
+      break;
     }
     case 5: {
       const correct = `Teach-back to confirm understanding of ${concept}`;
       const q = `NCLEX ${index + 1}: Discharge teaching for ${client} includes ${concept}. Which method best evaluates learning?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -436,11 +458,12 @@ function buildNursingQuestion(subject: FieldSubject, index: number): BankItem {
         correct,
         `Health promotion and patient education (${subject.label}).`
       );
+      break;
     }
     default: {
       const correct = `Evidence-based nursing intervention for ${concept}`;
       const q = `NCLEX ${index + 1}: Which nursing intervention best supports ${concept} for a client with ${client}?`;
-      return item(
+      seed = item(
         subject.id,
         q,
         fourOptions(
@@ -457,148 +480,116 @@ function buildNursingQuestion(subject: FieldSubject, index: number): BankItem {
       );
     }
   }
+
+  return polishNclexBankItem(seed, subject.id, subject.label, index).item;
 }
 
 function buildPharmacyQuestion(subject: FieldSubject, index: number): BankItem {
-  const concepts = expandConcepts(subject);
-  const concept = pick(concepts, index, 9);
-  const drug = pick(DRUG_CLASSES, index, 10);
+  const drug = TOP_500_DRUGS[index % TOP_500_DRUGS.length]!;
+  const concept = pick(expandConcepts(subject), index, 9);
   const template = index % 7;
   const slot = index % 4;
 
+  let seed: BankItem;
+
   switch (template) {
     case 0: {
-      const dose = 5 + (index % 45) * 2;
-      const weight = 50 + (index % 35);
-      const correct = `${(dose * weight).toFixed(0)} mg daily in divided doses per protocol`;
-      const q = `NAPLEX ${index + 1}: Calculate a weight-based dose of ${dose} mg/kg/day for a ${weight}-kg patient receiving therapy for ${concept}. Which total daily dose is correct?`;
-      return item(
+      const dose = 2 + (index % 8);
+      const weight = 55 + (index % 35);
+      const correct = `${dose * weight} mg/day in divided doses`;
+      seed = item(
         subject.id,
-        q,
+        `NAPLEX ${index + 1}: Calculate ${drug.generic} at ${dose} mg/kg/day for a ${weight}-kg patient with ${concept}. Which total daily dose is correct?`,
         fourOptions(
           correct,
           [`${dose} mg once daily regardless of weight`, `${weight} mg daily`, `${(dose + weight).toFixed(0)} mg every 12 hours`],
           slot
         ),
         correct,
-        `Pharmacy calculations for ${subject.label} (${subject.examHints}).`
+        `Pharmacy calculations for ${drug.generic} (${subject.label}).`
       );
+      break;
     }
-    case 1: {
-      const correct = `${drug} mechanism relevant to ${concept}`;
-      const q = `NAPLEX ${index + 1}: Which mechanism of action best describes how ${drug} supports management of ${concept}?`;
-      return item(
+    case 1:
+      seed = item(
         subject.id,
-        q,
+        `NAPLEX ${index + 1}: Which mechanism of action best describes how ${drug.generic} supports management of ${concept}?`,
         fourOptions(
-          correct,
-          [
-            "No receptor interaction in any tissue",
-            "Identical effect to unrelated drug class in all cases",
-            "Contraindicated mechanism for this indication",
-          ],
+          `${drug.generic} mechanism relevant to ${concept}`,
+          ["No receptor interaction in any tissue", "Identical effect to unrelated drug class in all cases", "Contraindicated mechanism for this indication"],
           slot
         ),
-        correct,
+        `${drug.generic} mechanism relevant to ${concept}`,
         `Pharmacology: ${subject.textbookRefs}.`
       );
-    }
-    case 2: {
-      const correct = `Monitor for interaction between ${drug} and concurrent therapy for ${concept}`;
-      const q = `NAPLEX ${index + 1}: A patient on ${drug} starts a new medication for ${concept}. What is the priority pharmacist action?`;
-      return item(
+      break;
+    case 2:
+      seed = item(
         subject.id,
-        q,
+        `NAPLEX ${index + 1}: A patient on ${drug.generic} starts a new medication for ${concept}. What is the priority pharmacist action?`,
         fourOptions(
-          correct,
-          [
-            "Ignore the new prescription",
-            "Recommend doubling both drugs without review",
-            "Discontinue all chronic medications permanently",
-          ],
+          `Monitor for interaction between ${drug.generic} and concurrent therapy for ${concept}`,
+          ["Ignore the new prescription", "Recommend doubling both drugs without review", "Discontinue all chronic medications permanently"],
           slot
         ),
-        correct,
+        `Monitor for interaction between ${drug.generic} and concurrent therapy for ${concept}`,
         `Drug interaction screening (${subject.label}).`
       );
-    }
-    case 3: {
-      const correct = `Counsel on adherence, adverse effects, and monitoring for ${concept}`;
-      const q = `NAPLEX ${index + 1}: Which counseling point is most important for ${drug} used in ${concept}?`;
-      return item(
+      break;
+    case 3:
+      seed = item(
         subject.id,
-        q,
+        `NAPLEX ${index + 1}: Which counseling point is most important for ${drug.generic} used in ${concept}?`,
         fourOptions(
-          correct,
-          [
-            "Stop therapy without informing the prescriber if any question arises",
-            "Share medication with family members with similar symptoms",
-            "Skip monitoring labs in all patients",
-          ],
+          `Counsel on adherence, adverse effects, and monitoring for ${concept}`,
+          ["Stop therapy without informing the prescriber if any question arises", "Share medication with family members with similar symptoms", "Skip monitoring labs in all patients"],
           slot
         ),
-        correct,
+        `Counsel on adherence, adverse effects, and monitoring for ${concept}`,
         `Patient counseling (${subject.examHints}).`
       );
-    }
-    case 4: {
-      const correct = `Recognize serious adverse effect linked to ${drug}`;
-      const q = `NAPLEX ${index + 1}: Which adverse effect should be highlighted when dispensing ${drug} for ${concept}?`;
-      return item(
+      break;
+    case 4:
+      seed = item(
         subject.id,
-        q,
+        `NAPLEX ${index + 1}: Which adverse effect should be highlighted when dispensing ${drug.generic} for ${concept}?`,
         fourOptions(
-          correct,
-          [
-            "Mild taste change that never requires action",
-            "Beneficial effect requiring no monitoring",
-            "Effect that only occurs with placebo",
-          ],
+          `Recognize serious adverse effect linked to ${drug.generic}`,
+          ["Mild taste change that never requires action", "Beneficial effect requiring no monitoring", "Effect that only occurs with placebo"],
           slot
         ),
-        correct,
+        `Recognize serious adverse effect linked to ${drug.generic}`,
         `Safety monitoring for ${subject.label}.`
       );
-    }
-    case 5: {
-      const correct = `Verify indication, dose, and legal requirements for ${concept}`;
-      const q = `NAPLEX ${index + 1}: Which professional practice standard applies when dispensing controlled medications related to ${concept}?`;
-      return item(
+      break;
+    case 5:
+      seed = item(
         subject.id,
-        q,
+        `NAPLEX ${index + 1}: Which professional practice standard applies when dispensing controlled medications related to ${drug.generic} and ${concept}?`,
         fourOptions(
-          correct,
-          [
-            "Unlimited refills without documentation",
-            "Share prescription data publicly",
-            "Bypass inventory controls",
-          ],
+          `Verify indication, dose, and legal requirements for ${concept}`,
+          ["Unlimited refills without documentation", "Share prescription data publicly", "Bypass inventory controls"],
           slot
         ),
-        correct,
+        `Verify indication, dose, and legal requirements for ${concept}`,
         `Pharmacy law & ethics (${subject.textbookRefs}).`
       );
-    }
-    default: {
-      const correct = `Select therapy class appropriate for ${concept}`;
-      const q = `NAPLEX ${index + 1}: Which therapeutic choice is most appropriate for ${concept} per guideline-based pharmacy practice?`;
-      return item(
+      break;
+    default:
+      seed = item(
         subject.id,
-        q,
+        `NAPLEX ${index + 1}: Which therapeutic choice is most appropriate for ${concept} using ${drug.generic} per guideline-based pharmacy practice?`,
         fourOptions(
-          correct,
-          [
-            "Therapy with no evidence for the indication",
-            "Dose above maximum labeled without justification",
-            "Avoid all monitoring parameters",
-          ],
+          `Select therapy class appropriate for ${concept}`,
+          ["Therapy with no evidence for the indication", "Dose above maximum labeled without justification", "Avoid all monitoring parameters"],
           slot
         ),
-        correct,
+        `Select therapy class appropriate for ${concept}`,
         `${subject.contentArea}: ${subject.examHints}.`
       );
-    }
   }
+
+  return polishNaplexBankItem(seed, subject.id, subject.label, index).item;
 }
 
 export function buildBulkQuestion(
@@ -613,9 +604,10 @@ export function buildBulkQuestion(
       return buildPharmacyQuestion(subject, index);
     case "usmle-step-1":
     case "usmle-step-2":
+      return buildMedicineQuestion(subject, index, fieldId);
     case "medicine":
     default:
-      return buildMedicineQuestion(subject, index);
+      return buildMedicineQuestion(subject, index, fieldId);
   }
 }
 

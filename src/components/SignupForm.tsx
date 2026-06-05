@@ -6,7 +6,7 @@ import { LegalCheckbox } from "./LegalCheckbox";
 import { PlanChoice } from "./PlanChoice";
 import { Button } from "./ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
-import { MARKETING_DISCLAIMER, formatMonthlyPrice, formatTrialIntroPrice } from "@/lib/site";
+import { MARKETING_DISCLAIMER } from "@/lib/site";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
 import type { SignupPlan } from "@/lib/validators/auth";
 import {
@@ -16,8 +16,15 @@ import {
 } from "@/lib/auth-client";
 import { MemberLoginLink } from "@/components/auth/MemberLoginLink";
 import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/lib/client/returning-user";
+import { Tag } from "lucide-react";
 
-export function SignupForm({ initialPlan = "" }: { initialPlan?: SignupPlan | "" }) {
+export function SignupForm({
+  initialPlan = "",
+  initialPromo = "",
+}: {
+  initialPlan?: SignupPlan | "";
+  initialPromo?: string;
+}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -91,7 +98,10 @@ export function SignupForm({ initialPlan = "" }: { initialPlan?: SignupPlan | ""
         lastMethod: "email",
       });
 
-      window.location.href = `/checkout?plan=${plan}`;
+      const promoQs = initialPromo.trim()
+        ? `&promo=${encodeURIComponent(initialPromo.trim())}`
+        : "";
+      window.location.href = `/checkout?plan=${plan}${promoQs}`;
     } catch (err) {
       setError(messageFromUnknownAuthError(err));
     } finally {
@@ -99,12 +109,11 @@ export function SignupForm({ initialPlan = "" }: { initialPlan?: SignupPlan | ""
     }
   }
 
-  const submitLabel =
-    plan === "subscribe"
-      ? `Subscribe — ${formatMonthlyPrice()}/mo`
-      : plan === "trial"
-        ? `Start trial — ${formatTrialIntroPrice()}`
-        : "Create account & subscribe";
+  const submitLabel = !plan
+    ? "Create account"
+    : plan === "trial"
+      ? "Continue to checkout"
+      : "Continue to checkout";
 
   return (
     <form onSubmit={handleSubmit} noValidate className="apple-card mt-10 space-y-5 p-8 md:p-10">
@@ -119,6 +128,14 @@ export function SignupForm({ initialPlan = "" }: { initialPlan?: SignupPlan | ""
       )}
 
       <PlanChoice value={plan} onChange={setPlan} disabled={loading} />
+
+      {plan && (
+        <p className="flex items-center justify-center gap-1.5 rounded-xl bg-sky-50/80 px-4 py-3 text-center text-xs text-slate-600">
+          <Tag className="h-3.5 w-3.5 shrink-0 text-[var(--color-accent)]" aria-hidden />
+          Have a discount code? You can apply it on the checkout review screen — full access
+          is always included.
+        </p>
+      )}
 
       <input
         required

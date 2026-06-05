@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { SessionProvider } from "@/components/SessionProvider";
 import { LoginModalRoot } from "@/components/auth/LoginModalRoot";
 import { PageViewTrackerBoundary } from "@/components/analytics/PageViewTrackerBoundary";
+import { ShareFab } from "@/components/share/ShareFab";
 import { buildRootMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildRootMetadata();
@@ -26,6 +27,7 @@ export default function RootLayout({
             <Navigation />
             <main id="main-content">{children}</main>
             <Footer />
+            <ShareFab />
           </LoginModalRoot>
         </SessionProvider>
       </body>

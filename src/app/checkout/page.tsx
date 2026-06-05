@@ -22,14 +22,10 @@ export default async function CheckoutPage({
 
   return (
     <PageShell
-      eyebrow="Secure checkout"
-      title={isTrial ? "Start your trial." : "Subscribe now."}
-      description={
-        isTrial
-          ? `${formatTrialIntroPrice()} for ${formatTrialLabel()} · then ${formatMonthlyPrice()}/month`
-          : `${formatMonthlyPrice()}/month · Cancel anytime`
-      }
-      maxWidth="max-w-lg"
+      eyebrow="Checkout"
+      title={isTrial ? "Review & start your trial" : "Review & subscribe"}
+      description="Confirm your plan, apply a discount code if you have one, then enter payment."
+      maxWidth="max-w-xl"
     >
       <Suspense fallback={<p className="mt-8 text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
         <EmbeddedStripeCheckout />

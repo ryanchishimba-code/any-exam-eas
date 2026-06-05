@@ -10,6 +10,7 @@ datasource db {
 /// Core account for email + password sign-in (see src/lib/user-auth.ts).
 model User {
   id            String    @id @default(cuid())
+  clerkId       String?   @unique // optional Clerk user id when using Clerk auth
   name          String?
   email         String    @unique // stored lowercase via register/login
   emailVerified DateTime?
@@ -52,6 +53,11 @@ model User {
   conceptMasteries   ConceptMastery[]
   drugReviewCycles   DrugReviewCycle[]
   drugCardProgress   DrugCardProgress[]
+  promoRedemptions   PromoRedemption[]
+  examSessions       ExamSession[]
+  generatedQuestions GeneratedQuestion[]
+  flashcards         Flashcard[]
+  textbookUploads    TextbookUpload[]
 }
 
 model Account {
@@ -99,12 +105,139 @@ model PasswordResetToken {
   @@index([email])
 }
 
+/// Discount codes — validated at signup; registration always proceeds.
+model PromoCode {
+  id               String    @id @default(cuid())
+  code             String    @unique
+  discountPercent  Int?
+  discountAmount   Float?
+  expiryDate       DateTime?
+  maxUses          Int?
+  currentUses      Int       @default(0)
+  stripeCouponId   String?
+  active           Boolean   @default(true)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  redemptions      PromoRedemption[]
+}
+
+model PromoRedemption {
+  id          String    @id @default(cuid())
+  promoCodeId String
+  userId      String
+  createdAt   DateTime  @default(now())
+  promoCode   PromoCode @relation(fields: [promoCodeId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([promoCodeId, userId])
+  @@index([userId])
+}
+
+/// Timed practice exams with real-time answer persistence (distinct from StudySession).
+model ExamSession {
+  id              String    @id @default(cuid())
+  userId          String
+  examType        String    // nclex | usmle | naplex | top500
+  fieldId         String?
+  title           String?
+  status          String    @default("in_progress") // in_progress | completed | abandoned
+  score           Float?
+  weakAreas       Json?
+  answers         Json      @default("[]")
+  analysis        Json?
+  questionCount   Int       @default(0)
+  timeLimitSec    Int?
+  startedAt       DateTime  @default(now())
+  completedAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, examType, createdAt])
+  @@map("exam_sessions")
+}
+
+/// AI-generated questions (user-specific or shared).
+model GeneratedQuestion {
+  id            String   @id @default(cuid())
+  userId        String
+  examType      String
+  topic         String?
+  questionText  String   @db.Text
+  options       Json
+  answer        String   @db.Text
+  explanation   String   @db.Text
+  source        String?  // topic | textbook | weak_areas
+  metadata      Json?
+  createdAt     DateTime @default(now())
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, examType, createdAt])
+  @@map("generated_questions")
+}
+
+/// Spaced-repetition flashcards (FSRS-inspired).
+model Flashcard {
+  id          String    @id @default(cuid())
+  userId      String
+  examType    String
+  front       String    @db.Text
+  back        String    @db.Text
+  topic       String?
+  dueDate     DateTime  @default(now())
+  interval    Float     @default(0)
+  easeFactor  Float     @default(2.5)
+  repetitions Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, examType, dueDate])
+  @@map("flashcards")
+}
+
+/// Official blueprint topics per exam hub.
+model ExamTopic {
+  id          String   @id @default(cuid())
+  examType    String
+  slug        String
+  label       String
+  description String?  @db.Text
+  sortOrder   Int      @default(0)
+  parentSlug  String?
+  createdAt   DateTime @default(now())
+
+  @@unique([examType, slug])
+  @@index([examType, sortOrder])
+  @@map("exam_topics")
+}
+
+/// Uploaded textbook PDF metadata (blob in Vercel Blob / S3).
+model TextbookUpload {
+  id          String   @id @default(cuid())
+  userId      String
+  examType    String?
+  title       String
+  blobUrl     String
+  mimeType    String   @default("application/pdf")
+  pageCount   Int?
+  chunkCount  Int      @default(0)
+  status      String   @default("processing") // processing | ready | failed
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@map("textbook_uploads")
+}
+
 model Subscription {
   id                   String   @id @default(cuid())
   userId               String   @unique
   stripeCustomerId     String?  @unique
   stripeSubscriptionId String?  @unique
   status               String   @default("trialing")
+  plan                 String?  // trial | monthly | yearly
   planInterval         String   @default("monthly") // monthly | yearly
   trialEndsAt          DateTime?
   currentPeriodEnd     DateTime?

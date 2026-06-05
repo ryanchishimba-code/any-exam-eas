@@ -16,9 +16,9 @@ function parseInitialPlan(plan?: string): SignupPlan | "" {
 export default async function SignupPage({
   searchParams,
 }: {
-  searchParams: Promise<{ plan?: string }>;
+  searchParams: Promise<{ plan?: string; promo?: string }>;
 }) {
-  const { plan } = await searchParams;
+  const { plan, promo } = await searchParams;
   const initialPlan = parseInitialPlan(plan);
 
   return (
@@ -31,7 +31,7 @@ export default async function SignupPage({
       variant="premium"
     >
       <AuthCard>
-        <SignupForm initialPlan={initialPlan} />
+        <SignupForm initialPlan={initialPlan} initialPromo={promo?.trim() ?? ""} />
       </AuthCard>
     </PageShell>
   );

@@ -148,6 +148,7 @@ export function Hero() {
                     <Link
                       href="/signup?plan=trial"
                       className="aee-btn-hero-xl group inline-flex w-full items-center justify-center gap-2.5 sm:w-auto"
+                      data-promo-entry
                     >
                       Start {formatTrialLabel()} — {formatTrialIntroPrice()}
                       <ArrowRight
