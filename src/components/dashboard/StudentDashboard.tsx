@@ -85,9 +85,9 @@ export function StudentDashboard() {
             test history.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Button href="/study/practice">Start practicing</Button>
-            <Button href="/generate" variant="secondary">
-              New test
+            <Button href="/study/practice?mode=bank">Question bank</Button>
+            <Button href="/study/practice?mode=timed" variant="secondary">
+              Timed exam
             </Button>
           </div>
         </CardContent>
@@ -143,14 +143,14 @@ export function StudentDashboard() {
 
           <div className="flex shrink-0 flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
             <Button
-              href="/study/practice?mode=weak"
+              href="/study/practice?mode=timed"
               className="!rounded-2xl !px-6 shadow-[0_8px_24px_rgba(0,113,227,0.25)]"
             >
               <Zap className="mr-2 h-4 w-4" />
-              Practice weak areas
+              Timed exam
             </Button>
-            <Button href="/generate" variant="secondary" className="!rounded-2xl !px-6">
-              New test
+            <Button href="/study/practice?mode=bank" variant="secondary" className="!rounded-2xl !px-6">
+              Question bank
             </Button>
           </div>
         </div>
@@ -347,8 +347,8 @@ export function StudentDashboard() {
               <p className="mt-1 text-xs text-[var(--color-ink-muted)]">
                 Generate a mock exam or finish a timed session to see scores here.
               </p>
-              <Button href="/generate" className="mt-4 !rounded-xl" variant="secondary">
-                Create your first test
+              <Button href="/study/practice?mode=bank" className="mt-4 !rounded-xl" variant="secondary">
+                Open question bank
               </Button>
             </div>
           )}

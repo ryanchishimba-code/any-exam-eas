@@ -558,12 +558,12 @@ function buildVignette(clinical: UsmleCase, seed: number): string {
 function leadIn(template: TemplateKind, seed: number): string {
   const pools: Record<TemplateKind, string[]> = {
     mechanism: [
-      "Which mechanism best explains the patient's presentation?",
-      "Which pathophysiologic process is most likely responsible for these findings?",
+      "Which mechanism best explains this patient's presentation?",
+      "What is the underlying mechanism of this patient's condition?",
     ],
     pathophysiology: [
-      "Which explanation best describes the underlying pathophysiology?",
-      "Which process most likely accounts for the dominant clinical finding?",
+      "Which pathophysiologic process is most likely responsible for this patient's presentation?",
+      "Which explanation best describes the underlying pathophysiology of this patient's condition?",
     ],
     lab: [
       "Which laboratory finding is most consistent with the underlying diagnosis?",

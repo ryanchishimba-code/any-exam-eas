@@ -1,50 +1,178 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { FIELD_LABELS, DEFAULT_STUDY_FIELD_LABEL, getFieldMeta, getFieldMetaById } from "@/lib/fields";
+import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
+import {
+  DEFAULT_STUDY_FIELD_LABEL,
+  getFieldMeta,
+  getFieldMetaById,
+} from "@/lib/fields";
 import { getSubjectsForField } from "@/lib/field-subjects";
-import { EXAM_MODES } from "@/lib/exam/modes";
+import {
+  EXAM_MODES,
+  clampQuestionBankCount,
+  parseQuestionBankPace,
+  type QuestionBankPace,
+} from "@/lib/exam/modes";
+import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
+import {
+  formatExamLengthLabel,
+  getTimedExamQuestionCount,
+  isNclexField,
+  parseNclexTimedVariant,
+  resolveFieldId,
+  type NclexTimedVariant,
+} from "@/lib/exam/exam-lengths";
+import { EXAM_FIELD_IDS } from "@/lib/subjects/field-ids";
+import { QuestionBankSetup } from "./QuestionBankSetup";
+import { MpjeVariantSelector } from "./MpjeVariantSelector";
+import {
+  isMpjeField,
+  parseMpjeVariant,
+  getMpjeState,
+  resolveMpjeStateCode,
+  type MpjeVariant,
+} from "@/lib/mpje/config";
 import { StudySessionPlayer } from "./StudySessionPlayer";
-import { CatMockPractice } from "./CatMockPractice";
 import type { RawQuestionInput, StudyMode } from "@/lib/questions/types";
 import type { ExamQuestion } from "@/lib/ai";
 import { Button } from "@/components/ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
+import { cn } from "@/lib/utils";
 
-function resolveModeFromParam(param: string | null): {
-  studyMode: StudyMode;
-  apiMode: string | null;
-  label: string;
-} {
-  const map: Record<string, { studyMode: StudyMode; apiMode: string | null; label: string }> = {
-    timed: { studyMode: "timed", apiMode: null, label: "Timed challenge" },
-    rapid: { studyMode: "rapid", apiMode: null, label: "Rapid review" },
-    adaptive: { studyMode: "adaptive", apiMode: "adaptive", label: "Personalized practice" },
-    weak: { studyMode: "weak_area", apiMode: "weak", label: "Weak-area drill" },
-    weak_area: { studyMode: "weak_area", apiMode: "weak", label: "Weak-area drill" },
-    tutor: { studyMode: "practice", apiMode: null, label: "Tutor mode" },
-    practice: { studyMode: "practice", apiMode: null, label: "Practice" },
-    cat: { studyMode: "cat", apiMode: null, label: "NCLEX-style CAT mock" },
-  };
-  return map[param ?? "practice"] ?? map.practice;
+type PracticeMode = "timed" | "bank";
+
+const LEGACY_MODES = new Set([
+  "tutor",
+  "rapid",
+  "adaptive",
+  "weak",
+  "weak_area",
+  "cat",
+  "practice",
+  "research",
+  "final",
+]);
+
+const TIMED_EXAM_LABELS = EXAM_FIELD_IDS.map(
+  (id) => getFieldMetaById(id)?.label ?? id
+);
+
+function resolvePracticeMode(param: string | null): PracticeMode {
+  if (param === "bank") return "bank";
+  return "timed";
+}
+
+function buildBankPracticeUrl(params: {
+  fieldId: string;
+  subjectId: string;
+  count: number;
+  pace: QuestionBankPace;
+  mpjeVariant?: MpjeVariant;
+  mpjeState?: string;
+}) {
+  const qs = new URLSearchParams({
+    mode: "bank",
+    field: params.fieldId,
+    subjectId: params.subjectId,
+    count: String(params.count),
+    pace: params.pace,
+  });
+  if (params.mpjeVariant) qs.set("mpjeVariant", params.mpjeVariant);
+  if (params.mpjeState) qs.set("mpjeState", params.mpjeState);
+  return `/study/practice?${qs.toString()}`;
+}
+
+function buildTimedPracticeUrl(params: {
+  fieldId: string;
+  nclexLength?: NclexTimedVariant;
+  mpjeVariant?: MpjeVariant;
+  mpjeState?: string;
+}) {
+  const qs = new URLSearchParams({
+    mode: "timed",
+    field: params.fieldId,
+  });
+  if (params.nclexLength) qs.set("nclexLength", params.nclexLength);
+  if (params.mpjeVariant) qs.set("mpjeVariant", params.mpjeVariant);
+  if (params.mpjeState) qs.set("mpjeState", params.mpjeState);
+  return `/study/practice?${qs.toString()}`;
 }
 
 export function StudyBankPractice() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const modeParam = searchParams.get("mode");
   const fieldParam = searchParams.get("field");
 
-  const { studyMode, apiMode, label } = resolveModeFromParam(modeParam);
-  const isCatMode = modeParam === "cat";
+  const practiceMode = resolvePracticeMode(
+    modeParam && !LEGACY_MODES.has(modeParam) ? modeParam : "timed"
+  );
+  const isTimedExam = practiceMode === "timed";
 
   const [field, setField] = useState(DEFAULT_STUDY_FIELD_LABEL);
   const [subjectId, setSubjectId] = useState("");
+  const [questionCount, setQuestionCount] = useState(25);
+  const [bankPace, setBankPace] = useState<QuestionBankPace>("untimed");
+  const [nclexLength, setNclexLength] = useState<NclexTimedVariant>("minimum");
+  const [mpjeVariant, setMpjeVariant] = useState<MpjeVariant>("uniform");
+  const [mpjeState, setMpjeState] = useState("TX");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
 
   const subjects = useMemo(() => getSubjectsForField(field), [field]);
+  const fieldId = useMemo(() => resolveFieldId(field), [field]);
+  const isNclex = useMemo(() => isNclexField(field), [field]);
+  const isMpje = useMemo(() => isMpjeField(fieldId), [fieldId]);
+  const timedCount = useMemo(
+    () => getTimedExamQuestionCount(field, isNclex ? { nclexLength } : undefined),
+    [field, isNclex, nclexLength]
+  );
+  const lengthLabel = useMemo(
+    () => formatExamLengthLabel(field, isNclex ? { nclexLength } : undefined),
+    [field, isNclex, nclexLength]
+  );
+  const sessionStudyMode: StudyMode = isTimedExam
+    ? "timed"
+    : bankPace === "timed"
+      ? "timed"
+      : "practice";
+
+  useEffect(() => {
+    if (!modeParam) return;
+    if (LEGACY_MODES.has(modeParam)) {
+      router.replace(
+        `/study/practice?field=${encodeURIComponent(fieldId)}&mode=${modeParam === "practice" ? "bank" : "timed"}`
+      );
+    }
+    if (modeParam === "research") {
+      router.replace(`/study/practice?field=${encodeURIComponent(fieldId)}&mode=bank`);
+    }
+  }, [modeParam, fieldId, router]);
+
+  useEffect(() => {
+    if (isTimedExam && searchParams.get("subjectId")) {
+      const qs = new URLSearchParams(searchParams.toString());
+      qs.delete("subjectId");
+      qs.delete("count");
+      qs.delete("pace");
+      router.replace(`/study/practice?${qs.toString()}`);
+    }
+  }, [isTimedExam, searchParams, router]);
+
+  useEffect(() => {
+    const nclexParam = searchParams.get("nclexLength");
+    if (nclexParam) setNclexLength(parseNclexTimedVariant(nclexParam));
+  }, [searchParams]);
+
+  useEffect(() => {
+    const variantParam = searchParams.get("mpjeVariant");
+    if (variantParam) setMpjeVariant(parseMpjeVariant(variantParam));
+    const stateParam = searchParams.get("mpjeState");
+    if (stateParam) setMpjeState(resolveMpjeStateCode(stateParam));
+  }, [searchParams]);
 
   useEffect(() => {
     if (fieldParam) {
@@ -54,60 +182,110 @@ export function StudyBankPractice() {
   }, [fieldParam]);
 
   useEffect(() => {
+    if (isTimedExam) return;
+
+    const countParam = searchParams.get("count");
+    if (countParam) setQuestionCount(clampQuestionBankCount(Number(countParam)));
+
+    const paceParam = searchParams.get("pace");
+    if (paceParam) setBankPace(parseQuestionBankPace(paceParam));
+  }, [isTimedExam, searchParams]);
+
+  useEffect(() => {
+    if (isTimedExam) return;
     const list = getSubjectsForField(field);
-    if (list.length) setSubjectId(list[0].id);
-  }, [field]);
+    if (!list.length) {
+      setSubjectId("");
+      return;
+    }
+
+    const subjectParam = searchParams.get("subjectId");
+    const match = subjectParam && list.some((s) => s.id === subjectParam);
+    setSubjectId(match ? subjectParam! : list[0].id);
+  }, [field, isTimedExam, searchParams]);
+
+  function syncPracticeUrl(overrides?: {
+    mpjeVariant?: MpjeVariant;
+    mpjeState?: string;
+    subjectId?: string;
+    count?: number;
+    pace?: QuestionBankPace;
+  }) {
+    const resolvedVariant = overrides?.mpjeVariant ?? mpjeVariant;
+    const resolvedState = overrides?.mpjeState ?? mpjeState;
+    const resolvedSubjectId = overrides?.subjectId ?? subjectId;
+
+    if (isTimedExam) {
+      router.replace(
+        buildTimedPracticeUrl({
+          fieldId,
+          nclexLength: isNclex ? nclexLength : undefined,
+          mpjeVariant: isMpje ? resolvedVariant : undefined,
+          mpjeState: isMpje && resolvedVariant === "state" ? resolvedState : undefined,
+        }),
+        { scroll: false }
+      );
+      return;
+    }
+    if (!resolvedSubjectId) return;
+    router.replace(
+      buildBankPracticeUrl({
+        fieldId,
+        subjectId: resolvedSubjectId,
+        count: overrides?.count ?? questionCount,
+        pace: overrides?.pace ?? bankPace,
+        mpjeVariant: isMpje ? resolvedVariant : undefined,
+        mpjeState: isMpje && resolvedVariant === "state" ? resolvedState : undefined,
+      }),
+      { scroll: false }
+    );
+  }
 
   async function start() {
-    if (!subjectId) return;
+    if (isMpje || !isTimedExam) syncPracticeUrl();
+
     setLoading(true);
     setError("");
     setQuestions(null);
     try {
-      const meta = getFieldMeta(field);
-      const fieldId = meta?.id ?? field.toLowerCase();
-      const modeQuery = apiMode ? `&mode=${apiMode}` : "";
-      const useAdaptiveApi = apiMode === "adaptive" || apiMode === "weak";
-      if (useAdaptiveApi) {
-        const res = await fetch("/api/study/adaptive/next", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            field,
-            subjectId,
-            count: 25,
-            currentDifficulty: "medium",
-            ...(apiMode === "weak" ? { weakFocusRatio: 0.75 } : {}),
-          }),
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.error ?? "Could not load adaptive set");
-        const raw = (data.questions as ExamQuestion[]).map((q, i) => ({
-          ...q,
-          id: i + 1,
-          field,
-          subjectId,
-          bankItemId: (data.bankItemIds as string[] | undefined)?.[i] ?? `bank-${fieldId}-${subjectId}-${i}`,
-        }));
-        if (raw.length === 0) throw new Error("No questions in bank for this subject yet.");
-        setQuestions(raw);
-        return;
+      const limit = isTimedExam ? timedCount : questionCount;
+      const qs = new URLSearchParams({
+        field,
+        limit: String(limit),
+        mode: isTimedExam ? "timed" : "bank",
+      });
+      if (isTimedExam) {
+        qs.set("scope", "field");
+        if (isNclex) qs.set("nclexLength", nclexLength);
+      }
+      if (isMpje) {
+        qs.set("mpjeVariant", mpjeVariant);
+        if (mpjeVariant === "state") qs.set("mpjeState", mpjeState);
+      }
+      if (!isTimedExam) {
+        if (!subjectId) return;
+        qs.set("subjectId", subjectId);
       }
 
-      const res = await fetch(
-        `/api/questions?field=${encodeURIComponent(field)}&subjectId=${encodeURIComponent(subjectId)}&limit=25${modeQuery}`
-      );
+      const res = await fetch(`/api/questions?${qs.toString()}`);
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Could not load questions");
+
       const metaIds = (data.bankItemIds as string[] | undefined) ?? [];
       const raw = (data.questions as ExamQuestion[]).map((q, i) => ({
         ...q,
         id: i + 1,
         field,
-        subjectId,
-        bankItemId: metaIds[i] ?? `bank-${fieldId}-${subjectId}-${i}`,
+        subjectId: isTimedExam ? "__mixed__" : subjectId,
+        bankItemId: metaIds[i] ?? `bank-${fieldId}-${i}`,
       }));
-      if (raw.length === 0) throw new Error("No questions in bank for this subject yet.");
+      if (raw.length === 0) {
+        throw new Error(
+          isTimedExam
+            ? "No questions in bank for this exam yet."
+            : "No questions in bank for this topic yet."
+        );
+      }
       setQuestions(raw);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Failed to load");
@@ -116,80 +294,166 @@ export function StudyBankPractice() {
     }
   }
 
-  if (isCatMode) {
-    return <CatMockPractice />;
-  }
-
   if (questions) {
+    const topicLabel = subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
+    const mpjeScope =
+      isMpje && mpjeVariant === "state"
+        ? ` · ${getMpjeState(mpjeState)?.name ?? mpjeState} MPJE`
+        : isMpje
+          ? " · Uniform MPJE"
+          : "";
+    const title = isTimedExam
+      ? `${field}${mpjeScope} · Timed exam · ${questions.length} questions`
+      : `${field}${mpjeScope} · ${topicLabel} · ${questions.length} questions · ${bankPace === "timed" ? "Timed" : "Untimed"}`;
+
     return (
       <StudySessionPlayer
         field={field}
-        subjectId={subjectId}
+        subjectId={isTimedExam ? "__mixed__" : subjectId}
         questions={questions}
         sourceType="bank"
-        mode={studyMode}
-        title={`${field} · ${label}`}
+        mode={sessionStudyMode}
+        title={title}
       />
     );
   }
 
+  const activeMode = EXAM_MODES.find((m) => m.id === practiceMode);
+  const otherMode = EXAM_MODES.find((m) => m.id !== practiceMode);
+
   return (
     <div className="mt-8 space-y-6">
-      <div className="flex flex-wrap gap-2">
-        {EXAM_MODES.slice(0, 6).map((m) => (
-          <a
-            key={m.id}
-            href={m.href}
-            className={`rounded-full px-3 py-1.5 text-xs font-medium ${
-              modeParam === m.param
-                ? "bg-[var(--color-accent)] text-white"
-                : "border border-black/[0.08] bg-white text-[var(--color-ink-muted)]"
-            }`}
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <Link
+          href={STUDY_HUB_PATH}
+          className="text-sm font-medium text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
+        >
+          ← Study Hub
+        </Link>
+        {otherMode && (
+          <Link
+            href={`/study/practice?mode=${otherMode.param}`}
+            className="text-sm font-medium text-[var(--color-accent)] transition hover:underline"
           >
-            {m.label}
-          </a>
-        ))}
+            Switch to {otherMode.label}
+          </Link>
+        )}
+      </div>
+
+      <div className="rounded-2xl border border-black/[0.06] bg-black/[0.02] px-5 py-4">
+        <p className="font-semibold text-[var(--color-ink)]">{activeMode?.label}</p>
+        <p className="mt-1 text-sm text-[var(--color-ink-muted)]">{activeMode?.description}</p>
       </div>
 
       <div className="apple-card space-y-6 p-8">
         <div>
-          <label className="apple-label">Field</label>
+          <label className="apple-label">Exam</label>
           <select
             className="apple-input mt-2 w-full"
             value={field}
             onChange={(e) => setField(e.target.value)}
           >
-            {FIELD_LABELS.map((f) => (
+            {TIMED_EXAM_LABELS.map((f) => (
               <option key={f}>{f}</option>
             ))}
           </select>
         </div>
-        <div>
-          <label className="apple-label">Subject</label>
-          <select
-            className="apple-input mt-2 w-full"
-            value={subjectId}
-            onChange={(e) => setSubjectId(e.target.value)}
-          >
-            {subjects.map((s) => (
-              <option key={s.id} value={s.id}>
-                {s.label}
-              </option>
-            ))}
-          </select>
-        </div>
-        <p className="text-sm text-[var(--color-ink-muted)]">
-          Mode: <span className="font-medium text-[var(--color-ink)]">{label}</span>
-          {apiMode && " — questions ordered by your weak areas."}
-        </p>
+
+        {isMpje && (
+          <MpjeVariantSelector
+            variant={mpjeVariant}
+            onVariantChange={(v) => {
+              setMpjeVariant(v);
+              syncPracticeUrl({ mpjeVariant: v });
+            }}
+            stateCode={mpjeState}
+            onStateChange={(code) => {
+              setMpjeState(code);
+              syncPracticeUrl({ mpjeState: code });
+            }}
+          />
+        )}
+
+        {!isTimedExam && (
+          <QuestionBankSetup
+            subjects={subjects}
+            subjectId={subjectId}
+            onSubjectChange={setSubjectId}
+            questionCount={questionCount}
+            onQuestionCountChange={setQuestionCount}
+            pace={bankPace}
+            onPaceChange={setBankPace}
+          />
+        )}
+
+        {isTimedExam && isNclex && (
+          <div>
+            <label className="apple-label">NCLEX exam length</label>
+            <div className="mt-2 grid gap-3 sm:grid-cols-2">
+              {(
+                [
+                  {
+                    id: "minimum" as const,
+                    title: "85 questions",
+                    hint: "NCLEX minimum — standard timed simulation",
+                  },
+                  {
+                    id: "maximum" as const,
+                    title: "150 questions",
+                    hint: "NCLEX maximum — full-length simulation",
+                  },
+                ] as const
+              ).map((option) => (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => setNclexLength(option.id)}
+                  className={cn(
+                    "rounded-xl border px-4 py-3 text-left transition",
+                    nclexLength === option.id
+                      ? "border-[var(--color-accent)] bg-[var(--color-accent)]/5 ring-1 ring-[var(--color-accent)]"
+                      : "border-black/[0.08] bg-white hover:border-black/[0.12]"
+                  )}
+                >
+                  <p className="font-medium text-[var(--color-ink)]">{option.title}</p>
+                  <p className="mt-1 text-xs text-[var(--color-ink-muted)]">{option.hint}</p>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {isTimedExam && (
+          <div className="rounded-xl border border-black/[0.06] bg-black/[0.02] px-4 py-3">
+            <p className="text-sm font-medium text-[var(--color-ink)]">Full exam simulation</p>
+            <p className="mt-1 text-sm text-[var(--color-ink-muted)]">{lengthLabel}</p>
+            <ul className="mt-3 space-y-1.5 text-xs text-[var(--color-ink-muted)]">
+              <li>Random assorted questions from the full exam bank</li>
+              <li>No topic selection — mirrors a real board exam</li>
+              {isMpje && (
+                <li>
+                  {mpjeVariant === "uniform"
+                    ? "Uniform MPJE (UMPJE) — federal + common state law"
+                    : `State-specific MPJE — ${mpjeState} pharmacy law`}
+                </li>
+              )}
+              <li>Fixed board-length session with per-question timer</li>
+            </ul>
+          </div>
+        )}
+
         {error && <InlineError>{error}</InlineError>}
         <Button
           type="button"
-          disabled={loading || !subjectId}
+          disabled={loading || (!isTimedExam && !subjectId)}
           className="w-full"
           onClick={() => void start()}
         >
-          {loading ? "Loading…" : `Start ${label.toLowerCase()}`}
+          {loading
+            ? "Loading…"
+            : isTimedExam
+              ? `Start timed exam (${timedCount} questions)`
+              : `Start ${bankPace} practice (${questionCount} questions)`}
         </Button>
       </div>
     </div>

@@ -90,15 +90,15 @@ export function LearningDashboard() {
               </li>
             ))}
           </ul>
-          <Button href="/study/practice?mode=weak" className="mt-4">
-            Weak-area drill
+          <Button href="/study/practice?mode=bank" className="mt-4">
+            Topic practice
           </Button>
         </section>
       )}
 
       <section>
-        <h3 className="text-lg font-semibold">Exam modes</h3>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <h3 className="text-lg font-semibold">Study modes</h3>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
           {EXAM_MODES.map((mode) => (
             <Link
               key={mode.id}

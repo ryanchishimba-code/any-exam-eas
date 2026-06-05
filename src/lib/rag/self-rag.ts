@@ -5,7 +5,13 @@ import {
   hasEtiologyOrPathophysiology,
   hasSignsAndSymptoms,
 } from "@/lib/engine/prompts/clinical-reasoning";
-import { isVignetteRich, vignetteHasEtiologyClues, vignetteHasHistoryClues } from "@/lib/engine/prompts/vignette";
+import {
+  hasOrphanDeicticStem,
+  isVignetteRich,
+  validateClinicalVignette,
+  vignetteHasEtiologyClues,
+  vignetteHasHistoryClues,
+} from "@/lib/engine/prompts/vignette";
 import type { RetrievedChunk, SelfRagReflection } from "./types";
 
 const openai = process.env.OPENAI_API_KEY
@@ -38,9 +44,10 @@ export async function reflectOnQuestion(
         {
           role: "system",
           content: `You are a board exam QA reviewer for ${normalizeFieldId(fieldId)}. Evaluate the generated question for:
-- Realistic signs/symptoms in the vignette
-- Etiology/pathophysiology in the rationale
-- Strong plausible distractors with per-option distractorRationale
+- REQUIRED separate vignette field with demographics, chief complaint, history, signs/symptoms, and labs/imaging BEFORE the question stem
+- REJECT stems like "these findings" without a rich vignette — prefer "this patient's presentation"
+- Etiology/pathophysiology explained in the rationale
+- 4 strong plausible distractors with per-option distractorRationale
 - Blueprint-aligned clinical reasoning (CJMM for NCLEX; mechanism→management for USMLE; therapeutic chain for NAPLEX)
 Return JSON: {
   "relevant": boolean,
@@ -100,17 +107,32 @@ function heuristicReflection(question: ExamQuestion, fieldId: string): SelfRagRe
   else issues.push("Vignette lacks realistic signs/symptoms or clinical data");
 
   const vignetteText = question.vignette?.trim() ?? "";
+  if (hasOrphanDeicticStem(question)) {
+    issues.push("Orphan stem references findings without a rich clinical vignette");
+    score -= 0.22;
+  }
+
+  const vignetteIssues = validateClinicalVignette(question);
+  for (const issue of vignetteIssues) {
+    if (!issues.includes(issue)) issues.push(issue);
+  }
+
   if (!vignetteText) {
     issues.push("Missing separate vignette field — clinical scenario must precede the question stem");
-    score -= 0.1;
+    score -= 0.15;
   } else {
-    if (isVignetteRich(vignetteText)) score += 0.06;
-    else issues.push("Vignette too thin for clinical judgment testing");
+    if (isVignetteRich(vignetteText)) score += 0.08;
+    else {
+      issues.push("Vignette too thin for clinical judgment testing");
+      score -= 0.12;
+    }
     if (!vignetteHasHistoryClues(vignetteText)) {
       issues.push("Vignette should include pertinent patient history");
+      score -= 0.04;
     }
     if (!vignetteHasEtiologyClues(vignetteText)) {
       issues.push("Vignette should include etiology or risk-factor clues");
+      score -= 0.03;
     }
   }
 
@@ -148,11 +170,13 @@ function heuristicReflection(question: ExamQuestion, fieldId: string): SelfRagRe
   }
 
   const formatValid =
-    question.type === "select_all" ||
-    question.type === "bow_tie" ||
-    question.type === "matrix" ||
-    question.type === "unfolding_case" ||
-    (question.options?.length === 4 && !!question.correctAnswer);
+    !hasOrphanDeicticStem(question) &&
+    (question.vignette?.trim() ? isVignetteRich(question.vignette) : false) &&
+    (question.type === "select_all" ||
+      question.type === "bow_tie" ||
+      question.type === "matrix" ||
+      question.type === "unfolding_case" ||
+      (question.options?.length === 4 && !!question.correctAnswer));
 
   const normalized = normalizeFieldId(fieldId);
   const relevant =
@@ -201,7 +225,7 @@ export async function regenerateQuestion(params: {
       {
         role: "system",
         content:
-          "Rewrite ONE board-style exam question fixing QA issues. Include vignette with signs/symptoms, etiology/pathophysiology in rationale, complete drugProfile (generic, brandNames, therapeuticClass, indication, conditionSymptoms, conditionEtiology, majorSideEffects, monitoring) when pharmacology-related, 4 options OR select_all, clinicalReasoning, distractorRationale for EVERY wrong option, references array. JSON: { question: {...} }",
+          "Rewrite ONE board-style exam question fixing QA issues. REQUIRED: separate vignette field (2–4 sentences with age/gender, chief complaint, history, signs/symptoms, labs/imaging) THEN question field as lead-in only. NEVER use 'these findings' — use 'this patient's presentation'. Include etiology/pathophysiology in rationale, complete drugProfile when pharmacology-related, 4 high-quality distractors OR select_all, clinicalReasoning, distractorRationale for EVERY wrong option, references array. JSON: { question: {...} }",
       },
       {
         role: "user",

@@ -112,12 +112,12 @@ export function LearningQuiltStudio() {
       <div className="mt-8">
         <p className="apple-label">Study format</p>
         <div className="mt-3">
-          <StudyModePicker active="practice" compact />
+          <StudyModePicker compact />
         </div>
         <p className="mt-3 text-xs text-[var(--color-ink-muted)]">
-          On this page: flashcards and mini-quiz tiles. For full timed exams, switch to{" "}
-          <a href="/generate" className="text-[var(--color-accent)] underline">
-            Exam questions
+          On this page: flashcards and mini-quiz tiles. For full timed exams, use the{" "}
+          <a href="/study/practice?mode=timed" className="text-[var(--color-accent)] underline">
+            timed exam
           </a>
           .
         </p>

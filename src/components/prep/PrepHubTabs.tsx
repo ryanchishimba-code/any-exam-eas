@@ -3,6 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { ExamHubMeta } from "@/lib/exams/catalog";
+import {
+  formatExamLengthLabel,
+  getExamQuestionCountBySlug,
+} from "@/lib/exam/exam-lengths";
+import { timedExamHref, questionBankHref } from "@/lib/study-hub/config";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 
@@ -10,7 +15,7 @@ const TABS = [
   { id: "bank", label: "Question Bank" },
   { id: "flashcards", label: "Flashcards" },
   { id: "topics", label: "Topics" },
-  { id: "practice", label: "Practice Exam" },
+  { id: "practice", label: "Timed Exam" },
   { id: "progress", label: "Progress" },
 ] as const;
 
@@ -27,7 +32,7 @@ export function PrepHubTabs({
   const router = useRouter();
   const [starting, setStarting] = useState(false);
 
-  async function startPractice() {
+  async function startTimedExam() {
     if (exam.slug === "top500") {
       router.push("/study/drugs300");
       return;
@@ -37,7 +42,10 @@ export function PrepHubTabs({
       const res = await fetch("/api/exam-sessions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ examType: exam.slug, questionCount: 40 }),
+        body: JSON.stringify({
+          examType: exam.slug,
+          questionCount: getExamQuestionCountBySlug(exam.slug),
+        }),
       });
       const data = await res.json();
       if (data.redirectUrl) router.push(data.redirectUrl);
@@ -80,11 +88,9 @@ export function PrepHubTabs({
             ) : (
               <>
                 <p className="text-sm text-slate-600">
-                  Search and filter thousands of board-style items for {exam.title}.
+                  Choose topics, question count, and timed or untimed practice for {exam.title}.
                 </p>
-                <Button href={`/study/practice?field=${exam.fieldId}`}>
-                  Open question bank
-                </Button>
+                <Button href={questionBankHref(exam.fieldId)}>Open question bank</Button>
               </>
             )}
           </div>
@@ -117,13 +123,18 @@ export function PrepHubTabs({
         )}
         {tab === "practice" && (
           <div className="rounded-2xl border border-sky-200/60 bg-gradient-to-br from-sky-50 to-white p-8 text-center">
-            <h3 className="text-lg font-semibold">Timed practice exam</h3>
+            <h3 className="text-lg font-semibold">Timed exam</h3>
             <p className="mt-2 text-sm text-slate-600">
-              40 questions · realistic interface · auto-saved answers
+              {formatExamLengthLabel(exam.fieldId)} · mixed topics · auto-saved answers
             </p>
-            <Button className="mt-6" onClick={startPractice} disabled={starting}>
-              {starting ? "Starting…" : "Start new exam"}
-            </Button>
+            <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <Button onClick={startTimedExam} disabled={starting}>
+                {starting ? "Starting…" : "Start timed exam"}
+              </Button>
+              <Button href={timedExamHref(exam.fieldId)} variant="secondary">
+                Question bank flow
+              </Button>
+            </div>
           </div>
         )}
         {tab === "progress" && (

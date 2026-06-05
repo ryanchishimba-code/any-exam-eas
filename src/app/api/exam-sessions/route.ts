@@ -3,10 +3,11 @@ import { auth } from "@/auth";
 import { createExamSession } from "@/lib/exam-sessions/service";
 import type { ExamSlug } from "@/lib/exams/catalog";
 import { getExamHub } from "@/lib/exams/catalog";
+import { getExamQuestionCountBySlug } from "@/lib/exam/exam-lengths";
 
 export const runtime = "nodejs";
 
-const SLUGS = new Set(["nclex", "usmle", "naplex", "top500"]);
+const SLUGS = new Set(["nclex", "usmle", "naplex", "mpje", "top500"]);
 
 export async function POST(req: Request) {
   const session = await auth();
@@ -21,10 +22,11 @@ export async function POST(req: Request) {
   }
 
   try {
+    const defaultCount = getExamQuestionCountBySlug(examType);
     const id = await createExamSession(session.user.id, examType, {
-      questionCount: Number(body.questionCount) || 40,
+      questionCount: Number(body.questionCount) || defaultCount,
       timeLimitSec: Number(body.timeLimitSec) || 3600,
-      title: body.title,
+      title: body.title ?? `${examType.toUpperCase()} timed exam`,
     });
 
     return NextResponse.json({ sessionId: id, redirectUrl: `/exam/${examType}/${id}` });

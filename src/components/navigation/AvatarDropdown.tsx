@@ -63,7 +63,7 @@ export function AvatarDropdown() {
         },
         {
           href: "/study/practice?field=nursing",
-          label: "NCLEX NGN",
+          label: "NCLEX",
           description: "Nursing question bank",
           icon: BookOpen,
         },

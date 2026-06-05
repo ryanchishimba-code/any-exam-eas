@@ -20,9 +20,10 @@ export function Footer() {
   const productLinks = showPremiumLinks
     ? [
         { href: "/study-hub", label: "Study Hub" },
-        { href: "/study/practice?field=nursing", label: "NCLEX NGN" },
+        { href: "/study/practice?field=nursing&mode=timed", label: "NCLEX" },
         { href: "/study/practice?field=usmle-step-1", label: "USMLE bank" },
         { href: "/study/practice?field=pharmacy", label: "NAPLEX bank" },
+        { href: "/study-hub?exam=mpje", label: "MPJE" },
         { href: "/study/drugs300", label: "Top 500 Drugs" },
       ]
     : [

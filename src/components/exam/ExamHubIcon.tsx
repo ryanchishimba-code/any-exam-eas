@@ -1,12 +1,13 @@
 "use client";
 
-import { Activity, Beaker, Pill, Stethoscope, type LucideIcon } from "lucide-react";
+import { Activity, Beaker, Pill, Scale, Stethoscope, type LucideIcon } from "lucide-react";
 import type { ExamSlug } from "@/lib/exams/catalog";
 
 const ICONS: Record<ExamSlug, LucideIcon> = {
   nclex: Activity,
   usmle: Stethoscope,
   naplex: Pill,
+  mpje: Scale,
   top500: Beaker,
 };
 

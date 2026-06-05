@@ -4,6 +4,8 @@ import { TOP_500_DRUGS } from "./drugs300/catalog";
 import { polishNaplexBankItem } from "./engine/polish/naplex-polish";
 import { polishNclexBankItem } from "./engine/polish/nclex-polish";
 import { polishUsmleBankItem } from "./engine/polish/usmle-polish";
+import { polishMpjeBankItem } from "./engine/polish/mpje-polish";
+import { formatClinicalVignette } from "./engine/prompts/vignette";
 
 /** @deprecated Use SubjectArea */
 type FieldSubject = SubjectArea;
@@ -152,6 +154,26 @@ function expandConcepts(subject: FieldSubject): string[] {
   return out;
 }
 
+function medicineVignette(params: {
+  age: number;
+  sex: string;
+  setting: string;
+  symptom: string;
+  concept: string;
+  lab: string;
+  index: number;
+}): string {
+  return formatClinicalVignette({
+    age: params.age,
+    sex: params.sex,
+    setting: params.setting,
+    chiefComplaint: `${params.symptom} worsening over 24 hours`,
+    history: `Past medical history is significant for risk factors related to ${params.concept}. Current medications and allergies are reviewed.`,
+    exam: `Vitals are notable for findings consistent with ${params.symptom}; focused exam supports ${params.concept}`,
+    labs: `${params.lab}; additional studies pending`,
+  });
+}
+
 function buildMedicineQuestion(subject: FieldSubject, index: number, fieldId: string): BankItem {
   const concepts = expandConcepts(subject);
   const concept = pick(concepts, index, 3);
@@ -162,13 +184,14 @@ function buildMedicineQuestion(subject: FieldSubject, index: number, fieldId: st
   const lab = pick(LABS, index, 6);
   const template = index % 8;
   const slot = index % 4;
+  const vignette = medicineVignette({ age, sex, setting, symptom, concept, lab, index });
 
   let seed: BankItem;
 
   switch (template) {
     case 0: {
       const correct = `Focused ${concept} evaluation with targeted history and exam`;
-      const q = `Case ${index + 1}: A ${age}-year-old ${sex} in the ${setting} reports ${symptom}. Which initial approach is most appropriate for suspected ${concept}?`;
+      const q = `${vignette}\n\nWhich initial approach is most appropriate for suspected ${concept}?`;
       seed = item(
         subject.id,
         q,
@@ -188,7 +211,7 @@ function buildMedicineQuestion(subject: FieldSubject, index: number, fieldId: st
     }
     case 1: {
       const correct = `${lab} consistent with the leading diagnosis`;
-      const q = `Case ${index + 1}: During workup for ${concept} in ${subject.label}, labs show ${lab}. Which interpretation is most accurate?`;
+      const q = `${vignette}\n\nWhich laboratory interpretation is most accurate for this presentation?`;
       seed = item(
         subject.id,
         q,
@@ -208,7 +231,7 @@ function buildMedicineQuestion(subject: FieldSubject, index: number, fieldId: st
     }
     case 2: {
       const correct = `Pathophysiology of ${concept} explains the dominant finding`;
-      const q = `Case ${index + 1}: A student reviewing ${subject.label} asks why ${symptom} may occur in ${concept}. Which explanation is best?`;
+      const q = `${vignette}\n\nWhich pathophysiologic process is most likely responsible for this patient's presentation?`;
       seed = item(
         subject.id,
         q,
@@ -228,7 +251,7 @@ function buildMedicineQuestion(subject: FieldSubject, index: number, fieldId: st
     }
     case 3: {
       const correct = `Order the test that directly clarifies ${concept}`;
-      const q = `Case ${index + 1}: Which diagnostic step is most appropriate next for ${concept} when ${symptom} is the chief concern?`;
+      const q = `${vignette}\n\nWhich diagnostic step is most appropriate next?`;
       seed = item(
         subject.id,
         q,
@@ -248,7 +271,7 @@ function buildMedicineQuestion(subject: FieldSubject, index: number, fieldId: st
     }
     case 4: {
       const correct = `First-line therapy targeting ${concept}`;
-      const q = `Case ${index + 1}: Stable ${sex} with ${concept}-related ${symptom}. Which management principle is most appropriate?`;
+      const q = `${vignette}\n\nWhich management approach is most appropriate?`;
       seed = item(
         subject.id,
         q,
@@ -268,7 +291,7 @@ function buildMedicineQuestion(subject: FieldSubject, index: number, fieldId: st
     }
     case 5: {
       const correct = `Recognize complication linked to ${concept}`;
-      const q = `Case ${index + 1}: A hospitalized patient with ${concept} develops worsening ${symptom}. Which complication should be highest on the differential?`;
+      const q = `${vignette}\n\nWhich complication should be highest on the differential?`;
       seed = item(
         subject.id,
         q,
@@ -288,7 +311,7 @@ function buildMedicineQuestion(subject: FieldSubject, index: number, fieldId: st
     }
     case 6: {
       const correct = `Patient safety measure specific to ${concept}`;
-      const q = `Case ${index + 1}: Which safety consideration is most relevant when caring for a patient with ${concept}?`;
+      const q = `${vignette}\n\nWhich safety consideration is most relevant for this patient?`;
       seed = item(
         subject.id,
         q,
@@ -308,7 +331,7 @@ function buildMedicineQuestion(subject: FieldSubject, index: number, fieldId: st
     }
     default: {
       const correct = `High-yield fact about ${concept} in ${subject.label}`;
-      const q = `Case ${index + 1}: Which statement about ${concept} is most accurate for ${subject.label} board preparation?`;
+      const q = `${vignette}\n\nWhich statement is most accurate for this clinical scenario?`;
       seed = item(
         subject.id,
         q,
@@ -592,6 +615,43 @@ function buildPharmacyQuestion(subject: FieldSubject, index: number): BankItem {
   return polishNaplexBankItem(seed, subject.id, subject.label, index).item;
 }
 
+function buildMpjeQuestion(subject: FieldSubject, index: number): BankItem {
+  const concept = pick(expandConcepts(subject), index, 7);
+  const slot = index % 4;
+  const templates = [
+    `MPJE ${index + 1}: A pharmacist at a community pharmacy receives a questionable controlled substance prescription related to ${concept}. What is the required legal action?`,
+    `MPJE ${index + 1}: Which federal or state regulation governs ${concept} in this pharmacy practice scenario?`,
+    `MPJE ${index + 1}: A board inspector identifies a potential violation involving ${concept}. What standard applies?`,
+    `MPJE ${index + 1}: A patient requests confidential prescription information regarding ${concept}. Which privacy rule controls disclosure?`,
+    `MPJE ${index + 1}: A pharmacy technician's action raises a scope-of-practice concern about ${concept}. What is the pharmacist's legal obligation?`,
+  ];
+  const stem = templates[index % templates.length]!;
+
+  const seed: BankItem = item(
+    subject.id,
+    stem,
+    fourOptions(
+      `Apply the governing pharmacy law and board standard for ${concept}`,
+      [
+        "Ignore federal and state requirements when the prescriber insists",
+        "Allow technicians to perform all pharmacist duties without supervision",
+        "Share patient records with any requesting party without authorization",
+      ],
+      slot
+    ),
+    `Apply the governing pharmacy law and board standard for ${concept}`,
+    `MPJE jurisprudence: ${subject.textbookRefs}.`
+  );
+
+  const variant = index % 3 === 0 ? "uniform" : "state";
+  const stateCode = ["TX", "NY", "FL", "CA", "PA"][index % 5];
+
+  return polishMpjeBankItem(seed, subject.id, subject.label, index, {
+    variant: variant as "uniform" | "state",
+    stateCode,
+  }).item;
+}
+
 export function buildBulkQuestion(
   fieldId: string,
   subject: FieldSubject,
@@ -602,6 +662,8 @@ export function buildBulkQuestion(
       return buildNursingQuestion(subject, index);
     case "pharmacy":
       return buildPharmacyQuestion(subject, index);
+    case "mpje":
+      return buildMpjeQuestion(subject, index);
     case "usmle-step-1":
     case "usmle-step-2":
       return buildMedicineQuestion(subject, index, fieldId);

@@ -25,14 +25,16 @@ type TimedPracticeExamProps = {
   sessionId: string;
   examType: string;
   fieldId: string;
-  subjectId: string;
+  questionCount: number;
+  nclexLength?: "minimum" | "maximum";
 };
 
 export function TimedPracticeExam({
   sessionId,
   examType,
   fieldId,
-  subjectId,
+  questionCount,
+  nclexLength = "minimum",
 }: TimedPracticeExamProps) {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [index, setIndex] = useState(0);
@@ -46,11 +48,15 @@ export function TimedPracticeExam({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!subjectId) {
-      setLoading(false);
-      return;
-    }
-    fetch(`/api/questions?field=${fieldId}&subjectId=${subjectId}&limit=40`)
+    const qs = new URLSearchParams({
+      field: fieldId,
+      mode: "timed",
+      scope: "field",
+      limit: String(questionCount),
+    });
+    if (examType === "nclex") qs.set("nclexLength", nclexLength);
+
+    fetch(`/api/questions?${qs.toString()}`)
       .then((r) => r.json())
       .then((d) => {
         const bankIds: string[] = d.bankItemIds ?? [];
@@ -75,7 +81,7 @@ export function TimedPracticeExam({
         setQuestions(items);
       })
       .finally(() => setLoading(false));
-  }, [fieldId, subjectId]);
+  }, [fieldId, examType, questionCount, nclexLength]);
 
   useEffect(() => {
     if (finished || loading) return;

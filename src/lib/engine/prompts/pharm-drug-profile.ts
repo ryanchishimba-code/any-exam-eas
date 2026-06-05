@@ -81,7 +81,7 @@ export function buildPharmDrugRequirementsBlock(ctx: ExamGenerationContext): str
 
   const fieldId = normalizeFieldId(ctx.fieldId);
   const everyItem = requiresDrugProfileOnEveryQuestion(ctx);
-  const examLabel = fieldId === "pharmacy" ? "NAPLEX" : "NCLEX NGN pharmacology";
+  const examLabel = fieldId === "pharmacy" ? "NAPLEX" : "NCLEX pharmacology";
 
   const naplexBlock =
     fieldId === "pharmacy"

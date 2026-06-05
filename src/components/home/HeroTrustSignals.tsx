@@ -3,23 +3,23 @@ import { Award, BookOpen, ShieldCheck, Sparkles } from "lucide-react";
 const signals = [
   {
     icon: BookOpen,
-    value: "Board-style",
-    label: "Practice questions",
+    value: "130K+",
+    label: "Board-style questions",
   },
   {
     icon: Sparkles,
-    value: "Personalized",
-    label: "Study recommendations",
+    value: "Adaptive",
+    label: "AI weak-area targeting",
   },
   {
     icon: Award,
-    value: "NCLEX",
-    label: "USMLE · NAPLEX",
+    value: "4 exams",
+    label: "NCLEX · USMLE · NAPLEX · MPJE",
   },
   {
     icon: ShieldCheck,
-    value: "Encrypted",
-    label: "Cancel anytime",
+    value: "OER-backed",
+    label: "Trusted explanations",
   },
 ];
 

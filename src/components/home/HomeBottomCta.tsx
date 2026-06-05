@@ -39,16 +39,16 @@ export function HomeBottomCta() {
         aria-labelledby="home-cta-heading"
       >
         <div className="aee-bottom-cta-bg pointer-events-none absolute inset-0" aria-hidden />
-        <div className="relative mx-auto max-w-[640px] px-5 py-16 sm:px-6 sm:py-20">
-          <h2 id="home-cta-heading" className="aee-headline text-white">
+        <div className="relative mx-auto max-w-[640px] px-5 py-10 sm:px-6 sm:py-12">
+          <h2 id="home-cta-heading" className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
             Keep the momentum going.
           </h2>
-          <p className="mt-3 text-base text-teal-100/90">
-            Every session builds familiarity with the formats you&apos;ll see on exam day.
+          <p className="mt-2 text-sm text-teal-100/90">
+            Every session builds exam-day confidence.
           </p>
           <Link
-            href="/study/practice?mode=adaptive"
-            className="aee-btn-hero-xl aee-btn-hero-light group mt-8 inline-flex items-center justify-center gap-2"
+            href="/study/practice?mode=timed"
+            className="aee-btn-hero-xl aee-btn-hero-light group mt-6 inline-flex items-center justify-center gap-2"
           >
             Start adaptive practice
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
@@ -65,17 +65,17 @@ export function HomeBottomCta() {
         aria-labelledby="home-cta-heading"
       >
         <div className="aee-bottom-cta-bg pointer-events-none absolute inset-0" aria-hidden />
-        <div className="relative mx-auto max-w-[640px] px-5 py-16 sm:px-6 sm:py-20">
+        <div className="relative mx-auto max-w-[640px] px-5 py-10 sm:px-6 sm:py-12">
           <p className="text-xs font-bold uppercase tracking-wider text-teal-200">
             Welcome back{displayName ? `, ${displayName}` : ""}
           </p>
-          <h2 id="home-cta-heading" className="aee-headline mt-2 text-white">
+          <h2 id="home-cta-heading" className="mt-1 text-2xl font-bold tracking-tight text-white sm:text-3xl">
             Your Study Hub is ready.
           </h2>
-          <p className="mt-3 text-base text-teal-100/90">
-            Log in to pick up practice exams, drug review, and your progress stats.
+          <p className="mt-2 text-sm text-teal-100/90">
+            Log in to resume practice, drug review, and progress.
           </p>
-          <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+          <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <LoginModalTrigger
               callbackUrl="/study-hub"
               className="aee-btn-hero-xl aee-btn-hero-light group inline-flex items-center justify-center gap-2"
@@ -102,18 +102,15 @@ export function HomeBottomCta() {
       aria-labelledby="home-cta-heading"
     >
       <div className="aee-bottom-cta-bg pointer-events-none absolute inset-0" aria-hidden />
-      <div className="relative mx-auto max-w-[640px] px-5 py-16 sm:px-6 sm:py-20">
-        <p className="text-xs font-bold uppercase tracking-wider text-teal-200">
-          Start before test day catches up
-        </p>
-        <h2 id="home-cta-heading" className="aee-headline mt-2 text-white">
-          Invest {formatTrialIntroPrice()} in passing the first time.
+      <div className="relative mx-auto max-w-[640px] px-5 py-10 sm:px-6 sm:py-12">
+        <h2 id="home-cta-heading" className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          Pass the first time — start for {formatTrialIntroPrice()}.
         </h2>
-        <p className="mt-3 text-base text-teal-100/90">
-          {formatTrialLabel()} of full access — adaptive practice, progress tracking,
-          and 130K+ questions for {formatMonthlyPrice()}/mo after.
+        <p className="mt-2 text-sm text-teal-100/90">
+          {formatTrialLabel()} · All four exams · Adaptive AI · Top 500 Drugs · then{" "}
+          {formatMonthlyPrice()}/mo
         </p>
-        <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+        <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
           <Link
             href="/signup?plan=trial"
             className="aee-btn-hero-xl aee-btn-hero-light group inline-flex items-center justify-center gap-2"
@@ -129,9 +126,6 @@ export function HomeBottomCta() {
             Already subscribed? Log in
           </LoginModalTrigger>
         </div>
-        <p className="mx-auto mt-6 max-w-sm text-xs text-teal-200/70">
-          Join students across NCLEX, USMLE, and NAPLEX who prep smarter — not longer.
-        </p>
       </div>
     </section>
   );

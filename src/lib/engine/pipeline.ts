@@ -12,6 +12,7 @@ import { deduplicateExamQuestions } from "./stages/deduplication";
 import { normalizeExamQuestionsFromAi } from "./stages/normalize-ai-output";
 import { scoreExamQuality } from "./stages/quality";
 import { normalizeGeneratedExam } from "./stages/format-normalize";
+import { ensureVignettesOnExam } from "./stages/ensure-vignettes";
 import { enrichGeneratedExam } from "./stages/enrich-questions";
 import { runSelfEvaluationLoop } from "./stages/self-evaluate";
 import { NGN_SYSTEM_AUGMENTATION } from "./prompts/ngn-schema";
@@ -33,6 +34,8 @@ export type ExamPipelineParams = {
   sources: SearchResult[];
   researchBrief: string;
   subjectId?: string;
+  mpjeVariant?: "uniform" | "state";
+  mpjeStateCode?: string;
   advancedContext?: AdvancedStudyContext;
   mode?: "production" | "test";
   skipSelfEval?: boolean;
@@ -61,6 +64,8 @@ export async function runExamGenerationPipeline(
     questionCount: params.questionCount,
     sources: params.sources,
     researchBrief: params.researchBrief,
+    mpjeVariant: params.mpjeVariant,
+    mpjeStateCode: params.mpjeStateCode,
   };
 
   const concepts = await subjectModule.extractConcepts({
@@ -139,6 +144,7 @@ export async function runExamGenerationPipeline(
   let exam = JSON.parse(raw) as GeneratedExam;
   exam.sourcesReviewed = params.sources.length;
   exam.questions = normalizeExamQuestionsFromAi(exam.questions);
+  exam = ensureVignettesOnExam(exam);
 
   const requireSteps = Boolean(subjectModule.capabilities.requiresFormulaValidation);
   exam = normalizeGeneratedExam(exam, params.questionCount, requireSteps);

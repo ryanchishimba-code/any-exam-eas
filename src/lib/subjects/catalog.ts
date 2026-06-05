@@ -35,7 +35,7 @@ const DISPLAY_OVERRIDES: Partial<
     accentMuted: "rgba(88, 86, 214, 0.12)",
     trending: true,
     recommended: true,
-    features: ["Prioritization", "Select-all-that-apply", "Rapid review"],
+    features: ["Timed exam", "Question bank", "Topic practice"],
   },
   "usmle-step-1": {
     description:
@@ -44,7 +44,7 @@ const DISPLAY_OVERRIDES: Partial<
     accentMuted: "rgba(0, 113, 227, 0.12)",
     trending: true,
     recommended: true,
-    features: ["Mechanisms & pathology", "Timed mocks", "Weak-area review"],
+    features: ["Timed exam", "Question bank", "Topic practice"],
   },
   "usmle-step-2": {
     description:
@@ -53,14 +53,21 @@ const DISPLAY_OVERRIDES: Partial<
     accentMuted: "rgba(10, 132, 255, 0.12)",
     trending: true,
     recommended: true,
-    features: ["Clinical reasoning", "Organ systems", "Mock exams"],
+    features: ["Timed exam", "Question bank", "Topic practice"],
   },
   pharmacy: {
     description:
       "NAPLEX-focused calculations, interactions, and therapeutic decision-making.",
     accent: "#34c759",
     accentMuted: "rgba(52, 199, 89, 0.12)",
-    features: ["Dosing calculations", "Drug interactions", "Mock exams"],
+    features: ["Timed exam", "Question bank", "Topic practice"],
+  },
+  mpje: {
+    description:
+      "Federal law, Uniform MPJE (UMPJE), and state-specific pharmacy jurisprudence.",
+    accent: "#ff9500",
+    accentMuted: "rgba(255, 149, 0, 0.12)",
+    features: ["Timed exam", "Question bank", "State selector", "UMPJE prep"],
   },
 };
 
@@ -88,7 +95,7 @@ export function getSubjectCatalog(): SubjectCatalogEntry[] {
       accentMuted: override?.accentMuted ?? "rgba(0, 113, 227, 0.12)",
       topicCount: mod.subjectAreas.length,
       difficultyLevels: DEFAULT_DIFFICULTIES,
-      features: override?.features ?? ["Personalized practice", "Question bank", "Analytics"],
+      features: override?.features ?? ["Timed exam", "Question bank"],
       trending: override?.trending,
       recommended: override?.recommended,
     };

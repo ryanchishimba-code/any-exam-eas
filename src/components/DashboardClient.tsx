@@ -75,15 +75,12 @@ export function DashboardClient({
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             {access.hasAccess ? (
               <>
-                <Button href="/study/practice">Question bank</Button>
-                <Button href="/study/practice?mode=adaptive" variant="secondary">
-                  Personalized practice
+                <Button href="/study/practice?mode=timed">Timed exam</Button>
+                <Button href="/study/practice?mode=bank" variant="secondary">
+                  Question bank
                 </Button>
-                <Button href="/generate" variant="secondary">
-                  AI practice exam
-                </Button>
-                <Button href="/study/analytics" variant="ghost">
-                  Analytics
+                <Button href="/study-hub#progress" variant="ghost">
+                  Progress
                 </Button>
               </>
             ) : (

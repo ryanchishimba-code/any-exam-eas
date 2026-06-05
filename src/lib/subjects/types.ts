@@ -141,6 +141,10 @@ export type ExamGenerationContext = {
   questionCount: number;
   sources: SearchResult[];
   researchBrief: string;
+  /** MPJE: uniform (UMPJE) vs state-specific generation scope. */
+  mpjeVariant?: "uniform" | "state";
+  /** MPJE state/territory code when mpjeVariant is "state". */
+  mpjeStateCode?: string;
 };
 
 export type ComposedPrompt = {

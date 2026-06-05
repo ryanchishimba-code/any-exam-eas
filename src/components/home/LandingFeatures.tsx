@@ -2,52 +2,61 @@
 
 import { motion } from "framer-motion";
 import {
-  CalendarClock,
-  CircleCheckBig,
-  ShieldCheck,
+  BookOpen,
+  Brain,
+  CircleDollarSign,
+  MapPin,
+  Pill,
   Sparkles,
-  TrendingUp,
 } from "lucide-react";
 
 const benefits = [
   {
-    icon: CircleCheckBig,
-    outcome: "Focused prep",
-    title: "Track your progress over time",
+    icon: Brain,
+    outcome: "Adaptive AI",
+    title: "Study what you miss — not what you already know",
     description:
-      "Practice trends and topic summaries help you see where you are improving in-app — so you can study with more intention, not more guesswork.",
+      "Our engine surfaces weak topics and adjusts your practice so every session moves the needle toward exam-day confidence.",
     accent: "from-teal-500 to-cyan-500",
   },
   {
-    icon: CalendarClock,
-    outcome: "Efficient sessions",
-    title: "Spend time on what you miss",
+    icon: CircleDollarSign,
+    outcome: "Affordable",
+    title: "Elite prep without the $300 price tag",
     description:
-      "Practice modes can emphasize weaker areas so you spend less time on topics you already know and more on what needs review.",
+      "Full access to NCLEX, USMLE, NAPLEX, and MPJE for a fraction of what legacy question banks charge upfront.",
     accent: "from-cyan-500 to-sky-500",
   },
   {
-    icon: ShieldCheck,
-    outcome: "Exam familiarity",
-    title: "Practice that mirrors board formats",
+    icon: Pill,
+    outcome: "Top 500 Drugs",
+    title: "High-yield pharmacology in one place",
     description:
-      "Board-style vignettes and NCLEX item types help you get comfortable with question formats used on licensing exams.",
+      "Dedicated drug mastery with flashcards by class — generic, brand, MOA, and adverse effects for NCLEX and NAPLEX.",
     accent: "from-sky-500 to-blue-500",
   },
   {
-    icon: Sparkles,
-    outcome: "Clear feedback",
-    title: "Understand why — not just what",
+    icon: BookOpen,
+    outcome: "OER-backed",
+    title: "Understand why — with sources you can trust",
     description:
-      "Rationales aim to explain the reasoning behind each answer so missed questions become learning opportunities.",
+      "Rationales draw on Open RN, OpenStax, and board blueprints so missed questions become real learning — not memorization.",
     accent: "from-teal-600 to-teal-400",
   },
   {
-    icon: TrendingUp,
-    outcome: "Visible momentum",
-    title: "See your effort add up",
+    icon: MapPin,
+    outcome: "State MPJE",
+    title: "Uniform or state-specific pharmacy law",
     description:
-      "Track accuracy, streaks, and topic coverage in one place as you work through your study plan.",
+      "Prep for UMPJE multistate jurisprudence or drill down into your state's practice act — California to Texas and beyond.",
+    accent: "from-amber-500 to-orange-500",
+  },
+  {
+    icon: Sparkles,
+    outcome: "Pass the first time",
+    title: "Walk in prepared — not panicking",
+    description:
+      "Board-realistic vignettes, timed simulations, and progress tracking designed to build the confidence you earned in school.",
     accent: "from-cyan-600 to-teal-500",
   },
 ];
@@ -55,23 +64,23 @@ const benefits = [
 export function LandingFeatures() {
   return (
     <section
-      className="aee-landing-section relative overflow-hidden bg-white"
+      className="aee-landing-section relative overflow-hidden border-y border-slate-100 bg-slate-50/50"
       aria-labelledby="landing-features-heading"
     >
       <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="aee-section-label">Why learners use Any Exam Easy</p>
+          <p className="aee-section-label">Why Any Exam Easy</p>
           <h2 id="landing-features-heading" className="aee-headline mt-4">
-            Better prep habits.{" "}
-            <span className="aee-display-accent">Less overwhelm.</span>
+            Built to help you{" "}
+            <span className="aee-display-accent">pass the first time.</span>
           </h2>
           <p className="aee-section-lede mx-auto max-w-xl">
-            Focused tools that support consistent, self-directed board exam
-            preparation — not a substitute for accredited instruction.
+            Powerful tools, honest pricing, and professional-grade content across
+            NCLEX, USMLE, NAPLEX, and MPJE.
           </p>
         </div>
 
-        <ul className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {benefits.map((benefit, i) => {
             const Icon = benefit.icon;
             return (
@@ -80,14 +89,9 @@ export function LandingFeatures() {
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.45, delay: i * 0.06 }}
-                className={
-                  i === benefits.length - 1
-                    ? "sm:col-span-2 sm:max-w-lg sm:justify-self-center sm:w-full lg:col-span-1 lg:max-w-none lg:justify-self-auto"
-                    : undefined
-                }
+                transition={{ duration: 0.45, delay: i * 0.05 }}
               >
-                <article className="aee-feature-card group h-full">
+                <article className="aee-feature-card group h-full bg-white">
                   <span
                     className={`aee-feature-icon bg-gradient-to-br ${benefit.accent}`}
                     aria-hidden

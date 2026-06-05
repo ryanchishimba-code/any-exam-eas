@@ -14,10 +14,11 @@ const competitorNames = ["UWorld", "Archer Review", "SimpleNursing"];
 const rows = [
   { label: "Starting cost", us: `${formatTrialIntroPrice()} trial`, them: "$99–329+ upfront" },
   { label: "Monthly", us: `${formatMonthlyPrice()}/mo listed`, them: "$39–89+/mo tiers" },
+  { label: "Exam coverage", us: "NCLEX · USMLE · NAPLEX · MPJE", them: "Often per-exam pricing" },
   { label: "Top 500 drugs", us: "Dedicated mastery", them: "Scattered in banks" },
-  { label: "Adaptive + NGN", us: "Built in", them: "Limited / add-on" },
-  { label: "Experience", us: "One clean platform", them: "Bundles & upsells" },
-  { label: "Rationales", us: "OER-backed", them: "Proprietary only" },
+  { label: "Adaptive AI", us: "Weak-area targeting built in", them: "Limited / add-on" },
+  { label: "MPJE prep", us: "Uniform + state-specific", them: "Rare or generic only" },
+  { label: "Rationales", us: "OER-backed (Open RN, OpenStax)", them: "Proprietary only" },
 ] as const;
 
 export function HowWeCompare() {
@@ -36,9 +37,9 @@ export function HowWeCompare() {
             id="compare-heading"
             className="mt-1.5 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl"
           >
-            Same boards.{" "}
+            Four exams.{" "}
             <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-              Fraction of the cost.
+              A fraction of the cost.
             </span>
           </h2>
         </div>

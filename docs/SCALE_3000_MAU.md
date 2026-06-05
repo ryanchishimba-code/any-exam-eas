@@ -45,7 +45,7 @@ Target: **~3,000 monthly active users** on Vercel + Neon Postgres with controlle
 ## Question engine priorities
 
 1. **RAG:** Tavily + OER domains per subject module (`src/lib/subjects/*/`)
-2. **NCLEX NGN:** Nursing prompts include unfolding cases, bow-tie, matrix, trend (`nursing/prompts.ts`)
+2. **NCLEX:** Nursing prompts include unfolding cases, bow-tie, matrix, trend (`nursing/prompts.ts`)
 3. **SAT Prep:** Dedicated module (`src/lib/subjects/sat/`)
 4. **Adaptive:** `src/lib/learning/adaptive-session.ts` + mastery in Postgres
 5. **Source citations:** Prompts require `[n]` references in explanations

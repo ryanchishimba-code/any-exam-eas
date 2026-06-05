@@ -43,10 +43,10 @@ export default async function PricingPage({
 
         <ul className="mt-8 space-y-3.5 text-left text-[0.9375rem]">
           {[
-            "Board-style question practice (NCLEX, NAPLEX, USMLE)",
-            "AI-assisted exam generation (verify content independently)",
-            "Weak-area practice modes + progress tracking",
-            "Study Hub with progress tracking",
+            "Board-style practice — NCLEX, USMLE, NAPLEX & MPJE",
+            "Adaptive AI weak-area targeting + progress tracking",
+            "Top 500 Drugs mastery + state-specific MPJE support",
+            "Study Hub with timed exams and question banks",
             "OER-backed rationales with source citations",
           ].map((item) => (
             <li key={item} className="flex gap-3 text-[var(--color-ink-muted)]">

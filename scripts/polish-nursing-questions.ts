@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Polish NCLEX NGN (nursing field) questions in the database.
+ * Polish NCLEX (nursing field) questions in the database.
  *
  * Usage:
  *   npx tsx scripts/polish-nursing-questions.ts --dry-run
@@ -58,7 +58,7 @@ async function main() {
   });
 
   console.log(
-    `\nNCLEX NGN polish — ${rows.length} active nursing items${fixPrioritization ? " (weak prioritization only)" : ""}\n`
+    `\nNCLEX polish — ${rows.length} active nursing items${fixPrioritization ? " (weak prioritization only)" : ""}\n`
   );
 
   let scanned = 0;

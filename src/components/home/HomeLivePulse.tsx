@@ -3,7 +3,7 @@
 import { Flame, Target, TrendingUp } from "lucide-react";
 
 const badges = [
-  { id: "focus", label: "Weak-area focus", icon: Target },
+  { id: "focus", label: "Topic practice", icon: Target },
   { id: "streak", label: "Study streaks", icon: Flame },
   { id: "progress", label: "Progress tracking", icon: TrendingUp },
 ] as const;
@@ -16,8 +16,8 @@ export function HomeLivePulse() {
     >
       <div className="mx-auto flex max-w-[1080px] flex-col gap-4 px-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
         <p className="text-sm text-[var(--color-ink-muted)]">
-          Built for NCLEX, USMLE, and NAPLEX prep — with board-style practice,
-          OER-backed rationales, and tools to help you focus on what matters most.
+          Built for NCLEX, USMLE, NAPLEX, and MPJE — adaptive AI practice,
+          OER-backed rationales, and tools that help you pass the first time.
         </p>
 
         <ul className="flex flex-wrap items-center gap-2" aria-label="Study features">

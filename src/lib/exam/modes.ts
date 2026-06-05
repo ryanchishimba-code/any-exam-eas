@@ -1,102 +1,67 @@
-/** User-facing exam modes — mapped to study session configuration. */
-export type ExamModeId =
-  | "timed"
-  | "tutor"
-  | "adaptive"
-  | "rapid"
-  | "weak_area"
-  | "mock_board"
-  | "cat_mock"
-  | "subject"
-  | "mixed";
+import type { ExamSessionMode } from "./exam-lengths";
+
+/** User-facing study modes — timed simulation or flexible question bank. */
+export type ExamModeId = "timed" | "bank";
 
 export type ExamModeDefinition = {
   id: ExamModeId;
   label: string;
   description: string;
   href: string;
-  studyMode: "practice" | "rapid" | "timed" | "cat";
-  /** Query param for generators / practice */
-  param?: string;
-  premium?: boolean;
+  studyMode: "timed" | "practice";
+  param: string;
+  sessionMode: ExamSessionMode;
 };
 
 export const EXAM_MODES: ExamModeDefinition[] = [
   {
     id: "timed",
-    label: "Timed exam",
-    description: "Fixed clock per question — timed practice pacing without distractions.",
+    label: "Timed Exam",
+    description: "Full simulated exam with mixed questions",
     href: "/study/practice?mode=timed",
     studyMode: "timed",
     param: "timed",
+    sessionMode: "timed",
   },
   {
-    id: "tutor",
-    label: "Tutor mode",
-    description: "Immediate explanations after each item — learn as you go.",
-    href: "/study/practice?mode=practice",
+    id: "bank",
+    label: "Question Bank",
+    description: "Custom practice — pick a topic, set question count, timed or untimed",
+    href: "/study/practice?mode=bank",
     studyMode: "practice",
-    param: "tutor",
-  },
-  {
-    id: "adaptive",
-    label: "Personalized practice",
-    description: "Question order can emphasize topics where you need more review.",
-    href: "/study/practice?mode=adaptive",
-    studyMode: "practice",
-    param: "adaptive",
-  },
-  {
-    id: "rapid",
-    label: "Rapid review",
-    description: "High-yield drill — short sessions, fast feedback.",
-    href: "/study/practice?mode=rapid",
-    studyMode: "rapid",
-    param: "rapid",
-  },
-  {
-    id: "weak_area",
-    label: "Weak-area mode",
-    description: "Focus only on tags and topics you miss most often.",
-    href: "/study/practice?mode=weak",
-    studyMode: "practice",
-    param: "weak",
-  },
-  {
-    id: "cat_mock",
-    label: "NCLEX-style CAT mock",
-    description:
-      "Adaptive question count (75–145) with difficulty that ramps based on your answers — self-assessment practice.",
-    href: "/study/practice?mode=cat",
-    studyMode: "cat",
-    param: "cat",
-    premium: true,
-  },
-  {
-    id: "mock_board",
-    label: "Mock practice exam",
-    description: "Full-length mixed-topic block with timed sections for self-assessment.",
-    href: "/generate?mode=mock",
-    studyMode: "timed",
-    param: "mock",
-  },
-  {
-    id: "subject",
-    label: "Subject exam",
-    description: "Deep dive one subject area from the question bank or AI generator.",
-    href: "/generate",
-    studyMode: "practice",
-  },
-  {
-    id: "mixed",
-    label: "Mixed-topic exam",
-    description: "Cross-topic assessment spanning your chosen field.",
-    href: "/generate?mixed=1",
-    studyMode: "timed",
-    param: "mixed",
+    param: "bank",
+    sessionMode: "bank",
   },
 ];
 
 export function getExamMode(id: ExamModeId): ExamModeDefinition | undefined {
   return EXAM_MODES.find((m) => m.id === id);
+}
+
+export function examModeHref(mode: ExamModeDefinition, fieldId: string): string {
+  return `/study/practice?field=${encodeURIComponent(fieldId)}&mode=${mode.param}`;
+}
+
+/** Flexible question bank session bounds. */
+export const QUESTION_BANK_MIN_COUNT = 5;
+export const QUESTION_BANK_MAX_COUNT = 100;
+
+/** Quick-pick counts for question bank sessions. */
+export const QUESTION_BANK_COUNT_PRESETS = [10, 25, 50, 75, 100] as const;
+
+/** @deprecated Use QUESTION_BANK_COUNT_PRESETS */
+export const QUESTION_BANK_COUNT_OPTIONS = QUESTION_BANK_COUNT_PRESETS;
+
+export function clampQuestionBankCount(value: number): number {
+  if (!Number.isFinite(value)) return 25;
+  return Math.min(
+    QUESTION_BANK_MAX_COUNT,
+    Math.max(QUESTION_BANK_MIN_COUNT, Math.round(value))
+  );
+}
+
+export type QuestionBankPace = "timed" | "untimed";
+
+export function parseQuestionBankPace(value: string | null | undefined): QuestionBankPace {
+  return value === "timed" ? "timed" : "untimed";
 }

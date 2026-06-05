@@ -131,3 +131,50 @@ export async function countActiveQuestions(fieldId?: string) {
     },
   });
 }
+
+/**
+ * Random sample across all subjects in a field (for timed exam simulations).
+ */
+export async function sampleQuestionBankItemsForField(params: {
+  fieldId: string;
+  count: number;
+}): Promise<BankItem[]> {
+  await ensureQuestionBankSeeded();
+
+  const want = Math.max(1, params.count);
+  const where = { fieldId: params.fieldId, active: true as const };
+  const total = await prisma.questionBankItem.count({ where });
+
+  if (total === 0) return [];
+
+  const pullTarget = Math.min(
+    QUESTION_BANK_SAMPLE_MAX_PULL,
+    Math.max(want * 2, want + 40)
+  );
+
+  if (total <= want) {
+    const rows = await prisma.questionBankItem.findMany({ where });
+    return dedupeBankItemsByStem(shuffleBankItems(rows.map(rowToBankItem))).slice(0, want);
+  }
+
+  let collected: BankItem[] = [];
+  let attempts = 0;
+
+  while (collected.length < want && attempts < 5) {
+    const pull = Math.min(pullTarget, total);
+    const skip = total > pull ? Math.floor(Math.random() * (total - pull)) : 0;
+    const rows = await prisma.questionBankItem.findMany({
+      where,
+      skip,
+      take: pull,
+      orderBy: { id: "asc" },
+    });
+    collected = dedupeBankItemsByStem([
+      ...collected,
+      ...shuffleBankItems(rows.map(rowToBankItem)),
+    ]);
+    attempts++;
+  }
+
+  return shuffleBankItems(collected).slice(0, want);
+}

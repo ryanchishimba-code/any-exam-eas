@@ -5,19 +5,13 @@ import { useEffect, useState, type ReactNode } from "react";
 import { useSession } from "next-auth/react";
 import { ArrowRight, LogIn, Sparkles } from "lucide-react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
-import { HeroShowcase } from "@/components/home/HeroShowcase";
-import { LiveBankStats } from "@/components/home/LiveBankStats";
 import {
   firstName,
   loadReturningUserHint,
   touchReturningVisit,
   type ReturningUserHint,
 } from "@/lib/client/returning-user";
-import {
-  formatTrialIntroPrice,
-  formatTrialLabel,
-  MARKETING_DISCLAIMER,
-} from "@/lib/site";
+import { formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
 
 export function Hero() {
   const { data: session, status } = useSession();
@@ -69,13 +63,13 @@ export function Hero() {
       </>
     );
     subline =
-      "Adaptive practice that targets what you miss — so you walk in prepared, not guessing.";
-    urgency = `${formatTrialIntroPrice()} ${formatTrialLabel()} · Full access · Cancel anytime`;
+      "Adaptive AI, OER-backed rationales, and 130K+ questions across NCLEX, USMLE, NAPLEX, and MPJE.";
+    urgency = `${formatTrialIntroPrice()} ${formatTrialLabel()} · Cancel anytime`;
   }
 
   return (
     <section
-      className="aee-hero aee-hero-vibrant aee-hero-impact relative overflow-hidden"
+      className="aee-hero aee-hero-vibrant aee-hero-compact relative overflow-hidden"
       aria-labelledby="hero-heading"
     >
       <div className="aee-hero-vibrant-bg pointer-events-none absolute inset-0" aria-hidden />
@@ -83,27 +77,27 @@ export function Hero() {
       <div className="aee-hero-vibrant-orb aee-hero-vibrant-orb--2 pointer-events-none absolute" aria-hidden />
       <div className="aee-hero-grid pointer-events-none absolute inset-0" aria-hidden />
 
-      <div className="relative mx-auto max-w-[1140px] px-5 sm:px-6 lg:px-8">
-        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14 xl:gap-16">
-          <header className="text-center lg:text-left">
-            <p className="aee-hero-exam-pill aee-reveal mx-auto lg:mx-0">
+      <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6">
+        <div className="mx-auto max-w-2xl text-center">
+          <header>
+            <p className="aee-hero-exam-pill aee-reveal mx-auto">
               <Sparkles className="h-3 w-3" aria-hidden />
-              NCLEX · USMLE · NAPLEX
+              NCLEX · USMLE · NAPLEX · MPJE
             </p>
 
             <h1
               id="hero-heading"
-              className="aee-display-mega aee-display-impact aee-reveal aee-reveal-delay-1 mt-5"
+              className="aee-display-mega aee-display-impact aee-reveal aee-reveal-delay-1 mt-4"
             >
               {headline}
             </h1>
 
-            <p className="aee-hero-tagline aee-reveal aee-reveal-delay-2 mx-auto mt-4 max-w-lg lg:mx-0">
+            <p className="aee-hero-tagline aee-reveal aee-reveal-delay-2 mx-auto mt-3 max-w-md">
               {subline}
             </p>
 
             {ready && (
-              <div className="aee-reveal aee-reveal-delay-3 mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center lg:justify-start">
+              <div className="aee-reveal aee-reveal-delay-3 mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
                 {isAuthed ? (
                   <>
                     <Link
@@ -174,20 +168,7 @@ export function Hero() {
               </p>
             )}
 
-            {!isAuthed && (
-              <LiveBankStats className="aee-reveal aee-reveal-delay-5 mt-8 max-w-md mx-auto lg:mx-0" />
-            )}
-
-            {!isAuthed && (
-              <p className="aee-reveal aee-reveal-delay-5 mt-4 text-[0.6875rem] leading-relaxed text-slate-400">
-                {MARKETING_DISCLAIMER}
-              </p>
-            )}
           </header>
-
-          <div className="aee-reveal aee-reveal-delay-2 mx-auto w-full max-w-[460px] lg:mx-0 lg:max-w-none">
-            <HeroShowcase />
-          </div>
         </div>
       </div>
     </section>

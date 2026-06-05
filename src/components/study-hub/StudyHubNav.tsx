@@ -1,35 +1,39 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { BarChart3, BookOpen, Layers, LayoutGrid } from "lucide-react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { BarChart3, Clock, LayoutGrid, Layers, SlidersHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
-  STUDY_HUB_EXAM_BANKS,
+  QUESTION_BANK_PATH,
   STUDY_HUB_PATH,
+  TIMED_EXAM_PATH,
   TOP_500_DRUGS_PATH,
-  questionBankHref,
   studyHubProgressHref,
 } from "@/lib/study-hub/config";
 
 export function StudyHubNav() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const mode = searchParams.get("mode");
 
   function isActive(href: string) {
     if (href === STUDY_HUB_PATH) return pathname === STUDY_HUB_PATH;
     if (href === studyHubProgressHref()) return pathname === STUDY_HUB_PATH;
     if (href === TOP_500_DRUGS_PATH) return pathname.startsWith(TOP_500_DRUGS_PATH);
-    if (href.startsWith("/study/practice")) return pathname.startsWith("/study/practice");
+    if (href === TIMED_EXAM_PATH) {
+      return pathname.startsWith("/study/practice") && mode !== "bank";
+    }
+    if (href === QUESTION_BANK_PATH) {
+      return pathname.startsWith("/study/practice") && mode === "bank";
+    }
     return pathname === href;
   }
 
   const items = [
     { href: STUDY_HUB_PATH, label: "Study Hub", icon: LayoutGrid },
-    ...STUDY_HUB_EXAM_BANKS.map((exam) => ({
-      href: questionBankHref(exam.fieldId),
-      label: exam.label,
-      icon: BookOpen,
-    })),
+    { href: TIMED_EXAM_PATH, label: "Timed Exam", icon: Clock },
+    { href: QUESTION_BANK_PATH, label: "Question Bank", icon: SlidersHorizontal },
     { href: TOP_500_DRUGS_PATH, label: "Top 500 Drugs", icon: Layers },
     { href: studyHubProgressHref(), label: "Progress", icon: BarChart3 },
   ];

@@ -4,7 +4,7 @@ import { getExamHub, type ExamSlug } from "@/lib/exams/catalog";
 import { getExamSession } from "@/lib/exam-sessions/service";
 import { TimedPracticeExam } from "@/components/exam/TimedPracticeExam";
 import { requirePremiumPage } from "@/lib/require-premium-page";
-import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { resolveTimedExamLimit } from "@/lib/exam/exam-lengths";
 
 const SLUGS = new Set(["nclex", "usmle", "naplex", "top500"]);
 
@@ -34,15 +34,20 @@ export default async function ExamSessionPage({
   }
   if (!examSession) notFound();
 
-  const subjects = getSubjectsForFieldId(hub.fieldId);
-  const defaultSubjectId = subjects[0]?.id ?? "";
+  const storedCount = examSession.questionCount || 0;
+  const questionCount = resolveTimedExamLimit(
+    hub.fieldId,
+    storedCount > 0 ? storedCount : undefined,
+    examType === "nclex" && storedCount === 150 ? "maximum" : "minimum"
+  );
 
   return (
     <TimedPracticeExam
       sessionId={sessionId}
       examType={examType}
       fieldId={hub.fieldId}
-      subjectId={defaultSubjectId}
+      questionCount={questionCount}
+      nclexLength={examType === "nclex" && questionCount === 150 ? "maximum" : "minimum"}
     />
   );
 }

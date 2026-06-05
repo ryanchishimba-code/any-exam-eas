@@ -1,10 +1,10 @@
 import { BookOpen, Lock, ShieldCheck, Stethoscope } from "lucide-react";
 
 const items = [
-  { icon: Stethoscope, label: "NCLEX · USMLE · NAPLEX" },
+  { icon: Stethoscope, label: "NCLEX · USMLE · NAPLEX · MPJE" },
   { icon: BookOpen, label: "OER-backed rationales" },
-  { icon: ShieldCheck, label: "Security-first infra" },
-  { icon: Lock, label: "Encrypted & private" },
+  { icon: ShieldCheck, label: "Adaptive AI practice" },
+  { icon: Lock, label: "Affordable · Cancel anytime" },
 ];
 
 type TrustBarProps = {

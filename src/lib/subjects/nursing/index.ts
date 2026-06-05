@@ -66,7 +66,7 @@ export const nursingModule: SubjectModule = {
   ],
   sourcePreferences: {
     oerDomains: ["openrn.org", "openstax.org", "cdc.gov", "ncsbn.org"],
-    searchQueryHints: ["NCLEX NGN", "Next Gen NCLEX", "Open RN", "Nurseslabs", "nursing"],
+    searchQueryHints: ["NCLEX", "Next Gen NCLEX", "Open RN", "Nurseslabs", "nursing"],
   },
   supportedQuestionTypes: ["multiple_choice", "prioritization", "clinical_vignette"],
 

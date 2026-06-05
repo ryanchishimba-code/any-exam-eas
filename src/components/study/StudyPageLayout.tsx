@@ -25,7 +25,7 @@ export function StudyPageLayout() {
         </p>
         <h1 className="apple-display text-[clamp(2rem,5vw,2.75rem)]">Your exam prep hub.</h1>
         <p className="apple-subhead mt-4 max-w-xl text-[1.0625rem]">
-          Personalized question banks, AI-assisted practice exams, and progress tracking — all
+          Timed exams, flexible question banks, and progress tracking — all
           in one place.
         </p>
         <Suspense fallback={null}>

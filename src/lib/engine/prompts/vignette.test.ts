@@ -1,49 +1,64 @@
 import { describe, expect, it } from "vitest";
-import type { ExamQuestion } from "../../ai";
+import type { ExamQuestion } from "@/lib/ai";
 import {
-  isVignetteRich,
-  scoreVignetteRichness,
+  ensureClinicalVignette,
+  hasOrphanDeicticStem,
+  normalizeLeadInStem,
   splitCombinedStem,
-  vignetteHasEtiologyClues,
-  vignetteHasHistoryClues,
+  validateClinicalVignette,
 } from "./vignette";
 
-describe("clinical vignette rules", () => {
-  it("detects rich vignettes with history and etiology", () => {
-    const v =
-      "A 68-year-old client with long-standing type 2 diabetes is admitted to med-surg after starting lisinopril 3 days ago. BP 168/94, reports dry cough and dizziness. Cr 1.8 mg/dL (baseline 1.1).";
-    expect(isVignetteRich(v)).toBe(true);
-    expect(vignetteHasHistoryClues(v)).toBe(true);
-    expect(vignetteHasEtiologyClues(v)).toBe(true);
+const richVignette =
+  "A 58-year-old man presents to the emergency department with crushing chest pain for 45 minutes. " +
+  "He has hypertension and smokes 1 pack per day. BP 158/94, HR 102, diaphoretic. " +
+  "ECG shows ST elevation in leads II, III, aVF. Troponin is elevated.";
+
+function baseQuestion(overrides: Partial<ExamQuestion>): ExamQuestion {
+  return {
+    id: 1,
+    type: "multiple_choice",
+    question: "Which pathophysiologic process is most likely responsible for these findings?",
+    options: ["A", "B", "C", "D"],
+    correctAnswer: "A",
+    explanation: "Test",
+    ...overrides,
+  };
+}
+
+describe("vignette quality", () => {
+  it("flags orphan deictic stems without vignette", () => {
+    expect(hasOrphanDeicticStem(baseQuestion({}))).toBe(true);
   });
 
-  it("splits combined stem into vignette and lead-in", () => {
-    const q: ExamQuestion = {
-      id: 1,
-      type: "multiple_choice",
+  it("accepts pathophys stem when vignette is rich", () => {
+    const q = baseQuestion({
+      vignette: richVignette,
       question:
-        "A 45-year-old client reports chest pressure and diaphoresis for 2 hours. BP 92/58, HR 118. History of hypertension.\n\nWhich action should the nurse take first?",
-      options: ["A", "B", "C", "D"],
-      correctAnswer: "A",
-      explanation: "Unstable perfusion requires immediate intervention.",
-    };
-    const split = splitCombinedStem(q);
-    expect(split.vignette).toContain("45-year-old");
-    expect(split.question).toMatch(/Which action/);
+        "Which pathophysiologic process is most likely responsible for this patient's presentation?",
+    });
+    expect(hasOrphanDeicticStem(q)).toBe(false);
   });
 
-  it("scores higher when vignette field is present and rich", () => {
-    const withVignette: ExamQuestion = {
-      id: 1,
-      type: "multiple_choice",
-      vignette:
-        "A 30-year-old client, 2 days post-appendectomy, reports abdominal pain and fever 101.8°F. WBC 14,000; wound erythematous with purulent drainage.",
-      question: "Which finding requires immediate follow-up?",
-      options: ["A", "B", "C", "D"],
-      correctAnswer: "A",
-      explanation: "Purulent drainage suggests surgical site infection.",
-    };
-    const without: ExamQuestion = { ...withVignette, vignette: undefined };
-    expect(scoreVignetteRichness(withVignette)).toBeGreaterThan(scoreVignetteRichness(without));
+  it("normalizes dangling 'these findings' stems", () => {
+    expect(normalizeLeadInStem("Which process explains these findings?")).toContain(
+      "this patient's presentation"
+    );
+  });
+
+  it("splits combined vignette and lead-in", () => {
+    const combined = `${richVignette}\n\nWhat is the most likely diagnosis?`;
+    const split = splitCombinedStem(baseQuestion({ question: combined }));
+    expect(split.vignette).toContain("58-year-old");
+    expect(split.question).toMatch(/most likely diagnosis/i);
+  });
+
+  it("repairs orphan stems via ensureClinicalVignette", () => {
+    const repaired = ensureClinicalVignette(baseQuestion({}));
+    expect(repaired.question).not.toMatch(/these findings/i);
+  });
+
+  it("validates missing vignette", () => {
+    const issues = validateClinicalVignette(baseQuestion({}));
+    expect(issues.some((i) => i.includes("Missing vignette"))).toBe(true);
   });
 });

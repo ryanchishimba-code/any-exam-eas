@@ -4,3 +4,5 @@ export { polishNclexBankItem, scoreNclexBankItem, needsNclexPolish, isWeakPriori
 export type { NclexPolishResult } from "./nclex-polish";
 export { polishUsmleBankItem, scoreUsmleBankItem, needsUsmlePolish } from "./usmle-polish";
 export type { UsmlePolishResult } from "./usmle-polish";
+export { polishMpjeBankItem, needsMpjePolish } from "./mpje-polish";
+export type { MpjePolishResult } from "./mpje-polish";

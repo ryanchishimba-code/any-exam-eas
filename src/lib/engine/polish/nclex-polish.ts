@@ -1063,7 +1063,7 @@ export function needsNclexPolish(item: BankItem): boolean {
   );
 }
 
-/** Polish a single NCLEX NGN bank item — CJMM vignettes, NGN-style stems, priority rationales. */
+/** Polish a single NCLEX bank item — CJMM vignettes, NGN-style stems, priority rationales. */
 export function polishNclexBankItem(
   item: BankItem,
   subjectId: string,

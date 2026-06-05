@@ -297,11 +297,43 @@ const NAPLEX: ExamBlueprint = {
   ],
 };
 
+/** NABP MPJE / Uniform MPJE (UMPJE) jurisprudence content areas. */
+const MPJE: ExamBlueprint = {
+  fieldId: "mpje",
+  examName: "MPJE",
+  sourceNote: "NABP MPJE / Uniform MPJE (UMPJE) — federal and state pharmacy jurisprudence",
+  vignetteMinRatio: 0.7,
+  categories: [
+    {
+      id: "federal-law",
+      label: "Federal Pharmacy Law",
+      weight: 0.3,
+      subjectIds: ["federal-pharmacy-law", "controlled-substances", "patient-privacy"],
+      highYieldTopics: ["DEA schedules", "FDA compounding", "HIPAA", "DSCSA"],
+    },
+    {
+      id: "state-law",
+      label: "State & Uniform Law",
+      weight: 0.35,
+      subjectIds: ["uniform-mpje", "state-practice-act", "dispensing-procedures"],
+      highYieldTopics: ["practice act", "prescription validity", "transfers", "technician scope"],
+    },
+    {
+      id: "ethics-operations",
+      label: "Ethics & Operations",
+      weight: 0.35,
+      subjectIds: ["pharmacy-ethics", "pharmacy-operations", "compounding-regulations"],
+      highYieldTopics: ["professional conduct", "record retention", "USP compounding", "inspections"],
+    },
+  ],
+};
+
 const BLUEPRINTS: Record<string, ExamBlueprint> = {
   nursing: NCLEX_RN,
   "usmle-step-1": USMLE_STEP_1,
   "usmle-step-2": USMLE_STEP_2,
   pharmacy: NAPLEX,
+  mpje: MPJE,
 };
 
 export function getExamBlueprint(fieldId: string): ExamBlueprint | undefined {

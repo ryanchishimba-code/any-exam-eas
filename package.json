@@ -26,6 +26,7 @@
     "db:export-top300": "node node_modules/tsx/dist/cli.mjs scripts/export-top300-json.mjs",
     "db:expire-trial": "node scripts/expire-user-trial.mjs",
     "test:questions": "tsx scripts/test-question-counts.mjs",
+    "test:sample-questions": "tsx scripts/generate-sample-questions.mts",
     "vercel:setup": "node scripts/vercel-setup.mjs",
     "vercel:db": "node scripts/vercel-database.mjs",
     "vercel:connect-neon": "node scripts/connect-vercel-neon.mjs",

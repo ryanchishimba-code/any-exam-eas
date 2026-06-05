@@ -1,7 +1,7 @@
 import type { LucideIcon } from "lucide-react";
-import { Activity, Beaker, Pill, Stethoscope } from "lucide-react";
+import { Activity, Beaker, Pill, Scale, Stethoscope } from "lucide-react";
 
-export type ExamSlug = "nclex" | "usmle" | "naplex" | "top500";
+export type ExamSlug = "nclex" | "usmle" | "naplex" | "mpje" | "top500";
 
 /** Serializable hub metadata (safe for server → client props). */
 export type ExamHubMeta = {
@@ -44,6 +44,15 @@ export const EXAM_HUBS: ExamHubConfig[] = [
     icon: Pill,
     accentClass: "from-emerald-500/20 to-teal-600/10 border-emerald-200/60",
     questionBankLabel: "24K+ pharmacy items",
+  },
+  {
+    slug: "mpje",
+    title: "MPJE Prep",
+    subtitle: "Federal law, uniform MPJE (UMPJE), and state-specific jurisprudence.",
+    fieldId: "mpje",
+    icon: Scale,
+    accentClass: "from-amber-500/20 to-orange-600/10 border-amber-200/60",
+    questionBankLabel: "Pharmacy law & regulations",
   },
   {
     slug: "top500",

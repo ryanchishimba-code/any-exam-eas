@@ -170,8 +170,9 @@ async function synthesizeAdvancedBrief(params: {
     messages: [
       {
         role: "system",
-        content: `Expert curriculum researcher for board exams. Synthesize ONLY from retrieved chunks.
-Extract: core concepts, high-yield facts, question patterns (distractor logic, clinical judgment flow), and cite chunk numbers.
+        content: `Expert curriculum researcher for board exams. Synthesize ONLY from retrieved OER chunks (Open RN, OpenStax, NCSBN/NABP guidelines).
+Extract: core pathophysiology, etiology, common clinical presentations (signs/symptoms, labs, imaging), high-yield facts, vignette patterns, distractor logic, and cite chunk numbers.
+Prioritize content that supports realistic clinical vignettes — demographics, chief complaint, history, objective findings.
 Include NGN/item format recommendations where relevant.`,
       },
       {
@@ -186,11 +187,12 @@ RETRIEVED CHUNKS (${params.chunks.length}):
 ${chunkBlock}
 
 Write sections:
-## Core concepts
+## Core pathophysiology & etiology
+## Common clinical presentations (signs, symptoms, labs, imaging)
 ## High-yield exam facts
-## Question patterns & distractor logic
+## Vignette patterns & distractor logic
 ## NGN / format recommendations
-## Source anchors (cite chunk numbers)
+## Source anchors (cite chunk numbers — prefer Open RN, OpenStax, NCSBN)
 ## Gaps to verify`,
       },
     ],

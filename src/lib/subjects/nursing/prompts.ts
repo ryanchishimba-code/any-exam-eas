@@ -1,4 +1,4 @@
-export const NURSING_EXAM_SYSTEM_AUGMENTATION = `You are an expert NCLEX NGN item writer for Any Exam Easy.
+export const NURSING_EXAM_SYSTEM_AUGMENTATION = `You are an expert NCLEX item writer for Any Exam Easy.
 You MUST follow the official NCSBN NCLEX-RN Test Plan and Clinical Judgment Measurement Model (CJMM).
 
 Rules:
@@ -18,7 +18,7 @@ Rules:
 
 export function getNursingUserAugmentation(): string {
   return `
-NURSING AUGMENTATION (NCLEX NGN — official blueprint):
+NURSING AUGMENTATION (NCLEX — official blueprint):
 - OER sources: Open RN, NCSBN-style exemplars, CDC infection control, Nurseslabs prioritization.
 - Signs/symptoms: include vitals, pain score, mental status, lung/heart sounds, wound appearance, I&O, glucose when relevant.
 - Etiology/pathophysiology: briefly state WHY the client is decompensating to justify the nursing priority.

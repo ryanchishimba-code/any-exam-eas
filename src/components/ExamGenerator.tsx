@@ -6,9 +6,9 @@ import type { GeneratedExam } from "@/lib/ai";
 import { FIELD_LABELS, DEFAULT_STUDY_FIELD_LABEL, getFieldMeta } from "@/lib/fields";
 import { getSubjectsForField, buildScopedTopic } from "@/lib/field-subjects";
 import {
-  QUESTION_COUNT_OPTIONS,
-  type QuestionCount,
-} from "@/lib/medicine-subjects";
+  formatExamLengthLabel,
+  getTimedExamQuestionCount,
+} from "@/lib/exam/exam-lengths";
 import { ExamQuiz } from "./ExamQuiz";
 import { Button } from "./ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
@@ -18,8 +18,9 @@ export function ExamGenerator() {
   const [subjectId, setSubjectId] = useState("");
   const [topic, setTopic] = useState("");
   const [difficulty, setDifficulty] = useState("medium");
-  const [count, setCount] = useState<QuestionCount>(10);
-  const [studyMode, setStudyMode] = useState<"practice" | "rapid" | "timed">("practice");
+  const [studyMode, setStudyMode] = useState<"practice" | "timed">("practice");
+  const questionCount = useMemo(() => getTimedExamQuestionCount(field), [field]);
+  const lengthLabel = useMemo(() => formatExamLengthLabel(field), [field]);
   const [loading, setLoading] = useState(false);
   const [exam, setExam] = useState<GeneratedExam | null>(null);
   const [examId, setExamId] = useState<string | null>(null);
@@ -71,7 +72,7 @@ export function ExamGenerator() {
           topic: resolvedTopic,
           subjectId,
           difficulty,
-          questionCount: count,
+          questionCount,
         }),
       });
       const data = await res.json();
@@ -160,16 +161,15 @@ export function ExamGenerator() {
           />
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
           <div>
-            <label className="apple-label">Study mode</label>
+            <label className="apple-label">Session style</label>
             <select
               value={studyMode}
               onChange={(e) => setStudyMode(e.target.value as typeof studyMode)}
               className="apple-input mt-2"
             >
-              <option value="practice">Practice — explanations & confidence</option>
-              <option value="rapid">Rapid — instant feedback</option>
+              <option value="practice">Research — explanations & confidence</option>
               <option value="timed">Timed — 45s per question</option>
             </select>
           </div>
@@ -185,26 +185,17 @@ export function ExamGenerator() {
               <option value="hard">Hard</option>
             </select>
           </div>
-          <div>
-            <label className="apple-label">Number of questions</label>
-            <select
-              value={count}
-              onChange={(e) => setCount(Number(e.target.value) as QuestionCount)}
-              className="apple-input mt-2"
-            >
-              {QUESTION_COUNT_OPTIONS.map((n) => (
-                <option key={n} value={n}>
-                  {n} questions
-                </option>
-              ))}
-            </select>
-          </div>
         </div>
+
+        <p className="rounded-xl border border-black/[0.06] bg-black/[0.02] px-4 py-3 text-sm text-[var(--color-ink-muted)]">
+          <span className="font-medium text-[var(--color-ink)]">Research exam length: </span>
+          {lengthLabel}
+        </p>
 
         <Button type="submit" disabled={loading || !subjectId} className="w-full">
           {loading
-            ? `Generating ${count} ${selectedSubject?.label ?? field} questions…`
-            : `Start ${count}-question ${selectedSubject?.label ?? field} quiz`}
+            ? `Generating ${questionCount} ${selectedSubject?.label ?? field} questions…`
+            : `Generate ${questionCount}-question research exam`}
         </Button>
 
         {loading && status && (

@@ -6,7 +6,7 @@ import {
   isDrugProfileComplete,
   normalizeDrugProfile,
 } from "@/lib/engine/prompts/pharm-drug-profile";
-import { splitCombinedStem } from "@/lib/engine/prompts/vignette";
+import { ensureClinicalVignette } from "@/lib/engine/prompts/vignette";
 
 const NGN_TYPES = new Set([
   "select_all",
@@ -31,7 +31,7 @@ export function enrichGeneratedExam(exam: GeneratedExam, fieldId?: string): Gene
 }
 
 export function enrichQuestion(q: ExamQuestion, fieldId?: string): ExamQuestion {
-  const enriched = splitCombinedStem({ ...q });
+  const enriched = ensureClinicalVignette({ ...q });
 
   if (enriched.vignette?.trim()) {
     const vignette = enriched.vignette.trim();
@@ -106,6 +106,21 @@ function inferDistractorWhy(option: string, q: ExamQuestion, fieldId?: string): 
     }
   }
 
+  if (id === "mpje") {
+    if (/federal.*not apply|state always supersede|ignore board/i.test(option)) {
+      return `Incorrect — misapplies jurisdiction; federal and state pharmacy law both govern practice with specific precedence rules.`;
+    }
+    if (/technician|uncertified|without supervision|delegate all/i.test(option)) {
+      return `Incorrect — violates pharmacist supervision and scope-of-practice requirements under the practice act.`;
+    }
+    if (/without verifying|dispense immediately|unlimited refill|skip counseling/i.test(option)) {
+      return `Incorrect — fails required prescription verification, controlled substance limits, or legal dispensing standards.`;
+    }
+    if (/share.*record|any requesting party|without authorization/i.test(option)) {
+      return `Incorrect — HIPAA and state privacy law restrict PHI disclosure without patient authorization or legal exception.`;
+    }
+  }
+
   if (id === "pharmacy") {
     if (/share|family member/i.test(option)) {
       return `Incorrect — medications must not be shared; counseling requires patient-specific safety and monitoring.`;
@@ -155,6 +170,20 @@ function deriveClinicalReasoning(q: ExamQuestion, fieldId?: string): string {
       "3. Apply basic science to select the most likely cause or best answer.",
       q.explanation.length > 40
         ? `4. Confirm: ${q.explanation.slice(0, 160)}${q.explanation.length > 160 ? "…" : ""}`
+        : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+  }
+
+  if (id === "mpje") {
+    return [
+      "1. Identify facts: extract regulatory facts from the pharmacy practice scenario.",
+      "2. Determine authority: identify whether federal (DEA/FDA/HIPAA) or state (practice act/board) law applies.",
+      "3. Apply rule: match governing statute or board regulation to the scenario.",
+      "4. Select action: choose the legally required pharmacist response.",
+      q.explanation.length > 40
+        ? `5. Confirm: ${q.explanation.slice(0, 160)}${q.explanation.length > 160 ? "…" : ""}`
         : "",
     ]
       .filter(Boolean)

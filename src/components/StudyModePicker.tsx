@@ -3,53 +3,17 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { AppleLink } from "@/components/ui/AppleLink";
+import { EXAM_MODES } from "@/lib/exam/modes";
 
-export type StudyFormat = "practice" | "adaptive" | "exam" | "analytics" | "cat";
+export type StudyFormat = "timed" | "bank" | "progress";
 
-const modes: {
-  id: StudyFormat;
-  title: string;
-  description: string;
-  href: string;
-  linkLabel: string;
-}[] = [
-  {
-    id: "practice",
-    title: "Question bank",
-    description: "Board-style items — practice, rapid, or timed with deep rationales.",
-    href: "/study/practice",
-    linkLabel: "Start practicing",
-  },
-  {
-    id: "adaptive",
-    title: "Personalized practice",
-    description: "Questions can emphasize topics where you need more review based on your attempts.",
-    href: "/study/practice?mode=adaptive",
-    linkLabel: "Start personalized session",
-  },
-  {
-    id: "cat",
-    title: "NCLEX-style CAT mock",
-    description:
-      "Adaptive 75–145 question mock with difficulty that ramps to your performance — self-assessment only.",
-    href: "/study/practice?mode=cat",
-    linkLabel: "Start adaptive mock",
-  },
-  {
-    id: "exam",
-    title: "AI practice exam",
-    description: "Generate practice tests from OER sources with cited explanations. Verify content independently.",
-    href: "/generate",
-    linkLabel: "Generate exam",
-  },
-  {
-    id: "analytics",
-    title: "Performance",
-    description: "Practice trends, streaks, weak topics, and test history.",
-    href: "/study-hub#progress",
-    linkLabel: "View progress",
-  },
-];
+const progressMode = {
+  id: "progress" as const,
+  label: "Progress",
+  description: "Practice trends, streaks, and test history.",
+  href: "/study-hub#progress",
+  linkLabel: "View progress",
+};
 
 export function StudyModePicker({
   active,
@@ -58,6 +22,17 @@ export function StudyModePicker({
   active?: StudyFormat;
   compact?: boolean;
 }) {
+  const modes = [
+    ...EXAM_MODES.map((m) => ({
+      id: m.id as StudyFormat,
+      title: m.label,
+      description: m.description,
+      href: m.href,
+      linkLabel: m.id === "timed" ? "Start timed exam" : "Open question bank",
+    })),
+    progressMode,
+  ];
+
   if (compact) {
     return (
       <div className="flex flex-wrap gap-2">
@@ -73,7 +48,7 @@ export function StudyModePicker({
                   : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
               }`}
             >
-              {m.title}
+              {"title" in m ? m.title : m.label}
             </Link>
           );
         })}
@@ -82,9 +57,10 @@ export function StudyModePicker({
   }
 
   return (
-    <div className="grid gap-3 sm:grid-cols-2">
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       {modes.map((m, i) => {
         const isActive = active === m.id;
+        const title = "title" in m ? m.title : m.label;
         return (
           <motion.article
             key={m.id}
@@ -95,7 +71,7 @@ export function StudyModePicker({
             className={`apple-bento flex flex-col ${isActive ? "ring-1 ring-[var(--color-accent)]" : ""}`}
           >
             <h3 className="text-[1.125rem] font-semibold tracking-[-0.015em] text-[var(--color-ink)]">
-              {m.title}
+              {title}
             </h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--color-ink-muted)]">
               {m.description}

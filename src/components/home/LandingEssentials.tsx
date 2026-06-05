@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Check, HeartPulse, Pill, Stethoscope, type LucideIcon } from "lucide-react";
+import { ArrowRight, Check, HeartPulse, Pill, Scale, Stethoscope, type LucideIcon } from "lucide-react";
+import { studyHubMpjeHref } from "@/lib/study-hub/config";
 import {
   formatMonthlyPrice,
   formatTrialIntroPrice,
@@ -12,45 +13,45 @@ const exams: { id: string; title: string; href: string; icon: LucideIcon; benefi
   {
     id: "nclex",
     title: "NCLEX",
-    href: "/study/practice?field=nursing",
+    href: "/study/practice?field=nursing&mode=bank",
     icon: HeartPulse,
-    benefit: "Bow-tie, matrix & case studies",
+    benefit: "NGN cases, SATA & prioritization",
   },
   {
-    id: "usmle-step-1",
-    title: "USMLE Step 1",
-    href: "/study/practice?field=usmle-step-1",
+    id: "usmle",
+    title: "USMLE",
+    href: "/study/practice?field=usmle-step-1&mode=bank",
     icon: Stethoscope,
-    benefit: "Basic sciences & mechanisms",
-  },
-  {
-    id: "usmle-step-2",
-    title: "USMLE Step 2",
-    href: "/study/practice?field=usmle-step-2",
-    icon: Stethoscope,
-    benefit: "Clinical vignettes & management",
+    benefit: "Step 1 & Step 2 CK vignettes",
   },
   {
     id: "naplex",
     title: "NAPLEX",
-    href: "/study/practice?field=pharmacy",
+    href: "/study/practice?field=pharmacy&mode=bank",
     icon: Pill,
     benefit: "Calculations & therapeutics",
+  },
+  {
+    id: "mpje",
+    title: "MPJE",
+    href: studyHubMpjeHref(),
+    icon: Scale,
+    benefit: "Uniform & state pharmacy law",
   },
 ];
 
 const subscriberValue = [
   {
-    title: "Study what you miss",
-    detail: "Adaptive engine prioritizes weak topics so every minute counts.",
+    title: "Adaptive AI targeting",
+    detail: "Weak-area practice that learns what you miss — so prep time actually counts.",
   },
   {
-    title: "Real exam formats",
-    detail: "NGN items, clinical vignettes, and pharm scenarios — not generic quizzes.",
+    title: "OER-backed rationales",
+    detail: "Explanations grounded in Open RN, OpenStax, and official board outlines.",
   },
   {
-    title: "Less than legacy banks",
-    detail: `${formatTrialIntroPrice()} to start · ${formatMonthlyPrice()}/mo after — no $99+ upfront.`,
+    title: "Affordable full access",
+    detail: `${formatTrialIntroPrice()} to start · ${formatMonthlyPrice()}/mo after — all four exams, no $99+ bundles.`,
   },
 ];
 
@@ -64,14 +65,14 @@ export function LandingEssentials() {
       <div className="mx-auto max-w-[960px] px-5 sm:px-6 lg:px-8">
         <div className="text-center">
           <p className="text-xs font-bold uppercase tracking-wider text-teal-600">
-            Why students subscribe
+            One subscription. Four exams.
           </p>
           <h2 id="essentials-heading" className="aee-headline mt-2 text-2xl sm:text-3xl">
-            More prep. Less wasted time.
+            Everything you need to pass the first time.
           </h2>
           <p className="mx-auto mt-2 max-w-lg text-sm text-slate-600">
-            One subscription covers NCLEX, USMLE Step 1 & 2, and NAPLEX — with progress
-            that follows you across devices.
+            NCLEX, USMLE, NAPLEX, and MPJE — plus Top 500 Drugs and progress that
+            follows you across devices.
           </p>
         </div>
 
@@ -114,10 +115,10 @@ export function LandingEssentials() {
                 {formatTrialIntroPrice()}
               </p>
               <p className="mt-1 text-teal-100">
-                {formatTrialLabel()} full access, then {formatMonthlyPrice()}/mo
+                {formatTrialLabel()} — NCLEX, USMLE, NAPLEX & MPJE, then {formatMonthlyPrice()}/mo
               </p>
               <p className="mt-2 text-sm text-teal-200/90">
-                Start today — lock in intro pricing before your next study session slips.
+                Start today. Build exam-day confidence before your test date arrives.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:items-end">
@@ -128,7 +129,11 @@ export function LandingEssentials() {
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-4 w-4 shrink-0" strokeWidth={2.5} aria-hidden />
-                  Adaptive weak-area targeting
+                  Top 500 Drugs mastery track
+                </li>
+                <li className="flex items-center gap-2">
+                  <Check className="h-4 w-4 shrink-0" strokeWidth={2.5} aria-hidden />
+                  State-specific MPJE support
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-4 w-4 shrink-0" strokeWidth={2.5} aria-hidden />
@@ -147,7 +152,8 @@ export function LandingEssentials() {
         </div>
 
         <p className="mt-6 text-center text-xs text-slate-400">
-          Trusted by nursing, medical, and pharmacy students preparing for licensure exams.
+          Trusted by nursing, medical, and pharmacy students preparing for NCLEX, USMLE,
+          NAPLEX, and MPJE.
         </p>
       </div>
     </section>

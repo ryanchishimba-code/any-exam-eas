@@ -15,7 +15,7 @@ CORE ITEM LOGIC (mandatory for every question):
    - clinicalReasoning: stepwise judgment chain appropriate to the exam (see field-specific framework below).`;
 
 const NCLEX_CJMM = `
-NCLEX NGN CLINICAL JUDGMENT (NCSBN CJMM — use on every nursing item):
+NCLEX CLINICAL JUDGMENT (NCSBN CJMM — use on every nursing item):
 1. Recognize Cues — identify relevant and irrelevant client data (vitals, labs, behaviors, orders).
 2. Analyze Cues — cluster data; infer pathophysiology, etiology, and risk.
 3. Prioritize Hypotheses — rank problems by urgency (ABCs, Maslow, safety-first).

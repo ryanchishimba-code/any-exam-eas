@@ -15,7 +15,7 @@ export function Top500DrugsCard() {
         <div>
           <h3 className="text-lg font-semibold text-slate-900">Top 500 Drugs</h3>
           <p className="mt-1 max-w-md text-sm text-slate-600">
-            One shared list for NCLEX NGN, USMLE, and NAPLEX — flashcards with spaced
+            One shared list for NCLEX, USMLE, and NAPLEX — flashcards with spaced
             repetition.
           </p>
         </div>

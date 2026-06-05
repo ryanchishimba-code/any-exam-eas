@@ -11,7 +11,7 @@ export type FieldExamStyle = {
 const STYLES: Record<string, FieldExamStyle> = {
   nursing: {
     allMultipleChoice: true,
-    systemAddendum: "NCLEX NGN prioritization, safety, and next-gen formats.",
+    systemAddendum: "NCLEX prioritization, safety, and next-gen formats.",
     questionRules:
       "ABC priorities, infection control, patient advocacy, pharmacology nursing implications. One best action.",
   },
@@ -31,6 +31,12 @@ const STYLES: Record<string, FieldExamStyle> = {
     allMultipleChoice: true,
     systemAddendum: "Pharmacy licensure / therapeutics focus.",
     questionRules: "MOA, interactions, contraindications, counseling, dosing calculations in MCQ form.",
+  },
+  mpje: {
+    allMultipleChoice: true,
+    systemAddendum: "MPJE pharmacy jurisprudence — federal and state law.",
+    questionRules:
+      "Legal scenarios testing DEA, FDA, HIPAA, practice act, dispensing rules, ethics. Distinguish federal vs state authority.",
   },
   engineering: {
     allMultipleChoice: true,

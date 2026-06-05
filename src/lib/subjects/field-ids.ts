@@ -4,6 +4,7 @@ export const EXAM_FIELD_IDS = [
   "usmle-step-1",
   "usmle-step-2",
   "pharmacy",
+  "mpje",
 ] as const;
 
 export type ExamFieldId = (typeof EXAM_FIELD_IDS)[number];
@@ -16,6 +17,7 @@ export const FIELD_ID_ALIASES: Record<string, ExamFieldId> = {
   "nclex-rn": "nursing",
   pharmacy: "pharmacy",
   naplex: "pharmacy",
+  mpje: "mpje",
   "usmle-step-1": "usmle-step-1",
   "usmle-step1": "usmle-step-1",
   "step-1": "usmle-step-1",

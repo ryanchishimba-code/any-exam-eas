@@ -4,6 +4,7 @@ import {
   buildDetailedSlotAllocationBlock,
 } from "../blueprints";
 import { buildClinicalReasoningBlock } from "./clinical-reasoning";
+import { buildOerGroundingBlock } from "./oer-grounding";
 import { buildVignetteJsonHint, VIGNETTE_REQUIREMENTS } from "./vignette";
 import {
   buildPharmDrugRequirementsBlock,
@@ -123,6 +124,7 @@ export function buildHighYieldRequirements(
     clinicalBlock,
     pharmDrugBlock,
     VIGNETTE_REQUIREMENTS,
+    buildOerGroundingBlock(),
     STRONG_DISTRACTOR_RULES,
     buildDistractorPatternBlock(subjectModule),
     buildNgnRequirementsBlock(ctx.fieldId, ctx.questionCount),

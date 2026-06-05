@@ -1,17 +1,35 @@
 import { NextResponse } from "next/server";
 import { getFieldMeta } from "@/lib/fields";
 import { getFieldSubject } from "@/lib/field-subjects";
-import { countActiveQuestions, sampleQuestionBankItems } from "@/lib/question-bank-db";
+import {
+  countActiveQuestions,
+  sampleQuestionBankItems,
+  sampleQuestionBankItemsForField,
+} from "@/lib/question-bank-db";
 import { MIN_QUESTIONS_PER_SUBJECT } from "@/lib/bulk-question-generator";
 import {
   getLastQuestionBankSync,
   getSubjectQuestionCount,
 } from "@/lib/sync-question-bank";
-import { adaptQuestionOrder } from "@/lib/learning/engine";
+import {
+  parseNclexTimedVariant,
+  resolveTimedExamLimit,
+} from "@/lib/exam/exam-lengths";
+import { clampQuestionBankCount } from "@/lib/exam/modes";
 import { prepareQuestionsForSession } from "@/lib/questions/prepare";
 import type { ExamQuestion } from "@/lib/ai";
 import { trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
+import {
+  getMpjeState,
+  isMpjeField,
+  resolveMpjeGenerationOptions,
+} from "@/lib/mpje/config";
+import { prepareMpjeBankItems } from "@/lib/mpje/prepare-items";
+
+const MIXED_SUBJECT_ID = "__mixed__";
+const MAX_BANK_LIMIT = 100;
+const MAX_TIMED_LIMIT = 300;
 
 export async function GET(req: Request) {
   const { requirePremiumApi } = await import("@/lib/api-access");
@@ -22,31 +40,89 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const field = searchParams.get("field");
   const subjectId = searchParams.get("subjectId");
-  const limit = Math.min(Number(searchParams.get("limit") ?? 50), 100);
-  const modeParam = searchParams.get("mode");
-  const adaptiveMode =
-    modeParam === "adaptive" || modeParam === "weak"
-      ? modeParam
-      : modeParam === "weak_area"
-        ? "weak"
-        : null;
+  const mode = searchParams.get("mode");
+  const timedExam = mode === "timed";
+  const questionBank = mode === "bank";
 
-  if (!field || !subjectId) {
-    return NextResponse.json(
-      { error: "Query params field and subjectId are required" },
-      { status: 400 }
-    );
+  if (!field) {
+    return NextResponse.json({ error: "Query param field is required" }, { status: 400 });
   }
 
-  const subject = getFieldSubject(field, subjectId);
-  if (!subject) {
-    return NextResponse.json({ error: "Invalid subject for this field" }, { status: 400 });
+  if (questionBank && searchParams.get("scope") === "field") {
+    return NextResponse.json(
+      { error: "Question bank requires a topic — use subjectId, not mixed scope" },
+      { status: 400 }
+    );
   }
 
   const meta = getFieldMeta(field);
   const fieldId = meta?.id ?? field.toLowerCase().replace(/\s+/g, "-");
 
-  const items = await sampleQuestionBankItems({ fieldId, subjectId, count: limit });
+  const nclexLength = parseNclexTimedVariant(searchParams.get("nclexLength"));
+  const mixed =
+    timedExam ||
+    searchParams.get("scope") === "field" ||
+    subjectId === MIXED_SUBJECT_ID ||
+    searchParams.get("mixed") === "1";
+
+  const maxLimit = timedExam ? MAX_TIMED_LIMIT : MAX_BANK_LIMIT;
+  const requestedLimit = Number(searchParams.get("limit"));
+  const defaultLimit = timedExam
+    ? resolveTimedExamLimit(field, undefined, nclexLength)
+    : 25;
+  const resolvedLimit = timedExam
+    ? resolveTimedExamLimit(
+        field,
+        Number.isFinite(requestedLimit) ? requestedLimit : undefined,
+        nclexLength
+      )
+    : clampQuestionBankCount(
+        Number.isFinite(requestedLimit) ? requestedLimit : defaultLimit
+      );
+  const limit = Math.min(resolvedLimit, maxLimit);
+
+  if (!mixed) {
+    if (!subjectId) {
+      return NextResponse.json(
+        { error: "Query param subjectId is required for topic-specific practice" },
+        { status: 400 }
+      );
+    }
+
+    const subject = getFieldSubject(field, subjectId);
+    if (!subject) {
+      return NextResponse.json({ error: "Invalid subject for this field" }, { status: 400 });
+    }
+  }
+
+  let items = mixed
+    ? await sampleQuestionBankItemsForField({ fieldId, count: limit })
+    : await sampleQuestionBankItems({
+        fieldId,
+        subjectId: subjectId!,
+        count: limit,
+      });
+
+  const mpjeOptions = isMpjeField(fieldId)
+    ? resolveMpjeGenerationOptions({
+        variant: searchParams.get("mpjeVariant"),
+        stateCode: searchParams.get("mpjeState"),
+      })
+    : null;
+
+  const resolvedSubjectId = mixed ? MIXED_SUBJECT_ID : subjectId!;
+  const subjectLabel = mixed
+    ? "Assorted topics"
+    : getFieldSubject(field, subjectId!)!.label;
+
+  if (mpjeOptions && items.length > 0) {
+    const mpjeLabel =
+      mpjeOptions.variant === "state" && mpjeOptions.stateCode
+        ? `${getMpjeState(mpjeOptions.stateCode)?.name ?? mpjeOptions.stateCode} MPJE`
+        : "Uniform MPJE";
+    items = prepareMpjeBankItems(items, mpjeOptions, mpjeLabel);
+  }
+
   const raw: ExamQuestion[] = items.map((item, i) => ({
     id: i + 1,
     type: "multiple_choice" as const,
@@ -59,24 +135,15 @@ export async function GET(req: Request) {
     highYield: true,
   }));
 
-  let prepared = prepareQuestionsForSession(
+  const prepared = prepareQuestionsForSession(
     raw.map((q, i) => ({
       ...q,
       field,
-      subjectId,
+      subjectId: items[i]?.subjectId ?? resolvedSubjectId,
       bankItemId: items[i]?.id ?? undefined,
     })),
-    { shuffleOrder: !adaptiveMode }
+    { shuffleOrder: true }
   );
-
-  if (adaptiveMode) {
-    prepared = await adaptQuestionOrder(
-      userId,
-      fieldId,
-      prepared,
-      adaptiveMode === "weak" ? "weak_area" : "adaptive"
-    );
-  }
 
   const questions: ExamQuestion[] = prepared.map((p, i) => ({
     id: i + 1,
@@ -92,7 +159,7 @@ export async function GET(req: Request) {
 
   const [totalActive, subjectTotal, lastSync] = await Promise.all([
     countActiveQuestions(fieldId),
-    getSubjectQuestionCount(fieldId, subjectId),
+    mixed ? countActiveQuestions(fieldId) : getSubjectQuestionCount(fieldId, subjectId!),
     getLastQuestionBankSync(),
   ]);
 
@@ -103,7 +170,12 @@ export async function GET(req: Request) {
     metadata: {
       field,
       fieldId,
-      subjectId,
+      subjectId: resolvedSubjectId,
+      mixed,
+      timedExam,
+      nclexLength: timedExam ? nclexLength : undefined,
+      mpjeVariant: mpjeOptions?.variant,
+      mpjeState: mpjeOptions?.stateCode,
       requestedLimit: limit,
       returned: questions.length,
     },
@@ -113,15 +185,18 @@ export async function GET(req: Request) {
   return NextResponse.json({
     field,
     fieldId,
-    subjectId,
-    subjectLabel: subject.label,
+    subjectId: resolvedSubjectId,
+    subjectLabel,
+    mixed,
+    timedExam,
     questions,
     bankItemIds: prepared.map((p) => p.bankItemId).filter(Boolean),
     meta: {
       returned: questions.length,
+      requested: limit,
       availableForSubject: subjectTotal,
       minimumPerSubject: MIN_QUESTIONS_PER_SUBJECT,
-      meetsMinimum: subjectTotal >= MIN_QUESTIONS_PER_SUBJECT,
+      meetsMinimum: mixed ? totalActive > 0 : subjectTotal >= MIN_QUESTIONS_PER_SUBJECT,
       totalActiveInField: totalActive,
       lastSyncedAt: lastSync?.finishedAt ?? null,
       lastSyncStatus: lastSync?.status ?? null,

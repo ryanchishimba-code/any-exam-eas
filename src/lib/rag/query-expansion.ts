@@ -18,18 +18,44 @@ export async function expandQueries(params: {
   subjectLabel?: string;
   subjectHints?: string[];
   examFocus?: string;
+  mpjeVariant?: "uniform" | "state";
+  mpjeStateCode?: string;
 }): Promise<ExpandedQueries> {
   const scope = params.subjectLabel ?? params.topic;
   const primary = `${scope} ${params.fieldId} board exam question patterns`;
 
   const templateQueries = [
     `${scope} clinical vignette case study ${params.examFocus ?? "high yield"}`,
+    `${scope} pathophysiology etiology clinical presentation signs symptoms`,
+    `${scope} OpenStax Open RN NCSBN high yield ${params.examFocus ?? "board exam"}`,
     `${scope} distractor misconceptions ${params.fieldId}`,
     ...(params.fieldId === "nursing"
-      ? [`${scope} NCLEX NGN prioritization nursing action`, `${scope} unfolding case clinical judgment`]
-      : [`${scope} board exam application questions`]),
+      ? [
+          `${scope} Open RN nursing textbook clinical judgment`,
+          `${scope} NCSBN NCLEX test plan pathophysiology nursing action`,
+          `${scope} unfolding case prioritization safety`,
+        ]
+      : params.fieldId === "usmle-step-1" || params.fieldId === "usmle-step-2"
+        ? [
+            `${scope} OpenStax LibreTexts pathophysiology mechanism clinical vignette`,
+            `${scope} USMLE clinical presentation diagnosis management`,
+          ]
+        : [`${scope} board exam application questions`]),
     ...(params.fieldId === "pharmacy"
-      ? [`${scope} NAPLEX pharmacology mechanism adverse effects`]
+      ? [`${scope} NAPLEX pharmacology mechanism adverse effects patient case`]
+      : []),
+    ...(params.fieldId === "mpje"
+      ? params.mpjeVariant === "state" && params.mpjeStateCode
+        ? [
+            `${params.mpjeStateCode} pharmacy practice act board regulations MPJE`,
+            `${scope} ${params.mpjeStateCode} state pharmacy law dispensing controlled substances`,
+            `${params.mpjeStateCode} pharmacist licensure technician supervision immunization`,
+          ]
+        : [
+            `${scope} MPJE pharmacy law DEA controlled substances federal regulations`,
+            `${scope} Uniform MPJE UMPJE multistate pharmacy jurisprudence`,
+            `${scope} FDA HIPAA DSCSA federal pharmacy law dispensing`,
+          ]
       : []),
     `${scope} step-by-step clinical reasoning diagnosis`,
   ];
@@ -49,7 +75,7 @@ export async function expandQueries(params: {
           {
             role: "system",
             content:
-              "Generate 4 diverse search queries to find OER textbook content and exam-style question patterns. JSON: { queries: string[] }",
+              "Generate 4 diverse search queries to find OER textbook content (Open RN, OpenStax, LibreTexts, NCSBN guidelines) focused on pathophysiology, etiology, clinical presentations, and high-yield exam vignettes. JSON: { queries: string[] }",
           },
           {
             role: "user",

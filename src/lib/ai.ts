@@ -111,6 +111,8 @@ export async function generateExam(params: {
   researchBrief: string;
   subjectArea?: string;
   subjectId?: string;
+  mpjeVariant?: "uniform" | "state";
+  mpjeStateCode?: string;
   medicineMode?: boolean;
   advancedContext?: import("./rag").AdvancedStudyContext;
   mode?: "production" | "test";
@@ -123,6 +125,8 @@ export async function generateExam(params: {
     sources: params.sources,
     researchBrief: params.researchBrief,
     subjectId: params.subjectId ?? params.subjectArea,
+    mpjeVariant: params.mpjeVariant,
+    mpjeStateCode: params.mpjeStateCode,
     advancedContext: params.advancedContext,
     mode: params.mode,
   });

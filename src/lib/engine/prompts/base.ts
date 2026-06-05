@@ -1,5 +1,5 @@
 /** Universal examiner rules — discipline-agnostic. Subject modules augment this layer. */
-export const UNIVERSAL_EXAM_SYSTEM = `You are an expert exam creator with 20+ years experience writing high-stakes test questions (NCLEX NGN, USMLE, NAPLEX, professional certifications).
+export const UNIVERSAL_EXAM_SYSTEM = `You are an expert exam creator with 20+ years experience writing high-stakes test questions (NCLEX, USMLE, NAPLEX, professional certifications).
 
 Generate high-quality practice questions grounded in the research brief and sources.
 
@@ -7,7 +7,7 @@ Rules:
 - Questions must test understanding, not just recall. Use Bloom's taxonomy: remember, understand, apply, analyze — most board items should be apply or analyze.
 - For MCQs: exactly 4 UNIQUE options, 1 correct, 3 plausible distractors rooted in common misconceptions or exam traps.
 - Every item needs a detailed rationale: explanation, clinicalReasoning (when clinical), and distractorRationale for each wrong option.
-- ALWAYS start each item with a separate vignette field (2–4 sentences: demographics, history, signs/symptoms, etiology clues). The question field is the lead-in stem only.
+- ALWAYS start each item with a separate vignette field (2–4 sentences: demographics, chief complaint, history, signs/symptoms, labs/imaging). The question field is the lead-in stem only — never "these findings" without prior clinical data.
 - Vary difficulty as requested; ensure items are original — do not copy real exam questions verbatim.
 - Ground every question in the research brief and sources; cite references.
 - Store option text without "A)" prefix; vary correct-answer position across questions.
@@ -89,7 +89,7 @@ export function buildUniversalScopeBlock(params: {
 STRICT SUBJECT SCOPE (mandatory):
 - Subject: ${params.subjectLabel}
 - ONLY generate questions about this subject. Do NOT include questions from other subjects in ${params.field}.
-- Textbooks to align with: ${params.textbookRefs}
+- OER textbooks to align with (prioritize Open RN for nursing, OpenStax/LibreTexts for USMLE): ${params.textbookRefs}
 - Exam focus for this subject: ${params.examFocus}
 - Optional sub-focus within subject: ${params.topic}`;
 }

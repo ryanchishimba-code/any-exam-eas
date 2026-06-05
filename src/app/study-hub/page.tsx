@@ -6,7 +6,8 @@ import { requirePremiumPage } from "@/lib/require-premium-page";
 import { SubscriptionBanner } from "@/components/SubscriptionBanner";
 import { DashboardClient } from "@/components/DashboardClient";
 import { StudyHubPageLayout } from "@/components/study-hub/StudyHubPageLayout";
-import { ExamQuestionBankCards } from "@/components/study-hub/ExamQuestionBankCards";
+import { StudyHubModeSelector } from "@/components/study-hub/StudyHubModeSelector";
+import { StudyHubExamBanks } from "@/components/study-hub/StudyHubExamBanks";
 import { Top500DrugsCard } from "@/components/study-hub/Top500DrugsCard";
 import { ProgressOverview } from "@/components/study-hub/ProgressOverview";
 import { getDashboardQuickStats } from "@/lib/dashboard/stats";
@@ -15,7 +16,7 @@ import { StudyHubSessionSummary } from "@/components/study-hub/StudyHubSessionSu
 
 export const metadata = {
   title: "Study Hub — Any Exam Easy",
-  description: "NCLEX NGN, USMLE, and NAPLEX question banks, Top 500 drugs, and progress.",
+  description: "NCLEX, USMLE, NAPLEX, and MPJE — timed exams and custom question bank practice.",
 };
 
 export default async function StudyHubPage() {
@@ -31,23 +32,20 @@ export default async function StudyHubPage() {
   return (
     <StudyHubPageLayout userName={session.user.name}>
       {!hasPremiumAccess && <SubscriptionBanner access={access.subscription} />}
-      <div className="space-y-10">
+      <div className="space-y-12">
         <Suspense fallback={null}>
           <StudyHubSessionSummary />
         </Suspense>
-        <section>
-          <h2 className="text-lg font-semibold text-slate-900">Question banks</h2>
-          <p className="mt-1 text-sm text-slate-600">
-            Exam-specific banks for NCLEX NGN, USMLE, and NAPLEX.
-          </p>
-          <div className="mt-4">
-            <ExamQuestionBankCards />
-          </div>
-        </section>
+
+        <Suspense fallback={null}>
+          <StudyHubExamBanks />
+        </Suspense>
+
+        <StudyHubModeSelector />
 
         <section>
           <h2 className="text-lg font-semibold text-slate-900">Top 500 drugs</h2>
-          <p className="mt-1 text-sm text-slate-600">Same high-yield list for every exam.</p>
+          <p className="mt-1 text-sm text-slate-600">One high-yield list shared across NCLEX, USMLE, NAPLEX, and MPJE.</p>
           <div className="mt-4">
             <Top500DrugsCard />
           </div>

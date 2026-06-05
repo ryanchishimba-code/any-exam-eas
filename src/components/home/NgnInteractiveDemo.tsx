@@ -179,15 +179,15 @@ export function NgnInteractiveDemo() {
 
           <p className="mt-6 text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
             Sample items for demonstration. Full question bank includes OER-backed rationales and
-            personalized practice modes.
+            timed exam and flexible question bank modes.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="/study/practice?mode=cat"
+              href="/study/practice?field=nursing&mode=timed"
               className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
             >
-              Start NCLEX-style adaptive mock
+              Start NCLEX timed exam
               <ArrowRight className="h-4 w-4" aria-hidden />
             </Link>
             <Link

@@ -53,7 +53,7 @@ export function pickScenario() {
 }
 
 export const EXAM_FIELDS = [
-  { field: 'nursing', subjectId: 'pharmacology-nursing', label: 'NCLEX NGN' },
+  { field: 'nursing', subjectId: 'pharmacology-nursing', label: 'NCLEX' },
   { field: 'usmle-step-1', subjectId: 'pathology', label: 'USMLE Step 1' },
   { field: 'usmle-step-2', subjectId: 'cardiology', label: 'USMLE Step 2' },
   { field: 'pharmacy', subjectId: 'pharmacology', label: 'NAPLEX' },

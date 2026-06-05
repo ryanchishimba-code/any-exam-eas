@@ -114,9 +114,8 @@ export function StudentHub({ suppressHero = false }: { suppressHero?: boolean })
       {session?.user && (
         <section className="flex flex-wrap gap-x-8 gap-y-2 border-y border-black/[0.06] py-6">
           <AppleLink href="/study/drugs300">Top 500 Drugs</AppleLink>
-          <AppleLink href="/study/practice?mode=weak">Weak areas</AppleLink>
-          <AppleLink href="/generate">New test</AppleLink>
-          <AppleLink href="/study/practice?mode=adaptive">Adaptive session</AppleLink>
+          <AppleLink href="/study/practice?mode=timed">Timed exam</AppleLink>
+          <AppleLink href="/study/practice?mode=bank">Question bank</AppleLink>
         </section>
       )}
 

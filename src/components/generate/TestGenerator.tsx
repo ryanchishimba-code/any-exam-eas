@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   BookOpen,
@@ -14,9 +15,10 @@ import type { GeneratedExam } from "@/lib/ai";
 import { FIELD_LABELS, DEFAULT_STUDY_FIELD_LABEL, getFieldMeta } from "@/lib/fields";
 import { getSubjectsForField, buildScopedTopic } from "@/lib/field-subjects";
 import {
-  QUESTION_COUNT_OPTIONS,
-  type QuestionCount,
-} from "@/lib/medicine-subjects";
+  formatExamLengthLabel,
+  getTimedExamQuestionCount,
+} from "@/lib/exam/exam-lengths";
+import { getFieldMetaById } from "@/lib/fields";
 import { ExamQuiz } from "@/components/ExamQuiz";
 import { FileDropzone } from "@/components/generate/FileDropzone";
 import { QuestionPreview } from "@/components/generate/QuestionPreview";
@@ -32,7 +34,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/Button";
 
 type TabId = "topic" | "upload" | "custom";
-type StudyMode = "practice" | "rapid" | "timed";
+type StudyMode = "practice" | "timed";
 
 const PROGRESS_STEPS = [
   { at: 15, label: "Scanning sources & OER textbooks…" },
@@ -42,6 +44,7 @@ const PROGRESS_STEPS = [
 ];
 
 export function TestGenerator() {
+  const searchParams = useSearchParams();
   const [tab, setTab] = useState<TabId>("topic");
   const [field, setField] = useState(DEFAULT_STUDY_FIELD_LABEL);
   const [subjectId, setSubjectId] = useState("");
@@ -49,7 +52,6 @@ export function TestGenerator() {
   const [uploadNotes, setUploadNotes] = useState("");
   const [customOutline, setCustomOutline] = useState("");
   const [difficulty, setDifficulty] = useState("medium");
-  const [count, setCount] = useState<QuestionCount>(15);
   const [timed, setTimed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -64,6 +66,16 @@ export function TestGenerator() {
   const subjects = useMemo(() => getSubjectsForField(field), [field]);
   const selectedSubject = subjects.find((s) => s.id === subjectId);
   const studyMode: StudyMode = timed ? "timed" : "practice";
+  const questionCount = useMemo(() => getTimedExamQuestionCount(field), [field]);
+  const lengthLabel = useMemo(() => formatExamLengthLabel(field), [field]);
+
+  useEffect(() => {
+    const fieldParam = searchParams.get("field");
+    if (fieldParam) {
+      const meta = getFieldMetaById(fieldParam);
+      if (meta) setField(meta.label);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     const list = getSubjectsForField(field);
@@ -133,7 +145,7 @@ export function TestGenerator() {
           topic: resolveTopic(),
           subjectId,
           difficulty,
-          questionCount: count,
+          questionCount,
           userNotes: userNotesPayload(),
           generatorMode: tab,
         }),
@@ -162,10 +174,10 @@ export function TestGenerator() {
       <Card className="overflow-hidden p-0">
         <div className="border-b border-black/[0.06] bg-gradient-to-b from-[var(--color-surface)] to-white px-6 py-6 md:px-8">
           <h2 className="text-xl font-semibold tracking-tight text-[var(--color-ink)]">
-            Test Generator
+            Research exam
           </h2>
           <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-            Board-style questions from a topic, uploaded notes, or your custom blueprint.
+            {lengthLabel} — synthesized from OER textbooks, web sources, and your notes.
           </p>
         </div>
 
@@ -315,20 +327,11 @@ export function TestGenerator() {
                     </select>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <Label htmlFor="count">Number of questions</Label>
-                    <select
-                      id="count"
-                      value={count}
-                      onChange={(e) => setCount(Number(e.target.value) as QuestionCount)}
-                      className="apple-select"
-                    >
-                      {QUESTION_COUNT_OPTIONS.map((n) => (
-                        <option key={n} value={n}>
-                          {n} questions
-                        </option>
-                      ))}
-                    </select>
+                  <div className="space-y-1.5 sm:col-span-2">
+                    <Label>Exam length</Label>
+                    <p className="rounded-xl border border-black/[0.06] bg-[var(--color-surface)] px-4 py-3 text-sm font-medium text-[var(--color-ink)]">
+                      {lengthLabel}
+                    </p>
                   </div>
 
                   <div className="flex items-center justify-between rounded-xl border border-black/[0.06] bg-[var(--color-surface)] px-4 py-3 sm:col-span-2">
@@ -360,7 +363,7 @@ export function TestGenerator() {
                   ) : (
                     <span className="inline-flex items-center gap-2">
                       <Wand2 className="h-4 w-4" />
-                      Generate test
+                      Generate research exam
                     </span>
                   )}
                 </Button>

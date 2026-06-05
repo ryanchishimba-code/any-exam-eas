@@ -4,19 +4,17 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import {
-  STUDY_HUB_EXAM_BANKS,
+  QUESTION_BANK_PATH,
   STUDY_HUB_PATH,
+  TIMED_EXAM_PATH,
   TOP_500_DRUGS_PATH,
-  questionBankHref,
   studyHubProgressHref,
 } from "@/lib/study-hub/config";
 
 const links = [
   { href: STUDY_HUB_PATH, label: "Study Hub" },
-  ...STUDY_HUB_EXAM_BANKS.map((exam) => ({
-    href: questionBankHref(exam.fieldId),
-    label: exam.label,
-  })),
+  { href: TIMED_EXAM_PATH, label: "Timed Exam" },
+  { href: QUESTION_BANK_PATH, label: "Question Bank" },
   { href: TOP_500_DRUGS_PATH, label: "Top 500 Drugs" },
   { href: studyHubProgressHref(), label: "Progress" },
 ];
@@ -24,18 +22,18 @@ const links = [
 function StudySubnavInner() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const mode = searchParams.get("mode");
 
   function isActive(href: string) {
     if (href === STUDY_HUB_PATH || href === studyHubProgressHref()) {
       return pathname === STUDY_HUB_PATH;
     }
     if (href === TOP_500_DRUGS_PATH) return pathname.startsWith(TOP_500_DRUGS_PATH);
-    if (href.startsWith("/study/practice")) {
-      const field = new URL(href, "http://local").searchParams.get("field");
-      if (field && pathname.startsWith("/study/practice")) {
-        return searchParams.get("field") === field;
-      }
-      return pathname.startsWith("/study/practice");
+    if (href === TIMED_EXAM_PATH) {
+      return pathname.startsWith("/study/practice") && mode !== "bank";
+    }
+    if (href === QUESTION_BANK_PATH) {
+      return pathname.startsWith("/study/practice") && mode === "bank";
     }
     return pathname === href;
   }

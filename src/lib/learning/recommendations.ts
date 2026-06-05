@@ -20,8 +20,8 @@ export function buildRemediationRecommendations(params: {
     recs.push({
       type: "foundational_review",
       title: `${mistakeCategoryLabel(params.mistakeCategory)} review`,
-      description: "Short tutor-mode block on this reasoning pattern.",
-      href: `/study/practice?mode=practice&${fieldQ}${subjectParam}`,
+      description: "Topic-focused question bank session on this reasoning pattern.",
+      href: `/study/practice?mode=bank&${fieldQ}${subjectParam}`,
       priority: 1,
     });
   }
@@ -29,36 +29,20 @@ export function buildRemediationRecommendations(params: {
   if (params.weakConcepts.length > 0 || params.weakest.length > 0) {
     recs.push({
       type: "weak_area_quiz",
-      title: "Weak-area drill",
-      description: "Questions prioritized from your lowest mastery tags.",
-      href: `/study/practice?mode=weak&${fieldQ}${subjectParam}`,
+      title: "Topic practice",
+      description: "Flexible question bank session on your weak areas.",
+      href: `/study/practice?mode=bank&${fieldQ}${subjectParam}`,
       priority: 2,
     });
   }
 
   recs.push({
-    type: "retry_questions",
-    title: "Retry missed items",
-    description: "Spaced re-exposure to questions you missed recently.",
-    href: `/study/practice?mode=adaptive&${fieldQ}${subjectParam}`,
+    type: "timed_practice",
+    title: "Timed exam",
+    description: "Full exam-length simulation with mixed topics at real board counts.",
+    href: `/study/practice?mode=timed&${fieldQ}`,
     priority: 3,
   });
 
-  recs.push({
-    type: "timed_practice",
-    title: "Timed pressure set",
-    description: "Timed practice pacing with per-question clock.",
-    href: `/study/practice?mode=timed&${fieldQ}${subjectParam}`,
-    priority: 4,
-  });
-
-  recs.push({
-    type: "mock_exam",
-    title: "Mock board block",
-    description: "Full mixed-topic AI practice exam with analytics. Verify content independently.",
-    href: `/generate?${fieldQ}`,
-    priority: 5,
-  });
-
-  return recs.sort((a, b) => a.priority - b.priority);
+  return recs;
 }

@@ -4,7 +4,7 @@ import { Check, ShieldCheck } from "lucide-react";
 
 const BENEFITS = [
   "130K+ board-style questions",
-  "NCLEX, USMLE, NAPLEX & Top 500",
+  "NCLEX, USMLE, NAPLEX, MPJE & Top 500",
   "Adaptive practice & performance analytics",
   "AI-powered question generation",
 ];

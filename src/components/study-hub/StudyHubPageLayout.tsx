@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 import { StudyHubNav } from "./StudyHubNav";
 
 export function StudyHubPageLayout({
@@ -13,7 +13,9 @@ export function StudyHubPageLayout({
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
       <div className="mx-auto flex max-w-5xl gap-8 px-6 pb-24 pt-[var(--page-top)]">
-        <StudyHubNav />
+        <Suspense fallback={<aside className="hidden w-52 shrink-0 lg:block" aria-hidden />}>
+          <StudyHubNav />
+        </Suspense>
         <div className="min-w-0 flex-1">
           <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-ink-muted)]">
             Study Hub
@@ -22,7 +24,8 @@ export function StudyHubPageLayout({
             {userName ? `Hi, ${userName.split(" ")[0]}.` : "Study Hub"}
           </h1>
           <p className="mt-3 max-w-xl text-[1.0625rem] text-slate-600">
-            Question banks, Top 500 drugs, and your progress — all in one place.
+            Choose your board — NCLEX, USMLE, NAPLEX, or MPJE — then pick timed exam or
+            question bank practice.
           </p>
           <div className="mt-10">{children}</div>
         </div>

@@ -2,14 +2,15 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, HeartPulse, Pill, Stethoscope, type LucideIcon } from "lucide-react";
+import { ArrowRight, HeartPulse, Pill, Scale, Stethoscope, type LucideIcon } from "lucide-react";
+import { studyHubMpjeHref } from "@/lib/study-hub/config";
 
 type ExamCard = {
   id: string;
   title: string;
   href: string;
   icon: LucideIcon;
-  theme: "nclex" | "usmle" | "naplex";
+  theme: "nclex" | "usmle" | "naplex" | "mpje";
   tagline: string;
 };
 
@@ -17,34 +18,34 @@ const exams: ExamCard[] = [
   {
     id: "nclex",
     title: "NCLEX",
-    href: "/study/practice?field=nursing",
+    href: "/study/practice?field=nursing&mode=bank",
     icon: HeartPulse,
     theme: "nclex",
-    tagline: "Next-gen case studies & SATA",
+    tagline: "Clinical judgment, NGN formats & prioritization",
   },
   {
-    id: "usmle-step-1",
-    title: "USMLE Step 1",
-    href: "/study/practice?field=usmle-step-1",
+    id: "usmle",
+    title: "USMLE",
+    href: "/study/practice?field=usmle-step-1&mode=bank",
     icon: Stethoscope,
     theme: "usmle",
-    tagline: "Basic sciences & mechanisms",
-  },
-  {
-    id: "usmle-step-2",
-    title: "USMLE Step 2",
-    href: "/study/practice?field=usmle-step-2",
-    icon: Stethoscope,
-    theme: "usmle",
-    tagline: "Clinical vignettes & management",
+    tagline: "Step 1 & Step 2 CK — science to bedside",
   },
   {
     id: "naplex",
     title: "NAPLEX",
-    href: "/study/practice?field=pharmacy",
+    href: "/study/practice?field=pharmacy&mode=bank",
     icon: Pill,
     theme: "naplex",
-    tagline: "Calculations & therapeutics",
+    tagline: "Calculations, cases & pharmacotherapy",
+  },
+  {
+    id: "mpje",
+    title: "MPJE",
+    href: studyHubMpjeHref(),
+    icon: Scale,
+    theme: "mpje",
+    tagline: "Uniform MPJE & state-specific law",
   },
 ];
 
@@ -56,11 +57,16 @@ export function ChooseYourExam() {
       aria-labelledby="choose-exam-heading"
     >
       <div className="mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-xl text-center">
-          <h2 id="choose-exam-heading" className="aee-headline">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="aee-section-label">Exam coverage</p>
+          <h2 id="choose-exam-heading" className="aee-headline mt-3">
             Four boards.{" "}
-            <span className="aee-display-accent">One platform.</span>
+            <span className="aee-display-accent">One subscription.</span>
           </h2>
+          <p className="aee-section-lede mx-auto mt-4 max-w-xl">
+            NCLEX, USMLE, NAPLEX, and MPJE — each with timed simulations, topic banks,
+            and rationales grounded in open educational resources.
+          </p>
         </div>
 
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">

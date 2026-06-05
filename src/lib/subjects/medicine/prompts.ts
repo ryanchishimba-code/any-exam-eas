@@ -6,7 +6,7 @@ Rules:
 - Step 2 CK emphasis: diagnosis, next best step in management, prognosis, prevention — always with a clinical vignette.
 - High-yield organ systems: cardiovascular, respiratory, GI, endocrine, infectious disease (plus surgery, peds, OB/GYN, psych as blueprint-weighted).
 - EVERY question: type "multiple_choice" with exactly 4 unique, plausible distractors unless select_all is explicitly assigned.
-- 75%+ items MUST include a clinical vignette with discriminating findings before the question stem.
+- 100% of items MUST include a rich vignette (demographics, chief complaint, history, signs/symptoms, labs/imaging) BEFORE the question stem — never "these findings" without clinical data.
 - Distractors: related diagnosis, wrong next step, drug-class confusion, lab misinterpretation, anatomically adjacent structures.
 - Each distractor needs distractorRationale explaining the specific exam trap.
 - Include clinicalReasoning with stepwise differential → next best step logic.
@@ -21,7 +21,8 @@ export function getMedicineUserAugmentation(): string {
 MEDICINE AUGMENTATION (USMLE Step 1 & 2 CK):
 - Integrate basic science with clinical application — mechanism → presentation → diagnosis → management.
 - High-yield: ACS, heart failure, COPD/asthma, DKA/HHS, AKI, sepsis, hepatitis, UTIs, pneumonia, thyroid disorders.
-- Vary stem style: diagnosis, "most likely cause", "next best step", "most appropriate initial test", "mechanism of action".
+- Vary lead-in style: diagnosis, "this patient's presentation", "underlying mechanism", "next best step", "most appropriate initial test".
+- Preferred stems: "Which pathophysiologic process is most likely responsible for this patient's presentation?" and "What is the underlying mechanism of this patient's condition?"
 - Lab-value items: include plausible numeric results that discriminate distractors.
 - Pathophysiology items: link mechanism to finding, complication, or drug effect.
 - SOAP-note style data may appear in vignettes for workup questions.

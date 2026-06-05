@@ -6,7 +6,7 @@ import type { ExamSlug } from "@/lib/exams/catalog";
 export const runtime = "nodejs";
 export const maxDuration = 120;
 
-const SLUGS = new Set(["nclex", "usmle", "naplex", "top500"]);
+const SLUGS = new Set(["nclex", "usmle", "naplex", "mpje", "top500"]);
 
 export async function POST(req: Request) {
   const { requirePremiumApi } = await import("@/lib/api-access");
