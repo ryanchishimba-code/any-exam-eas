@@ -1088,7 +1088,7 @@ export function polishNclexBankItem(
     : detectTemplate(stem, subjectId, seed);
   const rebuilt = rebuildFromTemplate(template, scenario, subjectLabel, seed);
 
-  let working: BankItem = {
+  const working: BankItem = {
     ...item,
     question: `${rebuilt.vignette}\n\n${rebuilt.question}`,
     options: rebuilt.options,

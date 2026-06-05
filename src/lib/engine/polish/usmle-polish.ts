@@ -871,7 +871,7 @@ export function polishUsmleBankItem(
   const template = detectTemplate(stem, fieldId, subjectId, seed);
   const rebuilt = rebuildCase(template, clinical, subjectLabel, seed);
 
-  let working: BankItem = {
+  const working: BankItem = {
     ...item,
     question: `${rebuilt.vignette}\n\n${rebuilt.question}`,
     options: rebuilt.options,
