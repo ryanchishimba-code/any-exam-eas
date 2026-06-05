@@ -39,7 +39,7 @@ export function LoginCompleteClient() {
       });
       setMessage(
         result.isPremium
-          ? "Welcome back! Opening your dashboard…"
+          ? "Welcome back! Opening your Study Hub…"
           : "Welcome back! Almost there…"
       );
     })();

@@ -17,8 +17,10 @@ export const authConfig = {
     authorized({ auth, request }) {
       const isLoggedIn = !!auth?.user;
       const path = request.nextUrl.pathname;
-      const isDashboard =
-        path.startsWith("/dashboard") || path.startsWith("/studygub");
+      const isStudyHub =
+        path.startsWith("/dashboard") ||
+        path.startsWith("/study-hub") ||
+        path.startsWith("/studygub");
       const isInternal = isInternalPath(path);
       const isPremium = isPremiumPage(path);
       const role = (auth?.user as { role?: string } | undefined)?.role;
@@ -37,7 +39,7 @@ export const authConfig = {
         return true;
       }
 
-      if (isDashboard || isPremium) {
+      if (isStudyHub || isPremium) {
         return isLoggedIn;
       }
 

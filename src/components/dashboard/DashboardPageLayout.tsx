@@ -22,7 +22,7 @@ export function DashboardPageLayout({
         <DashboardSidebar />
         <div className="min-w-0 flex-1">
           <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-ink-muted)]">
-            Dashboard
+            Study Hub
           </p>
           <h1 className="apple-display mt-2 text-[clamp(2rem,5vw,2.75rem)]">
             Hello{userName ? `, ${userName.split(" ")[0]}` : ""}.

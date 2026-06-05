@@ -12,17 +12,17 @@ import { useUserAccess } from "@/lib/client/use-user-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import { STUDYGUB_PATH } from "@/lib/studygub/config";
+import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 
 type NavLink = { href: string; label: string };
 
 const guestLinks: NavLink[] = [
-  { href: STUDYGUB_PATH, label: "StudyGub" },
+  { href: STUDY_HUB_PATH, label: "Study Hub" },
   { href: "/pricing", label: "Pricing" },
 ];
 
 const premiumLinks: NavLink[] = [
-  { href: STUDYGUB_PATH, label: "StudyGub" },
+  { href: STUDY_HUB_PATH, label: "Study Hub" },
   { href: "/study/drugs300", label: "Top 500 Drugs" },
 ];
 
@@ -87,7 +87,7 @@ export function Navigation() {
     requestSignOut();
   }
 
-  const brandHref = isAuthenticated && hasPremiumAccess ? STUDYGUB_PATH : "/";
+  const brandHref = isAuthenticated && hasPremiumAccess ? STUDY_HUB_PATH : "/";
 
   return (
     <header ref={headerRef} className="apple-glass aee-nav fixed top-0 z-50 w-full">
@@ -121,7 +121,7 @@ export function Navigation() {
           ) : (
             <div className="aee-nav-auth-group">
               <LoginModalTrigger
-                callbackUrl={STUDYGUB_PATH}
+                callbackUrl={STUDY_HUB_PATH}
                 className="aee-nav-login"
                 aria-label="Log in to your account"
               >
@@ -173,7 +173,7 @@ export function Navigation() {
               {authReady && !isAuthenticated && (
                 <div className="mt-3 space-y-2 border-t border-black/[0.06] pt-3">
                   <LoginModalTrigger
-                    callbackUrl={STUDYGUB_PATH}
+                    callbackUrl={STUDY_HUB_PATH}
                     className="aee-nav-login aee-nav-login-mobile w-full"
                     onClick={closeMobile}
                   >
@@ -191,8 +191,8 @@ export function Navigation() {
               )}
               {authReady && isAuthenticated && (
                 <div className="mt-3 space-y-1 border-t border-black/[0.06] pt-3">
-                  <Link href={STUDYGUB_PATH} className="aee-mobile-nav-item" onClick={closeMobile}>
-                    StudyGub
+                  <Link href={STUDY_HUB_PATH} className="aee-mobile-nav-item" onClick={closeMobile}>
+                    Study Hub
                   </Link>
                   {!hasPremiumAccess && (
                     <Link href="/pricing" className="aee-mobile-nav-item" onClick={closeMobile}>

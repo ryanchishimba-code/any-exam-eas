@@ -77,14 +77,19 @@ export async function appendExamAnswer(
 export async function completeExamSession(
   sessionId: string,
   userId: string,
-  payload: { score: number; weakAreas: { topic: string; weight: number }[]; analysis?: unknown }
+  payload: {
+    score: number;
+    weakAreas: { topic: string; weight: number }[];
+    analysis?: unknown;
+    endedEarly?: boolean;
+  }
 ) {
   const db = requireDb();
   const now = new Date();
   await db
     .update(examSessions)
     .set({
-      status: "completed",
+      status: payload.endedEarly ? "ended_early" : "completed",
       score: payload.score,
       weakAreas: payload.weakAreas,
       analysis: payload.analysis ?? null,

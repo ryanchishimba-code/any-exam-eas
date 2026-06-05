@@ -14,7 +14,7 @@ type GoogleSignInButtonProps = {
 };
 
 export function GoogleSignInButton({
-  callbackUrl = "/studygub",
+  callbackUrl = "/study-hub",
   highlighted,
   large,
   onClick,

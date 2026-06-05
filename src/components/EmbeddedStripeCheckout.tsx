@@ -166,7 +166,7 @@ export function EmbeddedStripeCheckout() {
         </EmbeddedCheckoutProvider>
       </div>
       <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-        Payments are encrypted and processed by Stripe. Cancel anytime from your dashboard.
+        Payments are encrypted and processed by Stripe. Cancel anytime from your account settings.
       </p>
     </div>
   );

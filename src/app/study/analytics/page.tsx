@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
-import { STUDYGUB_PATH } from "@/lib/studygub/config";
+import { studyHubProgressHref } from "@/lib/study-hub/config";
 
 export default function StudyAnalyticsRedirectPage() {
-  redirect(STUDYGUB_PATH);
+  redirect(studyHubProgressHref());
 }

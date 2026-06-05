@@ -70,18 +70,18 @@ export function HomeBottomCta() {
             Welcome back{displayName ? `, ${displayName}` : ""}
           </p>
           <h2 id="home-cta-heading" className="aee-headline mt-2 text-white">
-            Your dashboard is ready.
+            Your Study Hub is ready.
           </h2>
           <p className="mt-3 text-base text-teal-100/90">
             Log in to pick up practice exams, drug review, and your progress stats.
           </p>
           <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <LoginModalTrigger
-              callbackUrl="/studygub"
+              callbackUrl="/study-hub"
               className="aee-btn-hero-xl aee-btn-hero-light group inline-flex items-center justify-center gap-2"
             >
               <LogIn className="h-5 w-5" aria-hidden />
-              Log in to dashboard
+              Log in to Study Hub
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
             </LoginModalTrigger>
             <Link
@@ -122,7 +122,7 @@ export function HomeBottomCta() {
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
           </Link>
           <LoginModalTrigger
-            callbackUrl="/studygub"
+            callbackUrl="/study-hub"
             className="aee-btn-hero-ghost aee-btn-hero-ghost-on-dark inline-flex items-center justify-center gap-2"
           >
             <LogIn className="h-4 w-4" aria-hidden />

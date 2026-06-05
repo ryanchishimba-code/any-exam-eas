@@ -19,7 +19,7 @@ export function LoginPromo() {
           </h2>
           <p className="apple-subhead mt-4 max-w-md md:mx-0 mx-auto">
             Log in with the email you used at signup. Your exams and progress are
-            waiting on your dashboard.
+            waiting in your Study Hub.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:justify-start">
             <Button href="/login">Log in</Button>

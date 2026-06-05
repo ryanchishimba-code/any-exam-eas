@@ -14,6 +14,6 @@ export async function GET(req: Request) {
   const ok = await verifyEmailWithToken(token);
   const base = process.env.NEXTAUTH_URL ?? "http://localhost:3000";
   return NextResponse.redirect(
-    new URL(ok ? "/studygub?verified=1" : "/login?verify=invalid", base)
+    new URL(ok ? "/study-hub?verified=1" : "/login?verify=invalid", base)
   );
 }

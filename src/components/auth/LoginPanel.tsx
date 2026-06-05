@@ -40,7 +40,7 @@ function displayMethod(method?: LoginMethod): string | null {
 }
 
 export function LoginPanel({
-  callbackUrl = "/studygub",
+  callbackUrl = "/study-hub",
   onSuccess,
   onForgotPassword,
   forgotLinkClassName = "text-[var(--color-accent)] hover:underline",
@@ -117,7 +117,7 @@ export function LoginPanel({
       });
       setRedirectMessage(
         result.isPremium
-          ? "Welcome back! Opening your dashboard…"
+          ? "Welcome back! Opening your Study Hub…"
           : "Welcome back! Almost there…"
       );
     } catch (err) {

@@ -54,8 +54,8 @@ export function LoginForm() {
       });
       setRedirectMessage(
         result.isPremium
-          ? "Welcome back! Opening your dashboard…"
-          : "Welcome back! Opening your dashboard…"
+          ? "Welcome back! Opening your Study Hub…"
+          : "Welcome back! Opening your Study Hub…"
       );
     })();
   }, [callbackUrl, router, session?.user?.email, session?.user?.name, status]);

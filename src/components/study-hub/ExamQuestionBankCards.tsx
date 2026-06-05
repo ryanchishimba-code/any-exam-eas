@@ -2,13 +2,13 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ExamHubIcon } from "@/components/exam/ExamHubIcon";
 import { cn } from "@/lib/utils";
-import { STUDYGUB_EXAM_BANKS, questionBankHref } from "@/lib/studygub/config";
+import { STUDY_HUB_EXAM_BANKS, questionBankHref } from "@/lib/study-hub/config";
 import type { ExamSlug } from "@/lib/exams/catalog";
 
 export function ExamQuestionBankCards() {
   return (
     <div className="grid gap-4 sm:grid-cols-3">
-      {STUDYGUB_EXAM_BANKS.map((exam) => (
+      {STUDY_HUB_EXAM_BANKS.map((exam) => (
         <Link
           key={exam.slug}
           href={questionBankHref(exam.fieldId)}

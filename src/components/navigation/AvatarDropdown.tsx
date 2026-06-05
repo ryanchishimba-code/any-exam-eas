@@ -10,7 +10,7 @@ import { firstName } from "@/lib/client/returning-user";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import { STUDYGUB_PATH, TOP_500_DRUGS_PATH } from "@/lib/studygub/config";
+import { STUDY_HUB_PATH, TOP_500_DRUGS_PATH } from "@/lib/study-hub/config";
 
 function initials(name?: string | null, email?: string | null) {
   if (name?.trim()) {
@@ -56,14 +56,14 @@ export function AvatarDropdown() {
   const menuItems = hasPremiumAccess
     ? [
         {
-          href: STUDYGUB_PATH,
-          label: "StudyGub",
+          href: STUDY_HUB_PATH,
+          label: "Study Hub",
           description: "Question banks & Top 500 drugs",
           icon: LayoutGrid,
         },
         {
           href: "/study/practice?field=nursing",
-          label: "NCLEX bank",
+          label: "NCLEX NGN",
           description: "Nursing question bank",
           icon: BookOpen,
         },
@@ -76,8 +76,8 @@ export function AvatarDropdown() {
       ]
     : [
         {
-          href: STUDYGUB_PATH,
-          label: "StudyGub",
+          href: STUDY_HUB_PATH,
+          label: "Study Hub",
           description: "Your study home",
           icon: User,
         },

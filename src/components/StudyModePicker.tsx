@@ -46,8 +46,8 @@ const modes: {
     id: "analytics",
     title: "Performance",
     description: "Practice trends, streaks, weak topics, and test history.",
-    href: "/study/analytics",
-    linkLabel: "View dashboard",
+    href: "/study-hub#progress",
+    linkLabel: "View progress",
   },
 ];
 

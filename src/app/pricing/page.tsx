@@ -46,7 +46,7 @@ export default async function PricingPage({
             "Board-style question practice (NCLEX, NAPLEX, USMLE)",
             "AI-assisted exam generation (verify content independently)",
             "Weak-area practice modes + progress tracking",
-            "Student dashboard and analytics",
+            "Study Hub with progress tracking",
             "OER-backed rationales with source citations",
           ].map((item) => (
             <li key={item} className="flex gap-3 text-[var(--color-ink-muted)]">

@@ -19,6 +19,9 @@ import { DrugSearch } from "@/components/study/DrugSearch";
 import { DrugSearchPreview } from "@/components/study/DrugSearchPreview";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { getDrugSearchHitById, type DrugSearchHit } from "@/lib/drugs300/search";
+import { EndActivityControl } from "./EndActivityControl";
+import { ActivitySessionToolbar } from "./ActivitySessionToolbar";
+import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 
 const GRADES: ReviewGrade[] = [0, 1, 2, 3];
 
@@ -286,19 +289,42 @@ export function DrugReviewStudio() {
             </div>
           ) : (
             <>
-              <div className="flex items-center justify-between gap-2 text-sm text-slate-500">
-                <span>
-                  Card {index + 1} of {cards.length}
-                  {current.due && (
-                    <span className="ml-2 rounded-full bg-teal-100 px-2 py-0.5 text-xs font-semibold text-teal-800">
-                      Due
-                    </span>
-                  )}
-                </span>
-                <span className="hidden sm:inline text-xs">
-                  Interval: {current.intervalDays > 0 ? `${Math.round(current.intervalDays)}d` : "new"}
-                </span>
-              </div>
+              <ActivitySessionToolbar
+                variant="teal"
+                actions={
+                  <EndActivityControl
+                    kind="activity"
+                    variant="teal"
+                    onConfirm={async (): Promise<ActivitySessionSummary> => {
+                      /* Graded cards persist via /api/drugs300/review on each grade */
+                      return {
+                        title: "Top 500 Drugs",
+                        activityType: "drugs",
+                        reviewed: stats.reviewed,
+                        mastered: stats.mastered,
+                        total: stats.total,
+                        progressPct: stats.progressPct,
+                        endedEarly: true,
+                      };
+                    }}
+                  />
+                }
+              >
+                <div className="text-sm text-slate-600">
+                  <span>
+                    Card {index + 1} of {cards.length}
+                    {current.due && (
+                      <span className="ml-2 rounded-full bg-teal-100 px-2 py-0.5 text-xs font-semibold text-teal-800">
+                        Due
+                      </span>
+                    )}
+                  </span>
+                  <p className="mt-0.5 hidden text-xs text-slate-500 sm:block">
+                    Interval:{" "}
+                    {current.intervalDays > 0 ? `${Math.round(current.intervalDays)}d` : "new"}
+                  </p>
+                </div>
+              </ActivitySessionToolbar>
 
               <DrugFlashcard
                 card={current}

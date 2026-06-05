@@ -13,6 +13,16 @@ const nextConfig: NextConfig = {
         destination: "/login?callbackUrl=%2Finternal",
         permanent: false,
       },
+      {
+        source: "/studygub",
+        destination: "/study-hub",
+        permanent: true,
+      },
+      {
+        source: "/dashboard",
+        destination: "/study-hub",
+        permanent: true,
+      },
     ];
   },
 };

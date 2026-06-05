@@ -8,6 +8,9 @@ import { StudyModePicker } from "./StudyModePicker";
 import { StudySubnav } from "./StudySubnav";
 import { QuiltTileViewer } from "./QuiltTileViewer";
 import { InlineError } from "@/components/ui/StatusMessage";
+import { EndActivityControl } from "@/components/study/EndActivityControl";
+import { ActivitySessionToolbar } from "@/components/study/ActivitySessionToolbar";
+import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 
 type TileFilter = "flashcards" | "quiz" | "all";
 
@@ -182,10 +185,55 @@ export function LearningQuiltStudio() {
 
       {quilt && tiles.length > 0 && current && (
         <div className="mt-12">
-          <div className="flex flex-wrap items-end justify-between gap-4">
+          <ActivitySessionToolbar
+            actions={
+              <>
+                <div className="min-w-[120px] text-right">
+                  <p className="text-xs text-[var(--color-ink-muted)]">Progress</p>
+                  <p className="text-sm font-semibold tabular-nums text-[var(--color-accent)]">
+                    {masteredIds.size}/{tiles.length} mastered
+                  </p>
+                </div>
+                <EndActivityControl
+                  kind="activity"
+                  onConfirm={async (): Promise<ActivitySessionSummary> => {
+                    if (quiltId) {
+                      const res = await fetch("/api/progress", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          entityType: "quilt",
+                          entityId: quiltId,
+                          score: progressPct,
+                          metadata: {
+                            action: "session_ended",
+                            masteredCount: masteredIds.size,
+                            totalTiles: tiles.length,
+                            field,
+                            topic,
+                          },
+                        }),
+                      });
+                      if (!res.ok) {
+                        throw new Error("Could not save quilt progress.");
+                      }
+                    }
+                    return {
+                      title: quilt.title,
+                      activityType: "quilt",
+                      mastered: masteredIds.size,
+                      total: tiles.length,
+                      progressPct,
+                      endedEarly: true,
+                    };
+                  }}
+                />
+              </>
+            }
+          >
             <div>
-              <h2 className="text-2xl font-semibold">{quilt.title}</h2>
-              <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
+              <h2 className="text-lg font-semibold sm:text-xl">{quilt.title}</h2>
+              <p className="mt-0.5 text-sm text-[var(--color-ink-muted)]">
                 {tileFilter === "flashcards"
                   ? "Flashcard mode"
                   : tileFilter === "quiz"
@@ -194,19 +242,7 @@ export function LearningQuiltStudio() {
                 · Tile {activeIndex + 1} of {tiles.length}
               </p>
             </div>
-            <div className="min-w-[140px]">
-              <p className="text-xs text-[var(--color-ink-muted)]">Progress</p>
-              <div className="mt-1 h-2 overflow-hidden rounded-full bg-[var(--color-surface)]">
-                <div
-                  className="h-full bg-[var(--color-accent)] transition-all"
-                  style={{ width: `${progressPct}%` }}
-                />
-              </div>
-              <p className="mt-1 text-xs font-medium text-[var(--color-accent)]">
-                {masteredIds.size}/{tiles.length} mastered
-              </p>
-            </div>
-          </div>
+          </ActivitySessionToolbar>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-4 md:grid-cols-6">
             {tiles.map((t, i) => (

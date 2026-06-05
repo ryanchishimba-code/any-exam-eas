@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
-import { STUDYGUB_PATH } from "@/lib/studygub/config";
+import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 
-/** Legacy URL — StudyGub replaced Dashboard. */
+/** Legacy URL — redirects to Study Hub. */
 export default function DashboardRedirectPage() {
-  redirect(STUDYGUB_PATH);
+  redirect(STUDY_HUB_PATH);
 }

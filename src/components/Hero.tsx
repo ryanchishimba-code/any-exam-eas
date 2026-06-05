@@ -107,10 +107,10 @@ export function Hero() {
                 {isAuthed ? (
                   <>
                     <Link
-                      href="/studygub"
+                      href="/study-hub"
                       className="aee-btn-hero-xl group inline-flex w-full items-center justify-center gap-2.5 sm:w-auto"
                     >
-                      Open StudyGub
+                      Open Study Hub
                       <ArrowRight
                         className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1"
                         aria-hidden
@@ -126,11 +126,11 @@ export function Hero() {
                 ) : isReturning ? (
                   <>
                     <LoginModalTrigger
-                      callbackUrl="/studygub"
+                      callbackUrl="/study-hub"
                       className="aee-btn-hero-xl aee-btn-hero-returning group inline-flex w-full items-center justify-center gap-2.5 sm:w-auto"
                     >
                       <LogIn className="h-5 w-5" aria-hidden />
-                      Log in to StudyGub
+                      Log in to Study Hub
                       <ArrowRight
                         className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1"
                         aria-hidden
@@ -157,7 +157,7 @@ export function Hero() {
                       />
                     </Link>
                     <LoginModalTrigger
-                      callbackUrl="/studygub"
+                      callbackUrl="/study-hub"
                       className="aee-btn-hero-ghost inline-flex w-full items-center justify-center gap-2 sm:w-auto"
                     >
                       <LogIn className="h-4 w-4" aria-hidden />

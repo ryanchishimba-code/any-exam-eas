@@ -87,11 +87,11 @@ export function TrialWelcomeScreen({
       <TrialFeatureShortcuts variant="cards" onNavigate={onDismiss} />
 
       <div className="aee-trial-dashboard-footer">
-        <Link href="/study" className="aee-trial-dashboard-secondary" onClick={onDismiss}>
+        <Link href="/study-hub" className="aee-trial-dashboard-secondary" onClick={onDismiss}>
           Browse study hub
         </Link>
         <button type="button" className="aee-trial-dashboard-skip" onClick={onDismiss}>
-          Continue to dashboard
+          Continue to Study Hub
           <ArrowRight className="h-3.5 w-3.5" aria-hidden />
         </button>
       </div>

@@ -17,7 +17,7 @@ type LandingAuthCtaProps = {
 };
 
 export function LandingAuthCta({
-  callbackUrl = "/studygub",
+  callbackUrl = "/study-hub",
   className = "",
   compact = false,
 }: LandingAuthCtaProps) {

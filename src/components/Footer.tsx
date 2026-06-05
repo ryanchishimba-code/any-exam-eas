@@ -19,20 +19,20 @@ export function Footer() {
 
   const productLinks = showPremiumLinks
     ? [
-        { href: "/studygub", label: "StudyGub" },
-        { href: "/study/practice?field=nursing", label: "NCLEX bank" },
+        { href: "/study-hub", label: "Study Hub" },
+        { href: "/study/practice?field=nursing", label: "NCLEX NGN" },
         { href: "/study/practice?field=usmle-step-1", label: "USMLE bank" },
         { href: "/study/practice?field=pharmacy", label: "NAPLEX bank" },
         { href: "/study/drugs300", label: "Top 500 Drugs" },
       ]
     : [
-        { href: "/studygub", label: "StudyGub" },
+        { href: "/study-hub", label: "Study Hub" },
         { href: "/pricing", label: "Pricing" },
       ];
 
   const accountLinks = isAuthed
     ? [
-        { href: "/studygub", label: "StudyGub" },
+        { href: "/study-hub", label: "Study Hub" },
         { href: "/feedback", label: "Feedback" },
       ]
     : [

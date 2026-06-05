@@ -16,7 +16,7 @@ export function SubscriptionPaywall({ access }: { access: SubscriptionAccess }) 
       </h2>
       <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-[var(--color-ink-muted)]">
         {formatTrialIntroPrice()} for {formatTrialLabel()}, then {formatMonthlyPrice()}/month.
-        Includes the advanced question engine, practice exams, dashboard, and analytics.
+        Includes question banks, Top 500 drugs, practice exams, and progress tracking.
       </p>
       <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
         <Button href="/checkout?plan=trial">

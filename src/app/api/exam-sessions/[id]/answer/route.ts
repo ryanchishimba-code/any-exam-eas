@@ -21,6 +21,7 @@ export async function PATCH(
       score: Number(body.score) || 0,
       weakAreas: body.weakAreas ?? [],
       analysis: body.analysis,
+      endedEarly: Boolean(body.endedEarly),
     });
     return NextResponse.json({ ok: true });
   }

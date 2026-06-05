@@ -12,7 +12,7 @@ type MemberLoginLinkProps = {
 };
 
 export function MemberLoginLink({
-  callbackUrl = "/studygub",
+  callbackUrl = "/study-hub",
   className = "",
   showEmailHint = false,
 }: MemberLoginLinkProps) {

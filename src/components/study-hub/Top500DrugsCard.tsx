@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Beaker } from "lucide-react";
-import { TOP_500_DRUGS_PATH } from "@/lib/studygub/config";
+import { TOP_500_DRUGS_PATH } from "@/lib/study-hub/config";
 
 export function Top500DrugsCard() {
   return (
@@ -15,7 +15,7 @@ export function Top500DrugsCard() {
         <div>
           <h3 className="text-lg font-semibold text-slate-900">Top 500 Drugs</h3>
           <p className="mt-1 max-w-md text-sm text-slate-600">
-            Same 500 high-yield drugs for NCLEX, USMLE, and NAPLEX — flashcards with spaced
+            One shared list for NCLEX NGN, USMLE, and NAPLEX — flashcards with spaced
             repetition.
           </p>
         </div>

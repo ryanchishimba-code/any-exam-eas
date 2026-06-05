@@ -128,8 +128,8 @@ export function WelcomeBackSection() {
               <Button href={welcome?.hasAccess ? "/study" : "/pricing?paywall=1"}>
                 {welcome?.hasAccess ? "Continue studying" : "Complete subscription"}
               </Button>
-              <Button href="/studygub" variant="secondary">
-                Open dashboard
+              <Button href="/study-hub" variant="secondary">
+                Open Study Hub
               </Button>
             </div>
           ) : (

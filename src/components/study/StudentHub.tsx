@@ -161,7 +161,7 @@ export function StudentHub({ suppressHero = false }: { suppressHero?: boolean })
             <h3 className="text-xs font-medium uppercase tracking-wide text-[var(--color-ink-muted)]">
               Recent tests
             </h3>
-            <AppleLink href="/dashboard">View dashboard</AppleLink>
+            <AppleLink href="/study-hub">View Study Hub</AppleLink>
           </div>
           <ul className="mt-4 divide-y divide-black/[0.06]">
             {dashboard.recentTests.slice(0, 3).map((t) => (

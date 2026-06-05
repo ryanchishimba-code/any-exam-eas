@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
-import { STUDYGUB_PATH } from "@/lib/studygub/config";
+import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 
 export default function GenerateRedirectPage() {
-  redirect(STUDYGUB_PATH);
+  redirect(STUDY_HUB_PATH);
 }

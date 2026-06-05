@@ -2,25 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  BarChart3,
-  BookOpen,
-  Brain,
-  ClipboardList,
-  LayoutDashboard,
-  Layers,
-  Settings,
-} from "lucide-react";
+import { BarChart3, BookOpen, LayoutGrid, Layers } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  STUDY_HUB_EXAM_BANKS,
+  STUDY_HUB_PATH,
+  TOP_500_DRUGS_PATH,
+  questionBankHref,
+  studyHubProgressHref,
+} from "@/lib/study-hub/config";
 
 const NAV = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/prep/nclex", label: "Question Bank", icon: BookOpen },
-  { href: "/study/drugs300", label: "Flashcards", icon: Layers },
-  { href: "/exam/nclex", label: "Practice Exams", icon: ClipboardList },
-  { href: "/analytics", label: "Analytics", icon: BarChart3 },
-  { href: "/generate", label: "AI Engine", icon: Brain },
-  { href: "/settings", label: "Settings", icon: Settings },
+  { href: STUDY_HUB_PATH, label: "Study Hub", icon: LayoutGrid },
+  ...STUDY_HUB_EXAM_BANKS.map((exam) => ({
+    href: questionBankHref(exam.fieldId),
+    label: exam.label,
+    icon: BookOpen,
+  })),
+  { href: TOP_500_DRUGS_PATH, label: "Top 500 Drugs", icon: Layers },
+  { href: studyHubProgressHref(), label: "Progress", icon: BarChart3 },
 ] as const;
 
 export function DashboardSidebar() {
@@ -32,7 +32,8 @@ export function DashboardSidebar() {
         {NAV.map(({ href, label, icon: Icon }) => {
           const active =
             pathname === href ||
-            (href !== "/dashboard" && pathname.startsWith(href.split("/").slice(0, 2).join("/")));
+            (href.startsWith("/study/practice") && pathname.startsWith("/study/practice")) ||
+            (href === STUDY_HUB_PATH && pathname === STUDY_HUB_PATH);
           return (
             <Link
               key={href}

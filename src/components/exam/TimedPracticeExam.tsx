@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import { Flag, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ShareModal } from "@/components/share/ShareModal";
+import { EndExamControl } from "@/components/study/EndExamControl";
+import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import {
   buildWeakAreasFromField,
   calculateExamScorePercent,
@@ -98,20 +100,54 @@ export function TimedPracticeExam({
     [sessionId, index, questions, flagged]
   );
 
-  async function finishExam(finalScore: number) {
-    const weakAreas = buildWeakAreasFromField(fieldId, answerLog);
-    await fetch(`/api/exam-sessions/${sessionId}/answer`, {
+  async function finishExam(finalScore: number, endedEarly = false) {
+    const log = endedEarly ? answersForScore() : answerLog;
+    const weakAreas = buildWeakAreasFromField(fieldId, log);
+    const res = await fetch(`/api/exam-sessions/${sessionId}/answer`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         complete: true,
+        endedEarly,
         score: finalScore,
         weakAreas,
-        analysis: { summary: "Practice session complete. Review flagged items." },
+        analysis: endedEarly
+          ? {
+              summary: "Session ended early. Progress saved.",
+              answered: log.length,
+              total: questions.length,
+            }
+          : { summary: "Practice session complete. Review flagged items." },
       }),
     });
-    setFinished(true);
-    setReview(true);
+    if (!res.ok) {
+      throw new Error("Could not save exam progress.");
+    }
+    if (!endedEarly) {
+      setFinished(true);
+      setReview(true);
+    }
+  }
+
+  async function exitExamEarly(): Promise<ActivitySessionSummary> {
+    const log = answersForScore();
+    setAnswerLog(log);
+    const pct = calculateExamScorePercent(log, questions.length);
+    const correct = log.filter((a) => a.correct).length;
+    await finishExam(pct, true);
+    return {
+      title: `${examType.toUpperCase()} timed practice`,
+      activityType: "exam",
+      examType,
+      answered: log.length,
+      total: questions.length,
+      correct,
+      accuracy: pct,
+      endedEarly: true,
+      timed: true,
+      timeRemainingSec: secondsLeft,
+      flaggedCount: flagged.size,
+    };
   }
 
   function submitChoice(choice: string) {
@@ -179,7 +215,7 @@ export function TimedPracticeExam({
         <span className="text-sm text-slate-400">
           {index + 1} / {questions.length}
         </span>
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
           <button
             type="button"
             className="rounded-lg p-2 hover:bg-white/10"
@@ -203,6 +239,7 @@ export function TimedPracticeExam({
           >
             <Share2 className="h-4 w-4" />
           </button>
+          {!finished && <EndExamControl variant="dark" onConfirm={exitExamEarly} />}
         </div>
       </header>
 

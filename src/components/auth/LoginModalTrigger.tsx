@@ -13,7 +13,7 @@ type LoginModalTriggerProps = {
 
 export function LoginModalTrigger({
   children,
-  callbackUrl = "/studygub",
+  callbackUrl = "/study-hub",
   className,
   onClick,
   ...props

@@ -37,12 +37,12 @@ export default async function CheckoutReturnPage({
       }
     } catch {
       status = "pending";
-      message = "Payment received — refresh your dashboard in a moment.";
+      message = "Payment received — refresh your Study Hub in a moment.";
     }
   }
 
   if (status === "success") {
-    redirect("/studygub?checkout=success");
+    redirect("/study-hub?checkout=success");
   }
 
   return (
@@ -56,8 +56,8 @@ export default async function CheckoutReturnPage({
           >
             Try checkout again
           </Link>
-          <Link href="/studygub" className="text-sm text-[var(--color-accent)] hover:underline">
-            Back to StudyGub
+          <Link href="/study-hub" className="text-sm text-[var(--color-accent)] hover:underline">
+            Back to Study Hub
           </Link>
         </div>
       </div>

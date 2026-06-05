@@ -14,6 +14,10 @@ import {
 import { isAnswerCorrect } from "@/lib/questions/prepare";
 import { bowTieSelectionValid, parseBowTieLayout, parseMatrixKey } from "@/lib/questions/ngn-structures";
 import { persistSessionLocally } from "@/lib/questions/storage";
+import { saveStudySessionRemote } from "@/lib/client/save-study-session";
+import { EndActivityControl } from "./EndActivityControl";
+import { ActivitySessionToolbar } from "./ActivitySessionToolbar";
+import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import type {
   ConfidenceLevel,
   RawQuestionInput,
@@ -84,19 +88,60 @@ export function StudySessionPlayer({
   const persist = useCallback(
     (s: StudySessionState) => {
       persistSessionLocally(s, questionList);
-      void fetch("/api/study/session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          session: s,
-          questions: questionList,
-          completed: isSessionComplete(s, questionList),
-          score: summarizeSession(s, questionList).accuracy,
-        }),
-      });
+      void saveStudySessionRemote({
+        session: s,
+        questions: questionList,
+        completed: isSessionComplete(s, questionList),
+      }).catch(() => undefined);
     },
     [questionList]
   );
+
+  const exitSession = useCallback(async (): Promise<ActivitySessionSummary> => {
+    persistSessionLocally(sessionState, questionList);
+    await saveStudySessionRemote({
+      session: sessionState,
+      questions: questionList,
+      completed: false,
+      endedEarly: true,
+    });
+
+    const partial = summarizeSession(sessionState, questionList);
+
+    if (sourceType === "exam" && sourceId) {
+      const res = await fetch("/api/progress", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          entityType: "exam",
+          entityId: sourceId,
+          score: partial.accuracy,
+          completed: false,
+          metadata: {
+            correct: partial.correct,
+            total: partial.total,
+            answered: partial.answered,
+            endedEarly: true,
+          },
+        }),
+      });
+      if (!res.ok) {
+        throw new Error("Could not save exam progress.");
+      }
+    }
+
+    return {
+      title: title ?? `${field} practice`,
+      activityType: sourceType === "exam" ? "exam" : "practice",
+      mode: sessionState.mode,
+      answered: partial.answered,
+      total: partial.total,
+      correct: partial.correct,
+      accuracy: partial.accuracy,
+      endedEarly: true,
+      timed: sessionState.mode === "timed",
+    };
+  }, [field, questionList, sessionState, sourceId, sourceType, title]);
 
   const submitAttempt = useCallback(
     async (
@@ -340,7 +385,21 @@ export function StudySessionPlayer({
         touchStart.current = null;
       }}
     >
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      <ActivitySessionToolbar
+        actions={
+          <>
+            {sessionState.mode === "timed" && !answer?.revealed && (
+              <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-900">
+                {timerSec}s
+              </span>
+            )}
+            <EndActivityControl
+              kind={sourceType === "exam" || sessionState.mode === "timed" ? "exam" : "activity"}
+              onConfirm={exitSession}
+            />
+          </>
+        }
+      >
         <div>
           {title && <p className="text-sm font-medium">{title}</p>}
           <p className="text-xs text-[var(--color-ink-muted)]">
@@ -348,12 +407,7 @@ export function StudySessionPlayer({
             {summary.answered > 0 && ` · ${summary.accuracy}%`}
           </p>
         </div>
-        {sessionState.mode === "timed" && !answer?.revealed && (
-          <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-900">
-            {timerSec}s
-          </span>
-        )}
-      </div>
+      </ActivitySessionToolbar>
 
       <div className="h-1.5 overflow-hidden rounded-full bg-black/[0.06]">
         <motion.div

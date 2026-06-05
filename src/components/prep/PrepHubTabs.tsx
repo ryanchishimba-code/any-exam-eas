@@ -128,8 +128,8 @@ export function PrepHubTabs({
         )}
         {tab === "progress" && (
           <div className="space-y-3">
-            <Button href="/studygub" variant="secondary">
-              Back to StudyGub
+            <Button href="/study-hub" variant="secondary">
+              Back to Study Hub
             </Button>
           </div>
         )}

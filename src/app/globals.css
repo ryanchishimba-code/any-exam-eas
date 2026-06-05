@@ -2034,6 +2034,35 @@ body {
   outline-offset: 2px;
 }
 
+.aee-exit-dialog-confirm {
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: var(--color-accent);
+  color: white;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.aee-exit-dialog-confirm:hover:not(:disabled) {
+  opacity: 0.92;
+}
+
+.aee-exit-dialog-confirm:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.aee-exit-dialog-confirm:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.aee-exit-dialog-confirm:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 /* ——— Live pulse bar ——— */
 
 .aee-live-pulse {

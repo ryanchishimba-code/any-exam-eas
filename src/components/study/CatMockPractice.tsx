@@ -28,6 +28,11 @@ import {
 import { InsightPanel } from "./InsightPanel";
 import type { LearningInsight, RemediationRecommendation } from "@/lib/learning/types";
 import type { ConfidenceLevel } from "@/lib/questions/types";
+import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
+import { ActivitySessionToolbar } from "./ActivitySessionToolbar";
+import { EndActivityControl } from "./EndActivityControl";
+import { saveStudySessionRemote } from "@/lib/client/save-study-session";
+import { createStudySession } from "@/lib/questions/session-engine";
 
 type PoolItem = StudyQuestion & { difficultyBand: "easy" | "medium" | "hard" };
 
@@ -253,13 +258,57 @@ export function CatMockPractice() {
     );
   }
 
+  async function exitCatMock(): Promise<ActivitySessionSummary> {
+    const answered = catState.questionNumber;
+    const accuracy =
+      answered > 0 ? Math.round((catState.correctCount / answered) * 100) : 0;
+
+    if (answered > 0) {
+      const snapshot = createStudySession({
+        questions: [],
+        field,
+        subjectId,
+        sourceType: "bank",
+        mode: "cat",
+      });
+      await saveStudySessionRemote({
+        session: { ...snapshot.session, currentIndex: answered },
+        questions: snapshot.questions,
+        completed: false,
+        endedEarly: true,
+      });
+    }
+
+    return {
+      title: "NCLEX-style adaptive mock",
+      activityType: "cat",
+      examType: "nclex",
+      mode: "cat",
+      answered,
+      total: CAT_MAX_QUESTIONS,
+      correct: catState.correctCount,
+      accuracy,
+      endedEarly: true,
+      timed: false,
+    };
+  }
+
   if (current && started) {
     const progressMin = Math.min(catState.questionNumber + 1, CAT_MIN_QUESTIONS);
     const progressPct = (progressMin / CAT_MAX_QUESTIONS) * 100;
 
     return (
       <div className="mt-8 space-y-4">
-        <div className="flex flex-wrap items-center justify-between gap-3">
+        <ActivitySessionToolbar
+          actions={
+            <>
+              <span className="rounded-full bg-teal-100 px-3 py-1 text-xs font-medium text-teal-900">
+                Target: {targetDifficulty(catState)}
+              </span>
+              <EndActivityControl kind="exam" onConfirm={exitCatMock} />
+            </>
+          }
+        >
           <div>
             <p className="text-sm font-medium">NCLEX-style adaptive mock</p>
             <p className="text-xs text-[var(--color-ink-muted)]">
@@ -267,10 +316,7 @@ export function CatMockPractice() {
               item range · difficulty adapts to your answers
             </p>
           </div>
-          <span className="rounded-full bg-teal-100 px-3 py-1 text-xs font-medium text-teal-900">
-            Target: {targetDifficulty(catState)}
-          </span>
-        </div>
+        </ActivitySessionToolbar>
 
         <div className="h-1.5 overflow-hidden rounded-full bg-black/[0.06]">
           <motion.div

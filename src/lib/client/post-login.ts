@@ -39,12 +39,14 @@ export async function resolvePostLoginDestination(
     safe.startsWith("/generate") ||
     safe.startsWith("/learn") ||
     safe.startsWith("/dashboard") ||
-    safe.startsWith("/studygub")
+    safe.startsWith("/study-hub")
   ) {
-    return safe.startsWith("/dashboard") ? "/studygub" : safe;
+    return safe.startsWith("/dashboard") || safe.startsWith("/studygub")
+      ? "/study-hub"
+      : safe;
   }
 
-  return "/studygub";
+  return "/study-hub";
 }
 
 async function fetchAccountName(): Promise<string | undefined> {
