@@ -3,14 +3,18 @@ import { Activity, Beaker, Pill, Stethoscope } from "lucide-react";
 
 export type ExamSlug = "nclex" | "usmle" | "naplex" | "top500";
 
-export type ExamHubConfig = {
+/** Serializable hub metadata (safe for server → client props). */
+export type ExamHubMeta = {
   slug: ExamSlug;
   title: string;
   subtitle: string;
   fieldId: string;
-  icon: LucideIcon;
   accentClass: string;
   questionBankLabel: string;
+};
+
+export type ExamHubConfig = ExamHubMeta & {
+  icon: LucideIcon;
 };
 
 export const EXAM_HUBS: ExamHubConfig[] = [
@@ -58,4 +62,9 @@ export function getExamHub(slug: string): ExamHubConfig | undefined {
 
 export function examSlugToFieldId(slug: ExamSlug): string {
   return getExamHub(slug)?.fieldId ?? slug;
+}
+
+export function toExamHubMeta(hub: ExamHubConfig): ExamHubMeta {
+  const { slug, title, subtitle, fieldId, accentClass, questionBankLabel } = hub;
+  return { slug, title, subtitle, fieldId, accentClass, questionBankLabel };
 }

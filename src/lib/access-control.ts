@@ -86,7 +86,21 @@ export async function getUserAccess(userId: string): Promise<UserAccess> {
   });
 
   if (!user) {
-    throw new Error("User not found");
+    return {
+      userId,
+      role: "expired",
+      accountStatus: "unknown",
+      emailVerified: false,
+      subscription: {
+        hasAccess: false,
+        status: "none",
+        trialEndsAt: null,
+        daysRemaining: null,
+        canStartCheckout: true,
+      },
+      hasPremiumAccess: false,
+      blockReason: "subscription",
+    };
   }
 
   const staff = isStaffRole(user.role);

@@ -11,7 +11,12 @@ export async function requirePremiumPage(
     redirect(`/login?callbackUrl=${encodeURIComponent(callbackPath)}`);
   }
 
-  const access = await getUserAccess(session.user.id);
+  let access;
+  try {
+    access = await getUserAccess(session.user.id);
+  } catch {
+    redirect(`/login?callbackUrl=${encodeURIComponent(callbackPath)}`);
+  }
 
   if (access.blockReason === "suspended") {
     redirect("/pricing?paywall=suspended");

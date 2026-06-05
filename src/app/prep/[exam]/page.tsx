@@ -1,7 +1,8 @@
 import { notFound, redirect } from "next/navigation";
 import { auth } from "@/auth";
-import { getExamHub, type ExamSlug } from "@/lib/exams/catalog";
+import { getExamHub, toExamHubMeta, type ExamSlug } from "@/lib/exams/catalog";
 import { PrepHubTabs } from "@/components/prep/PrepHubTabs";
+import { ExamHubIcon } from "@/components/exam/ExamHubIcon";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { asc, eq } from "drizzle-orm";
 import { requireDb } from "@/db";
@@ -68,14 +69,13 @@ export default async function PrepExamPage({
 
   const exam = getExamHub(slug as ExamSlug)!;
   const topics = await ensureTopics(slug as ExamSlug);
-  const Icon = exam.icon;
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
       <div className="mx-auto max-w-4xl px-6 pb-24 pt-[var(--page-top)]">
         <div className="flex items-center gap-3">
           <div className="rounded-xl bg-[var(--color-accent)]/10 p-3 text-[var(--color-accent)]">
-            <Icon className="h-7 w-7" aria-hidden />
+            <ExamHubIcon slug={slug as ExamSlug} />
           </div>
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
@@ -85,7 +85,7 @@ export default async function PrepExamPage({
           </div>
         </div>
         <p className="mt-3 text-slate-600">{exam.subtitle}</p>
-        <PrepHubTabs exam={exam} topics={topics} />
+        <PrepHubTabs exam={toExamHubMeta(exam)} topics={topics} />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import type { ExamHubConfig } from "@/lib/exams/catalog";
+import type { ExamHubMeta } from "@/lib/exams/catalog";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 
@@ -20,7 +20,7 @@ export function PrepHubTabs({
   exam,
   topics,
 }: {
-  exam: ExamHubConfig;
+  exam: ExamHubMeta;
   topics: { slug: string; label: string; description?: string | null }[];
 }) {
   const [tab, setTab] = useState<TabId>("bank");

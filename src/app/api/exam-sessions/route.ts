@@ -20,11 +20,16 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid exam type" }, { status: 400 });
   }
 
-  const id = await createExamSession(session.user.id, examType, {
-    questionCount: Number(body.questionCount) || 40,
-    timeLimitSec: Number(body.timeLimitSec) || 3600,
-    title: body.title,
-  });
+  try {
+    const id = await createExamSession(session.user.id, examType, {
+      questionCount: Number(body.questionCount) || 40,
+      timeLimitSec: Number(body.timeLimitSec) || 3600,
+      title: body.title,
+    });
 
-  return NextResponse.json({ sessionId: id, redirectUrl: `/exam/${examType}/${id}` });
+    return NextResponse.json({ sessionId: id, redirectUrl: `/exam/${examType}/${id}` });
+  } catch (e) {
+    const message = e instanceof Error ? e.message : "Could not start exam session";
+    return NextResponse.json({ error: message }, { status: 503 });
+  }
 }
