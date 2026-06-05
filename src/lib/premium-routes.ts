@@ -6,6 +6,7 @@ export const PREMIUM_PAGE_PREFIXES = [
   "/progress",
   "/checkout",
   "/dashboard",
+  "/studygub",
   "/engine",
 ] as const;
 

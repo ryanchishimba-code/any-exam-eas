@@ -77,7 +77,7 @@ export function HomeBottomCta() {
           </p>
           <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <LoginModalTrigger
-              callbackUrl="/dashboard"
+              callbackUrl="/studygub"
               className="aee-btn-hero-xl aee-btn-hero-light group inline-flex items-center justify-center gap-2"
             >
               <LogIn className="h-5 w-5" aria-hidden />
@@ -122,7 +122,7 @@ export function HomeBottomCta() {
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
           </Link>
           <LoginModalTrigger
-            callbackUrl="/dashboard"
+            callbackUrl="/studygub"
             className="aee-btn-hero-ghost aee-btn-hero-ghost-on-dark inline-flex items-center justify-center gap-2"
           >
             <LogIn className="h-4 w-4" aria-hidden />

@@ -5,9 +5,9 @@ import { PageShell } from "@/components/PageShell";
 import { StudySubnav } from "@/components/StudySubnav";
 
 export const metadata = {
-  title: "Top 500 Drugs — Any Exam Easy",
+  title: "Top 500 Drugs — StudyGub",
   description:
-    "Spaced-repetition flashcard review for the top 500 board exam drugs. Generic to brand and indication, refreshed every 3 months.",
+    "One shared Top 500 drug list for NCLEX, USMLE, and NAPLEX — flashcards with spaced repetition.",
 };
 
 const DrugReviewStudio = dynamic(
@@ -26,9 +26,9 @@ const DrugReviewStudio = dynamic(
 export default function Drugs300Page() {
   return (
     <PageShell
-      eyebrow="Pharmacology"
-      title="Top 500 Drugs Review"
-      description="Flashcard review with spaced repetition: generic → brand, class, indications & side effects. Filter by drug class and track review progress per category."
+      eyebrow="StudyGub"
+      title="Top 500 Drugs"
+      description="The same high-yield drug deck for every exam — generic, brand, class, and indications."
       maxWidth="max-w-6xl"
     >
       <StudySubnav />

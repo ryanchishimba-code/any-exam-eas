@@ -9,7 +9,7 @@ type HeroSocialAuthProps = {
 };
 
 export function HeroSocialAuth({
-  callbackUrl = "/dashboard",
+  callbackUrl = "/studygub",
   className = "",
 }: HeroSocialAuthProps) {
   return (

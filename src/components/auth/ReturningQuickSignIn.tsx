@@ -13,7 +13,7 @@ type ReturningQuickSignInProps = {
 };
 
 export function ReturningQuickSignIn({
-  callbackUrl = "/dashboard",
+  callbackUrl = "/studygub",
   className = "",
 }: ReturningQuickSignInProps) {
   const { data: session, status } = useSession();

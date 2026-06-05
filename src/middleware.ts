@@ -11,6 +11,8 @@ export const config = {
   matcher: [
     "/dashboard",
     "/dashboard/:path*",
+    "/studygub",
+    "/studygub/:path*",
     "/internal",
     "/internal/:path*",
     "/study",

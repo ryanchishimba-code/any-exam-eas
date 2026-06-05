@@ -1,40 +1,56 @@
 "use client";
 
+import { Suspense } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import {
+  STUDYGUB_EXAM_BANKS,
+  STUDYGUB_PATH,
+  TOP_500_DRUGS_PATH,
+  questionBankHref,
+} from "@/lib/studygub/config";
 
 const links = [
-  { href: "/study", label: "Overview" },
-  { href: "/study/drugs300", label: "Top 500 Drugs" },
-  { href: "/study/practice", label: "Question bank" },
-  { href: "/study/practice?mode=adaptive", label: "Personalized" },
-  { href: "/generate", label: "AI practice" },
-  { href: "/engine/test", label: "Engine lab" },
-  { href: "/study/analytics", label: "Analytics" },
+  { href: STUDYGUB_PATH, label: "StudyGub" },
+  ...STUDYGUB_EXAM_BANKS.map((exam) => ({
+    href: questionBankHref(exam.fieldId),
+    label: exam.label,
+  })),
+  { href: TOP_500_DRUGS_PATH, label: "Top 500 Drugs" },
 ];
 
-export function StudySubnav() {
+function StudySubnavInner() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   function isActive(href: string) {
-    if (href === "/study") return pathname === "/study";
-    if (href === "/study/drugs300") return pathname.startsWith("/study/drugs300");
-    if (href === "/study/practice") {
-      return pathname.startsWith("/study/practice") && !pathname.includes("analytics");
+    if (href === STUDYGUB_PATH) return pathname === STUDYGUB_PATH;
+    if (href === TOP_500_DRUGS_PATH) return pathname.startsWith(TOP_500_DRUGS_PATH);
+    if (href.startsWith("/study/practice")) {
+      const field = new URL(href, "http://local").searchParams.get("field");
+      if (field && pathname.startsWith("/study/practice")) {
+        return searchParams.get("field") === field;
+      }
+      return pathname.startsWith("/study/practice");
     }
-    if (href.startsWith("/generate")) return pathname.startsWith("/generate");
-    if (href.startsWith("/engine")) return pathname.startsWith("/engine");
-    if (href.includes("analytics")) return pathname === "/study/analytics";
     return pathname === href;
   }
 
   return (
-    <nav className="apple-product-nav mt-10" aria-label="Study navigation">
+    <nav className="apple-product-nav mt-6" aria-label="StudyGub navigation">
       {links.map((l) => (
         <Link key={l.href} href={l.href} data-active={isActive(l.href) ? "true" : undefined}>
           {l.label}
         </Link>
       ))}
     </nav>
+  );
+}
+
+export function StudySubnav() {
+  return (
+    <Suspense fallback={<nav className="apple-product-nav mt-6" aria-hidden />}>
+      <StudySubnavInner />
+    </Suspense>
   );
 }

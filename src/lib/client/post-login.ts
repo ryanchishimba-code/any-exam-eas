@@ -38,12 +38,13 @@ export async function resolvePostLoginDestination(
     safe.startsWith("/study") ||
     safe.startsWith("/generate") ||
     safe.startsWith("/learn") ||
-    safe.startsWith("/dashboard")
+    safe.startsWith("/dashboard") ||
+    safe.startsWith("/studygub")
   ) {
-    return safe;
+    return safe.startsWith("/dashboard") ? "/studygub" : safe;
   }
 
-  return "/dashboard";
+  return "/studygub";
 }
 
 async function fetchAccountName(): Promise<string | undefined> {

@@ -107,30 +107,30 @@ export function Hero() {
                 {isAuthed ? (
                   <>
                     <Link
-                      href="/dashboard"
+                      href="/studygub"
                       className="aee-btn-hero-xl group inline-flex w-full items-center justify-center gap-2.5 sm:w-auto"
                     >
-                      Go to dashboard
+                      Open StudyGub
                       <ArrowRight
                         className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1"
                         aria-hidden
                       />
                     </Link>
                     <Link
-                      href="/study/practice"
+                      href="/study/drugs300"
                       className="aee-btn-hero-ghost inline-flex w-full items-center justify-center sm:w-auto"
                     >
-                      Practice exams
+                      Top 500 Drugs
                     </Link>
                   </>
                 ) : isReturning ? (
                   <>
                     <LoginModalTrigger
-                      callbackUrl="/dashboard"
+                      callbackUrl="/studygub"
                       className="aee-btn-hero-xl aee-btn-hero-returning group inline-flex w-full items-center justify-center gap-2.5 sm:w-auto"
                     >
                       <LogIn className="h-5 w-5" aria-hidden />
-                      Log in to dashboard
+                      Log in to StudyGub
                       <ArrowRight
                         className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1"
                         aria-hidden
@@ -157,7 +157,7 @@ export function Hero() {
                       />
                     </Link>
                     <LoginModalTrigger
-                      callbackUrl="/dashboard"
+                      callbackUrl="/studygub"
                       className="aee-btn-hero-ghost inline-flex w-full items-center justify-center gap-2 sm:w-auto"
                     >
                       <LogIn className="h-4 w-4" aria-hidden />

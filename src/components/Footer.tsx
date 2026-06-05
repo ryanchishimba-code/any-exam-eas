@@ -19,21 +19,20 @@ export function Footer() {
 
   const productLinks = showPremiumLinks
     ? [
-        { href: "/dashboard", label: "Dashboard" },
-        { href: "/study", label: "Study hub" },
-        { href: "/generate", label: "Exam generator" },
+        { href: "/studygub", label: "StudyGub" },
+        { href: "/study/practice?field=nursing", label: "NCLEX bank" },
+        { href: "/study/practice?field=usmle-step-1", label: "USMLE bank" },
+        { href: "/study/practice?field=pharmacy", label: "NAPLEX bank" },
         { href: "/study/drugs300", label: "Top 500 Drugs" },
-        { href: "/study/analytics", label: "Analytics" },
       ]
     : [
-        { href: "/study", label: "Study hub" },
-        { href: "/generate", label: "Exam generator" },
+        { href: "/studygub", label: "StudyGub" },
         { href: "/pricing", label: "Pricing" },
       ];
 
   const accountLinks = isAuthed
     ? [
-        { href: "/dashboard", label: "Dashboard" },
+        { href: "/studygub", label: "StudyGub" },
         { href: "/feedback", label: "Feedback" },
       ]
     : [

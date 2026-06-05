@@ -17,7 +17,8 @@ export const authConfig = {
     authorized({ auth, request }) {
       const isLoggedIn = !!auth?.user;
       const path = request.nextUrl.pathname;
-      const isDashboard = path.startsWith("/dashboard");
+      const isDashboard =
+        path.startsWith("/dashboard") || path.startsWith("/studygub");
       const isInternal = isInternalPath(path);
       const isPremium = isPremiumPage(path);
       const role = (auth?.user as { role?: string } | undefined)?.role;

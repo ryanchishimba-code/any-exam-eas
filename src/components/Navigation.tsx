@@ -3,14 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import {
-  BarChart3,
-  LayoutDashboard,
-  LogIn,
-  LogOut,
-  Menu,
-  X,
-} from "lucide-react";
+import { LogIn, LogOut, Menu, X } from "lucide-react";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
@@ -19,22 +12,18 @@ import { useUserAccess } from "@/lib/client/use-user-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { STUDYGUB_PATH } from "@/lib/studygub/config";
 
 type NavLink = { href: string; label: string };
 
 const guestLinks: NavLink[] = [
-  { href: "/study", label: "Study" },
-  { href: "/generate", label: "Exams" },
-  { href: "/study/drugs300", label: "Top 500 Drugs" },
+  { href: STUDYGUB_PATH, label: "StudyGub" },
   { href: "/pricing", label: "Pricing" },
 ];
 
 const premiumLinks: NavLink[] = [
-  { href: "/dashboard", label: "Dashboard" },
-  { href: "/study", label: "Study" },
-  { href: "/generate", label: "Exams" },
+  { href: STUDYGUB_PATH, label: "StudyGub" },
   { href: "/study/drugs300", label: "Top 500 Drugs" },
-  { href: "/study/analytics", label: "Analytics" },
 ];
 
 function navClass(active: boolean) {
@@ -98,17 +87,11 @@ export function Navigation() {
     requestSignOut();
   }
 
-  const brandHref = isAuthenticated && hasPremiumAccess ? "/dashboard" : "/";
+  const brandHref = isAuthenticated && hasPremiumAccess ? STUDYGUB_PATH : "/";
 
   return (
-    <header
-      ref={headerRef}
-      className="apple-glass aee-nav fixed top-0 z-50 w-full"
-    >
-      <nav
-        className="aee-nav-inner mx-auto max-w-[1140px] px-5 sm:px-6"
-        aria-label="Main navigation"
-      >
+    <header ref={headerRef} className="apple-glass aee-nav fixed top-0 z-50 w-full">
+      <nav className="aee-nav-inner mx-auto max-w-[1140px] px-5 sm:px-6" aria-label="Main navigation">
         <Link href={brandHref} className="aee-nav-brand">
           Any Exam Easy
         </Link>
@@ -138,7 +121,7 @@ export function Navigation() {
           ) : (
             <div className="aee-nav-auth-group">
               <LoginModalTrigger
-                callbackUrl="/dashboard"
+                callbackUrl={STUDYGUB_PATH}
                 className="aee-nav-login"
                 aria-label="Log in to your account"
               >
@@ -190,7 +173,7 @@ export function Navigation() {
               {authReady && !isAuthenticated && (
                 <div className="mt-3 space-y-2 border-t border-black/[0.06] pt-3">
                   <LoginModalTrigger
-                    callbackUrl="/dashboard"
+                    callbackUrl={STUDYGUB_PATH}
                     className="aee-nav-login aee-nav-login-mobile w-full"
                     onClick={closeMobile}
                   >
@@ -208,15 +191,8 @@ export function Navigation() {
               )}
               {authReady && isAuthenticated && (
                 <div className="mt-3 space-y-1 border-t border-black/[0.06] pt-3">
-                  <Link href="/dashboard" className="aee-mobile-nav-item" onClick={closeMobile}>
-                    <LayoutDashboard className="h-4 w-4" aria-hidden /> Dashboard
-                  </Link>
-                  <Link
-                    href="/study/analytics"
-                    className="aee-mobile-nav-item"
-                    onClick={closeMobile}
-                  >
-                    <BarChart3 className="h-4 w-4" aria-hidden /> Progress &amp; Analytics
+                  <Link href={STUDYGUB_PATH} className="aee-mobile-nav-item" onClick={closeMobile}>
+                    StudyGub
                   </Link>
                   {!hasPremiumAccess && (
                     <Link href="/pricing" className="aee-mobile-nav-item" onClick={closeMobile}>

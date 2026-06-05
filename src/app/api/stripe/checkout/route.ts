@@ -70,7 +70,7 @@ export async function POST(req: Request) {
     stripeCouponId,
     successUrl: embedded
       ? `${origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`
-      : `${origin}/dashboard?checkout=success`,
+      : `${origin}/studygub?checkout=success`,
     cancelUrl: embedded ? `${origin}/checkout?cancelled=1` : `${origin}/pricing?checkout=cancelled`,
   };
 

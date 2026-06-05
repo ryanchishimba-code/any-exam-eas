@@ -20,8 +20,8 @@ export default async function SettingsPage() {
           </Link>
         </li>
         <li>
-          <Link href="/dashboard" className="text-[var(--color-accent)] hover:underline">
-            Dashboard
+          <Link href="/studygub" className="text-[var(--color-accent)] hover:underline">
+            StudyGub
           </Link>
         </li>
       </ul>

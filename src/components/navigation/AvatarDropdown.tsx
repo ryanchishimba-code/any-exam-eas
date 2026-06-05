@@ -5,18 +5,12 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  BarChart3,
-  BookOpen,
-  ChevronDown,
-  LayoutDashboard,
-  LogOut,
-  User,
-} from "lucide-react";
+import { BookOpen, ChevronDown, Layers, LayoutGrid, LogOut, User } from "lucide-react";
 import { firstName } from "@/lib/client/returning-user";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { STUDYGUB_PATH, TOP_500_DRUGS_PATH } from "@/lib/studygub/config";
 
 function initials(name?: string | null, email?: string | null) {
   if (name?.trim()) {
@@ -62,36 +56,30 @@ export function AvatarDropdown() {
   const menuItems = hasPremiumAccess
     ? [
         {
-          href: "/dashboard",
-          label: "Dashboard",
-          description: "Your study command center",
-          icon: LayoutDashboard,
+          href: STUDYGUB_PATH,
+          label: "StudyGub",
+          description: "Question banks & Top 500 drugs",
+          icon: LayoutGrid,
         },
         {
-          href: "/study",
-          label: "Study hub",
-          description: "Practice modes & subjects",
+          href: "/study/practice?field=nursing",
+          label: "NCLEX bank",
+          description: "Nursing question bank",
           icon: BookOpen,
         },
         {
-          href: "/study/analytics",
-          label: "Progress & Analytics",
-          description: "Streaks, trends & weak areas",
-          icon: BarChart3,
+          href: TOP_500_DRUGS_PATH,
+          label: "Top 500 Drugs",
+          description: "Shared drug flashcards",
+          icon: Layers,
         },
       ]
     : [
         {
-          href: "/dashboard",
-          label: "Profile",
-          description: "Account overview",
+          href: STUDYGUB_PATH,
+          label: "StudyGub",
+          description: "Your study home",
           icon: User,
-        },
-        {
-          href: "/study/analytics",
-          label: "Progress & Analytics",
-          description: "Progress, streaks, weak areas",
-          icon: BarChart3,
         },
       ];
 
@@ -199,9 +187,7 @@ export function AvatarDropdown() {
                 {name ?? display}
               </p>
               {email && (
-                <p className="mt-0.5 truncate text-xs text-[var(--color-ink-muted)]">
-                  {email}
-                </p>
+                <p className="mt-0.5 truncate text-xs text-[var(--color-ink-muted)]">{email}</p>
               )}
             </div>
 

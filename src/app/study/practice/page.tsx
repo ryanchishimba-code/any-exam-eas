@@ -6,7 +6,7 @@ import { StudySubnav } from "@/components/StudySubnav";
 import { PageShell } from "@/components/PageShell";
 
 export const metadata = {
-  title: "Question bank — Any Exam Easy",
+  title: "Question Bank — StudyGub",
 };
 
 function practiceCallbackPath(params: { field?: string; mode?: string }) {
@@ -29,9 +29,9 @@ export default async function StudyPracticePage({
 
   return (
     <PageShell
-      eyebrow="Study"
+      eyebrow="StudyGub"
       title="Question bank"
-      description="Board-style practice with personalized ordering, confidence tracking, and cited explanations after each item."
+      description="Exam-specific board-style questions with explanations after each item."
       maxWidth="max-w-3xl"
     >
       <StudySubnav />

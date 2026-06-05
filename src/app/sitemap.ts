@@ -7,7 +7,7 @@ const STATIC_ROUTES = [
   "/pricing",
   "/signup",
   "/login",
-  "/dashboard",
+  "/studygub",
   "/generate",
   "/legal/terms",
   "/legal/privacy",

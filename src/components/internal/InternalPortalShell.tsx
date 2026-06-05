@@ -78,7 +78,7 @@ export function InternalPortalShell({ children }: { children: React.ReactNode })
 
       <div className="mt-auto space-y-2 border-t border-black/[0.06] pt-4">
         <Link
-          href="/dashboard"
+          href="/studygub"
           className="block px-3 py-2 text-xs text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
         >
           ← Student dashboard

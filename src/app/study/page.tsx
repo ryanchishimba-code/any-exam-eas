@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
-import { StudyPageLayout } from "@/components/study/StudyPageLayout";
 import { isExamFieldId } from "@/lib/subjects/field-ids";
+import { STUDYGUB_PATH } from "@/lib/studygub/config";
 
 export const metadata = {
-  title: "Study — Any Exam Easy",
+  title: "StudyGub — Any Exam Easy",
 };
 
 export default async function StudyPage({
@@ -19,5 +19,5 @@ export default async function StudyPage({
     redirect(`/study/practice?${qs.toString()}`);
   }
 
-  return <StudyPageLayout />;
+  redirect(STUDYGUB_PATH);
 }

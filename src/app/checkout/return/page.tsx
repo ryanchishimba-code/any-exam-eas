@@ -42,7 +42,7 @@ export default async function CheckoutReturnPage({
   }
 
   if (status === "success") {
-    redirect("/dashboard?checkout=success");
+    redirect("/studygub?checkout=success");
   }
 
   return (
@@ -56,8 +56,8 @@ export default async function CheckoutReturnPage({
           >
             Try checkout again
           </Link>
-          <Link href="/dashboard" className="text-sm text-[var(--color-accent)] hover:underline">
-            Back to dashboard
+          <Link href="/studygub" className="text-sm text-[var(--color-accent)] hover:underline">
+            Back to StudyGub
           </Link>
         </div>
       </div>

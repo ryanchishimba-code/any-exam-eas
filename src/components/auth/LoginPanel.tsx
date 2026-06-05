@@ -40,7 +40,7 @@ function displayMethod(method?: LoginMethod): string | null {
 }
 
 export function LoginPanel({
-  callbackUrl = "/dashboard",
+  callbackUrl = "/studygub",
   onSuccess,
   onForgotPassword,
   forgotLinkClassName = "text-[var(--color-accent)] hover:underline",

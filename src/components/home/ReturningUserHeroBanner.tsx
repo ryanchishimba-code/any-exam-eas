@@ -59,7 +59,7 @@ export function ReturningUserHeroBanner() {
           </div>
 
           <Link
-            href="/dashboard"
+            href="/studygub"
             className="inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-teal-600 to-cyan-600 px-6 py-3.5 text-base font-semibold text-white shadow-[0_6px_24px_rgba(8,145,178,0.4)] transition-all hover:from-teal-500 hover:to-cyan-500 hover:shadow-[0_8px_28px_rgba(8,145,178,0.45)] active:scale-[0.98] sm:px-8 sm:py-4 sm:text-[1.0625rem]"
           >
             Resume Study

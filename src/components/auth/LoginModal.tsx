@@ -27,7 +27,7 @@ const panelMotion = {
   transition: { duration: 0.22, ease: [0.25, 0.1, 0.25, 1] as const },
 };
 
-export function LoginModal({ open, onClose, callbackUrl = "/dashboard" }: LoginModalProps) {
+export function LoginModal({ open, onClose, callbackUrl = "/studygub" }: LoginModalProps) {
   const [hint, setHint] = useState<ReturnType<typeof loadReturningUserHint>>(null);
   const [view, setView] = useState<ModalView>("login");
   const [forgotStep, setForgotStep] = useState<ForgotPasswordStep>("form");

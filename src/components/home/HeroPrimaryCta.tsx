@@ -16,7 +16,7 @@ type HeroPrimaryCtaProps = {
 };
 
 export function HeroPrimaryCta({
-  callbackUrl = "/dashboard",
+  callbackUrl = "/studygub",
   className = "",
 }: HeroPrimaryCtaProps) {
   return (
