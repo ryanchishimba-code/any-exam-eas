@@ -1,9 +1,8 @@
 import {
-  appBaseUrl,
   getEmailFromAddress,
-  isEmailConfigured,
   type EmailDeliveryResult,
 } from "@/lib/email/config";
+import { PASSWORD_RESET_EXPIRY_MINUTES } from "@/lib/validators/password-reset";
 
 type PasswordResetEmailParams = {
   to: string;
@@ -11,6 +10,7 @@ type PasswordResetEmailParams = {
 };
 
 function passwordResetHtml(resetUrl: string): string {
+  const expiry = PASSWORD_RESET_EXPIRY_MINUTES;
   return `<!DOCTYPE html>
 <html lang="en">
 <body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:#1d1d1f;margin:0;padding:0;background:#f5f5f7;">
@@ -22,15 +22,24 @@ function passwordResetHtml(resetUrl: string): string {
             <td>
               <p style="margin:0 0 8px;font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#64748b;">Any Exam Easy</p>
               <h1 style="margin:0 0 16px;font-size:22px;font-weight:600;color:#0f172a;">Reset your password</h1>
-              <p style="margin:0 0 20px;font-size:15px;color:#475569;">You requested a password reset. Tap the button below to choose a new password.</p>
+              <p style="margin:0 0 20px;font-size:15px;color:#475569;">We received a request to reset the password for your Any Exam Easy account. Tap the button below to choose a new password.</p>
               <p style="margin:0 0 24px;text-align:center;">
                 <a href="${resetUrl}" style="display:inline-block;background:linear-gradient(135deg,#0e7490,#0891b2);color:#ffffff;text-decoration:none;font-weight:600;font-size:15px;padding:14px 28px;border-radius:12px;">Reset password</a>
               </p>
-              <p style="margin:0 0 8px;font-size:13px;color:#64748b;">This link expires in 1 hour. If you did not request this, you can ignore this email.</p>
-              <p style="margin:0;font-size:12px;color:#94a3b8;word-break:break-all;">Or copy this URL:<br>${resetUrl}</p>
+              <p style="margin:0 0 12px;font-size:13px;color:#64748b;">This link expires in <strong>${expiry} minutes</strong> and can only be used once.</p>
+              <table width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px;background:#f8fafc;border-radius:10px;border:1px solid #e2e8f0;">
+                <tr>
+                  <td style="padding:14px 16px;">
+                    <p style="margin:0 0 6px;font-size:12px;font-weight:600;color:#475569;">Security notice</p>
+                    <p style="margin:0;font-size:12px;color:#64748b;line-height:1.5;">If you did not request a password reset, you can safely ignore this email — your password will not change. Never share this link with anyone. Any Exam Easy will never ask for your password by email.</p>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:0;font-size:12px;color:#94a3b8;word-break:break-all;">Or copy this URL into your browser:<br>${resetUrl}</p>
             </td>
           </tr>
         </table>
+        <p style="margin:16px 0 0;font-size:11px;color:#94a3b8;">© Any Exam Easy · anyexameasy.com</p>
       </td>
     </tr>
   </table>
@@ -39,13 +48,18 @@ function passwordResetHtml(resetUrl: string): string {
 }
 
 function passwordResetText(resetUrl: string): string {
+  const expiry = PASSWORD_RESET_EXPIRY_MINUTES;
   return [
     "Reset your Any Exam Easy password",
     "",
-    "You requested a password reset. Open the link below to choose a new password:",
+    "We received a request to reset the password for your Any Exam Easy account.",
+    "Open the link below to choose a new password:",
     resetUrl,
     "",
-    "This link expires in 1 hour. If you did not request this, ignore this email.",
+    `This link expires in ${expiry} minutes and can only be used once.`,
+    "",
+    "SECURITY: If you did not request this, ignore this email — your password will not change.",
+    "Never share this link. Any Exam Easy will never ask for your password by email.",
   ].join("\n");
 }
 

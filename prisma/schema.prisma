@@ -59,6 +59,7 @@ model User {
   generatedQuestions GeneratedQuestion[]
   flashcards         Flashcard[]
   textbookUploads    TextbookUpload[]
+  passwordResetTokens PasswordResetToken[]
 }
 
 model Account {
@@ -95,15 +96,19 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-/// One-time tokens for forgot-password flow (hashed at rest).
+/// One-time tokens for forgot-password flow (SHA-256 hash at rest — never store raw token).
 model PasswordResetToken {
   id        String   @id @default(cuid())
+  userId    String
   email     String
   tokenHash String   @unique
   expiresAt DateTime
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([email])
+  @@index([userId])
+  @@index([expiresAt])
 }
 
 /// Discount codes — validated at signup; registration always proceeds.

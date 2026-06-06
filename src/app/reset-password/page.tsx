@@ -9,9 +9,12 @@ export const metadata = {
 export default function ResetPasswordPage() {
   return (
     <PageShell
-      title="Choose a new password."
+      eyebrow="Account recovery"
+      title="Choose a new password"
+      description="Enter a strong password for your Any Exam Easy account."
       align="center"
       maxWidth="max-w-md"
+      variant="premium"
     >
       <Suspense fallback={<p className="mt-10 text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
         <ResetPasswordForm />

@@ -1,15 +1,20 @@
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
+import { enforceRateLimit } from "@/lib/api-rate-limit";
 import { resetPasswordWithToken } from "@/lib/password-reset";
 import { resetPasswordSchema } from "@/lib/validators/password-reset";
 
 export const runtime = "nodejs";
 
+// Rate limit: 15 attempts per IP per 15 minutes — mitigates token brute-force.
 export async function POST(req: Request) {
+  const limited = enforceRateLimit(req, "reset-password", 15, 15 * 60_000);
+  if (limited) return limited;
+
   try {
     const body = await req.json();
-    const { token, password } = resetPasswordSchema.parse(body);
-    await resetPasswordWithToken(token, password);
+    const { token, newPassword } = resetPasswordSchema.parse(body);
+    await resetPasswordWithToken(token, newPassword);
     return NextResponse.json({
       ok: true,
       message: "Your password has been updated. You can log in now.",

@@ -3,11 +3,11 @@ import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
 import { findUserByEmail } from "@/lib/user-auth";
 import { normalizeEmail } from "@/lib/validators/auth";
+import { PASSWORD_RESET_EXPIRY_MINUTES } from "@/lib/validators/password-reset";
 import { appBaseUrl, sendPasswordResetEmail } from "@/lib/email";
 
 const BCRYPT_ROUNDS = 12;
 const TOKEN_BYTES = 32;
-const EXPIRY_HOURS = 1;
 
 export type PasswordResetOutcome = {
   userFound: boolean;
@@ -47,12 +47,12 @@ export async function requestPasswordReset(email: string): Promise<PasswordReset
 
   const rawToken = randomBytes(TOKEN_BYTES).toString("base64url");
   const tokenHash = hashToken(rawToken);
-  const expiresAt = new Date(Date.now() + EXPIRY_HOURS * 60 * 60 * 1000);
+  const expiresAt = new Date(Date.now() + PASSWORD_RESET_EXPIRY_MINUTES * 60 * 1000);
   const url = resetUrl(rawToken);
 
-  await prisma.passwordResetToken.deleteMany({ where: { email: normalized } });
+  await prisma.passwordResetToken.deleteMany({ where: { userId: user.id } });
   await prisma.passwordResetToken.create({
-    data: { email: normalized, tokenHash, expiresAt },
+    data: { userId: user.id, email: normalized, tokenHash, expiresAt },
   });
 
   const delivery = await sendPasswordResetEmail({ to: normalized, resetUrl: url });
@@ -99,7 +99,7 @@ export async function resetPasswordWithToken(
     throw new Error("This reset link is invalid or has expired. Request a new one.");
   }
 
-  const user = await findUserByEmail(record.email);
+  const user = await prisma.user.findUnique({ where: { id: record.userId } });
   if (!user) {
     throw new Error("This reset link is invalid or has expired. Request a new one.");
   }
@@ -111,6 +111,6 @@ export async function resetPasswordWithToken(
       where: { id: user.id },
       data: { passwordHash },
     }),
-    prisma.passwordResetToken.deleteMany({ where: { email: record.email } }),
+    prisma.passwordResetToken.delete({ where: { id: record.id } }),
   ]);
 }

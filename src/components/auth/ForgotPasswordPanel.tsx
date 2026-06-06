@@ -11,7 +11,10 @@ import {
   requestForgotPassword,
 } from "@/lib/client/forgot-password";
 import { maskEmail } from "@/lib/client/returning-user";
-import { FORGOT_PASSWORD_SUCCESS_MESSAGE } from "@/lib/validators/password-reset";
+import {
+  FORGOT_PASSWORD_SUCCESS_MESSAGE,
+  PASSWORD_RESET_EXPIRY_MINUTES,
+} from "@/lib/validators/password-reset";
 
 export type ForgotPasswordStep = "form" | "success";
 
@@ -178,10 +181,14 @@ export function ForgotPasswordPanel({
                 <span className={cn("font-medium", isModal ? "text-slate-900" : "text-[var(--color-ink)]")}>
                   {maskEmail(submittedEmail)}
                 </span>
-                . Check your inbox and spam folder — the link expires in 1 hour.
+                . Check your inbox and spam folder — the link expires in {PASSWORD_RESET_EXPIRY_MINUTES}{" "}
+                minutes.
               </>
             ) : (
-              <>Check your inbox and spam folder. The link expires in 1 hour.</>
+              <>
+                Check your inbox and spam folder. The link expires in {PASSWORD_RESET_EXPIRY_MINUTES}{" "}
+                minutes.
+              </>
             )}
           </p>
 
@@ -189,7 +196,8 @@ export function ForgotPasswordPanel({
             <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-left text-xs text-amber-950">
               <p className="font-semibold">Dev — email not configured</p>
               <p className="mt-1">
-                No reset email was sent. Use this link on your local app (expires in 1 hour):
+                No reset email was sent. Use this link on your local app (expires in{" "}
+                {PASSWORD_RESET_EXPIRY_MINUTES} minutes):
               </p>
               <a
                 href={devResetUrl}
