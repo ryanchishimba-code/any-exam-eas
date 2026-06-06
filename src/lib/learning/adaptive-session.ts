@@ -1,3 +1,9 @@
+import {
+  buildCandidateFromQuestion,
+  selectQuestions as coreSelectQuestions,
+  type AdaptiveEngineConfig,
+} from "@/lib/core/adaptive-engine";
+import { studyModeToAdaptive } from "@/lib/core/types";
 import { adjustDifficulty, type TopicWeakness } from "@/lib/questions/adaptive";
 import type { StudyQuestion } from "@/lib/questions/types";
 
@@ -32,6 +38,12 @@ export type TopicAllocation = {
   priority: "weak" | "balance" | "unseen";
 };
 
+export type QuestionSelectionReasoning = {
+  questionKey: string;
+  reasoning: string;
+  score: number;
+};
+
 export type AdaptiveSessionResult = {
   questions: StudyQuestion[];
   recommendedDifficulty: DifficultyLevel;
@@ -39,6 +51,7 @@ export type AdaptiveSessionResult = {
   overallAccuracy: number | null;
   topicAllocation: TopicAllocation[];
   rationale: string;
+  selectionReasoning: QuestionSelectionReasoning[];
 };
 
 const WEAK_ACCURACY_THRESHOLD = 0.6;
@@ -106,10 +119,125 @@ function questionKey(q: StudyQuestion): string {
   return q.bankItemId ?? q.id;
 }
 
+function weaknessScoreForTopic(
+  topic: string,
+  perfByTopic: Map<string, TopicPerformance>
+): number {
+  const p =
+    perfByTopic.get(topic.toLowerCase()) ??
+    perfByTopic.get(topic.replace(/^subject:/, "").toLowerCase());
+  if (!p || p.attempts < MIN_ATTEMPTS_FOR_WEAK) return 0.25;
+  return Math.min(1, 1 - p.accuracy);
+}
+
+/**
+ * Goat-tier multi-factor selection via core engine, with legacy topic allocation metadata.
+ */
+export function selectAdaptiveQuestionsWithCore(
+  config: AdaptiveSessionConfig & { studyMode?: string }
+): AdaptiveSessionResult {
+  const {
+    questions,
+    topicPerformance,
+    currentDifficulty,
+    count,
+    excludeKeys = new Set<string>(),
+    studyMode = "adaptive",
+  } = config;
+
+  const perfByTopic = performanceMap(topicPerformance);
+  const overallAccuracy = computeOverallAccuracy(topicPerformance);
+
+  const candidates = questions
+    .filter((q) => !excludeKeys.has(questionKey(q)))
+    .map((q) => {
+      const topic = questionTopicKey(q).toLowerCase();
+      return buildCandidateFromQuestion({
+        questionKey: questionKey(q),
+        fieldId: q.field ?? "general",
+        subjectId: q.subjectId,
+        tags: q.tags,
+        difficulty: q.difficulty,
+        highYield: q.highYield,
+        mastery: null,
+        weaknessScore: weaknessScoreForTopic(topic, perfByTopic),
+      });
+    });
+
+  const engineConfig: AdaptiveEngineConfig = {
+    mode: studyModeToAdaptive(studyMode),
+    targetDifficulty: currentDifficulty,
+    count,
+    weakAreaBoost: studyMode === "weak_area" ? 0.2 : undefined,
+  };
+
+  const engineResult = coreSelectQuestions(candidates, engineConfig, excludeKeys);
+  const keyToQuestion = new Map(questions.map((q) => [questionKey(q), q]));
+  const selected: StudyQuestion[] = [];
+  const selectionReasoning: QuestionSelectionReasoning[] = [];
+
+  for (const sel of engineResult.selections) {
+    const q = keyToQuestion.get(sel.questionKey);
+    if (!q) continue;
+    selected.push(q);
+    selectionReasoning.push({
+      questionKey: sel.questionKey,
+      reasoning: sel.reasoning,
+      score: sel.totalScore,
+    });
+  }
+
+  const topicAllocation = buildTopicAllocationFromSelections(selected, perfByTopic);
+  const recommendedDifficulty = recommendDifficulty(currentDifficulty, overallAccuracy);
+
+  return {
+    questions: selected,
+    recommendedDifficulty,
+    previousDifficulty: currentDifficulty,
+    overallAccuracy,
+    topicAllocation,
+    rationale: engineResult.sessionRationale,
+    selectionReasoning,
+  };
+}
+
 /**
  * Select the next question set: weak-area focus, difficulty progression, topic balance.
  */
 export function selectAdaptiveQuestions(
+  config: AdaptiveSessionConfig
+): AdaptiveSessionResult {
+  return selectAdaptiveQuestionsWithCore({ ...config, studyMode: "adaptive" });
+}
+
+function buildTopicAllocationFromSelections(
+  selected: StudyQuestion[],
+  perfByTopic: Map<string, TopicPerformance>
+): TopicAllocation[] {
+  const counts = new Map<string, number>();
+  for (const q of selected) {
+    const topic = questionTopicKey(q).toLowerCase();
+    counts.set(topic, (counts.get(topic) ?? 0) + 1);
+  }
+  return [...counts.entries()].map(([topic, count]) => {
+    const p = perfByTopic.get(topic);
+    const priority: TopicAllocation["priority"] =
+      p && p.attempts >= MIN_ATTEMPTS_FOR_WEAK && p.accuracy < WEAK_ACCURACY_THRESHOLD
+        ? "weak"
+        : !p || p.attempts === 0
+          ? "unseen"
+          : "balance";
+    return {
+      topic,
+      count,
+      accuracy: p?.attempts ? p.accuracy : null,
+      priority,
+    };
+  });
+}
+
+/** @deprecated Legacy allocator — prefer selectAdaptiveQuestionsWithCore */
+export function selectAdaptiveQuestionsLegacy(
   config: AdaptiveSessionConfig
 ): AdaptiveSessionResult {
   const {
@@ -145,6 +273,7 @@ export function selectAdaptiveQuestions(
       overallAccuracy,
       topicAllocation: [],
       rationale: "No questions available in pool.",
+      selectionReasoning: [],
     };
   }
 
@@ -258,6 +387,14 @@ export function selectAdaptiveQuestions(
     unseenTopics,
   });
 
+  const selectionReasoning: QuestionSelectionReasoning[] = selected
+    .slice(0, count)
+    .map((q) => ({
+      questionKey: questionKey(q),
+      reasoning: rationale,
+      score: 0,
+    }));
+
   return {
     questions: selected.slice(0, count),
     recommendedDifficulty,
@@ -265,6 +402,7 @@ export function selectAdaptiveQuestions(
     overallAccuracy,
     topicAllocation: allocation,
     rationale,
+    selectionReasoning,
   };
 }
 

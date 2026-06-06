@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import type { PersonalizedPlan } from "@/lib/core/types";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_MODES } from "@/lib/exam/modes";
 import { Button } from "@/components/ui/Button";
@@ -10,13 +11,22 @@ import { PRACTICE_PROGRESS_HINT, PRACTICE_PROGRESS_LABEL } from "@/lib/site";
 
 export function LearningDashboard() {
   const [profile, setProfile] = useState<LearningProfileSnapshot | null>(null);
+  const [plan, setPlan] = useState<PersonalizedPlan | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/learning/profile")
-      .then((r) => r.json())
-      .then((d) => setProfile(d.profile ?? null))
-      .catch(() => setProfile(null))
+    Promise.all([
+      fetch("/api/learning/profile").then((r) => r.json()),
+      fetch("/api/learning/plan?field=nursing").then((r) => r.json()),
+    ])
+      .then(([profileRes, planRes]) => {
+        setProfile(profileRes.profile ?? null);
+        setPlan(planRes.plan ?? null);
+      })
+      .catch(() => {
+        setProfile(null);
+        setPlan(null);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -55,6 +65,34 @@ export function LearningDashboard() {
         />
       </div>
 
+      {plan && (
+        <section className="rounded-2xl border border-teal-200/60 bg-gradient-to-br from-teal-50/80 to-cyan-50/40 p-6">
+          <p className="text-xs font-bold uppercase tracking-wider text-teal-700">
+            Adaptive study plan
+          </p>
+          <h3 className="mt-2 text-lg font-semibold text-slate-900">{plan.headline}</h3>
+          <p className="mt-2 text-sm leading-relaxed text-slate-600">{plan.rationale}</p>
+          {plan.focusTopics.length > 0 && (
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {plan.focusTopics.map((topic) => (
+                <li
+                  key={topic}
+                  className="rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-teal-800 ring-1 ring-teal-200/80"
+                >
+                  {topic.replace(/^(tag|subject):/, "")}
+                </li>
+              ))}
+            </ul>
+          )}
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Button href="/study/practice?mode=bank&style=adaptive">Adaptive practice</Button>
+            <Button href="/study/practice?mode=bank&style=weak_areas" variant="secondary">
+              Weak-area drill
+            </Button>
+          </div>
+        </section>
+      )}
+
       {profile.fieldReadiness.length > 0 && (
         <section className="apple-card p-6">
           <h3 className="text-lg font-semibold">Topic progress</h3>
@@ -90,8 +128,8 @@ export function LearningDashboard() {
               </li>
             ))}
           </ul>
-          <Button href="/study/practice?mode=bank" className="mt-4">
-            Topic practice
+          <Button href="/study/practice?mode=bank&style=weak_areas" className="mt-4">
+            Weak-area practice
           </Button>
         </section>
       )}

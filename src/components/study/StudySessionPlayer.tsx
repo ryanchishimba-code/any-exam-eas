@@ -19,12 +19,14 @@ import { EndActivityControl } from "./EndActivityControl";
 import { ActivitySessionToolbar } from "./ActivitySessionToolbar";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import type {
+  AdaptiveSessionMeta,
   ConfidenceLevel,
   RawQuestionInput,
   StudyMode,
   StudyQuestion,
   StudySessionState,
 } from "@/lib/questions/types";
+import { AdaptiveReasoningChip } from "./AdaptiveReasoningChip";
 import type { LearningInsight, RemediationRecommendation } from "@/lib/learning/types";
 import { InsightPanel } from "./InsightPanel";
 import { AnswerFeedbackLabel } from "@/components/ui/StatusMessage";
@@ -41,6 +43,7 @@ type Props = {
   sourceId?: string;
   title?: string;
   mode?: StudyMode;
+  adaptiveMeta?: AdaptiveSessionMeta;
   onComplete?: (summary: ReturnType<typeof summarizeSession>) => void;
 };
 
@@ -52,11 +55,12 @@ export function StudySessionPlayer({
   sourceId,
   title,
   mode = "practice",
+  adaptiveMeta,
   onComplete,
 }: Props) {
   const initial = useMemo(
-    () =>
-      createStudySession({
+    () => {
+      const created = createStudySession({
         questions: rawQuestions,
         field,
         subjectId,
@@ -64,8 +68,13 @@ export function StudySessionPlayer({
         sourceId,
         mode,
         timedSecondsPerQuestion: mode === "timed" ? 45 : undefined,
-      }),
-    [rawQuestions, field, subjectId, sourceType, sourceId, mode]
+      });
+      if (adaptiveMeta) {
+        created.session.adaptiveMeta = adaptiveMeta;
+      }
+      return created;
+    },
+    [rawQuestions, field, subjectId, sourceType, sourceId, mode, adaptiveMeta]
   );
 
   const [sessionState, setSessionState] = useState<StudySessionState>(initial.session);
@@ -370,6 +379,9 @@ export function StudySessionPlayer({
   }
 
   const progressPct = ((sessionState.currentIndex + 1) / questionList.length) * 100;
+  const selectionReasoning =
+    sessionState.adaptiveMeta?.questionReasoning?.[String(current.id)] ??
+    sessionState.adaptiveMeta?.sessionRationale;
 
   return (
     <div
@@ -426,6 +438,20 @@ export function StudySessionPlayer({
           transition={{ duration: 0.2 }}
           className="rounded-2xl border border-black/[0.08] bg-white p-6 shadow-sm sm:p-8"
         >
+          {(sessionState.mode === "adaptive" ||
+            sessionState.mode === "weak_area" ||
+            sessionState.adaptiveMeta) &&
+            selectionReasoning && (
+              <AdaptiveReasoningChip
+                reasoning={
+                  sessionState.adaptiveMeta?.questionReasoning?.[String(current.id)] ??
+                  selectionReasoning
+                }
+                sessionRationale={sessionState.adaptiveMeta?.sessionRationale}
+                questionIndex={sessionState.currentIndex}
+                total={questionList.length}
+              />
+            )}
           <QuestionRenderer
             question={current}
             selected={selected}

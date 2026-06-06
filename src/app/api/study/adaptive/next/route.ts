@@ -6,12 +6,13 @@ import {
   ADAPTIVE_QUESTION_POOL_PER_SUBJECT,
   sampleQuestionBankItems,
 } from "@/lib/question-bank-db";
+import { runAdaptiveSelection } from "@/lib/core/prisma-adapter";
 import {
-  selectAdaptiveQuestions,
   topicPerformanceFromWeakness,
   type DifficultyLevel,
   type TopicPerformance,
 } from "@/lib/learning/adaptive-session";
+import { computeOverallAccuracy } from "@/lib/learning/adaptive-session";
 import { buildTopicWeakness } from "@/lib/learning/weakness";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
 import type { ExamQuestion } from "@/lib/ai";
@@ -34,6 +35,7 @@ const bodySchema = z.object({
     .optional(),
   excludeQuestionKeys: z.array(z.string()).optional(),
   weakFocusRatio: z.number().min(0.2).max(0.9).optional(),
+  studyMode: z.enum(["adaptive", "weak_area", "practice", "timed", "mock"]).optional(),
 });
 
 function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQuestion {
@@ -143,29 +145,44 @@ export async function POST(req: Request) {
     }
 
     const excludeKeys = new Set(body.excludeQuestionKeys ?? []);
-    const result = selectAdaptiveQuestions({
+    const studyMode =
+      body.studyMode ?? (body.weakFocusRatio && body.weakFocusRatio > 0.7 ? "weak_area" : "adaptive");
+
+    const { result, orderedQuestions, reasoningByQuestionId } = await runAdaptiveSelection({
+      userId: premium.userId,
+      fieldId,
       questions: pool,
-      topicPerformance,
-      currentDifficulty: body.currentDifficulty as DifficultyLevel,
       count: body.count,
+      studyMode,
+      targetDifficulty: body.currentDifficulty as DifficultyLevel,
       excludeKeys,
-      weakFocusRatio: body.weakFocusRatio,
     });
 
-    const questions = result.questions.map(toApiQuestion);
+    const questions = orderedQuestions.map(toApiQuestion);
+    const selectionReasoning = result.selections.map((s) => ({
+      questionKey: s.questionKey,
+      reasoning: s.reasoning,
+      score: s.totalScore,
+      factors: s.factors.map((f) => ({
+        factor: f.factor,
+        score: f.score,
+        detail: f.detail,
+      })),
+    }));
 
     return NextResponse.json({
       field: body.field,
       fieldId,
       subjectId: body.subjectId ?? null,
       questions,
-      bankItemIds: result.questions.map((q) => q.bankItemId).filter(Boolean),
+      bankItemIds: orderedQuestions.map((q) => q.bankItemId).filter(Boolean),
+      reasoningByQuestionId,
       adaptive: {
         recommendedDifficulty: result.recommendedDifficulty,
-        previousDifficulty: result.previousDifficulty,
-        overallAccuracy: result.overallAccuracy,
-        topicAllocation: result.topicAllocation,
-        rationale: result.rationale,
+        previousDifficulty: body.currentDifficulty,
+        overallAccuracy: computeOverallAccuracy(topicPerformance),
+        rationale: result.sessionRationale,
+        selectionReasoning,
         topicPerformance,
       },
     });

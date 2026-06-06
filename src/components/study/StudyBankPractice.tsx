@@ -13,7 +13,9 @@ import {
   EXAM_MODES,
   clampQuestionBankCount,
   parseQuestionBankPace,
+  parseQuestionBankStyle,
   type QuestionBankPace,
+  type QuestionBankStyle,
 } from "@/lib/exam/modes";
 import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import {
@@ -35,7 +37,7 @@ import {
   type MpjeVariant,
 } from "@/lib/mpje/config";
 import { StudySessionPlayer } from "./StudySessionPlayer";
-import type { RawQuestionInput, StudyMode } from "@/lib/questions/types";
+import type { AdaptiveSessionMeta, RawQuestionInput, StudyMode } from "@/lib/questions/types";
 import type { ExamQuestion } from "@/lib/ai";
 import { Button } from "@/components/ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
@@ -69,6 +71,7 @@ function buildBankPracticeUrl(params: {
   subjectId: string;
   count: number;
   pace: QuestionBankPace;
+  style?: QuestionBankStyle;
   mpjeVariant?: MpjeVariant;
   mpjeState?: string;
 }) {
@@ -79,6 +82,7 @@ function buildBankPracticeUrl(params: {
     count: String(params.count),
     pace: params.pace,
   });
+  if (params.style && params.style !== "standard") qs.set("style", params.style);
   if (params.mpjeVariant) qs.set("mpjeVariant", params.mpjeVariant);
   if (params.mpjeState) qs.set("mpjeState", params.mpjeState);
   return `/study/practice?${qs.toString()}`;
@@ -115,6 +119,8 @@ export function StudyBankPractice() {
   const [subjectId, setSubjectId] = useState("");
   const [questionCount, setQuestionCount] = useState(25);
   const [bankPace, setBankPace] = useState<QuestionBankPace>("untimed");
+  const [bankStyle, setBankStyle] = useState<QuestionBankStyle>("adaptive");
+  const [adaptiveMeta, setAdaptiveMeta] = useState<AdaptiveSessionMeta | null>(null);
   const [nclexLength, setNclexLength] = useState<NclexTimedVariant>("minimum");
   const [mpjeVariant, setMpjeVariant] = useState<MpjeVariant>("uniform");
   const [mpjeState, setMpjeState] = useState("TX");
@@ -136,9 +142,13 @@ export function StudyBankPractice() {
   );
   const sessionStudyMode: StudyMode = isTimedExam
     ? "timed"
-    : bankPace === "timed"
-      ? "timed"
-      : "practice";
+    : bankStyle === "weak_areas"
+      ? "weak_area"
+      : bankStyle === "adaptive"
+        ? "adaptive"
+        : bankPace === "timed"
+          ? "timed"
+          : "practice";
 
   useEffect(() => {
     if (!modeParam) return;
@@ -189,6 +199,9 @@ export function StudyBankPractice() {
 
     const paceParam = searchParams.get("pace");
     if (paceParam) setBankPace(parseQuestionBankPace(paceParam));
+
+    const styleParam = searchParams.get("style");
+    if (styleParam) setBankStyle(parseQuestionBankStyle(styleParam));
   }, [isTimedExam, searchParams]);
 
   useEffect(() => {
@@ -210,6 +223,7 @@ export function StudyBankPractice() {
     subjectId?: string;
     count?: number;
     pace?: QuestionBankPace;
+    style?: QuestionBankStyle;
   }) {
     const resolvedVariant = overrides?.mpjeVariant ?? mpjeVariant;
     const resolvedState = overrides?.mpjeState ?? mpjeState;
@@ -234,6 +248,7 @@ export function StudyBankPractice() {
         subjectId: resolvedSubjectId,
         count: overrides?.count ?? questionCount,
         pace: overrides?.pace ?? bankPace,
+        style: overrides?.style ?? bankStyle,
         mpjeVariant: isMpje ? resolvedVariant : undefined,
         mpjeState: isMpje && resolvedVariant === "state" ? resolvedState : undefined,
       }),
@@ -247,25 +262,68 @@ export function StudyBankPractice() {
     setLoading(true);
     setError("");
     setQuestions(null);
+    setAdaptiveMeta(null);
     try {
       const limit = isTimedExam ? timedCount : questionCount;
+      const useAdaptive =
+        isTimedExam || bankStyle === "adaptive" || bankStyle === "weak_areas";
+
+      if (useAdaptive) {
+        const res = await fetch("/api/study/adaptive/next", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            field,
+            subjectId: isTimedExam ? undefined : subjectId,
+            count: limit,
+            currentDifficulty: "medium",
+            studyMode: isTimedExam
+              ? "timed"
+              : bankStyle === "weak_areas"
+                ? "weak_area"
+                : "adaptive",
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error ?? "Could not build adaptive session");
+
+        const metaIds = (data.bankItemIds as string[] | undefined) ?? [];
+        const raw = (data.questions as ExamQuestion[]).map((q, i) => ({
+          ...q,
+          id: i + 1,
+          field,
+          subjectId: isTimedExam ? "__mixed__" : subjectId,
+          bankItemId: metaIds[i] ?? `bank-${fieldId}-${i}`,
+        }));
+        if (raw.length === 0) {
+          throw new Error("No questions in bank for this selection.");
+        }
+        const questionReasoning: Record<string, string> = {};
+        raw.forEach((q, i) => {
+          questionReasoning[String(q.id)] =
+            data.adaptive?.selectionReasoning?.[i]?.reasoning ??
+            "Adaptive selection based on your weak areas and review schedule.";
+        });
+        setAdaptiveMeta({
+          sessionRationale: data.adaptive?.rationale,
+          questionReasoning,
+          recommendedDifficulty: data.adaptive?.recommendedDifficulty,
+        });
+        setQuestions(raw);
+        return;
+      }
+
       const qs = new URLSearchParams({
         field,
         limit: String(limit),
-        mode: isTimedExam ? "timed" : "bank",
+        mode: "bank",
       });
-      if (isTimedExam) {
-        qs.set("scope", "field");
-        if (isNclex) qs.set("nclexLength", nclexLength);
-      }
       if (isMpje) {
         qs.set("mpjeVariant", mpjeVariant);
         if (mpjeVariant === "state") qs.set("mpjeState", mpjeState);
       }
-      if (!isTimedExam) {
-        if (!subjectId) return;
-        qs.set("subjectId", subjectId);
-      }
+      if (!subjectId) return;
+      qs.set("subjectId", subjectId);
 
       const res = await fetch(`/api/questions?${qs.toString()}`);
       const data = await res.json();
@@ -276,7 +334,7 @@ export function StudyBankPractice() {
         ...q,
         id: i + 1,
         field,
-        subjectId: isTimedExam ? "__mixed__" : subjectId,
+        subjectId,
         bankItemId: metaIds[i] ?? `bank-${fieldId}-${i}`,
       }));
       if (raw.length === 0) {
@@ -304,7 +362,15 @@ export function StudyBankPractice() {
           : "";
     const title = isTimedExam
       ? `${field}${mpjeScope} · Timed exam · ${questions.length} questions`
-      : `${field}${mpjeScope} · ${topicLabel} · ${questions.length} questions · ${bankPace === "timed" ? "Timed" : "Untimed"}`;
+      : `${field}${mpjeScope} · ${topicLabel} · ${questions.length} questions · ${
+          bankStyle === "adaptive"
+            ? "Adaptive AI"
+            : bankStyle === "weak_areas"
+              ? "Weak areas"
+              : bankPace === "timed"
+                ? "Timed"
+                : "Untimed"
+        }`;
 
     return (
       <StudySessionPlayer
@@ -314,6 +380,7 @@ export function StudyBankPractice() {
         sourceType="bank"
         mode={sessionStudyMode}
         title={title}
+        adaptiveMeta={adaptiveMeta ?? undefined}
       />
     );
   }
@@ -382,7 +449,15 @@ export function StudyBankPractice() {
             questionCount={questionCount}
             onQuestionCountChange={setQuestionCount}
             pace={bankPace}
-            onPaceChange={setBankPace}
+            onPaceChange={(p) => {
+              setBankPace(p);
+              syncPracticeUrl({ pace: p });
+            }}
+            bankStyle={bankStyle}
+            onBankStyleChange={(s) => {
+              setBankStyle(s);
+              syncPracticeUrl({ style: s });
+            }}
           />
         )}
 
@@ -453,7 +528,11 @@ export function StudyBankPractice() {
             ? "Loading…"
             : isTimedExam
               ? `Start timed exam (${timedCount} questions)`
-              : `Start ${bankPace} practice (${questionCount} questions)`}
+              : bankStyle === "adaptive"
+                ? `Start adaptive practice (${questionCount} questions)`
+                : bankStyle === "weak_areas"
+                  ? `Start weak-area drill (${questionCount} questions)`
+                  : `Start ${bankPace} practice (${questionCount} questions)`}
         </Button>
       </div>
     </div>

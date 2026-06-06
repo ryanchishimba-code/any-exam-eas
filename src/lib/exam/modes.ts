@@ -62,6 +62,14 @@ export function clampQuestionBankCount(value: number): number {
 
 export type QuestionBankPace = "timed" | "untimed";
 
+/** How questions are chosen in question bank mode. */
+export type QuestionBankStyle = "standard" | "adaptive" | "weak_areas";
+
 export function parseQuestionBankPace(value: string | null | undefined): QuestionBankPace {
   return value === "timed" ? "timed" : "untimed";
+}
+
+export function parseQuestionBankStyle(value: string | null | undefined): QuestionBankStyle {
+  if (value === "adaptive" || value === "weak_areas") return value;
+  return "standard";
 }

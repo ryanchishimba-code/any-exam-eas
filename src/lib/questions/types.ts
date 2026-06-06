@@ -78,6 +78,12 @@ export type SessionAnswer = {
   durationMs?: number;
 };
 
+export type AdaptiveSessionMeta = {
+  sessionRationale?: string;
+  questionReasoning?: Record<string, string>;
+  recommendedDifficulty?: string;
+};
+
 export type StudySessionState = {
   sessionId: string;
   mode: StudyMode;
@@ -91,6 +97,7 @@ export type StudySessionState = {
   startedAt: string;
   updatedAt: string;
   timedSecondsPerQuestion?: number;
+  adaptiveMeta?: AdaptiveSessionMeta;
 };
 
 export type SessionSummary = {

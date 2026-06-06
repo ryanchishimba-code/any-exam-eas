@@ -51,6 +51,7 @@ model User {
   questionAttempts   QuestionAttempt[]
   learningProfile    LearningProfile?
   conceptMasteries   ConceptMastery[]
+  questionMasteries  QuestionMastery[]
   drugReviewCycles   DrugReviewCycle[]
   drugCardProgress   DrugCardProgress[]
   promoRedemptions   PromoRedemption[]
@@ -603,6 +604,29 @@ model ConceptMastery {
 
   @@unique([userId, fieldId, conceptKey])
   @@index([userId, fieldId, masteryScore])
+}
+
+/// Per-question spaced repetition + ability estimate for adaptive selection.
+model QuestionMastery {
+  id              String    @id @default(cuid())
+  userId          String
+  questionKey     String
+  fieldId         String
+  easeFactor      Float     @default(2.5)
+  intervalDays    Int       @default(0)
+  repetitions     Int       @default(0)
+  nextDue         DateTime  @default(now())
+  abilityEstimate Float     @default(0.5)
+  lastAttemptAt   DateTime?
+  correctStreak   Int       @default(0)
+  yieldScore      Float     @default(0.5)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questionKey])
+  @@index([userId, fieldId, nextDue])
+  @@index([userId, nextDue])
 }
 
 /// Persisted study session state (resume across devices when synced).

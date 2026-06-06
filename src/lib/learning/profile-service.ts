@@ -1,3 +1,4 @@
+import { persistQuestionMastery } from "@/lib/core/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 import {
   applyRetentionDecay,
@@ -99,6 +100,18 @@ export async function recordAttemptWithMastery(
         lastAttemptAt: new Date(),
       },
     });
+  }
+
+  const questionKey = input.question.bankItemId ?? input.question.id;
+  try {
+    await persistQuestionMastery(input.userId, input.fieldId, questionKey, {
+      correct: input.correct,
+      confidence: input.confidence,
+      durationMs: input.durationMs,
+      timePressure: input.durationMs != null && input.durationMs < 15_000,
+    });
+  } catch {
+    /* non-blocking */
   }
 
   await refreshProfileReadiness(input.userId);

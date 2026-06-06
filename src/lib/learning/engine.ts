@@ -1,3 +1,4 @@
+import { runAdaptiveSelection } from "@/lib/core/prisma-adapter";
 import { prioritizeForReview } from "@/lib/questions/adaptive";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { buildLearningInsight } from "./insights";
@@ -39,7 +40,7 @@ export async function processLearningAttempt(
   return { attemptId, insight, remediation };
 }
 
-/** Order questions for adaptive / weak-area sessions. */
+/** Order questions for adaptive / weak-area sessions using the core engine. */
 export async function adaptQuestionOrder(
   userId: string,
   fieldId: string,
@@ -47,6 +48,19 @@ export async function adaptQuestionOrder(
   mode: "adaptive" | "weak_area" | "default" = "adaptive"
 ): Promise<StudyQuestion[]> {
   if (mode === "default") return questions;
+
+  try {
+    const { orderedQuestions } = await runAdaptiveSelection({
+      userId,
+      fieldId,
+      questions,
+      count: questions.length,
+      studyMode: mode === "weak_area" ? "weak_area" : "adaptive",
+    });
+    if (orderedQuestions.length > 0) return orderedQuestions;
+  } catch {
+    /* fallback below */
+  }
 
   const weakness = await buildTopicWeakness(userId, fieldId);
   if (mode === "weak_area") {
