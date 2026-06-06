@@ -8,19 +8,19 @@ import {
   getMpjeState,
   type MpjeVariant,
 } from "@/lib/mpje/config";
-import { mpjePracticeHref } from "@/lib/study-hub/config";
-import { MpjeStateSearch } from "@/components/study/MpjeStateSearch";
+import { mpjePracticeExamHref, mpjePracticeHref } from "@/lib/study-hub/config";
+import { MpjeStateSelect } from "@/components/study/MpjeStateSelect";
 import { cn } from "@/lib/utils";
 
 export function StudyHubMpjePicker({ onClose }: { onClose?: () => void }) {
-  const [variant, setVariant] = useState<MpjeVariant>("uniform");
-  const [stateCode, setStateCode] = useState("TX");
+  const [variant, setVariant] = useState<MpjeVariant>("state");
+  const [stateCode, setStateCode] = useState("OK");
   const selectedState = getMpjeState(stateCode);
 
   const practiceParams = {
     variant,
     stateCode: variant === "state" ? stateCode : undefined,
-  };
+  } as const;
 
   return (
     <div
@@ -70,7 +70,7 @@ export function StudyHubMpjePicker({ onClose }: { onClose?: () => void }) {
 
       {variant === "state" && (
         <div className="mt-5 space-y-3">
-          <MpjeStateSearch value={stateCode} onChange={setStateCode} />
+          <MpjeStateSelect value={stateCode} onChange={setStateCode} />
           {selectedState?.note && (
             <p className="rounded-lg border border-amber-200/80 bg-amber-50/80 px-3 py-2 text-xs text-amber-900">
               {selectedState.note}
@@ -103,6 +103,17 @@ export function StudyHubMpjePicker({ onClose }: { onClose?: () => void }) {
           Timed exam
         </Link>
       </div>
+
+      {variant === "state" && (
+        <Link
+          href={mpjePracticeExamHref(stateCode)}
+          className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-amber-300/80 bg-amber-50 px-5 py-3.5 text-sm font-semibold text-amber-950 transition hover:border-amber-400 hover:bg-amber-100/80"
+        >
+          <Clock className="h-4 w-4" aria-hidden />
+          Take Full Practice Exam (120 Questions — 2.5 Hours)
+          <ArrowRight className="h-4 w-4" aria-hidden />
+        </Link>
+      )}
     </div>
   );
 }

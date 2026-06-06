@@ -1,5 +1,7 @@
 import {
+  appBaseUrl,
   getEmailFromAddress,
+  isEmailConfigured,
   type EmailDeliveryResult,
 } from "@/lib/email/config";
 import { PASSWORD_RESET_EXPIRY_MINUTES } from "@/lib/validators/password-reset";
@@ -186,4 +188,4 @@ export async function sendVerificationEmail({
   }
 }
 
-export { isEmailConfigured, appBaseUrl };
+export { appBaseUrl, isEmailConfigured };

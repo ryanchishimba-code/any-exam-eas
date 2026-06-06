@@ -17,7 +17,7 @@ import {
   type QuestionBankPace,
   type QuestionBankStyle,
 } from "@/lib/exam/modes";
-import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
+import { mpjePracticeExamHref, STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import {
   formatExamLengthLabel,
   getTimedExamQuestionCount,
@@ -29,13 +29,16 @@ import {
 import { EXAM_FIELD_IDS } from "@/lib/subjects/field-ids";
 import { QuestionBankSetup } from "./QuestionBankSetup";
 import { MpjeVariantSelector } from "./MpjeVariantSelector";
+import { MpjeStateSelect } from "./MpjeStateSelect";
+import { MpjePracticeBanner } from "./MpjePracticeBanner";
 import {
   isMpjeField,
   parseMpjeVariant,
   getMpjeState,
-  resolveMpjeStateCode,
   type MpjeVariant,
 } from "@/lib/mpje/config";
+import { MPJE_DEFAULT_STATE_CODE } from "@/lib/mpje/us-jurisdictions";
+import { parseMpjeStateParam } from "@/lib/mpje/validators";
 import { StudySessionPlayer } from "./StudySessionPlayer";
 import type { AdaptiveSessionMeta, RawQuestionInput, StudyMode } from "@/lib/questions/types";
 import type { ExamQuestion } from "@/lib/ai";
@@ -84,7 +87,10 @@ function buildBankPracticeUrl(params: {
   });
   if (params.style && params.style !== "standard") qs.set("style", params.style);
   if (params.mpjeVariant) qs.set("mpjeVariant", params.mpjeVariant);
-  if (params.mpjeState) qs.set("mpjeState", params.mpjeState);
+  if (params.mpjeState) {
+    qs.set("state", params.mpjeState);
+    qs.set("mpjeState", params.mpjeState);
+  }
   return `/study/practice?${qs.toString()}`;
 }
 
@@ -100,7 +106,10 @@ function buildTimedPracticeUrl(params: {
   });
   if (params.nclexLength) qs.set("nclexLength", params.nclexLength);
   if (params.mpjeVariant) qs.set("mpjeVariant", params.mpjeVariant);
-  if (params.mpjeState) qs.set("mpjeState", params.mpjeState);
+  if (params.mpjeState) {
+    qs.set("state", params.mpjeState);
+    qs.set("mpjeState", params.mpjeState);
+  }
   return `/study/practice?${qs.toString()}`;
 }
 
@@ -122,8 +131,8 @@ export function StudyBankPractice() {
   const [bankStyle, setBankStyle] = useState<QuestionBankStyle>("adaptive");
   const [adaptiveMeta, setAdaptiveMeta] = useState<AdaptiveSessionMeta | null>(null);
   const [nclexLength, setNclexLength] = useState<NclexTimedVariant>("minimum");
-  const [mpjeVariant, setMpjeVariant] = useState<MpjeVariant>("uniform");
-  const [mpjeState, setMpjeState] = useState("TX");
+  const [mpjeVariant, setMpjeVariant] = useState<MpjeVariant>("state");
+  const [mpjeState, setMpjeState] = useState(MPJE_DEFAULT_STATE_CODE);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
@@ -180,8 +189,8 @@ export function StudyBankPractice() {
   useEffect(() => {
     const variantParam = searchParams.get("mpjeVariant");
     if (variantParam) setMpjeVariant(parseMpjeVariant(variantParam));
-    const stateParam = searchParams.get("mpjeState");
-    if (stateParam) setMpjeState(resolveMpjeStateCode(stateParam));
+    const stateParam = searchParams.get("state") ?? searchParams.get("mpjeState");
+    if (stateParam) setMpjeState(parseMpjeStateParam(stateParam));
   }, [searchParams]);
 
   useEffect(() => {
@@ -282,6 +291,13 @@ export function StudyBankPractice() {
               : bankStyle === "weak_areas"
                 ? "weak_area"
                 : "adaptive",
+            ...(isMpje
+              ? {
+                  mpjeVariant,
+                  state: mpjeVariant === "state" ? mpjeState : undefined,
+                  mpjeState: mpjeVariant === "state" ? mpjeState : undefined,
+                }
+              : {}),
           }),
         });
         const data = await res.json();
@@ -320,7 +336,10 @@ export function StudyBankPractice() {
       });
       if (isMpje) {
         qs.set("mpjeVariant", mpjeVariant);
-        if (mpjeVariant === "state") qs.set("mpjeState", mpjeState);
+        if (mpjeVariant === "state") {
+          qs.set("state", mpjeState);
+          qs.set("mpjeState", mpjeState);
+        }
       }
       if (!subjectId) return;
       qs.set("subjectId", subjectId);
@@ -346,7 +365,14 @@ export function StudyBankPractice() {
       }
       setQuestions(raw);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Failed to load");
+      const message = e instanceof Error ? e.message : "Failed to load";
+      if (isMpje && /no questions|empty/i.test(message)) {
+        setError(
+          "MPJE questions are being prepared for this selection. Try Federal Pharmacy Law or State Practice Act, or contact us if this persists."
+        );
+      } else {
+        setError(message);
+      }
     } finally {
       setLoading(false);
     }
@@ -426,19 +452,35 @@ export function StudyBankPractice() {
           </select>
         </div>
 
+        {isMpje && mpjeVariant === "state" && (
+          <MpjePracticeBanner stateCode={mpjeState} />
+        )}
+
         {isMpje && (
-          <MpjeVariantSelector
-            variant={mpjeVariant}
-            onVariantChange={(v) => {
-              setMpjeVariant(v);
-              syncPracticeUrl({ mpjeVariant: v });
-            }}
-            stateCode={mpjeState}
-            onStateChange={(code) => {
-              setMpjeState(code);
-              syncPracticeUrl({ mpjeState: code });
-            }}
-          />
+          <div className="space-y-5">
+            <MpjeVariantSelector
+              variant={mpjeVariant}
+              onVariantChange={(v) => {
+                setMpjeVariant(v);
+                syncPracticeUrl({ mpjeVariant: v });
+              }}
+              stateCode={mpjeState}
+              onStateChange={(code) => {
+                setMpjeState(code);
+                syncPracticeUrl({ mpjeState: code });
+              }}
+            />
+            {mpjeVariant === "state" && (
+              <MpjeStateSelect
+                value={mpjeState}
+                disabled={loading}
+                onChange={(code) => {
+                  setMpjeState(code);
+                  syncPracticeUrl({ mpjeState: code });
+                }}
+              />
+            )}
+          </div>
         )}
 
         {!isTimedExam && (
@@ -517,7 +559,40 @@ export function StudyBankPractice() {
           </div>
         )}
 
-        {error && <InlineError>{error}</InlineError>}
+        {isMpje && mpjeVariant === "state" && (
+          <div className="rounded-xl border border-amber-200/80 bg-gradient-to-br from-amber-500/10 to-orange-500/5 px-4 py-4">
+            <p className="text-sm font-semibold text-[var(--color-ink)]">
+              MPJE board exam simulator
+            </p>
+            <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
+              Full-length practice: 120 questions, 2.5 hours, countdown timer, flag &amp; review —
+              matches the real MPJE format for{" "}
+              {getMpjeState(mpjeState)?.name ?? mpjeState}.
+            </p>
+            <Button
+              href={mpjePracticeExamHref(mpjeState)}
+              variant="secondary"
+              className="mt-4 w-full !rounded-xl"
+            >
+              Take Full Practice Exam (120 Questions — 2.5 Hours)
+            </Button>
+          </div>
+        )}
+
+        {error && (
+          <div className="space-y-3">
+            <InlineError>{error}</InlineError>
+            {isMpje && (
+              <p className="text-center text-xs text-[var(--color-ink-muted)]">
+                Need help?{" "}
+                <Link href="/feedback" className="font-medium text-[var(--color-accent)] hover:underline">
+                  Contact support
+                </Link>{" "}
+                — we&apos;re expanding Oklahoma and federal MPJE coverage.
+              </p>
+            )}
+          </div>
+        )}
         <Button
           type="button"
           disabled={loading || (!isTimedExam && !subjectId)}

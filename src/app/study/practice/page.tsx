@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { PremiumGate } from "@/components/PremiumGate";
 import { StudyBankPractice } from "@/components/study/StudyBankPractice";
+import { UnifiedPracticeHub } from "@/components/study/UnifiedPracticeHub";
 import { StudySubnav } from "@/components/StudySubnav";
 import { PageShell } from "@/components/PageShell";
 import { EXAM_MODES } from "@/lib/exam/modes";
@@ -52,7 +53,10 @@ export default async function StudyPracticePage({
       <StudySubnav />
       <PremiumGate callbackPath={callbackPath}>
         <Suspense fallback={<p className="mt-8 text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
-          <StudyBankPractice />
+          <UnifiedPracticeHub />
+          <div className="mt-12 border-t border-black/[0.06] pt-10">
+            <StudyBankPractice />
+          </div>
         </Suspense>
       </PremiumGate>
     </PageShell>

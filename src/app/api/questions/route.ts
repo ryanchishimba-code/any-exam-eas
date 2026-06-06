@@ -26,6 +26,8 @@ import {
   resolveMpjeGenerationOptions,
 } from "@/lib/mpje/config";
 import { prepareMpjeBankItems } from "@/lib/mpje/prepare-items";
+import { countMpjeQuestionsForState } from "@/lib/mpje/sample-bank";
+import { parseMpjeStateParam } from "@/lib/mpje/validators";
 
 const MIXED_SUBJECT_ID = "__mixed__";
 const MAX_BANK_LIMIT = 100;
@@ -95,22 +97,52 @@ export async function GET(req: Request) {
     }
   }
 
+  const mpjeStateCode = isMpjeField(fieldId)
+    ? parseMpjeStateParam(
+        searchParams.get("state"),
+        searchParams.get("mpjeState")
+      )
+    : undefined;
+
   let items = mixed
-    ? await sampleQuestionBankItemsForField({ fieldId, count: limit })
+    ? await sampleQuestionBankItemsForField({
+        fieldId,
+        count: limit,
+        stateCode: mpjeStateCode,
+      })
     : await sampleQuestionBankItems({
         fieldId,
         subjectId: subjectId!,
         count: limit,
+        stateCode: mpjeStateCode,
       });
+
+  const resolvedSubjectId = mixed ? MIXED_SUBJECT_ID : subjectId!;
+
+  if (items.length === 0) {
+    return NextResponse.json(
+      {
+        error: isMpjeField(fieldId)
+          ? mpjeStateCode
+            ? `No MPJE questions yet for ${mpjeStateCode}. Federal items may still be syncing — try again shortly.`
+            : "No MPJE questions are available for this topic yet. Try another topic or contact support."
+          : "No questions available for this selection.",
+        code: "EMPTY_BANK",
+        fieldId,
+        subjectId: resolvedSubjectId,
+        stateCode: mpjeStateCode ?? null,
+      },
+      { status: 404 }
+    );
+  }
 
   const mpjeOptions = isMpjeField(fieldId)
     ? resolveMpjeGenerationOptions({
-        variant: searchParams.get("mpjeVariant"),
-        stateCode: searchParams.get("mpjeState"),
+        variant: searchParams.get("mpjeVariant") ?? "state",
+        stateCode: mpjeStateCode,
       })
     : null;
 
-  const resolvedSubjectId = mixed ? MIXED_SUBJECT_ID : subjectId!;
   const subjectLabel = mixed
     ? "Assorted topics"
     : getFieldSubject(field, subjectId!)!.label;
@@ -157,10 +189,16 @@ export async function GET(req: Request) {
     highYield: p.highYield,
   }));
 
-  const [totalActive, subjectTotal, lastSync] = await Promise.all([
+  const [totalActive, subjectTotal, lastSync, mpjeCounts] = await Promise.all([
     countActiveQuestions(fieldId),
     mixed ? countActiveQuestions(fieldId) : getSubjectQuestionCount(fieldId, subjectId!),
     getLastQuestionBankSync(),
+    mpjeStateCode
+      ? countMpjeQuestionsForState(
+          mpjeStateCode,
+          mixed ? undefined : subjectId!
+        )
+      : Promise.resolve(null),
   ]);
 
   trackEvent({
@@ -200,6 +238,14 @@ export async function GET(req: Request) {
       totalActiveInField: totalActive,
       lastSyncedAt: lastSync?.finishedAt ?? null,
       lastSyncStatus: lastSync?.status ?? null,
+      ...(mpjeStateCode && mpjeCounts
+        ? {
+            stateCode: mpjeStateCode,
+            stateSpecificAvailable: mpjeCounts.stateSpecific,
+            federalAvailable: mpjeCounts.federal,
+            usedFederalFallback: mpjeCounts.stateSpecific === 0 && questions.length > 0,
+          }
+        : {}),
     },
   });
 }

@@ -21,6 +21,16 @@ export type BankItem = {
   solutionSteps?: string[];
   /** Subject/topic id within the field — e.g. "calculus" */
   subjectId?: string;
+  /** Two-letter state code for MPJE state law; omit/null = federal or uniform. */
+  stateCode?: string | null;
+  /** 1 (easiest) – 5 (hardest). */
+  difficulty?: number;
+  topicCategory?: string;
+  blueprintDomain?: string;
+  itemType?: string;
+  references?: Array<{ label: string; url?: string; citation?: string }>;
+  vignette?: string;
+  ngnPayload?: Record<string, unknown>;
   tags?: string[];
 };
 

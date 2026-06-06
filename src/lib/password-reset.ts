@@ -4,7 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { findUserByEmail } from "@/lib/user-auth";
 import { normalizeEmail } from "@/lib/validators/auth";
 import { PASSWORD_RESET_EXPIRY_MINUTES } from "@/lib/validators/password-reset";
-import { appBaseUrl, sendPasswordResetEmail } from "@/lib/email";
+import { appBaseUrl } from "@/lib/email/config";
+import { sendPasswordResetEmail } from "@/lib/email";
 
 const BCRYPT_ROUNDS = 12;
 const TOKEN_BYTES = 32;

@@ -5,6 +5,7 @@
  */
 import type { BankItem } from "./question-bank";
 import { ANATOMY_QUESTION_BANK } from "./medicine-anatomy-question-bank";
+import { MPJE_QUESTION_BANK } from "./mpje/seed-questions";
 import {
   isUsmleStep1Subject,
   isUsmleStep2Subject,
@@ -231,6 +232,7 @@ export const HEALTH_QUESTION_BANK: Record<
       q("pharmacy-law", "HIPAA allows disclosure without authorization for:", ["Treatment, payment, operations (TPO)", "Marketing to third parties freely", "Social media posting", "Sale of data"], "Treatment, payment, operations (TPO)", "Privacy rule permitted uses.", ["privacy"]),
     ],
   },
+  mpje: MPJE_QUESTION_BANK,
   };
 })();
 

@@ -58,6 +58,7 @@ function rowToCreateData(
   return {
     fieldId,
     subjectId,
+    stateCode: item.stateCode ?? null,
     question: item.question,
     options: JSON.stringify(item.options),
     correctAnswer: item.correctAnswer,

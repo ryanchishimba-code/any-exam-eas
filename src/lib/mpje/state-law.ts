@@ -11,6 +11,27 @@ export type StateLawProfile = {
 
 /** Curated state/territory pharmacy law profiles for MPJE generation. */
 const STATE_LAW_PROFILES: Record<string, StateLawProfile> = {
+  OK: {
+    code: "OK",
+    boardName: "Oklahoma Board of Pharmacy",
+    highlights: [
+      "Oklahoma Pharmacy Act — pharmacist-in-charge (PIC) responsibilities",
+      "Oklahoma pharmacist immunization authority and protocol requirements",
+      "Technician supervision and verification standards",
+      "Controlled substance dispensing aligned with DEA and Oklahoma rules",
+      "Prescription validity, DUR, counseling, and emergency oral Rx documentation",
+      "Board inspection, record retention, and compounding per USP standards",
+    ],
+    focusAreas: [
+      "practice act",
+      "PIC",
+      "immunizations",
+      "controlled substances",
+      "dispensing",
+      "counseling",
+      "inspections",
+    ],
+  },
   CA: {
     code: "CA",
     boardName: "California State Board of Pharmacy",

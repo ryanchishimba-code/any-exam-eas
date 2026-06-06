@@ -318,24 +318,41 @@ model ProgressRecord {
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-/// Stratified MCQ bank (medicine, nursing, pharmacy) — synced from seed sources on a schedule.
+/// Stratified exam bank (medicine, nursing, pharmacy, MPJE) — synced from seed sources on a schedule.
 model QuestionBankItem {
-  id            String   @id @default(cuid())
-  fieldId       String
-  subjectId     String
-  question      String
-  options       String
-  correctAnswer String
-  explanation   String
-  solutionSteps String?
-  tags          String?
-  source        String   @default("seed")
-  contentHash   String   @unique
-  active        Boolean  @default(true)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id              String   @id @default(cuid())
+  fieldId         String
+  subjectId       String
+  /// Two-letter state code for state-specific MPJE items; NULL = federal/uniform.
+  stateCode       String?  @db.Char(2)
+  /// 1 (easiest) – 5 (hardest); aligns with adaptive engine weighting.
+  difficulty      Int?     @db.SmallInt
+  /// High-level topic slug (e.g. controlled-substances, med-surg).
+  topicCategory   String?
+  /// Exam blueprint domain (NAPLEX 2025, NCLEX-NGN, USMLE, MPJE/UMPJE).
+  blueprintDomain String?
+  /// mcq | vignette | ngn_bowtie | ngn_matrix | case_study | select_all | ordered_response
+  itemType        String   @default("mcq")
+  question        String
+  options         String
+  correctAnswer   String
+  explanation     String
+  solutionSteps   String?
+  tags            String?
+  /// Cited sources / references for rationales (JSON array).
+  references      Json?
+  source          String   @default("seed")
+  contentHash     String   @unique
+  active          Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
   @@index([fieldId, subjectId, active])
+  @@index([fieldId, stateCode, active])
+  @@index([fieldId, difficulty, active])
+  @@index([fieldId, topicCategory, active])
+  @@index([fieldId, blueprintDomain, active])
+  @@index([fieldId, itemType, active])
 }
 
 model QuestionBankSync {

@@ -16,6 +16,13 @@ import { computeOverallAccuracy } from "@/lib/learning/adaptive-session";
 import { buildTopicWeakness } from "@/lib/learning/weakness";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
 import type { ExamQuestion } from "@/lib/ai";
+import {
+  getMpjeState,
+  isMpjeField,
+  resolveMpjeGenerationOptions,
+} from "@/lib/mpje/config";
+import { prepareMpjeBankItems } from "@/lib/mpje/prepare-items";
+import { parseMpjeStateParam } from "@/lib/mpje/validators";
 
 export const runtime = "nodejs";
 
@@ -36,6 +43,9 @@ const bodySchema = z.object({
   excludeQuestionKeys: z.array(z.string()).optional(),
   weakFocusRatio: z.number().min(0.2).max(0.9).optional(),
   studyMode: z.enum(["adaptive", "weak_area", "practice", "timed", "mock"]).optional(),
+  mpjeVariant: z.enum(["uniform", "state"]).optional(),
+  mpjeState: z.string().max(8).optional(),
+  state: z.string().max(2).optional(),
 });
 
 function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQuestion {
@@ -102,17 +112,38 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "No subjects for this field." }, { status: 400 });
     }
 
+    const mpjeStateCode = isMpjeField(fieldId)
+      ? parseMpjeStateParam(body.state, body.mpjeState)
+      : undefined;
+
+    const mpjeOptions = isMpjeField(fieldId)
+      ? resolveMpjeGenerationOptions({
+          variant: body.mpjeVariant ?? "state",
+          stateCode: mpjeStateCode,
+        })
+      : null;
+
     const pool: ReturnType<typeof examQuestionToStudy>[] = [];
     for (const subjectId of subjectIds) {
       const subject = getFieldSubject(body.field, subjectId);
       if (!subject) continue;
 
-      const items = await sampleQuestionBankItems({
+      let items = await sampleQuestionBankItems({
         fieldId,
         subjectId,
         count: ADAPTIVE_QUESTION_POOL_PER_SUBJECT,
         poolMultiplier: 2,
+        stateCode: mpjeStateCode,
       });
+
+      if (mpjeOptions && items.length > 0) {
+        const mpjeLabel =
+          mpjeOptions.variant === "state" && mpjeOptions.stateCode
+            ? `${getMpjeState(mpjeOptions.stateCode)?.name ?? mpjeOptions.stateCode} MPJE`
+            : "Uniform MPJE";
+        items = prepareMpjeBankItems(items, mpjeOptions, mpjeLabel);
+      }
+
       for (let i = 0; i < items.length; i++) {
         const item = items[i];
         pool.push(
@@ -139,7 +170,12 @@ export async function POST(req: Request) {
 
     if (pool.length === 0) {
       return NextResponse.json(
-        { error: "No questions in bank for this field/subject." },
+        {
+          error: isMpjeField(fieldId)
+            ? "MPJE questions are still loading. Try again in a moment or pick a specific topic."
+            : "No questions in bank for this field/subject.",
+          code: "EMPTY_BANK",
+        },
         { status: 404 }
       );
     }

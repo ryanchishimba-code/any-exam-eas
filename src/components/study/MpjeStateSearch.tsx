@@ -14,6 +14,7 @@ import { Search, X } from "lucide-react";
 import {
   searchMpjeJurisdictions,
   getMpjeState,
+  MPJE_JURISDICTIONS,
   type MpjeJurisdiction,
 } from "@/lib/mpje/config";
 import { cn } from "@/lib/utils";
@@ -23,6 +24,8 @@ type MpjeStateSearchProps = {
   value: string;
   onChange: (code: string) => void;
   className?: string;
+  /** Limit dropdown to a subset (default: all jurisdictions). */
+  jurisdictions?: MpjeJurisdiction[];
 };
 
 function jurisdictionBadge(j: MpjeJurisdiction): string | null {
@@ -32,7 +35,37 @@ function jurisdictionBadge(j: MpjeJurisdiction): string | null {
   return null;
 }
 
-export function MpjeStateSearch({ value, onChange, className }: MpjeStateSearchProps) {
+function filterJurisdictions(
+  pool: MpjeJurisdiction[],
+  query: string,
+  limit: number
+): MpjeJurisdiction[] {
+  const q = query.trim().toLowerCase();
+  if (!q) return pool.slice(0, limit);
+  const scored = pool
+    .map((j) => {
+      const name = j.name.toLowerCase();
+      const code = j.code.toLowerCase();
+      let score = 0;
+      if (code === q) score += 100;
+      else if (name === q) score += 90;
+      else if (code.startsWith(q)) score += 80;
+      else if (name.startsWith(q)) score += 70;
+      else if (name.includes(q)) score += 50;
+      else if (code.includes(q)) score += 40;
+      return { j, score };
+    })
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score || a.j.name.localeCompare(b.j.name));
+  return scored.slice(0, limit).map((x) => x.j);
+}
+
+export function MpjeStateSearch({
+  value,
+  onChange,
+  className,
+  jurisdictions = MPJE_JURISDICTIONS,
+}: MpjeStateSearchProps) {
   const listboxId = useId();
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -45,8 +78,11 @@ export function MpjeStateSearch({ value, onChange, className }: MpjeStateSearchP
 
   const deferredQuery = useDeferredValue(query);
   const results = useMemo(
-    () => searchMpjeJurisdictions(deferredQuery, 12),
-    [deferredQuery]
+    () =>
+      jurisdictions === MPJE_JURISDICTIONS
+        ? searchMpjeJurisdictions(deferredQuery, 12)
+        : filterJurisdictions(jurisdictions, deferredQuery, 12),
+    [deferredQuery, jurisdictions]
   );
 
   const showDropdown = open && query.trim().length > 0;

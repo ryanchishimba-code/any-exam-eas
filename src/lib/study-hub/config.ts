@@ -60,9 +60,22 @@ export function mpjePracticeHref(options?: {
     field: "mpje",
     mode: options?.mode ?? "bank",
   });
-  if (options?.variant) qs.set("mpjeVariant", options.variant);
-  if (options?.stateCode) qs.set("mpjeState", options.stateCode);
+  const variant = options?.variant ?? "state";
+  qs.set("mpjeVariant", variant);
+  if (variant === "state" && options?.stateCode) {
+    qs.set("state", options.stateCode);
+    qs.set("mpjeState", options.stateCode);
+  }
   return `/study/practice?${qs.toString()}`;
+}
+
+/** Full 120-question / 2.5-hour MPJE practice exam simulator. */
+export function mpjePracticeExamHref(stateCode = "OK"): string {
+  const qs = new URLSearchParams({
+    state: stateCode,
+    mpjeState: stateCode,
+  });
+  return `/mpje/practice-exam?${qs.toString()}`;
 }
 
 export function questionBankHref(fieldId?: string): string {

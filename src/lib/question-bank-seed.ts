@@ -5,6 +5,7 @@ import {
   getHealthBankSubjectIds,
   HEALTH_QUESTION_BANK,
 } from "./health-sciences-question-bank";
+import { collectHighYieldSeedRows } from "./exam-prep/high-yield-index";
 
 export type SeedQuestionRow = {
   fieldId: string;
@@ -38,6 +39,10 @@ export function collectSeedQuestionRows(): SeedQuestionRow[] {
         push(fieldId, subjectId, item);
       }
     }
+  }
+
+  for (const row of collectHighYieldSeedRows()) {
+    push(row.fieldId, row.subjectId, row.item);
   }
 
   return rows;
