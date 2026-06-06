@@ -77,9 +77,10 @@ export function getSequentialSetContext(
 ): SequentialSetContext | null {
   const p = getSequentialPayload(question);
   if (!p?.setId || !p.stepIndex || !p.totalSteps) return null;
+  const { setId, stepIndex, totalSteps } = p;
 
   const setMembers = allQuestions
-    .filter((q) => getSequentialPayload(q)?.setId === p.setId)
+    .filter((q) => getSequentialPayload(q)?.setId === setId)
     .sort(
       (a, b) =>
         (getSequentialPayload(a)?.stepIndex ?? 0) -
@@ -90,20 +91,20 @@ export function getSequentialSetContext(
   let priorStepUnanswered = false;
   let priorStepIndex: number | undefined;
 
-  if (p.stepIndex > 1) {
+  if (stepIndex > 1) {
     const prior = setMembers.find(
-      (q) => getSequentialPayload(q)?.stepIndex === p.stepIndex - 1
+      (q) => getSequentialPayload(q)?.stepIndex === stepIndex - 1
     );
     if (prior) {
-      priorStepIndex = p.stepIndex - 1;
+      priorStepIndex = stepIndex - 1;
       priorStepUnanswered = !answers[prior.id]?.revealed;
     }
   }
 
   return {
-    setId: p.setId,
-    stepIndex: p.stepIndex,
-    totalSteps: p.totalSteps,
+    setId,
+    stepIndex,
+    totalSteps,
     vignette,
     priorStepUnanswered,
     priorStepIndex,

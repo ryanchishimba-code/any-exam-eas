@@ -43,4 +43,10 @@ export type BlueprintDomain =
   | "mpje-jurisprudence"
   | "umpje-uniform";
 
-export type ExamFieldId = "nursing" | "usmle-step-1" | "pharmacy" | "mpje";
+export type ExamFieldId =
+  | "nursing"
+  | "usmle-step-1"
+  | "usmle-step-2"
+  | "usmle-step-3"
+  | "pharmacy"
+  | "mpje";
