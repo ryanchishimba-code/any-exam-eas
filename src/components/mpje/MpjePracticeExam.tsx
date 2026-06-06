@@ -23,9 +23,13 @@ import {
   type MpjePracticeExamQuestionPublic,
 } from "@/lib/mpje/practice-exam-config";
 import type { MpjePracticeExamResult } from "@/lib/mpje/practice-exam-scoring";
-import { parseMpjeStateParam } from "@/lib/mpje/validators";
-import { MPJE_DEFAULT_STATE_CODE } from "@/lib/mpje/us-jurisdictions";
+import { parseOptionalMpjeStateParam } from "@/lib/mpje/validators";
 import { mpjePracticeExamHref, mpjePracticeHref } from "@/lib/study-hub/config";
+import {
+  parseMpjeStoredAnswer,
+  serializeMpjeAnswer,
+} from "@/lib/mpje/grade-answer";
+import { MpjeQuestionDisplay } from "@/components/mpje/MpjeQuestionDisplay";
 import { cn } from "@/lib/utils";
 
 type ExamPayload = {
@@ -54,7 +58,7 @@ function formatTime(seconds: number): string {
 export function MpjePracticeExam() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [stateCode, setStateCode] = useState(MPJE_DEFAULT_STATE_CODE);
+  const [stateCode, setStateCode] = useState("");
   const [phase, setPhase] = useState<Phase>("loading");
   const [exam, setExam] = useState<ExamPayload | null>(null);
   const [error, setError] = useState("");
@@ -72,11 +76,11 @@ export function MpjePracticeExam() {
   const autoSubmitted = useRef(false);
 
   useEffect(() => {
-    const param = parseMpjeStateParam(
+    const param = parseOptionalMpjeStateParam(
       searchParams.get("state"),
       searchParams.get("mpjeState")
     );
-    setStateCode(param);
+    setStateCode(param ?? "");
   }, [searchParams]);
 
   const loadExam = useCallback(async (code: string) => {
@@ -92,7 +96,8 @@ export function MpjePracticeExam() {
     autoSubmitted.current = false;
 
     try {
-      const res = await fetch(`/api/mpje/practice-exam?state=${code}`);
+      const qs = code ? `?state=${encodeURIComponent(code)}` : "";
+      const res = await fetch(`/api/mpje/practice-exam${qs}`);
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Could not load practice exam");
       setExam(data);
@@ -218,6 +223,21 @@ export function MpjePracticeExam() {
     setAnswers((prev) => ({ ...prev, [current.id]: choice }));
   }
 
+  function toggleSelectAll(choice: string) {
+    if (!current) return;
+    const stored = answers[current.id] ?? "";
+    const parts = parseMpjeStoredAnswer(current.itemType, stored);
+    const list = Array.isArray(parts) ? [...parts] : [];
+    const idx = list.indexOf(choice);
+    if (idx >= 0) list.splice(idx, 1);
+    else list.push(choice);
+    const serialized = serializeMpjeAnswer(current.itemType, list);
+    setAnswers((prev) => ({
+      ...prev,
+      [current.id]: serialized ?? "",
+    }));
+  }
+
   function goNext() {
     if (index + 1 >= total) {
       setPhase("review");
@@ -253,7 +273,7 @@ export function MpjePracticeExam() {
   if (phase === "loading") {
     return (
       <div className="flex min-h-[60vh] items-center justify-center text-slate-500">
-        Building your {stateCode} MPJE practice exam…
+        Building your {stateCode ? `${stateCode} ` : "federal "}MPJE practice exam…
       </div>
     );
   }
@@ -273,11 +293,14 @@ export function MpjePracticeExam() {
             Full-length simulator
           </p>
           <h1 className="text-2xl font-semibold text-slate-900 sm:text-3xl">
-            {exam?.title ?? `${stateCode} MPJE Practice Exam`}
+            {exam?.title ??
+              (stateCode ? `${stateCode} MPJE Practice Exam` : "Federal MPJE Practice Exam")}
           </h1>
           <p className="text-slate-600">
-            Mimics the real MPJE: 120 questions in 2.5 hours. State-specific and federal
-            pharmacy law.
+            Mimics the real MPJE: 120 questions in 2.5 hours.{" "}
+            {stateCode
+              ? "State-specific and federal pharmacy law."
+              : "Federal pharmacy law only until you select a state."}
           </p>
         </div>
 
@@ -551,7 +574,10 @@ export function MpjePracticeExam() {
   }
 
   const progress = total ? ((index + 1) / total) * 100 : 0;
-  const selected = current ? answers[current.id] : undefined;
+  const selectedRaw = current ? answers[current.id] : undefined;
+  const selectedParsed = current
+    ? parseMpjeStoredAnswer(current.itemType, selectedRaw ?? null)
+    : "";
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
@@ -633,34 +659,19 @@ export function MpjePracticeExam() {
               {current.subjectLabel}
               {current.stateCode ? ` · ${current.stateCode}` : " · Federal"}
             </p>
-            <p className="mt-4 whitespace-pre-wrap text-lg leading-relaxed text-slate-100">
-              {current.question}
-            </p>
-
-            <fieldset className="mt-8 space-y-3">
-              <legend className="sr-only">Answer choices</legend>
-              {current.options.map((opt) => (
-                <label
-                  key={opt}
-                  className={cn(
-                    "flex cursor-pointer items-start gap-3 rounded-xl border px-4 py-3 text-left text-sm transition",
-                    selected === opt
-                      ? "border-sky-500 bg-sky-500/15"
-                      : "border-white/15 hover:border-sky-400/40 hover:bg-white/5"
-                  )}
-                >
-                  <input
-                    type="radio"
-                    name={`q-${current.id}`}
-                    value={opt}
-                    checked={selected === opt}
-                    onChange={() => selectAnswer(opt)}
-                    className="mt-0.5 shrink-0 accent-sky-500"
-                  />
-                  <span className="text-slate-200">{opt}</span>
-                </label>
-              ))}
-            </fieldset>
+            <MpjeQuestionDisplay
+              variant="exam"
+              question={{
+                question: current.question,
+                options: current.options,
+                itemType: current.itemType,
+                scenario: current.scenario,
+                statements: current.statements,
+              }}
+              selected={selectedParsed}
+              onSelect={selectAnswer}
+              onToggleMulti={toggleSelectAll}
+            />
           </>
         )}
       </main>

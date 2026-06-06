@@ -2,7 +2,8 @@ import type { NextAuthConfig } from "next-auth";
 import { NextResponse } from "next/server";
 import { isPremiumPage } from "@/lib/premium-routes";
 import { isInternalPath, staffLoginUrl } from "@/lib/staff-routes";
-import { isStaffRole } from "@/lib/permissions";
+import { ADMIN_LOGIN_PATH, adminLoginUrl, isAdminPath } from "@/lib/admin/routes";
+import { hasMinRole, isStaffRole } from "@/lib/permissions";
 
 /** Edge-safe config — used by middleware only (no Prisma/bcrypt). */
 export const authConfig = {
@@ -22,8 +23,27 @@ export const authConfig = {
         path.startsWith("/study-hub") ||
         path.startsWith("/studygub");
       const isInternal = isInternalPath(path);
+      const isAdmin = isAdminPath(path);
       const isPremium = isPremiumPage(path);
       const role = (auth?.user as { role?: string } | undefined)?.role;
+
+      if (path === ADMIN_LOGIN_PATH) {
+        return true;
+      }
+
+      if (isAdmin) {
+        if (!isLoggedIn) {
+          return NextResponse.redirect(
+            new URL(adminLoginUrl(path), request.nextUrl)
+          );
+        }
+        if (!hasMinRole(role, "admin")) {
+          return NextResponse.redirect(
+            new URL("/study?error=admin_only", request.nextUrl)
+          );
+        }
+        return true;
+      }
 
       if (isInternal) {
         if (!isLoggedIn) {

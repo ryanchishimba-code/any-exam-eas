@@ -12,6 +12,7 @@ import {
   summarizeSession,
 } from "@/lib/questions/session-engine";
 import { isAnswerCorrect } from "@/lib/questions/prepare";
+import { getSequentialSetContext } from "@/lib/questions/sequential-sets";
 import { bowTieSelectionValid, parseBowTieLayout, parseMatrixKey } from "@/lib/questions/ngn-structures";
 import { persistSessionLocally } from "@/lib/questions/storage";
 import { saveStudySessionRemote } from "@/lib/client/save-study-session";
@@ -91,6 +92,13 @@ export function StudySessionPlayer({
 
   const current = getQuestionByIndex(questionList, sessionState, sessionState.currentIndex);
   const answer = current ? sessionState.answers[current.id] : undefined;
+  const sequentialContext = useMemo(
+    () =>
+      current
+        ? getSequentialSetContext(current, questionList, sessionState.answers)
+        : null,
+    [current, questionList, sessionState.answers]
+  );
   const summary = summarizeSession(sessionState, questionList);
   const complete = isSessionComplete(sessionState, questionList);
 
@@ -259,6 +267,24 @@ export function StudySessionPlayer({
       setSelected((prev) => (prev.includes(option) ? prev : [...prev, option]));
       return;
     }
+    if (current.type === "drag_drop") {
+      if (option.startsWith("__unmatch__|||")) {
+        const prompt = option.slice("__unmatch__|||".length);
+        setSelected((prev) => prev.filter((p) => !p.startsWith(`${prompt}|||`)));
+        return;
+      }
+      setSelected((prev) => {
+        const [left] = option.split("|||");
+        if (!left) return prev;
+        const without = prev.filter((p) => !p.startsWith(`${left}|||`));
+        return [...without, option];
+      });
+      return;
+    }
+    if (current.type === "short_answer") {
+      setSelected([option]);
+      return;
+    }
     if (current.type === "select_all" || current.type === "highlight") {
       setSelected((prev) =>
         prev.includes(option) ? prev.filter((o) => o !== option) : [...prev, option]
@@ -311,6 +337,14 @@ export function StudySessionPlayer({
     }
     if (current.type === "matrix") {
       return selected.length === current.correctAnswers.length;
+    }
+    if (current.type === "drag_drop") {
+      const prompts = (current.ngnPayload as { prompts?: string[] } | undefined)?.prompts;
+      const need = prompts?.length ?? current.correctAnswers.length;
+      return selected.length === need && need > 0;
+    }
+    if (current.type === "short_answer") {
+      return selected.length > 0 && selected[0].trim().length > 0;
     }
     return true;
   }
@@ -457,6 +491,7 @@ export function StudySessionPlayer({
             selected={selected}
             revealed={!!answer?.revealed}
             onToggle={toggleSelect}
+            sequentialContext={sequentialContext}
           />
 
           {!answer?.revealed && sessionState.mode !== "rapid" && (

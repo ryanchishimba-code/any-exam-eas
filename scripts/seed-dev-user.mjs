@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 /**
- * Creates a local dev account for testing login (idempotent).
+ * Creates or refreshes a dev account for testing login (idempotent).
  * Default: dev@anyexameasy.test / DevPassword1!
+ *
+ * Always resets password hash so "dev password not working" is fixed after re-run.
  */
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
@@ -14,26 +16,50 @@ const role = (process.env.DEV_USER_ROLE ?? "user").trim();
 const prisma = new PrismaClient();
 
 try {
-  const existing = await prisma.user.findUnique({ where: { email } });
-  if (existing) {
-    if (role && existing.role !== role) {
-      await prisma.user.update({
-        where: { email },
-        data: { role },
-      });
-      console.log(
-        `Updated dev user role: ${email} → ${role} (id ${existing.id})`
-      );
-    } else {
-      console.log(`Dev user already exists: ${email} (id ${existing.id})`);
-    }
-    process.exit(0);
-  }
-
   const passwordHash = await bcrypt.hash(password, 12);
   const dob = new Date("1990-01-15");
   const trialEndsAt = new Date();
-  trialEndsAt.setDate(trialEndsAt.getDate() + 2);
+  trialEndsAt.setDate(trialEndsAt.getDate() + 14);
+
+  const existing = await prisma.user.findUnique({
+    where: { email },
+    include: { subscription: true },
+  });
+
+  if (existing) {
+    await prisma.user.update({
+      where: { email },
+      data: {
+        name,
+        passwordHash,
+        role,
+        accountStatus: "active",
+        emailVerified: existing.emailVerified ?? new Date(),
+      },
+    });
+
+    if (!existing.subscription) {
+      await prisma.subscription.create({
+        data: {
+          userId: existing.id,
+          status: "trialing",
+          trialEndsAt,
+        },
+      });
+    } else if (existing.subscription.status === "inactive") {
+      await prisma.subscription.update({
+        where: { userId: existing.id },
+        data: { status: "trialing", trialEndsAt },
+      });
+    }
+
+    console.log("Refreshed dev user (password reset):");
+    console.log(`  Email:    ${email}`);
+    console.log(`  Password: ${password}`);
+    console.log(`  Role:     ${role}`);
+    console.log(`  Id:       ${existing.id}`);
+    process.exit(0);
+  }
 
   const user = await prisma.user.create({
     data: {
@@ -42,6 +68,8 @@ try {
       passwordHash,
       dateOfBirth: dob,
       role,
+      accountStatus: "active",
+      emailVerified: new Date(),
       subscription: {
         create: { status: "trialing", trialEndsAt },
       },
@@ -51,6 +79,7 @@ try {
   console.log("Created dev user:");
   console.log(`  Email:    ${email}`);
   console.log(`  Password: ${password}`);
+  console.log(`  Role:     ${role}`);
   console.log(`  Id:       ${user.id}`);
 } catch (e) {
   console.error(e instanceof Error ? e.message : e);

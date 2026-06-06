@@ -17,11 +17,27 @@ describe("MPJE_QUESTION_BANK", () => {
     expect(okItems.some((q) => q.tags?.includes("oklahoma"))).toBe(true);
   });
 
-  it("each item has four options and a valid correct answer", () => {
+  it("includes K-type and SATA variety in v2 seeds", () => {
+    const all = Object.values(MPJE_QUESTION_BANK).flat();
+    const kType = all.filter((q) => q.itemType === "k_type");
+    const sata = all.filter((q) => q.itemType === "select_all");
+    expect(kType.length).toBeGreaterThanOrEqual(15);
+    expect(sata.length).toBeGreaterThanOrEqual(5);
+  });
+
+  it("each item has valid options and correct answer encoding", () => {
     for (const items of Object.values(MPJE_QUESTION_BANK)) {
       for (const item of items) {
-        expect(item.options).toHaveLength(4);
-        expect(item.options).toContain(item.correctAnswer);
+        expect(item.options.length).toBeGreaterThanOrEqual(4);
+        if (item.itemType === "select_all") {
+          const parts = item.correctAnswer.split("|||");
+          for (const p of parts) expect(item.options).toContain(p);
+        } else if (item.itemType === "k_type") {
+          expect(item.options).toHaveLength(7);
+          expect(item.options).toContain(item.correctAnswer);
+        } else {
+          expect(item.options).toContain(item.correctAnswer);
+        }
       }
     }
   });

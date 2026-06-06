@@ -3,7 +3,10 @@ import { buildBulkQuestion } from "@/lib/bulk-question-generator";
 import { prepareMpjeBankItems } from "@/lib/mpje/prepare-items";
 import { MPJE_SUBJECTS } from "@/lib/subjects/mpje/subjects";
 import { ensureStaticSeedsForField } from "@/lib/ensure-field-seeds";
-import { sampleMpjeQuestionBankItems } from "@/lib/mpje/sample-bank";
+import {
+  sampleMpjeFederalOnlyItems,
+  sampleMpjeQuestionBankItems,
+} from "@/lib/mpje/sample-bank";
 import {
   MPJE_PRACTICE_EXAM_PRETEST_COUNT,
   MPJE_PRACTICE_EXAM_QUESTION_COUNT,
@@ -78,14 +81,18 @@ export function orderMpjeExamQuestions(
 
   return slice.map((item, index) => {
     const subjectId = item.subjectId ?? "uniform-mpje";
+    const payload = item.ngnPayload as { statements?: string[] } | undefined;
     return {
       id: item.id ?? `mpje-exam-${index}`,
       subjectId,
       subjectLabel: SUBJECT_LABELS[subjectId] ?? subjectId,
       difficulty: assignMpjeDifficulty(subjectId),
       isPretest: index >= pretestStart,
+      itemType: item.itemType ?? "mcq",
+      scenario: item.scenario ?? null,
+      statements: payload?.statements,
       question: item.question,
-      options: item.options,
+      options: [...item.options],
       correctAnswer: item.correctAnswer,
       explanation: item.explanation,
       stateCode: item.stateCode ?? null,
@@ -93,13 +100,12 @@ export function orderMpjeExamQuestions(
   });
 }
 
-async function fillExamPool(stateCode: string, want: number): Promise<BankItem[]> {
+async function fillExamPool(stateCode: string | undefined, want: number): Promise<BankItem[]> {
   await ensureStaticSeedsForField("mpje");
 
-  const { items: sampled } = await sampleMpjeQuestionBankItems({
-    stateCode,
-    count: want,
-  });
+  const { items: sampled } = stateCode
+    ? await sampleMpjeQuestionBankItems({ stateCode, count: want })
+    : await sampleMpjeFederalOnlyItems({ count: want });
 
   const pool = [...sampled];
   const seen = new Set(pool.map((i) => i.question.trim().toLowerCase()));
@@ -111,16 +117,19 @@ async function fillExamPool(stateCode: string, want: number): Promise<BankItem[]
     const key = generated.question.trim().toLowerCase();
     if (!seen.has(key)) {
       seen.add(key);
-      if (!generated.stateCode && guard % 4 === 0) {
+      if (stateCode && !generated.stateCode && guard % 4 === 0) {
         generated.stateCode = stateCode;
+      }
+      if (!stateCode) {
+        generated.stateCode = undefined;
       }
       pool.push(generated);
     }
     guard++;
   }
 
-  const state = getMpjeState(stateCode);
-  const label = state ? `${state.name} MPJE` : "MPJE pharmacy law";
+  const state = stateCode ? getMpjeState(stateCode) : undefined;
+  const label = state ? `${state.name} MPJE` : "Federal MPJE pharmacy law";
   return prepareMpjeBankItems(
     pool.slice(0, want),
     { variant: "state", stateCode },
@@ -129,7 +138,7 @@ async function fillExamPool(stateCode: string, want: number): Promise<BankItem[]
 }
 
 export async function buildMpjePracticeExam(
-  stateCode: string
+  stateCode?: string
 ): Promise<MpjePracticeExamQuestion[]> {
   const pool = await fillExamPool(stateCode, MPJE_PRACTICE_EXAM_QUESTION_COUNT);
   return orderMpjeExamQuestions(pool);

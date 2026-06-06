@@ -3,6 +3,7 @@
  * Synced to QuestionBankItem via HEALTH_QUESTION_BANK and ensureStaticSeedsForField().
  */
 import type { BankItem } from "@/lib/question-bank";
+import { MPJE_QUALITY_SEEDS } from "./quality-seeds";
 import { mergeStateSeedsIntoBank } from "./state-seed-bank";
 
 const MPJE_DIFFICULTY: Record<string, number> = {
@@ -247,5 +248,26 @@ const MPJE_FEDERAL_BANK: Record<string, BankItem[]> = {
   ],
 };
 
+function bucketQualitySeeds(): Record<string, BankItem[]> {
+  const buckets: Record<string, BankItem[]> = {};
+  for (const item of MPJE_QUALITY_SEEDS) {
+    const sid = item.subjectId ?? "uniform-mpje";
+    (buckets[sid] ??= []).push(item);
+  }
+  return buckets;
+}
+
+function mergeBanks(
+  ...banks: Record<string, BankItem[]>[]
+): Record<string, BankItem[]> {
+  const out: Record<string, BankItem[]> = {};
+  for (const bank of banks) {
+    for (const [sid, items] of Object.entries(bank)) {
+      out[sid] = [...(out[sid] ?? []), ...items];
+    }
+  }
+  return out;
+}
+
 export const MPJE_QUESTION_BANK: Record<string, BankItem[]> =
-  mergeStateSeedsIntoBank(MPJE_FEDERAL_BANK);
+  mergeStateSeedsIntoBank(mergeBanks(MPJE_FEDERAL_BANK, bucketQualitySeeds()));

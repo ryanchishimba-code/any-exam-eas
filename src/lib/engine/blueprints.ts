@@ -242,30 +242,25 @@ const USMLE_STEP_2: ExamBlueprint = {
   ],
 };
 
-/** NABP NAPLEX Content Outline (2025) — three competency domains. */
+/** NABP NAPLEX Content Outline (2025, effective May 1) — five domains. */
 const NAPLEX: ExamBlueprint = {
   fieldId: "pharmacy",
   examName: "NAPLEX",
-  sourceNote: "NABP NAPLEX Content Outline (2025) — Foundational Knowledge, Medication Use Process, Person-Centered Care",
-  vignetteMinRatio: 0.55,
+  sourceNote:
+    "NABP NAPLEX Content Outline (2025) — 25% Foundations, 25% Medication Use, 40% Treatment Planning, 5% Professional Practice, 5% Management",
+  vignetteMinRatio: 0.6,
   categories: [
     {
-      id: "foundational-knowledge",
-      label: "Foundational Knowledge",
-      weight: 0.33,
+      id: "naplex-area1-foundations",
+      label: "Foundational Knowledge for Pharmacy Practice",
+      weight: 0.25,
       subjectIds: ["pharmacology", "pharmacokinetics", "pharmaceutics", "compounding-calculations"],
-      highYieldTopics: [
-        "Top 500 drug classes",
-        "PK/PD",
-        "calculations",
-        "mechanism of action",
-        "pharmaceutics",
-      ],
+      highYieldTopics: ["PK/PD", "calculations", "compounding", "pharmaceutics", "biopharmaceutics"],
     },
     {
-      id: "medication-use-process",
+      id: "naplex-area2-therapeutics",
       label: "Medication Use Process",
-      weight: 0.34,
+      weight: 0.25,
       subjectIds: [
         "pharmacology",
         "cardiovascular-rx",
@@ -274,25 +269,47 @@ const NAPLEX: ExamBlueprint = {
         "cns-rx",
       ],
       highYieldTopics: [
+        "dispensing",
+        "monitoring",
         "drug interactions",
-        "contraindications",
-        "therapeutic monitoring",
-        "dispensing verification",
+        "immunizations",
         "MTM",
+        "REMS",
       ],
     },
     {
-      id: "person-centered-care",
-      label: "Person-Centered Care",
-      weight: 0.33,
-      subjectIds: ["patient-counseling", "otc-self-care", "pharmacy-law"],
-      highYieldTopics: [
-        "patient counseling",
-        "adverse effect counseling",
-        "OTC selection",
-        "immunizations",
-        "controlled substances",
+      id: "naplex-area3-treatment-planning",
+      label: "Person-Centered Assessment & Treatment Planning",
+      weight: 0.4,
+      subjectIds: [
+        "cardiovascular-rx",
+        "infectious-disease-rx",
+        "endocrine-rx",
+        "cns-rx",
+        "patient-counseling",
+        "otc-self-care",
       ],
+      highYieldTopics: [
+        "guideline-based therapy",
+        "special populations",
+        "adherence",
+        "therapeutic substitution",
+        "clinical scenarios",
+      ],
+    },
+    {
+      id: "naplex-area4-safety",
+      label: "Professional Practice",
+      weight: 0.05,
+      subjectIds: ["pharmacy-law", "patient-counseling"],
+      highYieldTopics: ["ethics", "HIPAA", "error reporting", "patient safety", "diversion"],
+    },
+    {
+      id: "naplex-area5-management",
+      label: "Pharmacy Management & Leadership",
+      weight: 0.05,
+      subjectIds: ["pharmacy-law", "patient-counseling"],
+      highYieldTopics: ["inventory", "precepting", "operations", "quality improvement"],
     },
   ],
 };

@@ -1,13 +1,24 @@
 /** Item presentation types — mirrors QuestionBankItem.itemType column. */
 export type ExamItemType =
   | "mcq"
+  | "k_type"
   | "vignette"
   | "ngn_bowtie"
   | "ngn_matrix"
   | "ngn_highlight"
   | "case_study"
+  | "case_based"
   | "select_all"
-  | "ordered_response";
+  | "ordered_response"
+  | "constructed_response"
+  | "drag_drop"
+  | "exhibit"
+  | "sequential"
+  | "abstract"
+  | "drug_ad"
+  | "ethics"
+  | "biostats"
+  | "ccs_prompt";
 
 export type ExamReference = {
   label: string;
@@ -19,6 +30,7 @@ export type ExamReference = {
 export type BlueprintDomain =
   | "usmle-clinical-reasoning"
   | "usmle-ethics"
+  | "usmle-biostats"
   | "naplex-area1-foundations"
   | "naplex-area2-therapeutics"
   | "naplex-area3-treatment-planning"

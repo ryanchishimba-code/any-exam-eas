@@ -98,10 +98,7 @@ export async function GET(req: Request) {
   }
 
   const mpjeStateCode = isMpjeField(fieldId)
-    ? parseMpjeStateParam(
-        searchParams.get("state"),
-        searchParams.get("mpjeState")
-      )
+    ? parseMpjeStateParam(searchParams.get("state"), searchParams.get("mpjeState"))
     : undefined;
 
   let items = mixed
@@ -155,17 +152,63 @@ export async function GET(req: Request) {
     items = prepareMpjeBankItems(items, mpjeOptions, mpjeLabel);
   }
 
-  const raw: ExamQuestion[] = items.map((item, i) => ({
-    id: i + 1,
-    type: "multiple_choice" as const,
-    question: item.question,
-    options: [...item.options],
-    correctAnswer: item.correctAnswer,
-    explanation: item.explanation,
-    solutionSteps: item.solutionSteps,
-    tags: item.tags,
-    highYield: true,
-  }));
+  const { bankItemToExamQuestion, bankItemToRawQuestion } = await import(
+    "@/lib/exam-prep/ngn-bank-bridge"
+  );
+  const { bankItemToNaplexRaw } = await import("@/lib/exam-prep/naplex-bank-bridge");
+  const { bankItemToUsmleRaw, isUsmleField } = await import(
+    "@/lib/exam-prep/usmle-bank-bridge"
+  );
+
+  const raw: ExamQuestion[] = items.map((item, i) => {
+    if (fieldId === "nursing") {
+      return bankItemToRawQuestion(item, i, {
+        field: fieldId,
+        subjectId: item.subjectId ?? resolvedSubjectId,
+      });
+    }
+    if (fieldId === "pharmacy") {
+      return bankItemToNaplexRaw(item, i, {
+        field: fieldId,
+        subjectId: item.subjectId ?? resolvedSubjectId,
+      });
+    }
+    if (isUsmleField(fieldId)) {
+      return bankItemToUsmleRaw(item, i, {
+        field: fieldId,
+        subjectId: item.subjectId ?? resolvedSubjectId,
+      });
+    }
+    if (isMpjeField(fieldId)) {
+      const mpjeType =
+        item.itemType === "select_all"
+          ? "select_all"
+          : item.itemType === "k_type"
+            ? "multiple_choice"
+            : "multiple_choice";
+      return {
+        id: i + 1,
+        type: mpjeType,
+        question: item.question,
+        options: [...item.options],
+        correctAnswer: item.correctAnswer,
+        explanation: item.explanation,
+        solutionSteps: item.solutionSteps,
+        tags: item.tags,
+        highYield: true,
+        vignette: item.scenario ?? item.vignette,
+        ngnFormat: item.itemType === "k_type" ? "k_type" : undefined,
+        ngnPayload: item.ngnPayload,
+        field,
+        subjectId: item.subjectId ?? resolvedSubjectId,
+        bankItemId: item.id,
+      };
+    }
+    return bankItemToExamQuestion(item, i, {
+      field,
+      subjectId: item.subjectId ?? resolvedSubjectId,
+    });
+  });
 
   const prepared = prepareQuestionsForSession(
     raw.map((q, i) => ({
@@ -177,17 +220,51 @@ export async function GET(req: Request) {
     { shuffleOrder: true }
   );
 
-  const questions: ExamQuestion[] = prepared.map((p, i) => ({
-    id: i + 1,
-    type: p.type === "true_false" ? "true_false" : "multiple_choice",
-    question: p.stem,
-    options: p.options,
-    correctAnswer: p.correctAnswers[0] ?? "",
-    explanation: p.explanation,
-    solutionSteps: p.solutionSteps,
-    tags: p.tags,
-    highYield: p.highYield,
-  }));
+  const questions: ExamQuestion[] = prepared.map((p, i) => {
+    const src = raw[i];
+    const ngnTypes = new Set([
+      "bow_tie",
+      "matrix",
+      "highlight",
+      "select_all",
+      "ordered_response",
+      "unfolding_case",
+    ]);
+    const preserveType = src?.type && ngnTypes.has(src.type);
+    const isSelectAll = src?.type === "select_all" || p.type === "select_all";
+    return {
+      id: i + 1,
+      type: preserveType
+        ? (src!.type as ExamQuestion["type"])
+        : p.type === "true_false"
+          ? "true_false"
+          : isSelectAll
+            ? "select_all"
+            : p.type === "bow_tie" ||
+                p.type === "matrix" ||
+                p.type === "highlight" ||
+                p.type === "ordered_response" ||
+                p.type === "unfolding_case"
+              ? (p.type as ExamQuestion["type"])
+              : "multiple_choice",
+      question: p.stem,
+      options: p.options,
+      correctAnswer: isSelectAll
+        ? (src?.correctAnswer ?? p.correctAnswers.join(","))
+        : p.type === "matrix" || p.type === "bow_tie" || p.type === "ordered_response"
+          ? (src?.correctAnswer ?? p.correctAnswers.join(","))
+          : (p.correctAnswers[0] ?? src?.correctAnswer ?? ""),
+      explanation: p.explanation,
+      solutionSteps: p.solutionSteps,
+      tags: p.tags,
+      highYield: p.highYield,
+      vignette: src?.vignette ?? p.vignette,
+      ngnFormat: src?.ngnFormat ?? p.ngnFormat,
+      ngnPayload: src?.ngnPayload ?? p.ngnPayload,
+      chartData: src?.chartData ?? p.chartData,
+      caseStep: src?.caseStep ?? p.caseStep,
+    };
+  });
 
   const [totalActive, subjectTotal, lastSync, mpjeCounts] = await Promise.all([
     countActiveQuestions(fieldId),

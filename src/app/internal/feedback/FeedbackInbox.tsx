@@ -8,7 +8,15 @@ import {
 } from "@/lib/feedback/types";
 import { InlineError } from "@/components/ui/StatusMessage";
 
-export default function FeedbackInbox() {
+type FeedbackInboxProps = {
+  apiBase?: string;
+  enableReply?: boolean;
+};
+
+export default function FeedbackInbox({
+  apiBase = "/api/internal/feedback",
+  enableReply = false,
+}: FeedbackInboxProps = {}) {
   const [items, setItems] = useState<FeedbackListItem[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -29,7 +37,7 @@ export default function FeedbackInbox() {
     params.set("sort", sort);
 
     try {
-      const res = await fetch(`/api/internal/feedback?${params}`, {
+      const res = await fetch(`${apiBase}?${params}`, {
         credentials: "include",
       });
       const data = await res.json().catch(() => ({}));
@@ -41,14 +49,14 @@ export default function FeedbackInbox() {
     } finally {
       setLoading(false);
     }
-  }, [category, status, q, sort]);
+  }, [apiBase, category, status, q, sort]);
 
   useEffect(() => {
     void load();
   }, [load]);
 
   async function toggleResolved(id: string, resolved: boolean) {
-    const res = await fetch(`/api/internal/feedback/${id}`, {
+    const res = await fetch(`${apiBase}/${id}`, {
       method: "PATCH",
       credentials: "include",
       headers: { "Content-Type": "application/json" },
@@ -60,11 +68,28 @@ export default function FeedbackInbox() {
 
   async function remove(id: string) {
     if (!confirm("Delete this feedback permanently?")) return;
-    const res = await fetch(`/api/internal/feedback/${id}`, {
+    const res = await fetch(`${apiBase}/${id}`, {
       method: "DELETE",
       credentials: "include",
     });
     if (!res.ok) return;
+    void load();
+  }
+
+  const [replyingId, setReplyingId] = useState<string | null>(null);
+  const [replyBody, setReplyBody] = useState("");
+
+  async function sendReply(id: string) {
+    if (!replyBody.trim()) return;
+    const res = await fetch(`/api/admin/feedback/${id}/reply`, {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: replyBody.trim(), markResolved: true }),
+    });
+    if (!res.ok) return;
+    setReplyingId(null);
+    setReplyBody("");
     void load();
   }
 
@@ -182,7 +207,19 @@ export default function FeedbackInbox() {
                   {new Date(item.createdAt).toLocaleString()}
                 </p>
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
+                {enableReply && item.email ? (
+                  <button
+                    type="button"
+                    className="rounded-full border border-cyan-200 px-3 py-1 text-xs font-medium text-cyan-800 hover:bg-cyan-50"
+                    onClick={() => {
+                      setReplyingId(replyingId === item.id ? null : item.id);
+                      setReplyBody("");
+                    }}
+                  >
+                    Reply
+                  </button>
+                ) : null}
                 <button
                   type="button"
                   className="rounded-full border border-black/10 px-3 py-1 text-xs hover:bg-black/[0.03]"
@@ -204,6 +241,27 @@ export default function FeedbackInbox() {
             <p className="mt-4 whitespace-pre-wrap text-sm leading-relaxed text-black/80">
               {item.message}
             </p>
+            {enableReply && replyingId === item.id && (
+              <div className="mt-4 space-y-2 rounded-lg border border-cyan-100 bg-cyan-50/50 p-4">
+                <p className="text-xs font-medium text-cyan-900">
+                  Reply to {item.email}
+                </p>
+                <textarea
+                  className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm"
+                  rows={4}
+                  value={replyBody}
+                  onChange={(e) => setReplyBody(e.target.value)}
+                  placeholder="Your response…"
+                />
+                <button
+                  type="button"
+                  className="rounded-lg bg-slate-900 px-4 py-2 text-xs font-medium text-white"
+                  onClick={() => void sendReply(item.id)}
+                >
+                  Send reply & resolve
+                </button>
+              </div>
+            )}
           </li>
         ))}
       </ul>

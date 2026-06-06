@@ -17,6 +17,8 @@ export const config = {
     "/studygub/:path*",
     "/internal",
     "/internal/:path*",
+    "/admin",
+    "/admin/:path*",
     "/study",
     "/study/:path*",
     "/learn",

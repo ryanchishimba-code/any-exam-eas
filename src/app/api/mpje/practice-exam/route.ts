@@ -49,14 +49,16 @@ export async function GET(req: Request) {
 
   try {
     const questions = await buildMpjePracticeExam(stateCode);
-    const examId = createMpjeExamSession(premium.userId, stateCode, questions);
-    const state = getMpjeState(stateCode);
+    const examId = createMpjeExamSession(premium.userId, stateCode ?? "", questions);
+    const state = stateCode ? getMpjeState(stateCode) : undefined;
 
     return NextResponse.json({
       examId,
-      stateCode,
-      stateName: state?.name ?? stateCode,
-      title: state ? `${state.name} MPJE Practice Exam` : "MPJE Practice Exam",
+      stateCode: stateCode ?? null,
+      stateName: state?.name ?? (stateCode ? stateCode : "Federal"),
+      title: state
+        ? `${state.name} MPJE Practice Exam`
+        : "Federal MPJE Practice Exam",
       questionCount: MPJE_PRACTICE_EXAM_QUESTION_COUNT,
       timeLimitSeconds: MPJE_PRACTICE_EXAM_TIME_SECONDS,
       passingPercent: MPJE_PRACTICE_EXAM_PASSING_PERCENT,

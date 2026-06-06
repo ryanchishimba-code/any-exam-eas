@@ -1,3 +1,4 @@
+import { gradeMpjeAnswer } from "@/lib/mpje/grade-answer";
 import {
   MPJE_PRACTICE_EXAM_PASSING_PERCENT,
   MPJE_PRACTICE_EXAM_QUESTION_COUNT,
@@ -54,8 +55,18 @@ export function gradeMpjePracticeExam(
 
   questions.forEach((q, index) => {
     const selected = answerMap.get(q.id) ?? null;
-    const isAnswered = Boolean(selected?.trim());
-    const isCorrect = isAnswered && selected === q.correctAnswer;
+    const isSelectAll = q.itemType === "select_all";
+    const selectedParts = isSelectAll && selected ? selected.split("|||").filter(Boolean) : null;
+    const isAnswered = isSelectAll
+      ? Boolean(selectedParts?.length)
+      : Boolean(selected?.trim());
+    const isCorrect =
+      isAnswered &&
+      gradeMpjeAnswer(
+        q.itemType,
+        isSelectAll ? selectedParts! : selected,
+        q.correctAnswer
+      );
 
     if (isAnswered) answered++;
     if (isCorrect) correct++;

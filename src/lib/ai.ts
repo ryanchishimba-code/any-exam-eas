@@ -31,6 +31,7 @@ export type ExamQuestion = {
   references?: string[];
   bloomLevel?: string;
   ngnFormat?: string;
+  ngnPayload?: Record<string, unknown>;
   caseStep?: number;
   solutionSteps?: string[];
   tags?: string[];

@@ -1,8 +1,9 @@
 "use client";
 
+import type { SequentialSetContext } from "@/lib/questions/sequential-sets";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { cleanOptionText } from "@/lib/question-format";
-import { NgnFormatBadge, VignetteBlock } from "./NgnChrome";
+import { NgnCjmmNote, NgnFormatBadge, NgnTypeInstructions, VignetteBlock } from "./NgnChrome";
 import {
   BowTieQuestion,
   HighlightQuestion,
@@ -15,15 +16,38 @@ import {
   OrderedResponseOptions,
   SelectAllOptions,
 } from "./NgnOptionLists";
+import { MpjeQuestionDisplay } from "@/components/mpje/MpjeQuestionDisplay";
+import {
+  ConstructedResponseInput,
+  DragDropMatch,
+  ExhibitTable,
+  NaplexCaseVignette,
+} from "./NaplexFormats";
+import {
+  AbstractBlock,
+  CcsPromptPanel,
+  DrugAdBlock,
+  SequentialItemBanner,
+  UsmleCaseVignette,
+  UsmleExhibitBlock,
+  isUsmleField,
+} from "./UsmleFormats";
 
 type Props = {
   question: StudyQuestion;
   selected: string[];
   revealed: boolean;
   onToggle: (option: string) => void;
+  sequentialContext?: SequentialSetContext | null;
 };
 
-export function QuestionRenderer({ question, selected, revealed, onToggle }: Props) {
+export function QuestionRenderer({
+  question,
+  selected,
+  revealed,
+  onToggle,
+  sequentialContext,
+}: Props) {
   const handleToggle = (opt: string) => {
     if (opt === "__clear__") {
       onToggle("__clear__");
@@ -50,11 +74,51 @@ export function QuestionRenderer({ question, selected, revealed, onToggle }: Pro
 
       <UnfoldingCaseBanner question={question} />
 
-      {question.vignette && question.type !== "highlight" && (
-        <VignetteBlock text={question.vignette} />
+      <SequentialItemBanner question={question} context={sequentialContext} />
+
+      <NgnCjmmNote question={question} />
+
+      {question.ngnFormat === "abstract" || question.ngnPayload?.kind === "abstract" ? (
+        <AbstractBlock question={question} />
+      ) : null}
+
+      {question.ngnFormat === "drug_ad" || question.ngnPayload?.kind === "drug_ad" ? (
+        <DrugAdBlock question={question} />
+      ) : null}
+
+      {question.ngnFormat === "ccs_prompt" || question.ngnPayload?.kind === "ccs_prompt" ? (
+        <CcsPromptPanel question={question} />
+      ) : null}
+
+      {question.vignette &&
+        question.type !== "highlight" &&
+        question.ngnFormat !== "abstract" &&
+        question.ngnFormat !== "drug_ad" &&
+        question.ngnPayload?.kind !== "abstract" &&
+        question.ngnPayload?.kind !== "drug_ad" &&
+        question.ngnPayload?.kind !== "ccs_prompt" && (
+          isUsmleField(question.field) ? (
+            <UsmleCaseVignette text={question.vignette} />
+          ) : question.field === "pharmacy" ||
+            question.ngnFormat === "case_based" ||
+            question.ngnFormat === "vignette" ? (
+            <NaplexCaseVignette text={question.vignette} />
+          ) : (
+            <VignetteBlock text={question.vignette} />
+          )
+        )}
+
+      {isUsmleField(question.field) ? (
+        <UsmleExhibitBlock question={question} />
+      ) : (
+        (question.ngnFormat === "exhibit" || question.ngnPayload?.kind === "exhibit") && (
+          <ExhibitTable question={question} />
+        )
       )}
 
-      <p className="text-xl font-medium leading-snug sm:text-2xl">{question.stem}</p>
+      <NgnTypeInstructions question={question} />
+
+      <p className="text-lg font-medium leading-snug sm:text-xl">{question.stem}</p>
 
       {question.type === "bow_tie" && (
         <BowTieQuestion
@@ -83,6 +147,22 @@ export function QuestionRenderer({ question, selected, revealed, onToggle }: Pro
         />
       )}
 
+      {question.type === "k_type" && (
+        <MpjeQuestionDisplay
+          variant="study"
+          question={{
+            question: question.stem,
+            options: question.options,
+            itemType: "k_type",
+            scenario: question.vignette,
+            statements: (question.ngnPayload as { statements?: string[] } | undefined)
+              ?.statements,
+          }}
+          selected={selected[0] ?? ""}
+          onSelect={(opt) => onToggle(opt)}
+        />
+      )}
+
       {question.type === "select_all" && (
         <SelectAllOptions
           question={question}
@@ -94,6 +174,24 @@ export function QuestionRenderer({ question, selected, revealed, onToggle }: Pro
 
       {question.type === "ordered_response" && (
         <OrderedResponseOptions
+          question={question}
+          selected={selected}
+          revealed={revealed}
+          onToggle={handleToggle}
+        />
+      )}
+
+      {question.type === "drag_drop" && (
+        <DragDropMatch
+          question={question}
+          selected={selected}
+          revealed={revealed}
+          onToggle={handleToggle}
+        />
+      )}
+
+      {question.type === "short_answer" && (
+        <ConstructedResponseInput
           question={question}
           selected={selected}
           revealed={revealed}

@@ -8,6 +8,7 @@ import { pharmacyModule } from "./pharmacy";
 import { mpjeModule } from "./mpje";
 import { usmleStep1Module } from "./usmle-step-1";
 import { usmleStep2Module } from "./usmle-step-2";
+import { usmleStep3Module } from "./usmle-step-3";
 import {
   EXAM_FIELD_IDS,
   FIELD_ID_ALIASES,
@@ -18,6 +19,7 @@ const MODULES: Record<string, SubjectModule> = {
   nursing: nursingModule,
   "usmle-step-1": usmleStep1Module,
   "usmle-step-2": usmleStep2Module,
+  "usmle-step-3": usmleStep3Module,
   pharmacy: pharmacyModule,
   mpje: mpjeModule,
 };

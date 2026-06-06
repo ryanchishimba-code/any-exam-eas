@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 
 export function StudyHubMpjePicker({ onClose }: { onClose?: () => void }) {
   const [variant, setVariant] = useState<MpjeVariant>("state");
-  const [stateCode, setStateCode] = useState("OK");
+  const [stateCode, setStateCode] = useState("");
   const selectedState = getMpjeState(stateCode);
 
   const practiceParams = {

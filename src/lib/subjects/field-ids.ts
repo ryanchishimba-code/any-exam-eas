@@ -3,6 +3,7 @@ export const EXAM_FIELD_IDS = [
   "nursing",
   "usmle-step-1",
   "usmle-step-2",
+  "usmle-step-3",
   "pharmacy",
   "mpje",
 ] as const;
@@ -24,6 +25,10 @@ export const FIELD_ID_ALIASES: Record<string, ExamFieldId> = {
   "usmle-step-2": "usmle-step-2",
   "usmle-step2": "usmle-step-2",
   "step-2": "usmle-step-2",
+  "usmle-step-3": "usmle-step-3",
+  "usmle-step3": "usmle-step-3",
+  "step-3": "usmle-step-3",
+  "step3": "usmle-step-3",
   usmle: "usmle-step-2",
   medicine: "usmle-step-2",
 };

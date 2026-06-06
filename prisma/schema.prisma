@@ -331,8 +331,12 @@ model QuestionBankItem {
   topicCategory   String?
   /// Exam blueprint domain (NAPLEX 2025, NCLEX-NGN, USMLE, MPJE/UMPJE).
   blueprintDomain String?
-  /// mcq | vignette | ngn_bowtie | ngn_matrix | case_study | select_all | ordered_response
+  /// mcq | vignette | sequential | abstract | drug_ad | ethics | biostats | ccs_prompt | exhibit | …
   itemType        String   @default("mcq")
+  /// step1 | step2 | step3 for USMLE items
+  stepLevel       String?
+  /// Optional clinical/operational vignette displayed above the stem (MPJE scenarios).
+  scenario        String?
   question        String
   options         String
   correctAnswer   String
@@ -353,6 +357,7 @@ model QuestionBankItem {
   @@index([fieldId, topicCategory, active])
   @@index([fieldId, blueprintDomain, active])
   @@index([fieldId, itemType, active])
+  @@index([fieldId, stepLevel, active])
 }
 
 model QuestionBankSync {

@@ -16,7 +16,9 @@ export type StudyQuestionType =
   | "bow_tie"
   | "matrix"
   | "highlight"
-  | "unfolding_case";
+  | "unfolding_case"
+  | "k_type"
+  | "drag_drop";
 
 export type StudyMode =
   | "practice"
@@ -49,6 +51,7 @@ export type StudyQuestion = {
   /** Case vignette shown above the stem (NGN / clinical items). */
   vignette?: string;
   ngnFormat?: string;
+  ngnPayload?: Record<string, unknown>;
   caseStep?: number;
   options: string[];
   correctAnswers: string[];

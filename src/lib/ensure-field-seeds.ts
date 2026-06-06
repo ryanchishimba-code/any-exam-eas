@@ -29,6 +29,16 @@ function rowToCreateData(
     topicCategory: item.topicCategory ?? subjectId,
     blueprintDomain: item.blueprintDomain ?? null,
     itemType: item.itemType ?? "mcq",
+    stepLevel:
+      (item.ngnPayload?.stepLevel as string | undefined) ??
+      (item.tags?.includes("step3")
+        ? "step3"
+        : item.tags?.includes("step2")
+          ? "step2"
+          : item.tags?.includes("step1")
+            ? "step1"
+            : null),
+    scenario: item.scenario ?? item.vignette ?? null,
     question: item.question,
     options: serializeOptions(item),
     correctAnswer: item.correctAnswer,
@@ -56,7 +66,9 @@ export async function ensureStaticSeedsForField(fieldId: string): Promise<void> 
       fieldId === "mpje" ||
       fieldId === "nursing" ||
       fieldId === "pharmacy" ||
-      fieldId === "usmle-step-1";
+      fieldId === "usmle-step-1" ||
+      fieldId === "usmle-step-2" ||
+      fieldId === "usmle-step-3";
     if (!alwaysUpsert) {
       const count = await prisma.questionBankItem.count({
         where: { fieldId, active: true },

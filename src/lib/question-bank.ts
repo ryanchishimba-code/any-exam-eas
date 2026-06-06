@@ -15,10 +15,13 @@ import { toQuizletStyleQuestion } from "./question-format";
 export type BankItem = {
   id?: string;
   question: string;
-  options: [string, string, string, string];
+  /** MCQ: 4 options; K-type: 7 combos; SATA: variable. */
+  options: string[];
   correctAnswer: string;
   explanation: string;
   solutionSteps?: string[];
+  /** Optional scenario vignette (MPJE case stem). */
+  scenario?: string;
   /** Subject/topic id within the field — e.g. "calculus" */
   subjectId?: string;
   /** Two-letter state code for MPJE state law; omit/null = federal or uniform. */

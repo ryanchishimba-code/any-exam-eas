@@ -70,7 +70,8 @@ export function mpjePracticeHref(options?: {
 }
 
 /** Full 120-question / 2.5-hour MPJE practice exam simulator. */
-export function mpjePracticeExamHref(stateCode = "OK"): string {
+export function mpjePracticeExamHref(stateCode?: string): string {
+  if (!stateCode?.trim()) return "/mpje/practice-exam";
   const qs = new URLSearchParams({
     state: stateCode,
     mpjeState: stateCode,

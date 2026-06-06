@@ -1,5 +1,7 @@
 import type { BankItem } from "@/lib/question-bank";
 import { prisma } from "@/lib/prisma";
+import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
+import { selectDiverseMpjeItems } from "@/lib/mpje/sample-diversity";
 import {
   mpjeFederalOnlyWhere,
   mpjeStateOnlyWhere,
@@ -20,7 +22,7 @@ function shuffle<T>(items: T[]): T[] {
 function dedupeByStem(items: BankItem[]): BankItem[] {
   const seen = new Map<string, BankItem>();
   for (const item of items) {
-    const key = item.question.trim().toLowerCase();
+    const key = `${item.scenario?.trim().toLowerCase() ?? ""}::${item.question.trim().toLowerCase()}`;
     if (!seen.has(key)) seen.set(key, item);
   }
   return [...seen.values()];
@@ -35,33 +37,6 @@ export type MpjeSampleMeta = {
   usedFederalFallback: boolean;
 };
 
-function rowToBankItem(row: {
-  id: string;
-  subjectId: string;
-  stateCode: string | null;
-  question: string;
-  options: string;
-  correctAnswer: string;
-  explanation: string;
-  solutionSteps: string | null;
-  tags: string | null;
-}): BankItem {
-  const options = JSON.parse(row.options) as string[];
-  return {
-    id: row.id,
-    subjectId: row.subjectId,
-    stateCode: row.stateCode,
-    question: row.question,
-    options: options as [string, string, string, string],
-    correctAnswer: row.correctAnswer,
-    explanation: row.explanation,
-    solutionSteps: row.solutionSteps
-      ? (JSON.parse(row.solutionSteps) as string[])
-      : undefined,
-    tags: row.tags ? (JSON.parse(row.tags) as string[]) : undefined,
-  };
-}
-
 const ROW_SELECT = {
   id: true,
   subjectId: true,
@@ -72,6 +47,12 @@ const ROW_SELECT = {
   explanation: true,
   solutionSteps: true,
   tags: true,
+  itemType: true,
+  scenario: true,
+  difficulty: true,
+  topicCategory: true,
+  blueprintDomain: true,
+  references: true,
 } as const;
 
 /**
@@ -121,8 +102,8 @@ export async function sampleMpjeQuestionBankItems(params: {
   ]);
 
   let pool = dedupeByStem([
-    ...shuffle(stateRows.map(rowToBankItem)),
-    ...shuffle(federalRows.map(rowToBankItem)),
+    ...shuffle(stateRows.map(enrichBankItemFromRow)),
+    ...shuffle(federalRows.map(enrichBankItemFromRow)),
   ]);
 
   if (pool.length < want) {
@@ -131,10 +112,10 @@ export async function sampleMpjeQuestionBankItems(params: {
       take: pullCap,
       select: ROW_SELECT,
     });
-    pool = dedupeByStem([...pool, ...shuffle(extra.map(rowToBankItem))]);
+    pool = dedupeByStem([...pool, ...shuffle(extra.map(enrichBankItemFromRow))]);
   }
 
-  const items = shuffle(pool).slice(0, want);
+  const items = selectDiverseMpjeItems(pool, want);
   const stateSpecificCount = items.filter((i) => i.stateCode === stateCode).length;
   const federalCount = items.filter((i) => !i.stateCode).length;
 
@@ -149,6 +130,31 @@ export async function sampleMpjeQuestionBankItems(params: {
       usedFederalFallback: stateAvail === 0 && federalCount > 0,
     },
   };
+}
+
+/** Federal / uniform items only (null state_code) — used when no state is selected. */
+export async function sampleMpjeFederalOnlyItems(params: {
+  subjectId?: string;
+  count: number;
+}): Promise<{ items: BankItem[]; federalAvailable: number }> {
+  const want = Math.max(1, params.count);
+  const fieldId = "mpje";
+  const { subjectId } = params;
+
+  const federalAvail = await prisma.questionBankItem.count({
+    where: mpjeFederalOnlyWhere(fieldId, subjectId),
+  });
+
+  const rows = await prisma.questionBankItem.findMany({
+    where: mpjeFederalOnlyWhere(fieldId, subjectId),
+    take: Math.min(SAMPLE_MAX_PULL, Math.max(want * 3, want + 20)),
+    select: ROW_SELECT,
+  });
+
+  const pool = dedupeByStem(shuffle(rows.map(enrichBankItemFromRow)));
+  const items = selectDiverseMpjeItems(pool, want);
+
+  return { items, federalAvailable: federalAvail };
 }
 
 export async function countMpjeQuestionsForState(

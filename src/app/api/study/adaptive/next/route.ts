@@ -144,27 +144,36 @@ export async function POST(req: Request) {
         items = prepareMpjeBankItems(items, mpjeOptions, mpjeLabel);
       }
 
+      const { bankItemToRawQuestion } = await import("@/lib/exam-prep/ngn-bank-bridge");
+      const { bankItemToNaplexRaw } = await import("@/lib/exam-prep/naplex-bank-bridge");
+      const { bankItemToUsmleRaw, isUsmleField } = await import(
+        "@/lib/exam-prep/usmle-bank-bridge"
+      );
+
       for (let i = 0; i < items.length; i++) {
         const item = items[i];
-        pool.push(
-          examQuestionToStudy(
-            {
-              id: i + 1,
-              type: "multiple_choice",
-              question: item.question,
-              options: [...item.options],
-              correctAnswer: item.correctAnswer,
-              explanation: item.explanation,
-              solutionSteps: item.solutionSteps,
-              tags: item.tags,
-              highYield: true,
-              field: body.field,
-              subjectId,
-              bankItemId: item.id,
-            },
-            pool.length
-          )
-        );
+        const examQ =
+          fieldId === "nursing"
+            ? bankItemToRawQuestion(item, i, { field: body.field, subjectId })
+            : fieldId === "pharmacy"
+              ? bankItemToNaplexRaw(item, i, { field: body.field, subjectId })
+              : isUsmleField(fieldId)
+                ? bankItemToUsmleRaw(item, i, { field: body.field, subjectId })
+                : {
+                id: i + 1,
+                type: "multiple_choice" as const,
+                question: item.question,
+                options: [...item.options],
+                correctAnswer: item.correctAnswer,
+                explanation: item.explanation,
+                solutionSteps: item.solutionSteps,
+                tags: item.tags,
+                highYield: true,
+                field: body.field,
+                subjectId,
+                bankItemId: item.id,
+              };
+        pool.push(examQuestionToStudy(examQ, pool.length));
       }
     }
 

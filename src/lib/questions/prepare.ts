@@ -10,9 +10,16 @@ import {
   parseBowTieLayout,
   parseMatrixLayout,
 } from "./ngn-structures";
+import { shufflePreservingSequentialSets } from "./sequential-sets";
 import type { RawQuestionInput, StudyQuestion, StudyQuestionType } from "./types";
 
 function toCorrectAnswers(type: StudyQuestionType, correct: string): string[] {
+  if (type === "drag_drop") {
+    return correct
+      .split(",")
+      .map((s) => cleanOptionText(s.trim()))
+      .filter(Boolean);
+  }
   if (
     type === "select_all" ||
     type === "ordered_response" ||
@@ -20,10 +27,10 @@ function toCorrectAnswers(type: StudyQuestionType, correct: string): string[] {
     type === "matrix" ||
     type === "highlight"
   ) {
-    return correct
-      .split(",")
-      .map((s) => cleanOptionText(s.trim()))
-      .filter(Boolean);
+    const parts = correct.includes("|||")
+      ? correct.split("|||")
+      : correct.split(",");
+    return parts.map((s) => cleanOptionText(s.trim())).filter(Boolean);
   }
   return [cleanOptionText(correct)];
 }
@@ -58,23 +65,37 @@ export function examQuestionToStudy(
     options = matrixOptionsFromLayout(layout);
   } else if (type === "highlight") {
     options = toCorrectAnswers(type, correctAnswer);
-  } else if (type !== "ordered_response" && type !== "select_all") {
+  } else if (type === "k_type") {
+    options = options.map(cleanOptionText);
+  } else if (type === "select_all") {
+    options = options.map(cleanOptionText);
+  } else if (type === "ordered_response" || type === "drag_drop") {
+    options = options.map(cleanOptionText);
+  } else if (type === "short_answer") {
+    options = [];
+  } else {
     const normalized = normalizeQuestionOptions(options, correctAnswer);
     const shuffled = shuffleAnswerOptions(normalized.options, normalized.correctAnswer);
     options = shuffled.options;
     correctAnswer = shuffled.correctAnswer;
-  } else if (type === "select_all") {
-    options = options.map(cleanOptionText);
-  } else if (type === "ordered_response") {
-    options = options.map(cleanOptionText);
   }
 
-  const stem = normalizeStem(q.question);
+  let stem = q.question;
   let vignette = q.vignette?.trim();
-  if (!vignette && q.vignette === undefined && stem.includes("\n\n")) {
-    const parts = stem.split("\n\n");
-    if (parts[0].length > 80) {
-      vignette = parts[0];
+  if (vignette) {
+    stem = normalizeStem(stem);
+  } else {
+    const normalized = normalizeStem(stem);
+    if (normalized.includes("\n\n")) {
+      const parts = normalized.split("\n\n");
+      if (parts[0].length >= 30 && parts.length >= 2) {
+        vignette = parts[0].trim();
+        stem = parts.slice(1).join("\n\n").trim();
+      } else {
+        stem = normalized;
+      }
+    } else {
+      stem = normalized;
     }
   }
 
@@ -85,6 +106,7 @@ export function examQuestionToStudy(
     stem,
     vignette,
     ngnFormat: q.ngnFormat ?? q.type,
+    ngnPayload: q.ngnPayload,
     caseStep: q.caseStep,
     options,
     correctAnswers: toCorrectAnswers(type, correctAnswer),
@@ -113,12 +135,7 @@ export function prepareQuestionsForSession(
 
   if (opts?.shuffleOrder === false) return prepared;
 
-  const shuffled = [...prepared];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
+  return shufflePreservingSequentialSets(prepared);
 }
 
 export function isAnswerCorrect(
@@ -133,6 +150,24 @@ export function isAnswerCorrect(
     if (normalizedSelected.length !== normalizedCorrect.length) return false;
     return normalizedSelected.every(
       (s, i) => s.toLowerCase() === normalizedCorrect[i]?.toLowerCase()
+    );
+  }
+
+  if (question.type === "short_answer") {
+    const sel = parseNumericAnswer(normalizedSelected[0] ?? "");
+    const cor = parseNumericAnswer(normalizedCorrect[0] ?? "");
+    if (sel == null || cor == null) {
+      return normalizedSelected.some((s) =>
+        normalizedCorrect.some((c) => s.toLowerCase() === c.toLowerCase())
+      );
+    }
+    return Math.abs(sel - cor) < 0.11;
+  }
+
+  if (question.type === "drag_drop") {
+    if (normalizedSelected.length !== normalizedCorrect.length) return false;
+    return normalizedCorrect.every((c) =>
+      normalizedSelected.some((s) => s.toLowerCase() === c.toLowerCase())
     );
   }
 
@@ -151,6 +186,11 @@ export function isAnswerCorrect(
   return normalizedSelected.some((s) =>
     normalizedCorrect.some((c) => s.toLowerCase() === c.toLowerCase())
   );
+}
+
+function parseNumericAnswer(raw: string): number | null {
+  const n = parseFloat(raw.replace(/[^0-9.-]/g, ""));
+  return Number.isFinite(n) ? n : null;
 }
 
 function hashStem(stem: string): string {

@@ -17,8 +17,11 @@ export type MpjePracticeExamQuestion = {
   subjectLabel: string;
   difficulty: MpjeExamDifficulty;
   isPretest: boolean;
+  itemType: string;
+  scenario: string | null;
+  statements?: string[];
   question: string;
-  options: [string, string, string, string];
+  options: string[];
   correctAnswer: string;
   explanation: string;
   stateCode: string | null;

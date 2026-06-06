@@ -27,7 +27,7 @@ export const pharmacyModule: SubjectModule = {
     supportsDrugQuestions: true,
     supportsCalculations: true,
     requiresCitationValidation: true,
-    allMultipleChoice: true,
+    allMultipleChoice: false,
     defaultHighYield: true,
   },
   cognitiveFramework: {
@@ -61,7 +61,13 @@ export const pharmacyModule: SubjectModule = {
     oerDomains: ["chem.libretexts.org", "fda.gov", "nih.gov"],
     searchQueryHints: ["NAPLEX", "pharmacotherapy", "pharmacy"],
   },
-  supportedQuestionTypes: ["multiple_choice", "calculation"],
+  supportedQuestionTypes: [
+    "multiple_choice",
+    "calculation",
+    "clinical_vignette",
+    "prioritization",
+    "case_study",
+  ],
   getExamSystemAugmentation: () => PHARMACY_EXAM_SYSTEM_AUGMENTATION,
   getExamUserAugmentation: () => getPharmacyUserAugmentation(),
   extractConcepts: extractPharmacyConcepts,

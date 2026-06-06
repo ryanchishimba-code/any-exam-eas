@@ -37,8 +37,7 @@ import {
   getMpjeState,
   type MpjeVariant,
 } from "@/lib/mpje/config";
-import { MPJE_DEFAULT_STATE_CODE } from "@/lib/mpje/us-jurisdictions";
-import { parseMpjeStateParam } from "@/lib/mpje/validators";
+import { parseOptionalMpjeStateParam } from "@/lib/mpje/validators";
 import { StudySessionPlayer } from "./StudySessionPlayer";
 import type { AdaptiveSessionMeta, RawQuestionInput, StudyMode } from "@/lib/questions/types";
 import type { ExamQuestion } from "@/lib/ai";
@@ -132,7 +131,7 @@ export function StudyBankPractice() {
   const [adaptiveMeta, setAdaptiveMeta] = useState<AdaptiveSessionMeta | null>(null);
   const [nclexLength, setNclexLength] = useState<NclexTimedVariant>("minimum");
   const [mpjeVariant, setMpjeVariant] = useState<MpjeVariant>("state");
-  const [mpjeState, setMpjeState] = useState(MPJE_DEFAULT_STATE_CODE);
+  const [mpjeState, setMpjeState] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
@@ -189,8 +188,11 @@ export function StudyBankPractice() {
   useEffect(() => {
     const variantParam = searchParams.get("mpjeVariant");
     if (variantParam) setMpjeVariant(parseMpjeVariant(variantParam));
-    const stateParam = searchParams.get("state") ?? searchParams.get("mpjeState");
-    if (stateParam) setMpjeState(parseMpjeStateParam(stateParam));
+    const parsed = parseOptionalMpjeStateParam(
+      searchParams.get("state"),
+      searchParams.get("mpjeState")
+    );
+    setMpjeState(parsed ?? "");
   }, [searchParams]);
 
   useEffect(() => {
@@ -244,7 +246,10 @@ export function StudyBankPractice() {
           fieldId,
           nclexLength: isNclex ? nclexLength : undefined,
           mpjeVariant: isMpje ? resolvedVariant : undefined,
-          mpjeState: isMpje && resolvedVariant === "state" ? resolvedState : undefined,
+          mpjeState:
+            isMpje && resolvedVariant === "state" && resolvedState
+              ? resolvedState
+              : undefined,
         }),
         { scroll: false }
       );
@@ -259,7 +264,10 @@ export function StudyBankPractice() {
         pace: overrides?.pace ?? bankPace,
         style: overrides?.style ?? bankStyle,
         mpjeVariant: isMpje ? resolvedVariant : undefined,
-        mpjeState: isMpje && resolvedVariant === "state" ? resolvedState : undefined,
+        mpjeState:
+          isMpje && resolvedVariant === "state" && resolvedState
+            ? resolvedState
+            : undefined,
       }),
       { scroll: false }
     );
@@ -294,8 +302,10 @@ export function StudyBankPractice() {
             ...(isMpje
               ? {
                   mpjeVariant,
-                  state: mpjeVariant === "state" ? mpjeState : undefined,
-                  mpjeState: mpjeVariant === "state" ? mpjeState : undefined,
+                  state:
+                    mpjeVariant === "state" && mpjeState ? mpjeState : undefined,
+                  mpjeState:
+                    mpjeVariant === "state" && mpjeState ? mpjeState : undefined,
                 }
               : {}),
           }),
@@ -336,7 +346,7 @@ export function StudyBankPractice() {
       });
       if (isMpje) {
         qs.set("mpjeVariant", mpjeVariant);
-        if (mpjeVariant === "state") {
+        if (mpjeVariant === "state" && mpjeState) {
           qs.set("state", mpjeState);
           qs.set("mpjeState", mpjeState);
         }
@@ -551,7 +561,9 @@ export function StudyBankPractice() {
                 <li>
                   {mpjeVariant === "uniform"
                     ? "Uniform MPJE (UMPJE) — federal + common state law"
-                    : `State-specific MPJE — ${mpjeState} pharmacy law`}
+                    : mpjeState
+                      ? `State-specific MPJE — ${mpjeState} pharmacy law`
+                      : "Federal pharmacy law only (no state selected)"}
                 </li>
               )}
               <li>Fixed board-length session with per-question timer</li>
@@ -567,7 +579,7 @@ export function StudyBankPractice() {
             <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
               Full-length practice: 120 questions, 2.5 hours, countdown timer, flag &amp; review —
               matches the real MPJE format for{" "}
-              {getMpjeState(mpjeState)?.name ?? mpjeState}.
+              {getMpjeState(mpjeState)?.name ?? (mpjeState || "federal")} pharmacy law.
             </p>
             <Button
               href={mpjePracticeExamHref(mpjeState)}

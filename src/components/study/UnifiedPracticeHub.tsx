@@ -19,8 +19,7 @@ import {
 } from "@/lib/exam-prep/practice-modes";
 import type { ExamFieldId } from "@/lib/exam-prep/types";
 import { MpjeStateSelect } from "./MpjeStateSelect";
-import { MPJE_DEFAULT_STATE_CODE } from "@/lib/mpje/us-jurisdictions";
-import { parseMpjeStateParam } from "@/lib/mpje/validators";
+import { parseOptionalMpjeStateParam } from "@/lib/mpje/validators";
 import { mpjePracticeExamHref } from "@/lib/study-hub/config";
 import { cn } from "@/lib/utils";
 
@@ -46,16 +45,16 @@ export function UnifiedPracticeHub() {
     resolveFieldId(searchParams.get("field"))
   );
   const [mode, setMode] = useState<PracticeModeId>("adaptive");
-  const [mpjeState, setMpjeState] = useState(MPJE_DEFAULT_STATE_CODE);
+  const [mpjeState, setMpjeState] = useState("");
 
   useEffect(() => {
     const f = resolveFieldId(searchParams.get("field"));
     setFieldId(f);
-    const state = parseMpjeStateParam(
+    const state = parseOptionalMpjeStateParam(
       searchParams.get("state"),
       searchParams.get("mpjeState")
     );
-    setMpjeState(state);
+    setMpjeState(state ?? "");
   }, [searchParams]);
 
   const exam = EXAM_FIELD_OPTIONS.find((e) => e.id === fieldId)!;
@@ -76,9 +75,11 @@ export function UnifiedPracticeHub() {
       const qs = new URLSearchParams({
         field: "mpje",
         mpjeVariant: "state",
-        state: mpjeState,
-        mpjeState,
       });
+      if (mpjeState) {
+        qs.set("state", mpjeState);
+        qs.set("mpjeState", mpjeState);
+      }
       if (mode === "simulator" || mode === "test_day") {
         return mpjePracticeExamHref(mpjeState);
       }

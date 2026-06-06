@@ -4,8 +4,32 @@ import type { StudyQuestion } from "./types";
 
 export type NgnLayoutInput = Pick<
   ExamQuestion,
-  "type" | "question" | "options" | "correctAnswer" | "vignette" | "chartData"
+  "type" | "question" | "options" | "correctAnswer" | "vignette" | "chartData" | "ngnPayload"
 >;
+
+function resolveChartData(
+  input: NgnLayoutInput & { ngnPayload?: Record<string, unknown> }
+): Record<string, unknown> | undefined {
+  if (input.chartData && isRecord(input.chartData)) return input.chartData;
+  const payload = input.ngnPayload;
+  if (!payload?.kind) return undefined;
+  const kind = String(payload.kind);
+  if (kind === "bow_tie" || kind === "matrix") return payload;
+  if (kind === "highlight") {
+    const text = String(payload.text ?? "");
+    const highlights = (payload.highlights as string[]) ?? [];
+    const parts = text.split(/,\s*/).filter(Boolean);
+    return {
+      kind: "highlight",
+      segments: parts.map((p, i) => ({
+        id: `seg-${i}`,
+        text: p.trim(),
+      })),
+      highlights,
+    };
+  }
+  return payload;
+}
 
 function toLayoutInput(q: NgnLayoutInput | StudyQuestion): NgnLayoutInput {
   if ("stem" in q) {
@@ -15,10 +39,14 @@ function toLayoutInput(q: NgnLayoutInput | StudyQuestion): NgnLayoutInput {
       options: q.options,
       correctAnswer: q.correctAnswers.join(","),
       vignette: q.vignette,
-      chartData: q.chartData,
+      chartData: q.chartData ?? resolveChartData({ ngnPayload: q.ngnPayload } as NgnLayoutInput),
+      ngnPayload: q.ngnPayload,
     };
   }
-  return q;
+  return {
+    ...q,
+    chartData: resolveChartData(q),
+  };
 }
 
 export type BowTieLayout = {
@@ -160,11 +188,23 @@ export function parseHighlightLayout(q: NgnLayoutInput | StudyQuestion): Highlig
   const input = toLayoutInput(q);
   const chart = input.chartData;
   if (isRecord(chart) && chart.kind === "highlight") {
-    return { segments: (chart.segments as HighlightSegment[]) ?? [] };
+    const segs = (chart.segments as HighlightSegment[]) ?? [];
+    if (segs.length) return { segments: segs };
+    const highlights = (chart.highlights as string[]) ?? [];
+    const text = String(chart.text ?? input.vignette ?? input.question);
+    const parts = text.includes(",")
+      ? text.split(/,\s*/).filter(Boolean)
+      : text.split(/(?<=[.!?])\s+/).filter(Boolean);
+    return {
+      segments: parts.map((s, i) => ({ id: `seg-${i}`, text: s.trim() })),
+      ...(highlights.length ? { highlights } : {}),
+    };
   }
 
   const text = input.vignette ?? input.question;
-  const sentences = text.split(/(?<=[.!?])\s+/).filter(Boolean);
+  const sentences = text.includes(",")
+    ? text.split(/,\s*/).filter(Boolean)
+    : text.split(/(?<=[.!?])\s+/).filter(Boolean);
   return {
     segments: sentences.map((s, i) => ({
       id: `seg-${i}`,

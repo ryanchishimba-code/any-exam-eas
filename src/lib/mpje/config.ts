@@ -162,8 +162,10 @@ export function resolveMpjeGenerationOptions(params: {
   stateCode?: string | null;
 }): MpjeGenerationOptions {
   const variant = parseMpjeVariant(params.variant);
-  return {
-    variant,
-    stateCode: variant === "state" ? resolveMpjeStateCode(params.stateCode) : undefined,
-  };
+  const trimmed = params.stateCode?.trim();
+  const stateCode =
+    variant === "state" && trimmed
+      ? getMpjeState(trimmed)?.code
+      : undefined;
+  return { variant, stateCode };
 }

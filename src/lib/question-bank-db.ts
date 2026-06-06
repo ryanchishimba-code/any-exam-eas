@@ -1,4 +1,5 @@
 import type { BankItem } from "./question-bank";
+import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { prisma } from "@/lib/prisma";
 import {
   ensureStaticSeedsForField,
@@ -6,7 +7,10 @@ import {
 } from "@/lib/ensure-field-seeds";
 import { getHealthBankItems } from "@/lib/health-sciences-question-bank";
 import { isMpjeField } from "@/lib/mpje/config";
-import { sampleMpjeQuestionBankItems } from "@/lib/mpje/sample-bank";
+import {
+  sampleMpjeFederalOnlyItems,
+  sampleMpjeQuestionBankItems,
+} from "@/lib/mpje/sample-bank";
 import { ensureQuestionBankSeeded } from "@/lib/sync-question-bank";
 
 /** Max rows read per sample query (keeps Neon queries bounded). */
@@ -14,26 +18,6 @@ export const QUESTION_BANK_SAMPLE_MAX_PULL = 500;
 
 /** Default pool size per subject for adaptive selection. */
 export const ADAPTIVE_QUESTION_POOL_PER_SUBJECT = 300;
-
-function parseStoredOptions(raw: string): {
-  options: [string, string, string, string];
-  ngnPayload?: Record<string, unknown>;
-} {
-  const parsed = JSON.parse(raw) as unknown;
-  if (Array.isArray(parsed)) {
-    const opts = parsed.length >= 4 ? parsed.slice(0, 4) : [...parsed, "", "", ""].slice(0, 4);
-    return { options: opts as [string, string, string, string] };
-  }
-  if (parsed && typeof parsed === "object") {
-    const obj = parsed as Record<string, unknown>;
-    const list = Array.isArray(obj.options) ? obj.options : ["A", "B", "C", "D"];
-    const opts = list.length >= 4 ? list.slice(0, 4) : [...list, "", "", ""].slice(0, 4);
-    const { options: _opts, ...ngnPayload } = obj;
-    void _opts;
-    return { options: opts as [string, string, string, string], ngnPayload };
-  }
-  return { options: ["A", "B", "C", "D"] };
-}
 
 function rowToBankItem(row: {
   id: string;
@@ -43,6 +27,7 @@ function rowToBankItem(row: {
   topicCategory?: string | null;
   blueprintDomain?: string | null;
   itemType?: string | null;
+  scenario?: string | null;
   question: string;
   options: string;
   correctAnswer: string;
@@ -51,28 +36,7 @@ function rowToBankItem(row: {
   tags: string | null;
   references?: unknown;
 }): BankItem {
-  const { options, ngnPayload } = parseStoredOptions(row.options);
-  return {
-    id: row.id,
-    subjectId: row.subjectId,
-    stateCode: row.stateCode ?? null,
-    difficulty: row.difficulty ?? undefined,
-    topicCategory: row.topicCategory ?? undefined,
-    blueprintDomain: row.blueprintDomain ?? undefined,
-    itemType: row.itemType ?? undefined,
-    question: row.question,
-    options,
-    correctAnswer: row.correctAnswer,
-    explanation: row.explanation,
-    solutionSteps: row.solutionSteps
-      ? (JSON.parse(row.solutionSteps) as string[])
-      : undefined,
-    tags: row.tags ? (JSON.parse(row.tags) as string[]) : undefined,
-    references: Array.isArray(row.references)
-      ? (row.references as BankItem["references"])
-      : undefined,
-    ngnPayload,
-  };
+  return enrichBankItemFromRow(row);
 }
 
 export function shuffleBankItems<T>(items: T[]): T[] {
@@ -110,10 +74,14 @@ function staticSeedFallback(
   stateCode?: string
 ): BankItem[] {
   let items = getHealthBankItems(fieldId, subjectId);
-  if (stateCode && isMpjeField(fieldId)) {
-    const stateItems = items.filter((i) => i.stateCode === stateCode);
-    const federalItems = items.filter((i) => !i.stateCode);
-    items = [...stateItems, ...federalItems];
+  if (isMpjeField(fieldId)) {
+    if (stateCode) {
+      const stateItems = items.filter((i) => i.stateCode === stateCode);
+      const federalItems = items.filter((i) => !i.stateCode);
+      items = [...stateItems, ...federalItems];
+    } else {
+      items = items.filter((i) => !i.stateCode);
+    }
   }
   if (items.length === 0) return [];
   return dedupeBankItemsByStem(shuffleBankItems(items)).slice(0, count);
@@ -143,19 +111,27 @@ export async function sampleQuestionBankItems(params: {
 }): Promise<BankItem[]> {
   await ensureBankAvailable(params.fieldId, params.subjectId);
 
-  if (isMpjeField(params.fieldId) && params.stateCode) {
-    const { items } = await sampleMpjeQuestionBankItems({
+  if (isMpjeField(params.fieldId)) {
+    if (params.stateCode) {
+      const { items } = await sampleMpjeQuestionBankItems({
+        subjectId: params.subjectId,
+        stateCode: params.stateCode,
+        count: params.count,
+      });
+      if (items.length > 0) return items;
+      return staticSeedFallback(
+        params.fieldId,
+        params.subjectId,
+        params.count,
+        params.stateCode
+      );
+    }
+    const { items } = await sampleMpjeFederalOnlyItems({
       subjectId: params.subjectId,
-      stateCode: params.stateCode,
       count: params.count,
     });
     if (items.length > 0) return items;
-    return staticSeedFallback(
-      params.fieldId,
-      params.subjectId,
-      params.count,
-      params.stateCode
-    );
+    return staticSeedFallback(params.fieldId, params.subjectId, params.count);
   }
 
   const want = Math.max(1, params.count);
@@ -233,12 +209,17 @@ export async function sampleQuestionBankItemsForField(params: {
 }): Promise<BankItem[]> {
   await ensureBankAvailable(params.fieldId);
 
-  if (isMpjeField(params.fieldId) && params.stateCode) {
-    const { items } = await sampleMpjeQuestionBankItems({
-      stateCode: params.stateCode,
-      count: params.count,
-    });
-    if (items.length > 0) return items;
+  if (isMpjeField(params.fieldId)) {
+    if (params.stateCode) {
+      const { items } = await sampleMpjeQuestionBankItems({
+        stateCode: params.stateCode,
+        count: params.count,
+      });
+      if (items.length > 0) return items;
+    } else {
+      const { items } = await sampleMpjeFederalOnlyItems({ count: params.count });
+      if (items.length > 0) return items;
+    }
   }
 
   const want = Math.max(1, params.count);

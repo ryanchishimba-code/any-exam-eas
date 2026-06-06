@@ -114,6 +114,11 @@ export async function listFeedback(params: {
   return { items: rows.map(mapRow), total };
 }
 
+export async function getFeedbackById(id: string): Promise<FeedbackListItem | null> {
+  const row = await prisma.userFeedback.findUnique({ where: { id } });
+  return row ? mapRow(row) : null;
+}
+
 export async function setFeedbackResolved(
   id: string,
   resolved: boolean,
