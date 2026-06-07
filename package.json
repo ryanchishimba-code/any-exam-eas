@@ -9,6 +9,7 @@
     "dev:local": "node scripts/local-dev.mjs",
     "dev:fresh": "npm run clean && npm run dev",
     "dev:fix": "node scripts/local-dev.mjs",
+    "dev:clean": "DEV_CLEAN=1 node scripts/local-dev.mjs",
     "build": "prisma generate && next build && node scripts/mark-production-build.mjs",
     "vercel-build": "node scripts/vercel-build.mjs",
     "start": "next start",

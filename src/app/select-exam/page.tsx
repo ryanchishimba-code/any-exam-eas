@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { ExamSelectionScreen } from "@/components/edtech/ExamSelectionScreen";
+import { ensureAllBoardExams } from "@/lib/edtech/board-exam-sync";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { ROUTES } from "@/lib/routes";
 
@@ -22,6 +23,13 @@ export default async function SelectExamPage({ searchParams }: PageProps) {
 
   const params = await searchParams;
   const switchMode = params.switch === "1" || params.switch === "true";
+
+  try {
+    await ensureAllBoardExams();
+  } catch (err) {
+    console.error("[select-exam] board exam bootstrap failed:", err);
+  }
+
   const pref = await getUserExamPreference(session.user.id);
 
   if (pref && !switchMode) {

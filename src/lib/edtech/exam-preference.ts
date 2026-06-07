@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { ensureBoardExam } from "@/lib/edtech/board-exam-sync";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import type { ExamSlug, UserExamPreference } from "@/types/edtech";
 
@@ -18,6 +19,8 @@ export async function getUserExamPreference(userId: string): Promise<UserExamPre
 }
 
 export async function setUserExamPreference(userId: string, examSlug: ExamSlug): Promise<void> {
+  await ensureBoardExam(examSlug);
+
   const now = new Date();
   await prisma.userExamPreference.upsert({
     where: { userId },

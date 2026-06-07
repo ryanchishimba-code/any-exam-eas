@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { auth } from "@/auth";
-import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import { isExamSlug } from "@/lib/edtech/exams";
+import { getUserExamPreference, setUserExamPreference } from "@/lib/edtech/exam-preference";
+import type { ExamSlug } from "@/types/edtech";
 
 export const runtime = "nodejs";
 
@@ -12,4 +15,40 @@ export async function GET() {
 
   const pref = await getUserExamPreference(session.user.id);
   return NextResponse.json({ examSlug: pref?.examSlug ?? null });
+}
+
+export async function POST(req: Request) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  }
+
+  let body: unknown;
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ ok: false, error: "Invalid request body" }, { status: 400 });
+  }
+
+  const examSlug =
+    typeof body === "object" && body !== null && "examSlug" in body
+      ? (body as { examSlug?: unknown }).examSlug
+      : undefined;
+
+  if (typeof examSlug !== "string" || !isExamSlug(examSlug)) {
+    return NextResponse.json({ ok: false, error: "Invalid exam selection" }, { status: 400 });
+  }
+
+  try {
+    await setUserExamPreference(session.user.id, examSlug as ExamSlug);
+    revalidatePath("/study-hub");
+    revalidatePath("/select-exam");
+    return NextResponse.json({ ok: true, examSlug });
+  } catch (err) {
+    console.error("[POST /api/user/exam-preference]", err);
+    return NextResponse.json(
+      { ok: false, error: "Failed to save exam preference" },
+      { status: 500 }
+    );
+  }
 }

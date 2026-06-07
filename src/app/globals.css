@@ -364,7 +364,7 @@ body {
 .apple-select:focus {
   border-color: var(--color-accent);
   box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.12);
-  background: #fff;
+  background: var(--color-surface-elevated);
 }
 
 .apple-subtle {
@@ -393,7 +393,15 @@ body {
 .apple-input:focus {
   border-color: var(--color-accent);
   box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.12);
-  background: #fff;
+  background: var(--color-surface-elevated);
+}
+
+.apple-input:-webkit-autofill,
+.apple-input:-webkit-autofill:hover,
+.apple-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-ink);
+  box-shadow: 0 0 0 1000px var(--color-surface-elevated) inset;
+  transition: background-color 9999s ease-out 0s;
 }
 
 .apple-label {

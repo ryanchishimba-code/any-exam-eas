@@ -10,20 +10,34 @@ import type { ExamSlug } from "@/types/edtech";
 import type { MpjeVariant } from "@/lib/mpje/config";
 import { isMpjeUsJurisdiction } from "@/lib/mpje/us-jurisdictions";
 
-/** Persist exam without redirect — client handles confetti + navigation. */
-export async function persistExamPreference(examSlug: string): Promise<{ ok: true }> {
-  const session = await auth();
-  if (!session?.user?.id) {
-    throw new Error("Unauthorized");
-  }
-  if (!isExamSlug(examSlug)) {
-    throw new Error("Invalid exam");
-  }
+export type PersistExamPreferenceResult =
+  | { ok: true }
+  | { ok: false; error: string };
 
-  await setUserExamPreference(session.user.id, examSlug);
-  revalidatePath("/study-hub");
-  revalidatePath("/select-exam");
-  return { ok: true };
+/** Persist exam without redirect — client handles confetti + navigation. */
+export async function persistExamPreference(
+  examSlug: string
+): Promise<PersistExamPreferenceResult> {
+  try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return { ok: false, error: "Please log in again to save your exam choice." };
+    }
+    if (!isExamSlug(examSlug)) {
+      return { ok: false, error: "That exam is not available. Try another card." };
+    }
+
+    await setUserExamPreference(session.user.id, examSlug);
+    revalidatePath("/study-hub");
+    revalidatePath("/select-exam");
+    return { ok: true };
+  } catch (err) {
+    console.error("[persistExamPreference]", err);
+    return {
+      ok: false,
+      error: "We couldn't save your exam choice. Check your connection and try again.",
+    };
+  }
 }
 
 export async function saveExamPreference(formData: FormData) {

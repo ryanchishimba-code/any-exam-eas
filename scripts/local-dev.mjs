@@ -4,9 +4,10 @@
  * Usage: ./start-local.sh  OR  node scripts/local-dev.mjs
  */
 import { spawn, spawnSync, execSync } from "node:child_process";
-import { existsSync, rmSync } from "node:fs";
+import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { clearNextCacheIfNeeded } from "./next-cache-utils.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const nodeDir = path.join(root, ".tools", "node-v22.14.0-darwin-arm64", "bin");
@@ -60,13 +61,7 @@ function freePort(port) {
 }
 
 function cleanNextCache() {
-  const nextDir = path.join(root, ".next");
-  const prodMarker = path.join(nextDir, ".production-build");
-  if (!existsSync(nextDir)) return;
-  if (existsSync(prodMarker) || process.env.DEV_CLEAN === "1") {
-    console.log("Clearing stale .next cache…");
-    rmSync(nextDir, { recursive: true, force: true });
-  }
+  clearNextCacheIfNeeded(root);
 }
 
 console.log("Any Exam Easy — local dev\n");

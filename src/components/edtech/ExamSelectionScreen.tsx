@@ -14,6 +14,7 @@ import {
   Stethoscope,
 } from "lucide-react";
 import { ExamCard } from "@/components/edtech/ExamCard";
+import { StatusMessage } from "@/components/ui/StatusMessage";
 import { persistExamPreference } from "@/lib/edtech/actions";
 import { fireExamSelectionConfetti } from "@/lib/edtech/confetti";
 import { EXAM_SLUGS } from "@/lib/edtech/exams";
@@ -74,13 +75,21 @@ export function ExamSelectionScreen({
   const [pending, startTransition] = useTransition();
   const [selected, setSelected] = useState<ExamSlug | null>(null);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const reduceMotion = useReducedMotion();
 
   function handleSelect(slug: ExamSlug) {
+    setError(null);
     setSelected(slug);
     startTransition(async () => {
+      const result = await persistExamPreference(slug);
+      if (!result.ok) {
+        setError(result.error);
+        setSelected(null);
+        return;
+      }
+
       try {
-        await persistExamPreference(slug);
         if (!switchMode) {
           await fireExamSelectionConfetti();
         }
@@ -90,7 +99,9 @@ export function ExamSelectionScreen({
           router.refresh();
         }, switchMode ? 400 : 900);
       } catch {
-        setSelected(null);
+        setError("Saved your exam, but navigation failed. Opening Study Hub…");
+        router.push(ROUTES.practiceHub);
+        router.refresh();
       }
     });
   }
@@ -187,6 +198,12 @@ export function ExamSelectionScreen({
             </p>
           ) : null}
         </motion.header>
+
+        {error ? (
+          <div className="mx-auto mt-8 max-w-lg">
+            <StatusMessage variant="error">{error}</StatusMessage>
+          </div>
+        ) : null}
 
         <div
           className="mx-auto mt-12 grid max-w-5xl gap-5 sm:grid-cols-2 sm:gap-6 lg:gap-7"
