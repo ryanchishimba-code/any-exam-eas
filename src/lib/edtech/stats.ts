@@ -6,6 +6,7 @@ import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
 
 const EMPTY: StudyHubQuickStats = {
   questionsAnswered: 0,
+  questionsToday: 0,
   accuracyPct: 0,
   streakDays: 0,
 };
@@ -21,6 +22,9 @@ export async function getExamScopedStats(
     const since = new Date();
     since.setUTCDate(since.getUTCDate() - 30);
 
+    const todayStart = new Date();
+    todayStart.setUTCHours(0, 0, 0, 0);
+
     const [attemptRow] = await db
       .select({
         total: count(),
@@ -35,6 +39,17 @@ export async function getExamScopedStats(
         )
       );
 
+    const [todayRow] = await db
+      .select({ total: count() })
+      .from(questionAttempts)
+      .where(
+        and(
+          eq(questionAttempts.userId, userId),
+          eq(questionAttempts.fieldId, fieldId),
+          gte(questionAttempts.createdAt, todayStart)
+        )
+      );
+
     const [profile] = await db
       .select({ streak: learningProfiles.studyStreakDays })
       .from(learningProfiles)
@@ -46,6 +61,7 @@ export async function getExamScopedStats(
 
     return {
       questionsAnswered: total,
+      questionsToday: Number(todayRow?.total ?? 0),
       accuracyPct: total > 0 ? Math.round((correct / total) * 100) : 0,
       streakDays: profile?.streak ?? 0,
     };

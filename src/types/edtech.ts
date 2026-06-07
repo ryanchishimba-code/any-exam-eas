@@ -52,6 +52,7 @@ export type UserTopicProgress = {
 
 export type StudyHubQuickStats = {
   questionsAnswered: number;
+  questionsToday: number;
   accuracyPct: number;
   streakDays: number;
 };

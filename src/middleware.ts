@@ -13,6 +13,8 @@ export const config = {
     "/dashboard/:path*",
     "/study-hub",
     "/study-hub/:path*",
+    "/select-exam",
+    "/settings",
     "/studygub",
     "/studygub/:path*",
     "/internal",

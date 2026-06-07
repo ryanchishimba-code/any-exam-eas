@@ -4,7 +4,9 @@ import type { ExamSlug } from "@/lib/exams/catalog";
 export const ROUTES = {
   home: "/",
   practiceHub: "/study-hub",
-  examSelect: "/onboarding/exam-select",
+  selectExam: "/select-exam",
+  /** @deprecated use selectExam */
+  examSelect: "/select-exam",
   highYieldTopics: "/study-hub/topics",
   practice: "/practice",
   exams: "/exams",

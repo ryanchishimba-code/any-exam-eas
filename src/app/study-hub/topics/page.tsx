@@ -27,7 +27,7 @@ async function TopicsContent({
     examParam && isExamSlug(examParam) ? examParam : (pref?.examSlug ?? "nclex");
 
   if (!pref && !examParam) {
-    redirect("/onboarding/exam-select");
+    redirect("/select-exam");
   }
 
   const topics = await loadHighYieldTopics(examSlug);

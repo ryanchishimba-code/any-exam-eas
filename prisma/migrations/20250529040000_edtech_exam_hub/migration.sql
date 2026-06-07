@@ -1,6 +1,7 @@
--- Edtech Study Hub: exams, preferences, high-yield topics, topic progress
+-- Edtech Study Hub: board exam catalog, preferences, high-yield topics, topic progress.
+-- Uses BoardExam (not Exam) to avoid conflict with legacy user-generated Exam table.
 
-CREATE TABLE "Exam" (
+CREATE TABLE "BoardExam" (
     "slug" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "shortName" TEXT NOT NULL,
@@ -9,7 +10,7 @@ CREATE TABLE "Exam" (
     "simulatedDurationMin" INTEGER NOT NULL,
     "simulatedQuestionCount" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "Exam_pkey" PRIMARY KEY ("slug")
+    CONSTRAINT "BoardExam_pkey" PRIMARY KEY ("slug")
 );
 
 CREATE TABLE "UserExamPreference" (
@@ -27,6 +28,7 @@ CREATE TABLE "HighYieldTopic" (
     "category" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "overview" TEXT NOT NULL,
+    "summary" TEXT NOT NULL DEFAULT '',
     "keyConcepts" JSONB NOT NULL,
     "mustKnowFacts" JSONB NOT NULL,
     "pearls" JSONB NOT NULL,
@@ -43,6 +45,7 @@ CREATE TABLE "UserTopicProgress" (
     "userId" TEXT NOT NULL,
     "topicId" TEXT NOT NULL,
     "lastViewedAt" TIMESTAMP(3),
+    "reviewCount" INTEGER NOT NULL DEFAULT 0,
     "practiceCount" INTEGER NOT NULL DEFAULT 0,
     CONSTRAINT "UserTopicProgress_pkey" PRIMARY KEY ("id")
 );
@@ -54,7 +57,7 @@ CREATE UNIQUE INDEX "UserTopicProgress_userId_topicId_key" ON "UserTopicProgress
 CREATE INDEX "UserTopicProgress_userId_idx" ON "UserTopicProgress"("userId");
 
 ALTER TABLE "UserExamPreference" ADD CONSTRAINT "UserExamPreference_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-ALTER TABLE "UserExamPreference" ADD CONSTRAINT "UserExamPreference_examSlug_fkey" FOREIGN KEY ("examSlug") REFERENCES "Exam"("slug") ON DELETE RESTRICT ON UPDATE CASCADE;
-ALTER TABLE "HighYieldTopic" ADD CONSTRAINT "HighYieldTopic_examSlug_fkey" FOREIGN KEY ("examSlug") REFERENCES "Exam"("slug") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "UserExamPreference" ADD CONSTRAINT "UserExamPreference_examSlug_fkey" FOREIGN KEY ("examSlug") REFERENCES "BoardExam"("slug") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "HighYieldTopic" ADD CONSTRAINT "HighYieldTopic_examSlug_fkey" FOREIGN KEY ("examSlug") REFERENCES "BoardExam"("slug") ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE "UserTopicProgress" ADD CONSTRAINT "UserTopicProgress_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE "UserTopicProgress" ADD CONSTRAINT "UserTopicProgress_topicId_fkey" FOREIGN KEY ("topicId") REFERENCES "HighYieldTopic"("id") ON DELETE CASCADE ON UPDATE CASCADE;

@@ -22,6 +22,8 @@ export const authConfig = {
         path.startsWith("/dashboard") ||
         path.startsWith("/study-hub") ||
         path.startsWith("/studygub");
+      const isExamSelect = path === "/select-exam" || path.startsWith("/select-exam/");
+      const isSettings = path === "/settings";
       const isInternal = isInternalPath(path);
       const isAdmin = isAdminPath(path);
       const isPremium = isPremiumPage(path);
@@ -59,7 +61,7 @@ export const authConfig = {
         return true;
       }
 
-      if (isStudyHub || isPremium) {
+      if (isExamSelect || isSettings || isStudyHub || isPremium) {
         return isLoggedIn;
       }
 

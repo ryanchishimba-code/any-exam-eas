@@ -9,6 +9,7 @@ import { StudyHubDashboard } from "@/components/edtech/StudyHubDashboard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { getExamScopedStats } from "@/lib/edtech/stats";
+import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 
 export const metadata = {
@@ -43,12 +44,20 @@ async function StudyHubContent({
   userName?: string | null;
 }) {
   const pref = await getUserExamPreference(userId);
-  if (!pref) redirect("/onboarding/exam-select");
+  if (!pref) redirect("/select-exam");
 
-  const stats = await getExamScopedStats(userId, pref.examSlug);
+  const [stats, meta] = await Promise.all([
+    getExamScopedStats(userId, pref.examSlug),
+    getUserEdtechMetadata(userId),
+  ]);
 
   return (
-    <StudyHubDashboard examSlug={pref.examSlug} stats={stats} userName={userName} />
+    <StudyHubDashboard
+      examSlug={pref.examSlug}
+      stats={stats}
+      userName={userName}
+      mpjeStateCode={meta.mpjeStateCode}
+    />
   );
 }
 

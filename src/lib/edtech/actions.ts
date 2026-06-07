@@ -5,12 +5,31 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { setUserExamPreference } from "@/lib/edtech/exam-preference";
+import { setUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import type { ExamSlug } from "@/types/edtech";
+import type { MpjeVariant } from "@/lib/mpje/config";
+import { isMpjeUsJurisdiction } from "@/lib/mpje/us-jurisdictions";
+
+/** Persist exam without redirect — client handles confetti + navigation. */
+export async function persistExamPreference(examSlug: string): Promise<{ ok: true }> {
+  const session = await auth();
+  if (!session?.user?.id) {
+    throw new Error("Unauthorized");
+  }
+  if (!isExamSlug(examSlug)) {
+    throw new Error("Invalid exam");
+  }
+
+  await setUserExamPreference(session.user.id, examSlug);
+  revalidatePath("/study-hub");
+  revalidatePath("/select-exam");
+  return { ok: true };
+}
 
 export async function saveExamPreference(formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) {
-    redirect("/auth/login?callbackUrl=/onboarding/exam-select");
+    redirect(`/auth/login?callbackUrl=${encodeURIComponent("/select-exam")}`);
   }
 
   const slug = formData.get("examSlug");
@@ -20,8 +39,30 @@ export async function saveExamPreference(formData: FormData) {
 
   await setUserExamPreference(session.user.id, slug as ExamSlug);
   revalidatePath("/study-hub");
+  revalidatePath("/select-exam");
   revalidatePath("/onboarding/exam-select");
   redirect("/study-hub");
+}
+
+export async function saveMpjePreferences(input: {
+  stateCode?: string;
+  variant?: MpjeVariant;
+}) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    throw new Error("Unauthorized");
+  }
+
+  const patch: { mpjeStateCode?: string; mpjeVariant?: MpjeVariant } = {};
+  if (input.variant) patch.mpjeVariant = input.variant;
+  if (input.stateCode && isMpjeUsJurisdiction(input.stateCode)) {
+    patch.mpjeStateCode = input.stateCode.toUpperCase();
+  }
+
+  await setUserEdtechMetadata(session.user.id, patch);
+  revalidatePath("/study-hub");
+  revalidatePath("/settings");
+  return { ok: true as const };
 }
 
 export async function switchExamPreference(examSlug: string) {
@@ -36,4 +77,5 @@ export async function switchExamPreference(examSlug: string) {
   await setUserExamPreference(session.user.id, examSlug);
   revalidatePath("/study-hub");
   revalidatePath("/study-hub/topics");
+  revalidatePath("/select-exam");
 }

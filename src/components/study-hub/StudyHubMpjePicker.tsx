@@ -2,19 +2,48 @@
 
 import Link from "next/link";
 import { ArrowRight, Clock, Scale, SlidersHorizontal } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import {
   MPJE_VARIANTS,
   getMpjeState,
   type MpjeVariant,
 } from "@/lib/mpje/config";
+import { saveMpjePreferences } from "@/lib/edtech/actions";
 import { mpjePracticeExamHref, mpjePracticeHref } from "@/lib/study-hub/config";
 import { MpjeStateSelect } from "@/components/study/MpjeStateSelect";
 import { cn } from "@/lib/utils";
 
-export function StudyHubMpjePicker({ onClose }: { onClose?: () => void }) {
+export function StudyHubMpjePicker({
+  onClose,
+  initialStateCode = "",
+  persistPreference = false,
+}: {
+  onClose?: () => void;
+  initialStateCode?: string;
+  persistPreference?: boolean;
+}) {
   const [variant, setVariant] = useState<MpjeVariant>("state");
-  const [stateCode, setStateCode] = useState("");
+  const [stateCode, setStateCode] = useState(initialStateCode);
+  const [, startTransition] = useTransition();
+
+  useEffect(() => {
+    setStateCode(initialStateCode);
+  }, [initialStateCode]);
+
+  function syncState(code: string) {
+    setStateCode(code);
+    if (persistPreference && code) {
+      startTransition(() => saveMpjePreferences({ stateCode: code, variant }));
+    }
+  }
+
+  function onVariantChange(next: MpjeVariant) {
+    setVariant(next);
+    if (persistPreference) {
+      startTransition(() => saveMpjePreferences({ stateCode, variant: next }));
+    }
+  }
+
   const selectedState = getMpjeState(stateCode);
 
   const practiceParams = {
@@ -54,7 +83,7 @@ export function StudyHubMpjePicker({ onClose }: { onClose?: () => void }) {
           <button
             key={option.id}
             type="button"
-            onClick={() => setVariant(option.id)}
+            onClick={() => onVariantChange(option.id)}
             className={cn(
               "rounded-xl border px-4 py-4 text-left transition",
               variant === option.id
@@ -70,7 +99,7 @@ export function StudyHubMpjePicker({ onClose }: { onClose?: () => void }) {
 
       {variant === "state" && (
         <div className="mt-5 space-y-3">
-          <MpjeStateSelect value={stateCode} onChange={setStateCode} />
+          <MpjeStateSelect value={stateCode} onChange={syncState} />
           {selectedState?.note && (
             <p className="rounded-lg border border-amber-200/80 bg-amber-50/80 px-3 py-2 text-xs text-amber-900">
               {selectedState.note}
