@@ -23,8 +23,7 @@ export function questionBankHref(examSlug: ExamSlug): string {
 }
 
 export function simulatedExamHref(examSlug: ExamSlug): string {
-  const fieldId = EXAM_CATALOG[examSlug].fieldId;
-  return `/study/practice?field=${encodeURIComponent(fieldId)}&mode=timed`;
+  return `/full-exam/${examSlug}`;
 }
 
 export function analyticsHref(): string {

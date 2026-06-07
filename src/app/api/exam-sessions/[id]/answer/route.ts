@@ -32,6 +32,9 @@ export async function PATCH(
     selected: String(body.selected ?? ""),
     correct: Boolean(body.correct),
     flagged: Boolean(body.flagged),
+    eliminated: Array.isArray(body.eliminated) ? body.eliminated : undefined,
+    notes: typeof body.notes === "string" ? body.notes : undefined,
+    topicCategory: typeof body.topicCategory === "string" ? body.topicCategory : undefined,
     answeredAt: new Date().toISOString(),
   });
 

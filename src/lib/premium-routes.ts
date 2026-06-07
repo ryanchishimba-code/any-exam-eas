@@ -12,6 +12,7 @@ export const PREMIUM_PAGE_PREFIXES = [
   "/exams",
   "/practice",
   "/mpje",
+  "/full-exam",
 ] as const;
 
 export function isPremiumPage(path: string): boolean {

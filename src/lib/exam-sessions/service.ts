@@ -14,13 +14,22 @@ export type ExamAnswerRecord = {
   selected: string;
   correct: boolean;
   flagged?: boolean;
+  eliminated?: string[];
+  notes?: string;
+  topicCategory?: string;
   answeredAt: string;
 };
 
 export async function createExamSession(
   userId: string,
   examType: ExamSlug,
-  opts?: { questionCount?: number; timeLimitSec?: number; title?: string }
+  opts?: {
+    questionCount?: number;
+    timeLimitSec?: number | null;
+    title?: string;
+    fieldId?: string;
+    sessionConfig?: Record<string, unknown>;
+  }
 ) {
   const db = requireDb();
   const id = createId();
@@ -29,10 +38,11 @@ export async function createExamSession(
     id,
     userId,
     examType,
-    fieldId: examSlugToFieldId(examType),
+    fieldId: opts?.fieldId ?? examSlugToFieldId(examType),
     title: opts?.title ?? `${examType.toUpperCase()} practice`,
     status: "in_progress",
     answers: [],
+    analysis: opts?.sessionConfig ? { sessionConfig: opts.sessionConfig } : null,
     questionCount: opts?.questionCount ?? 0,
     timeLimitSec: opts?.timeLimitSec ?? null,
     startedAt: now,
