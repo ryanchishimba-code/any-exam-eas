@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { MARKETING_DISCLAIMER } from "@/lib/site";
 import { useUserAccess } from "@/lib/client/use-user-access";
+import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
 
 const legalLinks = [
   { href: "/legal/terms", label: "Terms of Service" },
@@ -19,44 +20,51 @@ export function Footer() {
 
   const productLinks = showPremiumLinks
     ? [
-        { href: "/study-hub", label: "Study Hub" },
-        { href: "/study/practice?field=nursing&mode=timed", label: "NCLEX" },
-        { href: "/study/practice?field=usmle-step-1", label: "USMLE bank" },
-        { href: "/study/practice?field=pharmacy", label: "NAPLEX bank" },
-        { href: "/study-hub?exam=mpje", label: "MPJE" },
-        { href: "/study/drugs300", label: "Top 500 Drugs" },
+        { href: ROUTES.practiceHub, label: "Practice Hub" },
+        ...EXAM_NAV_ITEMS.map((e) => ({ href: e.href, label: e.label })),
+        { href: ROUTES.drugs300, label: "Top 500 Drugs" },
       ]
     : [
-        { href: "/study-hub", label: "Study Hub" },
-        { href: "/pricing", label: "Pricing" },
+        { href: ROUTES.practiceHub, label: "Practice Hub" },
+        { href: ROUTES.pricing, label: "Pricing" },
       ];
 
   const accountLinks = isAuthed
     ? [
-        { href: "/study-hub", label: "Study Hub" },
-        { href: "/feedback", label: "Feedback" },
+        { href: ROUTES.practiceHub, label: "Practice Hub" },
+        { href: ROUTES.analytics, label: "Analytics" },
+        { href: ROUTES.feedback, label: "Feedback" },
       ]
     : [
-        { href: "/login", label: "Log in" },
-        { href: "/signup", label: "Sign up" },
-        { href: "/feedback", label: "Feedback" },
+        { href: ROUTES.auth.login, label: "Log in" },
+        { href: ROUTES.auth.signup, label: "Sign up" },
+        { href: ROUTES.feedback, label: "Feedback" },
       ];
 
   return (
-    <footer className="apple-footer border-t border-black/[0.08] py-8" role="contentinfo">
+    <footer className="apple-footer border-t border-black/[0.08] py-10" role="contentinfo">
       <div className="mx-auto max-w-[980px] px-6">
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div className="md:col-span-1">
-            <p className="text-xs text-[var(--color-ink-muted)]">
-              Copyright © {new Date().getFullYear()} Any Exam Easy. All rights reserved.
+            <p className="text-sm font-semibold text-[var(--color-ink)]">Any Exam Easy</p>
+            <p className="mt-2 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+              {MARKETING_DISCLAIMER}
+            </p>
+            <p className="mt-4 text-xs text-[var(--color-ink-muted)]">
+              © {new Date().getFullYear()} Any Exam Easy
             </p>
           </div>
           <nav aria-label="Product links">
-            <p className="mb-2 font-medium text-[var(--color-ink)]">Product</p>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--color-ink)]">
+              Exams
+            </p>
             <ul className="space-y-2" role="list">
               {productLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-[var(--color-ink-muted)]">
+                  <Link
+                    href={l.href}
+                    className="text-sm text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
+                  >
                     {l.label}
                   </Link>
                 </li>
@@ -64,11 +72,16 @@ export function Footer() {
             </ul>
           </nav>
           <nav aria-label="Account links">
-            <p className="mb-2 font-medium text-[var(--color-ink)]">Account</p>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--color-ink)]">
+              Account
+            </p>
             <ul className="space-y-2" role="list">
               {accountLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-[var(--color-ink-muted)]">
+                  <Link
+                    href={l.href}
+                    className="text-sm text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
+                  >
                     {l.label}
                   </Link>
                 </li>
@@ -76,23 +89,22 @@ export function Footer() {
             </ul>
           </nav>
           <nav aria-label="Legal links">
-            <p className="mb-2 font-medium text-[var(--color-ink)]">Legal</p>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--color-ink)]">
+              Legal
+            </p>
             <ul className="space-y-2" role="list">
               {legalLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-[var(--color-ink-muted)]">
+                  <Link
+                    href={l.href}
+                    className="text-sm text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
+                  >
                     {l.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
-        </div>
-        <div className="mt-8 border-t border-black/[0.06] pt-6">
-          <p className="text-xs text-[var(--color-ink-muted)]">
-            For users 18+. Not affiliated with accrediting bodies or licensure boards.{" "}
-            {MARKETING_DISCLAIMER}
-          </p>
         </div>
       </div>
     </footer>

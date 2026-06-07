@@ -11,7 +11,7 @@ export function AuthCard({
   return (
     <div
       className={cn(
-        "apple-glass-card mt-8 rounded-3xl border border-black/[0.06] p-8 shadow-[var(--shadow-apple-md)]",
+        "apple-glass-card mt-8 rounded-2xl border border-indigo-100/80 bg-white/95 p-8 shadow-[var(--shadow-apple-md)] ring-1 ring-indigo-500/[0.06]",
         className
       )}
     >

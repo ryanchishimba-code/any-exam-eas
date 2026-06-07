@@ -10,9 +10,9 @@ export const metadata = {
 export default function LoginPage() {
   return (
     <PageShell
-      eyebrow="Welcome back"
-      title="Log in to continue."
-      description="Your progress, streaks, and generated exams sync across devices."
+      eyebrow="Any Exam Easy"
+      title="Log in to continue"
+      description="NCLEX, USMLE, NAPLEX, and MPJE practice — synced across devices."
       align="center"
       maxWidth="max-w-md"
       variant="premium"

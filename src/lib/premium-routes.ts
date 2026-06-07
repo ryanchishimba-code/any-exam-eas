@@ -9,6 +9,9 @@ export const PREMIUM_PAGE_PREFIXES = [
   "/study-hub",
   "/studygub",
   "/engine",
+  "/exams",
+  "/practice",
+  "/mpje",
 ] as const;
 
 export function isPremiumPage(path: string): boolean {

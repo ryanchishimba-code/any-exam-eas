@@ -3,27 +3,30 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { LogIn, LogOut, Menu, X } from "lucide-react";
+import { LogIn, LogOut, Menu, Shield, X } from "lucide-react";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { AvatarDropdown } from "@/components/navigation/AvatarDropdown";
+import { ExamsDropdown } from "@/components/navigation/ExamsDropdown";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
+import { ROUTES } from "@/lib/routes";
 
-type NavLink = { href: string; label: string };
+type NavLink = { href: string; label: string; adminOnly?: boolean };
 
 const guestLinks: NavLink[] = [
-  { href: STUDY_HUB_PATH, label: "Study Hub" },
-  { href: "/pricing", label: "Pricing" },
+  { href: ROUTES.practiceHub, label: "Practice" },
+  { href: ROUTES.pricing, label: "Pricing" },
 ];
 
 const premiumLinks: NavLink[] = [
-  { href: STUDY_HUB_PATH, label: "Study Hub" },
-  { href: "/study/drugs300", label: "Top 500 Drugs" },
+  { href: ROUTES.practiceHub, label: "Practice" },
+  { href: ROUTES.drugs300, label: "Top 500 Drugs" },
+  { href: ROUTES.analytics, label: "Analytics" },
+  { href: ROUTES.admin.root, label: "Admin", adminOnly: true },
 ];
 
 function navClass(active: boolean) {
@@ -43,11 +46,12 @@ export function Navigation() {
 
   const isAuthenticated = status === "authenticated" && Boolean(session?.user);
   const authReady = status !== "loading" && !accessLoading;
+  const isAdmin = (session?.user as { role?: string } | undefined)?.role === "admin";
 
-  const links = useMemo(
-    () => (isAuthenticated && hasPremiumAccess ? premiumLinks : guestLinks),
-    [hasPremiumAccess, isAuthenticated]
-  );
+  const links = useMemo(() => {
+    const base = isAuthenticated && hasPremiumAccess ? premiumLinks : guestLinks;
+    return base.filter((l) => !l.adminOnly || isAdmin);
+  }, [hasPremiumAccess, isAuthenticated, isAdmin]);
 
   const closeMobile = useCallback(() => setOpen(false), []);
 
@@ -87,7 +91,12 @@ export function Navigation() {
     requestSignOut();
   }
 
-  const brandHref = isAuthenticated && hasPremiumAccess ? STUDY_HUB_PATH : "/";
+  const brandHref = isAuthenticated && hasPremiumAccess ? ROUTES.practiceHub : ROUTES.home;
+  const practiceActive =
+    isActive(ROUTES.practiceHub) ||
+    pathname.startsWith("/exams") ||
+    pathname.startsWith("/practice") ||
+    pathname.startsWith("/study");
 
   return (
     <header ref={headerRef} className="apple-glass aee-nav fixed top-0 z-50 w-full">
@@ -96,14 +105,24 @@ export function Navigation() {
           Any Exam Easy
         </Link>
 
-        <ul className="aee-nav-links hidden lg:flex" role="list">
+        <ul className="aee-nav-links hidden lg:flex lg:items-center lg:gap-5" role="list">
+          <li>
+            <ExamsDropdown />
+          </li>
           {links.map((l) => (
             <li key={l.href}>
               <Link
                 href={l.href}
-                className={`text-xs ${navClass(isActive(l.href))}`}
-                aria-current={isActive(l.href) ? "page" : undefined}
+                className={`inline-flex items-center gap-1 text-xs ${navClass(
+                  l.href === ROUTES.practiceHub ? practiceActive : isActive(l.href)
+                )}`}
+                aria-current={
+                  (l.href === ROUTES.practiceHub ? practiceActive : isActive(l.href))
+                    ? "page"
+                    : undefined
+                }
               >
+                {l.adminOnly && <Shield className="h-3 w-3" aria-hidden />}
                 {l.label}
               </Link>
             </li>
@@ -121,7 +140,7 @@ export function Navigation() {
           ) : (
             <div className="aee-nav-auth-group">
               <LoginModalTrigger
-                callbackUrl={STUDY_HUB_PATH}
+                callbackUrl={ROUTES.practiceHub}
                 className="aee-nav-login"
                 aria-label="Log in to your account"
               >
@@ -159,12 +178,27 @@ export function Navigation() {
             transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
           >
             <div className="overflow-hidden py-4">
+              <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                Exams
+              </p>
+              {["nclex", "naplex", "usmle", "mpje"].map((slug) => (
+                <Link
+                  key={slug}
+                  href={`/exams/${slug}`}
+                  className={`block py-2 text-sm uppercase ${navClass(pathname.startsWith(`/exams/${slug}`))}`}
+                  onClick={closeMobile}
+                >
+                  {slug}
+                </Link>
+              ))}
+              <div className="my-3 border-t border-black/[0.06]" />
               {links.map((l) => (
                 <Link
                   key={l.href}
                   href={l.href}
-                  className={`block py-2.5 text-sm ${navClass(isActive(l.href))}`}
-                  aria-current={isActive(l.href) ? "page" : undefined}
+                  className={`block py-2.5 text-sm ${navClass(
+                    l.href === ROUTES.practiceHub ? practiceActive : isActive(l.href)
+                  )}`}
                   onClick={closeMobile}
                 >
                   {l.label}
@@ -173,7 +207,7 @@ export function Navigation() {
               {authReady && !isAuthenticated && (
                 <div className="mt-3 space-y-2 border-t border-black/[0.06] pt-3">
                   <LoginModalTrigger
-                    callbackUrl={STUDY_HUB_PATH}
+                    callbackUrl={ROUTES.practiceHub}
                     className="aee-nav-login aee-nav-login-mobile w-full"
                     onClick={closeMobile}
                   >
@@ -191,12 +225,21 @@ export function Navigation() {
               )}
               {authReady && isAuthenticated && (
                 <div className="mt-3 space-y-1 border-t border-black/[0.06] pt-3">
-                  <Link href={STUDY_HUB_PATH} className="aee-mobile-nav-item" onClick={closeMobile}>
-                    Study Hub
+                  <Link
+                    href={ROUTES.practiceHub}
+                    className="aee-mobile-nav-item"
+                    onClick={closeMobile}
+                  >
+                    Practice Hub
                   </Link>
                   {!hasPremiumAccess && (
-                    <Link href="/pricing" className="aee-mobile-nav-item" onClick={closeMobile}>
+                    <Link href={ROUTES.pricing} className="aee-mobile-nav-item" onClick={closeMobile}>
                       Pricing
+                    </Link>
+                  )}
+                  {isAdmin && (
+                    <Link href={ROUTES.admin.root} className="aee-mobile-nav-item" onClick={closeMobile}>
+                      Admin
                     </Link>
                   )}
                   <button

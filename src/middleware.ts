@@ -35,6 +35,12 @@ export const config = {
     "/prep/:path*",
     "/exam",
     "/exam/:path*",
+    "/exams",
+    "/exams/:path*",
+    "/practice",
+    "/practice/:path*",
+    "/mpje",
+    "/mpje/:path*",
     "/analytics",
   ],
 };

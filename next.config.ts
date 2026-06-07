@@ -10,7 +10,27 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/employee/login",
-        destination: "/login?callbackUrl=%2Finternal",
+        destination: "/auth/login?callbackUrl=%2Finternal",
+        permanent: false,
+      },
+      {
+        source: "/login",
+        destination: "/auth/login",
+        permanent: false,
+      },
+      {
+        source: "/forgot-password",
+        destination: "/auth/forgot-password",
+        permanent: false,
+      },
+      {
+        source: "/reset-password",
+        destination: "/auth/reset-password",
+        permanent: false,
+      },
+      {
+        source: "/mpje",
+        destination: "/exams/mpje",
         permanent: false,
       },
       {
@@ -22,6 +42,11 @@ const nextConfig: NextConfig = {
         source: "/dashboard",
         destination: "/study-hub",
         permanent: true,
+      },
+      {
+        source: "/prep/:exam",
+        destination: "/exams/:exam",
+        permanent: false,
       },
     ];
   },

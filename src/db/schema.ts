@@ -196,3 +196,60 @@ export const learningProfiles = pgTable("LearningProfile", {
   studyStreakDays: integer("studyStreakDays").default(0).notNull(),
   lastStudiedAt: timestamp("lastStudiedAt", { mode: "date" }),
 });
+
+/** Static reference — four supported board exams. */
+export const exams = pgTable("Exam", {
+  slug: text("slug").primaryKey(),
+  name: text("name").notNull(),
+  shortName: text("shortName").notNull(),
+  fieldId: text("fieldId").notNull(),
+  description: text("description").notNull(),
+  simulatedDurationMin: integer("simulatedDurationMin").notNull(),
+  simulatedQuestionCount: integer("simulatedQuestionCount").notNull(),
+  createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
+});
+
+export const userExamPreferences = pgTable("UserExamPreference", {
+  userId: text("userId").primaryKey(),
+  examSlug: text("examSlug").notNull(),
+  lastStudiedAt: timestamp("lastStudiedAt", { mode: "date" }),
+  updatedAt: timestamp("updatedAt", { mode: "date" }).notNull(),
+});
+
+export const highYieldTopics = pgTable(
+  "HighYieldTopic",
+  {
+    id: text("id").primaryKey(),
+    examSlug: text("examSlug").notNull(),
+    slug: text("slug").notNull(),
+    category: text("category").notNull(),
+    title: text("title").notNull(),
+    overview: text("overview").notNull(),
+    summary: text("summary").notNull().default(""),
+    keyConcepts: jsonb("keyConcepts").notNull(),
+    mustKnowFacts: jsonb("mustKnowFacts").notNull(),
+    pearls: jsonb("pearls").notNull(),
+    pitfalls: jsonb("pitfalls").notNull(),
+    sortOrder: integer("sortOrder").default(0).notNull(),
+    practiceTopicSlug: text("practiceTopicSlug").notNull(),
+    createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),
+    updatedAt: timestamp("updatedAt", { mode: "date" }).notNull(),
+  },
+  (t) => [
+    uniqueIndex("HighYieldTopic_examSlug_slug_key").on(t.examSlug, t.slug),
+    index("HighYieldTopic_examSlug_sortOrder_idx").on(t.examSlug, t.sortOrder),
+  ]
+);
+
+export const userTopicProgress = pgTable(
+  "UserTopicProgress",
+  {
+    id: text("id").primaryKey(),
+    userId: text("userId").notNull(),
+    topicId: text("topicId").notNull(),
+    lastViewedAt: timestamp("lastViewedAt", { mode: "date" }),
+    reviewCount: integer("reviewCount").default(0).notNull(),
+    practiceCount: integer("practiceCount").default(0).notNull(),
+  },
+  (t) => [uniqueIndex("UserTopicProgress_userId_topicId_key").on(t.userId, t.topicId)]
+);

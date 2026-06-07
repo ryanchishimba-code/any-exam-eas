@@ -4,11 +4,8 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Activity, ArrowRight, Pill, Scale, Stethoscope } from "lucide-react";
-import {
-  STUDY_HUB_EXAM_BANKS,
-  questionBankHref,
-  studyHubMpjeHref,
-} from "@/lib/study-hub/config";
+import { STUDY_HUB_EXAM_BANKS, studyHubMpjeHref } from "@/lib/study-hub/config";
+import { examHref } from "@/lib/routes";
 import { StudyHubMpjePicker } from "./StudyHubMpjePicker";
 import { cn } from "@/lib/utils";
 
@@ -96,7 +93,7 @@ export function StudyHubExamBanks() {
           return (
             <Link
               key={exam.slug}
-              href={questionBankHref(exam.fieldId)}
+              href={examHref(exam.slug as "nclex" | "naplex" | "usmle" | "mpje")}
               onClick={() => setMpjeOpen(false)}
               className={cn(
                 "group relative flex flex-col overflow-hidden rounded-2xl border bg-gradient-to-br p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md",

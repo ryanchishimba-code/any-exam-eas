@@ -65,3 +65,4 @@ if (shouldRunMigrations()) {
 }
 
 run("npx", ["next", "build"]);
+run("node", ["scripts/mark-production-build.mjs"]);

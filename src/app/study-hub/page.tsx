@@ -5,61 +5,70 @@ import { getUserAccess } from "@/lib/access-control";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { SubscriptionBanner } from "@/components/SubscriptionBanner";
 import { DashboardClient } from "@/components/DashboardClient";
-import { StudyHubPageLayout } from "@/components/study-hub/StudyHubPageLayout";
-import { StudyHubModeSelector } from "@/components/study-hub/StudyHubModeSelector";
-import { StudyHubExamBanks } from "@/components/study-hub/StudyHubExamBanks";
-import { Top500DrugsCard } from "@/components/study-hub/Top500DrugsCard";
-import { ProgressOverview } from "@/components/study-hub/ProgressOverview";
-import { getDashboardQuickStats } from "@/lib/dashboard/stats";
-import { STUDY_HUB_PATH, STUDY_HUB_PROGRESS_ID } from "@/lib/study-hub/config";
-import { StudyHubSessionSummary } from "@/components/study-hub/StudyHubSessionSummary";
+import { StudyHubDashboard } from "@/components/edtech/StudyHubDashboard";
+import { Skeleton } from "@/components/ui/skeleton";
+import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import { getExamScopedStats } from "@/lib/edtech/stats";
+import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 
 export const metadata = {
   title: "Study Hub — Any Exam Easy",
-  description: "NCLEX, USMLE, NAPLEX, and MPJE — timed exams and custom question bank practice.",
+  description: "Personalized NCLEX, USMLE, NAPLEX, and MPJE prep — topics, question bank, and analytics.",
 };
+
+function DashboardSkeleton() {
+  return (
+    <div className="space-y-6">
+      <Skeleton className="h-10 w-72" />
+      <Skeleton className="h-4 w-full max-w-lg" />
+      <div className="flex gap-3">
+        <Skeleton className="h-16 w-28 rounded-xl" />
+        <Skeleton className="h-16 w-28 rounded-xl" />
+        <Skeleton className="h-16 w-28 rounded-xl" />
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <Skeleton key={i} className="h-44 w-full rounded-2xl" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+async function StudyHubContent({
+  userId,
+  userName,
+}: {
+  userId: string;
+  userName?: string | null;
+}) {
+  const pref = await getUserExamPreference(userId);
+  if (!pref) redirect("/onboarding/exam-select");
+
+  const stats = await getExamScopedStats(userId, pref.examSlug);
+
+  return (
+    <StudyHubDashboard examSlug={pref.examSlug} stats={stats} userName={userName} />
+  );
+}
 
 export default async function StudyHubPage() {
   const session = await auth();
-  if (!session?.user?.id) redirect(`/login?callbackUrl=${STUDY_HUB_PATH}`);
+  if (!session?.user?.id) redirect(`/auth/login?callbackUrl=${STUDY_HUB_PATH}`);
 
   await requirePremiumPage(STUDY_HUB_PATH);
   const access = await getUserAccess(session.user.id);
   const hasPremiumAccess = access.hasPremiumAccess;
 
-  const progress = await getDashboardQuickStats(session.user.id);
-
   return (
-    <StudyHubPageLayout userName={session.user.name}>
-      {!hasPremiumAccess && <SubscriptionBanner access={access.subscription} />}
-      <div className="space-y-12">
-        <Suspense fallback={null}>
-          <StudyHubSessionSummary />
+    <div className="min-h-screen bg-[var(--color-bg)]">
+      <div className="mx-auto max-w-5xl px-6 pb-24 pt-[var(--page-top)]">
+        {!hasPremiumAccess && <SubscriptionBanner access={access.subscription} />}
+        <Suspense fallback={<DashboardSkeleton />}>
+          <StudyHubContent userId={session.user.id} userName={session.user.name} />
         </Suspense>
-
-        <Suspense fallback={null}>
-          <StudyHubExamBanks />
-        </Suspense>
-
-        <StudyHubModeSelector />
-
-        <section>
-          <h2 className="text-lg font-semibold text-slate-900">Top 500 drugs</h2>
-          <p className="mt-1 text-sm text-slate-600">One high-yield list shared across NCLEX, USMLE, NAPLEX, and MPJE.</p>
-          <div className="mt-4">
-            <Top500DrugsCard />
-          </div>
-        </section>
-
-        <section id={STUDY_HUB_PROGRESS_ID} className="scroll-mt-28">
-          <h2 className="text-lg font-semibold text-slate-900">Progress</h2>
-          <p className="mt-1 text-sm text-slate-600">Last 30 days at a glance.</p>
-          <div className="mt-4">
-            <ProgressOverview stats={progress} />
-          </div>
-        </section>
+        {!hasPremiumAccess && <DashboardClient access={access.subscription} compact />}
       </div>
-      {!hasPremiumAccess && <DashboardClient access={access.subscription} compact />}
-    </StudyHubPageLayout>
+    </div>
   );
 }

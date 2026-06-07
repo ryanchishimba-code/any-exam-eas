@@ -1,0 +1,55 @@
+import { and, count, eq, gte, sql } from "drizzle-orm";
+import { requireDb } from "@/db";
+import { learningProfiles, questionAttempts } from "@/db/schema";
+import { resolveExamFieldId } from "@/lib/edtech/exam-preference";
+import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
+
+const EMPTY: StudyHubQuickStats = {
+  questionsAnswered: 0,
+  accuracyPct: 0,
+  streakDays: 0,
+};
+
+/** Quick stats scoped to the user's selected exam field. */
+export async function getExamScopedStats(
+  userId: string,
+  examSlug: ExamSlug
+): Promise<StudyHubQuickStats> {
+  try {
+    const db = requireDb();
+    const fieldId = resolveExamFieldId(examSlug);
+    const since = new Date();
+    since.setUTCDate(since.getUTCDate() - 30);
+
+    const [attemptRow] = await db
+      .select({
+        total: count(),
+        correct: sql<number>`sum(case when ${questionAttempts.correct} then 1 else 0 end)::int`,
+      })
+      .from(questionAttempts)
+      .where(
+        and(
+          eq(questionAttempts.userId, userId),
+          eq(questionAttempts.fieldId, fieldId),
+          gte(questionAttempts.createdAt, since)
+        )
+      );
+
+    const [profile] = await db
+      .select({ streak: learningProfiles.studyStreakDays })
+      .from(learningProfiles)
+      .where(eq(learningProfiles.userId, userId))
+      .limit(1);
+
+    const total = Number(attemptRow?.total ?? 0);
+    const correct = Number(attemptRow?.correct ?? 0);
+
+    return {
+      questionsAnswered: total,
+      accuracyPct: total > 0 ? Math.round((correct / total) * 100) : 0,
+      streakDays: profile?.streak ?? 0,
+    };
+  } catch {
+    return EMPTY;
+  }
+}

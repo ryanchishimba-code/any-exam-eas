@@ -60,6 +60,8 @@ model User {
   flashcards         Flashcard[]
   textbookUploads    TextbookUpload[]
   passwordResetTokens PasswordResetToken[]
+  examPreference     UserExamPreference?
+  topicProgress      UserTopicProgress[]
 }
 
 model Account {
@@ -743,4 +745,68 @@ model Top300Drug {
   @@index([examNclex])
   @@index([examUsmle])
   @@index([examNaplex])
+}
+
+/// Static reference for the four core board exams (NCLEX, USMLE, NAPLEX, MPJE).
+model Exam {
+  slug                    String   @id
+  name                    String
+  shortName               String
+  fieldId                 String
+  description             String
+  simulatedDurationMin    Int
+  simulatedQuestionCount  Int
+  createdAt               DateTime @default(now())
+  preferences             UserExamPreference[]
+  highYieldTopics         HighYieldTopic[]
+}
+
+/// User's primary exam selection — drives Study Hub personalization.
+model UserExamPreference {
+  userId        String    @id
+  examSlug      String
+  lastStudiedAt DateTime?
+  updatedAt     DateTime  @updatedAt
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exam          Exam      @relation(fields: [examSlug], references: [slug], onDelete: Restrict)
+}
+
+/// Exam-specific high-yield topic summaries (book-summary style study cards).
+model HighYieldTopic {
+  id                String   @id
+  examSlug          String
+  slug              String
+  category          String
+  title             String
+  overview          String
+  summary           String   @default("")
+  keyConcepts       Json
+  mustKnowFacts     Json
+  pearls            Json
+  pitfalls          Json
+  sortOrder         Int      @default(0)
+  practiceTopicSlug String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  exam              Exam     @relation(fields: [examSlug], references: [slug], onDelete: Cascade)
+  userProgress      UserTopicProgress[]
+
+  @@unique([examSlug, slug])
+  @@index([examSlug, sortOrder])
+  @@index([examSlug, category])
+}
+
+/// Tracks topic views and practice launches per user.
+model UserTopicProgress {
+  id            String    @id @default(cuid())
+  userId        String
+  topicId       String
+  lastViewedAt  DateTime?
+  reviewCount   Int       @default(0)
+  practiceCount Int       @default(0)
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic         HighYieldTopic @relation(fields: [topicId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, topicId])
+  @@index([userId])
 }

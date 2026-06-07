@@ -6,18 +6,18 @@
     "Helvetica Neue", Helvetica, Arial, sans-serif;
   --color-ink: #0f172a;
   --color-ink-muted: #475569;
-  --color-surface: #f0fdfa;
-  --color-surface-elevated: #f8fafc;
+  --color-surface: #f8fafc;
+  --color-surface-elevated: #ffffff;
   --color-bg: #ffffff;
-  --color-accent: #0f766e;
-  --color-accent-hover: #115e59;
-  --color-accent-light: #14b8a6;
+  --color-accent: #4f46e5;
+  --color-accent-hover: #4338ca;
+  --color-accent-light: #6366f1;
   --color-border: rgba(15, 23, 42, 0.08);
   --shadow-apple-sm: 0 1px 2px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.04);
   --shadow-apple-md: 0 2px 4px rgba(0, 0, 0, 0.02), 0 8px 24px rgba(0, 0, 0, 0.06);
   --shadow-apple-lg: 0 4px 8px rgba(0, 0, 0, 0.02), 0 16px 48px rgba(0, 0, 0, 0.08);
-  --shadow-apple-btn: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 14px rgba(13, 148, 136, 0.12);
-  --shadow-apple-btn-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 28px rgba(13, 148, 136, 0.18);
+  --shadow-apple-btn: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 14px rgba(79, 70, 229, 0.18);
+  --shadow-apple-btn-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 28px rgba(79, 70, 229, 0.22);
   --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-apple-smooth: cubic-bezier(0.16, 1, 0.3, 1);
   --landing-section-py: clamp(5.5rem, 13vw, 9rem);
@@ -31,7 +31,7 @@
   --card-foreground: #1d1d1f;
   --muted: #f5f5f7;
   --muted-foreground: #525252;
-  --primary: #0f766e;
+  --primary: #4f46e5;
   --primary-foreground: #ffffff;
   --border: rgba(15, 23, 42, 0.08);
   --input: rgba(15, 23, 42, 0.08);
@@ -168,8 +168,53 @@ html {
 
 .apple-hero-premium {
   background:
-    radial-gradient(ellipse 80% 55% at 50% -20%, rgba(20, 184, 166, 0.06), transparent 70%),
+    radial-gradient(ellipse 80% 55% at 50% -20%, rgba(99, 102, 241, 0.08), transparent 70%),
     linear-gradient(180deg, #fbfbfd 0%, #ffffff 72%);
+}
+
+/* Premium edtech card — consistent across hub, exams, practice */
+.aee-card {
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: var(--color-surface-elevated);
+  box-shadow: var(--shadow-apple-sm);
+  transition:
+    box-shadow 0.25s var(--ease-apple),
+    border-color 0.25s var(--ease-apple),
+    transform 0.25s var(--ease-apple);
+}
+
+.aee-card:hover {
+  border-color: rgba(79, 70, 229, 0.15);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-ink: #f1f5f9;
+    --color-ink-muted: #94a3b8;
+    --color-surface: #0f172a;
+    --color-surface-elevated: #1e293b;
+    --color-bg: #020617;
+    --color-border: rgba(148, 163, 184, 0.12);
+    --background: #020617;
+    --foreground: #f1f5f9;
+    --card: #1e293b;
+    --muted: #1e293b;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  .aee-card {
+    background: var(--color-surface-elevated);
+    border-color: var(--color-border);
+  }
+
+  .apple-glass.aee-nav {
+    background: rgba(2, 6, 23, 0.82);
+    border-color: rgba(148, 163, 184, 0.1);
+  }
 }
 
 @theme inline {
