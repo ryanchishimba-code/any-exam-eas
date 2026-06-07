@@ -13,7 +13,7 @@ const prisma = new PrismaClient();
 async function seedExams() {
   for (const slug of EXAM_SLUGS) {
     const exam = EXAM_CATALOG[slug];
-    await prisma.exam.upsert({
+    await prisma.boardExam.upsert({
       where: { slug },
       create: {
         slug,

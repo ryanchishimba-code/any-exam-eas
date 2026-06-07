@@ -137,7 +137,7 @@ async function main() {
 
     section("5. Foreign key integrity");
     try {
-      await prisma.exam.create({
+      await prisma.generatedExam.create({
         data: {
           userId: "nonexistent-user-id-robustness-test",
           title: "FK test",
@@ -147,7 +147,7 @@ async function main() {
         },
       });
       fail("FK constraint", "insert should have been rejected");
-      await prisma.exam.deleteMany({ where: { title: "FK test" } }).catch(() => {});
+      await prisma.generatedExam.deleteMany({ where: { title: "FK test" } }).catch(() => {});
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
       if (/foreign key|Foreign key|violates|constraint/i.test(msg)) {
@@ -161,7 +161,7 @@ async function main() {
     const tables = [
       ["User", () => prisma.user.count()],
       ["QuestionBankItem", () => prisma.questionBankItem.count({ where: { active: true } })],
-      ["Exam", () => prisma.exam.count()],
+      ["GeneratedExam", () => prisma.generatedExam.count()],
       ["Subscription", () => prisma.subscription.count()],
       ["StudySession", () => prisma.studySession.count()],
       ["LearningProfile", () => prisma.learningProfile.count()],

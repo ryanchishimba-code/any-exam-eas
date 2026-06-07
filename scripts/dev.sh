@@ -3,6 +3,11 @@
 set -e
 cd "$(dirname "$0")/.."
 
+BUNDLED_NODE=".tools/node-v22.14.0-darwin-arm64/bin/node"
+if [ -x "$BUNDLED_NODE" ]; then
+  exec "$BUNDLED_NODE" scripts/local-dev.mjs
+fi
+
 if [ -d ".tools/node-v22.14.0-darwin-arm64/bin" ]; then
   export PATH="$(pwd)/.tools/node-v22.14.0-darwin-arm64/bin:$PATH"
 fi

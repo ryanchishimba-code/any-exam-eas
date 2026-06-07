@@ -42,7 +42,7 @@ export async function getCrmUserProfile(userId: string) {
         orderBy: { createdAt: "desc" },
         take: 25,
       }),
-      prisma.exam.count({ where: { userId } }),
+      prisma.generatedExam.count({ where: { userId } }),
       prisma.learningQuilt.count({ where: { userId } }),
     ]);
 

@@ -139,7 +139,7 @@ export async function getStudentDashboardData(userId: string): Promise<StudentDa
   const examIds = completedRecords.map((r) => r.entityId);
   const exams =
     examIds.length > 0
-      ? await prisma.exam.findMany({
+      ? await prisma.generatedExam.findMany({
           where: { id: { in: examIds } },
           select: { id: true, title: true, field: true, questionCount: true },
         })

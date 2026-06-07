@@ -198,7 +198,7 @@ export const learningProfiles = pgTable("LearningProfile", {
 });
 
 /** Static reference — four supported board exams. */
-export const exams = pgTable("Exam", {
+export const exams = pgTable("BoardExam", {
   slug: text("slug").primaryKey(),
   name: text("name").notNull(),
   shortName: text("shortName").notNull(),

@@ -15,7 +15,7 @@ export async function GET() {
     take: 50,
   });
 
-  const exams = await prisma.exam.findMany({
+  const exams = await prisma.generatedExam.findMany({
     where: { userId },
     orderBy: { createdAt: "desc" },
     take: 10,

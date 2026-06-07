@@ -98,7 +98,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: message }, { status: 500 });
   }
 
-  const saved = await prisma.exam.create({
+  const saved = await prisma.generatedExam.create({
     data: {
       userId: userId,
       lessonPlanId: lessonPlanId ?? null,

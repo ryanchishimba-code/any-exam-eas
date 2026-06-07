@@ -133,7 +133,7 @@ export async function POST(req: Request) {
 
   let saved;
   try {
-    saved = await prisma.exam.create({
+    saved = await prisma.generatedExam.create({
       data: {
         userId,
         lessonPlanId: input.lessonPlanId ?? null,
