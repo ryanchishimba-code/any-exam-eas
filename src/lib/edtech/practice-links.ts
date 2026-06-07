@@ -1,6 +1,8 @@
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import type { ExamSlug } from "@/types/edtech";
+import type { FullExamLengthPreset } from "@/types/full-exam";
 
 /** Question bank practice filtered to a high-yield topic slug. */
 export function practiceTopicHref(
@@ -24,7 +26,13 @@ export function questionBankHref(examSlug?: ExamSlug): string {
   return `${ROUTES.questionBank}?field=${encodeURIComponent(fieldId)}`;
 }
 
-export function simulatedExamHref(examSlug: ExamSlug): string {
+export function simulatedExamHref(
+  examSlug: ExamSlug,
+  opts?: { mode?: FullExamLengthPreset; autostart?: boolean }
+): string {
+  if (opts?.mode || opts?.autostart) {
+    return fullExamLaunchHref(examSlug, opts);
+  }
   return fullExamHref(examSlug);
 }
 

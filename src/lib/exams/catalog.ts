@@ -30,8 +30,8 @@ export const EXAM_HUBS: ExamHubConfig[] = [
   {
     slug: "usmle",
     title: "USMLE Prep",
-    subtitle: "Step 1 & Step 2 CK vignettes with mechanism-first rationales.",
-    fieldId: "usmle-step-1",
+    subtitle: "Clinical vignettes with mechanism-first rationales.",
+    fieldId: "usmle-step-2",
     icon: Stethoscope,
     accentClass: "from-indigo-500/20 to-violet-600/10 border-indigo-200/60",
     questionBankLabel: "30K+ medicine items",

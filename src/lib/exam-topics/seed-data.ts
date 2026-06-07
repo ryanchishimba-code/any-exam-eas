@@ -9,7 +9,7 @@ export function blueprintTopicsForExam(examType: ExamSlug): {
 }[] {
   const fieldMap: Record<ExamSlug, string> = {
     nclex: "nursing",
-    usmle: "usmle-step-1",
+    usmle: "usmle-step-2",
     naplex: "pharmacy",
     mpje: "mpje",
     top500: "drugs300",

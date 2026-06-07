@@ -1,4 +1,5 @@
 import { getFieldMeta, getFieldMetaById } from "@/lib/fields";
+import { computeTimeLimitSec } from "@/lib/full-exam/config";
 import type { ExamSlug } from "@/lib/exams/catalog";
 
 /** Board-style session types. */
@@ -117,6 +118,18 @@ export function getExamQuestionCountBySlug(
   if (!board) return 40;
   if (board === "nclex") return NCLEX_TIMED_COUNTS[nclexLength];
   return TIMED_EXAM_COUNTS[board];
+}
+
+/** Board-style timed session duration (scales official exam time to question count). */
+export function computeTimedExamTimeLimitSec(
+  fieldOrLabel: string,
+  questionCount?: number,
+  options?: { nclexLength?: NclexTimedVariant }
+): number {
+  const board = resolveBoardExam(fieldOrLabel);
+  if (!board) return (questionCount ?? 50) * 90;
+  const count = questionCount ?? getTimedExamQuestionCount(fieldOrLabel, options);
+  return computeTimeLimitSec(board, count, true);
 }
 
 export function formatExamLengthLabel(

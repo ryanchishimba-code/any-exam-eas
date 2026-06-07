@@ -61,9 +61,9 @@ export const EXAM_NAV_ITEMS: {
     label: "USMLE",
     short: "Medicine",
     href: "/exams/usmle",
-    fieldId: "usmle-step-1",
+    fieldId: "usmle-step-2",
     practiceHref: "/practice/usmle",
-    stat: "Step 1–3 bank",
+    stat: "30K+ items",
   },
   {
     slug: "naplex",

@@ -20,10 +20,13 @@ export async function generateMetadata({
 
 export default async function FullExamLauncherPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ examSlug: string }>;
+  searchParams: Promise<{ mode?: string; autostart?: string; timed?: string }>;
 }) {
   const { examSlug } = await params;
+  const sp = await searchParams;
   if (!isExamSlug(examSlug)) redirect(ROUTES.dashboard);
 
   const session = await auth();
@@ -33,5 +36,12 @@ export default async function FullExamLauncherPage({
 
   await requirePremiumPage(fullExamHref(examSlug as ExamSlug));
 
-  return <FullExamLauncher examSlug={examSlug as ExamSlug} />;
+  return (
+    <FullExamLauncher
+      examSlug={examSlug as ExamSlug}
+      initialMode={sp.mode ?? null}
+      autostart={sp.autostart === "1"}
+      initialTimed={sp.timed !== "0"}
+    />
+  );
 }

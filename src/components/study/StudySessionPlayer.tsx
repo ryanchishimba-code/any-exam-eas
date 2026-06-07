@@ -35,6 +35,7 @@ import {
   ExplanationPanel,
   QuestionRenderer,
 } from "./questions/QuestionRenderer";
+import { formatHms } from "@/lib/full-exam/config";
 
 type Props = {
   field: string;
@@ -45,6 +46,8 @@ type Props = {
   title?: string;
   mode?: StudyMode;
   adaptiveMeta?: AdaptiveSessionMeta;
+  /** Whole-exam countdown for board timed simulations (e.g. NAPLEX 6 hours). */
+  timedSessionSeconds?: number;
   onComplete?: (summary: ReturnType<typeof summarizeSession>) => void;
 };
 
@@ -57,6 +60,7 @@ export function StudySessionPlayer({
   title,
   mode = "practice",
   adaptiveMeta,
+  timedSessionSeconds,
   onComplete,
 }: Props) {
   const initial = useMemo(
@@ -68,14 +72,15 @@ export function StudySessionPlayer({
         sourceType,
         sourceId,
         mode,
-        timedSecondsPerQuestion: mode === "timed" ? 45 : undefined,
+        timedSecondsPerQuestion: mode === "timed" && !timedSessionSeconds ? 45 : undefined,
+        timedSessionSeconds: mode === "timed" ? timedSessionSeconds : undefined,
       });
       if (adaptiveMeta) {
         created.session.adaptiveMeta = adaptiveMeta;
       }
       return created;
     },
-    [rawQuestions, field, subjectId, sourceType, sourceId, mode, adaptiveMeta]
+    [rawQuestions, field, subjectId, sourceType, sourceId, mode, adaptiveMeta, timedSessionSeconds]
   );
 
   const [sessionState, setSessionState] = useState<StudySessionState>(initial.session);
@@ -85,7 +90,11 @@ export function StudySessionPlayer({
   const [showConfidence, setShowConfidence] = useState(false);
   const [insight, setInsight] = useState<LearningInsight | null>(null);
   const [remediation, setRemediation] = useState<RemediationRecommendation[]>([]);
-  const [timerSec, setTimerSec] = useState(initial.session.timedSecondsPerQuestion ?? 0);
+  const usesSessionTimer = Boolean(initial.session.timedSessionSeconds);
+  const [timerSec, setTimerSec] = useState(
+    initial.session.timedSessionSeconds ?? initial.session.timedSecondsPerQuestion ?? 0
+  );
+  const [timeUp, setTimeUp] = useState(false);
   const startedAt = useRef<number>(Date.now());
   const progressSaved = useRef(false);
   const touchStart = useRef<number | null>(null);
@@ -100,7 +109,7 @@ export function StudySessionPlayer({
     [current, questionList, sessionState.answers]
   );
   const summary = summarizeSession(sessionState, questionList);
-  const complete = isSessionComplete(sessionState, questionList);
+  const complete = isSessionComplete(sessionState, questionList) || timeUp;
 
   const persist = useCallback(
     (s: StudySessionState) => {
@@ -229,20 +238,31 @@ export function StudySessionPlayer({
     setShowConfidence(false);
     setInsight(null);
     setRemediation([]);
-    if (sessionState.mode === "timed") {
+    if (sessionState.mode === "timed" && !usesSessionTimer) {
       setTimerSec(sessionState.timedSecondsPerQuestion ?? 45);
     }
-  }, [current, answer?.revealed, sessionState.mode, sessionState.timedSecondsPerQuestion]);
+  }, [current, answer?.revealed, sessionState.mode, sessionState.timedSecondsPerQuestion, usesSessionTimer]);
 
   useEffect(() => {
-    if (sessionState.mode !== "timed" || !current || answer?.revealed) return;
+    if (sessionState.mode !== "timed" || usesSessionTimer) return;
+    if (!current || answer?.revealed) return;
     if (timerSec <= 0) {
       void revealAnswer(selected.length ? selected : []);
       return;
     }
     const t = setTimeout(() => setTimerSec((s) => s - 1), 1000);
     return () => clearTimeout(t);
-  }, [timerSec, sessionState.mode, current, answer?.revealed, selected, revealAnswer]);
+  }, [timerSec, sessionState.mode, current, answer?.revealed, selected, revealAnswer, usesSessionTimer]);
+
+  useEffect(() => {
+    if (sessionState.mode !== "timed" || !usesSessionTimer || timeUp) return;
+    if (timerSec <= 0) {
+      setTimeUp(true);
+      return;
+    }
+    const t = setTimeout(() => setTimerSec((s) => s - 1), 1000);
+    return () => clearTimeout(t);
+  }, [timerSec, sessionState.mode, usesSessionTimer, timeUp]);
 
   function goNext(from?: StudySessionState) {
     const base = from ?? sessionState;
@@ -434,9 +454,9 @@ export function StudySessionPlayer({
       <ActivitySessionToolbar
         actions={
           <>
-            {sessionState.mode === "timed" && !answer?.revealed && (
-              <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-900">
-                {timerSec}s
+            {sessionState.mode === "timed" && !timeUp && (
+              <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium tabular-nums text-amber-900">
+                {usesSessionTimer ? formatHms(timerSec) : `${timerSec}s`}
               </span>
             )}
             <EndActivityControl
@@ -447,7 +467,7 @@ export function StudySessionPlayer({
         }
       >
         <div>
-          {title && <p className="text-sm font-medium">{title}</p>}
+          {title && <p className="truncate text-sm font-medium">{title}</p>}
           <p className="text-xs text-[var(--color-ink-muted)]">
             {sessionState.mode} · {sessionState.currentIndex + 1}/{questionList.length}
             {summary.answered > 0 && ` · ${summary.accuracy}%`}
@@ -470,7 +490,7 @@ export function StudySessionPlayer({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.2 }}
-          className="rounded-2xl border border-black/[0.08] bg-white p-6 shadow-sm sm:p-8"
+          className="rounded-2xl border border-black/[0.08] bg-white p-4 shadow-sm sm:p-6 md:p-8"
         >
           {(sessionState.mode === "adaptive" ||
             sessionState.mode === "weak_area" ||
@@ -499,7 +519,7 @@ export function StudySessionPlayer({
               type="button"
               disabled={!canSubmitSelection()}
               onClick={() => void revealAnswer(selected)}
-              className="mt-8 rounded-full bg-[var(--color-accent)] px-10 py-3 text-sm font-medium text-white disabled:opacity-40"
+              className="mt-8 w-full rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-medium text-white disabled:opacity-40 sm:w-auto sm:px-10"
             >
               {current.type === "ordered_response" &&
               selected.length !== current.correctAnswers.length
@@ -545,12 +565,12 @@ export function StudySessionPlayer({
         </motion.article>
       </AnimatePresence>
 
-      <div className="flex justify-between">
+      <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
         <button
           type="button"
           onClick={goPrev}
           disabled={sessionState.currentIndex === 0}
-          className="rounded-full border px-5 py-2 text-sm disabled:opacity-30"
+          className="w-full rounded-full border px-5 py-2.5 text-sm disabled:opacity-30 sm:w-auto"
         >
           Back
         </button>
@@ -558,7 +578,7 @@ export function StudySessionPlayer({
           type="button"
           onClick={() => (answer?.revealed ? goNext() : void revealAnswer(selected))}
           disabled={!answer?.revealed && !selected.length}
-          className="rounded-full bg-[var(--color-accent)] px-5 py-2 text-sm font-medium text-white disabled:opacity-40"
+          className="w-full rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-medium text-white disabled:opacity-40 sm:w-auto"
         >
           Next
         </button>

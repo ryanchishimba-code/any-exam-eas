@@ -30,12 +30,6 @@ const ICONS = {
   mpje: Scale,
 } as const;
 
-const USMLE_STEPS = [
-  { id: "usmle-step-1", label: "Step 1", hint: "Basic sciences & mechanisms" },
-  { id: "usmle-step-2", label: "Step 2 CK", hint: "Clinical management & sequential sets" },
-  { id: "usmle-step-3", label: "Step 3", hint: "CCS, abstracts, drug ads" },
-] as const;
-
 type Props = { slug: ExamRouteSlug };
 
 export function ExamLanding({ slug }: Props) {
@@ -106,36 +100,6 @@ export function ExamLanding({ slug }: Props) {
           </div>
         </div>
       </motion.div>
-
-      {slug === "usmle" && (
-        <section className="mt-10" aria-labelledby="usmle-steps">
-          <h2 id="usmle-steps" className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Choose your step
-          </h2>
-          <div className="mt-4 grid gap-4 sm:grid-cols-3">
-            {USMLE_STEPS.map((step, i) => (
-              <motion.div
-                key={step.id}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.06 }}
-              >
-                <Link
-                  href={`/practice/usmle?field=${step.id}&mode=bank`}
-                  className="aee-card block p-5 transition hover:border-indigo-200 hover:shadow-md"
-                >
-                  <p className="text-lg font-semibold text-slate-900">{step.label}</p>
-                  <p className="mt-1 text-sm text-slate-600">{step.hint}</p>
-                  <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-accent)]">
-                    Practice
-                    <ArrowRight className="h-4 w-4" aria-hidden />
-                  </span>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-      )}
 
       {slug === "mpje" && (
         <section className="mt-10 aee-card p-6" aria-labelledby="mpje-state">

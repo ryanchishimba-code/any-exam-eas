@@ -12,13 +12,13 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { FullExamModeButtons } from "@/components/exam/FullExamModeButtons";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
 import {
   analyticsHref,
   highYieldTopicsHref,
   questionBankHref,
-  simulatedExamHref,
   top500Href,
 } from "@/lib/edtech/practice-links";
 import { ROUTES } from "@/lib/routes";
@@ -29,11 +29,11 @@ import { cn } from "@/lib/utils";
 type PrimaryCard = {
   title: string;
   description: string;
-  href: string;
-  cta: string;
+  href?: string;
+  cta?: string;
   icon: typeof BookOpen;
   accent: string;
-  options?: string[];
+  examModes?: boolean;
 };
 
 export function DashboardView({
@@ -56,11 +56,9 @@ export function DashboardView({
     {
       title: "Full Exam",
       description: "Start timed practice under real exam conditions with a live countdown.",
-      href: simulatedExamHref(examSlug),
-      cta: "Start timed practice",
       icon: Clock,
       accent: "from-teal-500/15 to-cyan-600/10 border-teal-200/70",
-      options: ["50 questions", "100 questions", "Full length"],
+      examModes: true,
     },
     {
       title: "Question Bank",
@@ -164,10 +162,10 @@ export function DashboardView({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.06, duration: 0.35 }}
           >
-            <Link href={card.href} className="group block h-full">
+            {card.examModes ? (
               <Card
                 className={cn(
-                  "h-full border bg-gradient-to-br transition duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-apple-md)]",
+                  "h-full border bg-gradient-to-br",
                   card.accent
                 )}
               >
@@ -180,26 +178,36 @@ export function DashboardView({
                     {card.description}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-3">
-                  {card.options ? (
-                    <div className="flex flex-wrap gap-2">
-                      {card.options.map((opt) => (
-                        <span
-                          key={opt}
-                          className="rounded-full border border-black/[0.06] bg-white/70 px-2.5 py-1 text-[11px] font-semibold text-[var(--color-ink-muted)]"
-                        >
-                          {opt}
-                        </span>
-                      ))}
-                    </div>
-                  ) : null}
-                  <span className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-accent)] group-hover:gap-2 transition-all">
-                    {card.cta}
-                    <ArrowRight className="h-4 w-4" aria-hidden />
-                  </span>
+                <CardContent>
+                  <FullExamModeButtons examSlug={examSlug} />
                 </CardContent>
               </Card>
-            </Link>
+            ) : (
+              <Link href={card.href!} className="group block h-full">
+                <Card
+                  className={cn(
+                    "h-full border bg-gradient-to-br transition duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-apple-md)]",
+                    card.accent
+                  )}
+                >
+                  <CardHeader className="pb-2">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/80 shadow-sm">
+                      <card.icon className="h-5 w-5 text-[var(--color-accent)]" aria-hidden />
+                    </div>
+                    <CardTitle className="mt-4 text-xl">{card.title}</CardTitle>
+                    <CardDescription className="text-base leading-relaxed">
+                      {card.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <span className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-accent)] group-hover:gap-2 transition-all">
+                      {card.cta}
+                      <ArrowRight className="h-4 w-4" aria-hidden />
+                    </span>
+                  </CardContent>
+                </Card>
+              </Link>
+            )}
           </motion.div>
         ))}
       </section>

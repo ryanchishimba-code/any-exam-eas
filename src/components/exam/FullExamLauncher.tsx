@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Clock, Timer, Zap, CheckCircle2 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,42 +8,109 @@ import { AppBreadcrumbs } from "@/components/app/AppBreadcrumbs";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
   buildSessionConfig,
-  formatMmSs,
+  formatHms,
+  fullExamModeTitle,
   getLengthOptions,
   fullExamSessionHref,
+  parseFullExamLengthPreset,
 } from "@/lib/full-exam/config";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
-export function FullExamLauncher({ examSlug }: { examSlug: ExamSlug }) {
+type Props = {
+  examSlug: ExamSlug;
+  initialMode?: string | null;
+  autostart?: boolean;
+  initialTimed?: boolean;
+};
+
+export function FullExamLauncher({
+  examSlug,
+  initialMode,
+  autostart = false,
+  initialTimed = true,
+}: Props) {
   const router = useRouter();
   const exam = EXAM_CATALOG[examSlug];
   const options = getLengthOptions(examSlug);
 
-  const [preset, setPreset] = useState<FullExamLengthPreset>("50");
-  const [timed, setTimed] = useState(true);
-  const [pending, startTransition] = useTransition();
+  const [preset, setPreset] = useState<FullExamLengthPreset>(() =>
+    parseFullExamLengthPreset(initialMode)
+  );
+  const [timed, setTimed] = useState(initialTimed);
+  const [pending, setPending] = useState(autostart);
   const [error, setError] = useState<string | null>(null);
+  const autostartAttempted = useRef(false);
+  const startingRef = useRef(false);
 
   const preview = buildSessionConfig(examSlug, preset, timed);
+  const pageTitle = fullExamModeTitle(examSlug, preset);
 
-  function startExam() {
+  async function startExam() {
+    if (startingRef.current) return;
+    startingRef.current = true;
     setError(null);
-    startTransition(async () => {
+    setPending(true);
+    try {
       const res = await fetch("/api/full-exam/start", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ examSlug, lengthPreset: preset, timed }),
       });
-      const data = await res.json().catch(() => ({}));
+      const data = (await res.json().catch(() => ({}))) as {
+        sessionId?: string;
+        redirectUrl?: string;
+        error?: string;
+      };
       if (!res.ok) {
         setError(data.error ?? "Could not start exam");
+        startingRef.current = false;
+        setPending(false);
         return;
       }
-      router.push(fullExamSessionHref(examSlug, data.sessionId));
-    });
+      const href =
+        data.redirectUrl ??
+        (data.sessionId ? fullExamSessionHref(examSlug, data.sessionId) : null);
+      if (!href) {
+        setError("Session was not created. Please try again.");
+        startingRef.current = false;
+        setPending(false);
+        return;
+      }
+      router.push(href);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Could not start exam");
+      startingRef.current = false;
+      setPending(false);
+    }
+  }
+
+  useEffect(() => {
+    if (initialMode) {
+      setPreset(parseFullExamLengthPreset(initialMode));
+    }
+  }, [initialMode]);
+
+  useEffect(() => {
+    if (!autostart || autostartAttempted.current) return;
+    autostartAttempted.current = true;
+    void startExam();
+  }, [autostart]);
+
+  if (pending && autostart) {
+    return (
+      <div className="flex min-h-[50vh] flex-col items-center justify-center space-y-4">
+        <div className="h-12 w-12 animate-spin rounded-full border-2 border-[var(--color-accent)] border-t-transparent" />
+        <div className="text-center">
+          <p className="text-lg font-semibold text-slate-900">Starting {pageTitle}</p>
+          <p className="mt-1 text-sm text-slate-500">
+            {preview.questionCount} questions · preparing your session…
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -60,7 +127,7 @@ export function FullExamLauncher({ examSlug }: { examSlug: ExamSlug }) {
           Full simulated exam
         </p>
         <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-          {exam.name} Simulator
+          {pageTitle}
         </h1>
         <p className="max-w-2xl text-lg text-slate-600">
           Test-day conditions with a dynamic timer, flag-for-review, elimination mode, and a
@@ -122,7 +189,7 @@ export function FullExamLauncher({ examSlug }: { examSlug: ExamSlug }) {
             <PreviewRow label="Questions" value={String(preview.questionCount)} />
             <PreviewRow
               label="Time limit"
-              value={preview.timed ? formatMmSs(preview.timeLimitSec) : "None"}
+              value={preview.timed ? formatHms(preview.timeLimitSec) : "None"}
             />
             <PreviewRow label="Adaptive mix" value={preview.adaptive ? "Yes" : "Standard"} />
             <ul className="space-y-2 border-t border-slate-100 pt-4 text-sm text-slate-600">
@@ -139,11 +206,15 @@ export function FullExamLauncher({ examSlug }: { examSlug: ExamSlug }) {
                 Rationales after submission
               </li>
             </ul>
-            {error ? <p className="text-sm text-rose-600">{error}</p> : null}
+            {error ? (
+              <p className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700" role="alert">
+                {error}
+              </p>
+            ) : null}
             <button
               type="button"
               disabled={pending}
-              onClick={startExam}
+              onClick={() => void startExam()}
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] py-3.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-95 disabled:opacity-60"
             >
               <Zap className="h-4 w-4" />

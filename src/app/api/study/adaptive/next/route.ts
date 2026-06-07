@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { getFieldSubject, getSubjectsForField } from "@/lib/field-subjects";
+import { getFieldSubject } from "@/lib/field-subjects";
 import { getFieldMeta } from "@/lib/fields";
 import {
   ADAPTIVE_QUESTION_POOL_PER_SUBJECT,
@@ -23,13 +23,16 @@ import {
 } from "@/lib/mpje/config";
 import { prepareMpjeBankItems } from "@/lib/mpje/prepare-items";
 import { parseMpjeStateParam } from "@/lib/mpje/validators";
+import { bankItemToRawQuestion } from "@/lib/exam-prep/ngn-bank-bridge";
+import { bankItemToNaplexRaw } from "@/lib/exam-prep/naplex-bank-bridge";
+import { bankItemToUsmleRaw, isUsmleField } from "@/lib/exam-prep/usmle-bank-bridge";
 
 export const runtime = "nodejs";
 
 const bodySchema = z.object({
   field: z.string().min(1),
-  subjectId: z.string().optional(),
-  count: z.number().int().min(1).max(50).default(15),
+  subjectId: z.string().min(1),
+  count: z.number().int().min(1).max(300).default(15),
   currentDifficulty: z.enum(["easy", "medium", "hard"]).default("medium"),
   topicPerformance: z
     .array(
@@ -87,6 +90,38 @@ function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQu
   };
 }
 
+function bankItemToExamQuestion(
+  fieldId: string,
+  field: string,
+  subjectId: string,
+  item: Awaited<ReturnType<typeof sampleQuestionBankItems>>[number],
+  index: number
+) {
+  if (fieldId === "nursing") {
+    return bankItemToRawQuestion(item, index, { field, subjectId });
+  }
+  if (fieldId === "pharmacy") {
+    return bankItemToNaplexRaw(item, index, { field, subjectId });
+  }
+  if (isUsmleField(fieldId)) {
+    return bankItemToUsmleRaw(item, index, { field, subjectId });
+  }
+  return {
+    id: index + 1,
+    type: "multiple_choice" as const,
+    question: item.question,
+    options: [...item.options],
+    correctAnswer: item.correctAnswer,
+    explanation: item.explanation,
+    solutionSteps: item.solutionSteps,
+    tags: item.tags,
+    highYield: true,
+    field,
+    subjectId,
+    bankItemId: item.id,
+  };
+}
+
 export async function POST(req: Request) {
   const { requirePremiumApi } = await import("@/lib/api-access");
   const premium = await requirePremiumApi();
@@ -96,6 +131,7 @@ export async function POST(req: Request) {
     const body = bodySchema.parse(await req.json());
     const meta = getFieldMeta(body.field);
     const fieldId = meta?.id ?? body.field.toLowerCase().replace(/\s+/g, "-");
+    const subjectId = body.subjectId;
 
     let topicPerformance: TopicPerformance[] = body.topicPerformance ?? [];
 
@@ -104,12 +140,9 @@ export async function POST(req: Request) {
       topicPerformance = topicPerformanceFromWeakness(weakness);
     }
 
-    const subjectIds = body.subjectId
-      ? [body.subjectId]
-      : getSubjectsForField(body.field).map((s) => s.id);
-
-    if (subjectIds.length === 0) {
-      return NextResponse.json({ error: "No subjects for this field." }, { status: 400 });
+    const subject = getFieldSubject(body.field, subjectId);
+    if (!subject) {
+      return NextResponse.json({ error: "Unknown subject for this field." }, { status: 400 });
     }
 
     const mpjeStateCode = isMpjeField(fieldId)
@@ -123,59 +156,30 @@ export async function POST(req: Request) {
         })
       : null;
 
-    const pool: ReturnType<typeof examQuestionToStudy>[] = [];
-    for (const subjectId of subjectIds) {
-      const subject = getFieldSubject(body.field, subjectId);
-      if (!subject) continue;
+    const poolSize = Math.min(
+      ADAPTIVE_QUESTION_POOL_PER_SUBJECT,
+      Math.max(body.count * 5, 40)
+    );
 
-      let items = await sampleQuestionBankItems({
-        fieldId,
-        subjectId,
-        count: ADAPTIVE_QUESTION_POOL_PER_SUBJECT,
-        poolMultiplier: 2,
-        stateCode: mpjeStateCode,
-      });
+    let items = await sampleQuestionBankItems({
+      fieldId,
+      subjectId,
+      count: poolSize,
+      poolMultiplier: 2,
+      stateCode: mpjeStateCode,
+    });
 
-      if (mpjeOptions && items.length > 0) {
-        const mpjeLabel =
-          mpjeOptions.variant === "state" && mpjeOptions.stateCode
-            ? `${getMpjeState(mpjeOptions.stateCode)?.name ?? mpjeOptions.stateCode} MPJE`
-            : "Uniform MPJE";
-        items = prepareMpjeBankItems(items, mpjeOptions, mpjeLabel);
-      }
-
-      const { bankItemToRawQuestion } = await import("@/lib/exam-prep/ngn-bank-bridge");
-      const { bankItemToNaplexRaw } = await import("@/lib/exam-prep/naplex-bank-bridge");
-      const { bankItemToUsmleRaw, isUsmleField } = await import(
-        "@/lib/exam-prep/usmle-bank-bridge"
-      );
-
-      for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-        const examQ =
-          fieldId === "nursing"
-            ? bankItemToRawQuestion(item, i, { field: body.field, subjectId })
-            : fieldId === "pharmacy"
-              ? bankItemToNaplexRaw(item, i, { field: body.field, subjectId })
-              : isUsmleField(fieldId)
-                ? bankItemToUsmleRaw(item, i, { field: body.field, subjectId })
-                : {
-                id: i + 1,
-                type: "multiple_choice" as const,
-                question: item.question,
-                options: [...item.options],
-                correctAnswer: item.correctAnswer,
-                explanation: item.explanation,
-                solutionSteps: item.solutionSteps,
-                tags: item.tags,
-                highYield: true,
-                field: body.field,
-                subjectId,
-                bankItemId: item.id,
-              };
-        pool.push(examQuestionToStudy(examQ, pool.length));
-      }
+    if (mpjeOptions && items.length > 0) {
+      const mpjeLabel =
+        mpjeOptions.variant === "state" && mpjeOptions.stateCode
+          ? `${getMpjeState(mpjeOptions.stateCode)?.name ?? mpjeOptions.stateCode} MPJE`
+          : "Uniform MPJE";
+      items = prepareMpjeBankItems(items, mpjeOptions, mpjeLabel);
     }
+
+    const pool: ReturnType<typeof examQuestionToStudy>[] = items.map((item, i) =>
+      examQuestionToStudy(bankItemToExamQuestion(fieldId, body.field, subjectId, item, i), i)
+    );
 
     if (pool.length === 0) {
       return NextResponse.json(
@@ -218,7 +222,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       field: body.field,
       fieldId,
-      subjectId: body.subjectId ?? null,
+      subjectId,
       questions,
       bankItemIds: orderedQuestions.map((q) => q.bankItemId).filter(Boolean),
       reasoningByQuestionId,

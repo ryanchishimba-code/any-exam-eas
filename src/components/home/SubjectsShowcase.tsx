@@ -36,7 +36,7 @@ export function SubjectsShowcase() {
           <h2 className="aee-headline mt-4">Study support across boards.</h2>
           <p className="aee-section-lede mx-auto mt-4 max-w-xl">
             Timed exams, question banks, and progress tracking for NCLEX,
-            USMLE Step 1 & 2, and NAPLEX.
+            NCLEX, USMLE, NAPLEX, and MPJE.
           </p>
         </div>
 

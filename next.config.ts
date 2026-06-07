@@ -35,13 +35,13 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/studygub",
-        destination: "/study-hub",
+        destination: "/dashboard",
         permanent: true,
       },
       {
-        source: "/dashboard",
-        destination: "/study-hub",
-        permanent: true,
+        source: "/study-hub",
+        destination: "/dashboard",
+        permanent: false,
       },
       {
         source: "/prep/:exam",

@@ -3,7 +3,7 @@ import "./globals.css";
 import { SessionProvider } from "@/components/SessionProvider";
 import { LoginModalRoot } from "@/components/auth/LoginModalRoot";
 import { PageViewTrackerBoundary } from "@/components/analytics/PageViewTrackerBoundary";
-import { ShareFab } from "@/components/share/ShareFab";
+import { ShareFabLazy } from "@/components/share/ShareFabLazy";
 import { RootChrome } from "@/components/layout/RootChrome";
 import { buildRootMetadata } from "@/lib/seo";
 
@@ -24,7 +24,7 @@ export default function RootLayout({
           <LoginModalRoot>
             <PageViewTrackerBoundary />
             <RootChrome>{children}</RootChrome>
-            <ShareFab />
+            <ShareFabLazy />
           </LoginModalRoot>
         </SessionProvider>
       </body>

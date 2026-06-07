@@ -19,15 +19,8 @@ export const premiumFeatures = [
     accent: "#5856d6",
   },
   {
-    href: "/study/practice?field=usmle-step-1",
-    label: "Start USMLE Step 1",
-    description: "Basic sciences & mechanisms",
-    icon: Stethoscope,
-    accent: "#0071e3",
-  },
-  {
     href: "/study/practice?field=usmle-step-2",
-    label: "Start USMLE Step 2",
+    label: "Start USMLE Practice",
     description: "Clinical vignettes & management",
     icon: Stethoscope,
     accent: "#0a84ff",

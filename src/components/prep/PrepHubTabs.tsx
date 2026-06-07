@@ -31,12 +31,15 @@ export function PrepHubTabs({
   const [tab, setTab] = useState<TabId>("bank");
   const router = useRouter();
   const [starting, setStarting] = useState(false);
+  const [startError, setStartError] = useState("");
 
   async function startTimedExam() {
+    if (starting) return;
     if (exam.slug === "top500") {
       router.push("/study/drugs300");
       return;
     }
+    setStartError("");
     setStarting(true);
     try {
       const res = await fetch("/api/exam-sessions", {
@@ -47,8 +50,21 @@ export function PrepHubTabs({
           questionCount: getExamQuestionCountBySlug(exam.slug),
         }),
       });
-      const data = await res.json();
-      if (data.redirectUrl) router.push(data.redirectUrl);
+      const data = (await res.json().catch(() => ({}))) as {
+        redirectUrl?: string;
+        error?: string;
+      };
+      if (!res.ok) {
+        setStartError(data.error ?? "Could not start timed exam");
+        return;
+      }
+      if (data.redirectUrl) {
+        router.push(data.redirectUrl);
+        return;
+      }
+      setStartError("Session was not created. Please try again.");
+    } catch (e) {
+      setStartError(e instanceof Error ? e.message : "Could not start timed exam");
     } finally {
       setStarting(false);
     }
@@ -128,7 +144,12 @@ export function PrepHubTabs({
               {formatExamLengthLabel(exam.fieldId)} · mixed topics · auto-saved answers
             </p>
             <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <Button onClick={startTimedExam} disabled={starting}>
+              {startError ? (
+                <p className="w-full text-sm text-rose-600" role="alert">
+                  {startError}
+                </p>
+              ) : null}
+              <Button type="button" onClick={() => void startTimedExam()} disabled={starting}>
                 {starting ? "Starting…" : "Start timed exam"}
               </Button>
               <Button href={timedExamHref(exam.fieldId)} variant="secondary">

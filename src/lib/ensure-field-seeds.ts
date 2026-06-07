@@ -6,6 +6,8 @@ import { generateBulkQuestionsForSubject } from "@/lib/bulk-question-generator";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 
 const inFlight = new Map<string, Promise<void>>();
+/** Per-process guard — skip repeated seed upserts on hot read paths. */
+const seededFields = new Set<string>();
 
 function serializeOptions(item: BankItem): string {
   if (item.ngnPayload) {
@@ -54,27 +56,22 @@ function rowToCreateData(
 
 /** Upsert static repo seeds for one field (safe on serverless — small row count). */
 export async function ensureStaticSeedsForField(fieldId: string): Promise<void> {
+  if (seededFields.has(fieldId)) return;
+
   const existing = inFlight.get(fieldId);
   if (existing) return existing;
 
   const work = (async () => {
+    const count = await prisma.questionBankItem.count({
+      where: { fieldId, active: true },
+    });
+    if (count > 0) {
+      seededFields.add(fieldId);
+      return;
+    }
+
     const rows = collectSeedQuestionRows().filter((r) => r.fieldId === fieldId);
     if (rows.length === 0) return;
-
-    // Always upsert high-yield exam prep seeds on deploy.
-    const alwaysUpsert =
-      fieldId === "mpje" ||
-      fieldId === "nursing" ||
-      fieldId === "pharmacy" ||
-      fieldId === "usmle-step-1" ||
-      fieldId === "usmle-step-2" ||
-      fieldId === "usmle-step-3";
-    if (!alwaysUpsert) {
-      const count = await prisma.questionBankItem.count({
-        where: { fieldId, active: true },
-      });
-      if (count > 0) return;
-    }
 
     for (const row of rows) {
       const data = rowToCreateData(row.fieldId, row.subjectId, row.item, "seed");
@@ -84,6 +81,7 @@ export async function ensureStaticSeedsForField(fieldId: string): Promise<void> 
         update: data,
       });
     }
+    seededFields.add(fieldId);
   })().finally(() => {
     inFlight.delete(fieldId);
   });
@@ -106,18 +104,23 @@ export async function ensureSubjectHasQuestions(
   if (existing) return existing;
 
   const work = (async () => {
-    await ensureStaticSeedsForField(fieldId);
-
     const count = await prisma.questionBankItem.count({
       where: { fieldId, subjectId, active: true },
     });
     if (count >= minimum) return;
 
+    await ensureStaticSeedsForField(fieldId);
+
+    const afterSeed = await prisma.questionBankItem.count({
+      where: { fieldId, subjectId, active: true },
+    });
+    if (afterSeed >= minimum) return;
+
     const subject = getSubjectsForFieldId(fieldId).find((s) => s.id === subjectId);
     if (!subject) return;
 
-    const need = Math.max(minimum - count, 10);
-    const generated = generateBulkQuestionsForSubject(fieldId, subject, count, need);
+    const need = Math.max(minimum - afterSeed, 10);
+    const generated = generateBulkQuestionsForSubject(fieldId, subject, afterSeed, need);
     const batch = generated.map((item) => rowToCreateData(fieldId, subjectId, item, "generated"));
 
     const hashes = batch.map((b) => b.contentHash);

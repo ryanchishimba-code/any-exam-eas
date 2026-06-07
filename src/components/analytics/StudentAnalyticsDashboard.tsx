@@ -18,7 +18,7 @@ const BENCHMARKS: Record<string, number> = {
   nursing: 88,
   pharmacy: 89,
   mpje: 75,
-  "usmle-step-1": 92,
+  "usmle-step-2": 92,
 };
 
 function predictPassProbability(

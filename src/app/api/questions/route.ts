@@ -229,6 +229,10 @@ export async function GET(req: Request) {
       "select_all",
       "ordered_response",
       "unfolding_case",
+      "short_answer",
+      "drag_drop",
+      "calculation",
+      "fill_blank",
     ]);
     const preserveType = src?.type && ngnTypes.has(src.type);
     const isSelectAll = src?.type === "select_all" || p.type === "select_all";
@@ -244,7 +248,11 @@ export async function GET(req: Request) {
                 p.type === "matrix" ||
                 p.type === "highlight" ||
                 p.type === "ordered_response" ||
-                p.type === "unfolding_case"
+                p.type === "unfolding_case" ||
+                p.type === "short_answer" ||
+                p.type === "drag_drop" ||
+                p.type === "calculation" ||
+                p.type === "fill_blank"
               ? (p.type as ExamQuestion["type"])
               : "multiple_choice",
       question: p.stem,
@@ -266,17 +274,19 @@ export async function GET(req: Request) {
     };
   });
 
-  const [totalActive, subjectTotal, lastSync, mpjeCounts] = await Promise.all([
-    countActiveQuestions(fieldId),
-    mixed ? countActiveQuestions(fieldId) : getSubjectQuestionCount(fieldId, subjectId!),
-    getLastQuestionBankSync(),
-    mpjeStateCode
-      ? countMpjeQuestionsForState(
-          mpjeStateCode,
-          mixed ? undefined : subjectId!
-        )
-      : Promise.resolve(null),
-  ]);
+  const includeMeta = searchParams.get("meta") !== "0";
+
+  const totalActive = includeMeta ? await countActiveQuestions(fieldId) : 0;
+  const subjectTotal = includeMeta
+    ? mixed
+      ? totalActive
+      : await getSubjectQuestionCount(fieldId, subjectId!)
+    : 0;
+  const lastSync = includeMeta ? await getLastQuestionBankSync() : null;
+  const mpjeCounts =
+    includeMeta && mpjeStateCode
+      ? await countMpjeQuestionsForState(mpjeStateCode, mixed ? undefined : subjectId!)
+      : null;
 
   trackEvent({
     userId,
@@ -306,23 +316,27 @@ export async function GET(req: Request) {
     timedExam,
     questions,
     bankItemIds: prepared.map((p) => p.bankItemId).filter(Boolean),
-    meta: {
-      returned: questions.length,
-      requested: limit,
-      availableForSubject: subjectTotal,
-      minimumPerSubject: MIN_QUESTIONS_PER_SUBJECT,
-      meetsMinimum: mixed ? totalActive > 0 : subjectTotal >= MIN_QUESTIONS_PER_SUBJECT,
-      totalActiveInField: totalActive,
-      lastSyncedAt: lastSync?.finishedAt ?? null,
-      lastSyncStatus: lastSync?.status ?? null,
-      ...(mpjeStateCode && mpjeCounts
-        ? {
-            stateCode: mpjeStateCode,
-            stateSpecificAvailable: mpjeCounts.stateSpecific,
-            federalAvailable: mpjeCounts.federal,
-            usedFederalFallback: mpjeCounts.stateSpecific === 0 && questions.length > 0,
-          }
-        : {}),
-    },
+    ...(includeMeta
+      ? {
+          meta: {
+            returned: questions.length,
+            requested: limit,
+            availableForSubject: subjectTotal,
+            minimumPerSubject: MIN_QUESTIONS_PER_SUBJECT,
+            meetsMinimum: mixed ? totalActive > 0 : subjectTotal >= MIN_QUESTIONS_PER_SUBJECT,
+            totalActiveInField: totalActive,
+            lastSyncedAt: lastSync?.finishedAt ?? null,
+            lastSyncStatus: lastSync?.status ?? null,
+            ...(mpjeStateCode && mpjeCounts
+              ? {
+                  stateCode: mpjeStateCode,
+                  stateSpecificAvailable: mpjeCounts.stateSpecific,
+                  federalAvailable: mpjeCounts.federal,
+                  usedFederalFallback: mpjeCounts.stateSpecific === 0 && questions.length > 0,
+                }
+              : {}),
+          },
+        }
+      : {}),
   });
 }

@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import dynamic from "next/dynamic";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { BookOpen, Brain, Clock, Flag, Zap } from "lucide-react";
 import {
   DEFAULT_STUDY_FIELD_LABEL,
   getFieldMeta,
@@ -18,7 +20,11 @@ import {
   type QuestionBankStyle,
 } from "@/lib/exam/modes";
 import { mpjePracticeExamHref, STUDY_HUB_PATH } from "@/lib/study-hub/config";
+import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import { fullExamLaunchHref, fullExamSessionHref } from "@/lib/full-exam/config";
+import { ROUTES } from "@/lib/routes";
 import {
+  computeTimedExamTimeLimitSec,
   formatExamLengthLabel,
   getTimedExamQuestionCount,
   isNclexField,
@@ -26,7 +32,14 @@ import {
   resolveFieldId,
   type NclexTimedVariant,
 } from "@/lib/exam/exam-lengths";
-import { EXAM_FIELD_IDS } from "@/lib/subjects/field-ids";
+import {
+  EXAM_FIELD_OPTIONS,
+  PRACTICE_MODES,
+  practiceModeLaunchHref,
+  resolvePracticeModeFromParams,
+  type PracticeModeId,
+} from "@/lib/exam-prep/practice-modes";
+import type { ExamFieldId } from "@/lib/exam-prep/types";
 import { QuestionBankSetup } from "./QuestionBankSetup";
 import { MpjeVariantSelector } from "./MpjeVariantSelector";
 import { MpjeStateSelect } from "./MpjeStateSelect";
@@ -38,12 +51,28 @@ import {
   type MpjeVariant,
 } from "@/lib/mpje/config";
 import { parseOptionalMpjeStateParam } from "@/lib/mpje/validators";
-import { StudySessionPlayer } from "./StudySessionPlayer";
 import type { AdaptiveSessionMeta, RawQuestionInput, StudyMode } from "@/lib/questions/types";
 import type { ExamQuestion } from "@/lib/ai";
 import { Button } from "@/components/ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { cn } from "@/lib/utils";
+
+const StudySessionPlayer = dynamic(
+  () => import("./StudySessionPlayer").then((m) => m.StudySessionPlayer),
+  {
+    loading: () => (
+      <p className="py-8 text-center text-sm text-[var(--color-ink-muted)]">Loading session…</p>
+    ),
+  }
+);
+
+const MODE_ICONS = {
+  zap: Zap,
+  clock: Clock,
+  brain: Brain,
+  book: BookOpen,
+  flag: Flag,
+} as const;
 
 type PracticeMode = "timed" | "bank";
 
@@ -59,24 +88,24 @@ const LEGACY_MODES = new Set([
   "final",
 ]);
 
-const TIMED_EXAM_LABELS = EXAM_FIELD_IDS.map(
-  (id) => getFieldMetaById(id)?.label ?? id
-);
-
-function resolvePracticeMode(param: string | null): PracticeMode {
+function resolvePracticeMode(param: string | null, onQuestionBank: boolean): PracticeMode {
   if (param === "bank") return "bank";
-  return "timed";
+  if (param === "timed") return "timed";
+  return onQuestionBank ? "bank" : "timed";
 }
 
-function buildBankPracticeUrl(params: {
-  fieldId: string;
-  subjectId: string;
-  count: number;
-  pace: QuestionBankPace;
-  style?: QuestionBankStyle;
-  mpjeVariant?: MpjeVariant;
-  mpjeState?: string;
-}) {
+function buildBankPracticeUrl(
+  params: {
+    fieldId: string;
+    subjectId: string;
+    count: number;
+    pace: QuestionBankPace;
+    style?: QuestionBankStyle;
+    mpjeVariant?: MpjeVariant;
+    mpjeState?: string;
+  },
+  base = "/study/practice"
+) {
   const qs = new URLSearchParams({
     mode: "bank",
     field: params.fieldId,
@@ -90,15 +119,18 @@ function buildBankPracticeUrl(params: {
     qs.set("state", params.mpjeState);
     qs.set("mpjeState", params.mpjeState);
   }
-  return `/study/practice?${qs.toString()}`;
+  return `${base}?${qs.toString()}`;
 }
 
-function buildTimedPracticeUrl(params: {
-  fieldId: string;
-  nclexLength?: NclexTimedVariant;
-  mpjeVariant?: MpjeVariant;
-  mpjeState?: string;
-}) {
+function buildTimedPracticeUrl(
+  params: {
+    fieldId: string;
+    nclexLength?: NclexTimedVariant;
+    mpjeVariant?: MpjeVariant;
+    mpjeState?: string;
+  },
+  base = "/study/practice"
+) {
   const qs = new URLSearchParams({
     mode: "timed",
     field: params.fieldId,
@@ -109,17 +141,21 @@ function buildTimedPracticeUrl(params: {
     qs.set("state", params.mpjeState);
     qs.set("mpjeState", params.mpjeState);
   }
-  return `/study/practice?${qs.toString()}`;
+  return `${base}?${qs.toString()}`;
 }
 
 export function StudyBankPractice() {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const modeParam = searchParams.get("mode");
   const fieldParam = searchParams.get("field");
+  const onQuestionBank = pathname === ROUTES.questionBank;
+  const practiceBase = onQuestionBank ? ROUTES.questionBank : "/study/practice";
 
   const practiceMode = resolvePracticeMode(
-    modeParam && !LEGACY_MODES.has(modeParam) ? modeParam : "timed"
+    modeParam && !LEGACY_MODES.has(modeParam) ? modeParam : null,
+    onQuestionBank
   );
   const isTimedExam = practiceMode === "timed";
 
@@ -135,11 +171,19 @@ export function StudyBankPractice() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
+  const autostartRequested = searchParams.get("autostart") === "1";
+  const autostartAttempted = useRef(false);
 
   const subjects = useMemo(() => getSubjectsForField(field), [field]);
   const fieldId = useMemo(() => resolveFieldId(field), [field]);
   const isNclex = useMemo(() => isNclexField(field), [field]);
   const isMpje = useMemo(() => isMpjeField(fieldId), [fieldId]);
+  const hubMode = resolvePracticeModeFromParams({
+    practiceMode: searchParams.get("practiceMode"),
+    mode: searchParams.get("mode"),
+    style: searchParams.get("style"),
+    count: searchParams.get("count"),
+  });
   const timedCount = useMemo(
     () => getTimedExamQuestionCount(field, isNclex ? { nclexLength } : undefined),
     [field, isNclex, nclexLength]
@@ -147,6 +191,13 @@ export function StudyBankPractice() {
   const lengthLabel = useMemo(
     () => formatExamLengthLabel(field, isNclex ? { nclexLength } : undefined),
     [field, isNclex, nclexLength]
+  );
+  const timedSessionSeconds = useMemo(
+    () =>
+      isTimedExam
+        ? computeTimedExamTimeLimitSec(field, timedCount, isNclex ? { nclexLength } : undefined)
+        : undefined,
+    [isTimedExam, field, timedCount, isNclex, nclexLength]
   );
   const sessionStudyMode: StudyMode = isTimedExam
     ? "timed"
@@ -157,6 +208,12 @@ export function StudyBankPractice() {
         : bankPace === "timed"
           ? "timed"
           : "practice";
+
+  useEffect(() => {
+    if (questions) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [questions]);
 
   useEffect(() => {
     if (!modeParam) return;
@@ -242,33 +299,39 @@ export function StudyBankPractice() {
 
     if (isTimedExam) {
       router.replace(
-        buildTimedPracticeUrl({
-          fieldId,
-          nclexLength: isNclex ? nclexLength : undefined,
-          mpjeVariant: isMpje ? resolvedVariant : undefined,
-          mpjeState:
-            isMpje && resolvedVariant === "state" && resolvedState
-              ? resolvedState
-              : undefined,
-        }),
+        buildTimedPracticeUrl(
+          {
+            fieldId,
+            nclexLength: isNclex ? nclexLength : undefined,
+            mpjeVariant: isMpje ? resolvedVariant : undefined,
+            mpjeState:
+              isMpje && resolvedVariant === "state" && resolvedState
+                ? resolvedState
+                : undefined,
+          },
+          practiceBase
+        ),
         { scroll: false }
       );
       return;
     }
     if (!resolvedSubjectId) return;
     router.replace(
-      buildBankPracticeUrl({
-        fieldId,
-        subjectId: resolvedSubjectId,
-        count: overrides?.count ?? questionCount,
-        pace: overrides?.pace ?? bankPace,
-        style: overrides?.style ?? bankStyle,
-        mpjeVariant: isMpje ? resolvedVariant : undefined,
-        mpjeState:
-          isMpje && resolvedVariant === "state" && resolvedState
-            ? resolvedState
-            : undefined,
-      }),
+      buildBankPracticeUrl(
+        {
+          fieldId,
+          subjectId: resolvedSubjectId,
+          count: overrides?.count ?? questionCount,
+          pace: overrides?.pace ?? bankPace,
+          style: overrides?.style ?? bankStyle,
+          mpjeVariant: isMpje ? resolvedVariant : undefined,
+          mpjeState:
+            isMpje && resolvedVariant === "state" && resolvedState
+              ? resolvedState
+              : undefined,
+        },
+        practiceBase
+      ),
       { scroll: false }
     );
   }
@@ -282,8 +345,84 @@ export function StudyBankPractice() {
     setAdaptiveMeta(null);
     try {
       const limit = isTimedExam ? timedCount : questionCount;
-      const useAdaptive =
-        isTimedExam || bankStyle === "adaptive" || bankStyle === "weak_areas";
+
+      if (isTimedExam) {
+        if (isMpje) {
+          if (mpjeVariant === "state" && mpjeState) {
+            router.push(mpjePracticeExamHref(mpjeState));
+            return;
+          }
+        } else {
+          const examSlug = examSlugFromFieldId(fieldId);
+          if (examSlug) {
+            const res = await fetch("/api/full-exam/start", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                examSlug,
+                lengthPreset: "full",
+                timed: true,
+              }),
+            });
+            const data = (await res.json().catch(() => ({}))) as {
+              sessionId?: string;
+              redirectUrl?: string;
+              error?: string;
+            };
+            if (!res.ok) {
+              throw new Error(data.error ?? "Could not start timed exam");
+            }
+            const href =
+              data.redirectUrl ??
+              (data.sessionId ? fullExamSessionHref(examSlug, data.sessionId) : null);
+            if (!href) {
+              throw new Error("Session was not created. Please try again.");
+            }
+            router.push(href);
+            return;
+          }
+        }
+
+        const qs = new URLSearchParams({
+          field,
+          limit: String(limit),
+          mode: "timed",
+          scope: "field",
+          meta: "0",
+        });
+        if (isNclex) qs.set("nclexLength", nclexLength);
+        if (isMpje) {
+          qs.set("mpjeVariant", mpjeVariant);
+          if (mpjeVariant === "state" && mpjeState) {
+            qs.set("state", mpjeState);
+            qs.set("mpjeState", mpjeState);
+          }
+        }
+
+        const res = await fetch(`/api/questions?${qs.toString()}`);
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error ?? "Could not load timed exam");
+
+        const metaIds = (data.bankItemIds as string[] | undefined) ?? [];
+        const raw = (data.questions as ExamQuestion[]).map((q, i) => ({
+          ...q,
+          id: i + 1,
+          field,
+          subjectId: "__mixed__",
+          bankItemId: metaIds[i] ?? `bank-${fieldId}-${i}`,
+        }));
+        if (raw.length === 0) {
+          throw new Error("No questions in bank for this exam yet.");
+        }
+        setQuestions(raw);
+        return;
+      }
+
+      const useAdaptive = bankStyle === "adaptive" || bankStyle === "weak_areas";
+      const effectiveSubjectId = subjectId || subjects[0]?.id || "";
+      if (!effectiveSubjectId) {
+        throw new Error("Choose a topic before starting practice.");
+      }
 
       if (useAdaptive) {
         const res = await fetch("/api/study/adaptive/next", {
@@ -291,14 +430,10 @@ export function StudyBankPractice() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             field,
-            subjectId: isTimedExam ? undefined : subjectId,
+            subjectId: effectiveSubjectId,
             count: limit,
             currentDifficulty: "medium",
-            studyMode: isTimedExam
-              ? "timed"
-              : bankStyle === "weak_areas"
-                ? "weak_area"
-                : "adaptive",
+            studyMode: bankStyle === "weak_areas" ? "weak_area" : "adaptive",
             ...(isMpje
               ? {
                   mpjeVariant,
@@ -318,7 +453,7 @@ export function StudyBankPractice() {
           ...q,
           id: i + 1,
           field,
-          subjectId: isTimedExam ? "__mixed__" : subjectId,
+          subjectId: effectiveSubjectId,
           bankItemId: metaIds[i] ?? `bank-${fieldId}-${i}`,
         }));
         if (raw.length === 0) {
@@ -343,6 +478,7 @@ export function StudyBankPractice() {
         field,
         limit: String(limit),
         mode: "bank",
+        meta: "0",
       });
       if (isMpje) {
         qs.set("mpjeVariant", mpjeVariant);
@@ -351,8 +487,7 @@ export function StudyBankPractice() {
           qs.set("mpjeState", mpjeState);
         }
       }
-      if (!subjectId) return;
-      qs.set("subjectId", subjectId);
+      qs.set("subjectId", effectiveSubjectId);
 
       const res = await fetch(`/api/questions?${qs.toString()}`);
       const data = await res.json();
@@ -363,7 +498,7 @@ export function StudyBankPractice() {
         ...q,
         id: i + 1,
         field,
-        subjectId,
+        subjectId: effectiveSubjectId,
         bankItemId: metaIds[i] ?? `bank-${fieldId}-${i}`,
       }));
       if (raw.length === 0) {
@@ -387,6 +522,27 @@ export function StudyBankPractice() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    autostartAttempted.current = false;
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (!questions || !autostartRequested) return;
+    const qs = new URLSearchParams(searchParams.toString());
+    if (!qs.has("autostart")) return;
+    qs.delete("autostart");
+    const next = qs.toString();
+    router.replace(next ? `${pathname}?${next}` : pathname, { scroll: false });
+  }, [questions, autostartRequested, pathname, router, searchParams]);
+
+  useEffect(() => {
+    if (!autostartRequested || autostartAttempted.current || questions || loading) return;
+    if (!isTimedExam && !subjectId) return;
+    autostartAttempted.current = true;
+    document.getElementById("practice-launcher")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    void start();
+  }, [autostartRequested, isTimedExam, subjectId, questions, loading]);
 
   if (questions) {
     const topicLabel = subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
@@ -417,15 +573,29 @@ export function StudyBankPractice() {
         mode={sessionStudyMode}
         title={title}
         adaptiveMeta={adaptiveMeta ?? undefined}
+        timedSessionSeconds={timedSessionSeconds}
       />
     );
   }
 
+  function launchPracticeMode(modeId: PracticeModeId) {
+    const href = practiceModeLaunchHref(fieldId as ExamFieldId, modeId, practiceBase, {
+      stateCode: mpjeState || undefined,
+    });
+    router.push(href);
+  }
+
   const activeMode = EXAM_MODES.find((m) => m.id === practiceMode);
   const otherMode = EXAM_MODES.find((m) => m.id !== practiceMode);
+  const timedExamLink =
+    otherMode?.id === "timed" && examSlugFromFieldId(fieldId)
+      ? fullExamLaunchHref(examSlugFromFieldId(fieldId)!)
+      : otherMode
+        ? `${practiceBase}?mode=${otherMode.param}&field=${encodeURIComponent(fieldId)}`
+        : null;
 
   return (
-    <div className="mt-8 space-y-6">
+    <div id="practice-launcher" className="mt-8 scroll-mt-24 space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Link
           href={STUDY_HUB_PATH}
@@ -433,14 +603,14 @@ export function StudyBankPractice() {
         >
           ← Study Hub
         </Link>
-        {otherMode && (
+        {otherMode && timedExamLink ? (
           <Link
-            href={`/study/practice?mode=${otherMode.param}`}
+            href={timedExamLink}
             className="text-sm font-medium text-[var(--color-accent)] transition hover:underline"
           >
             Switch to {otherMode.label}
           </Link>
-        )}
+        ) : null}
       </div>
 
       <div className="rounded-2xl border border-black/[0.06] bg-black/[0.02] px-5 py-4">
@@ -448,18 +618,58 @@ export function StudyBankPractice() {
         <p className="mt-1 text-sm text-[var(--color-ink-muted)]">{activeMode?.description}</p>
       </div>
 
-      <div className="apple-card space-y-6 p-8">
+      <div className="apple-card space-y-6 p-4 sm:p-6 md:p-8">
         <div>
           <label className="apple-label">Exam</label>
-          <select
-            className="apple-input mt-2 w-full"
-            value={field}
-            onChange={(e) => setField(e.target.value)}
-          >
-            {TIMED_EXAM_LABELS.map((f) => (
-              <option key={f}>{f}</option>
+          <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
+            {EXAM_FIELD_OPTIONS.map((opt) => (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() => {
+                  const meta = getFieldMetaById(opt.id);
+                  if (meta) setField(meta.label);
+                  router.replace(`${practiceBase}?field=${encodeURIComponent(opt.fieldParam)}`, {
+                    scroll: false,
+                  });
+                }}
+                className={cn(
+                  "rounded-xl border px-3 py-2.5 text-left text-sm transition",
+                  fieldId === opt.id
+                    ? "border-[var(--color-accent)] bg-[var(--color-accent)]/5 ring-1 ring-[var(--color-accent)]"
+                    : "border-black/[0.08] bg-white hover:border-black/[0.12]"
+                )}
+              >
+                <p className="font-semibold text-[var(--color-ink)]">{opt.label}</p>
+              </button>
             ))}
-          </select>
+          </div>
+        </div>
+
+        <div>
+          <label className="apple-label">Practice mode</label>
+          <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {PRACTICE_MODES.map((m) => {
+              const Icon = MODE_ICONS[m.icon as keyof typeof MODE_ICONS] ?? Zap;
+              return (
+                <button
+                  key={m.id}
+                  type="button"
+                  onClick={() => launchPracticeMode(m.id)}
+                  className={cn(
+                    "rounded-xl border px-3 py-3 text-left transition",
+                    hubMode === m.id
+                      ? "border-[var(--color-accent)] bg-[var(--color-accent)]/5 ring-1 ring-[var(--color-accent)]"
+                      : "border-black/[0.08] bg-white hover:border-black/[0.12]"
+                  )}
+                >
+                  <Icon className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+                  <p className="mt-2 text-sm font-semibold text-[var(--color-ink)]">{m.label}</p>
+                  <p className="mt-0.5 text-xs text-[var(--color-ink-muted)]">{m.timing}</p>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {isMpje && mpjeVariant === "state" && (
@@ -497,7 +707,10 @@ export function StudyBankPractice() {
           <QuestionBankSetup
             subjects={subjects}
             subjectId={subjectId}
-            onSubjectChange={setSubjectId}
+            onSubjectChange={(id) => {
+              setSubjectId(id);
+              syncPracticeUrl({ subjectId: id });
+            }}
             questionCount={questionCount}
             onQuestionCountChange={setQuestionCount}
             pace={bankPace}

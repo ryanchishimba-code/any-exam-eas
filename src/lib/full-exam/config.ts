@@ -69,6 +69,15 @@ export function formatMmSs(totalSec: number): string {
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
+/** Live exam clock — always H:M:S (e.g. 0:45:30, 2:30:00). */
+export function formatHms(totalSec: number): string {
+  const sec = Math.max(0, Math.floor(totalSec));
+  const h = Math.floor(sec / 3600);
+  const m = Math.floor((sec % 3600) / 60);
+  const s = sec % 60;
+  return `${h}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+}
+
 export function fullExamHref(examSlug: ExamSlug): string {
   return `/full-exam/${examSlug}`;
 }
@@ -79,4 +88,43 @@ export function fullExamSessionHref(examSlug: ExamSlug, sessionId: string): stri
 
 export function fullExamResultsHref(examSlug: ExamSlug, sessionId: string): string {
   return `/full-exam/${examSlug}/${sessionId}/results`;
+}
+
+export function parseFullExamLengthPreset(
+  value: string | null | undefined
+): FullExamLengthPreset {
+  const normalized = value?.trim().toLowerCase().replace(/\s+/g, "") ?? "";
+  if (normalized === "100" || normalized === "100q") return "100";
+  if (
+    normalized === "full" ||
+    normalized === "fulllength" ||
+    normalized === "full-length" ||
+    normalized === "fulllengthadaptive"
+  ) {
+    return "full";
+  }
+  return "50";
+}
+
+/** Launcher URL with optional preset + autostart for dashboard / hub shortcuts. */
+export function fullExamLaunchHref(
+  examSlug: ExamSlug,
+  opts?: { mode?: FullExamLengthPreset; autostart?: boolean; timed?: boolean }
+): string {
+  const params = new URLSearchParams();
+  if (opts?.mode) params.set("mode", opts.mode);
+  if (opts?.autostart) params.set("autostart", "1");
+  if (opts?.timed === false) params.set("timed", "0");
+  const query = params.toString();
+  return query ? `${fullExamHref(examSlug)}?${query}` : fullExamHref(examSlug);
+}
+
+export function fullExamModeTitle(
+  examSlug: ExamSlug,
+  preset: FullExamLengthPreset
+): string {
+  const option = getLengthOptions(examSlug).find((o) => o.preset === preset);
+  if (!option) return `${EXAM_CATALOG[examSlug].shortName} Practice Test`;
+  if (preset === "full") return `${EXAM_CATALOG[examSlug].shortName} Full-Length Exam`;
+  return `${option.questionCount} Question Practice Test`;
 }

@@ -106,7 +106,7 @@ export function QuestionBankSetup({
 
       <div>
         <label className="apple-label">Question selection</label>
-        <div className="mt-2 grid gap-3 sm:grid-cols-3">
+        <div className="mt-2 grid grid-cols-1 gap-3 sm:grid-cols-3">
           {(
             [
               {

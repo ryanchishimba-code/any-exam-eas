@@ -1,5 +1,6 @@
 import type { ExamSlug } from "@/lib/exams/catalog";
-import { ROUTES } from "@/lib/routes";
+import { EXAM_CATALOG, EXAM_SLUGS, examSlugFromFieldId } from "@/lib/edtech/exams";
+import { fullExamHref, ROUTES } from "@/lib/routes";
 
 export const STUDY_HUB_PATH = "/dashboard";
 export const DASHBOARD_PATH = "/dashboard";
@@ -17,36 +18,21 @@ export type StudyHubExamBank = {
   accentClass: string;
 };
 
-export const STUDY_HUB_EXAM_BANKS: StudyHubExamBank[] = [
-  {
-    slug: "nclex",
-    label: "NCLEX",
-    fieldId: "nursing",
-    description: "Nursing question bank — prioritization, safety, and med-surg.",
-    accentClass: "from-sky-500/20 to-blue-600/10 border-sky-200/60",
-  },
-  {
-    slug: "usmle",
-    label: "USMLE",
-    fieldId: "usmle-step-1",
-    description: "Step 1 & Step 2 CK vignettes with mechanism-first rationales.",
-    accentClass: "from-indigo-500/20 to-violet-600/10 border-indigo-200/60",
-  },
-  {
-    slug: "naplex",
-    label: "NAPLEX",
-    fieldId: "pharmacy",
-    description: "Pharmacy calculations, cases, and pharmacotherapy.",
-    accentClass: "from-emerald-500/20 to-teal-600/10 border-emerald-200/60",
-  },
-  {
-    slug: "mpje",
-    label: "MPJE",
-    fieldId: "mpje",
-    description: "Pharmacy law — federal, uniform (UMPJE), and state-specific jurisprudence.",
-    accentClass: "from-amber-500/20 to-orange-600/10 border-amber-200/60",
-  },
-];
+const HUB_DESCRIPTIONS: Record<(typeof EXAM_SLUGS)[number], string> = {
+  nclex: "Nursing question bank — prioritization, safety, and med-surg.",
+  usmle: "Clinical vignettes with mechanism-first rationales.",
+  naplex: "Pharmacy calculations, cases, and pharmacotherapy.",
+  mpje: "Pharmacy law — federal, uniform (UMPJE), and state-specific jurisprudence.",
+};
+
+/** Four board exams — derived from canonical EXAM_CATALOG. */
+export const STUDY_HUB_EXAM_BANKS: StudyHubExamBank[] = EXAM_SLUGS.map((slug) => ({
+  slug: slug as ExamSlug,
+  label: EXAM_CATALOG[slug].shortName,
+  fieldId: EXAM_CATALOG[slug].fieldId,
+  description: HUB_DESCRIPTIONS[slug],
+  accentClass: EXAM_CATALOG[slug].accentClass,
+}));
 
 /** Study Hub URL with MPJE picker open. */
 export function studyHubMpjeHref(): string {
@@ -88,6 +74,8 @@ export function questionBankHref(fieldId?: string): string {
 
 export function timedExamHref(fieldId?: string): string {
   if (!fieldId) return TIMED_EXAM_PATH;
+  const slug = examSlugFromFieldId(fieldId);
+  if (slug) return fullExamHref(slug);
   return `/study/practice?field=${encodeURIComponent(fieldId)}&mode=timed`;
 }
 

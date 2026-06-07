@@ -1,9 +1,7 @@
-/** Canonical exam field identifiers exposed in the product. */
+/** Canonical exam field identifiers exposed in the product (four board exams). */
 export const EXAM_FIELD_IDS = [
   "nursing",
-  "usmle-step-1",
   "usmle-step-2",
-  "usmle-step-3",
   "pharmacy",
   "mpje",
 ] as const;
@@ -19,16 +17,16 @@ export const FIELD_ID_ALIASES: Record<string, ExamFieldId> = {
   pharmacy: "pharmacy",
   naplex: "pharmacy",
   mpje: "mpje",
-  "usmle-step-1": "usmle-step-1",
-  "usmle-step1": "usmle-step-1",
-  "step-1": "usmle-step-1",
+  "usmle-step-1": "usmle-step-2",
+  "usmle-step1": "usmle-step-2",
+  "step-1": "usmle-step-2",
   "usmle-step-2": "usmle-step-2",
   "usmle-step2": "usmle-step-2",
   "step-2": "usmle-step-2",
-  "usmle-step-3": "usmle-step-3",
-  "usmle-step3": "usmle-step-3",
-  "step-3": "usmle-step-3",
-  "step3": "usmle-step-3",
+  "usmle-step-3": "usmle-step-2",
+  "usmle-step3": "usmle-step-2",
+  "step-3": "usmle-step-2",
+  step3: "usmle-step-2",
   usmle: "usmle-step-2",
   medicine: "usmle-step-2",
 };

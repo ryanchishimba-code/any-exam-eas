@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { FullExamModeButtons } from "@/components/exam/FullExamModeButtons";
 import { ExamSwitcher } from "@/components/edtech/ExamSwitcher";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
@@ -18,7 +19,6 @@ import {
   analyticsHref,
   highYieldTopicsHref,
   questionBankHref,
-  simulatedExamHref,
   top500Href,
 } from "@/lib/edtech/practice-links";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
@@ -28,10 +28,11 @@ import { cn } from "@/lib/utils";
 type HubCard = {
   title: string;
   description: string;
-  href: string;
-  cta: string;
+  href?: string;
+  cta?: string;
   icon: typeof BookOpen;
   badge?: string;
+  examModes?: boolean;
 };
 
 export function StudyHubDashboard({
@@ -68,9 +69,8 @@ export function StudyHubDashboard({
     {
       title: "Full Simulated Exam",
       description: `${exam.simulatedQuestionCount} questions · ${exam.simulatedDurationMin} min — test-day conditions.`,
-      href: simulatedExamHref(examSlug),
-      cta: "Launch simulator",
       icon: Clock,
+      examModes: true,
     },
     {
       title: "Analytics",
@@ -193,9 +193,35 @@ function HubFeatureCard({
   cta,
   icon: Icon,
   badge,
+  examModes,
+  examSlug,
 }: HubCard & { examSlug: ExamSlug }) {
+  if (examModes) {
+    return (
+      <Card className="h-full border-slate-200/80 dark:border-slate-800">
+        <CardHeader className="pb-2">
+          <div className="flex items-start justify-between gap-2">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--color-accent)]/10">
+              <Icon className="h-5 w-5 text-[var(--color-accent)]" aria-hidden />
+            </div>
+            {badge ? (
+              <Badge className="shrink-0 bg-slate-100 text-slate-700">
+                {badge}
+              </Badge>
+            ) : null}
+          </div>
+          <CardTitle className="mt-3">{title}</CardTitle>
+          <CardDescription className="leading-relaxed">{description}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <FullExamModeButtons examSlug={examSlug} />
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
-    <Link href={href} className="group block h-full">
+    <Link href={href!} className="group block h-full">
       <Card className="h-full border-slate-200/80 transition duration-200 hover:-translate-y-0.5 hover:border-teal-300/50 hover:shadow-lg hover:shadow-teal-50/50 dark:border-slate-800 dark:hover:border-teal-700/40 dark:hover:shadow-teal-950/20">
         <CardHeader className="pb-2">
           <div className="flex items-start justify-between gap-2">

@@ -37,15 +37,6 @@ const DISPLAY_OVERRIDES: Partial<
     recommended: true,
     features: ["Timed exam", "Question bank", "Topic practice"],
   },
-  "usmle-step-1": {
-    description:
-      "Basic-science vignettes across anatomy, pathology, pharmacology, biochemistry, and microbiology.",
-    accent: "#0071e3",
-    accentMuted: "rgba(0, 113, 227, 0.12)",
-    trending: true,
-    recommended: true,
-    features: ["Timed exam", "Question bank", "Topic practice"],
-  },
   "usmle-step-2": {
     description:
       "Clinical vignettes across organ systems — diagnosis, management, and complications.",

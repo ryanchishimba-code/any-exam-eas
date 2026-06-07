@@ -88,11 +88,13 @@ function freePort(port) {
 }
 
 function cleanNextCache() {
+  // Always repair corrupted cache — even when SKIP_NEXT_CLEAN=1.
+  if (clearNextCacheIfNeeded(root)) return;
+
   if (process.env.SKIP_NEXT_CLEAN === "1") {
     return;
   }
 
-  if (clearNextCacheIfNeeded(root)) return;
   forceClearNextCache(root);
 }
 

@@ -20,9 +20,9 @@ const exams: { id: string; title: string; href: string; icon: LucideIcon; benefi
   {
     id: "usmle",
     title: "USMLE",
-    href: "/study/practice?field=usmle-step-1&mode=bank",
+    href: "/study/practice?field=usmle-step-2&mode=bank",
     icon: Stethoscope,
-    benefit: "Step 1 & Step 2 CK vignettes",
+    benefit: "Clinical vignettes & management",
   },
   {
     id: "naplex",

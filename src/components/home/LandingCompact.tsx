@@ -28,7 +28,7 @@ import {
 
 const EXAMS = [
   { id: "nclex", label: "NCLEX", href: "/study/practice?field=nursing&mode=bank", icon: HeartPulse, color: "#0d9488" },
-  { id: "usmle", label: "USMLE", href: "/study/practice?field=usmle-step-1&mode=bank", icon: Stethoscope, color: "#2563eb" },
+  { id: "usmle", label: "USMLE", href: "/study/practice?field=usmle-step-2&mode=bank", icon: Stethoscope, color: "#2563eb" },
   { id: "naplex", label: "NAPLEX", href: "/study/practice?field=pharmacy&mode=bank", icon: Pill, color: "#7c3aed" },
   { id: "mpje", label: "MPJE", href: studyHubMpjeHref(), icon: Scale, color: "#d97706" },
 ] as const;

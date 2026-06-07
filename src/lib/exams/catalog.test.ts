@@ -14,7 +14,7 @@ describe("exam catalog", () => {
 
   it("maps slugs to field ids", () => {
     expect(examSlugToFieldId("nclex")).toBe("nursing");
-    expect(examSlugToFieldId("usmle")).toBe("usmle-step-1");
+    expect(examSlugToFieldId("usmle")).toBe("usmle-step-2");
     expect(examSlugToFieldId("naplex")).toBe("pharmacy");
     expect(examSlugToFieldId("mpje")).toBe("mpje");
     expect(examSlugToFieldId("top500")).toBe("drugs300");

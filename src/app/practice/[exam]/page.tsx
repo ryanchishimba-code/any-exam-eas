@@ -10,7 +10,7 @@ import type { ExamRouteSlug } from "@/lib/routes";
 const FIELD_MAP: Record<ExamRouteSlug, string> = {
   nclex: "nursing",
   naplex: "pharmacy",
-  usmle: "usmle-step-1",
+  usmle: "usmle-step-2",
   mpje: "mpje",
 };
 

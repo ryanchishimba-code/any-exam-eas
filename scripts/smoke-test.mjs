@@ -6,8 +6,9 @@ const base = (process.argv[2] ?? "http://localhost:3000").replace(/\/$/, "");
 
 const routes = [
   { path: "/", expect: 200 },
-  { path: "/login", expect: 200 },
-  { path: "/forgot-password", expect: 200 },
+  { path: "/login", expect: [200, 307, 308] },
+  { path: "/forgot-password", expect: [200, 307, 308] },
+  { path: "/auth/login", expect: 200 },
   { path: "/signup", expect: 200 },
   { path: "/study", expect: [200, 307] },
   { path: "/study/practice", expect: [200, 307] },

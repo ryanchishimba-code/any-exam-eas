@@ -1,0 +1,70 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { fullExamLaunchHref, getLengthOptions } from "@/lib/full-exam/config";
+import type { ExamSlug } from "@/types/edtech";
+import type { FullExamLengthPreset } from "@/types/full-exam";
+import { cn } from "@/lib/utils";
+
+const SHORT_LABELS: Record<FullExamLengthPreset, string> = {
+  "50": "50 questions",
+  "100": "100 questions",
+  full: "Full length",
+};
+
+type Props = {
+  examSlug: ExamSlug;
+  className?: string;
+  showCustomizeLink?: boolean;
+};
+
+export function FullExamModeButtons({
+  examSlug,
+  className,
+  showCustomizeLink = true,
+}: Props) {
+  const router = useRouter();
+  const [pending, setPending] = useState<FullExamLengthPreset | null>(null);
+  const options = getLengthOptions(examSlug);
+
+  function start(mode: FullExamLengthPreset) {
+    if (pending) return;
+    setPending(mode);
+    router.push(fullExamLaunchHref(examSlug, { mode, autostart: true }));
+  }
+
+  return (
+    <div className={cn("space-y-3", className)}>
+      <div className="flex flex-wrap gap-2">
+        {options.map((opt) => (
+          <button
+            key={opt.preset}
+            type="button"
+            disabled={pending !== null}
+            onClick={() => start(opt.preset)}
+            className={cn(
+              "rounded-full border px-3 py-1.5 text-[11px] font-semibold transition",
+              pending === opt.preset
+                ? "border-[var(--color-accent)] bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+                : "border-black/[0.08] bg-white/90 text-[var(--color-ink-muted)] hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)] disabled:opacity-60"
+            )}
+          >
+            {pending === opt.preset ? "Starting…" : SHORT_LABELS[opt.preset]}
+          </button>
+        ))}
+      </div>
+      {showCustomizeLink ? (
+        <Link
+          href={fullExamLaunchHref(examSlug)}
+          className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-accent)] transition hover:gap-2"
+        >
+          Customize &amp; start
+          <ArrowRight className="h-4 w-4" aria-hidden />
+        </Link>
+      ) : null}
+    </div>
+  );
+}

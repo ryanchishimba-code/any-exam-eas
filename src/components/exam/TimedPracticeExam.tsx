@@ -5,13 +5,15 @@ import { Flag, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ShareModal } from "@/components/share/ShareModal";
 import { EndExamControl } from "@/components/study/EndExamControl";
-import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
+import { ExamActionBar } from "@/components/exam/ExamActionBar";
+import { formatHms } from "@/lib/full-exam/config";
 import {
   buildWeakAreasFromField,
   calculateExamScorePercent,
   mergeExamAnswers,
 } from "@/lib/exam-sessions/scoring";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
+import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 
 type Question = {
   id: string;
@@ -26,6 +28,7 @@ type TimedPracticeExamProps = {
   examType: string;
   fieldId: string;
   questionCount: number;
+  timeLimitSec: number;
   nclexLength?: "minimum" | "maximum";
 };
 
@@ -34,6 +37,7 @@ export function TimedPracticeExam({
   examType,
   fieldId,
   questionCount,
+  timeLimitSec,
   nclexLength = "minimum",
 }: TimedPracticeExamProps) {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -43,7 +47,7 @@ export function TimedPracticeExam({
   const [review, setReview] = useState(false);
   const [finished, setFinished] = useState(false);
   const [answerLog, setAnswerLog] = useState<ExamAnswerRecord[]>([]);
-  const [secondsLeft, setSecondsLeft] = useState(3600);
+  const [secondsLeft, setSecondsLeft] = useState(timeLimitSec);
   const [shareOpen, setShareOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -55,6 +59,7 @@ export function TimedPracticeExam({
       limit: String(questionCount),
     });
     if (examType === "nclex") qs.set("nclexLength", nclexLength);
+    qs.set("meta", "0");
 
     fetch(`/api/questions?${qs.toString()}`)
       .then((r) => r.json())
@@ -209,14 +214,12 @@ export function TimedPracticeExam({
   }
 
   const q = questions[index];
-  const mins = Math.floor(secondsLeft / 60);
-  const secs = secondsLeft % 60;
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <header className="sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-slate-950/95 px-4 py-3 backdrop-blur">
         <span className="font-mono text-sm tabular-nums">
-          {mins}:{secs.toString().padStart(2, "0")}
+          {formatHms(secondsLeft)}
         </span>
         <span className="text-sm text-slate-400">
           {index + 1} / {questions.length}
@@ -263,9 +266,17 @@ export function TimedPracticeExam({
               <p className="text-sm text-emerald-400">Answer: {q.correctAnswer}</p>
               <p className="text-sm text-slate-400">{q.explanation}</p>
             </div>
-            <Button href={`/prep/${examType}`} variant="secondary">
-              Back to hub
-            </Button>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <ExamActionBar
+                variant="dark"
+                mode="review"
+                onReturnToReview={() => setFinished(false)}
+                returnLabel="Return to exam review"
+              />
+              <Button href={`/prep/${examType}`} variant="secondary">
+                Back to hub
+              </Button>
+            </div>
           </div>
         ) : (
           <>

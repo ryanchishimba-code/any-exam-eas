@@ -4,6 +4,8 @@
  */
 import type { ExamFieldId } from "./types";
 import { mpjePracticeExamHref } from "@/lib/study-hub/config";
+import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import { fullExamLaunchHref } from "@/lib/full-exam/config";
 
 export type PracticeModeId =
   | "quick"
@@ -34,7 +36,7 @@ export const PRACTICE_MODES: PracticeModeDefinition[] = [
     label: "Quick Practice",
     description: "10–25 questions on a focused topic. Ideal for daily warm-up and weak-area drills.",
     icon: "zap",
-    href: (fieldId) => BASE(fieldId, "bank", { count: "15", style: "adaptive" }),
+    href: (fieldId) => BASE(fieldId, "bank", { count: "15", style: "standard" }),
     timing: "15–20 min",
     bestFor: "Busy days, targeted review",
   },
@@ -46,7 +48,9 @@ export const PRACTICE_MODES: PracticeModeDefinition[] = [
     href: (fieldId, opts) =>
       fieldId === "mpje" && opts?.stateCode
         ? mpjePracticeExamHref(opts.stateCode)
-        : BASE(fieldId, "timed"),
+        : examSlugFromFieldId(fieldId)
+          ? fullExamLaunchHref(examSlugFromFieldId(fieldId)!, { mode: "full", autostart: true })
+          : BASE(fieldId, "timed"),
     timing: "2–2.5 hours",
     bestFor: "Endurance and exam-day readiness",
   },
@@ -76,7 +80,9 @@ export const PRACTICE_MODES: PracticeModeDefinition[] = [
     href: (fieldId, opts) =>
       fieldId === "mpje" && opts?.stateCode
         ? mpjePracticeExamHref(opts.stateCode)
-        : BASE(fieldId, "timed"),
+        : examSlugFromFieldId(fieldId)
+          ? fullExamLaunchHref(examSlugFromFieldId(fieldId)!, { mode: "full", autostart: true })
+          : BASE(fieldId, "timed"),
     timing: "Full exam block",
     bestFor: "Final-week confidence check",
   },
@@ -99,28 +105,12 @@ export const EXAM_FIELD_OPTIONS: {
     format: "NGN + traditional items",
   },
   {
-    id: "usmle-step-1",
-    label: "USMLE Step 1",
-    fieldParam: "usmle-step-1",
-    description: "Basic sciences + integrated vignettes — pathology, pharm, micro, biostats.",
-    timing: "2026 blocks · ~20 Q / 30 min",
-    format: "Vignettes · exhibits · ethics",
-  },
-  {
     id: "usmle-step-2",
-    label: "USMLE Step 2 CK",
+    label: "USMLE",
     fieldParam: "usmle-step-2",
-    description: "Clinical management — sequential item sets, next-best-step reasoning.",
+    description: "Clinical vignettes — sequential item sets, next-best-step management, and biostats.",
     timing: "2026 blocks · ~20 Q / 30 min",
     format: "Vignettes · sequential sets",
-  },
-  {
-    id: "usmle-step-3",
-    label: "USMLE Step 3",
-    fieldParam: "usmle-step-3",
-    description: "Day 1 MCQs + Day 2 CCS-style cases — abstracts, drug ads, biostats.",
-    timing: "2-day exam format",
-    format: "Abstracts · CCS prompts · ethics",
   },
   {
     id: "pharmacy",
@@ -142,4 +132,72 @@ export const EXAM_FIELD_OPTIONS: {
 
 export function getPracticeMode(id: PracticeModeId): PracticeModeDefinition | undefined {
   return PRACTICE_MODES.find((m) => m.id === id);
+}
+
+/** Map URL params from a practice launch link back to a hub mode. */
+export function resolvePracticeModeFromParams(params: {
+  practiceMode?: string | null;
+  mode?: string | null;
+  style?: string | null;
+  count?: string | null;
+}): PracticeModeId {
+  const explicit = params.practiceMode;
+  if (explicit && PRACTICE_MODES.some((m) => m.id === explicit)) {
+    return explicit as PracticeModeId;
+  }
+  if (params.mode === "timed") return "simulator";
+  if (params.style === "adaptive" || params.style === "weak_areas") return "adaptive";
+  if (params.count === "15") return "quick";
+  return "topic";
+}
+
+/** Build a launch URL on the given base path with autostart. */
+export function practiceModeLaunchHref(
+  fieldId: ExamFieldId,
+  modeId: PracticeModeId,
+  basePath: string,
+  opts?: { stateCode?: string }
+): string {
+  const mode = getPracticeMode(modeId);
+  if (!mode) return basePath;
+
+  if (modeId === "simulator" || modeId === "test_day") {
+    if (fieldId === "mpje") {
+      return mpjePracticeExamHref(opts?.stateCode);
+    }
+    const slug = examSlugFromFieldId(fieldId);
+    if (slug) return fullExamLaunchHref(slug, { mode: "full", autostart: true });
+  }
+
+  if (fieldId === "mpje") {
+    const params = new URLSearchParams({
+      field: "mpje",
+      mpjeVariant: "state",
+      autostart: "1",
+      practiceMode: modeId,
+    });
+    if (opts?.stateCode) {
+      params.set("state", opts.stateCode);
+      params.set("mpjeState", opts.stateCode);
+    }
+    if (modeId === "quick") {
+      params.set("mode", "bank");
+      params.set("count", "15");
+      params.set("style", "standard");
+    } else if (modeId === "adaptive") {
+      params.set("mode", "bank");
+      params.set("style", "adaptive");
+      params.set("count", "25");
+    } else {
+      params.set("mode", "bank");
+    }
+    return `${basePath}?${params.toString()}`;
+  }
+
+  const raw = mode.href(fieldId, opts);
+  const qs = raw.includes("?") ? raw.slice(raw.indexOf("?") + 1) : "";
+  const params = new URLSearchParams(qs);
+  params.set("autostart", "1");
+  params.set("practiceMode", modeId);
+  return `${basePath}?${params.toString()}`;
 }

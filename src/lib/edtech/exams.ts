@@ -30,7 +30,7 @@ export const EXAM_CATALOG: Record<ExamSlug, ExamDefinition> = {
     description: "Calculations, patient cases, drug therapy, and safety.",
     accentClass: "from-emerald-500/15 to-teal-600/10 border-emerald-200/70",
     simulatedDurationMin: 360,
-    simulatedQuestionCount: 100,
+    simulatedQuestionCount: 225,
   },
   mpje: {
     slug: "mpje",
@@ -52,4 +52,11 @@ export function getExam(slug: string): ExamDefinition | undefined {
 
 export function isExamSlug(slug: string): slug is ExamSlug {
   return slug in EXAM_CATALOG;
+}
+
+/** Map study field id to full-exam slug (USMLE steps → usmle). */
+export function examSlugFromFieldId(fieldId: string): ExamSlug | null {
+  if (fieldId.startsWith("usmle-step")) return "usmle";
+  const entry = Object.values(EXAM_CATALOG).find((e) => e.fieldId === fieldId);
+  return entry?.slug ?? null;
 }

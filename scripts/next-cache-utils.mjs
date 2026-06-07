@@ -6,6 +6,8 @@ import { existsSync, readdirSync, readFileSync, rmSync, statSync } from "node:fs
 import path from "node:path";
 
 const CHUNK_REQUIRE = /require\s*\(\s*["']\.\/(\d+)\.js["']\s*\)/g;
+const VENDOR_CHUNK_REQUIRE =
+  /require\s*\(\s*["']\.\/vendor-chunks\/([^"']+)["']\s*\)/g;
 
 /** @returns {string | null} human-readable reason to wipe cache */
 export function getNextCacheClearReason(nextDir) {
@@ -75,6 +77,13 @@ function hasBrokenWebpackChunks(nextDir) {
     const source = readFileSync(filePath, "utf8");
     for (const match of source.matchAll(CHUNK_REQUIRE)) {
       const chunkPath = path.join(relDir, `${match[1]}.js`);
+      if (!existsSync(chunkPath)) {
+        broken.push(chunkPath);
+        if (broken.length >= 3) return true;
+      }
+    }
+    for (const match of source.matchAll(VENDOR_CHUNK_REQUIRE)) {
+      const chunkPath = path.join(relDir, "vendor-chunks", match[1]);
       if (!existsSync(chunkPath)) {
         broken.push(chunkPath);
         if (broken.length >= 3) return true;

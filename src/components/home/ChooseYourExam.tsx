@@ -26,10 +26,10 @@ const exams: ExamCard[] = [
   {
     id: "usmle",
     title: "USMLE",
-    href: "/study/practice?field=usmle-step-1&mode=bank",
+    href: "/study/practice?field=usmle-step-2&mode=bank",
     icon: Stethoscope,
     theme: "usmle",
-    tagline: "Step 1 & Step 2 CK — science to bedside",
+    tagline: "Clinical vignettes & next-best-step reasoning",
   },
   {
     id: "naplex",

@@ -1,3 +1,4 @@
+import { ROUTES } from "@/lib/routes";
 import type { ExamSessionMode } from "./exam-lengths";
 
 /** User-facing study modes — timed simulation or flexible question bank. */
@@ -18,7 +19,7 @@ export const EXAM_MODES: ExamModeDefinition[] = [
     id: "timed",
     label: "Timed Exam",
     description: "Full simulated exam with mixed questions",
-    href: "/study/practice?mode=timed",
+    href: ROUTES.fullExam,
     studyMode: "timed",
     param: "timed",
     sessionMode: "timed",

@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { MpjeStateSelect } from "@/components/study/MpjeStateSelect";
+import { formatHms } from "@/lib/full-exam/config";
 import {
   MPJE_PRACTICE_EXAM_PASSING_PERCENT,
   MPJE_TIMER_WARN_MINUTES,
@@ -30,6 +31,7 @@ import {
   serializeMpjeAnswer,
 } from "@/lib/mpje/grade-answer";
 import { MpjeQuestionDisplay } from "@/components/mpje/MpjeQuestionDisplay";
+import { ExamActionBar } from "@/components/exam/ExamActionBar";
 import { cn } from "@/lib/utils";
 
 type ExamPayload = {
@@ -44,16 +46,6 @@ type ExamPayload = {
 };
 
 type Phase = "loading" | "intro" | "exam" | "review" | "submitting" | "results";
-
-function formatTime(seconds: number): string {
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  const s = seconds % 60;
-  if (h > 0) {
-    return `${h}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
-  }
-  return `${m}:${s.toString().padStart(2, "0")}`;
-}
 
 export function MpjePracticeExam() {
   const router = useRouter();
@@ -70,6 +62,7 @@ export function MpjePracticeExam() {
   const [timerWarnings, setTimerWarnings] = useState<Set<number>>(new Set());
   const [activeWarning, setActiveWarning] = useState<number | null>(null);
   const [result, setResult] = useState<MpjePracticeExamResult | null>(null);
+  const [hasEnteredReview, setHasEnteredReview] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
   const [showMissed, setShowMissed] = useState(false);
   const startedAt = useRef<number | null>(null);
@@ -93,6 +86,7 @@ export function MpjePracticeExam() {
     setFlagged(new Set());
     setTimerWarnings(new Set());
     setActiveWarning(null);
+    setHasEnteredReview(false);
     autoSubmitted.current = false;
 
     try {
@@ -240,6 +234,7 @@ export function MpjePracticeExam() {
 
   function goNext() {
     if (index + 1 >= total) {
+      setHasEnteredReview(true);
       setPhase("review");
       return;
     }
@@ -603,7 +598,7 @@ export function MpjePracticeExam() {
                 )}
               >
                 <Clock className="h-4 w-4 shrink-0" aria-hidden />
-                {formatTime(secondsLeft)}
+                {formatHms(secondsLeft)}
               </span>
             ) : (
               <span className="text-xs text-slate-500">Timer hidden</span>
@@ -702,6 +697,14 @@ export function MpjePracticeExam() {
             />
             {flagged.has(index) ? "Flagged" : "Flag"}
           </button>
+
+          <ExamActionBar
+            variant="dark"
+            mode={hasEnteredReview ? "review" : "exam"}
+            onEndExam={hasEnteredReview ? undefined : () => void submitExam(true)}
+            onReturnToReview={hasEnteredReview ? () => setPhase("review") : undefined}
+            returnLabel="Return to exam review"
+          />
 
           <button
             type="button"

@@ -11,6 +11,7 @@ import {
   PanelRightOpen,
 } from "lucide-react";
 import { FloatingTimer } from "@/components/exam/FloatingTimer";
+import { ExamActionBar } from "@/components/exam/ExamActionBar";
 import { ExamChoiceCard } from "@/components/exam/ExamChoiceCard";
 import { PauseExamDialog } from "@/components/exam/PauseExamDialog";
 import { TimeUpDialog } from "@/components/exam/TimeUpDialog";
@@ -65,6 +66,8 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
   const [timeUp, setTimeUp] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
+  const [phase, setPhase] = useState<"exam" | "review">("exam");
+  const [hasEnteredReview, setHasEnteredReview] = useState(false);
   const [encouragement] = useState(
     () => ENCOURAGEMENT[Math.floor(Math.random() * ENCOURAGEMENT.length)]
   );
@@ -88,6 +91,14 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
     [answers]
   );
 
+  const unansweredIndices = useMemo(
+    () =>
+      questions
+        .map((_, i) => (!answers[i]?.selected ? i : -1))
+        .filter((i) => i >= 0),
+    [questions, answers]
+  );
+
   useEffect(() => {
     const qs = new URLSearchParams({
       field: fieldId,
@@ -96,6 +107,7 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
       limit: String(config.questionCount),
     });
     if (config.adaptive) qs.set("mixed", "1");
+    qs.set("meta", "0");
 
     fetch(`/api/questions?${qs.toString()}`)
       .then((r) => r.json())
@@ -275,7 +287,10 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
       if (e.key === " " || e.key === "Enter") {
         e.preventDefault();
         if (index < questions.length - 1) setIndex((i) => i + 1);
-        else void submitExam();
+        else {
+          setHasEnteredReview(true);
+          setPhase("review");
+        }
       }
       if (e.key === "ArrowLeft" && index > 0) setIndex((i) => i - 1);
       if (e.key === "ArrowRight" && index < questions.length - 1) setIndex((i) => i + 1);
@@ -306,10 +321,28 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#f4f7fb]">
-        <div className="space-y-4 text-center">
-          <div className="mx-auto h-10 w-10 animate-spin rounded-full border-2 border-teal-600 border-t-transparent" />
-          <p className="text-sm text-slate-600">Preparing your exam…</p>
+      <div className="min-h-screen bg-[#f4f7fb]">
+        <FloatingTimer
+          totalSec={config.timeLimitSec}
+          remainingSec={config.timeLimitSec}
+          elapsedSec={0}
+          timed={config.timed}
+          paused={false}
+          questionsCompleted={0}
+          questionsTotal={config.questionCount}
+        />
+        <div className="mx-auto max-w-3xl space-y-6 px-4 py-16 sm:px-6">
+          <div className="space-y-3">
+            <div className="h-3 w-32 animate-pulse rounded bg-slate-200" />
+            <div className="h-8 w-full max-w-xl animate-pulse rounded-lg bg-slate-200" />
+            <div className="h-4 w-2/3 animate-pulse rounded bg-slate-100" />
+          </div>
+          <div className="space-y-3 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="h-12 animate-pulse rounded-xl bg-slate-100" />
+            ))}
+          </div>
+          <p className="text-center text-sm text-slate-500">Preparing your exam…</p>
         </div>
       </div>
     );
@@ -327,6 +360,131 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
   }
 
   const progressPct = ((index + 1) / questions.length) * 100;
+
+  if (phase === "review") {
+    const flaggedList = [...flaggedIndices].sort((a, b) => a - b);
+    return (
+      <div className="min-h-screen bg-[#f0f4f8] text-slate-900">
+        <header className="sticky top-0 z-20 border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
+          <div className="mx-auto max-w-3xl px-4 py-4 sm:px-6">
+            <h1 className="text-lg font-semibold text-slate-900">Review before submit</h1>
+            <p className="text-sm text-slate-500">{exam.name}</p>
+          </div>
+        </header>
+
+        <FloatingTimer
+          totalSec={config.timeLimitSec}
+          remainingSec={remainingSec}
+          elapsedSec={elapsedSec}
+          timed={config.timed}
+          paused={paused}
+          questionsCompleted={answeredCount}
+          questionsTotal={questions.length}
+        />
+
+        <main className="mx-auto max-w-3xl space-y-8 px-4 py-8 sm:px-6">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-amber-200 bg-amber-50/80 p-4">
+              <p className="font-semibold text-amber-900">
+                Flagged for review ({flaggedList.length})
+              </p>
+              {flaggedList.length === 0 ? (
+                <p className="mt-2 text-sm text-slate-500">None flagged</p>
+              ) : (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {flaggedList.map((i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      className="rounded-lg bg-white px-3 py-1 text-sm font-medium text-amber-900 shadow-sm hover:bg-amber-100"
+                      onClick={() => {
+                        setIndex(i);
+                        setPhase("exam");
+                      }}
+                    >
+                      Q{i + 1}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+            <div className="rounded-2xl border border-rose-200 bg-rose-50/80 p-4">
+              <p className="font-semibold text-rose-900">
+                Unanswered ({unansweredIndices.length})
+              </p>
+              {unansweredIndices.length === 0 ? (
+                <p className="mt-2 text-sm text-slate-500">All questions answered</p>
+              ) : (
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {unansweredIndices.map((i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      className="rounded-lg bg-white px-3 py-1 text-sm font-medium text-rose-800 shadow-sm hover:bg-rose-100"
+                      onClick={() => {
+                        setIndex(i);
+                        setPhase("exam");
+                      }}
+                    >
+                      Q{i + 1}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm">
+            <p className="text-sm font-semibold text-slate-700">Question overview</p>
+            <ol className="mt-3 grid grid-cols-5 gap-2 sm:grid-cols-8 md:grid-cols-10">
+              {questions.map((_, i) => {
+                const answered = Boolean(answers[i]?.selected);
+                const flagged = Boolean(answers[i]?.flagged);
+                return (
+                  <li key={i}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIndex(i);
+                        setPhase("exam");
+                      }}
+                      className={cn(
+                        "flex h-9 w-full items-center justify-center rounded-lg text-xs font-semibold tabular-nums transition",
+                        flagged && "ring-2 ring-amber-400",
+                        answered
+                          ? "bg-teal-50 text-teal-800 hover:bg-teal-100"
+                          : "bg-rose-50 text-rose-800 hover:bg-rose-100"
+                      )}
+                    >
+                      {i + 1}
+                    </button>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <button
+              type="button"
+              onClick={() => setPhase("exam")}
+              className="flex-1 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+            >
+              Return to exam
+            </button>
+            <button
+              type="button"
+              disabled={submitting}
+              onClick={() => void submitExam()}
+              className="flex-1 rounded-xl bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95 disabled:opacity-60"
+            >
+              Submit exam
+            </button>
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#f0f4f8] text-slate-900">
@@ -367,10 +525,6 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
         paused={paused}
         questionsCompleted={answeredCount}
         questionsTotal={questions.length}
-        allowPause={config.timed}
-        onPause={() => setPauseDialog(true)}
-        onResume={resumeExam}
-        onEndExam={() => void submitExam(true)}
       />
 
       <div className="mx-auto flex max-w-[1400px] gap-0 lg:gap-6">
@@ -486,7 +640,22 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
             <ChevronLeft className="h-4 w-4" /> Previous
           </button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            {config.timed ? (
+              <button
+                type="button"
+                onClick={() => (paused ? resumeExam() : setPauseDialog(true))}
+                className="hidden rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50 sm:inline-flex"
+              >
+                {paused ? "Resume" : "Pause"}
+              </button>
+            ) : null}
+            <ExamActionBar
+              mode={hasEnteredReview ? "review" : "exam"}
+              onEndExam={hasEnteredReview ? undefined : () => void submitExam(true)}
+              onReturnToReview={hasEnteredReview ? () => setPhase("review") : undefined}
+              returnLabel="Return to exam review"
+            />
             <button
               type="button"
               onClick={() => updateAnswer({ flagged: !currentAnswer.flagged })}
@@ -517,10 +686,13 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
             <button
               type="button"
               disabled={submitting}
-              onClick={() => void submitExam()}
+              onClick={() => {
+                setHasEnteredReview(true);
+                setPhase("review");
+              }}
               className="inline-flex items-center gap-1 rounded-xl bg-[var(--color-accent)] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95 disabled:opacity-60"
             >
-              Submit exam
+              Review & submit
             </button>
           ) : (
             <button

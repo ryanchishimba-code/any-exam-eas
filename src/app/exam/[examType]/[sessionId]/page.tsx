@@ -5,6 +5,8 @@ import { getExamSession } from "@/lib/exam-sessions/service";
 import { TimedPracticeExam } from "@/components/exam/TimedPracticeExam";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { resolveTimedExamLimit } from "@/lib/exam/exam-lengths";
+import { computeTimeLimitSec } from "@/lib/full-exam/config";
+import { isExamSlug } from "@/lib/edtech/exams";
 
 const SLUGS = new Set(["nclex", "usmle", "naplex", "top500"]);
 
@@ -40,6 +42,9 @@ export default async function ExamSessionPage({
     storedCount > 0 ? storedCount : undefined,
     examType === "nclex" && storedCount === 150 ? "maximum" : "minimum"
   );
+  const timeLimitSec = isExamSlug(examType)
+    ? computeTimeLimitSec(examType, questionCount, true)
+    : examSession.timeLimitSec || 3600;
 
   return (
     <TimedPracticeExam
@@ -47,6 +52,7 @@ export default async function ExamSessionPage({
       examType={examType}
       fieldId={hub.fieldId}
       questionCount={questionCount}
+      timeLimitSec={timeLimitSec}
       nclexLength={examType === "nclex" && questionCount === 150 ? "maximum" : "minimum"}
     />
   );

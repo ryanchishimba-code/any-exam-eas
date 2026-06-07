@@ -4,6 +4,8 @@ import { createExamSession } from "@/lib/exam-sessions/service";
 import type { ExamSlug } from "@/lib/exams/catalog";
 import { getExamHub } from "@/lib/exams/catalog";
 import { getExamQuestionCountBySlug } from "@/lib/exam/exam-lengths";
+import { computeTimeLimitSec } from "@/lib/full-exam/config";
+import { isExamSlug } from "@/lib/edtech/exams";
 
 export const runtime = "nodejs";
 
@@ -23,9 +25,13 @@ export async function POST(req: Request) {
 
   try {
     const defaultCount = getExamQuestionCountBySlug(examType);
+    const questionCount = Number(body.questionCount) || defaultCount;
+    const timeLimitSec =
+      Number(body.timeLimitSec) ||
+      (isExamSlug(examType) ? computeTimeLimitSec(examType, questionCount, true) : 3600);
     const id = await createExamSession(session.user.id, examType, {
-      questionCount: Number(body.questionCount) || defaultCount,
-      timeLimitSec: Number(body.timeLimitSec) || 3600,
+      questionCount,
+      timeLimitSec,
       title: body.title ?? `${examType.toUpperCase()} timed exam`,
     });
 

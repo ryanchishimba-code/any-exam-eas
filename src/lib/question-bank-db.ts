@@ -11,13 +11,13 @@ import {
   sampleMpjeFederalOnlyItems,
   sampleMpjeQuestionBankItems,
 } from "@/lib/mpje/sample-bank";
-import { ensureQuestionBankSeeded } from "@/lib/sync-question-bank";
-
 /** Max rows read per sample query (keeps Neon queries bounded). */
 export const QUESTION_BANK_SAMPLE_MAX_PULL = 500;
 
 /** Default pool size per subject for adaptive selection. */
-export const ADAPTIVE_QUESTION_POOL_PER_SUBJECT = 300;
+export const ADAPTIVE_QUESTION_POOL_PER_SUBJECT = 80;
+
+const MIN_SUBJECT_ROWS_BEFORE_SEED = 5;
 
 function rowToBankItem(row: {
   id: string;
@@ -87,13 +87,22 @@ function staticSeedFallback(
   return dedupeBankItemsByStem(shuffleBankItems(items)).slice(0, count);
 }
 
+/** Seed only when a bank is empty — never on every sample/count request. */
 async function ensureBankAvailable(fieldId: string, subjectId?: string): Promise<void> {
-  await ensureQuestionBankSeeded();
   if (subjectId) {
+    const count = await prisma.questionBankItem.count({
+      where: { fieldId, subjectId, active: true },
+    });
+    if (count >= MIN_SUBJECT_ROWS_BEFORE_SEED) return;
     await ensureSubjectHasQuestions(fieldId, subjectId);
-  } else {
-    await ensureStaticSeedsForField(fieldId);
+    return;
   }
+
+  const count = await prisma.questionBankItem.count({
+    where: { fieldId, active: true },
+  });
+  if (count > 0) return;
+  await ensureStaticSeedsForField(fieldId);
 }
 
 /**
@@ -180,7 +189,7 @@ export async function fetchQuestionBankItems(params: {
   fieldId: string;
   subjectId: string;
 }): Promise<BankItem[]> {
-  await ensureQuestionBankSeeded();
+  await ensureBankAvailable(params.fieldId, params.subjectId);
 
   const rows = await prisma.questionBankItem.findMany({
     where: activeSubjectWhere(params.fieldId, params.subjectId),
@@ -190,7 +199,6 @@ export async function fetchQuestionBankItems(params: {
 }
 
 export async function countActiveQuestions(fieldId?: string) {
-  await ensureQuestionBankSeeded();
   return prisma.questionBankItem.count({
     where: {
       active: true,

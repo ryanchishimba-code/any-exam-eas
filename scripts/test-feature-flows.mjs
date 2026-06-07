@@ -7,21 +7,21 @@ const base = (process.argv[2] ?? "http://localhost:3000").replace(/\/$/, "");
 const email = process.env.LOAD_TEST_EMAIL ?? "test-premium@anyexameasy.test";
 const password = process.env.LOAD_TEST_PASSWORD ?? "TestLogin1!";
 
-const EXAM_FIELD_IDS = ["nursing", "usmle-step-1", "usmle-step-2", "pharmacy"];
+const EXAM_FIELD_IDS = ["nursing", "usmle-step-2", "pharmacy", "mpje"];
 const RETIRED_FIELD_IDS = ["dentistry", "sat", "math", "biology", "chemistry", "medicine", "inbde"];
 const EXAM_QUESTION_SAMPLES = [
   { field: "nursing", subjectId: "pharmacology-nursing" },
-  { field: "usmle-step-1", subjectId: "pathology" },
   { field: "usmle-step-2", subjectId: "cardiology" },
   { field: "pharmacy", subjectId: "pharmacology" },
 ];
 
 const PUBLIC_PAGES = [
   { path: "/", expect: 200 },
-  { path: "/login", expect: 200 },
+  { path: "/login", expect: [200, 307, 308] },
   { path: "/signup", expect: 200 },
-  { path: "/forgot-password", expect: 200 },
-  { path: "/reset-password", expect: 200 },
+  { path: "/forgot-password", expect: [200, 307, 308] },
+  { path: "/reset-password", expect: [200, 307, 308] },
+  { path: "/auth/login", expect: 200 },
   { path: "/pricing", expect: 200 },
   { path: "/feedback", expect: 200 },
   { path: "/study", expect: [200, 307] },

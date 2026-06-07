@@ -3,7 +3,6 @@ import { auth } from "@/auth";
 import { Suspense } from "react";
 import { PremiumGate } from "@/components/PremiumGate";
 import { StudyBankPractice } from "@/components/study/StudyBankPractice";
-import { UnifiedPracticeHub } from "@/components/study/UnifiedPracticeHub";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { requirePremiumPage } from "@/lib/require-premium-page";
@@ -42,10 +41,7 @@ export default async function QuestionBankPage() {
 
       <PremiumGate callbackPath={ROUTES.questionBank}>
         <Suspense fallback={<p className="text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
-          <UnifiedPracticeHub />
-          <div className="mt-10 border-t border-black/[0.06] pt-10">
-            <StudyBankPractice />
-          </div>
+          <StudyBankPractice />
         </Suspense>
       </PremiumGate>
     </div>

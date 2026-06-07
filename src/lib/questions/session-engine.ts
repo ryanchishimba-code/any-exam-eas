@@ -21,6 +21,7 @@ export function createStudySession(params: {
   sourceId?: string;
   shuffleOrder?: boolean;
   timedSecondsPerQuestion?: number;
+  timedSessionSeconds?: number;
 }): { session: StudySessionState; questions: StudyQuestion[] } {
   const prepared = prepareQuestionsForSession(params.questions, {
     shuffleOrder: params.shuffleOrder ?? true,
@@ -45,7 +46,11 @@ export function createStudySession(params: {
     startedAt: now,
     updatedAt: now,
     timedSecondsPerQuestion:
-      params.mode === "timed" ? (params.timedSecondsPerQuestion ?? 45) : undefined,
+      params.mode === "timed" && !params.timedSessionSeconds
+        ? (params.timedSecondsPerQuestion ?? 45)
+        : undefined,
+    timedSessionSeconds:
+      params.mode === "timed" ? params.timedSessionSeconds : undefined,
   };
 
   return { session, questions: prepared };

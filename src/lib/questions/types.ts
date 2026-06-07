@@ -100,6 +100,8 @@ export type StudySessionState = {
   startedAt: string;
   updatedAt: string;
   timedSecondsPerQuestion?: number;
+  /** Board-style timed sessions use one countdown for the whole exam. */
+  timedSessionSeconds?: number;
   adaptiveMeta?: AdaptiveSessionMeta;
 };
 
