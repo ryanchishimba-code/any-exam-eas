@@ -19,7 +19,7 @@ import { ROUTES } from "@/lib/routes";
 type NavLink = { href: string; label: string; adminOnly?: boolean };
 
 const guestLinks: NavLink[] = [
-  { href: ROUTES.practiceHub, label: "Practice" },
+  { href: ROUTES.dashboard, label: "Practice" },
   { href: ROUTES.pricing, label: "Pricing" },
 ];
 
@@ -112,24 +112,22 @@ export function Navigation() {
           <li>
             <ExamsDropdown />
           </li>
-          {links.map((l) => (
+          {links.map((l) => {
+            const linkActive =
+              l.href === ROUTES.dashboard ? practiceActive : isActive(l.href);
+            return (
             <li key={l.href}>
               <Link
                 href={l.href}
-                className={`inline-flex items-center gap-1 text-xs ${navClass(
-                  l.href === ROUTES.dashboard ? practiceActive : isActive(l.href)
-                )}`}
-                aria-current={
-                  (l.href === ROUTES.practiceHub ? practiceActive : isActive(l.href))
-                    ? "page"
-                    : undefined
-                }
+                className={`inline-flex items-center gap-1 text-xs ${navClass(linkActive)}`}
+                aria-current={linkActive ? "page" : undefined}
               >
                 {l.adminOnly && <Shield className="h-3 w-3" aria-hidden />}
                 {l.label}
               </Link>
             </li>
-          ))}
+            );
+          })}
         </ul>
 
         <div className="aee-nav-actions">
@@ -148,7 +146,7 @@ export function Navigation() {
           ) : (
             <div className="aee-nav-auth-group">
               <LoginModalTrigger
-                callbackUrl={ROUTES.practiceHub}
+                callbackUrl={ROUTES.dashboard}
                 className="aee-nav-login"
                 aria-label="Log in to your account"
               >
@@ -200,22 +198,25 @@ export function Navigation() {
                 </Link>
               ))}
               <div className="my-3 border-t border-black/[0.06]" />
-              {links.map((l) => (
+              {links.map((l) => {
+                const linkActive =
+                  l.href === ROUTES.dashboard ? practiceActive : isActive(l.href);
+                return (
                 <Link
                   key={l.href}
                   href={l.href}
-                  className={`block py-2.5 text-sm ${navClass(
-                    l.href === ROUTES.dashboard ? practiceActive : isActive(l.href)
-                  )}`}
+                  className={`block py-2.5 text-sm ${navClass(linkActive)}`}
+                  aria-current={linkActive ? "page" : undefined}
                   onClick={closeMobile}
                 >
                   {l.label}
                 </Link>
-              ))}
+                );
+              })}
               {authReady && !isAuthenticated && (
                 <div className="mt-3 space-y-2 border-t border-black/[0.06] pt-3">
                   <LoginModalTrigger
-                    callbackUrl={ROUTES.practiceHub}
+                    callbackUrl={ROUTES.dashboard}
                     className="aee-nav-login aee-nav-login-mobile w-full"
                     onClick={closeMobile}
                   >
@@ -237,11 +238,11 @@ export function Navigation() {
                     <GlobalExamSwitcher variant="mobile" onNavigate={closeMobile} />
                   </div>
                   <Link
-                    href={ROUTES.practiceHub}
+                    href={ROUTES.dashboard}
                     className="aee-mobile-nav-item"
                     onClick={closeMobile}
                   >
-                    Practice Hub
+                    Dashboard
                   </Link>
                   {!hasPremiumAccess && (
                     <Link href={ROUTES.pricing} className="aee-mobile-nav-item" onClick={closeMobile}>

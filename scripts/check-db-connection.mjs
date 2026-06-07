@@ -1,31 +1,15 @@
 #!/usr/bin/env node
 /**
- * Test DATABASE_URL connectivity. Usage: node scripts/check-db-connection.mjs [url]
+ * Test Neon/Postgres connectivity. Usage: node scripts/check-db-connection.mjs [url]
  */
-import { readFileSync, existsSync } from "node:fs";
-
-function loadEnv() {
-  if (!existsSync(".env")) return;
-  for (const line of readFileSync(".env", "utf8").split("\n")) {
-    const t = line.trim();
-    if (!t || t.startsWith("#")) continue;
-    const i = t.indexOf("=");
-    if (i < 0) continue;
-    const k = t.slice(0, i).trim();
-    let v = t.slice(i + 1).trim();
-    if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) {
-      v = v.slice(1, -1);
-    }
-    if (!process.env[k]) process.env[k] = v;
-  }
-}
+import { ensureDatabaseUrlEnv, loadEnvFiles } from "./resolve-database-url.mjs";
 
 const urlArg = process.argv[2];
-loadEnv();
-const url = urlArg ?? process.env.DATABASE_URL ?? "";
+loadEnvFiles();
+const url = urlArg ?? ensureDatabaseUrlEnv();
 
 if (!url) {
-  console.error("No DATABASE_URL. Pass URL or set .env");
+  console.error("No DATABASE_URL. Pass URL or set .env / .env.local (or POSTGRES_URL on Vercel).");
   process.exit(1);
 }
 
@@ -54,12 +38,18 @@ async function main() {
   }
 
   process.env.DATABASE_URL = url;
+
+  const { neon } = await import("@neondatabase/serverless");
+  const sql = neon(url);
+  const rows = await sql`SELECT 1 AS ok`;
+  console.log("OK — Neon HTTP driver connected", rows);
+
   const { PrismaClient } = await import("@prisma/client");
   const prisma = new PrismaClient();
   try {
     await prisma.$queryRaw`SELECT 1 as ok`;
     const users = await prisma.user.count();
-    console.log("OK — PostgreSQL connected");
+    console.log("OK — Prisma connected");
     console.log("Users in database:", users);
   } finally {
     await prisma.$disconnect();

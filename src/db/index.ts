@@ -1,25 +1,60 @@
+/**
+ * Neon + Drizzle (HTTP) — serverless-safe singleton.
+ * Driver: @neondatabase/serverless (official Neon serverless package)
+ * @see https://neon.tech/docs/serverless/serverless-driver
+ */
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
+import type { NeonHttpDatabase } from "drizzle-orm/neon-http";
+import {
+  ensureDatabaseUrlEnv,
+  getRuntimeDatabaseUrl,
+  isPostgresDatabaseUrl,
+} from "@/lib/database-url";
 import * as schema from "./schema";
 
-const connectionString = process.env.DATABASE_URL;
+export type AppDatabase = NeonHttpDatabase<typeof schema>;
 
-function createDb() {
-  if (!connectionString) {
-    throw new Error("DATABASE_URL is required for Drizzle + Neon");
+let dbInstance: AppDatabase | null = null;
+let sqlInstance: ReturnType<typeof neon> | null = null;
+let cachedUrl: string | null = null;
+
+function resolveConnectionString(): string {
+  ensureDatabaseUrlEnv();
+  const url = getRuntimeDatabaseUrl();
+  if (!url || !isPostgresDatabaseUrl(url)) {
+    throw new Error(
+      "DATABASE_URL is not configured. Set a Neon pooled postgresql:// URL (see docs/VERCEL_DATABASE.md)."
+    );
   }
-  const sql = neon(connectionString);
-  return drizzle(sql, { schema });
+  return url;
 }
 
-/** Serverless Drizzle client (neon-http) — use in Server Components & Route Handlers. */
-export const db = connectionString ? createDb() : (null as unknown as ReturnType<typeof createDb>);
-
-export function requireDb() {
-  if (!connectionString || !db) {
-    throw new Error("DATABASE_URL is not configured");
+/** Low-level Neon SQL tagged-template executor (HTTP). */
+export function getNeonSql() {
+  const url = resolveConnectionString();
+  if (!sqlInstance || cachedUrl !== url) {
+    sqlInstance = neon(url);
+    cachedUrl = url;
+    dbInstance = null;
   }
-  return db;
+  return sqlInstance;
+}
+
+/** Lazy Drizzle client — resolves env on first use (safe on Vercel). */
+export function getDb(): AppDatabase {
+  const url = resolveConnectionString();
+  if (!dbInstance || cachedUrl !== url) {
+    sqlInstance = neon(url);
+    cachedUrl = url;
+    dbInstance = drizzle(sqlInstance, { schema });
+  }
+  return dbInstance;
+}
+
+/** Same as getDb(); throws if Neon is not configured. */
+export function requireDb(): AppDatabase {
+  return getDb();
 }
 
 export { schema };

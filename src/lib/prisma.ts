@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import {
   assertRuntimeDatabaseUrl,
+  ensureDatabaseUrlEnv,
   getRuntimeDatabaseUrl,
   isPostgresDatabaseUrl,
 } from "@/lib/database-url";
@@ -9,6 +10,7 @@ import {
 const isNextBuild = process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD;
 
 if (process.env.VERCEL && !isNextBuild) {
+  ensureDatabaseUrlEnv();
   assertRuntimeDatabaseUrl();
 }
 
@@ -23,6 +25,7 @@ type GlobalPrisma = typeof globalThis & {
 const globalForPrisma = globalThis as GlobalPrisma;
 
 function createPrismaClient(): PrismaClient {
+  ensureDatabaseUrlEnv();
   const url = getRuntimeDatabaseUrl();
   return new PrismaClient({
     log: process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
@@ -41,6 +44,7 @@ function isPrismaClientCurrent(client: PrismaClient | undefined): client is Pris
 }
 
 export function getPrisma(): PrismaClient {
+  ensureDatabaseUrlEnv();
   const cached = globalForPrisma.prisma;
   const versionMatch = globalForPrisma.prismaSchemaVersion === PRISMA_SCHEMA_VERSION;
 
@@ -63,7 +67,7 @@ export function getPrisma(): PrismaClient {
 /** @deprecated Prefer `getPrisma()` in new code — kept for existing imports. */
 export const prisma = getPrisma();
 
-const dbUrl = process.env.DATABASE_URL ?? "";
+const dbUrl = ensureDatabaseUrlEnv();
 if (process.env.NODE_ENV === "development" && dbUrl.startsWith("file:")) {
   void (async () => {
     try {
