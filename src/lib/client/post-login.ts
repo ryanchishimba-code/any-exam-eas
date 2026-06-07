@@ -5,6 +5,7 @@ import { getSession } from "next-auth/react";
 import type { LoginMethod } from "@/lib/client/returning-user";
 import { saveReturningUserHint } from "@/lib/client/returning-user";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
+import { resolvePostLoginDestination as resolveDestination } from "@/lib/client/post-login-routing";
 
 export type ClientSubscriptionStatus = {
   hasAccess?: boolean;
@@ -24,29 +25,23 @@ export async function fetchSubscriptionStatus(): Promise<ClientSubscriptionStatu
   }
 }
 
+async function fetchExamSlug(): Promise<string | null> {
+  try {
+    const res = await fetch("/api/user/exam-preference", { cache: "no-store" });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { examSlug?: string | null };
+    return data.examSlug ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export async function resolvePostLoginDestination(
   callbackUrl: string,
   status: ClientSubscriptionStatus | null
 ): Promise<string> {
-  const safe = sanitizeCallbackUrl(callbackUrl);
-
-  if (!status?.hasAccess) {
-    return "/pricing?paywall=1";
-  }
-
-  if (
-    safe.startsWith("/study") ||
-    safe.startsWith("/generate") ||
-    safe.startsWith("/learn") ||
-    safe.startsWith("/dashboard") ||
-    safe.startsWith("/study-hub")
-  ) {
-    return safe.startsWith("/dashboard") || safe.startsWith("/studygub")
-      ? "/study-hub"
-      : safe;
-  }
-
-  return "/study-hub";
+  const examSlug = await fetchExamSlug();
+  return resolveDestination(callbackUrl, status, examSlug);
 }
 
 async function fetchAccountName(): Promise<string | undefined> {
