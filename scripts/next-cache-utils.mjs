@@ -32,7 +32,12 @@ export function clearNextCacheIfNeeded(root) {
   if (!reason) return false;
 
   console.log(`Clearing stale .next cache (${reason})…`);
-  rmSync(nextDir, { recursive: true, force: true });
+  rmSync(nextDir, {
+    recursive: true,
+    force: true,
+    maxRetries: 5,
+    retryDelay: 200,
+  });
   return true;
 }
 
