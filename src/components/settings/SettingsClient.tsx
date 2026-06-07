@@ -28,9 +28,9 @@ export function SettingsClient({
   const [pending, startTransition] = useTransition();
 
   function onMpjeStateChange(code: string) {
-    startTransition(() =>
-      saveMpjePreferences({ stateCode: code, variant: mpjeVariant ?? "state" })
-    );
+    startTransition(() => {
+      void saveMpjePreferences({ stateCode: code, variant: mpjeVariant ?? "state" });
+    });
   }
 
   return (

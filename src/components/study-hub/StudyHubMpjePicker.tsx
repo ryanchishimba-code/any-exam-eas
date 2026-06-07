@@ -33,14 +33,18 @@ export function StudyHubMpjePicker({
   function syncState(code: string) {
     setStateCode(code);
     if (persistPreference && code) {
-      startTransition(() => saveMpjePreferences({ stateCode: code, variant }));
+      startTransition(() => {
+        void saveMpjePreferences({ stateCode: code, variant });
+      });
     }
   }
 
   function onVariantChange(next: MpjeVariant) {
     setVariant(next);
     if (persistPreference) {
-      startTransition(() => saveMpjePreferences({ stateCode, variant: next }));
+      startTransition(() => {
+        void saveMpjePreferences({ stateCode, variant: next });
+      });
     }
   }
 
