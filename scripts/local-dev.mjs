@@ -37,6 +37,9 @@ const env = {
   PATH: `${nodeDir}:${process.env.PATH ?? ""}`,
   NEXTAUTH_URL: process.env.NEXTAUTH_URL ?? `http://${HOST}:${PORT}`,
   AUTH_URL: process.env.AUTH_URL ?? process.env.NEXTAUTH_URL ?? `http://${HOST}:${PORT}`,
+  // Avoid EMFILE (too many open files) on macOS when native file watchers fail.
+  WATCHPACK_POLLING: process.env.WATCHPACK_POLLING ?? "true",
+  CHOKIDAR_USEPOLLING: process.env.CHOKIDAR_USEPOLLING ?? "true",
 };
 
 function sleep(ms) {
