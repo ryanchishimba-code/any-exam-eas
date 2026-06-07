@@ -1,19 +1,26 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { Search, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
+import { Search, Sparkles, ChevronRight } from "lucide-react";
 import { HighYieldTopicPreviewCard } from "@/components/edtech/HighYieldTopicPreviewCard";
 import { HighYieldTopicPanel } from "@/components/edtech/HighYieldTopicPanel";
 import { ExamSwitcher } from "@/components/edtech/ExamSwitcher";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getTopicCategories } from "@/lib/edtech/seeds";
+import {
+  filterHighYieldTopics,
+  resolveTopicAtIndex,
+  clampTopicIndex,
+} from "@/lib/edtech/topic-selection";
+import { ROUTES } from "@/lib/routes";
 import type { ExamSlug, HighYieldTopic, TopicProgressMap } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
 export function HighYieldTopicsClient({
   examSlug,
   topics,
-  progressMap,
+  progressMap: initialProgress,
 }: {
   examSlug: ExamSlug;
   topics: HighYieldTopic[];
@@ -21,56 +28,93 @@ export function HighYieldTopicsClient({
 }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>("all");
-  const [activeTopic, setActiveTopic] = useState<HighYieldTopic | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [progressMap, setProgressMap] = useState(initialProgress);
   const categories = useMemo(() => getTopicCategories(examSlug), [examSlug]);
   const exam = EXAM_CATALOG[examSlug];
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return topics.filter((t) => {
-      if (category !== "all" && t.category !== category) return false;
-      if (!q) return true;
-      return (
-        t.title.toLowerCase().includes(q) ||
-        t.overview.toLowerCase().includes(q) ||
-        t.summary.toLowerCase().includes(q) ||
-        t.category.toLowerCase().includes(q)
-      );
-    });
-  }, [topics, query, category]);
+  useEffect(() => {
+    setProgressMap(initialProgress);
+  }, [initialProgress]);
 
+  const filtered = useMemo(
+    () => filterHighYieldTopics(topics, query, category),
+    [topics, query, category]
+  );
+
+  // Reset selection when filters change so panel always matches visible cards
+  useEffect(() => {
+    setActiveIndex(null);
+  }, [query, category, examSlug]);
+
+  const activeTopic = resolveTopicAtIndex(filtered, activeIndex);
   const reviewedCount = topics.filter((t) => (progressMap[t.id]?.reviewCount ?? 0) > 0).length;
+
+  function openTopic(index: number) {
+    setActiveIndex(index);
+  }
+
+  function handleReviewRecorded(topicId: string, reviewCount: number) {
+    setProgressMap((prev) => ({
+      ...prev,
+      [topicId]: {
+        ...prev[topicId],
+        reviewCount,
+        practiceCount: prev[topicId]?.practiceCount ?? 0,
+        lastViewedAt: new Date().toISOString(),
+      },
+    }));
+  }
 
   return (
     <>
       <div className="space-y-8">
+        <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
+          <ol className="flex flex-wrap items-center gap-1">
+            <li>
+              <Link href={ROUTES.practiceHub} className="text-[var(--color-accent)] hover:underline">
+                Study Hub
+              </Link>
+            </li>
+            <li aria-hidden>
+              <ChevronRight className="inline h-3.5 w-3.5" />
+            </li>
+            <li className="font-medium text-slate-700">High-Yield Topics</li>
+          </ol>
+        </nav>
+
         <header className="space-y-4">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="max-w-2xl">
               <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">
                 <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                Study Hub
+                Premium study summaries
               </p>
               <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
                 High-Yield Topics
               </h1>
-              <p className="mt-3 text-lg text-slate-600">
+              <p className="mt-3 text-lg leading-relaxed text-slate-600">
                 The {topics.length} topics that matter most on{" "}
                 <span className="font-semibold text-slate-900">{exam.name}</span>
+                <span className="text-slate-500"> — condensed like the best review book, built for your board.</span>
               </p>
             </div>
             <ExamSwitcher currentExam={examSlug} />
           </div>
 
-          <div className="flex flex-wrap gap-3 text-sm text-slate-500">
-            <span className="rounded-full bg-slate-100 px-3 py-1">
-              {topics.length} condensed summaries
+          <div className="flex flex-wrap gap-3 text-sm">
+            <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-slate-600 shadow-sm">
+              {topics.length} exam-specific topics
             </span>
             {reviewedCount > 0 ? (
-              <span className="rounded-full bg-teal-50 px-3 py-1 text-teal-700">
+              <span className="rounded-full bg-teal-50 px-3 py-1 font-medium text-teal-700">
                 {reviewedCount} reviewed
               </span>
-            ) : null}
+            ) : (
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-500">
+                Tap any card to start
+              </span>
+            )}
           </div>
         </header>
 
@@ -89,7 +133,7 @@ export function HighYieldTopicsClient({
             />
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by category">
             <FilterChip active={category === "all"} onClick={() => setCategory("all")}>
               All
             </FilterChip>
@@ -107,12 +151,12 @@ export function HighYieldTopicsClient({
           </p>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {filtered.map((topic) => (
+            {filtered.map((topic, index) => (
               <HighYieldTopicPreviewCard
                 key={topic.id}
                 topic={topic}
                 progress={progressMap[topic.id]}
-                onViewSummary={() => setActiveTopic(topic)}
+                onViewSummary={() => openTopic(index)}
               />
             ))}
           </div>
@@ -123,8 +167,14 @@ export function HighYieldTopicsClient({
         topic={activeTopic}
         examSlug={examSlug}
         open={activeTopic !== null}
-        onClose={() => setActiveTopic(null)}
-        initialReviewCount={activeTopic ? progressMap[activeTopic.id]?.reviewCount ?? 0 : 0}
+        onClose={() => setActiveIndex(null)}
+        topicIndex={activeIndex ?? 0}
+        topicCount={filtered.length}
+        onNavigate={(index) => setActiveIndex(clampTopicIndex(index, filtered.length))}
+        initialReviewCount={
+          activeTopic ? progressMap[activeTopic.id]?.reviewCount ?? 0 : 0
+        }
+        onReviewRecorded={handleReviewRecorded}
       />
     </>
   );

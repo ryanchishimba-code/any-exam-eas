@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { AvatarDropdown } from "@/components/navigation/AvatarDropdown";
 import { ExamsDropdown } from "@/components/navigation/ExamsDropdown";
+import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
@@ -130,6 +131,11 @@ export function Navigation() {
         </ul>
 
         <div className="aee-nav-actions">
+          {authReady && isAuthenticated ? (
+            <div className="hidden lg:block">
+              <GlobalExamSwitcher variant="nav" />
+            </div>
+          ) : null}
           {!authReady ? (
             <span
               className="inline-block h-9 w-28 animate-pulse rounded-full bg-black/[0.06]"
@@ -225,6 +231,9 @@ export function Navigation() {
               )}
               {authReady && isAuthenticated && (
                 <div className="mt-3 space-y-1 border-t border-black/[0.06] pt-3">
+                  <div className="mb-3">
+                    <GlobalExamSwitcher variant="mobile" onNavigate={closeMobile} />
+                  </div>
                   <Link
                     href={ROUTES.practiceHub}
                     className="aee-mobile-nav-item"
