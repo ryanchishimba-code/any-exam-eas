@@ -37,29 +37,31 @@ export function ExamSwitcher({
 
   if (isNav) {
     return (
-      <label className="relative inline-flex items-center gap-1.5">
-        <GraduationCap className="h-3.5 w-3.5 text-[var(--color-accent)]" aria-hidden />
-        <span className="sr-only">Primary exam</span>
-        <div className="relative">
-          <select
-            value={currentExam}
-            disabled={pending}
-            onChange={onChange}
-            aria-label={`Primary exam: ${exam.name}`}
-            className="appearance-none rounded-lg border border-black/[0.08] bg-white/90 py-1.5 pl-2 pr-7 text-xs font-semibold text-[var(--color-ink)] shadow-sm transition hover:border-[var(--color-accent)]/40 focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/20"
-          >
-            {EXAM_SLUGS.map((slug) => (
-              <option key={slug} value={slug}>
-                {EXAM_CATALOG[slug].shortName}
-              </option>
-            ))}
-          </select>
-          <ChevronDown
-            className="pointer-events-none absolute right-1.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400"
-            aria-hidden
-          />
-        </div>
-      </label>
+      <div className="inline-flex items-center gap-1.5">
+        <label className="relative inline-flex items-center gap-1.5">
+          <GraduationCap className="h-3.5 w-3.5 text-[var(--color-accent)]" aria-hidden />
+          <span className="sr-only">Primary exam</span>
+          <div className="relative">
+            <select
+              value={currentExam}
+              disabled={pending}
+              onChange={onChange}
+              aria-label={`Primary exam: ${exam.name}`}
+              className="appearance-none rounded-lg border border-black/[0.08] bg-white/90 py-1.5 pl-2 pr-7 text-xs font-semibold text-[var(--color-ink)] shadow-sm transition hover:border-[var(--color-accent)]/40 focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/20"
+            >
+              {EXAM_SLUGS.map((slug) => (
+                <option key={slug} value={slug}>
+                  {EXAM_CATALOG[slug].shortName}
+                </option>
+              ))}
+            </select>
+            <ChevronDown
+              className="pointer-events-none absolute right-1.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400"
+              aria-hidden
+            />
+          </div>
+        </label>
+      </div>
     );
   }
 

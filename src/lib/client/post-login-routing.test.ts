@@ -16,19 +16,25 @@ describe("resolvePostLoginDestination", () => {
 
   it("routes new users without an exam to /select-exam", () => {
     expect(
-      resolvePostLoginDestination("/study-hub", { hasAccess: true }, null)
+      resolvePostLoginDestination("/dashboard", { hasAccess: true }, null)
     ).toBe("/select-exam");
   });
 
   it("sends unpaid users to pricing when they already have an exam", () => {
     expect(
-      resolvePostLoginDestination("/study-hub", { hasAccess: false }, "nclex")
+      resolvePostLoginDestination("/dashboard", { hasAccess: false }, "nclex")
     ).toBe("/pricing?paywall=1");
   });
 
-  it("returns study-hub for subscribed users with an exam", () => {
+  it("returns dashboard for subscribed users with an exam", () => {
     expect(
-      resolvePostLoginDestination("/study-hub", { hasAccess: true }, "usmle")
-    ).toBe("/study-hub");
+      resolvePostLoginDestination("/dashboard", { hasAccess: true }, "usmle")
+    ).toBe("/dashboard");
+  });
+
+  it("maps legacy study-hub callback to dashboard", () => {
+    expect(
+      resolvePostLoginDestination("/study-hub", { hasAccess: true }, "nclex")
+    ).toBe("/dashboard");
   });
 });

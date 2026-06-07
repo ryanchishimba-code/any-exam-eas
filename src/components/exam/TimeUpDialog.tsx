@@ -37,8 +37,8 @@ export function TimeUpDialog({
             </div>
             <h2 className="mt-4 text-lg font-semibold text-slate-900">Time&apos;s up</h2>
             <p className="mt-2 text-sm text-slate-600">
-              Finish your current question, then your exam will submit automatically. Every answer
-              you&apos;ve saved will count.
+              Your answers are being saved automatically. You can submit now or wait a few seconds
+              — every response you&apos;ve recorded will count toward your score.
             </p>
             <button
               type="button"

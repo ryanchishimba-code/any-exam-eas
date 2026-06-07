@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { PageShell } from "@/components/PageShell";
+import { ROUTES } from "@/lib/routes";
 import { retrieveCheckoutSession } from "@/lib/stripe";
 import { isStripeConfigured } from "@/lib/payments";
 
@@ -42,7 +43,7 @@ export default async function CheckoutReturnPage({
   }
 
   if (status === "success") {
-    redirect("/study-hub?checkout=success");
+    redirect(`${ROUTES.dashboard}?checkout=success`);
   }
 
   return (
@@ -56,8 +57,8 @@ export default async function CheckoutReturnPage({
           >
             Try checkout again
           </Link>
-          <Link href="/study-hub" className="text-sm text-[var(--color-accent)] hover:underline">
-            Back to Study Hub
+          <Link href={ROUTES.dashboard} className="text-sm text-[var(--color-accent)] hover:underline">
+            Back to Dashboard
           </Link>
         </div>
       </div>

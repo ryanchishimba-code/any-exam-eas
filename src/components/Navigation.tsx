@@ -24,8 +24,8 @@ const guestLinks: NavLink[] = [
 ];
 
 const premiumLinks: NavLink[] = [
-  { href: ROUTES.practiceHub, label: "Practice" },
-  { href: ROUTES.drugs300, label: "Top 500 Drugs" },
+  { href: ROUTES.dashboard, label: "Dashboard" },
+  { href: ROUTES.questionBank, label: "Question Bank" },
   { href: ROUTES.analytics, label: "Analytics" },
   { href: ROUTES.admin.root, label: "Admin", adminOnly: true },
 ];
@@ -92,12 +92,14 @@ export function Navigation() {
     requestSignOut();
   }
 
-  const brandHref = isAuthenticated && hasPremiumAccess ? ROUTES.practiceHub : ROUTES.home;
+  const brandHref = isAuthenticated && hasPremiumAccess ? ROUTES.dashboard : ROUTES.home;
   const practiceActive =
-    isActive(ROUTES.practiceHub) ||
+    isActive(ROUTES.dashboard) ||
     pathname.startsWith("/exams") ||
     pathname.startsWith("/practice") ||
-    pathname.startsWith("/study");
+    pathname.startsWith("/study") ||
+    pathname.startsWith("/question-bank") ||
+    pathname.startsWith("/full-exam");
 
   return (
     <header ref={headerRef} className="apple-glass aee-nav fixed top-0 z-50 w-full">
@@ -115,7 +117,7 @@ export function Navigation() {
               <Link
                 href={l.href}
                 className={`inline-flex items-center gap-1 text-xs ${navClass(
-                  l.href === ROUTES.practiceHub ? practiceActive : isActive(l.href)
+                  l.href === ROUTES.dashboard ? practiceActive : isActive(l.href)
                 )}`}
                 aria-current={
                   (l.href === ROUTES.practiceHub ? practiceActive : isActive(l.href))
@@ -203,7 +205,7 @@ export function Navigation() {
                   key={l.href}
                   href={l.href}
                   className={`block py-2.5 text-sm ${navClass(
-                    l.href === ROUTES.practiceHub ? practiceActive : isActive(l.href)
+                    l.href === ROUTES.dashboard ? practiceActive : isActive(l.href)
                   )}`}
                   onClick={closeMobile}
                 >

@@ -1,4 +1,5 @@
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
+import { ROUTES } from "@/lib/routes";
 
 export type PostLoginSubscriptionStatus = {
   hasAccess?: boolean;
@@ -16,14 +17,14 @@ export function resolvePostLoginDestination(
     return safe;
   }
 
-  const headingToStudyHub =
-    safe === "/study-hub" ||
-    safe.startsWith("/study-hub/") ||
-    safe.startsWith("/dashboard") ||
+  const headingToDashboard =
+    safe === ROUTES.dashboard ||
+    safe.startsWith(`${ROUTES.dashboard}/`) ||
+    safe.startsWith("/study-hub") ||
     safe.startsWith("/studygub");
 
-  if (headingToStudyHub && !examSlug) {
-    return "/select-exam";
+  if (headingToDashboard && !examSlug) {
+    return ROUTES.selectExam;
   }
 
   if (!status?.hasAccess) {
@@ -34,13 +35,17 @@ export function resolvePostLoginDestination(
     safe.startsWith("/study") ||
     safe.startsWith("/generate") ||
     safe.startsWith("/learn") ||
-    safe.startsWith("/dashboard") ||
-    safe.startsWith("/study-hub")
+    safe.startsWith(ROUTES.dashboard) ||
+    safe.startsWith("/study-hub") ||
+    safe.startsWith(ROUTES.questionBank) ||
+    safe.startsWith(ROUTES.analytics) ||
+    safe.startsWith(ROUTES.fullExam)
   ) {
-    return safe.startsWith("/dashboard") || safe.startsWith("/studygub")
-      ? "/study-hub"
-      : safe;
+    if (safe.startsWith("/studygub") || safe.startsWith("/study-hub")) {
+      return ROUTES.dashboard;
+    }
+    return safe;
   }
 
-  return examSlug ? "/study-hub" : "/select-exam";
+  return examSlug ? ROUTES.dashboard : ROUTES.selectExam;
 }

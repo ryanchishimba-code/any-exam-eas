@@ -11,6 +11,8 @@ export const config = {
   matcher: [
     "/dashboard",
     "/dashboard/:path*",
+    "/question-bank",
+    "/question-bank/:path*",
     "/study-hub",
     "/study-hub/:path*",
     "/select-exam",
@@ -44,5 +46,7 @@ export const config = {
     "/mpje",
     "/mpje/:path*",
     "/analytics",
+    "/full-exam",
+    "/full-exam/:path*",
   ],
 };

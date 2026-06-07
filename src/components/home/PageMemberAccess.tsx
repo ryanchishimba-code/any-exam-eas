@@ -8,6 +8,6 @@ type PageMemberAccessProps = {
 
 export function PageMemberAccess({ className = "mt-6" }: PageMemberAccessProps) {
   return (
-    <MemberLoginLink callbackUrl="/study-hub" showEmailHint className={className} />
+    <MemberLoginLink showEmailHint className={className} />
   );
 }

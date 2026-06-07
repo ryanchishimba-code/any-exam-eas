@@ -6,7 +6,8 @@ import { Award, Clock, RotateCcw, ChevronDown, ChevronUp, CheckCircle2, XCircle 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import { formatMmSs, fullExamHref } from "@/lib/full-exam/config";
+import { formatMmSs } from "@/lib/full-exam/config";
+import { fullExamHref, ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamQuestion, FullExamResultsAnalysis } from "@/types/full-exam";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
@@ -89,10 +90,10 @@ export function FullExamResults({
           <RotateCcw className="h-4 w-4" /> New simulation
         </Link>
         <Link
-          href="/study-hub"
+          href={ROUTES.dashboard}
           className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50"
         >
-          Back to Study Hub
+          Back to Dashboard
         </Link>
         <button
           type="button"

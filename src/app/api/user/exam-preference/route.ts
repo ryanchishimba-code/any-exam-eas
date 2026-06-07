@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { auth } from "@/auth";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { getUserExamPreference, setUserExamPreference } from "@/lib/edtech/exam-preference";
+import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import type { ExamSlug } from "@/types/edtech";
 
 export const runtime = "nodejs";
@@ -14,7 +15,11 @@ export async function GET() {
   }
 
   const pref = await getUserExamPreference(session.user.id);
-  return NextResponse.json({ examSlug: pref?.examSlug ?? null });
+  const meta = pref ? await getUserEdtechMetadata(session.user.id) : null;
+  return NextResponse.json({
+    examSlug: pref?.examSlug ?? null,
+    mpjeStateCode: meta?.mpjeStateCode ?? null,
+  });
 }
 
 export async function POST(req: Request) {
@@ -41,6 +46,7 @@ export async function POST(req: Request) {
 
   try {
     await setUserExamPreference(session.user.id, examSlug as ExamSlug);
+    revalidatePath("/dashboard");
     revalidatePath("/study-hub");
     revalidatePath("/select-exam");
     return NextResponse.json({ ok: true, examSlug });

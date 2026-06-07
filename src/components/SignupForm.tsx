@@ -191,7 +191,7 @@ export function SignupForm({
         {loading ? "Please wait…" : submitLabel}
       </Button>
 
-      <MemberLoginLink callbackUrl="/study-hub" className="text-center" showEmailHint />
+      <MemberLoginLink className="text-center" showEmailHint />
     </form>
   );
 }

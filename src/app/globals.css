@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "../styles/a11y.css";
 
+/* Light-only UI — ignore OS dark mode; Apple-style tokens stay on light palette. */
+@custom-variant dark (&:where(.aee-dark *));
+
 @theme {
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
     "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -45,7 +48,9 @@
 }
 
 html {
-  color-scheme: light;
+  color-scheme: light only;
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--page-top);
 }
 
 /* ——— Apple.com layout system ——— */
@@ -188,35 +193,6 @@ html {
   border-color: rgba(79, 70, 229, 0.15);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-ink: #f1f5f9;
-    --color-ink-muted: #94a3b8;
-    --color-surface: #0f172a;
-    --color-surface-elevated: #1e293b;
-    --color-bg: #020617;
-    --color-border: rgba(148, 163, 184, 0.12);
-    --background: #020617;
-    --foreground: #f1f5f9;
-    --card: #1e293b;
-    --muted: #1e293b;
-  }
-
-  html {
-    color-scheme: dark;
-  }
-
-  .aee-card {
-    background: var(--color-surface-elevated);
-    border-color: var(--color-border);
-  }
-
-  .apple-glass.aee-nav {
-    background: rgba(2, 6, 23, 0.82);
-    border-color: rgba(148, 163, 184, 0.1);
-  }
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -229,17 +205,6 @@ html {
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: var(--page-top);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

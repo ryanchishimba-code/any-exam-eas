@@ -1,3 +1,4 @@
+import { ROUTES, fullExamHref } from "@/lib/routes";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -14,26 +15,28 @@ export function practiceTopicHref(
     subjectId: topicSlug,
     count: String(count),
   });
-  return `/study/practice?${qs.toString()}`;
+  return `${ROUTES.questionBank}?${qs.toString()}`;
 }
 
-export function questionBankHref(examSlug: ExamSlug): string {
+export function questionBankHref(examSlug?: ExamSlug): string {
+  if (!examSlug) return ROUTES.questionBank;
   const fieldId = EXAM_CATALOG[examSlug].fieldId;
-  return `/study/practice?field=${encodeURIComponent(fieldId)}&mode=bank`;
+  return `${ROUTES.questionBank}?field=${encodeURIComponent(fieldId)}`;
 }
 
 export function simulatedExamHref(examSlug: ExamSlug): string {
-  return `/full-exam/${examSlug}`;
+  return fullExamHref(examSlug);
 }
 
 export function analyticsHref(): string {
-  return "/study/analytics";
+  return ROUTES.analytics;
 }
 
 export function top500Href(examSlug: ExamSlug): string {
-  return `/study/drugs300?exam=${examSlug}`;
+  return `${ROUTES.drugs300}?exam=${examSlug}`;
 }
 
-export function highYieldTopicsHref(examSlug: ExamSlug): string {
-  return `/study-hub/topics?exam=${examSlug}`;
+export function highYieldTopicsHref(examSlug?: ExamSlug): string {
+  if (!examSlug) return ROUTES.highYieldTopics;
+  return `${ROUTES.highYieldTopics}?exam=${encodeURIComponent(examSlug)}`;
 }

@@ -1,11 +1,13 @@
 import type { ExamSlug } from "@/lib/exams/catalog";
+import { ROUTES } from "@/lib/routes";
 
-export const STUDY_HUB_PATH = "/study-hub";
+export const STUDY_HUB_PATH = "/dashboard";
+export const DASHBOARD_PATH = "/dashboard";
 export const STUDY_HUB_PROGRESS_ID = "progress";
 export const TOP_500_DRUGS_PATH = "/study/drugs300";
 
-export const TIMED_EXAM_PATH = "/study/practice?mode=timed";
-export const QUESTION_BANK_PATH = "/study/practice?mode=bank";
+export const TIMED_EXAM_PATH = "/full-exam";
+export const QUESTION_BANK_PATH = "/question-bank";
 
 export type StudyHubExamBank = {
   slug: ExamSlug;
@@ -81,7 +83,7 @@ export function mpjePracticeExamHref(stateCode?: string): string {
 
 export function questionBankHref(fieldId?: string): string {
   if (!fieldId) return QUESTION_BANK_PATH;
-  return `/study/practice?field=${encodeURIComponent(fieldId)}&mode=bank`;
+  return `${QUESTION_BANK_PATH}?field=${encodeURIComponent(fieldId)}`;
 }
 
 export function timedExamHref(fieldId?: string): string {
@@ -97,5 +99,5 @@ export function examModeHref(
 }
 
 export function studyHubProgressHref(): string {
-  return `${STUDY_HUB_PATH}#${STUDY_HUB_PROGRESS_ID}`;
+  return ROUTES.analytics;
 }

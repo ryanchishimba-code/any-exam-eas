@@ -12,6 +12,7 @@ import {
   type ReturningUserHint,
 } from "@/lib/client/returning-user";
 import { formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 export function Hero() {
   const { data: session, status } = useSession();
@@ -101,7 +102,7 @@ export function Hero() {
                 {isAuthed ? (
                   <>
                     <Link
-                      href="/study-hub"
+                      href={ROUTES.dashboard}
                       className="aee-btn-hero-xl group inline-flex w-full items-center justify-center gap-2.5 sm:w-auto"
                     >
                       Open Study Hub
@@ -120,7 +121,7 @@ export function Hero() {
                 ) : isReturning ? (
                   <>
                     <LoginModalTrigger
-                      callbackUrl="/study-hub"
+                      callbackUrl={ROUTES.dashboard}
                       className="aee-btn-hero-xl aee-btn-hero-returning group inline-flex w-full items-center justify-center gap-2.5 sm:w-auto"
                     >
                       <LogIn className="h-5 w-5" aria-hidden />
@@ -151,7 +152,7 @@ export function Hero() {
                       />
                     </Link>
                     <LoginModalTrigger
-                      callbackUrl="/study-hub"
+                      callbackUrl={ROUTES.dashboard}
                       className="aee-btn-hero-ghost inline-flex w-full items-center justify-center gap-2 sm:w-auto"
                     >
                       <LogIn className="h-4 w-4" aria-hidden />

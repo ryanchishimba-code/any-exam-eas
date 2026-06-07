@@ -5,6 +5,7 @@ import { MemberLoginLink } from "@/components/auth/MemberLoginLink";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { useReturningUserHint } from "@/hooks/useReturningUserHint";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
+import { DEFAULT_AUTH_CALLBACK } from "@/lib/client/auth-routes";
 import { maskEmail, saveReturningUserHint, type LoginMethod } from "@/lib/client/returning-user";
 
 type ReturningQuickSignInProps = {
@@ -13,7 +14,7 @@ type ReturningQuickSignInProps = {
 };
 
 export function ReturningQuickSignIn({
-  callbackUrl = "/study-hub",
+  callbackUrl = DEFAULT_AUTH_CALLBACK,
   className = "",
 }: ReturningQuickSignInProps) {
   const { data: session, status } = useSession();

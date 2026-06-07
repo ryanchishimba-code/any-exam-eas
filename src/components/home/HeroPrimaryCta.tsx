@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { MemberLoginLink } from "@/components/auth/MemberLoginLink";
 import { HeroSocialAuth } from "@/components/home/HeroSocialAuth";
+import { DEFAULT_AUTH_CALLBACK } from "@/lib/client/auth-routes";
 import {
   formatMonthlyPrice,
   formatTrialIntroPrice,
@@ -16,7 +17,7 @@ type HeroPrimaryCtaProps = {
 };
 
 export function HeroPrimaryCta({
-  callbackUrl = "/study-hub",
+  callbackUrl = DEFAULT_AUTH_CALLBACK,
   className = "",
 }: HeroPrimaryCtaProps) {
   return (

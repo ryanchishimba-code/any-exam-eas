@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { DEFAULT_AUTH_CALLBACK } from "@/lib/client/auth-routes";
 import { useLoginModalOptional } from "./LoginModalProvider";
 
 type LoginModalTriggerProps = {
@@ -13,7 +14,7 @@ type LoginModalTriggerProps = {
 
 export function LoginModalTrigger({
   children,
-  callbackUrl = "/study-hub",
+  callbackUrl = DEFAULT_AUTH_CALLBACK,
   className,
   onClick,
   ...props

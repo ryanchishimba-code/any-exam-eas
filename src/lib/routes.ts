@@ -1,22 +1,27 @@
 import type { ExamSlug } from "@/lib/exams/catalog";
+import type { ExamSlug as EdtechExamSlug } from "@/types/edtech";
 
 /** Canonical app routes — use these in nav, links, and redirects. */
 export const ROUTES = {
   home: "/",
-  practiceHub: "/study-hub",
+  dashboard: "/dashboard",
+  /** @deprecated use dashboard */
+  practiceHub: "/dashboard",
   selectExam: "/select-exam",
   /** @deprecated use selectExam */
   examSelect: "/select-exam",
-  highYieldTopics: "/study-hub/topics",
+  fullExam: "/full-exam",
+  questionBank: "/question-bank",
+  analytics: "/analytics",
+  highYieldTopics: "/dashboard/topics",
   practice: "/practice",
   exams: "/exams",
   pricing: "/pricing",
   feedback: "/feedback",
   settings: "/settings",
-  analytics: "/study/analytics",
   drugs300: "/study/drugs300",
   auth: {
-    login: "/auth/login",
+    login: "/login",
     signup: "/signup",
     forgotPassword: "/auth/forgot-password",
     resetPassword: "/auth/reset-password",
@@ -94,6 +99,10 @@ export function practiceHref(
   if (opts?.step) qs.set("step", opts.step);
   const q = qs.toString();
   return q ? `/practice/${slug}?${q}` : `/practice/${slug}`;
+}
+
+export function fullExamHref(examSlug: EdtechExamSlug): string {
+  return `${ROUTES.fullExam}/${examSlug}`;
 }
 
 export function legacyPracticeQuery(fieldId: string, mode = "bank"): string {

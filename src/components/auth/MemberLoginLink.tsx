@@ -1,6 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
+import { DEFAULT_AUTH_CALLBACK } from "@/lib/client/auth-routes";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { useReturningUserHint } from "@/hooks/useReturningUserHint";
 import { maskEmail } from "@/lib/client/returning-user";
@@ -12,7 +13,7 @@ type MemberLoginLinkProps = {
 };
 
 export function MemberLoginLink({
-  callbackUrl = "/study-hub",
+  callbackUrl = DEFAULT_AUTH_CALLBACK,
   className = "",
   showEmailHint = false,
 }: MemberLoginLinkProps) {

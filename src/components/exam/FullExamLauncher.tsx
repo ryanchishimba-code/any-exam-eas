@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { Clock, Timer, Zap, CheckCircle2 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { AppBreadcrumbs } from "@/components/app/AppBreadcrumbs";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
   buildSessionConfig,
@@ -13,6 +14,7 @@ import {
 } from "@/lib/full-exam/config";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
+import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 export function FullExamLauncher({ examSlug }: { examSlug: ExamSlug }) {
@@ -46,6 +48,13 @@ export function FullExamLauncher({ examSlug }: { examSlug: ExamSlug }) {
 
   return (
     <div className="space-y-8">
+      <AppBreadcrumbs
+        items={[
+          { label: "Dashboard", href: ROUTES.dashboard },
+          { label: "Full Exam", href: ROUTES.fullExam },
+          { label: exam.name },
+        ]}
+      />
       <header className="space-y-3">
         <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">
           Full simulated exam

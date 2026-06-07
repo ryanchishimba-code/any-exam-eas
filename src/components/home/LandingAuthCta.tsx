@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { ReturningQuickSignIn } from "@/components/auth/ReturningQuickSignIn";
+import { DEFAULT_AUTH_CALLBACK } from "@/lib/client/auth-routes";
 import {
   formatMonthlyPrice,
   formatTrialIntroPrice,
@@ -17,7 +18,7 @@ type LandingAuthCtaProps = {
 };
 
 export function LandingAuthCta({
-  callbackUrl = "/study-hub",
+  callbackUrl = DEFAULT_AUTH_CALLBACK,
   className = "",
   compact = false,
 }: LandingAuthCtaProps) {

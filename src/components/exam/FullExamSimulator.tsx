@@ -10,7 +10,7 @@ import {
   PanelRightClose,
   PanelRightOpen,
 } from "lucide-react";
-import { Timer } from "@/components/exam/Timer";
+import { FloatingTimer } from "@/components/exam/FloatingTimer";
 import { ExamChoiceCard } from "@/components/exam/ExamChoiceCard";
 import { PauseExamDialog } from "@/components/exam/PauseExamDialog";
 import { TimeUpDialog } from "@/components/exam/TimeUpDialog";
@@ -64,7 +64,6 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
   const [pauseDialog, setPauseDialog] = useState(false);
   const [timeUp, setTimeUp] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [timerCollapsed, setTimerCollapsed] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
   const [encouragement] = useState(
     () => ENCOURAGEMENT[Math.floor(Math.random() * ENCOURAGEMENT.length)]
@@ -88,14 +87,6 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
     () => Object.values(answers).filter((a) => a.selected).length,
     [answers]
   );
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    setTimerCollapsed(mq.matches);
-    const fn = () => setTimerCollapsed(mq.matches);
-    mq.addEventListener("change", fn);
-    return () => mq.removeEventListener("change", fn);
-  }, []);
 
   useEffect(() => {
     const qs = new URLSearchParams({
@@ -293,6 +284,12 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
     return () => window.removeEventListener("keydown", onKey);
   }, [current, currentAnswer.flagged, index, questions.length, submitting, updateAnswer, submitExam]);
 
+  useEffect(() => {
+    if (!timeUp || submitting) return;
+    const t = window.setTimeout(() => void submitExam(true), 4000);
+    return () => window.clearTimeout(t);
+  }, [timeUp, submitting, submitExam]);
+
   function confirmPause() {
     setPauseDialog(false);
     setPaused(true);
@@ -362,20 +359,29 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
         </div>
       </header>
 
+      <FloatingTimer
+        totalSec={config.timeLimitSec}
+        remainingSec={remainingSec}
+        elapsedSec={elapsedSec}
+        timed={config.timed}
+        paused={paused}
+        questionsCompleted={answeredCount}
+        questionsTotal={questions.length}
+        allowPause={config.timed}
+        onPause={() => setPauseDialog(true)}
+        onResume={resumeExam}
+        onEndExam={() => void submitExam(true)}
+      />
+
       <div className="mx-auto flex max-w-[1400px] gap-0 lg:gap-6">
-        {/* Left sidebar — timer + nav */}
+        {/* Left sidebar — question nav + flags */}
         <aside className="hidden w-56 shrink-0 p-4 lg:block xl:w-64">
-          <div className="sticky top-24 space-y-4">
-            <Timer
-              totalSec={config.timeLimitSec}
-              remainingSec={remainingSec}
-              elapsedSec={elapsedSec}
-              timed={config.timed}
-              paused={paused}
-              questionsCompleted={answeredCount}
-              questionsTotal={questions.length}
-              onPause={() => setPauseDialog(true)}
-              onResume={resumeExam}
+          <div className="sticky top-[calc(var(--nav-height)+1rem)] space-y-4">
+            <ExamQuestionNav
+              total={questions.length}
+              currentIndex={index}
+              answers={answers}
+              onSelect={setIndex}
             />
 
             {flaggedIndices.length > 0 ? (
@@ -401,25 +407,8 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
           </div>
         </aside>
 
-        {/* Mobile timer strip */}
-        <div className="fixed bottom-20 left-4 right-4 z-20 lg:hidden">
-          <Timer
-            totalSec={config.timeLimitSec}
-            remainingSec={remainingSec}
-            elapsedSec={elapsedSec}
-            timed={config.timed}
-            paused={paused}
-            questionsCompleted={answeredCount}
-            questionsTotal={questions.length}
-            collapsed={timerCollapsed}
-            onToggleCollapse={() => setTimerCollapsed((v) => !v)}
-            onPause={() => setPauseDialog(true)}
-            onResume={resumeExam}
-          />
-        </div>
-
         {/* Main question area */}
-        <main className="min-w-0 flex-1 px-4 py-6 pb-32 sm:px-6 lg:pb-8">
+        <main className="min-w-0 flex-1 px-4 py-6 pb-28 sm:px-6 lg:pb-8">
           <p className="mb-2 text-xs font-medium uppercase tracking-wide text-teal-700 lg:hidden">
             Q{index + 1} of {questions.length}
           </p>
@@ -568,5 +557,64 @@ function highlightQuestionStem(text: string): string {
   return escaped.replace(
     /\b(\d+-year-old|prioritiz|first|best|most likely|contraindicat|mg\/kg|mEq|BP|HR|SpO2)\w*/gi,
     "<strong class='text-slate-900'>$&</strong>"
+  );
+}
+
+function ExamQuestionNav({
+  total,
+  currentIndex,
+  answers,
+  onSelect,
+}: {
+  total: number;
+  currentIndex: number;
+  answers: Record<number, FullExamAnswerState>;
+  onSelect: (index: number) => void;
+}) {
+  return (
+    <nav
+      className="rounded-2xl border border-slate-200/80 bg-white p-3 shadow-sm"
+      aria-label="Question navigation"
+    >
+      <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+        Questions
+      </p>
+      <div className="mt-2 max-h-[min(24rem,50vh)] overflow-y-auto pr-1">
+        <ol className="grid grid-cols-5 gap-1.5">
+          {Array.from({ length: total }, (_, i) => {
+            const st = answers[i];
+            const answered = Boolean(st?.selected);
+            const flagged = Boolean(st?.flagged);
+            const current = i === currentIndex;
+            return (
+              <li key={i}>
+                <button
+                  type="button"
+                  onClick={() => onSelect(i)}
+                  aria-current={current ? "step" : undefined}
+                  aria-label={`Question ${i + 1}${answered ? ", answered" : ""}${flagged ? ", flagged" : ""}`}
+                  className={cn(
+                    "relative flex h-8 w-full items-center justify-center rounded-lg text-xs font-semibold tabular-nums transition",
+                    current
+                      ? "bg-[var(--color-accent)] text-white shadow-sm ring-2 ring-[var(--color-accent)]/30"
+                      : answered
+                        ? "bg-teal-50 text-teal-800 hover:bg-teal-100"
+                        : "bg-slate-50 text-slate-600 hover:bg-slate-100"
+                  )}
+                >
+                  {i + 1}
+                  {flagged ? (
+                    <span
+                      className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-amber-400 ring-1 ring-white"
+                      aria-hidden
+                    />
+                  ) : null}
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    </nav>
   );
 }

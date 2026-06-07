@@ -18,7 +18,7 @@ type PageProps = {
 export default async function SelectExamPage({ searchParams }: PageProps) {
   const session = await auth();
   if (!session?.user?.id) {
-    redirect(`/auth/login?callbackUrl=${encodeURIComponent(ROUTES.selectExam)}`);
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.selectExam)}`);
   }
 
   const params = await searchParams;
@@ -33,7 +33,7 @@ export default async function SelectExamPage({ searchParams }: PageProps) {
   const pref = await getUserExamPreference(session.user.id);
 
   if (pref && !switchMode) {
-    redirect(ROUTES.practiceHub);
+    redirect(ROUTES.dashboard);
   }
 
   return (

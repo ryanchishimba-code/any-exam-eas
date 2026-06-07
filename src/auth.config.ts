@@ -20,6 +20,7 @@ export const authConfig = {
       const path = request.nextUrl.pathname;
       const isStudyHub =
         path.startsWith("/dashboard") ||
+        path.startsWith("/question-bank") ||
         path.startsWith("/study-hub") ||
         path.startsWith("/studygub");
       const isExamSelect = path === "/select-exam" || path.startsWith("/select-exam/");

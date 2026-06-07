@@ -23,7 +23,25 @@ export function getNextCacheClearReason(nextDir) {
     return "missing webpack chunk files";
   }
 
+  if (hasIncompleteNextOutput(nextDir)) {
+    return "incomplete .next output";
+  }
+
   return null;
+}
+
+export function forceClearNextCache(root, reason = "clean local dev start") {
+  const nextDir = path.join(root, ".next");
+  if (!existsSync(nextDir)) return false;
+
+  console.log(`Clearing .next cache (${reason})…`);
+  rmSync(nextDir, {
+    recursive: true,
+    force: true,
+    maxRetries: 8,
+    retryDelay: 250,
+  });
+  return true;
 }
 
 export function clearNextCacheIfNeeded(root) {
@@ -31,14 +49,20 @@ export function clearNextCacheIfNeeded(root) {
   const reason = getNextCacheClearReason(nextDir);
   if (!reason) return false;
 
-  console.log(`Clearing stale .next cache (${reason})…`);
-  rmSync(nextDir, {
-    recursive: true,
-    force: true,
-    maxRetries: 5,
-    retryDelay: 200,
-  });
-  return true;
+  return forceClearNextCache(root, reason);
+}
+
+function hasIncompleteNextOutput(nextDir) {
+  const serverDir = path.join(nextDir, "server");
+  const cacheDir = path.join(nextDir, "cache");
+  if (!existsSync(cacheDir)) return false;
+
+  const required = [
+    path.join(nextDir, "routes-manifest.json"),
+    path.join(serverDir, "next-font-manifest.json"),
+  ];
+
+  return required.some((file) => !existsSync(file));
 }
 
 function hasBrokenWebpackChunks(nextDir) {

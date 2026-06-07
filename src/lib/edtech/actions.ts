@@ -28,6 +28,7 @@ export async function persistExamPreference(
     }
 
     await setUserExamPreference(session.user.id, examSlug);
+    revalidatePath("/dashboard");
     revalidatePath("/study-hub");
     revalidatePath("/select-exam");
     return { ok: true };
@@ -52,10 +53,11 @@ export async function saveExamPreference(formData: FormData) {
   }
 
   await setUserExamPreference(session.user.id, slug as ExamSlug);
+  revalidatePath("/dashboard");
   revalidatePath("/study-hub");
   revalidatePath("/select-exam");
   revalidatePath("/onboarding/exam-select");
-  redirect("/study-hub");
+  redirect("/dashboard");
 }
 
 export async function saveMpjePreferences(input: {
@@ -74,6 +76,7 @@ export async function saveMpjePreferences(input: {
   }
 
   await setUserEdtechMetadata(session.user.id, patch);
+  revalidatePath("/dashboard");
   revalidatePath("/study-hub");
   revalidatePath("/settings");
   return { ok: true as const };
@@ -82,14 +85,15 @@ export async function saveMpjePreferences(input: {
 export async function switchExamPreference(examSlug: string) {
   const session = await auth();
   if (!session?.user?.id) {
-    redirect("/auth/login?callbackUrl=/study-hub");
+    redirect("/auth/login?callbackUrl=/dashboard");
   }
   if (!isExamSlug(examSlug)) {
     throw new Error("Invalid exam");
   }
 
   await setUserExamPreference(session.user.id, examSlug);
+  revalidatePath("/dashboard");
   revalidatePath("/study-hub");
-  revalidatePath("/study-hub/topics");
+  revalidatePath("/dashboard/topics");
   revalidatePath("/select-exam");
 }

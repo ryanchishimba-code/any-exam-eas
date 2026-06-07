@@ -3,13 +3,15 @@
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 
+import { DEFAULT_AUTH_CALLBACK } from "@/lib/client/auth-routes";
+
 type HeroSocialAuthProps = {
   callbackUrl?: string;
   className?: string;
 };
 
 export function HeroSocialAuth({
-  callbackUrl = "/study-hub",
+  callbackUrl = DEFAULT_AUTH_CALLBACK,
   className = "",
 }: HeroSocialAuthProps) {
   return (

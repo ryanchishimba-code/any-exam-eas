@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/Button";
-import { loginCompleteUrl, sanitizeCallbackUrl } from "@/lib/client/auth-routes";
+import { DEFAULT_AUTH_CALLBACK, loginCompleteUrl, sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 
 type GoogleSignInButtonProps = {
   callbackUrl?: string;
@@ -14,7 +14,7 @@ type GoogleSignInButtonProps = {
 };
 
 export function GoogleSignInButton({
-  callbackUrl = "/study-hub",
+  callbackUrl = DEFAULT_AUTH_CALLBACK,
   highlighted,
   large,
   onClick,

@@ -12,6 +12,7 @@ import {
 } from "@/lib/auth-client";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { completeLoginFlow } from "@/lib/client/post-login";
+import { ROUTES } from "@/lib/routes";
 import {
   firstName,
   loadReturningUserHint,
@@ -40,7 +41,7 @@ function displayMethod(method?: LoginMethod): string | null {
 }
 
 export function LoginPanel({
-  callbackUrl = "/study-hub",
+  callbackUrl = ROUTES.dashboard,
   onSuccess,
   onForgotPassword,
   forgotLinkClassName = "text-[var(--color-accent)] hover:underline",

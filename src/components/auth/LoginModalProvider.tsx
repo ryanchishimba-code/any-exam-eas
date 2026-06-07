@@ -10,7 +10,7 @@ import {
   type ReactNode,
 } from "react";
 import { useSearchParams } from "next/navigation";
-import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
+import { DEFAULT_AUTH_CALLBACK, sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { LoginModal } from "./LoginModal";
 
 type LoginModalContextValue = {
@@ -25,9 +25,9 @@ const LoginModalContext = createContext<LoginModalContextValue | null>(null);
 export function LoginModalProvider({ children }: { children: ReactNode }) {
   const searchParams = useSearchParams();
   const [open, setOpen] = useState(false);
-  const [callbackUrl, setCallbackUrl] = useState("/study-hub");
+  const [callbackUrl, setCallbackUrl] = useState(DEFAULT_AUTH_CALLBACK);
 
-  const openLoginModal = useCallback((url = "/study-hub") => {
+  const openLoginModal = useCallback((url = DEFAULT_AUTH_CALLBACK) => {
     setCallbackUrl(url);
     setOpen(true);
   }, []);

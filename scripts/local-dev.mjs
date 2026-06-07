@@ -7,7 +7,7 @@ import { spawn, spawnSync, execSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { clearNextCacheIfNeeded } from "./next-cache-utils.mjs";
+import { clearNextCacheIfNeeded, forceClearNextCache } from "./next-cache-utils.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const nodeDir = path.join(root, ".tools", "node-v22.14.0-darwin-arm64", "bin");
@@ -44,13 +44,37 @@ function sleep(ms) {
 }
 
 function freePort(port) {
+  let pids = [];
   try {
     const out = execSync(`lsof -ti tcp:${port}`, { encoding: "utf8" }).trim();
-    if (!out) return;
+    pids = out ? out.split("\n").filter(Boolean) : [];
+  } catch {
+    return;
+  }
+
+  for (const pid of pids) {
+    console.log(`Stopping stale process ${pid} on port ${port}…`);
+    try {
+      process.kill(Number(pid), "SIGTERM");
+    } catch {
+      /* already gone */
+    }
+  }
+
+  if (pids.length === 0) return;
+
+  try {
+    execSync("sleep 0.8");
+  } catch {
+    /* ignore */
+  }
+
+  try {
+    const out = execSync(`lsof -ti tcp:${port}`, { encoding: "utf8" }).trim();
     for (const pid of out.split("\n").filter(Boolean)) {
-      console.log(`Stopping stale process ${pid} on port ${port}…`);
+      console.log(`Force-stopping process ${pid} on port ${port}…`);
       try {
-        process.kill(Number(pid), "SIGTERM");
+        process.kill(Number(pid), "SIGKILL");
       } catch {
         /* already gone */
       }
@@ -61,7 +85,12 @@ function freePort(port) {
 }
 
 function cleanNextCache() {
-  clearNextCacheIfNeeded(root);
+  if (process.env.SKIP_NEXT_CLEAN === "1") {
+    return;
+  }
+
+  if (clearNextCacheIfNeeded(root)) return;
+  forceClearNextCache(root);
 }
 
 console.log("Any Exam Easy — local dev\n");
@@ -69,11 +98,13 @@ console.log(`  URL:      http://${HOST}:${PORT}`);
 console.log("  Login:    http://localhost:3000/login");
 console.log("  Dev user: dev@anyexameasy.test / DevPassword1!");
 console.log("  Tip:      SEED=1 ./start-local.sh to refresh dev admin account");
+console.log("  Tip:      SKIP_NEXT_CLEAN=1 ./start-local.sh to keep .next between restarts");
 console.log("");
 
-cleanNextCache();
 freePort(PORT);
-await sleep(400);
+await sleep(600);
+cleanNextCache();
+await sleep(200);
 
 console.log("Generating Prisma client…");
 spawnSync(node, [ensureDevCache], { cwd: root, env, stdio: "inherit" });

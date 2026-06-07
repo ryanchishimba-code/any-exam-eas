@@ -3,6 +3,7 @@ import { auth } from "@/auth";
 import { FullExamLauncher } from "@/components/exam/FullExamLauncher";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { requirePremiumPage } from "@/lib/require-premium-page";
+import { fullExamHref, ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
 export async function generateMetadata({
@@ -23,20 +24,14 @@ export default async function FullExamLauncherPage({
   params: Promise<{ examSlug: string }>;
 }) {
   const { examSlug } = await params;
-  if (!isExamSlug(examSlug)) redirect("/study-hub");
+  if (!isExamSlug(examSlug)) redirect(ROUTES.dashboard);
 
   const session = await auth();
   if (!session?.user?.id) {
-    redirect(`/auth/login?callbackUrl=/full-exam/${examSlug}`);
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(fullExamHref(examSlug as ExamSlug))}`);
   }
 
-  await requirePremiumPage(`/full-exam/${examSlug}`);
+  await requirePremiumPage(fullExamHref(examSlug as ExamSlug));
 
-  return (
-    <div className="min-h-screen bg-[var(--color-bg)]">
-      <div className="mx-auto max-w-5xl px-6 pb-24 pt-[var(--page-top)]">
-        <FullExamLauncher examSlug={examSlug as ExamSlug} />
-      </div>
-    </div>
-  );
+  return <FullExamLauncher examSlug={examSlug as ExamSlug} />;
 }
