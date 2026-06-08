@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Search } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { MemoryCardTile } from "@/components/reference/MemoryCardTile";
 import { MemoryCardSheet } from "@/components/reference/MemoryCardSheet";
@@ -30,7 +28,6 @@ const KIND_OPTIONS: Array<{ value: MemoryCardKind | "all"; label: string }> = [
 ];
 
 export function ReferenceHubClient({ examSlug, cards, subjects, initialCardId }: Props) {
-  const [query, setQuery] = useState("");
   const [subject, setSubject] = useState<string>("all");
   const [kind, setKind] = useState<MemoryCardKind | "all">("all");
   const [selected, setSelected] = useState<MemoryCard | null>(null);
@@ -42,8 +39,8 @@ export function ReferenceHubClient({ examSlug, cards, subjects, initialCardId }:
   }, [cards, initialCardId]);
 
   const filtered = useMemo(
-    () => queryMemoryCards(cards, { query, subject, kind }),
-    [cards, query, subject, kind]
+    () => queryMemoryCards(cards, { subject, kind }),
+    [cards, subject, kind]
   );
 
   const withDeepDive = cards.filter((c) => c.reviewModuleSlug).length;
@@ -60,7 +57,7 @@ export function ReferenceHubClient({ examSlug, cards, subjects, initialCardId }:
               Bite-sized reference at exam speed
             </h2>
             <p className="mt-2 max-w-xl text-sm text-[var(--color-ink-muted)]">
-              Equations, conversions, tables, and pearls — searchable by subject. Tap a card for
+              Equations, conversions, tables, and pearls — filter by subject or type. Tap a card for
               details, then jump to practice or a deeper review module.
             </p>
           </div>
@@ -75,21 +72,6 @@ export function ReferenceHubClient({ examSlug, cards, subjects, initialCardId }:
             ) : null}
           </div>
         </div>
-      </div>
-
-      <div className="relative">
-        <Search
-          className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--color-ink-muted)]"
-          aria-hidden
-        />
-        <Input
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search equations, topics, tags…"
-          className="h-11 rounded-2xl border-black/[0.08] bg-white pl-10"
-          aria-label="Search memory cards"
-        />
       </div>
 
       <div className="space-y-3">
@@ -125,7 +107,7 @@ export function ReferenceHubClient({ examSlug, cards, subjects, initialCardId }:
         <div className="rounded-2xl border border-dashed border-black/[0.1] bg-white px-6 py-12 text-center">
           <p className="text-sm font-medium text-[var(--color-ink)]">No cards match your filters</p>
           <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-            Try clearing search or choosing a different subject.
+            Try a different subject or card type filter.
           </p>
         </div>
       ) : (
