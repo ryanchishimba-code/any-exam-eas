@@ -1,21 +1,19 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
 import { createExamSession } from "@/lib/exam-sessions/service";
 import type { ExamSlug } from "@/lib/exams/catalog";
 import { getExamHub } from "@/lib/exams/catalog";
 import { getExamQuestionCountBySlug } from "@/lib/exam/exam-lengths";
-import { computeTimeLimitSec, fullExamSessionHref } from "@/lib/full-exam/config";
+import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
 import { isExamSlug } from "@/lib/edtech/exams";
+import { requirePremiumApi } from "@/lib/api-access";
 
 export const runtime = "nodejs";
 
 const SLUGS = new Set(["nclex", "usmle", "naplex", "mpje", "top500"]);
 
 export async function POST(req: Request) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const premium = await requirePremiumApi();
+  if (!premium.ok) return premium.response;
 
   const body = await req.json().catch(() => ({}));
   const examType = String(body.examType ?? "") as ExamSlug;
@@ -24,12 +22,24 @@ export async function POST(req: Request) {
   }
 
   try {
+    if (isExamSlug(examType)) {
+      const sessionConfig = buildSessionConfig(examType, "full", true);
+      const id = await createExamSession(premium.userId, examType, {
+        questionCount: sessionConfig.questionCount,
+        timeLimitSec: sessionConfig.timeLimitSec,
+        title: body.title ?? `${examType.toUpperCase()} full exam`,
+        sessionConfig,
+      });
+      return NextResponse.json({
+        sessionId: id,
+        redirectUrl: fullExamSessionHref(examType, id),
+      });
+    }
+
     const defaultCount = getExamQuestionCountBySlug(examType);
     const questionCount = Number(body.questionCount) || defaultCount;
-    const timeLimitSec =
-      Number(body.timeLimitSec) ||
-      (isExamSlug(examType) ? computeTimeLimitSec(examType, questionCount, true) : 3600);
-    const id = await createExamSession(session.user.id, examType, {
+    const timeLimitSec = Number(body.timeLimitSec) || 3600;
+    const id = await createExamSession(premium.userId, examType, {
       questionCount,
       timeLimitSec,
       title: body.title ?? `${examType.toUpperCase()} timed exam`,
@@ -37,9 +47,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       sessionId: id,
-      redirectUrl: isExamSlug(examType)
-        ? fullExamSessionHref(examType, id)
-        : `/exam/${examType}/${id}`,
+      redirectUrl: `/exam/${examType}/${id}`,
     });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Could not start exam session";

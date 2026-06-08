@@ -17,6 +17,8 @@ import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
 import { ROUTES } from "@/lib/routes";
 import { navigateHard } from "@/lib/client/navigate-hard";
+import { acquireAutostartLock, releaseAutostartLock } from "@/lib/full-exam/autostart-lock";
+import { StudyHubMpjePicker } from "@/components/study-hub/StudyHubMpjePicker";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -24,6 +26,7 @@ type Props = {
   initialMode?: string | null;
   autostart?: boolean;
   initialTimed?: boolean;
+  mpjeStateCode?: string | null;
 };
 
 export function FullExamLauncher({
@@ -31,6 +34,7 @@ export function FullExamLauncher({
   initialMode,
   autostart = false,
   initialTimed = true,
+  mpjeStateCode,
 }: Props) {
   const exam = EXAM_CATALOG[examSlug];
   const options = getLengthOptions(examSlug);
@@ -51,6 +55,7 @@ export function FullExamLauncher({
     startingRef.current = true;
     setError(null);
     setPending(true);
+    const lockKey = `${examSlug}:${preset}:${timed ? "1" : "0"}`;
     try {
       const res = await fetch("/api/full-exam/start", {
         method: "POST",
@@ -65,6 +70,7 @@ export function FullExamLauncher({
       if (!res.ok) {
         setError(data.error ?? "Could not start exam");
         startingRef.current = false;
+        releaseAutostartLock(lockKey);
         setPending(false);
         return;
       }
@@ -74,6 +80,7 @@ export function FullExamLauncher({
       if (!href) {
         setError("Session was not created. Please try again.");
         startingRef.current = false;
+        releaseAutostartLock(lockKey);
         setPending(false);
         return;
       }
@@ -81,6 +88,7 @@ export function FullExamLauncher({
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not start exam");
       startingRef.current = false;
+      releaseAutostartLock(lockKey);
       setPending(false);
     }
   }
@@ -93,11 +101,10 @@ export function FullExamLauncher({
 
   useEffect(() => {
     if (!autostart) return;
+    const lockKey = `${examSlug}:${preset}:${timed ? "1" : "0"}`;
+    if (!acquireAutostartLock(lockKey)) return;
     void startExam();
-    return () => {
-      startingRef.current = false;
-    };
-  }, [autostart]);
+  }, [autostart, examSlug, preset, timed]);
 
   if (pending && autostart) {
     return (
@@ -130,10 +137,27 @@ export function FullExamLauncher({
           {pageTitle}
         </h1>
         <p className="max-w-2xl text-lg text-slate-600">
-          Test-day conditions with a dynamic timer, flag-for-review, elimination mode, and a
-          beautiful results breakdown — designed to feel calm, not stressful.
+          Test-day conditions with a dynamic timer, flag-for-review, scratch-pad notes, and a
+          detailed results breakdown — designed to feel calm, not stressful.
         </p>
       </header>
+
+      {examSlug === "mpje" ? (
+        <div className="rounded-2xl border border-amber-200/80 bg-amber-50/50 p-4">
+          <p className="text-sm font-semibold text-amber-900">MPJE state</p>
+          <p className="mt-1 text-sm text-amber-800/90">
+            Choose your licensing state so state-specific law questions are included.
+          </p>
+          <div className="mt-3">
+            <StudyHubMpjePicker initialStateCode={mpjeStateCode ?? undefined} persistPreference />
+          </div>
+          {!mpjeStateCode ? (
+            <p className="mt-2 text-xs text-amber-700">
+              No state saved yet — federal-only items may be used until you pick a state.
+            </p>
+          ) : null}
+        </div>
+      ) : null}
 
       <div className="grid gap-8 lg:grid-cols-3">
         <div className="space-y-4 lg:col-span-2">

@@ -10,10 +10,13 @@ import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 
 export default async function FullExamResultsPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ examSlug: string; sessionId: string }>;
+  searchParams: Promise<{ review?: string }>;
 }) {
   const { examSlug, sessionId } = await params;
+  const sp = await searchParams;
   if (!isExamSlug(examSlug)) notFound();
 
   const session = await auth();
@@ -51,7 +54,7 @@ export default async function FullExamResultsPage({
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
-      <div className="mx-auto max-w-3xl px-6 pb-24 pt-[var(--page-top)]">
+      <div className="mx-auto max-w-3xl px-4 pb-8 pt-[var(--page-top)] sm:px-6">
         <FullExamResults
           examSlug={examSlug as ExamSlug}
           sessionId={sessionId}
@@ -59,6 +62,7 @@ export default async function FullExamResultsPage({
           analysis={analysis}
           answers={answers}
           questions={questions}
+          initialReviewOpen={sp.review === "1"}
         />
       </div>
     </div>

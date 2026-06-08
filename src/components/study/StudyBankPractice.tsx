@@ -348,40 +348,33 @@ export function StudyBankPractice() {
       const limit = isTimedExam ? timedCount : questionCount;
 
       if (isTimedExam) {
-        if (isMpje) {
-          if (mpjeVariant === "state" && mpjeState) {
-            navigateHard(mpjePracticeExamHref(mpjeState));
-            return;
+        const examSlug = examSlugFromFieldId(fieldId);
+        if (examSlug) {
+          const res = await fetch("/api/full-exam/start", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              examSlug,
+              lengthPreset: "full",
+              timed: true,
+            }),
+          });
+          const data = (await res.json().catch(() => ({}))) as {
+            sessionId?: string;
+            redirectUrl?: string;
+            error?: string;
+          };
+          if (!res.ok) {
+            throw new Error(data.error ?? "Could not start timed exam");
           }
-        } else {
-          const examSlug = examSlugFromFieldId(fieldId);
-          if (examSlug) {
-            const res = await fetch("/api/full-exam/start", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                examSlug,
-                lengthPreset: "full",
-                timed: true,
-              }),
-            });
-            const data = (await res.json().catch(() => ({}))) as {
-              sessionId?: string;
-              redirectUrl?: string;
-              error?: string;
-            };
-            if (!res.ok) {
-              throw new Error(data.error ?? "Could not start timed exam");
-            }
-            const href =
-              data.redirectUrl ??
-              (data.sessionId ? fullExamSessionHref(examSlug, data.sessionId) : null);
-            if (!href) {
-              throw new Error("Session was not created. Please try again.");
-            }
-            navigateHard(href);
-            return;
+          const href =
+            data.redirectUrl ??
+            (data.sessionId ? fullExamSessionHref(examSlug, data.sessionId) : null);
+          if (!href) {
+            throw new Error("Session was not created. Please try again.");
           }
+          navigateHard(href);
+          return;
         }
 
         const qs = new URLSearchParams({

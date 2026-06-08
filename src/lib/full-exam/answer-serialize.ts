@@ -19,6 +19,24 @@ export function serializeExamSelection(
   return selected[0] ?? "";
 }
 
+/** Restore persisted selection into UI state. */
+export function deserializeExamSelection(selected: string): string[] {
+  if (!selected.trim()) return [];
+  if (selected.includes("|||")) {
+    return selected.split("|||").map((s) => s.trim()).filter(Boolean);
+  }
+  return [selected];
+}
+
+/** Human-readable answer for results review. */
+export function formatAnswerDisplay(value: string): string {
+  if (!value) return "—";
+  if (value.includes("|||")) {
+    return value.split("|||").map((s) => s.trim()).filter(Boolean).join(", ");
+  }
+  return value;
+}
+
 /** Serialize correct answers for results snapshots. */
 export function serializeCorrectAnswer(question: StudyQuestion): string {
   if (

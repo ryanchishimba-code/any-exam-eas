@@ -86,8 +86,14 @@ export function fullExamSessionHref(examSlug: ExamSlug, sessionId: string): stri
   return `/full-exam/${examSlug}/${sessionId}`;
 }
 
-export function fullExamResultsHref(examSlug: ExamSlug, sessionId: string): string {
-  return `/full-exam/${examSlug}/${sessionId}/results`;
+export function fullExamResultsHref(
+  examSlug: ExamSlug,
+  sessionId: string,
+  opts?: { review?: boolean }
+): string {
+  const base = `/full-exam/${examSlug}/${sessionId}/results`;
+  if (!opts?.review) return base;
+  return `${base}?review=1`;
 }
 
 export function parseFullExamLengthPreset(

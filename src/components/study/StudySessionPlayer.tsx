@@ -16,7 +16,6 @@ import { bowTieSelectionValid, parseBowTieLayout, parseMatrixKey } from "@/lib/q
 import { persistSessionLocally } from "@/lib/questions/storage";
 import { saveStudySessionRemote } from "@/lib/client/save-study-session";
 import { EndActivityControl } from "./EndActivityControl";
-import { ActivitySessionToolbar } from "./ActivitySessionToolbar";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import type {
   AdaptiveSessionMeta,
@@ -450,29 +449,17 @@ export function StudySessionPlayer({
         touchStart.current = null;
       }}
     >
-      <ActivitySessionToolbar
-        actions={
-          <>
-            {sessionState.mode === "timed" && !timeUp && (
-              <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium tabular-nums text-amber-900">
-                {usesSessionTimer ? formatHms(timerSec) : `${timerSec}s`}
-              </span>
-            )}
-            <EndActivityControl
-              kind={sourceType === "exam" || sessionState.mode === "timed" ? "exam" : "activity"}
-              onConfirm={exitSession}
-            />
-          </>
-        }
-      >
-        <div>
-          {title && <p className="truncate text-sm font-medium">{title}</p>}
-          <p className="text-xs text-[var(--color-ink-muted)]">
-            {sessionState.mode} · {sessionState.currentIndex + 1}/{questionList.length}
-            {summary.answered > 0 && ` · ${summary.accuracy}%`}
-          </p>
-        </div>
-      </ActivitySessionToolbar>
+      <div className="flex items-center justify-end gap-2">
+        {sessionState.mode === "timed" && !timeUp && (
+          <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium tabular-nums text-amber-900">
+            {usesSessionTimer ? formatHms(timerSec) : `${timerSec}s`}
+          </span>
+        )}
+        <EndActivityControl
+          kind={sourceType === "exam" || sessionState.mode === "timed" ? "exam" : "activity"}
+          onConfirm={exitSession}
+        />
+      </div>
 
       <div className="h-1.5 overflow-hidden rounded-full bg-black/[0.06]">
         <div

@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
-import { appendExamAnswer, completeExamSession } from "@/lib/exam-sessions/service";
+import {
+  appendExamAnswer,
+  completeExamSession,
+  getExamSession,
+} from "@/lib/exam-sessions/service";
+import { calculateExamScorePercent } from "@/lib/exam-sessions/scoring";
+import { requirePremiumApi } from "@/lib/api-access";
+import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 
 export const runtime = "nodejs";
 
@@ -8,25 +14,34 @@ export async function PATCH(
   req: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const premium = await requirePremiumApi();
+  if (!premium.ok) return premium.response;
 
   const { id } = await params;
   const body = await req.json();
 
   if (body.complete) {
-    await completeExamSession(id, session.user.id, {
-      score: Number(body.score) || 0,
+    const session = await getExamSession(id, premium.userId);
+    if (!session) {
+      return NextResponse.json({ error: "Session not found" }, { status: 404 });
+    }
+
+    const stored = (Array.isArray(session.answers)
+      ? session.answers
+      : []) as ExamAnswerRecord[];
+    const totalQuestions = session.questionCount || stored.length;
+    const score = calculateExamScorePercent(stored, totalQuestions);
+
+    await completeExamSession(id, premium.userId, {
+      score,
       weakAreas: body.weakAreas ?? [],
       analysis: body.analysis,
       endedEarly: Boolean(body.endedEarly),
     });
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, score });
   }
 
-  const answers = await appendExamAnswer(id, session.user.id, {
+  const answers = await appendExamAnswer(id, premium.userId, {
     questionIndex: Number(body.questionIndex),
     questionId: body.questionId,
     selected: String(body.selected ?? ""),
@@ -37,6 +52,10 @@ export async function PATCH(
     topicCategory: typeof body.topicCategory === "string" ? body.topicCategory : undefined,
     answeredAt: new Date().toISOString(),
   });
+
+  if (!answers) {
+    return NextResponse.json({ error: "Session not found or already completed" }, { status: 404 });
+  }
 
   return NextResponse.json({ answers });
 }

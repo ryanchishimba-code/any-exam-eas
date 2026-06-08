@@ -184,11 +184,11 @@ export async function GET(req: Request) {
         item.itemType === "select_all"
           ? "select_all"
           : item.itemType === "k_type"
-            ? "multiple_choice"
+            ? "k_type"
             : "multiple_choice";
       return {
         id: i + 1,
-        type: mpjeType,
+        type: mpjeType as ExamQuestion["type"],
         question: item.question,
         options: [...item.options],
         correctAnswer: item.correctAnswer,

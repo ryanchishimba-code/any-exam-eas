@@ -18,6 +18,8 @@ import { Progress } from "@/components/ui/progress";
 import { QuestionRenderer } from "@/components/study/questions/QuestionRenderer";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
+  deserializeExamSelection,
+  formatAnswerDisplay,
   serializeCorrectAnswer,
   serializeExamSelection,
 } from "@/lib/full-exam/answer-serialize";
@@ -30,6 +32,7 @@ import {
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { parseBowTieLayout, parseMatrixKey } from "@/lib/questions/ngn-structures";
 import { isAnswerCorrect, prepareQuestionsForSession } from "@/lib/questions/prepare";
+import { getSequentialSetContext } from "@/lib/questions/sequential-sets";
 import type { RawQuestionInput, StudyQuestion } from "@/lib/questions/types";
 import type { ExamSlug } from "@/types/edtech";
 import type {
@@ -50,6 +53,8 @@ type Props = {
   examSlug: ExamSlug;
   fieldId: string;
   config: FullExamSessionConfig;
+  initialAnswers?: ExamAnswerRecord[];
+  startedAt?: string | Date | null;
 };
 
 function defaultAnswer(): FullExamAnswerState {
@@ -60,7 +65,37 @@ function hasSelection(selected: string[]): boolean {
   return selected.length > 0;
 }
 
-export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Props) {
+function initialRemainingSec(
+  config: FullExamSessionConfig,
+  startedAt?: string | Date | null
+): number {
+  if (!config.timed || config.timeLimitSec <= 0) return config.timeLimitSec;
+  if (!startedAt) return config.timeLimitSec;
+  const elapsed = Math.floor((Date.now() - new Date(startedAt).getTime()) / 1000);
+  return Math.max(0, config.timeLimitSec - elapsed);
+}
+
+function hydrateAnswers(records: ExamAnswerRecord[]): Record<number, FullExamAnswerState> {
+  const out: Record<number, FullExamAnswerState> = {};
+  for (const a of records) {
+    out[a.questionIndex] = {
+      selected: deserializeExamSelection(a.selected),
+      eliminated: a.eliminated ?? [],
+      flagged: a.flagged ?? false,
+      notes: a.notes ?? "",
+    };
+  }
+  return out;
+}
+
+export function FullExamSimulator({
+  sessionId,
+  examSlug,
+  fieldId,
+  config,
+  initialAnswers = [],
+  startedAt = null,
+}: Props) {
   const router = useRouter();
   const exam = EXAM_CATALOG[examSlug];
 
@@ -68,13 +103,21 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [index, setIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, FullExamAnswerState>>({});
-  const [remainingSec, setRemainingSec] = useState(config.timeLimitSec);
-  const [elapsedSec, setElapsedSec] = useState(0);
+  const [answers, setAnswers] = useState<Record<number, FullExamAnswerState>>(() =>
+    hydrateAnswers(initialAnswers)
+  );
+  const [remainingSec, setRemainingSec] = useState(() =>
+    initialRemainingSec(config, startedAt)
+  );
+  const [elapsedSec, setElapsedSec] = useState(() => {
+    if (config.timed || !startedAt) return 0;
+    return Math.floor((Date.now() - new Date(startedAt).getTime()) / 1000);
+  });
   const [paused, setPaused] = useState(false);
   const [pauseDialog, setPauseDialog] = useState(false);
   const [timeUp, setTimeUp] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [notesOpen, setNotesOpen] = useState(false);
   const [phase, setPhase] = useState<"exam" | "review">("exam");
   const [hasEnteredReview, setHasEnteredReview] = useState(false);
@@ -87,6 +130,13 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
 
   const current = questions[index];
   const currentAnswer = answers[index] ?? defaultAnswer();
+  const sequentialContext = useMemo(
+    () =>
+      current
+        ? getSequentialSetContext(current, questions, {})
+        : null,
+    [current, questions]
+  );
   const flaggedIndices = useMemo(
     () =>
       Object.entries(answers)
@@ -137,6 +187,7 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
       if (fieldId === "mpje" && mpjeStateCode) {
         qs.set("state", mpjeStateCode);
         qs.set("mpjeState", mpjeStateCode);
+        qs.set("mpjeVariant", "state");
       }
 
       try {
@@ -350,6 +401,7 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
     async (endedEarly = false) => {
       if (submitting) return;
       setSubmitting(true);
+      setSubmitError(null);
 
       const log = buildAnswerLog();
       const score = calculateExamScorePercent(log, questions.length);
@@ -358,35 +410,47 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
         ? config.timeLimitSec - remainingSec
         : elapsedSec;
 
-      await fetch(`/api/exam-sessions/${sessionId}/answer`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          complete: true,
-          endedEarly,
-          score,
-          weakAreas: topicBreakdown.filter((t) => t.pct < 70).map((t) => ({ topic: t.topic, weight: t.total - t.correct })),
-          analysis: {
-            sessionConfig: config,
-            timeUsedSec,
-            topicBreakdown,
-            questionIds: questions.map((q) => q.bankItemId ?? q.id),
-            questionSnapshots: questions.map((q) => ({
-              id: q.bankItemId ?? q.id,
-              question: q.stem,
-              options: q.options,
-              correctAnswer: serializeCorrectAnswer(q),
-              explanation: q.explanation,
-              topicCategory: q.subjectId,
-            })),
-            summary: endedEarly
-              ? "Session ended early. Your saved answers were scored."
-              : `Completed ${exam.name} simulation.`,
-          },
-        }),
-      });
+      try {
+        const res = await fetch(`/api/exam-sessions/${sessionId}/answer`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            complete: true,
+            endedEarly,
+            score,
+            weakAreas: topicBreakdown
+              .filter((t) => t.pct < 70)
+              .map((t) => ({ topic: t.topic, weight: t.total - t.correct })),
+            analysis: {
+              sessionConfig: config,
+              timeUsedSec,
+              topicBreakdown,
+              questionIds: questions.map((q) => q.bankItemId ?? q.id),
+              questionSnapshots: questions.map((q) => ({
+                id: q.bankItemId ?? q.id,
+                question: q.stem,
+                options: q.options,
+                correctAnswer: serializeCorrectAnswer(q),
+                explanation: q.explanation,
+                topicCategory: q.subjectId,
+              })),
+              summary: endedEarly
+                ? "Session ended early. Your saved answers were scored."
+                : `Completed ${exam.name} simulation.`,
+            },
+          }),
+        });
 
-      router.push(fullExamResultsHref(examSlug, sessionId));
+        if (!res.ok) {
+          const data = (await res.json().catch(() => ({}))) as { error?: string };
+          throw new Error(data.error ?? "Could not submit exam");
+        }
+
+        router.push(fullExamResultsHref(examSlug, sessionId, { review: true }));
+      } catch (e) {
+        setSubmitError(e instanceof Error ? e.message : "Could not submit exam");
+        setSubmitting(false);
+      }
     },
     [
       submitting,
@@ -437,7 +501,11 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
 
   function resumeExam() {
     if (pauseStarted.current) {
-      pauseAccumSec.current += Math.floor((Date.now() - pauseStarted.current) / 1000);
+      const pausedFor = Math.floor((Date.now() - pauseStarted.current) / 1000);
+      pauseAccumSec.current += pausedFor;
+      if (config.timed) {
+        setRemainingSec((s) => s + pausedFor);
+      }
       pauseStarted.current = null;
     }
     setPaused(false);
@@ -611,12 +679,17 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row">
+            {submitError ? (
+              <p className="w-full rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700" role="alert">
+                {submitError}
+              </p>
+            ) : null}
             <button
               type="button"
               onClick={() => setPhase("exam")}
               className="flex-1 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
             >
-              Return to exam
+              Return to questions
             </button>
             <button
               type="button"
@@ -705,7 +778,7 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
           </div>
         </aside>
 
-        <main className="min-w-0 flex-1 px-4 py-6 pb-28 sm:px-6 lg:pb-8">
+        <main className="min-w-0 flex-1 px-4 py-6 pb-36 sm:px-6 lg:pb-32">
           <p className="mb-2 text-xs font-medium uppercase tracking-wide text-teal-700 lg:hidden">
             Q{index + 1} of {questions.length}
           </p>
@@ -716,6 +789,7 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
               selected={currentAnswer.selected}
               revealed={false}
               onToggle={toggleSelect}
+              sequentialContext={sequentialContext}
             />
           </article>
         </main>
@@ -750,23 +824,57 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
         </aside>
       </div>
 
-      <footer className="fixed bottom-0 left-0 right-0 z-20 border-t border-slate-200/80 bg-white/95 backdrop-blur-md">
-        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
-          <button
-            type="button"
-            disabled={index === 0}
-            onClick={() => setIndex((i) => i - 1)}
-            className="inline-flex items-center gap-1 rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-40"
-          >
-            <ChevronLeft className="h-4 w-4" /> Previous
-          </button>
+      <footer className="fixed inset-x-0 bottom-0 z-[70] border-t border-slate-200/80 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-md">
+        <div className="mx-auto max-w-[1400px] space-y-2 px-4 py-3 sm:px-6">
+          <div className="flex items-center justify-between gap-2">
+            <button
+              type="button"
+              disabled={index === 0}
+              onClick={() => setIndex((i) => i - 1)}
+              className="inline-flex shrink-0 items-center gap-1 rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-40 sm:px-4"
+            >
+              <ChevronLeft className="h-4 w-4" /> Previous
+            </button>
 
-          <div className="flex flex-wrap items-center gap-2">
+            {hasEnteredReview ? (
+              <button
+                type="button"
+                onClick={() => setPhase("review")}
+                className="inline-flex shrink-0 items-center gap-1 rounded-xl border border-teal-300 bg-teal-50 px-3 py-2 text-sm font-semibold text-teal-800 hover:bg-teal-100 sm:px-4"
+              >
+                Return to review
+              </button>
+            ) : null}
+
+            {index + 1 >= questions.length ? (
+              <button
+                type="button"
+                disabled={submitting}
+                onClick={() => {
+                  setHasEnteredReview(true);
+                  setPhase("review");
+                }}
+                className="inline-flex shrink-0 items-center gap-1 rounded-xl bg-[var(--color-accent)] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95 disabled:opacity-60 sm:px-5"
+              >
+                Review & submit
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setIndex((i) => i + 1)}
+                className="inline-flex shrink-0 items-center gap-1 rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 sm:px-5"
+              >
+                Next <ChevronRight className="h-4 w-4" />
+              </button>
+            )}
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-2">
             {config.timed ? (
               <button
                 type="button"
                 onClick={() => (paused ? resumeExam() : setPauseDialog(true))}
-                className="hidden rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50 sm:inline-flex"
+                className="rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50"
               >
                 {paused ? "Resume" : "Pause"}
               </button>
@@ -802,28 +910,6 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
               )}
             </button>
           </div>
-
-          {index + 1 >= questions.length ? (
-            <button
-              type="button"
-              disabled={submitting}
-              onClick={() => {
-                setHasEnteredReview(true);
-                setPhase("review");
-              }}
-              className="inline-flex items-center gap-1 rounded-xl bg-[var(--color-accent)] px-5 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95 disabled:opacity-60"
-            >
-              Review & submit
-            </button>
-          ) : (
-            <button
-              type="button"
-              onClick={() => setIndex((i) => i + 1)}
-              className="inline-flex items-center gap-1 rounded-xl bg-slate-900 px-5 py-2 text-sm font-semibold text-white hover:bg-slate-800"
-            >
-              Next <ChevronRight className="h-4 w-4" />
-            </button>
-          )}
         </div>
       </footer>
 

@@ -2,7 +2,7 @@ import { notFound, redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { FullExamSimulator } from "@/components/exam/FullExamSimulator";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
-import { getExamSession } from "@/lib/exam-sessions/service";
+import { getExamSession, type ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { fullExamResultsHref } from "@/lib/full-exam/config";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import type { ExamSlug } from "@/types/edtech";
@@ -40,6 +40,10 @@ export default async function FullExamSessionPage({
   const config = analysis?.sessionConfig;
   if (!config) notFound();
 
+  const answers = (Array.isArray(examSession.answers)
+    ? examSession.answers
+    : []) as ExamAnswerRecord[];
+
   const exam = EXAM_CATALOG[examSlug as ExamSlug];
 
   return (
@@ -48,6 +52,8 @@ export default async function FullExamSessionPage({
       examSlug={examSlug as ExamSlug}
       fieldId={exam.fieldId}
       config={config}
+      initialAnswers={answers}
+      startedAt={examSession.startedAt}
     />
   );
 }

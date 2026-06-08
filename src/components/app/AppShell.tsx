@@ -1,12 +1,17 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { usePathname } from "next/navigation";
 import { AppTopNav } from "@/components/app/AppTopNav";
 import { AppSidebar } from "@/components/app/AppSidebar";
 import { AppMobileDrawer } from "@/components/app/AppMobileDrawer";
 import { MobileBottomNav } from "@/components/app/MobileBottomNav";
+import { isFullExamSessionRoute } from "@/lib/navigation/app-shell";
+import { cn } from "@/lib/utils";
 
 export function AppShell({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const immersiveExam = isFullExamSessionRoute(pathname);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const openDrawer = useCallback(() => setDrawerOpen(true), []);
   const closeDrawer = useCallback(() => setDrawerOpen(false), []);
@@ -15,13 +20,21 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-[var(--color-bg)]">
       <AppTopNav onMenuClick={openDrawer} />
       <AppMobileDrawer open={drawerOpen} onClose={closeDrawer} />
-      <div className="mx-auto flex max-w-6xl gap-8 px-4 pb-24 pt-[var(--page-top)] sm:px-6 lg:pb-8">
-        <AppSidebar />
-        <main id="main-content" className="min-w-0 flex-1">
+      <div
+        className={cn(
+          "mx-auto flex max-w-6xl gap-8 px-4 pt-[var(--page-top)] sm:px-6",
+          immersiveExam ? "pb-4 lg:pb-8" : "pb-24 lg:pb-8"
+        )}
+      >
+        {!immersiveExam ? <AppSidebar /> : null}
+        <main
+          id="main-content"
+          className={cn("min-w-0 flex-1", immersiveExam && "max-w-none")}
+        >
           {children}
         </main>
       </div>
-      <MobileBottomNav />
+      {!immersiveExam ? <MobileBottomNav /> : null}
     </div>
   );
 }

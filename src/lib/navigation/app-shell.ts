@@ -24,3 +24,11 @@ export function isMinimalChromeRoute(pathname: string): boolean {
 export function hideMarketingChrome(pathname: string): boolean {
   return isAppShellRoute(pathname) || isMinimalChromeRoute(pathname);
 }
+
+/** Active full-exam simulator or results — hide mobile tab bar so footer controls stay reachable. */
+export function isFullExamSessionRoute(pathname: string): boolean {
+  const parts = pathname.split("/").filter(Boolean);
+  if (parts[0] !== "full-exam") return false;
+  if (parts.length === 3) return true;
+  return parts.length === 4 && parts[3] === "results";
+}
