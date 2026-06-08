@@ -1,8 +1,58 @@
 import { prisma } from "@/lib/prisma";
 import { getHighYieldTopics as getStaticTopics } from "@/lib/edtech/seeds";
-import { mergeReviewModules } from "@/lib/edtech/seeds/review-module-topics";
+import {
+  mergeReviewModules,
+  REVIEW_MODULE_TOPICS,
+} from "@/lib/edtech/seeds/review-module-topics";
 import type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
+
+/** Upsert flagship review-module rows so progress FKs stay valid after code deploys. */
+async function syncReviewModuleTopics(examSlug: ExamSlug): Promise<void> {
+  const modules = REVIEW_MODULE_TOPICS.filter((t) => t.examSlug === examSlug);
+  if (modules.length === 0) return;
+
+  const now = new Date();
+  for (const topic of modules) {
+    try {
+      await prisma.highYieldTopic.upsert({
+        where: { examSlug_slug: { examSlug: topic.examSlug, slug: topic.slug } },
+        create: {
+          id: topic.id,
+          examSlug: topic.examSlug,
+          slug: topic.slug,
+          category: topic.category,
+          title: topic.title,
+          overview: topic.overview,
+          summary: topic.summary,
+          keyConcepts: topic.keyConcepts,
+          mustKnowFacts: topic.mustKnowFacts,
+          pearls: topic.pearls,
+          pitfalls: topic.pitfalls,
+          reviewModule: topic.reviewModule ?? undefined,
+          sortOrder: topic.sortOrder,
+          practiceTopicSlug: topic.practiceTopicSlug,
+          updatedAt: now,
+        },
+        update: {
+          category: topic.category,
+          title: topic.title,
+          overview: topic.overview,
+          summary: topic.summary,
+          keyConcepts: topic.keyConcepts,
+          mustKnowFacts: topic.mustKnowFacts,
+          pearls: topic.pearls,
+          pitfalls: topic.pitfalls,
+          reviewModule: topic.reviewModule ?? undefined,
+          practiceTopicSlug: topic.practiceTopicSlug,
+          updatedAt: now,
+        },
+      });
+    } catch {
+      /* board exam row may be missing before seed — non-fatal */
+    }
+  }
+}
 
 function parseReviewModule(value: unknown): ReviewModuleContent | undefined {
   if (!value || typeof value !== "object") return undefined;
@@ -53,6 +103,7 @@ function enrichStaticTopics(examSlug: ExamSlug, topics: HighYieldTopic[]): HighY
 /** Prefer DB topics when seeded; fall back to static repo content. */
 export async function loadHighYieldTopics(examSlug: ExamSlug): Promise<HighYieldTopic[]> {
   try {
+    await syncReviewModuleTopics(examSlug);
     const rows = await prisma.highYieldTopic.findMany({
       where: { examSlug },
       orderBy: { sortOrder: "asc" },

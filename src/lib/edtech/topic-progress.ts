@@ -34,12 +34,22 @@ export async function loadTopicProgressMap(
 }
 
 export async function incrementTopicReview(userId: string, topicId: string): Promise<number> {
-  const now = new Date();
-  const row = await prisma.userTopicProgress.upsert({
-    where: { userId_topicId: { userId, topicId } },
-    create: { userId, topicId, lastViewedAt: now, reviewCount: 1 },
-    update: { lastViewedAt: now, reviewCount: { increment: 1 } },
-    select: { reviewCount: true },
-  });
-  return row.reviewCount;
+  try {
+    const topic = await prisma.highYieldTopic.findUnique({
+      where: { id: topicId },
+      select: { id: true },
+    });
+    if (!topic) return 0;
+
+    const now = new Date();
+    const row = await prisma.userTopicProgress.upsert({
+      where: { userId_topicId: { userId, topicId } },
+      create: { userId, topicId, lastViewedAt: now, reviewCount: 1 },
+      update: { lastViewedAt: now, reviewCount: { increment: 1 } },
+      select: { reviewCount: true },
+    });
+    return row.reviewCount;
+  } catch {
+    return 0;
+  }
 }
