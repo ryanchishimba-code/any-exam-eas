@@ -230,6 +230,7 @@ export const highYieldTopics = pgTable(
     mustKnowFacts: jsonb("mustKnowFacts").notNull(),
     pearls: jsonb("pearls").notNull(),
     pitfalls: jsonb("pitfalls").notNull(),
+    reviewModule: jsonb("reviewModule"),
     sortOrder: integer("sortOrder").default(0).notNull(),
     practiceTopicSlug: text("practiceTopicSlug").notNull(),
     createdAt: timestamp("createdAt", { mode: "date" }).defaultNow().notNull(),

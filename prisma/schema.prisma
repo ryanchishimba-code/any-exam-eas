@@ -789,6 +789,7 @@ model HighYieldTopic {
   mustKnowFacts     Json
   pearls            Json
   pitfalls          Json
+  reviewModule      Json?
   sortOrder         Int      @default(0)
   practiceTopicSlug String
   createdAt         DateTime @default(now())

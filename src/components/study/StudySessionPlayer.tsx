@@ -537,7 +537,7 @@ export function StudySessionPlayer({
               <p className="text-sm">
                 <AnswerFeedbackLabel correct={answer.correct === true} />
               </p>
-              <ExplanationPanel question={current} />
+              <ExplanationPanel question={current} field={field} />
               {insight && (
                 <InsightPanel
                   insight={insight}

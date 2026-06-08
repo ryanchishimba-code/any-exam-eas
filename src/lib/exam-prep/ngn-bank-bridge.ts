@@ -138,7 +138,9 @@ export function bankItemToExamQuestion(
     options,
     correctAnswer: item.correctAnswer,
     explanation: item.explanation,
-    solutionSteps: item.solutionSteps,
+    clinicalReasoning: item.clinicalReasoning,
+    distractorRationale: item.distractorRationale,
+    solutionSteps: item.solutionSteps ?? item.keyTakeaways,
     tags: item.tags,
     highYield: true,
     ngnFormat,
@@ -154,6 +156,7 @@ export function bankItemToExamQuestion(
             ? "Hard"
             : "Medium"
         : undefined,
+    references: item.references?.map((r) => r.citation ?? r.label),
   };
 }
 

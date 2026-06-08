@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart3, BookOpen, Clock, LayoutGrid, Layers, Sparkles } from "lucide-react";
+import { BarChart3, BookMarked, BookOpen, Clock, LayoutGrid, Layers, Sparkles } from "lucide-react";
 import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { href: ROUTES.dashboard, label: "Dashboard", icon: LayoutGrid, exact: true },
   { href: ROUTES.fullExam, label: "Full Exam", icon: Clock },
   { href: ROUTES.questionBank, label: "Question Bank", icon: BookOpen },
+  { href: ROUTES.reference, label: "Quick Reference", icon: BookMarked },
   { href: ROUTES.analytics, label: "Analytics", icon: BarChart3 },
   { href: ROUTES.highYieldTopics, label: "High-Yield Topics", icon: Sparkles },
   { href: ROUTES.drugs300, label: "Top 500", icon: Layers },

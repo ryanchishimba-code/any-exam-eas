@@ -48,3 +48,23 @@ export function highYieldTopicsHref(examSlug?: ExamSlug): string {
   if (!examSlug) return ROUTES.highYieldTopics;
   return `${ROUTES.highYieldTopics}?exam=${encodeURIComponent(examSlug)}`;
 }
+
+/** Deep link to a specific review module or topic slide-over. */
+export function highYieldTopicHref(examSlug: ExamSlug, topicSlug: string): string {
+  const qs = new URLSearchParams({
+    exam: examSlug,
+    topic: topicSlug,
+  });
+  return `${ROUTES.highYieldTopics}?${qs.toString()}`;
+}
+
+export function referenceHref(examSlug?: ExamSlug): string {
+  if (!examSlug) return ROUTES.reference;
+  return `${ROUTES.reference}?exam=${encodeURIComponent(examSlug)}`;
+}
+
+/** Future Stats integration: link to reference filtered by memory card id. */
+export function referenceCardHref(examSlug: ExamSlug, cardId: string): string {
+  const qs = new URLSearchParams({ exam: examSlug, card: cardId });
+  return `${ROUTES.reference}?${qs.toString()}`;
+}

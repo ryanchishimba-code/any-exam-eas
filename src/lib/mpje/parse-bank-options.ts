@@ -4,9 +4,55 @@ export type ParsedBankOptions = {
   options: string[];
   statements?: string[];
   ngnPayload?: Record<string, unknown>;
+  distractorRationale?: Record<string, string>;
+  clinicalReasoning?: string;
+  keyTakeaways?: string[];
 };
 
-/** Parse options column — plain array, K-type statements, or full NGN payload. */
+function readEnrichment(obj: Record<string, unknown>): Partial<ParsedBankOptions> {
+  const out: Partial<ParsedBankOptions> = {};
+  if (obj.distractorRationale && typeof obj.distractorRationale === "object") {
+    out.distractorRationale = Object.fromEntries(
+      Object.entries(obj.distractorRationale as Record<string, unknown>).map(([k, v]) => [
+        k,
+        String(v),
+      ])
+    );
+  }
+  if (typeof obj.clinicalReasoning === "string") {
+    out.clinicalReasoning = obj.clinicalReasoning;
+  }
+  if (Array.isArray(obj.keyTakeaways)) {
+    out.keyTakeaways = obj.keyTakeaways.map(String);
+  }
+  return out;
+}
+
+/** Serialize MCQ options — plain array or enriched envelope with rationales. */
+export function serializeBankOptions(item: BankItem): string {
+  const hasEnrichment =
+    item.distractorRationale ||
+    item.clinicalReasoning ||
+    (item.keyTakeaways?.length ?? 0) > 0;
+
+  if (item.ngnPayload?.kind && item.itemType !== "mcq" && item.itemType !== "vignette") {
+    return JSON.stringify({ ...item.ngnPayload, options: item.options });
+  }
+
+  if (hasEnrichment) {
+    return JSON.stringify({
+      options: item.options,
+      distractorRationale: item.distractorRationale,
+      clinicalReasoning: item.clinicalReasoning,
+      keyTakeaways: item.keyTakeaways,
+      ...(item.ngnPayload?.kind ? { kind: item.ngnPayload.kind, ...item.ngnPayload } : {}),
+    });
+  }
+
+  return JSON.stringify(item.options);
+}
+
+/** Parse options column — plain array, K-type statements, NGN payload, or enriched MCQ. */
 export function parseBankOptions(raw: string): ParsedBankOptions {
   try {
     const parsed = JSON.parse(raw) as unknown;
@@ -16,9 +62,10 @@ export function parseBankOptions(raw: string): ParsedBankOptions {
     if (parsed && typeof parsed === "object") {
       const obj = parsed as Record<string, unknown>;
       const opts = Array.isArray(obj.options) ? obj.options.map(String) : [];
+      const enrichment = readEnrichment(obj);
 
       if (typeof obj.kind === "string") {
-        return { options: opts, ngnPayload: obj };
+        return { options: opts, ngnPayload: obj, ...enrichment };
       }
 
       if (Array.isArray(obj.statements)) {
@@ -26,10 +73,11 @@ export function parseBankOptions(raw: string): ParsedBankOptions {
           options: opts,
           statements: obj.statements.map(String),
           ngnPayload: obj,
+          ...enrichment,
         };
       }
 
-      if (opts.length) return { options: opts };
+      if (opts.length) return { options: opts, ...enrichment };
     }
   } catch {
     /* fall through */
@@ -54,7 +102,8 @@ export function enrichBankItemFromRow(row: {
   blueprintDomain?: string | null;
   references?: unknown;
 }): BankItem {
-  const { options, statements, ngnPayload } = parseBankOptions(row.options);
+  const { options, statements, ngnPayload, distractorRationale, clinicalReasoning, keyTakeaways } =
+    parseBankOptions(row.options);
   const item: BankItem = {
     id: row.id,
     subjectId: row.subjectId,
@@ -74,6 +123,9 @@ export function enrichBankItemFromRow(row: {
       : undefined,
     tags: row.tags ? (JSON.parse(row.tags) as string[]) : undefined,
     references: row.references as BankItem["references"],
+    distractorRationale,
+    clinicalReasoning,
+    keyTakeaways,
   };
   if (ngnPayload?.kind) {
     item.ngnPayload = ngnPayload;

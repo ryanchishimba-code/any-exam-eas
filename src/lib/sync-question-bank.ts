@@ -10,6 +10,7 @@ import {
 } from "@/lib/question-bank-seed";
 import type { FieldSubject } from "./field-subjects";
 import type { BankItem } from "./question-bank";
+import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";
 
 export type SyncQuestionBankResult = {
   status: "success" | "failed";
@@ -59,12 +60,18 @@ function rowToCreateData(
     fieldId,
     subjectId,
     stateCode: item.stateCode ?? null,
+    scenario: item.vignette ?? item.scenario ?? null,
+    difficulty: item.difficulty ?? null,
+    topicCategory: item.topicCategory ?? null,
+    blueprintDomain: item.blueprintDomain ?? null,
+    itemType: item.itemType ?? "mcq",
     question: item.question,
-    options: JSON.stringify(item.options),
+    options: serializeBankOptions(item),
     correctAnswer: item.correctAnswer,
     explanation: item.explanation,
     solutionSteps: item.solutionSteps ? JSON.stringify(item.solutionSteps) : null,
     tags: item.tags ? JSON.stringify(item.tags) : null,
+    references: item.references?.length ? item.references : undefined,
     source,
     contentHash,
     active: true,

@@ -3,12 +3,13 @@ import { NCLEX_HIGH_YIELD_TOPICS } from "./high-yield-nclex";
 import { USMLE_HIGH_YIELD_TOPICS } from "./high-yield-usmle";
 import { NAPLEX_HIGH_YIELD_TOPICS } from "./high-yield-naplex";
 import { MPJE_HIGH_YIELD_TOPICS } from "./high-yield-mpje";
+import { mergeReviewModules } from "./review-module-topics";
 
 export const HIGH_YIELD_BY_EXAM: Record<ExamSlug, HighYieldTopic[]> = {
-  nclex: NCLEX_HIGH_YIELD_TOPICS,
-  usmle: USMLE_HIGH_YIELD_TOPICS,
-  naplex: NAPLEX_HIGH_YIELD_TOPICS,
-  mpje: MPJE_HIGH_YIELD_TOPICS,
+  nclex: mergeReviewModules(NCLEX_HIGH_YIELD_TOPICS, "nclex"),
+  usmle: mergeReviewModules(USMLE_HIGH_YIELD_TOPICS, "usmle"),
+  naplex: mergeReviewModules(NAPLEX_HIGH_YIELD_TOPICS, "naplex"),
+  mpje: mergeReviewModules(MPJE_HIGH_YIELD_TOPICS, "mpje"),
 };
 
 export function getHighYieldTopics(examSlug: ExamSlug): HighYieldTopic[] {
@@ -25,8 +26,8 @@ export function getTopicCategories(examSlug: ExamSlug): string[] {
 }
 
 export const ALL_HIGH_YIELD_TOPICS: HighYieldTopic[] = [
-  ...NCLEX_HIGH_YIELD_TOPICS,
-  ...USMLE_HIGH_YIELD_TOPICS,
-  ...NAPLEX_HIGH_YIELD_TOPICS,
-  ...MPJE_HIGH_YIELD_TOPICS,
+  ...HIGH_YIELD_BY_EXAM.nclex,
+  ...HIGH_YIELD_BY_EXAM.usmle,
+  ...HIGH_YIELD_BY_EXAM.naplex,
+  ...HIGH_YIELD_BY_EXAM.mpje,
 ];

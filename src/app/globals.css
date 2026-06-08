@@ -2483,6 +2483,16 @@ body {
   color: #0f766e;
 }
 
+.aee-landing-app-mockup__frame {
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: white;
+  box-shadow:
+    0 24px 64px rgba(15, 23, 42, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+}
+
 .aee-landing-section-compact {
   padding-block: clamp(2.5rem, 6vw, 4rem);
 }

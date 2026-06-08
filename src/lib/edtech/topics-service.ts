@@ -1,6 +1,15 @@
 import { prisma } from "@/lib/prisma";
 import { getHighYieldTopics as getStaticTopics } from "@/lib/edtech/seeds";
+import { mergeReviewModules } from "@/lib/edtech/seeds/review-module-topics";
+import type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
+
+function parseReviewModule(value: unknown): ReviewModuleContent | undefined {
+  if (!value || typeof value !== "object") return undefined;
+  const sections = (value as ReviewModuleContent).sections;
+  if (!Array.isArray(sections) || sections.length === 0) return undefined;
+  return value as ReviewModuleContent;
+}
 
 function mapDbTopic(row: {
   id: string;
@@ -14,9 +23,11 @@ function mapDbTopic(row: {
   mustKnowFacts: unknown;
   pearls: unknown;
   pitfalls: unknown;
+  reviewModule?: unknown;
   sortOrder: number;
   practiceTopicSlug: string;
 }): HighYieldTopic {
+  const reviewModule = parseReviewModule(row.reviewModule);
   return {
     id: row.id,
     examSlug: row.examSlug as ExamSlug,
@@ -31,7 +42,12 @@ function mapDbTopic(row: {
     pitfalls: row.pitfalls as string[],
     sortOrder: row.sortOrder,
     practiceTopicSlug: row.practiceTopicSlug,
+    reviewModule,
   };
+}
+
+function enrichStaticTopics(examSlug: ExamSlug, topics: HighYieldTopic[]): HighYieldTopic[] {
+  return mergeReviewModules(topics, examSlug);
 }
 
 /** Prefer DB topics when seeded; fall back to static repo content. */
@@ -41,7 +57,10 @@ export async function loadHighYieldTopics(examSlug: ExamSlug): Promise<HighYield
       where: { examSlug },
       orderBy: { sortOrder: "asc" },
     });
-    if (rows.length > 0) return rows.map(mapDbTopic);
+    if (rows.length > 0) {
+      const mapped = rows.map(mapDbTopic);
+      return enrichStaticTopics(examSlug, mapped);
+    }
   } catch {
     /* table may not exist before migration */
   }

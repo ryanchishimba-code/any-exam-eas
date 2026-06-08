@@ -18,6 +18,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { practiceTopicHref } from "@/lib/edtech/practice-links";
 import { recordTopicReview } from "@/lib/edtech/topic-actions";
+import { ReviewModuleRenderer } from "@/components/edtech/ReviewModuleRenderer";
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
@@ -105,7 +106,7 @@ export function HighYieldTopicPanel({
             role="dialog"
             aria-modal="true"
             aria-labelledby="topic-panel-title"
-            className="fixed inset-y-0 right-0 z-[190] flex w-full flex-col border-l border-slate-200/80 bg-white shadow-2xl sm:max-w-xl"
+            className="fixed inset-y-0 right-0 z-[190] flex w-full flex-col border-l border-slate-200/80 bg-white shadow-2xl sm:max-w-2xl"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -115,6 +116,9 @@ export function HighYieldTopicPanel({
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
                   <Badge className="bg-teal-50 text-teal-800">{topic.category}</Badge>
+                  {topic.reviewModule ? (
+                    <Badge className="bg-violet-50 text-violet-800">Textbook module</Badge>
+                  ) : null}
                   <span className="text-xs font-medium text-slate-400">
                     {topicIndex + 1} of {topicCount}
                   </span>
@@ -140,6 +144,10 @@ export function HighYieldTopicPanel({
             </div>
 
             <div className="flex-1 overflow-y-auto px-5 py-6 sm:px-6">
+              {topic.reviewModule ? (
+                <ReviewModuleRenderer content={topic.reviewModule} />
+              ) : (
+                <>
               <section className="rounded-2xl border border-slate-200/60 bg-gradient-to-br from-[#f0f7fa] to-white p-5 shadow-sm">
                 <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
                   <BookOpen className="h-4 w-4 text-teal-600" aria-hidden />
@@ -202,6 +210,8 @@ export function HighYieldTopicPanel({
                   </ul>
                 </Section>
               ) : null}
+                </>
+              )}
             </div>
 
             <div className="space-y-3 border-t border-slate-100 bg-white px-5 py-4 sm:px-6">

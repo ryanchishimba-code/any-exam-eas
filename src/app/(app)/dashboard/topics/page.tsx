@@ -12,16 +12,19 @@ import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
 export const metadata = {
-  title: "High-Yield Topics — Any Exam Easy",
-  description: "Exam-specific book-summary study topics with must-know facts and practice links.",
+  title: "High-Yield Topics & Review Modules — Any Exam Easy",
+  description:
+    "Exam-specific textbook-style review modules and condensed study topics with must-know facts and practice links.",
 };
 
 async function TopicsContent({
   userId,
   examParam,
+  topicParam,
 }: {
   userId: string;
   examParam?: string;
+  topicParam?: string;
 }) {
   const pref = await getUserExamPreference(userId);
   const examSlug: ExamSlug =
@@ -38,7 +41,12 @@ async function TopicsContent({
   );
 
   return (
-    <HighYieldTopicsClient examSlug={examSlug} topics={topics} progressMap={progressMap} />
+    <HighYieldTopicsClient
+      examSlug={examSlug}
+      topics={topics}
+      progressMap={progressMap}
+      initialTopicSlug={topicParam}
+    />
   );
 }
 
@@ -59,7 +67,7 @@ function TopicsSkeleton() {
 export default async function HighYieldTopicsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ exam?: string }>;
+  searchParams: Promise<{ exam?: string; topic?: string }>;
 }) {
   const session = await auth();
   if (!session?.user?.id) {
@@ -67,11 +75,11 @@ export default async function HighYieldTopicsPage({
   }
 
   await requirePremiumPage(ROUTES.highYieldTopics);
-  const { exam } = await searchParams;
+  const { exam, topic } = await searchParams;
 
   return (
     <Suspense fallback={<TopicsSkeleton />}>
-      <TopicsContent userId={session.user.id} examParam={exam} />
+      <TopicsContent userId={session.user.id} examParam={exam} topicParam={topic} />
     </Suspense>
   );
 }

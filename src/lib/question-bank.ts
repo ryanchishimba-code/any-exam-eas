@@ -35,6 +35,9 @@ export type BankItem = {
   vignette?: string;
   ngnPayload?: Record<string, unknown>;
   tags?: string[];
+  clinicalReasoning?: string;
+  distractorRationale?: Record<string, string>;
+  keyTakeaways?: string[];
 };
 
 /** High-yield items modeled after common study-set / board-style MCQs */

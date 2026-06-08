@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart3, BookOpen, Clock, LayoutGrid } from "lucide-react";
+import { BarChart3, BookMarked, BookOpen, Clock, LayoutGrid } from "lucide-react";
 import { motion } from "framer-motion";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 const ITEMS = [
   { href: ROUTES.dashboard, label: "Home", icon: LayoutGrid, exact: true },
   { href: ROUTES.questionBank, label: "Bank", icon: BookOpen },
+  { href: ROUTES.reference, label: "Ref", icon: BookMarked, ariaLabel: "Reference" },
   { href: ROUTES.fullExam, label: "Exam", icon: Clock },
   { href: ROUTES.analytics, label: "Stats", icon: BarChart3 },
 ] as const;
@@ -26,6 +27,7 @@ export function MobileBottomNav() {
         {ITEMS.map((item) => {
           const { href, label, icon: Icon } = item;
           const exact = "exact" in item && item.exact;
+          const ariaLabel = "ariaLabel" in item ? item.ariaLabel : undefined;
           const active = exact
             ? pathname === href
             : pathname === href || pathname.startsWith(`${href}/`);
@@ -33,6 +35,7 @@ export function MobileBottomNav() {
             <li key={href} className="flex-1">
               <Link
                 href={href}
+                aria-label={ariaLabel}
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "relative flex flex-col items-center gap-0.5 px-2 py-2.5 text-[10px] font-semibold transition-colors",

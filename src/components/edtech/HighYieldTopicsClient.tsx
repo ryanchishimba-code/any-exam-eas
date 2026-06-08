@@ -21,10 +21,12 @@ export function HighYieldTopicsClient({
   examSlug,
   topics,
   progressMap: initialProgress,
+  initialTopicSlug,
 }: {
   examSlug: ExamSlug;
   topics: HighYieldTopic[];
   progressMap: TopicProgressMap;
+  initialTopicSlug?: string | null;
 }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>("all");
@@ -46,6 +48,12 @@ export function HighYieldTopicsClient({
   useEffect(() => {
     setActiveIndex(null);
   }, [query, category, examSlug]);
+
+  useEffect(() => {
+    if (!initialTopicSlug) return;
+    const idx = filtered.findIndex((t) => t.slug === initialTopicSlug);
+    if (idx >= 0) setActiveIndex(idx);
+  }, [initialTopicSlug, filtered]);
 
   const activeTopic = resolveTopicAtIndex(filtered, activeIndex);
   const reviewedCount = topics.filter((t) => (progressMap[t.id]?.reviewCount ?? 0) > 0).length;
@@ -88,7 +96,7 @@ export function HighYieldTopicsClient({
             <div className="max-w-2xl">
               <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">
                 <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                Premium study summaries
+                Premium study summaries & textbook modules
               </p>
               <h1 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
                 High-Yield Topics
@@ -96,7 +104,12 @@ export function HighYieldTopicsClient({
               <p className="mt-3 text-lg leading-relaxed text-slate-600">
                 The {topics.length} topics that matter most on{" "}
                 <span className="font-semibold text-slate-900">{exam.name}</span>
-                <span className="text-slate-500"> — condensed like the best review book, built for your board.</span>
+                <span className="text-slate-500">
+                  {" "}
+                  — including full Review Modules with 8-section textbook depth. Filter by{" "}
+                  <strong className="font-semibold text-slate-700">Review Modules</strong> to start
+                  there.
+                </span>
               </p>
             </div>
             <ExamSwitcher currentExam={examSlug} />

@@ -5,6 +5,7 @@
 import type { EnrichedBankItem } from "./seed-helpers";
 import { NGN_NURSING_SEEDS } from "./ngn-nursing-seeds";
 import { NGN_NURSING_QUALITY_V2 } from "./ngn-nursing-quality-v2";
+import { NCLEX_CURATED_QUALITY } from "./nclex-curated-quality";
 import { NAPLEX_AREA3_V3 } from "./naplex-area3-v3";
 import { NAPLEX_CALC_CASES_V3 } from "./naplex-calc-cases-v3";
 import { NAPLEX_QUALITY_V2 } from "./naplex-quality-v2";
@@ -21,7 +22,7 @@ export type HighYieldSeedRow = {
 export function collectHighYieldSeedRows(): HighYieldSeedRow[] {
   const rows: HighYieldSeedRow[] = [];
 
-  for (const item of [...NGN_NURSING_SEEDS, ...NGN_NURSING_QUALITY_V2]) {
+  for (const item of [...NGN_NURSING_SEEDS, ...NGN_NURSING_QUALITY_V2, ...NCLEX_CURATED_QUALITY]) {
     rows.push({
       fieldId: "nursing",
       subjectId: item.subjectId ?? "physiological-adaptation",

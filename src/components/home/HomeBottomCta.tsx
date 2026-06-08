@@ -105,11 +105,11 @@ export function HomeBottomCta() {
       <div className="aee-bottom-cta-bg pointer-events-none absolute inset-0" aria-hidden />
       <div className="relative mx-auto max-w-[640px] px-5 py-10 sm:px-6 sm:py-12">
         <h2 id="home-cta-heading" className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-          Pass the first time — start for {formatTrialIntroPrice()}.
+          All four exams. One {formatTrialIntroPrice()} trial.
         </h2>
         <p className="mt-2 text-sm text-teal-100/90">
-          {formatTrialLabel()} · All four exams · Adaptive AI · Top 500 Drugs · then{" "}
-          {formatMonthlyPrice()}/mo
+          {formatTrialLabel()} · NCLEX · USMLE · NAPLEX · MPJE · Adaptive practice · Top 500 Drugs ·
+          then {formatMonthlyPrice()}/mo
         </p>
         <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
           <Link

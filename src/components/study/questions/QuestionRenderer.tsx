@@ -32,6 +32,8 @@ import {
   UsmleExhibitBlock,
   isUsmleField,
 } from "./UsmleFormats";
+import { QuestionRelatedLinks } from "./QuestionRelatedLinks";
+import { examSlugFromFieldId } from "@/lib/edtech/exams";
 
 type Props = {
   question: StudyQuestion;
@@ -214,7 +216,15 @@ export function QuestionRenderer({
   );
 }
 
-export function ExplanationPanel({ question }: { question: StudyQuestion }) {
+export function ExplanationPanel({
+  question,
+  field,
+}: {
+  question: StudyQuestion;
+  field?: string;
+}) {
+  const examSlug = (field ? examSlugFromFieldId(field) : null) ?? "nclex";
+
   return (
     <div className="mt-6 space-y-4">
       <div className="rounded-xl bg-[var(--color-surface)] p-4">
@@ -256,6 +266,23 @@ export function ExplanationPanel({ question }: { question: StudyQuestion }) {
           </div>
         )}
 
+      {question.solutionSteps && question.solutionSteps.length > 0 && (
+        <div className="rounded-xl border border-emerald-200/60 bg-emerald-50/40 p-4">
+          <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
+            Key takeaway
+          </p>
+          <ul className="mt-2 space-y-1">
+            {question.solutionSteps.map((step) => (
+              <li key={step} className="text-sm leading-relaxed text-[var(--color-ink)]">
+                {step}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <QuestionRelatedLinks question={question} examSlug={examSlug} />
+
       {question.references && question.references.length > 0 && (
         <div className="text-xs text-[var(--color-ink-muted)]">
           <span className="font-semibold uppercase tracking-wide">Sources</span>
@@ -276,14 +303,6 @@ export function ExplanationPanel({ question }: { question: StudyQuestion }) {
             ))}
           </ul>
         </div>
-      )}
-
-      {question.solutionSteps && question.solutionSteps.length > 0 && (
-        <ol className="list-decimal space-y-1 pl-5 text-sm text-[var(--color-ink-muted)]">
-          {question.solutionSteps.map((s, i) => (
-            <li key={i}>{s}</li>
-          ))}
-        </ol>
       )}
     </div>
   );

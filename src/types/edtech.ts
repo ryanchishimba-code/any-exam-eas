@@ -1,6 +1,10 @@
 /** Canonical exam slugs for the four core boards. */
 export type ExamSlug = "nclex" | "usmle" | "naplex" | "mpje";
 
+export type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
+
+import type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
+
 export type ExamDefinition = {
   slug: ExamSlug;
   name: string;
@@ -30,6 +34,8 @@ export type HighYieldTopic = {
   sortOrder: number;
   /** Maps to QuestionBankItem.topicCategory / subject filters */
   practiceTopicSlug: string;
+  /** Premium 8-section textbook-style module (when present, panel renders full module UI). */
+  reviewModule?: ReviewModuleContent;
 };
 
 export type TopicProgressMap = Record<

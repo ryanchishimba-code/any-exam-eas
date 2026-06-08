@@ -8,7 +8,7 @@ import {
 } from "./topic-selection";
 import { practiceTopicHref } from "./practice-links";
 import { EXAM_CATALOG, EXAM_SLUGS } from "./exams";
-import { ALL_HIGH_YIELD_TOPICS, getHighYieldTopic } from "./seeds";
+import { ALL_HIGH_YIELD_TOPICS, getHighYieldTopic, getHighYieldTopics } from "./seeds";
 
 describe("filterHighYieldTopics", () => {
   it("returns all topics when no filters applied", () => {
@@ -112,10 +112,10 @@ describe("seed integrity — selection targets exist", () => {
     }
   });
 
-  it("has 15 topics per exam", () => {
+  it("has at least 15 topics per exam (base seeds plus review modules)", () => {
     for (const slug of EXAM_SLUGS) {
-      const topics = ALL_HIGH_YIELD_TOPICS.filter((t) => t.examSlug === slug);
-      expect(topics).toHaveLength(15);
+      const topics = getHighYieldTopics(slug);
+      expect(topics.length).toBeGreaterThanOrEqual(15);
     }
   });
 });

@@ -9,6 +9,9 @@ import { useSession } from "next-auth/react";
 const LandingCompact = dynamic(() =>
   import("@/components/home/LandingCompact").then((m) => m.LandingCompact)
 );
+const LandingFeatures = dynamic(() =>
+  import("@/components/home/LandingFeatures").then((m) => m.LandingFeatures)
+);
 const HomeBottomCta = dynamic(() =>
   import("@/components/home/HomeBottomCta").then((m) => m.HomeBottomCta)
 );
@@ -29,6 +32,7 @@ export function HomeExperience() {
       ) : (
         <>
           <LandingCompact />
+          <LandingFeatures />
           <HomeBottomCta />
         </>
       )}

@@ -13,6 +13,7 @@ export const ROUTES = {
   fullExam: "/full-exam",
   questionBank: "/question-bank",
   analytics: "/analytics",
+  reference: "/reference",
   highYieldTopics: "/dashboard/topics",
   practice: "/practice",
   exams: "/exams",

@@ -62,12 +62,13 @@ Emphasis:
 - "Next best step" for pharmacists: verify → assess interaction → counsel → document → monitor.`;
 
 export function buildClinicalReasoningBlock(fieldId: string): string {
+  const raw = fieldId.trim().toLowerCase();
   const id = normalizeFieldId(fieldId);
 
   const fieldBlock =
     id === "nursing"
       ? NCLEX_CJMM
-      : id === "usmle-step-1"
+      : raw === "usmle-step-1"
         ? USMLE_STEP_1
         : id === "usmle-step-2"
           ? USMLE_STEP_2

@@ -29,12 +29,17 @@ export function HighYieldTopicPreviewCard({
       <CardHeader className="flex-1 pb-2">
         <div className="flex items-center justify-between gap-2">
           <Badge className="bg-slate-100 text-slate-600">{topic.category}</Badge>
-          {reviewed ? (
-            <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-teal-600">
-              <CheckCircle2 className="h-3 w-3" aria-hidden />
-              {reviewCount}× reviewed
-            </span>
-          ) : null}
+          <div className="flex items-center gap-2">
+            {topic.reviewModule ? (
+              <Badge className="bg-violet-50 text-violet-800">Textbook</Badge>
+            ) : null}
+            {reviewed ? (
+              <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-teal-600">
+                <CheckCircle2 className="h-3 w-3" aria-hidden />
+                {reviewCount}× reviewed
+              </span>
+            ) : null}
+          </div>
         </div>
         <CardTitle className="mt-3 text-lg leading-snug text-slate-900 group-hover:text-[var(--color-accent)]">
           {topic.title}
@@ -48,7 +53,7 @@ export function HighYieldTopicPreviewCard({
           className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-800 transition group-hover:border-[var(--color-accent)]/40 group-hover:bg-[var(--color-accent)] group-hover:text-white"
         >
           <BookMarked className="h-4 w-4" aria-hidden />
-          View Summary
+          {topic.reviewModule ? "Open module" : "View Summary"}
         </button>
       </CardContent>
     </Card>

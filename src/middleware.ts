@@ -46,6 +46,8 @@ export const config = {
     "/mpje",
     "/mpje/:path*",
     "/analytics",
+    "/reference",
+    "/reference/:path*",
     "/full-exam",
     "/full-exam/:path*",
   ],

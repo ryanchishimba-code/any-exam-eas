@@ -5,13 +5,19 @@ import { useEffect, useState, type ReactNode } from "react";
 import { useSession } from "next-auth/react";
 import { ArrowRight, LogIn, Sparkles } from "lucide-react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
+import { LandingAppMockup } from "@/components/home/LandingAppMockup";
 import {
   firstName,
   loadReturningUserHint,
   touchReturningVisit,
   type ReturningUserHint,
 } from "@/lib/client/returning-user";
-import { formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
+import {
+  formatMonthlyPrice,
+  formatTrialIntroPrice,
+  formatTrialLabel,
+  MARKETING_DISCLAIMER,
+} from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
 
 export function Hero() {
@@ -45,8 +51,8 @@ export function Hero() {
       </>
     );
     subline =
-      "Your adaptive study path, streaks, and weak-area insights are waiting.";
-    urgency = "Pick up where you left off — every session counts.";
+      "Your dashboard, question bank, full-exam simulator, and weak-area analytics are ready.";
+    urgency = "Pick up where you left off — every session builds familiarity with board-style items.";
   } else if (isReturning && displayName) {
     headline = (
       <>
@@ -54,18 +60,18 @@ export function Hero() {
         <span className="aee-display-accent-vibrant">{displayName}.</span>
       </>
     );
-    subline = "Your progress is saved. Log in to keep building exam-day confidence.";
-    urgency = "Your study streak and weak areas are ready when you are.";
+    subline = "Your progress is saved. Log in to resume adaptive practice across your exams.";
+    urgency = "Your study path and recent sessions are waiting in the Study Hub.";
   } else {
     headline = (
       <>
-        Pass the{" "}
-        <span className="aee-display-accent-vibrant">First Time.</span>
+        One subscription.{" "}
+        <span className="aee-display-accent-vibrant">Four licensing exams.</span>
       </>
     );
     subline =
-      "Adaptive AI, OER-backed rationales, and 130K+ questions across NCLEX, USMLE, NAPLEX, and MPJE.";
-    urgency = `${formatTrialIntroPrice()} ${formatTrialLabel()} · Cancel anytime`;
+      "NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE — adaptive question banks, OER-backed rationales, Top 500 drug flashcards, and timed full-exam practice in one affordable plan.";
+    urgency = `${formatTrialIntroPrice()} ${formatTrialLabel()} · then ${formatMonthlyPrice()}/mo · Cancel anytime`;
   }
 
   return (
@@ -79,9 +85,9 @@ export function Hero() {
       <div className="aee-hero-grid pointer-events-none absolute inset-0" aria-hidden />
 
       <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <header>
-            <p className="aee-hero-exam-pill aee-reveal mx-auto">
+        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:gap-12">
+          <header className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-none lg:text-left">
+            <p className="aee-hero-exam-pill aee-reveal lg:mx-0 mx-auto">
               <Sparkles className="h-3 w-3" aria-hidden />
               NCLEX · USMLE · NAPLEX · MPJE
             </p>
@@ -93,12 +99,12 @@ export function Hero() {
               {headline}
             </h1>
 
-            <p className="aee-hero-tagline aee-reveal aee-reveal-delay-2 mx-auto mt-3 max-w-md">
+            <p className="aee-hero-tagline aee-reveal aee-reveal-delay-2 mx-auto mt-3 max-w-lg lg:mx-0">
               {subline}
             </p>
 
             {ready && (
-              <div className="aee-reveal aee-reveal-delay-3 mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+              <div className="aee-reveal aee-reveal-delay-3 mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center lg:justify-start">
                 {isAuthed ? (
                   <>
                     <Link
@@ -164,12 +170,19 @@ export function Hero() {
             )}
 
             {urgency && (
-              <p className="aee-hero-urgency aee-reveal aee-reveal-delay-4 mt-4">
-                {urgency}
-              </p>
+              <p className="aee-hero-urgency aee-reveal aee-reveal-delay-4 mt-4">{urgency}</p>
             )}
 
+            {!isAuthed && (
+              <p className="aee-reveal aee-reveal-delay-4 mx-auto mt-3 max-w-md text-[11px] leading-relaxed text-slate-400 lg:mx-0">
+                {MARKETING_DISCLAIMER}
+              </p>
+            )}
           </header>
+
+          <div className="aee-reveal aee-reveal-delay-2 mx-auto w-full max-w-[380px] lg:max-w-none">
+            <LandingAppMockup />
+          </div>
         </div>
       </div>
     </section>
