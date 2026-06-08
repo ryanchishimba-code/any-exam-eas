@@ -45,7 +45,7 @@ export function HomeBottomCta() {
             Keep the momentum going.
           </h2>
           <p className="mt-2 text-sm text-teal-100/90">
-            Every session builds exam-day confidence.
+            Every session adds board-style practice.
           </p>
           <Link
             href="/study/practice?mode=timed"

@@ -1,4 +1,5 @@
 import type { ExamSlug } from "@/lib/exams/catalog";
+import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import type { ExamSlug as EdtechExamSlug } from "@/types/edtech";
 
 /** Canonical app routes — use these in nav, links, and redirects. */
@@ -55,7 +56,7 @@ export const EXAM_NAV_ITEMS: {
     href: "/exams/nclex",
     fieldId: "nursing",
     practiceHref: "/practice/nclex",
-    stat: "130K+ items",
+    stat: `${MARKETING_QUESTION_COUNTS.nursing} items`,
   },
   {
     slug: "usmle",
@@ -64,7 +65,7 @@ export const EXAM_NAV_ITEMS: {
     href: "/exams/usmle",
     fieldId: "usmle-step-2",
     practiceHref: "/practice/usmle",
-    stat: "30K+ items",
+    stat: `${MARKETING_QUESTION_COUNTS.usmle} items`,
   },
   {
     slug: "naplex",
@@ -73,7 +74,7 @@ export const EXAM_NAV_ITEMS: {
     href: "/exams/naplex",
     fieldId: "pharmacy",
     practiceHref: "/practice/naplex",
-    stat: "24K+ items",
+    stat: `${MARKETING_QUESTION_COUNTS.pharmacy} items`,
   },
   {
     slug: "mpje",

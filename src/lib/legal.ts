@@ -10,7 +10,7 @@ export const LEGAL_DISCLAIMERS = {
   limitationOfLiability:
     "To the maximum extent permitted by applicable law, Any Exam Easy and its operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from use of the platform, including reliance on generated content.",
   subscription:
-    "After your free trial ends, your subscription renews at the monthly price shown at signup unless canceled before renewal. Charges are processed through Stripe and tied to the email on your account.",
+    "After your trial period ends, your subscription renews at the monthly price shown at signup unless canceled before renewal. Charges are processed through Stripe and tied to the email on your account.",
   studySupport:
     "Content is for educational and self-assessment purposes only. Features, pricing, and availability may change. This is not medical, nursing, or pharmacy advice.",
   ageRequirement:

@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { normalizeEmail } from "@/lib/validators/auth";
 
-/** Returns true if this email has already consumed a free trial. */
+/** Returns true if this email has already consumed an intro trial. */
 export async function hasConsumedTrial(email: string): Promise<boolean> {
   const row = await prisma.trialEligibility.findUnique({
     where: { email: normalizeEmail(email) },

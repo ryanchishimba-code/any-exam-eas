@@ -1,18 +1,19 @@
-import { Award, BookOpen, ShieldCheck, Sparkles } from "lucide-react";
+import { BookOpen, ShieldCheck, Sparkles, Stethoscope } from "lucide-react";
+import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 
 const signals = [
   {
     icon: BookOpen,
-    value: "130K+",
+    value: MARKETING_QUESTION_COUNTS.total,
     label: "Board-style questions",
   },
   {
     icon: Sparkles,
     value: "Adaptive",
-    label: "AI weak-area targeting",
+    label: "Weak-area practice",
   },
   {
-    icon: Award,
+    icon: Stethoscope,
     value: "4 exams",
     label: "NCLEX · USMLE · NAPLEX · MPJE",
   },

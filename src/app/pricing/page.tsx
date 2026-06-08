@@ -44,7 +44,7 @@ export default async function PricingPage({
         <ul className="mt-8 space-y-3.5 text-left text-[0.9375rem]">
           {[
             "Board-style practice — NCLEX, USMLE, NAPLEX & MPJE",
-            "Adaptive AI weak-area targeting + progress tracking",
+            "Adaptive weak-area targeting + progress tracking",
             "Top 500 Drugs mastery + state-specific MPJE support",
             "Study Hub with timed exams and question banks",
             "OER-backed rationales with source citations",

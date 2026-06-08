@@ -56,12 +56,12 @@ export const PRACTICE_MODES: PracticeModeDefinition[] = [
   },
   {
     id: "adaptive",
-    label: "Adaptive AI",
-    description: "Engine targets your weak areas with clinical-judgment items and spaced repetition.",
+    label: "Adaptive practice",
+    description: "Prioritizes weak topics from your attempt history with spaced review.",
     icon: "brain",
     href: (fieldId) => BASE(fieldId, "bank", { style: "adaptive", count: "25" }),
     timing: "20–40 min",
-    bestFor: "Improving pass probability efficiently",
+    bestFor: "Targeted review of missed topics",
   },
   {
     id: "topic",

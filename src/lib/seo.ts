@@ -48,7 +48,6 @@ export function absoluteUrl(path: string): string {
 const HOME_KEYWORDS = [
   "NCLEX prep",
   "NCLEX practice questions",
-  "USMLE Step 1",
   "USMLE Step 2 CK",
   "NAPLEX study",
   "MPJE prep",
@@ -56,14 +55,13 @@ const HOME_KEYWORDS = [
   "state-specific MPJE",
   "nursing board exam",
   "medical board exam",
-  "adaptive question bank",
-  "pass NCLEX first time",
+  "adaptive practice",
   "board exam study tool",
 ];
 
 export function buildHomeMetadata(): Metadata {
   const title = `${SITE_NAME} — NCLEX, USMLE, NAPLEX & MPJE Prep`;
-  const description = `Pass the first time with adaptive AI practice across NCLEX, USMLE, NAPLEX, and MPJE. OER-backed rationales, Top 500 Drugs, and state-specific MPJE support. ${formatTrialLabel()} from ${formatTrialIntroPrice()}, then ${formatMonthlyPrice()}/mo.`;
+  const description = `Board exam study support with adaptive practice across NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE. OER-backed rationales, Top 500 Drugs, and state-specific MPJE support. ${formatTrialLabel()} from ${formatTrialIntroPrice()}, then ${formatMonthlyPrice()}/mo.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 
@@ -121,7 +119,7 @@ export function buildRootMetadata(): Metadata {
       default: `${SITE_NAME} — Board Exam Study Support`,
       template: `%s | ${SITE_NAME}`,
     },
-    description: `NCLEX, USMLE, NAPLEX, and MPJE study support with adaptive AI practice and OER-backed rationales.`,
+    description: `NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE study support with adaptive practice and OER-backed rationales.`,
     icons: {
       icon: [
         { url: "/favicon.svg", type: "image/svg+xml" },
@@ -181,7 +179,7 @@ export function buildHomeJsonLd() {
           description: `${TRIAL_DAYS}-day trial available from ${formatTrialIntroPrice()}`,
         },
         description:
-          "Board exam study support with adaptive AI practice, progress tracking, and OER-backed explanations for NCLEX, USMLE, NAPLEX, and MPJE.",
+          "Board exam study support with adaptive practice, progress tracking, and OER-backed explanations for NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE.",
       },
     ],
   };

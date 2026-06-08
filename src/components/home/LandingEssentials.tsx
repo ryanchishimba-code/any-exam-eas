@@ -8,6 +8,7 @@ import {
   formatTrialIntroPrice,
   formatTrialLabel,
 } from "@/lib/site";
+import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 
 const exams: { id: string; title: string; href: string; icon: LucideIcon; benefit: string }[] = [
   {
@@ -42,8 +43,8 @@ const exams: { id: string; title: string; href: string; icon: LucideIcon; benefi
 
 const subscriberValue = [
   {
-    title: "Adaptive AI targeting",
-    detail: "Weak-area practice that learns what you miss — so prep time actually counts.",
+    title: "Adaptive weak-area practice",
+    detail: "Sessions prioritize topics you miss based on in-app attempt history.",
   },
   {
     title: "OER-backed rationales",
@@ -68,7 +69,7 @@ export function LandingEssentials() {
             One subscription. Four exams.
           </p>
           <h2 id="essentials-heading" className="aee-headline mt-2 text-2xl sm:text-3xl">
-            Everything you need to pass the first time.
+            Everything you need for board exam prep.
           </h2>
           <p className="mx-auto mt-2 max-w-lg text-sm text-slate-600">
             NCLEX, USMLE, NAPLEX, and MPJE — plus Top 500 Drugs and progress that
@@ -118,14 +119,14 @@ export function LandingEssentials() {
                 {formatTrialLabel()} — NCLEX, USMLE, NAPLEX & MPJE, then {formatMonthlyPrice()}/mo
               </p>
               <p className="mt-2 text-sm text-teal-200/90">
-                Start today. Build exam-day confidence before your test date arrives.
+                Start today. Build familiarity with board-style items before your test date.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:items-end">
               <ul className="space-y-2 text-sm text-teal-50">
                 <li className="flex items-center gap-2">
                   <Check className="h-4 w-4 shrink-0" strokeWidth={2.5} aria-hidden />
-                  130K+ board-style questions
+                  {MARKETING_QUESTION_COUNTS.total} board-style questions
                 </li>
                 <li className="flex items-center gap-2">
                   <Check className="h-4 w-4 shrink-0" strokeWidth={2.5} aria-hidden />
@@ -152,7 +153,7 @@ export function LandingEssentials() {
         </div>
 
         <p className="mt-6 text-center text-xs text-slate-400">
-          Trusted by nursing, medical, and pharmacy students preparing for NCLEX, USMLE,
+          Built for nursing, medical, and pharmacy students preparing for NCLEX, USMLE,
           NAPLEX, and MPJE.
         </p>
       </div>

@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { Facebook, Linkedin, MessageCircle, X } from "lucide-react";
+import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 
 const SITE = "https://www.anyexameasy.com";
 
@@ -12,7 +13,7 @@ type ShareModalProps = {
 };
 
 function shareText(examLabel: string) {
-  return `I'm mastering my ${examLabel} prep with AnyExamEasy's AI engine! 130K+ questions & personalized practice. Join me → ${SITE}`;
+  return `I'm studying for my ${examLabel} with Any Exam Easy — ${MARKETING_QUESTION_COUNTS.total} board-style questions and adaptive practice. Join me → ${SITE}`;
 }
 
 export function ShareModal({ open, onClose, examLabel = "board" }: ShareModalProps) {

@@ -1,12 +1,13 @@
 "use client";
 
 import { Check, ShieldCheck } from "lucide-react";
+import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 
 const BENEFITS = [
-  "130K+ board-style questions",
+  `${MARKETING_QUESTION_COUNTS.total} board-style questions`,
   "NCLEX, USMLE, NAPLEX, MPJE & Top 500",
   "Adaptive practice & performance analytics",
-  "AI-powered question generation",
+  "OER-backed rationales with citations",
 ];
 
 type FullBenefitsBannerProps = {

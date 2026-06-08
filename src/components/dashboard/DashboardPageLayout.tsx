@@ -29,7 +29,7 @@ export function DashboardPageLayout({
           </h1>
           <p className="apple-subhead mt-3 max-w-xl text-[1.0625rem]">
             {hasPremiumAccess
-              ? "Your study command center — pick an exam track and keep building exam-day confidence."
+              ? "Your study command center — pick an exam track and continue board-style practice."
               : "Track your accuracy, target weak topics, and jump back into studying."}
           </p>
           {headerExtra}

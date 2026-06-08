@@ -72,7 +72,7 @@ export function DashboardView({
     },
     {
       title: "Analytics",
-      description: "Track accuracy, weak areas, and readiness trends over the last 30 days.",
+      description: "Track accuracy, weak areas, and practice trends over the last 30 days.",
       href: analyticsHref(),
       cta: "View insights",
       icon: BarChart3,

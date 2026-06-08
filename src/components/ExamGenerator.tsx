@@ -79,7 +79,7 @@ export function ExamGenerator() {
       if (!res.ok) {
         if (data.code === "SUBSCRIPTION_REQUIRED") {
           throw new Error(
-            "Your free trial has ended. Subscribe from Pricing or your Study Hub to keep generating exams."
+            "Your trial has ended. Subscribe from Pricing or your Study Hub to keep generating exams."
           );
         }
         throw new Error(data.error ?? "Generation failed");

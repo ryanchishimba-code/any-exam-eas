@@ -25,7 +25,7 @@ export function PaywallNotice({
       {!isSuspended && !isVerify && (
         <>
           <p className="mx-auto mt-3 max-w-md text-sm text-[var(--color-ink-muted)]">
-            Question engine, AI tutor, practice exams, and analytics are available with an
+            Question banks, timed practice exams, and analytics are available with an
             active subscription. {formatTrialIntroPrice()} for {formatTrialLabel()}, then{" "}
             {formatMonthlyPrice()}/month.
           </p>

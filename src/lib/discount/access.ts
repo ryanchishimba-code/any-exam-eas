@@ -21,6 +21,6 @@ export function featuresForSubscriber(_usedDiscount?: boolean): SubscriptionFeat
 }
 
 export const FULL_ACCESS_COPY =
-  "Full benefits included — same exams, AI engine, analytics, and practice tools as standard pricing.";
+  "Full benefits included — same exams, question banks, analytics, and practice tools as standard pricing.";
 
 export const FULL_BENEFITS_HEADLINE = "Full benefits included";

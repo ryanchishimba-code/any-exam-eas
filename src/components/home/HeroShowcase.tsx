@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { HERO_IMAGE_ALT, HERO_IMAGE_PATH } from "@/lib/hero-assets";
+import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 
 export function HeroShowcase() {
   return (
@@ -34,7 +35,9 @@ export function HeroShowcase() {
         transition={{ duration: 0.45, delay: 0.2 }}
         aria-hidden
       >
-        <p className="text-3xl font-extrabold tracking-tight text-teal-700">130K+</p>
+        <p className="text-3xl font-extrabold tracking-tight text-teal-700">
+          {MARKETING_QUESTION_COUNTS.total}
+        </p>
         <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
           Questions
         </p>

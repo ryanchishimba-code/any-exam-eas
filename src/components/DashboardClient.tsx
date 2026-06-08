@@ -102,7 +102,7 @@ export function DashboardClient({
             {access.status === "active"
               ? "Your paid plan is active."
               : access.status === "trialing"
-                ? "You are on a free trial."
+                ? "You are on a trial."
                 : access.status === "trial_expired"
                   ? "Your trial ended — subscribe to continue."
                   : "Choose a plan to unlock study features."}

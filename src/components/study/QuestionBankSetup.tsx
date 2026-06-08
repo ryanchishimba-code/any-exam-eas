@@ -116,7 +116,7 @@ export function QuestionBankSetup({
               },
               {
                 id: "adaptive" as const,
-                title: "Adaptive AI",
+                title: "Adaptive practice",
                 hint: "Weak areas, SRS due, and high-yield scoring",
               },
               {

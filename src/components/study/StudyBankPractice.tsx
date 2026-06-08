@@ -550,7 +550,7 @@ export function StudyBankPractice() {
       ? `${field}${mpjeScope} · Timed exam · ${questions.length} questions`
       : `${field}${mpjeScope} · ${topicLabel} · ${questions.length} questions · ${
           bankStyle === "adaptive"
-            ? "Adaptive AI"
+            ? "Adaptive practice"
             : bankStyle === "weak_areas"
               ? "Weak areas"
               : bankPace === "timed"

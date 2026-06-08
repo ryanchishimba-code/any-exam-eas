@@ -154,7 +154,7 @@ export function Navigation() {
                 Log in
               </LoginModalTrigger>
               <Link href="/signup?plan=trial" className="aee-nav-cta">
-                <span className="hidden min-[420px]:inline">Start free trial</span>
+                <span className="hidden min-[420px]:inline">Start trial</span>
                 <span className="min-[420px]:hidden">Start trial</span>
               </Link>
             </div>
@@ -228,7 +228,7 @@ export function Navigation() {
                     className="aee-nav-cta block py-3 text-center text-sm"
                     onClick={closeMobile}
                   >
-                    Start free trial
+                    Start trial
                   </Link>
                 </div>
               )}

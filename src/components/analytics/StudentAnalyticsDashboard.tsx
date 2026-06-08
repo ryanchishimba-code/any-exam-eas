@@ -13,23 +13,20 @@ type AnalyticsPayload = {
   profile: LearningProfileSnapshot | null;
 };
 
-/** National benchmark placeholders — update when publishing verified pass-rate data. */
-const BENCHMARKS: Record<string, number> = {
+/** Illustrative national pass-rate references — not verified benchmarks for this product. */
+const REFERENCE_PASS_RATES: Record<string, number> = {
   nursing: 88,
   pharmacy: 89,
   mpje: 75,
   "usmle-step-2": 92,
 };
 
-function predictPassProbability(
+function practiceProgressIndex(
   readiness: number,
-  accuracy: number | null,
-  fieldId: string
+  accuracy: number | null
 ): number {
-  const bench = BENCHMARKS[fieldId] ?? 80;
   const acc = accuracy ?? readiness;
-  const blended = Math.round(readiness * 0.55 + acc * 0.45);
-  return Math.min(98, Math.max(12, Math.round((blended / bench) * bench)));
+  return Math.min(100, Math.max(0, Math.round(readiness * 0.55 + acc * 0.45)));
 }
 
 export function StudentAnalyticsDashboard() {
@@ -66,7 +63,7 @@ export function StudentAnalyticsDashboard() {
     return (
       <div className="rounded-2xl border border-dashed border-black/[0.1] p-10 text-center">
         <p className="text-[var(--color-ink-muted)]">
-          Complete practice sessions to unlock adaptive analytics and pass probability.
+          Complete practice sessions to unlock adaptive analytics and progress insights.
         </p>
         <Button href="/study/practice" className="mt-4">
           Start practicing
@@ -77,12 +74,12 @@ export function StudentAnalyticsDashboard() {
 
   const { dashboard, profile } = data;
   const primaryField = profile?.fieldReadiness?.[0]?.fieldId ?? "nursing";
-  const passProb = predictPassProbability(
+  const progressIndex = practiceProgressIndex(
     profile?.readinessScore ?? dashboard.headline.readinessScore,
-    dashboard.headline.overallAccuracy,
-    fieldFilter === "all" ? primaryField : fieldFilter
+    dashboard.headline.overallAccuracy
   );
-  const bench = BENCHMARKS[fieldFilter === "all" ? primaryField : fieldFilter] ?? 80;
+  const referenceRate =
+    REFERENCE_PASS_RATES[fieldFilter === "all" ? primaryField : fieldFilter];
 
   const weakTopics =
     fieldFilter === "all"
@@ -112,15 +109,14 @@ export function StudentAnalyticsDashboard() {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard
-          label="Predicted pass probability"
-          value={`${passProb}%`}
-          hint={`vs ~${bench}% national benchmark`}
-          accent={passProb >= bench ? "emerald" : "amber"}
+          label="Practice progress index"
+          value={`${progressIndex}%`}
+          hint="In-app metric only — not an exam pass prediction"
         />
         <MetricCard
           label="Readiness score"
           value={`${profile?.readinessScore ?? dashboard.headline.readinessScore}%`}
-          hint="Adaptive engine composite"
+          hint="Composite from your practice activity"
         />
         <MetricCard
           label="Overall accuracy"
@@ -137,6 +133,13 @@ export function StudentAnalyticsDashboard() {
           hint={dashboard.headline.motivationalMessage}
         />
       </div>
+
+      {referenceRate != null ? (
+        <p className="text-xs text-[var(--color-ink-muted)]">
+          Reference only: published national pass rates for this exam type are often cited around{" "}
+          {referenceRate}% — not a benchmark or prediction for your results.
+        </p>
+      ) : null}
 
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="rounded-2xl border border-black/[0.06] bg-white p-6 shadow-sm">

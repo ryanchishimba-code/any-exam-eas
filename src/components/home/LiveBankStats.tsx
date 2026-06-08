@@ -35,7 +35,7 @@ export function LiveBankStats({ className = "" }: { className?: string }) {
     },
     {
       icon: Sparkles,
-      value: "NGN-ready",
+      value: "NGN formats",
       label: "Bow-tie · Matrix · SATA",
     },
     {

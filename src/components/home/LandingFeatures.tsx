@@ -14,7 +14,7 @@ const benefits = [
   {
     icon: Brain,
     visualId: "feature-adaptive-learning",
-    outcome: "Adaptive AI",
+    outcome: "Adaptive practice",
     title: "Practice what you miss — skip what you already know",
     description:
       "Adaptive sessions surface weak topics from your attempts so each block of study time targets gaps instead of repeating mastered content.",

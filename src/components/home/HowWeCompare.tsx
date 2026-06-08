@@ -16,7 +16,7 @@ const rows = [
   { label: "Monthly", us: `${formatMonthlyPrice()}/mo listed`, them: "$39–89+/mo tiers" },
   { label: "Exam coverage", us: "NCLEX · USMLE · NAPLEX · MPJE", them: "Often per-exam pricing" },
   { label: "Top 500 drugs", us: "Dedicated mastery", them: "Scattered in banks" },
-  { label: "Adaptive AI", us: "Weak-area targeting built in", them: "Limited / add-on" },
+  { label: "Adaptive practice", us: "Weak-area targeting built in", them: "Limited / add-on" },
   { label: "MPJE prep", us: "Uniform + state-specific", them: "Rare or generic only" },
   { label: "Rationales", us: "OER-backed (Open RN, OpenStax)", them: "Proprietary only" },
 ] as const;

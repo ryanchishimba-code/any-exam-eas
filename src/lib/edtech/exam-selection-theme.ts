@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import { Activity, BookOpenCheck, Pill, Scale } from "lucide-react";
 import type { ExamSlug } from "@/types/edtech";
+import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 
 /**
  * Visual theme per board exam for the selection screen.
@@ -30,7 +31,7 @@ export const EXAM_SELECTION_THEMES: Record<ExamSlug, ExamSelectionTheme> = {
     slug: "nclex",
     tagline:
       "Master clinical judgment, prioritization, and Next-Gen formats with nursing-first prep.",
-    stats: ["130K+ Questions", "High-Yield Topics", "Full Simulations"],
+    stats: [`${MARKETING_QUESTION_COUNTS.nursing} Questions`, "High-Yield Topics", "Full Simulations"],
     icon: Activity,
     gradient: "from-sky-600/90 via-teal-600/85 to-cyan-700/90",
     glow: "group-hover:shadow-teal-500/25 group-hover:border-teal-300/80",
@@ -56,7 +57,7 @@ export const EXAM_SELECTION_THEMES: Record<ExamSlug, ExamSelectionTheme> = {
     slug: "naplex",
     tagline:
       "Calculations, patient cases, and pharmacotherapy — everything NAPLEX expects you to know.",
-    stats: ["24K+ Pharmacy Items", "Drug Cases", "Timed Exams"],
+    stats: [`${MARKETING_QUESTION_COUNTS.pharmacy} Pharmacy Items`, "Drug Cases", "Timed Exams"],
     icon: Pill,
     gradient: "from-amber-500/90 via-orange-500/85 to-amber-600/90",
     glow: "group-hover:shadow-amber-500/30 group-hover:border-amber-300/80",

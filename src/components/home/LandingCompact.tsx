@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import { LandingVisualSlot } from "@/components/home/LandingVisualSlot";
 import { DRUG_CLASSES } from "@/lib/drugs300/drug-classes";
+import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import { studyHubMpjeHref } from "@/lib/study-hub/config";
 import {
   formatMonthlyPrice,
@@ -65,7 +66,7 @@ const EXAMS = [
 const VALUE_PILLARS = [
   {
     icon: Layers,
-    title: "130K+ board-style items",
+    title: `${MARKETING_QUESTION_COUNTS.total} board-style items`,
     detail: "Large stratified banks across nursing, medicine, and pharmacy fields.",
   },
   {

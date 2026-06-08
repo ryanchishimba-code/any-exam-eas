@@ -1,5 +1,10 @@
 import type { LucideIcon } from "lucide-react";
 import { Activity, Beaker, Pill, Scale, Stethoscope } from "lucide-react";
+import {
+  MARKETING_QUESTION_COUNTS,
+  questionBankLabelForField,
+  top500DrugsLabel,
+} from "@/lib/marketing/bank-stats";
 
 export type ExamSlug = "nclex" | "usmle" | "naplex" | "mpje" | "top500";
 
@@ -25,7 +30,7 @@ export const EXAM_HUBS: ExamHubConfig[] = [
     fieldId: "nursing",
     icon: Activity,
     accentClass: "from-sky-500/20 to-blue-600/10 border-sky-200/60",
-    questionBankLabel: "130K+ nursing items",
+    questionBankLabel: questionBankLabelForField("nursing"),
   },
   {
     slug: "usmle",
@@ -34,7 +39,7 @@ export const EXAM_HUBS: ExamHubConfig[] = [
     fieldId: "usmle-step-2",
     icon: Stethoscope,
     accentClass: "from-indigo-500/20 to-violet-600/10 border-indigo-200/60",
-    questionBankLabel: "30K+ medicine items",
+    questionBankLabel: questionBankLabelForField("usmle-step-2"),
   },
   {
     slug: "naplex",
@@ -43,7 +48,7 @@ export const EXAM_HUBS: ExamHubConfig[] = [
     fieldId: "pharmacy",
     icon: Pill,
     accentClass: "from-emerald-500/20 to-teal-600/10 border-emerald-200/60",
-    questionBankLabel: "24K+ pharmacy items",
+    questionBankLabel: questionBankLabelForField("pharmacy"),
   },
   {
     slug: "mpje",
@@ -52,7 +57,7 @@ export const EXAM_HUBS: ExamHubConfig[] = [
     fieldId: "mpje",
     icon: Scale,
     accentClass: "from-amber-500/20 to-orange-600/10 border-amber-200/60",
-    questionBankLabel: "Pharmacy law & regulations",
+    questionBankLabel: questionBankLabelForField("mpje"),
   },
   {
     slug: "top500",
@@ -61,7 +66,7 @@ export const EXAM_HUBS: ExamHubConfig[] = [
     fieldId: "drugs300",
     icon: Beaker,
     accentClass: "from-amber-500/20 to-orange-600/10 border-amber-200/60",
-    questionBankLabel: "300 essential drugs",
+    questionBankLabel: top500DrugsLabel(),
   },
 ];
 
