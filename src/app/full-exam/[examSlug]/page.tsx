@@ -38,6 +38,7 @@ export default async function FullExamLauncherPage({
 
   return (
     <FullExamLauncher
+      key={`${sp.mode ?? "default"}-${sp.autostart ?? "0"}-${sp.timed ?? "1"}`}
       examSlug={examSlug as ExamSlug}
       initialMode={sp.mode ?? null}
       autostart={sp.autostart === "1"}

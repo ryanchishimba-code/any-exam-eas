@@ -22,6 +22,7 @@ import {
 import { mpjePracticeExamHref, STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { fullExamLaunchHref, fullExamSessionHref } from "@/lib/full-exam/config";
+import { navigateHard } from "@/lib/client/navigate-hard";
 import { ROUTES } from "@/lib/routes";
 import {
   computeTimedExamTimeLimitSec,
@@ -378,7 +379,7 @@ export function StudyBankPractice() {
             if (!href) {
               throw new Error("Session was not created. Please try again.");
             }
-            router.push(href);
+            navigateHard(href);
             return;
           }
         }

@@ -4,7 +4,7 @@ import { createExamSession } from "@/lib/exam-sessions/service";
 import type { ExamSlug } from "@/lib/exams/catalog";
 import { getExamHub } from "@/lib/exams/catalog";
 import { getExamQuestionCountBySlug } from "@/lib/exam/exam-lengths";
-import { computeTimeLimitSec } from "@/lib/full-exam/config";
+import { computeTimeLimitSec, fullExamSessionHref } from "@/lib/full-exam/config";
 import { isExamSlug } from "@/lib/edtech/exams";
 
 export const runtime = "nodejs";
@@ -35,7 +35,12 @@ export async function POST(req: Request) {
       title: body.title ?? `${examType.toUpperCase()} timed exam`,
     });
 
-    return NextResponse.json({ sessionId: id, redirectUrl: `/exam/${examType}/${id}` });
+    return NextResponse.json({
+      sessionId: id,
+      redirectUrl: isExamSlug(examType)
+        ? fullExamSessionHref(examType, id)
+        : `/exam/${examType}/${id}`,
+    });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Could not start exam session";
     return NextResponse.json({ error: message }, { status: 503 });

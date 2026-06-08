@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Clock, Timer, Zap, CheckCircle2 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { AppBreadcrumbs } from "@/components/app/AppBreadcrumbs";
@@ -17,6 +16,7 @@ import {
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
 import { ROUTES } from "@/lib/routes";
+import { navigateHard } from "@/lib/client/navigate-hard";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -32,7 +32,6 @@ export function FullExamLauncher({
   autostart = false,
   initialTimed = true,
 }: Props) {
-  const router = useRouter();
   const exam = EXAM_CATALOG[examSlug];
   const options = getLengthOptions(examSlug);
 
@@ -42,7 +41,6 @@ export function FullExamLauncher({
   const [timed, setTimed] = useState(initialTimed);
   const [pending, setPending] = useState(autostart);
   const [error, setError] = useState<string | null>(null);
-  const autostartAttempted = useRef(false);
   const startingRef = useRef(false);
 
   const preview = buildSessionConfig(examSlug, preset, timed);
@@ -79,7 +77,7 @@ export function FullExamLauncher({
         setPending(false);
         return;
       }
-      router.push(href);
+      navigateHard(href);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not start exam");
       startingRef.current = false;
@@ -94,9 +92,11 @@ export function FullExamLauncher({
   }, [initialMode]);
 
   useEffect(() => {
-    if (!autostart || autostartAttempted.current) return;
-    autostartAttempted.current = true;
+    if (!autostart) return;
     void startExam();
+    return () => {
+      startingRef.current = false;
+    };
   }, [autostart]);
 
   if (pending && autostart) {

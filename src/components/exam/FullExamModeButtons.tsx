@@ -1,7 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { fullExamLaunchHref, getLengthOptions } from "@/lib/full-exam/config";
@@ -26,34 +24,19 @@ export function FullExamModeButtons({
   className,
   showCustomizeLink = true,
 }: Props) {
-  const router = useRouter();
-  const [pending, setPending] = useState<FullExamLengthPreset | null>(null);
   const options = getLengthOptions(examSlug);
-
-  function start(mode: FullExamLengthPreset) {
-    if (pending) return;
-    setPending(mode);
-    router.push(fullExamLaunchHref(examSlug, { mode, autostart: true }));
-  }
 
   return (
     <div className={cn("space-y-3", className)}>
       <div className="flex flex-wrap gap-2">
         {options.map((opt) => (
-          <button
+          <Link
             key={opt.preset}
-            type="button"
-            disabled={pending !== null}
-            onClick={() => start(opt.preset)}
-            className={cn(
-              "rounded-full border px-3 py-1.5 text-[11px] font-semibold transition",
-              pending === opt.preset
-                ? "border-[var(--color-accent)] bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
-                : "border-black/[0.08] bg-white/90 text-[var(--color-ink-muted)] hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)] disabled:opacity-60"
-            )}
+            href={fullExamLaunchHref(examSlug, { mode: opt.preset, autostart: true })}
+            className="rounded-full border border-black/[0.08] bg-white/90 px-3 py-1.5 text-[11px] font-semibold text-[var(--color-ink-muted)] transition hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)]"
           >
-            {pending === opt.preset ? "Starting…" : SHORT_LABELS[opt.preset]}
-          </button>
+            {SHORT_LABELS[opt.preset]}
+          </Link>
         ))}
       </div>
       {showCustomizeLink ? (
