@@ -69,7 +69,7 @@ export function saveReturningUserHint(partial: ReturningUserHint): void {
   if (typeof window === "undefined") return;
   const existing = loadReturningUserHint();
   const next: ReturningUserHint = {
-    ...existing,
+    ...(existing ?? {}),
     ...partial,
     email: partial.email.toLowerCase(),
     lastVisitAt: new Date().toISOString(),

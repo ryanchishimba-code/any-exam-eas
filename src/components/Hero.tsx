@@ -2,16 +2,16 @@
 
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useEffect, useSyncExternalStore, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useSession } from "next-auth/react";
 import { ArrowRight, LogIn, Sparkles } from "lucide-react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import {
   firstName,
-  getReturningUserHintSnapshot,
-  subscribeReturningUserHint,
+  loadReturningUserHint,
   touchReturningVisit,
+  type ReturningUserHint,
 } from "@/lib/client/returning-user";
 import {
   formatMonthlyPrice,
@@ -28,13 +28,10 @@ const LandingAppMockup = dynamic(
 
 export function Hero() {
   const { data: session, status } = useSession();
-  const hint = useSyncExternalStore(
-    subscribeReturningUserHint,
-    getReturningUserHintSnapshot,
-    () => null
-  );
+  const [hint, setHint] = useState<ReturningUserHint | null>(null);
 
   useEffect(() => {
+    setHint(loadReturningUserHint());
     touchReturningVisit();
   }, []);
 

@@ -5,6 +5,7 @@ import { LoginModalRoot } from "@/components/auth/LoginModalRoot";
 import { PageViewTrackerBoundary } from "@/components/analytics/PageViewTrackerBoundary";
 import { ShareFabLazy } from "@/components/share/ShareFabLazy";
 import { RootChrome } from "@/components/layout/RootChrome";
+import { ClientRecovery } from "@/components/ClientRecovery";
 import { buildRootMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildRootMetadata();
@@ -22,6 +23,7 @@ export default function RootLayout({
         </a>
         <SessionProvider>
           <LoginModalRoot>
+            <ClientRecovery />
             <PageViewTrackerBoundary />
             <RootChrome>{children}</RootChrome>
             <ShareFabLazy />
