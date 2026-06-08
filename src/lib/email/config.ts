@@ -10,18 +10,21 @@ export function isEmailConfigured(): boolean {
   return Boolean(process.env.RESEND_API_KEY?.trim());
 }
 
-export function appBaseUrl(): string {
-  const raw =
-    process.env.NEXTAUTH_URL ??
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    "http://localhost:3000";
+import { getSiteUrl } from "@/lib/seo";
 
-  // Local dev should never generate reset links pointing at production.
+export function appBaseUrl(): string {
   if (process.env.NODE_ENV === "development") {
+    const raw =
+      process.env.NEXTAUTH_URL ??
+      process.env.NEXT_PUBLIC_SITE_URL ??
+      "http://localhost:3000";
     const trimmed = raw.replace(/\/$/, "");
     if (/localhost|127\.0\.0\.1/i.test(trimmed)) return trimmed;
     return "http://localhost:3000";
   }
 
-  return raw.replace(/\/$/, "");
+  const authUrl = process.env.NEXTAUTH_URL?.trim().replace(/\/$/, "");
+  if (authUrl) return authUrl;
+
+  return getSiteUrl();
 }

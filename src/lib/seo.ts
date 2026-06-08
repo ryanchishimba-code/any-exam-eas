@@ -8,14 +8,35 @@ import {
 } from "@/lib/site";
 import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/stripe";
 
-/** Canonical production URL — set NEXT_PUBLIC_SITE_URL in Vercel (e.g. https://www.anyexameasy.com). */
+const PRODUCTION_SITE_URL = `https://www.${SITE_DOMAIN}`;
+
+/** Canonical public site URL for metadata, sitemap, and OG tags. */
 export function getSiteUrl(): string {
-  const env = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
-  if (env) return env;
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
+  const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "");
+  if (fromEnv) return fromEnv;
+
+  const vercelProduction = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim().replace(/\/$/, "");
+  if (vercelProduction) {
+    return vercelProduction.startsWith("http")
+      ? vercelProduction
+      : `https://${vercelProduction}`;
   }
-  return `https://www.${SITE_DOMAIN}`;
+
+  // Production deploys must not advertise ephemeral *.vercel.app hostnames in SEO.
+  if (process.env.VERCEL_ENV === "production") {
+    return PRODUCTION_SITE_URL;
+  }
+
+  const vercelUrl = process.env.VERCEL_URL?.trim();
+  if (vercelUrl && process.env.VERCEL_ENV === "preview") {
+    return `https://${vercelUrl}`;
+  }
+
+  if (process.env.NODE_ENV === "development") {
+    return "http://localhost:3000";
+  }
+
+  return PRODUCTION_SITE_URL;
 }
 
 export const DEFAULT_OG_IMAGE_PATH = "/images/hero.jpg";
