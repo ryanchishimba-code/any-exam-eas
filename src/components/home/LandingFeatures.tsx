@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   BarChart3,
   BookOpen,
@@ -93,12 +92,10 @@ export function LandingFeatures() {
           {benefits.map((benefit, i) => {
             const Icon = benefit.icon;
             return (
-              <motion.li
+              <li
                 key={benefit.title}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.4, delay: i * 0.04 }}
+                className="aee-reveal"
+                style={{ animationDelay: `${i * 40}ms` }}
               >
                 <article className="aee-feature-card group flex h-full flex-col bg-white">
                   {benefit.visualId ? (
@@ -127,7 +124,7 @@ export function LandingFeatures() {
                     aria-hidden
                   />
                 </article>
-              </motion.li>
+              </li>
             );
           })}
         </ul>

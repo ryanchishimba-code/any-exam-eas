@@ -45,6 +45,7 @@
     "test:unit:watch": "vitest",
     "test:smoke": "node scripts/smoke-test.mjs",
     "test:ui": "node scripts/test-ui-buttons.mjs",
+    "test:clicks": "node scripts/test-click-audit.mjs",
     "test:payments": "node scripts/test-payments.mjs",
     "test:payments:live": "node scripts/test-payments.mjs --live http://127.0.0.1:3000",
     "stripe:setup": "node scripts/stripe-setup.mjs",

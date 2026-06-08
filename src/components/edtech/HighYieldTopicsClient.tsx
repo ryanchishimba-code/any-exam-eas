@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Search, Sparkles, ChevronRight } from "lucide-react";
 import { HighYieldTopicPreviewCard } from "@/components/edtech/HighYieldTopicPreviewCard";
 import { HighYieldTopicPanel } from "@/components/edtech/HighYieldTopicPanel";
@@ -10,7 +10,6 @@ import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getTopicCategories } from "@/lib/edtech/seeds";
 import {
   filterHighYieldTopics,
-  resolveTopicAtIndex,
   clampTopicIndex,
 } from "@/lib/edtech/topic-selection";
 import { ROUTES } from "@/lib/routes";
@@ -30,7 +29,7 @@ export function HighYieldTopicsClient({
 }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>("all");
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [selectedSlug, setSelectedSlug] = useState<string | null>(initialTopicSlug ?? null);
   const [progressMap, setProgressMap] = useState(initialProgress);
   const categories = useMemo(() => getTopicCategories(examSlug), [examSlug]);
   const exam = EXAM_CATALOG[examSlug];
@@ -44,25 +43,37 @@ export function HighYieldTopicsClient({
     [topics, query, category]
   );
 
-  // Reset selection when filters change so panel always matches visible cards
+  const skipFilterReset = useRef(true);
+
+  // Reset selection when filters change — skip initial mount so deep links and Open module work
   useEffect(() => {
-    setActiveIndex(null);
+    if (skipFilterReset.current) {
+      skipFilterReset.current = false;
+      return;
+    }
+    setSelectedSlug(null);
   }, [query, category, examSlug]);
 
   useEffect(() => {
     if (!initialTopicSlug) return;
-    const idx = filtered.findIndex((t) => t.slug === initialTopicSlug);
-    if (idx >= 0) setActiveIndex(idx);
+    if (filtered.some((t) => t.slug === initialTopicSlug)) {
+      setSelectedSlug(initialTopicSlug);
+    }
   }, [initialTopicSlug, filtered]);
 
-  const activeTopic = resolveTopicAtIndex(filtered, activeIndex);
+  const activeTopic =
+    selectedSlug !== null
+      ? filtered.find((t) => t.slug === selectedSlug) ?? null
+      : null;
+  const activeIndex =
+    activeTopic !== null ? filtered.findIndex((t) => t.slug === activeTopic.slug) : -1;
   const reviewedCount = topics.filter((t) => (progressMap[t.id]?.reviewCount ?? 0) > 0).length;
 
-  function openTopic(index: number) {
-    setActiveIndex(index);
+  function openTopic(topic: HighYieldTopic) {
+    setSelectedSlug(topic.slug);
   }
 
-  function handleReviewRecorded(topicId: string, reviewCount: number) {
+  const handleReviewRecorded = useCallback((topicId: string, reviewCount: number) => {
     setProgressMap((prev) => ({
       ...prev,
       [topicId]: {
@@ -72,7 +83,7 @@ export function HighYieldTopicsClient({
         lastViewedAt: new Date().toISOString(),
       },
     }));
-  }
+  }, []);
 
   return (
     <>
@@ -164,12 +175,12 @@ export function HighYieldTopicsClient({
           </p>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {filtered.map((topic, index) => (
+            {filtered.map((topic) => (
               <HighYieldTopicPreviewCard
                 key={topic.id}
                 topic={topic}
                 progress={progressMap[topic.id]}
-                onViewSummary={() => openTopic(index)}
+                onViewSummary={() => openTopic(topic)}
               />
             ))}
           </div>
@@ -180,10 +191,13 @@ export function HighYieldTopicsClient({
         topic={activeTopic}
         examSlug={examSlug}
         open={activeTopic !== null}
-        onClose={() => setActiveIndex(null)}
-        topicIndex={activeIndex ?? 0}
+        onClose={() => setSelectedSlug(null)}
+        topicIndex={activeIndex >= 0 ? activeIndex : 0}
         topicCount={filtered.length}
-        onNavigate={(index) => setActiveIndex(clampTopicIndex(index, filtered.length))}
+        onNavigate={(index) => {
+          const next = filtered[clampTopicIndex(index, filtered.length)];
+          if (next) setSelectedSlug(next.slug);
+        }}
         initialReviewCount={
           activeTopic ? progressMap[activeTopic.id]?.reviewCount ?? 0 : 0
         }

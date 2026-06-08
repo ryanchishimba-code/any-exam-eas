@@ -57,5 +57,6 @@ export const CACHE_TTL = {
   researchBrief: 60 * 60 * 1000, // 1h — Tavily + synthesis
   subjectCatalog: 5 * 60 * 1000, // 5m
   learningDashboard: 30 * 1000, // 30s per user
+  subscriptionStatus: 30 * 1000, // 30s per user — dedupes nav + home fetches
   questionBankSlice: 10 * 60 * 1000, // 10m
 } as const;

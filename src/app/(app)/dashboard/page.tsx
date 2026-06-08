@@ -1,10 +1,7 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
-import { getUserAccess } from "@/lib/access-control";
 import { requirePremiumPage } from "@/lib/require-premium-page";
-import { SubscriptionBanner } from "@/components/SubscriptionBanner";
-import { DashboardClient } from "@/components/DashboardClient";
 import { DashboardView } from "@/components/app/DashboardView";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
@@ -62,16 +59,10 @@ export default async function DashboardPage() {
   }
 
   await requirePremiumPage(ROUTES.dashboard);
-  const access = await getUserAccess(session.user.id);
-  const hasPremiumAccess = access.hasPremiumAccess;
 
   return (
-    <>
-      {!hasPremiumAccess && <SubscriptionBanner access={access.subscription} />}
-      <Suspense fallback={<DashboardSkeleton />}>
-        <DashboardContent userId={session.user.id} userName={session.user.name} />
-      </Suspense>
-      {!hasPremiumAccess && <DashboardClient access={access.subscription} compact />}
-    </>
+    <Suspense fallback={<DashboardSkeleton />}>
+      <DashboardContent userId={session.user.id} userName={session.user.name} />
+    </Suspense>
   );
 }

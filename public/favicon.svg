@@ -1,4 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="8" fill="#0071E3"/>
-  <path d="M9 10h14v2H9V10zm0 5h10v2H9v-2zm0 5h14v2H9v-2z" fill="white" fill-opacity="0.95"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none" role="img" aria-label="AnyExamEasy">
+  <rect width="32" height="32" rx="7" fill="#f8fafc"/>
+  <!-- Paper -->
+  <path d="M7 14h18v12H7V14z" fill="#0d9488"/>
+  <path d="M21 22l4 4V18h-4v4z" fill="#94a3b8"/>
+  <!-- Cap -->
+  <path d="M5 14 16 9l11 5v2H5v-2z" fill="#0d9488"/>
+  <path d="M14 9v3.5" stroke="#0f766e" stroke-width="1.2" stroke-linecap="round"/>
+  <circle cx="14" cy="8.5" r="1" fill="#0f766e"/>
+  <!-- Checkmark -->
+  <path
+    d="M11 17.5 14.5 21 22 12.5"
+    stroke="#1e3a5f"
+    stroke-width="2.75"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
 </svg>

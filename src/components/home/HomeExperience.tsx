@@ -20,15 +20,16 @@ export function HomeExperience() {
   const { status } = useSession();
   const { hasPremiumAccess, loading: accessLoading } = useUserAccess();
   const isAuthed = status === "authenticated";
-  const resolvingAccess = status === "loading" || (isAuthed && accessLoading);
+  const showSubscriberHome = isAuthed && !accessLoading && hasPremiumAccess;
+  const resolvingPremiumAccess = isAuthed && accessLoading;
 
   return (
     <>
       <Hero />
-      {resolvingAccess ? (
-        <div className="border-b border-slate-100 bg-slate-50/50 py-6" aria-hidden />
-      ) : isAuthed && hasPremiumAccess ? (
+      {showSubscriberHome ? (
         <SubscriberHome />
+      ) : resolvingPremiumAccess ? (
+        <div className="border-b border-slate-100 bg-slate-50/50 py-6" aria-hidden />
       ) : (
         <>
           <LandingCompact />

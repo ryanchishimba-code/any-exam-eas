@@ -18,11 +18,55 @@ const defaultState: UserAccessState = {
 };
 
 let cachedAccess: UserAccessState | null = null;
+let inflightAccess: Promise<UserAccessState> | null = null;
 
 if (typeof window !== "undefined") {
   window.addEventListener("aee:clear-access-cache", () => {
     cachedAccess = null;
+    inflightAccess = null;
   });
+}
+
+async function fetchUserAccess(): Promise<UserAccessState> {
+  if (cachedAccess && !cachedAccess.loading) {
+    return cachedAccess;
+  }
+
+  if (inflightAccess) {
+    return inflightAccess;
+  }
+
+  inflightAccess = (async () => {
+    try {
+      const res = await fetch("/api/subscription/status", { cache: "no-store" });
+      if (!res.ok) throw new Error("status fetch failed");
+      const data = (await res.json()) as {
+        hasAccess?: boolean;
+        status?: string;
+        role?: string;
+      };
+      const next: UserAccessState = {
+        loading: false,
+        hasPremiumAccess: Boolean(data.hasAccess),
+        status: data.status ?? null,
+        role: data.role ?? null,
+      };
+      cachedAccess = next;
+      return next;
+    } catch {
+      const fallback: UserAccessState = {
+        loading: false,
+        hasPremiumAccess: false,
+        status: null,
+        role: null,
+      };
+      return fallback;
+    } finally {
+      inflightAccess = null;
+    }
+  })();
+
+  return inflightAccess;
 }
 
 export function useUserAccess(): UserAccessState {
@@ -36,35 +80,17 @@ export function useUserAccess(): UserAccessState {
 
     if (sessionStatus !== "authenticated") {
       cachedAccess = null;
+      inflightAccess = null;
       setAccess({ loading: false, hasPremiumAccess: false, status: null, role: null });
       return;
     }
 
     let cancelled = false;
 
-    void (async () => {
-      try {
-        const res = await fetch("/api/subscription/status", { cache: "no-store" });
-        if (!res.ok) throw new Error("status fetch failed");
-        const data = (await res.json()) as {
-          hasAccess?: boolean;
-          status?: string;
-          role?: string;
-        };
-        if (cancelled) return;
-        const next: UserAccessState = {
-          loading: false,
-          hasPremiumAccess: Boolean(data.hasAccess),
-          status: data.status ?? null,
-          role: data.role ?? null,
-        };
-        cachedAccess = next;
-        setAccess(next);
-      } catch {
-        if (cancelled) return;
-        setAccess({ loading: false, hasPremiumAccess: false, status: null, role: null });
-      }
-    })();
+    void fetchUserAccess().then((next) => {
+      if (cancelled) return;
+      setAccess(next);
+    });
 
     return () => {
       cancelled = true;

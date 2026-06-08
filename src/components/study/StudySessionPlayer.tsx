@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import type { GeneratedExam } from "@/lib/ai";
 import {
   advanceSession,
@@ -476,22 +475,16 @@ export function StudySessionPlayer({
       </ActivitySessionToolbar>
 
       <div className="h-1.5 overflow-hidden rounded-full bg-black/[0.06]">
-        <motion.div
-          className="h-full bg-[var(--color-accent)]"
-          animate={{ width: `${progressPct}%` }}
-          transition={{ duration: 0.25 }}
+        <div
+          className="h-full bg-[var(--color-accent)] transition-[width] duration-200 ease-out"
+          style={{ width: `${progressPct}%` }}
         />
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.article
-          key={current.id}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.2 }}
-          className="rounded-2xl border border-black/[0.08] bg-white p-4 shadow-sm sm:p-6 md:p-8"
-        >
+      <article
+        key={current.id}
+        className="aee-question-enter rounded-2xl border border-black/[0.08] bg-white p-4 shadow-sm sm:p-6 md:p-8"
+      >
           {(sessionState.mode === "adaptive" ||
             sessionState.mode === "weak_area" ||
             sessionState.adaptiveMeta) &&
@@ -562,8 +555,7 @@ export function StudySessionPlayer({
               ))}
             </div>
           )}
-        </motion.article>
-      </AnimatePresence>
+      </article>
 
       <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
         <button

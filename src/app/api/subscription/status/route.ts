@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { getUserAccess } from "@/lib/access-control";
+import { cacheGetOrSet, cacheKey, CACHE_TTL } from "@/lib/cache";
 import { MONTHLY_PRICE_USD, YEARLY_PRICE_USD, TRIAL_DAYS } from "@/lib/stripe";
 
 export const runtime = "nodejs";
@@ -11,7 +12,11 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const access = await getUserAccess(session.user.id);
+  const access = await cacheGetOrSet(
+    cacheKey(["subscription-status", session.user.id]),
+    CACHE_TTL.subscriptionStatus,
+    () => getUserAccess(session.user.id)
+  );
   const sub = access.subscription;
 
   return NextResponse.json({

@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 export function SessionProvider({ children }: { children: ReactNode }) {
   return (
-    <Provider refetchOnWindowFocus refetchWhenOffline={false}>
+    <Provider refetchOnWindowFocus={false} refetchWhenOffline={false}>
       {children}
     </Provider>
   );

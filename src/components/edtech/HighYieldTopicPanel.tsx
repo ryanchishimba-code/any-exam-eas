@@ -2,8 +2,6 @@
 
 import { useEffect, useState, useTransition } from "react";
 import Link from "next/link";
-import { createPortal } from "react-dom";
-import { AnimatePresence, motion } from "framer-motion";
 import {
   X,
   Star,
@@ -45,11 +43,8 @@ export function HighYieldTopicPanel({
 }) {
   const [reviewCount, setReviewCount] = useState(initialReviewCount);
   const [, startTransition] = useTransition();
-  const [mounted, setMounted] = useState(false);
 
   useBodyScrollLock(open);
-
-  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     setReviewCount(initialReviewCount);
@@ -60,10 +55,14 @@ export function HighYieldTopicPanel({
 
     let cancelled = false;
     startTransition(async () => {
-      const result = await recordTopicReview(topic.id);
-      if (!cancelled && result) {
-        setReviewCount(result.reviewCount);
-        onReviewRecorded?.(topic.id, result.reviewCount);
+      try {
+        const result = await recordTopicReview(topic.id);
+        if (!cancelled && result) {
+          setReviewCount(result.reviewCount);
+          onReviewRecorded?.(topic.id, result.reviewCount);
+        }
+      } catch {
+        /* progress tracking is non-blocking */
       }
     });
     return () => {
@@ -82,36 +81,26 @@ export function HighYieldTopicPanel({
     return () => document.removeEventListener("keydown", onKey);
   }, [open, onClose, topicIndex, topicCount, onNavigate]);
 
-  if (!mounted || !topic) return null;
+  if (!open || !topic) return null;
 
   const practiceHref = practiceTopicHref(examSlug, topic.practiceTopicSlug, 10);
   const hasPrev = topicIndex > 0;
   const hasNext = topicIndex < topicCount - 1;
 
-  return createPortal(
-    <AnimatePresence mode="wait">
-      {open ? (
-        <>
-          <motion.button
-            type="button"
-            aria-label="Close topic summary"
-            className="fixed inset-0 z-[180] bg-slate-900/45 backdrop-blur-[3px]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-          />
-          <motion.aside
-            key={topic.id}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="topic-panel-title"
-            className="fixed inset-y-0 right-0 z-[190] flex w-full flex-col border-l border-slate-200/80 bg-white shadow-2xl sm:max-w-2xl"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 28, stiffness: 320 }}
-          >
+  return (
+    <div className="fixed inset-0 z-[180]">
+      <button
+        type="button"
+        aria-label="Close topic summary"
+        className="absolute inset-0 bg-slate-900/45 backdrop-blur-[3px]"
+        onClick={onClose}
+      />
+      <aside
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="topic-panel-title"
+        className="absolute inset-y-0 right-0 flex h-full w-full max-w-2xl flex-col border-l border-slate-200/80 bg-white shadow-2xl"
+      >
             <div className="flex items-start justify-between gap-4 border-b border-slate-100 bg-gradient-to-r from-white to-slate-50/80 px-5 py-5 sm:px-6">
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
@@ -241,11 +230,8 @@ export function HighYieldTopicPanel({
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
             </div>
-          </motion.aside>
-        </>
-      ) : null}
-    </AnimatePresence>,
-    document.body
+          </aside>
+    </div>
   );
 }
 

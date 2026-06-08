@@ -102,8 +102,13 @@ export function buildRootMetadata(): Metadata {
     },
     description: `NCLEX, USMLE, NAPLEX, and MPJE study support with adaptive AI practice and OER-backed rationales.`,
     icons: {
-      icon: "/favicon.svg",
-      apple: "/favicon.svg",
+      icon: [
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/icons/icon-48.png", sizes: "48x48", type: "image/png" },
+        { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      ],
+      apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+      shortcut: "/icons/icon-48.png",
     },
     manifest: "/manifest.webmanifest",
     other: {
@@ -123,7 +128,7 @@ export function buildHomeJsonLd() {
         "@id": `${url}/#organization`,
         name: SITE_NAME,
         url,
-        logo: absoluteUrl("/favicon.svg"),
+        logo: absoluteUrl("/icons/icon-192.png"),
         description:
           "Board exam study support for nursing, medical, and pharmacy students preparing for NCLEX, USMLE, NAPLEX, and MPJE.",
       },

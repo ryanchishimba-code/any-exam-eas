@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { MARKETING_DISCLAIMER } from "@/lib/site";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
@@ -46,12 +47,12 @@ export function Footer() {
       <div className="mx-auto max-w-[980px] px-6">
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div className="md:col-span-1">
-            <p className="text-sm font-semibold text-[var(--color-ink)]">Any Exam Easy</p>
-            <p className="mt-2 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+            <BrandLogo href={ROUTES.home} variant="footer" />
+            <p className="mt-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
               {MARKETING_DISCLAIMER}
             </p>
             <p className="mt-4 text-xs text-[var(--color-ink-muted)]">
-              © {new Date().getFullYear()} Any Exam Easy
+              © {new Date().getFullYear()} AnyExamEasy
             </p>
           </div>
           <nav aria-label="Product links">

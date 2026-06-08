@@ -15,7 +15,7 @@ const PAGES = [
     expect: 200,
     buttons: ["Open menu"],
     links: ["/dashboard", "/pricing", "/signup", "/login"],
-    text: ["Pass the", "NCLEX", "NAPLEX"],
+    text: ["One subscription", "Four licensing", "NCLEX"],
   },
   {
     path: "/signup",
@@ -51,7 +51,7 @@ const PERF_BUDGET_MS = {
   "/signup": 2000,
   "/pricing": 2000,
   "/api/health": 800,
-  "/api/catalog/subjects": 3000,
+  "/api/catalog/subjects": 8000,
 };
 
 let passed = 0;

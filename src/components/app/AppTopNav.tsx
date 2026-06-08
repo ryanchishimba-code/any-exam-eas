@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { LayoutGrid, LogOut, Menu, Settings, User } from "lucide-react";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
 import { AppMpjeStateChip } from "@/components/app/AppMpjeStateChip";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
@@ -55,12 +56,7 @@ export function AppTopNav({ onMenuClick }: Props) {
           <Menu className="h-5 w-5" />
         </button>
 
-        <Link
-          href={ROUTES.dashboard}
-          className="shrink-0 text-sm font-semibold tracking-tight text-[var(--color-ink)] sm:text-base"
-        >
-          Any Exam Easy
-        </Link>
+        <BrandLogo href={ROUTES.dashboard} variant="nav" />
 
         <div className="hidden min-w-0 flex-1 items-center gap-3 md:flex">
           <GlobalExamSwitcher variant="nav" />

@@ -13,17 +13,56 @@ export type ReturningUserHint = {
 
 const STORAGE_KEY = "aee_returning_user";
 
-export function loadReturningUserHint(): ReturningUserHint | null {
-  if (typeof window === "undefined") return null;
+/** Stable snapshot for useSyncExternalStore — must not return new objects each call. */
+let cachedRaw: string | null | undefined;
+let cachedHint: ReturningUserHint | null = null;
+
+function parseReturningHint(raw: string | null): ReturningUserHint | null {
+  if (!raw) return null;
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
     const parsed = JSON.parse(raw) as ReturningUserHint;
     if (!parsed?.email) return null;
     return parsed;
   } catch {
     return null;
   }
+}
+
+function syncReturningHintCache(): ReturningUserHint | null {
+  if (typeof window === "undefined") return null;
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw === cachedRaw) return cachedHint;
+  cachedRaw = raw;
+  cachedHint = parseReturningHint(raw);
+  return cachedHint;
+}
+
+export function loadReturningUserHint(): ReturningUserHint | null {
+  return syncReturningHintCache();
+}
+
+/** Client store subscription for returning-user hint (cross-tab + same-tab). */
+export function subscribeReturningUserHint(onStoreChange: () => void): () => void {
+  const onChange = () => {
+    cachedRaw = undefined;
+    onStoreChange();
+  };
+  window.addEventListener("storage", onChange);
+  window.addEventListener("aee:returning-hint-change", onChange);
+  return () => {
+    window.removeEventListener("storage", onChange);
+    window.removeEventListener("aee:returning-hint-change", onChange);
+  };
+}
+
+export function getReturningUserHintSnapshot(): ReturningUserHint | null {
+  return syncReturningHintCache();
+}
+
+function notifyReturningHintChange(): void {
+  if (typeof window === "undefined") return;
+  cachedRaw = undefined;
+  window.dispatchEvent(new Event("aee:returning-hint-change"));
 }
 
 export function saveReturningUserHint(partial: ReturningUserHint): void {
@@ -36,6 +75,7 @@ export function saveReturningUserHint(partial: ReturningUserHint): void {
     lastVisitAt: new Date().toISOString(),
   };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+  notifyReturningHintChange();
 }
 
 export function touchReturningVisit(): void {
@@ -66,6 +106,7 @@ export function clearReturningUserHint(): void {
   if (typeof window === "undefined") return;
   try {
     localStorage.removeItem(STORAGE_KEY);
+    notifyReturningHintChange();
   } catch {
     /* ignore storage errors */
   }

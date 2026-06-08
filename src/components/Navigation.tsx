@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { LogIn, LogOut, Menu, Shield, X } from "lucide-react";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { AvatarDropdown } from "@/components/navigation/AvatarDropdown";
 import { ExamsDropdown } from "@/components/navigation/ExamsDropdown";
@@ -46,7 +47,8 @@ export function Navigation() {
   const { signingOut, requestSignOut } = useSignOutConfirm({ callbackUrl: "/" });
 
   const isAuthenticated = status === "authenticated" && Boolean(session?.user);
-  const authReady = status !== "loading" && !accessLoading;
+  const resolvingAuthedAccess = isAuthenticated && accessLoading;
+  const resolvingAuth = status === "loading" || resolvingAuthedAccess;
   const isAdmin = (session?.user as { role?: string } | undefined)?.role === "admin";
 
   const links = useMemo(() => {
@@ -104,9 +106,7 @@ export function Navigation() {
   return (
     <header ref={headerRef} className="apple-glass aee-nav fixed top-0 z-50 w-full">
       <nav className="aee-nav-inner mx-auto max-w-[1140px] px-5 sm:px-6" aria-label="Main navigation">
-        <Link href={brandHref} className="aee-nav-brand">
-          Any Exam Easy
-        </Link>
+        <BrandLogo href={brandHref} variant="nav" linkClassName="aee-nav-brand" priority />
 
         <ul className="aee-nav-links hidden lg:flex lg:items-center lg:gap-5" role="list">
           <li>
@@ -131,12 +131,12 @@ export function Navigation() {
         </ul>
 
         <div className="aee-nav-actions">
-          {authReady && isAuthenticated ? (
+          {isAuthenticated && !accessLoading ? (
             <div className="hidden lg:block">
               <GlobalExamSwitcher variant="nav" />
             </div>
           ) : null}
-          {!authReady ? (
+          {resolvingAuth ? (
             <span
               className="inline-block h-9 w-28 animate-pulse rounded-full bg-black/[0.06]"
               aria-hidden
@@ -213,7 +213,7 @@ export function Navigation() {
                 </Link>
                 );
               })}
-              {authReady && !isAuthenticated && (
+              {!resolvingAuth && !isAuthenticated && (
                 <div className="mt-3 space-y-2 border-t border-black/[0.06] pt-3">
                   <LoginModalTrigger
                     callbackUrl={ROUTES.dashboard}
@@ -232,7 +232,7 @@ export function Navigation() {
                   </Link>
                 </div>
               )}
-              {authReady && isAuthenticated && (
+              {!resolvingAuth && isAuthenticated && (
                 <div className="mt-3 space-y-1 border-t border-black/[0.06] pt-3">
                   <div className="mb-3">
                     <GlobalExamSwitcher variant="mobile" onNavigate={closeMobile} />
