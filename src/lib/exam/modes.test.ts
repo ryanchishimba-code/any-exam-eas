@@ -55,6 +55,17 @@ describe("exam lengths", () => {
     expect(resolveTimedExamLimit("nursing", 85)).toBe(85);
     expect(resolveTimedExamLimit("nursing", 150)).toBe(150);
     expect(resolveTimedExamLimit("nursing", 99)).toBe(85);
+    expect(resolveTimedExamLimit("nursing", 50)).toBe(50);
+    expect(resolveTimedExamLimit("nursing", 100)).toBe(100);
+  });
+
+  it("honors sprint presets for non-NCLEX boards", () => {
+    expect(resolveTimedExamLimit("usmle-step-2", 50)).toBe(50);
+    expect(resolveTimedExamLimit("usmle-step-2", 100)).toBe(100);
+    expect(resolveTimedExamLimit("usmle-step-2", 280)).toBe(280);
+    expect(resolveTimedExamLimit("pharmacy", 50)).toBe(50);
+    expect(resolveTimedExamLimit("mpje", 100)).toBe(100);
+    expect(resolveTimedExamLimit("mpje", 99)).toBe(120);
   });
 
   it("uses 280 for USMLE, 225 for NAPLEX, and 120 for MPJE", () => {

@@ -12,11 +12,15 @@ import {
 } from "lucide-react";
 import { FloatingTimer } from "@/components/exam/FloatingTimer";
 import { ExamActionBar } from "@/components/exam/ExamActionBar";
-import { ExamChoiceCard } from "@/components/exam/ExamChoiceCard";
 import { PauseExamDialog } from "@/components/exam/PauseExamDialog";
 import { TimeUpDialog } from "@/components/exam/TimeUpDialog";
 import { Progress } from "@/components/ui/progress";
+import { QuestionRenderer } from "@/components/study/questions/QuestionRenderer";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import {
+  serializeCorrectAnswer,
+  serializeExamSelection,
+} from "@/lib/full-exam/answer-serialize";
 import { fullExamResultsHref } from "@/lib/full-exam/config";
 import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
 import {
@@ -24,15 +28,16 @@ import {
   mergeExamAnswers,
 } from "@/lib/exam-sessions/scoring";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
+import { parseBowTieLayout, parseMatrixKey } from "@/lib/questions/ngn-structures";
+import { isAnswerCorrect, prepareQuestionsForSession } from "@/lib/questions/prepare";
+import type { RawQuestionInput, StudyQuestion } from "@/lib/questions/types";
 import type { ExamSlug } from "@/types/edtech";
 import type {
   FullExamAnswerState,
-  FullExamQuestion,
   FullExamSessionConfig,
 } from "@/types/full-exam";
 import { cn } from "@/lib/utils";
 
-const LETTERS = ["A", "B", "C", "D", "E", "F"];
 const ENCOURAGEMENT = [
   "You're doing great — stay focused.",
   "One question at a time. You've prepared for this.",
@@ -48,15 +53,20 @@ type Props = {
 };
 
 function defaultAnswer(): FullExamAnswerState {
-  return { selected: null, eliminated: [], flagged: false, notes: "" };
+  return { selected: [], eliminated: [], flagged: false, notes: "" };
+}
+
+function hasSelection(selected: string[]): boolean {
+  return selected.length > 0;
 }
 
 export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Props) {
   const router = useRouter();
   const exam = EXAM_CATALOG[examSlug];
 
-  const [questions, setQuestions] = useState<FullExamQuestion[]>([]);
+  const [questions, setQuestions] = useState<StudyQuestion[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, FullExamAnswerState>>({});
   const [remainingSec, setRemainingSec] = useState(config.timeLimitSec);
@@ -74,7 +84,6 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
 
   const pauseAccumSec = useRef(0);
   const pauseStarted = useRef<number | null>(null);
-  const startedAt = useRef(Date.now());
 
   const current = questions[index];
   const currentAnswer = answers[index] ?? defaultAnswer();
@@ -87,55 +96,95 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
   );
 
   const answeredCount = useMemo(
-    () => Object.values(answers).filter((a) => a.selected).length,
+    () => Object.values(answers).filter((a) => hasSelection(a.selected)).length,
     [answers]
   );
 
   const unansweredIndices = useMemo(
     () =>
       questions
-        .map((_, i) => (!answers[i]?.selected ? i : -1))
+        .map((_, i) => (!hasSelection(answers[i]?.selected ?? []) ? i : -1))
         .filter((i) => i >= 0),
     [questions, answers]
   );
 
   useEffect(() => {
-    const qs = new URLSearchParams({
-      field: fieldId,
-      mode: "timed",
-      scope: "field",
-      limit: String(config.questionCount),
-    });
-    if (config.adaptive) qs.set("mixed", "1");
-    qs.set("meta", "0");
+    let cancelled = false;
 
-    fetch(`/api/questions?${qs.toString()}`)
-      .then((r) => r.json())
-      .then((d) => {
-        const bankIds: string[] = d.bankItemIds ?? [];
-        const items: FullExamQuestion[] = (d.questions ?? []).map(
-          (
-            q: {
-              id: number;
-              question: string;
-              options: string[];
-              correctAnswer: string;
-              explanation: string;
-              topicCategory?: string;
-            },
-            i: number
-          ) => ({
-            id: bankIds[i] ?? String(q.id),
-            question: q.question,
-            options: q.options,
-            correctAnswer: q.correctAnswer,
-            explanation: q.explanation,
-            topicCategory: q.topicCategory,
-          })
-        );
-        setQuestions(items.slice(0, config.questionCount));
-      })
-      .finally(() => setLoading(false));
+    async function loadQuestions() {
+      setLoading(true);
+      setLoadError(null);
+
+      let mpjeStateCode: string | null = null;
+      try {
+        const prefRes = await fetch("/api/user/exam-preference", { cache: "no-store" });
+        if (prefRes.ok) {
+          const pref = (await prefRes.json()) as { mpjeStateCode?: string | null };
+          mpjeStateCode = pref.mpjeStateCode ?? null;
+        }
+      } catch {
+        // Non-fatal — MPJE may still work with federal-only bank.
+      }
+
+      const qs = new URLSearchParams({
+        field: fieldId,
+        mode: "timed",
+        scope: "field",
+        limit: String(config.questionCount),
+      });
+      if (config.adaptive) qs.set("mixed", "1");
+      qs.set("meta", "0");
+      if (fieldId === "mpje" && mpjeStateCode) {
+        qs.set("state", mpjeStateCode);
+        qs.set("mpjeState", mpjeStateCode);
+      }
+
+      try {
+        const res = await fetch(`/api/questions?${qs.toString()}`);
+        const data = (await res.json()) as {
+          error?: string;
+          questions?: RawQuestionInput[];
+          bankItemIds?: string[];
+        };
+
+        if (!res.ok) {
+          if (!cancelled) {
+            setLoadError(data.error ?? "Could not load exam questions.");
+            setQuestions([]);
+          }
+          return;
+        }
+
+        const bankIds = data.bankItemIds ?? [];
+        const raw: RawQuestionInput[] = (data.questions ?? []).map((q, i) => ({
+          ...q,
+          field: fieldId,
+          bankItemId: bankIds[i] ?? q.bankItemId,
+        }));
+
+        const prepared = prepareQuestionsForSession(raw, { shuffleOrder: false });
+        const items = prepared.slice(0, config.questionCount).map((q, i) => ({
+          ...q,
+          id: bankIds[i] ?? q.bankItemId ?? q.id,
+          bankItemId: bankIds[i] ?? q.bankItemId,
+          field: fieldId,
+        }));
+
+        if (!cancelled) setQuestions(items);
+      } catch {
+        if (!cancelled) {
+          setLoadError("Could not load exam questions. Check your connection and try again.");
+          setQuestions([]);
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+
+    void loadQuestions();
+    return () => {
+      cancelled = true;
+    };
   }, [fieldId, config.questionCount, config.adaptive]);
 
   useEffect(() => {
@@ -162,24 +211,100 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
     async (qi: number, state: FullExamAnswerState) => {
       const q = questions[qi];
       if (!q) return;
-      if (!state.selected && !state.flagged && !state.notes) return;
+      if (!hasSelection(state.selected) && !state.flagged && !state.notes) return;
+
+      const selectedSerialized = serializeExamSelection(q, state.selected);
+      const correct =
+        hasSelection(state.selected) && isAnswerCorrect(q, state.selected);
 
       await fetch(`/api/exam-sessions/${sessionId}/answer`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           questionIndex: qi,
-          questionId: q.id,
-          selected: state.selected ?? "",
-          correct: state.selected ? state.selected === q.correctAnswer : false,
+          questionId: q.bankItemId ?? q.id,
+          selected: selectedSerialized,
+          correct,
           flagged: state.flagged,
           eliminated: state.eliminated,
           notes: state.notes,
-          topicCategory: q.topicCategory,
+          topicCategory: q.subjectId,
         } satisfies Partial<ExamAnswerRecord>),
       });
     },
     [questions, sessionId]
+  );
+
+  const toggleSelect = useCallback(
+    (option: string) => {
+      if (!current || submitting || timeUp) return;
+
+      let nextSelected: string[];
+
+      if (option === "__clear__") {
+        nextSelected = [];
+      } else if (current.type === "ordered_response") {
+        const prev = currentAnswer.selected;
+        nextSelected = prev.includes(option) ? prev : [...prev, option];
+      } else if (current.type === "drag_drop") {
+        const prev = currentAnswer.selected;
+        if (option.startsWith("__unmatch__|||")) {
+          const prompt = option.slice("__unmatch__|||".length);
+          nextSelected = prev.filter((p) => !p.startsWith(`${prompt}|||`));
+        } else {
+          const [left] = option.split("|||");
+          if (!left) {
+            nextSelected = prev;
+          } else {
+            const without = prev.filter((p) => !p.startsWith(`${left}|||`));
+            nextSelected = [...without, option];
+          }
+        }
+      } else if (current.type === "short_answer") {
+        nextSelected = [option];
+      } else if (current.type === "select_all" || current.type === "highlight") {
+        const prev = currentAnswer.selected;
+        nextSelected = prev.includes(option)
+          ? prev.filter((o) => o !== option)
+          : [...prev, option];
+      } else if (current.type === "matrix") {
+        const prev = currentAnswer.selected;
+        if (prev.includes(option)) {
+          nextSelected = prev.filter((o) => o !== option);
+        } else {
+          const { row } = parseMatrixKey(option);
+          const withoutRow = prev.filter((o) => parseMatrixKey(o).row !== row);
+          nextSelected = [...withoutRow, option];
+        }
+      } else if (current.type === "bow_tie") {
+        const layout = parseBowTieLayout(current);
+        const prev = currentAnswer.selected;
+        if (prev.includes(option)) {
+          nextSelected = prev.filter((o) => o !== option);
+        } else if (layout.actions.includes(option)) {
+          nextSelected = [...prev.filter((o) => !layout.actions.includes(o)), option];
+        } else if (layout.monitors.includes(option)) {
+          let next = prev.filter((o) => !layout.monitors.includes(o));
+          const monitors = prev.filter((o) => layout.monitors.includes(o));
+          if (monitors.length >= layout.monitorPickCount) {
+            next = prev.filter((o) => o !== monitors[0]);
+          }
+          nextSelected = [...next, option];
+        } else {
+          nextSelected = [...prev, option];
+        }
+      } else {
+        nextSelected = [option];
+      }
+
+      setAnswers((prev) => {
+        const next = { ...prev[index], ...currentAnswer, selected: nextSelected };
+        const merged = { ...prev, [index]: next };
+        void persistAnswer(index, next);
+        return merged;
+      });
+    },
+    [current, currentAnswer, index, persistAnswer, submitting, timeUp]
   );
 
   const updateAnswer = useCallback(
@@ -187,7 +312,11 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
       setAnswers((prev) => {
         const next = { ...prev[index], ...patch };
         const merged = { ...prev, [index]: next };
-        if (patch.selected || patch.flagged !== undefined || patch.notes !== undefined) {
+        if (
+          patch.selected !== undefined ||
+          patch.flagged !== undefined ||
+          patch.notes !== undefined
+        ) {
           void persistAnswer(index, next);
         }
         return merged;
@@ -200,17 +329,17 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
     let log: ExamAnswerRecord[] = [];
     for (let i = 0; i < questions.length; i++) {
       const st = answers[i];
-      if (!st?.selected) continue;
+      if (!st || !hasSelection(st.selected)) continue;
       const q = questions[i];
       log = mergeExamAnswers(log, {
         questionIndex: i,
-        questionId: q.id,
-        selected: st.selected,
-        correct: st.selected === q.correctAnswer,
+        questionId: q.bankItemId ?? q.id,
+        selected: serializeExamSelection(q, st.selected),
+        correct: isAnswerCorrect(q, st.selected),
         flagged: st.flagged,
         eliminated: st.eliminated,
         notes: st.notes,
-        topicCategory: q.topicCategory,
+        topicCategory: q.subjectId,
         answeredAt: new Date().toISOString(),
       });
     }
@@ -241,14 +370,14 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
             sessionConfig: config,
             timeUsedSec,
             topicBreakdown,
-            questionIds: questions.map((q) => q.id),
+            questionIds: questions.map((q) => q.bankItemId ?? q.id),
             questionSnapshots: questions.map((q) => ({
-              id: q.id,
-              question: q.question,
+              id: q.bankItemId ?? q.id,
+              question: q.stem,
               options: q.options,
-              correctAnswer: q.correctAnswer,
+              correctAnswer: serializeCorrectAnswer(q),
               explanation: q.explanation,
-              topicCategory: q.topicCategory,
+              topicCategory: q.subjectId,
             })),
             summary: endedEarly
               ? "Session ended early. Your saved answers were scored."
@@ -276,11 +405,6 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (submitting || !current) return;
-      const opts = current.options;
-      if (e.key >= "1" && e.key <= "9") {
-        const i = Number(e.key) - 1;
-        if (opts[i]) updateAnswer({ selected: opts[i] });
-      }
       if (e.key === "f" || e.key === "F") {
         updateAnswer({ flagged: !currentAnswer.flagged });
       }
@@ -297,7 +421,7 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [current, currentAnswer.flagged, index, questions.length, submitting, updateAnswer, submitExam]);
+  }, [current, currentAnswer.flagged, index, questions.length, submitting, updateAnswer]);
 
   useEffect(() => {
     if (!timeUp || submitting) return;
@@ -343,6 +467,28 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
             ))}
           </div>
           <p className="text-center text-sm text-slate-500">Preparing your exam…</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (loadError) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[#f4f7fb] p-6">
+        <div className="max-w-md space-y-4 text-center">
+          <p className="text-base font-medium text-slate-800">{loadError}</p>
+          {fieldId === "mpje" ? (
+            <p className="text-sm text-slate-600">
+              Choose your MPJE state in Settings or the study hub, then start the exam again.
+            </p>
+          ) : null}
+          <button
+            type="button"
+            onClick={() => router.push(`/full-exam/${examSlug}`)}
+            className="rounded-xl bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-95"
+          >
+            Back to exam launcher
+          </button>
         </div>
       </div>
     );
@@ -438,7 +584,7 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
             <p className="text-sm font-semibold text-slate-700">Question overview</p>
             <ol className="mt-3 grid grid-cols-5 gap-2 sm:grid-cols-8 md:grid-cols-10">
               {questions.map((_, i) => {
-                const answered = Boolean(answers[i]?.selected);
+                const answered = hasSelection(answers[i]?.selected ?? []);
                 const flagged = Boolean(answers[i]?.flagged);
                 return (
                   <li key={i}>
@@ -498,7 +644,6 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
         aria-hidden
       />
 
-      {/* Top bar */}
       <header className="sticky top-0 z-20 border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] items-center gap-4 px-4 py-3 sm:px-6">
           <div className="min-w-0 flex-1">
@@ -528,7 +673,6 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
       />
 
       <div className="mx-auto flex max-w-[1400px] gap-0 lg:gap-6">
-        {/* Left sidebar — question nav + flags */}
         <aside className="hidden w-56 shrink-0 p-4 lg:block xl:w-64">
           <div className="sticky top-[calc(var(--nav-height)+1rem)] space-y-4">
             <ExamQuestionNav
@@ -561,43 +705,21 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
           </div>
         </aside>
 
-        {/* Main question area */}
         <main className="min-w-0 flex-1 px-4 py-6 pb-28 sm:px-6 lg:pb-8">
           <p className="mb-2 text-xs font-medium uppercase tracking-wide text-teal-700 lg:hidden">
             Q{index + 1} of {questions.length}
           </p>
 
           <article className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm sm:p-8">
-            <div
-              className="prose prose-slate max-w-none text-[1.0625rem] leading-relaxed"
-              dangerouslySetInnerHTML={{
-                __html: highlightQuestionStem(current.question),
-              }}
+            <QuestionRenderer
+              question={current}
+              selected={currentAnswer.selected}
+              revealed={false}
+              onToggle={toggleSelect}
             />
-
-            <div className="mt-8 space-y-3" role="radiogroup" aria-label="Answer choices">
-              {current.options.map((opt, i) => (
-                <ExamChoiceCard
-                  key={opt}
-                  letter={LETTERS[i] ?? String(i + 1)}
-                  label={opt}
-                  selected={currentAnswer.selected === opt}
-                  eliminated={currentAnswer.eliminated.includes(opt)}
-                  disabled={submitting || timeUp}
-                  onSelect={() => updateAnswer({ selected: opt })}
-                  onEliminate={() => {
-                    const elim = currentAnswer.eliminated.includes(opt)
-                      ? currentAnswer.eliminated.filter((e) => e !== opt)
-                      : [...currentAnswer.eliminated, opt];
-                    updateAnswer({ eliminated: elim });
-                  }}
-                />
-              ))}
-            </div>
           </article>
         </main>
 
-        {/* Right sidebar — scratch pad */}
         <aside
           className={cn(
             "shrink-0 border-l border-slate-200/80 bg-white transition-all",
@@ -628,7 +750,6 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
         </aside>
       </div>
 
-      {/* Bottom bar */}
       <footer className="fixed bottom-0 left-0 right-0 z-20 border-t border-slate-200/80 bg-white/95 backdrop-blur-md">
         <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
           <button
@@ -720,18 +841,6 @@ export function FullExamSimulator({ sessionId, examSlug, fieldId, config }: Prop
   );
 }
 
-/** Light emphasis on common clinical cue words in stems. */
-function highlightQuestionStem(text: string): string {
-  const escaped = text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-  return escaped.replace(
-    /\b(\d+-year-old|prioritiz|first|best|most likely|contraindicat|mg\/kg|mEq|BP|HR|SpO2)\w*/gi,
-    "<strong class='text-slate-900'>$&</strong>"
-  );
-}
-
 function ExamQuestionNav({
   total,
   currentIndex,
@@ -755,7 +864,7 @@ function ExamQuestionNav({
         <ol className="grid grid-cols-5 gap-1.5">
           {Array.from({ length: total }, (_, i) => {
             const st = answers[i];
-            const answered = Boolean(st?.selected);
+            const answered = hasSelection(st?.selected ?? []);
             const flagged = Boolean(st?.flagged);
             const current = i === currentIndex;
             return (

@@ -21,7 +21,7 @@ export type FullExamQuestion = {
 };
 
 export type FullExamAnswerState = {
-  selected: string | null;
+  selected: string[];
   eliminated: string[];
   flagged: boolean;
   notes: string;

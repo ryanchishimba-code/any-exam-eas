@@ -350,7 +350,7 @@ export function StudyBankPractice() {
       if (isTimedExam) {
         if (isMpje) {
           if (mpjeVariant === "state" && mpjeState) {
-            router.push(mpjePracticeExamHref(mpjeState));
+            navigateHard(mpjePracticeExamHref(mpjeState));
             return;
           }
         } else {

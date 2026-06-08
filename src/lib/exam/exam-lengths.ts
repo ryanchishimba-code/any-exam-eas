@@ -81,6 +81,8 @@ export function getTimedExamQuestionCount(
   return TIMED_EXAM_COUNTS[board];
 }
 
+const SPRINT_EXAM_LIMITS = new Set([50, 100]);
+
 /** Resolve a valid timed-exam limit for the board (ignores invalid client values). */
 export function resolveTimedExamLimit(
   fieldOrLabel: string,
@@ -89,14 +91,27 @@ export function resolveTimedExamLimit(
 ): number {
   const board = resolveBoardExam(fieldOrLabel);
   if (board === "nclex") {
-    const allowed = new Set<number>(Object.values(NCLEX_TIMED_COUNTS));
+    const allowed = new Set<number>([
+      ...Object.values(NCLEX_TIMED_COUNTS),
+      ...SPRINT_EXAM_LIMITS,
+    ]);
     if (requestedLimit && allowed.has(requestedLimit)) {
       return requestedLimit;
     }
     return NCLEX_TIMED_COUNTS[nclexLength ?? "minimum"];
   }
   if (board) {
-    return TIMED_EXAM_COUNTS[board];
+    const full = TIMED_EXAM_COUNTS[board];
+    if (
+      requestedLimit &&
+      (SPRINT_EXAM_LIMITS.has(requestedLimit) || requestedLimit === full)
+    ) {
+      return requestedLimit;
+    }
+    return full;
+  }
+  if (requestedLimit && SPRINT_EXAM_LIMITS.has(requestedLimit)) {
+    return requestedLimit;
   }
   return 50;
 }

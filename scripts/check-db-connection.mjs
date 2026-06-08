@@ -54,6 +54,14 @@ async function main() {
   } finally {
     await prisma.$disconnect();
   }
+
+  const { spawnSync } = await import("node:child_process");
+  const drizzle = spawnSync("npx", ["tsx", "scripts/test-drizzle-connection.mjs"], {
+    stdio: "inherit",
+    env: process.env,
+    shell: true,
+  });
+  if (drizzle.status !== 0) process.exit(drizzle.status ?? 1);
 }
 
 main().catch((e) => {

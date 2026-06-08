@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { ensureDatabaseUrlEnv, resolveDatabaseUrl } from "@/lib/database-url";
 
 const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
@@ -22,6 +23,7 @@ let cached: ServerEnv | null = null;
 export function getServerEnv(opts?: { strict?: boolean }): ServerEnv {
   if (cached && !opts?.strict) return cached;
 
+  ensureDatabaseUrlEnv();
   const parsed = serverSchema.safeParse(process.env);
   if (!parsed.success) {
     const msg = parsed.error.flatten().fieldErrors;
@@ -39,11 +41,12 @@ export function getServerEnv(opts?: { strict?: boolean }): ServerEnv {
 }
 
 export function envSummary(): Record<string, string> {
+  const url = resolveDatabaseUrl();
   return {
     nodeEnv: process.env.NODE_ENV ?? "development",
-    database: (process.env.DATABASE_URL ?? "").startsWith("file:")
+    database: url.startsWith("file:")
       ? "sqlite"
-      : (process.env.DATABASE_URL ?? "").startsWith("postgres")
+      : url.startsWith("postgres")
         ? "postgresql"
         : "unset",
     openai: process.env.OPENAI_API_KEY ? "set" : "missing",

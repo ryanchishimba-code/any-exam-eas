@@ -9,9 +9,11 @@ import {
 
 const isNextBuild = process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD;
 
-if (process.env.VERCEL && !isNextBuild) {
+if (!isNextBuild) {
   ensureDatabaseUrlEnv();
-  assertRuntimeDatabaseUrl();
+  if (process.env.VERCEL) {
+    assertRuntimeDatabaseUrl();
+  }
 }
 
 /** Bump when Prisma schema adds/changes models so dev HMR replaces stale clients. */

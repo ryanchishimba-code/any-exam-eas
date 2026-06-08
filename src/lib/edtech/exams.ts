@@ -20,7 +20,7 @@ export const EXAM_CATALOG: Record<ExamSlug, ExamDefinition> = {
     description: "Clinical vignettes, next-best-step management, and sequential sets.",
     accentClass: "from-indigo-500/15 to-violet-600/10 border-indigo-200/70",
     simulatedDurationMin: 240,
-    simulatedQuestionCount: 80,
+    simulatedQuestionCount: 280,
   },
   naplex: {
     slug: "naplex",
