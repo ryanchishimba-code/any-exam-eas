@@ -19,6 +19,7 @@ import {
   Target,
 } from "lucide-react";
 import { LandingVisualSlot } from "@/components/home/LandingVisualSlot";
+import { Top500DrugsVisual } from "@/components/home/Top500DrugsVisual";
 import { DRUG_CLASSES } from "@/lib/drugs300/drug-classes";
 import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import { studyHubMpjeHref } from "@/lib/study-hub/config";
@@ -202,9 +203,9 @@ export function LandingCompact() {
                 </div>
               </div>
 
-              <LandingVisualSlot
-                visualId="feature-pharmacology"
-                className="mt-3 hidden overflow-hidden rounded-xl ring-1 ring-black/[0.04] sm:block"
+              <Top500DrugsVisual
+                variant="panel"
+                className="mt-3 hidden sm:block"
               />
 
               <ul className="mt-3 grid grid-cols-6 gap-1.5">

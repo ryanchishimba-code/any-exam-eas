@@ -9,6 +9,7 @@ import {
   Pill,
 } from "lucide-react";
 import { LandingVisualSlot } from "@/components/home/LandingVisualSlot";
+import { Top500DrugsVisual } from "@/components/home/Top500DrugsVisual";
 
 const benefits = [
   {
@@ -98,7 +99,12 @@ export function LandingFeatures() {
                 style={{ animationDelay: `${i * 40}ms` }}
               >
                 <article className="aee-feature-card group flex h-full flex-col bg-white">
-                  {benefit.visualId ? (
+                  {benefit.visualId === "feature-pharmacology" ? (
+                    <Top500DrugsVisual
+                      variant="feature"
+                      className="mb-3 aspect-[4/3] sm:block"
+                    />
+                  ) : benefit.visualId ? (
                     <LandingVisualSlot
                       visualId={benefit.visualId}
                       className="mb-3 aspect-[4/3] overflow-hidden rounded-xl ring-1 ring-black/[0.04] sm:block"
