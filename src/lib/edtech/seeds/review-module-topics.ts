@@ -4,6 +4,7 @@ import {
   ANTICOAGULATION_MODULE,
   CONTROLLED_SUBSTANCES_MODULE,
   DELEGATION_MODULE,
+  DIABETES_PHARMACOTHERAPY_MODULE,
   HEART_FAILURE_MODULE,
   SEPSIS_MODULE,
 } from "@/lib/edtech/review-modules/content";
@@ -30,6 +31,16 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     practiceTopicSlug: "pharmacology",
     reviewModule: ANTICOAGULATION_MODULE,
     sortOrder: 1,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "naplex",
+    slug: "insulin-diabetes-management",
+    title: "Diabetes Pharmacotherapy",
+    overview:
+      "Insulin kinetics, metformin renal rules, SGLT2i/GLP-1 agents, hypoglycemia treatment, sick-day management, and U-500 safety for NAPLEX.",
+    practiceTopicSlug: "insulin-diabetes-management",
+    reviewModule: DIABETES_PHARMACOTHERAPY_MODULE,
+    sortOrder: 2,
   }),
   defineReviewModuleTopic({
     examSlug: "nclex",

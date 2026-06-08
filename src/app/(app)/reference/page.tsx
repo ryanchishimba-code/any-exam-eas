@@ -12,14 +12,25 @@ import type { ExamSlug } from "@/types/edtech";
 
 export const metadata = {
   title: "Quick Reference — Any Exam Easy",
-  description: "Searchable memory cards for equations, conversions, tables, and high-yield facts.",
+  description: "Memory cards for equations, conversions, tables, and high-yield facts.",
 };
 
 function ReferenceSkeleton() {
   return (
     <div className="space-y-6">
       <Skeleton className="h-40 w-full rounded-3xl" />
-      <Skeleton className="h-11 w-full rounded-2xl" />
+      <div className="space-y-3">
+        <div className="flex flex-wrap gap-2">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Skeleton key={`subject-${i}`} className="h-8 w-24 rounded-full" />
+          ))}
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <Skeleton key={`kind-${i}`} className="h-8 w-20 rounded-full" />
+          ))}
+        </div>
+      </div>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {Array.from({ length: 6 }).map((_, i) => (
           <Skeleton key={i} className="h-52 w-full rounded-2xl" />
@@ -80,8 +91,8 @@ export default async function ReferencePage({ searchParams }: PageProps) {
           Memory Cards
         </h1>
         <p className="mt-2 max-w-2xl text-[var(--color-ink-muted)]">
-          Fast recall for your board exam — search, filter, then practice or open a deeper review
-          module.
+          Fast recall for your board exam — filter by subject or type, then practice or open a
+          deeper review module.
         </p>
       </header>
 

@@ -6,7 +6,9 @@ import {
   type ReviewModuleSection,
 } from "./types";
 import { REVIEW_MODULE_TOPICS, mergeReviewModules } from "../seeds/review-module-topics";
+import { NAPLEX_HIGH_YIELD_TOPICS } from "../seeds/high-yield-naplex";
 import { NCLEX_HIGH_YIELD_TOPICS } from "../seeds/high-yield-nclex";
+import { getMemoryCardsByReviewModuleSlug } from "@/lib/reference/seeds";
 
 function sectionHasContent(section: ReviewModuleSection): boolean {
   return (
@@ -17,9 +19,9 @@ function sectionHasContent(section: ReviewModuleSection): boolean {
 }
 
 describe("review module content", () => {
-  it("defines six flagship textbook modules", () => {
-    expect(Object.keys(REVIEW_MODULE_CONTENT_BY_SLUG)).toHaveLength(6);
-    expect(REVIEW_MODULE_TOPICS).toHaveLength(6);
+  it("defines seven flagship textbook modules", () => {
+    expect(Object.keys(REVIEW_MODULE_CONTENT_BY_SLUG)).toHaveLength(7);
+    expect(REVIEW_MODULE_TOPICS).toHaveLength(7);
   });
 
   for (const [slug, content] of Object.entries(REVIEW_MODULE_CONTENT_BY_SLUG)) {
@@ -72,4 +74,26 @@ describe("mergeReviewModules", () => {
     expect(merged[0].reviewModule?.sections).toHaveLength(8);
     expect(merged.some((t) => t.category === "Review Modules")).toBe(true);
   });
+
+  it("injects review modules ahead of base topics for NAPLEX with HF first", () => {
+    const merged = mergeReviewModules(NAPLEX_HIGH_YIELD_TOPICS, "naplex");
+    expect(merged[0].slug).toBe("heart-failure-gdmt");
+    expect(merged[0].reviewModule?.sections).toHaveLength(8);
+    expect(merged.some((t) => t.category === "Review Modules")).toBe(true);
+  });
+});
+
+describe("NCLEX memory cards ↔ deep dive modules", () => {
+  const nclexModules = REVIEW_MODULE_TOPICS.filter((t) => t.examSlug === "nclex");
+
+  for (const mod of nclexModules) {
+    it(`${mod.slug} has memory cards linked for deep dive`, () => {
+      const cards = getMemoryCardsByReviewModuleSlug("nclex", mod.slug);
+      expect(cards.length).toBeGreaterThanOrEqual(6);
+      for (const card of cards) {
+        expect(card.reviewModuleSlug).toBe(mod.slug);
+        expect(card.practiceTopicSlug).toBe(mod.practiceTopicSlug);
+      }
+    });
+  }
 });
