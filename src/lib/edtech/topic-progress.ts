@@ -53,3 +53,24 @@ export async function incrementTopicReview(userId: string, topicId: string): Pro
     return 0;
   }
 }
+
+export async function incrementTopicPractice(userId: string, topicId: string): Promise<number> {
+  try {
+    const topic = await prisma.highYieldTopic.findUnique({
+      where: { id: topicId },
+      select: { id: true },
+    });
+    if (!topic) return 0;
+
+    const now = new Date();
+    const row = await prisma.userTopicProgress.upsert({
+      where: { userId_topicId: { userId, topicId } },
+      create: { userId, topicId, lastViewedAt: now, practiceCount: 1 },
+      update: { lastViewedAt: now, practiceCount: { increment: 1 } },
+      select: { practiceCount: true },
+    });
+    return row.practiceCount;
+  } catch {
+    return 0;
+  }
+}

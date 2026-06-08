@@ -50,12 +50,21 @@ export function highYieldTopicsHref(examSlug?: ExamSlug): string {
 }
 
 /** Deep link to a specific review module or topic slide-over. */
-export function highYieldTopicHref(examSlug: ExamSlug, topicSlug: string): string {
+export function highYieldTopicHref(
+  examSlug: ExamSlug,
+  topicSlug: string,
+  opts?: { deepDive?: boolean }
+): string {
   const qs = new URLSearchParams({
     exam: examSlug,
     topic: topicSlug,
   });
+  if (opts?.deepDive) qs.set("mode", "deep");
   return `${ROUTES.highYieldTopics}?${qs.toString()}`;
+}
+
+export function deepDiveTopicHref(examSlug: ExamSlug, topicSlug: string): string {
+  return highYieldTopicHref(examSlug, topicSlug, { deepDive: true });
 }
 
 export function referenceHref(examSlug?: ExamSlug): string {

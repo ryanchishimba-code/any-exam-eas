@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import Link from "next/link";
 import {
   X,
@@ -12,13 +12,21 @@ import {
   Eye,
   ChevronLeft,
   ChevronRight,
+  BookMarked,
+  Layers,
+  List,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { practiceTopicHref } from "@/lib/edtech/practice-links";
-import { recordTopicReview } from "@/lib/edtech/topic-actions";
+import { DeepDiveReviewPlayer } from "@/components/edtech/DeepDiveReviewPlayer";
+import { practiceTopicHref, referenceCardHref } from "@/lib/edtech/practice-links";
+import { getRelatedMemoryCards } from "@/lib/edtech/topic-graph";
+import { recordTopicReview, recordTopicPractice } from "@/lib/edtech/topic-actions";
 import { ReviewModuleRenderer } from "@/components/edtech/ReviewModuleRenderer";
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
+import { cn } from "@/lib/utils";
+
+type ViewMode = "scroll" | "deep";
 
 export function HighYieldTopicPanel({
   topic,
@@ -30,6 +38,7 @@ export function HighYieldTopicPanel({
   onNavigate,
   initialReviewCount = 0,
   onReviewRecorded,
+  initialDeepDive = false,
 }: {
   topic: HighYieldTopic | null;
   examSlug: ExamSlug;
@@ -40,15 +49,35 @@ export function HighYieldTopicPanel({
   onNavigate: (index: number) => void;
   initialReviewCount?: number;
   onReviewRecorded?: (topicId: string, reviewCount: number) => void;
+  initialDeepDive?: boolean;
 }) {
   const [reviewCount, setReviewCount] = useState(initialReviewCount);
   const [, startTransition] = useTransition();
+  const [viewMode, setViewMode] = useState<ViewMode>(
+    initialDeepDive ? "deep" : "scroll"
+  );
+
+  const relatedCards = useMemo(
+    () =>
+      topic?.reviewModule && topic.slug
+        ? getRelatedMemoryCards(examSlug, topic.slug)
+        : [],
+    [examSlug, topic?.reviewModule, topic?.slug]
+  );
 
   useBodyScrollLock(open);
 
   useEffect(() => {
     setReviewCount(initialReviewCount);
   }, [initialReviewCount, topic?.id]);
+
+  useEffect(() => {
+    if (topic?.reviewModule) {
+      setViewMode(initialDeepDive ? "deep" : "scroll");
+    } else {
+      setViewMode("scroll");
+    }
+  }, [topic?.id, topic?.reviewModule, initialDeepDive]);
 
   useEffect(() => {
     if (!open || !topic) return;
@@ -86,6 +115,12 @@ export function HighYieldTopicPanel({
   const practiceHref = practiceTopicHref(examSlug, topic.practiceTopicSlug, 10);
   const hasPrev = topicIndex > 0;
   const hasNext = topicIndex < topicCount - 1;
+
+  function trackPracticeLaunch() {
+    startTransition(async () => {
+      await recordTopicPractice(topic!.id);
+    });
+  }
 
   return (
     <div className="fixed inset-0 z-[180]">
@@ -133,7 +168,66 @@ export function HighYieldTopicPanel({
             </div>
 
             <div className="flex-1 overflow-y-auto px-5 py-6 sm:px-6">
+              {topic.reviewModule && relatedCards.length > 0 ? (
+                <section className="mb-6 rounded-2xl border border-teal-200/60 bg-teal-50/40 p-4">
+                  <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-800">
+                    <BookMarked className="h-4 w-4" aria-hidden />
+                    Related memory cards ({relatedCards.length})
+                  </h3>
+                  <ul className="mt-3 space-y-2">
+                    {relatedCards.map((card) => (
+                      <li key={card.id}>
+                        <Link
+                          href={referenceCardHref(examSlug, card.id)}
+                          className="block rounded-xl bg-white px-3 py-2 text-sm font-medium text-slate-800 ring-1 ring-teal-200/80 transition hover:bg-teal-50"
+                        >
+                          {card.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ) : null}
+
               {topic.reviewModule ? (
+                <div className="mb-4 flex rounded-xl border border-slate-200 bg-slate-50 p-1">
+                  <button
+                    type="button"
+                    onClick={() => setViewMode("deep")}
+                    className={cn(
+                      "flex flex-1 items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold transition",
+                      viewMode === "deep"
+                        ? "bg-white text-violet-800 shadow-sm"
+                        : "text-slate-600 hover:text-slate-900"
+                    )}
+                  >
+                    <Layers className="h-3.5 w-3.5" aria-hidden />
+                    Deep dive
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setViewMode("scroll")}
+                    className={cn(
+                      "flex flex-1 items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold transition",
+                      viewMode === "scroll"
+                        ? "bg-white text-slate-900 shadow-sm"
+                        : "text-slate-600 hover:text-slate-900"
+                    )}
+                  >
+                    <List className="h-3.5 w-3.5" aria-hidden />
+                    Full scroll
+                  </button>
+                </div>
+              ) : null}
+
+              {topic.reviewModule && viewMode === "deep" ? (
+                <DeepDiveReviewPlayer
+                  content={topic.reviewModule}
+                  memoryCards={relatedCards}
+                  practiceHref={practiceHref}
+                  onPracticeClick={trackPracticeLaunch}
+                />
+              ) : topic.reviewModule ? (
                 <ReviewModuleRenderer content={topic.reviewModule} />
               ) : (
                 <>
@@ -224,6 +318,7 @@ export function HighYieldTopicPanel({
               </div>
               <Link
                 href={practiceHref}
+                onClick={trackPracticeLaunch}
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-5 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-95"
               >
                 Practice 10 related questions

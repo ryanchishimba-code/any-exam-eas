@@ -21,10 +21,12 @@ async function TopicsContent({
   userId,
   examParam,
   topicParam,
+  deepDive,
 }: {
   userId: string;
   examParam?: string;
   topicParam?: string;
+  deepDive?: boolean;
 }) {
   const pref = await getUserExamPreference(userId);
   const examSlug: ExamSlug =
@@ -46,6 +48,7 @@ async function TopicsContent({
       topics={topics}
       progressMap={progressMap}
       initialTopicSlug={topicParam}
+      initialDeepDive={deepDive}
     />
   );
 }
@@ -67,7 +70,7 @@ function TopicsSkeleton() {
 export default async function HighYieldTopicsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ exam?: string; topic?: string }>;
+  searchParams: Promise<{ exam?: string; topic?: string; mode?: string }>;
 }) {
   const session = await auth();
   if (!session?.user?.id) {
@@ -75,11 +78,16 @@ export default async function HighYieldTopicsPage({
   }
 
   await requirePremiumPage(ROUTES.highYieldTopics);
-  const { exam, topic } = await searchParams;
+  const { exam, topic, mode } = await searchParams;
 
   return (
     <Suspense fallback={<TopicsSkeleton />}>
-      <TopicsContent userId={session.user.id} examParam={exam} topicParam={topic} />
+      <TopicsContent
+        userId={session.user.id}
+        examParam={exam}
+        topicParam={topic}
+        deepDive={mode === "deep"}
+      />
     </Suspense>
   );
 }

@@ -21,11 +21,13 @@ export function HighYieldTopicsClient({
   topics,
   progressMap: initialProgress,
   initialTopicSlug,
+  initialDeepDive = false,
 }: {
   examSlug: ExamSlug;
   topics: HighYieldTopic[];
   progressMap: TopicProgressMap;
   initialTopicSlug?: string | null;
+  initialDeepDive?: boolean;
 }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string>("all");
@@ -201,6 +203,7 @@ export function HighYieldTopicsClient({
         initialReviewCount={
           activeTopic ? progressMap[activeTopic.id]?.reviewCount ?? 0 : 0
         }
+        initialDeepDive={initialDeepDive}
         onReviewRecorded={handleReviewRecorded}
       />
     </>

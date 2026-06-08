@@ -6,8 +6,8 @@ import { BookOpen, GraduationCap, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/Button";
 import {
-  highYieldTopicHref,
   practiceTopicHref,
+  deepDiveTopicHref,
 } from "@/lib/edtech/practice-links";
 import {
   MEMORY_CARD_KIND_LABELS,
@@ -40,7 +40,7 @@ export function MemoryCardSheet({ card, examSlug, open, onClose }: Props) {
 
   const practiceHref = practiceTopicHref(examSlug, card.practiceTopicSlug, 10);
   const deepDiveHref = card.reviewModuleSlug
-    ? highYieldTopicHref(examSlug, card.reviewModuleSlug)
+    ? deepDiveTopicHref(examSlug, card.reviewModuleSlug)
     : null;
 
   return createPortal(

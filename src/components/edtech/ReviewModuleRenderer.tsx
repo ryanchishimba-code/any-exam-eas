@@ -35,9 +35,7 @@ const SECTION_STYLES: Partial<Record<ReviewModuleSectionId, string>> = {
 };
 
 export function ReviewModuleRenderer({ content }: { content: ReviewModuleContent }) {
-  const ordered = REVIEW_MODULE_SECTION_ORDER.map((id) =>
-    content.sections.find((s) => s.id === id)
-  ).filter(Boolean) as ReviewModuleSection[];
+  const ordered = getOrderedSections(content);
 
   return (
     <div className="space-y-6">
@@ -48,7 +46,13 @@ export function ReviewModuleRenderer({ content }: { content: ReviewModuleContent
   );
 }
 
-function ModuleSection({ section, index }: { section: ReviewModuleSection; index: number }) {
+export function getOrderedSections(content: ReviewModuleContent): ReviewModuleSection[] {
+  return REVIEW_MODULE_SECTION_ORDER.map((id) =>
+    content.sections.find((s) => s.id === id)
+  ).filter(Boolean) as ReviewModuleSection[];
+}
+
+export function ModuleSection({ section, index }: { section: ReviewModuleSection; index: number }) {
   const Icon = SECTION_ICONS[section.id] ?? BookOpen;
   const title = section.title || REVIEW_MODULE_DEFAULT_TITLES[section.id];
   const style = SECTION_STYLES[section.id] ?? "from-white to-slate-50/50 border-slate-200/60";

@@ -17,9 +17,9 @@ function sectionHasContent(section: ReviewModuleSection): boolean {
 }
 
 describe("review module content", () => {
-  it("defines five flagship textbook modules", () => {
-    expect(Object.keys(REVIEW_MODULE_CONTENT_BY_SLUG)).toHaveLength(5);
-    expect(REVIEW_MODULE_TOPICS).toHaveLength(5);
+  it("defines six flagship textbook modules", () => {
+    expect(Object.keys(REVIEW_MODULE_CONTENT_BY_SLUG)).toHaveLength(6);
+    expect(REVIEW_MODULE_TOPICS).toHaveLength(6);
   });
 
   for (const [slug, content] of Object.entries(REVIEW_MODULE_CONTENT_BY_SLUG)) {

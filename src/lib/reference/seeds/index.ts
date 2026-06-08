@@ -15,6 +15,15 @@ export function getMemoryCardSubjects(examSlug: ExamSlug): string[] {
   return [...subjects].sort();
 }
 
+export function getMemoryCardsByReviewModuleSlug(
+  examSlug: ExamSlug,
+  reviewModuleSlug: string
+): MemoryCard[] {
+  return MEMORY_CARDS.filter(
+    (c) => c.examSlug === examSlug && c.reviewModuleSlug === reviewModuleSlug
+  ).sort((a, b) => a.sortOrder - b.sortOrder);
+}
+
 export function filterMemoryCards(
   cards: MemoryCard[],
   opts: { query?: string; subject?: string; kind?: MemoryCardKind | "all" }

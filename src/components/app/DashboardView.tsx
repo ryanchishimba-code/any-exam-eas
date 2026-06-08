@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   BarChart3,
+  BookMarked,
   BookOpen,
   Clock,
   Layers,
@@ -19,6 +20,7 @@ import {
   analyticsHref,
   highYieldTopicsHref,
   questionBankHref,
+  referenceHref,
   top500Href,
 } from "@/lib/edtech/practice-links";
 import { ROUTES } from "@/lib/routes";
@@ -80,8 +82,14 @@ export function DashboardView({
 
   const secondaryCards = [
     {
+      title: "Memory Cards",
+      description: "Equations, pearls, and tables — then deep dive into full modules.",
+      href: referenceHref(examSlug),
+      icon: BookMarked,
+    },
+    {
       title: "High-Yield Topics",
-      description: "15 condensed summaries with must-know facts.",
+      description: "Textbook review modules and condensed summaries.",
       href: highYieldTopicsHref(examSlug),
       icon: Sparkles,
     },

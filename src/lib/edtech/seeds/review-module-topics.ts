@@ -3,6 +3,7 @@ import {
   ACS_MODULE,
   ANTICOAGULATION_MODULE,
   CONTROLLED_SUBSTANCES_MODULE,
+  DELEGATION_MODULE,
   HEART_FAILURE_MODULE,
   SEPSIS_MODULE,
 } from "@/lib/edtech/review-modules/content";
@@ -39,6 +40,16 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     practiceTopicSlug: "critical-care",
     reviewModule: SEPSIS_MODULE,
     sortOrder: 0,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "nclex",
+    slug: "delegation",
+    title: "Delegation & Scope of Practice",
+    overview:
+      "Assign tasks safely using the five rights while the RN retains accountability — a core NCLEX management module.",
+    practiceTopicSlug: "delegation",
+    reviewModule: DELEGATION_MODULE,
+    sortOrder: 1,
   }),
   defineReviewModuleTopic({
     examSlug: "usmle",
