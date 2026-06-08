@@ -26,6 +26,10 @@ export function queryMemoryCards(cards: MemoryCard[], opts: MemoryCardQuery): Me
 /** Future: map weak-area topic keys → memory card ids for Stats integration. */
 export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
   cardiology: ["naplex-hf-four-pillars", "usmle-stemi-path", "usmle-acs-spectrum"],
+  cardiovascular: ["usmle-stemi-path", "usmle-acs-spectrum", "usmle-acs-antithrombotics"],
+  "renal-electrolytes": ["usmle-hyperkalemia", "usmle-aki-fena", "all-anion-gap"],
+  "endocrine-dm": ["usmle-dka-orders", "usmle-hhs-vs-dka"],
+  "neurology-stroke": ["usmle-stroke-tpa", "usmle-tpa-exclusions"],
   pharmacology: ["naplex-reversal-chart", "naplex-hit-rule"],
   "critical-care": ["nclex-sepsis-bundle", "nclex-shock-types"],
   "federal-law": ["mpje-cii-rules", "mpje-schedules"],

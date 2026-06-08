@@ -4,6 +4,7 @@ import { BookMarked, ChevronRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MEMORY_CARD_KIND_LABELS, type MemoryCard } from "@/lib/reference/types";
+import { getMemoryCardPreview } from "@/lib/reference/card-preview";
 import { cn } from "@/lib/utils";
 
 const KIND_COLORS: Record<MemoryCard["kind"], string> = {
@@ -59,8 +60,8 @@ export function MemoryCardTile({
         </p>
       </CardHeader>
       <CardContent className="pt-0">
-        <p className="line-clamp-3 rounded-xl bg-[var(--color-surface)] px-3 py-2.5 font-mono text-xs leading-relaxed text-[var(--color-ink)]">
-          {card.body || card.bullets?.[0] || "Tap to view"}
+        <p className="line-clamp-3 rounded-xl bg-[var(--color-surface)] px-3 py-2.5 text-xs leading-relaxed text-[var(--color-ink)]">
+          {getMemoryCardPreview(card)}
         </p>
         <div className="mt-3 flex items-center justify-between text-xs font-semibold text-[var(--color-accent)]">
           <span className="inline-flex items-center gap-1">
