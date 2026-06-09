@@ -11,10 +11,12 @@ import { NAPLEX_CALC_CASES_V3 } from "./naplex-calc-cases-v3";
 import { NAPLEX_QUALITY_V2 } from "./naplex-quality-v2";
 import { USMLE_QUALITY_V2 } from "./usmle-quality-v2";
 import { USMLE_STEP3_V3 } from "./usmle-step3-v3";
+import { NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/naplex-physician-educator-batch-01";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-01";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_02 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-02";
 import { NAPLEX_VIGNETTE_SEEDS, USMLE_VIGNETTE_SEEDS } from "./vignette-seeds";
 
+export { NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/naplex-physician-educator-batch-01";
 export { USMLE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-01";
 export { USMLE_PHYSICIAN_EDUCATOR_BATCH_02 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-02";
 
@@ -40,6 +42,7 @@ export function collectHighYieldSeedRows(): HighYieldSeedRow[] {
     ...NAPLEX_QUALITY_V2,
     ...NAPLEX_CALC_CASES_V3,
     ...NAPLEX_AREA3_V3,
+    ...NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01,
   ]) {
     rows.push({
       fieldId: "pharmacy",
