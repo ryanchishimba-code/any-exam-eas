@@ -11,7 +11,10 @@ import { NAPLEX_CALC_CASES_V3 } from "./naplex-calc-cases-v3";
 import { NAPLEX_QUALITY_V2 } from "./naplex-quality-v2";
 import { USMLE_QUALITY_V2 } from "./usmle-quality-v2";
 import { USMLE_STEP3_V3 } from "./usmle-step3-v3";
+import { USMLE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-01";
 import { NAPLEX_VIGNETTE_SEEDS, USMLE_VIGNETTE_SEEDS } from "./vignette-seeds";
+
+export { USMLE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-01";
 
 export type HighYieldSeedRow = {
   fieldId: string;
@@ -50,7 +53,12 @@ export function collectHighYieldSeedRows(): HighYieldSeedRow[] {
     return "usmle-step-1";
   }
 
-  for (const item of [...USMLE_VIGNETTE_SEEDS, ...USMLE_QUALITY_V2, ...USMLE_STEP3_V3]) {
+  for (const item of [
+    ...USMLE_VIGNETTE_SEEDS,
+    ...USMLE_QUALITY_V2,
+    ...USMLE_STEP3_V3,
+    ...USMLE_PHYSICIAN_EDUCATOR_BATCH_01,
+  ]) {
     rows.push({
       fieldId: usmleFieldForItem(item),
       subjectId: item.subjectId ?? "pathology",

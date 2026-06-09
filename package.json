@@ -43,6 +43,8 @@
     "test": "npm run test:unit && npm run test:smoke",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
+    "test:qa:questions": "vitest run src/lib/exam-prep/question-seed-qa-gate.test.ts src/lib/exam-prep/usmle-physician-educator-batch-01.test.ts src/lib/exam-prep/nclex-curated-quality.test.ts src/lib/exam-prep/usmle-quality-v2.test.ts",
+    "test:qa:usmle": "vitest run src/lib/exam-prep/question-seed-qa-gate.test.ts src/lib/exam-prep/usmle-physician-educator-batch-01.test.ts",
     "test:smoke": "node scripts/smoke-test.mjs",
     "test:ui": "node scripts/test-ui-buttons.mjs",
     "test:clicks": "node scripts/test-click-audit.mjs",

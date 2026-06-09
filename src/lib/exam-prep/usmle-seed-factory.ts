@@ -27,7 +27,7 @@ export function usmleVignette(
   subjectId: string,
   vignette: string,
   stem: string,
-  options: [string, string, string, string],
+  options: readonly [string, string, string, string] | readonly string[],
   correct: string,
   explanation: string,
   meta: UsmleMeta
@@ -37,7 +37,7 @@ export function usmleVignette(
       subjectId,
       vignette,
       question: stem,
-      options,
+      options: [...options],
       correctAnswer: correct,
       explanation,
       itemType: "vignette",

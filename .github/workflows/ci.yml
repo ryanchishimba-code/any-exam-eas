@@ -26,6 +26,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Question bank quality QA
+        run: npm run test:qa:questions
+
       - name: Unit tests
         run: npm run test:unit
 

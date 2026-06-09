@@ -65,6 +65,10 @@ function rowToCreateData(
     topicCategory: item.topicCategory ?? null,
     blueprintDomain: item.blueprintDomain ?? null,
     itemType: item.itemType ?? "mcq",
+    stepLevel:
+      typeof item.ngnPayload?.stepLevel === "string"
+        ? (item.ngnPayload.stepLevel as string)
+        : null,
     question: item.question,
     options: serializeBankOptions(item),
     correctAnswer: item.correctAnswer,
