@@ -107,9 +107,14 @@ export function HomeBottomCta() {
         <h2 id="home-cta-heading" className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
           All four exams. One {formatTrialIntroPrice()} trial.
         </h2>
-        <p className="mt-2 text-sm text-teal-100/90">
-          {formatTrialLabel()} · NCLEX · USMLE · NAPLEX · MPJE · Adaptive practice · Top 500 Drugs ·
-          then {formatMonthlyPrice()}/mo
+        <p className="mt-2 text-sm leading-relaxed text-teal-100/90">
+          <span className="block sm:inline">
+            {formatTrialLabel()} · NCLEX · USMLE · NAPLEX · MPJE
+          </span>
+          <span className="mt-1 block sm:mt-0 sm:inline">
+            <span className="hidden sm:inline"> · </span>
+            Adaptive practice · Top 500 Drugs · then {formatMonthlyPrice()}/mo
+          </span>
         </p>
         <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
           <Link

@@ -9,18 +9,14 @@ import {
   CircleDollarSign,
   HeartPulse,
   Layers,
-  Lightbulb,
   MapPin,
   Minus,
   Pill,
   Scale,
   Stethoscope,
-  Tags,
-  Target,
 } from "lucide-react";
 import { LandingVisualSlot } from "@/components/home/LandingVisualSlot";
 import { Top500DrugsVisual } from "@/components/home/Top500DrugsVisual";
-import { DRUG_CLASSES } from "@/lib/drugs300/drug-classes";
 import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import { studyHubMpjeHref } from "@/lib/study-hub/config";
 import {
@@ -92,8 +88,6 @@ const COMPARE_ROWS = [
   { us: "One plan — NCLEX · USMLE · NAPLEX · MPJE", them: "Separate subscriptions" },
   { us: "Top 500 Drugs + full-exam simulator included", them: "Paid add-ons common elsewhere" },
 ] as const;
-
-const DRUG_CLASSES_PREVIEW = DRUG_CLASSES.filter((c) => c.id !== "all").slice(0, 6);
 
 export function LandingCompact() {
   return (
@@ -203,45 +197,7 @@ export function LandingCompact() {
                 </div>
               </div>
 
-              <Top500DrugsVisual
-                variant="panel"
-                className="mt-3 hidden sm:block"
-              />
-
-              <ul className="mt-3 grid grid-cols-6 gap-1.5">
-                {DRUG_CLASSES_PREVIEW.map((cls) => (
-                  <li key={cls.id} title={cls.label}>
-                    <span
-                      className="block h-1.5 rounded-full"
-                      style={{ backgroundColor: cls.color }}
-                      aria-hidden
-                    />
-                    <span className="mt-1 block truncate text-[0.5625rem] font-bold text-slate-500">
-                      {cls.shortLabel}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-3 rounded-lg border border-slate-100 bg-slate-50/80 px-3 py-2.5">
-                <p className="text-sm font-semibold text-slate-900">
-                  Lisinopril <span className="font-normal text-slate-400">· Prinivil®</span>
-                </p>
-                <ul className="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-[0.625rem] text-slate-600">
-                  <li className="inline-flex items-center gap-1">
-                    <Tags className="h-3 w-3 text-sky-500" aria-hidden />
-                    Generic + brand
-                  </li>
-                  <li className="inline-flex items-center gap-1">
-                    <Target className="h-3 w-3 text-teal-500" aria-hidden />
-                    Indications
-                  </li>
-                  <li className="inline-flex items-center gap-1">
-                    <Lightbulb className="h-3 w-3 text-violet-500" aria-hidden />
-                    Mnemonics
-                  </li>
-                </ul>
-              </div>
+              <Top500DrugsVisual variant="panel" className="mt-3" />
 
               <Link
                 href="/study/drugs300"
@@ -298,19 +254,24 @@ export function LandingCompact() {
 
               <ul className="mt-3 space-y-2" role="list">
                 {COMPARE_ROWS.map(({ us, them }) => (
-                  <li key={us} className="grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-xs">
-                    <span className="flex items-center gap-1.5 font-medium text-slate-800">
+                  <li
+                    key={us}
+                    className="aee-landing-compare-row rounded-lg border border-slate-100/80 bg-white/70 px-3 py-2.5 text-xs sm:border-0 sm:bg-transparent sm:px-0 sm:py-0"
+                  >
+                    <span className="aee-landing-compare-us flex items-start gap-1.5 font-medium text-slate-800">
                       <Check
-                        className="h-3.5 w-3.5 shrink-0 text-emerald-600"
+                        className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600"
                         strokeWidth={2.5}
                         aria-hidden
                       />
                       {us}
                     </span>
-                    <span className="text-[0.5625rem] font-bold uppercase text-slate-300">vs</span>
-                    <span className="flex items-center justify-end gap-1.5 text-right text-slate-400">
+                    <span className="aee-landing-compare-vs text-[0.5625rem] font-bold uppercase text-slate-300">
+                      vs
+                    </span>
+                    <span className="aee-landing-compare-them flex items-start gap-1.5 text-slate-400">
+                      <Minus className="mt-0.5 h-3 w-3 shrink-0" aria-hidden />
                       {them}
-                      <Minus className="h-3 w-3 shrink-0" aria-hidden />
                     </span>
                   </li>
                 ))}
@@ -318,7 +279,7 @@ export function LandingCompact() {
 
               <Link
                 href="/signup?plan=trial"
-                className="aee-btn-hero-xl group mt-4 inline-flex w-full items-center justify-center gap-2 sm:w-auto"
+                className="aee-btn-hero-xl group mt-4 inline-flex w-full items-center justify-center gap-2"
               >
                 Start {formatTrialLabel()} — {formatTrialIntroPrice()}
                 <ArrowRight

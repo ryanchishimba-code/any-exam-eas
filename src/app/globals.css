@@ -2429,16 +2429,43 @@ body {
 
 .aee-hero-compact {
   min-height: 0;
-  padding-block: clamp(4.5rem, 10vw, 5.5rem);
-  padding-top: clamp(5.5rem, 11vw, 6.5rem);
+  padding-block: clamp(3.25rem, 8vw, 5.5rem);
+  padding-top: clamp(4.75rem, 10vw, 6.5rem);
 }
 
 .aee-hero-compact .aee-display-mega {
-  font-size: clamp(2.75rem, 8vw, 4.25rem);
+  font-size: clamp(2.125rem, 7.5vw, 4.25rem);
+  line-height: 1.05;
+}
+
+@media (max-width: 639px) {
+  .aee-hero-compact .aee-hero-tagline {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
 }
 
 .aee-landing-compact-section {
   padding-block: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.aee-landing-compare-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.375rem;
+}
+
+@media (min-width: 640px) {
+  .aee-landing-compare-row {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .aee-landing-compare-them {
+    justify-content: flex-end;
+    text-align: right;
+  }
 }
 
 .aee-landing-panel {
@@ -2506,6 +2533,43 @@ body {
 .aee-top500-visual--panel {
   min-height: 11.5rem;
   padding: 1rem 0.75rem 0.625rem;
+}
+
+@media (max-width: 639px) {
+  .aee-top500-visual--panel {
+    min-height: 13.5rem;
+    padding: 0.875rem 0.625rem 0.5rem;
+  }
+
+  .aee-top500-visual--feature {
+    min-height: 11rem;
+  }
+
+  .aee-top500-visual__stage {
+    min-height: 8.25rem;
+  }
+
+  .aee-top500-visual__card {
+    width: min(46%, 8.75rem);
+    padding: 0.5rem 0.5rem 0.4375rem;
+  }
+
+  .aee-top500-visual__generic {
+    font-size: 0.75rem;
+  }
+
+  .aee-top500-visual__class-label {
+    font-size: 0.4375rem;
+  }
+
+  .aee-landing-exam-chip {
+    min-height: 2.75rem;
+    padding: 0.75rem;
+  }
+
+  .aee-landing-panel {
+    padding: 0.875rem 1rem;
+  }
 }
 
 .aee-top500-visual--feature {

@@ -43,8 +43,11 @@ export function Footer() {
       ];
 
   return (
-    <footer className="apple-footer border-t border-black/[0.08] py-10" role="contentinfo">
-      <div className="mx-auto max-w-[980px] px-6">
+    <footer
+      className="apple-footer border-t border-black/[0.08] py-10 pb-[calc(2.5rem+env(safe-area-inset-bottom,0px))]"
+      role="contentinfo"
+    >
+      <div className="mx-auto max-w-[980px] px-5 sm:px-6">
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div className="md:col-span-1">
             <BrandLogo href={ROUTES.home} variant="footer" />

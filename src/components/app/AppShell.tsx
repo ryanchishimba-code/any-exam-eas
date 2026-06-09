@@ -23,7 +23,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div
         className={cn(
           "mx-auto flex max-w-6xl gap-8 px-4 pt-[var(--page-top)] sm:px-6",
-          immersiveExam ? "pb-4 lg:pb-8" : "pb-24 lg:pb-8"
+          immersiveExam
+            ? "pb-4 lg:pb-8"
+            : "pb-[calc(6rem+env(safe-area-inset-bottom,0px))] lg:pb-8"
         )}
       >
         {!immersiveExam ? <AppSidebar /> : null}

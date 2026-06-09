@@ -147,15 +147,14 @@ export function Navigation() {
             <div className="aee-nav-auth-group">
               <LoginModalTrigger
                 callbackUrl={ROUTES.dashboard}
-                className="aee-nav-login"
+                className="aee-nav-login max-[380px]:px-2.5"
                 aria-label="Log in to your account"
               >
                 <LogIn className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden />
-                Log in
+                <span className="max-[380px]:hidden">Log in</span>
               </LoginModalTrigger>
-              <Link href="/signup?plan=trial" className="aee-nav-cta">
-                <span className="hidden min-[420px]:inline">Start trial</span>
-                <span className="min-[420px]:hidden">Start trial</span>
+              <Link href="/signup?plan=trial" className="aee-nav-cta text-[0.8125rem] max-[380px]:px-3">
+                Start trial
               </Link>
             </div>
           )}

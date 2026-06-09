@@ -185,7 +185,7 @@ export function Hero() {
             )}
           </header>
 
-          <div className="aee-reveal aee-reveal-delay-2 mx-auto w-full max-w-[380px] lg:max-w-none">
+          <div className="aee-reveal aee-reveal-delay-2 mx-auto hidden w-full max-w-[380px] md:block lg:max-w-none">
             <LandingAppMockup />
           </div>
         </div>

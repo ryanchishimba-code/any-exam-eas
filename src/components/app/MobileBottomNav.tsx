@@ -20,7 +20,7 @@ export function MobileBottomNav() {
 
   return (
     <nav
-      className="fixed inset-x-0 bottom-0 z-50 border-t border-black/[0.06] bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-lg lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-black/[0.06] bg-white/95 pb-[env(safe-area-inset-bottom,0px)] backdrop-blur-lg lg:hidden"
       aria-label="Mobile study navigation"
     >
       <ul className="mx-auto flex max-w-lg items-stretch justify-around px-2 pt-1">
@@ -38,7 +38,7 @@ export function MobileBottomNav() {
                 aria-label={ariaLabel}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative flex flex-col items-center gap-0.5 px-2 py-2.5 text-[10px] font-semibold transition-colors",
+                  "relative flex min-h-[3rem] flex-col items-center justify-center gap-0.5 px-2 py-2 text-[10px] font-semibold transition-colors",
                   active ? "text-[var(--color-accent)]" : "text-[var(--color-ink-muted)]"
                 )}
               >
