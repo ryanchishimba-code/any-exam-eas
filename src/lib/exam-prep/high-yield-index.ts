@@ -11,11 +11,13 @@ import { NAPLEX_CALC_CASES_V3 } from "./naplex-calc-cases-v3";
 import { NAPLEX_QUALITY_V2 } from "./naplex-quality-v2";
 import { USMLE_QUALITY_V2 } from "./usmle-quality-v2";
 import { USMLE_STEP3_V3 } from "./usmle-step3-v3";
+import { MPJE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/mpje-physician-educator-batch-01";
 import { NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/naplex-physician-educator-batch-01";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-01";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_02 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-02";
 import { NAPLEX_VIGNETTE_SEEDS, USMLE_VIGNETTE_SEEDS } from "./vignette-seeds";
 
+export { MPJE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/mpje-physician-educator-batch-01";
 export { NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/naplex-physician-educator-batch-01";
 export { USMLE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-01";
 export { USMLE_PHYSICIAN_EDUCATOR_BATCH_02 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-02";
@@ -68,6 +70,14 @@ export function collectHighYieldSeedRows(): HighYieldSeedRow[] {
     rows.push({
       fieldId: usmleFieldForItem(item),
       subjectId: item.subjectId ?? "pathology",
+      item,
+    });
+  }
+
+  for (const item of MPJE_PHYSICIAN_EDUCATOR_BATCH_01) {
+    rows.push({
+      fieldId: "mpje",
+      subjectId: item.subjectId ?? "uniform-mpje",
       item,
     });
   }
