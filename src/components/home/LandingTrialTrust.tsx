@@ -9,7 +9,21 @@ const items = [
   { icon: RotateCcw, label: "Cancel anytime" },
 ] as const;
 
-export function LandingTrialTrust({ className = "" }: { className?: string }) {
+export function LandingTrialTrust({
+  className = "",
+  compact = false,
+}: {
+  className?: string;
+  compact?: boolean;
+}) {
+  if (compact) {
+    return (
+      <div className={className}>
+        <PaymentMethodBadges className="mt-2 lg:justify-start" size="sm" />
+      </div>
+    );
+  }
+
   return (
     <div className={className}>
       <p className="text-center text-xs font-medium text-slate-600 lg:text-left">

@@ -13,7 +13,13 @@ function formatCount(n: number): string {
   return n > 0 ? `${n}+` : "—";
 }
 
-export function LiveBankStats({ className = "" }: { className?: string }) {
+export function LiveBankStats({
+  className = "",
+  compact = false,
+}: {
+  className?: string;
+  compact?: boolean;
+}) {
   const [stats, setStats] = useState<CatalogResponse | null>(null);
 
   useEffect(() => {
@@ -44,6 +50,25 @@ export function LiveBankStats({ className = "" }: { className?: string }) {
       label: "Nursing bank",
     },
   ];
+
+  if (compact) {
+    return (
+      <div
+        className={`flex flex-wrap items-center justify-center gap-x-6 gap-y-2 lg:justify-between ${className}`}
+        aria-label="Live question bank stats"
+      >
+        {items.map(({ icon: Icon, value, label }) => (
+          <div key={label} className="flex items-center gap-2 text-sm">
+            <Icon className="h-3.5 w-3.5 shrink-0 text-teal-600" strokeWidth={2} aria-hidden />
+            <span>
+              <span className="font-bold text-slate-900">{value}</span>
+              <span className="text-slate-500"> · {label}</span>
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className={`grid grid-cols-3 gap-3 ${className}`}>

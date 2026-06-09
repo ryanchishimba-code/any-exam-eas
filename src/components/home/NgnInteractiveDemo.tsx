@@ -91,7 +91,7 @@ export function NgnInteractiveDemo() {
   return (
     <section
       id="ngn-demo"
-      className="aee-section aee-section-alt scroll-mt-24 py-8 sm:py-10"
+      className="aee-section aee-section-alt scroll-mt-24 py-6 sm:py-7"
       aria-labelledby="ngn-demo-heading"
     >
       <div className="mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
@@ -110,7 +110,7 @@ export function NgnInteractiveDemo() {
           </p>
         </div>
 
-        <div className="mx-auto mt-6 max-w-3xl">
+        <div className="mx-auto mt-5 max-w-3xl">
           <div
             className="flex flex-wrap justify-center gap-2"
             role="tablist"
@@ -141,7 +141,7 @@ export function NgnInteractiveDemo() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="mt-6 rounded-2xl border border-black/[0.08] bg-white p-6 shadow-lg shadow-teal-900/[0.04] sm:p-8"
+              className="mt-5 rounded-2xl border border-black/[0.08] bg-white p-5 shadow-lg shadow-teal-900/[0.04] sm:p-6"
               role="tabpanel"
             >
               <QuestionRenderer
@@ -184,7 +184,7 @@ export function NgnInteractiveDemo() {
             timed exam and flexible question bank modes.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/study/practice?field=nursing&mode=timed"
               className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"

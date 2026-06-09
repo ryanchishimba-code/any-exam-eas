@@ -52,7 +52,7 @@ export function LandingTestimonials() {
           </p>
         </div>
 
-        <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:gap-4">
+        <ul className="mt-4 grid gap-2.5 sm:grid-cols-2 lg:gap-3">
           {TESTIMONIALS.map(({ quote, name, exam }) => (
             <li key={name}>
               <figure className="aee-testimonial-card flex h-full flex-col">
@@ -73,7 +73,7 @@ export function LandingTestimonials() {
           ))}
         </ul>
 
-        <p className="mx-auto mt-6 max-w-xl text-center text-[0.625rem] leading-relaxed text-slate-400">
+        <p className="mx-auto mt-4 max-w-xl text-center text-[0.625rem] leading-relaxed text-slate-400">
           Individual experiences vary. Any Exam Easy does not guarantee licensure exam results.
         </p>
       </div>

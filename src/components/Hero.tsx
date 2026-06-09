@@ -77,23 +77,28 @@ export function Hero({ compareLayout = false }: { compareLayout?: boolean }) {
       </>
     );
     subline =
-      "Any Exam Easy is an online study platform for nurses, physicians, and pharmacists preparing for NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE. One subscription — switch exams anytime.";
+      "NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE in one subscription — adaptive banks, timed exams, and Top 500 Drugs.";
     urgency = formatTrialHeroOffer();
   }
 
   return (
     <section
-      className="aee-hero aee-hero-vibrant aee-hero-compact relative overflow-hidden"
+      className={`aee-hero aee-hero-vibrant aee-hero-compact relative overflow-hidden ${
+        compareLayout ? "aee-hero--band" : ""
+      }`}
       aria-labelledby="hero-heading"
     >
-      <div className="aee-hero-vibrant-bg pointer-events-none absolute inset-0" aria-hidden />
-      <div className="aee-hero-vibrant-orb aee-hero-vibrant-orb--1 pointer-events-none absolute" aria-hidden />
-      <div className="aee-hero-vibrant-orb aee-hero-vibrant-orb--2 pointer-events-none absolute" aria-hidden />
-      <div className="aee-hero-grid pointer-events-none absolute inset-0" aria-hidden />
+      {!compareLayout && (
+        <>
+          <div className="aee-hero-vibrant-bg pointer-events-none absolute inset-0" aria-hidden />
+          <div className="aee-hero-vibrant-orb aee-hero-vibrant-orb--1 pointer-events-none absolute" aria-hidden />
+          <div className="aee-hero-vibrant-orb aee-hero-vibrant-orb--2 pointer-events-none absolute" aria-hidden />
+          <div className="aee-hero-grid pointer-events-none absolute inset-0" aria-hidden />
+          <div className="aee-hero-compare-fade pointer-events-none absolute inset-x-0 bottom-0 z-[3]" aria-hidden />
+        </>
+      )}
 
-      <div className="aee-hero-compare-fade pointer-events-none absolute inset-x-0 bottom-0 z-[3]" aria-hidden />
-
-      <div className="relative z-10 mx-auto max-w-[1080px] px-5 sm:px-6">
+      <div className="relative z-10 mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-0">
         <div
           className={
             compareLayout
@@ -126,11 +131,11 @@ export function Hero({ compareLayout = false }: { compareLayout?: boolean }) {
               {subline}
             </p>
 
-            {!isAuthed && !isReturning && (
+            {!isAuthed && !isReturning && !compareLayout && (
               <LandingHeroFacts className="aee-reveal aee-reveal-delay-2 mt-4 lg:max-w-xl" />
             )}
 
-            <div className="aee-reveal aee-reveal-delay-3 mt-5 flex flex-col items-stretch justify-center gap-2.5 sm:flex-row sm:flex-wrap sm:items-center lg:justify-start">
+            <div className="aee-reveal aee-reveal-delay-3 mt-4 flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:flex-wrap sm:items-center lg:justify-start">
                 {isAuthed ? (
                   <>
                     <Link
@@ -201,18 +206,20 @@ export function Hero({ compareLayout = false }: { compareLayout?: boolean }) {
             </div>
 
             {urgency && (
-              <p className="aee-hero-urgency aee-reveal aee-reveal-delay-4 mt-4">{urgency}</p>
+              <p className={`aee-hero-urgency aee-reveal aee-reveal-delay-4 ${compareLayout ? "mt-3" : "mt-4"}`}>
+                {urgency}
+              </p>
             )}
 
-            {!isAuthed && !isReturning && (
+            {!isAuthed && !isReturning && !compareLayout && (
               <TrustBar className="aee-reveal aee-reveal-delay-4 mt-3 lg:justify-start" />
             )}
 
             {!isAuthed && !isReturning && (
-              <LandingTrialTrust className="aee-reveal aee-reveal-delay-4 mt-2.5" />
+              <LandingTrialTrust compact={compareLayout} className="aee-reveal aee-reveal-delay-4 mt-2.5" />
             )}
 
-            {!isAuthed && (
+            {!isAuthed && !compareLayout && (
               <p className="aee-reveal aee-reveal-delay-4 mx-auto mt-2 max-w-md text-[11px] leading-relaxed text-slate-400 lg:mx-0">
                 {MARKETING_DISCLAIMER}
               </p>
