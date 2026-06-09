@@ -133,7 +133,7 @@ export function Top500DrugsVisual({ className, variant = "panel" }: Props) {
                   );
                 })}
               </ul>
-              {card.featured ? (
+              {"featured" in card && card.featured ? (
                 <p className="aee-top500-visual__mnemonic">
                   <Lightbulb className="h-3 w-3 shrink-0" aria-hidden />
                   <span>Lisinopril — ACE the pressure</span>
