@@ -12,9 +12,11 @@ import { NAPLEX_QUALITY_V2 } from "./naplex-quality-v2";
 import { USMLE_QUALITY_V2 } from "./usmle-quality-v2";
 import { USMLE_STEP3_V3 } from "./usmle-step3-v3";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-01";
+import { USMLE_PHYSICIAN_EDUCATOR_BATCH_02 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-02";
 import { NAPLEX_VIGNETTE_SEEDS, USMLE_VIGNETTE_SEEDS } from "./vignette-seeds";
 
 export { USMLE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-01";
+export { USMLE_PHYSICIAN_EDUCATOR_BATCH_02 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-02";
 
 export type HighYieldSeedRow = {
   fieldId: string;
@@ -58,6 +60,7 @@ export function collectHighYieldSeedRows(): HighYieldSeedRow[] {
     ...USMLE_QUALITY_V2,
     ...USMLE_STEP3_V3,
     ...USMLE_PHYSICIAN_EDUCATOR_BATCH_01,
+    ...USMLE_PHYSICIAN_EDUCATOR_BATCH_02,
   ]) {
     rows.push({
       fieldId: usmleFieldForItem(item),

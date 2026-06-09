@@ -110,12 +110,15 @@ export function assessUsmlePhysicianEducatorItem(
     push("subject_id", "subjectId is required.");
   }
 
-  if (!AGE_PATTERN.test(vignette)) {
+  const exemptAge = item.subjectId === "biostatistics";
+  if (!exemptAge && !AGE_PATTERN.test(vignette)) {
     push("vignette_age", "Vignette should include patient age (e.g. 68-year-old).");
   }
 
   const exemptNumericData =
-    item.blueprintDomain === "Social Sciences" || item.subjectId === "ethics";
+    item.blueprintDomain === "Social Sciences" ||
+    item.subjectId === "ethics" ||
+    item.subjectId === "biostatistics";
   if (!exemptNumericData && !CLINICAL_DATA_PATTERN.test(vignette)) {
     push("vignette_data", "Vignette should include numeric vitals, labs, or imaging data.");
   }
