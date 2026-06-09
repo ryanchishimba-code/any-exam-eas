@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { PAYMENT_METHODS } from "@/lib/payments";
+import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import { CreditCard, Smartphone } from "lucide-react";
 
 const icons: Record<string, ReactNode> = {
@@ -12,15 +13,19 @@ const icons: Record<string, ReactNode> = {
 export function PaymentMethodsList({ compact = false }: { compact?: boolean }) {
   if (compact) {
     return (
-      <p className="text-center text-xs text-[var(--color-ink-muted)]">
-        Pay with credit or debit card, Apple Pay, Google Pay, or Link — processed securely by
-        Stripe.
-      </p>
+      <div className="space-y-3 text-center">
+        <p className="text-xs text-[var(--color-ink-muted)]">
+          Pay with credit or debit card, Apple Pay, or Google Pay — processed securely by Stripe.
+        </p>
+        <PaymentMethodBadges className="justify-center" size="sm" />
+      </div>
     );
   }
 
   return (
-    <ul className="mt-6 space-y-3 text-left">
+    <div className="mt-6 space-y-4">
+      <PaymentMethodBadges />
+      <ul className="space-y-3 text-left">
       {PAYMENT_METHODS.map((method) => (
         <li
           key={method.id}
@@ -35,6 +40,7 @@ export function PaymentMethodsList({ compact = false }: { compact?: boolean }) {
           </div>
         </li>
       ))}
-    </ul>
+      </ul>
+    </div>
   );
 }

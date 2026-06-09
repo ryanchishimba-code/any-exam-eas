@@ -1,8 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { normalizeEmail } from "@/lib/validators/auth";
 import { isAtLeast18 } from "@/lib/age";
-import { hasConsumedTrial, recordTrialUsed } from "@/lib/trial-eligibility";
-import { trialEndsAtFromNow } from "@/lib/billing-config";
 
 const DEFAULT_DOB = new Date("1990-01-01");
 
@@ -49,14 +47,12 @@ export async function findOrCreateGoogleUser(params: {
       emailVerified: new Date(),
       dateOfBirth: DEFAULT_DOB,
       subscription: {
-        create: (await hasConsumedTrial(email))
-          ? { status: "inactive", trialEndsAt: null }
-          : {
-              status: "trialing",
-              trialEndsAt: trialEndsAtFromNow(),
-              plan: "trial",
-              planInterval: "monthly",
-            },
+        create: {
+          status: "inactive",
+          trialEndsAt: null,
+          plan: "trial",
+          planInterval: "monthly",
+        },
       },
       accounts: {
         create: {
@@ -70,10 +66,6 @@ export async function findOrCreateGoogleUser(params: {
 
   if (!isAtLeast18(user.dateOfBirth)) {
     /* placeholder DOB for OAuth signups — user must be 18+ per terms */
-  }
-
-  if (!(await hasConsumedTrial(email))) {
-    await recordTrialUsed(email, user.id);
   }
 
   return { id: user.id, role: user.role };

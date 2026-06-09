@@ -4,8 +4,7 @@ import type { User } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { isAtLeast18 } from "@/lib/age";
 import { signUpSchema, normalizeEmail, type SignUpInput } from "@/lib/validators/auth";
-import { hasConsumedTrial, recordTrialUsed } from "@/lib/trial-eligibility";
-import { trialEndsAtFromNow } from "@/lib/billing-config";
+import { hasConsumedTrial } from "@/lib/trial-eligibility";
 
 const BCRYPT_ROUNDS = 12;
 const REGISTER_RETRIES = 6;
@@ -81,7 +80,7 @@ export async function recordUserLogin(userId: string): Promise<void> {
 
 /**
  * Create a new account with hashed password.
- * Trial plan: instant 3-day access (no card). Subscribe plan: checkout after signup.
+ * Trial and subscribe plans both continue to Stripe Checkout after signup.
  */
 export async function registerUser(
   input: SignUpInput
@@ -96,8 +95,8 @@ export async function registerUser(
   const passwordHash = await bcrypt.hash(parsed.password, BCRYPT_ROUNDS);
 
   let subscriptionData: {
-    status: "inactive" | "trialing";
-    trialEndsAt: Date | null;
+    status: "inactive";
+    trialEndsAt: null;
     plan?: string;
     planInterval?: string;
   };
@@ -109,13 +108,13 @@ export async function registerUser(
       );
     }
     subscriptionData = {
-      status: "trialing",
-      trialEndsAt: trialEndsAtFromNow(),
+      status: "inactive",
+      trialEndsAt: null,
       plan: "trial",
       planInterval: "monthly",
     };
   } else {
-    subscriptionData = { status: "inactive", trialEndsAt: null };
+    subscriptionData = { status: "inactive", trialEndsAt: null, plan: "subscribe" };
   }
 
   try {
@@ -142,10 +141,6 @@ export async function registerUser(
         { maxWait: 15_000, timeout: 45_000 }
       )
     );
-
-    if (parsed.plan === "trial") {
-      await recordTrialUsed(parsed.email, user.id);
-    }
 
     void import("@/lib/email-verification").then((m) =>
       m.sendEmailVerification(user.id, user.email)

@@ -9,6 +9,7 @@ import { prisma } from "@/lib/prisma";
 import type Stripe from "stripe";
 import { trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
+import { recordTrialUsed } from "@/lib/trial-eligibility";
 
 export const runtime = "nodejs";
 
@@ -48,6 +49,7 @@ export async function POST(req: Request) {
             stripeCustomerId: String(session.customer),
             stripeSubscriptionId: String(session.subscription ?? ""),
             status: stripeSub?.status ?? "active",
+            plan: session.metadata?.plan === "trial" ? "trial" : "monthly",
             ...(stripeSub?.trial_end
               ? { trialEndsAt: new Date(stripeSub.trial_end * 1000) }
               : {}),
@@ -56,6 +58,16 @@ export async function POST(req: Request) {
               : {}),
           },
         });
+
+        if (session.metadata?.plan === "trial") {
+          const user = await prisma.user.findUnique({
+            where: { id: userId },
+            select: { email: true },
+          });
+          if (user?.email) {
+            await recordTrialUsed(user.email, userId);
+          }
+        }
         trackEvent({
           userId,
           eventType: EVENT_TYPES.BILLING_CHECKOUT,

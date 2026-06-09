@@ -12,10 +12,12 @@ import {
 } from "@/lib/client/returning-user";
 import { ROUTES } from "@/lib/routes";
 import { useUserAccess } from "@/lib/client/use-user-access";
+import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import {
-  formatMonthlyPrice,
-  formatTrialIntroPrice,
+  formatTrialCtaLabel,
+  formatTrialHeroOffer,
   formatTrialLabel,
+  TRIAL_PAYMENT_DISCLOSURE,
 } from "@/lib/site";
 
 export function HomeBottomCta() {
@@ -105,7 +107,7 @@ export function HomeBottomCta() {
       <div className="aee-bottom-cta-bg pointer-events-none absolute inset-0" aria-hidden />
       <div className="relative mx-auto max-w-[640px] px-5 py-10 sm:px-6 sm:py-12">
         <h2 id="home-cta-heading" className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
-          All four exams. One {formatTrialIntroPrice()} trial.
+          {formatTrialHeroOffer()}
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-teal-100/90">
           <span className="block sm:inline">
@@ -113,7 +115,7 @@ export function HomeBottomCta() {
           </span>
           <span className="mt-1 block sm:mt-0 sm:inline">
             <span className="hidden sm:inline"> · </span>
-            Adaptive practice · Top 500 Drugs · then {formatMonthlyPrice()}/mo
+            Adaptive practice · Top 500 Drugs · cancel anytime
           </span>
         </p>
         <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
@@ -121,7 +123,7 @@ export function HomeBottomCta() {
             href="/signup?plan=trial"
             className="aee-btn-hero-xl aee-btn-hero-light group inline-flex items-center justify-center gap-2"
           >
-            Start {formatTrialLabel()} — {formatTrialIntroPrice()}
+            {formatTrialCtaLabel()}
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
           </Link>
           <LoginModalTrigger
@@ -132,6 +134,8 @@ export function HomeBottomCta() {
             Already subscribed? Log in
           </LoginModalTrigger>
         </div>
+        <p className="mt-4 text-xs text-teal-100/80">{TRIAL_PAYMENT_DISCLOSURE}</p>
+        <PaymentMethodBadges className="mt-3 justify-center" size="sm" />
       </div>
     </section>
   );

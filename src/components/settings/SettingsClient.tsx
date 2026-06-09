@@ -86,9 +86,13 @@ export function SettingsClient({
         <div className="flex items-center gap-2">
           <CreditCard className="h-5 w-5 text-slate-600" aria-hidden />
           <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
-            Billing
+            Subscription
           </h2>
         </div>
+        <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
+          Update payment method, view invoices, or cancel via the Stripe billing portal. Apple Pay
+          and Google Pay are saved as card payment methods for renewals.
+        </p>
         <div className="mt-4 flex flex-wrap gap-3">
           <ManageBillingButton />
           <Link

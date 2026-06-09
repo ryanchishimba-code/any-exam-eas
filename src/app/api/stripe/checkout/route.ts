@@ -7,6 +7,7 @@ import {
 } from "@/lib/stripe";
 import { getSubscriptionAccess } from "@/lib/subscription-access";
 import { isStripeConfigured } from "@/lib/payments";
+import { hasConsumedTrial } from "@/lib/trial-eligibility";
 
 export const runtime = "nodejs";
 
@@ -45,6 +46,15 @@ export async function POST(req: Request) {
   const plan = body?.plan === "trial" ? ("trial" as const) : ("subscribe" as const);
   const interval =
     body?.interval === "yearly" ? ("yearly" as const) : ("monthly" as const);
+
+  if (plan === "trial" && session.user.email) {
+    if (await hasConsumedTrial(session.user.email)) {
+      return NextResponse.json(
+        { error: "This email has already used a free trial. Subscribe at the monthly rate instead." },
+        { status: 400 }
+      );
+    }
+  }
 
   let stripeCouponId: string | null = null;
   let promoValidation = null;

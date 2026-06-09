@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { Button } from "./ui/Button";
 import { SubscribeButton } from "./SubscribeButton";
-import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+import { formatMonthlyPrice, formatTrialCtaLabel, formatTrialLabel } from "@/lib/site";
 
 type AccessInfo = {
   hasAccess: boolean;
@@ -46,7 +46,7 @@ export function PricingActions() {
 
     return (
       <div className="flex flex-col gap-3">
-        <Button href="/signup?plan=trial">Start {formatTrialLabel()}</Button>
+        <Button href="/checkout?plan=trial">{formatTrialCtaLabel()}</Button>
         <SubscribeButton label={`Subscribe Now — ${formatMonthlyPrice()}/mo`} variant="secondary" />
       </div>
     );
@@ -54,7 +54,7 @@ export function PricingActions() {
 
   return (
     <div className="flex flex-col gap-3">
-      <Button href="/signup?plan=trial">Start {formatTrialLabel()}</Button>
+      <Button href="/signup?plan=trial">{formatTrialCtaLabel()}</Button>
       <Button href="/signup?plan=subscribe" variant="secondary">
         Subscribe Now — {formatMonthlyPrice()}/month
       </Button>

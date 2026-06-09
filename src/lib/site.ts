@@ -25,8 +25,14 @@ export function formatMonthlyPrice(): string {
   return `$${MONTHLY_PRICE_USD.toFixed(2)}`;
 }
 
+/** Shown on pricing cards — $0 during trial unless legacy intro pricing is enabled. */
+export function formatTrialTodayPrice(): string {
+  if (usesIntroTrialPricing()) return formatTrialIntroPrice();
+  return "$0 today";
+}
+
 export function formatTrialIntroPrice(): string {
-  if (!usesIntroTrialPricing()) return "Free";
+  if (!usesIntroTrialPricing()) return "$0";
   return `$${TRIAL_INTRO_PRICE_USD.toFixed(2)}`;
 }
 
@@ -34,9 +40,24 @@ export function formatTrialLabel(): string {
   return `${TRIAL_DAYS}-day free trial`;
 }
 
+export function formatTrialCtaLabel(): string {
+  return `Start ${TRIAL_DAYS}-Day Free Trial`;
+}
+
+export function formatTrialHeroOffer(): string {
+  return `${formatTrialCtaLabel()} — Only ${formatMonthlyPrice()}/month after`;
+}
+
+/** Primary billing disclosure for landing, signup, and pricing. */
+export const TRIAL_PAYMENT_DISCLOSURE =
+  "No charge today • Cancel anytime • Secure payments with Apple Pay, Google Pay & Cards";
+
+/** @deprecated Use TRIAL_PAYMENT_DISCLOSURE */
+export const TRIAL_CARD_DISCLOSURE = TRIAL_PAYMENT_DISCLOSURE;
+
 export function formatPricingHeadline(): string {
   if (usesIntroTrialPricing()) {
     return `${formatTrialIntroPrice()} / ${TRIAL_DAYS}-day trial → ${formatMonthlyPrice()}/mo`;
   }
-  return `${TRIAL_DAYS}-day free trial → ${formatMonthlyPrice()}/mo`;
+  return `${TRIAL_DAYS}-day free trial · ${formatTrialTodayPrice()} · then ${formatMonthlyPrice()}/mo`;
 }

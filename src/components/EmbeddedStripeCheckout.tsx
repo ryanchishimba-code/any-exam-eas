@@ -166,7 +166,8 @@ export function EmbeddedStripeCheckout() {
         </EmbeddedCheckoutProvider>
       </div>
       <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-        Payments are encrypted and processed by Stripe. Cancel anytime from your account settings.
+        Payments are encrypted and processed by Stripe. Apple Pay and Google Pay appear when
+        supported on your device. Cancel anytime from Settings → Manage billing.
       </p>
     </div>
   );

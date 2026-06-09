@@ -28,7 +28,10 @@ export function resolvePostLoginDestination(
   }
 
   if (!status?.hasAccess) {
-    return "/pricing?paywall=1";
+    if (safe.startsWith("/checkout") || safe.startsWith("/signup") || safe.startsWith("/pricing")) {
+      return safe;
+    }
+    return "/checkout?plan=trial";
   }
 
   if (

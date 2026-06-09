@@ -20,7 +20,7 @@ export function ManageBillingButton() {
 
   return (
     <Button type="button" variant="ghost" onClick={openPortal} disabled={loading}>
-      {loading ? "Opening…" : "Manage billing"}
+      {loading ? "Opening…" : "Manage subscription"}
     </Button>
   );
 }

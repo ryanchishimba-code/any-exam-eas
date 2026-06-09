@@ -84,7 +84,9 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
       plan: params.plan ?? "subscribe",
       fullAccess: "true",
     },
-    payment_method_types: ["card"] as Stripe.Checkout.SessionCreateParams["payment_method_types"],
+    automatic_payment_methods: {
+      enabled: true,
+    },
     ...(isTrialPlan && !useIntro
       ? { payment_method_collection: "always" as const }
       : {}),

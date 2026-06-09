@@ -1,6 +1,6 @@
 "use client";
 
-import { formatMonthlyPrice, formatTrialIntroPrice } from "@/lib/site";
+import { formatMonthlyPrice, TRIAL_PAYMENT_DISCLOSURE } from "@/lib/site";
 import { TRIAL_DAYS, usesIntroTrialPricing } from "@/lib/stripe";
 import type { SignupPlan } from "@/lib/validators/auth";
 
@@ -13,11 +13,11 @@ const plans: {
   {
     id: "trial",
     title: usesIntroTrialPricing()
-      ? `${TRIAL_DAYS}-day trial — ${formatTrialIntroPrice()}`
+      ? `${TRIAL_DAYS}-day trial — ${formatMonthlyPrice()} after`
       : `${TRIAL_DAYS}-day free trial`,
     description: usesIntroTrialPricing()
-      ? `Pay ${formatTrialIntroPrice()} to start. Full access for ${TRIAL_DAYS} days, then ${formatMonthlyPrice()}/month.`
-      : `No card required. Full access for ${TRIAL_DAYS} days, then ${formatMonthlyPrice()}/month if you continue.`,
+      ? `Pay intro price to start. Full access for ${TRIAL_DAYS} days, then ${formatMonthlyPrice()}/month.`
+      : `${TRIAL_PAYMENT_DISCLOSURE} Full access for ${TRIAL_DAYS} days, then ${formatMonthlyPrice()}/month.`,
     badge: "Most popular",
   },
   {

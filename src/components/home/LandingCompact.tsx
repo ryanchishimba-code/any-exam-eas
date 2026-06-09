@@ -19,10 +19,13 @@ import { LandingVisualSlot } from "@/components/home/LandingVisualSlot";
 import { Top500DrugsVisual } from "@/components/home/Top500DrugsVisual";
 import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import { studyHubMpjeHref } from "@/lib/study-hub/config";
+import { TRIAL_DAYS } from "@/lib/stripe";
 import {
   formatMonthlyPrice,
-  formatTrialIntroPrice,
+  formatTrialCtaLabel,
+  formatTrialHeroOffer,
   formatTrialLabel,
+  formatTrialTodayPrice,
 } from "@/lib/site";
 
 const EXAMS = [
@@ -84,7 +87,7 @@ const VALUE_PILLARS = [
 ] as const;
 
 const COMPARE_ROWS = [
-  { us: `${formatTrialIntroPrice()} to try all four exams`, them: "$99+ per bank upfront" },
+  { us: `${formatTrialTodayPrice()} · ${TRIAL_DAYS}-day trial on all four exams`, them: "$99+ per bank upfront" },
   { us: "One plan — NCLEX · USMLE · NAPLEX · MPJE", them: "Separate subscriptions" },
   { us: "Top 500 Drugs + full-exam simulator included", them: "Paid add-ons common elsewhere" },
 ] as const;
@@ -238,7 +241,7 @@ export function LandingCompact() {
               <div className="mt-3 grid grid-cols-2 gap-2 rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
                 <div>
                   <p className="text-[0.625rem] font-bold uppercase text-teal-700">Any Exam Easy</p>
-                  <p className="text-2xl font-black text-teal-700">{formatTrialIntroPrice()}</p>
+                  <p className="text-2xl font-black text-teal-700">{formatTrialTodayPrice()}</p>
                   <p className="text-[0.625rem] text-slate-500">
                     {formatTrialLabel()}, then {formatMonthlyPrice()}/mo
                   </p>
@@ -281,12 +284,15 @@ export function LandingCompact() {
                 href="/signup?plan=trial"
                 className="aee-btn-hero-xl group mt-4 inline-flex w-full items-center justify-center gap-2"
               >
-                Start {formatTrialLabel()} — {formatTrialIntroPrice()}
+                {formatTrialCtaLabel()}
                 <ArrowRight
                   className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                   aria-hidden
                 />
               </Link>
+              <p className="mt-2 text-center text-[0.625rem] text-slate-500">
+                {formatTrialHeroOffer()}
+              </p>
             </article>
           </div>
         </div>

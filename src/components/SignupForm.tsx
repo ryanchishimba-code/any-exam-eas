@@ -6,7 +6,7 @@ import { LegalCheckbox } from "./LegalCheckbox";
 import { PlanChoice } from "./PlanChoice";
 import { Button } from "./ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
-import { MARKETING_DISCLAIMER } from "@/lib/site";
+import { MARKETING_DISCLAIMER, formatTrialCtaLabel, TRIAL_PAYMENT_DISCLOSURE } from "@/lib/site";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
 import type { SignupPlan } from "@/lib/validators/auth";
 import {
@@ -16,7 +16,6 @@ import {
 } from "@/lib/auth-client";
 import { MemberLoginLink } from "@/components/auth/MemberLoginLink";
 import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/lib/client/returning-user";
-import { Tag } from "lucide-react";
 
 export function SignupForm({
   initialPlan = "",
@@ -101,12 +100,7 @@ export function SignupForm({
       const promoQs = initialPromo.trim()
         ? `&promo=${encodeURIComponent(initialPromo.trim())}`
         : "";
-
-      if (plan === "trial") {
-        window.location.href = "/select-exam?trial=welcome";
-      } else {
-        window.location.href = `/checkout?plan=${plan}${promoQs}`;
-      }
+      window.location.href = `/checkout?plan=${plan}${promoQs}`;
     } catch (err) {
       setError(messageFromUnknownAuthError(err));
     } finally {
@@ -117,7 +111,7 @@ export function SignupForm({
   const submitLabel = !plan
     ? "Create account"
     : plan === "trial"
-      ? "Start free trial"
+      ? formatTrialCtaLabel()
       : "Continue to checkout";
 
   return (
@@ -134,11 +128,9 @@ export function SignupForm({
 
       <PlanChoice value={plan} onChange={setPlan} disabled={loading} />
 
-      {plan && plan === "subscribe" && (
-        <p className="flex items-center justify-center gap-1.5 rounded-xl bg-sky-50/80 px-4 py-3 text-center text-xs text-slate-600">
-          <Tag className="h-3.5 w-3.5 shrink-0 text-[var(--color-accent)]" aria-hidden />
-          Have a discount code? You can apply it on the checkout review screen — full access
-          is always included.
+      {plan && (
+        <p className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-relaxed text-slate-600">
+          {plan === "trial" ? TRIAL_PAYMENT_DISCLOSURE : "Have a discount code? Apply it on the checkout review screen."}
         </p>
       )}
 

@@ -1,11 +1,16 @@
 import { Suspense } from "react";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
-import { formatPricingHeadline, formatTrialIntroPrice } from "@/lib/site";
-import { MONTHLY_PRICE_USD, TRIAL_DAYS, usesIntroTrialPricing } from "@/lib/stripe";
+import {
+  formatPricingHeadline,
+  formatTrialTodayPrice,
+  TRIAL_PAYMENT_DISCLOSURE,
+} from "@/lib/site";
+import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/stripe";
 import { PricingActions } from "@/components/PricingActions";
 import { PaymentMethodsList } from "@/components/PaymentMethodsList";
 import { PageShell } from "@/components/PageShell";
 import { PaywallNotice } from "@/components/PaywallNotice";
+import { LandingTrialTrust } from "@/components/home/LandingTrialTrust";
 
 export const metadata = {
   title: "Pricing — Any Exam Easy",
@@ -31,14 +36,14 @@ export default async function PricingPage({
       <div className="apple-bento mt-8 p-10 shadow-[var(--shadow-apple-sm)]">
         <p className="text-sm font-medium text-[var(--color-accent)]">Pro · anyexameasy.com</p>
         <p className="mt-3 text-5xl font-semibold tracking-tight">
-          {usesIntroTrialPricing() ? formatTrialIntroPrice() : "Free"}
+          {formatTrialTodayPrice()}
           <span className="text-lg font-normal text-[var(--color-ink-muted)]">
             {" "}
             / {TRIAL_DAYS}-day trial
           </span>
         </p>
         <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-          Then ${MONTHLY_PRICE_USD.toFixed(2)}/month · cancel anytime
+          Then ${MONTHLY_PRICE_USD.toFixed(2)}/month · {TRIAL_PAYMENT_DISCLOSURE}
         </p>
 
         <ul className="mt-8 space-y-3.5 text-left text-[0.9375rem]">
@@ -57,6 +62,8 @@ export default async function PricingPage({
         </ul>
 
         <PaymentMethodsList />
+
+        <LandingTrialTrust className="mt-6" />
 
         <div className="mt-9">
           <Suspense fallback={null}>

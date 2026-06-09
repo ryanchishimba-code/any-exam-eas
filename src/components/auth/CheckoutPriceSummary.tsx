@@ -57,8 +57,8 @@ export function CheckoutPriceSummary({
     }
     return (
       <p className="text-sm text-[var(--color-ink-muted)]">
-        Add payment method · {TRIAL_DAYS}-day free trial continues · then{" "}
-        {formatUsd(MONTHLY_PRICE_USD)}/mo after trial ends
+        {formatUsd(0)} today · {TRIAL_DAYS}-day free trial · Apple Pay, Google Pay & cards · then{" "}
+        {formatUsd(MONTHLY_PRICE_USD)}/mo after trial
       </p>
     );
   }

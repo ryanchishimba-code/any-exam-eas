@@ -1,6 +1,6 @@
 /** Billing/trial constants — edge-safe (no Stripe SDK). */
 
-/** Free trial period (days) — no card required at signup; add payment before trial ends. */
+/** Free trial period (days) — card collected at checkout; no charge until trial ends. */
 export const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "3");
 
 /** Optional paid intro (legacy). Omit STRIPE_TRIAL_INTRO_PRICE_ID for free cardless trial. */

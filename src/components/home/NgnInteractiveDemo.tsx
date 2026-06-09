@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
-import { formatTrialLabel } from "@/lib/site";
+import { formatTrialCtaLabel } from "@/lib/site";
 import { NGN_DEMO_QUESTIONS } from "@/lib/demo/ngn-samples";
 import { examQuestionToStudy, isAnswerCorrect } from "@/lib/questions/prepare";
 import type { StudyQuestion } from "@/lib/questions/types";
@@ -195,7 +195,7 @@ export function NgnInteractiveDemo() {
               href="/signup?plan=trial"
               className="text-sm font-semibold text-[var(--color-accent)] hover:underline"
             >
-              Start {formatTrialLabel()}
+              {formatTrialCtaLabel()}
             </Link>
           </div>
         </div>

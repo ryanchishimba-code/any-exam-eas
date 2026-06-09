@@ -1,6 +1,6 @@
 "use client";
 
-import { formatMonthlyPrice, formatTrialIntroPrice } from "@/lib/site";
+import { formatMonthlyPrice, formatTrialCtaLabel, formatTrialTodayPrice } from "@/lib/site";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import type { SignupPlan } from "@/lib/validators/auth";
 import { cn } from "@/lib/utils";
@@ -15,7 +15,7 @@ export function CheckoutPlanSelector({ value, onChange }: CheckoutPlanSelectorPr
     {
       id: "trial",
       title: `${TRIAL_DAYS}-day trial`,
-      detail: `${formatTrialIntroPrice()} today · then ${formatMonthlyPrice()}/mo`,
+      detail: `${formatTrialTodayPrice()} · card, Apple Pay, or Google Pay · then ${formatMonthlyPrice()}/mo`,
     },
     {
       id: "subscribe",

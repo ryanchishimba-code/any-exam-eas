@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { ArrowRight, LogIn, Sparkles } from "lucide-react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { BrandLogo } from "@/components/brand/BrandLogo";
+import { LandingTrialTrust } from "@/components/home/LandingTrialTrust";
 import {
   firstName,
   loadReturningUserHint,
@@ -14,8 +15,8 @@ import {
   type ReturningUserHint,
 } from "@/lib/client/returning-user";
 import {
-  formatMonthlyPrice,
-  formatTrialIntroPrice,
+  formatTrialCtaLabel,
+  formatTrialHeroOffer,
   formatTrialLabel,
   MARKETING_DISCLAIMER,
 } from "@/lib/site";
@@ -75,7 +76,7 @@ export function Hero() {
     );
     subline =
       "NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE — adaptive question banks, OER-backed rationales, Top 500 drug flashcards, and timed full-exam practice in one affordable plan.";
-    urgency = `${formatTrialIntroPrice()} ${formatTrialLabel()} · then ${formatMonthlyPrice()}/mo · Cancel anytime`;
+    urgency = formatTrialHeroOffer();
   }
 
   return (
@@ -157,7 +158,7 @@ export function Hero() {
                       className="aee-btn-hero-xl group inline-flex w-full items-center justify-center gap-2.5 sm:w-auto"
                       data-promo-entry
                     >
-                      Start {formatTrialLabel()} — {formatTrialIntroPrice()}
+                      {formatTrialCtaLabel()}
                       <ArrowRight
                         className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1"
                         aria-hidden
@@ -176,6 +177,10 @@ export function Hero() {
 
             {urgency && (
               <p className="aee-hero-urgency aee-reveal aee-reveal-delay-4 mt-4">{urgency}</p>
+            )}
+
+            {!isAuthed && !isReturning && (
+              <LandingTrialTrust className="aee-reveal aee-reveal-delay-4 mt-4" />
             )}
 
             {!isAuthed && (
