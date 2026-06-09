@@ -98,7 +98,7 @@ export function Top500DrugsVisual({ className, variant = "panel" }: Props) {
                 card.offset,
                 card.z,
                 card.scale,
-                card.featured && "aee-top500-visual__card--featured"
+                "featured" in card && card.featured && "aee-top500-visual__card--featured"
               )}
               style={{ "--card-accent": drugClass.color } as CSSProperties}
             >
