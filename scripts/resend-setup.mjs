@@ -14,11 +14,13 @@
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 
-const ENV_PATH = ".env";
+const ENV_FILES = [".env.local", ".env"];
 
 function loadEnvFile() {
-  if (!existsSync(ENV_PATH)) return "";
-  return readFileSync(ENV_PATH, "utf8");
+  for (const file of ENV_FILES) {
+    if (existsSync(file)) return { content: readFileSync(file, "utf8"), path: file };
+  }
+  return { content: "", path: ".env.local" };
 }
 
 function getEnvValue(content, key) {
@@ -39,12 +41,13 @@ function setEnvValue(content, key, value) {
 }
 
 async function main() {
-  let envContent = loadEnvFile();
+  const { content: initialContent, path: envPath } = loadEnvFile();
+  let envContent = initialContent;
   const apiKey = (process.env.RESEND_API_KEY ?? getEnvValue(envContent, "RESEND_API_KEY")).trim();
   const from =
     process.env.EMAIL_FROM?.trim() ||
     getEnvValue(envContent, "EMAIL_FROM") ||
-    "Any Exam Easy <onboarding@resend.dev>";
+    "Any Exam Easy <noreply@anyexameasy.com>";
 
   if (!apiKey || !apiKey.startsWith("re_")) {
     console.error(`
@@ -87,9 +90,9 @@ For quick test (sandbox only):
 
   envContent = setEnvValue(envContent, "RESEND_API_KEY", apiKey);
   envContent = setEnvValue(envContent, "EMAIL_FROM", from);
-  writeFileSync(ENV_PATH, envContent);
+  writeFileSync(envPath, envContent);
 
-  console.log(`\n✓ Saved RESEND_API_KEY and EMAIL_FROM to .env`);
+  console.log(`\n✓ Saved RESEND_API_KEY and EMAIL_FROM to ${envPath}`);
   console.log(`  EMAIL_FROM=${from}`);
   console.log("\nNext steps:");
   console.log("  Local:  npm run email:test-reset -- your@email.com");

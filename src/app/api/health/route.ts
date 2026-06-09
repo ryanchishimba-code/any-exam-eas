@@ -79,11 +79,15 @@ export async function GET() {
 
   const dbOk =
     checks.databaseUrl === "postgresql" || checks.databaseUrl === "sqlite-local";
+  const emailOk =
+    process.env.NODE_ENV !== "production" || checks.passwordResetEmail === "ok";
+
   const ok =
     checks.nextauthSecret === "ok" &&
     dbOk &&
     checks.prisma === "ok" &&
-    (checks.drizzle === "ok" || checks.drizzle === "skipped");
+    (checks.drizzle === "ok" || checks.drizzle === "skipped") &&
+    emailOk;
 
   let env: Record<string, string> | undefined;
   try {

@@ -5,6 +5,8 @@ import {
   appBaseUrl,
   getEmailSetupWarnings,
   isEmailConfigured,
+  isPasswordResetEmailReady,
+  PASSWORD_RESET_UNAVAILABLE_MESSAGE,
 } from "@/lib/email/config";
 import { requestPasswordReset } from "@/lib/password-reset";
 import {
@@ -32,6 +34,15 @@ export async function POST(req: Request) {
   if (limited) return limited;
 
   logEmailSetupOnce();
+
+  // Fail fast in production when Resend is not configured — avoids false "check your inbox" UX.
+  if (process.env.NODE_ENV === "production" && !isPasswordResetEmailReady()) {
+    console.error("[forgot-password] Blocked — email not configured for production", {
+      resendConfigured: isEmailConfigured(),
+      setupWarnings: getEmailSetupWarnings(),
+    });
+    return NextResponse.json({ error: PASSWORD_RESET_UNAVAILABLE_MESSAGE }, { status: 503 });
+  }
 
   try {
     const body = await req.json();

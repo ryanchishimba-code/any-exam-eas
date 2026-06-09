@@ -9,8 +9,9 @@ import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 
 function loadEnv() {
-  if (!existsSync(".env")) return;
-  for (const line of readFileSync(".env", "utf8").split("\n")) {
+  for (const file of [".env", ".env.local"]) {
+    if (!existsSync(file)) continue;
+    for (const line of readFileSync(file, "utf8").split("\n")) {
     const t = line.trim();
     if (!t || t.startsWith("#")) continue;
     const i = t.indexOf("=");
@@ -20,7 +21,8 @@ function loadEnv() {
     if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) {
       v = v.slice(1, -1);
     }
-    if (!process.env[k]) process.env[k] = v;
+      if (!process.env[k]) process.env[k] = v;
+    }
   }
 }
 

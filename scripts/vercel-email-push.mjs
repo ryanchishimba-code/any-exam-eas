@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Push Resend email env vars from .env to Vercel production.
+ * Push Resend email env vars from .env.local / .env to Vercel production.
  * Usage: node scripts/vercel-email-push.mjs [--redeploy]
  */
 import { readFileSync, existsSync } from "node:fs";
@@ -9,8 +9,8 @@ import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const ENV_PATH = join(root, ".env");
 const VERCEL = process.platform === "win32" ? "npx.cmd" : "npx";
+const PRODUCTION_FROM = "Any Exam Easy <noreply@anyexameasy.com>";
 
 const KEYS = [
   { key: "RESEND_API_KEY", sensitive: true },
@@ -39,6 +39,17 @@ function parseEnv(content) {
   return out;
 }
 
+/** Merge .env then .env.local (local overrides). */
+function loadProjectEnv() {
+  const merged = {};
+  for (const file of [".env", ".env.local"]) {
+    const path = join(root, file);
+    if (!existsSync(path)) continue;
+    Object.assign(merged, parseEnv(readFileSync(path, "utf8")));
+  }
+  return merged;
+}
+
 function runVercelEnvAdd(key, value, target, sensitive) {
   const args = [
     "vercel",
@@ -64,21 +75,33 @@ function runVercelEnvAdd(key, value, target, sensitive) {
 }
 
 function main() {
-  if (!existsSync(ENV_PATH)) {
-    console.error("No .env file. Run: node scripts/resend-setup.mjs first.");
+  const env = loadProjectEnv();
+
+  if (!env.RESEND_API_KEY?.trim()) {
+    console.error("No RESEND_API_KEY in .env or .env.local.");
+    console.error("Run: RESEND_API_KEY=re_xxx node scripts/resend-setup.mjs");
     process.exit(1);
   }
 
-  const env = parseEnv(readFileSync(ENV_PATH, "utf8"));
   let ok = true;
 
   for (const { key, sensitive, fallback } of KEYS) {
-    const value = env[key]?.trim() || fallback;
+    let value = env[key]?.trim() || fallback;
     if (!value) {
-      console.error(`Missing ${key} in .env`);
+      console.error(`Missing ${key}`);
       ok = false;
       continue;
     }
+
+    // Sandbox sender only delivers to the Resend account owner — use verified domain in prod.
+    if (key === "EMAIL_FROM" && /resend\.dev|onboarding@/i.test(value)) {
+      console.warn(
+        `⚠ ${key} uses Resend sandbox — pushing ${PRODUCTION_FROM} for production instead.`
+      );
+      console.warn("  Verify anyexameasy.com at https://resend.com/domains if not done yet.");
+      value = PRODUCTION_FROM;
+    }
+
     if (!runVercelEnvAdd(key, value, "production", sensitive)) ok = false;
   }
 
@@ -86,7 +109,7 @@ function main() {
 
   console.log("\n✓ Email env pushed to Vercel production.");
   console.log("  Redeploy for changes to take effect:");
-  console.log("  npx vercel --prod\n");
+  console.log("  npm run vercel:email:deploy\n");
 
   if (process.argv.includes("--redeploy")) {
     const r = spawnSync(VERCEL, ["--prod"], { cwd: root, stdio: "inherit" });
