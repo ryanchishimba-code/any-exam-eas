@@ -353,10 +353,14 @@ model QuestionBankItem {
   source          String   @default("seed")
   contentHash     String   @unique
   active          Boolean  @default(true)
+  /// Set by scripts/qa-gate-question-bank.ts — only qaPassed items are served in practice.
+  qaPassed        Boolean  @default(false)
+  qaAuditedAt     DateTime?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
-  @@index([fieldId, subjectId, active])
+  @@index([fieldId, subjectId, active, qaPassed])
+  @@index([fieldId, active, qaPassed])
   @@index([fieldId, stateCode, active])
   @@index([fieldId, difficulty, active])
   @@index([fieldId, topicCategory, active])

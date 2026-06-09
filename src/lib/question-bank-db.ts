@@ -59,11 +59,11 @@ export function dedupeBankItemsByStem(items: BankItem[]): BankItem[] {
 }
 
 function activeSubjectWhere(fieldId: string, subjectId: string) {
-  return { fieldId, subjectId, active: true as const };
+  return { fieldId, subjectId, active: true as const, qaPassed: true as const };
 }
 
 function activeFieldWhere(fieldId: string) {
-  return { fieldId, active: true as const };
+  return { fieldId, active: true as const, qaPassed: true as const };
 }
 
 /** In-memory fallback when DB is empty (e.g. before first sync on Vercel). */
@@ -91,7 +91,7 @@ function staticSeedFallback(
 async function ensureBankAvailable(fieldId: string, subjectId?: string): Promise<void> {
   if (subjectId) {
     const count = await prisma.questionBankItem.count({
-      where: { fieldId, subjectId, active: true },
+      where: { fieldId, subjectId, active: true, qaPassed: true },
     });
     if (count >= MIN_SUBJECT_ROWS_BEFORE_SEED) return;
     await ensureSubjectHasQuestions(fieldId, subjectId);
@@ -99,7 +99,7 @@ async function ensureBankAvailable(fieldId: string, subjectId?: string): Promise
   }
 
   const count = await prisma.questionBankItem.count({
-    where: { fieldId, active: true },
+    where: { fieldId, active: true, qaPassed: true },
   });
   if (count > 0) return;
   await ensureStaticSeedsForField(fieldId);
@@ -202,6 +202,7 @@ export async function countActiveQuestions(fieldId?: string) {
   return prisma.questionBankItem.count({
     where: {
       active: true,
+      qaPassed: true,
       ...(fieldId ? { fieldId } : {}),
     },
   });

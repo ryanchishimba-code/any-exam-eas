@@ -28,7 +28,7 @@ const CATALOG_TTL_MS = 60_000;
 async function countQuestionsByField(): Promise<Map<string, number>> {
   const rows = await prisma.questionBankItem.groupBy({
     by: ["fieldId"],
-    where: { active: true },
+    where: { active: true, qaPassed: true },
     _count: { _all: true },
   });
   return new Map(rows.map((r) => [r.fieldId, r._count._all]));

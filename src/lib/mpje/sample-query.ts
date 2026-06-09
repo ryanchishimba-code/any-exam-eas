@@ -9,6 +9,7 @@ export function mpjeStateOrFederalWhere(
   const base: Prisma.QuestionBankItemWhereInput = {
     fieldId,
     active: true,
+    qaPassed: true,
     OR: [{ stateCode }, { stateCode: null }],
   };
   if (subjectId) base.subjectId = subjectId;
@@ -23,6 +24,7 @@ export function mpjeStateOnlyWhere(
   const base: Prisma.QuestionBankItemWhereInput = {
     fieldId,
     active: true,
+    qaPassed: true,
     stateCode,
   };
   if (subjectId) base.subjectId = subjectId;
@@ -36,6 +38,7 @@ export function mpjeFederalOnlyWhere(
   const base: Prisma.QuestionBankItemWhereInput = {
     fieldId,
     active: true,
+    qaPassed: true,
     stateCode: null,
   };
   if (subjectId) base.subjectId = subjectId;
