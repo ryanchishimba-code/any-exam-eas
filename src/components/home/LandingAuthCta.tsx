@@ -7,7 +7,7 @@ import { ReturningQuickSignIn } from "@/components/auth/ReturningQuickSignIn";
 import { DEFAULT_AUTH_CALLBACK } from "@/lib/client/auth-routes";
 import {
   formatMonthlyPrice,
-  formatTrialIntroPrice,
+  formatTrialEntryPrice,
   formatTrialLabel,
 } from "@/lib/site";
 
@@ -33,7 +33,7 @@ export function LandingAuthCta({
             compact ? "px-6 py-3.5 text-[0.9375rem]" : "px-8 py-4 text-base"
           }`}
         >
-          Start {formatTrialLabel()} — {formatTrialIntroPrice()}
+          Start {formatTrialLabel()} — {formatTrialEntryPrice()}
           <ArrowRight
             className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
             aria-hidden

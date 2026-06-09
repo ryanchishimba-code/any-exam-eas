@@ -2,6 +2,7 @@ import {
   MONTHLY_PRICE_USD,
   TRIAL_DAYS,
   TRIAL_INTRO_PRICE_USD,
+  usesIntroTrialPricing,
 } from "@/lib/billing-config";
 import type { SignupPlan } from "@/lib/validators/auth";
 
@@ -48,30 +49,32 @@ export function buildPlanPricing(
   discountAmount?: number | null
 ): PromoPricing {
   if (plan === "trial") {
-    const introOriginal = TRIAL_INTRO_PRICE_USD;
-    const introDiscounted = applyDiscount(introOriginal, discountPercent, discountAmount);
+    const dueTodayOriginal = usesIntroTrialPricing() ? TRIAL_INTRO_PRICE_USD : 0;
+    const dueTodayDiscounted = applyDiscount(dueTodayOriginal, discountPercent, discountAmount);
     const monthlyOriginal = MONTHLY_PRICE_USD;
     const monthlyDiscounted = applyDiscount(monthlyOriginal, discountPercent, discountAmount);
 
-    const introSavings = Math.max(0, introOriginal - introDiscounted);
+    const todaySavings = Math.max(0, dueTodayOriginal - dueTodayDiscounted);
     const monthlySavings = Math.max(0, monthlyOriginal - monthlyDiscounted);
 
     return {
       plan,
       primary: {
-        label: "Due today (trial start)",
-        original: introOriginal,
-        discounted: introDiscounted,
+        label: usesIntroTrialPricing()
+          ? "Due today (trial start)"
+          : `Due today (${TRIAL_DAYS}-day free trial)`,
+        original: dueTodayOriginal,
+        discounted: dueTodayDiscounted,
       },
       recurring: {
         label: `Then / month (after ${TRIAL_DAYS}-day trial)`,
         original: monthlyOriginal,
         discounted: monthlyDiscounted,
       },
-      totalSavings: introSavings + monthlySavings,
-      formattedPrimary: formatUsd(introDiscounted),
+      totalSavings: todaySavings + monthlySavings,
+      formattedPrimary: formatUsd(dueTodayDiscounted),
       formattedRecurring: formatUsd(monthlyDiscounted),
-      formattedSavings: formatUsd(introSavings + monthlySavings),
+      formattedSavings: formatUsd(todaySavings + monthlySavings),
     };
   }
 

@@ -52,7 +52,7 @@ export function LandingTestimonials() {
           </p>
         </div>
 
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:gap-5">
+        <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:gap-4">
           {TESTIMONIALS.map(({ quote, name, exam }) => (
             <li key={name}>
               <figure className="aee-testimonial-card flex h-full flex-col">

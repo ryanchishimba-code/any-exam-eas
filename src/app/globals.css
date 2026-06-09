@@ -23,7 +23,7 @@
   --shadow-apple-btn-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 28px rgba(79, 70, 229, 0.22);
   --ease-apple: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-apple-smooth: cubic-bezier(0.16, 1, 0.3, 1);
-  --landing-section-py: clamp(5.5rem, 13vw, 9rem);
+  --landing-section-py: clamp(2.75rem, 6vw, 4.25rem);
   --nav-height: 3rem;
   --page-top: calc(var(--nav-height) + 1.25rem);
 
@@ -831,10 +831,10 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border-radius: 1.375rem;
+  border-radius: 1.125rem;
   border: 1px solid rgba(0, 0, 0, 0.04);
   background: rgba(255, 255, 255, 0.92);
-  padding: 2rem 2rem 2.25rem;
+  padding: 1.25rem 1.25rem 1.375rem;
   box-shadow: var(--shadow-apple-sm);
   transition:
     transform 0.5s var(--ease-apple-smooth),
@@ -2429,8 +2429,8 @@ body {
 
 .aee-hero-compact {
   min-height: 0;
-  padding-block: clamp(3.25rem, 8vw, 5.5rem);
-  padding-top: clamp(4.75rem, 10vw, 6.5rem);
+  padding-block: clamp(2.25rem, 5vw, 3.5rem);
+  padding-top: clamp(3.5rem, 7vw, 4.5rem);
 }
 
 .aee-hero-compact .aee-display-mega {
@@ -2446,7 +2446,7 @@ body {
 }
 
 .aee-landing-compact-section {
-  padding-block: clamp(1.25rem, 3vw, 1.75rem);
+  padding-block: clamp(1rem, 2.5vw, 1.5rem);
 }
 
 .aee-landing-compare-row {
@@ -2868,7 +2868,7 @@ body {
 }
 
 .aee-landing-section-compact {
-  padding-block: clamp(2.5rem, 6vw, 4rem);
+  padding-block: clamp(1.75rem, 4vw, 2.75rem);
 }
 
 .aee-hero-urgency {

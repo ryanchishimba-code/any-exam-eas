@@ -3,7 +3,7 @@ import {
   SITE_DOMAIN,
   SITE_NAME,
   formatMonthlyPrice,
-  formatTrialIntroPrice,
+  formatTrialEntryPrice,
   formatTrialLabel,
 } from "@/lib/site";
 import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/stripe";
@@ -61,7 +61,7 @@ const HOME_KEYWORDS = [
 
 export function buildHomeMetadata(): Metadata {
   const title = `${SITE_NAME} — NCLEX, USMLE, NAPLEX & MPJE Prep`;
-  const description = `Board exam study support with adaptive practice across NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE. OER-backed rationales, Top 500 Drugs, and state-specific MPJE support. ${formatTrialLabel()} from ${formatTrialIntroPrice()}, then ${formatMonthlyPrice()}/mo.`;
+  const description = `Board exam study support with adaptive practice across NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE. OER-backed rationales, Top 500 Drugs, and state-specific MPJE support. ${formatTrialLabel()} — add payment at checkout, ${formatTrialEntryPrice()} for ${TRIAL_DAYS} days, then ${formatMonthlyPrice()}/mo.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 
@@ -176,7 +176,7 @@ export function buildHomeJsonLd() {
           "@type": "Offer",
           price: MONTHLY_PRICE_USD,
           priceCurrency: "USD",
-          description: `${TRIAL_DAYS}-day trial available from ${formatTrialIntroPrice()}`,
+          description: `${TRIAL_DAYS}-day free trial — ${formatTrialEntryPrice()} today, then ${formatMonthlyPrice()}/mo`,
         },
         description:
           "Board exam study support with adaptive practice, progress tracking, and OER-backed explanations for NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE.",

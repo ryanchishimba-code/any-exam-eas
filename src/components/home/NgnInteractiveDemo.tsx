@@ -91,7 +91,7 @@ export function NgnInteractiveDemo() {
   return (
     <section
       id="ngn-demo"
-      className="aee-section aee-section-alt scroll-mt-24 py-16 sm:py-20"
+      className="aee-section aee-section-alt scroll-mt-24 py-8 sm:py-10"
       aria-labelledby="ngn-demo-heading"
     >
       <div className="mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
@@ -100,17 +100,17 @@ export function NgnInteractiveDemo() {
             <Sparkles className="mr-1.5 inline h-3.5 w-3.5" aria-hidden />
             Try it — no signup
           </p>
-          <h2 id="ngn-demo-heading" className="aee-display-md mt-5">
-            Real NCLEX formats,{" "}
-            <span className="aee-display-accent">not generic MCQ.</span>
+          <h2 id="ngn-demo-heading" className="aee-display-md mt-3">
+            Try real NCLEX question formats —{" "}
+            <span className="aee-display-accent">no signup required.</span>
           </h2>
-          <p className="aee-lede mx-auto mt-4">
-            Interact with bow-tie, matrix, and unfolding case items — the same formats you will
-            see on exam day.
+          <p className="aee-lede mx-auto mt-2.5">
+            This is the same interactive player used in the app — bow-tie, matrix, and unfolding
+            case items like you will see on the NCLEX.
           </p>
         </div>
 
-        <div className="mx-auto mt-10 max-w-3xl">
+        <div className="mx-auto mt-6 max-w-3xl">
           <div
             className="flex flex-wrap justify-center gap-2"
             role="tablist"

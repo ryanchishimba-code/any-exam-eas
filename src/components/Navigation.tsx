@@ -155,7 +155,7 @@ export function Navigation() {
                 <span className="max-[380px]:hidden">Log in</span>
               </LoginModalTrigger>
               <Link href="/signup?plan=trial" className="aee-nav-cta text-[0.8125rem] max-[380px]:px-3">
-                Start trial
+                Start free trial
               </Link>
             </div>
           )}
@@ -228,7 +228,7 @@ export function Navigation() {
                     className="aee-nav-cta block py-3 text-center text-sm"
                     onClick={closeMobile}
                   >
-                    Start trial
+                    Start free trial
                   </Link>
                 </div>
               )}

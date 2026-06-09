@@ -5,15 +5,15 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check, Minus } from "lucide-react";
 import {
   formatMonthlyPrice,
-  formatTrialIntroPrice,
   formatTrialLabel,
+  formatTrialTodayPrice,
 } from "@/lib/site";
 
 const competitorNames = ["UWorld", "Archer Review", "SimpleNursing"];
 
 const rows = [
-  { label: "Starting cost", us: `${formatTrialIntroPrice()} trial`, them: "$99–329+ upfront" },
-  { label: "Monthly", us: `${formatMonthlyPrice()}/mo listed`, them: "$39–89+/mo tiers" },
+  { label: "Starting cost", us: `${formatTrialTodayPrice()} · payment at checkout`, them: "$99–329+ upfront" },
+  { label: "Monthly", us: `${formatMonthlyPrice()}/mo after trial`, them: "$39–89+/mo tiers" },
   { label: "Exam coverage", us: "NCLEX · USMLE · NAPLEX · MPJE", them: "Often per-exam pricing" },
   { label: "Top 500 drugs", us: "Dedicated mastery", them: "Scattered in banks" },
   { label: "Adaptive practice", us: "Weak-area targeting built in", them: "Limited / add-on" },
@@ -25,11 +25,11 @@ export function HowWeCompare() {
   return (
     <section
       id="how-we-compare"
-      className="scroll-mt-24 border-b border-slate-100 bg-slate-50/80 py-8 sm:py-10"
+      className="scroll-mt-24 border-b border-slate-100 bg-slate-50/80 py-6 sm:py-8"
       aria-labelledby="compare-heading"
     >
       <div className="mx-auto max-w-[880px] px-5 sm:px-6 lg:px-8">
-        <div className="mb-6 text-center">
+        <div className="mb-4 text-center">
           <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-teal-600">
             Why students choose us
           </p>
@@ -67,10 +67,10 @@ export function HowWeCompare() {
                 </span>
               </div>
               <p className="mt-2 text-3xl font-black tracking-tight text-teal-700 sm:text-4xl">
-                {formatTrialIntroPrice()}
+                {formatTrialTodayPrice()}
               </p>
               <p className="mt-0.5 text-xs text-slate-500">
-                {formatTrialLabel()}, then {formatMonthlyPrice()}/mo
+                {formatTrialLabel()} · payment required · then {formatMonthlyPrice()}/mo
               </p>
             </header>
 
@@ -136,7 +136,7 @@ export function HowWeCompare() {
             href="/signup?plan=trial"
             className="group inline-flex items-center gap-1.5 text-sm font-bold text-teal-700 hover:text-teal-600"
           >
-            Start {formatTrialLabel()} — {formatTrialIntroPrice()}
+            Start {formatTrialLabel()} — {formatTrialTodayPrice()} today
             <ArrowRight
               className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
               aria-hidden

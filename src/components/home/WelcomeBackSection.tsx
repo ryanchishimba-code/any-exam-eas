@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { AppleLink } from "@/components/ui/AppleLink";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { LoginPromoGraphic } from "@/components/LoginPromoGraphic";
-import { formatTrialIntroPrice, formatTrialLabel, PRACTICE_PROGRESS_LABEL } from "@/lib/site";
+import { formatTrialEntryPrice, formatTrialLabel, PRACTICE_PROGRESS_LABEL } from "@/lib/site";
 import {
   firstName,
   loadReturningUserHint,
@@ -176,7 +176,7 @@ export function WelcomeBackSection() {
             <p className="mt-5 text-sm text-[var(--color-ink-muted)]">
               New here?{" "}
               <AppleLink href="/signup?plan=trial" className="!text-sm">
-                Start {formatTrialLabel()} — {formatTrialIntroPrice()}
+                Start {formatTrialLabel()} — {formatTrialEntryPrice()} today
               </AppleLink>
             </p>
           )}

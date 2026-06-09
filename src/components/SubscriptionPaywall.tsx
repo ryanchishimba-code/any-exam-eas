@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { SubscriptionAccess } from "@/lib/subscription-access";
-import { formatMonthlyPrice, formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
+import { formatTrialEntryPrice, formatTrialLabel, formatTrialPlanDetail } from "@/lib/site";
 import { Button } from "./ui/Button";
 
 export function SubscriptionPaywall({ access }: { access: SubscriptionAccess }) {
@@ -15,12 +15,12 @@ export function SubscriptionPaywall({ access }: { access: SubscriptionAccess }) 
         {isExpired ? "Renew to keep studying" : "Unlock full access"}
       </h2>
       <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-[var(--color-ink-muted)]">
-        {formatTrialIntroPrice()} for {formatTrialLabel()}, then {formatMonthlyPrice()}/month.
+        {formatTrialPlanDetail()}.
         Includes question banks, Top 500 drugs, practice exams, and progress tracking.
       </p>
       <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
         <Button href="/checkout?plan=trial">
-          Start {formatTrialLabel()} — {formatTrialIntroPrice()}
+          Start {formatTrialLabel()} — {formatTrialEntryPrice()} today
         </Button>
         <Button href="/checkout?plan=subscribe" variant="secondary">
           Subscribe Now

@@ -48,7 +48,7 @@ export function LandingDifferentiators() {
       aria-labelledby="differentiators-heading"
     >
       <div className="mx-auto max-w-[1080px] px-5 sm:px-6">
-        <div className="mb-6 max-w-2xl">
+        <div className="mb-4 max-w-2xl">
           <p className="text-[0.625rem] font-bold uppercase tracking-wider text-teal-600">
             Why switch
           </p>

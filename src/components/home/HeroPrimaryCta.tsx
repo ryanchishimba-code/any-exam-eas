@@ -7,7 +7,7 @@ import { HeroSocialAuth } from "@/components/home/HeroSocialAuth";
 import { DEFAULT_AUTH_CALLBACK } from "@/lib/client/auth-routes";
 import {
   formatMonthlyPrice,
-  formatTrialIntroPrice,
+  formatTrialEntryPrice,
   formatTrialLabel,
 } from "@/lib/site";
 
@@ -26,7 +26,7 @@ export function HeroPrimaryCta({
         href="/signup?plan=trial"
         className="aee-btn-hero group flex w-full items-center justify-center gap-2.5"
       >
-        Start {formatTrialLabel()} — {formatTrialIntroPrice()}
+        Start {formatTrialLabel()} — {formatTrialEntryPrice()}
         <ArrowRight
           className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1"
           aria-hidden

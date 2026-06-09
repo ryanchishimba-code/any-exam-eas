@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { EmbeddedStripeCheckout } from "@/components/EmbeddedStripeCheckout";
 import { PageShell } from "@/components/PageShell";
-import { formatTrialCtaLabel, TRIAL_PAYMENT_DISCLOSURE } from "@/lib/site";
+import { formatTrialCtaLabel, formatTrialCheckoutDescription } from "@/lib/site";
 
 export const metadata = {
   title: "Checkout — Any Exam Easy",
@@ -26,7 +26,7 @@ export default async function CheckoutPage({
       title={isTrial ? formatTrialCtaLabel() : "Review & subscribe"}
       description={
         isTrial
-          ? `${TRIAL_PAYMENT_DISCLOSURE} Enter payment below — Apple Pay, Google Pay, and cards accepted.`
+          ? formatTrialCheckoutDescription()
           : "Confirm your plan, apply a discount code if you have one, then enter payment."
       }
       maxWidth="max-w-xl"

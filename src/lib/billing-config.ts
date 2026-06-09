@@ -1,9 +1,9 @@
 /** Billing/trial constants — edge-safe (no Stripe SDK). */
 
-/** Free trial period (days) — card collected at checkout; no charge until trial ends. */
+/** Free trial period (days) — payment method collected at checkout; charge after trial ends. */
 export const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "3");
 
-/** Optional paid intro (legacy). Omit STRIPE_TRIAL_INTRO_PRICE_ID for free cardless trial. */
+/** Optional paid intro (legacy). Omit STRIPE_TRIAL_INTRO_PRICE_ID for standard $0 trial. */
 export const TRIAL_INTRO_PRICE_USD = Number(process.env.TRIAL_INTRO_PRICE_USD ?? "17.99");
 
 /** Recurring monthly price after trial */

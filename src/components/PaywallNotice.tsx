@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "./ui/Button";
-import { formatMonthlyPrice, formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
+import { formatTrialEntryPrice, formatTrialLabel, formatTrialPlanDetail } from "@/lib/site";
 
 export function PaywallNotice({
   reason,
@@ -26,12 +26,11 @@ export function PaywallNotice({
         <>
           <p className="mx-auto mt-3 max-w-md text-sm text-[var(--color-ink-muted)]">
             Question banks, timed practice exams, and analytics are available with an
-            active subscription. {formatTrialIntroPrice()} for {formatTrialLabel()}, then{" "}
-            {formatMonthlyPrice()}/month.
+            active subscription. {formatTrialPlanDetail()}.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Button href="/signup?plan=trial">
-              Start {formatTrialLabel()} — {formatTrialIntroPrice()}
+              Start {formatTrialLabel()} — {formatTrialEntryPrice()} today
             </Button>
             <Button href="/signup?plan=subscribe" variant="secondary">
               Subscribe Now

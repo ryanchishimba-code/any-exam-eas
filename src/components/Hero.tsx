@@ -8,6 +8,7 @@ import { ArrowRight, LogIn, Sparkles } from "lucide-react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { LandingTrialTrust } from "@/components/home/LandingTrialTrust";
+import { LandingHeroFacts } from "@/components/home/LandingHeroFacts";
 import { TrustBar } from "@/components/home/TrustBar";
 import {
   firstName,
@@ -25,7 +26,7 @@ import { ROUTES } from "@/lib/routes";
 
 const LandingAppMockup = dynamic(
   () => import("@/components/home/LandingAppMockup").then((m) => m.LandingAppMockup),
-  { ssr: false, loading: () => <div className="aee-landing-app-mockup min-h-[280px] sm:min-h-[320px]" aria-hidden /> }
+  { ssr: false, loading: () => <div className="aee-landing-app-mockup min-h-[220px] sm:min-h-[260px]" aria-hidden /> }
 );
 
 export function Hero() {
@@ -71,12 +72,12 @@ export function Hero() {
   } else {
     headline = (
       <>
-        Hard boards.{" "}
-        <span className="aee-display-accent-vibrant">One prep plan that covers four.</span>
+        Licensing exam prep —{" "}
+        <span className="aee-display-accent-vibrant">question banks & timed practice.</span>
       </>
     );
     subline =
-      "NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE — adaptive banks, NGN-style formats, Top 500 drug flashcards, and timed full exams. Why buy four separate subscriptions?";
+      "Any Exam Easy is an online study platform for nurses, physicians, and pharmacists preparing for NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE. One subscription — switch exams anytime.";
     urgency = formatTrialHeroOffer();
   }
 
@@ -91,19 +92,24 @@ export function Hero() {
       <div className="aee-hero-grid pointer-events-none absolute inset-0" aria-hidden />
 
       <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6">
-        <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:gap-12">
+        <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,380px)] lg:gap-8">
           <header className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-none lg:text-left">
             {!isAuthed && !isReturning ? (
               <BrandLogo variant="hero" className="aee-reveal mx-auto mb-2 lg:mx-0" priority />
             ) : null}
-            <p className="aee-hero-exam-pill aee-reveal lg:mx-0 mx-auto">
+            {!isAuthed && !isReturning ? (
+              <p className="aee-reveal mx-auto text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-teal-700 lg:mx-0">
+                Board exam prep for nurses, doctors &amp; pharmacists
+              </p>
+            ) : null}
+            <p className="aee-hero-exam-pill aee-reveal lg:mx-0 mx-auto mt-2">
               <Sparkles className="h-3 w-3" aria-hidden />
               NCLEX · USMLE · NAPLEX · MPJE
             </p>
 
             <h1
               id="hero-heading"
-              className="aee-display-mega aee-display-impact aee-reveal aee-reveal-delay-1 mt-4"
+              className="aee-display-mega aee-display-impact aee-reveal aee-reveal-delay-1 mt-3"
             >
               {headline}
             </h1>
@@ -112,7 +118,11 @@ export function Hero() {
               {subline}
             </p>
 
-            <div className="aee-reveal aee-reveal-delay-3 mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:justify-start">
+            {!isAuthed && !isReturning && (
+              <LandingHeroFacts className="aee-reveal aee-reveal-delay-2 mt-4 lg:max-w-xl" />
+            )}
+
+            <div className="aee-reveal aee-reveal-delay-3 mt-5 flex flex-col items-stretch justify-center gap-2.5 sm:flex-row sm:flex-wrap sm:items-center lg:justify-start">
                 {isAuthed ? (
                   <>
                     <Link
@@ -187,15 +197,15 @@ export function Hero() {
             )}
 
             {!isAuthed && !isReturning && (
-              <TrustBar className="aee-reveal aee-reveal-delay-4 mt-5 lg:justify-start" />
+              <TrustBar className="aee-reveal aee-reveal-delay-4 mt-3 lg:justify-start" />
             )}
 
             {!isAuthed && !isReturning && (
-              <LandingTrialTrust className="aee-reveal aee-reveal-delay-4 mt-4" />
+              <LandingTrialTrust className="aee-reveal aee-reveal-delay-4 mt-2.5" />
             )}
 
             {!isAuthed && (
-              <p className="aee-reveal aee-reveal-delay-4 mx-auto mt-3 max-w-md text-[11px] leading-relaxed text-slate-400 lg:mx-0">
+              <p className="aee-reveal aee-reveal-delay-4 mx-auto mt-2 max-w-md text-[11px] leading-relaxed text-slate-400 lg:mx-0">
                 {MARKETING_DISCLAIMER}
               </p>
             )}

@@ -29,7 +29,7 @@ type CheckoutBaseParams = {
   userId: string;
   successUrl: string;
   cancelUrl: string;
-  /** trial = add card during/after free trial; subscribe = bill immediately */
+  /** trial = collect payment method now; charge after free trial unless legacy intro price is set */
   plan?: "trial" | "subscribe";
   interval?: BillingInterval;
   stripeCustomerId?: string | null;
@@ -87,7 +87,7 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
     automatic_payment_methods: {
       enabled: true,
     },
-    ...(isTrialPlan && !useIntro
+    ...(isTrialPlan
       ? { payment_method_collection: "always" as const }
       : {}),
     payment_method_options: {

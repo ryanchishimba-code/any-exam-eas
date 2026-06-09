@@ -43,7 +43,8 @@ export default async function PricingPage({
           </span>
         </p>
         <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-          Then ${MONTHLY_PRICE_USD.toFixed(2)}/month · {TRIAL_PAYMENT_DISCLOSURE}
+          Then ${MONTHLY_PRICE_USD.toFixed(2)}/month after your {TRIAL_DAYS}-day trial ·{" "}
+          {TRIAL_PAYMENT_DISCLOSURE}
         </p>
 
         <ul className="mt-8 space-y-3.5 text-left text-[0.9375rem]">

@@ -25,15 +25,20 @@ export function formatMonthlyPrice(): string {
   return `$${MONTHLY_PRICE_USD.toFixed(2)}`;
 }
 
-/** Shown on pricing cards — $0 during trial unless legacy intro pricing is enabled. */
+/** Amount charged at checkout to start a trial ($0 unless legacy intro pricing is enabled). */
 export function formatTrialTodayPrice(): string {
   if (usesIntroTrialPricing()) return formatTrialIntroPrice();
-  return "$0 today";
+  return "$0";
 }
 
 export function formatTrialIntroPrice(): string {
   if (!usesIntroTrialPricing()) return "$0";
   return `$${TRIAL_INTRO_PRICE_USD.toFixed(2)}`;
+}
+
+/** Entry cost shown on CTAs — "$0" or intro price when legacy mode is on. */
+export function formatTrialEntryPrice(): string {
+  return formatTrialTodayPrice();
 }
 
 export function formatTrialLabel(): string {
@@ -45,12 +50,21 @@ export function formatTrialCtaLabel(): string {
 }
 
 export function formatTrialHeroOffer(): string {
-  return `${formatTrialCtaLabel()} — Only ${formatMonthlyPrice()}/month after`;
+  return `${formatTrialCtaLabel()} · ${formatMonthlyPrice()}/mo after · add payment at checkout`;
 }
 
 /** Primary billing disclosure for landing, signup, and pricing. */
-export const TRIAL_PAYMENT_DISCLOSURE =
-  "No charge today • Cancel anytime • Secure payments with Apple Pay, Google Pay & Cards";
+export const TRIAL_PAYMENT_DISCLOSURE = `Add payment to start · ${formatTrialTodayPrice()} for ${TRIAL_DAYS} days · Then ${formatMonthlyPrice()}/mo · Cancel anytime`;
+
+/** Checkout / signup detail line for the trial plan card. */
+export function formatTrialPlanDetail(): string {
+  return `Payment required now · ${formatTrialTodayPrice()} for ${TRIAL_DAYS} days · then ${formatMonthlyPrice()}/mo`;
+}
+
+/** Longer checkout page description under the trial headline. */
+export function formatTrialCheckoutDescription(): string {
+  return `${TRIAL_PAYMENT_DISCLOSURE} Enter your card or wallet below — you will not be charged until after your ${TRIAL_DAYS}-day trial ends.`;
+}
 
 /** @deprecated Use TRIAL_PAYMENT_DISCLOSURE */
 export const TRIAL_CARD_DISCLOSURE = TRIAL_PAYMENT_DISCLOSURE;
@@ -59,5 +73,5 @@ export function formatPricingHeadline(): string {
   if (usesIntroTrialPricing()) {
     return `${formatTrialIntroPrice()} / ${TRIAL_DAYS}-day trial → ${formatMonthlyPrice()}/mo`;
   }
-  return `${TRIAL_DAYS}-day free trial · ${formatTrialTodayPrice()} · then ${formatMonthlyPrice()}/mo`;
+  return `${TRIAL_DAYS}-day free trial · add payment at checkout · then ${formatMonthlyPrice()}/mo`;
 }

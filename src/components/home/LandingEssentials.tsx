@@ -5,7 +5,7 @@ import { ArrowRight, Check, HeartPulse, Pill, Scale, Stethoscope, type LucideIco
 import { studyHubMpjeHref } from "@/lib/study-hub/config";
 import {
   formatMonthlyPrice,
-  formatTrialIntroPrice,
+  formatTrialEntryPrice,
   formatTrialLabel,
 } from "@/lib/site";
 import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
@@ -52,7 +52,7 @@ const subscriberValue = [
   },
   {
     title: "Affordable full access",
-    detail: `${formatTrialIntroPrice()} to start · ${formatMonthlyPrice()}/mo after — all four exams, no $99+ bundles.`,
+    detail: `${formatTrialEntryPrice()} to start · payment required · ${formatMonthlyPrice()}/mo after trial — all four exams, no $99+ bundles.`,
   },
 ];
 
@@ -113,7 +113,7 @@ export function LandingEssentials() {
             <div>
               <span className="aee-value-badge">Best value</span>
               <p className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-                {formatTrialIntroPrice()}
+                {formatTrialEntryPrice()}
               </p>
               <p className="mt-1 text-teal-100">
                 {formatTrialLabel()} — NCLEX, USMLE, NAPLEX & MPJE, then {formatMonthlyPrice()}/mo

@@ -89,7 +89,7 @@ export function LandingFeatures() {
           </p>
         </div>
 
-        <ul className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-5">
+        <ul className="mt-5 grid gap-3 sm:mt-6 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-4">
           {benefits.map((benefit, i) => {
             const Icon = benefit.icon;
             return (
@@ -102,12 +102,12 @@ export function LandingFeatures() {
                   {benefit.visualId === "feature-pharmacology" ? (
                     <Top500DrugsVisual
                       variant="feature"
-                      className="mb-3 aspect-[4/3] min-h-[11rem]"
+                      className="mb-3 aspect-[4/3] min-h-[8rem]"
                     />
                   ) : benefit.visualId ? (
                     <LandingVisualSlot
                       visualId={benefit.visualId}
-                      className="mb-3 aspect-[4/3] min-h-[10rem] overflow-hidden rounded-xl ring-1 ring-black/[0.04]"
+                      className="mb-3 aspect-[4/3] min-h-[7.5rem] overflow-hidden rounded-xl ring-1 ring-black/[0.04]"
                     />
                   ) : null}
                   <span

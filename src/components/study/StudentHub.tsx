@@ -12,7 +12,7 @@ import { StreakBadge } from "@/components/ui/StreakBadge";
 import { Button } from "@/components/ui/Button";
 import { AppleLink } from "@/components/ui/AppleLink";
 import { ProgressMetricsNotice } from "@/components/legal/ProgressMetricsNotice";
-import { formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
+import { formatTrialEntryPrice, formatTrialLabel } from "@/lib/site";
 
 export function StudentHub({ suppressHero = false }: { suppressHero?: boolean }) {
   const { data: session } = useSession();
@@ -71,7 +71,7 @@ export function StudentHub({ suppressHero = false }: { suppressHero?: boolean })
           {!session?.user && (
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <Button href="/signup?plan=trial">
-                Start {formatTrialLabel()} — {formatTrialIntroPrice()}
+                Start {formatTrialLabel()} — {formatTrialEntryPrice()} today
               </Button>
               <AppleLink href="/login">Log in</AppleLink>
             </div>

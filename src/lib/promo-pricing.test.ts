@@ -13,8 +13,9 @@ describe("promo-pricing", () => {
     expect(applyDiscount(29.99, null, 10)).toBe(19.99);
   });
 
-  it("builds trial intro and recurring lines", () => {
+  it("builds trial due-today and recurring lines", () => {
     const pricing = buildPlanPricing("trial", 10, null);
+    expect(pricing.primary.discounted).toBe(0);
     expect(pricing.recurring?.discounted).toBeCloseTo(26.99, 2);
     expect(pricing.totalSavings).toBeGreaterThan(0);
   });
