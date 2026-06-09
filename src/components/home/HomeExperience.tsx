@@ -37,7 +37,14 @@ export function HomeExperience() {
 
   return (
     <>
-      <Hero />
+      {showSubscriberHome || resolvingPremiumAccess ? (
+        <Hero />
+      ) : (
+        <div className="aee-hero-compare-stack">
+          <Hero />
+          <HowWeCompare variant="hero-overlap" />
+        </div>
+      )}
       {showSubscriberHome ? (
         <SubscriberHome />
       ) : resolvingPremiumAccess ? (
@@ -55,7 +62,6 @@ export function HomeExperience() {
           <NgnInteractiveDemo />
           <LandingDifferentiators />
           <LandingCompact />
-          <HowWeCompare />
           <LandingTestimonials />
           <HomeBottomCta />
         </>

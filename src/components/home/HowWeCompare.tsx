@@ -21,38 +21,59 @@ const rows = [
   { label: "Rationales", us: "OER-backed (Open RN, OpenStax)", them: "Proprietary only" },
 ] as const;
 
-export function HowWeCompare() {
+const overlapRows = rows.slice(0, 4);
+
+type HowWeCompareProps = {
+  variant?: "default" | "hero-overlap";
+};
+
+export function HowWeCompare({ variant = "default" }: HowWeCompareProps) {
+  const isOverlap = variant === "hero-overlap";
+  const visibleRows = isOverlap ? overlapRows : rows;
+
   return (
     <section
       id="how-we-compare"
-      className="scroll-mt-24 border-b border-slate-100 bg-slate-50/80 py-6 sm:py-8"
+      className={
+        isOverlap
+          ? "aee-hero-compare-overlap scroll-mt-24"
+          : "scroll-mt-24 border-b border-slate-100 bg-slate-50/80 py-6 sm:py-8"
+      }
       aria-labelledby="compare-heading"
     >
       <div className="mx-auto max-w-[880px] px-5 sm:px-6 lg:px-8">
-        <div className="mb-4 text-center">
-          <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-teal-600">
-            Why students choose us
-          </p>
-          <h2
-            id="compare-heading"
-            className="mt-1.5 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl"
-          >
-            Four exams.{" "}
-            <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-              A fraction of the cost.
-            </span>
+        {!isOverlap && (
+          <div className="mb-4 text-center">
+            <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-teal-600">
+              Why students choose us
+            </p>
+            <h2
+              id="compare-heading"
+              className="mt-1.5 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl"
+            >
+              Four exams.{" "}
+              <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                A fraction of the cost.
+              </span>
+            </h2>
+          </div>
+        )}
+
+        {isOverlap && (
+          <h2 id="compare-heading" className="sr-only">
+            Compare Any Exam Easy to typical competitors
           </h2>
-        </div>
+        )}
 
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: isOverlap ? 24 : 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-30px" }}
-          transition={{ duration: 0.35 }}
-          className="grid gap-3 sm:grid-cols-2 sm:gap-4"
+          viewport={{ once: true, margin: isOverlap ? "0px" : "-30px" }}
+          transition={{ duration: 0.45 }}
+          className="aee-hero-compare-grid grid gap-3 sm:grid-cols-2 sm:gap-4"
         >
           {/* Us */}
-          <article className="relative overflow-hidden rounded-2xl border-2 border-teal-500/35 bg-white p-4 shadow-[0_8px_30px_rgba(13,148,136,0.12)] sm:p-5">
+          <article className="aee-hero-compare-card aee-hero-compare-card--us relative overflow-hidden rounded-2xl border-2 border-teal-500/35 bg-white/95 p-4 shadow-[0_8px_30px_rgba(13,148,136,0.12)] backdrop-blur-sm sm:p-5">
             <div
               className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-teal-50/90 to-transparent"
               aria-hidden
@@ -75,7 +96,7 @@ export function HowWeCompare() {
             </header>
 
             <ul className="relative mt-4 space-y-2 border-t border-teal-100 pt-4" role="list">
-              {rows.map(({ label, us }) => (
+              {visibleRows.map(({ label, us }) => (
                 <li key={label} className="flex items-start gap-2.5 text-sm">
                   <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-50">
                     <Check className="h-3 w-3 text-emerald-600" strokeWidth={2.5} aria-hidden />
@@ -92,7 +113,7 @@ export function HowWeCompare() {
           </article>
 
           {/* Them */}
-          <article className="rounded-2xl border border-slate-200/80 bg-white/70 p-4 sm:p-5">
+          <article className="aee-hero-compare-card aee-hero-compare-card--them rounded-2xl border border-slate-200/80 bg-white/80 p-4 backdrop-blur-sm sm:p-5">
             <header>
               <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
                 Typical competitors
@@ -114,7 +135,7 @@ export function HowWeCompare() {
             </header>
 
             <ul className="mt-4 space-y-2 border-t border-slate-100 pt-4" role="list">
-              {rows.map(({ label, them }) => (
+              {visibleRows.map(({ label, them }) => (
                 <li key={label} className="flex items-start gap-2.5 text-sm">
                   <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-100">
                     <Minus className="h-3 w-3 text-slate-400" strokeWidth={2.5} aria-hidden />
@@ -131,7 +152,18 @@ export function HowWeCompare() {
           </article>
         </motion.div>
 
-        <div className="mt-5 flex flex-col items-center gap-2 text-center">
+        <div
+          className={
+            isOverlap
+              ? "mt-4 flex flex-col items-center gap-2 border-b border-slate-100 bg-white/90 pb-6 pt-2 text-center backdrop-blur-sm"
+              : "mt-5 flex flex-col items-center gap-2 text-center"
+          }
+        >
+          {isOverlap && (
+            <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-teal-600">
+              Four exams · a fraction of the cost
+            </p>
+          )}
           <Link
             href="/signup?plan=trial"
             className="group inline-flex items-center gap-1.5 text-sm font-bold text-teal-700 hover:text-teal-600"

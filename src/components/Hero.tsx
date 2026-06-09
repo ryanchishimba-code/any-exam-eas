@@ -91,7 +91,9 @@ export function Hero() {
       <div className="aee-hero-vibrant-orb aee-hero-vibrant-orb--2 pointer-events-none absolute" aria-hidden />
       <div className="aee-hero-grid pointer-events-none absolute inset-0" aria-hidden />
 
-      <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6">
+      <div className="aee-hero-compare-fade pointer-events-none absolute inset-x-0 bottom-0 z-[3]" aria-hidden />
+
+      <div className="relative z-10 mx-auto max-w-[1080px] px-5 sm:px-6">
         <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,380px)] lg:gap-8">
           <header className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-none lg:text-left">
             {!isAuthed && !isReturning ? (

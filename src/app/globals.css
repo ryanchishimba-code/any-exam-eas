@@ -2433,6 +2433,80 @@ body {
   padding-top: clamp(3.5rem, 7vw, 4.5rem);
 }
 
+.aee-hero-compare-stack {
+  position: relative;
+  isolation: isolate;
+}
+
+.aee-hero-compare-stack .aee-hero {
+  z-index: 2;
+  padding-bottom: clamp(7.5rem, 16vw, 11.5rem);
+}
+
+.aee-hero-compare-fade {
+  display: none;
+  height: clamp(9rem, 22vw, 14rem);
+  background: linear-gradient(
+    180deg,
+    rgba(248, 250, 252, 0) 0%,
+    rgba(248, 250, 252, 0.72) 38%,
+    rgba(255, 255, 255, 0.94) 72%,
+    #ffffff 100%
+  );
+}
+
+.aee-hero-compare-stack .aee-hero-compare-fade {
+  display: block;
+}
+
+.aee-hero-compare-overlap {
+  position: relative;
+  z-index: 1;
+  margin-top: clamp(-10.5rem, -18vw, -7.5rem);
+  padding-top: 0;
+  pointer-events: none;
+}
+
+.aee-hero-compare-overlap .aee-hero-compare-grid,
+.aee-hero-compare-overlap .aee-hero-compare-card,
+.aee-hero-compare-overlap a {
+  pointer-events: auto;
+}
+
+.aee-hero-compare-overlap .aee-hero-compare-card {
+  box-shadow:
+    0 12px 40px rgba(15, 23, 42, 0.08),
+    0 2px 8px rgba(13, 148, 136, 0.06);
+}
+
+@media (min-width: 1024px) {
+  .aee-hero-compare-stack .aee-hero {
+    padding-bottom: clamp(8.5rem, 12vw, 10.5rem);
+  }
+
+  .aee-hero-compare-overlap {
+    margin-top: clamp(-11rem, -14vw, -9rem);
+  }
+}
+
+@media (max-width: 639px) {
+  .aee-hero-compare-stack .aee-hero {
+    padding-bottom: clamp(5.5rem, 14vw, 7rem);
+  }
+
+  .aee-hero-compare-overlap {
+    margin-top: clamp(-5.5rem, -12vw, -4rem);
+  }
+
+  .aee-hero-compare-overlap .aee-hero-compare-card {
+    padding: 0.875rem 1rem;
+  }
+
+  .aee-hero-compare-overlap .aee-hero-compare-card header p.text-3xl {
+    font-size: 1.75rem;
+  }
+}
+
 .aee-hero-compact .aee-display-mega {
   font-size: clamp(2.125rem, 7.5vw, 4.25rem);
   line-height: 1.05;
