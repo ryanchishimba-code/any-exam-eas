@@ -4375,3 +4375,648 @@ body {
   border: 1px solid rgba(15, 23, 42, 0.06);
   background: white;
 }
+
+/* ——— Flagship landing (Tesla × medical SaaS) ——— */
+
+.aee-flagship {
+  --flagship-navy: #0f172a;
+  --flagship-teal: #0d9488;
+  --flagship-teal-light: #14b8a6;
+  --flagship-section-py: clamp(2rem, 4vw, 2.75rem);
+  --flagship-gap: clamp(0.75rem, 2vw, 1.25rem);
+  color: var(--flagship-navy);
+}
+
+.aee-flagship-inner {
+  width: 100%;
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-inline: clamp(1.125rem, 3vw, 1.5rem);
+}
+
+.aee-flagship-section {
+  padding-block: var(--flagship-section-py);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+}
+
+.aee-flagship-section--alt {
+  background: linear-gradient(180deg, #f8fafc 0%, #fff 100%);
+}
+
+.aee-flagship-eyebrow {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--flagship-teal);
+}
+
+.aee-flagship-eyebrow--hero {
+  margin-bottom: 0.75rem;
+}
+
+.aee-flagship-title {
+  margin-top: 0.375rem;
+  font-size: clamp(1.375rem, 3.2vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: var(--flagship-navy);
+}
+
+.aee-flagship-subtitle {
+  margin-top: 0.5rem;
+  font-size: clamp(0.8125rem, 1.8vw, 0.9375rem);
+  line-height: 1.5;
+  color: #64748b;
+}
+
+.aee-flagship-header {
+  margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.aee-flagship-gradient-text {
+  background: linear-gradient(135deg, var(--flagship-teal) 0%, #0891b2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Hero */
+.aee-flagship-hero {
+  position: relative;
+  min-height: min(100dvh, 920px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: calc(var(--nav-height) + 1.5rem) clamp(1.25rem, 3vw, 2rem);
+  overflow: hidden;
+}
+
+.aee-flagship-hero__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(13, 148, 136, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 10% 80%, rgba(37, 99, 235, 0.06) 0%, transparent 50%),
+    linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+  pointer-events: none;
+}
+
+.aee-flagship-hero__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(180deg, black 0%, transparent 85%);
+  pointer-events: none;
+}
+
+.aee-flagship-hero__layout {
+  position: relative;
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .aee-flagship-hero__layout {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+  }
+}
+
+.aee-flagship-hero__headline {
+  font-size: clamp(2rem, 5.5vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.06;
+  color: var(--flagship-navy);
+}
+
+.aee-flagship-hero__subline {
+  margin-top: 0.875rem;
+  max-width: 34rem;
+  font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+  line-height: 1.55;
+  color: #475569;
+}
+
+.aee-flagship-hero__ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 480px) {
+  .aee-flagship-hero__ctas {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
+
+.aee-flagship-hero__disclosure {
+  margin-top: 0.875rem;
+  font-size: 0.6875rem;
+  line-height: 1.45;
+  color: #64748b;
+}
+
+.aee-flagship-hero__visual {
+  position: relative;
+}
+
+.aee-flagship-mockup-skeleton {
+  min-height: clamp(200px, 40vw, 320px);
+  border-radius: 1.25rem;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.aee-flagship-hero__trust {
+  position: relative;
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  padding-top: clamp(1rem, 2vw, 1.25rem);
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+@media (min-width: 768px) {
+  .aee-flagship-hero__trust {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.aee-flagship-exam-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.aee-flagship-exam-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.aee-flagship-live-stats {
+  font-size: 0.75rem;
+}
+
+/* Exam grid */
+.aee-flagship-exam-grid {
+  display: grid;
+  gap: var(--flagship-gap);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .aee-flagship-exam-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .aee-flagship-exam-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.aee-flagship-exam-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 100%;
+  padding: 0.875rem 1rem;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  text-decoration: none;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.aee-flagship-exam-card:hover {
+  border-color: rgba(13, 148, 136, 0.25);
+  box-shadow: 0 4px 20px rgba(13, 148, 136, 0.08);
+  transform: translateY(-1px);
+}
+
+.aee-flagship-exam-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.625rem;
+  background: #f8fafc;
+  flex-shrink: 0;
+}
+
+.aee-flagship-exam-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.aee-flagship-exam-card__label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--flagship-navy);
+}
+
+.aee-flagship-exam-card__blurb {
+  display: block;
+  margin-top: 0.125rem;
+  font-size: 0.6875rem;
+  line-height: 1.35;
+  color: #64748b;
+}
+
+/* Benefits */
+.aee-flagship-benefits-grid {
+  display: grid;
+  gap: var(--flagship-gap);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .aee-flagship-benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.aee-flagship-benefit-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.aee-flagship-benefit-card:hover {
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
+}
+
+.aee-flagship-benefit-card__visual {
+  aspect-ratio: 16 / 10;
+  background: #f8fafc;
+}
+
+.aee-flagship-benefit-card__body {
+  padding: 0.875rem 1rem 1rem;
+}
+
+.aee-flagship-benefit-card__title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--flagship-navy);
+}
+
+.aee-flagship-benefit-card__detail {
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: #64748b;
+}
+
+/* How it works */
+.aee-flagship-steps {
+  display: grid;
+  gap: var(--flagship-gap);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: step;
+}
+
+@media (min-width: 768px) {
+  .aee-flagship-steps {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.aee-flagship-step {
+  position: relative;
+  padding: 1rem;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+}
+
+.aee-flagship-step__number {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.875rem;
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: rgba(13, 148, 136, 0.35);
+}
+
+.aee-flagship-step__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.625rem;
+  background: rgba(13, 148, 136, 0.1);
+  color: var(--flagship-teal);
+}
+
+.aee-flagship-step__title {
+  margin-top: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--flagship-navy);
+}
+
+.aee-flagship-step__detail {
+  margin-top: 0.375rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: #64748b;
+}
+
+/* Sample questions */
+.aee-flagship-question-grid {
+  display: grid;
+  gap: var(--flagship-gap);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .aee-flagship-question-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.aee-flagship-question-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  text-align: left;
+}
+
+.aee-flagship-question-card__badge {
+  display: inline-flex;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  border: 1px solid;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: #fff;
+}
+
+.aee-flagship-question-card__stem {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--flagship-navy);
+}
+
+.aee-flagship-question-card__options {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  list-style: none;
+  padding: 0;
+}
+
+.aee-flagship-question-card__option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem 0.625rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #475569;
+  background: #f8fafc;
+}
+
+.aee-flagship-question-card__option--correct {
+  background: rgba(13, 148, 136, 0.08);
+  color: #0f766e;
+  font-weight: 600;
+}
+
+.aee-flagship-question-card__rationale {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  font-size: 0.6875rem;
+  line-height: 1.5;
+  color: #64748b;
+}
+
+.aee-flagship-ngn-wrap {
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+  padding: clamp(0.875rem, 2vw, 1.25rem);
+}
+
+/* Results */
+.aee-flagship-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--flagship-gap);
+  list-style: none;
+  padding: 0;
+  margin: 0 0 clamp(1rem, 2.5vw, 1.5rem);
+}
+
+@media (min-width: 640px) {
+  .aee-flagship-metrics {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.aee-flagship-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.875rem 0.5rem;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+}
+
+.aee-flagship-metric__value {
+  font-size: clamp(1.25rem, 3vw, 1.625rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--flagship-teal);
+}
+
+.aee-flagship-metric__label {
+  margin-top: 0.25rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-align: center;
+  color: #64748b;
+}
+
+.aee-flagship-testimonials {
+  display: grid;
+  gap: var(--flagship-gap);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .aee-flagship-testimonials {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.aee-flagship-testimonial {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: #fff;
+}
+
+.aee-flagship-testimonial__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, var(--flagship-teal) 0%, #0891b2 100%);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.aee-flagship-testimonial__quote {
+  flex: 1;
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: #475569;
+}
+
+.aee-flagship-testimonial__name {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--flagship-navy);
+}
+
+.aee-flagship-testimonial__exam {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+}
+
+/* Pricing */
+.aee-flagship-pricing-card {
+  max-width: 28rem;
+  margin-inline: auto;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border-radius: 1.25rem;
+  border: 1px solid rgba(13, 148, 136, 0.15);
+  background: #fff;
+  box-shadow: 0 12px 48px rgba(13, 148, 136, 0.08);
+}
+
+.aee-flagship-pricing-card__visual {
+  aspect-ratio: 5 / 2;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.aee-flagship-pricing-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+/* Final CTA */
+.aee-flagship-final-cta {
+  position: relative;
+  padding-block: clamp(2.5rem, 6vw, 3.5rem);
+  overflow: hidden;
+}
+
+.aee-flagship-final-cta__bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #0f172a 0%, #134e4a 50%, #0f766e 100%);
+  pointer-events: none;
+}
+
+.aee-flagship-final-cta__title {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #fff;
+}
+
+.aee-flagship-final-cta__subtitle {
+  margin-top: 0.625rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: rgba(204, 251, 241, 0.9);
+}
+
+.aee-flagship-final-cta__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  align-items: stretch;
+}
+
+@media (min-width: 480px) {
+  .aee-flagship-final-cta__actions {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
