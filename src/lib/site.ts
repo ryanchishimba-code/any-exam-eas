@@ -2,6 +2,7 @@ import {
   MONTHLY_PRICE_USD,
   TRIAL_DAYS,
   TRIAL_INTRO_PRICE_USD,
+  usesIntroTrialPricing,
 } from "@/lib/stripe";
 
 export const SITE_NAME = "Any Exam Easy";
@@ -25,13 +26,17 @@ export function formatMonthlyPrice(): string {
 }
 
 export function formatTrialIntroPrice(): string {
+  if (!usesIntroTrialPricing()) return "Free";
   return `$${TRIAL_INTRO_PRICE_USD.toFixed(2)}`;
 }
 
 export function formatTrialLabel(): string {
-  return `${TRIAL_DAYS}-day trial`;
+  return `${TRIAL_DAYS}-day free trial`;
 }
 
 export function formatPricingHeadline(): string {
-  return `${formatTrialIntroPrice()} / ${TRIAL_DAYS}-day trial → ${formatMonthlyPrice()}/mo`;
+  if (usesIntroTrialPricing()) {
+    return `${formatTrialIntroPrice()} / ${TRIAL_DAYS}-day trial → ${formatMonthlyPrice()}/mo`;
+  }
+  return `${TRIAL_DAYS}-day free trial → ${formatMonthlyPrice()}/mo`;
 }

@@ -97,6 +97,7 @@ export async function getUserAccess(userId: string): Promise<UserAccess> {
         trialEndsAt: null,
         daysRemaining: null,
         canStartCheckout: true,
+        needsPaymentMethod: false,
       },
       hasPremiumAccess: false,
       blockReason: "subscription",

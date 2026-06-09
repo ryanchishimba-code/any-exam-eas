@@ -15,6 +15,8 @@ export type SubscriptionAccess = {
   trialEndsAt: Date | null;
   daysRemaining: number | null;
   canStartCheckout: boolean;
+  /** App-native trial without Stripe subscription — prompt to add payment before trial ends. */
+  needsPaymentMethod: boolean;
 };
 
 const PREMIUM_STRIPE_STATUSES = new Set(["active", "trialing"]);
@@ -57,8 +59,12 @@ export function evaluateSubscriptionAccess(
       trialEndsAt: null,
       daysRemaining: null,
       canStartCheckout: true,
+      needsPaymentMethod: false,
     };
   }
+
+  const needsPaymentMethod =
+    subscription.status === "trialing" && !subscription.stripeSubscriptionId;
 
   const trialEndsAt = subscription.trialEndsAt
     ? new Date(subscription.trialEndsAt)
@@ -71,6 +77,7 @@ export function evaluateSubscriptionAccess(
       trialEndsAt,
       daysRemaining: null,
       canStartCheckout: false,
+      needsPaymentMethod: false,
     };
   }
 
@@ -82,6 +89,7 @@ export function evaluateSubscriptionAccess(
         trialEndsAt,
         daysRemaining: 0,
         canStartCheckout: true,
+        needsPaymentMethod: false,
       };
     }
     const daysRemaining = trialEndsAt ? daysUntil(trialEndsAt) : TRIAL_DAYS;
@@ -91,6 +99,7 @@ export function evaluateSubscriptionAccess(
       trialEndsAt,
       daysRemaining,
       canStartCheckout: true,
+      needsPaymentMethod,
     };
   }
 
@@ -101,6 +110,7 @@ export function evaluateSubscriptionAccess(
       trialEndsAt,
       daysRemaining: 0,
       canStartCheckout: true,
+      needsPaymentMethod: false,
     };
   }
 
@@ -111,6 +121,7 @@ export function evaluateSubscriptionAccess(
       trialEndsAt,
       daysRemaining: null,
       canStartCheckout: true,
+      needsPaymentMethod: false,
     };
   }
 
@@ -121,6 +132,7 @@ export function evaluateSubscriptionAccess(
       trialEndsAt,
       daysRemaining: trialEndsAt ? daysUntil(trialEndsAt) : null,
       canStartCheckout: false,
+      needsPaymentMethod: false,
     };
   }
 
@@ -130,6 +142,7 @@ export function evaluateSubscriptionAccess(
     trialEndsAt,
     daysRemaining: null,
     canStartCheckout: true,
+    needsPaymentMethod: false,
   };
 }
 

@@ -48,13 +48,8 @@ describe("billing-config", () => {
     expect(TRIAL_INTRO_PRICE_USD).toBeGreaterThan(0);
   });
 
-  it("estimateMrr combines subscribers and trials", async () => {
-    const { estimateMrr, MONTHLY_PRICE_USD, TRIAL_INTRO_PRICE_USD } = await import(
-      "./billing-config"
-    );
-    expect(estimateMrr(10, 5)).toBeCloseTo(
-      10 * MONTHLY_PRICE_USD + 5 * TRIAL_INTRO_PRICE_USD,
-      5
-    );
+  it("estimateMrr counts active subscribers at monthly rate", async () => {
+    const { estimateMrr, MONTHLY_PRICE_USD } = await import("./billing-config");
+    expect(estimateMrr(10, 5)).toBeCloseTo(10 * MONTHLY_PRICE_USD, 5);
   });
 });

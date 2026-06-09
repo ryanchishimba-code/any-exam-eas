@@ -5,12 +5,13 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { Button } from "./ui/Button";
 import { SubscribeButton } from "./SubscribeButton";
-import { formatMonthlyPrice, formatTrialIntroPrice, formatTrialLabel } from "@/lib/site";
+import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
 
 type AccessInfo = {
   hasAccess: boolean;
   status: string;
   daysRemaining: number | null;
+  needsPaymentMethod?: boolean;
 };
 
 export function PricingActions() {
@@ -31,19 +32,21 @@ export function PricingActions() {
         <div className="flex flex-col gap-3">
           <p className="text-sm text-[var(--color-ink-muted)]">
             {access.status === "trialing"
-              ? `${formatTrialLabel()} active${access.daysRemaining != null ? ` · ${access.daysRemaining} days left` : ""}`
+              ? `${formatTrialLabel()} active${access.daysRemaining != null ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left` : ""}`
               : "Your subscription is active."}
           </p>
-          <Button href="/study">Continue studying</Button>
+          {access.status === "trialing" && access.needsPaymentMethod ? (
+            <Button href="/checkout?plan=trial">Add payment method</Button>
+          ) : (
+            <Button href="/study">Continue studying</Button>
+          )}
         </div>
       );
     }
 
     return (
       <div className="flex flex-col gap-3">
-        <Button href="/checkout?plan=trial">
-          Start {formatTrialLabel()} — {formatTrialIntroPrice()}
-        </Button>
+        <Button href="/signup?plan=trial">Start {formatTrialLabel()}</Button>
         <SubscribeButton label={`Subscribe Now — ${formatMonthlyPrice()}/mo`} variant="secondary" />
       </div>
     );
@@ -51,9 +54,7 @@ export function PricingActions() {
 
   return (
     <div className="flex flex-col gap-3">
-      <Button href="/signup?plan=trial">
-        Start {formatTrialLabel()} — {formatTrialIntroPrice()}
-      </Button>
+      <Button href="/signup?plan=trial">Start {formatTrialLabel()}</Button>
       <Button href="/signup?plan=subscribe" variant="secondary">
         Subscribe Now — {formatMonthlyPrice()}/month
       </Button>

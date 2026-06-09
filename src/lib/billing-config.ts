@@ -1,9 +1,9 @@
 /** Billing/trial constants — edge-safe (no Stripe SDK). */
 
-/** Paid intro trial period (days) */
-export const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "14");
+/** Free trial period (days) — no card required at signup; add payment before trial ends. */
+export const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "3");
 
-/** Intro trial price shown at checkout (configure matching Stripe Price) */
+/** Optional paid intro (legacy). Omit STRIPE_TRIAL_INTRO_PRICE_ID for free cardless trial. */
 export const TRIAL_INTRO_PRICE_USD = Number(process.env.TRIAL_INTRO_PRICE_USD ?? "17.99");
 
 /** Recurring monthly price after trial */
@@ -20,9 +20,19 @@ export function gracePeriodEnd(from = new Date()): Date {
   return end;
 }
 
-/** Rough MRR for staff dashboards (active × monthly + trialing × intro). */
+/** End of app-native free trial (used at signup before Stripe subscription exists). */
+export function trialEndsAtFromNow(from = new Date()): Date {
+  const end = new Date(from);
+  end.setDate(end.getDate() + TRIAL_DAYS);
+  return end;
+}
+
+export function usesIntroTrialPricing(): boolean {
+  return Boolean(process.env.STRIPE_TRIAL_INTRO_PRICE_ID?.trim());
+}
+
+/** Rough MRR for staff dashboards (active × monthly; cardless trials excluded until paid). */
 export function estimateMrr(activeSubscribers: number, activeTrials: number): number {
-  return Math.round(
-    (activeSubscribers * MONTHLY_PRICE_USD + activeTrials * TRIAL_INTRO_PRICE_USD) * 100
-  ) / 100;
+  void activeTrials;
+  return Math.round(activeSubscribers * MONTHLY_PRICE_USD * 100) / 100;
 }

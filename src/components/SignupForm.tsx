@@ -101,7 +101,12 @@ export function SignupForm({
       const promoQs = initialPromo.trim()
         ? `&promo=${encodeURIComponent(initialPromo.trim())}`
         : "";
-      window.location.href = `/checkout?plan=${plan}${promoQs}`;
+
+      if (plan === "trial") {
+        window.location.href = "/select-exam?trial=welcome";
+      } else {
+        window.location.href = `/checkout?plan=${plan}${promoQs}`;
+      }
     } catch (err) {
       setError(messageFromUnknownAuthError(err));
     } finally {
@@ -112,7 +117,7 @@ export function SignupForm({
   const submitLabel = !plan
     ? "Create account"
     : plan === "trial"
-      ? "Continue to checkout"
+      ? "Start free trial"
       : "Continue to checkout";
 
   return (
@@ -129,7 +134,7 @@ export function SignupForm({
 
       <PlanChoice value={plan} onChange={setPlan} disabled={loading} />
 
-      {plan && (
+      {plan && plan === "subscribe" && (
         <p className="flex items-center justify-center gap-1.5 rounded-xl bg-sky-50/80 px-4 py-3 text-center text-xs text-slate-600">
           <Tag className="h-3.5 w-3.5 shrink-0 text-[var(--color-accent)]" aria-hidden />
           Have a discount code? You can apply it on the checkout review screen — full access

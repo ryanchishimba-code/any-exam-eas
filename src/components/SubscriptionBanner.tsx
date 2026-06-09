@@ -1,9 +1,35 @@
 import type { SubscriptionAccess } from "@/lib/subscription-access";
 import Link from "next/link";
+import { formatMonthlyPrice } from "@/lib/site";
+import { Button } from "./ui/Button";
 import { SubscribeButton } from "./SubscribeButton";
 
-/** Monetization banners — hidden for users with full premium access. */
+/** Monetization banners — trial payment reminder or paywall when access lapses. */
 export function SubscriptionBanner({ access }: { access: SubscriptionAccess }) {
+  if (access.hasAccess && access.status === "trialing" && access.needsPaymentMethod) {
+    return (
+      <div className="mt-8 rounded-2xl border border-sky-200 bg-sky-50 px-5 py-4">
+        <p className="text-sm font-medium text-sky-950">
+          {access.daysRemaining != null && access.daysRemaining <= 1
+            ? "Your free trial ends soon"
+            : "Free trial active"}
+        </p>
+        <p className="mt-1 text-xs text-sky-900/80">
+          {access.daysRemaining != null
+            ? `${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left on your free trial. `
+            : ""}
+          Add a payment method to keep access — then {formatMonthlyPrice()}/month after your trial
+          ends. You won&apos;t be charged until then.
+        </p>
+        <div className="mt-3">
+          <Button href="/checkout?plan=trial" variant="secondary">
+            Add payment method
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   if (access.hasAccess) {
     return null;
   }

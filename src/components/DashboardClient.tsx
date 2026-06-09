@@ -102,7 +102,9 @@ export function DashboardClient({
             {access.status === "active"
               ? "Your paid plan is active."
               : access.status === "trialing"
-                ? "You are on a trial."
+                ? access.needsPaymentMethod
+                  ? `Free trial active${access.daysRemaining != null ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left` : ""}. Add a payment method before it ends.`
+                  : "You are on a trial with billing set up."
                 : access.status === "trial_expired"
                   ? "Your trial ended — subscribe to continue."
                   : "Choose a plan to unlock study features."}
@@ -110,8 +112,14 @@ export function DashboardClient({
           <div className="mt-6 flex flex-wrap gap-3">
             {access.status === "active" ? (
               <ManageBillingButton />
+            ) : access.status === "trialing" && access.needsPaymentMethod ? (
+              <Button href="/checkout?plan=trial" variant="secondary">
+                Add payment method
+              </Button>
             ) : access.canStartCheckout ? (
               <SubscribeButton variant="secondary" />
+            ) : access.status === "trialing" ? (
+              <ManageBillingButton />
             ) : null}
             <Button href="/pricing" variant="ghost">
               View pricing

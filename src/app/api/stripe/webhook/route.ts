@@ -127,6 +127,19 @@ export async function POST(req: Request) {
       }
       break;
     }
+    case "customer.subscription.trial_will_end": {
+      const sub = event.data.object as Stripe.Subscription;
+      const userId = await resolveUserIdFromStripeSubscription(sub);
+      if (userId) {
+        trackEvent({
+          userId,
+          eventType: EVENT_TYPES.BILLING_SUBSCRIPTION_UPDATED,
+          category: "billing",
+          metadata: { status: sub.status, event: event.type },
+        });
+      }
+      break;
+    }
   }
 
   return NextResponse.json({ received: true });

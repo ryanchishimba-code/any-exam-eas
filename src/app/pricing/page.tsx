@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
-import { formatPricingHeadline, formatTrialLabel } from "@/lib/site";
-import { MONTHLY_PRICE_USD, TRIAL_INTRO_PRICE_USD, TRIAL_DAYS } from "@/lib/stripe";
+import { formatPricingHeadline, formatTrialIntroPrice } from "@/lib/site";
+import { MONTHLY_PRICE_USD, TRIAL_DAYS, usesIntroTrialPricing } from "@/lib/stripe";
 import { PricingActions } from "@/components/PricingActions";
 import { PaymentMethodsList } from "@/components/PaymentMethodsList";
 import { PageShell } from "@/components/PageShell";
@@ -31,14 +31,14 @@ export default async function PricingPage({
       <div className="apple-bento mt-8 p-10 shadow-[var(--shadow-apple-sm)]">
         <p className="text-sm font-medium text-[var(--color-accent)]">Pro · anyexameasy.com</p>
         <p className="mt-3 text-5xl font-semibold tracking-tight">
-          ${TRIAL_INTRO_PRICE_USD.toFixed(2)}
+          {usesIntroTrialPricing() ? formatTrialIntroPrice() : "Free"}
           <span className="text-lg font-normal text-[var(--color-ink-muted)]">
             {" "}
             / {TRIAL_DAYS}-day trial
           </span>
         </p>
         <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-          Then ${MONTHLY_PRICE_USD.toFixed(2)}/month · {formatTrialLabel()} or subscribe today
+          Then ${MONTHLY_PRICE_USD.toFixed(2)}/month · cancel anytime
         </p>
 
         <ul className="mt-8 space-y-3.5 text-left text-[0.9375rem]">

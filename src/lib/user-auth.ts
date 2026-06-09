@@ -4,7 +4,8 @@ import type { User } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { isAtLeast18 } from "@/lib/age";
 import { signUpSchema, normalizeEmail, type SignUpInput } from "@/lib/validators/auth";
-import { recordTrialUsed } from "@/lib/trial-eligibility";
+import { hasConsumedTrial, recordTrialUsed } from "@/lib/trial-eligibility";
+import { trialEndsAtFromNow } from "@/lib/billing-config";
 
 const BCRYPT_ROUNDS = 12;
 const REGISTER_RETRIES = 6;
@@ -80,7 +81,7 @@ export async function recordUserLogin(userId: string): Promise<void> {
 
 /**
  * Create a new account with hashed password.
- * Subscription stays inactive until Stripe checkout completes (webhook).
+ * Trial plan: instant 3-day access (no card). Subscribe plan: checkout after signup.
  */
 export async function registerUser(
   input: SignUpInput
@@ -94,7 +95,28 @@ export async function registerUser(
 
   const passwordHash = await bcrypt.hash(parsed.password, BCRYPT_ROUNDS);
 
-  const subscriptionData = { status: "inactive" as const, trialEndsAt: null };
+  let subscriptionData: {
+    status: "inactive" | "trialing";
+    trialEndsAt: Date | null;
+    plan?: string;
+    planInterval?: string;
+  };
+
+  if (parsed.plan === "trial") {
+    if (await hasConsumedTrial(parsed.email)) {
+      throw new Error(
+        "This email has already used a free trial. Subscribe at the monthly rate instead."
+      );
+    }
+    subscriptionData = {
+      status: "trialing",
+      trialEndsAt: trialEndsAtFromNow(),
+      plan: "trial",
+      planInterval: "monthly",
+    };
+  } else {
+    subscriptionData = { status: "inactive", trialEndsAt: null };
+  }
 
   try {
     const user = await withRegisterRetry(() =>

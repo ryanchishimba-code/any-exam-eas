@@ -15,7 +15,7 @@ export async function POST(req: Request) {
 
   if (!sub?.stripeCustomerId) {
     return NextResponse.json(
-      { error: "No billing account yet. Subscribe first from the pricing page." },
+      { error: "No billing account yet. Add a payment method from checkout or pricing first." },
       { status: 400 }
     );
   }

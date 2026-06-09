@@ -3,7 +3,7 @@
 import type { DiscountValidation } from "@/lib/discount/types";
 import { FULL_ACCESS_COPY } from "@/lib/discount/access";
 import { formatUsd, hasDiscount } from "@/lib/promo-pricing";
-import { MONTHLY_PRICE_USD, TRIAL_INTRO_PRICE_USD, TRIAL_DAYS } from "@/lib/billing-config";
+import { MONTHLY_PRICE_USD, TRIAL_INTRO_PRICE_USD, TRIAL_DAYS, usesIntroTrialPricing } from "@/lib/billing-config";
 import type { SignupPlan } from "@/lib/validators/auth";
 
 export function CheckoutPriceSummary({
@@ -47,10 +47,18 @@ export function CheckoutPriceSummary({
   }
 
   if (plan === "trial") {
+    if (usesIntroTrialPricing()) {
+      return (
+        <p className="text-sm text-[var(--color-ink-muted)]">
+          {formatUsd(TRIAL_INTRO_PRICE_USD)} intro · {TRIAL_DAYS}-day trial · then{" "}
+          {formatUsd(MONTHLY_PRICE_USD)}/mo
+        </p>
+      );
+    }
     return (
       <p className="text-sm text-[var(--color-ink-muted)]">
-        {formatUsd(TRIAL_INTRO_PRICE_USD)} intro · {TRIAL_DAYS}-day trial · then{" "}
-        {formatUsd(MONTHLY_PRICE_USD)}/mo
+        Add payment method · {TRIAL_DAYS}-day free trial continues · then{" "}
+        {formatUsd(MONTHLY_PRICE_USD)}/mo after trial ends
       </p>
     );
   }

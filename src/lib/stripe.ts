@@ -2,6 +2,8 @@ import Stripe from "stripe";
 import { prisma } from "@/lib/prisma";
 import {
   TRIAL_DAYS,
+  trialEndsAtFromNow,
+  usesIntroTrialPricing,
   type BillingInterval,
 } from "@/lib/billing-config";
 
@@ -13,6 +15,8 @@ export {
   YEARLY_PRICE_USD,
   gracePeriodEnd,
   estimateMrr,
+  trialEndsAtFromNow,
+  usesIntroTrialPricing,
   type BillingInterval,
 } from "@/lib/billing-config";
 
@@ -25,12 +29,13 @@ type CheckoutBaseParams = {
   userId: string;
   successUrl: string;
   cancelUrl: string;
-  /** trial = $17.99 intro + 14-day period before $29.99/mo; subscribe = bill immediately */
+  /** trial = add card during/after free trial; subscribe = bill immediately */
   plan?: "trial" | "subscribe";
   interval?: BillingInterval;
   stripeCustomerId?: string | null;
-  /** Stripe Coupon id from validated promo code */
   stripeCouponId?: string | null;
+  /** Unix timestamp — sync Stripe trial end with app-native trial (card collected now, charge later). */
+  trialEndUnix?: number;
 };
 
 function getPriceId(interval: BillingInterval = "monthly"): string {
@@ -42,17 +47,27 @@ function getPriceId(interval: BillingInterval = "monthly"): string {
   return priceId;
 }
 
-/** Shared Checkout settings for subscription mode (cards; wallets via Stripe Dashboard). */
 function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
   const isTrialPlan = params.plan === "trial";
   const introPriceId = process.env.STRIPE_TRIAL_INTRO_PRICE_ID;
+  const useIntro = isTrialPlan && usesIntroTrialPricing() && introPriceId;
 
   const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [
     { price: getPriceId(params.interval ?? "monthly"), quantity: 1 },
   ];
 
-  if (isTrialPlan && introPriceId) {
+  if (useIntro) {
     lineItems.unshift({ price: introPriceId, quantity: 1 });
+  }
+
+  const subscriptionData: Stripe.Checkout.SessionCreateParams.SubscriptionData = {
+    metadata: { userId: params.userId },
+  };
+
+  if (params.trialEndUnix) {
+    subscriptionData.trial_end = params.trialEndUnix;
+  } else if (isTrialPlan) {
+    subscriptionData.trial_period_days = TRIAL_DAYS;
   }
 
   return {
@@ -63,16 +78,16 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
       ? { discounts: [{ coupon: params.stripeCouponId }] }
       : {}),
     line_items: lineItems,
-    subscription_data: {
-      metadata: { userId: params.userId },
-      ...(isTrialPlan ? { trial_period_days: TRIAL_DAYS } : {}),
-    },
+    subscription_data: subscriptionData,
     metadata: {
       userId: params.userId,
       plan: params.plan ?? "subscribe",
       fullAccess: "true",
     },
     payment_method_types: ["card"] as Stripe.Checkout.SessionCreateParams["payment_method_types"],
+    ...(isTrialPlan && !useIntro
+      ? { payment_method_collection: "always" as const }
+      : {}),
     payment_method_options: {
       card: {
         request_three_d_secure: "automatic" as const,

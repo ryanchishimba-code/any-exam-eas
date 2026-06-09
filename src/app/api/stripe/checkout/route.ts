@@ -61,6 +61,15 @@ export async function POST(req: Request) {
     }
   }
 
+  let trialEndUnix: number | undefined;
+  if (
+    plan === "trial" &&
+    sub?.trialEndsAt &&
+    sub.trialEndsAt.getTime() > Date.now()
+  ) {
+    trialEndUnix = Math.floor(sub.trialEndsAt.getTime() / 1000);
+  }
+
   const baseParams = {
     customerEmail: session.user.email,
     userId: session.user.id,
@@ -68,6 +77,7 @@ export async function POST(req: Request) {
     plan,
     interval,
     stripeCouponId,
+    trialEndUnix,
     successUrl: embedded
       ? `${origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`
       : `${origin}/study-hub?checkout=success`,
