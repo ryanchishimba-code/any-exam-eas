@@ -145,7 +145,16 @@ if (!configured) {
         metadata: { userId: "payment-test-script", plan: "subscribe" },
       },
       metadata: { userId: "payment-test-script", plan: "subscribe" },
-      payment_method_types: ["card"],
+      payment_method_types: ["card", "link"],
+      payment_method_collection: "always",
+      payment_method_options: {
+        card: { request_three_d_secure: "automatic" },
+      },
+      billing_address_collection: "auto",
+      saved_payment_method_options: {
+        payment_method_save: "enabled",
+        payment_method_remove: "disabled",
+      },
     };
 
     const session = await stripe.checkout.sessions.create(sessionParams);
@@ -158,26 +167,20 @@ if (!configured) {
       fail("Embedded checkout session", "no client_secret returned");
     }
 
-    const introPriceId = process.env.STRIPE_TRIAL_INTRO_PRICE_ID;
-    if (introPriceId) {
-      const trialSession = await stripe.checkout.sessions.create({
-        ...sessionParams,
-        line_items: [
-          { price: introPriceId, quantity: 1 },
-          { price: priceId, quantity: 1 },
-        ],
-        subscription_data: {
-          metadata: { userId: "payment-test-script", plan: "trial" },
-          trial_period_days: 14,
-        },
+    const trialSession = await stripe.checkout.sessions.create({
+      ...sessionParams,
+      subscription_data: {
         metadata: { userId: "payment-test-script", plan: "trial" },
-      });
-      if (trialSession.client_secret) {
-        ok("Trial checkout session", `created ${trialSession.id}`);
-        await stripe.checkout.sessions.expire(trialSession.id);
-      } else {
-        fail("Trial checkout session", "no client_secret returned");
-      }
+        trial_period_days: Number(process.env.TRIAL_DAYS ?? 3),
+      },
+      metadata: { userId: "payment-test-script", plan: "trial" },
+      payment_method_collection: "always",
+    });
+    if (trialSession.client_secret) {
+      ok("Trial checkout session", `created ${trialSession.id}`);
+      await stripe.checkout.sessions.expire(trialSession.id);
+    } else {
+      fail("Trial checkout session", "no client_secret returned");
     }
   } catch (e) {
     fail("Stripe API", e instanceof Error ? e.message : String(e));

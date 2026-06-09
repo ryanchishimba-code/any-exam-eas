@@ -84,9 +84,7 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
       plan: params.plan ?? "subscribe",
       fullAccess: "true",
     },
-    automatic_payment_methods: {
-      enabled: true,
-    },
+    payment_method_types: ["card", "link"],
     ...(isTrialPlan
       ? { payment_method_collection: "always" as const }
       : {}),

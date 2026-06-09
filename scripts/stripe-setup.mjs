@@ -17,7 +17,6 @@ const Stripe = require("stripe").default;
 
 const ENV_PATH = ".env";
 const MONTHLY_USD = Number(process.env.MONTHLY_PRICE_USD ?? "29.99");
-const INTRO_USD = Number(process.env.TRIAL_INTRO_PRICE_USD ?? "17.99");
 
 function loadEnvFile() {
   if (!existsSync(ENV_PATH)) {
@@ -71,11 +70,10 @@ Never paste sk_test keys in chat or commit them to git.
   const existingPrice = getEnvValue(envContent, "STRIPE_PRICE_ID");
   if (existingPrice.startsWith("price_")) {
     console.log(`STRIPE_PRICE_ID already set (${existingPrice}). Skipping product creation.`);
-    if (!secretFromFile && secretFromEnv) {
-      envContent = setEnvValue(envContent, "STRIPE_SECRET_KEY", secret);
-      writeFileSync(ENV_PATH, envContent);
-      console.log("Updated STRIPE_SECRET_KEY in .env");
-    }
+    envContent = setEnvValue(envContent, "STRIPE_SECRET_KEY", secret);
+    envContent = setEnvValue(envContent, "STRIPE_TRIAL_INTRO_PRICE_ID", "");
+    writeFileSync(ENV_PATH, envContent);
+    console.log("Cleared STRIPE_TRIAL_INTRO_PRICE_ID — standard $0 trial + $29.99/mo subscription.");
     process.exit(0);
   }
 
@@ -84,7 +82,7 @@ Never paste sk_test keys in chat or commit them to git.
   const account = await stripe.accounts.retrieve();
   console.log(`Account: ${account.id}`);
 
-  console.log(`Creating product + $${MONTHLY_USD}/mo subscription price…`);
+  console.log(`Creating $${MONTHLY_USD}/mo subscription with ${process.env.TRIAL_DAYS ?? "3"}-day trial…`);
   const monthlyProduct = await stripe.products.create({
     name: "Any Exam Easy — Monthly",
     description: "Full access to board exam prep after trial",
@@ -99,23 +97,9 @@ Never paste sk_test keys in chat or commit them to git.
     metadata: { plan: "monthly" },
   });
 
-  console.log(`Creating $${INTRO_USD} one-time intro price (trial checkout)…`);
-  const introProduct = await stripe.products.create({
-    name: "Any Exam Easy — Trial Intro",
-    description: "One-time trial starter fee",
-    metadata: { app: "any-exam-easy" },
-  });
-
-  const introPrice = await stripe.prices.create({
-    product: introProduct.id,
-    currency: "usd",
-    unit_amount: Math.round(INTRO_USD * 100),
-    metadata: { plan: "trial_intro" },
-  });
-
   envContent = setEnvValue(envContent, "STRIPE_SECRET_KEY", secret);
   envContent = setEnvValue(envContent, "STRIPE_PRICE_ID", monthlyPrice.id);
-  envContent = setEnvValue(envContent, "STRIPE_TRIAL_INTRO_PRICE_ID", introPrice.id);
+  envContent = setEnvValue(envContent, "STRIPE_TRIAL_INTRO_PRICE_ID", "");
 
   const pub = getEnvValue(envContent, "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY");
   if (!pub.startsWith("pk_")) {
@@ -132,7 +116,7 @@ Done. Updated .env:
 
   STRIPE_SECRET_KEY=sk_test_... (hidden)
   STRIPE_PRICE_ID=${monthlyPrice.id}
-  STRIPE_TRIAL_INTRO_PRICE_ID=${introPrice.id}
+  STRIPE_TRIAL_INTRO_PRICE_ID= (empty — $0 trial at checkout)
 
 Next steps:
   1. Restart dev server: npm run dev

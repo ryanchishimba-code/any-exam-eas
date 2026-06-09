@@ -19,7 +19,7 @@ const KEYS = [
   { key: "STRIPE_SECRET_KEY", sensitive: true },
   { key: "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY", sensitive: false },
   { key: "STRIPE_PRICE_ID", sensitive: false },
-  { key: "STRIPE_TRIAL_INTRO_PRICE_ID", sensitive: false },
+  { key: "STRIPE_TRIAL_INTRO_PRICE_ID", sensitive: false, optional: true },
   { key: "STRIPE_WEBHOOK_SECRET", sensitive: true, optional: true },
 ];
 
@@ -67,6 +67,17 @@ function runVercelEnvAdd(key, value, target, sensitive) {
   return true;
 }
 
+function removeVercelEnv(key, target) {
+  const r = spawnSync(VERCEL, ["vercel", "env", "rm", key, target, "--yes"], {
+    cwd: root,
+    encoding: "utf8",
+    stdio: "pipe",
+  });
+  if (r.status === 0) return true;
+  const out = `${r.stderr || ""}${r.stdout || ""}`;
+  return /not found|does not exist|ENOENT/i.test(out);
+}
+
 async function ensureStripeWebhook(secretKey, webhookUrl) {
   if (!secretKey.startsWith("sk_")) return null;
   const Stripe = (await import("stripe")).default;
@@ -103,6 +114,13 @@ async function main() {
   for (const { key, sensitive, optional } of KEYS) {
     const value = env[key]?.trim() ?? "";
     if (!value) {
+      if (key === "STRIPE_TRIAL_INTRO_PRICE_ID") {
+        for (const target of TARGETS) {
+          removeVercelEnv(key, target);
+        }
+        console.log(`– cleared ${key} on Vercel (free trial mode)`);
+        continue;
+      }
       if (optional) {
         console.log(`– skipping ${key} (empty)`);
         continue;
