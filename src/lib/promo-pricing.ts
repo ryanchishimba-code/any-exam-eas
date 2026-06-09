@@ -60,9 +60,7 @@ export function buildPlanPricing(
     return {
       plan,
       primary: {
-        label: usesIntroTrialPricing()
-          ? "Due today (trial start)"
-          : `Due today (${TRIAL_DAYS}-day free trial)`,
+        label: `Due today (${TRIAL_DAYS}-day free trial · add payment method)`,
         original: dueTodayOriginal,
         discounted: dueTodayDiscounted,
       },

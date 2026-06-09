@@ -121,7 +121,16 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
     push("warn", "missing_vignette_split", "Long clinical text may belong in scenario, not the stem alone.");
   }
 
-  if (hasOrphanDeicticStem({ question: stem, vignette })) {
+  if (
+    hasOrphanDeicticStem({
+      id: 0,
+      type: "multiple_choice",
+      question: stem,
+      vignette,
+      correctAnswer: "",
+      explanation: "",
+    })
+  ) {
     push("error", "orphan_deictic_stem", 'Stem references "these findings" without an preceding vignette.');
   }
 

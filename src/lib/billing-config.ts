@@ -27,8 +27,12 @@ export function trialEndsAtFromNow(from = new Date()): Date {
   return end;
 }
 
+/** Legacy $17.99 intro checkout — disabled unless both env vars are set. Standard trial is $0 today. */
 export function usesIntroTrialPricing(): boolean {
-  return Boolean(process.env.STRIPE_TRIAL_INTRO_PRICE_ID?.trim());
+  return (
+    process.env.ENABLE_LEGACY_INTRO_TRIAL === "true" &&
+    Boolean(process.env.STRIPE_TRIAL_INTRO_PRICE_ID?.trim())
+  );
 }
 
 /** Rough MRR for staff dashboards (active × monthly; cardless trials excluded until paid). */
