@@ -20,7 +20,8 @@ import { ROUTES } from "@/lib/routes";
 type NavLink = { href: string; label: string; adminOnly?: boolean };
 
 const guestLinks: NavLink[] = [
-  { href: ROUTES.dashboard, label: "Practice" },
+  { href: "/#ngn-demo", label: "Try demo" },
+  { href: "/#choose-exam", label: "Exams" },
   { href: ROUTES.pricing, label: "Pricing" },
 ];
 

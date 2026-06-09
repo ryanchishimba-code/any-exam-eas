@@ -227,6 +227,54 @@ const SCENARIOS: NursingScenario[] = [
   },
 ];
 
+/** Stable clients only — delegation items must not contradict acute findings in the vignette. */
+const STABLE_DELEGATION_SCENARIOS: NursingScenario[] = [
+  {
+    age: 58,
+    sex: "man",
+    setting: "Medical-surgical unit",
+    dx: "postoperative day 2 after total knee arthroplasty",
+    history: "Ambulating with physical therapy; tolerating regular diet",
+    vitals: "BP 128/74 mmHg, HR 78, RR 16, SpO₂ 97% on room air",
+    findings: "Incision intact without drainage, pain 3/10 with scheduled analgesia, alert and oriented",
+    pathophys: "Expected postoperative recovery without acute cardiopulmonary compromise",
+    nursePriority: "Promote mobility and monitor for routine postoperative complications per protocol",
+  },
+  {
+    age: 44,
+    sex: "woman",
+    setting: "Medical-surgical unit",
+    dx: "type 2 diabetes on basal-bolus insulin",
+    history: "Admitted for cellulitis treatment; blood cultures negative on day 2",
+    vitals: "BP 122/70 mmHg, HR 84, RR 16, glucose 142 mg/dL before lunch",
+    findings: "Afebrile x 24 hours, erythema improving, eating meals, voiding without difficulty",
+    pathophys: "Stable glycemic and infection status after initial treatment response",
+    nursePriority: "Continue antibiotics and glucose monitoring per protocol; reinforce foot care teaching",
+  },
+  {
+    age: 76,
+    sex: "woman",
+    setting: "Skilled nursing facility",
+    dx: "chronic heart failure with stable volume status",
+    history: "Long-term resident; diuretic dose unchanged x 2 weeks",
+    vitals: "BP 118/68 mmHg, HR 76, RR 18, SpO₂ 95% on room air",
+    findings: "Weight stable x 3 days, lungs clear, no new edema, alert and conversant",
+    pathophys: "Compensated heart failure without acute decompensation",
+    nursePriority: "Daily weights, I&O, and medication administration per care plan",
+  },
+  {
+    age: 9,
+    sex: "man",
+    setting: "Pediatric medical unit",
+    dx: "asthma with improving exacerbation",
+    history: "Admitted yesterday; bronchodilator protocol initiated; parent at bedside",
+    vitals: "BP 102/64 mmHg, HR 92, RR 20, SpO₂ 96% on room air",
+    findings: "Minimal wheeze, no retractions, speaking in full sentences, peak flow 75% of personal best",
+    pathophys: "Bronchospasm resolving after treatment — respiratory status stable on current therapy",
+    nursePriority: "Continue scheduled nebulizers, pulse oximetry per protocol, and asthma action plan teaching",
+  },
+];
+
 type PriorityClient = {
   vignetteLine: string;
   option: string;
@@ -535,16 +583,37 @@ export type NclexPolishResult = {
   qualityAfter: number;
 };
 
-function pickScenario(seed: number): NursingScenario {
+function describeClient(age: number, sex: "man" | "woman"): string {
+  if (age < 18) {
+    return `${age}-year-old ${sex === "man" ? "boy" : "girl"}`;
+  }
+  return `${age}-year-old ${sex}`;
+}
+
+function pickScenario(seed: number, template?: string): NursingScenario {
+  if (template === "delegation") {
+    return STABLE_DELEGATION_SCENARIOS[
+      Math.abs(seed) % STABLE_DELEGATION_SCENARIOS.length
+    ]!;
+  }
+
   const base = SCENARIOS[Math.abs(seed) % SCENARIOS.length]!;
-  return {
-    ...base,
-    age: Math.max(18, base.age + ((Math.abs(seed) % 7) - 3)),
-  };
+  const ageDelta = (Math.abs(seed) % 7) - 3;
+  const age =
+    base.age < 18
+      ? Math.max(1, base.age + ageDelta)
+      : Math.max(18, base.age + ageDelta);
+  return { ...base, age };
 }
 
 function stripPrefix(question: string): string {
   return question.replace(NCLEX_PREFIX, "").trim();
+}
+
+function itemTextBlob(item: BankItem): string {
+  const vignette = item.vignette?.trim() || item.scenario?.trim() || "";
+  const q = item.question?.trim() ?? "";
+  return vignette ? `${vignette}\n\n${q}` : q;
 }
 
 function hasRichVignette(text: string): boolean {
@@ -557,8 +626,11 @@ function hasRichVignette(text: string): boolean {
 
 export function scoreNclexBankItem(item: BankItem): number {
   let score = 0.32;
-  const text = item.question;
-  const vignette = text.includes("\n\n") ? text.split("\n\n")[0]! : text;
+  const text = itemTextBlob(item);
+  const vignette =
+    item.vignette?.trim() ||
+    item.scenario?.trim() ||
+    (text.includes("\n\n") ? text.split("\n\n")[0]! : text);
 
   if (hasRichVignette(text)) score += 0.18;
   else if (text.length > 120) score += 0.08;
@@ -584,6 +656,19 @@ export function scoreNclexBankItem(item: BankItem): number {
 }
 
 function detectTemplate(stem: string, subjectId: string, seed: number): string {
+  if (/delegate|UAP|unlicensed|LPN scope|assign/i.test(stem)) return "delegation";
+  if (/infection|precaution|isolation|PPE|hand hygiene|contact precaution/i.test(stem)) {
+    return "infection";
+  }
+  if (/therapeutic|communication|anxiety|grief|response/i.test(stem)) return "communication";
+  if (/medication|insulin|dose|administer|pharm|drug/i.test(stem)) return "pharmacology";
+  if (/teach|discharge|learning|education|screening|vaccine/i.test(stem)) return "teaching";
+  if (/post-op|complication|diagnostic|lab|finding requires/i.test(stem)) return "risk";
+  if (/first|priority|assessed first|see first|immediate follow-up/i.test(stem)) {
+    return "prioritization";
+  }
+  if (/intervention|action should the nurse|priority action/i.test(stem)) return "intervention";
+
   const subjectPools: Record<string, string[]> = {
     "management-of-care": ["prioritization", "delegation", "risk"],
     "safety-infection": ["infection", "risk", "intervention"],
@@ -602,18 +687,6 @@ function detectTemplate(stem: string, subjectId: string, seed: number): string {
   const pool = subjectPools[subjectId];
   if (pool) return pool[Math.abs(seed) % pool.length]!;
 
-  if (/delegate|UAP|unlicensed|LPN scope|assign/i.test(stem)) return "delegation";
-  if (/infection|precaution|isolation|PPE|hand hygiene|contact precaution/i.test(stem)) {
-    return "infection";
-  }
-  if (/therapeutic|communication|anxiety|grief|response/i.test(stem)) return "communication";
-  if (/medication|insulin|dose|administer|pharm|drug/i.test(stem)) return "pharmacology";
-  if (/teach|discharge|learning|education|screening|vaccine/i.test(stem)) return "teaching";
-  if (/post-op|complication|diagnostic|lab|finding requires/i.test(stem)) return "risk";
-  if (/first|priority|assessed first|see first|immediate follow-up/i.test(stem)) {
-    return "prioritization";
-  }
-  if (/intervention|action should the nurse|priority action/i.test(stem)) return "intervention";
   return ["intervention", "prioritization", "risk", "teaching"][Math.abs(seed) % 4]!;
 }
 
@@ -735,7 +808,7 @@ function buildDelegation(scenario: NursingScenario, subjectLabel: string, seed: 
   ];
   const slot = Math.abs(seed + 1) % 4;
   const vignette = [
-    `${scenario.setting}. ${roomLabel(seed)}. A ${scenario.age}-year-old ${scenario.sex} with ${scenario.dx} is stable after initial assessment.`,
+    `${scenario.setting}. ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} with ${scenario.dx} is stable after initial assessment.`,
     `${scenario.history}. Current data: ${scenario.vitals}. ${scenario.findings}.`,
     "The RN must assign tasks to unlicensed assistive personnel (UAP) while maintaining accountability.",
   ].join(" ");
@@ -761,7 +834,7 @@ function buildInfection(scenario: NursingScenario, subjectLabel: string, seed: n
   ];
   const slot = Math.abs(seed + 2) % 4;
   const vignette = [
-    `${scenario.setting}, ${roomLabel(seed)}. A ${scenario.age}-year-old ${scenario.sex} is admitted with ${scenario.dx}.`,
+    `${scenario.setting}, ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} is admitted with ${scenario.dx}.`,
     `${scenario.history}. Assessment: ${scenario.vitals}. ${scenario.findings}.`,
     "The nurse must prevent transmission to other clients and staff.",
   ].join(" ");
@@ -787,7 +860,7 @@ function buildCommunication(scenario: NursingScenario, subjectLabel: string, see
   ];
   const slot = Math.abs(seed + 3) % 4;
   const vignette = [
-    `${scenario.setting}, ${roomLabel(seed)}. A ${scenario.age}-year-old ${scenario.sex} with ${scenario.dx} expresses fear and anxiety.`,
+    `${scenario.setting}, ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} with ${scenario.dx} expresses fear and anxiety.`,
     `${scenario.findings}. ${scenario.history}.`,
     "The client states, \"I'm scared about what happens next.\"",
   ].join(" ");
@@ -814,7 +887,7 @@ function buildPharmacology(scenario: NursingScenario, subjectLabel: string, seed
   ];
   const slot = Math.abs(seed + 4) % 4;
   const vignette = [
-    `${scenario.setting}, ${roomLabel(seed)}. A ${scenario.age}-year-old ${scenario.sex} with ${scenario.dx} has a new order for ${med}.`,
+    `${scenario.setting}, ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} with ${scenario.dx} has a new order for ${med}.`,
     `${scenario.history}. ${scenario.vitals}. ${scenario.findings}.`,
     "The nurse prepares to administer the medication.",
   ].join(" ");
@@ -840,7 +913,7 @@ function buildTeaching(scenario: NursingScenario, subjectLabel: string, seed: nu
   ];
   const slot = Math.abs(seed + 5) % 4;
   const vignette = [
-    `${scenario.setting}, ${roomLabel(seed)}. A ${scenario.age}-year-old ${scenario.sex} with ${scenario.dx} is preparing for discharge.`,
+    `${scenario.setting}, ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} with ${scenario.dx} is preparing for discharge.`,
     `${scenario.history}. The nurse must evaluate understanding of self-care related to ${scenario.nursePriority.split(";")[0]?.toLowerCase() ?? "ongoing management"}.`,
   ].join(" ");
 
@@ -866,7 +939,7 @@ function buildRisk(scenario: NursingScenario, subjectLabel: string, seed: number
   const slot = Math.abs(seed + 7) % 4;
   const timeLabel = `${String(14 + (seed % 4)).padStart(2, "0")}${5 + (seed % 55)}`;
   const vignette = [
-    `${timeLabel} — ${scenario.setting}, ${roomLabel(seed)}. A ${scenario.age}-year-old ${scenario.sex} with ${scenario.dx}.`,
+    `${timeLabel} — ${scenario.setting}, ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} with ${scenario.dx}.`,
     `${scenario.history}. ${scenario.vitals}. ${scenario.findings}.`,
   ].join(" ");
 
@@ -891,7 +964,7 @@ function buildIntervention(scenario: NursingScenario, subjectLabel: string, seed
   const slot = Math.abs(seed + 6) % 4;
   const timeLabel = `${String(9 + (seed % 3)).padStart(2, "0")}${10 + (seed % 50)}`;
   const vignette = [
-    `${timeLabel} — ${scenario.setting}, ${roomLabel(seed)}. A ${scenario.age}-year-old ${scenario.sex} with ${scenario.dx}.`,
+    `${timeLabel} — ${scenario.setting}, ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} with ${scenario.dx}.`,
     `${scenario.history}. Assessment: ${scenario.vitals}. ${scenario.findings}.`,
   ].join(" ");
 
@@ -1015,10 +1088,13 @@ function buildNclexExplanation(
 }
 
 function bankItemToExam(item: BankItem, subjectId?: string): ExamQuestion {
+  const combined = item.vignette?.trim()
+    ? `${item.vignette.trim()}\n\n${item.question.trim()}`
+    : item.question;
   const split = splitCombinedStem({
     id: 1,
     type: "multiple_choice",
-    question: item.question,
+    question: combined,
     options: [...item.options],
     correctAnswer: item.correctAnswer,
     explanation: item.explanation,
@@ -1028,7 +1104,7 @@ function bankItemToExam(item: BankItem, subjectId?: string): ExamQuestion {
     id: 1,
     type: "multiple_choice",
     question: split.question,
-    vignette: split.vignette,
+    vignette: split.vignette ?? item.vignette,
     options: [...item.options],
     correctAnswer: item.correctAnswer,
     explanation: item.explanation,
@@ -1038,13 +1114,14 @@ function bankItemToExam(item: BankItem, subjectId?: string): ExamQuestion {
 }
 
 function examToBankItem(base: BankItem, exam: ExamQuestion): BankItem {
-  const stem = exam.vignette?.trim()
-    ? `${exam.vignette.trim()}\n\n${exam.question.trim()}`
-    : exam.question.trim();
+  const vignette = exam.vignette?.trim() || base.vignette?.trim() || base.scenario?.trim();
+  const question = exam.question.trim();
 
   return {
     ...base,
-    question: stem,
+    vignette,
+    scenario: vignette,
+    question: vignette ? question : question,
     options: (exam.options?.slice(0, 4) ?? base.options) as [string, string, string, string],
     correctAnswer: exam.correctAnswer,
     explanation: exam.explanation,
@@ -1053,11 +1130,12 @@ function examToBankItem(base: BankItem, exam: ExamQuestion): BankItem {
 }
 
 export function needsNclexPolish(item: BankItem): boolean {
+  const text = itemTextBlob(item);
   return (
     isWeakPrioritizationBankItem(item) ||
     scoreNclexBankItem(item) < 0.62 ||
     NCLEX_PREFIX.test(item.question) ||
-    !hasRichVignette(item.question) ||
+    !hasRichVignette(text) ||
     WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer)) ||
     item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)))
   );
@@ -1075,22 +1153,25 @@ export function polishNclexBankItem(
     WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer)) ||
     item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)));
 
-  if (!needsNclexPolish(item) && !hasWeakPatterns && hasRichVignette(item.question) && !isWeakPrioritizationBankItem(item)) {
+  if (!needsNclexPolish(item) && !hasWeakPatterns && hasRichVignette(itemTextBlob(item)) && !isWeakPrioritizationBankItem(item)) {
     return { item, changed: false, qualityBefore, qualityAfter: qualityBefore };
   }
 
   const stem = stripPrefix(item.question);
-  const scenario = pickScenario(
-    seed + (subjectId?.length ?? 0) + stem.length + (item.correctAnswer?.length ?? 0)
-  );
   const template = isWeakPrioritizationBankItem(item)
     ? "prioritization"
     : detectTemplate(stem, subjectId, seed);
+  const scenario = pickScenario(
+    seed + (subjectId?.length ?? 0) + stem.length + (item.correctAnswer?.length ?? 0),
+    template
+  );
   const rebuilt = rebuildFromTemplate(template, scenario, subjectLabel, seed);
 
   const working: BankItem = {
     ...item,
-    question: `${rebuilt.vignette}\n\n${rebuilt.question}`,
+    vignette: rebuilt.vignette,
+    scenario: rebuilt.vignette,
+    question: rebuilt.question,
     options: rebuilt.options,
     correctAnswer: rebuilt.correctAnswer,
     explanation: buildNclexExplanation(rebuilt),

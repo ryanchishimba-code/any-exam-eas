@@ -25,7 +25,7 @@ export function HowWeCompare() {
   return (
     <section
       id="how-we-compare"
-      className="border-b border-slate-100 bg-slate-50/80 py-8 sm:py-10"
+      className="scroll-mt-24 border-b border-slate-100 bg-slate-50/80 py-8 sm:py-10"
       aria-labelledby="compare-heading"
     >
       <div className="mx-auto max-w-[880px] px-5 sm:px-6 lg:px-8">

@@ -36,6 +36,19 @@ export function questionContentHash(
     .digest("hex");
 }
 
+/** Hash including scenario/vignette so split vignette updates do not collide. */
+export function bankItemContentHash(
+  fieldId: string,
+  subjectId: string,
+  item: Pick<BankItem, "question" | "vignette" | "scenario">
+): string {
+  const scenario = (item.vignette ?? item.scenario ?? "").trim().toLowerCase();
+  const stem = item.question.trim().toLowerCase();
+  return createHash("sha256")
+    .update(`${fieldId}|${subjectId}|${scenario}|${stem}`)
+    .digest("hex");
+}
+
 let inFlightSync: Promise<SyncQuestionBankResult> | null = null;
 
 /** Upsert seed questions and top up each subject to MIN_QUESTIONS_PER_SUBJECT. */
@@ -55,7 +68,7 @@ function rowToCreateData(
   item: BankItem,
   source: "seed" | "generated"
 ) {
-  const contentHash = questionContentHash(fieldId, subjectId, item.question);
+  const contentHash = bankItemContentHash(fieldId, subjectId, item);
   return {
     fieldId,
     subjectId,
@@ -174,7 +187,7 @@ async function runSync(): Promise<SyncQuestionBankResult> {
   try {
     for (const row of seeds) {
       activeHashes.add(
-        questionContentHash(row.fieldId, row.subjectId, row.item.question)
+        bankItemContentHash(row.fieldId, row.subjectId, row.item)
       );
       const result = await upsertSeedRow(row);
       if (result === "created") itemsCreated++;

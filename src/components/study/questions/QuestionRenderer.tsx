@@ -106,7 +106,7 @@ export function QuestionRenderer({
             question.ngnFormat === "vignette" ? (
             <NaplexCaseVignette text={question.vignette} />
           ) : (
-            <VignetteBlock text={question.vignette} />
+            <VignetteBlock text={question.vignette} stem={question.stem} />
           )
         )}
 

@@ -10,6 +10,8 @@ import { USMLE_PHYSICIAN_EDUCATOR_BATCH_02 } from "@/lib/edtech/seeds/usmle-phys
 import { assertMpjePhysicianEducatorQuality } from "./mpje-physician-educator-quality";
 import { assertNaplexPhysicianEducatorQuality } from "./naplex-physician-educator-quality";
 import { assertUsmlePhysicianEducatorQuality } from "./usmle-physician-educator-quality";
+import { assertNclexCuratedSeedQuality } from "./nclex-curated-seeds-quality";
+import { NCLEX_CURATED_QUALITY } from "./nclex-curated-quality";
 
 describe("Question seed QA gate", () => {
   it("USMLE physician-educator batch 01 (curated vignettes)", () => {
@@ -26,5 +28,9 @@ describe("Question seed QA gate", () => {
 
   it("MPJE physician-educator batch 01 (curated jurisprudence items)", () => {
     assertMpjePhysicianEducatorQuality(MPJE_PHYSICIAN_EDUCATOR_BATCH_01);
+  });
+
+  it("NCLEX curated quality (high-yield vignettes)", () => {
+    assertNclexCuratedSeedQuality(NCLEX_CURATED_QUALITY, "NCLEX_CURATED_QUALITY");
   });
 });

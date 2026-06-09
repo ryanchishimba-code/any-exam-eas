@@ -75,11 +75,20 @@ export function NgnCjmmNote({ question }: { question: StudyQuestion }) {
   );
 }
 
-export function VignetteBlock({ text }: { text: string }) {
+export function inferVignetteLabel(text: string, stem = ""): string {
+  const blob = `${text}\n${stem}`;
+  if (/Handoff report —/i.test(text)) return "Handoff report";
+  if (/UAP|unlicensed assistive personnel|assign tasks to/i.test(blob)) return "Assignment context";
+  if (/^\d{4} —/.test(text)) return "Shift note";
+  return "Patient scenario";
+}
+
+export function VignetteBlock({ text, stem = "" }: { text: string; stem?: string }) {
+  const label = inferVignetteLabel(text, stem);
   return (
     <div className="mb-4 rounded-xl border border-black/[0.06] bg-[var(--color-surface)] px-4 py-3 sm:px-4">
       <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-        Chart / bedside excerpt
+        {label}
       </p>
       <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink)] whitespace-pre-wrap">
         {text}

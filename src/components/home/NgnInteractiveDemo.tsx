@@ -90,7 +90,8 @@ export function NgnInteractiveDemo() {
 
   return (
     <section
-      className="aee-section aee-section-alt py-16 sm:py-20"
+      id="ngn-demo"
+      className="aee-section aee-section-alt scroll-mt-24 py-16 sm:py-20"
       aria-labelledby="ngn-demo-heading"
     >
       <div className="mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">

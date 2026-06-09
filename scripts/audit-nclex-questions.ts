@@ -1,0 +1,214 @@
+/**
+ * Audit nursing / NCLEX bank rows for vignette coherence and option integrity.
+ *
+ * Usage:
+ *   npm run db:audit-nclex
+ *   npm run db:audit-nclex -- --limit 500
+ *   npm run db:audit-nclex -- --deep
+ *   npm run db:audit-nclex -- --subject med-surg --json
+ */
+import { PrismaClient } from "@prisma/client";
+import {
+  auditNclexBankItem,
+  resolveNclexStem,
+  resolveNclexVignette,
+  summarizeNclexAudit,
+} from "../src/lib/exam-prep/nclex-bank-audit";
+import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
+
+const prisma = new PrismaClient();
+
+type AuditRow = {
+  ok: boolean;
+  issues: ReturnType<typeof auditNclexBankItem>["issues"];
+  itemId: string;
+  subjectId: string;
+  vignette: string;
+  stem: string;
+};
+
+function parseArgs() {
+  const args = process.argv.slice(2);
+  let limit = 0;
+  let subject: string | undefined;
+  let json = false;
+  let deep = false;
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === "--limit" && args[i + 1]) limit = parseInt(args[++i], 10);
+    else if (args[i] === "--subject" && args[i + 1]) subject = args[++i];
+    else if (args[i] === "--json") json = true;
+    else if (args[i] === "--deep") deep = true;
+  }
+  return { limit, subject, json, deep };
+}
+
+function breakdownBySubject(results: AuditRow[]) {
+  const bySubject: Record<
+    string,
+    { total: number; pass: number; fail: number; warnOnly: number; byCode: Record<string, number> }
+  > = {};
+
+  for (const r of results) {
+    const sid = r.subjectId;
+    if (!bySubject[sid]) bySubject[sid] = { total: 0, pass: 0, fail: 0, warnOnly: 0, byCode: {} };
+    const bucket = bySubject[sid]!;
+    bucket.total++;
+    const hasError = r.issues.some((i) => i.severity === "error");
+    if (r.ok) bucket.pass++;
+    else if (hasError) bucket.fail++;
+    else bucket.warnOnly++;
+    for (const issue of r.issues) {
+      bucket.byCode[issue.code] = (bucket.byCode[issue.code] ?? 0) + 1;
+    }
+  }
+  return bySubject;
+}
+
+function samplesByCode(results: AuditRow[], maxPerCode = 3) {
+  const codeCounts = results.reduce<Record<string, number>>((acc, r) => {
+    for (const issue of r.issues) acc[issue.code] = (acc[issue.code] ?? 0) + 1;
+    return acc;
+  }, {});
+
+  const topCodes = Object.entries(codeCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
+    .map(([code]) => code);
+
+  const seen: Record<string, number> = {};
+  const samples: Record<
+    string,
+    Array<{ itemId: string; subjectId: string; vignette: string; stem: string; message: string }>
+  > = {};
+
+  for (const r of results) {
+    for (const issue of r.issues) {
+      if (!topCodes.includes(issue.code)) continue;
+      seen[issue.code] = seen[issue.code] ?? 0;
+      if (seen[issue.code]! >= maxPerCode) continue;
+      seen[issue.code]!++;
+      if (!samples[issue.code]) samples[issue.code] = [];
+      samples[issue.code]!.push({
+        itemId: r.itemId,
+        subjectId: r.subjectId,
+        vignette: r.vignette.slice(0, 200),
+        stem: r.stem.slice(0, 120),
+        message: issue.message,
+      });
+    }
+  }
+  return { samples, codeCounts: Object.fromEntries(topCodes.map((c) => [c, codeCounts[c]!])) };
+}
+
+async function main() {
+  const { limit, subject, json, deep } = parseArgs();
+
+  const rows = await prisma.questionBankItem.findMany({
+    where: {
+      fieldId: "nursing",
+      active: true,
+      ...(subject ? { subjectId: subject } : {}),
+    },
+    orderBy: { id: "asc" },
+    ...(limit > 0 ? { take: limit } : {}),
+  });
+
+  console.log(`Auditing ${rows.length} active nursing question(s)…\n`);
+
+  const results: AuditRow[] = rows.map((row) => {
+    const item = enrichBankItemFromRow(row);
+    const report = auditNclexBankItem(item);
+    return {
+      ...report,
+      itemId: row.id,
+      subjectId: row.subjectId,
+      vignette: resolveNclexVignette(item),
+      stem: resolveNclexStem(item),
+    };
+  });
+
+  const summary = summarizeNclexAudit(results);
+  const bySubject = breakdownBySubject(results);
+  const { samples, codeCounts: topCodeCounts } = samplesByCode(results);
+
+  if (json) {
+    console.log(
+      JSON.stringify(
+        {
+          summary,
+          passRate: summary.total ? (summary.pass / summary.total) * 100 : 0,
+          bySubject,
+          topCodeCounts,
+          samples,
+          failures: results.filter((r) => !r.ok).slice(0, 50),
+        },
+        null,
+        2
+      )
+    );
+    return;
+  }
+
+  const passRate = summary.total ? ((summary.pass / summary.total) * 100).toFixed(1) : "0";
+  console.log(`Total:      ${summary.total}`);
+  console.log(`Pass:       ${summary.pass} (${passRate}%)`);
+  console.log(`Fail:       ${summary.fail}`);
+  console.log(`\nBy severity:`);
+  for (const [sev, count] of Object.entries(summary.bySeverity)) {
+    console.log(`  ${sev}: ${count}`);
+  }
+  console.log(`\nTop issue codes:`);
+  for (const [code, count] of Object.entries(summary.byCode).sort((a, b) => b[1] - a[1]).slice(0, 12)) {
+    console.log(`  ${code}: ${count}`);
+  }
+
+  if (deep) {
+    console.log(`\n── By subject (sorted by fail rate) ──`);
+    const subjectRows = Object.entries(bySubject)
+      .map(([sid, s]) => ({
+        sid,
+        ...s,
+        failRate: s.total ? (s.fail / s.total) * 100 : 0,
+      }))
+      .sort((a, b) => b.failRate - a.failRate);
+
+    for (const s of subjectRows) {
+      const topCodes = Object.entries(s.byCode)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3)
+        .map(([c, n]) => `${c}:${n}`)
+        .join(", ");
+      console.log(
+        `  ${s.sid}: ${s.pass}/${s.total} pass, ${s.fail} fail, ${s.warnOnly} warn-only | ${topCodes || "—"}`
+      );
+    }
+
+    console.log(`\n── Sample vignettes by top issue code ──`);
+    for (const [code, items] of Object.entries(samples)) {
+      console.log(`\n  [${code}] (${topCodeCounts[code]} total)`);
+      for (const ex of items) {
+        console.log(`    ${ex.itemId.slice(0, 12)}… ${ex.subjectId}`);
+        console.log(`      vignette: ${ex.vignette}${ex.vignette.length >= 200 ? "…" : ""}`);
+        console.log(`      stem: ${ex.stem}${ex.stem.length >= 120 ? "…" : ""}`);
+      }
+    }
+  }
+
+  const failures = results.filter((r) => !r.ok).slice(0, 15);
+  if (failures.length > 0 && !deep) {
+    console.log(`\nSample failures (first ${failures.length}):`);
+    for (const f of failures) {
+      console.log(`\n  [${f.itemId}] ${f.subjectId}`);
+      for (const issue of f.issues) {
+        console.log(`    ${issue.severity} ${issue.code}: ${issue.message}`);
+      }
+    }
+  }
+}
+
+main()
+  .catch((e) => {
+    console.error(e);
+    process.exit(1);
+  })
+  .finally(() => prisma.$disconnect());

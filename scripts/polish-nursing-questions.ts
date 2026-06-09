@@ -6,9 +6,10 @@
  *   npx tsx scripts/polish-nursing-questions.ts --dry-run
  *   npx tsx scripts/polish-nursing-questions.ts
  *   npx tsx scripts/polish-nursing-questions.ts --fix-prioritization
+ *   npx tsx scripts/polish-nursing-questions.ts --all
  */
 import { PrismaClient } from "@prisma/client";
-import { questionContentHash } from "../src/lib/sync-question-bank";
+import { bankItemContentHash } from "../src/lib/sync-question-bank";
 import {
   isWeakPrioritizationBankItem,
   needsNclexPolish,
@@ -16,7 +17,7 @@ import {
   scoreNclexBankItem,
 } from "../src/lib/engine/polish/nclex-polish";
 import { getFieldSubject } from "../src/lib/field-subjects";
-import type { BankItem } from "../src/lib/question-bank";
+import { enrichBankItemFromRow, serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
 
 const prisma = new PrismaClient();
 
@@ -25,24 +26,6 @@ const all = process.argv.includes("--all");
 const fixPrioritization = process.argv.includes("--fix-prioritization");
 const limitArg = process.argv.indexOf("--limit");
 const limit = limitArg >= 0 ? Number.parseInt(process.argv[limitArg + 1] ?? "0", 10) : 0;
-
-function rowToItem(row: {
-  question: string;
-  options: string;
-  correctAnswer: string;
-  explanation: string;
-  subjectId: string;
-  tags: string | null;
-}): BankItem {
-  return {
-    subjectId: row.subjectId,
-    question: row.question,
-    options: JSON.parse(row.options) as [string, string, string, string],
-    correctAnswer: row.correctAnswer,
-    explanation: row.explanation,
-    tags: row.tags ? (JSON.parse(row.tags) as string[]) : undefined,
-  };
-}
 
 function seedFromId(id: string): number {
   let h = 0;
@@ -68,12 +51,11 @@ async function main() {
   let errors = 0;
   let avgBefore = 0;
   let avgAfter = 0;
-
   let collisions = 0;
 
   for (const row of rows) {
     scanned++;
-    const item = rowToItem(row);
+    const item = enrichBankItemFromRow(row);
     const before = scoreNclexBankItem(item);
     avgBefore += before;
 
@@ -100,7 +82,7 @@ async function main() {
       for (let attempt = 0; attempt < 8; attempt++) {
         if (!result.changed) break;
 
-        const newHash = questionContentHash("nursing", row.subjectId, finalItem.question);
+        const newHash = bankItemContentHash("nursing", row.subjectId, finalItem);
         const hashCollision = await prisma.questionBankItem.findFirst({
           where: { contentHash: newHash, NOT: { id: row.id } },
         });
@@ -123,7 +105,7 @@ async function main() {
         continue;
       }
 
-      const finalHash = questionContentHash("nursing", row.subjectId, finalItem.question);
+      const finalHash = bankItemContentHash("nursing", row.subjectId, finalItem);
       const stillCollides = await prisma.questionBankItem.findFirst({
         where: { contentHash: finalHash, NOT: { id: row.id } },
       });
@@ -145,8 +127,9 @@ async function main() {
       await prisma.questionBankItem.update({
         where: { id: row.id },
         data: {
+          scenario: finalItem.vignette ?? finalItem.scenario ?? null,
           question: finalItem.question,
-          options: JSON.stringify(finalItem.options),
+          options: serializeBankOptions(finalItem),
           correctAnswer: finalItem.correctAnswer,
           explanation: finalItem.explanation,
           tags: finalItem.tags ? JSON.stringify(finalItem.tags) : row.tags,

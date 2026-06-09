@@ -2520,6 +2520,33 @@ body {
   box-shadow: 0 4px 14px rgba(13, 148, 136, 0.1);
 }
 
+.aee-testimonial-card {
+  border-radius: 1.125rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: white;
+  padding: 1.25rem 1.375rem;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.04);
+  transition:
+    box-shadow 0.3s var(--ease-apple),
+    transform 0.3s var(--ease-apple-smooth);
+}
+
+.aee-testimonial-card:hover {
+  box-shadow: 0 12px 40px rgba(13, 148, 136, 0.08);
+  transform: translateY(-2px);
+}
+
+.aee-diff-card {
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s var(--ease-apple);
+}
+
+.aee-diff-card:hover {
+  border-color: rgba(13, 148, 136, 0.2);
+  box-shadow: 0 8px 28px rgba(13, 148, 136, 0.06);
+}
+
 /* Top 500 — vibrant landing flashcard visual */
 .aee-top500-visual {
   --top500-accent: #0d9488;

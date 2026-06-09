@@ -5,12 +5,9 @@ import {
   ArrowRight,
   BookOpen,
   Brain,
-  Check,
-  CircleDollarSign,
   HeartPulse,
   Layers,
   MapPin,
-  Minus,
   Pill,
   Scale,
   Stethoscope,
@@ -19,14 +16,7 @@ import { LandingVisualSlot } from "@/components/home/LandingVisualSlot";
 import { Top500DrugsVisual } from "@/components/home/Top500DrugsVisual";
 import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import { studyHubMpjeHref } from "@/lib/study-hub/config";
-import { TRIAL_DAYS } from "@/lib/stripe";
-import {
-  formatMonthlyPrice,
-  formatTrialCtaLabel,
-  formatTrialHeroOffer,
-  formatTrialLabel,
-  formatTrialTodayPrice,
-} from "@/lib/site";
+import { formatTrialCtaLabel, formatTrialHeroOffer } from "@/lib/site";
 
 const EXAMS = [
   {
@@ -86,19 +76,13 @@ const VALUE_PILLARS = [
   },
 ] as const;
 
-const COMPARE_ROWS = [
-  { us: `${formatTrialTodayPrice()} · ${TRIAL_DAYS}-day trial on all four exams`, them: "$99+ per bank upfront" },
-  { us: "One plan — NCLEX · USMLE · NAPLEX · MPJE", them: "Separate subscriptions" },
-  { us: "Top 500 Drugs + full-exam simulator included", them: "Paid add-ons common elsewhere" },
-] as const;
-
 export function LandingCompact() {
   return (
     <div className="aee-landing-compact">
       {/* Exam coverage */}
       <section
         id="choose-exam"
-        className="aee-landing-compact-section border-b border-slate-100 bg-white"
+        className="aee-landing-compact-section scroll-mt-24 border-b border-slate-100 bg-white"
         aria-labelledby="landing-exams-heading"
       >
         <div className="mx-auto max-w-[1080px] px-5 sm:px-6">
@@ -215,21 +199,24 @@ export function LandingCompact() {
             </article>
 
             <article
-              id="how-we-compare"
-              className="aee-landing-panel"
-              aria-labelledby="compare-heading"
+              id="landing-pricing-teaser"
+              className="aee-landing-panel flex flex-col"
+              aria-labelledby="pricing-teaser-heading"
             >
               <p className="text-[0.625rem] font-bold uppercase tracking-wider text-teal-600">
                 Simple pricing
               </p>
-              <h2 id="compare-heading" className="mt-1 text-xl font-bold tracking-tight text-slate-900">
-                Four exams.{" "}
+              <h2
+                id="pricing-teaser-heading"
+                className="mt-1 text-xl font-bold tracking-tight text-slate-900"
+              >
+                Start free.{" "}
                 <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-                  One affordable subscription.
+                  Study all four boards.
                 </span>
               </h2>
               <p className="mt-1.5 text-xs text-slate-600">
-                Try every exam and feature before you commit — no per-board upgrade fees.
+                {formatTrialHeroOffer()} — no per-exam upgrade fees.
               </p>
 
               <LandingVisualSlot
@@ -238,61 +225,24 @@ export function LandingCompact() {
                 className="mt-3 overflow-hidden rounded-xl bg-white ring-1 ring-black/[0.04]"
               />
 
-              <div className="mt-3 grid grid-cols-2 gap-2 rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
-                <div>
-                  <p className="text-[0.625rem] font-bold uppercase text-teal-700">Any Exam Easy</p>
-                  <p className="text-2xl font-black text-teal-700">{formatTrialTodayPrice()}</p>
-                  <p className="text-[0.625rem] text-slate-500">
-                    {formatTrialLabel()}, then {formatMonthlyPrice()}/mo
-                  </p>
-                </div>
-                <div className="text-right">
-                  <p className="text-[0.625rem] font-bold uppercase text-slate-400">
-                    Typical bundled prep
-                  </p>
-                  <p className="text-2xl font-black text-slate-300 line-through">$99+</p>
-                  <p className="text-[0.625rem] text-slate-400">Often per exam or add-on</p>
-                </div>
+              <div className="mt-auto pt-4">
+                <Link
+                  href="/signup?plan=trial"
+                  className="aee-btn-hero-xl group inline-flex w-full items-center justify-center gap-2"
+                >
+                  {formatTrialCtaLabel()}
+                  <ArrowRight
+                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
+                </Link>
+                <Link
+                  href="#how-we-compare"
+                  className="mt-3 block text-center text-xs font-semibold text-teal-700 hover:text-teal-600"
+                >
+                  See how we compare to UWorld &amp; others →
+                </Link>
               </div>
-
-              <ul className="mt-3 space-y-2" role="list">
-                {COMPARE_ROWS.map(({ us, them }) => (
-                  <li
-                    key={us}
-                    className="aee-landing-compare-row rounded-lg border border-slate-100/80 bg-white/70 px-3 py-2.5 text-xs sm:border-0 sm:bg-transparent sm:px-0 sm:py-0"
-                  >
-                    <span className="aee-landing-compare-us flex items-start gap-1.5 font-medium text-slate-800">
-                      <Check
-                        className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-600"
-                        strokeWidth={2.5}
-                        aria-hidden
-                      />
-                      {us}
-                    </span>
-                    <span className="aee-landing-compare-vs text-[0.5625rem] font-bold uppercase text-slate-300">
-                      vs
-                    </span>
-                    <span className="aee-landing-compare-them flex items-start gap-1.5 text-slate-400">
-                      <Minus className="mt-0.5 h-3 w-3 shrink-0" aria-hidden />
-                      {them}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href="/signup?plan=trial"
-                className="aee-btn-hero-xl group mt-4 inline-flex w-full items-center justify-center gap-2"
-              >
-                {formatTrialCtaLabel()}
-                <ArrowRight
-                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                  aria-hidden
-                />
-              </Link>
-              <p className="mt-2 text-center text-[0.625rem] text-slate-500">
-                {formatTrialHeroOffer()}
-              </p>
             </article>
           </div>
         </div>

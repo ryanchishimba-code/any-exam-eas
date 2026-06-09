@@ -38,8 +38,9 @@ describe("nclex-polish", () => {
     expect(changed).toBe(true);
     expect(qualityAfter).toBeGreaterThan(0.62);
     expect(item.question).not.toMatch(/^NCLEX\s+\d+:/i);
-    expect(item.question).toMatch(/BP|HR|SpO₂|SpO2|mmHg/i);
-    expect(item.question).toMatch(/\n\n/);
+    const blob = `${item.vignette ?? ""}\n${item.question}`;
+    expect(blob).toMatch(/BP|HR|SpO₂|SpO2|mmHg/i);
+    expect(item.vignette || item.question).toBeTruthy();
     expect(item.explanation).toMatch(/Recognize cues|Clinical Judgment \(CJMM\)/i);
     expect(item.explanation).toMatch(/Why other options are incorrect/i);
     expect(item.options).toHaveLength(4);
@@ -102,8 +103,32 @@ describe("nclex-polish", () => {
     expect(item.question).not.toMatch(
       /Stable postoperative day 3|Chronic osteoarthritis — PRN|142 mg\/dL, asymptomatic/
     );
-    expect(item.question).toMatch(/Handoff report/);
+    expect(item.vignette ?? item.question).toMatch(/Handoff report/);
     expect(item.options.every((o) => o.startsWith("Room "))).toBe(true);
     expect(item.explanation).toMatch(/Why other options are incorrect/i);
+  });
+
+  it("delegation polish uses stable scenarios that match the stem", () => {
+    const delegationSeed: BankItem = {
+      subjectId: "management-of-care",
+      question: "Which task is appropriate to delegate to UAP?",
+      options: ["A", "B", "C", "D"],
+      correctAnswer: "A",
+      explanation: "Short",
+    };
+    const { item } = polishNclexBankItem(
+      delegationSeed,
+      "management-of-care",
+      "Management of Care",
+      99
+    );
+
+    const vignette = item.vignette ?? item.question;
+    expect(vignette).toMatch(/stable after initial assessment/i);
+    expect(vignette).not.toMatch(/SpO₂ 90%|peak flow 45%|intercostal retractions/i);
+    expect(vignette).not.toMatch(/18-year-old (?:man|woman).*moderate asthma exacerbation/i);
+    expect(item.question).not.toMatch(/Pediatric emergency department/i);
+    expect(item.vignette).toBeTruthy();
+    expect(item.question).toMatch(/delegate|UAP/i);
   });
 });

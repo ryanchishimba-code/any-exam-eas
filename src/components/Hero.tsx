@@ -8,6 +8,7 @@ import { ArrowRight, LogIn, Sparkles } from "lucide-react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { LandingTrialTrust } from "@/components/home/LandingTrialTrust";
+import { TrustBar } from "@/components/home/TrustBar";
 import {
   firstName,
   loadReturningUserHint,
@@ -70,12 +71,12 @@ export function Hero() {
   } else {
     headline = (
       <>
-        One subscription.{" "}
-        <span className="aee-display-accent-vibrant">Four licensing exams.</span>
+        Hard boards.{" "}
+        <span className="aee-display-accent-vibrant">One prep plan that covers four.</span>
       </>
     );
     subline =
-      "NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE — adaptive question banks, OER-backed rationales, Top 500 drug flashcards, and timed full-exam practice in one affordable plan.";
+      "NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE — adaptive banks, NGN-style formats, Top 500 drug flashcards, and timed full exams. Why buy four separate subscriptions?";
     urgency = formatTrialHeroOffer();
   }
 
@@ -111,7 +112,7 @@ export function Hero() {
               {subline}
             </p>
 
-            <div className="aee-reveal aee-reveal-delay-3 mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center lg:justify-start">
+            <div className="aee-reveal aee-reveal-delay-3 mt-7 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center lg:justify-start">
                 {isAuthed ? (
                   <>
                     <Link
@@ -164,9 +165,15 @@ export function Hero() {
                         aria-hidden
                       />
                     </Link>
+                    <Link
+                      href="#ngn-demo"
+                      className="aee-btn-hero-ghost inline-flex w-full items-center justify-center sm:w-auto"
+                    >
+                      Try free NCLEX demo
+                    </Link>
                     <LoginModalTrigger
                       callbackUrl={ROUTES.dashboard}
-                      className="aee-btn-hero-ghost inline-flex w-full items-center justify-center gap-2 sm:w-auto"
+                      className="aee-btn-hero-ghost inline-flex w-full items-center justify-center gap-2 sm:w-auto sm:border-0 sm:bg-transparent sm:px-2 sm:py-1 sm:text-sm sm:text-slate-500"
                     >
                       <LogIn className="h-4 w-4" aria-hidden />
                       Log in
@@ -180,6 +187,10 @@ export function Hero() {
             )}
 
             {!isAuthed && !isReturning && (
+              <TrustBar className="aee-reveal aee-reveal-delay-4 mt-5 lg:justify-start" />
+            )}
+
+            {!isAuthed && !isReturning && (
               <LandingTrialTrust className="aee-reveal aee-reveal-delay-4 mt-4" />
             )}
 
@@ -190,7 +201,7 @@ export function Hero() {
             )}
           </header>
 
-          <div className="aee-reveal aee-reveal-delay-2 mx-auto hidden w-full max-w-[380px] md:block lg:max-w-none">
+          <div className="aee-reveal aee-reveal-delay-2 mx-auto w-full max-w-[380px] sm:max-w-[420px] lg:max-w-none">
             <LandingAppMockup />
           </div>
         </div>
