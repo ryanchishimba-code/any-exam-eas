@@ -79,15 +79,12 @@ export async function GET() {
 
   const dbOk =
     checks.databaseUrl === "postgresql" || checks.databaseUrl === "sqlite-local";
-  const emailOk =
-    process.env.NODE_ENV !== "production" || checks.passwordResetEmail === "ok";
-
+  // Core app health — email sandbox is OK until anyexameasy.com DNS is verified in Resend.
   const ok =
     checks.nextauthSecret === "ok" &&
     dbOk &&
     checks.prisma === "ok" &&
-    (checks.drizzle === "ok" || checks.drizzle === "skipped") &&
-    emailOk;
+    (checks.drizzle === "ok" || checks.drizzle === "skipped");
 
   let env: Record<string, string> | undefined;
   try {

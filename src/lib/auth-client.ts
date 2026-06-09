@@ -15,9 +15,12 @@ export async function fetchAuthHealthWarning(): Promise<string | null> {
     const res = await fetch("/api/health", { cache: "no-store" });
     const data = (await res.json()) as {
       ok?: boolean;
-      checks?: { nextauthSecret?: string; databaseUrl?: string };
+      checks?: {
+        nextauthSecret?: string;
+        databaseUrl?: string;
+        passwordResetEmail?: string;
+      };
     };
-    if (data.ok) return null;
 
     const missing: string[] = [];
     if (data.checks?.nextauthSecret === "missing") missing.push("NEXTAUTH_SECRET");
@@ -25,7 +28,16 @@ export async function fetchAuthHealthWarning(): Promise<string | null> {
     if (missing.length > 0) {
       return `This deployment is missing required settings: ${missing.join(", ")}. Run \`npm run vercel:setup\` for copy-paste values, add them in Vercel → Environment Variables (Production + Build), then redeploy.`;
     }
-    return "This deployment is not fully configured yet. Check /api/health or redeploy after setting environment variables.";
+
+    // Non-blocking: Resend not configured yet — login still works; forgot-password emails won't send.
+    if (data.checks?.passwordResetEmail === "resend-key-missing") {
+      return "Password reset email is not configured (RESEND_API_KEY). Sign-in works; add Resend in Vercel env to enable reset emails.";
+    }
+
+    if (!data.ok) {
+      return "This deployment is not fully configured yet. Check /api/health or redeploy after setting environment variables.";
+    }
+    return null;
   } catch {
     return null;
   }
