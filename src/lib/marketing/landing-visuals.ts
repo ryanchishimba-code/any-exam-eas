@@ -80,3 +80,14 @@ export const LANDING_VISUAL_PATHS: Record<keyof typeof LANDING_VISUALS, string> 
 export function landingVisualSrc(id: string): string | undefined {
   return LANDING_VISUAL_PATHS[id as keyof typeof LANDING_VISUALS];
 }
+
+/** Landing hero / marketing video assets in /public/videos/landing/ */
+export const LANDING_VIDEO_PATHS = {
+  heroShowcase: "/videos/landing/hero-showcase.mp4",
+} as const;
+
+export type LandingVideoId = keyof typeof LANDING_VIDEO_PATHS;
+
+export function landingVideoSrc(id: LandingVideoId): string {
+  return LANDING_VIDEO_PATHS[id];
+}

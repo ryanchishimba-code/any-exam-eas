@@ -1,5 +1,22 @@
 "use client";
 
+/**
+ * Flagship landing page — Tesla/Apple minimalism × UWorld medical authority.
+ *
+ * Section flow (conversion-optimized vertical rhythm):
+ *   1. Hero (full viewport, dual CTA, trust bar)
+ *   2. Exams grid
+ *   3. Why AnyExamEasy (benefit cards + visuals)
+ *   4. How it works (numbered steps)
+ *   5. Question previews (UWorld-style sample items)
+ *   6. Proven results (metrics + testimonials)
+ *   7. Pricing (trial → monthly, wallet badges)
+ *   8. Final CTA
+ *
+ * Design tokens: src/lib/landing/tokens.ts (#0A2540 navy, #00D4C8 teal)
+ * Guest-only — subscribers see Study Hub via HomeExperience.
+ */
+
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
@@ -14,7 +31,9 @@ import {
   Stethoscope,
 } from "lucide-react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
+import { LandingCta } from "@/components/landing/LandingCta";
 import { LandingSection } from "@/components/landing/LandingSection";
+import { QuestionPreviewCard } from "@/components/landing/QuestionPreviewCard";
 import { LandingVisualSlot } from "@/components/home/LandingVisualSlot";
 import { LiveBankStats } from "@/components/home/LiveBankStats";
 import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
@@ -24,9 +43,9 @@ import {
   LANDING_METRICS,
   LANDING_STEPS,
   LANDING_TESTIMONIALS,
-  SAMPLE_QUESTION_PREVIEWS,
+  SAMPLE_QUESTIONS_FEATURED,
 } from "@/lib/landing/content";
-import { landingVisualSrc } from "@/lib/marketing/landing-visuals";
+import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { ROUTES } from "@/lib/routes";
 import {
   formatMonthlyPrice,
@@ -35,15 +54,12 @@ import {
   MARKETING_DISCLAIMER,
   TRIAL_PAYMENT_DISCLOSURE,
 } from "@/lib/site";
-import { cn } from "@/lib/utils";
 
-const LandingAppMockup = dynamic(
-  () => import("@/components/home/LandingAppMockup").then((m) => m.LandingAppMockup),
+const LandingHeroVideoDynamic = dynamic(
+  () => import("@/components/landing/LandingHeroVideo").then((m) => m.LandingHeroVideo),
   {
     ssr: false,
-    loading: () => (
-      <div className="aee-flagship-mockup-skeleton" aria-hidden />
-    ),
+    loading: () => <div className="aee-flagship-mockup-skeleton" aria-hidden />,
   }
 );
 
@@ -52,11 +68,11 @@ const NgnInteractiveDemo = dynamic(
   { ssr: false }
 );
 
-const EXAM_LOGOS = [
-  { label: "NCLEX", icon: HeartPulse, color: "#0d9488" },
-  { label: "USMLE", icon: Stethoscope, color: "#2563eb" },
-  { label: "NAPLEX", icon: Pill, color: "#7c3aed" },
-  { label: "MPJE", icon: Scale, color: "#d97706" },
+const TRUST_EXAMS = [
+  { label: "NCLEX", icon: HeartPulse, color: EXAM_ACCENTS.nclex },
+  { label: "USMLE", icon: Stethoscope, color: EXAM_ACCENTS.usmle },
+  { label: "NAPLEX", icon: Pill, color: EXAM_ACCENTS.naplex },
+  { label: "MPJE", icon: Scale, color: EXAM_ACCENTS.mpje },
 ] as const;
 
 function Reveal({
@@ -69,16 +85,14 @@ function Reveal({
   delay?: number;
 }) {
   const reduceMotion = useReducedMotion();
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
+  if (reduceMotion) return <div className={className}>{children}</div>;
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.45, delay, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: "-48px" }}
+      transition={{ duration: 0.42, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>
@@ -87,50 +101,49 @@ function Reveal({
 
 function HeroSection() {
   const reduceMotion = useReducedMotion();
-  const heroSrc = landingVisualSrc("hero-app-mockup");
 
   return (
     <section className="aee-flagship-hero" aria-labelledby="flagship-hero-heading">
       <div className="aee-flagship-hero__bg" aria-hidden />
+      <div className="aee-flagship-hero__glow" aria-hidden />
       <div className="aee-flagship-hero__grid" aria-hidden />
 
       <div className="aee-flagship-inner aee-flagship-hero__layout">
         <motion.div
           className="aee-flagship-hero__copy"
-          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="aee-flagship-eyebrow aee-flagship-eyebrow--hero">
             Medical licensing exam prep
           </p>
           <h1 id="flagship-hero-heading" className="aee-flagship-hero__headline">
-            Pass your board with{" "}
-            <span className="aee-flagship-gradient-text">confidence</span> — not clutter.
+            Board prep with{" "}
+            <span className="aee-flagship-gradient-text">clinical-grade</span> questions — one
+            subscription.
           </h1>
           <p className="aee-flagship-hero__subline">
-            NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE in one premium subscription — adaptive
-            question banks, timed exams, and Top 500 Drugs.
+            NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE. Adaptive banks, timed exams, and Top 500
+            Drugs — designed with the clarity of Apple and the rigor of UWorld.
           </p>
 
           <div className="aee-flagship-hero__ctas">
-            <Link
+            <LandingCta
               href="/signup?plan=trial"
-              className="aee-btn-hero-xl group inline-flex items-center justify-center gap-2"
+              icon={
+                <ArrowRight
+                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                  aria-hidden
+                />
+              }
+              className="group"
             >
               {formatTrialCtaLabel()}
-              <ArrowRight
-                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                aria-hidden
-              />
-            </Link>
-            <Link
-              href="#sample-questions"
-              className="aee-btn-hero-secondary inline-flex items-center justify-center gap-2"
-            >
+            </LandingCta>
+            <LandingCta href="#sample-questions" variant="secondary">
               See sample questions
-              <ChevronRight className="h-4 w-4" aria-hidden />
-            </Link>
+            </LandingCta>
           </div>
 
           <p className="aee-flagship-hero__disclosure">{TRIAL_PAYMENT_DISCLOSURE}</p>
@@ -141,19 +154,15 @@ function HeroSection() {
           className="aee-flagship-hero__visual"
           initial={reduceMotion ? false : { opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.65, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
         >
-          {heroSrc ? (
-            <LandingAppMockup />
-          ) : (
-            <div className="aee-flagship-mockup-skeleton" aria-hidden />
-          )}
+          <LandingHeroVideoDynamic />
         </motion.div>
       </div>
 
       <div className="aee-flagship-inner aee-flagship-hero__trust">
         <ul className="aee-flagship-exam-logos" aria-label="Exams we prepare you for">
-          {EXAM_LOGOS.map(({ label, icon: Icon, color }) => (
+          {TRUST_EXAMS.map(({ label, icon: Icon, color }) => (
             <li key={label} className="aee-flagship-exam-logo">
               <Icon className="h-4 w-4" style={{ color }} aria-hidden />
               <span>{label}</span>
@@ -166,328 +175,265 @@ function HeroSection() {
   );
 }
 
-function ExamsSection() {
-  return (
-    <LandingSection
-      id="exams"
-      eyebrow="All included in one plan"
-      title={
-        <>
-          Exams we prepare you for —{" "}
-          <span className="aee-flagship-gradient-text">one subscription.</span>
-        </>
-      }
-      subtitle="Switch your primary board anytime. No per-exam upgrade fees."
-    >
-      <ul className="aee-flagship-exam-grid">
-        {LANDING_EXAMS.map((exam, i) => {
-          const Icon = exam.icon;
-          return (
-            <Reveal key={exam.id} delay={i * 0.05}>
-              <li>
-                <Link href={exam.href} className="aee-flagship-exam-card group">
-                  <span
-                    className="aee-flagship-exam-card__icon"
-                    style={{ color: exam.color }}
-                  >
-                    <Icon className="h-5 w-5" strokeWidth={2} aria-hidden />
-                  </span>
-                  <span className="aee-flagship-exam-card__body">
-                    <span className="aee-flagship-exam-card__label">{exam.label}</span>
-                    <span className="aee-flagship-exam-card__blurb">{exam.blurb}</span>
-                  </span>
-                  <ChevronRight
-                    className="h-4 w-4 shrink-0 text-slate-300 transition-transform group-hover:translate-x-0.5 group-hover:text-teal-600"
-                    aria-hidden
-                  />
-                </Link>
-              </li>
-            </Reveal>
-          );
-        })}
-      </ul>
-    </LandingSection>
-  );
-}
-
-function BenefitsSection() {
-  return (
-    <LandingSection
-      id="why-us"
-      alt
-      eyebrow="Why students choose AnyExamEasy"
-      title={
-        <>
-          Premium prep that feels{" "}
-          <span className="aee-flagship-gradient-text">built for boards.</span>
-        </>
-      }
-      subtitle="Every feature earns its place — no filler modules, no separate bills per exam."
-      align="center"
-    >
-      <ul className="aee-flagship-benefits-grid">
-        {LANDING_BENEFITS.map((benefit, i) => (
-          <Reveal key={benefit.title} delay={i * 0.06}>
-            <li className="aee-flagship-benefit-card">
-              <LandingVisualSlot
-                visualId={benefit.visualId}
-                fit="contain"
-                className="aee-flagship-benefit-card__visual"
-              />
-              <div className="aee-flagship-benefit-card__body">
-                <h3 className="aee-flagship-benefit-card__title">{benefit.title}</h3>
-                <p className="aee-flagship-benefit-card__detail">{benefit.detail}</p>
-              </div>
-            </li>
-          </Reveal>
-        ))}
-      </ul>
-    </LandingSection>
-  );
-}
-
-function HowItWorksSection() {
-  return (
-    <LandingSection
-      id="how-it-works"
-      eyebrow="How it works"
-      title="Four steps from signup to exam-day ready."
-      subtitle="A clear path — no maze of upsells."
-    >
-      <ol className="aee-flagship-steps">
-        {LANDING_STEPS.map((step, i) => {
-          const Icon = step.icon;
-          return (
-            <Reveal key={step.step} delay={i * 0.07}>
-              <li className="aee-flagship-step">
-                <span className="aee-flagship-step__number" aria-hidden>
-                  {step.step}
-                </span>
-                <span className="aee-flagship-step__icon">
-                  <Icon className="h-5 w-5" aria-hidden />
-                </span>
-                <h3 className="aee-flagship-step__title">{step.title}</h3>
-                <p className="aee-flagship-step__detail">{step.detail}</p>
-              </li>
-            </Reveal>
-          );
-        })}
-      </ol>
-    </LandingSection>
-  );
-}
-
-function SampleQuestionsSection() {
-  return (
-    <LandingSection
-      id="sample-questions"
-      alt
-      eyebrow="Realistic previews"
-      title="See the quality before you subscribe."
-      subtitle="Board-style stems, plausible distractors, and concise rationales — sampled from our banks."
-      align="center"
-    >
-      <ul className="aee-flagship-question-grid">
-        {SAMPLE_QUESTION_PREVIEWS.map((q, i) => (
-          <Reveal key={q.exam} delay={i * 0.05}>
-            <li className="aee-flagship-question-card">
-              <div className="aee-flagship-question-card__head">
-                <span
-                  className="aee-flagship-question-card__badge"
-                  style={{ color: q.examColor, borderColor: `${q.examColor}33` }}
-                >
-                  {q.exam}
-                </span>
-              </div>
-              <p className="aee-flagship-question-card__stem">{q.stem}</p>
-              <ol className="aee-flagship-question-card__options" aria-label="Answer choices">
-                {q.options.map((opt) => (
-                  <li
-                    key={opt}
-                    className={cn(
-                      "aee-flagship-question-card__option",
-                      opt === q.correct && "aee-flagship-question-card__option--correct"
-                    )}
-                  >
-                    {opt === q.correct ? (
-                      <Check className="h-3.5 w-3.5 shrink-0 text-teal-600" aria-hidden />
-                    ) : (
-                      <span className="h-3.5 w-3.5 shrink-0" aria-hidden />
-                    )}
-                    <span>{opt}</span>
-                  </li>
-                ))}
-              </ol>
-              <p className="aee-flagship-question-card__rationale">
-                <strong>Rationale:</strong> {q.rationale}
-              </p>
-            </li>
-          </Reveal>
-        ))}
-      </ul>
-
-      <Reveal className="mt-6">
-        <div className="aee-flagship-ngn-wrap">
-          <p className="mb-3 text-center text-sm font-semibold text-slate-700">
-            Try Next-Gen NCLEX formats interactively
-          </p>
-          <NgnInteractiveDemo />
-        </div>
-      </Reveal>
-    </LandingSection>
-  );
-}
-
-function ResultsSection() {
-  return (
-    <LandingSection
-      id="results"
-      eyebrow="Proven results"
-      title={
-        <>
-          Trusted by students preparing for{" "}
-          <span className="aee-flagship-gradient-text">multiple boards.</span>
-        </>
-      }
-      subtitle="Individual experiences vary. We do not guarantee licensure outcomes."
-      align="center"
-    >
-      <ul className="aee-flagship-metrics" aria-label="Platform highlights">
-        {LANDING_METRICS.map((m) => (
-          <li key={m.label} className="aee-flagship-metric">
-            <span className="aee-flagship-metric__value">{m.value}</span>
-            <span className="aee-flagship-metric__label">{m.label}</span>
-          </li>
-        ))}
-      </ul>
-
-      <ul className="aee-flagship-testimonials">
-        {LANDING_TESTIMONIALS.map((t, i) => (
-          <Reveal key={t.name} delay={i * 0.06}>
-            <li className="aee-flagship-testimonial">
-              <div className="aee-flagship-testimonial__avatar" aria-hidden>
-                {t.initials}
-              </div>
-              <blockquote className="aee-flagship-testimonial__quote">
-                &ldquo;{t.quote}&rdquo;
-              </blockquote>
-              <footer>
-                <p className="aee-flagship-testimonial__name">{t.name}</p>
-                <p className="aee-flagship-testimonial__exam">{t.exam}</p>
-              </footer>
-            </li>
-          </Reveal>
-        ))}
-      </ul>
-    </LandingSection>
-  );
-}
-
-function PricingSection() {
-  return (
-    <LandingSection
-      id="pricing"
-      alt
-      eyebrow="Pricing that converts"
-      title={
-        <>
-          {formatTrialCtaLabel()} → {formatMonthlyPrice()}/mo
-        </>
-      }
-      subtitle="One plan covers NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE. Cancel anytime."
-      align="center"
-    >
-      <div className="aee-flagship-pricing-card">
-        <LandingVisualSlot
-          visualId="pricing-value-stack"
-          fit="contain"
-          className="aee-flagship-pricing-card__visual"
-        />
-        <ul className="aee-flagship-pricing-features">
-          {[
-            "All four exam banks + adaptive practice",
-            "Timed full-exam simulator",
-            "Top 500 Drugs flashcard deck",
-            "Progress analytics & weak-area drills",
-            "State-specific MPJE when you need it",
-          ].map((item) => (
-            <li key={item} className="flex items-start gap-2 text-sm text-slate-700">
-              <Check className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" aria-hidden />
-              {item}
-            </li>
-          ))}
-        </ul>
-        <Link
-          href="/signup?plan=trial"
-          className="aee-btn-hero-xl group mt-5 inline-flex w-full items-center justify-center gap-2"
-        >
-          {formatTrialCtaLabel()}
-          <ArrowRight
-            className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-            aria-hidden
-          />
-        </Link>
-        <p className="mt-3 text-center text-xs text-slate-500">{TRIAL_PAYMENT_DISCLOSURE}</p>
-        <PaymentMethodBadges className="mt-4 justify-center" size="sm" />
-        <Link
-          href={ROUTES.pricing}
-          className="mt-4 block text-center text-sm font-semibold text-teal-700 hover:text-teal-600"
-        >
-          View full pricing details →
-        </Link>
-      </div>
-    </LandingSection>
-  );
-}
-
-function FinalCtaSection() {
-  return (
-    <section className="aee-flagship-final-cta" aria-labelledby="flagship-final-cta-heading">
-      <div className="aee-flagship-final-cta__bg" aria-hidden />
-      <div className="aee-flagship-inner relative text-center">
-        <h2 id="flagship-final-cta-heading" className="aee-flagship-final-cta__title">
-          {formatTrialHeroOffer()}
-        </h2>
-        <p className="aee-flagship-final-cta__subtitle">
-          Join students preparing smarter across nursing, medicine, and pharmacy boards.
-        </p>
-        <div className="aee-flagship-final-cta__actions">
-          <Link
-            href="/signup?plan=trial"
-            className="aee-btn-hero-xl aee-btn-hero-light group inline-flex items-center justify-center gap-2"
-          >
-            {formatTrialCtaLabel()}
-            <ArrowRight
-              className="h-5 w-5 transition-transform group-hover:translate-x-1"
-              aria-hidden
-            />
-          </Link>
-          <LoginModalTrigger
-            callbackUrl={ROUTES.dashboard}
-            className="aee-btn-hero-ghost aee-btn-hero-ghost-on-dark inline-flex items-center justify-center gap-2"
-          >
-            <LogIn className="h-4 w-4" aria-hidden />
-            Already subscribed? Log in
-          </LoginModalTrigger>
-        </div>
-        <p className="mt-4 text-xs text-teal-100/85">{MARKETING_DISCLAIMER}</p>
-      </div>
-    </section>
-  );
-}
-
-/** Flagship guest landing — conversion-optimized, zero dead space. */
 export function LandingFlagship() {
   return (
     <div className="aee-flagship">
       <HeroSection />
-      <ExamsSection />
-      <BenefitsSection />
-      <HowItWorksSection />
-      <SampleQuestionsSection />
-      <ResultsSection />
-      <PricingSection />
-      <FinalCtaSection />
+
+      <LandingSection
+        id="exams"
+        eyebrow="Exams we cover"
+        title={
+          <>
+            Four boards.{" "}
+            <span className="aee-flagship-gradient-text">One premium plan.</span>
+          </>
+        }
+        subtitle="Switch your primary exam anytime — no separate subscriptions."
+      >
+        <ul className="aee-flagship-exam-grid">
+          {LANDING_EXAMS.map((exam, i) => {
+            const Icon = exam.icon;
+            return (
+              <Reveal key={exam.id} delay={i * 0.04}>
+                <li>
+                  <Link href={exam.href} className="aee-flagship-exam-card group">
+                    <span
+                      className="aee-flagship-exam-card__icon"
+                      style={{ color: exam.color }}
+                    >
+                      <Icon className="h-5 w-5" strokeWidth={2} aria-hidden />
+                    </span>
+                    <span className="aee-flagship-exam-card__body">
+                      <span className="aee-flagship-exam-card__label">{exam.label}</span>
+                      <span className="aee-flagship-exam-card__blurb">{exam.blurb}</span>
+                    </span>
+                    <ChevronRight
+                      className="h-4 w-4 shrink-0 opacity-40 transition group-hover:translate-x-0.5 group-hover:opacity-100"
+                      aria-hidden
+                    />
+                  </Link>
+                </li>
+              </Reveal>
+            );
+          })}
+        </ul>
+      </LandingSection>
+
+      <LandingSection
+        id="why-us"
+        alt
+        eyebrow="Why AnyExamEasy"
+        align="center"
+        title={
+          <>
+            Premium prep that earns{" "}
+            <span className="aee-flagship-gradient-text">every pixel.</span>
+          </>
+        }
+        subtitle="Built for students who expect UWorld-quality content without four separate bills."
+      >
+        <ul className="aee-flagship-benefits-grid">
+          {LANDING_BENEFITS.map((b, i) => (
+            <Reveal key={b.title} delay={i * 0.05}>
+              <li className="aee-flagship-benefit-card">
+                <LandingVisualSlot
+                  visualId={b.visualId}
+                  fit="contain"
+                  className="aee-flagship-benefit-card__visual"
+                />
+                <div className="aee-flagship-benefit-card__body">
+                  <h3 className="aee-flagship-benefit-card__title">{b.title}</h3>
+                  <p className="aee-flagship-benefit-card__detail">{b.detail}</p>
+                </div>
+              </li>
+            </Reveal>
+          ))}
+        </ul>
+      </LandingSection>
+
+      <LandingSection
+        id="how-it-works"
+        eyebrow="How it works"
+        title="From signup to exam day in four steps."
+        subtitle="No clutter. No upsell maze. Just a clear study path."
+      >
+        <ol className="aee-flagship-steps">
+          {LANDING_STEPS.map((step, i) => {
+            const Icon = step.icon;
+            return (
+              <Reveal key={step.step} delay={i * 0.06}>
+                <li className="aee-flagship-step">
+                  <span className="aee-flagship-step__number" aria-hidden>
+                    {step.step}
+                  </span>
+                  <span className="aee-flagship-step__icon">
+                    <Icon className="h-5 w-5" aria-hidden />
+                  </span>
+                  <h3 className="aee-flagship-step__title">{step.title}</h3>
+                  <p className="aee-flagship-step__detail">{step.detail}</p>
+                </li>
+              </Reveal>
+            );
+          })}
+        </ol>
+      </LandingSection>
+
+      <LandingSection
+        id="sample-questions"
+        alt
+        align="center"
+        eyebrow="Question previews"
+        title="See the quality before you commit."
+        subtitle="Board-style stems, plausible distractors, and concise rationales — the standard you expect from top-tier prep."
+      >
+        <ul className="aee-flagship-question-grid aee-flagship-question-grid--three">
+          {SAMPLE_QUESTIONS_FEATURED.map((q, i) => (
+            <Reveal key={q.exam} delay={i * 0.05}>
+              <li>
+                <QuestionPreviewCard question={q} />
+              </li>
+            </Reveal>
+          ))}
+        </ul>
+        <Reveal className="mt-5">
+          <div className="aee-flagship-ngn-wrap">
+            <p className="mb-3 text-center text-sm font-semibold">
+              Interactive Next-Gen NCLEX formats
+            </p>
+            <NgnInteractiveDemo />
+          </div>
+        </Reveal>
+      </LandingSection>
+
+      <LandingSection
+        id="results"
+        eyebrow="Proven results"
+        align="center"
+        title={
+          <>
+            Trusted by students on{" "}
+            <span className="aee-flagship-gradient-text">multiple boards.</span>
+          </>
+        }
+        subtitle="Individual experiences vary. We do not guarantee licensure outcomes."
+      >
+        <ul className="aee-flagship-metrics" aria-label="Platform highlights">
+          {LANDING_METRICS.map((m) => (
+            <li key={m.label} className="aee-flagship-metric">
+              <span className="aee-flagship-metric__value">{m.value}</span>
+              <span className="aee-flagship-metric__label">{m.label}</span>
+            </li>
+          ))}
+        </ul>
+        <ul className="aee-flagship-testimonials">
+          {LANDING_TESTIMONIALS.map((t, i) => (
+            <Reveal key={t.name} delay={i * 0.05}>
+              <li className="aee-flagship-testimonial">
+                <div className="aee-flagship-testimonial__avatar" aria-hidden>
+                  {t.initials}
+                </div>
+                <blockquote className="aee-flagship-testimonial__quote">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <footer>
+                  <p className="aee-flagship-testimonial__name">{t.name}</p>
+                  <p className="aee-flagship-testimonial__exam">{t.exam}</p>
+                </footer>
+              </li>
+            </Reveal>
+          ))}
+        </ul>
+      </LandingSection>
+
+      <LandingSection
+        id="pricing"
+        alt
+        align="center"
+        eyebrow="Pricing"
+        title={
+          <>
+            {formatTrialCtaLabel()} → {formatMonthlyPrice()}/mo
+          </>
+        }
+        subtitle="All four boards included. Cancel anytime."
+      >
+        <div className="aee-flagship-pricing-card">
+          <LandingVisualSlot
+            visualId="pricing-value-stack"
+            fit="contain"
+            className="aee-flagship-pricing-card__visual"
+          />
+          <ul className="aee-flagship-pricing-features">
+            {[
+              "NCLEX · USMLE · NAPLEX · MPJE question banks",
+              "Adaptive practice + timed full exams",
+              "Top 500 Drugs pharmacology deck",
+              "Progress analytics & weak-area drills",
+            ].map((item) => (
+              <li key={item} className="flex items-start gap-2 text-sm">
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--flagship-teal)]" aria-hidden />
+                {item}
+              </li>
+            ))}
+          </ul>
+          <LandingCta
+            href="/signup?plan=trial"
+            className="group mt-5 w-full"
+            icon={
+              <ArrowRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                aria-hidden
+              />
+            }
+          >
+            {formatTrialCtaLabel()}
+          </LandingCta>
+          <p className="mt-3 text-center text-xs">{TRIAL_PAYMENT_DISCLOSURE}</p>
+          <PaymentMethodBadges className="mt-4 justify-center" size="sm" />
+          <Link
+            href={ROUTES.pricing}
+            className="mt-4 block text-center text-sm font-semibold text-[var(--flagship-teal)] hover:opacity-80"
+          >
+            Full pricing details →
+          </Link>
+        </div>
+      </LandingSection>
+
+      <section className="aee-flagship-final-cta" aria-labelledby="flagship-final-cta-heading">
+        <div className="aee-flagship-final-cta__bg" aria-hidden />
+        <div className="aee-flagship-inner relative text-center">
+          <h2 id="flagship-final-cta-heading" className="aee-flagship-final-cta__title">
+            {formatTrialHeroOffer()}
+          </h2>
+          <p className="aee-flagship-final-cta__subtitle">
+            Start studying smarter today — your boards won&apos;t wait.
+          </p>
+          <div className="aee-flagship-final-cta__actions">
+            <LandingCta
+              href="/signup?plan=trial"
+              variant="primary"
+              className="group aee-flagship-cta--on-dark"
+              icon={
+                <ArrowRight
+                  className="h-5 w-5 transition-transform group-hover:translate-x-1"
+                  aria-hidden
+                />
+              }
+            >
+              {formatTrialCtaLabel()}
+            </LandingCta>
+            <LoginModalTrigger
+              callbackUrl={ROUTES.dashboard}
+              className="aee-flagship-cta aee-flagship-cta--ghost-dark"
+            >
+              <LogIn className="h-4 w-4" aria-hidden />
+              Already subscribed? Log in
+            </LoginModalTrigger>
+          </div>
+          <p className="mt-4 text-xs opacity-80">{MARKETING_DISCLAIMER}</p>
+        </div>
+      </section>
     </div>
   );
 }

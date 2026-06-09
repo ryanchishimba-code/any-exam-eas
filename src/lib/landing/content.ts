@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { MARKETING_QUESTION_COUNTS, TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
 import { studyHubMpjeHref } from "@/lib/study-hub/config";
+import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 
 export type LandingExam = {
   id: string;
@@ -28,7 +29,7 @@ export const LANDING_EXAMS: LandingExam[] = [
     blurb: "Next-Gen clinical judgment · SATA · bow-tie",
     href: "/study/practice?field=nursing&mode=bank",
     icon: HeartPulse,
-    color: "#0d9488",
+    color: EXAM_ACCENTS.nclex,
   },
   {
     id: "usmle",
@@ -36,7 +37,7 @@ export const LANDING_EXAMS: LandingExam[] = [
     blurb: "Vignette MCQs · timed blocks",
     href: "/study/practice?field=usmle-step-2&mode=bank",
     icon: Stethoscope,
-    color: "#2563eb",
+    color: EXAM_ACCENTS.usmle,
   },
   {
     id: "naplex",
@@ -44,7 +45,7 @@ export const LANDING_EXAMS: LandingExam[] = [
     blurb: "Calculations · compounding · cases",
     href: "/study/practice?field=pharmacy&mode=bank",
     icon: Pill,
-    color: "#7c3aed",
+    color: EXAM_ACCENTS.naplex,
   },
   {
     id: "mpje",
@@ -52,7 +53,7 @@ export const LANDING_EXAMS: LandingExam[] = [
     blurb: "Federal + state pharmacy law",
     href: studyHubMpjeHref(),
     icon: Scale,
-    color: "#d97706",
+    color: EXAM_ACCENTS.mpje,
   },
 ];
 
@@ -122,7 +123,7 @@ export type SampleQuestionPreview = {
 export const SAMPLE_QUESTION_PREVIEWS: SampleQuestionPreview[] = [
   {
     exam: "NCLEX-RN",
-    examColor: "#0d9488",
+    examColor: EXAM_ACCENTS.nclex,
     stem:
       "A nurse assesses a client with fever 38.9°C (102°F), absolute neutrophil count 320/mm³, and a tunneled central line. Which action is the priority?",
     options: [
@@ -137,7 +138,7 @@ export const SAMPLE_QUESTION_PREVIEWS: SampleQuestionPreview[] = [
   },
   {
     exam: "USMLE Step 2 CK",
-    examColor: "#2563eb",
+    examColor: EXAM_ACCENTS.usmle,
     stem:
       "A 58-year-old man with type 2 diabetes presents with crushing substernal chest pain for 45 minutes. ECG shows ST elevation in V2–V4. Next best step?",
     options: [
@@ -152,29 +153,19 @@ export const SAMPLE_QUESTION_PREVIEWS: SampleQuestionPreview[] = [
   },
   {
     exam: "NAPLEX",
-    examColor: "#7c3aed",
+    examColor: EXAM_ACCENTS.naplex,
     stem:
       "How many mL of a 20% w/v stock solution are needed to prepare 450 mL of a 4% w/v dilution?",
     options: ["45 mL", "90 mL", "180 mL", "225 mL"],
     correct: "90 mL",
     rationale: "C₁V₁ = C₂V₂ → (20%)(V₁) = (4%)(450 mL) → V₁ = 90 mL of stock.",
   },
-  {
-    exam: "MPJE",
-    examColor: "#d97706",
-    stem:
-      "A pharmacist receives a Schedule II prescription written for a quantity that exceeds the usual medical need. Best course of action?",
-    options: [
-      "Contact the prescriber to verify; do not dispense until clarified",
-      "Dispense with partial fill notation",
-      "Transfer to another pharmacy",
-      "Accept with patient ID copy only",
-    ],
-    correct: "Contact the prescriber to verify; do not dispense until clarified",
-    rationale:
-      "Suspicious Schedule II orders require prescriber verification before dispensing under federal and state law.",
-  },
 ];
+
+/** Hero + preview section — three flagship exams (USMLE, NCLEX, NAPLEX). */
+export const SAMPLE_QUESTIONS_FEATURED = SAMPLE_QUESTION_PREVIEWS.filter((q) =>
+  ["NCLEX-RN", "USMLE Step 2 CK", "NAPLEX"].includes(q.exam)
+);
 
 export const LANDING_METRICS = [
   { value: MARKETING_QUESTION_COUNTS.total, label: "Board-style items" },

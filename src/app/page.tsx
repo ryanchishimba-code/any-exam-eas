@@ -3,9 +3,24 @@ import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
 import { HomeExperience } from "@/components/home/HomeExperience";
 import { buildHomeMetadata } from "@/lib/seo";
 
+/**
+ * AnyExamEasy.com — Flagship home route (`/`)
+ *
+ * Architecture:
+ * - Server component shell (metadata, structured data, zero client JS here)
+ * - `HomeExperience` switches guest vs subscriber views client-side
+ *
+ * Guest view → `LandingFlagship` (8-section conversion funnel):
+ *   Hero → Exams → Why Us → How It Works → Question Previews →
+ *   Results → Pricing → Final CTA
+ *
+ * Subscriber view → Study Hub hero + dashboard shortcuts
+ *
+ * Design system: `src/lib/landing/tokens.ts` + `.aee-flagship-*` in globals.css
+ * Palette: navy #0A2540, teal #00D4C8 — dark-mode friendly via prefers-color-scheme
+ */
 export const metadata: Metadata = buildHomeMetadata();
 
-/** Flagship conversion landing — guest view via LandingFlagship; subscribers see Study Hub hero. */
 export default function HomePage() {
   return (
     <>
