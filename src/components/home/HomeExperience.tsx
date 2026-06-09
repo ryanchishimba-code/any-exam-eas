@@ -21,6 +21,9 @@ const LandingCompact = dynamic(() =>
 const HowWeCompare = dynamic(() =>
   import("@/components/home/HowWeCompare").then((m) => m.HowWeCompare)
 );
+const CompareHeroHeading = dynamic(() =>
+  import("@/components/home/HowWeCompare").then((m) => m.CompareHeroHeading)
+);
 const LandingTestimonials = dynamic(() =>
   import("@/components/home/LandingTestimonials").then((m) => m.LandingTestimonials)
 );
@@ -41,7 +44,8 @@ export function HomeExperience() {
         <Hero />
       ) : (
         <div className="aee-hero-compare-stack">
-          <Hero />
+          <CompareHeroHeading />
+          <Hero compareLayout />
           <HowWeCompare variant="hero-overlap" />
         </div>
       )}

@@ -2438,6 +2438,27 @@ body {
   isolation: isolate;
 }
 
+.aee-hero-compare-heading {
+  position: absolute;
+  top: clamp(3.5rem, 7vw, 4.5rem);
+  right: max(1.25rem, calc((100vw - min(1080px, 100vw)) / 2 + 1.25rem));
+  z-index: 11;
+  max-width: min(22rem, 38vw);
+  pointer-events: none;
+}
+
+@media (max-width: 1023px) {
+  .aee-hero-compare-heading {
+    position: static;
+    z-index: 2;
+    max-width: none;
+    margin-inline: auto;
+    padding: 0 1.25rem;
+    padding-top: 0.25rem;
+    text-align: center;
+  }
+}
+
 .aee-hero-compare-stack .aee-hero {
   z-index: 2;
   padding-bottom: clamp(7.5rem, 16vw, 11.5rem);

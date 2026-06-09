@@ -23,6 +23,42 @@ const rows = [
 
 const overlapRows = rows.slice(0, 4);
 
+export function CompareSectionHeading({
+  id = "compare-heading",
+  className = "",
+  align = "center",
+}: {
+  id?: string;
+  className?: string;
+  align?: "center" | "right";
+}) {
+  return (
+    <div className={`${align === "right" ? "text-right" : "text-center"} ${className}`.trim()}>
+      <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-teal-600">
+        Why students choose us
+      </p>
+      <h2
+        id={id}
+        className="mt-1.5 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl"
+      >
+        Four exams.{" "}
+        <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+          A fraction of the cost.
+        </span>
+      </h2>
+    </div>
+  );
+}
+
+export function CompareHeroHeading() {
+  return (
+    <CompareSectionHeading
+      align="right"
+      className="aee-hero-compare-heading aee-reveal pointer-events-none"
+    />
+  );
+}
+
 type HowWeCompareProps = {
   variant?: "default" | "hero-overlap";
 };
@@ -42,28 +78,7 @@ export function HowWeCompare({ variant = "default" }: HowWeCompareProps) {
       aria-labelledby="compare-heading"
     >
       <div className="mx-auto max-w-[880px] px-5 sm:px-6 lg:px-8">
-        {!isOverlap && (
-          <div className="mb-4 text-center">
-            <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-teal-600">
-              Why students choose us
-            </p>
-            <h2
-              id="compare-heading"
-              className="mt-1.5 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl"
-            >
-              Four exams.{" "}
-              <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-                A fraction of the cost.
-              </span>
-            </h2>
-          </div>
-        )}
-
-        {isOverlap && (
-          <h2 id="compare-heading" className="sr-only">
-            Compare Any Exam Easy to typical competitors
-          </h2>
-        )}
+        {!isOverlap && <CompareSectionHeading className="mb-4" />}
 
         <motion.div
           initial={{ opacity: 0, y: isOverlap ? 24 : 10 }}
@@ -159,11 +174,6 @@ export function HowWeCompare({ variant = "default" }: HowWeCompareProps) {
               : "mt-5 flex flex-col items-center gap-2 text-center"
           }
         >
-          {isOverlap && (
-            <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-teal-600">
-              Four exams · a fraction of the cost
-            </p>
-          )}
           <Link
             href="/signup?plan=trial"
             className="group inline-flex items-center gap-1.5 text-sm font-bold text-teal-700 hover:text-teal-600"

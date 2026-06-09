@@ -29,7 +29,7 @@ const LandingAppMockup = dynamic(
   { ssr: false, loading: () => <div className="aee-landing-app-mockup min-h-[220px] sm:min-h-[260px]" aria-hidden /> }
 );
 
-export function Hero() {
+export function Hero({ compareLayout = false }: { compareLayout?: boolean }) {
   const { data: session, status } = useSession();
   const [hint, setHint] = useState<ReturningUserHint | null>(null);
 
@@ -94,7 +94,13 @@ export function Hero() {
       <div className="aee-hero-compare-fade pointer-events-none absolute inset-x-0 bottom-0 z-[3]" aria-hidden />
 
       <div className="relative z-10 mx-auto max-w-[1080px] px-5 sm:px-6">
-        <div className="grid items-center gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,380px)] lg:gap-8">
+        <div
+          className={
+            compareLayout
+              ? "grid items-center gap-6"
+              : "grid items-center gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,380px)] lg:gap-8"
+          }
+        >
           <header className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-none lg:text-left">
             {!isAuthed && !isReturning ? (
               <BrandLogo variant="hero" className="aee-reveal mx-auto mb-2 lg:mx-0" priority />
@@ -213,9 +219,11 @@ export function Hero() {
             )}
           </header>
 
-          <div className="aee-reveal aee-reveal-delay-2 mx-auto w-full max-w-[380px] sm:max-w-[420px] lg:max-w-none">
-            <LandingAppMockup />
-          </div>
+          {!compareLayout && (
+            <div className="aee-reveal aee-reveal-delay-2 mx-auto w-full max-w-[380px] sm:max-w-[420px] lg:max-w-none">
+              <LandingAppMockup />
+            </div>
+          )}
         </div>
       </div>
     </section>
