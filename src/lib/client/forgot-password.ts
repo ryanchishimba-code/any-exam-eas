@@ -55,7 +55,10 @@ export async function requestForgotPassword(
     }
 
     return { ok: true, devResetUrl: data.devResetUrl };
-  } catch {
+  } catch (err) {
+    if (process.env.NODE_ENV === "development") {
+      console.error("[forgot-password] Network or parse error:", err);
+    }
     return { ok: false, error: "Something went wrong. Please try again." };
   }
 }

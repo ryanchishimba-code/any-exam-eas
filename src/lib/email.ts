@@ -1,7 +1,9 @@
 import {
   appBaseUrl,
   getEmailFromAddress,
+  getEmailSetupWarnings,
   isEmailConfigured,
+  isResendSandboxFrom,
   type EmailDeliveryResult,
 } from "@/lib/email/config";
 import { PASSWORD_RESET_EXPIRY_MINUTES } from "@/lib/validators/password-reset";
@@ -80,12 +82,19 @@ export async function sendPasswordResetEmail({
     if (process.env.NODE_ENV === "production") {
       console.error(
         "[email] RESEND_API_KEY is not set — password reset email was not sent.",
-        { toDomain: to.split("@")[1] ?? "unknown" }
+        { toDomain: to.split("@")[1] ?? "unknown", setup: getEmailSetupWarnings() }
       );
     } else {
       console.warn("[email] RESEND_API_KEY not set — password reset email skipped (dev).");
     }
     return { ok: false, reason: "not_configured" };
+  }
+
+  if (process.env.NODE_ENV === "production" && isResendSandboxFrom()) {
+    console.warn(
+      "[email] EMAIL_FROM uses Resend sandbox — delivery is limited to your Resend account email.",
+      { from, toDomain: to.split("@")[1] ?? "unknown" }
+    );
   }
 
   try {

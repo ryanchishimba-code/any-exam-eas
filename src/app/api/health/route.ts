@@ -19,6 +19,12 @@ export async function GET() {
 
   const checks: Record<string, string> = {
     nextauthSecret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET ? "ok" : "missing",
+    passwordResetEmail:
+      process.env.RESEND_API_KEY?.trim()
+        ? process.env.EMAIL_FROM?.includes("resend.dev")
+          ? "resend-key-set-sandbox-from"
+          : "ok"
+        : "resend-key-missing",
     databaseUrl: "unknown",
     prisma: "unknown",
     drizzle: "unknown",

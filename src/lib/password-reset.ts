@@ -4,7 +4,10 @@ import { prisma } from "@/lib/prisma";
 import { findUserByEmail } from "@/lib/user-auth";
 import { normalizeEmail } from "@/lib/validators/auth";
 import { PASSWORD_RESET_EXPIRY_MINUTES } from "@/lib/validators/password-reset";
-import { appBaseUrl } from "@/lib/email/config";
+import {
+  buildPasswordResetUrl,
+  getEmailSetupWarnings,
+} from "@/lib/email/config";
 import { sendPasswordResetEmail } from "@/lib/email";
 
 const BCRYPT_ROUNDS = 12;
@@ -22,9 +25,6 @@ function hashToken(rawToken: string): string {
   return createHash("sha256").update(rawToken).digest("hex");
 }
 
-function resetUrl(rawToken: string): string {
-  return `${appBaseUrl()}/reset-password?token=${encodeURIComponent(rawToken)}`;
-}
 
 function logEmail(email: string): string {
   const [local, domain] = email.split("@");
@@ -39,7 +39,16 @@ function logEmail(email: string): string {
  */
 export async function requestPasswordReset(email: string): Promise<PasswordResetOutcome> {
   const normalized = normalizeEmail(email);
-  const user = await findUserByEmail(normalized);
+  let user;
+  try {
+    user = await findUserByEmail(normalized);
+  } catch (err) {
+    console.error("[password-reset] User lookup failed", {
+      email: logEmail(normalized),
+      error: err instanceof Error ? err.message : String(err),
+    });
+    throw err;
+  }
 
   if (!user) {
     console.info("[password-reset] No action — no account", { email: logEmail(normalized) });
@@ -49,12 +58,21 @@ export async function requestPasswordReset(email: string): Promise<PasswordReset
   const rawToken = randomBytes(TOKEN_BYTES).toString("base64url");
   const tokenHash = hashToken(rawToken);
   const expiresAt = new Date(Date.now() + PASSWORD_RESET_EXPIRY_MINUTES * 60 * 1000);
-  const url = resetUrl(rawToken);
+  const url = buildPasswordResetUrl(rawToken);
 
-  await prisma.passwordResetToken.deleteMany({ where: { userId: user.id } });
-  await prisma.passwordResetToken.create({
-    data: { userId: user.id, email: normalized, tokenHash, expiresAt },
-  });
+  try {
+    await prisma.passwordResetToken.deleteMany({ where: { userId: user.id } });
+    await prisma.passwordResetToken.create({
+      data: { userId: user.id, email: normalized, tokenHash, expiresAt },
+    });
+  } catch (err) {
+    console.error("[password-reset] Failed to persist reset token", {
+      email: logEmail(normalized),
+      userId: user.id,
+      error: err instanceof Error ? err.message : String(err),
+    });
+    throw err;
+  }
 
   const delivery = await sendPasswordResetEmail({ to: normalized, resetUrl: url });
 
@@ -69,6 +87,8 @@ export async function requestPasswordReset(email: string): Promise<PasswordReset
       email: logEmail(normalized),
       reason: delivery.reason,
       detail: "detail" in delivery ? delivery.detail : undefined,
+      resetBaseUrl: url.split("?")[0],
+      setupWarnings: getEmailSetupWarnings(),
       hasPassword: Boolean(user.passwordHash),
       oauthOnly: !user.passwordHash,
     });

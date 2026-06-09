@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
 import { enforceRateLimit } from "@/lib/api-rate-limit";
+import {
+  appBaseUrl,
+  getEmailSetupWarnings,
+  isEmailConfigured,
+} from "@/lib/email/config";
 import { requestPasswordReset } from "@/lib/password-reset";
 import {
   FORGOT_PASSWORD_SUCCESS_MESSAGE,
@@ -9,15 +14,44 @@ import {
 
 export const runtime = "nodejs";
 
+let loggedEmailSetup = false;
+
+/** Log Resend / URL misconfiguration once per server instance (visible in Vercel/AWS logs). */
+function logEmailSetupOnce(): void {
+  if (loggedEmailSetup) return;
+  loggedEmailSetup = true;
+  const warnings = getEmailSetupWarnings();
+  if (warnings.length > 0) {
+    console.warn("[forgot-password] Email setup issues:\n- " + warnings.join("\n- "));
+  }
+}
+
 // Rate limit: 10 requests per IP per minute — mitigates email enumeration / spam.
 export async function POST(req: Request) {
   const limited = enforceRateLimit(req, "forgot-password", 10, 60_000);
   if (limited) return limited;
 
+  logEmailSetupOnce();
+
   try {
     const body = await req.json();
     const { email } = forgotPasswordSchema.parse(body);
     const outcome = await requestPasswordReset(email);
+
+    // Structured audit log — never expose userFound to the client (anti-enumeration).
+    console.info("[forgot-password] Request handled", {
+      resendConfigured: isEmailConfigured(),
+      resetBaseUrl: appBaseUrl(),
+      userFound: outcome.userFound,
+      emailAttempted: outcome.attempted,
+      emailDelivered: outcome.emailDelivered ?? false,
+    });
+
+    if (outcome.attempted && !outcome.emailDelivered) {
+      console.error(
+        "[forgot-password] Reset email was NOT delivered — check RESEND_API_KEY, EMAIL_FROM domain, and server logs above."
+      );
+    }
 
     const payload: {
       ok: true;

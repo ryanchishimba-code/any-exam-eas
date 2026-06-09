@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { ensureDatabaseUrlEnv, resolveDatabaseUrl } from "@/lib/database-url";
+import { appBaseUrl, isResendSandboxFrom } from "@/lib/email/config";
 
 const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
@@ -53,7 +54,12 @@ export function envSummary(): Record<string, string> {
     tavily: process.env.TAVILY_API_KEY ? "set" : "missing",
     stripe: process.env.STRIPE_SECRET_KEY ? "set" : "missing",
     resend: process.env.RESEND_API_KEY ? "set" : "missing",
-    emailFrom: process.env.EMAIL_FROM ? "set" : "default",
+    emailFrom: isResendSandboxFrom()
+      ? "resend-sandbox"
+      : process.env.EMAIL_FROM
+        ? "verified-domain"
+        : "default-sandbox",
+    passwordResetBaseUrl: appBaseUrl(),
     authSecret:
       process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET ? "set" : "missing",
   };
