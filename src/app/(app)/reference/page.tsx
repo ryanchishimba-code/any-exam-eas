@@ -44,10 +44,12 @@ async function ReferenceContent({
   userId,
   examOverride,
   initialCardId,
+  topicKey,
 }: {
   userId: string;
   examOverride?: ExamSlug;
   initialCardId?: string;
+  topicKey?: string;
 }) {
   const pref = await getUserExamPreference(userId);
   if (!pref && !examOverride) redirect(ROUTES.selectExam);
@@ -61,12 +63,13 @@ async function ReferenceContent({
       cards={cards}
       subjects={subjects}
       initialCardId={initialCardId}
+      topicKey={topicKey}
     />
   );
 }
 
 type PageProps = {
-  searchParams: Promise<{ exam?: string; card?: string }>;
+  searchParams: Promise<{ exam?: string; card?: string; topic?: string }>;
 };
 
 export default async function ReferencePage({ searchParams }: PageProps) {
@@ -80,6 +83,7 @@ export default async function ReferencePage({ searchParams }: PageProps) {
   const params = await searchParams;
   const examOverride = params.exam as ExamSlug | undefined;
   const initialCardId = params.card;
+  const topicKey = params.topic;
 
   return (
     <div className="space-y-6">
@@ -101,6 +105,7 @@ export default async function ReferencePage({ searchParams }: PageProps) {
           userId={session.user.id}
           examOverride={examOverride}
           initialCardId={initialCardId}
+          topicKey={topicKey}
         />
       </Suspense>
     </div>

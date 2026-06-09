@@ -77,3 +77,9 @@ export function referenceCardHref(examSlug: ExamSlug, cardId: string): string {
   const qs = new URLSearchParams({ exam: examSlug, card: cardId });
   return `${ROUTES.reference}?${qs.toString()}`;
 }
+
+/** Link to reference hub with weak-area / topic recommendations highlighted. */
+export function referenceTopicHref(examSlug: ExamSlug, topicKey: string): string {
+  const qs = new URLSearchParams({ exam: examSlug, topic: topicKey });
+  return `${ROUTES.reference}?${qs.toString()}`;
+}
