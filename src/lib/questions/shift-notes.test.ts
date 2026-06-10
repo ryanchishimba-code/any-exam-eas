@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { hasShiftNoteArtifacts, stripLeadingShiftNoteBlock, stripShiftNotes } from "./shift-notes";
+import {
+  hasShiftNoteArtifacts,
+  resolveNclexStem,
+  splitVagueCombinedQuestion,
+  stripLeadingShiftNoteBlock,
+  stripShiftNotes,
+} from "./shift-notes";
 
 describe("shift-notes", () => {
   it("strips timestamp prefixes", () => {
@@ -24,6 +30,25 @@ Handoff ref 8123 (Management of Care).`;
     expect(stripLeadingShiftNoteBlock(raw)).toBe(
       "A 19-year-old man with suicidal ideation."
     );
+  });
+
+  it("splits combined clinical text from vague instruction", () => {
+    const raw =
+      "1747 — Labor and delivery unit, Room 547. A 27-year-old woman with preeclampsia. BP 168/104 mmHg.\nChoose the single best answer based on clinical judgment.";
+    const split = splitVagueCombinedQuestion(raw);
+    expect(split.vignette).toMatch(/27-year-old woman with preeclampsia/);
+    expect(split.stem).toBe("Which nursing action should the nurse take first?");
+  });
+
+  it("resolves vague stem from action options", () => {
+    expect(
+      resolveNclexStem("Choose the single best answer based on clinical judgment.", [
+        "Notify the provider",
+        "Document the finding",
+        "Delegate to UAP",
+        "Reassure the client",
+      ])
+    ).toBe("Which nursing action should the nurse take first?");
   });
 
   it("detects shift note artifacts", () => {

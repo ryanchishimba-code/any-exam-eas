@@ -4,7 +4,7 @@ const SHIFT_NOTE_PREFIX = /^(?:At\s+)?\d{3,4}\s*—\s*/i;
 
 /** Bank item id + unit/room header merged into the stem (not clinical content after a time stamp). */
 const CHART_METADATA =
-  /room\s+\d+|post-anesthesia care unit|inpatient psychiatric unit|medical-surgical unit|handoff|report on|assigned clients|post-anesthesia|pacu,/i;
+  /room\s+\d+|post-anesthesia care unit|inpatient psychiatric unit|labor and delivery unit|medical-surgical unit|handoff|report on|assigned clients|post-anesthesia|pacu,/i;
 
 const CHART_HEADER =
   /^(?:The nurse performs an assessment and (?:finds|documents):?|At \d{3,4}, the nurse performs an assessment and documents:?)$/i;
@@ -37,6 +37,45 @@ export function stripLeadingShiftNoteBlock(text: string): string {
 
 export function isVagueClinicalJudgmentStem(stem: string): boolean {
   return VAGUE_STEM.test(stem.trim());
+}
+
+const ACTION_OPTION =
+  /^(Notify|Document|Delegate|Reassure|Administer|Establish|Apply|Encourage|Assist|Ask|Hold|Complete|Wait|Measure|Place|Initiate|Assess|Provide|Prepare)/i;
+
+/** Replace generic stems with a specific lead-in inferred from option type. */
+export function resolveNclexStem(stem: string, options: string[]): string {
+  if (!isVagueClinicalJudgmentStem(stem)) return stem.trim();
+  const actionCount = options.filter((o) => ACTION_OPTION.test(o.trim())).length;
+  if (actionCount >= 3) return "Which nursing action should the nurse take first?";
+  return "Which finding requires immediate nursing follow-up?";
+}
+
+/** Split combined bank text: clinical paragraph + generic instruction line. */
+export function splitVagueCombinedQuestion(text: string): { vignette?: string; stem: string } {
+  const trimmed = text.trim();
+  if (isVagueClinicalJudgmentStem(trimmed)) {
+    return { stem: "Which nursing action should the nurse take first?" };
+  }
+
+  const byNewline = trimmed.split(/\n+(?=Choose the single best answer)/i);
+  if (byNewline.length === 2 && byNewline[0]!.length >= 40) {
+    return {
+      vignette: stripShiftNotes(stripLeadingShiftNoteBlock(byNewline[0]!.trim())),
+      stem: "Which nursing action should the nurse take first?",
+    };
+  }
+
+  const inline = trimmed.match(
+    /^(.{40,}?\.)\s*Choose the single best answer based on clinical judgment\.?\s*$/i
+  );
+  if (inline) {
+    return {
+      vignette: stripShiftNotes(stripLeadingShiftNoteBlock(inline[1]!.trim())),
+      stem: "Which nursing action should the nurse take first?",
+    };
+  }
+
+  return { stem: trimmed };
 }
 
 /** Remove shift-note timestamps and unrelated chart boilerplate from vignette text. */

@@ -18,7 +18,7 @@ const TYPE_INSTRUCTIONS: Record<string, string> = {
     "Drag or tap to order steps from first priority to last.",
   unfolding_case:
     "Unfolding case — new information may appear as you progress through steps.",
-  multiple_choice: "Choose the single best answer based on clinical judgment.",
+  multiple_choice: "Select the one best response for this scenario.",
   k_type: "Evaluate each statement, then select the correct combination.",
   short_answer: "Enter a numeric answer with correct units and rounding per the stem.",
   drag_drop:

@@ -4,7 +4,12 @@ import {
   shuffleAnswerOptions,
 } from "@/lib/question-format";
 import { normalizeStem } from "./stem";
-import { stripLeadingShiftNoteBlock, stripShiftNotes } from "./shift-notes";
+import {
+  resolveNclexStem,
+  splitVagueCombinedQuestion,
+  stripLeadingShiftNoteBlock,
+  stripShiftNotes,
+} from "./shift-notes";
 import { inferStudyQuestionType } from "./ngn-map";
 import {
   matrixOptionsFromLayout,
@@ -85,19 +90,25 @@ export function examQuestionToStudy(
   let vignette = q.vignette?.trim();
   if (vignette) {
     vignette = stripShiftNotes(vignette);
-    stem = normalizeStem(stem);
+    stem = normalizeStem(resolveNclexStem(stem, options));
   } else {
-    const normalized = normalizeStem(stem);
-    if (normalized.includes("\n\n")) {
-      const parts = normalized.split("\n\n");
-      if (parts[0].length >= 30 && parts.length >= 2) {
-        vignette = stripShiftNotes(parts[0].trim());
-        stem = parts.slice(1).join("\n\n").trim();
-      } else {
-        stem = normalized;
-      }
+    const split = splitVagueCombinedQuestion(stem);
+    if (split.vignette) {
+      vignette = split.vignette;
+      stem = normalizeStem(split.stem);
     } else {
-      stem = normalized;
+      const normalized = normalizeStem(stem);
+      if (normalized.includes("\n\n")) {
+        const parts = normalized.split("\n\n");
+        if (parts[0].length >= 30 && parts.length >= 2) {
+          vignette = stripShiftNotes(parts[0].trim());
+          stem = normalizeStem(resolveNclexStem(parts.slice(1).join("\n\n").trim(), options));
+        } else {
+          stem = normalizeStem(resolveNclexStem(normalized, options));
+        }
+      } else {
+        stem = normalizeStem(resolveNclexStem(normalized, options));
+      }
     }
   }
 
