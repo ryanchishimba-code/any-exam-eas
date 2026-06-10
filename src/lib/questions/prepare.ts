@@ -4,7 +4,7 @@ import {
   shuffleAnswerOptions,
 } from "@/lib/question-format";
 import { normalizeStem } from "./stem";
-import { stripShiftNotes } from "./shift-notes";
+import { stripLeadingShiftNoteBlock, stripShiftNotes } from "./shift-notes";
 import { inferStudyQuestionType } from "./ngn-map";
 import {
   matrixOptionsFromLayout,
@@ -81,7 +81,7 @@ export function examQuestionToStudy(
     correctAnswer = shuffled.correctAnswer;
   }
 
-  let stem = q.question;
+  let stem = stripLeadingShiftNoteBlock(q.question);
   let vignette = q.vignette?.trim();
   if (vignette) {
     vignette = stripShiftNotes(vignette);

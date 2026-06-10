@@ -4,7 +4,7 @@
  */
 import type { BankItem } from "@/lib/question-bank";
 import { hasOrphanDeicticStem } from "@/lib/engine/prompts/vignette";
-import { hasShiftNoteArtifacts } from "@/lib/questions/shift-notes";
+import { hasShiftNoteArtifacts, isVagueClinicalJudgmentStem } from "@/lib/questions/shift-notes";
 
 export type NclexAuditIssue = {
   code: string;
@@ -67,6 +67,30 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
       "error",
       "shift_note_format",
       "Vignette uses EHR shift-note or timestamp chart formatting — rewrite as a focused patient scenario."
+    );
+  }
+
+  if (isVagueClinicalJudgmentStem(stem)) {
+    push(
+      "error",
+      "vague_stem",
+      'Stem must ask a specific clinical question, not "Choose the single best answer based on clinical judgment."'
+    );
+  }
+
+  const asksForFinding = /which finding|which assessment finding|requires immediate nursing follow-up/i.test(
+    stem
+  );
+  const optionsLookLikeActions = item.options.every((o) =>
+    /^(Notify|Document|Delegate|Reassure|Administer|Establish|Apply|Encourage|Assist|Ask|Hold|Complete|Wait)/i.test(
+      o.trim()
+    )
+  );
+  if (asksForFinding && optionsLookLikeActions) {
+    push(
+      "error",
+      "stem_option_category_mismatch",
+      'Stem asks for a finding but all options are nursing actions — rewrite options as findings or change the stem.'
     );
   }
 

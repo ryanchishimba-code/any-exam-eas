@@ -52,6 +52,24 @@ describe("auditNclexBankItem", () => {
     expect(result.issues.some((i) => i.code === "pediatric_age_mismatch")).toBe(true);
   });
 
+  it("flags finding stem with action-only options", () => {
+    const result = auditNclexBankItem(
+      item({
+        vignette:
+          "A 19-year-old man is admitted with suicidal ideation and a written goodbye note in the bedside drawer.",
+        question: "Which finding requires immediate nursing follow-up?",
+        options: [
+          "Notify the provider immediately and reassess blood pressure",
+          "Document the finding and recheck in 4 hours",
+          "Delegate reassessment to UAP",
+          "Reassure the client that the finding is expected",
+        ],
+        correctAnswer: "Notify the provider immediately and reassess blood pressure",
+      })
+    );
+    expect(result.issues.some((i) => i.code === "stem_option_category_mismatch")).toBe(true);
+  });
+
   it("passes a coherent delegation item", () => {
     const result = auditNclexBankItem(
       item({

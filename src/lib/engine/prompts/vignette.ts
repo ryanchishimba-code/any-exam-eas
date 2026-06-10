@@ -20,9 +20,14 @@ FORBIDDEN question stems (without a rich vignette in the vignette field):
 - Any stem using "these findings", "those findings", or "the patient described above" without prior clinical data.
 
 FORBIDDEN vignette formats:
-- Timestamp / shift-note prefixes ("0845 —", "166 —", "At 1400, the nurse documents")
-- Unrelated chart boilerplate that does not change the answer
+- Timestamp / shift-note prefixes ("0845 —", "166 —", "1634 — PACU, Room 274", "At 1400, the nurse documents")
+- Unrelated chart boilerplate (room numbers, item IDs, handoff refs) that does not change the answer
 - "Handoff ref ####" metadata lines
+- Vague stems only ("Choose the single best answer based on clinical judgment") without a specific lead-in
+
+RELEVANCE RULE:
+- Include ONLY data that discriminates the correct answer or supports distractor rationales.
+- Do not pad vignettes with stable vitals, unit geography, or nursing documentation style unless tested.
 
 PREFERRED vignette style:
 - 2–4 concise sentences focused on the clinical problem being tested
