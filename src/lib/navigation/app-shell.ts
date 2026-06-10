@@ -5,6 +5,7 @@ export const APP_SHELL_PREFIXES = [
   "/analytics",
   "/full-exam",
   "/reference",
+  "/anatomy",
 ] as const;
 
 export const MINIMAL_CHROME_PREFIXES = ["/select-exam", "/login", "/auth/login"] as const;

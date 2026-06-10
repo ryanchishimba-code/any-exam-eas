@@ -48,6 +48,8 @@ export const config = {
     "/analytics",
     "/reference",
     "/reference/:path*",
+    "/anatomy",
+    "/anatomy/:path*",
     "/full-exam",
     "/full-exam/:path*",
   ],

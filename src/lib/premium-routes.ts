@@ -14,6 +14,7 @@ export const PREMIUM_PAGE_PREFIXES = [
   "/mpje",
   "/full-exam",
   "/reference",
+  "/anatomy",
   "/study-hub",
   "/studygub",
 ] as const;

@@ -15,6 +15,7 @@ export const ROUTES = {
   questionBank: "/question-bank",
   analytics: "/analytics",
   reference: "/reference",
+  anatomy: "/anatomy",
   highYieldTopics: "/dashboard/topics",
   practice: "/practice",
   exams: "/exams",

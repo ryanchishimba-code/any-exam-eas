@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart3, BookMarked, BookOpen, Clock, LayoutGrid } from "lucide-react";
+import { BarChart3, BookMarked, BookOpen, Bone, Clock, LayoutGrid } from "lucide-react";
 import { motion } from "framer-motion";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -11,6 +11,7 @@ const ITEMS = [
   { href: ROUTES.dashboard, label: "Home", icon: LayoutGrid, exact: true },
   { href: ROUTES.questionBank, label: "Bank", icon: BookOpen },
   { href: ROUTES.reference, label: "Ref", icon: BookMarked, ariaLabel: "Reference" },
+  { href: ROUTES.anatomy, label: "Anatomy", icon: Bone, ariaLabel: "Anatomy Explorer" },
   { href: ROUTES.fullExam, label: "Exam", icon: Clock },
   { href: ROUTES.analytics, label: "Stats", icon: BarChart3 },
 ] as const;
