@@ -21,14 +21,8 @@ export function ngnConcise(
   ngnPayload: Record<string, unknown>,
   meta: NgnMeta = {}
 ): EnrichedBankItem {
-  const { cjmmStep, realismNote, partialCredit, ...rest } = meta;
-  const expl = [
-    cjmmStep ? `[NCJMM · ${cjmmStep}]` : "",
-    explanation,
-    realismNote ? `\n\nWhy this feels realistic: ${realismNote}` : "",
-  ]
-    .filter(Boolean)
-    .join(" ");
+  const { cjmmStep, partialCredit, ...rest } = meta;
+  const expl = [cjmmStep ? `[NCJMM · ${cjmmStep}]` : "", explanation].filter(Boolean).join(" ");
 
   return enrichItem(
     {
@@ -43,7 +37,6 @@ export function ngnConcise(
         ...ngnPayload,
         ...(partialCredit ? { partialCredit: true } : {}),
         ...(cjmmStep ? { cjmmStep } : {}),
-        ...(realismNote ? { realismNote } : {}),
       },
       tags: ["nclex-ngn", "v2", "clinical-judgment", ...(meta.tags ?? [])],
       blueprintDomain: meta.blueprintDomain ?? "nclex-physiological",
@@ -64,7 +57,7 @@ export function ngnMcq(
   explanation: string,
   meta: NgnMeta & { caseStep?: number } = {}
 ): EnrichedBankItem {
-  const { cjmmStep, realismNote, caseStep, itemType: typeOverride, ...rest } = meta;
+  const { cjmmStep, caseStep, itemType: typeOverride, ...rest } = meta;
   const resolvedType = (typeOverride ?? "vignette") as ExamItemType;
   const isCase = resolvedType === "case_study";
   return enrichItem(
@@ -74,13 +67,7 @@ export function ngnMcq(
       question: stem,
       options,
       correctAnswer: correct,
-      explanation: [
-        cjmmStep ? `[NCJMM · ${cjmmStep}]` : "",
-        explanation,
-        realismNote ? `\n\nWhy realistic: ${realismNote}` : "",
-      ]
-        .filter(Boolean)
-        .join(" "),
+      explanation: [cjmmStep ? `[NCJMM · ${cjmmStep}]` : "", explanation].filter(Boolean).join(" "),
       itemType: resolvedType,
       tags: ["nclex-ngn", "v2", ...(meta.tags ?? [])],
       blueprintDomain: meta.blueprintDomain ?? "nclex-physiological",
@@ -89,7 +76,6 @@ export function ngnMcq(
         kind: isCase ? "case_study" : "mcq",
         ...(isCase ? { caseStep: caseStep ?? 1 } : {}),
         ...(cjmmStep ? { cjmmStep } : {}),
-        ...(realismNote ? { realismNote } : {}),
       },
       ...rest,
     },

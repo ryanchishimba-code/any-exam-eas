@@ -19,6 +19,15 @@ FORBIDDEN question stems (without a rich vignette in the vignette field):
 - "Which of the following best explains these findings?"
 - Any stem using "these findings", "those findings", or "the patient described above" without prior clinical data.
 
+FORBIDDEN vignette formats:
+- Timestamp / shift-note prefixes ("0845 —", "166 —", "At 1400, the nurse documents")
+- Unrelated chart boilerplate that does not change the answer
+- "Handoff ref ####" metadata lines
+
+PREFERRED vignette style:
+- 2–4 concise sentences focused on the clinical problem being tested
+- Plain patient scenario prose — not nursing shift documentation
+
 PREFERRED lead-in stems (after vignette):
 - "Which pathophysiologic process is most likely responsible for this patient's presentation?"
 - "What is the underlying mechanism of this patient's condition?"

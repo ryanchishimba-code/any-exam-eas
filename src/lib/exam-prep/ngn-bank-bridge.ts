@@ -1,4 +1,5 @@
 import type { ExamQuestion } from "@/lib/ai";
+import { stripShiftNotes } from "@/lib/questions/shift-notes";
 import type { BankItem } from "@/lib/question-bank";
 import type { ExamItemType } from "./types";
 
@@ -88,7 +89,7 @@ export function ngnPayloadToChartData(
 }
 
 function splitStemAndVignette(item: BankItem): { vignette?: string; stem: string } {
-  const vignette = item.vignette?.trim() || item.scenario?.trim();
+  const vignette = stripShiftNotes(item.vignette?.trim() || item.scenario?.trim() || "");
   const q = item.question.trim();
   if (vignette && q.startsWith(vignette)) {
     const stem = q.slice(vignette.length).replace(/^\s*\n+\s*/, "").trim();

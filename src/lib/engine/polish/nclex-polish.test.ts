@@ -50,8 +50,9 @@ describe("nclex-polish", () => {
   it("preserves strong items when already high quality", () => {
     const strong: BankItem = {
       subjectId: "physiological-adaptation",
-      question:
-        "0845 — Medical-surgical unit. A 68-year-old woman with acute decompensated heart failure. Admitted 24 hours ago for fluid overload; receiving IV furosemide. BP 88/54 mmHg, HR 112, RR 24, SpO₂ 91% on 2 L NC. Crackles bilaterally, 2+ pitting edema.\n\nWhich nursing action should the nurse take first?",
+      vignette:
+        "Medical-surgical unit. A 68-year-old woman with acute decompensated heart failure. Admitted 24 hours ago for fluid overload; receiving IV furosemide. BP 88/54 mmHg, HR 112, RR 24, SpO₂ 91% on 2 L NC. Crackles bilaterally, 2+ pitting edema.",
+      question: "Which nursing action should the nurse take first?",
       options: [
         "Assess perfusion and respiratory status; notify provider and prepare for fluid/hemodynamic support per protocol",
         "Complete routine comfort measures for all other assigned clients before addressing abnormal findings",
@@ -103,7 +104,7 @@ describe("nclex-polish", () => {
     expect(item.question).not.toMatch(
       /Stable postoperative day 3|Chronic osteoarthritis — PRN|142 mg\/dL, asymptomatic/
     );
-    expect(item.vignette ?? item.question).toMatch(/Handoff report/);
+    expect(item.vignette ?? item.question).toMatch(/assigned four clients/i);
     expect(item.options.every((o) => o.startsWith("Room "))).toBe(true);
     expect(item.explanation).toMatch(/Why other options are incorrect/i);
   });

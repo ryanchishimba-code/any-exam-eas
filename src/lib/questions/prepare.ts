@@ -4,6 +4,7 @@ import {
   shuffleAnswerOptions,
 } from "@/lib/question-format";
 import { normalizeStem } from "./stem";
+import { stripShiftNotes } from "./shift-notes";
 import { inferStudyQuestionType } from "./ngn-map";
 import {
   matrixOptionsFromLayout,
@@ -83,13 +84,14 @@ export function examQuestionToStudy(
   let stem = q.question;
   let vignette = q.vignette?.trim();
   if (vignette) {
+    vignette = stripShiftNotes(vignette);
     stem = normalizeStem(stem);
   } else {
     const normalized = normalizeStem(stem);
     if (normalized.includes("\n\n")) {
       const parts = normalized.split("\n\n");
       if (parts[0].length >= 30 && parts.length >= 2) {
-        vignette = parts[0].trim();
+        vignette = stripShiftNotes(parts[0].trim());
         stem = parts.slice(1).join("\n\n").trim();
       } else {
         stem = normalized;

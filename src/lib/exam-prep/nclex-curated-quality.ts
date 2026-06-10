@@ -13,16 +13,9 @@ const OPT_C =
 const OPT_D =
   "Insert an indwelling urinary catheter to obtain a sterile urine specimen for culture";
 
-const SEPSIS_UTI_VIGNETTE = `A 68-year-old client is admitted to the medical-surgical unit with a urinary tract infection. Vital signs on admission 4 hours ago were: temperature 38.4°C (101.1°F), heart rate 92/min, respiratory rate 18/min, blood pressure 118/72 mm Hg, oxygen saturation 96% on room air.
+const SEPSIS_UTI_VIGNETTE = `A 68-year-old client is admitted to the medical-surgical unit with a urinary tract infection. Four hours ago, temperature was 38.4°C (101.1°F), heart rate 92/min, respiratory rate 18/min, blood pressure 118/72 mm Hg, and oxygen saturation 96% on room air.
 
-The nurse performs an assessment and finds:
-• Temperature 39.1°C (102.4°F), heart rate 118/min, respiratory rate 24/min
-• Blood pressure 88/54 mm Hg
-• Oxygen saturation 91% on room air
-• Altered mental status — the client is confused and difficult to arouse
-• Urine output 15 mL over the past 2 hours
-• Lactate 3.8 mmol/L (reference: 0.5–2.2 mmol/L)
-• WBC 18,000/mm³
+Current assessment: temperature 39.1°C (102.4°F), heart rate 118/min, respiratory rate 24/min, blood pressure 88/54 mm Hg, oxygen saturation 91% on room air, altered mental status, urine output 15 mL over the past 2 hours, lactate 3.8 mmol/L (reference: 0.5–2.2 mmol/L), and WBC 18,000/mm³.
 
 The provider has been notified. Blood cultures have not yet been obtained. The client has a peripheral IV in the left forearm.`;
 
@@ -35,16 +28,9 @@ const ICP_OPT_C =
 const ICP_OPT_D =
   "Insert an indwelling urinary catheter to monitor strict intake and output and prevent bladder distention";
 
-const ICP_HEAD_INJURY_VIGNETTE = `The nurse is caring for a 19-year-old client admitted to the neuro step-down unit after a closed head injury from a skateboarding fall 18 hours ago. Initial CT showed a small subdural hematoma managed conservatively. Current orders include neurological checks every hour, maintain head of bed (HOB) elevated 30 degrees, avoid Valsalva maneuvers, and notify the provider for neurological changes.
+const ICP_HEAD_INJURY_VIGNETTE = `The nurse is caring for a 19-year-old client admitted to the neuro step-down unit after a closed head injury from a skateboarding fall 18 hours ago. Initial CT showed a small subdural hematoma managed conservatively. Current orders include neurological checks every hour, head of bed elevated 30 degrees, avoid Valsalva maneuvers, and notify the provider for neurological changes.
 
-At 1400, the nurse performs an assessment and documents:
-• Glasgow Coma Scale (GCS): 12 (E3 V4 M5) — down from 14 two hours ago
-• Pupils: 5 mm, sluggish reaction bilaterally (previously 3 mm, brisk)
-• Vital signs: BP 168/96 mm Hg, heart rate 52/min, respiratory rate 10/min and irregular, temperature 37.0°C (98.6°F), SpO₂ 94% on 2 L/min nasal cannula
-• Posturing: Arms flexed, wrists flexed, legs extended when noxious stimulus applied
-• Behavior: Restless, repeatedly trying to climb out of bed; pulls at IV lines
-• Pain: Client denies headache when asked but appears agitated
-• I/O: Urine output 350 mL since midnight; last void 4 hours ago
+Current assessment: Glasgow Coma Scale 12 (E3 V4 M5), down from 14 two hours ago; pupils 5 mm with sluggish reaction bilaterally (previously 3 mm, brisk); blood pressure 168/96 mm Hg, heart rate 52/min, respiratory rate 10/min and irregular, SpO₂ 94% on 2 L/min nasal cannula; decorticate posturing with noxious stimulus; restless behavior with repeated attempts to climb out of bed and pull at IV lines; denies headache but appears agitated; urine output 350 mL since midnight with last void 4 hours ago.
 
 The charge nurse is available. The provider is in surgery for another case.`;
 

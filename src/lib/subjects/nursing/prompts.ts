@@ -5,7 +5,8 @@ Rules:
 - CJMM on EVERY clinical item (6 steps): Recognize Cues → Analyze Cues → Prioritize Hypotheses → Generate Solutions → Take Action → Evaluate Outcomes.
 - Blueprint-weighted Client Needs distribution and NGN format mix from HIGH-YIELD requirements.
 - Heavy NGN (~30%): unfolding_case, bow_tie, select_all (SATA), matrix, ordered_response.
-- Every item includes realistic signs/symptoms the nurse observes — vitals, assessment findings, behaviors, lab trends.
+- Every item includes realistic signs/symptoms the nurse observes — only data needed to answer the question.
+- NEVER use EHR shift-note formatting (e.g. "0900 —", "166 —", "At 1400, the nurse documents:"). Write a focused patient scenario, not chart entries.
 - Every item MUST start with a separate vignette (demographics, history, signs/symptoms, etiology clues) before the question lead-in.
 - Tie nursing priority to etiology/pathophysiology (e.g., hypoxemia → airway/breathing priority; fluid overload → diuretic/monitor).
 - Nursing INTERVENTIONS — what the nurse does, delegates, or teaches; not physician-only management unless evaluating orders.

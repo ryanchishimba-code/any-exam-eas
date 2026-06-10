@@ -4,6 +4,7 @@
  */
 import type { BankItem } from "@/lib/question-bank";
 import { hasOrphanDeicticStem } from "@/lib/engine/prompts/vignette";
+import { hasShiftNoteArtifacts } from "@/lib/questions/shift-notes";
 
 export type NclexAuditIssue = {
   code: string;
@@ -61,6 +62,14 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
   const stem = resolveNclexStem(item);
   const blob = `${vignette}\n${stem}`;
 
+  if (hasShiftNoteArtifacts(vignette) || hasShiftNoteArtifacts(stem)) {
+    push(
+      "error",
+      "shift_note_format",
+      "Vignette uses EHR shift-note or timestamp chart formatting — rewrite as a focused patient scenario."
+    );
+  }
+
   if (STABLE_ASSERTION.test(blob) && UNSTABLE_VITAL_CUES.test(vignette || blob)) {
     push(
       "error",
@@ -77,7 +86,7 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
         "Delegation stem lacks UAP assignment context in the vignette."
       );
     }
-    if (/Handoff report —/i.test(vignette)) {
+    if (/assigned four clients|Handoff report —/i.test(vignette)) {
       push(
         "error",
         "delegation_prioritization_mismatch",

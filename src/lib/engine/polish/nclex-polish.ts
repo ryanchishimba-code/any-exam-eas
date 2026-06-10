@@ -2,6 +2,7 @@ import type { BankItem } from "@/lib/question-bank";
 import type { ExamQuestion } from "@/lib/ai";
 import { enrichQuestion } from "@/lib/engine/stages/enrich-questions";
 import { splitCombinedStem } from "@/lib/engine/prompts/vignette";
+import { stripShiftNotes, hasShiftNoteArtifacts } from "@/lib/questions/shift-notes";
 import { hasSignsAndSymptoms, hasEtiologyOrPathophysiology } from "@/lib/engine/prompts/clinical-reasoning";
 
 const NCLEX_PREFIX = /^NCLEX\s+\d+:\s*/i;
@@ -551,7 +552,7 @@ export function isWeakPrioritizationBankItem(item: BankItem): boolean {
   const q = item.question;
   const blob = `${q} ${item.options.join(" ")} ${item.correctAnswer}`;
 
-  if (/Handoff report —/i.test(q) && item.options.every((o) => o.startsWith("Room "))) {
+  if (/four clients on a/i.test(q) && item.options.every((o) => o.startsWith("Room "))) {
     return false;
   }
 
@@ -766,9 +767,8 @@ function buildPrioritization(_scenario: NursingScenario, subjectLabel: string, s
   const options = fourOptions(correct, wrongs, slot);
 
   const vignette = [
-    `Handoff report — ${set.setting}`,
+    `The nurse is assigned four clients on a ${set.setting.toLowerCase()}.`,
     ...clients.map((c) => c.vignetteLine),
-    `Handoff ref ${800 + (mixed % 9200)} (${subjectLabel}).`,
   ].join("\n\n");
 
   const pseudoScenario: NursingScenario = {
@@ -937,9 +937,8 @@ function buildRisk(scenario: NursingScenario, subjectLabel: string, seed: number
     "Delegate reassessment to UAP without RN follow-up on abnormal data",
   ];
   const slot = Math.abs(seed + 7) % 4;
-  const timeLabel = `${String(14 + (seed % 4)).padStart(2, "0")}${5 + (seed % 55)}`;
   const vignette = [
-    `${timeLabel} — ${scenario.setting}, ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} with ${scenario.dx}.`,
+    `${scenario.setting}, ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} with ${scenario.dx}.`,
     `${scenario.history}. ${scenario.vitals}. ${scenario.findings}.`,
   ].join(" ");
 
@@ -962,9 +961,8 @@ function buildIntervention(scenario: NursingScenario, subjectLabel: string, seed
     "Restrict all oral intake for 24 hours without provider order or further assessment",
   ];
   const slot = Math.abs(seed + 6) % 4;
-  const timeLabel = `${String(9 + (seed % 3)).padStart(2, "0")}${10 + (seed % 50)}`;
   const vignette = [
-    `${timeLabel} — ${scenario.setting}, ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} with ${scenario.dx}.`,
+    `${scenario.setting}, ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} with ${scenario.dx}.`,
     `${scenario.history}. Assessment: ${scenario.vitals}. ${scenario.findings}.`,
   ].join(" ");
 
@@ -1133,6 +1131,7 @@ export function needsNclexPolish(item: BankItem): boolean {
   const text = itemTextBlob(item);
   return (
     isWeakPrioritizationBankItem(item) ||
+    hasShiftNoteArtifacts(item.vignette ?? item.question) ||
     scoreNclexBankItem(item) < 0.62 ||
     NCLEX_PREFIX.test(item.question) ||
     !hasRichVignette(text) ||
@@ -1182,13 +1181,22 @@ export function polishNclexBankItem(
   exam = enrichQuestion(exam, "nursing");
 
   const polished = examToBankItem(working, exam);
-  const qualityAfter = scoreNclexBankItem(polished);
+  const cleaned: BankItem = {
+    ...polished,
+    vignette: polished.vignette ? stripShiftNotes(polished.vignette) : polished.vignette,
+    scenario: polished.scenario ? stripShiftNotes(polished.scenario) : polished.scenario,
+    question: hasShiftNoteArtifacts(polished.question)
+      ? stripShiftNotes(polished.question)
+      : polished.question,
+  };
+  const qualityAfter = scoreNclexBankItem(cleaned);
 
   const changed =
-    polished.question !== item.question ||
-    polished.correctAnswer !== item.correctAnswer ||
-    polished.explanation !== item.explanation ||
-    JSON.stringify(polished.options) !== JSON.stringify(item.options);
+    cleaned.question !== item.question ||
+    cleaned.correctAnswer !== item.correctAnswer ||
+    cleaned.explanation !== item.explanation ||
+    JSON.stringify(cleaned.options) !== JSON.stringify(item.options) ||
+    cleaned.vignette !== item.vignette;
 
-  return { item: polished, changed, qualityBefore, qualityAfter };
+  return { item: cleaned, changed, qualityBefore, qualityAfter };
 }

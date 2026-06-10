@@ -1,6 +1,7 @@
 "use client";
 
 import { formatNgnLabel } from "@/lib/questions/ngn-map";
+import { stripShiftNotes } from "@/lib/questions/shift-notes";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { Info } from "lucide-react";
 
@@ -57,41 +58,34 @@ export function NgnTypeInstructions({ question }: { question: StudyQuestion }) {
 }
 
 export function NgnCjmmNote({ question }: { question: StudyQuestion }) {
-  const payload = question.ngnPayload as { cjmmStep?: string; realismNote?: string } | undefined;
-  if (!payload?.cjmmStep && !payload?.realismNote) return null;
+  const payload = question.ngnPayload as { cjmmStep?: string } | undefined;
+  if (!payload?.cjmmStep) return null;
   return (
-    <div className="mb-4 space-y-1 rounded-lg border border-violet-100 bg-violet-50/60 px-3 py-2 text-xs text-violet-900">
-      {payload.cjmmStep && (
-        <p>
-          <span className="font-semibold">NCJMM focus:</span> {payload.cjmmStep}
-        </p>
-      )}
-      {payload.realismNote && (
-        <p className="text-violet-800/90">
-          <span className="font-semibold">Bedside realism:</span> {payload.realismNote}
-        </p>
-      )}
+    <div className="mb-4 rounded-lg border border-violet-100 bg-violet-50/60 px-3 py-2 text-xs text-violet-900">
+      <p>
+        <span className="font-semibold">NCJMM focus:</span> {payload.cjmmStep}
+      </p>
     </div>
   );
 }
 
 export function inferVignetteLabel(text: string, stem = ""): string {
   const blob = `${text}\n${stem}`;
-  if (/Handoff report —/i.test(text)) return "Handoff report";
   if (/UAP|unlicensed assistive personnel|assign tasks to/i.test(blob)) return "Assignment context";
-  if (/^\d{4} —/.test(text)) return "Shift note";
+  if (/four (assigned )?clients|Which client.*first/i.test(blob)) return "Assignment context";
   return "Patient scenario";
 }
 
 export function VignetteBlock({ text, stem = "" }: { text: string; stem?: string }) {
-  const label = inferVignetteLabel(text, stem);
+  const cleaned = stripShiftNotes(text);
+  const label = inferVignetteLabel(cleaned, stem);
   return (
     <div className="mb-4 rounded-xl border border-black/[0.06] bg-[var(--color-surface)] px-4 py-3 sm:px-4">
       <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
         {label}
       </p>
       <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink)] whitespace-pre-wrap">
-        {text}
+        {cleaned}
       </p>
     </div>
   );

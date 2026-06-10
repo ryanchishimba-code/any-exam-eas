@@ -138,7 +138,7 @@ export const NGN_NURSING_QUALITY_V2: EnrichedBankItem[] = [
   ngnConcise(
     "physiological-adaptation",
     "ngn_highlight",
-    "Triage note — MVC: GCS 14, open femur fracture, cool clammy skin, HR 126, BP 86/58.",
+    "Emergency department triage after a motor vehicle collision: GCS 14, open femur fracture, cool clammy skin, heart rate 126/min, blood pressure 86/58 mm Hg.",
     "Highlight findings that indicate highest priority.",
     "cool clammy skin,HR 126,BP 86/58",
     "Shock cues (hypotension, tachycardia, cool skin) outrank stable neuro finding.",
@@ -351,7 +351,7 @@ export const NGN_NURSING_QUALITY_V2: EnrichedBankItem[] = [
   // ── Case-based shorter (10) ────────────────────────────────────────────
   ngnMcq(
     "management-of-care",
-    "0900 — 54F DM2 admitted BG 418, alert, dry mucous membranes.",
+    "A 54-year-old woman with type 2 diabetes was admitted with blood glucose 418 mg/dL. She is alert with dry mucous membranes.",
     "Priority action?",
     ["Administer insulin per protocol and assess fluids", "Oral fluids only", "Trendelenburg", "Hold insulin"],
     "Administer insulin per protocol and assess fluids",
@@ -360,7 +360,7 @@ export const NGN_NURSING_QUALITY_V2: EnrichedBankItem[] = [
   ),
   ngnMcq(
     "med-surg",
-    "1100 — Same client after insulin. BG 210, still dry, BP 100/62.",
+    "The same client received insulin. Blood glucose is now 210 mg/dL, mucous membranes remain dry, and blood pressure is 100/62 mm Hg.",
     "Next priority?",
     ["Continue IV fluids and monitor electrolytes", "Discharge", "NPO forever", "Stop all meds"],
     "Continue IV fluids and monitor electrolytes",
@@ -499,7 +499,7 @@ export const NGN_NURSING_QUALITY_V2: EnrichedBankItem[] = [
   ),
   ngnMcq(
     "fundamentals",
-    "Chart excerpt: K+ 2.9, digoxin ordered, client on furosemide.",
+    "A client has potassium 2.9 mEq/L, an order for digoxin, and a history of furosemide therapy.",
     "Cloze: The nurse should ___ before giving digoxin.",
     ["Verify potassium level and hold digoxin if K+ low per protocol", "Give digoxin anyway", "Double diuretic", "No assessment"],
     "Verify potassium level and hold digoxin if K+ low per protocol",
@@ -507,7 +507,6 @@ export const NGN_NURSING_QUALITY_V2: EnrichedBankItem[] = [
     {
       cjmmStep: "Analyze cues",
       tags: ["cloze", "drop-down"],
-      realismNote: "Mimics EHR lab + order review workflow.",
       itemType: "vignette",
     }
   ),
