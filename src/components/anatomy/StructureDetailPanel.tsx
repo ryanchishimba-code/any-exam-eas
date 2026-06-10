@@ -18,9 +18,17 @@ type Props = {
   structure: AnatomyStructure;
   memoryCards: MemoryCard[];
   examSlug: ExamSlug;
+  showInteractiveCta?: boolean;
+  onOpenInteractive?: () => void;
 };
 
-export function StructureDetailPanel({ structure, memoryCards, examSlug }: Props) {
+export function StructureDetailPanel({
+  structure,
+  memoryCards,
+  examSlug,
+  showInteractiveCta,
+  onOpenInteractive,
+}: Props) {
   return (
     <div className="flex-1 space-y-5 overflow-y-auto p-4">
       <p className="text-sm leading-relaxed text-[var(--color-ink-muted)]">
@@ -83,6 +91,15 @@ export function StructureDetailPanel({ structure, memoryCards, examSlug }: Props
       ) : null}
 
       <div className="flex flex-col gap-2 pt-2 pb-safe">
+        {showInteractiveCta && onOpenInteractive ? (
+          <Button
+            variant="secondary"
+            className="w-full justify-center px-4 py-2.5 text-sm"
+            onClick={onOpenInteractive}
+          >
+            Locate in 3D viewer
+          </Button>
+        ) : null}
         <Button
           href={practiceTopicHref(examSlug, structure.practiceTopicSlug, 10)}
           variant="primary"

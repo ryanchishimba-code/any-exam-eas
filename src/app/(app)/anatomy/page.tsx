@@ -13,7 +13,7 @@ import type { ExamSlug } from "@/types/edtech";
 export const metadata = {
   title: "Anatomy Explorer — Any Exam Easy",
   description:
-    "Reference video and interactive 3D anatomy with high-yield clinical pearls, memory cards, and board exam practice links.",
+    "Anatomy Studio with reference video, interactive 3D, 30+ structures, guided tours, and board exam practice links.",
 };
 
 function AnatomySkeleton() {

@@ -67,3 +67,5 @@ export function structureVisibleInLayers(
 export function isBioDigitalAvailable(): boolean {
   return Boolean(process.env.NEXT_PUBLIC_BIODIGITAL_APP_ID?.trim());
 }
+
+export { getAnatomyCatalogStats, type AnatomyCatalogStats } from "./catalog";

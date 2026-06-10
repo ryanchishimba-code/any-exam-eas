@@ -168,18 +168,23 @@ export function AnatomySidebar({
                   type="button"
                   onClick={() => onSelectStructure(s.id)}
                   className={cn(
-                    "flex w-full items-start gap-2 rounded-xl px-3 py-2 text-left text-sm transition",
+                    "flex w-full flex-col items-start gap-0.5 rounded-xl px-3 py-2 text-left text-sm transition",
                     selectedId === s.id
                       ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
                       : "text-[var(--color-ink)] hover:bg-[var(--color-surface)]"
                   )}
                 >
-                  <span className="font-medium">{s.name}</span>
-                  {s.highYield ? (
-                    <span className="ml-auto shrink-0 rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-bold text-amber-800">
-                      HY
-                    </span>
-                  ) : null}
+                  <span className="flex w-full items-start gap-2">
+                    <span className="font-medium">{s.name}</span>
+                    {s.highYield ? (
+                      <span className="ml-auto shrink-0 rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-bold text-amber-800">
+                        HY
+                      </span>
+                    ) : null}
+                  </span>
+                  <span className="text-[10px] capitalize text-[var(--color-ink-muted)]">
+                    {ANATOMY_SYSTEM_LABELS[s.system]}
+                  </span>
                 </button>
               </li>
             ))}

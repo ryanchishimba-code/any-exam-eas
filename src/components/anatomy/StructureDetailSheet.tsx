@@ -13,6 +13,8 @@ type Props = {
   examSlug: ExamSlug;
   open: boolean;
   onClose: () => void;
+  showInteractiveCta?: boolean;
+  onOpenInteractive?: () => void;
 };
 
 export function StructureDetailSheet({
@@ -21,6 +23,8 @@ export function StructureDetailSheet({
   examSlug,
   open,
   onClose,
+  showInteractiveCta,
+  onOpenInteractive,
 }: Props) {
   useEffect(() => {
     if (!open) return;
@@ -60,6 +64,8 @@ export function StructureDetailSheet({
           structure={structure}
           memoryCards={memoryCards}
           examSlug={examSlug}
+          showInteractiveCta={showInteractiveCta}
+          onOpenInteractive={onOpenInteractive}
         />
       </div>
     </div>,

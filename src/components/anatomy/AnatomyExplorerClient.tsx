@@ -13,14 +13,13 @@ import { TeachModePanel } from "@/components/anatomy/TeachModePanel";
 import { Badge } from "@/components/ui/badge";
 import {
   getAllAnatomyStructures,
+  getAnatomyCatalogStats,
   getAnatomyStructure,
   getMemoryCardsForStructure,
   isBioDigitalAvailable,
   searchAnatomyStructures,
 } from "@/lib/anatomy";
-import { ANATOMY_QUIZ_QUESTIONS, getToursForExam } from "@/lib/anatomy/tours";
-import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
-import { ANATOMY_LAYER_LABELS } from "@/lib/anatomy/types";
+import { ANATOMY_LAYER_LABELS, type AnatomyLayer, type AnatomySystem } from "@/lib/anatomy/types";
 import {
   ANATOMY_VIEW_MODE_STORAGE_KEY,
   anatomyViewModeUsesLayers,
@@ -59,7 +58,7 @@ export function AnatomyExplorerClient({
   initialViewMode,
 }: Props) {
   const structures = useMemo(() => getAllAnatomyStructures(), []);
-  const tours = useMemo(() => getToursForExam(examSlug), [examSlug]);
+  const catalogStats = useMemo(() => getAnatomyCatalogStats(), []);
 
   const invalidStructureId =
     initialStructureId && !getAnatomyStructure(initialStructureId)
@@ -206,7 +205,13 @@ export function AnatomyExplorerClient({
     syncStructureParam(null);
   }, [syncStructureParam]);
 
+  const openInteractiveView = useCallback(() => {
+    persistViewMode(viewMode === "split" ? "split" : "interactive");
+    setMobileSheetOpen(false);
+  }, [persistViewMode, viewMode]);
+
   const viewerEngine = isBioDigitalAvailable() ? "BioDigital Human" : "Interactive 3D (WebGL)";
+  const showInteractiveCta = viewMode === "reference";
   const showInvalidBanner = Boolean(invalidStructureId && !invalidStructureDismissed);
 
   const sidebarProps = {
@@ -259,7 +264,8 @@ export function AnatomyExplorerClient({
       ) : null}
 
       <div className="flex flex-wrap items-center gap-2">
-        <Badge className="bg-white/90">{structures.length} structures</Badge>
+        <Badge className="bg-white/90">{catalogStats.structureCount} structures</Badge>
+        <Badge className="bg-amber-50 text-amber-900">{catalogStats.highYieldCount} high-yield</Badge>
         <Badge className="bg-violet-100 text-violet-800">{viewerEngine}</Badge>
         <Badge className="bg-slate-100 text-slate-700 capitalize">{viewMode.replace("-", " ")}</Badge>
         {highYieldOnly ? (
@@ -268,9 +274,9 @@ export function AnatomyExplorerClient({
       </div>
 
       <AnatomyQuickStart
-        structureCount={structures.length}
-        tourCount={tours.length}
-        quizCount={ANATOMY_QUIZ_QUESTIONS.length}
+        structureCount={catalogStats.structureCount}
+        tourCount={catalogStats.tourCount}
+        quizCount={catalogStats.quizCount}
       />
 
       <AnatomyViewModeSwitcher value={viewMode} onChange={persistViewMode} />
@@ -357,6 +363,8 @@ export function AnatomyExplorerClient({
               memoryCards={relatedCards}
               examSlug={examSlug}
               onClose={handleCloseStructure}
+              showInteractiveCta={showInteractiveCta}
+              onOpenInteractive={openInteractiveView}
             />
           ) : (
             <div className="flex h-full min-h-[200px] items-center justify-center rounded-2xl border border-dashed border-black/[0.08] bg-[var(--color-surface)]/50 p-6 text-center">
@@ -389,6 +397,8 @@ export function AnatomyExplorerClient({
         examSlug={examSlug}
         open={mobileSheetOpen && Boolean(selectedStructure)}
         onClose={() => setMobileSheetOpen(false)}
+        showInteractiveCta={showInteractiveCta}
+        onOpenInteractive={openInteractiveView}
       />
     </div>
   );

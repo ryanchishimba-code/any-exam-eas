@@ -160,6 +160,57 @@ export const ANATOMY_TOURS: AnatomyTour[] = [
       },
     ],
   },
+  {
+    id: "endocrine-hormones",
+    title: "Endocrine Landmarks",
+    subtitle: "Thyroid, adrenal, and hormone emergencies",
+    examFocus: "USMLE Step 2 / NAPLEX",
+    steps: [
+      {
+        structureId: "thyroid",
+        narration:
+          "Thyroid surgery risks recurrent laryngeal nerve injury — hoarseness is a red flag post-op.",
+      },
+      {
+        structureId: "adrenal-glands",
+        narration:
+          "Adrenal cortex vs medulla — Cushing, Addison, and pheochromocytoma are classic board presentations.",
+      },
+      {
+        structureId: "pancreas",
+        narration:
+          "Endocrine pancreas (islets) vs exocrine enzymes — DKA/HHS tie glucose physiology to anatomy.",
+      },
+    ],
+  },
+  {
+    id: "nclex-trauma-chest",
+    title: "Trauma & Chest Emergencies",
+    subtitle: "Prioritization and perfusion anatomy",
+    examFocus: "NCLEX-RN",
+    steps: [
+      {
+        structureId: "sternum",
+        narration:
+          "Sternal fractures suggest significant blunt chest trauma — assess for cardiac contusion and rib injuries.",
+      },
+      {
+        structureId: "spleen",
+        narration:
+          "Splenic rupture after abdominal trauma — Kehr sign and hemodynamic instability require rapid response.",
+      },
+      {
+        structureId: "diaphragm",
+        narration:
+          "Referred shoulder pain from diaphragmatic irritation links abdominal catastrophe to chest assessment.",
+      },
+      {
+        structureId: "aorta",
+        narration:
+          "Tearing chest pain radiating to the back — think aortic dissection until proven otherwise.",
+      },
+    ],
+  },
 ];
 
 export const ANATOMY_QUIZ_QUESTIONS: AnatomyQuizQuestion[] = [
@@ -252,6 +303,54 @@ export const ANATOMY_QUIZ_QUESTIONS: AnatomyQuizQuestion[] = [
     prompt: "Click the RLQ structure associated with McBurney point tenderness.",
     structureId: "appendix",
     distractorIds: ["gallbladder", "bladder", "spleen"],
+  },
+  {
+    id: "q-thyroid",
+    prompt: "Click the butterfly-shaped gland anterior to the trachea that produces T3/T4.",
+    structureId: "thyroid",
+    distractorIds: ["trachea", "esophagus", "carotid-artery"],
+  },
+  {
+    id: "q-aorta",
+    prompt: "Select the largest artery — dissection presents with tearing chest pain radiating to the back.",
+    structureId: "aorta",
+    distractorIds: ["carotid-artery", "heart", "esophagus"],
+  },
+  {
+    id: "q-skull",
+    prompt: "Click the bony structure — epidural hematoma often follows middle meningeal artery injury.",
+    structureId: "skull",
+    distractorIds: ["brain", "vertebral-column", "sternum"],
+  },
+  {
+    id: "q-esophagus",
+    prompt: "Which muscular tube passes through the esophageal hiatus at T10?",
+    structureId: "esophagus",
+    distractorIds: ["trachea", "stomach", "duodenum"],
+  },
+  {
+    id: "q-adrenal",
+    prompt: "Click the paired suprarenal glands — pheochromocytoma arises from the medulla.",
+    structureId: "adrenal-glands",
+    distractorIds: ["kidneys", "pancreas", "thyroid"],
+  },
+  {
+    id: "q-prostate",
+    prompt: "Select the male gland encircling the urethra below the bladder.",
+    structureId: "prostate",
+    distractorIds: ["bladder", "appendix", "duodenum"],
+  },
+  {
+    id: "q-vertebral",
+    prompt: "Click the column of vertebrae protecting the spinal cord.",
+    structureId: "vertebral-column",
+    distractorIds: ["spinal-cord", "sternum", "femur"],
+  },
+  {
+    id: "q-sternum",
+    prompt: "Which flat midline chest bone is the target landmark for CPR compressions?",
+    structureId: "sternum",
+    distractorIds: ["clavicle", "scapula", "diaphragm"],
   },
 ];
 

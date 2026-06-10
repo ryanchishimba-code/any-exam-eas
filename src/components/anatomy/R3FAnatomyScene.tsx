@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber";
-import { OrbitControls, type OrbitControls as OrbitControlsImpl } from "@react-three/drei";
+import { OrbitControls, Html, type OrbitControls as OrbitControlsImpl } from "@react-three/drei";
 import type { Mesh } from "three";
 import { Vector3 } from "three";
 import { getAnatomyStructure } from "@/lib/anatomy";
@@ -43,16 +43,25 @@ const MESH_DEFS: MeshDef[] = [
   { id: "humerus", layer: "bone", position: [0.42, 0.45, 0], scale: [0.07, 0.38, 0.07], color: "#d6d3d1", geometry: "capsule" },
   { id: "tibia", layer: "bone", position: [0.1, -0.75, 0.02], scale: [0.08, 0.42, 0.08], color: "#e7e5e4", geometry: "capsule" },
   { id: "sternum", layer: "bone", position: [0, 0.92, 0.18], scale: [0.08, 0.28, 0.04], color: "#fafaf9", geometry: "box" },
+  { id: "esophagus", layer: "organ", position: [0, 0.78, 0.1], scale: [0.05, 0.35, 0.05], color: "#fda4af", geometry: "cylinder" },
+  { id: "duodenum", layer: "organ", position: [0.12, 0.4, 0.04], scale: [0.14, 0.08, 0.1], color: "#fcd34d", geometry: "box", rotation: [0, 0.4, 0] },
+  { id: "clavicle", layer: "bone", position: [0, 1.28, 0.08], scale: [0.5, 0.04, 0.04], color: "#e7e5e4", geometry: "box", rotation: [0, 0, 0.15] },
+  { id: "scapula", layer: "bone", position: [-0.32, 1.05, -0.12], scale: [0.12, 0.18, 0.04], color: "#d6d3d1", geometry: "box", rotation: [0, 0.3, 0] },
+  { id: "prostate", layer: "organ", position: [0, 0.02, 0.04], scale: [0.1, 0.06, 0.08], color: "#c4b5fd", geometry: "sphere" },
+  { id: "adrenal-glands", layer: "organ", position: [0, 0.36, -0.14], scale: [0.32, 0.06, 0.08], color: "#f59e0b", geometry: "box" },
+  { id: "vertebral-column", layer: "bone", position: [0, 0.55, -0.2], scale: [0.06, 0.95, 0.06], color: "#fafaf9", geometry: "cylinder" },
 ];
 
 function AnatomyMesh({
   def,
+  label,
   visible,
   highlighted,
   selected,
   onSelect,
 }: {
   def: MeshDef;
+  label: string;
   visible: boolean;
   highlighted: boolean;
   selected: boolean;
@@ -116,6 +125,18 @@ function AnatomyMesh({
         transparent={!visible}
         opacity={visible ? 1 : 0}
       />
+      {(hovered || selected || highlighted) && (
+        <Html
+          center
+          distanceFactor={6}
+          position={[0, 1.15, 0]}
+          style={{ pointerEvents: "none", whiteSpace: "nowrap" }}
+        >
+          <span className="rounded-full bg-slate-900/90 px-2 py-0.5 text-[10px] font-semibold text-white shadow-lg">
+            {label}
+          </span>
+        </Html>
+      )}
     </mesh>
   );
 }
@@ -197,6 +218,7 @@ function SceneContent({
           <AnatomyMesh
             key={def.id}
             def={def}
+            label={structure.name}
             visible={layerVisible}
             highlighted={highlightedId === structure.id}
             selected={selectedId === structure.id}

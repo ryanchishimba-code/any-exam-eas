@@ -243,7 +243,7 @@ export function TeachModePanel({
             </p>
           ) : (
             <p className="text-xs text-[var(--color-ink-muted)]">
-              Click the matching structure in the 3D viewer.
+              Click the matching structure in the 3D viewer or pick from the sidebar list.
             </p>
           )}
         </div>
