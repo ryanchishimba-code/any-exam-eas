@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { Search, Sparkles, X } from "lucide-react";
+import { Bone, Search, Sparkles, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { anatomyHref } from "@/lib/edtech/practice-links";
 import { MemoryCardTile } from "@/components/reference/MemoryCardTile";
 import { MemoryCardSheet } from "@/components/reference/MemoryCardSheet";
 import { getRecommendedMemoryCards, queryMemoryCards } from "@/lib/reference/memory-cards";
@@ -77,6 +79,13 @@ export function ReferenceHubClient({
           </div>
           <div className="flex flex-wrap gap-2">
             <Badge className="bg-white/80">{cards.length} cards</Badge>
+            <Link
+              href={anatomyHref(examSlug)}
+              className="inline-flex items-center gap-1.5 rounded-full border border-violet-200 bg-white/90 px-3 py-1 text-xs font-semibold text-violet-800 transition hover:border-violet-300 hover:bg-violet-50"
+            >
+              <Bone className="h-3.5 w-3.5" aria-hidden />
+              Anatomy Explorer
+            </Link>
             {withDeepDive > 0 ? (
               <Badge className="bg-violet-100 text-violet-800">{withDeepDive} with Deep Dive</Badge>
             ) : null}

@@ -7,6 +7,7 @@ import {
   BarChart3,
   BookMarked,
   BookOpen,
+  Bone,
   Clock,
   Layers,
   LayoutGrid,
@@ -18,6 +19,7 @@ import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
 import {
   analyticsHref,
+  anatomyHref,
   highYieldTopicsHref,
   questionBankHref,
   referenceHref,
@@ -86,6 +88,12 @@ export function DashboardView({
       description: "Equations, pearls, and tables — then deep dive into full modules.",
       href: referenceHref(examSlug),
       icon: BookMarked,
+    },
+    {
+      title: "Anatomy Explorer",
+      description: "Interactive 3D structures with clinical pearls and linked practice.",
+      href: anatomyHref(examSlug),
+      icon: Bone,
     },
     {
       title: "High-Yield Topics",

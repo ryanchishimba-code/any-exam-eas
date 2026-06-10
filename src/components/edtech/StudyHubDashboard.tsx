@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   BarChart3,
   BookOpen,
+  Bone,
   Clock,
   Layers,
   Sparkles,
@@ -17,6 +18,7 @@ import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
 import { ROUTES } from "@/lib/routes";
 import {
   analyticsHref,
+  anatomyHref,
   highYieldTopicsHref,
   questionBankHref,
   top500Href,
@@ -65,6 +67,14 @@ export function StudyHubDashboard({
       href: questionBankHref(examSlug),
       cta: "Start practicing",
       icon: BookOpen,
+    },
+    {
+      title: "Anatomy Explorer",
+      description: "Explore high-yield structures in 3D — rotate, click, and link to practice.",
+      href: anatomyHref(examSlug),
+      cta: "Open explorer",
+      icon: Bone,
+      badge: "3D",
     },
     {
       title: "Full Simulated Exam",
