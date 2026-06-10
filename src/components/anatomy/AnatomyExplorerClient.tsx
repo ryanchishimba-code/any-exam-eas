@@ -2,10 +2,12 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Layers, PanelLeftClose, PanelLeftOpen, X } from "lucide-react";
+import { BookOpen, Layers, PanelLeftClose, PanelLeftOpen, X } from "lucide-react";
+import { AnatomyQuickStart } from "@/components/anatomy/AnatomyQuickStart";
 import { AnatomySidebar } from "@/components/anatomy/AnatomySidebar";
 import { AnatomyStudioViewer } from "@/components/anatomy/AnatomyStudioViewer";
 import { AnatomyViewModeSwitcher } from "@/components/anatomy/AnatomyViewModeSwitcher";
+import { StructureDetailSheet } from "@/components/anatomy/StructureDetailSheet";
 import { StructureOverlay } from "@/components/anatomy/StructureOverlay";
 import { TeachModePanel } from "@/components/anatomy/TeachModePanel";
 import { Badge } from "@/components/ui/badge";
@@ -16,6 +18,7 @@ import {
   isBioDigitalAvailable,
   searchAnatomyStructures,
 } from "@/lib/anatomy";
+import { ANATOMY_QUIZ_QUESTIONS, getToursForExam } from "@/lib/anatomy/tours";
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
 import { ANATOMY_LAYER_LABELS } from "@/lib/anatomy/types";
 import {
@@ -56,6 +59,7 @@ export function AnatomyExplorerClient({
   initialViewMode,
 }: Props) {
   const structures = useMemo(() => getAllAnatomyStructures(), []);
+  const tours = useMemo(() => getToursForExam(examSlug), [examSlug]);
 
   const invalidStructureId =
     initialStructureId && !getAnatomyStructure(initialStructureId)
@@ -76,6 +80,9 @@ export function AnatomyExplorerClient({
   const [highlightedId, setHighlightedId] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [overlayOpen, setOverlayOpen] = useState(() =>
+    Boolean(initialStructureId && !invalidStructureId)
+  );
+  const [mobileSheetOpen, setMobileSheetOpen] = useState(() =>
     Boolean(initialStructureId && !invalidStructureId)
   );
   const [invalidStructureDismissed, setInvalidStructureDismissed] = useState(false);
@@ -120,10 +127,24 @@ export function AnatomyExplorerClient({
     window.history.replaceState(null, "", qs ? `${ROUTES.anatomy}?${qs}` : ROUTES.anatomy);
   }, []);
 
+  const syncStructureParam = useCallback((id: string | null) => {
+    if (typeof window === "undefined") return;
+    const url = new URL(window.location.href);
+    if (id) url.searchParams.set("structure", id);
+    else url.searchParams.delete("structure");
+    const qs = url.searchParams.toString();
+    window.history.replaceState(null, "", qs ? `${ROUTES.anatomy}?${qs}` : ROUTES.anatomy);
+  }, []);
+
   useEffect(() => {
-    if (!quizActive || viewMode !== "reference") return;
+    if (!quizActive || viewMode === "interactive") return;
     persistViewMode("interactive");
   }, [quizActive, persistViewMode, viewMode]);
+
+  useEffect(() => {
+    if (!selectedTourId || viewMode !== "reference") return;
+    persistViewMode("split");
+  }, [persistViewMode, selectedTourId, viewMode]);
 
   const clearInvalidStructureParam = useCallback(() => {
     if (typeof window === "undefined") return;
@@ -169,12 +190,21 @@ export function AnatomyExplorerClient({
     (id: string) => {
       setSelectedId(id);
       setOverlayOpen(true);
+      setMobileSheetOpen(true);
+      syncStructureParam(id);
       if (quizActive && quizHandler) {
         quizHandler(id);
       }
     },
-    [quizActive, quizHandler]
+    [quizActive, quizHandler, syncStructureParam]
   );
+
+  const handleCloseStructure = useCallback(() => {
+    setSelectedId(null);
+    setOverlayOpen(false);
+    setMobileSheetOpen(false);
+    syncStructureParam(null);
+  }, [syncStructureParam]);
 
   const viewerEngine = isBioDigitalAvailable() ? "BioDigital Human" : "Interactive 3D (WebGL)";
   const showInvalidBanner = Boolean(invalidStructureId && !invalidStructureDismissed);
@@ -221,6 +251,13 @@ export function AnatomyExplorerClient({
         </div>
       ) : null}
 
+      {selectedTourId && viewMode === "reference" ? (
+        <div className="rounded-2xl border border-indigo-200 bg-indigo-50/80 px-4 py-3 text-sm text-indigo-900">
+          Switching to <strong>Split view</strong> for your guided tour — video plus highlighted 3D
+          structures.
+        </div>
+      ) : null}
+
       <div className="flex flex-wrap items-center gap-2">
         <Badge className="bg-white/90">{structures.length} structures</Badge>
         <Badge className="bg-violet-100 text-violet-800">{viewerEngine}</Badge>
@@ -229,6 +266,12 @@ export function AnatomyExplorerClient({
           <Badge className="bg-amber-100 text-amber-900">High-yield filter on</Badge>
         ) : null}
       </div>
+
+      <AnatomyQuickStart
+        structureCount={structures.length}
+        tourCount={tours.length}
+        quizCount={ANATOMY_QUIZ_QUESTIONS.length}
+      />
 
       <AnatomyViewModeSwitcher value={viewMode} onChange={persistViewMode} />
 
@@ -304,6 +347,7 @@ export function AnatomyExplorerClient({
 
         <div
           className={cn(
+            "hidden lg:block",
             !overlayOpen && "lg:invisible lg:h-0 lg:overflow-hidden lg:pointer-events-none"
           )}
         >
@@ -312,13 +356,10 @@ export function AnatomyExplorerClient({
               structure={selectedStructure}
               memoryCards={relatedCards}
               examSlug={examSlug}
-              onClose={() => {
-                setSelectedId(null);
-                setOverlayOpen(false);
-              }}
+              onClose={handleCloseStructure}
             />
           ) : (
-            <div className="flex h-full min-h-[200px] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-black/[0.08] bg-[var(--color-surface)]/50 p-6 text-center">
+            <div className="flex h-full min-h-[200px] items-center justify-center rounded-2xl border border-dashed border-black/[0.08] bg-[var(--color-surface)]/50 p-6 text-center">
               <p className="text-sm font-medium text-[var(--color-ink)]">Pick a structure</p>
               <p className="max-w-xs text-sm text-[var(--color-ink-muted)]">
                 Tap any name in the sidebar for clinical pearls, memory cards, and practice links.
@@ -330,6 +371,25 @@ export function AnatomyExplorerClient({
           )}
         </div>
       </div>
+
+      {selectedStructure && !mobileSheetOpen ? (
+        <button
+          type="button"
+          onClick={() => setMobileSheetOpen(true)}
+          className="fixed bottom-20 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 rounded-full border border-violet-200 bg-white px-4 py-2.5 text-sm font-semibold text-violet-900 shadow-lg lg:hidden"
+        >
+          <BookOpen className="h-4 w-4" aria-hidden />
+          {selectedStructure.name} details
+        </button>
+      ) : null}
+
+      <StructureDetailSheet
+        structure={selectedStructure}
+        memoryCards={relatedCards}
+        examSlug={examSlug}
+        open={mobileSheetOpen && Boolean(selectedStructure)}
+        onClose={() => setMobileSheetOpen(false)}
+      />
     </div>
   );
 }

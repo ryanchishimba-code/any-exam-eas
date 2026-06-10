@@ -34,6 +34,15 @@ const MESH_DEFS: MeshDef[] = [
   { id: "spinal-cord", layer: "nerve", position: [0, 0.65, -0.18], scale: [0.04, 0.85, 0.04], color: "#fef08a", geometry: "cylinder" },
   { id: "femur", layer: "bone", position: [0, -0.35, 0], scale: [0.12, 0.55, 0.12], color: "#e7e5e4", geometry: "capsule" },
   { id: "biceps", layer: "muscle", position: [0.38, 0.75, 0.05], scale: [0.08, 0.22, 0.08], color: "#a8a29e", geometry: "capsule" },
+  { id: "carotid-artery", layer: "vascular", position: [0.12, 1.22, 0.12], scale: [0.04, 0.18, 0.04], color: "#7f1d1d", geometry: "cylinder" },
+  { id: "trachea", layer: "organ", position: [0, 1.18, 0.14], scale: [0.06, 0.22, 0.06], color: "#93c5fd", geometry: "cylinder" },
+  { id: "gallbladder", layer: "organ", position: [0.18, 0.48, 0.1], scale: [0.08, 0.1, 0.06], color: "#84cc16", geometry: "sphere" },
+  { id: "pancreas", layer: "organ", position: [0.05, 0.44, -0.02], scale: [0.22, 0.06, 0.08], color: "#fbbf24", geometry: "box" },
+  { id: "appendix", layer: "organ", position: [-0.2, 0.28, 0.06], scale: [0.06, 0.12, 0.05], color: "#fdba74", geometry: "capsule" },
+  { id: "bladder", layer: "organ", position: [0, 0.08, 0.06], scale: [0.16, 0.12, 0.12], color: "#fde68a", geometry: "sphere" },
+  { id: "humerus", layer: "bone", position: [0.42, 0.45, 0], scale: [0.07, 0.38, 0.07], color: "#d6d3d1", geometry: "capsule" },
+  { id: "tibia", layer: "bone", position: [0.1, -0.75, 0.02], scale: [0.08, 0.42, 0.08], color: "#e7e5e4", geometry: "capsule" },
+  { id: "sternum", layer: "bone", position: [0, 0.92, 0.18], scale: [0.08, 0.28, 0.04], color: "#fafaf9", geometry: "box" },
 ];
 
 function AnatomyMesh({

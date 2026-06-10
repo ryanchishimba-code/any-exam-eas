@@ -65,6 +65,11 @@ export const ANATOMY_TOURS: AnatomyTour[] = [
           "MCA territory strokes cause contralateral face/arm weakness; dominant hemisphere → aphasia.",
       },
       {
+        structureId: "carotid-artery",
+        narration:
+          "Carotid disease is a major stroke source — know anterior circulation vs vertebrobasilar symptoms.",
+      },
+      {
         structureId: "skull",
         narration:
           "Skull fracture patterns predict complications — epidural (middle meningeal) vs subdural (bridging veins).",
@@ -73,6 +78,85 @@ export const ANATOMY_TOURS: AnatomyTour[] = [
         structureId: "spinal-cord",
         narration:
           "Brown-Séquard and complete cord syndromes test your knowledge of tract anatomy and level localization.",
+      },
+    ],
+  },
+  {
+    id: "gi-hepatobiliary",
+    title: "GI & Hepatobiliary Essentials",
+    subtitle: "RUQ anatomy for boards and wards",
+    examFocus: "USMLE Step 2 / NCLEX",
+    steps: [
+      {
+        structureId: "liver",
+        narration:
+          "Portal hypertension from cirrhosis drives varices, ascites, and splenomegaly — trace the portal system.",
+      },
+      {
+        structureId: "gallbladder",
+        narration:
+          "Murphy sign and RUQ pain localize acute cholecystitis; Courvoisier suggests malignant biliary obstruction.",
+      },
+      {
+        structureId: "pancreas",
+        narration:
+          "Epigastric pain radiating to the back — pancreatitis. Head tumors cause painless jaundice.",
+      },
+      {
+        structureId: "appendix",
+        narration:
+          "RLQ tenderness at McBurney point is classic appendicitis; retrocecal position can mask signs.",
+      },
+    ],
+  },
+  {
+    id: "renal-urinary",
+    title: "Renal & Urinary Tract",
+    subtitle: "Fluids, electrolytes, and obstruction",
+    examFocus: "USMLE / NCLEX",
+    steps: [
+      {
+        structureId: "kidneys",
+        narration:
+          "Know nephron physiology for AKI workup — prerenal vs intrinsic vs postrenal patterns.",
+      },
+      {
+        structureId: "bladder",
+        narration:
+          "Acute retention is painful and needs catheterization; painless hematuria raises concern for malignancy.",
+      },
+      {
+        structureId: "aorta",
+        narration:
+          "Renal arteries branch from the aorta — renovascular disease can cause refractory hypertension.",
+      },
+    ],
+  },
+  {
+    id: "msk-extremities",
+    title: "MSK Extremity Landmarks",
+    subtitle: "Fractures, nerves, and compartment red flags",
+    examFocus: "USMLE / NCLEX",
+    steps: [
+      {
+        structureId: "humerus",
+        narration:
+          "Surgical neck fractures threaten the axillary nerve; spiral groove fractures affect the radial nerve.",
+      },
+      {
+        structureId: "femur",
+        narration:
+          "Hip fractures present shortened, externally rotated leg — AVN risk highest with femoral neck fractures.",
+      },
+      {
+        structureId: "tibia",
+        narration:
+          "Tibial shaft fractures carry compartment syndrome risk — pain with passive stretch is an emergency.",
+      },
+      {
+        structureId: "biceps-brachii",
+        narration:
+          "Biceps reflex tests C5–C6; musculocutaneous nerve injury weakens flexion and forearm supination.",
       },
     ],
   },
@@ -114,6 +198,60 @@ export const ANATOMY_QUIZ_QUESTIONS: AnatomyQuizQuestion[] = [
     prompt: "Which organ in the LUQ can rupture with Kehr sign (referred shoulder pain)?",
     structureId: "spleen",
     distractorIds: ["liver", "kidneys", "stomach"],
+  },
+  {
+    id: "q-liver",
+    prompt: "Click the largest organ in the RUQ with dual hepatic and portal blood supply.",
+    structureId: "liver",
+    distractorIds: ["spleen", "stomach", "pancreas"],
+  },
+  {
+    id: "q-pancreas",
+    prompt: "Select the retroperitoneal gland whose head lies in the duodenal C-loop.",
+    structureId: "pancreas",
+    distractorIds: ["gallbladder", "appendix", "bladder"],
+  },
+  {
+    id: "q-gallbladder",
+    prompt: "Click the bile storage organ tested with Murphy sign in the RUQ.",
+    structureId: "gallbladder",
+    distractorIds: ["liver", "stomach", "spleen"],
+  },
+  {
+    id: "q-trachea",
+    prompt: "Which cartilaginous airway bifurcates at the carina (T4–T5)?",
+    structureId: "trachea",
+    distractorIds: ["thyroid", "aorta", "esophagus"],
+  },
+  {
+    id: "q-carotid",
+    prompt: "Click the neck arteries whose internal branch supplies anterior cerebral circulation.",
+    structureId: "carotid-artery",
+    distractorIds: ["aorta", "thyroid", "trachea"],
+  },
+  {
+    id: "q-bladder",
+    prompt: "Select the pelvic reservoir for urine with a trigone at its base.",
+    structureId: "bladder",
+    distractorIds: ["kidneys", "appendix", "stomach"],
+  },
+  {
+    id: "q-femur",
+    prompt: "Click the longest bone — common site of hip fracture in older adults.",
+    structureId: "femur",
+    distractorIds: ["humerus", "tibia", "sternum"],
+  },
+  {
+    id: "q-humerus",
+    prompt: "Which upper-extremity bone fracture can injure the axillary nerve at the surgical neck?",
+    structureId: "humerus",
+    distractorIds: ["femur", "tibia", "skull"],
+  },
+  {
+    id: "q-appendix",
+    prompt: "Click the RLQ structure associated with McBurney point tenderness.",
+    structureId: "appendix",
+    distractorIds: ["gallbladder", "bladder", "spleen"],
   },
 ];
 

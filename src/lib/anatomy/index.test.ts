@@ -12,8 +12,9 @@ import { anatomyViewModeUsesLayers, isAnatomyViewMode } from "./view-mode";
 describe("anatomy helpers", () => {
   it("loads curated structure catalog", () => {
     const all = getAllAnatomyStructures();
-    expect(all.length).toBeGreaterThanOrEqual(10);
+    expect(all.length).toBeGreaterThanOrEqual(20);
     expect(getAnatomyStructure("heart")?.name).toBe("Heart");
+    expect(getAnatomyStructure("pancreas")?.system).toBe("digestive");
   });
 
   it("filters high-yield structures", () => {
