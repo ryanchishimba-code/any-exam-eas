@@ -3,9 +3,12 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { BookOpen, Layers, PanelLeftClose, PanelLeftOpen, X } from "lucide-react";
+import { AnatomyHighYieldStrip } from "@/components/anatomy/AnatomyHighYieldStrip";
 import { AnatomyQuickStart } from "@/components/anatomy/AnatomyQuickStart";
 import { AnatomySidebar } from "@/components/anatomy/AnatomySidebar";
+import { AnatomyStudioHero } from "@/components/anatomy/AnatomyStudioHero";
 import { AnatomyStudioViewer } from "@/components/anatomy/AnatomyStudioViewer";
+import { AnatomySystemGrid } from "@/components/anatomy/AnatomySystemGrid";
 import { AnatomyViewModeSwitcher } from "@/components/anatomy/AnatomyViewModeSwitcher";
 import { StructureDetailSheet } from "@/components/anatomy/StructureDetailSheet";
 import { StructureOverlay } from "@/components/anatomy/StructureOverlay";
@@ -19,6 +22,8 @@ import {
   isBioDigitalAvailable,
   searchAnatomyStructures,
 } from "@/lib/anatomy";
+import { getDefaultTourIdForExam } from "@/lib/anatomy/recommendations";
+import { getTourById } from "@/lib/anatomy/tours";
 import { ANATOMY_LAYER_LABELS, type AnatomyLayer, type AnatomySystem } from "@/lib/anatomy/types";
 import {
   ANATOMY_VIEW_MODE_STORAGE_KEY,
@@ -210,6 +215,26 @@ export function AnatomyExplorerClient({
     setMobileSheetOpen(false);
   }, [persistViewMode, viewMode]);
 
+  const startTourById = useCallback(
+    (tourId: string) => {
+      setSelectedTourId(tourId);
+      setTourStepIndex(0);
+      setQuizActive(false);
+      const tour = getTourById(tourId);
+      const first = tour?.steps[0];
+      if (first) {
+        setHighlightedId(first.structureId);
+        handleSelectStructure(first.structureId);
+      }
+      if (viewMode === "reference") persistViewMode("split");
+    },
+    [handleSelectStructure, persistViewMode, viewMode]
+  );
+
+  const startDefaultTour = useCallback(() => {
+    startTourById(getDefaultTourIdForExam(examSlug));
+  }, [examSlug, startTourById]);
+
   const viewerEngine = isBioDigitalAvailable() ? "BioDigital Human" : "Interactive 3D (WebGL)";
   const showInteractiveCta = viewMode === "reference";
   const showInvalidBanner = Boolean(invalidStructureId && !invalidStructureDismissed);
@@ -262,6 +287,26 @@ export function AnatomyExplorerClient({
           structures.
         </div>
       ) : null}
+
+      <AnatomyStudioHero
+        examSlug={examSlug}
+        stats={catalogStats}
+        viewMode={viewMode}
+        onStartTour={startDefaultTour}
+        onOpenInteractive={openInteractiveView}
+      />
+
+      <AnatomyHighYieldStrip
+        examSlug={examSlug}
+        selectedId={selectedId}
+        onSelect={handleSelectStructure}
+      />
+
+      <AnatomySystemGrid
+        stats={catalogStats}
+        activeSystem={systemFilter}
+        onSelectSystem={setSystemFilter}
+      />
 
       <div className="flex flex-wrap items-center gap-2">
         <Badge className="bg-white/90">{catalogStats.structureCount} structures</Badge>

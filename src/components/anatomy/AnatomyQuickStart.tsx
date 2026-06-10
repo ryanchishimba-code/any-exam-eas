@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Film, GraduationCap, Layers, X } from "lucide-react";
-import { ANATOMY_VIEW_MODE_STORAGE_KEY } from "@/lib/anatomy/view-mode";
 
 const DISMISS_KEY = "aee-anatomy-quickstart-dismissed";
 
@@ -74,7 +73,7 @@ export function AnatomyQuickStart({ structureCount, tourCount, quizCount }: Prop
         </li>
       </ol>
       <p className="mt-3 text-xs text-[var(--color-ink-muted)]">
-        Your view preference is saved automatically ({ANATOMY_VIEW_MODE_STORAGE_KEY}).
+        Your view mode preference is saved for your next visit.
       </p>
     </div>
   );

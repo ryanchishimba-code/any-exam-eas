@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, ChevronRight, GraduationCap, HelpCircle, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { anatomyPracticeHref } from "@/lib/edtech/practice-links";
 import {
   ANATOMY_QUIZ_QUESTIONS,
   getTourById,
@@ -50,6 +51,11 @@ export function TeachModePanel({
   const currentStep = tour?.steps[tourStepIndex];
   const currentQuiz = ANATOMY_QUIZ_QUESTIONS[quizIndex];
   const tours = useMemo(() => getToursForExam(examSlug), [examSlug]);
+
+  useEffect(() => {
+    if (selectedTourId && !quizActive) setMode("tour");
+    if (!selectedTourId && !quizActive) setMode("off");
+  }, [quizActive, selectedTourId]);
 
   const handleQuizAttempt = useCallback(
     (structureId: string) => {
@@ -215,6 +221,15 @@ export function TeachModePanel({
             {tourStepIndex + 1 >= tour.steps.length ? "Finish tour" : "Next structure"}
             <ChevronRight className="ml-1 h-4 w-4" aria-hidden />
           </Button>
+          {tourStepIndex + 1 >= tour.steps.length ? (
+            <Button
+              href={anatomyPracticeHref(examSlug, 10)}
+              variant="secondary"
+              className="w-full justify-center px-4 py-2.5 text-sm"
+            >
+              Practice anatomy questions
+            </Button>
+          ) : null}
         </motion.div>
       ) : null}
 
@@ -246,6 +261,15 @@ export function TeachModePanel({
               Click the matching structure in the 3D viewer or pick from the sidebar list.
             </p>
           )}
+          {quizFeedback?.startsWith("Quiz complete") ? (
+            <Button
+              href={anatomyPracticeHref(examSlug, 10)}
+              variant="secondary"
+              className="w-full justify-center px-4 py-2.5 text-sm"
+            >
+              Keep drilling — anatomy bank
+            </Button>
+          ) : null}
         </div>
       ) : null}
     </section>

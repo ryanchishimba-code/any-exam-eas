@@ -35,22 +35,30 @@ export function StructureDetailPanel({
         {structure.description}
       </p>
 
-      <section>
-        <div className="mb-2 flex items-center gap-2">
-          <Stethoscope className="h-4 w-4 text-teal-600" aria-hidden />
-          <h4 className="text-sm font-bold text-[var(--color-ink)]">Clinical pearls</h4>
-        </div>
-        <ul className="space-y-2">
-          {structure.clinicalFacts.map((fact) => (
-            <li
-              key={fact}
-              className="rounded-xl bg-teal-50/70 px-3 py-2 text-sm text-[var(--color-ink)]"
-            >
-              {fact}
-            </li>
-          ))}
-        </ul>
-      </section>
+      {structure.clinicalFacts[0] ? (
+        <blockquote className="rounded-2xl border-l-4 border-teal-500 bg-teal-50/60 px-4 py-3 text-sm font-medium leading-relaxed text-[var(--color-ink)]">
+          {structure.clinicalFacts[0]}
+        </blockquote>
+      ) : null}
+
+      {structure.clinicalFacts.length > 1 ? (
+        <section>
+          <div className="mb-2 flex items-center gap-2">
+            <Stethoscope className="h-4 w-4 text-teal-600" aria-hidden />
+            <h4 className="text-sm font-bold text-[var(--color-ink)]">More clinical pearls</h4>
+          </div>
+          <ul className="space-y-2">
+            {structure.clinicalFacts.slice(1).map((fact) => (
+              <li
+                key={fact}
+                className="rounded-xl bg-teal-50/70 px-3 py-2 text-sm text-[var(--color-ink)]"
+              >
+                {fact}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
 
       {structure.pathologies && structure.pathologies.length > 0 ? (
         <section>

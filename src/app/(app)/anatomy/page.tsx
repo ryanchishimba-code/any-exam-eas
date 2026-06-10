@@ -69,19 +69,9 @@ export default async function AnatomyPage({ searchParams }: PageProps) {
   const initialViewMode = isAnatomyViewMode(params.view) ? params.view : undefined;
 
   return (
-    <div className="space-y-6">
-      <header>
-        <p className="text-xs font-bold uppercase tracking-[0.15em] text-violet-600">
-          Anatomy Studio
-        </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-[var(--color-ink)]">
-          Anatomy Explorer
-        </h1>
-        <p className="mt-2 max-w-2xl text-[var(--color-ink-muted)]">
-          Start with the reference video for spatial orientation, then switch to interactive 3D to
-          click structures, toggle layers, and run teach-mode quizzes. Every structure links to
-          clinical pearls, memory cards, and practice for your exam.
-        </p>
+    <div className="space-y-4">
+      <header className="sr-only">
+        <h1>Anatomy Explorer</h1>
       </header>
 
       <Suspense fallback={<AnatomySkeleton />}>

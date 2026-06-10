@@ -9,6 +9,7 @@ import {
 } from "./index";
 import { ANATOMY_QUIZ_QUESTIONS, ANATOMY_TOURS, getToursForExam } from "./tours";
 import { anatomyViewModeUsesLayers, isAnatomyViewMode } from "./view-mode";
+import { getDefaultTourIdForExam, getFeaturedStructuresForExam } from "./recommendations";
 
 describe("anatomy helpers", () => {
   it("loads curated structure catalog", () => {
@@ -81,5 +82,11 @@ describe("anatomy helpers", () => {
         expect(getAnatomyStructure(step.structureId)).toBeDefined();
       }
     }
+  });
+
+  it("returns exam-specific featured structures", () => {
+    const nclex = getFeaturedStructuresForExam("nclex");
+    expect(nclex.some((s) => s.id === "lungs")).toBe(true);
+    expect(getDefaultTourIdForExam("usmle")).toBe("usmle-heart-anatomy");
   });
 });

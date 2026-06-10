@@ -2,6 +2,7 @@
 
 import {
   BarChart3,
+  Bone,
   BookOpen,
   Brain,
   CircleDollarSign,
@@ -47,6 +48,15 @@ const benefits = [
     description:
       "Missed-question explanations reference open educational sources and board blueprints — understand the why, not just the key.",
     accent: "from-teal-600 to-teal-400",
+  },
+  {
+    icon: Bone,
+    visualId: null,
+    outcome: "Anatomy Studio",
+    title: "Video + 3D anatomy linked to your exam",
+    description:
+      "Reference video for orientation, interactive structures with clinical pearls, guided tours, and one-click jumps to practice — included with premium.",
+    accent: "from-violet-500 to-indigo-500",
   },
   {
     icon: MapPin,
