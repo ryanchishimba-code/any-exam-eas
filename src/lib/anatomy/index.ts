@@ -51,6 +51,11 @@ export function getMemoryCardsForStructure(
     .filter((c): c is MemoryCard => Boolean(c));
 }
 
+/** Reverse lookup: structures that reference a memory card id. */
+export function getAnatomyStructuresForMemoryCard(cardId: string): AnatomyStructure[] {
+  return ANATOMY_STRUCTURES.filter((s) => s.memoryCardIds.includes(cardId));
+}
+
 /** Structures visible when a layer toggle is on. */
 export function structureVisibleInLayers(
   structure: AnatomyStructure,

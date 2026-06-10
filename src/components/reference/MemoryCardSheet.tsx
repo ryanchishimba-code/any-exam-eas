@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
-import { BookOpen, GraduationCap, X } from "lucide-react";
+import { BookOpen, GraduationCap, Layers, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/Button";
 import {
+  anatomyHref,
   practiceTopicHref,
   deepDiveTopicHref,
 } from "@/lib/edtech/practice-links";
+import { getAnatomyStructuresForMemoryCard } from "@/lib/anatomy";
 import {
   MEMORY_CARD_KIND_LABELS,
   type MemoryCard,
@@ -23,6 +25,11 @@ type Props = {
 };
 
 export function MemoryCardSheet({ card, examSlug, open, onClose }: Props) {
+  const linkedStructures = useMemo(
+    () => (card ? getAnatomyStructuresForMemoryCard(card.id) : []),
+    [card]
+  );
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -147,6 +154,21 @@ export function MemoryCardSheet({ card, examSlug, open, onClose }: Props) {
         </div>
 
         <div className="space-y-2 border-t border-black/[0.06] bg-white p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+          {linkedStructures.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {linkedStructures.map((structure) => (
+                <Button
+                  key={structure.id}
+                  href={anatomyHref(examSlug, structure.id)}
+                  variant="secondary"
+                  className="h-10 rounded-xl px-3 text-sm"
+                >
+                  <Layers className="mr-2 h-4 w-4" aria-hidden />
+                  {structure.name}
+                </Button>
+              ))}
+            </div>
+          ) : null}
           <Button href={practiceHref} className="h-11 w-full rounded-xl">
             <BookOpen className="mr-2 h-4 w-4" aria-hidden />
             Practice Questions

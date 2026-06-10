@@ -24,7 +24,10 @@ type Props = {
   onToggleLayer: (layer: AnatomyLayer) => void;
   selectedId: string | null;
   onSelectStructure: (id: string) => void;
+  onResetFilters?: () => void;
   collapsed?: boolean;
+  /** Layer toggles only apply to interactive 3D — hide in video-only mode. */
+  showLayerControls?: boolean;
 };
 
 const SYSTEMS = Object.entries(ANATOMY_SYSTEM_LABELS) as [AnatomySystem, string][];
@@ -42,7 +45,9 @@ export function AnatomySidebar({
   onToggleLayer,
   selectedId,
   onSelectStructure,
+  onResetFilters,
   collapsed = false,
+  showLayerControls = true,
 }: Props) {
   if (collapsed) return null;
 
@@ -104,53 +109,82 @@ export function AnatomySidebar({
         </div>
       </section>
 
-      <section aria-label="Layer visibility" className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-          Layers
+      {showLayerControls ? (
+        <section aria-label="Layer visibility" className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            Layers
+          </p>
+          <p className="text-[11px] leading-snug text-[var(--color-ink-muted)]">
+            Show or hide mesh groups in the interactive 3D viewer.
+          </p>
+          <div className="space-y-1.5">
+            {LAYERS.map(([layer, label]) => (
+              <label
+                key={layer}
+                className="flex cursor-pointer items-center justify-between rounded-lg px-2 py-1.5 text-sm hover:bg-[var(--color-surface)]"
+              >
+                <span className="text-[var(--color-ink)]">{label}</span>
+                <Switch
+                  checked={visibleLayers.has(layer)}
+                  onCheckedChange={() => onToggleLayer(layer)}
+                />
+              </label>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <p className="rounded-xl bg-slate-50 px-3 py-2.5 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+          Layer toggles apply in <strong className="font-semibold text-[var(--color-ink)]">Interactive 3D</strong>{" "}
+          or <strong className="font-semibold text-[var(--color-ink)]">Split</strong> view. Use system filters
+          above to narrow the structure list.
         </p>
-        <div className="space-y-1.5">
-          {LAYERS.map(([layer, label]) => (
-            <label
-              key={layer}
-              className="flex cursor-pointer items-center justify-between rounded-lg px-2 py-1.5 text-sm hover:bg-[var(--color-surface)]"
-            >
-              <span className="text-[var(--color-ink)]">{label}</span>
-              <Switch
-                checked={visibleLayers.has(layer)}
-                onCheckedChange={() => onToggleLayer(layer)}
-              />
-            </label>
-          ))}
-        </div>
-      </section>
+      )}
 
       <section className="min-h-0 flex-1 space-y-2 overflow-y-auto">
         <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
           {filteredStructures.length} structures
         </p>
-        <ul className="space-y-1">
-          {filteredStructures.map((s) => (
-            <li key={s.id}>
+        {filteredStructures.length === 0 ? (
+          <div className="rounded-xl border border-dashed border-black/[0.08] bg-[var(--color-surface)]/60 px-4 py-6 text-center">
+            <p className="text-sm font-medium text-[var(--color-ink)]">No structures found</p>
+            <p className="mt-1 text-xs text-[var(--color-ink-muted)]">
+              Try a different search term or turn off filters.
+            </p>
+            {onResetFilters ? (
               <button
                 type="button"
-                onClick={() => onSelectStructure(s.id)}
-                className={cn(
-                  "flex w-full items-start gap-2 rounded-xl px-3 py-2 text-left text-sm transition",
-                  selectedId === s.id
-                    ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
-                    : "text-[var(--color-ink)] hover:bg-[var(--color-surface)]"
-                )}
+                onClick={onResetFilters}
+                className="mt-3 rounded-full bg-violet-100 px-3 py-1.5 text-xs font-semibold text-violet-800 transition hover:bg-violet-200"
               >
-                <span className="font-medium">{s.name}</span>
-                {s.highYield ? (
-                  <span className="ml-auto shrink-0 rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-bold text-amber-800">
-                    HY
-                  </span>
-                ) : null}
+                Reset filters
               </button>
-            </li>
-          ))}
-        </ul>
+            ) : null}
+          </div>
+        ) : (
+          <ul className="space-y-1">
+            {filteredStructures.map((s) => (
+              <li key={s.id}>
+                <button
+                  type="button"
+                  onClick={() => onSelectStructure(s.id)}
+                  className={cn(
+                    "flex w-full items-start gap-2 rounded-xl px-3 py-2 text-left text-sm transition",
+                    selectedId === s.id
+                      ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+                      : "text-[var(--color-ink)] hover:bg-[var(--color-surface)]"
+                  )}
+                >
+                  <span className="font-medium">{s.name}</span>
+                  {s.highYield ? (
+                    <span className="ml-auto shrink-0 rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-bold text-amber-800">
+                      HY
+                    </span>
+                  ) : null}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </section>
     </aside>
   );

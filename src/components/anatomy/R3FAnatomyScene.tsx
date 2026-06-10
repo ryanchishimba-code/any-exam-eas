@@ -1,10 +1,11 @@
 "use client";
 
-import { Suspense, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame, type ThreeEvent } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls, type OrbitControls as OrbitControlsImpl } from "@react-three/drei";
 import type { Mesh } from "three";
 import { Vector3 } from "three";
+import { getAnatomyStructure } from "@/lib/anatomy";
 import type { AnatomyLayer, AnatomyStructure } from "@/lib/anatomy/types";
 import { cn } from "@/lib/utils";
 
@@ -121,6 +122,39 @@ function BodySilhouette() {
   );
 }
 
+function CameraFocus({
+  selectedId,
+  controlsRef,
+}: {
+  selectedId: string | null;
+  controlsRef: React.RefObject<OrbitControlsImpl | null>;
+}) {
+  const targetPos = useMemo(() => new Vector3(), []);
+  const desiredTarget = useMemo(() => new Vector3(0, 0.7, 0), []);
+
+  useEffect(() => {
+    if (!selectedId) {
+      desiredTarget.set(0, 0.7, 0);
+      return;
+    }
+    const structure = getAnatomyStructure(selectedId);
+    if (!structure) return;
+    const mesh = MESH_DEFS.find((d) => d.id === structure.meshId);
+    if (mesh) desiredTarget.set(...mesh.position);
+  }, [desiredTarget, selectedId]);
+
+  useFrame(() => {
+    const controls = controlsRef.current;
+    if (!controls) return;
+    targetPos.copy(controls.target);
+    if (targetPos.distanceTo(desiredTarget) < 0.001) return;
+    controls.target.lerp(desiredTarget, 0.08);
+    controls.update();
+  });
+
+  return null;
+}
+
 function SceneContent({
   structures,
   visibleLayers,
@@ -134,6 +168,7 @@ function SceneContent({
   highlightedId: string | null;
   onSelect: (id: string) => void;
 }) {
+  const controlsRef = useRef<OrbitControlsImpl>(null);
   const structureByMesh = useMemo(
     () => new Map(structures.map((s) => [s.meshId, s])),
     [structures]
@@ -160,7 +195,9 @@ function SceneContent({
           />
         );
       })}
+      <CameraFocus selectedId={selectedId} controlsRef={controlsRef} />
       <OrbitControls
+        ref={controlsRef}
         enablePan
         enableZoom
         minDistance={1.2}

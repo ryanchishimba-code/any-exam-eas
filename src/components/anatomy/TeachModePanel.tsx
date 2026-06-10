@@ -1,15 +1,21 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2, ChevronRight, GraduationCap, HelpCircle, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { ANATOMY_QUIZ_QUESTIONS, ANATOMY_TOURS, getTourById } from "@/lib/anatomy/tours";
+import {
+  ANATOMY_QUIZ_QUESTIONS,
+  getTourById,
+  getToursForExam,
+} from "@/lib/anatomy/tours";
+import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
 type Mode = "off" | "tour" | "quiz";
 
 type Props = {
+  examSlug: ExamSlug;
   selectedTourId: string | null;
   onTourChange: (id: string | null) => void;
   tourStepIndex: number;
@@ -23,6 +29,7 @@ type Props = {
 };
 
 export function TeachModePanel({
+  examSlug,
   selectedTourId,
   onTourChange,
   tourStepIndex,
@@ -42,30 +49,36 @@ export function TeachModePanel({
   const tour = selectedTourId ? getTourById(selectedTourId) : undefined;
   const currentStep = tour?.steps[tourStepIndex];
   const currentQuiz = ANATOMY_QUIZ_QUESTIONS[quizIndex];
+  const tours = useMemo(() => getToursForExam(examSlug), [examSlug]);
 
   const handleQuizAttempt = useCallback(
     (structureId: string) => {
       if (!quizActive || !currentQuiz) return;
       if (structureId === currentQuiz.structureId) {
-        setQuizScore((s) => s + 1);
         setQuizFeedback("Correct!");
-        window.setTimeout(() => {
-          const next = quizIndex + 1;
-          if (next >= ANATOMY_QUIZ_QUESTIONS.length) {
-            setQuizFeedback(`Quiz complete — ${quizScore + 1}/${ANATOMY_QUIZ_QUESTIONS.length}`);
-            onQuizActiveChange(false);
-            onQuizHandlerChange(null);
-            setMode("off");
-            return;
-          }
-          setQuizIndex(next);
-          setQuizFeedback(null);
-        }, 900);
+        setQuizScore((s) => {
+          const nextScore = s + 1;
+          window.setTimeout(() => {
+            const next = quizIndex + 1;
+            if (next >= ANATOMY_QUIZ_QUESTIONS.length) {
+              setQuizFeedback(
+                `Quiz complete — ${nextScore}/${ANATOMY_QUIZ_QUESTIONS.length}`
+              );
+              onQuizActiveChange(false);
+              onQuizHandlerChange(null);
+              setMode("off");
+              return;
+            }
+            setQuizIndex(next);
+            setQuizFeedback(null);
+          }, 900);
+          return nextScore;
+        });
       } else {
         setQuizFeedback("Not quite — try again.");
       }
     },
-    [currentQuiz, onQuizActiveChange, onQuizHandlerChange, quizActive, quizIndex, quizScore]
+    [currentQuiz, onQuizActiveChange, onQuizHandlerChange, quizActive, quizIndex]
   );
 
   useEffect(() => {
@@ -156,7 +169,7 @@ export function TeachModePanel({
             Guided tours
           </p>
           <div className="grid gap-2 sm:grid-cols-3">
-            {ANATOMY_TOURS.map((t) => (
+            {tours.map((t) => (
               <button
                 key={t.id}
                 type="button"

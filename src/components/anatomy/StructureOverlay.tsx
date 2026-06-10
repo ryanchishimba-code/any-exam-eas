@@ -6,6 +6,7 @@ import { BookMarked, Brain, Stethoscope, X, Zap } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/Button";
 import {
+  anatomyPracticeHref,
   highYieldTopicHref,
   practiceTopicHref,
   referenceCardHref,
@@ -125,6 +126,13 @@ export function StructureOverlay({ structure, memoryCards, examSlug, onClose }: 
                 className="w-full justify-center px-4 py-2.5 text-sm"
               >
                 Practice questions
+              </Button>
+              <Button
+                href={anatomyPracticeHref(examSlug, 10)}
+                variant="secondary"
+                className="w-full justify-center px-4 py-2.5 text-sm"
+              >
+                Anatomy practice
               </Button>
               {structure.highYieldTopicSlug ? (
                 <Button

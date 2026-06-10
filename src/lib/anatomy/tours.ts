@@ -1,3 +1,4 @@
+import type { ExamSlug } from "@/types/edtech";
 import type { AnatomyQuizQuestion, AnatomyTour } from "./types";
 
 export const ANATOMY_TOURS: AnatomyTour[] = [
@@ -118,4 +119,29 @@ export const ANATOMY_QUIZ_QUESTIONS: AnatomyQuizQuestion[] = [
 
 export function getTourById(id: string): AnatomyTour | undefined {
   return ANATOMY_TOURS.find((t) => t.id === id);
+}
+
+function tourExamRelevance(tour: AnatomyTour, examSlug: ExamSlug): number {
+  const focus = tour.examFocus.toLowerCase();
+  if (examSlug === "usmle") {
+    if (focus.includes("usmle") && !focus.includes("nclex")) return 0;
+    if (focus.includes("usmle / nclex") || focus.includes("usmle/nclex")) return 1;
+    if (focus.includes("nclex")) return 2;
+  }
+  if (examSlug === "nclex") {
+    if (focus.includes("nclex") && !focus.includes("usmle")) return 0;
+    if (focus.includes("usmle / nclex") || focus.includes("usmle/nclex")) return 1;
+    if (focus.includes("usmle")) return 2;
+  }
+  return 0;
+}
+
+/** Tours sorted by relevance to the active exam (naplex/mpje show all, default order). */
+export function getToursForExam(examSlug: ExamSlug): AnatomyTour[] {
+  if (examSlug !== "usmle" && examSlug !== "nclex") {
+    return ANATOMY_TOURS;
+  }
+  return [...ANATOMY_TOURS].sort(
+    (a, b) => tourExamRelevance(a, examSlug) - tourExamRelevance(b, examSlug)
+  );
 }
