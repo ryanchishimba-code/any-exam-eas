@@ -6,6 +6,7 @@ import {
   scoreNclexBankItem,
 } from "@/lib/engine/polish/nclex-polish";
 import type { BankItem } from "@/lib/question-bank";
+import { auditBankItem } from "@/lib/exam-prep/bank-audit";
 
 const weakTemplate: BankItem = {
   subjectId: "management-of-care",
@@ -107,6 +108,66 @@ describe("nclex-polish", () => {
     expect(item.vignette ?? item.question).toMatch(/assigned four clients/i);
     expect(item.options.every((o) => o.startsWith("Room "))).toBe(true);
     expect(item.explanation).toMatch(/Why other options are incorrect/i);
+  });
+
+  it("polished output passes the QA gate audit for every template and seed", () => {
+    const stems = [
+      "Which task is appropriate for the nurse to delegate to UAP?",
+      "Which infection control precaution should the nurse implement?",
+      "Which response demonstrates therapeutic communication?",
+      "Which action should the nurse take before administering the medication?",
+      "Which method best evaluates discharge teaching?",
+      "Which finding requires immediate nursing follow-up?",
+      "Which client should the nurse see first?",
+      "Which action should the nurse take?",
+    ];
+    for (const stem of stems) {
+      for (let seed = 0; seed < 16; seed++) {
+        const base: BankItem = {
+          subjectId: "med-surg",
+          question: stem,
+          options: ["A", "B", "C", "D"],
+          correctAnswer: "A",
+          explanation: "Short",
+        };
+        const { item, changed } = polishNclexBankItem(base, "med-surg", "Medical-Surgical", seed);
+        expect(changed).toBe(true);
+        const report = auditBankItem(item, "nursing");
+        expect(
+          report.issues.filter((i) => i.severity === "error"),
+          `stem="${stem}" seed=${seed} issues=${JSON.stringify(report.issues)}`
+        ).toEqual([]);
+        expect(needsNclexPolish(item), `stem="${stem}" seed=${seed} re-flagged`).toBe(false);
+      }
+    }
+  });
+
+  it("flags and fixes legacy finding-stem items with action options", () => {
+    const legacy: BankItem = {
+      subjectId: "reduction-risk",
+      vignette:
+        "Medical-surgical unit, Room 318. A 72-year-old man with COPD exacerbation. 50-pack-year smoking history; on home oxygen. BP 148/86 mmHg, HR 104, RR 32, SpO₂ 86% on 2 L nasal cannula. Use of accessory muscles, speaking in short phrases.",
+      question: "Which finding requires immediate nursing follow-up?",
+      options: [
+        "Notify the provider immediately and reassess bp 148/86 mmhg; prepare for urgent intervention related to use of accessory muscles",
+        "Document the finding and recheck at the next routine vital sign round in 4 hours",
+        "Reassure the client that the finding is expected and requires no further action",
+        "Delegate reassessment to UAP without RN follow-up on abnormal data",
+      ],
+      correctAnswer:
+        "Notify the provider immediately and reassess bp 148/86 mmhg; prepare for urgent intervention related to use of accessory muscles",
+      explanation:
+        "Long enough explanation about hypoxemia and work of breathing priorities for this client.",
+    };
+    expect(needsNclexPolish(legacy)).toBe(true);
+    const { item, changed } = polishNclexBankItem(
+      legacy,
+      "reduction-risk",
+      "Reduction of Risk Potential",
+      7
+    );
+    expect(changed).toBe(true);
+    expect(auditBankItem(item, "nursing").ok).toBe(true);
   });
 
   it("delegation polish uses stable scenarios that match the stem", () => {

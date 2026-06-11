@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Polish USMLE (Step 1 & Step 2 CK) questions in the database.
+ * Polish USMLE (Step 1, Step 2 CK & Step 3) questions in the database.
  *
  * Usage:
  *   npx tsx scripts/polish-usmle-questions.ts --dry-run
@@ -27,7 +27,7 @@ const fieldArg = process.argv.indexOf("--field");
 const fieldFilter =
   fieldArg >= 0 ? process.argv[fieldArg + 1] : undefined;
 
-const USMLE_FIELDS = ["usmle-step-1", "usmle-step-2"] as const;
+const USMLE_FIELDS = ["usmle-step-1", "usmle-step-2", "usmle-step-3"] as const;
 
 function rowToItem(row: {
   question: string;
@@ -173,10 +173,14 @@ async function polishField(fieldId: string) {
 }
 
 async function main() {
-  const fields =
-    fieldFilter && USMLE_FIELDS.includes(fieldFilter as (typeof USMLE_FIELDS)[number])
-      ? [fieldFilter]
-      : [...USMLE_FIELDS];
+  if (fieldFilter && !USMLE_FIELDS.includes(fieldFilter as (typeof USMLE_FIELDS)[number])) {
+    console.error(
+      `Unknown --field "${fieldFilter}". Expected one of: ${USMLE_FIELDS.join(", ")}`
+    );
+    process.exit(1);
+  }
+
+  const fields = fieldFilter ? [fieldFilter] : [...USMLE_FIELDS];
 
   for (const fieldId of fields) {
     await polishField(fieldId);

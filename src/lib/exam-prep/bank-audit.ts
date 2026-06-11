@@ -29,7 +29,17 @@ const GENERIC_WEAK_OPTION =
 
 function resolveVignette(item: BankItem, fieldId: string): string {
   if (fieldId === "nursing") return resolveNclexVignette(item);
-  return item.vignette?.trim() || item.scenario?.trim() || "";
+  const explicit = item.vignette?.trim() || item.scenario?.trim() || "";
+  if (explicit) return explicit;
+  // Mirror resolveStem: a leading "\n\n"-separated block of >=40 chars is the
+  // embedded vignette, so deictic stems ("these findings") aren't false-flagged
+  // as orphans when the vignette lives inside the question column.
+  const q = item.question?.trim() ?? "";
+  if (q.includes("\n\n")) {
+    const head = q.split("\n\n")[0]?.trim() ?? "";
+    if (head.length >= 40) return head;
+  }
+  return "";
 }
 
 function resolveStem(item: BankItem, fieldId: string): string {
@@ -65,17 +75,38 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
     push("error", "empty_explanation", "Explanation is missing or too short.");
   }
 
-  if (item.options.length !== 4) {
-    push("error", "invalid_option_count", "MCQ items must have exactly four options.");
+  const itemType = item.itemType ?? "mcq";
+
+  if (itemType === "k_type") {
+    // K-type items use combined-response options (I only, I and II only, …).
+    if (item.options.length < 4) {
+      push("error", "invalid_option_count", "K-type items must have at least four options.");
+    }
+    if (!item.options.includes(item.correctAnswer)) {
+      push("error", "correct_not_in_options", "correctAnswer must match one option exactly.");
+    }
+  } else if (itemType === "select_all" || itemType === "sata") {
+    // Select-all items join multiple correct options with "|||".
+    if (item.options.length < 4) {
+      push("error", "invalid_option_count", "Select-all items must have at least four options.");
+    }
+    const correctParts = item.correctAnswer.split("|||").map((p) => p.trim()).filter(Boolean);
+    const optionSet = new Set(item.options.map((o) => o.trim()));
+    if (correctParts.length === 0 || !correctParts.every((p) => optionSet.has(p))) {
+      push("error", "correct_not_in_options", "Every select-all answer must match an option exactly.");
+    }
+  } else {
+    if (item.options.length !== 4) {
+      push("error", "invalid_option_count", "MCQ items must have exactly four options.");
+    }
+    if (item.options.length === 4 && !item.options.includes(item.correctAnswer)) {
+      push("error", "correct_not_in_options", "correctAnswer must match one option exactly.");
+    }
   }
 
   const uniqueOptions = new Set(item.options.map((o) => o.trim().toLowerCase()));
   if (uniqueOptions.size < item.options.length) {
     push("error", "duplicate_options", "Two or more answer options are identical.");
-  }
-
-  if (item.options.length === 4 && !item.options.includes(item.correctAnswer)) {
-    push("error", "correct_not_in_options", "correctAnswer must match one option exactly.");
   }
 
   if (

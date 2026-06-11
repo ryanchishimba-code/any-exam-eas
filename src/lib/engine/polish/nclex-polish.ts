@@ -4,6 +4,7 @@ import { enrichQuestion } from "@/lib/engine/stages/enrich-questions";
 import { splitCombinedStem } from "@/lib/engine/prompts/vignette";
 import { stripShiftNotes, hasShiftNoteArtifacts } from "@/lib/questions/shift-notes";
 import { hasSignsAndSymptoms, hasEtiologyOrPathophysiology } from "@/lib/engine/prompts/clinical-reasoning";
+import { auditBankItem } from "@/lib/exam-prep/bank-audit";
 
 const NCLEX_PREFIX = /^NCLEX\s+\d+:\s*/i;
 
@@ -430,14 +431,14 @@ const PRIORITIZATION_SETS: PrioritizationSet[] = [
     clients: [
       {
         vignetteLine:
-          "Room 3: G1P0 at 36 weeks, BP 168/104 mmHg, headache 8/10, epigastric pain, 3+ protein, hyperreflexia with clonus.",
+          "Room 3: 29-year-old G1P0 at 36 weeks, BP 168/104 mmHg, headache 8/10, epigastric pain, 3+ protein, hyperreflexia with clonus.",
         option:
           "Room 3 — BP 168/104 with headache, epigastric pain, proteinuria, and clonus at 36 weeks",
         whyNotFirst: "Correct first choice — severe preeclampsia with neurologic/end-organ signs.",
       },
       {
         vignetteLine:
-          "Room 5: Postpartum hour 1, saturated perineal pad in 5 minutes, uterus boggy at umbilicus, HR 118, BP 96/62.",
+          "Room 5: 26-year-old woman postpartum hour 1, saturated perineal pad in 5 minutes, uterus boggy at umbilicus, HR 118, BP 96/62.",
         option:
           "Room 5 — postpartum hour 1 with boggy uterus, tachycardia, and heavy vaginal bleeding",
         whyNotFirst:
@@ -445,7 +446,7 @@ const PRIORITIZATION_SETS: PrioritizationSet[] = [
       },
       {
         vignetteLine:
-          "Room 8: 38 weeks pregnant, reports decreased fetal movement x 12 hours, FHR 130 with moderate variability, no decelerations.",
+          "Room 8: 31-year-old woman at 38 weeks, reports decreased fetal movement x 12 hours, FHR 130 with moderate variability, no decelerations.",
         option:
           "Room 8 — decreased fetal movement at 38 weeks with currently reassuring FHR tracing",
         whyNotFirst:
@@ -453,7 +454,7 @@ const PRIORITIZATION_SETS: PrioritizationSet[] = [
       },
       {
         vignetteLine:
-          "Room 1: Active labor, cervical exam 7 cm, pain 8/10, FHR 145 with accelerations, maternal vitals stable.",
+          "Room 1: 24-year-old woman in active labor, cervical exam 7 cm, pain 8/10, FHR 145 with accelerations, maternal vitals stable.",
         option:
           "Room 1 — active labor with strong contractions and stable maternal vitals",
         whyNotFirst:
@@ -618,8 +619,10 @@ function itemTextBlob(item: BankItem): string {
 }
 
 function hasRichVignette(text: string): boolean {
+  // The stem is the final "\n\n" block; everything before it is the vignette
+  // (multi-client prioritization vignettes span several blocks).
   const parts = text.split("\n\n");
-  const vignette = parts.length > 1 ? parts[0]! : text;
+  const vignette = parts.length > 1 ? parts.slice(0, -1).join("\n\n") : text;
   const hasVitals = /BP|HR|RR|SpO₂|SpO2|temp|glucose|mg\/dL|mmHg/i.test(vignette);
   const hasDemo = /\d{1,3}[-‑]?\s*(?:year|yo|y\.o\.)/i.test(vignette);
   return vignette.length >= 80 && hasDemo && hasVitals;
@@ -861,7 +864,7 @@ function buildCommunication(scenario: NursingScenario, subjectLabel: string, see
   const slot = Math.abs(seed + 3) % 4;
   const vignette = [
     `${scenario.setting}, ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} with ${scenario.dx} expresses fear and anxiety.`,
-    `${scenario.findings}. ${scenario.history}.`,
+    `${scenario.history}. Current vital signs: ${scenario.vitals}. ${scenario.findings}.`,
     "The client states, \"I'm scared about what happens next.\"",
   ].join(" ");
 
@@ -914,7 +917,8 @@ function buildTeaching(scenario: NursingScenario, subjectLabel: string, seed: nu
   const slot = Math.abs(seed + 5) % 4;
   const vignette = [
     `${scenario.setting}, ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} with ${scenario.dx} is preparing for discharge.`,
-    `${scenario.history}. The nurse must evaluate understanding of self-care related to ${scenario.nursePriority.split(";")[0]?.toLowerCase() ?? "ongoing management"}.`,
+    `${scenario.history}. Discharge vital signs: ${scenario.vitals}.`,
+    `The nurse must evaluate understanding of self-care related to ${scenario.nursePriority.split(";")[0]?.toLowerCase() ?? "ongoing management"}.`,
   ].join(" ");
 
   return {
@@ -929,12 +933,17 @@ function buildTeaching(scenario: NursingScenario, subjectLabel: string, seed: nu
 }
 
 function buildRisk(scenario: NursingScenario, subjectLabel: string, seed: number) {
+  // Stem asks for a finding, so every option must be a finding — never a
+  // nursing action (the QA gate fails stem/option category mismatches).
   const finding = scenario.findings.split(",")[0]?.trim() ?? scenario.findings;
-  const correct = `Notify the provider immediately and reassess ${scenario.vitals.split(",")[0]?.trim().toLowerCase()}; prepare for urgent intervention related to ${finding.toLowerCase()}`;
+  const vitalParts = scenario.vitals.split(",").map((v) => v.trim());
+  const keyVital =
+    vitalParts.find((v) => /SpO₂|SpO2|RR/i.test(v)) ?? vitalParts[0] ?? scenario.vitals;
+  const correct = `${finding} (${keyVital})`;
   const wrongs: [string, string, string] = [
-    "Document the finding and recheck at the next routine vital sign round in 4 hours",
-    "Reassure the client that the finding is expected and requires no further action",
-    "Delegate reassessment to UAP without RN follow-up on abnormal data",
+    "Pain rated 2/10 after scheduled analgesia, consistent with routine recovery",
+    "Urine output 60 mL/hr of clear yellow urine over the past two hours",
+    "Temperature 98.4°F (36.9°C) with skin warm, dry, and intact",
   ];
   const slot = Math.abs(seed + 7) % 4;
   const vignette = [
@@ -1048,6 +1057,9 @@ function buildNclexExplanation(
       if (priorityWhy) {
         return `• ${opt}: Incorrect — ${priorityWhy}`;
       }
+      if (/^(?:Pain rated|Urine output|Temperature 9)/i.test(opt)) {
+        return `• ${opt}: Incorrect — expected or stable finding within normal limits; it does not require immediate nursing follow-up.`;
+      }
       if (/stable|chronic|discharge teaching|routine|3\/10|142 mg/i.test(opt)) {
         return `• ${opt}: Incorrect — stable, chronic, or scheduled needs are lower priority than the client with acute, unstable cues in the vignette.`;
       }
@@ -1136,7 +1148,10 @@ export function needsNclexPolish(item: BankItem): boolean {
     NCLEX_PREFIX.test(item.question) ||
     !hasRichVignette(text) ||
     WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer)) ||
-    item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)))
+    item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o))) ||
+    // Anything the QA gate would fail must be polished, so polish triggers and
+    // the serve-time gate can never disagree about an item's health.
+    !auditBankItem(item, "nursing").ok
   );
 }
 
