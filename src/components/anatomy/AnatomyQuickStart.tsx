@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Film, GraduationCap, Layers, X } from "lucide-react";
+import { BookOpen, MousePointerClick, RotateCw, X } from "lucide-react";
 
 const DISMISS_KEY = "aee-anatomy-quickstart-dismissed";
 
@@ -47,34 +47,31 @@ export function AnatomyQuickStart({ structureCount, tourCount, quizCount }: Prop
         Quick start
       </p>
       <h3 className="mt-1 pr-8 text-lg font-bold text-[var(--color-ink)]">
-        How to use Anatomy Studio
+        3D organ study model
       </h3>
       <ol className="mt-3 grid gap-2 sm:grid-cols-3">
         <li className="flex gap-2 rounded-xl bg-white/80 p-3 text-sm">
-          <Film className="mt-0.5 h-4 w-4 shrink-0 text-violet-600" aria-hidden />
+          <MousePointerClick className="mt-0.5 h-4 w-4 shrink-0 text-violet-600" aria-hidden />
           <span>
-            <strong className="text-[var(--color-ink)]">Reference video</strong> — spatial
-            orientation first. Layer toggles are for 3D modes only.
+            <strong className="text-[var(--color-ink)]">Pick an organ</strong> — click on the 3D body or
+            choose from {structureCount} structures in the sidebar.
           </span>
         </li>
         <li className="flex gap-2 rounded-xl bg-white/80 p-3 text-sm">
-          <Layers className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" aria-hidden />
+          <RotateCw className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" aria-hidden />
           <span>
-            <strong className="text-[var(--color-ink)]">Interactive / Split</strong> — click{" "}
-            {structureCount} structures, toggle layers, and link to practice.
+            <strong className="text-[var(--color-ink)]">Peel & orbit</strong> — drag to rotate, zoom
+            with scroll, toggle organ/vessel layers, or tap Peel to hide skin.
           </span>
         </li>
         <li className="flex gap-2 rounded-xl bg-white/80 p-3 text-sm">
-          <GraduationCap className="mt-0.5 h-4 w-4 shrink-0 text-indigo-600" aria-hidden />
+          <BookOpen className="mt-0.5 h-4 w-4 shrink-0 text-indigo-600" aria-hidden />
           <span>
-            <strong className="text-[var(--color-ink)]">Teach mode</strong> — {tourCount} guided
-            tours and a {quizCount}-question click quiz.
+            <strong className="text-[var(--color-ink)]">Study & practice</strong> — read pearls, run{" "}
+            {tourCount} tours or a {quizCount}-question quiz, then hit the question bank.
           </span>
         </li>
       </ol>
-      <p className="mt-3 text-xs text-[var(--color-ink-muted)]">
-        Your view mode preference is saved for your next visit.
-      </p>
     </div>
   );
 }

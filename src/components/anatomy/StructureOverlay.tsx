@@ -14,8 +14,8 @@ type Props = {
   memoryCards: MemoryCard[];
   examSlug: ExamSlug;
   onClose: () => void;
-  showInteractiveCta?: boolean;
-  onOpenInteractive?: () => void;
+  showStudioCta?: boolean;
+  onOpenStudio?: () => void;
 };
 
 export function StructureOverlay({
@@ -23,8 +23,8 @@ export function StructureOverlay({
   memoryCards,
   examSlug,
   onClose,
-  showInteractiveCta,
-  onOpenInteractive,
+  showStudioCta,
+  onOpenStudio,
 }: Props) {
   return (
     <AnimatePresence>
@@ -42,8 +42,8 @@ export function StructureOverlay({
             structure={structure}
             memoryCards={memoryCards}
             examSlug={examSlug}
-            showInteractiveCta={showInteractiveCta}
-            onOpenInteractive={onOpenInteractive}
+            showStudioCta={showStudioCta}
+            onOpenStudio={onOpenStudio}
           />
         </motion.aside>
       ) : null}

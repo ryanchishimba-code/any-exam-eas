@@ -30,7 +30,7 @@ export function AnatomySystemGrid({ stats, activeSystem, onSelectSystem }: Props
 
   return (
     <section aria-label="Browse by system" className="space-y-2">
-      <h3 className="text-sm font-bold text-[var(--color-ink)]">Browse by system</h3>
+      <h3 className="text-sm font-bold text-[var(--color-ink)]">Browse by organ system</h3>
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
         <button
           type="button"
@@ -42,7 +42,7 @@ export function AnatomySystemGrid({ stats, activeSystem, onSelectSystem }: Props
               : "border-black/[0.06] from-white to-slate-50/80"
           )}
         >
-          <p className="text-xs font-semibold text-[var(--color-ink)]">All systems</p>
+          <p className="text-xs font-semibold text-[var(--color-ink)]">All organ systems</p>
           <p className="mt-1 text-lg font-bold text-violet-700">{stats.structureCount}</p>
         </button>
         {systems.map(([id, label]) => {

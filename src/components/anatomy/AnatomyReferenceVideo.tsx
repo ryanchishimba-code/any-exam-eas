@@ -13,6 +13,7 @@ import {
   ANATOMY_REFERENCE_VIDEO,
   ANATOMY_REFERENCE_VIDEO_ALT,
 } from "@/lib/anatomy/media";
+import { getSeekTimeForStructure } from "@/lib/anatomy/video-hotspots";
 import { cn } from "@/lib/utils";
 
 const SPEEDS = [0.75, 1, 1.25, 1.5] as const;
@@ -21,9 +22,19 @@ type Props = {
   className?: string;
   selectedName?: string | null;
   compact?: boolean;
+  /** Strip outer chrome when nested inside the merged studio viewer. */
+  embedded?: boolean;
+  /** When a structure is selected, seek video to the best orientation frame. */
+  syncStructureId?: string | null;
 };
 
-export function AnatomyReferenceVideo({ className, selectedName, compact = false }: Props) {
+export function AnatomyReferenceVideo({
+  className,
+  selectedName,
+  compact = false,
+  embedded = false,
+  syncStructureId,
+}: Props) {
   const reduceMotion = useReducedMotion();
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -60,6 +71,18 @@ export function AnatomyReferenceVideo({ className, selectedName, compact = false
   }, [speed]);
 
   useEffect(() => {
+    if (!syncStructureId) return;
+    const el = videoRef.current;
+    if (!el) return;
+    const target = getSeekTimeForStructure(syncStructureId);
+    try {
+      el.currentTime = target;
+    } catch {
+      /* ignore seek before metadata */
+    }
+  }, [syncStructureId]);
+
+  useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.code !== "Space" || e.target instanceof HTMLInputElement) return;
       const root = containerRef.current;
@@ -77,11 +100,12 @@ export function AnatomyReferenceVideo({ className, selectedName, compact = false
     <div
       ref={containerRef}
       className={cn(
-        "aee-anatomy-video relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-black/[0.06] bg-gradient-to-b from-slate-950 via-slate-900 to-black shadow-[var(--shadow-apple-sm)]",
+        "aee-anatomy-video relative flex h-full w-full flex-col overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-black",
+        !embedded && "rounded-2xl border border-black/[0.06] shadow-[var(--shadow-apple-sm)]",
         className
       )}
     >
-      {!compact ? (
+      {!compact && !embedded ? (
         <div className="flex items-center justify-between gap-2 border-b border-white/10 px-4 py-2.5">
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-violet-200/90">
             Reference video

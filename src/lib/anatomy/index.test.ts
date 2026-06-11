@@ -5,10 +5,17 @@ import {
   getAnatomyStructure,
   getAnatomyStructuresForMemoryCard,
   getHighYieldStructures,
+  groupStructuresBySystem,
   searchAnatomyStructures,
 } from "./index";
 import { ANATOMY_QUIZ_QUESTIONS, ANATOMY_TOURS, getToursForExam } from "./tours";
-import { anatomyViewModeUsesLayers, isAnatomyViewMode } from "./view-mode";
+import {
+  anatomyViewModeUsesLayers,
+  isAnatomyViewMode,
+  normalizeAnatomyViewMode,
+} from "./view-mode";
+import { assertModuleCatalogIntegrity } from "./modules/registry";
+import { ATLAS_REGIONS, assertAtlasCatalogIntegrity, getBestViewForStructure } from "./atlas";
 import { getDefaultTourIdForExam, getFeaturedStructuresForExam } from "./recommendations";
 
 describe("anatomy helpers", () => {
@@ -56,15 +63,31 @@ describe("anatomy helpers", () => {
     expect(nclexTours[0]?.id).toBe("nclex-respiratory-basics");
   });
 
-  it("validates anatomy view modes and layer usage", () => {
-    expect(isAnatomyViewMode("reference")).toBe(true);
+  it("uses interactive atlas view mode only", () => {
     expect(isAnatomyViewMode("interactive")).toBe(true);
-    expect(isAnatomyViewMode("split")).toBe(true);
+    expect(isAnatomyViewMode("model")).toBe(false);
+    expect(isAnatomyViewMode("video")).toBe(false);
+    expect(isAnatomyViewMode("split")).toBe(false);
     expect(isAnatomyViewMode("bogus")).toBe(false);
-
-    expect(anatomyViewModeUsesLayers("reference")).toBe(false);
+    expect(normalizeAnatomyViewMode("model")).toBe("interactive");
+    expect(normalizeAnatomyViewMode("video")).toBe("interactive");
+    expect(normalizeAnatomyViewMode("interactive")).toBe("interactive");
     expect(anatomyViewModeUsesLayers("interactive")).toBe(true);
-    expect(anatomyViewModeUsesLayers("split")).toBe(true);
+  });
+
+  it("maps every structure to a 3D module", () => {
+    expect(assertModuleCatalogIntegrity()).toEqual([]);
+  });
+
+  it("maps every structure to an atlas region", () => {
+    expect(assertAtlasCatalogIntegrity()).toEqual([]);
+  });
+
+  it("maps atlas regions to catalog structures", () => {
+    for (const region of ATLAS_REGIONS) {
+      expect(getAnatomyStructure(region.structureId)).toBeDefined();
+    }
+    expect(getBestViewForStructure("heart")).toBe("anterior");
   });
 
   it("maps every quiz question to a valid structure", () => {
@@ -88,5 +111,38 @@ describe("anatomy helpers", () => {
     const nclex = getFeaturedStructuresForExam("nclex");
     expect(nclex.some((s) => s.id === "lungs")).toBe(true);
     expect(getDefaultTourIdForExam("usmle")).toBe("usmle-heart-anatomy");
+  });
+
+  it("assigns every organ-layer structure to an organ system", () => {
+    const organs = getAllAnatomyStructures().filter((s) => s.layer === "organ");
+    expect(organs.length).toBeGreaterThanOrEqual(15);
+    for (const organ of organs) {
+      expect(organ.system).toBeTruthy();
+    }
+    const systems = new Set(organs.map((s) => s.system));
+    expect(systems.has("digestive")).toBe(true);
+    expect(systems.has("cardiovascular")).toBe(true);
+    expect(systems.has("respiratory")).toBe(true);
+    expect(systems.has("urinary")).toBe(true);
+    expect(systems.has("endocrine")).toBe(true);
+    expect(systems.has("nervous")).toBe(true);
+    expect(systems.has("lymphatic")).toBe(true);
+  });
+
+  it("includes abdomen digestive organs with correct system", () => {
+    for (const id of ["small-intestine", "colon", "duodenum", "appendix", "liver", "stomach"]) {
+      const s = getAnatomyStructure(id);
+      expect(s?.layer).toBe("organ");
+      expect(s?.system).toBe("digestive");
+    }
+  });
+
+  it("groups structures by organ system in canonical order", () => {
+    const grouped = groupStructuresBySystem(getAllAnatomyStructures());
+    expect(grouped.length).toBeGreaterThanOrEqual(8);
+    expect(grouped[0]!.system).toBe("skeletal");
+    const digestive = grouped.find((g) => g.system === "digestive");
+    expect(digestive?.structures.some((s) => s.id === "colon")).toBe(true);
+    expect(digestive?.structures.some((s) => s.id === "small-intestine")).toBe(true);
   });
 });

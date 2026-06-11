@@ -1,0 +1,25 @@
+/** Harmonized organ palette — natural tones for PBR shading. */
+
+export const ORGAN_COLORS = {
+  heart: "#b91c3c",
+  lung: "#e8929a",
+  brain: "#c9a07a",
+  liver: "#8b6914",
+  stomach: "#d4a017",
+  spleen: "#7c2d12",
+  gallbladder: "#6b8e23",
+  pancreas: "#ca8a04",
+  smallIntestine: "#c4846a",
+  colon: "#8f6848",
+  kidney: "#a16207",
+  bladder: "#d4b896",
+  thyroid: "#c2410c",
+  trachea: "#94c5e8",
+  esophagus: "#d4a5a5",
+  prostate: "#9ca3af",
+  nerve: "#fef08a",
+  boneAccent: "#ebe6df",
+  artery: "#991b1b",
+  muscleAccent: "#a67c52",
+  muscleDeep: "#7c5a3a",
+} as const;

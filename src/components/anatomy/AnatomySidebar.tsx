@@ -1,7 +1,10 @@
 "use client";
 
+import { useMemo } from "react";
 import { Search, X } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
+import { groupStructuresBySystem } from "@/lib/anatomy";
+import { ANATOMY_SYSTEM_COLORS } from "@/lib/anatomy/system-colors";
 import {
   ANATOMY_LAYER_LABELS,
   ANATOMY_SYSTEM_LABELS,
@@ -26,7 +29,7 @@ type Props = {
   onSelectStructure: (id: string) => void;
   onResetFilters?: () => void;
   collapsed?: boolean;
-  /** Layer toggles only apply to interactive 3D — hide in video-only mode. */
+  /** Layer toggles show/hide clickable regions on the interactive human. */
   showLayerControls?: boolean;
 };
 
@@ -49,6 +52,12 @@ export function AnatomySidebar({
   collapsed = false,
   showLayerControls = true,
 }: Props) {
+  const groupBySystem = !search.trim() && systemFilter === "all";
+  const groupedStructures = useMemo(
+    () => (groupBySystem ? groupStructuresBySystem(filteredStructures) : null),
+    [filteredStructures, groupBySystem]
+  );
+
   if (collapsed) return null;
 
   return (
@@ -88,9 +97,9 @@ export function AnatomySidebar({
         <Switch checked={highYieldOnly} onCheckedChange={onHighYieldOnlyChange} />
       </div>
 
-      <section aria-label="System filters" className="space-y-2">
+      <section aria-label="Organ system filters" className="space-y-2">
         <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-          Systems
+          Organ systems
         </p>
         <div className="flex flex-wrap gap-1.5">
           <FilterChip
@@ -104,6 +113,7 @@ export function AnatomySidebar({
               active={systemFilter === id}
               onClick={() => onSystemFilterChange(id)}
               label={label}
+              swatch={ANATOMY_SYSTEM_COLORS[id]}
             />
           ))}
         </div>
@@ -115,7 +125,7 @@ export function AnatomySidebar({
             Layers
           </p>
           <p className="text-[11px] leading-snug text-[var(--color-ink-muted)]">
-            Show or hide mesh groups in the interactive 3D viewer.
+            Toggle layers on the 3D model — skin off by default so organs and bones read clearly.
           </p>
           <div className="space-y-1.5">
             {LAYERS.map(([layer, label]) => (
@@ -134,15 +144,15 @@ export function AnatomySidebar({
         </section>
       ) : (
         <p className="rounded-xl bg-slate-50 px-3 py-2.5 text-xs leading-relaxed text-[var(--color-ink-muted)]">
-          Layer toggles apply in <strong className="font-semibold text-[var(--color-ink)]">Interactive 3D</strong>{" "}
-          or <strong className="font-semibold text-[var(--color-ink)]">Split</strong> view. Use system filters
-          above to narrow the structure list.
+          Layer toggles apply on the <strong className="font-semibold text-[var(--color-ink)]">interactive human</strong>.
+          Use organ system filters above to narrow the structure list.
         </p>
       )}
 
       <section className="min-h-0 flex-1 space-y-2 overflow-y-auto">
         <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
           {filteredStructures.length} structures
+          {systemFilter !== "all" ? ` · ${ANATOMY_SYSTEM_LABELS[systemFilter]}` : null}
         </p>
         {filteredStructures.length === 0 ? (
           <div className="rounded-xl border border-dashed border-black/[0.08] bg-[var(--color-surface)]/60 px-4 py-6 text-center">
@@ -160,38 +170,88 @@ export function AnatomySidebar({
               </button>
             ) : null}
           </div>
-        ) : (
-          <ul className="space-y-1">
-            {filteredStructures.map((s) => (
-              <li key={s.id}>
-                <button
-                  type="button"
-                  onClick={() => onSelectStructure(s.id)}
-                  className={cn(
-                    "flex w-full flex-col items-start gap-0.5 rounded-xl px-3 py-2 text-left text-sm transition",
-                    selectedId === s.id
-                      ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
-                      : "text-[var(--color-ink)] hover:bg-[var(--color-surface)]"
-                  )}
-                >
-                  <span className="flex w-full items-start gap-2">
-                    <span className="font-medium">{s.name}</span>
-                    {s.highYield ? (
-                      <span className="ml-auto shrink-0 rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-bold text-amber-800">
-                        HY
-                      </span>
-                    ) : null}
+        ) : groupedStructures ? (
+          <div className="space-y-2">
+            {groupedStructures.map(({ system, structures: items }) => (
+              <details
+                key={system}
+                open={items.some((s) => s.id === selectedId) || items.length <= 4}
+                className="rounded-xl border border-black/[0.05] bg-[var(--color-surface)]/40"
+              >
+                <summary className="flex cursor-pointer list-none items-center gap-2 px-3 py-2 text-xs font-semibold text-[var(--color-ink)] [&::-webkit-details-marker]:hidden">
+                  <span
+                    className="h-2 w-2 shrink-0 rounded-full"
+                    style={{ backgroundColor: ANATOMY_SYSTEM_COLORS[system] }}
+                    aria-hidden
+                  />
+                  <span>{ANATOMY_SYSTEM_LABELS[system]}</span>
+                  <span className="ml-auto text-[10px] font-medium text-[var(--color-ink-muted)]">
+                    {items.length}
                   </span>
-                  <span className="text-[10px] capitalize text-[var(--color-ink-muted)]">
-                    {ANATOMY_SYSTEM_LABELS[s.system]}
-                  </span>
-                </button>
-              </li>
+                </summary>
+                <StructureList
+                  structures={items}
+                  selectedId={selectedId}
+                  onSelectStructure={onSelectStructure}
+                />
+              </details>
             ))}
-          </ul>
+          </div>
+        ) : (
+          <StructureList
+            structures={filteredStructures}
+            selectedId={selectedId}
+            onSelectStructure={onSelectStructure}
+          />
         )}
       </section>
     </aside>
+  );
+}
+
+function StructureList({
+  structures,
+  selectedId,
+  onSelectStructure,
+}: {
+  structures: AnatomyStructure[];
+  selectedId: string | null;
+  onSelectStructure: (id: string) => void;
+}) {
+  return (
+    <ul className="space-y-1 px-2 pb-2">
+      {structures.map((s) => (
+        <li key={s.id}>
+          <button
+            type="button"
+            onClick={() => onSelectStructure(s.id)}
+            className={cn(
+              "flex w-full flex-col items-start gap-0.5 rounded-xl px-3 py-2 text-left text-sm transition",
+              selectedId === s.id
+                ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+                : "text-[var(--color-ink)] hover:bg-white"
+            )}
+          >
+            <span className="flex w-full items-start gap-2">
+              <span
+                className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
+                style={{ backgroundColor: ANATOMY_SYSTEM_COLORS[s.system] }}
+                aria-hidden
+              />
+              <span className="font-medium">{s.name}</span>
+              {s.highYield ? (
+                <span className="ml-auto shrink-0 rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-bold text-amber-800">
+                  HY
+                </span>
+              ) : null}
+            </span>
+            <span className="pl-3.5 text-[10px] text-[var(--color-ink-muted)]">
+              {ANATOMY_SYSTEM_LABELS[s.system]}
+            </span>
+          </button>
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -199,22 +259,31 @@ function FilterChip({
   active,
   onClick,
   label,
+  swatch,
 }: {
   active: boolean;
   onClick: () => void;
   label: string;
+  swatch?: string;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
       className={cn(
-        "rounded-full px-2.5 py-1 text-xs font-medium transition",
+        "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium transition",
         active
           ? "bg-[var(--color-accent)] text-white shadow-sm"
           : "bg-[var(--color-surface)] text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
       )}
     >
+      {swatch ? (
+        <span
+          className="h-1.5 w-1.5 rounded-full"
+          style={{ backgroundColor: active ? "rgba(255,255,255,0.9)" : swatch }}
+          aria-hidden
+        />
+      ) : null}
       {label}
     </button>
   );

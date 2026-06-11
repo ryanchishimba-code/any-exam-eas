@@ -16,6 +16,7 @@ export const ROUTES = {
   analytics: "/analytics",
   reference: "/reference",
   anatomy: "/anatomy",
+  anatomyCatalog: "/anatomy/catalog",
   highYieldTopics: "/dashboard/topics",
   practice: "/practice",
   exams: "/exams",

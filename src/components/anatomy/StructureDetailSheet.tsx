@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { StructureDetailHeader, StructureDetailPanel } from "@/components/anatomy/StructureDetailPanel";
 import type { AnatomyStructure } from "@/lib/anatomy/types";
@@ -13,8 +13,8 @@ type Props = {
   examSlug: ExamSlug;
   open: boolean;
   onClose: () => void;
-  showInteractiveCta?: boolean;
-  onOpenInteractive?: () => void;
+  showStudioCta?: boolean;
+  onOpenStudio?: () => void;
 };
 
 export function StructureDetailSheet({
@@ -23,9 +23,15 @@ export function StructureDetailSheet({
   examSlug,
   open,
   onClose,
-  showInteractiveCta,
-  onOpenInteractive,
+  showStudioCta,
+  onOpenStudio,
 }: Props) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -39,7 +45,7 @@ export function StructureDetailSheet({
     };
   }, [open, onClose]);
 
-  if (!open || !structure) return null;
+  if (!mounted || !open || !structure) return null;
 
   return createPortal(
     <div className="fixed inset-0 z-[100] flex items-end justify-center lg:hidden">
@@ -64,8 +70,8 @@ export function StructureDetailSheet({
           structure={structure}
           memoryCards={memoryCards}
           examSlug={examSlug}
-          showInteractiveCta={showInteractiveCta}
-          onOpenInteractive={onOpenInteractive}
+          showStudioCta={showStudioCta}
+          onOpenStudio={onOpenStudio}
         />
       </div>
     </div>,
