@@ -30,7 +30,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Using alcohol gel alone after caring for a patient with C. diff",
       "Transporting an airborne-isolation patient without notifying receiving unit",
     ],
-    practiceTopicSlug: "infection-control",
+    practiceTopicSlug: "safety-infection",
   },
   {
     slug: "prioritization",
@@ -60,7 +60,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Choosing psychosocial support before physiologic instability",
       "Selecting a correct intervention that is not the FIRST action",
     ],
-    practiceTopicSlug: "prioritization",
+    practiceTopicSlug: "management-of-care",
   },
   {
     slug: "delegation",
@@ -90,7 +90,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Delegating vital signs on a post-op patient with active bleeding",
       "Assuming LPN can perform all RN tasks on a med-surg floor",
     ],
-    practiceTopicSlug: "delegation",
+    practiceTopicSlug: "management-of-care",
   },
   {
     slug: "electrolytes",
@@ -120,7 +120,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Rapid sodium correction in chronic hyponatremia",
       "Giving potassium without verifying renal function and monitoring ECG",
     ],
-    practiceTopicSlug: "electrolytes",
+    practiceTopicSlug: "physiological-adaptation",
   },
   {
     slug: "medication-safety",
@@ -151,7 +151,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Administering IV potassium by push",
       "Using wrong concentration insulin (U-100 vs U-500) without verification",
     ],
-    practiceTopicSlug: "medication-safety",
+    practiceTopicSlug: "pharmacology-nursing",
   },
   {
     slug: "postpartum",
@@ -181,7 +181,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Attributing tachycardia to anxiety without assessing bleeding and fundal tone",
       "Delaying BP recheck when patient reports headache post-delivery",
     ],
-    practiceTopicSlug: "postpartum",
+    practiceTopicSlug: "maternal-child",
   },
   {
     slug: "pediatrics",
@@ -211,7 +211,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Using adult vital sign norms for toddlers",
       "Giving aspirin for fever in children with viral illness",
     ],
-    practiceTopicSlug: "pediatrics",
+    practiceTopicSlug: "pediatrics-nursing",
   },
   {
     slug: "psychiatric",
@@ -241,7 +241,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Removing suicide precautions because the patient 'promises' they feel better",
       "Using restraints without trying less restrictive interventions and orders",
     ],
-    practiceTopicSlug: "psychiatric",
+    practiceTopicSlug: "psychosocial",
   },
   {
     slug: "cardiovascular",
@@ -271,7 +271,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Delaying ECG for a patient with active chest pain",
       "Giving nitroglycerin without checking blood pressure",
     ],
-    practiceTopicSlug: "cardiovascular",
+    practiceTopicSlug: "med-surg",
   },
   {
     slug: "respiratory",
@@ -301,7 +301,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Sedating an anxious COPD patient without monitoring ventilation",
       "Targeting 100% SpO₂ in all patients regardless of comorbidity",
     ],
-    practiceTopicSlug: "respiratory",
+    practiceTopicSlug: "med-surg",
   },
   {
     slug: "diabetes",
@@ -331,7 +331,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Giving insulin to a patient who has not eaten and has normal-low glucose",
       "Discontinuing all insulin when patient is NPO without an order",
     ],
-    practiceTopicSlug: "diabetes",
+    practiceTopicSlug: "med-surg",
   },
   {
     slug: "renal",
@@ -361,7 +361,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Relying on edema alone without weights and I&O",
       "Aggressive fluid bolus in oliguric patient without hemodynamic indication",
     ],
-    practiceTopicSlug: "renal",
+    practiceTopicSlug: "med-surg",
   },
   {
     slug: "neurologic",
@@ -391,7 +391,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Giving aspirin before CT in acute stroke",
       "Leaving seizure patient unattended on side rails down without observation",
     ],
-    practiceTopicSlug: "neurologic",
+    practiceTopicSlug: "med-surg",
   },
   {
     slug: "pain-opioids",
@@ -421,7 +421,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Relying solely on vital signs while patient is obtunded on opioids",
       "PCA bolus by nurse or family 'because patient is sleeping'",
     ],
-    practiceTopicSlug: "pain-opioids",
+    practiceTopicSlug: "basic-care-comfort",
   },
   {
     slug: "legal-ethical",
@@ -451,6 +451,6 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
       "Obtaining consent from family for a competent adult without patient's agreement",
       "Delaying abuse report to 'confirm' suspicions beyond reasonable threshold",
     ],
-    practiceTopicSlug: "legal-ethical",
+    practiceTopicSlug: "management-of-care",
   },
 ]);

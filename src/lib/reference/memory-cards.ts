@@ -1,7 +1,10 @@
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import type { ExamSlug } from "@/types/edtech";
 import { filterMemoryCards, getMemoryCardsForExam } from "./seeds";
+import { getMemoryCardIdsForTopic } from "./weak-area-map";
 import type { MemoryCard, MemoryCardKind } from "./types";
+
+export { WEAK_AREA_MEMORY_CARD_MAP, getMemoryCardIdsForTopic } from "./weak-area-map";
 
 export type MemoryCardQuery = {
   query?: string;
@@ -23,12 +26,6 @@ export function queryMemoryCards(cards: MemoryCard[], opts: MemoryCardQuery): Me
   return filterMemoryCards(cards, opts);
 }
 
-/** Resolve memory card ids from a weak-area / practice topic key. */
-export function getMemoryCardIdsForTopic(topicKey: string): string[] {
-  const normalized = topicKey.trim().toLowerCase();
-  return WEAK_AREA_MEMORY_CARD_MAP[normalized] ?? [];
-}
-
 /** Recommended cards for a topic slug, scoped to the active exam. */
 export function getRecommendedMemoryCards(
   cards: MemoryCard[],
@@ -41,15 +38,3 @@ export function getRecommendedMemoryCards(
   return ids.map((id) => byId.get(id)).filter((c): c is MemoryCard => Boolean(c));
 }
 
-/** Future: map weak-area topic keys → memory card ids for Stats integration. */
-export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
-  cardiology: ["naplex-hf-four-pillars", "usmle-stemi-path", "usmle-acs-spectrum"],
-  cardiovascular: ["usmle-stemi-path", "usmle-acs-spectrum", "usmle-acs-antithrombotics"],
-  "renal-electrolytes": ["usmle-hyperkalemia", "usmle-aki-fena", "all-anion-gap"],
-  "endocrine-dm": ["usmle-dka-orders", "usmle-hhs-vs-dka"],
-  "neurology-stroke": ["usmle-stroke-tpa", "usmle-tpa-exclusions"],
-  pharmacology: ["naplex-reversal-chart", "naplex-hit-rule"],
-  "critical-care": ["nclex-sepsis-bundle", "nclex-shock-types"],
-  delegation: ["nclex-five-rights", "nclex-never-delegate", "nclex-delegation-decision-tree"],
-  "federal-law": ["mpje-cii-rules", "mpje-schedules", "mpje-transfer-rules", "mpje-expired-rx"],
-};

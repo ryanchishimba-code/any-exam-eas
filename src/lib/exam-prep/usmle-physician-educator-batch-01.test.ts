@@ -35,9 +35,8 @@ describe("USMLE_PHYSICIAN_EDUCATOR_BATCH_01 QA", () => {
   });
 
   it("is wired into collectHighYieldSeedRows for bank sync", () => {
-    const rows = collectHighYieldSeedRows().filter((r) =>
-      r.item.tags?.includes("physician-educator")
-    );
+    const batchItems = new Set(USMLE_PHYSICIAN_EDUCATOR_BATCH_01);
+    const rows = collectHighYieldSeedRows().filter((r) => batchItems.has(r.item));
     expect(rows.length).toBe(12);
     expect(rows.some((r) => r.fieldId === "usmle-step-1")).toBe(true);
     expect(rows.some((r) => r.fieldId === "usmle-step-2")).toBe(true);

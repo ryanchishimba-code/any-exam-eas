@@ -34,6 +34,11 @@ ECG: peaked T waves, widened QRS`,
       stepLevel: "step2",
       difficulty: 5,
       tags: ["hyperkalemia", "dialysis", "AKI", "ECG", "physician-educator"],
+      related: {
+        memoryCardIds: ["usmle-hyperkalemia", "all-anion-gap"],
+        keyTakeaway:
+          "K⁺ 6.8 with ECG changes: IV calcium first to stabilize the myocardium — shifting (insulin/dextrose) and removal (dialysis) come after.",
+      },
     }
   ),
 
@@ -211,7 +216,7 @@ Peripheral smear: bite cells and Heinz bodies`,
 
   usmleVignette(
     "pathology",
-    `A 29-year-old man who emigrated from India five years ago has two months of low-grade fever, night sweats, and a 6-kg (13-lb) weight loss. Chest radiograph shows a right upper lobe cavitary lesion. Sputum acid-fast stain is positive. Biopsy of a cervical lymph node shows granulomas with central caseation.`,
+    `A 29-year-old man who emigrated from India five years ago has two months of low-grade fever, night sweats, and a 6-kg (13-lb) weight loss. Temperature is 38.1°C (100.6°F), pulse 92/min, and blood pressure 118/74 mm Hg. Chest radiograph shows a right upper lobe cavitary lesion. Sputum acid-fast stain is positive. Biopsy of a cervical lymph node shows granulomas with central caseation.`,
     "Which of the following is the most likely mechanism of cell death in the center of these granulomas?",
     opts5(
       "Apoptosis regulated by caspases",
@@ -248,12 +253,17 @@ Peripheral smear: bite cells and Heinz bodies`,
       stepLevel: "step2",
       difficulty: 4,
       tags: ["HFrEF", "GDMT", "hyperkalemia", "physician-educator"],
+      related: {
+        memoryCardIds: ["usmle-hyperkalemia"],
+        keyTakeaway:
+          "Rising K⁺ on triple neurohormonal blockade: hold the MRA first and keep the ACEi/ARB and beta-blocker for their mortality benefit.",
+      },
     }
   ),
 
   usmleVignette(
     "neurology",
-    `A 35-year-old man comes to the clinic reporting six weeks of recurrent severe headaches. Attacks wake him from sleep at 1–2 AM, last about 45 minutes, and occur almost nightly for two weeks then remit. During attacks he paces around the room and occasionally hits his head against the wall. Between episodes he is headache-free. Exam between attacks is normal. MRI brain: normal.`,
+    `A 35-year-old man comes to the clinic reporting six weeks of recurrent severe headaches. Attacks wake him from sleep at 1–2 AM, last about 45 minutes, and occur almost nightly for two weeks then remit. During attacks he paces around the room and occasionally hits his head against the wall. Between episodes he is headache-free. Between attacks, blood pressure is 124/76 mm Hg, pulse 62/min, and neurologic examination is normal. MRI brain: normal.`,
     "Which of the following is the most appropriate prophylactic treatment?",
     opts5(
       "Sumatriptan at headache onset only",

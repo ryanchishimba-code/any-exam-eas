@@ -1,11 +1,18 @@
-import type { EnrichedBankItem } from "./seed-helpers";
+import type { EnrichedBankItem, RelatedStudyMeta } from "./seed-helpers";
 import { enrichItem } from "./seed-helpers";
 import type { BlueprintDomain } from "./types";
 
 type MpjeMeta = Partial<EnrichedBankItem> & {
   blueprintDomain?: BlueprintDomain;
   stateCode?: string | null;
+  /** Memory card / review module cross-links for QuestionRelatedLinks. */
+  related?: RelatedStudyMeta;
 };
+
+function mpjePayload(meta: MpjeMeta): Record<string, unknown> | undefined {
+  if (!meta.related && !meta.ngnPayload) return meta.ngnPayload;
+  return { ...meta.ngnPayload, ...meta.related };
+}
 
 function baseTags(meta: MpjeMeta, extra: string[] = []) {
   const stateCode = meta.stateCode ?? null;
@@ -43,7 +50,7 @@ export function mpjeCase(
       difficulty: meta.difficulty ?? 3,
       references: meta.references,
       distractorRationale: meta.distractorRationale,
-      ngnPayload: meta.ngnPayload,
+      ngnPayload: mpjePayload(meta),
     },
     { topicCategory: subjectId, itemType: "vignette", difficulty: meta.difficulty ?? 3 }
   );
@@ -76,7 +83,7 @@ export function mpjeMcq(
       difficulty: meta.difficulty ?? 3,
       references: meta.references,
       distractorRationale: meta.distractorRationale,
-      ngnPayload: meta.ngnPayload,
+      ngnPayload: mpjePayload(meta),
     },
     { topicCategory: subjectId, itemType: hasVignette ? "vignette" : "mcq" }
   );

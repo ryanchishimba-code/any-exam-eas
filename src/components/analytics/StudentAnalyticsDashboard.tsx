@@ -1,9 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { BookMarked } from "lucide-react";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_FIELD_OPTIONS } from "@/lib/exam-prep/practice-modes";
+import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import { referenceTopicHref } from "@/lib/edtech/practice-links";
+import {
+  getMemoryCardIdsForTopic,
+  normalizeWeakAreaTopicKey,
+} from "@/lib/reference/weak-area-map";
 import { mpjePracticeExamHref } from "@/lib/study-hub/config";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
@@ -171,10 +179,13 @@ export function StudentAnalyticsDashboard() {
             <ul className="mt-4 space-y-3">
               {weakTopics.slice(0, 6).map((t) => (
                 <li key={t.id}>
-                  <div className="flex justify-between text-sm">
+                  <div className="flex items-center justify-between gap-2 text-sm">
                     <span className="font-medium">{t.name}</span>
-                    <span className="tabular-nums text-[var(--color-ink-muted)]">
-                      {t.masteryScore}%
+                    <span className="flex items-center gap-2">
+                      <WeakTopicCardsLink conceptKey={t.id} fieldId={t.fieldId} />
+                      <span className="tabular-nums text-[var(--color-ink-muted)]">
+                        {t.masteryScore}%
+                      </span>
                     </span>
                   </div>
                   <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-black/[0.06]">
@@ -240,6 +251,29 @@ export function StudentAnalyticsDashboard() {
         </section>
       )}
     </div>
+  );
+}
+
+/** Links a weak topic to its recommended memory cards on /reference, when any exist. */
+function WeakTopicCardsLink({
+  conceptKey,
+  fieldId,
+}: {
+  conceptKey: string;
+  fieldId: string;
+}) {
+  const topicKey = normalizeWeakAreaTopicKey(conceptKey);
+  const examSlug = examSlugFromFieldId(fieldId);
+  if (!examSlug || getMemoryCardIdsForTopic(topicKey).length === 0) return null;
+
+  return (
+    <Link
+      href={referenceTopicHref(examSlug, topicKey)}
+      className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-0.5 text-[11px] font-semibold text-violet-700 ring-1 ring-violet-200 transition hover:bg-violet-100"
+    >
+      <BookMarked className="h-3 w-3" aria-hidden />
+      Memory cards
+    </Link>
   );
 }
 

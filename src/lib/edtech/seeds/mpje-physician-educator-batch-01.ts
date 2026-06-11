@@ -38,6 +38,12 @@ export const MPJE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       difficulty: 3,
       references: [DEA, CSA],
       tags: ["C-II", "prescription-validity", ...PE],
+      related: {
+        reviewModuleSlug: "controlled-substances",
+        memoryCardIds: ["mpje-cii-rules", "mpje-expired-rx"],
+        keyTakeaway:
+          "An expired C-II prescription cannot be revived by a partial fill — refuse and request a new prescription.",
+      },
     }
   ),
 
@@ -58,6 +64,12 @@ export const MPJE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       difficulty: 3,
       references: [DEA],
       tags: ["C-III", "e-prescribing", ...PE],
+      related: {
+        reviewModuleSlug: "controlled-substances",
+        memoryCardIds: ["mpje-schedules"],
+        keyTakeaway:
+          "C-III–V prescriptions allow up to 5 refills within 6 months, and DEA-compliant e-prescribing is valid.",
+      },
     }
   ),
 
@@ -117,6 +129,12 @@ export const MPJE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       difficulty: 4,
       references: [DEA, CSA],
       tags: ["C-II", "partial-fill", "hospice", ...PE],
+      related: {
+        reviewModuleSlug: "controlled-substances",
+        memoryCardIds: ["mpje-partial-fill-ciii", "mpje-cii-rules"],
+        keyTakeaway:
+          "C-II partial fills at the patient's request are permitted when recorded per federal and state partial-fill rules.",
+      },
     }
   ),
 
@@ -176,6 +194,12 @@ export const MPJE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       difficulty: 3,
       references: [DEA],
       tags: ["inventory", "DEA-records", ...PE],
+      related: {
+        reviewModuleSlug: "controlled-substances",
+        memoryCardIds: ["mpje-recordkeeping"],
+        keyTakeaway:
+          "Perpetual controlled-substance inventories must be updated at each receipt and each dispensing.",
+      },
     }
   ),
 
@@ -215,6 +239,12 @@ export const MPJE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       difficulty: 3,
       references: [DEA],
       tags: ["PIC", "technician-scope", ...PE],
+      related: {
+        reviewModuleSlug: "controlled-substances",
+        memoryCardIds: ["mpje-recordkeeping"],
+        keyTakeaway:
+          "Controlled-substance accountability — DEA Form 222 and invoices — stays with a pharmacist and cannot be delegated to technicians.",
+      },
     }
   ),
 
@@ -254,6 +284,12 @@ export const MPJE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       difficulty: 3,
       references: [DEA],
       tags: ["prescriptive-authority", "C-IV", "PA", ...PE],
+      related: {
+        reviewModuleSlug: "controlled-substances",
+        memoryCardIds: ["mpje-schedules"],
+        keyTakeaway:
+          "Mid-level prescribers may prescribe controlled substances when both federally registered and state-authorized.",
+      },
     }
   ),
 

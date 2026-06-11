@@ -51,6 +51,12 @@ export const NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       references: [FDA],
       guideline: "Perioperative anticoagulation — dental extraction",
       tags: ["anticoagulation", "apixaban", ...PE],
+      related: {
+        reviewModuleSlug: "anticoagulation-reversal",
+        memoryCardIds: ["naplex-warfarin-vs-doac", "naplex-bridge-therapy"],
+        keyTakeaway:
+          "Low-bleeding-risk dental work: continue the DOAC — bridging adds bleeding risk without benefit.",
+      },
     }
   ),
 
@@ -198,6 +204,12 @@ export const NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       references: [ADA],
       guideline: "ADA ASCVD — GLP-1 RA preferred",
       tags: ["T2DM", "GLP-1", "ASCVD", ...PE],
+      related: {
+        reviewModuleSlug: "insulin-diabetes-management",
+        memoryCardIds: ["naplex-sglt2i-counseling", "naplex-hypoglycemia-15-15"],
+        keyTakeaway:
+          "T2DM with ASCVD: add a GLP-1 RA or SGLT2i with proven CV benefit and deprescribe the sulfonylurea to cut hypoglycemia risk.",
+      },
     }
   ),
 
@@ -261,6 +273,12 @@ export const NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       references: [ACCAHA],
       guideline: "HFrEF GDMT — MRA addition",
       tags: ["HFrEF", "spironolactone", ...PE],
+      related: {
+        reviewModuleSlug: "heart-failure-gdmt",
+        memoryCardIds: ["naplex-hf-four-pillars", "naplex-k-hyperkalemia"],
+        keyTakeaway:
+          "Complete the four GDMT pillars — after starting an MRA, recheck K⁺ and creatinine within 1 week.",
+      },
     }
   ),
 

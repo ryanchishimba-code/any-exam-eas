@@ -31,9 +31,8 @@ describe("NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01 QA", () => {
   });
 
   it("is wired into collectHighYieldSeedRows for pharmacy bank sync", () => {
-    const rows = collectHighYieldSeedRows().filter((r) =>
-      r.item.tags?.includes("physician-educator-batch-01")
-    );
+    const batchItems = new Set(NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01);
+    const rows = collectHighYieldSeedRows().filter((r) => batchItems.has(r.item));
     expect(rows.length).toBe(12);
     expect(rows.every((r) => r.fieldId === "pharmacy")).toBe(true);
   });

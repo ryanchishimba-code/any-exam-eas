@@ -33,7 +33,7 @@ export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
       "Withholding beta-blockers in stable HFrEF because of 'heart failure' — they are mortality-reducing; only avoid in acute decompensation",
       "Treating ST elevation in aVR + diffuse ST depression as benign — this pattern suggests left main or proximal LAD occlusion and warrants emergent cath",
     ],
-    practiceTopicSlug: "cardiovascular",
+    practiceTopicSlug: "cardiology",
   },
   {
     slug: "pulmonary",
@@ -64,7 +64,7 @@ export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
       "Giving high-flow O₂ to a COPD patient and stopping at SpO₂ 100% — target 88–92% to avoid hypoxic drive suppression and worsen hypercapnia",
       "Draining a transudative pleural effusion without addressing the underlying cause — recurrence is certain without treating HF, cirrhosis, or hypoalbuminemia",
     ],
-    practiceTopicSlug: "pulmonary",
+    practiceTopicSlug: "pulmonology",
   },
   {
     slug: "neurology-stroke",
@@ -95,7 +95,7 @@ export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
       "Giving aspirin or anticoagulants before excluding hemorrhagic stroke on CT — fatal in ICH",
       "Missing Wernicke's by giving dextrose before thiamine in an alcoholic patient with confusion",
     ],
-    practiceTopicSlug: "neurology-stroke",
+    practiceTopicSlug: "neurology",
   },
   {
     slug: "gastroenterology",
@@ -126,7 +126,7 @@ export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
       "Using liberal transfusion strategy (Hb threshold >9 g/dL) in variceal bleed — increases portal pressure and re-bleeding risk",
       "Prescribing NSAIDs to a cirrhotic patient — precipitates hepatorenal syndrome and GI bleeding",
     ],
-    practiceTopicSlug: "gastroenterology",
+    practiceTopicSlug: "internal-medicine",
   },
   {
     slug: "renal-electrolytes",
@@ -156,7 +156,7 @@ export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
       "Giving IV fluids for hyponatremia in SIADH — isotonic saline can paradoxically worsen hyponatremia if urine Na > serum Na",
       "Starting dialysis for hyperkalemia without first attempting medical management — avoidable in most cases with calcium, insulin/dextrose, and sodium bicarbonate",
     ],
-    practiceTopicSlug: "renal-electrolytes",
+    practiceTopicSlug: "nephrology",
   },
   {
     slug: "endocrine-dm",
@@ -187,7 +187,7 @@ export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
       "Stopping insulin infusion when glucose reaches 200 mg/dL in DKA — continue insulin with dextrose added to IV fluids until anion gap closes",
       "Starting a beta-blocker first in pheochromocytoma — blocks vasodilatory beta-2 receptors leaving alpha-mediated vasoconstriction unopposed, causing hypertensive crisis",
     ],
-    practiceTopicSlug: "endocrine-dm",
+    practiceTopicSlug: "internal-medicine",
   },
   {
     slug: "infectious-disease",
@@ -218,7 +218,7 @@ export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
       "Using TMP-SMX for empiric UTI treatment without checking local resistance patterns — E. coli resistance exceeds 20% in many areas; fluoroquinolone alternatives may be needed",
       "Treating C. difficile with metronidazole as first-line — guidelines favor oral vancomycin or fidaxomicin for initial non-severe episodes",
     ],
-    practiceTopicSlug: "infectious-disease",
+    practiceTopicSlug: "internal-medicine",
   },
   {
     slug: "hematology-oncology",
@@ -248,7 +248,7 @@ export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
       "Transfusing platelets in TTP — accelerates thrombotic microangiopathy and worsens outcome",
       "Using platelet transfusion threshold of <100K for all patients — guideline threshold is <10K for prophylaxis (or <50K for procedures/active bleeding)",
     ],
-    practiceTopicSlug: "hematology-oncology",
+    practiceTopicSlug: "internal-medicine",
   },
   {
     slug: "rheumatology",
@@ -278,7 +278,7 @@ export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
       "Delaying steroids for GCA pending temporal artery biopsy — irreversible blindness can occur within hours to days of visual symptoms",
       "Using NSAIDs as maintenance therapy in RA — provides symptomatic relief only, does not prevent joint destruction; DMARDs are required",
     ],
-    practiceTopicSlug: "rheumatology",
+    practiceTopicSlug: "internal-medicine",
   },
   {
     slug: "obstetrics",
@@ -309,7 +309,7 @@ export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
       "Giving methylergonovine (Methergine) for atony in a patient with severe preeclampsia — causes severe vasoconstriction and dangerous hypertensive crisis",
       "Performing digital cervical exam in suspected placenta previa before ultrasound — can precipitate catastrophic hemorrhage",
     ],
-    practiceTopicSlug: "obstetrics",
+    practiceTopicSlug: "obgyn",
   },
   {
     slug: "pediatrics",
@@ -401,7 +401,7 @@ export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
       "Giving a beta-blocker for cocaine-induced hypertension and tachycardia — leaves alpha-mediated vasoconstriction unopposed, worsening hypertension and coronary vasospasm",
       "Discharging an acetaminophen overdose patient with normal early labs without checking a 4-hour level on the Rumack-Matthew nomogram",
     ],
-    practiceTopicSlug: "emergency-toxicology",
+    practiceTopicSlug: "emergency-medicine",
   },
   {
     slug: "ethics-biostats",
@@ -432,7 +432,7 @@ export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
       "Confusing sensitivity with PPV — high sensitivity does not mean most positives are true positives in a low-prevalence population (e.g., HIV screening in low-risk populations)",
       "Overriding a competent patient's refusal because family members or physicians believe the decision is unwise — autonomy of a capacitated adult is paramount",
     ],
-    practiceTopicSlug: "ethics-biostats",
+    practiceTopicSlug: "internal-medicine",
   },
   {
     slug: "dermatology-allergic",
@@ -463,6 +463,6 @@ export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
       "Giving subcutaneous rather than IM epinephrine for anaphylaxis — IM injection into the vastus lateralis achieves faster, more reliable peak levels",
       "Prescribing systemic corticosteroids as primary therapy for TEN — evidence for benefit is lacking and they may increase infection risk in the setting of epidermal barrier loss",
     ],
-    practiceTopicSlug: "dermatology-allergic",
+    practiceTopicSlug: "internal-medicine",
   },
 ]);

@@ -1,10 +1,12 @@
-import type { EnrichedBankItem } from "./seed-helpers";
+import type { EnrichedBankItem, RelatedStudyMeta } from "./seed-helpers";
 import { enrichItem } from "./seed-helpers";
 import type { BlueprintDomain, ExamItemType } from "./types";
 
 type NaplexMeta = Partial<EnrichedBankItem> & {
   blueprintDomain: BlueprintDomain;
   guideline?: string;
+  /** Memory card / review module cross-links for QuestionRelatedLinks. */
+  related?: RelatedStudyMeta;
 };
 
 function baseTags(meta: NaplexMeta, extra: string[] = []) {
@@ -35,7 +37,7 @@ export function naplexCase(
       correctAnswer: correct,
       explanation: withGuideline(explanation, meta),
       itemType: "case_based",
-      ngnPayload: { kind: "case_based" },
+      ngnPayload: { kind: "case_based", ...meta.related },
       tags: baseTags(meta, ["case-vignette"]),
       blueprintDomain: meta.blueprintDomain,
       difficulty: meta.difficulty ?? 4,
@@ -63,6 +65,7 @@ export function naplexMcq(
       correctAnswer: correct,
       explanation: withGuideline(explanation, meta),
       itemType: "vignette",
+      ngnPayload: meta.related ? { kind: "vignette", ...meta.related } : undefined,
       tags: baseTags(meta),
       blueprintDomain: meta.blueprintDomain,
       difficulty: meta.difficulty ?? 3,
@@ -90,7 +93,7 @@ export function naplexSata(
       correctAnswer: correct.join(","),
       explanation: withGuideline(explanation, meta),
       itemType: "select_all",
-      ngnPayload: { kind: "select_all", options, partialCredit: true },
+      ngnPayload: { kind: "select_all", options, partialCredit: true, ...meta.related },
       tags: baseTags(meta, ["SATA"]),
       blueprintDomain: meta.blueprintDomain,
       difficulty: meta.difficulty ?? 4,

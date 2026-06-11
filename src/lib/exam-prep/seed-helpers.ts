@@ -12,6 +12,18 @@ export type EnrichedBankItem = BankItem & {
   ngnPayload?: Record<string, unknown>;
 };
 
+/** Cross-links rendered after the rationale (QuestionRelatedLinks) — merged into ngnPayload. */
+export type RelatedStudyMeta = {
+  /** Deep Dive review module on /dashboard/topics. */
+  reviewModuleSlug?: string;
+  /** Memory cards on /reference. */
+  memoryCardIds?: string[];
+  /** Related Top 500 drug names. */
+  top500Drugs?: string[];
+  /** One-line high-yield takeaway shown above the links. */
+  keyTakeaway?: string;
+};
+
 export function enrichItem(
   item: EnrichedBankItem,
   defaults: {

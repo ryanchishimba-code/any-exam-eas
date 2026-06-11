@@ -124,7 +124,7 @@ Total bilirubin 16.8 mg/dL · direct bilirubin 0.9 mg/dL · hematocrit 52% · re
 
   usmleVignette(
     "neurology",
-    `An 82-year-old man is found on the floor by his daughter after "tripping on the rug." He takes warfarin for atrial fibrillation. He was alert when EMS arrived but in the ED becomes progressively somnolent over two hours. Pupils are equal; he localizes to pain on the right and withdraws poorly on the left. CT head without contrast shows a crescent-shaped hypodense collection with midline shift.`,
+    `An 82-year-old man is found on the floor by his daughter after "tripping on the rug." He takes warfarin for atrial fibrillation. He was alert when EMS arrived but in the ED becomes progressively somnolent over two hours. Blood pressure is 168/92 mm Hg, pulse 56/min; INR is 3.1. Pupils are equal; he localizes to pain on the right and withdraws poorly on the left. CT head without contrast shows a crescent-shaped hypodense collection with midline shift.`,
     "Which of the following is the most appropriate next step in management?",
     opts5(
       "Observation and repeat CT in 24 hours",
@@ -223,7 +223,7 @@ Total bilirubin 16.8 mg/dL · direct bilirubin 0.9 mg/dL · hematocrit 52% · re
 
   usmleVignette(
     "surgery",
-    `A 70-year-old man with prior open cholecystectomy presents with crampy abdominal pain and bilious vomiting for 24 hours. He has not passed flatus for 12 hours. Abdomen is distended with high-pitched bowel sounds. Vital signs are stable. CT abdomen shows dilated small bowel loops with a transition point in the mid ileum and collapsed colon.`,
+    `A 70-year-old man with prior open cholecystectomy presents with crampy abdominal pain and bilious vomiting for 24 hours. He has not passed flatus for 12 hours. Abdomen is distended with high-pitched bowel sounds. Temperature is 37.2°C (99.0°F), pulse 98/min, and blood pressure 126/78 mm Hg. CT abdomen shows dilated small bowel loops with a transition point in the mid ileum and collapsed colon.`,
     "Which of the following is the most likely diagnosis?",
     opts5(
       "Ileus from opioid use",

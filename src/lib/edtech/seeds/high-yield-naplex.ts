@@ -31,7 +31,7 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
       "Confusing relative risk reduction with absolute risk reduction when counseling patients on benefit",
       "Accepting a statistically significant result as clinically meaningful without evaluating effect size",
     ],
-    practiceTopicSlug: "biostatistics-study-design",
+    practiceTopicSlug: "pharmacology",
   },
   {
     slug: "antihypertensive-drug-classes",
@@ -63,7 +63,7 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
       "Prescribing ACE inhibitor + ARB combination for additional BP reduction — doubles adverse effects without benefit",
       "Using a non-selective beta-blocker (propranolol) in a patient with asthma or COPD",
     ],
-    practiceTopicSlug: "antihypertensive-drug-classes",
+    practiceTopicSlug: "cardiovascular-rx",
   },
   {
     slug: "insulin-diabetes-management",
@@ -95,7 +95,7 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
       "Mixing glargine insulin with rapid-acting insulin in the same syringe — glargine precipitates and changes pharmacokinetics",
       "Continuing metformin in a patient whose eGFR has fallen below 30 mL/min without reassessment",
     ],
-    practiceTopicSlug: "insulin-diabetes-management",
+    practiceTopicSlug: "endocrine-rx",
   },
   {
     slug: "drug-interactions-qt-prolongation",
@@ -127,7 +127,7 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
       "Overlooking P-glycoprotein interactions with digoxin — amiodarone, clarithromycin, and dronedarone can double digoxin levels",
       "Assuming a non-prescription drug or supplement is interaction-free without verification",
     ],
-    practiceTopicSlug: "drug-interactions-qt-prolongation",
+    practiceTopicSlug: "pharmacology",
   },
   {
     slug: "calculations-drip-rates",
@@ -159,7 +159,7 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
       "Forgetting to convert mcg to mg (or vice versa) when the concentration is expressed in different units than the ordered dose",
       "Calculating dose based on total body weight when lean body weight or ideal body weight is indicated (e.g., aminoglycosides in obesity)",
     ],
-    practiceTopicSlug: "calculations-drip-rates",
+    practiceTopicSlug: "compounding-calculations",
   },
   {
     slug: "calculations-creatinine-clearance",
@@ -191,7 +191,7 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
       "Using total body weight instead of ideal or adjusted body weight in an obese patient for Cockcroft-Gault — overestimates CrCl",
       "Failing to adjust renal doses when a patient's CrCl drops during hospitalization (e.g., due to sepsis, contrast, or NSAID use)",
     ],
-    practiceTopicSlug: "calculations-creatinine-clearance",
+    practiceTopicSlug: "compounding-calculations",
   },
   {
     slug: "antibiotics-stewardship",
@@ -223,7 +223,7 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
       "Continuing empiric broad-spectrum antibiotics after culture results guide narrowing — missed stewardship opportunity",
       "Using oral metronidazole as first-line therapy for non-severe C. difficile infection — current IDSA guidelines favor oral vancomycin or fidaxomicin",
     ],
-    practiceTopicSlug: "antibiotics-stewardship",
+    practiceTopicSlug: "infectious-disease-rx",
   },
   {
     slug: "adverse-drug-reactions",
@@ -255,7 +255,7 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
       "Attributing ACE inhibitor cough to allergic rhinitis or a new infection without trialing drug discontinuation",
       "Rechallenging a patient with abacavir after a hypersensitivity reaction — potentially fatal",
     ],
-    practiceTopicSlug: "adverse-drug-reactions",
+    practiceTopicSlug: "pharmacology",
   },
   {
     slug: "patient-counseling",
@@ -319,7 +319,7 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
       "Withholding vaccine from a patient with a minor illness, low-grade fever, or current antibiotic use — these are precautions at most, not true contraindications",
       "Storing live attenuated vaccines in the refrigerator instead of the freezer — destroys potency and requires dose replacement",
     ],
-    practiceTopicSlug: "immunizations",
+    practiceTopicSlug: "patient-counseling",
   },
   {
     slug: "compounding-basics",
@@ -351,7 +351,7 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
       "Confusing BUD with manufacturer expiration date — a compounded preparation's BUD starts on the compounding date, not manufacture date",
       "Entering a laminar airflow workbench (LAFW) without proper gowning or breaking aseptic technique at the DCA — risk of contamination",
     ],
-    practiceTopicSlug: "compounding-basics",
+    practiceTopicSlug: "pharmaceutics",
   },
   {
     slug: "otc-triage",
@@ -383,7 +383,7 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
       "Recommending OTC sleep aids (diphenhydramine) as a long-term solution for insomnia — tolerance develops rapidly and cognitive effects are significant in older adults",
       "Overlooking acetaminophen in combination OTC products (cold/flu, PM formulations) when patient is already taking acetaminophen separately — cumulative toxicity risk",
     ],
-    practiceTopicSlug: "otc-triage",
+    practiceTopicSlug: "otc-self-care",
   },
   {
     slug: "anticoagulants",
@@ -415,7 +415,7 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
       "Stopping heparin without starting an alternative anticoagulant in a patient with suspected HIT — thrombosis risk remains high",
       "Not dose-adjusting DOACs for renal function or using the wrong reduction criteria — especially critical for dabigatran and rivaroxaban",
     ],
-    practiceTopicSlug: "anticoagulants",
+    practiceTopicSlug: "pharmacology",
   },
   {
     slug: "hiv-opportunistic-infections",
@@ -447,7 +447,7 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
       "Starting PrEP without first confirming HIV-negative status — HIV infection with only PrEP is treated as monotherapy and selects for resistance",
       "Administering dolutegravir simultaneously with calcium carbonate or iron supplements without appropriate time separation — significantly reduces dolutegravir absorption",
     ],
-    practiceTopicSlug: "hiv-opportunistic-infections",
+    practiceTopicSlug: "infectious-disease-rx",
   },
   {
     slug: "special-populations-pregnancy-lactation",
@@ -479,6 +479,6 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
       "Assuming that because a drug is FDA category B it is entirely safe — category B indicates no adequate human studies but animal studies are reassuring; risk is not zero",
       "Stopping a necessary medication (e.g., antiepileptic or antidepressant) abruptly in pregnancy due to teratogen fear without weighing risk of uncontrolled disease to both mother and fetus",
     ],
-    practiceTopicSlug: "special-populations-pregnancy-lactation",
+    practiceTopicSlug: "patient-counseling",
   },
 ]);

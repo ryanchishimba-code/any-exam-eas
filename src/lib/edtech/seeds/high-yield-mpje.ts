@@ -31,7 +31,7 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Confusing 'no refills permitted' for Schedule II with 'new prescription required each time' — partial fills and multiple prescriptions for up to a 90-day supply (non-PDMP states) are distinct concepts",
       "Assuming a DEA registration number that passes the letter test is automatically valid — always verify through DEA's online registry when suspicious",
     ],
-    practiceTopicSlug: "federal-controlled-substance-laws",
+    practiceTopicSlug: "controlled-substances",
   },
   {
     slug: "prescription-requirements-validity",
@@ -63,7 +63,7 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Accepting a faxed Schedule II prescription from a retail patient as the original — fax is generally not acceptable as the dispensing document for non-exempt patients",
       "Filling a prescription dated in the future — the date of issuance, not the fill date, must have already passed",
     ],
-    practiceTopicSlug: "prescription-requirements-validity",
+    practiceTopicSlug: "dispensing-procedures",
   },
   {
     slug: "corresponding-responsibility",
@@ -95,7 +95,7 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Relying solely on the face of the prescription without consulting the PDMP in states where PDMP check is mandatory",
       "Assuming that because a prescriber has a valid DEA number the prescription is automatically legitimate",
     ],
-    practiceTopicSlug: "corresponding-responsibility",
+    practiceTopicSlug: "controlled-substances",
   },
   {
     slug: "state-vs-federal-law-conflicts",
@@ -127,7 +127,7 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Assuming federal law always controls — in most day-to-day pharmacy practice scenarios, state law imposes additional obligations that must be followed",
       "Applying one state's law when practicing across state lines — always identify which state's jurisdiction governs the specific practice act",
     ],
-    practiceTopicSlug: "state-vs-federal-law-conflicts",
+    practiceTopicSlug: "state-practice-act",
   },
   {
     slug: "record-keeping-inventory",
@@ -159,7 +159,7 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Failing to conduct an initial inventory when opening a new pharmacy or when a new DEA registration is issued",
       "Discarding Schedule II dispensing records after two years if state law requires a longer retention period",
     ],
-    practiceTopicSlug: "record-keeping-inventory",
+    practiceTopicSlug: "pharmacy-operations",
   },
   {
     slug: "dispensing-and-labeling",
@@ -191,7 +191,7 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Omitting the patient's address from the label when required by state law (many states require it for controlled substances)",
       "Using 'take as directed' as the sole direction on a controlled substance label — this is generally insufficient and may constitute a dispensing violation",
     ],
-    practiceTopicSlug: "dispensing-and-labeling",
+    practiceTopicSlug: "dispensing-procedures",
   },
   {
     slug: "hipaa-privacy",
@@ -223,7 +223,7 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Releasing PHI to a patient's family member or caregiver without confirming the patient has authorized the disclosure or that the disclosure is otherwise permitted",
       "Assuming a court order automatically satisfies HIPAA — court orders must meet specific HIPAA provisions to authorize disclosure",
     ],
-    practiceTopicSlug: "hipaa-privacy",
+    practiceTopicSlug: "patient-privacy",
   },
   {
     slug: "pharmacy-operations-pic",
@@ -255,7 +255,7 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Assuming a prior PIC's compliance failures do not affect an incoming PIC — the incoming PIC should conduct a compliance audit and document any pre-existing deficiencies",
       "Allowing technicians to perform final verification or patient counseling — these are pharmacist-only functions in virtually all jurisdictions",
     ],
-    practiceTopicSlug: "pharmacy-operations-pic",
+    practiceTopicSlug: "pharmacy-operations",
   },
   {
     slug: "dea-ordering-csos-form-222",
@@ -287,7 +287,7 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Attempting to use Form 222 to order Schedule III–V substances — Form 222 is strictly limited to Schedule I and II controlled substances",
       "Discarding Form 222 records (Copy 3) before the two-year retention period has expired, or failing to maintain them separately from Schedule III–V records",
     ],
-    practiceTopicSlug: "dea-ordering-csos-form-222",
+    practiceTopicSlug: "controlled-substances",
   },
   {
     slug: "liability-and-ethics",
@@ -319,7 +319,7 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Assuming that following a prescriber's order shields the pharmacist from liability — pharmacists have an independent duty to verify clinical appropriateness",
       "Documenting a counseling session as 'patient refused counseling' without actually offering it — this is fraud that creates additional liability",
     ],
-    practiceTopicSlug: "liability-and-ethics",
+    practiceTopicSlug: "pharmacy-ethics",
   },
   {
     slug: "drug-supply-chain-dscsa",
@@ -351,7 +351,7 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Returning a suspect product to a supplier before completing the DSCSA investigation and quarantine requirements — premature returns can mask supply chain security issues",
       "Retaining DSCSA transaction records for only 2 years because that is the DEA standard — the DSCSA 6-year requirement controls for product tracing records",
     ],
-    practiceTopicSlug: "drug-supply-chain-dscsa",
+    practiceTopicSlug: "federal-pharmacy-law",
   },
   {
     slug: "collaborative-practice-agreements",
@@ -383,7 +383,7 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Practicing under an expired or unsigned CPA — the pharmacist has no legal authority for the extended functions until the CPA is current and executed",
       "Assuming a hospital-authorized CPA extends to community pharmacy practice — CPA authority is typically site-specific unless expressly stated otherwise",
     ],
-    practiceTopicSlug: "collaborative-practice-agreements",
+    practiceTopicSlug: "state-practice-act",
   },
   {
     slug: "immunization-authority",
@@ -415,7 +415,7 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Administering a vaccine to a pediatric patient without verifying whether state law requires a prescription or parental consent for that age group",
       "Failing to document the VIS edition date and the date it was given — both are legally required elements of the immunization record",
     ],
-    practiceTopicSlug: "immunization-authority",
+    practiceTopicSlug: "state-practice-act",
   },
   {
     slug: "mail-order-internet-pharmacy",
@@ -447,7 +447,7 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Assuming a pharmacy licensed in one state can ship to patients in all 50 states — each destination state requires its own pharmacy license or reciprocity",
       "Treating internet pharmacy EPCS requirements as optional — EPCS for internet-dispensed Schedule II drugs must meet all DEA 21 CFR Part 1311 requirements",
     ],
-    practiceTopicSlug: "mail-order-internet-pharmacy",
+    practiceTopicSlug: "federal-pharmacy-law",
   },
   {
     slug: "board-inspections",
@@ -479,6 +479,6 @@ export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
       "Permitting inspectors to remove original controlled substance records without retaining copies — always make copies before records are taken and document what was removed",
       "Failing to respond to inspection findings within the specified timeframe — late responses are treated as failure to correct and can escalate to formal board action",
     ],
-    practiceTopicSlug: "board-inspections",
+    practiceTopicSlug: "pharmacy-operations",
   },
 ]);

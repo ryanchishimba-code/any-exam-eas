@@ -34,7 +34,7 @@ const AI_TELLTALE_PATTERNS: RegExp[] = [
 const CLINICAL_DATA_PATTERN =
   /\d+\s*(?:mg\/dL|mEq\/L|mm Hg|\/min|× 10|g\/dL|mIU\/mL|°C|°F|U\/L|mm|%)/;
 
-const AGE_PATTERN = /\b\d{1,3}[- ]year[- ]old\b/i;
+const AGE_PATTERN = /\b\d{1,3}[- ](?:year|month|week|day)[- ]old\b/i;
 
 const LEAD_IN_PATTERN =
   /(?:most likely|most appropriate|best explains|best describes|mechanism|next step|diagnosis|management|treatment|prophylactic)/i;

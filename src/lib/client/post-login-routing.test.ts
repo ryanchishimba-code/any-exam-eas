@@ -20,10 +20,10 @@ describe("resolvePostLoginDestination", () => {
     ).toBe("/select-exam");
   });
 
-  it("sends unpaid users to pricing when they already have an exam", () => {
+  it("sends unpaid users to trial checkout when they already have an exam", () => {
     expect(
       resolvePostLoginDestination("/dashboard", { hasAccess: false }, "nclex")
-    ).toBe("/pricing?paywall=1");
+    ).toBe("/checkout?plan=trial");
   });
 
   it("returns dashboard for subscribed users with an exam", () => {

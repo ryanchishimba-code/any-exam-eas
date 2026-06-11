@@ -18,7 +18,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Heart Failure: Guideline-Directed Medical Therapy",
     overview:
       "Master the four pillars of HFrEF therapy, diuretic strategy, and when to start each agent — a core NAPLEX pharmacotherapy module.",
-    practiceTopicSlug: "cardiology",
+    practiceTopicSlug: "cardiovascular-rx",
     reviewModule: HEART_FAILURE_MODULE,
     sortOrder: 0,
   }),
@@ -38,7 +38,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Diabetes Pharmacotherapy",
     overview:
       "Insulin kinetics, metformin renal rules, SGLT2i/GLP-1 agents, hypoglycemia treatment, sick-day management, and U-500 safety for NAPLEX.",
-    practiceTopicSlug: "insulin-diabetes-management",
+    practiceTopicSlug: "endocrine-rx",
     reviewModule: DIABETES_PHARMACOTHERAPY_MODULE,
     sortOrder: 2,
   }),
@@ -48,7 +48,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Sepsis & Shock Prioritization",
     overview:
       "Recognize sepsis early, prioritize the sepsis bundle, and distinguish shock types for safe NCLEX clinical judgment.",
-    practiceTopicSlug: "critical-care",
+    practiceTopicSlug: "physiological-adaptation",
     reviewModule: SEPSIS_MODULE,
     sortOrder: 0,
   }),
@@ -58,7 +58,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Delegation & Scope of Practice",
     overview:
       "Assign tasks safely using the five rights while the RN retains accountability — a core NCLEX management module.",
-    practiceTopicSlug: "delegation",
+    practiceTopicSlug: "management-of-care",
     reviewModule: DELEGATION_MODULE,
     sortOrder: 1,
   }),
@@ -78,7 +78,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Controlled Substance Prescribing & Recordkeeping",
     overview:
       "CSA schedules, valid Rx elements, CII rules, inventory accountability, and corresponding responsibility for MPJE.",
-    practiceTopicSlug: "federal-law",
+    practiceTopicSlug: "controlled-substances",
     reviewModule: CONTROLLED_SUBSTANCES_MODULE,
     sortOrder: 0,
   }),

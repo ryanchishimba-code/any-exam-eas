@@ -1,4 +1,4 @@
-import type { EnrichedBankItem } from "./seed-helpers";
+import type { EnrichedBankItem, RelatedStudyMeta } from "./seed-helpers";
 import { enrichItem } from "./seed-helpers";
 import type { BlueprintDomain, ExamItemType, ExamReference } from "./types";
 
@@ -9,6 +9,8 @@ type UsmleMeta = Partial<EnrichedBankItem> & {
   stepLevel: UsmleStepLevel;
   blueprintSystem?: string;
   references?: ExamReference[];
+  /** Memory card / review module cross-links for QuestionRelatedLinks. */
+  related?: RelatedStudyMeta;
 };
 
 function baseTags(meta: UsmleMeta, extra: string[] = []) {
@@ -19,6 +21,7 @@ function payload(meta: UsmleMeta, extra: Record<string, unknown> = {}) {
   return {
     stepLevel: meta.stepLevel,
     blueprintSystem: meta.blueprintSystem,
+    ...meta.related,
     ...extra,
   };
 }
