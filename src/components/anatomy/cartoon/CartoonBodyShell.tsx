@@ -99,11 +99,6 @@ export function CartoonBodyShell({ ghost = false }: Props) {
   const { shellGeo, shadowGeo, hairGeo } = useMemo(() => buildBodyGeometries(), []);
   const f = FIGURE;
   const faceTransform = useMemo(() => getFigureFaceTransform(f), [f]);
-
-  if (!shellGeo) return null;
-
-  const skinOpacity = ghost ? 0.44 : 0.93;
-  const skinColor = ghost ? CARTOON_SKIN_GHOST : CARTOON_SKIN;
   const cavityGeo = useMemo(() => {
     if (!ghost) return null;
     const inner = torsoLathe(f);
@@ -111,6 +106,11 @@ export function CartoonBodyShell({ ghost = false }: Props) {
     inner.computeVertexNormals();
     return inner;
   }, [f, ghost]);
+
+  if (!shellGeo) return null;
+
+  const skinOpacity = ghost ? 0.44 : 0.93;
+  const skinColor = ghost ? CARTOON_SKIN_GHOST : CARTOON_SKIN;
 
   return (
     <group renderOrder={ghost ? 0 : 4}>
