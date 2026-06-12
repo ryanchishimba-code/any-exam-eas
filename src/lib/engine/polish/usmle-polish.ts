@@ -1,7 +1,4 @@
 import type { BankItem } from "@/lib/question-bank";
-import type { ExamQuestion } from "@/lib/ai";
-import { enrichQuestion } from "@/lib/engine/stages/enrich-questions";
-import { splitCombinedStem } from "@/lib/engine/prompts/vignette";
 import {
   hasEtiologyOrPathophysiology,
   hasSignsAndSymptoms,
@@ -19,7 +16,12 @@ const WEAK_CORRECT_PATTERNS = [
   /^Patient safety measure specific to/i,
   /^High-yield fact about/i,
   /consistent with the leading diagnosis$/i,
+  /empiric therapy required/i,
+  /pending culture/i,
 ];
+
+/** Diagnosis answer choices must not embed management instructions. */
+const DIAGNOSIS_OPTION_WEAK = /empiric therapy|pending culture|start antibiotics|dexamethasone|deliver immediately/i;
 
 const WEAK_OPTION_PATTERNS = [
   /^Defer all assessment until imaging/i,
@@ -254,7 +256,7 @@ const CLINICAL_CASES: UsmleCase[] = [
     condition: "Bacterial meningitis",
     mechanism:
       "Pathogenic bacteria cross blood-brain barrier → neutrophilic pleocytosis, low CSF glucose, and elevated protein",
-    diagnosis: "Acute bacterial meningitis pending culture (empiric therapy required)",
+    diagnosis: "Acute bacterial meningitis",
     initialTest: "Blood cultures and lumbar puncture (or empiric antibiotics if LP delayed)",
     nextStep: "Empiric IV antibiotics and dexamethasone immediately; do not delay treatment for imaging if unstable",
     firstLineTx: "Ceftriaxone plus vancomycin (add ampicillin if Listeria risk); dexamethasone before or with first antibiotic dose",
@@ -441,10 +443,44 @@ function pickCase(seed: number, subjectId: string): UsmleCase {
   );
   const pool = tagged.length >= 3 ? tagged : CLINICAL_CASES;
   const base = pool[Math.abs(seed) % pool.length]!;
+  return jitterCaseAge(base, seed);
+}
+
+function jitterCaseAge(clinical: UsmleCase, seed: number): UsmleCase {
   return {
-    ...base,
-    age: Math.max(2, base.age + ((Math.abs(seed) % 5) - 2)),
+    ...clinical,
+    age: Math.max(2, clinical.age + ((Math.abs(seed) % 5) - 2)),
   };
+}
+
+/** Prefer a curated case when legacy stem/answer already signal a specific condition. */
+function pickCaseFromLegacy(stem: string, correctAnswer: string, subjectId: string): UsmleCase | null {
+  const haystack = `${stem} ${correctAnswer}`.toLowerCase();
+  let best: { clinical: UsmleCase; score: number } | null = null;
+
+  for (const clinical of CLINICAL_CASES) {
+    let score = 0;
+    if (clinical.subjectTags.includes(subjectId) || subjectId === "internal-medicine") score += 1;
+
+    const diagnosisKey = clinical.diagnosis.toLowerCase();
+    if (haystack.includes(diagnosisKey)) score += 8;
+
+    const conditionKey = clinical.condition.toLowerCase().replace(/\s*\([^)]*\)/g, "").trim();
+    if (conditionKey.length >= 4 && haystack.includes(conditionKey)) score += 6;
+
+    for (const token of clinical.chiefComplaint.split(/,|;|\band\b/i)) {
+      const t = token.trim().toLowerCase();
+      if (t.length >= 5 && haystack.includes(t)) score += 3;
+    }
+
+    for (const related of clinical.relatedDiagnoses) {
+      if (haystack.includes(related.toLowerCase())) score += 2;
+    }
+
+    if (!best || score > best.score) best = { clinical, score };
+  }
+
+  return best && best.score >= 6 ? best.clinical : null;
 }
 
 function stripPrefix(question: string): string {
@@ -457,6 +493,73 @@ function hasRichVignette(text: string): boolean {
   const hasVitals = /BP|HR|RR|SpO₂|SpO2|temp|mg\/dL|mmHg|ECG|CT|WBC|pH|troponin/i.test(vignette);
   const hasDemo = /\d{1,3}[-‑]?\s*(?:year|yo|y\.o\.)/i.test(vignette);
   return vignette.length >= 100 && hasDemo && hasVitals;
+}
+
+/** True when the vignette paragraph is duplicated back-to-back in the stem. */
+export function hasDuplicateVignette(question: string): boolean {
+  if (!question.includes("\n\n")) return false;
+  const parts = question.split("\n\n").map((p) => p.trim()).filter(Boolean);
+  return parts.length >= 2 && parts[0] === parts[1];
+}
+
+export function dedupeVignetteStem(question: string): string {
+  if (!hasDuplicateVignette(question)) return question;
+  const parts = question.split("\n\n").map((p) => p.trim()).filter(Boolean);
+  if (parts.length >= 3 && parts[0] === parts[1]) {
+    return `${parts[0]}\n\n${parts.slice(2).join("\n\n")}`;
+  }
+  return question;
+}
+
+function cleanDiagnosisLabel(text: string): string {
+  return text
+    .replace(/\s*\(empiric therapy required\)\s*/gi, " ")
+    .replace(/\s*pending culture\s*/gi, " ")
+    .replace(/\s*empiric therapy required\s*/gi, " ")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+/** Fast surgical fixes — dedupe stem, strip management language from diagnosis labels. */
+export function applyUsmleStemRepairs(item: BankItem): BankItem {
+  const question = dedupeVignetteStem(item.question);
+  let correctAnswer = item.correctAnswer;
+  let options = [...item.options] as [string, string, string, string];
+
+  if (DIAGNOSIS_OPTION_WEAK.test(correctAnswer)) {
+    correctAnswer = cleanDiagnosisLabel(correctAnswer);
+  }
+  options = options.map((o) =>
+    DIAGNOSIS_OPTION_WEAK.test(o) ? cleanDiagnosisLabel(o) : o
+  ) as [string, string, string, string];
+
+  if (
+    question === item.question &&
+    correctAnswer === item.correctAnswer &&
+    JSON.stringify(options) === JSON.stringify(item.options)
+  ) {
+    return item;
+  }
+
+  return { ...item, question, correctAnswer, options };
+}
+
+function stemNeedsRepair(item: BankItem): boolean {
+  return (
+    hasDuplicateVignette(item.question) ||
+    DIAGNOSIS_OPTION_WEAK.test(item.correctAnswer) ||
+    item.options.some((o) => DIAGNOSIS_OPTION_WEAK.test(o))
+  );
+}
+
+function needsUsmleFullPolish(item: BankItem, fieldId = "usmle-step-2"): boolean {
+  return (
+    scoreUsmleBankItem(item, fieldId) < 0.62 ||
+    CASE_PREFIX.test(item.question) ||
+    !hasRichVignette(item.question) ||
+    WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer)) ||
+    item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)))
+  );
 }
 
 export function scoreUsmleBankItem(item: BankItem, fieldId = "usmle-step-2"): number {
@@ -482,6 +585,9 @@ export function scoreUsmleBankItem(item: BankItem, fieldId = "usmle-step-2"): nu
 
   if (WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer))) score -= 0.24;
   if (item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)))) score -= 0.2;
+  if (hasDuplicateVignette(text)) score -= 0.22;
+  if (DIAGNOSIS_OPTION_WEAK.test(item.correctAnswer)) score -= 0.18;
+  if (item.options.some((o) => DIAGNOSIS_OPTION_WEAK.test(o))) score -= 0.12;
 
   if (isStep1Field(fieldId, item.subjectId ?? "") && /mechanism|MOA|pathophys|enzyme|receptor/i.test(item.explanation)) {
     score += 0.04;
@@ -504,12 +610,31 @@ type TemplateKind =
   | "complication"
   | "moa";
 
+function inferTemplateFromStem(stem: string): TemplateKind | null {
+  const s = stem.toLowerCase();
+  if (/which diagnosis|most likely diagnosis|what is the diagnosis|diagnosis best explains/i.test(s)) {
+    return "diagnosis";
+  }
+  if (/next best step|next step in management|action should be taken next/i.test(s)) return "next_step";
+  if (/initial (diagnostic )?test|diagnostic test is most appropriate/i.test(s)) return "initial_test";
+  if (/management approach|initial treatment|most appropriate treatment/i.test(s)) return "management";
+  if (/complication|adverse outcome/i.test(s)) return "complication";
+  if (/mechanism of action|\bmoa\b/i.test(s)) return "moa";
+  if (/mechanism best explains|underlying mechanism/i.test(s)) return "mechanism";
+  if (/pathophysiologic|pathophysiology/i.test(s)) return "pathophysiology";
+  if (/laboratory finding|lab data|interpretation of the lab/i.test(s)) return "lab";
+  return null;
+}
+
 function detectTemplate(
   stem: string,
   fieldId: string,
   subjectId: string,
   seed: number
 ): TemplateKind {
+  const fromStem = inferTemplateFromStem(stem);
+  if (fromStem) return fromStem;
+
   const step1 = isStep1Field(fieldId, subjectId);
 
   const step1Pools: Record<string, TemplateKind[]> = {
@@ -542,15 +667,26 @@ function detectTemplate(
   return pool[Math.abs(seed) % pool.length]!;
 }
 
-function buildVignette(clinical: UsmleCase, seed: number): string {
+function summarizeLabsForDiagnosis(labs: string): string {
+  return labs
+    .replace(
+      /CSF WBC [\d,]+[^;]*/gi,
+      "CSF studies show neutrophilic pleocytosis with low glucose and elevated protein"
+    )
+    .replace(/lumbar puncture:\s*/gi, "");
+}
+
+function buildVignette(clinical: UsmleCase, seed: number, template?: TemplateKind): string {
   const sexLabel = clinical.sex === "man" ? "man" : "woman";
   const ageLabel =
     clinical.age < 18 ? `${clinical.age}-year-old boy` : `${clinical.age}-year-old ${sexLabel}`;
+  const labs =
+    template === "diagnosis" ? summarizeLabsForDiagnosis(clinical.labs) : clinical.labs;
   return [
     `A ${ageLabel} presents to the ${clinical.setting} with ${clinical.chiefComplaint}.`,
     `${clinical.history}. Vital signs: ${clinical.vitals}.`,
     `Physical examination: ${clinical.exam}.`,
-    `Laboratory/imaging: ${clinical.labs}.`,
+    `Laboratory/imaging: ${labs}.`,
     `Encounter ${1000 + (Math.abs(seed) % 9000)}.`,
   ].join(" ");
 }
@@ -619,7 +755,7 @@ function rebuildCase(
   seed: number
 ) {
   const slot = Math.abs(seed) % 4;
-  const vignette = buildVignette(clinical, seed);
+  const vignette = buildVignette(clinical, seed, template);
   const question = leadIn(template, seed);
 
   switch (template) {
@@ -755,7 +891,7 @@ function buildUsmleExplanation(
     pathophysiology: `Pathophysiology explains why ${clinical.exam.split(";")[0]?.trim().toLowerCase() ?? "the exam finding"} occurs in ${clinical.condition}.`,
     lab: `Lab interpretation must match the clinical context — isolated values without integration are insufficient.`,
     moa: `Pharmacology items require linking drug target/receptor to therapeutic effect or toxicity in this presentation.`,
-    diagnosis: `The diagnosis is supported by the combination of ${clinical.vitals.split(",")[0]?.trim()} and ${clinical.labs.split(";")[0]?.trim()}.`,
+    diagnosis: `The diagnosis is supported by the combination of ${clinical.vitals.split(",")[0]?.trim()} and ${clinical.labs.split(";")[0]?.trim()}. Empiric antibiotics are the next step when bacterial meningitis is suspected — they are not part of the diagnosis label.`,
     next_step: `Next best step follows stabilization, diagnosis confirmation, and guideline-directed therapy for ${clinical.condition}.`,
     initial_test: `Initial testing should confirm or exclude life-threatening diagnoses before low-yield broad workups.`,
     management: `First-line management for ${clinical.condition} follows current evidence-based guidelines.`,
@@ -798,52 +934,8 @@ function buildUsmleExplanation(
     .join("\n");
 }
 
-function bankItemToExam(item: BankItem, subjectId?: string): ExamQuestion {
-  const split = splitCombinedStem({
-    id: 1,
-    type: "multiple_choice",
-    question: item.question,
-    options: [...item.options],
-    correctAnswer: item.correctAnswer,
-    explanation: item.explanation,
-  });
-
-  return {
-    id: 1,
-    type: "multiple_choice",
-    question: split.question,
-    vignette: split.vignette,
-    options: [...item.options],
-    correctAnswer: item.correctAnswer,
-    explanation: item.explanation,
-    tags: item.tags ?? [subjectId ?? "medicine"],
-    highYield: true,
-  };
-}
-
-function examToBankItem(base: BankItem, exam: ExamQuestion): BankItem {
-  const stem = exam.vignette?.trim()
-    ? `${exam.vignette.trim()}\n\n${exam.question.trim()}`
-    : exam.question.trim();
-
-  return {
-    ...base,
-    question: stem,
-    options: (exam.options?.slice(0, 4) ?? base.options) as [string, string, string, string],
-    correctAnswer: exam.correctAnswer,
-    explanation: exam.explanation,
-    tags: exam.tags ?? base.tags,
-  };
-}
-
 export function needsUsmlePolish(item: BankItem, fieldId = "usmle-step-2"): boolean {
-  return (
-    scoreUsmleBankItem(item, fieldId) < 0.62 ||
-    CASE_PREFIX.test(item.question) ||
-    !hasRichVignette(item.question) ||
-    WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer)) ||
-    item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)))
-  );
+  return stemNeedsRepair(item) || needsUsmleFullPolish(item, fieldId);
 }
 
 /** Polish a single USMLE bank item — mechanisms, diagnosis, next best step, competitive distractors. */
@@ -855,35 +947,43 @@ export function polishUsmleBankItem(
   seed = 0
 ): UsmlePolishResult {
   const qualityBefore = scoreUsmleBankItem(item, fieldId);
-  const hasWeakPatterns =
-    WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer)) ||
-    item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)));
 
-  if (!needsUsmlePolish(item, fieldId) && !hasWeakPatterns && hasRichVignette(item.question)) {
-    return { item, changed: false, qualityBefore, qualityAfter: qualityBefore };
+  if (!needsUsmleFullPolish(item, fieldId)) {
+    const repaired = applyUsmleStemRepairs(item);
+    const qualityAfter = scoreUsmleBankItem(repaired, fieldId);
+    const changed =
+      repaired.question !== item.question ||
+      repaired.correctAnswer !== item.correctAnswer ||
+      JSON.stringify(repaired.options) !== JSON.stringify(item.options);
+    return { item: repaired, changed, qualityBefore, qualityAfter };
   }
 
   const stem = stripPrefix(item.question);
-  const clinical = pickCase(
-    seed + (subjectId?.length ?? 0) + stem.length + (item.correctAnswer?.length ?? 0),
-    subjectId
+  const legacyCase = pickCaseFromLegacy(stem, item.correctAnswer ?? "", subjectId);
+  const clinical = jitterCaseAge(
+    legacyCase ??
+      pickCase(
+        seed + (subjectId?.length ?? 0) + stem.length + (item.correctAnswer?.length ?? 0),
+        subjectId
+      ),
+    seed
   );
   const template = detectTemplate(stem, fieldId, subjectId, seed);
   const rebuilt = rebuildCase(template, clinical, subjectLabel, seed);
 
-  const working: BankItem = {
+  const polished = applyUsmleStemRepairs({
     ...item,
     question: `${rebuilt.vignette}\n\n${rebuilt.question}`,
     options: rebuilt.options,
     correctAnswer: rebuilt.correctAnswer,
     explanation: buildUsmleExplanation(rebuilt, fieldId, subjectId),
-    tags: [...(item.tags ?? []).filter((t) => t !== "generated"), "usmle-polished", template, subjectId],
-  };
-
-  let exam = bankItemToExam(working, subjectId);
-  exam = enrichQuestion(exam, fieldId);
-
-  const polished = examToBankItem(working, exam);
+    tags: [
+      ...(item.tags ?? []).filter((t) => t !== "generated" && t !== "bulk-bank"),
+      "usmle-polished",
+      template,
+      subjectId,
+    ],
+  });
   const qualityAfter = scoreUsmleBankItem(polished, fieldId);
 
   const changed =

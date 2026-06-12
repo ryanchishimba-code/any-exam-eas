@@ -7,6 +7,7 @@ import { MPJE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/mpje-physic
 import { NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/naplex-physician-educator-batch-01";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-01";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_02 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-02";
+import { USMLE_PHYSICIAN_EDUCATOR_BATCH_03 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-03";
 import { assertMpjePhysicianEducatorQuality } from "./mpje-physician-educator-quality";
 import { assertNaplexPhysicianEducatorQuality } from "./naplex-physician-educator-quality";
 import { assertUsmlePhysicianEducatorQuality } from "./usmle-physician-educator-quality";
@@ -20,6 +21,10 @@ describe("Question seed QA gate", () => {
 
   it("USMLE physician-educator batch 02 (curated vignettes)", () => {
     assertUsmlePhysicianEducatorQuality(USMLE_PHYSICIAN_EDUCATOR_BATCH_02);
+  });
+
+  it("USMLE physician-educator batch 03 (curated vignettes)", () => {
+    assertUsmlePhysicianEducatorQuality(USMLE_PHYSICIAN_EDUCATOR_BATCH_03);
   });
 
   it("NAPLEX physician-educator batch 01 (curated pharmacy items)", () => {

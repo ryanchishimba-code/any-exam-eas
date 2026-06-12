@@ -9,6 +9,7 @@ import { WEAK_AREA_MEMORY_CARD_MAP } from "@/lib/reference/memory-cards";
 import { MEMORY_CARDS } from "@/lib/reference/seeds";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-01";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_02 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-02";
+import { USMLE_PHYSICIAN_EDUCATOR_BATCH_03 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-03";
 import { NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/naplex-physician-educator-batch-01";
 import { MPJE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/mpje-physician-educator-batch-01";
 import { NCLEX_CURATED_QUALITY } from "@/lib/exam-prep/nclex-curated-quality";
@@ -85,6 +86,7 @@ describe("question ngnPayload related-content integrity", () => {
   const BATCHES: Array<[string, ExamSlug, EnrichedBankItem[]]> = [
     ["usmle batch 01", "usmle", USMLE_PHYSICIAN_EDUCATOR_BATCH_01],
     ["usmle batch 02", "usmle", USMLE_PHYSICIAN_EDUCATOR_BATCH_02],
+    ["usmle batch 03", "usmle", USMLE_PHYSICIAN_EDUCATOR_BATCH_03],
     ["naplex batch 01", "naplex", NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01],
     ["mpje batch 01", "mpje", MPJE_PHYSICIAN_EDUCATOR_BATCH_01],
     ["nclex curated", "nclex", NCLEX_CURATED_QUALITY],

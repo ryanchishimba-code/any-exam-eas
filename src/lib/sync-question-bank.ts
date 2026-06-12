@@ -62,6 +62,15 @@ export async function syncQuestionBank(): Promise<SyncQuestionBankResult> {
   return inFlightSync;
 }
 
+function isCuratedSeedItem(item: BankItem): boolean {
+  const tags = item.tags ?? [];
+  if (tags.includes("physician-educator")) return true;
+  if (tags.includes("clinical-vignette") && !tags.includes("bulk-bank")) return true;
+  if (tags.includes("v2") && !tags.includes("bulk-bank")) return true;
+  if (tags.includes("edtech-seed") && !tags.includes("bulk-bank")) return true;
+  return false;
+}
+
 function rowToCreateData(
   fieldId: string,
   subjectId: string,
@@ -92,6 +101,7 @@ function rowToCreateData(
     source,
     contentHash,
     active: true,
+    qaPassed: source === "seed" && isCuratedSeedItem(item),
   };
 }
 

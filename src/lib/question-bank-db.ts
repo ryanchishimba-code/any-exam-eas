@@ -11,6 +11,11 @@ import {
   sampleMpjeFederalOnlyItems,
   sampleMpjeQuestionBankItems,
 } from "@/lib/mpje/sample-bank";
+import {
+  curatedSampleTarget,
+  curatedUsmleWhereClause,
+  isUsmleFieldId,
+} from "@/lib/question-bank/usmle-curated";
 /** Max rows read per sample query (keeps Neon queries bounded). */
 export const QUESTION_BANK_SAMPLE_MAX_PULL = 500;
 
@@ -144,18 +149,31 @@ export async function sampleQuestionBankItems(params: {
   }
 
   const want = Math.max(1, params.count);
-  const multiplier = params.poolMultiplier ?? 2;
-  const pullTarget = Math.min(
-    QUESTION_BANK_SAMPLE_MAX_PULL,
-    Math.max(want * multiplier, want + 20)
-  );
-
   const where = activeSubjectWhere(params.fieldId, params.subjectId);
   const total = await prisma.questionBankItem.count({ where });
 
   if (total === 0) {
     return staticSeedFallback(params.fieldId, params.subjectId, want);
   }
+
+  if (isUsmleFieldId(params.fieldId)) {
+    return sampleUsmleSubjectItems(params.fieldId, params.subjectId, want, where, total);
+  }
+
+  return sampleSubjectItemsRandom(want, where, total, params.poolMultiplier);
+}
+
+async function sampleSubjectItemsRandom(
+  want: number,
+  where: ReturnType<typeof activeSubjectWhere>,
+  total: number,
+  poolMultiplier?: number
+): Promise<BankItem[]> {
+  const multiplier = poolMultiplier ?? 2;
+  const pullTarget = Math.min(
+    QUESTION_BANK_SAMPLE_MAX_PULL,
+    Math.max(want * multiplier, want + 20)
+  );
 
   if (total <= want) {
     const rows = await prisma.questionBankItem.findMany({ where });
@@ -179,6 +197,48 @@ export async function sampleQuestionBankItems(params: {
       ...shuffleBankItems(rows.map(rowToBankItem)),
     ]);
     attempts++;
+  }
+
+  return shuffleBankItems(collected).slice(0, want);
+}
+
+async function sampleUsmleSubjectItems(
+  fieldId: string,
+  subjectId: string,
+  want: number,
+  baseWhere: ReturnType<typeof activeSubjectWhere>,
+  total: number
+): Promise<BankItem[]> {
+  const curatedWhere = { ...baseWhere, ...curatedUsmleWhereClause() };
+  const curatedTotal = await prisma.questionBankItem.count({ where: curatedWhere });
+  const curatedWant = curatedSampleTarget(want, curatedTotal);
+
+  let collected: BankItem[] = [];
+
+  if (curatedWant > 0) {
+    const curatedRows = await prisma.questionBankItem.findMany({
+      where: curatedWhere,
+      take: Math.min(curatedTotal, Math.max(curatedWant * 3, curatedWant + 10)),
+      skip:
+        curatedTotal > curatedWant
+          ? Math.floor(Math.random() * Math.max(0, curatedTotal - curatedWant))
+          : 0,
+      orderBy: { id: "asc" },
+    });
+    collected = dedupeBankItemsByStem(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
+      0,
+      curatedWant
+    );
+  }
+
+  const remaining = want - collected.length;
+  if (remaining > 0) {
+    const general = await sampleSubjectItemsRandom(remaining, baseWhere, total, 2);
+    collected = dedupeBankItemsByStem([...collected, ...general]);
+  }
+
+  if (collected.length === 0) {
+    return staticSeedFallback(fieldId, subjectId, want);
   }
 
   return shuffleBankItems(collected).slice(0, want);

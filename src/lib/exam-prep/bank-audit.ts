@@ -3,6 +3,7 @@
  * NCLEX (nursing) adds clinical vignette rules on top of shared checks.
  */
 import type { BankItem } from "@/lib/question-bank";
+import { hasDuplicateVignette } from "@/lib/engine/polish/usmle-polish";
 import { hasOrphanDeicticStem } from "@/lib/engine/prompts/vignette";
 import {
   auditNclexBankItem,
@@ -147,6 +148,22 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
 
   if (fieldId.startsWith("usmle") && stem.length < 40 && !vignette) {
     push("warn", "usmle_short_stem", "USMLE item lacks a clinical vignette.");
+  }
+
+  if (fieldId.startsWith("usmle") && hasDuplicateVignette(item.question)) {
+    push("error", "duplicate_vignette_block", "Vignette paragraph is duplicated in the question stem.");
+  }
+
+  if (
+    fieldId.startsWith("usmle") &&
+    (/empiric therapy required|pending culture/i.test(item.correctAnswer) ||
+      item.options.some((o) => /empiric therapy required|pending culture/i.test(o)))
+  ) {
+    push(
+      "error",
+      "diagnosis_management_mixed",
+      "Diagnosis answer or option embeds management language (empiric therapy / pending culture)."
+    );
   }
 
   const errors = issues.filter((i) => i.severity === "error");
