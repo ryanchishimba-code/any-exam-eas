@@ -24,8 +24,10 @@ export function LiveBankStats({
 
   useEffect(() => {
     fetch("/api/catalog/subjects")
-      .then((r) => r.json())
-      .then((data: CatalogResponse) => setStats(data))
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: CatalogResponse | null) =>
+        setStats(data && Array.isArray(data.subjects) ? data : null)
+      )
       .catch(() => setStats(null));
   }, []);
 

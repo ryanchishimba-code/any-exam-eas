@@ -68,7 +68,30 @@ export async function GET() {
       headers: { "Cache-Control": "private, max-age=60" },
     });
   } catch (e) {
-    const message = e instanceof Error ? e.message : "Catalog unavailable";
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("[catalog/subjects] lookup failed:", e);
+
+    // Serve stale cache if we have one, otherwise a count-free catalog, so a
+    // DB outage degrades the marketing pages instead of breaking them. Never
+    // leak raw database errors to the client.
+    if (catalogCache) {
+      return NextResponse.json(catalogCache.payload, {
+        headers: { "Cache-Control": "private, max-age=30" },
+      });
+    }
+
+    const fallback: CatalogPayload = {
+      subjects: getSubjectCatalog().map((entry) => ({
+        ...entry,
+        questionCount: 0,
+        topicCount: getSubjectsForFieldId(entry.fieldId).length,
+      })),
+      trending: getTrendingSubjects(),
+      recommended: getRecommendedSubjects(),
+      totalQuestions: 0,
+      updatedAt: new Date().toISOString(),
+    };
+    return NextResponse.json(fallback, {
+      headers: { "Cache-Control": "private, max-age=30" },
+    });
   }
 }
