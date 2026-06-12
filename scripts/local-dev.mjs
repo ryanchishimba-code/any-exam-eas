@@ -1,43 +1,44 @@
 #!/usr/bin/env node
 /**
- * Start local dev with the repo-bundled Node (no global npm required).
- * Usage: ./start-local.sh  OR  node scripts/local-dev.mjs
+ * Start local dev with cache repair, port cleanup, and stable auth URLs.
+ * Usage: npm run dev  OR  ./start-local.sh
  */
 import { spawn, spawnSync, execSync } from "node:child_process";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  DEV_DEFAULT_HOST,
+  DEV_DEFAULT_PORT,
+  devServerUrl,
+  resolveDevRuntime,
+} from "./dev-runtime.mjs";
 import { clearNextCacheIfNeeded, forceClearNextCache } from "./next-cache-utils.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const nodeDir = path.join(root, ".tools", "node-v22.14.0-darwin-arm64", "bin");
-const npm = path.join(nodeDir, "npm");
-const node = path.join(nodeDir, "node");
-const npx = path.join(nodeDir, "npx");
+const runtime = resolveDevRuntime();
 const nextBin = path.join(root, "node_modules", "next", "dist", "bin", "next");
 const ensureDevCache = path.join(root, "scripts", "ensure-dev-cache.mjs");
-const PORT = Number(process.env.PORT ?? 3000);
-const HOST = process.env.HOST ?? "127.0.0.1";
-
-if (!existsSync(node)) {
-  console.error(
-    "Bundled Node not found at .tools/node-v22.14.0-darwin-arm64\n" +
-      "Install Node 20+ (brew install node) or run: npm install && npm run dev"
-  );
-  process.exit(1);
-}
+const PORT = Number(process.env.PORT ?? DEV_DEFAULT_PORT);
+const HOST = process.env.HOST ?? DEV_DEFAULT_HOST;
+const baseUrl = devServerUrl(HOST, PORT);
 
 if (!existsSync(nextBin)) {
   console.error("node_modules missing. Run: npm install");
   process.exit(1);
 }
 
+if (runtime.source === "system") {
+  console.log("Using system Node (bundled .tools Node not found).\n");
+}
+
 const env = {
   ...process.env,
-  PATH: `${nodeDir}:${process.env.PATH ?? ""}`,
-  NEXTAUTH_URL: process.env.NEXTAUTH_URL ?? `http://${HOST}:${PORT}`,
-  AUTH_URL: process.env.AUTH_URL ?? process.env.NEXTAUTH_URL ?? `http://${HOST}:${PORT}`,
-  // Avoid EMFILE (too many open files) on macOS when native file watchers fail.
+  PATH: runtime.binDir ? `${runtime.binDir}:${process.env.PATH ?? ""}` : process.env.PATH,
+  HOST,
+  PORT: String(PORT),
+  NEXTAUTH_URL: process.env.NEXTAUTH_URL ?? baseUrl,
+  AUTH_URL: process.env.AUTH_URL ?? process.env.NEXTAUTH_URL ?? baseUrl,
   WATCHPACK_POLLING: process.env.WATCHPACK_POLLING ?? "true",
   CHOKIDAR_USEPOLLING: process.env.CHOKIDAR_USEPOLLING ?? "true",
 };
@@ -88,22 +89,18 @@ function freePort(port) {
 }
 
 function cleanNextCache() {
-  // Always repair corrupted cache — even when SKIP_NEXT_CLEAN=1.
   if (clearNextCacheIfNeeded(root)) return;
-
-  if (process.env.SKIP_NEXT_CLEAN === "1") {
-    return;
-  }
-
+  if (process.env.SKIP_NEXT_CLEAN === "1") return;
   forceClearNextCache(root);
 }
 
 console.log("Any Exam Easy — local dev\n");
-console.log(`  URL:      http://${HOST}:${PORT}`);
-console.log("  Login:    http://localhost:3000/login");
+console.log(`  URL:      ${baseUrl}`);
+console.log(`  Login:    ${baseUrl}/login`);
 console.log("  Dev user: dev@anyexameasy.test / DevPassword1!");
-console.log("  Tip:      SEED=1 ./start-local.sh to refresh dev admin account");
-console.log("  Tip:      SKIP_NEXT_CLEAN=1 ./start-local.sh to keep .next between restarts");
+console.log("  Tip:      SEED=1 npm run dev to refresh dev admin account");
+console.log("  Tip:      SKIP_NEXT_CLEAN=1 npm run dev to keep .next between restarts");
+console.log("  Tip:      npm run dev:fresh after npm run build if you see chunk errors");
 console.log("");
 
 freePort(PORT);
@@ -111,9 +108,11 @@ await sleep(600);
 cleanNextCache();
 await sleep(200);
 
+console.log("Checking dev cache…");
+spawnSync(runtime.node, [ensureDevCache], { cwd: root, env, stdio: "inherit" });
+
 console.log("Generating Prisma client…");
-spawnSync(node, [ensureDevCache], { cwd: root, env, stdio: "inherit" });
-const gen = spawnSync(npx, ["prisma", "generate"], {
+const gen = spawnSync(runtime.npx, ["prisma", "generate"], {
   cwd: root,
   env,
   stdio: "inherit",
@@ -127,7 +126,7 @@ if (gen.status !== 0) {
 
 if (process.env.SEED === "1") {
   console.log("\nEnsuring dev admin account…");
-  const seed = spawnSync(npm, ["run", "db:seed-admin"], {
+  const seed = spawnSync(runtime.npm, ["run", "db:seed-admin"], {
     cwd: root,
     env,
     stdio: "inherit",
@@ -139,9 +138,9 @@ if (process.env.SEED === "1") {
   }
 }
 
-console.log(`\nStarting Next.js on http://${HOST}:${PORT}…\n`);
+console.log(`\nStarting Next.js on ${baseUrl}…\n`);
 
-const child = spawn(node, [nextBin, "dev", "--hostname", HOST, "--port", String(PORT)], {
+const child = spawn(runtime.node, [nextBin, "dev", "--hostname", HOST, "--port", String(PORT)], {
   cwd: root,
   env,
   stdio: "inherit",

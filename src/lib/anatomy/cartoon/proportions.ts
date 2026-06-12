@@ -1,46 +1,61 @@
-/** Standing figure anchors — ~8-head canon, aligned to ANATOMY_MODULES organ layout. */
+/** Standing figure anchors — ~7.5-head adult canon, aligned to organ layout. */
 
 export const FIGURE = {
-  /** Crown center — oval head sits slightly above organ skull anchor. */
-  headY: 1.58,
+  /** Crown center — oval head sits inside cranium module. */
+  headY: 1.6,
   /** Horizontal head radius (oval is taller via headScaleY). */
-  headRadius: 0.17,
-  headScaleY: 1.28,
-  headScaleZ: 0.88,
-  neckY: 1.34,
-  neckRadius: 0.065,
-  shoulderY: 1.22,
-  /** Half-width at deltoid line — ~2.3× head width. */
-  shoulderSpan: 0.39,
-  chestY: 0.92,
-  waistY: 0.48,
-  hipY: 0.1,
-  kneeY: -0.4,
-  ankleY: -0.9,
-  footY: -0.96,
-  hipSpan: 0.18,
+  headRadius: 0.158,
+  headScaleY: 1.36,
+  headScaleZ: 0.92,
+  neckY: 1.36,
+  neckRadius: 0.054,
+  shoulderY: 1.24,
+  /** Half-width at deltoid line — ~2.45× head width. */
+  shoulderSpan: 0.4,
+  chestY: 0.94,
+  waistY: 0.5,
+  hipY: 0.06,
+  kneeY: -0.44,
+  ankleY: -0.94,
+  footY: -0.99,
+  footLength: 0.14,
+  hipSpan: 0.182,
   /** Limb radii — thighs thicker than calves, upper arms thicker than forearms. */
-  thighRadius: 0.092,
-  calfRadius: 0.062,
-  upperArmRadius: 0.068,
-  forearmRadius: 0.052,
-  /** Lateral offsets for arm chain (shoulder → elbow → wrist). */
-  elbowX: 0.5,
-  elbowY: 0.9,
-  wristX: 0.46,
-  wristY: 0.5,
-  centerZ: 0.04,
-  /** Face landmarks (eyes) relative to head center. */
-  eyeOffsetX: 0.062,
-  eyeOffsetY: 0.035,
-  eyeOffsetZ: 0.13,
-  eyeRadius: 0.022,
+  thighRadius: 0.086,
+  calfRadius: 0.054,
+  upperArmRadius: 0.058,
+  forearmRadius: 0.044,
+  /** Arm chain — slight bend at elbow, natural hang. */
+  elbowX: 0.515,
+  elbowY: 0.86,
+  elbowForward: 0.055,
+  wristX: 0.465,
+  wristY: 0.4,
+  wristForward: 0.045,
+  /** Knee/ankle forward offset for natural stance. */
+  kneeForward: 0.035,
+  centerZ: 0.05,
+  /** Face landmarks — see face-landmarks.ts (derived from headHeight). */
+  eyeOffsetX: 0.047,
+  eyeOffsetY: 0.012,
+  eyeOffsetZ: 0.138,
+  eyeRadius: 0.021,
+  noseOffsetY: -0.018,
+  noseOffsetZ: 0.148,
+  earOffsetX: 0.138,
+  earOffsetY: -0.012,
+  earOffsetZ: 0.02,
 } as const;
 
+/** Standing height ≈ 7.5× craniofacial height (young adult male canon). */
+export function getFigureHeadHeight(f: typeof FIGURE = FIGURE): number {
+  return f.headRadius * f.headScaleY * 2;
+}
+
 export const CARTOON_CAMERA = {
-  position: [0, 0.38, 4.15] as [number, number, number],
-  target: [0, 0.31, 0] as [number, number, number],
-  fov: 34,
-  minDistance: 1.4,
-  maxDistance: 7,
+  position: [0, 0.38, 4.35] as [number, number, number],
+  target: [0, 0.28, 0] as [number, number, number],
+  fov: 31,
+  minDistance: 1.65,
+  maxDistance: 7.2,
 };

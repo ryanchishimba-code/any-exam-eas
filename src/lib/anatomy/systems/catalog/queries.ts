@@ -2,9 +2,15 @@ import { ANATOMY_STRUCTURES } from "../../structures";
 import { ANATOMY_SYSTEM_LABELS, type AnatomyLayer, type AnatomyStructure, type AnatomySystem } from "../../types";
 
 const byId = new Map(ANATOMY_STRUCTURES.map((s) => [s.id, s]));
+const byMeshId = new Map(ANATOMY_STRUCTURES.map((s) => [s.meshId, s]));
 
 export function getAnatomyStructure(id: string): AnatomyStructure | undefined {
   return byId.get(id);
+}
+
+/** Resolve catalog entry by mesh group id (3D scene / atlas meshId). */
+export function getAnatomyStructureByMeshId(meshId: string): AnatomyStructure | undefined {
+  return byMeshId.get(meshId);
 }
 
 export function getAllAnatomyStructures(): AnatomyStructure[] {

@@ -37,7 +37,7 @@ export function AnatomyStudioHero({ examSlug, stats, onStartTour }: Props) {
             3D anatomy study model
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-violet-100 sm:text-base">
-            Orbit a stylized body with {stats.structureCount} clickable structures — peel the skin to
+            Orbit a 3D body model with {stats.structureCount} clickable structures — peel the skin to
             reveal organs, bones, muscles, and vessels, then jump into pearls and practice.
           </p>
         </div>

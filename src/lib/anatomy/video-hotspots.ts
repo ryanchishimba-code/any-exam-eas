@@ -1,3 +1,4 @@
+import { isIndividual3dBoneStructure } from "./bones/catalog-utils";
 import { ANATOMY_STRUCTURES } from "./structures";
 import { ANATOMY_SYSTEM_LABELS, type AnatomyLayer, type AnatomySystem } from "./types";
 
@@ -169,9 +170,11 @@ export function assertHotspotGeometry(): string[] {
   return issues;
 }
 
-/** Every catalog structure must have a video hotspot. */
+/** Every catalog structure (except 3D-only individual bones) must have a video hotspot. */
 export function assertHotspotCatalogIntegrity(): string[] {
   return ANATOMY_STRUCTURES.filter(
-    (s) => !ANATOMY_VIDEO_HOTSPOTS.some((h) => h.structureId === s.id)
+    (s) =>
+      !isIndividual3dBoneStructure(s.id) &&
+      !ANATOMY_VIDEO_HOTSPOTS.some((h) => h.structureId === s.id)
   ).map((s) => s.id);
 }

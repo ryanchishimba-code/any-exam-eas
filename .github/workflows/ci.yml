@@ -32,6 +32,9 @@ jobs:
       - name: Unit tests
         run: npm run test:unit
 
+      - name: Component tests
+        run: npm run test:component
+
       - name: Build
         env:
           DATABASE_URL: postgresql://build:build@127.0.0.1:5432/build

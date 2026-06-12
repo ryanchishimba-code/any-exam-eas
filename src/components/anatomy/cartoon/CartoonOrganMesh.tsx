@@ -24,17 +24,17 @@ function resolveOpacity(
   if (!skinOn) return baseOpacity;
   switch (layer) {
     case "bone":
-      return 0.85;
+      return 0.82;
     case "muscle":
-      return 0.78;
+      return 0.72;
     case "vascular":
-      return 0.88;
+      return 0.85;
     case "nerve":
-      return 0.65;
+      return 0.6;
     case "organ":
-      return baseOpacity * 0.5;
+      return baseOpacity * 0.38;
     default:
-      return baseOpacity * 0.5;
+      return baseOpacity * 0.45;
   }
 }
 
@@ -74,7 +74,7 @@ function OrganMeshInstance({
 
   useFrame(() => {
     if (!ref.current) return;
-    const factor = highlighted || selected ? 1.08 : hovered ? 1.04 : 1;
+    const factor = highlighted || selected ? 1.1 : hovered ? 1.05 : 1;
     targetScale.current.set(baseScale.x * factor, baseScale.y * factor, baseScale.z * factor);
     ref.current.scale.lerp(targetScale.current, 0.14);
   });
@@ -92,7 +92,7 @@ function OrganMeshInstance({
   if (systemFiltered) opacity *= 0.14;
 
   const emissive = highlighted || selected ? "#7c3aed" : hovered ? "#8b5cf6" : "#000000";
-  const emissiveIntensity = highlighted || selected ? 0.4 : hovered ? 0.16 : 0;
+  const emissiveIntensity = highlighted || selected ? 0.45 : hovered ? 0.18 : 0;
 
   const tintedColor = useMemo(() => {
     if (def.layer !== "organ" || !structureSystem) return def.color;
@@ -107,7 +107,7 @@ function OrganMeshInstance({
       opacity,
       emissive,
       emissiveIntensity,
-      outlineThickness: active ? 0.012 : 0,
+      outlineThickness: active ? 0.014 : 0,
       outlineColor: active ? "#5b21b6" : CARTOON_OUTLINE,
     }),
     [active, emissive, emissiveIntensity, opacity, tintedColor]
@@ -142,6 +142,7 @@ function OrganMeshInstance({
         geometry={def.geometry}
         style={surfaceStyle}
         mirrored={mirrored}
+        meshId={def.id}
       />
 
       {active && (

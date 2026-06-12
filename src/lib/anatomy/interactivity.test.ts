@@ -12,12 +12,14 @@ import {
   structureVisibleInView,
 } from "./atlas";
 import { getHotspotMeta } from "./video-hotspots";
+import { isIndividual3dBoneStructure } from "./bones/catalog-utils";
 
 describe("anatomy interactivity", () => {
-  it("labels every catalog structure with an atlas region", () => {
+  it("labels every atlas-mapped structure with an atlas region", () => {
     expect(assertAtlasCatalogIntegrity()).toEqual([]);
+    const atlasStructures = getAllAnatomyStructures().filter((s) => !isIndividual3dBoneStructure(s.id));
     const uniqueStructures = new Set(ATLAS_REGIONS.map((r) => r.structureId));
-    expect(uniqueStructures.size).toBe(getAllAnatomyStructures().length);
+    expect(uniqueStructures.size).toBe(atlasStructures.length);
   });
 
   it("covers all major organ systems on the illustrated body", () => {
@@ -58,11 +60,14 @@ describe("anatomy interactivity", () => {
         seen.add(r.structureId);
       }
     }
-    expect(seen.size).toBe(getAllAnatomyStructures().length);
+    expect(seen.size).toBe(
+      getAllAnatomyStructures().filter((s) => !isIndividual3dBoneStructure(s.id)).length
+    );
   });
 
-  it("resolves a primary view for each structure selection", () => {
+  it("resolves a primary view for each atlas-mapped structure", () => {
     for (const structure of getAllAnatomyStructures()) {
+      if (isIndividual3dBoneStructure(structure.id)) continue;
       const primary = getPrimaryRegionForStructure(structure.id);
       expect(primary).toBeDefined();
       expect(getBestViewForStructure(structure.id)).toBe(primary!.view);

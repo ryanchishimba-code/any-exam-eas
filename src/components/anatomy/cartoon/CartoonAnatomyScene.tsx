@@ -16,6 +16,7 @@ import type { PerspectiveCamera } from "three";
 import * as THREE from "three";
 import { Vector3 } from "three";
 import { getAnatomyStructure } from "@/lib/anatomy";
+import { getBoneFocus, getBoneFocusDistance } from "@/lib/anatomy/bones";
 import { ANATOMY_MODULES, getAnatomyModule } from "@/lib/anatomy/modules/registry";
 import { getOrganDepthOrder } from "@/lib/anatomy/cartoon/organ-layout";
 import { CARTOON_CAMERA, FIGURE } from "@/lib/anatomy/cartoon/proportions";
@@ -27,8 +28,17 @@ import {
 import type { AnatomyLayer, AnatomyStructure, AnatomySystem } from "@/lib/anatomy/types";
 import { cn } from "@/lib/utils";
 import { CartoonBodyShell } from "./CartoonBodyShell";
+import { ClickableSkeleton } from "./ClickableSkeleton";
 import { CartoonOrganMesh } from "./CartoonOrganMesh";
 import { CartoonStructuralLayers } from "./CartoonStructuralLayers";
+import { CtAtlasRig, preloadCtAtlas } from "@/components/anatomy/ct/CtAtlasRig";
+import { preloadVisibleHumanOrgans } from "./VolumeOrganVisual";
+import {
+  isVisibleHumanOrganEnabled,
+  VISIBLE_HUMAN_ORGANS,
+} from "@/lib/anatomy/cartoon/visible-human-organs";
+import { CT_WINDOWS, isCtAtlasEnabled, type CtWindowId } from "@/lib/anatomy/ct/ct-windows";
+import type { CtClipPlaneId } from "@/lib/anatomy/ct/ct-atlas-registry";
 
 export type CartoonSceneHandle = {
   zoomIn: () => void;
@@ -57,10 +67,12 @@ function OrganModules({
     () => new Map(structures.map((s) => [s.meshId, s])),
     [structures]
   );
-  const boneStructuralOn = visibleLayers.has("bone");
   const muscleStructuralOn = visibleLayers.has("muscle");
   const sortedModules = useMemo(
-    () => [...ANATOMY_MODULES].sort((a, b) => getOrganDepthOrder(a.id) - getOrganDepthOrder(b.id)),
+    () =>
+      [...ANATOMY_MODULES]
+        .filter((m) => m.layer !== "bone")
+        .sort((a, b) => getOrganDepthOrder(a.id) - getOrganDepthOrder(b.id)),
     []
   );
 
@@ -80,7 +92,6 @@ function OrganModules({
             highlighted={highlightedId === structure.id}
             selected={selectedId === structure.id}
             skinOn={skinOn}
-            boneStructuralOn={boneStructuralOn}
             muscleStructuralOn={muscleStructuralOn}
             onSelect={() => onSelect(structure.id)}
           />
@@ -101,6 +112,10 @@ function SceneRig({
   zoomLevel,
   resetToken,
   controlsRef,
+  ctMode,
+  ctWindowId,
+  ctClipPlaneId,
+  ctSliceOffset,
 }: {
   structures: AnatomyStructure[];
   visibleLayers: Set<AnatomyLayer>;
@@ -112,6 +127,10 @@ function SceneRig({
   zoomLevel: number;
   resetToken: number;
   controlsRef: React.RefObject<OrbitControlsImpl | null>;
+  ctMode: boolean;
+  ctWindowId: CtWindowId;
+  ctClipPlaneId: CtClipPlaneId;
+  ctSliceOffset: number;
 }) {
   const { camera } = useThree();
   const cameraConfig = CARTOON_CAMERA;
@@ -138,9 +157,10 @@ function SceneRig({
     const structure = getAnatomyStructure(selectedId);
     if (!structure) return;
     const mod = getAnatomyModule(structure.meshId);
-    if (!mod) return;
-    desiredTarget.set(...mod.position);
-    focusDistance.current = (mod.focusDistance ?? 1.6) / zoomLevel;
+    const focus = mod?.position ?? getBoneFocus(structure.id);
+    if (!focus) return;
+    desiredTarget.set(focus[0], focus[1], focus[2]);
+    focusDistance.current = (mod?.focusDistance ?? getBoneFocusDistance(structure.id)) / zoomLevel;
   }, [cameraConfig.position, defaultTarget, desiredTarget, selectedId, zoomLevel]);
 
   useFrame(() => {
@@ -157,48 +177,90 @@ function SceneRig({
   });
 
   const showSkin = visibleLayers.has("skin");
+  const ctActive = ctMode && isCtAtlasEnabled();
+  const ctWindow = CT_WINDOWS[ctWindowId];
+
+  useEffect(() => {
+    if (!isCtAtlasEnabled()) return;
+    preloadCtAtlas();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisibleHumanOrganEnabled() || ctActive) return;
+    preloadVisibleHumanOrgans(Object.keys(VISIBLE_HUMAN_ORGANS));
+  }, [ctActive]);
 
   return (
     <>
-      <color attach="background" args={[CARTOON_SCENE_BG]} />
-      <fog attach="fog" args={[CARTOON_SCENE_FOG, 8, 18]} />
-      <Environment preset="studio" environmentIntensity={0.85} />
-      <ambientLight intensity={0.42} color="#f0f4f8" />
-      <directionalLight
-        position={[4, 8, 5]}
-        intensity={1.35}
-        castShadow
-        shadow-mapSize-width={2048}
-        shadow-mapSize-height={2048}
-        shadow-bias={-0.0002}
-        color="#fff8f0"
-      />
-      <directionalLight position={[-5, 4, -2]} intensity={0.45} color="#c8d8e8" />
-      <directionalLight position={[0, 2, -6]} intensity={0.25} color="#ffffff" />
-      <ContactShadows
-        position={[0, FIGURE.footY + 0.02, 0]}
-        opacity={0.45}
-        scale={14}
-        blur={2.8}
-        far={4.5}
-        color="#1e293b"
-      />
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, FIGURE.footY + 0.02, 0]} receiveShadow>
-        <circleGeometry args={[4, 64]} />
-        <meshStandardMaterial color={CARTOON_FLOOR} roughness={0.92} metalness={0.05} />
-      </mesh>
+      <color attach="background" args={[ctActive ? ctWindow.background : CARTOON_SCENE_BG]} />
+      {ctActive ? null : <fog attach="fog" args={[CARTOON_SCENE_FOG, 8, 18]} />}
+      {ctActive ? (
+        <>
+          <ambientLight intensity={ctWindow.ambient} color="#e8e8ec" />
+          <directionalLight position={[2, 4, 3]} intensity={0.12} color="#ffffff" />
+          <directionalLight position={[-3, 1, -2]} intensity={0.06} color="#c0c0c8" />
+          <CtAtlasRig
+            visibleLayers={visibleLayers}
+            systemFilter={systemFilter}
+            windowId={ctWindowId}
+            clipPlaneId={ctClipPlaneId}
+            sliceOffset={ctSliceOffset}
+            selectedId={selectedId}
+            highlightedId={highlightedId}
+            onSelect={onSelect}
+          />
+        </>
+      ) : (
+        <>
+          <Environment preset="studio" environmentIntensity={0.88} />
+          <ambientLight intensity={0.34} color="#eef2f6" />
+          <directionalLight
+            position={[3.5, 7.5, 4.5]}
+            intensity={1.35}
+            castShadow
+            shadow-mapSize-width={2048}
+            shadow-mapSize-height={2048}
+            shadow-bias={-0.00015}
+            shadow-normalBias={0.02}
+            color="#fff8f0"
+          />
+          <directionalLight position={[-4.5, 3.5, -1.5]} intensity={0.48} color="#b8c8d8" />
+          <directionalLight position={[0, 1.5, -5.5]} intensity={0.18} color="#ffffff" />
+          <pointLight position={[0, 1.8, 2.2]} intensity={0.22} color="#ffe8d8" distance={6} />
+          <hemisphereLight args={["#e8eef4", "#7a8a9a", 0.32]} />
+          <ContactShadows
+            position={[0, FIGURE.footY + 0.02, 0]}
+            opacity={0.5}
+            scale={13}
+            blur={2.6}
+            far={4.2}
+            color="#1a2430"
+          />
+          <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, FIGURE.footY + 0.02, 0]} receiveShadow>
+            <circleGeometry args={[4, 64]} />
+            <meshStandardMaterial color={CARTOON_FLOOR} roughness={0.92} metalness={0.05} />
+          </mesh>
 
-      <CartoonStructuralLayers visibleLayers={visibleLayers} skinOn={showSkin} />
-      <OrganModules
-        structures={structures}
-        visibleLayers={visibleLayers}
-        systemFilter={systemFilter}
-        selectedId={selectedId}
-        highlightedId={highlightedId}
-        onSelect={onSelect}
-        skinOn={showSkin}
-      />
-      <CartoonBodyShell ghost={!showSkin} />
+          <CartoonStructuralLayers visibleLayers={visibleLayers} skinOn={showSkin} />
+          <ClickableSkeleton
+            visible={visibleLayers.has("bone")}
+            skinOn={showSkin}
+            selectedId={selectedId}
+            highlightedId={highlightedId}
+            onSelect={onSelect}
+          />
+          <OrganModules
+            structures={structures}
+            visibleLayers={visibleLayers}
+            systemFilter={systemFilter}
+            selectedId={selectedId}
+            highlightedId={highlightedId}
+            onSelect={onSelect}
+            skinOn={showSkin}
+          />
+          <CartoonBodyShell ghost={!showSkin} />
+        </>
+      )}
 
       <OrbitControls
         ref={controlsRef}
@@ -226,7 +288,22 @@ type SceneProps = {
   onSelect: (id: string) => void;
   autoSpin?: boolean;
   className?: string;
+  ctMode?: boolean;
+  ctWindowId?: CtWindowId;
+  ctClipPlaneId?: CtClipPlaneId;
+  ctSliceOffset?: number;
 };
+
+function LocalClippingToggle({ enabled }: { enabled: boolean }) {
+  const { gl } = useThree();
+  useEffect(() => {
+    gl.localClippingEnabled = enabled;
+    return () => {
+      gl.localClippingEnabled = false;
+    };
+  }, [enabled, gl]);
+  return null;
+}
 
 export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(function CartoonAnatomyScene(
   {
@@ -238,12 +315,18 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
     onSelect,
     autoSpin = false,
     className,
+    ctMode = false,
+    ctWindowId = "soft",
+    ctClipPlaneId = "off",
+    ctSliceOffset = 0,
   },
   ref
 ) {
   const controlsRef = useRef<OrbitControlsImpl>(null);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [resetToken, setResetToken] = useState(0);
+  const ctActive = ctMode && isCtAtlasEnabled();
+  const clipActive = ctActive && ctClipPlaneId !== "off";
 
   useImperativeHandle(ref, () => ({
     zoomIn: () => setZoomLevel((z) => Math.min(2.2, z + 0.2)),
@@ -257,20 +340,26 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
   return (
     <div
       className={cn(
-        "relative h-full w-full overflow-hidden rounded-2xl bg-gradient-to-b from-slate-100 via-slate-50 to-slate-200/80",
+        "relative h-full w-full overflow-hidden rounded-2xl",
+        ctActive
+          ? "bg-[#0c0c0e]"
+          : "bg-gradient-to-b from-slate-100 via-slate-50 to-slate-200/80",
         className
       )}
     >
       <Canvas
         camera={{ position: CARTOON_CAMERA.position, fov: CARTOON_CAMERA.fov }}
         dpr={[1, 2]}
-        shadows
+        shadows={!ctActive}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
-          gl.toneMappingExposure = 1.08;
+          gl.toneMappingExposure = ctActive ? 1 : 1.06;
+          gl.shadowMap.enabled = !ctActive;
+          if (!ctActive) gl.shadowMap.type = THREE.PCFSoftShadowMap;
         }}
       >
+        <LocalClippingToggle enabled={clipActive} />
         <Suspense fallback={null}>
           <SceneRig
             structures={structures}
@@ -283,6 +372,10 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
             zoomLevel={zoomLevel}
             resetToken={resetToken}
             controlsRef={controlsRef}
+            ctMode={ctMode}
+            ctWindowId={ctWindowId}
+            ctClipPlaneId={ctClipPlaneId}
+            ctSliceOffset={ctSliceOffset}
           />
         </Suspense>
       </Canvas>

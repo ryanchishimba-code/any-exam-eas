@@ -1,7 +1,8 @@
 import type { AnatomyStructure } from "./types";
+import { generateBoneStructures } from "./bones/structures";
 
 /** Curated high-yield anatomical structures for board exam prep. */
-export const ANATOMY_STRUCTURES: AnatomyStructure[] = [
+const CORE_ANATOMY_STRUCTURES: AnatomyStructure[] = [
   {
     id: "heart",
     name: "Heart",
@@ -637,4 +638,10 @@ export const ANATOMY_STRUCTURES: AnatomyStructure[] = [
     meshId: "vertebral-column",
     keywords: ["spine", "vertebrae", "disc", "cervical", "lumbar"],
   },
+];
+
+/** Core organs + legacy bone summaries + all 206 individually named bones. */
+export const ANATOMY_STRUCTURES: AnatomyStructure[] = [
+  ...CORE_ANATOMY_STRUCTURES,
+  ...generateBoneStructures(),
 ];

@@ -88,6 +88,8 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+`npm run dev` repairs stale `.next` cache, frees port 3000, and aligns auth URLs on `localhost`. After `npm run build`, use `npm run dev:fresh` if you see chunk or 500 errors. Plain `next dev` without those guards: `npm run dev:next`.
+
 ## Go live on Vercel (recommended)
 
 **Hosting:** [Vercel](https://vercel.com) · **Database:** [Neon](https://neon.tech) PostgreSQL

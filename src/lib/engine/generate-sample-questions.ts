@@ -40,14 +40,19 @@ function orphanStemSeed(subjectId: string): BankItem {
 }
 
 function bankItemToExamQuestion(item: BankItem, fieldId: string, board: string): ExamQuestion {
+  const explicitVignette = item.vignette?.trim() || item.scenario?.trim();
   const parts = item.question.split("\n\n");
-  const hasSplit = parts.length >= 2;
+  const hasSplit = !explicitVignette && parts.length >= 2;
 
   const raw: ExamQuestion = {
     id: 1,
     type: "multiple_choice",
-    vignette: hasSplit ? parts[0] : undefined,
-    question: hasSplit ? parts.slice(1).join("\n\n") : item.question,
+    vignette: explicitVignette || (hasSplit ? parts[0] : undefined),
+    question: explicitVignette
+      ? item.question.trim()
+      : hasSplit
+        ? parts.slice(1).join("\n\n")
+        : item.question,
     options: [...item.options],
     correctAnswer: item.correctAnswer,
     explanation: item.explanation,

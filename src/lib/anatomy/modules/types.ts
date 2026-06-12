@@ -32,7 +32,8 @@ export type AnatomyShapeProfile =
   | "small-intestine-coils"
   | "colon-frame"
   | "esophagus-tube"
-  | "adrenal-pair";
+  | "adrenal-pair"
+  | "prostate-disc";
 
 /** One clickable 3D body-part module in the interactive explorer. */
 export type AnatomyModuleDef = {

@@ -3,6 +3,9 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { Layers } from "lucide-react";
 import { getAllAnatomyStructures, getAnatomyStructure } from "@/lib/anatomy";
+import { HRA_CCF_CITATION, isVisibleHumanOrganEnabled } from "@/lib/anatomy/cartoon/visible-human-organs";
+import type { CtClipPlaneId } from "@/lib/anatomy/ct/ct-atlas-registry";
+import { isCtAtlasEnabled, type CtWindowId } from "@/lib/anatomy/ct/ct-windows";
 import { ANATOMY_LAYER_LABELS, ANATOMY_SYSTEM_LABELS, type AnatomyLayer, type AnatomySystem } from "@/lib/anatomy/types";
 import { LAYER_SWATCHES } from "@/lib/anatomy/cartoon/layer-styles";
 import { cn } from "@/lib/utils";
@@ -34,6 +37,11 @@ export function CartoonAnatomyViewer({
 }: Props) {
   const sceneRef = useRef<CartoonSceneHandle>(null);
   const [autoSpin, setAutoSpin] = useState(false);
+  const ctAvailable = isCtAtlasEnabled();
+  const [ctMode, setCtMode] = useState(ctAvailable);
+  const [ctWindowId, setCtWindowId] = useState<CtWindowId>("soft");
+  const [ctClipPlaneId, setCtClipPlaneId] = useState<CtClipPlaneId>("off");
+  const [ctSliceOffset, setCtSliceOffset] = useState(0);
   const structures = useMemo(() => getAllAnatomyStructures(), []);
 
   const focusId = highlightedId ?? selectedId;
@@ -63,6 +71,18 @@ export function CartoonAnatomyViewer({
         quizActive={quizActive}
         skinOn={skinOn}
         onPeelSkin={onToggleLayer ? handlePeelSkin : undefined}
+        ctMode={ctMode}
+        onCtModeChange={ctAvailable ? setCtMode : undefined}
+        ctWindowId={ctWindowId}
+        onCtWindowChange={setCtWindowId}
+        ctClipPlaneId={ctClipPlaneId}
+        onCtClipChange={(id) => {
+          setCtClipPlaneId(id);
+          if (id === "off") setCtSliceOffset(0);
+        }}
+        ctSliceOffset={ctSliceOffset}
+        onCtSliceOffsetChange={setCtSliceOffset}
+        showCtControls={ctAvailable}
       />
 
       <div className="flex flex-wrap items-center gap-2 border-b border-black/[0.05] bg-indigo-50/50 px-4 py-2">
@@ -104,6 +124,10 @@ export function CartoonAnatomyViewer({
           highlightedId={highlightedId}
           onSelect={onSelect}
           autoSpin={autoSpin}
+          ctMode={ctMode}
+          ctWindowId={ctWindowId}
+          ctClipPlaneId={ctClipPlaneId}
+          ctSliceOffset={ctSliceOffset}
           className="h-full rounded-none border-0 shadow-none"
         />
       </div>
@@ -117,9 +141,47 @@ export function CartoonAnatomyViewer({
             {" — matching organs highlighted; others dimmed. "}
           </>
         ) : null}
-        {skinOn
-          ? "Tap Peel skin above or turn off Skin in the layer bar to explore organs, bones, and vessels."
-          : "Drag to rotate · scroll to zoom · click any structure for pearls & practice"}
+        {ctMode && ctAvailable ? (
+          <>
+            CT window presets map Hounsfield-style intensity to greyscale — teaching view, not diagnostic DICOM.
+            {" "}
+            Drag to rotate · scroll to zoom · click organs for pearls.
+          </>
+        ) : skinOn ? (
+          "Tap Peel skin above or turn off Skin in the layer bar to explore organs, bones, and vessels."
+        ) : (
+          "Drag to rotate · scroll to zoom · click any structure for pearls & practice"
+        )}
+        {!ctMode && isVisibleHumanOrganEnabled() ? (
+          <>
+            {" "}
+            · Heart, lungs, liver & more from{" "}
+            <a
+              href="https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-indigo-200 hover:text-indigo-700"
+            >
+              HuBMAP Visible Human reference organs
+            </a>{" "}
+            (CC BY 4.0)
+          </>
+        ) : null}
+        {ctMode && ctAvailable ? (
+          <>
+            {" "}
+            · {HRA_CCF_CITATION.split(".")[0]}
+            {" "}
+            <a
+              href="https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-indigo-200 hover:text-indigo-700"
+            >
+              HuBMAP CCF
+            </a>
+          </>
+        ) : null}
       </footer>
     </div>
   );

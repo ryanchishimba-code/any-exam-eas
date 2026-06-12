@@ -1,4 +1,5 @@
 import { ANATOMY_STRUCTURES } from "../structures";
+import { isIndividual3dBoneStructure } from "../bones/catalog-utils";
 import type { AtlasRegion, AtlasView } from "./types";
 
 /**
@@ -89,7 +90,9 @@ export function structureVisibleInView(structureId: string, view: AtlasView): bo
 
 export function assertAtlasCatalogIntegrity(): string[] {
   return ANATOMY_STRUCTURES.filter(
-    (s) => !ATLAS_REGIONS.some((r) => r.structureId === s.id)
+    (s) =>
+      !isIndividual3dBoneStructure(s.id) &&
+      !ATLAS_REGIONS.some((r) => r.structureId === s.id)
   ).map((s) => s.id);
 }
 

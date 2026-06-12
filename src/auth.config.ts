@@ -34,6 +34,11 @@ export const authConfig = {
         return true;
       }
 
+      // Static Visible Human assets under public/anatomy/volumes — no auth gate
+      if (path.startsWith("/anatomy/volumes/")) {
+        return true;
+      }
+
       if (isAdmin) {
         if (!isLoggedIn) {
           return NextResponse.redirect(

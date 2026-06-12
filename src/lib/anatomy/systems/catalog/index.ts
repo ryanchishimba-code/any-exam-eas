@@ -6,6 +6,7 @@
 export {
   getAllAnatomyStructures,
   getAnatomyStructure,
+  getAnatomyStructureByMeshId,
   getAnatomyStructuresForMemoryCard,
   getHighYieldStructures,
   getStructuresForSystem,

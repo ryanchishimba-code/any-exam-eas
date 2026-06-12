@@ -82,6 +82,7 @@ export function SkinMaterial({
       transparent={opacity < 1}
       opacity={opacity}
       depthWrite={!ghost && opacity > 0.5}
+      envMapIntensity={ghost ? 0.4 : 0.65}
     />
   );
 }

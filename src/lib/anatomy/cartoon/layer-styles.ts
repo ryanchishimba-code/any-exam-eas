@@ -17,5 +17,5 @@ export const LAYER_SWATCHES: Record<AnatomyLayer, string> = {
   nerve: ORGAN_COLORS.nerve,
 };
 
-/** Organ-first default — skin off; toggle bone/muscle from the layer bar. */
-export const DEFAULT_STUDY_LAYERS: AnatomyLayer[] = ["organ", "vascular", "nerve"];
+/** Organ + skeleton default — skin off; toggle muscle from the layer bar. */
+export const DEFAULT_STUDY_LAYERS: AnatomyLayer[] = ["organ", "bone", "vascular", "nerve"];
