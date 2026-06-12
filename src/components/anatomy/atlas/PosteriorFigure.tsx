@@ -19,6 +19,7 @@ function Organ({
   stroke = ATLAS_PALETTE.outlineSoft,
   strokeWidth = 0.8,
   fillOpacity = 1,
+  strokeLinecap,
 }: {
   id: string;
   visibleLayers: Set<AnatomyLayer>;
@@ -29,6 +30,7 @@ function Organ({
   stroke?: string;
   strokeWidth?: number;
   fillOpacity?: number;
+  strokeLinecap?: "butt" | "round" | "square" | "inherit";
 }) {
   const structure = getAnatomyStructure(id);
   if (!structure || !visibleLayers.has(structure.layer)) return null;
@@ -40,6 +42,7 @@ function Organ({
       fillOpacity={fillOpacity}
       stroke={emphasis ? ATLAS_PALETTE.selectedGlow : stroke}
       strokeWidth={emphasis ? 2 : strokeWidth}
+      strokeLinecap={strokeLinecap}
       filter={emphasis ? "url(#atlas-selected-glow)" : undefined}
       className={cn("transition-all duration-300")}
       style={{ pointerEvents: "none" }}

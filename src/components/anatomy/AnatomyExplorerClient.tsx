@@ -112,7 +112,7 @@ export function AnatomyExplorerClient({
     [search, highYieldOnly, systemFilter]
   );
 
-  const selectedStructure = selectedId ? getAnatomyStructure(selectedId) : null;
+  const selectedStructure = selectedId ? (getAnatomyStructure(selectedId) ?? null) : null;
   const relatedCards = useMemo(
     () => (selectedId ? getMemoryCardsForStructure(memoryCards, selectedId) : []),
     [memoryCards, selectedId]

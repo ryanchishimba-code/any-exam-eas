@@ -46,7 +46,7 @@ describe("teach session — quiz (sidebar or viewport)", () => {
   });
 
   it("scores correct sidebar picks", () => {
-    let state = startTeachQuiz(createInitialTeachState()).state;
+    const state = startTeachQuiz(createInitialTeachState()).state;
     const q = buildTeachViewModel(state).currentQuiz!;
 
     const wrong = handleTeachQuizAttempt(state, "skull");
@@ -60,7 +60,7 @@ describe("teach session — quiz (sidebar or viewport)", () => {
   });
 
   it("routes structure select through quiz handler when active", () => {
-    let state = startTeachQuiz(createInitialTeachState()).state;
+    const state = startTeachQuiz(createInitialTeachState()).state;
     const q = ANATOMY_QUIZ_QUESTIONS[0];
     const result = handleTeachStructureSelect(state, q.structureId);
     expect(result.quizAttemptHandled).toBe(true);
