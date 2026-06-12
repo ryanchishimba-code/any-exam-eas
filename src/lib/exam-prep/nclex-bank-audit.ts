@@ -23,9 +23,46 @@ export type NclexAuditItemReport = NclexAuditReport & {
 };
 
 const UNSTABLE_VITAL_CUES =
-  /SpO₂?\s*(?:8[0-9]|7[0-9])%|peak flow\s*(?:[1-4]?\d)%\s*of personal best|intercostal retractions|speaking in short phrases|RR\s*(?:3[0-9]|[4-9]\d)|altered mental|GCS\s*\d+\s*\/|BP\s*(?:7[0-9]|8[0-9])\s*\/\s*(?:4[0-9]|5[0-9])|lactate\s*[3-9]/i;
+  /SpO₂?\s*(?:8[0-9]|9[0-3])%|peak flow\s*(?:[1-4]?\d)%\s*of personal best|intercostal retractions|speaking in short phrases|RR\s*(?:10|11|12|[3-9]\d)|pinpoint pupils|somnolen|letharg|shallow respirations|altered mental|GCS\s*\d+\s*\/|BP\s*(?:7[0-9]|8[0-9])\s*\/\s*(?:4[0-9]|5[0-9])|lactate\s*[3-9]|glucose\s*(?:4[0-9][0-9]|[3-9]\d{2})\s*mg|fruity breath|Kussmaul/i;
 
-const STABLE_ASSERTION = /stable after initial assessment|alert and oriented|pain rated [12]\/10|asymptomatic|due for routine|discharge teaching only/i;
+const STABLE_ASSERTION =
+  /stable after initial assessment|(?:client|patient) is stable|alert and oriented|asymptomatic|due for routine|discharge teaching only|chronic stable pain rated [12]\/10/i;
+
+const DELEGATION_VIGNETTE =
+  /assign tasks to (?:unlicensed assistive personnel|UAP)|maintaining accountability|delegate tasks to UAP/i;
+
+const INFECTION_STEM =
+  /infection|precaution|isolation|PPE|hand hygiene|contact precaution|transmission-based|droplet precaution|airborne precaution/i;
+
+const INFECTION_VIGNETTE =
+  /prevent transmission|C\. diff|Clostridioides difficile|contact precaution|droplet precaution|isolation room|infectious|MRSA|tuberculosis|contagious/i;
+
+const PHANTOM_DX_CHECKS: Array<{ optionPattern: RegExp; vignetteNeed: RegExp; label: string }> = [
+  {
+    optionPattern: /\btype 2 diabetes\b|\binsulin self-administration\b/i,
+    vignetteNeed: /\b(?:type 2 )?diabetes|diabetic|insulin|glucose\b/i,
+    label: "type 2 diabetes / insulin teaching",
+  },
+  {
+    optionPattern: /\btotal knee arthroplasty\b|\bTKA\b/i,
+    vignetteNeed: /\bknee arthroplasty|TKA|total knee\b/i,
+    label: "total knee arthroplasty",
+  },
+  {
+    optionPattern: /\bcellulitis\b/i,
+    vignetteNeed: /\bcellulitis\b/i,
+    label: "cellulitis",
+  },
+  {
+    optionPattern: /\bheart failure\b|\bCHF\b/i,
+    vignetteNeed: /\bheart failure|CHF|volume status\b/i,
+    label: "heart failure",
+  },
+];
+
+function countRoomLabels(text: string): number {
+  return (text.match(/Room \d+/g) ?? []).length;
+}
 
 export function resolveNclexVignette(item: BankItem): string {
   const vignette = item.vignette?.trim() || item.scenario?.trim() || "";
@@ -131,6 +168,64 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
       "error",
       "priority_delegation_mismatch",
       "Priority lead-in paired with a delegation-only vignette."
+    );
+  }
+
+  const isPrioritizationStem =
+    /assigned four clients|four clients|four assigned clients|assessed first|assess first|see first|highest priority|prioritize for immediate assessment|receives report on four/i.test(
+      stem
+    );
+  if (vignette && countRoomLabels(vignette) >= 2 && !isPrioritizationStem) {
+    push(
+      "error",
+      "multi_client_vignette",
+      "Vignette describes multiple room assignments but the stem is not a four-client prioritization question."
+    );
+  }
+
+  const vignetteDelegation = DELEGATION_VIGNETTE.test(vignette);
+  const stemInfection = INFECTION_STEM.test(stem);
+  const vignetteInfection = INFECTION_VIGNETTE.test(vignette);
+  if (vignetteDelegation && stemInfection && !vignetteInfection) {
+    push(
+      "error",
+      "stem_vignette_template_mismatch",
+      "Delegation vignette paired with infection-control stem without infectious context in the scenario."
+    );
+  }
+  if (stemInfection && vignette.length > 50 && !vignetteInfection && !isPrioritizationStem && !vignetteDelegation) {
+    push(
+      "error",
+      "infection_stem_without_context",
+      "Infection-control stem lacks transmission or infectious-disease context in the vignette."
+    );
+  }
+
+  if (vignette) {
+    for (const opt of item.options) {
+      for (const check of PHANTOM_DX_CHECKS) {
+        if (check.optionPattern.test(opt) && !check.vignetteNeed.test(vignette)) {
+          push(
+            "error",
+            "phantom_client_in_options",
+            `Option references ${check.label}, which is not described in the vignette.`
+          );
+          break;
+        }
+      }
+    }
+  }
+
+  if (
+    /delegate|UAP|unlicensed assistive personnel/i.test(stem) &&
+    /^Measure and record intake and output on a stable client who is alert and oriented/i.test(
+      item.correctAnswer
+    )
+  ) {
+    push(
+      "warn",
+      "generic_delegation_correct",
+      "Correct delegation answer is generic and not tied to the client described in the vignette."
     );
   }
 

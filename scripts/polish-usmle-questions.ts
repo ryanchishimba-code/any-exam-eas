@@ -29,6 +29,13 @@ const fieldFilter =
 
 const USMLE_FIELDS = ["usmle-step-1", "usmle-step-2", "usmle-step-3"] as const;
 
+function parseOptions(raw: string): [string, string, string, string] {
+  let parsed: unknown = JSON.parse(raw);
+  if (typeof parsed === "string") parsed = JSON.parse(parsed);
+  if (!Array.isArray(parsed)) return ["", "", "", ""];
+  return parsed.slice(0, 4) as [string, string, string, string];
+}
+
 function rowToItem(row: {
   question: string;
   options: string;
@@ -40,7 +47,7 @@ function rowToItem(row: {
   return {
     subjectId: row.subjectId,
     question: row.question,
-    options: JSON.parse(row.options) as [string, string, string, string],
+    options: parseOptions(row.options),
     correctAnswer: row.correctAnswer,
     explanation: row.explanation,
     tags: row.tags ? (JSON.parse(row.tags) as string[]) : undefined,

@@ -6,7 +6,7 @@ import {
   formatTrialEntryPrice,
   formatTrialLabel,
 } from "@/lib/site";
-import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/stripe";
+import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/billing-config";
 
 const PRODUCTION_SITE_URL = `https://www.${SITE_DOMAIN}`;
 

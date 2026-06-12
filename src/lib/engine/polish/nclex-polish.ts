@@ -5,6 +5,7 @@ import { splitCombinedStem } from "@/lib/engine/prompts/vignette";
 import { stripShiftNotes, hasShiftNoteArtifacts } from "@/lib/questions/shift-notes";
 import { hasSignsAndSymptoms, hasEtiologyOrPathophysiology } from "@/lib/engine/prompts/clinical-reasoning";
 import { auditBankItem } from "@/lib/exam-prep/bank-audit";
+import { auditNclexBankItem, resolveNclexStem } from "@/lib/exam-prep/nclex-bank-audit";
 
 const NCLEX_PREFIX = /^NCLEX\s+\d+:\s*/i;
 
@@ -599,6 +600,23 @@ function pickScenario(seed: number, template?: string): NursingScenario {
     ]!;
   }
 
+  if (template === "infection") {
+    const infectionPool = SCENARIOS.filter(
+      (s) =>
+        /Clostridioides difficile|infection|cellulitis|MRSA|tuberculosis|meningitis|hepatitis|COVID/i.test(
+          s.dx
+        ) || /precaution|transmission/i.test(s.nursePriority)
+    );
+    const pool = infectionPool.length > 0 ? infectionPool : SCENARIOS;
+    const base = pool[Math.abs(seed) % pool.length]!;
+    const ageDelta = (Math.abs(seed) % 7) - 3;
+    const age =
+      base.age < 18
+        ? Math.max(1, base.age + ageDelta)
+        : Math.max(18, base.age + ageDelta);
+    return { ...base, age };
+  }
+
   const base = SCENARIOS[Math.abs(seed) % SCENARIOS.length]!;
   const ageDelta = (Math.abs(seed) % 7) - 3;
   const age =
@@ -659,8 +677,28 @@ export function scoreNclexBankItem(item: BankItem): number {
   return Math.max(0, Math.min(1, score));
 }
 
-function detectTemplate(stem: string, subjectId: string, seed: number): string {
-  if (/delegate|UAP|unlicensed|LPN scope|assign/i.test(stem)) return "delegation";
+function detectTemplate(stem: string, subjectId: string, seed: number, blob?: string): string {
+  const full = blob ?? stem;
+  const vignettePart = blob?.includes("\n\n") ? blob.split("\n\n")[0] ?? "" : "";
+  const vignetteText = vignettePart || full;
+
+  const vignetteDelegation =
+    /assign tasks to (?:unlicensed assistive personnel|UAP)|maintaining accountability/i.test(
+      vignetteText
+    );
+  const vignetteInfection =
+    /prevent transmission|C\. diff|Clostridioides difficile|contact precaution|droplet precaution|isolation room/i.test(
+      vignetteText
+    );
+  const stemInfection = /infection|precaution|isolation|PPE|hand hygiene|contact precaution/i.test(
+    stem
+  );
+
+  if (vignetteDelegation && stemInfection && !vignetteInfection) return "delegation";
+  if (vignetteInfection && stemInfection) return "infection";
+  if (vignetteDelegation || /delegate|UAP|unlicensed|LPN scope|assign/i.test(stem)) {
+    return "delegation";
+  }
   if (/infection|precaution|isolation|PPE|hand hygiene|contact precaution/i.test(stem)) {
     return "infection";
   }
@@ -803,11 +841,12 @@ function buildPrioritization(_scenario: NursingScenario, subjectLabel: string, s
 }
 
 function buildDelegation(scenario: NursingScenario, subjectLabel: string, seed: number) {
-  const correct = `Measure and record intake and output on a stable client who is alert and oriented (${scenario.setting.toLowerCase()})`;
+  const clientLabel = describeClient(scenario.age, scenario.sex);
+  const correct = `Measure and record intake and output for the stable ${clientLabel.toLowerCase()} with ${scenario.dx}`;
   const wrongs: [string, string, string] = [
-    `Perform the initial comprehensive assessment on a client with ${scenario.dx} and ${scenario.vitals.split(",")[0]?.trim().toLowerCase()}`,
-    "Teach a newly diagnosed client insulin self-administration and hypoglycemia recognition",
-    "Triage and assign care for four newly admitted clients with mixed acuity",
+    `Perform the initial comprehensive nursing assessment on the client with ${scenario.dx}`,
+    "Administer the first dose of a newly prescribed medication and evaluate the client's response",
+    "Interpret changing laboratory results and notify the provider about this client's condition",
   ];
   const slot = Math.abs(seed + 1) % 4;
   const vignette = [
@@ -1155,26 +1194,29 @@ export function needsNclexPolish(item: BankItem): boolean {
   );
 }
 
-/** Polish a single NCLEX bank item — CJMM vignettes, NGN-style stems, priority rationales. */
-export function polishNclexBankItem(
+function finalizePolishedBankItem(working: BankItem, subjectId: string): BankItem {
+  let exam = bankItemToExam(working, subjectId);
+  exam = enrichQuestion(exam, "nursing");
+
+  const polished = examToBankItem(working, exam);
+  const vignette = polished.vignette ? stripShiftNotes(polished.vignette) : polished.vignette;
+  const stemOnly = resolveNclexStem(polished);
+  return {
+    ...polished,
+    vignette,
+    scenario: polished.scenario ? stripShiftNotes(polished.scenario) : vignette,
+    question: hasShiftNoteArtifacts(stemOnly) ? stripShiftNotes(stemOnly) : stemOnly,
+  };
+}
+
+function buildPolishedItem(
   item: BankItem,
   subjectId: string,
-  subjectLabel = "NCLEX nursing",
-  seed = 0
-): NclexPolishResult {
-  const qualityBefore = scoreNclexBankItem(item);
-  const hasWeakPatterns =
-    WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer)) ||
-    item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)));
-
-  if (!needsNclexPolish(item) && !hasWeakPatterns && hasRichVignette(itemTextBlob(item)) && !isWeakPrioritizationBankItem(item)) {
-    return { item, changed: false, qualityBefore, qualityAfter: qualityBefore };
-  }
-
+  subjectLabel: string,
+  seed: number,
+  template: string
+): BankItem {
   const stem = stripPrefix(item.question);
-  const template = isWeakPrioritizationBankItem(item)
-    ? "prioritization"
-    : detectTemplate(stem, subjectId, seed);
   const scenario = pickScenario(
     seed + (subjectId?.length ?? 0) + stem.length + (item.correctAnswer?.length ?? 0),
     template
@@ -1192,18 +1234,60 @@ export function polishNclexBankItem(
     tags: [...(item.tags ?? []).filter((t) => t !== "generated"), "cjmm-polished", template, subjectId],
   };
 
-  let exam = bankItemToExam(working, subjectId);
-  exam = enrichQuestion(exam, "nursing");
+  return finalizePolishedBankItem(working, subjectId);
+}
 
-  const polished = examToBankItem(working, exam);
-  const cleaned: BankItem = {
-    ...polished,
-    vignette: polished.vignette ? stripShiftNotes(polished.vignette) : polished.vignette,
-    scenario: polished.scenario ? stripShiftNotes(polished.scenario) : polished.scenario,
-    question: hasShiftNoteArtifacts(polished.question)
-      ? stripShiftNotes(polished.question)
-      : polished.question,
+/** Polish a single NCLEX bank item — CJMM vignettes, NGN-style stems, priority rationales. */
+export function polishNclexBankItem(
+  item: BankItem,
+  subjectId: string,
+  subjectLabel = "NCLEX nursing",
+  seed = 0
+): NclexPolishResult {
+  const qualityBefore = scoreNclexBankItem(item);
+  const hasWeakPatterns =
+    WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer)) ||
+    item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)));
+
+  if (!needsNclexPolish(item) && !hasWeakPatterns && hasRichVignette(itemTextBlob(item)) && !isWeakPrioritizationBankItem(item)) {
+    return { item, changed: false, qualityBefore, qualityAfter: qualityBefore };
+  }
+
+  const blob = itemTextBlob(item);
+  const stem = stripPrefix(item.question);
+  let template = isWeakPrioritizationBankItem(item)
+    ? "prioritization"
+    : detectTemplate(stem, subjectId, seed, blob);
+
+  let cleaned = buildPolishedItem(item, subjectId, subjectLabel, seed, template);
+  let audit = auditNclexBankItem(cleaned);
+
+  const retryTemplateForCode: Record<string, string> = {
+    multi_client_vignette: "prioritization",
+    priority_delegation_mismatch: "prioritization",
+    stem_vignette_template_mismatch: "delegation",
+    delegation_context_missing: "delegation",
+    phantom_client_in_options: "delegation",
+    infection_stem_without_context: "infection",
+    stable_unstable_mismatch: "prioritization",
+    delegation_prioritization_mismatch: "prioritization",
+    delegation_handoff_mismatch: "delegation",
+    stem_option_category_mismatch: "risk",
   };
+
+  for (let attempt = 0; !audit.ok && attempt < 5; attempt++) {
+    const errorCode = audit.issues.find((i) => i.severity === "error")?.code;
+    const nextTemplate =
+      (errorCode && retryTemplateForCode[errorCode]) ||
+      (/assign tasks to UAP/i.test(cleaned.vignette ?? "") ? "delegation" : undefined);
+
+    if (!nextTemplate || nextTemplate === template) break;
+
+    template = nextTemplate;
+    cleaned = buildPolishedItem(item, subjectId, subjectLabel, seed + 11 * (attempt + 1), template);
+    audit = auditNclexBankItem(cleaned);
+  }
+
   const qualityAfter = scoreNclexBankItem(cleaned);
 
   const changed =

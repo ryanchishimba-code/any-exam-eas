@@ -136,10 +136,13 @@ describe("auditBankItem", () => {
   it("passes valid four-option MCQ", () => {
     const report = auditBankItem(
       item({
-        question: "Which lab value best indicates dehydration in this client?",
+        vignette:
+          "A 72-year-old woman (BP 118/70 mmHg, creatinine 1.0 mg/dL) takes lisinopril for hypertension.",
+        question: "Which lab value best indicates dehydration among the following results?",
         options: ["Sodium 142 mEq/L", "BUN 28 mg/dL", "Potassium 4.0 mEq/L", "Creatinine 0.9 mg/dL"],
         correctAnswer: "BUN 28 mg/dL",
-        explanation: "Elevated BUN with clinical context supports dehydration assessment among these choices.",
+        explanation:
+          "Correct: BUN 28 mg/dL — an elevated BUN relative to creatinine supports prerenal azotemia/dehydration in this clinical context.",
       }),
       "pharmacy"
     );

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { getUserAccess } from "@/lib/access-control";
 import { cacheGetOrSet, cacheKey, CACHE_TTL } from "@/lib/cache";
-import { MONTHLY_PRICE_USD, YEARLY_PRICE_USD, TRIAL_DAYS } from "@/lib/stripe";
+import { MONTHLY_PRICE_USD, YEARLY_PRICE_USD, TRIAL_DAYS } from "@/lib/billing-config";
 
 export const runtime = "nodejs";
 

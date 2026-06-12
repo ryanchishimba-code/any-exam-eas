@@ -5,7 +5,7 @@ import {
   formatTrialTodayPrice,
   TRIAL_PAYMENT_DISCLOSURE,
 } from "@/lib/site";
-import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/stripe";
+import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/billing-config";
 import { PricingActions } from "@/components/PricingActions";
 import { PaymentMethodsList } from "@/components/PaymentMethodsList";
 import { PageShell } from "@/components/PageShell";

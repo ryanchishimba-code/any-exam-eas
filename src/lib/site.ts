@@ -3,7 +3,7 @@ import {
   TRIAL_DAYS,
   TRIAL_INTRO_PRICE_USD,
   usesIntroTrialPricing,
-} from "@/lib/stripe";
+} from "@/lib/billing-config";
 
 export const SITE_NAME = "Any Exam Easy";
 export const SITE_DOMAIN = "anyexameasy.com";

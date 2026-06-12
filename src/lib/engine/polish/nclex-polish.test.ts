@@ -192,5 +192,37 @@ describe("nclex-polish", () => {
     expect(item.question).not.toMatch(/Pediatric emergency department/i);
     expect(item.vignette).toBeTruthy();
     expect(item.question).toMatch(/delegate|UAP/i);
+    expect(item.options.some((o) => /insulin self-administration/i.test(o))).toBe(false);
+    expect(item.correctAnswer).toMatch(/intake and output/i);
+  });
+
+  it("repairs delegation vignette grafted onto infection stem", () => {
+    const broken: BankItem = {
+      subjectId: "safety-infection",
+      vignette:
+        "Skilled nursing facility. Room 443. A 76-year-old woman with chronic heart failure with stable volume status is stable after initial assessment. The RN must assign tasks to unlicensed assistive personnel (UAP) while maintaining accountability.",
+      question: "Which infection control measure should the nurse implement first?",
+      options: [
+        "Place the client on contact precautions; use dedicated equipment and perform hand hygiene with soap and water before and after care",
+        "Use alcohol-based hand rub alone without soap and water after caring for this client",
+        "Place the client on droplet precautions only and reuse non-critical equipment without cleaning between clients",
+        "Keep the client in a negative-pressure room with airborne precautions for all visitors without PPE",
+      ],
+      correctAnswer:
+        "Place the client on contact precautions; use dedicated equipment and perform hand hygiene with soap and water before and after care",
+      explanation: "Short",
+    };
+
+    expect(auditBankItem(broken, "nursing").ok).toBe(false);
+    const { item, changed } = polishNclexBankItem(
+      broken,
+      "safety-infection",
+      "Safety and Infection Control",
+      443
+    );
+    expect(changed).toBe(true);
+    expect(item.question).toMatch(/delegate|UAP/i);
+    expect(item.question).not.toMatch(/infection control measure/i);
+    expect(auditBankItem(item, "nursing").ok).toBe(true);
   });
 });

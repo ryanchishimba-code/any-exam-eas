@@ -8,7 +8,7 @@
  *   npx tsx scripts/polish-pharmacy-questions.ts --limit 100
  */
 import { PrismaClient } from "@prisma/client";
-import { questionContentHash } from "../src/lib/sync-question-bank";
+import { bankItemContentHash } from "../src/lib/sync-question-bank";
 import {
   needsNaplexPolish,
   polishNaplexBankItem,
@@ -31,10 +31,13 @@ function rowToItem(row: {
   explanation: string;
   subjectId: string;
   tags: string | null;
+  scenario?: string | null;
 }): BankItem {
   return {
     subjectId: row.subjectId,
     question: row.question,
+    vignette: row.scenario ?? undefined,
+    scenario: row.scenario ?? undefined,
     options: JSON.parse(row.options) as [string, string, string, string],
     correctAnswer: row.correctAnswer,
     explanation: row.explanation,
@@ -90,7 +93,7 @@ async function main() {
       for (let attempt = 0; attempt < 8; attempt++) {
         if (!result.changed) break;
 
-        const newHash = questionContentHash("pharmacy", row.subjectId, finalItem.question);
+        const newHash = bankItemContentHash("pharmacy", row.subjectId, finalItem);
         const hashCollision = await prisma.questionBankItem.findFirst({
           where: { contentHash: newHash, NOT: { id: row.id } },
         });
@@ -113,7 +116,7 @@ async function main() {
         continue;
       }
 
-      const finalHash = questionContentHash("pharmacy", row.subjectId, finalItem.question);
+      const finalHash = bankItemContentHash("pharmacy", row.subjectId, finalItem);
       const stillCollides = await prisma.questionBankItem.findFirst({
         where: { contentHash: finalHash, NOT: { id: row.id } },
       });
@@ -135,6 +138,7 @@ async function main() {
       await prisma.questionBankItem.update({
         where: { id: row.id },
         data: {
+          scenario: finalItem.vignette ?? finalItem.scenario ?? null,
           question: finalItem.question,
           options: JSON.stringify(finalItem.options),
           correctAnswer: finalItem.correctAnswer,

@@ -37,7 +37,8 @@ describe("naplex-polish", () => {
     expect(changed).toBe(true);
     expect(qualityAfter).toBeGreaterThan(0.55);
     expect(item.question).not.toMatch(/^NAPLEX\s+\d+:/i);
-    expect(item.question.length).toBeGreaterThan(120);
+    const blob = `${item.vignette ?? ""}\n${item.question}`.trim();
+    expect(blob.length).toBeGreaterThan(120);
     expect(item.explanation.length).toBeGreaterThan(150);
     expect(item.options).toHaveLength(4);
     expect(item.options).toContain(item.correctAnswer);

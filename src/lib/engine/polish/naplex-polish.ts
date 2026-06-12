@@ -4,6 +4,11 @@ import { getDrugById, TOP_500_DRUGS } from "@/lib/drugs300/catalog";
 import { searchDrugs } from "@/lib/drugs300/search";
 import type { DrugEntry } from "@/lib/drugs300/types";
 import { enrichQuestion } from "@/lib/engine/stages/enrich-questions";
+import { auditBankItem } from "@/lib/exam-prep/bank-audit";
+import {
+  resolveNaplexStem,
+  resolveNaplexVignette,
+} from "@/lib/exam-prep/naplex-bank-audit";
 import {
   formatDrugProfileForExplanation,
   normalizeDrugProfile,
@@ -334,10 +339,15 @@ function rebuildFromTemplate(
 }
 
 function bankItemToExam(item: BankItem, subjectId?: string): ExamQuestion {
+  const vignette = resolveNaplexVignette(item);
+  const stem = resolveNaplexStem(item);
+  const combined = vignette ? `${vignette}\n\n${stem}` : stem;
+
   return {
     id: 1,
     type: "multiple_choice",
-    question: item.question,
+    question: combined,
+    vignette,
     options: [...item.options],
     correctAnswer: item.correctAnswer,
     explanation: item.explanation,
@@ -347,17 +357,23 @@ function bankItemToExam(item: BankItem, subjectId?: string): ExamQuestion {
 }
 
 function examToBankItem(base: BankItem, exam: ExamQuestion): BankItem {
-  const stem = exam.vignette?.trim()
-    ? `${exam.vignette.trim()}\n\n${exam.question.trim()}`
-    : exam.question.trim();
-
-  return {
+  const polished: BankItem = {
     ...base,
-    question: stem,
+    vignette: exam.vignette?.trim() || resolveNaplexVignette(base),
     options: (exam.options?.slice(0, 4) ?? base.options) as [string, string, string, string],
     correctAnswer: exam.correctAnswer,
     explanation: exam.explanation,
     tags: exam.tags ?? base.tags,
+    question: exam.question,
+  };
+  const vignette = polished.vignette?.trim() || resolveNaplexVignette(polished);
+  const stem = resolveNaplexStem(polished);
+
+  return {
+    ...polished,
+    vignette,
+    scenario: vignette,
+    question: stem,
   };
 }
 
@@ -398,9 +414,9 @@ export function polishNaplexBankItem(
     if (rebuilt.correctAnswer && rebuilt.options.every(Boolean)) {
       working = {
         ...item,
-        question: rebuilt.vignette
-          ? `${rebuilt.vignette}\n\n${rebuilt.question}`
-          : rebuilt.question,
+        vignette: rebuilt.vignette,
+        scenario: rebuilt.vignette,
+        question: rebuilt.question,
         options: rebuilt.options,
         correctAnswer: rebuilt.correctAnswer,
         explanation: buildNaplexExplanation(rebuilt.correctAnswer, rebuilt.options, drug, template),
@@ -420,6 +436,11 @@ export function polishNaplexBankItem(
   }
 
   exam = enrichQuestion(exam, "pharmacy");
+
+  // enrichQuestion merges vignette into question for display; bank rows keep them split.
+  if (exam.vignette?.trim()) {
+    exam = { ...exam, question: resolveNaplexStem({ ...working, question: exam.question, vignette: exam.vignette, scenario: exam.vignette }) };
+  }
 
   if (drug && exam.drugProfile) {
     const profile = normalizeDrugProfile(exam.drugProfile);
@@ -479,6 +500,7 @@ export function needsNaplexPolish(item: BankItem): boolean {
   return (
     scoreNaplexBankItem(item) < 0.62 ||
     NAPLEX_PREFIX.test(item.question) ||
-    lacksDrugDetails(item)
+    lacksDrugDetails(item) ||
+    !auditBankItem(item, "pharmacy").ok
   );
 }

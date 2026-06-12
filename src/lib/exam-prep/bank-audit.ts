@@ -11,8 +11,12 @@ import {
   resolveNclexVignette,
   type NclexAuditIssue,
 } from "./nclex-bank-audit";
+import {
+  auditNaplexBankItem,
+  type NaplexAuditIssue,
+} from "./naplex-bank-audit";
 
-export type BankAuditIssue = NclexAuditIssue;
+export type BankAuditIssue = NclexAuditIssue | NaplexAuditIssue;
 
 export type BankAuditReport = {
   ok: boolean;
@@ -185,6 +189,9 @@ export function auditBankItem(item: BankItem, fieldId: string): BankAuditReport 
   const shared = auditSharedBankItem(item, fieldId);
   if (fieldId === "nursing") {
     return mergeReports(shared, auditNclexBankItem(item));
+  }
+  if (fieldId === "pharmacy") {
+    return mergeReports(shared, auditNaplexBankItem(item));
   }
   return shared;
 }

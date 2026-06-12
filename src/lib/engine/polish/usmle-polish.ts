@@ -564,6 +564,7 @@ function needsUsmleFullPolish(item: BankItem, fieldId = "usmle-step-2"): boolean
 
 export function scoreUsmleBankItem(item: BankItem, fieldId = "usmle-step-2"): number {
   let score = 0.3;
+  const options = Array.isArray(item.options) ? item.options : [];
   const text = item.question;
   const vignette = text.includes("\n\n") ? text.split("\n\n")[0]! : text;
 
@@ -581,13 +582,13 @@ export function scoreUsmleBankItem(item: BankItem, fieldId = "usmle-step-2"): nu
   }
 
   if (!CASE_PREFIX.test(item.question)) score += 0.04;
-  if (item.options.length === 4 && item.options.includes(item.correctAnswer)) score += 0.06;
+  if (options.length === 4 && options.includes(item.correctAnswer)) score += 0.06;
 
   if (WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer))) score -= 0.24;
-  if (item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)))) score -= 0.2;
+  if (options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)))) score -= 0.2;
   if (hasDuplicateVignette(text)) score -= 0.22;
   if (DIAGNOSIS_OPTION_WEAK.test(item.correctAnswer)) score -= 0.18;
-  if (item.options.some((o) => DIAGNOSIS_OPTION_WEAK.test(o))) score -= 0.12;
+  if (options.some((o) => DIAGNOSIS_OPTION_WEAK.test(o))) score -= 0.12;
 
   if (isStep1Field(fieldId, item.subjectId ?? "") && /mechanism|MOA|pathophys|enzyme|receptor/i.test(item.explanation)) {
     score += 0.04;

@@ -87,4 +87,85 @@ describe("auditNclexBankItem", () => {
     );
     expect(result.ok).toBe(true);
   });
+
+  it("flags bradypnea and pinpoint pupils against stable assertion", () => {
+    const result = auditNclexBankItem(
+      item({
+        vignette:
+          "Medical-surgical unit, Room 226. A 58-year-old man is stable after initial assessment. RR 10, SpO₂ 93%, pinpoint pupils, somnolent.",
+        question: "Which task is appropriate to delegate to the UAP?",
+        options: ["A", "B", "C", "D"],
+      })
+    );
+    expect(result.issues.some((i) => i.code === "stable_unstable_mismatch")).toBe(true);
+  });
+
+  it("flags delegation vignette paired with infection stem", () => {
+    const result = auditNclexBankItem(
+      item({
+        vignette:
+          "Skilled nursing facility. Room 443. A 76-year-old woman with chronic heart failure is stable after initial assessment. The RN must assign tasks to unlicensed assistive personnel (UAP) while maintaining accountability.",
+        question: "Which infection control measure should the nurse implement first?",
+        options: [
+          "Place the client on contact precautions; use dedicated equipment and perform hand hygiene with soap and water before and after care",
+          "Use alcohol-based hand rub alone",
+          "Droplet precautions only",
+          "Airborne precautions for all visitors",
+        ],
+        correctAnswer:
+          "Place the client on contact precautions; use dedicated equipment and perform hand hygiene with soap and water before and after care",
+      })
+    );
+    expect(result.issues.some((i) => i.code === "stem_vignette_template_mismatch")).toBe(true);
+  });
+
+  it("flags phantom diagnosis in delegation distractors", () => {
+    const result = auditNclexBankItem(
+      item({
+        vignette:
+          "Medical-surgical unit. Room 468. A 58-year-old man with postoperative day 2 after total knee arthroplasty is stable after initial assessment.",
+        question: "Which task is appropriate to delegate to the UAP?",
+        options: [
+          "Measure and record intake and output on a stable client who is alert and oriented",
+          "Teach a newly diagnosed client insulin self-administration and hypoglycemia recognition",
+          "Perform the initial comprehensive assessment",
+          "Triage four newly admitted clients",
+        ],
+        correctAnswer:
+          "Measure and record intake and output on a stable client who is alert and oriented",
+      })
+    );
+    expect(result.issues.some((i) => i.code === "phantom_client_in_options")).toBe(true);
+  });
+
+  it("flags multiple room numbers outside prioritization stems", () => {
+    const result = auditNclexBankItem(
+      item({
+        vignette:
+          "Room 226. A 58-year-old man with opioid depression. Room 265. A 57-year-old man with glucose 412 mg/dL and fruity breath.",
+        question: "Which task is appropriate to delegate to the UAP?",
+        options: ["A", "B", "C", "D"],
+      })
+    );
+    expect(result.issues.some((i) => i.code === "multi_client_vignette")).toBe(true);
+  });
+
+  it("warns on generic delegation correct answer", () => {
+    const result = auditNclexBankItem(
+      item({
+        vignette:
+          "Medical-surgical unit. A 44-year-old woman with cellulitis is stable after initial assessment.",
+        question: "Which task is appropriate to delegate to the UAP?",
+        options: [
+          "Measure and record intake and output on a stable client who is alert and oriented (medical-surgical unit)",
+          "Assess lung sounds",
+          "Administer IV antibiotic",
+          "Develop plan of care",
+        ],
+        correctAnswer:
+          "Measure and record intake and output on a stable client who is alert and oriented (medical-surgical unit)",
+      })
+    );
+    expect(result.issues.some((i) => i.code === "generic_delegation_correct")).toBe(true);
+  });
 });

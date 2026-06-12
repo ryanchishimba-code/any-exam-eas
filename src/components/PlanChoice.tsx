@@ -1,7 +1,7 @@
 "use client";
 
 import { formatMonthlyPrice, formatTrialPlanDetail } from "@/lib/site";
-import { TRIAL_DAYS, usesIntroTrialPricing } from "@/lib/stripe";
+import { TRIAL_DAYS, usesIntroTrialPricing } from "@/lib/billing-config";
 import type { SignupPlan } from "@/lib/validators/auth";
 
 const plans: {

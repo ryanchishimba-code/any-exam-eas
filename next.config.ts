@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  serverExternalPackages: ["stripe"],
   images: {
     remotePatterns: [],
     qualities: [75, 82, 90],

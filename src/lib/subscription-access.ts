@@ -1,6 +1,6 @@
 import type { Subscription } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { TRIAL_DAYS } from "@/lib/stripe";
+import { TRIAL_DAYS } from "@/lib/billing-config";
 
 export type SubscriptionAccessStatus =
   | "active"

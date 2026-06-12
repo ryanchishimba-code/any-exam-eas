@@ -3,7 +3,7 @@ import { z } from "zod";
 import { requireInternalPermission } from "@/lib/internal/auth";
 import { prisma } from "@/lib/prisma";
 import { logAdminAction } from "@/lib/audit";
-import { TRIAL_DAYS } from "@/lib/stripe";
+import { TRIAL_DAYS } from "@/lib/billing-config";
 
 export const runtime = "nodejs";
 

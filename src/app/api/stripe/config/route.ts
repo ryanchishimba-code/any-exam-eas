@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/stripe";
+import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/billing-config";
 import { isStripeConfigured, PAYMENT_METHODS } from "@/lib/payments";
 
 export const runtime = "nodejs";
