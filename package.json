@@ -83,6 +83,7 @@
     "db:audit-nclex": "npx tsx scripts/audit-nclex-questions.ts",
     "db:audit-nclex:deep": "npx tsx scripts/audit-nclex-questions.ts --deep",
     "db:audit-nclex:json": "npx tsx scripts/audit-nclex-questions.ts --json",
+    "db:audit-usmle": "npx tsx scripts/usmle-qa-audit.ts",
     "db:sync-usmle-curated": "npx tsx scripts/sync-usmle-curated-seeds.ts",
     "db:sync-usmle-curated:dry": "npx tsx scripts/sync-usmle-curated-seeds.ts --dry-run",
     "db:polish-usmle": "npx tsx scripts/polish-usmle-questions.ts",

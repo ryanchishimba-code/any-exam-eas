@@ -1,0 +1,222 @@
+
+> any-exam-easy@0.1.0 db:audit-nclex
+> npx tsx scripts/audit-nclex-questions.ts --deep --json
+
+Auditing 24131 active nursing question(s)…
+
+{
+  "summary": {
+    "total": 24131,
+    "pass": 24131,
+    "fail": 0,
+    "bySeverity": {
+      "warn": 3677
+    },
+    "byCode": {
+      "duplicate_vignette_in_stem": 3045,
+      "generic_delegation_correct": 523,
+      "pediatric_age_mismatch": 109
+    }
+  },
+  "passRate": 100,
+  "bySubject": {
+    "management-of-care": {
+      "total": 2019,
+      "pass": 2019,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "generic_delegation_correct": 238
+      }
+    },
+    "safety-infection": {
+      "total": 2010,
+      "pass": 2010,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "duplicate_vignette_in_stem": 659,
+        "generic_delegation_correct": 20,
+        "pediatric_age_mismatch": 40
+      }
+    },
+    "health-promotion": {
+      "total": 2005,
+      "pass": 2005,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "duplicate_vignette_in_stem": 262,
+        "generic_delegation_correct": 13
+      }
+    },
+    "psychosocial": {
+      "total": 2009,
+      "pass": 2009,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "generic_delegation_correct": 17,
+        "duplicate_vignette_in_stem": 59
+      }
+    },
+    "pharmacology-nursing": {
+      "total": 2014,
+      "pass": 2014,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "duplicate_vignette_in_stem": 624,
+        "pediatric_age_mismatch": 44,
+        "generic_delegation_correct": 20
+      }
+    },
+    "basic-care-comfort": {
+      "total": 2007,
+      "pass": 2007,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "duplicate_vignette_in_stem": 358,
+        "generic_delegation_correct": 13,
+        "pediatric_age_mismatch": 4
+      }
+    },
+    "reduction-risk": {
+      "total": 2005,
+      "pass": 2005,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "duplicate_vignette_in_stem": 482,
+        "generic_delegation_correct": 25,
+        "pediatric_age_mismatch": 10
+      }
+    },
+    "physiological-adaptation": {
+      "total": 2014,
+      "pass": 2014,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "duplicate_vignette_in_stem": 450,
+        "pediatric_age_mismatch": 11,
+        "generic_delegation_correct": 33
+      }
+    },
+    "fundamentals": {
+      "total": 2006,
+      "pass": 2006,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "duplicate_vignette_in_stem": 151,
+        "generic_delegation_correct": 78
+      }
+    },
+    "med-surg": {
+      "total": 2023,
+      "pass": 2023,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "generic_delegation_correct": 26
+      }
+    },
+    "maternal-child": {
+      "total": 2009,
+      "pass": 2009,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "generic_delegation_correct": 19
+      }
+    },
+    "pediatrics-nursing": {
+      "total": 2010,
+      "pass": 2010,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "generic_delegation_correct": 21
+      }
+    }
+  },
+  "topCodeCounts": {
+    "duplicate_vignette_in_stem": 3045,
+    "generic_delegation_correct": 523,
+    "pediatric_age_mismatch": 109
+  },
+  "samples": {
+    "duplicate_vignette_in_stem": [
+      {
+        "itemId": "cmpnjhcm4002j1ymxg5r0fwdc",
+        "subjectId": "safety-infection",
+        "vignette": "Medical-surgical unit. A 56-year-old man is admitted with postoperative day 1 after total knee arthroplasty. On enoxaparin for DVT prophylaxis; PCA morphine for pain. Assessment: BP 132/76 mmHg, HR 92",
+        "stem": "Medical-surgical unit. A 56-year-old man is admitted with postoperative day 1 after total knee arthroplasty. On enoxapar",
+        "message": "Question stem repeats vignette text already shown above."
+      },
+      {
+        "itemId": "cmpnjhcp1002k1ymxuabs1kkt",
+        "subjectId": "safety-infection",
+        "vignette": "Inpatient psychiatric unit. A 20-year-old man is admitted with major depressive disorder with suicidal ideation. Admitted after expressing plan to overdose; first psychiatric hospitalization. Assessme",
+        "stem": "Inpatient psychiatric unit. A 20-year-old man is admitted with major depressive disorder with suicidal ideation. Admitte",
+        "message": "Question stem repeats vignette text already shown above."
+      },
+      {
+        "itemId": "cmpnjhcs3002l1ymx0jd0cyg2",
+        "subjectId": "safety-infection",
+        "vignette": "Inpatient psychiatric unit. A 18-year-old man is admitted with major depressive disorder with suicidal ideation. Admitted after expressing plan to overdose; first psychiatric hospitalization. Assessme",
+        "stem": "Inpatient psychiatric unit. A 18-year-old man is admitted with major depressive disorder with suicidal ideation. Admitte",
+        "message": "Question stem repeats vignette text already shown above."
+      }
+    ],
+    "generic_delegation_correct": [
+      {
+        "itemId": "cmpnjlzuy0n7y1ymx0bxplhq5",
+        "subjectId": "management-of-care",
+        "vignette": "Medical-surgical unit. Room 455. 44-year-old woman with type 2 diabetes on basal-bolus insulin is stable after initial assessment. Admitted for cellulitis treatment; blood cultures negative on day 2. ",
+        "stem": "The nurse is planning assignments. Which activity may be safely delegated to UAP?",
+        "message": "Correct delegation answer is generic and not tied to the client described in the vignette."
+      },
+      {
+        "itemId": "cmpnjlzuy0n861ymxqpr5r4ve",
+        "subjectId": "management-of-care",
+        "vignette": "Medical-surgical unit. Room 524. 44-year-old woman with type 2 diabetes on basal-bolus insulin is stable after initial assessment. Admitted for cellulitis treatment; blood cultures negative on day 2. ",
+        "stem": "Which task is appropriate for the nurse to delegate to unlicensed assistive personnel (UAP)?",
+        "message": "Correct delegation answer is generic and not tied to the client described in the vignette."
+      },
+      {
+        "itemId": "cmpnjlzuy0n8p1ymxgub7xdoj",
+        "subjectId": "management-of-care",
+        "vignette": "Medical-surgical unit. Room 271. 44-year-old woman with type 2 diabetes on basal-bolus insulin is stable after initial assessment. Admitted for cellulitis treatment; blood cultures negative on day 2. ",
+        "stem": "The nurse is planning assignments. Which activity may be safely delegated to UAP?",
+        "message": "Correct delegation answer is generic and not tied to the client described in the vignette."
+      }
+    ],
+    "pediatric_age_mismatch": [
+      {
+        "itemId": "cmpnjmbtv0osa1ymxwq4pmx3i",
+        "subjectId": "safety-infection",
+        "vignette": "Pediatric emergency department, Room 488. A 18-year-old man is admitted with moderate asthma exacerbation. Known asthma; increased albuterol use over 48 hours after viral URI. Assessment: BP 98/62 mmH",
+        "stem": "Pediatric emergency department, Room 488. A 18-year-old man is admitted with moderate asthma exacerbation. Known asthma;",
+        "message": "Pediatric setting with adult age label — likely polish age bump artifact."
+      },
+      {
+        "itemId": "cmpnjmcak0ov91ymxr2v4ijto",
+        "subjectId": "safety-infection",
+        "vignette": "Pediatric emergency department, Room 569. A 18-year-old man is admitted with moderate asthma exacerbation. Known asthma; increased albuterol use over 48 hours after viral URI. Assessment: BP 98/62 mmH",
+        "stem": "Pediatric emergency department, Room 569. A 18-year-old man is admitted with moderate asthma exacerbation. Known asthma;",
+        "message": "Pediatric setting with adult age label — likely polish age bump artifact."
+      },
+      {
+        "itemId": "cmpnjmcak0ovi1ymxm5anskfi",
+        "subjectId": "safety-infection",
+        "vignette": "Pediatric emergency department, Room 337. A 18-year-old man is admitted with moderate asthma exacerbation. Known asthma; increased albuterol use over 48 hours after viral URI. Assessment: BP 98/62 mmH",
+        "stem": "Pediatric emergency department, Room 337. A 18-year-old man is admitted with moderate asthma exacerbation. Known asthma;",
+        "message": "Pediatric setting with adult age label — likely polish age bump artifact."
+      }
+    ]
+  },
+  "failures": []
+}
