@@ -19,7 +19,7 @@ function withLayout(mod: AnatomyModuleDef): AnatomyModuleDef {
 
 /** Organ / vessel / nerve / muscle modules — bones use ClickableSkeleton + bone catalog. */
 const BASE_MODULES: AnatomyModuleDef[] = [
-  { id: "brain", layer: "organ", position: [0, 1.54, 0.01], scale: [0.26, 0.22, 0.28], color: ORGAN_COLORS.brain, geometry: "sphere", profile: "brain", focusDistance: 1.45 },
+  { id: "brain", layer: "organ", position: [0, 1.56, 0.015], scale: [0.26, 0.22, 0.28], color: ORGAN_COLORS.brain, geometry: "sphere", profile: "brain", focusDistance: 1.45 },
   { id: "thyroid", layer: "organ", position: [0, 1.14, 0.14], scale: [0.14, 0.07, 0.09], color: ORGAN_COLORS.thyroid, geometry: "box", profile: "thyroid", focusDistance: 1.35 },
   { id: "trachea", layer: "organ", position: [0, 1.18, 0.1], scale: [0.06, 0.18, 0.06], color: ORGAN_COLORS.trachea, geometry: "cylinder", profile: "trachea-tube", focusDistance: 1.4 },
   { id: "carotid-artery", layer: "vascular", position: [0, 1.19, 0.07], scale: [0.11, 0.13, 0.11], color: ORGAN_COLORS.artery, geometry: "cylinder", profile: "carotid-pair", focusDistance: 1.35, metalness: 0.12 },

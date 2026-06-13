@@ -12,7 +12,7 @@ type Layout = {
 };
 
 export const ORGAN_MODULE_LAYOUT: Record<string, Layout> = {
-  brain: { position: [0, 1.53, 0.015], scale: [0.22, 0.18, 0.23], depthOrder: 1 },
+  brain: { position: [0, 1.56, 0.015], scale: [0.22, 0.18, 0.23], depthOrder: 1 },
   thyroid: { position: [0, 1.13, 0.08], scale: [0.12, 0.052, 0.06], depthOrder: 8 },
   trachea: { position: [0, 1.15, 0.05], scale: [0.05, 0.16, 0.05], depthOrder: 7 },
   esophagus: { position: [0, 0.82, -0.02], scale: [0.038, 0.26, 0.038], depthOrder: 5 },

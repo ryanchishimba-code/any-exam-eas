@@ -4,6 +4,7 @@ import { FIGURE } from "@/lib/anatomy/cartoon/proportions";
 import {
   fitAllenBrainToAtlas,
   fitAllenBrainToFigure,
+  getCraniocervicalJunctionY,
   getCranialVaultWorldBounds,
 } from "./brain-fit";
 
@@ -21,7 +22,21 @@ describe("brain-fit", () => {
     expect(cranial!.min.y).toBeGreaterThan(0.9);
   });
 
-  it("aligns Allen brain center to cranial vault after atlas fit", () => {
+  it("uses spinal cord top as craniocervical junction", () => {
+    const atlas = new Group();
+    const skin = new Mesh(new BoxGeometry(0.48, 2.35, 0.34), new MeshBasicMaterial());
+    skin.userData.atlasOrganId = "skin";
+    skin.position.set(0, 0.18, FIGURE.centerZ);
+    const cord = new Mesh(new BoxGeometry(0.04, 1.1, 0.04), new MeshBasicMaterial());
+    cord.userData.atlasOrganId = "spinal-cord";
+    cord.position.set(0, 0.55, FIGURE.centerZ - 0.08);
+    atlas.add(skin, cord);
+
+    const cordTop = new Box3().setFromObject(cord).max.y;
+    expect(getCraniocervicalJunctionY(atlas, new Box3().setFromObject(skin))).toBeCloseTo(cordTop, 3);
+  });
+
+  it("seats brain base above spinal cord (over the throat)", () => {
     const atlas = new Group();
     const skin = new Mesh(new BoxGeometry(0.48, 2.35, 0.34), new MeshBasicMaterial());
     skin.userData.atlasOrganId = "skin";
@@ -37,25 +52,23 @@ describe("brain-fit", () => {
     fitAllenBrainToAtlas(atlas, brain);
 
     brain.updateMatrixWorld(true);
-    const brainCenter = new Vector3();
-    const vaultCenter = new Vector3();
-    new Box3().setFromObject(brain).getCenter(brainCenter);
-    getCranialVaultWorldBounds(atlas)!.getCenter(vaultCenter);
+    const brainBox = new Box3().setFromObject(brain);
+    const cordTop = new Box3().setFromObject(cord).max.y;
 
-    expect(brainCenter.x).toBeCloseTo(vaultCenter.x, 2);
-    expect(brainCenter.y).toBeCloseTo(vaultCenter.y, 2);
-    expect(brainCenter.z).toBeCloseTo(vaultCenter.z, 2);
+    expect(brainBox.min.y).toBeGreaterThanOrEqual(cordTop - 0.01);
+    expect(brainBox.max.y).toBeLessThanOrEqual(getCranialVaultWorldBounds(atlas)!.max.y + 0.02);
+    expect(brainBox.getCenter(new Vector3()).y).toBeGreaterThan(cordTop);
   });
 
-  it("falls back to figure head anchors when atlas bounds are missing", () => {
+  it("falls back to figure neck junction when atlas bounds are missing", () => {
     const brain = new Group();
     brain.add(new Mesh(new BoxGeometry(2, 2, 2), new MeshBasicMaterial()));
 
     fitAllenBrainToFigure(brain);
 
     brain.updateMatrixWorld(true);
-    const center = new Vector3();
-    new Box3().setFromObject(brain).getCenter(center);
-    expect(center.y).toBeCloseTo(FIGURE.headY - 0.05, 1);
+    const box = new Box3().setFromObject(brain);
+    expect(box.min.y).toBeGreaterThan(FIGURE.neckY);
+    expect(box.max.y).toBeGreaterThan(FIGURE.headY);
   });
 });
