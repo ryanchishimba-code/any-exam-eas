@@ -63,10 +63,10 @@ export const CT_ATLAS_ORGANS: CtAtlasOrganEntry[] = [
   },
   { id: "spinal-cord", fileName: "VH_M_Spinal_Cord.glb", meshId: "spinal-cord", layer: "nerve", system: "nervous" },
   { id: "thymus", fileName: "VH_M_Thymus.glb", meshId: "thyroid", layer: "organ", system: "endocrine" },
-  // Skeletal — HuBMAP v1.2 has pelvis + knee GLBs (no full VH_M_Skeleton in ccf-releases)
+  // Skeletal — HuBMAP v1.2 has pelvis + knee GLBs only; thorax ribs/sternum render via CtProceduralThoraxRig.
   { id: "pelvis", fileName: "VH_M_Pelvis.glb", meshId: "pelvis", layer: "bone", system: "skeletal", opacity: 0.95 },
-  { id: "knee-l", fileName: "VH_M_Knee_L.glb", meshId: "femur", layer: "bone", system: "skeletal", aliasMeshIds: ["tibia"] },
-  { id: "knee-r", fileName: "VH_M_Knee_R.glb", meshId: "femur", layer: "bone", system: "skeletal" },
+  { id: "knee-l", fileName: "VH_M_Knee_L.glb", meshId: "femur", layer: "bone", system: "skeletal", aliasMeshIds: ["tibia", "patella-l"] },
+  { id: "knee-r", fileName: "VH_M_Knee_R.glb", meshId: "femur", layer: "bone", system: "skeletal", aliasMeshIds: ["patella-r"] },
 ];
 
 export type CtClipPlaneId = "off" | "axial" | "coronal" | "sagittal";

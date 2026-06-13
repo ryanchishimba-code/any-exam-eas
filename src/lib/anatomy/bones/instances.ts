@@ -14,6 +14,7 @@ import {
   TARSAL_NAMES,
   tarsalOffsets,
 } from "../cartoon/digit-placements";
+import { OSSICLE_NAMES, ossicleWorldCenter } from "../cartoon/ossicle-hyoid-geometry";
 import { FIGURE } from "../cartoon/proportions";
 import { claviclePathPoints, ribPathPoints } from "../cartoon/skeletal-geometry";
 import { CATALOG_SKULL_RADIUS } from "../cartoon/skull-geometry";
@@ -217,24 +218,33 @@ function skullBones(f: Figure, z: number, scale: number): BoneInstance[] {
   return bones;
 }
 
-function ossiclesAndHyoid(f: Figure, z: number, scale: number): BoneInstance[] {
-  const r = CATALOG_SKULL_RADIUS * scale;
-  const hy = f.headY;
-  const cz = z + 0.02;
+function ossiclesAndHyoid(f: Figure, z: number, _scale: number): BoneInstance[] {
   const bones: BoneInstance[] = [];
 
   bones.push(
-    point("hyoid", "Hyoid bone", "hyoid", "midline", new THREE.Vector3(0, f.neckY - 0.02, cz + 0.06), [0.048, 0.012, 0.022], "irregular", undefined, true)
+    point("hyoid", "Hyoid bone", "hyoid", "midline", new THREE.Vector3(0, f.neckY - 0.02, z + 0.06), [0.048, 0.012, 0.022], "irregular", undefined, true)
   );
 
   for (const side of ["right", "left"] as const) {
     const s = sx(side);
-    const ox = s * r * 0.62;
-    bones.push(
-      point(`malleus-${side[0]}`, `Malleus (${side[0].toUpperCase()})`, "ossicles", side, new THREE.Vector3(ox, hy - r * 0.05, cz + r * 0.15), [0.012, 0.008, 0.006], "short"),
-      point(`incus-${side[0]}`, `Incus (${side[0].toUpperCase()})`, "ossicles", side, new THREE.Vector3(ox, hy - r * 0.02, cz + r * 0.1), [0.01, 0.008, 0.008], "short"),
-      point(`stapes-${side[0]}`, `Stapes (${side[0].toUpperCase()})`, "ossicles", side, new THREE.Vector3(ox, hy - r * 0.04, cz + r * 0.18), [0.006, 0.004, 0.004], "short")
-    );
+    const scales: Record<(typeof OSSICLE_NAMES)[number], [number, number, number]> = {
+      malleus: [0.012, 0.008, 0.006],
+      incus: [0.01, 0.008, 0.008],
+      stapes: [0.006, 0.004, 0.004],
+    };
+    for (const name of OSSICLE_NAMES) {
+      bones.push(
+        point(
+          `${name}-${side[0]}`,
+          `${name.charAt(0).toUpperCase()}${name.slice(1)} (${side[0].toUpperCase()})`,
+          "ossicles",
+          side,
+          ossicleWorldCenter(name, s, f, z),
+          scales[name],
+          "short"
+        )
+      );
+    }
   }
 
   return bones;

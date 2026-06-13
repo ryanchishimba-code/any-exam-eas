@@ -23,6 +23,7 @@ import {
 import { getNeuroConnectedStructureIds } from "@/lib/anatomy/neuro-connections";
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
 import { getAnatomyStructure, getAnatomyStructureByMeshId } from "@/lib/anatomy";
+import { CtProceduralThoraxRig } from "@/components/anatomy/ct/CtProceduralThoraxRig";
 
 type RigProps = {
   visibleLayers: Set<AnatomyLayer>;
@@ -334,6 +335,14 @@ export function CtAtlasRig({
           />
         );
       })}
+      <CtProceduralThoraxRig
+        visible={visibleLayers.has("bone")}
+        windowId={windowId}
+        clippingPlanes={clippingPlanes}
+        selectedId={selectedId}
+        highlightedId={highlightedId}
+        onSelect={onSelect}
+      />
     </>
   );
 }

@@ -52,6 +52,10 @@ describe("adult skeleton catalog", () => {
       "mandible",
       "zygomatic-r",
       "nasal-concha-l",
+      "malleus-r",
+      "incus-l",
+      "stapes-r",
+      "hyoid",
     ]) {
       expect(meshMap.has(id)).toBe(true);
       expect(meshMap.get(id)!.getAttribute("position").count).toBeGreaterThan(0);

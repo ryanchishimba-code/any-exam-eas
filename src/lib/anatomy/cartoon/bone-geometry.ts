@@ -37,6 +37,18 @@ export function buildSacrumBoneParts(f: Figure, z: number): THREE.BufferGeometry
   return parts;
 }
 
+/** Fused coccygeal segments. */
+export function buildCoccyxBoneParts(f: Figure, z: number): THREE.BufferGeometry[] {
+  const parts: THREE.BufferGeometry[] = [];
+  const baseY = f.hipY - 0.02;
+  for (let i = 0; i < 4; i++) {
+    const seg = new THREE.BoxGeometry(0.028 - i * 0.004, 0.009, 0.018 - i * 0.002);
+    seg.translate(0, baseY - i * 0.009, z - 0.08 - i * 0.003);
+    parts.push(seg);
+  }
+  return parts;
+}
+
 /** Single hip bone — ilium, ischium, pubis, acetabulum. */
 export function buildSingleInnominateParts(sx: -1 | 1, f: Figure, z: number): THREE.BufferGeometry[] {
   const parts: THREE.BufferGeometry[] = [];

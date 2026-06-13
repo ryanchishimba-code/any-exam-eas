@@ -42,6 +42,8 @@ const ORGAN_FILES = [
   "VH_M_Knee_R.glb",
 ];
 
+/** HuBMAP v1.2 has no VH rib/sternum GLBs — thorax bones render procedurally in CT mode. */
+
 async function downloadFile(fileName) {
   const url = `${HRA_CDN}/${fileName}`;
   const dest = path.join(OUT_DIR, fileName);

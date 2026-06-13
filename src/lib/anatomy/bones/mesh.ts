@@ -26,8 +26,14 @@ import {
   buildSternumBoneParts,
   buildVertebraBoneParts,
 } from "../cartoon/skeletal-geometry";
+import { buildCoccyxBoneParts } from "../cartoon/bone-geometry";
 import type { BoneInstance } from "./instances";
 import { buildSkullBoneWorldParts, parseSkullBoneId } from "../cartoon/skull-bone-geometry";
+import {
+  buildHyoidWorldParts,
+  buildOssicleWorldParts,
+  parseOssicleName,
+} from "../cartoon/ossicle-hyoid-geometry";
 
 function mergeParts(parts: THREE.BufferGeometry[]): THREE.BufferGeometry | null {
   if (parts.length === 0) return null;
@@ -93,6 +99,10 @@ export function createBoneMeshGeometry(bone: BoneInstance): THREE.BufferGeometry
     return mergeParts(buildSacrumBoneParts(FIGURE, z));
   }
 
+  if (bone.id === "coccyx") {
+    return mergeParts(buildCoccyxBoneParts(FIGURE, z));
+  }
+
   const scapulaSide = parseScapulaSide(bone.id);
   if (scapulaSide !== null) {
     return mergeParts(buildSingleScapulaParts(scapulaSide, FIGURE, z));
@@ -139,6 +149,15 @@ export function createBoneMeshGeometry(bone: BoneInstance): THREE.BufferGeometry
   if (parseSkullBoneId(bone.id)) {
     const skullParts = buildSkullBoneWorldParts(bone.id, FIGURE, z);
     if (skullParts) return mergeParts(skullParts);
+  }
+
+  if (parseOssicleName(bone.id)) {
+    const ossicleParts = buildOssicleWorldParts(bone.id, FIGURE, z);
+    if (ossicleParts) return mergeParts(ossicleParts);
+  }
+
+  if (bone.id === "hyoid") {
+    return mergeParts(buildHyoidWorldParts(FIGURE, z));
   }
 
   const parts: THREE.BufferGeometry[] = [];

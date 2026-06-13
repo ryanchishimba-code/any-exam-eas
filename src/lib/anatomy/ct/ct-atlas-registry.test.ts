@@ -42,6 +42,8 @@ describe("ct-atlas-registry", () => {
     );
     const pelvis = CT_ATLAS_ORGANS.find((o) => o.id === "pelvis");
     expect(pelvis?.layer).toBe("bone");
+    const kneeL = CT_ATLAS_ORGANS.find((o) => o.id === "knee-l");
+    expect(kneeL?.aliasMeshIds).toContain("patella-l");
   });
 
   it("defaults to local-first with CDN fallback for atlas GLBs", () => {
