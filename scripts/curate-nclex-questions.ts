@@ -16,7 +16,7 @@ loadEnvFiles();
 import { PrismaClient } from "@prisma/client";
 import { curateNclexBankItem, triageNclexBankItem } from "../src/lib/engine/curation";
 import { auditBankItem } from "../src/lib/exam-prep/bank-audit";
-import { hasNclexEditorialWarnFlags } from "../src/lib/exam-prep/nclex-bank-audit";
+import { hasNclexEditorialWarnFlags, nclexHasServeBlockIssues } from "../src/lib/exam-prep/nclex-bank-audit";
 import { needsNclexPolish } from "../src/lib/engine/polish/nclex-polish";
 import { getFieldSubject } from "../src/lib/field-subjects";
 import { enrichBankItemFromRow, serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
@@ -36,6 +36,7 @@ function parseArgs() {
   let all = false;
   let editorial = false;
   let failing = false;
+  let safety = false;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--limit" && args[i + 1]) limit = parseInt(args[++i], 10);
@@ -47,9 +48,10 @@ function parseArgs() {
     else if (args[i] === "--all") all = true;
     else if (args[i] === "--editorial") editorial = true;
     else if (args[i] === "--failing") failing = true;
+    else if (args[i] === "--safety") safety = true;
   }
 
-  return { limit, subject, dryRun, aiOnly, forceAi, noAi, all, editorial, failing };
+  return { limit, subject, dryRun, aiOnly, forceAi, noAi, all, editorial, failing, safety };
 }
 
 function seedFromId(id: string): number {
@@ -96,14 +98,51 @@ async function collectEditorialRows(
   return picked;
 }
 
+async function collectSafetyRows(
+  limit: number,
+  subject?: string
+): Promise<QuestionBankItem[]> {
+  const BATCH = 400;
+  const picked: QuestionBankItem[] = [];
+  let cursor: string | undefined;
+
+  while (limit <= 0 || picked.length < limit) {
+    const rows = await prisma.questionBankItem.findMany({
+      where: {
+        fieldId: "nursing",
+        active: true,
+        ...(subject ? { subjectId: subject } : {}),
+        ...(cursor ? { id: { gt: cursor } } : {}),
+      },
+      orderBy: { id: "asc" },
+      take: BATCH,
+    });
+    if (!rows.length) break;
+
+    for (const row of rows) {
+      const item = enrichBankItemFromRow(row);
+      if (nclexHasServeBlockIssues(item)) {
+        picked.push(row);
+        if (limit > 0 && picked.length >= limit) break;
+      }
+    }
+    cursor = rows[rows.length - 1]!.id;
+  }
+
+  return picked;
+}
+
 async function main() {
-  const { limit, subject, dryRun, aiOnly, forceAi, noAi, all, editorial, failing } = parseArgs();
+  const { limit, subject, dryRun, aiOnly, forceAi, noAi, all, editorial, failing, safety } =
+    parseArgs();
 
   if (!noAi && (aiOnly || forceAi)) requireOpenAiKey();
 
   const rows = editorial
     ? await collectEditorialRows(limit > 0 ? limit : 0, subject)
-    : await prisma.questionBankItem.findMany({
+    : safety
+      ? await collectSafetyRows(limit > 0 ? limit : 0, subject)
+      : await prisma.questionBankItem.findMany({
           where: {
             fieldId: "nursing",
             active: true,
@@ -115,7 +154,7 @@ async function main() {
         });
 
   console.log(
-    `\nNCLEX curation engine — ${rows.length} item(s)${dryRun ? " [dry-run]" : ""}${aiOnly ? " [AI only]" : ""}${editorial ? " [editorial queue]" : ""}${failing ? " [qa failures]" : ""}\n`
+    `\nNCLEX curation engine — ${rows.length} item(s)${dryRun ? " [dry-run]" : ""}${aiOnly ? " [AI only]" : ""}${editorial ? " [editorial queue]" : ""}${failing ? " [qa failures]" : ""}${safety ? " [safety blocks]" : ""}\n`
   );
 
   const stats = {

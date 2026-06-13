@@ -71,16 +71,14 @@ describe("naplex-serve-gate", () => {
     expect(prepared).toHaveLength(1);
   });
 
-  it("drops weak items even after polish when below best bar", () => {
+  it("passes through qa-gated weak templates", () => {
     const prepared = prepareNaplexItemsForSession({
       items: [weakTemplate],
       fieldId: "pharmacy",
       field: "pharmacy",
       limit: 1,
     });
-    expect(prepared.length).toBeLessThanOrEqual(1);
-    if (prepared[0]) {
-      expect(naplexBankItemIsServeReady(prepared[0])).toBe(true);
-    }
+    expect(prepared).toHaveLength(1);
+    expect(prepared[0]!.question).toBe(weakTemplate.question);
   });
 });

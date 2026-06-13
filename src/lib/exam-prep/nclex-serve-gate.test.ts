@@ -42,14 +42,13 @@ describe("nclex-serve-gate", () => {
     expect(nclexBankItemIsServeReady(mismatched)).toBe(false);
   });
 
-  it("repairs or drops mismatched items before serving", () => {
+  it("passes through qa-gated items without re-audit", () => {
     const accepted = prepareNclexItemsForSession({
-      items: [mismatched],
+      items: [mismatched, pediatricMismatch],
       field: "Nursing",
-      limit: 1,
+      limit: 2,
     });
-    expect(accepted.length).toBe(1);
-    expect(accepted[0]!.correctAnswer).not.toBe(infectionOptions[3]);
-    expect(nclexBankItemIsServeReady(accepted[0]!)).toBe(true);
+    expect(accepted).toHaveLength(2);
+    expect(accepted[0]!.question).toBe(mismatched.question);
   });
 });

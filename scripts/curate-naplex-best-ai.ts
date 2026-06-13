@@ -8,6 +8,8 @@
  *
  * Requires OPENAI_API_KEY.
  */
+import { loadEnvFiles, requireOpenAiKey } from "./load-env";
+loadEnvFiles();
 import { PrismaClient } from "@prisma/client";
 import { curateNaplexBankItem } from "../src/lib/engine/curation";
 import { getFieldSubject } from "../src/lib/field-subjects";
@@ -78,10 +80,7 @@ async function flushUpdates(pending: RowUpdate[]) {
 async function main() {
   const { limit, dryRun, subject } = parseArgs();
 
-  if (!process.env.OPENAI_API_KEY) {
-    console.error("OPENAI_API_KEY required for AI elevation.");
-    process.exit(1);
-  }
+  if (!dryRun) requireOpenAiKey();
 
   const rows = await prisma.questionBankItem.findMany({
     where: {

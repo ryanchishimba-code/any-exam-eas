@@ -1,11 +1,10 @@
-import type { BankItem } from "./question-bank";
+import type { BankItem } from "@/lib/question-bank";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { prisma } from "@/lib/prisma";
 import {
   ensureStaticSeedsForField,
   ensureSubjectHasQuestions,
 } from "@/lib/ensure-field-seeds";
-import { getHealthBankItems } from "@/lib/health-sciences-question-bank";
 import { isMpjeField } from "@/lib/mpje/config";
 import {
   sampleMpjeFederalOnlyItems,
@@ -81,25 +80,14 @@ function activeFieldWhere(fieldId: string) {
   return { fieldId, active: true as const, qaPassed: true as const };
 }
 
-/** In-memory fallback when DB is empty (e.g. before first sync on Vercel). */
+/** No in-memory fallback — only qaPassed DB rows are served. */
 function staticSeedFallback(
-  fieldId: string,
-  subjectId: string,
-  count: number,
-  stateCode?: string
+  _fieldId: string,
+  _subjectId: string,
+  _count: number,
+  _stateCode?: string
 ): BankItem[] {
-  let items = getHealthBankItems(fieldId, subjectId);
-  if (isMpjeField(fieldId)) {
-    if (stateCode) {
-      const stateItems = items.filter((i) => i.stateCode === stateCode);
-      const federalItems = items.filter((i) => !i.stateCode);
-      items = [...stateItems, ...federalItems];
-    } else {
-      items = items.filter((i) => !i.stateCode);
-    }
-  }
-  if (items.length === 0) return [];
-  return dedupeBankItemsByStem(shuffleBankItems(items)).slice(0, count);
+  return [];
 }
 
 /** Seed only when a bank is empty — never on every sample/count request. */
@@ -398,14 +386,7 @@ export async function sampleQuestionBankItemsForField(params: {
   const total = await prisma.questionBankItem.count({ where });
 
   if (total === 0) {
-    const subjects = (
-      await import("@/lib/subjects/registry")
-    ).getSubjectsForFieldId(params.fieldId);
-    const pooled: BankItem[] = [];
-    for (const subject of subjects) {
-      pooled.push(...staticSeedFallback(params.fieldId, subject.id, Math.ceil(want / subjects.length) + 2));
-    }
-    return dedupeBankItemsByStem(shuffleBankItems(pooled)).slice(0, want);
+    return [];
   }
 
   if (isNursingFieldId(params.fieldId)) {

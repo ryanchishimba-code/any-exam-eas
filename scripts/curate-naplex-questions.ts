@@ -10,6 +10,8 @@
  *
  * Requires OPENAI_API_KEY for AI rewrite stages.
  */
+import { loadEnvFiles, requireOpenAiKey } from "./load-env";
+loadEnvFiles();
 import { PrismaClient } from "@prisma/client";
 import {
   curateNaplexBankItem,
@@ -98,10 +100,7 @@ function shouldProcess(
 async function main() {
   const { limit, subject, dryRun, aiOnly, forceAi, noAi, all } = parseArgs();
 
-  if (!process.env.OPENAI_API_KEY && !noAi && (aiOnly || forceAi)) {
-    console.error("OPENAI_API_KEY required for --ai-only / --force-ai");
-    process.exit(1);
-  }
+  if (!noAi && (aiOnly || forceAi)) requireOpenAiKey();
 
   const totalCount = await prisma.questionBankItem.count({
     where: {

@@ -18,8 +18,10 @@ import { PrismaClient } from "@prisma/client";
 import { auditBankItem } from "../src/lib/exam-prep/bank-audit";
 import { auditUsmleQaEditor } from "../src/lib/exam-prep/usmle-qa-editor";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
-import { questionContentHash } from "../src/lib/sync-question-bank";
+import { bankItemContentHash } from "../src/lib/sync-question-bank";
+import { splitUsmleBankItem } from "../src/lib/exam-prep/usmle-clinical-gate";
 import type { UsmleCurationResult } from "../src/lib/engine/curation";
+import type { UsmleQaReport } from "../src/lib/exam-prep/usmle-qa-editor";
 
 const prisma = new PrismaClient();
 
@@ -122,10 +124,44 @@ async function idsFromDb(field?: string): Promise<string[]> {
   return rows.map((r) => r.id);
 }
 
+function sleepMs(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function rateLimitDelayMs(message: string): number | null {
+  if (message.includes("requests per day")) return 30 * 60 * 1000;
+  const m = message.match(/try again in ([0-9]+)s/i);
+  if (m) return (Number.parseInt(m[1]!, 10) + 2) * 1000;
+  if (message.includes("429") || message.includes("rate limit")) return 8000;
+  return null;
+}
+
 function seedFromId(id: string): number {
   let h = 0;
   for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) | 0;
   return Math.abs(h);
+}
+
+function hashForRow(
+  fieldId: string,
+  subjectId: string,
+  item: UsmleCurationResult["item"]
+): string {
+  return bankItemContentHash(fieldId, subjectId, item);
+}
+
+function shouldPersist(
+  before: UsmleQaReport,
+  result: UsmleCurationResult,
+  bankOk: boolean
+): boolean {
+  if (result.action === "accepted") return false;
+  const { vignette } = splitUsmleBankItem(result.item);
+  if (!vignette || vignette.length < 40) return false;
+  if (!result.item.options.includes(result.item.correctAnswer)) return false;
+  if (!bankOk) return false;
+  if (result.after.examReady) return true;
+  return result.after.overallScore >= before.overallScore + 0.5;
 }
 
 async function resolveHashCollision(
@@ -137,27 +173,31 @@ async function resolveHashCollision(
     minAccept: number;
     offline: boolean;
     noRag: boolean;
+    aiFirst: boolean;
     isUsmleCurationEnabled: () => boolean;
   }
 ): Promise<UsmleCurationResult> {
   let current = result;
-  let hash = questionContentHash(row.fieldId, row.subjectId, current.item.question);
+  let hash = hashForRow(row.fieldId, row.subjectId, current.item);
   let collision = await prisma.questionBankItem.findFirst({
     where: { contentHash: hash, NOT: { id: row.id } },
   });
   if (!collision) return current;
 
-  for (let attempt = 1; attempt <= 8; attempt++) {
+  const maxAttempts = opts.isUsmleCurationEnabled() && !opts.offline ? 3 : 6;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     current = await curate(item, {
       fieldId: row.fieldId,
       itemId: row.id,
       minAcceptScore: opts.minAccept,
       offline: opts.offline,
       useRag: !opts.noRag,
-      aiOnly: attempt >= 3 && !opts.offline && opts.isUsmleCurationEnabled(),
+      aiOnly: opts.isUsmleCurationEnabled() && !opts.offline,
+      aiFirst: opts.aiFirst,
       seed: seedFromId(row.id) + attempt * 7919,
+      maxAiAttempts: 3,
     });
-    hash = questionContentHash(row.fieldId, row.subjectId, current.item.question);
+    hash = hashForRow(row.fieldId, row.subjectId, current.item);
     collision = await prisma.questionBankItem.findFirst({
       where: { contentHash: hash, NOT: { id: row.id } },
     });
@@ -214,10 +254,11 @@ async function main() {
   logLine(
     `  source: ${fromDb ? "db(qaPassed=false)" : csv}  max-score: ${maxScore}  min-accept: ${minAccept}`
   );
+  const aiEnabled = isUsmleCurationEnabled() && !offline;
   logLine(
-    `  dry-run: ${dryRun}  offline: ${offline}  no-rag: ${noRag}  AI: ${isUsmleCurationEnabled() && !offline}`
+    `  dry-run: ${dryRun}  offline: ${offline}  no-rag: ${noRag}  AI: ${aiEnabled}  ai-first: ${aiEnabled}`
   );
-  if (!isUsmleCurationEnabled() && !offline) {
+  if (!aiEnabled && !offline) {
     logLine(
       "  WARNING: OPENAI_API_KEY not set — running rule-polish only. Add key to .env.local for AI rewrites."
     );
@@ -265,48 +306,62 @@ async function main() {
         minAcceptScore: minAccept,
         offline,
         useRag: !noRag,
+        aiFirst: aiEnabled,
+        maxAiAttempts: 1,
         seed: seedFromId(row.id),
       });
 
       qaAfterSum += result.after.overallScore;
       measured++;
-      checkpoint.counts[result.action] = (checkpoint.counts[result.action] ?? 0) + 1;
 
       const bankOk = auditBankItem(result.item, row.fieldId).ok;
       let qaPassed = result.after.examReady && bankOk;
 
       if (result.action === "accepted") {
+        checkpoint.counts.accepted = (checkpoint.counts.accepted ?? 0) + 1;
         checkpoint.processed.push(id);
         if (processedThisRun % 50 === 0) saveCheckpoint(checkpoint);
         continue;
       }
 
-      let finalHash = questionContentHash(row.fieldId, row.subjectId, result.item.question);
+      if (!shouldPersist(beforeQa, result, bankOk)) {
+        checkpoint.counts.rejected = (checkpoint.counts.rejected ?? 0) + 1;
+        checkpoint.processed.push(id);
+        continue;
+      }
+
+      checkpoint.counts[result.action] = (checkpoint.counts[result.action] ?? 0) + 1;
+
+      let finalHash = hashForRow(row.fieldId, row.subjectId, result.item);
       let collision = await prisma.questionBankItem.findFirst({
         where: { contentHash: finalHash, NOT: { id: row.id } },
       });
 
       if (collision) {
-        logLine(`  hash collision on ${id.slice(0, 10)}… — retrying with alternate seed/AI`);
+        logLine(`  hash collision on ${id.slice(0, 10)}… — AI retry for unique vignette`);
         result = await resolveHashCollision(
           { id: row.id, fieldId: row.fieldId, subjectId: row.subjectId },
           item,
           result,
           curateUsmleBankItem,
-          { minAccept, offline, noRag, isUsmleCurationEnabled }
+          { minAccept, offline, noRag, aiFirst: aiEnabled, isUsmleCurationEnabled }
         );
-        checkpoint.counts[result.action] = (checkpoint.counts[result.action] ?? 0) + 1;
-        finalHash = questionContentHash(row.fieldId, row.subjectId, result.item.question);
+        finalHash = hashForRow(row.fieldId, row.subjectId, result.item);
         collision = await prisma.questionBankItem.findFirst({
           where: { contentHash: finalHash, NOT: { id: row.id } },
         });
-        qaPassed = result.after.examReady && auditBankItem(result.item, row.fieldId).ok;
+        bankOk = auditBankItem(result.item, row.fieldId).ok;
+        qaPassed = result.after.examReady && bankOk;
+        if (!shouldPersist(beforeQa, result, bankOk)) {
+          checkpoint.counts.rejected = (checkpoint.counts.rejected ?? 0) + 1;
+          checkpoint.processed.push(id);
+          continue;
+        }
       }
 
       if (collision) {
         logLine(`  skip ${id.slice(0, 10)}… — hash collision after AI retry`);
         checkpoint.counts.skipped = (checkpoint.counts.skipped ?? 0) + 1;
-        // Do not mark processed — allow retry on next resume
         continue;
       }
 
@@ -347,9 +402,19 @@ async function main() {
         );
       }
     } catch (e) {
+      const message = e instanceof Error ? e.message : String(e);
+      const delay = rateLimitDelayMs(message);
+      if (delay && aiEnabled) {
+        logLine(`  rate limit — sleeping ${Math.round(delay / 1000)}s`);
+        await sleepMs(delay);
+        processedThisRun--;
+        continue;
+      }
       checkpoint.counts.errors = (checkpoint.counts.errors ?? 0) + 1;
-      logLine(`  error ${id}: ${e instanceof Error ? e.message : String(e)}`);
+      logLine(`  error ${id}: ${message}`);
     }
+
+    if (aiEnabled) await sleepMs(7000);
 
     checkpoint.processed.push(id);
     if (processedThisRun % 10 === 0) saveCheckpoint(checkpoint);

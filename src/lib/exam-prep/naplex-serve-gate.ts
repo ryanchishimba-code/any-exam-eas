@@ -1,15 +1,10 @@
 import type { BankItem } from "@/lib/question-bank";
-import { auditBankItem } from "@/lib/exam-prep/bank-audit";
-import { normalizeNaplexBankItemFields } from "./naplex-bank-normalize";
-import { getFieldSubject } from "@/lib/field-subjects";
-import {
-  needsNaplexPolish,
-  polishNaplexBankItem,
-} from "@/lib/engine/polish/naplex-polish";
-import { isNaplexBestQuality, passesNaplexServeGate } from "./naplex-quality-gate";
+import { passesNaplexServeGate } from "./naplex-quality-gate";
+import { serveQaPassedBankItems } from "./serve-qa-passed";
 
 export { normalizeNaplexBankItemFields } from "./naplex-bank-normalize";
 
+/** Runtime audit helper — QA gate sets qaPassed; serve path trusts that flag. */
 export function naplexBankItemIsServeReady(
   item: BankItem,
   opts?: { source?: string | null }
@@ -24,42 +19,10 @@ type PrepareNaplexItemsParams = {
   limit: number;
 };
 
-/**
- * Drop or repair weak NAPLEX items before they reach the session player.
- * Only best-tier items are accepted — weak rows are polished once, then dropped.
- */
+/** Items are pre-filtered to qaPassed=true in the DB sample. */
 export function prepareNaplexItemsForSession({
   items,
-  field,
   limit,
 }: PrepareNaplexItemsParams): BankItem[] {
-  const accepted: BankItem[] = [];
-  const seen = new Set<string>();
-
-  for (let i = 0; i < items.length && accepted.length < limit; i++) {
-    const row = items[i]!;
-    let item = normalizeNaplexBankItemFields(row);
-
-    if (!isNaplexBestQuality(item, { source: row.id ? undefined : null })) {
-      if (!needsNaplexPolish(item)) continue;
-
-      const subject = getFieldSubject(field, item.subjectId ?? "");
-      const { item: polished } = polishNaplexBankItem(
-        item,
-        item.subjectId ?? "pharmacology",
-        subject?.label ?? "NAPLEX pharmacotherapy",
-        i + accepted.length
-      );
-      item = normalizeNaplexBankItemFields(polished);
-    }
-
-    if (!isNaplexBestQuality(item)) continue;
-
-    const key = item.id ?? `${item.subjectId}:${item.question}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    accepted.push(item);
-  }
-
-  return accepted;
+  return serveQaPassedBankItems(items, limit);
 }

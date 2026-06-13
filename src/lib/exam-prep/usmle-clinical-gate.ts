@@ -1,11 +1,10 @@
 import type { BankItem } from "@/lib/question-bank";
-import { getFieldSubject } from "@/lib/field-subjects";
 import { isVignetteRich, validateClinicalVignette } from "@/lib/engine/prompts/vignette";
-import { polishUsmleBankItem } from "@/lib/engine/polish/usmle-polish";
 import type { ExamQuestion } from "@/lib/ai";
 import { bankItemToUsmleExam } from "./usmle-bank-bridge";
 import { auditUsmleQaEditor } from "./usmle-qa-editor";
 import { isUsmleCuratedItem } from "@/lib/question-bank/usmle-curated";
+import { serveQaPassedBankItems } from "./serve-qa-passed";
 
 /** Split stored USMLE bank text into vignette + lead-in stem. */
 export function splitUsmleBankItem(item: BankItem): { vignette?: string; stem: string } {
@@ -72,41 +71,10 @@ type PrepareUsmleItemsParams = {
   limit: number;
 };
 
-/**
- * Drop or repair items missing a clinical scenario before they reach the session player.
- * Weak items are re-polished once; still-invalid rows are excluded.
- */
+/** Items are pre-filtered to qaPassed=true in the DB sample. */
 export function prepareUsmleItemsForSession({
   items,
-  fieldId,
-  field,
   limit,
 }: PrepareUsmleItemsParams): BankItem[] {
-  const accepted: BankItem[] = [];
-  const seen = new Set<string>();
-
-  for (let i = 0; i < items.length && accepted.length < limit; i++) {
-    let item = normalizeUsmleBankItemFields(items[i]!);
-
-    if (!usmleBankItemIsServeReady(item, fieldId)) {
-      const subject = getFieldSubject(field, item.subjectId ?? "");
-      const { item: polished } = polishUsmleBankItem(
-        item,
-        fieldId,
-        item.subjectId ?? "internal-medicine",
-        subject?.label ?? "USMLE",
-        i + accepted.length
-      );
-      item = normalizeUsmleBankItemFields(polished);
-    }
-
-    if (!usmleBankItemIsServeReady(item, fieldId)) continue;
-
-    const key = item.id ?? `${item.subjectId}:${item.question}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    accepted.push(item);
-  }
-
-  return accepted;
+  return serveQaPassedBankItems(items, limit);
 }

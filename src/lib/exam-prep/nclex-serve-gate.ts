@@ -4,16 +4,13 @@ import {
   hasNclexEditorialWarnFlags,
   nclexHasServeBlockIssues,
 } from "@/lib/exam-prep/nclex-bank-audit";
-import { getFieldSubject } from "@/lib/field-subjects";
-import {
-  needsNclexPolish,
-  polishNclexBankItem,
-  scoreNclexBankItem,
-} from "@/lib/engine/polish/nclex-polish";
+import { scoreNclexBankItem } from "@/lib/engine/polish/nclex-polish";
+import { serveQaPassedBankItems } from "./serve-qa-passed";
 
 /** UWorld-grade bar: rich vignette, aligned stem/options, CJMM rationale. */
 const MIN_SERVE_SCORE = 0.68;
 
+/** Runtime audit helper — QA gate sets qaPassed; serve path trusts that flag. */
 export function nclexBankItemIsServeReady(item: BankItem): boolean {
   if (nclexHasServeBlockIssues(item)) return false;
   if (hasNclexEditorialWarnFlags(item)) return false;
@@ -27,41 +24,10 @@ type PrepareNclexItemsParams = {
   limit: number;
 };
 
-/**
- * Drop or repair misaligned NCLEX items before they reach the session player.
- * Template-swapped rows are rule-polished once; still-invalid rows are excluded.
- */
+/** Items are pre-filtered to qaPassed=true in the DB sample. */
 export function prepareNclexItemsForSession({
   items,
-  field,
   limit,
 }: PrepareNclexItemsParams): BankItem[] {
-  const accepted: BankItem[] = [];
-  const seen = new Set<string>();
-
-  for (let i = 0; i < items.length && accepted.length < limit; i++) {
-    let item = items[i]!;
-
-    if (!nclexBankItemIsServeReady(item)) {
-      if (!needsNclexPolish(item)) continue;
-
-      const subject = getFieldSubject(field, item.subjectId ?? "");
-      const { item: polished } = polishNclexBankItem(
-        item,
-        item.subjectId ?? "med-surg",
-        subject?.label ?? "NCLEX nursing",
-        i + accepted.length
-      );
-      item = polished;
-    }
-
-    if (!nclexBankItemIsServeReady(item)) continue;
-
-    const key = item.id ?? `${item.subjectId}:${item.question}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    accepted.push(item);
-  }
-
-  return accepted;
+  return serveQaPassedBankItems(items, limit);
 }

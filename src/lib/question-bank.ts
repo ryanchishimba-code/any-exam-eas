@@ -6,10 +6,8 @@ import {
   getFieldSubject,
   subjectMatchesQuestion,
 } from "./field-subjects";
-import { getHealthBankItems } from "./health-sciences-question-bank";
-import { ANATOMY_QUESTION_BANK } from "./medicine-anatomy-question-bank";
 import { sampleQuestionBankItems } from "./question-bank-db";
-import { generateProceduralQuestions } from "./procedural-questions";
+import { ANATOMY_QUESTION_BANK } from "./medicine-anatomy-question-bank";
 import { toQuizletStyleQuestion } from "./question-format";
 
 export type BankItem = {
@@ -380,9 +378,6 @@ export async function getBankQuestions(params: {
 
   const pools: BankItem[] = [];
 
-  const tagWithSubject = (items: BankItem[], defaultSubject: string) =>
-    items.map((i) => ({ ...i, subjectId: i.subjectId ?? defaultSubject }));
-
   // Primary: database — random sample large enough for topic ranking
   const sampleSize = Math.min(500, Math.max(params.count * 8, 80));
   const dbItems = await sampleQuestionBankItems({
@@ -392,20 +387,6 @@ export async function getBankQuestions(params: {
     poolMultiplier: 2,
   });
   pools.push(...dbItems);
-
-  // Fallback: in-repo banks if DB is empty (e.g. before first sync)
-  if (pools.length === 0) {
-    pools.push(...getHealthBankItems(fieldId, subjectKey));
-
-    if (
-      (fieldId === "usmle-step-1" || fieldId === "usmle-step-2") &&
-      BANK[subjectKey]?.length
-    ) {
-      pools.push(...tagWithSubject(BANK[subjectKey], subjectKey));
-    } else if (fieldId === "usmle-step-2") {
-      pools.push(...tagWithSubject(GENERAL_MEDICINE, subjectKey));
-    }
-  }
 
   const topicLower = params.topic.toLowerCase();
   const strict = pools.filter(
@@ -428,32 +409,7 @@ export async function getBankQuestions(params: {
 
   let pool = [...unique.values()];
 
-  if (pool.length < params.count && subject) {
-    const procedural = generateProceduralQuestions({
-      field: params.field,
-      subject,
-      count: params.count - pool.length,
-      existingQuestions: new Set(pool.map((p) => p.question.toLowerCase())),
-    });
-    pool = [...pool, ...procedural];
-  }
-
   const selected = shuffle(pool).slice(0, params.count);
-
-  while (selected.length < params.count && subject) {
-    const more = generateProceduralQuestions({
-      field: params.field,
-      subject,
-      count: params.count - selected.length,
-      existingQuestions: new Set(selected.map((p) => p.question.toLowerCase())),
-    });
-    if (more.length === 0) break;
-    for (const m of more) {
-      if (selected.length >= params.count) break;
-      const k = m.question.toLowerCase();
-      if (!selected.some((s) => s.question.toLowerCase() === k)) selected.push(m);
-    }
-  }
 
   return selected.map((item, i) => bankItemToQuestion(item, i + 1));
 }

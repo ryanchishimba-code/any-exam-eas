@@ -39,6 +39,7 @@ export async function analyzeQuestionPatterns(params: {
   const where = {
     fieldId: params.fieldId,
     active: true,
+    qaPassed: true,
     ...(params.subjectId ? { subjectId: params.subjectId } : {}),
   };
 
