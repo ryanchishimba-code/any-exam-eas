@@ -13,7 +13,7 @@ import {
   type CtClipPlaneId,
 } from "@/lib/anatomy/ct/ct-atlas-registry";
 import { createCtClipPlanes, fitVisibleHumanAtlas } from "@/lib/anatomy/ct/ct-atlas-fit";
-import { fitAllenBrainToFigure } from "@/lib/anatomy/ct/brain-fit";
+import { fitAllenBrainToAtlas, fitAllenBrainToFigure } from "@/lib/anatomy/ct/brain-fit";
 import {
   CT_ORGAN_HU,
   CT_WINDOWS,
@@ -62,6 +62,7 @@ function CtAtlasOrganMeshInner({
   onPick,
   onLoaded,
   headAnchored = false,
+  deferHeadFit = false,
 }: {
   entry: CtAtlasOrganEntry;
   url: string;
@@ -73,6 +74,7 @@ function CtAtlasOrganMeshInner({
   onPick: () => void;
   onLoaded: () => void;
   headAnchored?: boolean;
+  deferHeadFit?: boolean;
 }) {
   const { scene } = useGLTF(url);
   const window = CT_WINDOWS[windowId];
@@ -80,7 +82,7 @@ function CtAtlasOrganMeshInner({
 
   const prepared = useMemo(() => {
     const clone = scene.clone(true);
-    if (headAnchored) fitAllenBrainToFigure(clone);
+    if (headAnchored && !deferHeadFit) fitAllenBrainToFigure(clone);
     const baseColor = huToHex(hu, window);
     const opacity = entry.opacity ?? (entry.layer === "skin" ? 0.18 : 0.98);
     const mat = new MeshBasicMaterial({
@@ -102,7 +104,7 @@ function CtAtlasOrganMeshInner({
       }
     });
     return clone;
-  }, [scene, entry, windowId, window, hu, highlighted, dimmed, clippingPlanes, headAnchored]);
+  }, [scene, entry, windowId, window, hu, highlighted, dimmed, clippingPlanes, headAnchored, deferHeadFit]);
 
   useLayoutEffect(() => {
     onLoaded();
@@ -136,6 +138,7 @@ function CtAtlasOrganMesh({
   dimmed,
   onPick,
   onLoaded,
+  deferHeadFit = false,
 }: {
   entry: CtAtlasOrganEntry;
   windowId: CtWindowId;
@@ -145,6 +148,7 @@ function CtAtlasOrganMesh({
   dimmed: boolean;
   onPick: () => void;
   onLoaded: () => void;
+  deferHeadFit?: boolean;
 }) {
   const urls = resolveCtAtlasUrlCandidates(entry.fileName);
   const headAnchored = entry.fit === "head";
@@ -160,6 +164,7 @@ function CtAtlasOrganMesh({
       onPick={onPick}
       onLoaded={onLoaded}
       headAnchored={headAnchored}
+      deferHeadFit={deferHeadFit}
     />
   );
 }
@@ -176,6 +181,7 @@ function CtAtlasOrganMeshWithFallback({
   onPick,
   onLoaded,
   headAnchored = false,
+  deferHeadFit = false,
 }: {
   entry: CtAtlasOrganEntry;
   urls: string[];
@@ -188,6 +194,7 @@ function CtAtlasOrganMeshWithFallback({
   onPick: () => void;
   onLoaded: () => void;
   headAnchored?: boolean;
+  deferHeadFit?: boolean;
 }) {
   const url = urls[urlIndex];
   if (!url) return null;
@@ -207,6 +214,7 @@ function CtAtlasOrganMeshWithFallback({
         onPick={onPick}
         onLoaded={onLoaded}
         headAnchored={headAnchored}
+        deferHeadFit={deferHeadFit}
       />
     ) : null;
 
@@ -223,6 +231,7 @@ function CtAtlasOrganMeshWithFallback({
         onPick={onPick}
         onLoaded={onLoaded}
         headAnchored={headAnchored}
+        deferHeadFit={deferHeadFit}
       />
     </GltfLoadBoundary>
   );
@@ -239,6 +248,7 @@ export function CtAtlasRig({
   onSelect,
 }: RigProps) {
   const rootRef = useRef<Group>(null);
+  const brainRef = useRef<Group>(null);
   const loadGeneration = useRef(0);
 
   const scheduleRefit = useCallback(() => {
@@ -247,6 +257,9 @@ export function CtAtlasRig({
     requestAnimationFrame(() => {
       if (gen !== loadGeneration.current || !rootRef.current) return;
       fitVisibleHumanAtlas(rootRef.current);
+      if (brainRef.current) {
+        fitAllenBrainToAtlas(rootRef.current, brainRef.current);
+      }
     });
   }, []);
 
@@ -321,17 +334,23 @@ export function CtAtlasRig({
         };
 
         return (
-          <CtAtlasOrganMesh
+          <group
             key={entry.id}
-            entry={entry}
-            windowId={windowId}
-            clippingPlanes={clippingPlanes}
+            ref={brainRef}
             visible={visible}
-            highlighted={highlighted}
-            dimmed={systemFiltered}
-            onPick={pickStructure}
-            onLoaded={() => {}}
-          />
+          >
+            <CtAtlasOrganMesh
+              entry={entry}
+              windowId={windowId}
+              clippingPlanes={clippingPlanes}
+              visible
+              highlighted={highlighted}
+              dimmed={systemFiltered}
+              onPick={pickStructure}
+              onLoaded={scheduleRefit}
+              deferHeadFit
+            />
+          </group>
         );
       })}
     </>
