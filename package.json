@@ -89,6 +89,7 @@
     "db:polish-usmle": "npx tsx scripts/polish-usmle-questions.ts",
     "db:polish-usmle:dry": "npx tsx scripts/polish-usmle-questions.ts --dry-run",
     "db:polish-usmle:all": "npx tsx scripts/polish-usmle-questions.ts --all",
+    "db:polish-usmle:qa-failing": "npx tsx scripts/polish-usmle-qa-failing.ts",
     "db:qa-gate": "npx tsx scripts/qa-gate-question-bank.ts",
     "db:qa-gate:dry": "npx tsx scripts/qa-gate-question-bank.ts --dry-run",
     "db:qa-full": "node scripts/qa-full-pipeline.mjs",

@@ -153,12 +153,14 @@ async function polishField(fieldId: string) {
         where: { id: row.id },
         data: {
           question: finalItem.question,
+          scenario: finalItem.vignette ?? finalItem.scenario ?? row.scenario,
           options: JSON.stringify(finalItem.options),
           correctAnswer: finalItem.correctAnswer,
           explanation: finalItem.explanation,
           tags: finalItem.tags ? JSON.stringify(finalItem.tags) : row.tags,
           contentHash: finalHash,
           source: "polished",
+          itemType: "vignette",
         },
       });
       updated++;
