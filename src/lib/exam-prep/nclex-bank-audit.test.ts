@@ -50,6 +50,7 @@ describe("auditNclexBankItem", () => {
       }),
     );
     expect(result.issues.some((i) => i.code === "pediatric_age_mismatch")).toBe(true);
+    expect(result.ok).toBe(false);
   });
 
   it("flags finding stem with action-only options", () => {
@@ -150,7 +151,27 @@ describe("auditNclexBankItem", () => {
     expect(result.issues.some((i) => i.code === "multi_client_vignette")).toBe(true);
   });
 
-  it("warns on generic delegation correct answer", () => {
+  it("flags heart failure vignette with infection-only options", () => {
+    const infectionOptions = [
+      "Use alcohol-based hand rub alone without soap and water after caring for this client",
+      "Place the client on droplet precautions only and reuse non-critical equipment without cleaning between clients",
+      "Keep the client in a negative-pressure room with airborne precautions for all visitors without PPE",
+      "Place the client on contact precautions; use dedicated equipment and perform hand hygiene with soap and water before and after care",
+    ];
+    const result = auditNclexBankItem(
+      item({
+        vignette:
+          "Medical-surgical unit, Room 353. 68-year-old woman with acute decompensated heart failure. BP 88/54, HR 112, crackles bilaterally, weight up 2.5 kg. The nurse must prevent transmission to other clients and staff.",
+        question: "Which action demonstrates appropriate transmission-based precautions for this client?",
+        options: infectionOptions,
+        correctAnswer: infectionOptions[3]!,
+      })
+    );
+    expect(result.ok).toBe(false);
+    expect(result.issues.some((i) => i.code === "infection_template_clinical_mismatch")).toBe(true);
+  });
+
+  it("fails QA on generic delegation correct answer", () => {
     const result = auditNclexBankItem(
       item({
         vignette:
@@ -167,5 +188,6 @@ describe("auditNclexBankItem", () => {
       })
     );
     expect(result.issues.some((i) => i.code === "generic_delegation_correct")).toBe(true);
+    expect(result.ok).toBe(false);
   });
 });

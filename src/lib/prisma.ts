@@ -17,7 +17,7 @@ if (!isNextBuild) {
 }
 
 /** Bump when Prisma schema adds/changes models so dev HMR replaces stale clients. */
-const PRISMA_SCHEMA_VERSION = 2;
+const PRISMA_SCHEMA_VERSION = 3;
 
 type GlobalPrisma = typeof globalThis & {
   prisma?: PrismaClient;
@@ -41,7 +41,8 @@ function isPrismaClientCurrent(client: PrismaClient | undefined): client is Pris
   return Boolean(
     client &&
       typeof client.drugReviewCycle?.findUnique === "function" &&
-      typeof client.drugCardProgress?.findUnique === "function"
+      typeof client.drugCardProgress?.findUnique === "function" &&
+      typeof client.memoryCardMastery?.findUnique === "function"
   );
 }
 

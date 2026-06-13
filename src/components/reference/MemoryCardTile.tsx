@@ -1,10 +1,13 @@
 "use client";
 
-import { BookMarked, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { BookMarked, CheckCircle2, ChevronRight, RotateCcw } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { getCardMastery } from "@/lib/reference/card-mastery";
 import { MEMORY_CARD_KIND_LABELS, type MemoryCard } from "@/lib/reference/types";
 import { getMemoryCardPreview } from "@/lib/reference/card-preview";
+import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
 const KIND_COLORS: Record<MemoryCard["kind"], string> = {
@@ -18,11 +21,30 @@ const KIND_COLORS: Record<MemoryCard["kind"], string> = {
 
 export function MemoryCardTile({
   card,
+  examSlug,
   onOpen,
 }: {
   card: MemoryCard;
+  examSlug?: ExamSlug;
   onOpen: () => void;
 }) {
+  const [mastery, setMastery] = useState<ReturnType<typeof getCardMastery>>(null);
+
+  useEffect(() => {
+    if (!examSlug) return;
+    setMastery(getCardMastery(card.id, examSlug));
+    const onChange = (e: Event) => {
+      const detail = (e as CustomEvent<{ examSlug: ExamSlug; cardId?: string; hydrated?: boolean }>)
+        .detail;
+      if (detail?.examSlug !== examSlug) return;
+      if (detail.hydrated || detail.cardId === card.id) {
+        setMastery(getCardMastery(card.id, examSlug));
+      }
+    };
+    window.addEventListener("aee-card-mastery-change", onChange);
+    return () => window.removeEventListener("aee-card-mastery-change", onChange);
+  }, [card.id, examSlug]);
+
   return (
     <Card
       role="button"
@@ -47,6 +69,18 @@ export function MemoryCardTile({
           </Badge>
           {card.reviewModuleSlug ? (
             <Badge className="bg-violet-50 text-violet-700">Deep Dive</Badge>
+          ) : null}
+          {mastery === "got-it" ? (
+            <Badge className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-800">
+              <CheckCircle2 className="h-3 w-3" aria-hidden />
+              Got it
+            </Badge>
+          ) : null}
+          {mastery === "need-review" ? (
+            <Badge className="inline-flex items-center gap-1 bg-amber-50 text-amber-900">
+              <RotateCcw className="h-3 w-3" aria-hidden />
+              Review
+            </Badge>
           ) : null}
         </div>
         <p className="mt-2 text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">

@@ -8,7 +8,7 @@ import {
   formatTrialEntryPrice,
   formatTrialLabel,
 } from "@/lib/site";
-import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
+import { LANDING_PRICING_FEATURES } from "@/lib/landing/content";
 
 const exams: { id: string; title: string; href: string; icon: LucideIcon; benefit: string }[] = [
   {
@@ -16,7 +16,7 @@ const exams: { id: string; title: string; href: string; icon: LucideIcon; benefi
     title: "NCLEX",
     href: "/study/practice?field=nursing&mode=bank",
     icon: HeartPulse,
-    benefit: "NGN cases, SATA & prioritization",
+    benefit: "Curated vignettes · NGN · SATA",
   },
   {
     id: "usmle",
@@ -43,12 +43,12 @@ const exams: { id: string; title: string; href: string; icon: LucideIcon; benefi
 
 const subscriberValue = [
   {
-    title: "Adaptive weak-area practice",
-    detail: "Sessions prioritize topics you miss based on in-app attempt history.",
+    title: "Reference Hub & Memory Cards",
+    detail: "Flip high-yield cards, track weak areas, and open Review Modules from one study home base.",
   },
   {
-    title: "OER-backed rationales",
-    detail: "Explanations grounded in Open RN, OpenStax, and official board outlines.",
+    title: "Curated, aligned question banks",
+    detail: "Vignettes, stems, and answer choices QA-checked — with OER-backed CJMM rationales.",
   },
   {
     title: "Affordable full access",
@@ -72,8 +72,8 @@ export function LandingEssentials() {
             Everything you need for board exam prep.
           </h2>
           <p className="mx-auto mt-2 max-w-lg text-sm text-slate-600">
-            NCLEX, USMLE, NAPLEX, and MPJE — plus Top 500 Drugs and progress that
-            follows you across devices.
+            NCLEX, USMLE, NAPLEX, and MPJE — plus Reference Hub, Review Modules, Anatomy Studio,
+            and Top 500 Drugs that follow you across devices.
           </p>
         </div>
 
@@ -124,18 +124,12 @@ export function LandingEssentials() {
             </div>
             <div className="flex flex-col gap-3 sm:items-end">
               <ul className="space-y-2 text-sm text-teal-50">
-                <li className="flex items-center gap-2">
-                  <Check className="h-4 w-4 shrink-0" strokeWidth={2.5} aria-hidden />
-                  {MARKETING_QUESTION_COUNTS.total} board-style questions
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="h-4 w-4 shrink-0" strokeWidth={2.5} aria-hidden />
-                  Top 500 Drugs mastery track
-                </li>
-                <li className="flex items-center gap-2">
-                  <Check className="h-4 w-4 shrink-0" strokeWidth={2.5} aria-hidden />
-                  State-specific MPJE support
-                </li>
+                {LANDING_PRICING_FEATURES.slice(0, 5).map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <Check className="h-4 w-4 shrink-0" strokeWidth={2.5} aria-hidden />
+                    {item}
+                  </li>
+                ))}
                 <li className="flex items-center gap-2">
                   <Check className="h-4 w-4 shrink-0" strokeWidth={2.5} aria-hidden />
                   Cancel anytime — no phone call

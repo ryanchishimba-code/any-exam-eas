@@ -3,6 +3,7 @@
 import {
   Blocks,
   CreditCard,
+  Layers,
   MapPin,
   MousePointerClick,
   Pill,
@@ -16,10 +17,22 @@ const ITEMS = [
       "UWorld and similar banks typically charge per exam. NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE live in one plan.",
   },
   {
+    icon: Layers,
+    title: "Reference Hub & Memory Cards",
+    detail:
+      "High-yield flip cards by subject, weak-area shortcuts, and deep links to Review Modules — your study home base beyond the question bank.",
+  },
+  {
     icon: MousePointerClick,
     title: "Try NGN formats before signup",
     detail:
       "Interact with bow-tie, matrix, and unfolding case demos on this page — not a static screenshot.",
+  },
+  {
+    icon: Blocks,
+    title: "Curated stem/answer alignment",
+    detail:
+      "NCLEX items are QA-checked so vignettes, lead-ins, and correct choices match — with CJMM rationales you can learn from.",
   },
   {
     icon: Pill,
@@ -32,12 +45,6 @@ const ITEMS = [
     title: "State MPJE when you need it",
     detail:
       "Uniform multistate content plus state-specific pharmacy law drills in the same account.",
-  },
-  {
-    icon: Blocks,
-    title: "OER-backed rationales",
-    detail:
-      "Missed-question explanations tie to open educational sources and board blueprints — learn the why.",
   },
 ] as const;
 

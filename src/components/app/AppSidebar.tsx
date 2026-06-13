@@ -9,9 +9,9 @@ import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { href: ROUTES.dashboard, label: "Dashboard", icon: LayoutGrid, exact: true },
+  { href: ROUTES.reference, label: "Reference", icon: BookMarked },
   { href: ROUTES.fullExam, label: "Full Exam", icon: Clock },
   { href: ROUTES.questionBank, label: "Question Bank", icon: BookOpen },
-  { href: ROUTES.reference, label: "Quick Reference", icon: BookMarked },
   { href: ROUTES.anatomy, label: "Anatomy Explorer", icon: Bone },
   { href: ROUTES.analytics, label: "Analytics", icon: BarChart3 },
   { href: ROUTES.highYieldTopics, label: "High-Yield Topics", icon: Sparkles },

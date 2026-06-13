@@ -117,12 +117,6 @@ async function fillExamPool(stateCode: string | undefined, want: number): Promis
     const key = generated.question.trim().toLowerCase();
     if (!seen.has(key)) {
       seen.add(key);
-      if (stateCode && !generated.stateCode && guard % 4 === 0) {
-        generated.stateCode = stateCode;
-      }
-      if (!stateCode) {
-        generated.stateCode = undefined;
-      }
       pool.push(generated);
     }
     guard++;

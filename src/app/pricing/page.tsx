@@ -11,6 +11,7 @@ import { PaymentMethodsList } from "@/components/PaymentMethodsList";
 import { PageShell } from "@/components/PageShell";
 import { PaywallNotice } from "@/components/PaywallNotice";
 import { LandingTrialTrust } from "@/components/home/LandingTrialTrust";
+import { LANDING_PRICING_FEATURES } from "@/lib/landing/content";
 
 export const metadata = {
   title: "Pricing — Any Exam Easy",
@@ -48,13 +49,7 @@ export default async function PricingPage({
         </p>
 
         <ul className="mt-8 space-y-3.5 text-left text-[0.9375rem]">
-          {[
-            "Board-style practice — NCLEX, USMLE, NAPLEX & MPJE",
-            "Adaptive weak-area targeting + progress tracking",
-            "Top 500 Drugs mastery + state-specific MPJE support",
-            "Study Hub with timed exams and question banks",
-            "OER-backed rationales with source citations",
-          ].map((item) => (
+          {LANDING_PRICING_FEATURES.map((item) => (
             <li key={item} className="flex gap-3 text-[var(--color-ink-muted)]">
               <span className="font-medium text-[var(--color-accent)]">✓</span>
               <span>{item}</span>

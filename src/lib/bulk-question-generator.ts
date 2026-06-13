@@ -653,12 +653,8 @@ function buildMpjeQuestion(subject: FieldSubject, index: number): BankItem {
     `MPJE jurisprudence: ${subject.textbookRefs}.`
   );
 
-  const variant = index % 3 === 0 ? "uniform" : "state";
-  const stateCode = ["TX", "NY", "FL", "CA", "PA"][index % 5];
-
   return polishMpjeBankItem(seed, subject.id, subject.label, index, {
-    variant: variant as "uniform" | "state",
-    stateCode,
+    variant: "uniform",
   }).item;
 }
 

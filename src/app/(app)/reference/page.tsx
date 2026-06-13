@@ -2,8 +2,10 @@ import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { ReferenceHubClient } from "@/components/reference/ReferenceHubClient";
+import type { ReferenceHubStats } from "@/components/reference/ReferenceHubHeader";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-preference";
+import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { loadMemoryCards } from "@/lib/reference/memory-cards";
 import { getMemoryCardSubjects } from "@/lib/reference/seeds";
 import { requirePremiumPage } from "@/lib/require-premium-page";
@@ -11,28 +13,22 @@ import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
 export const metadata = {
-  title: "Quick Reference — Any Exam Easy",
-  description: "Memory cards for equations, conversions, tables, and high-yield facts.",
+  title: "Study Reference — Any Exam Easy",
+  description:
+    "AI-personalized study brief, quick tools, memory cards, drugs, and anatomy — your exam home base.",
 };
 
 function ReferenceSkeleton() {
   return (
-    <div className="space-y-6">
-      <Skeleton className="h-40 w-full rounded-3xl" />
-      <div className="space-y-3">
-        <div className="flex flex-wrap gap-2">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Skeleton key={`subject-${i}`} className="h-8 w-24 rounded-full" />
-          ))}
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <Skeleton key={`kind-${i}`} className="h-8 w-20 rounded-full" />
-          ))}
-        </div>
+    <div className="space-y-8">
+      <Skeleton className="h-56 w-full rounded-3xl" />
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <Skeleton key={i} className="h-24 rounded-2xl" />
+        ))}
       </div>
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {Array.from({ length: 6 }).map((_, i) => (
+        {Array.from({ length: 3 }).map((_, i) => (
           <Skeleton key={i} className="h-52 w-full rounded-2xl" />
         ))}
       </div>
@@ -54,14 +50,31 @@ async function ReferenceContent({
   const pref = await getUserExamPreference(userId);
   if (!pref && !examOverride) redirect(ROUTES.selectExam);
 
-  const { examSlug, cards } = await loadMemoryCards(userId, examOverride ?? pref?.examSlug);
+  const examSlug = (examOverride ?? pref?.examSlug ?? "nclex") as ExamSlug;
+  const [{ cards }, dashboard] = await Promise.all([
+    loadMemoryCards(userId, examSlug),
+    getStudentDashboardData(userId),
+  ]);
   const subjects = getMemoryCardSubjects(examSlug);
+  const fieldId = resolveExamFieldId(examSlug);
+  const weakTopics = dashboard.weakTopics
+    .filter((t) => t.fieldId === fieldId)
+    .slice(0, 6);
+
+  const hubStats: ReferenceHubStats = {
+    readinessScore: dashboard.headline.readinessScore,
+    studyStreakDays: dashboard.headline.studyStreakDays,
+    overallAccuracy: dashboard.headline.overallAccuracy,
+    motivationalMessage: dashboard.headline.motivationalMessage,
+  };
 
   return (
     <ReferenceHubClient
       examSlug={examSlug}
       cards={cards}
       subjects={subjects}
+      weakTopics={weakTopics}
+      hubStats={hubStats}
       initialCardId={initialCardId}
       topicKey={topicKey}
     />
@@ -86,28 +99,13 @@ export default async function ReferencePage({ searchParams }: PageProps) {
   const topicKey = params.topic;
 
   return (
-    <div className="space-y-6">
-      <header>
-        <p className="text-xs font-bold uppercase tracking-[0.15em] text-violet-600">
-          Quick Reference
-        </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-[var(--color-ink)]">
-          Memory Cards
-        </h1>
-        <p className="mt-2 max-w-2xl text-[var(--color-ink-muted)]">
-          Fast recall for your board exam — filter by subject or type, then practice or open a
-          deeper review module.
-        </p>
-      </header>
-
-      <Suspense fallback={<ReferenceSkeleton />}>
-        <ReferenceContent
-          userId={session.user.id}
-          examOverride={examOverride}
-          initialCardId={initialCardId}
-          topicKey={topicKey}
-        />
-      </Suspense>
-    </div>
+    <Suspense fallback={<ReferenceSkeleton />}>
+      <ReferenceContent
+        userId={session.user.id}
+        examOverride={examOverride}
+        initialCardId={initialCardId}
+        topicKey={topicKey}
+      />
+    </Suspense>
   );
 }

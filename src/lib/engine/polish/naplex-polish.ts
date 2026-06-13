@@ -14,6 +14,7 @@ import {
   normalizeDrugProfile,
   type PharmDrugProfile,
 } from "@/lib/engine/prompts/pharm-drug-profile";
+import { normalizeNaplexBankItemFields } from "@/lib/exam-prep/naplex-bank-normalize";
 
 const NAPLEX_PREFIX = /^NAPLEX\s+\d+:\s*/i;
 
@@ -377,6 +378,26 @@ function examToBankItem(base: BankItem, exam: ExamQuestion): BankItem {
   };
 }
 
+function hasPolishWarnings(item: BankItem): boolean {
+  return auditBankItem(item, "pharmacy").issues.some(
+    (i) =>
+      i.code === "duplicate_vignette_in_stem" ||
+      i.code === "naplex_missing_clinical_data" ||
+      i.code === "naplex_stem_lead_in" ||
+      i.code === "naplex_explanation_short"
+  );
+}
+
+function itemFieldsChanged(before: BankItem, after: BankItem): boolean {
+  return (
+    after.question !== before.question ||
+    after.correctAnswer !== before.correctAnswer ||
+    after.explanation !== before.explanation ||
+    JSON.stringify(after.options) !== JSON.stringify(before.options) ||
+    (after.vignette ?? after.scenario) !== (before.vignette ?? before.scenario)
+  );
+}
+
 /** Polish a single NAPLEX bank item to uniform, high-yield format. */
 export function polishNaplexBankItem(
   item: BankItem,
@@ -385,22 +406,31 @@ export function polishNaplexBankItem(
   seed = 0
 ): NaplexPolishResult {
   const qualityBefore = scoreNaplexBankItem(item);
+  const normalized = normalizeNaplexBankItemFields(item);
   const hasWeakPatterns =
-    WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer)) ||
-    item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)));
+    WEAK_CORRECT_PATTERNS.some((re) => re.test(normalized.correctAnswer)) ||
+    normalized.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)));
 
-  if (!needsNaplexPolish(item) && !hasWeakPatterns && !lacksDrugDetails(item)) {
-    return { item, changed: false, qualityBefore, qualityAfter: qualityBefore };
+  if (!needsNaplexPolish(normalized) && !hasWeakPatterns && !lacksDrugDetails(normalized)) {
+    if (itemFieldsChanged(item, normalized)) {
+      return {
+        item: normalized,
+        changed: true,
+        qualityBefore,
+        qualityAfter: scoreNaplexBankItem(normalized),
+      };
+    }
+    return { item: normalized, changed: false, qualityBefore, qualityAfter: qualityBefore };
   }
 
-  const stem = stripPrefix(item.question);
+  const stem = stripPrefix(normalized.question);
   const isWeak =
-    qualityBefore < 0.55 ||
-    WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer)) ||
-    NAPLEX_PREFIX.test(item.question) ||
-    lacksDrugDetails(item);
+    scoreNaplexBankItem(normalized) < 0.55 ||
+    WEAK_CORRECT_PATTERNS.some((re) => re.test(normalized.correctAnswer)) ||
+    NAPLEX_PREFIX.test(normalized.question) ||
+    lacksDrugDetails(normalized);
 
-  let working: BankItem = { ...item, question: stem };
+  let working: BankItem = { ...normalized, question: stem };
 
   if (isWeak) {
     const drug =
@@ -452,11 +482,7 @@ export function polishNaplexBankItem(
   const polished = examToBankItem(working, exam);
   const qualityAfter = scoreNaplexBankItem(polished);
 
-  const changed =
-    polished.question !== item.question ||
-    polished.correctAnswer !== item.correctAnswer ||
-    polished.explanation !== item.explanation ||
-    JSON.stringify(polished.options) !== JSON.stringify(item.options);
+  const changed = itemFieldsChanged(item, polished);
 
   return { item: polished, changed, qualityBefore, qualityAfter };
 }
@@ -497,10 +523,13 @@ function buildNaplexExplanation(
 }
 
 export function needsNaplexPolish(item: BankItem): boolean {
+  const normalized = normalizeNaplexBankItemFields(item);
+  if (itemFieldsChanged(item, normalized)) return true;
   return (
-    scoreNaplexBankItem(item) < 0.62 ||
-    NAPLEX_PREFIX.test(item.question) ||
-    lacksDrugDetails(item) ||
-    !auditBankItem(item, "pharmacy").ok
+    scoreNaplexBankItem(normalized) < 0.62 ||
+    NAPLEX_PREFIX.test(normalized.question) ||
+    lacksDrugDetails(normalized) ||
+    !auditBankItem(normalized, "pharmacy").ok ||
+    hasPolishWarnings(normalized)
   );
 }

@@ -1,8 +1,9 @@
 import type { ExamSlug } from "@/types/edtech";
 import type { MemoryCard, MemoryCardKind } from "../types";
-import { MEMORY_CARDS } from "./cards";
+import { enrichMemoryCards } from "../card-sources";
+import { MEMORY_CARDS as RAW_MEMORY_CARDS } from "./cards";
 
-export { MEMORY_CARDS };
+export const MEMORY_CARDS = enrichMemoryCards(RAW_MEMORY_CARDS);
 
 export function getMemoryCardsForExam(examSlug: ExamSlug): MemoryCard[] {
   return MEMORY_CARDS.filter((c) => c.examSlug === examSlug).sort(

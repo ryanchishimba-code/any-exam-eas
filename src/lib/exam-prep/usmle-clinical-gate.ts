@@ -4,6 +4,8 @@ import { isVignetteRich, validateClinicalVignette } from "@/lib/engine/prompts/v
 import { polishUsmleBankItem } from "@/lib/engine/polish/usmle-polish";
 import type { ExamQuestion } from "@/lib/ai";
 import { bankItemToUsmleExam } from "./usmle-bank-bridge";
+import { auditUsmleQaEditor } from "./usmle-qa-editor";
+import { isUsmleCuratedItem } from "@/lib/question-bank/usmle-curated";
 
 /** Split stored USMLE bank text into vignette + lead-in stem. */
 export function splitUsmleBankItem(item: BankItem): { vignette?: string; stem: string } {
@@ -44,6 +46,25 @@ export function usmleExamQuestionHasClinicalScenario(question: ExamQuestion): bo
   return validateClinicalVignette(question).length === 0;
 }
 
+/** Curated seeds pass clinical gate; bulk-polished items must score exam-ready (≥8/10). */
+export function usmleBankItemIsServeReady(item: BankItem, fieldId: string): boolean {
+  const normalized = normalizeUsmleBankItemFields(item);
+  if (!usmleBankItemHasClinicalScenario(normalized)) return false;
+
+  const exam = bankItemToUsmleExam(normalized, 0);
+  if (!usmleExamQuestionHasClinicalScenario(exam)) return false;
+
+  if (isUsmleCuratedItem(normalized)) return true;
+
+  const report = auditUsmleQaEditor(normalized, {
+    fieldId,
+    source: normalized.source ?? "polished",
+    itemId: normalized.id,
+    difficulty: normalized.difficulty ?? null,
+  });
+  return report.examReady;
+}
+
 type PrepareUsmleItemsParams = {
   items: BankItem[];
   fieldId: string;
@@ -67,7 +88,7 @@ export function prepareUsmleItemsForSession({
   for (let i = 0; i < items.length && accepted.length < limit; i++) {
     let item = normalizeUsmleBankItemFields(items[i]!);
 
-    if (!usmleBankItemHasClinicalScenario(item)) {
+    if (!usmleBankItemIsServeReady(item, fieldId)) {
       const subject = getFieldSubject(field, item.subjectId ?? "");
       const { item: polished } = polishUsmleBankItem(
         item,
@@ -79,10 +100,7 @@ export function prepareUsmleItemsForSession({
       item = normalizeUsmleBankItemFields(polished);
     }
 
-    if (!usmleBankItemHasClinicalScenario(item)) continue;
-
-    const exam = bankItemToUsmleExam(item, accepted.length);
-    if (!usmleExamQuestionHasClinicalScenario(exam)) continue;
+    if (!usmleBankItemIsServeReady(item, fieldId)) continue;
 
     const key = item.id ?? `${item.subjectId}:${item.question}`;
     if (seen.has(key)) continue;

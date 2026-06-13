@@ -36,6 +36,17 @@ export function cacheSet<T>(key: string, value: T, ttlMs: number): void {
   store.set(key, { value, expiresAt: Date.now() + ttlMs });
 }
 
+export function cacheDelete(key: string): void {
+  store.delete(key);
+}
+
+/** Delete all entries whose key starts with `prefix` (e.g. brief cache per user/exam). */
+export function cacheDeleteMatching(prefix: string): void {
+  for (const key of store.keys()) {
+    if (key.startsWith(prefix)) store.delete(key);
+  }
+}
+
 export async function cacheGetOrSet<T>(
   key: string,
   ttlMs: number,
@@ -48,6 +59,39 @@ export async function cacheGetOrSet<T>(
   return value;
 }
 
+/** Coalesce concurrent cache misses for the same key (prevents duplicate RAG/AI work). */
+const inflight = new Map<string, Promise<unknown>>();
+
+export async function cacheGetOrSetDeduped<T>(
+  key: string,
+  ttlMs: number,
+  factory: () => Promise<T>
+): Promise<T> {
+  const hit = cacheGet<T>(key);
+  if (hit != null) return hit;
+
+  const pending = inflight.get(key);
+  if (pending) return pending as Promise<T>;
+
+  const promise = factory()
+    .then((value) => {
+      cacheSet(key, value, ttlMs);
+      inflight.delete(key);
+      return value;
+    })
+    .catch((err) => {
+      inflight.delete(key);
+      throw err;
+    });
+
+  inflight.set(key, promise);
+  return promise;
+}
+
+export function cacheHas(key: string): boolean {
+  return cacheGet(key) != null;
+}
+
 export function cacheKey(parts: (string | number | undefined | null)[]): string {
   return parts.filter((p) => p != null && p !== "").join(":");
 }
@@ -57,6 +101,7 @@ export const CACHE_TTL = {
   researchBrief: 60 * 60 * 1000, // 1h — Tavily + synthesis
   subjectCatalog: 5 * 60 * 1000, // 5m
   learningDashboard: 30 * 1000, // 30s per user
+  referenceBrief: 2 * 60 * 60 * 1000, // 2h — AI + OER synthesis per user/exam
   subscriptionStatus: 30 * 1000, // 30s per user — dedupes nav + home fetches
   questionBankSlice: 10 * 60 * 1000, // 10m
 } as const;

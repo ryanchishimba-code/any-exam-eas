@@ -3,9 +3,9 @@
  * Polish NAPLEX (pharmacy field) questions in the database.
  *
  * Usage:
- *   npx tsx scripts/polish-pharmacy-questions.ts --dry-run
- *   npx tsx scripts/polish-pharmacy-questions.ts
- *   npx tsx scripts/polish-pharmacy-questions.ts --limit 100
+ *   npm run db:polish-pharmacy           # polish items needing work
+ *   npm run db:polish-pharmacy:all      # attempt polish on every row
+ *   npm run db:polish-pharmacy:dry      # preview changes
  */
 import { PrismaClient } from "@prisma/client";
 import { bankItemContentHash } from "../src/lib/sync-question-bank";
@@ -15,7 +15,8 @@ import {
   scoreNaplexBankItem,
 } from "../src/lib/engine/polish/naplex-polish";
 import { getFieldSubject } from "../src/lib/field-subjects";
-import type { BankItem } from "../src/lib/question-bank";
+import { enrichBankItemFromRow, serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
+import { isNaplexBestQuality } from "../src/lib/exam-prep/naplex-quality-gate";
 
 const prisma = new PrismaClient();
 
@@ -24,26 +25,8 @@ const all = process.argv.includes("--all");
 const limitArg = process.argv.indexOf("--limit");
 const limit = limitArg >= 0 ? Number.parseInt(process.argv[limitArg + 1] ?? "0", 10) : 0;
 
-function rowToItem(row: {
-  question: string;
-  options: string;
-  correctAnswer: string;
-  explanation: string;
-  subjectId: string;
-  tags: string | null;
-  scenario?: string | null;
-}): BankItem {
-  return {
-    subjectId: row.subjectId,
-    question: row.question,
-    vignette: row.scenario ?? undefined,
-    scenario: row.scenario ?? undefined,
-    options: JSON.parse(row.options) as [string, string, string, string],
-    correctAnswer: row.correctAnswer,
-    explanation: row.explanation,
-    tags: row.tags ? (JSON.parse(row.tags) as string[]) : undefined,
-  };
-}
+const BATCH_SIZE = 40;
+const PROGRESS_EVERY = 500;
 
 function seedFromId(id: string): number {
   let h = 0;
@@ -51,34 +34,74 @@ function seedFromId(id: string): number {
   return Math.abs(h);
 }
 
+type RowUpdate = {
+  id: string;
+  data: {
+    scenario: string | null;
+    question: string;
+    options: string;
+    correctAnswer: string;
+    explanation: string;
+    tags: string | null;
+    contentHash: string;
+    qaPassed: boolean;
+    qaAuditedAt: Date;
+    source: string;
+  };
+};
+
+async function flushUpdates(pending: RowUpdate[]) {
+  if (pending.length === 0) return;
+  const now = new Date();
+  await prisma.$transaction(
+    pending.map((u) =>
+      prisma.questionBankItem.update({
+        where: { id: u.id },
+        data: { ...u.data, qaAuditedAt: now },
+      })
+    )
+  );
+  pending.length = 0;
+}
+
 async function main() {
+  const totalCount = await prisma.questionBankItem.count({
+    where: { fieldId: "pharmacy", active: true },
+  });
+
   const rows = await prisma.questionBankItem.findMany({
     where: { fieldId: "pharmacy", active: true },
-    orderBy: { createdAt: "asc" },
+    orderBy: { id: "asc" },
     ...(limit > 0 ? { take: limit } : {}),
   });
 
-  console.log(`\nNAPLEX polish — ${rows.length} active pharmacy items\n`);
+  console.log(
+    `\nNAPLEX polish — ${rows.length}/${totalCount} active pharmacy items${dryRun ? " [dry-run]" : ""}${all ? " [all]" : ""}\n`
+  );
 
   let scanned = 0;
   let candidates = 0;
   let updated = 0;
   let skipped = 0;
   let errors = 0;
+  let collisions = 0;
   let avgBefore = 0;
   let avgAfter = 0;
 
-  let collisions = 0;
+  const pending: RowUpdate[] = [];
 
   for (const row of rows) {
     scanned++;
-    const item = rowToItem(row);
+    const item = enrichBankItemFromRow(row);
     const before = scoreNaplexBankItem(item);
     avgBefore += before;
 
     if (!all && !needsNaplexPolish(item)) {
       avgAfter += before;
       skipped++;
+      if (scanned % PROGRESS_EVERY === 0) {
+        console.log(`  … ${scanned}/${rows.length} scanned, ${updated} updated`);
+      }
       continue;
     }
 
@@ -127,33 +150,47 @@ async function main() {
         continue;
       }
 
+      const qaOk = isNaplexBestQuality(finalItem, { source: "polished" });
+
       if (dryRun) {
         console.log(
-          `  [dry-run] ${row.subjectId} q=${row.id.slice(0, 8)}… score ${result.qualityBefore.toFixed(2)} → ${result.qualityAfter.toFixed(2)}`
+          `  [dry-run] ${row.subjectId} q=${row.id.slice(0, 8)}… score ${result.qualityBefore.toFixed(2)} → ${result.qualityAfter.toFixed(2)} qa=${qaOk}`
         );
         updated++;
         continue;
       }
 
-      await prisma.questionBankItem.update({
-        where: { id: row.id },
+      pending.push({
+        id: row.id,
         data: {
           scenario: finalItem.vignette ?? finalItem.scenario ?? null,
           question: finalItem.question,
-          options: JSON.stringify(finalItem.options),
+          options: serializeBankOptions(finalItem),
           correctAnswer: finalItem.correctAnswer,
           explanation: finalItem.explanation,
           tags: finalItem.tags ? JSON.stringify(finalItem.tags) : row.tags,
           contentHash: finalHash,
+          qaPassed: qaOk,
+          qaAuditedAt: new Date(),
           source: "polished",
         },
       });
       updated++;
+
+      if (pending.length >= BATCH_SIZE) {
+        await flushUpdates(pending);
+      }
     } catch (e) {
       errors++;
       console.error(`  error id=${row.id}:`, e instanceof Error ? e.message : e);
     }
+
+    if (scanned % PROGRESS_EVERY === 0) {
+      console.log(`  … ${scanned}/${rows.length} scanned, ${updated} updated, ${candidates} candidates`);
+    }
   }
+
+  await flushUpdates(pending);
 
   avgBefore = scanned ? avgBefore / scanned : 0;
   avgAfter = scanned ? avgAfter / scanned : 0;

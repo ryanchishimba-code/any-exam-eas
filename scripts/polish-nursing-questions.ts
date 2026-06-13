@@ -17,6 +17,7 @@ import {
   scoreNclexBankItem,
 } from "../src/lib/engine/polish/nclex-polish";
 import { getFieldSubject } from "../src/lib/field-subjects";
+import { auditBankItem } from "../src/lib/exam-prep/bank-audit";
 import { enrichBankItemFromRow, serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
 
 const prisma = new PrismaClient();
@@ -55,6 +56,9 @@ async function main() {
 
   for (const row of rows) {
     scanned++;
+    if (scanned % 500 === 0) {
+      console.log(`  … scanned ${scanned}/${rows.length}, updated ${updated}`);
+    }
     const item = enrichBankItemFromRow(row);
     const before = scoreNclexBankItem(item);
     avgBefore += before;
@@ -116,9 +120,11 @@ async function main() {
         continue;
       }
 
+      const qaOk = auditBankItem(finalItem, "nursing").ok;
+
       if (dryRun) {
         console.log(
-          `  [dry-run] ${row.subjectId} q=${row.id.slice(0, 8)}… score ${result.qualityBefore.toFixed(2)} → ${result.qualityAfter.toFixed(2)}`
+          `  [dry-run] ${row.subjectId} q=${row.id.slice(0, 8)}… score ${result.qualityBefore.toFixed(2)} → ${result.qualityAfter.toFixed(2)} qa=${qaOk}`
         );
         updated++;
         continue;
@@ -135,6 +141,8 @@ async function main() {
           tags: finalItem.tags ? JSON.stringify(finalItem.tags) : row.tags,
           contentHash: finalHash,
           source: "polished",
+          qaPassed: qaOk,
+          qaAuditedAt: new Date(),
         },
       });
       updated++;

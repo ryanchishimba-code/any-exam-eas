@@ -84,8 +84,8 @@ export function DashboardView({
 
   const secondaryCards = [
     {
-      title: "Memory Cards",
-      description: "Equations, pearls, and tables — then deep dive into full modules.",
+      title: "Study Reference",
+      description: "AI brief, memory cards, drugs, anatomy — your exam home base.",
       href: referenceHref(examSlug),
       icon: BookMarked,
     },

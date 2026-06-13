@@ -106,7 +106,9 @@ export async function GET(req: Request) {
 
   const { isUsmleField } = await import("@/lib/exam-prep/usmle-bank-bridge");
   const usmleField = isUsmleField(fieldId);
-  const sampleCount = usmleField ? Math.min(Math.max(limit * 4, 40), 120) : limit;
+  const nursingField = fieldId === "nursing";
+  const sampleCount =
+    usmleField || nursingField ? Math.min(Math.max(limit * 6, 40), 120) : limit;
 
   let items = mixed
     ? await sampleQuestionBankItemsForField({
@@ -124,6 +126,16 @@ export async function GET(req: Request) {
   if (usmleField && items.length > 0) {
     const { prepareUsmleItemsForSession } = await import("@/lib/exam-prep/usmle-clinical-gate");
     items = prepareUsmleItemsForSession({ items, fieldId, field, limit });
+  }
+
+  if (fieldId === "pharmacy" && items.length > 0) {
+    const { prepareNaplexItemsForSession } = await import("@/lib/exam-prep/naplex-serve-gate");
+    items = prepareNaplexItemsForSession({ items, fieldId, field, limit });
+  }
+
+  if (fieldId === "nursing" && items.length > 0) {
+    const { prepareNclexItemsForSession } = await import("@/lib/exam-prep/nclex-serve-gate");
+    items = prepareNclexItemsForSession({ items, field, limit });
   }
 
   const resolvedSubjectId = mixed ? MIXED_SUBJECT_ID : subjectId!;

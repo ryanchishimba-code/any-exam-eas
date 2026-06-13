@@ -13,6 +13,7 @@ export function auditMemoryCard(card: MemoryCard): string[] {
   if (card.tags.length < 2) issues.push("few-tags");
   if (body === card.teaser.trim()) issues.push("dup-teaser-body");
   if (!card.practiceTopicSlug.trim()) issues.push("missing-practice-topic");
+  if (!card.sourceLabel?.trim()) issues.push("missing-source");
 
   const hasRichTable = rows >= 3;
   const hasRichBullets = bullets >= 3;

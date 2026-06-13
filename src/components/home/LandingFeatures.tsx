@@ -6,6 +6,7 @@ import {
   BookOpen,
   Brain,
   CircleDollarSign,
+  Layers,
   MapPin,
   Pill,
 } from "lucide-react";
@@ -14,13 +15,40 @@ import { Top500DrugsVisual } from "@/components/home/Top500DrugsVisual";
 
 const benefits = [
   {
+    icon: BookOpen,
+    visualId: "screenshot-question-bank",
+    outcome: "Curated banks",
+    title: "Vignettes that match the answer choices",
+    description:
+      "QA-checked NCLEX and board items with aligned stems, options, and CJMM rationales — not template-swapped distractors.",
+    accent: "from-teal-600 to-teal-400",
+  },
+  {
     icon: Brain,
     visualId: "feature-adaptive-learning",
     outcome: "Adaptive practice",
     title: "Practice what you miss — skip what you already know",
     description:
-      "Adaptive sessions surface weak topics from your attempts so each block of study time targets gaps instead of repeating mastered content.",
+      "Adaptive sessions surface weak topics from your attempts so each block targets gaps instead of repeating mastered content.",
     accent: "from-teal-500 to-cyan-500",
+  },
+  {
+    icon: Layers,
+    visualId: "hero-app-mockup",
+    outcome: "Reference Hub",
+    title: "Memory Cards & weak-area shortcuts",
+    description:
+      "Flip high-yield cards by subject, open linked Review Modules, and jump to drugs or anatomy from one study home base.",
+    accent: "from-cyan-500 to-sky-500",
+  },
+  {
+    icon: BarChart3,
+    visualId: "screenshot-analytics",
+    outcome: "Review Modules",
+    title: "Textbook-depth topics when you need them",
+    description:
+      "Eight-section modules on sepsis, heart failure, delegation, and more — linked from questions and Memory Cards.",
+    accent: "from-cyan-600 to-teal-500",
   },
   {
     icon: CircleDollarSign,
@@ -29,7 +57,7 @@ const benefits = [
     title: "All four boards without four separate bills",
     description:
       "NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE live in one account — switch your primary exam anytime during your subscription.",
-    accent: "from-cyan-500 to-sky-500",
+    accent: "from-sky-500 to-blue-500",
   },
   {
     icon: Pill,
@@ -38,24 +66,15 @@ const benefits = [
     title: "Pharmacology flashcards built for boards",
     description:
       "Class-organized deck with generic, brand, MOA, and adverse effects — shared across nursing and pharmacy prep.",
-    accent: "from-sky-500 to-blue-500",
-  },
-  {
-    icon: BookOpen,
-    visualId: "screenshot-question-bank",
-    outcome: "OER-backed",
-    title: "Rationales you can actually learn from",
-    description:
-      "Missed-question explanations reference open educational sources and board blueprints — understand the why, not just the key.",
-    accent: "from-teal-600 to-teal-400",
+    accent: "from-violet-500 to-indigo-500",
   },
   {
     icon: Bone,
     visualId: null,
     outcome: "Anatomy Studio",
-    title: "Video + 3D anatomy linked to your exam",
+    title: "3D anatomy, video & CT Atlas",
     description:
-      "Reference video for orientation, interactive structures with clinical pearls, guided tours, and one-click jumps to practice — included with premium.",
+      "Interactive structures with clinical pearls, guided tours, scrollable CT slices, and one-click jumps to related practice.",
     accent: "from-violet-500 to-indigo-500",
   },
   {
@@ -66,15 +85,6 @@ const benefits = [
     description:
       "Drill uniform multistate content or focus on state-specific rules when you select your MPJE state in the app.",
     accent: "from-amber-500 to-orange-500",
-  },
-  {
-    icon: BarChart3,
-    visualId: "screenshot-analytics",
-    outcome: "Progress tracking",
-    title: "See weak areas — then drill them",
-    description:
-      "In-app practice metrics show accuracy trends and topic gaps. Metrics reflect activity on this platform only, not exam outcomes.",
-    accent: "from-cyan-600 to-teal-500",
   },
 ];
 
@@ -94,8 +104,8 @@ export function LandingFeatures() {
             <span className="aee-display-accent-vibrant">serious licensing prep</span>
           </h2>
           <p className="mx-auto mt-2 max-w-xl text-sm text-slate-600">
-            Board-style items, adaptive review, pharmacology tools, and timed simulations — without
-            paying separately for each exam.
+            Curated question banks, Reference Hub, Review Modules, Anatomy Studio, and timed
+            simulations — without paying separately for each exam.
           </p>
         </div>
 

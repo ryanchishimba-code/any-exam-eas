@@ -9,8 +9,7 @@ import { cn } from "@/lib/utils";
 
 const ITEMS = [
   { href: ROUTES.dashboard, label: "Home", icon: LayoutGrid, exact: true },
-  { href: ROUTES.questionBank, label: "Bank", icon: BookOpen },
-  { href: ROUTES.reference, label: "Ref", icon: BookMarked, ariaLabel: "Reference" },
+  { href: ROUTES.reference, label: "Ref", icon: BookMarked, ariaLabel: "Study Reference" },
   { href: ROUTES.anatomy, label: "Anatomy", icon: Bone, ariaLabel: "Anatomy Explorer" },
   { href: ROUTES.fullExam, label: "Exam", icon: Clock },
   { href: ROUTES.analytics, label: "Stats", icon: BarChart3 },

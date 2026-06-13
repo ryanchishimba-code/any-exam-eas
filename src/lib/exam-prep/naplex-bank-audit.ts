@@ -142,3 +142,30 @@ export function auditNaplexBankItem(item: BankItem): NaplexAuditReport {
   const errors = issues.filter((i) => i.severity === "error");
   return { ok: errors.length === 0, issues };
 }
+
+export type NaplexAuditItemReport = NaplexAuditReport & { itemId?: string };
+
+export function summarizeNaplexAudit(results: NaplexAuditItemReport[]): {
+  total: number;
+  pass: number;
+  fail: number;
+  bySeverity: Record<string, number>;
+  byCode: Record<string, number>;
+} {
+  let pass = 0;
+  let fail = 0;
+  const bySeverity: Record<string, number> = {};
+  const byCode: Record<string, number> = {};
+
+  for (const result of results) {
+    if (result.ok) pass++;
+    else fail++;
+
+    for (const issue of result.issues) {
+      bySeverity[issue.severity] = (bySeverity[issue.severity] ?? 0) + 1;
+      byCode[issue.code] = (byCode[issue.code] ?? 0) + 1;
+    }
+  }
+
+  return { total: results.length, pass, fail, bySeverity, byCode };
+}

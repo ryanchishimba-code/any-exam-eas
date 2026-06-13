@@ -1,0 +1,181 @@
+{
+  "generatedAt": "2026-06-13T20:06:01.491Z",
+  "summary": {
+    "total": 24166,
+    "pass": 24162,
+    "fail": 4,
+    "bySeverity": {
+      "warn": 470,
+      "error": 4
+    },
+    "byCode": {
+      "naplex_missing_clinical_data": 470,
+      "naplex_stem_lead_in": 4
+    }
+  },
+  "passRate": 99.98344781925019,
+  "polishNeeded": 21594,
+  "qaGateFail": 4,
+  "lowQuality": 20,
+  "withWarnings": 470,
+  "withErrors": 4,
+  "bySubject": {
+    "pharmacokinetics": {
+      "total": 2012,
+      "pass": 2011,
+      "fail": 1,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_missing_clinical_data": 276,
+        "naplex_stem_lead_in": 1
+      }
+    },
+    "pharmacology": {
+      "total": 2029,
+      "pass": 2029,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_missing_clinical_data": 172
+      }
+    },
+    "pharmaceutics": {
+      "total": 2008,
+      "pass": 2008,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_missing_clinical_data": 2
+      }
+    },
+    "compounding-calculations": {
+      "total": 2022,
+      "pass": 2022,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_missing_clinical_data": 2
+      }
+    },
+    "cardiovascular-rx": {
+      "total": 2020,
+      "pass": 2020,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_missing_clinical_data": 1
+      }
+    },
+    "infectious-disease-rx": {
+      "total": 2018,
+      "pass": 2018,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_missing_clinical_data": 1
+      }
+    },
+    "endocrine-rx": {
+      "total": 2015,
+      "pass": 2015,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {}
+    },
+    "cns-rx": {
+      "total": 2006,
+      "pass": 2006,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {}
+    },
+    "oncology-rx": {
+      "total": 2002,
+      "pass": 2002,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {}
+    },
+    "otc-self-care": {
+      "total": 2007,
+      "pass": 2007,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_missing_clinical_data": 2
+      }
+    },
+    "patient-counseling": {
+      "total": 2021,
+      "pass": 2019,
+      "fail": 2,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_missing_clinical_data": 12,
+        "naplex_stem_lead_in": 2
+      }
+    },
+    "pharmacy-law": {
+      "total": 2006,
+      "pass": 2005,
+      "fail": 1,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_missing_clinical_data": 2,
+        "naplex_stem_lead_in": 1
+      }
+    }
+  },
+  "topCodeCounts": {
+    "naplex_missing_clinical_data": 470,
+    "naplex_stem_lead_in": 4
+  },
+  "samples": {
+    "naplex_missing_clinical_data": [
+      {
+        "itemId": "cmpnjq99615pw1ymx82xjfflt",
+        "subjectId": "pharmacokinetics",
+        "vignette": "A clinical pharmacist verifies dosing for Azelastine (Astelin) before dispensing.",
+        "stem": "What is the total daily dose?",
+        "message": "Clinical stem lacks patient age and numeric labs, vitals, or doses."
+      },
+      {
+        "itemId": "cmpnjq99615q31ymxhvkgrr56",
+        "subjectId": "pharmacokinetics",
+        "vignette": "A clinical pharmacist verifies dosing for Azelastine (Astelin) before dispensing.",
+        "stem": "What is the total daily dose?",
+        "message": "Clinical stem lacks patient age and numeric labs, vitals, or doses."
+      },
+      {
+        "itemId": "cmpnjq99615qa1ymxyuczx3w2",
+        "subjectId": "pharmacokinetics",
+        "vignette": "A clinical pharmacist verifies dosing for Azelastine (Astelin) before dispensing.",
+        "stem": "What is the total daily dose?",
+        "message": "Clinical stem lacks patient age and numeric labs, vitals, or doses."
+      }
+    ],
+    "naplex_stem_lead_in": [
+      {
+        "itemId": "cmq339r0300371yiujmn46ovo",
+        "subjectId": "pharmacokinetics",
+        "vignette": "J.T., 72 y/o woman, 60 kg | SCr 1.6 mg/dL (stable) | For vancomycin dosing estimate",
+        "stem": "Using Cockcroft–Gault (female), which estimated creatinine clearance (mL/min) is closest?",
+        "message": "Stem should use NAPLEX-style lead-in (most appropriate, calculate, select all, etc.)."
+      },
+      {
+        "itemId": "cmq339u2w004f1yiuvl3al953",
+        "subjectId": "pharmacy-law",
+        "vignette": "",
+        "stem": "A pharmacist discovers a colleague diverting controlled substances. The FIRST professional obligation is to:",
+        "message": "Stem should use NAPLEX-style lead-in (most appropriate, calculate, select all, etc.)."
+      },
+      {
+        "itemId": "cmq9fimvx003j1yrw0g04bw3s",
+        "subjectId": "patient-counseling",
+        "vignette": "",
+        "stem": "A test item focuses on Patient Counseling & Medication Adherence. Which statement is most accurate?",
+        "message": "Stem should use NAPLEX-style lead-in (most appropriate, calculate, select all, etc.)."
+      }
+    ]
+  }
+}

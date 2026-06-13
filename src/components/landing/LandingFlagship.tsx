@@ -40,7 +40,9 @@ import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import {
   LANDING_BENEFITS,
   LANDING_EXAMS,
+  LANDING_HERO_SUBLINE,
   LANDING_METRICS,
+  LANDING_PRICING_FEATURES,
   LANDING_STEPS,
   LANDING_TESTIMONIALS,
   SAMPLE_QUESTIONS_FEATURED,
@@ -123,10 +125,7 @@ function HeroSection() {
             <span className="aee-flagship-gradient-text">clinical-grade</span> questions — one
             subscription.
           </h1>
-          <p className="aee-flagship-hero__subline">
-            NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE. Adaptive banks, timed exams, and Top 500
-            Drugs — designed with the clarity of Apple and the rigor of UWorld.
-          </p>
+          <p className="aee-flagship-hero__subline">{LANDING_HERO_SUBLINE}</p>
 
           <div className="aee-flagship-hero__ctas">
             <LandingCta
@@ -231,7 +230,7 @@ export function LandingFlagship() {
             <span className="aee-flagship-gradient-text">every pixel.</span>
           </>
         }
-        subtitle="Built for students who expect UWorld-quality content without four separate bills."
+        subtitle="Curated banks, Reference Hub, Review Modules, and Anatomy Studio — without paying separately for each exam."
       >
         <ul className="aee-flagship-benefits-grid">
           {LANDING_BENEFITS.map((b, i) => (
@@ -365,12 +364,7 @@ export function LandingFlagship() {
             className="aee-flagship-pricing-card__visual"
           />
           <ul className="aee-flagship-pricing-features">
-            {[
-              "NCLEX · USMLE · NAPLEX · MPJE question banks",
-              "Adaptive practice + timed full exams",
-              "Top 500 Drugs pharmacology deck",
-              "Progress analytics & weak-area drills",
-            ].map((item) => (
+            {LANDING_PRICING_FEATURES.map((item) => (
               <li key={item} className="flex items-start gap-2 text-sm">
                 <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--flagship-teal)]" aria-hidden />
                 {item}

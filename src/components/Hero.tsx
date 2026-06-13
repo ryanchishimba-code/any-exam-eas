@@ -23,6 +23,7 @@ import {
   MARKETING_DISCLAIMER,
 } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
+import { LANDING_HERO_SUBLINE } from "@/lib/landing/content";
 
 const LandingAppMockup = dynamic(
   () => import("@/components/home/LandingAppMockup").then((m) => m.LandingAppMockup),
@@ -76,8 +77,7 @@ export function Hero({ compareLayout = false }: { compareLayout?: boolean }) {
         <span className="aee-display-accent-vibrant">question banks & timed practice.</span>
       </>
     );
-    subline =
-      "NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE in one subscription — adaptive banks, timed exams, and Top 500 Drugs.";
+    subline = LANDING_HERO_SUBLINE;
     urgency = formatTrialHeroOffer();
   }
 

@@ -22,7 +22,7 @@ const EXAMS = [
   {
     id: "nclex",
     label: "NCLEX",
-    blurb: "Next-Gen clinical judgment",
+    blurb: "Curated vignettes · NGN",
     href: "/study/practice?field=nursing&mode=bank",
     icon: HeartPulse,
     color: "#0d9488",
@@ -56,18 +56,18 @@ const EXAMS = [
 const VALUE_PILLARS = [
   {
     icon: Layers,
-    title: `${MARKETING_QUESTION_COUNTS.total} board-style items`,
-    detail: "Large stratified banks across nursing, medicine, and pharmacy fields.",
+    title: `${MARKETING_QUESTION_COUNTS.total} curated board items`,
+    detail: "QA-checked vignettes with aligned answer choices across nursing, medicine, and pharmacy.",
   },
   {
     icon: Brain,
-    title: "Adaptive practice",
-    detail: "Sessions weight topics you miss so review time goes further.",
+    title: "Reference Hub & Memory Cards",
+    detail: "High-yield flip cards, weak-area shortcuts, and links to Review Modules.",
   },
   {
     icon: BookOpen,
-    title: "OER-backed rationales",
-    detail: "Explanations tied to open educational sources — not black-box memorization.",
+    title: "Review Modules & Anatomy Studio",
+    detail: "Eight-section deep dives plus 3D anatomy, video, and CT Atlas — tied to your exam.",
   },
   {
     icon: MapPin,

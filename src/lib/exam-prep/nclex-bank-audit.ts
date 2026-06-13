@@ -35,8 +35,51 @@ const DELEGATION_VIGNETTE =
 const INFECTION_STEM =
   /infection|precaution|isolation|PPE|hand hygiene|contact precaution|transmission-based|droplet precaution|airborne precaution/i;
 
+const INFECTION_TRANSMISSION_BOILERPLATE =
+  /The nurse must prevent transmission to other clients and staff\.?/i;
+
+/** Strip generator boilerplate that falsely satisfies infection-context checks. */
+export function stripInfectionBoilerplate(text: string): string {
+  return text.replace(INFECTION_TRANSMISSION_BOILERPLATE, "").trim();
+}
+
+/** True infectious-disease context in the clinical scenario (not generic boilerplate). */
+export function hasTrueInfectionContext(text: string): boolean {
+  return /C\. diff|Clostridioides difficile|MRSA|methicillin-resistant|tuberculosis|\bTB\b|meningococcal|meningitis|cellulitis|COVID-19|norovirus|hepatitis A|varicella|measles|active tuberculosis|infectious diarrhea|watery diarrhea.*(?:WBC|leukocytosis)|purulent wound|pyelonephritis with (?:ESBL|resistant)|contact precaution for (?:C\. diff|MRSA)/i.test(
+    text
+  );
+}
+
+export function optionsAreInfectionControlOnly(options: string[]): boolean {
+  if (options.length < 4) return false;
+  return options.every((o) =>
+    /^(Use alcohol-based hand rub|Place the client on (contact|droplet) precautions|Keep the client in a negative-pressure room)/i.test(
+      o.trim()
+    )
+  );
+}
+
+export function inferNclexTemplateFromClinical(text: string, stem: string): string | undefined {
+  const body = stripInfectionBoilerplate(text);
+  if (/morphine|opioid|pinpoint pupils|somnolen|PCA/i.test(body)) {
+    return /assessed first|see first|prioritize|four clients/i.test(stem) ? "prioritization" : "intervention";
+  }
+  if (/heart failure|hypovolemic|hemorrhage|GI bleed|melena|anaphylaxis|stridor|urticaria/i.test(body)) {
+    return /assessed first|see first|four clients/i.test(stem) ? "prioritization" : "intervention";
+  }
+  if (/depressive|suicidal|psychiatric|fear and anxiety|goodbye note/i.test(body)) {
+    return /therapeutic|communication|psychosocial/i.test(stem) ? "communication" : "intervention";
+  }
+  if (/hyperglycemia|diabetes|insulin|glucose\s*4|fruity breath/i.test(body)) {
+    return /medication|administer|six rights/i.test(stem) ? "pharmacology" : "intervention";
+  }
+  if (/postpartum|boggy fundus|perineal pad|lochia/i.test(body)) return "risk";
+  if (hasTrueInfectionContext(body)) return "infection";
+  return undefined;
+}
+
 const INFECTION_VIGNETTE =
-  /prevent transmission|C\. diff|Clostridioides difficile|contact precaution|droplet precaution|isolation room|infectious|MRSA|tuberculosis|contagious/i;
+  /C\. diff|Clostridioides difficile|contact precaution|droplet precaution|isolation room|infectious|MRSA|tuberculosis|contagious/i;
 
 const PHANTOM_DX_CHECKS: Array<{ optionPattern: RegExp; vignetteNeed: RegExp; label: string }> = [
   {
@@ -132,6 +175,19 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
     );
   }
 
+  if (asksForFinding) {
+    for (const opt of item.options) {
+      if (/^[A-Za-z]+ \(\s*RR\s*\d+/i.test(opt.trim())) {
+        push(
+          "error",
+          "malformed_finding_option",
+          "Finding option mixes unrelated assessment labels — rewrite as a single coherent finding."
+        );
+        break;
+      }
+    }
+  }
+
   if (STABLE_ASSERTION.test(blob) && UNSTABLE_VITAL_CUES.test(vignette || blob)) {
     push(
       "error",
@@ -184,9 +240,11 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
     );
   }
 
+  const clinicalBody = stripInfectionBoilerplate(vignette);
   const vignetteDelegation = DELEGATION_VIGNETTE.test(vignette);
   const stemInfection = INFECTION_STEM.test(stem);
-  const vignetteInfection = INFECTION_VIGNETTE.test(vignette);
+  const vignetteInfection =
+    hasTrueInfectionContext(clinicalBody) || INFECTION_VIGNETTE.test(clinicalBody);
   if (vignetteDelegation && stemInfection && !vignetteInfection) {
     push(
       "error",
@@ -194,11 +252,24 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
       "Delegation vignette paired with infection-control stem without infectious context in the scenario."
     );
   }
-  if (stemInfection && vignette.length > 50 && !vignetteInfection && !isPrioritizationStem && !vignetteDelegation) {
+  if (
+    stemInfection &&
+    clinicalBody.length > 50 &&
+    !vignetteInfection &&
+    !isPrioritizationStem &&
+    !vignetteDelegation
+  ) {
     push(
       "error",
       "infection_stem_without_context",
       "Infection-control stem lacks transmission or infectious-disease context in the vignette."
+    );
+  }
+  if (stemInfection && optionsAreInfectionControlOnly(item.options) && clinicalBody.length > 50 && !vignetteInfection) {
+    push(
+      "error",
+      "infection_template_clinical_mismatch",
+      "Infection-control stem and options do not match the clinical scenario in the vignette."
     );
   }
 
@@ -224,7 +295,7 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
     )
   ) {
     push(
-      "warn",
+      "error",
       "generic_delegation_correct",
       "Correct delegation answer is generic and not tied to the client described in the vignette."
     );
@@ -236,13 +307,18 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
     /asthma|wheeze|retractions/i.test(vignette)
   ) {
     push(
-      "warn",
+      "error",
       "pediatric_age_mismatch",
       "Pediatric setting with adult age label — likely polish age bump artifact."
     );
   }
 
-  if (vignette && stem && stem.includes(vignette.slice(0, Math.min(60, vignette.length)))) {
+  const rawQuestion = item.question?.trim() ?? "";
+  const explicitVignette = item.vignette?.trim() || item.scenario?.trim() || "";
+  const vignetteHead = vignette.slice(0, Math.min(60, vignette.length));
+  if (explicitVignette && rawQuestion.startsWith(explicitVignette)) {
+    push("warn", "duplicate_vignette_in_stem", "Question stem repeats vignette text already shown above.");
+  } else if (vignette && stem && vignetteHead.length >= 20 && stem.includes(vignetteHead)) {
     push("warn", "duplicate_vignette_in_stem", "Question stem repeats vignette text already shown above.");
   }
 
@@ -273,6 +349,47 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
 
   const errors = issues.filter((i) => i.severity === "error");
   return { ok: errors.length === 0, issues };
+}
+
+/** Safety / editorial codes that must never be served even if a stale qaPassed row exists. */
+export const NCLEX_SERVE_BLOCK_CODES = [
+  "pediatric_age_mismatch",
+  "generic_delegation_correct",
+  "infection_template_clinical_mismatch",
+  "infection_stem_without_context",
+  "stem_vignette_template_mismatch",
+  "phantom_client_in_options",
+  "priority_hypoxemia_mismatch",
+  "duplicate_vignette_in_stem",
+  "malformed_finding_option",
+  "stem_option_category_mismatch",
+] as const;
+
+export function nclexHasServeBlockIssues(item: BankItem): boolean {
+  const report = auditNclexBankItem(item);
+  const blockSet = new Set<string>(NCLEX_SERVE_BLOCK_CODES);
+  return report.issues.some((i) => blockSet.has(i.code));
+}
+
+/** Warn-level codes that warrant curation even when error-level audit passes. */
+export const NCLEX_EDITORIAL_WARN_CODES = [
+  "duplicate_vignette_in_stem",
+  "missing_vignette_split",
+] as const;
+
+export type NclexEditorialWarnCode = (typeof NCLEX_EDITORIAL_WARN_CODES)[number];
+
+const editorialWarnSet = new Set<string>(NCLEX_EDITORIAL_WARN_CODES);
+
+export function getNclexEditorialWarnCodes(item: BankItem): NclexEditorialWarnCode[] {
+  const report = auditNclexBankItem(item);
+  return report.issues
+    .filter((i) => i.severity === "warn" && editorialWarnSet.has(i.code))
+    .map((i) => i.code as NclexEditorialWarnCode);
+}
+
+export function hasNclexEditorialWarnFlags(item: BankItem): boolean {
+  return getNclexEditorialWarnCodes(item).length > 0;
 }
 
 export function auditNclexBankItems(items: BankItem[]): {

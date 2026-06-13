@@ -1,7 +1,3 @@
-
-> any-exam-easy@0.1.0 db:audit-nclex
-> npx tsx scripts/audit-nclex-questions.ts --deep --json
-
 Auditing 24131 active nursing question(s)…
 
 {

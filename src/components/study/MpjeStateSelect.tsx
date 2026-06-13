@@ -3,6 +3,11 @@
 import { useId } from "react";
 import { getMpjeState } from "@/lib/mpje/config";
 import {
+  getMpjeStateCoverageTier,
+  mpjeStateCoverageDetail,
+  mpjeStateCoverageLabel,
+} from "@/lib/mpje/state-coverage";
+import {
   isMpjeUsJurisdiction,
   MPJE_US_JURISDICTIONS,
 } from "@/lib/mpje/us-jurisdictions";
@@ -30,6 +35,7 @@ export function MpjeStateSelect({
   const normalized =
     value && isMpjeUsJurisdiction(value) ? value.toUpperCase() : "";
   const selected = normalized ? getMpjeState(normalized) : undefined;
+  const tier = normalized ? getMpjeStateCoverageTier(normalized) : null;
 
   return (
     <div className={cn("space-y-2", className)}>
@@ -61,14 +67,35 @@ export function MpjeStateSelect({
         ))}
       </select>
       <p className="max-w-prose text-xs leading-relaxed text-[var(--color-ink-muted)]">
-        {selected
-          ? `Practicing ${selected.name} (${selected.code}) pharmacy law plus federal rules.`
-          : "No state selected — questions use federal pharmacy law only (DEA, FDA, HIPAA, and uniform MPJE). Pick a state to add state-specific practice act items."}
+        {selected && tier
+          ? mpjeStateCoverageDetail(selected.name, selected.code)
+          : "No state selected — questions use federal pharmacy law only (DEA, FDA, HIPAA, and uniform MPJE). Pick a state to mix in available state-tagged items where we have them."}
       </p>
+      {selected && tier ? (
+        <p
+          className={cn(
+            "inline-flex rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide",
+            tier === "substantive"
+              ? "bg-emerald-100 text-emerald-900"
+              : tier === "templated"
+                ? "bg-amber-100 text-amber-900"
+                : "bg-slate-100 text-slate-700"
+          )}
+        >
+          {mpjeStateCoverageLabel(tier)}
+        </p>
+      ) : null}
+      {selected && tier === "federal-baseline" ? (
+        <p className="rounded-lg border border-amber-200/80 bg-amber-50/80 px-3 py-2 text-xs text-amber-900">
+          We do not yet publish verified {selected.name} board statute items. Sessions emphasize
+          federal and uniform MPJE law — supplement with your state board outline for jurisprudence
+          prep.
+        </p>
+      ) : null}
       {selected?.transitioningToUmpje && (
         <p className="rounded-lg border border-amber-200/80 bg-amber-50/80 px-3 py-2 text-xs text-amber-900">
           {selected.name} is transitioning to Uniform MPJE (UMPJE) in 2026 — practice includes
-          both state-specific and uniform federal principles.
+          both state-specific and uniform federal principles where available.
         </p>
       )}
       {selected?.note && (

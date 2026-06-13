@@ -8,12 +8,16 @@
  *   npm run db:audit-nclex -- --subject med-surg --json
  */
 import { PrismaClient } from "@prisma/client";
+import { writeFileSync, mkdirSync } from "node:fs";
+import path from "node:path";
 import {
   auditNclexBankItem,
   resolveNclexStem,
   resolveNclexVignette,
   summarizeNclexAudit,
 } from "../src/lib/exam-prep/nclex-bank-audit";
+import { auditBankItem } from "../src/lib/exam-prep/bank-audit";
+import { needsNclexPolish, scoreNclexBankItem } from "../src/lib/engine/polish/nclex-polish";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
 
 const prisma = new PrismaClient();
@@ -25,6 +29,9 @@ type AuditRow = {
   subjectId: string;
   vignette: string;
   stem: string;
+  qualityScore: number;
+  needsPolish: boolean;
+  qaGateOk: boolean;
 };
 
 function parseArgs() {
@@ -33,13 +40,57 @@ function parseArgs() {
   let subject: string | undefined;
   let json = false;
   let deep = false;
+  let csv: string | undefined;
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--limit" && args[i + 1]) limit = parseInt(args[++i], 10);
     else if (args[i] === "--subject" && args[i + 1]) subject = args[++i];
     else if (args[i] === "--json") json = true;
     else if (args[i] === "--deep") deep = true;
+    else if (args[i] === "--csv" && args[i + 1]) csv = args[++i];
   }
-  return { limit, subject, json, deep };
+  return { limit, subject, json, deep, csv };
+}
+
+function csvEscape(value: string): string {
+  const v = value.replace(/\r?\n/g, " ").trim();
+  if (/[",]/.test(v)) return `"${v.replace(/"/g, '""')}"`;
+  return v;
+}
+
+function writeAuditCsv(results: AuditRow[], csvPath: string) {
+  mkdirSync(path.dirname(csvPath), { recursive: true });
+  const header =
+    "item_id,subject_id,audit_ok,qa_gate_ok,quality_score,needs_polish,severity,code,message,vignette_preview,stem_preview";
+  const lines = [header];
+
+  for (const r of results) {
+    const base = [
+      csvEscape(r.itemId),
+      csvEscape(r.subjectId),
+      r.ok ? "true" : "false",
+      r.qaGateOk ? "true" : "false",
+      r.qualityScore.toFixed(3),
+      r.needsPolish ? "true" : "false",
+    ];
+    if (r.issues.length === 0) {
+      lines.push([...base, "", "", "", csvEscape(r.vignette.slice(0, 240)), csvEscape(r.stem.slice(0, 160))].join(","));
+      continue;
+    }
+    for (const issue of r.issues) {
+      lines.push(
+        [
+          ...base,
+          issue.severity,
+          csvEscape(issue.code),
+          csvEscape(issue.message),
+          csvEscape(r.vignette.slice(0, 240)),
+          csvEscape(r.stem.slice(0, 160)),
+        ].join(",")
+      );
+    }
+  }
+
+  writeFileSync(csvPath, lines.join("\n"), "utf8");
 }
 
 function breakdownBySubject(results: AuditRow[]) {
@@ -101,7 +152,7 @@ function samplesByCode(results: AuditRow[], maxPerCode = 3) {
 }
 
 async function main() {
-  const { limit, subject, json, deep } = parseArgs();
+  const { limit, subject, json, deep, csv } = parseArgs();
 
   const rows = await prisma.questionBankItem.findMany({
     where: {
@@ -118,14 +169,36 @@ async function main() {
   const results: AuditRow[] = rows.map((row) => {
     const item = enrichBankItemFromRow(row);
     const report = auditNclexBankItem(item);
+    const qaGate = auditBankItem(item, "nursing");
+    const qualityScore = scoreNclexBankItem(item);
     return {
       ...report,
       itemId: row.id,
       subjectId: row.subjectId,
       vignette: resolveNclexVignette(item),
       stem: resolveNclexStem(item),
+      qualityScore,
+      needsPolish: needsNclexPolish(item),
+      qaGateOk: qaGate.ok,
     };
   });
+
+  const polishNeeded = results.filter((r) => r.needsPolish).length;
+  const qaGateFail = results.filter((r) => !r.qaGateOk).length;
+  const lowQuality = results.filter((r) => r.qualityScore < 0.62).length;
+  const withWarnings = results.filter((r) => r.issues.some((i) => i.severity === "warn")).length;
+  const withErrors = results.filter((r) => !r.ok).length;
+
+  if (csv) {
+    const csvPath = path.resolve(csv);
+    writeAuditCsv(results, csvPath);
+    console.log(`Wrote ${results.length} item(s) → ${csvPath}`);
+
+    const flagged = results.filter((r) => !r.ok || !r.qaGateOk || r.needsPolish);
+    const flaggedPath = csvPath.replace(/\.csv$/i, "") + "-flagged.csv";
+    writeAuditCsv(flagged, flaggedPath);
+    console.log(`Wrote ${flagged.length} flagged item(s) → ${flaggedPath}`);
+  }
 
   const summary = summarizeNclexAudit(results);
   const bySubject = breakdownBySubject(results);
@@ -137,6 +210,11 @@ async function main() {
         {
           summary,
           passRate: summary.total ? (summary.pass / summary.total) * 100 : 0,
+          polishNeeded,
+          qaGateFail,
+          lowQuality,
+          withWarnings,
+          withErrors,
           bySubject,
           topCodeCounts,
           samples,
@@ -151,8 +229,12 @@ async function main() {
 
   const passRate = summary.total ? ((summary.pass / summary.total) * 100).toFixed(1) : "0";
   console.log(`Total:      ${summary.total}`);
-  console.log(`Pass:       ${summary.pass} (${passRate}%)`);
+  console.log(`Pass:       ${summary.pass} (${passRate}%) — NCLEX editorial errors`);
   console.log(`Fail:       ${summary.fail}`);
+  console.log(`Warnings:   ${withWarnings} item(s) with warn-level issues`);
+  console.log(`Needs polish: ${polishNeeded} (score < 0.62 or weak template)`);
+  console.log(`QA gate fail: ${qaGateFail} (would not serve if qaPassed enforced)`);
+  console.log(`Low quality:  ${lowQuality} (score < 0.62)`);
   console.log(`\nBy severity:`);
   for (const [sev, count] of Object.entries(summary.bySeverity)) {
     console.log(`  ${sev}: ${count}`);

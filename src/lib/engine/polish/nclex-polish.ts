@@ -5,7 +5,14 @@ import { splitCombinedStem } from "@/lib/engine/prompts/vignette";
 import { stripShiftNotes, hasShiftNoteArtifacts } from "@/lib/questions/shift-notes";
 import { hasSignsAndSymptoms, hasEtiologyOrPathophysiology } from "@/lib/engine/prompts/clinical-reasoning";
 import { auditBankItem } from "@/lib/exam-prep/bank-audit";
-import { auditNclexBankItem, resolveNclexStem } from "@/lib/exam-prep/nclex-bank-audit";
+import {
+  auditNclexBankItem,
+  hasNclexEditorialWarnFlags,
+  hasTrueInfectionContext,
+  inferNclexTemplateFromClinical,
+  resolveNclexStem,
+  stripInfectionBoilerplate,
+} from "@/lib/exam-prep/nclex-bank-audit";
 
 const NCLEX_PREFIX = /^NCLEX\s+\d+:\s*/i;
 
@@ -601,12 +608,10 @@ function pickScenario(seed: number, template?: string): NursingScenario {
   }
 
   if (template === "infection") {
-    const infectionPool = SCENARIOS.filter(
-      (s) =>
-        /Clostridioides difficile|infection|cellulitis|MRSA|tuberculosis|meningitis|hepatitis|COVID/i.test(
-          s.dx
-        ) || /precaution|transmission/i.test(s.nursePriority)
-    );
+    const infectionPool = SCENARIOS.filter((s) => {
+      const clinical = `${s.dx} ${s.history} ${s.findings} ${s.pathophys} ${s.nursePriority}`;
+      return hasTrueInfectionContext(clinical);
+    });
     const pool = infectionPool.length > 0 ? infectionPool : SCENARIOS;
     const base = pool[Math.abs(seed) % pool.length]!;
     const ageDelta = (Math.abs(seed) % 7) - 3;
@@ -681,20 +686,22 @@ function detectTemplate(stem: string, subjectId: string, seed: number, blob?: st
   const full = blob ?? stem;
   const vignettePart = blob?.includes("\n\n") ? blob.split("\n\n")[0] ?? "" : "";
   const vignetteText = vignettePart || full;
+  const clinicalBody = stripInfectionBoilerplate(vignetteText);
 
   const vignetteDelegation =
     /assign tasks to (?:unlicensed assistive personnel|UAP)|maintaining accountability/i.test(
       vignetteText
     );
-  const vignetteInfection =
-    /prevent transmission|C\. diff|Clostridioides difficile|contact precaution|droplet precaution|isolation room/i.test(
-      vignetteText
-    );
-  const stemInfection = /infection|precaution|isolation|PPE|hand hygiene|contact precaution/i.test(
+  const vignetteInfection = hasTrueInfectionContext(clinicalBody);
+  const stemInfection = /infection|precaution|isolation|PPE|hand hygiene|contact precaution|transmission-based/i.test(
     stem
   );
 
   if (vignetteDelegation && stemInfection && !vignetteInfection) return "delegation";
+  if (stemInfection && !vignetteInfection) {
+    const inferred = inferNclexTemplateFromClinical(vignetteText, stem);
+    if (inferred) return inferred;
+  }
   if (vignetteInfection && stemInfection) return "infection";
   if (vignetteDelegation || /delegate|UAP|unlicensed|LPN scope|assign/i.test(stem)) {
     return "delegation";
@@ -971,14 +978,18 @@ function buildTeaching(scenario: NursingScenario, subjectLabel: string, seed: nu
   };
 }
 
+function firstSignificantFinding(findings: string): string {
+  const parts = findings.split(",").map((s) => s.trim()).filter(Boolean);
+  if (parts.length >= 2 && (parts[0]?.length ?? 0) < 16) {
+    return `${parts[0]}, ${parts[1]}`;
+  }
+  return parts[0] ?? findings;
+}
+
 function buildRisk(scenario: NursingScenario, subjectLabel: string, seed: number) {
   // Stem asks for a finding, so every option must be a finding — never a
   // nursing action (the QA gate fails stem/option category mismatches).
-  const finding = scenario.findings.split(",")[0]?.trim() ?? scenario.findings;
-  const vitalParts = scenario.vitals.split(",").map((v) => v.trim());
-  const keyVital =
-    vitalParts.find((v) => /SpO₂|SpO2|RR/i.test(v)) ?? vitalParts[0] ?? scenario.vitals;
-  const correct = `${finding} (${keyVital})`;
+  const correct = firstSignificantFinding(scenario.findings);
   const wrongs: [string, string, string] = [
     "Pain rated 2/10 after scheduled analgesia, consistent with routine recovery",
     "Urine output 60 mL/hr of clear yellow urine over the past two hours",
@@ -1188,6 +1199,7 @@ export function needsNclexPolish(item: BankItem): boolean {
     !hasRichVignette(text) ||
     WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer)) ||
     item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o))) ||
+    hasNclexEditorialWarnFlags(item) ||
     // Anything the QA gate would fail must be polished, so polish triggers and
     // the serve-time gate can never disagree about an item's health.
     !auditBankItem(item, "nursing").ok
@@ -1268,18 +1280,29 @@ export function polishNclexBankItem(
     stem_vignette_template_mismatch: "delegation",
     delegation_context_missing: "delegation",
     phantom_client_in_options: "delegation",
-    infection_stem_without_context: "infection",
+    infection_stem_without_context: "intervention",
+    infection_template_clinical_mismatch: "intervention",
     stable_unstable_mismatch: "prioritization",
     delegation_prioritization_mismatch: "prioritization",
     delegation_handoff_mismatch: "delegation",
     stem_option_category_mismatch: "risk",
+    malformed_finding_option: "risk",
   };
 
   for (let attempt = 0; !audit.ok && attempt < 5; attempt++) {
     const errorCode = audit.issues.find((i) => i.severity === "error")?.code;
-    const nextTemplate =
+    let nextTemplate =
       (errorCode && retryTemplateForCode[errorCode]) ||
       (/assign tasks to UAP/i.test(cleaned.vignette ?? "") ? "delegation" : undefined);
+
+    if (
+      errorCode === "infection_template_clinical_mismatch" ||
+      errorCode === "infection_stem_without_context"
+    ) {
+      nextTemplate =
+        inferNclexTemplateFromClinical(cleaned.vignette ?? blob, stem) ??
+        nextTemplate;
+    }
 
     if (!nextTemplate || nextTemplate === template) break;
 

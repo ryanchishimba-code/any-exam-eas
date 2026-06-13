@@ -177,6 +177,25 @@ export async function POST(req: Request) {
       items = prepareMpjeBankItems(items, mpjeOptions, mpjeLabel);
     }
 
+    if (fieldId === "pharmacy" && items.length > 0) {
+      const { prepareNaplexItemsForSession } = await import("@/lib/exam-prep/naplex-serve-gate");
+      items = prepareNaplexItemsForSession({
+        items,
+        fieldId,
+        field: body.field,
+        limit: body.count,
+      });
+    }
+
+    if (fieldId === "nursing" && items.length > 0) {
+      const { prepareNclexItemsForSession } = await import("@/lib/exam-prep/nclex-serve-gate");
+      items = prepareNclexItemsForSession({
+        items,
+        field: body.field,
+        limit: body.count,
+      });
+    }
+
     const pool: ReturnType<typeof examQuestionToStudy>[] = items.map((item, i) =>
       examQuestionToStudy(bankItemToExamQuestion(fieldId, body.field, subjectId, item, i), i)
     );

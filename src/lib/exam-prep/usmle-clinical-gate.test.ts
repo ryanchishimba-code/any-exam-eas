@@ -6,6 +6,7 @@ import {
   prepareUsmleItemsForSession,
   splitUsmleBankItem,
   usmleBankItemHasClinicalScenario,
+  usmleBankItemIsServeReady,
 } from "./usmle-clinical-gate";
 
 const richCombined: BankItem = {
@@ -24,6 +25,11 @@ const bareStem: BankItem = {
   options: ["A", "B", "C", "D"],
   correctAnswer: "A",
   explanation: "Loop diuretic adaptation.",
+};
+
+const curatedRich: BankItem = {
+  ...richCombined,
+  tags: ["physician-educator", "clinical-vignette", "cardiology"],
 };
 
 describe("usmle-clinical-gate", () => {
@@ -50,9 +56,14 @@ describe("usmle-clinical-gate", () => {
     expect(exam.question).toMatch(/next step/i);
   });
 
+  it("requires exam-ready QA for non-curated bulk items", () => {
+    expect(usmleBankItemIsServeReady(bareStem, "usmle-step-2")).toBe(false);
+    expect(usmleBankItemIsServeReady(curatedRich, "usmle-step-2")).toBe(true);
+  });
+
   it("filters weak items and repairs polishable ones in session prep", () => {
     const prepared = prepareUsmleItemsForSession({
-      items: [bareStem, richCombined],
+      items: [bareStem, curatedRich],
       fieldId: "usmle-step-2",
       field: "usmle-step-2",
       limit: 2,
@@ -60,7 +71,7 @@ describe("usmle-clinical-gate", () => {
 
     expect(prepared.length).toBeGreaterThan(0);
     for (const item of prepared) {
-      expect(usmleBankItemHasClinicalScenario(item)).toBe(true);
+      expect(usmleBankItemIsServeReady(item, "usmle-step-2")).toBe(true);
     }
   });
 });

@@ -34,6 +34,12 @@ export type MemoryCard = {
   practiceTopicSlug: string;
   /** When set, Deep Dive opens the matching Review Module on /dashboard/topics. */
   reviewModuleSlug?: string;
+  /** Human-readable citation (OER, guideline, or board standard). */
+  sourceLabel?: string;
+  /** Optional link to primary reference. */
+  sourceUrl?: string;
+  /** ISO date when clinical content was last verified. */
+  lastReviewedAt?: string;
   sortOrder: number;
 };
 

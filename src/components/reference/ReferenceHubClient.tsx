@@ -1,18 +1,38 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
-import { Bone, Search, Sparkles, X } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { anatomyHref } from "@/lib/edtech/practice-links";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { AppBreadcrumbs } from "@/components/app/AppBreadcrumbs";
+import { ReferenceAiBrief } from "@/components/reference/ReferenceAiBrief";
+import { ReferenceBriefCards } from "@/components/reference/ReferenceBriefCards";
+import { ReferenceCardsDue } from "@/components/reference/ReferenceCardsDue";
+import { ReferenceForYou } from "@/components/reference/ReferenceForYou";
+import {
+  ReferenceHubHeader,
+  type ReferenceHubStats,
+} from "@/components/reference/ReferenceHubHeader";
+import { ReferenceHubNav } from "@/components/reference/ReferenceHubNav";
+import { ReferenceHubSearch } from "@/components/reference/ReferenceHubSearch";
+import { ReferenceQuickTools } from "@/components/reference/ReferenceQuickTools";
+import { ReferenceRecentCards } from "@/components/reference/ReferenceRecentCards";
+import { ReferenceTopicBanner } from "@/components/reference/ReferenceTopicBanner";
 import { MemoryCardTile } from "@/components/reference/MemoryCardTile";
 import { MemoryCardSheet } from "@/components/reference/MemoryCardSheet";
-import { getRecommendedMemoryCards, queryMemoryCards } from "@/lib/reference/memory-cards";
+import { applyMasteryStore, readMasteryStore } from "@/lib/reference/card-mastery";
+import { syncCardMasteryForExam } from "@/lib/reference/card-mastery-sync";
+import { ROUTES } from "@/lib/routes";
+import {
+  countCardsNeedingReview,
+  getCardsForTopicKey,
+  queryMemoryCards,
+} from "@/lib/reference/memory-cards";
+import { rememberMemoryCard } from "@/lib/reference/recent-cards";
+import type { ReferenceStudyBrief } from "@/lib/reference/study-brief-types";
 import {
   MEMORY_CARD_KIND_LABELS,
   type MemoryCard,
   type MemoryCardKind,
 } from "@/lib/reference/types";
+import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -20,6 +40,8 @@ type Props = {
   examSlug: ExamSlug;
   cards: MemoryCard[];
   subjects: string[];
+  weakTopics: WeakTopicRow[];
+  hubStats: ReferenceHubStats;
   initialCardId?: string;
   topicKey?: string;
 };
@@ -35,149 +57,226 @@ export function ReferenceHubClient({
   examSlug,
   cards,
   subjects,
+  weakTopics,
+  hubStats,
   initialCardId,
   topicKey,
 }: Props) {
   const [subject, setSubject] = useState<string>("all");
   const [kind, setKind] = useState<MemoryCardKind | "all">("all");
-  const [search, setSearch] = useState("");
+  const [hubSearchQuery, setHubSearchQuery] = useState("");
   const [selected, setSelected] = useState<MemoryCard | null>(null);
+  const [brief, setBrief] = useState<ReferenceStudyBrief | null>(null);
+  const [masteryTick, setMasteryTick] = useState(0);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const dueCount = useMemo(
+    () => countCardsNeedingReview(cards, examSlug),
+    [cards, examSlug, masteryTick]
+  );
+
+  useEffect(() => {
+    const onMastery = () => setMasteryTick((n) => n + 1);
+    window.addEventListener("aee-card-mastery-change", onMastery);
+    return () => window.removeEventListener("aee-card-mastery-change", onMastery);
+  }, []);
+
+  useEffect(() => {
+    void syncCardMasteryForExam({
+      examSlug,
+      readLocal: readMasteryStore,
+      writeLocal: (slug, store) => applyMasteryStore(slug, store),
+      onMerged: () => setMasteryTick((n) => n + 1),
+    });
+  }, [examSlug]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+        searchInputRef.current?.select();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  const openCard = useCallback(
+    (card: MemoryCard) => {
+      rememberMemoryCard(card.id, examSlug);
+      setSelected(card);
+    },
+    [examSlug]
+  );
+
+  const onBriefLoaded = useCallback((next: ReferenceStudyBrief) => {
+    setBrief(next);
+  }, []);
 
   useEffect(() => {
     if (!initialCardId) return;
     const match = cards.find((c) => c.id === initialCardId);
-    if (match) setSelected(match);
-  }, [cards, initialCardId]);
+    if (match) openCard(match);
+  }, [cards, initialCardId, openCard]);
 
-  const recommended = useMemo(
-    () => getRecommendedMemoryCards(cards, topicKey),
+  useEffect(() => {
+    if (!topicKey) return;
+    const el = document.getElementById("memory-cards");
+    if (!el) return;
+    const timer = window.setTimeout(() => {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 400);
+    return () => window.clearTimeout(timer);
+  }, [topicKey]);
+
+  const scopedCards = useMemo(
+    () => (topicKey ? getCardsForTopicKey(cards, topicKey) : cards),
     [cards, topicKey]
   );
 
   const filtered = useMemo(
-    () => queryMemoryCards(cards, { subject, kind, query: search }),
-    [cards, subject, kind, search]
+    () =>
+      queryMemoryCards(scopedCards, {
+        subject,
+        kind,
+        query: hubSearchQuery.trim().length >= 2 ? hubSearchQuery : undefined,
+      }),
+    [scopedCards, subject, kind, hubSearchQuery]
   );
 
-  const withDeepDive = cards.filter((c) => c.reviewModuleSlug).length;
+  const breadcrumbItems = [
+    { label: "Dashboard", href: ROUTES.dashboard },
+    { label: "Study Reference" },
+    ...(topicKey ? [{ label: topicKey.replace(/-/g, " ") }] : []),
+  ];
 
   return (
     <div className="space-y-6">
-      <div className="rounded-3xl border border-black/[0.06] bg-gradient-to-br from-violet-50/80 via-white to-teal-50/50 p-5 shadow-[var(--shadow-apple-sm)] sm:p-6">
-        <div className="flex flex-wrap items-start justify-between gap-3">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.15em] text-violet-600">
-              Memory Cards
-            </p>
-            <h2 className="mt-1 text-xl font-bold text-[var(--color-ink)] sm:text-2xl">
-              Bite-sized reference at exam speed
-            </h2>
-            <p className="mt-2 max-w-xl text-sm text-[var(--color-ink-muted)]">
-              Equations, conversions, tables, and pearls — search or filter by subject and type.
-              Tap a card for details, then jump to practice or a Deep Dive module.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            <Badge className="bg-white/80">{cards.length} cards</Badge>
-            <Link
-              href={anatomyHref(examSlug)}
-              className="inline-flex items-center gap-1.5 rounded-full border border-violet-200 bg-white/90 px-3 py-1 text-xs font-semibold text-violet-800 transition hover:border-violet-300 hover:bg-violet-50"
-            >
-              <Bone className="h-3.5 w-3.5" aria-hidden />
-              Anatomy Explorer
-            </Link>
-            {withDeepDive > 0 ? (
-              <Badge className="bg-violet-100 text-violet-800">{withDeepDive} with Deep Dive</Badge>
-            ) : null}
-          </div>
-        </div>
+      <AppBreadcrumbs items={breadcrumbItems} />
 
-        <label className="relative mt-4 block max-w-md">
-          <span className="sr-only">Search memory cards</span>
-          <Search
-            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--color-ink-muted)]"
-            aria-hidden
-          />
-          <input
-            type="search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search titles, topics, tags…"
-            className="w-full rounded-full border border-black/[0.08] bg-white/90 py-2.5 pl-10 pr-10 text-sm text-[var(--color-ink)] shadow-sm outline-none ring-[var(--color-accent)] transition placeholder:text-[var(--color-ink-muted)] focus:ring-2"
-          />
-          {search ? (
-            <button
-              type="button"
-              onClick={() => setSearch("")}
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1.5 text-[var(--color-ink-muted)] hover:bg-[var(--color-surface)]"
-              aria-label="Clear search"
-            >
-              <X className="h-4 w-4" aria-hidden />
-            </button>
-          ) : null}
-        </label>
+      <ReferenceHubHeader examSlug={examSlug} stats={hubStats} />
+
+      <div id="hub-search">
+        <ReferenceHubSearch
+          examSlug={examSlug}
+          cards={cards}
+          onOpenCard={openCard}
+          onQueryChange={setHubSearchQuery}
+          inputRef={searchInputRef}
+        />
       </div>
 
-      {recommended.length > 0 ? (
-        <section aria-labelledby="recommended-cards-heading" className="space-y-3">
-          <div className="flex items-center gap-2">
-            <Sparkles className="h-4 w-4 text-violet-600" aria-hidden />
-            <h3 id="recommended-cards-heading" className="text-sm font-bold text-[var(--color-ink)]">
-              Recommended for {topicKey?.replace(/-/g, " ")}
-            </h3>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {recommended.map((card) => (
-              <MemoryCardTile key={`rec-${card.id}`} card={card} onOpen={() => setSelected(card)} />
-            ))}
-          </div>
-        </section>
+      <ReferenceHubNav showCardsDue={dueCount > 0} />
+
+      <ReferenceCardsDue examSlug={examSlug} cards={cards} onOpenCard={openCard} />
+
+      <ReferenceAiBrief examSlug={examSlug} onBriefLoaded={onBriefLoaded} />
+
+      {brief ? (
+        <ReferenceBriefCards
+          cards={cards}
+          cardIds={brief.memoryCardIds}
+          onOpenCard={openCard}
+        />
       ) : null}
 
-      <div className="space-y-3">
-        <div className="flex flex-wrap gap-2">
-          <FilterPill
-            active={subject === "all"}
-            onClick={() => setSubject("all")}
-            label="All subjects"
-          />
-          {subjects.map((s) => (
-            <FilterPill key={s} active={subject === s} onClick={() => setSubject(s)} label={s} />
-          ))}
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {KIND_OPTIONS.map((opt) => (
-            <FilterPill
-              key={opt.value}
-              active={kind === opt.value}
-              onClick={() => setKind(opt.value)}
-              label={opt.label}
-              variant="kind"
-            />
-          ))}
-        </div>
-      </div>
+      <ReferenceQuickTools examSlug={examSlug} />
 
-      {filtered.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-black/[0.1] bg-white px-6 py-12 text-center">
-          <p className="text-sm font-medium text-[var(--color-ink)]">No cards match your filters</p>
+      <ReferenceForYou
+        examSlug={examSlug}
+        cards={cards}
+        weakTopics={weakTopics}
+        topicKey={topicKey}
+        onOpenCard={openCard}
+      />
+
+      <ReferenceRecentCards examSlug={examSlug} cards={cards} onOpenCard={openCard} />
+
+      <section id="memory-cards" aria-labelledby="memory-cards-heading" className="space-y-4">
+        {topicKey ? (
+          <ReferenceTopicBanner
+            examSlug={examSlug}
+            topicKey={topicKey}
+            cardCount={scopedCards.length}
+          />
+        ) : null}
+
+        <div>
+          <h3 id="memory-cards-heading" className="text-lg font-bold text-[var(--color-ink)]">
+            {topicKey
+              ? "Topic memory cards"
+              : hubSearchQuery.trim().length >= 2
+                ? "Search results"
+                : "All memory cards"}
+          </h3>
           <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-            Try a different search term, subject, or card type.
+            {hubSearchQuery.trim().length >= 2
+              ? `${filtered.length} card(s) matching "${hubSearchQuery}"`
+              : topicKey
+                ? `${scopedCards.length} high-yield facts for this topic`
+                : `${cards.length} high-yield facts — equations, pearls, tables, and common mistakes.`}
           </p>
         </div>
-      ) : (
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {filtered.map((card) => (
-            <MemoryCardTile key={card.id} card={card} onOpen={() => setSelected(card)} />
-          ))}
-        </div>
-      )}
+
+        {hubSearchQuery.trim().length < 2 && !topicKey ? (
+          <div className="space-y-3">
+            <div className="flex flex-wrap gap-2">
+              <FilterPill
+                active={subject === "all"}
+                onClick={() => setSubject("all")}
+                label="All subjects"
+              />
+              {subjects.map((s) => (
+                <FilterPill key={s} active={subject === s} onClick={() => setSubject(s)} label={s} />
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {KIND_OPTIONS.map((opt) => (
+                <FilterPill
+                  key={opt.value}
+                  active={kind === opt.value}
+                  onClick={() => setKind(opt.value)}
+                  label={opt.label}
+                  variant="kind"
+                />
+              ))}
+            </div>
+          </div>
+        ) : null}
+
+        {filtered.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-black/[0.1] bg-white px-6 py-12 text-center">
+            <p className="text-sm font-medium text-[var(--color-ink)]">
+              {topicKey ? "No memory cards mapped to this topic yet" : "No cards match your filters"}
+            </p>
+            <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
+              {topicKey
+                ? "Try practice questions for this topic, or browse all cards."
+                : "Try a different subject or card type, or use the search bar above."}
+            </p>
+          </div>
+        ) : (
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            {filtered.map((card) => (
+              <MemoryCardTile
+                key={card.id}
+                card={card}
+                examSlug={examSlug}
+                onOpen={() => openCard(card)}
+              />
+            ))}
+          </div>
+        )}
+      </section>
 
       <MemoryCardSheet
         card={selected}
+        allCards={cards}
         examSlug={examSlug}
         open={selected !== null}
         onClose={() => setSelected(null)}
+        onOpenRelated={openCard}
       />
     </div>
   );

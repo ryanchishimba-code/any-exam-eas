@@ -31,7 +31,7 @@ export function AppBreadcrumbs({
               {item.href && !isLast ? (
                 <Link
                   href={item.href}
-                  className="font-medium transition hover:text-[var(--color-ink)]"
+                  className="font-semibold text-slate-600 underline-offset-2 transition hover:text-slate-900 hover:underline"
                 >
                   {item.label}
                 </Link>

@@ -54,6 +54,7 @@ model User {
   questionMasteries  QuestionMastery[]
   drugReviewCycles   DrugReviewCycle[]
   drugCardProgress   DrugCardProgress[]
+  memoryCardMastery  MemoryCardMastery[]
   promoRedemptions   PromoRedemption[]
   examSessions       ExamSession[]
   generatedQuestions GeneratedQuestion[]
@@ -729,6 +730,22 @@ model DrugCardProgress {
   @@unique([userId, cycleKey, drugId])
   @@index([userId, cycleKey, nextReviewAt])
   @@index([userId, cycleKey, mastered])
+}
+
+/// Per-memory-card mastery (got-it / need-review) for Reference Hub spaced study.
+model MemoryCardMastery {
+  id        String   @id @default(cuid())
+  userId    String
+  examSlug  String
+  cardId    String
+  status    String   // got-it | need-review
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, examSlug, cardId])
+  @@index([userId, examSlug, status])
+  @@index([userId, examSlug, updatedAt])
 }
 
 /// Canonical Top 300 drug catalog (seeded from JSON; source of truth for flashcards).

@@ -23,6 +23,7 @@ import type { ExamSlug } from "@/types/edtech";
 import type { FullExamQuestion, FullExamResultsAnalysis } from "@/types/full-exam";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { cn } from "@/lib/utils";
+import { FullExamStudyLinks } from "@/components/exam/FullExamStudyLinks";
 
 type ReviewView = "summary" | "overview" | "question";
 
@@ -269,6 +270,8 @@ export function FullExamResults({
           </CardContent>
         </Card>
       ) : null}
+
+      <FullExamStudyLinks examSlug={examSlug} topicBreakdown={analysis.topicBreakdown} />
 
       {questions.length > 0 ? (
         <div className="rounded-2xl border border-teal-200/80 bg-teal-50/50 p-5 text-center">

@@ -45,11 +45,41 @@ describe("naplex-polish", () => {
     expect(item.explanation.toLowerCase()).toMatch(/monitor|counsel|incorrect/);
   });
 
+  it("polishes duplicate vignette stems by splitting scenario from question", () => {
+    const duplicateVignette: BankItem = {
+      subjectId: "pharmacology",
+      vignette:
+        "A 64-year-old man with hypertension (BP 158/92 mmHg, creatinine 1.1 mg/dL) receives lisinopril.",
+      question:
+        "A 64-year-old man with hypertension (BP 158/92 mmHg, creatinine 1.1 mg/dL) receives lisinopril.\n\nWhich monitoring parameter is most appropriate after initiation?",
+      options: [
+        "Serum potassium and creatinine within 1–2 weeks",
+        "Daily fasting glucose only",
+        "INR every 3 days",
+        "No laboratory monitoring",
+      ],
+      correctAnswer: "Serum potassium and creatinine within 1–2 weeks",
+      explanation:
+        "Correct: serum potassium and creatinine — lisinopril is an ACE inhibitor; renal function and hyperkalemia risk require monitoring after initiation per guidelines.",
+    };
+
+    expect(needsNaplexPolish(duplicateVignette)).toBe(true);
+    const { item, changed } = polishNaplexBankItem(
+      duplicateVignette,
+      "pharmacology",
+      "General Pharmacology"
+    );
+    expect(changed).toBe(true);
+    expect(item.question).not.toContain("64-year-old man");
+    expect(item.vignette).toMatch(/64-year-old man/);
+  });
+
   it("preserves strong items when already high quality", () => {
     const strong: BankItem = {
       subjectId: "pharmacology",
-      question:
-        "A 64-year-old man with hypertension and type 2 diabetes (BP 158/92 mmHg, creatinine 1.1 mg/dL) receives lisinopril (Zestril). Which counseling point is most essential before discharge?\n\nWhich monitoring parameter is priority?",
+      vignette:
+        "A 64-year-old man with hypertension and type 2 diabetes (BP 158/92 mmHg, creatinine 1.1 mg/dL) receives lisinopril (Zestril).",
+      question: "Which monitoring parameter is priority after initiation?",
       options: [
         "Serum potassium and creatinine within 1–2 weeks of initiation or dose change",
         "Daily fasting blood glucose only — renal function is not relevant",

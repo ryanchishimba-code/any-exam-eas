@@ -16,6 +16,16 @@ import {
   curatedUsmleWhereClause,
   isUsmleFieldId,
 } from "@/lib/question-bank/usmle-curated";
+import {
+  curatedNaplexWhereClause,
+  curatedSampleTarget as naplexCuratedSampleTarget,
+  isPharmacyFieldId,
+} from "@/lib/question-bank/naplex-curated";
+import {
+  curatedNclexWhereClause,
+  curatedSampleTarget as nclexCuratedSampleTarget,
+  isNursingFieldId,
+} from "@/lib/question-bank/nclex-curated";
 /** Max rows read per sample query (keeps Neon queries bounded). */
 export const QUESTION_BANK_SAMPLE_MAX_PULL = 500;
 
@@ -160,7 +170,99 @@ export async function sampleQuestionBankItems(params: {
     return sampleUsmleSubjectItems(params.fieldId, params.subjectId, want, where, total);
   }
 
+  if (isPharmacyFieldId(params.fieldId)) {
+    return sampleNaplexSubjectItems(params.fieldId, params.subjectId, want, where, total);
+  }
+
+  if (isNursingFieldId(params.fieldId)) {
+    return sampleNclexSubjectItems(params.fieldId, params.subjectId, want, where, total);
+  }
+
   return sampleSubjectItemsRandom(want, where, total, params.poolMultiplier);
+}
+
+async function sampleNaplexSubjectItems(
+  fieldId: string,
+  subjectId: string,
+  want: number,
+  baseWhere: ReturnType<typeof activeSubjectWhere>,
+  total: number
+): Promise<BankItem[]> {
+  const curatedWhere = { ...baseWhere, ...curatedNaplexWhereClause() };
+  const curatedTotal = await prisma.questionBankItem.count({ where: curatedWhere });
+  const curatedWant = naplexCuratedSampleTarget(want, curatedTotal);
+
+  let collected: BankItem[] = [];
+
+  if (curatedWant > 0) {
+    const curatedRows = await prisma.questionBankItem.findMany({
+      where: curatedWhere,
+      take: Math.min(curatedTotal, Math.max(curatedWant * 3, curatedWant + 10)),
+      skip:
+        curatedTotal > curatedWant
+          ? Math.floor(Math.random() * Math.max(0, curatedTotal - curatedWant))
+          : 0,
+      orderBy: { id: "asc" },
+    });
+    collected = dedupeBankItemsByStem(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
+      0,
+      curatedWant
+    );
+  }
+
+  const remaining = want - collected.length;
+  if (remaining > 0) {
+    const general = await sampleSubjectItemsRandom(remaining, baseWhere, total, 2);
+    collected = dedupeBankItemsByStem([...collected, ...general]);
+  }
+
+  if (collected.length === 0) {
+    return staticSeedFallback(fieldId, subjectId, want);
+  }
+
+  return shuffleBankItems(collected).slice(0, want);
+}
+
+async function sampleNclexSubjectItems(
+  fieldId: string,
+  subjectId: string,
+  want: number,
+  baseWhere: ReturnType<typeof activeSubjectWhere>,
+  total: number
+): Promise<BankItem[]> {
+  const curatedWhere = { ...baseWhere, ...curatedNclexWhereClause() };
+  const curatedTotal = await prisma.questionBankItem.count({ where: curatedWhere });
+  const curatedWant = nclexCuratedSampleTarget(want, curatedTotal);
+
+  let collected: BankItem[] = [];
+
+  if (curatedWant > 0) {
+    const curatedRows = await prisma.questionBankItem.findMany({
+      where: curatedWhere,
+      take: Math.min(curatedTotal, Math.max(curatedWant * 4, curatedWant + 20)),
+      skip:
+        curatedTotal > curatedWant
+          ? Math.floor(Math.random() * Math.max(0, curatedTotal - curatedWant))
+          : 0,
+      orderBy: { id: "asc" },
+    });
+    collected = dedupeBankItemsByStem(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
+      0,
+      curatedWant
+    );
+  }
+
+  const remaining = want - collected.length;
+  if (remaining > 0) {
+    const general = await sampleSubjectItemsRandom(remaining, baseWhere, total, 4);
+    collected = dedupeBankItemsByStem([...collected, ...general]);
+  }
+
+  if (collected.length === 0) {
+    return staticSeedFallback(fieldId, subjectId, want);
+  }
+
+  return shuffleBankItems(collected).slice(0, want);
 }
 
 async function sampleSubjectItemsRandom(
@@ -304,6 +406,53 @@ export async function sampleQuestionBankItemsForField(params: {
       pooled.push(...staticSeedFallback(params.fieldId, subject.id, Math.ceil(want / subjects.length) + 2));
     }
     return dedupeBankItemsByStem(shuffleBankItems(pooled)).slice(0, want);
+  }
+
+  if (isNursingFieldId(params.fieldId)) {
+    const curatedWhere = { ...where, ...curatedNclexWhereClause() };
+    const curatedTotal = await prisma.questionBankItem.count({ where: curatedWhere });
+    const curatedWant = nclexCuratedSampleTarget(want, curatedTotal);
+    let collected: BankItem[] = [];
+
+    if (curatedWant > 0) {
+      const pull = Math.min(
+        QUESTION_BANK_SAMPLE_MAX_PULL,
+        Math.max(curatedWant * 4, curatedWant + 40)
+      );
+      const skip =
+        curatedTotal > pull ? Math.floor(Math.random() * Math.max(0, curatedTotal - pull)) : 0;
+      const rows = await prisma.questionBankItem.findMany({
+        where: curatedWhere,
+        skip,
+        take: pull,
+        orderBy: { id: "asc" },
+      });
+      collected = dedupeBankItemsByStem(shuffleBankItems(rows.map(rowToBankItem))).slice(
+        0,
+        curatedWant
+      );
+    }
+
+    const remaining = want - collected.length;
+    if (remaining > 0) {
+      const pullTarget = Math.min(
+        QUESTION_BANK_SAMPLE_MAX_PULL,
+        Math.max(remaining * 4, remaining + 40)
+      );
+      const skip = total > pullTarget ? Math.floor(Math.random() * (total - pullTarget)) : 0;
+      const rows = await prisma.questionBankItem.findMany({
+        where,
+        skip,
+        take: pullTarget,
+        orderBy: { id: "asc" },
+      });
+      collected = dedupeBankItemsByStem([
+        ...collected,
+        ...shuffleBankItems(rows.map(rowToBankItem)),
+      ]).slice(0, want);
+    }
+
+    return shuffleBankItems(collected).slice(0, want);
   }
 
   const pullTarget = Math.min(

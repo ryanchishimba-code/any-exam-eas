@@ -3,6 +3,7 @@ import { assertMemoryCardLibraryQuality } from "./card-quality";
 import {
   getMemoryCardIdsForTopic,
   getRecommendedMemoryCards,
+  getCardsForTopicKey,
   queryMemoryCards,
 } from "./memory-cards";
 import { MEMORY_CARDS } from "./seeds";
@@ -26,6 +27,13 @@ describe("memory-cards", () => {
     expect(rec.every((c) => c.examSlug === "nclex")).toBe(true);
   });
 
+  it("falls back to topic label slug when weak-area map has no entry", () => {
+    const naplex = MEMORY_CARDS.filter((c) => c.examSlug === "naplex");
+    const hits = getCardsForTopicKey(naplex, "diuretics");
+    expect(hits.length).toBeGreaterThan(0);
+    expect(hits.some((c) => c.id === "naplex-loop-diuretics")).toBe(true);
+  });
+
   it("maps weak-area keys to existing card ids", () => {
     const ids = getMemoryCardIdsForTopic("federal-law");
     expect(ids.length).toBeGreaterThan(0);
@@ -34,9 +42,15 @@ describe("memory-cards", () => {
     }
   });
 
+  it("maps review module slugs to cards", () => {
+    const ids = getMemoryCardIdsForTopic("heart-failure-gdmt");
+    expect(ids.length).toBeGreaterThanOrEqual(4);
+  });
+
   it("has unique memory card ids", () => {
     const ids = MEMORY_CARDS.map((c) => c.id);
     expect(new Set(ids).size).toBe(ids.length);
+    expect(ids.length).toBeGreaterThanOrEqual(57);
   });
 
   it("links reviewModuleSlug to known modules when set", () => {

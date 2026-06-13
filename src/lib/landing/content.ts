@@ -2,7 +2,7 @@ import {
   Brain,
   HeartPulse,
   Layers,
-  LineChart,
+  Library,
   Pill,
   Scale,
   Stethoscope,
@@ -26,7 +26,7 @@ export const LANDING_EXAMS: LandingExam[] = [
   {
     id: "nclex",
     label: "NCLEX",
-    blurb: "Next-Gen clinical judgment · SATA · bow-tie",
+    blurb: "Curated vignettes · NGN · SATA · bow-tie",
     href: "/study/practice?field=nursing&mode=bank",
     icon: HeartPulse,
     color: EXAM_ACCENTS.nclex,
@@ -59,16 +59,28 @@ export const LANDING_EXAMS: LandingExam[] = [
 
 export const LANDING_BENEFITS = [
   {
+    visualId: "screenshot-question-bank" as const,
+    title: "Curated banks where stems match the answers",
+    detail:
+      "Clinical vignettes, lead-ins, and choices are QA-checked before they reach your session — with CJMM-style rationales, not template-swapped distractors.",
+  },
+  {
     visualId: "feature-adaptive-learning" as const,
     title: "Adaptive practice that targets weak topics",
     detail:
       "Miss a cardiac item? Your next session weights cardiology higher — no manual topic lists required.",
   },
   {
-    visualId: "screenshot-question-bank" as const,
-    title: "Board-style vignettes with OER-backed rationales",
+    visualId: "hero-app-mockup" as const,
+    title: "Reference Hub with Memory Cards",
     detail:
-      "Every explanation ties to open educational sources so you learn the clinical reasoning, not just the key.",
+      "Flip high-yield cards by subject, see weak-area shortcuts, and jump to drugs or anatomy from one study home base.",
+  },
+  {
+    visualId: "screenshot-analytics" as const,
+    title: "Review Modules linked to practice",
+    detail:
+      "Eight-section deep dives on sepsis, heart failure, delegation, and more — opened from questions or Memory Cards when you need textbook depth.",
   },
   {
     visualId: "feature-pharmacology" as const,
@@ -77,12 +89,27 @@ export const LANDING_BENEFITS = [
       "Generic, brand, MOA, and adverse effects — shared across NCLEX, USMLE, and NAPLEX prep.",
   },
   {
-    visualId: "screenshot-analytics" as const,
-    title: "Progress analytics that show where to drill",
+    visualId: "feature-adaptive-learning" as const,
+    title: "Anatomy Studio — 3D, video & CT Atlas",
     detail:
-      "Accuracy trends and topic gaps in one dashboard — metrics reflect platform activity only.",
+      "Explore structures with clinical pearls, guided tours, scrollable CT slices, and one-click jumps back to related practice.",
   },
 ];
+
+/** Bullet list for pricing panels and signup CTAs. */
+export const LANDING_PRICING_FEATURES = [
+  "NCLEX · USMLE · NAPLEX · MPJE question banks",
+  "Curated vignettes with aligned answer choices",
+  "Adaptive practice + timed full exams",
+  "Reference Hub & Memory Cards",
+  "High-yield Review Modules",
+  "Anatomy Studio (3D + CT Atlas)",
+  `${TOP_500_DRUGS_COUNT} Top Drugs pharmacology deck`,
+  "Progress analytics & weak-area drills",
+] as const;
+
+export const LANDING_HERO_SUBLINE =
+  "NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE — curated question banks, Reference Hub, Review Modules, Anatomy Studio, and Top 500 Drugs in one subscription.";
 
 export const LANDING_STEPS = [
   {
@@ -95,13 +122,14 @@ export const LANDING_STEPS = [
     step: "02",
     icon: Brain,
     title: "Run adaptive question blocks",
-    detail: `${MARKETING_QUESTION_COUNTS.total} stratified items with formats that mirror real exams.`,
+    detail: `${MARKETING_QUESTION_COUNTS.total} stratified items with formats that mirror real exams — curated for stem/answer alignment.`,
   },
   {
     step: "03",
-    icon: LineChart,
-    title: "Review rationales & weak areas",
-    detail: "Missed-question explanations plus analytics highlight topics to revisit.",
+    icon: Library,
+    title: "Review with Memory Cards & modules",
+    detail:
+      "Use the Reference Hub for quick recall, then open linked Review Modules for eight-section deep dives on weak topics.",
   },
   {
     step: "04",
@@ -172,6 +200,8 @@ export const LANDING_METRICS = [
   { value: "4", label: "Major licensing exams" },
   { value: String(TOP_500_DRUGS_COUNT), label: "Pharmacology flashcards" },
   { value: "NGN", label: "Next-Gen NCLEX formats" },
+  { value: "7+", label: "Review Modules" },
+  { value: "Ref", label: "Hub + Memory Cards" },
 ];
 
 export const LANDING_TESTIMONIALS = [
