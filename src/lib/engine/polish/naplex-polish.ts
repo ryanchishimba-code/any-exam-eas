@@ -26,6 +26,7 @@ const WEAK_CORRECT_PATTERNS = [
   /^Select therapy class appropriate for/i,
   /mechanism relevant to/i,
   /^No receptor interaction/i,
+  /^.+\s+—\s+.+\s+targeting\s/i,
 ];
 
 const WEAK_OPTION_PATTERNS = [
@@ -39,6 +40,24 @@ const WEAK_OPTION_PATTERNS = [
   /^Bypass inventory controls/i,
   /^Therapy with no evidence/i,
   /^Avoid all monitoring parameters/i,
+  /— non-selective histamine blockade/i,
+  /— direct thrombin inhibition unrelated/i,
+  /— dopamine reuptake inhibition in the CNS/i,
+  /^[A-Za-z/\s]+ — [A-Za-z/ ]+ targeting /i,
+];
+
+/** Plausible but incorrect MOA statements for NAPLEX distractors. */
+const WRONG_MOA_STATEMENTS = [
+  "Selective serotonin reuptake inhibition increasing synaptic serotonin in the CNS",
+  "Direct thrombin inhibition reducing fibrin formation in the coagulation cascade",
+  "Non-selective histamine H1 receptor blockade causing sedation without vascular effect",
+  "Dopamine D2 receptor antagonism in the mesolimbic pathway",
+  "Angiotensin-converting enzyme inhibition preventing angiotensin II formation",
+  "Inhibition of HMG-CoA reductase reducing hepatic cholesterol synthesis",
+  "β1-adrenergic receptor blockade decreasing heart rate and contractility",
+  "Dihydropyridine L-type calcium channel blockade causing peripheral vasodilation",
+  "Sodium-glucose cotransporter 2 inhibition increasing urinary glucose excretion",
+  "Proton pump inhibition irreversibly blocking gastric H+/K+-ATPase",
 ];
 
 export type NaplexPolishResult = {
@@ -81,12 +100,123 @@ function pickDrug(index: number): DrugEntry {
 }
 
 function pickDistractorDrugs(primary: DrugEntry, count: number, seed: number): DrugEntry[] {
-  const pool = TOP_500_DRUGS.filter((d) => d.id !== primary.id);
+  const cls = primary.therapeuticClass.toLowerCase();
+  const sameClass = TOP_500_DRUGS.filter(
+    (d) => d.id !== primary.id && d.therapeuticClass.toLowerCase().includes(cls.split(/[/]/)[0]!.trim().slice(0, 12))
+  );
+  const pool = sameClass.length >= count ? sameClass : TOP_500_DRUGS.filter((d) => d.id !== primary.id);
   const out: DrugEntry[] = [];
   for (let i = 0; i < count; i++) {
     out.push(pool[(seed + i * 17) % pool.length]!);
   }
   return out;
+}
+
+function inferDrugMoa(drug: DrugEntry): string {
+  const blob = `${drug.therapeuticClass} ${drug.generic}`.toLowerCase();
+
+  if (/antiepileptic|anticonvuls/i.test(blob)) {
+    if (/topiramate/i.test(blob)) {
+      return "Blocks voltage-gated sodium channels, potentiates GABA-A receptor activity, and antagonizes AMPA/kainate glutamate receptors — reducing neuronal hyperexcitability";
+    }
+    if (/levetiracetam/i.test(blob)) {
+      return "Binds synaptic vesicle protein 2A (SV2A), modulating neurotransmitter release and reducing seizure propagation";
+    }
+    if (/phenytoin|carbamazepine|lamotrigine/i.test(blob)) {
+      return "Stabilizes inactive voltage-gated sodium channels, limiting repetitive neuronal firing";
+    }
+    if (/valpro/i.test(blob)) {
+      return "Increases GABA availability and blocks sodium and T-type calcium channels";
+    }
+    return "Modulates ion channels and/or enhances inhibitory neurotransmission to reduce neuronal hyperexcitability";
+  }
+  if (/ace inhibitor|arb|angiotensin/i.test(blob)) {
+    return "Inhibits angiotensin-converting enzyme, decreasing angiotensin II and reducing vasoconstriction and aldosterone secretion";
+  }
+  if (/statin|hmg-coa/i.test(blob)) {
+    return "Competitively inhibits HMG-CoA reductase, reducing hepatic cholesterol synthesis";
+  }
+  if (/ppi|proton pump/i.test(blob)) {
+    return "Irreversibly inhibits the H+/K+-ATPase proton pump in gastric parietal cells, suppressing acid secretion";
+  }
+  if (/ssri|snri|serotonin|antidepress/i.test(blob)) {
+    return "Inhibits presynaptic reuptake of serotonin (and/or norepinephrine), increasing synaptic neurotransmitter availability";
+  }
+  if (/beta.?block|β-block/i.test(blob)) {
+    return "Antagonizes β-adrenergic receptors, reducing heart rate, contractility, and renin release";
+  }
+  if (/calcium channel|dihydropyridine|amlodipine/i.test(blob)) {
+    return "Blocks L-type voltage-gated calcium channels in vascular smooth muscle, causing peripheral vasodilation";
+  }
+  if (/sglt2/i.test(blob)) {
+    return "Inhibits SGLT2 in the proximal renal tubule, increasing urinary glucose excretion and lowering plasma glucose";
+  }
+  if (/insulin/i.test(blob)) {
+    return "Binds insulin receptors, facilitating cellular glucose uptake and inhibiting hepatic glucose production";
+  }
+  if (/anticoag|warfarin|doac|factor xa|thrombin/i.test(blob)) {
+    return "Inhibits key steps in the coagulation cascade, reducing thrombin generation or activity";
+  }
+  if (/antibiotic|antimicrobial|penicillin|cephalosporin|macrolide|fluoroquinolone/i.test(blob)) {
+    return "Interferes with bacterial cell wall synthesis, protein synthesis, or nucleic acid replication — bactericidal or bacteriostatic per class";
+  }
+  if (/metformin|biguanide/i.test(blob)) {
+    return "Decreases hepatic gluconeogenesis and improves peripheral insulin sensitivity without stimulating insulin secretion";
+  }
+
+  return `${drug.generic} exerts its therapeutic effect through ${drug.therapeuticClass.toLowerCase()} pathways relevant to ${drug.indications.split(/[;,]/)[0]?.trim().toLowerCase() ?? "the treated condition"}`;
+}
+
+function buildMoaOptions(drug: DrugEntry, seed: number): {
+  options: [string, string, string, string];
+  correctAnswer: string;
+} {
+  const correct = inferDrugMoa(drug);
+  const wrongPool = WRONG_MOA_STATEMENTS.filter((m) => m !== correct);
+  const distractors: string[] = [];
+  for (let i = 0; i < 3; i++) {
+    distractors.push(wrongPool[(seed + i * 7) % wrongPool.length]!);
+  }
+  const options = [correct, ...distractors] as [string, string, string, string];
+  const shuffled = [...options];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = (seed + i * 13) % (i + 1);
+    [shuffled[i], shuffled[j]] = [shuffled[j]!, shuffled[i]!];
+  }
+  return {
+    options: shuffled as [string, string, string, string],
+    correctAnswer: correct,
+  };
+}
+
+function buildClinicalVignette(drug: DrugEntry, seed: number): string {
+  const brands = brandList(drug.brand).slice(0, 1).join("");
+  const brandPart = brands ? ` (${brands})` : "";
+  const age = 45 + ((drug.rank + seed) % 25);
+  const sex = (drug.rank + seed) % 2 === 0 ? "man" : "woman";
+  const indication = drug.indications.split(/[;,]/)[0]?.trim().toLowerCase() ?? "a chronic condition";
+  const cls = drug.therapeuticClass.toLowerCase();
+
+  if (/antiepileptic|anticonvuls/i.test(cls)) {
+    return [
+      `A ${age}-year-old ${sex} with ${indication} picks up a refill for ${drug.generic}${brandPart} at the community pharmacy.`,
+      `The patient reports improved seizure control over the past 3 months with twice-daily dosing.`,
+      `Assessment: BP 124/78 mmHg, HR 76/min, serum creatinine 1.0 mg/dL, no known drug allergies.`,
+    ].join(" ");
+  }
+  if (/antihypertensive|ace|arb|beta|calcium channel/i.test(cls)) {
+    return [
+      `A ${age}-year-old ${sex} with ${indication} is counseled on ${drug.generic}${brandPart} at the outpatient pharmacy.`,
+      `Home BP log averages 142/88 mmHg; serum creatinine 1.1 mg/dL; potassium 4.2 mEq/L.`,
+      `No cough, angioedema, or dizziness reported today.`,
+    ].join(" ");
+  }
+
+  return [
+    `A ${age}-year-old ${sex} with ${indication} is seen in the outpatient pharmacy for medication therapy management.`,
+    `Current therapy includes ${drug.generic}${brandPart} and other chronic medications.`,
+    `No known drug allergies; renal and hepatic function within patient-specific targets.`,
+  ].join(" ");
 }
 
 function formatDrugOption(drug: DrugEntry, suffix = ""): string {
@@ -212,32 +342,16 @@ function rebuildFromTemplate(
   subjectLabel: string,
   seed = 0
 ): { vignette: string; question: string; options: [string, string, string, string]; correctAnswer: string } {
-  const brands = brandList(drug.brand).slice(0, 2).join(" / ");
-  const age = 45 + ((drug.rank + seed) % 25);
-  const sex = (drug.rank + seed) % 2 === 0 ? "man" : "woman";
-  const encounter = 1000 + (Math.abs(seed) % 9000);
-
-  const vignette = [
-    `A ${age}-year-old ${sex} with ${drug.indications.split(/[;,]/)[0]?.trim().toLowerCase() ?? "a chronic condition"} is seen in the outpatient pharmacy (encounter ${encounter}).`,
-    `Current medications include ${drug.generic}${brands ? ` (${brands})` : ""} and other chronic therapies.`,
-    `Relevant assessment: no known drug allergies; renal and hepatic function within patient-specific targets unless noted.`,
-  ].join(" ");
+  const vignette = buildClinicalVignette(drug, seed);
 
   switch (template) {
     case "moa": {
-      const indication = drug.indications.split(/[;,]/)[0]?.trim() ?? "indication";
-      const correct = `${drug.generic} — ${drug.therapeuticClass} targeting ${indication.toLowerCase()}`;
-      const distractors = pickDistractorDrugs(drug, 3, drug.rank + seed);
+      const { options, correctAnswer } = buildMoaOptions(drug, seed);
       return {
         vignette,
-        question: `Which mechanism of action best explains the therapeutic benefit of ${formatDrugOption(drug)} in this patient?`,
-        options: [
-          correct,
-          `${distractors[0]!.generic} — non-selective histamine blockade without vascular effect`,
-          `${distractors[1]!.generic} — direct thrombin inhibition unrelated to this indication`,
-          `${distractors[2]!.generic} — dopamine reuptake inhibition in the CNS`,
-        ],
-        correctAnswer: correct,
+        question: `Which mechanism of action best explains the therapeutic benefit of ${drug.generic}${brandList(drug.brand).slice(0, 1).length ? ` (${brandList(drug.brand)[0]})` : ""} in this patient?`,
+        options,
+        correctAnswer,
       };
     }
     case "interaction": {

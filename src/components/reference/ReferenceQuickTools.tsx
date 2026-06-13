@@ -99,7 +99,7 @@ export function ReferenceQuickTools({ examSlug }: { examSlug: ExamSlug }) {
 
   return (
     <section id="hub-tools" aria-labelledby="quick-tools-heading" className="space-y-3">
-      <h3 id="quick-tools-heading" className="text-sm font-bold text-[var(--color-ink)]">
+      <h3 id="quick-tools-heading" className="aee-app-section-title">
         Quick tools
       </h3>
       <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">

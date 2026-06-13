@@ -158,11 +158,13 @@ export function DashboardView({
           </Link>
         </div>
 
-        <div className="relative mt-6 flex flex-wrap gap-3">
-          <StatPill label="Today" value={String(stats.questionsToday)} highlight />
-          <StatPill label="30-day questions" value={String(stats.questionsAnswered)} />
-          <StatPill label="Accuracy" value={`${stats.accuracyPct}%`} />
-          <StatPill label="Streak" value={`${stats.streakDays}d`} />
+        <div className="relative mt-6 -mx-1 aee-scroll-x px-1 pb-0.5 sm:mx-0 sm:overflow-visible sm:px-0 sm:pb-0">
+          <div className="flex min-w-max gap-3 sm:min-w-0 sm:flex-wrap">
+            <StatPill label="Today" value={String(stats.questionsToday)} highlight />
+            <StatPill label="30-day questions" value={String(stats.questionsAnswered)} />
+            <StatPill label="Accuracy" value={`${stats.accuracyPct}%`} />
+            <StatPill label="Streak" value={`${stats.streakDays}d`} />
+          </div>
         </div>
       </motion.header>
 
@@ -229,21 +231,26 @@ export function DashboardView({
       </section>
 
       <section>
-        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-          Also explore
-        </h2>
+        <h2 className="aee-app-section-title mb-3">Also explore</h2>
         <div className="grid gap-3 sm:grid-cols-2">
           {secondaryCards.map((card) => (
             <Link
               key={card.title}
               href={card.href}
-              className="flex items-center gap-3 rounded-2xl border border-black/[0.06] bg-white px-4 py-4 transition hover:border-[var(--color-accent)]/30 hover:shadow-[var(--shadow-apple-sm)]"
+              className="group flex items-center gap-3 rounded-2xl border border-black/[0.06] bg-white px-4 py-4 transition duration-200 hover:-translate-y-0.5 hover:border-[var(--color-accent)]/30 hover:shadow-[var(--shadow-apple-sm)]"
             >
-              <card.icon className="h-5 w-5 shrink-0 text-[var(--color-accent)]" aria-hidden />
-              <div>
+              <card.icon
+                className="h-5 w-5 shrink-0 text-[var(--color-accent)] transition group-hover:scale-105"
+                aria-hidden
+              />
+              <div className="min-w-0 flex-1">
                 <p className="font-semibold text-[var(--color-ink)]">{card.title}</p>
                 <p className="text-sm text-[var(--color-ink-muted)]">{card.description}</p>
               </div>
+              <ArrowRight
+                className="h-4 w-4 shrink-0 text-[var(--color-accent)] opacity-0 transition group-hover:translate-x-0.5 group-hover:opacity-100"
+                aria-hidden
+              />
             </Link>
           ))}
         </div>
@@ -264,7 +271,7 @@ function StatPill({
   return (
     <div
       className={cn(
-        "rounded-xl border px-4 py-2.5 shadow-sm",
+        "shrink-0 rounded-xl border px-4 py-2.5 shadow-sm",
         highlight
           ? "border-teal-200/80 bg-teal-50/90"
           : "border-black/[0.06] bg-white/90"

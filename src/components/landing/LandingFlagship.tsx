@@ -297,7 +297,7 @@ export function LandingFlagship() {
         </ul>
         <Reveal className="mt-5">
           <div className="aee-flagship-ngn-wrap">
-            <p className="mb-3 text-center text-sm font-semibold">
+            <p className="aee-flagship-eyebrow mb-3 text-center">
               Interactive Next-Gen NCLEX formats
             </p>
             <NgnInteractiveDemo />

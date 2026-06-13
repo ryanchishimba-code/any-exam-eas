@@ -74,6 +74,30 @@ describe("naplex-polish", () => {
     expect(item.vignette).toMatch(/64-year-old man/);
   });
 
+  it("rebuilds topiramate MOA with real mechanisms, not drug-labeled garbage distractors", () => {
+    const topiramateWeak: BankItem = {
+      subjectId: "pharmacology",
+      question: "Which mechanism of action best explains the therapeutic benefit of Topiramate (Topamax)?",
+      options: [
+        "Topiramate — Antiepileptic / migraine prophylactic targeting seizures",
+        "Vancomycin — direct thrombin inhibition unrelated to this indication",
+        "Belatacept — dopamine reuptake inhibition in the CNS",
+        "Raltegravir — non-selective histamine blockade without vascular effect",
+      ],
+      correctAnswer: "Topiramate — Antiepileptic / migraine prophylactic targeting seizures",
+      explanation: "MOA item.",
+    };
+
+    expect(needsNaplexPolish(topiramateWeak)).toBe(true);
+    const { item, changed } = polishNaplexBankItem(topiramateWeak, "pharmacology", "General Pharmacology", 75);
+    expect(changed).toBe(true);
+    expect(item.correctAnswer.toLowerCase()).toMatch(/sodium|gaba|glutamate|hyperexcitab/);
+    expect(item.options.every((o) => !/— direct thrombin inhibition unrelated/i.test(o))).toBe(true);
+    expect(item.options.every((o) => !/targeting seizures/i.test(o))).toBe(true);
+    expect(item.vignette).toMatch(/seizure|seizures/i);
+    expect(item.vignette).not.toMatch(/encounter \d+/i);
+  });
+
   it("preserves strong items when already high quality", () => {
     const strong: BankItem = {
       subjectId: "pharmacology",

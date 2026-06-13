@@ -23,6 +23,7 @@ const WEAK_CORRECT_PATTERNS = [
   /^Select therapy class appropriate for/i,
   /mechanism relevant to/i,
   /^No receptor interaction/i,
+  /^.+\s+—\s+.+\s+targeting\s/i,
 ];
 
 const WEAK_OPTION_PATTERNS = [
@@ -36,6 +37,10 @@ const WEAK_OPTION_PATTERNS = [
   /^Bypass inventory controls/i,
   /^Therapy with no evidence/i,
   /^Avoid all monitoring parameters/i,
+  /— non-selective histamine blockade/i,
+  /— direct thrombin inhibition unrelated/i,
+  /— dopamine reuptake inhibition in the CNS/i,
+  /^[A-Za-z/\s]+ — [A-Za-z/ ]+ targeting /i,
 ];
 
 const LEAD_IN_PATTERN =

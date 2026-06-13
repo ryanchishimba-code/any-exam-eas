@@ -210,7 +210,7 @@ export function ReferenceHubClient({
                 ? "Search results"
                 : "All memory cards"}
           </h3>
-          <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
+          <p className="mt-1 text-sm leading-relaxed text-[var(--color-ink-muted)]">
             {hubSearchQuery.trim().length >= 2
               ? `${filtered.length} card(s) matching "${hubSearchQuery}"`
               : topicKey
@@ -221,7 +221,7 @@ export function ReferenceHubClient({
 
         {hubSearchQuery.trim().length < 2 && !topicKey ? (
           <div className="space-y-3">
-            <div className="flex flex-wrap gap-2">
+            <div className="aee-scroll-x -mx-1 flex gap-2 px-1 pb-0.5 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
               <FilterPill
                 active={subject === "all"}
                 onClick={() => setSubject("all")}
@@ -231,7 +231,7 @@ export function ReferenceHubClient({
                 <FilterPill key={s} active={subject === s} onClick={() => setSubject(s)} label={s} />
               ))}
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="aee-scroll-x -mx-1 flex gap-2 px-1 pb-0.5 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
               {KIND_OPTIONS.map((opt) => (
                 <FilterPill
                   key={opt.value}
@@ -298,7 +298,7 @@ function FilterPill({
       type="button"
       onClick={onClick}
       className={cn(
-        "rounded-full px-3 py-1.5 text-xs font-semibold transition",
+        "shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition",
         variant === "kind" && "text-[11px]",
         active
           ? "bg-[var(--color-accent)] text-white shadow-sm"

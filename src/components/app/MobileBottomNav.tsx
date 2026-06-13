@@ -12,6 +12,7 @@ const ITEMS = [
   { href: ROUTES.reference, label: "Ref", icon: BookMarked, ariaLabel: "Study Reference" },
   { href: ROUTES.anatomy, label: "Anatomy", icon: Bone, ariaLabel: "Anatomy Explorer" },
   { href: ROUTES.fullExam, label: "Exam", icon: Clock },
+  { href: ROUTES.questionBank, label: "Bank", icon: BookOpen, ariaLabel: "Question Bank" },
   { href: ROUTES.analytics, label: "Stats", icon: BarChart3 },
 ] as const;
 

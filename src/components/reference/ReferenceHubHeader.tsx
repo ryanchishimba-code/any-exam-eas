@@ -53,7 +53,7 @@ export function ReferenceHubHeader({
             <ExamIcon className="h-6 w-6" aria-hidden />
           </span>
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
+            <p className="text-xs font-bold uppercase tracking-[0.15em] text-teal-600">
               Study Reference
             </p>
             <h1 className="mt-0.5 text-2xl font-bold tracking-tight text-[var(--color-ink)] sm:text-3xl">
