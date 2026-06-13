@@ -16,7 +16,7 @@ import {
 } from "../cartoon/digit-placements";
 import { OSSICLE_NAMES, ossicleWorldCenter } from "../cartoon/ossicle-hyoid-geometry";
 import { FIGURE } from "../cartoon/proportions";
-import { claviclePathPoints, ribPathPoints } from "../cartoon/skeletal-geometry";
+import { claviclePathPoints, ribPathPoints, sternumAnchorY } from "../cartoon/skeletal-geometry";
 import { CATALOG_SKULL_RADIUS } from "../cartoon/skull-geometry";
 import { skullCatalogPointToWorld } from "../cartoon/skull-bone-geometry";
 
@@ -300,13 +300,14 @@ function thoraxBones(f: Figure, z: number): BoneInstance[] {
     }
   }
 
+  const { body: sternumY } = sternumAnchorY(f);
   bones.push(
     point(
       "sternum-bone",
       "Sternum",
       "thorax",
       "midline",
-      new THREE.Vector3(0, f.chestY + 0.05, z + 0.1),
+      new THREE.Vector3(0, sternumY, z + 0.1),
       [0.048, 0.22, 0.024],
       "flat",
       undefined,

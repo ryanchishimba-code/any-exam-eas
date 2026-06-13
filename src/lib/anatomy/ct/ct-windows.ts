@@ -90,6 +90,7 @@ export const CT_ORGAN_HU: Record<string, number> = {
   "ct-thorax": 310,
   "ct-sternum": 330,
   "ct-rib-cage": 300,
+  rib: 305,
   "ct-clavicle-r": 315,
   "ct-clavicle-l": 315,
   femur: 350,

@@ -6,7 +6,7 @@ import * as THREE from "three";
 import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
 import { FIGURE } from "../cartoon/proportions";
 import {
-  buildRibCageParts,
+  buildSingleRibParts,
   buildSingleClavicleParts,
   buildSternumBoneParts,
 } from "../cartoon/skeletal-geometry";
@@ -18,53 +18,36 @@ export type CtProceduralThoraxSegment = {
   meshId: string;
 };
 
-export const CT_PROCEDURAL_THORAX_SEGMENTS: CtProceduralThoraxSegment[] = [
-  {
-    id: "ct-sternum",
-    structureIds: ["sternum-bone", "sternum"],
-    meshId: "sternum",
-  },
-  {
-    id: "ct-clavicle-r",
-    structureIds: ["clavicle-r", "clavicle"],
-    meshId: "clavicle",
-  },
-  {
-    id: "ct-clavicle-l",
-    structureIds: ["clavicle-l", "clavicle"],
-    meshId: "clavicle",
-  },
-  {
-    id: "ct-rib-cage",
-    structureIds: [
-      "rib-1-r",
-      "rib-1-l",
-      "rib-2-r",
-      "rib-2-l",
-      "rib-3-r",
-      "rib-3-l",
-      "rib-4-r",
-      "rib-4-l",
-      "rib-5-r",
-      "rib-5-l",
-      "rib-6-r",
-      "rib-6-l",
-      "rib-7-r",
-      "rib-7-l",
-      "rib-8-r",
-      "rib-8-l",
-      "rib-9-r",
-      "rib-9-l",
-      "rib-10-r",
-      "rib-10-l",
-      "rib-11-r",
-      "rib-11-l",
-      "rib-12-r",
-      "rib-12-l",
-    ],
-    meshId: "rib",
-  },
-];
+/** Nudge procedural thorax to match HuBMAP lung/heart bbox after atlas fit (figure space). */
+export const CT_THORAX_REGISTRATION = {
+  yOffset: -0.042,
+  zOffset: 0.006,
+} as const;
+
+const CT_OPTS = { ctFidelity: true as const };
+
+function ribSegment(ribIndex: number, side: "r" | "l"): CtProceduralThoraxSegment {
+  const n = ribIndex + 1;
+  const id = `rib-${n}-${side}`;
+  return { id: `ct-${id}`, structureIds: [id], meshId: "rib" };
+}
+
+/** Sternum, clavicles, and 24 individual ribs for CT bone window / MPR. */
+export function getCtProceduralThoraxSegments(): CtProceduralThoraxSegment[] {
+  const ribs: CtProceduralThoraxSegment[] = [];
+  for (let i = 0; i < 12; i++) {
+    ribs.push(ribSegment(i, "r"), ribSegment(i, "l"));
+  }
+  return [
+    { id: "ct-sternum", structureIds: ["sternum-bone", "sternum"], meshId: "sternum" },
+    { id: "ct-clavicle-r", structureIds: ["clavicle-r", "clavicle"], meshId: "clavicle" },
+    { id: "ct-clavicle-l", structureIds: ["clavicle-l", "clavicle"], meshId: "clavicle" },
+    ...ribs,
+  ];
+}
+
+/** @deprecated use getCtProceduralThoraxSegments() */
+export const CT_PROCEDURAL_THORAX_SEGMENTS = getCtProceduralThoraxSegments();
 
 function mergeSegmentParts(parts: THREE.BufferGeometry[]): THREE.BufferGeometry | null {
   if (parts.length === 0) return null;
@@ -77,17 +60,24 @@ export function buildCtProceduralThoraxGeometries(): Map<string, THREE.BufferGeo
   const z = FIGURE.centerZ;
   const map = new Map<string, THREE.BufferGeometry>();
 
-  const sternum = mergeSegmentParts(buildSternumBoneParts(FIGURE, z));
+  const sternum = mergeSegmentParts(buildSternumBoneParts(FIGURE, z, CT_OPTS));
   if (sternum) map.set("ct-sternum", sternum);
 
-  const clavicleR = mergeSegmentParts(buildSingleClavicleParts(-1, FIGURE, z));
+  const clavicleR = mergeSegmentParts(buildSingleClavicleParts(-1, FIGURE, z, CT_OPTS));
   if (clavicleR) map.set("ct-clavicle-r", clavicleR);
 
-  const clavicleL = mergeSegmentParts(buildSingleClavicleParts(1, FIGURE, z));
+  const clavicleL = mergeSegmentParts(buildSingleClavicleParts(1, FIGURE, z, CT_OPTS));
   if (clavicleL) map.set("ct-clavicle-l", clavicleL);
 
-  const ribCage = mergeSegmentParts(buildRibCageParts(FIGURE, z));
-  if (ribCage) map.set("ct-rib-cage", ribCage);
+  for (let i = 0; i < 12; i++) {
+    for (const [side, sx] of [
+      ["r", -1],
+      ["l", 1],
+    ] as const) {
+      const rib = mergeSegmentParts(buildSingleRibParts(i, sx, FIGURE, z, CT_OPTS));
+      if (rib) map.set(`ct-rib-${i + 1}-${side}`, rib);
+    }
+  }
 
   return map;
 }

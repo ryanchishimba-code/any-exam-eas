@@ -4,7 +4,8 @@ import { useMemo } from "react";
 import type { BufferGeometry, Plane } from "three";
 import { DoubleSide, MeshBasicMaterial } from "three";
 import {
-  CT_PROCEDURAL_THORAX_SEGMENTS,
+  CT_THORAX_REGISTRATION,
+  getCtProceduralThoraxSegments,
   buildCtProceduralThoraxGeometries,
   ctThoraxSegmentHighlighted,
   ctThoraxSegmentPickStructure,
@@ -38,17 +39,22 @@ function CtThoraxSegmentMesh({
 }) {
   const material = useMemo(() => {
     const window = CT_WINDOWS[windowId];
-    const hu = CT_ORGAN_HU[segment.id] ?? CT_ORGAN_HU["ct-thorax"] ?? 310;
+    const hu =
+      CT_ORGAN_HU[segment.id] ??
+      CT_ORGAN_HU[segment.meshId] ??
+      CT_ORGAN_HU["ct-thorax"] ??
+      310;
     const color = huToHex(highlighted ? hu + 40 : hu, window);
+    const boneWindow = windowId === "bone";
     return new MeshBasicMaterial({
       color: highlighted ? "#ddd6fe" : color,
-      transparent: true,
-      opacity: highlighted ? 0.98 : 0.92,
+      transparent: !boneWindow || highlighted,
+      opacity: highlighted ? 0.98 : boneWindow ? 0.99 : 0.88,
       depthWrite: true,
       side: DoubleSide,
       clippingPlanes,
     });
-  }, [segment.id, windowId, clippingPlanes, highlighted]);
+  }, [segment.id, segment.meshId, windowId, clippingPlanes, highlighted]);
 
   return (
     <mesh
@@ -78,6 +84,7 @@ export function CtProceduralThoraxRig({
   onSelect,
 }: Props) {
   const geometries = useMemo(() => buildCtProceduralThoraxGeometries(), []);
+  const segments = useMemo(() => getCtProceduralThoraxSegments(), []);
 
   const focusStructureIds = useMemo(() => {
     const ids = new Set<string>();
@@ -89,8 +96,8 @@ export function CtProceduralThoraxRig({
   if (!visible) return null;
 
   return (
-    <group>
-      {CT_PROCEDURAL_THORAX_SEGMENTS.map((segment) => {
+    <group position={[0, CT_THORAX_REGISTRATION.yOffset, CT_THORAX_REGISTRATION.zOffset]}>
+      {segments.map((segment) => {
         const geometry = geometries.get(segment.id);
         if (!geometry) return null;
         return (

@@ -39,7 +39,7 @@ export function CartoonAnatomyViewer({
   const [autoSpin, setAutoSpin] = useState(false);
   const ctAvailable = isCtAtlasEnabled();
   const [ctMode, setCtMode] = useState(ctAvailable);
-  const [ctWindowId, setCtWindowId] = useState<CtWindowId>("soft");
+  const [ctWindowId, setCtWindowId] = useState<CtWindowId>("bone");
   const [ctClipPlaneId, setCtClipPlaneId] = useState<CtClipPlaneId>("off");
   const [ctSliceOffset, setCtSliceOffset] = useState(0);
   const structures = useMemo(() => getAllAnatomyStructures(), []);
