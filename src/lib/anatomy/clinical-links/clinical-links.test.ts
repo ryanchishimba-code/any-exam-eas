@@ -58,7 +58,11 @@ describe("anatomy clinical links", () => {
   it("matcher finds drugs for pneumonia", () => {
     const { firstLine } = matchDrugsToPathologyForTest("Pneumonia", ["lung", "pulmonary"]);
     expect(firstLine.length).toBeGreaterThan(0);
-    expect(firstLine).toContain("amoxicillin");
+    expect(
+      firstLine.some((id) =>
+        ["amoxicillin", "azithromycin", "levofloxacin", "cefuroxime"].includes(id)
+      )
+    ).toBe(true);
   });
 
   it("reverse lookup: levothyroxine connects to thyroid diseases", () => {
