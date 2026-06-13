@@ -168,9 +168,7 @@ export async function GET(req: Request) {
     "@/lib/exam-prep/ngn-bank-bridge"
   );
   const { bankItemToNaplexRaw } = await import("@/lib/exam-prep/naplex-bank-bridge");
-  const { bankItemToUsmleRaw, isUsmleField } = await import(
-    "@/lib/exam-prep/usmle-bank-bridge"
-  );
+  const { bankItemToUsmleRaw } = await import("@/lib/exam-prep/usmle-bank-bridge");
 
   const raw: ExamQuestion[] = items.map((item, i) => {
     if (fieldId === "nursing") {

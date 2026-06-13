@@ -21,7 +21,7 @@ type Figure = typeof FigureConst;
 type ShortProfile = {
   size: [number, number, number];
   rotation?: [number, number, number];
-  shape: "block" | "sphere" | "capsule" | "wedge" | "heel";
+  shape: "block" | "sphere" | "capsule" | "wedge" | "heel" | "hook";
   hook?: [number, number, number];
 };
 

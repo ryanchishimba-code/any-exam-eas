@@ -100,7 +100,7 @@ export function buildSingleRibParts(
 ): THREE.BufferGeometry[] {
   const { bone, cartilageEnd } = ribPathPoints(ribIndex, sx, f, z);
   const shaftR = ribShaftRadius(ribIndex);
-  const parts: THREE.BufferGeometry[] = [catmullRomTube(bone, shaftR, 22, 8)];
+  const parts: THREE.BufferGeometry[] = [catmullRomTube(bone, shaftR, 22)];
   if (cartilageEnd) {
     const boneEnd = bone[bone.length - 1]!;
     const cartMid = new THREE.Vector3(
@@ -116,7 +116,7 @@ export function buildSingleRibParts(
 export function buildSingleClavicleParts(sx: -1 | 1, f: Figure, z: number): THREE.BufferGeometry[] {
   const parts: THREE.BufferGeometry[] = [];
   const path = claviclePathPoints(sx, f, z);
-  parts.push(catmullRomTube(path, 0.0125, 18, 8));
+  parts.push(catmullRomTube(path, 0.0125, 18));
 
   const medial = path[0]!;
   const medialFlare = new THREE.SphereGeometry(0.019, 10, 10);
