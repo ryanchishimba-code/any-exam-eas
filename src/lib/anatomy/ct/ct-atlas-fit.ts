@@ -1,7 +1,13 @@
-import type { Object3D } from "three";
+import type { Mesh, Object3D } from "three";
 import { Box3, Plane, Vector3 } from "three";
 import { FIGURE } from "@/lib/anatomy/cartoon/proportions";
 import type { CtClipPlaneId } from "./ct-atlas-registry";
+
+/** HuBMAP organs that define the thoracic cavity envelope for rib-cage overlay. */
+export const THORACIC_ATLAS_ORGAN_IDS = new Set(["lungs", "heart", "thymus"]);
+
+/** Rib cage should sit slightly outside the lung/heart bbox after VH atlas fit. */
+const THORAX_OVERLAY_PADDING = { x: 1.12, y: 1.06, z: 1.08 } as const;
 
 /** Fit Visible Human atlas (shared VH coords) into the FIGURE scene box. */
 export function fitVisibleHumanAtlas(root: Object3D) {
@@ -26,6 +32,68 @@ export function fitVisibleHumanAtlas(root: Object3D) {
 
   root.position.set(-center.x, targetCenterY - center.y, -center.z + FIGURE.centerZ * 0.15);
   root.rotation.y = Math.PI;
+}
+
+/** World-space bbox of fitted thoracic atlas organs (lungs, heart, thymus). */
+export function getThoracicOrganWorldBounds(atlasRoot: Object3D): Box3 | null {
+  atlasRoot.updateMatrixWorld(true);
+  const box = new Box3();
+  let found = false;
+  atlasRoot.traverse((node) => {
+    const mesh = node as Mesh;
+    if (!mesh.isMesh) return;
+    const organId = mesh.userData.atlasOrganId as string | undefined;
+    if (!organId || !THORACIC_ATLAS_ORGAN_IDS.has(organId)) return;
+    const meshBox = new Box3().setFromObject(mesh);
+    if (!meshBox.isEmpty()) {
+      box.union(meshBox);
+      found = true;
+    }
+  });
+  return found ? box : null;
+}
+
+/**
+ * Scale and position procedural thorax (figure-space ribs/sternum) to overlay fitted VH organs.
+ * Call after fitVisibleHumanAtlas on the atlas root.
+ */
+export function fitProceduralThoraxToAtlas(atlasRoot: Object3D, thoraxRoot: Object3D) {
+  const targetBox = getThoracicOrganWorldBounds(atlasRoot);
+
+  thoraxRoot.scale.set(1, 1, 1);
+  thoraxRoot.rotation.set(0, Math.PI, 0);
+  thoraxRoot.position.set(0, 0, 0);
+  thoraxRoot.updateMatrixWorld(true);
+
+  if (!targetBox || targetBox.isEmpty()) {
+    thoraxRoot.scale.copy(atlasRoot.scale);
+    thoraxRoot.rotation.copy(atlasRoot.rotation);
+    thoraxRoot.position.copy(atlasRoot.position);
+    return;
+  }
+
+  const thoraxBox = new Box3().setFromObject(thoraxRoot);
+  const targetSize = new Vector3();
+  const targetCenter = new Vector3();
+  const thoraxSize = new Vector3();
+  targetBox.getSize(targetSize);
+  targetBox.getCenter(targetCenter);
+  thoraxBox.getSize(thoraxSize);
+
+  const scaleX = (targetSize.x * THORAX_OVERLAY_PADDING.x) / Math.max(thoraxSize.x, 1e-6);
+  const scaleY = (targetSize.y * THORAX_OVERLAY_PADDING.y) / Math.max(thoraxSize.y, 1e-6);
+  const scaleZ = (targetSize.z * THORAX_OVERLAY_PADDING.z) / Math.max(thoraxSize.z, 1e-6);
+  thoraxRoot.scale.set(scaleX, scaleY, scaleZ);
+  thoraxRoot.updateMatrixWorld(true);
+
+  const scaledBox = new Box3().setFromObject(thoraxRoot);
+  const scaledCenter = new Vector3();
+  scaledBox.getCenter(scaledCenter);
+  thoraxRoot.position.set(
+    targetCenter.x - scaledCenter.x,
+    targetCenter.y - scaledCenter.y,
+    targetCenter.z - scaledCenter.z
+  );
 }
 
 /** Anatomical center for MPR clip planes (standing figure midline). */

@@ -1,8 +1,9 @@
 import { describe, expect, it } from "vitest";
+import { FIGURE } from "@/lib/anatomy/cartoon/proportions";
 import {
-  CT_THORAX_REGISTRATION,
   getCtProceduralThoraxSegments,
   buildCtProceduralThoraxGeometries,
+  computeProceduralThoraxFigureBounds,
   ctThoraxSegmentHighlighted,
   ctThoraxSegmentPickStructure,
 } from "./ct-procedural-thorax";
@@ -35,7 +36,10 @@ describe("ct procedural thorax", () => {
     expect(ctThoraxSegmentPickStructure(sternum)).toBe("sternum-bone");
   });
 
-  it("registers thorax slightly inferior to raw figure anchors for VH fit", () => {
-    expect(CT_THORAX_REGISTRATION.yOffset).toBeLessThan(0);
+  it("figure bounds span the thoracic cavity around chest anchors", () => {
+    const box = computeProceduralThoraxFigureBounds();
+    expect(box.min.y).toBeLessThan(FIGURE.chestY);
+    expect(box.max.y).toBeGreaterThan(FIGURE.shoulderY - 0.15);
+    expect(box.max.x - box.min.x).toBeGreaterThan(FIGURE.shoulderSpan * 0.8);
   });
 });

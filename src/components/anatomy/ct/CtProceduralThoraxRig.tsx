@@ -1,10 +1,9 @@
 "use client";
 
-import { useMemo } from "react";
-import type { BufferGeometry, Plane } from "three";
+import { forwardRef, useMemo } from "react";
+import type { BufferGeometry, Group, Plane } from "three";
 import { DoubleSide, MeshBasicMaterial } from "three";
 import {
-  CT_THORAX_REGISTRATION,
   getCtProceduralThoraxSegments,
   buildCtProceduralThoraxGeometries,
   ctThoraxSegmentHighlighted,
@@ -75,14 +74,10 @@ function CtThoraxSegmentMesh({
 }
 
 /** Figure-space thorax bones for CT mode (fills gap where HuBMAP lacks VH rib/sternum GLBs). */
-export function CtProceduralThoraxRig({
-  visible,
-  windowId,
-  clippingPlanes,
-  selectedId,
-  highlightedId,
-  onSelect,
-}: Props) {
+export const CtProceduralThoraxRig = forwardRef<Group, Props>(function CtProceduralThoraxRig(
+  { visible, windowId, clippingPlanes, selectedId, highlightedId, onSelect },
+  ref
+) {
   const geometries = useMemo(() => buildCtProceduralThoraxGeometries(), []);
   const segments = useMemo(() => getCtProceduralThoraxSegments(), []);
 
@@ -93,10 +88,8 @@ export function CtProceduralThoraxRig({
     return ids;
   }, [highlightedId, selectedId]);
 
-  if (!visible) return null;
-
   return (
-    <group position={[0, CT_THORAX_REGISTRATION.yOffset, CT_THORAX_REGISTRATION.zOffset]}>
+    <group ref={ref} visible={visible}>
       {segments.map((segment) => {
         const geometry = geometries.get(segment.id);
         if (!geometry) return null;
@@ -114,4 +107,4 @@ export function CtProceduralThoraxRig({
       })}
     </group>
   );
-}
+});

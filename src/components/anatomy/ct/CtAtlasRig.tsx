@@ -12,7 +12,11 @@ import {
   type CtAtlasOrganEntry,
   type CtClipPlaneId,
 } from "@/lib/anatomy/ct/ct-atlas-registry";
-import { createCtClipPlanes, fitVisibleHumanAtlas } from "@/lib/anatomy/ct/ct-atlas-fit";
+import {
+  createCtClipPlanes,
+  fitProceduralThoraxToAtlas,
+  fitVisibleHumanAtlas,
+} from "@/lib/anatomy/ct/ct-atlas-fit";
 import { fitAllenBrainToFigure } from "@/lib/anatomy/ct/brain-fit";
 import {
   CT_ORGAN_HU,
@@ -240,6 +244,7 @@ export function CtAtlasRig({
   onSelect,
 }: RigProps) {
   const rootRef = useRef<Group>(null);
+  const thoraxRef = useRef<Group>(null);
   const loadGeneration = useRef(0);
 
   const scheduleRefit = useCallback(() => {
@@ -248,6 +253,9 @@ export function CtAtlasRig({
     requestAnimationFrame(() => {
       if (gen !== loadGeneration.current || !rootRef.current) return;
       fitVisibleHumanAtlas(rootRef.current);
+      if (thoraxRef.current) {
+        fitProceduralThoraxToAtlas(rootRef.current, thoraxRef.current);
+      }
     });
   }, []);
 
@@ -336,6 +344,7 @@ export function CtAtlasRig({
         );
       })}
       <CtProceduralThoraxRig
+        ref={thoraxRef}
         visible={visibleLayers.has("bone")}
         windowId={windowId}
         clippingPlanes={clippingPlanes}

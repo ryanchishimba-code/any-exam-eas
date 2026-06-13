@@ -18,13 +18,17 @@ export type CtProceduralThoraxSegment = {
   meshId: string;
 };
 
-/** Nudge procedural thorax to match HuBMAP lung/heart bbox after atlas fit (figure space). */
-export const CT_THORAX_REGISTRATION = {
-  yOffset: -0.042,
-  zOffset: 0.006,
-} as const;
-
 const CT_OPTS = { ctFidelity: true as const };
+
+/** Union bbox of all procedural thorax meshes in figure space (pre-atlas fit). */
+export function computeProceduralThoraxFigureBounds(): THREE.Box3 {
+  const box = new THREE.Box3();
+  for (const geo of buildCtProceduralThoraxGeometries().values()) {
+    geo.computeBoundingBox();
+    if (geo.boundingBox) box.union(geo.boundingBox);
+  }
+  return box;
+}
 
 function ribSegment(ribIndex: number, side: "r" | "l"): CtProceduralThoraxSegment {
   const n = ribIndex + 1;
