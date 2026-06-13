@@ -407,7 +407,7 @@ export async function getBankQuestions(params: {
   const unique = new Map<string, BankItem>();
   for (const item of ranked) unique.set(item.question.toLowerCase(), item);
 
-  let pool = [...unique.values()];
+  const pool = [...unique.values()];
 
   const selected = shuffle(pool).slice(0, params.count);
 
