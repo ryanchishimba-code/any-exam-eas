@@ -31,6 +31,8 @@ import { CartoonBodyShell } from "./CartoonBodyShell";
 import { ClickableSkeleton } from "./ClickableSkeleton";
 import { CartoonOrganMesh } from "./CartoonOrganMesh";
 import { CartoonStructuralLayers } from "./CartoonStructuralLayers";
+import { StructuralPickRig } from "./StructuralPickRig";
+import { AnatomyPointerProvider } from "./AnatomyPointerProvider";
 import { CtAtlasRig, preloadCtAtlas } from "@/components/anatomy/ct/CtAtlasRig";
 import { preloadVisibleHumanOrgans } from "./VolumeOrganVisual";
 import { NeuroConnectionRig } from "./NeuroConnectionRig";
@@ -153,6 +155,8 @@ function SceneRig({
   const defaultTarget = useMemo(() => new Vector3(...cameraConfig.target), [cameraConfig.target]);
   const desiredTarget = useMemo(() => new Vector3(), []);
   const focusDistance = useRef(cameraConfig.position[2]);
+  const cameraDirRef = useRef(new Vector3());
+  const cameraGoalRef = useRef(new Vector3());
 
   useEffect(() => {
     const controls = controlsRef.current;
@@ -164,19 +168,22 @@ function SceneRig({
   }, [camera, cameraConfig.position, cameraConfig.target, controlsRef, defaultCamPos, defaultTarget, resetToken, ctActive]);
 
   useEffect(() => {
-    if (!selectedId) {
+    const focusId = highlightedId ?? selectedId;
+    if (!focusId) {
       desiredTarget.copy(defaultTarget);
       focusDistance.current = cameraConfig.position[2] / zoomLevel;
       return;
     }
-    const structure = getAnatomyStructure(selectedId);
+    const structure = getAnatomyStructure(focusId);
     if (!structure) return;
     const mod = getAnatomyModule(structure.meshId);
     const focus = mod?.position ?? getBoneFocus(structure.id);
     if (!focus) return;
     desiredTarget.set(focus[0], focus[1], focus[2]);
-    focusDistance.current = (mod?.focusDistance ?? getBoneFocusDistance(structure.id)) / zoomLevel;
-  }, [cameraConfig.position, defaultTarget, desiredTarget, selectedId, zoomLevel]);
+    const baseDistance = mod?.focusDistance ?? getBoneFocusDistance(structure.id);
+    const previewOnly = Boolean(highlightedId && highlightedId !== selectedId);
+    focusDistance.current = (previewOnly ? baseDistance * 1.08 : baseDistance) / zoomLevel;
+  }, [cameraConfig.position, defaultTarget, desiredTarget, highlightedId, selectedId, zoomLevel]);
 
   useFrame(() => {
     const controls = controlsRef.current;
@@ -185,9 +192,11 @@ function SceneRig({
     controls.minDistance = cameraConfig.minDistance / zoomLevel;
     controls.maxDistance = cameraConfig.maxDistance / zoomLevel;
     const persp = camera as PerspectiveCamera;
-    const dir = new Vector3().subVectors(persp.position, controls.target).normalize();
-    const goal = controls.target.clone().add(dir.multiplyScalar(focusDistance.current));
-    persp.position.lerp(goal, 0.08);
+    cameraDirRef.current.subVectors(persp.position, controls.target).normalize();
+    cameraGoalRef.current
+      .copy(controls.target)
+      .addScaledVector(cameraDirRef.current, focusDistance.current);
+    persp.position.lerp(cameraGoalRef.current, 0.08);
     controls.update();
   });
 
@@ -257,6 +266,12 @@ function SceneRig({
           </mesh>
 
           <CartoonStructuralLayers visibleLayers={visibleLayers} skinOn={showSkin} />
+          <StructuralPickRig
+            visibleLayers={visibleLayers}
+            selectedId={selectedId}
+            highlightedId={highlightedId}
+            onSelect={onSelect}
+          />
           <ClickableSkeleton
             visible={visibleLayers.has("bone")}
             skinOn={showSkin}
@@ -378,25 +393,27 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
           if (!ctActive) gl.shadowMap.type = THREE.PCFSoftShadowMap;
         }}
       >
-        <LocalClippingToggle enabled={clipActive} />
-        <Suspense fallback={null}>
-          <SceneRig
-            structures={structures}
-            visibleLayers={visibleLayers}
-            systemFilter={systemFilter}
-            selectedId={selectedId}
-            highlightedId={highlightedId}
-            onSelect={onSelect}
-            autoSpin={autoSpin}
-            zoomLevel={zoomLevel}
-            resetToken={resetToken}
-            controlsRef={controlsRef}
-            ctMode={ctMode}
-            ctWindowId={ctWindowId}
-            ctClipPlaneId={ctClipPlaneId}
-            ctSliceOffset={ctSliceOffset}
-          />
-        </Suspense>
+        <AnatomyPointerProvider>
+          <LocalClippingToggle enabled={clipActive} />
+          <Suspense fallback={null}>
+            <SceneRig
+              structures={structures}
+              visibleLayers={visibleLayers}
+              systemFilter={systemFilter}
+              selectedId={selectedId}
+              highlightedId={highlightedId}
+              onSelect={onSelect}
+              autoSpin={autoSpin}
+              zoomLevel={zoomLevel}
+              resetToken={resetToken}
+              controlsRef={controlsRef}
+              ctMode={ctMode}
+              ctWindowId={ctWindowId}
+              ctClipPlaneId={ctClipPlaneId}
+              ctSliceOffset={ctSliceOffset}
+            />
+          </Suspense>
+        </AnatomyPointerProvider>
       </Canvas>
     </div>
   );

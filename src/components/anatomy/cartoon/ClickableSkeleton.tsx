@@ -7,6 +7,7 @@ import type { Group } from "three";
 import { Vector3 } from "three";
 import type { BufferGeometry } from "three";
 import { StandardTissueMaterial } from "@/components/anatomy/cartoon/AnatomyMaterials";
+import { useAnatomyPointer } from "@/components/anatomy/cartoon/AnatomyPointerProvider";
 import {
   buildBoneInstances,
   createBoneMeshMap,
@@ -38,6 +39,7 @@ function BoneMesh({
 }) {
   const ref = useRef<Group>(null);
   const [hovered, setHovered] = useState(false);
+  const { setHovering } = useAnatomyPointer();
   const base = useRef(new Vector3(1, 1, 1));
   const target = useRef(new Vector3(1, 1, 1));
 
@@ -51,6 +53,7 @@ function BoneMesh({
     if (!ref.current) return;
     const s = active ? 1.12 : hovered ? 1.06 : 1;
     target.current.set(s, s, s);
+    if (s === 1 && ref.current.scale.distanceToSquared(target.current) < 1e-5) return;
     ref.current.scale.lerp(target.current, 0.14);
   });
 
@@ -68,11 +71,11 @@ function BoneMesh({
       onPointerOver={(e) => {
         e.stopPropagation();
         setHovered(true);
-        document.body.style.cursor = "pointer";
+        setHovering(true);
       }}
       onPointerOut={() => {
         setHovered(false);
-        document.body.style.cursor = "auto";
+        setHovering(false);
       }}
     >
       <mesh geometry={geometry} castShadow={opacity > 0.5}>

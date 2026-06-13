@@ -10,6 +10,7 @@ import { getOrganDepthOrder } from "@/lib/anatomy/cartoon/organ-layout";
 import { CARTOON_OUTLINE } from "@/lib/anatomy/cartoon/palette";
 import { ANATOMY_SYSTEM_COLORS, blendHexColor } from "@/lib/anatomy/system-colors";
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
+import { useAnatomyPointer } from "@/components/anatomy/cartoon/AnatomyPointerProvider";
 import { OrganVisual, STRUCTURAL_BONE_MESH_IDS, STRUCTURAL_MUSCLE_MESH_IDS, type OrganSurfaceStyle } from "./OrganVisual";
 
 const BILATERAL_MESH_IDS = new Set(["biceps", "humerus", "femur", "tibia", "scapula"]);
@@ -65,6 +66,7 @@ function OrganMeshInstance({
 }) {
   const ref = useRef<Group>(null);
   const [hovered, setHovered] = useState(false);
+  const { setHovering } = useAnatomyPointer();
   const baseScale = useMemo(() => new Vector3(...def.scale), [def.scale]);
   const targetScale = useRef(new Vector3(...def.scale));
 
@@ -76,6 +78,12 @@ function OrganMeshInstance({
     if (!ref.current) return;
     const factor = highlighted || selected ? 1.1 : hovered ? 1.05 : 1;
     targetScale.current.set(baseScale.x * factor, baseScale.y * factor, baseScale.z * factor);
+    if (
+      factor === 1 &&
+      ref.current.scale.distanceToSquared(targetScale.current) < 1e-5
+    ) {
+      return;
+    }
     ref.current.scale.lerp(targetScale.current, 0.14);
   });
 
@@ -132,11 +140,11 @@ function OrganMeshInstance({
       onPointerOver={(e) => {
         e.stopPropagation();
         setHovered(true);
-        document.body.style.cursor = "pointer";
+        setHovering(true);
       }}
       onPointerOut={() => {
         setHovered(false);
-        document.body.style.cursor = "auto";
+        setHovering(false);
       }}
     >
       <OrganVisual

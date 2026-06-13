@@ -26,7 +26,9 @@ type Props = {
   visibleLayers: Set<AnatomyLayer>;
   onToggleLayer: (layer: AnatomyLayer) => void;
   selectedId: string | null;
+  hoveredId?: string | null;
   onSelectStructure: (id: string) => void;
+  onHoverStructure?: (id: string | null) => void;
   onResetFilters?: () => void;
   collapsed?: boolean;
   /** Layer toggles show/hide clickable regions on the interactive human. */
@@ -47,7 +49,9 @@ export function AnatomySidebar({
   visibleLayers,
   onToggleLayer,
   selectedId,
+  hoveredId = null,
   onSelectStructure,
+  onHoverStructure,
   onResetFilters,
   collapsed = false,
   showLayerControls = true,
@@ -192,7 +196,9 @@ export function AnatomySidebar({
                 <StructureList
                   structures={items}
                   selectedId={selectedId}
+                  hoveredId={hoveredId}
                   onSelectStructure={onSelectStructure}
+                  onHoverStructure={onHoverStructure}
                 />
               </details>
             ))}
@@ -201,7 +207,9 @@ export function AnatomySidebar({
           <StructureList
             structures={filteredStructures}
             selectedId={selectedId}
+            hoveredId={hoveredId}
             onSelectStructure={onSelectStructure}
+            onHoverStructure={onHoverStructure}
           />
         )}
       </section>
@@ -212,45 +220,59 @@ export function AnatomySidebar({
 function StructureList({
   structures,
   selectedId,
+  hoveredId = null,
   onSelectStructure,
+  onHoverStructure,
 }: {
   structures: AnatomyStructure[];
   selectedId: string | null;
+  hoveredId?: string | null;
   onSelectStructure: (id: string) => void;
+  onHoverStructure?: (id: string | null) => void;
 }) {
   return (
     <ul className="space-y-1 px-2 pb-2">
-      {structures.map((s) => (
-        <li key={s.id}>
-          <button
-            type="button"
-            onClick={() => onSelectStructure(s.id)}
-            className={cn(
-              "flex w-full flex-col items-start gap-0.5 rounded-xl px-3 py-2 text-left text-sm transition",
-              selectedId === s.id
-                ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
-                : "text-[var(--color-ink)] hover:bg-white"
-            )}
-          >
-            <span className="flex w-full items-start gap-2">
-              <span
-                className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
-                style={{ backgroundColor: ANATOMY_SYSTEM_COLORS[s.system] }}
-                aria-hidden
-              />
-              <span className="font-medium">{s.name}</span>
-              {s.highYield ? (
-                <span className="ml-auto shrink-0 rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-bold text-amber-800">
-                  HY
-                </span>
-              ) : null}
-            </span>
-            <span className="pl-3.5 text-[10px] text-[var(--color-ink-muted)]">
-              {ANATOMY_SYSTEM_LABELS[s.system]}
-            </span>
-          </button>
-        </li>
-      ))}
+      {structures.map((s) => {
+        const selected = selectedId === s.id;
+        const hovered = hoveredId === s.id;
+        return (
+          <li key={s.id}>
+            <button
+              type="button"
+              onClick={() => onSelectStructure(s.id)}
+              onMouseEnter={() => onHoverStructure?.(s.id)}
+              onMouseLeave={() => onHoverStructure?.(null)}
+              onFocus={() => onHoverStructure?.(s.id)}
+              onBlur={() => onHoverStructure?.(null)}
+              className={cn(
+                "flex w-full flex-col items-start gap-0.5 rounded-xl px-3 py-2 text-left text-sm transition",
+                selected
+                  ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+                  : hovered
+                    ? "bg-violet-50 text-violet-900"
+                    : "text-[var(--color-ink)] hover:bg-white"
+              )}
+            >
+              <span className="flex w-full items-start gap-2">
+                <span
+                  className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
+                  style={{ backgroundColor: ANATOMY_SYSTEM_COLORS[s.system] }}
+                  aria-hidden
+                />
+                <span className="font-medium">{s.name}</span>
+                {s.highYield ? (
+                  <span className="ml-auto shrink-0 rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-bold text-amber-800">
+                    HY
+                  </span>
+                ) : null}
+              </span>
+              <span className="pl-3.5 text-[10px] text-[var(--color-ink-muted)]">
+                {ANATOMY_SYSTEM_LABELS[s.system]}
+              </span>
+            </button>
+          </li>
+        );
+      })}
     </ul>
   );
 }

@@ -24,7 +24,9 @@ type SidebarProps = {
   visibleLayers: Set<AnatomyLayer>;
   onToggleLayer: (layer: AnatomyLayer) => void;
   selectedId: string | null;
+  hoveredId?: string | null;
   onSelectStructure: (id: string) => void;
+  onHoverStructure?: (id: string | null) => void;
   onResetFilters: () => void;
   showLayerControls: boolean;
 };

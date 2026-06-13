@@ -12,6 +12,7 @@ import {
   TISSUE_PBR,
 } from "@/lib/anatomy/cartoon/palette";
 import type { AnatomyLayer } from "@/lib/anatomy/types";
+import { noopRaycast } from "@/lib/anatomy/cartoon/anatomy-raycast";
 
 type Props = {
   visibleLayers: Set<AnatomyLayer>;
@@ -51,7 +52,7 @@ function StructuralMesh({
   if (!geometry) return null;
   const pbr = TISSUE_PBR[tissue];
   return (
-    <mesh geometry={geometry} renderOrder={renderOrder} castShadow={opacity > 0.5}>
+    <mesh geometry={geometry} renderOrder={renderOrder} castShadow={opacity > 0.5} raycast={noopRaycast}>
       <StandardTissueMaterial
         color={color}
         opacity={opacity}

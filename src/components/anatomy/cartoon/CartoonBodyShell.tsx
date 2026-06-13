@@ -11,6 +11,7 @@ import { SkinMaterial } from "@/components/anatomy/cartoon/AnatomyMaterials";
 import { HumanFaceFeatures } from "@/components/anatomy/cartoon/HumanFaceFeatures";
 import { getFigureFaceTransform } from "@/lib/anatomy/cartoon/face-landmarks";
 import { FIGURE } from "@/lib/anatomy/cartoon/proportions";
+import { noopRaycast } from "@/lib/anatomy/cartoon/anatomy-raycast";
 import {
   CARTOON_HAIR,
   CARTOON_SKIN,
@@ -115,7 +116,7 @@ export function CartoonBodyShell({ ghost = false }: Props) {
   return (
     <group renderOrder={ghost ? 0 : 4}>
       {ghost && cavityGeo ? (
-        <mesh geometry={cavityGeo} renderOrder={0}>
+        <mesh geometry={cavityGeo} renderOrder={0} raycast={noopRaycast}>
           <meshStandardMaterial
             color={CARTOON_CAVITY_WALL}
             transparent
@@ -127,18 +128,24 @@ export function CartoonBodyShell({ ghost = false }: Props) {
           />
         </mesh>
       ) : null}
-      <mesh geometry={shellGeo} castShadow={!ghost} receiveShadow renderOrder={ghost ? 0 : 4}>
+      <mesh
+        geometry={shellGeo}
+        castShadow={!ghost}
+        receiveShadow
+        renderOrder={ghost ? 0 : 4}
+        raycast={noopRaycast}
+      >
         <SkinMaterial color={skinColor} opacity={skinOpacity} ghost={ghost} />
       </mesh>
 
       {!ghost && hairGeo ? (
-        <mesh geometry={hairGeo} castShadow renderOrder={5}>
+        <mesh geometry={hairGeo} castShadow renderOrder={5} raycast={noopRaycast}>
           <meshStandardMaterial color={CARTOON_HAIR} roughness={0.88} metalness={0.02} />
         </mesh>
       ) : null}
 
       {!ghost && shadowGeo ? (
-        <mesh geometry={shadowGeo} renderOrder={3}>
+        <mesh geometry={shadowGeo} renderOrder={3} raycast={noopRaycast}>
           <meshStandardMaterial
             color={CARTOON_SKIN_SHADOW}
             transparent

@@ -38,7 +38,7 @@ export function CartoonAnatomyViewer({
   const sceneRef = useRef<CartoonSceneHandle>(null);
   const [autoSpin, setAutoSpin] = useState(false);
   const ctAvailable = isCtAtlasEnabled();
-  const [ctMode, setCtMode] = useState(ctAvailable);
+  const [ctMode, setCtMode] = useState(false);
   const [ctWindowId, setCtWindowId] = useState<CtWindowId>("bone");
   const [ctClipPlaneId, setCtClipPlaneId] = useState<CtClipPlaneId>("off");
   const [ctSliceOffset, setCtSliceOffset] = useState(0);
@@ -148,7 +148,7 @@ export function CartoonAnatomyViewer({
             Drag to rotate · scroll to zoom · click organs for pearls.
           </>
         ) : skinOn ? (
-          "Tap Peel skin above or turn off Skin in the layer bar to explore organs, bones, and vessels."
+          "Skin is visible — click through to organs and bones, or peel skin to explore the interior."
         ) : (
           "Drag to rotate · scroll to zoom · click any structure for pearls & practice"
         )}

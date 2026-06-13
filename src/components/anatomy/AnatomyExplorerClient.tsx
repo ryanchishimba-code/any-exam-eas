@@ -63,6 +63,7 @@ export function AnatomyExplorerClient({
     if (initialStructureId && getAnatomyStructure(initialStructureId)) return initialStructureId;
     return null;
   });
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [overlayOpen, setOverlayOpen] = useState(() =>
     Boolean(initialStructureId && !invalidStructureId)
@@ -160,6 +161,8 @@ export function AnatomyExplorerClient({
   const { handleStructureSelect: handleTeachPick, highlightedId, quizActive, quizHint, startTour } =
     teach;
 
+  const viewportHighlightedId = highlightedId ?? hoveredId;
+
   const handleSelectStructure = useCallback(
     (id: string) => {
       const quizHandled = handleTeachPick(id);
@@ -204,7 +207,9 @@ export function AnatomyExplorerClient({
     visibleLayers,
     onToggleLayer: toggleLayer,
     selectedId,
+    hoveredId,
     onSelectStructure: handleSelectStructure,
+    onHoverStructure: setHoveredId,
     onResetFilters: resetFilters,
     showLayerControls,
   };
@@ -279,7 +284,7 @@ export function AnatomyExplorerClient({
         relatedCards={relatedCards}
         visibleLayers={visibleLayers}
         selectedId={selectedId}
-        highlightedId={highlightedId}
+        highlightedId={viewportHighlightedId}
         quizActive={quizActive}
         onSelectStructure={handleSelectStructure}
         onCloseStructure={handleCloseStructure}

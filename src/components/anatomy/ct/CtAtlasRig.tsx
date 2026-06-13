@@ -1,7 +1,8 @@
 "use client";
 
 import { useGLTF } from "@react-three/drei";
-import { Component, type ReactNode, useCallback, useLayoutEffect, useMemo, useRef } from "react";
+import { Html } from "@react-three/drei";
+import { Component, type ReactNode, useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { Group, Mesh, Plane } from "three";
 import { DoubleSide, MeshBasicMaterial } from "three";
 import {
@@ -23,6 +24,7 @@ import {
 import { getNeuroConnectedStructureIds } from "@/lib/anatomy/neuro-connections";
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
 import { getAnatomyStructure, getAnatomyStructureByMeshId } from "@/lib/anatomy";
+import { useAnatomyPointer } from "@/components/anatomy/cartoon/AnatomyPointerProvider";
 
 type RigProps = {
   visibleLayers: Set<AnatomyLayer>;
@@ -76,6 +78,17 @@ function CtAtlasOrganMeshInner({
   headAnchored?: boolean;
   deferHeadFit?: boolean;
 }) {
+  const [hovered, setHovered] = useState(false);
+  const emphasized = highlighted || hovered;
+  const { setHovering } = useAnatomyPointer();
+  const label = useMemo(() => {
+    const resolvedId = resolveStructureIdForAtlasEntry(entry);
+    if (resolvedId) {
+      const structure = getAnatomyStructure(resolvedId);
+      if (structure) return structure.name;
+    }
+    return getAnatomyStructureByMeshId(entry.meshId)?.name ?? entry.meshId;
+  }, [entry]);
   const { scene } = useGLTF(url);
   const window = CT_WINDOWS[windowId];
   const hu = CT_ORGAN_HU[entry.id] ?? CT_ORGAN_HU[entry.meshId] ?? 40;
@@ -86,7 +99,7 @@ function CtAtlasOrganMeshInner({
     const baseColor = huToHex(hu, window);
     const opacity = entry.opacity ?? (entry.layer === "skin" ? 0.18 : 0.98);
     const mat = new MeshBasicMaterial({
-      color: highlighted ? "#ddd6fe" : baseColor,
+      color: emphasized ? "#ddd6fe" : baseColor,
       transparent: opacity < 1 || dimmed,
       opacity: dimmed ? opacity * 0.38 : opacity,
       depthWrite: opacity > 0.5 && !dimmed,
@@ -104,7 +117,7 @@ function CtAtlasOrganMeshInner({
       }
     });
     return clone;
-  }, [scene, entry, windowId, window, hu, highlighted, dimmed, clippingPlanes, headAnchored, deferHeadFit]);
+  }, [scene, entry, windowId, window, hu, emphasized, dimmed, clippingPlanes, headAnchored, deferHeadFit]);
 
   useLayoutEffect(() => {
     onLoaded();
@@ -113,19 +126,36 @@ function CtAtlasOrganMeshInner({
   if (!visible) return null;
 
   return (
-    <primitive
-      object={prepared}
-      onClick={(e: { stopPropagation: () => void }) => {
-        e.stopPropagation();
-        onPick();
-      }}
-      onPointerOver={() => {
-        document.body.style.cursor = "pointer";
-      }}
-      onPointerOut={() => {
-        document.body.style.cursor = "auto";
-      }}
-    />
+    <group>
+      <primitive
+        object={prepared}
+        onClick={(e: { stopPropagation: () => void }) => {
+          e.stopPropagation();
+          onPick();
+        }}
+        onPointerOver={(e: { stopPropagation: () => void }) => {
+          e.stopPropagation();
+          setHovered(true);
+          setHovering(true);
+        }}
+        onPointerOut={() => {
+          setHovered(false);
+          setHovering(false);
+        }}
+      />
+      {emphasized ? (
+        <Html
+          center
+          distanceFactor={6}
+          position={[0, 0.35, 0]}
+          style={{ pointerEvents: "none", whiteSpace: "nowrap" }}
+        >
+          <span className="rounded-full border border-violet-200 bg-white px-2.5 py-1 text-[11px] font-bold text-indigo-900 shadow-md">
+            {label}
+          </span>
+        </Html>
+      ) : null}
+    </group>
   );
 }
 
