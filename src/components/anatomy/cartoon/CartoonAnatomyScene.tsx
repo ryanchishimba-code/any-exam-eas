@@ -19,7 +19,7 @@ import { getAnatomyStructure } from "@/lib/anatomy";
 import { getBoneFocus, getBoneFocusDistance } from "@/lib/anatomy/bones";
 import { ANATOMY_MODULES, getAnatomyModule } from "@/lib/anatomy/modules/registry";
 import { getOrganDepthOrder } from "@/lib/anatomy/cartoon/organ-layout";
-import { CARTOON_CAMERA, FIGURE } from "@/lib/anatomy/cartoon/proportions";
+import { CARTOON_CAMERA, CT_CAMERA, FIGURE } from "@/lib/anatomy/cartoon/proportions";
 import {
   CARTOON_FLOOR,
   CARTOON_SCENE_BG,
@@ -33,6 +33,8 @@ import { CartoonOrganMesh } from "./CartoonOrganMesh";
 import { CartoonStructuralLayers } from "./CartoonStructuralLayers";
 import { CtAtlasRig, preloadCtAtlas } from "@/components/anatomy/ct/CtAtlasRig";
 import { preloadVisibleHumanOrgans } from "./VolumeOrganVisual";
+import { NeuroConnectionRig } from "./NeuroConnectionRig";
+import { isNeuroConnected } from "@/lib/anatomy/neuro-connections";
 import {
   isVisibleHumanOrganEnabled,
   VISIBLE_HUMAN_ORGANS,
@@ -76,11 +78,14 @@ function OrganModules({
     []
   );
 
+  const focusStructureId = highlightedId ?? selectedId;
+
   return (
     <>
       {sortedModules.map((mod) => {
         const structure = structureByMesh.get(mod.id);
         if (!structure) return null;
+        const connected = isNeuroConnected(focusStructureId, structure.id);
         return (
           <CartoonOrganMesh
             key={mod.id}
@@ -89,7 +94,7 @@ function OrganModules({
             structureSystem={structure.system}
             systemFilter={systemFilter}
             visible={visibleLayers.has(mod.layer)}
-            highlighted={highlightedId === structure.id}
+            highlighted={highlightedId === structure.id || connected}
             selected={selectedId === structure.id}
             skinOn={skinOn}
             muscleStructuralOn={muscleStructuralOn}
@@ -99,6 +104,15 @@ function OrganModules({
       })}
     </>
   );
+}
+
+function CtRenderSettings({ active }: { active: boolean }) {
+  const { gl } = useThree();
+  useEffect(() => {
+    gl.toneMapping = active ? THREE.NoToneMapping : THREE.ACESFilmicToneMapping;
+    gl.toneMappingExposure = active ? 1 : 1.06;
+  }, [active, gl]);
+  return null;
 }
 
 function SceneRig({
@@ -133,7 +147,8 @@ function SceneRig({
   ctSliceOffset: number;
 }) {
   const { camera } = useThree();
-  const cameraConfig = CARTOON_CAMERA;
+  const ctActive = ctMode && isCtAtlasEnabled();
+  const cameraConfig = ctActive ? CT_CAMERA : CARTOON_CAMERA;
   const defaultCamPos = useMemo(() => new Vector3(...cameraConfig.position), [cameraConfig.position]);
   const defaultTarget = useMemo(() => new Vector3(...cameraConfig.target), [cameraConfig.target]);
   const desiredTarget = useMemo(() => new Vector3(), []);
@@ -146,7 +161,7 @@ function SceneRig({
     camera.position.copy(defaultCamPos);
     focusDistance.current = cameraConfig.position[2];
     controls.update();
-  }, [camera, cameraConfig.position, controlsRef, defaultCamPos, defaultTarget, resetToken]);
+  }, [camera, cameraConfig.position, cameraConfig.target, controlsRef, defaultCamPos, defaultTarget, resetToken, ctActive]);
 
   useEffect(() => {
     if (!selectedId) {
@@ -177,8 +192,8 @@ function SceneRig({
   });
 
   const showSkin = visibleLayers.has("skin");
-  const ctActive = ctMode && isCtAtlasEnabled();
   const ctWindow = CT_WINDOWS[ctWindowId];
+  const focusStructureId = highlightedId ?? selectedId;
 
   useEffect(() => {
     if (!isCtAtlasEnabled()) return;
@@ -192,13 +207,12 @@ function SceneRig({
 
   return (
     <>
+      <CtRenderSettings active={ctActive} />
       <color attach="background" args={[ctActive ? ctWindow.background : CARTOON_SCENE_BG]} />
       {ctActive ? null : <fog attach="fog" args={[CARTOON_SCENE_FOG, 8, 18]} />}
       {ctActive ? (
         <>
-          <ambientLight intensity={ctWindow.ambient} color="#e8e8ec" />
-          <directionalLight position={[2, 4, 3]} intensity={0.12} color="#ffffff" />
-          <directionalLight position={[-3, 1, -2]} intensity={0.06} color="#c0c0c8" />
+          <ambientLight intensity={0.35} color="#f0f0f4" />
           <CtAtlasRig
             visibleLayers={visibleLayers}
             systemFilter={systemFilter}
@@ -209,6 +223,7 @@ function SceneRig({
             highlightedId={highlightedId}
             onSelect={onSelect}
           />
+          <NeuroConnectionRig focusStructureId={focusStructureId} />
         </>
       ) : (
         <>
@@ -258,6 +273,7 @@ function SceneRig({
             onSelect={onSelect}
             skinOn={showSkin}
           />
+          <NeuroConnectionRig focusStructureId={focusStructureId} />
           <CartoonBodyShell ghost={!showSkin} />
         </>
       )}
@@ -342,13 +358,16 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
       className={cn(
         "relative h-full w-full overflow-hidden rounded-2xl",
         ctActive
-          ? "bg-[#0c0c0e]"
+          ? "bg-[#161618]"
           : "bg-gradient-to-b from-slate-100 via-slate-50 to-slate-200/80",
         className
       )}
     >
       <Canvas
-        camera={{ position: CARTOON_CAMERA.position, fov: CARTOON_CAMERA.fov }}
+        camera={{
+          position: ctActive ? CT_CAMERA.position : CARTOON_CAMERA.position,
+          fov: ctActive ? CT_CAMERA.fov : CARTOON_CAMERA.fov,
+        }}
         dpr={[1, 2]}
         shadows={!ctActive}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}

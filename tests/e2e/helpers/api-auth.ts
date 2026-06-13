@@ -14,7 +14,7 @@ export async function loginViaApi(
 ): Promise<void> {
   let lastError: Error | undefined;
 
-  for (let attempt = 0; attempt < 6; attempt++) {
+  for (let attempt = 0; attempt < 5; attempt++) {
     try {
       await request.get(`${baseURL}/api/auth/session`).catch(() => {});
 
@@ -41,8 +41,8 @@ export async function loginViaApi(
       const status = loginRes.status();
       if (status >= 400) {
         const body = await loginRes.text();
-        if (RETRYABLE_STATUSES.has(status) && attempt < 5) {
-          await sleep(1500 * (attempt + 1));
+        if (RETRYABLE_STATUSES.has(status) && attempt < 4) {
+          await sleep(2000);
           continue;
         }
         throw new Error(`Credentials login failed: ${status} ${body.slice(0, 200)}`);
@@ -55,8 +55,8 @@ export async function loginViaApi(
 
       const session = (await sessionRes.json()) as { user?: { email?: string } };
       if (!session?.user?.email) {
-        if (attempt < 5) {
-          await sleep(1500 * (attempt + 1));
+        if (attempt < 4) {
+          await sleep(2000);
           continue;
         }
         throw new Error("Session missing after API login");
@@ -65,8 +65,8 @@ export async function loginViaApi(
       return;
     } catch (error) {
       lastError = error instanceof Error ? error : new Error(String(error));
-      if (attempt < 5) {
-        await sleep(1500 * (attempt + 1));
+      if (attempt < 4) {
+        await sleep(2000);
         continue;
       }
       throw lastError;

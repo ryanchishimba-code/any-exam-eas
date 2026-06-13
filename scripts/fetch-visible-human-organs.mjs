@@ -34,6 +34,7 @@ const ORGAN_FILES = [
   "SBU_M_Intestine_Large.glb",
   "VH_M_Urinary_Bladder.glb",
   "VH_M_Prostate.glb",
+  "Allen_M_Brain.glb",
   "VH_M_Spinal_Cord.glb",
   "VH_M_Thymus.glb",
   "VH_M_Pelvis.glb",

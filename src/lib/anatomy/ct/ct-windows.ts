@@ -14,6 +14,10 @@ export type CtWindow = {
   width: number;
   background: string;
   ambient: number;
+  /** Base grey lift so low-HU structures stay readable. */
+  floor: number;
+  /** Display gamma (< 1 lifts mid-tones). */
+  gamma: number;
 };
 
 export const CT_WINDOWS: Record<CtWindowId, CtWindow> = {
@@ -22,32 +26,40 @@ export const CT_WINDOWS: Record<CtWindowId, CtWindow> = {
     label: "Soft tissue",
     level: 40,
     width: 400,
-    background: "#0c0c0e",
-    ambient: 0.55,
+    background: "#161618",
+    ambient: 0.85,
+    floor: 0.06,
+    gamma: 0.78,
   },
   bone: {
     id: "bone",
     label: "Bone",
     level: 300,
     width: 1500,
-    background: "#050505",
-    ambient: 0.45,
+    background: "#121214",
+    ambient: 0.8,
+    floor: 0.08,
+    gamma: 0.72,
   },
   lung: {
     id: "lung",
     label: "Lung",
     level: -600,
     width: 1500,
-    background: "#080808",
-    ambient: 0.5,
+    background: "#101012",
+    ambient: 0.82,
+    floor: 0.05,
+    gamma: 0.8,
   },
   contrast: {
     id: "contrast",
     label: "Angio",
     level: 120,
     width: 600,
-    background: "#0a0a0c",
-    ambient: 0.48,
+    background: "#141416",
+    ambient: 0.82,
+    floor: 0.07,
+    gamma: 0.76,
   },
 };
 
@@ -68,6 +80,7 @@ export const CT_ORGAN_HU: Record<string, number> = {
   bladder: 12,
   prostate: 35,
   "blood-vasculature": 95,
+  brain: 36,
   "spinal-cord": 38,
   thymus: 34,
   thyroid: 80,
@@ -88,8 +101,14 @@ export function huToIntensity(hu: number, window: CtWindow): number {
   return Math.max(0, Math.min(1, (hu - min) / (max - min)));
 }
 
+export function huToDisplayIntensity(hu: number, window: CtWindow): number {
+  const raw = huToIntensity(hu, window);
+  const gamma = Math.pow(raw, window.gamma);
+  return Math.max(window.floor, Math.min(1, window.floor + gamma * (1 - window.floor)));
+}
+
 export function huToHex(hu: number, window: CtWindow): string {
-  const t = huToIntensity(hu, window);
+  const t = huToDisplayIntensity(hu, window);
   const v = Math.round(t * 255);
   const c = v.toString(16).padStart(2, "0");
   return `#${c}${c}${c}`;

@@ -16,7 +16,10 @@ import {
   resolveTimedExamLimit,
 } from "@/lib/exam/exam-lengths";
 import { clampQuestionBankCount } from "@/lib/exam/modes";
-import { prepareQuestionsForSession } from "@/lib/questions/prepare";
+import {
+  prepareQuestionsForSession,
+  studyQuestionsToExamQuestions,
+} from "@/lib/questions/prepare";
 import type { ExamQuestion } from "@/lib/ai";
 import { trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
@@ -101,18 +104,27 @@ export async function GET(req: Request) {
     ? parseMpjeStateParam(searchParams.get("state"), searchParams.get("mpjeState"))
     : undefined;
 
+  const { isUsmleField } = await import("@/lib/exam-prep/usmle-bank-bridge");
+  const usmleField = isUsmleField(fieldId);
+  const sampleCount = usmleField ? Math.min(Math.max(limit * 4, 40), 120) : limit;
+
   let items = mixed
     ? await sampleQuestionBankItemsForField({
         fieldId,
-        count: limit,
+        count: sampleCount,
         stateCode: mpjeStateCode,
       })
     : await sampleQuestionBankItems({
         fieldId,
         subjectId: subjectId!,
-        count: limit,
+        count: sampleCount,
         stateCode: mpjeStateCode,
       });
+
+  if (usmleField && items.length > 0) {
+    const { prepareUsmleItemsForSession } = await import("@/lib/exam-prep/usmle-clinical-gate");
+    items = prepareUsmleItemsForSession({ items, fieldId, field, limit });
+  }
 
   const resolvedSubjectId = mixed ? MIXED_SUBJECT_ID : subjectId!;
 
@@ -220,62 +232,7 @@ export async function GET(req: Request) {
     { shuffleOrder: true }
   );
 
-  const questions: ExamQuestion[] = prepared.map((p, i) => {
-    const src = raw[i];
-    const ngnTypes = new Set([
-      "bow_tie",
-      "matrix",
-      "highlight",
-      "select_all",
-      "ordered_response",
-      "unfolding_case",
-      "short_answer",
-      "drag_drop",
-      "calculation",
-      "fill_blank",
-    ]);
-    const preserveType = src?.type && ngnTypes.has(src.type);
-    const isSelectAll = src?.type === "select_all" || p.type === "select_all";
-    return {
-      id: i + 1,
-      type: preserveType
-        ? (src!.type as ExamQuestion["type"])
-        : p.type === "true_false"
-          ? "true_false"
-          : isSelectAll
-            ? "select_all"
-            : p.type === "bow_tie" ||
-                p.type === "matrix" ||
-                p.type === "highlight" ||
-                p.type === "ordered_response" ||
-                p.type === "unfolding_case" ||
-                p.type === "short_answer" ||
-                p.type === "drag_drop" ||
-                p.type === "calculation" ||
-                p.type === "fill_blank"
-              ? (p.type as ExamQuestion["type"])
-              : "multiple_choice",
-      question: p.stem,
-      options: p.options,
-      correctAnswer: isSelectAll
-        ? (src?.correctAnswer ?? p.correctAnswers.join(","))
-        : p.type === "matrix" || p.type === "bow_tie" || p.type === "ordered_response"
-          ? (src?.correctAnswer ?? p.correctAnswers.join(","))
-          : (p.correctAnswers[0] ?? src?.correctAnswer ?? ""),
-      explanation: p.explanation,
-      solutionSteps: p.solutionSteps,
-      tags: p.tags,
-      highYield: p.highYield,
-      vignette: src?.vignette ?? p.vignette,
-      clinicalReasoning: p.clinicalReasoning ?? src?.clinicalReasoning,
-      distractorRationale: p.distractorRationale ?? src?.distractorRationale,
-      references: p.references ?? src?.references,
-      ngnFormat: src?.ngnFormat ?? p.ngnFormat,
-      ngnPayload: src?.ngnPayload ?? p.ngnPayload,
-      chartData: src?.chartData ?? p.chartData,
-      caseStep: src?.caseStep ?? p.caseStep,
-    };
-  });
+  const questions: ExamQuestion[] = studyQuestionsToExamQuestions(prepared);
 
   const includeMeta = searchParams.get("meta") !== "0";
 

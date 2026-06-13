@@ -54,9 +54,10 @@ describe("usmle-polish", () => {
 
     expect(changed).toBe(true);
     expect(qualityAfter).toBeGreaterThan(0.62);
+    expect(item.vignette).toMatch(/BP|troponin|ECG|mmHg/i);
     expect(item.question).not.toMatch(/^Case\s+\d+:/i);
-    expect(item.question).toMatch(/BP|troponin|ECG|mmHg/i);
-    expect(item.question).toMatch(/\n\n/);
+    expect(item.question).not.toMatch(/BP|troponin|ECG|mmHg/i);
+    expect(item.vignette?.length).toBeGreaterThan(80);
     expect(item.explanation).toMatch(/Step 2|next best|Why other options are incorrect/i);
     expect(item.options).toHaveLength(4);
     expect(item.options).toContain(item.correctAnswer);
@@ -105,7 +106,7 @@ describe("usmle-polish", () => {
     expect(changed).toBe(true);
     expect(item.correctAnswer).toBe("Acute bacterial meningitis");
     expect(item.options.every((o) => !/empiric therapy|pending culture/i.test(o))).toBe(true);
-    expect(item.question).toMatch(/neck stiffness|mening/i);
+    expect(`${item.vignette ?? ""} ${item.question}`).toMatch(/neck stiffness|mening/i);
   });
 
   it("summarizes exact CSF counts in diagnosis vignettes", () => {
@@ -181,6 +182,8 @@ describe("usmle-polish", () => {
       42
     );
     expect(hasDuplicateVignette(item.question)).toBe(false);
+    expect(item.vignette).toBeTruthy();
+    expect(item.question).not.toContain(item.vignette!.slice(0, 40));
   });
 
   it("preserves strong items when already high quality", () => {
@@ -200,7 +203,7 @@ describe("usmle-polish", () => {
         "USMLE Step 2 CK reasoning: inferior STEMI with ST elevation and elevated troponin requires emergent reperfusion. Why other options are incorrect: discharge delays life-saving therapy; CTPA addresses PE not STEMI; NSAIDs alone do not treat coronary occlusion.",
     };
     const before = scoreUsmleBankItem(strong, "usmle-step-2");
-    const { changed } = polishUsmleBankItem(
+    const { item, changed } = polishUsmleBankItem(
       strong,
       "usmle-step-2",
       "cardiology",
@@ -208,6 +211,10 @@ describe("usmle-polish", () => {
       1
     );
     expect(before).toBeGreaterThan(0.62);
-    expect(changed).toBe(false);
+    expect(item.vignette).toMatch(/58-year-old man/i);
+    expect(item.question).toMatch(/next best step/i);
+    expect(item.options).toEqual(strong.options);
+    expect(item.correctAnswer).toBe(strong.correctAnswer);
+    expect(changed).toBe(true);
   });
 });

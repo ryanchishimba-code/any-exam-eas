@@ -59,3 +59,12 @@ export const CARTOON_CAMERA = {
   minDistance: 1.65,
   maxDistance: 7.2,
 };
+
+/** CT atlas — closer framing for Visible Human volume readability. */
+export const CT_CAMERA = {
+  position: [0, 0.3, 3.55] as [number, number, number],
+  target: [0, 0.2, 0.02] as [number, number, number],
+  fov: 36,
+  minDistance: 1.45,
+  maxDistance: 6.4,
+};

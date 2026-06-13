@@ -6,6 +6,10 @@ import { polishNclexBankItem } from "./engine/polish/nclex-polish";
 import { polishUsmleBankItem } from "./engine/polish/usmle-polish";
 import { polishMpjeBankItem } from "./engine/polish/mpje-polish";
 import { formatClinicalVignette } from "./engine/prompts/vignette";
+import {
+  normalizeUsmleBankItemFields,
+  usmleBankItemHasClinicalScenario,
+} from "./exam-prep/usmle-clinical-gate";
 
 /** @deprecated Use SubjectArea */
 type FieldSubject = SubjectArea;
@@ -350,7 +354,13 @@ function buildMedicineQuestion(subject: FieldSubject, index: number, fieldId: st
     }
   }
 
-  return polishUsmleBankItem(seed, fieldId, subject.id, subject.label, index).item;
+  let polished = polishUsmleBankItem(seed, fieldId, subject.id, subject.label, index).item;
+  let normalized = normalizeUsmleBankItemFields(polished);
+  if (!usmleBankItemHasClinicalScenario(normalized)) {
+    polished = polishUsmleBankItem(seed, fieldId, subject.id, subject.label, index + 997).item;
+    normalized = normalizeUsmleBankItemFields(polished);
+  }
+  return normalized;
 }
 
 function buildNursingQuestion(subject: FieldSubject, index: number): BankItem {

@@ -178,6 +178,55 @@ function PancreasVisual({ style }: { style: OrganSurfaceStyle }) {
   );
 }
 
+function BrainProceduralVisual({ style }: { style: OrganSurfaceStyle }) {
+  return (
+    <group scale={[0.98, 0.88, 0.92]}>
+      <group scale={[0.94, 0.82, 0.88]}>
+        <Surface style={style}>
+          <sphereGeometry args={[0.78, SEG, SEG]} />
+        </Surface>
+      </group>
+      <group position={[0, 0.02, 0]} scale={[0.04, 0.82, 0.72]}>
+        <Surface style={{ ...style, opacity: style.opacity * 0.55 }}>
+          <boxGeometry args={[0.5, 0.9, 0.08]} />
+        </Surface>
+      </group>
+      <group position={[0, 0.12, 0.16]} scale={[0.88, 0.58, 0.5]}>
+        <Surface style={style}>
+          <sphereGeometry args={[0.52, 14, 14]} />
+        </Surface>
+      </group>
+      <group position={[0, 0.08, -0.18]} scale={[0.82, 0.62, 0.55]}>
+        <Surface style={style}>
+          <sphereGeometry args={[0.48, 14, 14]} />
+        </Surface>
+      </group>
+      {([-1, 1] as const).map((sx) => (
+        <group key={sx} position={[sx * 0.36, -0.02, 0.02]} scale={[0.48, 0.52, 0.46]}>
+          <Surface style={style}>
+            <sphereGeometry args={[0.44, 12, 12]} />
+          </Surface>
+          <group position={[0, -0.04, 0.06]} scale={[0.55, 0.28, 0.35]}>
+            <Surface style={{ ...style, opacity: style.opacity * 0.88 }}>
+              <sphereGeometry args={[0.32, 8, 8]} />
+            </Surface>
+          </group>
+        </group>
+      ))}
+      <group position={[0, -0.22, -0.18]} scale={[0.8, 0.5, 0.62]}>
+        <Surface style={style}>
+          <sphereGeometry args={[0.44, 14, 14]} />
+        </Surface>
+      </group>
+      <group position={[0, -0.32, -0.08]} scale={[0.14, 0.22, 0.14]}>
+        <Surface style={style}>
+          <capsuleGeometry args={[0.12, 0.18, 6, 10]} />
+        </Surface>
+      </group>
+    </group>
+  );
+}
+
 const VH_ENABLED_PROFILES = new Set([
   "heart",
   "lungs",
@@ -186,6 +235,7 @@ const VH_ENABLED_PROFILES = new Set([
   "pancreas-band",
   "kidneys",
   "colon-frame",
+  "brain",
 ]);
 
 function VisibleHumanOrProcedural({
@@ -228,50 +278,12 @@ export function OrganVisual({ profile, geometry, style, mirrored = false, meshId
       );
     case "brain":
       return (
-        <group scale={[0.98, 0.88, 0.92]}>
-          <group scale={[0.94, 0.82, 0.88]}>
-            <Surface style={style}>
-              <sphereGeometry args={[0.78, SEG, SEG]} />
-            </Surface>
-          </group>
-          <group position={[0, 0.02, 0]} scale={[0.04, 0.82, 0.72]}>
-            <Surface style={{ ...style, opacity: style.opacity * 0.55 }}>
-              <boxGeometry args={[0.5, 0.9, 0.08]} />
-            </Surface>
-          </group>
-          <group position={[0, 0.12, 0.16]} scale={[0.88, 0.58, 0.5]}>
-            <Surface style={style}>
-              <sphereGeometry args={[0.52, 14, 14]} />
-            </Surface>
-          </group>
-          <group position={[0, 0.08, -0.18]} scale={[0.82, 0.62, 0.55]}>
-            <Surface style={style}>
-              <sphereGeometry args={[0.48, 14, 14]} />
-            </Surface>
-          </group>
-          {([-1, 1] as const).map((sx) => (
-            <group key={sx} position={[sx * 0.36, -0.02, 0.02]} scale={[0.48, 0.52, 0.46]}>
-              <Surface style={style}>
-                <sphereGeometry args={[0.44, 12, 12]} />
-              </Surface>
-              <group position={[0, -0.04, 0.06]} scale={[0.55, 0.28, 0.35]}>
-                <Surface style={{ ...style, opacity: style.opacity * 0.88 }}>
-                  <sphereGeometry args={[0.32, 8, 8]} />
-                </Surface>
-              </group>
-            </group>
-          ))}
-          <group position={[0, -0.22, -0.18]} scale={[0.8, 0.5, 0.62]}>
-            <Surface style={style}>
-              <sphereGeometry args={[0.44, 14, 14]} />
-            </Surface>
-          </group>
-          <group position={[0, -0.32, -0.08]} scale={[0.14, 0.22, 0.14]}>
-            <Surface style={style}>
-              <capsuleGeometry args={[0.12, 0.18, 6, 10]} />
-            </Surface>
-          </group>
-        </group>
+        <VisibleHumanOrProcedural
+          meshId={meshId}
+          profile={profile}
+          style={style}
+          procedural={<BrainProceduralVisual style={style} />}
+        />
       );
     case "skull":
       return <SkullVisual style={style} />;

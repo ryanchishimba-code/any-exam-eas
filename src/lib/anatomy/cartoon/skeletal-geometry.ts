@@ -10,10 +10,12 @@ import {
   buildArmBones,
   buildLegBones,
   buildPelvisParts,
+  buildSacrumBoneParts,
+  buildSingleScapulaParts,
 } from "./bone-geometry";
 import { buildSkullParts } from "./skull-geometry";
 
-export { buildSkullParts } from "./skull-geometry";
+export { buildSacrumBoneParts } from "./bone-geometry";
 
 type Figure = typeof FIGURE;
 
@@ -34,7 +36,7 @@ function catmullRomTube(points: THREE.Vector3[], radius: number, segments = 24) 
 }
 
 /** Rib pair control points — posterior spine → lateral flare → anterior sternal/costal end. */
-function ribPathPoints(
+export function ribPathPoints(
   ribIndex: number,
   sx: -1 | 1,
   f: Figure,
@@ -69,12 +71,12 @@ function ribPathPoints(
   return { bone: [p0, p1, p2, p3, boneEnd], sternalY };
 }
 
-function ribShaftRadius(ribIndex: number): number {
+export function ribShaftRadius(ribIndex: number): number {
   return 0.0125 - ribIndex * 0.00045;
 }
 
 /** S-shaped clavicle — sternal end anterior, acromial end at shoulder. */
-function claviclePathPoints(sx: -1 | 1, f: Figure, z: number): THREE.Vector3[] {
+export function claviclePathPoints(sx: -1 | 1, f: Figure, z: number): THREE.Vector3[] {
   const medial = new THREE.Vector3(sx * 0.022, f.shoulderY + 0.055, z + 0.1);
   const midAnterior = new THREE.Vector3(sx * 0.11, f.shoulderY + 0.078, z + 0.094);
   const midPosterior = new THREE.Vector3(sx * 0.22, f.shoulderY + 0.028, z + 0.072);
@@ -84,69 +86,66 @@ function claviclePathPoints(sx: -1 | 1, f: Figure, z: number): THREE.Vector3[] {
 
 export function buildClavicleParts(f: Figure, z: number): THREE.BufferGeometry[] {
   const parts: THREE.BufferGeometry[] = [];
-
   for (const sx of [-1, 1] as const) {
-    const path = claviclePathPoints(sx, f, z);
-    parts.push(catmullRomTube(path, 0.013, 18));
-
-    const medial = path[0]!;
-    const medialFlare = new THREE.SphereGeometry(0.02, 10, 10);
-    medialFlare.scale(1.15, 0.72, 0.68);
-    medialFlare.translate(medial.x, medial.y, medial.z);
-    parts.push(medialFlare);
-
-    const lateral = path[path.length - 1]!;
-    const acromial = new THREE.SphereGeometry(0.017, 10, 10);
-    acromial.scale(1.25, 0.62, 0.72);
-    acromial.translate(lateral.x, lateral.y, lateral.z);
-    parts.push(acromial);
+    parts.push(...buildSingleClavicleParts(sx, f, z));
   }
+  return parts;
+}
+
+export function buildSingleRibParts(
+  ribIndex: number,
+  sx: -1 | 1,
+  f: Figure,
+  z: number
+): THREE.BufferGeometry[] {
+  const { bone, cartilageEnd } = ribPathPoints(ribIndex, sx, f, z);
+  const shaftR = ribShaftRadius(ribIndex);
+  const parts: THREE.BufferGeometry[] = [catmullRomTube(bone, shaftR, 22, 8)];
+  if (cartilageEnd) {
+    const boneEnd = bone[bone.length - 1]!;
+    const cartMid = new THREE.Vector3(
+      (boneEnd.x + cartilageEnd.x) * 0.5,
+      boneEnd.y - 0.008,
+      (boneEnd.z + cartilageEnd.z) * 0.5
+    );
+    parts.push(bezierTube(boneEnd, cartMid, cartilageEnd, shaftR * 0.78, 10));
+  }
+  return parts;
+}
+
+export function buildSingleClavicleParts(sx: -1 | 1, f: Figure, z: number): THREE.BufferGeometry[] {
+  const parts: THREE.BufferGeometry[] = [];
+  const path = claviclePathPoints(sx, f, z);
+  parts.push(catmullRomTube(path, 0.0125, 18, 8));
+
+  const medial = path[0]!;
+  const medialFlare = new THREE.SphereGeometry(0.019, 10, 10);
+  medialFlare.scale(1.15, 0.72, 0.68);
+  medialFlare.translate(medial.x, medial.y, medial.z);
+  parts.push(medialFlare);
+
+  const lateral = path[path.length - 1]!;
+  const acromial = new THREE.SphereGeometry(0.016, 10, 10);
+  acromial.scale(1.25, 0.62, 0.72);
+  acromial.translate(lateral.x, lateral.y, lateral.z);
+  parts.push(acromial);
 
   return parts;
 }
 
-/** 12 paired ribs + costal cartilage + sternum. */
-export function buildRibCageParts(f: Figure, z: number): THREE.BufferGeometry[] {
+export function buildSternumBoneParts(f: Figure, z: number): THREE.BufferGeometry[] {
   const parts: THREE.BufferGeometry[] = [];
-  const ribCount = 12;
-
-  for (let i = 0; i < ribCount; i++) {
-    const shaftR = ribShaftRadius(i);
-
-    for (const sx of [-1, 1] as const) {
-      const { bone, cartilageEnd } = ribPathPoints(i, sx, f, z);
-      parts.push(catmullRomTube(bone, shaftR));
-
-      if (cartilageEnd) {
-        const boneEnd = bone[bone.length - 1]!;
-        const cartMid = new THREE.Vector3(
-          (boneEnd.x + cartilageEnd.x) * 0.5,
-          boneEnd.y - 0.008,
-          (boneEnd.z + cartilageEnd.z) * 0.5
-        );
-        parts.push(bezierTube(boneEnd, cartMid, cartilageEnd, shaftR * 0.78, 10));
-      }
-    }
-  }
-
-  const costalArch = new THREE.TorusGeometry(0.2, 0.007, 6, 32, Math.PI * 0.92);
-  costalArch.rotateX(Math.PI / 2);
-  costalArch.rotateZ(0.06);
-  costalArch.translate(0, f.chestY - 0.1, z + 0.04);
-  parts.push(costalArch);
 
   const manubrium = new THREE.BoxGeometry(0.058, 0.11, 0.03);
   manubrium.translate(0, f.chestY + 0.23, z + 0.102);
   parts.push(manubrium);
 
-  const manubriumWingL = new THREE.BoxGeometry(0.032, 0.04, 0.022);
-  manubriumWingL.rotateZ(0.35);
-  manubriumWingL.translate(-0.04, f.chestY + 0.24, z + 0.1);
-  parts.push(manubriumWingL);
-  const manubriumWingR = new THREE.BoxGeometry(0.032, 0.04, 0.022);
-  manubriumWingR.rotateZ(-0.35);
-  manubriumWingR.translate(0.04, f.chestY + 0.24, z + 0.1);
-  parts.push(manubriumWingR);
+  for (const wingX of [-0.04, 0.04] as const) {
+    const wing = new THREE.BoxGeometry(0.032, 0.04, 0.022);
+    wing.rotateZ(wingX < 0 ? 0.35 : -0.35);
+    wing.translate(wingX, f.chestY + 0.24, z + 0.1);
+    parts.push(wing);
+  }
 
   const sternalBody = new THREE.BoxGeometry(0.044, 0.24, 0.024);
   sternalBody.translate(0, f.chestY + 0.05, z + 0.098);
@@ -159,6 +158,56 @@ export function buildRibCageParts(f: Figure, z: number): THREE.BufferGeometry[] 
   const xiphoid = new THREE.BoxGeometry(0.03, 0.055, 0.02);
   xiphoid.translate(0, f.chestY - 0.085, z + 0.094);
   parts.push(xiphoid);
+
+  return parts;
+}
+
+export function buildVertebraBoneParts(
+  centerY: number,
+  centerZ: number,
+  bodyHeight: number,
+  taper: number,
+  thoracic: boolean,
+  spinous: boolean
+): THREE.BufferGeometry[] {
+  const parts: THREE.BufferGeometry[] = [];
+  const body = new THREE.CylinderGeometry(0.026 * taper, 0.028 * taper, bodyHeight, 10);
+  body.translate(0, centerY, centerZ);
+  parts.push(body);
+
+  if (thoracic) {
+    const transverse = new THREE.BoxGeometry(0.1, 0.008, 0.016);
+    transverse.translate(0, centerY + bodyHeight * 0.08, centerZ + 0.018);
+    parts.push(transverse);
+  }
+
+  if (spinous) {
+    const spinous = new THREE.BoxGeometry(0.01, 0.038, 0.018);
+    spinous.translate(0, centerY, centerZ - 0.018);
+    parts.push(spinous);
+  }
+
+  return parts;
+}
+
+/** 12 paired ribs + costal cartilage + sternum. */
+export function buildRibCageParts(f: Figure, z: number): THREE.BufferGeometry[] {
+  const parts: THREE.BufferGeometry[] = [];
+  const ribCount = 12;
+
+  for (let i = 0; i < ribCount; i++) {
+    for (const sx of [-1, 1] as const) {
+      parts.push(...buildSingleRibParts(i, sx, f, z));
+    }
+  }
+
+  const costalArch = new THREE.TorusGeometry(0.2, 0.007, 6, 32, Math.PI * 0.92);
+  costalArch.rotateX(Math.PI / 2);
+  costalArch.rotateZ(0.06);
+  costalArch.translate(0, f.chestY - 0.1, z + 0.04);
+  parts.push(costalArch);
+
+  parts.push(...buildSternumBoneParts(f, z));
 
   return parts;
 }
@@ -188,10 +237,7 @@ export function buildAxialAppendicularParts(f: Figure, z: number): THREE.BufferG
   parts.push(...buildPelvisParts(f, z));
 
   for (const sx of [-1, 1] as const) {
-    const scap = new THREE.BoxGeometry(0.09, 0.13, 0.022);
-    scap.rotateY(sx * 0.32);
-    scap.translate(sx * 0.24, f.chestY + 0.04, z - 0.085);
-    parts.push(scap);
+    parts.push(...buildSingleScapulaParts(sx, f, z));
   }
 
   for (const sx of [-1, 1] as const) {

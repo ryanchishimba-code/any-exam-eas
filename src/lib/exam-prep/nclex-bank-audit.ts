@@ -4,6 +4,7 @@
  */
 import type { BankItem } from "@/lib/question-bank";
 import { hasOrphanDeicticStem } from "@/lib/engine/prompts/vignette";
+import { cleanOptionText } from "@/lib/question-format";
 import { hasShiftNoteArtifacts, isVagueClinicalJudgmentStem } from "@/lib/questions/shift-notes";
 
 export type NclexAuditIssue = {
@@ -262,8 +263,12 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
     push("error", "orphan_deictic_stem", 'Stem references "these findings" without an preceding vignette.');
   }
 
-  if (item.options.length === 4 && !item.options.includes(item.correctAnswer)) {
-    push("error", "correct_not_in_options", "correctAnswer must match one option exactly.");
+  if (item.options.length >= 2 && item.correctAnswer) {
+    const cleanedOptions = item.options.map((o) => cleanOptionText(String(o)));
+    const cleanedCorrect = cleanOptionText(item.correctAnswer);
+    if (!cleanedOptions.some((o) => o.toLowerCase() === cleanedCorrect.toLowerCase())) {
+      push("error", "correct_not_in_options", "correctAnswer must match one option exactly.");
+    }
   }
 
   const errors = issues.filter((i) => i.severity === "error");

@@ -3,9 +3,12 @@
  */
 
 import * as THREE from "three";
-import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
-import { FINGER_SPECS, THUMB_SPEC, TOE_SPECS } from "./digit-proportions";
+import { buildHandBoneParts, buildFootBoneParts } from "./digit-bone-geometry";
 import type { FIGURE as FigureConst } from "./proportions";
+import { longBone } from "./long-bone-geometry";
+
+export { longBone } from "./long-bone-geometry";
+export { buildHandBoneParts, buildFootBoneParts } from "./digit-bone-geometry";
 
 type Figure = typeof FigureConst;
 
@@ -14,46 +17,8 @@ function catmullRomTube(points: THREE.Vector3[], radius: number, segments = 20, 
   return new THREE.TubeGeometry(curve, segments, radius, radial, false);
 }
 
-/** Long bone — narrow shaft, flared epiphyses at each end. */
-export function longBone(
-  from: THREE.Vector3,
-  to: THREE.Vector3,
-  shaftR: number,
-  opts?: { proximalR?: number; distalR?: number }
-) {
-  const parts: THREE.BufferGeometry[] = [];
-  const dir = new THREE.Vector3().subVectors(to, from);
-  const len = dir.length();
-  const axis = dir.clone().normalize();
-  const proxR = opts?.proximalR ?? shaftR * 1.45;
-  const distR = opts?.distalR ?? shaftR * 1.35;
-
-  const shaftLen = Math.max(0.04, len * 0.62);
-  const shaft = new THREE.CylinderGeometry(shaftR * 0.92, shaftR, shaftLen, 10);
-  const shaftMid = from.clone().add(to).multiplyScalar(0.5);
-  const quat = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), axis);
-  shaft.applyMatrix4(new THREE.Matrix4().compose(shaftMid, quat, new THREE.Vector3(1, 1, 1)));
-  parts.push(shaft);
-
-  for (const [pt, r, t] of [
-    [from, proxR, 0.08] as const,
-    [to, distR, 0.92] as const,
-  ]) {
-    const epiphysis = new THREE.SphereGeometry(r, 12, 12);
-    epiphysis.scale(1, len * 0.08 / r, 1);
-    epiphysis.translate(
-      pt.x + axis.x * len * t * 0.02,
-      pt.y + axis.y * len * t * 0.02,
-      pt.z + axis.z * len * t * 0.02
-    );
-    parts.push(epiphysis);
-  }
-
-  return parts;
-}
-
-/** Unified os coxae + sacrum — seamless spine and femur connections. */
-export function buildPelvisParts(f: Figure, z: number): THREE.BufferGeometry[] {
+/** Fused sacral segments. */
+export function buildSacrumBoneParts(f: Figure, z: number): THREE.BufferGeometry[] {
   const parts: THREE.BufferGeometry[] = [];
   const hy = f.hipY;
   const sacrumTop = hy + 0.1;
@@ -69,16 +34,23 @@ export function buildPelvisParts(f: Figure, z: number): THREE.BufferGeometry[] {
     parts.push(seg);
   }
 
-  for (const sx of [-1, 1] as const) {
-    const hip = new THREE.Vector3(sx * f.hipSpan, hy + 0.02, z - 0.01);
+  return parts;
+}
 
-    const iliumWing = new THREE.BoxGeometry(0.12, 0.09, 0.07);
-    iliumWing.rotateZ(sx * 0.32);
-    iliumWing.rotateY(sx * -0.12);
-    iliumWing.translate(sx * 0.14, hy + 0.06, z - 0.07);
-    parts.push(iliumWing);
+/** Single hip bone — ilium, ischium, pubis, acetabulum. */
+export function buildSingleInnominateParts(sx: -1 | 1, f: Figure, z: number): THREE.BufferGeometry[] {
+  const parts: THREE.BufferGeometry[] = [];
+  const hy = f.hipY;
+  const hip = new THREE.Vector3(sx * f.hipSpan, hy + 0.02, z - 0.01);
 
-    const iliacCrest = catmullRomTube(
+  const iliumWing = new THREE.BoxGeometry(0.12, 0.09, 0.07);
+  iliumWing.rotateZ(sx * 0.32);
+  iliumWing.rotateY(sx * -0.12);
+  iliumWing.translate(sx * 0.14, hy + 0.06, z - 0.07);
+  parts.push(iliumWing);
+
+  parts.push(
+    catmullRomTube(
       [
         new THREE.Vector3(sx * 0.06, hy + 0.11, z - 0.04),
         new THREE.Vector3(sx * 0.14, hy + 0.1, z - 0.075),
@@ -87,15 +59,16 @@ export function buildPelvisParts(f: Figure, z: number): THREE.BufferGeometry[] {
       ],
       0.014,
       16
-    );
-    parts.push(iliacCrest);
+    )
+  );
 
-    const acetabulum = new THREE.SphereGeometry(0.028, 12, 12);
-    acetabulum.scale(0.95, 0.82, 0.88);
-    acetabulum.translate(hip.x, hip.y, hip.z);
-    parts.push(acetabulum);
+  const acetabulum = new THREE.SphereGeometry(0.028, 12, 12);
+  acetabulum.scale(0.95, 0.82, 0.88);
+  acetabulum.translate(hip.x, hip.y, hip.z);
+  parts.push(acetabulum);
 
-    const pubis = catmullRomTube(
+  parts.push(
+    catmullRomTube(
       [
         hip.clone().add(new THREE.Vector3(sx * 0.02, -0.02, 0.04)),
         new THREE.Vector3(sx * 0.04, hy - 0.04, z + 0.04),
@@ -103,10 +76,11 @@ export function buildPelvisParts(f: Figure, z: number): THREE.BufferGeometry[] {
       ],
       0.01,
       12
-    );
-    parts.push(pubis);
+    )
+  );
 
-    const ischium = catmullRomTube(
+  parts.push(
+    catmullRomTube(
       [
         hip.clone().add(new THREE.Vector3(0, -0.01, -0.02)),
         new THREE.Vector3(sx * 0.1, hy - 0.05, z - 0.05),
@@ -114,100 +88,65 @@ export function buildPelvisParts(f: Figure, z: number): THREE.BufferGeometry[] {
       ],
       0.012,
       12
-    );
-    parts.push(ischium);
+    )
+  );
+
+  return parts;
+}
+
+/** Scapula blade with spine, glenoid, and acromion. */
+export function buildSingleScapulaParts(sx: -1 | 1, f: Figure, z: number): THREE.BufferGeometry[] {
+  const parts: THREE.BufferGeometry[] = [];
+  const cy = f.chestY + 0.038;
+  const cz = z - 0.082;
+
+  const blade = new THREE.BoxGeometry(0.088, 0.128, 0.018);
+  blade.rotateY(sx * 0.32);
+  blade.translate(sx * 0.238, cy, cz);
+  parts.push(blade);
+
+  const spine = new THREE.BoxGeometry(0.014, 0.102, 0.024);
+  spine.rotateY(sx * 0.32);
+  spine.translate(sx * 0.198, cy, cz + 0.01);
+  parts.push(spine);
+
+  const glenoid = new THREE.SphereGeometry(0.018, 10, 10);
+  glenoid.scale(0.92, 0.74, 0.82);
+  glenoid.translate(sx * 0.268, f.chestY + 0.02, z - 0.055);
+  parts.push(glenoid);
+
+  const acromion = new THREE.BoxGeometry(0.044, 0.012, 0.022);
+  acromion.rotateY(sx * 0.15);
+  acromion.translate(sx * 0.288, f.chestY + 0.072, z - 0.058);
+  parts.push(acromion);
+
+  return parts;
+}
+
+/** Unified os coxae + sacrum — seamless spine and femur connections. */
+export function buildPelvisParts(f: Figure, z: number): THREE.BufferGeometry[] {
+  const parts: THREE.BufferGeometry[] = [...buildSacrumBoneParts(f, z)];
+  const hy = f.hipY;
+
+  for (const sx of [-1, 1] as const) {
+    parts.push(...buildSingleInnominateParts(sx, f, z));
   }
 
   const pubicSymphysis = new THREE.BoxGeometry(0.032, 0.038, 0.028);
   pubicSymphysis.translate(0, hy - 0.048, z + 0.052);
   parts.push(pubicSymphysis);
 
-  const pubicArch = catmullRomTube(
-    [
-      new THREE.Vector3(-0.018, hy - 0.05, z + 0.055),
-      new THREE.Vector3(0, hy - 0.062, z + 0.062),
-      new THREE.Vector3(0.018, hy - 0.05, z + 0.055),
-    ],
-    0.009,
-    10
+  parts.push(
+    catmullRomTube(
+      [
+        new THREE.Vector3(-0.018, hy - 0.05, z + 0.055),
+        new THREE.Vector3(0, hy - 0.062, z + 0.062),
+        new THREE.Vector3(0.018, hy - 0.05, z + 0.055),
+      ],
+      0.009,
+      10
+    )
   );
-  parts.push(pubicArch);
-
-  return parts;
-}
-
-export function buildHandBoneParts(wrist: THREE.Vector3, sx: -1 | 1): THREE.BufferGeometry[] {
-  const parts: THREE.BufferGeometry[] = [];
-  const palm = wrist.clone().add(new THREE.Vector3(0, -0.028, 0.018));
-  const down = new THREE.Vector3(0, -0.15, 0.35).normalize();
-
-  const carpalBlock = new THREE.BoxGeometry(0.058, 0.014, 0.038);
-  carpalBlock.translate(palm.x, palm.y, palm.z);
-  parts.push(carpalBlock);
-
-  for (const spec of FINGER_SPECS) {
-    const mcBase = palm.clone().add(new THREE.Vector3(sx * spec.spreadX, -0.006, 0.012));
-    const mcEnd = mcBase.clone().add(down.clone().multiplyScalar(spec.metacarpal));
-    parts.push(...longBone(mcBase, mcEnd, 0.0038, { proximalR: 0.0055, distalR: 0.005 }));
-
-    let tip = mcEnd.clone();
-    const curl = new THREE.Vector3(0, -1, 0.35).normalize();
-    for (let i = 0; i < spec.phalanges.length; i++) {
-      const len = spec.phalanges[i]!;
-      const r = spec.radii[i]! * 0.55;
-      const end = tip.clone().add(curl.clone().multiplyScalar(len));
-      parts.push(...longBone(tip, end, r * 0.5, { proximalR: r, distalR: r * 0.8 }));
-      tip = end;
-    }
-  }
-
-  const thumbBase = palm.clone().add(new THREE.Vector3(sx * THUMB_SPEC.spreadX, 0, 0.006));
-  const thumbDir = new THREE.Vector3(sx * THUMB_SPEC.baseDir.x, THUMB_SPEC.baseDir.y, THUMB_SPEC.baseDir.z).normalize();
-  const thumbMcEnd = thumbBase.clone().add(thumbDir.clone().multiplyScalar(THUMB_SPEC.metacarpal));
-  parts.push(...longBone(thumbBase, thumbMcEnd, 0.004, { proximalR: 0.006, distalR: 0.005 }));
-  let tTip = thumbMcEnd.clone();
-  for (let i = 0; i < THUMB_SPEC.phalanges.length; i++) {
-    const len = THUMB_SPEC.phalanges[i]!;
-    const r = THUMB_SPEC.radii[i]! * 0.55;
-    const end = tTip.clone().add(thumbDir.clone().multiplyScalar(len));
-    parts.push(...longBone(tTip, end, r * 0.5, { proximalR: r, distalR: r * 0.75 }));
-    tTip = end;
-  }
-
-  return parts;
-}
-
-export function buildFootBoneParts(ankle: THREE.Vector3, sx: -1 | 1, f: Figure): THREE.BufferGeometry[] {
-  const parts: THREE.BufferGeometry[] = [];
-  const z = f.centerZ;
-  const footY = f.footY + 0.016;
-  const forward = new THREE.Vector3(0, 0.04, 1).normalize();
-
-  const calcaneus = new THREE.BoxGeometry(0.038, 0.028, 0.048);
-  calcaneus.translate(ankle.x, footY + 0.008, z - 0.02);
-  parts.push(calcaneus);
-
-  const talus = new THREE.SphereGeometry(0.022, 10, 10);
-  talus.scale(1.1, 0.72, 0.95);
-  talus.translate(ankle.x, footY + 0.012, z + 0.015);
-  parts.push(talus);
-
-  const metOrigin = new THREE.Vector3(ankle.x, footY, z + f.footLength * 0.38);
-
-  for (const spec of TOE_SPECS) {
-    const mtBase = metOrigin.clone().add(new THREE.Vector3(sx * spec.spreadX, 0, 0));
-    const mtEnd = mtBase.clone().add(forward.clone().multiplyScalar(spec.metatarsal));
-    parts.push(...longBone(mtBase, mtEnd, 0.0032, { proximalR: 0.0048, distalR: 0.004 }));
-
-    let tip = mtEnd.clone();
-    for (let i = 0; i < spec.phalanges.length; i++) {
-      const len = spec.phalanges[i]!;
-      const r = spec.radii[i]! * 0.55;
-      const end = tip.clone().add(forward.clone().multiplyScalar(len));
-      parts.push(...longBone(tip, end, r * 0.45, { proximalR: r, distalR: r * 0.75 }));
-      tip = end;
-    }
-  }
 
   return parts;
 }

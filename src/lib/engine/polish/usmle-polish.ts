@@ -533,15 +533,34 @@ export function applyUsmleStemRepairs(item: BankItem): BankItem {
     DIAGNOSIS_OPTION_WEAK.test(o) ? cleanDiagnosisLabel(o) : o
   ) as [string, string, string, string];
 
+  let next: BankItem = { ...item, question, correctAnswer, options };
+
+  const parts = question.split(/\n\n+/).map((p) => p.trim()).filter(Boolean);
+  if (!next.vignette?.trim() && parts.length >= 2 && parts[0]!.length >= 60) {
+    next = {
+      ...next,
+      vignette: parts[0],
+      question: parts.slice(1).join("\n\n"),
+    };
+  }
+
   if (
-    question === item.question &&
-    correctAnswer === item.correctAnswer &&
-    JSON.stringify(options) === JSON.stringify(item.options)
+    next.question === item.question &&
+    next.correctAnswer === item.correctAnswer &&
+    next.vignette === item.vignette &&
+    JSON.stringify(next.options) === JSON.stringify(item.options)
   ) {
     return item;
   }
 
-  return { ...item, question, correctAnswer, options };
+  return next;
+}
+
+function itemClinicalText(item: BankItem): string {
+  const vignette = item.vignette?.trim() || item.scenario?.trim();
+  const stem = item.question.trim();
+  if (vignette && stem) return `${vignette}\n\n${stem}`;
+  return stem;
 }
 
 function stemNeedsRepair(item: BankItem): boolean {
@@ -553,10 +572,11 @@ function stemNeedsRepair(item: BankItem): boolean {
 }
 
 function needsUsmleFullPolish(item: BankItem, fieldId = "usmle-step-2"): boolean {
+  const clinicalText = itemClinicalText(item);
   return (
     scoreUsmleBankItem(item, fieldId) < 0.62 ||
     CASE_PREFIX.test(item.question) ||
-    !hasRichVignette(item.question) ||
+    !hasRichVignette(clinicalText) ||
     WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer)) ||
     item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)))
   );
@@ -565,8 +585,8 @@ function needsUsmleFullPolish(item: BankItem, fieldId = "usmle-step-2"): boolean
 export function scoreUsmleBankItem(item: BankItem, fieldId = "usmle-step-2"): number {
   let score = 0.3;
   const options = Array.isArray(item.options) ? item.options : [];
-  const text = item.question;
-  const vignette = text.includes("\n\n") ? text.split("\n\n")[0]! : text;
+  const text = itemClinicalText(item);
+  const vignette = text.includes("\n\n") ? text.split("\n\n")[0]! : item.vignette?.trim() || text;
 
   if (hasRichVignette(text)) score += 0.18;
   else if (text.length > 120) score += 0.06;
@@ -974,7 +994,8 @@ export function polishUsmleBankItem(
 
   const polished = applyUsmleStemRepairs({
     ...item,
-    question: `${rebuilt.vignette}\n\n${rebuilt.question}`,
+    vignette: rebuilt.vignette,
+    question: rebuilt.question,
     options: rebuilt.options,
     correctAnswer: rebuilt.correctAnswer,
     explanation: buildUsmleExplanation(rebuilt, fieldId, subjectId),

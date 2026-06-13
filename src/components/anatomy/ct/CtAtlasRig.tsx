@@ -1,9 +1,9 @@
 "use client";
 
 import { useGLTF } from "@react-three/drei";
-import { Component, type ReactNode, useLayoutEffect, useMemo, useRef } from "react";
+import { Component, type ReactNode, useCallback, useLayoutEffect, useMemo, useRef } from "react";
 import type { Group, Mesh, Plane } from "three";
-import { DoubleSide, MeshStandardMaterial } from "three";
+import { DoubleSide, MeshBasicMaterial } from "three";
 import {
   CT_ATLAS_ORGANS,
   entryMatchesMeshId,
@@ -13,12 +13,14 @@ import {
   type CtClipPlaneId,
 } from "@/lib/anatomy/ct/ct-atlas-registry";
 import { createCtClipPlanes, fitVisibleHumanAtlas } from "@/lib/anatomy/ct/ct-atlas-fit";
+import { fitAllenBrainToFigure } from "@/lib/anatomy/ct/brain-fit";
 import {
   CT_ORGAN_HU,
   CT_WINDOWS,
   huToHex,
   type CtWindowId,
 } from "@/lib/anatomy/ct/ct-windows";
+import { getNeuroConnectedStructureIds } from "@/lib/anatomy/neuro-connections";
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
 import { getAnatomyStructure, getAnatomyStructureByMeshId } from "@/lib/anatomy";
 
@@ -58,6 +60,8 @@ function CtAtlasOrganMeshInner({
   highlighted,
   dimmed,
   onPick,
+  onLoaded,
+  headAnchored = false,
 }: {
   entry: CtAtlasOrganEntry;
   url: string;
@@ -67,6 +71,8 @@ function CtAtlasOrganMeshInner({
   highlighted: boolean;
   dimmed: boolean;
   onPick: () => void;
+  onLoaded: () => void;
+  headAnchored?: boolean;
 }) {
   const { scene } = useGLTF(url);
   const window = CT_WINDOWS[windowId];
@@ -74,20 +80,16 @@ function CtAtlasOrganMeshInner({
 
   const prepared = useMemo(() => {
     const clone = scene.clone(true);
+    if (headAnchored) fitAllenBrainToFigure(clone);
     const baseColor = huToHex(hu, window);
-    const opacity = entry.opacity ?? (entry.layer === "skin" ? 0.2 : 0.92);
-    const mat = new MeshStandardMaterial({
-      color: highlighted ? "#c4b5fd" : baseColor,
-      emissive: highlighted ? "#5b21b6" : "#000000",
-      emissiveIntensity: highlighted ? 0.35 : 0,
-      roughness: 0.92,
-      metalness: 0,
+    const opacity = entry.opacity ?? (entry.layer === "skin" ? 0.18 : 0.98);
+    const mat = new MeshBasicMaterial({
+      color: highlighted ? "#ddd6fe" : baseColor,
       transparent: opacity < 1 || dimmed,
-      opacity: dimmed ? opacity * 0.12 : opacity,
+      opacity: dimmed ? opacity * 0.38 : opacity,
       depthWrite: opacity > 0.5 && !dimmed,
       side: entry.layer === "skin" ? DoubleSide : undefined,
       clippingPlanes,
-      clipShadows: true,
     });
     clone.traverse((node) => {
       if ((node as Mesh).isMesh) {
@@ -100,7 +102,11 @@ function CtAtlasOrganMeshInner({
       }
     });
     return clone;
-  }, [scene, entry, windowId, window, hu, highlighted, dimmed, clippingPlanes]);
+  }, [scene, entry, windowId, window, hu, highlighted, dimmed, clippingPlanes, headAnchored]);
+
+  useLayoutEffect(() => {
+    onLoaded();
+  }, [prepared, onLoaded]);
 
   if (!visible) return null;
 
@@ -129,6 +135,7 @@ function CtAtlasOrganMesh({
   highlighted,
   dimmed,
   onPick,
+  onLoaded,
 }: {
   entry: CtAtlasOrganEntry;
   windowId: CtWindowId;
@@ -137,8 +144,10 @@ function CtAtlasOrganMesh({
   highlighted: boolean;
   dimmed: boolean;
   onPick: () => void;
+  onLoaded: () => void;
 }) {
   const urls = resolveCtAtlasUrlCandidates(entry.fileName);
+  const headAnchored = entry.fit === "head";
   return (
     <CtAtlasOrganMeshWithFallback
       entry={entry}
@@ -149,6 +158,8 @@ function CtAtlasOrganMesh({
       highlighted={highlighted}
       dimmed={dimmed}
       onPick={onPick}
+      onLoaded={onLoaded}
+      headAnchored={headAnchored}
     />
   );
 }
@@ -163,6 +174,8 @@ function CtAtlasOrganMeshWithFallback({
   highlighted,
   dimmed,
   onPick,
+  onLoaded,
+  headAnchored = false,
 }: {
   entry: CtAtlasOrganEntry;
   urls: string[];
@@ -173,6 +186,8 @@ function CtAtlasOrganMeshWithFallback({
   highlighted: boolean;
   dimmed: boolean;
   onPick: () => void;
+  onLoaded: () => void;
+  headAnchored?: boolean;
 }) {
   const url = urls[urlIndex];
   if (!url) return null;
@@ -190,6 +205,8 @@ function CtAtlasOrganMeshWithFallback({
         highlighted={highlighted}
         dimmed={dimmed}
         onPick={onPick}
+        onLoaded={onLoaded}
+        headAnchored={headAnchored}
       />
     ) : null;
 
@@ -204,6 +221,8 @@ function CtAtlasOrganMeshWithFallback({
         highlighted={highlighted}
         dimmed={dimmed}
         onPick={onPick}
+        onLoaded={onLoaded}
+        headAnchored={headAnchored}
       />
     </GltfLoadBoundary>
   );
@@ -220,34 +239,81 @@ export function CtAtlasRig({
   onSelect,
 }: RigProps) {
   const rootRef = useRef<Group>(null);
-  const fittedRef = useRef(false);
+  const loadGeneration = useRef(0);
 
-  useLayoutEffect(() => {
-    if (!rootRef.current || fittedRef.current) return;
-    fitVisibleHumanAtlas(rootRef.current);
-    fittedRef.current = true;
-  });
+  const scheduleRefit = useCallback(() => {
+    if (!rootRef.current) return;
+    const gen = ++loadGeneration.current;
+    requestAnimationFrame(() => {
+      if (gen !== loadGeneration.current || !rootRef.current) return;
+      fitVisibleHumanAtlas(rootRef.current);
+    });
+  }, []);
 
   const clippingPlanes = useMemo(
     () => createCtClipPlanes(clipPlaneId, sliceOffset),
     [clipPlaneId, sliceOffset]
   );
 
-  const focusMeshId = useMemo(() => {
+  const focusStructureIds = useMemo(() => {
     const id = highlightedId ?? selectedId;
-    if (!id) return null;
-    return getAnatomyStructure(id)?.meshId ?? null;
+    return getNeuroConnectedStructureIds(id);
   }, [highlightedId, selectedId]);
 
+  const focusMeshIds = useMemo(() => {
+    const meshIds = new Set<string>();
+    for (const structureId of focusStructureIds) {
+      const meshId = getAnatomyStructure(structureId)?.meshId;
+      if (meshId) meshIds.add(meshId);
+    }
+    return meshIds;
+  }, [focusStructureIds]);
+
+  const vhAtlasOrgans = CT_ATLAS_ORGANS.filter((entry) => entry.fit !== "head");
+  const headAnchoredOrgans = CT_ATLAS_ORGANS.filter((entry) => entry.fit === "head");
+
   return (
-    <group ref={rootRef}>
-      {CT_ATLAS_ORGANS.map((entry) => {
+    <>
+      <group ref={rootRef}>
+        {vhAtlasOrgans.map((entry) => {
+          const visible = visibleLayers.has(entry.layer);
+          const structureForMesh = getAnatomyStructureByMeshId(entry.meshId);
+          const system = structureForMesh?.system ?? entry.system;
+          const systemFiltered =
+            systemFilter !== "all" && system !== systemFilter && entry.layer === "organ";
+          const highlighted =
+            focusMeshIds.size > 0 &&
+            [...focusMeshIds].some((meshId) => entryMatchesMeshId(entry, meshId));
+
+          const pickStructure = () => {
+            const structureId = resolveStructureIdForAtlasEntry(entry);
+            if (structureId) onSelect(structureId);
+          };
+
+          return (
+            <CtAtlasOrganMesh
+              key={entry.id}
+              entry={entry}
+              windowId={windowId}
+              clippingPlanes={clippingPlanes}
+              visible={visible}
+              highlighted={highlighted}
+              dimmed={systemFiltered}
+              onPick={pickStructure}
+              onLoaded={scheduleRefit}
+            />
+          );
+        })}
+      </group>
+      {headAnchoredOrgans.map((entry) => {
         const visible = visibleLayers.has(entry.layer);
         const structureForMesh = getAnatomyStructureByMeshId(entry.meshId);
         const system = structureForMesh?.system ?? entry.system;
         const systemFiltered =
           systemFilter !== "all" && system !== systemFilter && entry.layer === "organ";
-        const highlighted = focusMeshId ? entryMatchesMeshId(entry, focusMeshId) : false;
+        const highlighted =
+          focusMeshIds.size > 0 &&
+          [...focusMeshIds].some((meshId) => entryMatchesMeshId(entry, meshId));
 
         const pickStructure = () => {
           const structureId = resolveStructureIdForAtlasEntry(entry);
@@ -264,10 +330,11 @@ export function CtAtlasRig({
             highlighted={highlighted}
             dimmed={systemFiltered}
             onPick={pickStructure}
+            onLoaded={() => {}}
           />
         );
       })}
-    </group>
+    </>
   );
 }
 

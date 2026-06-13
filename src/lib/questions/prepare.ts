@@ -151,6 +151,66 @@ export function prepareQuestionsForSession(
   return shufflePreservingSequentialSets(prepared);
 }
 
+const NGN_EXAM_TYPES = new Set<StudyQuestionType>([
+  "bow_tie",
+  "matrix",
+  "highlight",
+  "select_all",
+  "ordered_response",
+  "unfolding_case",
+  "short_answer",
+  "drag_drop",
+  "calculation",
+  "fill_blank",
+]);
+
+function joinCorrectAnswers(type: StudyQuestionType, answers: string[]): string {
+  if (answers.length === 0) return "";
+  if (type === "select_all" && answers.length > 1) return answers.join(",");
+  return answers.join(",");
+}
+
+/** Map prepared study rows to API ExamQuestion — use after shuffle; never index into a parallel raw[]. */
+export function studyQuestionsToExamQuestions(prepared: StudyQuestion[]): import("@/lib/ai").ExamQuestion[] {
+  return prepared.map((p, i) => {
+    const isSelectAll = p.type === "select_all";
+    const isMulti =
+      isSelectAll ||
+      p.type === "matrix" ||
+      p.type === "bow_tie" ||
+      p.type === "ordered_response";
+
+    const type: import("@/lib/ai").ExamQuestion["type"] = NGN_EXAM_TYPES.has(p.type)
+      ? (p.type as import("@/lib/ai").ExamQuestion["type"])
+      : p.type === "true_false"
+        ? "true_false"
+        : "multiple_choice";
+
+    return {
+      id: i + 1,
+      type,
+      question: p.stem,
+      options: p.options,
+      correctAnswer: isMulti
+        ? joinCorrectAnswers(p.type, p.correctAnswers)
+        : (p.correctAnswers[0] ?? ""),
+      explanation: p.explanation,
+      solutionSteps: p.solutionSteps,
+      tags: p.tags,
+      highYield: p.highYield,
+      vignette: p.vignette,
+      clinicalReasoning: p.clinicalReasoning,
+      distractorRationale: p.distractorRationale,
+      references: p.references,
+      ngnFormat: p.ngnFormat,
+      ngnPayload: p.ngnPayload,
+      chartData: p.chartData,
+      caseStep: p.caseStep,
+      qualityScore: p.qualityScore,
+    };
+  });
+}
+
 export function isAnswerCorrect(
   question: StudyQuestion,
   selected: string[]

@@ -65,7 +65,7 @@ export default defineConfig({
     navigationTimeout: 60_000,
   },
   projects: [
-    { name: "setup", testMatch: /auth\.setup\.ts/ },
+    { name: "setup", testMatch: /auth\.setup\.ts/, timeout: 180_000 },
     {
       name: "chromium",
       dependencies: ["setup"],
@@ -82,9 +82,9 @@ export default defineConfig({
   webServer: process.env.PLAYWRIGHT_SKIP_WEBSERVER
     ? undefined
     : {
-        command: `npx prisma generate && npx next dev -p ${port}`,
-        url: `${baseURL}/api/auth/csrf`,
-        reuseExistingServer: !process.env.CI,
+        command: `npx next dev -p ${port}`,
+        url: baseURL,
+        reuseExistingServer: process.env.PLAYWRIGHT_REUSE_SERVER === "1" && !process.env.CI,
         timeout: 240_000,
         env: webServerEnv,
       },

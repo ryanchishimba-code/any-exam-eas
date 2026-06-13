@@ -1,5 +1,6 @@
 import type { ExamQuestion } from "@/lib/ai";
 import type { BankItem } from "@/lib/question-bank";
+import { splitUsmleBankItem } from "./usmle-clinical-gate";
 
 const USMLE_ITEM_MAP: Record<string, ExamQuestion["type"]> = {
   mcq: "multiple_choice",
@@ -22,15 +23,8 @@ export function usmleItemToFormat(itemType?: string): string | undefined {
   return t === "mcq" ? undefined : t;
 }
 
-function splitStemVignette(item: BankItem): { vignette?: string; stem: string } {
-  const vignette = item.vignette?.trim() || item.scenario?.trim();
-  const q = item.question.trim();
-  if (vignette) return { vignette, stem: q };
-  return { vignette, stem: q };
-}
-
 export function bankItemToUsmleExam(item: BankItem, index: number): ExamQuestion {
-  const { vignette, stem } = splitStemVignette(item);
+  const { vignette, stem } = splitUsmleBankItem(item);
   const itemType = item.itemType ?? "mcq";
   const payload = item.ngnPayload;
   return {

@@ -7,8 +7,17 @@
 
 import * as THREE from "three";
 import { FINGER_SPECS, THUMB_SPEC, TOE_SPECS } from "../cartoon/digit-proportions";
+import {
+  CARPAL_NAMES,
+  carpalPosition,
+  palmFromWrist,
+  TARSAL_NAMES,
+  tarsalOffsets,
+} from "../cartoon/digit-placements";
 import { FIGURE } from "../cartoon/proportions";
+import { claviclePathPoints, ribPathPoints } from "../cartoon/skeletal-geometry";
 import { CATALOG_SKULL_RADIUS } from "../cartoon/skull-geometry";
+import { skullCatalogPointToWorld } from "../cartoon/skull-bone-geometry";
 
 export const ADULT_BONE_COUNT = 206;
 
@@ -55,6 +64,48 @@ function sx(side: BoneSide): -1 | 1 {
 
 function mid(a: THREE.Vector3, b: THREE.Vector3): THREE.Vector3 {
   return new THREE.Vector3().addVectors(a, b).multiplyScalar(0.5);
+}
+
+function pathCentroid(points: THREE.Vector3[]): THREE.Vector3 {
+  const c = new THREE.Vector3();
+  for (const p of points) c.add(p);
+  return c.multiplyScalar(1 / points.length);
+}
+
+function ribBone(
+  ribIndex: number,
+  side: "right" | "left",
+  f: Figure,
+  z: number
+): BoneInstance {
+  const sideMult = side === "right" ? (-1 as const) : (1 as const);
+  const { bone } = ribPathPoints(ribIndex, sideMult, f, z);
+  const c = pathCentroid(bone);
+  return {
+    id: `rib-${ribIndex + 1}-${side[0]}`,
+    name: `Rib ${ribIndex + 1} (${side[0].toUpperCase()})`,
+    region: "thorax",
+    side,
+    kind: "flat",
+    focus: [c.x, c.y, c.z],
+    focusDistance: 1.35 + Math.abs(c.y) * 0.15,
+  };
+}
+
+function clavicleBone(side: "right" | "left", f: Figure, z: number): BoneInstance {
+  const sideMult = side === "right" ? (-1 as const) : (1 as const);
+  const path = claviclePathPoints(sideMult, f, z);
+  const c = pathCentroid(path);
+  return {
+    id: `clavicle-${side[0]}`,
+    name: `Clavicle (${side[0].toUpperCase()})`,
+    region: "upper-limb",
+    side,
+    kind: "long",
+    focus: [c.x, c.y, c.z],
+    focusDistance: 1.35 + Math.abs(c.y) * 0.12,
+    highYield: true,
+  };
 }
 
 function seg(
@@ -111,30 +162,29 @@ function point(
 }
 
 function skullBones(f: Figure, z: number, scale: number): BoneInstance[] {
-  const hy = f.headY;
   const r = CATALOG_SKULL_RADIUS * scale;
-  const cz = z + 0.02;
   const bones: BoneInstance[] = [];
 
   const cranial: [string, string, [number, number, number], [number, number, number]][] = [
-    ["frontal-bone", "Frontal bone", [0, r * 0.35, cz + r * 0.45], [r * 0.42, r * 0.22, r * 0.12]],
-    ["parietal-bone-r", "Parietal bone (R)", [-r * 0.38, r * 0.45, cz - r * 0.05], [r * 0.32, r * 0.28, r * 0.08]],
-    ["parietal-bone-l", "Parietal bone (L)", [r * 0.38, r * 0.45, cz - r * 0.05], [r * 0.32, r * 0.28, r * 0.08]],
-    ["temporal-bone-r", "Temporal bone (R)", [-r * 0.58, r * 0.05, cz + r * 0.05], [r * 0.18, r * 0.22, r * 0.14]],
-    ["temporal-bone-l", "Temporal bone (L)", [r * 0.58, r * 0.05, cz + r * 0.05], [r * 0.18, r * 0.22, r * 0.14]],
-    ["occipital-bone", "Occipital bone", [0, r * 0.08, cz - r * 0.48], [r * 0.38, r * 0.32, r * 0.1]],
-    ["sphenoid-bone", "Sphenoid bone", [0, r * 0.02, cz + r * 0.08], [r * 0.28, r * 0.18, r * 0.22]],
-    ["ethmoid-bone", "Ethmoid bone", [0, r * 0.12, cz + r * 0.35], [r * 0.14, r * 0.16, r * 0.1]],
+    ["frontal-bone", "Frontal bone", [0, 0.38, 0.38], [r * 0.42, r * 0.22, r * 0.12]],
+    ["parietal-bone-r", "Parietal bone (R)", [-0.22, 0.42, -0.04], [r * 0.32, r * 0.28, r * 0.08]],
+    ["parietal-bone-l", "Parietal bone (L)", [0.22, 0.42, -0.04], [r * 0.32, r * 0.28, r * 0.08]],
+    ["temporal-bone-r", "Temporal bone (R)", [-0.58, -0.02, 0.05], [r * 0.18, r * 0.22, r * 0.14]],
+    ["temporal-bone-l", "Temporal bone (L)", [0.58, -0.02, 0.05], [r * 0.18, r * 0.22, r * 0.14]],
+    ["occipital-bone", "Occipital bone", [0, 0.05, -0.48], [r * 0.38, r * 0.32, r * 0.1]],
+    ["sphenoid-bone", "Sphenoid bone", [0, 0.02, 0.08], [r * 0.28, r * 0.18, r * 0.22]],
+    ["ethmoid-bone", "Ethmoid bone", [0, 0.12, 0.35], [r * 0.14, r * 0.16, r * 0.1]],
   ];
 
-  for (const [id, name, pos, sc] of cranial) {
+  for (const [id, name, catalog, sc] of cranial) {
+    const pos = skullCatalogPointToWorld(catalog[0], catalog[1], catalog[2], f, z);
     bones.push(
       point(
         id,
         name,
         "cranium",
         id.includes("-r") ? "right" : id.includes("-l") ? "left" : "midline",
-        new THREE.Vector3(...pos),
+        pos,
         sc,
         "flat",
         undefined,
@@ -144,24 +194,24 @@ function skullBones(f: Figure, z: number, scale: number): BoneInstance[] {
   }
 
   const facial: [string, string, BoneSide, [number, number, number], [number, number, number]][] = [
-    ["mandible", "Mandible", "midline", [0, hy - r * 0.55, cz + r * 0.42], [r * 0.62, r * 0.14, r * 0.1]],
-    ["maxilla-r", "Maxilla (R)", "right", [-r * 0.22, hy - r * 0.28, cz + r * 0.42], [r * 0.2, r * 0.1, r * 0.08]],
-    ["maxilla-l", "Maxilla (L)", "left", [r * 0.22, hy - r * 0.28, cz + r * 0.42], [r * 0.2, r * 0.1, r * 0.08]],
-    ["zygomatic-r", "Zygomatic bone (R)", "right", [-r * 0.52, hy - r * 0.15, cz + r * 0.45], [r * 0.12, r * 0.08, r * 0.06]],
-    ["zygomatic-l", "Zygomatic bone (L)", "left", [r * 0.52, hy - r * 0.15, cz + r * 0.45], [r * 0.12, r * 0.08, r * 0.06]],
-    ["nasal-r", "Nasal bone (R)", "right", [-r * 0.06, hy + r * 0.05, cz + r * 0.58], [r * 0.06, r * 0.05, r * 0.02]],
-    ["nasal-l", "Nasal bone (L)", "left", [r * 0.06, hy + r * 0.05, cz + r * 0.58], [r * 0.06, r * 0.05, r * 0.02]],
-    ["lacrimal-r", "Lacrimal bone (R)", "right", [-r * 0.38, hy + r * 0.08, cz + r * 0.48], [r * 0.05, r * 0.06, r * 0.03]],
-    ["lacrimal-l", "Lacrimal bone (L)", "left", [r * 0.38, hy + r * 0.08, cz + r * 0.48], [r * 0.05, r * 0.06, r * 0.03]],
-    ["palatine-r", "Palatine bone (R)", "right", [-r * 0.12, hy - r * 0.22, cz + r * 0.25], [r * 0.08, r * 0.1, r * 0.05]],
-    ["palatine-l", "Palatine bone (L)", "left", [r * 0.12, hy - r * 0.22, cz + r * 0.25], [r * 0.08, r * 0.1, r * 0.05]],
-    ["nasal-concha-r", "Inferior nasal concha (R)", "right", [-r * 0.18, hy - r * 0.08, cz + r * 0.52], [r * 0.1, r * 0.04, r * 0.03]],
-    ["nasal-concha-l", "Inferior nasal concha (L)", "left", [r * 0.18, hy - r * 0.08, cz + r * 0.52], [r * 0.1, r * 0.04, r * 0.03]],
-    ["vomer", "Vomer", "midline", [0, hy - r * 0.05, cz + r * 0.48], [r * 0.04, r * 0.14, r * 0.06]],
+    ["mandible", "Mandible", "midline", [0, -0.55, 0.42], [r * 0.62, r * 0.14, r * 0.1]],
+    ["maxilla-r", "Maxilla (R)", "right", [-0.22, -0.28, 0.42], [r * 0.2, r * 0.1, r * 0.08]],
+    ["maxilla-l", "Maxilla (L)", "left", [0.22, -0.28, 0.42], [r * 0.2, r * 0.1, r * 0.08]],
+    ["zygomatic-r", "Zygomatic bone (R)", "right", [-0.52, -0.15, 0.45], [r * 0.12, r * 0.08, r * 0.06]],
+    ["zygomatic-l", "Zygomatic bone (L)", "left", [0.52, -0.15, 0.45], [r * 0.12, r * 0.08, r * 0.06]],
+    ["nasal-r", "Nasal bone (R)", "right", [-0.06, 0.05, 0.58], [r * 0.06, r * 0.05, r * 0.02]],
+    ["nasal-l", "Nasal bone (L)", "left", [0.06, 0.05, 0.58], [r * 0.06, r * 0.05, r * 0.02]],
+    ["lacrimal-r", "Lacrimal bone (R)", "right", [-0.38, 0.08, 0.48], [r * 0.05, r * 0.06, r * 0.03]],
+    ["lacrimal-l", "Lacrimal bone (L)", "left", [0.38, 0.08, 0.48], [r * 0.05, r * 0.06, r * 0.03]],
+    ["palatine-r", "Palatine bone (R)", "right", [-0.12, -0.22, 0.25], [r * 0.08, r * 0.1, r * 0.05]],
+    ["palatine-l", "Palatine bone (L)", "left", [0.12, -0.22, 0.25], [r * 0.08, r * 0.1, r * 0.05]],
+    ["nasal-concha-r", "Inferior nasal concha (R)", "right", [-0.18, -0.08, 0.52], [r * 0.1, r * 0.04, r * 0.03]],
+    ["nasal-concha-l", "Inferior nasal concha (L)", "left", [0.18, -0.08, 0.52], [r * 0.1, r * 0.04, r * 0.03]],
+    ["vomer", "Vomer", "midline", [0, -0.05, 0.48], [r * 0.04, r * 0.14, r * 0.06]],
   ];
 
-  for (const [id, name, side, pos, sc] of facial) {
-    bones.push(point(id, name, "face", side, new THREE.Vector3(...pos), sc, "flat"));
+  for (const [id, name, side, catalog, sc] of facial) {
+    bones.push(point(id, name, "face", side, skullCatalogPointToWorld(catalog[0], catalog[1], catalog[2], f, z), sc, "flat"));
   }
 
   return bones;
@@ -235,17 +285,23 @@ function thoraxBones(f: Figure, z: number): BoneInstance[] {
   const bones: BoneInstance[] = [];
 
   for (let i = 0; i < 12; i++) {
-    const ribY = f.chestY + 0.21 - i * 0.062;
     for (const side of ["right", "left"] as const) {
-      const s = sx(side);
-      const spine = new THREE.Vector3(0, ribY + 0.012, z - 0.115);
-      const anterior = new THREE.Vector3(s * (0.26 - i * 0.009) * 0.62, ribY - 0.04 - i * 0.01, z + 0.08);
-      bones.push(seg(`rib-${i + 1}-${side[0]}`, `Rib ${i + 1} (${side[0].toUpperCase()})`, "thorax", side, spine, anterior, 0.009 - i * 0.0003, "flat"));
+      bones.push(ribBone(i, side, f, z));
     }
   }
 
   bones.push(
-    point("sternum-bone", "Sternum", "thorax", "midline", new THREE.Vector3(0, f.chestY + 0.08, z + 0.1), [0.048, 0.22, 0.024], "flat", undefined, true)
+    point(
+      "sternum-bone",
+      "Sternum",
+      "thorax",
+      "midline",
+      new THREE.Vector3(0, f.chestY + 0.05, z + 0.1),
+      [0.048, 0.22, 0.024],
+      "flat",
+      undefined,
+      true
+    )
   );
 
   return bones;
@@ -283,25 +339,23 @@ function upperLimbBones(f: Figure, z: number): BoneInstance[] {
     const wrist = new THREE.Vector3(s * f.wristX, f.wristY, z + f.wristForward);
 
     bones.push(
-      seg(`clavicle-${side[0]}`, `Clavicle (${side[0].toUpperCase()})`, "upper-limb", side, new THREE.Vector3(s * 0.02, f.shoulderY + 0.055, z + 0.1), shoulder, 0.008, "long", true),
+      clavicleBone(side, f, z),
       point(`scapula-${side[0]}`, `Scapula (${side[0].toUpperCase()})`, "upper-limb", side, new THREE.Vector3(s * 0.24, f.chestY + 0.04, z - 0.085), [0.09, 0.13, 0.022], "flat", [0, s * 0.32, 0], true),
       seg(`humerus-${side[0]}`, `Humerus (${side[0].toUpperCase()})`, "upper-limb", side, shoulder, elbow, 0.012, "long", true),
       seg(`radius-${side[0]}`, `Radius (${side[0].toUpperCase()})`, "upper-limb", side, elbow.clone().add(new THREE.Vector3(s * 0.008, 0, 0.01)), wrist, 0.008, "long"),
       seg(`ulna-${side[0]}`, `Ulna (${side[0].toUpperCase()})`, "upper-limb", side, elbow.clone().add(new THREE.Vector3(s * -0.01, 0, -0.005)), wrist, 0.009, "long")
     );
 
-    const carpals = ["scaphoid", "lunate", "triquetrum", "pisiform", "trapezium", "trapezoid", "capitate", "hamate"];
-    const palm = wrist.clone().add(new THREE.Vector3(0, -0.028, 0.018));
+    const carpals = CARPAL_NAMES;
+    const palm = palmFromWrist(wrist);
     carpals.forEach((name, i) => {
-      const row = i < 4 ? 0 : 1;
-      const col = i % 4;
       bones.push(
         point(
           `${name}-${side[0]}`,
           `${name.charAt(0).toUpperCase()}${name.slice(1)} (${side[0].toUpperCase()})`,
           "hand",
           side,
-          palm.clone().add(new THREE.Vector3(s * (0.02 - col * 0.012), -0.004 - row * 0.008, 0.004 + col * 0.004)),
+          carpalPosition(i, palm, s),
           [0.012, 0.008, 0.01],
           "short"
         )
@@ -369,16 +423,8 @@ function lowerLimbBones(f: Figure, z: number): BoneInstance[] {
     );
 
     const footY = f.footY + 0.016;
-    const tarsals = ["calcaneus", "talus", "navicular", "cuboid", "medial-cuneiform", "intermediate-cuneiform", "lateral-cuneiform"];
-    const tarsalPos = [
-      [0, 0.008, -0.02],
-      [0, 0.012, 0.015],
-      [s * -0.012, 0.006, 0.028],
-      [s * 0.014, 0.004, 0.022],
-      [s * -0.018, 0.005, 0.038],
-      [s * -0.006, 0.005, 0.04],
-      [s * 0.008, 0.005, 0.039],
-    ] as const;
+    const tarsals = TARSAL_NAMES;
+    const tarsalPos = tarsalOffsets(s);
 
     tarsals.forEach((name, i) => {
       const p = tarsalPos[i]!;

@@ -32,7 +32,7 @@ function resolveOpacity(
     case "nerve":
       return 0.6;
     case "organ":
-      return baseOpacity * 0.38;
+      return baseOpacity * 0.58;
     default:
       return baseOpacity * 0.45;
   }
@@ -95,10 +95,12 @@ function OrganMeshInstance({
   const emissiveIntensity = highlighted || selected ? 0.45 : hovered ? 0.18 : 0;
 
   const tintedColor = useMemo(() => {
-    if (def.layer !== "organ" || !structureSystem) return def.color;
+    if (def.layer !== "organ") return def.color;
+    // Keep each organ's assigned color — only nudge toward system accent when filtering
+    if (systemFilter === "all" || !structureSystem) return def.color;
+    if (structureSystem !== systemFilter) return def.color;
     const accent = ANATOMY_SYSTEM_COLORS[structureSystem];
-    const blend = systemFilter === "all" ? 0.18 : structureSystem === systemFilter ? 0.32 : 0.1;
-    return blendHexColor(def.color, accent, blend);
+    return blendHexColor(def.color, accent, 0.12);
   }, [def.color, def.layer, structureSystem, systemFilter]);
 
   const surfaceStyle: OrganSurfaceStyle = useMemo(

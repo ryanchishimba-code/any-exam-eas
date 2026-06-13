@@ -27,9 +27,19 @@ export function normalizeQuestionOptions(
 
   const four = unique.slice(0, 4);
   const correctClean = cleanOptionText(correctAnswer);
-  const correct = four.find((o) => o.toLowerCase() === correctClean.toLowerCase()) ?? four[0];
+  let correct = four.find((o) => o.toLowerCase() === correctClean.toLowerCase());
 
-  return { options: four, correctAnswer: correct };
+  if (!correct && correctClean) {
+    const placeholderIdx = four.findIndex((o) => /^Alternative \d+$/.test(o));
+    if (placeholderIdx >= 0) {
+      four[placeholderIdx] = correctClean;
+    } else {
+      four[four.length - 1] = correctClean;
+    }
+    correct = correctClean;
+  }
+
+  return { options: four, correctAnswer: correct ?? correctClean };
 }
 
 /** Randomize option order so the correct answer is not always A */

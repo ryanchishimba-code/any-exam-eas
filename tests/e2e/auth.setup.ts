@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { test as setup } from "@playwright/test";
+import { test as setup, expect } from "@playwright/test";
 import { AUTH_STORAGE_PATH, DEV_USER } from "./fixtures/auth";
 import { loginViaApi } from "./helpers/api-auth";
 
@@ -11,13 +11,26 @@ setup("authenticate dev trial user", async ({ page, baseURL }) => {
 
   fs.mkdirSync(path.dirname(AUTH_STORAGE_PATH), { recursive: true });
 
+  await expect
+    .poll(
+      async () => {
+        try {
+          const res = await page.request.get(`${baseURL}/api/auth/csrf`);
+          return res.ok();
+        } catch {
+          return false;
+        }
+      },
+      { timeout: 180_000 }
+    )
+    .toBe(true);
+
   try {
     await loginViaApi(page.request, baseURL, DEV_USER.email, DEV_USER.password);
   } catch (error) {
-    await page.goto("/login", { waitUntil: "domcontentloaded" });
-    const configWarning = page.getByText(/missing required settings|missing auth or database/i);
-    if (await configWarning.isVisible().catch(() => false)) {
-      console.warn("[e2e setup] Auth backend misconfigured — skipping storage state.");
+    const message = error instanceof Error ? error.message : String(error);
+    if (/CSRF fetch failed: 5\d\d|Credentials login failed: 5\d\d/.test(message)) {
+      console.warn("[e2e setup] Auth backend unavailable — skipping storage state.");
       return;
     }
     throw error;

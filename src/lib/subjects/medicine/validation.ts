@@ -1,4 +1,5 @@
 import type { ValidationInput, ValidationResult } from "../types";
+import { ensureClinicalVignette, validateClinicalVignette } from "../../engine/prompts/vignette";
 
 const CLINICAL_SAFETY_TERMS = [
   "contraindicated",
@@ -14,6 +15,12 @@ export function validateMedicineExam(input: ValidationInput): ValidationResult {
   const warnings: string[] = [];
 
   for (const q of input.exam.questions) {
+    const repaired = ensureClinicalVignette(q);
+    const vignetteIssues = validateClinicalVignette(repaired);
+    if (vignetteIssues.length > 0) {
+      errors.push(`Question ${q.id}: ${vignetteIssues.join("; ")}`);
+    }
+
     if (!q.options || q.options.length !== 4) {
       errors.push(`Question ${q.id}: must have exactly 4 options.`);
     }
