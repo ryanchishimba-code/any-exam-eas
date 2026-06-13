@@ -1,10 +1,11 @@
 "use client";
 
 import { Html } from "@react-three/drei";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import type { AnatomyLayer } from "@/lib/anatomy/types";
 import { STRUCTURAL_PICK_ZONES, type StructuralPickZone } from "@/lib/anatomy/cartoon/structural-pick-zones";
-import { useAnatomyPointer } from "@/components/anatomy/cartoon/AnatomyPointerProvider";
+import { useAnatomyPointer, useAnatomyHoverReset } from "@/components/anatomy/cartoon/AnatomyPointerProvider";
+import { isPrimaryPointerHit } from "@/lib/anatomy/cartoon/anatomy-raycast";
 
 type Props = {
   visibleLayers: Set<AnatomyLayer>;
@@ -28,17 +29,26 @@ function PickProxy({
 }) {
   const { setHovering } = useAnatomyPointer();
   const [hovered, setHovered] = useState(false);
-  const active = highlighted || selected || hovered;
+
+  const clearHover = useCallback(() => {
+    setHovered(false);
+    setHovering(false);
+  }, [setHovering]);
+  useAnatomyHoverReset(clearHover);
+
+  const showLabel = hovered;
 
   return (
     <group position={position}>
       <mesh
         visible={false}
         onClick={(e) => {
+          if (!isPrimaryPointerHit(e)) return;
           e.stopPropagation();
           onSelect(zone.structureId);
         }}
         onPointerOver={(e) => {
+          if (!isPrimaryPointerHit(e)) return;
           e.stopPropagation();
           setHovered(true);
           setHovering(true);
@@ -51,7 +61,7 @@ function PickProxy({
         <boxGeometry args={zone.scale} />
         <meshBasicMaterial transparent opacity={0} depthWrite={false} />
       </mesh>
-      {active ? (
+      {showLabel ? (
         <Html
           center
           distanceFactor={5.5}

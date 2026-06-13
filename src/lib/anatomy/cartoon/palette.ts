@@ -21,6 +21,8 @@ export const CARTOON_MUSCLE_DARK = "#765438";
 export const CARTOON_MUSCLE_HIGHLIGHT = "#c8986e";
 export const CARTOON_ARTERY = "#9e1e2c";
 export const CARTOON_VEIN = "#2e4a88";
+export const CARTOON_NERVE = "#ffd43b";
+export const CARTOON_NERVE_GLOW = "#fbbf24";
 
 /** Shared meshStandardMaterial tuning by tissue type. */
 export const TISSUE_PBR = {
@@ -29,5 +31,6 @@ export const TISSUE_PBR = {
   bone: { roughness: 0.7, metalness: 0.04 },
   muscle: { roughness: 0.52, metalness: 0.025 },
   vessel: { roughness: 0.34, metalness: 0.14 },
+  nerve: { roughness: 0.38, metalness: 0.06 },
   ghost: { roughness: 0.8, metalness: 0.01 },
 } as const;

@@ -37,14 +37,14 @@ export function TeachHost({ examSlug, session }: Props) {
   } = session;
 
   return (
-    <section className="rounded-2xl border border-black/[0.06] bg-gradient-to-br from-indigo-50/80 via-white to-violet-50/50 p-4 shadow-[var(--shadow-apple-sm)]">
+    <section className="p-1">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <GraduationCap className="h-5 w-5 text-indigo-600" aria-hidden />
           <div>
-            <h3 className="text-sm font-bold text-[var(--color-ink)]">Teach Mode</h3>
+            <h3 className="text-sm font-bold text-[var(--color-ink)]">Study tools</h3>
             <p className="text-xs text-[var(--color-ink-muted)]">
-              Guided tours and structure quizzes — works with or without the body view
+              Guided tours and click-to-answer quizzes
             </p>
           </div>
         </div>

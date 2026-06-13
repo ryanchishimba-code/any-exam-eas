@@ -23,7 +23,7 @@ export const ORGAN_COLORS = {
   trachea: "#4CC9F0",
   esophagus: "#FF9F1C",
   prostate: "#7B6CF6",
-  nerve: "#FFE066",
+  nerve: "#FFD43B",
   boneAccent: "#E6E1D8",
   artery: "#D00000",
   muscleAccent: "#C77D58",

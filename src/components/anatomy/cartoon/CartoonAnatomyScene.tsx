@@ -31,8 +31,9 @@ import { CartoonBodyShell } from "./CartoonBodyShell";
 import { ClickableSkeleton } from "./ClickableSkeleton";
 import { CartoonOrganMesh } from "./CartoonOrganMesh";
 import { CartoonStructuralLayers } from "./CartoonStructuralLayers";
+import { CartoonNerveLayers } from "./CartoonNerveLayers";
 import { StructuralPickRig } from "./StructuralPickRig";
-import { AnatomyPointerProvider } from "./AnatomyPointerProvider";
+import { AnatomyPointerProvider, useAnatomyPointer } from "./AnatomyPointerProvider";
 import { CtAtlasRig, preloadCtAtlas } from "@/components/anatomy/ct/CtAtlasRig";
 import { preloadVisibleHumanOrgans } from "./VolumeOrganVisual";
 import { NeuroConnectionRig } from "./NeuroConnectionRig";
@@ -115,6 +116,60 @@ function CtRenderSettings({ active }: { active: boolean }) {
     gl.toneMappingExposure = active ? 1 : 1.06;
   }, [active, gl]);
   return null;
+}
+
+function ScenePointerBridge({
+  controlsRef,
+}: {
+  controlsRef: React.RefObject<OrbitControlsImpl | null>;
+}) {
+  const { resetAllHovers } = useAnatomyPointer();
+  const gl = useThree((state) => state.gl);
+
+  useEffect(() => {
+    const controls = controlsRef.current;
+    if (!controls) return;
+    const onStart = () => resetAllHovers();
+    controls.addEventListener("start", onStart);
+    return () => controls.removeEventListener("start", onStart);
+  }, [controlsRef, resetAllHovers]);
+
+  useEffect(() => {
+    const el = gl.domElement;
+    const onLeave = () => resetAllHovers();
+    el.addEventListener("pointerleave", onLeave);
+    return () => el.removeEventListener("pointerleave", onLeave);
+  }, [gl, resetAllHovers]);
+
+  return null;
+}
+
+function AnatomySceneCanvas({
+  ctActive,
+  onCreated,
+  children,
+}: {
+  ctActive: boolean;
+  onCreated: (state: { gl: THREE.WebGLRenderer }) => void;
+  children: React.ReactNode;
+}) {
+  const { resetAllHovers } = useAnatomyPointer();
+
+  return (
+    <Canvas
+      camera={{
+        position: ctActive ? CT_CAMERA.position : CARTOON_CAMERA.position,
+        fov: ctActive ? CT_CAMERA.fov : CARTOON_CAMERA.fov,
+      }}
+      dpr={[1, 2]}
+      shadows={!ctActive}
+      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+      onCreated={onCreated}
+      onPointerMissed={resetAllHovers}
+    >
+      {children}
+    </Canvas>
+  );
 }
 
 function SceneRig({
@@ -266,12 +321,7 @@ function SceneRig({
           </mesh>
 
           <CartoonStructuralLayers visibleLayers={visibleLayers} skinOn={showSkin} />
-          <StructuralPickRig
-            visibleLayers={visibleLayers}
-            selectedId={selectedId}
-            highlightedId={highlightedId}
-            onSelect={onSelect}
-          />
+          <CartoonNerveLayers visibleLayers={visibleLayers} skinOn={showSkin} />
           <ClickableSkeleton
             visible={visibleLayers.has("bone")}
             skinOn={showSkin}
@@ -288,11 +338,18 @@ function SceneRig({
             onSelect={onSelect}
             skinOn={showSkin}
           />
+          <StructuralPickRig
+            visibleLayers={visibleLayers}
+            selectedId={selectedId}
+            highlightedId={highlightedId}
+            onSelect={onSelect}
+          />
           <NeuroConnectionRig focusStructureId={focusStructureId} />
           <CartoonBodyShell ghost={!showSkin} />
         </>
       )}
 
+      <ScenePointerBridge controlsRef={controlsRef} />
       <OrbitControls
         ref={controlsRef}
         enablePan
@@ -369,31 +426,25 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
   }));
 
   return (
-    <div
-      className={cn(
-        "relative h-full w-full overflow-hidden rounded-2xl",
-        ctActive
-          ? "bg-[#161618]"
-          : "bg-gradient-to-b from-slate-100 via-slate-50 to-slate-200/80",
-        className
-      )}
-    >
-      <Canvas
-        camera={{
-          position: ctActive ? CT_CAMERA.position : CARTOON_CAMERA.position,
-          fov: ctActive ? CT_CAMERA.fov : CARTOON_CAMERA.fov,
-        }}
-        dpr={[1, 2]}
-        shadows={!ctActive}
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-        onCreated={({ gl }) => {
-          gl.toneMapping = THREE.ACESFilmicToneMapping;
-          gl.toneMappingExposure = ctActive ? 1 : 1.06;
-          gl.shadowMap.enabled = !ctActive;
-          if (!ctActive) gl.shadowMap.type = THREE.PCFSoftShadowMap;
-        }}
+    <AnatomyPointerProvider>
+      <div
+        className={cn(
+          "relative h-full w-full overflow-hidden rounded-2xl",
+          ctActive
+            ? "bg-[#161618]"
+            : "bg-gradient-to-b from-slate-100 via-slate-50 to-slate-200/80",
+          className
+        )}
       >
-        <AnatomyPointerProvider>
+        <AnatomySceneCanvas
+          ctActive={ctActive}
+          onCreated={({ gl }) => {
+            gl.toneMapping = THREE.ACESFilmicToneMapping;
+            gl.toneMappingExposure = ctActive ? 1 : 1.06;
+            gl.shadowMap.enabled = !ctActive;
+            if (!ctActive) gl.shadowMap.type = THREE.PCFSoftShadowMap;
+          }}
+        >
           <LocalClippingToggle enabled={clipActive} />
           <Suspense fallback={null}>
             <SceneRig
@@ -413,8 +464,8 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
               ctSliceOffset={ctSliceOffset}
             />
           </Suspense>
-        </AnatomyPointerProvider>
-      </Canvas>
-    </div>
+        </AnatomySceneCanvas>
+      </div>
+    </AnatomyPointerProvider>
   );
 });

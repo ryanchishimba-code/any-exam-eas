@@ -21,6 +21,7 @@ import {
 import { TissueSurface, StandardTissueMaterial } from "@/components/anatomy/cartoon/AnatomyMaterials";
 import { VolumeOrganVisual } from "@/components/anatomy/cartoon/VolumeOrganVisual";
 import { HumanFaceFeatures } from "@/components/anatomy/cartoon/HumanFaceFeatures";
+import { buildSpinalCordUnitGeometry } from "@/lib/anatomy/cartoon/nerve-geometry";
 import { hasVisibleHumanOrgan } from "@/lib/anatomy/cartoon/visible-human-organs";
 
 export type OrganSurfaceStyle = {
@@ -224,6 +225,23 @@ function BrainProceduralVisual({ style }: { style: OrganSurfaceStyle }) {
         </Surface>
       </group>
     </group>
+  );
+}
+
+function NerveCordVisual({ style }: { style: OrganSurfaceStyle }) {
+  const geometry = useMemo(() => buildSpinalCordUnitGeometry(), []);
+  if (!geometry) return null;
+  return (
+    <mesh geometry={geometry}>
+      <StandardTissueMaterial
+        color={style.color}
+        opacity={style.opacity}
+        emissive={style.emissive}
+        emissiveIntensity={style.emissiveIntensity}
+        roughness={TISSUE_PBR.nerve.roughness}
+        metalness={TISSUE_PBR.nerve.metalness}
+      />
+    </mesh>
   );
 }
 
@@ -473,6 +491,7 @@ export function OrganVisual({ profile, geometry, style, mirrored = false, meshId
     case "trachea-tube":
       return <TracheaVisual style={style} />;
     case "nerve-cord":
+      return <NerveCordVisual style={style} />;
     case "appendix-tube":
       return (
         <Surface style={style}>

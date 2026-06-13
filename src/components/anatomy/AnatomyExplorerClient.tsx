@@ -3,13 +3,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { X } from "lucide-react";
 import { AnatomyHighYieldStrip } from "@/components/anatomy/AnatomyHighYieldStrip";
-import { AnatomyQuickStart } from "@/components/anatomy/AnatomyQuickStart";
 import { AnatomyStudioHero } from "@/components/anatomy/AnatomyStudioHero";
-import { AnatomySystemGrid } from "@/components/anatomy/AnatomySystemGrid";
 import { AnatomyShell } from "@/components/anatomy/systems/AnatomyShell";
 import { TeachHost } from "@/components/anatomy/systems/TeachHost";
 import { useTeachSession } from "@/components/anatomy/systems/useTeachSession";
-import { Badge } from "@/components/ui/badge";
 import {
   getAllAnatomyStructures,
   getAnatomyCatalogStats,
@@ -20,13 +17,12 @@ import {
 import { getDefaultTourIdForExam } from "@/lib/anatomy/recommendations";
 import { createCatalogOnlyBundle, createSupportiveBundle } from "@/lib/anatomy/systems";
 import type { AnatomySurfaceId } from "@/lib/anatomy/systems/surfaces/types";
-import { ANATOMY_LAYER_LABELS, type AnatomyLayer, type AnatomySystem } from "@/lib/anatomy/types";
+import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
 import { DEFAULT_STUDY_LAYERS } from "@/lib/anatomy/cartoon/layer-styles";
 import type { MemoryCard } from "@/lib/reference/types";
 import type { ExamSlug } from "@/types/edtech";
 import { ROUTES } from "@/lib/routes";
 
-const ALL_LAYERS = Object.keys(ANATOMY_LAYER_LABELS) as AnatomyLayer[];
 const DEFAULT_VISIBLE = new Set<AnatomyLayer>(DEFAULT_STUDY_LAYERS);
 
 type Props = {
@@ -119,7 +115,7 @@ export function AnatomyExplorerClient({
     [memoryCards, selectedId]
   );
 
-  const showLayerControls = true;
+  const showLayerControls = !catalogOnly;
 
   const clearInvalidStructureParam = useCallback(() => {
     if (typeof window === "undefined") return;
@@ -243,6 +239,7 @@ export function AnatomyExplorerClient({
         examSlug={examSlug}
         stats={catalogStats}
         onStartTour={startDefaultTour}
+        catalogOnly={catalogOnly}
       />
 
       <AnatomyHighYieldStrip
@@ -250,31 +247,6 @@ export function AnatomyExplorerClient({
         selectedId={selectedId}
         onSelect={handleSelectStructure}
       />
-
-      <AnatomySystemGrid
-        stats={catalogStats}
-        activeSystem={systemFilter}
-        onSelectSystem={setSystemFilter}
-      />
-
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-2">
-          <Badge className="bg-white/90">{catalogStats.structureCount} structures</Badge>
-          <Badge className="bg-amber-50 text-amber-900">{catalogStats.highYieldCount} high-yield</Badge>
-          <Badge className="bg-violet-100 text-violet-800">{bundle.surface.label}</Badge>
-          {highYieldOnly ? (
-            <Badge className="bg-amber-100 text-amber-900">High-yield filter on</Badge>
-          ) : null}
-        </div>
-      </div>
-
-      <AnatomyQuickStart
-        structureCount={catalogStats.structureCount}
-        tourCount={catalogStats.tourCount}
-        quizCount={catalogStats.quizCount}
-      />
-
-      <TeachHost examSlug={examSlug} session={teach} />
 
       <AnatomyShell
         bundle={bundle}
@@ -296,6 +268,22 @@ export function AnatomyExplorerClient({
         mobileSheetOpen={mobileSheetOpen}
         onMobileSheetOpenChange={setMobileSheetOpen}
       />
+
+      {teach.mode !== "off" ? (
+        <TeachHost examSlug={examSlug} session={teach} />
+      ) : (
+        <details className="rounded-2xl border border-black/[0.06] bg-white shadow-[var(--shadow-apple-sm)]">
+          <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-[var(--color-ink)]">
+            Guided tours & structure quiz
+            <span className="ml-2 font-normal text-[var(--color-ink-muted)]">
+              ({catalogStats.tourCount} tours · {catalogStats.quizCount} questions)
+            </span>
+          </summary>
+          <div className="border-t border-black/[0.05] p-3 pt-0">
+            <TeachHost examSlug={examSlug} session={teach} />
+          </div>
+        </details>
+      )}
     </div>
   );
 }

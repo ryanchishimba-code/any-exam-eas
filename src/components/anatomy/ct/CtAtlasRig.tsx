@@ -24,7 +24,9 @@ import {
 import { getNeuroConnectedStructureIds } from "@/lib/anatomy/neuro-connections";
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
 import { getAnatomyStructure, getAnatomyStructureByMeshId } from "@/lib/anatomy";
-import { useAnatomyPointer } from "@/components/anatomy/cartoon/AnatomyPointerProvider";
+import type { ThreeEvent } from "@react-three/fiber";
+import { useAnatomyPointer, useAnatomyHoverReset } from "@/components/anatomy/cartoon/AnatomyPointerProvider";
+import { isPrimaryPointerHit } from "@/lib/anatomy/cartoon/anatomy-raycast";
 
 type RigProps = {
   visibleLayers: Set<AnatomyLayer>;
@@ -60,6 +62,7 @@ function CtAtlasOrganMeshInner({
   clippingPlanes,
   visible,
   highlighted,
+  selected,
   dimmed,
   onPick,
   onLoaded,
@@ -72,6 +75,7 @@ function CtAtlasOrganMeshInner({
   clippingPlanes: Plane[];
   visible: boolean;
   highlighted: boolean;
+  selected: boolean;
   dimmed: boolean;
   onPick: () => void;
   onLoaded: () => void;
@@ -81,6 +85,12 @@ function CtAtlasOrganMeshInner({
   const [hovered, setHovered] = useState(false);
   const emphasized = highlighted || hovered;
   const { setHovering } = useAnatomyPointer();
+
+  const clearHover = useCallback(() => {
+    setHovered(false);
+    setHovering(false);
+  }, [setHovering]);
+  useAnatomyHoverReset(clearHover);
   const label = useMemo(() => {
     const resolvedId = resolveStructureIdForAtlasEntry(entry);
     if (resolvedId) {
@@ -129,11 +139,13 @@ function CtAtlasOrganMeshInner({
     <group>
       <primitive
         object={prepared}
-        onClick={(e: { stopPropagation: () => void }) => {
+        onClick={(e: ThreeEvent<MouseEvent>) => {
+          if (!isPrimaryPointerHit(e)) return;
           e.stopPropagation();
           onPick();
         }}
-        onPointerOver={(e: { stopPropagation: () => void }) => {
+        onPointerOver={(e: ThreeEvent<PointerEvent>) => {
+          if (!isPrimaryPointerHit(e)) return;
           e.stopPropagation();
           setHovered(true);
           setHovering(true);
@@ -143,7 +155,7 @@ function CtAtlasOrganMeshInner({
           setHovering(false);
         }}
       />
-      {emphasized ? (
+      {hovered ? (
         <Html
           center
           distanceFactor={6}
@@ -165,6 +177,7 @@ function CtAtlasOrganMesh({
   clippingPlanes,
   visible,
   highlighted,
+  selected,
   dimmed,
   onPick,
   onLoaded,
@@ -175,6 +188,7 @@ function CtAtlasOrganMesh({
   clippingPlanes: Plane[];
   visible: boolean;
   highlighted: boolean;
+  selected: boolean;
   dimmed: boolean;
   onPick: () => void;
   onLoaded: () => void;
@@ -190,6 +204,7 @@ function CtAtlasOrganMesh({
       clippingPlanes={clippingPlanes}
       visible={visible}
       highlighted={highlighted}
+      selected={selected}
       dimmed={dimmed}
       onPick={onPick}
       onLoaded={onLoaded}
@@ -207,6 +222,7 @@ function CtAtlasOrganMeshWithFallback({
   clippingPlanes,
   visible,
   highlighted,
+  selected,
   dimmed,
   onPick,
   onLoaded,
@@ -220,6 +236,7 @@ function CtAtlasOrganMeshWithFallback({
   clippingPlanes: Plane[];
   visible: boolean;
   highlighted: boolean;
+  selected: boolean;
   dimmed: boolean;
   onPick: () => void;
   onLoaded: () => void;
@@ -240,6 +257,7 @@ function CtAtlasOrganMeshWithFallback({
         clippingPlanes={clippingPlanes}
         visible={visible}
         highlighted={highlighted}
+        selected={selected}
         dimmed={dimmed}
         onPick={onPick}
         onLoaded={onLoaded}
@@ -257,6 +275,7 @@ function CtAtlasOrganMeshWithFallback({
         clippingPlanes={clippingPlanes}
         visible={visible}
         highlighted={highlighted}
+        selected={selected}
         dimmed={dimmed}
         onPick={onPick}
         onLoaded={onLoaded}
@@ -332,6 +351,8 @@ export function CtAtlasRig({
             const structureId = resolveStructureIdForAtlasEntry(entry);
             if (structureId) onSelect(structureId);
           };
+          const structureId = resolveStructureIdForAtlasEntry(entry);
+          const selected = structureId != null && selectedId === structureId;
 
           return (
             <CtAtlasOrganMesh
@@ -341,6 +362,7 @@ export function CtAtlasRig({
               clippingPlanes={clippingPlanes}
               visible={visible}
               highlighted={highlighted}
+              selected={selected}
               dimmed={systemFiltered}
               onPick={pickStructure}
               onLoaded={scheduleRefit}
@@ -362,6 +384,8 @@ export function CtAtlasRig({
           const structureId = resolveStructureIdForAtlasEntry(entry);
           if (structureId) onSelect(structureId);
         };
+        const structureId = resolveStructureIdForAtlasEntry(entry);
+        const selected = structureId != null && selectedId === structureId;
 
         return (
           <group
@@ -375,6 +399,7 @@ export function CtAtlasRig({
               clippingPlanes={clippingPlanes}
               visible
               highlighted={highlighted}
+              selected={selected}
               dimmed={systemFiltered}
               onPick={pickStructure}
               onLoaded={scheduleRefit}

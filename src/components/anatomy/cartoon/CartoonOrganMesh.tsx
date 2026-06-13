@@ -2,7 +2,7 @@
 
 import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Euler, Group } from "three";
 import { Vector3 } from "three";
 import type { AnatomyModuleDef } from "@/lib/anatomy/modules/types";
@@ -10,7 +10,8 @@ import { getOrganDepthOrder } from "@/lib/anatomy/cartoon/organ-layout";
 import { CARTOON_OUTLINE } from "@/lib/anatomy/cartoon/palette";
 import { ANATOMY_SYSTEM_COLORS, blendHexColor } from "@/lib/anatomy/system-colors";
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
-import { useAnatomyPointer } from "@/components/anatomy/cartoon/AnatomyPointerProvider";
+import { useAnatomyPointer, useAnatomyHoverReset } from "@/components/anatomy/cartoon/AnatomyPointerProvider";
+import { isPrimaryPointerHit } from "@/lib/anatomy/cartoon/anatomy-raycast";
 import { OrganVisual, STRUCTURAL_BONE_MESH_IDS, STRUCTURAL_MUSCLE_MESH_IDS, type OrganSurfaceStyle } from "./OrganVisual";
 
 const BILATERAL_MESH_IDS = new Set(["biceps", "humerus", "femur", "tibia", "scapula"]);
@@ -31,7 +32,7 @@ function resolveOpacity(
     case "vascular":
       return 0.85;
     case "nerve":
-      return 0.6;
+      return 0.9;
     case "organ":
       return baseOpacity * 0.58;
     default:
@@ -67,6 +68,13 @@ function OrganMeshInstance({
   const ref = useRef<Group>(null);
   const [hovered, setHovered] = useState(false);
   const { setHovering } = useAnatomyPointer();
+
+  const clearHover = useCallback(() => {
+    setHovered(false);
+    setHovering(false);
+  }, [setHovering]);
+  useAnatomyHoverReset(clearHover);
+
   const baseScale = useMemo(() => new Vector3(...def.scale), [def.scale]);
   const targetScale = useRef(new Vector3(...def.scale));
 
@@ -99,8 +107,11 @@ function OrganMeshInstance({
     !active;
   if (systemFiltered) opacity *= 0.14;
 
-  const emissive = highlighted || selected ? "#7c3aed" : hovered ? "#8b5cf6" : "#000000";
-  const emissiveIntensity = highlighted || selected ? 0.45 : hovered ? 0.18 : 0;
+  const nerveGlow = def.layer === "nerve";
+  const emissive =
+    highlighted || selected ? "#7c3aed" : hovered ? "#8b5cf6" : nerveGlow ? "#fbbf24" : "#000000";
+  const emissiveIntensity =
+    highlighted || selected ? 0.45 : hovered ? 0.18 : nerveGlow ? 0.28 : 0;
 
   const tintedColor = useMemo(() => {
     if (def.layer !== "organ") return def.color;
@@ -127,6 +138,8 @@ function OrganMeshInstance({
   const depthBase = def.layer === "organ" ? getOrganDepthOrder(def.id) : 5;
   const renderOrder = (skinOn ? 2 : 3) + depthBase;
 
+  const showLabel = hovered;
+
   return (
     <group
       ref={ref}
@@ -134,10 +147,12 @@ function OrganMeshInstance({
       rotation={euler}
       renderOrder={renderOrder}
       onClick={(e) => {
+        if (!isPrimaryPointerHit(e)) return;
         e.stopPropagation();
         onSelect(def.id);
       }}
       onPointerOver={(e) => {
+        if (!isPrimaryPointerHit(e)) return;
         e.stopPropagation();
         setHovered(true);
         setHovering(true);
@@ -155,7 +170,7 @@ function OrganMeshInstance({
         meshId={def.id}
       />
 
-      {active && (
+      {showLabel ? (
         <Html
           center
           distanceFactor={5.5}
@@ -166,7 +181,7 @@ function OrganMeshInstance({
             {label}
           </span>
         </Html>
-      )}
+      ) : null}
     </group>
   );
 }

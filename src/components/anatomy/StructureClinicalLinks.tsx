@@ -1,0 +1,249 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import Link from "next/link";
+import { Activity, Pill, Stethoscope, Target } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import {
+  anatomyDrugHref,
+  getResolvedDiseaseLinksForStructure,
+  type ClinicalEndpoint,
+  type ResolvedAnatomyDiseaseLink,
+} from "@/lib/anatomy/clinical-links";
+import type { AnatomyStructure } from "@/lib/anatomy/types";
+
+type Props = {
+  structure: AnatomyStructure;
+  focusedDiseaseId?: string | null;
+  onFocusDisease?: (diseaseId: string | null) => void;
+};
+
+export function StructureClinicalLinks({
+  structure,
+  focusedDiseaseId = null,
+  onFocusDisease,
+}: Props) {
+  const diseases = getResolvedDiseaseLinksForStructure(structure.id).filter(
+    (d) => d.firstLineDrugs.length > 0 || d.adjunctDrugs.length > 0
+  );
+
+  if (diseases.length === 0) return null;
+
+  return (
+    <section aria-label="Disease states and treatments">
+      <div className="mb-2 flex items-center gap-2">
+        <Stethoscope className="h-4 w-4 text-indigo-600" aria-hidden />
+        <h4 className="text-sm font-bold text-[var(--color-ink)]">Disease → drug → endpoints</h4>
+      </div>
+      <p className="mb-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+        Tap a related condition above or explore each thread — drugs open the Top 500 card.
+      </p>
+
+      <ul className="space-y-3">
+        {diseases.map((disease) => (
+          <DiseaseCard
+            key={disease.id}
+            disease={disease}
+            focused={focusedDiseaseId === disease.id}
+            onFocus={() => onFocusDisease?.(disease.id)}
+          />
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function DiseaseCard({
+  disease,
+  focused,
+  onFocus,
+}: {
+  disease: ResolvedAnatomyDiseaseLink;
+  focused: boolean;
+  onFocus: () => void;
+}) {
+  const ref = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    if (focused && ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [focused]);
+
+  return (
+    <li
+      ref={ref}
+      id={`disease-${disease.id}`}
+      className={`rounded-2xl border p-3 transition ${
+        focused
+          ? "border-indigo-400 bg-indigo-50 ring-2 ring-indigo-200"
+          : "border-indigo-100 bg-indigo-50/40"
+      }`}
+    >
+      <button
+        type="button"
+        onClick={onFocus}
+        className="flex w-full flex-wrap items-center gap-2 text-left"
+      >
+        <p className="text-sm font-semibold text-[var(--color-ink)]">{disease.name}</p>
+        {disease.highYield ? (
+          <Badge className="bg-amber-100 text-amber-900">High-yield</Badge>
+        ) : null}
+        {disease.generated ? (
+          <Badge className="bg-slate-100 text-slate-600">Auto-linked</Badge>
+        ) : null}
+      </button>
+
+      <p className="mt-1.5 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+        {disease.pathophysiology}
+      </p>
+
+      {disease.presentation.length > 0 ? (
+        <ul className="mt-2 space-y-1">
+          {disease.presentation.slice(0, 3).map((item) => (
+            <li key={item} className="text-xs text-[var(--color-ink)]">
+              · {item}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+
+      <EndpointGroup
+        title="Diagnostic endpoints"
+        icon={<Activity className="h-3 w-3" />}
+        endpoints={disease.diagnosticEndpoints}
+      />
+      <EndpointGroup
+        title="Monitoring"
+        icon={<Target className="h-3 w-3" />}
+        endpoints={disease.monitoringEndpoints}
+      />
+
+      {disease.treatmentGoals && disease.treatmentGoals.length > 0 ? (
+        <div className="mt-2">
+          <p className="text-[10px] font-bold uppercase tracking-wide text-emerald-700">Goals</p>
+          <ul className="mt-1 space-y-0.5">
+            {disease.treatmentGoals.map((g) => (
+              <li key={g} className="text-xs text-[var(--color-ink)]">
+                · {g}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {disease.firstLineDrugs.length > 0 ? (
+        <div className="mt-3">
+          <p className="text-[10px] font-bold uppercase tracking-wide text-indigo-700">
+            First-line therapy
+          </p>
+          <ul className="mt-1.5 space-y-1.5">
+            {disease.firstLineDrugs.map((drug) => (
+              <DrugRow key={drug.id} drug={drug} />
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {disease.adjunctDrugs.length > 0 ? (
+        <div className="mt-2">
+          <p className="text-[10px] font-bold uppercase tracking-wide text-slate-600">
+            Adjunct / special situations
+          </p>
+          <ul className="mt-1.5 space-y-1.5">
+            {disease.adjunctDrugs.map((drug) => (
+              <DrugRow key={drug.id} drug={drug} subdued />
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {disease.counselingPearl ? (
+        <p className="mt-2 rounded-lg bg-white/80 px-2.5 py-2 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
+          <strong className="font-semibold text-[var(--color-ink)]">Counseling:</strong>{" "}
+          {disease.counselingPearl}
+        </p>
+      ) : null}
+
+      {disease.examPearl ? (
+        <p className="mt-2 rounded-lg border border-amber-100 bg-amber-50/80 px-2.5 py-2 text-[11px] leading-relaxed text-amber-950">
+          <strong className="font-semibold">Board pearl:</strong> {disease.examPearl}
+        </p>
+      ) : null}
+    </li>
+  );
+}
+
+function EndpointGroup({
+  title,
+  icon,
+  endpoints,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  endpoints?: ClinicalEndpoint[];
+}) {
+  if (!endpoints?.length) return null;
+  return (
+    <div className="mt-2">
+      <p className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-slate-600">
+        {icon}
+        {title}
+      </p>
+      <ul className="mt-1 flex flex-wrap gap-1.5">
+        {endpoints.map((ep) => (
+          <li
+            key={`${ep.label}-${ep.target ?? ""}`}
+            className="rounded-md bg-white/90 px-2 py-1 text-[10px] text-[var(--color-ink)] ring-1 ring-black/[0.05]"
+          >
+            <span className="font-semibold">{ep.label}</span>
+            {ep.target ? <span className="text-[var(--color-ink-muted)]"> → {ep.target}</span> : null}
+            {ep.frequency ? (
+              <span className="block text-[var(--color-ink-muted)]">{ep.frequency}</span>
+            ) : null}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function DrugRow({
+  drug,
+  subdued = false,
+}: {
+  drug: { id: string; generic: string; brand: string; therapeuticClass: string };
+  subdued?: boolean;
+}) {
+  return (
+    <li>
+      <Link
+        href={anatomyDrugHref(drug.id)}
+        className={`flex items-start gap-2 rounded-xl border px-3 py-2 text-sm transition hover:border-indigo-200 hover:bg-white ${
+          subdued ? "border-black/[0.05] bg-white/60" : "border-indigo-100 bg-white"
+        }`}
+      >
+        <Pill className="mt-0.5 h-3.5 w-3.5 shrink-0 text-indigo-500" aria-hidden />
+        <span className="min-w-0">
+          <span className="font-semibold text-[var(--color-ink)]">{drug.generic}</span>
+          <span className="text-[var(--color-ink-muted)]"> ({drug.brand})</span>
+          <span className="mt-0.5 block text-[10px] text-[var(--color-ink-muted)]">
+            {drug.therapeuticClass}
+          </span>
+        </span>
+      </Link>
+    </li>
+  );
+}
+
+/** Resolve disease id when user taps a pathology badge. */
+export function resolvePathologyDiseaseId(
+  structureId: string,
+  pathologyLabel: string
+): string | undefined {
+  return getResolvedDiseaseLinksForStructure(structureId).find(
+    (d) =>
+      d.pathologyLabel?.toLowerCase() === pathologyLabel.toLowerCase() ||
+      d.name.toLowerCase() === pathologyLabel.toLowerCase()
+  )?.id;
+}

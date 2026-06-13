@@ -5,6 +5,7 @@ import { Search, X } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { groupStructuresBySystem } from "@/lib/anatomy";
 import { ANATOMY_SYSTEM_COLORS } from "@/lib/anatomy/system-colors";
+import { LAYER_SWATCHES } from "@/lib/anatomy/cartoon/layer-styles";
 import {
   ANATOMY_LAYER_LABELS,
   ANATOMY_SYSTEM_LABELS,
@@ -65,10 +66,9 @@ export function AnatomySidebar({
   if (collapsed) return null;
 
   return (
-    <aside className="flex h-full flex-col gap-4 overflow-hidden rounded-2xl border border-black/[0.06] bg-white p-4 shadow-[var(--shadow-apple-sm)]">
+    <aside className="flex h-full flex-col gap-3 overflow-hidden rounded-2xl border border-black/[0.06] bg-white p-4 shadow-[var(--shadow-apple-sm)]">
       <div>
-        <p className="text-xs font-bold uppercase tracking-[0.12em] text-violet-600">Explorer</p>
-        <h2 className="mt-1 text-lg font-bold text-[var(--color-ink)]">Structures</h2>
+        <h2 className="text-base font-bold text-[var(--color-ink)]">Structures</h2>
       </div>
 
       <label className="relative block">
@@ -101,57 +101,56 @@ export function AnatomySidebar({
         <Switch checked={highYieldOnly} onCheckedChange={onHighYieldOnlyChange} />
       </div>
 
-      <section aria-label="Organ system filters" className="space-y-2">
-        <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-          Organ systems
-        </p>
-        <div className="flex flex-wrap gap-1.5">
-          <FilterChip
-            active={systemFilter === "all"}
-            onClick={() => onSystemFilterChange("all")}
-            label="All"
-          />
+      <label className="block space-y-1">
+        <span className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+          Organ system
+        </span>
+        <select
+          value={systemFilter}
+          onChange={(e) => onSystemFilterChange(e.target.value as AnatomySystem | "all")}
+          className="w-full rounded-xl border border-black/[0.08] bg-[var(--color-surface)] px-3 py-2 text-sm outline-none ring-[var(--color-accent)] focus:ring-2"
+        >
+          <option value="all">All systems</option>
           {SYSTEMS.map(([id, label]) => (
-            <FilterChip
-              key={id}
-              active={systemFilter === id}
-              onClick={() => onSystemFilterChange(id)}
-              label={label}
-              swatch={ANATOMY_SYSTEM_COLORS[id]}
-            />
+            <option key={id} value={id}>
+              {label}
+            </option>
           ))}
-        </div>
-      </section>
+        </select>
+      </label>
 
       {showLayerControls ? (
         <section aria-label="Layer visibility" className="space-y-2">
           <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
             Layers
           </p>
-          <p className="text-[11px] leading-snug text-[var(--color-ink-muted)]">
-            Toggle layers on the 3D model — skin off by default so organs and bones read clearly.
-          </p>
-          <div className="space-y-1.5">
-            {LAYERS.map(([layer, label]) => (
-              <label
-                key={layer}
-                className="flex cursor-pointer items-center justify-between rounded-lg px-2 py-1.5 text-sm hover:bg-[var(--color-surface)]"
-              >
-                <span className="text-[var(--color-ink)]">{label}</span>
-                <Switch
-                  checked={visibleLayers.has(layer)}
-                  onCheckedChange={() => onToggleLayer(layer)}
-                />
-              </label>
-            ))}
+          <div className="flex flex-wrap gap-1.5">
+            {LAYERS.map(([layer, label]) => {
+              const on = visibleLayers.has(layer);
+              return (
+                <button
+                  key={layer}
+                  type="button"
+                  onClick={() => onToggleLayer(layer)}
+                  className={cn(
+                    "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-medium transition",
+                    on
+                      ? "bg-violet-600 text-white shadow-sm"
+                      : "bg-[var(--color-surface)] text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
+                  )}
+                >
+                  <span
+                    className="h-1.5 w-1.5 rounded-full"
+                    style={{ backgroundColor: on ? "rgba(255,255,255,0.9)" : LAYER_SWATCHES[layer] }}
+                    aria-hidden
+                  />
+                  {label}
+                </button>
+              );
+            })}
           </div>
         </section>
-      ) : (
-        <p className="rounded-xl bg-slate-50 px-3 py-2.5 text-xs leading-relaxed text-[var(--color-ink-muted)]">
-          Layer toggles apply on the <strong className="font-semibold text-[var(--color-ink)]">interactive human</strong>.
-          Use organ system filters above to narrow the structure list.
-        </p>
-      )}
+      ) : null}
 
       <section className="min-h-0 flex-1 space-y-2 overflow-y-auto">
         <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
@@ -274,39 +273,5 @@ function StructureList({
         );
       })}
     </ul>
-  );
-}
-
-function FilterChip({
-  active,
-  onClick,
-  label,
-  swatch,
-}: {
-  active: boolean;
-  onClick: () => void;
-  label: string;
-  swatch?: string;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        "inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium transition",
-        active
-          ? "bg-[var(--color-accent)] text-white shadow-sm"
-          : "bg-[var(--color-surface)] text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
-      )}
-    >
-      {swatch ? (
-        <span
-          className="h-1.5 w-1.5 rounded-full"
-          style={{ backgroundColor: active ? "rgba(255,255,255,0.9)" : swatch }}
-          aria-hidden
-        />
-      ) : null}
-      {label}
-    </button>
   );
 }

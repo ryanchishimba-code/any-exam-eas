@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef } from "react";
 import { AnatomyExplorerControls } from "@/components/anatomy/AnatomyExplorerControls";
 import { R3FAnatomyScene, type AnatomySceneHandle } from "@/components/anatomy/R3FAnatomyScene";
 import { getAnatomyStructure } from "@/lib/anatomy";
@@ -30,7 +30,6 @@ export function InteractiveAnatomyExplorer({
   embedded = false,
 }: Props) {
   const sceneRef = useRef<AnatomySceneHandle>(null);
-  const [autoSpin, setAutoSpin] = useState(false);
 
   const selectedName = selectedId ? getAnatomyStructure(selectedId)?.name : null;
 
@@ -47,8 +46,6 @@ export function InteractiveAnatomyExplorer({
       )}
     >
       <AnatomyExplorerControls
-        autoSpin={autoSpin}
-        onAutoSpinChange={setAutoSpin}
         onZoomIn={handleZoomIn}
         onZoomOut={handleZoomOut}
         onResetView={handleReset}
@@ -62,7 +59,7 @@ export function InteractiveAnatomyExplorer({
         selectedId={selectedId}
         highlightedId={highlightedId}
         onSelect={onSelect}
-        autoSpin={autoSpin}
+        autoSpin={false}
         className="min-h-0 flex-1 rounded-none border-0"
       />
     </div>

@@ -3,6 +3,7 @@
 import { BookOpen, Pill, X } from "lucide-react";
 import type { DrugSearchHit } from "@/lib/drugs300/search";
 import { TOP_500_DRUGS } from "@/lib/drugs300/catalog";
+import { DrugClinicalBridge } from "@/components/anatomy/DrugClinicalBridge";
 
 type Props = {
   drug: DrugSearchHit;
@@ -76,6 +77,8 @@ export function DrugSearchPreview({ drug, onClose }: Props) {
           {entry.mnemonic}
         </p>
       )}
+
+      <DrugClinicalBridge drugId={drug.id} />
     </div>
   );
 }

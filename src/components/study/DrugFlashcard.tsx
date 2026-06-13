@@ -2,6 +2,7 @@
 
 import { Brain, Sparkles } from "lucide-react";
 import type { DrugCardDto } from "@/lib/drugs300";
+import { DrugClinicalBridge } from "@/components/anatomy/DrugClinicalBridge";
 
 type Props = {
   card: DrugCardDto;
@@ -75,6 +76,7 @@ export function DrugFlashcard({
                     </span>
                   </p>
                 </div>
+                <DrugClinicalBridge drugId={card.drugId} compact variant="dark" />
               </div>
             </div>
           </div>

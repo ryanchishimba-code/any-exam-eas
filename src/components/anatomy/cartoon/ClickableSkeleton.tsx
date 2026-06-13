@@ -2,12 +2,13 @@
 
 import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Group } from "three";
 import { Vector3 } from "three";
 import type { BufferGeometry } from "three";
 import { StandardTissueMaterial } from "@/components/anatomy/cartoon/AnatomyMaterials";
-import { useAnatomyPointer } from "@/components/anatomy/cartoon/AnatomyPointerProvider";
+import { useAnatomyPointer, useAnatomyHoverReset } from "@/components/anatomy/cartoon/AnatomyPointerProvider";
+import { isPrimaryPointerHit } from "@/lib/anatomy/cartoon/anatomy-raycast";
 import {
   buildBoneInstances,
   createBoneMeshMap,
@@ -28,18 +29,26 @@ function BoneMesh({
   bone,
   geometry,
   active,
+  selected,
   opacity,
   onSelect,
 }: {
   bone: BoneInstance;
   geometry: BufferGeometry;
   active: boolean;
+  selected: boolean;
   opacity: number;
   onSelect: (id: string) => void;
 }) {
   const ref = useRef<Group>(null);
   const [hovered, setHovered] = useState(false);
   const { setHovering } = useAnatomyPointer();
+
+  const clearHover = useCallback(() => {
+    setHovered(false);
+    setHovering(false);
+  }, [setHovering]);
+  useAnatomyHoverReset(clearHover);
   const base = useRef(new Vector3(1, 1, 1));
   const target = useRef(new Vector3(1, 1, 1));
 
@@ -65,10 +74,12 @@ function BoneMesh({
       ref={ref}
       renderOrder={active ? 8 : 2}
       onClick={(e) => {
+        if (!isPrimaryPointerHit(e)) return;
         e.stopPropagation();
         onSelect(bone.id);
       }}
       onPointerOver={(e) => {
+        if (!isPrimaryPointerHit(e)) return;
         e.stopPropagation();
         setHovered(true);
         setHovering(true);
@@ -88,7 +99,7 @@ function BoneMesh({
           metalness={TISSUE_PBR.bone.metalness}
         />
       </mesh>
-      {active ? (
+      {hovered ? (
         <Html
           center
           distanceFactor={5}
@@ -128,12 +139,14 @@ export function ClickableSkeleton({
         const geo = meshMap.get(bone.id);
         if (!geo) return null;
         const active = isBoneHighlighted(bone.id, focusId);
+        const selected = selectedId === bone.id;
         return (
           <BoneMesh
             key={bone.id}
             bone={bone}
             geometry={geo}
             active={active}
+            selected={selected}
             opacity={active ? Math.min(0.98, baseOpacity + 0.04) : baseOpacity}
             onSelect={onSelect}
           />

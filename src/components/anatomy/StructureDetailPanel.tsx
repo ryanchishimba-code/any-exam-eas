@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { BookMarked, Brain, Stethoscope, Zap, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +14,8 @@ import {
 import type { AnatomyStructure } from "@/lib/anatomy/types";
 import type { MemoryCard } from "@/lib/reference/types";
 import type { ExamSlug } from "@/types/edtech";
+import { StructureClinicalLinks, resolvePathologyDiseaseId } from "@/components/anatomy/StructureClinicalLinks";
+import { cn } from "@/lib/utils";
 
 type Props = {
   structure: AnatomyStructure;
@@ -29,6 +32,8 @@ export function StructureDetailPanel({
   showStudioCta,
   onOpenStudio,
 }: Props) {
+  const [focusedDiseaseId, setFocusedDiseaseId] = useState<string | null>(null);
+
   return (
     <div className="flex-1 space-y-5 overflow-y-auto p-4">
       <p className="text-sm leading-relaxed text-[var(--color-ink-muted)]">
@@ -64,17 +69,47 @@ export function StructureDetailPanel({
         <section>
           <div className="mb-2 flex items-center gap-2">
             <Brain className="h-4 w-4 text-rose-600" aria-hidden />
-            <h4 className="text-sm font-bold text-[var(--color-ink)]">Clinical relevance</h4>
+            <h4 className="text-sm font-bold text-[var(--color-ink)]">Related conditions</h4>
           </div>
+          <p className="mb-2 text-[11px] text-[var(--color-ink-muted)]">
+            Tap a condition to jump to drugs and endpoints below.
+          </p>
           <div className="flex flex-wrap gap-1.5">
-            {structure.pathologies.map((p) => (
-              <Badge key={p} className="bg-rose-50 text-rose-800">
-                {p}
-              </Badge>
-            ))}
+            {structure.pathologies.map((p) => {
+              const diseaseId = resolvePathologyDiseaseId(structure.id, p);
+              const active = diseaseId && focusedDiseaseId === diseaseId;
+              if (!diseaseId) {
+                return (
+                  <Badge key={p} className="bg-rose-50 text-rose-800">
+                    {p}
+                  </Badge>
+                );
+              }
+              return (
+                <button
+                  key={p}
+                  type="button"
+                  onClick={() => setFocusedDiseaseId(diseaseId)}
+                  className={cn(
+                    "rounded-full px-2.5 py-1 text-xs font-medium transition",
+                    active
+                      ? "bg-rose-600 text-white shadow-sm"
+                      : "bg-rose-50 text-rose-800 hover:bg-rose-100"
+                  )}
+                >
+                  {p}
+                </button>
+              );
+            })}
           </div>
         </section>
       ) : null}
+
+      <StructureClinicalLinks
+        structure={structure}
+        focusedDiseaseId={focusedDiseaseId}
+        onFocusDisease={setFocusedDiseaseId}
+      />
 
       {memoryCards.length > 0 ? (
         <section>

@@ -41,7 +41,7 @@ const BASE_MODULES: AnatomyModuleDef[] = [
   { id: "adrenal-glands", layer: "organ", position: [0, 0.32, -0.1], scale: [0.26, 0.04, 0.06], color: ORGAN_COLORS.adrenal, geometry: "box", profile: "adrenal-pair", focusDistance: 1.45 },
   { id: "bladder", layer: "organ", position: [0, 0.06, 0.04], scale: [0.12, 0.08, 0.08], color: ORGAN_COLORS.bladder, geometry: "sphere", profile: "bladder-sac", focusDistance: 1.3 },
   { id: "prostate", layer: "organ", position: [0, 0, 0.02], scale: [0.08, 0.045, 0.06], color: ORGAN_COLORS.prostate, geometry: "sphere", profile: "prostate-disc", focusDistance: 1.25 },
-  { id: "spinal-cord", layer: "nerve", position: [0, 0.6, -0.14], scale: [0.035, 0.75, 0.035], color: ORGAN_COLORS.nerve, geometry: "cylinder", profile: "nerve-cord", focusDistance: 1.75 },
+  { id: "spinal-cord", layer: "nerve", position: [0, 0.6, -0.14], scale: [0.045, 0.78, 0.045], color: ORGAN_COLORS.nerve, geometry: "cylinder", profile: "nerve-cord", focusDistance: 1.75 },
   { id: "biceps", layer: "muscle", position: [0.33, 0.7, 0.05], scale: [0.07, 0.18, 0.07], color: ORGAN_COLORS.muscleAccent, geometry: "capsule", profile: "muscle-bulge", focusDistance: 1.4 },
 ];
 
