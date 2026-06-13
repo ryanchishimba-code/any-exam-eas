@@ -256,13 +256,13 @@ export async function curateNclexBankItem(
   if (!opts.aiOnly) {
     const polished = polishNclexBankItem(working, subjectId, subjectLabel, seed);
     if (polished.changed) {
-      working = polished.item;
+      working = { ...polished.item, subjectId: polished.item.subjectId ?? subjectId };
       changed = true;
       stage = "rule_polish";
     }
   }
 
-  let afterRule = validateCuratedBankItem(working, minPass);
+  const afterRule = validateCuratedBankItem(working, minPass);
   const needsAi =
     useAi &&
     (opts.forceAi || opts.aiOnly || !afterRule.ok || scoreNclexBankItem(working) < minPass);
@@ -287,16 +287,19 @@ export async function curateNclexBankItem(
     if (rewritten) {
       let enriched = bankItemToExamQuestion(rewritten, 0, { field: "nursing", subjectId });
       enriched = enrichQuestion(enriched, "nursing");
-      working = mergeAiPayload(rewritten, {
-        vignette: enriched.vignette,
-        question: enriched.question,
-        options: enriched.options,
-        correctAnswer: enriched.correctAnswer,
-        explanation: enriched.explanation,
-        clinicalReasoning: enriched.clinicalReasoning,
-        distractorRationale: enriched.distractorRationale,
-        tags: enriched.tags,
-      });
+      working = {
+        ...mergeAiPayload(rewritten, {
+          vignette: enriched.vignette,
+          question: enriched.question,
+          options: enriched.options,
+          correctAnswer: enriched.correctAnswer,
+          explanation: enriched.explanation,
+          clinicalReasoning: enriched.clinicalReasoning,
+          distractorRationale: enriched.distractorRationale,
+          tags: enriched.tags,
+        }),
+        subjectId: rewritten.subjectId ?? subjectId,
+      };
       aiUsed = true;
       changed = true;
       stage = "ai_rewrite";

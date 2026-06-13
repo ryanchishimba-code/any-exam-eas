@@ -267,7 +267,7 @@ export function auditUsmleQaEditor(
   if (tags.includes("physician-educator")) platformFit += 1.5;
   if (tags.length >= 2) platformFit += 0.5;
   if (item.difficulty != null && item.difficulty >= 1 && item.difficulty <= 5) platformFit += 0.5;
-  if (item.related?.keyTakeaway || item.related?.memoryCardIds?.length) platformFit += 1;
+  if (item.keyTakeaways?.length) platformFit += 1;
   if (explanation.length >= 150 && /key finding|pearl|takeaway|remember/i.test(explanation)) platformFit += 0.5;
   if (source === "polished") platformFit += 0.5;
 
@@ -301,7 +301,10 @@ export function auditUsmleQaEditor(
         : "Medium";
 
   const tagsSuggestion = [...new Set([...(tags ?? []), item.subjectId ?? "usmle"].filter(Boolean))].join("; ");
-  const testedConcepts = tags.filter((t) => !["physician-educator", "usmle-polished", "generated", "bulk-bank"].includes(t)).join("; ") || item.subjectId;
+  const testedConcepts =
+    tags.filter((t) => !["physician-educator", "usmle-polished", "generated", "bulk-bank"].includes(t)).join("; ") ||
+    item.subjectId ||
+    "";
 
   return {
     itemId: meta.itemId,

@@ -37,6 +37,26 @@ function getOpenAI(): OpenAI | null {
   return openaiClient;
 }
 
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function withOpenAiRetry<T>(fn: () => Promise<T>, maxAttempts = 4): Promise<T> {
+  let delayMs = 5000;
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    try {
+      return await fn();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      const rateLimited = message.includes("429") || message.includes("rate limit");
+      if (!rateLimited || attempt === maxAttempts - 1) throw error;
+      await sleep(delayMs);
+      delayMs = Math.min(delayMs * 2, 120_000);
+    }
+  }
+  throw new Error("OpenAI retry exhausted");
+}
+
 export type UsmleCurationAction =
   | "accepted"
   | "rule_polished"
@@ -68,6 +88,8 @@ export type UsmleCuratorOptions = {
   offline?: boolean;
   /** Skip rule polish — go straight to AI repair (hash-collision retries). */
   aiOnly?: boolean;
+  /** Skip rule polish for failing items — use AI rewrite directly (default when API available). */
+  aiFirst?: boolean;
   seed?: number;
 };
 
@@ -163,12 +185,19 @@ async function fetchRagContext(
       material.advanced?.retrievedChunks ??
       researchChunks(
         material.researchBrief,
-        material.sources.map((s) => ({ title: s.title, snippet: s.snippet }))
+        material.sources.map((s) => ({ title: s.title, snippet: s.content }))
       )
     );
   } catch {
     return [];
   }
+}
+
+function stripChartBoilerplate(text: string): string {
+  return text
+    .replace(/\s*Encounter\s+\d+\.?\s*$/i, "")
+    .replace(/\s*Handoff ref\s+\d+\.?\s*$/i, "")
+    .trim();
 }
 
 function parseAiBankItem(raw: string, base: BankItem): BankItem | null {
@@ -178,17 +207,20 @@ function parseAiBankItem(raw: string, base: BankItem): BankItem | null {
       question?: string;
       options?: string[];
     };
-    if (!parsed.question?.trim() || !parsed.correctAnswer?.trim()) return null;
+    const vignette = stripChartBoilerplate(parsed.vignette?.trim() ?? "");
+    const question = stripChartBoilerplate(parsed.question?.trim() ?? "");
+    if (!question || !parsed.correctAnswer?.trim()) return null;
+    if (!vignette || vignette.length < 40) return null;
     if (!Array.isArray(parsed.options) || parsed.options.length < 4) return null;
     if (!parsed.options.includes(parsed.correctAnswer)) return null;
 
     const exam: ExamQuestion = {
       id: 1,
       type: "multiple_choice",
-      vignette: parsed.vignette?.trim(),
-      question: parsed.question.trim(),
-      options: parsed.options,
-      correctAnswer: parsed.correctAnswer,
+      vignette,
+      question,
+      options: parsed.options.map((o) => o.trim()),
+      correctAnswer: parsed.correctAnswer.trim(),
       explanation: parsed.explanation ?? "",
       clinicalReasoning: parsed.clinicalReasoning,
       distractorRationale: parsed.distractorRationale,
@@ -217,40 +249,43 @@ export async function regenerateUsmleBankItemWithAi(params: {
     .map((c, i) => `[${i + 1}] ${c.title}: ${c.content.slice(0, 400)}`)
     .join("\n");
 
-  const completion = await getOpenAI()!.chat.completions.create({
-    model: "gpt-4o-mini",
-    temperature: 0.22,
-    max_tokens: 2200,
-    response_format: { type: "json_object" },
-    messages: [
-      { role: "system", content: USMLE_CURATOR_SYSTEM },
-      {
-        role: "user",
-        content: [
-          `Exam: ${stepLabel(params.fieldId)}`,
-          `Subject: ${params.subjectId}`,
-          `QA issues: ${params.reflection.issues.join("; ")}`,
-          `Suggestions: ${params.reflection.suggestions.join("; ")}`,
-          "",
-          "Original item:",
-          JSON.stringify(
-            {
-              vignette: exam.vignette,
-              question: exam.question,
-              options: exam.options,
-              correctAnswer: exam.correctAnswer,
-              explanation: exam.explanation,
-            },
-            null,
-            2
-          ),
-          "",
-          "Reference material:",
-          context || "(none — use standard medical knowledge)",
-        ].join("\n"),
-      },
-    ],
-  });
+  const completion = await withOpenAiRetry(() =>
+    getOpenAI()!.chat.completions.create({
+      model: "gpt-4o-mini",
+      temperature: 0.22,
+      max_tokens: 2200,
+      response_format: { type: "json_object" },
+      messages: [
+        { role: "system", content: USMLE_CURATOR_SYSTEM },
+        {
+          role: "user",
+          content: [
+            `Exam: ${stepLabel(params.fieldId)}`,
+            `Subject: ${params.subjectId}`,
+            `Item ref: ${params.item.id ?? "unknown"} — vignette must be unique to this case`,
+            `QA issues: ${params.reflection.issues.join("; ")}`,
+            `Suggestions: ${params.reflection.suggestions.join("; ")}`,
+            "",
+            "Original item:",
+            JSON.stringify(
+              {
+                vignette: exam.vignette,
+                question: exam.question,
+                options: exam.options,
+                correctAnswer: exam.correctAnswer,
+                explanation: exam.explanation,
+              },
+              null,
+              2
+            ),
+            "",
+            "Reference material:",
+            context || "(none — use standard medical knowledge)",
+          ].join("\n"),
+        },
+      ],
+    })
+  );
 
   const content = completion.choices[0]?.message?.content ?? "";
   return parseAiBankItem(content, params.item);
@@ -287,10 +322,11 @@ export async function curateUsmleBankItem(
   opts: UsmleCuratorOptions
 ): Promise<UsmleCurationResult> {
   const minScore = opts.minAcceptScore ?? 8;
-  const maxAi = opts.maxAiAttempts ?? 2;
+  const maxAi = opts.maxAiAttempts ?? 3;
   const notes: string[] = [];
   const subjectId = rawItem.subjectId ?? "internal-medicine";
   const seed = opts.seed ?? 0;
+  const useAiFirst = opts.aiFirst ?? (!opts.offline && Boolean(getOpenAI()) && !opts.aiOnly);
 
   let item = normalizeUsmleBankItemFields(rawItem);
   const before = auditItem(item, opts);
@@ -309,9 +345,9 @@ export async function curateUsmleBankItem(
 
   notes.push(`Initial QA ${before.overallScore}/10 (${before.issues.map((i) => i.code).slice(0, 3).join(", ")})`);
 
-  if (!opts.aiOnly) {
+  if (!opts.aiOnly && !useAiFirst) {
     item = tryRulePolish(item, opts.fieldId, subjectId, seed);
-    let after = auditItem(item, opts);
+    const after = auditItem(item, opts);
     bankReport = auditBankItem(item, opts.fieldId);
 
     if (isAcceptable(after, bankReport.ok, minScore)) {
@@ -325,11 +361,13 @@ export async function curateUsmleBankItem(
         notes,
       };
     }
-  } else {
+  } else if (opts.aiOnly) {
     notes.push("AI-only retry (skipped rule polish)");
+  } else if (useAiFirst) {
+    notes.push("AI-first mode (skipped rule polish for failing item)");
   }
 
-  let after = auditItem(item, opts);
+  const after = auditItem(item, opts);
   bankReport = auditBankItem(item, opts.fieldId);
 
   if (opts.aiOnly && isAcceptable(after, bankReport.ok, minScore)) {
@@ -356,7 +394,7 @@ export async function curateUsmleBankItem(
   }
 
   const chunks =
-    opts.useRag !== false
+    opts.useRag !== false && !useAiFirst
       ? await fetchRagContext(opts.fieldId, subjectId, item)
       : [];
 
@@ -365,11 +403,22 @@ export async function curateUsmleBankItem(
   let bestAfter = after;
   let bestBankOk = bankReport.ok;
 
-  for (let attempt = 0; attempt < maxAi; attempt++) {
-    const exam = bankItemToUsmleExam(bestItem, attempt);
-    reflection = await reflectOnQuestion(exam, chunks, opts.fieldId);
+  const auditReflection: SelfRagReflection = {
+    relevant: true,
+    grounded: true,
+    clinicallySound: before.overallScore >= 6,
+    formatValid: Boolean(splitUsmleBankItem(item).vignette),
+    qualityScore: before.overallScore / 10,
+    issues: before.issues.map((i) => `${i.code}: ${i.message}`),
+    suggestions: before.recommendations,
+  };
 
-    if (passesQualityGate(reflection) && bestAfter.overallScore >= minScore && bestBankOk) {
+  for (let attempt = 0; attempt < maxAi; attempt++) {
+    reflection = useAiFirst
+      ? auditReflection
+      : await reflectOnQuestion(bankItemToUsmleExam(bestItem, attempt), chunks, opts.fieldId);
+
+    if (!useAiFirst && passesQualityGate(reflection) && bestAfter.overallScore >= minScore && bestBankOk) {
       notes.push(`Self-RAG pass on attempt ${attempt + 1}`);
       break;
     }
@@ -379,14 +428,14 @@ export async function curateUsmleBankItem(
     improved = await regenerateUsmleBankItemWithAi({
       item: bestItem,
       reflection,
-      chunks,
+      chunks: useAiFirst ? [] : chunks,
       fieldId: opts.fieldId,
       subjectId,
     });
 
-    if (!improved) {
+    if (!improved && !useAiFirst) {
       const regen = await regenerateQuestion({
-        question: exam,
+        question: bankItemToUsmleExam(bestItem, attempt),
         reflection,
         chunks,
         field: opts.fieldId,

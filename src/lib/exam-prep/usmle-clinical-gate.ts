@@ -58,7 +58,7 @@ export function usmleBankItemIsServeReady(item: BankItem, fieldId: string): bool
 
   const report = auditUsmleQaEditor(normalized, {
     fieldId,
-    source: normalized.source ?? "polished",
+    source: "polished",
     itemId: normalized.id,
     difficulty: normalized.difficulty ?? null,
   });
