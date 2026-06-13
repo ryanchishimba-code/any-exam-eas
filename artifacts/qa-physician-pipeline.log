@@ -1,0 +1,177 @@
+=== QA physician pipeline started 2026-06-12T15:43:56.583Z ===
+[2026-06-12T15:43:56.593Z] ▶ START: NCLEX polish
+[2026-06-12T15:43:56.593Z] ▶ START: NCLEX polish
+
+NCLEX polish — 24131 active nursing items
+
+
+Scanned:     24131
+Candidates:  0
+Updated:   0
+Skipped:     24131
+Hash collisions: 0
+Errors:      0
+Avg quality: 1.000 → 1.000
+
+[2026-06-12T15:44:08.972Z] ✓ DONE: NCLEX polish
+[2026-06-12T15:44:08.972Z] ✓ DONE: NCLEX polish
+[2026-06-12T15:44:08.973Z] ▶ START: USMLE Step 1 polish
+[2026-06-12T15:44:08.973Z] ▶ START: USMLE Step 1 polish
+
+USMLE polish — 12095 active usmle-step-1 items
+
+TypeError: item.options.some is not a function
+    at scoreUsmleBankItem (/Users/ryanchishimba/Desktop/cursor/src/lib/engine/polish/usmle-polish.ts:587:20)
+    at polishField (/Users/ryanchishimba/Desktop/cursor/scripts/polish-usmle-questions.ts:76:20)
+    at async main (/Users/ryanchishimba/Desktop/cursor/scripts/polish-usmle-questions.ts:186:5)
+[2026-06-12T16:31:29.497Z] ✗ FAILED: USMLE Step 1 polish — Command failed: /Users/ryanchishimba/Desktop/cursor/.tools/node-v22.14.0-darwin-arm64/bin/node node_modules/tsx/dist/cli.mjs scripts/polish-usmle-questions.ts --field usmle-step-1
+[2026-06-12T16:31:29.497Z] ✗ FAILED: USMLE Step 1 polish — Command failed: /Users/ryanchishimba/Desktop/cursor/.tools/node-v22.14.0-darwin-arm64/bin/node node_modules/tsx/dist/cli.mjs scripts/polish-usmle-questions.ts --field usmle-step-1
+[2026-06-12T16:31:29.503Z] ▶ START: USMLE Step 2 polish
+[2026-06-12T16:31:29.503Z] ▶ START: USMLE Step 2 polish
+
+USMLE polish — 18154 active usmle-step-2 items
+
+TypeError: item.options.some is not a function
+    at scoreUsmleBankItem (/Users/ryanchishimba/Desktop/cursor/src/lib/engine/polish/usmle-polish.ts:587:20)
+    at polishField (/Users/ryanchishimba/Desktop/cursor/scripts/polish-usmle-questions.ts:76:20)
+    at async main (/Users/ryanchishimba/Desktop/cursor/scripts/polish-usmle-questions.ts:186:5)
+[2026-06-12T16:31:45.017Z] ✗ FAILED: USMLE Step 2 polish — Command failed: /Users/ryanchishimba/Desktop/cursor/.tools/node-v22.14.0-darwin-arm64/bin/node node_modules/tsx/dist/cli.mjs scripts/polish-usmle-questions.ts --field usmle-step-2
+[2026-06-12T16:31:45.017Z] ✗ FAILED: USMLE Step 2 polish — Command failed: /Users/ryanchishimba/Desktop/cursor/.tools/node-v22.14.0-darwin-arm64/bin/node node_modules/tsx/dist/cli.mjs scripts/polish-usmle-questions.ts --field usmle-step-2
+[2026-06-12T16:31:45.018Z] ▶ START: USMLE Step 3 polish
+[2026-06-12T16:31:45.018Z] ▶ START: USMLE Step 3 polish
+
+USMLE polish — 18073 active usmle-step-3 items
+
+TypeError: item.options.some is not a function
+    at scoreUsmleBankItem (/Users/ryanchishimba/Desktop/cursor/src/lib/engine/polish/usmle-polish.ts:587:20)
+    at polishField (/Users/ryanchishimba/Desktop/cursor/scripts/polish-usmle-questions.ts:76:20)
+    at async main (/Users/ryanchishimba/Desktop/cursor/scripts/polish-usmle-questions.ts:186:5)
+[2026-06-12T17:33:01.651Z] ✗ FAILED: USMLE Step 3 polish — Command failed: /Users/ryanchishimba/Desktop/cursor/.tools/node-v22.14.0-darwin-arm64/bin/node node_modules/tsx/dist/cli.mjs scripts/polish-usmle-questions.ts --field usmle-step-3
+[2026-06-12T17:33:01.651Z] ✗ FAILED: USMLE Step 3 polish — Command failed: /Users/ryanchishimba/Desktop/cursor/.tools/node-v22.14.0-darwin-arm64/bin/node node_modules/tsx/dist/cli.mjs scripts/polish-usmle-questions.ts --field usmle-step-3
+[2026-06-12T17:33:01.661Z] ▶ START: QA gate — nursing
+[2026-06-12T17:33:01.661Z] ▶ START: QA gate — nursing
+
+QA gate — auditing 24131 active item(s) (nursing)
+
+  … 2000/24131 (2000 pass, 0 fail)
+  … 4000/24131 (4000 pass, 0 fail)
+  … 6000/24131 (6000 pass, 0 fail)
+  … 8000/24131 (8000 pass, 0 fail)
+  … 10000/24131 (10000 pass, 0 fail)
+  … 12000/24131 (12000 pass, 0 fail)
+  … 14000/24131 (14000 pass, 0 fail)
+  … 16000/24131 (16000 pass, 0 fail)
+  … 18000/24131 (18000 pass, 0 fail)
+  … 20000/24131 (20000 pass, 0 fail)
+  … 22000/24131 (22000 pass, 0 fail)
+  … 24000/24131 (24000 pass, 0 fail)
+  … 24131/24131 (24131 pass, 0 fail)
+
+── QA gate complete ──
+Processed:  24131
+Pass:       24131 (100.0%)
+Fail:       0
+
+By field:
+  nursing: 24131/24131 pass (100.0%)
+
+Top issue codes:
+  duplicate_vignette_in_stem: 3045
+  generic_delegation_correct: 523
+  pediatric_age_mismatch: 109
+
+Students will see: 86722 qaPassed items
+[2026-06-12T17:56:00.478Z] ✓ DONE: QA gate — nursing
+[2026-06-12T17:56:00.478Z] ✓ DONE: QA gate — nursing
+[2026-06-12T17:56:00.490Z] ▶ START: QA gate — usmle-step-1
+[2026-06-12T17:56:00.490Z] ▶ START: QA gate — usmle-step-1
+
+QA gate — auditing 12095 active item(s) (usmle-step-1)
+
+  … 2000/12095 (2000 pass, 0 fail)
+  … 4000/12095 (4000 pass, 0 fail)
+  … 6000/12095 (6000 pass, 0 fail)
+  … 8000/12095 (8000 pass, 0 fail)
+  … 10000/12095 (10000 pass, 0 fail)
+  … 12000/12095 (12000 pass, 0 fail)
+  … 12095/12095 (12084 pass, 11 fail)
+
+── QA gate complete ──
+Processed:  12095
+Pass:       12084 (99.9%)
+Fail:       11
+
+By field:
+  usmle-step-1: 12084/12095 pass (99.9%)
+
+Top issue codes:
+  invalid_option_count: 10
+  empty_question: 1
+
+Students will see: 90835 qaPassed items
+[2026-06-12T18:11:23.579Z] ✓ DONE: QA gate — usmle-step-1
+[2026-06-12T18:11:23.579Z] ✓ DONE: QA gate — usmle-step-1
+[2026-06-12T18:11:23.588Z] ▶ START: QA gate — usmle-step-2
+[2026-06-12T18:11:23.588Z] ▶ START: QA gate — usmle-step-2
+
+QA gate — auditing 18154 active item(s) (usmle-step-2)
+
+  … 2000/18154 (2000 pass, 0 fail)
+  … 4000/18154 (4000 pass, 0 fail)
+  … 6000/18154 (6000 pass, 0 fail)
+  … 8000/18154 (8000 pass, 0 fail)
+  … 10000/18154 (10000 pass, 0 fail)
+  … 12000/18154 (12000 pass, 0 fail)
+  … 14000/18154 (14000 pass, 0 fail)
+  … 16000/18154 (16000 pass, 0 fail)
+  … 18000/18154 (18000 pass, 0 fail)
+  … 18154/18154 (18125 pass, 29 fail)
+
+── QA gate complete ──
+Processed:  18154
+Pass:       18125 (99.8%)
+Fail:       29
+
+By field:
+  usmle-step-2: 18125/18154 pass (99.8%)
+
+Top issue codes:
+  invalid_option_count: 26
+  empty_question: 3
+
+Students will see: 96764 qaPassed items
+[2026-06-12T18:33:08.866Z] ✓ DONE: QA gate — usmle-step-2
+[2026-06-12T18:33:08.866Z] ✓ DONE: QA gate — usmle-step-2
+[2026-06-12T18:33:08.873Z] ▶ START: QA gate — usmle-step-3
+[2026-06-12T18:33:08.873Z] ▶ START: QA gate — usmle-step-3
+
+QA gate — auditing 18073 active item(s) (usmle-step-3)
+
+  … 2000/18073 (2000 pass, 0 fail)
+  … 4000/18073 (4000 pass, 0 fail)
+  … 6000/18073 (6000 pass, 0 fail)
+  … 8000/18073 (8000 pass, 0 fail)
+  … 10000/18073 (10000 pass, 0 fail)
+  … 12000/18073 (12000 pass, 0 fail)
+  … 14000/18073 (14000 pass, 0 fail)
+  … 16000/18073 (16000 pass, 0 fail)
+  … 18000/18073 (18000 pass, 0 fail)
+  … 18073/18073 (18066 pass, 7 fail)
+
+── QA gate complete ──
+Processed:  18073
+Pass:       18066 (100.0%)
+Fail:       7
+
+By field:
+  usmle-step-3: 18066/18073 pass (100.0%)
+
+Top issue codes:
+  empty_question: 7
+  usmle_short_stem: 3
+
+Students will see: 96757 qaPassed items
+[2026-06-12T18:49:31.237Z] ✓ DONE: QA gate — usmle-step-3
+[2026-06-12T18:49:31.237Z] ✓ DONE: QA gate — usmle-step-3
+[2026-06-12T18:49:31.239Z] === Pipeline finished with 3 failed step(s) ===
+[2026-06-12T18:49:31.239Z] === Pipeline finished with 3 failed step(s) ===

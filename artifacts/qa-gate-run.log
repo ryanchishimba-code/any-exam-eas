@@ -1,0 +1,83 @@
+
+> any-exam-easy@0.1.0 db:qa-gate
+> npx tsx scripts/qa-gate-question-bank.ts
+
+
+QA gate — auditing 96489 active item(s)
+
+  … 2000/96489 (1691 pass, 309 fail)
+  … 4000/96489 (3369 pass, 631 fail)
+  … 6000/96489 (5040 pass, 960 fail)
+  … 8000/96489 (6720 pass, 1280 fail)
+  … 10000/96489 (8384 pass, 1616 fail)
+  … 12000/96489 (10059 pass, 1941 fail)
+  … 14000/96489 (12045 pass, 1955 fail)
+  … 16000/96489 (14045 pass, 1955 fail)
+  … 18000/96489 (16045 pass, 1955 fail)
+  … 20000/96489 (18045 pass, 1955 fail)
+  … 22000/96489 (20045 pass, 1955 fail)
+  … 24000/96489 (22045 pass, 1955 fail)
+  … 26000/96489 (24045 pass, 1955 fail)
+  … 28000/96489 (26045 pass, 1955 fail)
+  … 30000/96489 (28045 pass, 1955 fail)
+  … 32000/96489 (29769 pass, 2231 fail)
+  … 34000/96489 (31693 pass, 2307 fail)
+  … 36000/96489 (33628 pass, 2372 fail)
+  … 38000/96489 (35562 pass, 2438 fail)
+  … 40000/96489 (37499 pass, 2501 fail)
+  … 42000/96489 (39422 pass, 2578 fail)
+  … 44000/96489 (41323 pass, 2677 fail)
+  … 46000/96489 (43238 pass, 2762 fail)
+  … 48000/96489 (44995 pass, 3005 fail)
+  … 50000/96489 (46911 pass, 3089 fail)
+  … 52000/96489 (48827 pass, 3173 fail)
+  … 54000/96489 (50740 pass, 3260 fail)
+  … 56000/96489 (52740 pass, 3260 fail)
+  … 58000/96489 (54740 pass, 3260 fail)
+  … 60000/96489 (56740 pass, 3260 fail)
+  … 62000/96489 (58740 pass, 3260 fail)
+  … 64000/96489 (60740 pass, 3260 fail)
+  … 66000/96489 (62740 pass, 3260 fail)
+  … 68000/96489 (64740 pass, 3260 fail)
+  … 70000/96489 (66740 pass, 3260 fail)
+  … 72000/96489 (68740 pass, 3260 fail)
+  … 74000/96489 (70740 pass, 3260 fail)
+  … 76000/96489 (72740 pass, 3260 fail)
+  … 78000/96489 (74740 pass, 3260 fail)
+  … 80000/96489 (76704 pass, 3296 fail)
+  … 82000/96489 (78704 pass, 3296 fail)
+  … 84000/96489 (80704 pass, 3296 fail)
+  … 86000/96489 (82704 pass, 3296 fail)
+  … 88000/96489 (84704 pass, 3296 fail)
+  … 90000/96489 (86704 pass, 3296 fail)
+  … 92000/96489 (88704 pass, 3296 fail)
+  … 94000/96489 (90704 pass, 3296 fail)
+  … 96000/96489 (92704 pass, 3296 fail)
+  … 96489/96489 (93193 pass, 3296 fail)
+
+── QA gate complete ──
+Processed:  96489
+Pass:       93193 (96.6%)
+Fail:       3296
+
+By field:
+  usmle-step-1: 10112/12067 pass (83.8%)
+  nursing: 22774/24083 pass (94.6%)
+  mpje: 116/141 pass (82.3%)
+  usmle-step-3: 18022/18029 pass (100.0%)
+  usmle-step-2: 18054/18054 pass (100.0%)
+  pharmacy: 24115/24115 pass (100.0%)
+
+Top issue codes:
+  duplicate_vignette_in_stem: 19465
+  generic_weak_options: 7291
+  orphan_deictic_stem: 1955
+  pediatric_age_mismatch: 1124
+  priority_hypoxemia_mismatch: 699
+  stable_unstable_mismatch: 607
+  usmle_short_stem: 28
+  invalid_option_count: 25
+  empty_question: 7
+  correct_not_in_options: 3
+
+Students will see: 93193 qaPassed items

@@ -1,0 +1,183 @@
+
+════════════════════════════════════════════════════════════
+▶ NCLEX polish
+════════════════════════════════════════════════════════════
+
+
+NCLEX polish — 24131 active nursing items
+
+
+Scanned:     24131
+Candidates:  6488
+Updated:   6481
+Skipped:     17650
+Hash collisions: 7
+Errors:      0
+Avg quality: 0.994 → 1.000
+
+
+════════════════════════════════════════════════════════════
+▶ NCLEX prioritization fix
+════════════════════════════════════════════════════════════
+
+
+NCLEX polish — 24131 active nursing items (weak prioritization only)
+
+
+Scanned:     24131
+Candidates:  0
+Updated:   0
+Skipped:     24131
+Hash collisions: 0
+Errors:      0
+Avg quality: 1.000 → 1.000
+
+
+════════════════════════════════════════════════════════════
+▶ USMLE Step 2 polish
+════════════════════════════════════════════════════════════
+
+
+USMLE polish — 18102 active usmle-step-2 items
+
+
+[usmle-step-2] Scanned:     18102
+[usmle-step-2] Candidates:  0
+[usmle-step-2] Updated:   0
+[usmle-step-2] Skipped:     18102
+[usmle-step-2] Errors:      0
+[usmle-step-2] Avg quality: 1.000 → 1.000
+
+
+════════════════════════════════════════════════════════════
+▶ USMLE Step 1 polish
+════════════════════════════════════════════════════════════
+
+
+USMLE polish — 12067 active usmle-step-1 items
+
+
+[usmle-step-1] Scanned:     12067
+[usmle-step-1] Candidates:  0
+[usmle-step-1] Updated:   0
+[usmle-step-1] Skipped:     12067
+[usmle-step-1] Errors:      0
+[usmle-step-1] Avg quality: 1.000 → 1.000
+
+
+════════════════════════════════════════════════════════════
+▶ USMLE Step 3 polish
+════════════════════════════════════════════════════════════
+
+
+USMLE polish — 18029 active usmle-step-3 items
+
+
+[usmle-step-3] Scanned:     18029
+[usmle-step-3] Candidates:  0
+[usmle-step-3] Updated:   0
+[usmle-step-3] Skipped:     18029
+[usmle-step-3] Errors:      0
+[usmle-step-3] Avg quality: 1.000 → 1.000
+
+
+════════════════════════════════════════════════════════════
+▶ NAPLEX polish
+════════════════════════════════════════════════════════════
+
+
+NAPLEX polish — 24166 active pharmacy items
+
+
+Scanned:     24166
+Candidates:  238
+Updated:   26
+Skipped:     24140
+Hash collisions: 212
+Errors:      0
+Avg quality: 0.915 → 0.918
+
+
+════════════════════════════════════════════════════════════
+▶ QA gate (all fields)
+════════════════════════════════════════════════════════════
+
+
+QA gate — auditing 96684 active item(s)
+
+  … 2000/96684 (2000 pass, 0 fail)
+  … 4000/96684 (4000 pass, 0 fail)
+  … 6000/96684 (6000 pass, 0 fail)
+  … 8000/96684 (8000 pass, 0 fail)
+  … 10000/96684 (10000 pass, 0 fail)
+  … 12000/96684 (12000 pass, 0 fail)
+  … 14000/96684 (14000 pass, 0 fail)
+  … 16000/96684 (16000 pass, 0 fail)
+  … 18000/96684 (18000 pass, 0 fail)
+  … 20000/96684 (20000 pass, 0 fail)
+  … 22000/96684 (22000 pass, 0 fail)
+  … 24000/96684 (24000 pass, 0 fail)
+  … 26000/96684 (26000 pass, 0 fail)
+  … 28000/96684 (28000 pass, 0 fail)
+  … 30000/96684 (30000 pass, 0 fail)
+  … 32000/96684 (31996 pass, 4 fail)
+  … 34000/96684 (33996 pass, 4 fail)
+  … 36000/96684 (35996 pass, 4 fail)
+  … 38000/96684 (37996 pass, 4 fail)
+  … 40000/96684 (39996 pass, 4 fail)
+  … 42000/96684 (41996 pass, 4 fail)
+  … 44000/96684 (43996 pass, 4 fail)
+  … 46000/96684 (45996 pass, 4 fail)
+  … 48000/96684 (47996 pass, 4 fail)
+  … 50000/96684 (49995 pass, 5 fail)
+  … 52000/96684 (51995 pass, 5 fail)
+  … 54000/96684 (53994 pass, 6 fail)
+  … 56000/96684 (55994 pass, 6 fail)
+  … 58000/96684 (57994 pass, 6 fail)
+  … 60000/96684 (59994 pass, 6 fail)
+  … 62000/96684 (61994 pass, 6 fail)
+  … 64000/96684 (63994 pass, 6 fail)
+  … 66000/96684 (65994 pass, 6 fail)
+  … 68000/96684 (67994 pass, 6 fail)
+  … 70000/96684 (69994 pass, 6 fail)
+  … 72000/96684 (71994 pass, 6 fail)
+  … 74000/96684 (73994 pass, 6 fail)
+  … 76000/96684 (75994 pass, 6 fail)
+  … 78000/96684 (77994 pass, 6 fail)
+  … 80000/96684 (79994 pass, 6 fail)
+  … 82000/96684 (81994 pass, 6 fail)
+  … 84000/96684 (83994 pass, 6 fail)
+  … 86000/96684 (85994 pass, 6 fail)
+  … 88000/96684 (87994 pass, 6 fail)
+  … 90000/96684 (89994 pass, 6 fail)
+  … 92000/96684 (91994 pass, 6 fail)
+  … 94000/96684 (93994 pass, 6 fail)
+  … 96000/96684 (95994 pass, 6 fail)
+  … 96684/96684 (96678 pass, 6 fail)
+
+── QA gate complete ──
+Processed:  96684
+Pass:       96678 (100.0%)
+Fail:       6
+
+By field:
+  nursing: 24125/24131 pass (100.0%)
+  usmle-step-1: 12067/12067 pass (100.0%)
+  usmle-step-2: 18102/18102 pass (100.0%)
+  pharmacy: 24166/24166 pass (100.0%)
+  mpje: 189/189 pass (100.0%)
+  usmle-step-3: 18029/18029 pass (100.0%)
+
+Top issue codes:
+  duplicate_vignette_in_stem: 77140
+  pediatric_age_mismatch: 176
+  stable_unstable_mismatch: 4
+  shift_note_format: 1
+  priority_hypoxemia_mismatch: 1
+  generic_weak_options: 1
+  stem_option_category_mismatch: 1
+
+Students will see: 96678 qaPassed items
+
+✓ Full QA pipeline complete.
+

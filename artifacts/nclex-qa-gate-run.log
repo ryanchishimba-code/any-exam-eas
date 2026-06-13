@@ -1,0 +1,37 @@
+
+> any-exam-easy@0.1.0 db:qa-gate
+> npx tsx scripts/qa-gate-question-bank.ts --field nursing
+
+
+QA gate — auditing 24131 active item(s) (nursing)
+
+  … 2000/24131 (1998 pass, 2 fail)
+  … 4000/24131 (3998 pass, 2 fail)
+  … 6000/24131 (5998 pass, 2 fail)
+  … 8000/24131 (7998 pass, 2 fail)
+  … 10000/24131 (9998 pass, 2 fail)
+  … 12000/24131 (11998 pass, 2 fail)
+  … 14000/24131 (13998 pass, 2 fail)
+  … 16000/24131 (15998 pass, 2 fail)
+  … 18000/24131 (17998 pass, 2 fail)
+  … 20000/24131 (19998 pass, 2 fail)
+  … 22000/24131 (21998 pass, 2 fail)
+  … 24000/24131 (23998 pass, 2 fail)
+  … 24131/24131 (24129 pass, 2 fail)
+
+── QA gate complete ──
+Processed:  24131
+Pass:       24129 (100.0%)
+Fail:       2
+
+By field:
+  nursing: 24129/24131 pass (100.0%)
+
+Top issue codes:
+  duplicate_vignette_in_stem: 3045
+  generic_delegation_correct: 525
+  pediatric_age_mismatch: 109
+  phantom_client_in_options: 2
+
+Students will see: 96806 qaPassed items
+GATE_EXIT=0

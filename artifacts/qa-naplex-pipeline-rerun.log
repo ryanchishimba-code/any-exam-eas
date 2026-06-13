@@ -1,0 +1,48 @@
+[2026-06-12T17:57:36.638Z] ▶ START: NAPLEX polish
+
+NAPLEX polish — 24166 active pharmacy items
+
+
+Scanned:     24166
+Candidates:  4
+Updated:   3
+Skipped:     24163
+Hash collisions: 0
+Errors:      0
+Avg quality: 0.918 → 0.918
+
+[2026-06-12T17:57:57.088Z] ✓ DONE: NAPLEX polish
+[2026-06-12T17:57:57.088Z] ▶ START: QA gate — pharmacy
+
+QA gate — auditing 24166 active item(s) (pharmacy)
+
+  … 2000/24166 (2000 pass, 0 fail)
+  … 4000/24166 (4000 pass, 0 fail)
+  … 6000/24166 (6000 pass, 0 fail)
+  … 8000/24166 (8000 pass, 0 fail)
+  … 10000/24166 (10000 pass, 0 fail)
+  … 12000/24166 (12000 pass, 0 fail)
+  … 14000/24166 (14000 pass, 0 fail)
+  … 16000/24166 (16000 pass, 0 fail)
+  … 18000/24166 (18000 pass, 0 fail)
+  … 20000/24166 (20000 pass, 0 fail)
+  … 22000/24166 (22000 pass, 0 fail)
+  … 24000/24166 (24000 pass, 0 fail)
+  … 24166/24166 (24162 pass, 4 fail)
+
+── QA gate complete ──
+Processed:  24166
+Pass:       24162 (100.0%)
+Fail:       4
+
+By field:
+  pharmacy: 24162/24166 pass (100.0%)
+
+Top issue codes:
+  duplicate_vignette_in_stem: 13807
+  naplex_missing_clinical_data: 25
+  naplex_stem_lead_in: 4
+
+Students will see: 96793 qaPassed items
+[2026-06-12T18:24:38.821Z] ✓ DONE: QA gate — pharmacy
+[2026-06-12T18:24:38.821Z] === NAPLEX pipeline complete ===
