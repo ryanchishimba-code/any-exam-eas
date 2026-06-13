@@ -87,8 +87,9 @@ function clampScore(n: number): number {
 }
 
 function toExamQuestion(item: BankItem, vignette: string, stem: string): ExamQuestion {
+  const parsedId = Number.parseInt(item.id ?? "0", 10);
   return {
-    id: item.id ?? "qa",
+    id: Number.isFinite(parsedId) ? parsedId : 0,
     type: "multiple_choice",
     question: stem,
     vignette: vignette || undefined,
