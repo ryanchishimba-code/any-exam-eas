@@ -22,6 +22,8 @@ const KEYS = [
   { key: "STRIPE_PRICE_ID_QUARTERLY", sensitive: false },
   { key: "STRIPE_PRICE_ID_SEMIANNUAL", sensitive: false },
   { key: "STRIPE_PRICE_ID_YEARLY", sensitive: false },
+  { key: "TRIAL_DAYS", sensitive: false },
+  { key: "MONTHLY_PRICE_USD", sensitive: false },
   { key: "STRIPE_TRIAL_INTRO_PRICE_ID", sensitive: false, optional: true },
   { key: "STRIPE_WEBHOOK_SECRET", sensitive: true, optional: true },
 ];

@@ -100,13 +100,13 @@ export function reactivationRedirectForPaywall(
   return appendReturnParam(reactivation.checkoutPath, callbackPath);
 }
 
-/** Redirect target when a signed-in user lacks premium access (null = allow through). */
+/** Redirect target when a signed-in user lacks premium access. */
 export async function resolvePaywallRedirect(
   userId: string,
   email: string | null | undefined,
   callbackPath: string,
   access: SubscriptionAccess
-): Promise<string | null> {
+): Promise<string> {
   const sub = await import("@/lib/prisma").then((m) =>
     m.prisma.subscription.findUnique({ where: { userId } })
   );

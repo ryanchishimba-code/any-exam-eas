@@ -69,20 +69,6 @@ export function SubscriptionBanner({ access }: { access: SubscriptionAccess }) {
     return null;
   }
 
-  if (access.status === "trial_expired") {
-    return (
-      <div className="mt-8 rounded-2xl border border-amber-300 bg-amber-50 px-5 py-4">
-        <p className="text-sm font-medium text-amber-950">Your trial has ended</p>
-        <p className="mt-1 text-xs text-amber-900/80">
-          Subscribe to keep using exams, flashcards, and progress tracking.
-        </p>
-        <div className="mt-3">
-          <SubscribeButton />
-        </div>
-      </div>
-    );
-  }
-
   if (!access.canStartCheckout) {
     return null;
   }
