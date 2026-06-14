@@ -19,6 +19,13 @@ const cDiffBest: BankItem = {
     "Clinical Judgment (CJMM):\n1. Recognize cues: watery diarrhea after antibiotics, fever, leukocytosis.\n2. Analyze cues: C. diff spore transmission via contact.\n3. Take action: contact precautions and soap-and-water hand hygiene.\nWhy other options are incorrect:\n• Use alcohol-based hand rub alone: Incorrect — spores require soap and water.\n• Droplet precautions only: Incorrect — wrong transmission category for C. diff.\n• Airborne precautions: Incorrect — not an airborne pathogen.",
   tags: ["cjmm-polished", "infection"],
   source: "polished",
+  references: [
+    {
+      label: "CDC Infection Control Guidelines",
+      url: "https://www.cdc.gov/infection-control/hcp/isolation-precautions/",
+      citation: "Contact precautions and soap-and-water hand hygiene for C. difficile",
+    },
+  ],
 };
 
 describe("nclex-quality-gate", () => {
@@ -26,6 +33,14 @@ describe("nclex-quality-gate", () => {
     const verdict = assessNclexItemQuality(cDiffBest, { source: "polished" });
     expect(verdict.tier).toBe("best");
     expect(isNclexBestQuality(cDiffBest, { source: "polished" })).toBe(true);
+  });
+
+  it("rejects items without structured guideline references", () => {
+    const verdict = assessNclexItemQuality(
+      { ...cDiffBest, references: undefined },
+      { source: "polished" }
+    );
+    expect(verdict.issues).toContain("missing_guideline_reference");
   });
 
   it("rejects cartoon teaching distractors", () => {

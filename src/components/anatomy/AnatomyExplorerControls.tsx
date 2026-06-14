@@ -5,6 +5,7 @@ import { Focus, ZoomIn, ZoomOut } from "lucide-react";
 import { CT_CLIP_PLANES, type CtClipPlaneId } from "@/lib/anatomy/ct/ct-atlas-registry";
 import { formatCtSliceLabel } from "@/lib/anatomy/ct/ct-atlas-fit";
 import { CT_WINDOW_ORDER, CT_WINDOWS, type CtWindowId } from "@/lib/anatomy/ct/ct-windows";
+import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -25,6 +26,7 @@ type Props = {
   onCtSliceOffsetChange?: (offset: number) => void;
   showCtControls?: boolean;
   className?: string;
+  floating?: boolean;
 };
 
 export function AnatomyExplorerControls({
@@ -45,28 +47,32 @@ export function AnatomyExplorerControls({
   onCtSliceOffsetChange,
   showCtControls = false,
   className,
+  floating = true,
 }: Props) {
   return (
     <div
       className={cn(
-        "flex flex-col gap-2 border-b border-black/[0.06] bg-white px-3 py-2 sm:px-4",
+        floating
+          ? "pointer-events-none absolute inset-x-0 bottom-3 z-10 flex justify-center px-3"
+          : "border-b border-black/[0.06] bg-white/90 px-3 py-2 sm:px-4",
         className
       )}
     >
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <div className="min-w-0">
-          <p className="truncate text-sm font-semibold text-[var(--color-ink)]">
-            {selectedName ?? "Select a structure"}
-          </p>
-          <p className="text-[10px] text-[var(--color-ink-muted)]">
-            Drag to rotate · scroll to zoom · click to open pearls
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-1">
+      <div
+        className={cn(
+          "pointer-events-auto flex max-w-full flex-col gap-2",
+          floating && anatomyUi.glass
+        )}
+      >
+        <div className="flex flex-wrap items-center justify-center gap-1 px-1 py-1 sm:gap-1.5">
           {quizActive ? (
-            <span className="rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-amber-900">
-              Quiz active
+            <span className="rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-amber-900">
+              Quiz
+            </span>
+          ) : null}
+          {selectedName && floating ? (
+            <span className="hidden max-w-[10rem] truncate px-2 text-[12px] font-medium text-[var(--color-ink-muted)] sm:inline">
+              {selectedName}
             </span>
           ) : null}
           {onPeelSkin && !ctMode ? (
@@ -75,9 +81,7 @@ export function AnatomyExplorerControls({
               active={!skinOn}
               onClick={onPeelSkin}
             >
-              <span className="px-0.5 text-[10px] font-bold uppercase tracking-wide">
-                {skinOn ? "Peel" : "Skin"}
-              </span>
+              <span className="px-0.5 text-[11px] font-semibold">{skinOn ? "Peel" : "Skin"}</span>
             </ControlButton>
           ) : null}
           <ControlButton label="Zoom in" onClick={onZoomIn}>
@@ -95,60 +99,62 @@ export function AnatomyExplorerControls({
               active={ctMode}
               onClick={() => onCtModeChange(!ctMode)}
             >
-              <span className="px-0.5 text-[10px] font-bold uppercase tracking-wide">
-                {ctMode ? "CT" : "3D"}
-              </span>
+              <span className="px-0.5 text-[11px] font-semibold">{ctMode ? "CT" : "3D"}</span>
             </ControlButton>
           ) : null}
         </div>
-      </div>
 
-      {showCtControls && ctMode && onCtWindowChange && onCtClipChange ? (
-        <details open className="border-t border-black/[0.04] pt-2">
-          <summary className="cursor-pointer text-[10px] font-bold uppercase tracking-[0.12em] text-slate-500">
-            CT window & slices
-          </summary>
-          <div className="mt-2 flex flex-wrap items-center gap-2">
-            {CT_WINDOW_ORDER.map((id) => (
-              <ChipButton
-                key={id}
-                label={CT_WINDOWS[id].label}
-                active={ctWindowId === id}
-                onClick={() => onCtWindowChange(id)}
-              />
-            ))}
-            <span className="mx-1 hidden h-4 w-px bg-black/10 sm:inline" aria-hidden />
-            {CT_CLIP_PLANES.map(({ id, label }) => (
-              <ChipButton
-                key={id}
-                label={label}
-                active={ctClipPlaneId === id}
-                onClick={() => onCtClipChange(id)}
-              />
-            ))}
-            {ctClipPlaneId !== "off" && onCtSliceOffsetChange ? (
-              <div className="flex min-w-[10rem] flex-1 basis-full items-center gap-2 sm:basis-auto">
-                <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-slate-500">
-                  Slice
-                </span>
-                <input
-                  type="range"
-                  min={-1}
-                  max={1}
-                  step={0.01}
-                  value={ctSliceOffset}
-                  onChange={(e) => onCtSliceOffsetChange(Number(e.target.value))}
-                  aria-label="MPR slice depth"
-                  className="h-1.5 min-w-[6rem] flex-1 cursor-pointer accent-slate-700"
+        {!floating && selectedName ? (
+          <p className="truncate text-[13px] font-medium text-[var(--color-ink)]">{selectedName}</p>
+        ) : null}
+
+        {showCtControls && ctMode && onCtWindowChange && onCtClipChange ? (
+          <details open className="border-t border-black/[0.05] px-2 pb-2 pt-2">
+            <summary className="cursor-pointer text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
+              CT window & slices
+            </summary>
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              {CT_WINDOW_ORDER.map((id) => (
+                <ChipButton
+                  key={id}
+                  label={CT_WINDOWS[id].label}
+                  active={ctWindowId === id}
+                  onClick={() => onCtWindowChange(id)}
                 />
-                <span className="min-w-[4.5rem] text-[10px] font-semibold tabular-nums text-slate-600">
-                  {formatCtSliceLabel(ctClipPlaneId, ctSliceOffset)}
-                </span>
-              </div>
-            ) : null}
-          </div>
-        </details>
-      ) : null}
+              ))}
+              <span className="mx-1 hidden h-4 w-px bg-black/10 sm:inline" aria-hidden />
+              {CT_CLIP_PLANES.map(({ id, label }) => (
+                <ChipButton
+                  key={id}
+                  label={label}
+                  active={ctClipPlaneId === id}
+                  onClick={() => onCtClipChange(id)}
+                />
+              ))}
+              {ctClipPlaneId !== "off" && onCtSliceOffsetChange ? (
+                <div className="flex min-w-[10rem] flex-1 basis-full items-center gap-2 sm:basis-auto">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.12em] text-slate-500">
+                    Slice
+                  </span>
+                  <input
+                    type="range"
+                    min={-1}
+                    max={1}
+                    step={0.01}
+                    value={ctSliceOffset}
+                    onChange={(e) => onCtSliceOffsetChange(Number(e.target.value))}
+                    aria-label="MPR slice depth"
+                    className="h-1.5 min-w-[6rem] flex-1 cursor-pointer accent-[var(--color-accent)]"
+                  />
+                  <span className="min-w-[4.5rem] text-[10px] font-semibold tabular-nums text-slate-600">
+                    {formatCtSliceLabel(ctClipPlaneId, ctSliceOffset)}
+                  </span>
+                </div>
+              ) : null}
+            </div>
+          </details>
+        ) : null}
+      </div>
     </div>
   );
 }
@@ -171,10 +177,10 @@ function ControlButton({
       title={label}
       onClick={onClick}
       className={cn(
-        "rounded-xl border p-2 transition",
+        "rounded-full p-2 transition active:scale-95",
         active
-          ? "border-violet-300 bg-violet-600 text-white shadow-sm"
-          : "border-black/[0.08] bg-white text-[var(--color-ink-muted)] hover:border-violet-200 hover:bg-violet-50 hover:text-violet-800"
+          ? "bg-[var(--color-accent)] text-white shadow-sm"
+          : "text-[var(--color-ink-muted)] hover:bg-black/[0.05] hover:text-[var(--color-ink)]"
       )}
     >
       {children}
@@ -198,8 +204,8 @@ function ChipButton({
       className={cn(
         "rounded-full px-2.5 py-0.5 text-[10px] font-semibold transition",
         active
-          ? "bg-slate-800 text-white shadow-sm"
-          : "bg-white/90 text-slate-600 ring-1 ring-black/[0.08] hover:bg-slate-100"
+          ? "bg-[var(--color-accent)] text-white shadow-sm"
+          : "bg-white/90 text-[var(--color-ink-muted)] ring-1 ring-black/[0.08] hover:bg-black/[0.02]"
       )}
     >
       {label}

@@ -42,13 +42,12 @@ describe("nclex-serve-gate", () => {
     expect(nclexBankItemIsServeReady(mismatched)).toBe(false);
   });
 
-  it("passes through qa-gated items without re-audit", () => {
+  it("filters stale qaPassed rows that fail runtime alignment audit", () => {
     const accepted = prepareNclexItemsForSession({
       items: [mismatched, pediatricMismatch],
       field: "Nursing",
       limit: 2,
     });
-    expect(accepted).toHaveLength(2);
-    expect(accepted[0]!.question).toBe(mismatched.question);
+    expect(accepted).toHaveLength(0);
   });
 });

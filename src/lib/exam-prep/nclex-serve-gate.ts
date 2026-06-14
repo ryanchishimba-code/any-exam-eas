@@ -5,6 +5,7 @@ import {
   nclexHasServeBlockIssues,
 } from "@/lib/exam-prep/nclex-bank-audit";
 import { scoreNclexBankItem } from "@/lib/engine/polish/nclex-polish";
+import { isNclexBestQuality } from "./nclex-quality-gate";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
 
 /** UWorld-grade bar: rich vignette, aligned stem/options, CJMM rationale. */
@@ -24,10 +25,17 @@ type PrepareNclexItemsParams = {
   limit: number;
 };
 
-/** Items are pre-filtered to qaPassed=true in the DB sample. */
+/** Defense-in-depth: DB qaPassed can be stale — re-audit before each session. */
 export function prepareNclexItemsForSession({
   items,
   limit,
 }: PrepareNclexItemsParams): BankItem[] {
-  return serveQaPassedBankItems(items, limit);
+  const vetted = items.filter((item) => {
+    const source = item.source ?? null;
+    return (
+      nclexBankItemIsServeReady(item) &&
+      isNclexBestQuality(item, { source })
+    );
+  });
+  return serveQaPassedBankItems(vetted, limit);
 }

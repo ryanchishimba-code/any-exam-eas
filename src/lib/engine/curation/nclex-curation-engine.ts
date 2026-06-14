@@ -100,6 +100,7 @@ type AiNclexPayload = {
   explanation?: string;
   clinicalReasoning?: string;
   distractorRationale?: Record<string, string>;
+  references?: Array<{ label: string; url?: string; citation?: string }>;
   tags?: string[];
   topicCategory?: string;
 };
@@ -130,6 +131,7 @@ function mergeAiPayload(base: BankItem, payload: AiNclexPayload): BankItem {
     explanation: payload.explanation?.trim() || base.explanation,
     clinicalReasoning: payload.clinicalReasoning?.trim() || base.clinicalReasoning,
     distractorRationale: payload.distractorRationale ?? base.distractorRationale,
+    references: payload.references?.length ? payload.references : base.references,
     tags: payload.tags ?? base.tags,
     topicCategory: payload.topicCategory ?? base.topicCategory,
     itemType: base.itemType ?? "vignette",
@@ -166,6 +168,7 @@ Rules:
 - explanation: CJMM structure + why correct; reference pathophysiology
 - clinicalReasoning: Recognize → Analyze → Prioritize → Take action
 - distractorRationale: object keyed by EXACT option text → why wrong for THIS client
+- references: 1–2 entries from allowed societies only (e.g. CDC, AHA, NCSBN, Surviving Sepsis, ISMP, ACOG, AAP) with label + citation; no invented section numbers
 - Use "client" not "patient"; inclusive, professional tone
 - Preserve clinical topic intent from the original when sound; fix incoherent template swaps
 
@@ -178,6 +181,7 @@ Return JSON:
   "explanation": string,
   "clinicalReasoning": string,
   "distractorRationale": { "option text": "rationale" },
+  "references": [{ "label": string, "url"?: string, "citation"?: string }],
   "tags": string[],
   "topicCategory": string
 }`,

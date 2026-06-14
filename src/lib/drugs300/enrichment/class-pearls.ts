@@ -1,8 +1,13 @@
 import type { ExamReference } from "@/lib/exam-prep/types";
 import {
   ACC_AHA_CV,
+  ACOG_MATERNAL,
+  AAP_PEDIATRICS,
   ADA_STANDARDS,
+  APA_THERAPEUTIC,
+  CDC_INFECTION,
   FDA_LABELING,
+  IDSA_INFECTION,
   ISMP_MED_SAFETY,
 } from "@/lib/exam-prep/guideline-registry";
 import type { DrugEntry } from "../types";
@@ -120,6 +125,144 @@ const CLASS_RULES: ClassRule[] = [
       ],
       guidelines: [ACC_AHA_CV, FDA_LABELING],
       monitoring: "Renal function, bleeding signs; avoid unnecessary NSAIDs/antiplatelets.",
+    },
+  },
+  {
+    match: (d) => /warfarin|vitamin k antagonist/i.test(`${d.therapeuticClass} ${d.generic}`),
+    merge: {
+      pearls: [
+        "Target INR 2–3 for most AF/DVT indications; 2.5–3.5 for mechanical mitral valves.",
+        "Teratogenic (pregnancy Category X) — use LMWH in pregnancy instead.",
+        "Many drug/food interactions (vitamin K, CYP2C9); bridged when transitioning to/from DOAC.",
+      ],
+      guidelines: [ACC_AHA_CV, FDA_LABELING],
+      monitoring: "INR, bleeding, medication & diet consistency.",
+    },
+  },
+  {
+    match: (d) =>
+      /antibiotic|cephalosporin|penicillin|macrolide|fluoroquinolone|tetracycline|nitroimidazole|aminopenicillin|antiprotozoal/i.test(
+        d.therapeuticClass
+      ) || /sulfamethoxazole|trimethoprim/i.test(d.generic),
+    merge: {
+      pearls: [
+        "Match spectrum to likely pathogen; obtain cultures before broad empiric therapy when feasible (IDSA).",
+        "Document penicillin allergy history — true IgE allergy vs intolerance changes cephalosporin options.",
+        "Complete full course for strep pharyngitis; avoid antibiotics for viral URI (stewardship).",
+        "Counsel GI upset; report rash, severe diarrhea (C. diff), or allergic reactions.",
+      ],
+      guidelines: [IDSA_INFECTION, CDC_INFECTION, FDA_LABELING],
+      counseling: "Take as directed; finish prescribed course unless rash or severe reaction.",
+      monitoring: "Clinical response 48–72 h; renal dose adjustment for many agents.",
+    },
+  },
+  {
+    match: (d) => /ssri/i.test(d.therapeuticClass),
+    merge: {
+      mechanism: "Selective serotonin reuptake inhibition → ↑ synaptic serotonin.",
+      pearls: [
+        "Onset 2–4 weeks for mood benefit — counsel on delayed response; monitor suicidality early in teens/young adults.",
+        "Serotonin syndrome risk with MAOIs, triptans, linezolid, other serotonergic drugs.",
+        "Do not stop abruptly — taper to reduce discontinuation syndrome.",
+        "Common SE: GI upset, sexual dysfunction, insomnia or sedation (agent-dependent).",
+      ],
+      guidelines: [APA_THERAPEUTIC, FDA_LABELING],
+      counseling: "Take consistently; report worsening mood, agitation, or suicidal thoughts early.",
+      monitoring: "Mood/suicidality first 4–8 weeks; drug interactions.",
+    },
+  },
+  {
+    match: (d) => /snri|ndri/i.test(d.therapeuticClass),
+    merge: {
+      pearls: [
+        "SNRIs: dual NE/5-HT reuptake — venlafaxine/duloxetine may raise BP at higher doses.",
+        "Bupropion (NDRI): lowers seizure threshold; avoid in eating disorders, abrupt alcohol withdrawal.",
+        "Taper SNRIs — withdrawal (dizziness, brain zaps) if stopped cold.",
+      ],
+      guidelines: [APA_THERAPEUTIC, FDA_LABELING],
+      monitoring: "BP (SNRIs), seizure risk (bupropion), mood/suicidality.",
+    },
+  },
+  {
+    match: (d) => /atypical antipsychotic|typical.*antipsychotic|high-potency.*antipsychotic/i.test(d.therapeuticClass),
+    merge: {
+      pearls: [
+        "Monitor metabolic syndrome (weight, glucose, lipids) — especially olanzapine/quetiapine.",
+        "Extrapyramidal symptoms more with typical/high-potency agents; hyperprolactinemia with risperidone.",
+        "Aripiprazole partial agonist — activating; akathisia common.",
+        "Black box: increased mortality in elderly with dementia-related psychosis.",
+      ],
+      guidelines: [APA_THERAPEUTIC, FDA_LABELING],
+      monitoring: "Metabolic panel, weight, EPS, QTc if risk factors.",
+    },
+  },
+  {
+    match: (d) => /benzodiazepine|z-drug|non-benzodiazepine hypnotic/i.test(d.therapeuticClass),
+    merge: {
+      pearls: [
+        "Short-term use preferred — dependence, tolerance, withdrawal seizures if stopped abruptly.",
+        "Contraindicated/co-caution with opioids (respiratory depression — FDA boxed warning).",
+        "Use lowest effective dose in elderly (Beers criteria — fall risk).",
+      ],
+      guidelines: [FDA_LABELING, APA_THERAPEUTIC],
+      contraindications: "Acute narrow-angle glaucoma (most); severe respiratory insufficiency; sleep apnea with opioids.",
+      monitoring: "Sedation, falls, dependence; avoid driving until effect known.",
+    },
+  },
+  {
+    match: (d) => /cns stimulant/i.test(d.therapeuticClass),
+    merge: {
+      pearls: [
+        "Schedule II — abuse/diversion risk; avoid in structural cardiac disease, symptomatic arrhythmia.",
+        "Take early in day to reduce insomnia; appetite suppression common.",
+        "Baseline and periodic BP/HR; consider holidays/drug-free periods in stable ADHD.",
+      ],
+      guidelines: [FDA_LABELING, AAP_PEDIATRICS],
+      monitoring: "Height/weight in children, BP, HR, sleep, mood.",
+    },
+  },
+  {
+    match: (d) =>
+      /contraceptive|progestin-only pill|combined hormonal|levonorgestrel|etonogestrel|norethindrone|medroxyprogesterone/i.test(
+        `${d.therapeuticClass} ${d.generic} ${d.brand}`
+      ),
+    merge: {
+      pearls: [
+        "Combined OCP: contraindicated if migraine with aura, VTE history, smoker >35, uncontrolled HTN (ACOG).",
+        "Progestin-only/LARC options when estrogen contraindicated (lactation, VTE risk).",
+        "Enzyme inducers (rifampin, carbamazepine, modafinil) ↓ efficacy — backup method needed.",
+      ],
+      guidelines: [ACOG_MATERNAL, FDA_LABELING],
+      counseling: "Daily timing (COC/POP); report leg swelling, chest pain, severe headache.",
+      monitoring: "BP, breakthrough bleeding, VTE symptoms.",
+    },
+  },
+  {
+    match: (d) =>
+      /magnesium sulfate|oxytocin|misoprostol|labetalol|hydralazine|methotrexate/i.test(d.generic) &&
+      /eclampsia|preeclampsia|postpartum|labor|ectopic|uterotonic|tocolytic|hemorrhage|pregnancy/i.test(
+        `${d.indications} ${d.therapeuticClass}`
+      ),
+    merge: {
+      pearls: [
+        "Severe preeclampsia/eclampsia: magnesium sulfate for seizure prophylaxis — monitor reflexes, RR, urine output.",
+        "Postpartum hemorrhage: oxytocin first-line uterotonic; misoprostol if oxytocin unavailable.",
+        "Hydralazine/labetalol for acute severe hypertension in pregnancy per ACOG protocols.",
+        "Methotrexate for ectopic pregnancy — teratogen; strict contraception & folate antagonism counseling.",
+      ],
+      guidelines: [ACOG_MATERNAL, FDA_LABELING],
+      monitoring: "Mag: DTRs, RR, Mg level; PPH: fundal tone, bleeding; BP with antihypertensives.",
+    },
+  },
+  {
+    match: (d) => /folic acid|folate/i.test(d.generic),
+    merge: {
+      pearls: [
+        "ACOG: 400–800 mcg daily in reproductive-age women planning/conceiving — neural tube defect prevention.",
+        "Higher doses (4 mg) if prior NTD-affected pregnancy or high-risk anticonvulsant use.",
+        "Masks B12 deficiency anemia — ensure B12 adequate in macrocytosis workup.",
+      ],
+      guidelines: [ACOG_MATERNAL, FDA_LABELING],
     },
   },
 ];

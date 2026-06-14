@@ -61,7 +61,7 @@ describe("usmle-clinical-gate", () => {
     expect(usmleBankItemIsServeReady(curatedRich, "usmle-step-2")).toBe(true);
   });
 
-  it("passes through qa-gated items without re-audit", () => {
+  it("filters stale qaPassed rows that fail runtime clinical audit", () => {
     const prepared = prepareUsmleItemsForSession({
       items: [bareStem, curatedRich],
       fieldId: "usmle-step-2",
@@ -69,8 +69,7 @@ describe("usmle-clinical-gate", () => {
       limit: 2,
     });
 
-    expect(prepared).toHaveLength(2);
-    expect(prepared.map((i) => i.question)).toContain(bareStem.question);
-    expect(prepared.map((i) => i.question)).toContain(curatedRich.question);
+    expect(prepared).toHaveLength(1);
+    expect(prepared[0]!.question).toBe(curatedRich.question);
   });
 });

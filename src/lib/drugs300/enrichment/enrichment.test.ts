@@ -31,4 +31,35 @@ describe("drug enrichment", () => {
     expect(senna).toBeDefined();
     expect(hasDrugEnrichment(senna!)).toBe(false);
   });
+
+  it("adds IDSA-aligned pearls for top antibiotics", () => {
+    const amox = getDrugById("amoxicillin");
+    expect(amox).toBeDefined();
+    const e = enrichDrug(amox!);
+    expect(e.pearls.some((p) => /strep|otitis|stewardship|IDSA/i.test(p))).toBe(true);
+    expect(e.guidelines.some((g) => /IDSA/i.test(g.label))).toBe(true);
+  });
+
+  it("adds APA-aligned pearls for SSRIs in top 50", () => {
+    const zoloft = getDrugById("sertraline");
+    expect(zoloft).toBeDefined();
+    const e = enrichDrug(zoloft!);
+    expect(e.pearls.some((p) => /serotonin|suicid|SSRI|PTSD/i.test(p))).toBe(true);
+    expect(e.guidelines.some((g) => /APA/i.test(g.label))).toBe(true);
+  });
+
+  it("adds ACOG pearls for pregnancy hypertension agents", () => {
+    const lab = getDrugById("labetalol");
+    expect(lab).toBeDefined();
+    const e = enrichDrug(lab!);
+    expect(e.pearls.some((p) => /ACOG|pregnancy|HTN/i.test(p))).toBe(true);
+    expect(e.guidelines.some((g) => /ACOG/i.test(g.label))).toBe(true);
+  });
+
+  it("adds benzodiazepine safety pearls for alprazolam", () => {
+    const benzo = getDrugById("alprazolam");
+    expect(benzo).toBeDefined();
+    const e = enrichDrug(benzo!);
+    expect(e.pearls.some((p) => /opioid|dependence|respiratory/i.test(p))).toBe(true);
+  });
 });

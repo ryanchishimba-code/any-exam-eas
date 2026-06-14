@@ -2,8 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { X } from "lucide-react";
-import { AnatomyHighYieldStrip } from "@/components/anatomy/AnatomyHighYieldStrip";
-import { AnatomyProcedureStrip } from "@/components/anatomy/AnatomyProcedureStrip";
+import { AnatomyQuickNav } from "@/components/anatomy/AnatomyQuickNav";
 import { AnatomyStudioHero } from "@/components/anatomy/AnatomyStudioHero";
 import { AnatomyShell } from "@/components/anatomy/systems/AnatomyShell";
 import { TeachHost } from "@/components/anatomy/systems/TeachHost";
@@ -15,6 +14,7 @@ import {
   getMemoryCardsForStructure,
   searchAnatomyStructures,
 } from "@/lib/anatomy";
+import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
 import { getDefaultTourIdForExam } from "@/lib/anatomy/recommendations";
 import { getPrimaryStructureIdForProcedure } from "@/lib/anatomy/procedure-recommendations";
 import { searchProcedures } from "@/lib/anatomy/procedures";
@@ -25,6 +25,7 @@ import { DEFAULT_STUDY_LAYERS } from "@/lib/anatomy/cartoon/layer-styles";
 import type { MemoryCard } from "@/lib/reference/types";
 import type { ExamSlug } from "@/types/edtech";
 import { ROUTES } from "@/lib/routes";
+import { cn } from "@/lib/utils";
 
 const DEFAULT_VISIBLE = new Set<AnatomyLayer>(DEFAULT_STUDY_LAYERS);
 
@@ -76,6 +77,7 @@ export function AnatomyExplorerClient({
     initialProcedureId ?? null
   );
   const [invalidStructureDismissed, setInvalidStructureDismissed] = useState(false);
+  const [teachExpanded, setTeachExpanded] = useState(false);
 
   const catalogOnly = !bundle.surface.hasViewport;
 
@@ -170,6 +172,10 @@ export function AnatomyExplorerClient({
     return () => window.clearTimeout(timer);
   }, [dismissInvalidStructure, invalidStructureDismissed, invalidStructureId]);
 
+  useEffect(() => {
+    if (teach.mode !== "off") setTeachExpanded(true);
+  }, [teach.mode]);
+
   const resetFilters = useCallback(() => {
     setSearch("");
     setSystemFilter("all");
@@ -188,7 +194,7 @@ export function AnatomyExplorerClient({
   const { handleStructureSelect: handleTeachPick, highlightedId, quizActive, quizHint, startTour } =
     teach;
 
-  const viewportHighlightedId = highlightedId ?? hoveredId;
+  const viewportHighlightedId = quizActive ? highlightedId : highlightedId ?? hoveredId;
 
   const handleSelectStructure = useCallback(
     (id: string) => {
@@ -250,7 +256,7 @@ export function AnatomyExplorerClient({
   };
 
   return (
-    <div className="space-y-4">
+    <div className={anatomyUi.page}>
       {showInvalidBanner ? (
         <div className="a11y-banner a11y-banner--warning relative pr-10" role="alert">
           <span>
@@ -260,7 +266,7 @@ export function AnatomyExplorerClient({
           <button
             type="button"
             onClick={dismissInvalidStructure}
-            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg p-1.5 text-[var(--color-ink-muted)] hover:bg-black/[0.04]"
+            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1.5 text-[var(--color-ink-muted)] hover:bg-black/[0.04]"
             aria-label="Dismiss"
           >
             <X className="h-4 w-4" />
@@ -269,8 +275,14 @@ export function AnatomyExplorerClient({
       ) : null}
 
       {quizActive ? (
-        <div className="rounded-2xl border border-violet-200 bg-violet-50/80 px-4 py-3 text-sm text-violet-900">
-          <strong>Quiz mode</strong> — {quizHint}
+        <div
+          className={cn(
+            anatomyUi.panel,
+            "border-[var(--color-accent)]/20 bg-[var(--color-accent)]/[0.06] px-4 py-3 text-[14px] text-[var(--color-ink)]"
+          )}
+        >
+          <strong className="font-semibold">Quiz mode</strong>
+          <span className="text-[var(--color-ink-muted)]"> — {quizHint}</span>
         </div>
       ) : null}
 
@@ -281,21 +293,17 @@ export function AnatomyExplorerClient({
         catalogOnly={catalogOnly}
       />
 
-      <AnatomyHighYieldStrip
-        examSlug={examSlug}
+      <AnatomyQuickNav
         selectedId={selectedId}
-        onSelect={handleSelectStructure}
-      />
-
-      <AnatomyProcedureStrip
-        examSlug={examSlug}
         activeProcedureId={focusedProcedureId}
+        onSelectStructure={handleSelectStructure}
         onSelectProcedure={handleSelectProcedure}
+        onPreviewStructure={quizActive ? undefined : setHoveredId}
       />
 
       {procedureMatches.length > 0 ? (
-        <div className="rounded-2xl border border-indigo-200/70 bg-indigo-50/40 px-4 py-3">
-          <p className="text-xs font-semibold uppercase tracking-wide text-indigo-800">
+        <div className={cn(anatomyUi.panel, "px-4 py-3 sm:px-5")}>
+          <p className={anatomyUi.sectionLabel}>
             Procedures matching &ldquo;{search.trim()}&rdquo;
           </p>
           <div className="mt-2 flex flex-wrap gap-2">
@@ -306,7 +314,7 @@ export function AnatomyExplorerClient({
                   key={proc.id}
                   type="button"
                   onClick={() => handleSelectProcedure(proc.id, sid)}
-                  className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-xs font-medium text-indigo-900 hover:bg-indigo-100"
+                  className={cn(anatomyUi.chip, anatomyUi.chipIdle)}
                 >
                   {proc.name}
                 </button>
@@ -340,19 +348,32 @@ export function AnatomyExplorerClient({
       />
 
       {teach.mode !== "off" ? (
-        <TeachHost examSlug={examSlug} session={teach} />
+        <section className={cn(anatomyUi.panelElevated, "p-4 sm:p-5")}>
+          <TeachHost examSlug={examSlug} session={teach} />
+        </section>
       ) : (
-        <details className="rounded-2xl border border-black/[0.06] bg-white shadow-[var(--shadow-apple-sm)]">
-          <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-[var(--color-ink)]">
-            Guided tours & structure quiz
-            <span className="ml-2 font-normal text-[var(--color-ink-muted)]">
-              ({catalogStats.tourCount} tours · {catalogStats.quizCount} questions)
+        <section className={cn(anatomyUi.panel, "overflow-hidden")}>
+          <button
+            type="button"
+            onClick={() => setTeachExpanded((v) => !v)}
+            className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left sm:px-5"
+          >
+            <div>
+              <p className={anatomyUi.sectionLabel}>Guided tours & quiz</p>
+              <p className={anatomyUi.sectionHint}>
+                {catalogStats.tourCount} tours · {catalogStats.quizCount} questions
+              </p>
+            </div>
+            <span className="rounded-full bg-black/[0.05] px-3 py-1 text-[12px] font-semibold text-[var(--color-ink-muted)]">
+              {teachExpanded ? "Hide" : "Show"}
             </span>
-          </summary>
-          <div className="border-t border-black/[0.05] p-3 pt-0">
-            <TeachHost examSlug={examSlug} session={teach} />
-          </div>
-        </details>
+          </button>
+          {teachExpanded ? (
+            <div className="border-t border-black/[0.05] px-4 pb-4 pt-2 sm:px-5">
+              <TeachHost examSlug={examSlug} session={teach} />
+            </div>
+          ) : null}
+        </section>
       )}
     </div>
   );

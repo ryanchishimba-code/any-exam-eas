@@ -82,6 +82,7 @@ function OrganModules({
   );
 
   const focusStructureId = highlightedId ?? selectedId;
+  const focusStructure = focusStructureId ? getAnatomyStructure(focusStructureId) : null;
 
   return (
     <>
@@ -89,6 +90,9 @@ function OrganModules({
         const structure = structureByMesh.get(mod.id);
         if (!structure) return null;
         const connected = isNeuroConnected(focusStructureId, structure.id);
+        const isFocused = focusStructureId === structure.id;
+        const isParentOfFocus = focusStructure?.parentId === structure.id;
+        const isChildOfFocus = structure.parentId === focusStructureId;
         return (
           <CartoonOrganMesh
             key={mod.id}
@@ -97,7 +101,7 @@ function OrganModules({
             structureSystem={structure.system}
             systemFilter={systemFilter}
             visible={visibleLayers.has(mod.layer)}
-            highlighted={highlightedId === structure.id || connected}
+            highlighted={isFocused || connected || isParentOfFocus || isChildOfFocus}
             selected={selectedId === structure.id}
             skinOn={skinOn}
             muscleStructuralOn={muscleStructuralOn}

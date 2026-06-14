@@ -5,6 +5,7 @@ import { NCLEX_BOARD_QUALITY_CONTROLS } from "./nclex-board-quality";
 import { isGenericCommunicationBankItem, isGenericInterventionBankItem, isGenericPharmacologyBankItem, isGenericRiskBankItem, isGenericTeachingBankItem } from "@/lib/engine/polish/nclex-generic-checks";
 import { scoreNclexBankItem } from "@/lib/engine/polish/nclex-polish";
 import { isNclexCuratedItem } from "@/lib/question-bank/nclex-curated";
+import { hasStructuredGuidelineReferences } from "./enrich-guidelines";
 
 export const NCLEX_BEST_MIN_SCORE = NCLEX_BOARD_QUALITY_CONTROLS.minBestScore;
 const BLOCKING_ERROR_CODES = new Set(["generic_risk_distractors","distractors_all_benign","generic_teaching_distractors","teaching_unstable_vignette","stem_option_category_mismatch","malformed_finding_option","stable_unstable_mismatch","generic_delegation_correct","generic_communication_distractors","generic_pharmacology_distractors","clinical_medication_vignette_mismatch"]);
@@ -40,6 +41,9 @@ export function assessNclexItemQuality(item: BankItem, opts?: { source?: string 
     if (item.options.filter((o) => CARTOON_OPTION_PATTERNS.some((re) => re.test(o.trim()))).length >= 1) issues.push("cartoon_distractors");
   }
   if (NCLEX_BOARD_QUALITY_CONTROLS.curatedSourceRequired && !isNclexCuratedItem({ tags: item.tags, source: opts?.source ?? null })) issues.push("not_curated_source");
+  if (NCLEX_BOARD_QUALITY_CONTROLS.requireGuidelineReferences && !hasStructuredGuidelineReferences(item)) {
+    issues.push("missing_guideline_reference");
+  }
   if (score < NCLEX_BEST_MIN_SCORE) issues.push("score_below_best_bar");
   const uniqueIssues = [...new Set(issues)];
   let tier: NclexQualityVerdict["tier"] = "reject";

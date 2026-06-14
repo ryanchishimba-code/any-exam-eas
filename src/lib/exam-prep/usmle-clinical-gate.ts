@@ -71,10 +71,12 @@ type PrepareUsmleItemsParams = {
   limit: number;
 };
 
-/** Items are pre-filtered to qaPassed=true in the DB sample. */
+/** Defense-in-depth: DB qaPassed can be stale — re-audit before each session. */
 export function prepareUsmleItemsForSession({
   items,
+  fieldId,
   limit,
 }: PrepareUsmleItemsParams): BankItem[] {
-  return serveQaPassedBankItems(items, limit);
+  const vetted = items.filter((item) => usmleBankItemIsServeReady(item, fieldId));
+  return serveQaPassedBankItems(vetted, limit);
 }

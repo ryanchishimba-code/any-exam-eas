@@ -49,34 +49,7 @@ export function CartoonAnatomyViewer({
   const handlePeelSkin = useCallback(() => onToggleLayer?.("skin"), [onToggleLayer]);
 
   return (
-    <div
-      className={cn(
-        "relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-black/[0.06] bg-white shadow-[var(--shadow-apple-md)]",
-        className
-      )}
-    >
-      <AnatomyExplorerControls
-        onZoomIn={handleZoomIn}
-        onZoomOut={handleZoomOut}
-        onResetView={handleReset}
-        selectedName={selectedName}
-        quizActive={quizActive}
-        skinOn={skinOn}
-        onPeelSkin={onToggleLayer ? handlePeelSkin : undefined}
-        ctMode={ctMode}
-        onCtModeChange={ctAvailable ? setCtMode : undefined}
-        ctWindowId={ctWindowId}
-        onCtWindowChange={setCtWindowId}
-        ctClipPlaneId={ctClipPlaneId}
-        onCtClipChange={(id) => {
-          setCtClipPlaneId(id);
-          if (id === "off") setCtSliceOffset(0);
-        }}
-        ctSliceOffset={ctSliceOffset}
-        onCtSliceOffsetChange={setCtSliceOffset}
-        showCtControls={ctAvailable}
-      />
-
+    <div className={cn("relative flex h-full w-full flex-col overflow-hidden", className)}>
       <div className="relative min-h-0 flex-1">
         <CartoonAnatomyScene
           ref={sceneRef}
@@ -93,11 +66,34 @@ export function CartoonAnatomyViewer({
           ctSliceOffset={ctSliceOffset}
           className="h-full rounded-none border-0 shadow-none"
         />
+
+        <AnatomyExplorerControls
+          onZoomIn={handleZoomIn}
+          onZoomOut={handleZoomOut}
+          onResetView={handleReset}
+          selectedName={selectedName}
+          quizActive={quizActive}
+          skinOn={skinOn}
+          onPeelSkin={onToggleLayer ? handlePeelSkin : undefined}
+          ctMode={ctMode}
+          onCtModeChange={ctAvailable ? setCtMode : undefined}
+          ctWindowId={ctWindowId}
+          onCtWindowChange={setCtWindowId}
+          ctClipPlaneId={ctClipPlaneId}
+          onCtClipChange={(id) => {
+            setCtClipPlaneId(id);
+            if (id === "off") setCtSliceOffset(0);
+          }}
+          ctSliceOffset={ctSliceOffset}
+          onCtSliceOffsetChange={setCtSliceOffset}
+          showCtControls={ctAvailable}
+          floating
+        />
       </div>
 
       {systemFilter !== "all" && visibleLayers.has("organ") ? (
-        <footer className="border-t border-black/[0.05] bg-indigo-50/40 px-4 py-1.5 text-center text-[10px] text-indigo-800">
-          Showing <strong>{ANATOMY_SYSTEM_LABELS[systemFilter]}</strong> — other organs dimmed
+        <footer className="absolute bottom-16 left-1/2 z-10 max-w-[90%] -translate-x-1/2 rounded-full bg-white/80 px-3 py-1 text-center text-[11px] text-[var(--color-ink-muted)] shadow-[var(--shadow-apple-sm)] backdrop-blur-md">
+          Showing <strong className="text-[var(--color-ink)]">{ANATOMY_SYSTEM_LABELS[systemFilter]}</strong>
         </footer>
       ) : null}
     </div>

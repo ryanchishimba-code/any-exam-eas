@@ -5,6 +5,7 @@ import { AnatomyExplorerClient } from "@/components/anatomy/AnatomyExplorerClien
 import { Skeleton } from "@/components/ui/skeleton";
 import { getPrimaryStructureIdForProcedure } from "@/lib/anatomy/procedure-recommendations";
 import { getAnatomyStructure } from "@/lib/anatomy";
+import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { loadMemoryCards } from "@/lib/reference/memory-cards";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
@@ -55,13 +56,6 @@ type PageProps = {
 };
 
 export default async function AnatomyPage({ searchParams }: PageProps) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.anatomy)}`);
-  }
-
-  await requirePremiumPage(ROUTES.anatomy);
-
   const params = await searchParams;
   const examOverride = params.exam as ExamSlug | undefined;
   const initialProcedureId = params.procedure?.trim() || undefined;
@@ -75,8 +69,23 @@ export default async function AnatomyPage({ searchParams }: PageProps) {
       : structureFromProcedure && getAnatomyStructure(structureFromProcedure)
         ? structureFromProcedure
         : undefined;
+
+  const callbackQuery = new URLSearchParams();
+  if (examOverride) callbackQuery.set("exam", examOverride);
+  if (structureParam) callbackQuery.set("structure", structureParam);
+  else if (initialProcedureId) callbackQuery.set("procedure", initialProcedureId);
+  const callbackPath = callbackQuery.toString()
+    ? `${ROUTES.anatomy}?${callbackQuery.toString()}`
+    : ROUTES.anatomy;
+
+  const session = await auth();
+  if (!session?.user?.id) {
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callbackPath)}`);
+  }
+
+  await requirePremiumPage(ROUTES.anatomy);
   return (
-    <div className="space-y-4">
+    <div className="mx-auto max-w-[1440px] space-y-4 pb-6">
       <header className="sr-only">
         <h1>Anatomy Explorer</h1>
       </header>

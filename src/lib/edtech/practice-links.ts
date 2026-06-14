@@ -1,14 +1,23 @@
 import { ROUTES, fullExamHref } from "@/lib/routes";
-import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
+
+/** Context for returning to a high-yield review module after practice. */
+export type TopicPracticeReturnContext = {
+  /** High-yield topic slug (panel deep link), not question-bank subjectId. */
+  topicSlug: string;
+  topicTitle: string;
+  deepDive?: boolean;
+};
 
 /** Question bank practice filtered to a high-yield topic slug. */
 export function practiceTopicHref(
   examSlug: ExamSlug,
   topicSlug: string,
-  count = 10
+  count = 10,
+  returnTo?: TopicPracticeReturnContext
 ): string {
   const fieldId = EXAM_CATALOG[examSlug].fieldId;
   const qs = new URLSearchParams({
@@ -17,7 +26,29 @@ export function practiceTopicHref(
     subjectId: topicSlug,
     count: String(count),
   });
+  if (returnTo) {
+    qs.set("returnExam", examSlug);
+    qs.set("returnTopic", returnTo.topicSlug);
+    qs.set("returnTitle", returnTo.topicTitle);
+    if (returnTo.deepDive) qs.set("returnMode", "deep");
+  }
   return `${ROUTES.questionBank}?${qs.toString()}`;
+}
+
+/** Parse return-to-module link from question bank URL params. */
+export function parseTopicPracticeReturn(
+  params: Pick<URLSearchParams, "get">
+): { href: string; label: string } | null {
+  const returnExam = params.get("returnExam");
+  const returnTopic = params.get("returnTopic");
+  const returnTitle = params.get("returnTitle");
+  if (!returnExam || !returnTopic || !isExamSlug(returnExam)) return null;
+  return {
+    href: highYieldTopicHref(returnExam, returnTopic, {
+      deepDive: params.get("returnMode") === "deep",
+    }),
+    label: returnTitle?.trim() || "Review module",
+  };
 }
 
 export function questionBankHref(examSlug?: ExamSlug): string {

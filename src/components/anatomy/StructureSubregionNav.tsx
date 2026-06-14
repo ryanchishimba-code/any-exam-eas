@@ -2,6 +2,7 @@
 
 import { Layers } from "lucide-react";
 import { getSubregionsForStructure } from "@/lib/anatomy";
+import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
 import type { AnatomyStructure } from "@/lib/anatomy/types";
 import { cn } from "@/lib/utils";
 
@@ -21,15 +22,15 @@ export function StructureSubregionNav({
   if (subregions.length === 0) return null;
 
   return (
-    <section aria-label="Anatomical sub-regions">
-      <div className="mb-2 flex items-center gap-2">
-        <Layers className="h-4 w-4 text-violet-600" aria-hidden />
-        <h4 className="text-sm font-bold text-[var(--color-ink)]">Sub-regions</h4>
+    <section aria-label="Anatomical sub-regions" className={anatomyUi.detailSection}>
+      <div className="flex items-center gap-2">
+        <Layers className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+        <h4 className="text-[14px] font-semibold text-[var(--color-ink)]">Sub-regions</h4>
       </div>
-      <p className="mb-2 text-[11px] text-[var(--color-ink-muted)]">
+      <p className="mt-1 text-[12px] text-[var(--color-ink-muted)]">
         Tap to highlight a subdivision on the 3D model.
       </p>
-      <div className="flex flex-wrap gap-1.5">
+      <div className="mt-3 flex flex-wrap gap-1.5">
         {subregions.map((sub) => {
           const active = selectedSubregionId === sub.id;
           return (
@@ -38,10 +39,9 @@ export function StructureSubregionNav({
               type="button"
               onClick={() => onSelectSubregion(sub.id)}
               className={cn(
-                "rounded-full px-2.5 py-1 text-xs font-medium transition",
-                active
-                  ? "bg-violet-600 text-white shadow-sm"
-                  : "bg-violet-50 text-violet-800 hover:bg-violet-100"
+                anatomyUi.chip,
+                "px-3 py-1.5 text-[12px]",
+                active ? anatomyUi.chipActive : anatomyUi.chipIdle
               )}
             >
               {sub.name}

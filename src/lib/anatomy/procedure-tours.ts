@@ -1,4 +1,4 @@
-import type { AnatomyTour } from "../types";
+import type { AnatomyTour } from "./types";
 
 /** Guided procedure tours — zoom to organ sub-regions and walk through named surgeries. */
 export const ANATOMY_PROCEDURE_TOURS: AnatomyTour[] = [

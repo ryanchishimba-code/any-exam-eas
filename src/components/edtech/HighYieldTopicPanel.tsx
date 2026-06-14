@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, useTransition } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
 import Link from "next/link";
 import {
   X,
@@ -12,16 +12,20 @@ import {
   Eye,
   ChevronLeft,
   ChevronRight,
-  BookMarked,
   Layers,
   List,
+  CheckCircle2,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { DeepDiveReviewPlayer } from "@/components/edtech/DeepDiveReviewPlayer";
-import { practiceTopicHref, referenceCardHref } from "@/lib/edtech/practice-links";
+import {
+  ReviewModuleScrollView,
+  type ReviewModuleScrollProgress,
+} from "@/components/edtech/ReviewModuleScrollView";
+import { RelatedMemoryCardsCollapsible } from "@/components/edtech/RelatedMemoryCardsCollapsible";
+import { practiceTopicHref } from "@/lib/edtech/practice-links";
 import { getRelatedMemoryCards } from "@/lib/edtech/topic-graph";
 import { recordTopicReview, recordTopicPractice } from "@/lib/edtech/topic-actions";
-import { ReviewModuleRenderer } from "@/components/edtech/ReviewModuleRenderer";
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { cn } from "@/lib/utils";
@@ -56,6 +60,15 @@ export function HighYieldTopicPanel({
   const [viewMode, setViewMode] = useState<ViewMode>(
     initialDeepDive ? "deep" : "scroll"
   );
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [moduleProgress, setModuleProgress] = useState<ReviewModuleScrollProgress | null>(
+    null
+  );
+  const practiceQuestionCount = 10;
+
+  const handleModuleProgress = useCallback((progress: ReviewModuleScrollProgress) => {
+    setModuleProgress(progress);
+  }, []);
 
   const relatedCards = useMemo(
     () =>
@@ -77,6 +90,7 @@ export function HighYieldTopicPanel({
     } else {
       setViewMode("scroll");
     }
+    setModuleProgress(null);
   }, [topic?.id, topic?.reviewModule, initialDeepDive]);
 
   useEffect(() => {
@@ -112,7 +126,16 @@ export function HighYieldTopicPanel({
 
   if (!open || !topic) return null;
 
-  const practiceHref = practiceTopicHref(examSlug, topic.practiceTopicSlug, 10);
+  const practiceHref = practiceTopicHref(
+    examSlug,
+    topic.practiceTopicSlug,
+    practiceQuestionCount,
+    {
+      topicSlug: topic.slug,
+      topicTitle: topic.title,
+      deepDive: viewMode === "deep",
+    }
+  );
   const hasPrev = topicIndex > 0;
   const hasNext = topicIndex < topicCount - 1;
 
@@ -167,28 +190,7 @@ export function HighYieldTopicPanel({
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-5 py-6 sm:px-6">
-              {topic.reviewModule && relatedCards.length > 0 ? (
-                <section className="mb-6 rounded-2xl border border-teal-200/60 bg-teal-50/40 p-4">
-                  <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-teal-800">
-                    <BookMarked className="h-4 w-4" aria-hidden />
-                    Related memory cards ({relatedCards.length})
-                  </h3>
-                  <ul className="mt-3 space-y-2">
-                    {relatedCards.map((card) => (
-                      <li key={card.id}>
-                        <Link
-                          href={referenceCardHref(examSlug, card.id)}
-                          className="block rounded-xl bg-white px-3 py-2 text-sm font-medium text-slate-800 ring-1 ring-teal-200/80 transition hover:bg-teal-50"
-                        >
-                          {card.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-              ) : null}
-
+            <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-6 pb-28 sm:px-6">
               {topic.reviewModule ? (
                 <div className="mb-4 flex rounded-xl border border-slate-200 bg-slate-50 p-1">
                   <button
@@ -228,8 +230,26 @@ export function HighYieldTopicPanel({
                   onPracticeClick={trackPracticeLaunch}
                 />
               ) : topic.reviewModule ? (
-                <ReviewModuleRenderer content={topic.reviewModule} />
-              ) : (
+                <ReviewModuleScrollView
+                  content={topic.reviewModule}
+                  practiceHref={practiceHref}
+                  topicTitle={topic.title}
+                  questionCount={practiceQuestionCount}
+                  onPracticeClick={trackPracticeLaunch}
+                  scrollRootRef={scrollRef}
+                  onProgressChange={handleModuleProgress}
+                />
+              ) : null}
+
+              {topic.reviewModule && relatedCards.length > 0 ? (
+                <RelatedMemoryCardsCollapsible
+                  examSlug={examSlug}
+                  cards={relatedCards}
+                  className="mb-6 mt-6"
+                />
+              ) : null}
+
+              {!topic.reviewModule ? (
                 <>
               <section className="rounded-2xl border border-slate-200/60 bg-gradient-to-br from-[#f0f7fa] to-white p-5 shadow-sm">
                 <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-500">
@@ -294,10 +314,28 @@ export function HighYieldTopicPanel({
                 </Section>
               ) : null}
                 </>
-              )}
+              ) : null}
             </div>
 
             <div className="space-y-3 border-t border-slate-100 bg-white px-5 py-4 sm:px-6">
+              {topic.reviewModule && viewMode === "scroll" && moduleProgress ? (
+                <p className="flex items-center justify-center gap-2 text-xs font-medium text-slate-500">
+                  {moduleProgress.complete ? (
+                    <>
+                      <CheckCircle2 className="h-3.5 w-3.5 text-teal-600" aria-hidden />
+                      <span className="text-teal-800">All sections reviewed</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="tabular-nums">
+                        {moduleProgress.viewedCount}/{moduleProgress.totalCount} sections read
+                      </span>
+                      <span aria-hidden>·</span>
+                      <span>Jump to any section above</span>
+                    </>
+                  )}
+                </p>
+              ) : null}
               <div className="flex items-center justify-between gap-2">
                 <button
                   type="button"
@@ -321,7 +359,9 @@ export function HighYieldTopicPanel({
                 onClick={trackPracticeLaunch}
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-5 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-95"
               >
-                Practice 10 related questions
+                {topic.reviewModule && moduleProgress?.complete
+                  ? `Practice ${practiceQuestionCount} questions on ${topic.title}`
+                  : `Practice ${practiceQuestionCount} related questions`}
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
             </div>

@@ -16,6 +16,10 @@ import { bowTieSelectionValid, parseBowTieLayout, parseMatrixKey } from "@/lib/q
 import { persistSessionLocally } from "@/lib/questions/storage";
 import { saveStudySessionRemote } from "@/lib/client/save-study-session";
 import { EndActivityControl } from "./EndActivityControl";
+import {
+  TopicPracticeReturnCompletion,
+  type TopicPracticeReturn,
+} from "./TopicPracticeReturnBanner";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import type {
   AdaptiveSessionMeta,
@@ -47,6 +51,8 @@ type Props = {
   /** Whole-exam countdown for board timed simulations (e.g. NAPLEX 6 hours). */
   timedSessionSeconds?: number;
   onComplete?: (summary: ReturnType<typeof summarizeSession>) => void;
+  /** When set, show return-to-review-module actions after the last question. */
+  returnTo?: TopicPracticeReturn;
 };
 
 export function StudySessionPlayer({
@@ -60,6 +66,7 @@ export function StudySessionPlayer({
   adaptiveMeta,
   timedSessionSeconds,
   onComplete,
+  returnTo,
 }: Props) {
   const initial = useMemo(
     () => {
@@ -420,6 +427,11 @@ export function StudySessionPlayer({
   }, [complete, summary, onComplete, sourceId, sourceType]);
 
   if (!current) {
+    if (returnTo) {
+      return (
+        <TopicPracticeReturnCompletion returnTo={returnTo} summary={summary} />
+      );
+    }
     return (
       <div className="rounded-2xl border border-black/10 bg-white p-8 text-center">
         <p className="text-lg font-semibold">Session complete</p>
@@ -429,6 +441,9 @@ export function StudySessionPlayer({
       </div>
     );
   }
+
+  const onLastQuestion = sessionState.currentIndex === questionList.length - 1;
+  const showReturnActions = Boolean(returnTo && complete && answer?.revealed && onLastQuestion);
 
   const progressPct = ((sessionState.currentIndex + 1) / questionList.length) * 100;
   const selectionReasoning =
@@ -544,6 +559,11 @@ export function StudySessionPlayer({
           )}
       </article>
 
+      {showReturnActions && returnTo ? (
+        <TopicPracticeReturnCompletion returnTo={returnTo} summary={summary} />
+      ) : null}
+
+      {!showReturnActions ? (
       <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
         <button
           type="button"
@@ -562,6 +582,7 @@ export function StudySessionPlayer({
           Next
         </button>
       </div>
+      ) : null}
     </div>
   );
 }

@@ -57,6 +57,8 @@ import type { ExamQuestion } from "@/lib/ai";
 import { Button } from "@/components/ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { cn } from "@/lib/utils";
+import { parseTopicPracticeReturn } from "@/lib/edtech/practice-links";
+import { TopicPracticeReturnBanner } from "./TopicPracticeReturnBanner";
 
 const StudySessionPlayer = dynamic(
   () => import("./StudySessionPlayer").then((m) => m.StudySessionPlayer),
@@ -174,6 +176,10 @@ export function StudyBankPractice() {
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
   const autostartRequested = searchParams.get("autostart") === "1";
   const autostartAttempted = useRef(false);
+  const topicReturnTo = useMemo(
+    () => parseTopicPracticeReturn(searchParams),
+    [searchParams]
+  );
 
   const subjects = useMemo(() => getSubjectsForField(field), [field]);
   const fieldId = useMemo(() => resolveFieldId(field), [field]);
@@ -559,16 +565,22 @@ export function StudyBankPractice() {
         }`;
 
     return (
-      <StudySessionPlayer
-        field={field}
-        subjectId={isTimedExam ? "__mixed__" : subjectId}
-        questions={questions}
-        sourceType="bank"
-        mode={sessionStudyMode}
-        title={title}
-        adaptiveMeta={adaptiveMeta ?? undefined}
-        timedSessionSeconds={timedSessionSeconds}
-      />
+      <div className="space-y-4">
+        {topicReturnTo ? (
+          <TopicPracticeReturnBanner returnTo={topicReturnTo} />
+        ) : null}
+        <StudySessionPlayer
+          field={field}
+          subjectId={isTimedExam ? "__mixed__" : subjectId}
+          questions={questions}
+          sourceType="bank"
+          mode={sessionStudyMode}
+          title={title}
+          adaptiveMeta={adaptiveMeta ?? undefined}
+          timedSessionSeconds={timedSessionSeconds}
+          returnTo={topicReturnTo ?? undefined}
+        />
+      </div>
     );
   }
 

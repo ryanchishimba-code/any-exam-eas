@@ -34,13 +34,25 @@ const SECTION_STYLES: Partial<Record<ReviewModuleSectionId, string>> = {
   "quick-summary": "from-slate-50 to-white border-slate-200/80",
 };
 
-export function ReviewModuleRenderer({ content }: { content: ReviewModuleContent }) {
+export function ReviewModuleRenderer({
+  content,
+  anchorSections = false,
+}: {
+  content: ReviewModuleContent;
+  /** When true, sections get scroll-spy anchors for the TOC. */
+  anchorSections?: boolean;
+}) {
   const ordered = getOrderedSections(content);
 
   return (
     <div className="space-y-6">
       {ordered.map((section, index) => (
-        <ModuleSection key={section.id} section={section} index={index} />
+        <ModuleSection
+          key={section.id}
+          section={section}
+          index={index}
+          anchor={anchorSections}
+        />
       ))}
     </div>
   );
@@ -52,15 +64,25 @@ export function getOrderedSections(content: ReviewModuleContent): ReviewModuleSe
   ).filter(Boolean) as ReviewModuleSection[];
 }
 
-export function ModuleSection({ section, index }: { section: ReviewModuleSection; index: number }) {
+export function ModuleSection({
+  section,
+  index,
+  anchor = false,
+}: {
+  section: ReviewModuleSection;
+  index: number;
+  anchor?: boolean;
+}) {
   const Icon = SECTION_ICONS[section.id] ?? BookOpen;
   const title = section.title || REVIEW_MODULE_DEFAULT_TITLES[section.id];
   const style = SECTION_STYLES[section.id] ?? "from-white to-slate-50/50 border-slate-200/60";
 
   return (
     <section
+      id={anchor ? `review-section-${section.id}` : undefined}
+      data-review-section={anchor ? section.id : undefined}
       className={cn(
-        "rounded-2xl border bg-gradient-to-br p-5 shadow-sm",
+        "scroll-mt-[7.5rem] rounded-2xl border bg-gradient-to-br p-5 shadow-sm",
         style
       )}
       aria-labelledby={`module-section-${section.id}`}

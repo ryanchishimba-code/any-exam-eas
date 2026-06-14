@@ -6,7 +6,7 @@ import { DRUG_ENRICHMENT_OVERLAYS } from "./drug-overlays";
 export type { DrugEnrichment, EnrichedDrugView } from "./types";
 
 export const DRUG_GUIDELINE_NOTE =
-  "Pearls align with current society guidelines (ADA, ACC/AHA, IDSA, FDA labeling) — the same sources referenced in UpToDate monographs.";
+  "Pearls align with current society guidelines (ADA, ACC/AHA, IDSA, APA, ACOG, FDA labeling) — the same sources referenced in UpToDate monographs.";
 
 function mergeEnrichment(
   base: Partial<DrugEnrichment>,

@@ -1,11 +1,13 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { BookOpen, Layers, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { BookOpen, Layers3, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { AnatomySidebar } from "@/components/anatomy/AnatomySidebar";
 import { StructureDetailSheet } from "@/components/anatomy/StructureDetailSheet";
 import { StructureOverlay } from "@/components/anatomy/StructureOverlay";
 import { SurfaceHost } from "@/components/anatomy/systems/SurfaceHost";
+import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
 import type { AnatomyBundle } from "@/lib/anatomy/systems/kernel/compose";
 import type { AnatomyLayer, AnatomyStructure, AnatomySystem } from "@/lib/anatomy/types";
 import type { MemoryCard } from "@/lib/reference/types";
@@ -54,6 +56,27 @@ type Props = {
   onMobileSheetOpenChange: (v: boolean) => void;
 };
 
+function FloatingTool({
+  label,
+  onClick,
+  children,
+}: {
+  label: string;
+  onClick: () => void;
+  children: ReactNode;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(anatomyUi.glass, "inline-flex items-center gap-1.5 px-3 py-2 text-[13px] font-medium text-[var(--color-ink)] transition hover:bg-white")}
+      aria-label={label}
+    >
+      {children}
+    </button>
+  );
+}
+
 /** Composes catalog sidebar, 3D viewport, and detail panel. */
 export function AnatomyShell({
   bundle,
@@ -80,12 +103,17 @@ export function AnatomyShell({
   const hasViewport = bundle.surface.hasViewport;
 
   const emptyDetail = (
-    <div className="flex h-full min-h-[200px] items-center justify-center rounded-2xl border border-dashed border-black/[0.08] bg-[var(--color-surface)]/50 p-6 text-center">
-      <p className="text-sm font-medium text-[var(--color-ink)]">Pick a structure</p>
-      <p className="max-w-xs text-sm text-[var(--color-ink-muted)]">
+    <div className={anatomyUi.emptyState}>
+      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-black/[0.04]">
+        <Layers3 className="h-6 w-6 text-[var(--color-ink-muted)]" aria-hidden />
+      </div>
+      <p className="text-[17px] font-semibold tracking-tight text-[var(--color-ink)]">
+        Select a structure
+      </p>
+      <p className="mt-2 max-w-[240px] text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
         {hasViewport
-          ? "Click an organ on the 3D body or pick a name in the sidebar for pearls and practice links."
-          : "Search the catalog or start a guided tour — pearls and practice links appear here."}
+          ? "Tap the 3D model or choose from the list to see pearls, procedures, and practice links."
+          : "Search the catalog or start a guided tour to open clinical details here."}
       </p>
     </div>
   );
@@ -105,8 +133,8 @@ export function AnatomyShell({
 
   if (!hasViewport) {
     return (
-      <>
-        <div className="grid gap-4 lg:grid-cols-[minmax(280px,340px)_1fr]">
+      <div className={anatomyUi.pageBg}>
+        <div className="grid gap-3 p-3 lg:grid-cols-[minmax(280px,340px)_1fr]">
           <AnatomySidebar {...sidebarProps} />
           <div className="min-h-[min(60vh,520px)]">{detailPanel}</div>
         </div>
@@ -119,76 +147,83 @@ export function AnatomyShell({
           onSelectSubregion={onSelectSubregion}
           focusedProcedureId={focusedProcedureId}
         />
-      </>
+      </div>
     );
   }
 
   return (
     <>
-      <div className="grid gap-4 lg:grid-cols-[minmax(240px,280px)_1fr_minmax(280px,320px)]">
-        <div className={cn("hidden lg:block", !sidebarOpen && "lg:hidden")}>
-          <AnatomySidebar {...sidebarProps} />
-        </div>
-
-        <div className="relative min-h-[min(72vh,640px)]">
-          <div className="absolute left-3 top-3 z-10 flex gap-2">
-            <button
-              type="button"
-              onClick={() => onSidebarOpenChange(!sidebarOpen)}
-              className="hidden rounded-full border border-black/[0.08] bg-white/95 p-2 shadow-sm backdrop-blur lg:inline-flex"
-              aria-label={sidebarOpen ? "Hide sidebar" : "Show sidebar"}
-            >
-              {sidebarOpen ? (
-                <PanelLeftClose className="h-4 w-4 text-[var(--color-ink-muted)]" />
-              ) : (
-                <PanelLeftOpen className="h-4 w-4 text-[var(--color-ink-muted)]" />
-              )}
-            </button>
-            <button
-              type="button"
-              onClick={() => onOverlayOpenChange(!overlayOpen)}
-              className="hidden rounded-full border border-black/[0.08] bg-white/95 p-2 shadow-sm backdrop-blur lg:inline-flex"
-              aria-label={overlayOpen ? "Hide details panel" : "Show details panel"}
-            >
-              <Layers className="h-4 w-4 text-[var(--color-ink-muted)]" />
-            </button>
+      <div className={anatomyUi.pageBg}>
+        <div className="grid gap-3 p-3 lg:grid-cols-[minmax(248px,280px)_1fr_minmax(288px,320px)]">
+          <div className={cn("hidden lg:block", !sidebarOpen && "lg:hidden")}>
+            <AnatomySidebar {...sidebarProps} />
           </div>
 
-          <motion.div
-            layout
-            className="h-[min(72vh,640px)] w-full"
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          >
-            <SurfaceHost
-              surfaceId="cartoon-3d"
-              visibleLayers={visibleLayers}
-              systemFilter={sidebarProps.systemFilter}
-              selectedId={selectedId}
-              highlightedId={highlightedId}
-              onSelect={onSelectStructure}
-              onToggleLayer={onToggleLayer}
-              quizActive={quizActive}
-              className="h-full"
-            />
-          </motion.div>
-
-          <details className="mt-3 rounded-2xl border border-black/[0.06] bg-white lg:hidden">
-            <summary className="cursor-pointer px-4 py-3 text-sm font-semibold text-[var(--color-ink)]">
-              Search & filters
-            </summary>
-            <div className="max-h-80 overflow-y-auto p-3 pt-0">
-              <AnatomySidebar {...sidebarProps} collapsed={false} />
+          <div className={anatomyUi.viewportShell}>
+            <div className="absolute left-3 right-3 top-3 z-10 hidden flex-wrap items-center justify-between gap-2 lg:flex">
+              <div className="flex gap-2">
+                <FloatingTool
+                  label={sidebarOpen ? "Hide structure list" : "Show structure list"}
+                  onClick={() => onSidebarOpenChange(!sidebarOpen)}
+                >
+                  {sidebarOpen ? (
+                    <PanelLeftClose className="h-4 w-4 text-[var(--color-ink-muted)]" />
+                  ) : (
+                    <PanelLeftOpen className="h-4 w-4 text-[var(--color-ink-muted)]" />
+                  )}
+                  <span className="hidden sm:inline">Structures</span>
+                </FloatingTool>
+                <FloatingTool
+                  label={overlayOpen ? "Hide details" : "Show details"}
+                  onClick={() => onOverlayOpenChange(!overlayOpen)}
+                >
+                  <Layers3 className="h-4 w-4 text-[var(--color-ink-muted)]" />
+                  <span className="hidden sm:inline">Details</span>
+                </FloatingTool>
+              </div>
+              {selectedStructure ? (
+                <span className={cn(anatomyUi.glass, "px-3 py-2 text-[13px] font-medium text-[var(--color-ink)]")}>
+                  {selectedStructure.name}
+                </span>
+              ) : null}
             </div>
-          </details>
-        </div>
 
-        <div
-          className={cn(
-            "hidden lg:block",
-            !overlayOpen && "lg:invisible lg:h-0 lg:overflow-hidden lg:pointer-events-none"
-          )}
-        >
-          {detailPanel}
+            <motion.div
+              layout
+              className="h-[min(72vh,640px)] w-full"
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              <SurfaceHost
+                surfaceId="cartoon-3d"
+                visibleLayers={visibleLayers}
+                systemFilter={sidebarProps.systemFilter}
+                selectedId={selectedId}
+                highlightedId={highlightedId}
+                onSelect={onSelectStructure}
+                onToggleLayer={onToggleLayer}
+                quizActive={quizActive}
+                className="h-full"
+              />
+            </motion.div>
+
+            <details className="mx-3 mb-3 overflow-hidden rounded-[18px] border border-black/[0.06] bg-white/90 lg:hidden">
+              <summary className="cursor-pointer px-4 py-3 text-[14px] font-semibold text-[var(--color-ink)]">
+                Browse structures
+              </summary>
+              <div className="max-h-80 overflow-y-auto border-t border-black/[0.05] p-3">
+                <AnatomySidebar {...sidebarProps} collapsed={false} />
+              </div>
+            </details>
+          </div>
+
+          <div
+            className={cn(
+              "hidden lg:block",
+              !overlayOpen && "lg:invisible lg:h-0 lg:overflow-hidden lg:pointer-events-none"
+            )}
+          >
+            {detailPanel}
+          </div>
         </div>
       </div>
 
@@ -196,10 +231,13 @@ export function AnatomyShell({
         <button
           type="button"
           onClick={() => onMobileSheetOpenChange(true)}
-          className="fixed bottom-20 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 rounded-full border border-violet-200 bg-white px-4 py-2.5 text-sm font-semibold text-violet-900 shadow-lg lg:hidden"
+          className={cn(
+            anatomyUi.glass,
+            "fixed bottom-20 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 px-5 py-3 text-[14px] font-semibold text-[var(--color-ink)] lg:hidden"
+          )}
         >
-          <BookOpen className="h-4 w-4" aria-hidden />
-          {selectedStructure.name} details
+          <BookOpen className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+          {selectedStructure.name}
         </button>
       ) : null}
 

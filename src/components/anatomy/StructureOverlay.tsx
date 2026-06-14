@@ -5,6 +5,7 @@ import {
   StructureDetailHeader,
   StructureDetailPanel,
 } from "@/components/anatomy/StructureDetailPanel";
+import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
 import type { AnatomyStructure } from "@/lib/anatomy/types";
 import type { MemoryCard } from "@/lib/reference/types";
 import type { ExamSlug } from "@/types/edtech";
@@ -35,11 +36,11 @@ export function StructureOverlay({
       {structure ? (
         <motion.aside
           key={structure.id}
-          initial={{ opacity: 0, x: 24 }}
+          initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 24 }}
+          exit={{ opacity: 0, x: 20 }}
           transition={{ type: "spring", stiffness: 380, damping: 32 }}
-          className="hidden h-full max-h-[min(72vh,640px)] flex-col overflow-hidden rounded-2xl border border-black/[0.06] bg-white shadow-[var(--shadow-apple-md)] lg:flex"
+          className={`${anatomyUi.panelElevated} hidden h-full max-h-[min(72vh,640px)] flex-col lg:flex`}
         >
           <StructureDetailHeader structure={structure} onClose={onClose} />
           <StructureDetailPanel
