@@ -27,7 +27,8 @@ export function AnatomyStudioHero({ examSlug, stats, onStartTour, catalogOnly = 
           {catalogOnly ? "Structure catalog" : "Interactive 3D explorer"}
         </h2>
         <p className="text-xs text-[var(--color-ink-muted)]">
-          {stats.structureCount} structures · {stats.highYieldCount} high-yield
+          {stats.structureCount} structures · {stats.procedureCount} procedures ·{" "}
+          {stats.highYieldCount} high-yield
           {!catalogOnly ? " · click the model or pick from the list" : ""}
         </p>
       </div>

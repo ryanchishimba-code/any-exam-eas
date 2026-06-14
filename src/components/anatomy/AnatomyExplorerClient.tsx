@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { X } from "lucide-react";
 import { AnatomyHighYieldStrip } from "@/components/anatomy/AnatomyHighYieldStrip";
+import { AnatomyProcedureStrip } from "@/components/anatomy/AnatomyProcedureStrip";
 import { AnatomyStudioHero } from "@/components/anatomy/AnatomyStudioHero";
 import { AnatomyShell } from "@/components/anatomy/systems/AnatomyShell";
 import { TeachHost } from "@/components/anatomy/systems/TeachHost";
@@ -15,6 +16,8 @@ import {
   searchAnatomyStructures,
 } from "@/lib/anatomy";
 import { getDefaultTourIdForExam } from "@/lib/anatomy/recommendations";
+import { getPrimaryStructureIdForProcedure } from "@/lib/anatomy/procedure-recommendations";
+import { searchProcedures } from "@/lib/anatomy/procedures";
 import { createCatalogOnlyBundle, createSupportiveBundle } from "@/lib/anatomy/systems";
 import type { AnatomySurfaceId } from "@/lib/anatomy/systems/surfaces/types";
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
@@ -29,6 +32,7 @@ type Props = {
   examSlug: ExamSlug;
   memoryCards: MemoryCard[];
   initialStructureId?: string;
+  initialProcedureId?: string;
   initialSurfaceId?: AnatomySurfaceId;
 };
 
@@ -36,6 +40,7 @@ export function AnatomyExplorerClient({
   examSlug,
   memoryCards,
   initialStructureId,
+  initialProcedureId,
   initialSurfaceId,
 }: Props) {
   const bundle = useMemo(
@@ -66,6 +71,9 @@ export function AnatomyExplorerClient({
   );
   const [mobileSheetOpen, setMobileSheetOpen] = useState(() =>
     Boolean(initialStructureId && !invalidStructureId)
+  );
+  const [focusedProcedureId, setFocusedProcedureId] = useState<string | null>(
+    initialProcedureId ?? null
   );
   const [invalidStructureDismissed, setInvalidStructureDismissed] = useState(false);
 
@@ -100,18 +108,25 @@ export function AnatomyExplorerClient({
     catalogOnly,
   });
 
-  const filteredStructures = useMemo(
-    () =>
-      searchAnatomyStructures(search, {
-        highYieldOnly,
-        system: systemFilter,
-      }),
-    [search, highYieldOnly, systemFilter]
-  );
+  const filteredStructures = useMemo(() => {
+    const results = searchAnatomyStructures(search, {
+      highYieldOnly,
+      system: systemFilter,
+    });
+    if (!search.trim()) {
+      return results.filter((s) => !s.parentId);
+    }
+    return results;
+  }, [search, highYieldOnly, systemFilter]);
 
   const selectedStructure = selectedId ? (getAnatomyStructure(selectedId) ?? null) : null;
   const relatedCards = useMemo(
-    () => (selectedId ? getMemoryCardsForStructure(memoryCards, selectedId) : []),
+    () => {
+      if (!selectedId) return [];
+      const s = getAnatomyStructure(selectedId);
+      const cardStructureId = s?.parentId ?? selectedId;
+      return getMemoryCardsForStructure(memoryCards, cardStructureId);
+    },
     [memoryCards, selectedId]
   );
 
@@ -130,6 +145,22 @@ export function AnatomyExplorerClient({
     setInvalidStructureDismissed(true);
     clearInvalidStructureParam();
   }, [clearInvalidStructureParam]);
+
+  const procedureMatches = useMemo(
+    () => (search.trim().length >= 2 ? searchProcedures(search).slice(0, 6) : []),
+    [search]
+  );
+
+  useEffect(() => {
+    if (!initialProcedureId) return;
+    const target = getPrimaryStructureIdForProcedure(initialProcedureId);
+    if (target && getAnatomyStructure(target)) {
+      setSelectedId(target);
+      setFocusedProcedureId(initialProcedureId);
+      setOverlayOpen(true);
+      setMobileSheetOpen(true);
+    }
+  }, [initialProcedureId]);
 
   useEffect(() => {
     if (!invalidStructureId || invalidStructureDismissed) return;
@@ -177,6 +208,14 @@ export function AnatomyExplorerClient({
     setMobileSheetOpen(false);
     syncStructureParam(null);
   }, [syncStructureParam]);
+
+  const handleSelectProcedure = useCallback(
+    (procedureId: string, structureId: string) => {
+      setFocusedProcedureId(procedureId);
+      handleSelectStructure(structureId);
+    },
+    [handleSelectStructure]
+  );
 
   const startTourById = useCallback(
     (tourId: string) => {
@@ -248,6 +287,35 @@ export function AnatomyExplorerClient({
         onSelect={handleSelectStructure}
       />
 
+      <AnatomyProcedureStrip
+        examSlug={examSlug}
+        activeProcedureId={focusedProcedureId}
+        onSelectProcedure={handleSelectProcedure}
+      />
+
+      {procedureMatches.length > 0 ? (
+        <div className="rounded-2xl border border-indigo-200/70 bg-indigo-50/40 px-4 py-3">
+          <p className="text-xs font-semibold uppercase tracking-wide text-indigo-800">
+            Procedures matching &ldquo;{search.trim()}&rdquo;
+          </p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {procedureMatches.map((proc) => {
+              const sid = proc.subregionIds?.[0] ?? proc.structureIds[0];
+              return (
+                <button
+                  key={proc.id}
+                  type="button"
+                  onClick={() => handleSelectProcedure(proc.id, sid)}
+                  className="rounded-full border border-indigo-200 bg-white px-3 py-1 text-xs font-medium text-indigo-900 hover:bg-indigo-100"
+                >
+                  {proc.name}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ) : null}
+
       <AnatomyShell
         bundle={bundle}
         examSlug={examSlug}
@@ -260,6 +328,8 @@ export function AnatomyExplorerClient({
         quizActive={quizActive}
         onSelectStructure={handleSelectStructure}
         onCloseStructure={handleCloseStructure}
+        onSelectSubregion={handleSelectStructure}
+        focusedProcedureId={focusedProcedureId}
         onToggleLayer={toggleLayer}
         sidebarOpen={sidebarOpen}
         onSidebarOpenChange={setSidebarOpen}

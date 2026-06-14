@@ -91,6 +91,7 @@ export function structureVisibleInView(structureId: string, view: AtlasView): bo
 export function assertAtlasCatalogIntegrity(): string[] {
   return ANATOMY_STRUCTURES.filter(
     (s) =>
+      !s.parentId &&
       !isIndividual3dBoneStructure(s.id) &&
       !ATLAS_REGIONS.some((r) => r.structureId === s.id)
   ).map((s) => s.id);

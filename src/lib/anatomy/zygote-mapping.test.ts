@@ -6,7 +6,10 @@ import { getZygoteEntityForStructure, STRUCTURE_TO_ZYGOTE_ENTITY } from "./zygot
 describe("zygote mapping", () => {
   it("maps every catalog structure to a Zygote entity", () => {
     const missing = getAllAnatomyStructures()
-      .filter((s) => !isIndividual3dBoneStructure(s.id) && !STRUCTURE_TO_ZYGOTE_ENTITY[s.id])
+      .filter(
+        (s) =>
+          !s.parentId && !isIndividual3dBoneStructure(s.id) && !STRUCTURE_TO_ZYGOTE_ENTITY[s.id]
+      )
       .map((s) => s.id);
     expect(missing).toEqual([]);
   });

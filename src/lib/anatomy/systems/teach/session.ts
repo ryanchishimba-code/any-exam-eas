@@ -1,5 +1,5 @@
 import { ANATOMY_QUIZ_QUESTIONS, getTourById } from "../../tours";
-import type { AnatomyQuizQuestion, AnatomyTour } from "../../types";
+import type { AnatomyQuizQuestion, AnatomyTour, AnatomyTourStep } from "../../types";
 import {
   INITIAL_TEACH_STATE,
   type StructureSelectResult,
@@ -10,6 +10,10 @@ import {
 
 export function createInitialTeachState(): TeachState {
   return { ...INITIAL_TEACH_STATE };
+}
+
+function resolveTourHighlightId(step: AnatomyTourStep): string {
+  return step.subregionId ?? step.structureId;
 }
 
 export function getTeachTour(state: TeachState): AnatomyTour | null {
@@ -59,11 +63,11 @@ export function startTeachTour(state: TeachState, tourId: string): StructureSele
     mode: "tour",
     tourId,
     tourStepIndex: 0,
-    highlightedStructureId: first?.structureId ?? null,
+    highlightedStructureId: first ? resolveTourHighlightId(first) : null,
   };
   return {
     state: next,
-    navigateToStructureId: first?.structureId ?? null,
+    navigateToStructureId: first ? resolveTourHighlightId(first) : null,
     quizAttemptHandled: false,
   };
 }
@@ -84,13 +88,14 @@ export function advanceTeachTour(state: TeachState): StructureSelectResult {
   }
 
   const step = tour.steps[nextIndex];
+  const targetId = resolveTourHighlightId(step);
   return {
     state: {
       ...state,
       tourStepIndex: nextIndex,
-      highlightedStructureId: step.structureId,
+      highlightedStructureId: targetId,
     },
-    navigateToStructureId: step.structureId,
+    navigateToStructureId: targetId,
     quizAttemptHandled: false,
   };
 }

@@ -1,5 +1,6 @@
 import type { ExamSlug } from "@/types/edtech";
 import type { AnatomyQuizQuestion, AnatomyTour } from "./types";
+import { ANATOMY_PROCEDURE_TOURS } from "./procedure-tours";
 
 export const ANATOMY_TOURS: AnatomyTour[] = [
   {
@@ -211,6 +212,7 @@ export const ANATOMY_TOURS: AnatomyTour[] = [
       },
     ],
   },
+  ...ANATOMY_PROCEDURE_TOURS,
 ];
 
 export const ANATOMY_QUIZ_QUESTIONS: AnatomyQuizQuestion[] = [
@@ -351,6 +353,24 @@ export const ANATOMY_QUIZ_QUESTIONS: AnatomyQuizQuestion[] = [
     prompt: "Which flat midline chest bone is the target landmark for CPR compressions?",
     structureId: "sternum",
     distractorIds: ["clavicle", "scapula", "diaphragm"],
+  },
+  {
+    id: "q-colonoscopy",
+    prompt: "Which large bowel segment is the classic site for screening colonoscopy and sigmoid diverticulitis?",
+    structureId: "colon-sigmoid",
+    distractorIds: ["colon", "appendix", "duodenum"],
+  },
+  {
+    id: "q-carina",
+    prompt: "Click the airway bifurcation landmark used in bronchoscopy and mainstem intubation checks.",
+    structureId: "trachea-carina",
+    distractorIds: ["trachea", "lungs", "diaphragm"],
+  },
+  {
+    id: "q-femur-neck",
+    prompt: "Select the intracapsular hip segment where fractures risk AVN and often need arthroplasty in elderly patients.",
+    structureId: "femur-neck",
+    distractorIds: ["femur", "tibia", "humerus"],
   },
 ];
 

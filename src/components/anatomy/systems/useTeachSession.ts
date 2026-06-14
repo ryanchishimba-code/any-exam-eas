@@ -12,6 +12,7 @@ import {
   startTeachQuiz,
   startTeachTour,
 } from "@/lib/anatomy/systems/teach/session";
+import { getProcedureById } from "@/lib/anatomy/procedures";
 import { getToursForExam } from "@/lib/anatomy/systems/teach";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -45,6 +46,18 @@ export function useTeachSession({ examSlug, onNavigateToStructure, catalogOnly =
 
   const view = useMemo(() => buildTeachViewModel(state), [state]);
   const tours = useMemo(() => getToursForExam(examSlug), [examSlug]);
+  const anatomyTours = useMemo(
+    () => tours.filter((t) => t.kind !== "procedure"),
+    [tours]
+  );
+  const procedureTours = useMemo(
+    () => tours.filter((t) => t.kind === "procedure"),
+    [tours]
+  );
+  const currentProcedure = useMemo(() => {
+    const step = view.currentStep;
+    return step?.procedureId ? getProcedureById(step.procedureId) : null;
+  }, [view.currentStep]);
 
   const applyResult = useCallback(
     (result: ReturnType<typeof startTeachTour>) => {
@@ -102,6 +115,9 @@ export function useTeachSession({ examSlug, onNavigateToStructure, catalogOnly =
   return {
     ...view,
     tours,
+    anatomyTours,
+    procedureTours,
+    currentProcedure,
     startTour,
     advanceTour,
     startQuiz,

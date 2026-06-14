@@ -21,6 +21,7 @@ export function TeachHost({ examSlug, session }: Props) {
     mode,
     tour,
     currentStep,
+    currentProcedure,
     tourProgress,
     tourFinished,
     currentQuiz,
@@ -28,7 +29,8 @@ export function TeachHost({ examSlug, session }: Props) {
     quizComplete,
     quizActive,
     state,
-    tours,
+    anatomyTours,
+    procedureTours,
     startTour,
     advanceTour,
     startQuiz,
@@ -62,25 +64,15 @@ export function TeachHost({ examSlug, session }: Props) {
 
       {mode === "off" ? (
         <div className="mt-4 space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-            Guided tours
-          </p>
-          <div className="grid gap-2 sm:grid-cols-3">
-            {tours.map((t) => (
-              <button
-                key={t.id}
-                type="button"
-                onClick={() => startTour(t.id)}
-                className="group rounded-xl border border-black/[0.06] bg-white/90 p-3 text-left transition hover:border-indigo-200 hover:shadow-sm"
-              >
-                <p className="text-sm font-semibold text-[var(--color-ink)]">{t.title}</p>
-                <p className="mt-1 text-xs text-[var(--color-ink-muted)]">{t.subtitle}</p>
-                <span className="mt-2 inline-block text-[10px] font-bold uppercase tracking-wide text-indigo-600">
-                  {t.examFocus}
-                </span>
-              </button>
-            ))}
-          </div>
+          <TourGrid label="Anatomy tours" tours={anatomyTours} onStart={startTour} />
+          {procedureTours.length > 0 ? (
+            <TourGrid
+              label="Procedure tours"
+              tours={procedureTours}
+              onStart={startTour}
+              accent="indigo"
+            />
+          ) : null}
           <Button
             variant="secondary"
             className="mt-2 w-full justify-center px-4 py-2.5 text-sm"
@@ -103,13 +95,18 @@ export function TeachHost({ examSlug, session }: Props) {
             <span>{tour.title}</span>
             <span>{tourProgress}</span>
           </div>
+          {currentProcedure ? (
+            <p className="text-xs font-semibold text-indigo-700">
+              Procedure: {currentProcedure.name}
+            </p>
+          ) : null}
           <p className="text-sm leading-relaxed text-[var(--color-ink)]">{currentStep.narration}</p>
           <Button
             variant="primary"
             className="w-full justify-center px-4 py-2.5 text-sm"
             onClick={advanceTour}
           >
-            {tourFinished ? "Finish tour" : "Next structure"}
+            {tourFinished ? "Finish tour" : currentProcedure ? "Next step" : "Next structure"}
             <ChevronRight className="ml-1 h-4 w-4" aria-hidden />
           </Button>
           {tourFinished ? (
@@ -169,5 +166,53 @@ export function TeachHost({ examSlug, session }: Props) {
         </div>
       ) : null}
     </section>
+  );
+}
+
+function TourGrid({
+  label,
+  tours,
+  onStart,
+  accent = "slate",
+}: {
+  label: string;
+  tours: { id: string; title: string; subtitle: string; examFocus: string }[];
+  onStart: (tourId: string) => void;
+  accent?: "slate" | "indigo";
+}) {
+  if (tours.length === 0) return null;
+  const hoverBorder = accent === "indigo" ? "hover:border-indigo-200" : "hover:border-teal-200";
+  const tagColor = accent === "indigo" ? "text-indigo-600" : "text-teal-600";
+
+  return (
+    <>
+      <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+        {label}
+      </p>
+      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        {tours.map((t) => (
+          <button
+            key={t.id}
+            type="button"
+            onClick={() => onStart(t.id)}
+            className={cn(
+              "group rounded-xl border border-black/[0.06] bg-white/90 p-3 text-left transition hover:shadow-sm",
+              hoverBorder
+            )}
+          >
+            <p className="text-sm font-semibold text-[var(--color-ink)]">{t.title}</p>
+            <p className="mt-1 text-xs text-[var(--color-ink-muted)]">{t.subtitle}</p>
+            <span
+              className={cn(
+                "mt-2 inline-block text-[10px] font-bold uppercase tracking-wide",
+                tagColor
+              )}
+            >
+              {t.examFocus}
+            </span>
+          </button>
+        ))}
+      </div>
+    </>
   );
 }

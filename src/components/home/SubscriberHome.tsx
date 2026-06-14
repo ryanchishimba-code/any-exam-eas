@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { AnatomyExplorerCard } from "@/components/study-hub/AnatomyExplorerCard";
 import { StudyHubModeSelector } from "@/components/study-hub/StudyHubModeSelector";
 import { Top500DrugsCard } from "@/components/study-hub/Top500DrugsCard";
 import { firstName } from "@/lib/client/returning-user";
@@ -24,8 +25,8 @@ export function SubscriberHome() {
             {name ? `Ready to study, ${name}?` : "Ready to study?"}
           </h2>
           <p className="aee-subscriber-home-lead">
-            Question banks for NCLEX, USMLE, NAPLEX, and MPJE — plus one Top 500 drug deck
-            shared across every exam.
+            Question banks for NCLEX, USMLE, NAPLEX, and MPJE — plus Anatomy Explorer,
+            Reference Hub, and one Top 500 drug deck shared across every exam.
           </p>
           <Link href={STUDY_HUB_PATH} className="aee-subscriber-home-dashboard-link group">
             Open Study Hub
@@ -38,7 +39,10 @@ export function SubscriberHome() {
 
         <div className="mt-10 space-y-8">
           <StudyHubModeSelector />
-          <Top500DrugsCard />
+          <div className="grid gap-4 lg:grid-cols-2">
+            <AnatomyExplorerCard />
+            <Top500DrugsCard />
+          </div>
         </div>
       </div>
     </section>

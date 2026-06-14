@@ -3,7 +3,8 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { AnatomyExplorerClient } from "@/components/anatomy/AnatomyExplorerClient";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import { getPrimaryStructureIdForProcedure } from "@/lib/anatomy/procedure-recommendations";
+import { getAnatomyStructure } from "@/lib/anatomy";
 import { loadMemoryCards } from "@/lib/reference/memory-cards";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
@@ -27,10 +28,12 @@ async function AnatomyContent({
   userId,
   examOverride,
   initialStructureId,
+  initialProcedureId,
 }: {
   userId: string;
   examOverride?: ExamSlug;
   initialStructureId?: string;
+  initialProcedureId?: string;
 }) {
   const pref = await getUserExamPreference(userId);
   if (!pref && !examOverride) redirect(ROUTES.selectExam);
@@ -42,12 +45,13 @@ async function AnatomyContent({
       examSlug={examSlug}
       memoryCards={cards}
       initialStructureId={initialStructureId}
+      initialProcedureId={initialProcedureId}
     />
   );
 }
 
 type PageProps = {
-  searchParams: Promise<{ exam?: string; structure?: string; surface?: string }>;
+  searchParams: Promise<{ exam?: string; structure?: string; procedure?: string; surface?: string }>;
 };
 
 export default async function AnatomyPage({ searchParams }: PageProps) {
@@ -60,7 +64,17 @@ export default async function AnatomyPage({ searchParams }: PageProps) {
 
   const params = await searchParams;
   const examOverride = params.exam as ExamSlug | undefined;
-  const initialStructureId = params.structure?.trim() || undefined;
+  const initialProcedureId = params.procedure?.trim() || undefined;
+  const structureFromProcedure = initialProcedureId
+    ? getPrimaryStructureIdForProcedure(initialProcedureId)
+    : undefined;
+  const structureParam = params.structure?.trim();
+  const initialStructureId =
+    structureParam && getAnatomyStructure(structureParam)
+      ? structureParam
+      : structureFromProcedure && getAnatomyStructure(structureFromProcedure)
+        ? structureFromProcedure
+        : undefined;
   return (
     <div className="space-y-4">
       <header className="sr-only">
@@ -72,6 +86,7 @@ export default async function AnatomyPage({ searchParams }: PageProps) {
           userId={session.user.id}
           examOverride={examOverride}
           initialStructureId={initialStructureId}
+          initialProcedureId={initialProcedureId}
         />
       </Suspense>
     </div>

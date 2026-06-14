@@ -15,6 +15,9 @@ import type { AnatomyStructure } from "@/lib/anatomy/types";
 import type { MemoryCard } from "@/lib/reference/types";
 import type { ExamSlug } from "@/types/edtech";
 import { StructureClinicalLinks, resolvePathologyDiseaseId } from "@/components/anatomy/StructureClinicalLinks";
+import { StructureProcedureLinks } from "@/components/anatomy/StructureProcedureLinks";
+import { StructureSubregionNav } from "@/components/anatomy/StructureSubregionNav";
+import { getAnatomyStructure, getSubregionsForStructure } from "@/lib/anatomy";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -23,6 +26,8 @@ type Props = {
   examSlug: ExamSlug;
   showStudioCta?: boolean;
   onOpenStudio?: () => void;
+  onSelectSubregion?: (subregionId: string) => void;
+  initialFocusedProcedureId?: string | null;
 };
 
 export function StructureDetailPanel({
@@ -31,14 +36,28 @@ export function StructureDetailPanel({
   examSlug,
   showStudioCta,
   onOpenStudio,
+  onSelectSubregion,
+  initialFocusedProcedureId,
 }: Props) {
   const [focusedDiseaseId, setFocusedDiseaseId] = useState<string | null>(null);
+  const parentStructure = structure.parentId ? getAnatomyStructure(structure.parentId) : structure;
+  const anchorStructure = parentStructure ?? structure;
+  const subregions = getSubregionsForStructure(anchorStructure.id);
+  const selectedSubregionId = structure.parentId ? structure.id : null;
 
   return (
     <div className="flex-1 space-y-5 overflow-y-auto p-4">
       <p className="text-sm leading-relaxed text-[var(--color-ink-muted)]">
         {structure.description}
       </p>
+
+      {subregions.length > 0 && onSelectSubregion ? (
+        <StructureSubregionNav
+          structure={anchorStructure}
+          selectedSubregionId={selectedSubregionId}
+          onSelectSubregion={onSelectSubregion}
+        />
+      ) : null}
 
       {structure.clinicalFacts[0] ? (
         <blockquote className="rounded-2xl border-l-4 border-teal-500 bg-teal-50/60 px-4 py-3 text-sm font-medium leading-relaxed text-[var(--color-ink)]">
@@ -106,9 +125,14 @@ export function StructureDetailPanel({
       ) : null}
 
       <StructureClinicalLinks
-        structure={structure}
+        structure={anchorStructure}
         focusedDiseaseId={focusedDiseaseId}
         onFocusDisease={setFocusedDiseaseId}
+      />
+
+      <StructureProcedureLinks
+        structure={anchorStructure}
+        initialFocusedProcedureId={initialFocusedProcedureId}
       />
 
       {memoryCards.length > 0 ? (
@@ -178,6 +202,8 @@ export function StructureDetailHeader({
   structure: AnatomyStructure;
   onClose?: () => void;
 }) {
+  const parent = structure.parentId ? getAnatomyStructure(structure.parentId) : null;
+
   return (
     <div className="flex items-start justify-between gap-3 border-b border-black/[0.06] p-4">
       <div>
@@ -189,6 +215,9 @@ export function StructureDetailHeader({
             </Badge>
           ) : null}
           <Badge className="bg-violet-50 text-violet-800 capitalize">{structure.system}</Badge>
+          {parent ? (
+            <Badge className="bg-slate-100 text-slate-700">{parent.name}</Badge>
+          ) : null}
         </div>
         <h3 className="mt-2 text-xl font-bold text-[var(--color-ink)]">{structure.name}</h3>
       </div>

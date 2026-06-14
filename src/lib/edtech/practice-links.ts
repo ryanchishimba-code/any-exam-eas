@@ -85,12 +85,21 @@ export function referenceTopicHref(examSlug: ExamSlug, topicKey: string): string
 }
 
 /** Deep link to anatomy explorer with optional structure pre-selection. */
-export function anatomyHref(examSlug?: ExamSlug, structureId?: string): string {
+export function anatomyHref(examSlug?: ExamSlug, structureId?: string, procedureId?: string): string {
   const qs = new URLSearchParams();
   if (examSlug) qs.set("exam", examSlug);
   if (structureId) qs.set("structure", structureId);
+  if (procedureId) qs.set("procedure", procedureId);
   const q = qs.toString();
   return q ? `${ROUTES.anatomy}?${q}` : ROUTES.anatomy;
+}
+
+/** Deep link highlighting a specific procedure on its primary structure. */
+export function anatomyProcedureHref(
+  procedureId: string,
+  examSlug?: ExamSlug
+): string {
+  return anatomyHref(examSlug, undefined, procedureId);
 }
 
 /** Practice questions filtered to gross anatomy subject. */

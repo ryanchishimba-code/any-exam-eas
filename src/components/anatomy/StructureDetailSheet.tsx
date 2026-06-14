@@ -15,6 +15,8 @@ type Props = {
   onClose: () => void;
   showStudioCta?: boolean;
   onOpenStudio?: () => void;
+  onSelectSubregion?: (subregionId: string) => void;
+  focusedProcedureId?: string | null;
 };
 
 export function StructureDetailSheet({
@@ -25,6 +27,8 @@ export function StructureDetailSheet({
   onClose,
   showStudioCta,
   onOpenStudio,
+  onSelectSubregion,
+  focusedProcedureId,
 }: Props) {
   const [mounted, setMounted] = useState(false);
 
@@ -72,6 +76,8 @@ export function StructureDetailSheet({
           examSlug={examSlug}
           showStudioCta={showStudioCta}
           onOpenStudio={onOpenStudio}
+          onSelectSubregion={onSelectSubregion}
+          initialFocusedProcedureId={focusedProcedureId}
         />
       </div>
     </div>,

@@ -1,5 +1,6 @@
 import type { AnatomyStructure } from "./types";
 import { generateBoneStructures } from "./bones/structures";
+import { ANATOMY_SUBREGION_STRUCTURES } from "./subregions/structures";
 
 /** Curated high-yield anatomical structures for board exam prep. */
 const CORE_ANATOMY_STRUCTURES: AnatomyStructure[] = [
@@ -640,8 +641,9 @@ const CORE_ANATOMY_STRUCTURES: AnatomyStructure[] = [
   },
 ];
 
-/** Core organs + legacy bone summaries + all 206 individually named bones. */
+/** Core organs + sub-regions + legacy bone summaries + all 206 individually named bones. */
 export const ANATOMY_STRUCTURES: AnatomyStructure[] = [
   ...CORE_ANATOMY_STRUCTURES,
+  ...ANATOMY_SUBREGION_STRUCTURES,
   ...generateBoneStructures(),
 ];

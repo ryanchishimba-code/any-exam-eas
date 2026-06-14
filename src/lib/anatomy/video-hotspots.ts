@@ -174,6 +174,7 @@ export function assertHotspotGeometry(): string[] {
 export function assertHotspotCatalogIntegrity(): string[] {
   return ANATOMY_STRUCTURES.filter(
     (s) =>
+      !s.parentId &&
       !isIndividual3dBoneStructure(s.id) &&
       !ANATOMY_VIDEO_HOTSPOTS.some((h) => h.structureId === s.id)
   ).map((s) => s.id);

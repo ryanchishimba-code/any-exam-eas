@@ -46,6 +46,9 @@ export function assertTeachContentIntegrity(): string[] {
       if (!getAnatomyStructure(step.structureId)) {
         issues.push(`tour:${tour.id}:${step.structureId}`);
       }
+      if (step.subregionId && !getAnatomyStructure(step.subregionId)) {
+        issues.push(`tour:${tour.id}:subregion:${step.subregionId}`);
+      }
     }
   }
   for (const q of ANATOMY_QUIZ_QUESTIONS) {

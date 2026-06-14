@@ -43,6 +43,8 @@ type Props = {
   quizActive: boolean;
   onSelectStructure: (id: string) => void;
   onCloseStructure: () => void;
+  onSelectSubregion?: (subregionId: string) => void;
+  focusedProcedureId?: string | null;
   onToggleLayer?: (layer: AnatomyLayer) => void;
   sidebarOpen: boolean;
   onSidebarOpenChange: (v: boolean) => void;
@@ -65,6 +67,8 @@ export function AnatomyShell({
   quizActive,
   onSelectStructure,
   onCloseStructure,
+  onSelectSubregion,
+  focusedProcedureId,
   onToggleLayer,
   sidebarOpen,
   onSidebarOpenChange,
@@ -92,6 +96,8 @@ export function AnatomyShell({
       memoryCards={relatedCards}
       examSlug={examSlug}
       onClose={onCloseStructure}
+      onSelectSubregion={onSelectSubregion}
+      focusedProcedureId={focusedProcedureId}
     />
   ) : (
     emptyDetail
@@ -110,6 +116,8 @@ export function AnatomyShell({
           examSlug={examSlug}
           open={mobileSheetOpen && Boolean(selectedStructure)}
           onClose={() => onMobileSheetOpenChange(false)}
+          onSelectSubregion={onSelectSubregion}
+          focusedProcedureId={focusedProcedureId}
         />
       </>
     );
@@ -201,6 +209,8 @@ export function AnatomyShell({
         examSlug={examSlug}
         open={mobileSheetOpen && Boolean(selectedStructure)}
         onClose={() => onMobileSheetOpenChange(false)}
+        onSelectSubregion={onSelectSubregion}
+        focusedProcedureId={focusedProcedureId}
       />
     </>
   );

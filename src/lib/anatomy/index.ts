@@ -4,6 +4,9 @@
 
 export {
   getAllAnatomyStructures,
+  getTopLevelAnatomyStructures,
+  getSubregionsForStructure,
+  isAnatomySubregion,
   getAnatomyStructure,
   getAnatomyStructureByMeshId,
   getAnatomyStructuresForMemoryCard,

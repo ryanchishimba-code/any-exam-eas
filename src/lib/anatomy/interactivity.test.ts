@@ -14,10 +14,16 @@ import {
 import { getHotspotMeta } from "./video-hotspots";
 import { isIndividual3dBoneStructure } from "./bones/catalog-utils";
 
+function atlasEligibleStructures() {
+  return getAllAnatomyStructures().filter(
+    (s) => !s.parentId && !isIndividual3dBoneStructure(s.id)
+  );
+}
+
 describe("anatomy interactivity", () => {
   it("labels every atlas-mapped structure with an atlas region", () => {
     expect(assertAtlasCatalogIntegrity()).toEqual([]);
-    const atlasStructures = getAllAnatomyStructures().filter((s) => !isIndividual3dBoneStructure(s.id));
+    const atlasStructures = atlasEligibleStructures();
     const uniqueStructures = new Set(ATLAS_REGIONS.map((r) => r.structureId));
     expect(uniqueStructures.size).toBe(atlasStructures.length);
   });
@@ -60,14 +66,11 @@ describe("anatomy interactivity", () => {
         seen.add(r.structureId);
       }
     }
-    expect(seen.size).toBe(
-      getAllAnatomyStructures().filter((s) => !isIndividual3dBoneStructure(s.id)).length
-    );
+    expect(seen.size).toBe(atlasEligibleStructures().length);
   });
 
   it("resolves a primary view for each atlas-mapped structure", () => {
-    for (const structure of getAllAnatomyStructures()) {
-      if (isIndividual3dBoneStructure(structure.id)) continue;
+    for (const structure of atlasEligibleStructures()) {
       const primary = getPrimaryRegionForStructure(structure.id);
       expect(primary).toBeDefined();
       expect(getBestViewForStructure(structure.id)).toBe(primary!.view);
@@ -77,10 +80,12 @@ describe("anatomy interactivity", () => {
 
   it("supports quiz clicks — every quiz answer has a region on its primary view", () => {
     for (const q of ANATOMY_QUIZ_QUESTIONS) {
+      const structure = getAnatomyStructure(q.structureId);
+      expect(structure).toBeDefined();
+      if (structure?.parentId) continue;
       const primary = getPrimaryRegionForStructure(q.structureId)!;
       expect(primary).toBeDefined();
       expect(structureVisibleInView(q.structureId, primary.view)).toBe(true);
-      expect(getAnatomyStructure(q.structureId)).toBeDefined();
     }
   });
 

@@ -31,6 +31,9 @@ describe("anatomy helpers", () => {
     const stats = getAnatomyCatalogStats();
     expect(stats.structureCount).toBe(getAllAnatomyStructures().length);
     expect(stats.tourCount).toBe(ANATOMY_TOURS.length);
+    expect(stats.procedureTourCount).toBeGreaterThan(0);
+    expect(stats.procedureCount).toBeGreaterThan(50);
+    expect(stats.subregionCount).toBeGreaterThan(20);
     expect(stats.quizCount).toBe(ANATOMY_QUIZ_QUESTIONS.length);
     expect(stats.highYieldCount).toBeGreaterThan(20);
     expect(stats.systemCounts.cardiovascular).toBeGreaterThanOrEqual(2);
@@ -103,6 +106,9 @@ describe("anatomy helpers", () => {
     for (const tour of ANATOMY_TOURS) {
       for (const step of tour.steps) {
         expect(getAnatomyStructure(step.structureId)).toBeDefined();
+        if (step.subregionId) {
+          expect(getAnatomyStructure(step.subregionId)).toBeDefined();
+        }
       }
     }
   });

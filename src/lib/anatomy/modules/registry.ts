@@ -45,6 +45,46 @@ const BASE_MODULES: AnatomyModuleDef[] = [
   { id: "biceps", layer: "muscle", position: [0.33, 0.7, 0.05], scale: [0.07, 0.18, 0.07], color: ORGAN_COLORS.muscleAccent, geometry: "capsule", profile: "muscle-bulge", focusDistance: 1.4 },
 ];
 
+const SUBREGION_MODULE_DEFS: Omit<AnatomyModuleDef, "position" | "scale" | "rotation">[] = [
+  { id: "heart-aortic-valve", layer: "organ", color: ORGAN_COLORS.heart, geometry: "sphere", focusDistance: 1.15 },
+  { id: "heart-mitral-valve", layer: "organ", color: ORGAN_COLORS.heart, geometry: "sphere", focusDistance: 1.15 },
+  { id: "heart-left-ventricle", layer: "organ", color: ORGAN_COLORS.heart, geometry: "box", profile: "heart", focusDistance: 1.2 },
+  { id: "heart-coronary-arteries", layer: "vascular", color: ORGAN_COLORS.artery, geometry: "cylinder", focusDistance: 1.2, metalness: 0.15 },
+  { id: "lung-right-upper", layer: "organ", color: ORGAN_COLORS.lung, geometry: "box", focusDistance: 1.55, opacity: 0.88 },
+  { id: "lung-right-lower", layer: "organ", color: ORGAN_COLORS.lung, geometry: "box", focusDistance: 1.55, opacity: 0.88 },
+  { id: "lung-left-upper", layer: "organ", color: ORGAN_COLORS.lung, geometry: "box", focusDistance: 1.55, opacity: 0.88 },
+  { id: "liver-right-lobe", layer: "organ", color: ORGAN_COLORS.liver, geometry: "box", profile: "liver", focusDistance: 1.3 },
+  { id: "liver-portal-hilum", layer: "organ", color: ORGAN_COLORS.liver, geometry: "box", focusDistance: 1.25 },
+  { id: "gallbladder-cystic-duct", layer: "organ", color: ORGAN_COLORS.gallbladder, geometry: "cylinder", focusDistance: 1.2 },
+  { id: "pancreas-head", layer: "organ", color: ORGAN_COLORS.pancreas, geometry: "box", profile: "pancreas-band", focusDistance: 1.35 },
+  { id: "pancreas-tail", layer: "organ", color: ORGAN_COLORS.pancreas, geometry: "box", profile: "pancreas-band", focusDistance: 1.35 },
+  { id: "kidney-renal-pelvis", layer: "organ", color: ORGAN_COLORS.kidney, geometry: "sphere", focusDistance: 1.45 },
+  { id: "thyroid-isthmus", layer: "organ", color: ORGAN_COLORS.thyroid, geometry: "box", profile: "thyroid", focusDistance: 1.3 },
+  { id: "prostate-peripheral-zone", layer: "organ", color: ORGAN_COLORS.prostate, geometry: "sphere", profile: "prostate-disc", focusDistance: 1.2 },
+  { id: "brain-brainstem", layer: "organ", color: ORGAN_COLORS.brain, geometry: "cylinder", profile: "nerve-cord", focusDistance: 1.4 },
+  { id: "stomach-pylorus", layer: "organ", color: ORGAN_COLORS.stomach, geometry: "sphere", focusDistance: 1.3 },
+  { id: "colon-sigmoid", layer: "organ", color: ORGAN_COLORS.colon, geometry: "box", focusDistance: 1.38, opacity: 0.9 },
+  { id: "bladder-trigone", layer: "organ", color: ORGAN_COLORS.bladder, geometry: "box", focusDistance: 1.25 },
+  { id: "spleen-hilum", layer: "organ", color: ORGAN_COLORS.spleen, geometry: "sphere", focusDistance: 1.38 },
+  { id: "aorta-ascending", layer: "vascular", color: ORGAN_COLORS.artery, geometry: "cylinder", focusDistance: 1.35, metalness: 0.12 },
+  { id: "trachea-carina", layer: "organ", color: ORGAN_COLORS.trachea, geometry: "box", focusDistance: 1.35 },
+  { id: "femur-neck", layer: "bone", color: ORGAN_COLORS.boneAccent, geometry: "sphere", focusDistance: 1.2 },
+  { id: "spinal-cord-cervical", layer: "nerve", color: ORGAN_COLORS.nerve, geometry: "cylinder", profile: "nerve-cord", focusDistance: 1.5 },
+];
+
+function buildSubregionModules(): AnatomyModuleDef[] {
+  return SUBREGION_MODULE_DEFS.map((def) => {
+    const layout = ORGAN_MODULE_LAYOUT[def.id];
+    const color = getOrganMeshColor(def.id, def.color);
+    return withLayout({
+      ...def,
+      position: layout?.position ?? [0, 0.5, 0],
+      scale: layout?.scale ?? [0.05, 0.05, 0.05],
+      color,
+    });
+  });
+}
+
 const LEGACY_BONE_MESH_IDS = [
   "skull",
   "femur",
@@ -74,6 +114,7 @@ function legacyBoneModules(): AnatomyModuleDef[] {
 
 export const ANATOMY_MODULES: AnatomyModuleDef[] = [
   ...BASE_MODULES.map(withLayout),
+  ...buildSubregionModules(),
   ...getBoneModules(),
   ...legacyBoneModules(),
 ];

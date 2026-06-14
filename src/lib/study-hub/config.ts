@@ -6,6 +6,7 @@ export const STUDY_HUB_PATH = "/dashboard";
 export const DASHBOARD_PATH = "/dashboard";
 export const STUDY_HUB_PROGRESS_ID = "progress";
 export const TOP_500_DRUGS_PATH = "/study/drugs300";
+export const ANATOMY_EXPLORER_PATH = ROUTES.anatomy;
 
 export const TIMED_EXAM_PATH = "/full-exam";
 export const QUESTION_BANK_PATH = "/question-bank";

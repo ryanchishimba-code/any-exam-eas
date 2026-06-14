@@ -16,6 +16,8 @@ type Props = {
   onClose: () => void;
   showStudioCta?: boolean;
   onOpenStudio?: () => void;
+  onSelectSubregion?: (subregionId: string) => void;
+  focusedProcedureId?: string | null;
 };
 
 export function StructureOverlay({
@@ -25,6 +27,8 @@ export function StructureOverlay({
   onClose,
   showStudioCta,
   onOpenStudio,
+  onSelectSubregion,
+  focusedProcedureId,
 }: Props) {
   return (
     <AnimatePresence>
@@ -44,6 +48,8 @@ export function StructureOverlay({
             examSlug={examSlug}
             showStudioCta={showStudioCta}
             onOpenStudio={onOpenStudio}
+            onSelectSubregion={onSelectSubregion}
+            initialFocusedProcedureId={focusedProcedureId}
           />
         </motion.aside>
       ) : null}

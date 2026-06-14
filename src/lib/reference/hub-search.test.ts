@@ -6,7 +6,7 @@ const NCLEX_CARDS = MEMORY_CARDS.filter((c) => c.examSlug === "nclex");
 
 describe("hub-search", () => {
   it("returns empty results for short queries", () => {
-    const empty = { cards: [], drugs: [], modules: [], anatomy: [] };
+    const empty = { cards: [], drugs: [], modules: [], anatomy: [], procedures: [] };
     expect(searchReferenceHub(NCLEX_CARDS, "nclex", "")).toEqual(empty);
     expect(searchReferenceHub(NCLEX_CARDS, "nclex", "a")).toEqual(empty);
   });
@@ -24,15 +24,23 @@ describe("hub-search", () => {
   });
 
   it("hubSearchHasResults reflects any category", () => {
-    expect(hubSearchHasResults({ cards: [], drugs: [], modules: [], anatomy: [] })).toBe(false);
+    expect(
+      hubSearchHasResults({ cards: [], drugs: [], modules: [], anatomy: [], procedures: [] })
+    ).toBe(false);
     expect(
       hubSearchHasResults({
         cards: [NCLEX_CARDS[0]],
         drugs: [],
         modules: [],
         anatomy: [],
+        procedures: [],
       })
     ).toBe(true);
+  });
+
+  it("finds anatomy procedures by name", () => {
+    const { procedures } = searchReferenceHub(NCLEX_CARDS, "nclex", "appendectomy");
+    expect(procedures.some((p) => p.id === "appendectomy")).toBe(true);
   });
 
   it("finds related drugs from card tags when present", () => {

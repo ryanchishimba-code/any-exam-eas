@@ -2,9 +2,10 @@
 
 import { useEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from "react";
 import Link from "next/link";
-import { Bone, BookMarked, GraduationCap, Pill, Search, X } from "lucide-react";
+import { Bone, BookMarked, GraduationCap, Pill, Search, Syringe, X } from "lucide-react";
 import {
   anatomyHref,
+  anatomyProcedureHref,
   deepDiveTopicHref,
   top500Href,
 } from "@/lib/edtech/practice-links";
@@ -64,7 +65,7 @@ export function ReferenceHubSearch({ examSlug, cards, onOpenCard, onQueryChange,
             setOpen(true);
           }}
           onFocus={() => setOpen(true)}
-          placeholder="Search cards, drugs, anatomy, review modules…"
+          placeholder="Search cards, drugs, anatomy, procedures…"
           className={cn(
             "w-full rounded-2xl border border-black/[0.08] bg-white py-3.5 pl-12 pr-24 text-sm text-[var(--color-ink)]",
             "shadow-[var(--shadow-apple-sm)] outline-none ring-[var(--color-accent)] transition placeholder:text-[var(--color-ink-muted)]",
@@ -165,6 +166,30 @@ export function ReferenceHubSearch({ examSlug, cards, onOpenCard, onQueryChange,
                           </p>
                           <p className="truncate text-xs capitalize text-[var(--color-ink-muted)]">
                             {structure.system}
+                          </p>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </SearchSection>
+              ) : null}
+
+              {results!.procedures.length > 0 ? (
+                <SearchSection title="Procedures" count={results!.procedures.length}>
+                  {results!.procedures.map((proc) => (
+                    <li key={proc.id}>
+                      <Link
+                        href={anatomyProcedureHref(proc.id, examSlug)}
+                        onClick={() => setOpen(false)}
+                        className="flex items-center gap-3 rounded-xl px-3 py-2.5 transition hover:bg-[var(--color-surface)]"
+                      >
+                        <Syringe className="h-4 w-4 shrink-0 text-indigo-600" aria-hidden />
+                        <div className="min-w-0">
+                          <p className="truncate text-sm font-semibold text-[var(--color-ink)]">
+                            {proc.name}
+                          </p>
+                          <p className="line-clamp-1 text-xs text-[var(--color-ink-muted)]">
+                            {proc.indication}
                           </p>
                         </div>
                       </Link>

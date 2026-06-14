@@ -1,4 +1,6 @@
 import { ANATOMY_STRUCTURES } from "@/lib/anatomy/structures";
+import { searchProcedures } from "@/lib/anatomy/procedures";
+import { getPrimaryStructureIdForProcedure } from "@/lib/anatomy/procedure-recommendations";
 import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
 import { searchDrugs, type DrugSearchHit } from "@/lib/drugs300/search";
 import type { ExamSlug } from "@/types/edtech";
@@ -19,11 +21,19 @@ export type HubAnatomyHit = {
   description: string;
 };
 
+export type HubProcedureHit = {
+  id: string;
+  name: string;
+  indication: string;
+  structureId: string;
+};
+
 export type HubSearchResults = {
   cards: MemoryCard[];
   drugs: DrugSearchHit[];
   modules: HubReviewModuleHit[];
   anatomy: HubAnatomyHit[];
+  procedures: HubProcedureHit[];
 };
 
 function matchesQuery(parts: string[], query: string): boolean {
@@ -69,6 +79,19 @@ function searchAnatomyStructures(query: string): HubAnatomyHit[] {
     }));
 }
 
+function searchHubProcedures(query: string): HubProcedureHit[] {
+  return searchProcedures(query)
+    .slice(0, 4)
+    .map((p) => ({
+      id: p.id,
+      name: p.name,
+      indication: p.indication,
+      structureId:
+        p.subregionIds?.[0] ?? p.structureIds[0] ?? getPrimaryStructureIdForProcedure(p.id) ?? "",
+    }))
+    .filter((p) => p.structureId);
+}
+
 export function searchReferenceHub(
   cards: MemoryCard[],
   examSlug: ExamSlug,
@@ -76,13 +99,14 @@ export function searchReferenceHub(
 ): HubSearchResults {
   const q = query.trim();
   if (q.length < 2) {
-    return { cards: [], drugs: [], modules: [], anatomy: [] };
+    return { cards: [], drugs: [], modules: [], anatomy: [], procedures: [] };
   }
   return {
     cards: queryMemoryCards(cards, { query: q }).slice(0, 6),
     drugs: searchDrugs(q, undefined, 5),
     modules: searchReviewModules(examSlug, q),
     anatomy: searchAnatomyStructures(q),
+    procedures: searchHubProcedures(q),
   };
 }
 
@@ -91,7 +115,8 @@ export function hubSearchHasResults(results: HubSearchResults): boolean {
     results.cards.length > 0 ||
     results.drugs.length > 0 ||
     results.modules.length > 0 ||
-    results.anatomy.length > 0
+    results.anatomy.length > 0 ||
+    results.procedures.length > 0
   );
 }
 

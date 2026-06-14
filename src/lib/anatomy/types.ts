@@ -33,10 +33,18 @@ export type AnatomyStructure = {
   /** Mesh group id in the React Three Fiber fallback scene. */
   meshId: string;
   keywords: string[];
+  /** When set, this structure is a sub-region of a parent organ (hidden from main sidebar). */
+  parentId?: string;
 };
+
+export type AnatomyTourKind = "anatomy" | "procedure";
 
 export type AnatomyTourStep = {
   structureId: string;
+  /** Optional sub-region to highlight within the parent organ. */
+  subregionId?: string;
+  /** Optional procedure id for procedure-focused tours. */
+  procedureId?: string;
   narration: string;
   highlightMs?: number;
 };
@@ -46,6 +54,8 @@ export type AnatomyTour = {
   title: string;
   subtitle: string;
   examFocus: string;
+  /** Defaults to anatomy when omitted. */
+  kind?: AnatomyTourKind;
   steps: AnatomyTourStep[];
 };
 

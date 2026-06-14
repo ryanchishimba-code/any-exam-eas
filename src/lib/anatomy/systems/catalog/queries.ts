@@ -17,6 +17,19 @@ export function getAllAnatomyStructures(): AnatomyStructure[] {
   return ANATOMY_STRUCTURES;
 }
 
+/** Top-level organs only — excludes sub-regions nested under parent organs. */
+export function getTopLevelAnatomyStructures(): AnatomyStructure[] {
+  return ANATOMY_STRUCTURES.filter((s) => !s.parentId);
+}
+
+export function getSubregionsForStructure(parentId: string): AnatomyStructure[] {
+  return ANATOMY_STRUCTURES.filter((s) => s.parentId === parentId);
+}
+
+export function isAnatomySubregion(structure: AnatomyStructure): boolean {
+  return Boolean(structure.parentId);
+}
+
 export function searchAnatomyStructures(
   query: string,
   opts?: {
