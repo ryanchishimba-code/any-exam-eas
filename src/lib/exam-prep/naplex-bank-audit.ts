@@ -4,6 +4,10 @@
  */
 import type { BankItem } from "@/lib/question-bank";
 import { hasInvalidControlledSubstanceStem } from "@/lib/exam-prep/naplex-controlled-substances";
+import {
+  correctAnswerMatchesOption,
+  explanationCorrectMismatch,
+} from "@/lib/exam-prep/naplex-answer-align";
 
 export type NaplexAuditIssue = {
   code: string;
@@ -166,10 +170,18 @@ export function auditNaplexBankItem(item: BankItem): NaplexAuditReport {
   if (
     item.options.length === 4 &&
     item.correctAnswer &&
-    !item.options.includes(item.correctAnswer) &&
+    !correctAnswerMatchesOption(item.options, item.correctAnswer, itemType) &&
     !item.correctAnswer.includes("|||")
   ) {
     push("error", "correct_not_in_options", "correctAnswer must match one option exactly.");
+  }
+
+  if (explanationCorrectMismatch(item)) {
+    push(
+      "error",
+      "explanation_correct_mismatch",
+      'Explanation "Correct:" line does not match the stored correctAnswer option.'
+    );
   }
 
   const errors = issues.filter((i) => i.severity === "error");

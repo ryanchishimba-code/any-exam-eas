@@ -15,6 +15,7 @@ import {
   auditNaplexBankItem,
   type NaplexAuditIssue,
 } from "./naplex-bank-audit";
+import { correctAnswerMatchesOption } from "./naplex-answer-align";
 
 export type BankAuditIssue = NclexAuditIssue | NaplexAuditIssue;
 
@@ -87,21 +88,14 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
     if (item.options.length < 4) {
       push("error", "invalid_option_count", "K-type items must have at least four options.");
     }
-    if (!item.options.includes(item.correctAnswer)) {
+    if (!correctAnswerMatchesOption(item.options, item.correctAnswer, itemType)) {
       push("error", "correct_not_in_options", "correctAnswer must match one option exactly.");
     }
   } else if (itemType === "select_all" || itemType === "sata") {
-    // Select-all items join multiple correct options with "|||" (legacy seeds used commas).
     if (item.options.length < 4) {
       push("error", "invalid_option_count", "Select-all items must have at least four options.");
     }
-    const optionSet = new Set(item.options.map((o) => o.trim()));
-    const byPipe = item.correctAnswer.split("|||").map((p) => p.trim()).filter(Boolean);
-    const correctParts =
-      byPipe.length > 0 && byPipe.every((p) => optionSet.has(p))
-        ? byPipe
-        : item.options.filter((o) => item.correctAnswer.includes(o.trim()));
-    if (correctParts.length === 0 || !correctParts.every((p) => optionSet.has(p.trim()))) {
+    if (!correctAnswerMatchesOption(item.options, item.correctAnswer, itemType)) {
       push("error", "correct_not_in_options", "Every select-all answer must match an option exactly.");
     }
   } else if (itemType === "ordered_response") {
@@ -133,7 +127,7 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
     if (item.options.length !== 4) {
       push("error", "invalid_option_count", "MCQ items must have exactly four options.");
     }
-    if (item.options.length === 4 && !item.options.includes(item.correctAnswer)) {
+    if (item.options.length === 4 && !correctAnswerMatchesOption(item.options, item.correctAnswer, itemType)) {
       push("error", "correct_not_in_options", "correctAnswer must match one option exactly.");
     }
   }

@@ -25,9 +25,16 @@ import type {
   NclexCurationTriage,
 } from "./nclex-curation-types";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+let openaiClient: OpenAI | null | undefined;
+
+function getOpenAi(): OpenAI | null {
+  if (openaiClient === undefined) {
+    openaiClient = process.env.OPENAI_API_KEY
+      ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+      : null;
+  }
+  return openaiClient;
+}
 
 const DEFAULT_MIN_SERVE = 0.62;
 const DEFAULT_MIN_PASS = 0.72;
@@ -147,9 +154,9 @@ export async function rewriteNclexBankItemWithAi(
   reflection: { issues: string[]; suggestions: string[] },
   subjectLabel: string
 ): Promise<BankItem | null> {
-  if (!openai) return null;
+  if (!getOpenAi()) return null;
 
-  const completion = await openai.chat.completions.create({
+  const completion = await getOpenAi()!.chat.completions.create({
     model: "gpt-4o-mini",
     temperature: 0.22,
     max_tokens: 2800,
@@ -226,7 +233,7 @@ export async function curateNclexBankItem(
   const minPass = opts.minPassScore ?? DEFAULT_MIN_PASS;
   const seed = opts.seed ?? 0;
   const subjectLabel = opts.subjectLabel ?? subjectId;
-  const useAi = opts.useAi ?? Boolean(openai);
+  const useAi = opts.useAi ?? Boolean(getOpenAi());
 
   const triage = triageNclexBankItem(item);
   const qualityBefore = triage.qualityScore;
@@ -272,7 +279,7 @@ export async function curateNclexBankItem(
     (opts.forceAi || opts.aiOnly || !afterRule.ok || scoreNclexBankItem(working) < minPass);
 
   if (needsAi) {
-    if (!openai) {
+    if (!getOpenAi()) {
       return {
         item: working,
         stage: opts.aiOnly ? "failed" : stage === "rule_polish" ? "rule_polish" : "failed",

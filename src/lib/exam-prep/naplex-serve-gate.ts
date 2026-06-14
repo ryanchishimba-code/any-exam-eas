@@ -1,5 +1,6 @@
 import type { BankItem } from "@/lib/question-bank";
 import { passesNaplexServeGate } from "./naplex-quality-gate";
+import { prepareNaplexBankItem } from "./naplex-answer-align";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
 
 export { normalizeNaplexBankItemFields } from "./naplex-bank-normalize";
@@ -24,5 +25,8 @@ export function prepareNaplexItemsForSession({
   items,
   limit,
 }: PrepareNaplexItemsParams): BankItem[] {
-  return serveQaPassedBankItems(items, limit);
+  return serveQaPassedBankItems(
+    items.map((item) => prepareNaplexBankItem(item)),
+    limit
+  );
 }

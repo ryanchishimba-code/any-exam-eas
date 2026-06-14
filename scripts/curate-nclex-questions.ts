@@ -15,7 +15,8 @@ import { loadEnvFiles, requireOpenAiKey } from "./load-env";
 loadEnvFiles();
 import { PrismaClient } from "@prisma/client";
 import { curateNclexBankItem, triageNclexBankItem } from "../src/lib/engine/curation";
-import { auditBankItem } from "../src/lib/exam-prep/bank-audit";
+import { assessNclexItemQuality } from "../src/lib/exam-prep/nclex-quality-gate";
+import { enrichBankItemGuidelines } from "../src/lib/exam-prep/enrich-guidelines";
 import { hasNclexEditorialWarnFlags, nclexHasServeBlockIssues } from "../src/lib/exam-prep/nclex-bank-audit";
 import { needsNclexPolish } from "../src/lib/engine/polish/nclex-polish";
 import { getFieldSubject } from "../src/lib/field-subjects";
@@ -208,7 +209,8 @@ async function main() {
         continue;
       }
 
-      const finalItem = result.item;
+      const guidelineEnriched = enrichBankItemGuidelines(result.item, "nursing");
+      const finalItem = guidelineEnriched.item;
       const finalHash = bankItemContentHash("nursing", row.subjectId, finalItem);
       const collision = await prisma.questionBankItem.findFirst({
         where: { contentHash: finalHash, NOT: { id: row.id } },
@@ -219,7 +221,9 @@ async function main() {
         continue;
       }
 
-      const qaOk = auditBankItem(finalItem, "nursing").ok;
+      const source = result.aiUsed ? "ai-curated" : "curated";
+      const qaVerdict = assessNclexItemQuality(finalItem, { source });
+      const qaOk = qaVerdict.tier === "best";
 
       if (dryRun) {
         console.log(
@@ -237,13 +241,14 @@ async function main() {
           options: serializeBankOptions(finalItem),
           correctAnswer: finalItem.correctAnswer,
           explanation: finalItem.explanation,
+          references: finalItem.references ?? undefined,
           tags: finalItem.tags ? JSON.stringify(finalItem.tags) : row.tags,
           topicCategory: finalItem.topicCategory ?? row.topicCategory,
           itemType: finalItem.itemType ?? row.itemType,
           contentHash: finalHash,
           qaPassed: qaOk,
           qaAuditedAt: new Date(),
-          source: result.aiUsed ? "ai-curated" : "curated",
+          source,
         },
       });
       stats.updated++;
