@@ -318,6 +318,7 @@ export function auditUsmleQaEditor(
     difficultySuggestion,
     tagsSuggestion,
     testedConcepts,
+    /** Automated serve bar (UWorld-ready). Manual editorial A+ target is ≥8.5. */
     examReady: overallScore >= 8 && !issues.some((i) => i.severity === "error"),
     polishScore,
   };

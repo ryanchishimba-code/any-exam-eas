@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Strict USMLE QA gate — only exam-ready items (≥8/10, no errors) get qaPassed=true.
+ * Strict USMLE QA gate — only exam-ready items (≥8/10 overall, no errors) get qaPassed=true.
  *
  * Usage:
  *   npm run db:qa-gate-usmle-best

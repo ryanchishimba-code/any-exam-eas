@@ -127,6 +127,8 @@
     "db:curate-usmle:ai": "npx tsx scripts/curate-usmle-ai.ts",
     "db:curate-usmle:ai:dry": "npx tsx scripts/curate-usmle-ai.ts --dry-run",
     "db:curate-usmle:ai:all": "npx tsx scripts/curate-usmle-ai.ts --all --max-score 10 --resume --no-rag",
+    "db:qa-gate-usmle-best": "bash scripts/run-with-node.sh npx tsx scripts/qa-gate-usmle-best.ts",
+    "db:qa-gate-usmle-best:dry": "bash scripts/run-with-node.sh npx tsx scripts/qa-gate-usmle-best.ts --dry-run",
     "db:qa-gate": "npx tsx scripts/qa-gate-question-bank.ts",
     "db:qa-gate:dry": "npx tsx scripts/qa-gate-question-bank.ts --dry-run",
     "db:qa-full": "node scripts/qa-full-pipeline.mjs",
