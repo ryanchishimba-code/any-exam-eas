@@ -17,7 +17,7 @@ export const metadata = {
 
 function DashboardSkeleton() {
   return (
-    <div className="mx-auto max-w-3xl space-y-4">
+    <div className="w-full space-y-4">
       <Skeleton className="h-20 w-full rounded-[18px]" />
       <Skeleton className="h-[28rem] w-full rounded-[28px]" />
     </div>

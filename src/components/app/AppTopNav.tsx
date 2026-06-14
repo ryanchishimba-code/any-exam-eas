@@ -9,6 +9,7 @@ import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
 import { AppMpjeStateChip } from "@/components/app/AppMpjeStateChip";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
+import { shellUi } from "@/lib/layout/shell-ui";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -44,7 +45,10 @@ export function AppTopNav({ onMenuClick }: Props) {
   return (
     <header className="apple-glass fixed top-0 z-50 w-full border-b border-black/[0.06]">
       <nav
-        className="mx-auto flex h-[var(--nav-height)] max-w-6xl items-center gap-2 px-4 sm:gap-3 sm:px-6"
+        className={cn(
+          shellUi.container,
+          "flex h-[var(--nav-height)] items-center gap-2 px-4 sm:gap-3 sm:px-6 xl:px-8"
+        )}
         aria-label="App navigation"
       >
         <button

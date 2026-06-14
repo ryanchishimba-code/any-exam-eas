@@ -37,7 +37,7 @@ export const anatomyUi = {
   detailSection:
     "rounded-[18px] border border-black/[0.04] bg-[var(--color-surface)]/80 p-4",
   viewportShell:
-    "relative min-h-[min(72vh,640px)] overflow-hidden rounded-[22px] border border-black/[0.06] bg-gradient-to-b from-[#fafafa] to-[#f0f2f5] shadow-[var(--shadow-apple-md)]",
+    "relative min-h-[min(72vh,640px)] overflow-hidden rounded-[22px] border border-black/[0.06] bg-gradient-to-b from-[#fafafa] to-[#f0f2f5] shadow-[var(--shadow-apple-md)] lg:min-h-[min(78vh,760px)] xl:min-h-[min(82vh,900px)]",
   emptyState:
     "flex h-full min-h-[240px] flex-col items-center justify-center rounded-[22px] border border-dashed border-black/[0.08] bg-white/60 p-8 text-center backdrop-blur-sm",
 } as const;

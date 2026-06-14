@@ -1,6 +1,6 @@
 /** Apple-style surface tokens for the Dashboard. */
 export const dbUi = {
-  page: "dashboard-ui mx-auto max-w-3xl space-y-4",
+  page: "dashboard-ui w-full space-y-4",
   pageShell:
     "rounded-[28px] border border-black/[0.04] bg-gradient-to-b from-[#f5f5f7] to-[#eef0f4] p-1 sm:p-1.5",
   panel:
@@ -23,8 +23,7 @@ export const dbUi = {
     "flex w-[min(240px,82vw)] shrink-0 snap-start flex-col rounded-[18px] border border-black/[0.06] bg-white p-4 text-left shadow-[var(--shadow-apple-sm)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-apple-md)] active:scale-[0.99]",
   actionCardWide:
     "flex w-[min(300px,88vw)] shrink-0 snap-start flex-col rounded-[18px] border border-black/[0.06] bg-white p-4 text-left shadow-[var(--shadow-apple-sm)] transition hover:-translate-y-0.5 hover:shadow-[var(--shadow-apple-md)] active:scale-[0.99]",
-  exploreRow:
-    "grid gap-2 sm:grid-cols-2",
+  exploreRow: "grid gap-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
   exploreLink:
     "group flex items-center gap-3 rounded-[16px] border border-black/[0.06] bg-black/[0.02] px-3.5 py-3 transition hover:border-[var(--color-accent)]/25 hover:bg-white hover:shadow-[var(--shadow-apple-sm)] active:scale-[0.995]",
   listRow:

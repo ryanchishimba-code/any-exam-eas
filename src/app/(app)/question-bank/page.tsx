@@ -27,7 +27,7 @@ export default async function QuestionBankPage() {
   const exam = EXAM_CATALOG[pref.examSlug];
 
   return (
-    <div className="mx-auto max-w-3xl space-y-4">
+    <div className="w-full space-y-4">
       <header className="px-0.5">
         <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
           Question Bank

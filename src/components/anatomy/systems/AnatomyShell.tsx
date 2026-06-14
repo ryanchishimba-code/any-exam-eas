@@ -154,7 +154,7 @@ export function AnatomyShell({
   return (
     <>
       <div className={anatomyUi.pageBg}>
-        <div className="grid gap-3 p-3 lg:grid-cols-[minmax(248px,280px)_1fr_minmax(288px,320px)]">
+        <div className="grid gap-3 p-3 lg:grid-cols-[minmax(248px,280px)_minmax(0,1fr)_minmax(288px,340px)] xl:grid-cols-[minmax(260px,300px)_minmax(0,1fr)_minmax(300px,360px)]">
           <div className={cn("hidden lg:block", !sidebarOpen && "lg:hidden")}>
             <AnatomySidebar {...sidebarProps} />
           </div>
@@ -190,7 +190,7 @@ export function AnatomyShell({
 
             <motion.div
               layout
-              className="h-[min(72vh,640px)] w-full"
+              className="h-[min(72vh,640px)] w-full lg:h-[min(78vh,760px)] xl:h-[min(82vh,900px)]"
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
               <SurfaceHost

@@ -20,7 +20,7 @@ export const metadata = {
 
 function ReferenceSkeleton() {
   return (
-    <div className="mx-auto max-w-5xl space-y-4">
+    <div className="w-full space-y-4">
       <Skeleton className="h-20 w-full rounded-[18px]" />
       <Skeleton className="h-28 w-full rounded-[20px]" />
       <Skeleton className="h-[28rem] w-full rounded-[28px]" />

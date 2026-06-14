@@ -124,7 +124,7 @@ export function FullExamLauncher({
   }
 
   return (
-    <div className={cn(feUi.page, "mx-auto max-w-4xl space-y-5")}>
+    <div className={cn(feUi.page, "w-full space-y-5")}>
       <header className="px-0.5">
         <p className={feUi.eyebrow}>Full simulated exam</p>
         <h1 className={cn(feUi.title, "mt-1")}>{pageTitle}</h1>

@@ -6,6 +6,7 @@ import { AppTopNav } from "@/components/app/AppTopNav";
 import { AppSidebar } from "@/components/app/AppSidebar";
 import { AppMobileDrawer } from "@/components/app/AppMobileDrawer";
 import { MobileBottomNav } from "@/components/app/MobileBottomNav";
+import { shellUi } from "@/lib/layout/shell-ui";
 import { isFullExamSessionRoute } from "@/lib/navigation/app-shell";
 import { cn } from "@/lib/utils";
 
@@ -22,7 +23,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <AppMobileDrawer open={drawerOpen} onClose={closeDrawer} />
       <div
         className={cn(
-          "mx-auto flex max-w-6xl gap-8 px-4 pt-[var(--page-top)] sm:px-6",
+          shellUi.container,
+          "flex gap-6 px-4 pt-[var(--page-top)] sm:px-6 xl:gap-8 xl:px-8",
           immersiveExam
             ? "pb-4 lg:pb-8"
             : "pb-[calc(6rem+env(safe-area-inset-bottom,0px))] lg:pb-8"
