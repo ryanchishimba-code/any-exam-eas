@@ -1,11 +1,17 @@
+import { ACCOUNT_IP_LIMIT_MESSAGE } from "@/lib/account-ip-limit";
+
 /** Map NextAuth client errors to user-friendly copy (avoids cryptic browser/parse messages). */
 export function messageForSignInError(error?: string | null): string {
   if (!error) return "Invalid email or password.";
+  if (error === "too_many_ips") return ACCOUNT_IP_LIMIT_MESSAGE;
   if (error === "Configuration") {
     return "Sign-in is unavailable because the server is missing auth or database configuration.";
   }
   if (error === "CredentialsSignin") {
     return "Invalid email or password.";
+  }
+  if (error === "OAuthAccountNotLinked") {
+    return "This email is registered with a password. Sign in with email and password, or link Google/Apple from account settings when available.";
   }
   return "Could not sign in. Please try again.";
 }
@@ -13,29 +19,10 @@ export function messageForSignInError(error?: string | null): string {
 export async function fetchAuthHealthWarning(): Promise<string | null> {
   try {
     const res = await fetch("/api/health", { cache: "no-store" });
-    const data = (await res.json()) as {
-      ok?: boolean;
-      checks?: {
-        nextauthSecret?: string;
-        databaseUrl?: string;
-        passwordResetEmail?: string;
-      };
-    };
-
-    const missing: string[] = [];
-    if (data.checks?.nextauthSecret === "missing") missing.push("NEXTAUTH_SECRET");
-    if (data.checks?.databaseUrl === "missing") missing.push("DATABASE_URL");
-    if (missing.length > 0) {
-      return `This deployment is missing required settings: ${missing.join(", ")}. Run \`npm run vercel:setup\` for copy-paste values, add them in Vercel → Environment Variables (Production + Build), then redeploy.`;
-    }
-
-    // Non-blocking: Resend not configured yet — login still works; forgot-password emails won't send.
-    if (data.checks?.passwordResetEmail === "resend-key-missing") {
-      return "Password reset email is not configured (RESEND_API_KEY). Sign-in works; add Resend in Vercel env to enable reset emails.";
-    }
+    const data = (await res.json()) as { ok?: boolean };
 
     if (!data.ok) {
-      return "This deployment is not fully configured yet. Check /api/health or redeploy after setting environment variables.";
+      return "This deployment is not fully configured yet. Redeploy after setting required environment variables in Vercel.";
     }
     return null;
   } catch {

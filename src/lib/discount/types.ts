@@ -9,6 +9,7 @@ export type DiscountErrorCode =
   | "expired"
   | "max_uses"
   | "already_redeemed"
+  | "invalid_code"
   | "server_error";
 
 export type DiscountValidation = {

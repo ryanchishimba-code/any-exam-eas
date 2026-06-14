@@ -11,6 +11,7 @@ import { LoginPanel } from "@/components/auth/LoginPanel";
 import { loadReturningUserHint } from "@/lib/client/returning-user";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { completeLoginFlow } from "@/lib/client/post-login";
+import { messageForSignInError } from "@/lib/auth-client";
 
 const panelMotion = {
   initial: { opacity: 0, y: 12 },
@@ -27,6 +28,7 @@ export function LoginForm() {
   const [view, setView] = useState<"login" | "forgot">("login");
   const [hintEmail, setHintEmail] = useState("");
   const resetSuccess = searchParams.get("reset") === "success";
+  const ipLimitError = searchParams.get("error") === "too_many_ips";
   const callbackUrl = sanitizeCallbackUrl(searchParams.get("callbackUrl"));
 
   const { data: session, status } = useSession();
@@ -80,6 +82,10 @@ export function LoginForm() {
         <StatusMessage variant="success">
           Your password was updated. Log in with your new password.
         </StatusMessage>
+      )}
+
+      {ipLimitError && view === "login" && (
+        <StatusMessage variant="error">{messageForSignInError("too_many_ips")}</StatusMessage>
       )}
 
       <AnimatePresence mode="wait" initial={false}>

@@ -126,11 +126,12 @@
     "db:qa-naplex:dry": "node scripts/qa-naplex-pipeline.mjs --dry-run",
     "test:load": "node scripts/load-test-concurrent.mjs http://127.0.0.1:3000 20 5",
     "test:load:100": "node scripts/load-test-concurrent.mjs http://127.0.0.1:3000 100 8",
-    "test:load:100:prod": "node scripts/load-test-concurrent.mjs https://any-exam-eas.vercel.app 100 20",
-    "test:load:k6": "k6 run -e BASE_URL=https://www.anyexameasy.com -e MAX_VUS=4000 -e RAMP_DURATION=5m -e HOLD_DURATION=2m -e RAMP_DOWN=1m -e LOAD_TEST_EMAIL=test-premium@anyexameasy.test -e LOAD_TEST_PASSWORD=TestLogin1! loadtests/k6/main.js",
-    "test:load:k6:smoke": "k6 run -e BASE_URL=https://www.anyexameasy.com -e MAX_VUS=10 -e RAMP_DURATION=30s -e HOLD_DURATION=30s -e RAMP_DOWN=15s -e LOAD_TEST_EMAIL=test-premium@anyexameasy.test -e LOAD_TEST_PASSWORD=TestLogin1! loadtests/k6/main.js",
-    "test:load:k6:best": "k6 run -e BASE_URL=https://www.anyexameasy.com -e MAX_VUS=100 -e RAMP_DURATION=2m -e HOLD_DURATION=3m -e RAMP_DOWN=1m -e THINK_TIME_MIN=2 -e THINK_TIME_MAX=5 -e LOAD_TEST_EMAIL=test-premium@anyexameasy.test -e LOAD_TEST_PASSWORD=TestLogin1! loadtests/k6/main.js",
-    "test:load:k6:local": "k6 run -e BASE_URL=http://127.0.0.1:3000 -e MAX_VUS=50 -e LOAD_TEST_EMAIL=test-premium@anyexameasy.test -e LOAD_TEST_PASSWORD=TestLogin1! loadtests/k6/main.js",
+    "test:load:100:prod": "node scripts/load-test-concurrent.mjs https://www.anyexameasy.com 100 20",
+    "test:load:k6:install": "node scripts/k6-install.mjs",
+    "test:load:k6": "node scripts/k6-run.mjs -e BASE_URL=https://www.anyexameasy.com -e MAX_VUS=4000 -e RAMP_DURATION=5m -e HOLD_DURATION=2m -e RAMP_DOWN=1m -e LOAD_TEST_EMAIL=test-premium@anyexameasy.test -e LOAD_TEST_PASSWORD=TestLogin1! loadtests/k6/main.js",
+    "test:load:k6:smoke": "node scripts/k6-run.mjs -e BASE_URL=https://www.anyexameasy.com -e MAX_VUS=10 -e RAMP_DURATION=30s -e HOLD_DURATION=30s -e RAMP_DOWN=15s -e LOAD_TEST_EMAIL=test-premium@anyexameasy.test -e LOAD_TEST_PASSWORD=TestLogin1! loadtests/k6/main.js",
+    "test:load:k6:best": "node scripts/k6-run.mjs -e BASE_URL=https://www.anyexameasy.com -e MAX_VUS=100 -e RAMP_DURATION=2m -e HOLD_DURATION=3m -e RAMP_DOWN=1m -e THINK_TIME_MIN=2 -e THINK_TIME_MAX=5 -e LOAD_TEST_EMAIL=test-premium@anyexameasy.test -e LOAD_TEST_PASSWORD=TestLogin1! loadtests/k6/main.js",
+    "test:load:k6:local": "node scripts/k6-run.mjs -e BASE_URL=http://127.0.0.1:3000 -e MAX_VUS=50 -e LOAD_TEST_EMAIL=test-premium@anyexameasy.test -e LOAD_TEST_PASSWORD=TestLogin1! loadtests/k6/main.js",
     "postinstall": "node scripts/prisma-generate.mjs"
   },
   "dependencies": {

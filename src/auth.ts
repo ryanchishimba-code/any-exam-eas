@@ -1,12 +1,13 @@
-import NextAuth from "next-auth";
+import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import Apple from "next-auth/providers/apple";
+import { headers } from "next/headers";
 import { authConfig } from "@/auth.config";
 import { verifyUserPassword, recordUserLogin } from "@/lib/user-auth";
 import { loginSchema } from "@/lib/validators/auth";
 import { prisma } from "@/lib/prisma";
-import { findOrCreateGoogleUser } from "@/lib/oauth-user";
+import { findOrCreateGoogleUser, OAuthLinkBlockedError } from "@/lib/oauth-user";
 import {
   trackEvent,
   logActivity,
@@ -15,8 +16,17 @@ import {
 import { EVENT_TYPES } from "@/lib/analytics/types";
 import { isStaffRole } from "@/lib/permissions";
 import { logAdminAction } from "@/lib/audit";
+import {
+  assertAccountIpAllowed,
+  recordAccountIpAccess,
+  resolveIpHash,
+} from "@/lib/account-ip-limit";
 
 export { registerUser } from "@/lib/user-auth";
+
+class TooManyIpAddresses extends CredentialsSignin {
+  code = "too_many_ips";
+}
 
 const SESSION_DAY_SEC = 24 * 60 * 60;
 const SESSION_MONTH_SEC = 30 * 24 * 60 * 60;
@@ -35,7 +45,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         Google({
           clientId: process.env.GOOGLE_CLIENT_ID!,
           clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-          allowDangerousEmailAccountLinking: true,
         }),
       ]
     : []),
@@ -44,7 +53,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         Apple({
           clientId: process.env.APPLE_ID!,
           clientSecret: process.env.APPLE_SECRET!,
-          allowDangerousEmailAccountLinking: true,
         }),
       ]
     : []),
@@ -67,9 +75,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         if (user.accountStatus === "suspended") return null;
 
+        const req = request as Request | undefined;
+
+        const dbUser = await prisma.user.findUnique({
+          where: { id: user.id },
+          select: { role: true },
+        });
+        const role = dbUser?.role ?? "user";
+
+        const ipCheck = await assertAccountIpAllowed(user.id, {
+          ipHash: resolveIpHash(req),
+          role,
+        });
+        if (!ipCheck.ok) throw new TooManyIpAddresses();
+
         await recordUserLogin(user.id);
 
-        const req = request as Request | undefined;
         const sessionId = await startUserSession(user.id, req);
         trackEvent({
           userId: user.id,
@@ -83,12 +104,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           action: "login",
           summary: "Signed in with email and password",
         });
-
-        const dbUser = await prisma.user.findUnique({
-          where: { id: user.id },
-          select: { role: true },
-        });
-        const role = dbUser?.role ?? "user";
 
         if (isStaffRole(role)) {
           void logAdminAction({
@@ -120,20 +135,33 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         user.email
       ) {
         const oauthProfile = profile as { sub?: string } | undefined;
-        const linked = await findOrCreateGoogleUser({
-          email: user.email,
-          name: user.name,
-          image: user.image,
-          providerAccountId: oauthProfile?.sub ?? user.email,
-          provider: account.provider === "apple" ? "apple" : "google",
-        });
-        const dbUser = await prisma.user.findUnique({
-          where: { id: linked.id },
-          select: { accountStatus: true },
-        });
-        if (dbUser?.accountStatus === "suspended") return false;
-        user.id = linked.id;
-        (user as { role?: string }).role = linked.role;
+        try {
+          const linked = await findOrCreateGoogleUser({
+            email: user.email,
+            name: user.name,
+            image: user.image,
+            providerAccountId: oauthProfile?.sub ?? user.email,
+            provider: account.provider === "apple" ? "apple" : "google",
+          });
+          const dbUser = await prisma.user.findUnique({
+            where: { id: linked.id },
+            select: { accountStatus: true },
+          });
+          if (dbUser?.accountStatus === "suspended") return false;
+          user.id = linked.id;
+          (user as { role?: string }).role = linked.role;
+
+          const ipHash = resolveIpHash(undefined, await headers());
+          const ipCheck = await assertAccountIpAllowed(linked.id, {
+            ipHash,
+            role: linked.role,
+          });
+          if (!ipCheck.ok) return "/login?error=too_many_ips";
+          if (ipHash) await recordAccountIpAccess(linked.id, ipHash);
+        } catch (e) {
+          if (e instanceof OAuthLinkBlockedError) return false;
+          throw e;
+        }
       }
       return true;
     },

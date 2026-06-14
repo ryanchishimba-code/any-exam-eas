@@ -1,13 +1,38 @@
 import { NextResponse } from "next/server";
+import { headers } from "next/headers";
 import { auth } from "@/auth";
 import { getUserAccess, type UserAccess } from "@/lib/access-control";
 import { subscriptionRequiredResponse } from "@/lib/api-subscription";
+import {
+  assertAccountIpAllowed,
+  recordAccountIpAccess,
+  resolveIpHash,
+  ACCOUNT_IP_LIMIT_MESSAGE,
+} from "@/lib/account-ip-limit";
 
 export type ApiAuthResult =
   | { ok: true; userId: string; access: UserAccess }
   | { ok: false; response: NextResponse };
 
-export async function requireAuthenticatedApi(): Promise<ApiAuthResult> {
+async function enforceAccountIpLimit(
+  userId: string,
+  role: string | undefined,
+  req?: Request
+): Promise<NextResponse | null> {
+  const headerStore = req ? undefined : await headers();
+  const ipHash = resolveIpHash(req, headerStore);
+  const ipCheck = await assertAccountIpAllowed(userId, { ipHash, role });
+  if (!ipCheck.ok) {
+    return NextResponse.json(
+      { error: ACCOUNT_IP_LIMIT_MESSAGE, code: "TOO_MANY_IPS" },
+      { status: 403 }
+    );
+  }
+  if (ipHash) void recordAccountIpAccess(userId, ipHash);
+  return null;
+}
+
+export async function requireAuthenticatedApi(req?: Request): Promise<ApiAuthResult> {
   const session = await auth();
   if (!session?.user?.id) {
     return {
@@ -15,11 +40,21 @@ export async function requireAuthenticatedApi(): Promise<ApiAuthResult> {
       response: NextResponse.json({ error: "Unauthorized" }, { status: 401 }),
     };
   }
+
+  const ipBlocked = await enforceAccountIpLimit(
+    session.user.id,
+    session.user.role,
+    req
+  );
+  if (ipBlocked) {
+    return { ok: false, response: ipBlocked };
+  }
+
   return { ok: true, userId: session.user.id, access: await getUserAccess(session.user.id) };
 }
 
-export async function requirePremiumApi(): Promise<ApiAuthResult> {
-  const authResult = await requireAuthenticatedApi();
+export async function requirePremiumApi(req?: Request): Promise<ApiAuthResult> {
+  const authResult = await requireAuthenticatedApi(req);
   if (!authResult.ok) return authResult;
 
   const { access } = authResult;

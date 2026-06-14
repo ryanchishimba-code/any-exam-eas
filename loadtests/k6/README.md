@@ -25,6 +25,13 @@ Default stages:
 
 ## Install k6
 
+**From this repo (recommended — no Homebrew required)**
+
+```bash
+npm run test:load:k6:install   # downloads to .tools/k6-bin
+npm run test:load:k6:smoke     # uses local binary via scripts/k6-run.mjs
+```
+
 **macOS (Homebrew)**
 
 ```bash
@@ -98,8 +105,11 @@ k6 run \
 From the repo root:
 
 ```bash
-# Smoke (10 VUs)
+# Smoke (10 VUs) — uses .tools/k6-bin when present
 npm run test:load:k6:smoke
+
+# Install k6 binary locally first if needed
+npm run test:load:k6:install
 
 # Full profile (4000 VUs) — use with care
 npm run test:load:k6

@@ -1,10 +1,15 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { validateDiscount } from "@/lib/discount";
+import { sanitizeDiscountForPublic } from "@/lib/discount/public-response";
 import type { SignupPlan } from "@/lib/validators/auth";
+import { enforceRateLimit } from "@/lib/api-rate-limit";
 import { z } from "zod";
 
 export const runtime = "nodejs";
+
+const DISCOUNT_VALIDATE_LIMIT = 20;
+const DISCOUNT_VALIDATE_WINDOW_MS = 60_000;
 
 const querySchema = z.object({
   code: z.string().max(32),
@@ -26,6 +31,9 @@ function parsePlan(value: unknown): SignupPlan | undefined {
  * Real-time validation (debounced from client). Optional auth for already-redeemed check.
  */
 export async function GET(req: Request) {
+  const limited = enforceRateLimit(req, "discount-validate", DISCOUNT_VALIDATE_LIMIT, DISCOUNT_VALIDATE_WINDOW_MS);
+  if (limited) return limited;
+
   const url = new URL(req.url);
   const parsed = querySchema.safeParse({
     code: url.searchParams.get("code") ?? "",
@@ -52,15 +60,14 @@ export async function GET(req: Request) {
       plan: parsePlan(parsed.data.plan),
       userId: session?.user?.id,
     });
-    return NextResponse.json(result);
-  } catch (e) {
-    const message = e instanceof Error ? e.message : "Validation failed";
+    return NextResponse.json(sanitizeDiscountForPublic(result));
+  } catch {
     return NextResponse.json(
       {
         valid: false,
         code: parsed.data.code.toUpperCase(),
         errorCode: "server_error",
-        message,
+        message: "We couldn't verify this code right now. Try again or continue without it — full access is unchanged.",
         plan: parsePlan(parsed.data.plan),
         fullAccessIncluded: true,
       },
@@ -75,6 +82,9 @@ export async function GET(req: Request) {
  * Explicit apply from UI; includes per-user redemption check when signed in.
  */
 export async function POST(req: Request) {
+  const limited = enforceRateLimit(req, "discount-validate", DISCOUNT_VALIDATE_LIMIT, DISCOUNT_VALIDATE_WINDOW_MS);
+  if (limited) return limited;
+
   const session = await auth();
   const body = await req.json().catch(() => ({}));
   const parsed = bodySchema.safeParse(body);
@@ -98,15 +108,14 @@ export async function POST(req: Request) {
       plan: parsePlan(parsed.data.plan),
       userId: session?.user?.id,
     });
-    return NextResponse.json(result);
-  } catch (e) {
-    const message = e instanceof Error ? e.message : "Validation failed";
+    return NextResponse.json(sanitizeDiscountForPublic(result));
+  } catch {
     return NextResponse.json(
       {
         valid: false,
         code: String(parsed.data.code).toUpperCase(),
         errorCode: "server_error",
-        message,
+        message: "We couldn't verify this code right now. Try again or continue without it — full access is unchanged.",
         plan: parsePlan(parsed.data.plan),
         fullAccessIncluded: true,
       },

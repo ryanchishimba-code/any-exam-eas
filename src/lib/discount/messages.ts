@@ -1,7 +1,7 @@
 import type { DiscountErrorCode } from "./types";
 
 export const DISCOUNT_ERROR_MESSAGES: Record<
-  Exclude<DiscountErrorCode, "empty" | "server_error">,
+  Exclude<DiscountErrorCode, "empty" | "server_error" | "invalid_code">,
   string
 > = {
   not_found:
@@ -18,6 +18,9 @@ export const DISCOUNT_ERROR_MESSAGES: Record<
 
 export function messageForErrorCode(code: DiscountErrorCode): string {
   if (code === "empty") return "Enter a discount code.";
+  if (code === "invalid_code") {
+    return "This code isn't valid or can't be applied. You can still continue with the standard price and full access.";
+  }
   if (code === "server_error") {
     return "We couldn’t verify this code right now. Try again or continue without it — full access is unchanged.";
   }

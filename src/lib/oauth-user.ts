@@ -4,6 +4,14 @@ import { isAtLeast18 } from "@/lib/age";
 
 const DEFAULT_DOB = new Date("1990-01-01");
 
+/** Thrown when OAuth sign-in targets an email/password account without an explicit link. */
+export class OAuthLinkBlockedError extends Error {
+  constructor() {
+    super("OAuthAccountNotLinked");
+    this.name = "OAuthLinkBlockedError";
+  }
+}
+
 /** Link or create a user from OAuth (email pre-verified by provider). */
 export async function findOrCreateGoogleUser(params: {
   email: string;
@@ -15,17 +23,28 @@ export async function findOrCreateGoogleUser(params: {
   const email = normalizeEmail(params.email);
   const provider = params.provider ?? "google";
 
-  const existing = await prisma.user.findUnique({ where: { email } });
+  const existing = await prisma.user.findUnique({
+    where: { email },
+    select: {
+      id: true,
+      role: true,
+      emailVerified: true,
+      passwordHash: true,
+    },
+  });
   if (existing) {
+    const hasProvider = await prisma.account.findFirst({
+      where: { userId: existing.id, provider },
+    });
+    if (existing.passwordHash && !hasProvider) {
+      throw new OAuthLinkBlockedError();
+    }
     if (!existing.emailVerified) {
       await prisma.user.update({
         where: { id: existing.id },
         data: { emailVerified: new Date() },
       });
     }
-    const hasProvider = await prisma.account.findFirst({
-      where: { userId: existing.id, provider },
-    });
     if (!hasProvider) {
       await prisma.account.create({
         data: {

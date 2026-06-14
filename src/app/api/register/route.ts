@@ -10,7 +10,7 @@ export const runtime = "nodejs";
 
 export async function POST(req: Request) {
   /** Per-IP burst; real users spread across IPs. Raised for high-concurrency signup waves. */
-  const limited = enforceRateLimit(req, "register", 120, 60_000);
+  const limited = enforceRateLimit(req, "register", 30, 60_000);
   if (limited) return limited;
 
   try {
