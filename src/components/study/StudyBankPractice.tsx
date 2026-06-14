@@ -28,7 +28,7 @@ import {
 } from "@/lib/edtech/question-bank-scope";
 import { fullExamLaunchHref, fullExamSessionHref } from "@/lib/full-exam/config";
 import { navigateHard } from "@/lib/client/navigate-hard";
-import { ROUTES } from "@/lib/routes";
+import { ROUTES, fullExamHref } from "@/lib/routes";
 import {
   computeTimedExamTimeLimitSec,
   formatExamLengthLabel,
@@ -116,7 +116,7 @@ function buildBankPracticeUrl(
     mpjeVariant?: MpjeVariant;
     mpjeState?: string;
   },
-  base = "/study/practice"
+  base = ROUTES.questionBank
 ) {
   const qs = new URLSearchParams({
     mode: "bank",
@@ -141,7 +141,7 @@ function buildTimedPracticeUrl(
     mpjeVariant?: MpjeVariant;
     mpjeState?: string;
   },
-  base = "/study/practice"
+  base = ROUTES.questionBank
 ) {
   const qs = new URLSearchParams({
     mode: "timed",
@@ -178,7 +178,7 @@ export function StudyBankPractice({
   const modeParam = searchParams.get("mode");
   const fieldParam = searchParams.get("field");
   const onQuestionBank = pathname === ROUTES.questionBank;
-  const practiceBase = onQuestionBank ? ROUTES.questionBank : "/study/practice";
+  const practiceBase = ROUTES.questionBank;
   const effectiveExamSlug = preferredExamSlug ?? clientExamSlug;
   const examLocked = lockExam || onQuestionBank;
 
@@ -251,14 +251,14 @@ export function StudyBankPractice({
   useEffect(() => {
     if (!modeParam) return;
     if (LEGACY_MODES.has(modeParam)) {
-      router.replace(
-        `/study/practice?field=${encodeURIComponent(fieldId)}&mode=${modeParam === "practice" ? "bank" : "timed"}`
-      );
+      const bankModes = new Set(["practice", "research", "weak", "weak_area"]);
+      const target = bankModes.has(modeParam)
+        ? `${ROUTES.questionBank}?field=${encodeURIComponent(fieldId)}`
+        : fullExamHref(examSlugFromFieldId(fieldId) ?? effectiveExamSlug!);
+      router.replace(target);
+      return;
     }
-    if (modeParam === "research") {
-      router.replace(`/study/practice?field=${encodeURIComponent(fieldId)}&mode=bank`);
-    }
-  }, [modeParam, fieldId, router]);
+  }, [modeParam, fieldId, effectiveExamSlug, router]);
 
   useEffect(() => {
     if (isTimedExam && searchParams.get("subjectId")) {
@@ -266,7 +266,7 @@ export function StudyBankPractice({
       qs.delete("subjectId");
       qs.delete("count");
       qs.delete("pace");
-      router.replace(`/study/practice?${qs.toString()}`);
+      router.replace(`${practiceBase}?${qs.toString()}`);
     }
   }, [isTimedExam, searchParams, router]);
 

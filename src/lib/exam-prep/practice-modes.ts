@@ -6,6 +6,12 @@ import type { ExamFieldId } from "./types";
 import { mpjePracticeExamHref } from "@/lib/study-hub/config";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
+import { ROUTES } from "@/lib/routes";
+
+const bankUrl = (fieldId: string, extra?: Record<string, string>) => {
+  const qs = new URLSearchParams({ field: fieldId, ...extra });
+  return `${ROUTES.questionBank}?${qs.toString()}`;
+};
 
 export type PracticeModeId =
   | "quick"
@@ -25,18 +31,13 @@ export type PracticeModeDefinition = {
   bestFor: string;
 };
 
-const BASE = (fieldId: string, mode: string, extra?: Record<string, string>) => {
-  const qs = new URLSearchParams({ field: fieldId, mode, ...extra });
-  return `/study/practice?${qs.toString()}`;
-};
-
 export const PRACTICE_MODES: PracticeModeDefinition[] = [
   {
     id: "quick",
     label: "Quick Practice",
     description: "10–25 questions on a focused topic. Ideal for daily warm-up and weak-area drills.",
     icon: "zap",
-    href: (fieldId) => BASE(fieldId, "bank", { count: "15", style: "standard" }),
+    href: (fieldId) => bankUrl(fieldId, { count: "15", style: "standard" }),
     timing: "15–20 min",
     bestFor: "Busy days, targeted review",
   },
@@ -50,7 +51,7 @@ export const PRACTICE_MODES: PracticeModeDefinition[] = [
         ? mpjePracticeExamHref(opts.stateCode)
         : examSlugFromFieldId(fieldId)
           ? fullExamLaunchHref(examSlugFromFieldId(fieldId)!, { mode: "full", autostart: true })
-          : BASE(fieldId, "timed"),
+          : ROUTES.fullExam,
     timing: "2–2.5 hours",
     bestFor: "Endurance and exam-day readiness",
   },
@@ -59,7 +60,7 @@ export const PRACTICE_MODES: PracticeModeDefinition[] = [
     label: "Adaptive practice",
     description: "Prioritizes weak topics from your attempt history with spaced review.",
     icon: "brain",
-    href: (fieldId) => BASE(fieldId, "bank", { style: "adaptive", count: "25" }),
+    href: (fieldId) => bankUrl(fieldId, { style: "adaptive", count: "25" }),
     timing: "20–40 min",
     bestFor: "Targeted review of missed topics",
   },
@@ -68,7 +69,7 @@ export const PRACTICE_MODES: PracticeModeDefinition[] = [
     label: "Topic Review",
     description: "Pick a blueprint domain or subject — controlled-substances, med-surg, pharmacotherapy, etc.",
     icon: "book",
-    href: (fieldId) => BASE(fieldId, "bank"),
+    href: (fieldId) => bankUrl(fieldId),
     timing: "Flexible",
     bestFor: "First-pass learning and remediation",
   },
@@ -82,7 +83,7 @@ export const PRACTICE_MODES: PracticeModeDefinition[] = [
         ? mpjePracticeExamHref(opts.stateCode)
         : examSlugFromFieldId(fieldId)
           ? fullExamLaunchHref(examSlugFromFieldId(fieldId)!, { mode: "full", autostart: true })
-          : BASE(fieldId, "timed"),
+          : ROUTES.fullExam,
     timing: "Full exam block",
     bestFor: "Final-week confidence check",
   },

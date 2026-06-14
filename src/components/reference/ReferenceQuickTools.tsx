@@ -54,7 +54,7 @@ export function ReferenceQuickTools({ examSlug }: { examSlug: ExamSlug }) {
     },
     {
       label: "Weak Areas",
-      href: `/study/practice?field=${fieldId}&mode=bank&style=weak_areas`,
+      href: `${questionBankHref(examSlug)}&style=weak_areas`,
       icon: Target,
     },
     {

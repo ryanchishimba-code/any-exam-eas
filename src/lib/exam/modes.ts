@@ -1,7 +1,6 @@
-import { ROUTES } from "@/lib/routes";
+import { ROUTES, fullExamHref } from "@/lib/routes";
+import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import type { ExamSessionMode } from "./exam-lengths";
-
-/** User-facing study modes — timed simulation or flexible question bank. */
 export type ExamModeId = "timed" | "bank";
 
 export type ExamModeDefinition = {
@@ -28,7 +27,7 @@ export const EXAM_MODES: ExamModeDefinition[] = [
     id: "bank",
     label: "Question Bank",
     description: "Custom practice — pick a topic, set question count, timed or untimed",
-    href: "/study/practice?mode=bank",
+    href: ROUTES.questionBank,
     studyMode: "practice",
     param: "bank",
     sessionMode: "bank",
@@ -40,7 +39,12 @@ export function getExamMode(id: ExamModeId): ExamModeDefinition | undefined {
 }
 
 export function examModeHref(mode: ExamModeDefinition, fieldId: string): string {
-  return `/study/practice?field=${encodeURIComponent(fieldId)}&mode=${mode.param}`;
+  if (mode.id === "bank") {
+    return `${ROUTES.questionBank}?field=${encodeURIComponent(fieldId)}`;
+  }
+  const slug = examSlugFromFieldId(fieldId);
+  if (slug) return fullExamHref(slug);
+  return ROUTES.fullExam;
 }
 
 /** Flexible question bank session bounds. */

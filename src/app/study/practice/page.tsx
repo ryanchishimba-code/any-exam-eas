@@ -1,73 +1,53 @@
 import { redirect } from "next/navigation";
-import { Suspense } from "react";
 import { auth } from "@/auth";
-import { PremiumGate } from "@/components/PremiumGate";
-import { StudyBankPractice } from "@/components/study/StudyBankPractice";
-import { StudySubnav } from "@/components/StudySubnav";
-import { PageShell } from "@/components/PageShell";
-import { getUserExamPreference } from "@/lib/edtech/exam-preference";
-import { EXAM_MODES } from "@/lib/exam/modes";
-import { requirePremiumPage } from "@/lib/require-premium-page";
-import { ROUTES } from "@/lib/routes";
+import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import { fullExamHref, ROUTES } from "@/lib/routes";
 
-function practiceCallbackPath(params: { field?: string; mode?: string }) {
-  const qs = new URLSearchParams();
-  if (params.field) qs.set("field", params.field);
-  if (params.mode) qs.set("mode", params.mode);
-  const query = qs.toString();
-  return query ? `/study/practice?${query}` : "/study/practice";
-}
-
+/** Legacy entry — canonical surfaces are /question-bank and /full-exam. */
 export async function generateMetadata({
   searchParams,
 }: {
   searchParams: Promise<{ mode?: string }>;
 }) {
   const { mode } = await searchParams;
-  const examMode = EXAM_MODES.find((m) => m.param === (mode === "bank" ? "bank" : "timed"));
   return {
-    title: `${examMode?.label ?? "Study"} — Study Hub`,
-    description: examMode?.description,
+    title: mode === "bank" ? "Question Bank — Any Exam Easy" : "Study — Any Exam Easy",
   };
 }
 
 export default async function StudyPracticePage({
   searchParams,
 }: {
-  searchParams: Promise<{ field?: string; mode?: string }>;
+  searchParams: Promise<Record<string, string | undefined>>;
 }) {
   const params = await searchParams;
-  if (params.field === "drugs300") redirect("/study/drugs300");
+
+  if (params.field === "drugs300") redirect(ROUTES.drugs300);
 
   const session = await auth();
   if (!session?.user?.id) {
-    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent("/study/practice")}`);
+    const qs = new URLSearchParams();
+    for (const [key, value] of Object.entries(params)) {
+      if (value) qs.set(key, value);
+    }
+    const callback = qs.toString() ? `/study/practice?${qs}` : "/study/practice";
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callback)}`);
   }
-  await requirePremiumPage("/study/practice");
 
-  const pref = await getUserExamPreference(session.user.id);
-  if (!pref) redirect(ROUTES.selectExam);
+  if (params.mode === "timed") {
+    const field = params.field?.trim();
+    if (field) {
+      const slug = examSlugFromFieldId(field);
+      if (slug) redirect(fullExamHref(slug));
+    }
+    redirect(ROUTES.fullExam);
+  }
 
-  const examMode = EXAM_MODES.find((m) => m.param === (params.mode === "bank" ? "bank" : "timed"));
-  const callbackPath = practiceCallbackPath(params);
+  const qs = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    if (!value || key === "mode") continue;
+    qs.set(key, value);
+  }
 
-  return (
-    <PageShell
-      eyebrow="Study Hub"
-      title={examMode?.label ?? "Study"}
-      description={
-        params.mode === "bank"
-          ? "Pick a topic, choose how many questions you want, and practice timed or untimed."
-          : examMode?.description
-      }
-      maxWidth="max-w-3xl"
-    >
-      <StudySubnav />
-      <PremiumGate callbackPath={callbackPath}>
-        <Suspense fallback={<p className="mt-8 text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
-          <StudyBankPractice preferredExamSlug={pref.examSlug} lockExam />
-        </Suspense>
-      </PremiumGate>
-    </PageShell>
-  );
+  redirect(qs.toString() ? `${ROUTES.questionBank}?${qs}` : ROUTES.questionBank);
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import type { LearningQuiltContent, QuiltTile } from "@/lib/ai";
 import { DEFAULT_STUDY_FIELD_LABEL } from "@/lib/fields";
 import { Button } from "./ui/Button";
@@ -116,9 +117,9 @@ export function LearningQuiltStudio() {
         </div>
         <p className="mt-3 text-xs text-[var(--color-ink-muted)]">
           On this page: flashcards and mini-quiz tiles. For full timed exams, use the{" "}
-          <a href="/study/practice?mode=timed" className="text-[var(--color-accent)] underline">
+          <Link href="/full-exam" className="text-[var(--color-accent)] underline">
             timed exam
-          </a>
+          </Link>
           .
         </p>
       </div>

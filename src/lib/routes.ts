@@ -1,6 +1,7 @@
 import type { ExamSlug } from "@/lib/exams/catalog";
 import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import type { ExamSlug as EdtechExamSlug } from "@/types/edtech";
+import { examSlugFromFieldId } from "@/lib/edtech/exams";
 
 /** Canonical app routes — use these in nav, links, and redirects. */
 export const ROUTES = {
@@ -110,5 +111,10 @@ export function fullExamHref(examSlug: EdtechExamSlug): string {
 }
 
 export function legacyPracticeQuery(fieldId: string, mode = "bank"): string {
-  return `/study/practice?field=${encodeURIComponent(fieldId)}&mode=${mode}`;
+  if (mode === "timed") {
+    const slug = examSlugFromFieldId(fieldId);
+    if (slug) return fullExamHref(slug);
+    return ROUTES.fullExam;
+  }
+  return `${ROUTES.questionBank}?field=${encodeURIComponent(fieldId)}`;
 }

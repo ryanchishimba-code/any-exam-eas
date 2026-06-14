@@ -95,7 +95,7 @@ export function ProgressTracker({ embedded = false }: { embedded?: boolean }) {
             Study flashcards
           </Link>
           <Link
-            href="/study/practice?mode=timed"
+            href="/full-exam"
             className="rounded-full border border-black/[0.08] bg-white px-5 py-2 text-sm font-medium text-[var(--color-ink)]"
           >
             Timed exam
@@ -149,7 +149,7 @@ export function ProgressTracker({ embedded = false }: { embedded?: boolean }) {
           <h2 className="text-lg font-semibold">Saved exams</h2>
           {exams.length === 0 ? (
             <p className="mt-3 text-sm text-[var(--color-ink-muted)]">
-              <Link href="/study/practice?mode=bank" className="text-[var(--color-accent)]">
+              <Link href="/question-bank" className="text-[var(--color-accent)]">
                 Open question bank
               </Link>
             </p>

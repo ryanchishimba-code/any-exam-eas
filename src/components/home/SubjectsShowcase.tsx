@@ -104,7 +104,7 @@ function SubjectTile({
         </span>
       </div>
       <Link
-        href={`/study/practice?field=${subject.fieldId}`}
+        href={`/question-bank?field=${subject.fieldId}`}
         className="mt-5 text-sm font-semibold text-teal-600 transition-colors hover:text-teal-700"
       >
         Learn more →

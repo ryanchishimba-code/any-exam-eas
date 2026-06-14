@@ -12,21 +12,21 @@ import {
 
 export const premiumFeatures = [
   {
-    href: "/study/practice?field=nursing",
+    href: "/question-bank?field=nursing",
     label: "Start NCLEX Practice",
     description: "NGN cases, SATA & prioritization",
     icon: ClipboardList,
     accent: "#5856d6",
   },
   {
-    href: "/study/practice?field=usmle-step-2",
+    href: "/question-bank?field=usmle-step-2",
     label: "Start USMLE Practice",
     description: "Clinical vignettes & management",
     icon: Stethoscope,
     accent: "#0a84ff",
   },
   {
-    href: "/study/practice?field=pharmacy",
+    href: "/question-bank?field=pharmacy",
     label: "Start NAPLEX Practice",
     description: "Calculations & therapeutics",
     icon: ClipboardList,
@@ -40,7 +40,7 @@ export const premiumFeatures = [
     accent: "#0d9488",
   },
   {
-    href: "/study/analytics",
+    href: "/analytics",
     label: "Progress & Analytics",
     description: "Streaks, trends & weak areas",
     icon: BarChart3,

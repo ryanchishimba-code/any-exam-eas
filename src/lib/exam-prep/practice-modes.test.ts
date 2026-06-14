@@ -27,7 +27,7 @@ describe("practice modes", () => {
     const href = practiceModeLaunchHref("nursing", "quick", "/question-bank");
     expect(href).toContain("/question-bank?");
     expect(href).toContain("field=nursing");
-    expect(href).toContain("mode=bank");
+    expect(href).not.toContain("mode=bank");
     expect(href).toContain("count=15");
     expect(href).toContain("autostart=1");
     expect(href).toContain("practiceMode=quick");
@@ -43,7 +43,7 @@ describe("practice modes", () => {
   });
 
   it("includes MPJE state in bank launch URLs", () => {
-    const href = practiceModeLaunchHref("mpje", "adaptive", "/study/practice", {
+    const href = practiceModeLaunchHref("mpje", "adaptive", "/question-bank", {
       stateCode: "OK",
     });
     expect(href).toContain("field=mpje");

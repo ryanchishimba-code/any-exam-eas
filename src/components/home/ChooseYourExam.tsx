@@ -18,7 +18,7 @@ const exams: ExamCard[] = [
   {
     id: "nclex",
     title: "NCLEX",
-    href: "/study/practice?field=nursing&mode=bank",
+    href: "/question-bank?field=nursing",
     icon: HeartPulse,
     theme: "nclex",
     tagline: "Clinical judgment, NGN formats & prioritization",
@@ -26,7 +26,7 @@ const exams: ExamCard[] = [
   {
     id: "usmle",
     title: "USMLE",
-    href: "/study/practice?field=usmle-step-2&mode=bank",
+    href: "/question-bank?field=usmle-step-2",
     icon: Stethoscope,
     theme: "usmle",
     tagline: "Clinical vignettes & next-best-step reasoning",
@@ -34,7 +34,7 @@ const exams: ExamCard[] = [
   {
     id: "naplex",
     title: "NAPLEX",
-    href: "/study/practice?field=pharmacy&mode=bank",
+    href: "/question-bank?field=pharmacy",
     icon: Pill,
     theme: "naplex",
     tagline: "Calculations, cases & pharmacotherapy",

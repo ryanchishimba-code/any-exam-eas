@@ -50,7 +50,7 @@ export function HomeBottomCta() {
             Every session adds board-style practice.
           </p>
           <Link
-            href="/study/practice?mode=timed"
+            href="/full-exam"
             className="aee-btn-hero-xl aee-btn-hero-light group mt-6 inline-flex items-center justify-center gap-2"
           >
             Start adaptive practice

@@ -68,7 +68,7 @@ export function AvatarDropdown() {
         ...(clinical
           ? [
               {
-                href: "/study/practice?field=nursing",
+                href: "/question-bank?field=nursing",
                 label: "NCLEX",
                 description: "Nursing question bank",
                 icon: BookOpen,

@@ -34,15 +34,22 @@ function StudySubnavInner() {
   );
 
   function isActive(href: string) {
-    if (href === STUDY_HUB_PATH || href === studyHubProgressHref()) {
-      return pathname === STUDY_HUB_PATH;
+    if (href === STUDY_HUB_PATH) {
+      return pathname === STUDY_HUB_PATH || pathname.startsWith(`${STUDY_HUB_PATH}/`);
+    }
+    if (href === studyHubProgressHref()) {
+      return pathname === href || pathname.startsWith(`${href}/`);
     }
     if (href === TOP_500_DRUGS_PATH) return pathname.startsWith(TOP_500_DRUGS_PATH);
     if (href === TIMED_EXAM_PATH) {
-      return pathname.startsWith("/study/practice") && mode !== "bank";
+      return pathname === href || pathname.startsWith(`${href}/`);
     }
     if (href === QUESTION_BANK_PATH) {
-      return pathname.startsWith("/study/practice") && mode === "bank";
+      return (
+        pathname === href ||
+        pathname.startsWith(`${href}/`) ||
+        (pathname.startsWith("/study/practice") && mode === "bank")
+      );
     }
     return pathname === href;
   }

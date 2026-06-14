@@ -73,7 +73,7 @@ export function StudentAnalyticsDashboard() {
         <p className="text-[var(--color-ink-muted)]">
           Complete practice sessions to unlock adaptive analytics and progress insights.
         </p>
-        <Button href="/study/practice" className="mt-4">
+        <Button href="/question-bank" className="mt-4">
           Start practicing
         </Button>
       </div>
@@ -199,7 +199,7 @@ export function StudentAnalyticsDashboard() {
             </ul>
           )}
           <Button
-            href={`/study/practice?field=${fieldFilter === "all" ? primaryField : fieldFilter}&mode=bank&style=weak_areas`}
+            href={`/question-bank?field=${fieldFilter === "all" ? primaryField : fieldFilter}&style=weak_areas`}
             variant="secondary"
             className="mt-4 w-full"
           >
