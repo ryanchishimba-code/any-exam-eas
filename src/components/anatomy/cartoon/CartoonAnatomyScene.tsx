@@ -9,7 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { ContactShadows, Environment, OrbitControls } from "@react-three/drei";
+import { ContactShadows, OrbitControls } from "@react-three/drei";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import type { PerspectiveCamera } from "three";
@@ -144,34 +144,6 @@ function ScenePointerBridge({
   return null;
 }
 
-function AnatomySceneCanvas({
-  ctActive,
-  onCreated,
-  children,
-}: {
-  ctActive: boolean;
-  onCreated: (state: { gl: THREE.WebGLRenderer }) => void;
-  children: React.ReactNode;
-}) {
-  const { resetAllHovers } = useAnatomyPointer();
-
-  return (
-    <Canvas
-      camera={{
-        position: ctActive ? CT_CAMERA.position : CARTOON_CAMERA.position,
-        fov: ctActive ? CT_CAMERA.fov : CARTOON_CAMERA.fov,
-      }}
-      dpr={[1, 2]}
-      shadows={!ctActive}
-      gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      onCreated={onCreated}
-      onPointerMissed={resetAllHovers}
-    >
-      {children}
-    </Canvas>
-  );
-}
-
 function SceneRig({
   structures,
   visibleLayers,
@@ -291,7 +263,6 @@ function SceneRig({
         </>
       ) : (
         <>
-          <Environment preset="studio" environmentIntensity={0.88} />
           <ambientLight intensity={0.34} color="#eef2f6" />
           <directionalLight
             position={[3.5, 7.5, 4.5]}
@@ -426,25 +397,31 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
   }));
 
   return (
-    <AnatomyPointerProvider>
-      <div
-        className={cn(
-          "relative h-full w-full overflow-hidden rounded-2xl",
-          ctActive
-            ? "bg-[#161618]"
-            : "bg-gradient-to-b from-slate-100 via-slate-50 to-slate-200/80",
-          className
-        )}
+    <div
+      className={cn(
+        "relative h-full w-full overflow-hidden rounded-2xl",
+        ctActive
+          ? "bg-[#161618]"
+          : "bg-gradient-to-b from-slate-100 via-slate-50 to-slate-200/80",
+        className
+      )}
+    >
+      <Canvas
+        camera={{
+          position: ctActive ? CT_CAMERA.position : CARTOON_CAMERA.position,
+          fov: ctActive ? CT_CAMERA.fov : CARTOON_CAMERA.fov,
+        }}
+        dpr={[1, 2]}
+        shadows={!ctActive}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
+        onCreated={({ gl }) => {
+          gl.toneMapping = THREE.ACESFilmicToneMapping;
+          gl.toneMappingExposure = ctActive ? 1 : 1.06;
+          gl.shadowMap.enabled = !ctActive;
+          if (!ctActive) gl.shadowMap.type = THREE.PCFSoftShadowMap;
+        }}
       >
-        <AnatomySceneCanvas
-          ctActive={ctActive}
-          onCreated={({ gl }) => {
-            gl.toneMapping = THREE.ACESFilmicToneMapping;
-            gl.toneMappingExposure = ctActive ? 1 : 1.06;
-            gl.shadowMap.enabled = !ctActive;
-            if (!ctActive) gl.shadowMap.type = THREE.PCFSoftShadowMap;
-          }}
-        >
+        <AnatomyPointerProvider>
           <LocalClippingToggle enabled={clipActive} />
           <Suspense fallback={null}>
             <SceneRig
@@ -464,8 +441,8 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
               ctSliceOffset={ctSliceOffset}
             />
           </Suspense>
-        </AnatomySceneCanvas>
-      </div>
-    </AnatomyPointerProvider>
+        </AnatomyPointerProvider>
+      </Canvas>
+    </div>
   );
 });

@@ -9,12 +9,20 @@ import type {
   ResolvedAnatomyDiseaseLink,
 } from "./types";
 
-const SUPPLEMENTAL_DISEASE_LINKS = buildSupplementalDiseaseLinks(CURATED_DISEASE_LINKS);
+let supplementalDiseaseLinks: AnatomyDiseaseLink[] | null = null;
 
-export const ANATOMY_DISEASE_LINKS: AnatomyDiseaseLink[] = [
-  ...CURATED_DISEASE_LINKS,
-  ...SUPPLEMENTAL_DISEASE_LINKS,
-];
+function getSupplementalDiseaseLinks(): AnatomyDiseaseLink[] {
+  if (!supplementalDiseaseLinks) {
+    supplementalDiseaseLinks = buildSupplementalDiseaseLinks(CURATED_DISEASE_LINKS);
+  }
+  return supplementalDiseaseLinks;
+}
+
+export const ANATOMY_DISEASE_LINKS: AnatomyDiseaseLink[] = CURATED_DISEASE_LINKS;
+
+function allDiseaseLinks(): AnatomyDiseaseLink[] {
+  return [...ANATOMY_DISEASE_LINKS, ...getSupplementalDiseaseLinks()];
+}
 
 function hydrateDrugs(ids: string[] | undefined): DrugEntry[] {
   if (!ids?.length) return [];
@@ -30,11 +38,11 @@ export function resolveDiseaseLink(link: AnatomyDiseaseLink): ResolvedAnatomyDis
 }
 
 export function getDiseaseLinkById(id: string): AnatomyDiseaseLink | undefined {
-  return ANATOMY_DISEASE_LINKS.find((d) => d.id === id);
+  return allDiseaseLinks().find((d) => d.id === id);
 }
 
 export function getDiseaseLinksForStructure(structureId: string): AnatomyDiseaseLink[] {
-  return ANATOMY_DISEASE_LINKS.filter((d) => d.structureIds.includes(structureId));
+  return allDiseaseLinks().filter((d) => d.structureIds.includes(structureId));
 }
 
 export function getResolvedDiseaseLinksForStructure(
@@ -53,7 +61,7 @@ export function getDiseaseLinkForPathology(
   pathologyLabel: string
 ): AnatomyDiseaseLink | undefined {
   const norm = pathologyLabel.toLowerCase();
-  return ANATOMY_DISEASE_LINKS.find(
+  return allDiseaseLinks().find(
     (d) =>
       d.structureIds.includes(structureId) &&
       (d.pathologyLabel?.toLowerCase() === norm ||
@@ -70,11 +78,13 @@ export function findDiseaseIdForPathology(
 }
 
 export function getDiseaseLinksForDrug(drugId: string): ResolvedAnatomyDiseaseLink[] {
-  return ANATOMY_DISEASE_LINKS.filter(
-    (d) =>
-      d.firstLineDrugIds.includes(drugId) ||
-      (d.adjunctDrugIds?.includes(drugId) ?? false)
-  ).map(resolveDiseaseLink);
+  return allDiseaseLinks()
+    .filter(
+      (d) =>
+        d.firstLineDrugIds.includes(drugId) ||
+        (d.adjunctDrugIds?.includes(drugId) ?? false)
+    )
+    .map(resolveDiseaseLink);
 }
 
 export function getClinicalContextForDrug(drugId: string): DrugClinicalContext {
