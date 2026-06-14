@@ -80,7 +80,7 @@ export function alignNaplexBankItemAnswers(item: BankItem): NaplexAnswerAlignRes
     return { item, changed: false };
   }
 
-  let correctAnswer = item.correctAnswer?.trim() ?? "";
+  const correctAnswer = item.correctAnswer?.trim() ?? "";
   const options = [...item.options];
 
   if (correctAnswerMatchesOption(options, correctAnswer, itemType)) {

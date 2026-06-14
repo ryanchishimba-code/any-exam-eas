@@ -157,8 +157,9 @@ function isCorruptedPolishedDrugShell(item: BankItem): boolean {
   const vignetteDrug = inferDrugFromText(vignette);
   const optionDrug = inferDrugFromText(item.correctAnswer);
   if (vignetteDrug && optionDrug && vignetteDrug.id === optionDrug.id) return false;
+  if (!optionDrug) return false;
 
-  return Boolean(optionDrug) && (!vignetteDrug || vignetteDrug.id !== optionDrug.id);
+  return !vignetteDrug || vignetteDrug.id !== optionDrug.id;
 }
 
 function restoreCorruptedCaseFromSeed(item: BankItem): BankItem | null {
