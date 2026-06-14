@@ -66,7 +66,13 @@ export function AnatomySidebar({
   if (collapsed) return null;
 
   return (
-    <aside className={cn(anatomyUi.panel, "flex h-full max-h-[min(72vh,640px)] flex-col gap-4 p-4")}>
+    <aside
+      className={cn(
+        anatomyUi.panelFlat,
+        "flex h-full flex-col gap-4 rounded-none border-x-0 border-r border-y-0 p-4",
+        anatomyUi.panelHeight
+      )}
+    >
       <div>
         <h2 className={anatomyUi.sectionLabel}>Browse structures</h2>
         <p className={anatomyUi.sectionHint}>Search or filter by organ system</p>

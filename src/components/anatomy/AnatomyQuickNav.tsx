@@ -13,7 +13,6 @@ import {
 import { ANATOMY_SYSTEM_LABELS } from "@/lib/anatomy/types";
 import { AnatomyScrollDropdown } from "@/components/anatomy/AnatomyScrollDropdown";
 import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
-import { cn } from "@/lib/utils";
 
 type Props = {
   selectedId: string | null;
@@ -81,18 +80,13 @@ export function AnatomyQuickNav({
   }, []);
 
   return (
-    <section
-      aria-label="Jump to structure or procedure"
-      className={cn(anatomyUi.panel, "overflow-visible px-4 py-4 sm:px-5")}
-    >
-      <div className="mb-3">
+    <section aria-label="Jump to structure or procedure" className="space-y-3">
+      <div>
         <p className={anatomyUi.sectionLabel}>Jump to</p>
-        <p className={anatomyUi.sectionHint}>
-          Hover to preview in 3D · click to select
-        </p>
+        <p className={anatomyUi.sectionHint}>Hover to preview in 3D · click to select</p>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <AnatomyScrollDropdown
           label="Structure"
           placeholder="Choose a structure…"

@@ -77,6 +77,19 @@ function FloatingTool({
   );
 }
 
+function viewerGridClass(sidebarOpen: boolean, overlayOpen: boolean) {
+  if (sidebarOpen && overlayOpen) {
+    return "lg:grid-cols-[minmax(210px,228px)_minmax(0,1fr)_minmax(248px,280px)] xl:grid-cols-[minmax(220px,236px)_minmax(0,1fr)_minmax(260px,292px)]";
+  }
+  if (sidebarOpen) {
+    return "lg:grid-cols-[minmax(210px,228px)_minmax(0,1fr)] xl:grid-cols-[minmax(220px,236px)_minmax(0,1fr)]";
+  }
+  if (overlayOpen) {
+    return "lg:grid-cols-[minmax(0,1fr)_minmax(248px,280px)] xl:grid-cols-[minmax(0,1fr)_minmax(260px,292px)]";
+  }
+  return "lg:grid-cols-1";
+}
+
 /** Composes catalog sidebar, 3D viewport, and detail panel. */
 export function AnatomyShell({
   bundle,
@@ -103,7 +116,7 @@ export function AnatomyShell({
   const hasViewport = bundle.surface.hasViewport;
 
   const emptyDetail = (
-    <div className={anatomyUi.emptyState}>
+    <div className={cn(anatomyUi.emptyState, anatomyUi.panelHeight, "h-full rounded-none border-x-0")}>
       <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-black/[0.04]">
         <Layers3 className="h-6 w-6 text-[var(--color-ink-muted)]" aria-hidden />
       </div>
@@ -133,11 +146,9 @@ export function AnatomyShell({
 
   if (!hasViewport) {
     return (
-      <div className={anatomyUi.pageBg}>
-        <div className="grid gap-3 p-3 lg:grid-cols-[minmax(280px,340px)_1fr]">
-          <AnatomySidebar {...sidebarProps} />
-          <div className="min-h-[min(60vh,520px)]">{detailPanel}</div>
-        </div>
+      <div className={cn("grid min-w-0 gap-0", viewerGridClass(true, true))}>
+        <AnatomySidebar {...sidebarProps} />
+        <div className={cn(anatomyUi.panelHeight, "min-h-[min(60vh,520px)] min-w-0")}>{detailPanel}</div>
         <StructureDetailSheet
           structure={selectedStructure}
           memoryCards={relatedCards}
@@ -153,77 +164,80 @@ export function AnatomyShell({
 
   return (
     <>
-      <div className={anatomyUi.pageBg}>
-        <div className="grid gap-3 p-3 lg:grid-cols-[minmax(248px,280px)_minmax(0,1fr)_minmax(288px,340px)] xl:grid-cols-[minmax(260px,300px)_minmax(0,1fr)_minmax(300px,360px)]">
-          <div className={cn("hidden lg:block", !sidebarOpen && "lg:hidden")}>
-            <AnatomySidebar {...sidebarProps} />
-          </div>
+      <div
+        className={cn(
+          "grid min-w-0 gap-0",
+          viewerGridClass(sidebarOpen, overlayOpen)
+        )}
+      >
+        <div className={cn("hidden min-w-0 lg:block", !sidebarOpen && "lg:hidden")}>
+          <AnatomySidebar {...sidebarProps} />
+        </div>
 
-          <div className={anatomyUi.viewportShell}>
-            <div className="absolute left-3 right-3 top-3 z-10 hidden flex-wrap items-center justify-between gap-2 lg:flex">
-              <div className="flex gap-2">
-                <FloatingTool
-                  label={sidebarOpen ? "Hide structure list" : "Show structure list"}
-                  onClick={() => onSidebarOpenChange(!sidebarOpen)}
-                >
-                  {sidebarOpen ? (
-                    <PanelLeftClose className="h-4 w-4 text-[var(--color-ink-muted)]" />
-                  ) : (
-                    <PanelLeftOpen className="h-4 w-4 text-[var(--color-ink-muted)]" />
-                  )}
-                  <span className="hidden sm:inline">Structures</span>
-                </FloatingTool>
-                <FloatingTool
-                  label={overlayOpen ? "Hide details" : "Show details"}
-                  onClick={() => onOverlayOpenChange(!overlayOpen)}
-                >
-                  <Layers3 className="h-4 w-4 text-[var(--color-ink-muted)]" />
-                  <span className="hidden sm:inline">Details</span>
-                </FloatingTool>
-              </div>
-              {selectedStructure ? (
-                <span className={cn(anatomyUi.glass, "px-3 py-2 text-[13px] font-medium text-[var(--color-ink)]")}>
-                  {selectedStructure.name}
-                </span>
-              ) : null}
+        <div className={cn(anatomyUi.viewportShell, "min-w-0")}>
+          <div className="absolute left-3 right-3 top-3 z-10 hidden flex-wrap items-center justify-between gap-2 lg:flex">
+            <div className="flex gap-2">
+              <FloatingTool
+                label={sidebarOpen ? "Hide structure list" : "Show structure list"}
+                onClick={() => onSidebarOpenChange(!sidebarOpen)}
+              >
+                {sidebarOpen ? (
+                  <PanelLeftClose className="h-4 w-4 text-[var(--color-ink-muted)]" />
+                ) : (
+                  <PanelLeftOpen className="h-4 w-4 text-[var(--color-ink-muted)]" />
+                )}
+                <span className="hidden sm:inline">Structures</span>
+              </FloatingTool>
+              <FloatingTool
+                label={overlayOpen ? "Hide details" : "Show details"}
+                onClick={() => onOverlayOpenChange(!overlayOpen)}
+              >
+                <Layers3 className="h-4 w-4 text-[var(--color-ink-muted)]" />
+                <span className="hidden sm:inline">Details</span>
+              </FloatingTool>
             </div>
-
-            <motion.div
-              layout
-              className="h-[min(72vh,640px)] w-full lg:h-[min(78vh,760px)] xl:h-[min(82vh,900px)]"
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            >
-              <SurfaceHost
-                surfaceId="cartoon-3d"
-                visibleLayers={visibleLayers}
-                systemFilter={sidebarProps.systemFilter}
-                selectedId={selectedId}
-                highlightedId={highlightedId}
-                onSelect={onSelectStructure}
-                onToggleLayer={onToggleLayer}
-                quizActive={quizActive}
-                className="h-full"
-              />
-            </motion.div>
-
-            <details className="mx-3 mb-3 overflow-hidden rounded-[18px] border border-black/[0.06] bg-white/90 lg:hidden">
-              <summary className="cursor-pointer px-4 py-3 text-[14px] font-semibold text-[var(--color-ink)]">
-                Browse structures
-              </summary>
-              <div className="max-h-80 overflow-y-auto border-t border-black/[0.05] p-3">
-                <AnatomySidebar {...sidebarProps} collapsed={false} />
-              </div>
-            </details>
+            {selectedStructure ? (
+              <span className={cn(anatomyUi.glass, "px-3 py-2 text-[13px] font-medium text-[var(--color-ink)]")}>
+                {selectedStructure.name}
+              </span>
+            ) : null}
           </div>
 
-          <div
-            className={cn(
-              "hidden lg:block",
-              !overlayOpen && "lg:invisible lg:h-0 lg:overflow-hidden lg:pointer-events-none"
-            )}
+          <motion.div
+            layout
+            className={anatomyUi.viewportHeight}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
-            {detailPanel}
-          </div>
+            <SurfaceHost
+              surfaceId="cartoon-3d"
+              visibleLayers={visibleLayers}
+              systemFilter={sidebarProps.systemFilter}
+              selectedId={selectedId}
+              highlightedId={highlightedId}
+              onSelect={onSelectStructure}
+              onToggleLayer={onToggleLayer}
+              quizActive={quizActive}
+              className="h-full"
+            />
+          </motion.div>
+
+          <details className="border-t border-black/[0.06] bg-white/90 lg:hidden">
+            <summary className="cursor-pointer px-4 py-3 text-[14px] font-semibold text-[var(--color-ink)]">
+              Browse structures
+            </summary>
+            <div className="max-h-80 overflow-y-auto border-t border-black/[0.05] p-3">
+              <AnatomySidebar {...sidebarProps} collapsed={false} />
+            </div>
+          </details>
+        </div>
+
+        <div
+          className={cn(
+            "hidden min-w-0 border-l border-black/[0.06] lg:block",
+            !overlayOpen && "lg:hidden"
+          )}
+        >
+          {detailPanel}
         </div>
       </div>
 

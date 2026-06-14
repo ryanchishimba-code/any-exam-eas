@@ -87,7 +87,7 @@ export default async function AnatomyPage({ searchParams }: PageProps) {
   await redirectMpjeFromClinicalRoutes(session.user.id);
   await requirePremiumPage(ROUTES.anatomy);
   return (
-    <div className="w-full space-y-4 pb-6">
+    <div className="w-full space-y-4">
       <header className="sr-only">
         <h1>Anatomy Explorer</h1>
       </header>

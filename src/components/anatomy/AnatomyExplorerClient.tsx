@@ -66,7 +66,7 @@ export function AnatomyExplorerClient({
     return null;
   });
   const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(() =>
     Boolean(initialStructureId && !invalidStructureId)
   );
@@ -274,107 +274,117 @@ export function AnatomyExplorerClient({
         </div>
       ) : null}
 
-      {quizActive ? (
-        <div
-          className={cn(
-            anatomyUi.panel,
-            "border-[var(--color-accent)]/20 bg-[var(--color-accent)]/[0.06] px-4 py-3 text-[14px] text-[var(--color-ink)]"
-          )}
-        >
-          <strong className="font-semibold">Quiz mode</strong>
-          <span className="text-[var(--color-ink-muted)]"> — {quizHint}</span>
-        </div>
-      ) : null}
-
-      <AnatomyStudioHero
-        examSlug={examSlug}
-        stats={catalogStats}
-        onStartTour={startDefaultTour}
-        catalogOnly={catalogOnly}
-      />
-
-      <AnatomyQuickNav
-        selectedId={selectedId}
-        activeProcedureId={focusedProcedureId}
-        onSelectStructure={handleSelectStructure}
-        onSelectProcedure={handleSelectProcedure}
-        onPreviewStructure={quizActive ? undefined : setHoveredId}
-      />
-
-      {procedureMatches.length > 0 ? (
-        <div className={cn(anatomyUi.panel, "px-4 py-3 sm:px-5")}>
-          <p className={anatomyUi.sectionLabel}>
-            Procedures matching &ldquo;{search.trim()}&rdquo;
-          </p>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {procedureMatches.map((proc) => {
-              const sid = proc.subregionIds?.[0] ?? proc.structureIds[0];
-              return (
-                <button
-                  key={proc.id}
-                  type="button"
-                  onClick={() => handleSelectProcedure(proc.id, sid)}
-                  className={cn(anatomyUi.chip, anatomyUi.chipIdle)}
-                >
-                  {proc.name}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      ) : null}
-
-      <AnatomyShell
-        bundle={bundle}
-        examSlug={examSlug}
-        sidebarProps={sidebarProps}
-        selectedStructure={selectedStructure}
-        relatedCards={relatedCards}
-        visibleLayers={visibleLayers}
-        selectedId={selectedId}
-        highlightedId={viewportHighlightedId}
-        quizActive={quizActive}
-        onSelectStructure={handleSelectStructure}
-        onCloseStructure={handleCloseStructure}
-        onSelectSubregion={handleSelectStructure}
-        focusedProcedureId={focusedProcedureId}
-        onToggleLayer={toggleLayer}
-        sidebarOpen={sidebarOpen}
-        onSidebarOpenChange={setSidebarOpen}
-        overlayOpen={overlayOpen}
-        onOverlayOpenChange={setOverlayOpen}
-        mobileSheetOpen={mobileSheetOpen}
-        onMobileSheetOpenChange={setMobileSheetOpen}
-      />
-
-      {teach.mode !== "off" ? (
-        <section className={cn(anatomyUi.panelElevated, "p-4 sm:p-5")}>
-          <TeachHost examSlug={examSlug} session={teach} />
-        </section>
-      ) : (
-        <section className={cn(anatomyUi.panel, "overflow-hidden")}>
-          <button
-            type="button"
-            onClick={() => setTeachExpanded((v) => !v)}
-            className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left sm:px-5"
-          >
-            <div>
-              <p className={anatomyUi.sectionLabel}>Guided tours & quiz</p>
-              <p className={anatomyUi.sectionHint}>
-                {catalogStats.tourCount} tours · {catalogStats.quizCount} questions
-              </p>
-            </div>
-            <span className="rounded-full bg-black/[0.05] px-3 py-1 text-[12px] font-semibold text-[var(--color-ink-muted)]">
-              {teachExpanded ? "Hide" : "Show"}
-            </span>
-          </button>
-          {teachExpanded ? (
-            <div className="border-t border-black/[0.05] px-4 pb-4 pt-2 sm:px-5">
-              <TeachHost examSlug={examSlug} session={teach} />
+      <div className={anatomyUi.pageShell}>
+        <div className={anatomyUi.panel}>
+          {quizActive ? (
+            <div
+              className={cn(
+                anatomyUi.panelSection,
+                "border-b border-[var(--color-accent)]/15 bg-[var(--color-accent)]/[0.06] text-[14px] text-[var(--color-ink)]"
+              )}
+            >
+              <strong className="font-semibold">Quiz mode</strong>
+              <span className="text-[var(--color-ink-muted)]"> — {quizHint}</span>
             </div>
           ) : null}
-        </section>
-      )}
+
+          <div className={anatomyUi.panelSection}>
+            <AnatomyStudioHero
+              examSlug={examSlug}
+              stats={catalogStats}
+              onStartTour={startDefaultTour}
+              catalogOnly={catalogOnly}
+            />
+          </div>
+
+          <div className={cn(anatomyUi.sectionDivider, anatomyUi.panelSection)}>
+            <AnatomyQuickNav
+              selectedId={selectedId}
+              activeProcedureId={focusedProcedureId}
+              onSelectStructure={handleSelectStructure}
+              onSelectProcedure={handleSelectProcedure}
+              onPreviewStructure={quizActive ? undefined : setHoveredId}
+            />
+          </div>
+
+          {procedureMatches.length > 0 ? (
+            <div className={cn(anatomyUi.sectionDivider, anatomyUi.panelSection)}>
+              <p className={anatomyUi.sectionLabel}>
+                Procedures matching &ldquo;{search.trim()}&rdquo;
+              </p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {procedureMatches.map((proc) => {
+                  const sid = proc.subregionIds?.[0] ?? proc.structureIds[0];
+                  return (
+                    <button
+                      key={proc.id}
+                      type="button"
+                      onClick={() => handleSelectProcedure(proc.id, sid)}
+                      className={cn(anatomyUi.chip, anatomyUi.chipIdle)}
+                    >
+                      {proc.name}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ) : null}
+
+          <div className={cn(anatomyUi.sectionDivider, anatomyUi.viewerSection)}>
+            <AnatomyShell
+              bundle={bundle}
+              examSlug={examSlug}
+              sidebarProps={sidebarProps}
+              selectedStructure={selectedStructure}
+              relatedCards={relatedCards}
+              visibleLayers={visibleLayers}
+              selectedId={selectedId}
+              highlightedId={viewportHighlightedId}
+              quizActive={quizActive}
+              onSelectStructure={handleSelectStructure}
+              onCloseStructure={handleCloseStructure}
+              onSelectSubregion={handleSelectStructure}
+              focusedProcedureId={focusedProcedureId}
+              onToggleLayer={toggleLayer}
+              sidebarOpen={sidebarOpen}
+              onSidebarOpenChange={setSidebarOpen}
+              overlayOpen={overlayOpen}
+              onOverlayOpenChange={setOverlayOpen}
+              mobileSheetOpen={mobileSheetOpen}
+              onMobileSheetOpenChange={setMobileSheetOpen}
+            />
+          </div>
+
+          {teach.mode !== "off" ? (
+            <div className={cn(anatomyUi.sectionDivider, anatomyUi.panelSection)}>
+              <TeachHost examSlug={examSlug} session={teach} />
+            </div>
+          ) : (
+            <div className={cn(anatomyUi.sectionDivider, "overflow-hidden")}>
+              <button
+                type="button"
+                onClick={() => setTeachExpanded((v) => !v)}
+                className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left sm:px-5 md:px-6"
+              >
+                <div>
+                  <p className={anatomyUi.sectionLabel}>Guided tours & quiz</p>
+                  <p className={anatomyUi.sectionHint}>
+                    {catalogStats.tourCount} tours · {catalogStats.quizCount} questions
+                  </p>
+                </div>
+                <span className="rounded-full bg-black/[0.05] px-3 py-1 text-[12px] font-semibold text-[var(--color-ink-muted)]">
+                  {teachExpanded ? "Hide" : "Show"}
+                </span>
+              </button>
+              {teachExpanded ? (
+                <div className="border-t border-black/[0.05] px-4 pb-4 pt-2 sm:px-5 md:px-6">
+                  <TeachHost examSlug={examSlug} session={teach} />
+                </div>
+              ) : null}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

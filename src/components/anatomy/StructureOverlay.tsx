@@ -9,6 +9,7 @@ import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
 import type { AnatomyStructure } from "@/lib/anatomy/types";
 import type { MemoryCard } from "@/lib/reference/types";
 import type { ExamSlug } from "@/types/edtech";
+import { cn } from "@/lib/utils";
 
 type Props = {
   structure: AnatomyStructure | null;
@@ -40,7 +41,11 @@ export function StructureOverlay({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 20 }}
           transition={{ type: "spring", stiffness: 380, damping: 32 }}
-          className={`${anatomyUi.panelElevated} hidden h-full max-h-[min(72vh,640px)] flex-col lg:flex`}
+          className={cn(
+            anatomyUi.panelFlat,
+            "hidden h-full min-w-0 flex-col rounded-none border-x-0 border-y-0 lg:flex",
+            anatomyUi.panelHeight
+          )}
         >
           <StructureDetailHeader structure={structure} onClose={onClose} />
           <StructureDetailPanel
