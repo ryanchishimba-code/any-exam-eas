@@ -120,4 +120,74 @@ describe("naplex-polish", () => {
     expect(before).toBeGreaterThan(0.62);
     expect(changed).toBe(false);
   });
+
+  it("preserves T1DM insulin pump case vignette without rewriting to random Top-500 drugs", () => {
+    const insulinPumpCase: BankItem = {
+      subjectId: "endocrine-rx",
+      itemType: "case_based",
+      vignette:
+        "T1DM patient requests insulin pump supplies. A1c 7.4%. Reports frequent 3 AM hypoglycemia on basal-bolus MDI.",
+      question: "Which recommendation is most appropriate?",
+      options: [
+        "Discuss CGM integration and basal rate adjustment; ensure pump training and sick-day rules",
+        "Stop all basal insulin when starting pump",
+        "Recommend pump only if A1c > 10%",
+        "Switch to sulfonylurea to reduce nocturnal lows",
+      ],
+      correctAnswer:
+        "Discuss CGM integration and basal rate adjustment; ensure pump training and sick-day rules",
+      explanation:
+        "Pump therapy with CGM can address nocturnal hypoglycemia via basal tailoring; requires structured education and continued basal delivery.",
+      tags: ["naplex", "v2", "case-vignette"],
+    };
+
+    const { item, changed } = polishNaplexBankItem(
+      insulinPumpCase,
+      "endocrine-rx",
+      "Endocrine pharmacotherapy",
+      42
+    );
+
+    expect(changed).toBe(false);
+    expect(item.question).toBe("Which recommendation is most appropriate?");
+    expect(item.correctAnswer).toBe(
+      "Discuss CGM integration and basal rate adjustment; ensure pump training and sick-day rules"
+    );
+    expect(item.options).not.toContain(expect.stringMatching(/Isoproterenol|Atropine|Vytorin|Altace/i));
+  });
+
+  it("restores corrupted polished drug shells from NAPLEX_QUALITY_V2 seed", () => {
+    const corrupted: BankItem = {
+      subjectId: "endocrine-rx",
+      vignette:
+        "T1DM patient requests insulin pump supplies. A1c 7.4%. Reports frequent 3 AM hypoglycemia on basal-bolus MDI.",
+      question:
+        "Which medication is the most appropriate pharmacist-recommended therapy for this endocrine pharmacotherapy presentation?",
+      options: [
+        "Atropine (Atropen) — requires no monitoring in all patients",
+        "Isoproterenol (Isuprel) — guideline-supported non-selective beta agonist for bradycardia/heart block",
+        "Simvastatin/ezetimibe (Vytorin) — maximum dose above labeled limits without justification",
+        "Ramipril (Altace) — no evidence for this indication",
+      ],
+      correctAnswer:
+        "Isoproterenol (Isuprel) — guideline-supported non-selective beta agonist for bradycardia/heart block",
+      explanation: "Therapeutic selection follows guidelines.",
+      tags: ["naplex-polished"],
+    };
+
+    const { item, changed } = polishNaplexBankItem(
+      corrupted,
+      "endocrine-rx",
+      "Endocrine pharmacotherapy",
+      99
+    );
+
+    expect(changed).toBe(true);
+    expect(item.question).toBe("Which recommendation is most appropriate?");
+    expect(item.correctAnswer).toBe(
+      "Discuss CGM integration and basal rate adjustment; ensure pump training and sick-day rules"
+    );
+    expect(item.options).toHaveLength(4);
+    expect(item.options.some((o) => /Isoproterenol/i.test(o))).toBe(false);
+  });
 });

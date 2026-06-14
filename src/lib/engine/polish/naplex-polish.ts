@@ -15,6 +15,7 @@ import {
   type PharmDrugProfile,
 } from "@/lib/engine/prompts/pharm-drug-profile";
 import { normalizeNaplexBankItemFields } from "@/lib/exam-prep/naplex-bank-normalize";
+import { NAPLEX_QUALITY_V2 } from "@/lib/exam-prep/naplex-quality-v2";
 
 const NAPLEX_PREFIX = /^NAPLEX\s+\d+:\s*/i;
 
@@ -67,14 +68,85 @@ export type NaplexPolishResult = {
   qualityAfter: number;
 };
 
+function clinicalContextText(item: BankItem): string {
+  const vignette = resolveNaplexVignette(item) ?? item.scenario ?? "";
+  return `${vignette} ${item.question} ${item.explanation}`.trim();
+}
+
+/** Case vignettes that test recommendations/actions, not Top-500 drug selection. */
+function isNonDrugCaseManagementItem(item: BankItem): boolean {
+  if (item.itemType === "case_based") return true;
+
+  const tags = (item.tags ?? []).map((t) => t.toLowerCase());
+  if (tags.some((t) => t.includes("case-vignette") || t === "case_based")) return true;
+
+  const vignette = resolveNaplexVignette(item) ?? "";
+  const stem = resolveNaplexStem(item);
+  const drugTherapyShell = / — (guideline-supported|no evidence for this indication|maximum dose above labeled limits|requires no monitoring in all patients)/i;
+  if (item.options.filter((o) => drugTherapyShell.test(o)).length >= 2) return false;
+
+  const asksManagement =
+    /which recommendation|which action|which step|which counseling|which verification|which monitoring|priority (action|intervention)|order implementation|select all that apply/i.test(
+      stem
+    ) ||
+    (/most appropriate/i.test(stem) &&
+      !/which medication|pharmacist-recommended therapy|therapeutic choice/i.test(stem));
+
+  const hasClinicalVignette = vignette.length > 30;
+  if (hasClinicalVignette && asksManagement) return true;
+
+  const brandDrugOption = /^[A-Za-z0-9/\-\s]+\s*\([A-Z][a-z][^\)]*\)\s*—/i;
+  const drugNamedOptions = item.options.filter((o) => brandDrugOption.test(o));
+  return hasClinicalVignette && drugNamedOptions.length === 0 && item.options.length === 4;
+}
+
+const POLISHED_DRUG_THERAPY_SHELL =
+  / — (guideline-supported|no evidence for this indication|maximum dose above labeled limits|requires no monitoring in all patients)/i;
+
+/** Vignette kept from seed while polish replaced stem/options with random Top-500 drugs. */
+function isCorruptedPolishedDrugShell(item: BankItem): boolean {
+  const vignette = resolveNaplexVignette(item) ?? "";
+  const stem = resolveNaplexStem(item);
+  const drugShellStem = /which medication is the most appropriate pharmacist-recommended therapy/i.test(stem);
+  const drugShellOptions = item.options.filter((o) => POLISHED_DRUG_THERAPY_SHELL.test(o)).length;
+  if (!drugShellStem || drugShellOptions < 2 || vignette.length < 30) return false;
+
+  const vignetteDrug = inferDrugFromText(vignette);
+  const optionDrug = inferDrugFromText(item.correctAnswer);
+  if (vignetteDrug && optionDrug && vignetteDrug.id === optionDrug.id) return false;
+
+  return Boolean(optionDrug) && (!vignetteDrug || vignetteDrug.id !== optionDrug.id);
+}
+
+function restoreCorruptedCaseFromSeed(item: BankItem): BankItem | null {
+  const vignette = resolveNaplexVignette(item)?.trim();
+  if (!vignette) return null;
+
+  const seed = NAPLEX_QUALITY_V2.find((q) => (q.vignette?.trim() ?? q.scenario?.trim()) === vignette);
+  if (!seed) return null;
+
+  return {
+    ...item,
+    vignette: seed.vignette,
+    scenario: seed.vignette,
+    question: seed.question,
+    options: [...seed.options] as BankItem["options"],
+    correctAnswer: seed.correctAnswer,
+    explanation: seed.explanation,
+    tags: seed.tags,
+    itemType: seed.itemType,
+  };
+}
+
 export function scoreNaplexBankItem(item: BankItem): number {
   let score = 0.35;
-  const stem = item.question;
+  const stem = resolveNaplexStem(item);
+  const context = clinicalContextText(item);
 
   if (stem.length > 180) score += 0.12;
   else if (stem.length > 100) score += 0.06;
 
-  if (/\d{1,3}[-‑]year|\d+\s*kg|mg\/|BP|creatinine|allerg|patient|pharmacist/i.test(stem)) {
+  if (/\d{1,3}[-‑]year|\d+\s*kg|mg\/|BP|creatinine|allerg|patient|pharmacist|a1c|hypoglycemia|insulin/i.test(context)) {
     score += 0.1;
   }
 
@@ -226,9 +298,10 @@ function formatDrugOption(drug: DrugEntry, suffix = ""): string {
 }
 
 function lacksDrugDetails(item: BankItem): boolean {
+  if (isNonDrugCaseManagementItem(item)) return false;
   if (scoreNaplexBankItem(item) >= 0.68) return false;
 
-  const combined = `${item.question} ${item.explanation}`.toLowerCase();
+  const combined = clinicalContextText(item).toLowerCase();
   const mentionsTopDrug = TOP_500_DRUGS.some((d) => combined.includes(d.generic.toLowerCase()));
   const hasMonitoring = /monitor|creatinine|potassium|inr|a1c|lab|blood pressure|lft|ck/i.test(
     item.explanation
@@ -330,7 +403,11 @@ function detectTemplate(stem: string, seed = 0): string {
   if (/counseling|counsel|dispensing|adherence/i.test(stem)) return "counseling";
   if (/adverse effect|dispensing .* for/i.test(stem)) return "adr";
   if (/professional practice|controlled|legal|DEA/i.test(stem)) return "law";
-  if (/therapeutic choice|most appropriate/i.test(stem)) return "therapy";
+  if (/which medication|pharmacist-recommended therapy|therapeutic choice/i.test(stem)) return "therapy";
+  if (/most appropriate/i.test(stem)) {
+    if (/recommendation|counsel|action|monitoring|parameter|priority/i.test(stem)) return "counseling";
+    return "therapy";
+  }
   const pool = ["moa", "counseling", "interaction", "adr", "therapy", "calculation", "law"] as const;
   return pool[Math.abs(seed) % pool.length]!;
 }
@@ -521,6 +598,26 @@ export function polishNaplexBankItem(
 ): NaplexPolishResult {
   const qualityBefore = scoreNaplexBankItem(item);
   const normalized = normalizeNaplexBankItemFields(item);
+
+  if (isCorruptedPolishedDrugShell(normalized)) {
+    const restored = restoreCorruptedCaseFromSeed(normalized);
+    if (restored) {
+      const qualityAfter = scoreNaplexBankItem(restored);
+      return {
+        item: restored,
+        changed: itemFieldsChanged(item, restored),
+        qualityBefore,
+        qualityAfter,
+      };
+    }
+  }
+
+  if (isNonDrugCaseManagementItem(normalized)) {
+    const qualityAfter = scoreNaplexBankItem(normalized);
+    const changed = itemFieldsChanged(item, normalized);
+    return { item: normalized, changed, qualityBefore, qualityAfter };
+  }
+
   const hasWeakPatterns =
     WEAK_CORRECT_PATTERNS.some((re) => re.test(normalized.correctAnswer)) ||
     normalized.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)));
