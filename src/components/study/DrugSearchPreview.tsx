@@ -3,7 +3,9 @@
 import { BookOpen, Pill, X } from "lucide-react";
 import type { DrugSearchHit } from "@/lib/drugs300/search";
 import { TOP_500_DRUGS } from "@/lib/drugs300/catalog";
+import { enrichDrug } from "@/lib/drugs300/enrichment";
 import { DrugClinicalBridge } from "@/components/anatomy/DrugClinicalBridge";
+import { DrugPearlsPanel } from "@/components/study/DrugPearlsPanel";
 
 type Props = {
   drug: DrugSearchHit;
@@ -12,6 +14,7 @@ type Props = {
 
 export function DrugSearchPreview({ drug, onClose }: Props) {
   const entry = TOP_500_DRUGS.find((d) => d.id === drug.id);
+  const enrichment = entry ? enrichDrug(entry) : null;
 
   return (
     <div className="aee-drug-search-preview">
@@ -76,6 +79,12 @@ export function DrugSearchPreview({ drug, onClose }: Props) {
           <span className="font-semibold">Mnemonic: </span>
           {entry.mnemonic}
         </p>
+      )}
+
+      {enrichment && (
+        <div className="mt-4">
+          <DrugPearlsPanel enrichment={enrichment} variant="light" />
+        </div>
       )}
 
       <DrugClinicalBridge drugId={drug.id} />

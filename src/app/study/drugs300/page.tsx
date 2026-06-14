@@ -28,7 +28,7 @@ export default function Drugs300Page() {
     <PageShell
       eyebrow="Study Hub"
       title="Top 500 Drugs"
-      description="The same high-yield drug deck for every exam — generic, brand, class, and indications."
+      description="High-yield Top 500 deck with guideline-aligned pearls (ADA, ACC/AHA, FDA) for NCLEX, USMLE, and NAPLEX."
       maxWidth="max-w-6xl"
     >
       <StudySubnav />

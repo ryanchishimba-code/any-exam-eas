@@ -35,3 +35,4 @@ export {
 export { inferExamRelevance, mergeExamRelevance } from "./exam-relevance";
 export { dbRowFromRecord, recordFromDbRow, examRelevanceFromDb } from "./db-mapper";
 export { searchDrugs, getDrugSearchHitById, type DrugSearchHit } from "./search";
+export { enrichDrug, hasDrugEnrichment, DRUG_GUIDELINE_NOTE, type EnrichedDrugView } from "./enrichment";

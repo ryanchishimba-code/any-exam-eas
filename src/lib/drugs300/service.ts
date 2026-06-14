@@ -9,8 +9,10 @@ import {
   type DrugEntry,
 } from "./catalog";
 import type { ExamRelevance } from "./schema";
+import type { EnrichedDrugView } from "./enrichment";
 import { getCurrentDrugCycle, isCycleExpired } from "./cycles";
 import { generateDrugMnemonic } from "./mnemonic";
+import { enrichDrug } from "./enrichment";
 import {
   applySpacedRepetition,
   initialSpacedRepetitionState,
@@ -36,6 +38,7 @@ export type DrugCardDto = {
   nextReviewAt: string;
   customMnemonic: string | null;
   due: boolean;
+  enrichment: EnrichedDrugView;
 };
 
 export type DrugClassProgress = {
@@ -101,6 +104,7 @@ function toDto(
     nextReviewAt: row.nextReviewAt.toISOString(),
     customMnemonic: row.mnemonic,
     due: isDue(row.nextReviewAt, now),
+    enrichment: enrichDrug(drug),
   };
 }
 
