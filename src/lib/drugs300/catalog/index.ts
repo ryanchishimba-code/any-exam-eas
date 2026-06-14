@@ -10,7 +10,7 @@ export type { DrugEntry, DrugEntryInput } from "../types";
 export { slugDrugId, buildDrugEntry } from "../types";
 export { DRUG_CLASSES, classifyDrug, drugMatchesClass, getDrugClassMeta, type DrugClassId } from "../drug-classes";
 
-/** ClinCalc Top 300 + board-exam extension (301–501) — 501 high-yield drugs. */
+/** ClinCalc Top 300 + board-exam extension (301–503) — 503 high-yield drugs. */
 export const TOP_500_DRUGS = mergeCatalog([
   CLINCALC_1,
   CLINCALC_2,

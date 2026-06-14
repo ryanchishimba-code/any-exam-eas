@@ -1,6 +1,6 @@
 import { d } from "./entry";
 
-/** Board-exam extension — ranks 401–501. */
+/** Board-exam extension — ranks 401–503. */
 export const CLINCALC_5 = [
   d(401, "Tobramycin", "Nebcin", "Aminoglycoside antibiotic", "Gram-negative serious infections (Pseudomonas)", "Nephrotoxicity, ototoxicity; once-daily dosing levels", "Nebcin = NEBcin ears & kidneys — aminoglycoside trough levels"),
   d(402, "Trastuzumab", "Herceptin", "Anti-HER2 monoclonal antibody", "HER2+ breast and gastric cancer", "Cardiotoxicity (↓ EF), infusion reactions", "Herceptin = HER2 trastuzumab — monitor echocardiogram"),
@@ -103,4 +103,6 @@ export const CLINCALC_5 = [
   d(499, "Ondansetron (IV)", "Zofran IV", "5-HT3 antagonist antiemetic", "Chemotherapy/postoperative nausea", "QT prolongation, constipation, serotonin syndrome combos", "Zofran IV = ZOFran 5HT3 — ondansetron chemo nausea QT watch"),
   d(500, "Ethosuximide", "Zarontin", "Antiepileptic (T-type calcium blocker)", "Absence seizures (childhood)", "GI upset, blood dyscrasias, lupus-like syndrome, SJS rare", "Zarontin = ZARontin absence only — ethosuximide absence seizures"),
   d(501, "Tirzepatide", "Mounjaro, Zepbound", "Dual GIP/GLP-1 receptor agonist", "Type 2 diabetes (Mounjaro), chronic weight management (Zepbound)", "Nausea, vomiting, diarrhea, pancreatitis (rare), gallbladder disease; CI MEN2/medullary thyroid carcinoma; delayed gastric emptying (ileus/gastroparesis risk)", "Mounjaro = MOUNTain of A1C & weight — dual GIP/GLP-1 weekly injection"),
+  d(502, "Lixisenatide", "Adlyxin", "GLP-1 receptor agonist", "Type 2 diabetes (often add-on to basal insulin)", "Nausea, vomiting, headache; CI MEN2/medullary thyroid carcinoma; hypoglycemia risk with insulin/sulfonylurea", "Adlyxin = ADLyxin before meals — once-daily GLP-1 injectable"),
+  d(503, "Albiglutide", "Tanzeum", "GLP-1 receptor agonist", "Type 2 diabetes (product withdrawn US 2018; class comparison)", "Nausea, diarrhea, injection-site reactions, pancreatitis (rare); CI MEN2/medullary thyroid carcinoma", "Tanzeum = TANzeum weekly GLP-1 — withdrawn but classic fusion-protein GLP-1 RA"),
 ];

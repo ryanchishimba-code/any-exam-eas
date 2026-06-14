@@ -4,10 +4,23 @@ import { TOP_500_COUNT, getDrugById } from "./catalog";
 import { applySpacedRepetition, initialSpacedRepetitionState } from "./spaced-repetition";
 
 describe("drugs300", () => {
-  it("catalog has 501 drugs including GLP-1 agents", () => {
-    expect(TOP_500_COUNT).toBe(501);
+  it("catalog includes full GLP-1 class coverage", () => {
+    expect(TOP_500_COUNT).toBe(503);
+    const glpIds = [
+      "dulaglutide",
+      "exenatide",
+      "liraglutide",
+      "semaglutide",
+      "tirzepatide",
+      "lixisenatide",
+      "albiglutide",
+    ];
+    for (const id of glpIds) {
+      expect(getDrugById(id)?.therapeuticClass.toLowerCase()).toMatch(/glp-1|gip/);
+    }
     expect(getDrugById("semaglutide")?.brand).toContain("Ozempic");
     expect(getDrugById("tirzepatide")?.brand).toContain("Mounjaro");
+    expect(getDrugById("lixisenatide")?.brand).toContain("Adlyxin");
   });
 
   it("uses quarterly cycle keys", () => {

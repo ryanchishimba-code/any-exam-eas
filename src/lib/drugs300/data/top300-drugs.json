@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
   "source": "ClinCalc Top 500 (Any Exam Easy)",
-  "updatedAt": "2026-06-14T20:04:31.047Z",
-  "count": 501,
+  "updatedAt": "2026-06-14T20:08:57.705Z",
+  "count": 503,
   "drugs": [
     {
       "id": "atorvastatin",
@@ -2474,9 +2474,9 @@
       "generic": "Dulaglutide",
       "brand": "Trulicity",
       "class": "GLP-1 receptor agonist",
-      "indications": "Type 2 diabetes, ASCVD risk reduction",
-      "sideEffects": "Nausea, pancreatitis (rare), thyroid C-cell tumors (rodents)",
-      "mnemonic": "Trulicity = TRUE weekly GLP-1 — GI nausea early",
+      "indications": "Type 2 diabetes, ASCVD risk reduction (REWIND trial)",
+      "sideEffects": "Nausea/vomiting (titrate), pancreatitis (rare), gallstones; CI MEN2/medullary thyroid carcinoma; delayed gastric emptying",
+      "mnemonic": "Trulicity = TRUE weekly GLP-1 — REWIND CV benefit, inject once weekly",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -2586,9 +2586,9 @@
       "generic": "Exenatide",
       "brand": "Byetta, Bydureon",
       "class": "GLP-1 receptor agonist",
-      "indications": "Type 2 diabetes",
-      "sideEffects": "Nausea, vomiting, pancreatitis (rare), weight loss",
-      "mnemonic": "Byetta = BYE appetite — injectable GLP-1",
+      "indications": "Type 2 diabetes (Byetta BID, Bydureon weekly ER)",
+      "sideEffects": "Nausea, vomiting, pancreatitis (rare), weight loss; CI MEN2/medullary thyroid carcinoma; renal dose limits for Byetta",
+      "mnemonic": "Byetta = BYE appetite BID — Bydureon is weekly ER exenatide",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -3242,9 +3242,9 @@
       "generic": "Liraglutide",
       "brand": "Victoza, Saxenda",
       "class": "GLP-1 receptor agonist",
-      "indications": "Type 2 diabetes (Victoza), obesity (Saxenda)",
-      "sideEffects": "Nausea, pancreatitis (rare), gallstones, thyroid C-cell tumors (rodents)",
-      "mnemonic": "Victoza = VICtory over glucose & weight — daily GLP-1",
+      "indications": "Type 2 diabetes (Victoza daily), obesity (Saxenda), ASCVD risk reduction in T2DM",
+      "sideEffects": "Nausea (titrate), pancreatitis (rare), gallstones; CI MEN2/medullary thyroid carcinoma; delayed gastric emptying",
+      "mnemonic": "Victoza = VICtory daily GLP-1 — Saxenda is higher-dose weight brand",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -8013,6 +8013,38 @@
       "indications": "Type 2 diabetes (Mounjaro), chronic weight management (Zepbound)",
       "sideEffects": "Nausea, vomiting, diarrhea, pancreatitis (rare), gallbladder disease; CI MEN2/medullary thyroid carcinoma; delayed gastric emptying (ileus/gastroparesis risk)",
       "mnemonic": "Mounjaro = MOUNTain of A1C & weight — dual GIP/GLP-1 weekly injection",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "lixisenatide",
+      "rank": 502,
+      "generic": "Lixisenatide",
+      "brand": "Adlyxin",
+      "class": "GLP-1 receptor agonist",
+      "indications": "Type 2 diabetes (often add-on to basal insulin)",
+      "sideEffects": "Nausea, vomiting, headache; CI MEN2/medullary thyroid carcinoma; hypoglycemia risk with insulin/sulfonylurea",
+      "mnemonic": "Adlyxin = ADLyxin before meals — once-daily GLP-1 injectable",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
+    },
+    {
+      "id": "albiglutide",
+      "rank": 503,
+      "generic": "Albiglutide",
+      "brand": "Tanzeum",
+      "class": "GLP-1 receptor agonist",
+      "indications": "Type 2 diabetes (product withdrawn US 2018; class comparison)",
+      "sideEffects": "Nausea, diarrhea, injection-site reactions, pancreatitis (rare); CI MEN2/medullary thyroid carcinoma",
+      "mnemonic": "Tanzeum = TANzeum weekly GLP-1 — withdrawn but classic fusion-protein GLP-1 RA",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
