@@ -38,7 +38,7 @@ export const NAPLEX_VIGNETTE_SEEDS: EnrichedBankItem[] = [
     "Which add-on is guideline-directed medical therapy?",
     ["Spironolactone", "Amlodipine as first add-on", "Hydralazine-isosorbide only without ARNI", "Oral pseudoephedrine"],
     "Spironolactone",
-    "MRA (spironolactone/eplerenone) is GDMT for HFrEF when K+ and renal function allow.",
+    "MRA (spironolactone/eplerenone) is GDMT for HFrEF when K+ and renal function allow; monitor K+ and SCr after initiation per ACC/AHA heart failure guidelines.",
     { blueprintDomain: "naplex-area3-treatment-planning", tags: ["heart failure", "GDMT"] }
   ),
   vignette(
@@ -47,7 +47,7 @@ export const NAPLEX_VIGNETTE_SEEDS: EnrichedBankItem[] = [
     "How many mL of stock KCl are needed?",
     ["10 mL", "20 mL", "5 mL", "40 mL"],
     "10 mL",
-    "20 mEq ÷ 2 mEq/mL = 10 mL; verify compatibility and final osmolarity.",
+    "20 mEq KCl ÷ 2 mEq/mL stock = 10 mL to add; verify compatibility, label final concentration, and follow USP <795>/<797> compounding documentation.",
     { blueprintDomain: "naplex-area1-foundations", difficulty: 3, tags: ["calculations"] }
   ),
   vignette(
@@ -56,7 +56,7 @@ export const NAPLEX_VIGNETTE_SEEDS: EnrichedBankItem[] = [
     "Best pharmacist recommendation?",
     ["Hold dose and contact prescriber for level and symptom review", "Double next dose", "Switch to OTC supplement", "Add another CYP inducer"],
     "Hold dose and contact prescriber for level and symptom review",
-    "Level >20 mcg/mL suggests toxicity; hold and consult prescriber.",
+    "Phenytoin level >20 mcg/mL with nystagmus and ataxia suggests toxicity; hold the dose, counsel on symptoms, and contact the prescriber for level review and dose adjustment.",
     { blueprintDomain: "naplex-area4-safety", tags: ["phenytoin", "toxicity"] }
   ),
 ];

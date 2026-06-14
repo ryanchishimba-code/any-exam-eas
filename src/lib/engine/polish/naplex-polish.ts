@@ -16,6 +16,10 @@ import {
 } from "@/lib/engine/prompts/pharm-drug-profile";
 import { normalizeNaplexBankItemFields } from "@/lib/exam-prep/naplex-bank-normalize";
 import { NAPLEX_QUALITY_V2 } from "@/lib/exam-prep/naplex-quality-v2";
+import {
+  hasInvalidControlledSubstanceStem,
+  isControlledSubstanceDrug,
+} from "@/lib/exam-prep/naplex-controlled-substances";
 
 const NAPLEX_PREFIX = /^NAPLEX\s+\d+:\s*/i;
 
@@ -24,6 +28,8 @@ const WEAK_CORRECT_PATTERNS = [
   /^Counsel on adherence/i,
   /^Recognize serious adverse effect linked to/i,
   /^Verify indication, dose, and legal/i,
+  /^Verify indication, quantity, patient identity, and DEA requirements/i,
+  /before dispensing controlled medications related to/i,
   /^Select therapy class appropriate for/i,
   /mechanism relevant to/i,
   /^No receptor interaction/i,
@@ -100,6 +106,43 @@ function isNonDrugCaseManagementItem(item: BankItem): boolean {
   return hasClinicalVignette && drugNamedOptions.length === 0 && item.options.length === 4;
 }
 
+/** Hand-authored seeds (vignette, SATA, case, calc) — skip weak rebuild unless already corrupted. */
+function shouldPreserveHandAuthoredItem(item: BankItem): boolean {
+  if (isCorruptedPolishedDrugShell(item) || isCorruptedPolishedLawShell(item)) return false;
+
+  const tags = (item.tags ?? []).map((t) => t.toLowerCase());
+  if (
+    tags.some((t) =>
+      ["physician-educator", "high-yield", "v2", "v3", "clinical-judgment", "sata", "ordered"].includes(t)
+    )
+  ) {
+    if (!WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer))) return true;
+  }
+
+  const format = item.itemType ?? "mcq";
+  if (
+    ["case_based", "vignette", "select_all", "sata", "ordered_response", "constructed_response"].includes(
+      format
+    )
+  ) {
+    const drugShell = item.options.filter((o) => POLISHED_DRUG_THERAPY_SHELL.test(o)).length >= 2;
+    if (!drugShell && !WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer))) return true;
+  }
+
+  return false;
+}
+
+/** Law-template polish applied to a non-controlled drug (e.g. metformin + DEA stem). */
+function isCorruptedPolishedLawShell(item: BankItem): boolean {
+  const blob = clinicalContextText(item);
+  if (!/controlled-substance prescription for/i.test(blob)) return false;
+  if (hasInvalidControlledSubstanceStem(blob) || hasInvalidControlledSubstanceStem(item.correctAnswer)) {
+    return true;
+  }
+  const drug = inferDrugFromText(blob);
+  return Boolean(drug && !isControlledSubstanceDrug(drug));
+}
+
 const POLISHED_DRUG_THERAPY_SHELL =
   / — (guideline-supported|no evidence for this indication|maximum dose above labeled limits|requires no monitoring in all patients)/i;
 
@@ -163,6 +206,14 @@ export function scoreNaplexBankItem(item: BankItem): number {
   if (item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)))) score -= 0.15;
 
   if (item.options.length === 4 && item.options.includes(item.correctAnswer)) score += 0.08;
+
+  const tags = (item.tags ?? []).map((t) => t.toLowerCase());
+  if (tags.some((t) => ["vignette", "high-yield", "v2", "physician-educator", "case-vignette"].includes(t))) {
+    score += 0.06;
+  }
+  if (item.itemType === "vignette") score += 0.08;
+  if (item.itemType === "constructed_response") score += 0.12;
+  if ((item.solutionSteps?.length ?? 0) > 0) score += 0.04;
 
   return Math.max(0, Math.min(1, score));
 }
@@ -514,6 +565,22 @@ function rebuildFromTemplate(
     }
     case "law":
     default: {
+      if (!isControlledSubstanceDrug(drug)) {
+        const adr = drug.sideEffects.split(/[;,]/)[0]?.trim() ?? "adverse effects";
+        const monitor = inferMonitoring(drug)[0] ?? "therapeutic response";
+        const correct = `Counsel on ${drug.generic} adherence, expected benefits, recognizing ${adr}, monitoring ${monitor}, and when to call the pharmacist or prescriber`;
+        return {
+          vignette: `${vignette} The patient picks up a new ${formatDrugOption(drug)} prescription.`,
+          question: "Which counseling point is most essential before the patient leaves the pharmacy?",
+          options: [
+            correct,
+            "Encourage sharing unused tablets with family members with similar symptoms",
+            `Advise stopping ${drug.generic} without calling anyone if any question arises`,
+            "State that no monitoring or follow-up is ever required for this medication",
+          ],
+          correctAnswer: correct,
+        };
+      }
       const correct = `Verify indication, quantity, patient identity, and DEA requirements before dispensing controlled medications related to ${drug.therapeuticClass.toLowerCase()}`;
       return {
         vignette: `${vignette} A controlled-substance prescription for ${drug.generic} requires verification.`,
@@ -599,6 +666,32 @@ export function polishNaplexBankItem(
   const qualityBefore = scoreNaplexBankItem(item);
   const normalized = normalizeNaplexBankItemFields(item);
 
+  if (isCorruptedPolishedLawShell(normalized)) {
+    const stem = stripPrefix(normalized.question);
+    const drug =
+      inferDrugFromText(resolveNaplexVignette(normalized) ?? "") ??
+      inferDrugFromText(clinicalContextText(normalized)) ??
+      pickDrug(seed);
+    const rebuilt = rebuildFromTemplate(stem, "counseling", drug, subjectLabel, seed);
+    const repaired: BankItem = {
+      ...normalized,
+      vignette: rebuilt.vignette,
+      scenario: rebuilt.vignette,
+      question: rebuilt.question,
+      options: rebuilt.options,
+      correctAnswer: rebuilt.correctAnswer,
+      explanation: buildNaplexExplanation(rebuilt.correctAnswer, rebuilt.options, drug, "counseling"),
+      tags: [...(normalized.tags ?? []).filter((t) => t !== "naplex-polished"), drug.generic, "naplex-repaired"],
+    };
+    const qualityAfter = scoreNaplexBankItem(repaired);
+    return {
+      item: repaired,
+      changed: itemFieldsChanged(item, repaired),
+      qualityBefore,
+      qualityAfter,
+    };
+  }
+
   if (isCorruptedPolishedDrugShell(normalized)) {
     const restored = restoreCorruptedCaseFromSeed(normalized);
     if (restored) {
@@ -613,6 +706,12 @@ export function polishNaplexBankItem(
   }
 
   if (isNonDrugCaseManagementItem(normalized)) {
+    const qualityAfter = scoreNaplexBankItem(normalized);
+    const changed = itemFieldsChanged(item, normalized);
+    return { item: normalized, changed, qualityBefore, qualityAfter };
+  }
+
+  if (shouldPreserveHandAuthoredItem(normalized)) {
     const qualityAfter = scoreNaplexBankItem(normalized);
     const changed = itemFieldsChanged(item, normalized);
     return { item: normalized, changed, qualityBefore, qualityAfter };
@@ -649,7 +748,10 @@ export function polishNaplexBankItem(
       inferDrugFromText(item.correctAnswer) ??
       pickDrug(stem.length + (item.subjectId?.length ?? 0) + seed);
 
-    const template = detectTemplate(stem, seed);
+    let template = detectTemplate(stem, seed);
+    if (template === "law" && !isControlledSubstanceDrug(drug)) {
+      template = "counseling";
+    }
     const rebuilt = rebuildFromTemplate(stem, template, drug, subjectLabel, seed);
 
     if (rebuilt.correctAnswer && rebuilt.options.every(Boolean)) {

@@ -13,6 +13,11 @@ import { assertNaplexPhysicianEducatorQuality } from "./naplex-physician-educato
 import { assertUsmlePhysicianEducatorQuality } from "./usmle-physician-educator-quality";
 import { assertNclexCuratedSeedQuality } from "./nclex-curated-seeds-quality";
 import { NCLEX_CURATED_QUALITY } from "./nclex-curated-quality";
+import { assertNaplexSeedBatchQuality } from "./naplex-seed-qa";
+import { NAPLEX_QUALITY_V2 } from "./naplex-quality-v2";
+import { NAPLEX_CALC_CASES_V3 } from "./naplex-calc-cases-v3";
+import { NAPLEX_AREA3_V3 } from "./naplex-area3-v3";
+import { NAPLEX_VIGNETTE_SEEDS } from "./vignette-seeds";
 
 describe("Question seed QA gate", () => {
   it("USMLE physician-educator batch 01 (curated vignettes)", () => {
@@ -37,5 +42,21 @@ describe("Question seed QA gate", () => {
 
   it("NCLEX curated quality (high-yield vignettes)", () => {
     assertNclexCuratedSeedQuality(NCLEX_CURATED_QUALITY, "NCLEX_CURATED_QUALITY");
+  });
+
+  it("NAPLEX quality v2 seed batch (50 board-style items)", () => {
+    assertNaplexSeedBatchQuality(NAPLEX_QUALITY_V2, "NAPLEX_QUALITY_V2");
+  });
+
+  it("NAPLEX calc cases v3 (constructed response)", () => {
+    assertNaplexSeedBatchQuality(NAPLEX_CALC_CASES_V3, "NAPLEX_CALC_CASES_V3");
+  });
+
+  it("NAPLEX area 3 v3 vignettes", () => {
+    assertNaplexSeedBatchQuality(NAPLEX_AREA3_V3, "NAPLEX_AREA3_V3");
+  });
+
+  it("NAPLEX vignette seeds", () => {
+    assertNaplexSeedBatchQuality(NAPLEX_VIGNETTE_SEEDS, "NAPLEX_VIGNETTE_SEEDS");
   });
 });

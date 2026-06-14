@@ -102,10 +102,18 @@ export function assessNaplexPhysicianEducatorItem(
     if (options.length < 4 || options.length > 6) {
       push("sata_options_count", `SATA expects 4–6 options; got ${options.length}.`);
     }
-    const correctParts = (item.correctAnswer ?? "")
-      .split(",")
+    const optionSet = new Set(options.map((o) => o.trim()));
+    const byPipe = (item.correctAnswer ?? "")
+      .split("|||")
       .map((s) => s.trim())
       .filter(Boolean);
+    const correctParts =
+      byPipe.length > 0 && byPipe.every((p) => optionSet.has(p))
+        ? byPipe
+        : (item.correctAnswer ?? "")
+            .split(",")
+            .map((s) => s.trim())
+            .filter(Boolean);
     if (correctParts.length < 2) {
       push("sata_correct_count", "SATA should have at least two correct selections.");
     }

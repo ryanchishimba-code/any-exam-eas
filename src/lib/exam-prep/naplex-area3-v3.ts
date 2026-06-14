@@ -205,7 +205,7 @@ export const NAPLEX_AREA3_V3: EnrichedBankItem[] = [
   naplexCase(
     "cardiovascular-rx",
     `Gout + CKD stage 3 | Acute flare | Colchicine considered | On diltiazem`,
-    "Colchicine consideration?",
+    "Which colchicine dosing consideration is most important?",
     [
       "Reduce colchicine dose for CKD and CYP3A4/P-gp inhibitors (diltiazem); toxicity risk",
       "Standard high-dose colchicine load regardless of interactions",
@@ -228,7 +228,7 @@ export const NAPLEX_AREA3_V3: EnrichedBankItem[] = [
       { prompt: "Latent TB", match: "Isoniazid + rifapentine weekly (short course) or INH monotherapy" },
     ],
     ["IV vancomycin for uncomplicated cystitis", "Azithromycin for GAS pharyngitis"],
-    "Stewardship aligns narrowest effective agent to syndrome and susceptibility patterns.",
+    "Stewardship aligns narrowest effective agent to syndrome and susceptibility patterns; avoid IV vancomycin for uncomplicated cystitis and macrolide monotherapy for confirmed GAS pharyngitis.",
     { blueprintDomain: A3 }
   ),
 

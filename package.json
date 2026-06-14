@@ -107,6 +107,7 @@
     "db:curate-nclex:batch500": "npx tsx scripts/curate-nclex-questions.ts --editorial --force-ai --limit 500",
     "db:curate-nclex:failures": "npx tsx scripts/curate-nclex-questions.ts --failing --force-ai --limit 500",
     "db:curate-nclex:safety": "npx tsx scripts/curate-nclex-questions.ts --safety --force-ai",
+    "db:audit-naplex-seeds": "bash scripts/run-with-node.sh npx tsx scripts/audit-naplex-seeds-by-topic.ts",
     "db:audit-naplex": "npx tsx scripts/audit-naplex-questions.ts",
     "db:audit-naplex:deep": "npx tsx scripts/audit-naplex-questions.ts --deep",
     "db:audit-naplex:json": "npx tsx scripts/audit-naplex-questions.ts --json",

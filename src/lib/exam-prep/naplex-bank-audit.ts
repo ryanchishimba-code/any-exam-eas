@@ -3,6 +3,7 @@
  * drug-specific rationales, and weak template detection.
  */
 import type { BankItem } from "@/lib/question-bank";
+import { hasInvalidControlledSubstanceStem } from "@/lib/exam-prep/naplex-controlled-substances";
 
 export type NaplexAuditIssue = {
   code: string;
@@ -20,6 +21,8 @@ const WEAK_CORRECT_PATTERNS = [
   /^Counsel on adherence/i,
   /^Recognize serious adverse effect linked to/i,
   /^Verify indication, dose, and legal/i,
+  /^Verify indication, quantity, patient identity, and DEA requirements/i,
+  /before dispensing controlled medications related to/i,
   /^Select therapy class appropriate for/i,
   /mechanism relevant to/i,
   /^No receptor interaction/i,
@@ -44,12 +47,12 @@ const WEAK_OPTION_PATTERNS = [
 ];
 
 const LEAD_IN_PATTERN =
-  /(?:^Which\b|^What\b|^How\b|^Select\b|^Identify\b|^Determine\b|^Recommend\b|^The pharmacist|^Calculate\b|most likely|most appropriate|most essential|best explains|best describes|best indicates|best action|best choice|best next|which of the following|select all|calculate|what is|what should|how many|how should|how much|at what rate|priority|should the pharmacist|is the priority|applies before|standard applies|before dispensing|before release|before the patient leaves|mechanism of action|pharmacist'?s priority)/i;
+  /(?:^Which\b|^What\b|^How\b|^Place\b|^Order\b|^Match\b|^Using\b|^Based\b|^Best\b|^Most\b|^Urgent\b|^Calculate\b|^Select\b|^Identify\b|^Determine\b|^Recommend\b|^The pharmacist|^A pharmacist|^A prescriber|^Estimated\b|^Calculated\b|^Total\b|^Bolus\b|^Equivalent\b|^Required\b|^Approximate\b|^Initial\b|^Stock\b|^Infusion rate|^Round to|must verify|is most likely|is primarily determined|primary pharmacokinetic|most appropriate|most essential|best explains|best describes|best indicates|best action|best choice|best next|best pharmacist|best empiric|best OTC|best lipid|best recommendation|next step|step-up|add-on|which of the following|select all|calculate|what is|what should|how many|how should|how much|at what rate|priority|should the pharmacist|is the priority|applies before|standard applies|before dispensing|before release|before the patient leaves|mechanism of action|pharmacist'?s priority|FIRST professional)/i;
 
 const CLINICAL_DATA_PATTERN =
-  /\d+\s*(?:mg\/dL|mEq\/L|mm Hg|\/min|× 10|g\/dL|mIU\/mL|°C|°F|U\/L|mm|%|mg\/kg|mL\/hr|mg|mEq|mL|kg|tablets|units)/i;
+  /\d+\s*(?:mg\/dL|mEq\/L|mm Hg|\/min|× 10|g\/dL|mIU\/mL|°C|°F|U\/L|mm|%|mg\/kg|mL\/hr|mg|mEq|mL|kg|tablets|units)|\b(?:BP|LDL|A1[cC]|FEV|TSH|PHQ|SCr|Cr|K\+|EF|GFR)\b/i;
 
-const AGE_PATTERN = /\b\d{1,3}[- ]year[- ]old\b|\b\d{1,3}\s*y\/o\b/i;
+const AGE_PATTERN = /\b\d{1,3}[- ]year[- ]old\b|\b\d{1,3}\s*y\/o\b|\bAge\s+\d{1,3}\b/i;
 
 const NAPLEX_PREFIX = /^NAPLEX\s+\d+:\s*/i;
 
@@ -111,7 +114,22 @@ export function auditNaplexBankItem(item: BankItem): NaplexAuditReport {
     );
   }
 
-  if (!LEAD_IN_PATTERN.test(stem)) {
+  const nonMcqFormat = new Set([
+    "select_all",
+    "sata",
+    "ordered_response",
+    "constructed_response",
+    "drag_drop",
+    "k_type",
+    "exhibit",
+  ]);
+  const itemType = item.itemType ?? "mcq";
+
+  if (
+    !LEAD_IN_PATTERN.test(stem) &&
+    itemType !== "constructed_response" &&
+    !(stem.length >= 80 && /\?\s*$/.test(stem))
+  ) {
     push(
       "error",
       "naplex_stem_lead_in",
@@ -119,7 +137,7 @@ export function auditNaplexBankItem(item: BankItem): NaplexAuditReport {
     );
   }
 
-  if ((item.explanation?.trim().length ?? 0) < 100) {
+  if ((item.explanation?.trim().length ?? 0) < (itemType === "constructed_response" ? 40 : 100)) {
     push(
       "error",
       "naplex_explanation_short",
@@ -127,12 +145,22 @@ export function auditNaplexBankItem(item: BankItem): NaplexAuditReport {
     );
   }
 
-  if (!AGE_PATTERN.test(blob) && !CLINICAL_DATA_PATTERN.test(blob)) {
+  if (hasInvalidControlledSubstanceStem(blob) || hasInvalidControlledSubstanceStem(item.correctAnswer)) {
     push(
-      "warn",
-      "naplex_missing_clinical_data",
-      "Clinical stem lacks patient age and numeric labs, vitals, or doses."
+      "error",
+      "naplex_controlled_substance_mismatch",
+      "Stem treats a non-controlled drug (e.g. metformin) as a DEA controlled substance."
     );
+  }
+
+  if (!AGE_PATTERN.test(blob) && !CLINICAL_DATA_PATTERN.test(blob)) {
+    if (!nonMcqFormat.has(itemType) && vignette.length > 0) {
+      push(
+        "warn",
+        "naplex_missing_clinical_data",
+        "Clinical stem lacks patient age and numeric labs, vitals, or doses."
+      );
+    }
   }
 
   if (

@@ -91,14 +91,43 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
       push("error", "correct_not_in_options", "correctAnswer must match one option exactly.");
     }
   } else if (itemType === "select_all" || itemType === "sata") {
-    // Select-all items join multiple correct options with "|||".
+    // Select-all items join multiple correct options with "|||" (legacy seeds used commas).
     if (item.options.length < 4) {
       push("error", "invalid_option_count", "Select-all items must have at least four options.");
     }
-    const correctParts = item.correctAnswer.split("|||").map((p) => p.trim()).filter(Boolean);
     const optionSet = new Set(item.options.map((o) => o.trim()));
-    if (correctParts.length === 0 || !correctParts.every((p) => optionSet.has(p))) {
+    const byPipe = item.correctAnswer.split("|||").map((p) => p.trim()).filter(Boolean);
+    const correctParts =
+      byPipe.length > 0 && byPipe.every((p) => optionSet.has(p))
+        ? byPipe
+        : item.options.filter((o) => item.correctAnswer.includes(o.trim()));
+    if (correctParts.length === 0 || !correctParts.every((p) => optionSet.has(p.trim()))) {
       push("error", "correct_not_in_options", "Every select-all answer must match an option exactly.");
+    }
+  } else if (itemType === "ordered_response") {
+    if (item.options.length < 3) {
+      push("error", "invalid_option_count", "Ordered-response items must have at least three steps.");
+    }
+    const optionSet = new Set(item.options.map((o) => o.trim()));
+    const parts = (item.correctAnswer.includes("|||")
+      ? item.correctAnswer.split("|||")
+      : item.correctAnswer.split(",")
+    )
+      .map((p) => p.trim())
+      .filter(Boolean);
+    if (parts.length < 2 || !parts.every((p) => optionSet.has(p))) {
+      push("error", "correct_not_in_options", "Ordered-response answer steps must match options exactly.");
+    }
+  } else if (itemType === "constructed_response") {
+    if (!item.correctAnswer?.trim()) {
+      push("error", "empty_correct_answer", "Constructed-response items require a correct value.");
+    }
+  } else if (itemType === "drag_drop") {
+    if (item.options.length < 4) {
+      push("error", "invalid_option_count", "Drag-and-drop items must have at least four match targets.");
+    }
+    if (!item.correctAnswer?.trim()) {
+      push("error", "empty_correct_answer", "Drag-and-drop items require mapped correct pairs.");
     }
   } else {
     if (item.options.length !== 4) {

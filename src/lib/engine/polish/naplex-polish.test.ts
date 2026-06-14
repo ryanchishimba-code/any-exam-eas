@@ -190,4 +190,37 @@ describe("naplex-polish", () => {
     expect(item.options).toHaveLength(4);
     expect(item.options.some((o) => /Isoproterenol/i.test(o))).toBe(false);
   });
+
+  it("repairs metformin controlled-substance law template into counseling", () => {
+    const corrupted: BankItem = {
+      subjectId: "pharmacology",
+      vignette:
+        "A 49-year-old man with type 2 diabetes is seen in the outpatient pharmacy. Current medications include Metformin (Glucophage) and other chronic therapies. Relevant assessment: no known drug allergies; renal and hepatic function within patient-specific targets unless noted. A controlled-substance prescription for Metformin requires verification.",
+      question: "Which professional practice standard applies before dispensing?",
+      options: [
+        "Share prescription data publicly to expedite dispensing",
+        "Verify indication, quantity, patient identity, and DEA requirements before dispensing controlled medications related to biguanide",
+        "Allow unlimited refills without documentation or PDMP review",
+        "Bypass inventory controls when the patient appears in a hurry",
+      ],
+      correctAnswer:
+        "Verify indication, quantity, patient identity, and DEA requirements before dispensing controlled medications related to biguanide",
+      explanation: "Federal and state pharmacy law govern controlled substances.",
+      tags: ["naplex-polished"],
+    };
+
+    const { item, changed } = polishNaplexBankItem(
+      corrupted,
+      "pharmacology",
+      "General Pharmacology",
+      12
+    );
+
+    expect(changed).toBe(true);
+    expect(item.question).toMatch(/counseling point is most essential/i);
+    expect(item.vignette).not.toMatch(/controlled-substance prescription for Metformin/i);
+    expect(item.correctAnswer).toMatch(/Counsel on /i);
+    expect(item.correctAnswer.toLowerCase()).not.toMatch(/dea requirements|controlled medications related to biguanide/);
+    expect(item.options.some((o) => /DEA requirements/i.test(o))).toBe(false);
+  });
 });

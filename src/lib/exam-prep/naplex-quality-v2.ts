@@ -344,7 +344,7 @@ export const NAPLEX_QUALITY_V2: EnrichedBankItem[] = [
   naplexDragDrop(
     "pharmacology",
     "",
-    "Match the drug pair to the interaction mechanism:",
+    "Match each drug pair to the interaction mechanism:",
     [
       { prompt: "Carbamazepine + oral contraceptive", match: "CYP3A4 induction" },
       { prompt: "Potassium-sparing diuretic + ACE inhibitor", match: "Hyperkalemia risk" },
@@ -599,14 +599,7 @@ export const NAPLEX_QUALITY_V2: EnrichedBankItem[] = [
   naplexOrdered(
     "patient-counseling",
     `Pharmacist-led inhaler technique teach-back for new asthma patient.`,
-    "Order counseling sequence:",
-    [
-      "Assess current technique and adherence barriers",
-      "Demonstrate priming, actuation, and spacer use if applicable",
-      "Have patient return-demonstration",
-      "Document technique and schedule follow-up",
-      "Provide written action plan and when to seek care",
-    ],
+    "Order the counseling sequence from first to last:",
     [
       "Assess current technique and adherence barriers",
       "Demonstrate priming, actuation, and spacer use if applicable",
@@ -614,7 +607,14 @@ export const NAPLEX_QUALITY_V2: EnrichedBankItem[] = [
       "Provide written action plan and when to seek care",
       "Document technique and schedule follow-up",
     ],
-    "Assess → demonstrate → teach-back → action plan → document mirrors effective inhaler counseling.",
+    [
+      "Assess current technique and adherence barriers",
+      "Demonstrate priming, actuation, and spacer use if applicable",
+      "Have patient return-demonstration",
+      "Provide written action plan and when to seek care",
+      "Document technique and schedule follow-up",
+    ],
+    "Assess → demonstrate → teach-back → action plan → document mirrors effective inhaler counseling; return-demonstration confirms technique before documenting and follow-up.",
     { blueprintDomain: A3 }
   ),
 
