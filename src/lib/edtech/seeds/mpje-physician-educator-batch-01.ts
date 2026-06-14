@@ -177,17 +177,17 @@ export const MPJE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
     }
   ),
 
-  mpjeMcq(
+  mpjeCase(
     "controlled-substances",
-    "",
-    "Regarding the perpetual inventory of controlled substances required under DEA regulations, which practice is required?",
+    `Scenario: During a DEA inspection, a community pharmacy's perpetual inventory for Schedule II–V controlled substances shows no entries for the past three weeks despite documented dispensing and wholesaler receipts. The pharmacist-in-charge explains that staff update the log only during the annual inventory cycle.`,
+    "What is the pharmacist's most appropriate action regarding the perpetual inventory?",
     opts4(
-      "Update the perpetual inventory once annually during the DEA inspection cycle",
-      "Update the perpetual inventory upon each receipt and each dispensing of controlled substances",
+      "Continue annual-only updates if the biennial inventory was recently completed",
+      "Update the perpetual inventory upon each receipt and each dispensing going forward and reconcile discrepancies",
       "Maintain the perpetual inventory on a biennial basis if no thefts occur",
       "Record only Schedule II substances in the perpetual inventory"
     ),
-    "Update the perpetual inventory upon each receipt and each dispensing of controlled substances",
+    "Update the perpetual inventory upon each receipt and each dispensing going forward and reconcile discrepancies",
     `DEA regulations require a perpetual inventory updated each time controlled substances are received or dispensed (for schedules required in the inventory). Annual-only or biennial updates are insufficient. Inventories must include relevant schedules per DEA rules, not C-II alone. Failure to maintain current perpetual inventory is a common inspection deficiency.`,
     {
       blueprintDomain: "umpje-uniform",

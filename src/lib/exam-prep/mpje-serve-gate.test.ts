@@ -8,16 +8,20 @@ import {
 const validItem: BankItem = {
   id: "mpje-db-1",
   subjectId: "federal-pharmacy-law",
-  question: "A pharmacist receives a Schedule II prescription. Which action is required?",
+  vignette:
+    "Scenario: A 58-year-old patient presents a written prescription for oxycodone 10 mg tablets dated 22 days ago with no partial fills documented.",
+  question: "What is the pharmacist's most appropriate action?",
   options: [
-    "Accept the oral order without written follow-up",
-    "Verify prescriber DEA number and document on the prescription",
-    "Transfer the prescription to any pharmacy on patient request",
-    "Dispense a 90-day supply without authorization",
+    "Dispense the remaining tablets after verifying patient identity",
+    "Refuse to fill because the prescription is more than 21 days old",
+    "Contact the prescriber only if the patient insists on same-day service",
+    "Partially fill 30 tablets and annotate the balance for future fill",
   ],
-  correctAnswer: "Verify prescriber DEA number and document on the prescription",
+  correctAnswer: "Refuse to fill because the prescription is more than 21 days old",
   explanation:
-    "Schedule II prescriptions require a valid written prescription with prescriber DEA number; oral orders are not permitted except in limited emergencies.",
+    "Federal rules limit dispensing of Schedule II controlled substances from a written prescription to within 21 days of the date written. A prescription dated 22 days ago is no longer valid for initial dispensing; the pharmacist must refuse and request a new prescription.",
+  tags: ["physician-educator", "mpje"],
+  references: [{ label: "DEA", citation: "21 CFR § 1306" }],
 };
 
 const bulkItem: BankItem = {

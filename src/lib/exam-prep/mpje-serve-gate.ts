@@ -1,11 +1,11 @@
 import type { BankItem } from "@/lib/question-bank";
-import { auditBankItem } from "@/lib/exam-prep/bank-audit";
+import { passesMpjeServeGate } from "@/lib/exam-prep/mpje-quality-gate";
 import { serveQaPassedBankItems } from "@/lib/exam-prep/serve-qa-passed";
 
 /** DB-backed rows only — blocks bulk/runtime fillers without a persisted id. */
 export function mpjeBankItemIsServeReady(item: BankItem): boolean {
   if (!item.id?.trim()) return false;
-  return auditBankItem(item, "mpje").ok;
+  return passesMpjeServeGate(item, { hasDbId: true });
 }
 
 type PrepareMpjeItemsParams = {

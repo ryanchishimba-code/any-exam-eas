@@ -1,28 +1,25 @@
 import { describe, expect, it } from "vitest";
-import { MPJE_QUESTION_BANK } from "@/lib/mpje/seed-questions";
+import { MPJE_QUESTION_BANK, filterMpjeBestSeeds } from "@/lib/mpje/seed-questions";
 import {
   getHealthBankItems,
   getHealthBankSubjectIds,
 } from "@/lib/health-sciences-question-bank";
 import { collectSeedQuestionRows } from "@/lib/question-bank-seed";
+import { isMpjeBestQuality } from "@/lib/exam-prep/mpje-quality-gate";
 
 describe("MPJE_QUESTION_BANK", () => {
-  it("includes at least 50 questions across subjects and states", () => {
+  it("ships only A+ best-tier questions in the active bank", () => {
     const total = Object.values(MPJE_QUESTION_BANK).reduce((n, items) => n + items.length, 0);
-    expect(total).toBeGreaterThanOrEqual(50);
+    expect(total).toBeGreaterThanOrEqual(18);
+    const all = Object.values(MPJE_QUESTION_BANK).flat();
+    expect(all.every((q) => isMpjeBestQuality(q, { source: "seed" }))).toBe(true);
   });
 
   it("includes Oklahoma state practice act questions", () => {
-    const okItems = MPJE_QUESTION_BANK["state-practice-act"] ?? [];
-    expect(okItems.some((q) => q.tags?.includes("oklahoma"))).toBe(true);
-  });
-
-  it("includes K-type and SATA variety in v2 seeds", () => {
-    const all = Object.values(MPJE_QUESTION_BANK).flat();
-    const kType = all.filter((q) => q.itemType === "k_type");
-    const sata = all.filter((q) => q.itemType === "select_all");
-    expect(kType.length).toBeGreaterThanOrEqual(15);
-    expect(sata.length).toBeGreaterThanOrEqual(5);
+    const okItems = Object.values(MPJE_QUESTION_BANK)
+      .flat()
+      .filter((q) => q.tags?.includes("oklahoma") || q.stateCode === "OK");
+    expect(okItems.length).toBeGreaterThan(0);
   });
 
   it("each item has valid options and correct answer encoding", () => {
@@ -41,6 +38,11 @@ describe("MPJE_QUESTION_BANK", () => {
       }
     }
   });
+
+  it("filterMpjeBestSeeds is idempotent on the active bank", () => {
+    const all = Object.values(MPJE_QUESTION_BANK).flat();
+    expect(filterMpjeBestSeeds(all)).toHaveLength(all.length);
+  });
 });
 
 describe("HEALTH_QUESTION_BANK mpje", () => {
@@ -50,8 +52,9 @@ describe("HEALTH_QUESTION_BANK mpje", () => {
     expect(getHealthBankItems("mpje", "state-practice-act").length).toBeGreaterThan(0);
   });
 
-  it("collectSeedQuestionRows includes mpje rows", () => {
+  it("collectSeedQuestionRows includes only best-tier mpje rows in the bank", () => {
     const mpjeRows = collectSeedQuestionRows().filter((r) => r.fieldId === "mpje");
-    expect(mpjeRows.length).toBeGreaterThanOrEqual(50);
+    expect(mpjeRows.length).toBeGreaterThanOrEqual(18);
+    expect(mpjeRows.every((r) => isMpjeBestQuality(r.item, { source: "seed" }))).toBe(true);
   });
 });

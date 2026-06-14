@@ -10,6 +10,7 @@ import {
 } from "@/lib/question-bank-seed";
 import type { FieldSubject } from "./field-subjects";
 import type { BankItem } from "./question-bank";
+import { isMpjeBestQuality } from "@/lib/exam-prep/mpje-quality-gate";
 import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";
 
 export type SyncQuestionBankResult = {
@@ -73,6 +74,12 @@ function isCuratedSeedItem(item: BankItem): boolean {
   return false;
 }
 
+function seedQaPassed(fieldId: string, item: BankItem, source: "seed" | "generated"): boolean {
+  if (source !== "seed") return false;
+  if (fieldId === "mpje") return isMpjeBestQuality(item, { source });
+  return isCuratedSeedItem(item);
+}
+
 function rowToCreateData(
   fieldId: string,
   subjectId: string,
@@ -103,7 +110,7 @@ function rowToCreateData(
     source,
     contentHash,
     active: true,
-    qaPassed: source === "seed" && isCuratedSeedItem(item),
+    qaPassed: seedQaPassed(fieldId, item, source),
   };
 }
 

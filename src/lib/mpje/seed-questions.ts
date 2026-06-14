@@ -3,9 +3,24 @@
  * Synced to QuestionBankItem via HEALTH_QUESTION_BANK and ensureStaticSeedsForField().
  */
 import type { BankItem } from "@/lib/question-bank";
+import { isMpjeBestQuality } from "@/lib/exam-prep/mpje-quality-gate";
 import { MPJE_QUALITY_SEEDS } from "./quality-seeds";
 import { MPJE_ALL_STATE_SUBSTANTIVE_SEEDS } from "./state-substantive-seeds";
 import { mergeStateSeedsIntoBank } from "./state-seed-bank";
+
+/** A+ gate — only best-tier (≥8.5) seeds are served; lower tiers remain in source files for rewrite. */
+export function filterMpjeBestSeeds(items: BankItem[]): BankItem[] {
+  return items.filter((item) => isMpjeBestQuality(item, { source: "seed" }));
+}
+
+function filterBank(bank: Record<string, BankItem[]>): Record<string, BankItem[]> {
+  const out: Record<string, BankItem[]> = {};
+  for (const [subjectId, items] of Object.entries(bank)) {
+    const kept = filterMpjeBestSeeds(items);
+    if (kept.length > 0) out[subjectId] = kept;
+  }
+  return out;
+}
 
 const MPJE_DIFFICULTY: Record<string, number> = {
   "pharmacy-ethics": 2,
@@ -279,7 +294,8 @@ function bucketSubstantiveSeeds(): Record<string, BankItem[]> {
   return buckets;
 }
 
-export const MPJE_QUESTION_BANK: Record<string, BankItem[]> =
+export const MPJE_QUESTION_BANK: Record<string, BankItem[]> = filterBank(
   mergeStateSeedsIntoBank(
     mergeBanks(MPJE_FEDERAL_BANK, bucketQualitySeeds(), bucketSubstantiveSeeds())
-  );
+  )
+);

@@ -24,11 +24,11 @@ describe("MPJE_EXPANDED_STATE_SEEDS", () => {
     }
   });
 
-  it("merges into MPJE_QUESTION_BANK by state", () => {
+  it("merges best-tier expanded seeds into MPJE_QUESTION_BANK by state", () => {
     const all = Object.values(MPJE_QUESTION_BANK).flat();
     for (const code of EXPANDED_STATES) {
       const stateItems = all.filter((i) => i.stateCode === code);
-      expect(stateItems.length).toBeGreaterThanOrEqual(8);
+      expect(stateItems.length).toBeGreaterThanOrEqual(1);
     }
   });
 });
