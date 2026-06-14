@@ -1,47 +1,39 @@
 "use client";
 
-import { Tag } from "lucide-react";
+import { useState } from "react";
+import { ChevronDown, Tag } from "lucide-react";
+import type { BillingInterval } from "@/lib/billing-config";
 import { DiscountCodeInput } from "@/components/discount/DiscountCodeInput";
 import type { DiscountValidation } from "@/lib/discount/types";
 import type { SignupPlan } from "@/lib/validators/auth";
+import { cn } from "@/lib/utils";
 
 type CheckoutDiscountSectionProps = {
   plan: SignupPlan;
+  interval?: BillingInterval;
   initialCode?: string;
   onValidationChange: (result: DiscountValidation | null) => void;
   appliedCode?: string | null;
   onRemove?: () => void;
 };
 
-/**
- * Step 2 on checkout — discount entry after plan is selected.
- */
 export function CheckoutDiscountSection({
   plan,
+  interval = "monthly",
   initialCode = "",
   onValidationChange,
   appliedCode,
   onRemove,
 }: CheckoutDiscountSectionProps) {
-  return (
-    <section className="space-y-3" aria-labelledby="checkout-discount-heading">
-      <div className="flex items-center justify-between gap-3">
-        <div>
-          <p
-            id="checkout-discount-heading"
-            className="text-xs font-semibold uppercase tracking-wide text-slate-500"
-          >
-            2. Discount code
-          </p>
-          <p className="mt-0.5 text-sm text-slate-600">Optional — updates your total instantly</p>
-        </div>
-        <Tag className="h-5 w-5 shrink-0 text-slate-300" aria-hidden />
-      </div>
+  const [open, setOpen] = useState(Boolean(initialCode.trim() || appliedCode));
 
-      {appliedCode && onRemove ? (
-        <div className="flex items-center justify-between rounded-xl border border-emerald-200 bg-emerald-50/80 px-4 py-3">
-          <p className="text-sm font-medium text-emerald-900">
-            <span className="font-semibold">{appliedCode}</span> applied to this order
+  if (appliedCode && onRemove) {
+    return (
+      <section aria-label="Discount applied">
+        <div className="flex items-center justify-between rounded-2xl border border-emerald-200/80 bg-emerald-50/60 px-4 py-3">
+          <p className="flex items-center gap-2 text-sm font-medium text-emerald-900">
+            <Tag className="h-4 w-4" aria-hidden />
+            <span className="font-semibold">{appliedCode}</span> applied
           </p>
           <button
             type="button"
@@ -51,19 +43,42 @@ export function CheckoutDiscountSection({
             Remove
           </button>
         </div>
-      ) : (
-        <DiscountCodeInput
-          plan={plan}
-          initialCode={initialCode}
-          onValidationChange={onValidationChange}
-          variant="inline"
-          hidePricePreview
-        />
-      )}
+      </section>
+    );
+  }
 
-      <p className="text-center text-[0.6875rem] leading-relaxed text-slate-400">
-        Codes are validated securely. Invalid or expired codes won&apos;t block checkout.
-      </p>
+  return (
+    <section aria-label="Promo code">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className="flex w-full items-center justify-between rounded-2xl border border-black/[0.06] bg-white px-4 py-3.5 text-left transition hover:border-black/[0.1]"
+      >
+        <span className="flex items-center gap-2 text-sm font-medium text-[var(--color-ink-muted)]">
+          <Tag className="h-4 w-4" aria-hidden />
+          Have a promo code?
+        </span>
+        <ChevronDown
+          className={cn(
+            "h-4 w-4 text-[var(--color-ink-muted)] transition-transform duration-200",
+            open && "rotate-180"
+          )}
+          aria-hidden
+        />
+      </button>
+
+      {open && (
+        <div className="mt-2">
+          <DiscountCodeInput
+            plan={plan}
+            interval={interval}
+            initialCode={initialCode}
+            onValidationChange={onValidationChange}
+            variant="inline"
+            hidePricePreview
+          />
+        </div>
+      )}
     </section>
   );
 }

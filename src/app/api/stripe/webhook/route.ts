@@ -3,13 +3,15 @@ import {
   stripe,
   resolveUserIdFromStripeSubscription,
   applySubscriptionFromStripe,
-  gracePeriodEnd,
 } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
+import { parseBillingInterval } from "@/lib/billing-plans";
 import type Stripe from "stripe";
 import { trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
 import { recordTrialUsed } from "@/lib/trial-eligibility";
+import { sendPaymentFailedEmail } from "@/lib/email/billing-emails";
+import { invalidateSubscriptionStatusCache } from "@/lib/cache";
 
 export const runtime = "nodejs";
 
@@ -49,13 +51,15 @@ export async function POST(req: Request) {
             stripeCustomerId: String(session.customer),
             stripeSubscriptionId: String(session.subscription ?? ""),
             status: stripeSub?.status ?? "active",
-            plan: session.metadata?.plan === "trial" ? "trial" : "monthly",
+            plan: session.metadata?.plan === "trial" ? "trial" : "subscribe",
+            planInterval: parseBillingInterval(session.metadata?.interval),
             ...(stripeSub?.trial_end
               ? { trialEndsAt: new Date(stripeSub.trial_end * 1000) }
               : {}),
             ...(stripeSub?.current_period_end
               ? { currentPeriodEnd: new Date(stripeSub.current_period_end * 1000) }
               : {}),
+            canceledAt: null,
           },
         });
 
@@ -68,6 +72,7 @@ export async function POST(req: Request) {
             await recordTrialUsed(user.email, userId);
           }
         }
+        invalidateSubscriptionStatusCache(userId);
         trackEvent({
           userId,
           eventType: EVENT_TYPES.BILLING_CHECKOUT,
@@ -85,6 +90,7 @@ export async function POST(req: Request) {
         const customerId =
           typeof sub.customer === "string" ? sub.customer : sub.customer?.id;
         await applySubscriptionFromStripe(userId, sub, customerId);
+        invalidateSubscriptionStatusCache(userId);
         trackEvent({
           userId,
           eventType: EVENT_TYPES.BILLING_SUBSCRIPTION_UPDATED,
@@ -108,9 +114,19 @@ export async function POST(req: Request) {
             where: { userId },
             data: {
               status: "past_due",
-              gracePeriodEndsAt: gracePeriodEnd(),
+              gracePeriodEndsAt: null,
             },
           });
+          invalidateSubscriptionStatusCache(userId);
+
+          const user = await prisma.user.findUnique({
+            where: { id: userId },
+            select: { email: true, name: true },
+          });
+          if (user?.email) {
+            void sendPaymentFailedEmail({ to: user.email, name: user.name });
+          }
+
           trackEvent({
             userId,
             eventType: EVENT_TYPES.BILLING_PAYMENT_FAILED,
@@ -135,6 +151,7 @@ export async function POST(req: Request) {
               ? stripeSub.customer
               : stripeSub.customer?.id;
           await applySubscriptionFromStripe(userId, stripeSub, customerId);
+          invalidateSubscriptionStatusCache(userId);
         }
       }
       break;

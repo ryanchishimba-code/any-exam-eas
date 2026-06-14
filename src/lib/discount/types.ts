@@ -1,3 +1,4 @@
+import type { BillingInterval } from "@/lib/billing-config";
 import type { PromoPricing } from "@/lib/promo-pricing";
 import type { SignupPlan } from "@/lib/validators/auth";
 
@@ -29,5 +30,6 @@ export type DiscountValidation = {
 export type ValidateDiscountInput = {
   code: string;
   plan?: SignupPlan;
+  interval?: BillingInterval;
   userId?: string;
 };

@@ -56,19 +56,6 @@ function applyCompAndGrace(
     };
   }
 
-  if (
-    subscription.status === "past_due" &&
-    subscription.gracePeriodEndsAt &&
-    subscription.gracePeriodEndsAt > now
-  ) {
-    return {
-      ...base,
-      hasAccess: true,
-      status: "active",
-      canStartCheckout: true,
-    };
-  }
-
   return base;
 }
 

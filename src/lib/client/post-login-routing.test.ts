@@ -20,10 +20,43 @@ describe("resolvePostLoginDestination", () => {
     ).toBe("/select-exam");
   });
 
-  it("sends unpaid users to trial checkout when they already have an exam", () => {
+  it("sends lapsed users to settings reactivate by default", () => {
     expect(
       resolvePostLoginDestination("/dashboard", { hasAccess: false }, "nclex")
-    ).toBe("/checkout?plan=trial");
+    ).toBe("/settings?reactivate=1");
+  });
+
+  it("sends returning users to subscribe checkout when reactivation says checkout", () => {
+    expect(
+      resolvePostLoginDestination(
+        "/dashboard",
+        {
+          hasAccess: false,
+          reactivation: {
+            method: "checkout",
+            checkoutPath: "/checkout?plan=subscribe&interval=yearly&reactivate=1",
+          },
+        },
+        "nclex"
+      )
+    ).toBe("/checkout?plan=subscribe&interval=yearly&reactivate=1");
+  });
+
+  it("sends past_due users to billing settings", () => {
+    expect(
+      resolvePostLoginDestination(
+        "/dashboard",
+        {
+          hasAccess: false,
+          status: "past_due",
+          reactivation: {
+            method: "update_payment",
+            settingsPath: "/settings?billing=past_due",
+          },
+        },
+        "nclex"
+      )
+    ).toBe("/settings?billing=past_due");
   });
 
   it("returns dashboard for subscribed users with an exam", () => {

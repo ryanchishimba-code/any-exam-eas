@@ -3,12 +3,14 @@
 import { useEffect } from "react";
 import { AlertCircle, Check, Loader2 } from "lucide-react";
 import { useDiscountValidation } from "@/lib/client/use-discount-validation";
+import type { BillingInterval } from "@/lib/billing-config";
 import type { DiscountValidation } from "@/lib/discount/types";
 import type { SignupPlan } from "@/lib/validators/auth";
 import { cn } from "@/lib/utils";
 
 type DiscountCodeInputProps = {
   plan: SignupPlan;
+  interval?: BillingInterval;
   initialCode?: string;
   onValidationChange?: (result: DiscountValidation | null) => void;
   variant?: "inline" | "compact";
@@ -29,6 +31,7 @@ function errorTone(errorCode?: string): string {
 
 export function DiscountCodeInput({
   plan,
+  interval = "monthly",
   initialCode = "",
   onValidationChange,
   variant = "inline",
@@ -36,6 +39,7 @@ export function DiscountCodeInput({
 }: DiscountCodeInputProps) {
   const { code, setCode, validation, status, applyNow, clear } = useDiscountValidation({
     plan,
+    interval,
   });
 
   useEffect(() => {

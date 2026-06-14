@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { validateDiscount } from "@/lib/discount";
 import { sanitizeDiscountForPublic } from "@/lib/discount/public-response";
+import { parseBillingInterval } from "@/lib/billing-plans";
 import type { SignupPlan } from "@/lib/validators/auth";
 import { enforceRateLimit } from "@/lib/api-rate-limit";
 import { optionalSessionGuard } from "@/lib/session-guard";
@@ -11,14 +12,20 @@ export const runtime = "nodejs";
 const DISCOUNT_VALIDATE_LIMIT = 20;
 const DISCOUNT_VALIDATE_WINDOW_MS = 60_000;
 
+const intervalSchema = z
+  .enum(["monthly", "quarterly", "semiannual", "yearly"])
+  .optional();
+
 const querySchema = z.object({
   code: z.string().max(32),
   plan: z.enum(["trial", "subscribe"]).optional(),
+  interval: intervalSchema,
 });
 
 const bodySchema = z.object({
   code: z.string().max(32),
   plan: z.enum(["trial", "subscribe"]).optional(),
+  interval: intervalSchema,
 });
 
 function parsePlan(value: unknown): SignupPlan | undefined {
@@ -38,6 +45,7 @@ export async function GET(req: Request) {
   const parsed = querySchema.safeParse({
     code: url.searchParams.get("code") ?? "",
     plan: url.searchParams.get("plan") ?? undefined,
+    interval: url.searchParams.get("interval") ?? undefined,
   });
 
   if (!parsed.success) {
@@ -60,6 +68,7 @@ export async function GET(req: Request) {
     const result = await validateDiscount({
       code: parsed.data.code,
       plan: parsePlan(parsed.data.plan),
+      interval: parseBillingInterval(parsed.data.interval),
       userId: guard.userId,
     });
     return NextResponse.json(sanitizeDiscountForPublic(result));
@@ -110,6 +119,7 @@ export async function POST(req: Request) {
     const result = await validateDiscount({
       code: parsed.data.code,
       plan: parsePlan(parsed.data.plan),
+      interval: parseBillingInterval(parsed.data.interval),
       userId: guard.userId,
     });
     return NextResponse.json(sanitizeDiscountForPublic(result));

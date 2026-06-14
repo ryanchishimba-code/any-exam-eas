@@ -45,12 +45,12 @@ describe("Hero", () => {
 
     expect(
       screen.getByRole("heading", {
-        name: /licensing exam prep/i,
+        name: /your best companion/i,
       })
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /start.*trial/i })).toHaveAttribute(
       "href",
-      "/signup?plan=trial"
+      "/signup?plan=trial&interval=yearly"
     );
     expect(screen.getByRole("link", { name: /try free nclex demo/i })).toHaveAttribute(
       "href",
@@ -108,7 +108,7 @@ describe("Hero", () => {
 
     render(<Hero compareLayout />);
 
-    const region = screen.getByRole("region", { name: /licensing exam prep/i });
+    const region = screen.getByRole("region", { name: /your best companion/i });
     expect(region).toHaveAttribute("aria-labelledby", "hero-heading");
   });
 });

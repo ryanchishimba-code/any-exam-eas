@@ -94,6 +94,153 @@ export const MEMORY_CARD_SOURCES: Record<string, MemoryCardSourceMeta> = {
     sourceUrl: "https://www.fda.gov/drugs",
     lastReviewedAt: "2026-06-01",
   },
+  "naplex-abx-spectrum-ladder": {
+    sourceLabel: "Sanford Guide — beta-lactam spectrum",
+    sourceUrl: "https://www.sanfordguide.com/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "naplex-cap-empiric": {
+    sourceLabel: "IDSA/ATS Community-Acquired Pneumonia Guideline",
+    sourceUrl: "https://www.idsociety.org/practice-guideline/community-acquired-pneumonia-cap-in-adults/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "naplex-mrsa-agents": {
+    sourceLabel: "IDSA MRSA Clinical Practice Guidelines",
+    sourceUrl: "https://www.idsociety.org/practice-guideline/mrsa/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "naplex-daptomycin-lung-trap": {
+    sourceLabel: "FDA daptomycin labeling — not indicated for pneumonia",
+    sourceUrl: "https://www.accessdata.fda.gov/scripts/cder/daf/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "naplex-pseudomonas-coverage": {
+    sourceLabel: "Sanford Guide — Pseudomonas coverage",
+    sourceUrl: "https://www.sanfordguide.com/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "naplex-uti-pyelonephritis": {
+    sourceLabel: "IDSA Uncomplicated UTI & Pyelonephritis Guidelines",
+    sourceUrl: "https://www.idsociety.org/practice-guideline/uncomplicated-cystitis-and-pyelonephritis/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "naplex-cdiff-treatment": {
+    sourceLabel: "IDSA/SHEA C. difficile Clinical Practice Guideline",
+    sourceUrl: "https://www.idsociety.org/practice-guideline/clostridioides-difficile/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "naplex-penicillin-allergy": {
+    sourceLabel: "CDC — penicillin allergy delabeling",
+    sourceUrl: "https://www.cdc.gov/antibiotic-use/hcp/core-elements/index.html",
+    lastReviewedAt: "2026-06-07",
+  },
+  "naplex-aminoglycoside-pae": {
+    sourceLabel: "Sanford Guide — aminoglycoside dosing",
+    sourceUrl: "https://www.sanfordguide.com/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "naplex-fq-boxed-warnings": {
+    sourceLabel: "FDA fluoroquinolone safety labeling",
+    sourceUrl: "https://www.fda.gov/drugs/drug-safety-and-availability/fda-advises-restricting-fluoroquinolone-antibiotics",
+    lastReviewedAt: "2026-06-07",
+  },
+  "naplex-vanc-auc": {
+    sourceLabel: "IDSA vancomycin therapeutic monitoring — AUC/MIC 400–600",
+    sourceUrl: "https://www.idsociety.org/practice-guideline/vancomycin-therapeutic-monitoring/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "naplex-hiv-oi-prophylaxis": {
+    sourceLabel: "NIH HIV OI prevention guidelines",
+    sourceUrl: "https://hivinfo.nih.gov/guidelines/html/4/adult-and-adolescent-opportunistic-infection-guideline/0",
+    lastReviewedAt: "2026-06-07",
+  },
+  "naplex-art-first-line": {
+    sourceLabel: "NIH DHHS HIV treatment guidelines",
+    sourceUrl: "https://hivinfo.nih.gov/guidelines/html/1/adult-and-adolescent-arv/0",
+    lastReviewedAt: "2026-06-07",
+  },
+  "naplex-abx-renal-dosing": {
+    sourceLabel: "Sanford Guide — renal dose adjustments",
+    sourceUrl: "https://www.sanfordguide.com/",
+    lastReviewedAt: "2026-06-07",
+  },
+  // NCLEX infection control
+  "nclex-precaution-types": {
+    sourceLabel: "CDC isolation precautions",
+    sourceUrl: "https://www.cdc.gov/infection-control/hcp/isolation-precautions/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "nclex-cdiff-soap": {
+    sourceLabel: "CDC C. diff infection prevention",
+    sourceUrl: "https://www.cdc.gov/c-diff/hcp/prevention/index.html",
+    lastReviewedAt: "2026-06-07",
+  },
+  "nclex-mrsa-contact": {
+    sourceLabel: "CDC HAI — MRSA prevention",
+    sourceUrl: "https://www.cdc.gov/mrsa/healthcare/index.html",
+    lastReviewedAt: "2026-06-07",
+  },
+  "nclex-vanc-red-man": {
+    sourceLabel: "FDA vancomycin labeling — infusion rate",
+    sourceUrl: "https://www.fda.gov/drugs",
+    lastReviewedAt: "2026-06-07",
+  },
+  "nclex-vanc-trough": {
+    sourceLabel: "IDSA vancomycin therapeutic monitoring",
+    sourceUrl: "https://www.idsociety.org/practice-guideline/vancomycin-therapeutic-monitoring/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "nclex-neutropenic-precautions": {
+    sourceLabel: "NCCN / oncology neutropenia guidelines",
+    sourceUrl: "https://www.nccn.org/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "nclex-peak-trough-labs": {
+    sourceLabel: "OpenStax Nursing Pharmacology — therapeutic drug monitoring",
+    sourceUrl: "https://openstax.org/books/nursing-pharmacology",
+    lastReviewedAt: "2026-06-07",
+  },
+  // USMLE infectious disease
+  "usmle-mrsa-agents": {
+    sourceLabel: "IDSA MRSA guidelines",
+    sourceUrl: "https://www.idsociety.org/practice-guideline/mrsa/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "usmle-daptomycin-lung-trap": {
+    sourceLabel: "FDA daptomycin labeling",
+    sourceUrl: "https://www.accessdata.fda.gov/scripts/cder/daf/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "usmle-vanc-dosing": {
+    sourceLabel: "IDSA vancomycin AUC/MIC monitoring",
+    sourceUrl: "https://www.idsociety.org/practice-guideline/vancomycin-therapeutic-monitoring/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "usmle-cdiff-treatment": {
+    sourceLabel: "IDSA/SHEA C. difficile guideline",
+    sourceUrl: "https://www.idsociety.org/practice-guideline/clostridioides-difficile/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "usmle-hiv-oi-prophylaxis": {
+    sourceLabel: "NIH HIV OI prevention guidelines",
+    sourceUrl: "https://hivinfo.nih.gov/guidelines/html/4/adult-and-adolescent-opportunistic-infection-guideline/0",
+    lastReviewedAt: "2026-06-07",
+  },
+  "usmle-abx-spectrum": {
+    sourceLabel: "Sanford Guide — antimicrobial spectrum",
+    sourceUrl: "https://www.sanfordguide.com/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "usmle-febrile-neutropenia": {
+    sourceLabel: "IDSA febrile neutropenia guideline",
+    sourceUrl: "https://www.idsociety.org/practice-guideline/neutropenic-fever/",
+    lastReviewedAt: "2026-06-07",
+  },
+  "usmle-crcl-dosing": {
+    sourceLabel: "NKF — Cockcroft-Gault for drug dosing",
+    sourceUrl: "https://www.kidney.org/",
+    lastReviewedAt: "2026-06-07",
+  },
   // NCLEX critical care
   "nclex-sepsis-bundle": {
     sourceLabel: "Surviving Sepsis Campaign — Hour-1 bundle",

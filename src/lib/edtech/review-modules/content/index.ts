@@ -1,30 +1,39 @@
 import type { ReviewModuleContent } from "../types";
 
 import { ACS_MODULE } from "./acute-coronary-syndrome";
+import { ANTIBIOTICS_STEWARDSHIP_MODULE } from "./antibiotics-stewardship";
 import { ANTICOAGULATION_MODULE } from "./anticoagulation-reversal";
 import { CONTROLLED_SUBSTANCES_MODULE } from "./controlled-substances";
 import { DIABETES_PHARMACOTHERAPY_MODULE } from "./diabetes-pharmacotherapy";
 import { HEART_FAILURE_MODULE } from "./heart-failure-gdmt";
+import { INFECTIOUS_DISEASE_USMLE_MODULE } from "./infectious-disease-usmle";
+import { INFECTION_CONTROL_NCLEX_MODULE } from "./infection-control-nclex";
 import { SEPSIS_MODULE } from "./sepsis-shock";
 
 import { DELEGATION_MODULE } from "./nclex-delegation-scope";
 
 export {
   ACS_MODULE,
+  ANTIBIOTICS_STEWARDSHIP_MODULE,
   ANTICOAGULATION_MODULE,
   CONTROLLED_SUBSTANCES_MODULE,
   DELEGATION_MODULE,
   DIABETES_PHARMACOTHERAPY_MODULE,
   HEART_FAILURE_MODULE,
+  INFECTION_CONTROL_NCLEX_MODULE,
+  INFECTIOUS_DISEASE_USMLE_MODULE,
   SEPSIS_MODULE,
 };
 
 export const REVIEW_MODULE_CONTENT_BY_SLUG: Record<string, ReviewModuleContent> = {
   "heart-failure-gdmt": HEART_FAILURE_MODULE,
+  "antibiotics-stewardship": ANTIBIOTICS_STEWARDSHIP_MODULE,
   "anticoagulation-reversal": ANTICOAGULATION_MODULE,
   "insulin-diabetes-management": DIABETES_PHARMACOTHERAPY_MODULE,
+  "infection-control": INFECTION_CONTROL_NCLEX_MODULE,
   "sepsis-shock": SEPSIS_MODULE,
   "acute-coronary-syndrome": ACS_MODULE,
+  "infectious-disease": INFECTIOUS_DISEASE_USMLE_MODULE,
   "controlled-substances": CONTROLLED_SUBSTANCES_MODULE,
   delegation: DELEGATION_MODULE,
 };

@@ -1,11 +1,13 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import type { BillingInterval } from "@/lib/billing-config";
 import type { DiscountValidation } from "@/lib/discount/types";
 import type { SignupPlan } from "@/lib/validators/auth";
 
 type UseDiscountValidationOptions = {
   plan: SignupPlan | "";
+  interval?: BillingInterval;
   /** Debounce ms for real-time checks (default 450) */
   debounceMs?: number;
   /** Min characters before validating (default 2) */
@@ -23,6 +25,7 @@ type UseDiscountValidationResult = {
 
 export function useDiscountValidation({
   plan,
+  interval = "monthly",
   debounceMs = 450,
   minLength = 2,
 }: UseDiscountValidationOptions): UseDiscountValidationResult {
@@ -50,6 +53,7 @@ export function useDiscountValidation({
         const params = new URLSearchParams({
           code: trimmed,
           plan: selectedPlan,
+          interval,
         });
         const res = await fetch(`/api/discount/validate?${params}`, {
           signal: controller.signal,
@@ -76,7 +80,7 @@ export function useDiscountValidation({
         return fallback;
       }
     },
-    [minLength]
+    [minLength, interval]
   );
 
   useEffect(() => {
@@ -108,7 +112,7 @@ export function useDiscountValidation({
       const res = await fetch("/api/discount/validate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: code.trim(), plan }),
+        body: JSON.stringify({ code: code.trim(), plan, interval }),
       });
       const data = (await res.json()) as DiscountValidation;
       setValidation(data);
@@ -127,7 +131,7 @@ export function useDiscountValidation({
       setStatus("invalid");
       return fallback;
     }
-  }, [code, plan]);
+  }, [code, plan, interval]);
 
   const clear = useCallback(() => {
     abortRef.current?.abort();

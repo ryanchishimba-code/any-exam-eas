@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/billing-config";
-import { isStripeConfigured, PAYMENT_METHODS } from "@/lib/payments";
+import { isStripeConfigured, isStripeFullyConfigured, PAYMENT_METHODS } from "@/lib/payments";
+import { getStripePriceSetupStatus } from "@/lib/stripe-prices";
 
 export const runtime = "nodejs";
 
@@ -8,18 +9,29 @@ export const runtime = "nodejs";
 export async function GET() {
   const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? "";
   const configured = isStripeConfigured();
+  const allIntervalsConfigured = isStripeFullyConfigured();
+  const priceStatus = getStripePriceSetupStatus();
 
   const missing: string[] = [];
   if (!process.env.STRIPE_SECRET_KEY?.trim()) missing.push("STRIPE_SECRET_KEY");
   if (!publishableKey.trim()) missing.push("NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY");
-  if (!process.env.STRIPE_PRICE_ID?.trim()) missing.push("STRIPE_PRICE_ID");
+  for (const p of priceStatus) {
+    if (!p.configured) missing.push(p.envKey);
+  }
 
   return NextResponse.json({
     configured,
+    allIntervalsConfigured,
     publishableKey: publishableKey || null,
     monthlyPriceUsd: MONTHLY_PRICE_USD,
     trialDays: TRIAL_DAYS,
     paymentMethods: PAYMENT_METHODS,
+    prices: priceStatus.map(({ interval, configured: ok, expectedUsd, savingsPercent }) => ({
+      interval,
+      configured: ok,
+      expectedUsd,
+      savingsPercent,
+    })),
     ...(process.env.NODE_ENV === "development" ? { missing } : {}),
   });
 }

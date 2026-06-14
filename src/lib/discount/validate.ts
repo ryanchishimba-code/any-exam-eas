@@ -104,7 +104,7 @@ export async function validateDiscount(
   input: ValidateDiscountInput
 ): Promise<DiscountValidation> {
   const code = input.code.trim().toUpperCase();
-  const { plan, userId } = input;
+  const { plan, userId, interval = "monthly" } = input;
 
   if (!code) {
     return fail("", "empty", plan);
@@ -136,7 +136,7 @@ export async function validateDiscount(
   }
 
   const pricing = plan
-    ? buildPlanPricing(plan, row.discountPercent, row.discountAmount)
+    ? buildPlanPricing(plan, interval, row.discountPercent, row.discountAmount)
     : undefined;
 
   const savingsText = pricing

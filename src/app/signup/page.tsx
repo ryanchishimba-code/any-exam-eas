@@ -2,6 +2,7 @@ import { SignupForm } from "@/components/SignupForm";
 import { PageShell } from "@/components/PageShell";
 import { AuthCard } from "@/components/ui/AuthCard";
 import { formatPricingHeadline } from "@/lib/site";
+import { parseBillingInterval } from "@/lib/billing-plans";
 import type { SignupPlan } from "@/lib/validators/auth";
 
 export const metadata = {
@@ -16,10 +17,11 @@ function parseInitialPlan(plan?: string): SignupPlan | "" {
 export default async function SignupPage({
   searchParams,
 }: {
-  searchParams: Promise<{ plan?: string; promo?: string }>;
+  searchParams: Promise<{ plan?: string; promo?: string; interval?: string }>;
 }) {
-  const { plan, promo } = await searchParams;
+  const { plan, promo, interval } = await searchParams;
   const initialPlan = parseInitialPlan(plan);
+  const initialInterval = interval ? parseBillingInterval(interval) : "yearly";
 
   return (
     <PageShell
@@ -31,7 +33,11 @@ export default async function SignupPage({
       variant="premium"
     >
       <AuthCard>
-        <SignupForm initialPlan={initialPlan} initialPromo={promo?.trim() ?? ""} />
+        <SignupForm
+          initialPlan={initialPlan}
+          initialPromo={promo?.trim() ?? ""}
+          initialInterval={initialInterval}
+        />
       </AuthCard>
     </PageShell>
   );

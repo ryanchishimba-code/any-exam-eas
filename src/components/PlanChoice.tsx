@@ -1,6 +1,6 @@
 "use client";
 
-import { formatMonthlyPrice, formatTrialPlanDetail } from "@/lib/site";
+import { formatMonthlyPrice, formatTrialPlanDetail, SIGNUP_PAYMENT_REQUIRED_NOTE } from "@/lib/site";
 import { TRIAL_DAYS, usesIntroTrialPricing } from "@/lib/billing-config";
 import type { SignupPlan } from "@/lib/validators/auth";
 
@@ -17,13 +17,14 @@ const plans: {
       : `${TRIAL_DAYS}-day free trial`,
     description: usesIntroTrialPricing()
       ? `Pay intro price to start. Full access for ${TRIAL_DAYS} days, then ${formatMonthlyPrice()}/month.`
-      : `${formatTrialPlanDetail()}. Full access during trial; billing starts after ${TRIAL_DAYS} days unless you cancel.`,
-    badge: "Most popular",
+      : `${SIGNUP_PAYMENT_REQUIRED_NOTE} ${formatTrialPlanDetail()}.`,
+    badge: "Recommended",
   },
   {
     id: "subscribe",
     title: `Subscribe — ${formatMonthlyPrice()}/mo`,
-    description: "Start immediately at the monthly rate. Cancel anytime from billing settings.",
+    description:
+      "Skip the free trial and subscribe now. Payment method required at checkout. Cancel anytime.",
   },
 ];
 

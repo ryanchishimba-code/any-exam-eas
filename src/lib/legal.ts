@@ -1,24 +1,108 @@
+/** Legal entity and product identifiers — used across Terms, Privacy, and marketing. */
+export const LEGAL_ENTITY = {
+  /** Legal name of the operating company. */
+  companyName: "AI Software Product Solutions, LLC",
+  productName: "Any Exam Easy",
+  productDomain: "anyexameasy.com",
+  supportEmail: "support@anyexameasy.com",
+  legalEmail: "legal@anyexameasy.com",
+} as const;
+
+export const LEGAL_LAST_UPDATED = "June 15, 2026";
+
+/** Short disclaimers for signup, pricing, checkboxes, and the Disclaimers page. */
 export const LEGAL_DISCLAIMERS = {
+  companyRelationship: `${LEGAL_ENTITY.productName} is a software product and service operated by ${LEGAL_ENTITY.companyName} ("Company," "we," "us," or "our"). References to "${LEGAL_ENTITY.productName}" mean the Service offered by the Company.`,
+
   educationalPurpose:
     "Any Exam Easy provides AI-generated study materials for educational and self-assessment purposes only. Content is not a substitute for accredited instruction, clinical judgment, licensure exam prep guarantees, or professional certification.",
+
   noGuarantee:
-    "We do not guarantee exam scores, grades, employment outcomes, or accuracy of AI-generated content. You are solely responsible for verifying facts against authoritative sources before relying on them in academic or professional settings.",
+    "We do not guarantee exam scores, grades, employment outcomes, licensure, certification, or the accuracy or completeness of AI-generated content. You are solely responsible for verifying facts against authoritative sources before relying on them in academic or professional settings.",
+
   notMedicalAdvice:
-    "Content related to medicine, nursing, pharmacy, or other health fields is for study support only and does not constitute medical advice, diagnosis, or treatment guidance.",
+    "Content related to medicine, nursing, pharmacy, or other health fields is for study support only and does not constitute medical, nursing, or pharmacy advice, diagnosis, or treatment guidance.",
+
   userResponsibility:
-    "By using this service you agree to use generated materials ethically, comply with your institution's academic integrity policies, and not misrepresent AI output as your own work where prohibited.",
-  limitationOfLiability:
-    "To the maximum extent permitted by applicable law, Any Exam Easy and its operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from use of the platform, including reliance on generated content.",
-  subscription:
-    "After your trial period ends, your subscription renews at the monthly price shown at signup unless canceled before renewal. Charges are processed through Stripe and tied to the email on your account.",
-  studySupport:
-    "Content is for educational and self-assessment purposes only. Features, pricing, and availability may change. This is not medical, nursing, or pharmacy advice.",
-  ageRequirement:
-    "You must be at least 18 years old to create an account. By registering you represent that you meet this requirement.",
-  testimonials:
-    "Stories, quotes, and personas on our marketing pages are composite or illustrative examples created for demonstration only. They are not verified reviews, endorsements, or depictions of actual customers or guaranteed outcomes. Any described or implied results are not typical, are not guaranteed, and vary widely based on individual effort, prior knowledge, study time, and exam conditions. Past performance of other learners cannot predict your results. Any Exam Easy does not guarantee exam scores, pass rates, licensure, certification, or employment outcomes.",
+    "By using this service you agree to use generated materials ethically, comply with your institution's and licensing board's academic integrity and professional standards, and not misrepresent AI output as your own work where prohibited.",
+
+  aiGenerated:
+    "AI-generated questions, explanations, and exam content may contain errors, omissions, or outdated information. Always verify critical facts against authoritative textbooks, course materials, and official exam prep resources before relying on them.",
+
   progressMetrics:
     "Practice progress, readiness, and mastery scores shown in the app are derived from your in-app question attempts only. They are self-assessment tools for study planning and are not predictors of board exam scores, pass rates, or licensure outcomes.",
-  aiGenerated:
-    "AI-generated questions, explanations, and exam content may contain errors or omissions. Always verify critical facts against authoritative textbooks, course materials, and official exam prep resources before relying on them.",
+
+  studySupport:
+    "Content is for educational and self-assessment purposes only. Features, pricing, and availability may change. This is not medical, nursing, or pharmacy advice.",
+
+  ageRequirement:
+    "You must be at least 18 years old to create an account. By registering you represent and warrant that you meet this requirement.",
+
+  testimonials:
+    "Stories, quotes, and personas on our marketing pages are composite or illustrative examples created for demonstration only. They are not verified reviews, endorsements, or depictions of actual customers or guaranteed outcomes. Any described or implied results are not typical, are not guaranteed, and vary widely based on individual effort, prior knowledge, study time, and exam conditions. Past performance of other learners cannot predict your results.",
+
+  subscription:
+    "A valid payment method is required to start a free trial. Unless legacy introductory pricing applies, you are not charged at signup; your saved payment method is charged when the trial ends unless you cancel before then. After your trial or paid period, subscriptions renew automatically on your saved payment method at the price and billing interval you selected unless canceled before renewal.",
+
+  refundsAndAccess:
+    "All payments are non-refundable except where required by applicable law. If you cancel, you retain access through the end of the billing period you have already paid for. We do not provide prorated refunds for unused time within a paid period.",
+
+  planChanges:
+    "During a free trial you may switch billing plans at any time before billing starts at no charge. On a paid subscription, plan changes are scheduled to take effect when your current billing period ends; you are billed at the new rate only when the switch occurs, not when you schedule it.",
+
+  paymentFailure:
+    "If a recurring payment fails, premium study features may be suspended immediately until the payment method is updated and payment succeeds. You may update your payment method in Settings.",
+
+  reactivation:
+    "If your subscription lapses, is canceled, or expires, you may log in to your existing account and reactivate by resubscribing or updating your payment method. Access is restored automatically when payment is successfully processed.",
+
+  billingCommunications:
+    "We may send transactional emails about your account, including reminders approximately 24 hours before a free trial ends or before a scheduled renewal charge, and notices if payment fails.",
+
+  stripeProcessor:
+    "Payments are processed by Stripe, Inc. We do not store full payment card numbers on our servers. Stripe's terms and privacy policy apply to payment processing.",
+
+  limitationOfLiability:
+    `To the maximum extent permitted by applicable law, ${LEGAL_ENTITY.companyName}, its members, managers, officers, employees, contractors, and affiliates shall not be liable for any indirect, incidental, special, consequential, exemplary, or punitive damages, or for lost profits, lost data, business interruption, or loss of goodwill, arising from or related to your use of the Service or reliance on generated content, even if advised of the possibility of such damages.`,
+
+  liabilityCap:
+    `To the extent liability is not excluded, the Company's total aggregate liability for any claims arising from or related to the Service shall not exceed the greater of (a) the amounts you paid to the Company for the Service in the twelve (12) months before the event giving rise to the claim, or (b) one hundred U.S. dollars (USD $100).`,
+
+  indemnification:
+    `You agree to defend, indemnify, and hold harmless ${LEGAL_ENTITY.companyName} and its members, managers, officers, employees, contractors, licensors, and affiliates from and against any claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising from your use of the Service, your content, your violation of these Terms, or your violation of any law or third-party rights.`,
+
+  arbitrationSummary:
+    "Except for qualifying small-claims matters, disputes are resolved by binding individual arbitration—not in court and not as a class action— as described in our Terms of Service.",
+
+  noClassAction:
+    "You and the Company agree that each may bring claims against the other only in an individual capacity and not as a plaintiff or class member in any purported class, collective, or representative proceeding.",
+
+  governingLawSummary:
+    "These Terms are governed by the laws of the United States and the state in which AI Software Product Solutions, LLC is organized, without regard to conflict-of-law rules.",
 } as const;
+
+export type LegalDisclaimerKey = keyof typeof LEGAL_DISCLAIMERS;
+
+/** Keys shown on the public Disclaimers page (excludes long-form terms-only clauses). */
+export const PUBLIC_DISCLAIMER_KEYS: LegalDisclaimerKey[] = [
+  "companyRelationship",
+  "educationalPurpose",
+  "noGuarantee",
+  "notMedicalAdvice",
+  "aiGenerated",
+  "progressMetrics",
+  "studySupport",
+  "ageRequirement",
+  "testimonials",
+  "subscription",
+  "refundsAndAccess",
+  "planChanges",
+  "paymentFailure",
+  "reactivation",
+  "billingCommunications",
+  "stripeProcessor",
+  "limitationOfLiability",
+  "liabilityCap",
+  "arbitrationSummary",
+  "noClassAction",
+];

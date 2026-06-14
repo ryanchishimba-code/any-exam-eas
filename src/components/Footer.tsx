@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { MARKETING_DISCLAIMER } from "@/lib/site";
+import { LEGAL_ENTITY } from "@/lib/legal";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
 
@@ -55,7 +56,10 @@ export function Footer() {
               {MARKETING_DISCLAIMER}
             </p>
             <p className="mt-4 text-xs text-[var(--color-ink-muted)]">
-              © {new Date().getFullYear()} AnyExamEasy
+              © {new Date().getFullYear()} {LEGAL_ENTITY.productName}
+            </p>
+            <p className="mt-1 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+              A product of {LEGAL_ENTITY.companyName}
             </p>
           </div>
           <nav aria-label="Product links">

@@ -6,6 +6,7 @@ import {
   formatTrialEntryPrice,
   formatTrialLabel,
 } from "@/lib/site";
+import { LEGAL_ENTITY } from "@/lib/legal";
 import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/billing-config";
 
 const PRODUCTION_SITE_URL = `https://www.${SITE_DOMAIN}`;
@@ -60,8 +61,8 @@ const HOME_KEYWORDS = [
 ];
 
 export function buildHomeMetadata(): Metadata {
-  const title = `${SITE_NAME} — NCLEX, USMLE, NAPLEX & MPJE Prep`;
-  const description = `Board exam study support with adaptive practice across NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE. OER-backed rationales, Top 500 Drugs, and state-specific MPJE support. ${formatTrialLabel()} — add payment at checkout, ${formatTrialEntryPrice()} for ${TRIAL_DAYS} days, then ${formatMonthlyPrice()}/mo.`;
+  const title = `${SITE_NAME} — Your Best Companion for Board and Practice`;
+  const description = `Your best companion for board and practice. NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE in one plan — curated questions, timed exams, and weak-area analytics. ${formatTrialLabel()} with payment method required — ${formatTrialEntryPrice()} today, then from ${formatMonthlyPrice()}/mo. Cancel before trial ends and you won't be charged.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 
@@ -70,8 +71,8 @@ export function buildHomeMetadata(): Metadata {
     description,
     keywords: HOME_KEYWORDS,
     authors: [{ name: SITE_NAME, url }],
-    creator: SITE_NAME,
-    publisher: SITE_NAME,
+    creator: LEGAL_ENTITY.companyName,
+    publisher: LEGAL_ENTITY.companyName,
     metadataBase: new URL(url),
     alternates: {
       canonical: "/",
@@ -145,11 +146,12 @@ export function buildHomeJsonLd() {
       {
         "@type": "Organization",
         "@id": `${url}/#organization`,
-        name: SITE_NAME,
+        name: LEGAL_ENTITY.companyName,
+        legalName: LEGAL_ENTITY.companyName,
         url,
         logo: absoluteUrl("/icons/icon-192.png"),
         description:
-          "Board exam study support for nursing, medical, and pharmacy students preparing for NCLEX, USMLE, NAPLEX, and MPJE.",
+          `${LEGAL_ENTITY.productName} — board exam study support for nursing, medical, and pharmacy students preparing for NCLEX, USMLE, NAPLEX, and MPJE.`,
       },
       {
         "@type": "WebSite",
@@ -176,7 +178,7 @@ export function buildHomeJsonLd() {
           "@type": "Offer",
           price: MONTHLY_PRICE_USD,
           priceCurrency: "USD",
-          description: `${TRIAL_DAYS}-day free trial — ${formatTrialEntryPrice()} today, then ${formatMonthlyPrice()}/mo`,
+          description: `${TRIAL_DAYS}-day free trial — payment method required · ${formatTrialEntryPrice()} today, then from ${formatMonthlyPrice()}/mo · save up to 20% on longer plans`,
         },
         description:
           "Board exam study support with adaptive practice, progress tracking, and OER-backed explanations for NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE.",

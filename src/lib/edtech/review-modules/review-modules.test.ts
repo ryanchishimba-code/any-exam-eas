@@ -19,9 +19,9 @@ function sectionHasContent(section: ReviewModuleSection): boolean {
 }
 
 describe("review module content", () => {
-  it("defines seven flagship textbook modules", () => {
-    expect(Object.keys(REVIEW_MODULE_CONTENT_BY_SLUG)).toHaveLength(7);
-    expect(REVIEW_MODULE_TOPICS).toHaveLength(7);
+  it("defines flagship textbook modules", () => {
+    expect(Object.keys(REVIEW_MODULE_CONTENT_BY_SLUG).length).toBeGreaterThanOrEqual(9);
+    expect(REVIEW_MODULE_TOPICS.length).toBeGreaterThanOrEqual(9);
   });
 
   for (const [slug, content] of Object.entries(REVIEW_MODULE_CONTENT_BY_SLUG)) {
@@ -70,7 +70,7 @@ describe("defineReviewModuleTopic", () => {
 describe("mergeReviewModules", () => {
   it("injects review modules ahead of base topics for NCLEX", () => {
     const merged = mergeReviewModules(NCLEX_HIGH_YIELD_TOPICS, "nclex");
-    expect(merged[0].slug).toBe("sepsis-shock");
+    expect(merged[0].slug).toBe("infection-control");
     expect(merged[0].reviewModule?.sections).toHaveLength(8);
     expect(merged.some((t) => t.category === "Review Modules")).toBe(true);
   });

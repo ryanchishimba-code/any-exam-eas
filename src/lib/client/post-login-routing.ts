@@ -3,6 +3,12 @@ import { ROUTES } from "@/lib/routes";
 
 export type PostLoginSubscriptionStatus = {
   hasAccess?: boolean;
+  status?: string;
+  reactivation?: {
+    method: "checkout" | "update_payment";
+    checkoutPath?: string;
+    settingsPath?: string;
+  } | null;
 };
 
 /** Pure routing logic — used after sign-in and in unit tests. */
@@ -28,10 +34,28 @@ export function resolvePostLoginDestination(
   }
 
   if (!status?.hasAccess) {
-    if (safe.startsWith("/checkout") || safe.startsWith("/signup") || safe.startsWith("/pricing")) {
+    if (
+      safe.startsWith("/checkout") ||
+      safe.startsWith("/signup") ||
+      safe.startsWith("/pricing") ||
+      safe.startsWith("/settings")
+    ) {
       return safe;
     }
-    return "/checkout?plan=trial";
+
+    if (status?.reactivation?.method === "update_payment" && status.reactivation.settingsPath) {
+      return status.reactivation.settingsPath;
+    }
+
+    if (status?.reactivation?.checkoutPath) {
+      return status.reactivation.checkoutPath;
+    }
+
+    if (status?.status === "past_due") {
+      return "/settings?billing=past_due";
+    }
+
+    return "/settings?reactivate=1";
   }
 
   if (

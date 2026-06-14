@@ -101,26 +101,39 @@ export function DashboardClient({
           <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
             {access.status === "active"
               ? "Your paid plan is active."
-              : access.status === "trialing"
-                ? access.needsPaymentMethod
-                  ? `Free trial active${access.daysRemaining != null ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left` : ""}. Add a payment method before it ends.`
-                  : "You are on a trial with billing set up."
+              : access.status === "past_due"
+                ? "Your last payment failed — study access is paused until you update your payment method."
+                : access.needsPaymentMethod
+                ? "Add a payment method to unlock study. You are not charged today — cancel before your trial ends and you will not be billed."
+                : access.status === "trialing"
+                  ? `Free trial active${access.daysRemaining != null ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left` : ""}. Payment on file — cancel anytime before trial ends for no charge.`
+                  : access.status === "canceled"
+                ? "Your subscription was canceled — reactivate anytime to restore access."
                 : access.status === "trial_expired"
-                  ? "Your trial ended — subscribe to continue."
-                  : "Choose a plan to unlock study features."}
+                    ? "Your trial ended — subscribe to continue."
+                    : "Choose a plan to unlock study features."}
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             {access.status === "active" ? (
-              <ManageBillingButton />
-            ) : access.status === "trialing" && access.needsPaymentMethod ? (
-              <Button href="/checkout?plan=trial" variant="secondary">
+              <ManageBillingButton label="Cancel or manage billing" />
+            ) : access.status === "past_due" ? (
+              <ManageBillingButton label="Update payment method" intent="payment_method" variant="secondary" />
+            ) : access.status === "canceled" || access.status === "trial_expired" ? (
+              <Button href="/settings?reactivate=1" variant="secondary">
+                Reactivate account
+              </Button>
+            ) : access.needsPaymentMethod ? (
+              <Button href="/checkout?plan=trial&interval=yearly" variant="secondary">
                 Add payment method
               </Button>
             ) : access.canStartCheckout ? (
               <SubscribeButton variant="secondary" />
             ) : access.status === "trialing" ? (
-              <ManageBillingButton />
+              <ManageBillingButton label="Cancel or manage billing" />
             ) : null}
+            <Button href="/settings" variant="ghost">
+              Billing settings
+            </Button>
             <Button href="/pricing" variant="ghost">
               View pricing
             </Button>

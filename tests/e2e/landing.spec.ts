@@ -7,7 +7,7 @@ test.describe("Landing page", () => {
 
     await expect(
       page.getByRole("heading", {
-        name: /board prep with clinical-grade questions/i,
+        name: /your best companion/i,
       })
     ).toBeVisible();
     await expect(page.getByRole("link", { name: /start.*trial/i }).first()).toBeVisible();
@@ -18,12 +18,12 @@ test.describe("Landing page", () => {
   test("trial CTA links to signup and signup page renders", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
 
-    const trialCta = page.locator('a[href="/signup?plan=trial"]').first();
+    const trialCta = page.locator('a[href="/signup?plan=trial&interval=yearly"]').first();
     await expect(trialCta).toBeVisible();
 
     // Dev-mode client navigations can be slow/flaky; verify href + destination render.
-    await expect(trialCta).toHaveAttribute("href", "/signup?plan=trial");
-    await page.goto("/signup?plan=trial", { waitUntil: "domcontentloaded" });
+    await expect(trialCta).toHaveAttribute("href", "/signup?plan=trial&interval=yearly");
+    await page.goto("/signup?plan=trial&interval=yearly", { waitUntil: "domcontentloaded" });
 
     await expect(page.getByRole("heading", { name: /create your account/i })).toBeVisible({
       timeout: 30_000,

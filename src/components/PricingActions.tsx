@@ -47,7 +47,7 @@ export function PricingActions() {
     return (
       <div className="flex flex-col gap-3">
         <Button href="/checkout?plan=trial">{formatTrialCtaLabel()}</Button>
-        <SubscribeButton label={`Subscribe Now — ${formatMonthlyPrice()}/mo`} variant="secondary" />
+        <SubscribeButton label={`Subscribe Now — from ${formatMonthlyPrice()}/mo`} variant="secondary" />
       </div>
     );
   }
@@ -56,7 +56,7 @@ export function PricingActions() {
     <div className="flex flex-col gap-3">
       <Button href="/signup?plan=trial">{formatTrialCtaLabel()}</Button>
       <Button href="/signup?plan=subscribe" variant="secondary">
-        Subscribe Now — {formatMonthlyPrice()}/month
+        Subscribe Now — from {formatMonthlyPrice()}/month
       </Button>
       <p className="text-center text-xs text-[var(--color-ink-muted)]">
         Already have an account?{" "}

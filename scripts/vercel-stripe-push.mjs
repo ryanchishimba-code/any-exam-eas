@@ -19,6 +19,9 @@ const KEYS = [
   { key: "STRIPE_SECRET_KEY", sensitive: true },
   { key: "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY", sensitive: false },
   { key: "STRIPE_PRICE_ID", sensitive: false },
+  { key: "STRIPE_PRICE_ID_QUARTERLY", sensitive: false },
+  { key: "STRIPE_PRICE_ID_SEMIANNUAL", sensitive: false },
+  { key: "STRIPE_PRICE_ID_YEARLY", sensitive: false },
   { key: "STRIPE_TRIAL_INTRO_PRICE_ID", sensitive: false, optional: true },
   { key: "STRIPE_WEBHOOK_SECRET", sensitive: true, optional: true },
 ];
@@ -95,6 +98,8 @@ async function ensureStripeWebhook(secretKey, webhookUrl) {
       "customer.subscription.created",
       "customer.subscription.updated",
       "customer.subscription.deleted",
+      "customer.subscription.trial_will_end",
+      "invoice.paid",
       "invoice.payment_failed",
     ],
   });

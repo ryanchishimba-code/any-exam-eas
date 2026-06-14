@@ -246,11 +246,15 @@ model Subscription {
   stripeCustomerId     String?  @unique
   stripeSubscriptionId String?  @unique
   status               String   @default("trialing")
-  plan                 String?  // trial | monthly | yearly
-  planInterval         String   @default("monthly") // monthly | yearly
+  plan                 String?  // trial | subscribe
+  planInterval         String   @default("monthly") // monthly | quarterly | semiannual | yearly
   trialEndsAt          DateTime?
   currentPeriodEnd     DateTime?
   gracePeriodEndsAt    DateTime?
+  /** Dedupes trial-ending reminder emails — stores the trialEndsAt we reminded for. */
+  trialReminderForEndsAt DateTime?
+  /** Dedupes pre-renewal reminder emails — stores the currentPeriodEnd we reminded for. */
+  billingReminderForPeriodEnd DateTime?
   compAccessUntil      DateTime? // admin-granted complimentary access
   canceledAt           DateTime?
   createdAt            DateTime @default(now())

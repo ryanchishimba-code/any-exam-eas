@@ -3,22 +3,22 @@ import type { ExamSlug } from "@/types/edtech";
 /** High-yield memory cards surfaced on the Reference hub landing. */
 export const PINNED_MEMORY_CARD_IDS: Record<ExamSlug, string[]> = {
   nclex: [
+    "nclex-precaution-types",
     "nclex-sepsis-bundle",
-    "nclex-five-rights",
-    "nclex-shock-types",
-    "nclex-delegation-decision-tree",
+    "nclex-cdiff-soap",
+    "nclex-vanc-red-man",
   ],
   usmle: [
+    "usmle-vanc-dosing",
+    "usmle-mrsa-agents",
+    "usmle-meningitis-emergency",
     "usmle-stemi-path",
-    "usmle-stroke-tpa",
-    "usmle-hyperkalemia",
-    "usmle-dka-orders",
   ],
   naplex: [
+    "naplex-vanc-auc",
+    "naplex-abx-spectrum-ladder",
+    "naplex-mrsa-agents",
     "naplex-hf-four-pillars",
-    "naplex-reversal-chart",
-    "naplex-hypoglycemia-15-15",
-    "all-creatinine-clearance",
   ],
   mpje: ["mpje-cii-rules", "mpje-schedules", "mpje-transfer-rules", "mpje-pseudoephedrine"],
 };

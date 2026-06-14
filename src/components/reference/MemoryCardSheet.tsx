@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import {
   BookOpen,
+  Calculator,
   CheckCircle2,
   ExternalLink,
   GraduationCap,
@@ -42,6 +43,31 @@ type Props = {
   open: boolean;
   onClose: () => void;
   onOpenRelated?: (card: MemoryCard) => void;
+};
+
+const NAPLEX_CALCULATOR_CARD_IDS = new Set([
+  "naplex-vanc-auc",
+  "all-creatinine-clearance",
+  "naplex-abx-renal-dosing",
+]);
+
+const USMLE_CALCULATOR_CARD_IDS = new Set([
+  "usmle-vanc-dosing",
+  "usmle-crcl-dosing",
+  "usmle-mrsa-agents",
+]);
+
+const NCLEX_CALCULATOR_CARD_IDS = new Set([
+  "nclex-vanc-trough",
+  "nclex-vanc-red-man",
+  "nclex-norepinephrine-first",
+  "nclex-qsofa-screen",
+]);
+
+const CALCULATOR_CARD_IDS_BY_EXAM: Partial<Record<ExamSlug, Set<string>>> = {
+  naplex: NAPLEX_CALCULATOR_CARD_IDS,
+  usmle: USMLE_CALCULATOR_CARD_IDS,
+  nclex: NCLEX_CALCULATOR_CARD_IDS,
 };
 
 export function MemoryCardSheet({
@@ -332,6 +358,16 @@ export function MemoryCardSheet({
           </div>
 
           <div className="rounded-2xl bg-[var(--color-surface)] px-3 py-2.5">
+            {CALCULATOR_CARD_IDS_BY_EXAM[examSlug]?.has(card.id) ? (
+              <Link
+                href="#hub-calculators"
+                onClick={onClose}
+                className="mb-3 inline-flex items-center gap-1.5 rounded-lg bg-[var(--color-accent)]/10 px-2.5 py-1.5 text-[11px] font-semibold text-[var(--color-accent)] hover:bg-[var(--color-accent)]/15"
+              >
+                <Calculator className="h-3.5 w-3.5" aria-hidden />
+                Open clinical calculators
+              </Link>
+            ) : null}
             <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
               Study path
             </p>

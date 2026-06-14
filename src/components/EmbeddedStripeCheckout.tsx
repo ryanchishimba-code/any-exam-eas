@@ -1,13 +1,16 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from "@stripe/react-stripe-js";
 import { loadStripe, type Stripe } from "@stripe/stripe-js";
 import { PaymentMethodsList } from "./PaymentMethodsList";
 import { InlineError, StatusMessage } from "@/components/ui/StatusMessage";
 import { CheckoutReview } from "@/components/checkout/CheckoutReview";
+import { CheckoutStepIndicator } from "@/components/checkout/CheckoutStepIndicator";
 import { loadCheckoutDiscount } from "@/lib/client/checkout-discount";
+import type { BillingInterval } from "@/lib/billing-config";
+import { parseBillingInterval, BILLING_POLICY_SHORT } from "@/lib/billing-plans";
 import type { DiscountValidation } from "@/lib/discount/types";
 import { formatUsd, hasDiscount } from "@/lib/promo-pricing";
 import type { SignupPlan } from "@/lib/validators/auth";
@@ -24,26 +27,40 @@ function getStripe(publishableKey: string) {
 export function EmbeddedStripeCheckout() {
   const searchParams = useSearchParams();
   const plan: SignupPlan = searchParams.get("plan") === "trial" ? "trial" : "subscribe";
+  const interval = useMemo(() => {
+    const raw = searchParams.get("interval");
+    return raw ? parseBillingInterval(raw) : "yearly";
+  }, [searchParams]);
   const initialPromo = searchParams.get("promo") ?? "";
+  const reactivating = searchParams.get("reactivate") === "1";
 
   const [phase, setPhase] = useState<"review" | "payment">("review");
+  const [selectedPlan, setSelectedPlan] = useState<SignupPlan>(plan);
+  const [selectedInterval, setSelectedInterval] = useState<BillingInterval>(interval);
   const [appliedDiscount, setAppliedDiscount] = useState<DiscountValidation | null>(null);
   const [publishableKey, setPublishableKey] = useState<string | null>(null);
   const [configured, setConfigured] = useState(true);
+  const [allIntervalsConfigured, setAllIntervalsConfigured] = useState(true);
   const [missingKeys, setMissingKeys] = useState<string[]>([]);
   const [error, setError] = useState("");
   const [checkoutKey, setCheckoutKey] = useState(0);
 
   useEffect(() => {
-    const stored = loadCheckoutDiscount(plan);
+    setSelectedPlan(plan);
+    setSelectedInterval(interval);
+  }, [plan, interval]);
+
+  useEffect(() => {
+    const stored = loadCheckoutDiscount(selectedPlan);
     if (stored?.validation) setAppliedDiscount(stored.validation);
-  }, [plan]);
+  }, [selectedPlan]);
 
   useEffect(() => {
     fetch("/api/stripe/config")
       .then((r) => r.json())
       .then((data) => {
         setConfigured(data.configured);
+        setAllIntervalsConfigured(data.allIntervalsConfigured !== false);
         setPublishableKey(data.publishableKey);
         if (Array.isArray(data.missing)) setMissingKeys(data.missing);
       })
@@ -58,8 +75,10 @@ export function EmbeddedStripeCheckout() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         embedded: true,
-        plan,
+        plan: selectedPlan,
+        interval: selectedInterval,
         promoCode: promoCode || undefined,
+        reactivate: reactivating || undefined,
       }),
     });
     const data = await res.json().catch(() => ({}));
@@ -74,20 +93,22 @@ export function EmbeddedStripeCheckout() {
       throw new Error("Checkout did not return a client secret.");
     }
     return data.clientSecret as string;
-  }, [plan, promoCode, checkoutKey]);
+  }, [selectedPlan, selectedInterval, promoCode, checkoutKey, reactivating]);
 
   function handleContinueToPayment(
     discount: DiscountValidation | null,
-    selectedPlan?: SignupPlan
+    nextPlan: SignupPlan,
+    nextInterval: BillingInterval
   ) {
-    if (selectedPlan && selectedPlan !== plan) {
-      const qs = new URLSearchParams({ plan: selectedPlan });
-      if (discount?.code) qs.set("promo", discount.code);
-      window.history.replaceState(null, "", `/checkout?${qs.toString()}`);
-    }
+    setSelectedPlan(nextPlan);
+    setSelectedInterval(nextInterval);
+    const qs = new URLSearchParams({ plan: nextPlan, interval: nextInterval });
+    if (discount?.code) qs.set("promo", discount.code);
+    window.history.replaceState(null, "", `/checkout?${qs.toString()}`);
     setAppliedDiscount(discount);
     setCheckoutKey((k) => k + 1);
     setPhase("payment");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   if (error) {
@@ -104,17 +125,32 @@ export function EmbeddedStripeCheckout() {
             {missingKeys.join(", ")}.
           </span>
         )}
+        <span className="mt-2 block text-xs">
+          Run <code className="rounded bg-black/5 px-1">npm run stripe:setup</code> to create all
+          billing prices.
+        </span>
       </StatusMessage>
     );
   }
 
   if (phase === "review") {
     return (
-      <CheckoutReview
-        initialPlan={plan}
-        initialPromo={initialPromo}
-        onContinue={handleContinueToPayment}
-      />
+      <div>
+        <CheckoutStepIndicator step="review" />
+        {!allIntervalsConfigured && missingKeys.length > 0 && (
+          <StatusMessage variant="warning" className="mb-6">
+            Some billing intervals are missing Stripe prices ({missingKeys.join(", ")}). Run{" "}
+            <code className="rounded bg-black/5 px-1">npm run stripe:setup</code> before testing
+            all plans.
+          </StatusMessage>
+        )}
+        <CheckoutReview
+          initialPlan={plan}
+          initialInterval={interval}
+          initialPromo={initialPromo}
+          onContinue={handleContinueToPayment}
+        />
+      </div>
     );
   }
 
@@ -123,17 +159,21 @@ export function EmbeddedStripeCheckout() {
   }
 
   const pricing = appliedDiscount?.valid ? appliedDiscount.pricing : undefined;
-  const showDiscount =
-    pricing && hasDiscount(pricing) && appliedDiscount?.code;
+  const showDiscount = pricing && hasDiscount(pricing) && appliedDiscount?.code;
 
   return (
-    <div className="space-y-6">
+    <div className="mx-auto max-w-lg space-y-6">
+      <CheckoutStepIndicator step="payment" />
+
       <button
         type="button"
-        onClick={() => setPhase("review")}
+        onClick={() => {
+          setPhase("review");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
         className="text-sm font-medium text-[var(--color-accent)] hover:underline"
       >
-        ← Back to review
+        ← Edit plan
       </button>
 
       {showDiscount && pricing && (
@@ -141,22 +181,11 @@ export function EmbeddedStripeCheckout() {
           <p className="font-semibold text-emerald-900">
             {appliedDiscount.code} applied · save {pricing.formattedSavings}
           </p>
-          <p className="mt-1 text-emerald-800">
-            Charged{" "}
-            <span className="font-semibold">{formatUsd(pricing.primary.discounted)}</span>
-            {pricing.recurring && (
-              <>
-                {" "}
-                then {formatUsd(pricing.recurring.discounted)}/mo
-              </>
-            )}
-            {" · "}full benefits included
-          </p>
         </div>
       )}
 
       <PaymentMethodsList compact />
-      <div className="overflow-hidden rounded-2xl border border-black/[0.08] bg-white shadow-[var(--shadow-apple-sm)]">
+      <div className="overflow-hidden rounded-[24px] border border-black/[0.08] bg-white shadow-[var(--shadow-apple-sm)]">
         <EmbeddedCheckoutProvider
           key={checkoutKey}
           stripe={getStripe(publishableKey)}
@@ -166,8 +195,7 @@ export function EmbeddedStripeCheckout() {
         </EmbeddedCheckoutProvider>
       </div>
       <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-        Payments are encrypted and processed by Stripe. Apple Pay and Google Pay appear when
-        supported on your device. Cancel anytime from Settings → Manage billing.
+        Encrypted by Stripe · Apple Pay & Google Pay when available · {BILLING_POLICY_SHORT}
       </p>
     </div>
   );

@@ -105,3 +105,7 @@ export const CACHE_TTL = {
   subscriptionStatus: 30 * 1000, // 30s per user — dedupes nav + home fetches
   questionBankSlice: 10 * 60 * 1000, // 10m
 } as const;
+
+export function invalidateSubscriptionStatusCache(userId: string): void {
+  cacheDelete(cacheKey(["subscription-status", userId]));
+}

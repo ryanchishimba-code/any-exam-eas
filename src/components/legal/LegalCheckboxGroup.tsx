@@ -51,8 +51,9 @@ export function LegalCheckboxGroup({
           <Link href="/legal/disclaimer" className="text-[var(--color-accent)] underline">
             Educational Disclaimer
           </Link>
-          . I understand content is for study support only and I am responsible for
-          verifying accuracy.
+          . I understand content is for study support only, billing terms include auto-renewal and
+          non-refundable payments as described in the Terms, and I am responsible for verifying
+          accuracy.
         </span>
       </label>
     </div>

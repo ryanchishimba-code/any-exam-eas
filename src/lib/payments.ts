@@ -1,3 +1,5 @@
+import { isIntervalPriceConfigured } from "@/lib/stripe-prices";
+
 /** Supported payment rails surfaced in Stripe Checkout (enable in Stripe Dashboard). */
 export const PAYMENT_METHODS = [
   {
@@ -26,6 +28,15 @@ export function isStripeConfigured(): boolean {
   return Boolean(
     process.env.STRIPE_SECRET_KEY &&
       process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY &&
-      process.env.STRIPE_PRICE_ID
+      isIntervalPriceConfigured("monthly")
+  );
+}
+
+export function isStripeFullyConfigured(): boolean {
+  if (!isStripeConfigured()) return false;
+  return (
+    isIntervalPriceConfigured("quarterly") &&
+    isIntervalPriceConfigured("semiannual") &&
+    isIntervalPriceConfigured("yearly")
   );
 }

@@ -1,11 +1,14 @@
 import { defineReviewModuleTopic } from "@/lib/edtech/review-modules/build-topic";
 import {
   ACS_MODULE,
+  ANTIBIOTICS_STEWARDSHIP_MODULE,
   ANTICOAGULATION_MODULE,
   CONTROLLED_SUBSTANCES_MODULE,
   DELEGATION_MODULE,
   DIABETES_PHARMACOTHERAPY_MODULE,
   HEART_FAILURE_MODULE,
+  INFECTION_CONTROL_NCLEX_MODULE,
+  INFECTIOUS_DISEASE_USMLE_MODULE,
   SEPSIS_MODULE,
 } from "@/lib/edtech/review-modules/content";
 import type { HighYieldTopic } from "@/types/edtech";
@@ -43,6 +46,26 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     sortOrder: 2,
   }),
   defineReviewModuleTopic({
+    examSlug: "naplex",
+    slug: "antibiotics-stewardship",
+    title: "Antibiotics & Antimicrobial Stewardship",
+    overview:
+      "Spectrum ladders, MRSA/Pseudomonas coverage, CAP and UTI regimens, C. diff therapy, HIV prophylaxis, and stewardship pearls for NAPLEX.",
+    practiceTopicSlug: "infectious-disease-rx",
+    reviewModule: ANTIBIOTICS_STEWARDSHIP_MODULE,
+    sortOrder: 3,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "nclex",
+    slug: "infection-control",
+    title: "Infection Control & PPE",
+    overview:
+      "Standard and transmission-based precautions — the foundation of safe nursing practice on every unit.",
+    practiceTopicSlug: "safety-infection",
+    reviewModule: INFECTION_CONTROL_NCLEX_MODULE,
+    sortOrder: 0,
+  }),
+  defineReviewModuleTopic({
     examSlug: "nclex",
     slug: "sepsis-shock",
     title: "Sepsis & Shock Prioritization",
@@ -50,7 +73,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
       "Recognize sepsis early, prioritize the sepsis bundle, and distinguish shock types for safe NCLEX clinical judgment.",
     practiceTopicSlug: "physiological-adaptation",
     reviewModule: SEPSIS_MODULE,
-    sortOrder: 0,
+    sortOrder: 1,
   }),
   defineReviewModuleTopic({
     examSlug: "nclex",
@@ -60,7 +83,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
       "Assign tasks safely using the five rights while the RN retains accountability — a core NCLEX management module.",
     practiceTopicSlug: "management-of-care",
     reviewModule: DELEGATION_MODULE,
-    sortOrder: 1,
+    sortOrder: 2,
   }),
   defineReviewModuleTopic({
     examSlug: "usmle",
@@ -71,6 +94,16 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     practiceTopicSlug: "cardiology",
     reviewModule: ACS_MODULE,
     sortOrder: 0,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "infectious-disease",
+    title: "Infectious Disease: Sepsis, HIV & Antimicrobials",
+    overview:
+      "CAP and meningitis empiric regimens, MRSA selection, the daptomycin pneumonia trap, C. diff therapy, HIV OI prophylaxis, vancomycin AUC monitoring, and febrile neutropenia for Step 2 CK.",
+    practiceTopicSlug: "internal-medicine",
+    reviewModule: INFECTIOUS_DISEASE_USMLE_MODULE,
+    sortOrder: 1,
   }),
   defineReviewModuleTopic({
     examSlug: "mpje",

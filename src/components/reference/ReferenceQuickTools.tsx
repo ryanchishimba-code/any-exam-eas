@@ -9,6 +9,7 @@ import {
   Clock,
   ChevronRight,
   Layers,
+  Microscope,
   Sparkles,
   Target,
 } from "lucide-react";
@@ -18,6 +19,7 @@ import {
   highYieldTopicsHref,
   practiceTopicHref,
   questionBankHref,
+  referenceTopicHref,
   top500Href,
 } from "@/lib/edtech/practice-links";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
@@ -25,6 +27,14 @@ import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { refUi } from "@/lib/reference/reference-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
+
+const EXAM_ID_TOPIC: Partial<Record<ExamSlug, { label: string; topicKey: string }>> = {
+  naplex: { label: "ID & Antibiotics", topicKey: "infectious-disease-rx" },
+  usmle: { label: "Infectious Disease", topicKey: "infectious-disease" },
+  nclex: { label: "Infection Control", topicKey: "infection-control" },
+};
+
+const CLINICAL_CALC_EXAMS: ExamSlug[] = ["naplex", "usmle", "nclex"];
 
 type Tool = {
   label: string;
@@ -63,6 +73,22 @@ export function ReferenceQuickTools({ examSlug }: { examSlug: ExamSlug }) {
       icon: BarChart3,
     },
   ];
+
+  const idTopic = EXAM_ID_TOPIC[examSlug];
+  if (idTopic) {
+    tools.splice(2, 0, {
+      label: idTopic.label,
+      href: referenceTopicHref(examSlug, idTopic.topicKey),
+      icon: Microscope,
+    });
+  }
+  if (CLINICAL_CALC_EXAMS.includes(examSlug)) {
+    tools.splice(idTopic ? 3 : 2, 0, {
+      label: "Calculators",
+      href: "#hub-calculators",
+      icon: Calculator,
+    });
+  }
 
   if (examSlug === "naplex") {
     tools.push({

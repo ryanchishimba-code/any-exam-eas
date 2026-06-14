@@ -4,20 +4,28 @@ import { useEffect, useState } from "react";
 import { refUi } from "@/lib/reference/reference-ui";
 import { cn } from "@/lib/utils";
 
-const SECTIONS = [
+const BASE_SECTIONS = [
   { id: "hub-brief", label: "Brief" },
   { id: "hub-picks", label: "Picks" },
   { id: "hub-tools", label: "Tools" },
+  { id: "hub-calculators", label: "Calc", clinicalExam: true },
   { id: "memory-cards", label: "Library" },
 ] as const;
 
-export function ReferenceHubNav() {
-  const [active, setActive] = useState<string>(SECTIONS[0].id);
+export function ReferenceHubNav({ examSlug }: { examSlug?: string }) {
+  const sections = BASE_SECTIONS.filter(
+    (s) =>
+      !("clinicalExam" in s && s.clinicalExam) ||
+      examSlug === "naplex" ||
+      examSlug === "usmle" ||
+      examSlug === "nclex"
+  );
+  const [active, setActive] = useState<string>(sections[0].id);
 
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
 
-    for (const section of SECTIONS) {
+    for (const section of sections) {
       const el = document.getElementById(section.id);
       if (!el) continue;
 
@@ -34,11 +42,11 @@ export function ReferenceHubNav() {
     }
 
     return () => observers.forEach((o) => o.disconnect());
-  }, []);
+  }, [examSlug]);
 
   return (
     <nav aria-label="Reference hub sections" className={refUi.chipRow}>
-      {SECTIONS.map((section) => (
+      {sections.map((section) => (
         <a
           key={section.id}
           href={`#${section.id}`}

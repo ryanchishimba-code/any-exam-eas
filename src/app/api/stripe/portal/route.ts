@@ -18,12 +18,16 @@ export async function POST(req: Request) {
     );
   }
 
+  const body = await req.json().catch(() => ({}));
+  const intent = body?.intent === "payment_method" ? "payment_method" : "manage";
+
   const origin = req.headers.get("origin") ?? process.env.NEXTAUTH_URL ?? "http://localhost:3000";
 
   try {
     const portal = await createBillingPortalSession({
       stripeCustomerId: sub.stripeCustomerId,
-      returnUrl: `${origin}/study-hub`,
+      returnUrl: `${origin}/settings`,
+      intent,
     });
     return NextResponse.json({ url: portal.url });
   } catch (e) {

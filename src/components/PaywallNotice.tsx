@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { Button } from "./ui/Button";
-import { formatTrialEntryPrice, formatTrialLabel, formatTrialPlanDetail } from "@/lib/site";
+import {
+  formatTrialEntryPrice,
+  formatTrialLabel,
+  formatTrialPlanDetail,
+  SIGNUP_PAYMENT_REQUIRED_NOTE,
+} from "@/lib/site";
 
 export function PaywallNotice({
   reason,
@@ -25,21 +30,25 @@ export function PaywallNotice({
       {!isSuspended && !isVerify && (
         <>
           <p className="mx-auto mt-3 max-w-md text-sm text-[var(--color-ink-muted)]">
-            Question banks, timed practice exams, and analytics are available with an
-            active subscription. {formatTrialPlanDetail()}.
+            Question banks, timed practice exams, and analytics require an active subscription.{" "}
+            {SIGNUP_PAYMENT_REQUIRED_NOTE} {formatTrialPlanDetail()}.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
             <Button href="/signup?plan=trial">
               Start {formatTrialLabel()} — {formatTrialEntryPrice()} today
             </Button>
-            <Button href="/signup?plan=subscribe" variant="secondary">
-              Subscribe Now
+            <Button href="/checkout?plan=trial&interval=yearly" variant="secondary">
+              Already have an account? Add payment
             </Button>
           </div>
           <p className="mt-4 text-xs text-[var(--color-ink-muted)]">
             Already subscribed?{" "}
             <Link href="/login" className="text-[var(--color-accent)] hover:underline">
               Log in
+            </Link>
+            {" · "}
+            <Link href="/settings" className="text-[var(--color-accent)] hover:underline">
+              Manage billing
             </Link>
           </p>
         </>

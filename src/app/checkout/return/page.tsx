@@ -5,6 +5,7 @@ import { PageShell } from "@/components/PageShell";
 import { ROUTES } from "@/lib/routes";
 import { retrieveCheckoutSession } from "@/lib/stripe";
 import { isStripeConfigured } from "@/lib/payments";
+import { TRIAL_DAYS } from "@/lib/billing-config";
 
 export const metadata = {
   title: "Payment complete — Any Exam Easy",
@@ -22,13 +23,17 @@ export default async function CheckoutReturnPage({
 
   let status: "success" | "pending" | "failed" = "pending";
   let message = "We are confirming your payment.";
+  let isTrialCheckout = false;
 
   if (sessionId && isStripeConfigured()) {
     try {
       const checkout = await retrieveCheckoutSession(sessionId);
+      isTrialCheckout = checkout.metadata?.plan === "trial";
       if (checkout.status === "complete") {
         status = "success";
-        message = "Your subscription is active. You can start studying right away.";
+        message = isTrialCheckout
+          ? `Your ${TRIAL_DAYS}-day free trial is active. You were not charged today — cancel anytime before the trial ends and you will not be billed.`
+          : "Your subscription is active. You can start studying right away.";
       } else if (checkout.status === "open") {
         status = "pending";
         message = "Checkout was not completed. You can try again below.";
@@ -43,7 +48,8 @@ export default async function CheckoutReturnPage({
   }
 
   if (status === "success") {
-    redirect(`${ROUTES.dashboard}?checkout=success`);
+    const welcome = isTrialCheckout ? "&welcome=trial" : "";
+    redirect(`${ROUTES.dashboard}?checkout=success${welcome}`);
   }
 
   return (

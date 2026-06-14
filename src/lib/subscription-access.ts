@@ -7,7 +7,9 @@ export type SubscriptionAccessStatus =
   | "trialing"
   | "trial_expired"
   | "inactive"
-  | "none";
+  | "none"
+  | "past_due"
+  | "canceled";
 
 export type SubscriptionAccess = {
   hasAccess: boolean;
@@ -63,9 +65,6 @@ export function evaluateSubscriptionAccess(
     };
   }
 
-  const needsPaymentMethod =
-    subscription.status === "trialing" && !subscription.stripeSubscriptionId;
-
   const trialEndsAt = subscription.trialEndsAt
     ? new Date(subscription.trialEndsAt)
     : null;
@@ -82,6 +81,7 @@ export function evaluateSubscriptionAccess(
   }
 
   if (subscription.status === "trialing") {
+    const noPaymentOnFile = !subscription.stripeSubscriptionId;
     if (trialEndsAt && trialEndsAt <= new Date()) {
       return {
         hasAccess: false,
@@ -92,14 +92,35 @@ export function evaluateSubscriptionAccess(
         needsPaymentMethod: false,
       };
     }
+    if (noPaymentOnFile) {
+      return {
+        hasAccess: false,
+        status: "inactive",
+        trialEndsAt,
+        daysRemaining: trialEndsAt ? daysUntil(trialEndsAt) : TRIAL_DAYS,
+        canStartCheckout: true,
+        needsPaymentMethod: true,
+      };
+    }
     const daysRemaining = trialEndsAt ? daysUntil(trialEndsAt) : TRIAL_DAYS;
     return {
       hasAccess: true,
       status: "trialing",
       trialEndsAt,
       daysRemaining,
+      canStartCheckout: false,
+      needsPaymentMethod: false,
+    };
+  }
+
+  if (subscription.status === "inactive") {
+    return {
+      hasAccess: false,
+      status: "inactive",
+      trialEndsAt,
+      daysRemaining: null,
       canStartCheckout: true,
-      needsPaymentMethod,
+      needsPaymentMethod: !subscription.stripeSubscriptionId,
     };
   }
 
@@ -117,7 +138,18 @@ export function evaluateSubscriptionAccess(
   if (subscription.status === "past_due") {
     return {
       hasAccess: false,
-      status: "inactive",
+      status: "past_due",
+      trialEndsAt,
+      daysRemaining: null,
+      canStartCheckout: false,
+      needsPaymentMethod: false,
+    };
+  }
+
+  if (subscription.status === "canceled") {
+    return {
+      hasAccess: false,
+      status: "canceled",
       trialEndsAt,
       daysRemaining: null,
       canStartCheckout: true,

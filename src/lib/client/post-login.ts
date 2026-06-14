@@ -13,6 +13,14 @@ export type ClientSubscriptionStatus = {
   daysRemaining?: number | null;
   trialEndsAt?: string | null;
   trialDays?: number;
+  reactivation?: {
+    method: "checkout" | "update_payment";
+    checkoutPath?: string;
+    settingsPath?: string;
+    message?: string;
+    checkoutPlan?: "trial" | "subscribe";
+    trialAvailable?: boolean;
+  } | null;
 };
 
 export async function fetchSubscriptionStatus(): Promise<ClientSubscriptionStatus | null> {

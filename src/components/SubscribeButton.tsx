@@ -11,21 +11,30 @@ type Props = {
   className?: string;
   /** Use Stripe hosted page instead of on-site embedded checkout */
   hosted?: boolean;
+  interval?: import("@/lib/billing-config").BillingInterval;
 };
 
 export function SubscribeButton({
-  label = `Subscribe — ${formatMonthlyPrice()}/month`,
+  label = `Subscribe — from ${formatMonthlyPrice()}/mo`,
   variant = "primary",
   className = "",
   hosted = false,
+  interval = "yearly",
 }: Props) {
   if (hosted) {
-    return <HostedSubscribeButton label={label} variant={variant} className={className} />;
+    return (
+      <HostedSubscribeButton
+        label={label}
+        variant={variant}
+        className={className}
+        interval={interval}
+      />
+    );
   }
 
   return (
     <div className={className}>
-      <Button href="/checkout" variant={variant}>
+      <Button href={`/checkout?plan=subscribe&interval=${interval}`} variant={variant}>
         {label}
       </Button>
     </div>
@@ -36,10 +45,12 @@ function HostedSubscribeButton({
   label,
   variant,
   className,
+  interval,
 }: {
   label: string;
   variant: Props["variant"];
   className: string;
+  interval: import("@/lib/billing-config").BillingInterval;
 }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -51,7 +62,7 @@ function HostedSubscribeButton({
       const res = await fetch("/api/stripe/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ embedded: false, plan: "subscribe" }),
+        body: JSON.stringify({ embedded: false, plan: "subscribe", interval }),
       });
       const data = await res.json();
       if (data.url) {

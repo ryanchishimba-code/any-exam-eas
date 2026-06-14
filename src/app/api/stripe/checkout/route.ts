@@ -7,7 +7,9 @@ import {
 import { getSubscriptionAccess } from "@/lib/subscription-access";
 import { isStripeConfigured } from "@/lib/payments";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
+import { parseBillingInterval } from "@/lib/billing-plans";
 import { requireSessionGuard } from "@/lib/session-guard";
+import { requireStripePriceId } from "@/lib/stripe-prices";
 
 export const runtime = "nodejs";
 
@@ -32,28 +34,60 @@ export async function POST(req: Request) {
 
   const origin = req.headers.get("origin") ?? process.env.NEXTAUTH_URL ?? "http://localhost:3000";
   const access = await getSubscriptionAccess(session.user.id);
-
-  if (access.hasAccess && access.status === "active") {
-    return NextResponse.json(
-      { error: "You already have an active subscription." },
-      { status: 400 }
-    );
-  }
-
   const sub = await prisma.subscription.findUnique({
     where: { userId: session.user.id },
   });
 
+  if (access.hasAccess && access.status === "active") {
+    return NextResponse.json(
+      { error: "You already have an active subscription. Change your plan in Settings." },
+      { status: 400 }
+    );
+  }
+
+  if (access.status === "past_due") {
+    return NextResponse.json(
+      {
+        error:
+          "Your last payment failed. Update your payment method in Settings to reactivate your account.",
+      },
+      { status: 400 }
+    );
+  }
+
+  if (sub?.stripeSubscriptionId && access.status === "trialing") {
+    return NextResponse.json(
+      {
+        error:
+          "Your trial is already set up. Change your billing plan in Settings → Subscription.",
+      },
+      { status: 400 }
+    );
+  }
+
   const body = await req.json().catch(() => ({}));
   const embedded = body?.embedded === true;
-  const plan = body?.plan === "trial" ? ("trial" as const) : ("subscribe" as const);
-  const interval =
-    body?.interval === "yearly" ? ("yearly" as const) : ("monthly" as const);
+  const reactivating = body?.reactivate === true;
+  let plan = body?.plan === "trial" ? ("trial" as const) : ("subscribe" as const);
+  const interval = parseBillingInterval(body?.interval);
 
-  if (plan === "trial" && session.user.email) {
+  if (session.user.email && (reactivating || plan === "trial")) {
+    if (await hasConsumedTrial(session.user.email)) {
+      plan = "subscribe";
+    }
+  }
+
+  try {
+    requireStripePriceId(interval);
+  } catch (e) {
+    const message = e instanceof Error ? e.message : "Billing price not configured";
+    return NextResponse.json({ error: message }, { status: 503 });
+  }
+
+  if (plan === "trial" && session.user.email && !reactivating) {
     if (await hasConsumedTrial(session.user.email)) {
       return NextResponse.json(
-        { error: "This email has already used a free trial. Subscribe at the monthly rate instead." },
+        { error: "This email has already used a free trial. Subscribe at the standard rate instead." },
         { status: 400 }
       );
     }
@@ -66,6 +100,7 @@ export async function POST(req: Request) {
     const promo = await validateDiscount({
       code: body.promoCode.trim(),
       plan,
+      interval,
       userId: session.user.id,
     });
     promoValidation = promo;

@@ -3,8 +3,9 @@ import { headers } from "next/headers";
 import { auth } from "@/auth";
 import { getUserAccess, type UserAccess } from "@/lib/access-control";
 import { checkAndRecordAccountIp } from "@/lib/account-ip-limit";
+import { resolvePaywallRedirect } from "@/lib/reactivation";
 
-/** Server-side paywall — redirects unpaid users to pricing. Staff bypass included. */
+/** Server-side paywall — redirects lapsed users to reactivate; staff bypass included. */
 export async function requirePremiumPage(
   callbackPath = "/study"
 ): Promise<UserAccess> {
@@ -41,7 +42,13 @@ export async function requirePremiumPage(
   }
 
   if (!access.hasPremiumAccess) {
-    redirect(`/pricing?paywall=1&return=${encodeURIComponent(callbackPath)}`);
+    const destination = await resolvePaywallRedirect(
+      session.user.id,
+      session.user.email,
+      callbackPath,
+      access.subscription
+    );
+    redirect(destination);
   }
 
   return access;

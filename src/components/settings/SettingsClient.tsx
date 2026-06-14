@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { useTransition } from "react";
-import { GraduationCap, MapPin, CreditCard, LogOut } from "lucide-react";
+import { GraduationCap, MapPin, LogOut } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { MpjeStateSelect } from "@/components/study/MpjeStateSelect";
-import { ManageBillingButton } from "@/components/ManageBillingButton";
+import { BillingSettingsSection } from "@/components/settings/BillingSettingsSection";
 import { saveMpjePreferences } from "@/lib/edtech/actions";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { ROUTES } from "@/lib/routes";
@@ -82,27 +82,7 @@ export function SettingsClient({
         </section>
       ) : null}
 
-      <section className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
-        <div className="flex items-center gap-2">
-          <CreditCard className="h-5 w-5 text-slate-600" aria-hidden />
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
-            Subscription
-          </h2>
-        </div>
-        <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
-          Update payment method, view invoices, or cancel via the Stripe billing portal. Apple Pay
-          and Google Pay are saved as card payment methods for renewals.
-        </p>
-        <div className="mt-4 flex flex-wrap gap-3">
-          <ManageBillingButton />
-          <Link
-            href={ROUTES.pricing}
-            className="inline-flex items-center rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 dark:border-slate-700 dark:text-slate-200"
-          >
-            View plans
-          </Link>
-        </div>
-      </section>
+      <BillingSettingsSection />
 
       <button
         type="button"

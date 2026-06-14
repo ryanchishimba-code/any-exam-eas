@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
 import { auth } from "@/auth";
 import { getUserAccess } from "@/lib/access-control";
+import { resolvePaywallRedirect } from "@/lib/reactivation";
 import { AccessBlockedNotice } from "./AccessBlockedNotice";
 
 /** Renders children only when the user has trial, paid, staff, or comp access. */
@@ -33,7 +34,13 @@ export async function PremiumGate({
   }
 
   if (!access.hasPremiumAccess) {
-    redirect(`/pricing?paywall=1&return=${encodeURIComponent(callbackPath)}`);
+    const destination = await resolvePaywallRedirect(
+      session.user.id,
+      session.user.email,
+      callbackPath,
+      access.subscription
+    );
+    redirect(destination);
   }
 
   return <>{children}</>;

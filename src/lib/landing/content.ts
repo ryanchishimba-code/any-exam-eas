@@ -108,15 +108,49 @@ export const LANDING_PRICING_FEATURES = [
   "Progress analytics & weak-area drills",
 ] as const;
 
-export const LANDING_HERO_SUBLINE =
-  "NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE — curated question banks, Reference Hub, Review Modules, Anatomy Studio, and Top 500 Drugs in one subscription.";
+export const LANDING_HERO_EYEBROW = "NCLEX · USMLE · NAPLEX · MPJE";
+
+/** Primary signup destination — single conversion path across the landing page. */
+export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=yearly";
+
+/** Large hero exam strip — short labels with brand accent colors. */
+export const LANDING_HERO_EXAMS = [
+  { label: "NCLEX", color: EXAM_ACCENTS.nclex },
+  { label: "USMLE", color: EXAM_ACCENTS.usmle },
+  { label: "NAPLEX", color: EXAM_ACCENTS.naplex },
+  { label: "MPJE", color: EXAM_ACCENTS.mpje },
+] as const;
+
+/** Primary hero headline — line 1 (stacked for impact). */
+export const LANDING_HERO_HEADLINE = "Your best companion";
+
+/** Primary hero headline — line 2 (gradient accent). */
+export const LANDING_HERO_HEADLINE_ACCENT = "for board and practice.";
+
+/** Three punchy hero benefits — scannable in under 3 seconds. */
+export const LANDING_HERO_PITCHES = [
+  "4 exams · 1 price",
+  "Board-style questions",
+  "Adaptive + timed exams",
+] as const;
+
+/** Hero price anchor — what's included at the monthly rate. */
+export const LANDING_HERO_PRICE_TAGLINE = "A price you can't beat.";
+
+export const LANDING_HERO_PRICE_INCLUDES = [
+  `${MARKETING_QUESTION_COUNTS.total} exam-level question bank`,
+  `${TOP_500_DRUGS_COUNT} Top Drugs pharmacology`,
+  "Clinical information & review modules",
+  "Detailed Anatomy Explorer",
+] as const;
 
 export const LANDING_STEPS = [
   {
     step: "01",
     icon: Layers,
-    title: "Pick your primary board",
-    detail: "NCLEX, USMLE Step 2 CK, NAPLEX, or MPJE — switch anytime on one subscription.",
+    title: "Create your account & add payment",
+    detail:
+      "Choose your board and billing plan — payment method required at checkout, nothing charged today. Cancel before your trial ends and you won't be billed.",
   },
   {
     step: "02",

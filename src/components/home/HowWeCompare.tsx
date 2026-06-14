@@ -3,17 +3,20 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Minus } from "lucide-react";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import {
   formatMonthlyPrice,
+  formatTrialCtaLabel,
   formatTrialLabel,
   formatTrialTodayPrice,
+  TRIAL_PAYMENT_DISCLOSURE,
 } from "@/lib/site";
 
 const competitorNames = ["UWorld", "Archer Review", "SimpleNursing"];
 
 const rows = [
   { label: "Starting cost", us: `${formatTrialTodayPrice()} today`, them: "$99–329+ upfront" },
-  { label: "Monthly", us: `${formatMonthlyPrice()}/mo after trial`, them: "$39–89+/mo tiers" },
+  { label: "Monthly", us: `Only ${formatMonthlyPrice()}/mo`, them: "$39–89+/mo tiers" },
   { label: "Exam coverage", us: "NCLEX · USMLE · NAPLEX · MPJE", them: "Often per-exam pricing" },
   { label: "Top 500 drugs", us: "Dedicated mastery deck", them: "Scattered in banks" },
   { label: "Adaptive practice", us: "Weak-area targeting", them: "Limited / add-on" },
@@ -42,7 +45,7 @@ export function CompareSectionHeading({
       </p>
       <h2
         id={id}
-        className="mt-1 text-lg font-extrabold tracking-tight text-slate-900 sm:text-xl"
+        className="mt-1 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl lg:text-3xl"
       >
         Four exams.{" "}
         <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
@@ -220,12 +223,12 @@ function CompareRow({
 function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: boolean }) {
   if (isInline) {
     return (
-      <div className="mt-3 space-y-1.5 lg:mt-4">
+      <div className="mt-3 space-y-2 lg:mt-4">
         <Link
-          href="/signup?plan=trial"
-          className="group inline-flex items-center gap-1.5 text-sm font-bold text-teal-700 hover:text-teal-600"
+          href={LANDING_TRIAL_HREF}
+          className="aee-flagship-cta aee-flagship-cta--primary group inline-flex w-full items-center justify-center sm:w-auto"
         >
-          Start {formatTrialLabel()} — {formatTrialTodayPrice()} today
+          {formatTrialCtaLabel()}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
         </Link>
         <p className="text-[0.625rem] leading-relaxed text-slate-400">
@@ -239,17 +242,27 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
     <div
       className={
         isOverlap
-          ? "mt-4 flex flex-col items-center gap-2 border-b border-slate-100 bg-white/90 pb-6 pt-2 text-center backdrop-blur-sm"
-          : "mt-5 flex flex-col items-center gap-2 text-center"
+          ? "mt-4 flex flex-col items-center gap-3 border-b border-slate-100 bg-white/90 pb-6 pt-2 text-center backdrop-blur-sm"
+          : "mt-5 flex flex-col items-center gap-3 text-center"
       }
     >
       <Link
-        href="/signup?plan=trial"
-        className="group inline-flex items-center gap-1.5 text-sm font-bold text-teal-700 hover:text-teal-600"
+        href={LANDING_TRIAL_HREF}
+        className="aee-flagship-cta aee-flagship-cta--primary aee-flagship-cta--hero group inline-flex w-full max-w-md items-center justify-center sm:w-auto"
       >
-        Start {formatTrialLabel()} — {formatTrialTodayPrice()} today
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+        {formatTrialCtaLabel()}
+        <ArrowRight
+          className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
+          aria-hidden
+        />
       </Link>
+      <p className="max-w-md text-xs text-slate-500">
+        {formatTrialTodayPrice()} today · payment method required · then from {formatMonthlyPrice()}
+        /mo
+      </p>
+      <p className="max-w-md text-[0.625rem] leading-relaxed text-slate-400">
+        {TRIAL_PAYMENT_DISCLOSURE}
+      </p>
       <p className="max-w-md text-[0.625rem] leading-relaxed text-slate-400">
         Competitor pricing from public listings ({new Date().getFullYear()}); may vary. Not
         affiliated with UWorld, Archer Review, or SimpleNursing.

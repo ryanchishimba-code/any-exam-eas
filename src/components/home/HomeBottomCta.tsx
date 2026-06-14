@@ -13,6 +13,7 @@ import {
 import { ROUTES } from "@/lib/routes";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import {
   formatTrialCtaLabel,
   formatTrialHeroOffer,
@@ -76,11 +77,11 @@ export function HomeBottomCta() {
             Your Study Hub is ready.
           </h2>
           <p className="mt-2 text-sm text-teal-100/90">
-            Log in to resume practice, drug review, and progress.
+            Log in to resume practice or reactivate your subscription in Settings.
           </p>
           <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <LoginModalTrigger
-              callbackUrl={ROUTES.dashboard}
+              callbackUrl={`${ROUTES.settings}?reactivate=1`}
               className="aee-btn-hero-xl aee-btn-hero-light group inline-flex items-center justify-center gap-2"
             >
               <LogIn className="h-5 w-5" aria-hidden />
@@ -88,7 +89,7 @@ export function HomeBottomCta() {
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
             </LoginModalTrigger>
             <Link
-              href="/signup?plan=trial"
+              href={LANDING_TRIAL_HREF}
               className="aee-btn-hero-ghost aee-btn-hero-ghost-on-dark inline-flex items-center justify-center gap-2"
             >
               New here? Start {formatTrialLabel()}
@@ -120,14 +121,14 @@ export function HomeBottomCta() {
         </p>
         <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
           <Link
-            href="/signup?plan=trial"
+            href={LANDING_TRIAL_HREF}
             className="aee-btn-hero-xl aee-btn-hero-light group inline-flex items-center justify-center gap-2"
           >
             {formatTrialCtaLabel()}
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" aria-hidden />
           </Link>
           <LoginModalTrigger
-            callbackUrl={ROUTES.dashboard}
+            callbackUrl={`${ROUTES.settings}?reactivate=1`}
             className="aee-btn-hero-ghost aee-btn-hero-ghost-on-dark inline-flex items-center justify-center gap-2"
           >
             <LogIn className="h-4 w-4" aria-hidden />

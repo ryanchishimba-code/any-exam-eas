@@ -3,6 +3,7 @@ import { auth } from "@/auth";
 import { ExamSelectionScreen } from "@/components/edtech/ExamSelectionScreen";
 import { ensureAllBoardExams } from "@/lib/edtech/board-exam-sync";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import { getUserAccess } from "@/lib/access-control";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
@@ -33,7 +34,11 @@ export default async function SelectExamPage({ searchParams }: PageProps) {
   const pref = await getUserExamPreference(session.user.id);
 
   if (pref && !switchMode) {
-    redirect(ROUTES.dashboard);
+    const access = await getUserAccess(session.user.id);
+    if (access.hasPremiumAccess) {
+      redirect(ROUTES.dashboard);
+    }
+    redirect("/settings?reactivate=1");
   }
 
   return (

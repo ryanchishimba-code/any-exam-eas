@@ -9,6 +9,8 @@ import {
 import { ReferenceHubNav } from "@/components/reference/ReferenceHubNav";
 import { ReferenceHubSearch } from "@/components/reference/ReferenceHubSearch";
 import { ReferenceQuickTools } from "@/components/reference/ReferenceQuickTools";
+import { ReferenceExternalResources } from "@/components/reference/ReferenceExternalResources";
+import { ReferenceCalculators } from "@/components/reference/ReferenceCalculators";
 import { ReferenceTodayRow } from "@/components/reference/ReferenceTodayRow";
 import { ReferenceTopicBanner } from "@/components/reference/ReferenceTopicBanner";
 import { MemoryCardTile } from "@/components/reference/MemoryCardTile";
@@ -141,7 +143,7 @@ export function ReferenceHubClient({
           onQueryChange={setHubSearchQuery}
           inputRef={searchInputRef}
         />
-        <ReferenceHubNav />
+        <ReferenceHubNav examSlug={examSlug} />
       </div>
 
       <div className={refUi.pageShell}>
@@ -163,6 +165,10 @@ export function ReferenceHubClient({
 
           <div className={cn(refUi.sectionDivider, refUi.panelSection)}>
             <ReferenceQuickTools examSlug={examSlug} />
+            {examSlug === "naplex" || examSlug === "usmle" || examSlug === "nclex" ? (
+              <ReferenceCalculators examSlug={examSlug} />
+            ) : null}
+            <ReferenceExternalResources examSlug={examSlug} />
           </div>
 
           <section

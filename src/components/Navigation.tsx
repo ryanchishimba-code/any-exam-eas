@@ -16,6 +16,8 @@ import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { ROUTES } from "@/lib/routes";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { formatTrialCtaLabel } from "@/lib/site";
 
 type NavLink = { href: string; label: string; adminOnly?: boolean };
 
@@ -154,8 +156,8 @@ export function Navigation() {
                 <LogIn className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden />
                 <span className="max-[380px]:hidden">Log in</span>
               </LoginModalTrigger>
-              <Link href="/signup?plan=trial" className="aee-nav-cta text-[0.8125rem] max-[380px]:px-3">
-                Start free trial
+              <Link href={LANDING_TRIAL_HREF} className="aee-nav-cta text-[0.8125rem] max-[380px]:px-3">
+                {formatTrialCtaLabel()}
               </Link>
             </div>
           )}
@@ -224,11 +226,11 @@ export function Navigation() {
                     Log in
                   </LoginModalTrigger>
                   <Link
-                    href="/signup?plan=trial"
+                    href={LANDING_TRIAL_HREF}
                     className="aee-nav-cta block py-3 text-center text-sm"
                     onClick={closeMobile}
                   >
-                    Start free trial
+                    {formatTrialCtaLabel()}
                   </Link>
                 </div>
               )}

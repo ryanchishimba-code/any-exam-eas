@@ -4,11 +4,9 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useEffect, useState, type ReactNode } from "react";
 import { useSession } from "next-auth/react";
-import { ArrowRight, LogIn, Sparkles } from "lucide-react";
+import { ArrowRight, LogIn } from "lucide-react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
-import { BrandLogo } from "@/components/brand/BrandLogo";
 import { LandingTrialTrust } from "@/components/home/LandingTrialTrust";
-import { LandingHeroFacts } from "@/components/home/LandingHeroFacts";
 import { TrustBar } from "@/components/home/TrustBar";
 import {
   firstName,
@@ -17,13 +15,20 @@ import {
   type ReturningUserHint,
 } from "@/lib/client/returning-user";
 import {
+  formatLandingHeroSubline,
   formatTrialCtaLabel,
   formatTrialHeroOffer,
   formatTrialLabel,
   MARKETING_DISCLAIMER,
 } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
-import { LANDING_HERO_SUBLINE } from "@/lib/landing/content";
+import { LandingHeroExamStrip } from "@/components/home/LandingHeroExamStrip";
+import { LandingHeroPriceValue } from "@/components/home/LandingHeroPriceValue";
+import {
+  LANDING_HERO_HEADLINE,
+  LANDING_HERO_HEADLINE_ACCENT,
+  LANDING_TRIAL_HREF,
+} from "@/lib/landing/content";
 
 const LandingAppMockup = dynamic(
   () => import("@/components/home/LandingAppMockup").then((m) => m.LandingAppMockup),
@@ -73,11 +78,11 @@ export function Hero({ compareLayout = false }: { compareLayout?: boolean }) {
   } else {
     headline = (
       <>
-        Licensing exam prep —{" "}
-        <span className="aee-display-accent-vibrant">question banks & timed practice.</span>
+        {LANDING_HERO_HEADLINE}{" "}
+        <span className="aee-display-accent-vibrant">{LANDING_HERO_HEADLINE_ACCENT}</span>
       </>
     );
-    subline = LANDING_HERO_SUBLINE;
+    subline = formatLandingHeroSubline();
     urgency = formatTrialHeroOffer();
   }
 
@@ -108,17 +113,8 @@ export function Hero({ compareLayout = false }: { compareLayout?: boolean }) {
         >
           <header className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-none lg:text-left">
             {!isAuthed && !isReturning ? (
-              <BrandLogo variant="hero" className="aee-reveal mx-auto mb-2 lg:mx-0" priority />
+              <LandingHeroExamStrip className="aee-reveal mx-auto justify-center lg:mx-0 lg:justify-start" />
             ) : null}
-            {!isAuthed && !isReturning ? (
-              <p className="aee-reveal mx-auto text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-teal-700 lg:mx-0">
-                Board exam prep for nurses, doctors &amp; pharmacists
-              </p>
-            ) : null}
-            <p className="aee-hero-exam-pill aee-reveal lg:mx-0 mx-auto mt-2">
-              <Sparkles className="h-3 w-3" aria-hidden />
-              NCLEX · USMLE · NAPLEX · MPJE
-            </p>
 
             <h1
               id="hero-heading"
@@ -132,7 +128,7 @@ export function Hero({ compareLayout = false }: { compareLayout?: boolean }) {
             </p>
 
             {!isAuthed && !isReturning && !compareLayout && (
-              <LandingHeroFacts className="aee-reveal aee-reveal-delay-2 mt-4 lg:max-w-xl" />
+              <LandingHeroPriceValue className="aee-reveal aee-reveal-delay-2 mx-auto mt-4 lg:mx-0" />
             )}
 
             <div className="aee-reveal aee-reveal-delay-3 mt-4 flex flex-col items-stretch justify-center gap-2 sm:flex-row sm:flex-wrap sm:items-center lg:justify-start">
@@ -169,7 +165,7 @@ export function Hero({ compareLayout = false }: { compareLayout?: boolean }) {
                       />
                     </LoginModalTrigger>
                     <Link
-                      href="/signup?plan=trial"
+                      href={LANDING_TRIAL_HREF}
                       className="aee-btn-hero-ghost inline-flex w-full items-center justify-center sm:w-auto"
                     >
                       New here? Start {formatTrialLabel()}
@@ -178,7 +174,7 @@ export function Hero({ compareLayout = false }: { compareLayout?: boolean }) {
                 ) : (
                   <>
                     <Link
-                      href="/signup?plan=trial"
+                      href={LANDING_TRIAL_HREF}
                       className="aee-btn-hero-xl group inline-flex w-full items-center justify-center gap-2.5 sm:w-auto"
                       data-promo-entry
                     >

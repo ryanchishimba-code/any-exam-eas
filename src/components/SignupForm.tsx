@@ -6,8 +6,9 @@ import { LegalCheckbox } from "./LegalCheckbox";
 import { PlanChoice } from "./PlanChoice";
 import { Button } from "./ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
-import { MARKETING_DISCLAIMER, formatTrialCtaLabel, TRIAL_PAYMENT_DISCLOSURE } from "@/lib/site";
+import { MARKETING_DISCLAIMER, formatTrialCtaWithSavings, SIGNUP_PAYMENT_REQUIRED_NOTE } from "@/lib/site";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
+import type { BillingInterval } from "@/lib/billing-config";
 import type { SignupPlan } from "@/lib/validators/auth";
 import {
   fetchAuthHealthWarning,
@@ -20,9 +21,11 @@ import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/l
 export function SignupForm({
   initialPlan = "",
   initialPromo = "",
+  initialInterval = "yearly",
 }: {
   initialPlan?: SignupPlan | "";
   initialPromo?: string;
+  initialInterval?: BillingInterval;
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -100,7 +103,7 @@ export function SignupForm({
       const promoQs = initialPromo.trim()
         ? `&promo=${encodeURIComponent(initialPromo.trim())}`
         : "";
-      window.location.href = `/checkout?plan=${plan}${promoQs}`;
+      window.location.href = `/checkout?plan=${plan}&interval=${initialInterval}${promoQs}`;
     } catch (err) {
       setError(messageFromUnknownAuthError(err));
     } finally {
@@ -111,7 +114,7 @@ export function SignupForm({
   const submitLabel = !plan
     ? "Create account"
     : plan === "trial"
-      ? formatTrialCtaLabel()
+      ? formatTrialCtaWithSavings(initialInterval)
       : "Continue to checkout";
 
   return (
@@ -129,8 +132,15 @@ export function SignupForm({
       <PlanChoice value={plan} onChange={setPlan} disabled={loading} />
 
       {plan && (
-        <p className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs leading-relaxed text-slate-600">
-          {plan === "trial" ? TRIAL_PAYMENT_DISCLOSURE : "Have a discount code? Apply it on the checkout review screen."}
+        <p className="rounded-xl border border-sky-100 bg-sky-50/80 px-4 py-3 text-xs leading-relaxed text-slate-700">
+          {plan === "trial" ? (
+            <>
+              <span className="font-semibold text-slate-900">Next step: add payment.</span>{" "}
+              {SIGNUP_PAYMENT_REQUIRED_NOTE}
+            </>
+          ) : (
+            "Have a discount code? Apply it on the checkout review screen."
+          )}
         </p>
       )}
 
