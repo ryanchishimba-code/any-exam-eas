@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
   "source": "ClinCalc Top 500 (Any Exam Easy)",
-  "updatedAt": "2026-05-31T19:24:48.855Z",
-  "count": 500,
+  "updatedAt": "2026-06-14T20:04:31.047Z",
+  "count": 501,
   "drugs": [
     {
       "id": "atorvastatin",
@@ -4570,9 +4570,9 @@
       "generic": "Semaglutide",
       "brand": "Ozempic, Wegovy, Rybelsus",
       "class": "GLP-1 receptor agonist",
-      "indications": "Type 2 diabetes (Ozempic/Rybelsus), obesity (Wegovy)",
-      "sideEffects": "Nausea, pancreatitis (rare), gallstones, thyroid C-cell tumors (rodents)",
-      "mnemonic": "Ozempic = OZempic obesity craze — weekly GLP-1",
+      "indications": "Type 2 diabetes (Ozempic/Rybelsus), obesity (Wegovy), ASCVD risk reduction in T2DM",
+      "sideEffects": "Nausea/vomiting (titrate slowly), pancreatitis (rare), gallstones, delayed gastric emptying; CI personal/family MEN2 or medullary thyroid carcinoma",
+      "mnemonic": "Ozempic = OZempic weekly GLP-1 — weight + A1C + CV benefit",
       "examRelevance": {
         "NCLEX": true,
         "USMLE": true,
@@ -8003,6 +8003,22 @@
         "NAPLEX": true
       },
       "category": "cns-psych"
+    },
+    {
+      "id": "tirzepatide",
+      "rank": 501,
+      "generic": "Tirzepatide",
+      "brand": "Mounjaro, Zepbound",
+      "class": "Dual GIP/GLP-1 receptor agonist",
+      "indications": "Type 2 diabetes (Mounjaro), chronic weight management (Zepbound)",
+      "sideEffects": "Nausea, vomiting, diarrhea, pancreatitis (rare), gallbladder disease; CI MEN2/medullary thyroid carcinoma; delayed gastric emptying (ileus/gastroparesis risk)",
+      "mnemonic": "Mounjaro = MOUNTain of A1C & weight — dual GIP/GLP-1 weekly injection",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "endocrine"
     }
   ]
 }

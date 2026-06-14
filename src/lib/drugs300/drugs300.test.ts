@@ -1,11 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { getCycleKey } from "./cycles";
-import { TOP_500_COUNT } from "./catalog";
+import { TOP_500_COUNT, getDrugById } from "./catalog";
 import { applySpacedRepetition, initialSpacedRepetitionState } from "./spaced-repetition";
 
 describe("drugs300", () => {
-  it("catalog has 500 drugs", () => {
-    expect(TOP_500_COUNT).toBe(500);
+  it("catalog has 501 drugs including GLP-1 agents", () => {
+    expect(TOP_500_COUNT).toBe(501);
+    expect(getDrugById("semaglutide")?.brand).toContain("Ozempic");
+    expect(getDrugById("tirzepatide")?.brand).toContain("Mounjaro");
   });
 
   it("uses quarterly cycle keys", () => {

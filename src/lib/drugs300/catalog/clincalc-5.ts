@@ -1,6 +1,6 @@
 import { d } from "./entry";
 
-/** Board-exam extension — ranks 401–500. */
+/** Board-exam extension — ranks 401–501. */
 export const CLINCALC_5 = [
   d(401, "Tobramycin", "Nebcin", "Aminoglycoside antibiotic", "Gram-negative serious infections (Pseudomonas)", "Nephrotoxicity, ototoxicity; once-daily dosing levels", "Nebcin = NEBcin ears & kidneys — aminoglycoside trough levels"),
   d(402, "Trastuzumab", "Herceptin", "Anti-HER2 monoclonal antibody", "HER2+ breast and gastric cancer", "Cardiotoxicity (↓ EF), infusion reactions", "Herceptin = HER2 trastuzumab — monitor echocardiogram"),
@@ -102,4 +102,5 @@ export const CLINCALC_5 = [
   d(498, "Nitroglycerin (IV)", "Tridil", "Nitrate vasodilator", "Acute coronary syndrome, hypertensive emergency, heart failure", "Headache, hypotension, tachyphylaxis, methemoglobinemia", "Tridil = TRI drip nitro — IV GTN ACS pulmonary edema"),
   d(499, "Ondansetron (IV)", "Zofran IV", "5-HT3 antagonist antiemetic", "Chemotherapy/postoperative nausea", "QT prolongation, constipation, serotonin syndrome combos", "Zofran IV = ZOFran 5HT3 — ondansetron chemo nausea QT watch"),
   d(500, "Ethosuximide", "Zarontin", "Antiepileptic (T-type calcium blocker)", "Absence seizures (childhood)", "GI upset, blood dyscrasias, lupus-like syndrome, SJS rare", "Zarontin = ZARontin absence only — ethosuximide absence seizures"),
+  d(501, "Tirzepatide", "Mounjaro, Zepbound", "Dual GIP/GLP-1 receptor agonist", "Type 2 diabetes (Mounjaro), chronic weight management (Zepbound)", "Nausea, vomiting, diarrhea, pancreatitis (rare), gallbladder disease; CI MEN2/medullary thyroid carcinoma; delayed gastric emptying (ileus/gastroparesis risk)", "Mounjaro = MOUNTain of A1C & weight — dual GIP/GLP-1 weekly injection"),
 ];

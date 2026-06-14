@@ -29,7 +29,7 @@ export function classifyDrug(therapeuticClass: string): Exclude<DrugClassId, "al
   }
 
   if (
-    /\b(insulin|glucagon|biguanide|sulfonylurea|sglt2|glp-1|dpp-4|thiazolidinedione|meglitinide|thyroid|hormone|estrogen|progesterone|contraceptive|androgen|diabetes|vitamin d|bisphosphonate|serm|ppar|incretin|meglitinide|impdh)\b/.test(
+    /\b(insulin|glucagon|biguanide|sulfonylurea|sglt2|glp-1|gip|dpp-4|thiazolidinedione|meglitinide|thyroid|hormone|estrogen|progesterone|contraceptive|androgen|diabetes|vitamin d|bisphosphonate|serm|ppar|incretin|meglitinide|impdh)\b/.test(
       t
     )
   ) {
