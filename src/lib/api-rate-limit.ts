@@ -11,25 +11,25 @@ export function rateLimitedResponse(retryAfterSec: number) {
   );
 }
 
-export function enforceRateLimit(
+export async function enforceRateLimit(
   req: Request,
   key: string,
   limit: number,
   windowMs: number
-): NextResponse | null {
+): Promise<NextResponse | null> {
   const ip = getClientIp(req);
-  const result = checkRateLimit(`${key}:${ip}`, limit, windowMs);
+  const result = await checkRateLimit(`${key}:${ip}`, limit, windowMs);
   if (!result.ok) return rateLimitedResponse(result.retryAfterSec);
   return null;
 }
 
-export function enforceUserRateLimit(
+export async function enforceUserRateLimit(
   userId: string,
   key: string,
   limit: number,
   windowMs: number
-): NextResponse | null {
-  const result = checkRateLimit(`${key}:${userId}`, limit, windowMs);
+): Promise<NextResponse | null> {
+  const result = await checkRateLimit(`${key}:${userId}`, limit, windowMs);
   if (!result.ok) return rateLimitedResponse(result.retryAfterSec);
   return null;
 }

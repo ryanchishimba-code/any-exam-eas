@@ -156,7 +156,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             ipHash,
             role: linked.role,
           });
-          if (!ipCheck.ok) return "/login?error=too_many_ips";
+          if (!ipCheck.ok) {
+            return `/login?error=${ipCheck.reason}`;
+          }
           if (ipHash) await recordAccountIpAccess(linked.id, ipHash);
         } catch (e) {
           if (e instanceof OAuthLinkBlockedError) return false;

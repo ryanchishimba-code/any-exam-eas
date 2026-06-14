@@ -13,7 +13,7 @@ export async function GET(req: Request) {
   if (!premium.ok) return premium.response;
 
   const { enforceUserRateLimit } = await import("@/lib/api-rate-limit");
-  const limited = enforceUserRateLimit(premium.userId, "reference-brief", 6, 60_000);
+  const limited = await enforceUserRateLimit(premium.userId, "reference-brief", 6, 60_000);
   if (limited) return limited;
 
   const url = new URL(req.url);

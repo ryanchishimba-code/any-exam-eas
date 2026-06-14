@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 
 // Rate limit: 15 attempts per IP per 15 minutes — mitigates token brute-force.
 export async function POST(req: Request) {
-  const limited = enforceRateLimit(req, "reset-password", 15, 15 * 60_000);
+  const limited = await enforceRateLimit(req, "reset-password", 15, 15 * 60_000);
   if (limited) return limited;
 
   try {

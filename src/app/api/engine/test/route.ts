@@ -22,13 +22,13 @@ const bodySchema = z.object({
  * Staff or authenticated users can validate engine accuracy/realism.
  */
 export async function POST(req: Request) {
-  const ipLimited = enforceRateLimit(req, "engine-test", 20, 60_000);
+  const ipLimited = await enforceRateLimit(req, "engine-test", 20, 60_000);
   if (ipLimited) return ipLimited;
 
   const auth = await requirePremiumApi();
   if (!auth.ok) return auth.response;
 
-  const userLimited = enforceUserRateLimit(auth.userId, "engine-test", 4, 60_000);
+  const userLimited = await enforceUserRateLimit(auth.userId, "engine-test", 4, 60_000);
   if (userLimited) return userLimited;
 
   let body: z.infer<typeof bodySchema>;

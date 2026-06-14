@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import {
   createCheckoutSession,
@@ -8,12 +7,16 @@ import {
 import { getSubscriptionAccess } from "@/lib/subscription-access";
 import { isStripeConfigured } from "@/lib/payments";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
+import { requireSessionGuard } from "@/lib/session-guard";
 
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
-  const session = await auth();
-  if (!session?.user?.id || !session.user.email) {
+  const guard = await requireSessionGuard(req);
+  if (!guard.ok) return guard.response;
+
+  const session = guard.session;
+  if (!session.user.email) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

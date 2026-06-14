@@ -29,6 +29,7 @@ export function LoginForm() {
   const [hintEmail, setHintEmail] = useState("");
   const resetSuccess = searchParams.get("reset") === "success";
   const ipLimitError = searchParams.get("error") === "too_many_ips";
+  const ipRequiredError = searchParams.get("error") === "ip_required";
   const callbackUrl = sanitizeCallbackUrl(searchParams.get("callbackUrl"));
 
   const { data: session, status } = useSession();
@@ -86,6 +87,10 @@ export function LoginForm() {
 
       {ipLimitError && view === "login" && (
         <StatusMessage variant="error">{messageForSignInError("too_many_ips")}</StatusMessage>
+      )}
+
+      {ipRequiredError && view === "login" && (
+        <StatusMessage variant="error">{messageForSignInError("ip_required")}</StatusMessage>
       )}
 
       <AnimatePresence mode="wait" initial={false}>

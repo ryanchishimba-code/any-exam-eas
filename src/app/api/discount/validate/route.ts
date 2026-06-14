@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
 import { validateDiscount } from "@/lib/discount";
 import { sanitizeDiscountForPublic } from "@/lib/discount/public-response";
 import type { SignupPlan } from "@/lib/validators/auth";
 import { enforceRateLimit } from "@/lib/api-rate-limit";
+import { optionalSessionGuard } from "@/lib/session-guard";
 import { z } from "zod";
 
 export const runtime = "nodejs";
@@ -31,7 +31,7 @@ function parsePlan(value: unknown): SignupPlan | undefined {
  * Real-time validation (debounced from client). Optional auth for already-redeemed check.
  */
 export async function GET(req: Request) {
-  const limited = enforceRateLimit(req, "discount-validate", DISCOUNT_VALIDATE_LIMIT, DISCOUNT_VALIDATE_WINDOW_MS);
+  const limited = await enforceRateLimit(req, "discount-validate", DISCOUNT_VALIDATE_LIMIT, DISCOUNT_VALIDATE_WINDOW_MS);
   if (limited) return limited;
 
   const url = new URL(req.url);
@@ -53,12 +53,14 @@ export async function GET(req: Request) {
     );
   }
 
-  const session = await auth();
+  const guard = await optionalSessionGuard(req);
+  if (!guard.ok) return guard.response;
+
   try {
     const result = await validateDiscount({
       code: parsed.data.code,
       plan: parsePlan(parsed.data.plan),
-      userId: session?.user?.id,
+      userId: guard.userId,
     });
     return NextResponse.json(sanitizeDiscountForPublic(result));
   } catch {
@@ -82,10 +84,12 @@ export async function GET(req: Request) {
  * Explicit apply from UI; includes per-user redemption check when signed in.
  */
 export async function POST(req: Request) {
-  const limited = enforceRateLimit(req, "discount-validate", DISCOUNT_VALIDATE_LIMIT, DISCOUNT_VALIDATE_WINDOW_MS);
+  const limited = await enforceRateLimit(req, "discount-validate", DISCOUNT_VALIDATE_LIMIT, DISCOUNT_VALIDATE_WINDOW_MS);
   if (limited) return limited;
 
-  const session = await auth();
+  const guard = await optionalSessionGuard(req);
+  if (!guard.ok) return guard.response;
+
   const body = await req.json().catch(() => ({}));
   const parsed = bodySchema.safeParse(body);
 
@@ -106,7 +110,7 @@ export async function POST(req: Request) {
     const result = await validateDiscount({
       code: parsed.data.code,
       plan: parsePlan(parsed.data.plan),
-      userId: session?.user?.id,
+      userId: guard.userId,
     });
     return NextResponse.json(sanitizeDiscountForPublic(result));
   } catch {

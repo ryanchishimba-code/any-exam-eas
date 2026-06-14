@@ -30,7 +30,7 @@ function logEmailSetupOnce(): void {
 
 // Rate limit: 10 requests per IP per minute — mitigates email enumeration / spam.
 export async function POST(req: Request) {
-  const limited = enforceRateLimit(req, "forgot-password", 10, 60_000);
+  const limited = await enforceRateLimit(req, "forgot-password", 10, 60_000);
   if (limited) return limited;
 
   logEmailSetupOnce();

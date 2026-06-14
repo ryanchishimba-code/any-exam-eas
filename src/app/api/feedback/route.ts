@@ -1,23 +1,25 @@
 import { NextResponse } from "next/server";
 import { ZodError } from "zod";
-import { auth } from "@/auth";
 import { enforceRateLimit } from "@/lib/api-rate-limit";
 import { createFeedback } from "@/lib/feedback/service";
 import { submitFeedbackSchema } from "@/lib/feedback/validators";
 import { trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
+import { optionalSessionGuard } from "@/lib/session-guard";
 
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
-  const limited = enforceRateLimit(req, "feedback", 15, 60_000);
+  const limited = await enforceRateLimit(req, "feedback", 15, 60_000);
   if (limited) return limited;
 
   try {
+    const guard = await optionalSessionGuard(req);
+    if (!guard.ok) return guard.response;
+
     const body = await req.json();
     const input = submitFeedbackSchema.parse(body);
-    const session = await auth();
-    const userId = session?.user?.id;
+    const userId = guard.userId;
 
     const { id } = await createFeedback(input, { userId, req });
 

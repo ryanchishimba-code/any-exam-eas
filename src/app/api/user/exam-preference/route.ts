@@ -1,21 +1,22 @@
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
-import { auth } from "@/auth";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { getUserExamPreference, setUserExamPreference } from "@/lib/edtech/exam-preference";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import type { ExamSlug } from "@/types/edtech";
+import { optionalSessionGuard, requireSessionGuard } from "@/lib/session-guard";
 
 export const runtime = "nodejs";
 
-export async function GET() {
-  const session = await auth();
-  if (!session?.user?.id) {
+export async function GET(req: Request) {
+  const guard = await optionalSessionGuard(req);
+  if (!guard.ok) return guard.response;
+  if (!guard.userId) {
     return NextResponse.json({ examSlug: null });
   }
 
-  const pref = await getUserExamPreference(session.user.id);
-  const meta = pref ? await getUserEdtechMetadata(session.user.id) : null;
+  const pref = await getUserExamPreference(guard.userId);
+  const meta = pref ? await getUserEdtechMetadata(guard.userId) : null;
   return NextResponse.json({
     examSlug: pref?.examSlug ?? null,
     mpjeStateCode: meta?.mpjeStateCode ?? null,
@@ -23,10 +24,8 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
-  }
+  const guard = await requireSessionGuard(req);
+  if (!guard.ok) return guard.response;
 
   let body: unknown;
   try {
@@ -45,7 +44,7 @@ export async function POST(req: Request) {
   }
 
   try {
-    await setUserExamPreference(session.user.id, examSlug as ExamSlug);
+    await setUserExamPreference(guard.userId, examSlug as ExamSlug);
     revalidatePath("/dashboard");
     revalidatePath("/study-hub");
     revalidatePath("/select-exam");

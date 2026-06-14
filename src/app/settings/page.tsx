@@ -1,10 +1,12 @@
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { auth } from "@/auth";
 import { SettingsClient } from "@/components/settings/SettingsClient";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { ROUTES } from "@/lib/routes";
 import { isExamSlug } from "@/lib/edtech/exams";
+import { checkAndRecordAccountIp } from "@/lib/account-ip-limit";
 
 export const metadata = {
   title: "Settings — Any Exam Easy",
@@ -15,6 +17,18 @@ export default async function SettingsPage() {
   const session = await auth();
   if (!session?.user?.id) {
     redirect(`/auth/login?callbackUrl=${encodeURIComponent("/settings")}`);
+  }
+
+  const ipCheck = await checkAndRecordAccountIp(
+    session.user.id,
+    session.user.role,
+    undefined,
+    await headers()
+  );
+  if (!ipCheck.ok) {
+    redirect(
+      `/login?error=${ipCheck.reason}&callbackUrl=${encodeURIComponent("/settings")}`
+    );
   }
 
   const pref = await getUserExamPreference(session.user.id);

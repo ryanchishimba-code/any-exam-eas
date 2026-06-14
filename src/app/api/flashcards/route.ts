@@ -1,18 +1,16 @@
 import { NextResponse } from "next/server";
 import { and, eq, lte } from "drizzle-orm";
-import { auth } from "@/auth";
 import { requireDb } from "@/db";
 import { flashcards } from "@/db/schema";
 import { createId } from "@/lib/id";
 import { scheduleReview, type ReviewGrade } from "@/lib/flashcards/fsrs";
+import { requireSessionGuard } from "@/lib/session-guard";
 
 export const runtime = "nodejs";
 
 export async function GET(req: Request) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const guard = await requireSessionGuard(req);
+  if (!guard.ok) return guard.response;
 
   const examType = new URL(req.url).searchParams.get("examType") ?? "top500";
   const db = requireDb();
@@ -21,7 +19,7 @@ export async function GET(req: Request) {
     .from(flashcards)
     .where(
       and(
-        eq(flashcards.userId, session.user.id),
+        eq(flashcards.userId, guard.userId),
         eq(flashcards.examType, examType),
         lte(flashcards.dueDate, new Date())
       )
@@ -32,10 +30,8 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
+  const guard = await requireSessionGuard(req);
+  if (!guard.ok) return guard.response;
 
   const body = await req.json();
   const db = requireDb();
@@ -46,7 +42,7 @@ export async function POST(req: Request) {
       .select()
       .from(flashcards)
       .where(
-        and(eq(flashcards.id, body.cardId), eq(flashcards.userId, session.user.id))
+        and(eq(flashcards.id, body.cardId), eq(flashcards.userId, guard.userId))
       )
       .limit(1);
 
@@ -79,7 +75,7 @@ export async function POST(req: Request) {
   const id = createId();
   await db.insert(flashcards).values({
     id,
-    userId: session.user.id,
+    userId: guard.userId,
     examType: body.examType ?? "top500",
     front: String(body.front ?? ""),
     back: String(body.back ?? ""),

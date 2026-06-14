@@ -1,9 +1,10 @@
-import { ACCOUNT_IP_LIMIT_MESSAGE } from "@/lib/account-ip-limit";
+import { ACCOUNT_IP_LIMIT_MESSAGE, IP_REQUIRED_MESSAGE } from "@/lib/account-ip-limit";
 
 /** Map NextAuth client errors to user-friendly copy (avoids cryptic browser/parse messages). */
 export function messageForSignInError(error?: string | null): string {
   if (!error) return "Invalid email or password.";
   if (error === "too_many_ips") return ACCOUNT_IP_LIMIT_MESSAGE;
+  if (error === "ip_required") return IP_REQUIRED_MESSAGE;
   if (error === "Configuration") {
     return "Sign-in is unavailable because the server is missing auth or database configuration.";
   }

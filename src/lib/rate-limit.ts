@@ -2,8 +2,7 @@ type Bucket = { count: number; resetAt: number };
 
 const buckets = new Map<string, Bucket>();
 
-/** In-memory sliding window limiter (per server instance). */
-export function checkRateLimit(
+function checkRateLimitMemory(
   key: string,
   limit: number,
   windowMs: number
@@ -26,6 +25,18 @@ export function checkRateLimit(
   }
 
   return { ok: true };
+}
+
+/** Sliding window limiter — Upstash when configured, else per-instance memory. */
+export async function checkRateLimit(
+  key: string,
+  limit: number,
+  windowMs: number
+): Promise<{ ok: true } | { ok: false; retryAfterSec: number }> {
+  const { checkDistributedRateLimit } = await import("@/lib/rate-limit-distributed");
+  const distributed = await checkDistributedRateLimit(key, limit, windowMs);
+  if (distributed) return distributed;
+  return checkRateLimitMemory(key, limit, windowMs);
 }
 
 export function getClientIp(req: Request): string {

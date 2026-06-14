@@ -16,13 +16,13 @@ const bodySchema = z.object({
 type RouteContext = { params: Promise<{ id: string }> };
 
 export async function POST(req: Request, context: RouteContext) {
-  const limited = enforceRateLimit(req, "admin-feedback-reply", 20, 60_000);
+  const limited = await enforceRateLimit(req, "admin-feedback-reply", 20, 60_000);
   if (limited) return limited;
 
   const auth = await requireAdminPermission("feedback.manage");
   if (auth instanceof NextResponse) return auth;
 
-  const userLimited = enforceUserRateLimit(auth.userId, "admin-feedback-reply", 40, 60_000);
+  const userLimited = await enforceUserRateLimit(auth.userId, "admin-feedback-reply", 40, 60_000);
   if (userLimited) return userLimited;
 
   const { id } = await context.params;

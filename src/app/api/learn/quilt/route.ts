@@ -18,7 +18,7 @@ export async function POST(req: Request) {
   const userId = premium.userId;
 
   const { enforceUserRateLimit } = await import("@/lib/api-rate-limit");
-  const limited = enforceUserRateLimit(userId, "learn-quilt", 8, 60_000);
+  const limited = await enforceUserRateLimit(userId, "learn-quilt", 8, 60_000);
   if (limited) return limited;
 
   const { field, topic, preferredMode } = await req.json();

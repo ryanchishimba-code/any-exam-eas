@@ -16,13 +16,13 @@ const bodySchema = z.object({
 type RouteContext = { params: Promise<{ userId: string }> };
 
 export async function POST(req: Request, context: RouteContext) {
-  const limited = enforceRateLimit(req, "admin-send-email", 20, 60_000);
+  const limited = await enforceRateLimit(req, "admin-send-email", 20, 60_000);
   if (limited) return limited;
 
   const auth = await requireAdminPermission("admin.actions");
   if (auth instanceof NextResponse) return auth;
 
-  const userLimited = enforceUserRateLimit(auth.userId, "admin-send-email", 30, 60_000);
+  const userLimited = await enforceUserRateLimit(auth.userId, "admin-send-email", 30, 60_000);
   if (userLimited) return userLimited;
 
   const { userId } = await context.params;

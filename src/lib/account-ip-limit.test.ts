@@ -1,6 +1,8 @@
-import { describe, expect, it, vi, beforeEach } from "vitest";
+import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 import {
   assertAccountIpAllowed,
+  accountIpLimitResponse,
+  enforceAccountIpLimit,
   MAX_ACCOUNT_IPS,
 } from "@/lib/account-ip-limit";
 
@@ -20,8 +22,22 @@ vi.mock("@/lib/prisma", () => ({
 }));
 
 describe("assertAccountIpAllowed", () => {
+  const originalNodeEnv = process.env.NODE_ENV;
+  const originalVercel = process.env.VERCEL;
+
   beforeEach(() => {
     findManyMock.mockReset();
+    delete process.env.VERCEL;
+    process.env.NODE_ENV = "test";
+  });
+
+  afterEach(() => {
+    process.env.NODE_ENV = originalNodeEnv;
+    if (originalVercel === undefined) {
+      delete process.env.VERCEL;
+    } else {
+      process.env.VERCEL = originalVercel;
+    }
   });
 
   it("allows staff regardless of IP count", async () => {
@@ -61,9 +77,63 @@ describe("assertAccountIpAllowed", () => {
     expect(MAX_ACCOUNT_IPS).toBe(3);
   });
 
-  it("allows when IP is unknown (fail open)", async () => {
+  it("allows when IP is unknown in non-production", async () => {
     findManyMock.mockResolvedValue([]);
     const result = await assertAccountIpAllowed("user-1", { role: "user" });
     expect(result.ok).toBe(true);
+  });
+
+  it("blocks when IP is unknown in production", async () => {
+    process.env.NODE_ENV = "production";
+    findManyMock.mockResolvedValue([]);
+    const result = await assertAccountIpAllowed("user-1", { role: "user" });
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.reason).toBe("ip_required");
+  });
+
+  it("blocks when IP is unknown on Vercel preview", async () => {
+    process.env.VERCEL = "1";
+    findManyMock.mockResolvedValue([]);
+    const result = await assertAccountIpAllowed("user-1", { role: "user" });
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.reason).toBe("ip_required");
+  });
+});
+
+describe("accountIpLimitResponse", () => {
+  it("returns IP_REQUIRED for missing IP", async () => {
+    const res = accountIpLimitResponse("ip_required");
+    expect(res.status).toBe(403);
+    const body = await res.json();
+    expect(body.code).toBe("IP_REQUIRED");
+  });
+
+  it("returns TOO_MANY_IPS for device limit", async () => {
+    const res = accountIpLimitResponse("too_many_ips");
+    expect(res.status).toBe(403);
+    const body = await res.json();
+    expect(body.code).toBe("TOO_MANY_IPS");
+  });
+});
+
+describe("enforceAccountIpLimit", () => {
+  const originalNodeEnv = process.env.NODE_ENV;
+
+  beforeEach(() => {
+    findManyMock.mockReset();
+    delete process.env.VERCEL;
+    process.env.NODE_ENV = "production";
+  });
+
+  afterEach(() => {
+    process.env.NODE_ENV = originalNodeEnv;
+  });
+
+  it("returns IP_REQUIRED response when IP is unknown in production", async () => {
+    findManyMock.mockResolvedValue([]);
+    const blocked = await enforceAccountIpLimit("user-1", "user");
+    expect(blocked).not.toBeNull();
+    const body = await blocked!.json();
+    expect(body.code).toBe("IP_REQUIRED");
   });
 });

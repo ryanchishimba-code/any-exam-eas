@@ -20,7 +20,7 @@ export const runtime = "nodejs";
 export const maxDuration = 120;
 
 export async function POST(req: Request) {
-  const ipLimited = enforceRateLimit(req, "generate-test", 40, 60_000);
+  const ipLimited = await enforceRateLimit(req, "generate-test", 40, 60_000);
   if (ipLimited) return ipLimited;
 
   const authResult = await requireAuthenticatedApi();
@@ -28,7 +28,7 @@ export async function POST(req: Request) {
 
   const { userId } = authResult;
 
-  const userLimited = enforceUserRateLimit(userId, "generate-test", 6, 60_000);
+  const userLimited = await enforceUserRateLimit(userId, "generate-test", 6, 60_000);
   if (userLimited) return userLimited;
 
   let body: unknown;

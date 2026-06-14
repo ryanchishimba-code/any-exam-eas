@@ -11,7 +11,11 @@ export const signupPlanSchema = z.enum(["trial", "subscribe"], {
 
 export const signUpSchema = z.object({
   email: z.string().email().transform(normalizeEmail),
-  password: z.string().min(8, "Password must be at least 8 characters."),
+  password: z
+    .string()
+    .min(10, "Password must be at least 10 characters.")
+    .regex(/[A-Za-z]/, "Password must include a letter.")
+    .regex(/\d/, "Password must include a number."),
   name: z.string().trim().min(1, "Name is required."),
   dateOfBirth: z.string().min(1, "Date of birth is required."),
   acceptedTerms: z.literal(true, {

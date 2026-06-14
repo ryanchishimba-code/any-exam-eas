@@ -14,7 +14,7 @@ export async function POST(req: Request) {
   if (!auth.ok) return auth.response;
 
   const { enforceUserRateLimit } = await import("@/lib/api-rate-limit");
-  const limited = enforceUserRateLimit(auth.userId, "drugs300-mnemonic", 12, 60_000);
+  const limited = await enforceUserRateLimit(auth.userId, "drugs300-mnemonic", 12, 60_000);
   if (limited) return limited;
 
   try {

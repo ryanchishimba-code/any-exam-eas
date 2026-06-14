@@ -10,13 +10,13 @@ export const runtime = "nodejs";
 type RouteContext = { params: Promise<{ userId: string }> };
 
 export async function POST(req: Request, context: RouteContext) {
-  const limited = enforceRateLimit(req, "admin-password-reset", 15, 60_000);
+  const limited = await enforceRateLimit(req, "admin-password-reset", 15, 60_000);
   if (limited) return limited;
 
   const auth = await requireAdminPermission("admin.actions");
   if (auth instanceof NextResponse) return auth;
 
-  const userLimited = enforceUserRateLimit(
+  const userLimited = await enforceUserRateLimit(
     auth.userId,
     "admin-password-reset",
     20,

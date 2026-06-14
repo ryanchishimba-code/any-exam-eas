@@ -17,7 +17,7 @@ const bodySchema = loginSchema.extend({
  * Does not create a session — client must call signIn("credentials") on success.
  */
 export async function POST(req: Request) {
-  const limited = enforceRateLimit(req, "admin-login", 8, 60_000);
+  const limited = await enforceRateLimit(req, "admin-login", 8, 60_000);
   if (limited) return limited;
 
   try {
