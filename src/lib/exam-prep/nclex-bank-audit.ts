@@ -134,6 +134,18 @@ export function resolveNclexStem(item: BankItem): string {
   return q;
 }
 
+export function normalizeNclexBankItemFields(item: BankItem): BankItem {
+  const vignette = resolveNclexVignette(item);
+  const stem = resolveNclexStem(item);
+  if (!vignette && stem === item.question) return item;
+  return {
+    ...item,
+    vignette: vignette || item.vignette,
+    scenario: vignette || item.scenario?.trim() || item.scenario,
+    question: stem || item.question,
+  };
+}
+
 export function auditNclexBankItem(item: BankItem): NclexAuditReport {
   const issues: NclexAuditIssue[] = [];
   const push = (severity: NclexAuditIssue["severity"], code: string, message: string) =>

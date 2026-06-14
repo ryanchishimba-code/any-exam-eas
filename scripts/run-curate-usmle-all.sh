@@ -24,9 +24,9 @@ if [ -f "$PIDFILE" ]; then
   fi
 fi
 
-echo "Starting USMLE AI curation (QA failing CSV, ai-first, no-rag) with $NODE"
+echo "Starting USMLE AI curation (DB queue qaPassed=false, ai-first, no-rag) with $NODE"
 nohup "$NODE" node_modules/.bin/tsx scripts/curate-usmle-ai.ts \
-  --all --max-score 10 --resume --no-rag \
+  --from-db --all --max-score 10 --resume --no-rag \
   >> "$LOG" 2>&1 &
 echo $! > "$PIDFILE"
 echo "PID $(cat "$PIDFILE") — log: $LOG"

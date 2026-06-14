@@ -275,27 +275,6 @@ function majorStateSeeds(
   return [...base, ...extras];
 }
 
-const TX = majorStateSeeds(
-  "TX",
-  "Texas",
-  "Texas State Board of Pharmacy regulates pharmacy practice.",
-  [
-    stateMpje(
-      "dispensing-procedures",
-      "A Texas pharmacist receives an emergency prescription refill for a maintenance medication. Texas rules generally require:",
-      [
-        "Limited emergency supply with documentation and prescriber follow-up per board rules",
-        "A one-year supply without contacting the prescriber",
-        "No documentation for any emergency supply",
-        "Technician-only authorization",
-      ],
-      "Limited emergency supply with documentation and prescriber follow-up per board rules",
-      "Texas allows limited emergency refills with pharmacist judgment and documentation requirements.",
-      { stateCode: "TX", tags: ["texas", "emergency refill"] }
-    ),
-  ]
-);
-
 const CA = majorStateSeeds(
   "CA",
   "California",
@@ -317,50 +296,8 @@ const CA = majorStateSeeds(
   ]
 );
 
-const NY = majorStateSeeds(
-  "NY",
-  "New York",
-  "New York Education Law Article 137 governs pharmacy practice.",
-  [
-    stateMpje(
-      "dispensing-procedures",
-      "Under New York I-STOP requirements, controlled substance prescriptions generally must be:",
-      [
-        "Electronically prescribed with limited exceptions",
-        "Verbal only from any caller",
-        "Faxed without authentication always",
-        "Dispensed without prescriber identification",
-      ],
-      "Electronically prescribed with limited exceptions",
-      "New York mandates e-prescribing for controlled substances under I-STOP with narrow exceptions.",
-      { stateCode: "NY", tags: ["new york", "I-STOP", "e-prescribing"] }
-    ),
-  ]
-);
-
-const FL = majorStateSeeds(
-  "FL",
-  "Florida",
-  "Florida Board of Pharmacy enforces Chapter 465 pharmacy law.",
-  [
-    stateMpje(
-      "pharmacy-operations",
-      "A Florida pharmacy dispenses controlled substances. E-FORCSE (Florida PDMP) rules typically require:",
-      [
-        "Reporting and/or querying per Florida PDMP statutes and board rules",
-        "No PDMP use for Schedule III-V",
-        "PDMP access only for physicians",
-        "Monthly paper reports only",
-      ],
-      "Reporting and/or querying per Florida PDMP statutes and board rules",
-      "Florida's E-FORCSE PDMP integrates with dispensing workflow for controlled substances.",
-      { stateCode: "FL", tags: ["florida", "PDMP", "E-FORCSE"] }
-    ),
-  ]
-);
-
-/** Flat list of all state-coded MPJE seeds. */
-export const MPJE_STATE_SEED_ITEMS: BankItem[] = [...OK, ...TX, ...CA, ...NY, ...FL];
+/** Flat list of legacy state-coded seeds (OK substantive + CA templated). */
+export const MPJE_STATE_SEED_ITEMS: BankItem[] = [...OK, ...CA];
 
 /** Group state seeds by subject id for HEALTH_QUESTION_BANK merge. */
 export function mergeStateSeedsIntoBank(

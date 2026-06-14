@@ -34,7 +34,7 @@ const submitSchema = z.object({
 });
 
 export async function GET(req: Request) {
-  const limited = enforceRateLimit(req, "mpje-practice-exam-get", 8, 60_000);
+  const limited = await enforceRateLimit(req, "mpje-practice-exam-get", 8, 60_000);
   if (limited) return limited;
 
   const { requirePremiumApi } = await import("@/lib/api-access");
@@ -80,7 +80,7 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const limited = enforceRateLimit(req, "mpje-practice-exam-submit", 12, 60_000);
+  const limited = await enforceRateLimit(req, "mpje-practice-exam-submit", 12, 60_000);
   if (limited) return limited;
 
   const { requirePremiumApi } = await import("@/lib/api-access");

@@ -4,6 +4,7 @@
  */
 import type { BankItem } from "@/lib/question-bank";
 import { MPJE_QUALITY_SEEDS } from "./quality-seeds";
+import { MPJE_ALL_STATE_SUBSTANTIVE_SEEDS } from "./state-substantive-seeds";
 import { mergeStateSeedsIntoBank } from "./state-seed-bank";
 
 const MPJE_DIFFICULTY: Record<string, number> = {
@@ -269,5 +270,16 @@ function mergeBanks(
   return out;
 }
 
+function bucketSubstantiveSeeds(): Record<string, BankItem[]> {
+  const buckets: Record<string, BankItem[]> = {};
+  for (const item of MPJE_ALL_STATE_SUBSTANTIVE_SEEDS) {
+    const sid = item.subjectId ?? "state-practice-act";
+    (buckets[sid] ??= []).push(item);
+  }
+  return buckets;
+}
+
 export const MPJE_QUESTION_BANK: Record<string, BankItem[]> =
-  mergeStateSeedsIntoBank(mergeBanks(MPJE_FEDERAL_BANK, bucketQualitySeeds()));
+  mergeStateSeedsIntoBank(
+    mergeBanks(MPJE_FEDERAL_BANK, bucketQualitySeeds(), bucketSubstantiveSeeds())
+  );

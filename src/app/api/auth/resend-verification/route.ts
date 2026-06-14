@@ -7,7 +7,7 @@ import { prisma } from "@/lib/prisma";
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
-  const limited = enforceRateLimit(req, "resend-verify", 5, 60_000);
+  const limited = await enforceRateLimit(req, "resend-verify", 5, 60_000);
   if (limited) return limited;
 
   const session = await auth();

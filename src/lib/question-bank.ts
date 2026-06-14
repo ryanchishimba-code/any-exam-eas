@@ -33,6 +33,8 @@ export type BankItem = {
   vignette?: string;
   ngnPayload?: Record<string, unknown>;
   tags?: string[];
+  /** Pipeline provenance: curated, ai-curated, polished, etc. */
+  source?: string;
   clinicalReasoning?: string;
   distractorRationale?: Record<string, string>;
   keyTakeaways?: string[];

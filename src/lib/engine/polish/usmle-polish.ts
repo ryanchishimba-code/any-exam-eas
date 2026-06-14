@@ -511,6 +511,10 @@ export function dedupeVignetteStem(question: string): string {
   return question;
 }
 
+export function stripEncounterBoilerplate(text: string): string {
+  return text.replace(/\s*Encounter\s+\d+\.?\s*/gi, " ").replace(/\s{2,}/g, " ").trim();
+}
+
 function cleanDiagnosisLabel(text: string): string {
   return text
     .replace(/\s*\(empiric therapy required\)\s*/gi, " ")

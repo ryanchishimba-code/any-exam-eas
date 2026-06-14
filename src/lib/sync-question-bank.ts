@@ -118,10 +118,16 @@ async function insertBatch(
     select: { contentHash: true },
   });
   const seen = new Set(existing.map((e) => e.contentHash));
-  const fresh = rows.filter((r) => !seen.has(r.contentHash));
+  const freshByHash = new Map<string, (typeof rows)[number]>();
+  for (const row of rows) {
+    if (!seen.has(row.contentHash) && !freshByHash.has(row.contentHash)) {
+      freshByHash.set(row.contentHash, row);
+    }
+  }
+  const fresh = [...freshByHash.values()];
   if (fresh.length === 0) return 0;
 
-  const result = await prisma.questionBankItem.createMany({ data: fresh });
+  const result = await prisma.questionBankItem.createMany({ data: fresh, skipDuplicates: true });
   return result.count;
 }
 

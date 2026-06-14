@@ -115,6 +115,42 @@ const STATE_LAW_PROFILES: Record<string, StateLawProfile> = {
     ],
     focusAreas: ["licensure", "dispensing", "controlled substances", "counseling"],
   },
+  IL: {
+    code: "IL",
+    boardName: "Illinois Department of Financial and Professional Regulation",
+    highlights: [
+      "Illinois Pharmacy Practice Act (225 ILCS 85)",
+      "Illinois PMP query for controlled substances",
+      "Pharmacist immunization authority and protocol requirements",
+      "PIC responsibilities and technician supervision",
+      "Emergency refill and prescription transfer documentation",
+    ],
+    focusAreas: ["PDMP", "immunizations", "PIC", "emergency refill", "compounding"],
+  },
+  NJ: {
+    code: "NJ",
+    boardName: "New Jersey Board of Pharmacy",
+    highlights: [
+      "New Jersey Pharmacy Practice Act licensure",
+      "NJPMP prescription monitoring requirements",
+      "Pharmacist-administered immunizations",
+      "Sterile compounding per USP <797> and board rules",
+      "Corresponding responsibility for controlled substances",
+    ],
+    focusAreas: ["PDMP", "immunizations", "compounding", "licensure"],
+  },
+  GA: {
+    code: "GA",
+    boardName: "Georgia Board of Pharmacy",
+    highlights: [
+      "Georgia Pharmacy Practice Act (O.C.G.A. § 26-4-1)",
+      "Georgia PDMP (GRx) query requirements",
+      "Pharmacist immunization and counseling duties",
+      "Emergency oral prescription documentation",
+      "Theft reporting and CS inventory reconciliation",
+    ],
+    focusAreas: ["PDMP", "immunizations", "counseling", "controlled substances"],
+  },
 };
 
 function buildFallbackProfile(state: MpjeState): StateLawProfile {

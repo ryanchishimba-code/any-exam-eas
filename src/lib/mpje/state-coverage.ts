@@ -1,8 +1,18 @@
 /** States with substantive, cited MPJE bank items (not name-inserted templates). */
-export const MPJE_SUBSTANTIVE_STATE_CODES = ["OK"] as const;
+export const MPJE_SUBSTANTIVE_STATE_CODES = [
+  "OK",
+  "TX",
+  "FL",
+  "NY",
+  "PA",
+  "OH",
+  "IL",
+  "NJ",
+  "GA",
+] as const;
 
 /** States with templated + a few topical items — not full statute coverage. */
-export const MPJE_TEMPLATED_STATE_CODES = ["TX", "CA", "NY", "FL"] as const;
+export const MPJE_TEMPLATED_STATE_CODES = ["CA"] as const;
 
 export type MpjeStateCoverageTier = "substantive" | "templated" | "federal-baseline";
 
