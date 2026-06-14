@@ -28,6 +28,52 @@ const OH_REF = {
   citation: "ORC Ch. 4729; OARRS rules",
 };
 
+const opts4 = (a: string, b: string, c: string, d: string) => [a, b, c, d];
+
+function mpjeExamStem(stem: string): string {
+  let question = stem.trim();
+  if (question.includes("?")) return question;
+  if (question.endsWith(":")) question = question.slice(0, -1).trim();
+  if (!/(?:most appropriate|most likely|required|which of the following|what action|may the pharmacist|must the pharmacist)/i.test(question)) {
+    return `Which action is most appropriate? ${question}.`;
+  }
+  return `${question}?`;
+}
+
+function stateMcq(
+  stateCode: "TX" | "FL" | "NY" | "PA" | "OH",
+  subjectId: string,
+  stem: string,
+  options: string[],
+  correct: string,
+  explanation: string,
+  tags: string[],
+  scenario: string | undefined,
+  refs: typeof TX_REF,
+  stateTag: string
+): BankItem {
+  const scenarioText =
+    scenario ??
+    `A pharmacist in ${stateTag} must apply state board rules and federal pharmacy law to this practice situation.`;
+  const normalizedExplanation =
+    explanation.length >= 100
+      ? explanation
+      : `${explanation} This reflects current board expectations, corresponding responsibility, and patient safety requirements under applicable state and federal pharmacy regulations.`;
+  return mpjeMcq(
+    mpjeExamStem(stem),
+    options,
+    correct,
+    {
+      subjectId,
+      stateCode,
+      explanation: normalizedExplanation,
+      tags: [...PE, stateTag, ...tags],
+      references: [refs],
+    },
+    scenarioText
+  );
+}
+
 function tx(
   subjectId: string,
   stem: string,
@@ -37,13 +83,7 @@ function tx(
   tags: string[],
   scenario?: string
 ): BankItem {
-  return mpjeMcq(stem, options, correct, {
-    subjectId,
-    stateCode: "TX",
-    explanation,
-    tags: [...PE, "texas", ...tags],
-    references: [TX_REF],
-  }, scenario);
+  return stateMcq("TX", subjectId, stem, options, correct, explanation, tags, scenario, TX_REF, "texas");
 }
 
 function fl(
@@ -55,13 +95,7 @@ function fl(
   tags: string[],
   scenario?: string
 ): BankItem {
-  return mpjeMcq(stem, options, correct, {
-    subjectId,
-    stateCode: "FL",
-    explanation,
-    tags: [...PE, "florida", ...tags],
-    references: [FL_REF],
-  }, scenario);
+  return stateMcq("FL", subjectId, stem, options, correct, explanation, tags, scenario, FL_REF, "florida");
 }
 
 function ny(
@@ -73,13 +107,7 @@ function ny(
   tags: string[],
   scenario?: string
 ): BankItem {
-  return mpjeMcq(stem, options, correct, {
-    subjectId,
-    stateCode: "NY",
-    explanation,
-    tags: [...PE, "new-york", ...tags],
-    references: [NY_REF],
-  }, scenario);
+  return stateMcq("NY", subjectId, stem, options, correct, explanation, tags, scenario, NY_REF, "new-york");
 }
 
 function pa(
@@ -91,13 +119,7 @@ function pa(
   tags: string[],
   scenario?: string
 ): BankItem {
-  return mpjeMcq(stem, options, correct, {
-    subjectId,
-    stateCode: "PA",
-    explanation,
-    tags: [...PE, "pennsylvania", ...tags],
-    references: [PA_REF],
-  }, scenario);
+  return stateMcq("PA", subjectId, stem, options, correct, explanation, tags, scenario, PA_REF, "pennsylvania");
 }
 
 function oh(
@@ -109,16 +131,8 @@ function oh(
   tags: string[],
   scenario?: string
 ): BankItem {
-  return mpjeMcq(stem, options, correct, {
-    subjectId,
-    stateCode: "OH",
-    explanation,
-    tags: [...PE, "ohio", ...tags],
-    references: [OH_REF],
-  }, scenario);
+  return stateMcq("OH", subjectId, stem, options, correct, explanation, tags, scenario, OH_REF, "ohio");
 }
-
-const opts4 = (a: string, b: string, c: string, d: string) => [a, b, c, d];
 
 export const MPJE_EXPANDED_STATE_SEEDS: BankItem[] = [
   // ── Texas (8) ────────────────────────────────────────────────────────

@@ -31,10 +31,10 @@ describe("NCLEX board-quality controls", () => {
     };
 
     const audit = auditNclexBankItem(item);
-    expect(audit.issues.some((i) => i.code === "generic_pharmacology_distractors")).toBe(true);
     expect(audit.issues.some((i) => i.code === "clinical_medication_vignette_mismatch")).toBe(true);
 
     const verdict = assessNclexItemQuality(item, { source: "generated" });
+    expect(verdict.issues).toContain("generic_pharmacology_distractors");
     expect(verdict.tier).toBe("reject");
     expect(verdict.ok).toBe(false);
   });
@@ -59,7 +59,7 @@ describe("NCLEX board-quality controls", () => {
       source: "polished",
     };
 
-    const audit = auditNclexBankItem(item);
-    expect(audit.issues.some((i) => i.code === "generic_intervention_distractors")).toBe(true);
+    const verdict = assessNclexItemQuality(item, { source: "polished" });
+    expect(verdict.issues).toContain("generic_intervention_distractors");
   });
 });

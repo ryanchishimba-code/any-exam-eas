@@ -930,9 +930,9 @@ function buildPharmacology(scenario: NursingScenario, subjectLabel: string, seed
   const med = meds[Math.abs(seed) % meds.length]!;
   const correct = `Verify the six rights, check allergies and relevant labs, and assess ${scenario.vitals.split(",")[0]?.trim().toLowerCase()} before administering ${med}`;
   const wrongs: [string, string, string] = [
-    `Administer ${med} without verifying the client's identity or allergy history`,
-    "Use another client's medication if the MAR is unavailable",
-    "Document administration before giving the medication to save time",
+    `Hold ${med} indefinitely without notifying the provider or reassessing for contraindications`,
+    `Administer ${med} using a prior-shift routine time without confirming today's order`,
+    `Proceed with ${med} after borrowing a similar dose from another client's profile`,
   ];
   const slot = Math.abs(seed + 4) % 4;
   const vignette = [

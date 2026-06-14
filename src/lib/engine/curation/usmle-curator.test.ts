@@ -15,7 +15,7 @@ const strongItem: BankItem = {
   ],
   correctAnswer: "Intravenous calcium gluconate",
   explanation:
-    "Life-threatening hyperkalemia with ECG changes requires IV calcium first for myocardial membrane stabilization.",
+    "Life-threatening hyperkalemia with ECG changes requires IV calcium first for myocardial membrane stabilization.\n\nWhy other options are incorrect:\n• Oral sodium polystyrene sulfonate: Incorrect — too slow for acute membrane stabilization with ECG changes.\n• Intravenous furosemide alone: Incorrect — does not stabilize the myocardium immediately.\n• Emergent hemodialysis without stabilization: Incorrect — IV calcium should precede dialysis when ECG changes are present.",
   tags: ["physician-educator", "hyperkalemia"],
   difficulty: 4,
 };

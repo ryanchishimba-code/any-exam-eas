@@ -40,5 +40,5 @@ export const NAPLEX_CURATED_SAMPLE_RATIO = 0.85;
 export function curatedSampleTarget(want: number, curatedAvailable: number): number {
   if (curatedAvailable <= 0) return 0;
   const ratioTarget = Math.ceil(want * NAPLEX_CURATED_SAMPLE_RATIO);
-  return Math.min(curatedAvailable, Math.max(ratioTarget, Math.min(want, curatedAvailable)));
+  return Math.min(curatedAvailable, ratioTarget, want);
 }

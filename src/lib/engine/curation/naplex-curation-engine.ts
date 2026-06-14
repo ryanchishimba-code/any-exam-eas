@@ -264,9 +264,7 @@ export async function curateNaplexBankItem(
     !triage.needsPolish &&
     triage.qaGateOk &&
     triage.qualityScore >= minServe &&
-    !opts.forceAi &&
-    working.question === item.question &&
-    working.vignette === (item.vignette ?? item.scenario)
+    !opts.forceAi
   ) {
     const validation = validateCuratedNaplexItem(working, minPass);
     return {

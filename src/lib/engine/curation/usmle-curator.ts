@@ -346,15 +346,32 @@ export async function curateUsmleBankItem(
   notes.push(`Initial QA ${before.overallScore}/10 (${before.issues.map((i) => i.code).slice(0, 3).join(", ")})`);
 
   if (!opts.aiOnly && !useAiFirst) {
+    const snapshot = JSON.stringify({
+      question: item.question,
+      vignette: item.vignette,
+      scenario: item.scenario,
+      options: item.options,
+      correctAnswer: item.correctAnswer,
+      explanation: item.explanation,
+    });
     item = tryRulePolish(item, opts.fieldId, subjectId, seed);
     const after = auditItem(item, opts);
     bankReport = auditBankItem(item, opts.fieldId);
 
     if (isAcceptable(after, bankReport.ok, minScore)) {
-      notes.push("Rule-based polish sufficient");
+      const unchanged =
+        JSON.stringify({
+          question: item.question,
+          vignette: item.vignette,
+          scenario: item.scenario,
+          options: item.options,
+          correctAnswer: item.correctAnswer,
+          explanation: item.explanation,
+        }) === snapshot;
+      notes.push(unchanged ? "Already exam-ready" : "Rule-based polish sufficient");
       return {
         item,
-        action: "rule_polished",
+        action: unchanged ? "accepted" : "rule_polished",
         before,
         after,
         bankOk: bankReport.ok,

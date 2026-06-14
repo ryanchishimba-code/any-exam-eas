@@ -6,6 +6,7 @@ import type { BankItem } from "@/lib/question-bank";
 import { isMpjeBestQuality } from "@/lib/exam-prep/mpje-quality-gate";
 import { MPJE_QUALITY_SEEDS } from "./quality-seeds";
 import { MPJE_ALL_STATE_SUBSTANTIVE_SEEDS } from "./state-substantive-seeds";
+import { MPJE_EXPANDED_STATE_SEEDS } from "./expanded-state-seeds";
 import { mergeStateSeedsIntoBank } from "./state-seed-bank";
 
 /** A+ gate — only best-tier (≥8.5) seeds are served; lower tiers remain in source files for rewrite. */
@@ -294,8 +295,22 @@ function bucketSubstantiveSeeds(): Record<string, BankItem[]> {
   return buckets;
 }
 
+function bucketExpandedSeeds(): Record<string, BankItem[]> {
+  const buckets: Record<string, BankItem[]> = {};
+  for (const item of MPJE_EXPANDED_STATE_SEEDS) {
+    const sid = item.subjectId ?? "state-practice-act";
+    (buckets[sid] ??= []).push(item);
+  }
+  return buckets;
+}
+
 export const MPJE_QUESTION_BANK: Record<string, BankItem[]> = filterBank(
   mergeStateSeedsIntoBank(
-    mergeBanks(MPJE_FEDERAL_BANK, bucketQualitySeeds(), bucketSubstantiveSeeds())
+    mergeBanks(
+      MPJE_FEDERAL_BANK,
+      bucketQualitySeeds(),
+      bucketSubstantiveSeeds(),
+      bucketExpandedSeeds()
+    )
   )
 );

@@ -2,6 +2,7 @@ import type { BankItem } from "@/lib/question-bank";
 import { auditNclexBankItem, normalizeNclexBankItemFields, resolveNclexVignette } from "@/lib/exam-prep/nclex-bank-audit";
 import { assessNclexItemQuality } from "@/lib/exam-prep/nclex-quality-gate";
 import { applyNclexStemRepairs } from "@/lib/engine/polish/nclex-generic-checks";
+import { enrichBankItemGuidelines } from "@/lib/exam-prep/enrich-guidelines";
 import { polishNclexBankItem, scoreNclexBankItem, type NclexPolishResult } from "./nclex-polish";
 
 function changed(b: BankItem, a: BankItem) {
@@ -22,8 +23,12 @@ function explain(item: BankItem): BankItem {
 }
 
 function light(item: BankItem): BankItem {
-  return meta(explain(normalizeNclexBankItemFields(applyNclexStemRepairs(item))));
+  const polished = meta(explain(normalizeNclexBankItemFields(applyNclexStemRepairs(item))));
+  return enrichBankItemGuidelines(polished, "nursing").item;
 }
+
+export const ensureNclexCuratedMetadata = meta;
+export const ensureNclexExplanation = explain;
 
 export function elevateNclexBankItem(item: BankItem, subjectId: string, subjectLabel="NCLEX nursing", seed=0, opts?: {forcePolish?: boolean}): NclexPolishResult {
   const qualityBefore=scoreNclexBankItem(item);

@@ -51,7 +51,7 @@ describe("NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01 QA", () => {
     const raw = serializeBankOptions(item);
     const parsed = parseBankOptions(raw);
     expect(parsed.options.length).toBeGreaterThanOrEqual(4);
-    for (const part of item.correctAnswer.split(",")) {
+    for (const part of item.correctAnswer.split(/\|\|\||,/)) {
       expect(parsed.options).toContain(part.trim());
     }
   });

@@ -849,7 +849,6 @@ export const MEMORY_CARDS: MemoryCard[] = [
       "Search for trigger: infection, missed insulin, new-onset DM",
     ],
     practiceTopicSlug: "internal-medicine",
-    reviewModuleSlug: "insulin-diabetes-management",
     sortOrder: 7,
   },
   {
@@ -877,7 +876,6 @@ export const MEMORY_CARDS: MemoryCard[] = [
       ],
     },
     practiceTopicSlug: "internal-medicine",
-    reviewModuleSlug: "insulin-diabetes-management",
     sortOrder: 8,
   },
   {

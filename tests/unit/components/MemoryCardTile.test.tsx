@@ -12,7 +12,7 @@ describe("MemoryCardTile", () => {
     expect(screen.getByRole("button")).toBeInTheDocument();
     expect(screen.getByText("Tables")).toBeInTheDocument();
     expect(screen.getByText("Cardiology")).toBeInTheDocument();
-    expect(screen.getByText("Deep Dive")).toBeInTheDocument();
+    expect(screen.getByText(sampleMemoryCard.topic)).toBeInTheDocument();
     expect(screen.getByText(sampleMemoryCard.teaser)).toBeInTheDocument();
     expect(screen.getByText(/open card/i)).toBeInTheDocument();
   });

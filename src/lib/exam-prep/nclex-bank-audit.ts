@@ -6,6 +6,7 @@ import type { BankItem } from "@/lib/question-bank";
 import { hasOrphanDeicticStem } from "@/lib/engine/prompts/vignette";
 import { cleanOptionText } from "@/lib/question-format";
 import { hasShiftNoteArtifacts, isVagueClinicalJudgmentStem } from "@/lib/questions/shift-notes";
+import { isGenericPharmacologyBankItem } from "@/lib/engine/polish/nclex-generic-checks";
 
 export type NclexAuditIssue = {
   code: string;
@@ -359,8 +360,35 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
     }
   }
 
+  appendGenericNclexQualityIssues(item, vignette, blob, push);
+
   const errors = issues.filter((i) => i.severity === "error");
   return { ok: errors.length === 0, issues };
+}
+
+function appendGenericNclexQualityIssues(
+  item: BankItem,
+  vignette: string,
+  blob: string,
+  push: (severity: NclexAuditIssue["severity"], code: string, message: string) => void
+) {
+  if (
+    /hypovolemic shock|postoperative hypovolemic shock|BP\s*(?:7[0-9]|8[0-2])\s*\/\s*(?:4[0-9]|5[0-9])/i.test(
+      vignette || blob
+    ) &&
+    /metoprolol|beta.?blocker|beta blocker/i.test(blob)
+  ) {
+    const blindAdministration = /administer (?:metoprolol|[\w\s]+) without verifying|administer .+ without verifying the client's identity/i.test(
+      blob
+    );
+    if (isGenericPharmacologyBankItem(item) || blindAdministration) {
+      push(
+        "error",
+        "clinical_medication_vignette_mismatch",
+        "Beta-blocker administration is contraindicated in hypovolemic shock — vignette and medication order conflict."
+      );
+    }
+  }
 }
 
 /** Safety / editorial codes that must never be served even if a stale qaPassed row exists. */

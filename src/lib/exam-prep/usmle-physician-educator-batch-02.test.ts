@@ -27,9 +27,8 @@ describe("USMLE_PHYSICIAN_EDUCATOR_BATCH_02 QA", () => {
   });
 
   it("is wired into collectHighYieldSeedRows", () => {
-    const rows = collectHighYieldSeedRows().filter((r) =>
-      r.item.tags?.includes("physician-educator-batch-02")
-    );
+    const batchItems = new Set(USMLE_PHYSICIAN_EDUCATOR_BATCH_02);
+    const rows = collectHighYieldSeedRows().filter((r) => batchItems.has(r.item));
     expect(rows.length).toBe(12);
   });
 
