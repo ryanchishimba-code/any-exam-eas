@@ -48,6 +48,8 @@ export async function POST(req: Request) {
     revalidatePath("/dashboard");
     revalidatePath("/study-hub");
     revalidatePath("/select-exam");
+    revalidatePath("/question-bank");
+    revalidatePath("/study/practice");
     return NextResponse.json({ ok: true, examSlug });
   } catch (err) {
     console.error("[POST /api/user/exam-preference]", err);

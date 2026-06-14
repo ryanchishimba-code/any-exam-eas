@@ -10,6 +10,7 @@ import {
   top500Href,
 } from "@/lib/edtech/practice-links";
 import { hubSearchHasResults, searchReferenceHub } from "@/lib/reference/hub-search";
+import { isMpjeExam } from "@/lib/edtech/exam-content-scope";
 import type { MemoryCard } from "@/lib/reference/types";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -65,11 +66,15 @@ export function ReferenceHubSearch({ examSlug, cards, onOpenCard, onQueryChange,
             setOpen(true);
           }}
           onFocus={() => setOpen(true)}
-          placeholder="Search cards, drugs, anatomy, procedures…"
+          placeholder={
+            isMpjeExam(examSlug)
+              ? "Search cards and review modules…"
+              : "Search cards, drugs, anatomy, procedures…"
+          }
           className={cn(
-            "w-full rounded-2xl border border-black/[0.08] bg-white py-3.5 pl-12 pr-24 text-sm text-[var(--color-ink)]",
-            "shadow-[var(--shadow-apple-sm)] outline-none ring-[var(--color-accent)] transition placeholder:text-[var(--color-ink-muted)]",
-            "focus:border-[var(--color-accent)]/30 focus:ring-2"
+            "w-full rounded-[14px] border-0 bg-black/[0.04] py-3 pl-11 pr-24 text-[15px] text-[var(--color-ink)]",
+            "outline-none transition placeholder:text-[var(--color-ink-muted)]",
+            "focus:bg-white focus:shadow-[0_0_0_3px_rgba(79,70,229,0.18)]"
           )}
         />
         <kbd className="pointer-events-none absolute right-12 top-1/2 hidden -translate-y-1/2 rounded-md border border-black/[0.08] bg-[var(--color-surface)] px-1.5 py-0.5 text-[10px] font-semibold text-[var(--color-ink-muted)] sm:inline">

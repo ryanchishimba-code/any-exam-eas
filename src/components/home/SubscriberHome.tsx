@@ -2,46 +2,113 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  BookMarked,
+  BookOpen,
+  Clock,
+  Sparkles,
+} from "lucide-react";
 import { AnatomyExplorerCard } from "@/components/study-hub/AnatomyExplorerCard";
-import { StudyHubModeSelector } from "@/components/study-hub/StudyHubModeSelector";
 import { Top500DrugsCard } from "@/components/study-hub/Top500DrugsCard";
 import { firstName } from "@/lib/client/returning-user";
+import { useAppPreferences } from "@/lib/client/use-app-preferences";
+import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
+import {
+  questionBankHref,
+  referenceHref,
+} from "@/lib/edtech/practice-links";
+import { fullExamLaunchHref } from "@/lib/full-exam/config";
+import { dbUi } from "@/lib/study/dashboard-ui";
 import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
+import type { ExamSlug } from "@/types/edtech";
+import { cn } from "@/lib/utils";
+
+const QUICK_ACTIONS = [
+  {
+    title: "Full Exam",
+    description: "Timed board simulation",
+    href: (slug: ExamSlug) => fullExamLaunchHref(slug),
+    icon: Clock,
+  },
+  {
+    title: "Question Bank",
+    description: "Practice by topic",
+    href: (slug: ExamSlug) => questionBankHref(slug),
+    icon: BookOpen,
+  },
+  {
+    title: "Reference",
+    description: "Brief & memory cards",
+    href: (slug: ExamSlug) => referenceHref(slug),
+    icon: BookMarked,
+  },
+] as const;
 
 export function SubscriberHome() {
   const { data: session } = useSession();
+  const { examSlug } = useAppPreferences();
+  const clinical = hasClinicalStudyTools(examSlug);
   const name = session?.user?.name ? firstName(session.user.name) : null;
 
   return (
-    <section className="aee-subscriber-home" aria-labelledby="subscriber-home-heading">
-      <div className="mx-auto max-w-[1140px] px-5 py-14 sm:px-6 sm:py-16">
-        <div className="max-w-2xl">
-          <p className="aee-subscriber-home-eyebrow">
+    <section className="bg-[#f5f5f7] py-12 sm:py-16" aria-labelledby="subscriber-home-heading">
+      <div className="mx-auto max-w-3xl px-5 sm:px-6">
+        <div className="text-center">
+          <p className={cn(dbUi.eyebrow, "inline-flex items-center gap-1.5")}>
             <Sparkles className="h-3.5 w-3.5" aria-hidden />
-            Study Hub
+            Your study hub
           </p>
-          <h2 id="subscriber-home-heading" className="aee-subscriber-home-title">
+          <h2 id="subscriber-home-heading" className="mt-2 text-[28px] font-semibold tracking-tight text-[var(--color-ink)] sm:text-[32px]">
             {name ? `Ready to study, ${name}?` : "Ready to study?"}
           </h2>
-          <p className="aee-subscriber-home-lead">
-            Question banks for NCLEX, USMLE, NAPLEX, and MPJE — plus Anatomy Explorer,
-            Reference Hub, and one Top 500 drug deck shared across every exam.
+          <p className={cn(dbUi.subtitle, "mx-auto mt-2 max-w-lg")}>
+            {clinical
+              ? "Question banks, reference, anatomy, and analytics — everything for your exam in one place."
+              : "MPJE question bank, law reference, and timed practice — curated for pharmacy jurisprudence."}
           </p>
-          <Link href={STUDY_HUB_PATH} className="aee-subscriber-home-dashboard-link group">
-            Open Study Hub
-            <ArrowRight
-              className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-              aria-hidden
-            />
+          <Link
+            href={STUDY_HUB_PATH}
+            className="mt-5 inline-flex h-11 items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 text-[15px] font-semibold text-white shadow-[var(--shadow-apple-btn)] transition hover:shadow-[var(--shadow-apple-btn-hover)]"
+          >
+            Open dashboard
+            <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
         </div>
 
-        <div className="mt-10 space-y-8">
-          <StudyHubModeSelector />
-          <div className="grid gap-4 lg:grid-cols-2">
-            <AnatomyExplorerCard />
-            <Top500DrugsCard />
+        <div className={cn(dbUi.pageShell, "mt-10")}>
+          <div className={dbUi.panel}>
+            <div className={dbUi.panelSection}>
+              <h3 className={dbUi.sectionTitle}>Quick start</h3>
+              <div className={cn(dbUi.chipRow, "mt-3")}>
+                {QUICK_ACTIONS.map((action) => (
+                  <Link
+                    key={action.title}
+                    href={action.href((examSlug ?? "nclex") as ExamSlug)}
+                    className={dbUi.actionCard}
+                  >
+                    <action.icon className="h-5 w-5 text-[var(--color-accent)]" aria-hidden />
+                    <p className="mt-2 text-[15px] font-semibold text-[var(--color-ink)]">
+                      {action.title}
+                    </p>
+                    <p className="mt-0.5 text-[12px] text-[var(--color-ink-muted)]">
+                      {action.description}
+                    </p>
+                    <span className="mt-3 inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--color-accent)]">
+                      Go
+                      <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {clinical ? (
+              <div className={cn(dbUi.sectionDivider, dbUi.panelSection, "grid gap-3 sm:grid-cols-2")}>
+                <AnatomyExplorerCard />
+                <Top500DrugsCard />
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

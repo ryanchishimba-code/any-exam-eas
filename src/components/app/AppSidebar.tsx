@@ -2,20 +2,24 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 import { BarChart3, BookMarked, BookOpen, Bone, Clock, LayoutGrid, Layers, Sparkles } from "lucide-react";
 import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
+import { useAppPreferences } from "@/lib/client/use-app-preferences";
+import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
+import { questionBankHref } from "@/lib/edtech/practice-links";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
-const NAV_ITEMS = [
+const BASE_NAV_ITEMS = [
   { href: ROUTES.dashboard, label: "Dashboard", icon: LayoutGrid, exact: true },
   { href: ROUTES.reference, label: "Reference", icon: BookMarked },
   { href: ROUTES.fullExam, label: "Full Exam", icon: Clock },
-  { href: ROUTES.questionBank, label: "Question Bank", icon: BookOpen },
-  { href: ROUTES.anatomy, label: "Anatomy Explorer", icon: Bone },
+  { href: "__question_bank__", label: "Question Bank", icon: BookOpen },
+  { href: ROUTES.anatomy, label: "Anatomy Explorer", icon: Bone, clinicalOnly: true },
   { href: ROUTES.analytics, label: "Analytics", icon: BarChart3 },
   { href: ROUTES.highYieldTopics, label: "High-Yield Topics", icon: Sparkles },
-  { href: ROUTES.drugs300, label: "Top 500", icon: Layers },
+  { href: ROUTES.drugs300, label: "Top 500", icon: Layers, clinicalOnly: true },
 ] as const;
 
 type Props = {
@@ -25,6 +29,19 @@ type Props = {
 
 export function AppSidebar({ embedded = false, onNavigate }: Props) {
   const pathname = usePathname();
+  const { examSlug } = useAppPreferences();
+  const clinical = hasClinicalStudyTools(examSlug);
+
+  const navItems = useMemo(
+    () =>
+      BASE_NAV_ITEMS.filter((item) => !("clinicalOnly" in item && item.clinicalOnly) || clinical).map(
+        (item) =>
+          item.href === "__question_bank__"
+            ? { ...item, href: examSlug ? questionBankHref(examSlug) : ROUTES.questionBank }
+            : item
+      ),
+    [clinical, examSlug]
+  );
 
   return (
     <aside className={cn(embedded ? "block w-full" : "hidden w-56 shrink-0 lg:block")}>
@@ -40,7 +57,7 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
         )}
         aria-label="Study navigation"
       >
-        {NAV_ITEMS.map((item) => {
+        {navItems.map((item) => {
           const { href, label, icon: Icon } = item;
           const exact = "exact" in item && item.exact;
           const active = exact

@@ -63,6 +63,10 @@ export async function GET(req: Request) {
   const meta = getFieldMeta(field);
   const fieldId = meta?.id ?? field.toLowerCase().replace(/\s+/g, "-");
 
+  const { enforceQuestionBankFieldAccess } = await import("@/lib/edtech/question-bank-scope");
+  const access = await enforceQuestionBankFieldAccess(userId, fieldId);
+  if (!access.ok) return access.response;
+
   const nclexLength = parseNclexTimedVariant(searchParams.get("nclexLength"));
   const mixed =
     timedExam ||

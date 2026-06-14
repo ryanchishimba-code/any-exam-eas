@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { AnatomyExplorerClient } from "@/components/anatomy/AnatomyExplorerClient";
 import { Skeleton } from "@/components/ui/skeleton";
+import { redirectMpjeFromClinicalRoutes } from "@/lib/edtech/exam-content-scope";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { loadMemoryCards } from "@/lib/reference/memory-cards";
 import { requirePremiumPage } from "@/lib/require-premium-page";
@@ -58,6 +59,7 @@ export default async function AnatomyCatalogPage({ searchParams }: PageProps) {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.anatomyCatalog)}`);
   }
 
+  await redirectMpjeFromClinicalRoutes(session.user.id);
   await requirePremiumPage(ROUTES.anatomy);
 
   const params = await searchParams;

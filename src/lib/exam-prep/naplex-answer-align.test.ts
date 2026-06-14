@@ -88,4 +88,26 @@ describe("naplex-answer-align", () => {
     expect(changed).toBe(true);
     expect(fixed.correctAnswer).toBe("Hold metformin");
   });
+
+  it("reclassifies mislabeled select_all when answer is a single option containing commas", () => {
+    const longOption =
+      "Counsel on adherence, expected benefits, monitoring, and when to call the pharmacist";
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      itemType: "select_all",
+      question: "Which counseling approach is most appropriate?",
+      options: [
+        longOption,
+        "Encourage sharing unused tablets with family members",
+        "Advise stopping without calling anyone",
+        "State that no monitoring is required",
+      ],
+      correctAnswer: longOption,
+      explanation: `Correct: ${longOption}. Allopurinol requires counseling on adherence and monitoring.`,
+    };
+    const { item: fixed, changed } = alignNaplexBankItemAnswers(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("mcq");
+    expect(correctAnswerMatchesOption(fixed.options, fixed.correctAnswer, fixed.itemType)).toBe(true);
+  });
 });

@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
-  Award,
   ChevronLeft,
   ChevronRight,
   Clock,
@@ -13,7 +12,6 @@ import {
   BookOpen,
   LayoutGrid,
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { formatAnswerDisplay } from "@/lib/full-exam/answer-serialize";
@@ -22,6 +20,7 @@ import { fullExamHref, ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamQuestion, FullExamResultsAnalysis } from "@/types/full-exam";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
+import { feUi } from "@/lib/study/full-exam-ui";
 import { cn } from "@/lib/utils";
 import { FullExamStudyLinks } from "@/components/exam/FullExamStudyLinks";
 
@@ -85,7 +84,7 @@ export function FullExamResults({
           </p>
         </header>
 
-        <article className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
+        <article className={feUi.questionPanel}>
           <div className="mb-4 flex items-center gap-2">
             {isCorrect ? (
               <CheckCircle2 className="h-5 w-5 text-teal-600" aria-hidden />
@@ -231,95 +230,83 @@ export function FullExamResults({
   }
 
   return (
-    <div className="space-y-8 pb-8">
-      <header className="text-center">
-        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-50">
-          <Award className="h-8 w-8 text-teal-600" aria-hidden />
+    <div className="space-y-6 pb-8">
+      <div className={feUi.pageShell}>
+        <div className={cn(feUi.panel, "p-6 text-center sm:p-8")}>
+          <div className={feUi.scoreRing}>
+            <span className={cn("text-3xl font-bold tabular-nums", scoreColor)}>{score}%</span>
+          </div>
+          <h1 className="mt-5 text-[24px] font-semibold tracking-tight text-[var(--color-ink)]">
+            Exam complete
+          </h1>
+          <p className="mt-2 text-[15px] text-[var(--color-ink-muted)]">{analysis.summary}</p>
+          <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">{exam.name}</p>
         </div>
-        <h1 className="mt-4 text-3xl font-semibold text-slate-900">Exam complete</h1>
-        <p className="mt-2 text-slate-600">{analysis.summary}</p>
-      </header>
+      </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-3">
         <StatCard label="Score" value={`${score}%`} valueClass={scoreColor} />
         <StatCard label="Correct" value={`${correct} / ${questions.length}`} />
-        <StatCard
-          label="Time used"
-          value={formatHms(analysis.timeUsedSec)}
-          icon={Clock}
-        />
+        <StatCard label="Time used" value={formatHms(analysis.timeUsedSec)} icon={Clock} />
       </div>
 
       {analysis.topicBreakdown.length > 0 ? (
-        <Card className="border-slate-200/80">
-          <CardHeader>
-            <CardTitle className="text-lg">Topic breakdown</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
+        <div className={cn(feUi.panel, "p-5 sm:p-6")}>
+          <h2 className={feUi.sectionTitle}>Topic breakdown</h2>
+          <div className="mt-4 space-y-4">
             {analysis.topicBreakdown.map((t) => (
               <div key={t.topic}>
-                <div className="mb-1 flex justify-between text-sm">
-                  <span className="font-medium text-slate-800">{t.topic}</span>
-                  <span className="text-slate-500">
+                <div className="mb-1 flex justify-between text-[13px]">
+                  <span className="font-medium text-[var(--color-ink)]">{t.topic}</span>
+                  <span className="text-[var(--color-ink-muted)]">
                     {t.correct}/{t.total} ({t.pct}%)
                   </span>
                 </div>
-                <Progress value={t.pct} className="h-2" />
+                <Progress value={t.pct} className="h-1.5 rounded-full bg-black/[0.06]" />
               </div>
             ))}
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       ) : null}
 
       <FullExamStudyLinks examSlug={examSlug} topicBreakdown={analysis.topicBreakdown} />
 
       {questions.length > 0 ? (
-        <div className="rounded-2xl border border-teal-200/80 bg-teal-50/50 p-5 text-center">
-          <p className="text-sm font-medium text-teal-900">
-            Walk through every question with rationales — use Previous and Next to move between
-            items.
+        <div className={cn(feUi.insetGroup, "bg-[var(--color-accent)]/5 p-5 text-center")}>
+          <p className="text-[14px] font-medium text-[var(--color-ink)]">
+            Walk through every question with rationales.
           </p>
-          <div className="mt-4 flex flex-wrap justify-center gap-3">
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
             <button
               type="button"
               onClick={() => {
                 setIndex(0);
                 setView("question");
               }}
-              className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95"
+              className={feUi.footerBtnPrimary}
             >
               <BookOpen className="h-4 w-4" />
-              Return to review
+              Review questions
             </button>
-            <button
-              type="button"
-              onClick={() => setView("overview")}
-              className="inline-flex items-center gap-2 rounded-xl border border-teal-300 bg-white px-6 py-3 text-sm font-semibold text-teal-900 hover:bg-teal-50"
-            >
+            <button type="button" onClick={() => setView("overview")} className={feUi.footerBtn}>
               <LayoutGrid className="h-4 w-4" />
-              Question overview
+              Overview
             </button>
           </div>
         </div>
       ) : null}
 
-      <div className="flex flex-wrap justify-center gap-3">
-        <Link
-          href={fullExamHref(examSlug)}
-          className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50"
-        >
+      <div className="flex flex-wrap justify-center gap-2">
+        <Link href={fullExamHref(examSlug)} className={feUi.footerBtn}>
           <RotateCcw className="h-4 w-4" /> New simulation
         </Link>
-        <Link
-          href={ROUTES.dashboard}
-          className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 hover:bg-slate-50"
-        >
-          Back to Dashboard
+        <Link href={ROUTES.dashboard} className={feUi.footerBtn}>
+          Dashboard
         </Link>
       </div>
 
-      <p className="text-center text-xs text-slate-400">
-        Session {sessionId.slice(0, 8)}… · {exam.name}
+      <p className="text-center text-[11px] text-[var(--color-ink-muted)]">
+        Session {sessionId.slice(0, 8)}…
       </p>
     </div>
   );
@@ -341,39 +328,27 @@ function ReviewFooter({
   onReturnToSummary: () => void;
 }) {
   return (
-    <footer className="fixed inset-x-0 bottom-0 z-[70] border-t border-slate-200/80 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-md">
+    <footer className={feUi.glassFooter}>
       <div className="mx-auto max-w-3xl space-y-2 px-4 py-3 sm:px-6">
         <div className="flex items-center justify-between gap-2">
-          <button
-            type="button"
-            disabled={index === 0}
-            onClick={onPrevious}
-            className="inline-flex shrink-0 items-center gap-1 rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-40 sm:px-4"
-          >
+          <button type="button" disabled={index === 0} onClick={onPrevious} className={feUi.footerBtn}>
             <ChevronLeft className="h-4 w-4" /> Previous
           </button>
-
-          <button
-            type="button"
-            onClick={onReturnToOverview}
-            className="inline-flex shrink-0 items-center gap-1 rounded-xl border border-teal-300 bg-teal-50 px-3 py-2 text-sm font-semibold text-teal-800 hover:bg-teal-100 sm:px-4"
-          >
+          <button type="button" onClick={onReturnToOverview} className={feUi.footerBtn}>
             <LayoutGrid className="h-4 w-4" /> Overview
           </button>
-
           <button
             type="button"
             onClick={onReturnToSummary}
-            className="hidden shrink-0 items-center gap-1 rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 sm:inline-flex"
+            className={cn(feUi.footerBtn, "hidden sm:inline-flex")}
           >
-            Score summary
+            Summary
           </button>
-
           <button
             type="button"
             disabled={index + 1 >= total}
             onClick={onNext}
-            className="inline-flex shrink-0 items-center gap-1 rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 disabled:opacity-40 sm:px-5"
+            className={feUi.footerBtnDark}
           >
             Next <ChevronRight className="h-4 w-4" />
           </button>
@@ -395,14 +370,14 @@ function StatCard({
   icon?: typeof Clock;
 }) {
   return (
-    <Card className="border-slate-200/80 text-center">
-      <CardContent className="pt-6">
-        {Icon ? <Icon className="mx-auto mb-2 h-5 w-5 text-slate-400" /> : null}
-        <p className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</p>
-        <p className={cn("mt-1 text-3xl font-bold tabular-nums", valueClass ?? "text-slate-900")}>
-          {value}
-        </p>
-      </CardContent>
-    </Card>
+    <div className={cn(feUi.panel, "p-4 text-center")}>
+      {Icon ? <Icon className="mx-auto mb-2 h-5 w-5 text-[var(--color-ink-muted)]" /> : null}
+      <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+        {label}
+      </p>
+      <p className={cn("mt-1 text-2xl font-bold tabular-nums", valueClass ?? "text-[var(--color-ink)]")}>
+        {value}
+      </p>
+    </div>
   );
 }

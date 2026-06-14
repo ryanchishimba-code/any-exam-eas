@@ -39,6 +39,7 @@ import type {
   FullExamAnswerState,
   FullExamSessionConfig,
 } from "@/types/full-exam";
+import { feUi } from "@/lib/study/full-exam-ui";
 import { cn } from "@/lib/utils";
 
 const ENCOURAGEMENT = [
@@ -513,7 +514,7 @@ export function FullExamSimulator({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#f4f7fb]">
+      <div className={feUi.pageBg}>
         <FloatingTimer
           totalSec={config.timeLimitSec}
           remainingSec={config.timeLimitSec}
@@ -523,18 +524,17 @@ export function FullExamSimulator({
           questionsCompleted={0}
           questionsTotal={config.questionCount}
         />
-        <div className="mx-auto max-w-3xl space-y-6 px-4 py-16 sm:px-6">
+        <div className="mx-auto max-w-2xl space-y-6 px-4 py-20 sm:px-6">
           <div className="space-y-3">
-            <div className="h-3 w-32 animate-pulse rounded bg-slate-200" />
-            <div className="h-8 w-full max-w-xl animate-pulse rounded-lg bg-slate-200" />
-            <div className="h-4 w-2/3 animate-pulse rounded bg-slate-100" />
+            <div className="h-3 w-28 animate-pulse rounded-full bg-black/[0.06]" />
+            <div className="h-9 w-full max-w-lg animate-pulse rounded-[14px] bg-black/[0.06]" />
           </div>
-          <div className="space-y-3 rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm">
+          <div className={cn(feUi.questionPanel, "space-y-3")}>
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="h-12 animate-pulse rounded-xl bg-slate-100" />
+              <div key={i} className="h-12 animate-pulse rounded-[14px] bg-black/[0.04]" />
             ))}
           </div>
-          <p className="text-center text-sm text-slate-500">Preparing your exam…</p>
+          <p className="text-center text-[13px] text-[var(--color-ink-muted)]">Preparing your exam…</p>
         </div>
       </div>
     );
@@ -542,20 +542,20 @@ export function FullExamSimulator({
 
   if (loadError) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#f4f7fb] p-6">
-        <div className="max-w-md space-y-4 text-center">
-          <p className="text-base font-medium text-slate-800">{loadError}</p>
+      <div className={cn(feUi.pageBg, "flex min-h-screen items-center justify-center p-6")}>
+        <div className={cn(feUi.panel, "max-w-md space-y-4 p-6 text-center")}>
+          <p className="text-[15px] font-medium text-[var(--color-ink)]">{loadError}</p>
           {fieldId === "mpje" ? (
-            <p className="text-sm text-slate-600">
-              Choose your MPJE state in Settings or the study hub, then start the exam again.
+            <p className="text-[13px] text-[var(--color-ink-muted)]">
+              Choose your MPJE state in Settings or the study hub, then start again.
             </p>
           ) : null}
           <button
             type="button"
             onClick={() => router.push(`/full-exam/${examSlug}`)}
-            className="rounded-xl bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-95"
+            className={feUi.footerBtnPrimary}
           >
-            Back to exam launcher
+            Back to launcher
           </button>
         </div>
       </div>
@@ -564,10 +564,9 @@ export function FullExamSimulator({
 
   if (!questions.length) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#f4f7fb] p-6">
-        <p className="text-center text-slate-600">
-          No questions available yet. Run <code className="text-xs">npm run db:seed-edtech</code> or{" "}
-          <code className="text-xs">npm run db:sync-questions</code>.
+      <div className={cn(feUi.pageBg, "flex min-h-screen items-center justify-center p-6")}>
+        <p className="text-center text-[var(--color-ink-muted)]">
+          No questions available yet. Sync the question bank and try again.
         </p>
       </div>
     );
@@ -578,11 +577,11 @@ export function FullExamSimulator({
   if (phase === "review") {
     const flaggedList = [...flaggedIndices].sort((a, b) => a - b);
     return (
-      <div className="min-h-screen bg-[#f0f4f8] text-slate-900">
-        <header className="sticky top-0 z-20 border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
-          <div className="mx-auto max-w-3xl px-4 py-4 sm:px-6">
-            <h1 className="text-lg font-semibold text-slate-900">Review before submit</h1>
-            <p className="text-sm text-slate-500">{exam.name}</p>
+      <div className={feUi.pageBg}>
+        <header className={feUi.glassHeader}>
+          <div className="mx-auto max-w-2xl px-4 py-4 sm:px-6">
+            <h1 className="text-[17px] font-semibold text-[var(--color-ink)]">Review before submit</h1>
+            <p className="text-[13px] text-[var(--color-ink-muted)]">{exam.name}</p>
           </div>
         </header>
 
@@ -596,61 +595,33 @@ export function FullExamSimulator({
           questionsTotal={questions.length}
         />
 
-        <main className="mx-auto max-w-3xl space-y-8 px-4 py-8 sm:px-6">
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-amber-200 bg-amber-50/80 p-4">
-              <p className="font-semibold text-amber-900">
-                Flagged for review ({flaggedList.length})
-              </p>
-              {flaggedList.length === 0 ? (
-                <p className="mt-2 text-sm text-slate-500">None flagged</p>
-              ) : (
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {flaggedList.map((i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      className="rounded-lg bg-white px-3 py-1 text-sm font-medium text-amber-900 shadow-sm hover:bg-amber-100"
-                      onClick={() => {
-                        setIndex(i);
-                        setPhase("exam");
-                      }}
-                    >
-                      Q{i + 1}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-            <div className="rounded-2xl border border-rose-200 bg-rose-50/80 p-4">
-              <p className="font-semibold text-rose-900">
-                Unanswered ({unansweredIndices.length})
-              </p>
-              {unansweredIndices.length === 0 ? (
-                <p className="mt-2 text-sm text-slate-500">All questions answered</p>
-              ) : (
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {unansweredIndices.map((i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      className="rounded-lg bg-white px-3 py-1 text-sm font-medium text-rose-800 shadow-sm hover:bg-rose-100"
-                      onClick={() => {
-                        setIndex(i);
-                        setPhase("exam");
-                      }}
-                    >
-                      Q{i + 1}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+        <main className="mx-auto max-w-2xl space-y-5 px-4 py-6 pb-36 sm:px-6">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <ReviewStatCard
+              title={`Flagged (${flaggedList.length})`}
+              emptyLabel="None flagged"
+              indices={flaggedList}
+              tone="amber"
+              onSelect={(i) => {
+                setIndex(i);
+                setPhase("exam");
+              }}
+            />
+            <ReviewStatCard
+              title={`Unanswered (${unansweredIndices.length})`}
+              emptyLabel="All answered"
+              indices={unansweredIndices}
+              tone="rose"
+              onSelect={(i) => {
+                setIndex(i);
+                setPhase("exam");
+              }}
+            />
           </div>
 
-          <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm">
-            <p className="text-sm font-semibold text-slate-700">Question overview</p>
-            <ol className="mt-3 grid grid-cols-5 gap-2 sm:grid-cols-8 md:grid-cols-10">
+          <div className={cn(feUi.insetGroup, "bg-white p-4")}>
+            <p className="text-[13px] font-semibold text-[var(--color-ink)]">Question overview</p>
+            <ol className="mt-3 grid grid-cols-5 gap-1.5 sm:grid-cols-8 md:grid-cols-10">
               {questions.map((_, i) => {
                 const answered = hasSelection(answers[i]?.selected ?? []);
                 const flagged = Boolean(answers[i]?.flagged);
@@ -663,11 +634,9 @@ export function FullExamSimulator({
                         setPhase("exam");
                       }}
                       className={cn(
-                        "flex h-9 w-full items-center justify-center rounded-lg text-xs font-semibold tabular-nums transition",
-                        flagged && "ring-2 ring-amber-400",
-                        answered
-                          ? "bg-teal-50 text-teal-800 hover:bg-teal-100"
-                          : "bg-rose-50 text-rose-800 hover:bg-rose-100"
+                        feUi.qNavBtn,
+                        flagged && "ring-2 ring-amber-400/80",
+                        answered ? feUi.qNavAnswered : "bg-rose-50 text-rose-700 hover:bg-rose-100"
                       )}
                     >
                       {i + 1}
@@ -678,24 +647,21 @@ export function FullExamSimulator({
             </ol>
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row">
-            {submitError ? (
-              <p className="w-full rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700" role="alert">
-                {submitError}
-              </p>
-            ) : null}
-            <button
-              type="button"
-              onClick={() => setPhase("exam")}
-              className="flex-1 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50"
-            >
+          {submitError ? (
+            <p className="rounded-[14px] bg-rose-50 px-3 py-2 text-[13px] text-rose-700" role="alert">
+              {submitError}
+            </p>
+          ) : null}
+
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <button type="button" onClick={() => setPhase("exam")} className={cn(feUi.footerBtn, "flex-1")}>
               Return to questions
             </button>
             <button
               type="button"
               disabled={submitting}
               onClick={() => void submitExam()}
-              className="flex-1 rounded-xl bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-95 disabled:opacity-60"
+              className={cn(feUi.footerBtnPrimary, "flex-1")}
             >
               Submit exam
             </button>
@@ -706,31 +672,21 @@ export function FullExamSimulator({
   }
 
   return (
-    <div className="min-h-screen bg-[#f0f4f8] text-slate-900">
-      <div
-        className="pointer-events-none fixed inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "linear-gradient(#1e3a5f 1px, transparent 1px), linear-gradient(90deg, #1e3a5f 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-        aria-hidden
-      />
-
-      <header className="sticky top-0 z-20 border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
+    <div className={feUi.pageBg}>
+      <header className={feUi.glassHeader}>
         <div className="mx-auto flex max-w-[1400px] items-center gap-4 px-4 py-3 sm:px-6">
           <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-semibold text-slate-900">{exam.name}</p>
-            <p className="text-xs text-slate-500">{encouragement}</p>
+            <p className="truncate text-[14px] font-semibold text-[var(--color-ink)]">{exam.name}</p>
+            <p className="truncate text-[12px] text-[var(--color-ink-muted)]">{encouragement}</p>
           </div>
           <div className="hidden text-right sm:block">
-            <p className="text-sm font-semibold tabular-nums text-slate-800">
-              Question {index + 1}{" "}
-              <span className="font-normal text-slate-400">/ {questions.length}</span>
+            <p className="text-[13px] font-semibold tabular-nums text-[var(--color-ink)]">
+              {index + 1}
+              <span className="font-normal text-[var(--color-ink-muted)]"> / {questions.length}</span>
             </p>
           </div>
-          <div className="w-32 sm:w-48">
-            <Progress value={progressPct} className="h-1.5" />
+          <div className="w-24 sm:w-40">
+            <Progress value={progressPct} className="h-1 rounded-full bg-black/[0.06]" />
           </div>
         </div>
       </header>
@@ -778,12 +734,12 @@ export function FullExamSimulator({
           </div>
         </aside>
 
-        <main className="min-w-0 flex-1 px-4 py-6 pb-36 sm:px-6 lg:pb-32">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wide text-teal-700 lg:hidden">
-            Q{index + 1} of {questions.length}
+        <main className="min-w-0 flex-1 px-4 py-5 pb-36 sm:px-6 lg:pb-32">
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)] lg:hidden">
+            Question {index + 1} of {questions.length}
           </p>
 
-          <article className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm sm:p-8">
+          <article className={feUi.questionPanel}>
             <QuestionRenderer
               question={current}
               selected={currentAnswer.selected}
@@ -818,31 +774,27 @@ export function FullExamSimulator({
               value={currentAnswer.notes}
               onChange={(e) => updateAnswer({ notes: e.target.value })}
               placeholder="Jot down calculations or key clues…"
-              className="h-40 w-full resize-none rounded-xl border border-slate-200 p-3 text-sm text-slate-700 focus:border-teal-400 focus:outline-none focus:ring-2 focus:ring-teal-400/20"
+              className="h-40 w-full resize-none rounded-[14px] border-0 bg-black/[0.03] p-3 text-[14px] text-[var(--color-ink)] outline-none focus:bg-white focus:shadow-[0_0_0_3px_rgba(79,70,229,0.18)]"
             />
           </div>
         </aside>
       </div>
 
-      <footer className="fixed inset-x-0 bottom-0 z-[70] border-t border-slate-200/80 bg-white/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-md">
-        <div className="mx-auto max-w-[1400px] space-y-2 px-4 py-3 sm:px-6">
+      <footer className={feUi.glassFooter}>
+        <div className="mx-auto max-w-[1400px] space-y-2.5 px-4 py-3 sm:px-6">
           <div className="flex items-center justify-between gap-2">
             <button
               type="button"
               disabled={index === 0}
               onClick={() => setIndex((i) => i - 1)}
-              className="inline-flex shrink-0 items-center gap-1 rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-40 sm:px-4"
+              className={feUi.footerBtn}
             >
               <ChevronLeft className="h-4 w-4" /> Previous
             </button>
 
             {hasEnteredReview ? (
-              <button
-                type="button"
-                onClick={() => setPhase("review")}
-                className="inline-flex shrink-0 items-center gap-1 rounded-xl border border-teal-300 bg-teal-50 px-3 py-2 text-sm font-semibold text-teal-800 hover:bg-teal-100 sm:px-4"
-              >
-                Return to review
+              <button type="button" onClick={() => setPhase("review")} className={feUi.footerBtn}>
+                Review
               </button>
             ) : null}
 
@@ -854,16 +806,12 @@ export function FullExamSimulator({
                   setHasEnteredReview(true);
                   setPhase("review");
                 }}
-                className="inline-flex shrink-0 items-center gap-1 rounded-xl bg-[var(--color-accent)] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95 disabled:opacity-60 sm:px-5"
+                className={feUi.footerBtnPrimary}
               >
                 Review & submit
               </button>
             ) : (
-              <button
-                type="button"
-                onClick={() => setIndex((i) => i + 1)}
-                className="inline-flex shrink-0 items-center gap-1 rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 sm:px-5"
-              >
+              <button type="button" onClick={() => setIndex((i) => i + 1)} className={feUi.footerBtnDark}>
                 Next <ChevronRight className="h-4 w-4" />
               </button>
             )}
@@ -874,7 +822,7 @@ export function FullExamSimulator({
               <button
                 type="button"
                 onClick={() => (paused ? resumeExam() : setPauseDialog(true))}
-                className="rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50"
+                className={feUi.footerBtn}
               >
                 {paused ? "Resume" : "Pause"}
               </button>
@@ -889,10 +837,8 @@ export function FullExamSimulator({
               type="button"
               onClick={() => updateAnswer({ flagged: !currentAnswer.flagged })}
               className={cn(
-                "inline-flex items-center gap-1.5 rounded-xl border px-3 py-2 text-sm font-semibold transition",
-                currentAnswer.flagged
-                  ? "border-amber-300 bg-amber-50 text-amber-800"
-                  : "border-slate-200 text-slate-600 hover:bg-slate-50"
+                feUi.footerBtn,
+                currentAnswer.flagged && "border-amber-300/80 bg-amber-50 text-amber-900"
               )}
             >
               <Flag className={cn("h-4 w-4", currentAnswer.flagged && "fill-amber-500 text-amber-500")} />
@@ -900,7 +846,7 @@ export function FullExamSimulator({
             </button>
             <button
               type="button"
-              className="hidden rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50 sm:inline-flex"
+              className={cn(feUi.footerBtn, "hidden sm:inline-flex")}
               onClick={() => setNotesOpen((v) => !v)}
             >
               {notesOpen ? (
@@ -908,6 +854,7 @@ export function FullExamSimulator({
               ) : (
                 <PanelRightOpen className="h-4 w-4" />
               )}
+              Notes
             </button>
           </div>
         </div>
@@ -939,11 +886,8 @@ function ExamQuestionNav({
   onSelect: (index: number) => void;
 }) {
   return (
-    <nav
-      className="rounded-2xl border border-slate-200/80 bg-white p-3 shadow-sm"
-      aria-label="Question navigation"
-    >
-      <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+    <nav className={cn(feUi.insetGroup, "bg-white p-3 shadow-[var(--shadow-apple-sm)]")} aria-label="Question navigation">
+      <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
         Questions
       </p>
       <div className="mt-2 max-h-[min(24rem,50vh)] overflow-y-auto pr-1">
@@ -961,12 +905,8 @@ function ExamQuestionNav({
                   aria-current={current ? "step" : undefined}
                   aria-label={`Question ${i + 1}${answered ? ", answered" : ""}${flagged ? ", flagged" : ""}`}
                   className={cn(
-                    "relative flex h-8 w-full items-center justify-center rounded-lg text-xs font-semibold tabular-nums transition",
-                    current
-                      ? "bg-[var(--color-accent)] text-white shadow-sm ring-2 ring-[var(--color-accent)]/30"
-                      : answered
-                        ? "bg-teal-50 text-teal-800 hover:bg-teal-100"
-                        : "bg-slate-50 text-slate-600 hover:bg-slate-100"
+                    feUi.qNavBtn,
+                    current ? feUi.qNavCurrent : answered ? feUi.qNavAnswered : feUi.qNavEmpty
                   )}
                 >
                   {i + 1}
@@ -983,5 +923,45 @@ function ExamQuestionNav({
         </ol>
       </div>
     </nav>
+  );
+}
+
+function ReviewStatCard({
+  title,
+  emptyLabel,
+  indices,
+  tone,
+  onSelect,
+}: {
+  title: string;
+  emptyLabel: string;
+  indices: number[];
+  tone: "amber" | "rose";
+  onSelect: (index: number) => void;
+}) {
+  const toneClass =
+    tone === "amber"
+      ? "border-amber-200/70 bg-amber-50/50 text-amber-950"
+      : "border-rose-200/70 bg-rose-50/50 text-rose-950";
+  return (
+    <div className={cn("rounded-[18px] border p-4", toneClass)}>
+      <p className="text-[14px] font-semibold">{title}</p>
+      {indices.length === 0 ? (
+        <p className="mt-2 text-[13px] opacity-70">{emptyLabel}</p>
+      ) : (
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {indices.map((i) => (
+            <button
+              key={i}
+              type="button"
+              className="rounded-full bg-white/90 px-3 py-1 text-[12px] font-semibold shadow-sm transition hover:bg-white"
+              onClick={() => onSelect(i)}
+            >
+              Q{i + 1}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }

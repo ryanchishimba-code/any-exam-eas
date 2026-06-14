@@ -1,5 +1,5 @@
 import type { BankItem } from "@/lib/question-bank";
-import { cleanOptionText } from "@/lib/question-format";
+import { cleanOptionText, selectAllAnswersMatchOptions } from "@/lib/question-format";
 
 export type NaplexAnswerAlignResult = {
   item: BankItem;
@@ -22,11 +22,7 @@ export function correctAnswerMatchesOption(
   if (!correctAnswer?.trim()) return false;
 
   if (type === "select_all" || type === "sata") {
-    const optionSet = new Set(options.map(norm));
-    const parts = correctAnswer.includes("|||")
-      ? correctAnswer.split("|||")
-      : correctAnswer.split(",").map((p) => p.trim());
-    return parts.filter(Boolean).every((p) => optionSet.has(norm(p)));
+    return selectAllAnswersMatchOptions(options, correctAnswer);
   }
 
   if (type === "constructed_response") {
@@ -72,6 +68,31 @@ export function inferCorrectFromDistractors(
  */
 export function alignNaplexBankItemAnswers(item: BankItem): NaplexAnswerAlignResult {
   const itemType = item.itemType ?? "mcq";
+
+  if (itemType === "select_all" || itemType === "sata") {
+    if (item.options.length >= 4) {
+      const correctAnswer = item.correctAnswer?.trim() ?? "";
+      const idx = indexOfMatchingOption(item.options, correctAnswer);
+      if (idx >= 0 && !correctAnswer.includes("|||")) {
+        const canonical = item.options[idx]!;
+        const needsTypeFix = itemType === "select_all" || itemType === "sata";
+        const needsAnswerFix = canonical !== correctAnswer;
+        if (needsTypeFix || needsAnswerFix) {
+          return {
+            item: {
+              ...item,
+              itemType: "mcq",
+              correctAnswer: canonical,
+            },
+            changed: true,
+            note: "reclassified mislabeled select_all to mcq",
+          };
+        }
+      }
+    }
+    return { item, changed: false };
+  }
+
   if (itemType !== "mcq" && itemType !== "vignette" && itemType !== "case_based") {
     return { item, changed: false };
   }

@@ -131,6 +131,11 @@ export async function POST(req: Request) {
     const body = bodySchema.parse(await req.json());
     const meta = getFieldMeta(body.field);
     const fieldId = meta?.id ?? body.field.toLowerCase().replace(/\s+/g, "-");
+
+    const { enforceQuestionBankFieldAccess } = await import("@/lib/edtech/question-bank-scope");
+    const access = await enforceQuestionBankFieldAccess(premium.userId, fieldId);
+    if (!access.ok) return access.response;
+
     const subjectId = body.subjectId;
 
     let topicPerformance: TopicPerformance[] = body.topicPerformance ?? [];

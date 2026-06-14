@@ -1,6 +1,7 @@
 import {
   cleanOptionText,
   normalizeQuestionOptions,
+  parseSelectAllCorrectAnswers,
   shuffleAnswerOptions,
 } from "@/lib/question-format";
 import { normalizeStem } from "./stem";
@@ -19,15 +20,17 @@ import {
 import { shufflePreservingSequentialSets } from "./sequential-sets";
 import type { RawQuestionInput, StudyQuestion, StudyQuestionType } from "./types";
 
-function toCorrectAnswers(type: StudyQuestionType, correct: string): string[] {
+function toCorrectAnswers(type: StudyQuestionType, correct: string, options: string[] = []): string[] {
   if (type === "drag_drop") {
     return correct
       .split(",")
       .map((s) => cleanOptionText(s.trim()))
       .filter(Boolean);
   }
+  if (type === "select_all") {
+    return parseSelectAllCorrectAnswers(options, correct);
+  }
   if (
-    type === "select_all" ||
     type === "ordered_response" ||
     type === "bow_tie" ||
     type === "matrix" ||
@@ -122,7 +125,7 @@ export function examQuestionToStudy(
     ngnPayload: q.ngnPayload,
     caseStep: q.caseStep,
     options,
-    correctAnswers: toCorrectAnswers(type, correctAnswer),
+    correctAnswers: toCorrectAnswers(type, correctAnswer, options),
     explanation: q.explanation?.trim() ?? "",
     explanationDetail: buildExplanationDetail(q),
     clinicalReasoning: q.clinicalReasoning,

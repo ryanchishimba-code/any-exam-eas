@@ -3,6 +3,7 @@
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { feUi } from "@/lib/study/full-exam-ui";
 
 export function PauseExamDialog({
   open,
@@ -24,7 +25,7 @@ export function PauseExamDialog({
         <div className="fixed inset-0 z-[300] flex items-center justify-center p-4">
           <motion.button
             type="button"
-            className="absolute inset-0 bg-slate-900/50 backdrop-blur-sm"
+            className={feUi.modalOverlay}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -34,29 +35,25 @@ export function PauseExamDialog({
           <motion.div
             role="alertdialog"
             aria-labelledby="pause-title"
-            className="relative w-full max-w-md rounded-2xl border border-slate-200 bg-white p-6 shadow-xl"
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.96 }}
+            className={feUi.modal}
+            initial={{ opacity: 0, scale: 0.96, y: 8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 8 }}
           >
-            <h2 id="pause-title" className="text-lg font-semibold text-slate-900">
+            <h2 id="pause-title" className="text-[17px] font-semibold text-[var(--color-ink)]">
               Pause exam?
             </h2>
-            <p className="mt-2 text-sm text-slate-600">
-              The timer will stop while paused. Use this break to regroup — you&apos;ve got this.
+            <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+              The timer stops while paused. Take a breath — you&apos;ve got this.
             </p>
-            <div className="mt-6 flex gap-3">
-              <button
-                type="button"
-                onClick={onCancel}
-                className="flex-1 rounded-xl border border-slate-200 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
-              >
+            <div className="mt-6 flex gap-2">
+              <button type="button" onClick={onCancel} className="flex-1 rounded-full border border-black/[0.08] py-2.5 text-[14px] font-semibold text-[var(--color-ink)] hover:bg-black/[0.02]">
                 Keep going
               </button>
               <button
                 type="button"
                 onClick={onConfirm}
-                className="flex-1 rounded-xl bg-[var(--color-accent)] py-2.5 text-sm font-semibold text-white hover:opacity-95"
+                className="flex-1 rounded-full bg-[var(--color-accent)] py-2.5 text-[14px] font-semibold text-white shadow-[var(--shadow-apple-btn)]"
               >
                 Pause
               </button>

@@ -24,6 +24,7 @@ import {
   top500Href,
 } from "@/lib/edtech/practice-links";
 import { getAnatomyStructuresForMemoryCard } from "@/lib/anatomy";
+import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { getCardMastery, setCardMastery } from "@/lib/reference/card-mastery";
 import { relatedDrugsForMemoryCard } from "@/lib/reference/hub-search";
 import { getRelatedMemoryCards } from "@/lib/reference/related-cards";
@@ -55,12 +56,13 @@ export function MemoryCardSheet({
   const [mastery, setMastery] = useState<ReturnType<typeof getCardMastery>>(null);
 
   const linkedStructures = useMemo(
-    () => (card ? getAnatomyStructuresForMemoryCard(card.id) : []),
-    [card]
+    () =>
+      card && hasClinicalStudyTools(examSlug) ? getAnatomyStructuresForMemoryCard(card.id) : [],
+    [card, examSlug]
   );
   const relatedDrugs = useMemo(
-    () => (card ? relatedDrugsForMemoryCard(card) : []),
-    [card]
+    () => (card ? relatedDrugsForMemoryCard(card, 4, examSlug) : []),
+    [card, examSlug]
   );
   const relatedCards = useMemo(
     () => (card ? getRelatedMemoryCards(card, allCards, 3) : []),

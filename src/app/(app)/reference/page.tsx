@@ -20,18 +20,10 @@ export const metadata = {
 
 function ReferenceSkeleton() {
   return (
-    <div className="space-y-8">
-      <Skeleton className="h-56 w-full rounded-3xl" />
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <Skeleton key={i} className="h-24 rounded-2xl" />
-        ))}
-      </div>
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {Array.from({ length: 3 }).map((_, i) => (
-          <Skeleton key={i} className="h-52 w-full rounded-2xl" />
-        ))}
-      </div>
+    <div className="mx-auto max-w-5xl space-y-4">
+      <Skeleton className="h-20 w-full rounded-[18px]" />
+      <Skeleton className="h-28 w-full rounded-[20px]" />
+      <Skeleton className="h-[28rem] w-full rounded-[28px]" />
     </div>
   );
 }

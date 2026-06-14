@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { BookMarked, GraduationCap, Pill } from "lucide-react";
 import { deepDiveTopicHref, referenceCardHref } from "@/lib/edtech/practice-links";
+import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { getReviewModuleTitle } from "@/lib/edtech/topic-graph";
 import type { StudyQuestion } from "@/lib/questions/types";
 import type { ExamSlug } from "@/types/edtech";
@@ -47,6 +48,7 @@ export function QuestionRelatedLinks({
   const meta = readRelatedMeta(question);
   if (!meta) return null;
 
+  const clinical = hasClinicalStudyTools(examSlug);
   const moduleTitle = meta.reviewModuleSlug
     ? getReviewModuleTitle(meta.reviewModuleSlug)
     : null;
@@ -86,7 +88,7 @@ export function QuestionRelatedLinks({
         ))}
       </div>
 
-      {meta.top500Drugs?.length ? (
+      {clinical && meta.top500Drugs?.length ? (
         <div className="mt-3">
           <p className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
             <Pill className="h-3 w-3" aria-hidden />

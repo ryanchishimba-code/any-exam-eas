@@ -20,7 +20,12 @@ import {
   type QuestionBankStyle,
 } from "@/lib/exam/modes";
 import { mpjePracticeExamHref, STUDY_HUB_PATH } from "@/lib/study-hub/config";
-import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import { EXAM_CATALOG, examSlugFromFieldId } from "@/lib/edtech/exams";
+import { useAppPreferences } from "@/lib/client/use-app-preferences";
+import {
+  fieldIdForExamSlug,
+  fieldMatchesExamSlug,
+} from "@/lib/edtech/question-bank-scope";
 import { fullExamLaunchHref, fullExamSessionHref } from "@/lib/full-exam/config";
 import { navigateHard } from "@/lib/client/navigate-hard";
 import { ROUTES } from "@/lib/routes";
@@ -42,6 +47,8 @@ import {
 } from "@/lib/exam-prep/practice-modes";
 import type { ExamFieldId } from "@/lib/exam-prep/types";
 import { QuestionBankSetup } from "./QuestionBankSetup";
+import { QuestionBankExamHero } from "./question-bank/QuestionBankExamHero";
+import { QuestionBankSection, QuestionBankSegment } from "./question-bank/QuestionBankSection";
 import { MpjeVariantSelector } from "./MpjeVariantSelector";
 import { MpjeStateSelect } from "./MpjeStateSelect";
 import { MpjePracticeBanner } from "./MpjePracticeBanner";
@@ -58,7 +65,9 @@ import { Button } from "@/components/ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { cn } from "@/lib/utils";
 import { parseTopicPracticeReturn } from "@/lib/edtech/practice-links";
+import { qbUi } from "@/lib/study/question-bank-ui";
 import { TopicPracticeReturnBanner } from "./TopicPracticeReturnBanner";
+import type { ExamSlug } from "@/types/edtech";
 
 const StudySessionPlayer = dynamic(
   () => import("./StudySessionPlayer").then((m) => m.StudySessionPlayer),
@@ -147,14 +156,31 @@ function buildTimedPracticeUrl(
   return `${base}?${qs.toString()}`;
 }
 
-export function StudyBankPractice() {
+function initialFieldLabel(preferredExamSlug?: ExamSlug): string {
+  if (preferredExamSlug) {
+    const meta = getFieldMetaById(fieldIdForExamSlug(preferredExamSlug));
+    if (meta) return meta.label;
+  }
+  return DEFAULT_STUDY_FIELD_LABEL;
+}
+
+export function StudyBankPractice({
+  preferredExamSlug,
+  lockExam = false,
+}: {
+  preferredExamSlug?: ExamSlug;
+  lockExam?: boolean;
+} = {}) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { examSlug: clientExamSlug, loading: prefLoading } = useAppPreferences();
   const modeParam = searchParams.get("mode");
   const fieldParam = searchParams.get("field");
   const onQuestionBank = pathname === ROUTES.questionBank;
   const practiceBase = onQuestionBank ? ROUTES.questionBank : "/study/practice";
+  const effectiveExamSlug = preferredExamSlug ?? clientExamSlug;
+  const examLocked = lockExam || onQuestionBank;
 
   const practiceMode = resolvePracticeMode(
     modeParam && !LEGACY_MODES.has(modeParam) ? modeParam : null,
@@ -162,7 +188,7 @@ export function StudyBankPractice() {
   );
   const isTimedExam = practiceMode === "timed";
 
-  const [field, setField] = useState(DEFAULT_STUDY_FIELD_LABEL);
+  const [field, setField] = useState(() => initialFieldLabel(preferredExamSlug));
   const [subjectId, setSubjectId] = useState("");
   const [questionCount, setQuestionCount] = useState(25);
   const [bankPace, setBankPace] = useState<QuestionBankPace>("untimed");
@@ -260,11 +286,56 @@ export function StudyBankPractice() {
   }, [searchParams]);
 
   useEffect(() => {
-    if (fieldParam) {
-      const meta = getFieldMeta(fieldParam) ?? getFieldMetaById(fieldParam);
-      if (meta) setField(meta.label);
+    if (prefLoading && !preferredExamSlug) return;
+
+    const paramMeta = fieldParam
+      ? getFieldMeta(fieldParam) ?? getFieldMetaById(fieldParam)
+      : undefined;
+
+    if (effectiveExamSlug && examLocked) {
+      const expectedId = fieldIdForExamSlug(effectiveExamSlug);
+      const expectedMeta = getFieldMetaById(expectedId);
+      if (!expectedMeta) return;
+
+      if (paramMeta && !fieldMatchesExamSlug(paramMeta.id, effectiveExamSlug)) {
+        const qs = new URLSearchParams(searchParams.toString());
+        qs.set("field", expectedId);
+        router.replace(`${practiceBase}?${qs.toString()}`, { scroll: false });
+        setField(expectedMeta.label);
+        return;
+      }
+
+      setField(expectedMeta.label);
+
+      if (!fieldParam || fieldParam !== expectedId) {
+        const qs = new URLSearchParams(searchParams.toString());
+        qs.set("field", expectedId);
+        if (onQuestionBank && !qs.has("mode")) qs.set("mode", "bank");
+        router.replace(`${practiceBase}?${qs.toString()}`, { scroll: false });
+      }
+      return;
     }
-  }, [fieldParam]);
+
+    if (paramMeta) {
+      setField(paramMeta.label);
+      return;
+    }
+
+    if (effectiveExamSlug) {
+      const expectedMeta = getFieldMetaById(fieldIdForExamSlug(effectiveExamSlug));
+      if (expectedMeta) setField(expectedMeta.label);
+    }
+  }, [
+    effectiveExamSlug,
+    examLocked,
+    fieldParam,
+    onQuestionBank,
+    practiceBase,
+    prefLoading,
+    preferredExamSlug,
+    router,
+    searchParams,
+  ]);
 
   useEffect(() => {
     if (isTimedExam) return;
@@ -592,254 +663,249 @@ export function StudyBankPractice() {
   }
 
   const activeMode = EXAM_MODES.find((m) => m.id === practiceMode);
-  const otherMode = EXAM_MODES.find((m) => m.id !== practiceMode);
-  const timedExamLink =
-    otherMode?.id === "timed" && examSlugFromFieldId(fieldId)
-      ? fullExamLaunchHref(examSlugFromFieldId(fieldId)!)
-      : otherMode
-        ? `${practiceBase}?mode=${otherMode.param}&field=${encodeURIComponent(fieldId)}`
-        : null;
+  const activeExamOption = EXAM_FIELD_OPTIONS.find((opt) => opt.id === fieldId);
+  const lockedExam = effectiveExamSlug ? EXAM_CATALOG[effectiveExamSlug] : null;
 
   return (
-    <div id="practice-launcher" className="mt-8 scroll-mt-24 space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <Link
-          href={STUDY_HUB_PATH}
-          className="text-sm font-medium text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
-        >
-          ← Study Hub
-        </Link>
-        {otherMode && timedExamLink ? (
+    <div
+      id="practice-launcher"
+      className={cn(qbUi.page, onQuestionBank ? "mt-0 scroll-mt-20" : "mt-8 scroll-mt-24")}
+    >
+      {!onQuestionBank ? (
+        <div className="flex flex-wrap items-center justify-between gap-3 px-0.5">
           <Link
-            href={timedExamLink}
-            className="text-sm font-medium text-[var(--color-accent)] transition hover:underline"
+            href={STUDY_HUB_PATH}
+            className="text-[13px] font-medium text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
           >
-            Switch to {otherMode.label}
+            ← Study Hub
           </Link>
-        ) : null}
-      </div>
-
-      <div className="rounded-2xl border border-black/[0.06] bg-black/[0.02] px-5 py-4">
-        <p className="font-semibold text-[var(--color-ink)]">{activeMode?.label}</p>
-        <p className="mt-1 text-sm text-[var(--color-ink-muted)]">{activeMode?.description}</p>
-      </div>
-
-      <div className="apple-card space-y-6 p-4 sm:p-6 md:p-8">
-        <div>
-          <label className="apple-label">Exam</label>
-          <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
-            {EXAM_FIELD_OPTIONS.map((opt) => (
-              <button
-                key={opt.id}
-                type="button"
-                onClick={() => {
-                  const meta = getFieldMetaById(opt.id);
-                  if (meta) setField(meta.label);
-                  router.replace(`${practiceBase}?field=${encodeURIComponent(opt.fieldParam)}`, {
-                    scroll: false,
-                  });
-                }}
-                className={cn(
-                  "rounded-xl border px-3 py-2.5 text-left text-sm transition",
-                  fieldId === opt.id
-                    ? "border-[var(--color-accent)] bg-[var(--color-accent)]/5 ring-1 ring-[var(--color-accent)]"
-                    : "border-black/[0.08] bg-white hover:border-black/[0.12]"
-                )}
-              >
-                <p className="font-semibold text-[var(--color-ink)]">{opt.label}</p>
-              </button>
-            ))}
-          </div>
         </div>
+      ) : null}
 
-        <div>
-          <label className="apple-label">Practice mode</label>
-          <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
-            {PRACTICE_MODES.map((m) => {
-              const Icon = MODE_ICONS[m.icon as keyof typeof MODE_ICONS] ?? Zap;
-              return (
-                <button
-                  key={m.id}
-                  type="button"
-                  onClick={() => launchPracticeMode(m.id)}
-                  className={cn(
-                    "rounded-xl border px-3 py-3 text-left transition",
-                    hubMode === m.id
-                      ? "border-[var(--color-accent)] bg-[var(--color-accent)]/5 ring-1 ring-[var(--color-accent)]"
-                      : "border-black/[0.08] bg-white hover:border-black/[0.12]"
-                  )}
-                >
-                  <Icon className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
-                  <p className="mt-2 text-sm font-semibold text-[var(--color-ink)]">{m.label}</p>
-                  <p className="mt-0.5 text-xs text-[var(--color-ink-muted)]">{m.timing}</p>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {isMpje && mpjeVariant === "state" && (
-          <MpjePracticeBanner stateCode={mpjeState} />
-        )}
-
-        {isMpje && (
-          <div className="space-y-5">
-            <MpjeVariantSelector
-              variant={mpjeVariant}
-              onVariantChange={(v) => {
-                setMpjeVariant(v);
-                syncPracticeUrl({ mpjeVariant: v });
-              }}
-              stateCode={mpjeState}
-              onStateChange={(code) => {
-                setMpjeState(code);
-                syncPracticeUrl({ mpjeState: code });
-              }}
+      <div className={qbUi.pageShell}>
+        <div className={cn(qbUi.panel, qbUi.panelInner)}>
+          {examLocked && lockedExam && effectiveExamSlug ? (
+            <QuestionBankExamHero
+              exam={lockedExam}
+              examSlug={effectiveExamSlug}
+              description={activeExamOption?.description}
             />
-            {mpjeVariant === "state" && (
-              <MpjeStateSelect
-                value={mpjeState}
-                disabled={loading}
-                onChange={(code) => {
+          ) : null}
+
+          <QuestionBankSection title="Practice type" hint={activeMode?.description}>
+            <QuestionBankSegment
+              ariaLabel="Practice type"
+              value={practiceMode}
+              onChange={(mode) => {
+                const qs = new URLSearchParams(searchParams.toString());
+                qs.set("mode", mode);
+                if (mode === "timed") {
+                  qs.delete("subjectId");
+                  qs.delete("count");
+                  qs.delete("pace");
+                  qs.delete("style");
+                }
+                router.replace(`${practiceBase}?${qs.toString()}`, { scroll: false });
+              }}
+              options={[
+                { id: "bank", label: "Question Bank" },
+                { id: "timed", label: "Timed Exam" },
+              ]}
+            />
+          </QuestionBankSection>
+
+          {!examLocked && (
+            <QuestionBankSection title="Exam">
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                {EXAM_FIELD_OPTIONS.map((opt) => (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    onClick={() => {
+                      const meta = getFieldMetaById(opt.id);
+                      if (meta) setField(meta.label);
+                      router.replace(`${practiceBase}?field=${encodeURIComponent(opt.fieldParam)}`, {
+                        scroll: false,
+                      });
+                    }}
+                    className={cn(
+                      "rounded-[16px] border px-3 py-2.5 text-left text-sm transition active:scale-[0.99]",
+                      fieldId === opt.id
+                        ? "border-[var(--color-accent)]/35 bg-[var(--color-accent)]/5 ring-1 ring-[var(--color-accent)]/20"
+                        : "border-black/[0.06] bg-white hover:border-black/[0.1]"
+                    )}
+                  >
+                    <p className="font-semibold text-[var(--color-ink)]">{opt.label}</p>
+                  </button>
+                ))}
+              </div>
+            </QuestionBankSection>
+          )}
+
+          <QuestionBankSection
+            title="Quick start"
+            hint="Jump into a preset session — settings update automatically."
+          >
+            <div className={cn(qbUi.chipRow, "snap-x snap-mandatory px-0.5")}>
+              {PRACTICE_MODES.map((m) => {
+                const Icon = MODE_ICONS[m.icon as keyof typeof MODE_ICONS] ?? Zap;
+                const active = hubMode === m.id;
+                return (
+                  <button
+                    key={m.id}
+                    type="button"
+                    onClick={() => launchPracticeMode(m.id)}
+                    className={cn(qbUi.modeCard, active && qbUi.modeCardActive)}
+                  >
+                    <Icon className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+                    <p className="mt-2 text-[14px] font-semibold text-[var(--color-ink)]">{m.label}</p>
+                    <p className="mt-0.5 text-[11px] text-[var(--color-ink-muted)]">{m.timing}</p>
+                  </button>
+                );
+              })}
+            </div>
+          </QuestionBankSection>
+
+          {isMpje && mpjeVariant === "state" ? <MpjePracticeBanner stateCode={mpjeState} /> : null}
+
+          {isMpje ? (
+            <div className="space-y-4 rounded-[18px] border border-black/[0.05] bg-black/[0.02] p-4">
+              <MpjeVariantSelector
+                variant={mpjeVariant}
+                onVariantChange={(v) => {
+                  setMpjeVariant(v);
+                  syncPracticeUrl({ mpjeVariant: v });
+                }}
+                stateCode={mpjeState}
+                onStateChange={(code) => {
                   setMpjeState(code);
                   syncPracticeUrl({ mpjeState: code });
                 }}
               />
-            )}
-          </div>
-        )}
-
-        {!isTimedExam && (
-          <QuestionBankSetup
-            subjects={subjects}
-            subjectId={subjectId}
-            onSubjectChange={(id) => {
-              setSubjectId(id);
-              syncPracticeUrl({ subjectId: id });
-            }}
-            questionCount={questionCount}
-            onQuestionCountChange={setQuestionCount}
-            pace={bankPace}
-            onPaceChange={(p) => {
-              setBankPace(p);
-              syncPracticeUrl({ pace: p });
-            }}
-            bankStyle={bankStyle}
-            onBankStyleChange={(s) => {
-              setBankStyle(s);
-              syncPracticeUrl({ style: s });
-            }}
-          />
-        )}
-
-        {isTimedExam && isNclex && (
-          <div>
-            <label className="apple-label">NCLEX exam length</label>
-            <div className="mt-2 grid gap-3 sm:grid-cols-2">
-              {(
-                [
-                  {
-                    id: "minimum" as const,
-                    title: "85 questions",
-                    hint: "NCLEX minimum — standard timed simulation",
-                  },
-                  {
-                    id: "maximum" as const,
-                    title: "150 questions",
-                    hint: "NCLEX maximum — full-length simulation",
-                  },
-                ] as const
-              ).map((option) => (
-                <button
-                  key={option.id}
-                  type="button"
-                  onClick={() => setNclexLength(option.id)}
-                  className={cn(
-                    "rounded-xl border px-4 py-3 text-left transition",
-                    nclexLength === option.id
-                      ? "border-[var(--color-accent)] bg-[var(--color-accent)]/5 ring-1 ring-[var(--color-accent)]"
-                      : "border-black/[0.08] bg-white hover:border-black/[0.12]"
-                  )}
-                >
-                  <p className="font-medium text-[var(--color-ink)]">{option.title}</p>
-                  <p className="mt-1 text-xs text-[var(--color-ink-muted)]">{option.hint}</p>
-                </button>
-              ))}
+              {mpjeVariant === "state" ? (
+                <MpjeStateSelect
+                  value={mpjeState}
+                  disabled={loading}
+                  onChange={(code) => {
+                    setMpjeState(code);
+                    syncPracticeUrl({ mpjeState: code });
+                  }}
+                />
+              ) : null}
             </div>
-          </div>
-        )}
+          ) : null}
 
-        {isTimedExam && (
-          <div className="rounded-xl border border-black/[0.06] bg-black/[0.02] px-4 py-3">
-            <p className="text-sm font-medium text-[var(--color-ink)]">Full exam simulation</p>
-            <p className="mt-1 text-sm text-[var(--color-ink-muted)]">{lengthLabel}</p>
-            <ul className="mt-3 space-y-1.5 text-xs text-[var(--color-ink-muted)]">
-              <li>Random assorted questions from the full exam bank</li>
-              <li>No topic selection — mirrors a real board exam</li>
-              {isMpje && (
-                <li>
-                  {mpjeVariant === "uniform"
-                    ? "Uniform MPJE (UMPJE) — federal + common state law"
-                    : mpjeState
-                      ? `State-specific MPJE — ${mpjeState} pharmacy law`
-                      : "Federal pharmacy law only (no state selected)"}
-                </li>
-              )}
-              <li>Fixed board-length session with per-question timer</li>
-            </ul>
-          </div>
-        )}
+          {!isTimedExam ? (
+            <QuestionBankSetup
+              subjects={subjects}
+              subjectId={subjectId}
+              examLabel={lockedExam?.shortName ?? activeExamOption?.label}
+              examDescription={activeExamOption?.description}
+              onSubjectChange={(id) => {
+                setSubjectId(id);
+                syncPracticeUrl({ subjectId: id });
+              }}
+              questionCount={questionCount}
+              onQuestionCountChange={setQuestionCount}
+              pace={bankPace}
+              onPaceChange={(p) => {
+                setBankPace(p);
+                syncPracticeUrl({ pace: p });
+              }}
+              bankStyle={bankStyle}
+              onBankStyleChange={(s) => {
+                setBankStyle(s);
+                syncPracticeUrl({ style: s });
+              }}
+            />
+          ) : null}
 
-        {isMpje && mpjeVariant === "state" && (
-          <div className="rounded-xl border border-amber-200/80 bg-gradient-to-br from-amber-500/10 to-orange-500/5 px-4 py-4">
-            <p className="text-sm font-semibold text-[var(--color-ink)]">
-              MPJE board exam simulator
-            </p>
-            <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-              Full-length practice: 120 questions, 2.5 hours, countdown timer, flag &amp; review —
-              matches the real MPJE format for{" "}
-              {getMpjeState(mpjeState)?.name ?? (mpjeState || "federal")} pharmacy law.
-            </p>
+          {isTimedExam && isNclex ? (
+            <QuestionBankSection title="NCLEX length">
+              <QuestionBankSegment
+                ariaLabel="NCLEX exam length"
+                value={nclexLength}
+                onChange={setNclexLength}
+                options={[
+                  { id: "minimum", label: "85 questions" },
+                  { id: "maximum", label: "150 questions" },
+                ]}
+              />
+            </QuestionBankSection>
+          ) : null}
+
+          {isTimedExam ? (
+            <div className={qbUi.insetGroup}>
+              <div className="space-y-2 px-4 py-4">
+                <p className="text-[14px] font-semibold text-[var(--color-ink)]">Full exam simulation</p>
+                <p className="text-[13px] text-[var(--color-ink-muted)]">{lengthLabel}</p>
+                <ul className="space-y-1.5 pt-1 text-[12px] text-[var(--color-ink-muted)]">
+                  <li>Mixed questions from your full exam bank</li>
+                  <li>No topic filter — mirrors test-day conditions</li>
+                  {isMpje ? (
+                    <li>
+                      {mpjeVariant === "uniform"
+                        ? "Uniform MPJE — federal + common state law"
+                        : mpjeState
+                          ? `State MPJE — ${mpjeState} pharmacy law`
+                          : "Select a state for state-specific law"}
+                    </li>
+                  ) : null}
+                </ul>
+              </div>
+            </div>
+          ) : null}
+
+          {isMpje && mpjeVariant === "state" ? (
+            <div className="rounded-[18px] border border-amber-200/70 bg-gradient-to-br from-amber-500/8 to-orange-500/5 px-4 py-4">
+              <p className="text-[14px] font-semibold text-[var(--color-ink)]">MPJE board simulator</p>
+              <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">
+                120 questions · 2.5 hours · flag &amp; review for{" "}
+                {getMpjeState(mpjeState)?.name ?? (mpjeState || "federal")} law.
+              </p>
+              <Button
+                href={mpjePracticeExamHref(mpjeState)}
+                variant="secondary"
+                className="mt-3 w-full !rounded-full"
+              >
+                Full practice exam
+              </Button>
+            </div>
+          ) : null}
+
+          {error ? (
+            <div className="space-y-3">
+              <InlineError>{error}</InlineError>
+              {isMpje ? (
+                <p className="text-center text-[12px] text-[var(--color-ink-muted)]">
+                  Need help?{" "}
+                  <Link href="/feedback" className="font-medium text-[var(--color-accent)] hover:underline">
+                    Contact support
+                  </Link>
+                </p>
+              ) : null}
+            </div>
+          ) : null}
+
+          <div className={qbUi.startBar}>
             <Button
-              href={mpjePracticeExamHref(mpjeState)}
-              variant="secondary"
-              className="mt-4 w-full !rounded-xl"
+              type="button"
+              disabled={loading || (!isTimedExam && !subjectId)}
+              className={qbUi.startBtn}
+              onClick={() => void start()}
             >
-              Take Full Practice Exam (120 Questions — 2.5 Hours)
+              {loading
+                ? "Loading…"
+                : isTimedExam
+                  ? `Start timed exam · ${timedCount} questions`
+                  : bankStyle === "adaptive"
+                    ? `Start adaptive · ${questionCount} questions`
+                    : bankStyle === "weak_areas"
+                      ? `Start weak-area drill · ${questionCount} questions`
+                      : `Start ${bankPace} practice · ${questionCount} questions`}
             </Button>
           </div>
-        )}
-
-        {error && (
-          <div className="space-y-3">
-            <InlineError>{error}</InlineError>
-            {isMpje && (
-              <p className="text-center text-xs text-[var(--color-ink-muted)]">
-                Need help?{" "}
-                <Link href="/feedback" className="font-medium text-[var(--color-accent)] hover:underline">
-                  Contact support
-                </Link>{" "}
-                — we&apos;re expanding Oklahoma and federal MPJE coverage.
-              </p>
-            )}
-          </div>
-        )}
-        <Button
-          type="button"
-          disabled={loading || (!isTimedExam && !subjectId)}
-          className="w-full"
-          onClick={() => void start()}
-        >
-          {loading
-            ? "Loading…"
-            : isTimedExam
-              ? `Start timed exam (${timedCount} questions)`
-              : bankStyle === "adaptive"
-                ? `Start adaptive practice (${questionCount} questions)`
-                : bankStyle === "weak_areas"
-                  ? `Start weak-area drill (${questionCount} questions)`
-                  : `Start ${bankPace} practice (${questionCount} questions)`}
-        </Button>
+        </div>
       </div>
     </div>
   );

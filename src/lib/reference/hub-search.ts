@@ -1,6 +1,7 @@
 import { ANATOMY_STRUCTURES } from "@/lib/anatomy/structures";
 import { searchProcedures } from "@/lib/anatomy/procedures";
 import { getPrimaryStructureIdForProcedure } from "@/lib/anatomy/procedure-recommendations";
+import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
 import { searchDrugs, type DrugSearchHit } from "@/lib/drugs300/search";
 import type { ExamSlug } from "@/types/edtech";
@@ -101,12 +102,13 @@ export function searchReferenceHub(
   if (q.length < 2) {
     return { cards: [], drugs: [], modules: [], anatomy: [], procedures: [] };
   }
+  const clinical = hasClinicalStudyTools(examSlug);
   return {
     cards: queryMemoryCards(cards, { query: q }).slice(0, 6),
-    drugs: searchDrugs(q, undefined, 5),
+    drugs: clinical ? searchDrugs(q, undefined, 5) : [],
     modules: searchReviewModules(examSlug, q),
-    anatomy: searchAnatomyStructures(q),
-    procedures: searchHubProcedures(q),
+    anatomy: clinical ? searchAnatomyStructures(q) : [],
+    procedures: clinical ? searchHubProcedures(q) : [],
   };
 }
 
@@ -121,7 +123,12 @@ export function hubSearchHasResults(results: HubSearchResults): boolean {
 }
 
 /** Match Top 500 drugs mentioned in card tags/title for sheet quick links. */
-export function relatedDrugsForMemoryCard(card: MemoryCard, limit = 4): DrugSearchHit[] {
+export function relatedDrugsForMemoryCard(
+  card: MemoryCard,
+  limit = 4,
+  examSlug?: ExamSlug
+): DrugSearchHit[] {
+  if (examSlug && !hasClinicalStudyTools(examSlug)) return [];
   const terms = [...card.tags, card.title, card.topic];
   const seen = new Set<string>();
   const hits: DrugSearchHit[] = [];

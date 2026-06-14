@@ -2,22 +2,46 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BarChart3, BookMarked, BookOpen, Bone, Clock, LayoutGrid } from "lucide-react";
+import { useMemo } from "react";
+import { BarChart3, BookMarked, BookOpen, Bone, Clock, LayoutGrid, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import { useAppPreferences } from "@/lib/client/use-app-preferences";
+import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
+import { highYieldTopicsHref } from "@/lib/edtech/practice-links";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
-const ITEMS = [
+const BASE_ITEMS = [
   { href: ROUTES.dashboard, label: "Home", icon: LayoutGrid, exact: true },
   { href: ROUTES.reference, label: "Ref", icon: BookMarked, ariaLabel: "Study Reference" },
-  { href: ROUTES.anatomy, label: "Anatomy", icon: Bone, ariaLabel: "Anatomy Explorer" },
+  { href: ROUTES.anatomy, label: "Anatomy", icon: Bone, ariaLabel: "Anatomy Explorer", clinicalOnly: true },
   { href: ROUTES.fullExam, label: "Exam", icon: Clock },
   { href: ROUTES.questionBank, label: "Bank", icon: BookOpen, ariaLabel: "Question Bank" },
   { href: ROUTES.analytics, label: "Stats", icon: BarChart3 },
 ] as const;
 
+function navHrefPath(href: string) {
+  return href.split("?")[0]!;
+}
+
 export function MobileBottomNav() {
   const pathname = usePathname();
+  const { examSlug } = useAppPreferences();
+  const clinical = hasClinicalStudyTools(examSlug);
+
+  const items = useMemo(() => {
+    if (clinical) return BASE_ITEMS;
+    return BASE_ITEMS.map((item) =>
+      "clinicalOnly" in item && item.clinicalOnly
+        ? {
+            href: highYieldTopicsHref(examSlug ?? "mpje"),
+            label: "Topics",
+            icon: Sparkles,
+            ariaLabel: "High-Yield Topics",
+          }
+        : item
+    );
+  }, [clinical, examSlug]);
 
   return (
     <nav
@@ -25,13 +49,14 @@ export function MobileBottomNav() {
       aria-label="Mobile study navigation"
     >
       <ul className="mx-auto flex max-w-lg items-stretch justify-around px-2 pt-1">
-        {ITEMS.map((item) => {
+        {items.map((item) => {
           const { href, label, icon: Icon } = item;
           const exact = "exact" in item && item.exact;
           const ariaLabel = "ariaLabel" in item ? item.ariaLabel : undefined;
+          const hrefPath = navHrefPath(href);
           const active = exact
-            ? pathname === href
-            : pathname === href || pathname.startsWith(`${href}/`);
+            ? pathname === hrefPath
+            : pathname === hrefPath || pathname.startsWith(`${hrefPath}/`);
           return (
             <li key={href} className="flex-1">
               <Link

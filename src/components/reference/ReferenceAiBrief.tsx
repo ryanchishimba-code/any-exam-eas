@@ -121,7 +121,7 @@ export function ReferenceAiBrief({ examSlug, onBriefLoaded }: Props) {
       id="hub-brief"
       aria-labelledby="ai-brief-heading"
       className={cn(
-        "relative overflow-hidden rounded-3xl border border-black/10 p-5 shadow-[var(--shadow-apple-md)] sm:p-6",
+        "relative overflow-hidden rounded-[22px] border border-black/10 p-5 shadow-[var(--shadow-apple-md)] sm:p-6",
         "bg-gradient-to-br text-white",
         theme.gradient
       )}

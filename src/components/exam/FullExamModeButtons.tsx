@@ -3,13 +3,14 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { fullExamLaunchHref, getLengthOptions } from "@/lib/full-exam/config";
+import { feUi } from "@/lib/study/full-exam-ui";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
 import { cn } from "@/lib/utils";
 
 const SHORT_LABELS: Record<FullExamLengthPreset, string> = {
-  "50": "50 questions",
-  "100": "100 questions",
+  "50": "50 Q",
+  "100": "100 Q",
   full: "Full length",
 };
 
@@ -28,12 +29,14 @@ export function FullExamModeButtons({
 
   return (
     <div className={cn("space-y-3", className)}>
-      <div className="flex flex-wrap gap-2">
+      <div className={feUi.chipRow}>
         {options.map((opt) => (
           <Link
             key={opt.preset}
             href={fullExamLaunchHref(examSlug, { mode: opt.preset, autostart: true })}
-            className="rounded-full border border-black/[0.08] bg-white/90 px-3 py-1.5 text-[11px] font-semibold text-[var(--color-ink-muted)] transition hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)]"
+            className={cn(
+              "inline-flex shrink-0 rounded-full border border-black/[0.06] bg-white px-3.5 py-2 text-[12px] font-semibold text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] transition hover:border-[var(--color-accent)]/30 hover:text-[var(--color-accent)]"
+            )}
           >
             {SHORT_LABELS[opt.preset]}
           </Link>
@@ -42,10 +45,10 @@ export function FullExamModeButtons({
       {showCustomizeLink ? (
         <Link
           href={fullExamLaunchHref(examSlug)}
-          className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-accent)] transition hover:gap-2"
+          className="inline-flex items-center gap-1 text-[13px] font-semibold text-[var(--color-accent)] transition hover:gap-1.5"
         >
           Customize &amp; start
-          <ArrowRight className="h-4 w-4" aria-hidden />
+          <ArrowRight className="h-3.5 w-3.5" aria-hidden />
         </Link>
       ) : null}
     </div>

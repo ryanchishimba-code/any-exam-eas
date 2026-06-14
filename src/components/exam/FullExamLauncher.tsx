@@ -1,9 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Clock, Timer, Zap, CheckCircle2 } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { AppBreadcrumbs } from "@/components/app/AppBreadcrumbs";
+import Link from "next/link";
+import { CheckCircle2, ChevronRight, Timer, Zap } from "lucide-react";
+import { QuestionBankExamHero } from "@/components/study/question-bank/QuestionBankExamHero";
+import {
+  QuestionBankSection,
+  QuestionBankSegment,
+} from "@/components/study/question-bank/QuestionBankSection";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
   buildSessionConfig,
@@ -13,12 +17,13 @@ import {
   fullExamSessionHref,
   parseFullExamLengthPreset,
 } from "@/lib/full-exam/config";
+import { acquireAutostartLock, releaseAutostartLock } from "@/lib/full-exam/autostart-lock";
+import { feUi } from "@/lib/study/full-exam-ui";
+import { navigateHard } from "@/lib/client/navigate-hard";
+import { StudyHubMpjePicker } from "@/components/study-hub/StudyHubMpjePicker";
+import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
-import { ROUTES } from "@/lib/routes";
-import { navigateHard } from "@/lib/client/navigate-hard";
-import { acquireAutostartLock, releaseAutostartLock } from "@/lib/full-exam/autostart-lock";
-import { StudyHubMpjePicker } from "@/components/study-hub/StudyHubMpjePicker";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -94,9 +99,7 @@ export function FullExamLauncher({
   }
 
   useEffect(() => {
-    if (initialMode) {
-      setPreset(parseFullExamLengthPreset(initialMode));
-    }
+    if (initialMode) setPreset(parseFullExamLengthPreset(initialMode));
   }, [initialMode]);
 
   useEffect(() => {
@@ -108,11 +111,11 @@ export function FullExamLauncher({
 
   if (pending && autostart) {
     return (
-      <div className="flex min-h-[50vh] flex-col items-center justify-center space-y-4">
-        <div className="h-12 w-12 animate-spin rounded-full border-2 border-[var(--color-accent)] border-t-transparent" />
+      <div className="flex min-h-[50vh] flex-col items-center justify-center gap-4">
+        <div className="h-11 w-11 animate-spin rounded-full border-2 border-[var(--color-accent)] border-t-transparent" />
         <div className="text-center">
-          <p className="text-lg font-semibold text-slate-900">Starting {pageTitle}</p>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="text-[17px] font-semibold text-[var(--color-ink)]">Starting {pageTitle}</p>
+          <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">
             {preview.questionCount} questions · preparing your session…
           </p>
         </div>
@@ -121,174 +124,135 @@ export function FullExamLauncher({
   }
 
   return (
-    <div className="space-y-8">
-      <AppBreadcrumbs
-        items={[
-          { label: "Dashboard", href: ROUTES.dashboard },
-          { label: "Full Exam", href: ROUTES.fullExam },
-          { label: exam.name },
-        ]}
-      />
-      <header className="space-y-3">
-        <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">
-          Full simulated exam
-        </p>
-        <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-          {pageTitle}
-        </h1>
-        <p className="max-w-2xl text-lg text-slate-600">
-          Test-day conditions with a dynamic timer, flag-for-review, scratch-pad notes, and a
-          detailed results breakdown — designed to feel calm, not stressful.
+    <div className={cn(feUi.page, "mx-auto max-w-4xl space-y-5")}>
+      <header className="px-0.5">
+        <p className={feUi.eyebrow}>Full simulated exam</p>
+        <h1 className={cn(feUi.title, "mt-1")}>{pageTitle}</h1>
+        <p className={cn(feUi.subtitle, "mt-2 max-w-xl")}>
+          Test-day conditions with a calm timer, flag-for-review, scratch pad, and detailed
+          breakdown when you finish.
         </p>
       </header>
 
-      {examSlug === "mpje" ? (
-        <div className="rounded-2xl border border-amber-200/80 bg-amber-50/50 p-4">
-          <p className="text-sm font-semibold text-amber-900">MPJE state</p>
-          <p className="mt-1 text-sm text-amber-800/90">
-            Choose your licensing state so state-specific law questions are included.
-          </p>
-          <div className="mt-3">
-            <StudyHubMpjePicker initialStateCode={mpjeStateCode ?? undefined} persistPreference />
-          </div>
-          {!mpjeStateCode ? (
-            <p className="mt-2 text-xs text-amber-700">
-              No state saved yet — federal-only items may be used until you pick a state.
-            </p>
-          ) : null}
-        </div>
-      ) : null}
+      <div className={feUi.pageShell}>
+        <div className={cn(feUi.panel, feUi.panelInner)}>
+          <QuestionBankExamHero exam={exam} examSlug={examSlug} />
 
-      <div className="grid gap-8 lg:grid-cols-3">
-        <div className="space-y-4 lg:col-span-2">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Choose exam length
-          </h2>
-          <div className="grid gap-3 sm:grid-cols-3">
-            {options.map((opt) => (
-              <button
-                key={opt.preset}
-                type="button"
-                onClick={() => setPreset(opt.preset)}
-                className={cn(
-                  "rounded-2xl border p-4 text-left transition hover:shadow-md",
-                  preset === opt.preset
-                    ? "border-[var(--color-accent)] bg-[var(--color-accent)]/5 ring-2 ring-[var(--color-accent)]/20"
-                    : "border-slate-200 bg-white hover:border-teal-200"
-                )}
-              >
-                <p className="font-semibold text-slate-900">{opt.label}</p>
-                <p className="mt-1 text-xs leading-relaxed text-slate-500">{opt.description}</p>
-              </button>
-            ))}
-          </div>
-
-          <h2 className="pt-4 text-sm font-semibold uppercase tracking-wide text-slate-500">
-            Mode
-          </h2>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <ModeCard
-              active={timed}
-              onClick={() => setTimed(true)}
-              icon={Timer}
-              title="Timed (recommended)"
-              description="Countdown with pause support — mirrors real exam pressure."
-            />
-            <ModeCard
-              active={!timed}
-              onClick={() => setTimed(false)}
-              icon={Clock}
-              title="Untimed"
-              description="Practice pacing without pressure. Timer counts up instead."
-            />
-          </div>
-        </div>
-
-        <Card className="h-fit border-slate-200/80 lg:sticky lg:top-24">
-          <CardHeader>
-            <CardTitle className="text-lg">Session preview</CardTitle>
-            <CardDescription>What to expect when you launch</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <PreviewRow label="Questions" value={String(preview.questionCount)} />
-            <PreviewRow
-              label="Time limit"
-              value={preview.timed ? formatHms(preview.timeLimitSec) : "None"}
-            />
-            <PreviewRow label="Adaptive mix" value={preview.adaptive ? "Yes" : "Standard"} />
-            <ul className="space-y-2 border-t border-slate-100 pt-4 text-sm text-slate-600">
-              <li className="flex gap-2">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" />
-                Auto-save every answer
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" />
-                Flag, eliminate, and scratch-pad notes
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-teal-600" />
-                Rationales after submission
-              </li>
-            </ul>
-            {error ? (
-              <p className="rounded-lg bg-rose-50 px-3 py-2 text-sm text-rose-700" role="alert">
-                {error}
+          {examSlug === "mpje" ? (
+            <div className="rounded-[18px] border border-amber-200/60 bg-amber-50/40 p-4">
+              <p className="text-[14px] font-semibold text-amber-950">MPJE state</p>
+              <p className="mt-1 text-[13px] text-amber-900/80">
+                Include state-specific law questions in your simulation.
               </p>
-            ) : null}
-            <button
-              type="button"
-              disabled={pending}
-              onClick={() => void startExam()}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] py-3.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-95 disabled:opacity-60"
-            >
-              <Zap className="h-4 w-4" />
-              {pending ? "Starting…" : "Start exam"}
-            </button>
-          </CardContent>
-        </Card>
+              <div className="mt-3">
+                <StudyHubMpjePicker initialStateCode={mpjeStateCode ?? undefined} persistPreference />
+              </div>
+            </div>
+          ) : null}
+
+          <div className="grid gap-6 lg:grid-cols-[1fr,min(18rem,100%)]">
+            <div className="space-y-6">
+              <QuestionBankSection
+                step={1}
+                title="Exam length"
+                hint="Pick a sprint, extended run, or full board-length simulation."
+              >
+                <div className="grid gap-2.5 sm:grid-cols-3">
+                  {options.map((opt) => (
+                    <button
+                      key={opt.preset}
+                      type="button"
+                      onClick={() => setPreset(opt.preset)}
+                      className={cn(
+                        feUi.lengthCard,
+                        preset === opt.preset && feUi.lengthCardActive
+                      )}
+                    >
+                      <p className="text-[14px] font-semibold text-[var(--color-ink)]">{opt.label}</p>
+                      <p className="mt-1 text-[12px] leading-snug text-[var(--color-ink-muted)]">
+                        {opt.description}
+                      </p>
+                    </button>
+                  ))}
+                </div>
+              </QuestionBankSection>
+
+              <QuestionBankSection step={2} title="Timing" hint="Timed mode mirrors real exam pressure.">
+                <QuestionBankSegment
+                  ariaLabel="Exam timing"
+                  value={timed ? "timed" : "untimed"}
+                  onChange={(v) => setTimed(v === "timed")}
+                  options={[
+                    { id: "timed", label: "Timed" },
+                    { id: "untimed", label: "Untimed" },
+                  ]}
+                />
+                <p className="mt-2 text-[12px] text-[var(--color-ink-muted)]">
+                  {timed
+                    ? "Countdown with pause support — recommended for test-day readiness."
+                    : "Timer counts up; practice pacing without pressure."}
+                </p>
+              </QuestionBankSection>
+            </div>
+
+            <aside className="lg:sticky lg:top-[calc(var(--nav-height)+1rem)] lg:self-start">
+              <div className={cn(feUi.insetGroup, "bg-white p-4 shadow-[var(--shadow-apple-sm)]")}>
+                <p className="text-[14px] font-semibold text-[var(--color-ink)]">Session preview</p>
+                <div className="mt-3 divide-y divide-black/[0.06]">
+                  <PreviewRow label="Questions" value={String(preview.questionCount)} />
+                  <PreviewRow
+                    label="Time limit"
+                    value={preview.timed ? formatHms(preview.timeLimitSec) : "None"}
+                  />
+                  <PreviewRow label="Mix" value={preview.adaptive ? "Adaptive" : "Standard"} />
+                </div>
+                <ul className="mt-4 space-y-2.5 text-[13px] text-[var(--color-ink-muted)]">
+                  {[
+                    "Auto-save every answer",
+                    "Flag, eliminate & scratch pad",
+                    "Rationales after submit",
+                  ].map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent)]" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                {error ? (
+                  <p className="mt-3 rounded-[12px] bg-rose-50 px-3 py-2 text-[13px] text-rose-700" role="alert">
+                    {error}
+                  </p>
+                ) : null}
+                <button
+                  type="button"
+                  disabled={pending}
+                  onClick={() => void startExam()}
+                  className={cn(feUi.startBtn, "mt-4 bg-[var(--color-accent)]")}
+                >
+                  <Zap className="h-4 w-4" aria-hidden />
+                  {pending ? "Starting…" : "Start exam"}
+                </button>
+                <Link
+                  href={ROUTES.dashboard}
+                  className="mt-3 flex items-center justify-center gap-0.5 text-[13px] font-semibold text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
+                >
+                  Back to dashboard
+                  <ChevronRight className="h-3.5 w-3.5" aria-hidden />
+                </Link>
+              </div>
+            </aside>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-function ModeCard({
-  active,
-  onClick,
-  icon: Icon,
-  title,
-  description,
-}: {
-  active: boolean;
-  onClick: () => void;
-  icon: typeof Timer;
-  title: string;
-  description: string;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        "flex gap-3 rounded-2xl border p-4 text-left transition",
-        active
-          ? "border-teal-400 bg-teal-50/60"
-          : "border-slate-200 bg-white hover:border-slate-300"
-      )}
-    >
-      <Icon className={cn("h-5 w-5 shrink-0", active ? "text-teal-700" : "text-slate-400")} />
-      <div>
-        <p className="font-semibold text-slate-900">{title}</p>
-        <p className="mt-1 text-xs text-slate-500">{description}</p>
-      </div>
-    </button>
-  );
-}
-
 function PreviewRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex justify-between text-sm">
-      <span className="text-slate-500">{label}</span>
-      <span className="font-semibold text-slate-900">{value}</span>
+    <div className={feUi.previewRow}>
+      <span className={feUi.previewLabel}>{label}</span>
+      <span className={feUi.previewValue}>{value}</span>
     </div>
   );
 }

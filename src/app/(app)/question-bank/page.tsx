@@ -24,24 +24,25 @@ export default async function QuestionBankPage() {
   const pref = await getUserExamPreference(session.user.id);
   if (!pref) redirect(ROUTES.selectExam);
 
+  const exam = EXAM_CATALOG[pref.examSlug];
+
   return (
-    <div className="space-y-6">
-      <header>
-        <p className="text-xs font-bold uppercase tracking-[0.15em] text-teal-600">
+    <div className="mx-auto max-w-3xl space-y-4">
+      <header className="px-0.5">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
           Question Bank
         </p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-[var(--color-ink)]">
-          Browse &amp; practice questions
+        <h1 className="mt-1.5 text-[28px] font-semibold tracking-tight text-[var(--color-ink)] sm:text-[32px]">
+          Practice {exam.shortName}
         </h1>
-        <p className="mt-2 max-w-2xl text-[var(--color-ink-muted)]">
-          Pick a topic, choose how many questions you want, and review rationales — adaptive to
-          your {EXAM_CATALOG[pref.examSlug].shortName} exam.
+        <p className="mt-1.5 max-w-xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+          Pick a topic, tune your session, and start — every question matches your exam.
         </p>
       </header>
 
       <PremiumGate callbackPath={ROUTES.questionBank}>
         <Suspense fallback={<p className="text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
-          <StudyBankPractice />
+          <StudyBankPractice preferredExamSlug={pref.examSlug} lockExam />
         </Suspense>
       </PremiumGate>
     </div>

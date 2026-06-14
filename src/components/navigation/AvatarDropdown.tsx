@@ -9,6 +9,8 @@ import { BookOpen, ChevronDown, Layers, LayoutGrid, LogOut, User } from "lucide-
 import { firstName } from "@/lib/client/returning-user";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
+import { useAppPreferences } from "@/lib/client/use-app-preferences";
+import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { STUDY_HUB_PATH, TOP_500_DRUGS_PATH } from "@/lib/study-hub/config";
 
@@ -28,6 +30,8 @@ export function AvatarDropdown() {
   const pathname = usePathname();
   const { data: session } = useSession();
   const { hasPremiumAccess } = useUserAccess();
+  const { examSlug } = useAppPreferences();
+  const clinical = hasClinicalStudyTools(examSlug);
   const menuId = useId();
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -58,21 +62,25 @@ export function AvatarDropdown() {
         {
           href: STUDY_HUB_PATH,
           label: "Study Hub",
-          description: "Question banks & Top 500 drugs",
+          description: clinical ? "Question banks & Top 500 drugs" : "MPJE question bank & law reference",
           icon: LayoutGrid,
         },
-        {
-          href: "/study/practice?field=nursing",
-          label: "NCLEX",
-          description: "Nursing question bank",
-          icon: BookOpen,
-        },
-        {
-          href: TOP_500_DRUGS_PATH,
-          label: "Top 500 Drugs",
-          description: "Shared drug flashcards",
-          icon: Layers,
-        },
+        ...(clinical
+          ? [
+              {
+                href: "/study/practice?field=nursing",
+                label: "NCLEX",
+                description: "Nursing question bank",
+                icon: BookOpen,
+              },
+              {
+                href: TOP_500_DRUGS_PATH,
+                label: "Top 500 Drugs",
+                description: "Shared drug flashcards",
+                icon: Layers,
+              },
+            ]
+          : []),
       ]
     : [
         {

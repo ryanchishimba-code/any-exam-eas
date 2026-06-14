@@ -53,7 +53,7 @@ export default async function FullExamResultsPage({
         }));
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg)]">
+    <div className="min-h-screen bg-[#f5f5f7]">
       <div className="mx-auto max-w-3xl px-4 pb-8 pt-[var(--page-top)] sm:px-6">
         <FullExamResults
           examSlug={examSlug as ExamSlug}

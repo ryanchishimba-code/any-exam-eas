@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   BarChart3,
+  BookMarked,
   BookOpen,
   Bone,
   Clock,
@@ -14,6 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { FullExamModeButtons } from "@/components/exam/FullExamModeButtons";
 import { ExamSwitcher } from "@/components/edtech/ExamSwitcher";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
 import { ROUTES } from "@/lib/routes";
 import {
@@ -21,6 +23,7 @@ import {
   anatomyHref,
   highYieldTopicsHref,
   questionBankHref,
+  referenceHref,
   top500Href,
 } from "@/lib/edtech/practice-links";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
@@ -51,6 +54,7 @@ export function StudyHubDashboard({
   const exam = EXAM_CATALOG[examSlug];
   const theme = EXAM_SELECTION_THEMES[examSlug];
   const ExamIcon = theme.icon;
+  const clinical = hasClinicalStudyTools(examSlug);
 
   const cards: HubCard[] = [
     {
@@ -68,14 +72,26 @@ export function StudyHubDashboard({
       cta: "Start practicing",
       icon: BookOpen,
     },
-    {
-      title: "Anatomy Explorer",
-      description: "Explore high-yield structures in 3D — rotate, click, and link to practice.",
-      href: anatomyHref(examSlug),
-      cta: "Open explorer",
-      icon: Bone,
-      badge: "3D",
-    },
+    ...(clinical
+      ? [
+          {
+            title: "Anatomy Explorer",
+            description: "Explore high-yield structures in 3D — rotate, click, and link to practice.",
+            href: anatomyHref(examSlug),
+            cta: "Open explorer",
+            icon: Bone,
+            badge: "3D",
+          },
+        ]
+      : [
+          {
+            title: "Study Reference",
+            description: "Law memory cards, AI brief, and MPJE quick reference.",
+            href: referenceHref(examSlug),
+            cta: "Open reference",
+            icon: BookMarked,
+          },
+        ]),
     {
       title: "Full Simulated Exam",
       description: `${exam.simulatedQuestionCount} questions · ${exam.simulatedDurationMin} min — test-day conditions.`,
@@ -89,13 +105,17 @@ export function StudyHubDashboard({
       cta: "View analytics",
       icon: BarChart3,
     },
-    {
-      title: "Top 500",
-      description: "High-yield drugs and must-know pharmacology for your board.",
-      href: top500Href(examSlug),
-      cta: "Open Top 500",
-      icon: Layers,
-    },
+    ...(clinical
+      ? [
+          {
+            title: "Top 500",
+            description: "High-yield drugs and must-know pharmacology for your board.",
+            href: top500Href(examSlug),
+            cta: "Open Top 500",
+            icon: Layers,
+          },
+        ]
+      : []),
   ];
 
   return (

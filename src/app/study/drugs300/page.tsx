@@ -1,8 +1,11 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 import { PremiumGate } from "@/components/PremiumGate";
 import { PageShell } from "@/components/PageShell";
 import { StudySubnav } from "@/components/StudySubnav";
+import { redirectMpjeFromClinicalRoutes } from "@/lib/edtech/exam-content-scope";
 
 export const metadata = {
   title: "Top 500 Drugs — Study Hub",
@@ -23,7 +26,12 @@ const DrugReviewStudio = dynamic(
   }
 );
 
-export default function Drugs300Page() {
+export default async function Drugs300Page() {
+  const session = await auth();
+  if (session?.user?.id) {
+    await redirectMpjeFromClinicalRoutes(session.user.id);
+  }
+
   return (
     <PageShell
       eyebrow="Study Hub"

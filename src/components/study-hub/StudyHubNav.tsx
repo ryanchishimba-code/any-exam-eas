@@ -1,8 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { useMemo } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { BarChart3, Clock, LayoutGrid, Layers, SlidersHorizontal } from "lucide-react";
+import { useAppPreferences } from "@/lib/client/use-app-preferences";
+import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { cn } from "@/lib/utils";
 import {
   QUESTION_BANK_PATH,
@@ -16,6 +19,8 @@ export function StudyHubNav() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const mode = searchParams.get("mode");
+  const { examSlug } = useAppPreferences();
+  const clinical = hasClinicalStudyTools(examSlug);
 
   function isActive(href: string) {
     if (href === STUDY_HUB_PATH) return pathname === STUDY_HUB_PATH;
@@ -30,13 +35,18 @@ export function StudyHubNav() {
     return pathname === href;
   }
 
-  const items = [
-    { href: STUDY_HUB_PATH, label: "Study Hub", icon: LayoutGrid },
-    { href: TIMED_EXAM_PATH, label: "Timed Exam", icon: Clock },
-    { href: QUESTION_BANK_PATH, label: "Question Bank", icon: SlidersHorizontal },
-    { href: TOP_500_DRUGS_PATH, label: "Top 500 Drugs", icon: Layers },
-    { href: studyHubProgressHref(), label: "Progress", icon: BarChart3 },
-  ];
+  const items = useMemo(() => {
+    const base = [
+      { href: STUDY_HUB_PATH, label: "Study Hub", icon: LayoutGrid },
+      { href: TIMED_EXAM_PATH, label: "Timed Exam", icon: Clock },
+      { href: QUESTION_BANK_PATH, label: "Question Bank", icon: SlidersHorizontal },
+      ...(clinical
+        ? [{ href: TOP_500_DRUGS_PATH, label: "Top 500 Drugs", icon: Layers }]
+        : []),
+      { href: studyHubProgressHref(), label: "Progress", icon: BarChart3 },
+    ];
+    return base;
+  }, [clinical]);
 
   return (
     <aside className="hidden w-52 shrink-0 lg:block">

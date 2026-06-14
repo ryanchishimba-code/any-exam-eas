@@ -15,12 +15,12 @@ export function ReferenceTopicBanner({ examSlug, topicKey, cardCount }: Props) {
   const label = topicKey.replace(/-/g, " ");
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-violet-200/80 bg-violet-50/70 px-4 py-3">
+    <div className="flex flex-wrap items-center justify-between gap-3 rounded-[16px] border border-black/[0.06] bg-black/[0.02] px-4 py-3">
       <div className="flex items-start gap-2">
-        <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-violet-600" aria-hidden />
+        <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent)]" aria-hidden />
         <div>
-          <p className="text-sm font-bold capitalize text-violet-950">{label}</p>
-          <p className="text-xs text-violet-800/80">
+          <p className="text-[14px] font-semibold capitalize text-[var(--color-ink)]">{label}</p>
+          <p className="text-[12px] text-[var(--color-ink-muted)]">
             {cardCount} memory card{cardCount === 1 ? "" : "s"} for this topic
           </p>
         </div>
@@ -28,14 +28,14 @@ export function ReferenceTopicBanner({ examSlug, topicKey, cardCount }: Props) {
       <div className="flex flex-wrap items-center gap-2">
         <Link
           href={practiceTopicHref(examSlug, topicKey, 10)}
-          className="inline-flex items-center gap-1 rounded-lg bg-violet-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-violet-700"
+          className="inline-flex items-center gap-1 rounded-full bg-[var(--color-accent)] px-3.5 py-2 text-[12px] font-semibold text-white shadow-[var(--shadow-apple-btn)] hover:opacity-95"
         >
           <BookOpen className="h-3.5 w-3.5" aria-hidden />
           Practice 10
         </Link>
         <Link
           href={referenceHref(examSlug)}
-          className="inline-flex items-center gap-1 rounded-lg border border-violet-300 bg-white px-3 py-1.5 text-xs font-bold text-violet-900 hover:bg-violet-100"
+          className="inline-flex items-center gap-1 rounded-full border border-black/[0.08] bg-white px-3.5 py-2 text-[12px] font-semibold text-[var(--color-ink)] hover:bg-black/[0.02]"
         >
           <X className="h-3.5 w-3.5" aria-hidden />
           All cards

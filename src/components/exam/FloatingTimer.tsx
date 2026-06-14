@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
 import { formatHms } from "@/lib/full-exam/config";
+import { feUi } from "@/lib/study/full-exam-ui";
 import { cn } from "@/lib/utils";
 
 export type FloatingTimerProps = {
@@ -19,47 +20,29 @@ export type FloatingTimerProps = {
 
 type TimerVisuals = {
   textClass: string;
-  borderClass: string;
+  ringClass: string;
   pulse: boolean;
 };
 
-function getTimerVisuals(
-  remainingSec: number,
-  totalSec: number,
-  timed: boolean
-): TimerVisuals {
+function getTimerVisuals(remainingSec: number, totalSec: number, timed: boolean): TimerVisuals {
   if (!timed || totalSec <= 0) {
     return {
-      textClass: "text-teal-700",
-      borderClass: "border-teal-200/80 bg-teal-50/90",
+      textClass: "text-[var(--color-accent)]",
+      ringClass: "border-[var(--color-accent)]/20",
       pulse: false,
     };
   }
-
   const pulse = remainingSec <= 600;
-
   if (remainingSec <= 300) {
-    return {
-      textClass: "text-rose-700",
-      borderClass: "border-rose-200/80 bg-rose-50/90",
-      pulse,
-    };
+    return { textClass: "text-rose-600", ringClass: "border-rose-200", pulse };
   }
   if (remainingSec <= 900) {
-    return {
-      textClass: "text-amber-700",
-      borderClass: "border-amber-200/80 bg-amber-50/90",
-      pulse,
-    };
+    return { textClass: "text-amber-600", ringClass: "border-amber-200", pulse };
   }
-  return {
-    textClass: "text-emerald-700",
-    borderClass: "border-emerald-200/80 bg-emerald-50/90",
-    pulse: false,
-  };
+  return { textClass: "text-emerald-600", ringClass: "border-emerald-200", pulse: false };
 }
 
-/** Compact exam clock — time only, no progress ring. */
+/** Compact exam clock — pill style, hide with T key. */
 export function FloatingTimer({
   remainingSec,
   elapsedSec,
@@ -91,46 +74,48 @@ export function FloatingTimer({
     return (
       <motion.button
         type="button"
-        initial={{ opacity: 0, scale: 0.9 }}
+        initial={{ opacity: 0, scale: 0.92 }}
         animate={{ opacity: 1, scale: 1 }}
         onClick={() => setHidden(false)}
         className={cn(
-          "fixed z-[90] flex h-9 items-center gap-1.5 rounded-full border border-white/60 bg-white/90 px-3 text-xs font-medium text-slate-600 shadow-md backdrop-blur-md",
+          feUi.timerPill,
           "top-[calc(var(--nav-height)+0.5rem)] right-3 sm:right-4",
+          "flex h-9 items-center gap-1.5 px-3 text-[12px] font-semibold text-[var(--color-ink-muted)]",
           className
         )}
         aria-label="Show exam timer"
         title="Show timer (T)"
       >
         <Clock className="h-3.5 w-3.5" aria-hidden />
-        Show timer
+        Timer
       </motion.button>
     );
   }
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: -6 }}
+      initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
       className={cn(
-        "fixed z-[90] select-none rounded-xl border px-3 py-2 shadow-md backdrop-blur-md",
-        visuals.borderClass,
+        feUi.timerPill,
         "top-[calc(var(--nav-height)+0.5rem)] right-3 sm:right-4",
-        paused && "opacity-85",
+        "border",
+        visuals.ringClass,
+        paused && "opacity-80",
         className
       )}
       aria-live="polite"
       aria-atomic="true"
     >
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2.5">
         <Clock className={cn("h-4 w-4 shrink-0", visuals.textClass)} aria-hidden />
         <div>
-          <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-500">
+          <p className="text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
             {timed ? "Time left" : "Elapsed"}
           </p>
           <p
             className={cn(
-              "font-mono text-lg font-bold tabular-nums leading-none sm:text-xl",
+              "font-mono text-[17px] font-bold tabular-nums leading-none",
               visuals.textClass,
               visuals.pulse && !paused && "animate-pulse"
             )}
@@ -139,7 +124,7 @@ export function FloatingTimer({
           </p>
         </div>
       </div>
-      <p className="mt-1 text-center text-[10px] tabular-nums text-slate-500">
+      <p className="mt-1 border-t border-black/[0.05] pt-1 text-center text-[10px] tabular-nums text-[var(--color-ink-muted)]">
         {questionsCompleted}/{questionsTotal} answered
         {paused ? " · Paused" : ""}
       </p>

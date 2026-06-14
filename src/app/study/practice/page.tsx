@@ -1,10 +1,14 @@
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
+import { auth } from "@/auth";
 import { PremiumGate } from "@/components/PremiumGate";
 import { StudyBankPractice } from "@/components/study/StudyBankPractice";
 import { StudySubnav } from "@/components/StudySubnav";
 import { PageShell } from "@/components/PageShell";
+import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { EXAM_MODES } from "@/lib/exam/modes";
+import { requirePremiumPage } from "@/lib/require-premium-page";
+import { ROUTES } from "@/lib/routes";
 
 function practiceCallbackPath(params: { field?: string; mode?: string }) {
   const qs = new URLSearchParams();
@@ -35,6 +39,15 @@ export default async function StudyPracticePage({
   const params = await searchParams;
   if (params.field === "drugs300") redirect("/study/drugs300");
 
+  const session = await auth();
+  if (!session?.user?.id) {
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent("/study/practice")}`);
+  }
+  await requirePremiumPage("/study/practice");
+
+  const pref = await getUserExamPreference(session.user.id);
+  if (!pref) redirect(ROUTES.selectExam);
+
   const examMode = EXAM_MODES.find((m) => m.param === (params.mode === "bank" ? "bank" : "timed"));
   const callbackPath = practiceCallbackPath(params);
 
@@ -52,7 +65,7 @@ export default async function StudyPracticePage({
       <StudySubnav />
       <PremiumGate callbackPath={callbackPath}>
         <Suspense fallback={<p className="mt-8 text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
-          <StudyBankPractice />
+          <StudyBankPractice preferredExamSlug={pref.examSlug} lockExam />
         </Suspense>
       </PremiumGate>
     </PageShell>

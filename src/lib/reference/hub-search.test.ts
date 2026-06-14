@@ -49,4 +49,12 @@ describe("hub-search", () => {
     const drugs = relatedDrugsForMemoryCard(withDrugTag, 4);
     expect(Array.isArray(drugs)).toBe(true);
   });
+
+  it("excludes clinical search categories for MPJE", () => {
+    const mpjeCards = MEMORY_CARDS.filter((c) => c.examSlug === "mpje");
+    const { drugs, anatomy, procedures } = searchReferenceHub(mpjeCards, "mpje", "heart");
+    expect(drugs).toEqual([]);
+    expect(anatomy).toEqual([]);
+    expect(procedures).toEqual([]);
+  });
 });

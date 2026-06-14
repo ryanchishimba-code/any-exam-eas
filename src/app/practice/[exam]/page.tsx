@@ -1,16 +1,27 @@
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
+import { auth } from "@/auth";
 import { PremiumGate } from "@/components/PremiumGate";
 import { PracticeSidebar } from "@/components/layout/PracticeSidebar";
 import { StudyBankPractice } from "@/components/study/StudyBankPractice";
 import { CardSkeleton } from "@/components/ui/skeleton";
+import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { getExamHub } from "@/lib/exams/catalog";
+import { ROUTES } from "@/lib/routes";
 import type { ExamRouteSlug } from "@/lib/routes";
+import type { ExamSlug } from "@/types/edtech";
 
 const FIELD_MAP: Record<ExamRouteSlug, string> = {
   nclex: "nursing",
   naplex: "pharmacy",
   usmle: "usmle-step-2",
+  mpje: "mpje",
+};
+
+const EXAM_ROUTE_TO_SLUG: Record<ExamRouteSlug, ExamSlug> = {
+  nclex: "nclex",
+  naplex: "naplex",
+  usmle: "usmle",
   mpje: "mpje",
 };
 
@@ -35,7 +46,25 @@ export default async function PracticeExamPage({ params, searchParams }: Props) 
     redirect("/study-hub");
   }
 
+  const session = await auth();
+  if (!session?.user?.id) {
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(`/practice/${exam}`)}`);
+  }
+
+  const pref = await getUserExamPreference(session.user.id);
+  if (!pref) redirect(ROUTES.selectExam);
+
   const slug = exam as ExamRouteSlug;
+  const preferredSlug = EXAM_ROUTE_TO_SLUG[slug];
+
+  if (pref.examSlug !== preferredSlug) {
+    const qs = new URLSearchParams();
+    qs.set("field", FIELD_MAP[pref.examSlug as ExamRouteSlug]);
+    if (sp.mode === "timed") qs.set("mode", "timed");
+    else qs.set("mode", "bank");
+    redirect(`/practice/${pref.examSlug}?${qs.toString()}`);
+  }
+
   const field = sp.field ?? FIELD_MAP[slug];
   const mode = sp.mode === "timed" ? "timed" : "bank";
   const qs = new URLSearchParams({ field, mode });
@@ -68,7 +97,10 @@ export default async function PracticeExamPage({ params, searchParams }: Props) 
           <PremiumGate callbackPath={callbackPath}>
             <Suspense fallback={<CardSkeleton />}>
               <div className="mt-8">
-                <StudyBankPractice />
+                <StudyBankPractice
+                  preferredExamSlug={EXAM_ROUTE_TO_SLUG[slug]}
+                  lockExam
+                />
               </div>
             </Suspense>
           </PremiumGate>

@@ -4,9 +4,10 @@ import { auth } from "@/auth";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { DashboardView } from "@/components/app/DashboardView";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-preference";
 import { getExamScopedStats } from "@/lib/edtech/stats";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
+import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
@@ -16,13 +17,9 @@ export const metadata = {
 
 function DashboardSkeleton() {
   return (
-    <div className="space-y-6">
-      <Skeleton className="h-40 w-full rounded-3xl" />
-      <div className="grid gap-4 lg:grid-cols-3">
-        {Array.from({ length: 3 }).map((_, i) => (
-          <Skeleton key={i} className="h-52 w-full rounded-2xl" />
-        ))}
-      </div>
+    <div className="mx-auto max-w-3xl space-y-4">
+      <Skeleton className="h-20 w-full rounded-[18px]" />
+      <Skeleton className="h-[28rem] w-full rounded-[28px]" />
     </div>
   );
 }
@@ -37,15 +34,30 @@ async function DashboardContent({
   const pref = await getUserExamPreference(userId);
   if (!pref) redirect(ROUTES.selectExam);
 
-  const [stats, meta] = await Promise.all([
-    getExamScopedStats(userId, pref.examSlug),
+  const examSlug = pref.examSlug;
+  const fieldId = resolveExamFieldId(examSlug);
+
+  const [stats, meta, dashboard] = await Promise.all([
+    getExamScopedStats(userId, examSlug),
     getUserEdtechMetadata(userId),
+    getStudentDashboardData(userId),
   ]);
+
+  const weakTopics = dashboard.weakTopics
+    .filter((t) => t.fieldId === fieldId)
+    .slice(0, 6);
 
   return (
     <DashboardView
-      examSlug={pref.examSlug}
+      examSlug={examSlug}
       stats={stats}
+      headline={{
+        readinessScore: dashboard.headline.readinessScore,
+        motivationalMessage: dashboard.headline.motivationalMessage,
+        trendDelta: dashboard.headline.trendDelta,
+      }}
+      weakTopics={weakTopics}
+      recentTests={dashboard.recentTests}
       userName={userName}
       mpjeStateCode={meta.mpjeStateCode}
     />

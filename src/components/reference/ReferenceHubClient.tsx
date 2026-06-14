@@ -1,11 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AppBreadcrumbs } from "@/components/app/AppBreadcrumbs";
 import { ReferenceAiBrief } from "@/components/reference/ReferenceAiBrief";
-import { ReferenceBriefCards } from "@/components/reference/ReferenceBriefCards";
-import { ReferenceCardsDue } from "@/components/reference/ReferenceCardsDue";
-import { ReferenceForYou } from "@/components/reference/ReferenceForYou";
 import {
   ReferenceHubHeader,
   type ReferenceHubStats,
@@ -13,19 +9,18 @@ import {
 import { ReferenceHubNav } from "@/components/reference/ReferenceHubNav";
 import { ReferenceHubSearch } from "@/components/reference/ReferenceHubSearch";
 import { ReferenceQuickTools } from "@/components/reference/ReferenceQuickTools";
-import { ReferenceRecentCards } from "@/components/reference/ReferenceRecentCards";
+import { ReferenceTodayRow } from "@/components/reference/ReferenceTodayRow";
 import { ReferenceTopicBanner } from "@/components/reference/ReferenceTopicBanner";
 import { MemoryCardTile } from "@/components/reference/MemoryCardTile";
 import { MemoryCardSheet } from "@/components/reference/MemoryCardSheet";
 import { applyMasteryStore, readMasteryStore } from "@/lib/reference/card-mastery";
 import { syncCardMasteryForExam } from "@/lib/reference/card-mastery-sync";
-import { ROUTES } from "@/lib/routes";
 import {
-  countCardsNeedingReview,
   getCardsForTopicKey,
   queryMemoryCards,
 } from "@/lib/reference/memory-cards";
 import { rememberMemoryCard } from "@/lib/reference/recent-cards";
+import { refUi } from "@/lib/reference/reference-ui";
 import type { ReferenceStudyBrief } from "@/lib/reference/study-brief-types";
 import {
   MEMORY_CARD_KIND_LABELS,
@@ -67,26 +62,13 @@ export function ReferenceHubClient({
   const [hubSearchQuery, setHubSearchQuery] = useState("");
   const [selected, setSelected] = useState<MemoryCard | null>(null);
   const [brief, setBrief] = useState<ReferenceStudyBrief | null>(null);
-  const [masteryTick, setMasteryTick] = useState(0);
   const searchInputRef = useRef<HTMLInputElement>(null);
-
-  const dueCount = useMemo(
-    () => countCardsNeedingReview(cards, examSlug),
-    [cards, examSlug, masteryTick]
-  );
-
-  useEffect(() => {
-    const onMastery = () => setMasteryTick((n) => n + 1);
-    window.addEventListener("aee-card-mastery-change", onMastery);
-    return () => window.removeEventListener("aee-card-mastery-change", onMastery);
-  }, []);
 
   useEffect(() => {
     void syncCardMasteryForExam({
       examSlug,
       readLocal: readMasteryStore,
       writeLocal: (slug, store) => applyMasteryStore(slug, store),
-      onMerged: () => setMasteryTick((n) => n + 1),
     });
   }, [examSlug]);
 
@@ -145,19 +127,13 @@ export function ReferenceHubClient({
     [scopedCards, subject, kind, hubSearchQuery]
   );
 
-  const breadcrumbItems = [
-    { label: "Dashboard", href: ROUTES.dashboard },
-    { label: "Study Reference" },
-    ...(topicKey ? [{ label: topicKey.replace(/-/g, " ") }] : []),
-  ];
+  const showLibraryFilters = hubSearchQuery.trim().length < 2 && !topicKey;
 
   return (
-    <div className="space-y-6">
-      <AppBreadcrumbs items={breadcrumbItems} />
-
+    <div className={refUi.page}>
       <ReferenceHubHeader examSlug={examSlug} stats={hubStats} />
 
-      <div id="hub-search">
+      <div className={refUi.stickyBar}>
         <ReferenceHubSearch
           examSlug={examSlug}
           cards={cards}
@@ -165,110 +141,117 @@ export function ReferenceHubClient({
           onQueryChange={setHubSearchQuery}
           inputRef={searchInputRef}
         />
+        <ReferenceHubNav />
       </div>
 
-      <ReferenceHubNav showCardsDue={dueCount > 0} />
-
-      <ReferenceCardsDue examSlug={examSlug} cards={cards} onOpenCard={openCard} />
-
-      <ReferenceAiBrief examSlug={examSlug} onBriefLoaded={onBriefLoaded} />
-
-      {brief ? (
-        <ReferenceBriefCards
-          cards={cards}
-          cardIds={brief.memoryCardIds}
-          onOpenCard={openCard}
-        />
-      ) : null}
-
-      <ReferenceQuickTools examSlug={examSlug} />
-
-      <ReferenceForYou
-        examSlug={examSlug}
-        cards={cards}
-        weakTopics={weakTopics}
-        topicKey={topicKey}
-        onOpenCard={openCard}
-      />
-
-      <ReferenceRecentCards examSlug={examSlug} cards={cards} onOpenCard={openCard} />
-
-      <section id="memory-cards" aria-labelledby="memory-cards-heading" className="space-y-4">
-        {topicKey ? (
-          <ReferenceTopicBanner
-            examSlug={examSlug}
-            topicKey={topicKey}
-            cardCount={scopedCards.length}
-          />
-        ) : null}
-
-        <div>
-          <h3 id="memory-cards-heading" className="text-lg font-bold text-[var(--color-ink)]">
-            {topicKey
-              ? "Topic memory cards"
-              : hubSearchQuery.trim().length >= 2
-                ? "Search results"
-                : "All memory cards"}
-          </h3>
-          <p className="mt-1 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-            {hubSearchQuery.trim().length >= 2
-              ? `${filtered.length} card(s) matching "${hubSearchQuery}"`
-              : topicKey
-                ? `${scopedCards.length} high-yield facts for this topic`
-                : `${cards.length} high-yield facts — equations, pearls, tables, and common mistakes.`}
-          </p>
-        </div>
-
-        {hubSearchQuery.trim().length < 2 && !topicKey ? (
-          <div className="space-y-3">
-            <div className="aee-scroll-x -mx-1 flex gap-2 px-1 pb-0.5 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
-              <FilterPill
-                active={subject === "all"}
-                onClick={() => setSubject("all")}
-                label="All subjects"
-              />
-              {subjects.map((s) => (
-                <FilterPill key={s} active={subject === s} onClick={() => setSubject(s)} label={s} />
-              ))}
-            </div>
-            <div className="aee-scroll-x -mx-1 flex gap-2 px-1 pb-0.5 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
-              {KIND_OPTIONS.map((opt) => (
-                <FilterPill
-                  key={opt.value}
-                  active={kind === opt.value}
-                  onClick={() => setKind(opt.value)}
-                  label={opt.label}
-                  variant="kind"
-                />
-              ))}
-            </div>
+      <div className={refUi.pageShell}>
+        <div className={refUi.panel}>
+          <div className={refUi.panelSection}>
+            <ReferenceAiBrief examSlug={examSlug} onBriefLoaded={onBriefLoaded} />
           </div>
-        ) : null}
 
-        {filtered.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-black/[0.1] bg-white px-6 py-12 text-center">
-            <p className="text-sm font-medium text-[var(--color-ink)]">
-              {topicKey ? "No memory cards mapped to this topic yet" : "No cards match your filters"}
-            </p>
-            <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-              {topicKey
-                ? "Try practice questions for this topic, or browse all cards."
-                : "Try a different subject or card type, or use the search bar above."}
-            </p>
+          <div className={cn(refUi.sectionDivider, refUi.panelSection)}>
+            <ReferenceTodayRow
+              examSlug={examSlug}
+              cards={cards}
+              weakTopics={weakTopics}
+              topicKey={topicKey}
+              briefCardIds={brief?.memoryCardIds}
+              onOpenCard={openCard}
+            />
           </div>
-        ) : (
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {filtered.map((card) => (
-              <MemoryCardTile
-                key={card.id}
-                card={card}
+
+          <div className={cn(refUi.sectionDivider, refUi.panelSection)}>
+            <ReferenceQuickTools examSlug={examSlug} />
+          </div>
+
+          <section
+            id="memory-cards"
+            aria-labelledby="memory-cards-heading"
+            className={cn(refUi.sectionDivider, refUi.panelSection, "space-y-4")}
+          >
+            {topicKey ? (
+              <ReferenceTopicBanner
                 examSlug={examSlug}
-                onOpen={() => openCard(card)}
+                topicKey={topicKey}
+                cardCount={scopedCards.length}
               />
-            ))}
-          </div>
-        )}
-      </section>
+            ) : null}
+
+            <div>
+              <h2 id="memory-cards-heading" className={refUi.sectionTitle}>
+                {topicKey
+                  ? "Topic library"
+                  : hubSearchQuery.trim().length >= 2
+                    ? "Search results"
+                    : "Memory card library"}
+              </h2>
+              <p className={cn(refUi.sectionHint, "mt-0.5")}>
+                {hubSearchQuery.trim().length >= 2
+                  ? `${filtered.length} card(s) matching "${hubSearchQuery}"`
+                  : topicKey
+                    ? `${scopedCards.length} high-yield facts for this topic`
+                    : `${cards.length} facts — equations, pearls, tables, and common mistakes.`}
+              </p>
+            </div>
+
+            {showLibraryFilters ? (
+              <div className="space-y-2.5">
+                <div className={refUi.chipRow}>
+                  <FilterPill
+                    active={subject === "all"}
+                    onClick={() => setSubject("all")}
+                    label="All subjects"
+                  />
+                  {subjects.map((s) => (
+                    <FilterPill
+                      key={s}
+                      active={subject === s}
+                      onClick={() => setSubject(s)}
+                      label={s}
+                    />
+                  ))}
+                </div>
+                <div className={refUi.chipRow}>
+                  {KIND_OPTIONS.map((opt) => (
+                    <FilterPill
+                      key={opt.value}
+                      active={kind === opt.value}
+                      onClick={() => setKind(opt.value)}
+                      label={opt.label}
+                      compact
+                    />
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {filtered.length === 0 ? (
+              <div className={refUi.emptyState}>
+                <p className="text-[15px] font-medium text-[var(--color-ink)]">
+                  {topicKey ? "No memory cards mapped to this topic yet" : "No cards match your filters"}
+                </p>
+                <p className={cn(refUi.sectionHint, "mt-1")}>
+                  {topicKey
+                    ? "Try practice questions for this topic, or browse all cards."
+                    : "Try a different subject or card type, or use search above."}
+                </p>
+              </div>
+            ) : (
+              <div className={refUi.cardGrid}>
+                {filtered.map((card) => (
+                  <MemoryCardTile
+                    key={card.id}
+                    card={card}
+                    examSlug={examSlug}
+                    onOpen={() => openCard(card)}
+                  />
+                ))}
+              </div>
+            )}
+          </section>
+        </div>
+      </div>
 
       <MemoryCardSheet
         card={selected}
@@ -286,23 +269,23 @@ function FilterPill({
   active,
   onClick,
   label,
-  variant = "subject",
+  compact = false,
 }: {
   active: boolean;
   onClick: () => void;
   label: string;
-  variant?: "subject" | "kind";
+  compact?: boolean;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
       className={cn(
-        "shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition",
-        variant === "kind" && "text-[11px]",
+        refUi.filterPill,
+        compact && "text-[11px]",
         active
-          ? "bg-[var(--color-accent)] text-white shadow-sm"
-          : "bg-white text-[var(--color-ink-muted)] ring-1 ring-black/[0.08] hover:bg-[var(--color-surface)]"
+          ? "bg-[var(--color-accent)] text-white shadow-[var(--shadow-apple-sm)]"
+          : "bg-black/[0.04] text-[var(--color-ink-muted)] hover:bg-black/[0.06] hover:text-[var(--color-ink)]"
       )}
     >
       {label}

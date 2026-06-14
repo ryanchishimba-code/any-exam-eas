@@ -8,6 +8,51 @@ export function cleanOptionText(option: string): string {
   return option.replace(OPTION_PREFIX, "").trim();
 }
 
+function normOptionKey(text: string): string {
+  return cleanOptionText(text).toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+/**
+ * Parse select-all / SATA stored answers without splitting on commas inside option text.
+ * Prefers whole-option match, then `|||`, then comma-separated lists where every part matches an option.
+ */
+export function parseSelectAllCorrectAnswers(
+  options: string[],
+  correctAnswer: string
+): string[] {
+  const trimmed = correctAnswer.trim();
+  if (!trimmed) return [];
+
+  const normalizedOptions = options.map(cleanOptionText);
+  const wholeIdx = normalizedOptions.findIndex((o) => normOptionKey(o) === normOptionKey(trimmed));
+  if (wholeIdx >= 0) return [normalizedOptions[wholeIdx]!];
+
+  if (trimmed.includes("|||")) {
+    return trimmed
+      .split("|||")
+      .map((s) => cleanOptionText(s.trim()))
+      .filter(Boolean);
+  }
+
+  const optionKeys = new Set(normalizedOptions.map(normOptionKey));
+  const commaParts = trimmed
+    .split(",")
+    .map((s) => cleanOptionText(s.trim()))
+    .filter(Boolean);
+  if (commaParts.length >= 2 && commaParts.every((p) => optionKeys.has(normOptionKey(p)))) {
+    return commaParts;
+  }
+
+  return [cleanOptionText(trimmed)].filter(Boolean);
+}
+
+export function selectAllAnswersMatchOptions(options: string[], correctAnswer: string): boolean {
+  const parts = parseSelectAllCorrectAnswers(options, correctAnswer);
+  if (parts.length === 0) return false;
+  const optionKeys = new Set(options.map((o) => normOptionKey(o)));
+  return parts.every((p) => optionKeys.has(normOptionKey(p)));
+}
+
 export function normalizeQuestionOptions(
   options: string[],
   correctAnswer: string

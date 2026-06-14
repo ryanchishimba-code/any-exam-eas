@@ -8,7 +8,7 @@
  */
 import { PrismaClient } from "@prisma/client";
 import { alignNaplexBankItemAnswers } from "../src/lib/exam-prep/naplex-answer-align";
-import { normalizeNaplexBankItemFields } from "../src/lib/exam-prep/naplex-bank-normalize";
+import { splitNaplexVignetteFields } from "../src/lib/exam-prep/naplex-bank-normalize";
 import { auditBankItem } from "../src/lib/exam-prep/bank-audit";
 import { isNaplexBestQuality } from "../src/lib/exam-prep/naplex-quality-gate";
 import { enrichBankItemFromRow, serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
@@ -53,6 +53,7 @@ async function main() {
         scenario: string | null;
         options: string;
         correctAnswer: string;
+        itemType: string;
         contentHash: string;
         qaPassed: boolean;
         qaAuditedAt: Date;
@@ -60,31 +61,28 @@ async function main() {
     }> = [];
 
     for (const row of rows) {
-      const base = enrichBankItemFromRow(row);
-      const normalized = normalizeNaplexBankItemFields(base);
-      const beforeAudit = auditBankItem(normalized, "pharmacy");
+      const prepared = splitNaplexVignetteFields(enrichBankItemFromRow(row));
+      const beforeAudit = auditBankItem(prepared, "pharmacy");
       const hadMismatch = beforeAudit.issues.some(
         (i) => i.code === "correct_not_in_options" || i.code === "explanation_correct_mismatch"
       );
 
-      const { item: alignedItem, changed } = alignNaplexBankItemAnswers(normalized);
-      const finalItem = changed ? alignedItem : normalized;
+      const { item: finalItem, changed } = alignNaplexBankItemAnswers(prepared);
 
       if (changed) aligned++;
 
       const afterAudit = auditBankItem(finalItem, "pharmacy");
-      if (
-        afterAudit.issues.some(
-          (i) => i.code === "correct_not_in_options" || i.code === "explanation_correct_mismatch"
-        )
-      ) {
-        stillMismatch++;
-      }
+      const mismatchAfter = afterAudit.issues.some(
+        (i) => i.code === "correct_not_in_options" || i.code === "explanation_correct_mismatch"
+      );
+      if (mismatchAfter) stillMismatch++;
 
       const pass = isNaplexBestQuality(finalItem, { source: row.source });
       if (pass) qaPassedAfter++;
 
-      if (changed || hadMismatch) {
+      const itemTypeChanged = (row.itemType ?? "mcq") !== (finalItem.itemType ?? "mcq");
+
+      if (changed || itemTypeChanged || hadMismatch || mismatchAfter) {
         updates.push({
           id: row.id,
           data: {
@@ -92,7 +90,8 @@ async function main() {
             scenario: finalItem.vignette ?? finalItem.scenario ?? null,
             options: serializeBankOptions(finalItem),
             correctAnswer: finalItem.correctAnswer,
-            contentHash: bankItemContentHash(finalItem),
+            itemType: finalItem.itemType ?? "mcq",
+            contentHash: bankItemContentHash("pharmacy", finalItem.subjectId, finalItem),
             qaPassed: pass,
             qaAuditedAt: new Date(),
           },
