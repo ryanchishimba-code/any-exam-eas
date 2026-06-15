@@ -2,6 +2,7 @@ import { CreditCard } from "lucide-react";
 
 const badges = [
   { id: "cards", label: "Cards", detail: "Visa · MC · Amex" },
+  { id: "link", label: "Link" },
   { id: "apple_pay", label: "Apple Pay" },
   { id: "google_pay", label: "Google Pay" },
 ] as const;
@@ -34,7 +35,7 @@ export function PaymentMethodBadges({
   return (
     <ul
       className={`flex flex-wrap items-center justify-center gap-2 lg:justify-start ${className}`}
-      aria-label="Accepted payment methods: credit cards, Apple Pay, and Google Pay"
+      aria-label="Accepted payment methods: cards, Link, Apple Pay, and Google Pay"
     >
       {badges.map((badge) => (
         <li
@@ -51,6 +52,8 @@ export function PaymentMethodBadges({
                 </span>
               ) : null}
             </>
+          ) : badge.id === "link" ? (
+            <span className={`${text} font-semibold text-[#00D66F]`}>{badge.label}</span>
           ) : badge.id === "google_pay" ? (
             <GooglePayWordmark />
           ) : (

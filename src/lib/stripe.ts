@@ -6,6 +6,7 @@ import {
   type BillingInterval,
 } from "@/lib/billing-config";
 import { parseBillingInterval, intervalTotalUsd } from "@/lib/billing-plans";
+import { CHECKOUT_PAYMENT_METHOD_TYPES } from "@/lib/payments";
 import { intervalFromPriceId, requireStripePriceId } from "@/lib/stripe-prices";
 
 export {
@@ -92,6 +93,7 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
       fullAccess: "true",
     },
     ...(isTrialPlan ? { payment_method_collection: "always" as const } : {}),
+    payment_method_types: [...CHECKOUT_PAYMENT_METHOD_TYPES],
     payment_method_options: {
       card: {
         request_three_d_secure: "automatic" as const,

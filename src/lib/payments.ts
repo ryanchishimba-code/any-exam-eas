@@ -1,5 +1,8 @@
 import { isIntervalPriceConfigured } from "@/lib/stripe-prices";
 
+/** Payment methods enabled in Stripe Checkout (card includes Apple Pay / Google Pay wallets). */
+export const CHECKOUT_PAYMENT_METHOD_TYPES = ["card", "link"] as const;
+
 /** Supported payment rails surfaced in Stripe Checkout (enable in Stripe Dashboard). */
 export const PAYMENT_METHODS = [
   {
@@ -20,7 +23,7 @@ export const PAYMENT_METHODS = [
   {
     id: "link",
     label: "Link",
-    description: "Stripe Link — save details for faster repeat checkout",
+    description: "Save your details for faster repeat checkout",
   },
 ] as const;
 

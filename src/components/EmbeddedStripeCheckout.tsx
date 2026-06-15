@@ -195,7 +195,8 @@ export function EmbeddedStripeCheckout() {
         </EmbeddedCheckoutProvider>
       </div>
       <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-        Encrypted by Stripe · Apple Pay & Google Pay when available · {BILLING_POLICY_SHORT}
+        Encrypted by Stripe · Card · Link · Apple Pay & Google Pay when available ·{" "}
+        {BILLING_POLICY_SHORT}
       </p>
     </div>
   );
