@@ -7,7 +7,7 @@ import {
 import { prisma } from "@/lib/prisma";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 type CatalogPayload = {
   subjects: Array<
@@ -39,7 +39,7 @@ export async function GET() {
     const now = Date.now();
     if (catalogCache && now - catalogCache.at < CATALOG_TTL_MS) {
       return NextResponse.json(catalogCache.payload, {
-        headers: { "Cache-Control": "private, max-age=60" },
+        headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300" },
       });
     }
 
@@ -65,7 +65,7 @@ export async function GET() {
     catalogCache = { payload, at: now };
 
     return NextResponse.json(payload, {
-      headers: { "Cache-Control": "private, max-age=60" },
+      headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300" },
     });
   } catch (e) {
     console.error("[catalog/subjects] lookup failed:", e);
@@ -75,7 +75,7 @@ export async function GET() {
     // leak raw database errors to the client.
     if (catalogCache) {
       return NextResponse.json(catalogCache.payload, {
-        headers: { "Cache-Control": "private, max-age=30" },
+        headers: { "Cache-Control": "public, s-maxage=30, stale-while-revalidate=120" },
       });
     }
 
@@ -91,7 +91,7 @@ export async function GET() {
       updatedAt: new Date().toISOString(),
     };
     return NextResponse.json(fallback, {
-      headers: { "Cache-Control": "private, max-age=30" },
+      headers: { "Cache-Control": "public, s-maxage=30, stale-while-revalidate=120" },
     });
   }
 }

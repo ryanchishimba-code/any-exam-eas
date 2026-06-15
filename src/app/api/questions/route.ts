@@ -244,7 +244,7 @@ export async function GET(req: Request) {
       bankItemId: items[i]?.id ?? undefined,
     })),
     { shuffleOrder: true }
-  );
+  ).slice(0, limit);
 
   const questions: ExamQuestion[] = studyQuestionsToExamQuestions(prepared);
 

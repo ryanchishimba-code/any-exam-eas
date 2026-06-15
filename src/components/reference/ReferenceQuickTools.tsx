@@ -30,7 +30,7 @@ import { cn } from "@/lib/utils";
 
 const EXAM_ID_TOPIC: Partial<Record<ExamSlug, { label: string; topicKey: string }>> = {
   naplex: { label: "ID & Antibiotics", topicKey: "infectious-disease-rx" },
-  usmle: { label: "Infectious Disease", topicKey: "infectious-disease" },
+  usmle: { label: "Infectious Disease", topicKey: "internal-medicine" },
   nclex: { label: "Infection Control", topicKey: "infection-control" },
 };
 

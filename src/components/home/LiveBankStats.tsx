@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { BookOpen, GraduationCap, Layers } from "lucide-react";
+import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 
 type CatalogResponse = {
   totalQuestions: number;
@@ -23,12 +24,16 @@ export function LiveBankStats({
   const [stats, setStats] = useState<CatalogResponse | null>(null);
 
   useEffect(() => {
-    fetch("/api/catalog/subjects")
+    const controller = new AbortController();
+    fetch("/api/catalog/subjects", { signal: controller.signal })
       .then((r) => (r.ok ? r.json() : null))
       .then((data: CatalogResponse | null) =>
         setStats(data && Array.isArray(data.subjects) ? data : null)
       )
-      .catch(() => setStats(null));
+      .catch(() => {
+        /* aborted or network — keep marketing fallback */
+      });
+    return () => controller.abort();
   }, []);
 
   const total = stats?.totalQuestions ?? 0;
@@ -38,7 +43,7 @@ export function LiveBankStats({
   const items = [
     {
       icon: BookOpen,
-      value: total > 0 ? formatCount(total) : "Board-style",
+      value: total > 0 ? formatCount(total) : MARKETING_QUESTION_COUNTS.total,
       label: "Practice questions",
     },
     {
@@ -48,7 +53,7 @@ export function LiveBankStats({
     },
     {
       icon: Layers,
-      value: nursing > 0 ? formatCount(nursing) : "NCLEX",
+      value: nursing > 0 ? formatCount(nursing) : MARKETING_QUESTION_COUNTS.nursing,
       label: "Nursing bank",
     },
   ];

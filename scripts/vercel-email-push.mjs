@@ -152,7 +152,7 @@ async function pushViaApi({ token, projectId, teamId, values }) {
 }
 
 function pushViaCli(values) {
-  let ok = true;
+  const results = { production: true, preview: true };
   for (const target of TARGETS) {
     for (const spec of ENV_SPECS) {
       const value = values[spec.key];
@@ -173,13 +173,13 @@ function pushViaCli(values) {
       const r = spawnSync(VERCEL, args, { cwd: root, encoding: "utf8", stdio: "pipe" });
       if (r.status !== 0) {
         console.error(`Failed ${spec.key} (${target}):`, r.stderr || r.stdout);
-        ok = false;
+        results[target] = false;
       } else {
         console.log(`✓ ${spec.key} → ${target} (CLI)`);
       }
     }
   }
-  return ok;
+  return results;
 }
 
 async function redeployViaApi({ token, projectId, teamId, projectName }) {
@@ -254,18 +254,23 @@ async function main() {
     await pushViaApi({ token, projectId, teamId, values });
   } else {
     console.log("No VERCEL_TOKEN — using Vercel CLI (run `npx vercel login` if this fails).\n");
-    if (!pushViaCli(values)) {
+    const cliResults = pushViaCli(values);
+    if (!cliResults.production) {
       console.error(`
-Could not push env vars. Fix one of:
+Could not push production env vars. Fix one of:
   A) Add VERCEL_TOKEN to .env.local (https://vercel.com/account/tokens) and re-run
   B) Run: npx vercel login
   C) Add vars manually in Vercel → Settings → Environment Variables
 `);
       process.exit(1);
     }
+    if (!cliResults.preview) {
+      console.warn("\n⚠ Preview env push failed — production vars were updated.");
+      console.warn("  Preview is optional; continue with production redeploy.\n");
+    }
   }
 
-  console.log("\n✓ Email env pushed to Vercel.");
+  console.log("\n✓ Email env pushed to Vercel (production).");
 
   if (process.argv.includes("--redeploy")) {
     console.log("\nTriggering production redeploy…\n");
