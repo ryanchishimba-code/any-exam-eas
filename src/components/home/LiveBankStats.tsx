@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BookOpen, Layers, Sparkles } from "lucide-react";
+import { BookOpen, GraduationCap, Layers } from "lucide-react";
 
 type CatalogResponse = {
   totalQuestions: number;
@@ -42,9 +42,9 @@ export function LiveBankStats({
       label: "Practice questions",
     },
     {
-      icon: Sparkles,
-      value: "NGN formats",
-      label: "Bow-tie · Matrix · SATA",
+      icon: GraduationCap,
+      value: "4",
+      label: "Licensing exams",
     },
     {
       icon: Layers,

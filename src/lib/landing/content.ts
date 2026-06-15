@@ -237,7 +237,7 @@ export const LANDING_METRICS = [
   { value: MARKETING_QUESTION_COUNTS.total, label: "Board-style items" },
   { value: "4", label: "Major licensing exams" },
   { value: String(TOP_500_DRUGS_COUNT), label: "Pharmacology flashcards" },
-  { value: "NGN", label: "Next-Gen NCLEX formats" },
+  { value: "Anatomy", label: "Interactive explorer" },
   { value: "7+", label: "Review Modules" },
   { value: "Ref", label: "Hub + Memory Cards" },
 ];

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 import type { GeneratedExam } from "@/lib/ai";
 import { cleanOptionText } from "@/lib/question-format";
-import { formatNgnLabel } from "@/lib/questions/ngn-map";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -74,9 +73,6 @@ export function QuestionPreview({ exam, sourcesReviewed, timed, onStart }: Props
                     {i + 1}
                   </span>
                   <span className="flex-1">
-                    <span className="mb-1 block text-[10px] font-semibold uppercase tracking-wide text-[var(--color-accent)]">
-                      {formatNgnLabel(q.type, q.ngnFormat)}
-                    </span>
                     <span className="text-sm font-medium leading-snug text-[var(--color-ink)]">
                       {q.vignette ? `${q.vignette.slice(0, 120)}… ` : ""}
                       {q.question}
@@ -135,9 +131,6 @@ export function QuestionPreview({ exam, sourcesReviewed, timed, onStart }: Props
           <Button type="button" className="w-full !rounded-xl" onClick={onStart}>
             Start test →
           </Button>
-          <p className="mt-2 text-center text-xs text-[var(--color-ink-muted)]">
-            NGN formats render interactively in the study player.
-          </p>
         </div>
       </CardContent>
     </Card>

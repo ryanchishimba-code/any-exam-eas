@@ -3,7 +3,7 @@
 import type { SequentialSetContext } from "@/lib/questions/sequential-sets";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { cleanOptionText } from "@/lib/question-format";
-import { NgnCjmmNote, NgnFormatBadge, NgnTypeInstructions, VignetteBlock } from "./NgnChrome";
+import { NgnCjmmNote, NgnTypeInstructions, VignetteBlock } from "./NgnChrome";
 import {
   BowTieQuestion,
   HighlightQuestion,
@@ -60,19 +60,20 @@ export function QuestionRenderer({
 
   return (
     <>
-      <div className="flex flex-wrap items-center gap-2">
-        <NgnFormatBadge question={question} />
-        {question.highYield && (
-          <span className="text-[10px] font-medium uppercase tracking-wide text-amber-600">
-            High yield
-          </span>
-        )}
-        {question.qualityScore != null && (
-          <span className="text-[10px] tabular-nums text-[var(--color-ink-muted)]">
-            QC {(question.qualityScore * 100).toFixed(0)}%
-          </span>
-        )}
-      </div>
+      {(question.highYield || question.qualityScore != null) && (
+        <div className="flex flex-wrap items-center gap-2">
+          {question.highYield && (
+            <span className="text-[10px] font-medium uppercase tracking-wide text-amber-600">
+              High yield
+            </span>
+          )}
+          {question.qualityScore != null && (
+            <span className="text-[10px] tabular-nums text-[var(--color-ink-muted)]">
+              QC {(question.qualityScore * 100).toFixed(0)}%
+            </span>
+          )}
+        </div>
+      )}
 
       <UnfoldingCaseBanner question={question} />
 
