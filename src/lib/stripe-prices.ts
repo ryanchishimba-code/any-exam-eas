@@ -19,6 +19,28 @@ export function expectedIntervalUsd(interval: BillingInterval): number {
   return intervalTotalUsd(interval);
 }
 
+export function expectedIntervalCents(interval: BillingInterval): number {
+  return Math.round(expectedIntervalUsd(interval) * 100);
+}
+
+/** Ensure configured Stripe Price unit_amount matches MONTHLY_PRICE_USD-derived totals. */
+export async function assertStripePriceMatchesConfig(
+  stripe: import("stripe").default,
+  interval: BillingInterval
+): Promise<void> {
+  const priceId = requireStripePriceId(interval);
+  const price = await stripe.prices.retrieve(priceId);
+  const expectedCents = expectedIntervalCents(interval);
+  const actualCents = price.unit_amount ?? 0;
+
+  if (actualCents !== expectedCents) {
+    const envKey = STRIPE_PRICE_ENV_KEYS[interval];
+    throw new Error(
+      `${envKey} (${priceId}) charges $${(actualCents / 100).toFixed(2)} but MONTHLY_PRICE_USD=$${MONTHLY_PRICE_USD.toFixed(2)} expects $${(expectedCents / 100).toFixed(2)} for ${interval}. Run \`npm run stripe:sync-prices\` and redeploy.`
+    );
+  }
+}
+
 /** Stripe recurring shape for each billing interval. */
 export function stripeRecurringForInterval(interval: BillingInterval): {
   interval: "month" | "year";

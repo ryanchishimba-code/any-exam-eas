@@ -79,6 +79,11 @@ export async function POST(req: Request) {
 
   try {
     requireStripePriceId(interval);
+    const { stripe: stripeClient } = await import("@/lib/stripe");
+    if (stripeClient) {
+      const { assertStripePriceMatchesConfig } = await import("@/lib/stripe-prices");
+      await assertStripePriceMatchesConfig(stripeClient, interval);
+    }
   } catch (e) {
     const message = e instanceof Error ? e.message : "Billing price not configured";
     return NextResponse.json({ error: message }, { status: 503 });

@@ -63,6 +63,8 @@
     "test:payments": "node scripts/test-payments.mjs",
     "test:payments:live": "node scripts/test-payments.mjs --live http://127.0.0.1:3000",
     "stripe:setup": "node scripts/stripe-setup.mjs",
+    "stripe:sync-prices": "node scripts/stripe-sync-prices.mjs",
+    "stripe:sync-prices:deploy": "node scripts/stripe-sync-prices.mjs --push-vercel",
     "stripe:free-trial": "node scripts/stripe-free-trial.mjs",
     "stripe:free-trial:deploy": "node scripts/stripe-free-trial.mjs --redeploy",
     "test:smoke:prod": "node scripts/smoke-test.mjs https://any-exam-eas.vercel.app",

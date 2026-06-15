@@ -116,8 +116,19 @@ if (!configured) {
 
     const priceId = process.env.STRIPE_PRICE_ID;
     const price = await stripe.prices.retrieve(priceId);
-    if (price.active) ok("STRIPE_PRICE_ID", `${priceId} active (${price.currency} ${(price.unit_amount ?? 0) / 100})`);
+    const monthlyUsd = Number(process.env.MONTHLY_PRICE_USD ?? "32.99");
+    const actualUsd = (price.unit_amount ?? 0) / 100;
+    if (price.active) ok("STRIPE_PRICE_ID", `${priceId} active (${price.currency} ${actualUsd})`);
     else fail("STRIPE_PRICE_ID", "price exists but inactive");
+
+    if (Math.abs(actualUsd - monthlyUsd) > 0.001) {
+      fail(
+        "Monthly price amount",
+        `$${actualUsd} on Stripe vs MONTHLY_PRICE_USD=$${monthlyUsd} — run npm run stripe:sync-prices`
+      );
+    } else {
+      ok("Monthly price amount", `matches MONTHLY_PRICE_USD=$${monthlyUsd}`);
+    }
 
     if (price.type === "recurring") {
       ok("Price type", `recurring / ${price.recurring?.interval ?? "?"}`);
