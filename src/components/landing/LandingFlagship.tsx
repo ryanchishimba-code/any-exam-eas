@@ -22,8 +22,7 @@ import { HowWeCompare } from "@/components/home/HowWeCompare";
 import { LiveBankStats } from "@/components/home/LiveBankStats";
 import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import {
-  LANDING_HERO_HEADLINE,
-  LANDING_HERO_HEADLINE_ACCENT,
+  LANDING_HERO_HEADLINE_QUOTED,
   LANDING_HERO_PRICE_TAGLINE,
   LANDING_METRICS,
   LANDING_TESTIMONIALS,
@@ -88,21 +87,22 @@ function HeroSection() {
       </div>
 
       <div className="aee-flagship-inner aee-flagship-hero__layout">
+        <h1
+          id="flagship-hero-heading"
+          className="aee-flagship-hero__headline aee-flagship-hero__headline--quoted aee-flagship-hero__headline--banner"
+        >
+          {LANDING_HERO_HEADLINE_QUOTED}
+        </h1>
+
         <motion.div
-          className="aee-flagship-hero__copy"
+          className="aee-flagship-hero__copy aee-flagship-hero__copy--centered"
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h1 id="flagship-hero-heading" className="aee-flagship-hero__headline">
-            {LANDING_HERO_HEADLINE}
-            <span className="aee-flagship-hero__headline-accent aee-flagship-gradient-text">
-              {LANDING_HERO_HEADLINE_ACCENT}
-            </span>
-          </h1>
           <p className="aee-flagship-hero__subline">{formatLandingHeroSubline()}</p>
 
-          <LandingHeroPriceValue />
+          <LandingHeroPriceValue className="mx-auto" />
 
           <div className="aee-flagship-hero__ctas aee-flagship-hero__ctas--conversion">
             <LandingCta

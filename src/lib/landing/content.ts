@@ -121,11 +121,15 @@ export const LANDING_HERO_EXAMS = [
   { label: "MPJE", color: EXAM_ACCENTS.mpje },
 ] as const;
 
-/** Primary hero headline — line 1 (stacked for impact). */
+/** Centered hero tagline — one line, shown in quotation marks on the landing page. */
+export const LANDING_HERO_TAGLINE = "Your best companion for boards and clinical practice.";
+export const LANDING_HERO_HEADLINE_QUOTED = `"${LANDING_HERO_TAGLINE}"`;
+
+/** @deprecated Use LANDING_HERO_HEADLINE_QUOTED */
 export const LANDING_HERO_HEADLINE = "Your best companion";
 
-/** Primary hero headline — line 2 (gradient accent). */
-export const LANDING_HERO_HEADLINE_ACCENT = "for board and practice.";
+/** @deprecated Use LANDING_HERO_HEADLINE_QUOTED */
+export const LANDING_HERO_HEADLINE_ACCENT = "for boards and clinical practice.";
 
 /** Three punchy hero benefits — scannable in under 3 seconds. */
 export const LANDING_HERO_PITCHES = [

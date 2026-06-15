@@ -61,8 +61,8 @@ const HOME_KEYWORDS = [
 ];
 
 export function buildHomeMetadata(): Metadata {
-  const title = `${SITE_NAME} — Your Best Companion for Board and Practice`;
-  const description = `Your best companion for board and practice. NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE in one plan — curated questions, timed exams, and weak-area analytics. ${formatTrialLabel()} with payment method required — ${formatTrialEntryPrice()} today, then from ${formatMonthlyPrice()}/mo. Cancel before trial ends and you won't be charged.`;
+  const title = `${SITE_NAME} — Your Best Companion for Boards and Clinical Practice`;
+  const description = `Your best companion for boards and clinical practice. NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE in one plan — curated questions, timed exams, and weak-area analytics. ${formatTrialLabel()} with payment method required — ${formatTrialEntryPrice()} today, then from ${formatMonthlyPrice()}/mo. Cancel before trial ends and you won't be charged.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 

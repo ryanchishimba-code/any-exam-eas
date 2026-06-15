@@ -25,8 +25,7 @@ import { ROUTES } from "@/lib/routes";
 import { LandingHeroExamStrip } from "@/components/home/LandingHeroExamStrip";
 import { LandingHeroPriceValue } from "@/components/home/LandingHeroPriceValue";
 import {
-  LANDING_HERO_HEADLINE,
-  LANDING_HERO_HEADLINE_ACCENT,
+  LANDING_HERO_HEADLINE_QUOTED,
   LANDING_TRIAL_HREF,
 } from "@/lib/landing/content";
 
@@ -77,10 +76,7 @@ export function Hero({ compareLayout = false }: { compareLayout?: boolean }) {
     urgency = "Your study path and recent sessions are waiting in the Study Hub.";
   } else {
     headline = (
-      <>
-        {LANDING_HERO_HEADLINE}{" "}
-        <span className="aee-display-accent-vibrant">{LANDING_HERO_HEADLINE_ACCENT}</span>
-      </>
+      <span className="aee-display-accent-vibrant">{LANDING_HERO_HEADLINE_QUOTED}</span>
     );
     subline = formatLandingHeroSubline();
     urgency = formatTrialHeroOffer();
