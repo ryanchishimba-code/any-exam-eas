@@ -110,35 +110,85 @@ export async function GET(req: Request) {
 
   const { isUsmleField } = await import("@/lib/exam-prep/usmle-bank-bridge");
   const usmleField = isUsmleField(fieldId);
-  const nursingField = fieldId === "nursing";
   const { resolveExamBankSampleCount, finalizeExamSessionQuestions, assertExamSessionReady } =
     await import("@/lib/questions/finalize-exam-session");
   const sampleCount = resolveExamBankSampleCount(fieldId, limit, timedExam);
 
-  let items = mixed
-    ? await sampleQuestionBankItemsForField({
+  let items: Awaited<ReturnType<typeof sampleQuestionBankItemsForField>>;
+
+  if (mixed && timedExam) {
+    const { gatherTimedExamBankItems } = await import("@/lib/questions/timed-exam-sampling");
+
+    if (fieldId === "nursing") {
+      const { nclexItemPassesTimedExamGate } = await import("@/lib/exam-prep/nclex-serve-gate");
+      items = await gatherTimedExamBankItems({
         fieldId,
-        count: sampleCount,
+        limit,
+        filterFn: nclexItemPassesTimedExamGate,
+        initialSampleCount: sampleCount,
+      });
+    } else if (fieldId === "pharmacy") {
+      const { naplexItemPassesTimedExamGate, prepareNaplexBankItem } = await import(
+        "@/lib/exam-prep/naplex-serve-gate"
+      );
+      items = (
+        await gatherTimedExamBankItems({
+          fieldId,
+          limit,
+          filterFn: naplexItemPassesTimedExamGate,
+          initialSampleCount: sampleCount,
+        })
+      ).map(prepareNaplexBankItem);
+    } else if (usmleField) {
+      const { usmleBankItemIsServeReady } = await import("@/lib/exam-prep/usmle-clinical-gate");
+      items = await gatherTimedExamBankItems({
+        fieldId,
+        limit,
+        filterFn: (item) => usmleBankItemIsServeReady(item, fieldId),
+        initialSampleCount: sampleCount,
+      });
+    } else if (isMpjeField(fieldId)) {
+      const { mpjeItemPassesTimedExamGate } = await import("@/lib/exam-prep/mpje-serve-gate");
+      items = await gatherTimedExamBankItems({
+        fieldId,
+        limit,
         stateCode: mpjeStateCode,
-      })
-    : await sampleQuestionBankItems({
+        filterFn: mpjeItemPassesTimedExamGate,
+        initialSampleCount: sampleCount,
+      });
+    } else {
+      items = await sampleQuestionBankItemsForField({
         fieldId,
-        subjectId: subjectId!,
         count: sampleCount,
         stateCode: mpjeStateCode,
       });
+    }
+  } else if (mixed) {
+    items = await sampleQuestionBankItemsForField({
+      fieldId,
+      count: sampleCount,
+      stateCode: mpjeStateCode,
+    });
+  } else {
+    items = await sampleQuestionBankItems({
+      fieldId,
+      subjectId: subjectId!,
+      count: sampleCount,
+      stateCode: mpjeStateCode,
+    });
+  }
 
-  if (usmleField && items.length > 0) {
+  if (usmleField && items.length > 0 && !(mixed && timedExam)) {
     const { prepareUsmleItemsForSession } = await import("@/lib/exam-prep/usmle-clinical-gate");
     items = prepareUsmleItemsForSession({ items, fieldId, field, limit });
   }
 
-  if (fieldId === "pharmacy" && items.length > 0) {
+  if (fieldId === "pharmacy" && items.length > 0 && !(mixed && timedExam)) {
     const { prepareNaplexItemsForSession } = await import("@/lib/exam-prep/naplex-serve-gate");
     items = prepareNaplexItemsForSession({ items, fieldId, field, limit });
   }
 
-  if (fieldId === "nursing" && items.length > 0) {
+  if (fieldId === "nursing" && items.length > 0 && !(mixed && timedExam)) {
     const { prepareNclexItemsForSession } = await import("@/lib/exam-prep/nclex-serve-gate");
     items = prepareNclexItemsForSession({ items, field, limit });
   }
@@ -180,7 +230,9 @@ export async function GET(req: Request) {
         : "Uniform MPJE";
     items = prepareMpjeBankItems(items, mpjeOptions, mpjeLabel);
     const { prepareMpjeItemsForSession } = await import("@/lib/exam-prep/mpje-serve-gate");
-    items = prepareMpjeItemsForSession({ items, limit });
+    if (!(mixed && timedExam)) {
+      items = prepareMpjeItemsForSession({ items, limit });
+    }
   }
 
   const { bankItemToExamQuestion, bankItemToRawQuestion } = await import(
@@ -315,6 +367,7 @@ export async function GET(req: Request) {
     mixed,
     timedExam,
     questions,
+    requested: limit,
     bankItemIds: prepared.map((p) => p.bankItemId).filter(Boolean),
     ...(includeMeta
       ? {

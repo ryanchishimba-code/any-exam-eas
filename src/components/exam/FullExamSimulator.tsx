@@ -191,6 +191,9 @@ export function FullExamSimulator({
         qs.set("mpjeState", mpjeStateCode);
         qs.set("mpjeVariant", "state");
       }
+      if (fieldId === "nursing" && config.nclexLength) {
+        qs.set("nclexLength", config.nclexLength);
+      }
 
       try {
         const res = await fetch(`/api/questions?${qs.toString()}`);
@@ -198,6 +201,7 @@ export function FullExamSimulator({
           error?: string;
           questions?: RawQuestionInput[];
           bankItemIds?: string[];
+          requested?: number;
         };
 
         if (!res.ok) {
@@ -208,6 +212,7 @@ export function FullExamSimulator({
           return;
         }
 
+        const expectedCount = data.requested ?? config.questionCount;
         const bankIds = data.bankItemIds ?? [];
         const raw: RawQuestionInput[] = (data.questions ?? []).map((q, i) => ({
           ...q,
@@ -216,17 +221,17 @@ export function FullExamSimulator({
         }));
 
         const prepared = mapApiQuestionsToStudy(raw, { shuffleOptions: false });
-        if (prepared.length < config.questionCount) {
+        if (prepared.length !== expectedCount) {
           if (!cancelled) {
             setLoadError(
-              `Only ${prepared.length} of ${config.questionCount} questions are available. Try a shorter exam length.`
+              `Expected ${expectedCount} questions but received ${prepared.length}. Try again in a moment or choose a shorter exam length.`
             );
             setQuestions([]);
           }
           return;
         }
 
-        const items = prepared.slice(0, config.questionCount).map((q, i) => ({
+        const items = prepared.slice(0, expectedCount).map((q, i) => ({
           ...q,
           id: bankIds[i] ?? q.bankItemId ?? q.id,
           bankItemId: bankIds[i] ?? q.bankItemId,
@@ -248,7 +253,7 @@ export function FullExamSimulator({
     return () => {
       cancelled = true;
     };
-  }, [fieldId, config.questionCount, config.adaptive]);
+  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength]);
 
   useEffect(() => {
     if (loading || submitting || paused) return;

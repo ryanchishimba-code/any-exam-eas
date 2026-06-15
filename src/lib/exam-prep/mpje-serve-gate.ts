@@ -14,10 +14,17 @@ type PrepareMpjeItemsParams = {
 };
 
 /** Items are pre-filtered to qaPassed=true in the DB sample. */
+export function mpjeItemPassesTimedExamGate(item: BankItem): boolean {
+  return mpjeBankItemIsServeReady(item);
+}
+
+/** Items are pre-filtered to qaPassed=true in the DB sample. */
 export function prepareMpjeItemsForSession({
   items,
   limit,
 }: PrepareMpjeItemsParams): BankItem[] {
-  const vetted = items.filter(mpjeBankItemIsServeReady);
-  return serveQaPassedBankItems(vetted, limit);
+  return serveQaPassedBankItems(
+    items.filter(mpjeItemPassesTimedExamGate),
+    limit
+  );
 }

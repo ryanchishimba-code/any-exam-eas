@@ -77,6 +77,8 @@ export function prepareUsmleItemsForSession({
   fieldId,
   limit,
 }: PrepareUsmleItemsParams): BankItem[] {
-  const vetted = items.filter((item) => usmleBankItemIsServeReady(item, fieldId));
-  return serveQaPassedBankItems(vetted, limit);
+  return serveQaPassedBankItems(
+    items.filter((item) => usmleBankItemIsServeReady(item, fieldId)),
+    limit
+  );
 }

@@ -16,6 +16,7 @@ import {
   hasAdjacentSimilarSpread,
   spreadGroupKeyFromStudyQuestion,
 } from "./spread-session-order";
+import { QUESTION_BANK_SAMPLE_MAX_PULL } from "@/lib/question-bank-db";
 
 /** Field ids used by full-length NCLEX, NAPLEX, USMLE, and MPJE simulators. */
 export const FULL_EXAM_FIELD_IDS = new Set([
@@ -43,8 +44,16 @@ export function resolveExamBankSampleCount(
     return Math.max(limit, 40);
   }
 
+  // Runtime NCLEX/USMLE gates reject many rows — pull a large pool before spread/limit.
+  if (fieldId === "nursing") {
+    return Math.min(
+      QUESTION_BANK_SAMPLE_MAX_PULL,
+      Math.max(limit * 3, limit + 150)
+    );
+  }
+
   const headroom = Math.max(limit + 60, Math.ceil(limit * 1.25));
-  return Math.min(headroom, 400);
+  return Math.min(headroom, QUESTION_BANK_SAMPLE_MAX_PULL);
 }
 
 export type ExamSessionQualityReport = {

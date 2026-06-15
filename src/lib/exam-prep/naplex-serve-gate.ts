@@ -21,6 +21,12 @@ type PrepareNaplexItemsParams = {
 };
 
 /** Items are pre-filtered to qaPassed=true in the DB sample. */
+export function naplexItemPassesTimedExamGate(item: BankItem): boolean {
+  const prepared = prepareNaplexBankItem(item);
+  return naplexBankItemIsServeReady(prepared, { source: prepared.source ?? null });
+}
+
+/** Items are pre-filtered to qaPassed=true in the DB sample. */
 export function prepareNaplexItemsForSession({
   items,
   limit,

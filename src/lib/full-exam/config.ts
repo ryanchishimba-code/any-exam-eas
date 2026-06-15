@@ -51,15 +51,21 @@ export function computeTimeLimitSec(
 export function buildSessionConfig(
   examSlug: ExamSlug,
   preset: FullExamLengthPreset,
-  timed: boolean
+  timed: boolean,
+  opts?: { nclexLength?: "minimum" | "maximum" }
 ): FullExamSessionConfig {
   const option = getLengthOptions(examSlug).find((o) => o.preset === preset)!;
+  let questionCount = option.questionCount;
+  if (examSlug === "nclex" && opts?.nclexLength === "maximum") {
+    questionCount = 150;
+  }
   return {
     lengthPreset: preset,
-    questionCount: option.questionCount,
+    questionCount,
     timed,
-    timeLimitSec: computeTimeLimitSec(examSlug, option.questionCount, timed),
+    timeLimitSec: computeTimeLimitSec(examSlug, questionCount, timed),
     adaptive: preset === "full",
+    ...(examSlug === "nclex" ? { nclexLength: opts?.nclexLength ?? "minimum" } : {}),
   };
 }
 

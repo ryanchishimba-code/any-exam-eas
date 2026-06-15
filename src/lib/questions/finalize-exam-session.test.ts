@@ -47,6 +47,9 @@ describe("full-length exam fields", () => {
       const full = buildSessionConfig(slug, "full", true);
       const sample = resolveExamBankSampleCount(EXAM_CATALOG[slug].fieldId, full.questionCount, true);
       expect(sample).toBeGreaterThanOrEqual(full.questionCount);
+      if (slug === "nclex") {
+        expect(sample).toBeGreaterThanOrEqual(255);
+      }
     }
   });
 });

@@ -21,9 +21,13 @@ export async function POST(req: Request) {
     ? body.lengthPreset
     : "50") as FullExamLengthPreset;
   const timed = body.timed !== false;
+  const nclexLength =
+    body.nclexLength === "maximum" ? ("maximum" as const) : ("minimum" as const);
 
   try {
-    const config = buildSessionConfig(examSlug, preset, timed);
+    const config = buildSessionConfig(examSlug, preset, timed, {
+      nclexLength: examSlug === "nclex" ? nclexLength : undefined,
+    });
     const exam = EXAM_CATALOG[examSlug];
 
     const sessionId = await createExamSession(premium.userId, examSlug, {

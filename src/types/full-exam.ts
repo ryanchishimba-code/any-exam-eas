@@ -9,6 +9,8 @@ export type FullExamSessionConfig = {
   timed: boolean;
   timeLimitSec: number;
   adaptive: boolean;
+  /** NCLEX minimum (85) vs maximum (150) CAT-style length. */
+  nclexLength?: "minimum" | "maximum";
 };
 
 export type FullExamQuestion = {

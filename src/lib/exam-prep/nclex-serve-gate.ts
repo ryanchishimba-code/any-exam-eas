@@ -25,17 +25,20 @@ type PrepareNclexItemsParams = {
   limit: number;
 };
 
+export function nclexItemPassesTimedExamGate(item: BankItem): boolean {
+  const source = item.source ?? null;
+  return nclexBankItemIsServeReady(item) && isNclexBestQuality(item, { source });
+}
+
+/** Defense-in-depth: DB qaPassed can be stale — re-audit before each session. */
+export function filterNclexItemsForSession(items: BankItem[]): BankItem[] {
+  return items.filter(nclexItemPassesTimedExamGate);
+}
+
 /** Defense-in-depth: DB qaPassed can be stale — re-audit before each session. */
 export function prepareNclexItemsForSession({
   items,
   limit,
 }: PrepareNclexItemsParams): BankItem[] {
-  const vetted = items.filter((item) => {
-    const source = item.source ?? null;
-    return (
-      nclexBankItemIsServeReady(item) &&
-      isNclexBestQuality(item, { source })
-    );
-  });
-  return serveQaPassedBankItems(vetted, limit);
+  return serveQaPassedBankItems(filterNclexItemsForSession(items), limit);
 }

@@ -434,6 +434,7 @@ export function StudyBankPractice({
               examSlug,
               lengthPreset: "full",
               timed: true,
+              ...(isNclex ? { nclexLength } : {}),
             }),
           });
           const data = (await res.json().catch(() => ({}))) as {
