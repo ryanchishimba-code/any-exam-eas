@@ -160,6 +160,8 @@
     "test:load:k6:smoke": "node scripts/k6-run.mjs -e BASE_URL=https://www.anyexameasy.com -e MAX_VUS=10 -e RAMP_DURATION=30s -e HOLD_DURATION=30s -e RAMP_DOWN=15s -e LOAD_TEST_EMAIL=test-premium@anyexameasy.test -e LOAD_TEST_PASSWORD=TestLogin1! loadtests/k6/main.js",
     "test:load:k6:best": "node scripts/k6-run.mjs -e BASE_URL=https://www.anyexameasy.com -e MAX_VUS=100 -e RAMP_DURATION=2m -e HOLD_DURATION=3m -e RAMP_DOWN=1m -e THINK_TIME_MIN=2 -e THINK_TIME_MAX=5 -e LOAD_TEST_EMAIL=test-premium@anyexameasy.test -e LOAD_TEST_PASSWORD=TestLogin1! loadtests/k6/main.js",
     "test:load:k6:local": "node scripts/k6-run.mjs -e BASE_URL=http://127.0.0.1:3000 -e MAX_VUS=50 -e LOAD_TEST_EMAIL=test-premium@anyexameasy.test -e LOAD_TEST_PASSWORD=TestLogin1! loadtests/k6/main.js",
+    "test:load:k6:5k": "node scripts/k6-run.mjs -e BASE_URL=https://www.anyexameasy.com -e MAX_VUS=200 -e RAMP_DURATION=3m -e HOLD_DURATION=5m -e RAMP_DOWN=2m -e THINK_TIME_MIN=2 -e THINK_TIME_MAX=6 -e LOAD_TEST_EMAIL=test-premium@anyexameasy.test -e LOAD_TEST_PASSWORD=TestLogin1! loadtests/k6/main.js",
+    "scale:readiness": "node scripts/scale-readiness.mjs",
     "postinstall": "node scripts/prisma-generate.mjs"
   },
   "dependencies": {

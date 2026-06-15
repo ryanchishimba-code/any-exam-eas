@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { rollupDailySummaries } from "@/lib/analytics/aggregate";
+import { purgeOldAnalyticsEvents } from "@/lib/analytics-retention";
 
-export const maxDuration = 120;
+export const maxDuration = 300;
 export const runtime = "nodejs";
 
 function isAuthorized(req: Request): boolean {
@@ -15,12 +15,12 @@ function isAuthorized(req: Request): boolean {
   return cronHeader === "1" && Boolean(process.env.VERCEL);
 }
 
-/** Daily — roll up yesterday's AnalyticsEvent rows into AnalyticsDailySummary. */
+/** Weekly — purge raw analytics events older than ANALYTICS_RETENTION_DAYS (default 90). */
 export async function GET(req: Request) {
   if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const count = await rollupDailySummaries();
-  return NextResponse.json({ ok: true, metricsWritten: count });
+  const result = await purgeOldAnalyticsEvents();
+  return NextResponse.json({ ok: true, ...result });
 }

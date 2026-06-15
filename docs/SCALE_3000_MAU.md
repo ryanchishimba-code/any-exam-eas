@@ -2,6 +2,8 @@
 
 Target: **~3,000 monthly active users** on Vercel + Neon Postgres with controlled LLM spend.
 
+> For the full ramp playbook through **5,000 MAU**, see [SCALE_5000_MAU.md](./SCALE_5000_MAU.md).
+
 ## Architecture (current)
 
 | Layer | Choice | Notes |
@@ -9,9 +11,9 @@ Target: **~3,000 monthly active users** on Vercel + Neon Postgres with controlle
 | App | Next.js 15 App Router | Server components + API routes |
 | DB | **Neon Postgres** (pooled URL) | Prisma singleton in `src/lib/prisma.ts` |
 | Auth | NextAuth JWT | Roles: `user`, `support_staff`, `moderator`, `admin`, `super_admin` |
-| Billing | Stripe subscriptions | 14-day intro → $29.99/mo (`billing-config.ts`) |
+| Billing | Stripe subscriptions | 7-day trial → $32.99/mo (`billing-config.ts`) |
 | AI | OpenAI + Tavily RAG | Cached research briefs (`src/lib/cache.ts`) |
-| Rate limits | In-memory per IP/user | Upgrade to Upstash Redis at multi-instance scale |
+| Rate limits | Upstash Redis (production) | Required at multi-instance scale — see `src/lib/rate-limit-distributed.ts` |
 
 ## Database (Neon)
 
@@ -39,7 +41,7 @@ Target: **~3,000 monthly active users** on Vercel + Neon Postgres with controlle
 | Phase | Implementation |
 |-------|----------------|
 | **Now** | In-process TTL cache (`src/lib/cache.ts`) |
-| **3k+ MAU** | Upstash Redis for research briefs + rate limits |
+| **3k+ MAU** | Upstash Redis for rate limits (required on Vercel) |
 | **Optional** | Next.js `unstable_cache` for subject catalog |
 
 ## Question engine priorities
@@ -64,7 +66,8 @@ Target: **~3,000 monthly active users** on Vercel + Neon Postgres with controlle
 ## Deployment checklist
 
 - [ ] Neon pooled `DATABASE_URL` on Vercel
-- [ ] Stripe Price for $17.99 trial / $29.99 monthly
+- [ ] Upstash Redis for distributed rate limits
+- [ ] Stripe Prices for $32.99/mo (+ quarterly/semi/yearly) — `npm run stripe:sync-prices`
 - [ ] `OPENAI_API_KEY`, `TAVILY_API_KEY`
 - [ ] `npx prisma migrate deploy` on deploy
 - [ ] Disable Vercel Deployment Protection for production domain
@@ -74,5 +77,4 @@ Target: **~3,000 monthly active users** on Vercel + Neon Postgres with controlle
 
 - Conversational **AI Tutor** chat (LLM streaming)
 - Full NGN interactive UI (bow-tie, matrix grids in player)
-- Distributed Redis rate limiting
 - MFA for staff accounts

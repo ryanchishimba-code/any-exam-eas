@@ -13,6 +13,7 @@ export type HealthReport = {
   ok: boolean;
   checks: Record<string, string>;
   env?: Record<string, string>;
+  scaleReadiness?: import("@/lib/scale-readiness").ScaleReadinessReport;
   vercel: boolean;
 };
 
@@ -107,5 +108,13 @@ export async function runHealthChecks(): Promise<HealthReport> {
     env = undefined;
   }
 
-  return { ok, checks, env, vercel: !!process.env.VERCEL };
+  let scaleReadiness: HealthReport["scaleReadiness"];
+  try {
+    const { runScaleReadinessChecks } = await import("@/lib/scale-readiness");
+    scaleReadiness = runScaleReadinessChecks();
+  } catch {
+    scaleReadiness = undefined;
+  }
+
+  return { ok, checks, env, scaleReadiness, vercel: !!process.env.VERCEL };
 }
