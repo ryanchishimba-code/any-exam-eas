@@ -31,7 +31,8 @@ import {
 } from "@/lib/exam-sessions/scoring";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { parseBowTieLayout, parseMatrixKey } from "@/lib/questions/ngn-structures";
-import { isAnswerCorrect, prepareQuestionsForSession } from "@/lib/questions/prepare";
+import { isAnswerCorrect } from "@/lib/questions/prepare";
+import { mapApiQuestionsToStudy } from "@/lib/questions/finalize-exam-session";
 import { getSequentialSetContext } from "@/lib/questions/sequential-sets";
 import type { RawQuestionInput, StudyQuestion } from "@/lib/questions/types";
 import type { ExamSlug } from "@/types/edtech";
@@ -214,7 +215,17 @@ export function FullExamSimulator({
           bankItemId: bankIds[i] ?? q.bankItemId,
         }));
 
-        const prepared = prepareQuestionsForSession(raw, { shuffleOrder: false });
+        const prepared = mapApiQuestionsToStudy(raw, { shuffleOptions: false });
+        if (prepared.length < config.questionCount) {
+          if (!cancelled) {
+            setLoadError(
+              `Only ${prepared.length} of ${config.questionCount} questions are available. Try a shorter exam length.`
+            );
+            setQuestions([]);
+          }
+          return;
+        }
+
         const items = prepared.slice(0, config.questionCount).map((q, i) => ({
           ...q,
           id: bankIds[i] ?? q.bankItemId ?? q.id,

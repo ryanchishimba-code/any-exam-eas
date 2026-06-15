@@ -1,11 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import { X } from "lucide-react";
 import { AnatomyQuickNav } from "@/components/anatomy/AnatomyQuickNav";
 import { AnatomyStudioHero } from "@/components/anatomy/AnatomyStudioHero";
 import { AnatomyShell } from "@/components/anatomy/systems/AnatomyShell";
-import { TeachHost } from "@/components/anatomy/systems/TeachHost";
 import { useTeachSession } from "@/components/anatomy/systems/useTeachSession";
 import {
   getAllAnatomyStructures,
@@ -26,6 +26,14 @@ import type { MemoryCard } from "@/lib/reference/types";
 import type { ExamSlug } from "@/types/edtech";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
+
+const TeachHost = dynamic(
+  () =>
+    import("@/components/anatomy/systems/TeachHost").then((m) => ({
+      default: m.TeachHost,
+    })),
+  { ssr: false }
+);
 
 const DEFAULT_VISIBLE = new Set<AnatomyLayer>(DEFAULT_STUDY_LAYERS);
 
@@ -109,6 +117,11 @@ export function AnatomyExplorerClient({
     onNavigateToStructure: handleNavigateToStructure,
     catalogOnly,
   });
+
+  useEffect(() => {
+    if (catalogOnly) return;
+    void import("@/components/anatomy/cartoon/CartoonAnatomyViewer");
+  }, [catalogOnly]);
 
   const filteredStructures = useMemo(() => {
     const results = searchAnatomyStructures(search, {
@@ -334,6 +347,7 @@ export function AnatomyExplorerClient({
             <AnatomyShell
               bundle={bundle}
               examSlug={examSlug}
+              structures={structures}
               sidebarProps={sidebarProps}
               selectedStructure={selectedStructure}
               relatedCards={relatedCards}

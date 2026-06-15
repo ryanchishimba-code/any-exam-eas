@@ -1,15 +1,16 @@
 "use client";
 
-import { useCallback, useMemo, useRef, useState } from "react";
-import { getAllAnatomyStructures, getAnatomyStructure } from "@/lib/anatomy";
+import { useCallback, useRef, useState } from "react";
+import { getAnatomyStructure } from "@/lib/anatomy";
 import type { CtClipPlaneId } from "@/lib/anatomy/ct/ct-atlas-registry";
 import { isCtAtlasEnabled, type CtWindowId } from "@/lib/anatomy/ct/ct-windows";
-import { ANATOMY_SYSTEM_LABELS, type AnatomyLayer, type AnatomySystem } from "@/lib/anatomy/types";
+import { ANATOMY_SYSTEM_LABELS, type AnatomyLayer, type AnatomyStructure, type AnatomySystem } from "@/lib/anatomy/types";
 import { cn } from "@/lib/utils";
 import { AnatomyExplorerControls } from "@/components/anatomy/AnatomyExplorerControls";
 import { CartoonAnatomyScene, type CartoonSceneHandle } from "./CartoonAnatomyScene";
 
 type Props = {
+  structures: AnatomyStructure[];
   visibleLayers: Set<AnatomyLayer>;
   systemFilter?: AnatomySystem | "all";
   selectedId: string | null;
@@ -21,6 +22,7 @@ type Props = {
 };
 
 export function CartoonAnatomyViewer({
+  structures,
   visibleLayers,
   systemFilter = "all",
   selectedId,
@@ -36,7 +38,6 @@ export function CartoonAnatomyViewer({
   const [ctWindowId, setCtWindowId] = useState<CtWindowId>("bone");
   const [ctClipPlaneId, setCtClipPlaneId] = useState<CtClipPlaneId>("off");
   const [ctSliceOffset, setCtSliceOffset] = useState(0);
-  const structures = useMemo(() => getAllAnatomyStructures(), []);
 
   const focusId = highlightedId ?? selectedId;
   const focusStructure = focusId ? getAnatomyStructure(focusId) : null;

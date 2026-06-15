@@ -237,13 +237,27 @@ function SceneRig({
 
   useEffect(() => {
     if (!isCtAtlasEnabled()) return;
-    preloadCtAtlas();
+    const timer = window.setTimeout(() => preloadCtAtlas(), 1200);
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => {
     if (!isVisibleHumanOrganEnabled() || ctActive) return;
-    preloadVisibleHumanOrgans(Object.keys(VISIBLE_HUMAN_ORGANS));
-  }, [ctActive]);
+
+    const visibleMeshIds = ANATOMY_MODULES.filter(
+      (mod) => mod.layer === "organ" && visibleLayers.has("organ") && VISIBLE_HUMAN_ORGANS[mod.id]
+    ).map((mod) => mod.id);
+
+    if (visibleMeshIds.length === 0) return;
+
+    const preload = () => preloadVisibleHumanOrgans(visibleMeshIds);
+    if (typeof requestIdleCallback !== "undefined") {
+      const id = requestIdleCallback(preload, { timeout: 2500 });
+      return () => cancelIdleCallback(id);
+    }
+    const timer = window.setTimeout(preload, 600);
+    return () => window.clearTimeout(timer);
+  }, [ctActive, visibleLayers]);
 
   return (
     <>
@@ -272,8 +286,8 @@ function SceneRig({
             position={[3.5, 7.5, 4.5]}
             intensity={1.35}
             castShadow
-            shadow-mapSize-width={2048}
-            shadow-mapSize-height={2048}
+            shadow-mapSize-width={1024}
+            shadow-mapSize-height={1024}
             shadow-bias={-0.00015}
             shadow-normalBias={0.02}
             color="#fff8f0"
@@ -415,7 +429,7 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
           position: ctActive ? CT_CAMERA.position : CARTOON_CAMERA.position,
           fov: ctActive ? CT_CAMERA.fov : CARTOON_CAMERA.fov,
         }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
         shadows={!ctActive}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         onCreated={({ gl }) => {

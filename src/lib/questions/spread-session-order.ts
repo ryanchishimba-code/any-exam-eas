@@ -1,5 +1,13 @@
 import type { BankItem } from "@/lib/question-bank";
 import { shuffleBankItems } from "@/lib/question-bank-db";
+import {
+  balanceDifficultyMix,
+  hasAdjacentSimilarOptions,
+  optionsAreTooSimilar,
+  optionsFromBankItem,
+  optionsFromStudyQuestion,
+  resolveDifficultyBand,
+} from "./session-quality";
 import type { StudyQuestion } from "./types";
 import { buildQuestionBlocks } from "./sequential-sets";
 
@@ -34,7 +42,10 @@ export function spreadGroupKeyFromStudyQuestion(question: StudyQuestion): string
 /** Round-robin interleave so adjacent items rarely share the same spread group. */
 export function spreadByGroupKey<T>(
   items: T[],
-  keyFn: (item: T) => string
+  keyFn: (item: T) => string,
+  opts?: {
+    areTooSimilar?: (prev: T, next: T) => boolean;
+  }
 ): T[] {
   if (items.length <= 1) return items;
 
@@ -47,6 +58,7 @@ export function spreadByGroupKey<T>(
   }
 
   const out: T[] = [];
+  let last: T | null = null;
   let lastKey: string | null = null;
 
   while (out.length < items.length) {
@@ -55,11 +67,14 @@ export function spreadByGroupKey<T>(
 
     const preferred = candidates
       .filter(([key]) => key !== lastKey)
+      .filter(([, queue]) => !last || !opts?.areTooSimilar?.(last, queue[0]!))
       .sort((a, b) => b[1].length - a[1].length);
     const fallback = candidates.sort((a, b) => b[1].length - a[1].length);
     const [key, queue] = preferred[0] ?? fallback[0]!;
+    const picked = queue.shift()!;
 
-    out.push(queue.shift()!);
+    out.push(picked);
+    last = picked;
     lastKey = key;
   }
 
@@ -82,18 +97,51 @@ export function hasAdjacentSimilarSpread<T>(
 
 export function spreadStudyQuestions(questions: StudyQuestion[]): StudyQuestion[] {
   const blocks = buildQuestionBlocks(questions);
-  const spreadBlocks = spreadByGroupKey(blocks, (block) =>
-    spreadGroupKeyFromStudyQuestion(block[0]!)
+  const spreadBlocks = spreadByGroupKey(
+    blocks,
+    (block) => spreadGroupKeyFromStudyQuestion(block[0]!),
+    {
+      areTooSimilar: (prevBlock, nextBlock) =>
+        optionsAreTooSimilar(
+          optionsFromStudyQuestion(prevBlock[0]!),
+          optionsFromStudyQuestion(nextBlock[0]!)
+        ),
+    }
   );
   return spreadBlocks.flat();
 }
 
 export function selectSpreadBankItems(items: BankItem[], limit: number): BankItem[] {
-  const pool = spreadByGroupKey(
-    shuffleBankItems(dedupeBankItemsInOrder(items)),
-    spreadGroupKeyFromBankItem
+  const deduped = dedupeBankItemsInOrder(items);
+
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const balanced = balanceDifficultyMix(
+      shuffleBankItems(deduped),
+      Math.max(limit, deduped.length),
+      resolveDifficultyBand
+    );
+    const pool = spreadByGroupKey(balanced, spreadGroupKeyFromBankItem, {
+      areTooSimilar: (a, b) =>
+        optionsAreTooSimilar(optionsFromBankItem(a), optionsFromBankItem(b)),
+    });
+    const slice = pool.slice(0, Math.max(0, limit));
+    if (
+      slice.length <= 1 ||
+      !hasAdjacentSimilarOptions(slice, optionsFromBankItem)
+    ) {
+      return slice;
+    }
+  }
+
+  const fallback = spreadByGroupKey(
+    balanceDifficultyMix(shuffleBankItems(deduped), Math.max(limit, deduped.length), resolveDifficultyBand),
+    spreadGroupKeyFromBankItem,
+    {
+      areTooSimilar: (a, b) =>
+        optionsAreTooSimilar(optionsFromBankItem(a), optionsFromBankItem(b)),
+    }
   );
-  return pool.slice(0, Math.max(0, limit));
+  return fallback.slice(0, Math.max(0, limit));
 }
 
 function dedupeBankItemsInOrder(items: BankItem[]): BankItem[] {

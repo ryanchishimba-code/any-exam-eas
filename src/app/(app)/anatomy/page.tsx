@@ -37,10 +37,12 @@ async function AnatomyContent({
   initialStructureId?: string;
   initialProcedureId?: string;
 }) {
-  const pref = await getUserExamPreference(userId);
-  if (!pref && !examOverride) redirect(ROUTES.selectExam);
+  if (!examOverride) {
+    const pref = await getUserExamPreference(userId);
+    if (!pref) redirect(ROUTES.selectExam);
+  }
 
-  const { examSlug, cards } = await loadMemoryCards(userId, examOverride ?? pref?.examSlug);
+  const { examSlug, cards } = await loadMemoryCards(userId, examOverride);
 
   return (
     <AnatomyExplorerClient

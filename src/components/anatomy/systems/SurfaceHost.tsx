@@ -1,13 +1,30 @@
 "use client";
 
-import { AnatomyEngineSurface } from "@/components/anatomy/engine/AnatomyEngineSurface";
-import { CartoonAnatomyViewer } from "@/components/anatomy/cartoon/CartoonAnatomyViewer";
+import dynamic from "next/dynamic";
 import type { AnatomySurfaceId } from "@/lib/anatomy/systems/surfaces/types";
 import { resolveAnatomySurface } from "@/lib/anatomy/systems/surfaces";
-import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
+import type { AnatomyLayer, AnatomyStructure, AnatomySystem } from "@/lib/anatomy/types";
+import { AnatomyViewerSkeleton } from "@/components/anatomy/AnatomyViewerSkeleton";
 import { cn } from "@/lib/utils";
 
+const CartoonAnatomyViewer = dynamic(
+  () =>
+    import("@/components/anatomy/cartoon/CartoonAnatomyViewer").then(
+      (m) => m.CartoonAnatomyViewer
+    ),
+  { ssr: false, loading: () => <AnatomyViewerSkeleton /> }
+);
+
+const AnatomyEngineSurface = dynamic(
+  () =>
+    import("@/components/anatomy/engine/AnatomyEngineSurface").then(
+      (m) => m.AnatomyEngineSurface
+    ),
+  { ssr: false, loading: () => <AnatomyViewerSkeleton /> }
+);
+
 type ViewportProps = {
+  structures: AnatomyStructure[];
   visibleLayers: Set<AnatomyLayer>;
   systemFilter?: AnatomySystem | "all";
   selectedId: string | null;
@@ -25,6 +42,7 @@ type Props = ViewportProps & {
 /** Renders the 3D cartoon anatomy viewport (production default). */
 export function SurfaceHost({
   surfaceId = "cartoon-3d",
+  structures,
   visibleLayers,
   systemFilter = "all",
   selectedId,
@@ -43,6 +61,7 @@ export function SurfaceHost({
   if (surface.id === "cartoon-3d") {
     return (
       <CartoonAnatomyViewer
+        structures={structures}
         visibleLayers={visibleLayers}
         systemFilter={systemFilter}
         selectedId={selectedId}
@@ -70,6 +89,7 @@ export function SurfaceHost({
 
   return (
     <CartoonAnatomyViewer
+      structures={structures}
       visibleLayers={visibleLayers}
       systemFilter={systemFilter}
       selectedId={selectedId}

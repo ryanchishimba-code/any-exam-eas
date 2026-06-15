@@ -111,8 +111,9 @@ export async function GET(req: Request) {
   const { isUsmleField } = await import("@/lib/exam-prep/usmle-bank-bridge");
   const usmleField = isUsmleField(fieldId);
   const nursingField = fieldId === "nursing";
-  const sampleCount =
-    usmleField || nursingField ? Math.min(Math.max(limit * 6, 40), 120) : limit;
+  const { resolveExamBankSampleCount, finalizeExamSessionQuestions, assertExamSessionReady } =
+    await import("@/lib/questions/finalize-exam-session");
+  const sampleCount = resolveExamBankSampleCount(fieldId, limit, timedExam);
 
   let items = mixed
     ? await sampleQuestionBankItemsForField({
@@ -178,6 +179,8 @@ export async function GET(req: Request) {
         ? `${getMpjeState(mpjeOptions.stateCode)?.name ?? mpjeOptions.stateCode} MPJE`
         : "Uniform MPJE";
     items = prepareMpjeBankItems(items, mpjeOptions, mpjeLabel);
+    const { prepareMpjeItemsForSession } = await import("@/lib/exam-prep/mpje-serve-gate");
+    items = prepareMpjeItemsForSession({ items, limit });
   }
 
   const { bankItemToExamQuestion, bankItemToRawQuestion } = await import(
@@ -236,15 +239,38 @@ export async function GET(req: Request) {
     });
   });
 
-  const prepared = prepareQuestionsForSession(
-    raw.map((q, i) => ({
-      ...q,
-      field,
-      subjectId: items[i]?.subjectId ?? resolvedSubjectId,
-      bankItemId: items[i]?.id ?? undefined,
-    })),
-    { shuffleOrder: true }
-  ).slice(0, limit);
+  const rawInputs = raw.map((q, i) => ({
+    ...q,
+    field,
+    subjectId: items[i]?.subjectId ?? resolvedSubjectId,
+    bankItemId: items[i]?.id ?? undefined,
+    difficultyLabel:
+      q.difficultyLabel ??
+      (items[i]?.difficulty != null
+        ? items[i]!.difficulty! <= 2
+          ? "Easy"
+          : items[i]!.difficulty! >= 4
+            ? "Hard"
+            : "Medium"
+        : undefined),
+  }));
+
+  let prepared;
+  let sessionQuality;
+
+  if (timedExam) {
+    try {
+      const finalized = finalizeExamSessionQuestions(rawInputs, limit);
+      prepared = finalized.prepared;
+      sessionQuality = finalized.quality;
+      assertExamSessionReady(sessionQuality, fieldId);
+    } catch (e) {
+      const message = e instanceof Error ? e.message : "Could not build full exam session";
+      return NextResponse.json({ error: message, code: "EXAM_SESSION_UNAVAILABLE" }, { status: 503 });
+    }
+  } else {
+    prepared = prepareQuestionsForSession(rawInputs, { shuffleOrder: true }).slice(0, limit);
+  }
 
   const questions: ExamQuestion[] = studyQuestionsToExamQuestions(prepared);
 

@@ -53,6 +53,51 @@ export function selectAllAnswersMatchOptions(options: string[], correctAnswer: s
   return parts.every((p) => optionKeys.has(normOptionKey(p)));
 }
 
+const CLINICAL_DISTRACTOR_FALLBACKS = [
+  "Defer the next step until additional diagnostic data are available",
+  "Treat a secondary finding while overlooking the primary problem",
+  "Select therapy that is contraindicated in this clinical context",
+  "Recommend observation alone without addressing the leading diagnosis",
+  "Choose an intervention appropriate for a different stage of disease",
+];
+
+/** Replace weak or missing distractors with board-style plausible wrong answers. */
+export function synthesizeClinicalDistractors(
+  existing: string[],
+  correctAnswer: string,
+  needed: number
+): string[] {
+  const used = new Set(existing.map(normOptionKey));
+  used.add(normOptionKey(correctAnswer));
+  const out: string[] = [];
+
+  for (const candidate of CLINICAL_DISTRACTOR_FALLBACKS) {
+    if (out.length >= needed) break;
+    const key = normOptionKey(candidate);
+    if (!used.has(key)) {
+      out.push(candidate);
+      used.add(key);
+    }
+  }
+
+  let n = 1;
+  while (out.length < needed) {
+    const candidate = `Pursue a management path that does not match the presenting syndrome (${n})`;
+    const key = normOptionKey(candidate);
+    if (!used.has(key)) {
+      out.push(candidate);
+      used.add(key);
+    }
+    n++;
+  }
+
+  return out;
+}
+
+export function hasGenericPlaceholderOptions(options: string[]): boolean {
+  return options.some((o) => /^alternative \d+$/i.test(cleanOptionText(o).trim()));
+}
+
 export function normalizeQuestionOptions(
   options: string[],
   correctAnswer: string
@@ -66,18 +111,25 @@ export function normalizeQuestionOptions(
     return true;
   });
 
-  while (unique.length < 4) {
-    unique.push(`Alternative ${unique.length + 1}`);
+  const correctClean = cleanOptionText(correctAnswer);
+
+  if (unique.length < 4) {
+    unique.push(
+      ...synthesizeClinicalDistractors(unique, correctClean, 4 - unique.length)
+    );
   }
 
   const four = unique.slice(0, 4);
-  const correctClean = cleanOptionText(correctAnswer);
   let correct = four.find((o) => o.toLowerCase() === correctClean.toLowerCase());
 
   if (!correct && correctClean) {
-    const placeholderIdx = four.findIndex((o) => /^Alternative \d+$/.test(o));
-    if (placeholderIdx >= 0) {
-      four[placeholderIdx] = correctClean;
+    const replaceIdx = four.findIndex((o) =>
+      /^(alternative \d+|defer the next step|treat a secondary|select therapy|recommend observation|choose an intervention|pursue a management)/i.test(
+        o
+      )
+    );
+    if (replaceIdx >= 0) {
+      four[replaceIdx] = correctClean;
     } else {
       four[four.length - 1] = correctClean;
     }

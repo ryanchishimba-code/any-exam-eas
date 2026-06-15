@@ -18,7 +18,11 @@ import {
   parseMatrixLayout,
 } from "./ngn-structures";
 import { shufflePreservingSequentialSets } from "./sequential-sets";
-import { spreadStudyQuestions } from "./spread-session-order";
+import {
+  hasAdjacentSimilarOptions,
+  optionsFromStudyQuestion,
+} from "./session-quality";
+import { hasAdjacentSimilarSpread, spreadGroupKeyFromStudyQuestion, spreadStudyQuestions } from "./spread-session-order";
 import type { RawQuestionInput, StudyQuestion, StudyQuestionType } from "./types";
 
 function toCorrectAnswers(type: StudyQuestionType, correct: string, options: string[] = []): string[] {
@@ -57,7 +61,8 @@ function buildExplanationDetail(q: RawQuestionInput) {
 
 export function examQuestionToStudy(
   q: RawQuestionInput,
-  index: number
+  index: number,
+  opts?: { shuffleOptions?: boolean }
 ): StudyQuestion {
   const type = inferStudyQuestionType(q);
   let options = q.options ?? [];
@@ -85,9 +90,14 @@ export function examQuestionToStudy(
     options = [];
   } else {
     const normalized = normalizeQuestionOptions(options, correctAnswer);
-    const shuffled = shuffleAnswerOptions(normalized.options, normalized.correctAnswer);
-    options = shuffled.options;
-    correctAnswer = shuffled.correctAnswer;
+    if (opts?.shuffleOptions === false) {
+      options = normalized.options;
+      correctAnswer = normalized.correctAnswer;
+    } else {
+      const shuffled = shuffleAnswerOptions(normalized.options, normalized.correctAnswer);
+      options = shuffled.options;
+      correctAnswer = shuffled.correctAnswer;
+    }
   }
 
   let stem = stripLeadingShiftNoteBlock(q.question);
@@ -151,6 +161,17 @@ export function prepareQuestionsForSession(
   const prepared = raw.map((q, i) => examQuestionToStudy(q, i));
 
   if (opts?.shuffleOrder === false) return prepared;
+
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const spread = spreadStudyQuestions(shufflePreservingSequentialSets(prepared));
+    if (
+      spread.length <= 1 ||
+      (!hasAdjacentSimilarSpread(spread, spreadGroupKeyFromStudyQuestion) &&
+        !hasAdjacentSimilarOptions(spread, optionsFromStudyQuestion))
+    ) {
+      return spread;
+    }
+  }
 
   return spreadStudyQuestions(shufflePreservingSequentialSets(prepared));
 }

@@ -37,6 +37,7 @@ type Props = {
   bundle: AnatomyBundle;
   examSlug: ExamSlug;
   sidebarProps: SidebarProps;
+  structures: AnatomyStructure[];
   selectedStructure: AnatomyStructure | null;
   relatedCards: MemoryCard[];
   visibleLayers: Set<AnatomyLayer>;
@@ -95,6 +96,7 @@ export function AnatomyShell({
   bundle,
   examSlug,
   sidebarProps,
+  structures,
   selectedStructure,
   relatedCards,
   visibleLayers,
@@ -210,6 +212,7 @@ export function AnatomyShell({
           >
             <SurfaceHost
               surfaceId="cartoon-3d"
+              structures={structures}
               visibleLayers={visibleLayers}
               systemFilter={sidebarProps.systemFilter}
               selectedId={selectedId}

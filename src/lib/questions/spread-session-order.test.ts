@@ -15,15 +15,16 @@ function bankItem(
   id: string,
   subjectId: string,
   question: string,
-  vignette?: string
+  vignette?: string,
+  options: string[] = ["A", "B", "C", "D"]
 ): BankItem {
   return {
     id,
     subjectId,
     question,
     vignette,
-    options: ["A", "B", "C", "D"],
-    correctAnswer: "A",
+    options,
+    correctAnswer: options[0] ?? "A",
     explanation: "Test",
   };
 }
@@ -62,9 +63,24 @@ describe("selectSpreadBankItems", () => {
         "Which medication?",
         "Male with crushing chest pain and diaphoresis"
       ),
-      bankItem("b1", "nephrology", "Best next step?", "Rising creatinine after contrast"),
-      bankItem("b2", "nephrology", "Best fluid?", "Oliguria after major surgery"),
-      bankItem("b3", "nephrology", "Best electrolyte fix?", "Hyperkalemia with AKI"),
+      bankItem("b1", "nephrology", "Best next step?", "Rising creatinine after contrast", [
+        "IV fluids",
+        "Furosemide",
+        "Dialysis",
+        "Stop ACE inhibitor",
+      ]),
+      bankItem("b2", "nephrology", "Best fluid?", "Oliguria after major surgery", [
+        "Normal saline bolus",
+        "D5W infusion",
+        "Hypertonic saline",
+        "Free water restriction",
+      ]),
+      bankItem("b3", "nephrology", "Best electrolyte fix?", "Hyperkalemia with AKI", [
+        "Calcium gluconate",
+        "Insulin and dextrose",
+        "Sodium polystyrene",
+        "Emergent dialysis",
+      ]),
     ];
 
     const selected = selectSpreadBankItems(clustered, 6);
@@ -168,8 +184,8 @@ describe("prepareQuestionsForSession count", () => {
         type: "multiple_choice",
         question: "Best step?",
         vignette: "Different renal scenario",
-        options: ["A", "B", "C", "D"],
-        correctAnswer: "C",
+        options: ["IV fluids", "Diuretic", "Dialysis", "Stop nephrotoxin"],
+        correctAnswer: "IV fluids",
         explanation: "three",
         subjectId: "nephrology",
       },
