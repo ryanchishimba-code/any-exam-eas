@@ -12,9 +12,11 @@ import {
   LogOut,
   Menu,
   X,
+  UserCog,
 } from "lucide-react";
 import { useState } from "react";
 import { signOutAndCleanup } from "@/lib/client/sign-out";
+import { hasMinRole } from "@/lib/permissions";
 
 const navItems = [
   { href: "/internal", label: "Overview", icon: LayoutDashboard, exact: true },
@@ -41,6 +43,16 @@ export function InternalPortalShell({ children }: { children: React.ReactNode })
     return pathname === href || pathname.startsWith(`${href}/`);
   }
 
+  const role = (session?.user as { role?: string } | undefined)?.role;
+  const showStaffNav = hasMinRole(role, "admin");
+
+  const sidebarItems = [
+    ...navItems,
+    ...(showStaffNav
+      ? [{ href: "/internal/staff", label: "Employees", icon: UserCog, exact: false as const }]
+      : []),
+  ];
+
   const sidebar = (
   <aside className="flex h-full w-56 shrink-0 flex-col border-r border-black/[0.06] bg-[var(--color-surface-elevated)] p-4">
       <div className="mb-6 px-2">
@@ -59,7 +71,7 @@ export function InternalPortalShell({ children }: { children: React.ReactNode })
       </div>
 
       <nav className="flex flex-1 flex-col gap-1">
-        {navItems.map((item) => {
+        {sidebarItems.map((item) => {
           const Icon = item.icon;
           const active = isActive(item.href, item.exact);
           return (

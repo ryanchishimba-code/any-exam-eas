@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { AdminAccessControls } from "@/components/crm/AdminAccessControls";
+import { StaffRoleControls } from "@/components/crm/StaffRoleControls";
 
 type SupportNote = {
   id: string;
@@ -50,7 +51,15 @@ type Profile = NonNullable<
   Awaited<ReturnType<typeof import("@/lib/crm/user-profile").getCrmUserProfile>>
 >;
 
-export default function UserProfileCRM({ profile }: { profile: Profile }) {
+export default function UserProfileCRM({
+  profile,
+  actorRole,
+  canManageStaff,
+}: {
+  profile: Profile;
+  actorRole?: string;
+  canManageStaff?: boolean;
+}) {
   const [noteBody, setNoteBody] = useState("");
   const [pinned, setPinned] = useState(false);
   const [tag, setTag] = useState("");
@@ -184,6 +193,14 @@ export default function UserProfileCRM({ profile }: { profile: Profile }) {
       </section>
 
       <AdminAccessControls userId={userId} />
+
+      {canManageStaff && actorRole && (
+        <StaffRoleControls
+          userId={userId}
+          currentRole={profile.user.role}
+          actorRole={actorRole}
+        />
+      )}
 
       <section className="rounded-xl border border-black/10 bg-white p-4">
         <h2 className="text-sm font-semibold">Usage metrics</h2>

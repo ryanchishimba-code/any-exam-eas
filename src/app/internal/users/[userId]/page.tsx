@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireInternalPermission } from "@/lib/internal/auth";
+import { hasPermission } from "@/lib/permissions";
 import { PageShell } from "@/components/PageShell";
 import { getCrmUserProfile } from "@/lib/crm/user-profile";
 import UserProfileCRM from "./UserProfileCRM";
@@ -29,7 +30,11 @@ export default async function InternalUserProfilePage({ params }: Props) {
       description={`Role: ${profile.user.role} • Status: ${profile.user.accountStatus}`}
       maxWidth="max-w-5xl"
     >
-      <UserProfileCRM profile={profile} />
+      <UserProfileCRM
+        profile={profile}
+        actorRole={auth.role}
+        canManageStaff={hasPermission(auth.role, "admin.actions")}
+      />
     </PageShell>
   );
 }

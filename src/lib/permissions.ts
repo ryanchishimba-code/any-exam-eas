@@ -1,6 +1,6 @@
 import type { StaffRole } from "@/lib/analytics/types";
 
-const ROLE_RANK: Record<StaffRole, number> = {
+export const ROLE_RANK: Record<StaffRole, number> = {
   user: 0,
   support_staff: 1,
   moderator: 2,

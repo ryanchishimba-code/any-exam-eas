@@ -49,6 +49,7 @@ Employees sign in at `/employee/login` → `/internal`.
 | `/internal` | Overview KPIs |
 | `/internal/analytics` | Charts, CSV export |
 | `/internal/users` | CRM search & profiles |
+| `/internal/staff` | Invite employees & assign roles (admin+) |
 | `/internal/feedback` | Feedback inbox |
 
 ## Security
@@ -61,12 +62,23 @@ Employees sign in at `/employee/login` → `/internal`.
 
 ## Setup staff account
 
+**Recommended — Admin UI (production):**
+
+1. Sign in as an admin at `/login`
+2. Open **Employees** → `/internal/staff`
+3. Invite by name, email, and role (temporary password shown once)
+4. Employee signs in at `/login?callbackUrl=/internal`
+
+**Script (local / bootstrap):**
+
 ```bash
-npm run db:seed-admin
-# dev@anyexameasy.test / DevPassword1!
+npm run db:seed-user
+# dev@anyexameasy.test / DevPassword1! — admin role + premium (default)
 ```
 
-Sign out and sign in at `/employee/login` so JWT includes `role: admin`.
+You can also promote any existing customer from **Users** → profile → **Staff role** (admin only).
+
+Sign out and sign in again after role changes so the JWT picks up the new role.
 
 ## Deployment
 

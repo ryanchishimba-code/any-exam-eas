@@ -28,11 +28,12 @@
 
 Dev: `npm run db:expire-trial -- you@example.com` to test the paywall.
 
-**Local dev test account:**
+**Local dev test account** (premium + staff portal after seed):
 
 ```bash
 npm run db:seed-user
-# dev@anyexameasy.test / DevPassword1!
+# dev@anyexameasy.test / DevPassword1! — role admin, /internal access
+# Sign in at /employee/login for staff portal (or /login then open /internal)
 ```
 
 **Production:** Run `npx prisma migrate deploy` on Vercel build when `DATABASE_URL` is set.

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Creates or refreshes a dev account for testing login (idempotent).
- * Default: dev@anyexameasy.test / DevPassword1!
+ * Default: dev@anyexameasy.test / DevPassword1! / role=admin (full site + /internal)
  *
  * Always resets password hash so "dev password not working" is fixed after re-run.
  */
@@ -11,15 +11,34 @@ import bcrypt from "bcryptjs";
 const email = (process.env.DEV_USER_EMAIL ?? "dev@anyexameasy.test").trim().toLowerCase();
 const password = process.env.DEV_USER_PASSWORD ?? "DevPassword1!";
 const name = process.env.DEV_USER_NAME ?? "Dev User";
-const role = (process.env.DEV_USER_ROLE ?? "user").trim();
+const role = (process.env.DEV_USER_ROLE ?? "admin").trim();
+
+/** Full premium access for local/dev login (status=active, not checkout-gated trialing). */
+const premiumSubscription = {
+  status: "active",
+  trialEndsAt: null,
+  currentPeriodEnd: daysFromNow(365),
+};
+
+function daysFromNow(days) {
+  const d = new Date();
+  d.setDate(d.getDate() + days);
+  return d;
+}
 
 const prisma = new PrismaClient();
+
+async function upsertPremiumSubscription(userId) {
+  await prisma.subscription.upsert({
+    where: { userId },
+    create: { userId, ...premiumSubscription },
+    update: premiumSubscription,
+  });
+}
 
 try {
   const passwordHash = await bcrypt.hash(password, 12);
   const dob = new Date("1990-01-15");
-  const trialEndsAt = new Date();
-  trialEndsAt.setDate(trialEndsAt.getDate() + 14);
 
   const existing = await prisma.user.findUnique({
     where: { email },
@@ -38,26 +57,14 @@ try {
       },
     });
 
-    if (!existing.subscription) {
-      await prisma.subscription.create({
-        data: {
-          userId: existing.id,
-          status: "trialing",
-          trialEndsAt,
-        },
-      });
-    } else if (existing.subscription.status === "inactive") {
-      await prisma.subscription.update({
-        where: { userId: existing.id },
-        data: { status: "trialing", trialEndsAt },
-      });
-    }
+    await upsertPremiumSubscription(existing.id);
 
-    console.log("Refreshed dev user (password reset):");
+    console.log("Refreshed dev user (password reset, premium + staff access):");
     console.log(`  Email:    ${email}`);
     console.log(`  Password: ${password}`);
     console.log(`  Role:     ${role}`);
     console.log(`  Id:       ${existing.id}`);
+    console.log(`  Login:    /login or /employee/login → /internal`);
     process.exit(0);
   }
 
@@ -71,7 +78,7 @@ try {
       accountStatus: "active",
       emailVerified: new Date(),
       subscription: {
-        create: { status: "trialing", trialEndsAt },
+        create: premiumSubscription,
       },
     },
   });
@@ -81,6 +88,7 @@ try {
   console.log(`  Password: ${password}`);
   console.log(`  Role:     ${role}`);
   console.log(`  Id:       ${user.id}`);
+  console.log(`  Login:    /login or /employee/login → /internal`);
 } catch (e) {
   console.error(e instanceof Error ? e.message : e);
   process.exit(1);
