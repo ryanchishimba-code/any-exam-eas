@@ -13,6 +13,7 @@ import {
   Menu,
   X,
   Shield,
+  UserCog,
 } from "lucide-react";
 import { useState } from "react";
 import { signOutAndCleanup } from "@/lib/client/sign-out";
@@ -21,6 +22,7 @@ const navItems = [
   { href: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
   { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
   { href: "/admin/users", label: "Users", icon: Users },
+  { href: "/admin/employees", label: "Employees", icon: UserCog },
   { href: "/admin/feedback", label: "Feedback", icon: MessageSquare },
   { href: "/admin/support", label: "Customer Service", icon: Headphones },
 ];
