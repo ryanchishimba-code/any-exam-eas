@@ -44,6 +44,13 @@ const nextConfig: NextConfig = {
 
     return [
       {
+        source: "/.well-known/apple-developer-merchantid-domain-association",
+        headers: [
+          { key: "Content-Type", value: "application/octet-stream" },
+          { key: "Cache-Control", value: "public, max-age=86400" },
+        ],
+      },
+      {
         source: "/:path*",
         headers: securityHeaders,
       },

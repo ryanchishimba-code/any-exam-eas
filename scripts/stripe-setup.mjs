@@ -164,9 +164,10 @@ Never paste sk_test keys in chat or commit them to git.
 Done. Updated .env with all billing interval prices.
 
 Next steps:
+  npm run stripe:register-domains
   Enable Apple Pay / Google Pay in Stripe Dashboard → Settings → Payment methods.
   Disable Amazon Pay there if it appears — checkout only allows card, Link, and wallets.
-  Register anyexameasy.com for Apple Pay: Dashboard → Settings → Payment method domains.
+  Deploy public/.well-known/apple-developer-merchantid-domain-association (included in repo).
   3. Restart dev server: npm run dev
   4. Test: /checkout?plan=trial&interval=yearly (card 4242 4242 4242 4242)
 
