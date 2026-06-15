@@ -79,7 +79,7 @@ export function sanitizeBoardUpdates(raw: unknown): string[] {
     if (!line) continue;
     if (updates.includes(line)) continue;
     updates.push(line);
-    if (updates.length >= 6) break;
+    if (updates.length >= 4) break;
   }
   return updates;
 }
@@ -88,7 +88,7 @@ export function validateReferenceBrief(brief: ReferenceStudyBrief): ReferenceStu
   return {
     ...brief,
     headline: cleanString(brief.headline, 120) ?? "Your study brief",
-    summary: cleanString(brief.summary, 600) ?? brief.summary,
+    summary: cleanString(brief.summary, 400) ?? brief.summary,
     focusAreas: brief.focusAreas.filter(
       (a) => a.topicKey && a.topicName && a.pearls.length > 0
     ),

@@ -39,11 +39,11 @@ export function ReferenceHubHeader({
         <div>
           <p className={refUi.eyebrow}>Reference</p>
           <h1 className={refUi.title}>{exam.shortName} study hub</h1>
-          <p className={cn(refUi.subtitle, "mt-0.5 max-w-lg")}>{stats.motivationalMessage}</p>
+          <p className={cn(refUi.subtitle, "mt-0.5 line-clamp-2 max-w-lg")}>{stats.motivationalMessage}</p>
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className={cn(refUi.chipRow, "w-full sm:w-auto sm:flex-wrap")}>
         <StatPill icon={Target} label="Readiness" value={`${stats.readinessScore}%`} />
         <StatPill icon={Flame} label="Streak" value={`${stats.studyStreakDays}d`} />
         {stats.overallAccuracy != null ? (

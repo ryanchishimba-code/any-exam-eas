@@ -16,6 +16,8 @@ type Props = {
   className?: string;
   variant?: "light" | "dark";
   ctaClass?: string;
+  /** Additional sources not shown in the collapsed list. */
+  extraCount?: number;
 };
 
 export function ReferenceBriefSources({
@@ -23,6 +25,7 @@ export function ReferenceBriefSources({
   className,
   variant = "dark",
   ctaClass,
+  extraCount = 0,
 }: Props) {
   const [open, setOpen] = useState(false);
 
@@ -31,33 +34,34 @@ export function ReferenceBriefSources({
   const isDark = variant === "dark";
 
   return (
-    <div className={cn("mt-4", className)}>
+    <div className={cn("mt-4 min-w-0", className)}>
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         className={cn(
-          "inline-flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-bold shadow-sm transition",
+          "inline-flex w-full items-center justify-center gap-2 rounded-xl px-3 py-2.5 text-xs font-bold shadow-sm transition sm:w-auto sm:justify-start sm:py-2",
           isDark
             ? cn("border border-white/40", ctaClass ?? "bg-white text-slate-900 hover:bg-slate-50")
             : "border border-black/[0.08] bg-white text-[var(--color-ink)] hover:bg-[var(--color-surface)]"
         )}
         aria-expanded={open}
       >
-        <ShieldCheck className="h-3.5 w-3.5" aria-hidden />
-        {open ? "Hide" : "View"} {sources.length} verified sources
+        <ShieldCheck className="h-3.5 w-3.5 shrink-0" aria-hidden />
+        {open ? "Hide" : "View"} {sources.length} sources
+        {extraCount > 0 ? ` (+${extraCount} more)` : ""}
       </button>
 
       {open ? (
         <ul
           className={cn(
-            "mt-3 max-h-56 space-y-2 overflow-y-auto rounded-2xl border p-3 shadow-sm",
+            "mt-3 max-h-48 space-y-2 overflow-y-auto rounded-xl border p-3 shadow-sm sm:max-h-56 sm:rounded-2xl",
             isDark
               ? "border-white/40 bg-white/95 text-slate-900"
               : "border-black/[0.06] bg-[var(--color-surface)]"
           )}
         >
           {sources.map((source) => (
-            <li key={source.url}>
+            <li key={source.url} className="min-w-0">
               <Link
                 href={source.url}
                 target="_blank"
@@ -73,15 +77,17 @@ export function ReferenceBriefSources({
                   className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-accent)] opacity-80"
                   aria-hidden
                 />
-                <span className="min-w-0">
-                  <span className="font-semibold leading-snug text-slate-900 group-hover:underline">
+                <span className="min-w-0 flex-1">
+                  <span className="block font-semibold leading-snug break-words text-slate-900 group-hover:underline">
                     {source.title}
                   </span>
                   <span className="mt-0.5 flex flex-wrap gap-1.5 text-slate-600">
                     <span className="rounded-full bg-slate-200 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-slate-700">
                       {SOURCE_LABELS[source.sourceType]}
                     </span>
-                    {source.topic ? <span>{source.topic}</span> : null}
+                    {source.topic ? (
+                      <span className="break-words">{source.topic}</span>
+                    ) : null}
                   </span>
                 </span>
               </Link>

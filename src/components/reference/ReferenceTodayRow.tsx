@@ -70,7 +70,7 @@ function buildPickedCards(
     if (recentIds.has(card.id)) push(card, "Recent");
   }
 
-  return ordered.slice(0, 10);
+  return ordered.slice(0, 6);
 }
 
 export function ReferenceTodayRow({
@@ -96,7 +96,7 @@ export function ReferenceTodayRow({
             </h2>
           </div>
           <p className={cn(refUi.sectionHint, "mt-0.5")}>
-            Due cards, weak areas, and recent study — swipe to browse.
+            Due cards and weak areas — tap to open.
           </p>
         </div>
       </div>

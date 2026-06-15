@@ -68,11 +68,11 @@ export function ReferenceHubSearch({ examSlug, cards, onOpenCard, onQueryChange,
           onFocus={() => setOpen(true)}
           placeholder={
             isMpjeExam(examSlug)
-              ? "Search cards and review modules…"
-              : "Search cards, drugs, anatomy, procedures…"
+              ? "Search cards & modules…"
+              : "Search cards, drugs, anatomy…"
           }
           className={cn(
-            "w-full rounded-[14px] border-0 bg-black/[0.04] py-3 pl-11 pr-24 text-[15px] text-[var(--color-ink)]",
+            "w-full rounded-[14px] border-0 bg-black/[0.04] py-3 pl-11 pr-11 text-[15px] text-[var(--color-ink)] sm:pr-24",
             "outline-none transition placeholder:text-[var(--color-ink-muted)]",
             "focus:bg-white focus:shadow-[0_0_0_3px_rgba(79,70,229,0.18)]"
           )}

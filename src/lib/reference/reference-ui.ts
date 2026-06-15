@@ -1,11 +1,11 @@
 /** Apple-style surface tokens for the Reference Hub. */
 export const refUi = {
-  page: "reference-hub w-full space-y-4",
+  page: "reference-hub w-full min-w-0 max-w-full space-y-3 overflow-x-hidden sm:space-y-4",
   pageShell:
-    "rounded-[28px] border border-black/[0.04] bg-gradient-to-b from-[#f5f5f7] to-[#eef0f4] p-1 sm:p-1.5",
+    "rounded-[20px] border border-black/[0.04] bg-gradient-to-b from-[#f5f5f7] to-[#eef0f4] p-0.5 sm:rounded-[28px] sm:p-1.5",
   panel:
-    "overflow-hidden rounded-[22px] border border-black/[0.06] bg-white/95 shadow-[var(--shadow-apple-sm)] backdrop-blur-xl",
-  panelSection: "space-y-5 p-4 sm:p-5 md:p-6",
+    "min-w-0 overflow-hidden rounded-[18px] border border-black/[0.06] bg-white/95 shadow-[var(--shadow-apple-sm)] backdrop-blur-xl sm:rounded-[22px]",
+  panelSection: "space-y-4 p-3 sm:space-y-5 sm:p-5 md:p-6",
   sectionDivider: "border-t border-black/[0.05]",
   eyebrow:
     "text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]",
@@ -14,7 +14,7 @@ export const refUi = {
   sectionTitle: "text-[15px] font-semibold tracking-tight text-[var(--color-ink)]",
   sectionHint: "text-[13px] text-[var(--color-ink-muted)]",
   stickyBar:
-    "sticky top-[calc(var(--nav-height)+0.25rem)] z-20 space-y-3 rounded-[20px] border border-black/[0.06] bg-white/90 p-3 shadow-[var(--shadow-apple-sm)] backdrop-blur-xl",
+    "sticky top-[calc(var(--nav-height)+0.25rem)] z-20 min-w-0 space-y-2.5 rounded-[16px] border border-black/[0.06] bg-white/90 p-2.5 shadow-[var(--shadow-apple-sm)] backdrop-blur-xl sm:space-y-3 sm:rounded-[20px] sm:p-3",
   statPill:
     "inline-flex items-center gap-1.5 rounded-full bg-black/[0.04] px-3 py-1.5 text-[12px] font-semibold tabular-nums text-[var(--color-ink)]",
   chipRow:

@@ -129,8 +129,7 @@ function fallbackBrief(params: {
     topicName: t.name,
     masteryScore: t.masteryScore,
     pearls: [
-      `Review high-yield facts for ${t.name} before your next practice block.`,
-      `Your in-app mastery: ${t.masteryScore}% across ${t.attempts} attempt(s).`,
+      `Focus your next session on ${t.name} — your weakest scored topic right now.`,
     ],
     studyAction: `Open memory cards and run 10 practice questions on ${t.name}.`,
   }));
@@ -194,9 +193,9 @@ async function synthesizeBriefWithAi(params: {
 Output JSON:
 {
   "headline": string (short, motivating),
-  "summary": string (2-3 sentences, actionable),
-  "focusAreas": [{ "topicKey": string, "topicName": string, "masteryScore": number optional, "pearls": string[2-3], "studyAction": string }],
-  "boardUpdates": string[3-5] (current high-yield facts students must know in 2025-2026, each grounded in research)
+  "summary": string (max 2 short sentences, actionable),
+  "focusAreas": [{ "topicKey": string, "topicName": string, "masteryScore": number optional, "pearls": string[1-2], "studyAction": string }],
+  "boardUpdates": string[2-3] (distinct high-yield facts not repeated in summary or pearls)
 }
 Prioritize weak areas. Pearls must be exam-ready. If research is thin for a topic, say "review memory cards" rather than inventing facts.`,
       },
