@@ -45,7 +45,7 @@ export function FullExamLauncher({
   const options = getLengthOptions(examSlug);
 
   const [preset, setPreset] = useState<FullExamLengthPreset>(() =>
-    parseFullExamLengthPreset(initialMode)
+    initialMode ? parseFullExamLengthPreset(initialMode) : "full"
   );
   const [timed, setTimed] = useState(initialTimed);
   const [pending, setPending] = useState(autostart);
@@ -99,7 +99,7 @@ export function FullExamLauncher({
   }
 
   useEffect(() => {
-    if (initialMode) setPreset(parseFullExamLengthPreset(initialMode));
+    setPreset(initialMode ? parseFullExamLengthPreset(initialMode) : "full");
   }, [initialMode]);
 
   useEffect(() => {
@@ -230,7 +230,9 @@ export function FullExamLauncher({
                   className={cn(feUi.startBtn, "mt-4 bg-[var(--color-accent)]")}
                 >
                   <Zap className="h-4 w-4" aria-hidden />
-                  {pending ? "Starting…" : "Start exam"}
+                  {pending
+                    ? "Starting…"
+                    : `Start ${preview.questionCount}-question exam`}
                 </button>
                 <Link
                   href={ROUTES.dashboard}

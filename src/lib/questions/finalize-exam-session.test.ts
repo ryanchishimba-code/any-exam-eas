@@ -50,6 +50,9 @@ describe("full-length exam fields", () => {
       if (slug === "nclex") {
         expect(sample).toBeGreaterThanOrEqual(255);
       }
+      if (slug === "usmle") {
+        expect(sample).toBeGreaterThanOrEqual(full.questionCount + 150);
+      }
     }
   });
 });

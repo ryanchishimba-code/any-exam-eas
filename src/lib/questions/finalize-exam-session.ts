@@ -40,8 +40,8 @@ export function resolveExamBankSampleCount(
     return Math.max(limit, 40);
   }
 
-  // Runtime NCLEX/USMLE gates reject many rows — pull a large pool before spread/limit.
-  if (fieldId === "nursing") {
+  // Runtime clinical gates reject many rows — pull a large pool before spread/limit.
+  if (fieldId === "nursing" || fieldId.startsWith("usmle")) {
     return Math.min(
       QUESTION_BANK_SAMPLE_MAX_PULL,
       Math.max(limit * 3, limit + 150)

@@ -28,7 +28,7 @@ const QUICK_ACTIONS = [
   {
     title: "Full Exam",
     description: "Timed board simulation",
-    href: (slug: ExamSlug) => fullExamLaunchHref(slug),
+    href: (slug: ExamSlug) => fullExamLaunchHref(slug, { mode: "full" }),
     icon: Clock,
   },
   {

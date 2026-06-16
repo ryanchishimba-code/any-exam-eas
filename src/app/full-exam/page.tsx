@@ -18,7 +18,7 @@ export default async function FullExamIndexPage({
 
   const sp = await searchParams;
   const qs = new URLSearchParams();
-  if (sp.mode) qs.set("mode", sp.mode);
+  qs.set("mode", sp.mode ?? "full");
   if (sp.autostart) qs.set("autostart", sp.autostart);
   if (sp.timed) qs.set("timed", sp.timed);
   const suffix = qs.toString();

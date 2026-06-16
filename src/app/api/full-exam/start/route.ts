@@ -19,7 +19,7 @@ export async function POST(req: Request) {
 
   const preset = (["50", "100", "full"].includes(body.lengthPreset)
     ? body.lengthPreset
-    : "50") as FullExamLengthPreset;
+    : "full") as FullExamLengthPreset;
   const timed = body.timed !== false;
   const nclexLength =
     body.nclexLength === "maximum" ? ("maximum" as const) : ("minimum" as const);

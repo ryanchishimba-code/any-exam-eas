@@ -115,7 +115,7 @@ export function parseFullExamLengthPreset(
   ) {
     return "full";
   }
-  return "50";
+  return "full";
 }
 
 /** Launcher URL with optional preset + autostart for dashboard / hub shortcuts. */
