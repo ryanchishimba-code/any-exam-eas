@@ -3,7 +3,7 @@ import { auth } from "@/auth";
 import { FullExamLauncher } from "@/components/exam/FullExamLauncher";
 import { setUserExamPreference } from "@/lib/edtech/exam-preference";
 import { isExamSlug } from "@/lib/edtech/exams";
-import { requirePremiumPage } from "@/lib/require-premium-page";
+import { requireProFeaturePage } from "@/lib/require-pro-feature";
 import { fullExamHref, ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -35,7 +35,7 @@ export default async function FullExamLauncherPage({
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(fullExamHref(examSlug as ExamSlug))}`);
   }
 
-  await requirePremiumPage(fullExamHref(examSlug as ExamSlug));
+  await requireProFeaturePage("unlimited_mock_exams", fullExamHref(examSlug as ExamSlug));
 
   await setUserExamPreference(session.user.id, examSlug as ExamSlug);
 

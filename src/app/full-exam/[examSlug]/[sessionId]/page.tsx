@@ -4,7 +4,7 @@ import { FullExamSimulator } from "@/components/exam/FullExamSimulator";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { getExamSession, type ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { fullExamResultsHref } from "@/lib/full-exam/config";
-import { requirePremiumPage } from "@/lib/require-premium-page";
+import { requireProFeaturePage } from "@/lib/require-pro-feature";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamSessionConfig } from "@/types/full-exam";
 
@@ -21,7 +21,7 @@ export default async function FullExamSessionPage({
     redirect(`/auth/login?callbackUrl=/full-exam/${examSlug}/${sessionId}`);
   }
 
-  await requirePremiumPage(`/full-exam/${examSlug}/${sessionId}`);
+  await requireProFeaturePage("unlimited_mock_exams", `/full-exam/${examSlug}/${sessionId}`);
 
   let examSession = null;
   try {

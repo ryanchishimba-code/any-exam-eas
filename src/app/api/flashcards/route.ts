@@ -2,15 +2,16 @@ import { NextResponse } from "next/server";
 import { and, eq, lte } from "drizzle-orm";
 import { requireDb } from "@/db";
 import { flashcards } from "@/db/schema";
-import { createId } from "@/lib/id";
+import { requireProFeatureApi } from "@/lib/api-access";
 import { scheduleReview, type ReviewGrade } from "@/lib/flashcards/fsrs";
-import { requireSessionGuard } from "@/lib/session-guard";
+import { createId } from "@/lib/id";
 
 export const runtime = "nodejs";
 
 export async function GET(req: Request) {
-  const guard = await requireSessionGuard(req);
-  if (!guard.ok) return guard.response;
+  const authResult = await requireProFeatureApi("spaced_repetition", req);
+  if (!authResult.ok) return authResult.response;
+  const guard = { ok: true as const, userId: authResult.userId };
 
   const examType = new URL(req.url).searchParams.get("examType") ?? "top500";
   const db = requireDb();
@@ -30,8 +31,9 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const guard = await requireSessionGuard(req);
-  if (!guard.ok) return guard.response;
+  const authResult = await requireProFeatureApi("spaced_repetition", req);
+  if (!authResult.ok) return authResult.response;
+  const guard = { ok: true as const, userId: authResult.userId };
 
   const body = await req.json();
   const db = requireDb();

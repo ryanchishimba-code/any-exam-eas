@@ -4,6 +4,7 @@ import { formatPricingHeadline } from "@/lib/site";
 import { PricingTiers } from "@/components/pricing/PricingTiers";
 import { PageShell } from "@/components/PageShell";
 import { PaywallNotice } from "@/components/PaywallNotice";
+import { ProUpgradeBanner } from "@/components/pricing/ProUpgradeBanner";
 
 export const metadata = {
   title: "Pricing — Any Exam Easy",
@@ -14,9 +15,9 @@ export const metadata = {
 export default async function PricingPage({
   searchParams,
 }: {
-  searchParams: Promise<{ paywall?: string; return?: string }>;
+  searchParams: Promise<{ paywall?: string; return?: string; upgrade?: string; feature?: string }>;
 }) {
-  const { paywall } = await searchParams;
+  const { paywall, upgrade, feature } = await searchParams;
 
   return (
     <PageShell
@@ -27,6 +28,7 @@ export default async function PricingPage({
       maxWidth="max-w-5xl"
     >
       {paywall && <PaywallNotice reason={paywall} />}
+      {upgrade === "pro" && <ProUpgradeBanner feature={feature} />}
 
       <div className="mt-10">
         <Suspense fallback={null}>

@@ -1,5 +1,6 @@
 import { LearningQuiltStudio } from "@/components/LearningQuiltStudio";
 import { PremiumGate } from "@/components/PremiumGate";
+import { ProUpgradeGate } from "@/components/ProUpgradeGate";
 import { PageShell } from "@/components/PageShell";
 
 export const metadata = {
@@ -15,7 +16,9 @@ export default function LearnPage() {
       maxWidth="max-w-5xl"
     >
       <PremiumGate callbackPath="/learn">
-        <LearningQuiltStudio />
+        <ProUpgradeGate feature="deep_dive_modules" callbackPath="/pricing">
+          <LearningQuiltStudio />
+        </ProUpgradeGate>
       </PremiumGate>
     </PageShell>
   );

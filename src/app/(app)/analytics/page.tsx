@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { PremiumGate } from "@/components/PremiumGate";
+import { ProUpgradeGate } from "@/components/ProUpgradeGate";
 import { StudentAnalyticsDashboard } from "@/components/analytics/StudentAnalyticsDashboard";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
@@ -32,11 +33,13 @@ export default async function AnalyticsPage() {
       </header>
 
       <PremiumGate callbackPath={ROUTES.analytics}>
-        <Suspense
-          fallback={<p className="text-sm text-[var(--color-ink-muted)]">Loading analytics…</p>}
-        >
-          <StudentAnalyticsDashboard />
-        </Suspense>
+        <ProUpgradeGate feature="advanced_analytics" callbackPath={ROUTES.pricing}>
+          <Suspense
+            fallback={<p className="text-sm text-[var(--color-ink-muted)]">Loading analytics…</p>}
+          >
+            <StudentAnalyticsDashboard />
+          </Suspense>
+        </ProUpgradeGate>
       </PremiumGate>
     </div>
   );

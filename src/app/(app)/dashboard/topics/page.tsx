@@ -7,6 +7,7 @@ import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { loadHighYieldTopics } from "@/lib/edtech/topics-service";
 import { loadTopicProgressMap } from "@/lib/edtech/topic-progress";
+import { requireProFeaturePage } from "@/lib/require-pro-feature";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
@@ -79,6 +80,10 @@ export default async function HighYieldTopicsPage({
 
   await requirePremiumPage(ROUTES.highYieldTopics);
   const { exam, topic, mode } = await searchParams;
+
+  if (mode === "deep") {
+    await requireProFeaturePage("deep_dive_modules", ROUTES.highYieldTopics);
+  }
 
   return (
     <Suspense fallback={<TopicsSkeleton />}>

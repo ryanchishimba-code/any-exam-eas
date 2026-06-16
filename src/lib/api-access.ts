@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import { headers } from "next/headers";
 import { auth } from "@/auth";
-import { getUserAccess, type UserAccess } from "@/lib/access-control";
-import { subscriptionRequiredResponse } from "@/lib/api-subscription";
+import { getUserAccess, userHasFeature, type UserAccess } from "@/lib/access-control";
+import { subscriptionRequiredResponse, proFeatureRequiredResponse } from "@/lib/api-subscription";
 import { enforceAccountIpLimit } from "@/lib/account-ip-limit";
+import type { SubscriptionFeature } from "@/lib/subscription-features";
 
 export type ApiAuthResult =
   | { ok: true; userId: string; access: UserAccess }
@@ -59,6 +60,23 @@ export async function requirePremiumApi(req?: Request): Promise<ApiAuthResult> {
     return {
       ok: false,
       response: subscriptionRequiredResponse(access.subscription),
+    };
+  }
+
+  return authResult;
+}
+
+export async function requireProFeatureApi(
+  feature: SubscriptionFeature,
+  req?: Request
+): Promise<ApiAuthResult> {
+  const authResult = await requirePremiumApi(req);
+  if (!authResult.ok) return authResult;
+
+  if (!userHasFeature(authResult.access, feature)) {
+    return {
+      ok: false,
+      response: proFeatureRequiredResponse(authResult.access, feature),
     };
   }
 
