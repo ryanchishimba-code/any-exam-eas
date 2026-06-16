@@ -11,10 +11,16 @@ import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/billing-config";
 
 const PRODUCTION_SITE_URL = `https://www.${SITE_DOMAIN}`;
 
+function isLocalhostUrl(url: string): boolean {
+  return /localhost|127\.0\.0\.1/i.test(url);
+}
+
 /** Canonical public site URL for metadata, sitemap, and OG tags. */
 export function getSiteUrl(): string {
   const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "");
-  if (fromEnv) return fromEnv;
+  if (fromEnv && !(process.env.NODE_ENV === "production" && isLocalhostUrl(fromEnv))) {
+    return fromEnv;
+  }
 
   const vercelProduction = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim().replace(/\/$/, "");
   if (vercelProduction) {
