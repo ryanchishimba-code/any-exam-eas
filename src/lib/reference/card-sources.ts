@@ -1055,6 +1055,37 @@ export const MEMORY_CARD_SOURCES: Record<string, MemoryCardSourceMeta> = {
     sourceUrl: "https://www.fsbpt.org/free-resources/npte/npte-test-content-outline",
     lastReviewedAt: "2026-06-16",
   },
+  // USMLE deep-dive reinforcement
+  "usmle-thyroid-storm": {
+    sourceLabel: "ATA Hyperthyroidism Guidelines",
+    sourceUrl: "https://www.thyroid.org/professionals/ata-professional-guidelines/",
+    lastReviewedAt: "2026-06-16",
+  },
+  "usmle-adrenal-crisis": {
+    sourceLabel: "Endocrine Society Adrenal Insufficiency CPG",
+    sourceUrl: "https://www.endocrine.org/clinical-practice-guidelines",
+    lastReviewedAt: "2026-06-16",
+  },
+  "usmle-hyponatremia-siadh": {
+    sourceLabel: "European hyponatremia clinical practice guidelines",
+    sourceUrl: "https://academic.oup.com/ndt/article/29/suppl_2/i1/1904553",
+    lastReviewedAt: "2026-06-16",
+  },
+  "usmle-hypomagnesemia-hypokalemia": {
+    sourceLabel: "OpenStax Anatomy & Physiology — electrolytes",
+    sourceUrl: "https://openstax.org/books/anatomy-and-physiology",
+    lastReviewedAt: "2026-06-16",
+  },
+  "usmle-sah-workup": {
+    sourceLabel: "AHA/ASA Stroke Guidelines",
+    sourceUrl: "https://www.ahajournals.org/doi/10.1161/STR.0000000000000211",
+    lastReviewedAt: "2026-06-16",
+  },
+  "usmle-status-epilepticus": {
+    sourceLabel: "Neurocritical Care Society SE Guideline",
+    sourceUrl: "https://www.neurocriticalcare.org/resources/guidelines",
+    lastReviewedAt: "2026-06-16",
+  },
 };
 
 export function enrichMemoryCard(card: MemoryCard): MemoryCard {

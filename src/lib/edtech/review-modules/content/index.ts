@@ -12,6 +12,10 @@ import { INFECTIOUS_DISEASE_USMLE_MODULE } from "./infectious-disease-usmle";
 import { INFECTION_CONTROL_NCLEX_MODULE } from "./infection-control-nclex";
 import { SEPSIS_MODULE } from "./sepsis-shock";
 
+import { ENDOCRINE_EMERGENCIES_MODULE } from "./endocrine-emergencies-usmle";
+import { RENAL_ELECTROLYTES_MODULE } from "./renal-electrolytes-usmle";
+import { STROKE_NEURO_MODULE } from "./stroke-neuro-usmle";
+
 import { DELEGATION_MODULE } from "./nclex-delegation-scope";
 import { AANP_ASSESS_MODULE } from "./aanp-assess-domain";
 import { AANP_DIAGNOSE_MODULE } from "./aanp-diagnose-domain";
@@ -41,6 +45,9 @@ export {
   STROKE_REHABILITATION_MODULE,
   CARDIOPULMONARY_REHAB_MODULE,
   THERAPEUTIC_MODALITIES_NPTE_MODULE,
+  ENDOCRINE_EMERGENCIES_MODULE,
+  RENAL_ELECTROLYTES_MODULE,
+  STROKE_NEURO_MODULE,
   DELEGATION_MODULE,
   DIABETES_PHARMACOTHERAPY_MODULE,
   HEART_FAILURE_MODULE,
@@ -71,5 +78,8 @@ export const REVIEW_MODULE_CONTENT_BY_SLUG: Record<string, ReviewModuleContent> 
   "stroke-rehabilitation": STROKE_REHABILITATION_MODULE,
   "cardiopulmonary-rehab": CARDIOPULMONARY_REHAB_MODULE,
   "therapeutic-modalities": THERAPEUTIC_MODALITIES_NPTE_MODULE,
+  "endocrine-dm": ENDOCRINE_EMERGENCIES_MODULE,
+  "renal-electrolytes": RENAL_ELECTROLYTES_MODULE,
+  "neurology-stroke": STROKE_NEURO_MODULE,
   delegation: DELEGATION_MODULE,
 };

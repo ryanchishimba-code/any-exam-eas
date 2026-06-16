@@ -22,6 +22,9 @@ import {
   STROKE_REHABILITATION_MODULE,
   CARDIOPULMONARY_REHAB_MODULE,
   THERAPEUTIC_MODALITIES_NPTE_MODULE,
+  ENDOCRINE_EMERGENCIES_MODULE,
+  RENAL_ELECTROLYTES_MODULE,
+  STROKE_NEURO_MODULE,
 } from "@/lib/edtech/review-modules/content";
 import type { HighYieldTopic } from "@/types/edtech";
 
@@ -126,6 +129,36 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     practiceTopicSlug: "internal-medicine",
     reviewModule: INFECTIOUS_DISEASE_USMLE_MODULE,
     sortOrder: 1,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "endocrine-dm",
+    title: "Endocrine Emergencies: DKA, HHS, Thyroid & Adrenal",
+    overview:
+      "DKA/HHS sequencing, thyroid storm and myxedema coma, and adrenal crisis — the time-critical 'next best step' endocrine module for Step 2 CK.",
+    practiceTopicSlug: "internal-medicine",
+    reviewModule: ENDOCRINE_EMERGENCIES_MODULE,
+    sortOrder: 2,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "renal-electrolytes",
+    title: "Renal: AKI, Dialysis & Electrolyte Emergencies",
+    overview:
+      "AKI categorization (FeNa, BUN:Cr), dialysis indications (AEIOU), and the hyperkalemia and hyponatremia algorithms for Step 2 CK.",
+    practiceTopicSlug: "nephrology",
+    reviewModule: RENAL_ELECTROLYTES_MODULE,
+    sortOrder: 3,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "neurology-stroke",
+    title: "Neurology: Stroke, SAH & Status Epilepticus",
+    overview:
+      "Ischemic vs hemorrhagic stroke pathways, subarachnoid hemorrhage workup, and status epilepticus escalation for Step 2 CK.",
+    practiceTopicSlug: "neurology",
+    reviewModule: STROKE_NEURO_MODULE,
+    sortOrder: 4,
   }),
   defineReviewModuleTopic({
     examSlug: "pance",
