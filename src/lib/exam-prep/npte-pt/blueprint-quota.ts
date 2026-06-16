@@ -80,23 +80,22 @@ export function highYieldTopicsForCategory(
 
 /** Lead-in stem formats to rotate for batch diversity. */
 const STEM_FORMATS = [
-  "most likely diagnosis",
-  "most appropriate next step in management",
-  "most appropriate initial diagnostic study",
-  "most appropriate pharmacotherapy",
+  "most appropriate examination technique",
+  "most appropriate outcome measure",
+  "most appropriate intervention",
+  "most appropriate progression",
   "best explanation for the findings",
-  "most appropriate preventive measure",
-  "most likely mechanism",
-  "most appropriate physical exam finding to assess next",
+  "most appropriate patient education",
+  "most appropriate assistive device",
+  "most appropriate modality parameter",
 ] as const;
 
 function pickTaskForSlot(
   contentCategory: NptePtContentCategoryId,
   index: number
 ): NptePtTaskCategoryId {
-  if (contentCategory === "professional-practice") return "professional";
-  const tasks = TASK_IDS.filter((t) => t !== "professional");
-  return tasks[index % tasks.length]!;
+  if (contentCategory === "professional-responsibilities") return "evaluation-diagnosis-prognosis";
+  return TASK_IDS[index % TASK_IDS.length]!;
 }
 
 function pickTopic(
@@ -111,10 +110,10 @@ function pickTopic(
 const PRESENTATION_HINTS: NptePtGenerationSlot["presentationHint"][] = [
   "adult",
   "adult",
-  "adult",
-  "primary-care",
+  "geriatric",
+  "outpatient",
   "pediatric",
-  "surgical",
+  "acute-care",
 ];
 
 /**

@@ -7,6 +7,7 @@ const EXAM_FEATURED_PROCEDURE_IDS: Record<ExamSlug, string[]> = {
   naplex: ["lap-chole", "ercp-sphincterotomy", "tips", "thyroidectomy", "turp", "colonoscopy"],
   pance: ["cabg", "appendectomy", "lap-chole", "thoracentesis", "turp", "colonoscopy"],
   "aanp-fnp": ["appendectomy", "lap-chole", "thyroidectomy", "colonoscopy", "turp", "thoracentesis"],
+  "npte-pt": ["appendectomy", "cabg", "thoracentesis", "tracheostomy", "turp", "colonoscopy"],
 };
 
 export function getFeaturedProceduresForExam(examSlug: ExamSlug) {

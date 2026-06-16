@@ -302,7 +302,7 @@ export const NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
 
   nptePtVignette(
     "musculoskeletal",
-    `A 19-year-old football player reports locking and medial knee pain after a twisting injury. McMurray test reproduces click with pain at the medial joint line. Joint effusion is 2+. Lachman and pivot shift are negative. MRI shows a vertical tear of the posterior horn of the medial meniscus.`,
+    `A 19-year-old football player reports locking and medial knee pain rated 6/10 after a twisting injury. McMurray test reproduces click with pain at the medial joint line. Joint effusion is 2+. Lachman and pivot shift are negative. MRI shows a vertical tear of the posterior horn of the medial meniscus.`,
     "Which intervention is most appropriate if he wishes to return to sport this season and the surgeon recommends conservative trial first?",
     [
       "Immediate meniscectomy without rehabilitation",
@@ -523,7 +523,7 @@ export const NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
 
   nptePtVignette(
     "musculoskeletal",
-    `A 12-year-old boy reports knee pain after growth spurt. No trauma. Tenderness at the tibial tubercle with pain on resisted knee extension. Radiographs show open apophyses with soft tissue swelling over the tubercle but no fracture.`,
+    `A 12-year-old boy reports knee pain rated 5/10 after a growth spurt. No trauma. Tenderness at the tibial tubercle with pain on resisted knee extension. Radiographs show open apophyses with soft tissue swelling over the tubercle but no fracture.`,
     "Which diagnosis is most likely?",
     [
       "Osgood-Schlatter disease",

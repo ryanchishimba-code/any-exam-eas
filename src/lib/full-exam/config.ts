@@ -52,20 +52,28 @@ export function buildSessionConfig(
   examSlug: ExamSlug,
   preset: FullExamLengthPreset,
   timed: boolean,
-  opts?: { nclexLength?: "minimum" | "maximum" }
+  opts?: { nclexLength?: "minimum" | "maximum"; presetExamNumber?: number }
 ): FullExamSessionConfig {
   const option = getLengthOptions(examSlug).find((o) => o.preset === preset)!;
   let questionCount = option.questionCount;
   if (examSlug === "nclex" && opts?.nclexLength === "maximum") {
     questionCount = 150;
   }
+  if (opts?.presetExamNumber && examSlug === "nclex") {
+    questionCount = 80;
+  }
   return {
     lengthPreset: preset,
     questionCount,
     timed,
     timeLimitSec: computeTimeLimitSec(examSlug, questionCount, timed),
-    adaptive: preset === "full",
-    ...(examSlug === "nclex" ? { nclexLength: opts?.nclexLength ?? "minimum" } : {}),
+    adaptive: preset === "full" && !opts?.presetExamNumber,
+    ...(examSlug === "nclex"
+      ? {
+          nclexLength: opts?.nclexLength ?? "minimum",
+          ...(opts?.presetExamNumber ? { presetExamNumber: opts.presetExamNumber } : {}),
+        }
+      : {}),
   };
 }
 

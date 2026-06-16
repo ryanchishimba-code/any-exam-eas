@@ -18,6 +18,10 @@ import {
   AANP_EVALUATE_MODULE,
   AANP_GERIATRICS_MODULE,
   AANP_PEDIATRICS_MODULE,
+  MSK_REHABILITATION_MODULE,
+  STROKE_REHABILITATION_MODULE,
+  CARDIOPULMONARY_REHAB_MODULE,
+  THERAPEUTIC_MODALITIES_NPTE_MODULE,
 } from "@/lib/edtech/review-modules/content";
 import type { HighYieldTopic } from "@/types/edtech";
 
@@ -282,6 +286,46 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     practiceTopicSlug: "pediatrics",
     reviewModule: AANP_PEDIATRICS_MODULE,
     sortOrder: 9,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "npte-pt",
+    slug: "msk-rehabilitation",
+    title: "Musculoskeletal Rehabilitation",
+    overview:
+      "Rotator cuff, spine, post-op ortho, manual therapy, and outcome measures — highest-yield MSK domain on NPTE-PT.",
+    practiceTopicSlug: "musculoskeletal",
+    reviewModule: MSK_REHABILITATION_MODULE,
+    sortOrder: 0,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "npte-pt",
+    slug: "stroke-rehabilitation",
+    title: "Neuromuscular Rehabilitation",
+    overview:
+      "Stroke, SCI, TBI, Parkinson, gait, and balance — core neuromuscular content for NPTE-PT.",
+    practiceTopicSlug: "neuromuscular-nervous",
+    reviewModule: STROKE_REHABILITATION_MODULE,
+    sortOrder: 1,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "npte-pt",
+    slug: "cardiopulmonary-rehab",
+    title: "Cardiopulmonary Rehabilitation",
+    overview:
+      "COPD, CHF, post-MI rehab, oxygen titration, and airway clearance for NPTE-PT.",
+    practiceTopicSlug: "cardiovascular-pulmonary",
+    reviewModule: CARDIOPULMONARY_REHAB_MODULE,
+    sortOrder: 2,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "npte-pt",
+    slug: "therapeutic-modalities",
+    title: "Therapeutic Modalities",
+    overview:
+      "Ultrasound, TENS, NMES, cryotherapy, and heat — parameters and contraindications.",
+    practiceTopicSlug: "therapeutic-modalities",
+    reviewModule: THERAPEUTIC_MODALITIES_NPTE_MODULE,
+    sortOrder: 3,
   }),
 ];
 

@@ -3,7 +3,8 @@
  */
 import type { BankItem } from "@/lib/question-bank";
 import { auditBankItem } from "../bank-audit";
-import { usmleBankItemIsServeReady, splitUsmleBankItem } from "../usmle-clinical-gate";
+import { splitUsmleBankItem } from "../usmle-clinical-gate";
+import { nptePtBankItemIsServeReady } from "./clinical-gate";
 import { isNptePtCuratedItem } from "@/lib/question-bank/npte-pt-curated";
 import { NPTE_PT_SUBJECTS } from "@/lib/subjects/npte-pt/subjects";
 import { NPTE_PT_TASK_CATEGORIES } from "@/lib/edtech/learning-hub/npte-pt-learning-paths";
@@ -35,7 +36,7 @@ export function assessNptePtBankItem(
     issues.push(...bankAudit.issues.filter((i) => i.severity === "error").map((i) => i.message));
   }
 
-  const serveReady = usmleBankItemIsServeReady(item, fieldId);
+  const serveReady = nptePtBankItemIsServeReady(item, opts.source ?? item.source);
   if (!serveReady) {
     flags.push("clinical_gate_fail");
     issues.push("Item does not pass clinical vignette serve gate.");

@@ -1,4 +1,5 @@
 export * from "./types";
+export * from "./clinical-gate";
 export * from "./blueprint-quota";
 export * from "./batch-diversity";
 export * from "./physician-educator-quality";

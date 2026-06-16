@@ -19,7 +19,9 @@ export function ReferenceHubNav({ examSlug }: { examSlug?: string }) {
       examSlug === "naplex" ||
       examSlug === "usmle" ||
       examSlug === "nclex" ||
-      examSlug === "pance"
+      examSlug === "pance" ||
+      examSlug === "aanp-fnp" ||
+      examSlug === "npte-pt"
   );
   const [active, setActive] = useState<string>(sections[0].id);
 

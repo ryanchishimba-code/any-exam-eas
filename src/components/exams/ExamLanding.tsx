@@ -8,6 +8,7 @@ import {
   ArrowRight,
   BookOpen,
   Clock,
+  Bone,
   HeartPulse,
   Map,
   Pill,
@@ -26,9 +27,10 @@ const ICONS = {
   naplex: Pill,
   pance: HeartPulse,
   "aanp-fnp": HeartPulse,
+  "npte-pt": Bone,
 } as const;
 
-const ALL_EXAMS: ExamRouteSlug[] = ["nclex", "usmle", "naplex", "pance", "aanp-fnp"];
+const ALL_EXAMS: ExamRouteSlug[] = ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"];
 
 type Props = { slug: ExamRouteSlug };
 

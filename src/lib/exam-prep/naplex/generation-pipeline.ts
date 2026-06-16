@@ -10,6 +10,7 @@ import { VIGNETTE_REQUIREMENTS } from "@/lib/engine/prompts/vignette";
 import { UNIVERSAL_EXAM_SYSTEM } from "@/lib/engine/prompts/base";
 import { examQuestionToBankItem } from "@/lib/engine/curation/exam-to-bank";
 import { filterBankItemsForIngest } from "../bank-ingest-gate";
+import { prepareNaplexBankItem } from "../naplex-answer-align";
 import {
   dedupeBatchItems,
   filterBatchByDiversity,
@@ -176,6 +177,97 @@ Each question object MUST include:
 - tags (include "naplex-full-exam", "NAPLEX-2026", "curated", blueprint area slug)`;
 }
 
+function normalizeSpecialFormats(item: BankItem, slot: NaplexGenerationSlot): BankItem {
+  const itemType = item.itemType ?? "vignette";
+
+  if (itemType === "ordered_response" && item.options.length >= 3) {
+    const optionSet = new Set(item.options.map((o) => o.trim()));
+    const parts = (item.correctAnswer.includes("|||")
+      ? item.correctAnswer.split("|||")
+      : item.correctAnswer.split(",")
+    )
+      .map((p) => p.trim())
+      .filter(Boolean);
+
+    const normalized = parts.filter((p) => optionSet.has(p));
+    if (normalized.length >= 2) {
+      return { ...item, correctAnswer: normalized.join("|||") };
+    }
+
+    if (item.options.length >= 4) {
+      return { ...item, correctAnswer: item.options.slice(0, 4).join("|||") };
+    }
+  }
+
+  if (itemType === "select_all" && item.options.length >= 4) {
+    const parts = (item.correctAnswer.includes("|||")
+      ? item.correctAnswer.split("|||")
+      : item.correctAnswer.split(",")
+    )
+      .map((p) => p.trim())
+      .filter(Boolean);
+
+    const matched = parts.filter((p) => item.options.includes(p));
+    if (matched.length >= 2) {
+      return { ...item, correctAnswer: matched.join("|||") };
+    }
+
+    const inferred = inferCorrectFromDistractors(item.options, item.distractorRationale);
+    if (inferred) {
+      const second = item.options.find((o) => o !== inferred && !item.distractorRationale?.[o]);
+      if (second) {
+        return { ...item, correctAnswer: [inferred, second].join("|||") };
+      }
+    }
+  }
+
+  if (itemType === "constructed_response") {
+    const numeric = item.correctAnswer.replace(/[^\d.]/g, "").trim();
+    const unit =
+      (item.ngnPayload?.unit as string | undefined) ??
+      (item.chartData as { unit?: string } | undefined)?.unit ??
+      "mg";
+    return {
+      ...item,
+      correctAnswer: numeric || item.correctAnswer,
+      ngnPayload: { ...item.ngnPayload, kind: "constructed", unit },
+    };
+  }
+
+  if (itemType === "ngn_highlight" && item.vignette) {
+    const segments = item.vignette
+      .split(/(?<=[.!?])\s+/)
+      .filter(Boolean)
+      .map((text, i) => ({ id: `seg-${i}`, text: text.trim() }));
+    const correct =
+      item.correctAnswer.trim() ||
+      segments.find((s) => /counsel|monitor|hold|avoid|report/i.test(s.text))?.text ||
+      segments[segments.length - 1]?.text ||
+      "";
+    return {
+      ...item,
+      correctAnswer: correct,
+      ngnPayload: {
+        ...item.ngnPayload,
+        kind: "highlight",
+        segments,
+      },
+    };
+  }
+
+  return item;
+}
+
+function inferCorrectFromDistractors(
+  options: string[],
+  distractorRationale?: Record<string, string>
+): string | null {
+  if (!distractorRationale) return null;
+  const wrong = new Set(Object.keys(distractorRationale).map((k) => k.trim().toLowerCase()));
+  const candidates = options.filter((o) => !wrong.has(o.trim().toLowerCase()));
+  return candidates.length === 1 ? candidates[0]! : null;
+}
+
 function parseGenerationResponse(raw: string): ExamQuestion[] {
   const parsed = JSON.parse(raw) as { questions?: ExamQuestion[] };
   return Array.isArray(parsed.questions) ? parsed.questions : [];
@@ -286,23 +378,27 @@ async function generateChunk(params: {
       continue;
     }
 
-    const item = slotToBankItem(exam, slot, params.batchId, params.examNumber, 0);
+    const item = normalizeSpecialFormats(
+      slotToBankItem(exam, slot, params.batchId, params.examNumber, 0),
+      slot
+    );
+    const aligned = prepareNaplexBankItem(item);
     const globalIndex = slot.slotIndex;
 
-    if (!naplexFullExamItemPasses(item, globalIndex)) {
-      const qc = assessNaplexFullExamItem(item, globalIndex);
+    if (!naplexFullExamItemPasses(aligned, globalIndex)) {
+      const qc = assessNaplexFullExamItem(aligned, globalIndex);
       rejected++;
       issues.push(`slot-${slot.slotIndex}:${qc.issues.join(",")}`);
       continue;
     }
 
     bankItems.push({
-      ...item,
+      ...aligned,
       ngnPayload: {
-        ...item.ngnPayload,
+        ...aligned.ngnPayload,
         generationMeta: {
-          ...(item.ngnPayload?.generationMeta as NaplexGenerationMeta),
-          qcScore: assessNaplexFullExamItem(item, globalIndex).score,
+          ...(aligned.ngnPayload?.generationMeta as NaplexGenerationMeta),
+          qcScore: assessNaplexFullExamItem(aligned, globalIndex).score,
         },
       },
     });
@@ -318,6 +414,64 @@ async function generateChunk(params: {
   rejected += diversityKept.length - accepted.length;
 
   return { accepted, rejected, issues };
+}
+
+const MAX_SLOT_RETRY_ROUNDS = 6;
+
+/** Regenerate failed slots until the exam reaches target count or retries exhaust. */
+async function fillMissingSlots(params: {
+  slots: NaplexGenerationSlot[];
+  batchId: string;
+  examNumber: number;
+  exemplars: BankItem[];
+  acceptedBySlot: Map<number, BankItem>;
+  onProgress?: (done: number, total: number) => void;
+}): Promise<{ rejected: number; issues: string[] }> {
+  let totalRejected = 0;
+  const allIssues: string[] = [];
+  const concurrency = resolveConcurrency();
+
+  for (let round = 0; round < MAX_SLOT_RETRY_ROUNDS; round++) {
+    const missing = params.slots.filter((s) => !params.acceptedBySlot.has(s.slotIndex));
+    if (missing.length === 0) break;
+
+    console.log(
+      `[naplex-full-exam] Exam ${params.examNumber}: retry round ${round + 1} — ${missing.length} missing slot(s)`
+    );
+
+    const chunkStarts: number[] = [];
+    for (let i = 0; i < missing.length; i += NAPLEX_GENERATION_CHUNK_SIZE) {
+      chunkStarts.push(i);
+    }
+
+    const tasks = chunkStarts.map((start) => async () => {
+      const chunkSlots = missing.slice(start, start + NAPLEX_GENERATION_CHUNK_SIZE);
+      return generateChunk({
+        slots: chunkSlots,
+        batchId: params.batchId,
+        examNumber: params.examNumber,
+        exemplars: params.exemplars,
+      });
+    });
+
+    const chunkResults = await runChunkWave(tasks, concurrency);
+
+    for (const result of chunkResults) {
+      totalRejected += result.rejected;
+      allIssues.push(...result.issues);
+      for (const item of result.accepted) {
+        const slotIndex =
+          (item.ngnPayload?.generationMeta as NaplexGenerationMeta | undefined)?.slotIndex;
+        if (slotIndex != null && !params.acceptedBySlot.has(slotIndex)) {
+          params.acceptedBySlot.set(slotIndex, item);
+        }
+      }
+    }
+
+    params.onProgress?.(params.acceptedBySlot.size, params.slots.length);
+  }
+
+  return { rejected: totalRejected, issues: allIssues };
 }
 
 async function runChunkWave<T>(
@@ -360,6 +514,7 @@ export async function generateNaplexFullExam(params: {
   const allItems: BankItem[] = [];
   let totalRejected = 0;
   const allIssues: string[] = [];
+  const acceptedBySlot = new Map<number, BankItem>();
   let done = 0;
 
   const tasks = chunkStarts.map((start) => async () => {
@@ -378,15 +533,30 @@ export async function generateNaplexFullExam(params: {
   const chunkResults = await runChunkWave(tasks, concurrency);
 
   for (const result of chunkResults) {
-    allItems.push(...result.accepted);
     totalRejected += result.rejected;
     allIssues.push(...result.issues);
+    for (const item of result.accepted) {
+      const slotIndex =
+        (item.ngnPayload?.generationMeta as NaplexGenerationMeta | undefined)?.slotIndex;
+      if (slotIndex != null) acceptedBySlot.set(slotIndex, item);
+    }
   }
 
-  allItems.sort(
-    (a, b) =>
-      ((a.ngnPayload?.generationMeta as NaplexGenerationMeta)?.slotIndex ?? 0) -
-      ((b.ngnPayload?.generationMeta as NaplexGenerationMeta)?.slotIndex ?? 0)
+  const retryResult = await fillMissingSlots({
+    slots,
+    batchId: params.batchId,
+    examNumber: params.examNumber,
+    exemplars,
+    acceptedBySlot,
+    onProgress: params.onProgress,
+  });
+  totalRejected += retryResult.rejected;
+  allIssues.push(...retryResult.issues);
+
+  allItems.push(
+    ...[...acceptedBySlot.entries()]
+      .sort(([a], [b]) => a - b)
+      .map(([, item]) => item)
   );
 
   const acceptedCount = allItems.length;

@@ -15,7 +15,7 @@ import {
 } from "./usmle-clinical-gate";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
 
-const CLINICAL_FIELD_IDS = new Set(["pance"]);
+const CLINICAL_FIELD_IDS = new Set(["pance", "aanp-fnp", "npte-pt"]);
 
 function isClinicalVignetteField(fieldId: string): boolean {
   return isUsmleField(fieldId) || CLINICAL_FIELD_IDS.has(fieldId);

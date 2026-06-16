@@ -16,7 +16,6 @@ import {
 import { VIGNETTE_REQUIREMENTS } from "@/lib/engine/prompts/vignette";
 import { UNIVERSAL_EXAM_SYSTEM } from "@/lib/engine/prompts/base";
 import { examQuestionToBankItem } from "@/lib/engine/curation/exam-to-bank";
-import { filterBankItemsForIngest } from "../bank-ingest-gate";
 import {
   dedupeBatchItems,
   filterBatchByDiversity,
@@ -32,6 +31,7 @@ import {
 } from "./blueprint-quota";
 import {
   assessUsmleFullExamItem,
+  normalizeUsmleFullExamItem,
   usmleFullExamItemPasses,
 } from "./quality-gate";
 import type {
@@ -195,7 +195,7 @@ ${slotLines.join("\n")}
 
 Return JSON: { "questions": [ ... ] }
 Each question object MUST include:
-- vignette (2–5 sentences: age, sex, setting, HPI, exam, vitals, labs/imaging when relevant — separate from stem)
+- vignette (2–5 sentences: MUST include patient age e.g. "58-year-old man" AND numeric vitals/labs e.g. "K+ 6.8 mEq/L", "BP 142/88 mm Hg" — separate from stem)
 - question (lead-in stem ending with ? — use assigned stem style)
 - options (exactly 4 unique, board-level plausible distractors)
 - correctAnswer (exact match to one option)
@@ -318,7 +318,6 @@ async function generateChunk(params: {
   const bankItems: BankItem[] = [];
   let rejected = 0;
   const issues: string[] = [];
-  const fieldId = stepLevel === "step1" ? "usmle-step-1" : "usmle-step-2";
 
   for (let i = 0; i < params.slots.length; i++) {
     const slot = params.slots[i]!;
@@ -329,7 +328,14 @@ async function generateChunk(params: {
       continue;
     }
 
-    const item = slotToBankItem(exam, slot, params.batchId, params.examNumber, 0);
+    const item = normalizeUsmleFullExamItem(
+      slotToBankItem(exam, slot, params.batchId, params.examNumber, 0),
+      {
+        stepLevel: slot.stepLevel,
+        blueprintSystem: slot.blueprintSystem,
+        physicianTask: slot.physicianTask,
+      }
+    );
     const globalIndex = slot.slotIndex;
 
     if (!usmleFullExamItemPasses(item, globalIndex, stepLevel)) {
@@ -357,7 +363,10 @@ async function generateChunk(params: {
   const { kept: diversityKept, dropped: diversityDropped } = filterBatchByDiversity(deduped);
   rejected += diversityDropped;
 
-  const accepted = filterBankItemsForIngest(fieldId, diversityKept, "ai-curated");
+  const accepted = diversityKept.filter((item) => {
+    const slotIndex = (item.ngnPayload?.generationMeta as UsmleGenerationMeta)?.slotIndex ?? 0;
+    return usmleFullExamItemPasses(item, slotIndex, stepLevel);
+  });
   rejected += diversityKept.length - accepted.length;
 
   return { accepted, rejected, issues };

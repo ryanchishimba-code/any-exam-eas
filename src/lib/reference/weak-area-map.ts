@@ -298,7 +298,7 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
     "naplex-cap-empiric",
   ],
   gastrointestinal: ["usmle-dka-orders", "all-anion-gap"],
-  musculoskeletal: ["pance-informed-consent"],
+  musculoskeletal: ["pance-informed-consent", "npte-rotator-cuff-testing", "npte-lumbar-red-flags", "npte-tka-precautions"],
   "infectious-diseases": [
     "pance-sepsis-bundle",
     "pance-febrile-infant-workup",
@@ -501,6 +501,16 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
   gdmt: ["naplex-hf-four-pillars", "naplex-arni-washout", "naplex-bb-start-rule"],
   warfarin: ["naplex-reversal-chart", "naplex-warfarin-vs-doac", "naplex-bridge-therapy"],
   doac: ["naplex-doac-renal-dose", "naplex-reversal-chart"],
+  "neuromuscular-nervous": [
+    "npte-stroke-gait",
+    "npte-sci-autonomic",
+    "npte-parkinson-cues",
+  ],
+  "cardiovascular-pulmonary": ["npte-copd-breathing", "npte-copd-oxygen"],
+  "therapeutic-modalities": ["npte-us-contraindications"],
+  "safety-protection": ["npte-fall-risk-tug"],
+  "equipment-devices": ["npte-cane-side"],
+  "professional-responsibilities": ["npte-referral-scope"],
 };
 
 /** Strip analytics concept-key prefixes (`tag:` / `subject:`). */

@@ -396,6 +396,7 @@ model QuestionBankItem {
   @@index([fieldId, blueprintDomain, patientAgeGroup, active])
   naplexFullExamLinks NaplexFullPracticeExamQuestion[]
   usmleFullExamLinks  UsmleFullPracticeExamQuestion[]
+  nclexFullExamLinks  NclexFullPracticeExamQuestion[]
 }
 
 /// Curated NAPLEX full-length practice exams (2026 blueprint, 75–85 questions each).
@@ -480,6 +481,46 @@ model UsmleFullPracticeExamQuestion {
   @@index([examId])
   @@index([questionBankItemId])
   @@map("usmle_full_practice_exam_questions")
+}
+
+/// Curated NCLEX-RN full-length practice exams (2026 blueprint, 75–85 questions each).
+model NclexFullPracticeExam {
+  id                String   @id @default(cuid())
+  examNumber        Int      @unique
+  title             String
+  questionCount     Int
+  blueprintSummary  Json?
+  caseStudySummary  Json?
+  batchId           String?
+  generationVersion String?
+  qaPassed          Boolean  @default(false)
+  qaReport          Json?
+  active            Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  questions         NclexFullPracticeExamQuestion[]
+
+  @@index([active, examNumber])
+  @@map("nclex_full_practice_exams")
+}
+
+/// Ordered question membership for an NCLEX full-length practice exam.
+model NclexFullPracticeExamQuestion {
+  id                  String   @id @default(cuid())
+  examId              String
+  questionBankItemId  String
+  sortOrder           Int
+  clientNeedsCategory String?
+  itemFormat          String?
+  createdAt           DateTime @default(now())
+  exam                NclexFullPracticeExam @relation(fields: [examId], references: [id], onDelete: Cascade)
+  question            QuestionBankItem       @relation(fields: [questionBankItemId], references: [id], onDelete: Cascade)
+
+  @@unique([examId, sortOrder])
+  @@unique([examId, questionBankItemId])
+  @@index([examId])
+  @@index([questionBankItemId])
+  @@map("nclex_full_practice_exam_questions")
 }
 
 /// Official AANPCB FNP blueprint domains, age groups, and clinical systems.

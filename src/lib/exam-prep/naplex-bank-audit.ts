@@ -126,6 +126,8 @@ export function auditNaplexBankItem(item: BankItem): NaplexAuditReport {
     "drag_drop",
     "k_type",
     "exhibit",
+    "ngn_highlight",
+    "highlight",
   ]);
   const itemType = item.itemType ?? "mcq";
 
@@ -168,6 +170,7 @@ export function auditNaplexBankItem(item: BankItem): NaplexAuditReport {
   }
 
   if (
+    !nonMcqFormat.has(itemType) &&
     item.options.length === 4 &&
     item.correctAnswer &&
     !correctAnswerMatchesOption(item.options, item.correctAnswer, itemType) &&

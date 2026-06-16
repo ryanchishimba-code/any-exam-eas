@@ -192,7 +192,7 @@ async function upsertSeedRow(
 
 async function topUpSubject(fieldId: string, subject: FieldSubject): Promise<number> {
   // PANCE and AANP FNP banks are filled via curated seeds + AI batch generation — not procedural bulk templates.
-  if (fieldId === "pance" || fieldId === "aanp-fnp") return 0;
+  if (fieldId === "pance" || fieldId === "aanp-fnp" || fieldId === "npte-pt") return 0;
 
   const existingCount = await prisma.questionBankItem.count({
     where: { fieldId, subjectId: subject.id, active: true },

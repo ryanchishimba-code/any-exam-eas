@@ -32,6 +32,12 @@ export const PINNED_MEMORY_CARD_IDS: Record<ExamSlug, string[]> = {
     "fnp-depression-screening",
     "fnp-pediatric-immunization",
   ],
+  "npte-pt": [
+    "npte-rotator-cuff-testing",
+    "npte-lumbar-red-flags",
+    "npte-stroke-gait",
+    "npte-copd-breathing",
+  ],
 };
 
 export function getPinnedMemoryCardIds(examSlug: ExamSlug): string[] {

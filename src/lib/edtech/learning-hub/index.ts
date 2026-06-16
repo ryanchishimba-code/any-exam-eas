@@ -38,9 +38,18 @@ export {
   type PanceLearningStage,
 } from "./pance-learning-paths";
 export {
+  NPTE_PT_TASK_CATEGORIES,
+  NPTE_PT_LEARNING_STAGES,
+  NPTE_PT_TOPIC_MODULES,
+  nptePtModulesForStage,
+  getNptePtModuleBySlug,
+  type NptePtLearningStage,
+} from "./npte-pt-learning-paths";
+export {
   buildDailyAssignment,
   buildPanceDailyAssignment,
   buildAanpFnpDailyAssignment,
+  buildNptePtDailyAssignment,
   buildFnpDailyAssignment,
   buildUsmleDailyAssignment,
   type DailyAssignmentPlan,

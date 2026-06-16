@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Activity, ArrowRight, HeartPulse, Pill, Stethoscope, type LucideIcon } from "lucide-react";
+import { Bone, Activity, ArrowRight, HeartPulse, Pill, Stethoscope, type LucideIcon } from "lucide-react";
 
 type ExamCard = {
   id: string;
   title: string;
   href: string;
   icon: LucideIcon;
-  theme: "nclex" | "usmle" | "naplex" | "pance";
+  theme: "nclex" | "usmle" | "naplex" | "pance" | "aanp-fnp" | "npte-pt";
   tagline: string;
 };
 
@@ -46,6 +46,22 @@ const exams: ExamCard[] = [
     theme: "pance",
     tagline: "NCCPA blueprint vignettes & exam roadmap",
   },
+  {
+    id: "aanp-fnp",
+    title: "AANP FNP",
+    href: "/question-bank?field=aanp-fnp",
+    icon: HeartPulse,
+    theme: "aanp-fnp",
+    tagline: "AANPCB primary care across the lifespan",
+  },
+  {
+    id: "npte-pt",
+    title: "NPTE-PT",
+    href: "/question-bank?field=npte-pt",
+    icon: Bone,
+    theme: "npte-pt",
+    tagline: "FSBPT blueprint · MSK, neuro, cardiopulmonary & modalities",
+  },
 ];
 
 export function ChooseYourExam() {
@@ -59,16 +75,16 @@ export function ChooseYourExam() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="aee-section-label">Exam coverage</p>
           <h2 id="choose-exam-heading" className="aee-headline mt-3">
-            Four boards.{" "}
+            Six boards.{" "}
             <span className="aee-display-accent">One subscription.</span>
           </h2>
           <p className="aee-section-lede mx-auto mt-4 max-w-xl">
-            NCLEX, USMLE, NAPLEX, and PANCE — each with timed simulations, blueprint
+            USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT — each with timed simulations, blueprint
             roadmaps, topic banks, and rationales grounded in open educational resources.
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6">
+        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
           {exams.map((exam, i) => {
             const Icon = exam.icon;
             return (

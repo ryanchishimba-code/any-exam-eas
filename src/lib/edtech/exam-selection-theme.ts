@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Activity, BookOpenCheck, HeartPulse, Pill } from "lucide-react";
+import { Activity, Beaker, Bone, BookOpenCheck, HeartPulse, Pill, Stethoscope } from "lucide-react";
 import type { ExamSlug } from "@/types/edtech";
 import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 
@@ -91,5 +91,18 @@ export const EXAM_SELECTION_THEMES: Record<ExamSlug, ExamSelectionTheme> = {
     iconColor: "text-white",
     ctaClass: "bg-white text-violet-900 hover:bg-violet-50",
     orb: "bg-violet-300/25",
+  },
+  "npte-pt": {
+    slug: "npte-pt",
+    tagline:
+      "FSBPT blueprint clinical scenarios — musculoskeletal, neuromuscular, cardiopulmonary, modalities, and professional practice.",
+    stats: [`${MARKETING_QUESTION_COUNTS.nptePt} Questions`, "Roadmap Tracker", "Full Simulations"],
+    icon: Bone,
+    gradient: "from-cyan-600/90 via-teal-600/85 to-emerald-700/90",
+    glow: "group-hover:shadow-cyan-500/25 group-hover:border-cyan-300/80",
+    iconBg: "bg-white/20 backdrop-blur-sm",
+    iconColor: "text-white",
+    ctaClass: "bg-white text-cyan-900 hover:bg-cyan-50",
+    orb: "bg-cyan-300/25",
   },
 };

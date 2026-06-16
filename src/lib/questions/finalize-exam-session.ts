@@ -22,6 +22,8 @@ export const FULL_EXAM_FIELD_IDS = new Set([
   "nursing",
   "pharmacy",
   "pance",
+  "aanp-fnp",
+  "npte-pt",
   "usmle-step-2",
   "usmle-step-1",
   "usmle-step-3",
@@ -41,7 +43,9 @@ export function resolveExamBankSampleCount(
     const clinicalPool =
       fieldId === "nursing" ||
       fieldId.startsWith("usmle") ||
-      fieldId === "pance";
+      fieldId === "pance" ||
+      fieldId === "npte-pt" ||
+      fieldId === "aanp-fnp";
     if (clinicalPool) return Math.min(Math.max(limit * 6, 40), 120);
     return Math.max(limit, 40);
   }
@@ -50,7 +54,9 @@ export function resolveExamBankSampleCount(
   if (
     fieldId === "nursing" ||
     fieldId.startsWith("usmle") ||
-    fieldId === "pance"
+    fieldId === "pance" ||
+      fieldId === "npte-pt" ||
+      fieldId === "aanp-fnp"
   ) {
     return Math.min(
       QUESTION_BANK_SAMPLE_MAX_PULL,

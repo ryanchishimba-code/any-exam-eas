@@ -27,7 +27,7 @@ export type NptePtTopicRow = {
 /** Load content + task categories from DB (falls back to in-code blueprint). */
 export async function loadNptePtBlueprintCategories(): Promise<NptePtBlueprintCategoryRow[]> {
   try {
-    const rows = await prisma.npte-ptBlueprintCategory.findMany({
+    const rows = await prisma.nptePtBlueprintCategory.findMany({
       orderBy: [{ kind: "asc" }, { sortOrder: "asc" }],
     });
     if (rows.length > 0) {
@@ -48,7 +48,7 @@ export async function loadNptePtBlueprintCategories(): Promise<NptePtBlueprintCa
 
 export async function loadNptePtTopics(subjectId?: string): Promise<NptePtTopicRow[]> {
   try {
-    const rows = await prisma.npte-ptTopic.findMany({
+    const rows = await prisma.nptePtTopic.findMany({
       where: subjectId ? { subjectId } : undefined,
       orderBy: { sortOrder: "asc" },
     });

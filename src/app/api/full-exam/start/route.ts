@@ -24,20 +24,28 @@ export async function POST(req: Request) {
   const timed = body.timed !== false;
   const nclexLength =
     body.nclexLength === "maximum" ? ("maximum" as const) : ("minimum" as const);
+  const presetExamNumber =
+    examSlug === "nclex" && Number.isFinite(Number(body.presetExamNumber))
+      ? Math.max(1, Math.min(10, Number(body.presetExamNumber)))
+      : undefined;
 
   try {
     await setUserExamPreference(premium.userId, examSlug);
 
     const config = buildSessionConfig(examSlug, preset, timed, {
       nclexLength: examSlug === "nclex" ? nclexLength : undefined,
+      presetExamNumber,
     });
     const exam = EXAM_CATALOG[examSlug];
 
+    const sessionTitle = presetExamNumber
+      ? `${exam.shortName} Practice Exam ${presetExamNumber}`
+      : `${exam.shortName} Full Simulation`;
     const sessionId = await createExamSession(premium.userId, examSlug, {
       questionCount: config.questionCount,
       timeLimitSec: config.timed ? config.timeLimitSec : null,
       fieldId: exam.fieldId,
-      title: `${exam.shortName} Full Simulation`,
+      title: sessionTitle,
       sessionConfig: config,
     });
 

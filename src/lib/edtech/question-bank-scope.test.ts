@@ -13,6 +13,7 @@ describe("question-bank-scope", () => {
     expect(fieldIdForExamSlug("usmle")).toBe("usmle-step-2");
     expect(fieldIdForExamSlug("pance")).toBe("pance");
     expect(fieldIdForExamSlug("aanp-fnp")).toBe("aanp-fnp");
+    expect(fieldIdForExamSlug("npte-pt")).toBe("npte-pt");
   });
 
   it("maps field ids back to exam slugs", () => {
@@ -21,6 +22,7 @@ describe("question-bank-scope", () => {
     expect(examSlugForFieldId("usmle-step-2")).toBe("usmle");
     expect(examSlugForFieldId("pance")).toBe("pance");
     expect(examSlugForFieldId("aanp-fnp")).toBe("aanp-fnp");
+    expect(examSlugForFieldId("npte-pt")).toBe("npte-pt");
     expect(examSlugForFieldId("mpje")).toBe("pance");
   });
 

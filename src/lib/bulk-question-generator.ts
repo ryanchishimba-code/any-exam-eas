@@ -672,6 +672,8 @@ export function buildBulkQuestion(
       return buildMedicineQuestion(subject, index, fieldId);
     case "aanp-fnp":
       return buildMedicineQuestion(subject, index, fieldId);
+    case "npte-pt":
+      return buildMedicineQuestion(subject, index, fieldId);
     case "usmle-step-1":
     case "usmle-step-2":
       return buildMedicineQuestion(subject, index, fieldId);

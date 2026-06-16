@@ -96,7 +96,8 @@ export async function GET(req: Request) {
 
   const { isUsmleField } = await import("@/lib/exam-prep/usmle-bank-bridge");
   const usmleField = isUsmleField(fieldId);
-  const clinicalField = usmleField || fieldId === "pance";
+  const clinicalField =
+    usmleField || fieldId === "pance" || fieldId === "aanp-fnp" || fieldId === "npte-pt";
   const { filterBankItemsForSessionPool, bankItemToSessionRaw } = await import(
     "@/lib/exam-prep/prepare-bank-session"
   );

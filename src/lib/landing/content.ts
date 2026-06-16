@@ -20,9 +20,9 @@ import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 export const PLATFORM_TAGLINE =
   "Pass your boards faster and cheaper — high-quality practice, smart tools, and one low price for every major exam.";
 
-export const PLATFORM_EXAM_LIST = "USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP";
+export const PLATFORM_EXAM_LIST = "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT";
 
-export const PLATFORM_EXAM_LIST_MIDDOT = "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP";
+export const PLATFORM_EXAM_LIST_MIDDOT = "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP · NPTE-PT";
 
 export type LandingExam = {
   id: string;
@@ -74,6 +74,14 @@ export const LANDING_EXAMS: LandingExam[] = [
     icon: HeartPulse,
     color: EXAM_ACCENTS.aanpFnp,
   },
+  {
+    id: "npte-pt",
+    label: "NPTE-PT",
+    blurb: "FSBPT blueprint · physical therapy clinical scenarios",
+    href: "/question-bank?field=npte-pt",
+    icon: HeartPulse,
+    color: EXAM_ACCENTS.nptePt,
+  },
 ];
 
 export const LANDING_BENEFITS = [
@@ -91,9 +99,9 @@ export const LANDING_BENEFITS = [
   },
   {
     visualId: "hero-app-mockup" as const,
-    title: "Five exams in one affordable subscription",
+    title: "Six exams in one affordable subscription",
     detail:
-      "Stop stacking $200–400+ per-exam subscriptions. USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP prep live under one plan.",
+      "Stop stacking $200–400+ per-exam subscriptions. USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT prep live under one plan.",
   },
   {
     visualId: "screenshot-analytics" as const,
@@ -139,15 +147,16 @@ export const LANDING_HERO_EXAMS = [
   { label: "NAPLEX", color: EXAM_ACCENTS.naplex },
   { label: "PANCE", color: EXAM_ACCENTS.pance },
   { label: "AANP FNP", color: EXAM_ACCENTS.aanpFnp },
+  { label: "NPTE-PT", color: EXAM_ACCENTS.nptePt },
 ] as const;
 
 /** Primary hero headline — benefit-driven, scannable above the fold. */
 export const LANDING_HERO_HEADLINE =
-  "Pass Your Boards — All 5 Major Exams, One Affordable Price";
+  "Pass Your Boards — All 6 Major Exams, One Affordable Price";
 
 /** Hero sub-headline — exams, tools, and price in one line. */
 export const LANDING_HERO_SUBLINE =
-  "Professional board prep for USMLE, NCLEX, NAPLEX, PANCE & AANP FNP — 5 exams + powerful tools for less than one UWorld subscription. Basic from $34.99/mo.";
+  "Professional board prep for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT — 6 exams + powerful tools for less than one UWorld subscription. Basic from $34.99/mo.";
 
 /** Subtle trust signals below hero CTAs. */
 export const LANDING_HERO_TRUST_SIGNALS = [
@@ -191,7 +200,7 @@ export const LANDING_HERO_HEADLINE_QUOTED = LANDING_HERO_HEADLINE;
 /** Scannable hero benefits — shown under the subline. */
 export const LANDING_HERO_BENEFITS = [
   "Blueprint-aligned Roadmaps for every exam — not just a question bank",
-  "Five board exams in one plan — no stacking separate prep bills",
+  "Six board exams in one plan — no stacking separate prep bills",
   "Board-style vignettes with teachable, OER-backed rationales",
   "Deep Dive lessons linked to the questions you miss",
 ] as const;
@@ -204,7 +213,7 @@ export const LANDING_HERO_HEADLINE_ACCENT = "for boards and clinical practice.";
 
 /** Three punchy hero benefits — scannable in under 3 seconds. */
 export const LANDING_HERO_PITCHES = [
-  "5 board exams · 1 plan",
+  "6 board exams · 1 plan",
   "Roadmaps + Deep Dives",
   "Calculators & lab values",
 ] as const;
@@ -223,7 +232,7 @@ export const LANDING_SOCIAL_PROOF = [
   {
     value: MARKETING_QUESTION_COUNTS.total,
     label: "Board-style questions",
-    detail: "Curated vignettes across five licensing exams",
+    detail: "Curated vignettes across six licensing exams",
   },
   {
     value: "5",
@@ -233,7 +242,7 @@ export const LANDING_SOCIAL_PROOF = [
   {
     value: "$34.99",
     label: "Basic from",
-    detail: "Pro from $49.99/mo — all 5 exams vs. $200–400+ each elsewhere",
+    detail: "Pro from $49.99/mo — all 6 exams vs. $200–400+ each elsewhere",
   },
   {
     value: "Roadmap",
@@ -355,7 +364,7 @@ export type LandingSuccessStory = {
 /** Illustrative outcome stats — not pass-rate guarantees. */
 export const LANDING_PASS_STATS = [
   { value: "5", label: "Board exams", detail: "One subscription — no per-exam stacking" },
-  { value: "$34.99", label: "Basic from", detail: "Pro from $49.99/mo — all 5 exams vs. $200–400+ each elsewhere" },
+  { value: "$34.99", label: "Basic from", detail: "Pro from $49.99/mo — all 6 exams vs. $200–400+ each elsewhere" },
   { value: "First try", label: "Passes reported", detail: "Students share first-attempt outcomes*" },
 ] as const;
 
@@ -405,7 +414,7 @@ export const LANDING_TESTIMONIALS = LANDING_SUCCESS_STORIES;
 export const UWORLD_COMPARE_ROWS = [
   {
     label: "Monthly price",
-    us: "From $34.99/mo Basic · Pro $49.99/mo — all 5 exams",
+    us: "From $34.99/mo Basic · Pro $49.99/mo — all 6 exams",
     them: "$200–400+ per exam (UWorld sells each board separately)",
   },
   {

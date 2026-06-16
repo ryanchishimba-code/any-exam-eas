@@ -29,7 +29,7 @@ export type TierDefinition = {
 
 /** Universal features included on both tiers. */
 export const UNIVERSAL_FEATURES = [
-  "Full access to all 5 exams (USMLE, NCLEX, NAPLEX, PANCE, AANP FNP)",
+  "Full access to all 6 exams (USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, NPTE-PT)",
   "Complete question banks",
   "Proprietary Roadmap tools",
   "Normal Lab Values + Clinical Calculators",
@@ -51,7 +51,7 @@ export const TIER_DEFINITIONS: Record<SubscriptionTier, TierDefinition> = {
   basic: {
     id: "basic",
     name: "Basic",
-    tagline: "Everything you need to pass — all 5 exams, one plan",
+    tagline: "Everything you need to pass — all 6 exams, one plan",
     recommended: false,
     monthlyUsd: TIER_MONTHLY_USD.basic,
     features: UNIVERSAL_FEATURES,

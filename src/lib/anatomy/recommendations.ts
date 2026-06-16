@@ -9,6 +9,7 @@ const EXAM_FEATURED_IDS: Record<ExamSlug, string[]> = {
   naplex: ["liver", "kidneys", "heart", "thyroid", "lungs", "pancreas"],
   pance: ["heart", "lungs", "liver", "kidneys", "thyroid", "brain"],
   "aanp-fnp": ["heart", "thyroid", "lungs", "kidneys", "liver", "brain"],
+  "npte-pt": ["brain", "heart", "lungs", "femur", "scapula", "spinal-cord"],
 };
 
 /** High-yield structures prioritized for the active exam. */

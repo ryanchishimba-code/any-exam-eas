@@ -47,6 +47,7 @@ const LANDING_EXAM_COUNT_FIELDS: {
   { fieldId: "pharmacy", label: "NAPLEX", color: EXAM_ACCENTS.naplex },
   { fieldId: "pance", label: "PANCE", color: EXAM_ACCENTS.pance },
   { fieldId: "aanp-fnp", label: "AANP FNP", color: EXAM_ACCENTS.aanpFnp },
+  { fieldId: "npte-pt", label: "NPTE-PT", color: EXAM_ACCENTS.nptePt },
 ];
 
 function emptyFieldCounts(fieldId: ExamFieldId): FieldQuestionBankCounts {
