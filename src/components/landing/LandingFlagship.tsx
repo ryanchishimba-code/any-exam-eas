@@ -158,7 +158,7 @@ export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsD
         </div>
       </section>
 
-      <SocialProofSection />
+      <SocialProofSection bankCounts={bankCounts} />
 
       <LandingSection
         id="sample-questions"
@@ -261,7 +261,7 @@ export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsD
         subtitle={`${formatTrialLabel()} · all six boards · Basic from ${formatMonthlyPrice("basic")}/mo · save up to 20% on annual`}
       >
         <div className="aee-flagship-pricing-stack">
-          <LandingHeroPriceValue className="mx-auto" />
+          <LandingHeroPriceValue className="mx-auto" bankCounts={bankCounts} />
           <LandingCta
             href={LANDING_TRIAL_HREF}
             className="aee-flagship-cta--hero aee-flagship-cta--xl group mt-5 w-full max-w-md"

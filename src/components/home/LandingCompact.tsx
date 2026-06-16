@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import {
+  Activity,
   ArrowRight,
   BookOpen,
   Brain,
@@ -10,6 +11,7 @@ import {
   MapPin,
   Pill,
   Stethoscope,
+  UserRound,
 } from "lucide-react";
 import { LandingVisualSlot } from "@/components/home/LandingVisualSlot";
 import { Top500DrugsVisual } from "@/components/home/Top500DrugsVisual";
@@ -48,6 +50,22 @@ const EXAMS = [
     href: "/question-bank?field=pance",
     icon: HeartPulse,
     color: "#059669",
+  },
+  {
+    id: "aanp-fnp",
+    label: "AANP FNP",
+    blurb: "Primary care · AANPCB",
+    href: "/question-bank?field=aanp-fnp",
+    icon: UserRound,
+    color: "#db2777",
+  },
+  {
+    id: "npte-pt",
+    label: "NPTE-PT",
+    blurb: "FSBPT blueprint · PT",
+    href: "/question-bank?field=npte-pt",
+    icon: Activity,
+    color: "#ea580c",
   },
 ] as const;
 
@@ -95,8 +113,8 @@ export function LandingCompact() {
               Switch exams anytime — pay once, study everything.
             </h2>
             <p className="mt-1.5 text-sm text-[var(--color-ink-muted)]">
-              Pick your primary board in the app, then jump between NCLEX, USMLE, NAPLEX, and PANCE
-              without buying separate question banks.
+              Pick your primary board in the app, then jump between NCLEX, USMLE, NAPLEX, PANCE,
+              AANP FNP, and NPTE-PT without buying separate question banks.
             </p>
           </div>
 
@@ -210,7 +228,7 @@ export function LandingCompact() {
               >
                 Start free.{" "}
                 <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-                  Study all four boards.
+                  Study all six boards.
                 </span>
               </h2>
               <p className="mt-1.5 text-xs text-[var(--color-ink-muted)]">

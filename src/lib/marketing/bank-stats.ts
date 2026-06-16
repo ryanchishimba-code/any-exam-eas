@@ -32,9 +32,19 @@ export const TOTAL_QUESTION_BANK_TARGET = EXAM_FIELD_IDS.reduce(
   0
 );
 
-/** User-facing counts derived from sync targets — not hard-coded marketing figures. */
+/**
+ * Conservative floor for the live served bank used in static marketing copy.
+ *
+ * The homepage hero shows the live DB served total, so any hard-coded label must
+ * stay at or below that number to avoid overstating the bank. Keep this ≤ the real
+ * `totals.served` count (currently ~52.6K) — never set it to the aspirational
+ * `TOTAL_QUESTION_BANK_TARGET`, which counts questions we still plan to add.
+ */
+export const PUBLISHED_QUESTION_BANK_TOTAL = 50_000;
+
+/** User-facing counts derived from the live served bank — never the aspirational target. */
 export const MARKETING_QUESTION_COUNTS = {
-  total: formatMarketingQuestionCount(TOTAL_QUESTION_BANK_TARGET),
+  total: formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL),
   nursing: formatMarketingQuestionCount(fieldTargets.nursing),
   usmle: formatMarketingQuestionCount(fieldTargets["usmle-step-2"]),
   pharmacy: formatMarketingQuestionCount(fieldTargets.pharmacy),

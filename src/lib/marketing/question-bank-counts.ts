@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
 import {
-  TOTAL_QUESTION_BANK_TARGET,
+  PUBLISHED_QUESTION_BANK_TOTAL,
   formatMarketingQuestionCount,
   targetQuestionCountForField,
 } from "./bank-stats";
@@ -150,7 +150,7 @@ export function displayQuestionCountForField(
 export function displayTotalQuestionCount(snapshot: QuestionBankCountsSnapshot): string {
   const served = snapshot.totals.served;
   if (served > 0) return formatMarketingQuestionCount(served);
-  return formatMarketingQuestionCount(TOTAL_QUESTION_BANK_TARGET);
+  return formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL);
 }
 
 function formatHeroQuestionsLabel(count: number, compactFallback: string): string {

@@ -12,9 +12,9 @@ import {
 const ITEMS = [
   {
     icon: CreditCard,
-    title: "One subscription, four exams",
+    title: "One subscription, six exams",
     detail:
-      "UWorld and similar banks typically charge per exam. NCLEX, USMLE Step 2 CK, NAPLEX, and PANCE live in one plan.",
+      "UWorld and similar banks typically charge per exam. NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT live in one plan.",
   },
   {
     icon: Layers,
@@ -66,7 +66,7 @@ export function LandingDifferentiators() {
             What you get here that typical prep giants split apart
           </h2>
           <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-            UWorld-level rigor on question style — without buying four separate product lines.
+            UWorld-level rigor on question style — without buying six separate product lines.
           </p>
         </div>
 

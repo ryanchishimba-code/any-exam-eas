@@ -48,7 +48,7 @@ export function LiveBankStats({
     },
     {
       icon: GraduationCap,
-      value: "4",
+      value: "6",
       label: "Licensing exams",
     },
     {

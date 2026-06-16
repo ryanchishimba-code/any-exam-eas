@@ -7,7 +7,7 @@ import {
   type QuestionBankCountsSnapshot,
 } from "./question-bank-counts";
 import {
-  TOTAL_QUESTION_BANK_TARGET,
+  PUBLISHED_QUESTION_BANK_TOTAL,
   formatMarketingQuestionCount,
 } from "./bank-stats";
 
@@ -61,7 +61,7 @@ describe("question-bank-counts display", () => {
     expect(displayQuestionCountForField("pance", snapshot)).toBe("6K+");
     expect(displayQuestionCountForField("aanp-fnp", snapshot)).toBe("6K+");
     expect(displayTotalQuestionCount(snapshot)).toBe(
-      formatMarketingQuestionCount(TOTAL_QUESTION_BANK_TARGET)
+      formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL)
     );
   });
 

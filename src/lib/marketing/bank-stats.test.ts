@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   MARKETING_QUESTION_COUNTS,
+  PUBLISHED_QUESTION_BANK_TOTAL,
   TOTAL_QUESTION_BANK_TARGET,
   TOP_500_DRUGS_COUNT,
   targetQuestionCountForField,
@@ -17,8 +18,13 @@ describe("marketing bank stats", () => {
     expect(TOTAL_QUESTION_BANK_TARGET).toBeGreaterThan(80_000);
   });
 
+  it("keeps the marketing total at or below the live served bank", () => {
+    // Must never advertise the aspirational target — only the published served floor.
+    expect(MARKETING_QUESTION_COUNTS.total).toBe("50K+");
+    expect(PUBLISHED_QUESTION_BANK_TOTAL).toBeLessThan(TOTAL_QUESTION_BANK_TARGET);
+  });
+
   it("formats marketing labels conservatively from targets", () => {
-    expect(MARKETING_QUESTION_COUNTS.total).toBe("82K+");
     expect(MARKETING_QUESTION_COUNTS.nursing).toBe("24K+");
     expect(MARKETING_QUESTION_COUNTS.usmle).toBe("18K+");
     expect(MARKETING_QUESTION_COUNTS.pance).toBe("6K+");

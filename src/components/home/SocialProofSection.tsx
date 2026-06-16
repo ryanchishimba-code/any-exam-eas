@@ -2,9 +2,21 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { LANDING_SOCIAL_PROOF } from "@/lib/landing/content";
+import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
-export function SocialProofSection() {
+export function SocialProofSection({
+  bankCounts,
+}: {
+  bankCounts?: LandingBankCountsDisplay;
+}) {
   const reduceMotion = useReducedMotion();
+
+  // Keep the headline stat in lockstep with the live hero count, never the static floor.
+  const stats = LANDING_SOCIAL_PROOF.map((item) =>
+    item.label === "Board-style questions" && bankCounts
+      ? { ...item, value: bankCounts.totalLabel }
+      : item
+  );
 
   return (
     <section
@@ -25,7 +37,7 @@ export function SocialProofSection() {
         </header>
 
         <ul className="aee-flagship-metrics mt-8" aria-label="Platform social proof">
-          {LANDING_SOCIAL_PROOF.map((item, index) => (
+          {stats.map((item, index) => (
             <motion.li
               key={item.label}
               className="aee-flagship-metric"

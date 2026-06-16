@@ -54,9 +54,9 @@ const benefits = [
     icon: CircleDollarSign,
     visualId: "pricing-value-stack",
     outcome: "One subscription",
-    title: "All four boards without four separate bills",
+    title: "All six boards without six separate bills",
     description:
-      "NCLEX, USMLE Step 2 CK, NAPLEX, and PANCE live in one account — switch your primary exam anytime during your subscription.",
+      "NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT live in one account — switch your primary exam anytime during your subscription.",
     accent: "from-sky-500 to-blue-500",
   },
   {
