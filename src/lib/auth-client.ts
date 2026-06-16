@@ -1,4 +1,4 @@
-import { ACCOUNT_IP_LIMIT_MESSAGE, IP_REQUIRED_MESSAGE } from "@/lib/account-ip-limit";
+import { ACCOUNT_IP_LIMIT_MESSAGE, IP_REQUIRED_MESSAGE } from "@/lib/account-ip-messages";
 
 /** Map NextAuth client errors to user-friendly copy (avoids cryptic browser/parse messages). */
 export function messageForSignInError(

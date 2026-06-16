@@ -3,6 +3,10 @@ import { headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { canBypassAccountIpLimit } from "@/lib/account-security";
 import { hashIp, hashIpFromHeaders } from "@/lib/analytics/request-context";
+import {
+  ACCOUNT_IP_LIMIT_MESSAGE,
+  IP_REQUIRED_MESSAGE,
+} from "@/lib/account-ip-messages";
 
 /** Max distinct network locations per subscriber account (rolling window). */
 export const MAX_ACCOUNT_IPS = 3;
@@ -64,11 +68,7 @@ export async function assertAccountIpAllowed(
   return { ok: true };
 }
 
-export const ACCOUNT_IP_LIMIT_MESSAGE =
-  "This account is already active on 3 devices or networks. Sign out elsewhere or contact support.";
-
-export const IP_REQUIRED_MESSAGE =
-  "We could not verify your network location. Refresh the page or try again from a standard browser connection.";
+export { ACCOUNT_IP_LIMIT_MESSAGE, IP_REQUIRED_MESSAGE };
 
 export function accountIpLimitResponse(
   reason: "too_many_ips" | "ip_required"
