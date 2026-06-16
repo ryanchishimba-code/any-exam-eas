@@ -25,6 +25,7 @@ type NavLink = { href: string; label: string; adminOnly?: boolean };
 const guestLinks: NavLink[] = [
   { href: "/#ngn-demo", label: "Try demo" },
   { href: "/#choose-exam", label: "Exams" },
+  { href: ROUTES.resources, label: "Resources" },
   { href: ROUTES.pricing, label: "Pricing" },
 ];
 

@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { MARKETING_QUESTION_COUNTS, TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
+import { examMarketingPath } from "@/lib/seo/exam-config";
 
 /** Primary platform positioning — reuse across compare sections and SEO. */
 export const PLATFORM_TAGLINE =
@@ -39,7 +40,7 @@ export const LANDING_EXAMS: LandingExam[] = [
     id: "usmle",
     label: "USMLE Step 2 CK",
     blurb: "Vignette MCQs · timed blocks",
-    href: "/question-bank?field=usmle-step-2",
+    href: examMarketingPath("usmle"),
     icon: Stethoscope,
     color: EXAM_ACCENTS.usmle,
   },
@@ -47,7 +48,7 @@ export const LANDING_EXAMS: LandingExam[] = [
     id: "nclex",
     label: "NCLEX",
     blurb: "Curated vignettes · NGN · SATA · bow-tie",
-    href: "/question-bank?field=nursing",
+    href: examMarketingPath("nclex"),
     icon: HeartPulse,
     color: EXAM_ACCENTS.nclex,
   },
@@ -55,7 +56,7 @@ export const LANDING_EXAMS: LandingExam[] = [
     id: "naplex",
     label: "NAPLEX",
     blurb: "Calculations · compounding · cases",
-    href: "/question-bank?field=pharmacy",
+    href: examMarketingPath("naplex"),
     icon: Pill,
     color: EXAM_ACCENTS.naplex,
   },
@@ -63,7 +64,7 @@ export const LANDING_EXAMS: LandingExam[] = [
     id: "pance",
     label: "PANCE",
     blurb: "Physician assistant · NCCPA blueprint vignettes",
-    href: "/question-bank?field=pance",
+    href: examMarketingPath("pance"),
     icon: Stethoscope,
     color: EXAM_ACCENTS.pance,
   },
@@ -71,7 +72,7 @@ export const LANDING_EXAMS: LandingExam[] = [
     id: "aanp-fnp",
     label: "AANP FNP",
     blurb: "AANPCB FNP blueprint · primary care vignettes",
-    href: "/question-bank?field=aanp-fnp",
+    href: examMarketingPath("aanp-fnp"),
     icon: HeartPulse,
     color: EXAM_ACCENTS.aanpFnp,
   },
@@ -79,7 +80,7 @@ export const LANDING_EXAMS: LandingExam[] = [
     id: "npte-pt",
     label: "NPTE-PT",
     blurb: "FSBPT blueprint · physical therapy clinical scenarios",
-    href: "/question-bank?field=npte-pt",
+    href: examMarketingPath("npte-pt"),
     icon: HeartPulse,
     color: EXAM_ACCENTS.nptePt,
   },

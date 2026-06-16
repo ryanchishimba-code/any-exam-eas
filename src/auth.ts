@@ -7,7 +7,8 @@ import { authConfig } from "@/auth.config";
 import { verifyUserPassword, recordUserLogin } from "@/lib/user-auth";
 import { loginSchema } from "@/lib/validators/auth";
 import { prisma } from "@/lib/prisma";
-import { findOrCreateGoogleUser, OAuthLinkBlockedError, OAuthAccountDisabledError } from "@/lib/oauth-user";
+import { findOrCreateGoogleUser, OAuthLinkBlockedError } from "@/lib/oauth-user";
+import { OAuthAccountDisabledError } from "@/lib/account-security";
 import {
   trackEvent,
   logActivity,

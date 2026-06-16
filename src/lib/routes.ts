@@ -1,4 +1,5 @@
 import type { ExamSlug } from "@/lib/exams/catalog";
+import { examMarketingPath } from "@/lib/seo/exam-config";
 import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import type { ExamSlug as EdtechExamSlug } from "@/types/edtech";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
@@ -22,6 +23,7 @@ export const ROUTES = {
   highYieldTopics: "/dashboard/topics",
   practice: "/practice",
   exams: "/exams",
+  resources: "/resources",
   pricing: "/pricing",
   feedback: "/feedback",
   settings: "/settings",
@@ -57,7 +59,7 @@ export const EXAM_NAV_ITEMS: {
     slug: "nclex",
     label: "NCLEX",
     short: "Nursing",
-    href: "/exams/nclex",
+    href: "/nclex",
     fieldId: "nursing",
     practiceHref: "/practice/nclex",
     stat: `${MARKETING_QUESTION_COUNTS.nursing} items`,
@@ -66,7 +68,7 @@ export const EXAM_NAV_ITEMS: {
     slug: "usmle",
     label: "USMLE",
     short: "Medicine",
-    href: "/exams/usmle",
+    href: "/usmle",
     fieldId: "usmle-step-2",
     practiceHref: "/practice/usmle",
     stat: `${MARKETING_QUESTION_COUNTS.usmle} items`,
@@ -75,7 +77,7 @@ export const EXAM_NAV_ITEMS: {
     slug: "naplex",
     label: "NAPLEX",
     short: "Pharmacy",
-    href: "/exams/naplex",
+    href: "/naplex",
     fieldId: "pharmacy",
     practiceHref: "/practice/naplex",
     stat: `${MARKETING_QUESTION_COUNTS.pharmacy} items`,
@@ -84,7 +86,7 @@ export const EXAM_NAV_ITEMS: {
     slug: "pance",
     label: "PANCE",
     short: "Physician Assistant",
-    href: "/exams/pance",
+    href: "/pance",
     fieldId: "pance",
     practiceHref: "/practice/pance",
     stat: "300Q blueprint",
@@ -93,7 +95,7 @@ export const EXAM_NAV_ITEMS: {
     slug: "aanp-fnp",
     label: "AANP FNP",
     short: "Nurse Practitioner",
-    href: "/exams/aanp-fnp",
+    href: "/aanp-fnp",
     fieldId: "aanp-fnp",
     practiceHref: "/practice/aanp-fnp",
     stat: `${MARKETING_QUESTION_COUNTS.aanpFnp} items`,
@@ -102,7 +104,7 @@ export const EXAM_NAV_ITEMS: {
     slug: "npte-pt",
     label: "NPTE-PT",
     short: "Physical Therapy",
-    href: "/exams/npte-pt",
+    href: "/npte-pt",
     fieldId: "npte-pt",
     practiceHref: "/practice/npte-pt",
     stat: `${MARKETING_QUESTION_COUNTS.nptePt} items`,
@@ -110,7 +112,7 @@ export const EXAM_NAV_ITEMS: {
 ];
 
 export function examHref(slug: ExamRouteSlug): string {
-  return `/exams/${slug}`;
+  return examMarketingPath(slug);
 }
 
 export function practiceHref(
