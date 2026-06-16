@@ -1,25 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Activity,
   ArrowRight,
   BookOpen,
   Clock,
+  HeartPulse,
+  Map,
   Pill,
-  Scale,
   Stethoscope,
   Zap,
 } from "lucide-react";
 import { ExamCard } from "@/components/exams/ExamCard";
-import { MpjeStateSelect } from "@/components/study/MpjeStateSelect";
-import { EmptyState } from "@/components/ui/empty-state";
-import { Button } from "@/components/ui/Button";
 import { getExamHub } from "@/lib/exams/catalog";
-import { mpjePracticeExamHref, mpjePracticeHref } from "@/lib/study-hub/config";
+import { roadmapHref } from "@/lib/learning/exam-roadmap";
 import { practiceHref, ROUTES, type ExamRouteSlug } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -27,37 +23,15 @@ const ICONS = {
   nclex: Activity,
   usmle: Stethoscope,
   naplex: Pill,
-  mpje: Scale,
+  pance: HeartPulse,
 } as const;
+
+const ALL_EXAMS: ExamRouteSlug[] = ["nclex", "usmle", "naplex", "pance"];
 
 type Props = { slug: ExamRouteSlug };
 
 export function ExamLanding({ slug }: Props) {
   const hub = getExamHub(slug);
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [mpjeState, setMpjeState] = useState("");
-
-  const syncMpjeState = useCallback(
-    (code: string) => {
-      setMpjeState(code);
-      const qs = new URLSearchParams(searchParams.toString());
-      if (code) {
-        qs.set("state", code);
-      } else {
-        qs.delete("state");
-      }
-      const q = qs.toString();
-      router.replace(q ? `/exams/mpje?${q}` : "/exams/mpje", { scroll: false });
-    },
-    [router, searchParams]
-  );
-
-  useEffect(() => {
-    if (slug !== "mpje") return;
-    const s = searchParams.get("state");
-    setMpjeState(s && s.length === 2 ? s.toUpperCase() : "");
-  }, [searchParams, slug]);
 
   if (!hub) return null;
 
@@ -71,10 +45,10 @@ export function ExamLanding({ slug }: Props) {
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
       >
         <Link
-          href={ROUTES.practiceHub}
+          href={ROUTES.dashboard}
           className="text-sm font-medium text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
         >
-          ← Practice Hub
+          ← Dashboard
         </Link>
 
         <div className="mt-6 flex flex-wrap items-start gap-4">
@@ -101,28 +75,26 @@ export function ExamLanding({ slug }: Props) {
         </div>
       </motion.div>
 
-      {slug === "mpje" && (
-        <section className="mt-10 aee-card p-6" aria-labelledby="mpje-state">
-          <h2 id="mpje-state" className="text-lg font-semibold text-[var(--color-ink)]">
-            State jurisdiction
-          </h2>
-          <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-            Select your board state for state-specific pharmacy law, or leave blank for federal-only
-            questions.
-          </p>
-          <div className="mt-5 max-w-md">
-            <MpjeStateSelect value={mpjeState} onChange={syncMpjeState} />
-          </div>
-          {!mpjeState && (
-            <div className="mt-6">
-              <EmptyState
-                variant="info"
-                icon={Scale}
-                title="Federal pharmacy law mode"
-                description="No state selected — practice questions use DEA, FDA, HIPAA, and uniform MPJE content only."
-              />
+      {slug === "pance" && (
+        <section className="mt-10 aee-card p-6" aria-labelledby="pance-roadmap">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <h2 id="pance-roadmap" className="text-lg font-semibold text-[var(--color-ink)]">
+                NCCPA Exam Roadmap
+              </h2>
+              <p className="mt-1 max-w-xl text-sm text-[var(--color-ink-muted)]">
+                Track readiness across all 15 medical content categories from the official PANCE
+                blueprint — cardiovascular, pulmonary, GI, ID, and more.
+              </p>
             </div>
-          )}
+            <Link
+              href={roadmapHref("pance")}
+              className="inline-flex items-center gap-2 rounded-xl bg-rose-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-700"
+            >
+              <Map className="h-4 w-4" aria-hidden />
+              Open roadmap
+            </Link>
+          </div>
         </section>
       )}
 
@@ -135,31 +107,20 @@ export function ExamLanding({ slug }: Props) {
             icon={Zap}
             title="Adaptive practice"
             description="Personalized question mix based on your weak areas."
-            href={
-              slug === "mpje"
-                ? mpjePracticeHref({ mode: "bank", stateCode: mpjeState || undefined })
-                : practiceHref(slug, { mode: "bank" })
-            }
+            href={practiceHref(slug, { mode: "bank" })}
           />
           <ModeTile
             icon={Clock}
             title="Timed simulation"
             description="Board-length session with per-question timer."
-            href={
-              slug === "mpje"
-                ? mpjePracticeHref({ mode: "timed", stateCode: mpjeState || undefined })
-                : practiceHref(slug, { mode: "timed" })
-            }
+            href={practiceHref(slug, { mode: "timed" })}
           />
-          {slug === "mpje" && (
-            <ModeTile
-              icon={BookOpen}
-              title="Full practice exam"
-              description="120 questions · 2.5 hours · flag & review."
-              href={mpjePracticeExamHref(mpjeState || undefined)}
-              accent
-            />
-          )}
+          <ModeTile
+            icon={BookOpen}
+            title="Deep dive modules"
+            description="Textbook-style review tied to your question bank."
+            href={`${ROUTES.highYieldTopics}?exam=${slug}&deep=1`}
+          />
         </div>
       </section>
 
@@ -168,8 +129,7 @@ export function ExamLanding({ slug }: Props) {
           Other exams
         </h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          {(["nclex", "naplex", "usmle", "mpje"] as ExamRouteSlug[])
-            .filter((s) => s !== slug)
+          {ALL_EXAMS.filter((s) => s !== slug)
             .slice(0, 3)
             .map((s) => {
               const h = getExamHub(s)!;
@@ -197,31 +157,26 @@ function ModeTile({
   title,
   description,
   href,
-  accent,
 }: {
   icon: typeof Zap;
   title: string;
   description: string;
   href: string;
-  accent?: boolean;
 }) {
   return (
     <Link
       href={href}
-      className={cn(
-        "aee-card group flex flex-col p-5 transition hover:-translate-y-0.5 hover:shadow-md",
-        accent && "border-indigo-200/80 bg-gradient-to-br from-indigo-50/50 to-white"
-      )}
+      className="group flex h-full flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-5 shadow-[var(--shadow-apple-sm)] transition hover:-translate-y-0.5 hover:border-indigo-200/80"
     >
-      <Icon
-        className={cn("h-5 w-5", accent ? "text-indigo-600" : "text-[var(--color-ink-muted)]")}
-        strokeWidth={1.75}
-        aria-hidden
-      />
-      <p className="mt-3 font-semibold text-[var(--color-ink)]">{title}</p>
-      <p className="mt-1 flex-1 text-sm text-[var(--color-ink-muted)]">{description}</p>
-      <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-accent)]">
-        Launch
+      <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600">
+        <Icon className="h-5 w-5" aria-hidden />
+      </span>
+      <h3 className="mt-4 font-semibold text-[var(--color-ink)] group-hover:text-indigo-700">
+        {title}
+      </h3>
+      <p className="mt-1 flex-1 text-sm leading-relaxed text-[var(--color-ink-muted)]">{description}</p>
+      <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-accent)]">
+        Start
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
       </span>
     </Link>

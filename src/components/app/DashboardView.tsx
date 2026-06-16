@@ -15,7 +15,6 @@ import { DashboardExploreRow } from "@/components/dashboard/DashboardExploreRow"
 import { DashboardRecentActivity } from "@/components/dashboard/DashboardRecentActivity";
 import { DashboardSpacedReview } from "@/components/dashboard/DashboardSpacedReview";
 import { DashboardWeakTopics } from "@/components/dashboard/DashboardWeakTopics";
-import { StudyHubMpjePicker } from "@/components/study-hub/StudyHubMpjePicker";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
@@ -39,7 +38,6 @@ export function DashboardView({
   spacedReview,
   recentTests,
   userName,
-  mpjeStateCode,
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
@@ -48,7 +46,6 @@ export function DashboardView({
   spacedReview: SpacedReviewSummary;
   recentTests: RecentTestRow[];
   userName?: string | null;
-  mpjeStateCode?: string;
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const theme = EXAM_SELECTION_THEMES[examSlug];
@@ -76,9 +73,6 @@ export function DashboardView({
             <h1 className={dbUi.title}>Welcome back, {firstName}</h1>
             <p className={cn(dbUi.subtitle, "mt-0.5")}>
               <span className="font-medium text-[var(--color-ink)]">{exam.name}</span>
-              {examSlug === "mpje" && mpjeStateCode ? (
-                <> · {mpjeStateCode} jurisprudence</>
-              ) : null}
             </p>
           </div>
         </div>
@@ -111,12 +105,6 @@ export function DashboardView({
               ) : null}
             </div>
           </div>
-
-          {examSlug === "mpje" ? (
-            <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
-              <StudyHubMpjePicker initialStateCode={mpjeStateCode} persistPreference />
-            </div>
-          ) : null}
 
           <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
             <DashboardContinueRow examSlug={examSlug} />

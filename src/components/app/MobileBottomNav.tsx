@@ -34,7 +34,7 @@ export function MobileBottomNav() {
     return BASE_ITEMS.map((item) =>
       "clinicalOnly" in item && item.clinicalOnly
         ? {
-            href: highYieldTopicsHref(examSlug ?? "mpje"),
+            href: highYieldTopicsHref(examSlug ?? "nclex"),
             label: "Topics",
             icon: Sparkles,
             ariaLabel: "High-Yield Topics",

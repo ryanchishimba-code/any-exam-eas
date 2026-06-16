@@ -1,5 +1,5 @@
-/** Canonical exam slugs for the four core boards. */
-export type ExamSlug = "nclex" | "usmle" | "naplex" | "mpje";
+/** Canonical exam slugs — NCLEX, USMLE, NAPLEX, PANCE. */
+export type ExamSlug = "nclex" | "usmle" | "naplex" | "pance";
 
 export type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
 

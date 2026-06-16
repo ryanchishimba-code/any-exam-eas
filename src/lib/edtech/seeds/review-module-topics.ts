@@ -117,12 +117,22 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
   defineReviewModuleTopic({
     examSlug: "pance",
     slug: "infectious-disease",
-    title: "Infectious Disease: Sepsis, CAP & Antimicrobials",
+    title: "Infectious Disease: CAP, MRSA & Antimicrobials",
     overview:
-      "CAP empiric regimens, sepsis bundle, MRSA selection, and febrile infant workup for PANCE clinical vignettes.",
+      "CAP empiric regimens, MRSA selection, C. diff therapy, and HIV prophylaxis pearls for PANCE pharmacotherapy and clinical intervention tasks.",
     practiceTopicSlug: "infectious-diseases",
     reviewModule: INFECTIOUS_DISEASE_USMLE_MODULE,
     sortOrder: 1,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "pance",
+    slug: "sepsis-shock",
+    title: "Sepsis & Shock Management",
+    overview:
+      "Recognize sepsis early, execute the hour-1 bundle, and distinguish shock types — high-yield for PANCE infectious disease and critical care vignettes.",
+    practiceTopicSlug: "infectious-diseases",
+    reviewModule: SEPSIS_MODULE,
+    sortOrder: 2,
   }),
 ];
 

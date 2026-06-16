@@ -211,37 +211,62 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
     "naplex-abx-renal-dosing",
   ],
 
-  // PANCE subjects (primary care across the lifespan)
-  assess: [
-    "fnp-hypertension-first-line",
-    "fnp-febrile-infant-workup",
-    "fnp-diabetes-a1c-targets",
-    "nclex-qsofa-screen",
-  ],
-  diagnose: [
+  // PANCE subjects (NCCPA 2025 blueprint)
+  cardiovascular: [
+    "pance-hypertension-first-line",
+    "pance-acs-reperfusion",
     "usmle-stemi-path",
-    "usmle-stroke-tpa",
-    "fnp-febrile-infant-workup",
-    "all-anion-gap",
+    "usmle-acs-spectrum",
+    "usmle-acs-antithrombotics",
   ],
-  plan: [
-    "fnp-hypertension-first-line",
-    "fnp-diabetes-a1c-targets",
-    "naplex-hf-four-pillars",
+  pulmonary: [
+    "pance-copd-exacerbation",
+    "usmle-cap-antibiotics",
     "naplex-cap-empiric",
   ],
-  evaluate: [
-    "fnp-geriatric-beers",
-    "naplex-vanc-auc",
-    "fnp-diabetes-a1c-targets",
-    "naplex-hypoglycemia-15-15",
+  gastrointestinal: ["usmle-dka-orders", "all-anion-gap"],
+  musculoskeletal: [],
+  "infectious-diseases": [
+    "pance-sepsis-bundle",
+    "pance-febrile-infant-workup",
+    "usmle-cap-antibiotics",
+    "usmle-meningitis-emergency",
+    "usmle-mrsa-agents",
+    "usmle-febrile-neutropenia",
   ],
-  cardiovascular: ["usmle-stemi-path", "usmle-acs-spectrum", "naplex-hf-four-pillars", "fnp-hypertension-first-line"],
-  pulmonary: ["usmle-cap-antibiotics", "naplex-cap-empiric"],
-  endocrine: ["fnp-diabetes-a1c-targets", "usmle-dka-orders", "naplex-insulin-kinetics"],
-  "womens-health": ["fnp-prenatal-initial-visit"],
-  pediatrics: ["fnp-febrile-infant-workup", "nclex-sepsis-bundle"],
-  geriatrics: ["fnp-geriatric-beers", "naplex-metformin-hold"],
+  neurologic: ["usmle-stroke-tpa", "usmle-tpa-exclusions"],
+  psychiatry: ["pance-depression-screening"],
+  reproductive: ["pance-prenatal-initial-visit"],
+  endocrine: [
+    "pance-diabetes-a1c-targets",
+    "usmle-dka-orders",
+    "usmle-hhs-vs-dka",
+    "naplex-insulin-kinetics",
+  ],
+  eent: [],
+  hematologic: [],
+  renal: ["usmle-hyperkalemia", "usmle-aki-fena", "all-anion-gap"],
+  dermatologic: [],
+  genitourinary: ["naplex-uti-pyelonephritis"],
+  "professional-practice": ["pance-informed-consent"],
+  pediatrics: ["pance-febrile-infant-workup", "pance-sepsis-bundle"],
+  "federal-law": ["pance-informed-consent"],
+
+  // PANCE review modules
+  "acute-coronary-syndrome": [
+    "pance-acs-reperfusion",
+    "usmle-stemi-path",
+    "usmle-acs-spectrum",
+    "usmle-acs-antithrombotics",
+  ],
+  "sepsis-shock": [
+    "pance-sepsis-bundle",
+    "nclex-sepsis-bundle",
+    "nclex-shock-types",
+    "nclex-lactate-four",
+    "nclex-qsofa-screen",
+    "nclex-abx-one-hour",
+  ],
 
   // Legacy / free-form question-tag aliases
   "critical-care": ["nclex-sepsis-bundle", "nclex-shock-types", "nclex-norepinephrine-first"],

@@ -56,7 +56,7 @@ const benefits = [
     outcome: "One subscription",
     title: "All four boards without four separate bills",
     description:
-      "NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE live in one account — switch your primary exam anytime during your subscription.",
+      "NCLEX, USMLE Step 2 CK, NAPLEX, and PANCE live in one account — switch your primary exam anytime during your subscription.",
     accent: "from-sky-500 to-blue-500",
   },
   {
@@ -80,11 +80,11 @@ const benefits = [
   {
     icon: MapPin,
     visualId: null,
-    outcome: "State MPJE",
-    title: "Pharmacy law for your jurisdiction",
+    outcome: "PANCE roadmap",
+    title: "NCCPA blueprint study plan",
     description:
-      "Drill uniform multistate content or focus on state-specific rules when you select your MPJE state in the app.",
-    accent: "from-amber-500 to-orange-500",
+      "Weighted roadmap across 15 medical content categories — ACS, sepsis, and infectious disease deep dives included.",
+    accent: "from-emerald-500 to-teal-500",
   },
 ];
 

@@ -33,8 +33,8 @@ export function ReturningUserHeroBanner() {
       : null;
 
   const headline = displayName
-    ? `Welcome back, ${displayName}! Continue your NCLEX · USMLE · NAPLEX · MPJE prep`
-    : "Welcome back! Continue your NCLEX · USMLE · NAPLEX · MPJE prep";
+    ? `Welcome back, ${displayName}! Continue your NCLEX · USMLE · NAPLEX · PANCE prep`
+    : "Welcome back! Continue your NCLEX · USMLE · NAPLEX · PANCE prep";
 
   return (
     <div

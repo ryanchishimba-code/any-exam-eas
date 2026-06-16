@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Check, HeartPulse, Pill, Scale, Stethoscope, type LucideIcon } from "lucide-react";
-import { studyHubMpjeHref } from "@/lib/study-hub/config";
+import { ArrowRight, Check, HeartPulse, Pill, Stethoscope, type LucideIcon } from "lucide-react";
 import {
   formatMonthlyPrice,
   formatTrialEntryPrice,
@@ -33,11 +32,11 @@ const exams: { id: string; title: string; href: string; icon: LucideIcon; benefi
     benefit: "Calculations & therapeutics",
   },
   {
-    id: "mpje",
-    title: "MPJE",
-    href: studyHubMpjeHref(),
-    icon: Scale,
-    benefit: "Uniform & state pharmacy law",
+    id: "pance",
+    title: "PANCE",
+    href: "/question-bank?field=pance",
+    icon: HeartPulse,
+    benefit: "NCCPA blueprint & exam roadmap",
   },
 ];
 
@@ -72,7 +71,7 @@ export function LandingEssentials() {
             Everything you need for board exam prep.
           </h2>
           <p className="mx-auto mt-2 max-w-lg text-sm text-[var(--color-ink-muted)]">
-            NCLEX, USMLE, NAPLEX, and MPJE — plus Reference Hub, Review Modules, Anatomy Studio,
+            NCLEX, USMLE, NAPLEX, and PANCE — plus Reference Hub, Review Modules, Anatomy Studio,
             and Top 500 Drugs that follow you across devices.
           </p>
         </div>
@@ -116,7 +115,7 @@ export function LandingEssentials() {
                 {formatTrialEntryPrice()}
               </p>
               <p className="mt-1 text-teal-100">
-                {formatTrialLabel()} — NCLEX, USMLE, NAPLEX & MPJE, then {formatMonthlyPrice()}/mo
+                {formatTrialLabel()} — NCLEX, USMLE, NAPLEX & PANCE, then {formatMonthlyPrice()}/mo
               </p>
               <p className="mt-2 text-sm text-teal-200/90">
                 Start today. Build familiarity with board-style items before your test date.
@@ -148,7 +147,7 @@ export function LandingEssentials() {
 
         <p className="mt-6 text-center text-xs text-[var(--color-ink-muted)]">
           Built for nursing, medical, and pharmacy students preparing for NCLEX, USMLE,
-          NAPLEX, and MPJE.
+          NAPLEX, and PANCE.
         </p>
       </div>
     </section>

@@ -13,7 +13,6 @@ import { AnatomyExplorerCard } from "@/components/study-hub/AnatomyExplorerCard"
 import { Top500DrugsCard } from "@/components/study-hub/Top500DrugsCard";
 import { firstName } from "@/lib/client/returning-user";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
-import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import {
   questionBankHref,
   referenceHref,
@@ -48,7 +47,6 @@ const QUICK_ACTIONS = [
 export function SubscriberHome() {
   const { data: session } = useSession();
   const { examSlug } = useAppPreferences();
-  const clinical = hasClinicalStudyTools(examSlug);
   const name = session?.user?.name ? firstName(session.user.name) : null;
 
   return (
@@ -63,9 +61,7 @@ export function SubscriberHome() {
             {name ? `Ready to study, ${name}?` : "Ready to study?"}
           </h2>
           <p className={cn(dbUi.subtitle, "mx-auto mt-2 max-w-lg")}>
-            {clinical
-              ? "Question banks, reference, anatomy, and analytics — everything for your exam in one place."
-              : "MPJE question bank, law reference, and timed practice — curated for pharmacy jurisprudence."}
+            Question banks, reference hub, anatomy, and analytics — everything for your exam in one place.
           </p>
           <Link
             href={STUDY_HUB_PATH}
@@ -103,12 +99,10 @@ export function SubscriberHome() {
               </div>
             </div>
 
-            {clinical ? (
-              <div className={cn(dbUi.sectionDivider, dbUi.panelSection, "grid gap-3 sm:grid-cols-2")}>
-                <AnatomyExplorerCard />
-                <Top500DrugsCard />
-              </div>
-            ) : null}
+            <div className={cn(dbUi.sectionDivider, dbUi.panelSection, "grid gap-3 sm:grid-cols-2")}>
+              <AnatomyExplorerCard />
+              <Top500DrugsCard />
+            </div>
           </div>
         </div>
       </div>

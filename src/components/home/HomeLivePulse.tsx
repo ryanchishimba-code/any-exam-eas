@@ -16,7 +16,7 @@ export function HomeLivePulse() {
     >
       <div className="mx-auto flex max-w-[1080px] flex-col gap-4 px-5 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
         <p className="text-sm text-[var(--color-ink-muted)]">
-          Built for NCLEX, USMLE, NAPLEX, and MPJE — adaptive practice,
+          Built for NCLEX, USMLE, NAPLEX, and PANCE — adaptive practice,
           OER-backed rationales, and tools to support your exam prep.
         </p>
 

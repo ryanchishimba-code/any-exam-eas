@@ -62,7 +62,7 @@ export function AvatarDropdown() {
         {
           href: STUDY_HUB_PATH,
           label: "Study Hub",
-          description: clinical ? "Question banks & Top 500 drugs" : "MPJE question bank & law reference",
+          description: "Question banks, reference hub & Top 500 drugs",
           icon: LayoutGrid,
         },
         ...(clinical

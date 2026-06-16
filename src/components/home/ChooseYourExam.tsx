@@ -2,15 +2,14 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, HeartPulse, Pill, Scale, Stethoscope, type LucideIcon } from "lucide-react";
-import { studyHubMpjeHref } from "@/lib/study-hub/config";
+import { Activity, ArrowRight, HeartPulse, Pill, Stethoscope, type LucideIcon } from "lucide-react";
 
 type ExamCard = {
   id: string;
   title: string;
   href: string;
   icon: LucideIcon;
-  theme: "nclex" | "usmle" | "naplex" | "mpje";
+  theme: "nclex" | "usmle" | "naplex" | "pance";
   tagline: string;
 };
 
@@ -19,7 +18,7 @@ const exams: ExamCard[] = [
     id: "nclex",
     title: "NCLEX",
     href: "/question-bank?field=nursing",
-    icon: HeartPulse,
+    icon: Activity,
     theme: "nclex",
     tagline: "Clinical judgment, NGN formats & prioritization",
   },
@@ -40,12 +39,12 @@ const exams: ExamCard[] = [
     tagline: "Calculations, cases & pharmacotherapy",
   },
   {
-    id: "mpje",
-    title: "MPJE",
-    href: studyHubMpjeHref(),
-    icon: Scale,
-    theme: "mpje",
-    tagline: "Uniform MPJE & state-specific law",
+    id: "pance",
+    title: "PANCE",
+    href: "/question-bank?field=pance",
+    icon: HeartPulse,
+    theme: "pance",
+    tagline: "NCCPA blueprint vignettes & exam roadmap",
   },
 ];
 
@@ -64,8 +63,8 @@ export function ChooseYourExam() {
             <span className="aee-display-accent">One subscription.</span>
           </h2>
           <p className="aee-section-lede mx-auto mt-4 max-w-xl">
-            NCLEX, USMLE, NAPLEX, and MPJE — each with timed simulations, topic banks,
-            and rationales grounded in open educational resources.
+            NCLEX, USMLE, NAPLEX, and PANCE — each with timed simulations, blueprint
+            roadmaps, topic banks, and rationales grounded in open educational resources.
           </p>
         </div>
 

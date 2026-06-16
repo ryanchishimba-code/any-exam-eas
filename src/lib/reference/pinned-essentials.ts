@@ -23,8 +23,8 @@ export const PINNED_MEMORY_CARD_IDS: Record<ExamSlug, string[]> = {
   pance: [
     "pance-hypertension-first-line",
     "pance-diabetes-a1c-targets",
-    "pance-febrile-infant-workup",
     "pance-acs-reperfusion",
+    "pance-sepsis-bundle",
   ],
 };
 

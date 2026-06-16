@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {
   BarChart3,
-  BookMarked,
   BookOpen,
   Bone,
   Clock,
@@ -15,7 +14,6 @@ import { Badge } from "@/components/ui/badge";
 import { FullExamModeButtons } from "@/components/exam/FullExamModeButtons";
 import { ExamSwitcher } from "@/components/edtech/ExamSwitcher";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
 import { ROUTES } from "@/lib/routes";
 import {
@@ -23,11 +21,9 @@ import {
   anatomyHref,
   highYieldTopicsHref,
   questionBankHref,
-  referenceHref,
   top500Href,
 } from "@/lib/edtech/practice-links";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
-import { StudyHubMpjePicker } from "@/components/study-hub/StudyHubMpjePicker";
 import { cn } from "@/lib/utils";
 
 type HubCard = {
@@ -44,17 +40,14 @@ export function StudyHubDashboard({
   examSlug,
   stats,
   userName,
-  mpjeStateCode,
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
   userName?: string | null;
-  mpjeStateCode?: string;
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const theme = EXAM_SELECTION_THEMES[examSlug];
   const ExamIcon = theme.icon;
-  const clinical = hasClinicalStudyTools(examSlug);
 
   const cards: HubCard[] = [
     {
@@ -72,26 +65,14 @@ export function StudyHubDashboard({
       cta: "Start practicing",
       icon: BookOpen,
     },
-    ...(clinical
-      ? [
-          {
-            title: "Anatomy Explorer",
-            description: "Explore high-yield structures in 3D — rotate, click, and link to practice.",
-            href: anatomyHref(examSlug),
-            cta: "Open explorer",
-            icon: Bone,
-            badge: "3D",
-          },
-        ]
-      : [
-          {
-            title: "Study Reference",
-            description: "Law memory cards, AI brief, and MPJE quick reference.",
-            href: referenceHref(examSlug),
-            cta: "Open reference",
-            icon: BookMarked,
-          },
-        ]),
+    {
+      title: "Anatomy Explorer",
+      description: "Explore high-yield structures in 3D — rotate, click, and link to practice.",
+      href: anatomyHref(examSlug),
+      cta: "Open explorer",
+      icon: Bone,
+      badge: "3D",
+    },
     {
       title: "Full Simulated Exam",
       description: `${exam.simulatedQuestionCount} questions · ${exam.simulatedDurationMin} min — test-day conditions.`,
@@ -105,17 +86,13 @@ export function StudyHubDashboard({
       cta: "View analytics",
       icon: BarChart3,
     },
-    ...(clinical
-      ? [
-          {
-            title: "Top 500",
-            description: "High-yield drugs and must-know pharmacology for your board.",
-            href: top500Href(examSlug),
-            cta: "Open Top 500",
-            icon: Layers,
-          },
-        ]
-      : []),
+    {
+      title: "Top 500",
+      description: "High-yield drugs and must-know pharmacology for your board.",
+      href: top500Href(examSlug),
+      cta: "Open Top 500",
+      icon: Layers,
+    },
   ];
 
   return (
@@ -178,10 +155,6 @@ export function StudyHubDashboard({
           </p>
         ) : null}
       </header>
-
-      {examSlug === "mpje" ? (
-        <StudyHubMpjePicker initialStateCode={mpjeStateCode} persistPreference />
-      ) : null}
 
       <div className="grid gap-4 sm:grid-cols-2">
         {cards.map((card) => (

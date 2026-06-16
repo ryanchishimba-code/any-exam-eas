@@ -284,7 +284,7 @@ export function LandingFlagship() {
             {formatTrialCtaLabel()}
           </h2>
           <p className="aee-flagship-final-cta__subtitle">
-            {formatTrialLabel()} · {formatMonthlyPrice()}/mo after trial · NCLEX · USMLE · NAPLEX · MPJE
+            {formatTrialLabel()} · {formatMonthlyPrice()}/mo after trial · NCLEX · USMLE · NAPLEX · PANCE
           </p>
           <div className="aee-flagship-final-cta__actions">
             <LandingCta

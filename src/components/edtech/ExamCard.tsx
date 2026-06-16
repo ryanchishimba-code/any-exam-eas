@@ -138,10 +138,10 @@ export function ExamCard({
             ))}
           </div>
 
-          {slug === "mpje" ? (
+          {slug === "pance" ? (
             <p className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-violet-100/90">
               <MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden />
-              State selector unlocks after signup — 50 states + DC
+              NCCPA blueprint roadmap across 15 medical content categories
             </p>
           ) : null}
 

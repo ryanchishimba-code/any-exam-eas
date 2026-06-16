@@ -9,13 +9,11 @@ import {
   Layers,
   MapPin,
   Pill,
-  Scale,
   Stethoscope,
 } from "lucide-react";
 import { LandingVisualSlot } from "@/components/home/LandingVisualSlot";
 import { Top500DrugsVisual } from "@/components/home/Top500DrugsVisual";
 import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
-import { studyHubMpjeHref } from "@/lib/study-hub/config";
 import { formatTrialCtaLabel, formatTrialHeroOffer } from "@/lib/site";
 
 const EXAMS = [
@@ -44,12 +42,12 @@ const EXAMS = [
     color: "#7c3aed",
   },
   {
-    id: "mpje",
-    label: "MPJE",
-    blurb: "Federal + state law",
-    href: studyHubMpjeHref(),
-    icon: Scale,
-    color: "#d97706",
+    id: "pance",
+    label: "PANCE",
+    blurb: "NCCPA blueprint vignettes",
+    href: "/question-bank?field=pance",
+    icon: HeartPulse,
+    color: "#059669",
   },
 ] as const;
 
@@ -71,8 +69,8 @@ const VALUE_PILLARS = [
   },
   {
     icon: MapPin,
-    title: "State MPJE drills",
-    detail: "Uniform multistate or state-specific pharmacy law when you need it.",
+    title: "PANCE exam roadmap",
+    detail: "Blueprint-weighted study plan across 15 NCCPA content categories with weak-area shortcuts.",
   },
 ] as const;
 
@@ -97,7 +95,7 @@ export function LandingCompact() {
               Switch exams anytime — pay once, study everything.
             </h2>
             <p className="mt-1.5 text-sm text-[var(--color-ink-muted)]">
-              Pick your primary board in the app, then jump between NCLEX, USMLE, NAPLEX, and MPJE
+              Pick your primary board in the app, then jump between NCLEX, USMLE, NAPLEX, and PANCE
               without buying separate question banks.
             </p>
           </div>

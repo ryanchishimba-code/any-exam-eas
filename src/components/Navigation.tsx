@@ -191,7 +191,7 @@ export function Navigation() {
               <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-ink-muted)]">
                 Exams
               </p>
-              {["nclex", "naplex", "usmle", "mpje"].map((slug) => (
+              {["nclex", "naplex", "usmle", "pance"].map((slug) => (
                 <Link
                   key={slug}
                   href={`/exams/${slug}`}

@@ -15,7 +15,7 @@ const signals = [
   {
     icon: Stethoscope,
     value: "4 exams",
-    label: "NCLEX · USMLE · NAPLEX · MPJE",
+    label: "NCLEX · USMLE · NAPLEX · PANCE",
   },
   {
     icon: ShieldCheck,

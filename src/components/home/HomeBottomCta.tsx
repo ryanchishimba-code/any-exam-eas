@@ -112,7 +112,7 @@ export function HomeBottomCta() {
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-teal-100/90">
           <span className="block sm:inline">
-            {formatTrialLabel()} · NCLEX · USMLE · NAPLEX · MPJE
+            {formatTrialLabel()} · NCLEX · USMLE · NAPLEX · PANCE
           </span>
           <span className="mt-1 block sm:mt-0 sm:inline">
             <span className="hidden sm:inline"> · </span>

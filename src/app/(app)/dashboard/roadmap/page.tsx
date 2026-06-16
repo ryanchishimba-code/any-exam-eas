@@ -13,7 +13,7 @@ import type { ExamSlug } from "@/types/edtech";
 export const metadata = {
   title: "Exam Roadmap — Any Exam Easy",
   description:
-    "Blueprint-aligned readiness tracker for NCLEX, USMLE, NAPLEX, PANCE, and AANP FNP — see exactly what to focus on to pass.",
+    "Blueprint-aligned readiness tracker for NCLEX, USMLE, NAPLEX, and PANCE — see exactly what to focus on to pass.",
 };
 
 function RoadmapSkeleton() {

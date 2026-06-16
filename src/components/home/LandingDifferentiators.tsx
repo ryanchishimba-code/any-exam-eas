@@ -14,7 +14,7 @@ const ITEMS = [
     icon: CreditCard,
     title: "One subscription, four exams",
     detail:
-      "UWorld and similar banks typically charge per exam. NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE live in one plan.",
+      "UWorld and similar banks typically charge per exam. NCLEX, USMLE Step 2 CK, NAPLEX, and PANCE live in one plan.",
   },
   {
     icon: Layers,
@@ -42,9 +42,9 @@ const ITEMS = [
   },
   {
     icon: MapPin,
-    title: "State MPJE when you need it",
+    title: "PANCE blueprint roadmap",
     detail:
-      "Uniform multistate content plus state-specific pharmacy law drills in the same account.",
+      "NCCPA-weighted study plan across 15 systems with ACS, sepsis, and infectious disease deep dives.",
   },
 ] as const;
 

@@ -24,7 +24,7 @@ export function StudyHubPageLayout({
             {userName ? `Hi, ${userName.split(" ")[0]}.` : "Study Hub"}
           </h1>
           <p className="mt-3 max-w-xl text-[1.0625rem] text-slate-600">
-            Choose your board — NCLEX, USMLE, NAPLEX, or MPJE — then pick timed exam or
+            Choose your board — NCLEX, USMLE, NAPLEX, or PANCE — then pick timed exam or
             question bank practice.
           </p>
           <div className="mt-10">{children}</div>

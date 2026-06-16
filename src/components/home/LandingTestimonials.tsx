@@ -11,15 +11,15 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "The vignette rationales feel closer to UWorld than the free apps I tried — but I’m not buying Step 2 and MPJE as separate subscriptions anymore.",
+      "The vignette rationales feel closer to UWorld than the free apps I tried — but I'm not buying Step 2 and PANCE as separate subscriptions anymore.",
     name: "Ben K.",
     exam: "USMLE Step 2 CK",
   },
   {
     quote:
-      "Calculation cases plus law drills in one account is what sold me. State MPJE selection was the feature I couldn’t find bundled elsewhere.",
+      "Clinical vignettes plus NCCPA roadmap in one account is what sold me. PANCE deep dives on ACS and sepsis were the features I couldn't find bundled elsewhere.",
     name: "Priya S.",
-    exam: "NAPLEX · MPJE",
+    exam: "NAPLEX · PANCE",
   },
   {
     quote:

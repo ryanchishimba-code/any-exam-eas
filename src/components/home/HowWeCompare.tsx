@@ -17,10 +17,10 @@ const competitorNames = ["UWorld", "Archer Review", "SimpleNursing"];
 const rows = [
   { label: "Starting cost", us: `${formatTrialTodayPrice()} today`, them: "$99–329+ upfront" },
   { label: "Monthly", us: `Only ${formatMonthlyPrice()}/mo`, them: "$39–89+/mo tiers" },
-  { label: "Exam coverage", us: "NCLEX · USMLE · NAPLEX · MPJE", them: "Often per-exam pricing" },
+  { label: "Exam coverage", us: "NCLEX · USMLE · NAPLEX · PANCE", them: "Often per-exam pricing" },
   { label: "Top 500 drugs", us: "Dedicated mastery deck", them: "Scattered in banks" },
   { label: "Adaptive practice", us: "Weak-area targeting", them: "Limited / add-on" },
-  { label: "MPJE prep", us: "Uniform + state-specific", them: "Rare or generic only" },
+  { label: "PANCE prep", us: "NCCPA blueprint roadmap & deep dives", them: "Rare or generic only" },
   { label: "Rationales", us: "OER-backed (Open RN, OpenStax)", them: "Proprietary only" },
 ] as const;
 

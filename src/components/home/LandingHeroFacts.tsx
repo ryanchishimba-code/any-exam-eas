@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 const FACTS: { icon: LucideIcon; label: string }[] = [
-  { icon: Layers, label: "Question banks for NCLEX, USMLE, NAPLEX & MPJE" },
+  { icon: Layers, label: "Question banks for NCLEX, USMLE, NAPLEX & PANCE" },
   { icon: Brain, label: "Adaptive practice that targets weak topics" },
   { icon: ClipboardList, label: "Timed full-length exam simulations" },
   { icon: Pill, label: "Top 500 pharmacology flashcards" },

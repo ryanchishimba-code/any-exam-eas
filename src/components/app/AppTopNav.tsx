@@ -6,8 +6,6 @@ import { useSession } from "next-auth/react";
 import { LayoutGrid, LogOut, Menu, Settings, User } from "lucide-react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
-import { AppMpjeStateChip } from "@/components/app/AppMpjeStateChip";
-import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { shellUi } from "@/lib/layout/shell-ui";
@@ -36,7 +34,6 @@ type Props = {
 export function AppTopNav({ onMenuClick }: Props) {
   const pathname = usePathname();
   const { data: session } = useSession();
-  const { examSlug, mpjeStateCode } = useAppPreferences();
   const { signingOut, requestSignOut } = useSignOutConfirm({ callbackUrl: ROUTES.home });
 
   function isActive(href: string) {
@@ -73,7 +70,6 @@ export function AppTopNav({ onMenuClick }: Props) {
             <LayoutGrid className="h-3 w-3" aria-hidden />
             Switch
           </Link>
-          {examSlug === "mpje" ? <AppMpjeStateChip stateCode={mpjeStateCode} /> : null}
           <span className="mx-1 h-4 w-px bg-black/[0.08]" aria-hidden />
           {APP_LINKS.map((link) => (
             <Link
@@ -88,9 +84,6 @@ export function AppTopNav({ onMenuClick }: Props) {
 
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
           <ThemeToggle />
-          {examSlug === "mpje" ? (
-            <AppMpjeStateChip stateCode={mpjeStateCode} className="md:hidden" />
-          ) : null}
           <Link
             href={ROUTES.settings}
             className="inline-flex h-9 w-9 items-center justify-center rounded-xl text-[var(--color-ink-muted)] transition hover:bg-black/[0.04] hover:text-[var(--color-ink)]"

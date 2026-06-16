@@ -12,14 +12,13 @@ import {
   STUDY_HUB_PATH,
   TOP_500_DRUGS_PATH,
   questionBankHref,
-  studyHubMpjeHref,
   studyHubProgressHref,
 } from "@/lib/study-hub/config";
 
 const BASE_NAV = [
   { href: STUDY_HUB_PATH, label: "Study Hub", icon: LayoutGrid },
   ...STUDY_HUB_EXAM_BANKS.map((exam) => ({
-    href: exam.slug === "mpje" ? studyHubMpjeHref() : questionBankHref(exam.fieldId),
+    href: questionBankHref(exam.fieldId),
     label: exam.label,
     icon: BookOpen,
   })),

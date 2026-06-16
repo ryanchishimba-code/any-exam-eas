@@ -13,7 +13,7 @@ import {
   getMemoryCardIdsForTopic,
   normalizeWeakAreaTopicKey,
 } from "@/lib/reference/weak-area-map";
-import { mpjePracticeExamHref } from "@/lib/study-hub/config";
+import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
@@ -26,7 +26,7 @@ type AnalyticsPayload = {
 const REFERENCE_PASS_RATES: Record<string, number> = {
   nursing: 88,
   pharmacy: 89,
-  mpje: 75,
+  pance: 92,
   "usmle-step-2": 92,
 };
 
@@ -247,15 +247,14 @@ export function StudentAnalyticsDashboard() {
         </section>
       )}
 
-      {fieldFilter === "mpje" || primaryField === "mpje" ? (
-        <section className="rounded-2xl border border-amber-200/70 bg-amber-50/50 p-6">
-          <h3 className="font-semibold text-amber-950">MPJE endurance check</h3>
-          <p className="mt-2 text-sm text-amber-900/80">
-            Full 120-question / 2.5-hour simulator with state-specific + federal law. Passing
-            practice threshold: 75%.
+      {fieldFilter === "pance" || primaryField === "pance" ? (
+        <section className="rounded-2xl border border-rose-200/70 bg-rose-50/50 p-6">
+          <h3 className="font-semibold text-rose-950">PANCE endurance check</h3>
+          <p className="mt-2 text-sm text-rose-900/80">
+            Full 300-question / 5-hour simulation aligned to NCCPA timing — build stamina before test day.
           </p>
-          <Button href={mpjePracticeExamHref("OK")} className="mt-4">
-            Take MPJE practice exam
+          <Button href={fullExamLaunchHref("pance", { mode: "full" })} className="mt-4">
+            Take PANCE practice exam
           </Button>
         </section>
       ) : null}

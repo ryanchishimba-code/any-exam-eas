@@ -8,7 +8,7 @@ export function LandingHeroExamStrip({ className = "" }: LandingHeroExamStripPro
   return (
     <p
       className={`aee-hero-exam-strip ${className}`.trim()}
-      aria-label="Board exams we cover: NCLEX, USMLE, NAPLEX, and MPJE"
+      aria-label="Board exams we cover: NCLEX, USMLE, NAPLEX, and PANCE"
     >
       {LANDING_HERO_EXAMS.map((exam, index) => (
         <span key={exam.label} className="aee-hero-exam-strip__item">

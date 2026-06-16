@@ -53,14 +53,6 @@ export const LANDING_EXAMS: LandingExam[] = [
     icon: HeartPulse,
     color: EXAM_ACCENTS.pance,
   },
-  {
-    id: "aanp-fnp",
-    label: "AANP FNP",
-    blurb: "AANPCB blueprint · primary care across the lifespan",
-    href: "/question-bank?field=aanp-fnp",
-    icon: Stethoscope,
-    color: EXAM_ACCENTS.aanpFnp,
-  },
 ];
 
 export const LANDING_BENEFITS = [
@@ -104,7 +96,7 @@ export const LANDING_BENEFITS = [
 
 /** Bullet list for pricing panels and signup CTAs. */
 export const LANDING_PRICING_FEATURES = [
-  "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP question banks",
+  "USMLE · NCLEX · NAPLEX · PANCE question banks",
   "Proprietary Exam Roadmaps aligned to each blueprint",
   "Deep Dive Review Modules linked from practice",
   "Curated vignettes with excellent explanations",
@@ -114,7 +106,7 @@ export const LANDING_PRICING_FEATURES = [
   `${TOP_500_DRUGS_COUNT} Top Drugs pharmacology deck`,
 ] as const;
 
-export const LANDING_HERO_EYEBROW = "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP";
+export const LANDING_HERO_EYEBROW = "USMLE · NCLEX · NAPLEX · PANCE";
 
 /** Primary signup destination — single conversion path across the landing page. */
 export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=yearly";
@@ -125,7 +117,6 @@ export const LANDING_HERO_EXAMS = [
   { label: "NCLEX", color: EXAM_ACCENTS.nclex },
   { label: "NAPLEX", color: EXAM_ACCENTS.naplex },
   { label: "PANCE", color: EXAM_ACCENTS.pance },
-  { label: "AANP FNP", color: EXAM_ACCENTS.aanpFnp },
 ] as const;
 
 /** Primary hero headline — benefit-focused, human tone. */
@@ -133,7 +124,7 @@ export const LANDING_HERO_HEADLINE = "Pass your board exams with confidence.";
 
 /** Hero sub-headline — exams + value props in one scannable line. */
 export const LANDING_HERO_SUBLINE =
-  "High-quality practice questions for USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP — plus proprietary Roadmaps, Deep Dive lessons, analytics, lab values, and clinical calculators in one affordable subscription.";
+  "High-quality practice questions for USMLE, NCLEX, NAPLEX, and PANCE — plus proprietary Roadmaps, Deep Dive lessons, analytics, lab values, and clinical calculators in one affordable subscription.";
 
 /** @deprecated Use LANDING_HERO_HEADLINE for the primary headline string. */
 export const LANDING_HERO_HEADLINE_QUOTED = LANDING_HERO_HEADLINE;
@@ -154,7 +145,7 @@ export const LANDING_HERO_HEADLINE_ACCENT = "for boards and clinical practice.";
 
 /** Three punchy hero benefits — scannable in under 3 seconds. */
 export const LANDING_HERO_PITCHES = [
-  "5 board tracks · 1 plan",
+  "4 board exams · 1 plan",
   "Roadmaps + Deep Dives",
   "Calculators & lab values",
 ] as const;
@@ -255,7 +246,7 @@ export const SAMPLE_QUESTIONS_FEATURED = SAMPLE_QUESTION_PREVIEWS.filter((q) =>
 
 export const LANDING_METRICS = [
   { value: MARKETING_QUESTION_COUNTS.total, label: "Board-style items" },
-  { value: "5", label: "Board exam tracks" },
+  { value: "4", label: "Board exam tracks" },
   { value: "Roadmap", label: "Per-exam study plan" },
   { value: "Deep Dive", label: "Linked lessons" },
   { value: String(TOP_500_DRUGS_COUNT), label: "Pharmacology cards" },

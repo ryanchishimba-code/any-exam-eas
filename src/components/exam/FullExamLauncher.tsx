@@ -20,7 +20,6 @@ import {
 import { acquireAutostartLock, releaseAutostartLock } from "@/lib/full-exam/autostart-lock";
 import { feUi } from "@/lib/study/full-exam-ui";
 import { navigateHard } from "@/lib/client/navigate-hard";
-import { StudyHubMpjePicker } from "@/components/study-hub/StudyHubMpjePicker";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
@@ -31,7 +30,6 @@ type Props = {
   initialMode?: string | null;
   autostart?: boolean;
   initialTimed?: boolean;
-  mpjeStateCode?: string | null;
 };
 
 export function FullExamLauncher({
@@ -39,7 +37,6 @@ export function FullExamLauncher({
   initialMode,
   autostart = false,
   initialTimed = true,
-  mpjeStateCode,
 }: Props) {
   const exam = EXAM_CATALOG[examSlug];
   const options = getLengthOptions(examSlug);
@@ -137,18 +134,6 @@ export function FullExamLauncher({
       <div className={feUi.pageShell}>
         <div className={cn(feUi.panel, feUi.panelInner)}>
           <QuestionBankExamHero exam={exam} examSlug={examSlug} />
-
-          {examSlug === "mpje" ? (
-            <div className="rounded-[18px] border border-amber-200/60 bg-amber-50/40 p-4">
-              <p className="text-[14px] font-semibold text-amber-950">MPJE state</p>
-              <p className="mt-1 text-[13px] text-amber-900/80">
-                Include state-specific law questions in your simulation.
-              </p>
-              <div className="mt-3">
-                <StudyHubMpjePicker initialStateCode={mpjeStateCode ?? undefined} persistPreference />
-              </div>
-            </div>
-          ) : null}
 
           <div className="grid gap-6 lg:grid-cols-[1fr,min(18rem,100%)]">
             <div className="space-y-6">

@@ -1,7 +1,7 @@
 import { BookOpen, Lock, ShieldCheck, Stethoscope } from "lucide-react";
 
 const items = [
-  { icon: Stethoscope, label: "NCLEX · USMLE · NAPLEX · MPJE prep" },
+  { icon: Stethoscope, label: "NCLEX · USMLE · NAPLEX · PANCE prep" },
   { icon: BookOpen, label: "Board-style questions + rationales" },
   { icon: ShieldCheck, label: "Adaptive weak-area practice" },
   { icon: Lock, label: "One plan · Cancel anytime" },

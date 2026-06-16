@@ -18,7 +18,8 @@ export function ReferenceHubNav({ examSlug }: { examSlug?: string }) {
       !("clinicalExam" in s && s.clinicalExam) ||
       examSlug === "naplex" ||
       examSlug === "usmle" ||
-      examSlug === "nclex"
+      examSlug === "nclex" ||
+      examSlug === "pance"
   );
   const [active, setActive] = useState<string>(sections[0].id);
 
