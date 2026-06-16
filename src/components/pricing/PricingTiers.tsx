@@ -117,7 +117,7 @@ function TierCard({
           )}
         </div>
 
-        <Button href={checkoutHref} className="mt-6 w-full" variant={highlighted ? "default" : "secondary"}>
+        <Button href={checkoutHref} className="mt-6 w-full" variant={highlighted ? "primary" : "secondary"}>
           {formatTrialCtaLabel()}
         </Button>
         <p className="mt-2 text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
