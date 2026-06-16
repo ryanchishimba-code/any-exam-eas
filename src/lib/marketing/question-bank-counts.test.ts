@@ -6,6 +6,10 @@ import {
   displayTotalQuestionCount,
   type QuestionBankCountsSnapshot,
 } from "./question-bank-counts";
+import {
+  TOTAL_QUESTION_BANK_TARGET,
+  formatMarketingQuestionCount,
+} from "./bank-stats";
 
 function snapshotWithServed(
   servedByField: Partial<Record<(typeof EXAM_FIELD_IDS)[number], number>>
@@ -54,24 +58,28 @@ describe("question-bank-counts display", () => {
   it("falls back to design targets when served is zero", () => {
     const snapshot = snapshotWithServed({ pance: 0, "aanp-fnp": 0 });
 
-    expect(displayQuestionCountForField("pance", snapshot)).toBe("30K+");
-    expect(displayQuestionCountForField("aanp-fnp", snapshot)).toBe("24K+");
-    expect(displayTotalQuestionCount(snapshot)).toBe("120K+");
+    expect(displayQuestionCountForField("pance", snapshot)).toBe("6K+");
+    expect(displayQuestionCountForField("aanp-fnp", snapshot)).toBe("6K+");
+    expect(displayTotalQuestionCount(snapshot)).toBe(
+      formatMarketingQuestionCount(TOTAL_QUESTION_BANK_TARGET)
+    );
   });
 
-  it("builds four-exam landing display rows", () => {
+  it("builds five-exam landing display rows", () => {
     const display = buildLandingBankCountsDisplay(
-      snapshotWithServed({ nursing: 11_359, "usmle-step-2": 5_306 })
+      snapshotWithServed({ nursing: 11_359, "usmle-step-2": 5_306, "aanp-fnp": 4_200 })
     );
 
-    expect(display.exams).toHaveLength(4);
+    expect(display.exams).toHaveLength(5);
     expect(display.exams.map((e) => e.label)).toEqual([
       "USMLE",
       "NCLEX",
       "NAPLEX",
       "PANCE",
+      "AANP FNP",
     ]);
     expect(display.exams[0]?.countLabel).toBe("5K+");
     expect(display.exams[1]?.countLabel).toBe("11K+");
+    expect(display.exams[3]?.countLabel).toBe("6K+");
   });
 });

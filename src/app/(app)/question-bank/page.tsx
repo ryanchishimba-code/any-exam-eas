@@ -3,8 +3,9 @@ import { auth } from "@/auth";
 import { Suspense } from "react";
 import { PremiumGate } from "@/components/PremiumGate";
 import { StudyBankPractice } from "@/components/study/StudyBankPractice";
-import { getUserExamPreference } from "@/lib/edtech/exam-preference";
-import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { getUserExamPreference, setUserExamPreference } from "@/lib/edtech/exam-preference";
+import { EXAM_CATALOG, examSlugFromFieldId, isExamSlug } from "@/lib/edtech/exams";
+import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 
@@ -13,13 +14,26 @@ export const metadata = {
   description: "Adaptive question bank with topic filters and detailed rationales.",
 };
 
-export default async function QuestionBankPage() {
+export default async function QuestionBankPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ field?: string }>;
+}) {
   const session = await auth();
   if (!session?.user?.id) {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.questionBank)}`);
   }
 
   await requirePremiumPage(ROUTES.questionBank);
+
+  const sp = await searchParams;
+  if (sp.field) {
+    const fieldId = resolveQuestionBankFieldId(sp.field);
+    const examSlug = examSlugFromFieldId(fieldId);
+    if (examSlug && isExamSlug(examSlug)) {
+      await setUserExamPreference(session.user.id, examSlug);
+    }
+  }
 
   const pref = await getUserExamPreference(session.user.id);
   if (!pref) redirect(ROUTES.selectExam);

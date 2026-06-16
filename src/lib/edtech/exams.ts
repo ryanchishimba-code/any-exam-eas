@@ -44,6 +44,17 @@ export const EXAM_CATALOG: Record<ExamSlug, ExamDefinition> = {
     simulatedDurationMin: 300,
     simulatedQuestionCount: 300,
   },
+  "aanp-fnp": {
+    slug: "aanp-fnp",
+    name: "AANP FNP-C",
+    shortName: "AANP FNP",
+    fieldId: "aanp-fnp",
+    description:
+      "AANPCB blueprint primary care — Assess, Diagnose, Plan, Evaluate across the lifespan.",
+    accentClass: "from-violet-500/15 to-purple-600/10 border-violet-200/70",
+    simulatedDurationMin: 210,
+    simulatedQuestionCount: 135,
+  },
 };
 
 export const EXAM_SLUGS = Object.keys(EXAM_CATALOG) as ExamSlug[];

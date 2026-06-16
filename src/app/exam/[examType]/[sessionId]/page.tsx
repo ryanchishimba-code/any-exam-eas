@@ -8,7 +8,7 @@ import { resolveTimedExamLimit } from "@/lib/exam/exam-lengths";
 import { computeTimeLimitSec } from "@/lib/full-exam/config";
 import { isExamSlug } from "@/lib/edtech/exams";
 
-const SLUGS = new Set(["nclex", "usmle", "naplex", "top500"]);
+const SLUGS = new Set(["nclex", "usmle", "naplex", "pance", "aanp-fnp", "top500"]);
 
 export default async function ExamSessionPage({
   params,

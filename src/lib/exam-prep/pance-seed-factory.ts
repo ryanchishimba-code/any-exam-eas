@@ -5,6 +5,10 @@ import type { BlueprintDomain, ExamReference } from "./types";
 type PanceMeta = Partial<EnrichedBankItem> & {
   blueprintDomain?: BlueprintDomain | string;
   blueprintSystem?: string;
+  /** NCCPA task category slug for roadmap task-dimension analytics. */
+  taskCategory?: string;
+  /** Specific high-yield topic (e.g. ACS, sepsis). */
+  blueprintTopic?: string;
   references?: ExamReference[];
   /** Memory card / review module cross-links for QuestionRelatedLinks. */
   related?: RelatedStudyMeta;
@@ -17,6 +21,8 @@ function baseTags(meta: PanceMeta, extra: string[] = []) {
 function payload(meta: PanceMeta, extra: Record<string, unknown> = {}) {
   return {
     blueprintSystem: meta.blueprintSystem,
+    taskCategory: meta.taskCategory,
+    blueprintTopic: meta.blueprintTopic,
     ...meta.related,
     ...extra,
   };

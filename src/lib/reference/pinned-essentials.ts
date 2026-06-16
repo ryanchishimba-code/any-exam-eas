@@ -26,6 +26,12 @@ export const PINNED_MEMORY_CARD_IDS: Record<ExamSlug, string[]> = {
     "pance-acs-reperfusion",
     "pance-sepsis-bundle",
   ],
+  "aanp-fnp": [
+    "fnp-hypertension-first-line",
+    "fnp-diabetes-intensification",
+    "fnp-depression-screening",
+    "fnp-pediatric-immunization",
+  ],
 };
 
 export function getPinnedMemoryCardIds(examSlug: ExamSlug): string[] {

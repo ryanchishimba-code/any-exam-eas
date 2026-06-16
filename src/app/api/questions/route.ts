@@ -50,10 +50,11 @@ export async function GET(req: Request) {
   }
 
   const meta = getFieldMeta(field);
-  const fieldId = meta?.id ?? field.toLowerCase().replace(/\s+/g, "-");
-
-  const { enforceQuestionBankFieldAccess } = await import("@/lib/edtech/question-bank-scope");
-  const access = await enforceQuestionBankFieldAccess(userId, fieldId);
+  const { resolveQuestionBankFieldId, enforceQuestionBankFieldAccess } = await import(
+    "@/lib/edtech/question-bank-scope"
+  );
+  const fieldId = resolveQuestionBankFieldId(field);
+  const access = await enforceQuestionBankFieldAccess(userId, field);
   if (!access.ok) return access.response;
 
   const nclexLength = parseNclexTimedVariant(searchParams.get("nclexLength"));
@@ -96,7 +97,7 @@ export async function GET(req: Request) {
   const { isUsmleField } = await import("@/lib/exam-prep/usmle-bank-bridge");
   const usmleField = isUsmleField(fieldId);
   const clinicalField = usmleField || fieldId === "pance";
-  const { prepareBankItemsForSession, bankItemToSessionRaw } = await import(
+  const { filterBankItemsForSessionPool, bankItemToSessionRaw } = await import(
     "@/lib/exam-prep/prepare-bank-session"
   );
   const { resolveExamBankSampleCount, finalizeExamSessionQuestions, assertExamSessionReady } =
@@ -156,7 +157,7 @@ export async function GET(req: Request) {
   }
 
   if (items.length > 0 && !(mixed && timedExam)) {
-    items = prepareBankItemsForSession({ fieldId, field, items, limit });
+    items = filterBankItemsForSessionPool({ fieldId, items });
   }
 
   const resolvedSubjectId = mixed ? MIXED_SUBJECT_ID : subjectId!;

@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { createHash } from "crypto";
 import { prisma } from "@/lib/prisma";
 import {
@@ -74,6 +75,25 @@ function rowToCreateData(
   source: "seed" | "generated"
 ) {
   const contentHash = bankItemContentHash(fieldId, subjectId, item);
+  const taskCategory =
+    item.taskCategory ??
+    (typeof item.ngnPayload?.taskCategory === "string"
+      ? item.ngnPayload.taskCategory
+      : null);
+  const patientAgeGroup =
+    item.patientAgeGroup ??
+    (typeof item.ngnPayload?.patientAgeGroup === "string"
+      ? item.ngnPayload.patientAgeGroup
+      : null);
+  const blueprintTopic =
+    item.blueprintTopic ??
+    (typeof item.ngnPayload?.blueprintTopic === "string"
+      ? item.ngnPayload.blueprintTopic
+      : null);
+  const generationMeta =
+    item.generationMeta ??
+    (item.ngnPayload?.generationMeta as Record<string, unknown> | undefined);
+
   return {
     fieldId,
     subjectId,
@@ -82,6 +102,22 @@ function rowToCreateData(
     difficulty: item.difficulty ?? null,
     topicCategory: item.topicCategory ?? null,
     blueprintDomain: item.blueprintDomain ?? null,
+    taskCategory,
+    patientAgeGroup,
+    blueprintTopic,
+    generationVersion: item.generationVersion ?? null,
+    reviewStatus:
+      item.reviewStatus ??
+      (source === "seed" && item.tags?.includes("physician-educator")
+        ? "approved"
+        : "pending"),
+    lastReviewedAt:
+      item.reviewStatus === "approved" || item.tags?.includes("physician-educator")
+        ? new Date()
+        : null,
+    generationMeta: generationMeta
+      ? (generationMeta as Prisma.InputJsonValue)
+      : undefined,
     itemType: item.itemType ?? "mcq",
     stepLevel:
       typeof item.ngnPayload?.stepLevel === "string"
@@ -155,6 +191,9 @@ async function upsertSeedRow(
 }
 
 async function topUpSubject(fieldId: string, subject: FieldSubject): Promise<number> {
+  // PANCE and AANP FNP banks are filled via curated seeds + AI batch generation — not procedural bulk templates.
+  if (fieldId === "pance" || fieldId === "aanp-fnp") return 0;
+
   const existingCount = await prisma.questionBankItem.count({
     where: { fieldId, subjectId: subject.id, active: true },
   });

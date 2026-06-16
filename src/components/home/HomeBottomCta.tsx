@@ -13,7 +13,7 @@ import {
 import { ROUTES } from "@/lib/routes";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
-import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { LANDING_TRIAL_HREF, PLATFORM_EXAM_LIST_MIDDOT } from "@/lib/landing/content";
 import {
   formatTrialCtaLabel,
   formatTrialHeroOffer,
@@ -112,7 +112,7 @@ export function HomeBottomCta() {
         </h2>
         <p className="mt-2 text-sm leading-relaxed text-teal-100/90">
           <span className="block sm:inline">
-            {formatTrialLabel()} · NCLEX · USMLE · NAPLEX · PANCE
+            {formatTrialLabel()} · {PLATFORM_EXAM_LIST_MIDDOT}
           </span>
           <span className="mt-1 block sm:mt-0 sm:inline">
             <span className="hidden sm:inline"> · </span>

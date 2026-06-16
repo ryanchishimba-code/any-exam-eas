@@ -1,8 +1,9 @@
-/** @deprecated Use pance-learning-paths — kept for import compatibility during PANCE migration. */
+/** AANP FNP learning paths — canonical exports for FNP study hub. */
 export {
-  PANCE_LEARNING_STAGES as FNP_LEARNING_STAGES,
-  PANCE_TOPIC_MODULES as FNP_TOPIC_MODULES,
-  panceModulesForStage as fnpModulesForStage,
-  getPanceModuleBySlug as getFnpModuleBySlug,
-  type PanceLearningStage as FnpLearningStage,
-} from "./pance-learning-paths";
+  AANP_FNP_AGE_GROUPS,
+  AANP_FNP_LEARNING_STAGES as FNP_LEARNING_STAGES,
+  AANP_FNP_TOPIC_MODULES as FNP_TOPIC_MODULES,
+  aanpFnpModulesForStage as fnpModulesForStage,
+  getAanpFnpModuleBySlug as getFnpModuleBySlug,
+  type AanpFnpLearningStage as FnpLearningStage,
+} from "./aanp-fnp-learning-paths";

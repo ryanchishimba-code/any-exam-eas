@@ -65,7 +65,7 @@ export function StudyHubModeSelector() {
                 />
               </span>
               <p className="mt-4 text-xs font-medium uppercase tracking-wide text-slate-500">
-                NCLEX · USMLE · NAPLEX · PANCE
+                NCLEX · USMLE · NAPLEX · COMLEX · AANP FNP
               </p>
             </Link>
           );

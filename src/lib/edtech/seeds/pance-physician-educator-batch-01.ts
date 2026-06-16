@@ -2,7 +2,7 @@
  * Curated PANCE-style items — physician-educator batch 01 (clinical vignette tone).
  */
 import type { EnrichedBankItem } from "@/lib/exam-prep/seed-helpers";
-import { panceMcq, panceVignette } from "@/lib/exam-prep/pance-seed-factory";
+import { panceVignette } from "@/lib/exam-prep/pance-seed-factory";
 
 const BATCH = "physician-educator-batch-01";
 const PE = ["physician-educator", BATCH, "pance"];
@@ -28,6 +28,8 @@ export const PANCE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
     `Anterior STEMI with ongoing symptoms requires emergent reperfusion — primary PCI when available within guideline time frames. Nitroglycerin alone does not reperfuse occluded coronary arteries. Delaying reperfusion increases infarct size and mortality.`,
     {
       blueprintSystem: "cardiovascular",
+      taskCategory: "intervention",
+      blueprintTopic: "ACS",
       difficulty: 4,
       references: [ACCAHA],
       tags: ["ACS", "STEMI", ...PE],
@@ -108,9 +110,10 @@ export const PANCE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
     }
   ),
 
-  panceMcq(
+  panceVignette(
     "reproductive",
-    "A 32-year-old G2P1 at 34 weeks gestation has BP 158/104 mm Hg on two readings 4 hours apart, 2+ proteinuria, and a headache. Reflexes are brisk. LFTs are normal.",
+    `A 32-year-old G2P1 at 34 weeks gestation presents with BP 158/104 mm Hg on two readings 4 hours apart, 2+ proteinuria on dipstick, and a persistent headache. Reflexes are brisk. AST 28 U/L, ALT 32 U/L, platelets 198 × 10³/µL.`,
+    "What is the most appropriate management?",
     [
       "Expectant management with weekly BP checks",
       "Start magnesium sulfate and plan delivery",
@@ -121,6 +124,8 @@ export const PANCE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
     `Preeclampsia with severe features (BP ≥160/110, symptoms) at ≥34 weeks warrants magnesium for seizure prophylaxis and delivery planning. ACE inhibitors are contraindicated in pregnancy. Outpatient management is unsafe with severe features.`,
     {
       blueprintSystem: "reproductive",
+      taskCategory: "intervention",
+      blueprintTopic: "pregnancy complications",
       difficulty: 4,
       references: [ACOG],
       tags: ["preeclampsia", ...PE],

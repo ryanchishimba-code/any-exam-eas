@@ -670,6 +670,8 @@ export function buildBulkQuestion(
       return buildPharmacyQuestion(subject, index);
     case "pance":
       return buildMedicineQuestion(subject, index, fieldId);
+    case "aanp-fnp":
+      return buildMedicineQuestion(subject, index, fieldId);
     case "usmle-step-1":
     case "usmle-step-2":
       return buildMedicineQuestion(subject, index, fieldId);

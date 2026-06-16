@@ -58,8 +58,11 @@ const HOME_KEYWORDS = [
   "USMLE Step 2 CK",
   "NAPLEX study",
   "PANCE prep",
-  "NCCPA PANCE",
-  "physician assistant certification",
+  "PANCE practice questions",
+  "AANP FNP",
+  "AANPCB FNP certification",
+  "affordable board exam prep",
+  "UWorld alternative",
   "nursing board exam",
   "medical board exam",
   "adaptive practice",
@@ -67,8 +70,8 @@ const HOME_KEYWORDS = [
 ];
 
 export function buildHomeMetadata(): Metadata {
-  const title = `${SITE_NAME} — Your Best Companion for Boards and Clinical Practice`;
-  const description = `Your best companion for boards and clinical practice. NCLEX, USMLE Step 2 CK, NAPLEX, and PANCE in one plan — curated questions, timed exams, and weak-area analytics. ${formatTrialLabel()} with payment method required — ${formatTrialEntryPrice()} today, then from ${formatMonthlyPrice()}/mo. Cancel before trial ends and you won't be charged.`;
+  const title = `${SITE_NAME} — Pass Your Boards with Confidence`;
+  const description = `High-quality practice questions and smart tools for USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP — only ${formatMonthlyPrice()}/mo. Integrated Roadmaps, Deep Dives, and adaptive practice — ${formatTrialLabel()} with payment method required, ${formatTrialEntryPrice()} today.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 
@@ -95,7 +98,7 @@ export function buildHomeMetadata(): Metadata {
           url: ogImage,
           width: 1200,
           height: 800,
-          alt: "Healthcare student using Any Exam Easy for NCLEX, USMLE, NAPLEX, and PANCE board exam prep",
+          alt: "Healthcare student using Any Exam Easy for USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP board exam prep",
         },
       ],
     },
@@ -126,7 +129,7 @@ export function buildRootMetadata(): Metadata {
       default: `${SITE_NAME} — Board Exam Study Support`,
       template: `%s | ${SITE_NAME}`,
     },
-    description: `NCLEX, USMLE Step 2 CK, NAPLEX, and PANCE study support with adaptive practice and OER-backed rationales.`,
+    description: `USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP study support with integrated Roadmaps and adaptive practice.`,
     icons: {
       icon: [
         { url: "/favicon.svg", type: "image/svg+xml" },
@@ -157,7 +160,7 @@ export function buildHomeJsonLd() {
         url,
         logo: absoluteUrl("/icons/icon-192.png"),
         description:
-          `${LEGAL_ENTITY.productName} — board exam study support for nursing, medical, pharmacy, and physician assistant students preparing for NCLEX, USMLE, NAPLEX, and PANCE.`,
+          `${LEGAL_ENTITY.productName} — board exam prep for students preparing for USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP.`,
       },
       {
         "@type": "WebSite",
@@ -187,7 +190,7 @@ export function buildHomeJsonLd() {
           description: `${TRIAL_DAYS}-day free trial — payment method required · ${formatTrialEntryPrice()} today, then from ${formatMonthlyPrice()}/mo · save up to 20% on longer plans`,
         },
         description:
-          "Board exam study support with adaptive practice, progress tracking, and OER-backed explanations for NCLEX, USMLE Step 2 CK, NAPLEX, and PANCE.",
+          "Board exam prep with integrated Roadmaps, adaptive practice, and OER-backed explanations for USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP.",
       },
     ],
   };

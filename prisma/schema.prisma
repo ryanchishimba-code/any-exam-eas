@@ -344,6 +344,19 @@ model QuestionBankItem {
   topicCategory   String?
   /// Exam blueprint domain (NAPLEX 2025, NCLEX-NGN, USMLE, MPJE/UMPJE).
   blueprintDomain String?
+  /// NCCPA PANCE task category slug (history-physical, diagnosis, pharmacotherapy, …).
+  taskCategory    String?
+  /// Specific blueprint high-yield topic (e.g. ACS, sepsis) for Deep Dive / analytics.
+  blueprintTopic  String?
+  /// AANP FNP patient lifespan band (newborn, infant, toddler, child, adolescent, young-adult, middle-adult, older-adult).
+  patientAgeGroup String?
+  /// AI model + pipeline version (e.g. gpt-4o-mini-pance-v1).
+  generationVersion String?
+  /// Editorial review: pending | approved | flagged | rejected.
+  reviewStatus    String?
+  lastReviewedAt  DateTime?
+  /// Batch id, QC scores, seed refs, blueprint alignment notes (JSON).
+  generationMeta  Json?
   /// mcq | vignette | sequential | abstract | drug_ad | ethics | biostats | ccs_prompt | exhibit | …
   itemType        String   @default("mcq")
   /// step1 | step2 | step3 for USMLE items
@@ -373,8 +386,76 @@ model QuestionBankItem {
   @@index([fieldId, difficulty, active])
   @@index([fieldId, topicCategory, active])
   @@index([fieldId, blueprintDomain, active])
+  @@index([fieldId, taskCategory, active])
+  @@index([fieldId, reviewStatus, active])
+  @@index([fieldId, blueprintTopic, active])
   @@index([fieldId, itemType, active])
   @@index([fieldId, stepLevel, active])
+  @@index([fieldId, patientAgeGroup, active])
+  @@index([fieldId, blueprintDomain, patientAgeGroup, active])
+}
+
+/// Official AANPCB FNP blueprint domains, age groups, and clinical systems.
+model AanpFnpBlueprintCategory {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  kind        String
+  label       String
+  weight      Float
+  sortOrder   Int      @default(0)
+  description String?  @db.Text
+  createdAt   DateTime @default(now())
+
+  @@index([kind, sortOrder])
+  @@map("aanp_fnp_blueprint_categories")
+}
+
+/// High-yield AANP FNP topics linked to blueprint domains and question-bank subjects.
+model AanpFnpTopic {
+  id           String   @id @default(cuid())
+  slug         String   @unique
+  label        String
+  categorySlug String?
+  domainSlug   String?
+  subjectId    String?
+  sortOrder    Int      @default(0)
+  createdAt    DateTime @default(now())
+
+  @@index([domainSlug, sortOrder])
+  @@index([subjectId])
+  @@map("aanp_fnp_topics")
+}
+
+/// NCCPA PANCE 2025 blueprint — medical content categories + task areas.
+model PanceBlueprintCategory {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  kind        String
+  label       String
+  weight      Float
+  sortOrder   Int      @default(0)
+  description String?  @db.Text
+  createdAt   DateTime @default(now())
+
+  @@index([kind, sortOrder])
+  @@map("pance_blueprint_categories")
+}
+
+/// High-yield PANCE topics — links content + task dimensions to Deep Dive modules.
+model PanceTopic {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  label            String
+  contentCategory  String?
+  taskCategory     String?
+  subjectId        String?
+  reviewModuleSlug String?
+  sortOrder        Int      @default(0)
+  createdAt        DateTime @default(now())
+
+  @@index([contentCategory, sortOrder])
+  @@index([subjectId])
+  @@map("pance_topics")
 }
 
 model QuestionBankSync {

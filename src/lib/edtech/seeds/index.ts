@@ -3,6 +3,7 @@ import { NCLEX_HIGH_YIELD_TOPICS } from "./high-yield-nclex";
 import { USMLE_HIGH_YIELD_TOPICS } from "./high-yield-usmle";
 import { NAPLEX_HIGH_YIELD_TOPICS } from "./high-yield-naplex";
 import { PANCE_HIGH_YIELD_TOPICS } from "./high-yield-pance";
+import { AANP_FNP_HIGH_YIELD_TOPICS } from "./high-yield-aanp-fnp";
 import { mergeReviewModules } from "./review-module-topics";
 
 export const HIGH_YIELD_BY_EXAM: Record<ExamSlug, HighYieldTopic[]> = {
@@ -10,6 +11,7 @@ export const HIGH_YIELD_BY_EXAM: Record<ExamSlug, HighYieldTopic[]> = {
   usmle: mergeReviewModules(USMLE_HIGH_YIELD_TOPICS, "usmle"),
   naplex: mergeReviewModules(NAPLEX_HIGH_YIELD_TOPICS, "naplex"),
   pance: mergeReviewModules(PANCE_HIGH_YIELD_TOPICS, "pance"),
+  "aanp-fnp": mergeReviewModules(AANP_FNP_HIGH_YIELD_TOPICS, "aanp-fnp"),
 };
 
 export function getHighYieldTopics(examSlug: ExamSlug): HighYieldTopic[] {
@@ -30,4 +32,5 @@ export const ALL_HIGH_YIELD_TOPICS: HighYieldTopic[] = [
   ...HIGH_YIELD_BY_EXAM.usmle,
   ...HIGH_YIELD_BY_EXAM.naplex,
   ...HIGH_YIELD_BY_EXAM.pance,
+  ...HIGH_YIELD_BY_EXAM["aanp-fnp"],
 ];

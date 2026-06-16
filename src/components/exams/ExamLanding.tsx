@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Activity,
@@ -24,14 +25,23 @@ const ICONS = {
   usmle: Stethoscope,
   naplex: Pill,
   pance: HeartPulse,
+  "aanp-fnp": HeartPulse,
 } as const;
 
-const ALL_EXAMS: ExamRouteSlug[] = ["nclex", "usmle", "naplex", "pance"];
+const ALL_EXAMS: ExamRouteSlug[] = ["nclex", "usmle", "naplex", "pance", "aanp-fnp"];
 
 type Props = { slug: ExamRouteSlug };
 
 export function ExamLanding({ slug }: Props) {
   const hub = getExamHub(slug);
+
+  useEffect(() => {
+    void fetch("/api/user/exam-preference", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ examSlug: slug }),
+    });
+  }, [slug]);
 
   if (!hub) return null;
 

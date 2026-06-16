@@ -19,11 +19,11 @@ export type BillingPlanTier = {
 };
 
 export const BILLING_GUARANTEE_HEADLINE =
-  "Your best companion for boards and clinical practice — at the best price in the industry.";
+  "The affordable all-in-one platform that helps more students pass — at the best price in the industry.";
 
 export const BILLING_GUARANTEE_POINTS = [
-  "NCLEX, USMLE Step 2 CK, NAPLEX, PANCE, Top 500 Drugs, and Reference Hub in one plan",
-  "UWorld-caliber vignettes, rationales, and adaptive practice — without $99+ per-exam bundles",
+  "USMLE, NCLEX, NAPLEX, COMLEX, AANP FNP, Top 500 Drugs, and Reference Hub in one plan",
+  "Integrated Exam Roadmaps plus UWorld-caliber vignettes — without $200–400+ per-exam bundles",
   "Cancel anytime from Settings — payments are non-refundable, but you keep full access through the period you paid for",
   "Switch billing plans anytime during your free trial; after that, plan changes take effect when your current paid term ends — billed only when the switch occurs",
   "Update your saved payment method anytime for recurring billing",

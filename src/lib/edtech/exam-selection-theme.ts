@@ -79,4 +79,17 @@ export const EXAM_SELECTION_THEMES: Record<ExamSlug, ExamSelectionTheme> = {
     ctaClass: "bg-white text-rose-900 hover:bg-rose-50",
     orb: "bg-rose-300/25",
   },
+  "aanp-fnp": {
+    slug: "aanp-fnp",
+    tagline:
+      "AANPCB FNP blueprint primary care — Assess, Diagnose, Plan, and Evaluate across the lifespan.",
+    stats: [`${MARKETING_QUESTION_COUNTS.aanpFnp} Questions`, "Roadmap Tracker", "Full Simulations"],
+    icon: HeartPulse,
+    gradient: "from-violet-600/90 via-purple-600/85 to-fuchsia-700/90",
+    glow: "group-hover:shadow-violet-500/25 group-hover:border-violet-300/80",
+    iconBg: "bg-white/20 backdrop-blur-sm",
+    iconColor: "text-white",
+    ctaClass: "bg-white text-violet-900 hover:bg-violet-50",
+    orb: "bg-violet-300/25",
+  },
 };

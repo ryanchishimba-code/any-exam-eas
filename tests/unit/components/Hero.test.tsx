@@ -45,7 +45,7 @@ describe("Hero", () => {
 
     expect(
       screen.getByRole("heading", {
-        name: /your best companion/i,
+        name: /pass your boards with confidence/i,
       })
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /start.*trial/i })).toHaveAttribute(
@@ -108,7 +108,7 @@ describe("Hero", () => {
 
     render(<Hero compareLayout />);
 
-    const region = screen.getByRole("region", { name: /your best companion/i });
+    const region = screen.getByRole("region", { name: /pass your boards with confidence/i });
     expect(region).toHaveAttribute("aria-labelledby", "hero-heading");
   });
 });

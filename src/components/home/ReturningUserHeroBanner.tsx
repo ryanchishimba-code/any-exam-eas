@@ -10,6 +10,8 @@ import {
   touchReturningVisit,
 } from "@/lib/client/returning-user";
 
+import { PLATFORM_EXAM_LIST_MIDDOT } from "@/lib/landing/content";
+
 export function ReturningUserHeroBanner() {
   const { data: session, status } = useSession();
   const [hint, setHint] = useState<ReturnType<typeof loadReturningUserHint>>(null);
@@ -33,8 +35,8 @@ export function ReturningUserHeroBanner() {
       : null;
 
   const headline = displayName
-    ? `Welcome back, ${displayName}! Continue your NCLEX · USMLE · NAPLEX · PANCE prep`
-    : "Welcome back! Continue your NCLEX · USMLE · NAPLEX · PANCE prep";
+    ? `Welcome back, ${displayName}! Continue your ${PLATFORM_EXAM_LIST_MIDDOT} prep`
+    : `Welcome back! Continue your ${PLATFORM_EXAM_LIST_MIDDOT} prep`;
 
   return (
     <div

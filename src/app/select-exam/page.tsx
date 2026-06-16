@@ -9,7 +9,7 @@ import { ROUTES } from "@/lib/routes";
 export const metadata = {
   title: "Choose Your Exam — Any Exam Easy",
   description:
-    "Bold, personalized prep for NCLEX-RN, USMLE Step 2 CK, NAPLEX, and PANCE.",
+    "Bold, personalized prep for USMLE, NCLEX, NAPLEX, COMLEX, and AANP FNP.",
 };
 
 type PageProps = {

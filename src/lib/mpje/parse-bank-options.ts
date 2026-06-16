@@ -39,14 +39,29 @@ export function serializeBankOptions(item: BankItem): string {
     return JSON.stringify({ ...item.ngnPayload, options: item.options });
   }
 
+  const panceMeta =
+    item.taskCategory || item.blueprintTopic || item.generationMeta
+      ? {
+          taskCategory: item.taskCategory,
+          blueprintTopic: item.blueprintTopic,
+          blueprintSystem: item.blueprintDomain ?? item.subjectId,
+          generationMeta: item.generationMeta,
+          ...(item.ngnPayload ?? {}),
+        }
+      : item.ngnPayload;
+
   if (hasEnrichment) {
     return JSON.stringify({
       options: item.options,
       distractorRationale: item.distractorRationale,
       clinicalReasoning: item.clinicalReasoning,
       keyTakeaways: item.keyTakeaways,
-      ...(item.ngnPayload?.kind ? { kind: item.ngnPayload.kind, ...item.ngnPayload } : {}),
+      ...(panceMeta?.kind ? { kind: panceMeta.kind, ...panceMeta } : panceMeta ?? {}),
     });
+  }
+
+  if (panceMeta && Object.keys(panceMeta).length > 0) {
+    return JSON.stringify({ options: item.options, ...panceMeta });
   }
 
   return JSON.stringify(item.options);
@@ -100,10 +115,24 @@ export function enrichBankItemFromRow(row: {
   difficulty?: number | null;
   topicCategory?: string | null;
   blueprintDomain?: string | null;
+  taskCategory?: string | null;
+  blueprintTopic?: string | null;
+  reviewStatus?: string | null;
+  generationVersion?: string | null;
+  generationMeta?: unknown;
   references?: unknown;
 }): BankItem {
   const { options, statements, ngnPayload, distractorRationale, clinicalReasoning, keyTakeaways } =
     parseBankOptions(row.options);
+  const mergedPayload: Record<string, unknown> = {
+    ...(ngnPayload ?? {}),
+    ...(row.taskCategory ? { taskCategory: row.taskCategory } : {}),
+    ...(row.blueprintTopic ? { blueprintTopic: row.blueprintTopic } : {}),
+    ...(row.generationMeta && typeof row.generationMeta === "object"
+      ? { generationMeta: row.generationMeta }
+      : {}),
+  };
+
   const item: BankItem = {
     id: row.id,
     subjectId: row.subjectId,
@@ -117,6 +146,14 @@ export function enrichBankItemFromRow(row: {
     difficulty: row.difficulty ?? undefined,
     topicCategory: row.topicCategory ?? undefined,
     blueprintDomain: row.blueprintDomain ?? undefined,
+    taskCategory: row.taskCategory ?? undefined,
+    blueprintTopic: row.blueprintTopic ?? undefined,
+    reviewStatus: row.reviewStatus as BankItem["reviewStatus"],
+    generationVersion: row.generationVersion ?? undefined,
+    generationMeta:
+      row.generationMeta && typeof row.generationMeta === "object"
+        ? (row.generationMeta as Record<string, unknown>)
+        : undefined,
     itemType: row.itemType ?? "mcq",
     solutionSteps: row.solutionSteps
       ? (JSON.parse(row.solutionSteps) as string[])
@@ -127,8 +164,8 @@ export function enrichBankItemFromRow(row: {
     clinicalReasoning,
     keyTakeaways,
   };
-  if (ngnPayload?.kind) {
-    item.ngnPayload = ngnPayload;
+  if (Object.keys(mergedPayload).length > 0) {
+    item.ngnPayload = mergedPayload;
   } else if (statements?.length) {
     item.ngnPayload = { statements, itemFormat: row.itemType ?? "k_type" };
   }

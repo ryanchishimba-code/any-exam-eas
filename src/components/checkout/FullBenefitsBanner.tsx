@@ -5,7 +5,7 @@ import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 
 const BENEFITS = [
   `${MARKETING_QUESTION_COUNTS.total} board-style questions`,
-  "NCLEX, USMLE, NAPLEX, PANCE & Top 500",
+  "NCLEX, USMLE, NAPLEX, COMLEX & AANP FNP",
   "Adaptive practice & performance analytics",
   "OER-backed rationales with citations",
 ];

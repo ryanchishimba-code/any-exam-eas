@@ -1,7 +1,8 @@
 import { BookOpen, Lock, ShieldCheck, Stethoscope } from "lucide-react";
+import { PLATFORM_EXAM_LIST_MIDDOT } from "@/lib/landing/content";
 
 const items = [
-  { icon: Stethoscope, label: "NCLEX · USMLE · NAPLEX · PANCE prep" },
+  { icon: Stethoscope, label: `${PLATFORM_EXAM_LIST_MIDDOT} prep` },
   { icon: BookOpen, label: "Board-style questions + rationales" },
   { icon: ShieldCheck, label: "Adaptive weak-area practice" },
   { icon: Lock, label: "One plan · Cancel anytime" },

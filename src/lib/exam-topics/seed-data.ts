@@ -12,6 +12,7 @@ export function blueprintTopicsForExam(examType: ExamSlug): {
     usmle: "usmle-step-2",
     naplex: "pharmacy",
     pance: "pance",
+    "aanp-fnp": "aanp-fnp",
     top500: "drugs300",
   };
   const blueprint = getExamBlueprint(fieldMap[examType]);

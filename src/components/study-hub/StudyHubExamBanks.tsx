@@ -20,7 +20,7 @@ export function StudyHubExamBanks() {
         Question banks
       </h2>
       <p className="mt-1 text-sm text-slate-600">
-        Pick your board — NCLEX, USMLE, NAPLEX, or PANCE.
+        Pick your board — USMLE, NCLEX, NAPLEX, COMLEX, or AANP FNP.
       </p>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

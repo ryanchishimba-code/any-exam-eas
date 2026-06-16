@@ -3,7 +3,11 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Minus } from "lucide-react";
-import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import {
+  LANDING_TRIAL_HREF,
+  PLATFORM_TAGLINE,
+  UWORLD_COMPARE_ROWS,
+} from "@/lib/landing/content";
 import {
   formatMonthlyPrice,
   formatTrialCtaLabel,
@@ -12,19 +16,7 @@ import {
   TRIAL_PAYMENT_DISCLOSURE,
 } from "@/lib/site";
 
-const competitorNames = ["UWorld", "Archer Review", "SimpleNursing"];
-
-const rows = [
-  { label: "Starting cost", us: `${formatTrialTodayPrice()} today`, them: "$99–329+ upfront" },
-  { label: "Monthly", us: `Only ${formatMonthlyPrice()}/mo`, them: "$39–89+/mo tiers" },
-  { label: "Exam coverage", us: "NCLEX · USMLE · NAPLEX · PANCE", them: "Often per-exam pricing" },
-  { label: "Top 500 drugs", us: "Dedicated mastery deck", them: "Scattered in banks" },
-  { label: "Adaptive practice", us: "Weak-area targeting", them: "Limited / add-on" },
-  { label: "PANCE prep", us: "NCCPA blueprint roadmap & deep dives", them: "Rare or generic only" },
-  { label: "Rationales", us: "OER-backed (Open RN, OpenStax)", them: "Proprietary only" },
-] as const;
-
-const inlineRows = rows.slice(0, 4);
+const inlineRows = UWORLD_COMPARE_ROWS.slice(0, 4);
 
 export function CompareSectionHeading({
   id = "compare-heading",
@@ -47,11 +39,14 @@ export function CompareSectionHeading({
         id={id}
         className="mt-1 text-xl font-extrabold tracking-tight text-[var(--color-ink)] sm:text-2xl lg:text-3xl"
       >
-        Four exams.{" "}
+        Why Students Choose{" "}
         <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent dark:from-teal-400 dark:to-cyan-300">
-          A fraction of the cost.
+          AnyExamEasy Over UWorld
         </span>
       </h2>
+      <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-[var(--color-ink-muted)]">
+        {PLATFORM_TAGLINE}
+      </p>
     </div>
   );
 }
@@ -63,7 +58,7 @@ type HowWeCompareProps = {
 export function HowWeCompare({ variant = "default" }: HowWeCompareProps) {
   const isInline = variant === "hero-inline";
   const isOverlap = variant === "hero-overlap";
-  const visibleRows = isInline ? inlineRows : rows;
+  const visibleRows = isInline ? inlineRows : UWORLD_COMPARE_ROWS;
 
   return (
     <section
@@ -96,7 +91,7 @@ export function HowWeCompare({ variant = "default" }: HowWeCompareProps) {
           }
         >
           <CompareUsCard rows={visibleRows} compact={isInline} />
-          <CompareThemCard rows={visibleRows} compact={isInline} />
+          <CompareUWorldCard rows={visibleRows} compact={isInline} />
         </motion.div>
 
         <CompareFooter isInline={isInline} isOverlap={isOverlap} />
@@ -109,7 +104,7 @@ function CompareUsCard({
   rows: visibleRows,
   compact,
 }: {
-  rows: typeof rows | typeof inlineRows;
+  rows: typeof UWORLD_COMPARE_ROWS | typeof inlineRows;
   compact?: boolean;
 }) {
   return (
@@ -133,7 +128,7 @@ function CompareUsCard({
           {formatTrialTodayPrice()}
         </p>
         <p className="mt-0.5 text-xs text-[var(--color-ink-muted)]">
-          {formatTrialLabel()} · then {formatMonthlyPrice()}/mo
+          {formatTrialLabel()} · then {formatMonthlyPrice()}/mo · all 5 exams
         </p>
       </header>
 
@@ -149,35 +144,30 @@ function CompareUsCard({
   );
 }
 
-function CompareThemCard({
+function CompareUWorldCard({
   rows: visibleRows,
   compact,
 }: {
-  rows: typeof rows | typeof inlineRows;
+  rows: typeof UWORLD_COMPARE_ROWS | typeof inlineRows;
   compact?: boolean;
 }) {
   return (
     <article className="aee-hero-compare-card aee-hero-compare-card--them flex h-full flex-col rounded-2xl border p-4 sm:p-4">
       <header>
         <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
-          Typical competitors
+          Typical UWorld pricing
         </p>
-        <p className="mt-2 flex flex-wrap gap-1.5">
-          {competitorNames.map((name) => (
-            <span
-              key={name}
-              className="rounded-md bg-[var(--color-surface-elevated)] px-2 py-0.5 text-[0.6875rem] font-medium text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]"
-            >
-              {name}
-            </span>
-          ))}
+        <p className="mt-2">
+          <span className="rounded-md bg-[var(--color-surface-elevated)] px-2.5 py-1 text-sm font-semibold text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]">
+            UWorld
+          </span>
         </p>
         <p
           className={`font-black tracking-tight text-[var(--color-ink-muted)] line-through ${compact ? "mt-2 text-2xl" : "mt-3 text-3xl sm:text-4xl"}`}
         >
-          $99+
+          $200–400+
         </p>
-        <p className="mt-0.5 text-xs text-[var(--color-ink-muted)]">Upfront or bundled plans</p>
+        <p className="mt-0.5 text-xs text-[var(--color-ink-muted)]">Per exam · separate subscriptions</p>
       </header>
 
       <ul
@@ -250,7 +240,8 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
         </Link>
         <p className="text-[0.625rem] leading-relaxed text-[var(--color-ink-muted)]">
-          Competitor pricing from public listings ({new Date().getFullYear()}); may vary.
+          UWorld pricing from public listings ({new Date().getFullYear()}); may vary. Not affiliated
+          with UWorld.
         </p>
       </div>
     );
@@ -276,14 +267,14 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
       </Link>
       <p className="max-w-md text-xs text-[var(--color-ink-muted)]">
         {formatTrialTodayPrice()} today · payment method required · then from {formatMonthlyPrice()}
-        /mo
+        /mo · all five exams
       </p>
       <p className="max-w-md text-[0.625rem] leading-relaxed text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted)]">
         {TRIAL_PAYMENT_DISCLOSURE}
       </p>
       <p className="max-w-md text-[0.625rem] leading-relaxed text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted)]">
-        Competitor pricing from public listings ({new Date().getFullYear()}); may vary. Not
-        affiliated with UWorld, Archer Review, or SimpleNursing.
+        UWorld pricing from public listings ({new Date().getFullYear()}); may vary. Not affiliated
+        with UWorld.
       </p>
     </div>
   );

@@ -2,12 +2,13 @@ import { describe, expect, it } from "vitest";
 import { EXAM_HUBS, examSlugToFieldId, getExamHub } from "./catalog";
 
 describe("exam catalog", () => {
-  it("defines five exam hubs", () => {
+  it("defines six exam hubs", () => {
     expect(EXAM_HUBS.map((h) => h.slug)).toEqual([
       "nclex",
       "usmle",
       "naplex",
       "pance",
+      "aanp-fnp",
       "top500",
     ]);
   });
@@ -17,6 +18,7 @@ describe("exam catalog", () => {
     expect(examSlugToFieldId("usmle")).toBe("usmle-step-2");
     expect(examSlugToFieldId("naplex")).toBe("pharmacy");
     expect(examSlugToFieldId("pance")).toBe("pance");
+    expect(examSlugToFieldId("aanp-fnp")).toBe("aanp-fnp");
     expect(examSlugToFieldId("top500")).toBe("drugs300");
   });
 

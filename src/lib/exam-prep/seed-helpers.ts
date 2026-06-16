@@ -5,6 +5,7 @@ export type EnrichedBankItem = BankItem & {
   difficulty?: number;
   topicCategory?: string;
   blueprintDomain?: BlueprintDomain | string;
+  patientAgeGroup?: string;
   itemType?: ExamItemType;
   references?: ExamReference[];
   vignette?: string;

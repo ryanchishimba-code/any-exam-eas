@@ -1,4 +1,5 @@
 import { BookOpen, ShieldCheck, Sparkles, Stethoscope } from "lucide-react";
+import { PLATFORM_EXAM_LIST_MIDDOT } from "@/lib/landing/content";
 import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 
 const signals = [
@@ -14,8 +15,8 @@ const signals = [
   },
   {
     icon: Stethoscope,
-    value: "4 exams",
-    label: "NCLEX · USMLE · NAPLEX · PANCE",
+    value: "5 exams",
+    label: PLATFORM_EXAM_LIST_MIDDOT,
   },
   {
     icon: ShieldCheck,

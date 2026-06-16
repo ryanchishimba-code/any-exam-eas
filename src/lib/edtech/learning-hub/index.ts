@@ -8,6 +8,14 @@ export {
   type TopicModuleStage,
 } from "./topic-module-template";
 export {
+  AANP_FNP_AGE_GROUPS,
+  AANP_FNP_LEARNING_STAGES,
+  AANP_FNP_TOPIC_MODULES,
+  aanpFnpModulesForStage,
+  getAanpFnpModuleBySlug,
+  type AanpFnpLearningStage,
+} from "./aanp-fnp-learning-paths";
+export {
   FNP_LEARNING_STAGES,
   FNP_TOPIC_MODULES,
   fnpModulesForStage,
@@ -32,6 +40,7 @@ export {
 export {
   buildDailyAssignment,
   buildPanceDailyAssignment,
+  buildAanpFnpDailyAssignment,
   buildFnpDailyAssignment,
   buildUsmleDailyAssignment,
   type DailyAssignmentPlan,

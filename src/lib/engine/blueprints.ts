@@ -473,7 +473,10 @@ const BLUEPRINTS: Record<string, ExamBlueprint> = {
   "usmle-step-2": USMLE_STEP_2,
   pharmacy: NAPLEX,
   pance: PANCE,
+  "aanp-fnp": AANP_FNP,
 };
+
+export { AANP_FNP };
 
 export function getExamBlueprint(fieldId: string): ExamBlueprint | undefined {
   return BLUEPRINTS[normalizeFieldId(fieldId)];

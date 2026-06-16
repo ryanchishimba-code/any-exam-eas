@@ -2,9 +2,13 @@ import { MIN_QUESTIONS_PER_SUBJECT } from "@/lib/bulk-question-generator";
 import { TOP_500_COUNT } from "@/lib/drugs300/catalog";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
+import { AANP_FNP_TARGET_TOTAL } from "@/lib/exam-prep/aanp-fnp/types";
+import { PANCE_TARGET_TOTAL } from "@/lib/exam-prep/pance/types";
 
 /** Design target per field after bank sync (subjects × minimum items each). */
 export function targetQuestionCountForField(fieldId: string): number {
+  if (fieldId === "aanp-fnp") return AANP_FNP_TARGET_TOTAL;
+  if (fieldId === "pance") return PANCE_TARGET_TOTAL;
   return getSubjectsForFieldId(fieldId).length * MIN_QUESTIONS_PER_SUBJECT;
 }
 

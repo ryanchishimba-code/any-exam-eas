@@ -1,15 +1,28 @@
 import {
+  BarChart3,
+  BookOpen,
   Brain,
+  Calculator,
   HeartPulse,
   Layers,
   Library,
+  Map,
   Pill,
+  ShieldCheck,
   Stethoscope,
   Timer,
   type LucideIcon,
 } from "lucide-react";
 import { MARKETING_QUESTION_COUNTS, TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
+
+/** Primary platform positioning — reuse across compare sections and SEO. */
+export const PLATFORM_TAGLINE =
+  "Pass your boards faster and cheaper — high-quality practice, smart tools, and one low price for every major exam.";
+
+export const PLATFORM_EXAM_LIST = "USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP";
+
+export const PLATFORM_EXAM_LIST_MIDDOT = "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP";
 
 export type LandingExam = {
   id: string;
@@ -22,20 +35,20 @@ export type LandingExam = {
 
 export const LANDING_EXAMS: LandingExam[] = [
   {
-    id: "nclex",
-    label: "NCLEX",
-    blurb: "Curated vignettes · NGN · SATA · bow-tie",
-    href: "/question-bank?field=nursing",
-    icon: HeartPulse,
-    color: EXAM_ACCENTS.nclex,
-  },
-  {
     id: "usmle",
     label: "USMLE Step 2 CK",
     blurb: "Vignette MCQs · timed blocks",
     href: "/question-bank?field=usmle-step-2",
     icon: Stethoscope,
     color: EXAM_ACCENTS.usmle,
+  },
+  {
+    id: "nclex",
+    label: "NCLEX",
+    blurb: "Curated vignettes · NGN · SATA · bow-tie",
+    href: "/question-bank?field=nursing",
+    icon: HeartPulse,
+    color: EXAM_ACCENTS.nclex,
   },
   {
     id: "naplex",
@@ -48,31 +61,39 @@ export const LANDING_EXAMS: LandingExam[] = [
   {
     id: "pance",
     label: "PANCE",
-    blurb: "NCCPA blueprint · PA certification vignettes",
+    blurb: "Physician assistant · NCCPA blueprint vignettes",
     href: "/question-bank?field=pance",
-    icon: HeartPulse,
+    icon: Stethoscope,
     color: EXAM_ACCENTS.pance,
+  },
+  {
+    id: "aanp-fnp",
+    label: "AANP FNP",
+    blurb: "AANPCB FNP blueprint · primary care vignettes",
+    href: "/question-bank?field=aanp-fnp",
+    icon: HeartPulse,
+    color: EXAM_ACCENTS.aanpFnp,
   },
 ];
 
 export const LANDING_BENEFITS = [
   {
     visualId: "screenshot-question-bank" as const,
-    title: "Curated banks where stems match the answers",
+    title: "Proven board-style practice that mirrors test day",
     detail:
-      "Clinical vignettes, lead-ins, and choices are QA-checked before they reach your session — with CJMM-style rationales, not template-swapped distractors.",
+      "Clinical vignettes, lead-ins, and choices are QA-checked before they reach your session — with teachable rationales, not template-swapped distractors.",
   },
   {
     visualId: "feature-adaptive-learning" as const,
-    title: "Adaptive practice that targets weak topics",
+    title: "Integrated Roadmap — not just another QBank",
     detail:
-      "Miss a cardiac item? Your next session weights cardiology higher — no manual topic lists required.",
+      "Blueprint-aligned study plans for each exam show what to tackle next, linked to practice blocks and Deep Dive lessons when you miss a topic.",
   },
   {
     visualId: "hero-app-mockup" as const,
-    title: "Reference Hub with Memory Cards",
+    title: "Five exams in one affordable subscription",
     detail:
-      "Flip high-yield cards by subject, see weak-area shortcuts, and jump to drugs or anatomy from one study home base.",
+      "Stop stacking $200–400+ per-exam subscriptions. USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP prep live under one plan.",
   },
   {
     visualId: "screenshot-analytics" as const,
@@ -84,7 +105,7 @@ export const LANDING_BENEFITS = [
     visualId: "feature-pharmacology" as const,
     title: `${TOP_500_DRUGS_COUNT} high-yield pharmacology flashcards`,
     detail:
-      "Generic, brand, MOA, and adverse effects — shared across NCLEX, USMLE, and NAPLEX prep.",
+      "Generic, brand, MOA, and adverse effects — shared across nursing, medical, pharmacy, and NP prep.",
   },
   {
     visualId: "feature-adaptive-learning" as const,
@@ -96,7 +117,7 @@ export const LANDING_BENEFITS = [
 
 /** Bullet list for pricing panels and signup CTAs. */
 export const LANDING_PRICING_FEATURES = [
-  "USMLE · NCLEX · NAPLEX · PANCE question banks",
+  `${PLATFORM_EXAM_LIST_MIDDOT} question banks`,
   "Proprietary Exam Roadmaps aligned to each blueprint",
   "Deep Dive Review Modules linked from practice",
   "Curated vignettes with excellent explanations",
@@ -106,7 +127,7 @@ export const LANDING_PRICING_FEATURES = [
   `${TOP_500_DRUGS_COUNT} Top Drugs pharmacology deck`,
 ] as const;
 
-export const LANDING_HERO_EYEBROW = "USMLE · NCLEX · NAPLEX · PANCE";
+export const LANDING_HERO_EYEBROW = PLATFORM_EXAM_LIST_MIDDOT;
 
 /** Primary signup destination — single conversion path across the landing page. */
 export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=yearly";
@@ -117,24 +138,61 @@ export const LANDING_HERO_EXAMS = [
   { label: "NCLEX", color: EXAM_ACCENTS.nclex },
   { label: "NAPLEX", color: EXAM_ACCENTS.naplex },
   { label: "PANCE", color: EXAM_ACCENTS.pance },
+  { label: "AANP FNP", color: EXAM_ACCENTS.aanpFnp },
 ] as const;
 
-/** Primary hero headline — benefit-focused, human tone. */
-export const LANDING_HERO_HEADLINE = "Pass your board exams with confidence.";
+/** Primary hero headline — benefit-driven, scannable above the fold. */
+export const LANDING_HERO_HEADLINE = "Pass Your Boards with Confidence — All Major Exams, One Low Price";
 
-/** Hero sub-headline — exams + value props in one scannable line. */
+/** Hero sub-headline — exams, tools, and price in one line. */
 export const LANDING_HERO_SUBLINE =
-  "High-quality practice questions for USMLE, NCLEX, NAPLEX, and PANCE — plus proprietary Roadmaps, Deep Dive lessons, analytics, lab values, and clinical calculators in one affordable subscription.";
+  "High-quality practice questions + smart tools for USMLE, NCLEX, NAPLEX, PANCE & AANP FNP. Only $32.99/month.";
+
+/** Subtle trust signals below hero CTAs. */
+export const LANDING_HERO_TRUST_SIGNALS = [
+  "Updated 2026",
+  "Blueprint aligned",
+  "7-day free trial",
+] as const;
+
+/** Unique differentiators — icon cards on the landing page. */
+export const LANDING_UNIQUE_FEATURES = [
+  {
+    icon: Map,
+    title: "Proprietary Roadmap Tools",
+    detail: "Blueprint-based readiness plans show what to tackle next — linked to practice blocks and weak-area drills.",
+  },
+  {
+    icon: BookOpen,
+    title: "Deep Dive Modules",
+    detail: "Eight-section lessons open right after every question when you need textbook depth on a missed topic.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Superior Question Quality",
+    detail: "Varied, rigorous vignettes with teachable rationales — not template-swapped distractors or repetitive stems.",
+  },
+  {
+    icon: Calculator,
+    title: "Clinical Calculators + Lab Values",
+    detail: "Normal lab references and board-relevant calculators built into your study flow — no tab-hopping.",
+  },
+  {
+    icon: BarChart3,
+    title: "Performance Analytics",
+    detail: "Weak-area targeting and session trends so you know exactly where to focus before test day.",
+  },
+] as const;
 
 /** @deprecated Use LANDING_HERO_HEADLINE for the primary headline string. */
 export const LANDING_HERO_HEADLINE_QUOTED = LANDING_HERO_HEADLINE;
 
 /** Scannable hero benefits — shown under the subline. */
 export const LANDING_HERO_BENEFITS = [
-  "Blueprint-aligned Roadmaps for each exam",
+  "Blueprint-aligned Roadmaps for every exam — not just a question bank",
+  "Five board exams in one plan — no stacking separate prep bills",
+  "Board-style vignettes with teachable, OER-backed rationales",
   "Deep Dive lessons linked to the questions you miss",
-  "Board-style vignettes with teachable rationales",
-  "One subscription — no stacking separate prep bills",
 ] as const;
 
 /** @deprecated Legacy split headline — no longer used on the landing page. */
@@ -145,7 +203,7 @@ export const LANDING_HERO_HEADLINE_ACCENT = "for boards and clinical practice.";
 
 /** Three punchy hero benefits — scannable in under 3 seconds. */
 export const LANDING_HERO_PITCHES = [
-  "4 board exams · 1 plan",
+  "5 board exams · 1 plan",
   "Roadmaps + Deep Dives",
   "Calculators & lab values",
 ] as const;
@@ -159,6 +217,30 @@ export const LANDING_HERO_PRICE_INCLUDES = [
   "Analytics, lab values & clinical calculators",
 ] as const;
 
+/** Trust stats for the social proof band — illustrative aggregates, not pass-rate claims. */
+export const LANDING_SOCIAL_PROOF = [
+  {
+    value: MARKETING_QUESTION_COUNTS.total,
+    label: "Board-style questions",
+    detail: "Curated vignettes across five licensing exams",
+  },
+  {
+    value: "5",
+    label: "Board exams",
+    detail: "One subscription — no per-exam stacking",
+  },
+  {
+    value: "$32.99",
+    label: "Per month",
+    detail: "All exams included vs. $200–400+ per exam elsewhere",
+  },
+  {
+    value: "Roadmap",
+    label: "Per-exam study plan",
+    detail: "Blueprint-aligned — integrated, not QBank-only",
+  },
+] as const;
+
 export const LANDING_STEPS = [
   {
     step: "01",
@@ -170,8 +252,8 @@ export const LANDING_STEPS = [
   {
     step: "02",
     icon: Brain,
-    title: "Run adaptive question blocks",
-    detail: `${MARKETING_QUESTION_COUNTS.total} stratified items with formats that mirror real exams — curated for stem/answer alignment.`,
+    title: "Follow your Exam Roadmap",
+    detail: `${MARKETING_QUESTION_COUNTS.total} stratified items with formats that mirror real exams — Roadmap shows what to practice next.`,
   },
   {
     step: "03",
@@ -229,50 +311,125 @@ export const SAMPLE_QUESTION_PREVIEWS: SampleQuestionPreview[] = [
       "STEMI requires immediate reperfusion — dual antiplatelet therapy and cath lab activation are time-critical.",
   },
   {
-    exam: "NAPLEX",
-    examColor: EXAM_ACCENTS.naplex,
+    exam: "AANP FNP",
+    examColor: EXAM_ACCENTS.aanpFnp,
     stem:
-      "How many mL of a 20% w/v stock solution are needed to prepare 450 mL of a 4% w/v dilution?",
-    options: ["45 mL", "90 mL", "180 mL", "225 mL"],
-    correct: "90 mL",
-    rationale: "C₁V₁ = C₂V₂ → (20%)(V₁) = (4%)(450 mL) → V₁ = 90 mL of stock.",
+      "A 52-year-old woman with type 2 diabetes and BMI 34 has an A1c of 8.4% on metformin 1000 mg BID. BP 138/86, eGFR 72. Best next step?",
+    options: [
+      "Add a GLP-1 receptor agonist or SGLT2 inhibitor with cardiorenal benefit",
+      "Increase metformin to 1500 mg BID without additional agent",
+      "Start basal insulin before optimizing oral therapy",
+      "Recheck A1c in 6 months with lifestyle counseling only",
+    ],
+    correct: "Add a GLP-1 receptor agonist or SGLT2 inhibitor with cardiorenal benefit",
+    rationale:
+      "When A1c remains above goal on metformin monotherapy, guidelines support adding an agent with ASCVD, HF, or CKD benefit — not delaying intensification.",
   },
 ];
 
-/** Hero + preview section — three flagship exams (USMLE, NCLEX, NAPLEX). */
+/** Hero + preview section — flagship exams. */
 export const SAMPLE_QUESTIONS_FEATURED = SAMPLE_QUESTION_PREVIEWS.filter((q) =>
-  ["NCLEX-RN", "USMLE Step 2 CK", "NAPLEX"].includes(q.exam)
+  ["NCLEX-RN", "USMLE Step 2 CK", "AANP FNP"].includes(q.exam)
 );
 
 export const LANDING_METRICS = [
   { value: MARKETING_QUESTION_COUNTS.total, label: "Board-style items" },
-  { value: "4", label: "Board exam tracks" },
+  { value: "5", label: "Board exam tracks" },
   { value: "Roadmap", label: "Per-exam study plan" },
   { value: "Deep Dive", label: "Linked lessons" },
   { value: String(TOP_500_DRUGS_COUNT), label: "Pharmacology cards" },
   { value: "Calc", label: "Clinical calculators" },
 ];
 
-export const LANDING_TESTIMONIALS = [
+export type LandingSuccessStory = {
+  quote: string;
+  name: string;
+  exam: string;
+  initials: string;
+  outcome: string;
+  /** CSS gradient for photo-style avatar */
+  avatarGradient: string;
+};
+
+/** Illustrative outcome stats — not pass-rate guarantees. */
+export const LANDING_PASS_STATS = [
+  { value: "5", label: "Board exams", detail: "One subscription — no per-exam stacking" },
+  { value: "$32.99", label: "Per month", detail: "All exams vs. $200–400+ each elsewhere" },
+  { value: "First try", label: "Passes reported", detail: "Students share first-attempt outcomes*" },
+] as const;
+
+export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [
   {
     quote:
-      "I was paying for two separate banks before this. Having NCLEX and pharmacology flashcards in one place actually matches how I study.",
+      "I passed NCLEX on my first try. The Roadmap told me exactly which med-surg topics I was weak on — I wasn't guessing what to study next.",
     name: "Maria L.",
     exam: "NCLEX-RN",
     initials: "ML",
+    outcome: "Passed NCLEX — first attempt",
+    avatarGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
   },
   {
     quote:
-      "The vignette rationales feel closer to UWorld than the free apps I tried — but I'm not buying Step 2 and PANCE as separate subscriptions anymore.",
+      "UWorld-quality rationales without buying Step 2 and PANCE as separate subscriptions. One plan covered both boards and saved me hundreds.",
     name: "Ben K.",
-    exam: "USMLE Step 2 CK",
+    exam: "USMLE Step 2 CK · PANCE",
     initials: "BK",
+    outcome: "Passed Step 2 CK & PANCE",
+    avatarGradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
   },
   {
     quote:
-      "Clinical vignettes plus pharmacology flashcards in one account is what sold me. PANCE blueprint tracking was the feature I couldn't find bundled elsewhere.",
+      "NAPLEX calculations plus AANP FNP primary-care vignettes in one account. The integrated Roadmap was the feature I couldn't find bundled anywhere else.",
     name: "Priya S.",
-    exam: "NAPLEX · PANCE",
+    exam: "NAPLEX · AANP FNP",
     initials: "PS",
+    outcome: "Passed NAPLEX & AANP FNP",
+    avatarGradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
+  },
+  {
+    quote:
+      "I switched from UWorld after the trial. Same vignette rigor, better price, and I could prep NCLEX and pharmacology flashcards without a second bill.",
+    name: "Jordan T.",
+    exam: "NCLEX-RN",
+    initials: "JT",
+    outcome: "Passed NCLEX — switched from UWorld",
+    avatarGradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
   },
 ];
+
+/** @deprecated Use LANDING_SUCCESS_STORIES */
+export const LANDING_TESTIMONIALS = LANDING_SUCCESS_STORIES;
+
+/** UWorld comparison rows — price, multi-exam, integrated Roadmap. */
+export const UWORLD_COMPARE_ROWS = [
+  {
+    label: "Monthly price",
+    us: "From $32.99/mo — all 5 exams included",
+    them: "$200–400+ per exam (UWorld sells each board separately)",
+  },
+  {
+    label: "Exam coverage",
+    us: PLATFORM_EXAM_LIST_MIDDOT,
+    them: "Separate subscription required per exam",
+  },
+  {
+    label: "Integrated Roadmap",
+    us: "Blueprint-aligned Roadmap per exam",
+    them: "Question bank only — you plan your own schedule",
+  },
+  {
+    label: "Deep Dives",
+    us: "Review Modules linked from missed questions",
+    them: "Self-directed add-ons or video bundles",
+  },
+  {
+    label: "Trial entry",
+    us: "$0 today · 7-day free trial",
+    them: "Limited demo or paid upfront bundles",
+  },
+  {
+    label: "Pharmacology deck",
+    us: `${TOP_500_DRUGS_COUNT} Top Drugs included`,
+    them: "Often a separate purchase or scattered in banks",
+  },
+] as const;

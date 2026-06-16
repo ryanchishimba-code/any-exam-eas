@@ -298,10 +298,15 @@ export function StudyBankPractice({
       if (!expectedMeta) return;
 
       if (paramMeta && !fieldMatchesExamSlug(paramMeta.id, effectiveExamSlug)) {
-        const qs = new URLSearchParams(searchParams.toString());
-        qs.set("field", expectedId);
-        router.replace(`${practiceBase}?${qs.toString()}`, { scroll: false });
-        setField(expectedMeta.label);
+        const requestedSlug = examSlugFromFieldId(paramMeta.id);
+        if (requestedSlug) {
+          void fetch("/api/user/exam-preference", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ examSlug: requestedSlug }),
+          });
+        }
+        setField(paramMeta.label);
         return;
       }
 
@@ -456,7 +461,7 @@ export function StudyBankPractice({
         }
 
         const qs = new URLSearchParams({
-          field,
+          field: fieldId,
           limit: String(limit),
           mode: "timed",
           scope: "field",
@@ -547,7 +552,7 @@ export function StudyBankPractice({
       }
 
       const qs = new URLSearchParams({
-        field,
+        field: fieldId,
         limit: String(limit),
         mode: "bank",
         meta: "0",

@@ -8,6 +8,7 @@ const ICONS: Record<ExamSlug, LucideIcon> = {
   usmle: Stethoscope,
   naplex: Pill,
   pance: HeartPulse,
+  "aanp-fnp": HeartPulse,
   top500: Beaker,
 };
 

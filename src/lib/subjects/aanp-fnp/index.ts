@@ -1,4 +1,4 @@
-/** Legacy AANP FNP module (retired; use pance/) */
+/** AANP FNP module — primary care across the lifespan (AANPCB 2024+ blueprint). */
 import type { SubjectModule } from "../types";
 import { AANP_FNP_SUBJECTS } from "./subjects";
 import { AANP_FNP_DISTRACTOR_PATTERNS } from "./distractors";

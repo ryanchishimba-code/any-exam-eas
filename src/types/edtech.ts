@@ -1,5 +1,5 @@
-/** Canonical exam slugs — NCLEX, USMLE, NAPLEX, PANCE. */
-export type ExamSlug = "nclex" | "usmle" | "naplex" | "pance";
+/** Canonical exam slugs — NCLEX, USMLE, NAPLEX, PANCE, AANP FNP. */
+export type ExamSlug = "nclex" | "usmle" | "naplex" | "pance" | "aanp-fnp";
 
 export type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
 

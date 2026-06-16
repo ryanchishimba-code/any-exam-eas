@@ -3,6 +3,7 @@ import {
   examSlugForFieldId,
   fieldIdForExamSlug,
   fieldMatchesExamSlug,
+  resolveQuestionBankFieldId,
 } from "./question-bank-scope";
 
 describe("question-bank-scope", () => {
@@ -11,6 +12,7 @@ describe("question-bank-scope", () => {
     expect(fieldIdForExamSlug("naplex")).toBe("pharmacy");
     expect(fieldIdForExamSlug("usmle")).toBe("usmle-step-2");
     expect(fieldIdForExamSlug("pance")).toBe("pance");
+    expect(fieldIdForExamSlug("aanp-fnp")).toBe("aanp-fnp");
   });
 
   it("maps field ids back to exam slugs", () => {
@@ -18,7 +20,7 @@ describe("question-bank-scope", () => {
     expect(examSlugForFieldId("pharmacy")).toBe("naplex");
     expect(examSlugForFieldId("usmle-step-2")).toBe("usmle");
     expect(examSlugForFieldId("pance")).toBe("pance");
-    expect(examSlugForFieldId("aanp-fnp")).toBe(null);
+    expect(examSlugForFieldId("aanp-fnp")).toBe("aanp-fnp");
     expect(examSlugForFieldId("mpje")).toBe("pance");
   });
 
@@ -26,6 +28,14 @@ describe("question-bank-scope", () => {
     expect(fieldMatchesExamSlug("nursing", "nclex")).toBe(true);
     expect(fieldMatchesExamSlug("pharmacy", "nclex")).toBe(false);
     expect(fieldMatchesExamSlug("pance", "pance")).toBe(true);
+    expect(fieldMatchesExamSlug("aanp-fnp", "aanp-fnp")).toBe(true);
     expect(fieldMatchesExamSlug("aanp-fnp", "pance")).toBe(false);
+  });
+
+  it("normalizes field query values to canonical exam field ids", () => {
+    expect(resolveQuestionBankFieldId("USMLE Step 2 CK")).toBe("usmle-step-2");
+    expect(resolveQuestionBankFieldId("usmle")).toBe("usmle-step-2");
+    expect(resolveQuestionBankFieldId("nclex")).toBe("nursing");
+    expect(resolveQuestionBankFieldId("NAPLEX")).toBe("pharmacy");
   });
 });

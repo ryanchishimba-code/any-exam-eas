@@ -13,7 +13,7 @@ import {
 import { isUsmleField } from "./usmle-bank-bridge";
 import { usmleBankItemIsServeReady } from "./usmle-clinical-gate";
 
-const CLINICAL_FIELD_IDS = new Set(["pance"]);
+const CLINICAL_FIELD_IDS = new Set(["pance", "aanp-fnp"]);
 
 /** True when a bank row meets the same bar enforced at serve time. */
 export function bankItemPassesIngestGate(

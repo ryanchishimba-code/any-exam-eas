@@ -5,11 +5,12 @@ import { getExamHub } from "@/lib/exams/catalog";
 import { getExamQuestionCountBySlug } from "@/lib/exam/exam-lengths";
 import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
 import { isExamSlug } from "@/lib/edtech/exams";
+import { setUserExamPreference } from "@/lib/edtech/exam-preference";
 import { requirePremiumApi } from "@/lib/api-access";
 
 export const runtime = "nodejs";
 
-const SLUGS = new Set(["nclex", "usmle", "naplex", "pance", "top500"]);
+const SLUGS = new Set(["nclex", "usmle", "naplex", "pance", "aanp-fnp", "top500"]);
 
 export async function POST(req: Request) {
   const premium = await requirePremiumApi();
@@ -23,6 +24,8 @@ export async function POST(req: Request) {
 
   try {
     if (isExamSlug(examType)) {
+      await setUserExamPreference(premium.userId, examType);
+
       const sessionConfig = buildSessionConfig(examType, "full", true);
       const id = await createExamSession(premium.userId, examType, {
         questionCount: sessionConfig.questionCount,

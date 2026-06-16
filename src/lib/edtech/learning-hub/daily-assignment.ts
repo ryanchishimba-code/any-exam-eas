@@ -18,6 +18,12 @@ import {
   getPanceModuleBySlug,
   panceModulesForStage,
 } from "./pance-learning-paths";
+import {
+  AANP_FNP_LEARNING_STAGES,
+  AANP_FNP_TOPIC_MODULES,
+  aanpFnpModulesForStage,
+  getAanpFnpModuleBySlug,
+} from "./aanp-fnp-learning-paths";
 import { roadmapHref } from "@/lib/learning/exam-roadmap";
 
 export type DailyAssignmentTask = {
@@ -235,12 +241,89 @@ export function buildPanceDailyAssignment(weakTopicSlugs: string[] = []): DailyA
 /** @deprecated Use buildPanceDailyAssignment */
 export const buildFnpDailyAssignment = buildPanceDailyAssignment;
 
+export function buildAanpFnpDailyAssignment(weakTopicSlugs: string[] = []): DailyAssignmentPlan {
+  const stage =
+    dayIndex() % 7 < 2
+      ? AANP_FNP_LEARNING_STAGES[0]
+      : dayIndex() % 7 < 5
+        ? AANP_FNP_LEARNING_STAGES[1]
+        : AANP_FNP_LEARNING_STAGES[2];
+
+  const modules = aanpFnpModulesForStage(stage!.id);
+  const mod = modules[dayIndex() % modules.length] ?? AANP_FNP_TOPIC_MODULES[0]!;
+  const weakSlug = weakTopicSlugs[0] ?? mod.questions.practiceTopicSlug;
+
+  const tasks: DailyAssignmentTask[] = [
+    {
+      id: "review",
+      kind: "review",
+      title: mod.title,
+      description: mod.overview,
+      href: mod.reviewTopicSlug
+        ? deepDiveTopicHref("aanp-fnp", mod.reviewTopicSlug)
+        : highYieldTopicHref("aanp-fnp", mod.slug),
+      estimatedMinutes: mod.estimatedMinutes,
+    },
+    {
+      id: "practice",
+      kind: "practice",
+      title: "Blueprint practice",
+      description: `${mod.questions.reviewCount} questions · ${mod.system}`,
+      href: practiceTopicHref("aanp-fnp", mod.questions.practiceTopicSlug),
+      estimatedMinutes: 20,
+      meta: { system: mod.system, questionCount: mod.questions.reviewCount },
+    },
+    {
+      id: "roadmap",
+      kind: "reference",
+      title: "Exam roadmap",
+      description: "Readiness by Assess, Diagnose, Plan, and Evaluate domains.",
+      href: roadmapHref("aanp-fnp"),
+      estimatedMinutes: 5,
+    },
+    {
+      id: "weak-area",
+      kind: "weak-area",
+      title: "Weak-area drill",
+      description: weakTopicSlugs.length
+        ? `Focus: ${weakSlug.replace(/-/g, " ")}`
+        : "Adaptive set targeting your lowest-accuracy blueprint domains.",
+      href: weakTopicSlugs.length
+        ? adaptiveHref("aanp-fnp", weakSlug, 10)
+        : weakAreaHref("aanp-fnp", 15),
+      estimatedMinutes: 15,
+      meta: { questionCount: 10 },
+    },
+  ];
+
+  if (stage!.id === "board-crunch" && dayIndex() % 3 === 0) {
+    tasks.push({
+      id: "timed-block",
+      kind: "timed-block",
+      title: "Timed mini-block",
+      description: "50 questions under AANP FNP pacing (~60 min).",
+      href: "/full-exam/aanp-fnp?preset=50&autostart=1",
+      estimatedMinutes: 60,
+      meta: { questionCount: 50 },
+    });
+  }
+
+  return {
+    examSlug: "aanp-fnp",
+    date: new Date().toISOString().slice(0, 10),
+    headline: `Today's plan · ${stage!.label}`,
+    stageLabel: stage!.label,
+    tasks,
+  };
+}
+
 export function buildDailyAssignment(
   examSlug: ExamSlug,
   weakTopicSlugs: string[] = []
 ): DailyAssignmentPlan {
   if (examSlug === "usmle") return buildUsmleDailyAssignment(weakTopicSlugs);
   if (examSlug === "pance") return buildPanceDailyAssignment(weakTopicSlugs);
+  if (examSlug === "aanp-fnp") return buildAanpFnpDailyAssignment(weakTopicSlugs);
 
   const fieldId = EXAM_CATALOG[examSlug].fieldId;
   return {

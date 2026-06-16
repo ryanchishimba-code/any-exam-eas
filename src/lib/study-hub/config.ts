@@ -24,6 +24,7 @@ const HUB_DESCRIPTIONS: Record<(typeof EXAM_SLUGS)[number], string> = {
   usmle: "Clinical vignettes with mechanism-first rationales.",
   naplex: "Pharmacy calculations, cases, and pharmacotherapy.",
   pance: "Physician assistant clinical vignettes — NCCPA blueprint across 15 systems.",
+  "aanp-fnp": "Family nurse practitioner vignettes — AANPCB Assess, Diagnose, Plan, Evaluate across the lifespan.",
 };
 
 /** Four board exams — derived from canonical EXAM_CATALOG. */

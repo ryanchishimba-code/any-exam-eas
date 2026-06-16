@@ -60,6 +60,8 @@ import { NAPLEX_QUALITY_V2 } from "./naplex-quality-v2";
 import { NAPLEX_CALC_CASES_V3 } from "./naplex-calc-cases-v3";
 import { NAPLEX_AREA3_V3 } from "./naplex-area3-v3";
 import { NAPLEX_VIGNETTE_SEEDS } from "./vignette-seeds";
+import { assertPancePhysicianEducatorQuality } from "@/lib/exam-prep/pance/physician-educator-quality";
+import { collectPanceSeedItems } from "@/lib/edtech/seeds/pance-seed-registry";
 
 describe("Question seed QA gate", () => {
   it("USMLE physician-educator batch 01 (curated vignettes)", () => {
@@ -76,6 +78,10 @@ describe("Question seed QA gate", () => {
 
   it("NAPLEX physician-educator batch 01 (curated pharmacy items)", () => {
     assertNaplexPhysicianEducatorQuality(NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01);
+  });
+
+  it("PANCE physician-educator seeds (clinical vignettes)", () => {
+    assertPancePhysicianEducatorQuality(collectPanceSeedItems());
   });
 
   it("MPJE physician-educator batch 01 (curated jurisprudence items)", () => {

@@ -37,6 +37,27 @@ export function filterBankItemsForServe(fieldId: string, items: BankItem[]): Ban
   return items;
 }
 
+/** Filter bank rows for session serve without capping — finalize handles spread and count. */
+export function filterBankItemsForSessionPool(params: {
+  fieldId: string;
+  items: BankItem[];
+}): BankItem[] {
+  const { fieldId, items } = params;
+
+  if (fieldId === "nursing") {
+    return filterNclexItemsForSession(items);
+  }
+  if (fieldId === "pharmacy") {
+    return items
+      .map((item) => prepareNaplexBankItem(item))
+      .filter((item) => naplexBankItemIsServeReady(item, { source: item.source ?? null }));
+  }
+  if (isClinicalVignetteField(fieldId)) {
+    return items.filter((item) => usmleBankItemIsServeReady(item, fieldId));
+  }
+  return filterBankItemsForServe(fieldId, items);
+}
+
 /** Filter, spread, and cap bank rows before mapping to client-facing questions. */
 export function prepareBankItemsForSession(params: {
   fieldId: string;

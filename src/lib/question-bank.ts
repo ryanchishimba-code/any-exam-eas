@@ -11,7 +11,7 @@ import { ANATOMY_QUESTION_BANK } from "./medicine-anatomy-question-bank";
 import { toQuizletStyleQuestion } from "./question-format";
 import {
   bankItemToSessionRaw,
-  prepareBankItemsForSession,
+  filterBankItemsForSessionPool,
 } from "./exam-prep/prepare-bank-session";
 import {
   assertExamSessionReady,
@@ -52,8 +52,17 @@ export type BankItem = {
   vignette?: string;
   ngnPayload?: Record<string, unknown>;
   tags?: string[];
-  /** Pipeline provenance: curated, ai-curated, polished, etc. */
+  /** Pipeline provenance: curated, ai-curated, polished, seed, generated, etc. */
   source?: string;
+  /** NCCPA PANCE task category (history-physical, diagnosis, …). */
+  taskCategory?: string;
+  /** AANP FNP patient lifespan band (newborn, infant, … older-adult). */
+  patientAgeGroup?: string;
+  /** Specific blueprint topic slug for Deep Dive / analytics. */
+  blueprintTopic?: string;
+  generationVersion?: string;
+  reviewStatus?: "pending" | "approved" | "flagged" | "rejected";
+  generationMeta?: Record<string, unknown>;
   clinicalReasoning?: string;
   distractorRationale?: Record<string, string>;
   keyTakeaways?: string[];
@@ -430,11 +439,9 @@ export async function getBankQuestions(params: {
 
   const pool = [...unique.values()];
 
-  const vetted = prepareBankItemsForSession({
+  const vetted = filterBankItemsForSessionPool({
     fieldId,
-    field: params.field,
     items: pool,
-    limit: params.count,
   });
 
   if (vetted.length === 0) {

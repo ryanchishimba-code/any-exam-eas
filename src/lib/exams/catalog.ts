@@ -6,7 +6,7 @@ import {
   top500DrugsLabel,
 } from "@/lib/marketing/bank-stats";
 
-export type ExamSlug = "nclex" | "usmle" | "naplex" | "pance" | "top500";
+export type ExamSlug = "nclex" | "usmle" | "naplex" | "pance" | "aanp-fnp" | "top500";
 
 /** Serializable hub metadata (safe for server → client props). */
 export type ExamHubMeta = {
@@ -58,6 +58,15 @@ export const EXAM_HUBS: ExamHubConfig[] = [
     icon: HeartPulse,
     accentClass: "from-rose-500/20 to-pink-600/10 border-rose-200/60",
     questionBankLabel: questionBankLabelForField("pance"),
+  },
+  {
+    slug: "aanp-fnp",
+    title: "AANP FNP",
+    subtitle: "AANPCB FNP blueprint · primary care vignettes across the lifespan.",
+    fieldId: "aanp-fnp",
+    icon: HeartPulse,
+    accentClass: "from-violet-500/20 to-purple-600/10 border-violet-200/60",
+    questionBankLabel: questionBankLabelForField("aanp-fnp"),
   },
   {
     slug: "top500",

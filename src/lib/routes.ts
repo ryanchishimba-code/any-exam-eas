@@ -89,6 +89,15 @@ export const EXAM_NAV_ITEMS: {
     practiceHref: "/practice/pance",
     stat: "300Q blueprint",
   },
+  {
+    slug: "aanp-fnp",
+    label: "AANP FNP",
+    short: "Nurse Practitioner",
+    href: "/exams/aanp-fnp",
+    fieldId: "aanp-fnp",
+    practiceHref: "/practice/aanp-fnp",
+    stat: `${MARKETING_QUESTION_COUNTS.aanpFnp} items`,
+  },
 ];
 
 export function examHref(slug: ExamRouteSlug): string {

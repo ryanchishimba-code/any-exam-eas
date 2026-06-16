@@ -1,11 +1,12 @@
 import { getFieldMeta, getFieldMetaById } from "@/lib/fields";
+import { normalizeFieldId } from "@/lib/subjects/field-ids";
 import { computeTimeLimitSec } from "@/lib/full-exam/config";
 import type { ExamSlug } from "@/lib/exams/catalog";
 
 /** Board-style session types. */
 export type ExamSessionMode = "timed" | "bank";
 
-export type BoardExamKey = "nclex" | "usmle" | "naplex" | "pance";
+export type BoardExamKey = "nclex" | "usmle" | "naplex" | "pance" | "aanp-fnp";
 
 /** NCLEX timed exam lengths — mirrors real CAT minimum and maximum. */
 export const NCLEX_TIMED_COUNTS = {
@@ -21,7 +22,7 @@ const FIELD_ID_TO_BOARD: Record<string, BoardExamKey> = {
   "usmle-step-2": "usmle",
   pharmacy: "naplex",
   pance: "pance",
-  "aanp-fnp": "pance",
+  "aanp-fnp": "aanp-fnp",
   mpje: "pance",
 };
 
@@ -30,6 +31,7 @@ const SLUG_TO_BOARD: Record<ExamSlug, BoardExamKey | null> = {
   usmle: "usmle",
   naplex: "naplex",
   pance: "pance",
+  "aanp-fnp": "aanp-fnp",
   top500: null,
 };
 
@@ -38,6 +40,7 @@ const TIMED_EXAM_COUNTS: Record<Exclude<BoardExamKey, "nclex">, number> = {
   usmle: 280,
   naplex: 225,
   pance: 300,
+  "aanp-fnp": 135,
 };
 
 const BOARD_LABELS: Record<BoardExamKey, string> = {
@@ -45,6 +48,7 @@ const BOARD_LABELS: Record<BoardExamKey, string> = {
   usmle: "USMLE",
   naplex: "NAPLEX",
   pance: "PANCE",
+  "aanp-fnp": "AANP FNP",
 };
 
 export function parseNclexTimedVariant(value: string | null | undefined): NclexTimedVariant {
@@ -53,7 +57,7 @@ export function parseNclexTimedVariant(value: string | null | undefined): NclexT
 
 export function resolveFieldId(fieldOrLabel: string): string {
   const meta = getFieldMeta(fieldOrLabel) ?? getFieldMetaById(fieldOrLabel);
-  return meta?.id ?? fieldOrLabel.toLowerCase();
+  return normalizeFieldId(meta?.id ?? fieldOrLabel);
 }
 
 export function resolveBoardExam(fieldOrLabel: string): BoardExamKey | null {
@@ -142,6 +146,7 @@ const BOARD_TO_EXAM_SLUG: Record<BoardExamKey, import("@/types/edtech").ExamSlug
   usmle: "usmle",
   naplex: "naplex",
   pance: "pance",
+  "aanp-fnp": "aanp-fnp",
 };
 
 /** Board-style timed session duration (scales official exam time to question count). */

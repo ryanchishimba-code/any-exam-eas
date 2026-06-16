@@ -41,6 +41,10 @@ export type BlueprintDomain =
   | "nclex-psychosocial"
   | "nclex-physiological"
   | "mpje-jurisprudence"
-  | "umpje-uniform";
+  | "umpje-uniform"
+  | "aanp-assess"
+  | "aanp-diagnose"
+  | "aanp-plan"
+  | "aanp-evaluate";
 
 export type { ExamFieldId } from "@/lib/subjects/field-ids";

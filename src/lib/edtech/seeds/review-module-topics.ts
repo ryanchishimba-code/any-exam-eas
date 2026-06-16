@@ -155,6 +155,46 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     reviewModule: SEPSIS_MODULE,
     sortOrder: 2,
   }),
+  defineReviewModuleTopic({
+    examSlug: "aanp-fnp",
+    slug: "acute-coronary-syndrome",
+    title: "Acute Coronary Syndrome Management",
+    overview:
+      "From ECG to reperfusion: STEMI vs NSTEMI pathways for AANP FNP cardiovascular Plan and Evaluate items.",
+    practiceTopicSlug: "cardiovascular",
+    reviewModule: ACS_MODULE,
+    sortOrder: 0,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "aanp-fnp",
+    slug: "infectious-disease",
+    title: "Infectious Disease: CAP, MRSA & Antimicrobials",
+    overview:
+      "CAP empiric regimens, MRSA selection, and antibiotic stewardship for AANP FNP primary care.",
+    practiceTopicSlug: "infectious-disease",
+    reviewModule: INFECTIOUS_DISEASE_USMLE_MODULE,
+    sortOrder: 1,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "aanp-fnp",
+    slug: "sepsis-shock",
+    title: "Sepsis & Shock Management",
+    overview:
+      "Recognize sepsis early and execute the hour-1 bundle — high-yield for AANP FNP geriatric and infectious disease vignettes.",
+    practiceTopicSlug: "infectious-disease",
+    reviewModule: SEPSIS_MODULE,
+    sortOrder: 2,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "aanp-fnp",
+    slug: "insulin-diabetes-management",
+    title: "Diabetes Pharmacotherapy",
+    overview:
+      "Insulin, metformin, GLP-1/SGLT2 agents, and monitoring for AANP FNP Plan and Evaluate domains.",
+    practiceTopicSlug: "endocrine",
+    reviewModule: DIABETES_PHARMACOTHERAPY_MODULE,
+    sortOrder: 3,
+  }),
 ];
 
 export function mergeReviewModules(topics: HighYieldTopic[], examSlug: HighYieldTopic["examSlug"]): HighYieldTopic[] {

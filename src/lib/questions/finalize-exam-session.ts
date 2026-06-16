@@ -1,11 +1,14 @@
+import { shuffleBankItems } from "@/lib/question-bank-db";
 import { examQuestionToStudy, prepareQuestionsForSession } from "./prepare";
 import type { RawQuestionInput, StudyQuestion } from "./types";
 import {
   assessDifficultyMix,
+  balanceDifficultyMix,
   enforceSessionCount,
   hasGenericPlaceholderOptions,
   hasAdjacentSimilarOptions,
   optionsFromStudyQuestion,
+  resolveDifficultyBand,
   type DifficultyBand,
 } from "./session-quality";
 import {
@@ -64,21 +67,48 @@ export type ExamSessionQualityReport = {
   issues: string[];
   returned: number;
   requested: number;
+  /** False when the source pool only had one difficulty band — variety is impossible. */
+  poolAllowsDifficultyMix: boolean;
 };
 
+function rawInputDifficultyBand(q: RawQuestionInput): DifficultyBand {
+  return resolveDifficultyBand({
+    difficultyLabel: q.difficultyLabel,
+  });
+}
+
 function studyQuestionDifficultyBand(q: StudyQuestion): DifficultyBand {
-  const label = q.difficulty?.toLowerCase();
-  if (label === "easy") return "easy";
-  if (label === "hard") return "hard";
-  return "medium";
+  return resolveDifficultyBand({
+    difficultyLabel: q.difficulty,
+  });
+}
+
+function poolAllowsDifficultyMix<T>(
+  items: T[],
+  bandFn: (item: T) => DifficultyBand
+): boolean {
+  if (items.length < 3) return true;
+  return assessDifficultyMix(items, bandFn).isVaried;
+}
+
+function selectRawInputsForSession(
+  raw: RawQuestionInput[],
+  requested: number,
+  shuffle = false
+): RawQuestionInput[] {
+  const pool = shuffle ? shuffleBankItems(raw) : raw;
+  if (pool.length <= requested) return pool;
+  return balanceDifficultyMix(pool, requested, rawInputDifficultyBand);
 }
 
 export function assessExamSessionQuality(
   prepared: StudyQuestion[],
-  requested: number
+  requested: number,
+  opts?: { poolAllowsDifficultyMix?: boolean }
 ): ExamSessionQualityReport {
   const issues: string[] = [];
   const returned = prepared.length;
+  const poolAllowsDifficultyMix = opts?.poolAllowsDifficultyMix ?? true;
 
   if (returned !== requested) {
     issues.push(`count_mismatch:${returned}/${requested}`);
@@ -93,7 +123,7 @@ export function assessExamSessionQuality(
   }
 
   const mix = assessDifficultyMix(prepared, studyQuestionDifficultyBand);
-  if (!mix.isVaried && returned >= 6) {
+  if (!mix.isVaried && returned >= 6 && poolAllowsDifficultyMix) {
     issues.push("difficulty_not_varied");
   }
 
@@ -108,7 +138,13 @@ export function assessExamSessionQuality(
     }
   }
 
-  return { ok: issues.length === 0, issues, returned, requested };
+  return {
+    ok: issues.length === 0,
+    issues,
+    returned,
+    requested,
+    poolAllowsDifficultyMix,
+  };
 }
 
 /**
@@ -119,11 +155,16 @@ export function finalizeExamSessionQuestions(
   raw: RawQuestionInput[],
   requested: number
 ): { prepared: StudyQuestion[]; quality: ExamSessionQualityReport } {
+  const poolAllowsMix = poolAllowsDifficultyMix(raw, rawInputDifficultyBand);
+
+  let selected = selectRawInputsForSession(raw, requested);
   let prepared = enforceSessionCount(
-    prepareQuestionsForSession(raw, { shuffleOrder: true }),
+    prepareQuestionsForSession(selected, { shuffleOrder: true }),
     requested
   );
-  let quality = assessExamSessionQuality(prepared, requested);
+  let quality = assessExamSessionQuality(prepared, requested, {
+    poolAllowsDifficultyMix: poolAllowsMix,
+  });
 
   for (let attempt = 0; attempt < 5 && !quality.ok; attempt++) {
     const spreadIssues = quality.issues.some((i) =>
@@ -137,11 +178,14 @@ export function finalizeExamSessionQuestions(
     if (!spreadIssues && !quality.issues.some((i) => i.startsWith("count_mismatch"))) {
       break;
     }
+    selected = selectRawInputsForSession(raw, requested, true);
     prepared = enforceSessionCount(
-      prepareQuestionsForSession(raw, { shuffleOrder: true }),
+      prepareQuestionsForSession(selected, { shuffleOrder: true }),
       requested
     );
-    quality = assessExamSessionQuality(prepared, requested);
+    quality = assessExamSessionQuality(prepared, requested, {
+      poolAllowsDifficultyMix: poolAllowsMix,
+    });
   }
 
   return { prepared, quality };
@@ -176,7 +220,11 @@ export function assertExamSessionReady(
     );
   }
 
-  if (quality.returned >= 6 && quality.issues.includes("difficulty_not_varied")) {
+  if (
+    quality.poolAllowsDifficultyMix &&
+    quality.returned >= 6 &&
+    quality.issues.includes("difficulty_not_varied")
+  ) {
     throw new Error(
       `Could not assemble a balanced ${fieldId} difficulty mix. Please try again.`
     );

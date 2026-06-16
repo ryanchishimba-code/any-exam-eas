@@ -4,6 +4,8 @@ import type { ExamQuestion } from "@/lib/ai";
 import { bankItemToUsmleExam } from "./usmle-bank-bridge";
 import { auditUsmleQaEditor } from "./usmle-qa-editor";
 import { isUsmleCuratedItem } from "@/lib/question-bank/usmle-curated";
+import { isPanceCuratedItem } from "@/lib/question-bank/pance-curated";
+import { isAanpFnpCuratedItem } from "@/lib/question-bank/aanp-fnp-curated";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
 
 /** Split stored USMLE bank text into vignette + lead-in stem. */
@@ -53,7 +55,9 @@ export function usmleBankItemIsServeReady(item: BankItem, fieldId: string): bool
   const exam = bankItemToUsmleExam(normalized, 0);
   if (!usmleExamQuestionHasClinicalScenario(exam)) return false;
 
-  if (isUsmleCuratedItem(normalized)) return true;
+  if (isUsmleCuratedItem(normalized) || isPanceCuratedItem(normalized) || isAanpFnpCuratedItem(normalized)) {
+    return true;
+  }
 
   const report = auditUsmleQaEditor(normalized, {
     fieldId,

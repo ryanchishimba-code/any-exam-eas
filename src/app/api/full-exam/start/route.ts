@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createExamSession } from "@/lib/exam-sessions/service";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
+import { setUserExamPreference } from "@/lib/edtech/exam-preference";
 import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
 import { requirePremiumApi } from "@/lib/api-access";
 import type { FullExamLengthPreset } from "@/types/full-exam";
@@ -25,6 +26,8 @@ export async function POST(req: Request) {
     body.nclexLength === "maximum" ? ("maximum" as const) : ("minimum" as const);
 
   try {
+    await setUserExamPreference(premium.userId, examSlug);
+
     const config = buildSessionConfig(examSlug, preset, timed, {
       nclexLength: examSlug === "nclex" ? nclexLength : undefined,
     });

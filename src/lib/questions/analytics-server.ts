@@ -25,6 +25,13 @@ export async function recordQuestionAttempt(params: {
         durationMs: params.durationMs ?? null,
         selectedAnswer: params.selectedAnswer ?? null,
         sessionId: params.sessionId ?? null,
+        tagsJson: JSON.stringify({
+          tags: params.question.tags ?? [],
+          taskCategory:
+            (params.question.ngnPayload?.taskCategory as string | undefined) ??
+            params.question.tags?.find((t) => t.startsWith("task-")),
+          blueprintTopic: params.question.ngnPayload?.blueprintTopic,
+        }),
       },
     });
   } catch {

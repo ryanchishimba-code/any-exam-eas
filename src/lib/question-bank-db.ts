@@ -25,6 +25,16 @@ import {
   curatedSampleTarget as nclexCuratedSampleTarget,
   isNursingFieldId,
 } from "@/lib/question-bank/nclex-curated";
+import {
+  curatedPanceWhereClause,
+  curatedSampleTarget as panceCuratedSampleTarget,
+} from "@/lib/question-bank/pance-curated";
+
+const PANCE_FIELD_ID = "pance";
+
+function isPanceFieldId(fieldId: string): boolean {
+  return fieldId === PANCE_FIELD_ID;
+}
 /** Max rows read per sample query (keeps Neon queries bounded). */
 export const QUESTION_BANK_SAMPLE_MAX_PULL = 500;
 
@@ -188,7 +198,53 @@ export async function sampleQuestionBankItems(params: {
     return sampleNclexSubjectItems(params.fieldId, params.subjectId, want, where, total);
   }
 
+  if (isPanceFieldId(params.fieldId)) {
+    return samplePanceSubjectItems(params.fieldId, params.subjectId, want, where, total);
+  }
+
   return sampleSubjectItemsRandom(want, where, total, params.poolMultiplier);
+}
+
+async function samplePanceSubjectItems(
+  fieldId: string,
+  subjectId: string,
+  want: number,
+  baseWhere: ReturnType<typeof activeSubjectWhere>,
+  total: number
+): Promise<BankItem[]> {
+  const curatedWhere = { ...baseWhere, ...curatedPanceWhereClause() };
+  const curatedTotal = await prisma.questionBankItem.count({ where: curatedWhere });
+  const curatedWant = panceCuratedSampleTarget(want, curatedTotal);
+
+  let collected: BankItem[] = [];
+
+  if (curatedWant > 0) {
+    const curatedRows = await prisma.questionBankItem.findMany({
+      where: curatedWhere,
+      take: Math.min(curatedTotal, Math.max(curatedWant * 3, curatedWant + 10)),
+      skip:
+        curatedTotal > curatedWant
+          ? Math.floor(Math.random() * Math.max(0, curatedTotal - curatedWant))
+          : 0,
+      orderBy: { id: "asc" },
+    });
+    collected = dedupeSamplePool(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
+      0,
+      curatedWant
+    );
+  }
+
+  const remaining = want - collected.length;
+  if (remaining > 0) {
+    const general = await sampleSubjectItemsRandom(remaining, baseWhere, total, 2);
+    collected = dedupeSamplePool([...collected, ...general]);
+  }
+
+  if (collected.length === 0) {
+    return staticSeedFallback(fieldId, subjectId, want);
+  }
+
+  return shuffleBankItems(collected).slice(0, want);
 }
 
 async function sampleNaplexSubjectItems(
@@ -441,6 +497,53 @@ export async function sampleQuestionBankItemsForField(params: {
       const pullTarget = Math.min(
         QUESTION_BANK_SAMPLE_MAX_PULL,
         Math.max(remaining * 4, remaining + 40)
+      );
+      const skip = total > pullTarget ? Math.floor(Math.random() * (total - pullTarget)) : 0;
+      const rows = await prisma.questionBankItem.findMany({
+        where,
+        skip,
+        take: pullTarget,
+        orderBy: { id: "asc" },
+      });
+      collected = dedupeSamplePool([
+        ...collected,
+        ...shuffleBankItems(rows.map(rowToBankItem)),
+      ]).slice(0, want);
+    }
+
+    return shuffleBankItems(collected).slice(0, want);
+  }
+
+  if (isPanceFieldId(params.fieldId)) {
+    const curatedWhere = { ...where, ...curatedPanceWhereClause() };
+    const curatedTotal = await prisma.questionBankItem.count({ where: curatedWhere });
+    const curatedWant = panceCuratedSampleTarget(want, curatedTotal);
+    let collected: BankItem[] = [];
+
+    if (curatedWant > 0) {
+      const pull = Math.min(
+        QUESTION_BANK_SAMPLE_MAX_PULL,
+        Math.max(curatedWant * 3, curatedWant + 30)
+      );
+      const skip =
+        curatedTotal > pull ? Math.floor(Math.random() * Math.max(0, curatedTotal - pull)) : 0;
+      const rows = await prisma.questionBankItem.findMany({
+        where: curatedWhere,
+        skip,
+        take: pull,
+        orderBy: { id: "asc" },
+      });
+      collected = dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(
+        0,
+        curatedWant
+      );
+    }
+
+    const remaining = want - collected.length;
+    if (remaining > 0) {
+      const pullTarget = Math.min(
+        QUESTION_BANK_SAMPLE_MAX_PULL,
+        Math.max(remaining * 2, remaining + 30)
       );
       const skip = total > pullTarget ? Math.floor(Math.random() * (total - pullTarget)) : 0;
       const rows = await prisma.questionBankItem.findMany({
