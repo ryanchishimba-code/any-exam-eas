@@ -33,12 +33,13 @@ export function normalizeAgePhrasing(text: string): string {
 function bankItemToExamQuestion(item: BankItem): ExamQuestion {
   const { vignette, stem } = splitUsmleBankItem(item);
   return {
+    id: 0,
     question: stem,
     vignette: vignette ?? "",
     options: item.options ?? [],
     correctAnswer: item.correctAnswer,
     explanation: item.explanation ?? "",
-    type: "mcq",
+    type: "multiple_choice",
   };
 }
 

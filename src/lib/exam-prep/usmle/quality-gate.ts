@@ -21,7 +21,7 @@ const AGE_PATTERN = /\b\d{1,3}[- ](?:year|month|week|day)[- ]old\b/i;
 const CLINICAL_DATA_PATTERN =
   /\d+\s*(?:mg\/dL|mEq\/L|mm Hg|mmHg|\/min|bpm|× 10|g\/dL|mIU\/mL|°C|°F|U\/L|mm|%|SpO₂?|pH\s*\d)/i;
 const LEAD_IN_PATTERN =
-  /(?:most likely|most appropriate|best explains|best describes|mechanism|next step|diagnosis|management|treatment|underlying cause|initial test)/i;
+  /(?:most likely|most appropriate|best explains|best describes|mechanism|next step|next best|diagnosis|management|treatment|underlying cause|initial test|which of the following|what is the|what are the|how should|why does|where is|when should)/i;
 
 const FULL_EXAM_ITEM_TYPES = new Set([
   "vignette",
@@ -55,6 +55,11 @@ export function normalizeUsmleFullExamItem(item: BankItem, slotMeta?: {
   const tags = [...new Set([...(normalized.tags ?? []), "usmle-full-exam", "USMLE-2026"])];
 
   let vignette = normalized.vignette?.trim() ?? "";
+  let question = normalized.question?.trim() ?? "";
+  if (question && !question.endsWith("?")) {
+    question = `${question.replace(/[.!]+$/, "")}?`;
+    normalized = { ...normalized, question };
+  }
   if (vignette && !CLINICAL_DATA_PATTERN.test(vignette)) {
     const labTable = ngn.labTable ?? ngn.chartData;
     if (labTable && typeof labTable === "object") {
@@ -75,7 +80,7 @@ export function assessUsmleFullExamItem(
   const fieldId = stepLevel === "step1" ? "usmle-step-1" : "usmle-step-2";
   const subjectId = item.subjectId ?? "internal-medicine";
 
-  const polished = polishUsmleBankItem(item, subjectId, fieldId, index);
+  const polished = polishUsmleBankItem(item, fieldId, subjectId, "USMLE", index);
   const normalized = normalizeUsmleBankItemFields(polished.item);
 
   const report = auditUsmleQaEditor(normalized, {

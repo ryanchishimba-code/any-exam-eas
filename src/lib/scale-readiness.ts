@@ -8,7 +8,11 @@ import {
   isIntervalPriceConfigured,
   STRIPE_PRICE_ENV_KEYS,
 } from "@/lib/stripe-prices";
-import type { BillingInterval } from "@/lib/billing-config";
+import {
+  BILLING_INTERVAL_SAVINGS,
+  type BillingInterval,
+} from "@/lib/billing-config";
+import type { SubscriptionTier } from "@/lib/subscription-tiers";
 
 export type ScaleCheckStatus = "ok" | "warn" | "fail";
 
@@ -26,7 +30,8 @@ export type ScaleReadinessReport = {
   checks: ScaleReadinessCheck[];
 };
 
-const BILLING_INTERVALS = Object.keys(STRIPE_PRICE_ENV_KEYS) as BillingInterval[];
+const BILLING_INTERVALS = Object.keys(BILLING_INTERVAL_SAVINGS) as BillingInterval[];
+const SUBSCRIPTION_TIERS: SubscriptionTier[] = ["basic", "pro"];
 
 function check(id: string, status: ScaleCheckStatus, detail: string): ScaleReadinessCheck {
   return { id, status, detail };
@@ -97,12 +102,18 @@ export function runScaleReadinessChecks(): ScaleReadinessReport {
     checks.push(check("stripeKeys", "fail", "STRIPE_SECRET_KEY and NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY required"));
   }
 
-  const missingPrices = BILLING_INTERVALS.filter((i) => !isIntervalPriceConfigured(i));
-  if (missingPrices.length === 0) {
-    checks.push(check("stripePrices", "ok", "all interval price IDs configured"));
+  const missingPriceEnvKeys: string[] = [];
+  for (const tier of SUBSCRIPTION_TIERS) {
+    for (const interval of BILLING_INTERVALS) {
+      if (!isIntervalPriceConfigured(tier, interval)) {
+        missingPriceEnvKeys.push(STRIPE_PRICE_ENV_KEYS[tier][interval]);
+      }
+    }
+  }
+  if (missingPriceEnvKeys.length === 0) {
+    checks.push(check("stripePrices", "ok", "all tier interval price IDs configured"));
   } else {
-    const keys = missingPrices.map((i) => STRIPE_PRICE_ENV_KEYS[i]).join(", ");
-    checks.push(check("stripePrices", "fail", `Missing Stripe price env: ${keys}`));
+    checks.push(check("stripePrices", "fail", `Missing Stripe price env: ${missingPriceEnvKeys.join(", ")}`));
   }
 
   if (process.env.STRIPE_WEBHOOK_SECRET?.trim()) {

@@ -223,10 +223,7 @@ function normalizeSpecialFormats(item: BankItem, slot: NaplexGenerationSlot): Ba
 
   if (itemType === "constructed_response") {
     const numeric = item.correctAnswer.replace(/[^\d.]/g, "").trim();
-    const unit =
-      (item.ngnPayload?.unit as string | undefined) ??
-      (item.chartData as { unit?: string } | undefined)?.unit ??
-      "mg";
+    const unit = (item.ngnPayload?.unit as string | undefined) ?? "mg";
     return {
       ...item,
       correctAnswer: numeric || item.correctAnswer,

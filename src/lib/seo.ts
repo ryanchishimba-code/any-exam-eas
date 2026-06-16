@@ -6,7 +6,7 @@ import {
   formatTrialLabel,
 } from "@/lib/site";
 import { LEGAL_ENTITY } from "@/lib/legal";
-import { TRIAL_DAYS } from "@/lib/billing-config";
+import { TRIAL_DAYS, MONTHLY_PRICE_USD } from "@/lib/billing-config";
 
 const PRODUCTION_SITE_URL = `https://www.${SITE_DOMAIN}`;
 
