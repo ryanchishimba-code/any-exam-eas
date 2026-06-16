@@ -5,7 +5,8 @@ import type {
 } from "./types";
 import { nursingModule } from "./nursing";
 import { pharmacyModule } from "./pharmacy";
-import { mpjeModule } from "./mpje";
+import { aanpFnpModule } from "./aanp-fnp";
+import { panceModule } from "./pance";
 import { usmleStep1Module } from "./usmle-step-1";
 import { usmleStep2Module } from "./usmle-step-2";
 import { usmleStep3Module } from "./usmle-step-3";
@@ -21,7 +22,8 @@ const MODULES: Record<string, SubjectModule> = {
   "usmle-step-2": usmleStep2Module,
   "usmle-step-3": usmleStep3Module,
   pharmacy: pharmacyModule,
-  mpje: mpjeModule,
+  pance: panceModule,
+  "aanp-fnp": aanpFnpModule,
 };
 
 /** Capability registry — controls generation behavior per discipline. */

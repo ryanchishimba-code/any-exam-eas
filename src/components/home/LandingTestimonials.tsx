@@ -32,7 +32,7 @@ const TESTIMONIALS = [
 export function LandingTestimonials() {
   return (
     <section
-      className="aee-landing-compact-section border-b border-slate-100 bg-slate-50/70"
+      className="aee-landing-compact-section border-b border-[var(--color-border)] bg-[var(--color-surface)]"
       aria-labelledby="testimonials-heading"
     >
       <div className="mx-auto max-w-[1080px] px-5 sm:px-6">
@@ -42,12 +42,12 @@ export function LandingTestimonials() {
           </p>
           <h2
             id="testimonials-heading"
-            className="mt-1 text-xl font-bold tracking-tight text-slate-900 sm:text-2xl"
+            className="mt-1 text-xl font-bold tracking-tight text-[var(--color-ink)] sm:text-2xl"
           >
             Built for people juggling{" "}
             <span className="aee-display-accent-vibrant">more than one board.</span>
           </h2>
-          <p className="mt-2 text-sm text-slate-600">
+          <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
             Real comments from learners using Any Exam Easy — not paid endorsements.
           </p>
         </div>
@@ -61,19 +61,19 @@ export function LandingTestimonials() {
                   strokeWidth={2}
                   aria-hidden
                 />
-                <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-slate-700">
+                <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-[var(--color-ink)]">
                   &ldquo;{quote}&rdquo;
                 </blockquote>
-                <figcaption className="mt-4 border-t border-slate-100 pt-3">
-                  <p className="text-sm font-semibold text-slate-900">{name}</p>
-                  <p className="text-[0.6875rem] font-medium text-slate-500">{exam}</p>
+                <figcaption className="mt-4 border-t border-[var(--color-border)] pt-3">
+                  <p className="text-sm font-semibold text-[var(--color-ink)]">{name}</p>
+                  <p className="text-[0.6875rem] font-medium text-[var(--color-ink-muted)]">{exam}</p>
                 </figcaption>
               </figure>
             </li>
           ))}
         </ul>
 
-        <p className="mx-auto mt-4 max-w-xl text-center text-[0.625rem] leading-relaxed text-slate-400">
+        <p className="mx-auto mt-4 max-w-xl text-center text-[0.625rem] leading-relaxed text-[var(--color-ink-muted)]">
           Individual experiences vary. Any Exam Easy does not guarantee licensure exam results.
         </p>
       </div>

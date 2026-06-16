@@ -53,7 +53,7 @@ export function ChooseYourExam() {
   return (
     <section
       id="choose-exam"
-      className="aee-landing-section bg-white"
+      className="aee-landing-section bg-[var(--color-surface-elevated)]"
       aria-labelledby="choose-exam-heading"
     >
       <div className="mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
@@ -90,7 +90,7 @@ export function ChooseYourExam() {
                     <Icon className="h-7 w-7" strokeWidth={1.75} aria-hidden />
                   </span>
                   <h3 className="aee-exam-title mt-4 text-xl">{exam.title}</h3>
-                  <p className="mt-1 text-sm text-slate-500">{exam.tagline}</p>
+                  <p className="mt-1 text-sm text-[var(--color-ink-muted)]">{exam.tagline}</p>
                   <span className="aee-exam-cta mt-5 inline-flex items-center gap-1 text-sm font-semibold">
                     Start studying
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />

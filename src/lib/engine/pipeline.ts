@@ -9,6 +9,7 @@ import type { ExamGenerationContext } from "../subjects/types";
 import { composeExamSystemPrompt, composeExamUserPrompt } from "./prompts/compose";
 import { buildFieldPromptBlock } from "../field-exam-styles";
 import { deduplicateExamQuestions } from "./stages/deduplication";
+import { enforceGeneratedExamQuality } from "./stages/batch-diversity-gate";
 import { normalizeExamQuestionsFromAi } from "./stages/normalize-ai-output";
 import { scoreExamQuality } from "./stages/quality";
 import { normalizeGeneratedExam } from "./stages/format-normalize";
@@ -151,6 +152,12 @@ export async function runExamGenerationPipeline(
   exam = enrichGeneratedExam(exam, fieldId);
   exam = deduplicateExamQuestions(exam);
 
+  const { exam: qualityExam, report: generationQuality } = enforceGeneratedExamQuality(
+    exam,
+    params.questionCount
+  );
+  exam = qualityExam;
+
   const validation = subjectModule.validateExam({
     exam,
     subjectId: params.subjectId,
@@ -175,7 +182,11 @@ export async function runExamGenerationPipeline(
     exam.qualityReport = report;
   }
 
-  exam.studyNotes = `${exam.questions.length} ${subject?.label ?? params.topic} questions (${params.field}). ${exam.qualityReport?.passed ? "QC passed." : "Review recommended."}`;
+  exam.studyNotes = `${exam.questions.length} ${subject?.label ?? params.topic} questions (${params.field}). ${
+    generationQuality.passed
+      ? "Generation QC passed."
+      : `Generation QC: ${generationQuality.returned}/${generationQuality.requested} items; review recommended.`
+  } ${exam.qualityReport?.passed ? "Self-eval passed." : ""}`.trim();
 
   return exam;
 }

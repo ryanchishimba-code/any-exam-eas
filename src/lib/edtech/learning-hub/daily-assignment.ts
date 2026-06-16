@@ -12,6 +12,13 @@ import {
   getUsmleModuleBySlug,
   modulesForStage,
 } from "./usmle-learning-paths";
+import {
+  PANCE_LEARNING_STAGES,
+  PANCE_TOPIC_MODULES,
+  getPanceModuleBySlug,
+  panceModulesForStage,
+} from "./pance-learning-paths";
+import { roadmapHref } from "@/lib/learning/exam-roadmap";
 
 export type DailyAssignmentTask = {
   id: string;
@@ -148,11 +155,92 @@ export function buildUsmleDailyAssignment(weakTopicSlugs: string[] = []): DailyA
   };
 }
 
+export function buildPanceDailyAssignment(weakTopicSlugs: string[] = []): DailyAssignmentPlan {
+  const stage =
+    dayIndex() % 7 < 2
+      ? PANCE_LEARNING_STAGES[0]
+      : dayIndex() % 7 < 5
+        ? PANCE_LEARNING_STAGES[1]
+        : PANCE_LEARNING_STAGES[2];
+
+  const pool = panceModulesForStage(stage.id);
+  const mod = pool[dayIndex() % pool.length] ?? PANCE_TOPIC_MODULES[0]!;
+  const weakSlug = weakTopicSlugs[0] ?? mod.questions.practiceTopicSlug;
+
+  const tasks: DailyAssignmentTask[] = [
+    {
+      id: "roadmap",
+      kind: "review",
+      title: "PANCE Exam Roadmap",
+      description: "NCCPA blueprint readiness across all 15 medical content categories.",
+      href: roadmapHref("pance"),
+      estimatedMinutes: 10,
+    },
+    {
+      id: "review-module",
+      kind: "review",
+      title: mod.title,
+      description: mod.overview,
+      href: mod.reviewTopicSlug
+        ? deepDiveTopicHref("pance", mod.reviewTopicSlug)
+        : highYieldTopicHref("pance", mod.slug),
+      estimatedMinutes: Math.min(20, mod.estimatedMinutes),
+      meta: { system: mod.system },
+    },
+    {
+      id: "curated-practice",
+      kind: "practice",
+      title: `${mod.title} — practice`,
+      description: `${mod.questions.reviewCount} PANCE-style vignettes with rationales.`,
+      href: practiceTopicHref("pance", mod.questions.practiceTopicSlug, mod.questions.reviewCount),
+      estimatedMinutes: Math.ceil(mod.questions.reviewCount * 1.5),
+      meta: { system: mod.system, questionCount: mod.questions.reviewCount },
+    },
+    {
+      id: "weak-area",
+      kind: "weak-area",
+      title: "Weak-area drill",
+      description: weakTopicSlugs.length
+        ? `Focus: ${weakSlug.replace(/-/g, " ")}`
+        : "Adaptive set targeting your lowest-accuracy blueprint areas.",
+      href: weakTopicSlugs.length
+        ? adaptiveHref("pance", weakSlug, 10)
+        : weakAreaHref("pance", 15),
+      estimatedMinutes: 15,
+      meta: { questionCount: 10 },
+    },
+  ];
+
+  if (stage.id === "board-crunch" && dayIndex() % 3 === 0) {
+    tasks.push({
+      id: "timed-block",
+      kind: "timed-block",
+      title: "Timed mini-block",
+      description: "50 questions under PANCE pacing (~60 min).",
+      href: "/full-exam/pance?preset=50&autostart=1",
+      estimatedMinutes: 60,
+      meta: { questionCount: 50 },
+    });
+  }
+
+  return {
+    examSlug: "pance",
+    date: new Date().toISOString().slice(0, 10),
+    headline: `Today's plan · ${stage.label}`,
+    stageLabel: stage.label,
+    tasks,
+  };
+}
+
+/** @deprecated Use buildPanceDailyAssignment */
+export const buildFnpDailyAssignment = buildPanceDailyAssignment;
+
 export function buildDailyAssignment(
   examSlug: ExamSlug,
   weakTopicSlugs: string[] = []
 ): DailyAssignmentPlan {
   if (examSlug === "usmle") return buildUsmleDailyAssignment(weakTopicSlugs);
+  if (examSlug === "pance") return buildPanceDailyAssignment(weakTopicSlugs);
 
   const fieldId = EXAM_CATALOG[examSlug].fieldId;
   return {

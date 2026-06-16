@@ -9,6 +9,7 @@
  *   npm run db:qa-gate -- --dry-run
  */
 import { PrismaClient } from "@prisma/client";
+import { bankItemPassesIngestGate } from "../src/lib/exam-prep/bank-ingest-gate";
 import { auditBankItem, summarizeBankAudit } from "../src/lib/exam-prep/bank-audit";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
 
@@ -57,12 +58,13 @@ async function main() {
     for (const row of rows) {
       const item = enrichBankItemFromRow(row);
       const report = auditBankItem(item, row.fieldId);
-      allResults.push({ ok: report.ok, issues: report.issues, fieldId: row.fieldId });
+      const ingestReady = bankItemPassesIngestGate(row.fieldId, item, row.source);
+      allResults.push({ ok: ingestReady, issues: report.issues, fieldId: row.fieldId });
 
-      if (report.ok) passCount++;
+      if (ingestReady) passCount++;
       else failCount++;
 
-      updates.push({ id: row.id, qaPassed: report.ok });
+      updates.push({ id: row.id, qaPassed: ingestReady });
     }
 
     if (!dryRun) {

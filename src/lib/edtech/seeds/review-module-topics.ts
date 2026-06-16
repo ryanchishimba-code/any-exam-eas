@@ -3,7 +3,6 @@ import {
   ACS_MODULE,
   ANTIBIOTICS_STEWARDSHIP_MODULE,
   ANTICOAGULATION_MODULE,
-  CONTROLLED_SUBSTANCES_MODULE,
   DELEGATION_MODULE,
   DIABETES_PHARMACOTHERAPY_MODULE,
   HEART_FAILURE_MODULE,
@@ -106,14 +105,24 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     sortOrder: 1,
   }),
   defineReviewModuleTopic({
-    examSlug: "mpje",
-    slug: "controlled-substances",
-    title: "Controlled Substance Prescribing & Recordkeeping",
+    examSlug: "pance",
+    slug: "acute-coronary-syndrome",
+    title: "Acute Coronary Syndrome Management",
     overview:
-      "CSA schedules, valid Rx elements, CII rules, inventory accountability, and corresponding responsibility for MPJE.",
-    practiceTopicSlug: "controlled-substances",
-    reviewModule: CONTROLLED_SUBSTANCES_MODULE,
+      "From ECG to reperfusion: STEMI vs NSTEMI pathways, antithrombotics, and complication recognition for PANCE.",
+    practiceTopicSlug: "cardiovascular",
+    reviewModule: ACS_MODULE,
     sortOrder: 0,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "pance",
+    slug: "infectious-disease",
+    title: "Infectious Disease: Sepsis, CAP & Antimicrobials",
+    overview:
+      "CAP empiric regimens, sepsis bundle, MRSA selection, and febrile infant workup for PANCE clinical vignettes.",
+    practiceTopicSlug: "infectious-diseases",
+    reviewModule: INFECTIOUS_DISEASE_USMLE_MODULE,
+    sortOrder: 1,
   }),
 ];
 

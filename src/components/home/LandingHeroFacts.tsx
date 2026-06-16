@@ -22,7 +22,7 @@ export function LandingHeroFacts({ className = "" }: { className?: string }) {
       {FACTS.map(({ icon: Icon, label }) => (
         <li
           key={label}
-          className="flex items-start gap-2 rounded-lg border border-teal-100/80 bg-white/70 px-2.5 py-2 text-left text-[0.6875rem] leading-snug text-slate-700 sm:text-xs"
+          className="flex items-start gap-2 rounded-lg border border-teal-100/80 bg-white/70 px-2.5 py-2 text-left text-[0.6875rem] leading-snug text-[var(--color-ink)] sm:text-xs"
         >
           <Icon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-teal-600" strokeWidth={2} aria-hidden />
           <span>{label}</span>

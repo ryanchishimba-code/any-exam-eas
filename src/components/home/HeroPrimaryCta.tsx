@@ -39,7 +39,7 @@ export function HeroPrimaryCta({
 
       <div className="relative py-1">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-slate-200/80" />
+          <div className="w-full border-t border-[var(--color-border)]" />
         </div>
       </div>
 

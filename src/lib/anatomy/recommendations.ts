@@ -7,7 +7,7 @@ const EXAM_FEATURED_IDS: Record<ExamSlug, string[]> = {
   nclex: ["heart", "lungs", "diaphragm", "kidneys", "brain", "spleen"],
   usmle: ["heart", "brain", "liver", "kidneys", "aorta", "pancreas"],
   naplex: ["liver", "kidneys", "heart", "thyroid", "lungs", "pancreas"],
-  mpje: ["heart", "lungs", "liver", "kidneys", "thyroid", "brain"],
+  pance: ["heart", "lungs", "liver", "kidneys", "thyroid", "brain"],
 };
 
 /** High-yield structures prioritized for the active exam. */
@@ -27,6 +27,8 @@ export function getDefaultTourIdForExam(examSlug: ExamSlug): string {
       return "usmle-heart-anatomy";
     case "naplex":
       return "gi-hepatobiliary";
+    case "pance":
+      return "usmle-heart-anatomy";
     default:
       return "usmle-heart-anatomy";
   }

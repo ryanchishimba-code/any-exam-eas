@@ -91,7 +91,7 @@ const benefits = [
 export function LandingFeatures() {
   return (
     <section
-      className="aee-landing-section-compact relative overflow-hidden border-b border-slate-100 bg-white"
+      className="aee-landing-section-compact relative overflow-hidden border-b border-[var(--color-border)] bg-[var(--color-surface-elevated)]"
       aria-labelledby="landing-features-heading"
     >
       <div className="relative mx-auto max-w-[1080px] px-5 sm:px-6">
@@ -99,11 +99,11 @@ export function LandingFeatures() {
           <p className="text-[0.625rem] font-bold uppercase tracking-wider text-teal-600">
             Why Any Exam Easy
           </p>
-          <h2 id="landing-features-heading" className="mt-2 text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 id="landing-features-heading" className="mt-2 text-2xl font-bold tracking-tight text-[var(--color-ink)] sm:text-3xl">
             Built for{" "}
             <span className="aee-display-accent-vibrant">serious licensing prep</span>
           </h2>
-          <p className="mx-auto mt-2 max-w-xl text-sm text-slate-600">
+          <p className="mx-auto mt-2 max-w-xl text-sm text-[var(--color-ink-muted)]">
             Curated question banks, Reference Hub, Review Modules, Anatomy Studio, and timed
             simulations — without paying separately for each exam.
           </p>
@@ -118,7 +118,7 @@ export function LandingFeatures() {
                 className="aee-reveal"
                 style={{ animationDelay: `${i * 40}ms` }}
               >
-                <article className="aee-feature-card group flex h-full flex-col bg-white">
+                <article className="aee-feature-card group flex h-full flex-col bg-[var(--color-surface-elevated)]">
                   {benefit.visualId === "feature-pharmacology" ? (
                     <Top500DrugsVisual
                       variant="feature"
@@ -139,10 +139,10 @@ export function LandingFeatures() {
                   <p className="mt-4 text-[0.6875rem] font-semibold uppercase tracking-wider text-teal-700">
                     {benefit.outcome}
                   </p>
-                  <h3 className="mt-1.5 text-base font-semibold tracking-[-0.02em] text-slate-900">
+                  <h3 className="mt-1.5 text-base font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
                     {benefit.title}
                   </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+                  <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--color-ink-muted)]">
                     {benefit.description}
                   </p>
                   <span

@@ -17,6 +17,7 @@ import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { ROUTES } from "@/lib/routes";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { formatTrialCtaLabel } from "@/lib/site";
 
 type NavLink = { href: string; label: string; adminOnly?: boolean };
@@ -134,6 +135,7 @@ export function Navigation() {
         </ul>
 
         <div className="aee-nav-actions">
+          <ThemeToggle />
           {isAuthenticated && !accessLoading ? (
             <div className="hidden lg:block">
               <GlobalExamSwitcher variant="nav" />
@@ -179,14 +181,14 @@ export function Navigation() {
         {open && (
           <motion.div
             id={mobileMenuId}
-            className="aee-mobile-nav border-t border-black/[0.04] bg-[rgba(251,251,253,0.98)] px-5 backdrop-blur-xl lg:hidden"
+            className="aee-mobile-nav border-t border-black/[0.04] bg-[color-mix(in_srgb,var(--color-surface-elevated)_98%,transparent)] px-5 backdrop-blur-xl lg:hidden"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
           >
             <div className="overflow-hidden py-4">
-              <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+              <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-ink-muted)]">
                 Exams
               </p>
               {["nclex", "naplex", "usmle", "mpje"].map((slug) => (

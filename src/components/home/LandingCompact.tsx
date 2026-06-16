@@ -82,7 +82,7 @@ export function LandingCompact() {
       {/* Exam coverage */}
       <section
         id="choose-exam"
-        className="aee-landing-compact-section scroll-mt-24 border-b border-slate-100 bg-white"
+        className="aee-landing-compact-section scroll-mt-24 border-b border-[var(--color-border)] bg-[var(--color-surface-elevated)]"
         aria-labelledby="landing-exams-heading"
       >
         <div className="mx-auto max-w-[1080px] px-5 sm:px-6">
@@ -92,11 +92,11 @@ export function LandingCompact() {
             </p>
             <h2
               id="landing-exams-heading"
-              className="mt-1 text-xl font-bold tracking-tight text-slate-900 sm:text-2xl"
+              className="mt-1 text-xl font-bold tracking-tight text-[var(--color-ink)] sm:text-2xl"
             >
               Switch exams anytime — pay once, study everything.
             </h2>
-            <p className="mt-1.5 text-sm text-slate-600">
+            <p className="mt-1.5 text-sm text-[var(--color-ink-muted)]">
               Pick your primary board in the app, then jump between NCLEX, USMLE, NAPLEX, and MPJE
               without buying separate question banks.
             </p>
@@ -113,16 +113,16 @@ export function LandingCompact() {
                     aria-label={`Preview ${exam.label} practice`}
                   >
                     <span
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50 ring-1 ring-black/[0.04]"
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--color-surface)] ring-1 ring-black/[0.04]"
                       style={{ color: exam.color }}
                     >
                       <Icon className="h-4 w-4" strokeWidth={2} aria-hidden />
                     </span>
                     <span className="min-w-0">
-                      <span className="block font-semibold text-slate-900 group-hover:text-teal-700">
+                      <span className="block font-semibold text-[var(--color-ink)] group-hover:text-teal-700">
                         {exam.label}
                       </span>
-                      <span className="block text-[0.625rem] font-medium text-slate-500">
+                      <span className="block text-[0.625rem] font-medium text-[var(--color-ink-muted)]">
                         {exam.blurb}
                       </span>
                     </span>
@@ -136,14 +136,14 @@ export function LandingCompact() {
             {VALUE_PILLARS.map(({ icon: Icon, title, detail }) => (
               <li
                 key={title}
-                className="flex gap-2.5 rounded-xl border border-slate-100 bg-slate-50/50 px-3 py-2.5"
+                className="flex gap-2.5 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2.5"
               >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white ring-1 ring-black/[0.04]">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[var(--color-surface-elevated)] ring-1 ring-black/[0.04]">
                   <Icon className="h-4 w-4 text-teal-600" strokeWidth={2} aria-hidden />
                 </span>
                 <span>
-                  <p className="text-xs font-semibold text-slate-900">{title}</p>
-                  <p className="mt-0.5 text-[0.6875rem] leading-snug text-slate-500">{detail}</p>
+                  <p className="text-xs font-semibold text-[var(--color-ink)]">{title}</p>
+                  <p className="mt-0.5 text-[0.6875rem] leading-snug text-[var(--color-ink-muted)]">{detail}</p>
                 </span>
               </li>
             ))}
@@ -153,7 +153,7 @@ export function LandingCompact() {
 
       {/* Top 500 + pricing */}
       <section
-        className="aee-landing-compact-section border-b border-slate-100 bg-slate-50/60"
+        className="aee-landing-compact-section border-b border-[var(--color-border)] bg-[var(--color-surface)]"
         aria-labelledby="landing-drugs-heading"
       >
         <div className="mx-auto max-w-[1080px] px-5 sm:px-6">
@@ -170,11 +170,11 @@ export function LandingCompact() {
                   </p>
                   <h2
                     id="landing-drugs-heading"
-                    className="mt-1 text-xl font-bold tracking-tight text-slate-900"
+                    className="mt-1 text-xl font-bold tracking-tight text-[var(--color-ink)]"
                   >
                     Top 500 Drugs
                   </h2>
-                  <p className="mt-1 text-xs text-slate-500">
+                  <p className="mt-1 text-xs text-[var(--color-ink-muted)]">
                     High-yield flashcards for NCLEX, USMLE, and NAPLEX — generic, brand, MOA, and
                     adverse effects in one deck.
                   </p>
@@ -208,21 +208,21 @@ export function LandingCompact() {
               </p>
               <h2
                 id="pricing-teaser-heading"
-                className="mt-1 text-xl font-bold tracking-tight text-slate-900"
+                className="mt-1 text-xl font-bold tracking-tight text-[var(--color-ink)]"
               >
                 Start free.{" "}
                 <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
                   Study all four boards.
                 </span>
               </h2>
-              <p className="mt-1.5 text-xs text-slate-600">
+              <p className="mt-1.5 text-xs text-[var(--color-ink-muted)]">
                 {formatTrialHeroOffer()} — no per-exam upgrade fees.
               </p>
 
               <LandingVisualSlot
                 visualId="pricing-value-stack"
                 fit="contain"
-                className="mt-3 overflow-hidden rounded-xl bg-white ring-1 ring-black/[0.04]"
+                className="mt-3 overflow-hidden rounded-xl bg-[var(--color-surface-elevated)] ring-1 ring-black/[0.04]"
               />
 
               <div className="mt-auto pt-4">

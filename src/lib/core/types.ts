@@ -6,7 +6,7 @@ export type UserId = Brand<string, "UserId">;
 export type QuestionKey = Brand<string, "QuestionKey">;
 export type FieldId = Brand<string, "FieldId">;
 
-export const EXAM_TYPES = ["NCLEX", "USMLE", "NAPLEX", "MPJE"] as const;
+export const EXAM_TYPES = ["NCLEX", "USMLE", "NAPLEX", "PANCE", "AANP FNP"] as const;
 export type ExamType = (typeof EXAM_TYPES)[number];
 
 export const DIFFICULTY_LEVELS = ["easy", "medium", "hard"] as const;

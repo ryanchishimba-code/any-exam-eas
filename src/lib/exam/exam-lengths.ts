@@ -5,7 +5,7 @@ import type { ExamSlug } from "@/lib/exams/catalog";
 /** Board-style session types. */
 export type ExamSessionMode = "timed" | "bank";
 
-export type BoardExamKey = "nclex" | "usmle" | "naplex" | "mpje";
+export type BoardExamKey = "nclex" | "usmle" | "naplex" | "pance";
 
 /** NCLEX timed exam lengths — mirrors real CAT minimum and maximum. */
 export const NCLEX_TIMED_COUNTS = {
@@ -20,29 +20,31 @@ const FIELD_ID_TO_BOARD: Record<string, BoardExamKey> = {
   "usmle-step-1": "usmle",
   "usmle-step-2": "usmle",
   pharmacy: "naplex",
-  mpje: "mpje",
+  pance: "pance",
+  "aanp-fnp": "pance",
+  mpje: "pance",
 };
 
 const SLUG_TO_BOARD: Record<ExamSlug, BoardExamKey | null> = {
   nclex: "nclex",
   usmle: "usmle",
   naplex: "naplex",
-  mpje: "mpje",
+  pance: "pance",
   top500: null,
 };
 
-/** Fixed question counts for USMLE and NAPLEX timed simulations. */
+/** Fixed question counts for USMLE, NAPLEX, and PANCE timed simulations. */
 const TIMED_EXAM_COUNTS: Record<Exclude<BoardExamKey, "nclex">, number> = {
   usmle: 280,
   naplex: 225,
-  mpje: 120,
+  pance: 300,
 };
 
 const BOARD_LABELS: Record<BoardExamKey, string> = {
   nclex: "NCLEX",
   usmle: "USMLE",
   naplex: "NAPLEX",
-  mpje: "MPJE",
+  pance: "PANCE",
 };
 
 export function parseNclexTimedVariant(value: string | null | undefined): NclexTimedVariant {
@@ -135,6 +137,13 @@ export function getExamQuestionCountBySlug(
   return TIMED_EXAM_COUNTS[board];
 }
 
+const BOARD_TO_EXAM_SLUG: Record<BoardExamKey, import("@/types/edtech").ExamSlug> = {
+  nclex: "nclex",
+  usmle: "usmle",
+  naplex: "naplex",
+  pance: "pance",
+};
+
 /** Board-style timed session duration (scales official exam time to question count). */
 export function computeTimedExamTimeLimitSec(
   fieldOrLabel: string,
@@ -144,7 +153,7 @@ export function computeTimedExamTimeLimitSec(
   const board = resolveBoardExam(fieldOrLabel);
   if (!board) return (questionCount ?? 50) * 90;
   const count = questionCount ?? getTimedExamQuestionCount(fieldOrLabel, options);
-  return computeTimeLimitSec(board, count, true);
+  return computeTimeLimitSec(BOARD_TO_EXAM_SLUG[board], count, true);
 }
 
 export function formatExamLengthLabel(

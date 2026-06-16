@@ -4,13 +4,11 @@ import {
   Layers,
   Library,
   Pill,
-  Scale,
   Stethoscope,
   Timer,
   type LucideIcon,
 } from "lucide-react";
 import { MARKETING_QUESTION_COUNTS, TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
-import { studyHubMpjeHref } from "@/lib/study-hub/config";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 
 export type LandingExam = {
@@ -48,12 +46,20 @@ export const LANDING_EXAMS: LandingExam[] = [
     color: EXAM_ACCENTS.naplex,
   },
   {
-    id: "mpje",
-    label: "MPJE",
-    blurb: "Federal + state pharmacy law",
-    href: studyHubMpjeHref(),
-    icon: Scale,
-    color: EXAM_ACCENTS.mpje,
+    id: "pance",
+    label: "PANCE",
+    blurb: "NCCPA blueprint · PA certification vignettes",
+    href: "/question-bank?field=pance",
+    icon: HeartPulse,
+    color: EXAM_ACCENTS.pance,
+  },
+  {
+    id: "aanp-fnp",
+    label: "AANP FNP",
+    blurb: "AANPCB blueprint · primary care across the lifespan",
+    href: "/question-bank?field=aanp-fnp",
+    icon: Stethoscope,
+    color: EXAM_ACCENTS.aanpFnp,
   },
 ];
 
@@ -98,60 +104,68 @@ export const LANDING_BENEFITS = [
 
 /** Bullet list for pricing panels and signup CTAs. */
 export const LANDING_PRICING_FEATURES = [
-  "NCLEX · USMLE · NAPLEX · MPJE question banks",
-  "Curated vignettes with aligned answer choices",
-  "Adaptive practice + timed full exams",
-  "Reference Hub & Memory Cards",
-  "High-yield Review Modules",
-  "Anatomy Studio (3D + CT Atlas)",
+  "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP question banks",
+  "Proprietary Exam Roadmaps aligned to each blueprint",
+  "Deep Dive Review Modules linked from practice",
+  "Curated vignettes with excellent explanations",
+  "Performance analytics & weak-area targeting",
+  "Normal lab values & clinical calculators",
+  "Reference Hub, Memory Cards & timed full exams",
   `${TOP_500_DRUGS_COUNT} Top Drugs pharmacology deck`,
-  "Progress analytics & weak-area drills",
 ] as const;
 
-export const LANDING_HERO_EYEBROW = "NCLEX · USMLE · NAPLEX · MPJE";
+export const LANDING_HERO_EYEBROW = "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP";
 
 /** Primary signup destination — single conversion path across the landing page. */
 export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=yearly";
 
 /** Large hero exam strip — short labels with brand accent colors. */
 export const LANDING_HERO_EXAMS = [
-  { label: "NCLEX", color: EXAM_ACCENTS.nclex },
   { label: "USMLE", color: EXAM_ACCENTS.usmle },
+  { label: "NCLEX", color: EXAM_ACCENTS.nclex },
   { label: "NAPLEX", color: EXAM_ACCENTS.naplex },
-  { label: "MPJE", color: EXAM_ACCENTS.mpje },
+  { label: "PANCE", color: EXAM_ACCENTS.pance },
+  { label: "AANP FNP", color: EXAM_ACCENTS.aanpFnp },
 ] as const;
 
-/** Centered hero tagline — primary line on the landing page. */
-export const LANDING_HERO_TAGLINE = "Board prep without the premium price tag.";
-export const LANDING_HERO_HEADLINE_QUOTED = LANDING_HERO_TAGLINE;
+/** Primary hero headline — benefit-focused, human tone. */
+export const LANDING_HERO_HEADLINE = "Pass your board exams with confidence.";
+
+/** Hero sub-headline — exams + value props in one scannable line. */
+export const LANDING_HERO_SUBLINE =
+  "High-quality practice questions for USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP — plus proprietary Roadmaps, Deep Dive lessons, analytics, lab values, and clinical calculators in one affordable subscription.";
+
+/** @deprecated Use LANDING_HERO_HEADLINE for the primary headline string. */
+export const LANDING_HERO_HEADLINE_QUOTED = LANDING_HERO_HEADLINE;
 
 /** Scannable hero benefits — shown under the subline. */
 export const LANDING_HERO_BENEFITS = [
-  "Curated vignettes with aligned answer choices",
-  "Adaptive practice that targets weak topics",
-  "All four boards included — one simple plan",
+  "Blueprint-aligned Roadmaps for each exam",
+  "Deep Dive lessons linked to the questions you miss",
+  "Board-style vignettes with teachable rationales",
+  "One subscription — no stacking separate prep bills",
 ] as const;
 
-/** @deprecated Use LANDING_HERO_HEADLINE_QUOTED */
-export const LANDING_HERO_HEADLINE = "Your best companion";
+/** @deprecated Legacy split headline — no longer used on the landing page. */
+export const LANDING_HERO_HEADLINE_LEGACY = "Your best companion";
 
-/** @deprecated Use LANDING_HERO_HEADLINE_QUOTED */
+/** @deprecated Legacy split headline accent — no longer used on the landing page. */
 export const LANDING_HERO_HEADLINE_ACCENT = "for boards and clinical practice.";
 
 /** Three punchy hero benefits — scannable in under 3 seconds. */
 export const LANDING_HERO_PITCHES = [
-  "4 exams · 1 price",
-  "Board-style questions",
-  "Adaptive + timed exams",
+  "5 board tracks · 1 plan",
+  "Roadmaps + Deep Dives",
+  "Calculators & lab values",
 ] as const;
 
 /** Hero price anchor — what's included at the monthly rate. */
-export const LANDING_HERO_PRICE_TAGLINE = "A price you can't beat.";
+export const LANDING_HERO_PRICE_TAGLINE = "Serious prep without the premium price tag.";
 
 export const LANDING_HERO_PRICE_INCLUDES = [
   `${MARKETING_QUESTION_COUNTS.total} board-style questions`,
-  `${TOP_500_DRUGS_COUNT} Top Drugs deck + Review Modules`,
-  "Reference Hub, Anatomy Studio & timed exams",
+  "Exam Roadmaps, Deep Dive modules & Reference Hub",
+  "Analytics, lab values & clinical calculators",
 ] as const;
 
 export const LANDING_STEPS = [
@@ -241,11 +255,11 @@ export const SAMPLE_QUESTIONS_FEATURED = SAMPLE_QUESTION_PREVIEWS.filter((q) =>
 
 export const LANDING_METRICS = [
   { value: MARKETING_QUESTION_COUNTS.total, label: "Board-style items" },
-  { value: "4", label: "Major licensing exams" },
-  { value: String(TOP_500_DRUGS_COUNT), label: "Pharmacology flashcards" },
-  { value: "Anatomy", label: "Interactive explorer" },
-  { value: "7+", label: "Review Modules" },
-  { value: "Ref", label: "Hub + Memory Cards" },
+  { value: "5", label: "Board exam tracks" },
+  { value: "Roadmap", label: "Per-exam study plan" },
+  { value: "Deep Dive", label: "Linked lessons" },
+  { value: String(TOP_500_DRUGS_COUNT), label: "Pharmacology cards" },
+  { value: "Calc", label: "Clinical calculators" },
 ];
 
 export const LANDING_TESTIMONIALS = [
@@ -258,16 +272,16 @@ export const LANDING_TESTIMONIALS = [
   },
   {
     quote:
-      "The vignette rationales feel closer to UWorld than the free apps I tried — but I'm not buying Step 2 and MPJE as separate subscriptions anymore.",
+      "The vignette rationales feel closer to UWorld than the free apps I tried — but I'm not buying Step 2 and PANCE as separate subscriptions anymore.",
     name: "Ben K.",
     exam: "USMLE Step 2 CK",
     initials: "BK",
   },
   {
     quote:
-      "Calculation cases plus law drills in one account is what sold me. State MPJE selection was the feature I couldn't find bundled elsewhere.",
+      "Clinical vignettes plus pharmacology flashcards in one account is what sold me. PANCE blueprint tracking was the feature I couldn't find bundled elsewhere.",
     name: "Priya S.",
-    exam: "NAPLEX · MPJE",
+    exam: "NAPLEX · PANCE",
     initials: "PS",
   },
 ];

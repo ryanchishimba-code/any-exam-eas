@@ -35,7 +35,7 @@ function examBankItem(
 }
 
 describe("full-length exam fields", () => {
-  it("covers NCLEX, NAPLEX, USMLE, and MPJE catalog fields", () => {
+  it("covers NCLEX, NAPLEX, USMLE, and PANCE catalog fields", () => {
     for (const slug of EXAM_SLUGS) {
       const exam = EXAM_CATALOG[slug];
       expect(isFullExamField(exam.fieldId)).toBe(true);
@@ -105,11 +105,39 @@ describe("finalizeExamSessionQuestions", () => {
     15_000
   );
 
+  it("rejects sessions with generic placeholder distractors", () => {
+    const bad: RawQuestionInput[] = [
+      {
+        id: 1,
+        type: "multiple_choice",
+        question: "Test?",
+        options: ["Option A", "Option B", "Option C", "Option D"],
+        correctAnswer: "Option A",
+        explanation: "Because.",
+      },
+    ];
+    const quality = assessExamSessionQuality(
+      bad.map((q, i) => ({
+        id: `q-${i}`,
+        sourceIndex: i,
+        type: "multiple_choice" as const,
+        stem: q.question,
+        options: q.options ?? [],
+        correctAnswers: [q.correctAnswer],
+        explanation: q.explanation ?? "",
+        difficulty: "medium" as const,
+      })),
+      1
+    );
+    expect(quality.issues).toContain("generic_distractors");
+    expect(() => assertExamSessionReady(quality, "usmle-step-2")).toThrow(/distractor/i);
+  });
+
   it("passes quality gates for a mixed full-length block", () => {
-    const { prepared, quality } = finalizeExamSessionQuestions(buildPool(120, "mpje"), 120);
+    const { prepared, quality } = finalizeExamSessionQuestions(buildPool(120, "pance"), 120);
     expect(prepared).toHaveLength(120);
     expect(quality.issues).not.toContain("generic_distractors");
-    assertExamSessionReady({ ...quality, ok: quality.returned === 120 }, "mpje");
+    assertExamSessionReady({ ...quality, ok: quality.returned === 120 }, "pance");
   });
 });
 

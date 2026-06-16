@@ -4,7 +4,7 @@ import { MEMORY_CARDS } from "./seeds";
 
 describe("pinned-essentials", () => {
   it("has pinned cards for every exam", () => {
-    for (const slug of ["nclex", "usmle", "naplex", "mpje"] as const) {
+    for (const slug of ["nclex", "usmle", "naplex", "pance"] as const) {
       const ids = getPinnedMemoryCardIds(slug);
       expect(ids.length).toBeGreaterThanOrEqual(3);
       for (const id of ids) {

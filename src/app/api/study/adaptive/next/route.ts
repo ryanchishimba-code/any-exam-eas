@@ -17,15 +17,13 @@ import { buildTopicWeakness } from "@/lib/learning/weakness";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
 import type { ExamQuestion } from "@/lib/ai";
 import {
-  getMpjeState,
-  isMpjeField,
-  resolveMpjeGenerationOptions,
-} from "@/lib/mpje/config";
-import { prepareMpjeBankItems } from "@/lib/mpje/prepare-items";
-import { parseMpjeStateParam } from "@/lib/mpje/validators";
-import { bankItemToRawQuestion } from "@/lib/exam-prep/ngn-bank-bridge";
-import { bankItemToNaplexRaw } from "@/lib/exam-prep/naplex-bank-bridge";
-import { bankItemToUsmleRaw, isUsmleField } from "@/lib/exam-prep/usmle-bank-bridge";
+  assertExamSessionReady,
+  assessExamSessionQuality,
+} from "@/lib/questions/finalize-exam-session";
+import {
+  bankItemToSessionRaw,
+  prepareBankItemsForSession,
+} from "@/lib/exam-prep/prepare-bank-session";
 
 export const runtime = "nodejs";
 
@@ -46,9 +44,6 @@ const bodySchema = z.object({
   excludeQuestionKeys: z.array(z.string()).optional(),
   weakFocusRatio: z.number().min(0.2).max(0.9).optional(),
   studyMode: z.enum(["adaptive", "weak_area", "practice", "timed", "mock"]).optional(),
-  mpjeVariant: z.enum(["uniform", "state"]).optional(),
-  mpjeState: z.string().max(8).optional(),
-  state: z.string().max(2).optional(),
 });
 
 function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQuestion {
@@ -90,38 +85,6 @@ function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQu
   };
 }
 
-function bankItemToExamQuestion(
-  fieldId: string,
-  field: string,
-  subjectId: string,
-  item: Awaited<ReturnType<typeof sampleQuestionBankItems>>[number],
-  index: number
-) {
-  if (fieldId === "nursing") {
-    return bankItemToRawQuestion(item, index, { field, subjectId });
-  }
-  if (fieldId === "pharmacy") {
-    return bankItemToNaplexRaw(item, index, { field, subjectId });
-  }
-  if (isUsmleField(fieldId)) {
-    return bankItemToUsmleRaw(item, index, { field, subjectId });
-  }
-  return {
-    id: index + 1,
-    type: "multiple_choice" as const,
-    question: item.question,
-    options: [...item.options],
-    correctAnswer: item.correctAnswer,
-    explanation: item.explanation,
-    solutionSteps: item.solutionSteps,
-    tags: item.tags,
-    highYield: true,
-    field,
-    subjectId,
-    bankItemId: item.id,
-  };
-}
-
 export async function POST(req: Request) {
   const { requirePremiumApi } = await import("@/lib/api-access");
   const premium = await requirePremiumApi();
@@ -150,20 +113,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unknown subject for this field." }, { status: 400 });
     }
 
-    const mpjeStateCode = isMpjeField(fieldId)
-      ? parseMpjeStateParam(body.state, body.mpjeState)
-      : undefined;
-
-    const mpjeOptions = isMpjeField(fieldId)
-      ? resolveMpjeGenerationOptions({
-          variant: body.mpjeVariant ?? "state",
-          stateCode: mpjeStateCode,
-        })
-      : null;
-
     const poolSize = Math.min(
       ADAPTIVE_QUESTION_POOL_PER_SUBJECT,
-      Math.max(body.count * 5, 40)
+      Math.max(body.count * 6, 60)
     );
 
     let items = await sampleQuestionBankItems({
@@ -171,46 +123,26 @@ export async function POST(req: Request) {
       subjectId,
       count: poolSize,
       poolMultiplier: 2,
-      stateCode: mpjeStateCode,
     });
 
-    if (mpjeOptions && items.length > 0) {
-      const mpjeLabel =
-        mpjeOptions.variant === "state" && mpjeOptions.stateCode
-          ? `${getMpjeState(mpjeOptions.stateCode)?.name ?? mpjeOptions.stateCode} MPJE`
-          : "Uniform MPJE";
-      items = prepareMpjeBankItems(items, mpjeOptions, mpjeLabel);
-    }
-
-    if (fieldId === "pharmacy" && items.length > 0) {
-      const { prepareNaplexItemsForSession } = await import("@/lib/exam-prep/naplex-serve-gate");
-      items = prepareNaplexItemsForSession({
-        items,
-        fieldId,
-        field: body.field,
-        limit: body.count,
-      });
-    }
-
-    if (fieldId === "nursing" && items.length > 0) {
-      const { prepareNclexItemsForSession } = await import("@/lib/exam-prep/nclex-serve-gate");
-      items = prepareNclexItemsForSession({
-        items,
-        field: body.field,
-        limit: body.count,
-      });
-    }
+    items = prepareBankItemsForSession({
+      fieldId,
+      field: body.field,
+      items,
+      limit: poolSize,
+    });
 
     const pool: ReturnType<typeof examQuestionToStudy>[] = items.map((item, i) =>
-      examQuestionToStudy(bankItemToExamQuestion(fieldId, body.field, subjectId, item, i), i)
+      examQuestionToStudy(
+        bankItemToSessionRaw(fieldId, body.field, subjectId, item, i),
+        i
+      )
     );
 
     if (pool.length === 0) {
       return NextResponse.json(
         {
-          error: isMpjeField(fieldId)
-            ? "MPJE questions are still loading. Try again in a moment or pick a specific topic."
-            : "No questions in bank for this field/subject.",
+          error: "No board-ready questions in bank for this field/subject.",
           code: "EMPTY_BANK",
         },
         { status: 404 }
@@ -230,6 +162,9 @@ export async function POST(req: Request) {
       targetDifficulty: body.currentDifficulty as DifficultyLevel,
       excludeKeys,
     });
+
+    const quality = assessExamSessionQuality(orderedQuestions, body.count);
+    assertExamSessionReady(quality, fieldId);
 
     const questions = orderedQuestions.map(toApiQuestion);
     const selectionReasoning = result.selections.map((s) => ({
@@ -262,6 +197,21 @@ export async function POST(req: Request) {
   } catch (e) {
     if (e instanceof z.ZodError) {
       return NextResponse.json({ error: e.flatten() }, { status: 400 });
+    }
+    if (e instanceof Error && e.message.includes("board-ready")) {
+      return NextResponse.json({ error: e.message, code: "SESSION_UNAVAILABLE" }, { status: 503 });
+    }
+    if (e instanceof Error && e.message.includes("distractor")) {
+      return NextResponse.json({ error: e.message, code: "SESSION_UNAVAILABLE" }, { status: 503 });
+    }
+    if (e instanceof Error && e.message.includes("diverse")) {
+      return NextResponse.json({ error: e.message, code: "SESSION_UNAVAILABLE" }, { status: 503 });
+    }
+    if (e instanceof Error && e.message.includes("balanced")) {
+      return NextResponse.json({ error: e.message, code: "SESSION_UNAVAILABLE" }, { status: 503 });
+    }
+    if (e instanceof Error && e.message.includes("Not enough")) {
+      return NextResponse.json({ error: e.message, code: "SESSION_UNAVAILABLE" }, { status: 503 });
     }
     return NextResponse.json({ error: "Invalid adaptive session request." }, { status: 400 });
   }

@@ -45,7 +45,7 @@ export function CompareSectionHeading({
       </p>
       <h2
         id={id}
-        className="mt-1 text-xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-2xl lg:text-3xl"
+        className="mt-1 text-xl font-extrabold tracking-tight text-[var(--color-ink)] sm:text-2xl lg:text-3xl"
       >
         Four exams.{" "}
         <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent dark:from-teal-400 dark:to-cyan-300">
@@ -73,7 +73,7 @@ export function HowWeCompare({ variant = "default" }: HowWeCompareProps) {
           ? "aee-landing-hero-band__compare scroll-mt-24"
           : isOverlap
             ? "aee-hero-compare-overlap scroll-mt-24"
-            : "scroll-mt-24 border-b border-slate-100 bg-slate-50/80 py-6 dark:border-slate-800 dark:bg-slate-900/50 sm:py-8"
+            : "scroll-mt-24 border-b border-[var(--color-border)] bg-[var(--color-surface)] py-6 sm:py-8"
       }
       aria-labelledby="compare-heading"
     >
@@ -113,7 +113,7 @@ function CompareUsCard({
   compact?: boolean;
 }) {
   return (
-    <article className="aee-hero-compare-card aee-hero-compare-card--us relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-teal-500/40 bg-white p-4 shadow-[0_8px_28px_rgba(13,148,136,0.1)] dark:border-teal-400/35 dark:bg-slate-900 dark:shadow-[0_8px_28px_rgba(0,212,200,0.12)] sm:p-4">
+    <article className="aee-hero-compare-card aee-hero-compare-card--us relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-teal-500/40 p-4 shadow-[0_8px_28px_rgba(13,148,136,0.1)] dark:border-teal-400/35 dark:shadow-[0_8px_28px_rgba(0,212,200,0.12)] sm:p-4">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-teal-50/90 to-transparent dark:from-teal-950/60"
         aria-hidden
@@ -132,7 +132,7 @@ function CompareUsCard({
         >
           {formatTrialTodayPrice()}
         </p>
-        <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
+        <p className="mt-0.5 text-xs text-[var(--color-ink-muted)]">
           {formatTrialLabel()} · then {formatMonthlyPrice()}/mo
         </p>
       </header>
@@ -157,31 +157,31 @@ function CompareThemCard({
   compact?: boolean;
 }) {
   return (
-    <article className="aee-hero-compare-card aee-hero-compare-card--them flex h-full flex-col rounded-2xl border border-slate-200/90 bg-slate-50/80 p-4 dark:border-slate-700 dark:bg-slate-900/60 sm:p-4">
+    <article className="aee-hero-compare-card aee-hero-compare-card--them flex h-full flex-col rounded-2xl border p-4 sm:p-4">
       <header>
-        <p className="text-xs font-bold uppercase tracking-wide text-slate-400 dark:text-slate-500">
+        <p className="text-xs font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
           Typical competitors
         </p>
         <p className="mt-2 flex flex-wrap gap-1.5">
           {competitorNames.map((name) => (
             <span
               key={name}
-              className="rounded-md bg-white px-2 py-0.5 text-[0.6875rem] font-medium text-slate-500 ring-1 ring-slate-200/80 dark:bg-slate-800 dark:text-slate-400 dark:ring-slate-700"
+              className="rounded-md bg-[var(--color-surface-elevated)] px-2 py-0.5 text-[0.6875rem] font-medium text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]"
             >
               {name}
             </span>
           ))}
         </p>
         <p
-          className={`font-black tracking-tight text-slate-300 line-through dark:text-slate-600 ${compact ? "mt-2 text-2xl" : "mt-3 text-3xl sm:text-4xl"}`}
+          className={`font-black tracking-tight text-[var(--color-ink-muted)] line-through ${compact ? "mt-2 text-2xl" : "mt-3 text-3xl sm:text-4xl"}`}
         >
           $99+
         </p>
-        <p className="mt-0.5 text-xs text-slate-400 dark:text-slate-500">Upfront or bundled plans</p>
+        <p className="mt-0.5 text-xs text-[var(--color-ink-muted)]">Upfront or bundled plans</p>
       </header>
 
       <ul
-        className="mt-3 flex-1 space-y-2 border-t border-slate-200/80 pt-3 dark:border-slate-700"
+        className="mt-3 flex-1 space-y-2 border-t border-[var(--color-border)] pt-3"
         role="list"
       >
         {visibleRows.map(({ label, them }) => (
@@ -209,26 +209,26 @@ function CompareRow({
     <li className={`flex items-start gap-2 ${compact ? "text-xs" : "gap-2.5 text-sm"}`}>
       <span
         className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
-          isUs ? "bg-emerald-50 dark:bg-emerald-950/50" : "bg-slate-100 dark:bg-slate-800"
+          isUs ? "bg-emerald-50 dark:bg-emerald-950/50" : "bg-[var(--color-surface)]"
         }`}
       >
         {isUs ? (
           <Check className="h-3 w-3 text-emerald-600 dark:text-emerald-400" strokeWidth={2.5} aria-hidden />
         ) : (
-          <Minus className="h-3 w-3 text-slate-400 dark:text-slate-500" strokeWidth={2.5} aria-hidden />
+          <Minus className="h-3 w-3 text-[var(--color-ink-muted)]" strokeWidth={2.5} aria-hidden />
         )}
       </span>
       <span className="min-w-0">
         <span
           className={`block text-[0.65rem] font-semibold uppercase tracking-wide ${
-            isUs ? "text-slate-400 dark:text-slate-500" : "text-slate-300 dark:text-slate-600"
+            isUs ? "text-[var(--color-ink-muted)]" : "text-[var(--color-ink-muted)]/70"
           }`}
         >
           {label}
         </span>
         <span
           className={
-            isUs ? "font-semibold text-slate-900 dark:text-slate-100" : "text-slate-500 dark:text-slate-400"
+            isUs ? "font-semibold text-[var(--color-ink)]" : "text-[var(--color-ink-muted)]"
           }
         >
           {value}
@@ -249,7 +249,7 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
           {formatTrialCtaLabel()}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
         </Link>
-        <p className="text-[0.625rem] leading-relaxed text-slate-400 dark:text-slate-500">
+        <p className="text-[0.625rem] leading-relaxed text-[var(--color-ink-muted)]">
           Competitor pricing from public listings ({new Date().getFullYear()}); may vary.
         </p>
       </div>
@@ -260,7 +260,7 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
     <div
       className={
         isOverlap
-          ? "mt-4 flex flex-col items-center gap-3 border-b border-slate-100 bg-white/90 pb-6 pt-2 text-center backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/90"
+          ? "mt-4 flex flex-col items-center gap-3 border-b border-[var(--color-border)] bg-[color-mix(in_srgb,var(--color-surface-elevated)_90%,transparent)] pb-6 pt-2 text-center backdrop-blur-sm"
           : "mt-5 flex flex-col items-center gap-3 text-center"
       }
     >
@@ -274,14 +274,14 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
           aria-hidden
         />
       </Link>
-      <p className="max-w-md text-xs text-slate-500 dark:text-slate-400">
+      <p className="max-w-md text-xs text-[var(--color-ink-muted)]">
         {formatTrialTodayPrice()} today · payment method required · then from {formatMonthlyPrice()}
         /mo
       </p>
-      <p className="max-w-md text-[0.625rem] leading-relaxed text-slate-400 dark:text-slate-500">
+      <p className="max-w-md text-[0.625rem] leading-relaxed text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted)]">
         {TRIAL_PAYMENT_DISCLOSURE}
       </p>
-      <p className="max-w-md text-[0.625rem] leading-relaxed text-slate-400 dark:text-slate-500">
+      <p className="max-w-md text-[0.625rem] leading-relaxed text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted)]">
         Competitor pricing from public listings ({new Date().getFullYear()}); may vary. Not
         affiliated with UWorld, Archer Review, or SimpleNursing.
       </p>

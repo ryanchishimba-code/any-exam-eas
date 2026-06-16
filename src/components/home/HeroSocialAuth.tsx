@@ -16,7 +16,7 @@ export function HeroSocialAuth({
 }: HeroSocialAuthProps) {
   return (
     <div className={className}>
-      <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-slate-400 lg:text-left">
+      <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-[var(--color-ink-muted)] lg:text-left">
         Already a member?
       </p>
       <div className="space-y-2.5">

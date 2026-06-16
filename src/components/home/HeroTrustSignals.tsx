@@ -41,10 +41,10 @@ export function HeroTrustSignals({ className = "" }: HeroTrustSignalsProps) {
             strokeWidth={2}
             aria-hidden
           />
-          <p className="mt-2 text-sm font-bold tracking-tight text-slate-900">
+          <p className="mt-2 text-sm font-bold tracking-tight text-[var(--color-ink)]">
             {value}
           </p>
-          <p className="mt-0.5 text-[0.6875rem] leading-snug text-slate-500">
+          <p className="mt-0.5 text-[0.6875rem] leading-snug text-[var(--color-ink-muted)]">
             {label}
           </p>
         </div>

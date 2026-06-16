@@ -1,6 +1,6 @@
-/** Mandatory anti-repetition rules for USMLE, NAPLEX, COMLEX, MPJE, and all board-style generation. */
+/** Mandatory anti-repetition rules for USMLE, NAPLEX, PANCE, AANP FNP, and all board-style generation. */
 export const BATCH_DIVERSITY_RULES = `
-BATCH DIVERSITY & ANTI-REPETITION (mandatory — USMLE, NAPLEX, COMLEX, MPJE, and all board exams):
+BATCH DIVERSITY & ANTI-REPETITION (mandatory — all board exams):
 - No two consecutive questions may have similar style, similar answer choices, or similar clinical presentation.
 - Questions must vary significantly in structure, lead-in stem type, vignette opening, and overall appearance.
 - Within every batch of 10 questions (and every sliding window of 10):

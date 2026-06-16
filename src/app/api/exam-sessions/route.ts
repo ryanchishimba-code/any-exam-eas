@@ -9,7 +9,7 @@ import { requirePremiumApi } from "@/lib/api-access";
 
 export const runtime = "nodejs";
 
-const SLUGS = new Set(["nclex", "usmle", "naplex", "mpje", "top500"]);
+const SLUGS = new Set(["nclex", "usmle", "naplex", "pance", "top500"]);
 
 export async function POST(req: Request) {
   const premium = await requirePremiumApi();

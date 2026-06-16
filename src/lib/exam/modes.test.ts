@@ -64,17 +64,17 @@ describe("exam lengths", () => {
     expect(resolveTimedExamLimit("usmle-step-2", 100)).toBe(100);
     expect(resolveTimedExamLimit("usmle-step-2", 280)).toBe(280);
     expect(resolveTimedExamLimit("pharmacy", 50)).toBe(50);
-    expect(resolveTimedExamLimit("mpje", 100)).toBe(100);
-    expect(resolveTimedExamLimit("mpje", 99)).toBe(120);
+    expect(resolveTimedExamLimit("pance", 100)).toBe(100);
+    expect(resolveTimedExamLimit("pance", 99)).toBe(300);
   });
 
-  it("uses 280 for USMLE, 225 for NAPLEX, and 120 for MPJE", () => {
+  it("uses 280 for USMLE, 225 for NAPLEX, and 300 for PANCE", () => {
     expect(getTimedExamQuestionCount("usmle-step-1")).toBe(280);
     expect(getTimedExamQuestionCount("pharmacy")).toBe(225);
-    expect(getTimedExamQuestionCount("mpje")).toBe(120);
+    expect(getTimedExamQuestionCount("pance")).toBe(300);
     expect(getExamQuestionCountBySlug("usmle")).toBe(280);
     expect(getExamQuestionCountBySlug("naplex")).toBe(225);
-    expect(getExamQuestionCountBySlug("mpje")).toBe(120);
+    expect(getExamQuestionCountBySlug("pance")).toBe(300);
     expect(getExamQuestionCountBySlug("nclex", "maximum")).toBe(150);
   });
 });

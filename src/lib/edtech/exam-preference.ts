@@ -6,11 +6,17 @@ import type { ExamSlug, UserExamPreference } from "@/types/edtech";
 export async function getUserExamPreference(userId: string): Promise<UserExamPreference | null> {
   try {
     const row = await prisma.userExamPreference.findUnique({ where: { userId } });
-    if (!row || !isExamSlug(row.examSlug)) return null;
+    if (!row) return null;
+
+    let examSlug = row.examSlug;
+    if (examSlug === "mpje" || !isExamSlug(examSlug)) {
+      examSlug = "pance";
+      await setUserExamPreference(userId, "pance");
+    }
 
     return {
       userId: row.userId,
-      examSlug: row.examSlug,
+      examSlug: examSlug as ExamSlug,
       lastStudiedAt: row.lastStudiedAt,
     };
   } catch {

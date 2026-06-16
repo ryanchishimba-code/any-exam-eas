@@ -29,7 +29,7 @@ export function SubjectsShowcase() {
   const subjects = data?.subjects ?? [];
 
   return (
-    <section id="subjects" className="apple-section aee-landing-section bg-white">
+    <section id="subjects" className="apple-section aee-landing-section bg-[var(--color-surface-elevated)]">
       <div className="mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
         <div className="text-center">
           <p className="aee-section-label">Exam coverage</p>
@@ -95,11 +95,11 @@ function SubjectTile({
       <p className="mt-3 flex-1 text-[0.8125rem] leading-relaxed text-[var(--color-ink-muted)]">
         {subject.description}
       </p>
-      <div className="mt-4 flex flex-wrap gap-2 text-[0.6875rem] font-medium text-slate-400">
-        <span className="rounded-full bg-slate-100 px-2.5 py-0.5">
+      <div className="mt-4 flex flex-wrap gap-2 text-[0.6875rem] font-medium text-[var(--color-ink-muted)]">
+        <span className="rounded-full bg-[var(--color-surface)] px-2.5 py-0.5">
           {subject.questionCount ?? "—"} questions
         </span>
-        <span className="rounded-full bg-slate-100 px-2.5 py-0.5">
+        <span className="rounded-full bg-[var(--color-surface)] px-2.5 py-0.5">
           {subject.topicCount} topics
         </span>
       </div>

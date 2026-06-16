@@ -72,7 +72,7 @@ export function ExamLanding({ slug }: Props) {
       >
         <Link
           href={ROUTES.practiceHub}
-          className="text-sm font-medium text-slate-500 transition hover:text-[var(--color-accent)]"
+          className="text-sm font-medium text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
         >
           ← Practice Hub
         </Link>
@@ -84,29 +84,29 @@ export function ExamLanding({ slug }: Props) {
               hub.accentClass
             )}
           >
-            <Icon className="h-7 w-7 text-slate-800" strokeWidth={1.5} aria-hidden />
+            <Icon className="h-7 w-7 text-[var(--color-ink)]" strokeWidth={1.5} aria-hidden />
           </span>
           <div className="min-w-0 flex-1">
             <p className="text-xs font-semibold uppercase tracking-wider text-indigo-600">
               Exam prep
             </p>
-            <h1 className="mt-1 text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            <h1 className="mt-1 text-3xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-4xl">
               {hub.title}
             </h1>
-            <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-600">
+            <p className="mt-3 max-w-2xl text-base leading-relaxed text-[var(--color-ink-muted)]">
               {hub.subtitle}
             </p>
-            <p className="mt-2 text-sm font-medium text-slate-500">{hub.questionBankLabel}</p>
+            <p className="mt-2 text-sm font-medium text-[var(--color-ink-muted)]">{hub.questionBankLabel}</p>
           </div>
         </div>
       </motion.div>
 
       {slug === "mpje" && (
         <section className="mt-10 aee-card p-6" aria-labelledby="mpje-state">
-          <h2 id="mpje-state" className="text-lg font-semibold text-slate-900">
+          <h2 id="mpje-state" className="text-lg font-semibold text-[var(--color-ink)]">
             State jurisdiction
           </h2>
-          <p className="mt-1 text-sm text-slate-600">
+          <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
             Select your board state for state-specific pharmacy law, or leave blank for federal-only
             questions.
           </p>
@@ -127,7 +127,7 @@ export function ExamLanding({ slug }: Props) {
       )}
 
       <section className="mt-10" aria-labelledby="practice-modes">
-        <h2 id="practice-modes" className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+        <h2 id="practice-modes" className="text-sm font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
           Start practicing
         </h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -163,8 +163,8 @@ export function ExamLanding({ slug }: Props) {
         </div>
       </section>
 
-      <section className="mt-12 border-t border-slate-200/80 pt-10">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+      <section className="mt-12 border-t border-[var(--color-border)] pt-10">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
           Other exams
         </h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -214,12 +214,12 @@ function ModeTile({
       )}
     >
       <Icon
-        className={cn("h-5 w-5", accent ? "text-indigo-600" : "text-slate-600")}
+        className={cn("h-5 w-5", accent ? "text-indigo-600" : "text-[var(--color-ink-muted)]")}
         strokeWidth={1.75}
         aria-hidden
       />
-      <p className="mt-3 font-semibold text-slate-900">{title}</p>
-      <p className="mt-1 flex-1 text-sm text-slate-600">{description}</p>
+      <p className="mt-3 font-semibold text-[var(--color-ink)]">{title}</p>
+      <p className="mt-1 flex-1 text-sm text-[var(--color-ink-muted)]">{description}</p>
       <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-accent)]">
         Launch
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />

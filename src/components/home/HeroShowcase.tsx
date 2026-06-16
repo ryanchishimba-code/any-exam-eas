@@ -38,7 +38,7 @@ export function HeroShowcase() {
         <p className="text-3xl font-extrabold tracking-tight text-teal-700">
           {MARKETING_QUESTION_COUNTS.total}
         </p>
-        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+        <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
           Questions
         </p>
       </motion.div>

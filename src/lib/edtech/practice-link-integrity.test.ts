@@ -88,7 +88,7 @@ describe("question ngnPayload related-content integrity", () => {
     ["usmle batch 02", "usmle", USMLE_PHYSICIAN_EDUCATOR_BATCH_02],
     ["usmle batch 03", "usmle", USMLE_PHYSICIAN_EDUCATOR_BATCH_03],
     ["naplex batch 01", "naplex", NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01],
-    ["mpje batch 01", "mpje", MPJE_PHYSICIAN_EDUCATOR_BATCH_01],
+    ["mpje batch 01", "pance", MPJE_PHYSICIAN_EDUCATOR_BATCH_01],
     ["nclex curated", "nclex", NCLEX_CURATED_QUALITY],
   ];
 

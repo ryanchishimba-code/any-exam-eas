@@ -211,34 +211,37 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
     "naplex-abx-renal-dosing",
   ],
 
-  // MPJE subjects
-  "controlled-substances": [
-    "mpje-cii-rules",
-    "mpje-schedules",
-    "mpje-transfer-rules",
-    "mpje-partial-fill-ciii",
-    "mpje-expired-rx",
-    "mpje-dea-registration",
-    "mpje-pseudoephedrine",
+  // PANCE subjects (primary care across the lifespan)
+  assess: [
+    "fnp-hypertension-first-line",
+    "fnp-febrile-infant-workup",
+    "fnp-diabetes-a1c-targets",
+    "nclex-qsofa-screen",
   ],
-  "federal-pharmacy-law": [
-    "mpje-cii-rules",
-    "mpje-schedules",
-    "mpje-dea-registration",
-    "mpje-pseudoephedrine",
-    "mpje-interstate-transfer",
+  diagnose: [
+    "usmle-stemi-path",
+    "usmle-stroke-tpa",
+    "fnp-febrile-infant-workup",
+    "all-anion-gap",
   ],
-  "dispensing-procedures": ["mpje-expired-rx", "mpje-transfer-rules", "mpje-partial-fill-ciii"],
-  "pharmacy-operations": [
-    "mpje-recordkeeping",
-    "mpje-otp-basics",
-    "mpje-inspection-citations",
-    "mpje-confidentiality",
+  plan: [
+    "fnp-hypertension-first-line",
+    "fnp-diabetes-a1c-targets",
+    "naplex-hf-four-pillars",
+    "naplex-cap-empiric",
   ],
-  "uniform-mpje": ["mpje-transfer-rules", "mpje-interstate-transfer", "mpje-expired-rx"],
-  "pharmacy-ethics": ["mpje-confidentiality"],
-  "patient-privacy": ["mpje-confidentiality"],
-  "compounding-regulations": ["mpje-otp-basics", "mpje-recordkeeping"],
+  evaluate: [
+    "fnp-geriatric-beers",
+    "naplex-vanc-auc",
+    "fnp-diabetes-a1c-targets",
+    "naplex-hypoglycemia-15-15",
+  ],
+  cardiovascular: ["usmle-stemi-path", "usmle-acs-spectrum", "naplex-hf-four-pillars", "fnp-hypertension-first-line"],
+  pulmonary: ["usmle-cap-antibiotics", "naplex-cap-empiric"],
+  endocrine: ["fnp-diabetes-a1c-targets", "usmle-dka-orders", "naplex-insulin-kinetics"],
+  "womens-health": ["fnp-prenatal-initial-visit"],
+  pediatrics: ["fnp-febrile-infant-workup", "nclex-sepsis-bundle"],
+  geriatrics: ["fnp-geriatric-beers", "naplex-metformin-hold"],
 
   // Legacy / free-form question-tag aliases
   "critical-care": ["nclex-sepsis-bundle", "nclex-shock-types", "nclex-norepinephrine-first"],
@@ -258,8 +261,6 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
     "usmle-hhs-vs-dka",
   ],
   insulin: ["naplex-insulin-kinetics", "naplex-hypoglycemia-15-15"],
-  "federal-law": ["mpje-cii-rules", "mpje-schedules", "mpje-transfer-rules", "mpje-expired-rx"],
-  cardiovascular: ["usmle-stemi-path", "usmle-acs-spectrum", "naplex-hf-four-pillars"],
   "renal-electrolytes": ["usmle-hyperkalemia", "usmle-aki-fena", "all-anion-gap"],
   "endocrine-dm": ["usmle-dka-orders", "usmle-hhs-vs-dka", "naplex-insulin-kinetics"],
   "neurology-stroke": ["usmle-stroke-tpa", "usmle-tpa-exclusions"],

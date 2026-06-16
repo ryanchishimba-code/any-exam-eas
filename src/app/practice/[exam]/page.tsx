@@ -6,7 +6,7 @@ const FIELD_MAP: Record<ExamRouteSlug, string> = {
   nclex: "nursing",
   naplex: "pharmacy",
   usmle: "usmle-step-2",
-  mpje: "mpje",
+  pance: "pance",
 };
 
 type Props = {
@@ -19,7 +19,7 @@ export default async function PracticeExamRedirectPage({ params, searchParams }:
   const { exam } = await params;
   const sp = await searchParams;
 
-  if (!["nclex", "naplex", "usmle", "mpje"].includes(exam)) {
+  if (!["nclex", "naplex", "usmle", "pance"].includes(exam)) {
     redirect(ROUTES.dashboard);
   }
 
@@ -31,11 +31,5 @@ export default async function PracticeExamRedirectPage({ params, searchParams }:
   }
 
   const qs = new URLSearchParams({ field });
-  if (sp.state) {
-    qs.set("state", sp.state);
-    qs.set("mpjeState", sp.state);
-  }
-  if (slug === "mpje") qs.set("mpjeVariant", "state");
-
-  redirect(`${ROUTES.questionBank}?${qs.toString()}`);
+  redirect(`/question-bank?${qs.toString()}`);
 }

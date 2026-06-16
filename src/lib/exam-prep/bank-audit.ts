@@ -16,6 +16,7 @@ import {
   type NaplexAuditIssue,
 } from "./naplex-bank-audit";
 import { correctAnswerMatchesOption } from "./naplex-answer-align";
+import { hasGenericPlaceholderOptions } from "@/lib/question-format";
 
 export type BankAuditIssue = NclexAuditIssue | NaplexAuditIssue;
 
@@ -135,6 +136,17 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
   const uniqueOptions = new Set(item.options.map((o) => o.trim().toLowerCase()));
   if (uniqueOptions.size < item.options.length) {
     push("error", "duplicate_options", "Two or more answer options are identical.");
+  }
+
+  if (
+    item.options.length >= 4 &&
+    hasGenericPlaceholderOptions(item.options)
+  ) {
+    push(
+      "error",
+      "generic_placeholder_options",
+      "Answer choices use placeholder labels instead of board-style distractors."
+    );
   }
 
   if (

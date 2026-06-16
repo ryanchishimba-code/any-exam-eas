@@ -72,8 +72,8 @@ export function LiveBankStats({
               aria-hidden
             />
             <span>
-              <span className="font-bold text-slate-900 dark:text-slate-100">{value}</span>
-              <span className="text-slate-500 dark:text-slate-400"> · {label}</span>
+              <span className="font-bold text-[var(--color-ink)]">{value}</span>
+              <span className="text-[var(--color-ink-muted)]"> · {label}</span>
             </span>
           </div>
         ))}
@@ -86,17 +86,17 @@ export function LiveBankStats({
       {items.map(({ icon: Icon, value, label }) => (
         <div
           key={label}
-          className="rounded-xl border border-teal-100/80 bg-white/60 px-3 py-3 text-center backdrop-blur-sm dark:border-teal-900/40 dark:bg-slate-900/60 sm:px-4 sm:py-3.5"
+          className="rounded-xl border border-teal-100/80 bg-[color-mix(in_srgb,var(--color-surface-elevated)_60%,transparent)] px-3 py-3 text-center backdrop-blur-sm dark:border-teal-900/40 sm:px-4 sm:py-3.5"
         >
           <Icon
             className="mx-auto h-4 w-4 text-teal-600 dark:text-teal-400"
             strokeWidth={2}
             aria-hidden
           />
-          <p className="mt-2 text-sm font-bold tracking-tight text-slate-900 dark:text-slate-100">
+          <p className="mt-2 text-sm font-bold tracking-tight text-[var(--color-ink)]">
             {value}
           </p>
-          <p className="mt-0.5 text-[0.625rem] leading-snug text-slate-500 dark:text-slate-400 sm:text-[0.6875rem]">
+          <p className="mt-0.5 text-[0.625rem] leading-snug text-[var(--color-ink-muted)] sm:text-[0.6875rem]">
             {label}
           </p>
         </div>

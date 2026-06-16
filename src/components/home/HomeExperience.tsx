@@ -31,7 +31,7 @@ export function HomeExperience() {
     return (
       <>
         <Hero />
-        <div className="border-b border-slate-100 bg-slate-50/50 py-4" aria-hidden />
+        <div className="border-b border-[var(--color-border)] bg-[var(--color-surface)] py-4" aria-hidden />
       </>
     );
   }

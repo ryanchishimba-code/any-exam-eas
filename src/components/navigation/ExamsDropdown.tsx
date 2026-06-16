@@ -69,7 +69,7 @@ export function ExamsDropdown() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 4, scale: 0.98 }}
             transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute left-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-xl border border-slate-200/90 bg-white py-1.5 shadow-lg ring-1 ring-black/[0.04]"
+            className="absolute left-0 top-full z-50 mt-2 w-56 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] py-1.5 shadow-lg ring-1 ring-black/[0.04]"
           >
             {EXAM_NAV_ITEMS.map((exam) => (
               <Link
@@ -79,8 +79,8 @@ export function ExamsDropdown() {
                 className="block px-4 py-2.5 transition hover:bg-indigo-50/80"
                 onClick={close}
               >
-                <span className="text-sm font-medium text-slate-900">{exam.label}</span>
-                <span className="mt-0.5 block text-xs text-slate-500">
+                <span className="text-sm font-medium text-[var(--color-ink)]">{exam.label}</span>
+                <span className="mt-0.5 block text-xs text-[var(--color-ink-muted)]">
                   {exam.short} · {exam.stat}
                 </span>
               </Link>

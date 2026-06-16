@@ -60,7 +60,7 @@ export function LandingEssentials() {
   return (
     <section
       id="essentials"
-      className="aee-landing-section-compact border-y border-black/[0.04] bg-white"
+      className="aee-landing-section-compact border-y border-black/[0.04] bg-[var(--color-surface-elevated)]"
       aria-labelledby="essentials-heading"
     >
       <div className="mx-auto max-w-[960px] px-5 sm:px-6 lg:px-8">
@@ -71,7 +71,7 @@ export function LandingEssentials() {
           <h2 id="essentials-heading" className="aee-headline mt-2 text-2xl sm:text-3xl">
             Everything you need for board exam prep.
           </h2>
-          <p className="mx-auto mt-2 max-w-lg text-sm text-slate-600">
+          <p className="mx-auto mt-2 max-w-lg text-sm text-[var(--color-ink-muted)]">
             NCLEX, USMLE, NAPLEX, and MPJE — plus Reference Hub, Review Modules, Anatomy Studio,
             and Top 500 Drugs that follow you across devices.
           </p>
@@ -90,7 +90,7 @@ export function LandingEssentials() {
                 <span className="mt-3 font-semibold text-[var(--color-ink)] group-hover:text-teal-800">
                   {title}
                 </span>
-                <span className="mt-1 text-xs text-slate-500">{benefit}</span>
+                <span className="mt-1 text-xs text-[var(--color-ink-muted)]">{benefit}</span>
               </Link>
             </li>
           ))}
@@ -100,10 +100,10 @@ export function LandingEssentials() {
           {subscriberValue.map(({ title, detail }) => (
             <li
               key={title}
-              className="rounded-xl border border-black/[0.05] bg-white p-4 shadow-[0_2px_12px_rgba(15,23,42,0.04)]"
+              className="rounded-xl border border-black/[0.05] bg-[var(--color-surface-elevated)] p-4 shadow-[0_2px_12px_rgba(15,23,42,0.04)]"
             >
               <p className="font-semibold text-[var(--color-ink)]">{title}</p>
-              <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{detail}</p>
+              <p className="mt-1.5 text-sm leading-relaxed text-[var(--color-ink-muted)]">{detail}</p>
             </li>
           ))}
         </ul>
@@ -146,7 +146,7 @@ export function LandingEssentials() {
           </div>
         </div>
 
-        <p className="mt-6 text-center text-xs text-slate-400">
+        <p className="mt-6 text-center text-xs text-[var(--color-ink-muted)]">
           Built for nursing, medical, and pharmacy students preparing for NCLEX, USMLE,
           NAPLEX, and MPJE.
         </p>

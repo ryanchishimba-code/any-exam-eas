@@ -73,7 +73,7 @@ export function WelcomeBackSection() {
 
   return (
     <section
-      className="apple-section aee-landing-section border-y border-teal-100/60 bg-white"
+      className="apple-section aee-landing-section border-y border-teal-100/60 bg-[var(--color-surface-elevated)]"
       aria-labelledby="welcome-back-heading"
     >
       <div className="mx-auto grid max-w-[980px] items-center gap-12 px-6 lg:grid-cols-2 lg:gap-16">

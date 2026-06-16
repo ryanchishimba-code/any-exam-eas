@@ -1,9 +1,10 @@
-/** Canonical exam field identifiers exposed in the product (four board exams). */
+/** Canonical exam field identifiers exposed in the product (five board exams). */
 export const EXAM_FIELD_IDS = [
   "nursing",
   "usmle-step-2",
   "pharmacy",
-  "mpje",
+  "pance",
+  "aanp-fnp",
 ] as const;
 
 export type ExamFieldId = (typeof EXAM_FIELD_IDS)[number];
@@ -16,7 +17,13 @@ export const FIELD_ID_ALIASES: Record<string, ExamFieldId> = {
   "nclex-rn": "nursing",
   pharmacy: "pharmacy",
   naplex: "pharmacy",
-  mpje: "mpje",
+  pance: "pance",
+  "physician-assistant": "pance",
+  pa: "pance",
+  "aanp-fnp": "aanp-fnp",
+  fnp: "aanp-fnp",
+  "family-nurse-practitioner": "aanp-fnp",
+  mpje: "pance",
   "usmle-step-1": "usmle-step-2",
   "usmle-step1": "usmle-step-2",
   "step-1": "usmle-step-2",
@@ -39,6 +46,7 @@ export const RETIRED_FIELD_IDS = [
   "biology",
   "chemistry",
   "medicine",
+  "mpje",
 ] as const;
 
 export function normalizeFieldId(fieldId: string): string {

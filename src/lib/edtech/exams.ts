@@ -1,4 +1,5 @@
 import type { ExamDefinition, ExamSlug } from "@/types/edtech";
+import { normalizeFieldId } from "@/lib/subjects/field-ids";
 
 /** Static reference for the four supported exams (mirrors `exams` DB table). */
 export const EXAM_CATALOG: Record<ExamSlug, ExamDefinition> = {
@@ -32,15 +33,16 @@ export const EXAM_CATALOG: Record<ExamSlug, ExamDefinition> = {
     simulatedDurationMin: 360,
     simulatedQuestionCount: 225,
   },
-  mpje: {
-    slug: "mpje",
-    name: "MPJE",
-    shortName: "MPJE",
-    fieldId: "mpje",
-    description: "Federal and state pharmacy law, controlled substances, dispensing.",
-    accentClass: "from-amber-500/15 to-orange-600/10 border-amber-200/70",
-    simulatedDurationMin: 150,
-    simulatedQuestionCount: 120,
+  pance: {
+    slug: "pance",
+    name: "PANCE",
+    shortName: "PANCE",
+    fieldId: "pance",
+    description:
+      "NCCPA blueprint clinical vignettes — cardiovascular, pulmonary, GI, MSK, ID, neurology, and more.",
+    accentClass: "from-rose-500/15 to-pink-600/10 border-rose-200/70",
+    simulatedDurationMin: 300,
+    simulatedQuestionCount: 300,
   },
 };
 
@@ -54,9 +56,10 @@ export function isExamSlug(slug: string): slug is ExamSlug {
   return slug in EXAM_CATALOG;
 }
 
-/** Map study field id to full-exam slug (USMLE steps → usmle). */
+/** Map study field id to full-exam slug (USMLE steps → usmle; legacy ids → pance). */
 export function examSlugFromFieldId(fieldId: string): ExamSlug | null {
-  if (fieldId.startsWith("usmle-step")) return "usmle";
-  const entry = Object.values(EXAM_CATALOG).find((e) => e.fieldId === fieldId);
+  const normalized = normalizeFieldId(fieldId);
+  if (normalized.startsWith("usmle-step")) return "usmle";
+  const entry = Object.values(EXAM_CATALOG).find((e) => e.fieldId === normalized);
   return entry?.slug ?? null;
 }

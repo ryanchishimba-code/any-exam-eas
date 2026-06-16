@@ -1,8 +1,9 @@
 @import "tailwindcss";
 @import "../styles/a11y.css";
+@import "../styles/landing-theme.css";
 
-/* Light + dark UI — Tailwind `dark:` follows OS preference; flagship uses --flagship-* tokens. */
-@custom-variant dark (@media (prefers-color-scheme: dark));
+/* Light + dark UI — `data-theme` on <html> (see ThemeProvider); Tailwind `dark:` follows it. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme {
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
@@ -42,7 +43,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --color-ink: #f1f5f9;
     --color-ink-muted: #b8c5d6;
     --color-surface: #0f172a;
@@ -79,6 +80,49 @@
     --flagship-muted: #b8c5d6;
     --flagship-border: rgba(0, 212, 200, 0.14);
   }
+}
+
+[data-theme="dark"] {
+  --color-ink: #f1f5f9;
+  --color-ink-muted: #b8c5d6;
+  --color-surface: #0f172a;
+  --color-surface-elevated: #1a2740;
+  --color-bg: #071a2c;
+  --color-accent: #2ee7dc;
+  --color-accent-hover: #00d4c8;
+  --color-accent-light: #5eead4;
+  --color-border: rgba(148, 163, 184, 0.16);
+  --shadow-apple-sm: 0 1px 2px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-apple-md: 0 2px 4px rgba(0, 0, 0, 0.18), 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-apple-lg: 0 4px 8px rgba(0, 0, 0, 0.2), 0 16px 48px rgba(0, 0, 0, 0.35);
+  --shadow-apple-btn: 0 1px 2px rgba(0, 0, 0, 0.2), 0 4px 14px rgba(0, 212, 200, 0.28);
+  --shadow-apple-btn-hover: 0 2px 4px rgba(0, 0, 0, 0.22), 0 8px 28px rgba(0, 212, 200, 0.35);
+
+  --background: #071a2c;
+  --foreground: #e8eef4;
+  --card: #0d3254;
+  --card-foreground: #e8eef4;
+  --muted: #0a2540;
+  --muted-foreground: #94a3b8;
+  --primary: #00d4c8;
+  --primary-foreground: #071a2c;
+  --border: rgba(0, 212, 200, 0.14);
+  --input: rgba(148, 163, 184, 0.2);
+  --ring: #2ee7dc;
+
+  --flagship-navy: #f1f5f9;
+  --flagship-navy-soft: #cbd5e1;
+  --flagship-teal: #2ee7dc;
+  --flagship-teal-dim: #00d4c8;
+  --flagship-surface: #071a2c;
+  --flagship-surface-alt: #0a2540;
+  --flagship-muted: #b8c5d6;
+  --flagship-border: rgba(0, 212, 200, 0.14);
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
 }
 
 @media (min-width: 768px) {
@@ -156,8 +200,8 @@ html {
 
 .apple-tile {
   border-radius: 1.125rem;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
   transition: transform 0.35s var(--ease-apple);
 }
 
@@ -167,7 +211,7 @@ html {
 
 .apple-bento {
   border-radius: 1.25rem;
-  background: #ffffff;
+  background: var(--color-surface-elevated);
   padding: clamp(1.75rem, 4vw, 2.5rem);
 }
 
@@ -179,7 +223,7 @@ html {
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid var(--color-border);
   padding-bottom: 0.75rem;
 }
 
@@ -225,7 +269,7 @@ html {
 .apple-hero-premium {
   background:
     radial-gradient(ellipse 80% 55% at 50% -20%, rgba(99, 102, 241, 0.08), transparent 70%),
-    linear-gradient(180deg, #fbfbfd 0%, #ffffff 72%);
+    linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg) 72%);
 }
 
 /* Premium edtech card — consistent across hub, exams, practice */
@@ -322,48 +366,81 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  ::selection {
+  :root:not([data-theme="light"]) ::selection {
     background: rgba(0, 212, 200, 0.32);
     color: #e8eef4;
   }
+}
 
-  .apple-glass {
+[data-theme="dark"] ::selection {
+  background: rgba(0, 212, 200, 0.32);
+  color: #e8eef4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .apple-glass {
     background: rgba(7, 26, 44, 0.88);
     border-bottom-color: rgba(0, 212, 200, 0.1);
   }
 
-  .apple-tile,
-  .apple-bento {
-    background: var(--color-surface-elevated);
-    border-color: var(--color-border);
-  }
-
-  .apple-hero-premium {
+  :root:not([data-theme="light"]) .apple-hero-premium {
     background:
       radial-gradient(ellipse 80% 55% at 50% -20%, rgba(0, 212, 200, 0.12), transparent 70%),
       linear-gradient(180deg, #0a2540 0%, #071a2c 72%);
   }
 
-  .aee-card:hover {
+  :root:not([data-theme="light"]) .aee-card:hover {
     border-color: rgba(0, 212, 200, 0.28);
   }
 
-  .aee-nav {
+  :root:not([data-theme="light"]) .aee-nav {
     border-bottom-color: rgba(0, 212, 200, 0.1);
   }
 
-  .aee-nav-menu-btn:hover {
+  :root:not([data-theme="light"]) .aee-nav-menu-btn:hover {
     background: rgba(255, 255, 255, 0.06);
   }
 
-  .aee-avatar-trigger {
+  :root:not([data-theme="light"]) .aee-avatar-trigger {
     border-color: rgba(0, 212, 200, 0.18);
     background: rgba(13, 50, 84, 0.85);
   }
 
-  .aee-avatar-trigger:hover {
+  :root:not([data-theme="light"]) .aee-avatar-trigger:hover {
     border-color: rgba(0, 212, 200, 0.35);
   }
+}
+
+[data-theme="dark"] .apple-glass {
+  background: rgba(7, 26, 44, 0.88);
+  border-bottom-color: rgba(0, 212, 200, 0.1);
+}
+
+[data-theme="dark"] .apple-hero-premium {
+  background:
+    radial-gradient(ellipse 80% 55% at 50% -20%, rgba(0, 212, 200, 0.12), transparent 70%),
+    linear-gradient(180deg, #0a2540 0%, #071a2c 72%);
+}
+
+[data-theme="dark"] .aee-card:hover {
+  border-color: rgba(0, 212, 200, 0.28);
+}
+
+[data-theme="dark"] .aee-nav {
+  border-bottom-color: rgba(0, 212, 200, 0.1);
+}
+
+[data-theme="dark"] .aee-nav-menu-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .aee-avatar-trigger {
+  border-color: rgba(0, 212, 200, 0.18);
+  background: rgba(13, 50, 84, 0.85);
+}
+
+[data-theme="dark"] .aee-avatar-trigger:hover {
+  border-color: rgba(0, 212, 200, 0.35);
 }
 
 /* Apple design utilities — plain CSS so they always load in dev & prod */
@@ -403,9 +480,9 @@ body {
 
 .apple-card {
   border-radius: 1.25rem;
-  background: #fff;
+  background: var(--color-surface-elevated);
   box-shadow: var(--shadow-apple-sm);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--color-border);
   color: var(--color-ink);
 }
 
@@ -435,7 +512,7 @@ body {
 }
 
 .apple-divider {
-  border-color: rgba(0, 0, 0, 0.06);
+  border-color: var(--color-border);
 }
 
 .apple-input {
@@ -1868,42 +1945,42 @@ body {
   color: #059669;
 }
 
-/* MPJE — amber */
-.aee-exam-card[data-theme="mpje"] {
-  background: linear-gradient(160deg, #fffbeb 0%, #ffffff 55%);
-  border-color: rgba(245, 158, 11, 0.22);
+/* PANCE — rose */
+.aee-exam-card[data-theme="pance"] {
+  background: linear-gradient(160deg, #fff1f2 0%, #ffffff 55%);
+  border-color: rgba(244, 63, 94, 0.22);
 }
 
-.aee-exam-card[data-theme="mpje"]:hover {
-  border-color: rgba(245, 158, 11, 0.45);
-  box-shadow: 0 20px 56px rgba(245, 158, 11, 0.16);
+.aee-exam-card[data-theme="pance"]:hover {
+  border-color: rgba(244, 63, 94, 0.45);
+  box-shadow: 0 20px 56px rgba(244, 63, 94, 0.16);
 }
 
-.aee-exam-card[data-theme="mpje"] .aee-exam-card-bar {
-  background: linear-gradient(90deg, #d97706, #f59e0b, #fbbf24);
+.aee-exam-card[data-theme="pance"] .aee-exam-card-bar {
+  background: linear-gradient(90deg, #e11d48, #f43f5e, #fb7185);
 }
 
-.aee-exam-card[data-theme="mpje"] .aee-exam-icon-wrap {
-  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-  box-shadow: 0 8px 28px rgba(245, 158, 11, 0.35);
+.aee-exam-card[data-theme="pance"] .aee-exam-icon-wrap {
+  background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%);
+  box-shadow: 0 8px 28px rgba(244, 63, 94, 0.35);
 }
 
-.aee-exam-card[data-theme="mpje"] .aee-exam-subtitle {
-  color: #b45309;
+.aee-exam-card[data-theme="pance"] .aee-exam-subtitle {
+  color: #be123c;
 }
 
-.aee-exam-card[data-theme="mpje"] .aee-exam-tag {
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  background: rgba(254, 243, 199, 0.8);
-  color: #92400e;
+.aee-exam-card[data-theme="pance"] .aee-exam-tag {
+  border: 1px solid rgba(244, 63, 94, 0.25);
+  background: rgba(255, 228, 230, 0.8);
+  color: #9f1239;
 }
 
-.aee-exam-card[data-theme="mpje"] .aee-exam-cta {
-  color: #d97706;
+.aee-exam-card[data-theme="pance"] .aee-exam-cta {
+  color: #e11d48;
 }
 
-.aee-exam-card[data-theme="mpje"]:hover .aee-exam-arrow {
-  color: #d97706;
+.aee-exam-card[data-theme="pance"]:hover .aee-exam-arrow {
+  color: #e11d48;
 }
 
 /* INBDE — sky */
@@ -4497,59 +4574,8 @@ body {
 /* ——— Flagship landing (Apple × Tesla × UWorld) ——— */
 
 .aee-flagship {
-  --flagship-navy: #0a2540;
-  --flagship-navy-soft: #0d3254;
-  --flagship-teal: #00d4c8;
-  --flagship-teal-dim: #00b8ad;
-  --flagship-surface: #ffffff;
-  --flagship-surface-alt: #f4f6f8;
-  --flagship-muted: #64748b;
-  --flagship-border: rgba(10, 37, 64, 0.08);
   --flagship-section-py: clamp(3rem, 7vw, 4.75rem);
   --flagship-gap: clamp(0.625rem, 1.8vw, 1rem);
-  color: var(--flagship-navy);
-  background: var(--flagship-surface);
-}
-
-@media (prefers-color-scheme: dark) {
-  .aee-flagship {
-    --flagship-navy: #f1f5f9;
-    --flagship-navy-soft: #cbd5e1;
-    --flagship-teal: #2ee7dc;
-    --flagship-teal-dim: #00d4c8;
-    --flagship-surface: #071a2c;
-    --flagship-surface-alt: #0a2540;
-    --flagship-muted: #b8c5d6;
-    --flagship-border: rgba(0, 212, 200, 0.14);
-    --flagship-card: #0d3254;
-    --flagship-shadow: rgba(0, 0, 0, 0.35);
-    color: var(--flagship-navy);
-    background: var(--flagship-surface);
-  }
-
-  .aee-landing-sticky-cta {
-    background: rgba(7, 26, 44, 0.94);
-    box-shadow: 0 -8px 32px var(--flagship-shadow);
-  }
-
-  .aee-flagship-question-card__badge {
-    background: var(--flagship-card);
-  }
-
-  .aee-flagship-question-card__rationale,
-  .aee-flagship-metric__label {
-    color: var(--flagship-muted);
-  }
-
-  .aee-flagship-mockup-skeleton {
-    background: linear-gradient(90deg, #0a2540 0%, #0d3254 50%, #0a2540 100%);
-  }
-
-  .aee-flagship-hero__grid {
-    background-image:
-      linear-gradient(rgba(0, 212, 200, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 212, 200, 0.06) 1px, transparent 1px);
-  }
 }
 
 .aee-flagship--conversion {
@@ -4959,13 +4985,122 @@ body {
   margin-top: 0.06em;
 }
 
+.aee-flagship-hero__eyebrow {
+  margin: 0 auto;
+  max-width: 36rem;
+  font-size: clamp(0.6875rem, 1.4vw, 0.75rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--flagship-teal);
+}
+
 .aee-flagship-hero__subline {
   margin-top: 1.125rem;
-  max-width: 30rem;
+  max-width: 38rem;
   font-size: clamp(1.0625rem, 2.1vw, 1.1875rem);
   font-weight: 500;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--flagship-navy-soft);
+}
+
+.aee-flagship-hero__advantages-compact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.aee-flagship-hero__advantage-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 212, 200, 0.22);
+  background: rgba(0, 212, 200, 0.06);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--flagship-navy);
+}
+
+.aee-flagship-hero__sample-link--muted {
+  opacity: 0.85;
+  font-weight: 600;
+}
+
+.aee-platform-advantages {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 640px) {
+  .aee-platform-advantages {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.125rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .aee-platform-advantages {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+.aee-platform-advantage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.25rem 1.375rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(10, 37, 64, 0.08);
+  background: var(--flagship-surface);
+  box-shadow: 0 1px 2px rgba(10, 37, 64, 0.04);
+}
+
+.aee-platform-advantage__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.875rem;
+  background: linear-gradient(135deg, var(--flagship-teal) 0%, #4da3ff 100%);
+  box-shadow: 0 4px 14px rgba(0, 212, 200, 0.18);
+}
+
+.aee-platform-advantage__title {
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--flagship-navy);
+}
+
+.aee-platform-advantage__detail {
+  margin-top: 0.5rem;
+  flex: 1;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--flagship-muted);
+}
+
+@media (min-width: 1024px) {
+  .aee-flagship-hero__eyebrow {
+    margin-inline: 0;
+    text-align: left;
+  }
+
+  .aee-flagship-hero__advantages-compact {
+    justify-content: flex-start;
+  }
 }
 
 .aee-flagship-hero__benefits {
@@ -4974,7 +5109,7 @@ body {
   gap: 0.625rem;
   margin: 1.25rem auto 0;
   padding: 0;
-  max-width: 30rem;
+  max-width: 38rem;
   list-style: none;
   text-align: left;
 }

@@ -9,6 +9,7 @@ import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
 import { AppMpjeStateChip } from "@/components/app/AppMpjeStateChip";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { shellUi } from "@/lib/layout/shell-ui";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -43,7 +44,7 @@ export function AppTopNav({ onMenuClick }: Props) {
   }
 
   return (
-    <header className="apple-glass fixed top-0 z-50 w-full border-b border-black/[0.06] dark:border-teal-500/10">
+    <header className="apple-glass fixed top-0 z-50 w-full border-b border-[var(--color-border)]">
       <nav
         className={cn(
           shellUi.container,
@@ -66,7 +67,7 @@ export function AppTopNav({ onMenuClick }: Props) {
           <GlobalExamSwitcher variant="nav" />
           <Link
             href={`${ROUTES.selectExam}?switch=1`}
-            className="inline-flex items-center gap-1 rounded-lg border border-black/[0.06] bg-white/80 px-2 py-1 text-[10px] font-semibold text-[var(--color-ink-muted)] transition hover:border-teal-300 hover:text-teal-700"
+            className="inline-flex items-center gap-1 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-elevated)]/80 px-2 py-1 text-[10px] font-semibold text-[var(--color-ink-muted)] transition hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)]"
             title="Open exam selection"
           >
             <LayoutGrid className="h-3 w-3" aria-hidden />
@@ -86,6 +87,7 @@ export function AppTopNav({ onMenuClick }: Props) {
         </div>
 
         <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
+          <ThemeToggle />
           {examSlug === "mpje" ? (
             <AppMpjeStateChip stateCode={mpjeStateCode} className="md:hidden" />
           ) : null}

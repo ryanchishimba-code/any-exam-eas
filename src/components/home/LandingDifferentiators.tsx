@@ -51,7 +51,7 @@ const ITEMS = [
 export function LandingDifferentiators() {
   return (
     <section
-      className="aee-landing-compact-section border-b border-slate-100 bg-white"
+      className="aee-landing-compact-section border-b border-[var(--color-border)] bg-[var(--color-surface-elevated)]"
       aria-labelledby="differentiators-heading"
     >
       <div className="mx-auto max-w-[1080px] px-5 sm:px-6">
@@ -61,11 +61,11 @@ export function LandingDifferentiators() {
           </p>
           <h2
             id="differentiators-heading"
-            className="mt-1 text-xl font-bold tracking-tight text-slate-900 sm:text-2xl"
+            className="mt-1 text-xl font-bold tracking-tight text-[var(--color-ink)] sm:text-2xl"
           >
             What you get here that typical prep giants split apart
           </h2>
-          <p className="mt-2 text-sm text-slate-600">
+          <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
             UWorld-level rigor on question style — without buying four separate product lines.
           </p>
         </div>
@@ -74,18 +74,18 @@ export function LandingDifferentiators() {
           {ITEMS.map(({ icon: Icon, title, detail }) => (
             <li
               key={title}
-              className="aee-diff-card rounded-2xl border border-slate-100 bg-slate-50/40 p-4 sm:p-5"
+              className="aee-diff-card rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4 sm:p-5"
             >
               <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-teal-500 to-cyan-500 shadow-sm shadow-teal-900/10">
                 <Icon className="h-5 w-5 text-white" strokeWidth={2} aria-hidden />
               </span>
-              <h3 className="mt-3 text-sm font-bold text-slate-900">{title}</h3>
-              <p className="mt-1.5 text-xs leading-relaxed text-slate-600">{detail}</p>
+              <h3 className="mt-3 text-sm font-bold text-[var(--color-ink)]">{title}</h3>
+              <p className="mt-1.5 text-xs leading-relaxed text-[var(--color-ink-muted)]">{detail}</p>
             </li>
           ))}
         </ul>
 
-        <p className="mt-5 text-[0.625rem] text-slate-400">
+        <p className="mt-5 text-[0.625rem] text-[var(--color-ink-muted)]">
           UWorld is a registered trademark of its respective owner. Not affiliated or endorsed.
         </p>
       </div>

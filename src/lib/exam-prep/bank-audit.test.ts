@@ -54,6 +54,20 @@ describe("auditBankItem", () => {
     expect(report.ok).toBe(true);
   });
 
+  it("flags generic placeholder answer choices", () => {
+    const report = auditBankItem(
+      item({
+        question: "Which pathophysiologic process is most likely responsible for these findings?",
+        options: ["Option A", "Option B", "Option C", "Option D"],
+        correctAnswer: "Option A",
+        explanation: "An explanation long enough to pass the minimum length check for audits.",
+      }),
+      "usmle-step-1"
+    );
+    expect(report.ok).toBe(false);
+    expect(report.issues.some((i) => i.code === "generic_placeholder_options")).toBe(true);
+  });
+
   it("still flags deictic stem with no vignette anywhere", () => {
     const report = auditBankItem(
       item({
@@ -85,7 +99,7 @@ describe("auditBankItem", () => {
         correctAnswer: "I and III only",
         explanation: "Statements I and III reflect DSCSA tracing requirements; II is incorrect.",
       }),
-      "mpje"
+      "pance"
     );
     expect(report.issues.some((i) => i.code === "invalid_option_count")).toBe(false);
     expect(report.ok).toBe(true);
@@ -107,7 +121,7 @@ describe("auditBankItem", () => {
           "File DEA Form 106|||Notify local law enforcement as required|||Update perpetual inventory and investigate root cause|||Notify the state board of pharmacy if required",
         explanation: "DEA Form 106, law enforcement and board notification, and inventory reconciliation are required.",
       }),
-      "mpje"
+      "pance"
     );
     expect(report.issues.some((i) => i.severity === "error")).toBe(false);
     expect(report.ok).toBe(true);
@@ -127,7 +141,7 @@ describe("auditBankItem", () => {
         correctAnswer: "Prescription files|||Truncated answer that matches nothi",
         explanation: "Only board-relevant records are required to be produced during inspection.",
       }),
-      "mpje"
+      "pance"
     );
     expect(report.issues.some((i) => i.code === "correct_not_in_options")).toBe(true);
     expect(report.ok).toBe(false);

@@ -1,23 +1,12 @@
-import { Suspense } from "react";
-import { PremiumGate } from "@/components/PremiumGate";
-import { MpjePracticeExam } from "@/components/mpje/MpjePracticeExam";
+import { redirect } from "next/navigation";
+import { ROUTES } from "@/lib/routes";
 
-export const metadata = {
-  title: "MPJE Full Practice Exam — 120 Questions",
-  description:
-    "Full-length MPJE practice exam simulator: 120 questions, 2.5 hours, state-specific pharmacy law.",
-};
-
-export default function MpjePracticeExamPage() {
-  return (
-    <PremiumGate callbackPath="/mpje/practice-exam">
-      <Suspense
-        fallback={
-          <p className="py-20 text-center text-sm text-slate-500">Loading exam…</p>
-        }
-      >
-        <MpjePracticeExam />
-      </Suspense>
-    </PremiumGate>
-  );
+/** Legacy MPJE URLs → PANCE (MPJE removed from product). */
+export default function MpjeLegacyRedirect({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | undefined>>;
+}) {
+  void searchParams;
+  redirect("/exams/pance");
 }

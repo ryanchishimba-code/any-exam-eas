@@ -9,6 +9,15 @@ import {
 import { sampleQuestionBankItems } from "./question-bank-db";
 import { ANATOMY_QUESTION_BANK } from "./medicine-anatomy-question-bank";
 import { toQuizletStyleQuestion } from "./question-format";
+import {
+  bankItemToSessionRaw,
+  prepareBankItemsForSession,
+} from "./exam-prep/prepare-bank-session";
+import {
+  assertExamSessionReady,
+  finalizeExamSessionQuestions,
+} from "./questions/finalize-exam-session";
+import { studyQuestionsToExamQuestions } from "./questions/prepare";
 
 export type BankItem = {
   id?: string;
@@ -411,9 +420,38 @@ export async function getBankQuestions(params: {
 
   const pool = [...unique.values()];
 
-  const selected = shuffle(pool).slice(0, params.count);
+  const vetted = prepareBankItemsForSession({
+    fieldId,
+    field: params.field,
+    items: pool,
+    limit: params.count,
+  });
 
-  return selected.map((item, i) => bankItemToQuestion(item, i + 1));
+  if (vetted.length === 0) {
+    return [];
+  }
+
+  const rawInputs = vetted.map((item, i) => {
+    const q = bankItemToSessionRaw(fieldId, params.field, subjectKey, item, i);
+    return {
+      ...q,
+      field: params.field,
+      subjectId: item.subjectId ?? subjectKey,
+      bankItemId: item.id,
+      difficultyLabel:
+        item.difficulty != null
+          ? item.difficulty <= 2
+            ? "Easy"
+            : item.difficulty >= 4
+              ? "Hard"
+              : "Medium"
+          : undefined,
+    };
+  });
+
+  const { prepared, quality } = finalizeExamSessionQuestions(rawInputs, params.count);
+  assertExamSessionReady(quality, fieldId);
+  return studyQuestionsToExamQuestions(prepared);
 }
 
 export async function buildOfflineExam(params: {

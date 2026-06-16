@@ -60,6 +60,13 @@ const DISPLAY_OVERRIDES: Partial<
     accentMuted: "rgba(255, 149, 0, 0.12)",
     features: ["Timed exam", "Question bank", "State selector", "UMPJE prep"],
   },
+  "aanp-fnp": {
+    description:
+      "AANPCB FNP blueprint — assess, diagnose, plan, and evaluate across the lifespan.",
+    accent: "#e879f9",
+    accentMuted: "rgba(232, 121, 249, 0.12)",
+    features: ["Timed exam", "Question bank", "Topic practice"],
+  },
 };
 
 const DEFAULT_DIFFICULTIES = ["Easy", "Medium", "Hard"];

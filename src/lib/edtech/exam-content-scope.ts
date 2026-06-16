@@ -1,21 +1,16 @@
-import { redirect } from "next/navigation";
-import { getUserExamPreference } from "@/lib/edtech/exam-preference";
-import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
-export function isMpjeExam(slug: ExamSlug | string | null | undefined): boolean {
-  return slug === "mpje";
+/** Clinical study tools (Anatomy, Reference Hub, Top 500) are available for all board exams. */
+export function hasClinicalStudyTools(_slug: ExamSlug | string | null | undefined): boolean {
+  return true;
 }
 
-/** Anatomy explorer, Top 500 drugs, and related clinical reference tools. */
-export function hasClinicalStudyTools(slug: ExamSlug | string | null | undefined): boolean {
-  return !isMpjeExam(slug);
+/** @deprecated MPJE removed — always false. */
+export function isMpjeExam(_slug: ExamSlug | string | null | undefined): boolean {
+  return false;
 }
 
-/** Redirect MPJE users away from NCLEX/NAPLEX/USMLE-only study tools. */
-export async function redirectMpjeFromClinicalRoutes(userId: string): Promise<void> {
-  const pref = await getUserExamPreference(userId);
-  if (isMpjeExam(pref?.examSlug)) {
-    redirect(ROUTES.dashboard);
-  }
+/** @deprecated MPJE removed — no redirect needed. */
+export async function redirectMpjeFromClinicalRoutes(_userId: string): Promise<void> {
+  return;
 }

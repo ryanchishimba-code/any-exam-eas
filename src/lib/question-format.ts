@@ -95,7 +95,15 @@ export function synthesizeClinicalDistractors(
 }
 
 export function hasGenericPlaceholderOptions(options: string[]): boolean {
-  return options.some((o) => /^alternative \d+$/i.test(cleanOptionText(o).trim()));
+  return options.some((o) => {
+    const text = cleanOptionText(o).trim();
+    if (/^alternative \d+$/i.test(text)) return true;
+    if (/^option [a-d]$/i.test(text)) return true;
+    if (/^choice [a-d]$/i.test(text)) return true;
+    if (/^answer [a-d]$/i.test(text)) return true;
+    if (/placeholder/i.test(text) && text.length < 48) return true;
+    return false;
+  });
 }
 
 export function normalizeQuestionOptions(

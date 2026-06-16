@@ -1,12 +1,12 @@
 import type { LucideIcon } from "lucide-react";
-import { Activity, Beaker, Pill, Scale, Stethoscope } from "lucide-react";
+import { Activity, Beaker, HeartPulse, Pill, Stethoscope } from "lucide-react";
 import {
   MARKETING_QUESTION_COUNTS,
   questionBankLabelForField,
   top500DrugsLabel,
 } from "@/lib/marketing/bank-stats";
 
-export type ExamSlug = "nclex" | "usmle" | "naplex" | "mpje" | "top500";
+export type ExamSlug = "nclex" | "usmle" | "naplex" | "pance" | "top500";
 
 /** Serializable hub metadata (safe for server → client props). */
 export type ExamHubMeta = {
@@ -51,13 +51,13 @@ export const EXAM_HUBS: ExamHubConfig[] = [
     questionBankLabel: questionBankLabelForField("pharmacy"),
   },
   {
-    slug: "mpje",
-    title: "MPJE Prep",
-    subtitle: "Federal law, uniform MPJE (UMPJE), and state-specific jurisprudence.",
-    fieldId: "mpje",
-    icon: Scale,
-    accentClass: "from-amber-500/20 to-orange-600/10 border-amber-200/60",
-    questionBankLabel: questionBankLabelForField("mpje"),
+    slug: "pance",
+    title: "PANCE Prep",
+    subtitle: "NCCPA blueprint vignettes — systems-based clinical reasoning across 15 content categories.",
+    fieldId: "pance",
+    icon: HeartPulse,
+    accentClass: "from-rose-500/20 to-pink-600/10 border-rose-200/60",
+    questionBankLabel: questionBankLabelForField("pance"),
   },
   {
     slug: "top500",

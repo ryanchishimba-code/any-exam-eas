@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
 import { HomeExperience } from "@/components/home/HomeExperience";
+import {
+  buildLandingBankCountsDisplay,
+  getQuestionBankCounts,
+} from "@/lib/marketing/question-bank-counts";
 import { buildHomeMetadata } from "@/lib/seo";
 
 /**
@@ -20,11 +24,14 @@ import { buildHomeMetadata } from "@/lib/seo";
  */
 export const metadata: Metadata = buildHomeMetadata();
 
-export default function HomePage() {
+export default async function HomePage() {
+  const snapshot = await getQuestionBankCounts();
+  const bankCounts = buildLandingBankCountsDisplay(snapshot);
+
   return (
     <>
       <HomeJsonLd />
-      <HomeExperience />
+      <HomeExperience bankCounts={bankCounts} />
     </>
   );
 }

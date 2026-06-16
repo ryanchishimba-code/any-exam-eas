@@ -5,7 +5,7 @@ const EXAM_FEATURED_PROCEDURE_IDS: Record<ExamSlug, string[]> = {
   nclex: ["chest-tube", "appendectomy", "lap-chole", "thoracentesis", "tracheostomy", "colonoscopy"],
   usmle: ["cabg", "pci", "lap-chole", "whipple", "nephrectomy", "mechanical-thrombectomy"],
   naplex: ["lap-chole", "ercp-sphincterotomy", "tips", "thyroidectomy", "turp", "colonoscopy"],
-  mpje: ["cabg", "appendectomy", "lap-chole", "thoracentesis", "turp", "colonoscopy"],
+  pance: ["cabg", "appendectomy", "lap-chole", "thoracentesis", "turp", "colonoscopy"],
 };
 
 export function getFeaturedProceduresForExam(examSlug: ExamSlug) {
@@ -22,6 +22,8 @@ export function getDefaultProcedureTourIdForExam(examSlug: ExamSlug): string {
       return "proc-cardiac-interventions";
     case "naplex":
       return "proc-hepatobiliary";
+    case "pance":
+      return "proc-cardiac-interventions";
     default:
       return "proc-cardiac-interventions";
   }

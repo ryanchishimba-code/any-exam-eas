@@ -23,7 +23,7 @@ const HUB_DESCRIPTIONS: Record<(typeof EXAM_SLUGS)[number], string> = {
   nclex: "Nursing question bank — prioritization, safety, and med-surg.",
   usmle: "Clinical vignettes with mechanism-first rationales.",
   naplex: "Pharmacy calculations, cases, and pharmacotherapy.",
-  mpje: "Pharmacy law — federal, uniform (UMPJE), and state-specific jurisprudence.",
+  pance: "Physician assistant clinical vignettes — NCCPA blueprint across 15 systems.",
 };
 
 /** Four board exams — derived from canonical EXAM_CATALOG. */
@@ -34,38 +34,6 @@ export const STUDY_HUB_EXAM_BANKS: StudyHubExamBank[] = EXAM_SLUGS.map((slug) =>
   description: HUB_DESCRIPTIONS[slug],
   accentClass: EXAM_CATALOG[slug].accentClass,
 }));
-
-/** Study Hub URL with MPJE picker open. */
-export function studyHubMpjeHref(): string {
-  return `${STUDY_HUB_PATH}?exam=mpje`;
-}
-
-export function mpjePracticeHref(options?: {
-  mode?: "timed" | "bank";
-  variant?: "uniform" | "state";
-  stateCode?: string;
-}): string {
-  const qs = new URLSearchParams({
-    field: "mpje",
-  });
-  const variant = options?.variant ?? "state";
-  qs.set("mpjeVariant", variant);
-  if (variant === "state" && options?.stateCode) {
-    qs.set("state", options.stateCode);
-    qs.set("mpjeState", options.stateCode);
-  }
-  return `${QUESTION_BANK_PATH}?${qs.toString()}`;
-}
-
-/** Full 120-question / 2.5-hour MPJE practice exam simulator. */
-export function mpjePracticeExamHref(stateCode?: string): string {
-  if (!stateCode?.trim()) return "/mpje/practice-exam";
-  const qs = new URLSearchParams({
-    state: stateCode,
-    mpjeState: stateCode,
-  });
-  return `/mpje/practice-exam?${qs.toString()}`;
-}
 
 export function questionBankHref(fieldId?: string): string {
   if (!fieldId) return QUESTION_BANK_PATH;
@@ -88,4 +56,23 @@ export function examModeHref(
 
 export function studyHubProgressHref(): string {
   return ROUTES.analytics;
+}
+
+/** @deprecated MPJE removed — use PANCE question bank. */
+export function studyHubMpjeHref(): string {
+  return `${STUDY_HUB_PATH}?exam=pance`;
+}
+
+/** @deprecated MPJE removed — use questionBankHref("pance"). */
+export function mpjePracticeHref(_options?: {
+  mode?: "timed" | "bank";
+  variant?: "uniform" | "state";
+  stateCode?: string;
+}): string {
+  return questionBankHref("pance");
+}
+
+/** @deprecated MPJE removed — redirects to PANCE full exam. */
+export function mpjePracticeExamHref(_stateCode?: string): string {
+  return "/full-exam/pance?mode=full&autostart=1";
 }

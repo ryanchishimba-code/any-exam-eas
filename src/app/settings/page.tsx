@@ -3,14 +3,13 @@ import { headers } from "next/headers";
 import { auth } from "@/auth";
 import { SettingsClient } from "@/components/settings/SettingsClient";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
-import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { ROUTES } from "@/lib/routes";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { checkAndRecordAccountIp } from "@/lib/account-ip-limit";
 
 export const metadata = {
   title: "Settings — Any Exam Easy",
-  description: "Manage your exam preference, MPJE state, and subscription.",
+  description: "Manage your exam preference and subscription.",
 };
 
 export default async function SettingsPage() {
@@ -32,7 +31,6 @@ export default async function SettingsPage() {
   }
 
   const pref = await getUserExamPreference(session.user.id);
-  const meta = await getUserEdtechMetadata(session.user.id);
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
@@ -48,8 +46,6 @@ export default async function SettingsPage() {
             email={session.user.email ?? ""}
             name={session.user.name}
             examSlug={pref?.examSlug && isExamSlug(pref.examSlug) ? pref.examSlug : null}
-            mpjeStateCode={meta.mpjeStateCode}
-            mpjeVariant={meta.mpjeVariant}
           />
         </div>
         <p className="mt-8 text-center text-sm text-slate-500">

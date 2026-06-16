@@ -6,13 +6,13 @@ import { DashboardView } from "@/components/app/DashboardView";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-preference";
 import { getExamScopedStats } from "@/lib/edtech/stats";
-import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
+import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
   title: "Dashboard — Any Exam Easy",
-  description: "Your personalized NCLEX, USMLE, NAPLEX, and MPJE study dashboard.",
+  description: "Your personalized NCLEX, USMLE, NAPLEX, and PANCE study dashboard.",
 };
 
 function DashboardSkeleton() {
@@ -37,10 +37,10 @@ async function DashboardContent({
   const examSlug = pref.examSlug;
   const fieldId = resolveExamFieldId(examSlug);
 
-  const [stats, meta, dashboard] = await Promise.all([
+  const [stats, dashboard, roadmap] = await Promise.all([
     getExamScopedStats(userId, examSlug),
-    getUserEdtechMetadata(userId),
     getStudentDashboardData(userId),
+    getExamRoadmapData(userId, examSlug),
   ]);
 
   const weakTopics = dashboard.weakTopics
@@ -58,9 +58,9 @@ async function DashboardContent({
       }}
       weakTopics={weakTopics}
       spacedReview={dashboard.spacedReview}
+      roadmap={roadmap}
       recentTests={dashboard.recentTests}
       userName={userName}
-      mpjeStateCode={meta.mpjeStateCode}
     />
   );
 }

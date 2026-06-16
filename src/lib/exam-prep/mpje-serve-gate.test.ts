@@ -20,7 +20,7 @@ const validItem: BankItem = {
   correctAnswer: "Refuse to fill because the prescription is more than 21 days old",
   explanation:
     "Federal rules limit dispensing of Schedule II controlled substances from a written prescription to within 21 days of the date written. A prescription dated 22 days ago is no longer valid for initial dispensing; the pharmacist must refuse and request a new prescription.",
-  tags: ["physician-educator", "mpje"],
+  tags: ["physician-educator", "aanp-fnp"],
   references: [{ label: "DEA", citation: "21 CFR § 1306" }],
 };
 

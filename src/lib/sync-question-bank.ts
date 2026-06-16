@@ -10,7 +10,7 @@ import {
 } from "@/lib/question-bank-seed";
 import type { FieldSubject } from "./field-subjects";
 import type { BankItem } from "./question-bank";
-import { isMpjeBestQuality } from "@/lib/exam-prep/mpje-quality-gate";
+import { bankItemPassesIngestGate } from "@/lib/exam-prep/bank-ingest-gate";
 import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";
 
 export type SyncQuestionBankResult = {
@@ -63,21 +63,8 @@ export async function syncQuestionBank(): Promise<SyncQuestionBankResult> {
   return inFlightSync;
 }
 
-function isCuratedSeedItem(item: BankItem): boolean {
-  const tags = item.tags ?? [];
-  if (tags.includes("physician-educator")) return true;
-  if (tags.includes("curated")) return true;
-  if (tags.includes("clinical-vignette") && !tags.includes("bulk-bank")) return true;
-  if (tags.includes("v2") && !tags.includes("bulk-bank")) return true;
-  if (tags.includes("edtech-seed") && !tags.includes("bulk-bank")) return true;
-  if (tags.includes("high-yield") && !tags.includes("bulk-bank")) return true;
-  return false;
-}
-
-function seedQaPassed(fieldId: string, item: BankItem, source: "seed" | "generated"): boolean {
-  if (source !== "seed") return false;
-  if (fieldId === "mpje") return isMpjeBestQuality(item, { source });
-  return isCuratedSeedItem(item);
+function resolveQaPassed(fieldId: string, item: BankItem, source: "seed" | "generated"): boolean {
+  return bankItemPassesIngestGate(fieldId, item, source);
 }
 
 function rowToCreateData(
@@ -110,7 +97,7 @@ function rowToCreateData(
     source,
     contentHash,
     active: true,
-    qaPassed: seedQaPassed(fieldId, item, source),
+    qaPassed: resolveQaPassed(fieldId, item, source),
   };
 }
 
@@ -180,7 +167,7 @@ async function topUpSubject(fieldId: string, subject: FieldSubject): Promise<num
     subject,
     existingCount,
     needed
-  );
+  ).filter((item) => bankItemPassesIngestGate(fieldId, item, "generated"));
 
   let created = 0;
   for (let i = 0; i < bulk.length; i += BATCH_SIZE) {

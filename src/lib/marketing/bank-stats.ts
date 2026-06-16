@@ -32,15 +32,13 @@ export const MARKETING_QUESTION_COUNTS = {
   nursing: formatMarketingQuestionCount(fieldTargets.nursing),
   usmle: formatMarketingQuestionCount(fieldTargets["usmle-step-2"]),
   pharmacy: formatMarketingQuestionCount(fieldTargets.pharmacy),
-  mpje: formatMarketingQuestionCount(fieldTargets.mpje),
+  pance: formatMarketingQuestionCount(fieldTargets.pance),
+  aanpFnp: formatMarketingQuestionCount(fieldTargets["aanp-fnp"]),
 } as const;
 
 export const TOP_500_DRUGS_COUNT = TOP_500_COUNT;
 
 export function questionBankLabelForField(fieldId: string): string {
-  if (fieldId === "mpje") {
-    return "Pharmacy law & regulations";
-  }
   return `${formatMarketingQuestionCount(targetQuestionCountForField(fieldId))} board-style items`;
 }
 

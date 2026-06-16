@@ -44,7 +44,7 @@ export async function expandQueries(params: {
     ...(params.fieldId === "pharmacy"
       ? [`${scope} NAPLEX pharmacology mechanism adverse effects patient case`]
       : []),
-    ...(params.fieldId === "mpje"
+    ...(params.fieldId === "pance"
       ? params.mpjeVariant === "state" && params.mpjeStateCode
         ? [
             `${params.mpjeStateCode} pharmacy practice act board regulations MPJE`,

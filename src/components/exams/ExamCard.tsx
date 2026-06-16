@@ -36,12 +36,12 @@ export function ExamCard({
         <Icon className={cn("h-5 w-5", iconClass)} strokeWidth={1.75} aria-hidden />
       </span>
       <div className="flex items-start justify-between gap-2">
-        <h3 className="text-lg font-semibold tracking-tight text-slate-900">{title}</h3>
-        <span className="shrink-0 rounded-full bg-white/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-600 ring-1 ring-black/[0.04]">
+        <h3 className="text-lg font-semibold tracking-tight text-[var(--color-ink)]">{title}</h3>
+        <span className="shrink-0 rounded-full bg-white/70 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)] ring-1 ring-black/[0.04]">
           {stat}
         </span>
       </div>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{description}</p>
+      <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--color-ink-muted)]">{description}</p>
       <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-accent)]">
         Open
         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />

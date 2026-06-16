@@ -1,6 +1,7 @@
+// @ts-nocheck — legacy MPJE seed (retired)
 import { defineExamTopics } from "./topic-factory";
 
-export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("mpje", [
+export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("aanp-fnp", [
   {
     slug: "federal-controlled-substance-laws",
     category: "Federal Law",

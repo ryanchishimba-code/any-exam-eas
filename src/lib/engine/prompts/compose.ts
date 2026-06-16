@@ -32,7 +32,7 @@ export function composeExamUserPrompt(
         ? "Open RN Project, OpenStax Nursing, NCSBN NCLEX-RN Test Plan"
         : ctx.field === "pharmacy"
           ? "OpenStax Pharmacy, LibreTexts, NABP NAPLEX Content Outline"
-          : ctx.field === "mpje"
+          : ctx.field === "pance"
             ? "NABP MPJE/UMPJE outline, DEA Pharmacist's Manual, FDA pharmacy guidance, state practice acts"
             : "OpenStax Anatomy & Physiology, LibreTexts Pathology, USMLE Content Outline"),
     examFocus: subject?.examHints ?? subjectModule.metadata.examFocus,

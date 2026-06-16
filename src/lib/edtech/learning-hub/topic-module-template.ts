@@ -8,7 +8,9 @@ export type TopicModuleStage =
   | "foundations"
   | "clerkship"
   | "board-crunch"
-  | "remediation";
+  | "remediation"
+  | "clinical-rotation"
+  | "cert-prep";
 
 export type TopicModuleSkill =
   | "mechanism"
@@ -16,7 +18,10 @@ export type TopicModuleSkill =
   | "next_step"
   | "pharm_moa"
   | "interpretation"
-  | "complication";
+  | "complication"
+  | "assess"
+  | "plan"
+  | "evaluate";
 
 export type TopicModuleQuestionSet = {
   /** subjectId / topicCategory filter for question bank */

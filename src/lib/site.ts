@@ -120,7 +120,7 @@ export const TRIAL_PAYMENT_DISCLOSURE = `${TRIAL_DAYS}-day free trial · payment
 
 /** Hero subline — one scannable benefit line; billing detail lives in disclosure below CTAs. */
 export function formatLandingHeroSubline(): string {
-  return "NCLEX, USMLE, NAPLEX & MPJE — curated questions, adaptive drills, and full rationales in one place.";
+  return "USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP — curated questions, Roadmaps, Deep Dives, and full rationales in one place.";
 }
 
 /** Mid-page conversion band subtitle — trial and billing at a glance. */

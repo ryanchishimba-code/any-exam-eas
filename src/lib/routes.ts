@@ -7,6 +7,7 @@ import { examSlugFromFieldId } from "@/lib/edtech/exams";
 export const ROUTES = {
   home: "/",
   dashboard: "/dashboard",
+  roadmap: "/dashboard/roadmap",
   /** @deprecated use dashboard */
   practiceHub: "/dashboard",
   selectExam: "/select-exam",
@@ -80,13 +81,13 @@ export const EXAM_NAV_ITEMS: {
     stat: `${MARKETING_QUESTION_COUNTS.pharmacy} items`,
   },
   {
-    slug: "mpje",
-    label: "MPJE",
-    short: "Pharmacy law",
-    href: "/exams/mpje",
-    fieldId: "mpje",
-    practiceHref: "/practice/mpje",
-    stat: "Federal + state",
+    slug: "pance",
+    label: "PANCE",
+    short: "Physician Assistant",
+    href: "/exams/pance",
+    fieldId: "pance",
+    practiceHref: "/practice/pance",
+    stat: "300Q blueprint",
   },
 ];
 

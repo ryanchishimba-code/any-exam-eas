@@ -7,7 +7,7 @@ describe("exam catalog", () => {
       "nclex",
       "usmle",
       "naplex",
-      "mpje",
+      "pance",
       "top500",
     ]);
   });
@@ -16,7 +16,7 @@ describe("exam catalog", () => {
     expect(examSlugToFieldId("nclex")).toBe("nursing");
     expect(examSlugToFieldId("usmle")).toBe("usmle-step-2");
     expect(examSlugToFieldId("naplex")).toBe("pharmacy");
-    expect(examSlugToFieldId("mpje")).toBe("mpje");
+    expect(examSlugToFieldId("pance")).toBe("pance");
     expect(examSlugToFieldId("top500")).toBe("drugs300");
   });
 

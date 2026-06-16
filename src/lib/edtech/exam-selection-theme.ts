@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Activity, BookOpenCheck, Pill, Scale } from "lucide-react";
+import { Activity, BookOpenCheck, HeartPulse, Pill } from "lucide-react";
 import type { ExamSlug } from "@/types/edtech";
 import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 
@@ -66,17 +66,17 @@ export const EXAM_SELECTION_THEMES: Record<ExamSlug, ExamSelectionTheme> = {
     ctaClass: "bg-white text-amber-900 hover:bg-amber-50",
     orb: "bg-orange-200/30",
   },
-  mpje: {
-    slug: "mpje",
+  pance: {
+    slug: "pance",
     tagline:
-      "Federal and state pharmacy law, controlled substances, and dispensing — board-ready.",
-    stats: ["Federal + State Law", "State Dial", "120Q Sim"],
-    icon: Scale,
-    gradient: "from-indigo-800/95 via-violet-800/90 to-purple-900/95",
-    glow: "group-hover:shadow-violet-500/30 group-hover:border-violet-300/70",
-    iconBg: "bg-white/15 backdrop-blur-sm",
-    iconColor: "text-violet-100",
-    ctaClass: "bg-white text-violet-900 hover:bg-violet-50",
-    orb: "bg-violet-400/20",
+      "NCCPA blueprint vignettes — cardiovascular, pulmonary, GI, MSK, ID, neurology, psychiatry, reproductive, endocrine, and more.",
+    stats: ["300Q Exam Blueprint", "Roadmap Tracker", "Full Simulations"],
+    icon: HeartPulse,
+    gradient: "from-rose-600/90 via-pink-600/85 to-rose-700/90",
+    glow: "group-hover:shadow-rose-500/25 group-hover:border-rose-300/80",
+    iconBg: "bg-white/20 backdrop-blur-sm",
+    iconColor: "text-white",
+    ctaClass: "bg-white text-rose-900 hover:bg-rose-50",
+    orb: "bg-rose-300/25",
   },
 };

@@ -2,7 +2,6 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { FullExamLauncher } from "@/components/exam/FullExamLauncher";
 import { isExamSlug } from "@/lib/edtech/exams";
-import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { fullExamHref, ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
@@ -37,9 +36,6 @@ export default async function FullExamLauncherPage({
 
   await requirePremiumPage(fullExamHref(examSlug as ExamSlug));
 
-  const mpjeMeta =
-    examSlug === "mpje" ? await getUserEdtechMetadata(session.user.id) : null;
-
   return (
     <FullExamLauncher
       key={`${sp.mode ?? "default"}-${sp.autostart ?? "0"}-${sp.timed ?? "1"}`}
@@ -47,7 +43,6 @@ export default async function FullExamLauncherPage({
       initialMode={sp.mode ?? null}
       autostart={sp.autostart === "1"}
       initialTimed={sp.timed !== "0"}
-      mpjeStateCode={mpjeMeta?.mpjeStateCode}
     />
   );
 }

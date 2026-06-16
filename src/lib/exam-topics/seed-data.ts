@@ -11,7 +11,7 @@ export function blueprintTopicsForExam(examType: ExamSlug): {
     nclex: "nursing",
     usmle: "usmle-step-2",
     naplex: "pharmacy",
-    mpje: "mpje",
+    pance: "pance",
     top500: "drugs300",
   };
   const blueprint = getExamBlueprint(fieldMap[examType]);

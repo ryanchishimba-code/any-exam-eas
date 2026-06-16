@@ -3,7 +3,6 @@
  * Quick practice, full simulator, adaptive, topic review, test day.
  */
 import type { ExamFieldId } from "./types";
-import { mpjePracticeExamHref } from "@/lib/study-hub/config";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import { ROUTES } from "@/lib/routes";
@@ -26,7 +25,7 @@ export type PracticeModeDefinition = {
   description: string;
   icon: string;
   /** Study practice URL param or special route */
-  href: (fieldId: ExamFieldId, opts?: { stateCode?: string }) => string;
+  href: (fieldId: ExamFieldId) => string;
   timing: string;
   bestFor: string;
 };
@@ -44,15 +43,14 @@ export const PRACTICE_MODES: PracticeModeDefinition[] = [
   {
     id: "simulator",
     label: "Full Simulator",
-    description: "Board-length timed exam with mixed topics — mirrors real USMLE, NAPLEX, NCLEX, or MPJE format.",
+    description:
+      "Board-length timed exam with mixed topics — mirrors real USMLE, NAPLEX, NCLEX, or PANCE format.",
     icon: "clock",
-    href: (fieldId, opts) =>
-      fieldId === "mpje" && opts?.stateCode
-        ? mpjePracticeExamHref(opts.stateCode)
-        : examSlugFromFieldId(fieldId)
-          ? fullExamLaunchHref(examSlugFromFieldId(fieldId)!, { mode: "full", autostart: true })
-          : ROUTES.fullExam,
-    timing: "2–2.5 hours",
+    href: (fieldId) =>
+      examSlugFromFieldId(fieldId)
+        ? fullExamLaunchHref(examSlugFromFieldId(fieldId)!, { mode: "full", autostart: true })
+        : ROUTES.fullExam,
+    timing: "2–3 hours",
     bestFor: "Endurance and exam-day readiness",
   },
   {
@@ -67,7 +65,7 @@ export const PRACTICE_MODES: PracticeModeDefinition[] = [
   {
     id: "topic",
     label: "Topic Review",
-    description: "Pick a blueprint domain or subject — controlled-substances, med-surg, pharmacotherapy, etc.",
+    description: "Pick a blueprint domain or subject — med-surg, pharmacotherapy, primary care, etc.",
     icon: "book",
     href: (fieldId) => bankUrl(fieldId),
     timing: "Flexible",
@@ -78,12 +76,10 @@ export const PRACTICE_MODES: PracticeModeDefinition[] = [
     label: "Test Day",
     description: "Strict timing, no explanations until end, distraction-free UI — closest to real exam conditions.",
     icon: "flag",
-    href: (fieldId, opts) =>
-      fieldId === "mpje" && opts?.stateCode
-        ? mpjePracticeExamHref(opts.stateCode)
-        : examSlugFromFieldId(fieldId)
-          ? fullExamLaunchHref(examSlugFromFieldId(fieldId)!, { mode: "full", autostart: true })
-          : ROUTES.fullExam,
+    href: (fieldId) =>
+      examSlugFromFieldId(fieldId)
+        ? fullExamLaunchHref(examSlugFromFieldId(fieldId)!, { mode: "full", autostart: true })
+        : ROUTES.fullExam,
     timing: "Full exam block",
     bestFor: "Final-week confidence check",
   },
@@ -110,7 +106,7 @@ export const EXAM_FIELD_OPTIONS: {
     label: "USMLE",
     fieldParam: "usmle-step-2",
     description: "Clinical vignettes — sequential item sets, next-best-step management, and biostats.",
-    timing: "2026 blocks · ~20 Q / 30 min",
+    timing: "280 questions · ~9 hours",
     format: "Vignettes · sequential sets",
   },
   {
@@ -122,12 +118,13 @@ export const EXAM_FIELD_OPTIONS: {
     format: "Clinical scenarios + calculations",
   },
   {
-    id: "mpje",
-    label: "MPJE",
-    fieldParam: "mpje",
-    description: "State-specific + federal/UMPJE — controlled substances, dispensing, licensure, operations.",
-    timing: "120 questions · 2.5 hours",
-    format: "MCQ jurisprudence",
+    id: "pance",
+    label: "PANCE",
+    fieldParam: "pance",
+    description:
+      "NCCPA blueprint — 15 content categories with clinical vignettes and systems-based reasoning.",
+    timing: "300 questions · 5 hours",
+    format: "Clinical MCQ vignettes",
   },
 ];
 
@@ -156,46 +153,17 @@ export function resolvePracticeModeFromParams(params: {
 export function practiceModeLaunchHref(
   fieldId: ExamFieldId,
   modeId: PracticeModeId,
-  basePath: string,
-  opts?: { stateCode?: string }
+  basePath: string
 ): string {
   const mode = getPracticeMode(modeId);
   if (!mode) return basePath;
 
   if (modeId === "simulator" || modeId === "test_day") {
-    if (fieldId === "mpje") {
-      return mpjePracticeExamHref(opts?.stateCode);
-    }
     const slug = examSlugFromFieldId(fieldId);
     if (slug) return fullExamLaunchHref(slug, { mode: "full", autostart: true });
   }
 
-  if (fieldId === "mpje") {
-    const params = new URLSearchParams({
-      field: "mpje",
-      mpjeVariant: "state",
-      autostart: "1",
-      practiceMode: modeId,
-    });
-    if (opts?.stateCode) {
-      params.set("state", opts.stateCode);
-      params.set("mpjeState", opts.stateCode);
-    }
-    if (modeId === "quick") {
-      params.set("mode", "bank");
-      params.set("count", "15");
-      params.set("style", "standard");
-    } else if (modeId === "adaptive") {
-      params.set("mode", "bank");
-      params.set("style", "adaptive");
-      params.set("count", "25");
-    } else {
-      params.set("mode", "bank");
-    }
-    return `${basePath}?${params.toString()}`;
-  }
-
-  const raw = mode.href(fieldId, opts);
+  const raw = mode.href(fieldId);
   const qs = raw.includes("?") ? raw.slice(raw.indexOf("?") + 1) : "";
   const params = new URLSearchParams(qs);
   params.set("autostart", "1");

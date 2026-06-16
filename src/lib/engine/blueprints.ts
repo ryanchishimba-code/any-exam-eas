@@ -314,33 +314,155 @@ const NAPLEX: ExamBlueprint = {
   ],
 };
 
-/** NABP MPJE / Uniform MPJE (UMPJE) jurisprudence content areas. */
-const MPJE: ExamBlueprint = {
-  fieldId: "mpje",
-  examName: "MPJE",
-  sourceNote: "NABP MPJE / Uniform MPJE (UMPJE) — federal and state pharmacy jurisprudence",
-  vignetteMinRatio: 0.7,
+/** NCCPA PANCE Content Blueprint (effective January 2025). */
+const PANCE: ExamBlueprint = {
+  fieldId: "pance",
+  examName: "PANCE",
+  sourceNote: "NCCPA PANCE Content Blueprint (effective January 2025)",
+  vignetteMinRatio: 0.85,
   categories: [
     {
-      id: "federal-law",
-      label: "Federal Pharmacy Law",
-      weight: 0.3,
-      subjectIds: ["federal-pharmacy-law", "controlled-substances", "patient-privacy"],
-      highYieldTopics: ["DEA schedules", "FDA compounding", "HIPAA", "DSCSA"],
+      id: "cardiovascular",
+      label: "Cardiovascular System",
+      weight: 0.11,
+      subjectIds: ["cardiovascular"],
+      highYieldTopics: ["ACS", "heart failure", "arrhythmias", "hypertension", "valvular disease"],
     },
     {
-      id: "state-law",
-      label: "State & Uniform Law",
-      weight: 0.35,
-      subjectIds: ["uniform-mpje", "state-practice-act", "dispensing-procedures"],
-      highYieldTopics: ["practice act", "prescription validity", "transfers", "technician scope"],
+      id: "pulmonary",
+      label: "Pulmonary System",
+      weight: 0.09,
+      subjectIds: ["pulmonary"],
+      highYieldTopics: ["COPD", "asthma", "pneumonia", "PE", "pleural effusion"],
     },
     {
-      id: "ethics-operations",
-      label: "Ethics & Operations",
-      weight: 0.35,
-      subjectIds: ["pharmacy-ethics", "pharmacy-operations", "compounding-regulations"],
-      highYieldTopics: ["professional conduct", "record retention", "USP compounding", "inspections"],
+      id: "gastrointestinal",
+      label: "Gastrointestinal / Nutrition",
+      weight: 0.08,
+      subjectIds: ["gastrointestinal"],
+      highYieldTopics: ["GERD", "pancreatitis", "hepatitis", "IBD", "GI bleeding"],
+    },
+    {
+      id: "musculoskeletal",
+      label: "Musculoskeletal System",
+      weight: 0.08,
+      subjectIds: ["musculoskeletal"],
+      highYieldTopics: ["fractures", "arthritis", "back pain", "compartment syndrome"],
+    },
+    {
+      id: "infectious-diseases",
+      label: "Infectious Diseases",
+      weight: 0.07,
+      subjectIds: ["infectious-diseases"],
+      highYieldTopics: ["sepsis", "HIV", "meningitis", "skin infections", "antibiotic selection"],
+    },
+    {
+      id: "neurologic",
+      label: "Neurologic System",
+      weight: 0.07,
+      subjectIds: ["neurologic"],
+      highYieldTopics: ["stroke", "seizure", "headache", "MS", "neuropathy"],
+    },
+    {
+      id: "psychiatry",
+      label: "Psychiatry / Behavioral Science",
+      weight: 0.07,
+      subjectIds: ["psychiatry"],
+      highYieldTopics: ["depression", "anxiety", "psychosis", "substance use", "suicide risk"],
+    },
+    {
+      id: "reproductive",
+      label: "Reproductive System",
+      weight: 0.07,
+      subjectIds: ["reproductive"],
+      highYieldTopics: ["pregnancy complications", "STIs", "contraception", "gynecologic emergencies"],
+    },
+    {
+      id: "endocrine",
+      label: "Endocrine System",
+      weight: 0.06,
+      subjectIds: ["endocrine"],
+      highYieldTopics: ["diabetes", "thyroid", "DKA", "adrenal disorders"],
+    },
+    {
+      id: "eent",
+      label: "Eyes, Ears, Nose & Throat",
+      weight: 0.06,
+      subjectIds: ["eent"],
+      highYieldTopics: ["red eye", "otitis", "sinusitis", "pharyngitis", "vertigo"],
+    },
+    {
+      id: "hematologic",
+      label: "Hematologic System",
+      weight: 0.05,
+      subjectIds: ["hematologic"],
+      highYieldTopics: ["anemia", "coagulopathy", "thrombocytopenia", "bleeding disorders"],
+    },
+    {
+      id: "renal",
+      label: "Renal System",
+      weight: 0.05,
+      subjectIds: ["renal"],
+      highYieldTopics: ["AKI", "CKD", "electrolytes", "acid-base", "dialysis"],
+    },
+    {
+      id: "dermatologic",
+      label: "Dermatologic System",
+      weight: 0.04,
+      subjectIds: ["dermatologic"],
+      highYieldTopics: ["cellulitis", "rash patterns", "drug eruptions", "melanoma screening"],
+    },
+    {
+      id: "genitourinary",
+      label: "Genitourinary System",
+      weight: 0.04,
+      subjectIds: ["genitourinary"],
+      highYieldTopics: ["UTI", "BPH", "nephrolithiasis", "urologic emergencies"],
+    },
+    {
+      id: "professional-practice",
+      label: "Professional Practice",
+      weight: 0.06,
+      subjectIds: ["professional-practice"],
+      highYieldTopics: ["ethics", "consent", "scope of practice", "patient safety", "documentation"],
+    },
+  ],
+};
+
+/** AANPCB FNP Content Outline (2024+ blueprint). */
+const AANP_FNP: ExamBlueprint = {
+  fieldId: "aanp-fnp",
+  examName: "AANP FNP-C",
+  sourceNote: "AANPCB FNP Content Outline (2024+ blueprint) — Assess, Diagnose, Plan, Evaluate",
+  vignetteMinRatio: 0.85,
+  categories: [
+    {
+      id: "assess",
+      label: "Assess",
+      weight: 0.32,
+      subjectIds: ["assess", "pediatrics", "geriatrics", "womens-health"],
+      highYieldTopics: ["history", "physical exam", "screening", "diagnostics", "lifespan assessment"],
+    },
+    {
+      id: "diagnose",
+      label: "Diagnose",
+      weight: 0.265,
+      subjectIds: ["diagnose", "cardiovascular", "pulmonary", "endocrine", "infectious-disease"],
+      highYieldTopics: ["differential diagnosis", "clinical reasoning", "red flags", "data synthesis"],
+    },
+    {
+      id: "plan",
+      label: "Plan",
+      weight: 0.265,
+      subjectIds: ["plan", "psychiatry-behavioral", "womens-health", "endocrine"],
+      highYieldTopics: ["pharmacotherapy", "patient education", "referrals", "preventive care"],
+    },
+    {
+      id: "evaluate",
+      label: "Evaluate",
+      weight: 0.15,
+      subjectIds: ["evaluate", "geriatrics", "psychiatry-behavioral"],
+      highYieldTopics: ["treatment response", "adverse effects", "follow-up", "care plan modification"],
     },
   ],
 };
@@ -350,7 +472,7 @@ const BLUEPRINTS: Record<string, ExamBlueprint> = {
   "usmle-step-1": USMLE_STEP_1,
   "usmle-step-2": USMLE_STEP_2,
   pharmacy: NAPLEX,
-  mpje: MPJE,
+  pance: PANCE,
 };
 
 export function getExamBlueprint(fieldId: string): ExamBlueprint | undefined {

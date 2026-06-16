@@ -30,7 +30,7 @@ export function LandingTrialTrust({
 
   return (
     <div className={className}>
-      <p className="text-center text-xs font-medium text-slate-600 lg:text-left">
+      <p className="text-center text-xs font-medium text-[var(--color-ink-muted)] lg:text-left">
         {TRIAL_PAYMENT_DISCLOSURE}
       </p>
       <PaymentMethodBadges className="mt-3" size="sm" />
@@ -39,7 +39,7 @@ export function LandingTrialTrust({
         aria-label="Billing trust signals"
       >
         {items.map(({ icon: Icon, label }) => (
-          <li key={label} className="flex items-center gap-1.5 text-[0.6875rem] text-slate-500">
+          <li key={label} className="flex items-center gap-1.5 text-[0.6875rem] text-[var(--color-ink-muted)]">
             <Icon className="h-3.5 w-3.5 text-teal-600" strokeWidth={2} aria-hidden />
             {label}
           </li>

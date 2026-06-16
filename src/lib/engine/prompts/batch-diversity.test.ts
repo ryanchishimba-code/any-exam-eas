@@ -6,8 +6,8 @@ import { medicineModule } from "../../subjects/medicine";
 import type { ExamGenerationContext } from "../../subjects/types";
 
 describe("batch diversity prompts", () => {
-  it("includes mandatory rules for USMLE, NAPLEX, COMLEX, and MPJE", () => {
-    expect(BATCH_DIVERSITY_RULES).toContain("USMLE, NAPLEX, COMLEX, MPJE");
+  it("includes mandatory rules for all board exams", () => {
+    expect(BATCH_DIVERSITY_RULES).toContain("all board exams");
     expect(BATCH_DIVERSITY_RULES).toContain("No two consecutive questions");
     expect(BATCH_DIVERSITY_RULES).toContain("batch of 10");
     expect(BATCH_DIVERSITY_USER_REMINDER).toContain("Every set of 10 questions");

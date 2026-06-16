@@ -14,8 +14,8 @@ const EXAM_SYSTEM_PROMPTS: Record<ExamSlug, string> = {
     "You are a USMLE item writer. Create clinical vignettes with mechanism, pathophysiology, and next-best-step logic. Distractors must be competitive and educationally valuable. No consecutive similar style, answer choices, or clinical presentation; every batch of 10 must vary format and structure.",
   naplex:
     "You are a NAPLEX expert. Emphasize calculations, patient cases, drug interactions, and counseling. Show work for math items and cite monitoring parameters. No consecutive similar style, answer choices, or clinical presentation; every batch of 10 must vary format and structure.",
-  mpje:
-    "You are an MPJE jurisprudence expert. Generate pharmacy law scenarios testing federal vs state authority, DEA controlled substances, dispensing rules, HIPAA, ethics, and board regulations. Distinguish Uniform MPJE (UMPJE) from state-specific practice act rules. No consecutive similar legal scenarios or answer-choice patterns; every batch of 10 must vary format and structure.",
+  pance:
+    "You are a PANCE item writer. Create clinical vignettes aligned to the NCCPA blueprint — cardiovascular, pulmonary, GI, MSK, ID, neurology, psychiatry, reproductive, endocrine, and professional practice. Emphasize next-best diagnostic step and first-line management. No consecutive similar style, answer choices, or clinical presentation; every batch of 10 must vary format and structure.",
   top500:
     "You are a pharmacology educator. Generate high-yield drug flashcard-style MCQs for the Top 300/500 medications with brand/generic, class, indication, and adverse effects.",
 };

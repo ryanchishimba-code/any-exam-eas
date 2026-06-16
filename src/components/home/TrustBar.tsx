@@ -14,7 +14,7 @@ type TrustBarProps = {
 export function TrustBar({ className = "" }: TrustBarProps) {
   return (
     <ul
-      className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 text-xs text-slate-500 ${className}`}
+      className={`flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 text-xs text-[var(--color-ink-muted)] ${className}`}
     >
       {items.map(({ icon: Icon, label }) => (
         <li key={label} className="inline-flex items-center gap-1.5">

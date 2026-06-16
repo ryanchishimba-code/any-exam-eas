@@ -20,7 +20,12 @@ export const PINNED_MEMORY_CARD_IDS: Record<ExamSlug, string[]> = {
     "naplex-mrsa-agents",
     "naplex-hf-four-pillars",
   ],
-  mpje: ["mpje-cii-rules", "mpje-schedules", "mpje-transfer-rules", "mpje-pseudoephedrine"],
+  pance: [
+    "pance-hypertension-first-line",
+    "pance-diabetes-a1c-targets",
+    "pance-febrile-infant-workup",
+    "pance-acs-reperfusion",
+  ],
 };
 
 export function getPinnedMemoryCardIds(examSlug: ExamSlug): string[] {

@@ -10,7 +10,7 @@ import type { ExamSlug } from "@/types/edtech";
 
 export const runtime = "nodejs";
 
-const examSchema = z.enum(["nclex", "usmle", "naplex", "mpje"]);
+const examSchema = z.enum(["nclex", "usmle", "naplex", "pance"]);
 
 const upsertSchema = z.object({
   examSlug: examSchema,

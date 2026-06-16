@@ -123,7 +123,7 @@ export function assessMpjeItemQuality(
   const explanation = item.explanation?.trim() ?? "";
   const nonMcq = new Set(["k_type", "select_all", "sata", "ordered_response"]);
 
-  const audit = auditBankItem(item, "mpje");
+  const audit = auditBankItem(item, "aanp-fnp");
   if (!audit.ok) {
     issues.push(...audit.issues.filter((i) => i.severity === "error").map((i) => i.code));
   }

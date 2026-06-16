@@ -126,7 +126,7 @@ export function NgnInteractiveDemo() {
                 className={`rounded-full px-4 py-2 text-sm font-medium transition ${
                   activeTab === tab.id
                     ? "bg-[var(--color-accent)] text-white shadow-sm"
-                    : "border border-black/[0.08] bg-white text-[var(--color-ink-muted)] hover:border-[var(--color-accent)]/30"
+                    : "border border-black/[0.08] bg-[var(--color-surface-elevated)] text-[var(--color-ink-muted)] hover:border-[var(--color-accent)]/30"
                 }`}
               >
                 {tab.label}
@@ -141,7 +141,7 @@ export function NgnInteractiveDemo() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="mt-5 rounded-2xl border border-black/[0.08] bg-white p-5 shadow-lg shadow-teal-900/[0.04] sm:p-6"
+              className="mt-5 rounded-2xl border border-black/[0.08] bg-[var(--color-surface-elevated)] p-5 shadow-lg shadow-teal-900/[0.04] sm:p-6"
               role="tabpanel"
             >
               <QuestionRenderer
@@ -187,7 +187,7 @@ export function NgnInteractiveDemo() {
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/full-exam/nclex"
-              className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-surface-elevated)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-surface)]"
             >
               Start NCLEX timed exam
               <ArrowRight className="h-4 w-4" aria-hidden />

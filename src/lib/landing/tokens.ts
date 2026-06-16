@@ -19,5 +19,6 @@ export const EXAM_ACCENTS = {
   nclex: FLAGSHIP.teal,
   usmle: "#4da3ff",
   naplex: "#9b8cff",
-  mpje: "#f0b429",
+  pance: "#f472b6",
+  aanpFnp: "#e879f9",
 } as const;

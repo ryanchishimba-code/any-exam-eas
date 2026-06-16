@@ -89,7 +89,7 @@ export function Top500DrugsInfographic() {
                 );
               })}
               <li>
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-600 ring-1 ring-slate-200/80">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-surface)] px-3 py-1.5 text-xs font-medium text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]">
                   <BookMarked className="h-3.5 w-3.5" aria-hidden />
                   One shared deck
                 </span>
@@ -113,7 +113,7 @@ export function Top500DrugsInfographic() {
                     >
                       <Icon className={`h-4 w-4 ${benefit.color}`} strokeWidth={2} aria-hidden />
                     </span>
-                    <span className="text-sm font-medium text-slate-800">{benefit.label}</span>
+                    <span className="text-sm font-medium text-[var(--color-ink)]">{benefit.label}</span>
                   </motion.li>
                 );
               })}
@@ -199,14 +199,14 @@ export function Top500DrugsInfographic() {
                   <p className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-teal-600">
                     High-yield deck
                   </p>
-                  <p className="mt-1 text-5xl font-black tracking-tight text-slate-900">500</p>
-                  <p className="text-sm font-semibold text-slate-600">Most prescribed drugs</p>
+                  <p className="mt-1 text-5xl font-black tracking-tight text-[var(--color-ink)]">500</p>
+                  <p className="text-sm font-semibold text-[var(--color-ink-muted)]">Most prescribed drugs</p>
                 </div>
               </div>
 
               {/* Therapeutic class grid */}
               <div className="mt-6">
-                <p className="mb-3 text-center text-[0.6875rem] font-bold uppercase tracking-wider text-slate-400">
+                <p className="mb-3 text-center text-[0.6875rem] font-bold uppercase tracking-wider text-[var(--color-ink-muted)]">
                   Color-coded by therapeutic class
                 </p>
                 <ul className="grid grid-cols-3 gap-2 sm:grid-cols-6">
@@ -224,7 +224,7 @@ export function Top500DrugsInfographic() {
                           style={{ backgroundColor: cls.color }}
                           aria-hidden
                         />
-                        <span className="mt-1 block text-[0.6875rem] font-bold leading-tight text-slate-700">
+                        <span className="mt-1 block text-[0.6875rem] font-bold leading-tight text-[var(--color-ink)]">
                           {cls.shortLabel}
                         </span>
                       </div>
@@ -237,8 +237,8 @@ export function Top500DrugsInfographic() {
               <article className="aee-drugs-flashcard-preview mt-6" aria-label="Sample drug flashcard">
                 <div className="flex items-start justify-between gap-3">
                   <div>
-                    <p className="text-lg font-bold text-slate-900">{SAMPLE_CARD.generic}</p>
-                    <p className="text-sm text-slate-500">{SAMPLE_CARD.brand}</p>
+                    <p className="text-lg font-bold text-[var(--color-ink)]">{SAMPLE_CARD.generic}</p>
+                    <p className="text-sm text-[var(--color-ink-muted)]">{SAMPLE_CARD.brand}</p>
                   </div>
                   <span
                     className="shrink-0 rounded-full px-2.5 py-1 text-[0.625rem] font-bold uppercase tracking-wide text-white"
@@ -253,7 +253,7 @@ export function Top500DrugsInfographic() {
                       <Target className="h-3 w-3" aria-hidden />
                       Indication
                     </dt>
-                    <dd className="mt-0.5 text-xs font-medium text-slate-700">
+                    <dd className="mt-0.5 text-xs font-medium text-[var(--color-ink)]">
                       {SAMPLE_CARD.indication}
                     </dd>
                   </div>
@@ -262,7 +262,7 @@ export function Top500DrugsInfographic() {
                       <AlertTriangle className="h-3 w-3" aria-hidden />
                       Side effect
                     </dt>
-                    <dd className="mt-0.5 text-xs font-medium text-slate-700">
+                    <dd className="mt-0.5 text-xs font-medium text-[var(--color-ink)]">
                       {SAMPLE_CARD.sideEffect}
                     </dd>
                   </div>
@@ -276,7 +276,7 @@ export function Top500DrugsInfographic() {
               </article>
             </div>
 
-            <p className="mt-4 text-center text-xs text-slate-400">
+            <p className="mt-4 text-center text-xs text-[var(--color-ink-muted)]">
               Spaced repetition · Filter by class · Search all 500 drugs
             </p>
           </motion.div>

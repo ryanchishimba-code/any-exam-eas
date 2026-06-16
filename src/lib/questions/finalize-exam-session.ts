@@ -14,11 +14,11 @@ import {
 } from "./spread-session-order";
 import { QUESTION_BANK_SAMPLE_MAX_PULL } from "@/lib/question-bank-db";
 
-/** Field ids used by full-length NCLEX, NAPLEX, USMLE, and MPJE simulators. */
+/** Field ids used by full-length NCLEX, NAPLEX, USMLE, and PANCE simulators. */
 export const FULL_EXAM_FIELD_IDS = new Set([
   "nursing",
   "pharmacy",
-  "mpje",
+  "pance",
   "usmle-step-2",
   "usmle-step-1",
   "usmle-step-3",
@@ -35,13 +35,20 @@ export function resolveExamBankSampleCount(
   timedExam: boolean
 ): number {
   if (!timedExam) {
-    const clinicalPool = fieldId === "nursing" || fieldId.startsWith("usmle");
+    const clinicalPool =
+      fieldId === "nursing" ||
+      fieldId.startsWith("usmle") ||
+      fieldId === "pance";
     if (clinicalPool) return Math.min(Math.max(limit * 6, 40), 120);
     return Math.max(limit, 40);
   }
 
   // Runtime clinical gates reject many rows — pull a large pool before spread/limit.
-  if (fieldId === "nursing" || fieldId.startsWith("usmle")) {
+  if (
+    fieldId === "nursing" ||
+    fieldId.startsWith("usmle") ||
+    fieldId === "pance"
+  ) {
     return Math.min(
       QUESTION_BANK_SAMPLE_MAX_PULL,
       Math.max(limit * 3, limit + 150)
@@ -118,9 +125,14 @@ export function finalizeExamSessionQuestions(
   );
   let quality = assessExamSessionQuality(prepared, requested);
 
-  for (let attempt = 0; attempt < 3 && !quality.ok; attempt++) {
+  for (let attempt = 0; attempt < 5 && !quality.ok; attempt++) {
     const spreadIssues = quality.issues.some((i) =>
-      ["adjacent_similar_cases", "adjacent_similar_options"].includes(i)
+      [
+        "adjacent_similar_cases",
+        "adjacent_similar_options",
+        "generic_distractors",
+        "difficulty_not_varied",
+      ].includes(i)
     );
     if (!spreadIssues && !quality.issues.some((i) => i.startsWith("count_mismatch"))) {
       break;
@@ -145,6 +157,28 @@ export function assertExamSessionReady(
   if (countFailed) {
     throw new Error(
       `Not enough ${fieldId} questions available (${quality.returned}/${quality.requested}). Try a shorter exam length.`
+    );
+  }
+
+  if (quality.issues.includes("generic_distractors")) {
+    throw new Error(
+      `Some ${fieldId} questions did not meet board-style distractor standards. Please try again.`
+    );
+  }
+
+  if (
+    quality.returned >= 4 &&
+    (quality.issues.includes("adjacent_similar_options") ||
+      quality.issues.includes("adjacent_similar_cases"))
+  ) {
+    throw new Error(
+      `Could not assemble a sufficiently diverse ${fieldId} session. Please try again.`
+    );
+  }
+
+  if (quality.returned >= 6 && quality.issues.includes("difficulty_not_varied")) {
+    throw new Error(
+      `Could not assemble a balanced ${fieldId} difficulty mix. Please try again.`
     );
   }
 

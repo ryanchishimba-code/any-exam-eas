@@ -5,6 +5,7 @@ import { useTransition } from "react";
 import { GraduationCap, MapPin, LogOut } from "lucide-react";
 import { signOutAndCleanup } from "@/lib/client/sign-out";
 import { MpjeStateSelect } from "@/components/study/MpjeStateSelect";
+import { AppearanceSettings } from "@/components/settings/AppearanceSettings";
 import { BillingSettingsSection } from "@/components/settings/BillingSettingsSection";
 import { saveMpjePreferences } from "@/lib/edtech/actions";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
@@ -35,22 +36,24 @@ export function SettingsClient({
 
   return (
     <div className="space-y-6">
-      <section className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
-        <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">Account</h2>
-        <p className="mt-3 text-lg font-semibold text-slate-900 dark:text-white">
+      <AppearanceSettings />
+
+      <section className="rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6 shadow-[var(--shadow-apple-sm)]">
+        <h2 className="text-sm font-bold uppercase tracking-wider text-[var(--color-ink-muted)]">Account</h2>
+        <p className="mt-3 text-lg font-semibold text-[var(--color-ink)]">
           {name ?? "Student"}
         </p>
-        <p className="text-sm text-slate-500">{email}</p>
+        <p className="text-sm text-[var(--color-ink-muted)]">{email}</p>
       </section>
 
-      <section className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
+      <section className="rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6 shadow-[var(--shadow-apple-sm)]">
         <div className="flex items-center gap-2">
-          <GraduationCap className="h-5 w-5 text-teal-600" aria-hidden />
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
+          <GraduationCap className="h-5 w-5 text-[var(--color-accent)]" aria-hidden />
+          <h2 className="text-sm font-bold uppercase tracking-wider text-[var(--color-ink-muted)]">
             Primary exam
           </h2>
         </div>
-        <p className="mt-3 text-slate-700 dark:text-slate-300">
+        <p className="mt-3 text-[var(--color-ink)]">
           {examSlug ? EXAM_CATALOG[examSlug].name : "No exam selected yet"}
         </p>
         <Link
@@ -62,14 +65,14 @@ export function SettingsClient({
       </section>
 
       {examSlug === "mpje" ? (
-        <section className="rounded-3xl border border-violet-200/80 bg-gradient-to-br from-violet-50/80 to-white p-6 shadow-sm dark:border-violet-900/50 dark:from-violet-950/30 dark:to-slate-900/80">
+        <section className="rounded-3xl border border-violet-200/80 bg-gradient-to-br from-violet-50/80 to-[var(--color-surface-elevated)] p-6 shadow-[var(--shadow-apple-sm)] dark:border-violet-900/50 dark:from-violet-950/30 dark:to-[var(--color-surface-elevated)]">
           <div className="flex items-center gap-2">
-            <MapPin className="h-5 w-5 text-violet-600" aria-hidden />
-            <h2 className="text-sm font-bold uppercase tracking-wider text-slate-500">
+            <MapPin className="h-5 w-5 text-violet-600 dark:text-violet-400" aria-hidden />
+            <h2 className="text-sm font-bold uppercase tracking-wider text-[var(--color-ink-muted)]">
               MPJE state
             </h2>
           </div>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">
+          <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
             Your default jurisdiction for question bank and practice filters.
           </p>
           <div className="mt-4">
@@ -87,7 +90,7 @@ export function SettingsClient({
       <button
         type="button"
         onClick={() => void signOutAndCleanup({ callbackUrl: "/" })}
-        className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-red-600"
+        className="inline-flex items-center gap-2 text-sm font-medium text-[var(--color-ink-muted)] transition hover:text-red-600"
       >
         <LogOut className="h-4 w-4" aria-hidden />
         Sign out

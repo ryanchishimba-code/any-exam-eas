@@ -42,12 +42,9 @@ describe("practice modes", () => {
     );
   });
 
-  it("includes MPJE state in bank launch URLs", () => {
-    const href = practiceModeLaunchHref("mpje", "adaptive", "/question-bank", {
-      stateCode: "OK",
-    });
-    expect(href).toContain("field=mpje");
-    expect(href).toContain("state=OK");
+  it("builds adaptive bank URLs for PANCE", () => {
+    const href = practiceModeLaunchHref("pance", "adaptive", "/question-bank");
+    expect(href).toContain("field=pance");
     expect(href).toContain("style=adaptive");
     expect(href).toContain("autostart=1");
   });

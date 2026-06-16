@@ -106,7 +106,7 @@ function inferDistractorWhy(option: string, q: ExamQuestion, fieldId?: string): 
     }
   }
 
-  if (id === "mpje") {
+  if (id === "pance") {
     if (/federal.*not apply|state always supersede|ignore board/i.test(option)) {
       return `Incorrect — misapplies jurisdiction; federal and state pharmacy law both govern practice with specific precedence rules.`;
     }
@@ -176,7 +176,7 @@ function deriveClinicalReasoning(q: ExamQuestion, fieldId?: string): string {
       .join("\n");
   }
 
-  if (id === "mpje") {
+  if (id === "pance") {
     return [
       "1. Identify facts: extract regulatory facts from the pharmacy practice scenario.",
       "2. Determine authority: identify whether federal (DEA/FDA/HIPAA) or state (practice act/board) law applies.",
