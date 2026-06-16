@@ -1,9 +1,7 @@
-import OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import type { RetrievedChunk } from "./types";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("rag");
 
 /**
  * LLM-based reranking (cross-encoder surrogate) — scores relevance 0–10 per chunk.

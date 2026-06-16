@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import type { ExamQuestion } from "@/lib/ai";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
 import {
@@ -14,9 +14,7 @@ import {
 } from "@/lib/engine/prompts/vignette";
 import type { RetrievedChunk, SelfRagReflection } from "./types";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("rag");
 
 const PASS_THRESHOLD = 0.72;
 

@@ -1,7 +1,6 @@
 import { createHash, randomBytes } from "node:crypto";
-import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
-import { findUserByEmail } from "@/lib/user-auth";
+import { findUserByEmail, setUserPassword } from "@/lib/user-auth";
 import { normalizeEmail } from "@/lib/validators/auth";
 import { PASSWORD_RESET_EXPIRY_MINUTES } from "@/lib/validators/password-reset";
 import {
@@ -10,7 +9,6 @@ import {
 } from "@/lib/email/config";
 import { sendPasswordResetEmail } from "@/lib/email";
 
-const BCRYPT_ROUNDS = 12;
 const TOKEN_BYTES = 32;
 
 export type PasswordResetOutcome = {
@@ -125,13 +123,6 @@ export async function resetPasswordWithToken(
     throw new Error("This reset link is invalid or has expired. Request a new one.");
   }
 
-  const passwordHash = await bcrypt.hash(newPassword, BCRYPT_ROUNDS);
-
-  await prisma.$transaction([
-    prisma.user.update({
-      where: { id: user.id },
-      data: { passwordHash },
-    }),
-    prisma.passwordResetToken.delete({ where: { id: record.id } }),
-  ]);
+  await setUserPassword(user.id, newPassword);
+  await prisma.passwordResetToken.delete({ where: { id: record.id } });
 }

@@ -151,6 +151,7 @@ const BOARD_TO_EXAM_SLUG: Record<BoardExamKey, import("@/types/edtech").ExamSlug
   naplex: "naplex",
   pance: "pance",
   "aanp-fnp": "aanp-fnp",
+  "npte-pt": "npte-pt",
 };
 
 /** Board-style timed session duration (scales official exam time to question count). */

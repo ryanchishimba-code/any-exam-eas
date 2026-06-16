@@ -14,12 +14,13 @@ export const FLAGSHIP = {
   white: "#ffffff",
 } as const;
 
-/** Exam accent colors — distinct but restrained for grid harmony */
+/** Exam accent colors — vivid on landing hero & exam cards */
 export const EXAM_ACCENTS = {
-  nclex: FLAGSHIP.teal,
-  usmle: "#4da3ff",
-  naplex: "#9b8cff",
-  pance: "#f472b6",
-  aanpFnp: "#e879f9",
+  nclex: "#00E5D8",
+  usmle: "#3B9EFF",
+  naplex: "#9B8CFF",
+  pance: "#FF5C9A",
+  aanpFnp: "#E040FB",
+  nptePt: "#22D3EE",
   comlex: "#38bdf8",
 } as const;

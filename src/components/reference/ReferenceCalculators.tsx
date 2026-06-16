@@ -33,7 +33,7 @@ import { cn } from "@/lib/utils";
 type PharmacyCalcTab = "crcl" | "vancomycin" | "bedside";
 type CalcTab = ClinicalCalcId | PharmacyCalcTab;
 
-const CLINICAL_EXAMS: ExamSlug[] = ["naplex", "usmle", "nclex"];
+const CLINICAL_EXAMS: ExamSlug[] = ["naplex", "usmle", "nclex", "pance", "aanp-fnp", "npte-pt"];
 
 export function ReferenceCalculators({ examSlug }: { examSlug: ExamSlug }) {
   const showVanc = examSlug === "naplex" || examSlug === "usmle";

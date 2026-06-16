@@ -1,66 +1,87 @@
 /**
- * Insert NCLEX full-exam items into question bank.
+ * Link QA-passed bank items into NCLEX full-length practice exam sets.
  */
 import type { PrismaClient } from "@prisma/client";
-import type { BankItem } from "@/lib/question-bank";
-import { bankItemContentHash } from "@/lib/sync-question-bank";
-import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";
-import { assessNclexFullExamItem } from "./quality-gate";
+import type { NclexFullExamBundle } from "./types";
 import { NCLEX_FULL_EXAM_VERSION } from "./types";
 
 export type NclexInsertResult = {
-  created: number;
-  skipped: number;
+  examId: string;
+  linked: number;
+  missing: number;
 };
 
 export async function insertNclexFullExamItems(
   prisma: PrismaClient,
-  items: BankItem[]
+  exam: NclexFullExamBundle,
+  opts?: { batchId?: string }
 ): Promise<NclexInsertResult> {
-  let created = 0;
-  let skipped = 0;
+  const links: {
+    sortOrder: number;
+    questionBankItemId: string;
+    clientNeedsCategory?: string;
+    itemFormat?: string;
+  }[] = [];
+  let missing = 0;
 
-  for (const item of items) {
-    const subjectId = item.subjectId ?? "management-of-care";
-    const hash = bankItemContentHash("nursing", subjectId, item);
-    const exists = await prisma.questionBankItem.findUnique({
-      where: { contentHash: hash },
-      select: { id: true },
-    });
-    if (exists) {
-      skipped++;
+  for (let i = 0; i < exam.items.length; i++) {
+    const item = exam.items[i]!;
+    const bankId = item.id;
+    if (!bankId) {
+      missing++;
       continue;
     }
 
-    const qc = assessNclexFullExamItem(item, created);
-    const generationMeta = item.ngnPayload?.generationMeta ?? null;
-
-    await prisma.questionBankItem.create({
-      data: {
-        fieldId: "nursing",
-        subjectId,
-        scenario: item.vignette ?? null,
-        difficulty: item.difficulty ?? 3,
-        topicCategory: item.topicCategory ?? subjectId,
-        blueprintDomain: item.blueprintDomain ?? "nclex-physiological",
-        generationVersion: NCLEX_FULL_EXAM_VERSION,
-        reviewStatus: qc.ok ? "approved" : "pending",
-        generationMeta: generationMeta ?? undefined,
-        itemType: item.itemType ?? "vignette",
-        question: item.question,
-        options: serializeBankOptions(item),
-        correctAnswer: item.correctAnswer,
-        explanation: item.explanation,
-        tags: item.tags ? JSON.stringify(item.tags) : null,
-        references: item.references?.length ? item.references : undefined,
-        source: "ai-curated",
-        contentHash: hash,
-        active: true,
-        qaPassed: qc.ok,
-      },
+    links.push({
+      sortOrder: i + 1,
+      questionBankItemId: bankId,
+      clientNeedsCategory: item.topicCategory ?? item.subjectId ?? undefined,
+      itemFormat: item.itemType ?? "vignette",
     });
-    created++;
   }
 
-  return { created, skipped };
+  const examRecord = await prisma.nclexFullPracticeExam.upsert({
+    where: { examNumber: exam.examNumber },
+    create: {
+      examNumber: exam.examNumber,
+      title: exam.title,
+      questionCount: exam.items.length,
+      blueprintSummary: exam.blueprintSummary,
+      caseStudySummary: exam.caseStudyGroups,
+      batchId: opts?.batchId,
+      generationVersion: NCLEX_FULL_EXAM_VERSION,
+      qaPassed: exam.qaReport.allPassed,
+      qaReport: exam.qaReport,
+      active: exam.qaReport.allPassed && links.length === exam.questionCount,
+    },
+    update: {
+      title: exam.title,
+      questionCount: exam.items.length,
+      blueprintSummary: exam.blueprintSummary,
+      caseStudySummary: exam.caseStudyGroups,
+      batchId: opts?.batchId,
+      generationVersion: NCLEX_FULL_EXAM_VERSION,
+      qaPassed: exam.qaReport.allPassed,
+      qaReport: exam.qaReport,
+      active: exam.qaReport.allPassed && links.length === exam.questionCount,
+    },
+  });
+
+  await prisma.nclexFullPracticeExamQuestion.deleteMany({
+    where: { examId: examRecord.id },
+  });
+
+  if (links.length > 0) {
+    await prisma.nclexFullPracticeExamQuestion.createMany({
+      data: links.map((q) => ({
+        examId: examRecord.id,
+        questionBankItemId: q.questionBankItemId,
+        sortOrder: q.sortOrder,
+        clientNeedsCategory: q.clientNeedsCategory,
+        itemFormat: q.itemFormat,
+      })),
+    });
+  }
+
+  return { examId: examRecord.id, linked: links.length, missing };
 }

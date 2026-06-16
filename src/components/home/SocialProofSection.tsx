@@ -20,7 +20,7 @@ export function SocialProofSection() {
             <span className="aee-flagship-gradient-text">one affordable plan.</span>
           </h2>
           <p className="aee-flagship-subtitle">
-            One plan. Five boards. Integrated tools that help you study smarter — not harder.
+            One plan. Six boards. Integrated tools that help you study smarter — not harder.
           </p>
         </header>
 

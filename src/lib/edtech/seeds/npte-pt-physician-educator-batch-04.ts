@@ -318,7 +318,7 @@ export const NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_04: EnrichedBankItem[] = [
 
   nptePtVignette(
     "therapeutic-modalities",
-    `A 62-year-old woman with knee OA has a cardiac pacemaker on the ipsilateral side. Physician cleared NMES for quadriceps strengthening with specific precautions.`,
+    `A 62-year-old woman with knee OA has a cardiac pacemaker on the ipsilateral side. Resting HR is 72/min. Physician cleared NMES for quadriceps strengthening with specific precautions.`,
     "Which precaution is most important when applying NMES near the pacemaker?",
     [
       "Avoid placing electrodes over or near the pacemaker generator; follow physician-specific clearance and monitor response",
@@ -516,7 +516,7 @@ export const NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_04: EnrichedBankItem[] = [
 
   nptePtVignette(
     "gastrointestinal",
-    `A 38-year-old woman with chronic constipation and pelvic floor dyssynergia shows paradoxical pelvic floor contraction during simulated defecation on biofeedback assessment. She reports straining for 10+ minutes daily.`,
+    `A 38-year-old woman with chronic constipation and pelvic floor dyssynergia shows paradoxical pelvic floor contraction during simulated defecation on biofeedback assessment. She reports straining for 10+ minutes daily with abdominal discomfort rated 5/10.`,
     "Which intervention is most appropriate?",
     [
       "Pelvic floor biofeedback training to coordinate relaxation during defecation plus bowel habit modification",

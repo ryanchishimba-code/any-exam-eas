@@ -118,8 +118,10 @@ const PRESENTATION_HINTS: PanceGenerationSlot["presentationHint"][] = [
 ];
 
 /**
- * Build generation slots prioritizing categories with the largest deficit.
- * Each slot specifies content category, task area, topic, and difficulty.
+ * Build generation slots allocated PROPORTIONALLY to each category's deficit.
+ * Categories already at/over target (deficit 0) get no slots, so a rebalance
+ * run concentrates entirely on under-filled categories. Falls back to an even
+ * split across all categories when no deficits are supplied.
  */
 export function planPanceGenerationSlots(params: {
   count: number;
@@ -127,33 +129,87 @@ export function planPanceGenerationSlots(params: {
   seed?: number;
 }): PanceGenerationSlot[] {
   const { count, deficitsByCategory, seed = 0 } = params;
-  const slots: PanceGenerationSlot[] = [];
+  if (count <= 0) return [];
 
-  const categories = [...CONTENT_IDS].sort((a, b) => {
-    const deficitA = deficitsByCategory[a] ?? getPanceCategoryTarget(a);
-    const deficitB = deficitsByCategory[b] ?? getPanceCategoryTarget(b);
-    return deficitB - deficitA;
-  });
+  const deficitFor = (id: PanceContentCategoryId): number =>
+    Math.max(0, deficitsByCategory[id] ?? 0);
 
-  for (let i = 0; i < count; i++) {
-    const catIndex = (i + seed) % categories.length;
-    const contentCategory = categories[catIndex]!;
-    const taskCategory = pickTaskForSlot(contentCategory, i + seed);
-    const blueprintTopic = pickTopic(contentCategory, i + seed);
-    const difficulty = 2 + ((i + seed) % 4);
-    const presentationHint =
-      PRESENTATION_HINTS[(i + seed) % PRESENTATION_HINTS.length];
+  const positive = CONTENT_IDS.filter((id) => deficitFor(id) > 0);
+  const totalDeficit = positive.reduce((sum, id) => sum + deficitFor(id), 0);
 
-    slots.push({
-      contentCategory,
-      taskCategory,
-      blueprintTopic,
-      difficulty,
-      presentationHint,
+  // Decide how many slots each category receives.
+  const allocation = new Map<PanceContentCategoryId, number>();
+  if (positive.length === 0 || totalDeficit === 0) {
+    // No deficits known — even split across all categories (largest deficit first).
+    const ordered = [...CONTENT_IDS].sort(
+      (a, b) => (deficitsByCategory[b] ?? 0) - (deficitsByCategory[a] ?? 0)
+    );
+    ordered.forEach((id, i) => {
+      const base = Math.floor(count / ordered.length);
+      const extra = i < count % ordered.length ? 1 : 0;
+      allocation.set(id, base + extra);
     });
+  } else {
+    let assigned = 0;
+    const ordered = [...positive].sort((a, b) => deficitFor(b) - deficitFor(a));
+    for (const id of ordered) {
+      const share = Math.floor((count * deficitFor(id)) / totalDeficit);
+      allocation.set(id, Math.min(share, deficitFor(id)));
+      assigned += allocation.get(id)!;
+    }
+    // Distribute remaining slots to the largest deficits first (capped at each
+    // category's deficit). Never generate more than the total deficit needs.
+    let leftover = Math.min(count, totalDeficit) - assigned;
+    for (const id of ordered) {
+      if (leftover <= 0) break;
+      const room = deficitFor(id) - (allocation.get(id) ?? 0);
+      if (room <= 0) continue;
+      const add = Math.min(room, leftover);
+      allocation.set(id, (allocation.get(id) ?? 0) + add);
+      leftover -= add;
+    }
   }
 
-  return slots;
+  const slots: PanceGenerationSlot[] = [];
+  let globalIndex = seed;
+  for (const [contentCategory, n] of allocation) {
+    for (let k = 0; k < n; k++) {
+      const idx = globalIndex++;
+      slots.push({
+        contentCategory,
+        taskCategory: pickTaskForSlot(contentCategory, idx),
+        blueprintTopic: pickTopic(contentCategory, idx),
+        difficulty: 2 + (idx % 4),
+        presentationHint: PRESENTATION_HINTS[idx % PRESENTATION_HINTS.length],
+      });
+    }
+  }
+
+  // Interleave so consecutive slots vary in category (helps batch diversity).
+  return interleaveByCategory(slots);
+}
+
+/** Round-robin interleave slots so adjacent items rarely share a category. */
+function interleaveByCategory(slots: PanceGenerationSlot[]): PanceGenerationSlot[] {
+  const buckets = new Map<string, PanceGenerationSlot[]>();
+  for (const slot of slots) {
+    const list = buckets.get(slot.contentCategory) ?? [];
+    list.push(slot);
+    buckets.set(slot.contentCategory, list);
+  }
+  const queues = [...buckets.values()];
+  const out: PanceGenerationSlot[] = [];
+  let remaining = slots.length;
+  while (remaining > 0) {
+    for (const q of queues) {
+      const next = q.shift();
+      if (next) {
+        out.push(next);
+        remaining--;
+      }
+    }
+  }
+  return out;
 }
 
 /** Validate that a set of category counts is within ±2% of blueprint weights. */

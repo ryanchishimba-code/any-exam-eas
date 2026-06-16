@@ -10,11 +10,11 @@ export const SESSION_QUALITY_REQUIREMENTS = {
     "Return exactly the user-selected count — full exam, sprint, or custom bank length.",
   difficultyMix: "Sessions include easy, medium, and hard items when the pool allows.",
   spreadSimilarOptions:
-    "Questions with overlapping answer choices must not appear back-to-back.",
+    "Questions with overlapping answer choices must not appear within the same 25-question window.",
   strongDistractors:
     "Each MCQ has four distinct, board-plausible distractors — never generic placeholders.",
   variedScenarios:
-    "Interleave topics and vignettes so consecutive items are not repetitive look-alikes.",
+    "Interleave topics and vignettes so no 25-question block repeats the same look-alike case.",
 } as const;
 
 export function resolveDifficultyBand(item: {
@@ -87,9 +87,24 @@ export function hasAdjacentSimilarOptions<T>(
   getOptions: (item: T) => string[],
   threshold = OPTION_SIMILARITY_THRESHOLD
 ): boolean {
-  for (let i = 1; i < items.length; i++) {
-    if (optionsAreTooSimilar(getOptions(items[i - 1]!), getOptions(items[i]!), threshold)) {
-      return true;
+  return hasWindowSimilarOptions(items, getOptions, 2, threshold);
+}
+
+/** True when any pair within a sliding window shares overlapping answer choices. */
+export function hasWindowSimilarOptions<T>(
+  items: T[],
+  getOptions: (item: T) => string[],
+  windowSize = 25,
+  threshold = OPTION_SIMILARITY_THRESHOLD
+): boolean {
+  if (items.length <= 1 || windowSize <= 1) return false;
+
+  for (let i = 0; i < items.length; i++) {
+    const end = Math.min(items.length, i + windowSize);
+    for (let j = i + 1; j < end; j++) {
+      if (optionsAreTooSimilar(getOptions(items[i]!), getOptions(items[j]!), threshold)) {
+        return true;
+      }
     }
   }
   return false;

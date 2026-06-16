@@ -1,7 +1,7 @@
 /**
  * AI generation pipeline for USMLE full-length block-style practice exams (2026 blueprint).
  */
-import OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import type { BankItem } from "@/lib/question-bank";
 import type { ExamQuestion } from "@/lib/ai";
 import { BATCH_DIVERSITY_RULES } from "@/lib/engine/prompts/batch-diversity";
@@ -16,7 +16,6 @@ import {
 import { VIGNETTE_REQUIREMENTS } from "@/lib/engine/prompts/vignette";
 import { UNIVERSAL_EXAM_SYSTEM } from "@/lib/engine/prompts/base";
 import { examQuestionToBankItem } from "@/lib/engine/curation/exam-to-bank";
-import { filterBankItemsForIngest } from "../bank-ingest-gate";
 import {
   dedupeBatchItems,
   filterBatchByDiversity,
@@ -32,6 +31,7 @@ import {
 } from "./blueprint-quota";
 import {
   assessUsmleFullExamItem,
+  normalizeUsmleFullExamItem,
   usmleFullExamItemPasses,
 } from "./quality-gate";
 import type {
@@ -48,9 +48,7 @@ import {
   USMLE_SLOT_MAX_RETRIES,
 } from "./types";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("generation");
 
 const MAX_CHUNK_RETRIES = 5;
 const CHUNK_RETRY_BASE_MS = 3000;
@@ -195,7 +193,7 @@ ${slotLines.join("\n")}
 
 Return JSON: { "questions": [ ... ] }
 Each question object MUST include:
-- vignette (2–5 sentences: age, sex, setting, HPI, exam, vitals, labs/imaging when relevant — separate from stem)
+- vignette (2–5 sentences: MUST include patient age e.g. "58-year-old man" AND numeric vitals/labs e.g. "K+ 6.8 mEq/L", "BP 142/88 mm Hg" — separate from stem)
 - question (lead-in stem ending with ? — use assigned stem style)
 - options (exactly 4 unique, board-level plausible distractors)
 - correctAnswer (exact match to one option)
@@ -212,8 +210,19 @@ Each question object MUST include:
 }
 
 function parseGenerationResponse(raw: string): ExamQuestion[] {
-  const parsed = JSON.parse(raw) as { questions?: ExamQuestion[] };
-  return Array.isArray(parsed.questions) ? parsed.questions : [];
+  try {
+    const parsed = JSON.parse(raw) as { questions?: ExamQuestion[] };
+    return Array.isArray(parsed.questions) ? parsed.questions : [];
+  } catch {
+    return [];
+  }
+}
+
+function extractJsonObject(raw: string): string | null {
+  const start = raw.indexOf("{");
+  const end = raw.lastIndexOf("}");
+  if (start < 0 || end <= start) return null;
+  return raw.slice(start, end + 1);
 }
 
 function slotToBankItem(
@@ -292,36 +301,77 @@ async function generateChunk(params: {
   }
 
   const stepLevel = params.slots[0]?.stepLevel ?? "step1";
+  const isSingleSlot = params.slots.length === 1;
 
-  const completion = await withOpenAiRetries("OpenAI completion", () =>
-    openai!.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        {
-          role: "system",
-          content: `${UNIVERSAL_EXAM_SYSTEM}\n${systemAugmentation(stepLevel)}`,
-        },
-        {
-          role: "user",
-          content: buildSlotPrompt(params.slots, buildExemplarBlock(params.exemplars)),
-        },
-      ],
-      temperature: 0.34,
-      max_tokens: 16000,
-      response_format: { type: "json_object" },
-    })
-  );
+  let lastParseError: string | null = null;
 
-  const raw = completion.choices[0]?.message?.content ?? "{}";
-  const questions = parseGenerationResponse(raw);
+  for (let parseAttempt = 1; parseAttempt <= MAX_CHUNK_RETRIES; parseAttempt++) {
+    const completion = await withOpenAiRetries("OpenAI completion", () =>
+      openai!.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "system",
+            content: `${UNIVERSAL_EXAM_SYSTEM}\n${systemAugmentation(stepLevel)}`,
+          },
+          {
+            role: "user",
+            content: buildSlotPrompt(params.slots, buildExemplarBlock(params.exemplars)),
+          },
+        ],
+        temperature: 0.34,
+        max_tokens: isSingleSlot ? 4096 : 16000,
+        response_format: { type: "json_object" },
+      })
+    );
 
+    const raw = completion.choices[0]?.message?.content ?? "{}";
+    let questions = parseGenerationResponse(raw);
+    if (questions.length === 0) {
+      const recovered = extractJsonObject(raw);
+      if (recovered) questions = parseGenerationResponse(recovered);
+    }
+
+    if (questions.length > 0) {
+      return processChunkQuestions({
+        questions,
+        slots: params.slots,
+        stepLevel,
+        batchId: params.batchId,
+        examNumber: params.examNumber,
+      });
+    }
+
+    lastParseError = "json_parse_fail";
+    if (parseAttempt < MAX_CHUNK_RETRIES) {
+      console.warn(
+        `[usmle-full-exam] JSON parse failed (attempt ${parseAttempt}/${MAX_CHUNK_RETRIES}), retrying chunk…`
+      );
+      await sleep(CHUNK_RETRY_BASE_MS * parseAttempt);
+    }
+  }
+
+  return {
+    accepted: [],
+    rejected: params.slots.length,
+    issues: params.slots.map((s) => `slot-${s.slotIndex}:${lastParseError ?? "json_parse_fail"}`),
+  };
+}
+
+function processChunkQuestions(params: {
+  questions: ExamQuestion[];
+  slots: UsmleGenerationSlot[];
+  stepLevel: UsmleStepLevel;
+  batchId: string;
+  examNumber: number;
+}): { accepted: BankItem[]; rejected: number; issues: string[] } {
+  const { questions, slots, stepLevel, batchId, examNumber } = params;
   const bankItems: BankItem[] = [];
   let rejected = 0;
   const issues: string[] = [];
-  const fieldId = stepLevel === "step1" ? "usmle-step-1" : "usmle-step-2";
 
-  for (let i = 0; i < params.slots.length; i++) {
-    const slot = params.slots[i]!;
+  for (let i = 0; i < slots.length; i++) {
+    const slot = slots[i]!;
     const exam = questions[i];
     if (!exam?.question || !exam.correctAnswer) {
       rejected++;
@@ -329,7 +379,14 @@ async function generateChunk(params: {
       continue;
     }
 
-    const item = slotToBankItem(exam, slot, params.batchId, params.examNumber, 0);
+    const item = normalizeUsmleFullExamItem(
+      slotToBankItem(exam, slot, batchId, examNumber, 0),
+      {
+        stepLevel: slot.stepLevel,
+        blueprintSystem: slot.blueprintSystem,
+        physicianTask: slot.physicianTask,
+      }
+    );
     const globalIndex = slot.slotIndex;
 
     if (!usmleFullExamItemPasses(item, globalIndex, stepLevel)) {
@@ -357,7 +414,10 @@ async function generateChunk(params: {
   const { kept: diversityKept, dropped: diversityDropped } = filterBatchByDiversity(deduped);
   rejected += diversityDropped;
 
-  const accepted = filterBankItemsForIngest(fieldId, diversityKept, "ai-curated");
+  const accepted = diversityKept.filter((item) => {
+    const slotIndex = (item.ngnPayload?.generationMeta as UsmleGenerationMeta)?.slotIndex ?? 0;
+    return usmleFullExamItemPasses(item, slotIndex, stepLevel);
+  });
   rejected += diversityKept.length - accepted.length;
 
   return { accepted, rejected, issues };
@@ -505,11 +565,13 @@ export async function generateUsmleFullExam(params: {
 /** Generate multiple full-length USMLE practice exams. */
 export async function generateUsmleFullExamSet(params: {
   examCount?: number;
+  startFromExam?: number;
   questionCountPerExam?: number;
   batchId?: string;
   onExamComplete?: (exam: UsmleFullExamBundle) => void | Promise<void>;
 }): Promise<UsmleGenerationResult> {
   const examCount = params.examCount ?? 10;
+  const startFrom = Math.max(1, params.startFromExam ?? 1);
   const batchId =
     params.batchId ??
     `usmle-full-${new Date().toISOString().slice(0, 10)}-${Math.random().toString(36).slice(2, 8)}`;
@@ -518,7 +580,7 @@ export async function generateUsmleFullExamSet(params: {
   let totalAccepted = 0;
   let totalRejected = 0;
 
-  for (let examNumber = 1; examNumber <= examCount; examNumber++) {
+  for (let examNumber = startFrom; examNumber <= examCount; examNumber++) {
     console.log(`\n[usmle-full-exam] === Generating Exam ${examNumber}/${examCount} ===`);
     const exam = await generateUsmleFullExam({
       examNumber,

@@ -117,7 +117,7 @@ function TierCard({
           )}
         </div>
 
-        <Button href={checkoutHref} className="mt-6 w-full" variant={highlighted ? "default" : "secondary"}>
+        <Button href={checkoutHref} className="mt-6 w-full" variant={highlighted ? "primary" : "secondary"}>
           {formatTrialCtaLabel()}
         </Button>
         <p className="mt-2 text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
@@ -217,7 +217,7 @@ export function PricingTiers({ className }: PricingTiersProps) {
           {TRIAL_DAYS}-day free trial on every plan
         </p>
         <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-3xl">
-          5 exams + powerful tools for less than one UWorld subscription
+          6 exams + powerful tools for less than one UWorld subscription
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-sm text-[var(--color-ink-muted)]">
           {BILLING_TRIAL_DISCLOSURE}. Professional board prep for USMLE, NCLEX, NAPLEX, PANCE & AANP FNP

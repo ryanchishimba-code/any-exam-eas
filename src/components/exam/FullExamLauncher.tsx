@@ -32,6 +32,16 @@ type Props = {
   initialTimed?: boolean;
 };
 
+type PresetSummary = {
+  examNumber: number;
+  title: string;
+  questionCount: number;
+  blueprintSummary: Record<string, number> | null;
+  stepLevel?: "step1" | "step2";
+  linkedCount?: number;
+  qaPassed?: boolean;
+};
+
 export function FullExamLauncher({
   examSlug,
   initialMode,
@@ -45,24 +55,37 @@ export function FullExamLauncher({
     initialMode ? parseFullExamLengthPreset(initialMode) : "full"
   );
   const [timed, setTimed] = useState(initialTimed);
+  const [presetExamNumber, setPresetExamNumber] = useState<number | null>(null);
+  const [curatedPresets, setCuratedPresets] = useState<PresetSummary[]>([]);
   const [pending, setPending] = useState(autostart);
   const [error, setError] = useState<string | null>(null);
   const startingRef = useRef(false);
 
-  const preview = buildSessionConfig(examSlug, preset, timed);
-  const pageTitle = fullExamModeTitle(examSlug, preset);
+  const preview = buildSessionConfig(examSlug, preset, timed, {
+    presetExamNumber: presetExamNumber ?? undefined,
+  });
+  const pageTitle =
+    presetExamNumber && (examSlug === "nclex" || examSlug === "usmle" || examSlug === "npte-pt")
+      ? curatedPresets.find((p) => p.examNumber === presetExamNumber)?.title ??
+        `${exam.shortName} Practice Exam ${presetExamNumber}`
+      : fullExamModeTitle(examSlug, preset);
 
   async function startExam() {
     if (startingRef.current) return;
     startingRef.current = true;
     setError(null);
     setPending(true);
-    const lockKey = `${examSlug}:${preset}:${timed ? "1" : "0"}`;
+    const lockKey = `${examSlug}:${preset}:${timed ? "1" : "0"}:${presetExamNumber ?? "rand"}`;
     try {
       const res = await fetch("/api/full-exam/start", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ examSlug, lengthPreset: preset, timed }),
+        body: JSON.stringify({
+          examSlug,
+          lengthPreset: presetExamNumber ? "full" : preset,
+          timed,
+          ...(presetExamNumber ? { presetExamNumber } : {}),
+        }),
       });
       const data = (await res.json().catch(() => ({}))) as {
         sessionId?: string;
@@ -96,15 +119,25 @@ export function FullExamLauncher({
   }
 
   useEffect(() => {
+    if (examSlug !== "nclex" && examSlug !== "usmle" && examSlug !== "npte-pt") return;
+    void fetch(`/api/full-exam/presets?examSlug=${examSlug}`)
+      .then((r) => r.json())
+      .then((data: { exams?: PresetSummary[] }) => {
+        if (Array.isArray(data.exams)) setCuratedPresets(data.exams.filter((e) => e.qaPassed !== false));
+      })
+      .catch(() => {});
+  }, [examSlug]);
+
+  useEffect(() => {
     setPreset(initialMode ? parseFullExamLengthPreset(initialMode) : "full");
   }, [initialMode]);
 
   useEffect(() => {
     if (!autostart) return;
-    const lockKey = `${examSlug}:${preset}:${timed ? "1" : "0"}`;
+    const lockKey = `${examSlug}:${preset}:${timed ? "1" : "0"}:${presetExamNumber ?? "rand"}`;
     if (!acquireAutostartLock(lockKey)) return;
     void startExam();
-  }, [autostart, examSlug, preset, timed]);
+  }, [autostart, examSlug, preset, timed, presetExamNumber]);
 
   if (pending && autostart) {
     return (
@@ -137,8 +170,73 @@ export function FullExamLauncher({
 
           <div className="grid gap-6 lg:grid-cols-[1fr,min(18rem,100%)]">
             <div className="space-y-6">
+              {(examSlug === "nclex" || examSlug === "usmle" || examSlug === "npte-pt") &&
+              curatedPresets.length > 0 ? (
+                <QuestionBankSection
+                  step={1}
+                  title="Curated practice exams"
+                  hint={
+                    examSlug === "usmle"
+                      ? "10 block-style exams (75–85 Q) alternating Step 1 and Step 2 CK — 2026 blueprint, QA-gated."
+                      : examSlug === "npte-pt"
+                        ? "4 curated exams (80 questions) — FSBPT 2024 blueprint mix with clinical scenarios and PT-specific rationales."
+                        : "10 full-length exams (80 questions) with 2026 blueprint mix, NGN case studies, and board-level rationales."
+                  }
+                >
+                  <div className="grid gap-2 sm:grid-cols-2">
+                    <button
+                      type="button"
+                      onClick={() => setPresetExamNumber(null)}
+                      className={cn(
+                        feUi.lengthCard,
+                        presetExamNumber === null && feUi.lengthCardActive
+                      )}
+                    >
+                      <p className="text-[14px] font-semibold text-[var(--color-ink)]">
+                        Adaptive mix
+                      </p>
+                      <p className="mt-1 text-[12px] leading-snug text-[var(--color-ink-muted)]">
+                        Random QA-passed items — same as live simulator
+                      </p>
+                    </button>
+                    {curatedPresets.map((p) => (
+                      <button
+                        key={p.examNumber}
+                        type="button"
+                        onClick={() => {
+                          setPresetExamNumber(p.examNumber);
+                          setPreset("full");
+                        }}
+                        className={cn(
+                          feUi.lengthCard,
+                          presetExamNumber === p.examNumber && feUi.lengthCardActive
+                        )}
+                      >
+                        <p className="text-[14px] font-semibold text-[var(--color-ink)]">
+                          {examSlug === "usmle" && p.stepLevel
+                            ? p.stepLevel === "step1"
+                              ? "Step 1"
+                              : "Step 2 CK"
+                            : `Exam ${p.examNumber}`}
+                          {examSlug === "usmle" ? ` · Exam ${p.examNumber}` : ""}
+                        </p>
+                        <p className="mt-1 text-[12px] leading-snug text-[var(--color-ink-muted)]">
+                          {(p.linkedCount ?? p.questionCount)} questions · fixed high-yield set
+                        </p>
+                      </button>
+                    ))}
+                  </div>
+                </QuestionBankSection>
+              ) : null}
+
+              {!presetExamNumber ? (
               <QuestionBankSection
-                step={1}
+                step={
+                  (examSlug === "nclex" || examSlug === "usmle" || examSlug === "npte-pt") &&
+                  curatedPresets.length > 0
+                    ? 2
+                    : 1
+                }
                 title="Exam length"
                 hint="Pick a sprint, extended run, or full board-length simulation."
               >
@@ -161,8 +259,20 @@ export function FullExamLauncher({
                   ))}
                 </div>
               </QuestionBankSection>
+              ) : null}
 
-              <QuestionBankSection step={2} title="Timing" hint="Timed mode mirrors real exam pressure.">
+              <QuestionBankSection
+                step={
+                  (examSlug === "nclex" || examSlug === "usmle" || examSlug === "npte-pt") &&
+                  curatedPresets.length > 0
+                    ? presetExamNumber
+                      ? 2
+                      : 3
+                    : 2
+                }
+                title="Timing"
+                hint="Timed mode mirrors real exam pressure."
+              >
                 <QuestionBankSegment
                   ariaLabel="Exam timing"
                   value={timed ? "timed" : "untimed"}
@@ -189,7 +299,7 @@ export function FullExamLauncher({
                     label="Time limit"
                     value={preview.timed ? formatHms(preview.timeLimitSec) : "None"}
                   />
-                  <PreviewRow label="Mix" value={preview.adaptive ? "Adaptive" : "Standard"} />
+                  <PreviewRow label="Mix" value={presetExamNumber ? "Fixed preset" : preview.adaptive ? "Adaptive" : "Standard"} />
                 </div>
                 <ul className="mt-4 space-y-2.5 text-[13px] text-[var(--color-ink-muted)]">
                   {[

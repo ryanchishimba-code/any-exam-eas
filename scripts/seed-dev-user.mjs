@@ -1,19 +1,15 @@
 #!/usr/bin/env node
 /**
  * Creates or refreshes a dev account for testing login (idempotent).
- * Default: dev@anyexameasy.test / DevPassword1! / role=admin (full site + /internal)
- *
- * Always resets password hash so "dev password not working" is fixed after re-run.
  */
 import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcryptjs";
+import { hashPassword, passwordCredentialFields } from "../src/lib/password-hash.ts";
 
 const email = (process.env.DEV_USER_EMAIL ?? "dev@anyexameasy.test").trim().toLowerCase();
 const password = process.env.DEV_USER_PASSWORD ?? "DevPassword1!";
 const name = process.env.DEV_USER_NAME ?? "Dev User";
 const role = (process.env.DEV_USER_ROLE ?? "admin").trim();
 
-/** Full premium access for local/dev login (status=active, not checkout-gated trialing). */
 const premiumSubscription = {
   status: "active",
   trialEndsAt: null,
@@ -37,7 +33,7 @@ async function upsertPremiumSubscription(userId) {
 }
 
 try {
-  const passwordHash = await bcrypt.hash(password, 12);
+  const credentialFields = passwordCredentialFields(await hashPassword(password));
   const dob = new Date("1990-01-15");
 
   const existing = await prisma.user.findUnique({
@@ -50,21 +46,19 @@ try {
       where: { email },
       data: {
         name,
-        passwordHash,
+        ...credentialFields,
         role,
         accountStatus: "active",
         emailVerified: existing.emailVerified ?? new Date(),
       },
     });
-
     await upsertPremiumSubscription(existing.id);
+    await prisma.userSession.deleteMany({ where: { userId: existing.id } });
 
-    console.log("Refreshed dev user (password reset, premium + staff access):");
+    console.log("Refreshed dev user:");
     console.log(`  Email:    ${email}`);
     console.log(`  Password: ${password}`);
     console.log(`  Role:     ${role}`);
-    console.log(`  Id:       ${existing.id}`);
-    console.log(`  Login:    /login or /employee/login → /internal`);
     process.exit(0);
   }
 
@@ -72,23 +66,21 @@ try {
     data: {
       email,
       name,
-      passwordHash,
+      ...credentialFields,
       dateOfBirth: dob,
       role,
       accountStatus: "active",
       emailVerified: new Date(),
-      subscription: {
-        create: premiumSubscription,
-      },
+      subscription: { create: premiumSubscription },
     },
   });
+  await prisma.userSession.deleteMany({ where: { userId: user.id } });
 
   console.log("Created dev user:");
   console.log(`  Email:    ${email}`);
   console.log(`  Password: ${password}`);
   console.log(`  Role:     ${role}`);
   console.log(`  Id:       ${user.id}`);
-  console.log(`  Login:    /login or /employee/login → /internal`);
 } catch (e) {
   console.error(e instanceof Error ? e.message : e);
   process.exit(1);

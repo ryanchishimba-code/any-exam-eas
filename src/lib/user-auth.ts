@@ -1,15 +1,23 @@
-import bcrypt from "bcryptjs";
 import { Prisma } from "@prisma/client";
 import type { User } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { isAtLeast18 } from "@/lib/age";
+import {
+  assertPublicSignupEmailAllowed,
+  clearAccountDeviceSessions,
+  credentialsLoginBlocked,
+} from "@/lib/account-security";
+import {
+  hashPassword,
+  passwordCredentialFields,
+  verifyPassword,
+} from "@/lib/password-hash";
 import { signUpSchema, normalizeEmail, type SignUpInput } from "@/lib/validators/auth";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { trialEndsAtFromNow } from "@/lib/billing-config";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { hasConsumedTrial, recordTrialUsed } from "@/lib/trial-eligibility";
 
-const BCRYPT_ROUNDS = 12;
 const REGISTER_RETRIES = 6;
 
 function isTransientDbError(e: unknown): boolean {
@@ -68,10 +76,23 @@ export async function verifyUserPassword(
   password: string
 ): Promise<User | null> {
   const user = await findUserByEmail(email);
-  if (!user?.passwordHash) return null;
+  if (!user) return null;
+  if (credentialsLoginBlocked(user)) return null;
+  if (!(await verifyPassword(password, user.passwordHash))) return null;
+  return user;
+}
 
-  const valid = await bcrypt.compare(password, user.passwordHash);
-  return valid ? user : null;
+/** Set or rotate credentials password; clears device session history. */
+export async function setUserPassword(
+  userId: string,
+  plainPassword: string
+): Promise<void> {
+  const passwordHash = await hashPassword(plainPassword);
+  await prisma.user.update({
+    where: { id: userId },
+    data: passwordCredentialFields(passwordHash),
+  });
+  await clearAccountDeviceSessions(userId);
 }
 
 export async function recordUserLogin(userId: string): Promise<void> {
@@ -81,22 +102,18 @@ export async function recordUserLogin(userId: string): Promise<void> {
   });
 }
 
-/**
- * Create a new account with hashed password.
- * Trial signup starts a cardless 14-day trial with immediate access.
- * Subscribe plan continues to Stripe Checkout after signup.
- */
 export async function registerUser(
   input: SignUpInput
 ): Promise<SafeUser & { plan: "trial" | "subscribe"; promoCode?: string }> {
   const parsed = signUpSchema.parse(input);
-  const dob = new Date(parsed.dateOfBirth);
+  assertPublicSignupEmailAllowed(parsed.email);
 
+  const dob = new Date(parsed.dateOfBirth);
   if (!isAtLeast18(dob)) {
     throw new Error("You must be at least 18 years old to create an account.");
   }
 
-  const passwordHash = await bcrypt.hash(parsed.password, BCRYPT_ROUNDS);
+  const passwordHash = await hashPassword(parsed.password);
   const planTier = parseSubscriptionTier(parsed.tier);
   const planInterval = parseBillingInterval(parsed.interval);
 
@@ -146,7 +163,7 @@ export async function registerUser(
             data: {
               email: parsed.email,
               name: parsed.name,
-              passwordHash,
+              ...passwordCredentialFields(passwordHash),
               dateOfBirth: dob,
               subscription: { create: subscriptionData },
             },

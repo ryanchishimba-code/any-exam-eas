@@ -15,6 +15,8 @@ import { NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/naplex-ph
 import { PANCE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/pance-physician-educator-batch-01";
 import { collectPanceSeedItems } from "@/lib/edtech/seeds/pance-seed-registry";
 import { collectAanpFnpSeedItems } from "@/lib/edtech/seeds/aanp-fnp-seed-registry";
+import { collectNptePtSeedItems } from "@/lib/edtech/seeds/npte-pt-seed-registry";
+import { MPJE_PHYSICIAN_EDUCATOR_BATCHES } from "./mpje-physician-educator-batches";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-01";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_02 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-02";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_03 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-03";
@@ -91,6 +93,22 @@ export function collectHighYieldSeedRows(): HighYieldSeedRow[] {
     rows.push({
       fieldId: "aanp-fnp",
       subjectId: item.subjectId ?? "assess",
+      item,
+    });
+  }
+
+  for (const item of collectNptePtSeedItems()) {
+    rows.push({
+      fieldId: "npte-pt",
+      subjectId: item.subjectId ?? "musculoskeletal",
+      item,
+    });
+  }
+
+  for (const item of MPJE_PHYSICIAN_EDUCATOR_BATCHES) {
+    rows.push({
+      fieldId: "mpje",
+      subjectId: item.subjectId ?? "federal-pharmacy-law",
       item,
     });
   }

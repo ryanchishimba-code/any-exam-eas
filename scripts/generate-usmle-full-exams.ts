@@ -28,19 +28,21 @@ function parseArgs() {
   let count: number | undefined;
   let dryRun = false;
   let insert = false;
+  let startFrom = 1;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--exams" && args[i + 1]) exams = parseInt(args[++i]!, 10);
     else if (args[i] === "--count" && args[i + 1]) count = parseInt(args[++i]!, 10);
+    else if (args[i] === "--start-from" && args[i + 1]) startFrom = parseInt(args[++i]!, 10);
     else if (args[i] === "--dry-run") dryRun = true;
     else if (args[i] === "--insert") insert = true;
   }
 
-  return { exams, count, dryRun, insert };
+  return { exams, count, dryRun, insert, startFrom };
 }
 
 async function main() {
-  const { exams, count, dryRun, insert } = parseArgs();
+  const { exams, count, dryRun, insert, startFrom } = parseArgs();
   const ARTIFACTS = path.join(process.cwd(), "artifacts");
   fs.mkdirSync(ARTIFACTS, { recursive: true });
 
@@ -50,7 +52,9 @@ async function main() {
   }
 
   const countLabel = count ? `${count}` : "75–85 (varied per exam)";
-  console.log(`Generating ${exams} USMLE full-length exams (${countLabel} questions each)…`);
+  console.log(
+    `Generating USMLE exams ${startFrom}–${exams} (${countLabel} questions each)…`
+  );
 
   const batchId = `usmle-full-${new Date().toISOString().slice(0, 10)}-${Math.random().toString(36).slice(2, 8)}`;
   let totalInserted = 0;
@@ -58,6 +62,7 @@ async function main() {
 
   const result = await generateUsmleFullExamSet({
     examCount: exams,
+    startFromExam: startFrom,
     questionCountPerExam: count,
     batchId,
     onExamComplete: async (exam) => {

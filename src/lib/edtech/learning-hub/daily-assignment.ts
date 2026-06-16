@@ -24,6 +24,11 @@ import {
   aanpFnpModulesForStage,
   getAanpFnpModuleBySlug,
 } from "./aanp-fnp-learning-paths";
+import {
+  NPTE_PT_LEARNING_STAGES,
+  NPTE_PT_TOPIC_MODULES,
+  nptePtModulesForStage,
+} from "./npte-pt-learning-paths";
 import { roadmapHref } from "@/lib/learning/exam-roadmap";
 
 export type DailyAssignmentTask = {
@@ -317,6 +322,83 @@ export function buildAanpFnpDailyAssignment(weakTopicSlugs: string[] = []): Dail
   };
 }
 
+export function buildNptePtDailyAssignment(weakTopicSlugs: string[] = []): DailyAssignmentPlan {
+  const stage =
+    dayIndex() % 7 < 2
+      ? NPTE_PT_LEARNING_STAGES[0]
+      : dayIndex() % 7 < 5
+        ? NPTE_PT_LEARNING_STAGES[1]
+        : NPTE_PT_LEARNING_STAGES[2];
+
+  const pool = nptePtModulesForStage(stage!.id);
+  const mod = pool[dayIndex() % pool.length] ?? NPTE_PT_TOPIC_MODULES[0]!;
+  const weakSlug = weakTopicSlugs[0] ?? mod.questions.practiceTopicSlug;
+
+  const tasks: DailyAssignmentTask[] = [
+    {
+      id: "roadmap",
+      kind: "review",
+      title: "NPTE-PT Exam Roadmap",
+      description: "FSBPT blueprint readiness across body systems and non-systems categories.",
+      href: roadmapHref("npte-pt"),
+      estimatedMinutes: 10,
+    },
+    {
+      id: "review-module",
+      kind: "review",
+      title: mod.title,
+      description: mod.overview,
+      href: mod.reviewTopicSlug
+        ? deepDiveTopicHref("npte-pt", mod.reviewTopicSlug)
+        : highYieldTopicHref("npte-pt", mod.slug),
+      estimatedMinutes: Math.min(20, mod.estimatedMinutes),
+      meta: { system: mod.system },
+    },
+    {
+      id: "curated-practice",
+      kind: "practice",
+      title: `${mod.title} — practice`,
+      description: `${mod.questions.reviewCount} NPTE-PT vignettes with rationales.`,
+      href: practiceTopicHref("npte-pt", mod.questions.practiceTopicSlug, mod.questions.reviewCount),
+      estimatedMinutes: Math.ceil(mod.questions.reviewCount * 1.5),
+      meta: { system: mod.system, questionCount: mod.questions.reviewCount },
+    },
+    {
+      id: "weak-area",
+      kind: "weak-area",
+      title: "Weak-area drill",
+      description: weakTopicSlugs.length
+        ? `Focus: ${weakSlug.replace(/-/g, " ")}`
+        : "Adaptive set targeting your lowest-accuracy blueprint areas.",
+      href: weakTopicSlugs.length
+        ? adaptiveHref("npte-pt", weakSlug, 10)
+        : weakAreaHref("npte-pt", 15),
+      estimatedMinutes: 15,
+      meta: { questionCount: 10 },
+    },
+  ];
+
+  if (stage!.id === "board-crunch" && dayIndex() % 3 === 0) {
+    tasks.push({
+      id: "timed-block",
+      kind: "timed-block",
+      title: "Timed mini-block",
+      description: "50 questions under NPTE-PT pacing (~60 min).",
+      href: "/full-exam/npte-pt?preset=50&autostart=1",
+      estimatedMinutes: 60,
+      meta: { questionCount: 50 },
+    });
+  }
+
+  return {
+    examSlug: "npte-pt",
+    date: new Date().toISOString().slice(0, 10),
+    headline: `Today's plan · ${stage!.label}`,
+    stageLabel: stage!.label,
+    tasks,
+  };
+}
+
 export function buildDailyAssignment(
   examSlug: ExamSlug,
   weakTopicSlugs: string[] = []
@@ -324,6 +406,7 @@ export function buildDailyAssignment(
   if (examSlug === "usmle") return buildUsmleDailyAssignment(weakTopicSlugs);
   if (examSlug === "pance") return buildPanceDailyAssignment(weakTopicSlugs);
   if (examSlug === "aanp-fnp") return buildAanpFnpDailyAssignment(weakTopicSlugs);
+  if (examSlug === "npte-pt") return buildNptePtDailyAssignment(weakTopicSlugs);
 
   const fieldId = EXAM_CATALOG[examSlug].fieldId;
   return {

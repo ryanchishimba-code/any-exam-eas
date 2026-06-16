@@ -109,4 +109,16 @@ describe("exam roadmap", () => {
     expect(topics.find((t) => t.categoryId === "cardiovascular")?.blueprintWeightPct).toBe(11);
     expect(topics.find((t) => t.categoryId === "pulmonary")?.blueprintWeightPct).toBe(9);
   });
+
+  it("builds NPTE-PT roadmap from FSBPT 2024 blueprint (14 categories)", () => {
+    const blueprint = getExamBlueprint("npte-pt")!;
+    expect(blueprint.categories).toHaveLength(14);
+    const weightSum = blueprint.categories.reduce((s, c) => s + c.weight, 0);
+    expect(Math.round(weightSum * 100)).toBe(100);
+
+    const topics = buildRoadmapTopics(blueprint, "npte-pt", new Map(), new Map());
+    expect(topics).toHaveLength(14);
+    expect(topics.find((t) => t.categoryId === "musculoskeletal")?.blueprintWeightPct).toBe(28);
+    expect(topics.find((t) => t.categoryId === "neuromuscular-nervous")?.blueprintWeightPct).toBe(24);
+  });
 });

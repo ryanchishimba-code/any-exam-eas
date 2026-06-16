@@ -1,5 +1,6 @@
 import type { MemoryCard } from "../types";
 import { AANP_FNP_MEMORY_CARDS } from "./cards-aanp-fnp";
+import { NPTE_PT_MEMORY_CARDS } from "./cards-npte-pt";
 
 /** Static Memory Card library — seed to DB later if needed. */
 export const MEMORY_CARDS: MemoryCard[] = [
@@ -2498,6 +2499,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
     sortOrder: 11,
   },
   ...AANP_FNP_MEMORY_CARDS,
+  ...NPTE_PT_MEMORY_CARDS,
   // —— Cross-exam utilities ——
   {
     id: "all-creatinine-clearance",

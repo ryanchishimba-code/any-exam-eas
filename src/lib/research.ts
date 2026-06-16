@@ -8,11 +8,9 @@ import { getFieldMeta } from "./fields";
 import { getFieldSubject } from "./field-subjects";
 import { cacheGetOrSet, cacheKey, CACHE_TTL } from "./cache";
 import { gatherAdvancedStudyMaterial } from "./rag";
-import OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("rag");
 
 export type StudyResearch = {
   sources: SearchResult[];

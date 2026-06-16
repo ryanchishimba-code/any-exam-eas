@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     const body = bodySchema.parse(await req.json());
     const user = await verifyUserPassword(body.email, body.password);
 
-    if (!user || user.accountStatus === "suspended") {
+    if (!user || user.accountStatus !== "active") {
       return NextResponse.json(
         { error: "Invalid email or password." },
         { status: 401 }

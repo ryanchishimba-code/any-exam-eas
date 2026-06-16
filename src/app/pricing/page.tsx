@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Suspense } from "react";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY } from "@/lib/legal";
 import { formatPricingHeadline } from "@/lib/site";
@@ -6,11 +7,9 @@ import { PageShell } from "@/components/PageShell";
 import { PaywallNotice } from "@/components/PaywallNotice";
 import { ProUpgradeBanner } from "@/components/pricing/ProUpgradeBanner";
 
-export const metadata = {
-  title: "Pricing — Any Exam Easy",
-  description:
-    "14-day free trial · Basic from $34.99/mo · Pro from $49.99/mo · Save up to 20% on annual. Cancel anytime.",
-};
+import { buildPricingMetadata } from "@/lib/seo/marketing-metadata";
+
+export const metadata = buildPricingMetadata();
 
 export default async function PricingPage({
   searchParams,
@@ -39,9 +38,9 @@ export default async function PricingPage({
       <p className="mt-12 text-left text-xs leading-relaxed text-[var(--color-ink-muted)]">
         {LEGAL_DISCLAIMERS.subscription} {LEGAL_DISCLAIMERS.refundsAndAccess}{" "}
         {LEGAL_DISCLAIMERS.planChanges} {LEGAL_DISCLAIMERS.noGuarantee}{" "}
-        <a href="/legal/terms" className="text-[var(--color-accent)] underline">
+        <Link href="/legal/terms" className="text-[var(--color-accent)] underline">
           Full Terms of Service
-        </a>
+        </Link>
         . {LEGAL_ENTITY.productName} is a product of {LEGAL_ENTITY.companyName}.
       </p>
     </PageShell>

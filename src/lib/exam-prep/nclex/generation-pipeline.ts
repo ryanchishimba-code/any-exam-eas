@@ -1,7 +1,7 @@
 /**
  * AI generation pipeline for NCLEX-RN full-length practice exams.
  */
-import OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import type { BankItem } from "@/lib/question-bank";
 import type { ExamQuestion } from "@/lib/ai";
 import { BATCH_DIVERSITY_RULES } from "@/lib/engine/prompts/batch-diversity";
@@ -37,9 +37,7 @@ import {
   NCLEX_GENERATION_CONCURRENCY,
 } from "./types";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("generation");
 
 const MAX_CHUNK_RETRIES = 5;
 const CHUNK_RETRY_BASE_MS = 3000;
@@ -427,6 +425,57 @@ async function generateChunk(params: {
   return { accepted, rejected, issues };
 }
 
+/** Retry individual failed slots until exam count is met or max attempts reached. */
+async function fillExamDeficit(params: {
+  slots: NclexGenerationSlot[];
+  existing: BankItem[];
+  batchId: string;
+  examNumber: number;
+  exemplars: BankItem[];
+  targetCount: number;
+  maxRounds?: number;
+}): Promise<{ items: BankItem[]; rejected: number; issues: string[] }> {
+  const filled = [...params.existing];
+  const covered = new Set(
+    filled.map(
+      (item) => (item.ngnPayload?.generationMeta as NclexGenerationMeta)?.slotIndex
+    )
+  );
+  let rejected = 0;
+  const issues: string[] = [];
+  const maxRounds = params.maxRounds ?? 6;
+
+  for (let round = 0; round < maxRounds && filled.length < params.targetCount; round++) {
+    const missing = params.slots.filter((s) => !covered.has(s.slotIndex));
+    if (!missing.length) break;
+
+    const batch = missing.slice(0, NCLEX_GENERATION_CHUNK_SIZE);
+    const result = await generateChunk({
+      slots: batch,
+      batchId: params.batchId,
+      examNumber: params.examNumber,
+      exemplars: params.exemplars,
+    });
+
+    for (const item of result.accepted) {
+      const slotIndex = (item.ngnPayload?.generationMeta as NclexGenerationMeta)?.slotIndex;
+      if (slotIndex == null || covered.has(slotIndex)) continue;
+      covered.add(slotIndex);
+      filled.push(item);
+    }
+    rejected += result.rejected;
+    issues.push(...result.issues);
+  }
+
+  filled.sort(
+    (a, b) =>
+      ((a.ngnPayload?.generationMeta as NclexGenerationMeta)?.slotIndex ?? 0) -
+      ((b.ngnPayload?.generationMeta as NclexGenerationMeta)?.slotIndex ?? 0)
+  );
+
+  return { items: filled, rejected, issues };
+}
+
 async function runChunkWave<T>(
   tasks: (() => Promise<T>)[],
   concurrency: number
@@ -488,6 +537,24 @@ export async function generateNclexFullExam(params: {
     allItems.push(...result.accepted);
     totalRejected += result.rejected;
     allIssues.push(...result.issues);
+  }
+
+  if (allItems.length < questionCount) {
+    console.log(
+      `  Exam ${params.examNumber}: filling deficit (${allItems.length}/${questionCount})…`
+    );
+    const filled = await fillExamDeficit({
+      slots,
+      existing: allItems,
+      batchId: params.batchId,
+      examNumber: params.examNumber,
+      exemplars,
+      targetCount: questionCount,
+    });
+    allItems.length = 0;
+    allItems.push(...filled.items);
+    totalRejected += filled.rejected;
+    allIssues.push(...filled.issues);
   }
 
   allItems.sort(

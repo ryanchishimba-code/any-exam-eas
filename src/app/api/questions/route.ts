@@ -80,6 +80,14 @@ export async function GET(req: Request) {
       );
   const limit = Math.min(resolvedLimit, maxLimit);
 
+  const presetExamNumberRaw = searchParams.get("presetExamNumber");
+  const presetExamNumber =
+    (fieldId === "nursing" || fieldId.startsWith("usmle") || fieldId === "npte-pt") &&
+    presetExamNumberRaw &&
+    Number.isFinite(Number(presetExamNumberRaw))
+      ? Math.max(1, Math.min(10, Number(presetExamNumberRaw)))
+      : undefined;
+
   if (!mixed) {
     if (!subjectId) {
       return NextResponse.json(
@@ -96,7 +104,8 @@ export async function GET(req: Request) {
 
   const { isUsmleField } = await import("@/lib/exam-prep/usmle-bank-bridge");
   const usmleField = isUsmleField(fieldId);
-  const clinicalField = usmleField || fieldId === "pance";
+  const clinicalField =
+    usmleField || fieldId === "pance" || fieldId === "aanp-fnp" || fieldId === "npte-pt";
   const { filterBankItemsForSessionPool, bankItemToSessionRaw } = await import(
     "@/lib/exam-prep/prepare-bank-session"
   );
@@ -106,7 +115,48 @@ export async function GET(req: Request) {
 
   let items: Awaited<ReturnType<typeof sampleQuestionBankItemsForField>>;
 
-  if (mixed && timedExam) {
+  if (presetExamNumber && fieldId === "nursing" && timedExam) {
+    const { loadNclexPresetExamItems } = await import("@/lib/exam-prep/nclex/load-preset-exam");
+    const preset = await loadNclexPresetExamItems(presetExamNumber);
+    if (!preset) {
+      return NextResponse.json(
+        {
+          error: `NCLEX Practice Exam ${presetExamNumber} is not available. Run db:seed-nclex-full-exams first.`,
+          code: "PRESET_EXAM_UNAVAILABLE",
+        },
+        { status: 404 }
+      );
+    }
+    items = preset.items;
+  } else if (presetExamNumber && fieldId.startsWith("usmle") && timedExam) {
+    const { loadUsmlePresetExamItems } = await import("@/lib/exam-prep/usmle/load-preset-exam");
+    const preset = await loadUsmlePresetExamItems(presetExamNumber);
+    if (!preset) {
+      return NextResponse.json(
+        {
+          error: `USMLE Practice Exam ${presetExamNumber} is not available yet. Generation may still be in progress.`,
+          code: "PRESET_EXAM_UNAVAILABLE",
+        },
+        { status: 404 }
+      );
+    }
+    items = preset.items;
+  } else if (presetExamNumber && fieldId === "npte-pt" && timedExam) {
+    const { loadNptePtPresetExamItems } = await import(
+      "@/lib/exam-prep/npte-pt/load-preset-exam"
+    );
+    const preset = await loadNptePtPresetExamItems(presetExamNumber);
+    if (!preset) {
+      return NextResponse.json(
+        {
+          error: `NPTE-PT Practice Exam ${presetExamNumber} is not available. Run db:seed-npte-pt-full-exams first.`,
+          code: "PRESET_EXAM_UNAVAILABLE",
+        },
+        { status: 404 }
+      );
+    }
+    items = preset.items;
+  } else if (mixed && timedExam) {
     const { gatherTimedExamBankItems } = await import("@/lib/questions/timed-exam-sampling");
 
     if (fieldId === "nursing") {
@@ -129,6 +179,16 @@ export async function GET(req: Request) {
           initialSampleCount: sampleCount,
         })
       ).map(prepareNaplexBankItem);
+    } else if (fieldId === "npte-pt") {
+      const { nptePtItemPassesTimedExamGate } = await import(
+        "@/lib/exam-prep/npte-pt-serve-gate"
+      );
+      items = await gatherTimedExamBankItems({
+        fieldId,
+        limit,
+        filterFn: nptePtItemPassesTimedExamGate,
+        initialSampleCount: sampleCount,
+      });
     } else if (clinicalField) {
       const { usmleBankItemIsServeReady } = await import("@/lib/exam-prep/usmle-clinical-gate");
       items = await gatherTimedExamBankItems({
@@ -205,7 +265,11 @@ export async function GET(req: Request) {
     const finalized = finalizeExamSessionQuestions(rawInputs, limit);
     prepared = finalized.prepared;
     sessionQuality = finalized.quality;
-    assertExamSessionReady(sessionQuality, fieldId);
+    if (!presetExamNumber) {
+      assertExamSessionReady(sessionQuality, fieldId);
+    } else if (prepared.length !== limit) {
+      throw new Error(`Preset exam returned ${prepared.length}/${limit} questions`);
+    }
   } catch (e) {
     const message =
       e instanceof Error ? e.message : "Could not build exam session at the requested length";

@@ -2,7 +2,8 @@
  * NCLEX curation engine — triage weak bank items, rule-polish, then AI rewrite
  * so vignettes, stems, options, and correct answers stay aligned.
  */
-import OpenAI from "openai";
+import type OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import type { BankItem } from "@/lib/question-bank";
 import type { ExamQuestion } from "@/lib/ai";
 import { auditBankItem } from "@/lib/exam-prep/bank-audit";
@@ -29,9 +30,7 @@ let openaiClient: OpenAI | null | undefined;
 
 function getOpenAi(): OpenAI | null {
   if (openaiClient === undefined) {
-    openaiClient = process.env.OPENAI_API_KEY
-      ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-      : null;
+    openaiClient = getOpenAiClient("curation");
   }
   return openaiClient;
 }

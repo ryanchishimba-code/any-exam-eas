@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import type { SearchResult } from "../search";
 import type { GeneratedExam } from "../ai";
 import { buildOfflineExam } from "../question-bank";
@@ -23,9 +23,7 @@ import {
   type AdvancedStudyContext,
 } from "../rag";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("generation");
 
 export type ExamPipelineParams = {
   field: string;

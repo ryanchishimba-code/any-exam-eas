@@ -104,3 +104,14 @@ export function assessAanpFnpBankItem(
 export function aanpFnpBankItemIsServeReady(item: BankItem, fieldId = "aanp-fnp"): boolean {
   return assessAanpFnpBankItem(item, { fieldId }).serveReady;
 }
+
+/** Best-tier bar for procedural + batch QA (mirrors PANCE isPanceBestQuality). */
+export function isAanpFnpBestQuality(
+  item: BankItem,
+  opts: { minScore?: number; fieldId?: string } = {}
+): boolean {
+  const minScore = opts.minScore ?? 8;
+  const fieldId = opts.fieldId ?? "aanp-fnp";
+  const report = assessAanpFnpBankItem(item, { fieldId, source: "generated" });
+  return report.serveReady && report.qcScore >= minScore && report.blueprintAligned;
+}

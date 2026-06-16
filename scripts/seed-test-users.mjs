@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
  * Create or refresh 3 test login accounts (idempotent).
- * Usage: node scripts/seed-test-users.mjs
+ * Usage: npm run db:seed-test-users
  */
 import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcryptjs";
+import { hashPassword, passwordCredentialFields } from "../src/lib/password-hash.ts";
 
 const PASSWORD = process.env.TEST_USER_PASSWORD ?? "TestLogin1!";
 const dob = new Date("1990-06-15");
@@ -13,13 +13,21 @@ const testUsers = [
   {
     email: "test-unpaid@anyexameasy.test",
     name: "Test Unpaid",
-    subscription: { status: "inactive", trialEndsAt: null, currentPeriodEnd: null },
+    subscription: {
+      status: "inactive",
+      planTier: "basic",
+      planInterval: "yearly",
+      trialEndsAt: null,
+      currentPeriodEnd: null,
+    },
   },
   {
     email: "test-trial@anyexameasy.test",
     name: "Test Trial",
     subscription: {
       status: "trialing",
+      planTier: "pro",
+      planInterval: "yearly",
       trialEndsAt: daysFromNow(14),
       currentPeriodEnd: daysFromNow(14),
     },
@@ -29,6 +37,8 @@ const testUsers = [
     name: "Test Premium",
     subscription: {
       status: "active",
+      planTier: "pro",
+      planInterval: "yearly",
       trialEndsAt: null,
       currentPeriodEnd: daysFromNow(30),
     },
@@ -44,7 +54,7 @@ function daysFromNow(days) {
 const prisma = new PrismaClient();
 
 try {
-  const passwordHash = await bcrypt.hash(PASSWORD, 12);
+  const credentialFields = passwordCredentialFields(await hashPassword(PASSWORD));
   console.log("Test accounts (password for all):\n");
 
   for (const spec of testUsers) {
@@ -57,25 +67,33 @@ try {
     if (existing) {
       await prisma.user.update({
         where: { email },
-        data: { name: spec.name, passwordHash, emailVerified: new Date() },
+        data: {
+          name: spec.name,
+          ...credentialFields,
+          accountStatus: "active",
+          emailVerified: new Date(),
+        },
       });
       await prisma.subscription.upsert({
         where: { userId: existing.id },
         create: { userId: existing.id, ...spec.subscription },
         update: spec.subscription,
       });
+      await prisma.userSession.deleteMany({ where: { userId: existing.id } });
       console.log(`  Updated  ${email} (${spec.subscription.status})`);
     } else {
-      await prisma.user.create({
+      const user = await prisma.user.create({
         data: {
           email,
           name: spec.name,
-          passwordHash,
+          ...credentialFields,
           dateOfBirth: dob,
+          accountStatus: "active",
           emailVerified: new Date(),
           subscription: { create: spec.subscription },
         },
       });
+      await prisma.userSession.deleteMany({ where: { userId: user.id } });
       console.log(`  Created  ${email} (${spec.subscription.status})`);
     }
   }

@@ -18,7 +18,8 @@ export async function requirePremiumPage(
     session.user.id,
     session.user.role,
     undefined,
-    await headers()
+    await headers(),
+    session.user.email
   );
   if (!ipCheck.ok) {
     redirect(
@@ -33,7 +34,7 @@ export async function requirePremiumPage(
     redirect(`/login?callbackUrl=${encodeURIComponent(callbackPath)}`);
   }
 
-  if (access.blockReason === "suspended") {
+  if (access.blockReason === "suspended" || access.blockReason === "deleted") {
     redirect("/pricing?paywall=suspended");
   }
 

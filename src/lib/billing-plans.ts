@@ -27,7 +27,7 @@ export const BILLING_GUARANTEE_HEADLINE =
   "Professional board prep for all major exams at a fraction of competitor prices.";
 
 export const BILLING_GUARANTEE_POINTS = [
-  "USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP — all 5 exams in one subscription",
+  "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT — all 6 exams in one subscription",
   "Integrated Exam Roadmaps plus board-caliber vignettes — without $200–400+ per-exam bundles",
   "14-day free trial · No credit card required to start · Cancel anytime",
   "Switch plans anytime during your free trial; after that, plan changes take effect when your current paid term ends",

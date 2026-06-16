@@ -25,7 +25,7 @@ export type UserAccess = {
   emailVerified: boolean;
   subscription: SubscriptionAccess;
   hasPremiumAccess: boolean;
-  blockReason?: "suspended" | "subscription" | "email_unverified";
+  blockReason?: "suspended" | "deleted" | "subscription" | "email_unverified";
 };
 
 export { subscriptionHasFeature };
@@ -129,7 +129,10 @@ export async function getUserAccess(userId: string): Promise<UserAccess> {
   let hasPremiumAccess = subscription.hasAccess && user.accountStatus === "active";
   let blockReason: UserAccess["blockReason"];
 
-  if (user.accountStatus === "suspended") {
+  if (user.accountStatus === "deleted") {
+    hasPremiumAccess = false;
+    blockReason = "deleted";
+  } else if (user.accountStatus === "suspended") {
     hasPremiumAccess = false;
     blockReason = "suspended";
   } else if (!subscription.hasAccess && !staff) {

@@ -6,6 +6,8 @@ import { auditUsmleQaEditor } from "./usmle-qa-editor";
 import { isUsmleCuratedItem } from "@/lib/question-bank/usmle-curated";
 import { isPanceCuratedItem } from "@/lib/question-bank/pance-curated";
 import { isAanpFnpCuratedItem } from "@/lib/question-bank/aanp-fnp-curated";
+import { isNptePtCuratedItem } from "@/lib/question-bank/npte-pt-curated";
+import { nptePtBankItemIsServeReady } from "./npte-pt/clinical-gate";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
 
 /** Split stored USMLE bank text into vignette + lead-in stem. */
@@ -49,13 +51,22 @@ export function usmleExamQuestionHasClinicalScenario(question: ExamQuestion): bo
 
 /** Curated seeds pass clinical gate; bulk-polished items must score exam-ready (≥8/10). */
 export function usmleBankItemIsServeReady(item: BankItem, fieldId: string): boolean {
+  if (fieldId === "npte-pt") {
+    return nptePtBankItemIsServeReady(item, item.source);
+  }
+
   const normalized = normalizeUsmleBankItemFields(item);
   if (!usmleBankItemHasClinicalScenario(normalized)) return false;
 
   const exam = bankItemToUsmleExam(normalized, 0);
   if (!usmleExamQuestionHasClinicalScenario(exam)) return false;
 
-  if (isUsmleCuratedItem(normalized) || isPanceCuratedItem(normalized) || isAanpFnpCuratedItem(normalized)) {
+  if (
+    isUsmleCuratedItem(normalized) ||
+    isPanceCuratedItem(normalized) ||
+    isAanpFnpCuratedItem(normalized) ||
+    isNptePtCuratedItem(normalized)
+  ) {
     return true;
   }
 

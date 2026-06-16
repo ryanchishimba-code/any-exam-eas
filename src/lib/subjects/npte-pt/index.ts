@@ -1,5 +1,6 @@
 import type { SubjectModule } from "../types";
 import { linkTaxonomyToSubjects } from "../taxonomy";
+import { medicineModule } from "../medicine";
 import { NPTE_PT_SUBJECTS } from "./subjects";
 import { NPTE_PT_SYSTEM_AUGMENTATION, getNptePtUserAugmentation } from "./prompts";
 
@@ -17,7 +18,9 @@ const NPTE_PT_TAXONOMY = linkTaxonomyToSubjects(
 );
 
 export const nptePtModule: SubjectModule = {
+  ...medicineModule,
   metadata: {
+    ...medicineModule.metadata,
     id: "npte-pt",
     label: "NPTE-PT",
     boardExam: "NPTE-PT",
@@ -27,16 +30,6 @@ export const nptePtModule: SubjectModule = {
   },
   subjectAreas: NPTE_PT_SUBJECTS,
   taxonomy: NPTE_PT_TAXONOMY,
-  capabilities: {
-    supportsClinicalVignettes: true,
-    supportsCalculations: true,
-    supportsNgnFormats: false,
-    supportsStateJurisdiction: false,
-    supportsSequentialSets: false,
-    requiresVignette: true,
-    minVignetteSentences: 2,
-    maxVignetteSentences: 5,
-  },
   buildSearchQueryHints: (topic, subjectId) =>
     [`NPTE-PT ${topic}`, subjectId ? `${subjectId.replace(/-/g, " ")} physical therapy` : ""].filter(
       Boolean

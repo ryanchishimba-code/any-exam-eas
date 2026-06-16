@@ -18,11 +18,8 @@ import {
   parseMatrixLayout,
 } from "./ngn-structures";
 import { shufflePreservingSequentialSets } from "./sequential-sets";
-import {
-  hasAdjacentSimilarOptions,
-  optionsFromStudyQuestion,
-} from "./session-quality";
-import { hasAdjacentSimilarSpread, spreadGroupKeyFromStudyQuestion, spreadStudyQuestions } from "./spread-session-order";
+import { optionsFromStudyQuestion } from "./session-quality";
+import { spreadGroupKeyFromStudyQuestion, spreadStudyQuestions, sessionSpreadPasses } from "./spread-session-order";
 import type { RawQuestionInput, StudyQuestion, StudyQuestionType } from "./types";
 
 function toCorrectAnswers(type: StudyQuestionType, correct: string, options: string[] = []): string[] {
@@ -166,8 +163,7 @@ export function prepareQuestionsForSession(
     const spread = spreadStudyQuestions(shufflePreservingSequentialSets(prepared));
     if (
       spread.length <= 1 ||
-      (!hasAdjacentSimilarSpread(spread, spreadGroupKeyFromStudyQuestion) &&
-        !hasAdjacentSimilarOptions(spread, optionsFromStudyQuestion))
+      sessionSpreadPasses(spread, spreadGroupKeyFromStudyQuestion, optionsFromStudyQuestion)
     ) {
       return spread;
     }

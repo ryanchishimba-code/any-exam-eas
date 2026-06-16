@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { assertPublicSignupEmailAllowed, isAccountDisabled, OAuthAccountDisabledError } from "@/lib/account-security";
 import { normalizeEmail } from "@/lib/validators/auth";
 import { trialEndsAtFromNow } from "@/lib/billing-config";
 import { isAtLeast18 } from "@/lib/age";
@@ -29,11 +30,15 @@ export async function findOrCreateGoogleUser(params: {
     select: {
       id: true,
       role: true,
+      accountStatus: true,
       emailVerified: true,
       passwordHash: true,
     },
   });
   if (existing) {
+    if (isAccountDisabled(existing.accountStatus)) {
+      throw new OAuthAccountDisabledError();
+    }
     const hasProvider = await prisma.account.findFirst({
       where: { userId: existing.id, provider },
     });
@@ -58,6 +63,8 @@ export async function findOrCreateGoogleUser(params: {
     }
     return { id: existing.id, role: existing.role };
   }
+
+  assertPublicSignupEmailAllowed(email);
 
   const user = await prisma.user.create({
     data: {

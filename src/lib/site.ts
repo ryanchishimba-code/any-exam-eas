@@ -131,7 +131,7 @@ export function formatTrialHeroOffer(): string {
 export const TRIAL_PAYMENT_DISCLOSURE = `${TRIAL_DAYS}-day free trial · ${BILLING_TRIAL_DISCLOSURE} · cancel before trial ends and you won't be charged · ${BILLING_POLICY_SHORT}`;
 
 export function formatLandingHeroSubline(): string {
-  return "Professional board prep for all major exams at a fraction of competitor prices — 5 exams + powerful tools for less than one UWorld subscription.";
+  return "Professional board prep for all major exams at a fraction of competitor prices — 6 exams + powerful tools for less than one UWorld subscription.";
 }
 
 export function formatLandingConversionSubtitle(): string {

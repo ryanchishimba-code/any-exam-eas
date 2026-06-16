@@ -27,13 +27,14 @@ const AI_TELLTALE_PATTERNS: RegExp[] = [
   /\bplays a crucial role\b/i,
 ];
 
+/** PT vignettes: vitals/labs plus ROM (°), MMT (/5), goniometry, distances, scores. */
 const CLINICAL_DATA_PATTERN =
-  /\d+\s*(?:mg\/dL|mEq\/L|mm Hg|\/min|× 10|g\/dL|mIU\/mL|°C|°F|U\/L|mm|%)/;
+  /\d+\s*(?:mg\/dL|mEq\/L|mm Hg|mmHg|bpm|\/min|× 10|g\/dL|mIU\/mL|°C|°F|°|U\/L|mm|cm|kg|lb|m\/s|m\b|MET|L\/min|cm H₂O|SpO₂|FEV|Borg|W|sec|seconds|pads|%)|\d+\/\d+|\d+\.\d+|GCS\s*\d+/i;
 
 const AGE_PATTERN = /\b\d{1,3}[- ](?:year|month|week|day)[- ]old\b/i;
 
 const LEAD_IN_PATTERN =
-  /(?:most likely|most appropriate|best explains|best describes|next step|diagnosis|management|treatment|initial|mechanism)/i;
+  /(?:most likely|most appropriate|most important|most comprehensive|most realistic|most supported|most favorable|best explains|best describes|best supports|highest priority|next step|appropriate scope|appropriate action|appropriate professional|supports ventilator|complements wound|addressed first|Which action|What is the most|Which conclusion|Which recommendation|Which precaution|Which modification|Which adjustment|Which measure|Which factor|Which explanation|Which positioning|Which role|Which appraisal|Which communication|Which approach|Which plan|Which monitoring|Which exercise|Which training|Which loading|Which combination|Which diagnosis|Which intervention|Which examination|Which finding|Which assistive|Which modality|Which education|Which outcome|Which strategy|Which rationale|Which activity|Which component|Which statement|Which issue|Which prognosis|diagnosis|management|treatment|initial|mechanism)/i;
 
 const VALID_SUBJECTS = new Set(NPTE_PT_SUBJECTS.map((s) => s.id));
 const VALID_TASKS = new Set<string>(NPTE_PT_TASK_CATEGORIES.map((t) => t.id));

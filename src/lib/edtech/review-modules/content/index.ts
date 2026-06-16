@@ -19,6 +19,10 @@ import { AANP_PLAN_MODULE } from "./aanp-plan-domain";
 import { AANP_EVALUATE_MODULE } from "./aanp-evaluate-domain";
 import { AANP_GERIATRICS_MODULE } from "./aanp-geriatrics-high-yield";
 import { AANP_PEDIATRICS_MODULE } from "./aanp-pediatrics-high-yield";
+import { MSK_REHABILITATION_MODULE } from "./msk-rehabilitation";
+import { STROKE_REHABILITATION_MODULE } from "./stroke-rehabilitation";
+import { CARDIOPULMONARY_REHAB_MODULE } from "./cardiopulmonary-rehab";
+import { THERAPEUTIC_MODALITIES_NPTE_MODULE } from "./therapeutic-modalities-npte";
 
 export {
   ACS_MODULE,
@@ -33,6 +37,10 @@ export {
   AANP_EVALUATE_MODULE,
   AANP_GERIATRICS_MODULE,
   AANP_PEDIATRICS_MODULE,
+  MSK_REHABILITATION_MODULE,
+  STROKE_REHABILITATION_MODULE,
+  CARDIOPULMONARY_REHAB_MODULE,
+  THERAPEUTIC_MODALITIES_NPTE_MODULE,
   DELEGATION_MODULE,
   DIABETES_PHARMACOTHERAPY_MODULE,
   HEART_FAILURE_MODULE,
@@ -59,5 +67,9 @@ export const REVIEW_MODULE_CONTENT_BY_SLUG: Record<string, ReviewModuleContent> 
   "aanp-evaluate-domain": AANP_EVALUATE_MODULE,
   "aanp-geriatrics-high-yield": AANP_GERIATRICS_MODULE,
   "aanp-pediatrics-high-yield": AANP_PEDIATRICS_MODULE,
+  "msk-rehabilitation": MSK_REHABILITATION_MODULE,
+  "stroke-rehabilitation": STROKE_REHABILITATION_MODULE,
+  "cardiopulmonary-rehab": CARDIOPULMONARY_REHAB_MODULE,
+  "therapeutic-modalities": THERAPEUTIC_MODALITIES_NPTE_MODULE,
   delegation: DELEGATION_MODULE,
 };

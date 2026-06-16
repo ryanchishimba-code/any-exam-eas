@@ -15,7 +15,7 @@ const signals = [
   },
   {
     icon: Stethoscope,
-    value: "5 exams",
+    value: "6 exams",
     label: PLATFORM_EXAM_LIST_MIDDOT,
   },
   {

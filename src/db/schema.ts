@@ -20,6 +20,8 @@ export const users = pgTable(
     email: text("email").notNull(),
     emailVerified: timestamp("emailVerified", { mode: "date" }),
     passwordHash: text("passwordHash"),
+    passwordAlgo: text("passwordAlgo"),
+    passwordUpdatedAt: timestamp("passwordUpdatedAt", { mode: "date" }),
     image: text("image"),
     dateOfBirth: timestamp("dateOfBirth", { mode: "date" }).notNull(),
     role: text("role").default("user").notNull(),

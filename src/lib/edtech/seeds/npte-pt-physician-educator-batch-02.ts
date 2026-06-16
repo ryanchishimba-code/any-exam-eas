@@ -477,7 +477,7 @@ export const NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_02: EnrichedBankItem[] = [
 
   nptePtVignette(
     "neuromuscular-nervous",
-    `A 61-year-old man post stroke has aphasia (Broca type). He follows one-step commands consistently but cannot name objects. He becomes frustrated when asked lengthy verbal instructions during gait training.`,
+    `A 61-year-old man post stroke has aphasia (Broca type). He follows one-step commands consistently but cannot name objects. Gait speed is 0.4 m/s with supervision. He becomes frustrated when asked lengthy verbal instructions during gait training.`,
     "Which communication strategy is most appropriate during PT?",
     [
       "Use short, simple commands, gestures, demonstration, and written cues as appropriate",
@@ -675,7 +675,7 @@ export const NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_02: EnrichedBankItem[] = [
 
   nptePtVignette(
     "neuromuscular-nervous",
-    `A 68-year-old man post stroke has pseudobulbar affect with uncontrolled laughing during therapy. He is embarrassed and avoids group sessions. Mood screening shows no major depression (PHQ-9 score 4).`,
+    `A 68-year-old man post stroke has pseudobulbar affect with uncontrolled laughing during therapy. He is embarrassed and avoids group sessions. Mood screening shows no major depression (PHQ-9 score 4/27).`,
     "Which approach is most appropriate?",
     [
       "Ignore emotional episodes and continue without adjustment",
@@ -741,7 +741,7 @@ export const NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_02: EnrichedBankItem[] = [
 
   nptePtVignette(
     "neuromuscular-nervous",
-    `A 49-year-old woman with functional neurologic disorder presents with sudden leg weakness after stress. Exam shows give-way weakness, inconsistent effort on strength testing, and normal reflexes. MRI spine and brain are normal. She is distressed and wants to walk independently.`,
+    `A 49-year-old woman with functional neurologic disorder presents with sudden leg weakness after stress. Exam shows give-way weakness, inconsistent effort on strength testing (MMT varies 3/5 to 5/5), and normal reflexes. MRI spine and brain are normal. She is distressed and wants to walk independently.`,
     "Which approach is most appropriate?",
     [
       "Tell her symptoms are fake and refuse treatment",

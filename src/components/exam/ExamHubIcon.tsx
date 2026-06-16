@@ -1,6 +1,6 @@
 "use client";
 
-import { Activity, Beaker, HeartPulse, Pill, Stethoscope, type LucideIcon } from "lucide-react";
+import { Activity, Beaker, Bone, HeartPulse, Pill, Stethoscope, type LucideIcon } from "lucide-react";
 import type { ExamSlug } from "@/lib/exams/catalog";
 
 const ICONS: Record<ExamSlug, LucideIcon> = {
@@ -9,6 +9,7 @@ const ICONS: Record<ExamSlug, LucideIcon> = {
   naplex: Pill,
   pance: HeartPulse,
   "aanp-fnp": HeartPulse,
+  "npte-pt": Bone,
   top500: Beaker,
 };
 

@@ -1,7 +1,7 @@
 /**
  * Deterministic + optional AI repair for AANP FNP bank items before QC rejection.
  */
-import OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import type { BankItem } from "@/lib/question-bank";
 import type { ExamQuestion } from "@/lib/ai";
 import {
@@ -17,9 +17,7 @@ import { AANP_FNP_CLINICAL_GATE_CHECKLIST } from "./clinical-gate-prompt";
 
 const FIELD_ID = "aanp-fnp";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("repair");
 
 /** Normalize age phrasing for vignette gate regexes (e.g. "52 year old" → "52-year-old"). */
 export function normalizeAgePhrasing(text: string): string {
@@ -33,12 +31,13 @@ export function normalizeAgePhrasing(text: string): string {
 function bankItemToExamQuestion(item: BankItem): ExamQuestion {
   const { vignette, stem } = splitUsmleBankItem(item);
   return {
+    id: 0,
     question: stem,
     vignette: vignette ?? "",
     options: item.options ?? [],
     correctAnswer: item.correctAnswer,
     explanation: item.explanation ?? "",
-    type: "mcq",
+    type: "multiple_choice",
   };
 }
 

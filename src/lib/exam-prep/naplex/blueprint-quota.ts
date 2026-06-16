@@ -28,7 +28,7 @@ export const NAPLEX_2026_BLUEPRINT: ExamBlueprint = {
     {
       id: "naplex-2026-pharmacotherapy",
       label: "Pharmacotherapy",
-      weight: 0.375,
+      weight: 0.355,
       subjectIds: [
         "cardiovascular-rx",
         "infectious-disease-rx",
@@ -50,7 +50,7 @@ export const NAPLEX_2026_BLUEPRINT: ExamBlueprint = {
     {
       id: "naplex-2026-patient-centered-care",
       label: "Patient-Centered Care & Patient Safety",
-      weight: 0.175,
+      weight: 0.17,
       subjectIds: ["patient-counseling", "pharmacology"],
       highYieldTopics: [
         "medication safety",
@@ -66,7 +66,7 @@ export const NAPLEX_2026_BLUEPRINT: ExamBlueprint = {
     {
       id: "naplex-2026-pharmacist-tasks",
       label: "Pharmacist Tasks & Responsibilities",
-      weight: 0.175,
+      weight: 0.17,
       subjectIds: ["patient-counseling", "pharmacy-law", "pharmacology"],
       highYieldTopics: [
         "MTM",
@@ -82,7 +82,7 @@ export const NAPLEX_2026_BLUEPRINT: ExamBlueprint = {
     {
       id: "naplex-2026-medication-dispensing",
       label: "Medication Dispensing & Distribution",
-      weight: 0.125,
+      weight: 0.12,
       subjectIds: ["compounding-calculations", "pharmaceutics", "pharmacokinetics"],
       highYieldTopics: [
         "prescription verification",
@@ -98,7 +98,7 @@ export const NAPLEX_2026_BLUEPRINT: ExamBlueprint = {
     {
       id: "naplex-2026-drug-information",
       label: "Drug Information & Literature Evaluation",
-      weight: 0.125,
+      weight: 0.12,
       subjectIds: ["pharmacology", "pharmacokinetics"],
       highYieldTopics: [
         "primary literature appraisal",
@@ -114,7 +114,7 @@ export const NAPLEX_2026_BLUEPRINT: ExamBlueprint = {
     {
       id: "naplex-2026-health-wellness",
       label: "Health & Wellness / Population Health",
-      weight: 0.075,
+      weight: 0.065,
       subjectIds: ["otc-self-care", "patient-counseling"],
       highYieldTopics: [
         "immunizations",

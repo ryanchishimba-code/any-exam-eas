@@ -59,6 +59,12 @@ function rowToBankItem(row: {
   solutionSteps: string | null;
   tags: string | null;
   references?: unknown;
+  source?: string | null;
+  taskCategory?: string | null;
+  blueprintTopic?: string | null;
+  reviewStatus?: string | null;
+  generationVersion?: string | null;
+  generationMeta?: unknown;
 }): BankItem {
   return enrichBankItemFromRow(row);
 }

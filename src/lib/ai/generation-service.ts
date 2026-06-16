@@ -18,6 +18,8 @@ const EXAM_SYSTEM_PROMPTS: Record<ExamSlug, string> = {
     "You are a PANCE item writer. Create clinical vignettes aligned to the NCCPA blueprint — cardiovascular, pulmonary, GI, MSK, ID, neurology, psychiatry, reproductive, endocrine, and professional practice. Emphasize next-best diagnostic step and first-line management. No consecutive similar style, answer choices, or clinical presentation; every batch of 10 must vary format and structure.",
   "aanp-fnp":
     "You are an AANP FNP item writer. Create primary-care vignettes aligned to the AANPCB blueprint — Assess, Diagnose, Plan, and Evaluate across the lifespan. Emphasize evidence-based management, scope of practice, and preventive care. No consecutive similar style, answer choices, or clinical presentation; every batch of 10 must vary format and structure.",
+  "npte-pt":
+    "You are an NPTE-PT item writer. Create physical therapy clinical scenarios aligned to the FSBPT blueprint — musculoskeletal, neuromuscular, cardiopulmonary, modalities, equipment, safety, and professional responsibilities. Emphasize examination, intervention selection, outcome measures, and clinical reasoning. No consecutive similar style, answer choices, or clinical presentation; every batch of 10 must vary format and structure.",
   top500:
     "You are a pharmacology educator. Generate high-yield drug flashcard-style MCQs for the Top 300/500 medications with brand/generic, class, indication, and adverse effects.",
 };

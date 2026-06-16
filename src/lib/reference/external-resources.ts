@@ -99,6 +99,28 @@ export const REFERENCE_EXTERNAL_RESOURCES: Partial<Record<ExamSlug, ReferenceExt
       url: "https://www.deadiversion.usdoj.gov/",
     },
   ],
+  "npte-pt": [
+    {
+      label: "FSBPT NPTE-PT Content Outline",
+      description: "Official test content outline and blueprint",
+      url: "https://www.fsbpt.org/free-resources/npte/npte-test-content-outline",
+    },
+    {
+      label: "APTA Clinical Practice Guidelines",
+      description: "Evidence-based physical therapy practice guidelines",
+      url: "https://www.apta.org/patient-care/evidence-based-practice-resources/cpgs",
+    },
+    {
+      label: "GOLD COPD Report",
+      description: "COPD management and pulmonary rehab context",
+      url: "https://goldcopd.org/",
+    },
+    {
+      label: "CDC Falls Prevention",
+      description: "Community fall prevention and screening",
+      url: "https://www.cdc.gov/falls/",
+    },
+  ],
   nclex: [
     {
       label: "CDC Infection Control",

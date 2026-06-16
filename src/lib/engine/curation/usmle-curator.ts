@@ -1,7 +1,8 @@
 /**
  * Smart USMLE curation engine — heuristic QA → rule polish → AI Self-RAG repair.
  */
-import OpenAI from "openai";
+import type OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import type { ExamQuestion } from "@/lib/ai";
 import type { BankItem } from "@/lib/question-bank";
 import { auditBankItem } from "@/lib/exam-prep/bank-audit";
@@ -31,9 +32,7 @@ let openaiClient: OpenAI | null | undefined;
 
 function getOpenAI(): OpenAI | null {
   if (openaiClient !== undefined) return openaiClient;
-  openaiClient = process.env.OPENAI_API_KEY
-    ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-    : null;
+  openaiClient = getOpenAiClient("curation");
   return openaiClient;
 }
 

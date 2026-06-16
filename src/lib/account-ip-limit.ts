@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { isStaffRole } from "@/lib/permissions";
+import { canBypassAccountIpLimit } from "@/lib/account-security";
 import { hashIp, hashIpFromHeaders } from "@/lib/analytics/request-context";
 
 /** Max distinct network locations per subscriber account (rolling window). */
@@ -39,9 +39,9 @@ export async function getRecentDistinctIpHashes(userId: string): Promise<string[
 
 export async function assertAccountIpAllowed(
   userId: string,
-  opts: { ipHash?: string; role?: string | null }
+  opts: { ipHash?: string; role?: string | null; email?: string | null }
 ): Promise<AccountIpCheckResult> {
-  if (isStaffRole(opts.role)) return { ok: true };
+  if (canBypassAccountIpLimit(opts.email, opts.role)) return { ok: true };
   if (!opts.ipHash) {
     return isProductionRuntime() ? { ok: false, reason: "ip_required" } : { ok: true };
   }
@@ -77,10 +77,11 @@ export async function checkAndRecordAccountIp(
   userId: string,
   role: string | undefined,
   req?: Request,
-  headerStore?: Headers
+  headerStore?: Headers,
+  email?: string | null
 ): Promise<AccountIpCheckResult> {
   const ipHash = resolveIpHash(req, headerStore);
-  const ipCheck = await assertAccountIpAllowed(userId, { ipHash, role });
+  const ipCheck = await assertAccountIpAllowed(userId, { ipHash, role, email });
   if (ipCheck.ok && ipHash) void recordAccountIpAccess(userId, ipHash);
   return ipCheck;
 }
@@ -89,9 +90,10 @@ export async function enforceAccountIpLimit(
   userId: string,
   role: string | undefined,
   req?: Request,
-  headerStore?: Headers
+  headerStore?: Headers,
+  email?: string | null
 ): Promise<NextResponse | null> {
-  const ipCheck = await checkAndRecordAccountIp(userId, role, req, headerStore);
+  const ipCheck = await checkAndRecordAccountIp(userId, role, req, headerStore, email);
   if (!ipCheck.ok) return accountIpLimitResponse(ipCheck.reason);
   return null;
 }

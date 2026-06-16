@@ -77,3 +77,25 @@ export type NptePtTaskQuotaRow = {
   weight: number;
   targetCount: number;
 };
+
+/** Curated full-length NPTE-PT practice exam bundle (composed from QA-passed bank). */
+export const NPTE_PT_FULL_EXAM_VERSION = "npte-pt-compose-full-exam-v1";
+
+/** Scaled practice length until the bank supports full 250-Q exams. */
+export const NPTE_PT_FULL_EXAM_DEFAULT_COUNT = 80;
+
+export type NptePtFullExamBundle = {
+  examNumber: number;
+  title: string;
+  questionCount: number;
+  blueprintSummary: Record<string, number>;
+  taskSummary?: Record<string, number>;
+  actualSubjectMix?: Record<string, number>;
+  items: import("@/lib/question-bank").BankItem[];
+  qaReport: {
+    accepted: number;
+    rejected: number;
+    allPassed: boolean;
+    issues: string[];
+  };
+};

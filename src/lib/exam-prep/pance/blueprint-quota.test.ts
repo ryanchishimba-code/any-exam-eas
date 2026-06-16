@@ -4,6 +4,7 @@ import {
   computePanceTaskQuotas,
   getPanceCategoryTarget,
   assessBlueprintAlignment,
+  planPanceGenerationSlots,
   PANCE_TARGET_TOTAL,
 } from "./blueprint-quota";
 
@@ -35,5 +36,45 @@ describe("PANCE blueprint quotas", () => {
     const result = assessBlueprintAlignment(counts, 2100);
     expect(result.aligned).toBe(false);
     expect(result.deviations.some((d) => d.category === "cardiovascular")).toBe(true);
+  });
+});
+
+describe("planPanceGenerationSlots — deficit-weighted allocation", () => {
+  it("only allocates slots to categories with a positive deficit", () => {
+    const slots = planPanceGenerationSlots({
+      count: 100,
+      deficitsByCategory: { cardiovascular: 300, pulmonary: 100 },
+    });
+    const cats = new Set(slots.map((s) => s.contentCategory));
+    expect(cats).toEqual(new Set(["cardiovascular", "pulmonary"]));
+  });
+
+  it("allocates proportional to deficit (≈3:1)", () => {
+    const slots = planPanceGenerationSlots({
+      count: 100,
+      deficitsByCategory: { cardiovascular: 300, pulmonary: 100 },
+    });
+    const cv = slots.filter((s) => s.contentCategory === "cardiovascular").length;
+    const pulm = slots.filter((s) => s.contentCategory === "pulmonary").length;
+    expect(cv + pulm).toBe(100);
+    expect(cv).toBeGreaterThan(pulm);
+    expect(cv / pulm).toBeGreaterThan(2);
+  });
+
+  it("never exceeds a category's deficit", () => {
+    const slots = planPanceGenerationSlots({
+      count: 100,
+      deficitsByCategory: { cardiovascular: 10, pulmonary: 5 },
+    });
+    expect(slots.length).toBeLessThanOrEqual(15);
+    const cv = slots.filter((s) => s.contentCategory === "cardiovascular").length;
+    expect(cv).toBeLessThanOrEqual(10);
+  });
+
+  it("falls back to an even split when no deficits supplied", () => {
+    const slots = planPanceGenerationSlots({ count: 30, deficitsByCategory: {} });
+    expect(slots.length).toBe(30);
+    const cats = new Set(slots.map((s) => s.contentCategory));
+    expect(cats.size).toBeGreaterThan(1);
   });
 });

@@ -1,7 +1,7 @@
 /**
  * Variant expansion — derive new questions from curated seeds (same concept, new presentation).
  */
-import OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import type { BankItem } from "@/lib/question-bank";
 import type { ExamQuestion } from "@/lib/ai";
 import { UNIVERSAL_EXAM_SYSTEM } from "@/lib/engine/prompts/base";
@@ -19,9 +19,7 @@ import {
 import type { AanpFnpGenerationMeta, AanpFnpPatientAgeGroupId } from "./types";
 import { AANP_FNP_GENERATION_VERSION } from "./types";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("generation");
 
 const MAX_VARIANT_ATTEMPTS = 2;
 const MAX_API_RETRIES = 5;

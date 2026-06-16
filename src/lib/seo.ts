@@ -6,7 +6,7 @@ import {
   formatTrialLabel,
 } from "@/lib/site";
 import { LEGAL_ENTITY } from "@/lib/legal";
-import { TRIAL_DAYS } from "@/lib/billing-config";
+import { TRIAL_DAYS, MONTHLY_PRICE_USD } from "@/lib/billing-config";
 
 const PRODUCTION_SITE_URL = `https://www.${SITE_DOMAIN}`;
 
@@ -52,25 +52,25 @@ export function absoluteUrl(path: string): string {
 }
 
 const HOME_KEYWORDS = [
-  "NCLEX prep",
+  "NCLEX prep 2026",
   "NCLEX practice questions",
-  "USMLE Step 2 CK",
-  "NAPLEX study",
-  "PANCE prep",
-  "PANCE practice questions",
-  "AANP FNP",
-  "AANPCB FNP certification",
+  "USMLE Step 2 CK practice questions",
+  "NAPLEX review 2026",
+  "PANCE exam prep",
+  "AANP FNP certification prep",
+  "NPTE practice questions",
+  "NPTE-PT board prep",
   "affordable board exam prep",
   "UWorld alternative",
-  "nursing board exam",
-  "medical board exam",
-  "adaptive practice",
-  "board exam study tool",
+  "six board exams one subscription",
+  "board exam study guide",
+  "free board exam trial",
+  "AnyExamEasy",
 ];
 
 export function buildHomeMetadata(): Metadata {
-  const title = `${SITE_NAME} — Pass Your Boards with Confidence`;
-  const description = `Professional board prep for USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP — Basic from ${formatMonthlyPrice("basic")}/mo. ${formatTrialLabel()} · no credit card required.`;
+  const title = `${SITE_NAME} — NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE Prep (2026)`;
+  const description = `All-in-one board prep for NCLEX, USMLE Step 2 CK, NAPLEX, PANCE, AANP FNP, and NPTE-PT. Roadmaps, practice questions & Deep Dives. Basic from ${formatMonthlyPrice("basic")}/mo · ${formatTrialLabel()} · no credit card required.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 
@@ -97,7 +97,7 @@ export function buildHomeMetadata(): Metadata {
           url: ogImage,
           width: 1200,
           height: 800,
-          alt: "Healthcare student using Any Exam Easy for USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP board exam prep",
+          alt: "Healthcare student using Any Exam Easy for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT board exam prep",
         },
       ],
     },
@@ -128,7 +128,7 @@ export function buildRootMetadata(): Metadata {
       default: `${SITE_NAME} — Board Exam Study Support`,
       template: `%s | ${SITE_NAME}`,
     },
-    description: `USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP study support with integrated Roadmaps and adaptive practice.`,
+    description: `USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT study support with integrated Roadmaps and adaptive practice.`,
     icons: {
       icon: [
         { url: "/favicon.svg", type: "image/svg+xml" },
@@ -159,7 +159,7 @@ export function buildHomeJsonLd() {
         url,
         logo: absoluteUrl("/icons/icon-192.png"),
         description:
-          `${LEGAL_ENTITY.productName} — board exam prep for students preparing for USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP.`,
+          `${LEGAL_ENTITY.productName} — board exam prep for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT with integrated Roadmaps and adaptive practice.`,
       },
       {
         "@type": "WebSite",
@@ -172,7 +172,7 @@ export function buildHomeJsonLd() {
           "@type": "SearchAction",
           target: {
             "@type": "EntryPoint",
-            urlTemplate: `${url}/study?q={search_term_string}`,
+            urlTemplate: `${url}/resources?q={search_term_string}`,
           },
           "query-input": "required name=search_term_string",
         },
@@ -189,7 +189,7 @@ export function buildHomeJsonLd() {
           description: `${TRIAL_DAYS}-day free trial · no credit card required · Basic from ${formatMonthlyPrice("basic")}/mo · Pro from ${formatMonthlyPrice("pro")}/mo · save up to 20% on annual`,
         },
         description:
-          "Board exam prep with integrated Roadmaps, adaptive practice, and OER-backed explanations for USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP.",
+          "Board exam prep with integrated Roadmaps, adaptive practice, and OER-backed explanations for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT.",
       },
     ],
   };

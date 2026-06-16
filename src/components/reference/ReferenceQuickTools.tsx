@@ -34,7 +34,7 @@ const EXAM_ID_TOPIC: Partial<Record<ExamSlug, { label: string; topicKey: string 
   nclex: { label: "Infection Control", topicKey: "infection-control" },
 };
 
-const CLINICAL_CALC_EXAMS: ExamSlug[] = ["naplex", "usmle", "nclex"];
+const CLINICAL_CALC_EXAMS: ExamSlug[] = ["naplex", "usmle", "nclex", "pance", "aanp-fnp", "npte-pt"];
 
 type Tool = {
   label: string;

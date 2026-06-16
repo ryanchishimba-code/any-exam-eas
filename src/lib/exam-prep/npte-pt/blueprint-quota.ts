@@ -80,23 +80,22 @@ export function highYieldTopicsForCategory(
 
 /** Lead-in stem formats to rotate for batch diversity. */
 const STEM_FORMATS = [
-  "most likely diagnosis",
-  "most appropriate next step in management",
-  "most appropriate initial diagnostic study",
-  "most appropriate pharmacotherapy",
+  "most appropriate examination technique",
+  "most appropriate outcome measure",
+  "most appropriate intervention",
+  "most appropriate progression",
   "best explanation for the findings",
-  "most appropriate preventive measure",
-  "most likely mechanism",
-  "most appropriate physical exam finding to assess next",
+  "most appropriate patient education",
+  "most appropriate assistive device",
+  "most appropriate modality parameter",
 ] as const;
 
 function pickTaskForSlot(
   contentCategory: NptePtContentCategoryId,
   index: number
 ): NptePtTaskCategoryId {
-  if (contentCategory === "professional-practice") return "professional";
-  const tasks = TASK_IDS.filter((t) => t !== "professional");
-  return tasks[index % tasks.length]!;
+  if (contentCategory === "professional-responsibilities") return "evaluation-diagnosis-prognosis";
+  return TASK_IDS[index % TASK_IDS.length]!;
 }
 
 function pickTopic(
@@ -111,10 +110,10 @@ function pickTopic(
 const PRESENTATION_HINTS: NptePtGenerationSlot["presentationHint"][] = [
   "adult",
   "adult",
-  "adult",
-  "primary-care",
+  "geriatric",
+  "outpatient",
   "pediatric",
-  "surgical",
+  "acute-care",
 ];
 
 /**
@@ -180,4 +179,70 @@ export function assessBlueprintAlignment(
 
 export function stemFormatForIndex(index: number): string {
   return STEM_FORMATS[index % STEM_FORMATS.length]!;
+}
+
+/** Plan blueprint-weighted slot targets for one full-length NPTE-PT practice exam. */
+export function planNptePtFullExamSlots(params: {
+  examNumber: number;
+  questionCount?: number;
+}): NptePtGenerationSlot[] {
+  const { examNumber, questionCount = 80 } = params;
+  const examSeed = examNumber * 13;
+  const quotas = computeNptePtContentQuotas(questionCount);
+  const slots: NptePtGenerationSlot[] = [];
+
+  for (const row of quotas) {
+    for (let i = 0; i < row.targetCount; i++) {
+      const slotIndex = slots.length;
+      slots.push({
+        contentCategory: row.contentCategory,
+        taskCategory: pickTaskForSlot(row.contentCategory, slotIndex + examSeed),
+        blueprintTopic: pickTopic(row.contentCategory, slotIndex + examSeed),
+        difficulty: 2 + ((slotIndex + examSeed) % 4),
+        presentationHint:
+          PRESENTATION_HINTS[(slotIndex + examSeed) % PRESENTATION_HINTS.length],
+      });
+    }
+  }
+
+  while (slots.length < questionCount) {
+    const slotIndex = slots.length;
+    const contentCategory = CONTENT_IDS[(slotIndex + examSeed) % CONTENT_IDS.length]!;
+    slots.push({
+      contentCategory,
+      taskCategory: pickTaskForSlot(contentCategory, slotIndex + examSeed),
+      blueprintTopic: pickTopic(contentCategory, slotIndex + examSeed),
+      difficulty: 2 + ((slotIndex + examSeed) % 4),
+      presentationHint:
+        PRESENTATION_HINTS[(slotIndex + examSeed) % PRESENTATION_HINTS.length],
+    });
+  }
+
+  return slots.slice(0, questionCount);
+}
+
+export function summarizeNptePtExamBlueprint(
+  slots: NptePtGenerationSlot[]
+): Record<string, number> {
+  const summary: Record<string, number> = {};
+  for (const slot of slots) {
+    const label =
+      NPTE_PT_BLUEPRINT.categories.find((c) => c.id === slot.contentCategory)?.label ??
+      slot.contentCategory;
+    summary[label] = (summary[label] ?? 0) + 1;
+  }
+  return summary;
+}
+
+export function summarizeNptePtTaskMix(
+  slots: NptePtGenerationSlot[]
+): Record<string, number> {
+  const summary: Record<string, number> = {};
+  for (const slot of slots) {
+    const label =
+      NPTE_PT_TASK_CATEGORIES.find((t) => t.id === slot.taskCategory)?.label ??
+      slot.taskCategory;
+    summary[label] = (summary[label] ?? 0) + 1;
+  }
+  return summary;
 }

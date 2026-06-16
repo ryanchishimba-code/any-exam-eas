@@ -13,6 +13,7 @@ export function blueprintTopicsForExam(examType: ExamSlug): {
     naplex: "pharmacy",
     pance: "pance",
     "aanp-fnp": "aanp-fnp",
+    "npte-pt": "npte-pt",
     top500: "drugs300",
   };
   const blueprint = getExamBlueprint(fieldMap[examType]);

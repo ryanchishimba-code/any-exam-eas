@@ -9,7 +9,6 @@ export const PREMIUM_PAGE_PREFIXES = [
   "/progress",
   "/checkout",
   "/engine",
-  "/exams",
   "/practice",
   "/mpje",
   "/full-exam",

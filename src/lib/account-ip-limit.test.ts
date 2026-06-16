@@ -62,6 +62,20 @@ describe("assertAccountIpAllowed", () => {
     expect(result.ok).toBe(true);
   });
 
+  it("allows internal test accounts regardless of IP count", async () => {
+    findManyMock.mockResolvedValue([
+      { ipHash: "a" },
+      { ipHash: "b" },
+      { ipHash: "c" },
+    ]);
+    const result = await assertAccountIpAllowed("user-1", {
+      ipHash: "d",
+      role: "user",
+      email: "test-premium@anyexameasy.test",
+    });
+    expect(result.ok).toBe(true);
+  });
+
   it("blocks a fourth distinct IP", async () => {
     findManyMock.mockResolvedValue([
       { ipHash: "a" },

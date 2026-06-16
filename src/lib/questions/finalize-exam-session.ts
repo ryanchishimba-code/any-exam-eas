@@ -7,12 +7,15 @@ import {
   enforceSessionCount,
   hasGenericPlaceholderOptions,
   hasAdjacentSimilarOptions,
+  hasWindowSimilarOptions,
   optionsFromStudyQuestion,
   resolveDifficultyBand,
   type DifficultyBand,
 } from "./session-quality";
 import {
   hasAdjacentSimilarSpread,
+  hasWindowSimilarSpread,
+  SESSION_SPREAD_WINDOW,
   spreadGroupKeyFromStudyQuestion,
 } from "./spread-session-order";
 import { QUESTION_BANK_SAMPLE_MAX_PULL } from "@/lib/question-bank-db";
@@ -22,6 +25,8 @@ export const FULL_EXAM_FIELD_IDS = new Set([
   "nursing",
   "pharmacy",
   "pance",
+  "aanp-fnp",
+  "npte-pt",
   "usmle-step-2",
   "usmle-step-1",
   "usmle-step-3",
@@ -41,7 +46,9 @@ export function resolveExamBankSampleCount(
     const clinicalPool =
       fieldId === "nursing" ||
       fieldId.startsWith("usmle") ||
-      fieldId === "pance";
+      fieldId === "pance" ||
+      fieldId === "npte-pt" ||
+      fieldId === "aanp-fnp";
     if (clinicalPool) return Math.min(Math.max(limit * 6, 40), 120);
     return Math.max(limit, 40);
   }
@@ -50,7 +57,9 @@ export function resolveExamBankSampleCount(
   if (
     fieldId === "nursing" ||
     fieldId.startsWith("usmle") ||
-    fieldId === "pance"
+    fieldId === "pance" ||
+      fieldId === "npte-pt" ||
+      fieldId === "aanp-fnp"
   ) {
     return Math.min(
       QUESTION_BANK_SAMPLE_MAX_PULL,
@@ -114,11 +123,15 @@ export function assessExamSessionQuality(
     issues.push(`count_mismatch:${returned}/${requested}`);
   }
 
-  if (hasAdjacentSimilarSpread(prepared, spreadGroupKeyFromStudyQuestion)) {
+  if (hasWindowSimilarSpread(prepared, spreadGroupKeyFromStudyQuestion, SESSION_SPREAD_WINDOW)) {
+    issues.push("window_similar_cases");
+  } else if (hasAdjacentSimilarSpread(prepared, spreadGroupKeyFromStudyQuestion)) {
     issues.push("adjacent_similar_cases");
   }
 
-  if (hasAdjacentSimilarOptions(prepared, optionsFromStudyQuestion)) {
+  if (hasWindowSimilarOptions(prepared, optionsFromStudyQuestion, SESSION_SPREAD_WINDOW)) {
+    issues.push("window_similar_options");
+  } else if (hasAdjacentSimilarOptions(prepared, optionsFromStudyQuestion)) {
     issues.push("adjacent_similar_options");
   }
 
@@ -149,7 +162,7 @@ export function assessExamSessionQuality(
 
 /**
  * Prepare, spread, and validate a timed/full exam block before it reaches the client.
- * Retries spread once if adjacency rules fail while count is correct.
+ * Retries spread when the 25-question diversity window is not satisfied.
  */
 export function finalizeExamSessionQuestions(
   raw: RawQuestionInput[],
@@ -171,6 +184,8 @@ export function finalizeExamSessionQuestions(
       [
         "adjacent_similar_cases",
         "adjacent_similar_options",
+        "window_similar_cases",
+        "window_similar_options",
         "generic_distractors",
         "difficulty_not_varied",
       ].includes(i)
@@ -213,10 +228,12 @@ export function assertExamSessionReady(
   if (
     quality.returned >= 4 &&
     (quality.issues.includes("adjacent_similar_options") ||
-      quality.issues.includes("adjacent_similar_cases"))
+      quality.issues.includes("adjacent_similar_cases") ||
+      quality.issues.includes("window_similar_options") ||
+      quality.issues.includes("window_similar_cases"))
   ) {
     throw new Error(
-      `Could not assemble a sufficiently diverse ${fieldId} session. Please try again.`
+      `Could not assemble a sufficiently diverse ${fieldId} session (no similar items within ${SESSION_SPREAD_WINDOW} questions). Please try again.`
     );
   }
 

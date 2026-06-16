@@ -1,9 +1,7 @@
-import OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import { buildCuratedSearchQueries } from "./sources";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("rag");
 
 export type ExpandedQueries = {
   primary: string;

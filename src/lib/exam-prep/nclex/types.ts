@@ -53,6 +53,8 @@ export type NclexFullExamBundle = {
   title: string;
   questionCount: number;
   blueprintSummary: Record<string, number>;
+  /** Actual subjectId mix from selected bank rows. */
+  actualSubjectMix?: Record<string, number>;
   caseStudyGroups: { caseGroupId: string; itemCount: number; topic: string }[];
   items: import("@/lib/question-bank").BankItem[];
   qaReport: {

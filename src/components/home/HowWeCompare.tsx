@@ -128,7 +128,7 @@ function CompareUsCard({
           {formatTrialTodayPrice()}
         </p>
         <p className="mt-0.5 text-xs text-[var(--color-ink-muted)]">
-          {formatTrialLabel()} · then {formatMonthlyPrice()}/mo · all 5 exams
+          {formatTrialLabel()} · then {formatMonthlyPrice()}/mo · all 6 exams
         </p>
       </header>
 
@@ -267,7 +267,7 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
       </Link>
       <p className="max-w-md text-xs text-[var(--color-ink-muted)]">
         {formatTrialTodayPrice()} today · payment method required · then from {formatMonthlyPrice()}
-        /mo · all five exams
+        /mo · all six exams
       </p>
       <p className="max-w-md text-[0.625rem] leading-relaxed text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted)]">
         {TRIAL_PAYMENT_DISCLOSURE}

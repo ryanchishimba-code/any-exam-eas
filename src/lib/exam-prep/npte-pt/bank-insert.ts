@@ -71,6 +71,7 @@ export async function insertNptePtBankItems(
       (item.ngnPayload?.blueprintTopic as string | undefined) ?? null;
     const generationMeta = item.ngnPayload?.generationMeta ?? null;
     const qc = assessNptePtBankItem(item, { source: "generated" });
+    const qaPassed = qc.serveReady && qc.reviewStatus === "approved";
 
     await withDbRetry("create", () =>
       prisma.questionBankItem.create({
@@ -96,7 +97,7 @@ export async function insertNptePtBankItems(
           source: "generated",
           contentHash: hash,
           active: true,
-          qaPassed: false,
+          qaPassed,
         },
       })
     );

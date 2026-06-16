@@ -176,5 +176,7 @@ describe("selectSpreadBankItems for licensing exams", () => {
       85
     );
     expect(quality.issues.some((i) => i.startsWith("count_mismatch"))).toBe(false);
+    expect(quality.issues).not.toContain("window_similar_cases");
+    expect(quality.issues).not.toContain("window_similar_options");
   });
 });

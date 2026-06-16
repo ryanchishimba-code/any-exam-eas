@@ -1,0 +1,458 @@
+import { EXAM_ACCENTS } from "@/lib/landing/tokens";
+import type { ExamRouteSlug } from "@/lib/routes";
+
+export type ExamSeoKey = ExamRouteSlug;
+
+/** URL slug → canonical exam key (e.g. /npte → npte-pt). */
+export const EXAM_SEO_SLUG_ALIASES: Record<string, ExamSeoKey> = {
+  npte: "npte-pt",
+};
+
+export const EXAM_SEO_KEYS: ExamSeoKey[] = [
+  "nclex",
+  "usmle",
+  "naplex",
+  "pance",
+  "aanp-fnp",
+  "npte-pt",
+];
+
+export function resolveExamSeoKey(slug: string): ExamSeoKey | undefined {
+  const normalized = slug.toLowerCase();
+  if (EXAM_SEO_KEYS.includes(normalized as ExamSeoKey)) {
+    return normalized as ExamSeoKey;
+  }
+  return EXAM_SEO_SLUG_ALIASES[normalized];
+}
+
+/** Public marketing URL for an exam (keyword-rich short path). */
+export function examMarketingPath(key: ExamSeoKey): string {
+  return `/${key}`;
+}
+
+export type ExamSeoConfig = {
+  key: ExamSeoKey;
+  displayName: string;
+  shortName: string;
+  metaTitle: string;
+  metaDescription: string;
+  keywords: string[];
+  h1: string;
+  heroSubline: string;
+  accentColor: string;
+  blueprintLabel: string;
+  features: { title: string; detail: string }[];
+  studyTips: { heading: string; body: string }[];
+  faqs: { question: string; answer: string }[];
+  relatedResourceSlugs: string[];
+};
+
+export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
+  nclex: {
+    key: "nclex",
+    displayName: "NCLEX-RN",
+    shortName: "NCLEX",
+    metaTitle: "NCLEX Board Prep 2026 — Practice Questions, NGN & Study Roadmap",
+    metaDescription:
+      "Pass NCLEX-RN with board-style practice questions, NGN formats (SATA, bow-tie, matrix), blueprint Roadmap, and Deep Dive review. 14-day free trial · all six boards included.",
+    keywords: [
+      "NCLEX prep 2026",
+      "NCLEX practice questions",
+      "NCLEX study guide",
+      "NCLEX-RN review",
+      "free NCLEX practice questions",
+      "how to pass NCLEX first try",
+      "NGN NCLEX questions",
+      "NCLEX question bank",
+      "AnyExamEasy NCLEX",
+    ],
+    h1: "NCLEX Board Prep 2026 — Practice Questions & Clinical Judgment",
+    heroSubline:
+      "High-yield NCLEX-RN vignettes, Next Generation NCLEX (NGN) item types, and a blueprint-aligned Roadmap — included in one affordable subscription with five other board exams.",
+    accentColor: EXAM_ACCENTS.nclex,
+    blueprintLabel: "NCSBN Clinical Judgment Measurement Model",
+    features: [
+      {
+        title: "NGN-ready question formats",
+        detail: "SATA, bow-tie, matrix, and unfolding case items that mirror current NCLEX delivery.",
+      },
+      {
+        title: "NCLEX Exam Roadmap",
+        detail: "Track readiness across Client Needs categories and focus weak areas before test day.",
+      },
+      {
+        title: "Deep Dive review modules",
+        detail: "Open eight-section lessons from missed questions — sepsis, heart failure, delegation, and more.",
+      },
+    ],
+    studyTips: [
+      {
+        heading: "How to pass NCLEX on your first attempt",
+        body: "Use daily timed sets, review rationales for every miss, and follow your Roadmap weak-area queue instead of random churning through questions.",
+      },
+      {
+        heading: "Best NCLEX practice questions in 2026",
+        body: "Look for clinical judgment stems, plausible distractors, and explanations that teach prioritization — not template-swapped answer choices.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Does AnyExamEasy include NCLEX NGN question types?",
+        answer:
+          "Yes. Our NCLEX bank includes select-all-that-apply, bow-tie, matrix, and other NGN-style formats alongside classic single-best-answer vignettes.",
+      },
+      {
+        question: "Can I try NCLEX prep before paying?",
+        answer:
+          "Yes — start a 14-day free trial with full platform access. No credit card required to begin.",
+      },
+      {
+        question: "Is NCLEX prep included with other board exams?",
+        answer:
+          "Yes. One subscription covers NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — no separate per-exam checkout.",
+      },
+    ],
+    relatedResourceSlugs: [
+      "best-nclex-practice-questions-2026",
+      "how-to-pass-nclex-first-try",
+      "nclex-study-guide-roadmap",
+    ],
+  },
+  usmle: {
+    key: "usmle",
+    displayName: "USMLE Step 2 CK",
+    shortName: "USMLE",
+    metaTitle: "USMLE Step 2 CK Practice Questions 2026 — Vignettes & Exam Prep",
+    metaDescription:
+      "USMLE Step 2 CK clinical vignettes, mechanism-first rationales, timed blocks, and study Roadmap. Affordable alternative to premium QBanks. 14-day free trial.",
+    keywords: [
+      "USMLE Step 2 CK practice questions",
+      "USMLE prep 2026",
+      "USMLE question bank",
+      "Step 2 CK study guide",
+      "how to pass USMLE Step 2",
+      "free USMLE practice questions",
+      "USMLE clinical vignettes",
+      "AnyExamEasy USMLE",
+    ],
+    h1: "USMLE Step 2 CK Prep — Clinical Vignettes & Next-Best-Step Practice",
+    heroSubline:
+      "Mechanism-driven Step 2 CK items with competitive distractors, full-length timed simulations, and integrated Roadmap tracking — plus NCLEX, NAPLEX, PANCE, FNP, and NPTE on the same plan.",
+    accentColor: EXAM_ACCENTS.usmle,
+    blueprintLabel: "USMLE Step 2 CK content outline",
+    features: [
+      {
+        title: "Clinical vignette MCQs",
+        detail: "Next-best-step and diagnosis stems with teachable, mechanism-first rationales.",
+      },
+      {
+        title: "Timed Step 2 blocks",
+        detail: "Build stamina with board-length sessions before your exam date.",
+      },
+      {
+        title: "Performance analytics",
+        detail: "See system-based weak areas and drill them with adaptive practice (Pro).",
+      },
+    ],
+    studyTips: [
+      {
+        heading: "Best USMLE Step 2 CK practice questions",
+        body: "Prioritize vignettes that test management and diagnosis with explanations linking pathophysiology to the correct next step.",
+      },
+      {
+        heading: "USMLE study roadmap",
+        body: "Follow a systems-based plan — rotate weak specialties weekly instead of over-studying strong areas.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Does AnyExamEasy cover USMLE Step 2 CK?",
+        answer:
+          "Yes. Our USMLE track focuses on Step 2 CK-style clinical vignettes, timed practice, and blueprint-aligned Roadmap tools.",
+      },
+      {
+        question: "How does pricing compare to UWorld?",
+        answer:
+          "AnyExamEasy Basic starts at $34.99/mo and includes six board exams — UWorld typically charges $200–400+ per exam separately.",
+      },
+      {
+        question: "Are USMLE explanations detailed?",
+        answer:
+          "Every item includes a teachable rationale. Pro subscribers get enhanced explanations and Deep Dive modules on missed topics.",
+      },
+    ],
+    relatedResourceSlugs: [
+      "best-usmle-step-2-practice-questions-2026",
+      "usmle-step-2-study-guide-roadmap",
+      "how-to-pass-usmle-step-2-first-try",
+    ],
+  },
+  naplex: {
+    key: "naplex",
+    displayName: "NAPLEX",
+    shortName: "NAPLEX",
+    metaTitle: "NAPLEX Review 2026 — Pharmacy Practice Questions & Calculations",
+    metaDescription:
+      "NAPLEX prep with calculations, patient cases, drug interactions, and pharmacotherapy vignettes. Blueprint Roadmap + Top 503 Drugs deck. Free 14-day trial.",
+    keywords: [
+      "NAPLEX review 2026",
+      "NAPLEX practice questions",
+      "NAPLEX study guide",
+      "NAPLEX calculations",
+      "how to pass NAPLEX first try",
+      "free NAPLEX practice questions",
+      "NAPLEX question bank",
+      "AnyExamEasy NAPLEX",
+    ],
+    h1: "NAPLEX Review 2026 — Calculations, Cases & Pharmacotherapy",
+    heroSubline:
+      "Board-style NAPLEX items with math walkthroughs, patient counseling scenarios, and a pharmacy blueprint Roadmap — bundled with nursing, medical, PA, FNP, and PT prep.",
+    accentColor: EXAM_ACCENTS.naplex,
+    blueprintLabel: "NABP NAPLEX competency areas",
+    features: [
+      {
+        title: "Calculation & compounding items",
+        detail: "Show-your-work style math with dosing, concentrations, and IV flow problems.",
+      },
+      {
+        title: "Patient case vignettes",
+        detail: "Drug interactions, monitoring, and therapeutic substitution scenarios.",
+      },
+      {
+        title: "Top 503 Drugs deck",
+        detail: "High-yield pharmacology flashcards shared across pharmacy and clinical tracks.",
+      },
+    ],
+    studyTips: [
+      {
+        heading: "How to pass NAPLEX on the first try",
+        body: "Split study time between calculations, brand/generic mastery, and case-based management — use timed mixed sets in the final month.",
+      },
+      {
+        heading: "Free NAPLEX practice questions",
+        body: "Start your 14-day trial to access the full NAPLEX bank and sample questions before subscribing.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Does AnyExamEasy include NAPLEX calculations?",
+        answer: "Yes. Our NAPLEX bank emphasizes calculations, compounding, and case-based pharmacotherapy with detailed rationales.",
+      },
+      {
+        question: "Is the Top 503 Drugs deck included?",
+        answer: "Yes — high-yield drug flashcards are included on every plan alongside all six board question banks.",
+      },
+      {
+        question: "Can pharmacy students use the Roadmap?",
+        answer: "Yes. Each exam has a blueprint-aligned Roadmap showing what to study next based on your practice performance.",
+      },
+    ],
+    relatedResourceSlugs: [
+      "best-naplex-practice-questions-2026",
+      "how-to-pass-naplex-first-try",
+      "naplex-study-guide-blueprint",
+    ],
+  },
+  pance: {
+    key: "pance",
+    displayName: "PANCE",
+    shortName: "PANCE",
+    metaTitle: "PANCE Exam Prep 2026 — NCCPA Blueprint Practice Questions",
+    metaDescription:
+      "PANCE practice questions aligned to the NCCPA blueprint — cardiovascular, pulmonary, GI, MSK, and more. Roadmap, timed exams, Deep Dives. 14-day free trial.",
+    keywords: [
+      "PANCE exam prep 2026",
+      "PANCE practice questions",
+      "PANCE study guide",
+      "NCCPA blueprint PANCE",
+      "how to pass PANCE first try",
+      "free PANCE practice questions",
+      "PANCE question bank",
+      "AnyExamEasy PANCE",
+    ],
+    h1: "PANCE Exam Prep 2026 — NCCPA Blueprint Vignettes",
+    heroSubline:
+      "Physician assistant board prep with systems-based vignettes, 15-category Roadmap tracking, and full-length timed simulations — one subscription covers six licensing exams.",
+    accentColor: EXAM_ACCENTS.pance,
+    blueprintLabel: "NCCPA PANCE content blueprint",
+    features: [
+      {
+        title: "15-category Roadmap",
+        detail: "Track readiness across every NCCPA medical content category from one dashboard.",
+      },
+      {
+        title: "Clinical vignette bank",
+        detail: "Next-best diagnostic step and first-line management scenarios with teachable rationales.",
+      },
+      {
+        title: "Timed PANCE simulations",
+        detail: "Build endurance with board-length blocks before exam day (Pro for unlimited mocks).",
+      },
+    ],
+    studyTips: [
+      {
+        heading: "PANCE study guide & roadmap",
+        body: "Map weekly study to NCCPA categories — overweight cardiovascular and pulmonary if those are weak on diagnostics.",
+      },
+      {
+        heading: "Best PANCE practice questions 2026",
+        body: "Choose vignettes with plausible distractors and explanations that reinforce PA scope and first-line therapy.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Is AnyExamEasy aligned to the NCCPA PANCE blueprint?",
+        answer: "Yes. Our PANCE Roadmap and question tagging follow NCCPA medical content categories.",
+      },
+      {
+        question: "Can I prep for PANCE and USMLE on one plan?",
+        answer: "Yes — all six board tracks are included in Basic and Pro subscriptions.",
+      },
+      {
+        question: "How long is the free trial?",
+        answer: "14 days with full platform access. No credit card required to start.",
+      },
+    ],
+    relatedResourceSlugs: [
+      "best-pance-practice-questions-2026",
+      "pance-study-guide-nccpa-blueprint",
+      "how-to-pass-pance-first-try",
+    ],
+  },
+  "aanp-fnp": {
+    key: "aanp-fnp",
+    displayName: "AANP FNP",
+    shortName: "AANP FNP",
+    metaTitle: "AANP FNP Certification Prep 2026 — AANPCB Practice Questions",
+    metaDescription:
+      "AANP FNP board prep with primary-care vignettes across Assess, Diagnose, Plan, and Evaluate domains. Roadmap, Deep Dives, and analytics. Free 14-day trial.",
+    keywords: [
+      "AANP FNP prep 2026",
+      "AANP FNP practice questions",
+      "AANPCB FNP certification",
+      "FNP board review",
+      "how to pass AANP FNP first try",
+      "free AANP FNP practice questions",
+      "AANP FNP study guide",
+      "AnyExamEasy AANP FNP",
+    ],
+    h1: "AANP FNP Certification Prep — Primary Care Practice Questions",
+    heroSubline:
+      "AANPCB-aligned FNP vignettes spanning the lifespan, plus integrated Roadmap, Deep Dive modules, and six-exam subscription value for NP students.",
+    accentColor: EXAM_ACCENTS.aanpFnp,
+    blueprintLabel: "AANPCB FNP certification blueprint",
+    features: [
+      {
+        title: "Assess · Diagnose · Plan · Evaluate",
+        detail: "Items mapped to AANPCB domains with primary-care management focus.",
+      },
+      {
+        title: "Lifespan primary care",
+        detail: "Pediatric, adult, and geriatric scenarios with preventive care emphasis.",
+      },
+      {
+        title: "Deep Dive modules",
+        detail: "Pro subscribers unlock textbook-depth lessons linked from missed questions.",
+      },
+    ],
+    studyTips: [
+      {
+        heading: "AANP FNP study guide",
+        body: "Rotate domain practice weekly — many candidates under-practice Evaluate and professional role questions.",
+      },
+      {
+        heading: "How to pass AANP FNP on the first try",
+        body: "Combine Roadmap weak-area drills with full-length timed sets in the final three weeks.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Is this for AANPCB FNP certification?",
+        answer: "Yes. Our AANP FNP track targets AANPCB-style primary care vignettes and domain coverage.",
+      },
+      {
+        question: "Do I get NCLEX and FNP prep together?",
+        answer: "Yes — one subscription includes both tracks plus USMLE, NAPLEX, PANCE, and NPTE-PT.",
+      },
+      {
+        question: "What's included in the free trial?",
+        answer: "14 days of full access to all question banks, Roadmaps, and reference tools.",
+      },
+    ],
+    relatedResourceSlugs: [
+      "best-aanp-fnp-practice-questions-2026",
+      "aanp-fnp-study-guide-blueprint",
+      "how-to-pass-aanp-fnp-first-try",
+    ],
+  },
+  "npte-pt": {
+    key: "npte-pt",
+    displayName: "NPTE-PT",
+    shortName: "NPTE",
+    metaTitle: "NPTE-PT Prep 2026 — Physical Therapy Board Practice Questions",
+    metaDescription:
+      "NPTE-PT exam prep with FSBPT blueprint scenarios — MSK, neuromuscular, cardiopulmonary, modalities, and safety. Roadmap + timed full exams. Free trial.",
+    keywords: [
+      "NPTE prep 2026",
+      "NPTE-PT practice questions",
+      "NPTE study guide",
+      "FSBPT blueprint NPTE",
+      "how to pass NPTE first try",
+      "free NPTE practice questions",
+      "physical therapy board exam",
+      "AnyExamEasy NPTE",
+    ],
+    h1: "NPTE-PT Board Prep 2026 — FSBPT Blueprint Practice Questions",
+    heroSubline:
+      "Physical therapy licensure prep with clinical scenarios across musculoskeletal, neuromuscular, and cardiopulmonary systems — plus five other board exams on one plan.",
+    accentColor: EXAM_ACCENTS.nptePt,
+    blueprintLabel: "FSBPT NPTE-PT content outline",
+    features: [
+      {
+        title: "FSBPT-aligned scenarios",
+        detail: "Examination, intervention selection, outcome measures, and clinical reasoning items.",
+      },
+      {
+        title: "MSK & neuro focus",
+        detail: "High-yield musculoskeletal and neuromuscular vignettes with modality safety review.",
+      },
+      {
+        title: "Full-length NPTE simulations",
+        detail: "Timed board-style exams to build stamina before test day.",
+      },
+    ],
+    studyTips: [
+      {
+        heading: "NPTE study guide & roadmap",
+        body: "Use category-based Roadmap tracking to overweight weak systems — especially modalities and professional responsibilities.",
+      },
+      {
+        heading: "Best NPTE practice questions 2026",
+        body: "Practice with scenario-based items that test intervention selection, not recall-only flashcards.",
+      },
+    ],
+    faqs: [
+      {
+        question: "Does AnyExamEasy cover NPTE-PT (physical therapy)?",
+        answer: "Yes. Our NPTE-PT track follows FSBPT blueprint areas with clinical scenario practice questions.",
+      },
+      {
+        question: "Is NPTE prep included with other exams?",
+        answer: "Yes — PT, nursing, medical, pharmacy, PA, and FNP prep are all on one subscription.",
+      },
+      {
+        question: "Can I access NPTE prep at /npte?",
+        answer: "Yes. Both /npte and /npte-pt route to our NPTE-PT marketing and prep hub.",
+      },
+    ],
+    relatedResourceSlugs: [
+      "best-npte-practice-questions-2026",
+      "npte-pt-study-guide-fsbpt-blueprint",
+      "how-to-pass-npte-first-try",
+    ],
+  },
+};
+
+export function getExamSeoConfig(key: ExamSeoKey): ExamSeoConfig {
+  return EXAM_SEO_CONFIG[key];
+}

@@ -9,20 +9,22 @@ import {
   Map,
   Pill,
   ShieldCheck,
+  Sparkles,
   Stethoscope,
   Timer,
   type LucideIcon,
 } from "lucide-react";
 import { MARKETING_QUESTION_COUNTS, TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
+import { examMarketingPath } from "@/lib/seo/exam-config";
 
 /** Primary platform positioning — reuse across compare sections and SEO. */
 export const PLATFORM_TAGLINE =
   "Pass your boards faster and cheaper — high-quality practice, smart tools, and one low price for every major exam.";
 
-export const PLATFORM_EXAM_LIST = "USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP";
+export const PLATFORM_EXAM_LIST = "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT";
 
-export const PLATFORM_EXAM_LIST_MIDDOT = "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP";
+export const PLATFORM_EXAM_LIST_MIDDOT = "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP · NPTE-PT";
 
 export type LandingExam = {
   id: string;
@@ -38,7 +40,7 @@ export const LANDING_EXAMS: LandingExam[] = [
     id: "usmle",
     label: "USMLE Step 2 CK",
     blurb: "Vignette MCQs · timed blocks",
-    href: "/question-bank?field=usmle-step-2",
+    href: examMarketingPath("usmle"),
     icon: Stethoscope,
     color: EXAM_ACCENTS.usmle,
   },
@@ -46,7 +48,7 @@ export const LANDING_EXAMS: LandingExam[] = [
     id: "nclex",
     label: "NCLEX",
     blurb: "Curated vignettes · NGN · SATA · bow-tie",
-    href: "/question-bank?field=nursing",
+    href: examMarketingPath("nclex"),
     icon: HeartPulse,
     color: EXAM_ACCENTS.nclex,
   },
@@ -54,7 +56,7 @@ export const LANDING_EXAMS: LandingExam[] = [
     id: "naplex",
     label: "NAPLEX",
     blurb: "Calculations · compounding · cases",
-    href: "/question-bank?field=pharmacy",
+    href: examMarketingPath("naplex"),
     icon: Pill,
     color: EXAM_ACCENTS.naplex,
   },
@@ -62,7 +64,7 @@ export const LANDING_EXAMS: LandingExam[] = [
     id: "pance",
     label: "PANCE",
     blurb: "Physician assistant · NCCPA blueprint vignettes",
-    href: "/question-bank?field=pance",
+    href: examMarketingPath("pance"),
     icon: Stethoscope,
     color: EXAM_ACCENTS.pance,
   },
@@ -70,9 +72,17 @@ export const LANDING_EXAMS: LandingExam[] = [
     id: "aanp-fnp",
     label: "AANP FNP",
     blurb: "AANPCB FNP blueprint · primary care vignettes",
-    href: "/question-bank?field=aanp-fnp",
+    href: examMarketingPath("aanp-fnp"),
     icon: HeartPulse,
     color: EXAM_ACCENTS.aanpFnp,
+  },
+  {
+    id: "npte-pt",
+    label: "NPTE-PT",
+    blurb: "FSBPT blueprint · physical therapy clinical scenarios",
+    href: examMarketingPath("npte-pt"),
+    icon: HeartPulse,
+    color: EXAM_ACCENTS.nptePt,
   },
 ];
 
@@ -91,9 +101,9 @@ export const LANDING_BENEFITS = [
   },
   {
     visualId: "hero-app-mockup" as const,
-    title: "Five exams in one affordable subscription",
+    title: "Six exams in one affordable subscription",
     detail:
-      "Stop stacking $200–400+ per-exam subscriptions. USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP prep live under one plan.",
+      "Stop stacking $200–400+ per-exam subscriptions. USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT prep live under one plan.",
   },
   {
     visualId: "screenshot-analytics" as const,
@@ -139,15 +149,37 @@ export const LANDING_HERO_EXAMS = [
   { label: "NAPLEX", color: EXAM_ACCENTS.naplex },
   { label: "PANCE", color: EXAM_ACCENTS.pance },
   { label: "AANP FNP", color: EXAM_ACCENTS.aanpFnp },
+  { label: "NPTE-PT", color: EXAM_ACCENTS.nptePt },
 ] as const;
 
 /** Primary hero headline — benefit-driven, scannable above the fold. */
-export const LANDING_HERO_HEADLINE =
-  "Pass Your Boards — All 5 Major Exams, One Affordable Price";
+export const LANDING_HERO_HEADLINE = "Six Boards. One Plan. Pass With Confidence.";
 
 /** Hero sub-headline — exams, tools, and price in one line. */
 export const LANDING_HERO_SUBLINE =
-  "Professional board prep for USMLE, NCLEX, NAPLEX, PANCE & AANP FNP — 5 exams + powerful tools for less than one UWorld subscription. Basic from $34.99/mo.";
+  "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP · NPTE-PT — Roadmaps, Deep Dives, full-length mocks, and board-style banks. Basic from $34.99/mo, Pro from $49.99/mo. Less than one premium QBank elsewhere.";
+
+/** Three-column offering band below the hero. */
+export const LANDING_OFFERING_PILLARS = [
+  {
+    icon: Layers,
+    title: "6 licensing exams included",
+    detail:
+      "Stop buying separate $200–400+ subscriptions. Every major board track lives in one account — switch exams anytime.",
+  },
+  {
+    icon: Map,
+    title: "Roadmaps + Deep Dives built in",
+    detail:
+      "Blueprint-aligned study plans show what to practice next. Pro unlocks Deep Dive modules, advanced analytics, and unlimited mock exams.",
+  },
+  {
+    icon: Sparkles,
+    title: "Basic or Pro — your call",
+    detail:
+      "Basic covers all six banks, Roadmaps, labs, calculators, and Top 503 Drugs. Pro adds SRS, exportable notes, and enhanced explanations.",
+  },
+] as const;
 
 /** Subtle trust signals below hero CTAs. */
 export const LANDING_HERO_TRUST_SIGNALS = [
@@ -191,7 +223,7 @@ export const LANDING_HERO_HEADLINE_QUOTED = LANDING_HERO_HEADLINE;
 /** Scannable hero benefits — shown under the subline. */
 export const LANDING_HERO_BENEFITS = [
   "Blueprint-aligned Roadmaps for every exam — not just a question bank",
-  "Five board exams in one plan — no stacking separate prep bills",
+  "Six board exams in one plan — no stacking separate prep bills",
   "Board-style vignettes with teachable, OER-backed rationales",
   "Deep Dive lessons linked to the questions you miss",
 ] as const;
@@ -204,13 +236,13 @@ export const LANDING_HERO_HEADLINE_ACCENT = "for boards and clinical practice.";
 
 /** Three punchy hero benefits — scannable in under 3 seconds. */
 export const LANDING_HERO_PITCHES = [
-  "5 board exams · 1 plan",
+  "6 board exams · 1 plan",
   "Roadmaps + Deep Dives",
   "Calculators & lab values",
 ] as const;
 
 /** Hero price anchor — what's included at the monthly rate. */
-export const LANDING_HERO_PRICE_TAGLINE = "Serious prep without the premium price tag.";
+export const LANDING_HERO_PRICE_TAGLINE = "Every board. Every tool. One price.";
 
 export const LANDING_HERO_PRICE_INCLUDES = [
   `${MARKETING_QUESTION_COUNTS.total} board-style questions`,
@@ -223,17 +255,17 @@ export const LANDING_SOCIAL_PROOF = [
   {
     value: MARKETING_QUESTION_COUNTS.total,
     label: "Board-style questions",
-    detail: "Curated vignettes across five licensing exams",
+    detail: "Curated vignettes across six licensing exams",
   },
   {
-    value: "5",
+    value: "6",
     label: "Board exams",
     detail: "One subscription — no per-exam stacking",
   },
   {
     value: "$34.99",
     label: "Basic from",
-    detail: "Pro from $49.99/mo — all 5 exams vs. $200–400+ each elsewhere",
+    detail: "Pro from $49.99/mo — all 6 exams vs. $200–400+ each elsewhere",
   },
   {
     value: "Roadmap",
@@ -335,7 +367,7 @@ export const SAMPLE_QUESTIONS_FEATURED = SAMPLE_QUESTION_PREVIEWS.filter((q) =>
 
 export const LANDING_METRICS = [
   { value: MARKETING_QUESTION_COUNTS.total, label: "Board-style items" },
-  { value: "5", label: "Board exam tracks" },
+  { value: "6", label: "Board exam tracks" },
   { value: "Roadmap", label: "Per-exam study plan" },
   { value: "Deep Dive", label: "Linked lessons" },
   { value: String(TOP_500_DRUGS_COUNT), label: "Pharmacology cards" },
@@ -354,8 +386,8 @@ export type LandingSuccessStory = {
 
 /** Illustrative outcome stats — not pass-rate guarantees. */
 export const LANDING_PASS_STATS = [
-  { value: "5", label: "Board exams", detail: "One subscription — no per-exam stacking" },
-  { value: "$34.99", label: "Basic from", detail: "Pro from $49.99/mo — all 5 exams vs. $200–400+ each elsewhere" },
+  { value: "6", label: "Board exams", detail: "One subscription — no per-exam stacking" },
+  { value: "$34.99", label: "Basic from", detail: "Pro from $49.99/mo — all 6 exams vs. $200–400+ each elsewhere" },
   { value: "First try", label: "Passes reported", detail: "Students share first-attempt outcomes*" },
 ] as const;
 
@@ -405,7 +437,7 @@ export const LANDING_TESTIMONIALS = LANDING_SUCCESS_STORIES;
 export const UWORLD_COMPARE_ROWS = [
   {
     label: "Monthly price",
-    us: "From $34.99/mo Basic · Pro $49.99/mo — all 5 exams",
+    us: "From $34.99/mo Basic · Pro $49.99/mo — all 6 exams",
     them: "$200–400+ per exam (UWorld sells each board separately)",
   },
   {
