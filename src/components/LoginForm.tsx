@@ -28,8 +28,9 @@ export function LoginForm() {
   const [view, setView] = useState<"login" | "forgot">("login");
   const [hintEmail, setHintEmail] = useState("");
   const resetSuccess = searchParams.get("reset") === "success";
-  const ipLimitError = searchParams.get("error") === "too_many_ips";
-  const ipRequiredError = searchParams.get("error") === "ip_required";
+  const authError = searchParams.get("error");
+  const ipLimitError = authError === "too_many_ips";
+  const ipRequiredError = authError === "ip_required";
   const callbackUrl = sanitizeCallbackUrl(searchParams.get("callbackUrl"));
 
   const { data: session, status } = useSession();
@@ -92,6 +93,13 @@ export function LoginForm() {
       {ipRequiredError && view === "login" && (
         <StatusMessage variant="error">{messageForSignInError("ip_required")}</StatusMessage>
       )}
+
+      {authError &&
+        !ipLimitError &&
+        !ipRequiredError &&
+        view === "login" && (
+          <StatusMessage variant="error">{messageForSignInError(authError)}</StatusMessage>
+        )}
 
       <AnimatePresence mode="wait" initial={false}>
         {view === "login" ? (

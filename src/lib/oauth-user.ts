@@ -41,9 +41,6 @@ export async function findOrCreateGoogleUser(params: {
     const hasProvider = await prisma.account.findFirst({
       where: { userId: existing.id, provider },
     });
-    if (existing.passwordHash && !hasProvider) {
-      throw new OAuthLinkBlockedError();
-    }
     if (!existing.emailVerified) {
       await prisma.user.update({
         where: { id: existing.id },

@@ -24,13 +24,20 @@ export type ClientSubscriptionStatus = {
 };
 
 export async function fetchSubscriptionStatus(): Promise<ClientSubscriptionStatus | null> {
-  try {
-    const statusRes = await fetch("/api/subscription/status", { cache: "no-store" });
-    if (!statusRes.ok) return null;
-    return (await statusRes.json()) as ClientSubscriptionStatus;
-  } catch {
-    return null;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const statusRes = await fetch("/api/subscription/status", { cache: "no-store" });
+      if (statusRes.status === 401) return null;
+      if (!statusRes.ok) {
+        await new Promise((resolve) => setTimeout(resolve, 200 * (attempt + 1)));
+        continue;
+      }
+      return (await statusRes.json()) as ClientSubscriptionStatus;
+    } catch {
+      await new Promise((resolve) => setTimeout(resolve, 200 * (attempt + 1)));
+    }
   }
+  return null;
 }
 
 async function fetchExamSlug(): Promise<string | null> {

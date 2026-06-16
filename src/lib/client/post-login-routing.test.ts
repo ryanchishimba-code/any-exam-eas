@@ -20,6 +20,28 @@ describe("resolvePostLoginDestination", () => {
     ).toBe("/select-exam");
   });
 
+  it("sends inactive users without an exam to reactivate, not select-exam", () => {
+    expect(
+      resolvePostLoginDestination("/dashboard", { hasAccess: false }, null)
+    ).toBe("/settings?reactivate=1");
+  });
+
+  it("sends inactive users without an exam to checkout when provided", () => {
+    expect(
+      resolvePostLoginDestination(
+        "/dashboard",
+        {
+          hasAccess: false,
+          reactivation: {
+            method: "checkout",
+            checkoutPath: "/checkout?plan=trial&tier=pro&interval=yearly&reactivate=1",
+          },
+        },
+        null
+      )
+    ).toBe("/checkout?plan=trial&tier=pro&interval=yearly&reactivate=1");
+  });
+
   it("sends lapsed users to settings reactivate by default", () => {
     expect(
       resolvePostLoginDestination("/dashboard", { hasAccess: false }, "nclex")

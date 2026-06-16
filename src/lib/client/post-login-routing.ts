@@ -23,16 +23,6 @@ export function resolvePostLoginDestination(
     return safe;
   }
 
-  const headingToDashboard =
-    safe === ROUTES.dashboard ||
-    safe.startsWith(`${ROUTES.dashboard}/`) ||
-    safe.startsWith("/study-hub") ||
-    safe.startsWith("/studygub");
-
-  if (headingToDashboard && !examSlug) {
-    return ROUTES.selectExam;
-  }
-
   if (!status?.hasAccess) {
     if (
       safe.startsWith("/checkout") ||
@@ -56,6 +46,16 @@ export function resolvePostLoginDestination(
     }
 
     return "/settings?reactivate=1";
+  }
+
+  const headingToDashboard =
+    safe === ROUTES.dashboard ||
+    safe.startsWith(`${ROUTES.dashboard}/`) ||
+    safe.startsWith("/study-hub") ||
+    safe.startsWith("/studygub");
+
+  if (headingToDashboard && !examSlug) {
+    return ROUTES.selectExam;
   }
 
   if (

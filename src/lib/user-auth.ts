@@ -78,7 +78,7 @@ export async function verifyUserPassword(
   return result.ok ? result.user : null;
 }
 
-export type CredentialAuthFailure = "invalid" | "no_password" | "blocked";
+export type CredentialAuthFailure = "invalid" | "no_password" | "invalid_hash" | "blocked";
 
 export type CredentialAuthResult =
   | { ok: true; user: User }
@@ -93,6 +93,7 @@ export async function authenticateCredentials(
 
   const blocked = credentialsLoginBlocked(user);
   if (blocked === "no_password") return { ok: false, reason: "no_password" };
+  if (blocked === "invalid_hash") return { ok: false, reason: "invalid_hash" };
   if (blocked) return { ok: false, reason: "blocked" };
 
   if (!(await verifyPassword(password, user.passwordHash))) {

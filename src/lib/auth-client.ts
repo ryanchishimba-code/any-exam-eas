@@ -8,6 +8,9 @@ export function messageForSignInError(error?: string | null): string {
   if (error === "oauth_only") {
     return "This email uses Google or Apple sign-in. Use those buttons above, or reset your password if you previously set one.";
   }
+  if (error === "password_reset_required") {
+    return "Your password needs to be reset before you can sign in. Use Forgot Password below.";
+  }
   if (error === "Configuration") {
     return "Sign-in is unavailable because the server is missing auth or database configuration.";
   }

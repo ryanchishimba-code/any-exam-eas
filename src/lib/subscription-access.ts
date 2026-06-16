@@ -112,6 +112,17 @@ export function evaluateSubscriptionAccess(
       };
     }
     if (!subscription.stripeSubscriptionId) {
+      if (trialEndsAt && trialEndsAt > new Date()) {
+        return {
+          hasAccess: true,
+          status: "trialing",
+          ...meta,
+          trialEndsAt,
+          daysRemaining: daysUntil(trialEndsAt),
+          canStartCheckout: true,
+          needsPaymentMethod: true,
+        };
+      }
       return {
         hasAccess: false,
         status: "inactive",
