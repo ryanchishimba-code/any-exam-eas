@@ -181,6 +181,7 @@ export function ReferenceHubClient({
                 examSlug={examSlug}
                 topicKey={topicKey}
                 cardCount={scopedCards.length}
+                memoryCardIds={scopedCards.map((c) => c.id)}
               />
             ) : null}
 

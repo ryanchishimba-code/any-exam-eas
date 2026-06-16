@@ -391,6 +391,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
     },
     practiceTopicSlug: "infectious-disease-rx",
     reviewModuleSlug: "antibiotics-stewardship",
+    structureIds: ["liver", "lungs"],
     sortOrder: 19,
   },
   {
@@ -850,6 +851,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
     ],
     practiceTopicSlug: "physiological-adaptation",
     reviewModuleSlug: "sepsis-shock",
+    structureIds: ["heart", "lungs", "kidneys"],
     sortOrder: 1,
   },
   {
@@ -873,6 +875,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
     },
     practiceTopicSlug: "physiological-adaptation",
     reviewModuleSlug: "sepsis-shock",
+    structureIds: ["heart", "lungs"],
     sortOrder: 2,
   },
   {
@@ -1015,6 +1018,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
     ],
     practiceTopicSlug: "cardiology",
     reviewModuleSlug: "acute-coronary-syndrome",
+    structureIds: ["heart"],
     sortOrder: 1,
   },
   {
@@ -1037,6 +1041,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
     },
     practiceTopicSlug: "cardiology",
     reviewModuleSlug: "acute-coronary-syndrome",
+    structureIds: ["heart", "aorta"],
     sortOrder: 2,
   },
   {
@@ -1060,6 +1065,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
     },
     practiceTopicSlug: "cardiology",
     reviewModuleSlug: "acute-coronary-syndrome",
+    structureIds: ["heart"],
     sortOrder: 3,
   },
   {
@@ -1079,6 +1085,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
       "Endovascular thrombectomy up to 24 h in select large-vessel occlusion",
     ],
     practiceTopicSlug: "neurology",
+    structureIds: ["brain", "carotid-artery"],
     sortOrder: 4,
   },
   {
@@ -1141,6 +1148,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
     ],
     practiceTopicSlug: "cardiovascular",
     reviewModuleSlug: "acute-coronary-syndrome",
+    structureIds: ["heart", "aorta"],
     sortOrder: 1,
   },
   {
@@ -1160,6 +1168,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
     ],
     practiceTopicSlug: "cardiovascular",
     reviewModuleSlug: "acute-coronary-syndrome",
+    structureIds: ["heart", "aorta"],
     sortOrder: 2,
   },
   {
@@ -1179,6 +1188,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
       "Hypoglycemia counseling — 15 g fast carb, recheck in 15 min",
     ],
     practiceTopicSlug: "endocrine",
+    structureIds: ["pancreas"],
     sortOrder: 3,
   },
   {
@@ -1199,6 +1209,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
     ],
     practiceTopicSlug: "infectious-diseases",
     reviewModuleSlug: "sepsis-shock",
+    structureIds: ["heart", "lungs", "kidneys"],
     sortOrder: 4,
   },
   {
@@ -1236,6 +1247,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
       "Discharge with action plan and inhaler technique check",
     ],
     practiceTopicSlug: "pulmonary",
+    structureIds: ["lungs", "trachea"],
     sortOrder: 6,
   },
   {

@@ -16,6 +16,7 @@ describe("exam-topic-bridge", () => {
     expect(links.referenceHref).toContain("/reference");
     expect(links.practiceHref).toContain("count=10");
     expect(links.memoryCardIds.length).toBeGreaterThan(0);
+    expect(links.anatomyStructures.length).toBeGreaterThan(0);
   });
 
   it("filters weak topics below threshold", () => {

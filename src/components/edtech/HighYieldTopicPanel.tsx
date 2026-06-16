@@ -16,6 +16,7 @@ import {
   List,
   CheckCircle2,
 } from "lucide-react";
+import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import { Badge } from "@/components/ui/badge";
 import { DeepDiveReviewPlayer } from "@/components/edtech/DeepDiveReviewPlayer";
 import {
@@ -25,6 +26,7 @@ import {
 import { RelatedMemoryCardsCollapsible } from "@/components/edtech/RelatedMemoryCardsCollapsible";
 import { practiceTopicHref } from "@/lib/edtech/practice-links";
 import { getRelatedMemoryCards } from "@/lib/edtech/topic-graph";
+import { getAnatomyDiseasePearlsForReviewModule, getAnatomyStructuresForTopicSlug } from "@/lib/anatomy/topic-links";
 import { recordTopicReview, recordTopicPractice } from "@/lib/edtech/topic-actions";
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
@@ -77,6 +79,21 @@ export function HighYieldTopicPanel({
         : [],
     [examSlug, topic?.reviewModule, topic?.slug]
   );
+
+  const anatomyStructures = useMemo(() => {
+    if (!topic?.slug) return [];
+    const cardIds = relatedCards.map((c) => c.id);
+    const cardStructureIds = relatedCards.flatMap((c) => c.structureIds ?? []);
+    return getAnatomyStructuresForTopicSlug(topic.slug, {
+      memoryCardIds: cardIds,
+      structureIds: [...(topic.relatedStructureIds ?? []), ...cardStructureIds],
+    });
+  }, [topic?.slug, topic?.relatedStructureIds, relatedCards]);
+
+  const diseasePearls = useMemo(() => {
+    if (!topic?.slug) return [];
+    return getAnatomyDiseasePearlsForReviewModule(topic.slug);
+  }, [topic?.slug]);
 
   useBodyScrollLock(open);
 
@@ -228,6 +245,10 @@ export function HighYieldTopicPanel({
                   memoryCards={relatedCards}
                   practiceHref={practiceHref}
                   onPracticeClick={trackPracticeLaunch}
+                  examSlug={examSlug}
+                  moduleSlug={topic.slug}
+                  anatomyStructures={anatomyStructures}
+                  diseasePearls={diseasePearls}
                 />
               ) : topic.reviewModule ? (
                 <ReviewModuleScrollView
@@ -238,6 +259,9 @@ export function HighYieldTopicPanel({
                   onPracticeClick={trackPracticeLaunch}
                   scrollRootRef={scrollRef}
                   onProgressChange={handleModuleProgress}
+                  examSlug={examSlug}
+                  anatomyStructures={anatomyStructures}
+                  diseasePearls={diseasePearls}
                 />
               ) : null}
 
@@ -364,6 +388,21 @@ export function HighYieldTopicPanel({
                   : `Practice ${practiceQuestionCount} related questions`}
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>
+              {anatomyStructures.length > 0 ? (
+                <div className="rounded-xl border border-sky-200/80 bg-sky-50/60 p-3">
+                  <p className="text-[11px] font-bold uppercase tracking-wide text-sky-800">
+                    Visualize the anatomy
+                  </p>
+                  <p className="mt-1 text-xs text-sky-900/80">
+                    Open 3D structures with clinical pearls tied to this topic.
+                  </p>
+                  <RelatedAnatomyLinks
+                    examSlug={examSlug}
+                    structures={anatomyStructures}
+                    className="mt-2"
+                  />
+                </div>
+              ) : null}
             </div>
           </aside>
     </div>

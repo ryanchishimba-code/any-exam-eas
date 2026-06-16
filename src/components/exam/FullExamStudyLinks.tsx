@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { BookMarked, BookOpen, GraduationCap, Sparkles } from "lucide-react";
+import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import {
   getExamTopicStudyLinks,
   getWeakTopicsFromBreakdown,
@@ -84,6 +85,11 @@ export function FullExamStudyLinks({ examSlug, topicBreakdown }: Props) {
                       Deep dive
                     </Link>
                   ) : null}
+                  <RelatedAnatomyLinks
+                    examSlug={examSlug}
+                    structures={links.anatomyStructures}
+                    variant="pill"
+                  />
                 </div>
               </div>
             </li>

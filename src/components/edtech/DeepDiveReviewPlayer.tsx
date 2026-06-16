@@ -4,9 +4,12 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, Layers } from "lucide-react";
 import { ModuleSection, getOrderedSections } from "@/components/edtech/ReviewModuleRenderer";
+import { AnatomyExploreBridge } from "@/components/anatomy/AnatomyExploreBridge";
 import { REVIEW_MODULE_SECTION_ORDER } from "@/lib/edtech/review-modules/types";
+import type { AnatomyDiseasePearl, AnatomyStructureLink } from "@/lib/anatomy/topic-links";
 import type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
 import type { MemoryCard } from "@/lib/reference/types";
+import type { ExamSlug } from "@/types/edtech";
 import { MEMORY_CARD_KIND_LABELS } from "@/lib/reference/types";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -18,6 +21,10 @@ type Props = {
   memoryCards: MemoryCard[];
   practiceHref: string;
   onPracticeClick?: () => void;
+  examSlug: ExamSlug;
+  moduleSlug?: string;
+  anatomyStructures?: AnatomyStructureLink[];
+  diseasePearls?: AnatomyDiseasePearl[];
 };
 
 export function DeepDiveReviewPlayer({
@@ -25,6 +32,9 @@ export function DeepDiveReviewPlayer({
   memoryCards,
   practiceHref,
   onPracticeClick,
+  examSlug,
+  anatomyStructures = [],
+  diseasePearls = [],
 }: Props) {
   const sections = useMemo(() => getOrderedSections(content), [content]);
   const [phase, setPhase] = useState<Phase>(memoryCards.length > 0 ? "memory-cards" : "sections");
@@ -110,8 +120,17 @@ export function DeepDiveReviewPlayer({
       ) : null}
 
       {phase === "sections" && sections[index] ? (
-        <div className="flex-1">
+        <div className="flex-1 space-y-4">
           <ModuleSection section={sections[index]} index={index} />
+          {sectionMeta === "visual-aids" && anatomyStructures.length > 0 ? (
+            <AnatomyExploreBridge
+              examSlug={examSlug}
+              structures={anatomyStructures}
+              diseasePearls={diseasePearls}
+              title="Visualize the anatomy"
+              description="Rotate these structures in 3D while you read the module — clinical pearls are linked on each organ."
+            />
+          ) : null}
         </div>
       ) : null}
 
@@ -131,6 +150,16 @@ export function DeepDiveReviewPlayer({
               />
             ))}
           </div>
+        ) : null}
+
+        ) : null}
+
+        {atEnd && phase === "sections" && anatomyStructures.length > 0 ? (
+          <AnatomyExploreBridge
+            examSlug={examSlug}
+            structures={anatomyStructures}
+            diseasePearls={diseasePearls}
+          />
         ) : null}
 
         <div className="flex items-center justify-between gap-2">

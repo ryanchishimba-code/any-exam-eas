@@ -4,10 +4,14 @@ import {
   referenceCardHref,
   referenceTopicHref,
 } from "@/lib/edtech/practice-links";
+import { getAnatomyStructuresForTopicSlug, type AnatomyStructureLink } from "@/lib/anatomy/topic-links";
 import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
 import type { FullExamTopicBreakdown } from "@/types/full-exam";
 import type { ExamSlug } from "@/types/edtech";
 import { getMemoryCardIdsForTopic, normalizeWeakAreaTopicKey } from "./weak-area-map";
+import { MEMORY_CARDS } from "./seeds";
+
+export type { AnatomyStructureLink };
 
 export type ExamTopicStudyLinks = {
   topic: string;
@@ -18,6 +22,7 @@ export type ExamTopicStudyLinks = {
   reviewModuleSlug?: string;
   deepDiveHref?: string;
   firstCardHref?: string;
+  anatomyStructures: AnatomyStructureLink[];
 };
 
 export function topicNameToSlug(topic: string): string {
@@ -49,6 +54,12 @@ export function getExamTopicStudyLinks(
       (m.slug === topicKey || m.practiceTopicSlug === topicKey)
   );
 
+  const cardStructureIds = memoryCardIds.flatMap((id) => {
+    const card = MEMORY_CARDS.find((c) => c.id === id);
+    return card?.structureIds ?? [];
+  });
+  const moduleStructureIds = reviewModule?.relatedStructureIds ?? [];
+
   return {
     topic,
     topicKey,
@@ -67,6 +78,13 @@ export function getExamTopicStudyLinks(
       memoryCardIds[0] != null
         ? referenceCardHref(examSlug, memoryCardIds[0]!)
         : undefined,
+    anatomyStructures: getAnatomyStructuresForTopicSlug(
+      reviewModule?.slug ?? topicKey,
+      {
+        memoryCardIds,
+        structureIds: [...moduleStructureIds, ...cardStructureIds],
+      }
+    ),
   };
 }
 

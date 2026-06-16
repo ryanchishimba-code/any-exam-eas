@@ -1,9 +1,17 @@
 import { deepDiveTopicHref } from "@/lib/edtech/practice-links";
 import { getReviewModuleTitle } from "@/lib/edtech/topic-graph";
 import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
+import {
+  getAnatomyStructuresForMemoryCardIds,
+  getAnatomyStructuresForTopicSlug,
+  type AnatomyStructureLink,
+} from "@/lib/anatomy/topic-links";
 import type { StudyQuestion } from "@/lib/questions/types";
 import type { ExamSlug } from "@/types/edtech";
 import { getExamTopicStudyLinks, type ExamTopicStudyLinks } from "./exam-topic-bridge";
+import { MEMORY_CARDS } from "./seeds";
+
+export type { AnatomyStructureLink };
 
 export type RelatedDeepDive = {
   slug: string;
@@ -23,6 +31,7 @@ export type ResolvedQuestionStudyLinks = {
   primaryDeepDive?: RelatedDeepDive;
   relatedDeepDives: RelatedDeepDive[];
   memoryCardIds: string[];
+  anatomyStructures: AnatomyStructureLink[];
   keyTakeaway?: string;
   topicLinks: ExamTopicStudyLinks;
 };
@@ -108,10 +117,35 @@ export function resolveQuestionStudyLinks(
   const memoryCardIds =
     meta.memoryCardIds?.length ? meta.memoryCardIds : topicLinks.memoryCardIds;
 
+  const cardStructureIds = memoryCardIds.flatMap((id) => {
+    const card = MEMORY_CARDS.find((c) => c.id === id);
+    return card?.structureIds ?? [];
+  });
+
+  const payloadStructureIds = Array.isArray(ctx.ngnPayload?.structureIds)
+    ? ctx.ngnPayload!.structureIds.map(String)
+    : [];
+
+  const explicitStructureIds = [...payloadStructureIds, ...cardStructureIds];
+
+  const anatomyFromCards = getAnatomyStructuresForMemoryCardIds(memoryCardIds, {
+    structureIds: explicitStructureIds,
+  });
+  const anatomyStructures =
+    anatomyFromCards.length > 0
+      ? anatomyFromCards
+      : topicLinks.anatomyStructures.length > 0
+        ? topicLinks.anatomyStructures
+        : getAnatomyStructuresForTopicSlug(topicLinks.topicKey, {
+            memoryCardIds,
+            structureIds: explicitStructureIds,
+          });
+
   return {
     primaryDeepDive,
     relatedDeepDives,
     memoryCardIds,
+    anatomyStructures,
     keyTakeaway: meta.keyTakeaway,
     topicLinks,
   };

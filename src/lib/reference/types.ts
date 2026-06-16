@@ -34,6 +34,8 @@ export type MemoryCard = {
   practiceTopicSlug: string;
   /** When set, Deep Dive opens the matching Review Module on /dashboard/topics. */
   reviewModuleSlug?: string;
+  /** 3D anatomy structures that reinforce this card (explicit forward link). */
+  structureIds?: string[];
   /** Human-readable citation (OER, guideline, or board standard). */
   sourceLabel?: string;
   /** Optional link to primary reference. */

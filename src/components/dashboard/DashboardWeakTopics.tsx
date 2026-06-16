@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, GraduationCap, Target, TrendingDown } from "lucide-react";
+import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import {
   analyticsHref,
   practiceTopicHref,
@@ -89,6 +90,11 @@ export function DashboardWeakTopics({
                   Practice
                   <ArrowRight className="h-3 w-3" aria-hidden />
                 </Link>
+                <RelatedAnatomyLinks
+                  examSlug={examSlug}
+                  structures={links.anatomyStructures}
+                  variant="pill"
+                />
               </div>
             </li>
           );

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   Flag,
+  AlertTriangle,
   ChevronLeft,
   ChevronRight,
   StickyNote,
@@ -16,6 +17,10 @@ import { PauseExamDialog } from "@/components/exam/PauseExamDialog";
 import { TimeUpDialog } from "@/components/exam/TimeUpDialog";
 import { Progress } from "@/components/ui/progress";
 import { QuestionRenderer } from "@/components/study/questions/QuestionRenderer";
+import {
+  ReportQuestionDialog,
+  buildReportContext,
+} from "@/components/study/ReportQuestionDialog";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
   deserializeExamSelection,
@@ -123,6 +128,7 @@ export function FullExamSimulator({
   const [notesOpen, setNotesOpen] = useState(false);
   const [phase, setPhase] = useState<"exam" | "review">("exam");
   const [hasEnteredReview, setHasEnteredReview] = useState(false);
+  const [reportOpen, setReportOpen] = useState(false);
   const [encouragement] = useState(
     () => ENCOURAGEMENT[Math.floor(Math.random() * ENCOURAGEMENT.length)]
   );
@@ -851,6 +857,14 @@ export function FullExamSimulator({
             />
             <button
               type="button"
+              onClick={() => setReportOpen(true)}
+              className={feUi.footerBtn}
+            >
+              <AlertTriangle className="h-4 w-4" />
+              Report
+            </button>
+            <button
+              type="button"
               onClick={() => updateAnswer({ flagged: !currentAnswer.flagged })}
               className={cn(
                 feUi.footerBtn,
@@ -882,6 +896,21 @@ export function FullExamSimulator({
         onCancel={() => setPauseDialog(false)}
       />
       <TimeUpDialog open={timeUp && !submitting} onFinish={() => void submitExam(true)} />
+
+      {current ? (
+        <ReportQuestionDialog
+          open={reportOpen}
+          onClose={() => setReportOpen(false)}
+          context={buildReportContext({
+            fieldId,
+            examSlug,
+            sessionId,
+            sessionMode: "full_exam",
+            question: current,
+            selectedAnswer: serializeExamSelection(current, currentAnswer.selected),
+          })}
+        />
+      ) : null}
 
       <p className="sr-only" aria-live="polite">
         {config.timed ? `Time remaining ${remainingSec} seconds` : `Elapsed ${elapsedSec} seconds`}

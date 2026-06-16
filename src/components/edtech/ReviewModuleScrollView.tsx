@@ -7,11 +7,14 @@ import {
   getOrderedSections,
   ReviewModuleRenderer,
 } from "@/components/edtech/ReviewModuleRenderer";
+import { AnatomyExploreBridge } from "@/components/anatomy/AnatomyExploreBridge";
 import {
   REVIEW_MODULE_DEFAULT_TITLES,
   type ReviewModuleContent,
   type ReviewModuleSectionId,
 } from "@/lib/edtech/review-modules/types";
+import type { AnatomyDiseasePearl, AnatomyStructureLink } from "@/lib/anatomy/topic-links";
+import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
 const SECTION_SHORT_LABELS: Record<ReviewModuleSectionId, string> = {
@@ -39,6 +42,9 @@ type Props = {
   onPracticeClick?: () => void;
   scrollRootRef: React.RefObject<HTMLElement | null>;
   onProgressChange?: (progress: ReviewModuleScrollProgress) => void;
+  examSlug: ExamSlug;
+  anatomyStructures?: AnatomyStructureLink[];
+  diseasePearls?: AnatomyDiseasePearl[];
 };
 
 export function ReviewModuleScrollView({
@@ -49,6 +55,9 @@ export function ReviewModuleScrollView({
   onPracticeClick,
   scrollRootRef,
   onProgressChange,
+  examSlug,
+  anatomyStructures = [],
+  diseasePearls = [],
 }: Props) {
   const sections = useMemo(() => getOrderedSections(content), [content]);
   const [activeId, setActiveId] = useState<ReviewModuleSectionId | null>(
@@ -211,6 +220,14 @@ export function ReviewModuleScrollView({
       </nav>
 
       <ReviewModuleRenderer content={content} anchorSections />
+
+      {anatomyStructures.length > 0 ? (
+        <AnatomyExploreBridge
+          examSlug={examSlug}
+          structures={anatomyStructures}
+          diseasePearls={diseasePearls}
+        />
+      ) : null}
 
       {progress.complete ? (
         <PracticeReadyBanner

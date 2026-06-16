@@ -42,7 +42,12 @@ import { formatHms } from "@/lib/full-exam/config";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { StudyThisTopicButton } from "./StudyThisTopicButton";
 import { resolveStudyLinksFromQuestion } from "@/lib/reference/question-study-links";
-import { Flag } from "lucide-react";
+import { Flag, AlertTriangle } from "lucide-react";
+import {
+  ReportQuestionDialog,
+  buildReportContext,
+} from "./ReportQuestionDialog";
+import { normalizeFieldId } from "@/lib/subjects/field-ids";
 
 type Props = {
   field: string;
@@ -107,6 +112,7 @@ export function StudySessionPlayer({
   const [timeUp, setTimeUp] = useState(false);
   const [inReview, setInReview] = useState(false);
   const [flaggedIds, setFlaggedIds] = useState<Set<string>>(() => new Set());
+  const [reportOpen, setReportOpen] = useState(false);
   const startedAt = useRef<number>(Date.now());
   const progressSaved = useRef(false);
   const touchStart = useRef<number | null>(null);
@@ -471,6 +477,15 @@ export function StudySessionPlayer({
   const examSlug = examSlugFromFieldId(field) ?? "nclex";
   const studyLinks = resolveStudyLinksFromQuestion(examSlug, current);
   const isFlagged = flaggedIds.has(String(current.id));
+  const reportContext = buildReportContext({
+    fieldId: normalizeFieldId(current.field ?? field),
+    examSlug,
+    subjectId,
+    sessionId: sessionState.sessionId,
+    sessionMode: sessionState.mode,
+    question: current,
+    selectedAnswer: answer?.selected?.join(", "),
+  });
 
   const toggleFlag = () => {
     const id = String(current.id);
@@ -533,7 +548,15 @@ export function StudySessionPlayer({
                 total={questionList.length}
               />
             )}
-          <div className="mb-4 flex justify-end">
+          <div className="mb-4 flex justify-end gap-2">
+            <button
+              type="button"
+              onClick={() => setReportOpen(true)}
+              className="inline-flex items-center gap-1.5 rounded-full border border-black/[0.08] px-3 py-1.5 text-xs font-semibold text-[var(--color-ink-muted)] transition hover:bg-black/[0.03]"
+            >
+              <AlertTriangle className="h-3.5 w-3.5" aria-hidden />
+              Report
+            </button>
             <button
               type="button"
               onClick={toggleFlag}
@@ -641,6 +664,12 @@ export function StudySessionPlayer({
         </button>
       </div>
       ) : null}
+
+      <ReportQuestionDialog
+        open={reportOpen}
+        onClose={() => setReportOpen(false)}
+        context={reportContext}
+      />
     </div>
   );
 }

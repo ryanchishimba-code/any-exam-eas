@@ -34,6 +34,8 @@ export type HighYieldTopic = {
   sortOrder: number;
   /** Maps to QuestionBankItem.topicCategory / subject filters */
   practiceTopicSlug: string;
+  /** 3D anatomy structures linked to this topic / review module. */
+  relatedStructureIds?: string[];
   /** Premium 8-section textbook-style module (when present, panel renders full module UI). */
   reviewModule?: ReviewModuleContent;
 };

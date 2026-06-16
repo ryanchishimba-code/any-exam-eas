@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { BookMarked, GraduationCap, Pill } from "lucide-react";
+import { BookMarked, Bone, GraduationCap, Pill } from "lucide-react";
 import { referenceCardHref } from "@/lib/edtech/practice-links";
+import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import {
   resolveStudyLinksFromQuestion,
@@ -33,15 +34,16 @@ export function QuestionRelatedLinks({
 
   const hasDeepDives = links.relatedDeepDives.length > 0;
   const hasCards = links.memoryCardIds.length > 0;
+  const hasAnatomy = clinical && links.anatomyStructures.length > 0;
   const hasDrugs = clinical && (top500Drugs?.length ?? 0) > 0;
   const hasTakeaway = Boolean(links.keyTakeaway);
 
-  if (!hasDeepDives && !hasCards && !hasDrugs && !hasTakeaway) return null;
+  if (!hasDeepDives && !hasCards && !hasAnatomy && !hasDrugs && !hasTakeaway) return null;
 
   return (
     <div className="rounded-xl border border-violet-200/60 bg-violet-50/40 p-4">
       <p className="text-xs font-semibold uppercase tracking-wide text-violet-700">
-        Related deep dives
+        Related study content
       </p>
 
       {links.keyTakeaway ? (
@@ -78,6 +80,18 @@ export function QuestionRelatedLinks({
               Memory card
             </Link>
           ))}
+        </div>
+      ) : null}
+
+      {hasAnatomy ? (
+        <div className="mt-3">
+          <p className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            <Bone className="h-3 w-3" aria-hidden />
+            Explore in Anatomy
+          </p>
+          <div className="mt-1.5">
+            <RelatedAnatomyLinks examSlug={examSlug} structures={links.anatomyStructures} />
+          </div>
         </div>
       ) : null}
 

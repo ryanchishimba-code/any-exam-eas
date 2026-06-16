@@ -1,5 +1,6 @@
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 import type { ReviewModuleContent, ReviewModuleSectionId } from "./types";
+import { getReviewModuleAnatomy } from "@/lib/anatomy/review-module-anatomy";
 
 function section(
   content: ReviewModuleContent,
@@ -39,6 +40,7 @@ export function defineReviewModuleTopic(input: {
   sortOrder?: number;
 }): HighYieldTopic {
   const legacy = legacyFieldsFromModule(input.reviewModule);
+  const anatomy = getReviewModuleAnatomy(input.slug);
   return {
     id: `${input.examSlug}-${input.slug}`,
     examSlug: input.examSlug,
@@ -49,6 +51,7 @@ export function defineReviewModuleTopic(input: {
     ...legacy,
     sortOrder: input.sortOrder ?? 0,
     practiceTopicSlug: input.practiceTopicSlug,
+    relatedStructureIds: anatomy?.structureIds,
     reviewModule: input.reviewModule,
   };
 }

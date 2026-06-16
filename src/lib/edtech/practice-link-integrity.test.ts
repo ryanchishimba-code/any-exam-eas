@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { getSubjectsForField } from "@/lib/field-subjects";
 import { ANATOMY_STRUCTURES } from "@/lib/anatomy/structures";
+import { REVIEW_MODULE_ANATOMY } from "@/lib/anatomy/review-module-anatomy";
+import { isValidAnatomyStructureId } from "@/lib/anatomy/structure-ids";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getHighYieldTopics } from "@/lib/edtech/seeds";
 import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
@@ -80,6 +82,28 @@ describe("memory card link integrity", () => {
       }
     }
   });
+
+  it("memory card structureIds reference valid anatomy structures", () => {
+    for (const card of MEMORY_CARDS) {
+      for (const id of card.structureIds ?? []) {
+        expect(
+          isValidAnatomyStructureId(id),
+          `card ${card.id} has invalid structureId "${id}"`
+        ).toBe(true);
+      }
+    }
+  });
+
+  it("review module anatomy registry structureIds are valid", () => {
+    for (const [slug, entry] of Object.entries(REVIEW_MODULE_ANATOMY)) {
+      for (const id of entry.structureIds) {
+        expect(
+          isValidAnatomyStructureId(id),
+          `review module "${slug}" has invalid structureId "${id}"`
+        ).toBe(true);
+      }
+    }
+  });
 });
 
 describe("question ngnPayload related-content integrity", () => {
@@ -145,4 +169,18 @@ describe("high-yield topic link integrity", () => {
       }
     });
   }
+
+  it("review modules with anatomy registry expose relatedStructureIds", () => {
+    for (const examSlug of EXAM_SLUGS) {
+      for (const topic of getHighYieldTopics(examSlug)) {
+        if (!topic.reviewModule) continue;
+        const expected = REVIEW_MODULE_ANATOMY[topic.slug]?.structureIds;
+        if (!expected?.length) continue;
+        expect(
+          topic.relatedStructureIds,
+          `topic ${examSlug}/${topic.slug} missing relatedStructureIds from anatomy registry`
+        ).toEqual(expected);
+      }
+    }
+  });
 });
