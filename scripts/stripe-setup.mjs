@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Stripe test-mode setup: create subscription Prices for all billing intervals.
+ * Stripe test-mode setup: create Basic + Pro subscription Prices for all billing intervals.
  *
  * Usage:
  *   STRIPE_SECRET_KEY=sk_test_... node scripts/stripe-setup.mjs
@@ -13,47 +13,41 @@ const require = createRequire(import.meta.url);
 const Stripe = require("stripe").default;
 
 const ENV_PATH = ".env";
-const MONTHLY_USD = Number(process.env.MONTHLY_PRICE_USD ?? "32.99");
-const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "7");
+const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "14");
+
+const TIERS = {
+  basic: {
+    productName: "Any Exam Easy Basic",
+    monthlyUsd: Number(process.env.BASIC_MONTHLY_PRICE_USD ?? "34.99"),
+    yearlyUsd: Number(process.env.BASIC_YEARLY_PRICE_USD ?? "349"),
+    envPrefix: "STRIPE_BASIC_PRICE_ID",
+  },
+  pro: {
+    productName: "Any Exam Easy Pro",
+    monthlyUsd: Number(process.env.PRO_MONTHLY_PRICE_USD ?? "49.99"),
+    yearlyUsd: Number(process.env.PRO_YEARLY_PRICE_USD ?? "499"),
+    envPrefix: "STRIPE_PRO_PRICE_ID",
+    legacyKeys: {
+      monthly: "STRIPE_PRICE_ID",
+      quarterly: "STRIPE_PRICE_ID_QUARTERLY",
+      semiannual: "STRIPE_PRICE_ID_SEMIANNUAL",
+      yearly: "STRIPE_PRICE_ID_YEARLY",
+    },
+  },
+};
 
 const INTERVALS = [
-  {
-    key: "STRIPE_PRICE_ID",
-    interval: "monthly",
-    label: "Monthly",
-    months: 1,
-    savings: 0,
-    stripe: { interval: "month", interval_count: 1 },
-  },
-  {
-    key: "STRIPE_PRICE_ID_QUARTERLY",
-    interval: "quarterly",
-    label: "Every 3 months",
-    months: 3,
-    savings: 5,
-    stripe: { interval: "month", interval_count: 3 },
-  },
-  {
-    key: "STRIPE_PRICE_ID_SEMIANNUAL",
-    interval: "semiannual",
-    label: "Every 6 months",
-    months: 6,
-    savings: 10,
-    stripe: { interval: "month", interval_count: 6 },
-  },
-  {
-    key: "STRIPE_PRICE_ID_YEARLY",
-    interval: "yearly",
-    label: "Yearly",
-    months: 12,
-    savings: 20,
-    stripe: { interval: "year", interval_count: 1 },
-  },
+  { interval: "monthly", label: "Monthly", months: 1, savings: 0, stripe: { interval: "month", interval_count: 1 }, suffix: "MONTHLY" },
+  { interval: "quarterly", label: "Every 3 months", months: 3, savings: 5, stripe: { interval: "month", interval_count: 3 }, suffix: "QUARTERLY" },
+  { interval: "semiannual", label: "Every 6 months", months: 6, savings: 12, stripe: { interval: "month", interval_count: 6 }, suffix: "SEMIANNUAL" },
+  { interval: "yearly", label: "Yearly", months: 12, savings: 20, stripe: { interval: "year", interval_count: 1 }, suffix: "YEARLY" },
 ];
 
-function intervalTotalUsd(months, savings) {
-  const full = MONTHLY_USD * months;
-  return Math.round(full * (1 - savings / 100) * 100) / 100;
+function intervalTotalUsd(tierKey, spec) {
+  const tier = TIERS[tierKey];
+  if (spec.interval === "yearly") return tier.yearlyUsd;
+  const full = tier.monthlyUsd * spec.months;
+  return Math.round(full * (1 - spec.savings / 100) * 100) / 100;
 }
 
 function loadEnvFile() {
@@ -98,16 +92,8 @@ Stripe secret key required.
 3. Run:
 
    STRIPE_SECRET_KEY=sk_test_YOUR_KEY node scripts/stripe-setup.mjs
-
-Never paste sk_test keys in chat or commit them to git.
 `);
     process.exit(1);
-  }
-
-  const allConfigured = INTERVALS.every((i) => getEnvValue(envContent, i.key).startsWith("price_"));
-  if (allConfigured && !force) {
-    console.log("All Stripe price IDs already set. Use --force to recreate.");
-    process.exit(0);
   }
 
   console.log("Connecting to Stripe (test mode)…");
@@ -115,68 +101,58 @@ Never paste sk_test keys in chat or commit them to git.
   const account = await stripe.accounts.retrieve();
   console.log(`Account: ${account.id}`);
 
-  const product = await stripe.products.create({
-    name: "Any Exam Easy Pro",
-    description: `${TRIAL_DAYS}-day free trial, then recurring board exam prep subscription`,
-    metadata: { app: "any-exam-easy" },
-  });
-  console.log(`Product: ${product.id}`);
-
   envContent = setEnvValue(envContent, "STRIPE_SECRET_KEY", secret);
-  envContent = setEnvValue(envContent, "STRIPE_TRIAL_INTRO_PRICE_ID", "");
   envContent = setEnvValue(envContent, "TRIAL_DAYS", String(TRIAL_DAYS));
-  envContent = setEnvValue(envContent, "MONTHLY_PRICE_USD", String(MONTHLY_USD));
+  envContent = setEnvValue(envContent, "BASIC_MONTHLY_PRICE_USD", String(TIERS.basic.monthlyUsd));
+  envContent = setEnvValue(envContent, "PRO_MONTHLY_PRICE_USD", String(TIERS.pro.monthlyUsd));
+  envContent = setEnvValue(envContent, "BASIC_YEARLY_PRICE_USD", String(TIERS.basic.yearlyUsd));
+  envContent = setEnvValue(envContent, "PRO_YEARLY_PRICE_USD", String(TIERS.pro.yearlyUsd));
 
-  for (const tier of INTERVALS) {
-    const existing = getEnvValue(envContent, tier.key);
-    if (existing.startsWith("price_") && !force) {
-      console.log(`– ${tier.key} already set (${existing})`);
-      continue;
-    }
-
-    const amountUsd = intervalTotalUsd(tier.months, tier.savings);
-    const price = await stripe.prices.create({
-      product: product.id,
-      currency: "usd",
-      unit_amount: Math.round(amountUsd * 100),
-      recurring: tier.stripe,
-      metadata: {
-        interval: tier.interval,
-        savings_percent: String(tier.savings),
-      },
+  for (const tierKey of Object.keys(TIERS)) {
+    const tier = TIERS[tierKey];
+    const product = await stripe.products.create({
+      name: tier.productName,
+      description: `${TRIAL_DAYS}-day free trial, then recurring board exam prep`,
+      metadata: { app: "any-exam-easy", tier: tierKey },
     });
+    console.log(`\n${tier.productName}: ${product.id}`);
 
-    envContent = setEnvValue(envContent, tier.key, price.id);
-    console.log(`✓ ${tier.label}: $${amountUsd.toFixed(2)} → ${tier.key}=${price.id}`);
-  }
+    for (const spec of INTERVALS) {
+      const envKey = `${tier.envPrefix}_${spec.suffix}`;
+      const existing = getEnvValue(envContent, envKey);
+      if (existing.startsWith("price_") && !force) {
+        console.log(`– ${envKey} already set (${existing})`);
+        continue;
+      }
 
-  const pub = getEnvValue(envContent, "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY");
-  if (!pub.startsWith("pk_")) {
-    console.warn(
-      "\nWarning: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY is empty.\n" +
-        "Add pk_test_... from https://dashboard.stripe.com/test/apikeys\n"
-    );
+      const amountUsd = intervalTotalUsd(tierKey, spec);
+      const price = await stripe.prices.create({
+        product: product.id,
+        currency: "usd",
+        unit_amount: Math.round(amountUsd * 100),
+        recurring: spec.stripe,
+        metadata: {
+          tier: tierKey,
+          interval: spec.interval,
+          savings_percent: String(spec.savings),
+        },
+      });
+
+      envContent = setEnvValue(envContent, envKey, price.id);
+      if (tier.legacyKeys?.[spec.interval]) {
+        envContent = setEnvValue(envContent, tier.legacyKeys[spec.interval], price.id);
+      }
+      console.log(`✓ ${spec.label}: $${amountUsd.toFixed(2)} → ${envKey}=${price.id}`);
+    }
   }
 
   writeFileSync(ENV_PATH, envContent);
 
   console.log(`
-Done. Updated .env with all billing interval prices.
+Done. Updated .env with Basic + Pro billing prices.
 
-Next steps:
-  npm run stripe:register-domains
-  Enable Apple Pay / Google Pay in Stripe Dashboard → Settings → Payment methods.
-  Disable Amazon Pay there if it appears — checkout only allows card, Link, and wallets.
-  Deploy public/.well-known/apple-developer-merchantid-domain-association (included in repo).
-  3. Restart dev server: npm run dev
-  4. Test: /checkout?plan=trial&interval=yearly (card 4242 4242 4242 4242)
-
-Webhook (local):
-  stripe listen --forward-to localhost:3000/api/stripe/webhook
-  → copy whsec_... to STRIPE_WEBHOOK_SECRET
-
-Production:
-  npm run vercel:stripe
+Next: npm run dev → /signup?plan=trial&tier=pro&interval=yearly
+Webhook: stripe listen --forward-to localhost:3000/api/stripe/webhook
 `);
 }
 

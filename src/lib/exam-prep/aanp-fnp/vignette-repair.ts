@@ -13,6 +13,7 @@ import { normalizeUsmleBankItemFields, splitUsmleBankItem } from "../usmle-clini
 import { bankItemPassesIngestGate } from "../bank-ingest-gate";
 import { bankItemToUsmleExam } from "../usmle-bank-bridge";
 import { assessAanpFnpBankItem } from "./quality-gate";
+import { AANP_FNP_CLINICAL_GATE_CHECKLIST } from "./clinical-gate-prompt";
 
 const FIELD_ID = "aanp-fnp";
 
@@ -145,6 +146,8 @@ export async function repairAanpFnpBankItemWithAi(
       {
         role: "user",
         content: `Fix this question so it passes clinical vignette QA.
+
+${AANP_FNP_CLINICAL_GATE_CHECKLIST}
 
 Issues to fix:
 ${allIssues.map((i) => `- ${i}`).join("\n")}

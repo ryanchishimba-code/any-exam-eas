@@ -25,6 +25,7 @@ const HUB_DESCRIPTIONS: Record<(typeof EXAM_SLUGS)[number], string> = {
   naplex: "Pharmacy calculations, cases, and pharmacotherapy.",
   pance: "Physician assistant clinical vignettes — NCCPA blueprint across 15 systems.",
   "aanp-fnp": "Family nurse practitioner vignettes — AANPCB Assess, Diagnose, Plan, Evaluate across the lifespan.",
+  "npte-pt": "Physical therapy clinical scenarios — FSBPT musculoskeletal, neuromuscular, cardiopulmonary, and practice systems.",
 };
 
 /** Four board exams — derived from canonical EXAM_CATALOG. */

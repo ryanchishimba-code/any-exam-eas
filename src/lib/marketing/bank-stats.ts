@@ -3,12 +3,14 @@ import { TOP_500_COUNT } from "@/lib/drugs300/catalog";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import { AANP_FNP_TARGET_TOTAL } from "@/lib/exam-prep/aanp-fnp/types";
+import { NPTE_PT_TARGET_TOTAL } from "@/lib/exam-prep/npte-pt/types";
 import { PANCE_TARGET_TOTAL } from "@/lib/exam-prep/pance/types";
 
 /** Design target per field after bank sync (subjects × minimum items each). */
 export function targetQuestionCountForField(fieldId: string): number {
   if (fieldId === "aanp-fnp") return AANP_FNP_TARGET_TOTAL;
   if (fieldId === "pance") return PANCE_TARGET_TOTAL;
+  if (fieldId === "npte-pt") return NPTE_PT_TARGET_TOTAL;
   return getSubjectsForFieldId(fieldId).length * MIN_QUESTIONS_PER_SUBJECT;
 }
 
@@ -38,6 +40,7 @@ export const MARKETING_QUESTION_COUNTS = {
   pharmacy: formatMarketingQuestionCount(fieldTargets.pharmacy),
   pance: formatMarketingQuestionCount(fieldTargets.pance),
   aanpFnp: formatMarketingQuestionCount(fieldTargets["aanp-fnp"]),
+  nptePt: formatMarketingQuestionCount(fieldTargets["npte-pt"]),
 } as const;
 
 export const TOP_500_DRUGS_COUNT = TOP_500_COUNT;

@@ -6,7 +6,7 @@ import type { ExamSlug } from "@/lib/exams/catalog";
 /** Board-style session types. */
 export type ExamSessionMode = "timed" | "bank";
 
-export type BoardExamKey = "nclex" | "usmle" | "naplex" | "pance" | "aanp-fnp";
+export type BoardExamKey = "nclex" | "usmle" | "naplex" | "pance" | "aanp-fnp" | "npte-pt";
 
 /** NCLEX timed exam lengths — mirrors real CAT minimum and maximum. */
 export const NCLEX_TIMED_COUNTS = {
@@ -23,6 +23,7 @@ const FIELD_ID_TO_BOARD: Record<string, BoardExamKey> = {
   pharmacy: "naplex",
   pance: "pance",
   "aanp-fnp": "aanp-fnp",
+  "npte-pt": "npte-pt",
   mpje: "pance",
 };
 
@@ -32,6 +33,7 @@ const SLUG_TO_BOARD: Record<ExamSlug, BoardExamKey | null> = {
   naplex: "naplex",
   pance: "pance",
   "aanp-fnp": "aanp-fnp",
+  "npte-pt": "npte-pt",
   top500: null,
 };
 
@@ -41,6 +43,7 @@ const TIMED_EXAM_COUNTS: Record<Exclude<BoardExamKey, "nclex">, number> = {
   naplex: 225,
   pance: 300,
   "aanp-fnp": 135,
+  "npte-pt": 250,
 };
 
 const BOARD_LABELS: Record<BoardExamKey, string> = {
@@ -49,6 +52,7 @@ const BOARD_LABELS: Record<BoardExamKey, string> = {
   naplex: "NAPLEX",
   pance: "PANCE",
   "aanp-fnp": "AANP FNP",
+  "npte-pt": "NPTE-PT",
 };
 
 export function parseNclexTimedVariant(value: string | null | undefined): NclexTimedVariant {

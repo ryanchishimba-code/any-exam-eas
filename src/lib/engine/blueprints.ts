@@ -467,6 +467,114 @@ const AANP_FNP: ExamBlueprint = {
   ],
 };
 
+/** FSBPT NPTE-PT Test Content Outline (effective January 2024). */
+const NPTE_PT: ExamBlueprint = {
+  fieldId: "npte-pt",
+  examName: "NPTE-PT",
+  sourceNote: "FSBPT NPTE-PT Test Content Outline (2024) — body systems & non-systems",
+  vignetteMinRatio: 0.9,
+  categories: [
+    {
+      id: "musculoskeletal",
+      label: "Musculoskeletal System",
+      weight: 0.2,
+      subjectIds: ["musculoskeletal"],
+      highYieldTopics: ["rotator cuff", "ACL rehab", "low back pain", "manual therapy", "post-op TKA"],
+    },
+    {
+      id: "neuromuscular-nervous",
+      label: "Neuromuscular & Nervous Systems",
+      weight: 0.17,
+      subjectIds: ["neuromuscular-nervous"],
+      highYieldTopics: ["stroke", "SCI", "TBI", "Parkinson", "gait training", "balance"],
+    },
+    {
+      id: "cardiovascular-pulmonary",
+      label: "Cardiovascular & Pulmonary Systems",
+      weight: 0.1,
+      subjectIds: ["cardiovascular-pulmonary"],
+      highYieldTopics: ["COPD", "CHF", "post-MI rehab", "oxygen titration", "airway clearance"],
+    },
+    {
+      id: "integumentary",
+      label: "Integumentary System",
+      weight: 0.04,
+      subjectIds: ["integumentary"],
+      highYieldTopics: ["pressure injuries", "wound care", "burns"],
+    },
+    {
+      id: "metabolic-endocrine",
+      label: "Metabolic & Endocrine Systems",
+      weight: 0.02,
+      subjectIds: ["metabolic-endocrine"],
+      highYieldTopics: ["diabetes exercise", "osteoporosis"],
+    },
+    {
+      id: "gastrointestinal",
+      label: "Gastrointestinal System",
+      weight: 0.018,
+      subjectIds: ["gastrointestinal"],
+      highYieldTopics: ["post-abdominal surgery", "pelvic floor"],
+    },
+    {
+      id: "genitourinary",
+      label: "Genitourinary System",
+      weight: 0.014,
+      subjectIds: ["genitourinary"],
+      highYieldTopics: ["incontinence", "pelvic floor training"],
+    },
+    {
+      id: "lymphatic",
+      label: "Lymphatic System",
+      weight: 0.022,
+      subjectIds: ["lymphatic"],
+      highYieldTopics: ["lymphedema", "CDT", "compression"],
+    },
+    {
+      id: "system-interactions",
+      label: "System Interactions",
+      weight: 0.036,
+      subjectIds: ["system-interactions"],
+      highYieldTopics: ["comorbidities", "frailty", "multi-system deconditioning"],
+    },
+    {
+      id: "equipment-devices",
+      label: "Equipment, Devices & Technologies",
+      weight: 0.022,
+      subjectIds: ["equipment-devices"],
+      highYieldTopics: ["wheelchair", "ambulatory aids", "prosthetics", "orthotics"],
+    },
+    {
+      id: "therapeutic-modalities",
+      label: "Therapeutic Modalities",
+      weight: 0.02,
+      subjectIds: ["therapeutic-modalities"],
+      highYieldTopics: ["ultrasound", "TENS", "NMES", "cryotherapy", "heat"],
+    },
+    {
+      id: "safety-protection",
+      label: "Safety & Protection",
+      weight: 0.024,
+      subjectIds: ["safety-protection"],
+      highYieldTopics: ["falls", "body mechanics", "infection control", "BBP"],
+    },
+    {
+      id: "professional-responsibilities",
+      label: "Professional Responsibilities",
+      weight: 0.018,
+      subjectIds: ["professional-responsibilities"],
+      highYieldTopics: ["ethics", "documentation", "supervision", "scope"],
+    },
+    {
+      id: "research-evidence",
+      label: "Research & Evidence-Based Practice",
+      weight: 0.016,
+      subjectIds: ["research-evidence"],
+      highYieldTopics: ["sensitivity", "specificity", "outcome measures", "RCT appraisal"],
+    },
+  ],
+};
+
 const BLUEPRINTS: Record<string, ExamBlueprint> = {
   nursing: NCLEX_RN,
   "usmle-step-1": USMLE_STEP_1,
@@ -474,6 +582,7 @@ const BLUEPRINTS: Record<string, ExamBlueprint> = {
   pharmacy: NAPLEX,
   pance: PANCE,
   "aanp-fnp": AANP_FNP,
+  "npte-pt": NPTE_PT,
 };
 
 export { AANP_FNP };

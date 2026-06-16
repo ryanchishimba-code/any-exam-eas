@@ -1,12 +1,12 @@
 import type { LucideIcon } from "lucide-react";
-import { Activity, Beaker, HeartPulse, Pill, Stethoscope } from "lucide-react";
+import { Activity, Beaker, Bone, HeartPulse, Pill, Stethoscope } from "lucide-react";
 import {
   MARKETING_QUESTION_COUNTS,
   questionBankLabelForField,
   top500DrugsLabel,
 } from "@/lib/marketing/bank-stats";
 
-export type ExamSlug = "nclex" | "usmle" | "naplex" | "pance" | "aanp-fnp" | "top500";
+export type ExamSlug = "nclex" | "usmle" | "naplex" | "pance" | "aanp-fnp" | "npte-pt" | "top500";
 
 /** Serializable hub metadata (safe for server → client props). */
 export type ExamHubMeta = {
@@ -67,6 +67,15 @@ export const EXAM_HUBS: ExamHubConfig[] = [
     icon: HeartPulse,
     accentClass: "from-violet-500/20 to-purple-600/10 border-violet-200/60",
     questionBankLabel: questionBankLabelForField("aanp-fnp"),
+  },
+  {
+    slug: "npte-pt",
+    title: "NPTE-PT",
+    subtitle: "FSBPT blueprint · musculoskeletal, neuromuscular, cardiopulmonary, and PT practice systems.",
+    fieldId: "npte-pt",
+    icon: Bone,
+    accentClass: "from-cyan-500/20 to-teal-600/10 border-cyan-200/60",
+    questionBankLabel: questionBankLabelForField("npte-pt"),
   },
   {
     slug: "top500",

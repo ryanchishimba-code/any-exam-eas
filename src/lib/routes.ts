@@ -98,6 +98,15 @@ export const EXAM_NAV_ITEMS: {
     practiceHref: "/practice/aanp-fnp",
     stat: `${MARKETING_QUESTION_COUNTS.aanpFnp} items`,
   },
+  {
+    slug: "npte-pt",
+    label: "NPTE-PT",
+    short: "Physical Therapy",
+    href: "/exams/npte-pt",
+    fieldId: "npte-pt",
+    practiceHref: "/practice/npte-pt",
+    stat: `${MARKETING_QUESTION_COUNTS.nptePt} items`,
+  },
 ];
 
 export function examHref(slug: ExamRouteSlug): string {

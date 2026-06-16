@@ -11,7 +11,6 @@ import {
   BILLING_TRIAL_DISCLOSURE,
   formatPlanUsd,
   getBillingPlanTier,
-  intervalTotalUsd,
 } from "@/lib/billing-plans";
 import {
   formatTrialCtaLabel,

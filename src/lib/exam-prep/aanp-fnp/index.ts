@@ -2,6 +2,7 @@ export * from "./types";
 export * from "./blueprint-quota";
 export * from "./batch-diversity";
 export * from "./quality-gate";
+export * from "./clinical-gate-prompt";
 export * from "./hybrid-gate";
 export * from "./vignette-repair";
 export * from "./variant-pipeline";

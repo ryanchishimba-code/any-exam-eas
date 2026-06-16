@@ -10,6 +10,7 @@ const FIELD_MAP: Record<ExamRouteSlug, string> = {
   usmle: "usmle-step-2",
   pance: "pance",
   "aanp-fnp": "aanp-fnp",
+  "npte-pt": "npte-pt",
 };
 
 type Props = {
@@ -22,7 +23,7 @@ export default async function PracticeExamRedirectPage({ params, searchParams }:
   const { exam } = await params;
   const sp = await searchParams;
 
-  if (!["nclex", "naplex", "usmle", "pance", "aanp-fnp"].includes(exam)) {
+  if (!["nclex", "naplex", "usmle", "pance", "aanp-fnp", "npte-pt"].includes(exam)) {
     redirect(ROUTES.dashboard);
   }
 

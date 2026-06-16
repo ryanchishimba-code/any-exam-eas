@@ -10,7 +10,7 @@ import { examTopics } from "@/db/schema";
 import { blueprintTopicsForExam } from "@/lib/exam-topics/seed-data";
 import { createId } from "@/lib/id";
 
-const SLUGS = new Set(["nclex", "usmle", "naplex", "pance", "aanp-fnp", "top500"]);
+const SLUGS = new Set(["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt", "top500"]);
 
 async function ensureTopics(examType: ExamSlug) {
   try {

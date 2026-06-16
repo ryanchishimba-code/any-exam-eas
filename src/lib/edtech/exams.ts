@@ -55,6 +55,17 @@ export const EXAM_CATALOG: Record<ExamSlug, ExamDefinition> = {
     simulatedDurationMin: 210,
     simulatedQuestionCount: 135,
   },
+  "npte-pt": {
+    slug: "npte-pt",
+    name: "NPTE-PT",
+    shortName: "NPTE-PT",
+    fieldId: "npte-pt",
+    description:
+      "FSBPT blueprint clinical scenarios — MSK, neuromuscular, cardiopulmonary, modalities, safety, and professional practice.",
+    accentClass: "from-cyan-500/15 to-teal-600/10 border-cyan-200/70",
+    simulatedDurationMin: 300,
+    simulatedQuestionCount: 250,
+  },
 };
 
 export const EXAM_SLUGS = Object.keys(EXAM_CATALOG) as ExamSlug[];

@@ -3,11 +3,10 @@ import {
   SITE_DOMAIN,
   SITE_NAME,
   formatMonthlyPrice,
-  formatTrialEntryPrice,
   formatTrialLabel,
 } from "@/lib/site";
 import { LEGAL_ENTITY } from "@/lib/legal";
-import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/billing-config";
+import { TRIAL_DAYS } from "@/lib/billing-config";
 
 const PRODUCTION_SITE_URL = `https://www.${SITE_DOMAIN}`;
 
@@ -71,7 +70,7 @@ const HOME_KEYWORDS = [
 
 export function buildHomeMetadata(): Metadata {
   const title = `${SITE_NAME} — Pass Your Boards with Confidence`;
-  const description = `High-quality practice questions and smart tools for USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP — only ${formatMonthlyPrice()}/mo. Integrated Roadmaps, Deep Dives, and adaptive practice — ${formatTrialLabel()} with payment method required, ${formatTrialEntryPrice()} today.`;
+  const description = `Professional board prep for USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP — Basic from ${formatMonthlyPrice("basic")}/mo. ${formatTrialLabel()} · no credit card required.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 
@@ -187,7 +186,7 @@ export function buildHomeJsonLd() {
           "@type": "Offer",
           price: MONTHLY_PRICE_USD,
           priceCurrency: "USD",
-          description: `${TRIAL_DAYS}-day free trial — payment method required · ${formatTrialEntryPrice()} today, then from ${formatMonthlyPrice()}/mo · save up to 20% on longer plans`,
+          description: `${TRIAL_DAYS}-day free trial · no credit card required · Basic from ${formatMonthlyPrice("basic")}/mo · Pro from ${formatMonthlyPrice("pro")}/mo · save up to 20% on annual`,
         },
         description:
           "Board exam prep with integrated Roadmaps, adaptive practice, and OER-backed explanations for USMLE, NCLEX, NAPLEX, PANCE, and AANP FNP.",

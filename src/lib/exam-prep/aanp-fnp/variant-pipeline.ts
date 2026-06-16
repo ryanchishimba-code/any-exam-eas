@@ -12,6 +12,10 @@ import { splitUsmleBankItem } from "../usmle-clinical-gate";
 import { runAanpFnpHybridGate } from "./hybrid-gate";
 import { dedupeBatchItems } from "./batch-diversity";
 import { attachAanpFnpStudyLinks } from "./study-links";
+import {
+  buildVariantGenerationUserPrompt,
+  summarizeAanpFnpGateFailures,
+} from "./clinical-gate-prompt";
 import type { AanpFnpGenerationMeta, AanpFnpPatientAgeGroupId } from "./types";
 import { AANP_FNP_GENERATION_VERSION } from "./types";
 
@@ -19,7 +23,8 @@ const openai = process.env.OPENAI_API_KEY
   ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
   : null;
 
-const MAX_RETRIES = 5;
+const MAX_VARIANT_ATTEMPTS = 2;
+const MAX_API_RETRIES = 5;
 const RETRY_BASE_MS = 3000;
 
 export type AanpFnpVariantKind =
@@ -41,7 +46,7 @@ async function sleep(ms: number): Promise<void> {
 
 async function withRetries<T>(label: string, fn: () => Promise<T>): Promise<T> {
   let lastError: unknown;
-  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+  for (let attempt = 1; attempt <= MAX_API_RETRIES; attempt++) {
     try {
       return await fn();
     } catch (err) {
@@ -53,9 +58,9 @@ async function withRetries<T>(label: string, fn: () => Promise<T>): Promise<T> {
           err.message.includes("ENOTFOUND") ||
           err.message.includes("429") ||
           err.message.includes("503"));
-      if (!retryable || attempt === MAX_RETRIES) break;
+      if (!retryable || attempt === MAX_API_RETRIES) break;
       await sleep(RETRY_BASE_MS * 2 ** (attempt - 1));
-      console.warn(`[aanp-fnp-variant] ${label} retry ${attempt}/${MAX_RETRIES}`);
+      console.warn(`[aanp-fnp-variant] ${label} retry ${attempt}/${MAX_API_RETRIES}`);
     }
   }
   throw lastError;
@@ -167,7 +172,7 @@ function seedToVariantBankItem(
   };
 }
 
-/** Generate one variant from a curated seed exemplar. */
+/** Generate one variant from a curated seed exemplar (with QA-targeted retry). */
 export async function generateAanpFnpVariant(params: {
   seed: BankItem;
   kind: AanpFnpVariantKind;
@@ -177,65 +182,60 @@ export async function generateAanpFnpVariant(params: {
 }): Promise<BankItem | null> {
   if (!openai) throw new Error("OPENAI_API_KEY required for variant generation.");
 
-  const { vignette, stem } = splitUsmleBankItem(params.seed);
   const domain =
     params.seed.blueprintDomain ??
     (params.seed.ngnPayload?.blueprintDomain as string | undefined) ??
     "assess";
 
-  const completion = await withRetries("variant completion", () =>
-    openai!.chat.completions.create({
-      model: "gpt-4o-mini",
-      temperature: 0.4,
-      max_tokens: 4000,
-      response_format: { type: "json_object" },
-      messages: [
-        {
-          role: "system",
-          content: `${UNIVERSAL_EXAM_SYSTEM}\n${AANP_FNP_EXAM_SYSTEM_AUGMENTATION}`,
-        },
-        {
-          role: "user",
-          content: `Create ONE variant of this AANP FNP seed question.
+  let retryFeedback: string[] | undefined;
 
-${VIGNETTE_REQUIREMENTS}
+  for (let attempt = 0; attempt < MAX_VARIANT_ATTEMPTS; attempt++) {
+    const completion = await withRetries("variant completion", () =>
+      openai!.chat.completions.create({
+        model: "gpt-4o-mini",
+        temperature: attempt === 0 ? 0.28 : 0.22,
+        max_tokens: 5000,
+        response_format: { type: "json_object" },
+        messages: [
+          {
+            role: "system",
+            content: `${UNIVERSAL_EXAM_SYSTEM}\n${AANP_FNP_EXAM_SYSTEM_AUGMENTATION}\n\n${VIGNETTE_REQUIREMENTS}`,
+          },
+          {
+            role: "user",
+            content: buildVariantGenerationUserPrompt({
+              variantTask: variantInstruction(params.kind, params.targetAgeGroup),
+              seed: params.seed,
+              domain,
+              retryFeedback,
+            }),
+          },
+        ],
+      })
+    );
 
-VARIANT TASK: ${variantInstruction(params.kind, params.targetAgeGroup)}
+    const raw = completion.choices[0]?.message?.content ?? "{}";
+    const exam = parseResponse(raw);
+    if (!exam) continue;
 
-SEED (do NOT copy sentences verbatim):
-Vignette: ${vignette ?? ""}
-Stem: ${stem}
-Options: ${JSON.stringify(params.seed.options)}
-Correct: ${params.seed.correctAnswer}
-Domain: ${domain}
-Explanation summary: ${(params.seed.explanation ?? "").slice(0, 300)}
+    const item = seedToVariantBankItem(
+      exam,
+      params.seed,
+      params.batchId,
+      params.variantIndex,
+      params.kind,
+      0
+    );
 
-Return JSON: { "vignette": "...", "question": "...", "options": [4 strings], "correctAnswer": "...", "explanation": "...", "clinicalReasoning": "..." }
-- blueprintDomain must stay "${domain}"
-- Use "N-year-old" age format in vignette
-- Include vitals or labs where clinically appropriate`,
-        },
-      ],
-    })
-  );
+    const gated = await runAanpFnpHybridGate(item, { source: "generated", useAiRepair: true });
+    if (gated.ingestReady) {
+      return gated.item;
+    }
 
-  const raw = completion.choices[0]?.message?.content ?? "{}";
-  const exam = parseResponse(raw);
-  if (!exam) return null;
+    retryFeedback = summarizeAanpFnpGateFailures(gated.item);
+  }
 
-  let item = seedToVariantBankItem(
-    exam,
-    params.seed,
-    params.batchId,
-    params.variantIndex,
-    params.kind,
-    0
-  );
-
-  const gated = await runAanpFnpHybridGate(item, { source: "generated", useAiRepair: true });
-  if (!gated.ingestReady) return null;
-
-  return gated.item;
+  return null;
 }
 
 export type AanpFnpVariantBatchResult = {

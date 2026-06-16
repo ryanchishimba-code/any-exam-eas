@@ -100,36 +100,50 @@ export function DashboardClient({
           <h2 className="text-xl font-semibold tracking-tight">Subscription</h2>
           <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
             {access.status === "active"
-              ? "Your paid plan is active."
+              ? `${access.tier === "pro" ? "Pro" : "Basic"} plan active.`
               : access.status === "past_due"
                 ? "Your last payment failed — study access is paused until you update your payment method."
-                : access.needsPaymentMethod
-                ? "Add a payment method to unlock study. You are not charged today — cancel before your trial ends and you will not be billed."
-                : access.status === "trialing"
-                  ? `Free trial active${access.daysRemaining != null ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left` : ""}. Payment on file — cancel anytime before trial ends for no charge.`
-                  : access.status === "canceled"
-                ? "Your subscription was canceled — reactivate anytime to restore access."
-                : access.status === "trial_expired"
-                    ? "Your trial ended — subscribe to continue."
-                    : "Choose a plan to unlock study features."}
+                : access.status === "trialing" && access.needsPaymentMethod
+                  ? `${access.tier === "pro" ? "Pro" : "Basic"} trial active${access.daysRemaining != null ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left` : ""}. Add payment before your trial ends to continue — no charge until then.`
+                  : access.status === "trialing"
+                    ? `${access.tier === "pro" ? "Pro" : "Basic"} trial active${access.daysRemaining != null ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left` : ""}. Payment on file — cancel anytime before trial ends for no charge.`
+                    : access.status === "canceled"
+                      ? "Your subscription was canceled — reactivate anytime to restore access."
+                      : access.status === "trial_expired"
+                        ? "Your trial ended — subscribe to continue."
+                        : "Choose a plan to unlock study features."}
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             {access.status === "active" ? (
-              <ManageBillingButton label="Cancel or manage billing" />
+              <>
+                <ManageBillingButton label="Cancel or manage billing" />
+                {access.tier === "basic" && (
+                  <Button href="/checkout?plan=subscribe&interval=yearly&tier=pro" variant="secondary">
+                    Upgrade to Pro
+                  </Button>
+                )}
+              </>
             ) : access.status === "past_due" ? (
               <ManageBillingButton label="Update payment method" intent="payment_method" variant="secondary" />
             ) : access.status === "canceled" || access.status === "trial_expired" ? (
               <Button href="/settings?reactivate=1" variant="secondary">
                 Reactivate account
               </Button>
-            ) : access.needsPaymentMethod ? (
-              <Button href="/checkout?plan=trial&interval=yearly" variant="secondary">
+            ) : access.status === "trialing" && access.needsPaymentMethod ? (
+              <Button href={`/checkout?plan=trial&interval=${access.planDuration}&tier=${access.tier}`} variant="secondary">
                 Add payment method
               </Button>
+            ) : access.status === "trialing" ? (
+              <>
+                <ManageBillingButton label="Cancel or manage billing" />
+                {access.tier === "basic" && (
+                  <Button href={`/checkout?plan=subscribe&interval=${access.planDuration}&tier=pro`} variant="secondary">
+                    Upgrade to Pro
+                  </Button>
+                )}
+              </>
             ) : access.canStartCheckout ? (
               <SubscribeButton variant="secondary" />
-            ) : access.status === "trialing" ? (
-              <ManageBillingButton label="Cancel or manage billing" />
             ) : null}
             <Button href="/settings" variant="ghost">
               Billing settings

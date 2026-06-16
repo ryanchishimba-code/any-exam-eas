@@ -5,7 +5,7 @@ import { CardSkeleton } from "@/components/ui/skeleton";
 import { getExamHub } from "@/lib/exams/catalog";
 import type { ExamRouteSlug } from "@/lib/routes";
 
-const VALID: ExamRouteSlug[] = ["nclex", "naplex", "usmle", "pance", "aanp-fnp"];
+const VALID: ExamRouteSlug[] = ["nclex", "naplex", "usmle", "pance", "aanp-fnp", "npte-pt"];
 
 type Props = { params: Promise<{ exam: string }> };
 

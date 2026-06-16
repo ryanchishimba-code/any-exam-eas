@@ -1,10 +1,11 @@
-/** Canonical exam field identifiers exposed in the product (five board exams). */
+/** Canonical exam field identifiers exposed in the product (six board exams). */
 export const EXAM_FIELD_IDS = [
   "nursing",
   "usmle-step-2",
   "pharmacy",
   "pance",
   "aanp-fnp",
+  "npte-pt",
 ] as const;
 
 export type ExamFieldId = (typeof EXAM_FIELD_IDS)[number];
@@ -23,6 +24,10 @@ export const FIELD_ID_ALIASES: Record<string, ExamFieldId> = {
   "aanp-fnp": "aanp-fnp",
   fnp: "aanp-fnp",
   "family-nurse-practitioner": "aanp-fnp",
+  "npte-pt": "npte-pt",
+  npte: "npte-pt",
+  pt: "npte-pt",
+  "physical-therapy": "npte-pt",
   mpje: "pance",
   "usmle-step-1": "usmle-step-2",
   "usmle-step1": "usmle-step-2",

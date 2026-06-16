@@ -9,6 +9,7 @@ import {
   AANP_FNP_EXAM_SYSTEM_AUGMENTATION,
 } from "@/lib/subjects/aanp-fnp/prompts";
 import { VIGNETTE_REQUIREMENTS } from "@/lib/engine/prompts/vignette";
+import { AANP_FNP_CLINICAL_GATE_CHECKLIST } from "./clinical-gate-prompt";
 import { UNIVERSAL_EXAM_SYSTEM } from "@/lib/engine/prompts/base";
 import { examQuestionToBankItem } from "@/lib/engine/curation/exam-to-bank";
 import { analyzeQuestionPatterns } from "@/lib/rag/pattern-analyzer";
@@ -82,6 +83,8 @@ function buildSlotPrompt(
   return `Generate exactly ${slots.length} original AANP FNP-C practice questions.
 
 ${AANP_FNP_EXAM_SYSTEM_AUGMENTATION}
+
+${AANP_FNP_CLINICAL_GATE_CHECKLIST}
 
 ${BATCH_DIVERSITY_RULES}
 

@@ -394,6 +394,92 @@ model QuestionBankItem {
   @@index([fieldId, stepLevel, active])
   @@index([fieldId, patientAgeGroup, active])
   @@index([fieldId, blueprintDomain, patientAgeGroup, active])
+  naplexFullExamLinks NaplexFullPracticeExamQuestion[]
+  usmleFullExamLinks  UsmleFullPracticeExamQuestion[]
+}
+
+/// Curated NAPLEX full-length practice exams (2026 blueprint, 75–85 questions each).
+model NaplexFullPracticeExam {
+  id                String   @id @default(cuid())
+  examNumber        Int      @unique
+  title             String
+  questionCount     Int
+  blueprintSummary  Json?
+  formatSummary     Json?
+  batchId           String?
+  generationVersion String?
+  qaPassed          Boolean  @default(false)
+  qaReport          Json?
+  active            Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  questions         NaplexFullPracticeExamQuestion[]
+
+  @@index([active, examNumber])
+  @@map("naplex_full_practice_exams")
+}
+
+/// Ordered question membership for a NAPLEX full-length practice exam.
+model NaplexFullPracticeExamQuestion {
+  id                 String   @id @default(cuid())
+  examId             String
+  questionBankItemId String
+  sortOrder          Int
+  blueprintArea      String?
+  itemFormat         String?
+  createdAt          DateTime @default(now())
+  exam               NaplexFullPracticeExam @relation(fields: [examId], references: [id], onDelete: Cascade)
+  question           QuestionBankItem       @relation(fields: [questionBankItemId], references: [id], onDelete: Cascade)
+
+  @@unique([examId, sortOrder])
+  @@unique([examId, questionBankItemId])
+  @@index([examId])
+  @@index([questionBankItemId])
+  @@map("naplex_full_practice_exam_questions")
+}
+
+/// Curated USMLE full-length block-style practice exams (2026 blueprint, 75–85 questions each).
+model UsmleFullPracticeExam {
+  id                String   @id @default(cuid())
+  examNumber        Int      @unique
+  title             String
+  stepLevel         String   // step1 | step2
+  questionCount     Int
+  blueprintSummary  Json?
+  formatSummary     Json?
+  taskSummary       Json?
+  batchId           String?
+  generationVersion String?
+  qaPassed          Boolean  @default(false)
+  qaReport          Json?
+  active            Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  questions         UsmleFullPracticeExamQuestion[]
+
+  @@index([active, examNumber])
+  @@index([stepLevel, active])
+  @@map("usmle_full_practice_exams")
+}
+
+/// Ordered question membership for a USMLE full-length practice exam.
+model UsmleFullPracticeExamQuestion {
+  id                 String   @id @default(cuid())
+  examId             String
+  questionBankItemId String
+  sortOrder          Int
+  blueprintSystem    String?
+  physicianTask      String?
+  itemFormat         String?
+  createdAt          DateTime @default(now())
+  exam               UsmleFullPracticeExam @relation(fields: [examId], references: [id], onDelete: Cascade)
+  question           QuestionBankItem       @relation(fields: [questionBankItemId], references: [id], onDelete: Cascade)
+
+  @@unique([examId, sortOrder])
+  @@unique([examId, questionBankItemId])
+  @@index([examId])
+  @@index([questionBankItemId])
+  @@map("usmle_full_practice_exam_questions")
 }
 
 /// Official AANPCB FNP blueprint domains, age groups, and clinical systems.
@@ -457,6 +543,38 @@ model PanceTopic {
   @@index([contentCategory, sortOrder])
   @@index([subjectId])
   @@map("pance_topics")
+}
+
+/// FSBPT NPTE-PT 2024 blueprint — body systems + non-system content areas.
+model NptePtBlueprintCategory {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  kind        String
+  label       String
+  weight      Float
+  sortOrder   Int      @default(0)
+  description String?  @db.Text
+  createdAt   DateTime @default(now())
+
+  @@index([kind, sortOrder])
+  @@map("npte_pt_blueprint_categories")
+}
+
+/// High-yield NPTE-PT topics linked to blueprint categories and Deep Dive modules.
+model NptePtTopic {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  label            String
+  contentCategory  String?
+  taskCategory     String?
+  subjectId        String?
+  reviewModuleSlug String?
+  sortOrder        Int      @default(0)
+  createdAt        DateTime @default(now())
+
+  @@index([contentCategory, sortOrder])
+  @@index([subjectId])
+  @@map("npte_pt_topics")
 }
 
 model QuestionBankSync {
