@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { canBypassAccountIpLimit } from "@/lib/account-security";
 import { hashIp, hashIpFromHeaders } from "@/lib/analytics/request-context";
@@ -18,9 +19,21 @@ export function isProductionRuntime(): boolean {
 }
 
 export function resolveIpHash(req?: Request, headerStore?: Headers): string | undefined {
-  if (req) return hashIp(req);
+  if (req) {
+    const fromReq = hashIp(req);
+    if (fromReq) return fromReq;
+  }
   if (headerStore) return hashIpFromHeaders(headerStore);
   return undefined;
+}
+
+/** Prefer Next.js request headers; fall back to the route Request when needed. */
+export async function readAuthHeaders(req?: Request): Promise<Headers | undefined> {
+  try {
+    return (await headers()) as unknown as Headers;
+  } catch {
+    return req?.headers;
+  }
 }
 
 export async function getRecentDistinctIpHashes(userId: string): Promise<string[]> {
@@ -42,9 +55,8 @@ export async function assertAccountIpAllowed(
   opts: { ipHash?: string; role?: string | null; email?: string | null }
 ): Promise<AccountIpCheckResult> {
   if (canBypassAccountIpLimit(opts.email, opts.role)) return { ok: true };
-  if (!opts.ipHash) {
-    return isProductionRuntime() ? { ok: false, reason: "ip_required" } : { ok: true };
-  }
+  // Device limits apply only when the network can be identified — never block auth on missing IP.
+  if (!opts.ipHash) return { ok: true };
 
   const known = await getRecentDistinctIpHashes(userId);
   if (known.includes(opts.ipHash)) return { ok: true };
@@ -80,7 +92,8 @@ export async function checkAndRecordAccountIp(
   headerStore?: Headers,
   email?: string | null
 ): Promise<AccountIpCheckResult> {
-  const ipHash = resolveIpHash(req, headerStore);
+  const resolvedHeaders = headerStore ?? (await readAuthHeaders(req));
+  const ipHash = resolveIpHash(req, resolvedHeaders);
   const ipCheck = await assertAccountIpAllowed(userId, { ipHash, role, email });
   if (ipCheck.ok && ipHash) void recordAccountIpAccess(userId, ipHash);
   return ipCheck;

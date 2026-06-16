@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { headers } from "next/headers";
 import { auth } from "@/auth";
 import { getUserAccess, userHasFeature, type UserAccess } from "@/lib/access-control";
 import { subscriptionRequiredResponse, proFeatureRequiredResponse } from "@/lib/api-subscription";
@@ -29,12 +28,11 @@ export async function requireAuthenticatedApi(req?: Request): Promise<ApiAuthRes
     };
   }
 
-  const headerStore = req ? undefined : await headers();
   const ipBlocked = await enforceAccountIpLimit(
     session.user.id,
     session.user.role,
     req,
-    headerStore,
+    undefined,
     session.user.email
   );
   if (ipBlocked) {

@@ -2,9 +2,8 @@ import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import Apple from "next-auth/providers/apple";
-import { headers } from "next/headers";
 import { authConfig } from "@/auth.config";
-import { verifyUserPassword, recordUserLogin } from "@/lib/user-auth";
+import { authenticateCredentials, recordUserLogin } from "@/lib/user-auth";
 import { loginSchema } from "@/lib/validators/auth";
 import { prisma } from "@/lib/prisma";
 import { findOrCreateGoogleUser, OAuthLinkBlockedError } from "@/lib/oauth-user";
@@ -18,15 +17,17 @@ import { EVENT_TYPES } from "@/lib/analytics/types";
 import { isStaffRole } from "@/lib/permissions";
 import { logAdminAction } from "@/lib/audit";
 import {
-  assertAccountIpAllowed,
-  recordAccountIpAccess,
-  resolveIpHash,
+  checkAndRecordAccountIp,
 } from "@/lib/account-ip-limit";
 
 export { registerUser } from "@/lib/user-auth";
 
 class TooManyIpAddresses extends CredentialsSignin {
   code = "too_many_ips";
+}
+
+class OAuthOnlyAccount extends CredentialsSignin {
+  code = "oauth_only";
 }
 
 const SESSION_DAY_SEC = 24 * 60 * 60;
@@ -68,11 +69,15 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const parsed = loginSchema.safeParse(credentials);
         if (!parsed.success) return null;
 
-        const user = await verifyUserPassword(
+        const authResult = await authenticateCredentials(
           parsed.data.email,
           parsed.data.password
         );
-        if (!user) return null;
+        if (!authResult.ok) {
+          if (authResult.reason === "no_password") throw new OAuthOnlyAccount();
+          return null;
+        }
+        const user = authResult.user;
 
         const req = request as Request | undefined;
 
@@ -82,11 +87,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         });
         const role = dbUser?.role ?? "user";
 
-        const ipCheck = await assertAccountIpAllowed(user.id, {
-          ipHash: resolveIpHash(req),
+        const ipCheck = await checkAndRecordAccountIp(
+          user.id,
           role,
-          email: user.email,
-        });
+          req,
+          undefined,
+          user.email
+        );
         if (!ipCheck.ok) throw new TooManyIpAddresses();
 
         await recordUserLogin(user.id);
@@ -153,16 +160,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           user.id = linked.id;
           (user as { role?: string }).role = linked.role;
 
-          const ipHash = resolveIpHash(undefined, await headers());
-          const ipCheck = await assertAccountIpAllowed(linked.id, {
-            ipHash,
-            role: linked.role,
-            email: user.email,
-          });
+          const ipCheck = await checkAndRecordAccountIp(
+            linked.id,
+            linked.role,
+            undefined,
+            undefined,
+            user.email
+          );
           if (!ipCheck.ok) {
             return `/login?error=${ipCheck.reason}`;
           }
-          if (ipHash) await recordAccountIpAccess(linked.id, ipHash);
         } catch (e) {
           if (e instanceof OAuthLinkBlockedError || e instanceof OAuthAccountDisabledError) {
             return false;

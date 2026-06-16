@@ -5,6 +5,9 @@ export function messageForSignInError(error?: string | null): string {
   if (!error) return "Invalid email or password.";
   if (error === "too_many_ips") return ACCOUNT_IP_LIMIT_MESSAGE;
   if (error === "ip_required") return IP_REQUIRED_MESSAGE;
+  if (error === "oauth_only") {
+    return "This email uses Google or Apple sign-in. Use those buttons above, or reset your password if you previously set one.";
+  }
   if (error === "Configuration") {
     return "Sign-in is unavailable because the server is missing auth or database configuration.";
   }

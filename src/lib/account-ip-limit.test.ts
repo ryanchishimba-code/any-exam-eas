@@ -4,6 +4,7 @@ import {
   accountIpLimitResponse,
   enforceAccountIpLimit,
   MAX_ACCOUNT_IPS,
+  resolveIpHash,
 } from "@/lib/account-ip-limit";
 
 const { findManyMock } = vi.hoisted(() => ({
@@ -20,6 +21,17 @@ vi.mock("@/lib/prisma", () => ({
     },
   },
 }));
+
+describe("resolveIpHash", () => {
+  it("falls back to headerStore when request has no forwarded IP", () => {
+    const req = new Request("https://example.com/api/auth/callback/credentials", {
+      headers: {},
+    });
+    const headerStore = new Headers({ "x-forwarded-for": "203.0.113.7" });
+    expect(resolveIpHash(req, headerStore)).toBeTruthy();
+    expect(resolveIpHash(req)).toBeUndefined();
+  });
+});
 
 describe("assertAccountIpAllowed", () => {
   const originalNodeEnv = process.env.NODE_ENV;
@@ -91,26 +103,18 @@ describe("assertAccountIpAllowed", () => {
     expect(MAX_ACCOUNT_IPS).toBe(3);
   });
 
-  it("allows when IP is unknown in non-production", async () => {
+  it("allows when IP is unknown in production", async () => {
+    process.env.NODE_ENV = "production";
     findManyMock.mockResolvedValue([]);
     const result = await assertAccountIpAllowed("user-1", { role: "user" });
     expect(result.ok).toBe(true);
   });
 
-  it("blocks when IP is unknown in production", async () => {
-    process.env.NODE_ENV = "production";
-    findManyMock.mockResolvedValue([]);
-    const result = await assertAccountIpAllowed("user-1", { role: "user" });
-    expect(result.ok).toBe(false);
-    if (!result.ok) expect(result.reason).toBe("ip_required");
-  });
-
-  it("blocks when IP is unknown on Vercel preview", async () => {
+  it("allows when IP is unknown on Vercel preview", async () => {
     process.env.VERCEL = "1";
     findManyMock.mockResolvedValue([]);
     const result = await assertAccountIpAllowed("user-1", { role: "user" });
-    expect(result.ok).toBe(false);
-    if (!result.ok) expect(result.reason).toBe("ip_required");
+    expect(result.ok).toBe(true);
   });
 });
 
@@ -143,11 +147,9 @@ describe("enforceAccountIpLimit", () => {
     process.env.NODE_ENV = originalNodeEnv;
   });
 
-  it("returns IP_REQUIRED response when IP is unknown in production", async () => {
+  it("allows access when IP is unknown in production", async () => {
     findManyMock.mockResolvedValue([]);
     const blocked = await enforceAccountIpLimit("user-1", "user");
-    expect(blocked).not.toBeNull();
-    const body = await blocked!.json();
-    expect(body.code).toBe("IP_REQUIRED");
+    expect(blocked).toBeNull();
   });
 });

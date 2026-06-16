@@ -7,7 +7,11 @@ export function hashIp(req?: Request): string | undefined {
 
 export function hashIpFromHeaders(headers: Headers): string | undefined {
   const forwarded = headers.get("x-forwarded-for");
-  const ip = forwarded?.split(",")[0]?.trim() ?? headers.get("x-real-ip");
+  const ip =
+    forwarded?.split(",")[0]?.trim() ??
+    headers.get("x-real-ip") ??
+    headers.get("cf-connecting-ip") ??
+    headers.get("true-client-ip");
   if (!ip) return undefined;
   return createHash("sha256").update(ip).digest("hex").slice(0, 16);
 }

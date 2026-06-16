@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { headers } from "next/headers";
 import type { Session } from "next-auth";
 import { auth } from "@/auth";
 import {
@@ -25,12 +24,11 @@ export async function requireSessionGuard(req?: Request): Promise<SessionGuardRe
     };
   }
 
-  const headerStore = req ? undefined : await headers();
   const ipCheck = await checkAndRecordAccountIp(
     session.user.id,
     session.user.role,
     req,
-    headerStore,
+    undefined,
     session.user.email
   );
   if (!ipCheck.ok) {
@@ -45,12 +43,11 @@ export async function optionalSessionGuard(req?: Request): Promise<OptionalSessi
   const session = await auth();
   if (!session?.user?.id) return { ok: true };
 
-  const headerStore = req ? undefined : await headers();
   const ipCheck = await checkAndRecordAccountIp(
     session.user.id,
     session.user.role,
     req,
-    headerStore,
+    undefined,
     session.user.email
   );
   if (!ipCheck.ok) {

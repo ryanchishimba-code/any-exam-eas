@@ -84,7 +84,11 @@ export async function completeLoginFlow(params: {
     lastMethod: params.method === "magic" ? "email" : params.method,
   });
 
-  await getSession();
+  for (let attempt = 0; attempt < 8; attempt++) {
+    const session = await getSession();
+    if (session?.user?.email) break;
+    await new Promise((resolve) => setTimeout(resolve, 150));
+  }
   params.router.refresh();
 
   const status = await fetchSubscriptionStatus();

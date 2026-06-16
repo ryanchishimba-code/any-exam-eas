@@ -74,11 +74,32 @@ export async function verifyUserPassword(
   email: string,
   password: string
 ): Promise<User | null> {
+  const result = await authenticateCredentials(email, password);
+  return result.ok ? result.user : null;
+}
+
+export type CredentialAuthFailure = "invalid" | "no_password" | "blocked";
+
+export type CredentialAuthResult =
+  | { ok: true; user: User }
+  | { ok: false; reason: CredentialAuthFailure };
+
+export async function authenticateCredentials(
+  email: string,
+  password: string
+): Promise<CredentialAuthResult> {
   const user = await findUserByEmail(email);
-  if (!user) return null;
-  if (credentialsLoginBlocked(user)) return null;
-  if (!(await verifyPassword(password, user.passwordHash))) return null;
-  return user;
+  if (!user) return { ok: false, reason: "invalid" };
+
+  const blocked = credentialsLoginBlocked(user);
+  if (blocked === "no_password") return { ok: false, reason: "no_password" };
+  if (blocked) return { ok: false, reason: "blocked" };
+
+  if (!(await verifyPassword(password, user.passwordHash))) {
+    return { ok: false, reason: "invalid" };
+  }
+
+  return { ok: true, user };
 }
 
 /** Set or rotate credentials password; clears device session history. */
