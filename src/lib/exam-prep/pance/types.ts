@@ -18,6 +18,9 @@ export const PANCE_GENERATION_BATCH_SIZE = 500;
 /** Items generated per OpenAI call (must satisfy batch-of-10 diversity rules). */
 export const PANCE_GENERATION_CHUNK_SIZE = 10;
 
+/** Parallel OpenAI chunk requests per wave (override via PANCE_GENERATION_CONCURRENCY). */
+export const PANCE_GENERATION_CONCURRENCY = 8;
+
 export const PANCE_GENERATION_VERSION = "gpt-4o-mini-pance-v1";
 
 export type PanceReviewStatus = "pending" | "approved" | "flagged" | "rejected";

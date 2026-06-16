@@ -8,6 +8,7 @@ import {
 import { REVIEW_MODULE_TOPICS, mergeReviewModules } from "../seeds/review-module-topics";
 import { NAPLEX_HIGH_YIELD_TOPICS } from "../seeds/high-yield-naplex";
 import { NCLEX_HIGH_YIELD_TOPICS } from "../seeds/high-yield-nclex";
+import { AANP_FNP_HIGH_YIELD_TOPICS } from "../seeds/high-yield-aanp-fnp";
 import { getMemoryCardsByReviewModuleSlug } from "@/lib/reference/seeds";
 
 function sectionHasContent(section: ReviewModuleSection): boolean {
@@ -20,8 +21,8 @@ function sectionHasContent(section: ReviewModuleSection): boolean {
 
 describe("review module content", () => {
   it("defines flagship textbook modules", () => {
-    expect(Object.keys(REVIEW_MODULE_CONTENT_BY_SLUG).length).toBeGreaterThanOrEqual(9);
-    expect(REVIEW_MODULE_TOPICS.length).toBeGreaterThanOrEqual(9);
+    expect(Object.keys(REVIEW_MODULE_CONTENT_BY_SLUG).length).toBeGreaterThanOrEqual(15);
+    expect(REVIEW_MODULE_TOPICS.length).toBeGreaterThanOrEqual(15);
   });
 
   for (const [slug, content] of Object.entries(REVIEW_MODULE_CONTENT_BY_SLUG)) {
@@ -81,6 +82,13 @@ describe("mergeReviewModules", () => {
     expect(merged[0].reviewModule?.sections).toHaveLength(8);
     expect(merged.some((t) => t.category === "Review Modules")).toBe(true);
   });
+
+  it("injects review modules for AANP FNP with ACS first", () => {
+    const merged = mergeReviewModules(AANP_FNP_HIGH_YIELD_TOPICS, "aanp-fnp");
+    expect(merged[0].slug).toBe("acute-coronary-syndrome");
+    expect(merged[0].reviewModule?.sections).toHaveLength(8);
+    expect(merged.some((t) => t.slug === "aanp-diagnose-domain" && t.reviewModule)).toBe(true);
+  });
 });
 
 describe("NCLEX memory cards ↔ deep dive modules", () => {
@@ -93,6 +101,34 @@ describe("NCLEX memory cards ↔ deep dive modules", () => {
       for (const card of cards) {
         expect(card.reviewModuleSlug).toBe(mod.slug);
         expect(card.practiceTopicSlug).toBe(mod.practiceTopicSlug);
+      }
+    });
+  }
+});
+
+describe("PANCE memory cards ↔ deep dive modules", () => {
+  const panceModules = REVIEW_MODULE_TOPICS.filter((t) => t.examSlug === "pance");
+
+  for (const mod of panceModules) {
+    it(`${mod.slug} has memory cards linked for deep dive`, () => {
+      const cards = getMemoryCardsByReviewModuleSlug("pance", mod.slug);
+      expect(cards.length).toBeGreaterThanOrEqual(6);
+      for (const card of cards) {
+        expect(card.reviewModuleSlug).toBe(mod.slug);
+      }
+    });
+  }
+});
+
+describe("AANP FNP memory cards ↔ deep dive modules", () => {
+  const aanpModules = REVIEW_MODULE_TOPICS.filter((t) => t.examSlug === "aanp-fnp");
+
+  for (const mod of aanpModules) {
+    it(`${mod.slug} has memory cards linked for deep dive`, () => {
+      const cards = getMemoryCardsByReviewModuleSlug("aanp-fnp", mod.slug);
+      expect(cards.length).toBeGreaterThanOrEqual(6);
+      for (const card of cards) {
+        expect(card.reviewModuleSlug).toBe(mod.slug);
       }
     });
   }

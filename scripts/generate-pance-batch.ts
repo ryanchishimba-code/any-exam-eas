@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
  * Generate PANCE questions in blueprint-aligned batches (default 500).
+ * Streams inserts per chunk as generation completes.
  *
  * Usage:
  *   npm run db:generate-pance -- --count 500
@@ -18,13 +19,11 @@ ensureDatabaseUrlEnv();
 import { PrismaClient } from "@prisma/client";
 import {
   generatePanceBatch,
+  insertPanceBankItems,
   mergePanceQuotaWithCounts,
-  PANCE_GENERATION_VERSION,
   PANCE_TARGET_TOTAL,
 } from "../src/lib/exam-prep/pance";
 import { collectPanceSeedItems } from "../src/lib/edtech/seeds/pance-seed-registry";
-import { bankItemContentHash } from "../src/lib/sync-question-bank";
-import { serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
 
 const prisma = new PrismaClient();
 const ARTIFACTS = path.join(process.cwd(), "artifacts");
@@ -34,17 +33,19 @@ function parseArgs() {
   let count = 500;
   let dryRun = false;
   let category: string | undefined;
+  let noStream = false;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--count" && args[i + 1]) count = parseInt(args[++i]!, 10);
     else if (args[i] === "--dry-run") dryRun = true;
+    else if (args[i] === "--no-stream") noStream = true;
     else if (args[i] === "--category" && args[i + 1]) category = args[++i];
   }
-  return { count, dryRun, category };
+  return { count, dryRun, category, noStream };
 }
 
 async function main() {
-  const { count, dryRun, category } = parseArgs();
+  const { count, dryRun, category, noStream } = parseArgs();
   fs.mkdirSync(ARTIFACTS, { recursive: true });
 
   const rows = await prisma.questionBankItem.groupBy({
@@ -63,7 +64,7 @@ async function main() {
   for (const q of quota) {
     deficitsByCategory[q.contentCategory] = category
       ? q.contentCategory === category
-        ? q.deficit ?? q.targetCount
+        ? (q.deficit ?? q.targetCount)
         : 0
       : (q.deficit ?? 0);
   }
@@ -78,6 +79,10 @@ async function main() {
   const exemplars = collectPanceSeedItems();
   console.log(`\nGenerating ${count} items using ${exemplars.length} seed exemplars…`);
 
+  let created = 0;
+  let skipped = 0;
+  const streamInsert = !dryRun && !noStream;
+
   const result = await generatePanceBatch({
     count,
     deficitsByCategory,
@@ -87,6 +92,16 @@ async function main() {
         console.log(`  Progress: ${done}/${total}`);
       }
     },
+    onChunkAccepted: streamInsert
+      ? async (items) => {
+          const insert = await insertPanceBankItems(prisma, items);
+          created += insert.created;
+          skipped += insert.skipped;
+          if (insert.created > 0) {
+            console.log(`  Streamed +${insert.created} (${created} total inserted)`);
+          }
+        }
+      : undefined,
   });
 
   console.log(
@@ -102,6 +117,9 @@ async function main() {
         accepted: result.items.length,
         rejected: result.rejected,
         diversityIssues: result.diversityIssues,
+        created,
+        skipped,
+        streamed: streamInsert,
         quota,
         generatedAt: new Date().toISOString(),
       },
@@ -115,54 +133,14 @@ async function main() {
     return;
   }
 
-  let created = 0;
-  let skipped = 0;
-  for (const item of result.items) {
-    const subjectId = item.subjectId ?? "cardiovascular";
-    const hash = bankItemContentHash("pance", subjectId, item);
-    const exists = await prisma.questionBankItem.findUnique({ where: { contentHash: hash } });
-    if (exists) {
-      skipped++;
-      continue;
-    }
-
-    const taskCategory =
-      (item.ngnPayload?.taskCategory as string | undefined) ?? null;
-    const blueprintTopic =
-      (item.ngnPayload?.blueprintTopic as string | undefined) ?? null;
-    const generationMeta = item.ngnPayload?.generationMeta ?? null;
-
-    await prisma.questionBankItem.create({
-      data: {
-        fieldId: "pance",
-        subjectId,
-        scenario: item.vignette ?? null,
-        difficulty: item.difficulty ?? 3,
-        topicCategory: item.topicCategory ?? subjectId,
-        blueprintDomain: item.blueprintDomain ?? subjectId,
-        taskCategory,
-        blueprintTopic,
-        generationVersion: PANCE_GENERATION_VERSION,
-        reviewStatus: "pending",
-        generationMeta: generationMeta ?? undefined,
-        itemType: "vignette",
-        question: item.question,
-        options: serializeBankOptions(item),
-        correctAnswer: item.correctAnswer,
-        explanation: item.explanation,
-        tags: item.tags ? JSON.stringify(item.tags) : null,
-        references: item.references?.length ? item.references : undefined,
-        source: "generated",
-        contentHash: hash,
-        active: true,
-        qaPassed: false,
-      },
-    });
-    created++;
+  if (!streamInsert) {
+    const insert = await insertPanceBankItems(prisma, result.items);
+    created = insert.created;
+    skipped = insert.skipped;
   }
 
   console.log(`Inserted ${created} items (${skipped} duplicates skipped).`);
-  console.log(`Next: npm run db:qa-gate-pance-best`);
+  console.log(`Next: npm run db:qa-gate-pance-best -- --only-pending`);
 }
 
 main()

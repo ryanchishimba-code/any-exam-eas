@@ -1,5 +1,6 @@
 /**
  * AANP FNP bank item quality assessment — editorial + blueprint alignment.
+ * Advisory scoring for metadata; ingest acceptance uses hybrid-gate (bankItemPassesIngestGate).
  */
 import type { BankItem } from "@/lib/question-bank";
 import { auditBankItem } from "../bank-audit";

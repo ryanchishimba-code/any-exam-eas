@@ -31,6 +31,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_PLAN: EnrichedBankItem[] = [
       difficulty: 4,
       references: [ADA],
       tags: ["diabetes", "GLP-1", ...PE],
+      related: {
+        reviewModuleSlug: "insulin-diabetes-management",
+        memoryCardIds: ["fnp-diabetes-intensification", "fnp-sglt2-benefits"],
+      },
     }
   ),
 
@@ -54,6 +58,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_PLAN: EnrichedBankItem[] = [
       difficulty: 4,
       references: [GOLD],
       tags: ["COPD", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-plan-domain",
+        memoryCardIds: ["fnp-plan-copd-exacerbation"],
+      },
     }
   ),
 
@@ -76,6 +84,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_PLAN: EnrichedBankItem[] = [
       blueprintTopic: "contraception",
       difficulty: 3,
       tags: ["contraception", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-plan-domain",
+        memoryCardIds: ["fnp-plan-contraception"],
+      },
     }
   ),
 
@@ -98,6 +110,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_PLAN: EnrichedBankItem[] = [
       blueprintTopic: "ADHD",
       difficulty: 3,
       tags: ["ADHD", "pediatrics", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-plan-domain",
+        memoryCardIds: ["fnp-plan-referral-triggers"],
+      },
     }
   ),
 
@@ -120,7 +136,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_PLAN: EnrichedBankItem[] = [
       blueprintTopic: "atrial fibrillation",
       difficulty: 4,
       tags: ["AFib", "anticoagulation", ...PE],
-      related: { reviewModuleSlug: "acute-coronary-syndrome" },
+      related: {
+        reviewModuleSlug: "acute-coronary-syndrome",
+        memoryCardIds: ["fnp-atrial-fib-rate-control"],
+      },
     }
   ),
 
@@ -143,6 +162,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_PLAN: EnrichedBankItem[] = [
       blueprintTopic: "depression treatment",
       difficulty: 3,
       tags: ["SSRI", "depression", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-plan-domain",
+        memoryCardIds: ["fnp-depression-screening"],
+      },
     }
   ),
 
@@ -165,6 +188,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_PLAN: EnrichedBankItem[] = [
       blueprintTopic: "UTI treatment",
       difficulty: 3,
       tags: ["UTI", "antibiotics", ...PE],
+      related: {
+        reviewModuleSlug: "infectious-disease",
+        memoryCardIds: ["fnp-uti-pyelonephritis", "fnp-plan-antibiotic-duration"],
+      },
     }
   ),
 
@@ -187,6 +214,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_PLAN: EnrichedBankItem[] = [
       blueprintTopic: "hypertension",
       difficulty: 3,
       tags: ["HTN", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-plan-domain",
+        memoryCardIds: ["fnp-hypertension-first-line"],
+      },
     }
   ),
 
@@ -209,6 +240,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_PLAN: EnrichedBankItem[] = [
       blueprintTopic: "sexual assault care",
       difficulty: 4,
       tags: ["PEP", "trauma", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-plan-domain",
+        memoryCardIds: ["fnp-hiv-prep-basics", "fnp-plan-referral-triggers"],
+      },
     }
   ),
 
@@ -231,7 +266,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_PLAN: EnrichedBankItem[] = [
       blueprintTopic: "advance care planning",
       difficulty: 4,
       tags: ["hospice", "dementia", ...PE],
-      related: { reviewModuleSlug: "aanp-geriatrics-high-yield" },
+      related: {
+        reviewModuleSlug: "aanp-geriatrics-high-yield",
+        memoryCardIds: ["fnp-advance-directives", "fnp-plan-referral-triggers"],
+      },
     }
   ),
 ];

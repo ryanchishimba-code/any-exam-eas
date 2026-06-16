@@ -20,12 +20,10 @@ import {
   generateAanpFnpBatch,
   mergeAanpFnpAgeGroupQuotaWithCounts,
   mergeAanpFnpDomainQuotaWithCounts,
-  AANP_FNP_GENERATION_VERSION,
   AANP_FNP_TARGET_TOTAL,
 } from "../src/lib/exam-prep/aanp-fnp";
 import { collectAanpFnpSeedItems } from "../src/lib/edtech/seeds/aanp-fnp-seed-registry";
-import { bankItemContentHash } from "../src/lib/sync-question-bank";
-import { serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
+import { insertAanpFnpGeneratedItems } from "./aanp-fnp-insert";
 
 const prisma = new PrismaClient();
 const ARTIFACTS = path.join(process.cwd(), "artifacts");
@@ -95,6 +93,9 @@ async function main() {
   const exemplars = collectAanpFnpSeedItems();
   console.log(`\nGenerating ${count} items using ${exemplars.length} seed exemplars…`);
 
+  let totalCreated = 0;
+  let totalSkipped = 0;
+
   const result = await generateAanpFnpBatch({
     count,
     domainDeficits,
@@ -105,6 +106,16 @@ async function main() {
         console.log(`  Progress: ${done}/${total}`);
       }
     },
+    onChunkAccepted: dryRun
+      ? undefined
+      : async (items) => {
+          const { created, skipped } = await insertAanpFnpGeneratedItems(prisma, items);
+          totalCreated += created;
+          totalSkipped += skipped;
+          if (created > 0) {
+            console.log(`  +${created} saved to Neon (${totalCreated} total this run)`);
+          }
+        },
   });
 
   console.log(
@@ -134,57 +145,9 @@ async function main() {
     return;
   }
 
-  let created = 0;
-  let skipped = 0;
-  for (const item of result.items) {
-    const subjectId = item.subjectId ?? "assess";
-    const hash = bankItemContentHash("aanp-fnp", subjectId, item);
-    const exists = await prisma.questionBankItem.findUnique({ where: { contentHash: hash } });
-    if (exists) {
-      skipped++;
-      continue;
-    }
-
-    const patientAgeGroup =
-      item.patientAgeGroup ??
-      (item.ngnPayload?.patientAgeGroup as string | undefined) ??
-      null;
-    const blueprintTopic =
-      item.blueprintTopic ??
-      (item.ngnPayload?.blueprintTopic as string | undefined) ??
-      null;
-    const generationMeta = item.ngnPayload?.generationMeta ?? null;
-
-    await prisma.questionBankItem.create({
-      data: {
-        fieldId: "aanp-fnp",
-        subjectId,
-        scenario: item.vignette ?? null,
-        difficulty: item.difficulty ?? 3,
-        topicCategory: item.topicCategory ?? subjectId,
-        blueprintDomain: item.blueprintDomain ?? item.ngnPayload?.blueprintDomain ?? "assess",
-        patientAgeGroup,
-        blueprintTopic,
-        generationVersion: AANP_FNP_GENERATION_VERSION,
-        reviewStatus: "pending",
-        generationMeta: generationMeta ?? undefined,
-        itemType: "vignette",
-        question: item.question,
-        options: serializeBankOptions(item),
-        correctAnswer: item.correctAnswer,
-        explanation: item.explanation,
-        tags: item.tags ? JSON.stringify(item.tags) : null,
-        references: item.references?.length ? item.references : undefined,
-        source: "generated",
-        contentHash: hash,
-        active: true,
-        qaPassed: false,
-      },
-    });
-    created++;
-  }
-
-  console.log(`Inserted ${created} items (${skipped} skipped as duplicates). Report: ${reportPath}`);
+  console.log(
+    `Inserted ${totalCreated} items (${totalSkipped} skipped as duplicates). Report: ${reportPath}`
+  );
 }
 
 main()

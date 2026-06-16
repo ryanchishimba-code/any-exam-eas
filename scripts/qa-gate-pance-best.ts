@@ -21,18 +21,24 @@ function parseArgs() {
   const args = process.argv.slice(2);
   let dryRun = false;
   let limit = 0;
+  let onlyPending = false;
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--dry-run") dryRun = true;
+    else if (args[i] === "--only-pending") onlyPending = true;
     else if (args[i] === "--limit" && args[i + 1]) limit = parseInt(args[++i]!, 10);
   }
-  return { dryRun, limit };
+  return { dryRun, limit, onlyPending };
 }
 
 async function main() {
-  const { dryRun, limit } = parseArgs();
+  const { dryRun, limit, onlyPending } = parseArgs();
 
   const rows = await prisma.questionBankItem.findMany({
-    where: { fieldId: "pance", active: true },
+    where: {
+      fieldId: "pance",
+      active: true,
+      ...(onlyPending ? { qaPassed: false } : {}),
+    },
     orderBy: { updatedAt: "asc" },
     ...(limit > 0 ? { take: limit } : {}),
   });

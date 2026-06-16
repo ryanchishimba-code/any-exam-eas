@@ -14,6 +14,10 @@ import { USMLE_PHYSICIAN_EDUCATOR_BATCH_02 } from "@/lib/edtech/seeds/usmle-phys
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_03 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-03";
 import { NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/naplex-physician-educator-batch-01";
 import { MPJE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/mpje-physician-educator-batch-01";
+import { AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_ASSESS } from "@/lib/edtech/seeds/aanp-fnp-physician-educator-batch-assess";
+import { AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_DIAGNOSE } from "@/lib/edtech/seeds/aanp-fnp-physician-educator-batch-diagnose";
+import { AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_PLAN } from "@/lib/edtech/seeds/aanp-fnp-physician-educator-batch-plan";
+import { AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE } from "@/lib/edtech/seeds/aanp-fnp-physician-educator-batch-evaluate";
 import { NCLEX_CURATED_QUALITY } from "@/lib/exam-prep/nclex-curated-quality";
 import type { EnrichedBankItem } from "@/lib/exam-prep/seed-helpers";
 import type { ExamSlug } from "@/types/edtech";
@@ -115,6 +119,10 @@ describe("question ngnPayload related-content integrity", () => {
     ["usmle batch 03", "usmle", USMLE_PHYSICIAN_EDUCATOR_BATCH_03],
     ["naplex batch 01", "naplex", NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01],
     ["mpje batch 01", "pance", MPJE_PHYSICIAN_EDUCATOR_BATCH_01],
+    ["aanp-fnp assess", "aanp-fnp", AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_ASSESS],
+    ["aanp-fnp diagnose", "aanp-fnp", AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_DIAGNOSE],
+    ["aanp-fnp plan", "aanp-fnp", AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_PLAN],
+    ["aanp-fnp evaluate", "aanp-fnp", AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE],
     ["nclex curated", "nclex", NCLEX_CURATED_QUALITY],
   ];
 

@@ -10,6 +10,14 @@ import {
   INFECTIOUS_DISEASE_USMLE_MODULE,
   SEPSIS_MODULE,
   CONTROLLED_SUBSTANCES_MODULE,
+  CONTROLLED_SUBSTANCES_PANCE_MODULE,
+  COPD_EXACERBATION_MODULE,
+  AANP_ASSESS_MODULE,
+  AANP_DIAGNOSE_MODULE,
+  AANP_PLAN_MODULE,
+  AANP_EVALUATE_MODULE,
+  AANP_GERIATRICS_MODULE,
+  AANP_PEDIATRICS_MODULE,
 } from "@/lib/edtech/review-modules/content";
 import type { HighYieldTopic } from "@/types/edtech";
 
@@ -137,13 +145,33 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
   }),
   defineReviewModuleTopic({
     examSlug: "pance",
-    slug: "controlled-substances",
+    slug: "controlled-substances-pance",
     title: "Controlled Substances & Prescribing Law",
     overview:
-      "CSA schedules, CII validity windows, recordkeeping, and HIPAA in practice — high-yield jurisprudence for PANCE professional practice items.",
+      "CSA schedules, CII validity, PDMP/EPCS, opioid risk mitigation, and HIPAA — prescriber-focused jurisprudence for PANCE professional practice items.",
     practiceTopicSlug: "professional-practice",
-    reviewModule: CONTROLLED_SUBSTANCES_MODULE,
+    reviewModule: CONTROLLED_SUBSTANCES_PANCE_MODULE,
     sortOrder: 3,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "pance",
+    slug: "insulin-diabetes-management",
+    title: "Diabetes Management",
+    overview:
+      "A1c targets, metformin, insulin, SGLT2i/GLP-1 benefits, DKA, and hypoglycemia — high-yield endocrine pharmacotherapy for PANCE.",
+    practiceTopicSlug: "endocrine",
+    reviewModule: DIABETES_PHARMACOTHERAPY_MODULE,
+    sortOrder: 4,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "pance",
+    slug: "copd-exacerbation",
+    title: "COPD Exacerbation Management",
+    overview:
+      "Bronchodilators, steroids, antibiotics, oxygen targets, and NIPPV — GOLD-aligned pulmonary care for PANCE.",
+    practiceTopicSlug: "pulmonary",
+    reviewModule: COPD_EXACERBATION_MODULE,
+    sortOrder: 5,
   }),
   defineReviewModuleTopic({
     examSlug: "pance",
@@ -194,6 +222,66 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     practiceTopicSlug: "endocrine",
     reviewModule: DIABETES_PHARMACOTHERAPY_MODULE,
     sortOrder: 3,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "aanp-fnp",
+    slug: "aanp-assess-domain",
+    title: "Health Assessment & Diagnostics",
+    overview:
+      "Domain I deep dive — screening, next-best test selection, and lifespan assessment for the AANP FNP exam.",
+    practiceTopicSlug: "assess",
+    reviewModule: AANP_ASSESS_MODULE,
+    sortOrder: 4,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "aanp-fnp",
+    slug: "aanp-diagnose-domain",
+    title: "Diagnosis & Clinical Reasoning",
+    overview:
+      "Domain II deep dive — differential diagnosis, discriminating findings, and primary diagnosis selection.",
+    practiceTopicSlug: "diagnose",
+    reviewModule: AANP_DIAGNOSE_MODULE,
+    sortOrder: 5,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "aanp-fnp",
+    slug: "aanp-plan-domain",
+    title: "Therapeutics & Care Planning",
+    overview:
+      "Domain III deep dive — first-line therapy, counseling, prevention, and referrals within NP scope.",
+    practiceTopicSlug: "plan",
+    reviewModule: AANP_PLAN_MODULE,
+    sortOrder: 6,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "aanp-fnp",
+    slug: "aanp-evaluate-domain",
+    title: "Outcomes & Follow-Up",
+    overview:
+      "Domain IV deep dive — monitoring response, adverse effects, adherence, and care plan modification.",
+    practiceTopicSlug: "evaluate",
+    reviewModule: AANP_EVALUATE_MODULE,
+    sortOrder: 7,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "aanp-fnp",
+    slug: "aanp-geriatrics-high-yield",
+    title: "Older Adult Care",
+    overview:
+      "Beers Criteria, delirium, falls, polypharmacy, and atypical presentations — highest lifespan weight on the exam.",
+    practiceTopicSlug: "geriatrics",
+    reviewModule: AANP_GERIATRICS_MODULE,
+    sortOrder: 8,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "aanp-fnp",
+    slug: "aanp-pediatrics-high-yield",
+    title: "Pediatric Primary Care",
+    overview:
+      "Immunizations, febrile infant algorithms, milestones, and adolescent confidentiality.",
+    practiceTopicSlug: "pediatrics",
+    reviewModule: AANP_PEDIATRICS_MODULE,
+    sortOrder: 9,
   }),
 ];
 

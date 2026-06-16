@@ -10,17 +10,20 @@ import { VIGNETTE_REQUIREMENTS } from "@/lib/engine/prompts/vignette";
 import { UNIVERSAL_EXAM_SYSTEM } from "@/lib/engine/prompts/base";
 import { examQuestionToBankItem } from "@/lib/engine/curation/exam-to-bank";
 import { analyzeQuestionPatterns } from "@/lib/rag/pattern-analyzer";
+import type { QuestionPatternProfile } from "@/lib/rag/types";
 import { filterBankItemsForIngest } from "../bank-ingest-gate";
 import {
   auditBatchDiversity,
   batchPassesDiversity,
   dedupeBatchItems,
+  filterBatchByDiversity,
 } from "./batch-diversity";
 import { assessPanceBankItem } from "./quality-gate";
 import { stemFormatForIndex, planPanceGenerationSlots } from "./blueprint-quota";
 import type { PanceGenerationMeta, PanceGenerationSlot } from "./types";
 import {
   PANCE_GENERATION_CHUNK_SIZE,
+  PANCE_GENERATION_CONCURRENCY,
   PANCE_GENERATION_VERSION,
 } from "./types";
 
@@ -28,12 +31,71 @@ const openai = process.env.OPENAI_API_KEY
   ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
   : null;
 
+const MAX_CHUNK_RETRIES = 5;
+const CHUNK_RETRY_BASE_MS = 3000;
+
+function resolveConcurrency(): number {
+  const raw = process.env.PANCE_GENERATION_CONCURRENCY;
+  if (!raw) return PANCE_GENERATION_CONCURRENCY;
+  const n = parseInt(raw, 10);
+  if (!Number.isFinite(n) || n < 1) return PANCE_GENERATION_CONCURRENCY;
+  return Math.min(16, n);
+}
+
+async function sleep(ms: number): Promise<void> {
+  await new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function withOpenAiRetries<T>(label: string, fn: () => Promise<T>): Promise<T> {
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= MAX_CHUNK_RETRIES; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastError = err;
+      const retryable =
+        err instanceof Error &&
+        (err.name === "APIConnectionError" ||
+          err.message.includes("ECONNRESET") ||
+          err.message.includes("ENOTFOUND") ||
+          err.message.includes("429") ||
+          err.message.includes("503") ||
+          err.message.includes("rate limit"));
+      if (!retryable || attempt === MAX_CHUNK_RETRIES) break;
+      const waitMs = CHUNK_RETRY_BASE_MS * 2 ** (attempt - 1);
+      console.warn(
+        `[pance] ${label} failed (attempt ${attempt}/${MAX_CHUNK_RETRIES}), retrying in ${waitMs}ms…`
+      );
+      await sleep(waitMs);
+    }
+  }
+  throw lastError;
+}
+
 export type PanceGenerationResult = {
   items: BankItem[];
   rejected: number;
   batchId: string;
   diversityIssues: number;
 };
+
+function buildPatternBlock(pattern: QuestionPatternProfile): string {
+  return pattern.exemplarStems.length
+    ? `EXEMPLAR PATTERNS FROM BANK:\nStems: ${pattern.exemplarStems.slice(0, 3).join("\n---\n")}\nDistractor logic: ${pattern.distractorPatterns.join("; ")}`
+    : "";
+}
+
+function buildExemplarBlock(exemplarItems?: BankItem[]): string {
+  return exemplarItems?.length
+    ? `SEED EXEMPLARS (mirror quality, do NOT copy):\n${exemplarItems
+        .slice(0, 3)
+        .map(
+          (e, i) =>
+            `[${i + 1}] Vignette: ${(e.vignette ?? "").slice(0, 200)}…\nStem: ${e.question}\nCorrect: ${e.correctAnswer}`
+        )
+        .join("\n\n")}`
+    : "";
+}
 
 function buildSlotPrompt(
   slots: PanceGenerationSlot[],
@@ -66,15 +128,12 @@ Each question object:
 - question (lead-in stem only, ending with ?)
 - options (exactly 4 unique strings, no A/B/C/D prefix)
 - correctAnswer (must match one option exactly)
-- explanation (detailed teaching rationale)
-- clinicalReasoning (why the vignette points to the answer)
-- distractorRationale (object mapping each WRONG option to why it fails)
+- explanation (detailed teaching rationale, 150+ words)
 - topicCategory (content category slug)
 - taskCategory (task slug from slot)
 - blueprintTopic (specific topic from slot)
 - difficulty (1–5)
-- tags (array including "pance-generated", "PANCE-2025", content category, task category)
-- references (array of { label, url? } guideline citations when applicable)`;
+- tags (array including "pance-generated", "PANCE-2025", content category, task category)`;
 }
 
 function parseGenerationResponse(raw: string): ExamQuestion[] {
@@ -129,52 +188,84 @@ function slotToBankItem(
   };
 }
 
+/** Load pattern profiles once per batch (field-wide + per content category). */
+export async function prefetchPancePatternProfiles(
+  subjectIds: string[]
+): Promise<Map<string, QuestionPatternProfile>> {
+  const unique = [...new Set(subjectIds.filter(Boolean))];
+  const profiles = new Map<string, QuestionPatternProfile>();
+
+  const [fieldWide, ...bySubject] = await Promise.all([
+    analyzeQuestionPatterns({
+      fieldId: "pance",
+      topic: "PANCE clinical medicine",
+      sampleSize: 20,
+    }),
+    ...unique.map((subjectId) =>
+      analyzeQuestionPatterns({
+        fieldId: "pance",
+        topic: subjectId,
+        subjectId,
+        sampleSize: 15,
+      })
+    ),
+  ]);
+
+  profiles.set("_default", fieldWide);
+  unique.forEach((subjectId, i) => {
+    profiles.set(subjectId, bySubject[i]!);
+  });
+
+  return profiles;
+}
+
+function patternForSlot(
+  profiles: Map<string, QuestionPatternProfile>,
+  slot: PanceGenerationSlot
+): QuestionPatternProfile {
+  return profiles.get(slot.contentCategory) ?? profiles.get("_default")!;
+}
+
 /** Generate one chunk (default 10) of blueprint-aligned PANCE items. */
 export async function generatePanceChunk(params: {
   slots: PanceGenerationSlot[];
   batchId: string;
   exemplarItems?: BankItem[];
+  patternProfiles?: Map<string, QuestionPatternProfile>;
 }): Promise<{ accepted: BankItem[]; rejected: number }> {
   if (!openai) {
     throw new Error("OPENAI_API_KEY required for PANCE generation.");
   }
 
-  const topic = params.slots[0]?.blueprintTopic ?? "clinical medicine";
-  const subjectId = params.slots[0]?.contentCategory;
-  const pattern = await analyzeQuestionPatterns({
-    fieldId: "pance",
-    topic,
-    subjectId,
-    sampleSize: 15,
-  });
+  const firstSlot = params.slots[0];
+  const pattern =
+    params.patternProfiles && firstSlot
+      ? patternForSlot(params.patternProfiles, firstSlot)
+      : await analyzeQuestionPatterns({
+          fieldId: "pance",
+          topic: firstSlot?.blueprintTopic ?? "clinical medicine",
+          subjectId: firstSlot?.contentCategory,
+          sampleSize: 15,
+        });
 
-  const patternBlock = pattern.exemplarStems.length
-    ? `EXEMPLAR PATTERNS FROM BANK:\nStems: ${pattern.exemplarStems.slice(0, 3).join("\n---\n")}\nDistractor logic: ${pattern.distractorPatterns.join("; ")}`
-    : "";
+  const patternBlock = buildPatternBlock(pattern);
+  const exemplarBlock = buildExemplarBlock(params.exemplarItems);
 
-  const exemplarBlock = params.exemplarItems?.length
-    ? `SEED EXEMPLARS (mirror quality, do NOT copy):\n${params.exemplarItems
-        .slice(0, 3)
-        .map(
-          (e, i) =>
-            `[${i + 1}] Vignette: ${(e.vignette ?? "").slice(0, 200)}…\nStem: ${e.question}\nCorrect: ${e.correctAnswer}`
-        )
-        .join("\n\n")}`
-    : "";
-
-  const completion = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [
-      { role: "system", content: `${UNIVERSAL_EXAM_SYSTEM}\n${PANCE_SYSTEM_AUGMENTATION}` },
-      {
-        role: "user",
-        content: buildSlotPrompt(params.slots, patternBlock, exemplarBlock),
-      },
-    ],
-    temperature: 0.35,
-    max_tokens: 12000,
-    response_format: { type: "json_object" },
-  });
+  const completion = await withOpenAiRetries("OpenAI completion", () =>
+    openai!.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        { role: "system", content: `${UNIVERSAL_EXAM_SYSTEM}\n${PANCE_SYSTEM_AUGMENTATION}` },
+        {
+          role: "user",
+          content: buildSlotPrompt(params.slots, patternBlock, exemplarBlock),
+        },
+      ],
+      temperature: 0.35,
+      max_tokens: 8000,
+      response_format: { type: "json_object" },
+    })
+  );
 
   const raw = completion.choices[0]?.message?.content ?? "{}";
   const questions = parseGenerationResponse(raw);
@@ -212,26 +303,28 @@ export async function generatePanceChunk(params: {
   const deduped = dedupeBatchItems(bankItems);
   rejected += bankItems.length - deduped.length;
 
-  if (!batchPassesDiversity(deduped)) {
-    const issues = auditBatchDiversity(deduped);
-    if (issues.length > 3) {
-      return { accepted: [], rejected: params.slots.length };
-    }
-  }
+  const { kept: diversityKept, dropped: diversityDropped } = filterBatchByDiversity(deduped);
+  rejected += diversityDropped;
 
-  const accepted = filterBankItemsForIngest("pance", deduped, "generated");
-  rejected += deduped.length - accepted.length;
+  const accepted = filterBankItemsForIngest("pance", diversityKept, "generated");
+  rejected += diversityKept.length - accepted.length;
 
   return { accepted, rejected };
 }
 
-/** Generate a full batch (e.g. 500) in chunks of 10 with diversity controls. */
+/** Generate a full batch (e.g. 500) in parallel waves of chunks. */
 export async function generatePanceBatch(params: {
   count: number;
   deficitsByCategory: Record<string, number>;
   batchId?: string;
   exemplarItems?: BankItem[];
+  concurrency?: number;
   onProgress?: (done: number, total: number) => void;
+  /** Persist each chunk as it completes (streaming insert). */
+  onChunkAccepted?: (
+    items: BankItem[],
+    meta: { chunkIndex: number; batchId: string }
+  ) => Promise<void>;
 }): Promise<PanceGenerationResult> {
   const batchId =
     params.batchId ??
@@ -241,23 +334,58 @@ export async function generatePanceBatch(params: {
     deficitsByCategory: params.deficitsByCategory,
   });
 
+  const concurrency = params.concurrency ?? resolveConcurrency();
+  const patternProfiles = await prefetchPancePatternProfiles(
+    slots.map((s) => s.contentCategory)
+  );
+
+  const chunkStarts: number[] = [];
+  for (let i = 0; i < slots.length; i += PANCE_GENERATION_CHUNK_SIZE) {
+    chunkStarts.push(i);
+  }
+
+  console.log(
+    `[pance] Batch ${batchId}: ${slots.length} slots, ${chunkStarts.length} chunks, concurrency ${concurrency}`
+  );
+
   const allAccepted: BankItem[] = [];
   let totalRejected = 0;
   let diversityIssues = 0;
+  let processedSlots = 0;
 
-  for (let i = 0; i < slots.length; i += PANCE_GENERATION_CHUNK_SIZE) {
-    const chunk = slots.slice(i, i + PANCE_GENERATION_CHUNK_SIZE);
-    const { accepted, rejected } = await generatePanceChunk({
-      slots: chunk,
-      batchId,
-      exemplarItems: params.exemplarItems,
-    });
-    allAccepted.push(...accepted);
-    totalRejected += rejected;
-    if (accepted.length > 0 && !batchPassesDiversity(accepted)) {
-      diversityIssues += auditBatchDiversity(accepted).length;
+  for (let wave = 0; wave < chunkStarts.length; wave += concurrency) {
+    const waveStarts = chunkStarts.slice(wave, wave + concurrency);
+    const waveResults = await Promise.all(
+      waveStarts.map(async (start) => {
+        const chunk = slots.slice(start, start + PANCE_GENERATION_CHUNK_SIZE);
+        const result = await generatePanceChunk({
+          slots: chunk,
+          batchId,
+          exemplarItems: params.exemplarItems,
+          patternProfiles,
+        });
+        return { start, chunk, result };
+      })
+    );
+
+    for (const { start, chunk, result } of waveResults) {
+      allAccepted.push(...result.accepted);
+      totalRejected += result.rejected;
+      if (result.accepted.length > 0 && !batchPassesDiversity(result.accepted)) {
+        diversityIssues += auditBatchDiversity(result.accepted).length;
+      }
+
+      if (result.accepted.length > 0 && params.onChunkAccepted) {
+        await params.onChunkAccepted(result.accepted, {
+          chunkIndex: start / PANCE_GENERATION_CHUNK_SIZE,
+          batchId,
+        });
+      }
+
+      processedSlots += chunk.length;
     }
-    params.onProgress?.(Math.min(i + chunk.length, slots.length), slots.length);
+
+    params.onProgress?.(Math.min(processedSlots, slots.length), slots.length);
   }
 
   return {

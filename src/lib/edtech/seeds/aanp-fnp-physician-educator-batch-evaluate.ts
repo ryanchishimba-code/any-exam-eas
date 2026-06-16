@@ -27,6 +27,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE: EnrichedBankItem[] = [
       blueprintTopic: "statin adverse effects",
       difficulty: 4,
       tags: ["statin", "myopathy", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-evaluate-domain",
+        memoryCardIds: ["fnp-evaluate-statin-monitoring"],
+      },
     }
   ),
 
@@ -49,6 +53,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE: EnrichedBankItem[] = [
       blueprintTopic: "diabetes monitoring",
       difficulty: 3,
       tags: ["diabetes", "A1c", ...PE],
+      related: {
+        reviewModuleSlug: "insulin-diabetes-management",
+        memoryCardIds: ["fnp-evaluate-a1c-interval", "fnp-a1c-targets"],
+      },
     }
   ),
 
@@ -71,6 +79,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE: EnrichedBankItem[] = [
       blueprintTopic: "SSRI monitoring",
       difficulty: 4,
       tags: ["bipolar", "SSRI", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-evaluate-domain",
+        memoryCardIds: ["fnp-evaluate-ssri-follow-up"],
+      },
     }
   ),
 
@@ -93,6 +105,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE: EnrichedBankItem[] = [
       blueprintTopic: "warfarin monitoring",
       difficulty: 4,
       tags: ["warfarin", "INR", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-evaluate-domain",
+        memoryCardIds: ["fnp-atrial-fib-rate-control", "fnp-evaluate-adherence-first"],
+      },
     }
   ),
 
@@ -115,6 +131,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE: EnrichedBankItem[] = [
       blueprintTopic: "AOM follow-up",
       difficulty: 3,
       tags: ["AOM", "pediatrics", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-pediatrics-high-yield",
+        memoryCardIds: ["fnp-otitis-media-treatment", "fnp-evaluate-cap-follow-up"],
+      },
     }
   ),
 
@@ -137,6 +157,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE: EnrichedBankItem[] = [
       blueprintTopic: "ACEi monitoring",
       difficulty: 4,
       tags: ["ACEi", "hyperkalemia", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-evaluate-domain",
+        memoryCardIds: ["fnp-evaluate-htn-recheck", "fnp-hypertension-first-line"],
+      },
     }
   ),
 
@@ -159,7 +183,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE: EnrichedBankItem[] = [
       blueprintTopic: "dementia medication monitoring",
       difficulty: 4,
       tags: ["donepezil", "Beers", ...PE],
-      related: { reviewModuleSlug: "aanp-geriatrics-high-yield" },
+      related: {
+        reviewModuleSlug: "aanp-geriatrics-high-yield",
+        memoryCardIds: ["fnp-beers-criteria", "fnp-polypharmacy-deprescribe"],
+      },
     }
   ),
 
@@ -182,6 +209,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE: EnrichedBankItem[] = [
       blueprintTopic: "asthma monitoring",
       difficulty: 3,
       tags: ["asthma", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-plan-domain",
+        memoryCardIds: ["fnp-plan-asthma-step", "fnp-asthma-pediatric"],
+      },
     }
   ),
 
@@ -204,6 +235,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE: EnrichedBankItem[] = [
       blueprintTopic: "asymptomatic bacteriuria",
       difficulty: 3,
       tags: ["UTI", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-evaluate-domain",
+        memoryCardIds: ["fnp-uti-pyelonephritis", "fnp-evaluate-adherence-first"],
+      },
     }
   ),
 
@@ -226,7 +261,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_EVALUATE: EnrichedBankItem[] = [
       blueprintTopic: "post-PCI follow-up",
       difficulty: 5,
       tags: ["ACS", "DAPT", ...PE],
-      related: { reviewModuleSlug: "acute-coronary-syndrome" },
+      related: {
+        reviewModuleSlug: "acute-coronary-syndrome",
+        memoryCardIds: ["fnp-nstemi-medical-therapy", "fnp-stemi-reperfusion"],
+      },
     }
   ),
 ];

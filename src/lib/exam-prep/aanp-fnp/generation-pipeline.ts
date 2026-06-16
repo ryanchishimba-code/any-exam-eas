@@ -18,17 +18,49 @@ import {
   batchPassesDiversity,
   dedupeBatchItems,
 } from "./batch-diversity";
-import { assessAanpFnpBankItem } from "./quality-gate";
+import { runAanpFnpHybridGate } from "./hybrid-gate";
 import { stemFormatForIndex, planAanpFnpGenerationSlots } from "./blueprint-quota";
+import { attachAanpFnpStudyLinks } from "./study-links";
 import type { AanpFnpGenerationMeta, AanpFnpGenerationSlot } from "./types";
 import {
   AANP_FNP_GENERATION_CHUNK_SIZE,
+  AANP_FNP_GENERATION_CONCURRENCY,
   AANP_FNP_GENERATION_VERSION,
 } from "./types";
 
 const openai = process.env.OPENAI_API_KEY
   ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
   : null;
+
+const MAX_CHUNK_RETRIES = 5;
+const CHUNK_RETRY_BASE_MS = 3000;
+
+async function sleep(ms: number): Promise<void> {
+  await new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function withOpenAiRetries<T>(label: string, fn: () => Promise<T>): Promise<T> {
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= MAX_CHUNK_RETRIES; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastError = err;
+      const retryable =
+        err instanceof Error &&
+        (err.name === "APIConnectionError" ||
+          err.message.includes("ECONNRESET") ||
+          err.message.includes("ENOTFOUND") ||
+          err.message.includes("429") ||
+          err.message.includes("503"));
+      if (!retryable || attempt === MAX_CHUNK_RETRIES) break;
+      const waitMs = CHUNK_RETRY_BASE_MS * 2 ** (attempt - 1);
+      console.warn(`[aanp-fnp] ${label} failed (attempt ${attempt}/${MAX_CHUNK_RETRIES}), retrying in ${waitMs}ms…`);
+      await sleep(waitMs);
+    }
+  }
+  throw lastError;
+}
 
 export type AanpFnpGenerationResult = {
   items: BankItem[];
@@ -125,14 +157,22 @@ function slotToBankItem(
     itemType: "vignette",
     patientAgeGroup: slot.patientAgeGroup,
     blueprintTopic: slot.blueprintTopic,
-    ngnPayload: {
-      ...base.ngnPayload,
-      clinicalSystem: slot.clinicalSystem,
-      patientAgeGroup: slot.patientAgeGroup,
-      blueprintTopic: slot.blueprintTopic,
-      blueprintDomain: slot.blueprintDomain,
-      generationMeta: meta,
-    },
+    ngnPayload: attachAanpFnpStudyLinks(
+      {
+        ...base.ngnPayload,
+        clinicalSystem: slot.clinicalSystem,
+        patientAgeGroup: slot.patientAgeGroup,
+        blueprintTopic: slot.blueprintTopic,
+        blueprintDomain: slot.blueprintDomain,
+        generationMeta: meta,
+      },
+      {
+        blueprintDomain: slot.blueprintDomain,
+        clinicalSystem: slot.clinicalSystem,
+        blueprintTopic: slot.blueprintTopic,
+        patientAgeGroup: slot.patientAgeGroup,
+      }
+    ),
   };
 }
 
@@ -168,19 +208,21 @@ export async function generateAanpFnpChunk(params: {
         .join("\n\n")}`
     : "";
 
-  const completion = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [
-      { role: "system", content: `${UNIVERSAL_EXAM_SYSTEM}\n${AANP_FNP_EXAM_SYSTEM_AUGMENTATION}` },
-      {
-        role: "user",
-        content: buildSlotPrompt(params.slots, patternBlock, exemplarBlock),
-      },
-    ],
-    temperature: 0.35,
-    max_tokens: 12000,
-    response_format: { type: "json_object" },
-  });
+  const completion = await withOpenAiRetries("OpenAI completion", () =>
+    openai!.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        { role: "system", content: `${UNIVERSAL_EXAM_SYSTEM}\n${AANP_FNP_EXAM_SYSTEM_AUGMENTATION}` },
+        {
+          role: "user",
+          content: buildSlotPrompt(params.slots, patternBlock, exemplarBlock),
+        },
+      ],
+      temperature: 0.35,
+      max_tokens: 12000,
+      response_format: { type: "json_object" },
+    })
+  );
 
   const raw = completion.choices[0]?.message?.content ?? "{}";
   const questions = parseGenerationResponse(raw);
@@ -195,12 +237,13 @@ export async function generateAanpFnpChunk(params: {
       rejected++;
       continue;
     }
-    const item = slotToBankItem(exam, slot, params.batchId, i, 0);
-    const qc = assessAanpFnpBankItem(item, { source: "generated" });
-    if (!qc.serveReady || qc.qcScore < 60) {
+    let item = slotToBankItem(exam, slot, params.batchId, i, 0);
+    const gated = await runAanpFnpHybridGate(item, { source: "generated", useAiRepair: true });
+    if (!gated.ingestReady) {
       rejected++;
       continue;
     }
+    item = gated.item;
     bankItems.push({
       ...item,
       difficulty: slot.difficulty,
@@ -208,8 +251,10 @@ export async function generateAanpFnpChunk(params: {
         ...item.ngnPayload,
         generationMeta: {
           ...(item.ngnPayload?.generationMeta as AanpFnpGenerationMeta),
-          qcScore: qc.qcScore,
-          qcFlags: qc.flags,
+          qcScore: gated.qcScore,
+          qcFlags: gated.flags,
+          repairMethod: gated.repairMethod,
+          hybridGate: gated.tier,
         },
       },
     });
@@ -228,6 +273,8 @@ export async function generateAanpFnpBatch(params: {
   ageGroupDeficits?: Record<string, number>;
   exemplarItems?: BankItem[];
   onProgress?: (done: number, total: number) => void;
+  /** Persist each chunk as it completes (survives mid-run network failures). */
+  onChunkAccepted?: (items: BankItem[], meta: { chunkIndex: number; batchId: string }) => Promise<void>;
 }): Promise<AanpFnpGenerationResult> {
   const batchId = `aanp-${Date.now().toString(36)}`;
   const slots = planAanpFnpGenerationSlots({
@@ -240,22 +287,50 @@ export async function generateAanpFnpBatch(params: {
   let rejected = 0;
   let diversityIssues = 0;
 
+  const chunkStarts: number[] = [];
   for (let i = 0; i < slots.length; i += AANP_FNP_GENERATION_CHUNK_SIZE) {
-    const chunk = slots.slice(i, i + AANP_FNP_GENERATION_CHUNK_SIZE);
-    const result = await generateAanpFnpChunk({
-      slots: chunk,
-      batchId,
-      exemplarItems: params.exemplarItems,
-    });
-    rejected += result.rejected;
+    chunkStarts.push(i);
+  }
 
-    const diversity = auditBatchDiversity(result.accepted);
-    if (!batchPassesDiversity(result.accepted)) {
-      diversityIssues += diversity.length;
+  const concurrency = AANP_FNP_GENERATION_CONCURRENCY;
+  let processedSlots = 0;
+
+  for (let wave = 0; wave < chunkStarts.length; wave += concurrency) {
+    const waveStarts = chunkStarts.slice(wave, wave + concurrency);
+    const waveResults = await Promise.all(
+      waveStarts.map(async (start) => {
+        const chunk = slots.slice(start, start + AANP_FNP_GENERATION_CHUNK_SIZE);
+        const result = await generateAanpFnpChunk({
+          slots: chunk,
+          batchId,
+          exemplarItems: params.exemplarItems,
+        });
+        return { start, chunk, result };
+      })
+    );
+
+    for (const { start, chunk, result } of waveResults) {
+      rejected += result.rejected;
+
+      const diversity = auditBatchDiversity(result.accepted);
+      if (!batchPassesDiversity(result.accepted)) {
+        diversityIssues += diversity.length;
+      }
+
+      allItems.push(...result.accepted);
+
+      const chunkItems = filterBankItemsForIngest("aanp-fnp", result.accepted, "generated");
+      if (chunkItems.length > 0 && params.onChunkAccepted) {
+        await params.onChunkAccepted(chunkItems, {
+          chunkIndex: start / AANP_FNP_GENERATION_CHUNK_SIZE,
+          batchId,
+        });
+      }
+
+      processedSlots += chunk.length;
     }
 
-    allItems.push(...result.accepted);
-    params.onProgress?.(Math.min(i + chunk.length, params.count), params.count);
+    params.onProgress?.(Math.min(processedSlots, params.count), params.count);
   }
 
   const ingested = filterBankItemsForIngest("aanp-fnp", allItems, "generated");

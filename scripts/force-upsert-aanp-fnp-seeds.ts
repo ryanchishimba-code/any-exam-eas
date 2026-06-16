@@ -3,6 +3,7 @@
 import { collectHighYieldSeedRows } from "../src/lib/exam-prep/high-yield-index";
 import { prisma } from "../src/lib/prisma";
 import { bankItemContentHash } from "../src/lib/sync-question-bank";
+import { serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
 import { bankItemPassesIngestGate } from "../src/lib/exam-prep/bank-ingest-gate";
 
 async function main() {
@@ -27,7 +28,7 @@ async function main() {
       blueprintTopic: row.item.blueprintTopic ?? null,
       itemType: row.item.itemType ?? "vignette",
       question: row.item.question,
-      options: JSON.stringify(row.item.options),
+      options: serializeBankOptions(row.item),
       correctAnswer: row.item.correctAnswer,
       explanation: row.item.explanation,
       tags: row.item.tags ? JSON.stringify(row.item.tags) : null,

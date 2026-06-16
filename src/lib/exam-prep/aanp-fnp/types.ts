@@ -18,7 +18,13 @@ export const AANP_FNP_GENERATION_BATCH_SIZE = 500;
 /** Items generated per OpenAI call (must satisfy batch-of-10 diversity rules). */
 export const AANP_FNP_GENERATION_CHUNK_SIZE = 10;
 
-export const AANP_FNP_GENERATION_VERSION = "gpt-4o-mini-aanp-fnp-v1";
+/** Parallel OpenAI chunk requests during batch generation. */
+export const AANP_FNP_GENERATION_CONCURRENCY = 5;
+
+/** Default variants created per curated seed in hybrid pipeline. */
+export const AANP_FNP_VARIANTS_PER_SEED = 4;
+
+export const AANP_FNP_GENERATION_VERSION = "gpt-4o-mini-aanp-fnp-v3-hybrid";
 
 export type AanpFnpReviewStatus = "pending" | "approved" | "flagged" | "rejected";
 

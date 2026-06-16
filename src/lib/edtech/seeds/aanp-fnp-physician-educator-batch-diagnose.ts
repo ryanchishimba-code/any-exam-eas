@@ -22,7 +22,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_DIAGNOSE: EnrichedBankItem[] = [
       blueprintTopic: "ACS",
       difficulty: 4,
       tags: ["STEMI", "ECG", ...PE],
-      related: { reviewModuleSlug: "acute-coronary-syndrome" },
+      related: {
+        reviewModuleSlug: "acute-coronary-syndrome",
+        memoryCardIds: ["fnp-stemi-reperfusion", "fnp-diagnose-chest-pain-ddx"],
+      },
     }
   ),
 
@@ -45,7 +48,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_DIAGNOSE: EnrichedBankItem[] = [
       blueprintTopic: "febrile infant",
       difficulty: 5,
       tags: ["febrile infant", "sepsis", ...PE],
-      related: { reviewModuleSlug: "aanp-pediatrics-high-yield" },
+      related: {
+        reviewModuleSlug: "aanp-pediatrics-high-yield",
+        memoryCardIds: ["fnp-febrile-neonate", "fnp-diagnose-fever-source"],
+      },
     }
   ),
 
@@ -63,6 +69,9 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_DIAGNOSE: EnrichedBankItem[] = [
       blueprintTopic: "UTI",
       difficulty: 3,
       tags: ["UTI", ...PE],
+      related: {
+        memoryCardIds: ["fnp-uti-pyelonephritis", "fnp-diagnose-fever-source"],
+      },
     }
   ),
 
@@ -80,6 +89,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_DIAGNOSE: EnrichedBankItem[] = [
       blueprintTopic: "hypothyroidism",
       difficulty: 3,
       tags: ["thyroid", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-diagnose-domain",
+        memoryCardIds: ["fnp-diagnose-differential-priority"],
+      },
     }
   ),
 
@@ -97,6 +110,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_DIAGNOSE: EnrichedBankItem[] = [
       blueprintTopic: "interstitial lung disease",
       difficulty: 4,
       tags: ["pulmonary", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-diagnose-domain",
+        memoryCardIds: ["fnp-diagnose-differential-priority"],
+      },
     }
   ),
 
@@ -114,6 +131,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_DIAGNOSE: EnrichedBankItem[] = [
       blueprintTopic: "preeclampsia",
       difficulty: 4,
       tags: ["OB", "preeclampsia", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-diagnose-domain",
+        memoryCardIds: ["fnp-diagnose-headache-red-flags", "fnp-assess-prenatal-labs"],
+      },
     }
   ),
 
@@ -136,7 +157,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_DIAGNOSE: EnrichedBankItem[] = [
       blueprintTopic: "delirium",
       difficulty: 3,
       tags: ["delirium", "geriatrics", ...PE],
-      related: { reviewModuleSlug: "aanp-geriatrics-high-yield" },
+      related: {
+        reviewModuleSlug: "aanp-geriatrics-high-yield",
+        memoryCardIds: ["fnp-diagnose-delirium-vs-dementia", "fnp-delirium-workup"],
+      },
     }
   ),
 
@@ -154,6 +178,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_DIAGNOSE: EnrichedBankItem[] = [
       blueprintTopic: "tuberculosis",
       difficulty: 4,
       tags: ["TB", ...PE],
+      related: {
+        reviewModuleSlug: "infectious-disease",
+        memoryCardIds: ["fnp-cap-outpatient", "fnp-diagnose-fever-source"],
+      },
     }
   ),
 
@@ -171,6 +199,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_DIAGNOSE: EnrichedBankItem[] = [
       blueprintTopic: "depression",
       difficulty: 3,
       tags: ["depression", "MDD", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-diagnose-domain",
+        memoryCardIds: ["fnp-depression-screening", "fnp-diagnose-differential-priority"],
+      },
     }
   ),
 
@@ -188,6 +220,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_DIAGNOSE: EnrichedBankItem[] = [
       blueprintTopic: "nephrology",
       difficulty: 4,
       tags: ["PSGN", "pediatrics", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-pediatrics-high-yield",
+        memoryCardIds: ["fnp-strep-pharyngitis", "fnp-diagnose-differential-priority"],
+      },
     }
   ),
 ];

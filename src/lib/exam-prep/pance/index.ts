@@ -5,3 +5,5 @@ export * from "./physician-educator-quality";
 export * from "./quality-gate";
 export * from "./generation-pipeline";
 export * from "./blueprint-db";
+export { insertPanceBankItems } from "./bank-insert";
+export type { PanceInsertResult } from "./bank-insert";

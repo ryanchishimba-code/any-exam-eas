@@ -39,8 +39,8 @@ export const MPJE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       references: [DEA, CSA],
       tags: ["C-II", "prescription-validity", ...PE],
       related: {
-        reviewModuleSlug: "controlled-substances",
-        memoryCardIds: ["mpje-cii-rules", "mpje-expired-rx"],
+        reviewModuleSlug: "controlled-substances-pance",
+        memoryCardIds: ["pance-cii-prescribing", "pance-cii-validity"],
         keyTakeaway:
           "An expired C-II prescription cannot be revived by a partial fill — refuse and request a new prescription.",
       },
@@ -65,8 +65,8 @@ export const MPJE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       references: [DEA],
       tags: ["C-III", "e-prescribing", ...PE],
       related: {
-        reviewModuleSlug: "controlled-substances",
-        memoryCardIds: ["mpje-schedules"],
+        reviewModuleSlug: "controlled-substances-pance",
+        memoryCardIds: ["pance-csa-schedules"],
         keyTakeaway:
           "C-III–V prescriptions allow up to 5 refills within 6 months, and DEA-compliant e-prescribing is valid.",
       },
@@ -130,8 +130,8 @@ export const MPJE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       references: [DEA, CSA],
       tags: ["C-II", "partial-fill", "hospice", ...PE],
       related: {
-        reviewModuleSlug: "controlled-substances",
-        memoryCardIds: ["mpje-partial-fill-ciii", "mpje-cii-rules"],
+        reviewModuleSlug: "controlled-substances-pance",
+        memoryCardIds: ["pance-cii-prescribing"],
         keyTakeaway:
           "C-II partial fills at the patient's request are permitted when recorded per federal and state partial-fill rules.",
       },
@@ -195,8 +195,8 @@ export const MPJE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       references: [DEA],
       tags: ["inventory", "DEA-records", ...PE],
       related: {
-        reviewModuleSlug: "controlled-substances",
-        memoryCardIds: ["mpje-recordkeeping"],
+        reviewModuleSlug: "controlled-substances-pance",
+        memoryCardIds: ["pance-pa-dea-registration"],
         keyTakeaway:
           "Perpetual controlled-substance inventories must be updated at each receipt and each dispensing.",
       },
@@ -240,8 +240,8 @@ export const MPJE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       references: [DEA],
       tags: ["PIC", "technician-scope", ...PE],
       related: {
-        reviewModuleSlug: "controlled-substances",
-        memoryCardIds: ["mpje-recordkeeping"],
+        reviewModuleSlug: "controlled-substances-pance",
+        memoryCardIds: ["pance-pa-dea-registration"],
         keyTakeaway:
           "Controlled-substance accountability — DEA Form 222 and invoices — stays with a pharmacist and cannot be delegated to technicians.",
       },
@@ -285,8 +285,8 @@ export const MPJE_PHYSICIAN_EDUCATOR_BATCH_01: EnrichedBankItem[] = [
       references: [DEA],
       tags: ["prescriptive-authority", "C-IV", "PA", ...PE],
       related: {
-        reviewModuleSlug: "controlled-substances",
-        memoryCardIds: ["mpje-schedules"],
+        reviewModuleSlug: "controlled-substances-pance",
+        memoryCardIds: ["pance-csa-schedules"],
         keyTakeaway:
           "Mid-level prescribers may prescribe controlled substances when both federally registered and state-authorized.",
       },

@@ -62,6 +62,43 @@ export const REFERENCE_EXTERNAL_RESOURCES: Partial<Record<ExamSlug, ReferenceExt
       url: "https://www.sanfordguide.com/",
     },
   ],
+  pance: [
+    {
+      label: "NCCPA PANCE Blueprint",
+      description: "Official content blueprint and task categories",
+      url: "https://www.nccpa.net/pance",
+    },
+    {
+      label: "ACC/AHA Guidelines",
+      description: "Cardiovascular disease — hypertension, ACS, heart failure",
+      url: "https://www.acc.org/guidelines",
+    },
+    {
+      label: "Surviving Sepsis Campaign",
+      description: "Hour-1 sepsis bundle and shock management",
+      url: "https://www.sccm.org/survivingsepsiscampaign",
+    },
+    {
+      label: "ADA Standards of Care",
+      description: "Diabetes diagnosis, targets, and pharmacotherapy",
+      url: "https://diabetesjournals.org/care/issue",
+    },
+    {
+      label: "GOLD COPD Report",
+      description: "COPD diagnosis, staging, and exacerbation management",
+      url: "https://goldcopd.org/",
+    },
+    {
+      label: "AAP Clinical Practice",
+      description: "Pediatric guidelines including febrile infant evaluation",
+      url: "https://www.aap.org/en/patient-care/",
+    },
+    {
+      label: "DEA Diversion Control",
+      description: "Controlled substance prescribing and registration",
+      url: "https://www.deadiversion.usdoj.gov/",
+    },
+  ],
   nclex: [
     {
       label: "CDC Infection Control",

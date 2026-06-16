@@ -6,6 +6,7 @@ import type {
   AanpFnpDomainId,
   AanpFnpPatientAgeGroupId,
 } from "./aanp-fnp/types";
+import { attachAanpFnpStudyLinks } from "./aanp-fnp/study-links";
 
 type AanpFnpMeta = Partial<EnrichedBankItem> & {
   blueprintDomain?: AanpFnpDomainId | string;
@@ -29,13 +30,25 @@ function baseTags(meta: AanpFnpMeta, extra: string[] = []) {
 }
 
 function payload(meta: AanpFnpMeta, extra: Record<string, unknown> = {}) {
-  return {
+  const domain = (meta.blueprintDomain ?? meta.clinicalSystem ?? "assess") as string;
+  const base = {
     clinicalSystem: meta.clinicalSystem,
     patientAgeGroup: meta.patientAgeGroup,
     blueprintTopic: meta.blueprintTopic,
+    blueprintDomain: domain,
     ...meta.related,
     ...extra,
   };
+  return attachAanpFnpStudyLinks(
+    base,
+    {
+      blueprintDomain: domain,
+      clinicalSystem: meta.clinicalSystem ?? domain,
+      blueprintTopic: meta.blueprintTopic ?? "primary care",
+      patientAgeGroup: meta.patientAgeGroup,
+    },
+    meta.related as Record<string, unknown> | undefined
+  );
 }
 
 /** Clinical vignette + separate stem (AANP FNP case-style). */

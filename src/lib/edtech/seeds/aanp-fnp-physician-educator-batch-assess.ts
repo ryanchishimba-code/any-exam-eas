@@ -31,7 +31,11 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_ASSESS: EnrichedBankItem[] = [
       difficulty: 3,
       references: [USPSTF],
       tags: ["screening", "CRC", ...PE],
-      related: { reviewModuleSlug: "aanp-assess-domain", keyTakeaway: "CRC screening starts at 45 for average risk." },
+      related: {
+        reviewModuleSlug: "aanp-assess-domain",
+        memoryCardIds: ["fnp-assess-screening-uspstf"],
+        keyTakeaway: "CRC screening starts at 45 for average risk.",
+      },
     }
   ),
 
@@ -55,7 +59,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_ASSESS: EnrichedBankItem[] = [
       difficulty: 3,
       references: [BRIGHT],
       tags: ["newborn", "jaundice", ...PE],
-      related: { reviewModuleSlug: "aanp-pediatrics-high-yield" },
+      related: {
+        reviewModuleSlug: "aanp-pediatrics-high-yield",
+        memoryCardIds: ["fnp-assess-next-best-test"],
+      },
     }
   ),
 
@@ -78,7 +85,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_ASSESS: EnrichedBankItem[] = [
       blueprintTopic: "geriatric assessment",
       difficulty: 4,
       tags: ["delirium", "UTI", "geriatrics", ...PE],
-      related: { reviewModuleSlug: "aanp-geriatrics-high-yield" },
+      related: {
+        reviewModuleSlug: "aanp-geriatrics-high-yield",
+        memoryCardIds: ["fnp-delirium-workup", "fnp-diagnose-delirium-vs-dementia"],
+      },
     }
   ),
 
@@ -101,7 +111,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_ASSESS: EnrichedBankItem[] = [
       blueprintTopic: "prenatal assessment",
       difficulty: 3,
       tags: ["prenatal", "OB", ...PE],
-      related: { reviewModuleSlug: "aanp-assess-domain" },
+      related: {
+        reviewModuleSlug: "aanp-assess-domain",
+        memoryCardIds: ["fnp-assess-prenatal-labs"],
+      },
     }
   ),
 
@@ -125,7 +138,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_ASSESS: EnrichedBankItem[] = [
       difficulty: 4,
       references: [BRIGHT],
       tags: ["development", "red flags", ...PE],
-      related: { reviewModuleSlug: "aanp-pediatrics-high-yield" },
+      related: {
+        reviewModuleSlug: "aanp-pediatrics-high-yield",
+        memoryCardIds: ["fnp-development-milestones"],
+      },
     }
   ),
 
@@ -149,6 +165,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_ASSESS: EnrichedBankItem[] = [
       difficulty: 4,
       references: [USPSTF],
       tags: ["screening", "lung cancer", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-assess-domain",
+        memoryCardIds: ["fnp-assess-screening-uspstf"],
+      },
     }
   ),
 
@@ -171,6 +191,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_ASSESS: EnrichedBankItem[] = [
       blueprintTopic: "pediatric respiratory assessment",
       difficulty: 3,
       tags: ["croup", "pediatrics", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-pediatrics-high-yield",
+        memoryCardIds: ["fnp-assess-next-best-test"],
+      },
     }
   ),
 
@@ -193,6 +217,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_ASSESS: EnrichedBankItem[] = [
       blueprintTopic: "hypothyroidism workup",
       difficulty: 3,
       tags: ["thyroid", "hypothyroidism", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-assess-domain",
+        memoryCardIds: ["fnp-assess-next-best-test"],
+      },
     }
   ),
 
@@ -215,7 +243,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_ASSESS: EnrichedBankItem[] = [
       blueprintTopic: "medication review",
       difficulty: 4,
       tags: ["Beers", "falls", "polypharmacy", ...PE],
-      related: { reviewModuleSlug: "aanp-geriatrics-high-yield" },
+      related: {
+        reviewModuleSlug: "aanp-geriatrics-high-yield",
+        memoryCardIds: ["fnp-beers-criteria", "fnp-assess-geriatric-falls"],
+      },
     }
   ),
 
@@ -238,6 +269,10 @@ export const AANP_FNP_PHYSICIAN_EDUCATOR_BATCH_ASSESS: EnrichedBankItem[] = [
       blueprintTopic: "adolescent health",
       difficulty: 3,
       tags: ["contraception", "adolescent", ...PE],
+      related: {
+        reviewModuleSlug: "aanp-pediatrics-high-yield",
+        memoryCardIds: ["fnp-adolescent-confidentiality", "fnp-plan-contraception"],
+      },
     }
   ),
 ];

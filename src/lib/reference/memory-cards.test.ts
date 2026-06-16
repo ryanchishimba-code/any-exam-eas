@@ -50,7 +50,7 @@ describe("memory-cards", () => {
   it("has unique memory card ids", () => {
     const ids = MEMORY_CARDS.map((c) => c.id);
     expect(new Set(ids).size).toBe(ids.length);
-    expect(ids.length).toBeGreaterThanOrEqual(57);
+    expect(ids.length).toBeGreaterThanOrEqual(110);
   });
 
   it("links reviewModuleSlug to known modules when set", () => {
