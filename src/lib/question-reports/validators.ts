@@ -1,7 +1,10 @@
 import { z } from "zod";
-import { QUESTION_REPORT_REASONS } from "./types";
+import { QUESTION_REPORT_REASONS, type QuestionReportReason } from "./types";
 
-const reasonIds = QUESTION_REPORT_REASONS.map((r) => r.id) as [string, ...string[]];
+const reasonIds = QUESTION_REPORT_REASONS.map((r) => r.id) as [
+  QuestionReportReason,
+  ...QuestionReportReason[],
+];
 
 export const submitQuestionReportSchema = z.object({
   bankItemId: z.string().min(1).optional(),
