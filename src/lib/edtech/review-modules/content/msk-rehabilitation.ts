@@ -34,6 +34,50 @@ export const MSK_REHABILITATION_MODULE: ReviewModuleContent = {
       ],
     },
     {
+      id: "comparisons",
+      title: T.comparisons,
+      tables: [
+        {
+          caption: "Shoulder differential — exam findings and first-line care",
+          headers: ["Condition", "Hallmark finding", "Key intervention"],
+          rows: [
+            ["Subacromial impingement", "Painful arc 60–120°, + Hawkins-Kennedy", "Scapular stabilization, posture, activity modification"],
+            ["Full-thickness cuff tear", "+ Drop arm, weakness > pain", "Progressive loading; surgical referral if functional loss"],
+            ["Adhesive capsulitis", "Global passive ROM loss (ER lost first)", "Mobilization, stretching, time-based staging"],
+            ["AC joint sprain", "Point tenderness, + cross-body adduction", "Relative rest, scapular/cuff strengthening"],
+          ],
+        },
+        {
+          caption: "Total hip arthroplasty precautions by surgical approach",
+          headers: ["Approach", "Avoid", "Typical focus"],
+          rows: [
+            ["Posterolateral", "Flexion >90°, adduction, internal rotation", "Bridging to functional mobility within precautions"],
+            ["Anterior", "Extension, external rotation, adduction", "Early gait; watch hip extension in terminal stance"],
+          ],
+        },
+      ],
+    },
+    {
+      id: "visual-aids",
+      title: T["visual-aids"],
+      bullets: [
+        "Shoulder special-test cluster flow: painful arc → Hawkins-Kennedy → empty can → drop arm",
+        "ACL rehab timeline: protect graft → restore ROM/quad control → strengthen → agility/plyometrics → return-to-sport testing",
+        "Lumbar directional-preference map: centralization = continue; peripheralization = stop and reassess",
+        "Irritability ladder linking high/moderate/low irritability to mobilization grade and exercise dose",
+      ],
+    },
+    {
+      id: "misconceptions",
+      title: T.misconceptions,
+      bullets: [
+        "More mobilization is always better — match grade to irritability; high irritability needs gentle, pain-free dosing",
+        "Avoid all loading after a rotator cuff injury — progressive loading is therapeutic; protect, don't needlessly immobilize",
+        "Stretch through radicular leg pain — peripheralization signals the wrong direction; stop and reassess",
+        "One set of THA precautions fits all — restrictions depend on the surgical approach and surgeon protocol",
+      ],
+    },
+    {
       id: "pearls",
       title: T.pearls,
       bullets: [

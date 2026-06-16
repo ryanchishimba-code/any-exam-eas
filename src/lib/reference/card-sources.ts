@@ -948,6 +948,113 @@ export const MEMORY_CARD_SOURCES: Record<string, MemoryCardSourceMeta> = {
     sourceUrl: "https://openstax.org/books/anatomy-and-physiology",
     lastReviewedAt: "2026-06-01",
   },
+  // NAPLEX — controlled substances & DEA law
+  "naplex-csa-schedules": {
+    sourceLabel: "DEA Pharmacist's Manual — CSA schedules",
+    sourceUrl: "https://www.deadiversion.usdoj.gov/pubs/manuals/pharm2/pharm_content.htm",
+    lastReviewedAt: "2026-06-16",
+  },
+  "naplex-cii-refill-quantity": {
+    sourceLabel: "DEA Pharmacist's Manual — Schedule II rules",
+    sourceUrl: "https://www.deadiversion.usdoj.gov/pubs/manuals/pharm2/pharm_content.htm",
+    lastReviewedAt: "2026-06-16",
+  },
+  "naplex-cii-emergency-fill": {
+    sourceLabel: "21 CFR 1306.11 — emergency CII dispensing",
+    sourceUrl: "https://www.deadiversion.usdoj.gov/21cfr/cfr/1306/1306_11.htm",
+    lastReviewedAt: "2026-06-16",
+  },
+  "naplex-cii-partial-fill": {
+    sourceLabel: "DEA Pharmacist's Manual — partial fills",
+    sourceUrl: "https://www.deadiversion.usdoj.gov/pubs/manuals/pharm2/pharm_content.htm",
+    lastReviewedAt: "2026-06-16",
+  },
+  "naplex-cs-transfer-refills": {
+    sourceLabel: "21 CFR 1306.25 — transfer of CIII–V refills",
+    sourceUrl: "https://www.deadiversion.usdoj.gov/21cfr/cfr/1306/1306_25.htm",
+    lastReviewedAt: "2026-06-16",
+  },
+  "naplex-cs-recordkeeping": {
+    sourceLabel: "DEA Pharmacist's Manual — records & inventory",
+    sourceUrl: "https://www.deadiversion.usdoj.gov/pubs/manuals/pharm2/pharm_content.htm",
+    lastReviewedAt: "2026-06-16",
+  },
+  "naplex-corresponding-responsibility": {
+    sourceLabel: "21 CFR 1306.04 — corresponding responsibility",
+    sourceUrl: "https://www.deadiversion.usdoj.gov/21cfr/cfr/1306/1306_04.htm",
+    lastReviewedAt: "2026-06-16",
+  },
+  "naplex-glp1-counseling": {
+    sourceLabel: "ADA Standards of Care — pharmacotherapy",
+    sourceUrl: "https://diabetesjournals.org/care/issue",
+    lastReviewedAt: "2026-06-16",
+  },
+  "naplex-u500-sick-day": {
+    sourceLabel: "ISMP High-Alert Medications list",
+    sourceUrl: "https://www.ismp.org/recommendations/high-alert-medications-acute-list",
+    lastReviewedAt: "2026-06-16",
+  },
+  // NPTE-PT
+  "npte-rotator-cuff-testing": {
+    sourceLabel: "APTA Clinical Practice Guidelines",
+    sourceUrl: "https://www.apta.org/patient-care/evidence-based-practice-resources/cpgs",
+    lastReviewedAt: "2026-06-16",
+  },
+  "npte-lumbar-red-flags": {
+    sourceLabel: "APTA Low Back Pain CPG",
+    sourceUrl: "https://www.apta.org/patient-care/evidence-based-practice-resources/cpgs",
+    lastReviewedAt: "2026-06-16",
+  },
+  "npte-tka-precautions": {
+    sourceLabel: "APTA Clinical Practice Guidelines",
+    sourceUrl: "https://www.apta.org/patient-care/evidence-based-practice-resources/cpgs",
+    lastReviewedAt: "2026-06-16",
+  },
+  "npte-stroke-gait": {
+    sourceLabel: "APTA ANPT Locomotor CPG",
+    sourceUrl: "https://www.neuropt.org/practice-resources/anpt-clinical-practice-guidelines",
+    lastReviewedAt: "2026-06-16",
+  },
+  "npte-sci-autonomic": {
+    sourceLabel: "Consortium for Spinal Cord Medicine",
+    sourceUrl: "https://pva.org/research-resources/publications/",
+    lastReviewedAt: "2026-06-16",
+  },
+  "npte-parkinson-cues": {
+    sourceLabel: "APTA ANPT Parkinson Disease CPG",
+    sourceUrl: "https://www.neuropt.org/practice-resources/anpt-clinical-practice-guidelines",
+    lastReviewedAt: "2026-06-16",
+  },
+  "npte-copd-breathing": {
+    sourceLabel: "GOLD COPD Report",
+    sourceUrl: "https://goldcopd.org/",
+    lastReviewedAt: "2026-06-16",
+  },
+  "npte-copd-oxygen": {
+    sourceLabel: "GOLD COPD Report",
+    sourceUrl: "https://goldcopd.org/",
+    lastReviewedAt: "2026-06-16",
+  },
+  "npte-us-contraindications": {
+    sourceLabel: "APTA Practice Resources",
+    sourceUrl: "https://www.apta.org/patient-care",
+    lastReviewedAt: "2026-06-16",
+  },
+  "npte-cane-side": {
+    sourceLabel: "APTA Practice Resources",
+    sourceUrl: "https://www.apta.org/patient-care",
+    lastReviewedAt: "2026-06-16",
+  },
+  "npte-fall-risk-tug": {
+    sourceLabel: "CDC STEADI Initiative",
+    sourceUrl: "https://www.cdc.gov/steadi/",
+    lastReviewedAt: "2026-06-16",
+  },
+  "npte-referral-scope": {
+    sourceLabel: "FSBPT NPTE Content Outline",
+    sourceUrl: "https://www.fsbpt.org/free-resources/npte/npte-test-content-outline",
+    lastReviewedAt: "2026-06-16",
+  },
 };
 
 export function enrichMemoryCard(card: MemoryCard): MemoryCard {

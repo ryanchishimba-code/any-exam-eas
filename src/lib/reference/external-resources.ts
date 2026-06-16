@@ -121,6 +121,38 @@ export const REFERENCE_EXTERNAL_RESOURCES: Partial<Record<ExamSlug, ReferenceExt
       url: "https://www.cdc.gov/falls/",
     },
   ],
+  "aanp-fnp": [
+    {
+      label: "AANP Certification",
+      description: "AANPCB FNP exam blueprint and candidate handbook",
+      url: "https://www.aanpcert.org/certs/np",
+    },
+    {
+      label: "USPSTF Recommendations",
+      description: "A & B graded preventive screening and counseling",
+      url: "https://www.uspreventiveservicestaskforce.org/uspstf/topic_search_results?topic_status=P",
+    },
+    {
+      label: "CDC Immunization Schedules",
+      description: "Child, adolescent, and adult vaccine schedules",
+      url: "https://www.cdc.gov/vaccines/hcp/imz-schedules/",
+    },
+    {
+      label: "ADA Standards of Care",
+      description: "Diabetes diagnosis, targets, and pharmacotherapy",
+      url: "https://diabetesjournals.org/care/issue",
+    },
+    {
+      label: "ACC/AHA Guidelines",
+      description: "Hypertension, ASCVD risk, and cholesterol management",
+      url: "https://www.acc.org/guidelines",
+    },
+    {
+      label: "Beers Criteria (AGS)",
+      description: "Potentially inappropriate medications in older adults",
+      url: "https://geriatricscareonline.org/",
+    },
+  ],
   nclex: [
     {
       label: "CDC Infection Control",

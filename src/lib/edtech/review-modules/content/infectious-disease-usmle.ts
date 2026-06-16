@@ -7,7 +7,7 @@ export const INFECTIOUS_DISEASE_USMLE_MODULE: ReviewModuleContent = {
       id: "why-it-matters",
       title: T["why-it-matters"],
       paragraphs: [
-        "Infectious disease vignettes on USMLE Step 2 CK reward pattern recognition plus the correct next step—not exhaustive microbiology. The exam repeatedly tests empiric regimens (CAP, meningitis, febrile neutropenia), classic traps (daptomycin for MRSA pneumonia, metronidazole-first C. diff), HIV opportunistic infection thresholds, and vancomycin monitoring (AUC/MIC over trough chasing).",
+        "Infectious disease vignettes reward pattern recognition plus the correct next step—not exhaustive microbiology. Board items repeatedly test empiric regimens (CAP, meningitis, febrile neutropenia), classic traps (daptomycin for MRSA pneumonia, metronidazole-first C. diff), HIV opportunistic infection thresholds, and vancomycin monitoring (AUC/MIC over trough chasing).",
         "Clinical judgment items often pair a sick patient with pending cultures: blood cultures before antibiotics when feasible, but never delay treatment beyond the hour-1 window in sepsis or meningitis. Know when to add ampicillin for Listeria, when to start dexamethasone before antibiotics in bacterial meningitis, and when oral vancomycin beats IV metronidazole for C. difficile.",
       ],
     },

@@ -106,6 +106,20 @@ describe("NCLEX memory cards ↔ deep dive modules", () => {
   }
 });
 
+describe("NAPLEX memory cards ↔ deep dive modules", () => {
+  const naplexModules = REVIEW_MODULE_TOPICS.filter((t) => t.examSlug === "naplex");
+
+  for (const mod of naplexModules) {
+    it(`${mod.slug} has memory cards linked for deep dive`, () => {
+      const cards = getMemoryCardsByReviewModuleSlug("naplex", mod.slug);
+      expect(cards.length).toBeGreaterThanOrEqual(6);
+      for (const card of cards) {
+        expect(card.reviewModuleSlug).toBe(mod.slug);
+      }
+    });
+  }
+});
+
 describe("PANCE memory cards ↔ deep dive modules", () => {
   const panceModules = REVIEW_MODULE_TOPICS.filter((t) => t.examSlug === "pance");
 

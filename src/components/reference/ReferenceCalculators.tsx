@@ -37,7 +37,8 @@ const CLINICAL_EXAMS: ExamSlug[] = ["naplex", "usmle", "nclex", "pance", "aanp-f
 
 export function ReferenceCalculators({ examSlug }: { examSlug: ExamSlug }) {
   const showVanc = examSlug === "naplex" || examSlug === "usmle";
-  const showBedside = examSlug === "nclex";
+  const showBedside =
+    examSlug === "nclex" || examSlug === "pance" || examSlug === "aanp-fnp";
   const [tab, setTab] = useState<CalcTab>("bmi");
 
   const [age, setAge] = useState("70");
@@ -123,7 +124,11 @@ export function ReferenceCalculators({ examSlug }: { examSlug: ExamSlug }) {
       ? "BMI, IV rates, weight-based dosing, and bedside MAP/qSOFA — core nursing math and monitoring."
       : examSlug === "naplex"
         ? "Clinical math plus CrCl and vancomycin tools for pharmacy board-style checks."
-        : "Clinical math, renal dosing, and antimicrobial monitoring for medicine boards.";
+        : examSlug === "pance" || examSlug === "aanp-fnp"
+          ? "Clinical math, renal function, and bedside MAP/qSOFA for primary-care and medicine boards."
+          : examSlug === "npte-pt"
+            ? "BMI, BSA, and unit conversions plus renal function for rehab-relevant dosing checks."
+            : "Clinical math, renal dosing, and antimicrobial monitoring for medicine boards.";
 
   const isClinicalTab = CLINICAL_CALC_TABS.some((t) => t.id === tab);
 

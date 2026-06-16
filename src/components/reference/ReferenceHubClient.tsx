@@ -165,9 +165,7 @@ export function ReferenceHubClient({
 
           <div className={cn(refUi.sectionDivider, refUi.panelSection)}>
             <ReferenceQuickTools examSlug={examSlug} />
-            {examSlug === "naplex" || examSlug === "usmle" || examSlug === "nclex" ? (
-              <ReferenceCalculators examSlug={examSlug} />
-            ) : null}
+            <ReferenceCalculators examSlug={examSlug} />
             <ReferenceExternalResources examSlug={examSlug} />
           </div>
 

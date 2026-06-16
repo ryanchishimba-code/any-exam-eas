@@ -7,7 +7,7 @@ export const DIABETES_PHARMACOTHERAPY_MODULE: ReviewModuleContent = {
       id: "why-it-matters",
       title: T["why-it-matters"],
       paragraphs: [
-        "Diabetes pharmacotherapy is a core NAPLEX domain because pharmacists counsel on insulin technique, adjust non-insulin agents for renal function, prevent hypoglycemia, and recognize drug-induced emergencies (euglycemic DKA, lactic acidosis). Exam items test insulin kinetics, metformin hold rules, SGLT2 inhibitor and GLP-1 agonist benefits, sick-day management, and high-alert dosing errors such as U-500 insulin.",
+        "Diabetes pharmacotherapy is a core board domain because clinicians counsel on insulin technique, adjust non-insulin agents for renal function, prevent hypoglycemia, and recognize drug-induced emergencies (euglycemic DKA, lactic acidosis). Exam items test insulin kinetics, metformin hold rules, SGLT2 inhibitor and GLP-1 agonist benefits, sick-day management, and high-alert dosing errors such as U-500 insulin.",
         "Type 1 diabetes requires insulin from diagnosis; type 2 diabetes progresses from lifestyle ± metformin to combination therapy and often insulin. Pharmacists must match agent to comorbidity (ASCVD, HF, CKD), counsel on administration timing, and know when to hold agents around contrast, surgery, or acute illness.",
       ],
     },
@@ -112,7 +112,7 @@ export const DIABETES_PHARMACOTHERAPY_MODULE: ReviewModuleContent = {
       bullets: [
         "15-15 rule mnemonic: 15 grams, 15 minutes — glucose tabs, juice, or hard candy; follow with snack if next meal >1 h away",
         "Glargine: do not shake vial; inject at same time daily; can cause injection-site irritation — rotate sites",
-        "Empagliflozin/dapagliflozin: HF benefit regardless of diabetes — know dual indication for NAPLEX combo questions",
+        "Empagliflozin/dapagliflozin: HF benefit regardless of diabetes — know dual indication for board combo questions",
         "Metformin XR: better GI tolerability; same renal hold rules as immediate-release",
         "Insulin storage: unopened refrigerated; opened vials/pens room temperature per labeling (typically 28–30 days)",
         "Euglycemic DKA: glucose may be <250 on SGLT2i — high anion gap with ketones; hold SGLT2i; treat with insulin and fluids",

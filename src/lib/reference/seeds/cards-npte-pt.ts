@@ -20,6 +20,9 @@ export const NPTE_PT_MEMORY_CARDS: MemoryCard[] = [
     ],
     practiceTopicSlug: "musculoskeletal",
     reviewModuleSlug: "msk-rehabilitation",
+    sourceLabel: "APTA Clinical Practice Guidelines",
+    sourceUrl: "https://www.apta.org/patient-care/evidence-based-practice-resources/cpgs",
+    lastReviewedAt: "2026-06-16",
     sortOrder: 1,
   },
   {
@@ -39,6 +42,9 @@ export const NPTE_PT_MEMORY_CARDS: MemoryCard[] = [
     ],
     practiceTopicSlug: "musculoskeletal",
     reviewModuleSlug: "msk-rehabilitation",
+    sourceLabel: "APTA Low Back Pain CPG",
+    sourceUrl: "https://www.apta.org/patient-care/evidence-based-practice-resources/cpgs",
+    lastReviewedAt: "2026-06-16",
     sortOrder: 2,
   },
   {
@@ -59,6 +65,9 @@ export const NPTE_PT_MEMORY_CARDS: MemoryCard[] = [
     ],
     practiceTopicSlug: "musculoskeletal",
     reviewModuleSlug: "msk-rehabilitation",
+    sourceLabel: "APTA Clinical Practice Guidelines",
+    sourceUrl: "https://www.apta.org/patient-care/evidence-based-practice-resources/cpgs",
+    lastReviewedAt: "2026-06-16",
     sortOrder: 3,
   },
   {
@@ -79,6 +88,9 @@ export const NPTE_PT_MEMORY_CARDS: MemoryCard[] = [
     ],
     practiceTopicSlug: "neuromuscular-nervous",
     reviewModuleSlug: "stroke-rehabilitation",
+    sourceLabel: "APTA ANPT Locomotor CPG",
+    sourceUrl: "https://www.neuropt.org/practice-resources/anpt-clinical-practice-guidelines",
+    lastReviewedAt: "2026-06-16",
     sortOrder: 4,
   },
   {
@@ -99,6 +111,9 @@ export const NPTE_PT_MEMORY_CARDS: MemoryCard[] = [
     ],
     practiceTopicSlug: "neuromuscular-nervous",
     reviewModuleSlug: "stroke-rehabilitation",
+    sourceLabel: "Consortium for Spinal Cord Medicine",
+    sourceUrl: "https://pva.org/research-resources/publications/",
+    lastReviewedAt: "2026-06-16",
     sortOrder: 5,
   },
   {
@@ -119,6 +134,9 @@ export const NPTE_PT_MEMORY_CARDS: MemoryCard[] = [
     ],
     practiceTopicSlug: "neuromuscular-nervous",
     reviewModuleSlug: "stroke-rehabilitation",
+    sourceLabel: "APTA ANPT Parkinson Disease CPG",
+    sourceUrl: "https://www.neuropt.org/practice-resources/anpt-clinical-practice-guidelines",
+    lastReviewedAt: "2026-06-16",
     sortOrder: 6,
   },
   {
@@ -139,6 +157,9 @@ export const NPTE_PT_MEMORY_CARDS: MemoryCard[] = [
     ],
     practiceTopicSlug: "cardiovascular-pulmonary",
     reviewModuleSlug: "cardiopulmonary-rehab",
+    sourceLabel: "GOLD COPD Report",
+    sourceUrl: "https://goldcopd.org/",
+    lastReviewedAt: "2026-06-16",
     sortOrder: 7,
   },
   {
@@ -158,6 +179,9 @@ export const NPTE_PT_MEMORY_CARDS: MemoryCard[] = [
     ],
     practiceTopicSlug: "cardiovascular-pulmonary",
     reviewModuleSlug: "cardiopulmonary-rehab",
+    sourceLabel: "GOLD COPD Report",
+    sourceUrl: "https://goldcopd.org/",
+    lastReviewedAt: "2026-06-16",
     sortOrder: 8,
   },
   {
@@ -177,6 +201,9 @@ export const NPTE_PT_MEMORY_CARDS: MemoryCard[] = [
     ],
     practiceTopicSlug: "therapeutic-modalities",
     reviewModuleSlug: "therapeutic-modalities",
+    sourceLabel: "APTA Practice Resources",
+    sourceUrl: "https://www.apta.org/patient-care",
+    lastReviewedAt: "2026-06-16",
     sortOrder: 9,
   },
   {
@@ -195,6 +222,9 @@ export const NPTE_PT_MEMORY_CARDS: MemoryCard[] = [
       "Walker provides maximal stability; assess cognition and UE strength",
     ],
     practiceTopicSlug: "equipment-devices",
+    sourceLabel: "APTA Practice Resources",
+    sourceUrl: "https://www.apta.org/patient-care",
+    lastReviewedAt: "2026-06-16",
     sortOrder: 10,
   },
   {
@@ -213,6 +243,9 @@ export const NPTE_PT_MEMORY_CARDS: MemoryCard[] = [
       "Environmental modification follows positive screen",
     ],
     practiceTopicSlug: "safety-protection",
+    sourceLabel: "CDC STEADI Initiative",
+    sourceUrl: "https://www.cdc.gov/steadi/",
+    lastReviewedAt: "2026-06-16",
     sortOrder: 11,
   },
   {
@@ -231,6 +264,9 @@ export const NPTE_PT_MEMORY_CARDS: MemoryCard[] = [
       "Document rationale and communicate with physician",
     ],
     practiceTopicSlug: "professional-responsibilities",
+    sourceLabel: "FSBPT NPTE Content Outline",
+    sourceUrl: "https://www.fsbpt.org/free-resources/npte/npte-test-content-outline",
+    lastReviewedAt: "2026-06-16",
     sortOrder: 12,
   },
 ];

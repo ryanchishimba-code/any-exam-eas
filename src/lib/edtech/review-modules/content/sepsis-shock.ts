@@ -7,8 +7,8 @@ export const SEPSIS_MODULE: ReviewModuleContent = {
       id: "why-it-matters",
       title: T["why-it-matters"],
       paragraphs: [
-        "Sepsis and septic shock are NCLEX priorities because they test the nursing process under time pressure: recognize early, act in the first hour, and prioritize interventions that save lives. Sepsis is life-threatening organ dysfunction caused by a dysregulated host response to infection; septic shock adds persistent hypotension requiring vasopressors despite adequate fluid resuscitation plus lactate >2 mmol/L.",
-        "NCLEX items reward ABCs, early antibiotics, fluid resuscitation, hemodynamic monitoring, and source control—not comfort measures or delayed diagnostics. Know the Surviving Sepsis Campaign hour-1 bundle and how nursing assessments (qSOFA, vital trends, urine output, mental status) trigger escalation.",
+        "Sepsis and septic shock are board-exam priorities because they test clinical judgment under time pressure: recognize early, act in the first hour, and prioritize interventions that save lives. Sepsis is life-threatening organ dysfunction caused by a dysregulated host response to infection; septic shock adds persistent hypotension requiring vasopressors despite adequate fluid resuscitation plus lactate >2 mmol/L.",
+        "Board items reward ABCs, early antibiotics, fluid resuscitation, hemodynamic monitoring, and source control—not comfort measures or delayed diagnostics. Know the Surviving Sepsis Campaign hour-1 bundle and how bedside assessments (qSOFA, vital trends, urine output, mental status) trigger escalation.",
       ],
     },
     {
@@ -54,12 +54,12 @@ export const SEPSIS_MODULE: ReviewModuleContent = {
             ["BP", "May be normal early", "Hypotension despite fluids", "Non-specific"],
             ["Vasopressors", "Not required", "Required for MAP ≥65", "Not part of definition"],
             ["Lactate", "May be elevated", ">2 mmol/L despite fluids", "Not required"],
-            ["NCLEX relevance", "Recognize + treat early", "Escalate pressors + ICU", "Know term but Sepsis-3 preferred"],
+            ["Exam relevance", "Recognize + treat early", "Escalate pressors + ICU", "Know term but Sepsis-3 preferred"],
           ],
         },
         {
           caption: "Vasopressor selection in septic shock",
-          headers: ["Agent", "Mechanism", "Role", "Nursing Considerations"],
+          headers: ["Agent", "Mechanism", "Role", "Clinical Considerations"],
           rows: [
             ["Norepinephrine", "α1 > β1", "First-line", "Extravasation risk—central line preferred; monitor distal perfusion"],
             ["Vasopressin", "V1 receptor", "Add-on (fixed dose 0.03 U/min)", "Do not titrate; ischemic risk at high doses"],
@@ -98,8 +98,8 @@ export const SEPSIS_MODULE: ReviewModuleContent = {
       id: "pearls",
       title: T.pearls,
       bullets: [
-        "NCLEX priority mnemonic: 'Cultures, Crystalloids, Coverage (antibiotics)'—in that sequence within hour 1",
-        "MAP goal ≥65 mmHg—calculate MAP = DBP + 1/3(SBP − DBP); nursing can trend without physician at bedside",
+        "Priority mnemonic: 'Cultures, Crystalloids, Coverage (antibiotics)'—in that sequence within hour 1",
+        "MAP goal ≥65 mmHg—calculate MAP = DBP + 1/3(SBP − DBP); can be trended at the bedside",
         "Lactate ≥4 = severe sepsis signal—mandates fluid bolus even if BP appears stable",
         "Peripheral norepinephrine is acceptable briefly until central access—do not delay pressors",
         "Urine output <0.5 mL/kg/h for 2 h suggests inadequate perfusion—notify provider, reassess fluid status",
@@ -117,7 +117,7 @@ export const SEPSIS_MODULE: ReviewModuleContent = {
         "Antibiotics within 1 hour—never wait for imaging or culture results",
         "Source control (drain, debride, remove line) is essential",
         "Trend lactate and urine output to assess resuscitation success",
-        "NCLEX: ABCs → cultures + antibiotics → fluids → pressors → source control",
+        "Bottom line: ABCs → cultures + antibiotics → fluids → pressors → source control",
       ],
     },
   ],

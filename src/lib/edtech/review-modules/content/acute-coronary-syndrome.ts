@@ -7,7 +7,7 @@ export const ACS_MODULE: ReviewModuleContent = {
       id: "why-it-matters",
       title: T["why-it-matters"],
       paragraphs: [
-        "Acute coronary syndrome (ACS)—unstable angina (UA), NSTEMI, and STEMI—is a high-frequency USMLE topic because management is time-critical and algorithm-driven. The exam tests reperfusion decisions, antiplatelet/anticoagulant selection, contraindications to fibrinolysis, and post-MI secondary prevention.",
+        "Acute coronary syndrome (ACS)—unstable angina (UA), NSTEMI, and STEMI—is a high-frequency board topic because management is time-critical and algorithm-driven. Board items test reperfusion decisions, antiplatelet/anticoagulant selection, contraindications to fibrinolysis, and post-MI secondary prevention.",
         "Differentiating STEMI (ST elevation or new LBBB with ischemic symptoms) from NSTEMI/UA drives the pathway: immediate reperfusion (PCI preferred, fibrinolysis if PCI unavailable) versus early invasive strategy with medical stabilization. Know door-to-balloon (<90 min) and door-to-needle (<30 min) targets.",
       ],
     },
