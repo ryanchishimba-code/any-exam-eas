@@ -29,6 +29,11 @@ export type RecentTestRow = {
   completedAt: string;
 };
 
+export type SpacedReviewSummary = {
+  dueCount: number;
+  weakDueCount: number;
+};
+
 export type StudentDashboardData = {
   headline: {
     readinessScore: number;
@@ -41,6 +46,7 @@ export type StudentDashboardData = {
   accuracyTrend: AccuracyTrendPoint[];
   weakTopics: WeakTopicRow[];
   recentTests: RecentTestRow[];
+  spacedReview: SpacedReviewSummary;
 };
 
 const TREND_DAYS = 14;
@@ -112,8 +118,25 @@ function computeTrendDelta(trend: AccuracyTrendPoint[]): number | null {
   return Math.round(avg(second) - avg(first));
 }
 
+async function getSpacedReviewSummary(userId: string): Promise<SpacedReviewSummary> {
+  const now = new Date();
+  const [dueCount, weakDueCount] = await Promise.all([
+    prisma.questionMastery.count({
+      where: { userId, nextDue: { lte: now } },
+    }),
+    prisma.questionMastery.count({
+      where: {
+        userId,
+        nextDue: { lte: now },
+        abilityEstimate: { lt: 0.55 },
+      },
+    }),
+  ]);
+  return { dueCount, weakDueCount };
+}
+
 export async function getStudentDashboardData(userId: string): Promise<StudentDashboardData> {
-  const [profile, trend, masteries, completedRecords, totalAttempts, correctCount] =
+  const [profile, trend, masteries, completedRecords, totalAttempts, correctCount, spacedReview] =
     await Promise.all([
     getLearningProfileSnapshot(userId),
     getAccuracyTrend(userId),
@@ -134,6 +157,7 @@ export async function getStudentDashboardData(userId: string): Promise<StudentDa
     }),
     prisma.questionAttempt.count({ where: { userId } }),
     prisma.questionAttempt.count({ where: { userId, correct: true } }),
+    getSpacedReviewSummary(userId),
   ]);
 
   const examIds = completedRecords.map((r) => r.entityId);
@@ -207,5 +231,6 @@ export async function getStudentDashboardData(userId: string): Promise<StudentDa
     accuracyTrend: trend,
     weakTopics,
     recentTests,
+    spacedReview,
   };
 }

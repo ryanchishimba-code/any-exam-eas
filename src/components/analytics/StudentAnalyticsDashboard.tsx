@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { BookMarked } from "lucide-react";
+import { BookMarked, GraduationCap } from "lucide-react";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_FIELD_OPTIONS } from "@/lib/exam-prep/practice-modes";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
-import { referenceTopicHref } from "@/lib/edtech/practice-links";
+import { referenceTopicHref, spacedReviewHref } from "@/lib/edtech/practice-links";
+import { getExamTopicStudyLinks } from "@/lib/reference/exam-topic-bridge";
 import {
   getMemoryCardIdsForTopic,
   normalizeWeakAreaTopicKey,
@@ -96,6 +97,7 @@ export function StudentAnalyticsDashboard() {
 
   const strongTopics =
     profile?.strongestConcepts?.slice(0, 5).map((c) => c.conceptKey) ?? [];
+  const primaryExamSlug = examSlugFromFieldId(primaryField);
 
   return (
     <div className="space-y-10">
@@ -140,7 +142,27 @@ export function StudentAnalyticsDashboard() {
           value={`${dashboard.headline.studyStreakDays}d`}
           hint={dashboard.headline.motivationalMessage}
         />
+        {dashboard.spacedReview.dueCount > 0 ? (
+          <MetricCard
+            label="Spaced review due"
+            value={String(dashboard.spacedReview.dueCount)}
+            hint={`${dashboard.spacedReview.weakDueCount} weak items ready`}
+            accent="amber"
+          />
+        ) : null}
       </div>
+
+      {dashboard.spacedReview.dueCount > 0 && primaryExamSlug ? (
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-indigo-200/70 bg-indigo-50/50 px-5 py-4">
+          <p className="text-sm text-indigo-900">
+            <span className="font-semibold">{dashboard.spacedReview.dueCount} questions</span> are
+            due for spaced review — missed items resurface on a smart schedule.
+          </p>
+          <Button href={spacedReviewHref(primaryExamSlug)} variant="secondary">
+            Review now
+          </Button>
+        </div>
+      ) : null}
 
       {referenceRate != null ? (
         <p className="text-xs text-[var(--color-ink-muted)]">
@@ -182,6 +204,7 @@ export function StudentAnalyticsDashboard() {
                   <div className="flex items-center justify-between gap-2 text-sm">
                     <span className="font-medium">{t.name}</span>
                     <span className="flex items-center gap-2">
+                      <WeakTopicDeepDiveLink conceptKey={t.id} fieldId={t.fieldId} />
                       <WeakTopicCardsLink conceptKey={t.id} fieldId={t.fieldId} />
                       <span className="tabular-nums text-[var(--color-ink-muted)]">
                         {t.masteryScore}%
@@ -251,6 +274,31 @@ export function StudentAnalyticsDashboard() {
         </section>
       )}
     </div>
+  );
+}
+
+/** Deep dive link for a weak topic when a review module exists. */
+function WeakTopicDeepDiveLink({
+  conceptKey,
+  fieldId,
+}: {
+  conceptKey: string;
+  fieldId: string;
+}) {
+  const topicKey = normalizeWeakAreaTopicKey(conceptKey);
+  const examSlug = examSlugFromFieldId(fieldId);
+  if (!examSlug) return null;
+  const links = getExamTopicStudyLinks(examSlug, topicKey);
+  if (!links.deepDiveHref) return null;
+
+  return (
+    <Link
+      href={links.deepDiveHref}
+      className="inline-flex items-center gap-1 rounded-full bg-violet-600 px-2 py-0.5 text-[11px] font-semibold text-white transition hover:bg-violet-700"
+    >
+      <GraduationCap className="h-3 w-3" aria-hidden />
+      Deep dive
+    </Link>
   );
 }
 

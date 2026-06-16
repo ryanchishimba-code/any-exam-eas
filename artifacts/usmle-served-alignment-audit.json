@@ -1,0 +1,546 @@
+{
+  "generatedAt": "2026-06-14T20:52:22.691Z",
+  "byField": [
+    {
+      "fieldId": "usmle-step-1",
+      "active": 12162,
+      "served": 1916,
+      "servedNotReady": 442,
+      "servedWithAlignmentIssues": 443,
+      "alignmentRatePercent": 76.87891440501043,
+      "alignmentIssueCounts": {
+        "vignette_validation": 442,
+        "criteria_only_in_explanation": 1
+      },
+      "samples": [
+        {
+          "id": "cmpnjguwm001c1ymxohj1wa2o",
+          "subjectId": "pharmacology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 47-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "Which mechanism of action best explains the therapeutic or adverse effect described?",
+          "correctAnswer": "Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and th",
+          "overallScore": 8.1
+        },
+        {
+          "id": "cmpnjgv51001f1ymx1us2dzcd",
+          "subjectId": "pharmacology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 30-year-old woman presents to the outpatient specialty clinic with joint pain and malar rash worsening over weeks. Photosensitivity, oral ulcers; no prior rheumatologic diagnosis",
+          "stem": "Which pathophysiologic process is most likely responsible for these findings?",
+          "correctAnswer": "Autoantibody and immune complex deposition → complement consumption and glomerular inflammation",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjgv7x001g1ymxv1tadxpu",
+          "subjectId": "biochemistry",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 47-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "Which mechanism best explains the patient's presentation?",
+          "correctAnswer": "Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and th",
+          "overallScore": 8.1
+        },
+        {
+          "id": "cmpnjgw6g001n1ymxj22dpg6c",
+          "subjectId": "microbiology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 46-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "Which pathophysiologic process is most likely responsible for these findings?",
+          "correctAnswer": "Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and th",
+          "overallScore": 8.3
+        },
+        {
+          "id": "cmpnjhj4z004b1ymx299umdib",
+          "subjectId": "anatomy",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 46-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute alcoholic pancreatitis",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjhj5000581ymxuhinc56s",
+          "subjectId": "anatomy",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 44-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute alcoholic pancreatitis",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjhjtv005k1ymxtulyj23e",
+          "subjectId": "anatomy",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 46-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "Which pathophysiologic process is most likely responsible for these findings?",
+          "correctAnswer": "Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and th",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjhjtv005n1ymx3f6cfz5j",
+          "subjectId": "anatomy",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 47-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "Which pathophysiologic process is most likely responsible for these findings?",
+          "correctAnswer": "Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and th",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjhk19006r1ymxwogv5eiq",
+          "subjectId": "anatomy",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 45-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "Which pathophysiologic process is most likely responsible for these findings?",
+          "correctAnswer": "Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and th",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjhk7i007m1ymxqr9zic5i",
+          "subjectId": "anatomy",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 43-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute alcoholic pancreatitis",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjhke0008p1ymxp67tgsiq",
+          "subjectId": "anatomy",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 44-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute alcoholic pancreatitis",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjhl2b00ay1ymxwz90q5w2",
+          "subjectId": "anatomy",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 45-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute alcoholic pancreatitis",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjhlgh00dm1ymxdhjtxus0",
+          "subjectId": "anatomy",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 45-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "Which pathophysiologic process is most likely responsible for these findings?",
+          "correctAnswer": "Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and th",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjhlmf00e71ymx4rvm66pe",
+          "subjectId": "anatomy",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 43-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute alcoholic pancreatitis",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjhlt400g21ymx5cttyfku",
+          "subjectId": "anatomy",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 43-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "Which pathophysiologic process is most likely responsible for these findings?",
+          "correctAnswer": "Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and th",
+          "overallScore": 8
+        }
+      ]
+    },
+    {
+      "fieldId": "usmle-step-2",
+      "active": 18201,
+      "served": 5306,
+      "servedNotReady": 1235,
+      "servedWithAlignmentIssues": 1237,
+      "alignmentRatePercent": 76.68676969468527,
+      "alignmentIssueCounts": {
+        "vignette_validation": 1235,
+        "criteria_only_in_explanation": 2
+      },
+      "samples": [
+        {
+          "id": "cmpnjgx1b001t1ymxdcrs99j7",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 46-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "Which action should be taken next in this patient's care?",
+          "correctAnswer": "Aggressive IV fluids, pain control, monitor for organ failure; NPO initially with early enteral nutr",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjha50001u1ymxf1e2p285",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 41-year-old woman presents to the urgent care with sudden pleuritic chest pain and shortness of breath. Oral contraceptive use; recent 8-hour flight; no prior DVT. Vital signs: B",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute pulmonary embolism with hypoxemia",
+          "overallScore": 8.1
+        },
+        {
+          "id": "cmpnjhav700211ymxhu3gprmr",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 18-year-old man presents to the emergency department with fever, headache, neck stiffness, and photophobia. College dormitory resident; no recent travel; no immunocompromising co",
+          "stem": "Which management approach is most appropriate?",
+          "correctAnswer": "Ceftriaxone plus vancomycin (add ampicillin if Listeria risk); dexamethasone before or with first an",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjhb2900221ymxlz4v3t94",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 19-year-old man presents to the emergency department with fever, headache, neck stiffness, and photophobia. College dormitory resident; no recent travel; no immunocompromising co",
+          "stem": "Which management approach is most appropriate?",
+          "correctAnswer": "Ceftriaxone plus vancomycin (add ampicillin if Listeria risk); dexamethasone before or with first an",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjhb7500231ymx7al8lb0r",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 44-year-old woman presents to the urgent care with sudden pleuritic chest pain and shortness of breath. Oral contraceptive use; recent 8-hour flight; no prior DVT. Vital signs: B",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute pulmonary embolism with hypoxemia",
+          "overallScore": 8.1
+        },
+        {
+          "id": "cmpnjjlxf0awc1ymxr9n2ibj8",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 18-year-old man presents to the emergency department with fever, headache, neck stiffness, and photophobia. College dormitory resident; no recent travel; no immunocompromising co",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute bacterial meningitis",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjjlxf0awe1ymxp2alr335",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 45-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Aggressive IV fluids, pain control, monitor for organ failure; NPO initially with early enteral nutr",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmpnjjlxf0awj1ymxqx4p6knk",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 21-year-old man presents to the emergency department with fever, headache, neck stiffness, and photophobia. College dormitory resident; no recent travel; no immunocompromising co",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Empiric IV antibiotics and dexamethasone immediately; do not delay treatment for imaging if unstable",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmpnjjlxf0awl1ymxrnmhzhwk",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 18-year-old man presents to the emergency department with fever, headache, neck stiffness, and photophobia. College dormitory resident; no recent travel; no immunocompromising co",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute bacterial meningitis",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjjlxf0awt1ymxxclrya1i",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 21-year-old man presents to the emergency department with fever, headache, neck stiffness, and photophobia. College dormitory resident; no recent travel; no immunocompromising co",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute bacterial meningitis",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjjlxf0aww1ymxryxz5lqq",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 17-year-old boy presents to the emergency department with fever, headache, neck stiffness, and photophobia. College dormitory resident; no recent travel; no immunocompromising co",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Empiric IV antibiotics and dexamethasone immediately; do not delay treatment for imaging if unstable",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmpnjjlxf0awz1ymx9lu04xyh",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 28-year-old woman presents to the labor and delivery with headache and visual changes at 37 weeks gestation. G1P0, previously normotensive pregnancy. Vital signs: BP 168/104 mmHg",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Preeclampsia with severe features at 37 weeks",
+          "overallScore": 8
+        },
+        {
+          "id": "cmpnjjm2x0axb1ymxet04dzy5",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 19-year-old man presents to the emergency department with fever, headache, neck stiffness, and photophobia. College dormitory resident; no recent travel; no immunocompromising co",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Empiric IV antibiotics and dexamethasone immediately; do not delay treatment for imaging if unstable",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmpnjjm2x0axs1ymxb04op7hb",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 44-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute alcoholic pancreatitis",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmpnjjm2y0ay11ymx48fa9j82",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 29-year-old woman presents to the labor and delivery with headache and visual changes at 37 weeks gestation. G1P0, previously normotensive pregnancy. Vital signs: BP 168/104 mmHg",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Magnesium sulfate for seizure prophylaxis, BP control, and delivery planning (definitive treatment i",
+          "overallScore": 8
+        }
+      ]
+    },
+    {
+      "fieldId": "usmle-step-3",
+      "active": 18110,
+      "served": 5096,
+      "servedNotReady": 1236,
+      "servedWithAlignmentIssues": 1236,
+      "alignmentRatePercent": 75.74568288854003,
+      "alignmentIssueCounts": {
+        "vignette_validation": 1236
+      },
+      "samples": [
+        {
+          "id": "cmq33a0a1006n1yiuovo130bj",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 43-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute alcoholic pancreatitis",
+          "overallScore": 8.4
+        },
+        {
+          "id": "cmq33a0cs006o1yiu1a9myi0m",
+          "subjectId": "pharmacology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 43-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "Which pathophysiologic process is most likely responsible for this patient's presentation?",
+          "correctAnswer": "Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and th",
+          "overallScore": 8.3
+        },
+        {
+          "id": "cmq33a0fk006p1yiudpaxp96g",
+          "subjectId": "pharmacology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 27-year-old woman presents to the labor and delivery with headache and visual changes at 37 weeks gestation. G1P0, previously normotensive pregnancy. Vital signs: BP 168/104 mmHg",
+          "stem": "Which pathophysiologic process is most likely responsible for this patient's presentation?",
+          "correctAnswer": "Placental malperfusion → systemic endothelial dysfunction → hypertension, proteinuria, and end-organ",
+          "overallScore": 8.1
+        },
+        {
+          "id": "cmq33a2aw007d1yiup2vkh46a",
+          "subjectId": "pharmacology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 45-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "Which pharmacologic mechanism is most relevant to this patient's condition?",
+          "correctAnswer": "Premature activation of pancreatic enzymes within acinar cells → autodigestion, inflammation, and th",
+          "overallScore": 8.1
+        },
+        {
+          "id": "cmq33a42y00801yiufwi0y01u",
+          "subjectId": "psychiatry",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 40-year-old woman presents to the urgent care with sudden pleuritic chest pain and shortness of breath. Oral contraceptive use; recent 8-hour flight; no prior DVT. Vital signs: B",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute pulmonary embolism with hypoxemia",
+          "overallScore": 8
+        },
+        {
+          "id": "cmq33agod01rl1yiuy546jib8",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 26-year-old woman presents to the labor and delivery with headache and visual changes at 37 weeks gestation. G1P0, previously normotensive pregnancy. Vital signs: BP 168/104 mmHg",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Preeclampsia with severe features at 37 weeks",
+          "overallScore": 8
+        },
+        {
+          "id": "cmq33agod01rn1yiur85vh2wi",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 45-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Aggressive IV fluids, pain control, monitor for organ failure; NPO initially with early enteral nutr",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmq33agod01rr1yiuzawhdo0i",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 46-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute alcoholic pancreatitis",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmq33agoe01s51yiu58wjej47",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 43-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Aggressive IV fluids, pain control, monitor for organ failure; NPO initially with early enteral nutr",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmq33agoe01si1yiuri5mwych",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 21-year-old man presents to the emergency department with fever, headache, neck stiffness, and photophobia. College dormitory resident; no recent travel; no immunocompromising co",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Acute bacterial meningitis",
+          "overallScore": 8
+        },
+        {
+          "id": "cmq33agv001st1yiu9i66s44a",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 43-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Aggressive IV fluids, pain control, monitor for organ failure; NPO initially with early enteral nutr",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmq33agv101sx1yiu3hi85dmd",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 26-year-old woman presents to the labor and delivery with headache and visual changes at 37 weeks gestation. G1P0, previously normotensive pregnancy. Vital signs: BP 168/104 mmHg",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Preeclampsia with severe features at 37 weeks",
+          "overallScore": 8
+        },
+        {
+          "id": "cmq33agv101th1yiuki2nbks5",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 43-year-old man presents to the emergency department with severe epigastric pain radiating to the back after heavy alcohol use. Heavy alcohol use; no gallstones on prior ultrasou",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Aggressive IV fluids, pain control, monitor for organ failure; NPO initially with early enteral nutr",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmq33ah1u01tx1yiuxswe4mbe",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 27-year-old woman presents to the labor and delivery with headache and visual changes at 37 weeks gestation. G1P0, previously normotensive pregnancy. Vital signs: BP 168/104 mmHg",
+          "stem": "What is the most likely diagnosis?",
+          "correctAnswer": "Preeclampsia with severe features at 37 weeks",
+          "overallScore": 8
+        },
+        {
+          "id": "cmq33ah1v01u51yiu8acy7l5m",
+          "subjectId": "pulmonology",
+          "codes": [
+            "vignette_validation"
+          ],
+          "vignette": "A 26-year-old woman presents to the labor and delivery with headache and visual changes at 37 weeks gestation. G1P0, previously normotensive pregnancy. Vital signs: BP 168/104 mmHg",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Magnesium sulfate for seizure prophylaxis, BP control, and delivery planning (definitive treatment i",
+          "overallScore": 8
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "served": 12318,
+    "stale": 2913,
+    "alignment": 2916
+  }
+}

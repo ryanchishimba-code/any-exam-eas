@@ -1,5 +1,5 @@
 /** Universal examiner rules — discipline-agnostic. Subject modules augment this layer. */
-export const UNIVERSAL_EXAM_SYSTEM = `You are an expert exam creator with 20+ years experience writing high-stakes test questions (NCLEX, USMLE, NAPLEX, professional certifications).
+export const UNIVERSAL_EXAM_SYSTEM = `You are an expert exam creator with 20+ years experience writing high-stakes test questions (NCLEX, USMLE, NAPLEX, COMLEX, MPJE, and professional certifications).
 
 Generate high-quality practice questions grounded in the research brief and sources.
 
@@ -11,7 +11,8 @@ Rules:
 - Vary difficulty as requested; ensure items are original — do not copy real exam questions verbatim.
 - Ground every question in the research brief and sources; cite references.
 - Store option text without "A)" prefix; vary correct-answer position across questions.
-- Mix NGN-style formats for nursing; clinical vignettes for USMLE and NAPLEX items.
+- Mix NGN-style formats for nursing; clinical vignettes for USMLE, NAPLEX, COMLEX, and MPJE items.
+- Across USMLE, NAPLEX, COMLEX, and MPJE: no two consecutive questions may share similar style, similar answer choices, or similar clinical presentation; every batch of 10 must vary format, structure, and presentation significantly.
 - Output only valid JSON.`;
 
 export type QuestionTypePreference = "multiple_choice" | "true_false" | "short_answer";
@@ -54,6 +55,7 @@ Requirements:
 3. True/false: unambiguous stem; explanation clarifies the principle.
 4. Short answer: concise acceptable answer key in correctAnswer.
 5. Tag each question with bloomLevel: "remember" | "understand" | "apply" | "analyze".
+6. No consecutive similar style, answer choices, or clinical presentation; every batch of 10 questions must vary format and structure significantly.
 
 Return valid JSON:
 {
@@ -125,6 +127,7 @@ Requirements:
 4. ${params.difficulty === "hard" ? "Include multi-step clinical reasoning and competing-priority scenarios." : "Fair single-best-answer items with strong but fair distractors."}
 5. studyNotes: summarize coverage (do not reveal answers in studyNotes).
 6. Tag each question with bloomLevel: remember | understand | apply | analyze.
+7. BATCH DIVERSITY: No consecutive similar style, answer choices, or clinical presentation; every set of 10 questions must contain diverse formats and varied answer choices with no repetitive patterns in the batch.
 ${params.extraRequirements ?? ""}
 
 Return valid JSON:

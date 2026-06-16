@@ -42,6 +42,7 @@ PREFERRED lead-in stems (after vignette):
 Quality bar:
 - Findings must discriminate the correct answer and rule out distractors.
 - Vary openings — do not repeat identical vignette templates on consecutive items.
+- Within every batch of 10 questions: vary clinical presentation, lead-in stem type, and answer-choice structure; no repetitive patterns in the batch.
 - Nursing: use "client"; include nurse-relevant data (IVs, drains, isolation, I&O, MAR).
 - NAPLEX: include meds, allergies, renal/hepatic function, condition presentation.
 - USMLE: include discriminating exam/lab values when clinically relevant.

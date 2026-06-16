@@ -25,11 +25,19 @@ export async function signOutAndCleanup(
   clearUserAccessCache();
 
   try {
-    if (redirect) {
-      await signOut({ callbackUrl, redirect: true });
-    } else {
-      await signOut({ redirect: false });
+    await signOut({ redirect: false });
+
+    if (redirect && typeof window !== "undefined") {
+      // Always land on the current origin — production deploys must not send users to
+      // localhost when NEXTAUTH_URL was mis-set during a Vercel env push.
+      const target = callbackUrl.startsWith("/")
+        ? callbackUrl
+        : callbackUrl.startsWith(window.location.origin)
+          ? callbackUrl.slice(window.location.origin.length) || "/"
+          : "/";
+      window.location.assign(target);
     }
+
     return { ok: true };
   } catch (err) {
     const message = err instanceof Error ? err.message : "Sign out failed";

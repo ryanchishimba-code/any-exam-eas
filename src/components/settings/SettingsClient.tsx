@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useTransition } from "react";
 import { GraduationCap, MapPin, LogOut } from "lucide-react";
-import { signOut } from "next-auth/react";
+import { signOutAndCleanup } from "@/lib/client/sign-out";
 import { MpjeStateSelect } from "@/components/study/MpjeStateSelect";
 import { BillingSettingsSection } from "@/components/settings/BillingSettingsSection";
 import { saveMpjePreferences } from "@/lib/edtech/actions";
@@ -86,7 +86,7 @@ export function SettingsClient({
 
       <button
         type="button"
-        onClick={() => signOut({ callbackUrl: "/" })}
+        onClick={() => void signOutAndCleanup({ callbackUrl: "/" })}
         className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-red-600"
       >
         <LogOut className="h-4 w-4" aria-hidden />

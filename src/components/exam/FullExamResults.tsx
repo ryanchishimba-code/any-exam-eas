@@ -24,6 +24,9 @@ import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { feUi } from "@/lib/study/full-exam-ui";
 import { cn } from "@/lib/utils";
 import { FullExamStudyLinks } from "@/components/exam/FullExamStudyLinks";
+import { StudyThisTopicButton } from "@/components/study/StudyThisTopicButton";
+import { QuestionRelatedLinks } from "@/components/study/questions/QuestionRelatedLinks";
+import { resolveQuestionStudyLinks } from "@/lib/reference/question-study-links";
 
 type ReviewView = "summary" | "overview" | "question";
 
@@ -68,6 +71,9 @@ export function FullExamResults({
   const current = questions[index];
   const currentAnswer = answerFor(answers, index);
   const isCorrect = currentAnswer?.correct ?? false;
+  const studyLinks = resolveQuestionStudyLinks(examSlug, {
+    topicCategory: current?.topicCategory,
+  });
 
   const notesPreview = answers
     .filter((a) => a.notes?.trim())
@@ -161,6 +167,26 @@ export function FullExamResults({
               Rationale
             </p>
             {current.explanation || "No rationale saved for this question."}
+          </div>
+
+          <div className="mt-4 space-y-3">
+            <StudyThisTopicButton
+              links={studyLinks}
+              missed={!isCorrect}
+              flagged={Boolean(currentAnswer?.flagged)}
+            />
+            <QuestionRelatedLinks
+              question={{
+                id: current.id,
+                type: "multiple_choice",
+                question: current.question,
+                options: current.options,
+                correctAnswers: [current.correctAnswer],
+                explanation: current.explanation,
+              }}
+              examSlug={examSlug}
+              links={studyLinks}
+            />
           </div>
         </article>
 

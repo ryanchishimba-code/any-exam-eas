@@ -14,6 +14,7 @@ Rules:
 - Cite USMLE Content Outline / NBME in references alongside OER sources.
 - Options parallel in grammar; one best answer; vary correct position across items.
 - correctAnswer must exactly match one option (verbatim).
+- BATCH DIVERSITY: No consecutive similar style, answer choices, or clinical presentation; every batch of 10 must vary format, vignette structure, and option patterns.
 - Output only valid JSON.`;
 
 export function getMedicineUserAugmentation(): string {
@@ -26,5 +27,5 @@ MEDICINE AUGMENTATION (USMLE Step 1 & 2 CK):
 - Lab-value items: include plausible numeric results that discriminate distractors.
 - Pathophysiology items: link mechanism to finding, complication, or drug effect.
 - SOAP-note style data may appear in vignettes for workup questions.
-- Never repeat the same vignette opener on consecutive items.`;
+- Never repeat similar vignette openers, lead-in stems, or answer-choice templates on consecutive items; vary presentation across every batch of 10.`;
 }

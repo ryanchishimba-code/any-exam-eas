@@ -16,6 +16,7 @@ Rules:
 - Rationales: why correct + why EACH wrong option fails; cite generic, class, monitoring, counseling.
 - Tag difficultyLabel and topicCategory per NAPLEX domain.
 - Cite NABP NAPLEX Content Outline (2025) in references alongside OER sources.
+- BATCH DIVERSITY: No consecutive similar style, answer choices, or clinical presentation; every batch of 10 must vary format, patient scenario, and option patterns.
 - Output only valid JSON.`;
 
 export function getPharmacyUserAugmentation(): string {
@@ -40,5 +41,9 @@ DRUG ITEM CHECKLIST:
 RATIONALE STRUCTURE:
 1. Correct answer — link vignette findings → drug MOA/class → monitoring/counseling.
 2. Each distractor — wrong indication, interaction, dosing error, incomplete counseling, or legal violation.
-3. clinicalReasoning — NAPLEX judgment steps (assess → analyze → select → counsel → monitor).`;
+3. clinicalReasoning — NAPLEX judgment steps (assess → analyze → select → counsel → monitor).
+
+BATCH DIVERSITY:
+- No consecutive items with similar counseling stems, calculation layouts, or drug-class option sets.
+- Every 10-question block must mix domains (Foundational Knowledge, Medication Use Process, Person-Centered Care) and vary vignette structure.`;
 }

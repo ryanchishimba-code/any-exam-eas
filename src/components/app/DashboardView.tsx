@@ -13,6 +13,7 @@ import {
 import { DashboardContinueRow } from "@/components/dashboard/DashboardContinueRow";
 import { DashboardExploreRow } from "@/components/dashboard/DashboardExploreRow";
 import { DashboardRecentActivity } from "@/components/dashboard/DashboardRecentActivity";
+import { DashboardSpacedReview } from "@/components/dashboard/DashboardSpacedReview";
 import { DashboardWeakTopics } from "@/components/dashboard/DashboardWeakTopics";
 import { StudyHubMpjePicker } from "@/components/study-hub/StudyHubMpjePicker";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
@@ -20,7 +21,7 @@ import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { ROUTES } from "@/lib/routes";
-import type { RecentTestRow, WeakTopicRow } from "@/lib/learning/student-dashboard";
+import type { RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -35,6 +36,7 @@ export function DashboardView({
   stats,
   headline,
   weakTopics,
+  spacedReview,
   recentTests,
   userName,
   mpjeStateCode,
@@ -43,6 +45,7 @@ export function DashboardView({
   stats: StudyHubQuickStats;
   headline: DashboardHeadline;
   weakTopics: WeakTopicRow[];
+  spacedReview: SpacedReviewSummary;
   recentTests: RecentTestRow[];
   userName?: string | null;
   mpjeStateCode?: string;
@@ -54,6 +57,7 @@ export function DashboardView({
   const showExplore = hasClinicalStudyTools(examSlug);
   const showRecent = recentTests.length > 0;
   const showWeak = weakTopics.length > 0;
+  const showSpacedReview = spacedReview.dueCount > 0;
 
   return (
     <div className={dbUi.page}>
@@ -117,6 +121,12 @@ export function DashboardView({
           <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
             <DashboardContinueRow examSlug={examSlug} />
           </div>
+
+          {showSpacedReview ? (
+            <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
+              <DashboardSpacedReview examSlug={examSlug} spacedReview={spacedReview} />
+            </div>
+          ) : null}
 
           {showWeak ? (
             <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>

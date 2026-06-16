@@ -1,0 +1,83 @@
+{
+  "generatedAt": "2026-06-14T04:06:24.695Z",
+  "total": 179,
+  "best": 179,
+  "acceptable": 0,
+  "reject": 0,
+  "bestRatePercent": 100,
+  "topics": [
+    {
+      "subjectId": "compounding-regulations",
+      "total": 22,
+      "best": 22,
+      "acceptable": 0,
+      "reject": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "controlled-substances",
+      "total": 26,
+      "best": 26,
+      "acceptable": 0,
+      "reject": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "dispensing-procedures",
+      "total": 18,
+      "best": 18,
+      "acceptable": 0,
+      "reject": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "federal-pharmacy-law",
+      "total": 10,
+      "best": 10,
+      "acceptable": 0,
+      "reject": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "patient-privacy",
+      "total": 4,
+      "best": 4,
+      "acceptable": 0,
+      "reject": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "pharmacy-ethics",
+      "total": 9,
+      "best": 9,
+      "acceptable": 0,
+      "reject": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "pharmacy-operations",
+      "total": 37,
+      "best": 37,
+      "acceptable": 0,
+      "reject": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "state-practice-act",
+      "total": 53,
+      "best": 53,
+      "acceptable": 0,
+      "reject": 0,
+      "topIssues": {},
+      "samples": []
+    }
+  ],
+  "failures": []
+}

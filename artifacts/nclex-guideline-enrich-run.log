@@ -1,0 +1,88 @@
+▶ enrich-guidelines
+
+Guideline enrichment — nursing (24295 active)
+
+  … 2000 processed, 2000 enriched
+  … 4000 processed, 4000 enriched
+  … 6000 processed, 6000 enriched
+  … 8000 processed, 8000 enriched
+  … 10000 processed, 10000 enriched
+  … 12000 processed, 12000 enriched
+  … 14000 processed, 14000 enriched
+  … 16000 processed, 16000 enriched
+  … 18000 processed, 18000 enriched
+  … 20000 processed, 20000 enriched
+  … 22000 processed, 22000 enriched
+  … 24000 processed, 24000 enriched
+
+Processed: 24295
+Enriched: 24186
+Skipped (already had refs or filtered): 109
+Explanation augmented: 47
+Top rules:
+  isolation: 5703
+  pediatric: 5601
+  cdiff: 4384
+  respiratory: 4136
+  anticoagulation: 3872
+  medication_admin: 3801
+  heart_failure: 3470
+  insulin: 2986
+  sepsis: 2873
+  delegation: 1787
+  fall_risk: 1715
+  therapeutic_comm: 846
+  postpartum_hemorrhage: 800
+  labor: 797
+  default: 60
+
+Report: /Users/ryanchishimba/Desktop/cursor/artifacts/guideline-enrich-nursing.json
+
+▶ qa-gate
+
+NCLEX best QA gate — 24295 active nursing items
+
+  … 2000/24295 (best 1500, reject 500)
+  … 4000/24295 (best 2397, reject 1603)
+  … 6000/24295 (best 3160, reject 2840)
+  … 8000/24295 (best 4308, reject 3692)
+  … 10000/24295 (best 5052, reject 4948)
+  … 12000/24295 (best 5841, reject 6159)
+  … 14000/24295 (best 6733, reject 7267)
+  … 16000/24295 (best 7689, reject 8311)
+  … 18000/24295 (best 8836, reject 9164)
+  … 20000/24295 (best 9673, reject 10327)
+  … 22000/24295 (best 10524, reject 11476)
+  … 24000/24295 (best 11267, reject 12733)
+  … 24295/24295 (best 11359, reject 12936)
+
+Best (serve): 11359 (46.8%)
+Top blockers:
+  cartoon_distractors: 8020
+  generic_intervention_distractors: 4602
+  generic_pharmacology_distractors: 4295
+  generic_communication_distractors: 2237
+  generic_risk_distractors: 1142
+  generic_teaching_distractors: 469
+  duplicate_vignette_in_stem: 114
+  generic_delegation_correct: 101
+  missing_distractor_rationales: 83
+  weak_distractor_rationales: 83
+
+⚠ Below 80%
+▶ report
+
+NCLEX best-rate report — 24295 active items
+
+  … 5000/24295
+  … 10000/24295
+  … 15000/24295
+  … 20000/24295
+  … 24295/24295
+
+Best tier: 11359 / 24295 (46.8%)
+DB qaPassed: 11359 (stale if >> best tier)
+
+⚠ Below 80%
+Report: /Users/ryanchishimba/Desktop/cursor/artifacts/nclex-best-rate-report.json
+

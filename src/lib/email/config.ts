@@ -48,10 +48,10 @@ export function appBaseUrl(): string {
   }
 
   const authUrl = trimSlash(process.env.NEXTAUTH_URL);
-  if (authUrl) return authUrl;
+  if (authUrl && !/localhost|127\.0\.0\.1/i.test(authUrl)) return authUrl;
 
   const siteUrl = trimSlash(process.env.NEXT_PUBLIC_SITE_URL);
-  if (siteUrl) return siteUrl;
+  if (siteUrl && !/localhost|127\.0\.0\.1/i.test(siteUrl)) return siteUrl;
 
   return getSiteUrl();
 }

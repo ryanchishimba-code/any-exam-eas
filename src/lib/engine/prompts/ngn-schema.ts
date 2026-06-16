@@ -18,4 +18,5 @@ Self-check before output:
 - Rationale explains WHY correct using signs/symptoms + mechanism/etiology
 - Each wrong option has distractorRationale referencing specific stem data
 - Blueprint category and format match the assigned slot
+- No consecutive items with similar style, answer choices, or clinical presentation; every batch of 10 varies format and structure
 Never copy stems verbatim; create fresh variations with equal or higher realism.`;

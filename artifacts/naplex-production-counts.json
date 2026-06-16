@@ -1,0 +1,92 @@
+{
+  "generatedAt": "2026-06-14T04:25:38.605Z",
+  "targetAPlus": 16691,
+  "total": 29813,
+  "active": 22317,
+  "inactive": 7496,
+  "qaPassedServed": 16792,
+  "bestTierScored": 21192,
+  "activeBestTier": 21190,
+  "activeQaPassedNotBest": 101,
+  "activeNotQaPassed": 1026,
+  "inactiveBestTier": 2,
+  "acceptableTier": 4468,
+  "rejectTier": 4153,
+  "servedMatchesBestTier": false,
+  "premiumTargetMet": true,
+  "gapFromLocalReviewTarget": 101,
+  "bySubject": {
+    "cardiovascular-rx": {
+      "total": 2486,
+      "best": 1821,
+      "qaPassed": 1457,
+      "active": 1909
+    },
+    "cns-rx": {
+      "total": 2459,
+      "best": 1799,
+      "qaPassed": 1436,
+      "active": 1884
+    },
+    "compounding-calculations": {
+      "total": 2360,
+      "best": 1923,
+      "qaPassed": 1651,
+      "active": 1972
+    },
+    "endocrine-rx": {
+      "total": 2475,
+      "best": 1810,
+      "qaPassed": 1452,
+      "active": 1899
+    },
+    "infectious-disease-rx": {
+      "total": 2456,
+      "best": 1790,
+      "qaPassed": 1455,
+      "active": 1877
+    },
+    "oncology-rx": {
+      "total": 2442,
+      "best": 1784,
+      "qaPassed": 1429,
+      "active": 1867
+    },
+    "otc-self-care": {
+      "total": 2460,
+      "best": 1802,
+      "qaPassed": 1437,
+      "active": 1886
+    },
+    "patient-counseling": {
+      "total": 2506,
+      "best": 1723,
+      "qaPassed": 1356,
+      "active": 1826
+    },
+    "pharmaceutics": {
+      "total": 2445,
+      "best": 1782,
+      "qaPassed": 1435,
+      "active": 1867
+    },
+    "pharmacokinetics": {
+      "total": 2448,
+      "best": 1782,
+      "qaPassed": 1446,
+      "active": 1871
+    },
+    "pharmacology": {
+      "total": 2674,
+      "best": 1629,
+      "qaPassed": 1151,
+      "active": 1778
+    },
+    "pharmacy-law": {
+      "total": 2602,
+      "best": 1547,
+      "qaPassed": 1091,
+      "active": 1681
+    }
+  }
+}

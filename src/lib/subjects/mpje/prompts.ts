@@ -12,6 +12,7 @@ Rules:
 - Four options with one best answer; distractors = common legal misconceptions, wrong jurisdiction, outdated rules.
 - Rationales cite the governing statute/regulation principle and why each distractor fails.
 - references array MUST cite NABP MPJE content outline AND relevant federal/state legal source.
+- BATCH DIVERSITY: No consecutive similar legal scenarios, answer-choice patterns, or fact-pattern structure; every batch of 10 must vary jurisdiction focus, scenario setting, and option wording.
 - Output only valid JSON.`;
 
 export function getMpjeUserAugmentation(options?: {
@@ -64,5 +65,9 @@ RATIONALE STRUCTURE:
 1. Identify governing authority (federal vs state).
 2. State the legal rule or board standard.
 3. Apply rule to scenario facts → correct answer.
-4. Explain why each distractor violates or misapplies the law.`;
+4. Explain why each distractor violates or misapplies the law.
+
+BATCH DIVERSITY:
+- No consecutive items testing the same statute, schedule, or board rule with parallel option wording.
+- Every 10-question block must vary scenario setting (community, hospital, mail-order, inspection) and legal domain mix.`;
 }

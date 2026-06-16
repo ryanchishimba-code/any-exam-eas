@@ -1,0 +1,71 @@
+{
+  "field": "nursing",
+  "total": 24295,
+  "processed": 24295,
+  "updated": 24186,
+  "skipped": 109,
+  "refsOnly": 24186,
+  "explanationAugmented": 47,
+  "topRules": [
+    {
+      "id": "isolation",
+      "count": 5703
+    },
+    {
+      "id": "pediatric",
+      "count": 5601
+    },
+    {
+      "id": "cdiff",
+      "count": 4384
+    },
+    {
+      "id": "respiratory",
+      "count": 4136
+    },
+    {
+      "id": "anticoagulation",
+      "count": 3872
+    },
+    {
+      "id": "medication_admin",
+      "count": 3801
+    },
+    {
+      "id": "heart_failure",
+      "count": 3470
+    },
+    {
+      "id": "insulin",
+      "count": 2986
+    },
+    {
+      "id": "sepsis",
+      "count": 2873
+    },
+    {
+      "id": "delegation",
+      "count": 1787
+    },
+    {
+      "id": "fall_risk",
+      "count": 1715
+    },
+    {
+      "id": "therapeutic_comm",
+      "count": 846
+    },
+    {
+      "id": "postpartum_hemorrhage",
+      "count": 800
+    },
+    {
+      "id": "labor",
+      "count": 797
+    },
+    {
+      "id": "default",
+      "count": 60
+    }
+  ]
+}

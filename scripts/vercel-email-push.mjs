@@ -112,6 +112,15 @@ function resolveValues(env) {
       console.warn("  Domain must be Verified in Resend: https://resend.com/domains");
       value = PRODUCTION_FROM;
     }
+    if (
+      (spec.key === "NEXTAUTH_URL" || spec.key === "NEXT_PUBLIC_SITE_URL") &&
+      /localhost|127\.0\.0\.1/i.test(value)
+    ) {
+      console.warn(
+        `⚠ ${spec.key} is ${value} locally — pushing ${PRODUCTION_URL} to Vercel instead.`
+      );
+      value = PRODUCTION_URL;
+    }
     values[spec.key] = value;
   }
   return values;

@@ -1,0 +1,86 @@
+
+> any-exam-easy@0.1.0 db:qa-gate-usmle-best
+> bash scripts/run-with-node.sh npx tsx scripts/qa-gate-usmle-best.ts
+
+
+USMLE best gate — usmle-step-1 (12162 active)
+
+  … 2000/12162 (ready 217, blocked 1783)
+  … 4000/12162 (ready 285, blocked 3715)
+  … 6000/12162 (ready 588, blocked 5412)
+  … 8000/12162 (ready 1013, blocked 6987)
+  … 10000/12162 (ready 1255, blocked 8745)
+  … 12000/12162 (ready 1863, blocked 10137)
+  … 12162/12162 (ready 1916, blocked 10246)
+
+── usmle-step-1 gate complete ──
+Processed:  12162
+Exam-ready: 1916 (15.8%)
+Blocked:    10246
+Top blockers:
+  vignette_validation: 6381
+  stem_lead_in: 3055
+  weak_distractors: 1374
+  no_distractor_rationale: 78
+  missing_vignette: 58
+  short_explanation: 46
+  stem_punctuation: 37
+  thin_vignette: 21
+Students will see: 1916 usmle-step-1 items
+
+USMLE best gate — usmle-step-2 (18201 active)
+
+  … 2000/18201 (ready 869, blocked 1131)
+  … 4000/18201 (ready 1425, blocked 2575)
+  … 6000/18201 (ready 1993, blocked 4007)
+  … 8000/18201 (ready 2517, blocked 5483)
+  … 10000/18201 (ready 3040, blocked 6960)
+  … 12000/18201 (ready 3730, blocked 8270)
+  … 14000/18201 (ready 4399, blocked 9601)
+  … 16000/18201 (ready 4657, blocked 11343)
+  … 18000/18201 (ready 5228, blocked 12772)
+  … 18201/18201 (ready 5306, blocked 12895)
+
+── usmle-step-2 gate complete ──
+Processed:  18201
+Exam-ready: 5306 (29.2%)
+Blocked:    12895
+Top blockers:
+  vignette_validation: 7695
+  weak_distractors: 4429
+  stem_lead_in: 4246
+  criteria_only_in_explanation: 162
+  no_distractor_rationale: 67
+  short_explanation: 52
+  thin_vignette: 46
+  stem_punctuation: 31
+Students will see: 5306 usmle-step-2 items
+
+USMLE best gate — usmle-step-3 (18110 active)
+
+  … 2000/18110 (ready 821, blocked 1179)
+  … 4000/18110 (ready 1339, blocked 2661)
+  … 6000/18110 (ready 1917, blocked 4083)
+  … 8000/18110 (ready 2439, blocked 5561)
+  … 10000/18110 (ready 2988, blocked 7012)
+  … 12000/18110 (ready 3648, blocked 8352)
+  … 14000/18110 (ready 4279, blocked 9721)
+  … 16000/18110 (ready 4566, blocked 11434)
+  … 18000/18110 (ready 5070, blocked 12930)
+  … 18110/18110 (ready 5096, blocked 13014)
+
+── usmle-step-3 gate complete ──
+Processed:  18110
+Exam-ready: 5096 (28.1%)
+Blocked:    13014
+Top blockers:
+  vignette_validation: 7661
+  weak_distractors: 4608
+  stem_lead_in: 4171
+  criteria_only_in_explanation: 183
+  short_explanation: 43
+  no_distractor_rationale: 43
+  thin_vignette: 27
+  missing_vignette: 17
+Students will see: 5096 usmle-step-3 items
+

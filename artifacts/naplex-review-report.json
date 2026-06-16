@@ -1,0 +1,111 @@
+{
+  "generatedAt": "2026-06-14T03:04:32.216Z",
+  "dryRun": false,
+  "totalReviewed": 24286,
+  "kept": 16691,
+  "archived": 7595,
+  "keepRatePercent": 68.72683850778226,
+  "tiers": {
+    "best": 16691,
+    "acceptable": 3442,
+    "reject": 4153
+  },
+  "topRejectReasons": {
+    "weak_naplex_correct": 3711,
+    "weak_naplex_options": 3606,
+    "duplicate_vignette_in_stem": 386,
+    "naplex_explanation_short": 30,
+    "explanation_too_short": 30,
+    "missing_vignette": 29,
+    "naplex_stem_lead_in": 25,
+    "correct_not_in_options": 6,
+    "naplex_controlled_substance_mismatch": 1,
+    "empty_explanation": 1
+  },
+  "bySubject": {
+    "pharmacokinetics": {
+      "best": 1435,
+      "acceptable": 293,
+      "reject": 295,
+      "kept": 1435,
+      "archived": 588
+    },
+    "pharmacology": {
+      "best": 1140,
+      "acceptable": 339,
+      "reject": 565,
+      "kept": 1140,
+      "archived": 904
+    },
+    "pharmaceutics": {
+      "best": 1430,
+      "acceptable": 288,
+      "reject": 295,
+      "kept": 1430,
+      "archived": 583
+    },
+    "compounding-calculations": {
+      "best": 1636,
+      "acceptable": 201,
+      "reject": 203,
+      "kept": 1636,
+      "archived": 404
+    },
+    "cardiovascular-rx": {
+      "best": 1446,
+      "acceptable": 292,
+      "reject": 296,
+      "kept": 1446,
+      "archived": 588
+    },
+    "infectious-disease-rx": {
+      "best": 1443,
+      "acceptable": 294,
+      "reject": 294,
+      "kept": 1443,
+      "archived": 588
+    },
+    "endocrine-rx": {
+      "best": 1440,
+      "acceptable": 294,
+      "reject": 294,
+      "kept": 1440,
+      "archived": 588
+    },
+    "cns-rx": {
+      "best": 1431,
+      "acceptable": 286,
+      "reject": 295,
+      "kept": 1431,
+      "archived": 581
+    },
+    "oncology-rx": {
+      "best": 1427,
+      "acceptable": 286,
+      "reject": 291,
+      "kept": 1427,
+      "archived": 577
+    },
+    "otc-self-care": {
+      "best": 1433,
+      "acceptable": 288,
+      "reject": 290,
+      "kept": 1433,
+      "archived": 578
+    },
+    "patient-counseling": {
+      "best": 1344,
+      "acceptable": 293,
+      "reject": 397,
+      "kept": 1344,
+      "archived": 690
+    },
+    "pharmacy-law": {
+      "best": 1086,
+      "acceptable": 288,
+      "reject": 638,
+      "kept": 1086,
+      "archived": 926
+    }
+  }
+}

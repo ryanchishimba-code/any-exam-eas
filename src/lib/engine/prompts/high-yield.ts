@@ -11,6 +11,7 @@ import {
   PHARM_DRUG_PROFILE_JSON,
   requiresDrugProfileOnEveryQuestion,
 } from "./pharm-drug-profile";
+import { BATCH_DIVERSITY_RULES } from "./batch-diversity";
 
 const DETAILED_RATIONALE_SCHEMA = `
 DETAILED RATIONALE (required for every item):
@@ -126,6 +127,7 @@ export function buildHighYieldRequirements(
     VIGNETTE_REQUIREMENTS,
     buildOerGroundingBlock(),
     STRONG_DISTRACTOR_RULES,
+    BATCH_DIVERSITY_RULES,
     buildDistractorPatternBlock(subjectModule),
     buildNgnRequirementsBlock(ctx.fieldId, ctx.questionCount),
     DETAILED_RATIONALE_SCHEMA,

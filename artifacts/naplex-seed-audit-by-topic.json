@@ -1,0 +1,120 @@
+{
+  "generatedAt": "2026-06-14T01:52:24.593Z",
+  "total": 102,
+  "pass": 102,
+  "best": 23,
+  "passRatePercent": 100,
+  "topics": [
+    {
+      "subjectId": "cardiovascular-rx",
+      "total": 13,
+      "pass": 13,
+      "best": 4,
+      "fail": 0,
+      "polishCorruptions": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "cns-rx",
+      "total": 4,
+      "pass": 4,
+      "best": 1,
+      "fail": 0,
+      "polishCorruptions": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "compounding-calculations",
+      "total": 16,
+      "pass": 16,
+      "best": 2,
+      "fail": 0,
+      "polishCorruptions": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "endocrine-rx",
+      "total": 11,
+      "pass": 11,
+      "best": 1,
+      "fail": 0,
+      "polishCorruptions": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "infectious-disease-rx",
+      "total": 13,
+      "pass": 13,
+      "best": 4,
+      "fail": 0,
+      "polishCorruptions": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "otc-self-care",
+      "total": 2,
+      "pass": 2,
+      "best": 0,
+      "fail": 0,
+      "polishCorruptions": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "patient-counseling",
+      "total": 12,
+      "pass": 12,
+      "best": 2,
+      "fail": 0,
+      "polishCorruptions": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "pharmaceutics",
+      "total": 3,
+      "pass": 3,
+      "best": 0,
+      "fail": 0,
+      "polishCorruptions": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "pharmacokinetics",
+      "total": 9,
+      "pass": 9,
+      "best": 1,
+      "fail": 0,
+      "polishCorruptions": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "pharmacology",
+      "total": 14,
+      "pass": 14,
+      "best": 6,
+      "fail": 0,
+      "polishCorruptions": 0,
+      "topIssues": {},
+      "samples": []
+    },
+    {
+      "subjectId": "pharmacy-law",
+      "total": 5,
+      "pass": 5,
+      "best": 2,
+      "fail": 0,
+      "polishCorruptions": 0,
+      "topIssues": {},
+      "samples": []
+    }
+  ],
+  "failures": []
+}

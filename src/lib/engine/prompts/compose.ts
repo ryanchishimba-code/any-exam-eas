@@ -4,11 +4,12 @@ import {
   buildUniversalScopeBlock,
   buildUniversalExamUserPrompt,
 } from "./base";
+import { BATCH_DIVERSITY_RULES } from "./batch-diversity";
 import { buildHighYieldJsonShape, buildHighYieldRequirements } from "./high-yield";
 import { buildDrugCatalogReferenceBlock } from "./pharm-drug-profile";
 
 export function composeExamSystemPrompt(subjectModule: SubjectModule): string {
-  return `${UNIVERSAL_EXAM_SYSTEM}\n${subjectModule.getExamSystemAugmentation()}\nNever include questions outside the specified subject scope.`;
+  return `${UNIVERSAL_EXAM_SYSTEM}\n${BATCH_DIVERSITY_RULES}\n${subjectModule.getExamSystemAugmentation()}\nNever include questions outside the specified subject scope.`;
 }
 
 export function composeExamUserPrompt(

@@ -71,6 +71,18 @@ export function analyticsHref(): string {
   return ROUTES.analytics;
 }
 
+/** Adaptive session prioritizing spaced-review due items and weak areas. */
+export function spacedReviewHref(examSlug: ExamSlug, count = 20): string {
+  const fieldId = EXAM_CATALOG[examSlug].fieldId;
+  const qs = new URLSearchParams({
+    field: fieldId,
+    mode: "bank",
+    style: "adaptive",
+    count: String(count),
+  });
+  return `${ROUTES.questionBank}?${qs.toString()}`;
+}
+
 export function top500Href(examSlug: ExamSlug): string {
   return `${ROUTES.drugs300}?exam=${examSlug}`;
 }

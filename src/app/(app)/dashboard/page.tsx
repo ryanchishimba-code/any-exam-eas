@@ -57,6 +57,7 @@ async function DashboardContent({
         trendDelta: dashboard.headline.trendDelta,
       }}
       weakTopics={weakTopics}
+      spacedReview={dashboard.spacedReview}
       recentTests={dashboard.recentTests}
       userName={userName}
       mpjeStateCode={meta.mpjeStateCode}

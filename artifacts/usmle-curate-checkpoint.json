@@ -1,0 +1,18 @@
+{
+  "startedAt": "2026-06-13T20:53:45.694Z",
+  "updatedAt": "2026-06-13T20:54:16.702Z",
+  "processed": [
+    "cmqasnl1i000d1ycyqztncoos",
+    "cmqasnl7g000f1ycyrvbr57wi",
+    "cmqasnn4500101ycyj7djmnjm"
+  ],
+  "counts": {
+    "accepted": 2,
+    "rule_polished": 0,
+    "ai_curated": 0,
+    "rejected": 1,
+    "skipped": 0,
+    "errors": 0,
+    "updated": 0
+  }
+}

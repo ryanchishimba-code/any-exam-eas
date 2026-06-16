@@ -39,6 +39,10 @@ import {
   QuestionRenderer,
 } from "./questions/QuestionRenderer";
 import { formatHms } from "@/lib/full-exam/config";
+import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import { StudyThisTopicButton } from "./StudyThisTopicButton";
+import { resolveStudyLinksFromQuestion } from "@/lib/reference/question-study-links";
+import { Flag } from "lucide-react";
 
 type Props = {
   field: string;
@@ -102,6 +106,7 @@ export function StudySessionPlayer({
   );
   const [timeUp, setTimeUp] = useState(false);
   const [inReview, setInReview] = useState(false);
+  const [flaggedIds, setFlaggedIds] = useState<Set<string>>(() => new Set());
   const startedAt = useRef<number>(Date.now());
   const progressSaved = useRef(false);
   const touchStart = useRef<number | null>(null);
@@ -463,6 +468,19 @@ export function StudySessionPlayer({
   const selectionReasoning =
     sessionState.adaptiveMeta?.questionReasoning?.[String(current.id)] ??
     sessionState.adaptiveMeta?.sessionRationale;
+  const examSlug = examSlugFromFieldId(field) ?? "nclex";
+  const studyLinks = resolveStudyLinksFromQuestion(examSlug, current);
+  const isFlagged = flaggedIds.has(String(current.id));
+
+  const toggleFlag = () => {
+    const id = String(current.id);
+    setFlaggedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
 
   return (
     <div
@@ -515,6 +533,21 @@ export function StudySessionPlayer({
                 total={questionList.length}
               />
             )}
+          <div className="mb-4 flex justify-end">
+            <button
+              type="button"
+              onClick={toggleFlag}
+              className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-semibold transition ${
+                isFlagged
+                  ? "border-amber-300 bg-amber-50 text-amber-900"
+                  : "border-black/[0.08] text-[var(--color-ink-muted)] hover:bg-black/[0.03]"
+              }`}
+              aria-pressed={isFlagged}
+            >
+              <Flag className="h-3.5 w-3.5" aria-hidden />
+              {isFlagged ? "Flagged" : "Flag for review"}
+            </button>
+          </div>
           <QuestionRenderer
             question={current}
             selected={selected}
@@ -546,6 +579,11 @@ export function StudySessionPlayer({
               <p className="text-sm">
                 <AnswerFeedbackLabel correct={answer.correct === true} />
               </p>
+              <StudyThisTopicButton
+                links={studyLinks}
+                missed={answer.correct !== true}
+                flagged={isFlagged}
+              />
               <ExplanationPanel question={current} field={field} />
               {insight && (
                 <InsightPanel

@@ -1,0 +1,1058 @@
+[2026-06-13T20:12:15.402Z] Resuming — 105 already processed, 35944 remaining
+[2026-06-13T20:12:15.405Z] USMLE AI curation — 35944 item(s) queued
+[2026-06-13T20:12:15.405Z]   source: /Users/ryanchishimba/Desktop/cursor/artifacts/usmle-qa-failing.csv  max-score: 10  min-accept: 8
+[2026-06-13T20:12:15.405Z]   dry-run: false  offline: false  no-rag: false  AI: false
+[2026-06-13T20:12:15.405Z]   WARNING: OPENAI_API_KEY not set — running rule-polish only. Add key to .env.local for AI rewrites.
+[2026-06-13T20:12:16.098Z]   hash collision on cmq339x4z0… — retrying with alternate seed/AI
+[2026-06-13T20:12:16.591Z]   skip cmq339x4z0… — hash collision after AI retry
+[2026-06-13T20:12:16.681Z]   hash collision on cmpnjhu7l0… — retrying with alternate seed/AI
+[2026-06-13T20:12:17.157Z]   skip cmpnjhu7l0… — hash collision after AI retry
+[2026-06-13T20:12:17.287Z]   hash collision on cmpnjhu7l0… — retrying with alternate seed/AI
+[2026-06-13T20:12:17.811Z]   skip cmpnjhu7l0… — hash collision after AI retry
+[2026-06-13T20:12:17.920Z]   hash collision on cmpnjhu7l0… — retrying with alternate seed/AI
+[2026-06-13T20:12:18.444Z]   skip cmpnjhu7l0… — hash collision after AI retry
+[2026-06-13T20:12:18.546Z]   hash collision on cmpnjhu7l0… — retrying with alternate seed/AI
+[2026-06-13T20:12:19.057Z]   skip cmpnjhu7l0… — hash collision after AI retry
+[2026-06-13T20:12:19.156Z]   hash collision on cmpnjhu7l0… — retrying with alternate seed/AI
+[2026-06-13T20:12:19.667Z]   skip cmpnjhu7l0… — hash collision after AI retry
+[2026-06-13T20:12:19.769Z]   hash collision on cmpnjhuhg0… — retrying with alternate seed/AI
+[2026-06-13T20:12:20.270Z]   skip cmpnjhuhg0… — hash collision after AI retry
+[2026-06-13T20:12:20.367Z]   hash collision on cmpnjhuhg0… — retrying with alternate seed/AI
+[2026-06-13T20:12:20.886Z]   skip cmpnjhuhg0… — hash collision after AI retry
+[2026-06-13T20:12:21.018Z]   hash collision on cmpnjhupo0… — retrying with alternate seed/AI
+[2026-06-13T20:12:21.630Z]   skip cmpnjhupo0… — hash collision after AI retry
+[2026-06-13T20:12:21.786Z]   hash collision on cmpnjhv090… — retrying with alternate seed/AI
+[2026-06-13T20:12:22.283Z]   skip cmpnjhv090… — hash collision after AI retry
+[2026-06-13T20:12:22.388Z]   hash collision on cmpnjhv6a0… — retrying with alternate seed/AI
+[2026-06-13T20:12:22.889Z]   skip cmpnjhv6a0… — hash collision after AI retry
+[2026-06-13T20:12:22.987Z]   hash collision on cmpnjhv6a0… — retrying with alternate seed/AI
+[2026-06-13T20:12:23.478Z]   skip cmpnjhv6a0… — hash collision after AI retry
+[2026-06-13T20:12:23.579Z]   hash collision on cmpnjhvfo0… — retrying with alternate seed/AI
+[2026-06-13T20:12:24.073Z]   skip cmpnjhvfo0… — hash collision after AI retry
+[2026-06-13T20:12:24.177Z]   hash collision on cmpnjhvlj0… — retrying with alternate seed/AI
+[2026-06-13T20:12:24.867Z]   skip cmpnjhvlj0… — hash collision after AI retry
+[2026-06-13T20:12:24.967Z]   hash collision on cmpnjhvlj0… — retrying with alternate seed/AI
+[2026-06-13T20:12:25.473Z]   skip cmpnjhvlj0… — hash collision after AI retry
+[2026-06-13T20:12:25.582Z]   hash collision on cmpnjhvrk0… — retrying with alternate seed/AI
+[2026-06-13T20:12:26.088Z]   skip cmpnjhvrk0… — hash collision after AI retry
+[2026-06-13T20:12:26.193Z]   hash collision on cmpnjhvrk0… — retrying with alternate seed/AI
+[2026-06-13T20:12:26.698Z]   skip cmpnjhvrk0… — hash collision after AI retry
+[2026-06-13T20:12:26.825Z]   hash collision on cmpnjhvxf0… — retrying with alternate seed/AI
+[2026-06-13T20:12:27.397Z]   skip cmpnjhvxf0… — hash collision after AI retry
+[2026-06-13T20:12:27.498Z]   hash collision on cmpnjhvxf0… — retrying with alternate seed/AI
+[2026-06-13T20:12:27.987Z]   skip cmpnjhvxf0… — hash collision after AI retry
+[2026-06-13T20:12:28.085Z]   hash collision on cmpnjhvxf0… — retrying with alternate seed/AI
+[2026-06-13T20:12:28.584Z]   skip cmpnjhvxf0… — hash collision after AI retry
+[2026-06-13T20:12:28.706Z]   hash collision on cmpnjhvxf0… — retrying with alternate seed/AI
+[2026-06-13T20:12:29.195Z]   skip cmpnjhvxf0… — hash collision after AI retry
+[2026-06-13T20:12:29.473Z]   hash collision on cmpnjhwg40… — retrying with alternate seed/AI
+[2026-06-13T20:12:30.261Z]   skip cmpnjhwg40… — hash collision after AI retry
+[2026-06-13T20:12:30.364Z]   hash collision on cmpnjhwmr0… — retrying with alternate seed/AI
+[2026-06-13T20:12:30.875Z]   skip cmpnjhwmr0… — hash collision after AI retry
+[2026-06-13T20:12:31.025Z]   hash collision on cmpnjhwmr0… — retrying with alternate seed/AI
+[2026-06-13T20:12:31.688Z]   skip cmpnjhwmr0… — hash collision after AI retry
+[2026-06-13T20:12:31.794Z]   hash collision on cmpnjhwmr0… — retrying with alternate seed/AI
+[2026-06-13T20:12:32.283Z]   skip cmpnjhwmr0… — hash collision after AI retry
+[2026-06-13T20:12:32.385Z]   hash collision on cmpnjhwsh0… — retrying with alternate seed/AI
+[2026-06-13T20:12:32.880Z]   skip cmpnjhwsh0… — hash collision after AI retry
+[2026-06-13T20:12:32.982Z]   hash collision on cmpnjhwsi0… — retrying with alternate seed/AI
+[2026-06-13T20:12:33.490Z]   skip cmpnjhwsi0… — hash collision after AI retry
+[2026-06-13T20:12:33.581Z]   hash collision on cmpnjhx2d0… — retrying with alternate seed/AI
+[2026-06-13T20:12:34.074Z]   skip cmpnjhx2d0… — hash collision after AI retry
+[2026-06-13T20:12:34.182Z]   hash collision on cmpnjhx950… — retrying with alternate seed/AI
+[2026-06-13T20:12:34.706Z]   skip cmpnjhx950… — hash collision after AI retry
+[2026-06-13T20:12:34.800Z]   hash collision on cmpnjhx950… — retrying with alternate seed/AI
+[2026-06-13T20:12:35.277Z]   skip cmpnjhx950… — hash collision after AI retry
+[2026-06-13T20:12:35.384Z]   hash collision on cmpnjhx960… — retrying with alternate seed/AI
+[2026-06-13T20:12:35.908Z]   skip cmpnjhx960… — hash collision after AI retry
+[2026-06-13T20:12:36.009Z]   hash collision on cmpnjhx960… — retrying with alternate seed/AI
+[2026-06-13T20:12:36.683Z]   skip cmpnjhx960… — hash collision after AI retry
+[2026-06-13T20:12:36.787Z]   hash collision on cmpnjhz470… — retrying with alternate seed/AI
+[2026-06-13T20:12:37.277Z]   skip cmpnjhz470… — hash collision after AI retry
+[2026-06-13T20:12:37.371Z]   hash collision on cmpnjhz470… — retrying with alternate seed/AI
+[2026-06-13T20:12:37.870Z]   skip cmpnjhz470… — hash collision after AI retry
+[2026-06-13T20:12:37.967Z]   hash collision on cmpnjhz470… — retrying with alternate seed/AI
+[2026-06-13T20:12:38.465Z]   skip cmpnjhz470… — hash collision after AI retry
+[2026-06-13T20:12:38.568Z]   hash collision on cmpnji07v0… — retrying with alternate seed/AI
+[2026-06-13T20:12:39.060Z]   skip cmpnji07v0… — hash collision after AI retry
+[2026-06-13T20:12:39.162Z]   hash collision on cmpnji0890… — retrying with alternate seed/AI
+[2026-06-13T20:12:39.693Z]   skip cmpnji0890… — hash collision after AI retry
+[2026-06-13T20:12:39.798Z]   hash collision on cmpnji0890… — retrying with alternate seed/AI
+[2026-06-13T20:12:40.322Z]   skip cmpnji0890… — hash collision after AI retry
+[2026-06-13T20:12:40.435Z]   hash collision on cmpnji0v10… — retrying with alternate seed/AI
+[2026-06-13T20:12:40.999Z]   skip cmpnji0v10… — hash collision after AI retry
+[2026-06-13T20:12:41.127Z]   hash collision on cmpnji0v20… — retrying with alternate seed/AI
+[2026-06-13T20:12:41.641Z]   skip cmpnji0v20… — hash collision after AI retry
+[2026-06-13T20:12:41.737Z]   hash collision on cmpnji0v20… — retrying with alternate seed/AI
+[2026-06-13T20:12:42.290Z]   skip cmpnji0v20… — hash collision after AI retry
+[2026-06-13T20:12:42.397Z]   hash collision on cmpnji0v20… — retrying with alternate seed/AI
+[2026-06-13T20:12:43.698Z]   skip cmpnji0v20… — hash collision after AI retry
+[2026-06-13T20:12:43.807Z]   hash collision on cmpnji0v20… — retrying with alternate seed/AI
+[2026-06-13T20:12:44.365Z]   skip cmpnji0v20… — hash collision after AI retry
+[2026-06-13T20:12:44.468Z]   hash collision on cmpnji15l0… — retrying with alternate seed/AI
+[2026-06-13T20:12:44.975Z]   skip cmpnji15l0… — hash collision after AI retry
+[2026-06-13T20:12:45.074Z]   hash collision on cmpnji15m0… — retrying with alternate seed/AI
+[2026-06-13T20:12:45.574Z]   skip cmpnji15m0… — hash collision after AI retry
+[2026-06-13T20:12:45.669Z]   hash collision on cmpnji15n0… — retrying with alternate seed/AI
+[2026-06-13T20:12:46.220Z]   skip cmpnji15n0… — hash collision after AI retry
+[2026-06-13T20:12:46.325Z]   hash collision on cmpnji1ft0… — retrying with alternate seed/AI
+[2026-06-13T20:12:46.837Z]   skip cmpnji1ft0… — hash collision after AI retry
+[2026-06-13T20:12:46.935Z]   hash collision on cmpnji1fu0… — retrying with alternate seed/AI
+[2026-06-13T20:12:47.429Z]   skip cmpnji1fu0… — hash collision after AI retry
+[2026-06-13T20:12:47.531Z]   hash collision on cmpnji1fx0… — retrying with alternate seed/AI
+[2026-06-13T20:12:48.030Z]   skip cmpnji1fx0… — hash collision after AI retry
+[2026-06-13T20:12:48.129Z]   hash collision on cmpnji1fx0… — retrying with alternate seed/AI
+[2026-06-13T20:12:48.625Z]   skip cmpnji1fx0… — hash collision after AI retry
+[2026-06-13T20:12:48.725Z]   hash collision on cmpnji2lg0… — retrying with alternate seed/AI
+[2026-06-13T20:12:49.220Z]   skip cmpnji2lg0… — hash collision after AI retry
+[2026-06-13T20:12:49.317Z]   hash collision on cmpnji2lg0… — retrying with alternate seed/AI
+[2026-06-13T20:12:49.829Z]   skip cmpnji2lg0… — hash collision after AI retry
+[2026-06-13T20:12:49.925Z]   hash collision on cmpnji2lg0… — retrying with alternate seed/AI
+[2026-06-13T20:12:50.405Z]   skip cmpnji2lg0… — hash collision after AI retry
+[2026-06-13T20:12:50.503Z]   hash collision on cmpnji2wt0… — retrying with alternate seed/AI
+[2026-06-13T20:12:50.993Z]   skip cmpnji2wt0… — hash collision after AI retry
+[2026-06-13T20:12:51.115Z]   hash collision on cmpnji2wt0… — retrying with alternate seed/AI
+[2026-06-13T20:12:51.619Z]   skip cmpnji2wt0… — hash collision after AI retry
+[2026-06-13T20:12:51.718Z]   hash collision on cmpnji2wt0… — retrying with alternate seed/AI
+[2026-06-13T20:12:52.206Z]   skip cmpnji2wt0… — hash collision after AI retry
+[2026-06-13T20:12:52.308Z]   hash collision on cmpnji33e0… — retrying with alternate seed/AI
+[2026-06-13T20:12:52.820Z]   skip cmpnji33e0… — hash collision after AI retry
+[2026-06-13T20:12:52.922Z]   hash collision on cmpnji33f0… — retrying with alternate seed/AI
+[2026-06-13T20:12:53.438Z]   skip cmpnji33f0… — hash collision after AI retry
+[2026-06-13T20:12:53.546Z]   hash collision on cmpnji33f0… — retrying with alternate seed/AI
+[2026-06-13T20:12:54.027Z]   skip cmpnji33f0… — hash collision after AI retry
+[2026-06-13T20:12:54.126Z]   hash collision on cmpnji39j0… — retrying with alternate seed/AI
+[2026-06-13T20:12:54.631Z]   skip cmpnji39j0… — hash collision after AI retry
+[2026-06-13T20:12:54.737Z]   hash collision on cmpnji3ff0… — retrying with alternate seed/AI
+[2026-06-13T20:12:55.264Z]   skip cmpnji3ff0… — hash collision after AI retry
+[2026-06-13T20:12:55.364Z]   hash collision on cmpnji3p60… — retrying with alternate seed/AI
+[2026-06-13T20:12:55.874Z]   skip cmpnji3p60… — hash collision after AI retry
+[2026-06-13T20:12:55.974Z]   hash collision on cmpnji3xb0… — retrying with alternate seed/AI
+[2026-06-13T20:12:56.478Z]   skip cmpnji3xb0… — hash collision after AI retry
+[2026-06-13T20:12:56.581Z]   hash collision on cmpnji3xb0… — retrying with alternate seed/AI
+[2026-06-13T20:12:57.085Z]   skip cmpnji3xb0… — hash collision after AI retry
+[2026-06-13T20:12:57.213Z]   hash collision on cmpnji3xc0… — retrying with alternate seed/AI
+[2026-06-13T20:12:57.710Z]   skip cmpnji3xc0… — hash collision after AI retry
+[2026-06-13T20:12:57.812Z]   hash collision on cmpnji4370… — retrying with alternate seed/AI
+[2026-06-13T20:12:58.318Z]   skip cmpnji4370… — hash collision after AI retry
+[2026-06-13T20:12:58.425Z]   hash collision on cmpnji4380… — retrying with alternate seed/AI
+[2026-06-13T20:12:58.947Z]   skip cmpnji4380… — hash collision after AI retry
+[2026-06-13T20:12:59.046Z]   hash collision on cmpnji48y0… — retrying with alternate seed/AI
+[2026-06-13T20:12:59.536Z]   skip cmpnji48y0… — hash collision after AI retry
+[2026-06-13T20:12:59.635Z]   hash collision on cmpnji4fi0… — retrying with alternate seed/AI
+[2026-06-13T20:13:00.138Z]   skip cmpnji4fi0… — hash collision after AI retry
+[2026-06-13T20:13:00.234Z]   hash collision on cmpnji4fi0… — retrying with alternate seed/AI
+[2026-06-13T20:13:00.729Z]   skip cmpnji4fi0… — hash collision after AI retry
+[2026-06-13T20:13:00.854Z]   hash collision on cmpnji4fi0… — retrying with alternate seed/AI
+[2026-06-13T20:13:01.406Z]   skip cmpnji4fi0… — hash collision after AI retry
+[2026-06-13T20:13:01.512Z]   hash collision on cmpnji4lb0… — retrying with alternate seed/AI
+[2026-06-13T20:13:02.988Z]   skip cmpnji4lb0… — hash collision after AI retry
+[2026-06-13T20:13:03.135Z]   hash collision on cmpnji4lb0… — retrying with alternate seed/AI
+[2026-06-13T20:13:03.696Z]   skip cmpnji4lb0… — hash collision after AI retry
+[2026-06-13T20:13:03.795Z]   hash collision on cmpnji4lb0… — retrying with alternate seed/AI
+[2026-06-13T20:13:04.291Z]   skip cmpnji4lb0… — hash collision after AI retry
+[2026-06-13T20:13:04.397Z]   hash collision on cmpnji4lb0… — retrying with alternate seed/AI
+[2026-06-13T20:13:04.913Z]   skip cmpnji4lb0… — hash collision after AI retry
+[2026-06-13T20:13:05.016Z]   hash collision on cmpnji4lc0… — retrying with alternate seed/AI
+[2026-06-13T20:13:05.522Z]   skip cmpnji4lc0… — hash collision after AI retry
+[2026-06-13T20:13:05.620Z]   hash collision on cmpnji4lc0… — retrying with alternate seed/AI
+[2026-06-13T20:13:06.266Z]   skip cmpnji4lc0… — hash collision after AI retry
+[2026-06-13T20:13:06.363Z]   hash collision on cmpnji4s00… — retrying with alternate seed/AI
+[2026-06-13T20:13:06.884Z]   skip cmpnji4s00… — hash collision after AI retry
+[2026-06-13T20:13:06.981Z]   hash collision on cmpnji4s00… — retrying with alternate seed/AI
+[2026-06-13T20:13:07.487Z]   skip cmpnji4s00… — hash collision after AI retry
+[2026-06-13T20:13:07.590Z]   hash collision on cmpnji4s00… — retrying with alternate seed/AI
+[2026-06-13T20:13:08.079Z]   skip cmpnji4s00… — hash collision after AI retry
+[2026-06-13T20:13:08.187Z]   hash collision on cmpnji4s00… — retrying with alternate seed/AI
+[2026-06-13T20:13:08.690Z]   skip cmpnji4s00… — hash collision after AI retry
+[2026-06-13T20:13:08.804Z]   hash collision on cmpnji4s00… — retrying with alternate seed/AI
+[2026-06-13T20:13:09.354Z]   skip cmpnji4s00… — hash collision after AI retry
+[2026-06-13T20:13:09.455Z]   hash collision on cmpnji4xi0… — retrying with alternate seed/AI
+[2026-06-13T20:13:10.008Z]   skip cmpnji4xi0… — hash collision after AI retry
+[2026-06-13T20:13:10.418Z]   hash collision on cmpnji4xj0… — retrying with alternate seed/AI
+[2026-06-13T20:13:11.322Z]   skip cmpnji4xj0… — hash collision after AI retry
+[2026-06-13T20:13:11.455Z]   hash collision on cmpnji4xj0… — retrying with alternate seed/AI
+[2026-06-13T20:13:11.947Z]   skip cmpnji4xj0… — hash collision after AI retry
+[2026-06-13T20:13:12.048Z]   hash collision on cmpnji55v0… — retrying with alternate seed/AI
+[2026-06-13T20:13:12.535Z]   skip cmpnji55v0… — hash collision after AI retry
+[2026-06-13T20:13:12.631Z]   hash collision on cmpnji55v0… — retrying with alternate seed/AI
+[2026-06-13T20:13:13.145Z]   skip cmpnji55v0… — hash collision after AI retry
+[2026-06-13T20:13:13.250Z]   hash collision on cmpnji5be0… — retrying with alternate seed/AI
+[2026-06-13T20:13:13.743Z]   skip cmpnji5be0… — hash collision after AI retry
+[2026-06-13T20:13:13.842Z]   hash collision on cmpnji5be0… — retrying with alternate seed/AI
+[2026-06-13T20:13:14.330Z]   skip cmpnji5be0… — hash collision after AI retry
+[2026-06-13T20:13:14.429Z]   hash collision on cmpnji5gy0… — retrying with alternate seed/AI
+[2026-06-13T20:13:14.917Z]   skip cmpnji5gy0… — hash collision after AI retry
+[2026-06-13T20:13:15.018Z]   hash collision on cmpnji5gy0… — retrying with alternate seed/AI
+[2026-06-13T20:13:15.513Z]   skip cmpnji5gy0… — hash collision after AI retry
+[2026-06-13T20:13:15.620Z]   hash collision on cmpnji5mp0… — retrying with alternate seed/AI
+[2026-06-13T20:13:16.127Z]   skip cmpnji5mp0… — hash collision after AI retry
+[2026-06-13T20:13:16.274Z]   hash collision on cmpnji5sb0… — retrying with alternate seed/AI
+[2026-06-13T20:13:16.773Z]   skip cmpnji5sb0… — hash collision after AI retry
+[2026-06-13T20:13:16.876Z]   hash collision on cmpnji5sb0… — retrying with alternate seed/AI
+[2026-06-13T20:13:17.404Z]   skip cmpnji5sb0… — hash collision after AI retry
+[2026-06-13T20:13:17.509Z]   hash collision on cmpnji5sb0… — retrying with alternate seed/AI
+[2026-06-13T20:13:18.014Z]   skip cmpnji5sb0… — hash collision after AI retry
+[2026-06-13T20:13:18.125Z]   hash collision on cmpnji5sb0… — retrying with alternate seed/AI
+[2026-06-13T20:13:18.629Z]   skip cmpnji5sb0… — hash collision after AI retry
+[2026-06-13T20:13:18.729Z]   hash collision on cmpnji63h0… — retrying with alternate seed/AI
+[2026-06-13T20:13:19.259Z]   skip cmpnji63h0… — hash collision after AI retry
+[2026-06-13T20:13:19.381Z]   hash collision on cmpnji63i0… — retrying with alternate seed/AI
+[2026-06-13T20:13:19.914Z]   skip cmpnji63i0… — hash collision after AI retry
+[2026-06-13T20:13:20.017Z]   hash collision on cmpnji63i0… — retrying with alternate seed/AI
+[2026-06-13T20:13:20.502Z]   skip cmpnji63i0… — hash collision after AI retry
+[2026-06-13T20:13:20.604Z]   hash collision on cmpnji6910… — retrying with alternate seed/AI
+[2026-06-13T20:13:21.129Z]   skip cmpnji6910… — hash collision after AI retry
+[2026-06-13T20:13:21.240Z]   hash collision on cmpnji6920… — retrying with alternate seed/AI
+[2026-06-13T20:13:21.734Z]   skip cmpnji6920… — hash collision after AI retry
+[2026-06-13T20:13:21.834Z]   hash collision on cmpnji6et0… — retrying with alternate seed/AI
+[2026-06-13T20:13:22.329Z]   skip cmpnji6et0… — hash collision after AI retry
+[2026-06-13T20:13:22.427Z]   hash collision on cmpnji6et0… — retrying with alternate seed/AI
+[2026-06-13T20:13:22.939Z]   skip cmpnji6et0… — hash collision after AI retry
+[2026-06-13T20:13:23.033Z]   hash collision on cmpnji7dh0… — retrying with alternate seed/AI
+[2026-06-13T20:13:23.520Z]   skip cmpnji7dh0… — hash collision after AI retry
+[2026-06-13T20:13:23.625Z]   hash collision on cmpnji7dh0… — retrying with alternate seed/AI
+[2026-06-13T20:13:24.130Z]   skip cmpnji7dh0… — hash collision after AI retry
+[2026-06-13T20:13:24.228Z]   hash collision on cmpnji7ra0… — retrying with alternate seed/AI
+[2026-06-13T20:13:24.748Z]   skip cmpnji7ra0… — hash collision after AI retry
+[2026-06-13T20:13:24.861Z]   hash collision on cmpnji7ra0… — retrying with alternate seed/AI
+[2026-06-13T20:13:25.388Z]   skip cmpnji7ra0… — hash collision after AI retry
+[2026-06-13T20:13:25.488Z]   hash collision on cmpnji7ra0… — retrying with alternate seed/AI
+[2026-06-13T20:13:25.985Z]   skip cmpnji7ra0… — hash collision after AI retry
+[2026-06-13T20:13:26.098Z]   hash collision on cmpnji8el0… — retrying with alternate seed/AI
+[2026-06-13T20:13:26.614Z]   skip cmpnji8el0… — hash collision after AI retry
+[2026-06-13T20:13:26.716Z]   hash collision on cmpnji8em0… — retrying with alternate seed/AI
+[2026-06-13T20:13:27.213Z]   skip cmpnji8em0… — hash collision after AI retry
+[2026-06-13T20:13:27.315Z]   hash collision on cmpnji8em0… — retrying with alternate seed/AI
+[2026-06-13T20:13:27.796Z]   skip cmpnji8em0… — hash collision after AI retry
+[2026-06-13T20:13:27.898Z]   hash collision on cmpnji8em0… — retrying with alternate seed/AI
+[2026-06-13T20:13:28.407Z]   skip cmpnji8em0… — hash collision after AI retry
+[2026-06-13T20:13:28.504Z]   hash collision on cmpnji8qa0… — retrying with alternate seed/AI
+[2026-06-13T20:13:29.008Z]   skip cmpnji8qa0… — hash collision after AI retry
+[2026-06-13T20:13:29.126Z]   hash collision on cmpnji8qa0… — retrying with alternate seed/AI
+[2026-06-13T20:13:29.617Z]   skip cmpnji8qa0… — hash collision after AI retry
+[2026-06-13T20:13:29.715Z]   hash collision on cmpnji8qa0… — retrying with alternate seed/AI
+[2026-06-13T20:13:30.204Z]   skip cmpnji8qa0… — hash collision after AI retry
+[2026-06-13T20:13:30.311Z]   hash collision on cmpnji8qa0… — retrying with alternate seed/AI
+[2026-06-13T20:13:30.868Z]   skip cmpnji8qa0… — hash collision after AI retry
+[2026-06-13T20:13:30.970Z]   hash collision on cmpnji8w00… — retrying with alternate seed/AI
+[2026-06-13T20:13:32.166Z]   skip cmpnji8w00… — hash collision after AI retry
+[2026-06-13T20:13:32.323Z]   hash collision on cmqasnkhx0… — retrying with alternate seed/AI
+[2026-06-13T20:13:32.883Z]   skip cmqasnkhx0… — hash collision after AI retry
+[2026-06-13T20:13:32.984Z]   hash collision on cmpnjjm2x0… — retrying with alternate seed/AI
+[2026-06-13T20:13:33.489Z]   skip cmpnjjm2x0… — hash collision after AI retry
+[2026-06-13T20:13:33.589Z]   hash collision on cmpnjjm8d0… — retrying with alternate seed/AI
+[2026-06-13T20:13:34.076Z]   skip cmpnjjm8d0… — hash collision after AI retry
+[2026-06-13T20:13:34.184Z]   hash collision on cmpnjjm8d0… — retrying with alternate seed/AI
+[2026-06-13T20:13:34.678Z]   skip cmpnjjm8d0… — hash collision after AI retry
+[2026-06-13T20:13:34.774Z]   hash collision on cmpnjjmee0… — retrying with alternate seed/AI
+[2026-06-13T20:13:35.272Z]   skip cmpnjjmee0… — hash collision after AI retry
+[2026-06-13T20:13:35.375Z]   hash collision on cmpnjjmee0… — retrying with alternate seed/AI
+[2026-06-13T20:13:35.875Z]   skip cmpnjjmee0… — hash collision after AI retry
+[2026-06-13T20:13:35.978Z]   hash collision on cmpnjjmvj0… — retrying with alternate seed/AI
+[2026-06-13T20:13:36.461Z]   skip cmpnjjmvj0… — hash collision after AI retry
+[2026-06-13T20:13:36.572Z]   hash collision on cmpnjjn2v0… — retrying with alternate seed/AI
+[2026-06-13T20:13:37.091Z]   skip cmpnjjn2v0… — hash collision after AI retry
+[2026-06-13T20:13:37.191Z]   hash collision on cmpnjjnkd0… — retrying with alternate seed/AI
+[2026-06-13T20:13:37.706Z]   skip cmpnjjnkd0… — hash collision after AI retry
+[2026-06-13T20:13:37.814Z]   hash collision on cmpnjjnu30… — retrying with alternate seed/AI
+[2026-06-13T20:13:38.314Z]   skip cmpnjjnu30… — hash collision after AI retry
+[2026-06-13T20:13:38.409Z]   hash collision on cmpnjjnu30… — retrying with alternate seed/AI
+[2026-06-13T20:13:38.904Z]   skip cmpnjjnu30… — hash collision after AI retry
+[2026-06-13T20:13:39.011Z]   hash collision on cmpnjjo1z0… — retrying with alternate seed/AI
+[2026-06-13T20:13:39.549Z]   skip cmpnjjo1z0… — hash collision after AI retry
+[2026-06-13T20:13:39.675Z]   hash collision on cmpnjjo200… — retrying with alternate seed/AI
+[2026-06-13T20:13:40.588Z]   skip cmpnjjo200… — hash collision after AI retry
+[2026-06-13T20:13:40.739Z]   hash collision on cmpnjjo7w0… — retrying with alternate seed/AI
+[2026-06-13T20:13:41.251Z]   skip cmpnjjo7w0… — hash collision after AI retry
+[2026-06-13T20:13:41.346Z]   hash collision on cmpnjjo7w0… — retrying with alternate seed/AI
+[2026-06-13T20:13:41.833Z]   skip cmpnjjo7w0… — hash collision after AI retry
+[2026-06-13T20:13:41.936Z]   hash collision on cmpnjjodd0… — retrying with alternate seed/AI
+[2026-06-13T20:13:42.428Z]   skip cmpnjjodd0… — hash collision after AI retry
+[2026-06-13T20:13:42.535Z]   hash collision on cmpnjjoit0… — retrying with alternate seed/AI
+[2026-06-13T20:13:43.022Z]   skip cmpnjjoit0… — hash collision after AI retry
+[2026-06-13T20:13:43.168Z]   hash collision on cmpnjjoit0… — retrying with alternate seed/AI
+[2026-06-13T20:13:43.663Z]   skip cmpnjjoit0… — hash collision after AI retry
+[2026-06-13T20:13:43.763Z]   hash collision on cmpnjjood0… — retrying with alternate seed/AI
+[2026-06-13T20:13:44.260Z]   skip cmpnjjood0… — hash collision after AI retry
+[2026-06-13T20:13:44.358Z]   hash collision on cmpnjjou20… — retrying with alternate seed/AI
+[2026-06-13T20:13:44.863Z]   skip cmpnjjou20… — hash collision after AI retry
+[2026-06-13T20:13:44.969Z]   hash collision on cmpnjjozm0… — retrying with alternate seed/AI
+[2026-06-13T20:13:45.453Z]   skip cmpnjjozm0… — hash collision after AI retry
+[2026-06-13T20:13:45.551Z]   hash collision on cmpnjjpgg0… — retrying with alternate seed/AI
+[2026-06-13T20:13:46.033Z]   skip cmpnjjpgg0… — hash collision after AI retry
+[2026-06-13T20:13:46.130Z]   hash collision on cmpnjjpgg0… — retrying with alternate seed/AI
+[2026-06-13T20:13:46.621Z]   skip cmpnjjpgg0… — hash collision after AI retry
+[2026-06-13T20:13:46.716Z]   hash collision on cmpnjjply0… — retrying with alternate seed/AI
+[2026-06-13T20:13:47.248Z]   skip cmpnjjply0… — hash collision after AI retry
+[2026-06-13T20:13:47.348Z]   hash collision on cmpnjjprf0… — retrying with alternate seed/AI
+[2026-06-13T20:13:47.857Z]   skip cmpnjjprf0… — hash collision after AI retry
+[2026-06-13T20:13:47.968Z]   hash collision on cmpnjjprf0… — retrying with alternate seed/AI
+[2026-06-13T20:13:48.464Z]   skip cmpnjjprf0… — hash collision after AI retry
+[2026-06-13T20:13:48.566Z]   hash collision on cmpnjjpxj0… — retrying with alternate seed/AI
+[2026-06-13T20:13:49.060Z]   skip cmpnjjpxj0… — hash collision after AI retry
+[2026-06-13T20:13:49.153Z]   hash collision on cmpnjjq6k0… — retrying with alternate seed/AI
+[2026-06-13T20:13:49.638Z]   skip cmpnjjq6k0… — hash collision after AI retry
+[2026-06-13T20:13:49.739Z]   hash collision on cmpnjjqjc0… — retrying with alternate seed/AI
+[2026-06-13T20:13:50.230Z]   skip cmpnjjqjc0… — hash collision after AI retry
+[2026-06-13T20:13:50.326Z]   hash collision on cmpnjjqjd0… — retrying with alternate seed/AI
+[2026-06-13T20:13:50.806Z]   skip cmpnjjqjd0… — hash collision after AI retry
+[2026-06-13T20:13:50.907Z]   hash collision on cmpnjjqoy0… — retrying with alternate seed/AI
+[2026-06-13T20:13:51.403Z]   skip cmpnjjqoy0… — hash collision after AI retry
+[2026-06-13T20:13:51.502Z]   hash collision on cmpnjjqoy0… — retrying with alternate seed/AI
+[2026-06-13T20:13:52.022Z]   skip cmpnjjqoy0… — hash collision after AI retry
+[2026-06-13T20:13:52.131Z]   hash collision on cmpnjjqum0… — retrying with alternate seed/AI
+[2026-06-13T20:13:52.630Z]   skip cmpnjjqum0… — hash collision after AI retry
+[2026-06-13T20:13:52.727Z]   hash collision on cmpnjjqum0… — retrying with alternate seed/AI
+[2026-06-13T20:13:53.210Z]   skip cmpnjjqum0… — hash collision after AI retry
+[2026-06-13T20:13:53.305Z]   hash collision on cmpnjjqum0… — retrying with alternate seed/AI
+[2026-06-13T20:13:53.806Z]   skip cmpnjjqum0… — hash collision after AI retry
+[2026-06-13T20:13:53.909Z]   hash collision on cmpnjjrjw0… — retrying with alternate seed/AI
+[2026-06-13T20:13:54.407Z]   skip cmpnjjrjw0… — hash collision after AI retry
+[2026-06-13T20:13:54.536Z]   hash collision on cmpnjjrjw0… — retrying with alternate seed/AI
+[2026-06-13T20:13:55.044Z]   skip cmpnjjrjw0… — hash collision after AI retry
+[2026-06-13T20:13:55.145Z]   hash collision on cmpnjjrvl0… — retrying with alternate seed/AI
+[2026-06-13T20:13:55.650Z]   skip cmpnjjrvl0… — hash collision after AI retry
+[2026-06-13T20:13:55.752Z]   hash collision on cmpnjjrvl0… — retrying with alternate seed/AI
+[2026-06-13T20:13:56.269Z]   skip cmpnjjrvl0… — hash collision after AI retry
+[2026-06-13T20:13:56.364Z]   hash collision on cmpnjjs7z0… — retrying with alternate seed/AI
+[2026-06-13T20:13:56.857Z]   skip cmpnjjs7z0… — hash collision after AI retry
+[2026-06-13T20:13:56.956Z]   hash collision on cmpnjjs7z0… — retrying with alternate seed/AI
+[2026-06-13T20:13:57.451Z]   skip cmpnjjs7z0… — hash collision after AI retry
+[2026-06-13T20:13:57.558Z]   hash collision on cmpnjjsm70… — retrying with alternate seed/AI
+[2026-06-13T20:13:58.065Z]   skip cmpnjjsm70… — hash collision after AI retry
+[2026-06-13T20:13:58.169Z]   hash collision on cmpnjjtf00… — retrying with alternate seed/AI
+[2026-06-13T20:13:58.669Z]   skip cmpnjjtf00… — hash collision after AI retry
+[2026-06-13T20:13:58.773Z]   hash collision on cmpnjjtf00… — retrying with alternate seed/AI
+[2026-06-13T20:13:59.284Z]   skip cmpnjjtf00… — hash collision after AI retry
+[2026-06-13T20:13:59.390Z]   hash collision on cmpnjjtf10… — retrying with alternate seed/AI
+[2026-06-13T20:13:59.887Z]   skip cmpnjjtf10… — hash collision after AI retry
+[2026-06-13T20:13:59.988Z]   hash collision on cmpnjjtkp0… — retrying with alternate seed/AI
+[2026-06-13T20:14:00.489Z]   skip cmpnjjtkp0… — hash collision after AI retry
+[2026-06-13T20:14:00.593Z]   hash collision on cmpnjjtkp0… — retrying with alternate seed/AI
+[2026-06-13T20:14:01.106Z]   skip cmpnjjtkp0… — hash collision after AI retry
+[2026-06-13T20:14:01.203Z]   hash collision on cmpnjju190… — retrying with alternate seed/AI
+[2026-06-13T20:14:01.708Z]   skip cmpnjju190… — hash collision after AI retry
+[2026-06-13T20:14:01.809Z]   hash collision on cmpnjju190… — retrying with alternate seed/AI
+[2026-06-13T20:14:02.356Z]   skip cmpnjju190… — hash collision after AI retry
+[2026-06-13T20:14:02.454Z]   hash collision on cmpnjju190… — retrying with alternate seed/AI
+[2026-06-13T20:14:02.971Z]   skip cmpnjju190… — hash collision after AI retry
+[2026-06-13T20:14:03.074Z]   hash collision on cmpnjju190… — retrying with alternate seed/AI
+[2026-06-13T20:14:03.646Z]   skip cmpnjju190… — hash collision after AI retry
+[2026-06-13T20:14:03.762Z]   hash collision on cmpnjju7f0… — retrying with alternate seed/AI
+[2026-06-13T20:14:04.314Z]   skip cmpnjju7f0… — hash collision after AI retry
+[2026-06-13T20:14:04.422Z]   hash collision on cmpnjju7f0… — retrying with alternate seed/AI
+[2026-06-13T20:14:04.929Z]   skip cmpnjju7f0… — hash collision after AI retry
+[2026-06-13T20:14:05.026Z]   hash collision on cmpnjjuwy0… — retrying with alternate seed/AI
+[2026-06-13T20:14:05.522Z]   skip cmpnjjuwy0… — hash collision after AI retry
+[2026-06-13T20:14:05.623Z]   hash collision on cmpnjjv2n0… — retrying with alternate seed/AI
+[2026-06-13T20:14:06.112Z]   skip cmpnjjv2n0… — hash collision after AI retry
+[2026-06-13T20:14:06.211Z]   hash collision on cmpnjjvfe0… — retrying with alternate seed/AI
+[2026-06-13T20:14:06.702Z]   skip cmpnjjvfe0… — hash collision after AI retry
+[2026-06-13T20:14:06.798Z]   hash collision on cmpnjjvnu0… — retrying with alternate seed/AI
+[2026-06-13T20:14:07.282Z]   skip cmpnjjvnu0… — hash collision after AI retry
+[2026-06-13T20:14:07.381Z]   hash collision on cmpnjjvtn0… — retrying with alternate seed/AI
+[2026-06-13T20:14:07.892Z]   skip cmpnjjvtn0… — hash collision after AI retry
+[2026-06-13T20:14:07.990Z]   hash collision on cmpnjjvtn0… — retrying with alternate seed/AI
+[2026-06-13T20:14:08.468Z]   skip cmpnjjvtn0… — hash collision after AI retry
+[2026-06-13T20:14:08.565Z]   hash collision on cmpnjjvz40… — retrying with alternate seed/AI
+[2026-06-13T20:14:09.064Z]   skip cmpnjjvz40… — hash collision after AI retry
+[2026-06-13T20:14:09.172Z]   hash collision on cmpnjjw4k0… — retrying with alternate seed/AI
+[2026-06-13T20:14:09.654Z]   skip cmpnjjw4k0… — hash collision after AI retry
+[2026-06-13T20:14:09.789Z]   hash collision on cmpnjjw4k0… — retrying with alternate seed/AI
+[2026-06-13T20:14:10.288Z]   skip cmpnjjw4k0… — hash collision after AI retry
+[2026-06-13T20:14:10.388Z]   hash collision on cmpnjk7280… — retrying with alternate seed/AI
+[2026-06-13T20:14:10.909Z]   skip cmpnjk7280… — hash collision after AI retry
+[2026-06-13T20:14:11.008Z]   hash collision on cmpnjk7jc0… — retrying with alternate seed/AI
+[2026-06-13T20:14:11.497Z]   skip cmpnjk7jc0… — hash collision after AI retry
+[2026-06-13T20:14:11.593Z]   hash collision on cmpnjk7ov0… — retrying with alternate seed/AI
+[2026-06-13T20:14:12.069Z]   skip cmpnjk7ov0… — hash collision after AI retry
+[2026-06-13T20:14:12.167Z]   hash collision on cmpnjk7ov0… — retrying with alternate seed/AI
+[2026-06-13T20:14:12.639Z]   skip cmpnjk7ov0… — hash collision after AI retry
+[2026-06-13T20:14:12.732Z]   hash collision on cmpnjk7ov0… — retrying with alternate seed/AI
+[2026-06-13T20:14:13.207Z]   skip cmpnjk7ov0… — hash collision after AI retry
+[2026-06-13T20:14:13.307Z]   hash collision on cmpnjk7ue0… — retrying with alternate seed/AI
+[2026-06-13T20:14:13.786Z]   skip cmpnjk7ue0… — hash collision after AI retry
+[2026-06-13T20:14:13.881Z]   hash collision on cmpnjk7ue0… — retrying with alternate seed/AI
+[2026-06-13T20:14:14.352Z]   skip cmpnjk7ue0… — hash collision after AI retry
+[2026-06-13T20:14:14.456Z]   hash collision on cmpnjk7zw0… — retrying with alternate seed/AI
+[2026-06-13T20:14:14.948Z]   skip cmpnjk7zw0… — hash collision after AI retry
+[2026-06-13T20:14:15.044Z]   hash collision on cmpnjk85h0… — retrying with alternate seed/AI
+[2026-06-13T20:14:15.538Z]   skip cmpnjk85h0… — hash collision after AI retry
+[2026-06-13T20:14:15.636Z]   hash collision on cmpnjk85h0… — retrying with alternate seed/AI
+[2026-06-13T20:14:16.112Z]   skip cmpnjk85h0… — hash collision after AI retry
+[2026-06-13T20:14:16.211Z]   hash collision on cmpnjk8b40… — retrying with alternate seed/AI
+[2026-06-13T20:14:16.697Z]   skip cmpnjk8b40… — hash collision after AI retry
+[2026-06-13T20:14:16.791Z]   hash collision on cmpnjk8b50… — retrying with alternate seed/AI
+[2026-06-13T20:14:17.330Z]   skip cmpnjk8b50… — hash collision after AI retry
+[2026-06-13T20:14:17.434Z]   hash collision on cmpnjk8gu0… — retrying with alternate seed/AI
+[2026-06-13T20:14:17.926Z]   skip cmpnjk8gu0… — hash collision after AI retry
+[2026-06-13T20:14:18.020Z]   hash collision on cmpnjk8gu0… — retrying with alternate seed/AI
+[2026-06-13T20:14:18.674Z]   skip cmpnjk8gu0… — hash collision after AI retry
+[2026-06-13T20:14:18.769Z]   hash collision on cmpnjk8s60… — retrying with alternate seed/AI
+[2026-06-13T20:14:19.237Z]   skip cmpnjk8s60… — hash collision after AI retry
+[2026-06-13T20:14:19.329Z]   hash collision on cmpnjk8xn0… — retrying with alternate seed/AI
+[2026-06-13T20:14:19.808Z]   skip cmpnjk8xn0… — hash collision after AI retry
+[2026-06-13T20:14:19.909Z]   hash collision on cmpnjk8xn0… — retrying with alternate seed/AI
+[2026-06-13T20:14:20.389Z]   skip cmpnjk8xn0… — hash collision after AI retry
+[2026-06-13T20:14:20.486Z]   hash collision on cmpnjk9350… — retrying with alternate seed/AI
+[2026-06-13T20:14:20.958Z]   skip cmpnjk9350… — hash collision after AI retry
+[2026-06-13T20:14:21.061Z]   hash collision on cmpnjk9ja0… — retrying with alternate seed/AI
+[2026-06-13T20:14:21.543Z]   skip cmpnjk9ja0… — hash collision after AI retry
+[2026-06-13T20:14:21.637Z]   hash collision on cmpnjka6k0… — retrying with alternate seed/AI
+[2026-06-13T20:14:22.109Z]   skip cmpnjka6k0… — hash collision after AI retry
+[2026-06-13T20:14:22.210Z]   hash collision on cmpnjka6l0… — retrying with alternate seed/AI
+[2026-06-13T20:14:22.703Z]   skip cmpnjka6l0… — hash collision after AI retry
+[2026-06-13T20:14:22.808Z]   hash collision on cmpnjkagi0… — retrying with alternate seed/AI
+[2026-06-13T20:14:23.450Z]   skip cmpnjkagi0… — hash collision after AI retry
+[2026-06-13T20:14:23.547Z]   hash collision on cmpnjkas40… — retrying with alternate seed/AI
+[2026-06-13T20:14:24.044Z]   skip cmpnjkas40… — hash collision after AI retry
+[2026-06-13T20:14:24.137Z]   hash collision on cmpnjkaxh0… — retrying with alternate seed/AI
+[2026-06-13T20:14:24.738Z]   skip cmpnjkaxh0… — hash collision after AI retry
+[2026-06-13T20:14:24.836Z]   hash collision on cmpnjkb340… — retrying with alternate seed/AI
+[2026-06-13T20:14:25.322Z]   skip cmpnjkb340… — hash collision after AI retry
+[2026-06-13T20:14:25.418Z]   hash collision on cmpnjkb340… — retrying with alternate seed/AI
+[2026-06-13T20:14:25.927Z]   skip cmpnjkb340… — hash collision after AI retry
+[2026-06-13T20:14:26.023Z]   hash collision on cmpnjkb340… — retrying with alternate seed/AI
+[2026-06-13T20:14:26.629Z]   skip cmpnjkb340… — hash collision after AI retry
+[2026-06-13T20:14:26.722Z]   hash collision on cmpnjkbe60… — retrying with alternate seed/AI
+[2026-06-13T20:14:27.249Z]   skip cmpnjkbe60… — hash collision after AI retry
+[2026-06-13T20:14:27.360Z]   hash collision on cmpnjkbpa0… — retrying with alternate seed/AI
+[2026-06-13T20:14:27.848Z]   skip cmpnjkbpa0… — hash collision after AI retry
+[2026-06-13T20:14:27.940Z]   hash collision on cmpnjkbpa0… — retrying with alternate seed/AI
+[2026-06-13T20:14:28.424Z]   skip cmpnjkbpa0… — hash collision after AI retry
+[2026-06-13T20:14:28.520Z]   hash collision on cmpnjkbpa0… — retrying with alternate seed/AI
+[2026-06-13T20:14:28.998Z]   skip cmpnjkbpa0… — hash collision after AI retry
+[2026-06-13T20:14:29.092Z]   hash collision on cmpnjkbuu0… — retrying with alternate seed/AI
+[2026-06-13T20:14:29.566Z]   skip cmpnjkbuu0… — hash collision after AI retry
+[2026-06-13T20:14:29.669Z]   hash collision on cmpnjkc1q0… — retrying with alternate seed/AI
+[2026-06-13T20:14:30.148Z]   skip cmpnjkc1q0… — hash collision after AI retry
+[2026-06-13T20:14:30.243Z]   hash collision on cmpnjkc8f0… — retrying with alternate seed/AI
+[2026-06-13T20:14:30.715Z]   skip cmpnjkc8f0… — hash collision after AI retry
+[2026-06-13T20:14:30.809Z]   hash collision on cmpnjkcf40… — retrying with alternate seed/AI
+[2026-06-13T20:14:31.284Z]   skip cmpnjkcf40… — hash collision after AI retry
+[2026-06-13T20:14:31.378Z]   hash collision on cmpnjkcf40… — retrying with alternate seed/AI
+[2026-06-13T20:14:31.852Z]   skip cmpnjkcf40… — hash collision after AI retry
+[2026-06-13T20:14:31.949Z]   hash collision on cmpnjkcf40… — retrying with alternate seed/AI
+[2026-06-13T20:14:32.472Z]   skip cmpnjkcf40… — hash collision after AI retry
+[2026-06-13T20:14:32.572Z]   hash collision on cmpnjkcqa0… — retrying with alternate seed/AI
+[2026-06-13T20:14:33.054Z]   skip cmpnjkcqa0… — hash collision after AI retry
+[2026-06-13T20:14:33.155Z]   hash collision on cmpnjkcw80… — retrying with alternate seed/AI
+[2026-06-13T20:14:33.646Z]   skip cmpnjkcw80… — hash collision after AI retry
+[2026-06-13T20:14:33.744Z]   hash collision on cmpnjkeym0… — retrying with alternate seed/AI
+[2026-06-13T20:14:34.225Z]   skip cmpnjkeym0… — hash collision after AI retry
+[2026-06-13T20:14:34.327Z]   hash collision on cmpnjkeym0… — retrying with alternate seed/AI
+[2026-06-13T20:14:35.093Z]   skip cmpnjkeym0… — hash collision after AI retry
+[2026-06-13T20:14:35.203Z]   hash collision on cmpnjkeyn0… — retrying with alternate seed/AI
+[2026-06-13T20:14:35.706Z]   skip cmpnjkeyn0… — hash collision after AI retry
+[2026-06-13T20:14:35.808Z]   hash collision on cmpnjkfqn0… — retrying with alternate seed/AI
+[2026-06-13T20:14:36.289Z]   skip cmpnjkfqn0… — hash collision after AI retry
+[2026-06-13T20:14:36.389Z]   hash collision on cmpnjkfy40… — retrying with alternate seed/AI
+[2026-06-13T20:14:36.905Z]   skip cmpnjkfy40… — hash collision after AI retry
+[2026-06-13T20:14:37.007Z]   hash collision on cmpnjkfy40… — retrying with alternate seed/AI
+[2026-06-13T20:14:37.499Z]   skip cmpnjkfy40… — hash collision after AI retry
+[2026-06-13T20:14:37.596Z]   hash collision on cmpnjkg660… — retrying with alternate seed/AI
+[2026-06-13T20:14:38.067Z]   skip cmpnjkg660… — hash collision after AI retry
+[2026-06-13T20:14:38.160Z]   hash collision on cmpnjkg660… — retrying with alternate seed/AI
+[2026-06-13T20:14:38.631Z]   skip cmpnjkg660… — hash collision after AI retry
+[2026-06-13T20:14:38.724Z]   hash collision on cmpnjkg660… — retrying with alternate seed/AI
+[2026-06-13T20:14:39.202Z]   skip cmpnjkg660… — hash collision after AI retry
+[2026-06-13T20:14:39.301Z]   hash collision on cmpnjkgdm0… — retrying with alternate seed/AI
+[2026-06-13T20:14:39.803Z]   skip cmpnjkgdm0… — hash collision after AI retry
+[2026-06-13T20:14:39.903Z]   hash collision on cmpnjkgdm0… — retrying with alternate seed/AI
+[2026-06-13T20:14:40.386Z]   skip cmpnjkgdm0… — hash collision after AI retry
+[2026-06-13T20:14:40.484Z]   hash collision on cmpnjkgdm0… — retrying with alternate seed/AI
+[2026-06-13T20:14:40.952Z]   skip cmpnjkgdm0… — hash collision after AI retry
+[2026-06-13T20:14:41.049Z]   hash collision on cmpnjkgdm0… — retrying with alternate seed/AI
+[2026-06-13T20:14:41.525Z]   skip cmpnjkgdm0… — hash collision after AI retry
+[2026-06-13T20:14:41.618Z]   hash collision on cmpnjkgjj0… — retrying with alternate seed/AI
+[2026-06-13T20:14:42.095Z]   skip cmpnjkgjj0… — hash collision after AI retry
+[2026-06-13T20:14:42.197Z]   hash collision on cmpnjkgq10… — retrying with alternate seed/AI
+[2026-06-13T20:14:42.680Z]   skip cmpnjkgq10… — hash collision after AI retry
+[2026-06-13T20:14:42.776Z]   hash collision on cmpnjkgq10… — retrying with alternate seed/AI
+[2026-06-13T20:14:43.264Z]   skip cmpnjkgq10… — hash collision after AI retry
+[2026-06-13T20:14:43.358Z]   hash collision on cmpnjkgxd0… — retrying with alternate seed/AI
+[2026-06-13T20:14:43.838Z]   skip cmpnjkgxd0… — hash collision after AI retry
+[2026-06-13T20:14:43.992Z]   hash collision on cmpnjkgxd0… — retrying with alternate seed/AI
+[2026-06-13T20:14:44.600Z]   skip cmpnjkgxd0… — hash collision after AI retry
+[2026-06-13T20:14:44.693Z]   hash collision on cmpnjkgxe0… — retrying with alternate seed/AI
+[2026-06-13T20:14:45.169Z]   skip cmpnjkgxe0… — hash collision after AI retry
+[2026-06-13T20:14:45.266Z]   hash collision on cmpnjkhn10… — retrying with alternate seed/AI
+[2026-06-13T20:14:45.737Z]   skip cmpnjkhn10… — hash collision after AI retry
+[2026-06-13T20:14:45.836Z]   hash collision on cmpnjkhn10… — retrying with alternate seed/AI
+[2026-06-13T20:14:46.319Z]   skip cmpnjkhn10… — hash collision after AI retry
+[2026-06-13T20:14:46.421Z]   hash collision on cmpnjkhvh0… — retrying with alternate seed/AI
+[2026-06-13T20:14:46.912Z]   skip cmpnjkhvh0… — hash collision after AI retry
+[2026-06-13T20:14:47.013Z]   hash collision on cmpnjlfkw0… — retrying with alternate seed/AI
+[2026-06-13T20:14:47.543Z]   skip cmpnjlfkw0… — hash collision after AI retry
+[2026-06-13T20:14:47.640Z]   hash collision on cmpnjlgrc0… — retrying with alternate seed/AI
+[2026-06-13T20:14:48.140Z]   skip cmpnjlgrc0… — hash collision after AI retry
+[2026-06-13T20:14:48.236Z]   hash collision on cmpnjlgrc0… — retrying with alternate seed/AI
+[2026-06-13T20:14:48.710Z]   skip cmpnjlgrc0… — hash collision after AI retry
+[2026-06-13T20:14:48.803Z]   hash collision on cmpnjlhe10… — retrying with alternate seed/AI
+[2026-06-13T20:14:49.280Z]   skip cmpnjlhe10… — hash collision after AI retry
+[2026-06-13T20:14:49.375Z]   hash collision on cmpnjlhp80… — retrying with alternate seed/AI
+[2026-06-13T20:14:49.850Z]   skip cmpnjlhp80… — hash collision after AI retry
+[2026-06-13T20:14:49.945Z]   hash collision on cmpnjlhv30… — retrying with alternate seed/AI
+[2026-06-13T20:14:50.441Z]   skip cmpnjlhv30… — hash collision after AI retry
+[2026-06-13T20:14:50.534Z]   hash collision on cmpnjlhv30… — retrying with alternate seed/AI
+[2026-06-13T20:14:51.031Z]   skip cmpnjlhv30… — hash collision after AI retry
+[2026-06-13T20:14:51.133Z]   hash collision on cmpnjli0k0… — retrying with alternate seed/AI
+[2026-06-13T20:14:51.621Z]   skip cmpnjli0k0… — hash collision after AI retry
+[2026-06-13T20:14:51.736Z]   hash collision on cmpnjlibo0… — retrying with alternate seed/AI
+[2026-06-13T20:14:52.225Z]   skip cmpnjlibo0… — hash collision after AI retry
+[2026-06-13T20:14:52.319Z]   hash collision on cmpnjlimt0… — retrying with alternate seed/AI
+[2026-06-13T20:14:52.807Z]   skip cmpnjlimt0… — hash collision after AI retry
+[2026-06-13T20:14:52.902Z]   hash collision on cmpnjlisi0… — retrying with alternate seed/AI
+[2026-06-13T20:14:53.385Z]   skip cmpnjlisi0… — hash collision after AI retry
+[2026-06-13T20:14:53.485Z]   hash collision on cmpnjliy10… — retrying with alternate seed/AI
+[2026-06-13T20:14:53.963Z]   skip cmpnjliy10… — hash collision after AI retry
+[2026-06-13T20:14:54.060Z]   hash collision on cmpnjliy10… — retrying with alternate seed/AI
+[2026-06-13T20:14:54.547Z]   skip cmpnjliy10… — hash collision after AI retry
+[2026-06-13T20:14:54.644Z]   hash collision on cmpnjljev0… — retrying with alternate seed/AI
+[2026-06-13T20:14:55.133Z]   skip cmpnjljev0… — hash collision after AI retry
+[2026-06-13T20:14:55.230Z]   hash collision on cmpnjljew0… — retrying with alternate seed/AI
+[2026-06-13T20:14:55.941Z]   skip cmpnjljew0… — hash collision after AI retry
+[2026-06-13T20:14:56.036Z]   hash collision on cmpnjlkpc0… — retrying with alternate seed/AI
+[2026-06-13T20:14:56.537Z]   skip cmpnjlkpc0… — hash collision after AI retry
+[2026-06-13T20:14:56.635Z]   hash collision on cmpnjlkpc0… — retrying with alternate seed/AI
+[2026-06-13T20:14:57.112Z]   skip cmpnjlkpc0… — hash collision after AI retry
+[2026-06-13T20:14:57.214Z]   hash collision on cmpnjll770… — retrying with alternate seed/AI
+[2026-06-13T20:14:57.707Z]   skip cmpnjll770… — hash collision after AI retry
+[2026-06-13T20:14:57.801Z]   hash collision on cmpnjllxd0… — retrying with alternate seed/AI
+[2026-06-13T20:14:58.281Z]   skip cmpnjllxd0… — hash collision after AI retry
+[2026-06-13T20:14:58.374Z]   hash collision on cmpnjllxd0… — retrying with alternate seed/AI
+[2026-06-13T20:14:58.854Z]   skip cmpnjllxd0… — hash collision after AI retry
+[2026-06-13T20:14:58.957Z]   hash collision on cmpnjlmqv0… — retrying with alternate seed/AI
+[2026-06-13T20:14:59.447Z]   skip cmpnjlmqv0… — hash collision after AI retry
+[2026-06-13T20:14:59.547Z]   hash collision on cmpnjlmqv0… — retrying with alternate seed/AI
+[2026-06-13T20:15:00.030Z]   skip cmpnjlmqv0… — hash collision after AI retry
+[2026-06-13T20:15:00.128Z]   hash collision on cmpnjlmqw0… — retrying with alternate seed/AI
+[2026-06-13T20:15:00.612Z]   skip cmpnjlmqw0… — hash collision after AI retry
+[2026-06-13T20:15:00.708Z]   hash collision on cmpnjln7c0… — retrying with alternate seed/AI
+[2026-06-13T20:15:01.189Z]   skip cmpnjln7c0… — hash collision after AI retry
+[2026-06-13T20:15:01.283Z]   hash collision on cmpnjln7e0… — retrying with alternate seed/AI
+[2026-06-13T20:15:01.765Z]   skip cmpnjln7e0… — hash collision after AI retry
+[2026-06-13T20:15:01.862Z]   hash collision on cmpnjlnkt0… — retrying with alternate seed/AI
+[2026-06-13T20:15:02.404Z]   skip cmpnjlnkt0… — hash collision after AI retry
+[2026-06-13T20:15:02.499Z]   hash collision on cmpnjlo3w0… — retrying with alternate seed/AI
+[2026-06-13T20:15:02.982Z]   skip cmpnjlo3w0… — hash collision after AI retry
+[2026-06-13T20:15:03.078Z]   hash collision on cmpnjlo3y0… — retrying with alternate seed/AI
+[2026-06-13T20:15:03.561Z]   skip cmpnjlo3y0… — hash collision after AI retry
+[2026-06-13T20:15:03.656Z]   hash collision on cmpnjlogx0… — retrying with alternate seed/AI
+[2026-06-13T20:15:04.146Z]   skip cmpnjlogx0… — hash collision after AI retry
+[2026-06-13T20:15:04.280Z]   hash collision on cmpnjlomi0… — retrying with alternate seed/AI
+[2026-06-13T20:15:04.761Z]   skip cmpnjlomi0… — hash collision after AI retry
+[2026-06-13T20:15:04.855Z]   hash collision on cmpnjlos50… — retrying with alternate seed/AI
+[2026-06-13T20:15:05.337Z]   skip cmpnjlos50… — hash collision after AI retry
+[2026-06-13T20:15:05.430Z]   hash collision on cmpnjloxw0… — retrying with alternate seed/AI
+[2026-06-13T20:15:06.013Z]   skip cmpnjloxw0… — hash collision after AI retry
+[2026-06-13T20:15:06.116Z]   hash collision on cmpnjloxw0… — retrying with alternate seed/AI
+[2026-06-13T20:15:06.602Z]   skip cmpnjloxw0… — hash collision after AI retry
+[2026-06-13T20:15:06.741Z]   hash collision on cmpnjlp960… — retrying with alternate seed/AI
+[2026-06-13T20:15:07.271Z]   skip cmpnjlp960… — hash collision after AI retry
+[2026-06-13T20:15:07.368Z]   hash collision on cmpnjlpgd0… — retrying with alternate seed/AI
+[2026-06-13T20:15:07.853Z]   skip cmpnjlpgd0… — hash collision after AI retry
+[2026-06-13T20:15:07.950Z]   hash collision on cmpnjlpm00… — retrying with alternate seed/AI
+[2026-06-13T20:15:08.429Z]   skip cmpnjlpm00… — hash collision after AI retry
+[2026-06-13T20:15:08.525Z]   hash collision on cmpnjlpt30… — retrying with alternate seed/AI
+[2026-06-13T20:15:08.999Z]   skip cmpnjlpt30… — hash collision after AI retry
+[2026-06-13T20:15:09.092Z]   hash collision on cmpnjlq4b0… — retrying with alternate seed/AI
+[2026-06-13T20:15:09.555Z]   skip cmpnjlq4b0… — hash collision after AI retry
+[2026-06-13T20:15:09.650Z]   hash collision on cmpnjlqkt0… — retrying with alternate seed/AI
+[2026-06-13T20:15:10.240Z]   skip cmpnjlqkt0… — hash collision after AI retry
+[2026-06-13T20:15:10.334Z]   hash collision on cmpnjlqqi0… — retrying with alternate seed/AI
+[2026-06-13T20:15:10.813Z]   skip cmpnjlqqi0… — hash collision after AI retry
+[2026-06-13T20:15:10.932Z]   hash collision on cmpnjlqw50… — retrying with alternate seed/AI
+[2026-06-13T20:15:11.431Z]   skip cmpnjlqw50… — hash collision after AI retry
+[2026-06-13T20:15:11.528Z]   hash collision on cmpnjlr1p0… — retrying with alternate seed/AI
+[2026-06-13T20:15:12.022Z]   skip cmpnjlr1p0… — hash collision after AI retry
+[2026-06-13T20:15:12.126Z]   hash collision on cmpnjlr7b0… — retrying with alternate seed/AI
+[2026-06-13T20:15:12.615Z]   skip cmpnjlr7b0… — hash collision after AI retry
+[2026-06-13T20:15:12.708Z]   hash collision on cmpnjlrd20… — retrying with alternate seed/AI
+[2026-06-13T20:15:13.176Z]   skip cmpnjlrd20… — hash collision after AI retry
+[2026-06-13T20:15:13.274Z]   hash collision on cmpnjlro20… — retrying with alternate seed/AI
+[2026-06-13T20:15:13.753Z]   skip cmpnjlro20… — hash collision after AI retry
+[2026-06-13T20:15:13.851Z]   hash collision on cmpnjlro20… — retrying with alternate seed/AI
+[2026-06-13T20:15:14.326Z]   skip cmpnjlro20… — hash collision after AI retry
+[2026-06-13T20:15:14.421Z]   hash collision on cmpnjlrtk0… — retrying with alternate seed/AI
+[2026-06-13T20:15:14.922Z]   skip cmpnjlrtk0… — hash collision after AI retry
+[2026-06-13T20:15:15.016Z]   hash collision on cmpnjlsby0… — retrying with alternate seed/AI
+[2026-06-13T20:15:15.500Z]   skip cmpnjlsby0… — hash collision after AI retry
+[2026-06-13T20:15:15.594Z]   hash collision on cmpnjlsc30… — retrying with alternate seed/AI
+[2026-06-13T20:15:16.084Z]   skip cmpnjlsc30… — hash collision after AI retry
+[2026-06-13T20:15:16.182Z]   hash collision on cmpnjlt060… — retrying with alternate seed/AI
+[2026-06-13T20:15:16.654Z]   skip cmpnjlt060… — hash collision after AI retry
+[2026-06-13T20:15:16.751Z]   hash collision on cmpnjlted0… — retrying with alternate seed/AI
+[2026-06-13T20:15:17.269Z]   skip cmpnjlted0… — hash collision after AI retry
+[2026-06-13T20:15:17.360Z]   hash collision on cmpnjltxw0… — retrying with alternate seed/AI
+[2026-06-13T20:15:17.888Z]   skip cmpnjltxw0… — hash collision after AI retry
+[2026-06-13T20:15:17.982Z]   hash collision on cmpnjltxw0… — retrying with alternate seed/AI
+[2026-06-13T20:15:18.630Z]   skip cmpnjltxw0… — hash collision after AI retry
+[2026-06-13T20:15:18.861Z]   hash collision on cmpnjlu3j0… — retrying with alternate seed/AI
+[2026-06-13T20:15:19.477Z]   skip cmpnjlu3j0… — hash collision after AI retry
+[2026-06-13T20:15:19.633Z]   hash collision on cmpnjlu3j0… — retrying with alternate seed/AI
+[2026-06-13T20:15:20.126Z]   skip cmpnjlu3j0… — hash collision after AI retry
+[2026-06-13T20:15:20.224Z]   hash collision on cmpnjluk60… — retrying with alternate seed/AI
+[2026-06-13T20:15:20.705Z]   skip cmpnjluk60… — hash collision after AI retry
+[2026-06-13T20:15:20.800Z]   hash collision on cmpnjluk60… — retrying with alternate seed/AI
+[2026-06-13T20:15:21.282Z]   skip cmpnjluk60… — hash collision after AI retry
+[2026-06-13T20:15:21.383Z]   hash collision on cmpnjlupo0… — retrying with alternate seed/AI
+[2026-06-13T20:15:21.865Z]   skip cmpnjlupo0… — hash collision after AI retry
+[2026-06-13T20:15:21.965Z]   hash collision on cmpnjluvn0… — retrying with alternate seed/AI
+[2026-06-13T20:15:22.445Z]   skip cmpnjluvn0… — hash collision after AI retry
+[2026-06-13T20:15:22.540Z]   hash collision on cmpnjluvn0… — retrying with alternate seed/AI
+[2026-06-13T20:15:23.007Z]   skip cmpnjluvn0… — hash collision after AI retry
+[2026-06-13T20:15:23.108Z]   hash collision on cmpnjlv1c0… — retrying with alternate seed/AI
+[2026-06-13T20:15:23.617Z]   skip cmpnjlv1c0… — hash collision after AI retry
+[2026-06-13T20:15:23.710Z]   hash collision on cmpnjlv700… — retrying with alternate seed/AI
+[2026-06-13T20:15:24.202Z]   skip cmpnjlv700… — hash collision after AI retry
+[2026-06-13T20:15:24.301Z]   hash collision on cmpnjlvcm0… — retrying with alternate seed/AI
+[2026-06-13T20:15:24.844Z]   skip cmpnjlvcm0… — hash collision after AI retry
+[2026-06-13T20:15:24.938Z]   hash collision on cmpnjlvwd0… — retrying with alternate seed/AI
+[2026-06-13T20:15:25.413Z]   skip cmpnjlvwd0… — hash collision after AI retry
+[2026-06-13T20:15:25.512Z]   hash collision on cmpnjlwb20… — retrying with alternate seed/AI
+[2026-06-13T20:15:26.016Z]   skip cmpnjlwb20… — hash collision after AI retry
+[2026-06-13T20:15:26.110Z]   hash collision on cmpnjlwh60… — retrying with alternate seed/AI
+[2026-06-13T20:15:26.588Z]   skip cmpnjlwh60… — hash collision after AI retry
+[2026-06-13T20:15:26.681Z]   hash collision on cmpnjlwh60… — retrying with alternate seed/AI
+[2026-06-13T20:15:27.151Z]   skip cmpnjlwh60… — hash collision after AI retry
+[2026-06-13T20:15:27.245Z]   hash collision on cmpnjlwod0… — retrying with alternate seed/AI
+[2026-06-13T20:15:27.724Z]   skip cmpnjlwod0… — hash collision after AI retry
+[2026-06-13T20:15:27.823Z]   hash collision on cmpnjlwod0… — retrying with alternate seed/AI
+[2026-06-13T20:15:28.303Z]   skip cmpnjlwod0… — hash collision after AI retry
+[2026-06-13T20:15:28.397Z]   hash collision on cmpnjlwuz0… — retrying with alternate seed/AI
+[2026-06-13T20:15:28.869Z]   skip cmpnjlwuz0… — hash collision after AI retry
+[2026-06-13T20:15:28.969Z]   hash collision on cmpnjlwuz0… — retrying with alternate seed/AI
+[2026-06-13T20:15:29.477Z]   skip cmpnjlwuz0… — hash collision after AI retry
+[2026-06-13T20:15:29.579Z]   hash collision on cmpnjlxdx0… — retrying with alternate seed/AI
+[2026-06-13T20:15:30.063Z]   skip cmpnjlxdx0… — hash collision after AI retry
+[2026-06-13T20:15:30.158Z]   hash collision on cmpnjlxk80… — retrying with alternate seed/AI
+[2026-06-13T20:15:30.650Z]   skip cmpnjlxk80… — hash collision after AI retry
+[2026-06-13T20:15:30.754Z]   hash collision on cmpnjlxk80… — retrying with alternate seed/AI
+[2026-06-13T20:15:31.229Z]   skip cmpnjlxk80… — hash collision after AI retry
+[2026-06-13T20:15:31.469Z]   hash collision on cmpnjlxw40… — retrying with alternate seed/AI
+[2026-06-13T20:15:32.005Z]   skip cmpnjlxw40… — hash collision after AI retry
+[2026-06-13T20:15:32.104Z]   hash collision on cmpnjlxw40… — retrying with alternate seed/AI
+[2026-06-13T20:15:32.618Z]   skip cmpnjlxw40… — hash collision after AI retry
+[2026-06-13T20:15:32.726Z]   hash collision on cmpnjly4q0… — retrying with alternate seed/AI
+[2026-06-13T20:15:33.208Z]   skip cmpnjly4q0… — hash collision after AI retry
+[2026-06-13T20:15:33.304Z]   hash collision on cmpnjlyax0… — retrying with alternate seed/AI
+[2026-06-13T20:15:33.784Z]   skip cmpnjlyax0… — hash collision after AI retry
+[2026-06-13T20:15:33.874Z]   hash collision on cmpnjlyax0… — retrying with alternate seed/AI
+[2026-06-13T20:15:34.351Z]   skip cmpnjlyax0… — hash collision after AI retry
+[2026-06-13T20:15:34.448Z]   hash collision on cmpnjlyax0… — retrying with alternate seed/AI
+[2026-06-13T20:15:34.921Z]   skip cmpnjlyax0… — hash collision after AI retry
+[2026-06-13T20:15:35.015Z]   hash collision on cmpnjlyoz0… — retrying with alternate seed/AI
+[2026-06-13T20:15:35.492Z]   skip cmpnjlyoz0… — hash collision after AI retry
+[2026-06-13T20:15:35.585Z]   hash collision on cmpnjlyx60… — retrying with alternate seed/AI
+[2026-06-13T20:15:36.055Z]   skip cmpnjlyx60… — hash collision after AI retry
+[2026-06-13T20:15:36.148Z]   hash collision on cmpnjlyx80… — retrying with alternate seed/AI
+[2026-06-13T20:15:36.633Z]   skip cmpnjlyx80… — hash collision after AI retry
+[2026-06-13T20:15:36.728Z]   hash collision on cmpnjlz3k0… — retrying with alternate seed/AI
+[2026-06-13T20:15:37.205Z]   skip cmpnjlz3k0… — hash collision after AI retry
+[2026-06-13T20:15:37.307Z]   hash collision on cmpnjlz9c0… — retrying with alternate seed/AI
+[2026-06-13T20:15:37.797Z]   skip cmpnjlz9c0… — hash collision after AI retry
+[2026-06-13T20:15:38.127Z]   hash collision on cmq33agoe0… — retrying with alternate seed/AI
+[2026-06-13T20:15:38.627Z]   skip cmq33agoe0… — hash collision after AI retry
+[2026-06-13T20:15:38.912Z]   hash collision on cmq33agv10… — retrying with alternate seed/AI
+[2026-06-13T20:15:39.383Z]   skip cmq33agv10… — hash collision after AI retry
+[2026-06-13T20:15:39.475Z]   hash collision on cmq33ah1u0… — retrying with alternate seed/AI
+[2026-06-13T20:15:39.958Z]   skip cmq33ah1u0… — hash collision after AI retry
+[2026-06-13T20:15:40.051Z]   hash collision on cmq33ah1u0… — retrying with alternate seed/AI
+[2026-06-13T20:15:40.541Z]   skip cmq33ah1u0… — hash collision after AI retry
+[2026-06-13T20:15:40.635Z]   hash collision on cmq33ahfc0… — retrying with alternate seed/AI
+[2026-06-13T20:15:41.099Z]   skip cmq33ahfc0… — hash collision after AI retry
+[2026-06-13T20:15:41.199Z]   hash collision on cmq33ahlx0… — retrying with alternate seed/AI
+[2026-06-13T20:15:41.686Z]   skip cmq33ahlx0… — hash collision after AI retry
+[2026-06-13T20:15:41.780Z]   hash collision on cmq33ahyv0… — retrying with alternate seed/AI
+[2026-06-13T20:15:42.250Z]   skip cmq33ahyv0… — hash collision after AI retry
+[2026-06-13T20:15:42.350Z]   hash collision on cmq33ahyw0… — retrying with alternate seed/AI
+[2026-06-13T20:15:42.839Z]   skip cmq33ahyw0… — hash collision after AI retry
+[2026-06-13T20:15:42.939Z]   hash collision on cmq33ai550… — retrying with alternate seed/AI
+[2026-06-13T20:15:43.411Z]   skip cmq33ai550… — hash collision after AI retry
+[2026-06-13T20:15:43.504Z]   hash collision on cmq33aibu0… — retrying with alternate seed/AI
+[2026-06-13T20:15:43.990Z]   skip cmq33aibu0… — hash collision after AI retry
+[2026-06-13T20:15:44.086Z]   hash collision on cmq33aivt0… — retrying with alternate seed/AI
+[2026-06-13T20:15:44.566Z]   skip cmq33aivt0… — hash collision after AI retry
+[2026-06-13T20:15:44.663Z]   hash collision on cmq33aj2a0… — retrying with alternate seed/AI
+[2026-06-13T20:15:45.176Z]   skip cmq33aj2a0… — hash collision after AI retry
+[2026-06-13T20:15:45.277Z]   hash collision on cmq33aj2b0… — retrying with alternate seed/AI
+[2026-06-13T20:15:45.747Z]   skip cmq33aj2b0… — hash collision after AI retry
+[2026-06-13T20:15:45.839Z]   hash collision on cmq33aj8p0… — retrying with alternate seed/AI
+[2026-06-13T20:15:46.329Z]   skip cmq33aj8p0… — hash collision after AI retry
+[2026-06-13T20:15:46.451Z]   hash collision on cmq33ajfd0… — retrying with alternate seed/AI
+[2026-06-13T20:15:47.035Z]   skip cmq33ajfd0… — hash collision after AI retry
+[2026-06-13T20:15:47.133Z]   hash collision on cmq33ajm90… — retrying with alternate seed/AI
+[2026-06-13T20:15:47.658Z]   skip cmq33ajm90… — hash collision after AI retry
+[2026-06-13T20:15:47.754Z]   hash collision on cmq33ajm90… — retrying with alternate seed/AI
+[2026-06-13T20:15:48.257Z]   skip cmq33ajm90… — hash collision after AI retry
+[2026-06-13T20:15:48.353Z]   hash collision on cmq33ajsv0… — retrying with alternate seed/AI
+[2026-06-13T20:15:48.837Z]   skip cmq33ajsv0… — hash collision after AI retry
+[2026-06-13T20:15:48.937Z]   hash collision on cmq33ajsw0… — retrying with alternate seed/AI
+[2026-06-13T20:15:49.413Z]   skip cmq33ajsw0… — hash collision after AI retry
+[2026-06-13T20:15:49.505Z]   hash collision on cmq33ak7d0… — retrying with alternate seed/AI
+[2026-06-13T20:15:49.973Z]   skip cmq33ak7d0… — hash collision after AI retry
+[2026-06-13T20:15:50.069Z]   hash collision on cmq33ake20… — retrying with alternate seed/AI
+[2026-06-13T20:15:50.544Z]   skip cmq33ake20… — hash collision after AI retry
+[2026-06-13T20:15:50.639Z]   hash collision on cmq33akkm0… — retrying with alternate seed/AI
+[2026-06-13T20:15:51.101Z]   skip cmq33akkm0… — hash collision after AI retry
+[2026-06-13T20:15:51.204Z]   hash collision on cmq33akrc0… — retrying with alternate seed/AI
+[2026-06-13T20:15:51.686Z]   skip cmq33akrc0… — hash collision after AI retry
+[2026-06-13T20:15:51.783Z]   hash collision on cmq33akxs0… — retrying with alternate seed/AI
+[2026-06-13T20:15:52.412Z]   skip cmq33akxs0… — hash collision after AI retry
+[2026-06-13T20:15:52.511Z]   hash collision on cmq33al490… — retrying with alternate seed/AI
+[2026-06-13T20:15:52.990Z]   skip cmq33al490… — hash collision after AI retry
+[2026-06-13T20:15:53.084Z]   hash collision on cmq33alaw0… — retrying with alternate seed/AI
+[2026-06-13T20:15:53.557Z]   skip cmq33alaw0… — hash collision after AI retry
+[2026-06-13T20:15:53.654Z]   hash collision on cmq33alaw0… — retrying with alternate seed/AI
+[2026-06-13T20:15:54.125Z]   skip cmq33alaw0… — hash collision after AI retry
+[2026-06-13T20:15:54.227Z]   hash collision on cmq33alax0… — retrying with alternate seed/AI
+[2026-06-13T20:15:54.701Z]   skip cmq33alax0… — hash collision after AI retry
+[2026-06-13T20:15:54.794Z]   hash collision on cmq33alnz0… — retrying with alternate seed/AI
+[2026-06-13T20:15:55.275Z]   skip cmq33alnz0… — hash collision after AI retry
+[2026-06-13T20:15:55.379Z]   hash collision on cmq33alvo0… — retrying with alternate seed/AI
+[2026-06-13T20:15:55.859Z]   skip cmq33alvo0… — hash collision after AI retry
+[2026-06-13T20:15:55.950Z]   hash collision on cmq33alvo0… — retrying with alternate seed/AI
+[2026-06-13T20:15:56.434Z]   skip cmq33alvo0… — hash collision after AI retry
+[2026-06-13T20:15:56.531Z]   hash collision on cmq33am710… — retrying with alternate seed/AI
+[2026-06-13T20:15:57.005Z]   skip cmq33am710… — hash collision after AI retry
+[2026-06-13T20:15:57.100Z]   hash collision on cmq33am720… — retrying with alternate seed/AI
+[2026-06-13T20:15:57.575Z]   skip cmq33am720… — hash collision after AI retry
+[2026-06-13T20:15:57.667Z]   hash collision on cmq33am720… — retrying with alternate seed/AI
+[2026-06-13T20:15:58.154Z]   skip cmq33am720… — hash collision after AI retry
+[2026-06-13T20:15:58.244Z]   hash collision on cmq33am720… — retrying with alternate seed/AI
+[2026-06-13T20:15:58.715Z]   skip cmq33am720… — hash collision after AI retry
+[2026-06-13T20:15:58.805Z]   hash collision on cmq33an5m0… — retrying with alternate seed/AI
+[2026-06-13T20:15:59.287Z]   skip cmq33an5m0… — hash collision after AI retry
+[2026-06-13T20:15:59.385Z]   hash collision on cmq33an5m0… — retrying with alternate seed/AI
+[2026-06-13T20:15:59.878Z]   skip cmq33an5m0… — hash collision after AI retry
+[2026-06-13T20:15:59.976Z]   hash collision on cmq33an5n0… — retrying with alternate seed/AI
+[2026-06-13T20:16:00.458Z]   skip cmq33an5n0… — hash collision after AI retry
+[2026-06-13T20:16:00.554Z]   hash collision on cmq33anip0… — retrying with alternate seed/AI
+[2026-06-13T20:16:01.043Z]   skip cmq33anip0… — hash collision after AI retry
+[2026-06-13T20:16:01.138Z]   hash collision on cmq33anip0… — retrying with alternate seed/AI
+[2026-06-13T20:16:01.613Z]   skip cmq33anip0… — hash collision after AI retry
+[2026-06-13T20:16:01.710Z]   hash collision on cmq33anp10… — retrying with alternate seed/AI
+[2026-06-13T20:16:02.418Z]   skip cmq33anp10… — hash collision after AI retry
+[2026-06-13T20:16:02.510Z]   hash collision on cmq33ao1x0… — retrying with alternate seed/AI
+[2026-06-13T20:16:02.989Z]   skip cmq33ao1x0… — hash collision after AI retry
+[2026-06-13T20:16:03.255Z]   hash collision on cmq33ao8a0… — retrying with alternate seed/AI
+[2026-06-13T20:16:03.891Z]   skip cmq33ao8a0… — hash collision after AI retry
+[2026-06-13T20:16:03.981Z]   hash collision on cmq33ao8a0… — retrying with alternate seed/AI
+[2026-06-13T20:16:04.487Z]   skip cmq33ao8a0… — hash collision after AI retry
+[2026-06-13T20:16:04.581Z]   hash collision on cmq33aoeu0… — retrying with alternate seed/AI
+[2026-06-13T20:16:05.058Z]   skip cmq33aoeu0… — hash collision after AI retry
+[2026-06-13T20:16:05.467Z]   hash collision on cmq33aoev0… — retrying with alternate seed/AI
+[2026-06-13T20:16:05.984Z]   skip cmq33aoev0… — hash collision after AI retry
+[2026-06-13T20:16:06.079Z]   hash collision on cmq33aos40… — retrying with alternate seed/AI
+[2026-06-13T20:16:06.562Z]   skip cmq33aos40… — hash collision after AI retry
+[2026-06-13T20:16:06.658Z]   hash collision on cmq33aoye0… — retrying with alternate seed/AI
+[2026-06-13T20:16:07.144Z]   skip cmq33aoye0… — hash collision after AI retry
+[2026-06-13T20:16:07.237Z]   hash collision on cmq33apb40… — retrying with alternate seed/AI
+[2026-06-13T20:16:07.718Z]   skip cmq33apb40… — hash collision after AI retry
+[2026-06-13T20:16:07.813Z]   hash collision on cmq33apb50… — retrying with alternate seed/AI
+[2026-06-13T20:16:08.288Z]   skip cmq33apb50… — hash collision after AI retry
+[2026-06-13T20:16:08.386Z]   hash collision on cmq33aphr0… — retrying with alternate seed/AI
+[2026-06-13T20:16:08.858Z]   skip cmq33aphr0… — hash collision after AI retry
+[2026-06-13T20:16:08.952Z]   hash collision on cmq33apo10… — retrying with alternate seed/AI
+[2026-06-13T20:16:09.437Z]   skip cmq33apo10… — hash collision after AI retry
+[2026-06-13T20:16:09.685Z]   hash collision on cmq33azde0… — retrying with alternate seed/AI
+[2026-06-13T20:16:10.176Z]   skip cmq33azde0… — hash collision after AI retry
+[2026-06-13T20:16:10.418Z]   hash collision on cmq33azri0… — retrying with alternate seed/AI
+[2026-06-13T20:16:10.906Z]   skip cmq33azri0… — hash collision after AI retry
+[2026-06-13T20:16:11.008Z]   hash collision on cmq33azru0… — retrying with alternate seed/AI
+[2026-06-13T20:16:11.604Z]   skip cmq33azru0… — hash collision after AI retry
+[2026-06-13T20:16:11.712Z]   hash collision on cmq33azxv0… — retrying with alternate seed/AI
+[2026-06-13T20:16:12.210Z]   skip cmq33azxv0… — hash collision after AI retry
+[2026-06-13T20:16:12.307Z]   hash collision on cmq33b03t0… — retrying with alternate seed/AI
+[2026-06-13T20:16:12.793Z]   skip cmq33b03t0… — hash collision after AI retry
+[2026-06-13T20:16:12.887Z]   hash collision on cmq33b03t0… — retrying with alternate seed/AI
+[2026-06-13T20:16:13.377Z]   skip cmq33b03t0… — hash collision after AI retry
+[2026-06-13T20:16:13.475Z]   hash collision on cmq33b0a20… — retrying with alternate seed/AI
+[2026-06-13T20:16:13.970Z]   skip cmq33b0a20… — hash collision after AI retry
+[2026-06-13T20:16:14.063Z]   hash collision on cmq33b0a20… — retrying with alternate seed/AI
+[2026-06-13T20:16:14.535Z]   skip cmq33b0a20… — hash collision after AI retry
+[2026-06-13T20:16:14.629Z]   hash collision on cmq33b0a20… — retrying with alternate seed/AI
+[2026-06-13T20:16:15.113Z]   skip cmq33b0a20… — hash collision after AI retry
+[2026-06-13T20:16:15.262Z]   hash collision on cmq33b0g70… — retrying with alternate seed/AI
+[2026-06-13T20:16:15.736Z]   skip cmq33b0g70… — hash collision after AI retry
+[2026-06-13T20:16:15.836Z]   hash collision on cmq33b0g80… — retrying with alternate seed/AI
+[2026-06-13T20:16:16.327Z]   skip cmq33b0g80… — hash collision after AI retry
+[2026-06-13T20:16:16.426Z]   hash collision on cmq33b0mf0… — retrying with alternate seed/AI
+[2026-06-13T20:16:16.935Z]   skip cmq33b0mf0… — hash collision after AI retry
+[2026-06-13T20:16:17.033Z]   hash collision on cmq33b15n0… — retrying with alternate seed/AI
+[2026-06-13T20:16:17.564Z]   skip cmq33b15n0… — hash collision after AI retry
+[2026-06-13T20:16:17.664Z]   hash collision on cmq33b1c80… — retrying with alternate seed/AI
+[2026-06-13T20:16:18.177Z]   skip cmq33b1c80… — hash collision after AI retry
+[2026-06-13T20:16:18.507Z]   hash collision on cmq33b1c90… — retrying with alternate seed/AI
+[2026-06-13T20:16:18.993Z]   skip cmq33b1c90… — hash collision after AI retry
+[2026-06-13T20:16:19.088Z]   hash collision on cmq33b1ca0… — retrying with alternate seed/AI
+[2026-06-13T20:16:19.582Z]   skip cmq33b1ca0… — hash collision after AI retry
+[2026-06-13T20:16:19.678Z]   hash collision on cmq33b1if0… — retrying with alternate seed/AI
+[2026-06-13T20:16:20.157Z]   skip cmq33b1if0… — hash collision after AI retry
+[2026-06-13T20:16:20.253Z]   hash collision on cmq33b1if0… — retrying with alternate seed/AI
+[2026-06-13T20:16:20.730Z]   skip cmq33b1if0… — hash collision after AI retry
+[2026-06-13T20:16:20.827Z]   hash collision on cmq33b1oh0… — retrying with alternate seed/AI
+[2026-06-13T20:16:21.305Z]   skip cmq33b1oh0… — hash collision after AI retry
+[2026-06-13T20:16:21.399Z]   hash collision on cmq33b1oh0… — retrying with alternate seed/AI
+[2026-06-13T20:16:21.874Z]   skip cmq33b1oh0… — hash collision after AI retry
+[2026-06-13T20:16:21.971Z]   hash collision on cmq33b20n0… — retrying with alternate seed/AI
+[2026-06-13T20:16:22.446Z]   skip cmq33b20n0… — hash collision after AI retry
+[2026-06-13T20:16:22.541Z]   hash collision on cmq33b20o0… — retrying with alternate seed/AI
+[2026-06-13T20:16:23.015Z]   skip cmq33b20o0… — hash collision after AI retry
+[2026-06-13T20:16:23.107Z]   hash collision on cmq33b2cw0… — retrying with alternate seed/AI
+[2026-06-13T20:16:23.578Z]   skip cmq33b2cw0… — hash collision after AI retry
+[2026-06-13T20:16:23.673Z]   hash collision on cmq33b2cw0… — retrying with alternate seed/AI
+[2026-06-13T20:16:24.162Z]   skip cmq33b2cw0… — hash collision after AI retry
+[2026-06-13T20:16:24.266Z]   hash collision on cmq33b2pt0… — retrying with alternate seed/AI
+[2026-06-13T20:16:24.777Z]   skip cmq33b2pt0… — hash collision after AI retry
+[2026-06-13T20:16:24.870Z]   hash collision on cmq33b2xb0… — retrying with alternate seed/AI
+[2026-06-13T20:16:25.369Z]   skip cmq33b2xb0… — hash collision after AI retry
+[2026-06-13T20:16:25.503Z]   hash collision on cmq33b33e0… — retrying with alternate seed/AI
+[2026-06-13T20:16:26.032Z]   skip cmq33b33e0… — hash collision after AI retry
+[2026-06-13T20:16:26.132Z]   hash collision on cmq33b39h0… — retrying with alternate seed/AI
+[2026-06-13T20:16:26.635Z]   skip cmq33b39h0… — hash collision after AI retry
+[2026-06-13T20:16:26.731Z]   hash collision on cmq33b3fo0… — retrying with alternate seed/AI
+[2026-06-13T20:16:27.208Z]   skip cmq33b3fo0… — hash collision after AI retry
+[2026-06-13T20:16:27.304Z]   hash collision on cmq33b3oa0… — retrying with alternate seed/AI
+[2026-06-13T20:16:27.776Z]   skip cmq33b3oa0… — hash collision after AI retry
+[2026-06-13T20:16:27.871Z]   hash collision on cmq33b3oa0… — retrying with alternate seed/AI
+[2026-06-13T20:16:28.354Z]   skip cmq33b3oa0… — hash collision after AI retry
+[2026-06-13T20:16:28.452Z]   hash collision on cmq33b4bj0… — retrying with alternate seed/AI
+[2026-06-13T20:16:28.945Z]   skip cmq33b4bj0… — hash collision after AI retry
+[2026-06-13T20:16:29.053Z]   hash collision on cmq33b4bj0… — retrying with alternate seed/AI
+[2026-06-13T20:16:29.532Z]   skip cmq33b4bj0… — hash collision after AI retry
+[2026-06-13T20:16:29.626Z]   hash collision on cmq33b4hs0… — retrying with alternate seed/AI
+[2026-06-13T20:16:30.117Z]   skip cmq33b4hs0… — hash collision after AI retry
+[2026-06-13T20:16:30.212Z]   hash collision on cmq33b4hs0… — retrying with alternate seed/AI
+[2026-06-13T20:16:30.709Z]   skip cmq33b4hs0… — hash collision after AI retry
+[2026-06-13T20:16:30.822Z]   hash collision on cmq33b4w60… — retrying with alternate seed/AI
+[2026-06-13T20:16:31.323Z]   skip cmq33b4w60… — hash collision after AI retry
+[2026-06-13T20:16:31.420Z]   hash collision on cmq33b4w60… — retrying with alternate seed/AI
+[2026-06-13T20:16:31.899Z]   skip cmq33b4w60… — hash collision after AI retry
+[2026-06-13T20:16:31.991Z]   hash collision on cmq33b5l30… — retrying with alternate seed/AI
+[2026-06-13T20:16:32.461Z]   skip cmq33b5l30… — hash collision after AI retry
+[2026-06-13T20:16:32.611Z]   hash collision on cmq33b5l30… — retrying with alternate seed/AI
+[2026-06-13T20:16:33.084Z]   skip cmq33b5l30… — hash collision after AI retry
+[2026-06-13T20:16:33.183Z]   hash collision on cmq33b5rl0… — retrying with alternate seed/AI
+[2026-06-13T20:16:33.749Z]   skip cmq33b5rl0… — hash collision after AI retry
+[2026-06-13T20:16:33.999Z]   hash collision on cmq33b5xm0… — retrying with alternate seed/AI
+[2026-06-13T20:16:34.495Z]   skip cmq33b5xm0… — hash collision after AI retry
+[2026-06-13T20:16:34.592Z]   hash collision on cmq33b5xm0… — retrying with alternate seed/AI
+[2026-06-13T20:16:35.061Z]   skip cmq33b5xm0… — hash collision after AI retry
+[2026-06-13T20:16:35.157Z]   hash collision on cmq33b6470… — retrying with alternate seed/AI
+[2026-06-13T20:16:35.655Z]   skip cmq33b6470… — hash collision after AI retry
+[2026-06-13T20:16:35.757Z]   hash collision on cmq33b6or0… — retrying with alternate seed/AI
+[2026-06-13T20:16:36.249Z]   skip cmq33b6or0… — hash collision after AI retry
+[2026-06-13T20:16:36.346Z]   hash collision on cmq33b6os0… — retrying with alternate seed/AI
+[2026-06-13T20:16:36.826Z]   skip cmq33b6os0… — hash collision after AI retry
+[2026-06-13T20:16:36.923Z]   hash collision on cmq33b7140… — retrying with alternate seed/AI
+[2026-06-13T20:16:37.595Z]   skip cmq33b7140… — hash collision after AI retry
+[2026-06-13T20:16:37.691Z]   hash collision on cmq33b7140… — retrying with alternate seed/AI
+[2026-06-13T20:16:38.195Z]   skip cmq33b7140… — hash collision after AI retry
+[2026-06-13T20:16:38.293Z]   hash collision on cmq33b7150… — retrying with alternate seed/AI
+[2026-06-13T20:16:38.780Z]   skip cmq33b7150… — hash collision after AI retry
+[2026-06-13T20:16:38.874Z]   hash collision on cmq33b78m0… — retrying with alternate seed/AI
+[2026-06-13T20:16:39.361Z]   skip cmq33b78m0… — hash collision after AI retry
+[2026-06-13T20:16:39.457Z]   hash collision on cmq33b7es0… — retrying with alternate seed/AI
+[2026-06-13T20:16:39.940Z]   skip cmq33b7es0… — hash collision after AI retry
+[2026-06-13T20:16:40.036Z]   hash collision on cmq33b7es0… — retrying with alternate seed/AI
+[2026-06-13T20:16:40.557Z]   skip cmq33b7es0… — hash collision after AI retry
+[2026-06-13T20:16:40.651Z]   hash collision on cmq33b7l50… — retrying with alternate seed/AI
+[2026-06-13T20:16:41.144Z]   skip cmq33b7l50… — hash collision after AI retry
+[2026-06-13T20:16:41.280Z]   hash collision on cmq33b7l50… — retrying with alternate seed/AI
+[2026-06-13T20:16:41.815Z]   skip cmq33b7l50… — hash collision after AI retry
+[2026-06-13T20:16:41.915Z]   hash collision on cmq33b7l50… — retrying with alternate seed/AI
+[2026-06-13T20:16:42.417Z]   skip cmq33b7l50… — hash collision after AI retry
+[2026-06-13T20:16:42.511Z]   hash collision on cmq33b7r60… — retrying with alternate seed/AI
+[2026-06-13T20:16:43.000Z]   skip cmq33b7r60… — hash collision after AI retry
+[2026-06-13T20:16:43.099Z]   hash collision on cmq33b7r60… — retrying with alternate seed/AI
+[2026-06-13T20:16:43.591Z]   skip cmq33b7r60… — hash collision after AI retry
+[2026-06-13T20:16:43.701Z]   hash collision on cmq33b7xe0… — retrying with alternate seed/AI
+[2026-06-13T20:16:44.233Z]   skip cmq33b7xe0… — hash collision after AI retry
+[2026-06-13T20:16:44.405Z]   hash collision on cmq33b8h50… — retrying with alternate seed/AI
+[2026-06-13T20:16:45.163Z]   skip cmq33b8h50… — hash collision after AI retry
+[2026-06-13T20:16:45.495Z]   hash collision on cmq33c03t0… — retrying with alternate seed/AI
+[2026-06-13T20:16:46.269Z]   skip cmq33c03t0… — hash collision after AI retry
+[2026-06-13T20:16:46.441Z]   hash collision on cmq33c0a20… — retrying with alternate seed/AI
+[2026-06-13T20:16:47.060Z]   skip cmq33c0a20… — hash collision after AI retry
+[2026-06-13T20:16:47.209Z]   hash collision on cmq33c0a30… — retrying with alternate seed/AI
+[2026-06-13T20:16:47.870Z]   skip cmq33c0a30… — hash collision after AI retry
+[2026-06-13T20:16:48.017Z]   hash collision on cmq33c0gb0… — retrying with alternate seed/AI
+[2026-06-13T20:16:48.499Z]   skip cmq33c0gb0… — hash collision after AI retry
+[2026-06-13T20:16:48.592Z]   hash collision on cmq33c0sh0… — retrying with alternate seed/AI
+[2026-06-13T20:16:49.089Z]   skip cmq33c0sh0… — hash collision after AI retry
+[2026-06-13T20:16:49.192Z]   hash collision on cmq33c1i70… — retrying with alternate seed/AI
+[2026-06-13T20:16:49.669Z]   skip cmq33c1i70… — hash collision after AI retry
+[2026-06-13T20:16:49.772Z]   hash collision on cmq33c1us0… — retrying with alternate seed/AI
+[2026-06-13T20:16:50.253Z]   skip cmq33c1us0… — hash collision after AI retry
+[2026-06-13T20:16:50.354Z]   hash collision on cmq33c21g0… — retrying with alternate seed/AI
+[2026-06-13T20:16:50.843Z]   skip cmq33c21g0… — hash collision after AI retry
+[2026-06-13T20:16:50.940Z]   hash collision on cmq33c2qa0… — retrying with alternate seed/AI
+[2026-06-13T20:16:51.436Z]   skip cmq33c2qa0… — hash collision after AI retry
+[2026-06-13T20:16:51.534Z]   hash collision on cmq33c2xb0… — retrying with alternate seed/AI
+[2026-06-13T20:16:52.017Z]   skip cmq33c2xb0… — hash collision after AI retry
+[2026-06-13T20:16:52.114Z]   hash collision on cmq33c2xc0… — retrying with alternate seed/AI
+[2026-06-13T20:16:52.594Z]   skip cmq33c2xc0… — hash collision after AI retry
+[2026-06-13T20:16:52.692Z]   hash collision on cmq33c2xc0… — retrying with alternate seed/AI
+[2026-06-13T20:16:53.191Z]   skip cmq33c2xc0… — hash collision after AI retry
+[2026-06-13T20:16:53.287Z]   hash collision on cmq33c3g40… — retrying with alternate seed/AI
+[2026-06-13T20:16:53.764Z]   skip cmq33c3g40… — hash collision after AI retry
+[2026-06-13T20:16:53.858Z]   hash collision on cmq33c3yz0… — retrying with alternate seed/AI
+[2026-06-13T20:16:54.336Z]   skip cmq33c3yz0… — hash collision after AI retry
+[2026-06-13T20:16:54.431Z]   hash collision on cmq33c3yz0… — retrying with alternate seed/AI
+[2026-06-13T20:16:54.943Z]   skip cmq33c3yz0… — hash collision after AI retry
+[2026-06-13T20:16:55.035Z]   hash collision on cmq33c4bk0… — retrying with alternate seed/AI
+[2026-06-13T20:16:55.516Z]   skip cmq33c4bk0… — hash collision after AI retry
+[2026-06-13T20:16:55.611Z]   hash collision on cmq33c4bl0… — retrying with alternate seed/AI
+[2026-06-13T20:16:56.110Z]   skip cmq33c4bl0… — hash collision after AI retry
+[2026-06-13T20:16:56.204Z]   hash collision on cmq33c4ov0… — retrying with alternate seed/AI
+[2026-06-13T20:16:56.703Z]   skip cmq33c4ov0… — hash collision after AI retry
+[2026-06-13T20:16:56.805Z]   hash collision on cmq33c4ov0… — retrying with alternate seed/AI
+[2026-06-13T20:16:57.292Z]   skip cmq33c4ov0… — hash collision after AI retry
+[2026-06-13T20:16:57.389Z]   hash collision on cmq33c52e0… — retrying with alternate seed/AI
+[2026-06-13T20:16:57.870Z]   skip cmq33c52e0… — hash collision after AI retry
+[2026-06-13T20:16:57.968Z]   hash collision on cmq33c5lc0… — retrying with alternate seed/AI
+[2026-06-13T20:16:58.444Z]   skip cmq33c5lc0… — hash collision after AI retry
+[2026-06-13T20:16:58.535Z]   hash collision on cmq33c5xt0… — retrying with alternate seed/AI
+[2026-06-13T20:16:59.004Z]   skip cmq33c5xt0… — hash collision after AI retry
+[2026-06-13T20:16:59.101Z]   hash collision on cmq33c6660… — retrying with alternate seed/AI
+[2026-06-13T20:16:59.588Z]   skip cmq33c6660… — hash collision after AI retry
+[2026-06-13T20:16:59.683Z]   hash collision on cmq33c6670… — retrying with alternate seed/AI
+[2026-06-13T20:17:00.174Z]   skip cmq33c6670… — hash collision after AI retry
+[2026-06-13T20:17:00.286Z]   hash collision on cmq33c6ck0… — retrying with alternate seed/AI
+[2026-06-13T20:17:00.768Z]   skip cmq33c6ck0… — hash collision after AI retry
+[2026-06-13T20:17:00.868Z]   hash collision on cmq33c6p20… — retrying with alternate seed/AI
+[2026-06-13T20:17:01.345Z]   skip cmq33c6p20… — hash collision after AI retry
+[2026-06-13T20:17:01.437Z]   hash collision on cmq33c7e20… — retrying with alternate seed/AI
+[2026-06-13T20:17:01.911Z]   skip cmq33c7e20… — hash collision after AI retry
+[2026-06-13T20:17:02.006Z]   hash collision on cmq33c7qu0… — retrying with alternate seed/AI
+[2026-06-13T20:17:02.499Z]   skip cmq33c7qu0… — hash collision after AI retry
+[2026-06-13T20:17:02.600Z]   hash collision on cmq33c7x50… — retrying with alternate seed/AI
+[2026-06-13T20:17:03.172Z]   skip cmq33c7x50… — hash collision after AI retry
+[2026-06-13T20:17:03.412Z]   hash collision on cmq33c8iu0… — retrying with alternate seed/AI
+[2026-06-13T20:17:03.894Z]   skip cmq33c8iu0… — hash collision after AI retry
+[2026-06-13T20:17:04.135Z]   hash collision on cmq33c8v60… — retrying with alternate seed/AI
+[2026-06-13T20:17:04.618Z]   skip cmq33c8v60… — hash collision after AI retry
+[2026-06-13T20:17:04.716Z]   hash collision on cmq33c91h0… — retrying with alternate seed/AI
+[2026-06-13T20:17:05.779Z]   skip cmq33c91h0… — hash collision after AI retry
+[2026-06-13T20:17:05.887Z]   hash collision on cmq33c91h0… — retrying with alternate seed/AI
+[2026-06-13T20:17:06.414Z]   skip cmq33c91h0… — hash collision after AI retry
+[2026-06-13T20:17:06.511Z]   hash collision on cmq33c98a0… — retrying with alternate seed/AI
+[2026-06-13T20:17:06.995Z]   skip cmq33c98a0… — hash collision after AI retry
+[2026-06-13T20:17:07.091Z]   hash collision on cmq33c9ei0… — retrying with alternate seed/AI
+[2026-06-13T20:17:07.591Z]   skip cmq33c9ei0… — hash collision after AI retry
+[2026-06-13T20:17:07.685Z]   hash collision on cmq33c9kp0… — retrying with alternate seed/AI
+[2026-06-13T20:17:08.165Z]   skip cmq33c9kp0… — hash collision after AI retry
+[2026-06-13T20:17:08.260Z]   hash collision on cmq33c9kp0… — retrying with alternate seed/AI
+[2026-06-13T20:17:08.741Z]   skip cmq33c9kp0… — hash collision after AI retry
+[2026-06-13T20:17:08.838Z]   hash collision on cmq33c9qw0… — retrying with alternate seed/AI
+[2026-06-13T20:17:09.333Z]   skip cmq33c9qw0… — hash collision after AI retry
+[2026-06-13T20:17:09.430Z]   hash collision on cmq33c9wy0… — retrying with alternate seed/AI
+[2026-06-13T20:17:10.088Z]   skip cmq33c9wy0… — hash collision after AI retry
+[2026-06-13T20:17:10.191Z]   hash collision on cmq33ca390… — retrying with alternate seed/AI
+[2026-06-13T20:17:10.716Z]   skip cmq33ca390… — hash collision after AI retry
+[2026-06-13T20:17:10.818Z]   hash collision on cmq33ca3a0… — retrying with alternate seed/AI
+[2026-06-13T20:17:11.294Z]   skip cmq33ca3a0… — hash collision after AI retry
+[2026-06-13T20:17:11.393Z]   hash collision on cmq33ca9i0… — retrying with alternate seed/AI
+[2026-06-13T20:17:11.878Z]   skip cmq33ca9i0… — hash collision after AI retry
+[2026-06-13T20:17:11.975Z]   hash collision on cmq33caft0… — retrying with alternate seed/AI
+[2026-06-13T20:17:12.457Z]   skip cmq33caft0… — hash collision after AI retry
+[2026-06-13T20:17:12.551Z]   hash collision on cmq33cam70… — retrying with alternate seed/AI
+[2026-06-13T20:17:13.029Z]   skip cmq33cam70… — hash collision after AI retry
+[2026-06-13T20:17:13.128Z]   hash collision on cmq33cam70… — retrying with alternate seed/AI
+[2026-06-13T20:17:13.605Z]   skip cmq33cam70… — hash collision after AI retry
+[2026-06-13T20:17:13.703Z]   hash collision on cmq33cate0… — retrying with alternate seed/AI
+[2026-06-13T20:17:14.190Z]   skip cmq33cate0… — hash collision after AI retry
+[2026-06-13T20:17:14.285Z]   hash collision on cmq33cazq0… — retrying with alternate seed/AI
+[2026-06-13T20:17:14.759Z]   skip cmq33cazq0… — hash collision after AI retry
+[2026-06-13T20:17:14.857Z]   hash collision on cmq33cb600… — retrying with alternate seed/AI
+[2026-06-13T20:17:15.349Z]   skip cmq33cb600… — hash collision after AI retry
+[2026-06-13T20:17:15.450Z]   hash collision on cmq33cb610… — retrying with alternate seed/AI
+[2026-06-13T20:17:16.443Z]   skip cmq33cb610… — hash collision after AI retry
+[2026-06-13T20:17:16.619Z]   hash collision on cmq33cbcf0… — retrying with alternate seed/AI
+[2026-06-13T20:17:17.208Z]   skip cmq33cbcf0… — hash collision after AI retry
+[2026-06-13T20:17:17.323Z]   hash collision on cmq33cbil0… — retrying with alternate seed/AI
+[2026-06-13T20:17:17.923Z]   skip cmq33cbil0… — hash collision after AI retry
+[2026-06-13T20:17:18.045Z]   hash collision on cmq33cbov0… — retrying with alternate seed/AI
+[2026-06-13T20:17:18.653Z]   skip cmq33cbov0… — hash collision after AI retry
+[2026-06-13T20:17:18.777Z]   hash collision on cmq33cbov0… — retrying with alternate seed/AI
+[2026-06-13T20:17:19.379Z]   skip cmq33cbov0… — hash collision after AI retry
+[2026-06-13T20:17:19.497Z]   hash collision on cmq33cbv30… — retrying with alternate seed/AI
+[2026-06-13T20:17:20.095Z]   skip cmq33cbv30… — hash collision after AI retry
+[2026-06-13T20:17:20.216Z]   hash collision on cmq33cc1e0… — retrying with alternate seed/AI
+[2026-06-13T20:17:20.810Z]   skip cmq33cc1e0… — hash collision after AI retry
+[2026-06-13T20:17:20.933Z]   hash collision on cmq33cc870… — retrying with alternate seed/AI
+[2026-06-13T20:17:21.700Z]   skip cmq33cc870… — hash collision after AI retry
+[2026-06-13T20:17:21.819Z]   hash collision on cmq33cc870… — retrying with alternate seed/AI
+[2026-06-13T20:17:22.437Z]   skip cmq33cc870… — hash collision after AI retry
+[2026-06-13T20:17:22.558Z]   hash collision on cmq33ccf70… — retrying with alternate seed/AI
+[2026-06-13T20:17:23.170Z]   skip cmq33ccf70… — hash collision after AI retry
+[2026-06-13T20:17:23.288Z]   hash collision on cmq33cclg0… — retrying with alternate seed/AI
+[2026-06-13T20:17:23.887Z]   skip cmq33cclg0… — hash collision after AI retry
+[2026-06-13T20:17:24.008Z]   hash collision on cmq33ccrp0… — retrying with alternate seed/AI
+[2026-06-13T20:17:24.624Z]   skip cmq33ccrp0… — hash collision after AI retry
+[2026-06-13T20:17:24.746Z]   hash collision on cmq33ccrp0… — retrying with alternate seed/AI
+[2026-06-13T20:17:25.360Z]   skip cmq33ccrp0… — hash collision after AI retry
+[2026-06-13T20:17:25.481Z]   hash collision on cmq33ccy10… — retrying with alternate seed/AI
+[2026-06-13T20:17:26.083Z]   skip cmq33ccy10… — hash collision after AI retry
+[2026-06-13T20:17:26.202Z]   hash collision on cmq33cd4c0… — retrying with alternate seed/AI
+[2026-06-13T20:17:26.848Z]   skip cmq33cd4c0… — hash collision after AI retry
+[2026-06-13T20:17:26.968Z]   hash collision on cmq33cdai0… — retrying with alternate seed/AI
+[2026-06-13T20:17:27.569Z]   skip cmq33cdai0… — hash collision after AI retry
+[2026-06-13T20:17:27.690Z]   hash collision on cmq33cdai0… — retrying with alternate seed/AI
+[2026-06-13T20:17:28.327Z]   skip cmq33cdai0… — hash collision after AI retry
+[2026-06-13T20:17:28.449Z]   hash collision on cmq33cdgo0… — retrying with alternate seed/AI
+[2026-06-13T20:17:29.047Z]   skip cmq33cdgo0… — hash collision after AI retry
+[2026-06-13T20:17:29.164Z]   hash collision on cmq33cdn90… — retrying with alternate seed/AI
+[2026-06-13T20:17:30.004Z]   skip cmq33cdn90… — hash collision after AI retry
+[2026-06-13T20:17:30.126Z]   hash collision on cmq33cdtn0… — retrying with alternate seed/AI
+[2026-06-13T20:17:30.928Z]   skip cmq33cdtn0… — hash collision after AI retry
+[2026-06-13T20:17:31.107Z]   hash collision on cmq33cdto0… — retrying with alternate seed/AI
+[2026-06-13T20:17:31.768Z]   skip cmq33cdto0… — hash collision after AI retry
+[2026-06-13T20:17:31.887Z]   hash collision on cmq33ce0v0… — retrying with alternate seed/AI
+[2026-06-13T20:17:32.484Z]   skip cmq33ce0v0… — hash collision after AI retry
+[2026-06-13T20:17:32.609Z]   hash collision on cmq33ce730… — retrying with alternate seed/AI
+[2026-06-13T20:17:33.226Z]   skip cmq33ce730… — hash collision after AI retry
+[2026-06-13T20:17:33.346Z]   hash collision on cmq33cede0… — retrying with alternate seed/AI
+[2026-06-13T20:17:33.950Z]   skip cmq33cede0… — hash collision after AI retry
+[2026-06-13T20:17:34.072Z]   hash collision on cmq33cede0… — retrying with alternate seed/AI
+[2026-06-13T20:17:34.682Z]   skip cmq33cede0… — hash collision after AI retry
+[2026-06-13T20:17:34.805Z]   hash collision on cmq33cejh0… — retrying with alternate seed/AI
+[2026-06-13T20:17:35.491Z]   skip cmq33cejh0… — hash collision after AI retry
+[2026-06-13T20:17:35.995Z]   hash collision on cmq33cepo0… — retrying with alternate seed/AI
+[2026-06-13T20:17:36.602Z]   skip cmq33cepo0… — hash collision after AI retry
+[2026-06-13T20:17:36.725Z]   hash collision on cmq33cew40… — retrying with alternate seed/AI
+[2026-06-13T20:17:37.339Z]   skip cmq33cew40… — hash collision after AI retry
+[2026-06-13T20:17:37.459Z]   hash collision on cmq33cew40… — retrying with alternate seed/AI
+[2026-06-13T20:17:38.062Z]   skip cmq33cew40… — hash collision after AI retry
+[2026-06-13T20:17:38.181Z]   hash collision on cmq33cf2g0… — retrying with alternate seed/AI
+[2026-06-13T20:17:38.782Z]   skip cmq33cf2g0… — hash collision after AI retry
+[2026-06-13T20:17:38.903Z]   hash collision on cmq33cf8t0… — retrying with alternate seed/AI
+[2026-06-13T20:17:39.537Z]   skip cmq33cf8t0… — hash collision after AI retry
+[2026-06-13T20:17:39.658Z]   hash collision on cmq33cff70… — retrying with alternate seed/AI
+[2026-06-13T20:17:40.275Z]   skip cmq33cff70… — hash collision after AI retry
+[2026-06-13T20:17:40.401Z]   hash collision on cmq33cff80… — retrying with alternate seed/AI
+[2026-06-13T20:17:41.035Z]   skip cmq33cff80… — hash collision after AI retry
+[2026-06-13T20:17:41.164Z]   hash collision on cmq33cfmd0… — retrying with alternate seed/AI
+[2026-06-13T20:17:41.877Z]   skip cmq33cfmd0… — hash collision after AI retry
+[2026-06-13T20:17:41.999Z]   hash collision on cmq33cfsp0… — retrying with alternate seed/AI
+[2026-06-13T20:17:42.715Z]   skip cmq33cfsp0… — hash collision after AI retry
+[2026-06-13T20:17:42.844Z]   hash collision on cmq33cfz60… — retrying with alternate seed/AI
+[2026-06-13T20:17:43.446Z]   skip cmq33cfz60… — hash collision after AI retry
+[2026-06-13T20:17:43.566Z]   hash collision on cmq33cfz60… — retrying with alternate seed/AI
+[2026-06-13T20:17:44.163Z]   skip cmq33cfz60… — hash collision after AI retry
+[2026-06-13T20:17:44.285Z]   hash collision on cmq33cg5c0… — retrying with alternate seed/AI
+[2026-06-13T20:17:44.898Z]   skip cmq33cg5c0… — hash collision after AI retry
+[2026-06-13T20:17:45.017Z]   hash collision on cmq33cgbl0… — retrying with alternate seed/AI
+[2026-06-13T20:17:45.622Z]   skip cmq33cgbl0… — hash collision after AI retry
+[2026-06-13T20:17:45.745Z]   hash collision on cmq33cghq0… — retrying with alternate seed/AI
+[2026-06-13T20:17:46.343Z]   skip cmq33cghq0… — hash collision after AI retry
+[2026-06-13T20:17:46.468Z]   hash collision on cmq33cghr0… — retrying with alternate seed/AI
+[2026-06-13T20:17:47.166Z]   skip cmq33cghr0… — hash collision after AI retry
+[2026-06-13T20:17:47.286Z]   hash collision on cmq33cgnw0… — retrying with alternate seed/AI
+[2026-06-13T20:17:47.897Z]   skip cmq33cgnw0… — hash collision after AI retry
+[2026-06-13T20:17:48.033Z]   hash collision on cmq33cgu30… — retrying with alternate seed/AI
+[2026-06-13T20:17:48.686Z]   skip cmq33cgu30… — hash collision after AI retry
+[2026-06-13T20:17:48.805Z]   hash collision on cmq33ch0b0… — retrying with alternate seed/AI

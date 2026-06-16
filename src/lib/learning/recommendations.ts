@@ -2,6 +2,7 @@ import type { ConceptMasterySnapshot, RemediationRecommendation } from "./types"
 import { mistakeCategoryLabel } from "./mistake-analysis";
 import type { MistakeCategory } from "./types";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import { getExamTopicStudyLinks } from "@/lib/reference/exam-topic-bridge";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 
 export function buildRemediationRecommendations(params: {
@@ -17,6 +18,23 @@ export function buildRemediationRecommendations(params: {
     ? `&subjectId=${encodeURIComponent(params.subjectId)}`
     : "";
   const fieldQ = `field=${encodeURIComponent(params.fieldId)}`;
+  const examSlug = examSlugFromFieldId(params.fieldId);
+
+  const topicForLinks = params.subjectId ?? params.weakConcepts[0] ?? params.weakest[0]?.conceptKey;
+  const deepDive =
+    examSlug && topicForLinks
+      ? getExamTopicStudyLinks(examSlug, topicForLinks).deepDiveHref
+      : undefined;
+
+  if (!params.correct && deepDive && examSlug && topicForLinks) {
+    recs.push({
+      type: "foundational_review",
+      title: "Study this topic — deep dive",
+      description: "Eight-section review module matched to this question.",
+      href: deepDive,
+      priority: 0,
+    });
+  }
 
   if (!params.correct && params.mistakeCategory) {
     recs.push({
@@ -49,5 +67,5 @@ export function buildRemediationRecommendations(params: {
     priority: 3,
   });
 
-  return recs;
+  return recs.sort((a, b) => a.priority - b.priority);
 }
