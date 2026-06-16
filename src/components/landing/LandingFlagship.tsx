@@ -264,7 +264,7 @@ export function LandingFlagship() {
           >
             {formatTrialCtaLabel()}
           </LandingCta>
-          <p className="mt-3 text-center text-xs text-[var(--flagship-muted)]">
+          <p className="mt-3 text-center text-sm leading-relaxed text-[var(--flagship-muted)]">
             {TRIAL_PAYMENT_DISCLOSURE}
           </p>
           <PaymentMethodBadges className="mt-4 justify-center" size="sm" />
@@ -308,15 +308,15 @@ export function LandingFlagship() {
               Already subscribed? Log in
             </LoginModalTrigger>
           </div>
-          <p className="mt-4 text-xs opacity-80">{TRIAL_PAYMENT_DISCLOSURE}</p>
-          <p className="mt-2 text-xs opacity-80">{MARKETING_DISCLAIMER}</p>
-          <p className="mt-2 text-xs opacity-70">
+          <p className="aee-flagship-final-cta__legal mt-4">{TRIAL_PAYMENT_DISCLOSURE}</p>
+          <p className="aee-flagship-final-cta__legal mt-2">{MARKETING_DISCLAIMER}</p>
+          <p className="aee-flagship-final-cta__legal mt-2">
             {LEGAL_ENTITY.productName} is a product of {LEGAL_ENTITY.companyName}.{" "}
-            <Link href="/legal/terms" className="underline hover:opacity-90">
+            <Link href="/legal/terms" className="aee-flagship-final-cta__legal-link">
               Terms
             </Link>
             {" · "}
-            <Link href="/legal/privacy" className="underline hover:opacity-90">
+            <Link href="/legal/privacy" className="aee-flagship-final-cta__legal-link">
               Privacy
             </Link>
           </p>

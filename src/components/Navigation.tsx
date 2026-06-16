@@ -37,7 +37,7 @@ const premiumLinks: NavLink[] = [
 function navClass(active: boolean) {
   return active
     ? "font-semibold text-[var(--color-ink)] underline decoration-2 underline-offset-4 decoration-[var(--color-accent)]"
-    : "text-[var(--color-ink)] opacity-80 hover:opacity-100 hover:underline hover:underline-offset-4 transition-opacity duration-200";
+    : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] hover:underline hover:underline-offset-4 transition-colors duration-200";
 }
 
 export function Navigation() {
