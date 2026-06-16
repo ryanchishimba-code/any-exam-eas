@@ -657,9 +657,7 @@ export function StudyBankPractice({
   }
 
   function launchPracticeMode(modeId: PracticeModeId) {
-    const href = practiceModeLaunchHref(fieldId as ExamFieldId, modeId, practiceBase, {
-      stateCode: mpjeState || undefined,
-    });
+    const href = practiceModeLaunchHref(fieldId as ExamFieldId, modeId, practiceBase);
     router.push(href);
   }
 

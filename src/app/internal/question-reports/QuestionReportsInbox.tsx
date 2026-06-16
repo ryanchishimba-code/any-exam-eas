@@ -1,11 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import {
-  EXAM_CATALOG,
-  EXAM_SLUGS,
-  type ExamSlug,
-} from "@/lib/edtech/exams";
+import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
+import type { ExamSlug } from "@/types/edtech";
 import {
   QUESTION_REPORT_REASONS,
   type QuestionReportDetail,
@@ -136,7 +133,7 @@ export default function QuestionReportsInbox() {
         </select>
       </div>
 
-      {error ? <InlineError message={error} /> : null}
+      {error ? <InlineError>{error}</InlineError> : null}
 
       <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
         <div className="rounded-xl border border-black/[0.08] bg-white">

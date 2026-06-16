@@ -178,8 +178,9 @@ export function FullExamResults({
             <QuestionRelatedLinks
               question={{
                 id: current.id,
+                sourceIndex: index,
                 type: "multiple_choice",
-                question: current.question,
+                stem: current.question,
                 options: current.options,
                 correctAnswers: [current.correctAnswer],
                 explanation: current.explanation,

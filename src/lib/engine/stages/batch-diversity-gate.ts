@@ -50,7 +50,7 @@ export function enforceGeneratedExamQuality(
   );
   const spread = spreadStudyQuestions(prepared);
   const ordered = spread
-    .map((s) => passing[s.sourceIndex] ?? passing[(s.id as number) - 1])
+    .map((s) => passing[s.sourceIndex])
     .filter((q): q is ExamQuestion => Boolean(q));
 
   const target = Math.min(requestedCount, ordered.length);

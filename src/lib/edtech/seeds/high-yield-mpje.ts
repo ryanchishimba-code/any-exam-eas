@@ -1,7 +1,8 @@
 /** Legacy MPJE seed (retired) */
+import type { ExamSlug } from "@/types/edtech";
 import { defineExamTopics } from "./topic-factory";
 
-export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("aanp-fnp", [
+export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("aanp-fnp" as ExamSlug, [
   {
     slug: "federal-controlled-substance-laws",
     category: "Federal Law",

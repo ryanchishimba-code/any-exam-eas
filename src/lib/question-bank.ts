@@ -18,6 +18,16 @@ import {
   finalizeExamSessionQuestions,
 } from "./questions/finalize-exam-session";
 import { studyQuestionsToExamQuestions } from "./questions/prepare";
+import type { RawQuestionInput } from "./questions/types";
+
+function boardDifficultyLabel(
+  difficulty: number | null | undefined
+): "Easy" | "Medium" | "Hard" | undefined {
+  if (difficulty == null) return undefined;
+  if (difficulty <= 2) return "Easy";
+  if (difficulty >= 4) return "Hard";
+  return "Medium";
+}
 
 export type BankItem = {
   id?: string;
@@ -431,21 +441,14 @@ export async function getBankQuestions(params: {
     return [];
   }
 
-  const rawInputs = vetted.map((item, i) => {
+  const rawInputs: RawQuestionInput[] = vetted.map((item, i) => {
     const q = bankItemToSessionRaw(fieldId, params.field, subjectKey, item, i);
     return {
       ...q,
       field: params.field,
       subjectId: item.subjectId ?? subjectKey,
       bankItemId: item.id,
-      difficultyLabel:
-        item.difficulty != null
-          ? item.difficulty <= 2
-            ? "Easy"
-            : item.difficulty >= 4
-              ? "Hard"
-              : "Medium"
-          : undefined,
+      difficultyLabel: boardDifficultyLabel(item.difficulty),
     };
   });
 

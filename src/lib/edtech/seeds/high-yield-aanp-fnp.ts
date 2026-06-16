@@ -1,8 +1,8 @@
 /** Legacy AANP FNP seed data (retired exam track). */
-// Legacy AANP FNP high-yield topics — active exam track (AANPCB blueprint).
+import type { ExamSlug } from "@/types/edtech";
 import { defineExamTopics } from "./topic-factory";
 
-export const AANP_FNP_HIGH_YIELD_TOPICS = defineExamTopics("aanp-fnp", [
+export const AANP_FNP_HIGH_YIELD_TOPICS = defineExamTopics("aanp-fnp" as ExamSlug, [
   {
     slug: "aanp-assess-domain",
     category: "Assess (32%)",

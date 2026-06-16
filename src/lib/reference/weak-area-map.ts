@@ -63,6 +63,7 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
     "nclex-peak-trough-labs",
   ],
   "sepsis-shock": [
+    "pance-sepsis-bundle",
     "nclex-sepsis-bundle",
     "nclex-shock-types",
     "nclex-lactate-four",
@@ -126,8 +127,9 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
     "usmle-abx-spectrum",
   ],
 
-  // USMLE review modules
+  // USMLE + PANCE review modules
   "acute-coronary-syndrome": [
+    "pance-acs-reperfusion",
     "usmle-stemi-path",
     "usmle-acs-spectrum",
     "usmle-acs-antithrombotics",
@@ -251,22 +253,6 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
   "professional-practice": ["pance-informed-consent"],
   pediatrics: ["pance-febrile-infant-workup", "pance-sepsis-bundle"],
   "federal-law": ["pance-informed-consent"],
-
-  // PANCE review modules
-  "acute-coronary-syndrome": [
-    "pance-acs-reperfusion",
-    "usmle-stemi-path",
-    "usmle-acs-spectrum",
-    "usmle-acs-antithrombotics",
-  ],
-  "sepsis-shock": [
-    "pance-sepsis-bundle",
-    "nclex-sepsis-bundle",
-    "nclex-shock-types",
-    "nclex-lactate-four",
-    "nclex-qsofa-screen",
-    "nclex-abx-one-hour",
-  ],
 
   // Legacy / free-form question-tag aliases
   "critical-care": ["nclex-sepsis-bundle", "nclex-shock-types", "nclex-norepinephrine-first"],

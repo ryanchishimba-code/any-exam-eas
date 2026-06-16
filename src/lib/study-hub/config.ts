@@ -1,4 +1,4 @@
-import type { ExamSlug } from "@/lib/exams/catalog";
+import type { ExamSlug } from "@/types/edtech";
 import { EXAM_CATALOG, EXAM_SLUGS, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { fullExamHref, ROUTES } from "@/lib/routes";
 
@@ -28,7 +28,7 @@ const HUB_DESCRIPTIONS: Record<(typeof EXAM_SLUGS)[number], string> = {
 
 /** Four board exams — derived from canonical EXAM_CATALOG. */
 export const STUDY_HUB_EXAM_BANKS: StudyHubExamBank[] = EXAM_SLUGS.map((slug) => ({
-  slug: slug as ExamSlug,
+  slug,
   label: EXAM_CATALOG[slug].shortName,
   fieldId: EXAM_CATALOG[slug].fieldId,
   description: HUB_DESCRIPTIONS[slug],

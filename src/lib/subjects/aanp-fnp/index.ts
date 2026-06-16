@@ -52,7 +52,7 @@ export const aanpFnpModule: SubjectModule = {
     oerDomains: ["openrn.org", "openstax.org", "cdc.gov", "aanpcert.org"],
     searchQueryHints: ["AANP FNP", "family nurse practitioner", "primary care", "NP certification"],
   },
-  supportedQuestionTypes: ["multiple_choice", "clinical_vignette", "select_all"],
+  supportedQuestionTypes: ["multiple_choice", "clinical_vignette"],
 
   getExamSystemAugmentation: () => AANP_FNP_EXAM_SYSTEM_AUGMENTATION,
   getExamUserAugmentation: () => getAanpFnpUserAugmentation(),

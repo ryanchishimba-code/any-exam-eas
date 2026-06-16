@@ -10,7 +10,9 @@ export type TopicModuleStage =
   | "board-crunch"
   | "remediation"
   | "clinical-rotation"
-  | "cert-prep";
+  | "cert-prep"
+  | "systems-review"
+  | "clinical-application";
 
 export type TopicModuleSkill =
   | "mechanism"

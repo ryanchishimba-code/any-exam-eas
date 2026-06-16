@@ -127,18 +127,18 @@ export function getAnatomyDiseasePearlsForReviewModule(
   const anatomy = getReviewModuleAnatomy(moduleSlug);
   if (!anatomy?.diseaseIds?.length) return [];
 
-  return anatomy.diseaseIds
-    .map((id) => {
-      const disease = getDiseaseLinkById(id);
-      if (!disease) return null;
-      return {
-        id: disease.id,
-        name: disease.name,
-        pearl: disease.examPearl ?? disease.pathophysiology,
-        structureIds: disease.structureIds,
-      };
-    })
-    .filter((d): d is AnatomyDiseasePearl => Boolean(d));
+  const pearls: AnatomyDiseasePearl[] = [];
+  for (const id of anatomy.diseaseIds) {
+    const disease = getDiseaseLinkById(id);
+    if (!disease) continue;
+    pearls.push({
+      id: disease.id,
+      name: disease.name,
+      pearl: disease.examPearl ?? disease.pathophysiology,
+      structureIds: disease.structureIds,
+    });
+  }
+  return pearls;
 }
 
 /** Explicit anatomy links registered for a review module slug. */

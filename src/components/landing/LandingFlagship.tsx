@@ -41,6 +41,7 @@ import {
   MARKETING_DISCLAIMER,
   TRIAL_PAYMENT_DISCLOSURE,
 } from "@/lib/site";
+import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
 const LandingHeroVideoDynamic = dynamic(
   () => import("@/components/landing/LandingHeroVideo").then((m) => m.LandingHeroVideo),
@@ -74,7 +75,7 @@ function Reveal({
   );
 }
 
-function HeroSection() {
+function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -84,7 +85,7 @@ function HeroSection() {
       <div className="aee-flagship-hero__grid" aria-hidden />
 
       <div className="aee-flagship-inner aee-flagship-hero__exam-top">
-        <LandingHeroExamStrip />
+        <LandingHeroExamStrip bankCounts={bankCounts} />
       </div>
 
       <div className="aee-flagship-inner aee-flagship-hero__layout">
@@ -148,10 +149,10 @@ function HeroSection() {
   );
 }
 
-export function LandingFlagship() {
+export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
   return (
     <div className="aee-flagship aee-flagship--conversion">
-      <HeroSection />
+      <HeroSection bankCounts={bankCounts} />
 
       <section className="aee-flagship-compare-wrap" aria-labelledby="compare-heading">
         <div className="aee-flagship-inner">
