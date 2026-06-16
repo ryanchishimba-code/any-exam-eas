@@ -76,7 +76,7 @@ export async function requireProFeatureApi(
   if (!userHasFeature(authResult.access, feature)) {
     return {
       ok: false,
-      response: proFeatureRequiredResponse(authResult.access, feature),
+      response: proFeatureRequiredResponse(authResult.access.subscription, feature),
     };
   }
 
