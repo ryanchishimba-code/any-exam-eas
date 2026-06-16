@@ -155,6 +155,7 @@
     "db:generate-nclex-full-exams": "npx tsx scripts/generate-nclex-full-exams.ts",
     "db:generate-nclex-full-exams:dry": "npx tsx scripts/generate-nclex-full-exams.ts --exams 1 --count 10 --dry-run",
     "db:compose-nclex-full-exams": "npx tsx scripts/compose-nclex-full-exams.ts",
+    "db:seed-nclex-full-exams": "npx tsx scripts/seed-nclex-full-exams.ts",
     "db:generate-naplex-full-exams": "npx tsx scripts/generate-naplex-full-exams.ts --insert",
     "db:generate-naplex-full-exams:dry": "npx tsx scripts/generate-naplex-full-exams.ts --exams 1 --count 10 --dry-run",
     "db:generate-usmle-full-exams": "npx tsx scripts/generate-usmle-full-exams.ts --insert",

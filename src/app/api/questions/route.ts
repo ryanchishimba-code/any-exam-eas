@@ -80,6 +80,14 @@ export async function GET(req: Request) {
       );
   const limit = Math.min(resolvedLimit, maxLimit);
 
+  const presetExamNumberRaw = searchParams.get("presetExamNumber");
+  const presetExamNumber =
+    fieldId === "nursing" &&
+    presetExamNumberRaw &&
+    Number.isFinite(Number(presetExamNumberRaw))
+      ? Math.max(1, Math.min(10, Number(presetExamNumberRaw)))
+      : undefined;
+
   if (!mixed) {
     if (!subjectId) {
       return NextResponse.json(
@@ -107,7 +115,20 @@ export async function GET(req: Request) {
 
   let items: Awaited<ReturnType<typeof sampleQuestionBankItemsForField>>;
 
-  if (mixed && timedExam) {
+  if (presetExamNumber && fieldId === "nursing" && timedExam) {
+    const { loadNclexPresetExamItems } = await import("@/lib/exam-prep/nclex/load-preset-exam");
+    const preset = await loadNclexPresetExamItems(presetExamNumber);
+    if (!preset) {
+      return NextResponse.json(
+        {
+          error: `NCLEX Practice Exam ${presetExamNumber} is not available. Run db:seed-nclex-full-exams first.`,
+          code: "PRESET_EXAM_UNAVAILABLE",
+        },
+        { status: 404 }
+      );
+    }
+    items = preset.items;
+  } else if (mixed && timedExam) {
     const { gatherTimedExamBankItems } = await import("@/lib/questions/timed-exam-sampling");
 
     if (fieldId === "nursing") {
@@ -206,7 +227,11 @@ export async function GET(req: Request) {
     const finalized = finalizeExamSessionQuestions(rawInputs, limit);
     prepared = finalized.prepared;
     sessionQuality = finalized.quality;
-    assertExamSessionReady(sessionQuality, fieldId);
+    if (!presetExamNumber) {
+      assertExamSessionReady(sessionQuality, fieldId);
+    } else if (prepared.length !== limit) {
+      throw new Error(`Preset exam returned ${prepared.length}/${limit} questions`);
+    }
   } catch (e) {
     const message =
       e instanceof Error ? e.message : "Could not build exam session at the requested length";

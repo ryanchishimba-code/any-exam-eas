@@ -200,6 +200,9 @@ export function FullExamSimulator({
       if (fieldId === "nursing" && config.nclexLength) {
         qs.set("nclexLength", config.nclexLength);
       }
+      if (fieldId === "nursing" && config.presetExamNumber) {
+        qs.set("presetExamNumber", String(config.presetExamNumber));
+      }
 
       try {
         const res = await fetch(`/api/questions?${qs.toString()}`);
@@ -259,7 +262,7 @@ export function FullExamSimulator({
     return () => {
       cancelled = true;
     };
-  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength]);
+  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.presetExamNumber]);
 
   useEffect(() => {
     if (loading || submitting || paused) return;
