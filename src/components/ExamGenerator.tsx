@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { GeneratedExam } from "@/lib/ai";
@@ -204,7 +205,7 @@ export function ExamGenerator() {
 
         {error && (
           <InlineError className="text-center">
-            {error}. <a href="/signup" className="underline">Sign in</a> to generate.
+            {error}. <Link href="/signup" className="underline">Sign in</Link> to generate.
           </InlineError>
         )}
       </form>

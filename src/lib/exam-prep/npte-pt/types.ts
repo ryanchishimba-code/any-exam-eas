@@ -13,8 +13,8 @@ export const NPTE_PT_TARGET_TOTAL = 4000;
 export const NPTE_PT_SEED_TARGET_PER_CATEGORY = 200;
 
 export const NPTE_PT_GENERATION_BATCH_SIZE = 500;
-export const NPTE_PT_GENERATION_CHUNK_SIZE = 10;
-export const NPTE_PT_GENERATION_CONCURRENCY = 8;
+export const NPTE_PT_GENERATION_CHUNK_SIZE = 25;
+export const NPTE_PT_GENERATION_CONCURRENCY = 10;
 export const NPTE_PT_GENERATION_VERSION = "gpt-4o-mini-npte-pt-v1";
 
 export type NptePtReviewStatus = "pending" | "approved" | "flagged" | "rejected";

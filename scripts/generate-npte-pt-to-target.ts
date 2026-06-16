@@ -36,7 +36,7 @@ type Checkpoint = {
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  let batchSize = 500;
+  let batchSize = 200;
   let target = NPTE_PT_TARGET_TOTAL;
   let maxBatches = 0;
   let dryRun = false;

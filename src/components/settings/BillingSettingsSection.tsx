@@ -293,7 +293,7 @@ export function BillingSettingsSection() {
               </Button>
               <p className="text-xs leading-relaxed text-slate-500">
                 {onTrial
-                  ? "Switch plans anytime during your trial — you are not billed until the trial ends."
+                  ? "Switch plans during your trial — changes apply when billing starts at the end of the trial."
                   : BILLING_PLAN_CHANGE_POLICY}
               </p>
             </div>

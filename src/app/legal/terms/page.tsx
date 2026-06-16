@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
 
 export const metadata = { title: "Terms of Service — Any Exam Easy" };
@@ -15,13 +16,13 @@ export default function TermsPage() {
           {productName} website, applications, and related services (collectively, the
           &quot;Service&quot;). By creating an account, subscribing, or using the Service, you
           agree to these Terms, our{" "}
-          <a href="/legal/privacy" className="text-[var(--color-accent)] underline">
+          <Link href="/legal/privacy" className="text-[var(--color-accent)] underline">
             Privacy Policy
-          </a>
+          </Link>
           , and our{" "}
-          <a href="/legal/disclaimer" className="text-[var(--color-accent)] underline">
+          <Link href="/legal/disclaimer" className="text-[var(--color-accent)] underline">
             Disclaimers
-          </a>
+          </Link>
           . If you do not agree, do not use the Service.
         </p>
         <p className="mt-2">{LEGAL_DISCLAIMERS.ageRequirement}</p>

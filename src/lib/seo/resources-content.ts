@@ -103,7 +103,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "Try NCLEX prep free for 14 days",
         paragraphs: [
-          "Start with a 14-day trial — no credit card required — and access the full NCLEX bank plus USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT on the same plan.",
+          "Start with a 14-day trial — payment required at checkout, not charged until trial ends — and access the full NCLEX bank plus USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT on the same plan.",
         ],
       },
     ],
@@ -429,7 +429,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "Start with a 14-day free trial",
         paragraphs: [
-          "No credit card required. Explore every exam track before choosing Basic or Pro billing.",
+          "Payment method required at checkout. Explore every exam track before choosing Basic or Pro billing — not charged until your trial ends.",
         ],
       },
     ],

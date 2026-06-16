@@ -1,6 +1,5 @@
 import type { SubscriptionAccess } from "@/lib/subscription-access";
 import Link from "next/link";
-import { formatMonthlyPrice } from "@/lib/site";
 import { Button } from "./ui/Button";
 import { SubscribeButton } from "./SubscribeButton";
 import { ManageBillingButton } from "./ManageBillingButton";
@@ -11,13 +10,15 @@ export function SubscriptionBanner({ access }: { access: SubscriptionAccess }) {
     return (
       <div className="mt-8 rounded-2xl border border-sky-200 bg-sky-50 px-5 py-4">
         <p className="text-sm font-medium text-sky-950">
-          {access.daysRemaining != null && access.daysRemaining <= 1
-            ? "Add payment to start studying"
-            : "One step left — add payment to unlock study"}
+          {access.status === "inactive"
+            ? "Complete checkout to start your trial"
+            : access.daysRemaining != null && access.daysRemaining <= 1
+              ? "Add payment to start studying"
+              : "One step left — add payment to unlock study"}
         </p>
         <p className="mt-1 text-xs text-sky-900/80">
-          Payment method required. You are not charged today — cancel anytime before your trial
-          ends and you will not be billed. Then {formatMonthlyPrice()}/month after the trial.
+          Payment method required at checkout. You are not charged today — billing starts when your
+          trial ends. Cancel anytime before then for no charge.
         </p>
         <div className="mt-3 flex flex-wrap gap-3">
           <Button href="/checkout?plan=trial&interval=yearly" variant="secondary">

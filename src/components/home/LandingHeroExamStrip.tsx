@@ -18,6 +18,7 @@ export function LandingHeroExamStrip({
       label,
       color,
       countLabel: undefined as string | undefined,
+      questionsLabel: undefined as string | undefined,
     }));
 
   const stripClass =
@@ -39,10 +40,13 @@ export function LandingHeroExamStrip({
           ) : null}
           <span className="aee-hero-exam-strip__name" style={{ color: exam.color }}>
             {exam.label}
-            {exam.countLabel ? (
-              <span className="aee-hero-exam-strip__count" aria-label={`${exam.countLabel} questions`}>
-                {" "}
-                {exam.countLabel}
+            {exam.questionsLabel ?? exam.countLabel ? (
+              <span
+                className="aee-hero-exam-strip__count"
+                aria-label={`${exam.questionsLabel ?? exam.countLabel} questions`}
+              >
+                {" · "}
+                {exam.questionsLabel ?? `${exam.countLabel} questions`}
               </span>
             ) : null}
           </span>

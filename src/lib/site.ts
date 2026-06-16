@@ -143,14 +143,14 @@ export function formatLandingStickyDetail(): string {
 }
 
 export const SIGNUP_PAYMENT_REQUIRED_NOTE =
-  "No credit card required to start. Add payment anytime before your trial ends to continue after day 14.";
+  "Add your payment method at checkout — you won't be charged until your trial ends. Cancel anytime before then for no charge.";
 
 export function formatTrialPlanDetail(): string {
-  return `${formatTrialTodayPrice()} today · full access immediately · choose Basic or Pro · save up to 20% on annual`;
+  return `${TRIAL_DAYS}-day free trial · payment required at checkout · not charged until trial ends · save up to 20% on annual`;
 }
 
 export function formatTrialCheckoutDescription(): string {
-  return `${TRIAL_DAYS}-day free trial on your chosen plan. Add payment below to continue after your trial — ${formatTrialTodayPrice()} charged today. ${BILLING_POLICY_SHORT}`;
+  return `${TRIAL_DAYS}-day free trial on your chosen plan. Add payment below — ${formatTrialTodayPrice()} due today unless intro pricing applies. Your plan is not charged until the trial ends. ${BILLING_POLICY_SHORT}`;
 }
 
 export const TRIAL_CARD_DISCLOSURE = TRIAL_PAYMENT_DISCLOSURE;

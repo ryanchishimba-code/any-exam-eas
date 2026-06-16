@@ -109,11 +109,7 @@ export function SignupForm({
         ? `&promo=${encodeURIComponent(initialPromo.trim())}`
         : "";
 
-      if (plan === "trial") {
-        window.location.href = `/dashboard?welcome=trial&tier=${initialTier}`;
-      } else {
-        window.location.href = `/checkout?plan=${plan}&interval=${initialInterval}&tier=${initialTier}${promoQs}`;
-      }
+      window.location.href = `/checkout?plan=${plan}&interval=${initialInterval}&tier=${initialTier}${promoQs}`;
     } catch (err) {
       setError(messageFromUnknownAuthError(err));
     } finally {
@@ -143,14 +139,7 @@ export function SignupForm({
 
       {plan && (
         <p className="rounded-xl border border-sky-100 bg-sky-50/80 px-4 py-3 text-xs leading-relaxed text-slate-700">
-          {plan === "trial" ? (
-            <>
-              <span className="font-semibold text-slate-900">Start studying immediately.</span>{" "}
-              {SIGNUP_PAYMENT_REQUIRED_NOTE}
-            </>
-          ) : (
-            "Have a discount code? Apply it on the checkout review screen."
-          )}
+          {plan === "trial" ? SIGNUP_PAYMENT_REQUIRED_NOTE : "Have a discount code? Apply it on the checkout review screen."}
         </p>
       )}
 

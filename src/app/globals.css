@@ -4848,14 +4848,24 @@ body {
   }
 }
 
-/* ——— Hero exam showcase (large colored names) ——— */
+/* ——— Hero exam showcase (large colored names + question totals) ——— */
 .aee-hero-exam-showcase {
   width: 100%;
 }
 
+.aee-hero-exam-showcase__total {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.125rem, 2.8vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--flagship-navy);
+  text-align: center;
+}
+
 .aee-hero-exam-showcase__kicker {
-  margin: 0 0 clamp(0.75rem, 2vw, 1rem);
-  font-size: 0.75rem;
+  margin: 0 0 clamp(0.875rem, 2.2vw, 1.25rem);
+  font-size: 0.6875rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -4892,10 +4902,13 @@ body {
 .aee-hero-exam-showcase__link {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0.15rem;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.125rem;
   height: 100%;
-  padding: clamp(0.875rem, 2vw, 1.125rem) clamp(0.75rem, 1.8vw, 1rem);
+  min-height: 5.5rem;
+  padding: clamp(1rem, 2.5vw, 1.35rem) clamp(0.625rem, 1.5vw, 0.875rem);
   border-radius: 1rem;
   border: 1px solid color-mix(in srgb, var(--exam-accent) 22%, transparent);
   background: linear-gradient(
@@ -4917,41 +4930,36 @@ body {
 }
 
 .aee-hero-exam-showcase__name {
-  font-size: clamp(1.625rem, 4.8vw, 2.75rem);
+  font-size: clamp(1.75rem, 5.5vw, 3rem);
   font-weight: 900;
   letter-spacing: -0.045em;
-  line-height: 0.95;
+  line-height: 0.92;
   color: var(--exam-accent);
   text-wrap: balance;
 }
 
 .aee-hero-exam-showcase__count {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--flagship-muted);
+  margin-top: 0.2rem;
+  font-size: clamp(0.9375rem, 2.4vw, 1.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--flagship-navy);
+  opacity: 0.88;
 }
 
 .aee-hero-exam-showcase__blurb {
   display: none;
-  margin-top: 0.25rem;
-  font-size: 0.6875rem;
-  line-height: 1.35;
-  color: var(--flagship-muted);
-}
-
-@media (min-width: 1024px) {
-  .aee-hero-exam-showcase__blurb {
-    display: block;
-  }
 }
 
 .aee-flagship-hero--showcase {
-  padding-top: clamp(1.25rem, 3vw, 2rem);
+  padding-top: clamp(0.75rem, 2vw, 1.25rem);
 }
 
 .aee-flagship-hero__showcase-top {
-  padding-bottom: clamp(1.25rem, 3vw, 2rem);
+  padding-bottom: clamp(1rem, 2.5vw, 1.5rem);
+  border-bottom: 1px solid color-mix(in srgb, var(--flagship-navy) 8%, transparent);
+  margin-bottom: clamp(0.25rem, 1vw, 0.5rem);
 }
 
 .aee-flagship-hero__headline--punchy {

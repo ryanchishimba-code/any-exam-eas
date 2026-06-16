@@ -76,7 +76,7 @@ export default async function ResourceArticlePage({ params }: Props) {
         <aside className="mt-12 rounded-2xl bg-[var(--color-ink)] px-6 py-8 text-center">
           <h2 className="text-xl font-bold text-[var(--color-bg)]">{formatTrialCtaLabel()}</h2>
           <p className="mt-2 text-sm text-white/80">
-            Access all six board banks, Roadmaps, and reference tools — no credit card required to start.
+            Access all six board banks, Roadmaps, and reference tools — payment required at checkout, not charged until your trial ends.
           </p>
           <Link
             href={LANDING_TRIAL_HREF}

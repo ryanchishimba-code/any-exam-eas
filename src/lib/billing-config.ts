@@ -1,6 +1,6 @@
 /** Billing/trial constants — edge-safe (no Stripe SDK). */
 
-/** Free trial period (days) — cardless start; payment collected before trial ends. */
+/** Free trial period (days) — payment collected at checkout; charge after trial ends. */
 export const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "14");
 
 /** Optional paid intro (legacy). Omit STRIPE_TRIAL_INTRO_PRICE_ID for standard $0 trial. */
@@ -60,7 +60,7 @@ export function usesIntroTrialPricing(): boolean {
   );
 }
 
-/** Rough MRR for staff dashboards (active × tier monthly; cardless trials excluded until paid). */
+/** Rough MRR for staff dashboards (active × tier monthly; trialing users excluded until first charge). */
 export function estimateMrr(activeSubscribers: number, activeTrials: number): number {
   void activeTrials;
   return Math.round(activeSubscribers * MONTHLY_PRICE_USD * 100) / 100;

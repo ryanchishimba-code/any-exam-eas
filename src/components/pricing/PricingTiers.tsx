@@ -190,9 +190,9 @@ export function PricingTiers({ className }: PricingTiersProps) {
           {access.planTier ? ` · ${access.planTier === "pro" ? "Pro" : "Basic"} plan` : ""}
         </p>
         <div className="mt-6 flex flex-col items-center gap-3">
-          {access.status === "trialing" && access.needsPaymentMethod ? (
+          {(access.status === "inactive" || access.status === "trialing") && access.needsPaymentMethod ? (
             <Button href={`/checkout?plan=trial&interval=${interval}&tier=${access.planTier ?? "pro"}`}>
-              Add payment method
+              Complete checkout
             </Button>
           ) : access.planTier === "basic" ? (
             <Button href={`/checkout?plan=subscribe&interval=${interval}&tier=pro`}>

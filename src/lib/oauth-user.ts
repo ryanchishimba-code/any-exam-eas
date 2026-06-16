@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { assertPublicSignupEmailAllowed, isAccountDisabled, OAuthAccountDisabledError } from "@/lib/account-security";
 import { normalizeEmail } from "@/lib/validators/auth";
-import { trialEndsAtFromNow } from "@/lib/billing-config";
 import { isAtLeast18 } from "@/lib/age";
 
 const DEFAULT_DOB = new Date("1990-01-01");
@@ -75,8 +74,8 @@ export async function findOrCreateGoogleUser(params: {
       dateOfBirth: DEFAULT_DOB,
       subscription: {
         create: {
-          status: "trialing",
-          trialEndsAt: trialEndsAtFromNow(),
+          status: "inactive",
+          trialEndsAt: null,
           plan: "trial",
           planTier: "pro",
           planInterval: "yearly",

@@ -3,7 +3,7 @@
  * Push Stripe env vars from .env to Vercel (production + preview + development).
  * Usage: node scripts/vercel-stripe-push.mjs [--redeploy]
  */
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
@@ -60,6 +60,13 @@ function parseEnv(content) {
   return out;
 }
 
+function setEnvValue(content, key, value) {
+  const line = `${key}=${value}`;
+  const re = new RegExp(`^${key}=.*$`, "m");
+  if (re.test(content)) return content.replace(re, line);
+  return content.trimEnd() + `\n${line}\n`;
+}
+
 function runVercelEnvAdd(key, value, target, sensitive) {
   const args = [
     "vercel",
@@ -95,15 +102,19 @@ function removeVercelEnv(key, target) {
   return /not found|does not exist|ENOENT/i.test(out);
 }
 
-async function ensureStripeWebhook(secretKey, webhookUrl) {
+async function ensureStripeWebhook(secretKey, webhookUrl, { rotate = false } = {}) {
   if (!secretKey.startsWith("sk_")) return null;
   const Stripe = (await import("stripe")).default;
   const stripe = new Stripe(secretKey);
   const existing = await stripe.webhookEndpoints.list({ limit: 100 });
-  const match = existing.data.find((w) => w.url === webhookUrl && w.status !== "disabled");
-  if (match) {
+  const matches = existing.data.filter((w) => w.url === webhookUrl && w.status !== "disabled");
+  if (matches.length > 0 && !rotate) {
     console.log(`Stripe webhook already exists: ${webhookUrl}`);
     return null;
+  }
+  for (const endpoint of matches) {
+    await stripe.webhookEndpoints.del(endpoint.id);
+    console.log(`Removed existing webhook ${endpoint.id} (rotating signing secret)`);
   }
   const created = await stripe.webhookEndpoints.create({
     url: webhookUrl,
@@ -154,20 +165,24 @@ async function main() {
   }
 
   const webhookUrl = "https://www.anyexameasy.com/api/stripe/webhook";
-  if (env.STRIPE_SECRET_KEY && !env.STRIPE_WEBHOOK_SECRET?.trim()) {
+  const needsWebhookSecret = !env.STRIPE_WEBHOOK_SECRET?.trim();
+  if (env.STRIPE_SECRET_KEY && (needsWebhookSecret || process.argv.includes("--rotate-webhook"))) {
     try {
-      const whsec = await ensureStripeWebhook(env.STRIPE_SECRET_KEY, webhookUrl);
+      const whsec = await ensureStripeWebhook(env.STRIPE_SECRET_KEY, webhookUrl, {
+        rotate: needsWebhookSecret || process.argv.includes("--rotate-webhook"),
+      });
       if (whsec) {
+        env.STRIPE_WEBHOOK_SECRET = whsec;
+        const envContent = readFileSync(ENV_PATH, "utf8");
+        const updated = setEnvValue(envContent, "STRIPE_WEBHOOK_SECRET", whsec);
+        writeFileSync(ENV_PATH, updated);
+        console.log("✓ wrote STRIPE_WEBHOOK_SECRET to .env");
         for (const target of TARGETS) {
           runVercelEnvAdd("STRIPE_WEBHOOK_SECRET", whsec, target, true);
         }
-      } else {
-        console.log(
-          "Note: existing webhook found but secret not retrievable. Copy whsec_ from Stripe Dashboard if needed."
-        );
       }
     } catch (e) {
-      console.warn("Could not auto-create Stripe webhook:", e instanceof Error ? e.message : e);
+      console.warn("Could not configure Stripe webhook:", e instanceof Error ? e.message : e);
     }
   }
 

@@ -40,6 +40,33 @@ function resolveConcurrency(): number {
   return Math.min(16, n);
 }
 
+function resolveChunkSize(): number {
+  const raw = process.env.NPTE_PT_GENERATION_CHUNK_SIZE;
+  if (!raw) return NPTE_PT_GENERATION_CHUNK_SIZE;
+  const n = parseInt(raw, 10);
+  if (!Number.isFinite(n) || n < 5) return NPTE_PT_GENERATION_CHUNK_SIZE;
+  return Math.min(30, n);
+}
+
+function skipPatternPrefetch(): boolean {
+  return process.env.NPTE_PT_SKIP_PATTERN_PREFETCH === "1";
+}
+
+const EMPTY_PATTERN_PROFILE: QuestionPatternProfile = {
+  fieldId: "npte-pt",
+  topic: "clinical",
+  sampleSize: 0,
+  avgStemLength: 180,
+  avgExplanationLength: 120,
+  commonTags: [],
+  distractorPatterns: [],
+  formatMix: { multiple_choice: 1 },
+  difficultySignals: [],
+  exemplarStems: [],
+  exemplarDistractors: [],
+  clinicalJudgmentFlows: [],
+};
+
 async function sleep(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -333,17 +360,18 @@ export async function generateNptePtBatch(params: {
   });
 
   const concurrency = params.concurrency ?? resolveConcurrency();
-  const patternProfiles = await prefetchNptePtPatternProfiles(
-    slots.map((s) => s.contentCategory)
-  );
+  const chunkSize = resolveChunkSize();
+  const patternProfiles = skipPatternPrefetch()
+    ? new Map<string, QuestionPatternProfile>([["_default", EMPTY_PATTERN_PROFILE]])
+    : await prefetchNptePtPatternProfiles(slots.map((s) => s.contentCategory));
 
   const chunkStarts: number[] = [];
-  for (let i = 0; i < slots.length; i += NPTE_PT_GENERATION_CHUNK_SIZE) {
+  for (let i = 0; i < slots.length; i += chunkSize) {
     chunkStarts.push(i);
   }
 
   console.log(
-    `[npte-pt] Batch ${batchId}: ${slots.length} slots, ${chunkStarts.length} chunks, concurrency ${concurrency}`
+    `[npte-pt] Batch ${batchId}: ${slots.length} slots, ${chunkStarts.length} chunks (size ${chunkSize}), concurrency ${concurrency}${skipPatternPrefetch() ? ", no RAG prefetch" : ""}`
   );
 
   const allAccepted: BankItem[] = [];
@@ -355,7 +383,7 @@ export async function generateNptePtBatch(params: {
     const waveStarts = chunkStarts.slice(wave, wave + concurrency);
     const waveResults = await Promise.all(
       waveStarts.map(async (start) => {
-        const chunk = slots.slice(start, start + NPTE_PT_GENERATION_CHUNK_SIZE);
+        const chunk = slots.slice(start, start + chunkSize);
         const result = await generateNptePtChunk({
           slots: chunk,
           batchId,
@@ -375,7 +403,7 @@ export async function generateNptePtBatch(params: {
 
       if (result.accepted.length > 0 && params.onChunkAccepted) {
         await params.onChunkAccepted(result.accepted, {
-          chunkIndex: start / NPTE_PT_GENERATION_CHUNK_SIZE,
+          chunkIndex: Math.floor(start / chunkSize),
           batchId,
         });
       }

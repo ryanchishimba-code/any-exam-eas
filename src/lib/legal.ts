@@ -48,7 +48,7 @@ export const LEGAL_DISCLAIMERS = {
     "All payments are non-refundable except where required by applicable law. If you cancel, you retain access through the end of the billing period you have already paid for. We do not provide prorated refunds for unused time within a paid period.",
 
   planChanges:
-    "During a free trial you may switch billing plans at any time before billing starts at no charge. On a paid subscription, plan changes are scheduled to take effect when your current billing period ends; you are billed at the new rate only when the switch occurs, not when you schedule it.",
+    "During a free trial, plan changes apply when billing starts at the end of the trial. On a paid subscription, plan changes are scheduled to take effect when your current billing period ends; you are billed at the new rate only when the switch occurs, not when you schedule it.",
 
   paymentFailure:
     "If a recurring payment fails, premium study features may be suspended immediately until the payment method is updated and payment succeeds. You may update your payment method in Settings.",

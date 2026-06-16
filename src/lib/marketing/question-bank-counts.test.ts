@@ -65,21 +65,24 @@ describe("question-bank-counts display", () => {
     );
   });
 
-  it("builds five-exam landing display rows", () => {
+  it("builds six-exam landing display rows with question labels", () => {
     const display = buildLandingBankCountsDisplay(
       snapshotWithServed({ nursing: 11_359, "usmle-step-2": 5_306, "aanp-fnp": 4_200 })
     );
 
-    expect(display.exams).toHaveLength(5);
+    expect(display.exams).toHaveLength(6);
     expect(display.exams.map((e) => e.label)).toEqual([
       "USMLE",
       "NCLEX",
       "NAPLEX",
       "PANCE",
       "AANP FNP",
+      "NPTE-PT",
     ]);
     expect(display.exams[0]?.countLabel).toBe("5K+");
+    expect(display.exams[0]?.questionsLabel).toBe("5,306 questions");
     expect(display.exams[1]?.countLabel).toBe("11K+");
-    expect(display.exams[3]?.countLabel).toBe("6K+");
+    expect(display.exams[1]?.questionsLabel).toBe("11,359 questions");
+    expect(display.totalQuestionsLabel).toBe("20,865 questions");
   });
 });

@@ -29,8 +29,8 @@ export const BILLING_GUARANTEE_HEADLINE =
 export const BILLING_GUARANTEE_POINTS = [
   "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT — all 6 exams in one subscription",
   "Integrated Exam Roadmaps plus board-caliber vignettes — without $200–400+ per-exam bundles",
-  "14-day free trial · No credit card required to start · Cancel anytime",
-  "Switch plans anytime during your free trial; after that, plan changes take effect when your current paid term ends",
+  "14-day free trial · Payment method required at checkout · Cancel anytime",
+  "Plan changes during trial take effect when billing starts; on a paid subscription, changes take effect when your current term ends",
   "Update your saved payment method anytime for recurring billing",
 ] as const;
 
@@ -38,11 +38,11 @@ export const BILLING_POLICY_SHORT =
   "Cancel anytime. Payments are non-refundable — access continues through the end of your paid period.";
 
 export const BILLING_TRIAL_DISCLOSURE =
-  "No credit card required to start · Cancel anytime";
+  "Payment method required at checkout · Not charged until trial ends · Cancel anytime";
 
 /** Plan change rules shown in Settings and checkout. */
 export const BILLING_PLAN_CHANGE_POLICY =
-  "During your free trial, you can switch tiers or billing cycles anytime — no charge until billing starts. On a paid subscription, plan changes take effect when your current term ends; you are billed only when the switch occurs, not when you schedule it. All payments are non-refundable.";
+  "During your free trial, plan changes apply when billing starts at the end of the trial — you are not charged until then. On a paid subscription, plan changes take effect when your current term ends; you are billed only when the switch occurs, not when you schedule it. All payments are non-refundable.";
 
 /** Recurring autopay disclosure for Settings and checkout. */
 export const BILLING_RECURRING_POLICY =

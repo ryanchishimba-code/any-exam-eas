@@ -14,9 +14,8 @@ import {
 } from "@/lib/password-hash";
 import { signUpSchema, normalizeEmail, type SignUpInput } from "@/lib/validators/auth";
 import { parseBillingInterval } from "@/lib/billing-plans";
-import { trialEndsAtFromNow } from "@/lib/billing-config";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
-import { hasConsumedTrial, recordTrialUsed } from "@/lib/trial-eligibility";
+import { hasConsumedTrial } from "@/lib/trial-eligibility";
 
 const REGISTER_RETRIES = 6;
 
@@ -117,36 +116,19 @@ export async function registerUser(
   const planTier = parseSubscriptionTier(parsed.tier);
   const planInterval = parseBillingInterval(parsed.interval);
 
-  let subscriptionData: {
-    status: "trialing" | "inactive";
-    trialEndsAt: Date | null;
-    plan?: string;
-    planTier: string;
-    planInterval: string;
-  };
-
-  if (parsed.plan === "trial") {
-    if (await hasConsumedTrial(parsed.email)) {
-      throw new Error(
-        "This email has already used a free trial. Subscribe at the monthly rate instead."
-      );
-    }
-    subscriptionData = {
-      status: "trialing",
-      trialEndsAt: trialEndsAtFromNow(),
-      plan: "trial",
-      planTier,
-      planInterval,
-    };
-  } else {
-    subscriptionData = {
-      status: "inactive",
-      trialEndsAt: null,
-      plan: "subscribe",
-      planTier,
-      planInterval,
-    };
+  if (parsed.plan === "trial" && (await hasConsumedTrial(parsed.email))) {
+    throw new Error(
+      "This email has already used a free trial. Subscribe at the monthly rate instead."
+    );
   }
+
+  const subscriptionData = {
+    status: "inactive" as const,
+    trialEndsAt: null,
+    plan: parsed.plan,
+    planTier,
+    planInterval,
+  };
 
   try {
     const user = await withRegisterRetry(() =>
@@ -181,10 +163,6 @@ export async function registerUser(
       void import("@/lib/promo").then((m) =>
         m.redeemPromoCode(user.id, parsed.promoCode!.trim())
       );
-    }
-
-    if (parsed.plan === "trial") {
-      await recordTrialUsed(parsed.email, user.id);
     }
 
     return {

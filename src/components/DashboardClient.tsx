@@ -103,10 +103,10 @@ export function DashboardClient({
               ? `${access.tier === "pro" ? "Pro" : "Basic"} plan active.`
               : access.status === "past_due"
                 ? "Your last payment failed — study access is paused until you update your payment method."
-                : access.status === "trialing" && access.needsPaymentMethod
-                  ? `${access.tier === "pro" ? "Pro" : "Basic"} trial active${access.daysRemaining != null ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left` : ""}. Add payment before your trial ends to continue — no charge until then.`
-                  : access.status === "trialing"
-                    ? `${access.tier === "pro" ? "Pro" : "Basic"} trial active${access.daysRemaining != null ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left` : ""}. Payment on file — cancel anytime before trial ends for no charge.`
+                : access.status === "trialing"
+                  ? `${access.tier === "pro" ? "Pro" : "Basic"} trial active${access.daysRemaining != null ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left` : ""}. Payment on file — cancel anytime before trial ends for no charge.`
+                  : access.status === "inactive" && access.needsPaymentMethod
+                    ? "Complete checkout to start your free trial — payment required, not charged until trial ends."
                     : access.status === "canceled"
                       ? "Your subscription was canceled — reactivate anytime to restore access."
                       : access.status === "trial_expired"
@@ -129,9 +129,9 @@ export function DashboardClient({
               <Button href="/settings?reactivate=1" variant="secondary">
                 Reactivate account
               </Button>
-            ) : access.status === "trialing" && access.needsPaymentMethod ? (
+            ) : access.status === "inactive" && access.needsPaymentMethod ? (
               <Button href={`/checkout?plan=trial&interval=${access.planDuration}&tier=${access.tier}`} variant="secondary">
-                Add payment method
+                Complete checkout
               </Button>
             ) : access.status === "trialing" ? (
               <>

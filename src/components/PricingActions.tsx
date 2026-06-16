@@ -35,8 +35,8 @@ export function PricingActions() {
               ? `${formatTrialLabel()} active${access.daysRemaining != null ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left` : ""}`
               : "Your subscription is active."}
           </p>
-          {access.status === "trialing" && access.needsPaymentMethod ? (
-            <Button href="/checkout?plan=trial">Add payment method</Button>
+          {(access.status === "inactive" || access.status === "trialing") && access.needsPaymentMethod ? (
+            <Button href="/checkout?plan=trial">Complete checkout</Button>
           ) : (
             <Button href="/study">Continue studying</Button>
           )}

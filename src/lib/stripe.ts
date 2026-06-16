@@ -47,7 +47,7 @@ type CheckoutBaseParams = {
   interval?: BillingInterval;
   stripeCustomerId?: string | null;
   stripeCouponId?: string | null;
-  /** Unix timestamp — sync Stripe trial end with app-native trial (card collected now, charge later). */
+  /** @deprecated App DB trial end sync — Stripe sets trial via trial_period_days at checkout. */
   trialEndUnix?: number;
 };
 

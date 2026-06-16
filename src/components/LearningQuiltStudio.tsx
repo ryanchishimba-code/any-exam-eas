@@ -179,7 +179,7 @@ export function LearningQuiltStudio() {
         </div>
         {error && (
           <InlineError className="mt-4">
-            {error}. <a href="/signup" className="underline">Create an account</a>.
+            {error}. <Link href="/signup" className="underline">Create an account</Link>.
           </InlineError>
         )}
       </form>

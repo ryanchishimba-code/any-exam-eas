@@ -57,7 +57,7 @@ export async function POST(req: Request) {
       ok: true,
       tier,
       interval,
-      message: "Plan preference saved. Add a payment method to activate billing when your trial ends.",
+      message: "Plan preference saved. Complete checkout to start your trial — billing begins when the trial ends.",
     });
   }
 

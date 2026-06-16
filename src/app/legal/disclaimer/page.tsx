@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED, PUBLIC_DISCLAIMER_KEYS } from "@/lib/legal";
 
 export const metadata = { title: "Disclaimers — Any Exam Easy" };
@@ -37,9 +38,9 @@ export default function DisclaimerPage() {
         <p className="mt-4 text-sm text-[var(--color-ink-muted)]">
           Please read carefully before using {LEGAL_ENTITY.productName} for academic or professional
           study. Full terms are in our{" "}
-          <a href="/legal/terms" className="text-[var(--color-accent)] underline">
+          <Link href="/legal/terms" className="text-[var(--color-accent)] underline">
             Terms of Service
-          </a>
+          </Link>
           .
         </p>
         <ul className="mt-10 space-y-6">

@@ -76,7 +76,24 @@ export function usmleBankItemIsServeReady(item: BankItem, fieldId: string): bool
     itemId: normalized.id,
     difficulty: normalized.difficulty ?? null,
   });
+
+  // PANCE serves at a calibrated ≥7.5 bar (env-overridable); other fields keep
+  // the ≥8 "A+" examReady bar. The no-error requirement is enforced in both.
+  const minScore = serveScoreThreshold(fieldId);
+  if (minScore !== null) {
+    return report.overallScore >= minScore && !report.issues.some((i) => i.severity === "error");
+  }
   return report.examReady;
+}
+
+/** Per-field serve-score threshold; null means use the default examReady (≥8) bar. */
+function serveScoreThreshold(fieldId: string): number | null {
+  if (fieldId === "pance") {
+    const raw = process.env.PANCE_SERVE_MIN_SCORE;
+    const parsed = raw ? Number.parseFloat(raw) : NaN;
+    return Number.isFinite(parsed) ? parsed : 7.5;
+  }
+  return null;
 }
 
 type PrepareUsmleItemsParams = {

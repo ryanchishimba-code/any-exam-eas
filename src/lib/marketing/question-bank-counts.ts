@@ -26,12 +26,16 @@ export type QuestionBankCountsSnapshot = {
 
 export type LandingExamCountDisplay = {
   label: string;
+  /** Compact marketing label, e.g. 24K+ */
   countLabel: string;
+  /** Hero display, e.g. 24,532 questions or 24K+ questions */
+  questionsLabel: string;
   color: string;
 };
 
 export type LandingBankCountsDisplay = {
   totalLabel: string;
+  totalQuestionsLabel: string;
   exams: LandingExamCountDisplay[];
   degraded: boolean;
 };
@@ -149,15 +153,37 @@ export function displayTotalQuestionCount(snapshot: QuestionBankCountsSnapshot):
   return formatMarketingQuestionCount(TOTAL_QUESTION_BANK_TARGET);
 }
 
+function formatHeroQuestionsLabel(count: number, compactFallback: string): string {
+  if (count > 0) return `${count.toLocaleString("en-US")} questions`;
+  return `${compactFallback} questions`;
+}
+
+export function displayQuestionCountDetailForField(
+  fieldId: ExamFieldId,
+  snapshot: QuestionBankCountsSnapshot
+): string {
+  const served = snapshot.fields[fieldId]?.served ?? 0;
+  const compact = displayQuestionCountForField(fieldId, snapshot);
+  return formatHeroQuestionsLabel(served, compact);
+}
+
+export function displayTotalQuestionsDetail(snapshot: QuestionBankCountsSnapshot): string {
+  const served = snapshot.totals.served;
+  const compact = displayTotalQuestionCount(snapshot);
+  return formatHeroQuestionsLabel(served, compact);
+}
+
 export function buildLandingBankCountsDisplay(
   snapshot: QuestionBankCountsSnapshot
 ): LandingBankCountsDisplay {
   return {
     totalLabel: displayTotalQuestionCount(snapshot),
+    totalQuestionsLabel: displayTotalQuestionsDetail(snapshot),
     exams: LANDING_EXAM_COUNT_FIELDS.map(({ fieldId, label, color }) => ({
       label,
       color,
       countLabel: displayQuestionCountForField(fieldId, snapshot),
+      questionsLabel: displayQuestionCountDetailForField(fieldId, snapshot),
     })),
     degraded: snapshot.degraded,
   };

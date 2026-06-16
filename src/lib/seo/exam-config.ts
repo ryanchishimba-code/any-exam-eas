@@ -104,7 +104,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       {
         question: "Can I try NCLEX prep before paying?",
         answer:
-          "Yes — start a 14-day free trial with full platform access. No credit card required to begin.",
+          "Yes — start a 14-day free trial with full platform access. Add a payment method at checkout; you are not charged until the trial ends.",
       },
       {
         question: "Is NCLEX prep included with other board exams?",
@@ -310,7 +310,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       },
       {
         question: "How long is the free trial?",
-        answer: "14 days with full platform access. No credit card required to start.",
+        answer: "14 days with full platform access. Payment method required at checkout — not charged until the trial ends.",
       },
     ],
     relatedResourceSlugs: [

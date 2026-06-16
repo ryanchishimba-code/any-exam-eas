@@ -457,7 +457,7 @@ export const UWORLD_COMPARE_ROWS = [
   },
   {
     label: "Trial entry",
-    us: "14-day free trial · No credit card required",
+    us: "14-day free trial · Payment required at checkout",
     them: "Limited demo or paid upfront bundles",
   },
   {

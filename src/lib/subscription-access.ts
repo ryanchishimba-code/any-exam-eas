@@ -22,7 +22,7 @@ export type SubscriptionAccess = {
   trialEndsAt: Date | null;
   daysRemaining: number | null;
   canStartCheckout: boolean;
-  /** Cardless trial — full access but payment not yet on file. */
+  /** Checkout incomplete — payment method not yet on file via Stripe. */
   needsPaymentMethod: boolean;
 };
 
@@ -100,7 +100,6 @@ export function evaluateSubscriptionAccess(
   }
 
   if (subscription.status === "trialing") {
-    const noPaymentOnFile = !subscription.stripeSubscriptionId;
     if (trialEndsAt && trialEndsAt <= new Date()) {
       return {
         hasAccess: false,
@@ -112,18 +111,18 @@ export function evaluateSubscriptionAccess(
         needsPaymentMethod: false,
       };
     }
-    const daysRemaining = trialEndsAt ? daysUntil(trialEndsAt) : TRIAL_DAYS;
-    if (noPaymentOnFile) {
+    if (!subscription.stripeSubscriptionId) {
       return {
-        hasAccess: true,
-        status: "trialing",
+        hasAccess: false,
+        status: "inactive",
         ...meta,
         trialEndsAt,
-        daysRemaining,
+        daysRemaining: trialEndsAt ? daysUntil(trialEndsAt) : null,
         canStartCheckout: true,
         needsPaymentMethod: true,
       };
     }
+    const daysRemaining = trialEndsAt ? daysUntil(trialEndsAt) : TRIAL_DAYS;
     return {
       hasAccess: true,
       status: "trialing",

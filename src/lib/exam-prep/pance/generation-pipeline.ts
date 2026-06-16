@@ -95,6 +95,22 @@ function buildExemplarBlock(exemplarItems?: BankItem[]): string {
     : "";
 }
 
+/**
+ * Targets the automated serve gate (auditUsmleQaEditor overallScore ≥ 8, no
+ * errors). Each requirement maps to a scored dimension so a well-formed item
+ * clears the bar instead of clustering just under it.
+ */
+const EXAM_READY_TARGETS = `EXAM-READY SCORING TARGETS (every question is auto-scored 0–10; ONLY items scoring ≥8 with zero errors are kept — follow ALL):
+- VIGNETTE (2–4 sentences) MUST contain, woven into prose:
+  • age + sex + care setting (e.g., "A 58-year-old man in the emergency department")
+  • pertinent history / risk factors and timing/etiology ("3 days of…", "2 weeks after…", "history of type 2 diabetes")
+  • AT LEAST THREE objective values WITH UNITS — e.g., "BP 162/98 mm Hg", "HR 114/min", "temperature 38.7°C", "glucose 348 mg/dL", "WBC 15.2 × 10^9/L", "creatinine 2.3 mg/dL", "troponin 0.9 ng/mL"
+  • AT LEAST ONE physical-exam finding — e.g., murmur, crackles, wheeze, tenderness, edema, rash, guarding
+- STEM: ONE USMLE-style lead-in ending in "?" — "Which is the most likely diagnosis?", "What is the most appropriate next step in management?", "Which is the most likely underlying mechanism?". NEVER use "these findings", "those findings", or "the patient described above".
+- OPTIONS: exactly 4 unique, homogeneous, plausible choices. The correct answer must be a SPECIFIC entity (a named diagnosis, drug, or concrete step) — never generic phrasing like "Focused evaluation with targeted history" or "High-yield fact about…".
+- EXPLANATION (≥200 words): FIRST state why the correct answer is right, citing the mechanism/pathophysiology or a named guideline (e.g., ACC/AHA, IDSA, CDC). THEN, one sentence each, refute EACH of the other three options using the exact form "Option <text> is incorrect because …".
+- STYLE: crisp clinical prose. NEVER use "it is important to note", "furthermore", "moreover", "in conclusion", "plays a crucial role", or "delves into".`;
+
 function buildSlotPrompt(
   slots: PanceGenerationSlot[],
   patternBlock: string,
@@ -113,6 +129,8 @@ ${BATCH_DIVERSITY_RULES}
 
 ${VIGNETTE_REQUIREMENTS}
 
+${EXAM_READY_TARGETS}
+
 ${patternBlock}
 
 ${exemplarBlock}
@@ -122,11 +140,11 @@ ${slotLines.join("\n")}
 
 Return JSON: { "questions": [ ... ] }
 Each question object:
-- vignette (2–4 sentences: demographics, CC, history, vitals/labs/imaging)
-- question (lead-in stem only, ending with ?)
-- options (exactly 4 unique strings, no A/B/C/D prefix)
+- vignette (2–4 sentences: age+sex+setting, history/etiology, ≥3 objective values WITH units, ≥1 exam finding)
+- question (lead-in stem only, ending with ?; never deictic "these findings")
+- options (exactly 4 unique strings, no A/B/C/D prefix; correct answer must be specific)
 - correctAnswer (must match one option exactly)
-- explanation (detailed teaching rationale, 150+ words)
+- explanation (≥200 words: why correct is right with mechanism/guideline, then "Option <text> is incorrect because …" for EACH other option)
 - topicCategory (content category slug)
 - taskCategory (task slug from slot)
 - blueprintTopic (specific topic from slot)

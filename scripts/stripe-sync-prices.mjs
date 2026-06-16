@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 /**
- * Align Stripe Price objects with MONTHLY_PRICE_USD / billing intervals.
+ * Align Stripe Price objects with Basic + Pro billing config.
  * Creates new prices when amounts drift (Stripe prices are immutable).
  *
  * Usage:
  *   node scripts/stripe-sync-prices.mjs
- *   STRIPE_SECRET_KEY=sk_live_... node scripts/stripe-sync-prices.mjs
- *   node scripts/stripe-sync-prices.mjs --push-vercel   # after sync, push .env → Vercel production
+ *   node scripts/stripe-sync-prices.mjs --push-vercel
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { spawnSync } from "node:child_process";
@@ -20,47 +19,41 @@ const Stripe = require("stripe").default;
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const ENV_PATH = join(root, ".env");
 
-const MONTHLY_USD = Number(process.env.MONTHLY_PRICE_USD ?? "32.99");
-const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "7");
+const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "14");
+
+const TIERS = {
+  basic: {
+    productName: "Any Exam Easy Basic",
+    monthlyUsd: Number(process.env.BASIC_MONTHLY_PRICE_USD ?? "34.99"),
+    yearlyUsd: Number(process.env.BASIC_YEARLY_PRICE_USD ?? "349"),
+    envPrefix: "STRIPE_BASIC_PRICE_ID",
+  },
+  pro: {
+    productName: "Any Exam Easy Pro",
+    monthlyUsd: Number(process.env.PRO_MONTHLY_PRICE_USD ?? "49.99"),
+    yearlyUsd: Number(process.env.PRO_YEARLY_PRICE_USD ?? "499"),
+    envPrefix: "STRIPE_PRO_PRICE_ID",
+    legacyKeys: {
+      monthly: "STRIPE_PRICE_ID",
+      quarterly: "STRIPE_PRICE_ID_QUARTERLY",
+      semiannual: "STRIPE_PRICE_ID_SEMIANNUAL",
+      yearly: "STRIPE_PRICE_ID_YEARLY",
+    },
+  },
+};
 
 const INTERVALS = [
-  {
-    key: "STRIPE_PRICE_ID",
-    interval: "monthly",
-    label: "Monthly",
-    months: 1,
-    savings: 0,
-    stripe: { interval: "month", interval_count: 1 },
-  },
-  {
-    key: "STRIPE_PRICE_ID_QUARTERLY",
-    interval: "quarterly",
-    label: "Every 3 months",
-    months: 3,
-    savings: 5,
-    stripe: { interval: "month", interval_count: 3 },
-  },
-  {
-    key: "STRIPE_PRICE_ID_SEMIANNUAL",
-    interval: "semiannual",
-    label: "Every 6 months",
-    months: 6,
-    savings: 10,
-    stripe: { interval: "month", interval_count: 6 },
-  },
-  {
-    key: "STRIPE_PRICE_ID_YEARLY",
-    interval: "yearly",
-    label: "Yearly",
-    months: 12,
-    savings: 20,
-    stripe: { interval: "year", interval_count: 1 },
-  },
+  { interval: "monthly", label: "Monthly", months: 1, savings: 0, stripe: { interval: "month", interval_count: 1 }, suffix: "MONTHLY" },
+  { interval: "quarterly", label: "Every 3 months", months: 3, savings: 5, stripe: { interval: "month", interval_count: 3 }, suffix: "QUARTERLY" },
+  { interval: "semiannual", label: "Every 6 months", months: 6, savings: 12, stripe: { interval: "month", interval_count: 6 }, suffix: "SEMIANNUAL" },
+  { interval: "yearly", label: "Yearly", months: 12, savings: 20, stripe: { interval: "year", interval_count: 1 }, suffix: "YEARLY" },
 ];
 
-function intervalTotalUsd(months, savings) {
-  const full = MONTHLY_USD * months;
-  return Math.round(full * (1 - savings / 100) * 100) / 100;
+function intervalTotalUsd(tierKey, spec) {
+  const tier = TIERS[tierKey];
+  if (spec.interval === "yearly") return tier.yearlyUsd;
+  const full = tier.monthlyUsd * spec.months;
+  return Math.round(full * (1 - spec.savings / 100) * 100) / 100;
 }
 
 function loadEnvFile() {
@@ -88,36 +81,42 @@ function setEnvValue(content, key, value) {
   return content.trimEnd() + `\n${line}\n`;
 }
 
-async function resolveProductId(stripe, envContent) {
-  const monthlyId = getEnvValue(envContent, "STRIPE_PRICE_ID");
+async function resolveProductId(stripe, envContent, tierKey) {
+  const tier = TIERS[tierKey];
+  const monthlyKey = `${tier.envPrefix}_MONTHLY`;
+  const monthlyId = getEnvValue(envContent, monthlyKey);
   if (monthlyId.startsWith("price_")) {
     const price = await stripe.prices.retrieve(monthlyId);
     if (typeof price.product === "string") return price.product;
   }
 
   const product = await stripe.products.create({
-    name: "Any Exam Easy Pro",
-    description: `${TRIAL_DAYS}-day free trial, then recurring board exam prep subscription`,
-    metadata: { app: "any-exam-easy" },
+    name: tier.productName,
+    description: `${TRIAL_DAYS}-day free trial (payment at checkout), then recurring board exam prep`,
+    metadata: { app: "any-exam-easy", tier: tierKey },
   });
-  console.log(`Created product ${product.id}`);
+  console.log(`Created product ${tier.productName}: ${product.id}`);
   return product.id;
 }
 
-async function syncPrice(stripe, productId, tier, envContent) {
-  const expectedUsd = intervalTotalUsd(tier.months, tier.savings);
+async function syncPrice(stripe, productId, tierKey, spec, envContent) {
+  const tier = TIERS[tierKey];
+  const envKey = `${tier.envPrefix}_${spec.suffix}`;
+  const expectedUsd = intervalTotalUsd(tierKey, spec);
   const expectedCents = Math.round(expectedUsd * 100);
-  const existingId = getEnvValue(envContent, tier.key);
+  const existingId = getEnvValue(envContent, envKey);
 
   if (existingId.startsWith("price_")) {
     const existing = await stripe.prices.retrieve(existingId);
     if ((existing.unit_amount ?? 0) === expectedCents && existing.active) {
-      console.log(`✓ ${tier.label}: ${existingId} already $${expectedUsd.toFixed(2)}`);
+      console.log(`✓ ${tierKey} ${spec.label}: ${existingId} ($${expectedUsd.toFixed(2)})`);
       return { envContent, changed: false };
     }
     if (existing.active) {
       await stripe.prices.update(existingId, { active: false });
-      console.log(`– Deactivated outdated ${tier.label} price ${existingId} ($${((existing.unit_amount ?? 0) / 100).toFixed(2)})`);
+      console.log(
+        `– Deactivated ${tierKey} ${spec.label} ${existingId} ($${((existing.unit_amount ?? 0) / 100).toFixed(2)})`
+      );
     }
   }
 
@@ -125,17 +124,20 @@ async function syncPrice(stripe, productId, tier, envContent) {
     product: productId,
     currency: "usd",
     unit_amount: expectedCents,
-    recurring: tier.stripe,
-    nickname: `Any Exam Easy — ${tier.label}`,
+    recurring: spec.stripe,
+    nickname: `${tier.productName} — ${spec.label}`,
     metadata: {
-      interval: tier.interval,
-      savings_percent: String(tier.savings),
-      monthly_anchor_usd: String(MONTHLY_USD),
+      tier: tierKey,
+      interval: spec.interval,
+      savings_percent: String(spec.savings),
     },
   });
 
-  envContent = setEnvValue(envContent, tier.key, price.id);
-  console.log(`✓ ${tier.label}: $${expectedUsd.toFixed(2)} → ${tier.key}=${price.id}`);
+  envContent = setEnvValue(envContent, envKey, price.id);
+  if (tier.legacyKeys?.[spec.interval]) {
+    envContent = setEnvValue(envContent, tier.legacyKeys[spec.interval], price.id);
+  }
+  console.log(`✓ ${tierKey} ${spec.label}: $${expectedUsd.toFixed(2)} → ${envKey}=${price.id}`);
   return { envContent, changed: true };
 }
 
@@ -149,25 +151,32 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`Syncing Stripe prices to MONTHLY_PRICE_USD=$${MONTHLY_USD.toFixed(2)}, TRIAL_DAYS=${TRIAL_DAYS}…`);
+  console.log(`Syncing Basic + Pro Stripe prices (TRIAL_DAYS=${TRIAL_DAYS}, payment at checkout)…`);
   const stripe = new Stripe(secret);
   const account = await stripe.accounts.retrieve();
   console.log(`Account: ${account.id} (${secret.startsWith("sk_live_") ? "live" : "test"})`);
 
-  const productId = await resolveProductId(stripe, envContent);
-  await stripe.products.update(productId, {
-    name: "Any Exam Easy Pro",
-    description: `${TRIAL_DAYS}-day free trial, then from $${MONTHLY_USD.toFixed(2)}/mo — NCLEX, USMLE, NAPLEX, MPJE`,
-  });
-
-  envContent = setEnvValue(envContent, "MONTHLY_PRICE_USD", String(MONTHLY_USD));
   envContent = setEnvValue(envContent, "TRIAL_DAYS", String(TRIAL_DAYS));
+  envContent = setEnvValue(envContent, "BASIC_MONTHLY_PRICE_USD", String(TIERS.basic.monthlyUsd));
+  envContent = setEnvValue(envContent, "PRO_MONTHLY_PRICE_USD", String(TIERS.pro.monthlyUsd));
+  envContent = setEnvValue(envContent, "BASIC_YEARLY_PRICE_USD", String(TIERS.basic.yearlyUsd));
+  envContent = setEnvValue(envContent, "PRO_YEARLY_PRICE_USD", String(TIERS.pro.yearlyUsd));
+  envContent = setEnvValue(envContent, "STRIPE_TRIAL_INTRO_PRICE_ID", "");
 
   let anyChanged = false;
-  for (const tier of INTERVALS) {
-    const result = await syncPrice(stripe, productId, tier, envContent);
-    envContent = result.envContent;
-    anyChanged = anyChanged || result.changed;
+  for (const tierKey of Object.keys(TIERS)) {
+    const tier = TIERS[tierKey];
+    const productId = await resolveProductId(stripe, envContent, tierKey);
+    await stripe.products.update(productId, {
+      name: tier.productName,
+      description: `${TRIAL_DAYS}-day free trial — payment method required at checkout, charged when trial ends`,
+    });
+
+    for (const spec of INTERVALS) {
+      const result = await syncPrice(stripe, productId, tierKey, spec, envContent);
+      envContent = result.envContent;
+      anyChanged = anyChanged || result.changed;
+    }
   }
 
   writeFileSync(ENV_PATH, envContent);
@@ -175,7 +184,7 @@ async function main() {
   if (!anyChanged) {
     console.log("\nAll Stripe prices already match config.");
   } else {
-    console.log("\nUpdated .env with new price IDs. Restart dev server and redeploy production.");
+    console.log("\nUpdated .env with new price IDs.");
   }
 
   if (process.argv.includes("--push-vercel")) {
