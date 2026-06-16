@@ -16,7 +16,9 @@ import { LandingHeroTrustPills } from "@/components/landing/LandingHeroTrustPill
 import { LandingSection } from "@/components/landing/LandingSection";
 import { LandingStickyCta } from "@/components/landing/LandingStickyCta";
 import { QuestionPreviewCard } from "@/components/landing/QuestionPreviewCard";
-import { LandingHeroExamStrip } from "@/components/home/LandingHeroExamStrip";
+import { LandingExamShowcase } from "@/components/landing/LandingExamShowcase";
+import { LandingOfferingBand } from "@/components/landing/LandingOfferingBand";
+import { ChooseYourExam } from "@/components/home/ChooseYourExam";
 import { LandingHeroPriceValue } from "@/components/home/LandingHeroPriceValue";
 import { HowWeCompare } from "@/components/home/HowWeCompare";
 import {
@@ -75,25 +77,21 @@ function Reveal({
 
 function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
   const reduceMotion = useReducedMotion();
-  const [headlineLead, headlineAccent] = LANDING_HERO_HEADLINE.split(" — ");
 
   return (
-    <section className="aee-flagship-hero aee-flagship-hero--premium" aria-labelledby="flagship-hero-heading">
+    <section className="aee-flagship-hero aee-flagship-hero--premium aee-flagship-hero--showcase" aria-labelledby="flagship-hero-heading">
       <div className="aee-flagship-hero__bg" aria-hidden />
       <div className="aee-flagship-hero__glow" aria-hidden />
       <div className="aee-flagship-hero__grid" aria-hidden />
 
-      <div className="aee-flagship-inner aee-flagship-hero__exam-top">
-        <LandingHeroExamStrip bankCounts={bankCounts} variant="compact" />
+      <div className="aee-flagship-inner aee-flagship-hero__showcase-top">
+        <LandingExamShowcase bankCounts={bankCounts} />
       </div>
 
       <div className="aee-flagship-inner aee-flagship-hero__layout">
         <div className="aee-flagship-hero__copy">
-          <h1 id="flagship-hero-heading" className="aee-flagship-hero__headline">
-            <span className="aee-flagship-hero__headline-lead">{headlineLead}</span>
-            {headlineAccent ? (
-              <span className="aee-flagship-hero__headline-accent">{headlineAccent}</span>
-            ) : null}
+          <h1 id="flagship-hero-heading" className="aee-flagship-hero__headline aee-flagship-hero__headline--punchy">
+            {LANDING_HERO_HEADLINE}
           </h1>
 
           <motion.div
@@ -148,7 +146,11 @@ export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsD
     <div className="aee-flagship aee-flagship--conversion">
       <HeroSection bankCounts={bankCounts} />
 
+      <LandingOfferingBand />
+
       <LandingFeaturesSection />
+
+      <ChooseYourExam />
 
       <section className="aee-flagship-compare-wrap" aria-labelledby="compare-heading">
         <div className="aee-flagship-inner">
@@ -252,11 +254,11 @@ export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsD
         eyebrow="Simple pricing"
         title={
           <>
-            Only {formatMonthlyPrice()}/mo.{" "}
+            Basic from {formatMonthlyPrice("basic")}/mo.{" "}
             <span className="aee-flagship-gradient-text">{LANDING_HERO_PRICE_TAGLINE}</span>
           </>
         }
-        subtitle={`${formatTrialLabel()} · all five boards · save up to 20% on longer plans`}
+        subtitle={`${formatTrialLabel()} · all six boards · Basic from ${formatMonthlyPrice("basic")}/mo · save up to 20% on annual`}
       >
         <div className="aee-flagship-pricing-stack">
           <LandingHeroPriceValue className="mx-auto" />

@@ -9,6 +9,7 @@ import {
   Map,
   Pill,
   ShieldCheck,
+  Sparkles,
   Stethoscope,
   Timer,
   type LucideIcon,
@@ -151,12 +152,33 @@ export const LANDING_HERO_EXAMS = [
 ] as const;
 
 /** Primary hero headline — benefit-driven, scannable above the fold. */
-export const LANDING_HERO_HEADLINE =
-  "Pass Your Boards — All 6 Major Exams, One Affordable Price";
+export const LANDING_HERO_HEADLINE = "Six Boards. One Plan. Pass With Confidence.";
 
 /** Hero sub-headline — exams, tools, and price in one line. */
 export const LANDING_HERO_SUBLINE =
-  "Professional board prep for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT — 6 exams + powerful tools for less than one UWorld subscription. Basic from $34.99/mo.";
+  "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP · NPTE-PT — Roadmaps, Deep Dives, full-length mocks, and board-style banks. Basic from $34.99/mo, Pro from $49.99/mo. Less than one premium QBank elsewhere.";
+
+/** Three-column offering band below the hero. */
+export const LANDING_OFFERING_PILLARS = [
+  {
+    icon: Layers,
+    title: "6 licensing exams included",
+    detail:
+      "Stop buying separate $200–400+ subscriptions. Every major board track lives in one account — switch exams anytime.",
+  },
+  {
+    icon: Map,
+    title: "Roadmaps + Deep Dives built in",
+    detail:
+      "Blueprint-aligned study plans show what to practice next. Pro unlocks Deep Dive modules, advanced analytics, and unlimited mock exams.",
+  },
+  {
+    icon: Sparkles,
+    title: "Basic or Pro — your call",
+    detail:
+      "Basic covers all six banks, Roadmaps, labs, calculators, and Top 503 Drugs. Pro adds SRS, exportable notes, and enhanced explanations.",
+  },
+] as const;
 
 /** Subtle trust signals below hero CTAs. */
 export const LANDING_HERO_TRUST_SIGNALS = [
@@ -219,7 +241,7 @@ export const LANDING_HERO_PITCHES = [
 ] as const;
 
 /** Hero price anchor — what's included at the monthly rate. */
-export const LANDING_HERO_PRICE_TAGLINE = "Serious prep without the premium price tag.";
+export const LANDING_HERO_PRICE_TAGLINE = "Every board. Every tool. One price.";
 
 export const LANDING_HERO_PRICE_INCLUDES = [
   `${MARKETING_QUESTION_COUNTS.total} board-style questions`,
@@ -235,7 +257,7 @@ export const LANDING_SOCIAL_PROOF = [
     detail: "Curated vignettes across six licensing exams",
   },
   {
-    value: "5",
+    value: "6",
     label: "Board exams",
     detail: "One subscription — no per-exam stacking",
   },
@@ -344,7 +366,7 @@ export const SAMPLE_QUESTIONS_FEATURED = SAMPLE_QUESTION_PREVIEWS.filter((q) =>
 
 export const LANDING_METRICS = [
   { value: MARKETING_QUESTION_COUNTS.total, label: "Board-style items" },
-  { value: "5", label: "Board exam tracks" },
+  { value: "6", label: "Board exam tracks" },
   { value: "Roadmap", label: "Per-exam study plan" },
   { value: "Deep Dive", label: "Linked lessons" },
   { value: String(TOP_500_DRUGS_COUNT), label: "Pharmacology cards" },
@@ -363,7 +385,7 @@ export type LandingSuccessStory = {
 
 /** Illustrative outcome stats — not pass-rate guarantees. */
 export const LANDING_PASS_STATS = [
-  { value: "5", label: "Board exams", detail: "One subscription — no per-exam stacking" },
+  { value: "6", label: "Board exams", detail: "One subscription — no per-exam stacking" },
   { value: "$34.99", label: "Basic from", detail: "Pro from $49.99/mo — all 6 exams vs. $200–400+ each elsewhere" },
   { value: "First try", label: "Passes reported", detail: "Students share first-attempt outcomes*" },
 ] as const;

@@ -15,7 +15,7 @@ import { buildHomeMetadata } from "@/lib/seo";
  * - `HomeExperience` switches guest vs subscriber views client-side
  *
  * Guest view → `LandingFlagship` (conversion funnel):
- *   Hero → Compare → Samples → Social proof → Pricing → Final CTA + sticky bar
+ *   Hero (exam showcase) → Offering → Features → Choose exam → Compare → Social proof → Samples → Pricing → Final CTA + sticky bar
  *
  * Subscriber view → Study Hub hero + dashboard shortcuts
  *

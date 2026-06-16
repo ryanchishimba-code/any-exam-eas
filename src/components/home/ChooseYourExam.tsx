@@ -2,110 +2,61 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Bone, Activity, ArrowRight, HeartPulse, Pill, Stethoscope, type LucideIcon } from "lucide-react";
-
-type ExamCard = {
-  id: string;
-  title: string;
-  href: string;
-  icon: LucideIcon;
-  theme: "nclex" | "usmle" | "naplex" | "pance" | "aanp-fnp" | "npte-pt";
-  tagline: string;
-};
-
-const exams: ExamCard[] = [
-  {
-    id: "nclex",
-    title: "NCLEX",
-    href: "/question-bank?field=nursing",
-    icon: Activity,
-    theme: "nclex",
-    tagline: "Clinical judgment, NGN formats & prioritization",
-  },
-  {
-    id: "usmle",
-    title: "USMLE",
-    href: "/question-bank?field=usmle-step-2",
-    icon: Stethoscope,
-    theme: "usmle",
-    tagline: "Clinical vignettes & next-best-step reasoning",
-  },
-  {
-    id: "naplex",
-    title: "NAPLEX",
-    href: "/question-bank?field=pharmacy",
-    icon: Pill,
-    theme: "naplex",
-    tagline: "Calculations, cases & pharmacotherapy",
-  },
-  {
-    id: "pance",
-    title: "PANCE",
-    href: "/question-bank?field=pance",
-    icon: HeartPulse,
-    theme: "pance",
-    tagline: "NCCPA blueprint vignettes & exam roadmap",
-  },
-  {
-    id: "aanp-fnp",
-    title: "AANP FNP",
-    href: "/question-bank?field=aanp-fnp",
-    icon: HeartPulse,
-    theme: "aanp-fnp",
-    tagline: "AANPCB primary care across the lifespan",
-  },
-  {
-    id: "npte-pt",
-    title: "NPTE-PT",
-    href: "/question-bank?field=npte-pt",
-    icon: Bone,
-    theme: "npte-pt",
-    tagline: "FSBPT blueprint · MSK, neuro, cardiopulmonary & modalities",
-  },
-];
+import { ArrowRight } from "lucide-react";
+import { LANDING_EXAMS } from "@/lib/landing/content";
 
 export function ChooseYourExam() {
   return (
     <section
       id="choose-exam"
-      className="aee-landing-section bg-[var(--color-surface-elevated)]"
+      className="aee-landing-section aee-choose-exam--showcase scroll-mt-24"
       aria-labelledby="choose-exam-heading"
     >
-      <div className="mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="aee-section-label">Exam coverage</p>
-          <h2 id="choose-exam-heading" className="aee-headline mt-3">
-            Six boards.{" "}
-            <span className="aee-display-accent">One subscription.</span>
+      <div className="aee-flagship-inner">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="aee-flagship-eyebrow">Pick your board</p>
+          <h2 id="choose-exam-heading" className="aee-choose-exam__headline">
+            Six exams.{" "}
+            <span className="aee-flagship-gradient-text">Zero extra checkout.</span>
           </h2>
-          <p className="aee-section-lede mx-auto mt-4 max-w-xl">
-            USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT — each with timed simulations, blueprint
-            roadmaps, topic banks, and rationales grounded in open educational resources.
+          <p className="aee-flagship-subtitle mx-auto mt-4 max-w-2xl">
+            Each track ships with blueprint Roadmaps, timed full exams, topic banks, and rationales
+            grounded in open educational resources — switch boards anytime on one plan.
           </p>
         </div>
 
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6">
-          {exams.map((exam, i) => {
+        <ul className="aee-choose-exam__grid mt-12">
+          {LANDING_EXAMS.map((exam, i) => {
             const Icon = exam.icon;
+            const theme = exam.id as "nclex" | "usmle" | "naplex" | "pance" | "aanp-fnp" | "npte-pt";
+            const displayTitle =
+              exam.id === "usmle" ? "USMLE" : exam.id === "aanp-fnp" ? "AANP FNP" : exam.label;
+
             return (
               <motion.li
                 key={exam.id}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
+                transition={{ duration: 0.42, delay: i * 0.06 }}
               >
                 <Link
                   href={exam.href}
-                  data-theme={exam.theme}
-                  className="aee-exam-card aee-exam-card-minimal group block h-full"
-                  aria-label={`Start ${exam.title} prep`}
+                  data-theme={theme}
+                  className="aee-exam-card aee-exam-card--showcase group block h-full"
+                  aria-label={`Start ${displayTitle} prep`}
                 >
-                  <span className="aee-exam-icon-wrap aee-exam-icon-wrap-minimal">
+                  <span className="aee-exam-card-bar" aria-hidden />
+                  <span className="aee-exam-icon-wrap">
                     <Icon className="h-7 w-7" strokeWidth={1.75} aria-hidden />
                   </span>
-                  <h3 className="aee-exam-title mt-4 text-xl">{exam.title}</h3>
-                  <p className="mt-1 text-sm text-[var(--color-ink-muted)]">{exam.tagline}</p>
+                  <h3
+                    className="aee-exam-title aee-exam-title--accent mt-5"
+                    style={{ color: exam.color }}
+                  >
+                    {displayTitle}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">{exam.blurb}</p>
                   <span className="aee-exam-cta mt-5 inline-flex items-center gap-1 text-sm font-semibold">
                     Start studying
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
