@@ -1,4 +1,4 @@
-// @ts-nocheck — legacy MPJE seed (retired)
+/** Legacy MPJE seed (retired) */
 import { defineExamTopics } from "./topic-factory";
 
 export const MPJE_HIGH_YIELD_TOPICS = defineExamTopics("aanp-fnp", [

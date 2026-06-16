@@ -1,4 +1,4 @@
-// @ts-nocheck — legacy AANP FNP module (retired; use pance/)
+/** Legacy AANP FNP module (retired; use pance/) */
 import type { SubjectModule } from "../types";
 import { AANP_FNP_SUBJECTS } from "./subjects";
 import { AANP_FNP_DISTRACTOR_PATTERNS } from "./distractors";

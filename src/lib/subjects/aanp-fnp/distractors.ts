@@ -1,4 +1,4 @@
-// @ts-nocheck — legacy AANP FNP module (retired)
+/** Legacy AANP FNP module (retired) */
 import type { DistractorPattern } from "../types";
 
 export const AANP_FNP_DISTRACTOR_PATTERNS: DistractorPattern[] = [

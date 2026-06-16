@@ -1,4 +1,4 @@
-// @ts-nocheck — legacy AANP FNP seed data (retired exam track).
+/** Legacy AANP FNP seed data (retired exam track). */
 // Legacy AANP FNP high-yield topics — active exam track (AANPCB blueprint).
 import { defineExamTopics } from "./topic-factory";
 
