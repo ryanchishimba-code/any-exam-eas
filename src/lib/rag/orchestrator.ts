@@ -10,7 +10,7 @@ import { getFieldSubject } from "@/lib/field-subjects";
 import { resolveSubjectModule } from "@/lib/subjects/registry";
 import { mergeOerDomains } from "@/lib/oer";
 import { cacheGetOrSet, cacheKey, CACHE_TTL } from "@/lib/cache";
-import OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import { chunkSearchResults } from "./chunking";
 import { embedChunks } from "./embeddings";
 import { hybridRetrieve, reciprocalRankFusion } from "./hybrid-retriever";
@@ -23,9 +23,7 @@ import {
 import { getCuratedSourcesForField } from "./sources";
 import type { AdvancedStudyContext, RagChunk } from "./types";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("rag");
 
 export async function gatherAdvancedStudyMaterial(
   field: string,

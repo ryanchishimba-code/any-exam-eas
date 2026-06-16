@@ -1,11 +1,11 @@
-import bcrypt from "bcryptjs";
 import { randomBytes } from "node:crypto";
 import type { StaffRole } from "@/lib/analytics/types";
 import { prisma } from "@/lib/prisma";
+import { hashPassword, passwordCredentialFields } from "@/lib/password-hash";
 import { hasMinRole, normalizeRole, ROLE_RANK } from "@/lib/permissions";
 import type { StaffRoleValue } from "@/lib/validators/staff";
+import { normalizeEmail } from "@/lib/validators/auth";
 
-const BCRYPT_ROUNDS = 12;
 const STAFF_DOB = new Date("1990-01-01T00:00:00.000Z");
 
 function daysFromNow(days: number): Date {
@@ -87,11 +87,12 @@ export async function inviteStaffMember(params: {
   role: Exclude<StaffRoleValue, "user">;
   password?: string;
 }): Promise<{ userId: string; created: boolean; temporaryPassword?: string }> {
+  const email = normalizeEmail(params.email);
   const password = params.password?.trim() || generateStaffPassword();
-  const passwordHash = await bcrypt.hash(password, BCRYPT_ROUNDS);
+  const credentialFields = passwordCredentialFields(await hashPassword(password));
 
   const existing = await prisma.user.findUnique({
-    where: { email: params.email },
+    where: { email },
     include: { subscription: true },
   });
 
@@ -103,7 +104,7 @@ export async function inviteStaffMember(params: {
         role: params.role,
         accountStatus: "active",
         emailVerified: existing.emailVerified ?? new Date(),
-        ...(params.password ? { passwordHash } : {}),
+        ...(params.password ? credentialFields : {}),
       },
     });
 
@@ -122,9 +123,9 @@ export async function inviteStaffMember(params: {
 
   const user = await prisma.user.create({
     data: {
-      email: params.email,
+      email,
       name: params.name,
-      passwordHash,
+      ...credentialFields,
       dateOfBirth: STAFF_DOB,
       role: params.role,
       accountStatus: "active",

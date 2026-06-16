@@ -2,7 +2,10 @@ import { describe, expect, it } from "vitest";
 import type { BankItem } from "@/lib/question-bank";
 import {
   hasAdjacentSimilarSpread,
+  hasWindowSimilarSpread,
   selectSpreadBankItems,
+  sessionSpreadPasses,
+  SESSION_SPREAD_WINDOW,
   spreadByGroupKey,
   spreadGroupKeyFromBankItem,
   spreadGroupKeyFromStudyQuestion,
@@ -99,7 +102,26 @@ describe("selectSpreadBankItems", () => {
     const selected = selectSpreadBankItems(clustered, 6);
     expect(selected).toHaveLength(6);
     expect(
-      hasAdjacentSimilarSpread(selected, spreadGroupKeyFromBankItem)
+      sessionSpreadPasses(selected, spreadGroupKeyFromBankItem, (item) => item.options)
+    ).toBe(true);
+  });
+
+  it("keeps duplicate spread groups at least 25 questions apart in long sessions", () => {
+    const sharedVignette = "Male with crushing chest pain and diaphoresis";
+    const items = Array.from({ length: 50 }, (_, i) =>
+      bankItem(
+        `q-${i}`,
+        i % 5 === 0 ? "cardiology" : i % 5 === 1 ? "nephrology" : i % 5 === 2 ? "pulmonology" : i % 5 === 3 ? "gi" : "neuro",
+        `Question ${i}?`,
+        i % 10 === 0 ? sharedVignette : `Unique vignette ${i}`,
+        [`Opt A ${i}`, `Opt B ${i}`, `Opt C ${i}`, `Opt D ${i}`]
+      )
+    );
+
+    const selected = selectSpreadBankItems(items, 40);
+    expect(selected).toHaveLength(40);
+    expect(
+      hasWindowSimilarSpread(selected, spreadGroupKeyFromBankItem, SESSION_SPREAD_WINDOW)
     ).toBe(false);
   });
 });

@@ -200,7 +200,7 @@ export function FullExamSimulator({
       if (fieldId === "nursing" && config.nclexLength) {
         qs.set("nclexLength", config.nclexLength);
       }
-      if (fieldId === "nursing" && config.presetExamNumber) {
+      if (config.presetExamNumber) {
         qs.set("presetExamNumber", String(config.presetExamNumber));
       }
 

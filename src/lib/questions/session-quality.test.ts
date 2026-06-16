@@ -9,7 +9,6 @@ import {
   assessDifficultyMix,
   balanceDifficultyMix,
   enforceSessionCount,
-  hasAdjacentSimilarOptions,
   optionsAreTooSimilar,
   optionsFingerprint,
   resolveDifficultyBand,
@@ -17,7 +16,10 @@ import {
 } from "./session-quality";
 import {
   hasAdjacentSimilarSpread,
+  hasWindowSimilarOptions,
+  hasWindowSimilarSpread,
   selectSpreadBankItems,
+  SESSION_SPREAD_WINDOW,
   spreadGroupKeyFromBankItem,
 } from "./spread-session-order";
 import type { RawQuestionInput } from "./types";
@@ -43,9 +45,9 @@ describe("SESSION_QUALITY_REQUIREMENTS", () => {
     expect(Object.keys(SESSION_QUALITY_REQUIREMENTS)).toHaveLength(5);
     expect(SESSION_QUALITY_REQUIREMENTS.exactCount).toMatch(/count/i);
     expect(SESSION_QUALITY_REQUIREMENTS.difficultyMix).toMatch(/easy|medium|hard/i);
-    expect(SESSION_QUALITY_REQUIREMENTS.spreadSimilarOptions).toMatch(/answer choices/i);
+    expect(SESSION_QUALITY_REQUIREMENTS.spreadSimilarOptions).toMatch(/25/i);
     expect(SESSION_QUALITY_REQUIREMENTS.strongDistractors).toMatch(/plausible/i);
-    expect(SESSION_QUALITY_REQUIREMENTS.variedScenarios).toMatch(/vignette/i);
+    expect(SESSION_QUALITY_REQUIREMENTS.variedScenarios).toMatch(/25/i);
   });
 });
 
@@ -161,10 +163,10 @@ describe("requirement 3 — similar answer choices spread apart", () => {
 
     const selected = selectSpreadBankItems(clustered, 4);
     expect(
-      hasAdjacentSimilarOptions(selected, (item) => item.options)
+      hasWindowSimilarOptions(selected, (item) => item.options, SESSION_SPREAD_WINDOW)
     ).toBe(false);
     expect(
-      hasAdjacentSimilarSpread(selected, spreadGroupKeyFromBankItem)
+      hasWindowSimilarSpread(selected, spreadGroupKeyFromBankItem, SESSION_SPREAD_WINDOW)
     ).toBe(false);
   });
 
@@ -205,7 +207,7 @@ describe("requirement 3 — similar answer choices spread apart", () => {
 
     const prepared = prepareQuestionsForSession(raw, { shuffleOrder: true });
     expect(
-      hasAdjacentSimilarOptions(prepared, (q) => q.options)
+      hasWindowSimilarOptions(prepared, (q) => q.options, SESSION_SPREAD_WINDOW)
     ).toBe(false);
   });
 });

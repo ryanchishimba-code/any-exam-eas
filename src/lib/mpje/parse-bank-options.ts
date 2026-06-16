@@ -121,6 +121,7 @@ export function enrichBankItemFromRow(row: {
   generationVersion?: string | null;
   generationMeta?: unknown;
   references?: unknown;
+  source?: string | null;
 }): BankItem {
   const { options, statements, ngnPayload, distractorRationale, clinicalReasoning, keyTakeaways } =
     parseBankOptions(row.options);
@@ -163,6 +164,7 @@ export function enrichBankItemFromRow(row: {
     distractorRationale,
     clinicalReasoning,
     keyTakeaways,
+    source: row.source ?? undefined,
   };
   if (Object.keys(mergedPayload).length > 0) {
     item.ngnPayload = mergedPayload;

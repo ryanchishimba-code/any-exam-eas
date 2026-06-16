@@ -1,10 +1,8 @@
-import OpenAI from "openai";
 import type { SearchResult } from "./search";
 import { runExamGenerationPipeline } from "./engine/pipeline";
+import { getOpenAiClient } from "./openai-client";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("enrichment");
 
 export type NgnQuestionFormat =
   | "multiple_choice"

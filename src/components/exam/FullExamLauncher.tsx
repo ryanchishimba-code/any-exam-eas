@@ -32,11 +32,14 @@ type Props = {
   initialTimed?: boolean;
 };
 
-type NclexPresetSummary = {
+type PresetSummary = {
   examNumber: number;
   title: string;
   questionCount: number;
   blueprintSummary: Record<string, number> | null;
+  stepLevel?: "step1" | "step2";
+  linkedCount?: number;
+  qaPassed?: boolean;
 };
 
 export function FullExamLauncher({
@@ -53,7 +56,7 @@ export function FullExamLauncher({
   );
   const [timed, setTimed] = useState(initialTimed);
   const [presetExamNumber, setPresetExamNumber] = useState<number | null>(null);
-  const [nclexPresets, setNclexPresets] = useState<NclexPresetSummary[]>([]);
+  const [curatedPresets, setCuratedPresets] = useState<PresetSummary[]>([]);
   const [pending, setPending] = useState(autostart);
   const [error, setError] = useState<string | null>(null);
   const startingRef = useRef(false);
@@ -62,8 +65,9 @@ export function FullExamLauncher({
     presetExamNumber: presetExamNumber ?? undefined,
   });
   const pageTitle =
-    presetExamNumber && examSlug === "nclex"
-      ? `NCLEX-RN Practice Exam ${presetExamNumber}`
+    presetExamNumber && (examSlug === "nclex" || examSlug === "usmle" || examSlug === "npte-pt")
+      ? curatedPresets.find((p) => p.examNumber === presetExamNumber)?.title ??
+        `${exam.shortName} Practice Exam ${presetExamNumber}`
       : fullExamModeTitle(examSlug, preset);
 
   async function startExam() {
@@ -115,11 +119,11 @@ export function FullExamLauncher({
   }
 
   useEffect(() => {
-    if (examSlug !== "nclex") return;
-    void fetch("/api/full-exam/presets?examSlug=nclex")
+    if (examSlug !== "nclex" && examSlug !== "usmle" && examSlug !== "npte-pt") return;
+    void fetch(`/api/full-exam/presets?examSlug=${examSlug}`)
       .then((r) => r.json())
-      .then((data: { exams?: NclexPresetSummary[] }) => {
-        if (Array.isArray(data.exams)) setNclexPresets(data.exams);
+      .then((data: { exams?: PresetSummary[] }) => {
+        if (Array.isArray(data.exams)) setCuratedPresets(data.exams.filter((e) => e.qaPassed !== false));
       })
       .catch(() => {});
   }, [examSlug]);
@@ -166,11 +170,18 @@ export function FullExamLauncher({
 
           <div className="grid gap-6 lg:grid-cols-[1fr,min(18rem,100%)]">
             <div className="space-y-6">
-              {examSlug === "nclex" && nclexPresets.length > 0 ? (
+              {(examSlug === "nclex" || examSlug === "usmle" || examSlug === "npte-pt") &&
+              curatedPresets.length > 0 ? (
                 <QuestionBankSection
                   step={1}
                   title="Curated practice exams"
-                  hint="10 full-length exams (80 questions) with 2026 blueprint mix, NGN case studies, and board-level rationales."
+                  hint={
+                    examSlug === "usmle"
+                      ? "10 block-style exams (75–85 Q) alternating Step 1 and Step 2 CK — 2026 blueprint, QA-gated."
+                      : examSlug === "npte-pt"
+                        ? "4 curated exams (80 questions) — FSBPT 2024 blueprint mix with clinical scenarios and PT-specific rationales."
+                        : "10 full-length exams (80 questions) with 2026 blueprint mix, NGN case studies, and board-level rationales."
+                  }
                 >
                   <div className="grid gap-2 sm:grid-cols-2">
                     <button
@@ -188,7 +199,7 @@ export function FullExamLauncher({
                         Random QA-passed items — same as live simulator
                       </p>
                     </button>
-                    {nclexPresets.map((p) => (
+                    {curatedPresets.map((p) => (
                       <button
                         key={p.examNumber}
                         type="button"
@@ -202,10 +213,15 @@ export function FullExamLauncher({
                         )}
                       >
                         <p className="text-[14px] font-semibold text-[var(--color-ink)]">
-                          Exam {p.examNumber}
+                          {examSlug === "usmle" && p.stepLevel
+                            ? p.stepLevel === "step1"
+                              ? "Step 1"
+                              : "Step 2 CK"
+                            : `Exam ${p.examNumber}`}
+                          {examSlug === "usmle" ? ` · Exam ${p.examNumber}` : ""}
                         </p>
                         <p className="mt-1 text-[12px] leading-snug text-[var(--color-ink-muted)]">
-                          {p.questionCount} questions · fixed high-yield set
+                          {(p.linkedCount ?? p.questionCount)} questions · fixed high-yield set
                         </p>
                       </button>
                     ))}
@@ -215,7 +231,12 @@ export function FullExamLauncher({
 
               {!presetExamNumber ? (
               <QuestionBankSection
-                step={examSlug === "nclex" && nclexPresets.length > 0 ? 2 : 1}
+                step={
+                  (examSlug === "nclex" || examSlug === "usmle" || examSlug === "npte-pt") &&
+                  curatedPresets.length > 0
+                    ? 2
+                    : 1
+                }
                 title="Exam length"
                 hint="Pick a sprint, extended run, or full board-length simulation."
               >
@@ -241,7 +262,14 @@ export function FullExamLauncher({
               ) : null}
 
               <QuestionBankSection
-                step={examSlug === "nclex" && nclexPresets.length > 0 ? (presetExamNumber ? 2 : 3) : 2}
+                step={
+                  (examSlug === "nclex" || examSlug === "usmle" || examSlug === "npte-pt") &&
+                  curatedPresets.length > 0
+                    ? presetExamNumber
+                      ? 2
+                      : 3
+                    : 2
+                }
                 title="Timing"
                 hint="Timed mode mirrors real exam pressure."
               >

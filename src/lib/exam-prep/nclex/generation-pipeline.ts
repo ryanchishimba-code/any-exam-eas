@@ -1,7 +1,7 @@
 /**
  * AI generation pipeline for NCLEX-RN full-length practice exams.
  */
-import OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import type { BankItem } from "@/lib/question-bank";
 import type { ExamQuestion } from "@/lib/ai";
 import { BATCH_DIVERSITY_RULES } from "@/lib/engine/prompts/batch-diversity";
@@ -37,9 +37,7 @@ import {
   NCLEX_GENERATION_CONCURRENCY,
 } from "./types";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("generation");
 
 const MAX_CHUNK_RETRIES = 5;
 const CHUNK_RETRY_BASE_MS = 3000;

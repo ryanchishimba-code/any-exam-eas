@@ -6,6 +6,8 @@ import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { ROUTES } from "@/lib/routes";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { checkAndRecordAccountIp } from "@/lib/account-ip-limit";
+import { getUserAccess } from "@/lib/access-control";
+import { isAccountDisabled } from "@/lib/account-security";
 
 export const metadata = {
   title: "Settings — Any Exam Easy",
@@ -22,12 +24,18 @@ export default async function SettingsPage() {
     session.user.id,
     session.user.role,
     undefined,
-    await headers()
+    await headers(),
+    session.user.email
   );
   if (!ipCheck.ok) {
     redirect(
       `/login?error=${ipCheck.reason}&callbackUrl=${encodeURIComponent("/settings")}`
     );
+  }
+
+  const access = await getUserAccess(session.user.id);
+  if (isAccountDisabled(access.accountStatus)) {
+    redirect("/login?error=account_disabled&callbackUrl=%2Fsettings");
   }
 
   const pref = await getUserExamPreference(session.user.id);

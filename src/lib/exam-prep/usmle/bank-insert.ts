@@ -5,6 +5,7 @@ import type { PrismaClient } from "@prisma/client";
 import { bankItemContentHash } from "@/lib/sync-question-bank";
 import { serializeBankOptions } from "@/lib/mpje/parse-bank-options";
 import { assessUsmleFullExamItem } from "./quality-gate";
+import { usmlePresetExamIsServeReady } from "./load-preset-exam";
 import type { UsmleFullExamBundle } from "./types";
 import { USMLE_FULL_EXAM_VERSION } from "./types";
 
@@ -96,6 +97,7 @@ export async function insertUsmleFullExam(
   }
 
   const batchId = (exam.items[0]?.ngnPayload?.generationMeta as { batchId?: string })?.batchId;
+  const serveReady = usmlePresetExamIsServeReady(exam.items.length, exam.questionCount);
 
   const examRecord = await prisma.usmleFullPracticeExam.upsert({
     where: { examNumber: exam.examNumber },
@@ -103,28 +105,28 @@ export async function insertUsmleFullExam(
       examNumber: exam.examNumber,
       title: exam.title,
       stepLevel: exam.stepLevel,
-      questionCount: exam.items.length,
+      questionCount: exam.questionCount,
       blueprintSummary: exam.blueprintSummary,
       formatSummary: exam.formatSummary,
       taskSummary: exam.taskSummary,
       batchId,
       generationVersion: USMLE_FULL_EXAM_VERSION,
-      qaPassed: exam.qaReport.allPassed,
+      qaPassed: serveReady,
       qaReport: exam.qaReport,
-      active: exam.qaReport.allPassed,
+      active: serveReady,
     },
     update: {
       title: exam.title,
       stepLevel: exam.stepLevel,
-      questionCount: exam.items.length,
+      questionCount: exam.questionCount,
       blueprintSummary: exam.blueprintSummary,
       formatSummary: exam.formatSummary,
       taskSummary: exam.taskSummary,
       batchId,
       generationVersion: USMLE_FULL_EXAM_VERSION,
-      qaPassed: exam.qaReport.allPassed,
+      qaPassed: serveReady,
       qaReport: exam.qaReport,
-      active: exam.qaReport.allPassed,
+      active: serveReady,
     },
   });
 

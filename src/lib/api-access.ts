@@ -4,11 +4,21 @@ import { auth } from "@/auth";
 import { getUserAccess, userHasFeature, type UserAccess } from "@/lib/access-control";
 import { subscriptionRequiredResponse, proFeatureRequiredResponse } from "@/lib/api-subscription";
 import { enforceAccountIpLimit } from "@/lib/account-ip-limit";
+import { isAccountDisabled } from "@/lib/account-security";
 import type { SubscriptionFeature } from "@/lib/subscription-features";
 
 export type ApiAuthResult =
   | { ok: true; userId: string; access: UserAccess }
   | { ok: false; response: NextResponse };
+
+function accountDisabledResponse(status: string): NextResponse {
+  const code = status === "deleted" ? "ACCOUNT_DELETED" : "ACCOUNT_SUSPENDED";
+  const message =
+    status === "deleted"
+      ? "This account has been closed."
+      : "Account suspended";
+  return NextResponse.json({ error: message, code }, { status: 403 });
+}
 
 export async function requireAuthenticatedApi(req?: Request): Promise<ApiAuthResult> {
   const session = await auth();
@@ -24,13 +34,19 @@ export async function requireAuthenticatedApi(req?: Request): Promise<ApiAuthRes
     session.user.id,
     session.user.role,
     req,
-    headerStore
+    headerStore,
+    session.user.email
   );
   if (ipBlocked) {
     return { ok: false, response: ipBlocked };
   }
 
-  return { ok: true, userId: session.user.id, access: await getUserAccess(session.user.id) };
+  const access = await getUserAccess(session.user.id);
+  if (isAccountDisabled(access.accountStatus)) {
+    return { ok: false, response: accountDisabledResponse(access.accountStatus) };
+  }
+
+  return { ok: true, userId: session.user.id, access };
 }
 
 export async function requirePremiumApi(req?: Request): Promise<ApiAuthResult> {
@@ -39,13 +55,10 @@ export async function requirePremiumApi(req?: Request): Promise<ApiAuthResult> {
 
   const { access } = authResult;
   if (!access.hasPremiumAccess) {
-    if (access.blockReason === "suspended") {
+    if (access.blockReason === "suspended" || access.blockReason === "deleted") {
       return {
         ok: false,
-        response: NextResponse.json(
-          { error: "Account suspended", code: "ACCOUNT_SUSPENDED" },
-          { status: 403 }
-        ),
+        response: accountDisabledResponse(access.accountStatus),
       };
     }
     if (access.blockReason === "email_unverified") {

@@ -52,7 +52,7 @@ export function buildSessionConfig(
   examSlug: ExamSlug,
   preset: FullExamLengthPreset,
   timed: boolean,
-  opts?: { nclexLength?: "minimum" | "maximum"; presetExamNumber?: number }
+  opts?: { nclexLength?: "minimum" | "maximum"; presetExamNumber?: number; presetQuestionCount?: number }
 ): FullExamSessionConfig {
   const option = getLengthOptions(examSlug).find((o) => o.preset === preset)!;
   let questionCount = option.questionCount;
@@ -60,6 +60,15 @@ export function buildSessionConfig(
     questionCount = 150;
   }
   if (opts?.presetExamNumber && examSlug === "nclex") {
+    questionCount = 80;
+  }
+  if (opts?.presetExamNumber && examSlug === "usmle" && opts.presetQuestionCount) {
+    questionCount = opts.presetQuestionCount;
+  }
+  if (opts?.presetExamNumber && examSlug === "npte-pt" && opts.presetQuestionCount) {
+    questionCount = opts.presetQuestionCount;
+  }
+  if (opts?.presetExamNumber && examSlug === "npte-pt" && !opts.presetQuestionCount) {
     questionCount = 80;
   }
   return {
@@ -73,6 +82,12 @@ export function buildSessionConfig(
           nclexLength: opts?.nclexLength ?? "minimum",
           ...(opts?.presetExamNumber ? { presetExamNumber: opts.presetExamNumber } : {}),
         }
+      : {}),
+    ...(examSlug === "usmle" && opts?.presetExamNumber
+      ? { presetExamNumber: opts.presetExamNumber }
+      : {}),
+    ...(examSlug === "npte-pt" && opts?.presetExamNumber
+      ? { presetExamNumber: opts.presetExamNumber }
       : {}),
   };
 }

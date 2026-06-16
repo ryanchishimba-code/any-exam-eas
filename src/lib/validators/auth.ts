@@ -12,7 +12,7 @@ export const signupPlanSchema = z.enum(["trial", "subscribe"], {
 export const subscriptionTierSchema = z.enum(["basic", "pro"]).default("pro");
 
 export const signUpSchema = z.object({
-  email: z.string().email().transform(normalizeEmail),
+  email: z.string().trim().email().transform(normalizeEmail),
   password: z
     .string()
     .min(10, "Password must be at least 10 characters.")
@@ -30,7 +30,7 @@ export const signUpSchema = z.object({
 });
 
 export const loginSchema = z.object({
-  email: z.string().email().transform(normalizeEmail),
+  email: z.string().trim().email().transform(normalizeEmail),
   password: z.string().min(1, "Password is required."),
 });
 

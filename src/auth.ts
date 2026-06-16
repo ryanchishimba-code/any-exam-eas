@@ -7,7 +7,7 @@ import { authConfig } from "@/auth.config";
 import { verifyUserPassword, recordUserLogin } from "@/lib/user-auth";
 import { loginSchema } from "@/lib/validators/auth";
 import { prisma } from "@/lib/prisma";
-import { findOrCreateGoogleUser, OAuthLinkBlockedError } from "@/lib/oauth-user";
+import { findOrCreateGoogleUser, OAuthLinkBlockedError, OAuthAccountDisabledError } from "@/lib/oauth-user";
 import {
   trackEvent,
   logActivity,
@@ -73,8 +73,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         );
         if (!user) return null;
 
-        if (user.accountStatus === "suspended") return null;
-
         const req = request as Request | undefined;
 
         const dbUser = await prisma.user.findUnique({
@@ -86,6 +84,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const ipCheck = await assertAccountIpAllowed(user.id, {
           ipHash: resolveIpHash(req),
           role,
+          email: user.email,
         });
         if (!ipCheck.ok) throw new TooManyIpAddresses();
 
@@ -147,7 +146,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             where: { id: linked.id },
             select: { accountStatus: true },
           });
-          if (dbUser?.accountStatus === "suspended") return false;
+          if (dbUser?.accountStatus === "suspended" || dbUser?.accountStatus === "deleted") {
+            return false;
+          }
           user.id = linked.id;
           (user as { role?: string }).role = linked.role;
 
@@ -155,13 +156,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           const ipCheck = await assertAccountIpAllowed(linked.id, {
             ipHash,
             role: linked.role,
+            email: user.email,
           });
           if (!ipCheck.ok) {
             return `/login?error=${ipCheck.reason}`;
           }
           if (ipHash) await recordAccountIpAccess(linked.id, ipHash);
         } catch (e) {
-          if (e instanceof OAuthLinkBlockedError) return false;
+          if (e instanceof OAuthLinkBlockedError || e instanceof OAuthAccountDisabledError) {
+            return false;
+          }
           throw e;
         }
       }

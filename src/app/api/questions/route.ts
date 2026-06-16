@@ -82,7 +82,7 @@ export async function GET(req: Request) {
 
   const presetExamNumberRaw = searchParams.get("presetExamNumber");
   const presetExamNumber =
-    fieldId === "nursing" &&
+    (fieldId === "nursing" || fieldId.startsWith("usmle") || fieldId === "npte-pt") &&
     presetExamNumberRaw &&
     Number.isFinite(Number(presetExamNumberRaw))
       ? Math.max(1, Math.min(10, Number(presetExamNumberRaw)))
@@ -128,6 +128,34 @@ export async function GET(req: Request) {
       );
     }
     items = preset.items;
+  } else if (presetExamNumber && fieldId.startsWith("usmle") && timedExam) {
+    const { loadUsmlePresetExamItems } = await import("@/lib/exam-prep/usmle/load-preset-exam");
+    const preset = await loadUsmlePresetExamItems(presetExamNumber);
+    if (!preset) {
+      return NextResponse.json(
+        {
+          error: `USMLE Practice Exam ${presetExamNumber} is not available yet. Generation may still be in progress.`,
+          code: "PRESET_EXAM_UNAVAILABLE",
+        },
+        { status: 404 }
+      );
+    }
+    items = preset.items;
+  } else if (presetExamNumber && fieldId === "npte-pt" && timedExam) {
+    const { loadNptePtPresetExamItems } = await import(
+      "@/lib/exam-prep/npte-pt/load-preset-exam"
+    );
+    const preset = await loadNptePtPresetExamItems(presetExamNumber);
+    if (!preset) {
+      return NextResponse.json(
+        {
+          error: `NPTE-PT Practice Exam ${presetExamNumber} is not available. Run db:seed-npte-pt-full-exams first.`,
+          code: "PRESET_EXAM_UNAVAILABLE",
+        },
+        { status: 404 }
+      );
+    }
+    items = preset.items;
   } else if (mixed && timedExam) {
     const { gatherTimedExamBankItems } = await import("@/lib/questions/timed-exam-sampling");
 
@@ -151,6 +179,16 @@ export async function GET(req: Request) {
           initialSampleCount: sampleCount,
         })
       ).map(prepareNaplexBankItem);
+    } else if (fieldId === "npte-pt") {
+      const { nptePtItemPassesTimedExamGate } = await import(
+        "@/lib/exam-prep/npte-pt-serve-gate"
+      );
+      items = await gatherTimedExamBankItems({
+        fieldId,
+        limit,
+        filterFn: nptePtItemPassesTimedExamGate,
+        initialSampleCount: sampleCount,
+      });
     } else if (clinicalField) {
       const { usmleBankItemIsServeReady } = await import("@/lib/exam-prep/usmle-clinical-gate");
       items = await gatherTimedExamBankItems({

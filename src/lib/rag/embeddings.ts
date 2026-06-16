@@ -1,9 +1,7 @@
-import OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import type { RagChunk } from "./types";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("rag");
 
 const EMBEDDING_MODEL = "text-embedding-3-small";
 const BATCH_SIZE = 32;

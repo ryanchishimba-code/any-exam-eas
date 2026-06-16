@@ -3,6 +3,8 @@ import { createExamSession } from "@/lib/exam-sessions/service";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { setUserExamPreference } from "@/lib/edtech/exam-preference";
 import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
+import { loadUsmlePresetExamItems } from "@/lib/exam-prep/usmle/load-preset-exam";
+import { loadNptePtPresetExamItems } from "@/lib/exam-prep/npte-pt/load-preset-exam";
 import { requirePremiumApi } from "@/lib/api-access";
 import type { FullExamLengthPreset } from "@/types/full-exam";
 
@@ -25,26 +27,57 @@ export async function POST(req: Request) {
   const nclexLength =
     body.nclexLength === "maximum" ? ("maximum" as const) : ("minimum" as const);
   const presetExamNumber =
-    examSlug === "nclex" && Number.isFinite(Number(body.presetExamNumber))
+    (examSlug === "nclex" || examSlug === "usmle" || examSlug === "npte-pt") &&
+    Number.isFinite(Number(body.presetExamNumber))
       ? Math.max(1, Math.min(10, Number(body.presetExamNumber)))
       : undefined;
 
   try {
     await setUserExamPreference(premium.userId, examSlug);
 
+    let presetQuestionCount: number | undefined;
+    let sessionFieldId = EXAM_CATALOG[examSlug].fieldId;
+    let sessionTitle = `${EXAM_CATALOG[examSlug].shortName} Full Simulation`;
+
+    if (presetExamNumber && examSlug === "usmle") {
+      const preset = await loadUsmlePresetExamItems(presetExamNumber);
+      if (!preset) {
+        return NextResponse.json(
+          {
+            error: `USMLE Practice Exam ${presetExamNumber} is not available yet.`,
+          },
+          { status: 503 }
+        );
+      }
+      presetQuestionCount = preset.exam.questionCount;
+      sessionFieldId = preset.fieldId;
+      sessionTitle = preset.exam.title;
+    } else if (presetExamNumber && examSlug === "npte-pt") {
+      const preset = await loadNptePtPresetExamItems(presetExamNumber);
+      if (!preset) {
+        return NextResponse.json(
+          {
+            error: `NPTE-PT Practice Exam ${presetExamNumber} is not available. Run db:seed-npte-pt-full-exams first.`,
+          },
+          { status: 503 }
+        );
+      }
+      presetQuestionCount = preset.exam.questionCount;
+      sessionTitle = preset.exam.title;
+    } else if (presetExamNumber) {
+      sessionTitle = `${EXAM_CATALOG[examSlug].shortName} Practice Exam ${presetExamNumber}`;
+    }
+
     const config = buildSessionConfig(examSlug, preset, timed, {
       nclexLength: examSlug === "nclex" ? nclexLength : undefined,
       presetExamNumber,
+      presetQuestionCount,
     });
-    const exam = EXAM_CATALOG[examSlug];
 
-    const sessionTitle = presetExamNumber
-      ? `${exam.shortName} Practice Exam ${presetExamNumber}`
-      : `${exam.shortName} Full Simulation`;
     const sessionId = await createExamSession(premium.userId, examSlug, {
       questionCount: config.questionCount,
       timeLimitSec: config.timed ? config.timeLimitSec : null,
-      fieldId: exam.fieldId,
+      fieldId: sessionFieldId,
       title: sessionTitle,
       sessionConfig: config,
     });

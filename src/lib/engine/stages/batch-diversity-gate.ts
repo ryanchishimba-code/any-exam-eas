@@ -65,7 +65,10 @@ export function enforceGeneratedExamQuality(
       issue === "generic_distractors" ||
       issue.startsWith("count_mismatch") ||
       (target >= 4 &&
-        (issue === "adjacent_similar_options" || issue === "adjacent_similar_cases"))
+        (issue === "adjacent_similar_options" ||
+          issue === "adjacent_similar_cases" ||
+          issue === "window_similar_options" ||
+          issue === "window_similar_cases"))
   );
 
   const passed =

@@ -1,9 +1,7 @@
-import OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import type { DrugEntry } from "./catalog";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("enrichment");
 
 export async function generateDrugMnemonic(drug: DrugEntry): Promise<string> {
   if (drug.mnemonic) return drug.mnemonic;

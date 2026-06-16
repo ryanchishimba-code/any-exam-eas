@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { isOpenAiPurposeAllowed } from "@/lib/openai-client";
 import type { AIExplanation, PersonalizedPlan } from "./types";
 import { AIExplanationSchema, PersonalizedPlanSchema } from "./types";
 
@@ -66,7 +67,7 @@ async function callStructuredOpenAI<T>(
   maxRetries = 2
 ): Promise<T | null> {
   const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) return null;
+  if (!apiKey || !isOpenAiPurposeAllowed("enrichment")) return null;
 
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {

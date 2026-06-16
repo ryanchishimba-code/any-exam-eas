@@ -2,7 +2,7 @@
  * NAPLEX curation engine — triage weak bank items, rule-polish, then AI rewrite
  * so vignettes, stems, options, drug profiles, and correct answers stay aligned.
  */
-import OpenAI from "openai";
+import { getOpenAiClient } from "@/lib/openai-client";
 import type { BankItem } from "@/lib/question-bank";
 import type { ExamQuestion } from "@/lib/ai";
 import { auditBankItem } from "@/lib/exam-prep/bank-audit";
@@ -26,9 +26,7 @@ import type {
   NaplexCurationTriage,
 } from "./naplex-curation-types";
 
-const openai = process.env.OPENAI_API_KEY
-  ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
-  : null;
+const openai = getOpenAiClient("curation");
 
 const DEFAULT_MIN_SERVE = 0.62;
 const DEFAULT_MIN_PASS = 0.72;

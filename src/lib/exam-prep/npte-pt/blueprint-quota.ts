@@ -180,3 +180,69 @@ export function assessBlueprintAlignment(
 export function stemFormatForIndex(index: number): string {
   return STEM_FORMATS[index % STEM_FORMATS.length]!;
 }
+
+/** Plan blueprint-weighted slot targets for one full-length NPTE-PT practice exam. */
+export function planNptePtFullExamSlots(params: {
+  examNumber: number;
+  questionCount?: number;
+}): NptePtGenerationSlot[] {
+  const { examNumber, questionCount = 80 } = params;
+  const examSeed = examNumber * 13;
+  const quotas = computeNptePtContentQuotas(questionCount);
+  const slots: NptePtGenerationSlot[] = [];
+
+  for (const row of quotas) {
+    for (let i = 0; i < row.targetCount; i++) {
+      const slotIndex = slots.length;
+      slots.push({
+        contentCategory: row.contentCategory,
+        taskCategory: pickTaskForSlot(row.contentCategory, slotIndex + examSeed),
+        blueprintTopic: pickTopic(row.contentCategory, slotIndex + examSeed),
+        difficulty: 2 + ((slotIndex + examSeed) % 4),
+        presentationHint:
+          PRESENTATION_HINTS[(slotIndex + examSeed) % PRESENTATION_HINTS.length],
+      });
+    }
+  }
+
+  while (slots.length < questionCount) {
+    const slotIndex = slots.length;
+    const contentCategory = CONTENT_IDS[(slotIndex + examSeed) % CONTENT_IDS.length]!;
+    slots.push({
+      contentCategory,
+      taskCategory: pickTaskForSlot(contentCategory, slotIndex + examSeed),
+      blueprintTopic: pickTopic(contentCategory, slotIndex + examSeed),
+      difficulty: 2 + ((slotIndex + examSeed) % 4),
+      presentationHint:
+        PRESENTATION_HINTS[(slotIndex + examSeed) % PRESENTATION_HINTS.length],
+    });
+  }
+
+  return slots.slice(0, questionCount);
+}
+
+export function summarizeNptePtExamBlueprint(
+  slots: NptePtGenerationSlot[]
+): Record<string, number> {
+  const summary: Record<string, number> = {};
+  for (const slot of slots) {
+    const label =
+      NPTE_PT_BLUEPRINT.categories.find((c) => c.id === slot.contentCategory)?.label ??
+      slot.contentCategory;
+    summary[label] = (summary[label] ?? 0) + 1;
+  }
+  return summary;
+}
+
+export function summarizeNptePtTaskMix(
+  slots: NptePtGenerationSlot[]
+): Record<string, number> {
+  const summary: Record<string, number> = {};
+  for (const slot of slots) {
+    const label =
+      NPTE_PT_TASK_CATEGORIES.find((t) => t.id === slot.taskCategory)?.label ??
+      slot.taskCategory;
+    summary[label] = (summary[label] ?? 0) + 1;
+  }
+  return summary;
+}

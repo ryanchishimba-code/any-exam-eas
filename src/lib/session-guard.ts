@@ -30,7 +30,8 @@ export async function requireSessionGuard(req?: Request): Promise<SessionGuardRe
     session.user.id,
     session.user.role,
     req,
-    headerStore
+    headerStore,
+    session.user.email
   );
   if (!ipCheck.ok) {
     return { ok: false, response: accountIpLimitResponse(ipCheck.reason) };
@@ -49,7 +50,8 @@ export async function optionalSessionGuard(req?: Request): Promise<OptionalSessi
     session.user.id,
     session.user.role,
     req,
-    headerStore
+    headerStore,
+    session.user.email
   );
   if (!ipCheck.ok) {
     return { ok: false, response: accountIpLimitResponse(ipCheck.reason) };
