@@ -387,6 +387,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Persistent elevation despite treatment → escalate care",
       "Consider occult ischemia or inadequate source control",
+      "Repeat lactate after initial resuscitation to confirm trend",
     ],
     practiceTopicSlug: "infectious-disease",
     reviewModuleSlug: "sepsis-shock",
@@ -405,6 +406,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Managed in ICU — not outpatient therapy",
       "Identify and treat underlying infection source",
+      "Titrate to MAP ≥65 mmHg per sepsis protocol",
     ],
     practiceTopicSlug: "infectious-disease",
     reviewModuleSlug: "sepsis-shock",
@@ -423,6 +425,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Recurrent bacteremia → search for endocarditis or occult abscess",
       "Foley-associated UTI — remove or replace catheter",
+      "Surgical consult when abscess or necrotizing infection suspected",
     ],
     practiceTopicSlug: "infectious-disease",
     reviewModuleSlug: "sepsis-shock",
@@ -461,6 +464,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Pregnancy: treat all bacteriuria; avoid fluoroquinolones",
       "Male UTI, recurrent UTI, or failed therapy → consider imaging/referral",
+      "Pyelonephritis needs longer course and often fluoroquinolone or ceftriaxone",
     ],
     practiceTopicSlug: "infectious-disease",
     reviewModuleSlug: "infectious-disease",
@@ -479,6 +483,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Fever, tonsillar exudates, tender anterior nodes, no cough support strep",
       "Return to school 24 hours after antibiotics started",
+      "Penicillin or amoxicillin first line when no allergy",
     ],
     practiceTopicSlug: "infectious-disease",
     reviewModuleSlug: "infectious-disease",
@@ -497,6 +502,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Recurrent MRSA → decolonization and household hygiene counseling",
       "Refer if deep tissue infection, immunocompromised, or failed outpatient therapy",
+      "Incision and drainage is essential for fluctuant abscess",
     ],
     practiceTopicSlug: "infectious-disease",
     reviewModuleSlug: "infectious-disease",
@@ -515,6 +521,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Counsel on adherence and STI prevention",
       "STI screening per CDC guidelines",
+      "Screen for HBV before starting; monitor renal function on TDF",
     ],
     practiceTopicSlug: "infectious-disease",
     reviewModuleSlug: "infectious-disease",
@@ -533,6 +540,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Live vaccines generally contraindicated in pregnancy and severe immunosuppression",
       "Pneumococcal and zoster schedules vary by age and prior vaccination",
+      "Review Tdap, influenza, and COVID boosters at annual visits",
     ],
     practiceTopicSlug: "infectious-disease",
     reviewModuleSlug: "infectious-disease",
@@ -590,6 +598,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Rh negative → Rhogam at 28 weeks and postpartum if infant Rh+",
       "Anatomy ultrasound ~18–20 weeks",
+      "Gestational diabetes screen at 24–28 weeks if not done earlier",
     ],
     practiceTopicSlug: "assess",
     reviewModuleSlug: "aanp-assess-domain",
@@ -608,6 +617,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Women and elderly may have atypical ACS symptoms",
       "Do not attribute chest pain to anxiety without ACS rule-out when risk present",
+      "Syncope, hypotension, or diaphoresis mandate urgent evaluation",
     ],
     practiceTopicSlug: "assess",
     reviewModuleSlug: "aanp-assess-domain",
@@ -627,6 +637,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Review sedatives and antihypertensives as contributors",
       "Vitamin D if deficient; PT referral for balance training",
+      "Home safety evaluation and vision correction when indicated",
     ],
     practiceTopicSlug: "assess",
     reviewModuleSlug: "aanp-assess-domain",
@@ -665,6 +676,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Spacer with MDI improves delivery",
       "Refer if life-threatening exacerbation or difficult-to-control asthma",
+      "Step up when SABA used more than 2 days per week",
     ],
     practiceTopicSlug: "plan",
     reviewModuleSlug: "aanp-plan-domain",
@@ -684,6 +696,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Emergency contraception options: levonorgestrel or copper IUD",
       "STI prevention counseling with barrier methods",
+      "Avoid estrogen with migraine aura or thrombotic risk",
     ],
     practiceTopicSlug: "plan",
     reviewModuleSlug: "aanp-plan-domain",
@@ -702,6 +715,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Document indication and stop date",
       "Switch to narrowest spectrum when culture data available",
+      "Uncomplicated cystitis often 5–7 days; strep pharyngitis 10 days",
     ],
     practiceTopicSlug: "plan",
     reviewModuleSlug: "aanp-plan-domain",
@@ -720,6 +734,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Co-management with OB for high-risk pregnancy",
       "Psychiatry urgent referral for active psychosis or mania",
+      "Send unstable patients to ED — do not manage alone in clinic",
     ],
     practiceTopicSlug: "plan",
     reviewModuleSlug: "aanp-plan-domain",
@@ -738,6 +753,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "State practice authority varies — exam tests safe escalation",
       "Document informed consent and follow-up for procedures within scope",
+      "Know limits: STEMI, sepsis, and suicidal plan require ED referral",
     ],
     practiceTopicSlug: "plan",
     reviewModuleSlug: "aanp-plan-domain",
@@ -756,6 +772,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "O₂ target 88–92% in CO2 retainers",
       "Refer if inadequate response or need for BiPAP",
+      "Systemic steroids 5 days; antibiotics if increased purulence",
     ],
     practiceTopicSlug: "plan",
     reviewModuleSlug: "aanp-plan-domain",
@@ -776,6 +793,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Start low, go slow with all new meds",
       "Deprescribe when risk exceeds benefit",
+      "Avoid anticholinergics, benzos, and long-acting sulfonylureas when possible",
     ],
     practiceTopicSlug: "geriatrics",
     reviewModuleSlug: "aanp-geriatrics-high-yield",
@@ -794,6 +812,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Avoid benzodiazepines except alcohol/benzo withdrawal",
       "Reorient, mobilize, correct sensory deficits",
+      "Search infection, meds, metabolic derangement, and pain",
     ],
     practiceTopicSlug: "geriatrics",
     reviewModuleSlug: "aanp-geriatrics-high-yield",
@@ -831,6 +850,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "PPI, sedative-hypnotics, and anticholinergics common deprescribing targets",
       "Taper when stopping long-term benzodiazepines",
+      "Medication reconciliation at every visit — stop duplicates first",
     ],
     practiceTopicSlug: "geriatrics",
     reviewModuleSlug: "aanp-geriatrics-high-yield",
@@ -849,6 +869,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Safety assessment: driving, finances, wandering",
       "Caregiver support and advance planning",
+      "Rule out B12, TSH, depression, and medication effects first",
     ],
     practiceTopicSlug: "geriatrics",
     reviewModuleSlug: "aanp-geriatrics-high-yield",
@@ -868,6 +889,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Revisit goals when prognosis or preferences change",
       "Include family/caregiver in shared decision-making when patient agrees",
+      "Document surrogate decision-maker and code status preferences",
     ],
     practiceTopicSlug: "geriatrics",
     reviewModuleSlug: "aanp-geriatrics-high-yield",
@@ -887,6 +909,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Blood, urine, and CSF cultures; empiric IV antibiotics",
       "Admit and monitor until cultures negative",
+      "Rectal temperature most accurate in neonates",
     ],
     practiceTopicSlug: "pediatrics",
     reviewModuleSlug: "aanp-pediatrics-high-yield",
@@ -905,6 +928,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Urine culture important source in this age group",
       "Return precautions for caregivers always documented",
+      "Ill appearance overrides numeric fever threshold",
     ],
     practiceTopicSlug: "pediatrics",
     reviewModuleSlug: "aanp-pediatrics-high-yield",
@@ -923,6 +947,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Loss of previously acquired skill is red flag",
       "Autism screening at 18 and 24 months",
+      "Refer early intervention for significant delay",
     ],
     practiceTopicSlug: "pediatrics",
     reviewModuleSlug: "aanp-pediatrics-high-yield",
@@ -941,6 +966,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "HPV vaccine series 11–12 years",
       "Depression and substance use screening per guidelines",
+      "Time alone with teen; know mandatory reporting limits",
     ],
     practiceTopicSlug: "pediatrics",
     reviewModuleSlug: "aanp-pediatrics-high-yield",
@@ -959,6 +985,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Identify triggers: allergens, URI, exercise",
       "Refer if life-threatening exacerbation or poor control on step 3+",
+      "Written action plan for home and school",
     ],
     practiceTopicSlug: "pediatrics",
     reviewModuleSlug: "aanp-pediatrics-high-yield",
@@ -978,6 +1005,7 @@ export const AANP_FNP_MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Bulging tympanic membrane supports diagnosis",
       "Failure at 48–72 hours → change antibiotic",
+      "High-dose amoxicillin 80–90 mg/kg/day divided BID",
     ],
     practiceTopicSlug: "pediatrics",
     reviewModuleSlug: "aanp-pediatrics-high-yield",
