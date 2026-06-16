@@ -7,7 +7,7 @@ export const NPTE_PT_BLUEPRINT_SOURCE =
   "FSBPT NPTE-PT Test Content Outline (effective January 2024)";
 
 /** Official target for the curated + AI-generated NPTE-PT bank. */
-export const NPTE_PT_TARGET_TOTAL = 6000;
+export const NPTE_PT_TARGET_TOTAL = 4000;
 
 /** Recommended seed count per body-system category before bulk AI generation. */
 export const NPTE_PT_SEED_TARGET_PER_CATEGORY = 200;
