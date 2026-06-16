@@ -22,6 +22,7 @@ import { HowWeCompare } from "@/components/home/HowWeCompare";
 import { LiveBankStats } from "@/components/home/LiveBankStats";
 import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import {
+  LANDING_HERO_BENEFITS,
   LANDING_HERO_HEADLINE_QUOTED,
   LANDING_HERO_PRICE_TAGLINE,
   LANDING_METRICS,
@@ -87,53 +88,57 @@ function HeroSection() {
       </div>
 
       <div className="aee-flagship-inner aee-flagship-hero__layout">
-        <h1
-          id="flagship-hero-heading"
-          className="aee-flagship-hero__headline aee-flagship-hero__headline--quoted aee-flagship-hero__headline--banner"
-        >
-          {LANDING_HERO_HEADLINE_QUOTED}
-        </h1>
-
         <motion.div
-          className="aee-flagship-hero__copy aee-flagship-hero__copy--centered"
-          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <p className="aee-flagship-hero__subline">{formatLandingHeroSubline()}</p>
-
-          <LandingHeroPriceValue className="mx-auto" />
-
-          <div className="aee-flagship-hero__ctas aee-flagship-hero__ctas--conversion">
-            <LandingCta
-              href={LANDING_TRIAL_HREF}
-              className="aee-flagship-cta--hero group w-full sm:w-auto"
-              icon={
-                <ArrowRight
-                  className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
-                  aria-hidden
-                />
-              }
-            >
-              {formatTrialCtaLabel()}
-            </LandingCta>
-            <Link href="#sample-questions" className="aee-flagship-hero__sample-link">
-              Preview sample questions ↓
-            </Link>
-          </div>
-
-          <p className="aee-flagship-hero__disclosure">{TRIAL_PAYMENT_DISCLOSURE}</p>
-          <PaymentMethodBadges className="mt-3" size="sm" />
-        </motion.div>
-
-        <motion.div
-          className="aee-flagship-hero__visual"
+          className="aee-flagship-hero__visual aee-flagship-hero__visual--prominent"
           initial={reduceMotion ? false : { opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.65, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.65, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
         >
           <LandingHeroVideoDynamic />
         </motion.div>
+
+        <div className="aee-flagship-hero__copy aee-flagship-hero__copy--centered">
+          <h1 id="flagship-hero-heading" className="aee-flagship-hero__headline">
+            {LANDING_HERO_HEADLINE_QUOTED}
+          </h1>
+
+          <motion.div
+            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="aee-flagship-hero__subline">{formatLandingHeroSubline()}</p>
+
+            <ul className="aee-flagship-hero__benefits" aria-label="Platform benefits">
+              {LANDING_HERO_BENEFITS.map((benefit) => (
+                <li key={benefit}>{benefit}</li>
+              ))}
+            </ul>
+
+            <LandingHeroPriceValue className="mx-auto aee-hero-price-value--compact" />
+
+            <div className="aee-flagship-hero__ctas aee-flagship-hero__ctas--conversion">
+              <LandingCta
+                href={LANDING_TRIAL_HREF}
+                className="aee-flagship-cta--hero group w-full sm:w-auto"
+                icon={
+                  <ArrowRight
+                    className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
+                }
+              >
+                {formatTrialCtaLabel()}
+              </LandingCta>
+              <Link href="#sample-questions" className="aee-flagship-hero__sample-link">
+                Preview sample questions
+              </Link>
+            </div>
+
+            <p className="aee-flagship-hero__disclosure">{TRIAL_PAYMENT_DISCLOSURE}</p>
+            <PaymentMethodBadges className="mt-4" size="sm" />
+          </motion.div>
+        </div>
       </div>
 
       <div className="aee-flagship-inner aee-flagship-hero__trust">
@@ -155,7 +160,7 @@ export function LandingFlagship() {
       </section>
 
       <LandingConversionBand
-        title="Everything included — one simple price."
+        title="One price. Every board."
         subtitle={formatLandingConversionSubtitle()}
       />
 
@@ -163,9 +168,9 @@ export function LandingFlagship() {
         id="sample-questions"
         alt
         align="center"
-        eyebrow="See the quality"
-        title="Board-style questions. Real rationales."
-        subtitle="The same caliber you expect from premium prep — without the premium price tag."
+        eyebrow="Sample questions"
+        title="See the quality before you commit"
+        subtitle="Board-style stems, plausible distractors, and rationales you can learn from."
       >
         <ul className="aee-flagship-question-grid aee-flagship-question-grid--three">
           {SAMPLE_QUESTIONS_FEATURED.map((q, i) => (
@@ -198,7 +203,7 @@ export function LandingFlagship() {
         align="center"
         title={
           <>
-            Trusted on{" "}
+            Built for{" "}
             <span className="aee-flagship-gradient-text">every major board.</span>
           </>
         }
@@ -243,7 +248,7 @@ export function LandingFlagship() {
             <span className="aee-flagship-gradient-text">{LANDING_HERO_PRICE_TAGLINE}</span>
           </>
         }
-        subtitle={`${formatTrialLabel()} · payment method required · all four boards · save up to 20% on longer plans`}
+        subtitle={`${formatTrialLabel()} · all four boards · save up to 20% on longer plans`}
       >
         <div className="aee-flagship-pricing-stack">
           <LandingHeroPriceValue className="mx-auto" />
@@ -279,8 +284,7 @@ export function LandingFlagship() {
             {formatTrialCtaLabel()}
           </h2>
           <p className="aee-flagship-final-cta__subtitle">
-            {formatTrialLabel()} · payment method required · {formatMonthlyPrice()}/mo after trial ·
-            NCLEX · USMLE · NAPLEX · MPJE
+            {formatTrialLabel()} · {formatMonthlyPrice()}/mo after trial · NCLEX · USMLE · NAPLEX · MPJE
           </p>
           <div className="aee-flagship-final-cta__actions">
             <LandingCta

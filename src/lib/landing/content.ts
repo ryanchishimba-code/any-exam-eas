@@ -121,9 +121,16 @@ export const LANDING_HERO_EXAMS = [
   { label: "MPJE", color: EXAM_ACCENTS.mpje },
 ] as const;
 
-/** Centered hero tagline — one line, shown in quotation marks on the landing page. */
-export const LANDING_HERO_TAGLINE = "Your best companion for boards and clinical practice.";
-export const LANDING_HERO_HEADLINE_QUOTED = `"${LANDING_HERO_TAGLINE}"`;
+/** Centered hero tagline — primary line on the landing page. */
+export const LANDING_HERO_TAGLINE = "Board prep without the premium price tag.";
+export const LANDING_HERO_HEADLINE_QUOTED = LANDING_HERO_TAGLINE;
+
+/** Scannable hero benefits — shown under the subline. */
+export const LANDING_HERO_BENEFITS = [
+  "Curated vignettes with aligned answer choices",
+  "Adaptive practice that targets weak topics",
+  "All four boards included — one simple plan",
+] as const;
 
 /** @deprecated Use LANDING_HERO_HEADLINE_QUOTED */
 export const LANDING_HERO_HEADLINE = "Your best companion";
@@ -142,10 +149,9 @@ export const LANDING_HERO_PITCHES = [
 export const LANDING_HERO_PRICE_TAGLINE = "A price you can't beat.";
 
 export const LANDING_HERO_PRICE_INCLUDES = [
-  `${MARKETING_QUESTION_COUNTS.total} exam-level question bank`,
-  `${TOP_500_DRUGS_COUNT} Top Drugs pharmacology`,
-  "Clinical information & review modules",
-  "Detailed Anatomy Explorer",
+  `${MARKETING_QUESTION_COUNTS.total} board-style questions`,
+  `${TOP_500_DRUGS_COUNT} Top Drugs deck + Review Modules`,
+  "Reference Hub, Anatomy Studio & timed exams",
 ] as const;
 
 export const LANDING_STEPS = [

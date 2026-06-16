@@ -72,6 +72,22 @@ export function dedupeBankItemsByStem(items: BankItem[]): BankItem[] {
   return [...seen.values()];
 }
 
+/** One row per bank id — used when sampling sessions (NGN items often share a stem). */
+export function dedupeBankItemsById(items: BankItem[]): BankItem[] {
+  const seen = new Map<string, BankItem>();
+  for (const item of items) {
+    const key =
+      item.id?.trim() ||
+      `${item.subjectId ?? ""}:${item.question.trim().toLowerCase()}`;
+    if (!seen.has(key)) seen.set(key, item);
+  }
+  return [...seen.values()];
+}
+
+function dedupeSamplePool(items: BankItem[]): BankItem[] {
+  return dedupeBankItemsById(items);
+}
+
 function activeSubjectWhere(fieldId: string, subjectId: string) {
   return { fieldId, subjectId, active: true as const, qaPassed: true as const };
 }
@@ -192,7 +208,7 @@ async function sampleNaplexSubjectItems(
           : 0,
       orderBy: { id: "asc" },
     });
-    collected = dedupeBankItemsByStem(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
+    collected = dedupeSamplePool(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
       0,
       curatedWant
     );
@@ -201,7 +217,7 @@ async function sampleNaplexSubjectItems(
   const remaining = want - collected.length;
   if (remaining > 0) {
     const general = await sampleSubjectItemsRandom(remaining, baseWhere, total, 2);
-    collected = dedupeBankItemsByStem([...collected, ...general]);
+    collected = dedupeSamplePool([...collected, ...general]);
   }
 
   if (collected.length === 0) {
@@ -234,7 +250,7 @@ async function sampleNclexSubjectItems(
           : 0,
       orderBy: { id: "asc" },
     });
-    collected = dedupeBankItemsByStem(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
+    collected = dedupeSamplePool(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
       0,
       curatedWant
     );
@@ -243,7 +259,7 @@ async function sampleNclexSubjectItems(
   const remaining = want - collected.length;
   if (remaining > 0) {
     const general = await sampleSubjectItemsRandom(remaining, baseWhere, total, 4);
-    collected = dedupeBankItemsByStem([...collected, ...general]);
+    collected = dedupeSamplePool([...collected, ...general]);
   }
 
   if (collected.length === 0) {
@@ -267,7 +283,7 @@ async function sampleSubjectItemsRandom(
 
   if (total <= want) {
     const rows = await prisma.questionBankItem.findMany({ where });
-    return dedupeBankItemsByStem(shuffleBankItems(rows.map(rowToBankItem))).slice(0, want);
+    return dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(0, want);
   }
 
   let collected: BankItem[] = [];
@@ -282,7 +298,7 @@ async function sampleSubjectItemsRandom(
       take: pull,
       orderBy: { id: "asc" },
     });
-    collected = dedupeBankItemsByStem([
+    collected = dedupeSamplePool([
       ...collected,
       ...shuffleBankItems(rows.map(rowToBankItem)),
     ]);
@@ -315,7 +331,7 @@ async function sampleUsmleSubjectItems(
           : 0,
       orderBy: { id: "asc" },
     });
-    collected = dedupeBankItemsByStem(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
+    collected = dedupeSamplePool(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
       0,
       curatedWant
     );
@@ -324,7 +340,7 @@ async function sampleUsmleSubjectItems(
   const remaining = want - collected.length;
   if (remaining > 0) {
     const general = await sampleSubjectItemsRandom(remaining, baseWhere, total, 2);
-    collected = dedupeBankItemsByStem([...collected, ...general]);
+    collected = dedupeSamplePool([...collected, ...general]);
   }
 
   if (collected.length === 0) {
@@ -408,7 +424,7 @@ export async function sampleQuestionBankItemsForField(params: {
         take: pull,
         orderBy: { id: "asc" },
       });
-      collected = dedupeBankItemsByStem(shuffleBankItems(rows.map(rowToBankItem))).slice(
+      collected = dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(
         0,
         curatedWant
       );
@@ -427,7 +443,7 @@ export async function sampleQuestionBankItemsForField(params: {
         take: pullTarget,
         orderBy: { id: "asc" },
       });
-      collected = dedupeBankItemsByStem([
+      collected = dedupeSamplePool([
         ...collected,
         ...shuffleBankItems(rows.map(rowToBankItem)),
       ]).slice(0, want);
@@ -443,7 +459,7 @@ export async function sampleQuestionBankItemsForField(params: {
 
   if (total <= want) {
     const rows = await prisma.questionBankItem.findMany({ where });
-    return dedupeBankItemsByStem(shuffleBankItems(rows.map(rowToBankItem))).slice(0, want);
+    return dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(0, want);
   }
 
   let collected: BankItem[] = [];
@@ -458,7 +474,7 @@ export async function sampleQuestionBankItemsForField(params: {
       take: pull,
       orderBy: { id: "asc" },
     });
-    collected = dedupeBankItemsByStem([
+    collected = dedupeSamplePool([
       ...collected,
       ...shuffleBankItems(rows.map(rowToBankItem)),
     ]);

@@ -3,7 +3,7 @@ import {
   LANDING_HERO_PRICE_INCLUDES,
   LANDING_HERO_PRICE_TAGLINE,
 } from "@/lib/landing/content";
-import { formatMonthlyPrice, formatTrialLabel, formatTrialTodayPrice } from "@/lib/site";
+import { formatMonthlyPrice } from "@/lib/site";
 
 type LandingHeroPriceValueProps = {
   className?: string;
@@ -32,11 +32,6 @@ export function LandingHeroPriceValue({ className = "" }: LandingHeroPriceValueP
 
       <p className="aee-hero-price-value__tagline">
         <span className="aee-flagship-gradient-text">{LANDING_HERO_PRICE_TAGLINE}</span>
-      </p>
-
-      <p className="aee-hero-price-value__trial">
-        {formatTrialLabel()} · payment method required · {formatTrialTodayPrice()} today · save up
-        to 20% on longer plans
       </p>
     </div>
   );

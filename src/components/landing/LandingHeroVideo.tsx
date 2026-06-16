@@ -59,11 +59,11 @@ export function LandingHeroVideo({
           <Image
             src={posterSrc}
             alt={posterAlt}
-            width={1200}
-            height={900}
+            width={1280}
+            height={800}
             priority
             className="aee-flagship-hero-video__poster"
-            sizes="(max-width: 1024px) 100vw, 480px"
+            sizes="(max-width: 1024px) 100vw, 52vw"
           />
         </div>
       </figure>
@@ -78,11 +78,11 @@ export function LandingHeroVideo({
             src={posterSrc}
             alt=""
             aria-hidden
-            width={1200}
-            height={900}
+            width={1280}
+            height={800}
             priority
             className="aee-flagship-hero-video__poster aee-flagship-hero-video__poster--loading"
-            sizes="(max-width: 1024px) 100vw, 480px"
+            sizes="(max-width: 1024px) 100vw, 52vw"
           />
         ) : null}
         <video

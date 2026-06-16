@@ -118,19 +118,19 @@ export function formatTrialHeroOffer(): string {
 /** Primary billing disclosure for landing, signup, and pricing. */
 export const TRIAL_PAYMENT_DISCLOSURE = `${TRIAL_DAYS}-day free trial · payment method required · ${formatTrialTodayPrice()} charged today · cancel before trial ends and you won't be charged · ${BILLING_POLICY_SHORT}`;
 
-/** Hero subline — trial, payment, and cancel policy in one scannable sentence. */
+/** Hero subline — one scannable benefit line; billing detail lives in disclosure below CTAs. */
 export function formatLandingHeroSubline(): string {
-  return `All four boards on one plan — ${TRIAL_DAYS}-day free trial, payment method required, ${formatTrialTodayPrice()} today. Cancel before trial ends and you won't be charged.`;
+  return "NCLEX, USMLE, NAPLEX & MPJE — curated questions, adaptive drills, and full rationales in one place.";
+}
+
+/** Mid-page conversion band subtitle — trial and billing at a glance. */
+export function formatLandingConversionSubtitle(): string {
+  return `${formatTrialLabel()} · ${formatTrialTodayPrice()} today · cancel before trial ends`;
 }
 
 /** Sticky bar and compact pricing footnotes on the landing page. */
 export function formatLandingStickyDetail(): string {
   return `${formatTrialLabel()} · payment required · ${formatTrialTodayPrice()} today · cancel anytime`;
-}
-
-/** Mid-page conversion band subtitle — trial and billing at a glance. */
-export function formatLandingConversionSubtitle(): string {
-  return `Payment method required · ${formatTrialTodayPrice()} today · cancel before trial ends · save up to 20% on longer plans`;
 }
 
 /** Signup step — payment collected at checkout immediately after account creation. */

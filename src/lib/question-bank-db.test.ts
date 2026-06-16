@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { dedupeBankItemsByStem, shuffleBankItems } from "./question-bank-db";
+import { dedupeBankItemsById, dedupeBankItemsByStem, shuffleBankItems } from "./question-bank-db";
 import type { BankItem } from "./question-bank";
 
 function item(stem: string, id = stem): BankItem {
@@ -23,6 +23,17 @@ describe("dedupeBankItemsByStem", () => {
     expect(out).toHaveLength(2);
     expect(out[0].id).toBe("a");
     expect(out[1].id).toBe("c");
+  });
+});
+
+describe("dedupeBankItemsById", () => {
+  it("keeps distinct bank rows even when stems match (NGN matrix sets)", () => {
+    const out = dedupeBankItemsById([
+      item("Match each finding to the column.", "a"),
+      item("Match each finding to the column.", "b"),
+      item("Other stem", "c"),
+    ]);
+    expect(out).toHaveLength(3);
   });
 });
 
