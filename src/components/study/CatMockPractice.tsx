@@ -31,6 +31,7 @@ import type { ConfidenceLevel } from "@/lib/questions/types";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import { ActivitySessionToolbar } from "./ActivitySessionToolbar";
 import { EndActivityControl } from "./EndActivityControl";
+import { SessionCompletionCard } from "./SessionCompletionCard";
 import { saveStudySessionRemote } from "@/lib/client/save-study-session";
 import { createStudySession } from "@/lib/questions/session-engine";
 
@@ -216,22 +217,26 @@ export function CatMockPractice() {
 
     return (
       <div className="mt-8 space-y-6">
-        <div className="apple-card p-8 text-center">
-          <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-accent)]">
-            NCLEX-style adaptive mock complete
-          </p>
-          <h2 className="mt-2 text-2xl font-bold text-[var(--color-ink)]">{band.label}</h2>
-          <p className="mx-auto mt-3 max-w-md text-sm text-[var(--color-ink-muted)]">
-            {band.hint}
-          </p>
-          <dl className="mx-auto mt-8 grid max-w-sm grid-cols-2 gap-4 text-left">
+        <SessionCompletionCard
+          title="NCLEX-style adaptive mock complete"
+          subtitle={band.label}
+          summary={{
+            correct: catState.correctCount,
+            total: catState.questionNumber,
+            accuracy,
+          }}
+          extraActions={
+            <Button type="button" variant="secondary" onClick={() => void loadPool()}>
+              Run another mock
+            </Button>
+          }
+        />
+        <div className="apple-card space-y-4 p-6 text-center sm:p-8">
+          <p className="mx-auto max-w-md text-sm text-[var(--color-ink-muted)]">{band.hint}</p>
+          <dl className="mx-auto grid max-w-sm grid-cols-2 gap-4 text-left">
             <div className="rounded-xl bg-black/[0.03] px-4 py-3">
               <dt className="text-xs text-[var(--color-ink-muted)]">Questions</dt>
               <dd className="text-lg font-bold tabular-nums">{catState.questionNumber}</dd>
-            </div>
-            <div className="rounded-xl bg-black/[0.03] px-4 py-3">
-              <dt className="text-xs text-[var(--color-ink-muted)]">Accuracy</dt>
-              <dd className="text-lg font-bold tabular-nums">{accuracy}%</dd>
             </div>
             <div className="rounded-xl bg-black/[0.03] px-4 py-3">
               <dt className="text-xs text-[var(--color-ink-muted)]">{PRACTICE_PROGRESS_LABEL}</dt>
@@ -246,13 +251,10 @@ export function CatMockPractice() {
               </dd>
             </div>
           </dl>
-          <p className="mx-auto mt-6 max-w-lg text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+          <p className="mx-auto max-w-lg text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
             {PROGRESS_METRICS_DISCLAIMER} This mock uses rule-based difficulty — not the official
             Pearson VUE CAT algorithm.
           </p>
-          <Button type="button" className="mt-8" onClick={() => void loadPool()}>
-            Run another mock
-          </Button>
         </div>
       </div>
     );

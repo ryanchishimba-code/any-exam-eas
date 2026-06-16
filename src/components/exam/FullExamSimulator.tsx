@@ -463,7 +463,7 @@ export function FullExamSimulator({
           throw new Error(data.error ?? "Could not submit exam");
         }
 
-        router.push(fullExamResultsHref(examSlug, sessionId, { review: true }));
+        router.push(fullExamResultsHref(examSlug, sessionId));
       } catch (e) {
         setSubmitError(e instanceof Error ? e.message : "Could not submit exam");
         setSubmitting(false);

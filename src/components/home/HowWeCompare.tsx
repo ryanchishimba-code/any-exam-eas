@@ -40,15 +40,15 @@ export function CompareSectionHeading({
 
   return (
     <div className={`${alignClass} ${className}`.trim()}>
-      <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-teal-600">
+      <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-teal-600 dark:text-teal-400">
         Why students choose us
       </p>
       <h2
         id={id}
-        className="mt-1 text-xl font-extrabold tracking-tight text-slate-900 sm:text-2xl lg:text-3xl"
+        className="mt-1 text-xl font-extrabold tracking-tight text-slate-900 dark:text-slate-50 sm:text-2xl lg:text-3xl"
       >
         Four exams.{" "}
-        <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent dark:from-teal-400 dark:to-cyan-300">
           A fraction of the cost.
         </span>
       </h2>
@@ -73,7 +73,7 @@ export function HowWeCompare({ variant = "default" }: HowWeCompareProps) {
           ? "aee-landing-hero-band__compare scroll-mt-24"
           : isOverlap
             ? "aee-hero-compare-overlap scroll-mt-24"
-            : "scroll-mt-24 border-b border-slate-100 bg-slate-50/80 py-6 sm:py-8"
+            : "scroll-mt-24 border-b border-slate-100 bg-slate-50/80 py-6 dark:border-slate-800 dark:bg-slate-900/50 sm:py-8"
       }
       aria-labelledby="compare-heading"
     >
@@ -113,27 +113,34 @@ function CompareUsCard({
   compact?: boolean;
 }) {
   return (
-    <article className="aee-hero-compare-card aee-hero-compare-card--us relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-teal-500/40 bg-white p-4 shadow-[0_8px_28px_rgba(13,148,136,0.1)] sm:p-4">
+    <article className="aee-hero-compare-card aee-hero-compare-card--us relative flex h-full flex-col overflow-hidden rounded-2xl border-2 border-teal-500/40 bg-white p-4 shadow-[0_8px_28px_rgba(13,148,136,0.1)] dark:border-teal-400/35 dark:bg-slate-900 dark:shadow-[0_8px_28px_rgba(0,212,200,0.12)] sm:p-4">
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-teal-50/90 to-transparent"
+        className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-teal-50/90 to-transparent dark:from-teal-950/60"
         aria-hidden
       />
       <header className="relative">
         <div className="flex items-center justify-between gap-2">
-          <p className="text-xs font-bold uppercase tracking-wide text-teal-700">Any Exam Easy</p>
-          <span className="rounded-full bg-teal-600 px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wide text-white">
+          <p className="text-xs font-bold uppercase tracking-wide text-teal-700 dark:text-teal-300">
+            Any Exam Easy
+          </p>
+          <span className="rounded-full bg-teal-600 px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wide text-white dark:bg-teal-500">
             Best value
           </span>
         </div>
-        <p className={`font-black tracking-tight text-teal-700 ${compact ? "mt-2 text-2xl" : "mt-2 text-3xl sm:text-4xl"}`}>
+        <p
+          className={`font-black tracking-tight text-teal-700 dark:text-teal-300 ${compact ? "mt-2 text-2xl" : "mt-2 text-3xl sm:text-4xl"}`}
+        >
           {formatTrialTodayPrice()}
         </p>
-        <p className="mt-0.5 text-xs text-slate-500">
+        <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
           {formatTrialLabel()} · then {formatMonthlyPrice()}/mo
         </p>
       </header>
 
-      <ul className="relative mt-3 flex-1 space-y-2 border-t border-teal-100 pt-3" role="list">
+      <ul
+        className="relative mt-3 flex-1 space-y-2 border-t border-teal-100 pt-3 dark:border-teal-900/50"
+        role="list"
+      >
         {visibleRows.map(({ label, us }) => (
           <CompareRow key={label} label={label} value={us} variant="us" compact={compact} />
         ))}
@@ -150,28 +157,33 @@ function CompareThemCard({
   compact?: boolean;
 }) {
   return (
-    <article className="aee-hero-compare-card aee-hero-compare-card--them flex h-full flex-col rounded-2xl border border-slate-200/90 bg-slate-50/80 p-4 sm:p-4">
+    <article className="aee-hero-compare-card aee-hero-compare-card--them flex h-full flex-col rounded-2xl border border-slate-200/90 bg-slate-50/80 p-4 dark:border-slate-700 dark:bg-slate-900/60 sm:p-4">
       <header>
-        <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
+        <p className="text-xs font-bold uppercase tracking-wide text-slate-400 dark:text-slate-500">
           Typical competitors
         </p>
         <p className="mt-2 flex flex-wrap gap-1.5">
           {competitorNames.map((name) => (
             <span
               key={name}
-              className="rounded-md bg-white px-2 py-0.5 text-[0.6875rem] font-medium text-slate-500 ring-1 ring-slate-200/80"
+              className="rounded-md bg-white px-2 py-0.5 text-[0.6875rem] font-medium text-slate-500 ring-1 ring-slate-200/80 dark:bg-slate-800 dark:text-slate-400 dark:ring-slate-700"
             >
               {name}
             </span>
           ))}
         </p>
-        <p className={`font-black tracking-tight text-slate-300 line-through ${compact ? "mt-2 text-2xl" : "mt-3 text-3xl sm:text-4xl"}`}>
+        <p
+          className={`font-black tracking-tight text-slate-300 line-through dark:text-slate-600 ${compact ? "mt-2 text-2xl" : "mt-3 text-3xl sm:text-4xl"}`}
+        >
           $99+
         </p>
-        <p className="mt-0.5 text-xs text-slate-400">Upfront or bundled plans</p>
+        <p className="mt-0.5 text-xs text-slate-400 dark:text-slate-500">Upfront or bundled plans</p>
       </header>
 
-      <ul className="mt-3 flex-1 space-y-2 border-t border-slate-200/80 pt-3" role="list">
+      <ul
+        className="mt-3 flex-1 space-y-2 border-t border-slate-200/80 pt-3 dark:border-slate-700"
+        role="list"
+      >
         {visibleRows.map(({ label, them }) => (
           <CompareRow key={label} label={label} value={them} variant="them" compact={compact} />
         ))}
@@ -197,24 +209,30 @@ function CompareRow({
     <li className={`flex items-start gap-2 ${compact ? "text-xs" : "gap-2.5 text-sm"}`}>
       <span
         className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
-          isUs ? "bg-emerald-50" : "bg-slate-100"
+          isUs ? "bg-emerald-50 dark:bg-emerald-950/50" : "bg-slate-100 dark:bg-slate-800"
         }`}
       >
         {isUs ? (
-          <Check className="h-3 w-3 text-emerald-600" strokeWidth={2.5} aria-hidden />
+          <Check className="h-3 w-3 text-emerald-600 dark:text-emerald-400" strokeWidth={2.5} aria-hidden />
         ) : (
-          <Minus className="h-3 w-3 text-slate-400" strokeWidth={2.5} aria-hidden />
+          <Minus className="h-3 w-3 text-slate-400 dark:text-slate-500" strokeWidth={2.5} aria-hidden />
         )}
       </span>
       <span className="min-w-0">
         <span
           className={`block text-[0.65rem] font-semibold uppercase tracking-wide ${
-            isUs ? "text-slate-400" : "text-slate-300"
+            isUs ? "text-slate-400 dark:text-slate-500" : "text-slate-300 dark:text-slate-600"
           }`}
         >
           {label}
         </span>
-        <span className={isUs ? "font-semibold text-slate-900" : "text-slate-500"}>{value}</span>
+        <span
+          className={
+            isUs ? "font-semibold text-slate-900 dark:text-slate-100" : "text-slate-500 dark:text-slate-400"
+          }
+        >
+          {value}
+        </span>
       </span>
     </li>
   );
@@ -231,7 +249,7 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
           {formatTrialCtaLabel()}
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
         </Link>
-        <p className="text-[0.625rem] leading-relaxed text-slate-400">
+        <p className="text-[0.625rem] leading-relaxed text-slate-400 dark:text-slate-500">
           Competitor pricing from public listings ({new Date().getFullYear()}); may vary.
         </p>
       </div>
@@ -242,7 +260,7 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
     <div
       className={
         isOverlap
-          ? "mt-4 flex flex-col items-center gap-3 border-b border-slate-100 bg-white/90 pb-6 pt-2 text-center backdrop-blur-sm"
+          ? "mt-4 flex flex-col items-center gap-3 border-b border-slate-100 bg-white/90 pb-6 pt-2 text-center backdrop-blur-sm dark:border-slate-800 dark:bg-slate-900/90"
           : "mt-5 flex flex-col items-center gap-3 text-center"
       }
     >
@@ -256,14 +274,14 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
           aria-hidden
         />
       </Link>
-      <p className="max-w-md text-xs text-slate-500">
+      <p className="max-w-md text-xs text-slate-500 dark:text-slate-400">
         {formatTrialTodayPrice()} today · payment method required · then from {formatMonthlyPrice()}
         /mo
       </p>
-      <p className="max-w-md text-[0.625rem] leading-relaxed text-slate-400">
+      <p className="max-w-md text-[0.625rem] leading-relaxed text-slate-400 dark:text-slate-500">
         {TRIAL_PAYMENT_DISCLOSURE}
       </p>
-      <p className="max-w-md text-[0.625rem] leading-relaxed text-slate-400">
+      <p className="max-w-md text-[0.625rem] leading-relaxed text-slate-400 dark:text-slate-500">
         Competitor pricing from public listings ({new Date().getFullYear()}); may vary. Not
         affiliated with UWorld, Archer Review, or SimpleNursing.
       </p>

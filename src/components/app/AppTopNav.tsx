@@ -43,7 +43,7 @@ export function AppTopNav({ onMenuClick }: Props) {
   }
 
   return (
-    <header className="apple-glass fixed top-0 z-50 w-full border-b border-black/[0.06]">
+    <header className="apple-glass fixed top-0 z-50 w-full border-b border-black/[0.06] dark:border-teal-500/10">
       <nav
         className={cn(
           shellUi.container,

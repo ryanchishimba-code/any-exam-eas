@@ -16,7 +16,8 @@ import { Progress } from "@/components/ui/progress";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { formatAnswerDisplay } from "@/lib/full-exam/answer-serialize";
 import { formatHms } from "@/lib/full-exam/config";
-import { fullExamHref, ROUTES } from "@/lib/routes";
+import { fullExamHref } from "@/lib/routes";
+import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamQuestion, FullExamResultsAnalysis } from "@/types/full-exam";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
@@ -67,6 +68,14 @@ export function FullExamResults({
   const current = questions[index];
   const currentAnswer = answerFor(answers, index);
   const isCorrect = currentAnswer?.correct ?? false;
+
+  const notesPreview = answers
+    .filter((a) => a.notes?.trim())
+    .map((a) => ({
+      questionNumber: a.questionIndex + 1,
+      text: a.notes!.trim(),
+    }))
+    .sort((a, b) => a.questionNumber - b.questionNumber);
 
   if (view === "question" && questions.length > 0 && current) {
     return (
@@ -162,6 +171,7 @@ export function FullExamResults({
           onNext={() => setIndex((i) => Math.min(questions.length - 1, i + 1))}
           onReturnToOverview={() => setView("overview")}
           onReturnToSummary={() => setView("summary")}
+          studyHubHref={STUDY_HUB_PATH}
         />
       </div>
     );
@@ -241,14 +251,73 @@ export function FullExamResults({
           </h1>
           <p className="mt-2 text-[15px] text-[var(--color-ink-muted)]">{analysis.summary}</p>
           <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">{exam.name}</p>
+          <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
+            {correct} / {questions.length} correct
+          </p>
         </div>
       </div>
+
+      {questions.length > 0 ? (
+        <div className={cn(feUi.panel, "p-5 sm:p-6")}>
+          <p className="text-center text-[14px] font-medium text-[var(--color-ink)]">
+            What would you like to do next?
+          </p>
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <button
+              type="button"
+              onClick={() => {
+                setIndex(0);
+                setView("question");
+              }}
+              className={cn(feUi.footerBtnPrimary, "w-full justify-center px-6 py-3 sm:w-auto sm:min-w-[14rem]")}
+            >
+              <BookOpen className="h-4 w-4" />
+              Review explanations
+            </button>
+            <Link
+              href={STUDY_HUB_PATH}
+              className={cn(feUi.footerBtn, "w-full justify-center px-6 py-3 sm:w-auto sm:min-w-[14rem]")}
+            >
+              <LayoutGrid className="h-4 w-4" />
+              Back to Study Hub
+            </Link>
+          </div>
+        </div>
+      ) : (
+        <div className="flex justify-center">
+          <Link href={STUDY_HUB_PATH} className={feUi.footerBtnPrimary}>
+            <LayoutGrid className="h-4 w-4" />
+            Back to Study Hub
+          </Link>
+        </div>
+      )}
 
       <div className="grid gap-3 sm:grid-cols-3">
         <StatCard label="Score" value={`${score}%`} valueClass={scoreColor} />
         <StatCard label="Correct" value={`${correct} / ${questions.length}`} />
         <StatCard label="Time used" value={formatHms(analysis.timeUsedSec)} icon={Clock} />
       </div>
+
+      {notesPreview.length > 0 ? (
+        <div className={cn(feUi.panel, "p-5 sm:p-6")}>
+          <h2 className={feUi.sectionTitle}>Your scratch notes</h2>
+          <ul className="mt-4 space-y-3">
+            {notesPreview.slice(0, 8).map((note) => (
+              <li key={note.questionNumber} className="rounded-xl bg-black/[0.03] px-4 py-3 text-sm">
+                <span className="font-semibold text-[var(--color-ink-muted)]">
+                  Question {note.questionNumber}
+                </span>
+                <p className="mt-1 whitespace-pre-wrap text-[var(--color-ink)]">{note.text}</p>
+              </li>
+            ))}
+          </ul>
+          {notesPreview.length > 8 ? (
+            <p className="mt-3 text-[13px] text-[var(--color-ink-muted)]">
+              View all notes while reviewing questions.
+            </p>
+          ) : null}
+        </div>
+      ) : null}
 
       {analysis.topicBreakdown.length > 0 ? (
         <div className={cn(feUi.panel, "p-5 sm:p-6")}>
@@ -272,38 +341,22 @@ export function FullExamResults({
       <FullExamStudyLinks examSlug={examSlug} topicBreakdown={analysis.topicBreakdown} />
 
       {questions.length > 0 ? (
-        <div className={cn(feUi.insetGroup, "bg-[var(--color-accent)]/5 p-5 text-center")}>
-          <p className="text-[14px] font-medium text-[var(--color-ink)]">
-            Walk through every question with rationales.
-          </p>
-          <div className="mt-4 flex flex-wrap justify-center gap-2">
-            <button
-              type="button"
-              onClick={() => {
-                setIndex(0);
-                setView("question");
-              }}
-              className={feUi.footerBtnPrimary}
-            >
-              <BookOpen className="h-4 w-4" />
-              Review questions
-            </button>
-            <button type="button" onClick={() => setView("overview")} className={feUi.footerBtn}>
-              <LayoutGrid className="h-4 w-4" />
-              Overview
-            </button>
-          </div>
+        <div className="flex flex-wrap justify-center gap-2 border-t border-black/[0.06] pt-6">
+          <button type="button" onClick={() => setView("overview")} className={feUi.footerBtn}>
+            <LayoutGrid className="h-4 w-4" />
+            Question overview
+          </button>
+          <Link href={fullExamHref(examSlug)} className={feUi.footerBtn}>
+            <RotateCcw className="h-4 w-4" /> New simulation
+          </Link>
         </div>
-      ) : null}
-
-      <div className="flex flex-wrap justify-center gap-2">
-        <Link href={fullExamHref(examSlug)} className={feUi.footerBtn}>
-          <RotateCcw className="h-4 w-4" /> New simulation
-        </Link>
-        <Link href={ROUTES.dashboard} className={feUi.footerBtn}>
-          Dashboard
-        </Link>
-      </div>
+      ) : (
+        <div className="flex flex-wrap justify-center gap-2">
+          <Link href={fullExamHref(examSlug)} className={feUi.footerBtn}>
+            <RotateCcw className="h-4 w-4" /> New simulation
+          </Link>
+        </div>
+      )}
 
       <p className="text-center text-[11px] text-[var(--color-ink-muted)]">
         Session {sessionId.slice(0, 8)}…
@@ -319,6 +372,7 @@ function ReviewFooter({
   onNext,
   onReturnToOverview,
   onReturnToSummary,
+  studyHubHref,
 }: {
   index: number;
   total: number;
@@ -326,6 +380,7 @@ function ReviewFooter({
   onNext: () => void;
   onReturnToOverview: () => void;
   onReturnToSummary: () => void;
+  studyHubHref: string;
 }) {
   return (
     <footer className={feUi.glassFooter}>
@@ -337,11 +392,7 @@ function ReviewFooter({
           <button type="button" onClick={onReturnToOverview} className={feUi.footerBtn}>
             <LayoutGrid className="h-4 w-4" /> Overview
           </button>
-          <button
-            type="button"
-            onClick={onReturnToSummary}
-            className={cn(feUi.footerBtn, "hidden sm:inline-flex")}
-          >
+          <button type="button" onClick={onReturnToSummary} className={feUi.footerBtn}>
             Summary
           </button>
           <button
@@ -352,6 +403,11 @@ function ReviewFooter({
           >
             Next <ChevronRight className="h-4 w-4" />
           </button>
+        </div>
+        <div className="flex justify-center">
+          <Link href={studyHubHref} className={feUi.footerBtn}>
+            <LayoutGrid className="h-4 w-4" /> Study Hub
+          </Link>
         </div>
       </div>
     </footer>

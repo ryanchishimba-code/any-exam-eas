@@ -25,7 +25,7 @@ import {
 } from "@/lib/mpje/practice-exam-config";
 import type { MpjePracticeExamResult } from "@/lib/mpje/practice-exam-scoring";
 import { parseOptionalMpjeStateParam } from "@/lib/mpje/validators";
-import { mpjePracticeExamHref, mpjePracticeHref } from "@/lib/study-hub/config";
+import { mpjePracticeExamHref, mpjePracticeHref, STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import {
   parseMpjeStoredAnswer,
   serializeMpjeAnswer,
@@ -366,6 +366,21 @@ export function MpjePracticeExam() {
               {result.correct} correct · {result.incorrect} incorrect ·{" "}
               {result.unanswered} unanswered
             </p>
+          </div>
+
+          <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
+            {result.missed.length > 0 ? (
+              <Button
+                type="button"
+                className="flex-1 sm:max-w-xs"
+                onClick={() => setShowMissed(true)}
+              >
+                Review explanations ({result.missed.length})
+              </Button>
+            ) : null}
+            <Button href={STUDY_HUB_PATH} variant="secondary" className="flex-1 sm:max-w-xs">
+              Back to Study Hub
+            </Button>
           </div>
 
           <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">

@@ -1,5 +1,5 @@
 import type { BankItem } from "@/lib/question-bank";
-import { shuffleBankItems } from "@/lib/question-bank-db";
+import { bankItemDedupeKey, shuffleBankItems } from "@/lib/question-bank-db";
 import {
   balanceDifficultyMix,
   hasAdjacentSimilarOptions,
@@ -148,7 +148,7 @@ function dedupeBankItemsInOrder(items: BankItem[]): BankItem[] {
   const seen = new Set<string>();
   const out: BankItem[] = [];
   for (const item of items) {
-    const key = `${item.subjectId ?? ""}:${item.question.trim().toLowerCase()}`;
+    const key = bankItemDedupeKey(item);
     if (seen.has(key)) continue;
     seen.add(key);
     out.push(item);

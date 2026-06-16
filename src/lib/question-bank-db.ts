@@ -72,13 +72,19 @@ export function dedupeBankItemsByStem(items: BankItem[]): BankItem[] {
   return [...seen.values()];
 }
 
+/** Stable dedupe key — prefer bank row id (NGN sets often share a generic stem). */
+export function bankItemDedupeKey(item: BankItem): string {
+  return (
+    item.id?.trim() ||
+    `${item.subjectId ?? ""}:${item.question.trim().toLowerCase()}`
+  );
+}
+
 /** One row per bank id — used when sampling sessions (NGN items often share a stem). */
 export function dedupeBankItemsById(items: BankItem[]): BankItem[] {
   const seen = new Map<string, BankItem>();
   for (const item of items) {
-    const key =
-      item.id?.trim() ||
-      `${item.subjectId ?? ""}:${item.question.trim().toLowerCase()}`;
+    const key = bankItemDedupeKey(item);
     if (!seen.has(key)) seen.set(key, item);
   }
   return [...seen.values()];

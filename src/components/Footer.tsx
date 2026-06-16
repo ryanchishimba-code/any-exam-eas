@@ -45,7 +45,7 @@ export function Footer() {
 
   return (
     <footer
-      className="apple-footer border-t border-black/[0.08] py-10 pb-[calc(2.5rem+env(safe-area-inset-bottom,0px))]"
+      className="apple-footer border-t border-black/[0.08] py-10 pb-[calc(2.5rem+env(safe-area-inset-bottom,0px))] dark:border-white/[0.08]"
       role="contentinfo"
     >
       <div className="mx-auto max-w-[980px] px-5 sm:px-6">

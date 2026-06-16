@@ -20,6 +20,7 @@ import {
   TopicPracticeReturnCompletion,
   type TopicPracticeReturn,
 } from "./TopicPracticeReturnBanner";
+import { SessionCompletionCard } from "./SessionCompletionCard";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import type {
   AdaptiveSessionMeta,
@@ -100,6 +101,7 @@ export function StudySessionPlayer({
     initial.session.timedSessionSeconds ?? initial.session.timedSecondsPerQuestion ?? 0
   );
   const [timeUp, setTimeUp] = useState(false);
+  const [inReview, setInReview] = useState(false);
   const startedAt = useRef<number>(Date.now());
   const progressSaved = useRef(false);
   const touchStart = useRef<number | null>(null);
@@ -269,6 +271,13 @@ export function StudySessionPlayer({
     return () => clearTimeout(t);
   }, [timerSec, sessionState.mode, usesSessionTimer, timeUp]);
 
+  function startReview() {
+    setInReview(true);
+    const next = { ...sessionState, currentIndex: 0 };
+    setSessionState(next);
+    persist(next);
+  }
+
   function goNext(from?: StudySessionState) {
     const base = from ?? sessionState;
     const next = advanceSession(base, 1);
@@ -429,21 +438,26 @@ export function StudySessionPlayer({
   if (!current) {
     if (returnTo) {
       return (
-        <TopicPracticeReturnCompletion returnTo={returnTo} summary={summary} />
+        <TopicPracticeReturnCompletion
+          returnTo={returnTo}
+          summary={summary}
+          onReview={startReview}
+        />
       );
     }
     return (
-      <div className="rounded-2xl border border-black/10 bg-white p-8 text-center">
-        <p className="text-lg font-semibold">Session complete</p>
-        <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-          {summary.correct} / {summary.total} correct ({summary.accuracy}%)
-        </p>
-      </div>
+      <SessionCompletionCard
+        title={title ? `${title} complete` : "Session complete"}
+        summary={summary}
+        onReview={startReview}
+      />
     );
   }
 
   const onLastQuestion = sessionState.currentIndex === questionList.length - 1;
-  const showReturnActions = Boolean(returnTo && complete && answer?.revealed && onLastQuestion);
+  const showCompletion =
+    complete && !inReview && onLastQuestion && Boolean(answer?.revealed);
+  const showReturnActions = Boolean(returnTo && showCompletion);
 
   const progressPct = ((sessionState.currentIndex + 1) / questionList.length) * 100;
   const selectionReasoning =
@@ -560,10 +574,16 @@ export function StudySessionPlayer({
       </article>
 
       {showReturnActions && returnTo ? (
-        <TopicPracticeReturnCompletion returnTo={returnTo} summary={summary} />
+        <TopicPracticeReturnCompletion
+          returnTo={returnTo}
+          summary={summary}
+          onReview={startReview}
+        />
+      ) : showCompletion ? (
+        <SessionCompletionCard summary={summary} onReview={startReview} />
       ) : null}
 
-      {!showReturnActions ? (
+      {!showReturnActions && !showCompletion ? (
       <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
         <button
           type="button"

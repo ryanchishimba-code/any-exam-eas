@@ -16,7 +16,7 @@ function GooglePayWordmark() {
       <span className="text-[#4285F4]">g</span>
       <span className="text-[#34A853]">l</span>
       <span className="text-[#EA4335]">e</span>
-      <span className="text-slate-700"> Pay</span>
+      <span className="text-slate-700 dark:text-slate-300"> Pay</span>
     </span>
   );
 }
@@ -40,14 +40,14 @@ export function PaymentMethodBadges({
       {badges.map((badge) => (
         <li
           key={badge.id}
-          className={`inline-flex items-center gap-1.5 rounded-lg border border-slate-200/90 bg-white/90 ${pad} shadow-sm`}
+          className={`inline-flex items-center gap-1.5 rounded-lg border border-slate-200/90 bg-white/90 shadow-sm dark:border-slate-700 dark:bg-slate-900/80 ${pad}`}
         >
           {badge.id === "cards" ? (
             <>
-              <CreditCard className="h-4 w-4 text-slate-600" aria-hidden />
-              <span className={`${text} font-medium text-slate-700`}>{badge.label}</span>
+              <CreditCard className="h-4 w-4 text-slate-600 dark:text-slate-300" aria-hidden />
+              <span className={`${text} font-medium text-slate-700 dark:text-slate-200`}>{badge.label}</span>
               {"detail" in badge && badge.detail ? (
-                <span className="hidden text-[0.625rem] text-slate-400 sm:inline">
+                <span className="hidden text-[0.625rem] text-slate-400 dark:text-slate-500 sm:inline">
                   {badge.detail}
                 </span>
               ) : null}
@@ -57,7 +57,7 @@ export function PaymentMethodBadges({
           ) : badge.id === "google_pay" ? (
             <GooglePayWordmark />
           ) : (
-            <span className={`${text} font-semibold text-slate-900`}>{badge.label}</span>
+            <span className={`${text} font-semibold text-slate-900 dark:text-slate-100`}>{badge.label}</span>
           )}
         </li>
       ))}

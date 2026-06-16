@@ -4,14 +4,17 @@ import type { StudyQuestion } from "./types";
 
 export type DifficultyBand = "easy" | "medium" | "hard";
 
-/** Every practice session must satisfy these quality gates. */
+/** Every practice and full-exam session must satisfy these quality gates. */
 export const SESSION_QUALITY_REQUIREMENTS = {
-  exactCount: "Returned question count must match the user-selected limit.",
+  exactCount:
+    "Return exactly the user-selected count — full exam, sprint, or custom bank length.",
   difficultyMix: "Sessions include easy, medium, and hard items when the pool allows.",
   spreadSimilarOptions:
     "Questions with overlapping answer choices must not appear back-to-back.",
   strongDistractors:
-    "Each MCQ has four distinct, plausible options — never generic placeholders.",
+    "Each MCQ has four distinct, board-plausible distractors — never generic placeholders.",
+  variedScenarios:
+    "Interleave topics and vignettes so consecutive items are not repetitive look-alikes.",
 } as const;
 
 export function resolveDifficultyBand(item: {

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 @import "../styles/a11y.css";
 
-/* Light-only UI — ignore OS dark mode; Apple-style tokens stay on light palette. */
-@custom-variant dark (&:where(.aee-dark *));
+/* Light + dark UI — Tailwind `dark:` follows OS preference; flagship uses --flagship-* tokens. */
+@custom-variant dark (@media (prefers-color-scheme: dark));
 
 @theme {
   --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
@@ -41,14 +41,62 @@
   --ring: #005fcc;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-ink: #e8eef4;
+    --color-ink-muted: #94a3b8;
+    --color-surface: #0f172a;
+    --color-surface-elevated: #1a2740;
+    --color-bg: #071a2c;
+    --color-accent: #2ee7dc;
+    --color-accent-hover: #00d4c8;
+    --color-accent-light: #5eead4;
+    --color-border: rgba(148, 163, 184, 0.16);
+    --shadow-apple-sm: 0 1px 2px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.25);
+    --shadow-apple-md: 0 2px 4px rgba(0, 0, 0, 0.18), 0 8px 24px rgba(0, 0, 0, 0.3);
+    --shadow-apple-lg: 0 4px 8px rgba(0, 0, 0, 0.2), 0 16px 48px rgba(0, 0, 0, 0.35);
+    --shadow-apple-btn: 0 1px 2px rgba(0, 0, 0, 0.2), 0 4px 14px rgba(0, 212, 200, 0.28);
+    --shadow-apple-btn-hover: 0 2px 4px rgba(0, 0, 0, 0.22), 0 8px 28px rgba(0, 212, 200, 0.35);
+
+    --background: #071a2c;
+    --foreground: #e8eef4;
+    --card: #0d3254;
+    --card-foreground: #e8eef4;
+    --muted: #0a2540;
+    --muted-foreground: #94a3b8;
+    --primary: #00d4c8;
+    --primary-foreground: #071a2c;
+    --border: rgba(0, 212, 200, 0.14);
+    --input: rgba(148, 163, 184, 0.2);
+    --ring: #2ee7dc;
+
+    --flagship-navy: #e8eef4;
+    --flagship-teal: #2ee7dc;
+    --flagship-surface: #071a2c;
+    --flagship-surface-alt: #0a2540;
+    --flagship-muted: #94a3b8;
+    --flagship-border: rgba(0, 212, 200, 0.14);
+  }
+}
+
 @media (min-width: 768px) {
   :root {
     --nav-height: 3.25rem;
   }
 }
 
+:root {
+  /* Flagship aliases — overridden inside `.aee-flagship` on landing */
+  --flagship-navy: #0a2540;
+  --flagship-teal: #00d4c8;
+  --flagship-surface: #ffffff;
+  --flagship-surface-alt: #f4f6f8;
+  --flagship-muted: var(--color-ink-muted);
+  --flagship-border: rgba(10, 37, 64, 0.08);
+}
+
 html {
-  color-scheme: light only;
+  color-scheme: light dark;
   scroll-behavior: smooth;
   scroll-padding-top: var(--page-top);
 }
@@ -266,6 +314,51 @@ body {
 
 ::selection {
   background: rgba(13, 148, 136, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  ::selection {
+    background: rgba(0, 212, 200, 0.32);
+    color: #e8eef4;
+  }
+
+  .apple-glass {
+    background: rgba(7, 26, 44, 0.88);
+    border-bottom-color: rgba(0, 212, 200, 0.1);
+  }
+
+  .apple-tile,
+  .apple-bento {
+    background: var(--color-surface-elevated);
+    border-color: var(--color-border);
+  }
+
+  .apple-hero-premium {
+    background:
+      radial-gradient(ellipse 80% 55% at 50% -20%, rgba(0, 212, 200, 0.12), transparent 70%),
+      linear-gradient(180deg, #0a2540 0%, #071a2c 72%);
+  }
+
+  .aee-card:hover {
+    border-color: rgba(0, 212, 200, 0.28);
+  }
+
+  .aee-nav {
+    border-bottom-color: rgba(0, 212, 200, 0.1);
+  }
+
+  .aee-nav-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .aee-avatar-trigger {
+    border-color: rgba(0, 212, 200, 0.18);
+    background: rgba(13, 50, 84, 0.85);
+  }
+
+  .aee-avatar-trigger:hover {
+    border-color: rgba(0, 212, 200, 0.35);
+  }
 }
 
 /* Apple design utilities — plain CSS so they always load in dev & prod */
@@ -1263,7 +1356,7 @@ body {
 
 .aee-drug-search-clear:hover {
   background: rgba(148, 163, 184, 0.15);
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 .aee-drugs-section .aee-drug-search-clear {
@@ -1322,7 +1415,7 @@ body {
 .aee-drug-search-empty {
   padding: 1rem 1.125rem;
   font-size: 0.875rem;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 .aee-drugs-section .aee-drug-search-empty {
@@ -2945,7 +3038,7 @@ body {
 .aee-top500-visual__brand {
   font-size: 0.625rem;
   font-weight: 500;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 .aee-top500-visual__class-pill {
@@ -3050,7 +3143,7 @@ body {
   margin-top: 0.4375rem;
   font-size: 0.5625rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 .aee-landing-inline-cta:hover {
@@ -3173,7 +3266,7 @@ body {
   font-weight: 500;
   line-height: 1.45;
   letter-spacing: -0.015em;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 .aee-btn-hero-returning {
@@ -3465,7 +3558,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 .aee-compare-compact-price-aee .aee-compare-compact-price-label {
@@ -3492,7 +3585,7 @@ body {
   display: block;
   margin-top: 0.25rem;
   font-size: 0.6875rem;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 .aee-compare-compact-price-vs {
@@ -3572,7 +3665,7 @@ body {
 
 .aee-compare-compact-cell--them {
   background: #f8fafc;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 .aee-compare-compact-footer {
@@ -3637,7 +3730,7 @@ body {
   background: white;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 .aee-compare-price-duel {
@@ -3683,7 +3776,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 .aee-compare-price-duel-card--winner .aee-compare-price-duel-label {
@@ -3708,7 +3801,7 @@ body {
 .aee-compare-price-duel-sub {
   margin-top: 0.375rem;
   font-size: 0.8125rem;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 .aee-compare-price-duel-badge {
@@ -4417,12 +4510,49 @@ body {
   .aee-flagship {
     --flagship-navy: #e8eef4;
     --flagship-navy-soft: #c5d0dc;
+    --flagship-teal: #2ee7dc;
+    --flagship-teal-dim: #00d4c8;
     --flagship-surface: #071a2c;
     --flagship-surface-alt: #0a2540;
     --flagship-muted: #94a3b8;
-    --flagship-border: rgba(0, 212, 200, 0.12);
+    --flagship-border: rgba(0, 212, 200, 0.14);
+    --flagship-card: #0d3254;
+    --flagship-shadow: rgba(0, 0, 0, 0.35);
     color: var(--flagship-navy);
     background: var(--flagship-surface);
+  }
+
+  .aee-landing-sticky-cta {
+    background: rgba(7, 26, 44, 0.94);
+    box-shadow: 0 -8px 32px var(--flagship-shadow);
+  }
+
+  .aee-hero-price-value {
+    background:
+      linear-gradient(145deg, rgba(0, 212, 200, 0.16) 0%, rgba(13, 50, 84, 0.92) 55%),
+      var(--flagship-surface-alt);
+    box-shadow:
+      0 12px 40px var(--flagship-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .aee-flagship-question-card__badge {
+    background: var(--flagship-card);
+  }
+
+  .aee-flagship-question-card__rationale,
+  .aee-flagship-metric__label {
+    color: var(--flagship-muted);
+  }
+
+  .aee-flagship-mockup-skeleton {
+    background: linear-gradient(90deg, #0a2540 0%, #0d3254 50%, #0a2540 100%);
+  }
+
+  .aee-flagship-hero__grid {
+    background-image:
+      linear-gradient(rgba(0, 212, 200, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 200, 0.06) 1px, transparent 1px);
   }
 }
 
@@ -4660,6 +4790,11 @@ body {
 @media (prefers-color-scheme: dark) {
   .aee-flagship-cta--primary {
     color: #071a2c;
+    box-shadow: 0 4px 28px rgba(0, 212, 200, 0.45);
+  }
+
+  .aee-flagship-cta--primary:hover {
+    box-shadow: 0 8px 36px rgba(0, 212, 200, 0.55);
   }
 }
 
@@ -5208,7 +5343,7 @@ body {
   gap: 0.375rem;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #475569;
+  color: var(--flagship-muted);
 }
 
 .aee-flagship-live-stats {
@@ -5286,7 +5421,7 @@ body {
   margin-top: 0.125rem;
   font-size: 0.6875rem;
   line-height: 1.35;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 /* Benefits */
@@ -5339,7 +5474,7 @@ body {
   margin-top: 0.375rem;
   font-size: 0.8125rem;
   line-height: 1.5;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 /* How it works */
@@ -5399,7 +5534,7 @@ body {
   margin-top: 0.375rem;
   font-size: 0.75rem;
   line-height: 1.45;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 /* Sample questions */
@@ -5442,7 +5577,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  background: #fff;
+  background: var(--flagship-surface);
 }
 
 .aee-flagship-question-card__stem {
@@ -5502,7 +5637,7 @@ body {
   border-top: 1px solid var(--flagship-border);
   font-size: 0.6875rem;
   line-height: 1.5;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 .aee-flagship-ngn-wrap {
@@ -5550,7 +5685,7 @@ body {
   font-size: 0.6875rem;
   font-weight: 600;
   text-align: center;
-  color: #64748b;
+  color: var(--flagship-muted);
 }
 
 .aee-flagship-testimonials {

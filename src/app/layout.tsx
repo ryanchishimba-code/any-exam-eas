@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth light" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className="min-h-screen bg-[var(--color-bg)] font-sans antialiased text-[var(--color-ink)]">
         <a href="#main-content" className="skip-link sr-only">
           Skip to main content
