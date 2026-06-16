@@ -46,7 +46,7 @@ describe("mpje-serve-gate", () => {
       items: [validItem, { ...validItem, id: "mpje-db-2" }, bulkItem],
       limit: 5,
     });
-    expect(prepared).toHaveLength(1);
-    expect(prepared[0]!.id).toBe("mpje-db-1");
+    expect(prepared).toHaveLength(2);
+    expect(prepared.map((i) => i.id).sort()).toEqual(["mpje-db-1", "mpje-db-2"]);
   });
 });

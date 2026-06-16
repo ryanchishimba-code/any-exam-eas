@@ -6,6 +6,8 @@ vi.mock("@/lib/question-bank-db", () => ({
   QUESTION_BANK_SAMPLE_MAX_PULL: 500,
   sampleQuestionBankItemsForField: vi.fn(),
   shuffleBankItems: <T,>(items: T[]) => items,
+  bankItemDedupeKey: (item: BankItem) =>
+    item.id?.trim() || `${item.subjectId ?? ""}:${item.question.trim().toLowerCase()}`,
 }));
 
 import { sampleQuestionBankItemsForField } from "@/lib/question-bank-db";

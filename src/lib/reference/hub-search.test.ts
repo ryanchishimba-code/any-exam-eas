@@ -50,11 +50,9 @@ describe("hub-search", () => {
     expect(Array.isArray(drugs)).toBe(true);
   });
 
-  it("excludes clinical search categories for MPJE", () => {
-    const mpjeCards = MEMORY_CARDS.filter((c) => c.examSlug === "pance");
-    const { drugs, anatomy, procedures } = searchReferenceHub(mpjeCards, "pance", "heart");
-    expect(drugs).toEqual([]);
-    expect(anatomy).toEqual([]);
-    expect(procedures).toEqual([]);
+  it("includes clinical search categories for PANCE", () => {
+    const panceCards = MEMORY_CARDS.filter((c) => c.examSlug === "pance");
+    const { drugs, anatomy, procedures } = searchReferenceHub(panceCards, "pance", "heart");
+    expect(drugs.length + anatomy.length + procedures.length).toBeGreaterThan(0);
   });
 });

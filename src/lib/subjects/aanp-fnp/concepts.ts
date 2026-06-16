@@ -1,7 +1,15 @@
-import type { ExamQuestion } from "@/lib/ai";
+import type { ConceptExtractionInput, ExtractedConcepts } from "../types";
 
-export function extractAanpFnpConcepts(q: ExamQuestion): string[] {
-  const tags = q.tags ?? [];
-  const topic = q.topicCategory?.trim();
-  return [...tags, ...(topic ? [topic] : [])].filter(Boolean);
+export async function extractAanpFnpConcepts(
+  input: ConceptExtractionInput
+): Promise<ExtractedConcepts> {
+  const topic = input.topic.trim();
+  const concepts = [topic, "AANP FNP"];
+  if (input.subjectId) concepts.push(input.subjectId);
+  else concepts.push("primary-care");
+  return {
+    concepts,
+    relationships: [],
+    highYieldTopics: topic ? [topic] : [],
+  };
 }

@@ -13,6 +13,8 @@ import { USMLE_QUALITY_V2 } from "./usmle-quality-v2";
 import { USMLE_STEP3_V3 } from "./usmle-step3-v3";
 import { NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/naplex-physician-educator-batch-01";
 import { PANCE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/pance-physician-educator-batch-01";
+import { MPJE_PHYSICIAN_EDUCATOR_BATCHES } from "./mpje-physician-educator-batches";
+import { isMpjeBestQuality } from "./mpje-quality-gate";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-01";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_02 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-02";
 import { USMLE_PHYSICIAN_EDUCATOR_BATCH_03 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-03";
@@ -78,6 +80,16 @@ export function collectHighYieldSeedRows(): HighYieldSeedRow[] {
   }
 
   for (const item of PANCE_PHYSICIAN_EDUCATOR_BATCH_01) {
+    rows.push({
+      fieldId: "pance",
+      subjectId: item.subjectId ?? "cardiovascular",
+      item,
+    });
+  }
+
+  for (const item of MPJE_PHYSICIAN_EDUCATOR_BATCHES.filter((i) =>
+    isMpjeBestQuality(i, { source: "seed" })
+  )) {
     rows.push({
       fieldId: "pance",
       subjectId: item.subjectId ?? "cardiovascular",

@@ -33,7 +33,9 @@ function validSubjectIds(examSlug: ExamSlug): Set<string> {
 
 const SUBJECTS_BY_EXAM = new Map(EXAM_SLUGS.map((slug) => [slug, validSubjectIds(slug)]));
 
-const MODULE_EXAM_BY_SLUG = new Map(REVIEW_MODULE_TOPICS.map((t) => [t.slug, t.examSlug]));
+const MODULE_EXAM_BY_SLUG = new Map(
+  REVIEW_MODULE_TOPICS.map((t) => [`${t.examSlug}:${t.slug}`, t.examSlug])
+);
 
 describe("memory card link integrity", () => {
   it("every card's practiceTopicSlug is a real question-bank subject for its exam", () => {
@@ -54,7 +56,7 @@ describe("memory card link integrity", () => {
         `card ${card.id} points at unknown review module "${card.reviewModuleSlug}"`
       ).toBeDefined();
       expect(
-        MODULE_EXAM_BY_SLUG.get(card.reviewModuleSlug),
+        MODULE_EXAM_BY_SLUG.get(`${card.examSlug}:${card.reviewModuleSlug}`),
         `card ${card.id} (${card.examSlug}) deep-links into a module registered for a different exam`
       ).toBe(card.examSlug);
     }
@@ -138,7 +140,7 @@ describe("question ngnPayload related-content integrity", () => {
             `question "${item.subjectId}" points at unknown review module "${moduleSlug}"`
           ).toBeDefined();
           expect(
-            MODULE_EXAM_BY_SLUG.get(moduleSlug),
+            MODULE_EXAM_BY_SLUG.get(`${examSlug}:${moduleSlug}`),
             `question "${item.subjectId}" deep-links into a module for a different exam`
           ).toBe(examSlug);
         }

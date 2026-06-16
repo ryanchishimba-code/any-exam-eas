@@ -374,7 +374,53 @@ export const MEMORY_CARD_SOURCES: Record<string, MemoryCardSourceMeta> = {
     sourceUrl: "https://www.ncsbn.org/",
     lastReviewedAt: "2026-06-01",
   },
-  // MPJE
+  // PANCE (NCCPA clinical reference)
+  "pance-hypertension-first-line": {
+    sourceLabel: "ACC/AHA hypertension guideline — first-line therapy",
+    sourceUrl: "https://www.acc.org/",
+    lastReviewedAt: "2026-06-01",
+  },
+  "pance-acs-reperfusion": {
+    sourceLabel: "ACC/AHA ACS — STEMI reperfusion windows",
+    sourceUrl: "https://www.acc.org/",
+    lastReviewedAt: "2026-06-01",
+  },
+  "pance-diabetes-a1c-targets": {
+    sourceLabel: "ADA Standards of Care — glycemic targets",
+    sourceUrl: "https://diabetesjournals.org/care",
+    lastReviewedAt: "2026-06-01",
+  },
+  "pance-sepsis-bundle": {
+    sourceLabel: "Surviving Sepsis Campaign — Hour-1 bundle",
+    sourceUrl: "https://www.sccm.org/",
+    lastReviewedAt: "2026-06-01",
+  },
+  "pance-febrile-infant-workup": {
+    sourceLabel: "AAP febrile infant evaluation guidelines",
+    sourceUrl: "https://www.aap.org/",
+    lastReviewedAt: "2026-06-01",
+  },
+  "pance-copd-exacerbation": {
+    sourceLabel: "GOLD COPD — exacerbation management",
+    sourceUrl: "https://goldcopd.org/",
+    lastReviewedAt: "2026-06-01",
+  },
+  "pance-depression-screening": {
+    sourceLabel: "USPSTF depression screening recommendations",
+    sourceUrl: "https://www.uspreventiveservicestaskforce.org/",
+    lastReviewedAt: "2026-06-01",
+  },
+  "pance-prenatal-initial-visit": {
+    sourceLabel: "ACOG initial prenatal visit essentials",
+    sourceUrl: "https://www.acog.org/",
+    lastReviewedAt: "2026-06-01",
+  },
+  "pance-informed-consent": {
+    sourceLabel: "AMA Code of Medical Ethics — informed consent",
+    sourceUrl: "https://www.ama-assn.org/",
+    lastReviewedAt: "2026-06-01",
+  },
+  // Pharmacy law (legacy MPJE memory cards)
   "mpje-cii-rules": {
     sourceLabel: "DEA Controlled Substances Act — Schedule II",
     sourceUrl: "https://www.dea.gov/drug-information/csa",

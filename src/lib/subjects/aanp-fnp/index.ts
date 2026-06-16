@@ -56,8 +56,11 @@ export const aanpFnpModule: SubjectModule = {
 
   getExamSystemAugmentation: () => AANP_FNP_EXAM_SYSTEM_AUGMENTATION,
   getExamUserAugmentation: () => getAanpFnpUserAugmentation(),
-  buildSearchQueryHints: (topic, subjectId) =>
-    ["AANP FNP", topic, subjectId?.replace(/-/g, " ")].filter(Boolean),
+  buildSearchQueryHints: (topic, subjectId) => {
+    const hints = ["AANP FNP", topic];
+    if (subjectId) hints.push(subjectId.replace(/-/g, " "));
+    return hints;
+  },
   extractConcepts: extractAanpFnpConcepts,
   evaluateDifficulty: evaluateAanpFnpDifficulty,
   validateExam: validateAanpFnpExam,

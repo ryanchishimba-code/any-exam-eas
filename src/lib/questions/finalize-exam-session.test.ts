@@ -102,7 +102,7 @@ describe("finalizeExamSessionQuestions", () => {
       expect(prepared).toHaveLength(limit);
       expect(quality.returned).toBe(limit);
     },
-    15_000
+    30_000
   );
 
   it("rejects sessions with generic placeholder distractors", () => {

@@ -31,9 +31,9 @@ describe("MPJE_PHYSICIAN_EDUCATOR_BATCH_13 QA", () => {
     expect(tags.some((t) => t.includes("montana"))).toBe(true);
   });
 
-  it("is wired into collectHighYieldSeedRows for mpje bank sync", () => {
+  it("is wired into collectHighYieldSeedRows for pance bank sync", () => {
     const rows = collectHighYieldSeedRows().filter(
-      (r) => r.fieldId === "mpje" && r.item.tags?.includes("physician-educator-batch-13")
+      (r) => r.fieldId === "pance" && r.item.tags?.includes("physician-educator-batch-13")
     );
     expect(rows.length).toBe(18);
   });

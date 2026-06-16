@@ -1,8 +1,14 @@
-import type { ExamQuestion } from "@/lib/ai";
+import type { DifficultyContext, DifficultyEvaluation } from "../types";
 
-export function evaluateAanpFnpDifficulty(q: ExamQuestion): "easy" | "medium" | "hard" {
-  const stem = `${q.vignette ?? ""} ${q.question}`.length;
-  if (stem > 400) return "hard";
-  if (stem > 220) return "medium";
-  return "easy";
+export async function evaluateAanpFnpDifficulty(
+  ctx: DifficultyContext
+): Promise<DifficultyEvaluation> {
+  return {
+    score: ctx.difficulty === "hard" ? 0.82 : ctx.difficulty === "easy" ? 0.35 : 0.55,
+    rationale: "FNP difficulty weights assessment, diagnosis, and management integration.",
+    adjustments:
+      ctx.subjectId === "assess"
+        ? ["Emphasize history, physical, and diagnostic interpretation."]
+        : undefined,
+  };
 }

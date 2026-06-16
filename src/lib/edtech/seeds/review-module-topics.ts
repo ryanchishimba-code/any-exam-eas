@@ -9,6 +9,7 @@ import {
   INFECTION_CONTROL_NCLEX_MODULE,
   INFECTIOUS_DISEASE_USMLE_MODULE,
   SEPSIS_MODULE,
+  CONTROLLED_SUBSTANCES_MODULE,
 } from "@/lib/edtech/review-modules/content";
 import type { HighYieldTopic } from "@/types/edtech";
 
@@ -53,6 +54,16 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     practiceTopicSlug: "infectious-disease-rx",
     reviewModule: ANTIBIOTICS_STEWARDSHIP_MODULE,
     sortOrder: 3,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "naplex",
+    slug: "controlled-substances",
+    title: "Controlled Substances & DEA Regulations",
+    overview:
+      "CSA schedules, CII refill rules, recordkeeping, transfers, and partial fills — core pharmacy law for NAPLEX and jurisprudence review.",
+    practiceTopicSlug: "pharmacy-law",
+    reviewModule: CONTROLLED_SUBSTANCES_MODULE,
+    sortOrder: 4,
   }),
   defineReviewModuleTopic({
     examSlug: "nclex",
@@ -126,6 +137,16 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
   }),
   defineReviewModuleTopic({
     examSlug: "pance",
+    slug: "controlled-substances",
+    title: "Controlled Substances & Prescribing Law",
+    overview:
+      "CSA schedules, CII validity windows, recordkeeping, and HIPAA in practice — high-yield jurisprudence for PANCE professional practice items.",
+    practiceTopicSlug: "professional-practice",
+    reviewModule: CONTROLLED_SUBSTANCES_MODULE,
+    sortOrder: 3,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "pance",
     slug: "sepsis-shock",
     title: "Sepsis & Shock Management",
     overview:
@@ -153,6 +174,10 @@ export function mergeReviewModules(topics: HighYieldTopic[], examSlug: HighYield
             title: mod.title,
             overview: mod.overview,
             reviewModule: existing.reviewModule ?? mod.reviewModule,
+            relatedStructureIds:
+              existing.relatedStructureIds?.length
+                ? existing.relatedStructureIds
+                : mod.relatedStructureIds,
             summary: existing.summary || mod.summary,
             keyConcepts: existing.keyConcepts.length ? existing.keyConcepts : mod.keyConcepts,
             mustKnowFacts: existing.mustKnowFacts.length ? existing.mustKnowFacts : mod.mustKnowFacts,

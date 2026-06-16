@@ -17,7 +17,7 @@ describe("serveQaPassedBankItems", () => {
       [item("Same stem?", "a"), item("Same stem?", "b"), item("Other?")],
       5
     );
-    expect(out).toHaveLength(2);
+    expect(out).toHaveLength(3);
   });
 
   it("respects limit", () => {

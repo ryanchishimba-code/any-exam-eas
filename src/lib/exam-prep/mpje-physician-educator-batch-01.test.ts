@@ -18,12 +18,15 @@ describe("MPJE_PHYSICIAN_EDUCATOR_BATCH_01 QA", () => {
     expect(MPJE_PHYSICIAN_EDUCATOR_BATCH_01.every((q) => q.stateCode == null)).toBe(true);
   });
 
-  it("is wired into collectHighYieldSeedRows for mpje bank sync", () => {
+  it("is wired into collectHighYieldSeedRows for pance bank sync", () => {
     const rows = collectHighYieldSeedRows().filter(
-      (r) => r.fieldId === "mpje" && r.item.tags?.includes("physician-educator-batch-01")
+      (r) =>
+        r.fieldId === "pance" &&
+        r.item.tags?.includes("physician-educator-batch-01") &&
+        r.item.tags?.includes("mpje")
     );
     expect(rows.length).toBe(14);
-    expect(rows.every((r) => r.fieldId === "mpje")).toBe(true);
+    expect(rows.every((r) => r.fieldId === "pance")).toBe(true);
   });
 
   it("serializes options for QuestionBankItem import round-trip", () => {
