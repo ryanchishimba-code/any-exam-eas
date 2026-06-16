@@ -1,8 +1,9 @@
 "use client";
 
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { ExternalLink } from "lucide-react";
 import { getAnatomyStructure } from "@/lib/anatomy";
+import { getAllAnatomyStructures } from "@/lib/anatomy/systems/catalog/queries";
 import { ANATOMY_ENGINE_PRODUCT_NAME } from "@/lib/anatomy/engine";
 import { getHotspotLabel } from "@/lib/anatomy/systems/regions/video";
 import { ANATOMY_LAYER_LABELS, type AnatomyLayer } from "@/lib/anatomy/types";
@@ -33,6 +34,7 @@ export function AnatomyEngineViewer({
   surfaceId = "reference-video",
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const structures = useMemo(() => getAllAnatomyStructures(), []);
   const focusId = highlightedId ?? selectedId;
   const focusStructure = focusId ? getAnatomyStructure(focusId) : null;
 
@@ -85,6 +87,7 @@ export function AnatomyEngineViewer({
       <div className="relative min-h-0 flex-1">
         <SurfaceHost
           surfaceId={surfaceId}
+          structures={structures}
           visibleLayers={visibleLayers}
           selectedId={selectedId}
           highlightedId={highlightedId}

@@ -1,9 +1,5 @@
-import {
-  examQuestionToStudy,
-  prepareQuestionsForSession,
-  type RawQuestionInput,
-  type StudyQuestion,
-} from "./prepare";
+import { examQuestionToStudy, prepareQuestionsForSession } from "./prepare";
+import type { RawQuestionInput, StudyQuestion } from "./types";
 import {
   assessDifficultyMix,
   enforceSessionCount,

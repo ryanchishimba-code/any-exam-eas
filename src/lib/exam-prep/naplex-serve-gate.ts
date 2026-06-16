@@ -4,6 +4,7 @@ import { prepareNaplexBankItem } from "./naplex-answer-align";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
 
 export { normalizeNaplexBankItemFields } from "./naplex-bank-normalize";
+export { prepareNaplexBankItem } from "./naplex-answer-align";
 
 /** Runtime audit helper — QA gate sets qaPassed; serve path trusts that flag. */
 export function naplexBankItemIsServeReady(
