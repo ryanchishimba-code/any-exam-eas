@@ -109,7 +109,7 @@ export function Hero({ compareLayout = false }: { compareLayout?: boolean }) {
         >
           <header className="mx-auto max-w-xl text-center lg:mx-0 lg:max-w-none lg:text-left">
             {!isAuthed && !isReturning ? (
-              <LandingHeroExamStrip className="aee-reveal mx-auto justify-center lg:mx-0 lg:justify-start" />
+              <LandingHeroExamStrip className="mx-auto justify-center lg:mx-0 lg:justify-start" />
             ) : null}
 
             <h1

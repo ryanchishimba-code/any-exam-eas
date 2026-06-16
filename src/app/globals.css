@@ -4952,6 +4952,13 @@ body {
   display: none;
 }
 
+/* Exam tiles stay visible — no scroll/fade reveal */
+.aee-hero-exam-showcase--static .aee-hero-exam-showcase__cell,
+.aee-choose-exam--static .aee-choose-exam__grid > li {
+  opacity: 1;
+  transform: none;
+}
+
 .aee-flagship-hero--showcase {
   padding-top: clamp(0.75rem, 2vw, 1.25rem);
 }
