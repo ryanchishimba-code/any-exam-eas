@@ -7,7 +7,7 @@ export const NPTE_PT_BLUEPRINT_SOURCE =
   "FSBPT NPTE-PT Test Content Outline (effective January 2024)";
 
 /** Official target for the curated + AI-generated NPTE-PT bank. */
-export const NPTE_PT_TARGET_TOTAL = 4000;
+export const NPTE_PT_TARGET_TOTAL = 6000;
 
 /** Recommended seed count per body-system category before bulk AI generation. */
 export const NPTE_PT_SEED_TARGET_PER_CATEGORY = 200;
@@ -16,6 +16,9 @@ export const NPTE_PT_GENERATION_BATCH_SIZE = 500;
 export const NPTE_PT_GENERATION_CHUNK_SIZE = 25;
 export const NPTE_PT_GENERATION_CONCURRENCY = 10;
 export const NPTE_PT_GENERATION_VERSION = "gpt-4o-mini-npte-pt-v1";
+
+/** Minimum QC score for generated items to be approved / inserted with qaPassed. */
+export const NPTE_PT_MIN_QC_SCORE = 7;
 
 export type NptePtReviewStatus = "pending" | "approved" | "flagged" | "rejected";
 

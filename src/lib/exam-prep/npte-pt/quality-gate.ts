@@ -8,7 +8,7 @@ import { nptePtBankItemIsServeReady } from "./clinical-gate";
 import { isNptePtCuratedItem } from "@/lib/question-bank/npte-pt-curated";
 import { NPTE_PT_SUBJECTS } from "@/lib/subjects/npte-pt/subjects";
 import { NPTE_PT_TASK_CATEGORIES } from "@/lib/edtech/learning-hub/npte-pt-learning-paths";
-import type { NptePtReviewStatus } from "./types";
+import { NPTE_PT_MIN_QC_SCORE, type NptePtReviewStatus } from "./types";
 
 export type NptePtQcReport = {
   serveReady: boolean;
@@ -84,7 +84,7 @@ export function assessNptePtBankItem(
   let reviewStatus: NptePtReviewStatus = "pending";
   if (isNptePtCuratedItem(item) && serveReady) {
     reviewStatus = "approved";
-  } else if (qcScore >= 8 && serveReady) {
+  } else if (qcScore >= NPTE_PT_MIN_QC_SCORE && serveReady) {
     reviewStatus = "approved";
   } else if (qcScore < 5 || !serveReady) {
     reviewStatus = "flagged";
@@ -105,7 +105,7 @@ export function isNptePtBestQuality(
   item: BankItem,
   opts: { minScore?: number } = {}
 ): boolean {
-  const minScore = opts.minScore ?? 8;
+  const minScore = opts.minScore ?? NPTE_PT_MIN_QC_SCORE;
   const report = assessNptePtBankItem(item);
   return report.serveReady && report.qcScore >= minScore && report.blueprintAligned;
 }

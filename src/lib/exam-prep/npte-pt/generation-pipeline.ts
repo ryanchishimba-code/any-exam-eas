@@ -25,6 +25,7 @@ import {
   NPTE_PT_GENERATION_CHUNK_SIZE,
   NPTE_PT_GENERATION_CONCURRENCY,
   NPTE_PT_GENERATION_VERSION,
+  NPTE_PT_MIN_QC_SCORE,
 } from "./types";
 
 const openai = getOpenAiClient("generation");
@@ -307,7 +308,7 @@ export async function generateNptePtChunk(params: {
     }
     const item = slotToBankItem(exam, slot, params.batchId, i, 0);
     const qc = assessNptePtBankItem(item, { source: "generated" });
-    if (!qc.serveReady || qc.qcScore < 6) {
+    if (!qc.serveReady || qc.qcScore < NPTE_PT_MIN_QC_SCORE) {
       rejected++;
       continue;
     }
