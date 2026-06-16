@@ -39,12 +39,13 @@ function bankItem(
 }
 
 describe("SESSION_QUALITY_REQUIREMENTS", () => {
-  it("documents the four session quality gates", () => {
-    expect(Object.keys(SESSION_QUALITY_REQUIREMENTS)).toHaveLength(4);
+  it("documents the five session quality gates", () => {
+    expect(Object.keys(SESSION_QUALITY_REQUIREMENTS)).toHaveLength(5);
     expect(SESSION_QUALITY_REQUIREMENTS.exactCount).toMatch(/count/i);
     expect(SESSION_QUALITY_REQUIREMENTS.difficultyMix).toMatch(/easy|medium|hard/i);
     expect(SESSION_QUALITY_REQUIREMENTS.spreadSimilarOptions).toMatch(/answer choices/i);
     expect(SESSION_QUALITY_REQUIREMENTS.strongDistractors).toMatch(/plausible/i);
+    expect(SESSION_QUALITY_REQUIREMENTS.variedScenarios).toMatch(/vignette/i);
   });
 });
 

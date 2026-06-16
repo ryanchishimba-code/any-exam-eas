@@ -16,10 +16,7 @@ import {
   resolveTimedExamLimit,
 } from "@/lib/exam/exam-lengths";
 import { clampQuestionBankCount } from "@/lib/exam/modes";
-import {
-  prepareQuestionsForSession,
-  studyQuestionsToExamQuestions,
-} from "@/lib/questions/prepare";
+import { studyQuestionsToExamQuestions } from "@/lib/questions/prepare";
 import type { ExamQuestion } from "@/lib/ai";
 import { trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
@@ -310,18 +307,21 @@ export async function GET(req: Request) {
   let prepared;
   let sessionQuality;
 
-  if (timedExam) {
-    try {
-      const finalized = finalizeExamSessionQuestions(rawInputs, limit);
-      prepared = finalized.prepared;
-      sessionQuality = finalized.quality;
-      assertExamSessionReady(sessionQuality, fieldId);
-    } catch (e) {
-      const message = e instanceof Error ? e.message : "Could not build full exam session";
-      return NextResponse.json({ error: message, code: "EXAM_SESSION_UNAVAILABLE" }, { status: 503 });
-    }
-  } else {
-    prepared = prepareQuestionsForSession(rawInputs, { shuffleOrder: true }).slice(0, limit);
+  try {
+    const finalized = finalizeExamSessionQuestions(rawInputs, limit);
+    prepared = finalized.prepared;
+    sessionQuality = finalized.quality;
+    assertExamSessionReady(sessionQuality, fieldId);
+  } catch (e) {
+    const message =
+      e instanceof Error ? e.message : "Could not build exam session at the requested length";
+    return NextResponse.json(
+      {
+        error: message,
+        code: timedExam ? "EXAM_SESSION_UNAVAILABLE" : "SESSION_UNAVAILABLE",
+      },
+      { status: 503 }
+    );
   }
 
   const questions: ExamQuestion[] = studyQuestionsToExamQuestions(prepared);

@@ -30,6 +30,19 @@ function bankItem(
 }
 
 describe("selectSpreadBankItems", () => {
+  it("returns exactly the requested limit when NGN rows share a generic stem", () => {
+    const sharedStem = "Match each finding to the column.";
+    const items = Array.from({ length: 30 }, (_, i) =>
+      bankItem(`ngn-${i}`, "med-surg", sharedStem, `Unique vignette ${i}`, [
+        `Option A-${i}`,
+        `Option B-${i}`,
+        `Option C-${i}`,
+        `Option D-${i}`,
+      ])
+    );
+    expect(selectSpreadBankItems(items, 25)).toHaveLength(25);
+  });
+
   it("returns exactly the requested limit when enough unique items exist", () => {
     const items = Array.from({ length: 30 }, (_, i) =>
       bankItem(`q-${i}`, "med-surg", `Unique stem ${i}?`, `Vignette ${i}`)
