@@ -8,6 +8,7 @@ import {
 import { parseBillingInterval, intervalTotalUsd } from "@/lib/billing-plans";
 import { CHECKOUT_PAYMENT_METHOD_TYPES } from "@/lib/payments";
 import { intervalFromPriceId, requireStripePriceId } from "@/lib/stripe-prices";
+import { parseSubscriptionTier, type SubscriptionTier } from "@/lib/subscription-tiers";
 
 export {
   TRIAL_DAYS,
@@ -40,8 +41,9 @@ type CheckoutBaseParams = {
   userId: string;
   successUrl: string;
   cancelUrl: string;
-  /** trial = collect payment method now; charge after free trial unless legacy intro price is set */
+  /** trial = collect payment method; charge after free trial unless legacy intro price is set */
   plan?: "trial" | "subscribe";
+  tier?: SubscriptionTier;
   interval?: BillingInterval;
   stripeCustomerId?: string | null;
   stripeCouponId?: string | null;
@@ -51,12 +53,13 @@ type CheckoutBaseParams = {
 
 function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
   const isTrialPlan = params.plan === "trial";
-  const interval = params.interval ?? "monthly";
+  const tier = parseSubscriptionTier(params.tier);
+  const interval = params.interval ?? "yearly";
   const introPriceId = process.env.STRIPE_TRIAL_INTRO_PRICE_ID;
   const useIntro = isTrialPlan && usesIntroTrialPricing() && introPriceId;
 
   const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [
-    { price: requireStripePriceId(interval), quantity: 1 },
+    { price: requireStripePriceId(tier, interval), quantity: 1 },
   ];
 
   if (useIntro) {
@@ -67,6 +70,7 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
     metadata: {
       userId: params.userId,
       plan: params.plan ?? "subscribe",
+      tier,
       interval,
     },
   };
@@ -89,10 +93,12 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
     metadata: {
       userId: params.userId,
       plan: params.plan ?? "subscribe",
+      tier,
       interval,
-      fullAccess: "true",
     },
-    ...(isTrialPlan ? { payment_method_collection: "always" as const } : {}),
+    ...(isTrialPlan || params.plan === "subscribe"
+      ? { payment_method_collection: "always" as const }
+      : {}),
     payment_method_types: [...CHECKOUT_PAYMENT_METHOD_TYPES],
     payment_method_options: {
       card: {
@@ -194,30 +200,44 @@ function subscriptionItemPriceId(sub: Stripe.Subscription): string | null {
   return typeof price === "string" ? price : price.id;
 }
 
-function resolvePlanIntervalFromStripe(sub: Stripe.Subscription): BillingInterval {
-  const pending = sub.metadata?.pendingInterval?.trim();
+function resolvePlanFromStripe(sub: Stripe.Subscription): {
+  tier: SubscriptionTier;
+  interval: BillingInterval;
+} {
+  const pendingTier = parseSubscriptionTier(sub.metadata?.pendingTier);
+  const pendingInterval = sub.metadata?.pendingInterval?.trim();
   const priceId = subscriptionItemPriceId(sub);
-
-  if (pending) {
-    const pendingInterval = parseBillingInterval(pending);
-    if (priceId === requireStripePriceId(pendingInterval)) {
-      return pendingInterval;
-    }
-    const current = sub.metadata?.interval;
-    if (current) return parseBillingInterval(current);
-  }
+  const metaTier = parseSubscriptionTier(sub.metadata?.tier);
+  const metaInterval = parseBillingInterval(sub.metadata?.interval);
 
   if (priceId) {
     const fromPrice = intervalFromPriceId(priceId);
-    if (fromPrice) return fromPrice;
+    if (fromPrice) {
+      if (pendingInterval) {
+        const pending = parseBillingInterval(pendingInterval);
+        if (
+          priceId === requireStripePriceId(pendingTier, pending) ||
+          priceId === requireStripePriceId(fromPrice.tier, pending)
+        ) {
+          return { tier: pendingTier, interval: pending };
+        }
+      }
+      return fromPrice;
+    }
   }
 
-  return parseBillingInterval(sub.metadata?.interval);
+  return { tier: metaTier, interval: metaInterval };
+}
+
+/** @deprecated Use resolvePlanFromStripe */
+function resolvePlanIntervalFromStripe(sub: Stripe.Subscription): BillingInterval {
+  return resolvePlanFromStripe(sub).interval;
 }
 
 export type PlanChangeResult = {
   effective: "immediate" | "period_end";
   effectiveAt: Date | null;
+  tier: SubscriptionTier;
   interval: BillingInterval;
 };
 
@@ -227,11 +247,14 @@ export async function getSubscriptionBillingDetails(stripeSubscriptionId: string
 
   const sub = await stripe.subscriptions.retrieve(stripeSubscriptionId);
   const pendingRaw = sub.metadata?.pendingInterval?.trim();
+  const pendingTierRaw = sub.metadata?.pendingTier?.trim();
   const pendingPlanInterval = pendingRaw ? parseBillingInterval(pendingRaw) : null;
-  const currentPlanInterval = resolvePlanIntervalFromStripe(sub);
+  const pendingPlanTier = pendingTierRaw ? parseSubscriptionTier(pendingTierRaw) : null;
+  const current = resolvePlanFromStripe(sub);
   const onTrial = sub.status === "trialing";
 
-  const nextRecurringInterval = pendingPlanInterval ?? currentPlanInterval;
+  const nextRecurringInterval = pendingPlanInterval ?? current.interval;
+  const nextRecurringTier = pendingPlanTier ?? current.tier;
   const nextRecurringAt = onTrial
     ? sub.trial_end
       ? new Date(sub.trial_end * 1000)
@@ -239,19 +262,23 @@ export async function getSubscriptionBillingDetails(stripeSubscriptionId: string
     : new Date(sub.current_period_end * 1000);
 
   return {
-    planInterval: currentPlanInterval,
+    planTier: current.tier,
+    planInterval: current.interval,
+    pendingPlanTier,
     pendingPlanInterval,
     currentPeriodEnd: new Date(sub.current_period_end * 1000),
     status: sub.status,
     onTrial,
+    nextRecurringTier,
     nextRecurringInterval,
     nextRecurringAt,
-    nextRecurringUsd: intervalTotalUsd(nextRecurringInterval),
+    nextRecurringUsd: intervalTotalUsd(nextRecurringTier, nextRecurringInterval),
   };
 }
 
 export async function changeSubscriptionPlan(params: {
   stripeSubscriptionId: string;
+  tier: SubscriptionTier;
   interval: BillingInterval;
   userId: string;
 }): Promise<PlanChangeResult> {
@@ -264,17 +291,21 @@ export async function changeSubscriptionPlan(params: {
   const currentPriceId = subscriptionItemPriceId(sub);
   if (!currentPriceId) throw new Error("Subscription has no price");
 
-  const newPriceId = requireStripePriceId(params.interval);
+  const newPriceId = requireStripePriceId(params.tier, params.interval);
   const onTrial = sub.status === "trialing";
+  const isUpgrade =
+    params.tier === "pro" && parseSubscriptionTier(sub.metadata?.tier) === "basic";
 
-  if (onTrial) {
+  if (onTrial || isUpgrade) {
     const updated = await stripe.subscriptions.update(params.stripeSubscriptionId, {
       items: [{ id: item.id, price: newPriceId }],
-      proration_behavior: "none",
+      proration_behavior: onTrial ? "none" : "create_prorations",
       metadata: {
         ...sub.metadata,
         userId: params.userId,
+        tier: params.tier,
         interval: params.interval,
+        pendingTier: "",
         pendingInterval: "",
       },
     });
@@ -282,6 +313,7 @@ export async function changeSubscriptionPlan(params: {
     await prisma.subscription.update({
       where: { userId: params.userId },
       data: {
+        planTier: params.tier,
         planInterval: params.interval,
         ...(updated.current_period_end
           ? { currentPeriodEnd: new Date(updated.current_period_end * 1000) }
@@ -289,7 +321,12 @@ export async function changeSubscriptionPlan(params: {
       },
     });
 
-    return { effective: "immediate", effectiveAt: null, interval: params.interval };
+    return {
+      effective: "immediate",
+      effectiveAt: null,
+      tier: params.tier,
+      interval: params.interval,
+    };
   }
 
   const effectiveAt = new Date(sub.current_period_end * 1000);
@@ -342,11 +379,17 @@ export async function changeSubscriptionPlan(params: {
     metadata: {
       ...sub.metadata,
       userId: params.userId,
+      pendingTier: params.tier,
       pendingInterval: params.interval,
     },
   });
 
-  return { effective: "period_end", effectiveAt, interval: params.interval };
+  return {
+    effective: "period_end",
+    effectiveAt,
+    tier: params.tier,
+    interval: params.interval,
+  };
 }
 
 export async function applySubscriptionFromStripe(
@@ -355,20 +398,28 @@ export async function applySubscriptionFromStripe(
   stripeCustomerId?: string
 ) {
   const isPaid = stripeSub.status === "active" || stripeSub.status === "trialing";
-  const pending = stripeSub.metadata?.pendingInterval?.trim();
+  const pendingInterval = stripeSub.metadata?.pendingInterval?.trim();
+  const pendingTier = stripeSub.metadata?.pendingTier?.trim();
   const priceId = subscriptionItemPriceId(stripeSub);
-  let planInterval = resolvePlanIntervalFromStripe(stripeSub);
+  let { tier: planTier, interval: planInterval } = resolvePlanFromStripe(stripeSub);
 
-  if (pending && priceId === requireStripePriceId(parseBillingInterval(pending))) {
-    planInterval = parseBillingInterval(pending);
-    if (stripe) {
-      await stripe.subscriptions.update(stripeSub.id, {
-        metadata: {
-          ...stripeSub.metadata,
-          interval: pending,
-          pendingInterval: "",
-        },
-      });
+  if (pendingInterval && pendingTier && priceId) {
+    const nextTier = parseSubscriptionTier(pendingTier);
+    const nextInterval = parseBillingInterval(pendingInterval);
+    if (priceId === requireStripePriceId(nextTier, nextInterval)) {
+      planTier = nextTier;
+      planInterval = nextInterval;
+      if (stripe) {
+        await stripe.subscriptions.update(stripeSub.id, {
+          metadata: {
+            ...stripeSub.metadata,
+            tier: pendingTier,
+            interval: pendingInterval,
+            pendingTier: "",
+            pendingInterval: "",
+          },
+        });
+      }
     }
   }
 
@@ -381,6 +432,7 @@ export async function applySubscriptionFromStripe(
       stripeSubscriptionId: stripeSub.id,
       status: stripeSub.status === "canceled" ? "canceled" : stripeSub.status,
       plan: signupPlan,
+      planTier,
       planInterval,
       currentPeriodEnd: new Date(stripeSub.current_period_end * 1000),
       ...(stripeSub.trial_end

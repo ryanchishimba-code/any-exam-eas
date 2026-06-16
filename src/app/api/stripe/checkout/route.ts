@@ -10,6 +10,7 @@ import { hasConsumedTrial } from "@/lib/trial-eligibility";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { requireSessionGuard } from "@/lib/session-guard";
 import { requireStripePriceId } from "@/lib/stripe-prices";
+import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 
 export const runtime = "nodejs";
 
@@ -55,7 +56,7 @@ export async function POST(req: Request) {
     );
   }
 
-  if (sub?.stripeSubscriptionId && access.status === "trialing") {
+  if (sub?.stripeSubscriptionId && access.status === "trialing" && !access.needsPaymentMethod) {
     return NextResponse.json(
       {
         error:
@@ -69,7 +70,8 @@ export async function POST(req: Request) {
   const embedded = body?.embedded === true;
   const reactivating = body?.reactivate === true;
   let plan = body?.plan === "trial" ? ("trial" as const) : ("subscribe" as const);
-  const interval = parseBillingInterval(body?.interval);
+  const tier = parseSubscriptionTier(body?.tier ?? sub?.planTier);
+  const interval = parseBillingInterval(body?.interval ?? sub?.planInterval);
 
   if (session.user.email && (reactivating || plan === "trial")) {
     if (await hasConsumedTrial(session.user.email)) {
@@ -78,11 +80,11 @@ export async function POST(req: Request) {
   }
 
   try {
-    requireStripePriceId(interval);
+    requireStripePriceId(tier, interval);
     const { stripe: stripeClient } = await import("@/lib/stripe");
     if (stripeClient) {
       const { assertStripePriceMatchesConfig } = await import("@/lib/stripe-prices");
-      await assertStripePriceMatchesConfig(stripeClient, interval);
+      await assertStripePriceMatchesConfig(stripeClient, tier, interval);
     }
   } catch (e) {
     const message = e instanceof Error ? e.message : "Billing price not configured";
@@ -128,6 +130,7 @@ export async function POST(req: Request) {
     userId: session.user.id,
     stripeCustomerId: sub?.stripeCustomerId,
     plan,
+    tier,
     interval,
     stripeCouponId,
     trialEndUnix,
@@ -149,7 +152,8 @@ export async function POST(req: Request) {
       return NextResponse.json({
         clientSecret: checkout.client_secret,
         promo: promoValidation,
-        fullAccessIncluded: true,
+        tier,
+        interval,
       });
     }
 
@@ -157,7 +161,8 @@ export async function POST(req: Request) {
     return NextResponse.json({
       url: checkout.url,
       promo: promoValidation,
-      fullAccessIncluded: true,
+      tier,
+      interval,
     });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Checkout failed";

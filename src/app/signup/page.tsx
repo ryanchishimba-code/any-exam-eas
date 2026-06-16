@@ -3,6 +3,7 @@ import { PageShell } from "@/components/PageShell";
 import { AuthCard } from "@/components/ui/AuthCard";
 import { formatPricingHeadline } from "@/lib/site";
 import { parseBillingInterval } from "@/lib/billing-plans";
+import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import type { SignupPlan } from "@/lib/validators/auth";
 
 export const metadata = {
@@ -17,11 +18,12 @@ function parseInitialPlan(plan?: string): SignupPlan | "" {
 export default async function SignupPage({
   searchParams,
 }: {
-  searchParams: Promise<{ plan?: string; promo?: string; interval?: string }>;
+  searchParams: Promise<{ plan?: string; promo?: string; interval?: string; tier?: string }>;
 }) {
-  const { plan, promo, interval } = await searchParams;
+  const { plan, promo, interval, tier } = await searchParams;
   const initialPlan = parseInitialPlan(plan);
   const initialInterval = interval ? parseBillingInterval(interval) : "yearly";
+  const initialTier = parseSubscriptionTier(tier);
 
   return (
     <PageShell
@@ -37,6 +39,7 @@ export default async function SignupPage({
           initialPlan={initialPlan}
           initialPromo={promo?.trim() ?? ""}
           initialInterval={initialInterval}
+          initialTier={initialTier}
         />
       </AuthCard>
     </PageShell>

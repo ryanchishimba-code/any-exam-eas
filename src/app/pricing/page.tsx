@@ -8,7 +8,7 @@ import { PaywallNotice } from "@/components/PaywallNotice";
 export const metadata = {
   title: "Pricing — Any Exam Easy",
   description:
-    "7-day free trial, then from $32.99/mo. Save up to 20% on longer plans. Cancel anytime.",
+    "14-day free trial · Basic from $34.99/mo · Pro from $49.99/mo · Save up to 20% on annual. Cancel anytime.",
 };
 
 export default async function PricingPage({
@@ -24,7 +24,7 @@ export default async function PricingPage({
       title="Simple pricing. Every board included."
       description={formatPricingHeadline()}
       align="center"
-      maxWidth="max-w-2xl"
+      maxWidth="max-w-5xl"
     >
       {paywall && <PaywallNotice reason={paywall} />}
 

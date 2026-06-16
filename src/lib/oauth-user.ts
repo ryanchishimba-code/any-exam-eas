@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { normalizeEmail } from "@/lib/validators/auth";
+import { trialEndsAtFromNow } from "@/lib/billing-config";
 import { isAtLeast18 } from "@/lib/age";
 
 const DEFAULT_DOB = new Date("1990-01-01");
@@ -67,10 +68,11 @@ export async function findOrCreateGoogleUser(params: {
       dateOfBirth: DEFAULT_DOB,
       subscription: {
         create: {
-          status: "inactive",
-          trialEndsAt: null,
+          status: "trialing",
+          trialEndsAt: trialEndsAtFromNow(),
           plan: "trial",
-          planInterval: "monthly",
+          planTier: "pro",
+          planInterval: "yearly",
         },
       },
       accounts: {

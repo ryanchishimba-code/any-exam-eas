@@ -4,7 +4,10 @@ import type { User } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { isAtLeast18 } from "@/lib/age";
 import { signUpSchema, normalizeEmail, type SignUpInput } from "@/lib/validators/auth";
-import { hasConsumedTrial } from "@/lib/trial-eligibility";
+import { parseBillingInterval } from "@/lib/billing-plans";
+import { trialEndsAtFromNow } from "@/lib/billing-config";
+import { parseSubscriptionTier } from "@/lib/subscription-tiers";
+import { hasConsumedTrial, recordTrialUsed } from "@/lib/trial-eligibility";
 
 const BCRYPT_ROUNDS = 12;
 const REGISTER_RETRIES = 6;
@@ -80,7 +83,8 @@ export async function recordUserLogin(userId: string): Promise<void> {
 
 /**
  * Create a new account with hashed password.
- * Trial and subscribe plans both continue to Stripe Checkout after signup.
+ * Trial signup starts a cardless 14-day trial with immediate access.
+ * Subscribe plan continues to Stripe Checkout after signup.
  */
 export async function registerUser(
   input: SignUpInput
@@ -93,12 +97,15 @@ export async function registerUser(
   }
 
   const passwordHash = await bcrypt.hash(parsed.password, BCRYPT_ROUNDS);
+  const planTier = parseSubscriptionTier(parsed.tier);
+  const planInterval = parseBillingInterval(parsed.interval);
 
   let subscriptionData: {
-    status: "inactive";
-    trialEndsAt: null;
+    status: "trialing" | "inactive";
+    trialEndsAt: Date | null;
     plan?: string;
-    planInterval?: string;
+    planTier: string;
+    planInterval: string;
   };
 
   if (parsed.plan === "trial") {
@@ -108,13 +115,20 @@ export async function registerUser(
       );
     }
     subscriptionData = {
-      status: "inactive",
-      trialEndsAt: null,
+      status: "trialing",
+      trialEndsAt: trialEndsAtFromNow(),
       plan: "trial",
-      planInterval: "monthly",
+      planTier,
+      planInterval,
     };
   } else {
-    subscriptionData = { status: "inactive", trialEndsAt: null, plan: "subscribe" };
+    subscriptionData = {
+      status: "inactive",
+      trialEndsAt: null,
+      plan: "subscribe",
+      planTier,
+      planInterval,
+    };
   }
 
   try {
@@ -150,6 +164,10 @@ export async function registerUser(
       void import("@/lib/promo").then((m) =>
         m.redeemPromoCode(user.id, parsed.promoCode!.trim())
       );
+    }
+
+    if (parsed.plan === "trial") {
+      await recordTrialUsed(parsed.email, user.id);
     }
 
     return {

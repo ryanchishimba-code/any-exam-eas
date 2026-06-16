@@ -27,6 +27,10 @@ function getStripe(publishableKey: string) {
 export function EmbeddedStripeCheckout() {
   const searchParams = useSearchParams();
   const plan: SignupPlan = searchParams.get("plan") === "trial" ? "trial" : "subscribe";
+  const tier = useMemo(() => {
+    const raw = searchParams.get("tier");
+    return raw === "basic" || raw === "pro" ? raw : "pro";
+  }, [searchParams]);
   const interval = useMemo(() => {
     const raw = searchParams.get("interval");
     return raw ? parseBillingInterval(raw) : "yearly";
@@ -36,6 +40,7 @@ export function EmbeddedStripeCheckout() {
 
   const [phase, setPhase] = useState<"review" | "payment">("review");
   const [selectedPlan, setSelectedPlan] = useState<SignupPlan>(plan);
+  const [selectedTier, setSelectedTier] = useState(tier);
   const [selectedInterval, setSelectedInterval] = useState<BillingInterval>(interval);
   const [appliedDiscount, setAppliedDiscount] = useState<DiscountValidation | null>(null);
   const [publishableKey, setPublishableKey] = useState<string | null>(null);
@@ -47,8 +52,9 @@ export function EmbeddedStripeCheckout() {
 
   useEffect(() => {
     setSelectedPlan(plan);
+    setSelectedTier(tier);
     setSelectedInterval(interval);
-  }, [plan, interval]);
+  }, [plan, tier, interval]);
 
   useEffect(() => {
     const stored = loadCheckoutDiscount(selectedPlan);
@@ -76,6 +82,7 @@ export function EmbeddedStripeCheckout() {
       body: JSON.stringify({
         embedded: true,
         plan: selectedPlan,
+        tier: selectedTier,
         interval: selectedInterval,
         promoCode: promoCode || undefined,
         reactivate: reactivating || undefined,
@@ -93,16 +100,18 @@ export function EmbeddedStripeCheckout() {
       throw new Error("Checkout did not return a client secret.");
     }
     return data.clientSecret as string;
-  }, [selectedPlan, selectedInterval, promoCode, checkoutKey, reactivating]);
+  }, [selectedPlan, selectedTier, selectedInterval, promoCode, checkoutKey, reactivating]);
 
   function handleContinueToPayment(
     discount: DiscountValidation | null,
     nextPlan: SignupPlan,
+    nextTier: typeof tier,
     nextInterval: BillingInterval
   ) {
     setSelectedPlan(nextPlan);
+    setSelectedTier(nextTier);
     setSelectedInterval(nextInterval);
-    const qs = new URLSearchParams({ plan: nextPlan, interval: nextInterval });
+    const qs = new URLSearchParams({ plan: nextPlan, tier: nextTier, interval: nextInterval });
     if (discount?.code) qs.set("promo", discount.code);
     window.history.replaceState(null, "", `/checkout?${qs.toString()}`);
     setAppliedDiscount(discount);
@@ -146,6 +155,7 @@ export function EmbeddedStripeCheckout() {
         )}
         <CheckoutReview
           initialPlan={plan}
+          initialTier={tier}
           initialInterval={interval}
           initialPromo={initialPromo}
           onContinue={handleContinueToPayment}

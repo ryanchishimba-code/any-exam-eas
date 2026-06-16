@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowRight, Lock } from "lucide-react";
 import type { BillingInterval } from "@/lib/billing-config";
+import { TRIAL_DAYS } from "@/lib/billing-config";
+import { BILLING_TRIAL_DISCLOSURE } from "@/lib/billing-plans";
 import type { DiscountValidation } from "@/lib/discount/types";
 import { getBillingPlanTier } from "@/lib/billing-plans";
 import { buildPlanPricing, hasDiscount } from "@/lib/promo-pricing";
@@ -14,20 +16,23 @@ import {
 } from "@/lib/client/checkout-discount";
 import { BillingIntervalSelector } from "@/components/checkout/BillingIntervalSelector";
 import { CheckoutPlanSelector } from "@/components/checkout/CheckoutPlanSelector";
+import { CheckoutTierSelector } from "@/components/checkout/CheckoutTierSelector";
 import { CheckoutOrderSummary } from "@/components/checkout/CheckoutOrderSummary";
 import { CheckoutDiscountSection } from "@/components/checkout/CheckoutDiscountSection";
 import { PricingGuarantees } from "@/components/pricing/PricingGuarantees";
-import { TRIAL_DAYS } from "@/lib/billing-config";
-import { formatCheckoutContinueCta } from "@/lib/site";
+import { formatCheckoutContinueCta, formatTierName } from "@/lib/site";
+import { parseSubscriptionTier, type SubscriptionTier } from "@/lib/subscription-tiers";
 import type { SignupPlan } from "@/lib/validators/auth";
 import { Button } from "@/components/ui/Button";
 
 type CheckoutReviewProps = {
   initialPlan: SignupPlan;
+  initialTier?: SubscriptionTier;
   initialInterval?: BillingInterval;
   onContinue: (
     discount: DiscountValidation | null,
     plan: SignupPlan,
+    tier: SubscriptionTier,
     interval: BillingInterval
   ) => void;
   initialPromo?: string;
@@ -35,6 +40,7 @@ type CheckoutReviewProps = {
 
 export function CheckoutReview({
   initialPlan,
+  initialTier = "pro",
   initialInterval = "yearly",
   onContinue,
   initialPromo = "",
@@ -42,12 +48,17 @@ export function CheckoutReview({
   const router = useRouter();
   const searchParams = useSearchParams();
   const [plan, setPlan] = useState<SignupPlan>(initialPlan);
+  const [tier, setTier] = useState<SubscriptionTier>(initialTier);
   const [interval, setInterval] = useState<BillingInterval>(initialInterval);
   const [discount, setDiscount] = useState<DiscountValidation | null>(null);
 
   useEffect(() => {
     setPlan(initialPlan);
   }, [initialPlan]);
+
+  useEffect(() => {
+    setTier(initialTier);
+  }, [initialTier]);
 
   useEffect(() => {
     setInterval(initialInterval);
@@ -59,9 +70,13 @@ export function CheckoutReview({
   }, [plan]);
 
   const syncUrl = useCallback(
-    (nextPlan: SignupPlan, nextInterval: BillingInterval) => {
+    (nextPlan: SignupPlan, nextTier: SubscriptionTier, nextInterval: BillingInterval) => {
       const promo = searchParams.get("promo");
-      const qs = new URLSearchParams({ plan: nextPlan, interval: nextInterval });
+      const qs = new URLSearchParams({
+        plan: nextPlan,
+        tier: nextTier,
+        interval: nextInterval,
+      });
       if (promo) qs.set("promo", promo);
       router.replace(`/checkout?${qs.toString()}`, { scroll: false });
     },
@@ -73,9 +88,19 @@ export function CheckoutReview({
       setPlan(next);
       setDiscount(null);
       clearCheckoutDiscount();
-      syncUrl(next, interval);
+      syncUrl(next, tier, interval);
     },
-    [interval, syncUrl]
+    [interval, syncUrl, tier]
+  );
+
+  const handleTierChange = useCallback(
+    (next: SubscriptionTier) => {
+      setTier(next);
+      setDiscount(null);
+      clearCheckoutDiscount();
+      syncUrl(plan, next, interval);
+    },
+    [interval, plan, syncUrl]
   );
 
   const handleIntervalChange = useCallback(
@@ -83,9 +108,9 @@ export function CheckoutReview({
       setInterval(next);
       setDiscount(null);
       clearCheckoutDiscount();
-      syncUrl(plan, next);
+      syncUrl(plan, tier, next);
     },
-    [plan, syncUrl]
+    [plan, syncUrl, tier]
   );
 
   const handleValidationChange = useCallback(
@@ -102,28 +127,33 @@ export function CheckoutReview({
     setDiscount(null);
   };
 
-  const basePricing = buildPlanPricing(plan, interval);
+  const basePricing = buildPlanPricing(plan, tier, interval);
   const pricing =
     discount?.valid && discount.pricing ? discount.pricing : basePricing;
   const discounted = discount?.valid && hasDiscount(pricing);
   const appliedCode = discounted ? discount?.code : null;
 
-  const tier = getBillingPlanTier(interval);
+  const planTier = getBillingPlanTier(tier, interval);
   const planLabel =
     plan === "trial"
-      ? `${TRIAL_DAYS}-day free trial · ${tier.label}`
-      : `${tier.label} subscription`;
+      ? `${TRIAL_DAYS}-day free trial · ${formatTierName(tier)} · ${planTier.label}`
+      : `${formatTierName(tier)} · ${planTier.label}`;
 
   const continueButton = (
     <div className="space-y-3">
       <Button
         type="button"
         className="w-full gap-2"
-        onClick={() => onContinue(discount?.valid ? discount : null, plan, interval)}
+        onClick={() =>
+          onContinue(discount?.valid ? discount : null, plan, tier, interval)
+        }
       >
-        {formatCheckoutContinueCta(plan, interval)}
+        {formatCheckoutContinueCta(plan, tier, interval)}
         <ArrowRight className="h-4 w-4" aria-hidden />
       </Button>
+      <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
+        {BILLING_TRIAL_DISCLOSURE}
+      </p>
       <p className="flex items-center justify-center gap-1.5 text-[0.6875rem] text-[var(--color-ink-muted)]">
         <Lock className="h-3.5 w-3.5" aria-hidden />
         Secured by Stripe · Apple Pay & Google Pay
@@ -134,8 +164,9 @@ export function CheckoutReview({
   return (
     <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start lg:gap-10">
       <div className="space-y-6">
+        <CheckoutTierSelector value={tier} onChange={handleTierChange} />
         <CheckoutPlanSelector value={plan} onChange={handlePlanChange} />
-        <BillingIntervalSelector value={interval} onChange={handleIntervalChange} />
+        <BillingIntervalSelector value={interval} onChange={handleIntervalChange} tier={tier} />
         <CheckoutDiscountSection
           plan={plan}
           interval={interval}
@@ -145,13 +176,13 @@ export function CheckoutReview({
           onRemove={appliedCode ? handleRemoveDiscount : undefined}
         />
 
-        {/* Mobile summary + CTA */}
         <div className="space-y-4 lg:hidden">
           <CheckoutOrderSummary
             pricing={pricing}
             discount={discount}
             planLabel={planLabel}
             interval={interval}
+            tier={tier}
           />
           {continueButton}
         </div>
@@ -163,6 +194,7 @@ export function CheckoutReview({
           discount={discount}
           planLabel={planLabel}
           interval={interval}
+          tier={tier}
           sticky
         />
         <PricingGuarantees variant="compact" />

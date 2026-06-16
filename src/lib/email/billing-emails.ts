@@ -111,7 +111,7 @@ export async function sendTrialEndingReminderEmail(
   if (!isEmailConfigured()) return { ok: false, reason: "not_configured" };
 
   const settingsUrl = `${appBaseUrl()}/settings`;
-  const tier = getBillingPlanTier(params.planInterval);
+  const tier = getBillingPlanTier("pro", params.planInterval);
   const when = formatEmailDate(params.trialEndsAt);
   const amount = formatPlanUsd(params.amountUsd);
 
@@ -155,7 +155,7 @@ export async function sendNextBillingReminderEmail(
   if (!isEmailConfigured()) return { ok: false, reason: "not_configured" };
 
   const settingsUrl = `${appBaseUrl()}/settings`;
-  const tier = getBillingPlanTier(params.planInterval);
+  const tier = getBillingPlanTier("pro", params.planInterval);
   const when = formatEmailDate(params.chargeAt);
   const amount = formatPlanUsd(params.amountUsd);
 

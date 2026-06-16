@@ -4,49 +4,53 @@ import { useEffect, useId, useRef, useState } from "react";
 import { ChevronDown, Sparkles } from "lucide-react";
 import type { BillingInterval } from "@/lib/billing-config";
 import {
-  BILLING_PLAN_TIERS,
   formatPlanUsd,
   getBillingPlanTier,
+  getBillingPlanTiersForTier,
   intervalListPriceUsd,
   intervalSavingsUsd,
 } from "@/lib/billing-plans";
+import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import { SavingsBreakdownCard } from "@/components/pricing/SavingsBreakdownCard";
 import { cn } from "@/lib/utils";
 
 type BillingIntervalDropdownProps = {
   value: BillingInterval;
   onChange: (interval: BillingInterval) => void;
+  tier?: SubscriptionTier;
   variant?: "pricing" | "checkout";
   className?: string;
 };
 
-function optionLabel(interval: BillingInterval): string {
-  const tier = getBillingPlanTier(interval);
-  if (tier.savingsPercent === 0) {
-    return `${tier.label} — ${formatPlanUsd(tier.totalUsd)}/mo`;
+function optionLabel(tier: SubscriptionTier, interval: BillingInterval): string {
+  const plan = getBillingPlanTier(tier, interval);
+  if (plan.savingsPercent === 0) {
+    return `${plan.label} — ${formatPlanUsd(plan.totalUsd)}/mo`;
   }
-  return `${tier.label} — Save ${tier.savingsPercent}%`;
+  return `${plan.label} — Save ${plan.savingsPercent}%`;
 }
 
-function optionSubline(interval: BillingInterval): string {
-  const tier = getBillingPlanTier(interval);
-  const list = intervalListPriceUsd(interval);
-  if (tier.savingsPercent === 0) {
+function optionSubline(tier: SubscriptionTier, interval: BillingInterval): string {
+  const plan = getBillingPlanTier(tier, interval);
+  const list = intervalListPriceUsd(tier, interval);
+  if (plan.savingsPercent === 0) {
     return "Flexible · cancel anytime";
   }
-  return `${formatPlanUsd(tier.totalUsd)} (was ${formatPlanUsd(list)})`;
+  return `${formatPlanUsd(plan.totalUsd)} (was ${formatPlanUsd(list)})`;
 }
 
 export function BillingIntervalDropdown({
   value,
   onChange,
+  tier = "pro",
   variant = "pricing",
   className,
 }: BillingIntervalDropdownProps) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const listboxId = useId();
-  const tier = getBillingPlanTier(value);
+  const plan = getBillingPlanTier(tier, value);
+  const tierPlans = getBillingPlanTiersForTier(tier);
 
   useEffect(() => {
     function onPointerDown(e: MouseEvent) {
@@ -88,20 +92,20 @@ export function BillingIntervalDropdown({
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-sm font-semibold text-[var(--color-ink)]">
-                {optionLabel(value)}
+                {optionLabel(tier, value)}
               </span>
-              {tier.recommended && (
+              {plan.recommended && (
                 <span className="rounded-full bg-[var(--color-accent)] px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wide text-white">
                   Best value
                 </span>
               )}
-              {tier.savingsBadge && (
+              {plan.savingsBadge && (
                 <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[0.625rem] font-semibold text-emerald-800">
-                  {tier.savingsBadge}
+                  {plan.savingsBadge}
                 </span>
               )}
             </div>
-            <p className="mt-0.5 text-xs text-[var(--color-ink-muted)]">{optionSubline(value)}</p>
+            <p className="mt-0.5 text-xs text-[var(--color-ink-muted)]">{optionSubline(tier, value)}</p>
           </div>
           <ChevronDown
             className={cn(
@@ -119,9 +123,9 @@ export function BillingIntervalDropdown({
             aria-label="Billing cycle options"
             className="absolute z-20 mt-2 max-h-[min(20rem,70vh)] w-full overflow-auto rounded-2xl border border-black/[0.08] bg-white py-1 shadow-[var(--shadow-apple-md)]"
           >
-            {BILLING_PLAN_TIERS.map((t) => {
+            {tierPlans.map((t) => {
               const selected = value === t.interval;
-              const savings = intervalSavingsUsd(t.interval);
+              const savings = intervalSavingsUsd(tier, t.interval);
               return (
                 <li key={t.interval} role="option" aria-selected={selected}>
                   <button
@@ -148,7 +152,7 @@ export function BillingIntervalDropdown({
                         {t.savingsPercent > 0 ? (
                           <>
                             <span className="text-[var(--color-ink-muted)] line-through">
-                              {formatPlanUsd(intervalListPriceUsd(t.interval))}
+                              {formatPlanUsd(intervalListPriceUsd(tier, t.interval))}
                             </span>
                             {" → "}
                             <span className="font-medium text-[var(--color-ink)]">
@@ -180,7 +184,7 @@ export function BillingIntervalDropdown({
         )}
       </div>
 
-      <SavingsBreakdownCard interval={value} variant={variant} />
+      <SavingsBreakdownCard tier={tier} interval={value} variant={variant} />
     </div>
   );
 }

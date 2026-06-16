@@ -1,6 +1,9 @@
 import type { Subscription } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { TRIAL_DAYS } from "@/lib/billing-config";
+import { TRIAL_DAYS, type BillingInterval } from "@/lib/billing-config";
+import { parseBillingInterval } from "@/lib/billing-plans";
+import { resolveStoredTier, type SubscriptionFeature, tierHasFeature } from "@/lib/subscription-features";
+import type { SubscriptionTier } from "@/lib/subscription-tiers";
 
 export type SubscriptionAccessStatus =
   | "active"
@@ -14,10 +17,12 @@ export type SubscriptionAccessStatus =
 export type SubscriptionAccess = {
   hasAccess: boolean;
   status: SubscriptionAccessStatus;
+  tier: SubscriptionTier;
+  planDuration: BillingInterval;
   trialEndsAt: Date | null;
   daysRemaining: number | null;
   canStartCheckout: boolean;
-  /** App-native trial without Stripe subscription — prompt to add payment before trial ends. */
+  /** Cardless trial — full access but payment not yet on file. */
   needsPaymentMethod: boolean;
 };
 
@@ -51,13 +56,26 @@ export async function expireTrialIfNeeded(
   return prisma.subscription.findUnique({ where: { id: subscription.id } });
 }
 
+function subscriptionMeta(subscription: Subscription | null): {
+  tier: SubscriptionTier;
+  planDuration: BillingInterval;
+} {
+  return {
+    tier: resolveStoredTier(subscription?.planTier),
+    planDuration: parseBillingInterval(subscription?.planInterval),
+  };
+}
+
 export function evaluateSubscriptionAccess(
   subscription: Subscription | null
 ): SubscriptionAccess {
+  const meta = subscriptionMeta(subscription);
+
   if (!subscription) {
     return {
       hasAccess: false,
       status: "none",
+      ...meta,
       trialEndsAt: null,
       daysRemaining: null,
       canStartCheckout: true,
@@ -73,6 +91,7 @@ export function evaluateSubscriptionAccess(
     return {
       hasAccess: true,
       status: "active",
+      ...meta,
       trialEndsAt,
       daysRemaining: null,
       canStartCheckout: false,
@@ -86,26 +105,29 @@ export function evaluateSubscriptionAccess(
       return {
         hasAccess: false,
         status: "trial_expired",
+        ...meta,
         trialEndsAt,
         daysRemaining: 0,
         canStartCheckout: true,
         needsPaymentMethod: false,
       };
     }
+    const daysRemaining = trialEndsAt ? daysUntil(trialEndsAt) : TRIAL_DAYS;
     if (noPaymentOnFile) {
       return {
-        hasAccess: false,
-        status: "inactive",
+        hasAccess: true,
+        status: "trialing",
+        ...meta,
         trialEndsAt,
-        daysRemaining: trialEndsAt ? daysUntil(trialEndsAt) : TRIAL_DAYS,
+        daysRemaining,
         canStartCheckout: true,
         needsPaymentMethod: true,
       };
     }
-    const daysRemaining = trialEndsAt ? daysUntil(trialEndsAt) : TRIAL_DAYS;
     return {
       hasAccess: true,
       status: "trialing",
+      ...meta,
       trialEndsAt,
       daysRemaining,
       canStartCheckout: false,
@@ -117,6 +139,7 @@ export function evaluateSubscriptionAccess(
     return {
       hasAccess: false,
       status: "inactive",
+      ...meta,
       trialEndsAt,
       daysRemaining: null,
       canStartCheckout: true,
@@ -128,6 +151,7 @@ export function evaluateSubscriptionAccess(
     return {
       hasAccess: false,
       status: "trial_expired",
+      ...meta,
       trialEndsAt,
       daysRemaining: 0,
       canStartCheckout: true,
@@ -139,6 +163,7 @@ export function evaluateSubscriptionAccess(
     return {
       hasAccess: false,
       status: "past_due",
+      ...meta,
       trialEndsAt,
       daysRemaining: null,
       canStartCheckout: false,
@@ -150,6 +175,7 @@ export function evaluateSubscriptionAccess(
     return {
       hasAccess: false,
       status: "canceled",
+      ...meta,
       trialEndsAt,
       daysRemaining: null,
       canStartCheckout: true,
@@ -161,6 +187,7 @@ export function evaluateSubscriptionAccess(
     return {
       hasAccess: true,
       status: subscription.status === "trialing" ? "trialing" : "active",
+      ...meta,
       trialEndsAt,
       daysRemaining: trialEndsAt ? daysUntil(trialEndsAt) : null,
       canStartCheckout: false,
@@ -171,11 +198,21 @@ export function evaluateSubscriptionAccess(
   return {
     hasAccess: false,
     status: "inactive",
+    ...meta,
     trialEndsAt,
     daysRemaining: null,
     canStartCheckout: true,
     needsPaymentMethod: false,
   };
+}
+
+/** Feature gate for subscription tier (staff/comp should bypass upstream). */
+export function subscriptionHasFeature(
+  access: SubscriptionAccess,
+  feature: SubscriptionFeature
+): boolean {
+  if (!access.hasAccess) return false;
+  return tierHasFeature(access.tier, feature);
 }
 
 export async function getSubscriptionAccess(

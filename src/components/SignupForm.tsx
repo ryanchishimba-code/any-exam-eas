@@ -10,6 +10,7 @@ import { MARKETING_DISCLAIMER, formatTrialCtaWithSavings, SIGNUP_PAYMENT_REQUIRE
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
 import type { BillingInterval } from "@/lib/billing-config";
 import type { SignupPlan } from "@/lib/validators/auth";
+import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import {
   fetchAuthHealthWarning,
   messageForSignInError,
@@ -22,10 +23,12 @@ export function SignupForm({
   initialPlan = "",
   initialPromo = "",
   initialInterval = "yearly",
+  initialTier = "pro",
 }: {
   initialPlan?: SignupPlan | "";
   initialPromo?: string;
   initialInterval?: BillingInterval;
+  initialTier?: SubscriptionTier;
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -71,6 +74,8 @@ export function SignupForm({
           dateOfBirth: dob,
           acceptedTerms: accepted,
           plan,
+          tier: initialTier,
+          interval: initialInterval,
         }),
       });
       const text = await res.text();
@@ -103,7 +108,12 @@ export function SignupForm({
       const promoQs = initialPromo.trim()
         ? `&promo=${encodeURIComponent(initialPromo.trim())}`
         : "";
-      window.location.href = `/checkout?plan=${plan}&interval=${initialInterval}${promoQs}`;
+
+      if (plan === "trial") {
+        window.location.href = `/dashboard?welcome=trial&tier=${initialTier}`;
+      } else {
+        window.location.href = `/checkout?plan=${plan}&interval=${initialInterval}&tier=${initialTier}${promoQs}`;
+      }
     } catch (err) {
       setError(messageFromUnknownAuthError(err));
     } finally {
@@ -114,7 +124,7 @@ export function SignupForm({
   const submitLabel = !plan
     ? "Create account"
     : plan === "trial"
-      ? formatTrialCtaWithSavings(initialInterval)
+      ? formatTrialCtaWithSavings(initialTier, initialInterval)
       : "Continue to checkout";
 
   return (
@@ -135,7 +145,7 @@ export function SignupForm({
         <p className="rounded-xl border border-sky-100 bg-sky-50/80 px-4 py-3 text-xs leading-relaxed text-slate-700">
           {plan === "trial" ? (
             <>
-              <span className="font-semibold text-slate-900">Next step: add payment.</span>{" "}
+              <span className="font-semibold text-slate-900">Start studying immediately.</span>{" "}
               {SIGNUP_PAYMENT_REQUIRED_NOTE}
             </>
           ) : (

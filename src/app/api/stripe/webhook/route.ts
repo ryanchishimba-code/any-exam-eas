@@ -6,6 +6,7 @@ import {
 } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 import { parseBillingInterval } from "@/lib/billing-plans";
+import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import type Stripe from "stripe";
 import { trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
@@ -52,6 +53,7 @@ export async function POST(req: Request) {
             stripeSubscriptionId: String(session.subscription ?? ""),
             status: stripeSub?.status ?? "active",
             plan: session.metadata?.plan === "trial" ? "trial" : "subscribe",
+            planTier: parseSubscriptionTier(session.metadata?.tier),
             planInterval: parseBillingInterval(session.metadata?.interval),
             ...(stripeSub?.trial_end
               ? { trialEndsAt: new Date(stripeSub.trial_end * 1000) }

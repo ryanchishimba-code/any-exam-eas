@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { MONTHLY_PRICE_USD, TRIAL_DAYS } from "@/lib/billing-config";
+import { TRIAL_DAYS } from "@/lib/billing-config";
+import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import { isStripeConfigured, isStripeFullyConfigured, PAYMENT_METHODS } from "@/lib/payments";
 import { getStripePriceSetupStatus } from "@/lib/stripe-prices";
 
@@ -23,10 +24,12 @@ export async function GET() {
     configured,
     allIntervalsConfigured,
     publishableKey: publishableKey || null,
-    monthlyPriceUsd: MONTHLY_PRICE_USD,
+    monthlyPriceUsd: TIER_MONTHLY_USD.basic,
+    proMonthlyPriceUsd: TIER_MONTHLY_USD.pro,
     trialDays: TRIAL_DAYS,
     paymentMethods: PAYMENT_METHODS,
-    prices: priceStatus.map(({ interval, configured: ok, expectedUsd, savingsPercent }) => ({
+    prices: priceStatus.map(({ tier, interval, configured: ok, expectedUsd, savingsPercent }) => ({
+      tier,
       interval,
       configured: ok,
       expectedUsd,

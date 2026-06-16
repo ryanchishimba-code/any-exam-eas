@@ -1,4 +1,4 @@
-import { isIntervalPriceConfigured } from "@/lib/stripe-prices";
+import { isIntervalPriceConfigured, isProFullyConfigured } from "@/lib/stripe-prices";
 
 /** Payment methods enabled in Stripe Checkout (card includes Apple Pay / Google Pay wallets). */
 export const CHECKOUT_PAYMENT_METHOD_TYPES = ["card", "link"] as const;
@@ -31,15 +31,11 @@ export function isStripeConfigured(): boolean {
   return Boolean(
     process.env.STRIPE_SECRET_KEY &&
       process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY &&
-      isIntervalPriceConfigured("monthly")
+      isIntervalPriceConfigured("pro", "monthly")
   );
 }
 
 export function isStripeFullyConfigured(): boolean {
   if (!isStripeConfigured()) return false;
-  return (
-    isIntervalPriceConfigured("quarterly") &&
-    isIntervalPriceConfigured("semiannual") &&
-    isIntervalPriceConfigured("yearly")
-  );
+  return isProFullyConfigured();
 }

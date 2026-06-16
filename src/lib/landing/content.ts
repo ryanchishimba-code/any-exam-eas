@@ -129,8 +129,8 @@ export const LANDING_PRICING_FEATURES = [
 
 export const LANDING_HERO_EYEBROW = PLATFORM_EXAM_LIST_MIDDOT;
 
-/** Primary signup destination — single conversion path across the landing page. */
-export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=yearly";
+/** Primary signup destination — Pro annual is the default conversion path. */
+export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=yearly&tier=pro";
 
 /** Large hero exam strip — short labels with brand accent colors. */
 export const LANDING_HERO_EXAMS = [
@@ -142,17 +142,18 @@ export const LANDING_HERO_EXAMS = [
 ] as const;
 
 /** Primary hero headline — benefit-driven, scannable above the fold. */
-export const LANDING_HERO_HEADLINE = "Pass Your Boards with Confidence — All Major Exams, One Low Price";
+export const LANDING_HERO_HEADLINE =
+  "Pass Your Boards — All 5 Major Exams, One Affordable Price";
 
 /** Hero sub-headline — exams, tools, and price in one line. */
 export const LANDING_HERO_SUBLINE =
-  "High-quality practice questions + smart tools for USMLE, NCLEX, NAPLEX, PANCE & AANP FNP. Only $32.99/month.";
+  "Professional board prep for USMLE, NCLEX, NAPLEX, PANCE & AANP FNP — 5 exams + powerful tools for less than one UWorld subscription. Basic from $34.99/mo.";
 
 /** Subtle trust signals below hero CTAs. */
 export const LANDING_HERO_TRUST_SIGNALS = [
   "Updated 2026",
   "Blueprint aligned",
-  "7-day free trial",
+  "14-day free trial",
 ] as const;
 
 /** Unique differentiators — icon cards on the landing page. */
@@ -230,9 +231,9 @@ export const LANDING_SOCIAL_PROOF = [
     detail: "One subscription — no per-exam stacking",
   },
   {
-    value: "$32.99",
-    label: "Per month",
-    detail: "All exams included vs. $200–400+ per exam elsewhere",
+    value: "$34.99",
+    label: "Basic from",
+    detail: "Pro from $49.99/mo — all 5 exams vs. $200–400+ each elsewhere",
   },
   {
     value: "Roadmap",
@@ -354,7 +355,7 @@ export type LandingSuccessStory = {
 /** Illustrative outcome stats — not pass-rate guarantees. */
 export const LANDING_PASS_STATS = [
   { value: "5", label: "Board exams", detail: "One subscription — no per-exam stacking" },
-  { value: "$32.99", label: "Per month", detail: "All exams vs. $200–400+ each elsewhere" },
+  { value: "$34.99", label: "Basic from", detail: "Pro from $49.99/mo — all 5 exams vs. $200–400+ each elsewhere" },
   { value: "First try", label: "Passes reported", detail: "Students share first-attempt outcomes*" },
 ] as const;
 
@@ -404,7 +405,7 @@ export const LANDING_TESTIMONIALS = LANDING_SUCCESS_STORIES;
 export const UWORLD_COMPARE_ROWS = [
   {
     label: "Monthly price",
-    us: "From $32.99/mo — all 5 exams included",
+    us: "From $34.99/mo Basic · Pro $49.99/mo — all 5 exams",
     them: "$200–400+ per exam (UWorld sells each board separately)",
   },
   {
@@ -424,7 +425,7 @@ export const UWORLD_COMPARE_ROWS = [
   },
   {
     label: "Trial entry",
-    us: "$0 today · 7-day free trial",
+    us: "14-day free trial · No credit card required",
     them: "Limited demo or paid upfront bundles",
   },
   {

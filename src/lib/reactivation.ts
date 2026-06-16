@@ -22,9 +22,14 @@ export function appendReturnParam(path: string, returnPath: string): string {
   return `${path}${sep}return=${encodeURIComponent(returnPath)}`;
 }
 
-export function buildCheckoutPath(plan: "trial" | "subscribe", reactivate = true): string {
+export function buildCheckoutPath(
+  plan: "trial" | "subscribe",
+  reactivate = true,
+  tier: "basic" | "pro" = "pro"
+): string {
   const params = new URLSearchParams({
     plan,
+    tier,
     interval: REACTIVATION_DEFAULT_INTERVAL,
   });
   if (reactivate) params.set("reactivate", "1");

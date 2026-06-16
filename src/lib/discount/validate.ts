@@ -136,7 +136,7 @@ export async function validateDiscount(
   }
 
   const pricing = plan
-    ? buildPlanPricing(plan, interval, row.discountPercent, row.discountAmount)
+    ? buildPlanPricing(plan, "pro", interval, row.discountPercent, row.discountAmount)
     : undefined;
 
   const savingsText = pricing

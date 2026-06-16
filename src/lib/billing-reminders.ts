@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { intervalTotalUsd, parseBillingInterval } from "@/lib/billing-plans";
+import { resolveStoredTier } from "@/lib/subscription-features";
 import {
   sendNextBillingReminderEmail,
   sendTrialEndingReminderEmail,
@@ -34,7 +35,6 @@ export async function runBillingReminderEmails(
   const trialCandidates = await prisma.subscription.findMany({
     where: {
       status: "trialing",
-      stripeSubscriptionId: { not: null },
       trialEndsAt: { not: null },
     },
     include: {
@@ -53,7 +53,8 @@ export async function runBillingReminderEmails(
     }
 
     let interval = parseBillingInterval(sub.planInterval);
-    let amountUsd = intervalTotalUsd(interval);
+    const tier = resolveStoredTier(sub.planTier);
+    let amountUsd = intervalTotalUsd(tier, interval);
 
     if (sub.stripeSubscriptionId && isStripeConfigured()) {
       const billing = await getSubscriptionBillingDetails(sub.stripeSubscriptionId);
@@ -104,7 +105,8 @@ export async function runBillingReminderEmails(
     }
 
     let interval = parseBillingInterval(sub.planInterval);
-    let amountUsd = intervalTotalUsd(interval);
+    const tier = resolveStoredTier(sub.planTier);
+    let amountUsd = intervalTotalUsd(tier, interval);
     let chargeAt = periodEnd;
 
     if (sub.stripeSubscriptionId && isStripeConfigured()) {

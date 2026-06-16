@@ -4,18 +4,22 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { CreditCard, Loader2, ShieldCheck } from "lucide-react";
 import type { BillingInterval } from "@/lib/billing-config";
+import { TRIAL_DAYS } from "@/lib/billing-config";
 import { getBillingPlanTier, parseBillingInterval, formatPlanUsd, BILLING_PLAN_CHANGE_POLICY, BILLING_RECURRING_POLICY } from "@/lib/billing-plans";
 import { BillingIntervalDropdown } from "@/components/pricing/BillingIntervalDropdown";
+import { CheckoutTierSelector } from "@/components/checkout/CheckoutTierSelector";
 import { ManageBillingButton } from "@/components/ManageBillingButton";
 import { Button } from "@/components/ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { SIGNUP_PAYMENT_REQUIRED_NOTE, formatTrialCtaWithSavings } from "@/lib/site";
-import { TRIAL_DAYS } from "@/lib/billing-config";
+import { parseSubscriptionTier, type SubscriptionTier } from "@/lib/subscription-tiers";
 
 type BillingStatus = {
   status: string;
   hasAccess: boolean;
+  planTier?: string;
   planInterval?: string;
+  pendingPlanTier?: string | null;
   pendingPlanInterval?: string | null;
   currentPeriodEnd?: string | null;
   nextRecurringAt?: string | null;
@@ -38,6 +42,7 @@ type BillingStatus = {
 
 export function BillingSettingsSection() {
   const [status, setStatus] = useState<BillingStatus | null>(null);
+  const [tier, setTier] = useState<SubscriptionTier>("pro");
   const [interval, setInterval] = useState<BillingInterval>("yearly");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -52,6 +57,9 @@ export function BillingSettingsSection() {
       setStatus(data);
       if (data.planInterval) {
         setInterval(parseBillingInterval(data.planInterval));
+      }
+      if (data.planTier) {
+        setTier(parseSubscriptionTier(data.planTier));
       }
     } finally {
       setLoading(false);
@@ -70,7 +78,7 @@ export function BillingSettingsSection() {
       const res = await fetch("/api/stripe/change-plan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ interval }),
+        body: JSON.stringify({ interval, tier }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Could not update plan");
@@ -114,7 +122,11 @@ export function BillingSettingsSection() {
     (status.status === "trialing" || status.status === "active");
 
   const onTrial = status?.status === "trialing";
+  const currentTier = parseSubscriptionTier(status?.planTier);
   const currentInterval = parseBillingInterval(status?.planInterval);
+  const pendingTier = status?.pendingPlanTier
+    ? parseSubscriptionTier(status.pendingPlanTier)
+    : null;
   const pendingInterval = status?.pendingPlanInterval
     ? parseBillingInterval(status.pendingPlanInterval)
     : null;
@@ -133,13 +145,16 @@ export function BillingSettingsSection() {
       })
     : null;
   const nextChargeInterval = status?.nextRecurringInterval
-    ? getBillingPlanTier(parseBillingInterval(status.nextRecurringInterval))
+    ? getBillingPlanTier(
+        parseSubscriptionTier(status.planTier),
+        parseBillingInterval(status.nextRecurringInterval)
+      )
     : null;
 
   const planAlreadySelected =
-    interval === currentInterval && !pendingInterval
+    interval === currentInterval && tier === currentTier && !pendingInterval && !pendingTier
       ? true
-      : interval === pendingInterval;
+      : interval === pendingInterval && tier === pendingTier;
 
   return (
     <section className="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
@@ -173,7 +188,7 @@ export function BillingSettingsSection() {
             className="w-full"
           >
             {reactivatePlan === "trial"
-              ? formatTrialCtaWithSavings(interval)
+              ? formatTrialCtaWithSavings(tier, interval)
               : "Reactivate subscription"}
           </Button>
           <p className="flex items-start gap-2 text-xs text-slate-500">
@@ -213,16 +228,20 @@ export function BillingSettingsSection() {
                   : "Subscription"}
             </p>
             <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">
-              {onTrial
-                ? "Payment method on file. You are not charged until the trial ends — cancel anytime before then for no charge."
-                : "Payments are non-refundable. You keep access through the end of your current paid period."}
+              {onTrial && status?.needsPaymentMethod
+                ? SIGNUP_PAYMENT_REQUIRED_NOTE
+                : onTrial
+                  ? "Payment method on file. You are not charged until the trial ends — cancel anytime before then for no charge."
+                  : `Current plan: ${currentTier === "pro" ? "Pro" : "Basic"} · ${getBillingPlanTier(currentTier, currentInterval).label}. Payments are non-refundable.`}
             </p>
           </div>
 
           {pendingInterval && periodEndLabel && !onTrial && (
             <p className="rounded-xl border border-amber-200/80 bg-amber-50/80 px-4 py-3 text-xs leading-relaxed text-amber-950 dark:border-amber-900/40 dark:bg-amber-950/30 dark:text-amber-100">
               Switching to{" "}
-              <span className="font-semibold">{getBillingPlanTier(pendingInterval).label}</span> on{" "}
+              <span className="font-semibold">
+                {getBillingPlanTier(pendingTier ?? currentTier, pendingInterval).label}
+              </span> on{" "}
               {periodEndLabel}. No charge until then — your first payment at the new rate is when
               the switch occurs.
             </p>
@@ -237,7 +256,7 @@ export function BillingSettingsSection() {
                 {onTrial
                   ? `First charge ${status.nextRecurringLabel ?? formatPlanUsd(status.nextRecurringUsd ?? 0)} (${nextChargeInterval.label}) on ${nextChargeLabel} when your trial ends — not when you change plans.`
                   : pendingInterval
-                    ? `Next charge ${status.nextRecurringLabel ?? formatPlanUsd(status.nextRecurringUsd ?? 0)} (${getBillingPlanTier(pendingInterval).label}) on ${nextChargeLabel} when your plan switch takes effect.`
+                    ? `Next charge ${status.nextRecurringLabel ?? formatPlanUsd(status.nextRecurringUsd ?? 0)} (${getBillingPlanTier(pendingTier ?? currentTier, pendingInterval).label}) on ${nextChargeLabel} when your plan switch takes effect.`
                     : `Next charge ${status.nextRecurringLabel ?? formatPlanUsd(status.nextRecurringUsd ?? 0)} (${nextChargeInterval.label}) on ${nextChargeLabel}.`}
               </p>
               <p className="mt-2 text-xs text-slate-500">{BILLING_RECURRING_POLICY}</p>
@@ -254,9 +273,10 @@ export function BillingSettingsSection() {
           {canChangePlan && !paymentPastDue && (
             <div className="space-y-3">
               <p className="text-sm font-medium text-slate-800 dark:text-slate-200">
-                Change billing plan
+                Change plan
               </p>
-              <BillingIntervalDropdown value={interval} onChange={setInterval} variant="checkout" />
+              <CheckoutTierSelector value={tier} onChange={setTier} />
+              <BillingIntervalDropdown value={interval} onChange={setInterval} tier={tier} variant="checkout" />
               <Button
                 type="button"
                 className="w-full"

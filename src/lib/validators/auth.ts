@@ -9,6 +9,8 @@ export const signupPlanSchema = z.enum(["trial", "subscribe"], {
   errorMap: () => ({ message: "Choose a trial or subscription plan to continue." }),
 });
 
+export const subscriptionTierSchema = z.enum(["basic", "pro"]).default("pro");
+
 export const signUpSchema = z.object({
   email: z.string().email().transform(normalizeEmail),
   password: z
@@ -22,6 +24,8 @@ export const signUpSchema = z.object({
     errorMap: () => ({ message: "You must accept the terms to create an account." }),
   }),
   plan: signupPlanSchema,
+  tier: subscriptionTierSchema.optional(),
+  interval: z.enum(["monthly", "quarterly", "semiannual", "yearly"]).optional(),
   promoCode: z.string().trim().max(32).optional(),
 });
 

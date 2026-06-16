@@ -4,8 +4,10 @@ import { isStaffRole } from "@/lib/permissions";
 import {
   evaluateSubscriptionAccess,
   expireTrialIfNeeded,
+  subscriptionHasFeature,
   type SubscriptionAccess,
 } from "@/lib/subscription-access";
+import { hasFeatureAccess, type SubscriptionFeature } from "@/lib/subscription-features";
 
 export { isPremiumPage, PREMIUM_PAGE_PREFIXES } from "@/lib/premium-routes";
 
@@ -25,6 +27,25 @@ export type UserAccess = {
   hasPremiumAccess: boolean;
   blockReason?: "suspended" | "subscription" | "email_unverified";
 };
+
+export { subscriptionHasFeature };
+export type { SubscriptionFeature };
+
+/** Check whether the user can access a tier-gated feature. Staff always allowed. */
+export function userHasFeature(
+  access: UserAccess,
+  feature: SubscriptionFeature
+): boolean {
+  if (access.role === "staff") return true;
+  return hasFeatureAccess(
+    {
+      tier: access.subscription.tier,
+      planDuration: access.subscription.planDuration,
+      hasAccess: access.hasPremiumAccess,
+    },
+    feature
+  );
+}
 
 const REQUIRE_EMAIL_VERIFICATION =
   process.env.REQUIRE_EMAIL_VERIFICATION === "true";
@@ -81,6 +102,8 @@ export async function getUserAccess(userId: string): Promise<UserAccess> {
       subscription: {
         hasAccess: false,
         status: "none",
+        tier: "pro",
+        planDuration: "yearly",
         trialEndsAt: null,
         daysRemaining: null,
         canStartCheckout: true,

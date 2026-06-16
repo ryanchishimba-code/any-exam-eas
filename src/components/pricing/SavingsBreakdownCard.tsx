@@ -2,34 +2,35 @@
 
 import { Check, TrendingDown } from "lucide-react";
 import type { BillingInterval } from "@/lib/billing-config";
-import { MONTHLY_PRICE_USD } from "@/lib/billing-config";
 import {
   formatPlanUsd,
   getBillingPlanTier,
   intervalListPriceUsd,
   intervalSavingsUsd,
 } from "@/lib/billing-plans";
+import { TIER_MONTHLY_USD, type SubscriptionTier } from "@/lib/subscription-tiers";
 import { cn } from "@/lib/utils";
 
 type SavingsBreakdownCardProps = {
+  tier?: SubscriptionTier;
   interval: BillingInterval;
   className?: string;
-  /** checkout = compact inline; pricing = hero emphasis */
   variant?: "pricing" | "checkout";
 };
 
 export function SavingsBreakdownCard({
+  tier = "pro",
   interval,
   className,
   variant = "pricing",
 }: SavingsBreakdownCardProps) {
-  const tier = getBillingPlanTier(interval);
-  const listPrice = intervalListPriceUsd(interval);
-  const yourPrice = tier.totalUsd;
-  const savings = intervalSavingsUsd(interval);
+  const plan = getBillingPlanTier(tier, interval);
+  const listPrice = intervalListPriceUsd(tier, interval);
+  const yourPrice = plan.totalUsd;
+  const savings = intervalSavingsUsd(tier, interval);
   const isPricing = variant === "pricing";
 
-  if (tier.savingsPercent === 0) {
+  if (plan.savingsPercent === 0) {
     return (
       <div
         className={cn(
@@ -38,7 +39,7 @@ export function SavingsBreakdownCard({
         )}
       >
         <p className="text-sm text-[var(--color-ink-muted)]">
-          Pay as you go — {formatPlanUsd(MONTHLY_PRICE_USD)}/month, cancel anytime.
+          Pay as you go — {formatPlanUsd(TIER_MONTHLY_USD[tier])}/month, cancel anytime.
         </p>
       </div>
     );
@@ -56,11 +57,11 @@ export function SavingsBreakdownCard({
         <TrendingDown className="h-4 w-4 text-emerald-700" strokeWidth={2.5} aria-hidden />
         <div className="min-w-0 flex-1">
           <p className="text-sm font-semibold text-emerald-900">
-            You save {formatPlanUsd(savings)} ({tier.savingsPercent}% off)
+            You save {formatPlanUsd(savings)} ({plan.savingsPercent}% off)
           </p>
           {isPricing && (
             <p className="mt-0.5 text-xs text-emerald-800">
-              {formatPlanUsd(tier.monthlyEquivalentUsd)}/mo — less than most single-exam apps
+              {formatPlanUsd(plan.monthlyEquivalentUsd)}/mo — less than most single-exam apps
             </p>
           )}
         </div>
@@ -89,7 +90,7 @@ export function SavingsBreakdownCard({
         </div>
         <div className="flex items-center justify-between gap-3 border-t border-emerald-100/80 pt-2.5 text-sm">
           <span className="font-medium text-emerald-800">
-            {formatPlanUsd(tier.monthlyEquivalentUsd)}/mo equivalent
+            {formatPlanUsd(plan.monthlyEquivalentUsd)}/mo equivalent
           </span>
           <span className="inline-flex items-center gap-1 font-semibold text-emerald-700">
             <Check className="h-3.5 w-3.5" strokeWidth={2.5} aria-hidden />
@@ -99,8 +100,8 @@ export function SavingsBreakdownCard({
       </div>
 
       <p className="border-t border-emerald-100/80 px-4 py-3 text-xs leading-relaxed text-emerald-900/80">
-        {tier.recommended
-          ? "Most students choose Yearly — locked-in rate, best value vs $99+ per-exam apps."
+        {plan.recommended
+          ? "Most students choose Annual — locked-in rate, best value vs $200–400+ per-exam elsewhere."
           : "Longer plans save more — stay subscribed to keep your rate."}
       </p>
     </div>

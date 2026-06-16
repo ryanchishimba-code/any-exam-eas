@@ -1,10 +1,16 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { changeSubscriptionPlan, getSubscriptionBillingDetails, stripe } from "@/lib/stripe";
-import { getBillingPlanTier, parseBillingInterval, intervalTotalUsd, formatPlanUsd } from "@/lib/billing-plans";
+import {
+  getBillingPlanTier,
+  parseBillingInterval,
+  intervalTotalUsd,
+  formatPlanUsd,
+} from "@/lib/billing-plans";
 import { requireStripePriceId } from "@/lib/stripe-prices";
 import { isStripeConfigured } from "@/lib/payments";
 import { requireSessionGuard } from "@/lib/session-guard";
+import { parseSubscriptionTier, type SubscriptionTier } from "@/lib/subscription-tiers";
 import type { BillingInterval } from "@/lib/billing-config";
 
 export const runtime = "nodejs";
@@ -17,7 +23,7 @@ function formatEffectiveDate(date: Date): string {
   });
 }
 
-/** POST /api/stripe/change-plan — switch billing interval during trial or active subscription. */
+/** POST /api/stripe/change-plan — switch tier or billing interval. */
 export async function POST(req: Request) {
   const guard = await requireSessionGuard(req);
   if (!guard.ok) return guard.response;
@@ -29,25 +35,30 @@ export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
   const interval = parseBillingInterval(body?.interval) as BillingInterval;
 
+  const sub = await prisma.subscription.findUnique({
+    where: { userId: guard.userId },
+  });
+
+  const tier = parseSubscriptionTier(body?.tier ?? sub?.planTier);
+
   try {
-    requireStripePriceId(interval);
+    requireStripePriceId(tier, interval);
   } catch (e) {
     const message = e instanceof Error ? e.message : "Price not configured";
     return NextResponse.json({ error: message }, { status: 503 });
   }
 
-  const sub = await prisma.subscription.findUnique({
-    where: { userId: guard.userId },
-  });
-
   if (!sub?.stripeSubscriptionId) {
-    return NextResponse.json(
-      {
-        error:
-          "Add a payment method first to start your trial, then you can change plans here.",
-      },
-      { status: 400 }
-    );
+    await prisma.subscription.update({
+      where: { userId: guard.userId },
+      data: { planTier: tier, planInterval: interval },
+    });
+    return NextResponse.json({
+      ok: true,
+      tier,
+      interval,
+      message: "Plan preference saved. Add a payment method to activate billing when your trial ends.",
+    });
   }
 
   if (sub.status !== "trialing" && sub.status !== "active") {
@@ -58,25 +69,36 @@ export async function POST(req: Request) {
   }
 
   const billing = await getSubscriptionBillingDetails(sub.stripeSubscriptionId);
+  const currentTier = parseSubscriptionTier(sub.planTier);
   const currentInterval = parseBillingInterval(sub.planInterval);
 
-  if (billing?.pendingPlanInterval === interval) {
+  if (
+    billing?.pendingPlanInterval === interval &&
+    (billing.pendingPlanTier ?? currentTier) === tier
+  ) {
     const when = billing.currentPeriodEnd
       ? formatEffectiveDate(billing.currentPeriodEnd)
       : "the end of your current period";
     return NextResponse.json({
       ok: true,
+      tier,
       interval,
       effective: "period_end",
       effectiveAt: billing.currentPeriodEnd?.toISOString() ?? null,
-      message: `Your switch to ${getBillingPlanTier(interval).label} is already scheduled for ${when}. No charge until then.`,
+      message: `Your switch to ${getBillingPlanTier(tier, interval).label} is already scheduled for ${when}. No charge until then.`,
     });
   }
 
-  if (!billing?.pendingPlanInterval && currentInterval === interval) {
+  if (
+    !billing?.pendingPlanInterval &&
+    !billing?.pendingPlanTier &&
+    currentInterval === interval &&
+    currentTier === tier
+  ) {
     return NextResponse.json({
       ok: true,
-      message: "You are already on this billing plan.",
+      message: "You are already on this plan.",
+      tier,
       interval,
     });
   }
@@ -84,18 +106,21 @@ export async function POST(req: Request) {
   try {
     const result = await changeSubscriptionPlan({
       stripeSubscriptionId: sub.stripeSubscriptionId,
+      tier,
       interval,
       userId: guard.userId,
     });
 
-    const tier = getBillingPlanTier(interval);
+    const planTier = getBillingPlanTier(tier, interval);
+    const charge = formatPlanUsd(intervalTotalUsd(tier, interval));
 
     if (result.effective === "immediate") {
       return NextResponse.json({
         ok: true,
+        tier,
         interval,
         effective: result.effective,
-        message: `Plan updated to ${tier.label}. No charge now — recurring billing starts at ${formatPlanUsd(intervalTotalUsd(interval))} when your trial ends. You can switch again anytime before then.`,
+        message: `Plan updated to ${planTier.label}. No charge now — recurring billing starts at ${charge} when your trial ends. You can switch again anytime before then.`,
       });
     }
 
@@ -105,10 +130,11 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       ok: true,
+      tier,
       interval,
       effective: result.effective,
       effectiveAt: result.effectiveAt?.toISOString() ?? null,
-      message: `${tier.label} scheduled for ${when}. No charge until the switch — your saved payment method will be billed ${formatPlanUsd(intervalTotalUsd(interval))} only when the new plan starts.`,
+      message: `${planTier.label} scheduled for ${when}. No charge until the switch — your saved payment method will be billed ${charge} only when the new plan starts.`,
     });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Could not update plan";

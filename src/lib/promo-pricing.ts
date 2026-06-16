@@ -1,5 +1,4 @@
 import {
-  MONTHLY_PRICE_USD,
   TRIAL_DAYS,
   TRIAL_INTRO_PRICE_USD,
   usesIntroTrialPricing,
@@ -7,6 +6,8 @@ import {
 } from "@/lib/billing-config";
 import { getBillingPlanTier, intervalTotalUsd } from "@/lib/billing-plans";
 import type { SignupPlan } from "@/lib/validators/auth";
+import type { SubscriptionTier } from "@/lib/subscription-tiers";
+import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 
 export type PriceLine = {
   label: string;
@@ -16,9 +17,9 @@ export type PriceLine = {
 
 export type PromoPricing = {
   plan: SignupPlan;
+  tier: SubscriptionTier;
   interval: BillingInterval;
   primary: PriceLine;
-  /** Recurring charge after trial (trial plan only). */
   recurring?: PriceLine;
   totalSavings: number;
   formattedPrimary: string;
@@ -27,10 +28,10 @@ export type PromoPricing = {
 };
 
 export function formatUsd(amount: number): string {
+  if (Number.isInteger(amount)) return `$${amount}`;
   return `$${amount.toFixed(2)}`;
 }
 
-/** Apply percent then fixed amount; never below zero. */
 export function applyDiscount(
   base: number,
   discountPercent?: number | null,
@@ -46,23 +47,28 @@ export function applyDiscount(
   return Math.max(0, Math.round(price * 100) / 100);
 }
 
-function recurringLineLabel(interval: BillingInterval, afterTrial: boolean): string {
-  const tier = getBillingPlanTier(interval);
+function recurringLineLabel(
+  tier: SubscriptionTier,
+  interval: BillingInterval,
+  afterTrial: boolean
+): string {
+  const plan = getBillingPlanTier(tier, interval);
   const prefix = afterTrial ? `Then (after ${TRIAL_DAYS}-day trial)` : "Due today";
   if (interval === "monthly") {
-    return `${prefix} · ${formatUsd(tier.totalUsd)}/month`;
+    return `${prefix} · ${formatUsd(plan.totalUsd)}/month`;
   }
-  return `${prefix} · ${formatUsd(tier.totalUsd)} every ${tier.months} mo (${formatUsd(tier.monthlyEquivalentUsd)}/mo equiv.)`;
+  return `${prefix} · ${formatUsd(plan.totalUsd)} every ${plan.months} mo (${formatUsd(plan.monthlyEquivalentUsd)}/mo equiv.)`;
 }
 
 export function buildPlanPricing(
   plan: SignupPlan,
-  interval: BillingInterval = "monthly",
+  tier: SubscriptionTier = "pro",
+  interval: BillingInterval = "yearly",
   discountPercent?: number | null,
   discountAmount?: number | null
 ): PromoPricing {
-  const tier = getBillingPlanTier(interval);
-  const periodTotal = intervalTotalUsd(interval);
+  const planTier = getBillingPlanTier(tier, interval);
+  const periodTotal = intervalTotalUsd(tier, interval);
 
   if (plan === "trial") {
     const dueTodayOriginal = usesIntroTrialPricing() ? TRIAL_INTRO_PRICE_USD : 0;
@@ -75,14 +81,15 @@ export function buildPlanPricing(
 
     return {
       plan,
+      tier,
       interval,
       primary: {
-        label: `Due today (${TRIAL_DAYS}-day free trial · add payment method)`,
+        label: `Due today (${TRIAL_DAYS}-day free trial)`,
         original: dueTodayOriginal,
         discounted: dueTodayDiscounted,
       },
       recurring: {
-        label: recurringLineLabel(interval, true),
+        label: recurringLineLabel(tier, interval, true),
         original: periodOriginal,
         discounted: periodDiscounted,
       },
@@ -99,9 +106,10 @@ export function buildPlanPricing(
 
   return {
     plan,
+    tier,
     interval,
     primary: {
-      label: recurringLineLabel(interval, false),
+      label: recurringLineLabel(tier, interval, false),
       original: periodOriginal,
       discounted: periodDiscounted,
     },
@@ -115,10 +123,12 @@ export function hasDiscount(pricing: PromoPricing): boolean {
   return pricing.primary.discounted < pricing.primary.original - 0.001;
 }
 
-/** Compare against paying monthly for the same number of months (interval savings). */
-export function intervalListSavingsUsd(interval: BillingInterval): number {
+export function intervalListSavingsUsd(
+  tier: SubscriptionTier,
+  interval: BillingInterval
+): number {
   if (interval === "monthly") return 0;
-  const tier = getBillingPlanTier(interval);
-  const full = MONTHLY_PRICE_USD * tier.months;
-  return Math.round((full - tier.totalUsd) * 100) / 100;
+  const plan = getBillingPlanTier(tier, interval);
+  const full = TIER_MONTHLY_USD[tier] * plan.months;
+  return Math.round((full - plan.totalUsd) * 100) / 100;
 }

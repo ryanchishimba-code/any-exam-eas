@@ -250,7 +250,8 @@ model Subscription {
   stripeSubscriptionId String?  @unique
   status               String   @default("trialing")
   plan                 String?  // trial | subscribe
-  planInterval         String   @default("monthly") // monthly | quarterly | semiannual | yearly
+  planTier             String   @default("pro") // basic | pro
+  planInterval         String   @default("yearly") // monthly | quarterly | semiannual | yearly
   trialEndsAt          DateTime?
   currentPeriodEnd     DateTime?
   gracePeriodEndsAt    DateTime?

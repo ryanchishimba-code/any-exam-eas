@@ -14,11 +14,14 @@ import {
 import type { DiscountValidation } from "@/lib/discount/types";
 import { cn } from "@/lib/utils";
 
+import type { SubscriptionTier } from "@/lib/subscription-tiers";
+
 type CheckoutOrderSummaryProps = {
   pricing: PromoPricing;
   discount: DiscountValidation | null;
   planLabel: string;
   interval?: BillingInterval;
+  tier?: SubscriptionTier;
   className?: string;
   sticky?: boolean;
 };
@@ -28,13 +31,14 @@ export function CheckoutOrderSummary({
   discount,
   planLabel,
   interval = "yearly",
+  tier = "pro",
   className,
   sticky = false,
 }: CheckoutOrderSummaryProps) {
   const discounted = discount?.valid && hasDiscount(pricing);
-  const tier = getBillingPlanTier(interval);
-  const listPrice = intervalListPriceUsd(interval);
-  const planSavings = intervalSavingsUsd(interval);
+  const planTier = getBillingPlanTier(tier, interval);
+  const listPrice = intervalListPriceUsd(tier, interval);
+  const planSavings = intervalSavingsUsd(tier, interval);
 
   return (
     <section
@@ -65,7 +69,7 @@ export function CheckoutOrderSummary({
           </span>
         </div>
 
-        {pricing.recurring && tier.savingsPercent > 0 && (
+        {pricing.recurring && planTier.savingsPercent > 0 && (
           <div className="rounded-xl border border-emerald-100 bg-emerald-50/50 px-3 py-3 text-sm">
             <div className="flex justify-between gap-3">
               <span className="text-[var(--color-ink-muted)]">List price</span>
@@ -89,13 +93,13 @@ export function CheckoutOrderSummary({
               </span>
             </div>
             <p className="mt-2 text-xs font-semibold text-emerald-800">
-              Save {formatPlanUsd(planSavings)} ({tier.savingsPercent}%) ·{" "}
-              {formatPlanUsd(tier.monthlyEquivalentUsd)}/mo equiv.
+              Save {formatPlanUsd(planSavings)} ({planTier.savingsPercent}%) ·{" "}
+              {formatPlanUsd(planTier.monthlyEquivalentUsd)}/mo equiv.
             </p>
           </div>
         )}
 
-        {pricing.recurring && tier.savingsPercent === 0 && (
+        {pricing.recurring && planTier.savingsPercent === 0 && (
           <div className="flex justify-between gap-4 text-sm">
             <span className="text-[var(--color-ink-muted)]">{pricing.recurring.label}</span>
             <span className="tabular-nums font-medium text-[var(--color-ink)]">
