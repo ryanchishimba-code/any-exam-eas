@@ -53,12 +53,12 @@ const DISPLAY_OVERRIDES: Partial<
     accentMuted: "rgba(52, 199, 89, 0.12)",
     features: ["Timed exam", "Question bank", "Topic practice"],
   },
-  mpje: {
+  pance: {
     description:
-      "Federal law, Uniform MPJE (UMPJE), and state-specific pharmacy jurisprudence.",
-    accent: "#ff9500",
-    accentMuted: "rgba(255, 149, 0, 0.12)",
-    features: ["Timed exam", "Question bank", "State selector", "UMPJE prep"],
+      "NCCPA PANCE blueprint — cardiovascular, pulmonary, infectious disease, and more.",
+    accent: "#f472b6",
+    accentMuted: "rgba(244, 114, 182, 0.12)",
+    features: ["Timed exam", "Question bank", "Exam roadmap", "Deep dives"],
   },
   "aanp-fnp": {
     description:

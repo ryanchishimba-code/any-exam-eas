@@ -22,7 +22,7 @@ export const BILLING_GUARANTEE_HEADLINE =
   "Your best companion for boards and clinical practice — at the best price in the industry.";
 
 export const BILLING_GUARANTEE_POINTS = [
-  "NCLEX, USMLE Step 2 CK, NAPLEX, MPJE, Top 500 Drugs, and Reference Hub in one plan",
+  "NCLEX, USMLE Step 2 CK, NAPLEX, PANCE, Top 500 Drugs, and Reference Hub in one plan",
   "UWorld-caliber vignettes, rationales, and adaptive practice — without $99+ per-exam bundles",
   "Cancel anytime from Settings — payments are non-refundable, but you keep full access through the period you paid for",
   "Switch billing plans anytime during your free trial; after that, plan changes take effect when your current paid term ends — billed only when the switch occurs",

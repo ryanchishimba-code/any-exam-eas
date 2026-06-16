@@ -42,7 +42,7 @@ export const LANDING_VISUALS: Record<string, LandingVisualSpec> = {
     placement: "Pricing / comparison panel — above price cards",
     alt: "Visual stack showing four exam logos under one subscription",
     prompt:
-      "Icon row on white: four minimal badges NCLEX USMLE NAPLEX MPJE connected by single teal subscription pill underneath labeled One plan, flat icons heart stethoscope pill scale, soft slate text, no dollar amounts in image",
+      "Icon row on white: four minimal badges NCLEX USMLE NAPLEX PANCE connected by single teal subscription pill underneath labeled One plan, flat icons heart stethoscope pill medical cross, soft slate text, no dollar amounts in image",
     recommendedSize: "800×240",
   },
   "screenshot-question-bank": {

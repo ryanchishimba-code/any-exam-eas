@@ -152,8 +152,6 @@ export function DeepDiveReviewPlayer({
           </div>
         ) : null}
 
-        ) : null}
-
         {atEnd && phase === "sections" && anatomyStructures.length > 0 ? (
           <AnatomyExploreBridge
             examSlug={examSlug}

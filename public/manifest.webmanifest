@@ -1,7 +1,7 @@
 {
   "name": "Any Exam Easy",
   "short_name": "AnyExamEasy",
-  "description": "NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE board exam prep with adaptive practice.",
+  "description": "NCLEX, USMLE Step 2 CK, NAPLEX, and PANCE board exam prep with adaptive practice.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

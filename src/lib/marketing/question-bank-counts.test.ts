@@ -59,18 +59,17 @@ describe("question-bank-counts display", () => {
     expect(displayTotalQuestionCount(snapshot)).toBe("120K+");
   });
 
-  it("builds five-exam landing display rows", () => {
+  it("builds four-exam landing display rows", () => {
     const display = buildLandingBankCountsDisplay(
       snapshotWithServed({ nursing: 11_359, "usmle-step-2": 5_306 })
     );
 
-    expect(display.exams).toHaveLength(5);
+    expect(display.exams).toHaveLength(4);
     expect(display.exams.map((e) => e.label)).toEqual([
       "USMLE",
       "NCLEX",
       "NAPLEX",
       "PANCE",
-      "AANP FNP",
     ]);
     expect(display.exams[0]?.countLabel).toBe("5K+");
     expect(display.exams[1]?.countLabel).toBe("11K+");

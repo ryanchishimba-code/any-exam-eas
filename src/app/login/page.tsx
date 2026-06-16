@@ -12,7 +12,7 @@ export default function LoginPage() {
     <PageShell
       eyebrow="Any Exam Easy"
       title="Log in to continue"
-      description="NCLEX, USMLE, NAPLEX, and MPJE practice — synced across devices."
+      description="NCLEX, USMLE, NAPLEX, and PANCE practice — synced across devices."
       align="center"
       maxWidth="max-w-md"
       variant="premium"

@@ -57,9 +57,9 @@ const HOME_KEYWORDS = [
   "NCLEX practice questions",
   "USMLE Step 2 CK",
   "NAPLEX study",
-  "MPJE prep",
-  "pharmacy jurisprudence exam",
-  "state-specific MPJE",
+  "PANCE prep",
+  "NCCPA PANCE",
+  "physician assistant certification",
   "nursing board exam",
   "medical board exam",
   "adaptive practice",
@@ -68,7 +68,7 @@ const HOME_KEYWORDS = [
 
 export function buildHomeMetadata(): Metadata {
   const title = `${SITE_NAME} — Your Best Companion for Boards and Clinical Practice`;
-  const description = `Your best companion for boards and clinical practice. NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE in one plan — curated questions, timed exams, and weak-area analytics. ${formatTrialLabel()} with payment method required — ${formatTrialEntryPrice()} today, then from ${formatMonthlyPrice()}/mo. Cancel before trial ends and you won't be charged.`;
+  const description = `Your best companion for boards and clinical practice. NCLEX, USMLE Step 2 CK, NAPLEX, and PANCE in one plan — curated questions, timed exams, and weak-area analytics. ${formatTrialLabel()} with payment method required — ${formatTrialEntryPrice()} today, then from ${formatMonthlyPrice()}/mo. Cancel before trial ends and you won't be charged.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 
@@ -95,7 +95,7 @@ export function buildHomeMetadata(): Metadata {
           url: ogImage,
           width: 1200,
           height: 800,
-          alt: "Healthcare student using Any Exam Easy for NCLEX, USMLE, NAPLEX, and MPJE board exam prep",
+          alt: "Healthcare student using Any Exam Easy for NCLEX, USMLE, NAPLEX, and PANCE board exam prep",
         },
       ],
     },
@@ -126,7 +126,7 @@ export function buildRootMetadata(): Metadata {
       default: `${SITE_NAME} — Board Exam Study Support`,
       template: `%s | ${SITE_NAME}`,
     },
-    description: `NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE study support with adaptive practice and OER-backed rationales.`,
+    description: `NCLEX, USMLE Step 2 CK, NAPLEX, and PANCE study support with adaptive practice and OER-backed rationales.`,
     icons: {
       icon: [
         { url: "/favicon.svg", type: "image/svg+xml" },
@@ -157,7 +157,7 @@ export function buildHomeJsonLd() {
         url,
         logo: absoluteUrl("/icons/icon-192.png"),
         description:
-          `${LEGAL_ENTITY.productName} — board exam study support for nursing, medical, and pharmacy students preparing for NCLEX, USMLE, NAPLEX, and MPJE.`,
+          `${LEGAL_ENTITY.productName} — board exam study support for nursing, medical, pharmacy, and physician assistant students preparing for NCLEX, USMLE, NAPLEX, and PANCE.`,
       },
       {
         "@type": "WebSite",
@@ -187,7 +187,7 @@ export function buildHomeJsonLd() {
           description: `${TRIAL_DAYS}-day free trial — payment method required · ${formatTrialEntryPrice()} today, then from ${formatMonthlyPrice()}/mo · save up to 20% on longer plans`,
         },
         description:
-          "Board exam study support with adaptive practice, progress tracking, and OER-backed explanations for NCLEX, USMLE Step 2 CK, NAPLEX, and MPJE.",
+          "Board exam study support with adaptive practice, progress tracking, and OER-backed explanations for NCLEX, USMLE Step 2 CK, NAPLEX, and PANCE.",
       },
     ],
   };
