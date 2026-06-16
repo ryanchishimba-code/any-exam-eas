@@ -34,6 +34,10 @@ class PasswordResetRequired extends CredentialsSignin {
   code = "password_reset_required";
 }
 
+class AccountDisabled extends CredentialsSignin {
+  code = "account_disabled";
+}
+
 const SESSION_DAY_SEC = 24 * 60 * 60;
 const SESSION_MONTH_SEC = 30 * 24 * 60 * 60;
 
@@ -80,6 +84,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (!authResult.ok) {
           if (authResult.reason === "no_password") throw new OAuthOnlyAccount();
           if (authResult.reason === "invalid_hash") throw new PasswordResetRequired();
+          if (authResult.reason === "blocked") throw new AccountDisabled();
           return null;
         }
         const user = authResult.user;

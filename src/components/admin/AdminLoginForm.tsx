@@ -4,7 +4,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Shield } from "lucide-react";
-import { messageForSignInError } from "@/lib/auth-client";
+import { messageForSignInError, resolveSignInFailure } from "@/lib/auth-client";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { completeLoginFlow } from "@/lib/client/post-login";
 import { InlineError } from "@/components/ui/StatusMessage";
@@ -48,12 +48,12 @@ export function AdminLoginForm({ callbackUrl = "/admin" }: Props) {
 
       const res = await signIn("credentials", {
         email: trimmed,
-        password,
+        password: password.trim(),
         redirect: false,
       });
 
       if (!res || res.error) {
-        setError(res?.error ? messageForSignInError(res.error) : "Sign-in failed.");
+        setError(res ? resolveSignInFailure(res) : "Sign-in failed.");
         setLoading(false);
         return;
       }

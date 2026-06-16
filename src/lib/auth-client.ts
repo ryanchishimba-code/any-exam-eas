@@ -1,26 +1,42 @@
 import { ACCOUNT_IP_LIMIT_MESSAGE, IP_REQUIRED_MESSAGE } from "@/lib/account-ip-limit";
 
 /** Map NextAuth client errors to user-friendly copy (avoids cryptic browser/parse messages). */
-export function messageForSignInError(error?: string | null): string {
-  if (!error) return "Invalid email or password.";
-  if (error === "too_many_ips") return ACCOUNT_IP_LIMIT_MESSAGE;
-  if (error === "ip_required") return IP_REQUIRED_MESSAGE;
-  if (error === "oauth_only") {
+export function messageForSignInError(
+  error?: string | null,
+  code?: string | null
+): string {
+  const reason = code && code !== "credentials" ? code : error;
+
+  if (!reason) return "Invalid email or password.";
+  if (reason === "too_many_ips") return ACCOUNT_IP_LIMIT_MESSAGE;
+  if (reason === "ip_required") return IP_REQUIRED_MESSAGE;
+  if (reason === "oauth_only") {
     return "This email uses Google or Apple sign-in. Use those buttons above, or reset your password if you previously set one.";
   }
-  if (error === "password_reset_required") {
+  if (reason === "password_reset_required") {
     return "Your password needs to be reset before you can sign in. Use Forgot Password below.";
   }
-  if (error === "Configuration") {
+  if (reason === "account_disabled") {
+    return "This account is suspended or closed. Contact support if you need help.";
+  }
+  if (reason === "Configuration") {
     return "Sign-in is unavailable because the server is missing auth or database configuration.";
   }
-  if (error === "CredentialsSignin") {
-    return "Invalid email or password.";
+  if (reason === "CredentialsSignin" || reason === "credentials") {
+    return "Invalid email or password. Check the email you signed up with, or use Forgot Password to set a new one.";
   }
-  if (error === "OAuthAccountNotLinked") {
-    return "This email is registered with a password. Sign in with email and password, or link Google/Apple from account settings when available.";
+  if (reason === "OAuthAccountNotLinked") {
+    return "This email is registered with a password. Sign in with email and password, or use Google/Apple above.";
   }
   return "Could not sign in. Please try again.";
+}
+
+/** Prefer Auth.js `code` over generic `error` from signIn({ redirect: false }). */
+export function resolveSignInFailure(result?: {
+  error?: string | null;
+  code?: string | null;
+} | null): string {
+  return messageForSignInError(result?.error, result?.code);
 }
 
 export async function fetchAuthHealthWarning(): Promise<string | null> {

@@ -65,8 +65,14 @@ export function toSafeUser(user: User): SafeUser {
 }
 
 export async function findUserByEmail(email: string): Promise<User | null> {
-  return prisma.user.findUnique({
-    where: { email: normalizeEmail(email) },
+  const normalized = normalizeEmail(email);
+  const exact = await prisma.user.findUnique({
+    where: { email: normalized },
+  });
+  if (exact) return exact;
+
+  return prisma.user.findFirst({
+    where: { email: { equals: normalized, mode: "insensitive" } },
   });
 }
 

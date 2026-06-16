@@ -13,8 +13,8 @@ import type { SignupPlan } from "@/lib/validators/auth";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import {
   fetchAuthHealthWarning,
-  messageForSignInError,
   messageFromUnknownAuthError,
+  resolveSignInFailure,
 } from "@/lib/auth-client";
 import { MemberLoginLink } from "@/components/auth/MemberLoginLink";
 import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/lib/client/returning-user";
@@ -91,12 +91,12 @@ export function SignupForm({
 
       const signInRes = await signIn("credentials", {
         email: trimmedEmail,
-        password,
+        password: password.trim(),
         redirect: false,
       });
 
       if (signInRes?.error) {
-        throw new Error(messageForSignInError(signInRes.error));
+        throw new Error(resolveSignInFailure(signInRes));
       }
 
       saveReturningUserHint({

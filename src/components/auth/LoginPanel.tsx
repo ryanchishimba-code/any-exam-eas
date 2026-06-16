@@ -9,6 +9,7 @@ import {
   fetchAuthHealthWarning,
   messageForSignInError,
   messageFromUnknownAuthError,
+  resolveSignInFailure,
 } from "@/lib/auth-client";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { completeLoginFlow } from "@/lib/client/post-login";
@@ -93,7 +94,7 @@ export function LoginPanel({
     try {
       const res = await signIn("credentials", {
         email: trimmedEmail,
-        password,
+        password: password.trim(),
         redirect: false,
       });
 
@@ -103,7 +104,7 @@ export function LoginPanel({
         return;
       }
       if (res.error) {
-        setError(messageForSignInError(res.error));
+        setError(resolveSignInFailure(res));
         setLoading(false);
         return;
       }
