@@ -12,6 +12,7 @@ import {
   requiresDrugProfileOnEveryQuestion,
 } from "./pharm-drug-profile";
 import { BATCH_DIVERSITY_RULES } from "./batch-diversity";
+import { buildNclexBoardQualityBlock } from "@/lib/exam-prep/nclex/item-writer-prompt";
 
 const DETAILED_RATIONALE_SCHEMA = `
 DETAILED RATIONALE (required for every item):
@@ -124,6 +125,7 @@ export function buildHighYieldRequirements(
     slotBlock,
     clinicalBlock,
     pharmDrugBlock,
+    ctx.fieldId === "nursing" ? buildNclexBoardQualityBlock() : "",
     VIGNETTE_REQUIREMENTS,
     buildOerGroundingBlock(),
     STRONG_DISTRACTOR_RULES,

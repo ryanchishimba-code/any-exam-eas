@@ -20,6 +20,7 @@ import {
 } from "@/lib/engine/polish/nclex-polish";
 import { cleanOptionText } from "@/lib/question-format";
 import { reflectOnQuestion } from "@/lib/rag/self-rag";
+import { buildNclexCurationSystemPrompt } from "@/lib/exam-prep/nclex/item-writer-prompt";
 import type {
   NclexCurationOptions,
   NclexCurationResult,
@@ -163,34 +164,7 @@ export async function rewriteNclexBankItemWithAi(
     messages: [
       {
         role: "system",
-        content: `You are a senior NCLEX-RN item writer (UWorld / NCSBN CJMM standard).
-Rewrite ONE nursing exam item so vignette, stem, four options, and correctAnswer are fully aligned.
-
-Rules:
-- vignette: 2–4 sentences — age, setting, history, discriminating signs/symptoms, vitals/labs
-- question: NCLEX lead-in ONLY (e.g. "Which action should the nurse take first?") — no vignette text repeated
-- options: exactly 4 complete nursing actions or findings (not meta-text like "unstable ABC")
-- correctAnswer: must match one option verbatim
-- explanation: CJMM structure + why correct; reference pathophysiology
-- clinicalReasoning: Recognize → Analyze → Prioritize → Take action
-- distractorRationale: object keyed by EXACT option text → why wrong for THIS client
-- references: 1–2 entries from allowed societies only (e.g. CDC, AHA, NCSBN, Surviving Sepsis, ISMP, ACOG, AAP) with label + citation; no invented section numbers
-- Use "client" not "patient"; inclusive, professional tone
-- Preserve clinical topic intent from the original when sound; fix incoherent template swaps
-
-Return JSON:
-{
-  "vignette": string,
-  "question": string,
-  "options": [string,string,string,string],
-  "correctAnswer": string,
-  "explanation": string,
-  "clinicalReasoning": string,
-  "distractorRationale": { "option text": "rationale" },
-  "references": [{ "label": string, "url"?: string, "citation"?: string }],
-  "tags": string[],
-  "topicCategory": string
-}`,
+        content: buildNclexCurationSystemPrompt(),
       },
       {
         role: "user",
