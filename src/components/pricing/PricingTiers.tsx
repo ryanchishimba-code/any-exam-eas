@@ -21,6 +21,7 @@ import {
   PRO_ONLY_FEATURES,
   TIER_DEFINITIONS,
   UNIVERSAL_FEATURES,
+  TRIAL_STUDY_LIMITS,
   type SubscriptionTier,
 } from "@/lib/subscription-tiers";
 import { BillingIntervalPicker } from "@/components/pricing/BillingIntervalPicker";
@@ -143,14 +144,32 @@ function TierCard({
                 <span>{item}</span>
               </li>
             ))}
-          {tier === "basic" &&
-            PRO_ONLY_FEATURES.slice(0, 3).map((item) => (
-              <li key={item} className="flex items-start gap-2 text-xs text-[var(--color-ink-muted)]/60">
-                <X className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden />
-                <span>{item}</span>
-              </li>
-            ))}
         </ul>
+
+        {tier === "basic" && (
+          <>
+            <p className="mb-3 mt-5 text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+              Pro only — not included in Basic
+            </p>
+            <ul className="space-y-2">
+              {PRO_ONLY_FEATURES.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-2 text-xs text-[var(--color-ink-muted)]/70 line-through decoration-[var(--color-ink-muted)]/40"
+                >
+                  <X className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-ink-muted)]/50 no-underline" aria-hidden />
+                  <span>
+                    {item}
+                    <span className="sr-only"> (not included in Basic — upgrade to Pro to unlock)</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-3 text-[0.6875rem] text-[var(--color-ink-muted)]">
+              Upgrade to Pro anytime to unlock these.
+            </p>
+          </>
+        )}
       </div>
     </div>
   );
@@ -231,6 +250,44 @@ export function PricingTiers({ className }: PricingTiersProps) {
           Choose your billing cycle — annual saves the most
         </p>
         <BillingIntervalPicker value={interval} onChange={setInterval} variant="pricing" tier="pro" />
+      </div>
+
+      <div className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-sm sm:p-6">
+        <p className="text-center text-sm font-semibold text-[var(--color-ink)]">
+          Trial vs paid — what changes?
+        </p>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          <div className="rounded-xl bg-slate-50 p-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+              Free trial
+            </p>
+            <ul className="mt-2 space-y-1.5 text-xs text-[var(--color-ink-muted)]">
+              {TRIAL_STUDY_LIMITS.map((item) => (
+                <li key={item}>· {item}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="rounded-xl bg-slate-50 p-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+              Basic & Pro (paid)
+            </p>
+            <ul className="mt-2 space-y-1.5 text-xs text-[var(--color-ink-muted)]">
+              <li>· Unlimited question bank access</li>
+              <li>· All 6 exams included</li>
+              <li>· Timed practice & preset exams</li>
+            </ul>
+          </div>
+          <div className="rounded-xl border border-[var(--color-accent)]/20 bg-[var(--color-accent)]/5 p-4">
+            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">
+              Pro only
+            </p>
+            <ul className="mt-2 space-y-1.5 text-xs text-[var(--color-ink)]">
+              {PRO_ONLY_FEATURES.slice(0, 4).map((item) => (
+                <li key={item}>· {item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
 
       {/* Side-by-side tier cards */}

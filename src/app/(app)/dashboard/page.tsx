@@ -5,6 +5,7 @@ import { requirePremiumPage } from "@/lib/require-premium-page";
 import { DashboardView } from "@/components/app/DashboardView";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-preference";
+import { getUserEdtechMetadata, getExamTestDate } from "@/lib/edtech/user-metadata";
 import { getExamScopedStats } from "@/lib/edtech/stats";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
@@ -37,11 +38,14 @@ async function DashboardContent({
   const examSlug = pref.examSlug;
   const fieldId = resolveExamFieldId(examSlug);
 
-  const [stats, dashboard, roadmap] = await Promise.all([
+  const [stats, dashboard, roadmap, metadata] = await Promise.all([
     getExamScopedStats(userId, examSlug),
     getStudentDashboardData(userId),
     getExamRoadmapData(userId, examSlug),
+    getUserEdtechMetadata(userId),
   ]);
+
+  const testDate = getExamTestDate(metadata, examSlug);
 
   const weakTopics = dashboard.weakTopics
     .filter((t) => t.fieldId === fieldId)
@@ -61,6 +65,7 @@ async function DashboardContent({
       roadmap={roadmap}
       recentTests={dashboard.recentTests}
       userName={userName}
+      testDate={testDate}
     />
   );
 }

@@ -11,6 +11,16 @@ export const signupPlanSchema = z.enum(["trial", "subscribe"], {
 
 export const subscriptionTierSchema = z.enum(["basic", "pro"]).default("pro");
 
+/** Exam slugs offered at signup — mirrors EXAM_CATALOG in @/lib/edtech/exams. */
+export const examSlugSchema = z.enum([
+  "nclex",
+  "usmle",
+  "naplex",
+  "pance",
+  "aanp-fnp",
+  "npte-pt",
+]);
+
 export const signUpSchema = z.object({
   email: z.string().trim().email().transform(normalizeEmail),
   password: z
@@ -26,6 +36,12 @@ export const signUpSchema = z.object({
   plan: signupPlanSchema,
   tier: subscriptionTierSchema.optional(),
   interval: z.enum(["monthly", "quarterly", "semiannual", "yearly"]).optional(),
+  examSlug: examSlugSchema.optional(),
+  testDate: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Enter a valid date.")
+    .refine((d) => !Number.isNaN(Date.parse(d)), "Enter a valid date.")
+    .optional(),
   promoCode: z.string().trim().max(32).optional(),
 });
 

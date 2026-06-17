@@ -1,51 +1,113 @@
 import type { BankItem } from "@/lib/question-bank";
 import { bankItemDedupeKey, shuffleBankItems } from "@/lib/question-bank-db";
 import {
-  balanceDifficultyMix,
-  hasAdjacentSimilarOptions,
   hasWindowSimilarOptions,
-  optionsAreTooSimilar,
   optionsFromBankItem,
+  optionsFromRawInput,
   optionsFromStudyQuestion,
-  resolveDifficultyBand,
 } from "./session-quality";
-import type { StudyQuestion } from "./types";
+import type { RawQuestionInput, StudyQuestion } from "./types";
 import { buildQuestionBlocks } from "./sequential-sets";
 
-/** No look-alike vignettes or overlapping option sets within this many consecutive items. */
-export const SESSION_SPREAD_WINDOW = 25;
+/** @deprecated Variability window removed — kept for legacy tests and generation utilities. */
+export const SESSION_SPREAD_WINDOW = 7;
 
-/** True when candidate would repeat a spread group or option set inside the recent window. */
-export function conflictsWithSpreadWindow<T>(
-  candidate: T,
-  recent: T[],
-  keyFn: (item: T) => string,
-  opts?: {
-    areTooSimilar?: (prev: T, next: T) => boolean;
-    windowSize?: number;
-  }
-): boolean {
-  const windowSize = opts?.windowSize ?? SESSION_SPREAD_WINDOW;
-  if (recent.length === 0) return false;
-
-  const candKey = keyFn(candidate);
-  const window = recent.slice(-(windowSize - 1));
-
-  for (const prev of window) {
-    const prevKey = keyFn(prev);
-    if (
-      !prevKey.startsWith("seq:") &&
-      !candKey.startsWith("seq:") &&
-      prevKey === candKey
-    ) {
-      return true;
-    }
-    if (opts?.areTooSimilar?.(prev, candidate)) return true;
-  }
-  return false;
+function rawInputDedupeKey(item: RawQuestionInput): string {
+  if (item.bankItemId) return item.bankItemId;
+  const v = item.vignette?.trim() ?? "";
+  const s = item.question.trim();
+  const text = v ? `${v}|${s}` : s;
+  return `${item.subjectId ?? ""}:${text.toLowerCase().slice(0, 96)}`;
 }
 
-/** True when any window of `windowSize` items contains duplicate spread groups. */
+function dedupeRawInputsInOrder(items: RawQuestionInput[]): RawQuestionInput[] {
+  const seen = new Set<string>();
+  const out: RawQuestionInput[] = [];
+  for (const item of items) {
+    const key = rawInputDedupeKey(item);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(item);
+  }
+  return out;
+}
+
+function dedupeBankItemsInOrder(items: BankItem[]): BankItem[] {
+  const seen = new Set<string>();
+  const out: BankItem[] = [];
+  for (const item of items) {
+    const key = bankItemDedupeKey(item);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(item);
+  }
+  return out;
+}
+
+/** QA-filtered pool → dedupe, shuffle, return up to `limit` items (no spread/variability constraints). */
+export function selectSpreadRawInputs(items: RawQuestionInput[], limit: number): RawQuestionInput[] {
+  const deduped = dedupeRawInputsInOrder(items);
+  return shuffleBankItems(deduped).slice(0, Math.max(0, limit));
+}
+
+/** QA-filtered bank rows → dedupe, shuffle, return up to `limit` items (no spread/variability constraints). */
+export function selectSpreadBankItems(items: BankItem[], limit: number): BankItem[] {
+  const deduped = dedupeBankItemsInOrder(items);
+  return shuffleBankItems(deduped).slice(0, Math.max(0, limit));
+}
+
+function spreadVignetteKey(vignette: string | undefined, fallbackStem: string): string {
+  const text = vignette?.trim() || fallbackStem.trim();
+  return text.toLowerCase().slice(0, 96);
+}
+
+function spreadGroupTopicKey(
+  topic: string,
+  vignette: string | undefined,
+  stem: string,
+  stableId?: string | number | null
+): string {
+  const id = stableId != null ? String(stableId).trim() : "";
+  if (id) return `${topic}:id:${id}`;
+  return `${topic}:${spreadVignetteKey(vignette, stem)}`;
+}
+
+export function spreadGroupKeyFromBankItem(item: BankItem): string {
+  const payload = item.ngnPayload as { setId?: string; kind?: string } | undefined;
+  if (payload?.kind === "sequential" && payload.setId) {
+    return `seq:${payload.setId}`;
+  }
+  const topic =
+    item.topicCategory?.trim() ||
+    item.blueprintDomain?.trim() ||
+    item.subjectId?.trim() ||
+    "general";
+  return spreadGroupTopicKey(topic, item.vignette ?? item.scenario, item.question, item.id);
+}
+
+export function spreadGroupKeyFromStudyQuestion(question: StudyQuestion): string {
+  const payload = question.ngnPayload as { setId?: string; kind?: string } | undefined;
+  if (payload?.kind === "sequential" && payload.setId) {
+    return `seq:${payload.setId}`;
+  }
+  const topic = question.subjectId?.trim() || question.tags?.[0]?.trim() || "general";
+  return spreadGroupTopicKey(topic, question.vignette, question.stem, question.bankItemId);
+}
+
+export function spreadGroupKeyFromRawInput(question: RawQuestionInput): string {
+  const payload = question.ngnPayload as { setId?: string; kind?: string } | undefined;
+  if (payload?.kind === "sequential" && payload.setId) {
+    return `seq:${payload.setId}`;
+  }
+  const topic = question.subjectId?.trim() || question.tags?.[0]?.trim() || "general";
+  return spreadGroupTopicKey(
+    topic,
+    question.vignette,
+    question.question,
+    question.bankItemId ?? question.id
+  );
+}
+
 export function hasWindowSimilarSpread<T>(
   items: T[],
   keyFn: (item: T) => string,
@@ -67,76 +129,11 @@ export function hasWindowSimilarSpread<T>(
   return false;
 }
 
-/** Group key for interleaving — keeps sequential sets together, separates look-alike stems. */
-export function spreadGroupKeyFromBankItem(item: BankItem): string {
-  const payload = item.ngnPayload as { setId?: string; kind?: string } | undefined;
-  if (payload?.kind === "sequential" && payload.setId) {
-    return `seq:${payload.setId}`;
-  }
-  const topic =
-    item.topicCategory?.trim() ||
-    item.blueprintDomain?.trim() ||
-    item.subjectId?.trim() ||
-    "general";
-  const caseText = (item.vignette ?? item.scenario ?? item.question)
-    .trim()
-    .toLowerCase()
-    .slice(0, 48);
-  return `${topic}:${caseText}`;
-}
-
-export function spreadGroupKeyFromStudyQuestion(question: StudyQuestion): string {
-  const payload = question.ngnPayload as { setId?: string; kind?: string } | undefined;
-  if (payload?.kind === "sequential" && payload.setId) {
-    return `seq:${payload.setId}`;
-  }
-  const topic = question.subjectId?.trim() || question.tags?.[0]?.trim() || "general";
-  const caseText = (question.vignette ?? question.stem).trim().toLowerCase().slice(0, 48);
-  return `${topic}:${caseText}`;
-}
-
-/** Round-robin interleave — separates look-alike cases within SESSION_SPREAD_WINDOW. */
-export function spreadByGroupKey<T>(
+export function hasAdjacentSimilarSpread<T>(
   items: T[],
-  keyFn: (item: T) => string,
-  opts?: {
-    areTooSimilar?: (prev: T, next: T) => boolean;
-    windowSize?: number;
-  }
-): T[] {
-  if (items.length <= 1) return items;
-
-  const queues = new Map<string, T[]>();
-  for (const item of items) {
-    const key = keyFn(item);
-    const list = queues.get(key) ?? [];
-    list.push(item);
-    queues.set(key, list);
-  }
-
-  const out: T[] = [];
-
-  while (out.length < items.length) {
-    const candidates = [...queues.entries()].filter(([, queue]) => queue.length > 0);
-    if (candidates.length === 0) break;
-
-    const windowSafe = candidates
-      .filter(([, queue]) =>
-        !conflictsWithSpreadWindow(queue[0]!, out, keyFn, opts)
-      )
-      .sort((a, b) => b[1].length - a[1].length);
-
-    const pickFrom =
-      windowSafe.length > 0
-        ? windowSafe
-        : candidates.sort((a, b) => b[1].length - a[1].length);
-
-    const [, queue] = pickFrom[0]!;
-    const picked = queue.shift()!;
-    out.push(picked);
-  }
-
-  return out;
+  keyFn: (item: T) => string
+): boolean {
+  return hasWindowSimilarSpread(items, keyFn, 2);
 }
 
 export function sessionSpreadPasses<T>(
@@ -152,68 +149,7 @@ export function sessionSpreadPasses<T>(
   );
 }
 
-/** Back-compat alias — adjacent pairs are covered by the 25-question window rule. */
-export function hasAdjacentSimilarSpread<T>(
-  items: T[],
-  keyFn: (item: T) => string
-): boolean {
-  return hasWindowSimilarSpread(items, keyFn, 2);
-}
-
+/** Preserve sequential NGN blocks — no variability reordering. */
 export function spreadStudyQuestions(questions: StudyQuestion[]): StudyQuestion[] {
-  const blocks = buildQuestionBlocks(questions);
-  const spreadBlocks = spreadByGroupKey(
-    blocks,
-    (block) => spreadGroupKeyFromStudyQuestion(block[0]!),
-    {
-      areTooSimilar: (prevBlock, nextBlock) =>
-        optionsAreTooSimilar(
-          optionsFromStudyQuestion(prevBlock[0]!),
-          optionsFromStudyQuestion(nextBlock[0]!)
-        ),
-    }
-  );
-  return spreadBlocks.flat();
-}
-
-export function selectSpreadBankItems(items: BankItem[], limit: number): BankItem[] {
-  const deduped = dedupeBankItemsInOrder(items);
-
-  for (let attempt = 0; attempt < 4; attempt++) {
-    const balanced = balanceDifficultyMix(
-      shuffleBankItems(deduped),
-      Math.max(limit, deduped.length),
-      resolveDifficultyBand
-    );
-    const pool = spreadByGroupKey(balanced, spreadGroupKeyFromBankItem, {
-      areTooSimilar: (a, b) =>
-        optionsAreTooSimilar(optionsFromBankItem(a), optionsFromBankItem(b)),
-    });
-    const slice = pool.slice(0, Math.max(0, limit));
-    if (slice.length <= 1 || sessionSpreadPasses(slice, spreadGroupKeyFromBankItem, optionsFromBankItem)) {
-      return slice;
-    }
-  }
-
-  const fallback = spreadByGroupKey(
-    balanceDifficultyMix(shuffleBankItems(deduped), Math.max(limit, deduped.length), resolveDifficultyBand),
-    spreadGroupKeyFromBankItem,
-    {
-      areTooSimilar: (a, b) =>
-        optionsAreTooSimilar(optionsFromBankItem(a), optionsFromBankItem(b)),
-    }
-  );
-  return fallback.slice(0, Math.max(0, limit));
-}
-
-function dedupeBankItemsInOrder(items: BankItem[]): BankItem[] {
-  const seen = new Set<string>();
-  const out: BankItem[] = [];
-  for (const item of items) {
-    const key = bankItemDedupeKey(item);
-    if (seen.has(key)) continue;
-    seen.add(key);
-    out.push(item);
-  }
-  return out;
+  return buildQuestionBlocks(questions).flat();
 }

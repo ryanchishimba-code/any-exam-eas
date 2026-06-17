@@ -30,7 +30,7 @@ export type TierDefinition = {
 /** Universal features included on both tiers. */
 export const UNIVERSAL_FEATURES = [
   "Full access to all 6 exams (USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, NPTE-PT)",
-  "Complete question banks",
+  "Unlimited question bank & timed practice",
   "Proprietary Roadmap tools",
   "Normal Lab Values + Clinical Calculators",
   "Top 503 Drugs database",
@@ -42,9 +42,17 @@ export const PRO_ONLY_FEATURES = [
   "Advanced performance analytics & weak area targeting",
   "Spaced Repetition System",
   "Priority content updates",
-  "Unlimited mock exams + custom tests",
+  "Unlimited full-length mock exams",
+  "Adaptive & weak-area question selection",
   "Exportable notes & progress reports",
   "Enhanced detailed explanations",
+] as const;
+
+/** Trial study limits — shown in marketing copy. */
+export const TRIAL_STUDY_LIMITS = [
+  "25 questions per day during free trial",
+  "150 total trial questions — enough to evaluate the platform",
+  "Short timed drills only · unlimited questions unlock when you subscribe",
 ] as const;
 
 export const TIER_DEFINITIONS: Record<SubscriptionTier, TierDefinition> = {

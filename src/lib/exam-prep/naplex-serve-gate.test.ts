@@ -71,14 +71,14 @@ describe("naplex-serve-gate", () => {
     expect(prepared).toHaveLength(1);
   });
 
-  it("passes through qa-gated weak templates", () => {
+  it("filters weak templates before session spread", () => {
     const prepared = prepareNaplexItemsForSession({
-      items: [weakTemplate],
+      items: [weakTemplate, bestItem],
       fieldId: "pharmacy",
       field: "pharmacy",
-      limit: 1,
+      limit: 2,
     });
     expect(prepared).toHaveLength(1);
-    expect(prepared[0]!.question).toBe(weakTemplate.question);
+    expect(prepared[0]!.question).toBe(bestItem.question);
   });
 });

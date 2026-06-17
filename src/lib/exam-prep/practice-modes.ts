@@ -126,6 +126,24 @@ export const EXAM_FIELD_OPTIONS: {
     timing: "300 questions · 5 hours",
     format: "Clinical MCQ vignettes",
   },
+  {
+    id: "aanp-fnp",
+    label: "AANP FNP",
+    fieldParam: "aanp-fnp",
+    description:
+      "AANPCB blueprint primary care — Assess, Diagnose, Plan, Evaluate across the lifespan.",
+    timing: "135 questions · 3.5 hours",
+    format: "Clinical vignette MCQs",
+  },
+  {
+    id: "npte-pt",
+    label: "NPTE-PT",
+    fieldParam: "npte-pt",
+    description:
+      "FSBPT blueprint — MSK, neuromuscular, cardiopulmonary, modalities, and safety.",
+    timing: "250 questions · 5 hours",
+    format: "Clinical scenario MCQs",
+  },
 ];
 
 export function getPracticeMode(id: PracticeModeId): PracticeModeDefinition | undefined {

@@ -2,7 +2,6 @@ import type { ExamQuestion, GeneratedExam } from "../../ai";
 import { hasGenericPlaceholderOptions } from "@/lib/question-format";
 import { assessExamSessionQuality } from "@/lib/questions/finalize-exam-session";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
-import { spreadStudyQuestions } from "@/lib/questions/spread-session-order";
 
 export type GenerationQualityReport = {
   requested: number;
@@ -35,8 +34,7 @@ export function examQuestionPassesGenerationGate(q: ExamQuestion): boolean {
 }
 
 /**
- * Drop weak items, spread for batch diversity, and validate the assembled set
- * before returning AI-generated exams to users.
+ * Drop weak items and validate the assembled set before returning AI-generated exams.
  */
 export function enforceGeneratedExamQuality(
   exam: GeneratedExam,
@@ -45,30 +43,15 @@ export function enforceGeneratedExamQuality(
   const passing = exam.questions.filter(examQuestionPassesGenerationGate);
   const droppedIndividual = exam.questions.length - passing.length;
 
-  const prepared = passing.map((q, i) =>
-    examQuestionToStudy({ ...q, id: i, field: exam.field }, i)
-  );
-  const spread = spreadStudyQuestions(prepared);
-  const ordered = spread
-    .map((s) => passing[s.sourceIndex])
-    .filter((q): q is ExamQuestion => Boolean(q));
-
-  const target = Math.min(requestedCount, ordered.length);
-  const finalQuestions = ordered.slice(0, target);
+  const target = Math.min(requestedCount, passing.length);
+  const finalQuestions = passing.slice(0, target);
   const finalPrepared = finalQuestions.map((q, i) =>
     examQuestionToStudy({ ...q, id: i, field: exam.field }, i)
   );
   const quality = assessExamSessionQuality(finalPrepared, target);
 
   const blockingIssues = quality.issues.filter(
-    (issue) =>
-      issue === "generic_distractors" ||
-      issue.startsWith("count_mismatch") ||
-      (target >= 4 &&
-        (issue === "adjacent_similar_options" ||
-          issue === "adjacent_similar_cases" ||
-          issue === "window_similar_options" ||
-          issue === "window_similar_cases"))
+    (issue) => issue === "generic_distractors" || issue.startsWith("count_mismatch")
   );
 
   const passed =

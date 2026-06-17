@@ -48,6 +48,8 @@ import {
 import type { ExamFieldId } from "@/lib/exam-prep/types";
 import { QuestionBankSetup } from "./QuestionBankSetup";
 import { QuestionBankExamHero } from "./question-bank/QuestionBankExamHero";
+import { StudyUsageBanner } from "@/components/study/StudyUsageBanner";
+import { studyLimitMessage } from "@/lib/study/usage-limit-messages";
 import { QuestionBankSection, QuestionBankSegment } from "./question-bank/QuestionBankSection";
 import { MpjeVariantSelector } from "./MpjeVariantSelector";
 import { MpjeStateSelect } from "./MpjeStateSelect";
@@ -199,6 +201,7 @@ export function StudyBankPractice({
   const [mpjeState, setMpjeState] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [upgradeHref, setUpgradeHref] = useState<string | null>(null);
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
   const autostartRequested = searchParams.get("autostart") === "1";
   const autostartAttempted = useRef(false);
@@ -424,6 +427,7 @@ export function StudyBankPractice({
 
     setLoading(true);
     setError("");
+    setUpgradeHref(null);
     setQuestions(null);
     setAdaptiveMeta(null);
     try {
@@ -446,9 +450,11 @@ export function StudyBankPractice({
             sessionId?: string;
             redirectUrl?: string;
             error?: string;
+            upgradeUrl?: string;
           };
           if (!res.ok) {
-            throw new Error(data.error ?? "Could not start timed exam");
+            setUpgradeHref(data.upgradeUrl ?? null);
+            throw new Error(studyLimitMessage(data) || data.error || "Could not start timed exam");
           }
           const href =
             data.redirectUrl ??
@@ -478,7 +484,10 @@ export function StudyBankPractice({
 
         const res = await fetch(`/api/questions?${qs.toString()}`);
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error ?? "Could not load timed exam");
+        if (!res.ok) {
+          setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
+          throw new Error(studyLimitMessage(data) || data.error || "Could not load timed exam");
+        }
 
         const metaIds = (data.bankItemIds as string[] | undefined) ?? [];
         const raw = (data.questions as ExamQuestion[]).map((q, i) => ({
@@ -523,7 +532,10 @@ export function StudyBankPractice({
           }),
         });
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error ?? "Could not build adaptive session");
+        if (!res.ok) {
+          setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
+          throw new Error(studyLimitMessage(data) || data.error || "Could not build adaptive session");
+        }
 
         const metaIds = (data.bankItemIds as string[] | undefined) ?? [];
         const raw = (data.questions as ExamQuestion[]).map((q, i) => ({
@@ -568,7 +580,10 @@ export function StudyBankPractice({
 
       const res = await fetch(`/api/questions?${qs.toString()}`);
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Could not load questions");
+      if (!res.ok) {
+        setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
+        throw new Error(studyLimitMessage(data) || data.error || "Could not load questions");
+      }
 
       const metaIds = (data.bankItemIds as string[] | undefined) ?? [];
       const raw = (data.questions as ExamQuestion[]).map((q, i) => ({
@@ -687,6 +702,7 @@ export function StudyBankPractice({
       ) : null}
 
       <div className={qbUi.pageShell}>
+        <StudyUsageBanner className="mb-4" compact={onQuestionBank} />
         <div className={cn(qbUi.panel, qbUi.panelInner)}>
           {examLocked && lockedExam && effectiveExamSlug ? (
             <QuestionBankExamHero
@@ -880,6 +896,13 @@ export function StudyBankPractice({
           {error ? (
             <div className="space-y-3">
               <InlineError>{error}</InlineError>
+              {upgradeHref ? (
+                <div className="flex justify-center">
+                  <Button href={upgradeHref} variant="secondary" className="!rounded-full">
+                    View upgrade options
+                  </Button>
+                </div>
+              ) : null}
               {isMpje ? (
                 <p className="text-center text-[12px] text-[var(--color-ink-muted)]">
                   Need help?{" "}

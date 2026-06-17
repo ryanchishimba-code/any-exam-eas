@@ -8,6 +8,7 @@ import {
   finalizeExamSessionQuestions,
   isFullExamField,
   resolveExamBankSampleCount,
+  resolveSessionSpreadPoolLimit,
 } from "./finalize-exam-session";
 import { selectSpreadBankItems } from "./spread-session-order";
 import type { RawQuestionInput } from "./types";
@@ -35,14 +36,14 @@ function examBankItem(
 }
 
 describe("full-length exam fields", () => {
-  it("covers NCLEX, NAPLEX, USMLE, and PANCE catalog fields", () => {
+  it("covers all six board exam catalog fields", () => {
     for (const slug of EXAM_SLUGS) {
       const exam = EXAM_CATALOG[slug];
       expect(isFullExamField(exam.fieldId)).toBe(true);
     }
   });
 
-  it("requests enough bank rows for full-length presets", () => {
+  it("requests enough bank rows for every exam preset size", () => {
     for (const slug of EXAM_SLUGS) {
       const full = buildSessionConfig(slug, "full", true);
       const sample = resolveExamBankSampleCount(EXAM_CATALOG[slug].fieldId, full.questionCount, true);
@@ -139,6 +140,85 @@ describe("finalizeExamSessionQuestions", () => {
     expect(quality.issues).not.toContain("generic_distractors");
     assertExamSessionReady({ ...quality, ok: quality.returned === 120 }, "pance");
   });
+
+  it("passes AANP FNP diversity gates with clustered look-alike vignettes", () => {
+    const sharedPrefix =
+      "A 52-year-old woman presents for a wellness visit. She has no chronic conditions";
+    const pool: RawQuestionInput[] = Array.from({ length: 80 }, (_, i) => ({
+      id: i + 1,
+      type: "multiple_choice" as const,
+      bankItemId: `aanp-${i}`,
+      question: `Which is the best next step for case ${i}?`,
+      vignette:
+        i % 8 === 0
+          ? `${sharedPrefix} and asks about screening test ${i}.`
+          : `A ${30 + (i % 40)}-year-old ${i % 2 === 0 ? "man" : "woman"} presents with complaint ${i}. Vitals stable.`,
+      options: [`Start drug A-${i}`, `Order test B-${i}`, `Refer specialty C-${i}`, `Reassure D-${i}`],
+      correctAnswer: `Start drug A-${i}`,
+      explanation: "Clinical rationale.",
+      subjectId: ["assess", "diagnose", "plan", "evaluate"][i % 4],
+      difficultyLabel: (i % 3 === 0 ? "Easy" : i % 3 === 1 ? "Medium" : "Hard") as
+        | "Easy"
+        | "Medium"
+        | "Hard",
+    }));
+
+    const { prepared, quality } = finalizeExamSessionQuestions(pool, 25);
+    expect(prepared).toHaveLength(25);
+    expect(quality.issues).not.toContain("window_similar_cases");
+    expect(quality.issues).not.toContain("window_similar_options");
+    assertExamSessionReady({ ...quality, ok: quality.returned === 25 }, "aanp-fnp");
+  });
+});
+
+describe("resolveSessionSpreadPoolLimit", () => {
+  it("returns the full vetted pool when available", () => {
+    expect(resolveSessionSpreadPoolLimit(25)).toBe(65);
+    expect(resolveSessionSpreadPoolLimit(25, 120)).toBe(120);
+    expect(resolveSessionSpreadPoolLimit(120, 500)).toBe(500);
+  });
+});
+
+describe("all board exams — templated vignette banks", () => {
+  const templateV =
+    "A 45-year-old woman presents to the primary care clinic with fatigue and weight gain for 3 months.";
+
+  for (const fieldId of [
+    "nursing",
+    "pharmacy",
+    "usmle-step-2",
+    "pance",
+    "aanp-fnp",
+    "npte-pt",
+  ] as const) {
+    it(`assembles ${fieldId} sessions from bulk-style template pools`, () => {
+      const pool: RawQuestionInput[] = Array.from({ length: 80 }, (_, i) => ({
+        id: i + 1,
+        type: "multiple_choice" as const,
+        bankItemId: `${fieldId}-bulk-${i}`,
+        question:
+          i % 3 === 0
+            ? "What is the best initial test?"
+            : i % 3 === 1
+              ? "What is the most likely diagnosis?"
+              : "What is the best next step in management?",
+        vignette: templateV + (i % 5 === 0 ? " BP 120/80." : " HR 72. BMI 28."),
+        options: [`Start therapy ${i}`, `Order labs ${i}`, `Refer specialty ${i}`, `Reassure ${i}`],
+        correctAnswer: `Start therapy ${i}`,
+        explanation: "Clinical rationale.",
+        subjectId: ["topic-a", "topic-b", "topic-c", "topic-d"][i % 4],
+        difficultyLabel: (i % 3 === 0 ? "Easy" : i % 3 === 1 ? "Medium" : "Hard") as
+          | "Easy"
+          | "Medium"
+          | "Hard",
+      }));
+
+      const { prepared, quality } = finalizeExamSessionQuestions(pool, 25);
+      expect(prepared).toHaveLength(25);
+      expect(quality.issues).not.toContain("window_similar_cases");
+      assertExamSessionReady({ ...quality, ok: quality.returned === 25 }, fieldId);
+    });
+  }
 });
 
 describe("selectSpreadBankItems for licensing exams", () => {

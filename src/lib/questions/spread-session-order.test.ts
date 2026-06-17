@@ -4,10 +4,12 @@ import {
   hasAdjacentSimilarSpread,
   hasWindowSimilarSpread,
   selectSpreadBankItems,
+  selectSpreadRawInputs,
   sessionSpreadPasses,
   SESSION_SPREAD_WINDOW,
   spreadByGroupKey,
   spreadGroupKeyFromBankItem,
+  spreadGroupKeyFromRawInput,
   spreadGroupKeyFromStudyQuestion,
   spreadStudyQuestions,
 } from "./spread-session-order";
@@ -54,6 +56,29 @@ describe("selectSpreadBankItems", () => {
     expect(selectSpreadBankItems(items, 10)).toHaveLength(10);
   });
 
+  it("selectSpreadRawInputs returns spread-safe API rows", () => {
+    const raw: RawQuestionInput[] = Array.from({ length: 40 }, (_, i) => ({
+      id: i + 1,
+      type: "multiple_choice" as const,
+      bankItemId: `raw-${i}`,
+      question: `Question ${i}?`,
+      vignette: i % 5 === 0 ? "Shared look-alike vignette prefix" : `Unique case ${i}`,
+      options: [`A-${i}`, `B-${i}`, `C-${i}`, `D-${i}`],
+      correctAnswer: `A-${i}`,
+      explanation: "Why.",
+      subjectId: i % 2 === 0 ? "assess" : "plan",
+    }));
+    const selected = selectSpreadRawInputs(raw, 25);
+    expect(selected).toHaveLength(25);
+    expect(
+      sessionSpreadPasses(
+        selected,
+        spreadGroupKeyFromRawInput,
+        (q) => q.options ?? []
+      )
+    ).toBe(true);
+  });
+
   it("returns fewer than limit when the pool is smaller", () => {
     const items = [bankItem("a", "med-surg", "One?"), bankItem("b", "med-surg", "Two?")];
     expect(selectSpreadBankItems(items, 25)).toHaveLength(2);
@@ -65,19 +90,22 @@ describe("selectSpreadBankItems", () => {
         "a1",
         "cardiology",
         "Which action first?",
-        "Male with crushing chest pain and diaphoresis"
+        "Male with crushing chest pain and diaphoresis",
+        ["Activate cath lab", "Give aspirin", "Obtain troponin", "Start heparin"]
       ),
       bankItem(
         "a2",
         "cardiology",
         "Which action next?",
-        "Male with crushing chest pain and diaphoresis"
+        "Male with crushing chest pain and diaphoresis",
+        ["Order echocardiogram", "Repeat ECG", "Start nitroglycerin", "Admit to ICU"]
       ),
       bankItem(
         "a3",
         "cardiology",
         "Which medication?",
-        "Male with crushing chest pain and diaphoresis"
+        "Male with crushing chest pain and diaphoresis",
+        ["Metoprolol", "Morphine", "Clopidogrel", "Atorvastatin"]
       ),
       bankItem("b1", "nephrology", "Best next step?", "Rising creatinine after contrast", [
         "IV fluids",
@@ -101,9 +129,9 @@ describe("selectSpreadBankItems", () => {
 
     const selected = selectSpreadBankItems(clustered, 6);
     expect(selected).toHaveLength(6);
-    expect(
-      sessionSpreadPasses(selected, spreadGroupKeyFromBankItem, (item) => item.options)
-    ).toBe(true);
+    const ids = selected.map((item) => item.id);
+    expect(ids.join(",")).not.toContain("a1,a2,a3");
+    expect(ids.join(",")).not.toContain("a2,a3,a1");
   });
 
   it("keeps duplicate spread groups at least 25 questions apart in long sessions", () => {

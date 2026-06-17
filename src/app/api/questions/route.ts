@@ -30,6 +30,7 @@ export async function GET(req: Request) {
   const premium = await requirePremiumApi();
   if (!premium.ok) return premium.response;
   const userId = premium.userId;
+  const userAccess = premium.access;
 
   const { searchParams } = new URL(req.url);
   const field = searchParams.get("field");
@@ -78,7 +79,7 @@ export async function GET(req: Request) {
     : clampQuestionBankCount(
         Number.isFinite(requestedLimit) ? requestedLimit : defaultLimit
       );
-  const limit = Math.min(resolvedLimit, maxLimit);
+  let limit = Math.min(resolvedLimit, maxLimit);
 
   const presetExamNumberRaw = searchParams.get("presetExamNumber");
   const presetExamNumber =
@@ -87,6 +88,21 @@ export async function GET(req: Request) {
     Number.isFinite(Number(presetExamNumberRaw))
       ? Math.max(1, Math.min(10, Number(presetExamNumberRaw)))
       : undefined;
+
+  const {
+    checkStudyQuestionUsage,
+    recordStudyQuestionsServed,
+  } = await import("@/lib/study/usage-limits");
+  const usageCheck = await checkStudyQuestionUsage({
+    userId,
+    access: userAccess,
+    requestedCount: limit,
+    timedExam,
+    presetExam: Boolean(presetExamNumber && timedExam),
+    fullLengthMock: timedExam && limit >= 50 && !presetExamNumber,
+  });
+  if (!usageCheck.ok) return usageCheck.response;
+  limit = usageCheck.allowedCount;
 
   if (!mixed) {
     if (!subjectId) {
@@ -106,11 +122,14 @@ export async function GET(req: Request) {
   const usmleField = isUsmleField(fieldId);
   const clinicalField =
     usmleField || fieldId === "pance" || fieldId === "aanp-fnp" || fieldId === "npte-pt";
-  const { filterBankItemsForSessionPool, bankItemToSessionRaw } = await import(
+  const { bankItemToSessionRaw, prepareBankItemsForSession } = await import(
     "@/lib/exam-prep/prepare-bank-session"
   );
-  const { resolveExamBankSampleCount, finalizeExamSessionQuestions, assertExamSessionReady } =
-    await import("@/lib/questions/finalize-exam-session");
+  const {
+    resolveExamBankSampleCount,
+    finalizeExamSessionQuestions,
+    assertExamSessionReady,
+  } = await import("@/lib/questions/finalize-exam-session");
   const sampleCount = resolveExamBankSampleCount(fieldId, limit, timedExam);
 
   let items: Awaited<ReturnType<typeof sampleQuestionBankItemsForField>>;
@@ -217,7 +236,21 @@ export async function GET(req: Request) {
   }
 
   if (items.length > 0 && !(mixed && timedExam)) {
-    items = filterBankItemsForSessionPool({ fieldId, items });
+    items = prepareBankItemsForSession({
+      fieldId,
+      field,
+      items,
+      limit,
+      poolLimit: items.length,
+    });
+  } else if (items.length > 0 && mixed && timedExam && !presetExamNumber) {
+    items = prepareBankItemsForSession({
+      fieldId,
+      field,
+      items,
+      limit,
+      poolLimit: items.length,
+    });
   }
 
   const resolvedSubjectId = mixed ? MIXED_SUBJECT_ID : subjectId!;
@@ -310,6 +343,13 @@ export async function GET(req: Request) {
     },
     req,
   });
+
+  await recordStudyQuestionsServed(
+    userId,
+    questions.length,
+    timedExam ? "timed" : "bank",
+    usageCheck.plan
+  );
 
   return NextResponse.json({
     field,

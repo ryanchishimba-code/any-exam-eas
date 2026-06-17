@@ -2,6 +2,7 @@
 
 import { Suspense, type ReactNode } from "react";
 import { StudyHubNav } from "./StudyHubNav";
+import { StudyUsageBanner } from "@/components/study/StudyUsageBanner";
 
 export function StudyHubPageLayout({
   userName,
@@ -27,6 +28,7 @@ export function StudyHubPageLayout({
             Choose your board — USMLE, NCLEX, NAPLEX, COMLEX, or AANP FNP — then pick timed exam or
             question bank practice.
           </p>
+          <StudyUsageBanner className="mt-6" />
           <div className="mt-10">{children}</div>
         </div>
       </div>

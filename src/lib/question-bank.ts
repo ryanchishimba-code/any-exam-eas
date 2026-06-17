@@ -11,7 +11,7 @@ import { ANATOMY_QUESTION_BANK } from "./medicine-anatomy-question-bank";
 import { toQuizletStyleQuestion } from "./question-format";
 import {
   bankItemToSessionRaw,
-  filterBankItemsForSessionPool,
+  prepareBankItemsForSession,
 } from "./exam-prep/prepare-bank-session";
 import {
   assertExamSessionReady,
@@ -439,9 +439,12 @@ export async function getBankQuestions(params: {
 
   const pool = [...unique.values()];
 
-  const vetted = filterBankItemsForSessionPool({
+  const vetted = prepareBankItemsForSession({
     fieldId,
+    field: params.field,
     items: pool,
+    limit: params.count,
+    poolLimit: pool.length,
   });
 
   if (vetted.length === 0) {

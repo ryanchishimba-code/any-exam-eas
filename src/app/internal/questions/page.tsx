@@ -1,9 +1,9 @@
-import { QuestionAnalyticsPanel } from "@/components/internal/QuestionAnalyticsPanel";
+import { QuestionBankManager } from "@/components/internal/QuestionBankManager";
 
 export const metadata = {
-  title: "Questions — Internal",
+  title: "Question bank — Internal",
 };
 
 export default function InternalQuestionsPage() {
-  return <QuestionAnalyticsPanel />;
+  return <QuestionBankManager />;
 }

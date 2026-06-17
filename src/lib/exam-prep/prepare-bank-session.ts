@@ -64,20 +64,23 @@ export function prepareBankItemsForSession(params: {
   field: string;
   items: BankItem[];
   limit: number;
+  /** Spread-balanced pool size before finalize selects the session slice (defaults to limit). */
+  poolLimit?: number;
 }): BankItem[] {
   const { fieldId, field, items, limit } = params;
+  const cap = Math.max(limit, params.poolLimit ?? limit);
 
   if (fieldId === "nursing") {
-    return prepareNclexItemsForSession({ items, field, limit });
+    return prepareNclexItemsForSession({ items, field, limit: cap });
   }
   if (fieldId === "pharmacy") {
-    return prepareNaplexItemsForSession({ items, fieldId, field, limit });
+    return prepareNaplexItemsForSession({ items, fieldId, field, limit: cap });
   }
   if (isClinicalVignetteField(fieldId)) {
-    return prepareUsmleItemsForSession({ items, fieldId, field, limit });
+    return prepareUsmleItemsForSession({ items, fieldId, field, limit: cap });
   }
 
-  return serveQaPassedBankItems(filterBankItemsForServe(fieldId, items), limit);
+  return serveQaPassedBankItems(filterBankItemsForServe(fieldId, items), cap);
 }
 
 /** Map a vetted bank row to the API raw-question shape for the given field. */

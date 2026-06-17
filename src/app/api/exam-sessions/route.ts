@@ -27,8 +27,17 @@ export async function POST(req: Request) {
       await setUserExamPreference(premium.userId, examType);
 
       const sessionConfig = buildSessionConfig(examType, "full", true);
-      const id = await createExamSession(premium.userId, examType, {
+      const { checkMockExamStart } = await import("@/lib/study/usage-limits");
+      const usageCheck = await checkMockExamStart({
+        userId: premium.userId,
+        access: premium.access,
         questionCount: sessionConfig.questionCount,
+        lengthPreset: "full",
+      });
+      if (!usageCheck.ok) return usageCheck.response;
+
+      const id = await createExamSession(premium.userId, examType, {
+        questionCount: usageCheck.allowedCount,
         timeLimitSec: sessionConfig.timeLimitSec,
         title: body.title ?? `${examType.toUpperCase()} full exam`,
         sessionConfig,
@@ -42,8 +51,17 @@ export async function POST(req: Request) {
     const defaultCount = getExamQuestionCountBySlug(examType);
     const questionCount = Number(body.questionCount) || defaultCount;
     const timeLimitSec = Number(body.timeLimitSec) || 3600;
-    const id = await createExamSession(premium.userId, examType, {
+
+    const { checkMockExamStart } = await import("@/lib/study/usage-limits");
+    const usageCheck = await checkMockExamStart({
+      userId: premium.userId,
+      access: premium.access,
       questionCount,
+    });
+    if (!usageCheck.ok) return usageCheck.response;
+
+    const id = await createExamSession(premium.userId, examType, {
+      questionCount: usageCheck.allowedCount,
       timeLimitSec,
       title: body.title ?? `${examType.toUpperCase()} timed exam`,
     });

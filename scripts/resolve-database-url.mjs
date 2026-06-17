@@ -38,6 +38,34 @@ function isUsable(url) {
   return url.startsWith("postgres") || url.startsWith("file:");
 }
 
+/**
+ * Bound the Prisma connection pool for CLI scripts. Without this, each
+ * `new PrismaClient()` opens Prisma's default pool (num_cpus*2+1 connections),
+ * so several concurrent generation jobs exhaust Neon's connection limit.
+ * Mirrors withPoolParams() in src/lib/database-url.ts.
+ */
+export function withPoolParams(url) {
+  if (!url || !/^postgres(ql)?:\/\//.test(url)) return url;
+  try {
+    const parsed = new URL(url);
+    if (!parsed.searchParams.has("connection_limit")) {
+      parsed.searchParams.set(
+        "connection_limit",
+        process.env.PRISMA_CONNECTION_LIMIT ?? "5"
+      );
+    }
+    if (!parsed.searchParams.has("pool_timeout")) {
+      parsed.searchParams.set("pool_timeout", process.env.PRISMA_POOL_TIMEOUT ?? "20");
+    }
+    if (!parsed.searchParams.has("connect_timeout")) {
+      parsed.searchParams.set("connect_timeout", "10");
+    }
+    return parsed.toString();
+  } catch {
+    return url;
+  }
+}
+
 export function resolveDatabaseUrl() {
   for (const key of CANDIDATES) {
     const value = process.env[key];
@@ -59,8 +87,10 @@ export function resolveDatabaseUrl() {
 
 export function ensureDatabaseUrlEnv() {
   const resolved = resolveDatabaseUrl();
-  if (resolved && process.env.DATABASE_URL !== resolved) {
-    process.env.DATABASE_URL = resolved;
+  if (!resolved) return resolved;
+  const bounded = withPoolParams(resolved);
+  if (process.env.DATABASE_URL !== bounded) {
+    process.env.DATABASE_URL = bounded;
   }
-  return resolved;
+  return bounded;
 }

@@ -5,6 +5,8 @@ import { isMpjeUsJurisdiction } from "@/lib/mpje/us-jurisdictions";
 export type UserEdtechMetadata = {
   mpjeStateCode?: string;
   mpjeVariant?: MpjeVariant;
+  /** Anticipated test date per exam, keyed by exam slug (ISO `YYYY-MM-DD`). */
+  examTestDates?: Record<string, string>;
 };
 
 function parseMetadata(raw: string | null | undefined): UserEdtechMetadata {
@@ -51,4 +53,34 @@ export async function setUserEdtechMetadata(
   });
 
   return next;
+}
+
+const ISO_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+
+function isValidIsoDate(value: string): boolean {
+  return ISO_DATE_RE.test(value) && !Number.isNaN(Date.parse(value));
+}
+
+/** Read the anticipated test date for a given exam (ISO `YYYY-MM-DD`) or null. */
+export function getExamTestDate(meta: UserEdtechMetadata, examSlug: string): string | null {
+  const date = meta.examTestDates?.[examSlug];
+  return date && isValidIsoDate(date) ? date : null;
+}
+
+/** Set or clear (pass null) the anticipated test date for a given exam. */
+export async function setUserExamTestDate(
+  userId: string,
+  examSlug: string,
+  date: string | null
+): Promise<UserEdtechMetadata> {
+  const current = await getUserEdtechMetadata(userId);
+  const examTestDates = { ...(current.examTestDates ?? {}) };
+
+  if (date && isValidIsoDate(date)) {
+    examTestDates[examSlug] = date;
+  } else {
+    delete examTestDates[examSlug];
+  }
+
+  return setUserEdtechMetadata(userId, { examTestDates });
 }

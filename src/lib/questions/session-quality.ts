@@ -8,13 +8,8 @@ export type DifficultyBand = "easy" | "medium" | "hard";
 export const SESSION_QUALITY_REQUIREMENTS = {
   exactCount:
     "Return exactly the user-selected count — full exam, sprint, or custom bank length.",
-  difficultyMix: "Sessions include easy, medium, and hard items when the pool allows.",
-  spreadSimilarOptions:
-    "Questions with overlapping answer choices must not appear within the same 25-question window.",
   strongDistractors:
     "Each MCQ has four distinct, board-plausible distractors — never generic placeholders.",
-  variedScenarios:
-    "Interleave topics and vignettes so no 25-question block repeats the same look-alike case.",
 } as const;
 
 export function resolveDifficultyBand(item: {
@@ -46,29 +41,31 @@ export function optionsFingerprint(options: string[] | undefined): string {
     .join("\0");
 }
 
-function optionTokens(options: string[]): Set<string> {
-  const tokens = new Set<string>();
-  for (const opt of options) {
-    for (const word of normOptionKey(opt).split(/\W+/)) {
-      if (word.length >= 4) tokens.add(word);
-    }
-  }
-  return tokens;
-}
 
-/** 0–1 overlap score for answer-choice similarity (shared clinical terms). */
+/** 0–1 overlap score for answer-choice similarity (identical sets or mirrored individual options). */
 export function optionChoiceSimilarity(a: string[], b: string[]): number {
   if (!a.length || !b.length) return 0;
   const fa = optionsFingerprint(a);
   const fb = optionsFingerprint(b);
   if (fa && fa === fb) return 1;
 
-  const A = optionTokens(a);
-  const B = optionTokens(b);
-  if (A.size === 0 || B.size === 0) return 0;
-  let shared = 0;
-  for (const t of A) if (B.has(t)) shared++;
-  return shared / Math.min(A.size, B.size);
+  let matched = 0;
+  const used = new Set<number>();
+  for (const optA of a) {
+    const na = normOptionKey(optA);
+    if (!na) continue;
+    for (let j = 0; j < b.length; j++) {
+      if (used.has(j)) continue;
+      const nb = normOptionKey(b[j]!);
+      if (!nb) continue;
+      if (na === nb) {
+        matched++;
+        used.add(j);
+        break;
+      }
+    }
+  }
+  return matched / Math.max(a.length, b.length);
 }
 
 export const OPTION_SIMILARITY_THRESHOLD = 0.55;
@@ -94,7 +91,7 @@ export function hasAdjacentSimilarOptions<T>(
 export function hasWindowSimilarOptions<T>(
   items: T[],
   getOptions: (item: T) => string[],
-  windowSize = 25,
+  windowSize = 7,
   threshold = OPTION_SIMILARITY_THRESHOLD
 ): boolean {
   if (items.length <= 1 || windowSize <= 1) return false;
@@ -175,5 +172,11 @@ export function optionsFromBankItem(item: BankItem): string[] {
 }
 
 export function optionsFromStudyQuestion(q: StudyQuestion): string[] {
+  return q.options ?? [];
+}
+
+export function optionsFromRawInput(q: {
+  options?: string[];
+}): string[] {
   return q.options ?? [];
 }

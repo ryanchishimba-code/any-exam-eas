@@ -11,6 +11,7 @@ import {
   Gauge,
 } from "lucide-react";
 import { DashboardContinueRow } from "@/components/dashboard/DashboardContinueRow";
+import { DashboardExamCountdown } from "@/components/dashboard/DashboardExamCountdown";
 import { DashboardExploreRow } from "@/components/dashboard/DashboardExploreRow";
 import { DashboardRoadmapPreview } from "@/components/dashboard/DashboardRoadmapPreview";
 import { DashboardRecentActivity } from "@/components/dashboard/DashboardRecentActivity";
@@ -41,6 +42,7 @@ export function DashboardView({
   roadmap,
   recentTests,
   userName,
+  testDate = null,
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
@@ -50,6 +52,7 @@ export function DashboardView({
   roadmap: ExamRoadmapData | null;
   recentTests: RecentTestRow[];
   userName?: string | null;
+  testDate?: string | null;
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const theme = EXAM_SELECTION_THEMES[examSlug];
@@ -85,6 +88,8 @@ export function DashboardView({
           Switch exam
         </Link>
       </header>
+
+      <DashboardExamCountdown examSlug={examSlug} examName={exam.name} testDate={testDate} />
 
       <div className={dbUi.pageShell}>
         <div className={dbUi.panel}>

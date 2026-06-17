@@ -18,8 +18,6 @@ import {
   parseMatrixLayout,
 } from "./ngn-structures";
 import { shufflePreservingSequentialSets } from "./sequential-sets";
-import { optionsFromStudyQuestion } from "./session-quality";
-import { spreadGroupKeyFromStudyQuestion, spreadStudyQuestions, sessionSpreadPasses } from "./spread-session-order";
 import type { RawQuestionInput, StudyQuestion, StudyQuestionType } from "./types";
 
 function toCorrectAnswers(type: StudyQuestionType, correct: string, options: string[] = []): string[] {
@@ -159,17 +157,7 @@ export function prepareQuestionsForSession(
 
   if (opts?.shuffleOrder === false) return prepared;
 
-  for (let attempt = 0; attempt < 4; attempt++) {
-    const spread = spreadStudyQuestions(shufflePreservingSequentialSets(prepared));
-    if (
-      spread.length <= 1 ||
-      sessionSpreadPasses(spread, spreadGroupKeyFromStudyQuestion, optionsFromStudyQuestion)
-    ) {
-      return spread;
-    }
-  }
-
-  return spreadStudyQuestions(shufflePreservingSequentialSets(prepared));
+  return shufflePreservingSequentialSets(prepared);
 }
 
 const NGN_EXAM_TYPES = new Set<StudyQuestionType>([

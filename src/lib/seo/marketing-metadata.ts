@@ -63,7 +63,7 @@ export function buildExamMetadata(slug: string): Metadata {
 }
 
 export function buildResourcesHubMetadata(): Metadata {
-  const title = "Board Exam Study Resources & Guides (2026) — Any Exam Easy";
+  const title = "Board Exam Study Resources & Guides (2026)";
   const description = `Free study guides for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — practice question tips, blueprints, and downloadable planners. ${formatTrialLabel()}.`;
   const path = "/resources";
   return {
@@ -89,7 +89,7 @@ export function buildResourceArticleMetadata(article: ResourceArticle): Metadata
 }
 
 export function buildPricingMetadata(): Metadata {
-  const title = "Pricing — Basic & Pro Board Exam Plans | Any Exam Easy";
+  const title = "Pricing — Basic & Pro Board Exam Plans";
   const description = `14-day free trial · Basic from ${formatMonthlyPrice("basic")}/mo · Pro from ${formatMonthlyPrice("pro")}/mo · All 6 board exams included · Save up to 20% on annual.`;
   return {
     ...baseOpenGraph(title, description, "/pricing"),

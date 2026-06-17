@@ -9,6 +9,7 @@ import {
   assessDifficultyMix,
   balanceDifficultyMix,
   enforceSessionCount,
+  hasWindowSimilarOptions,
   optionsAreTooSimilar,
   optionsFingerprint,
   resolveDifficultyBand,
@@ -16,11 +17,11 @@ import {
 } from "./session-quality";
 import {
   hasAdjacentSimilarSpread,
-  hasWindowSimilarOptions,
   hasWindowSimilarSpread,
   selectSpreadBankItems,
   SESSION_SPREAD_WINDOW,
   spreadGroupKeyFromBankItem,
+  spreadGroupKeyFromStudyQuestion,
 } from "./spread-session-order";
 import type { RawQuestionInput } from "./types";
 
@@ -41,13 +42,10 @@ function bankItem(
 }
 
 describe("SESSION_QUALITY_REQUIREMENTS", () => {
-  it("documents the five session quality gates", () => {
-    expect(Object.keys(SESSION_QUALITY_REQUIREMENTS)).toHaveLength(5);
+  it("documents the session quality gates", () => {
+    expect(Object.keys(SESSION_QUALITY_REQUIREMENTS)).toHaveLength(2);
     expect(SESSION_QUALITY_REQUIREMENTS.exactCount).toMatch(/count/i);
-    expect(SESSION_QUALITY_REQUIREMENTS.difficultyMix).toMatch(/easy|medium|hard/i);
-    expect(SESSION_QUALITY_REQUIREMENTS.spreadSimilarOptions).toMatch(/25/i);
     expect(SESSION_QUALITY_REQUIREMENTS.strongDistractors).toMatch(/plausible/i);
-    expect(SESSION_QUALITY_REQUIREMENTS.variedScenarios).toMatch(/25/i);
   });
 });
 
@@ -127,7 +125,7 @@ describe("requirement 3 — similar answer choices spread apart", () => {
     expect(optionsAreTooSimilar(opts, [...opts])).toBe(true);
   });
 
-  it("selectSpreadBankItems separates questions sharing answer choices", () => {
+  it("selectSpreadBankItems may include clustered vignettes (no spread constraint)", () => {
     const sharedOptions = [
       "Start IV heparin",
       "Order CT angiography",
@@ -153,24 +151,13 @@ describe("requirement 3 — similar answer choices spread apart", () => {
         options: ["IV fluids", "Furosemide", "Dialysis", "Stop ACE inhibitor"],
         correctAnswer: "IV fluids",
       }),
-      bankItem("b2", {
-        question: "Hyperkalemia treatment?",
-        vignette: "Renal case 2",
-        options: ["Calcium gluconate", "Insulin", "Kayexalate", "Dialysis"],
-        correctAnswer: "Calcium gluconate",
-      }),
     ];
 
-    const selected = selectSpreadBankItems(clustered, 4);
-    expect(
-      hasWindowSimilarOptions(selected, (item) => item.options, SESSION_SPREAD_WINDOW)
-    ).toBe(false);
-    expect(
-      hasWindowSimilarSpread(selected, spreadGroupKeyFromBankItem, SESSION_SPREAD_WINDOW)
-    ).toBe(false);
+    const selected = selectSpreadBankItems(clustered, 3);
+    expect(selected).toHaveLength(3);
   });
 
-  it("prepareQuestionsForSession spreads overlapping options", () => {
+  it("prepareQuestionsForSession shuffles without spread constraints", () => {
     const shared = ["Morphine", "Oxygen", "Nitroglycerin", "Aspirin"];
     const raw: RawQuestionInput[] = [
       {
@@ -206,9 +193,7 @@ describe("requirement 3 — similar answer choices spread apart", () => {
     ];
 
     const prepared = prepareQuestionsForSession(raw, { shuffleOrder: true });
-    expect(
-      hasWindowSimilarOptions(prepared, (q) => q.options, SESSION_SPREAD_WINDOW)
-    ).toBe(false);
+    expect(prepared).toHaveLength(3);
   });
 });
 

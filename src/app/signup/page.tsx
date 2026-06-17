@@ -4,6 +4,8 @@ import { AuthCard } from "@/components/ui/AuthCard";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
+import { isExamSlug } from "@/lib/edtech/exams";
+import type { ExamSlug } from "@/types/edtech";
 import type { SignupPlan } from "@/lib/validators/auth";
 
 export const metadata = {
@@ -15,15 +17,26 @@ function parseInitialPlan(plan?: string): SignupPlan | "" {
   return "";
 }
 
+function parseInitialExam(exam?: string): ExamSlug | "" {
+  return exam && isExamSlug(exam) ? exam : "";
+}
+
 export default async function SignupPage({
   searchParams,
 }: {
-  searchParams: Promise<{ plan?: string; promo?: string; interval?: string; tier?: string }>;
+  searchParams: Promise<{
+    plan?: string;
+    promo?: string;
+    interval?: string;
+    tier?: string;
+    exam?: string;
+  }>;
 }) {
-  const { plan, promo, interval, tier } = await searchParams;
+  const { plan, promo, interval, tier, exam } = await searchParams;
   const initialPlan = parseInitialPlan(plan);
   const initialInterval = interval ? parseBillingInterval(interval) : "yearly";
   const initialTier = parseSubscriptionTier(tier);
+  const initialExam = parseInitialExam(exam);
   const isSubscribe = initialPlan === "subscribe";
 
   return (
@@ -45,6 +58,7 @@ export default async function SignupPage({
           initialPromo={promo?.trim() ?? ""}
           initialInterval={initialInterval}
           initialTier={initialTier}
+          initialExam={initialExam}
         />
       </AuthCard>
     </PageShell>

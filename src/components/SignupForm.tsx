@@ -12,6 +12,8 @@ import { LEGAL_DISCLAIMERS } from "@/lib/legal";
 import type { BillingInterval } from "@/lib/billing-config";
 import type { SignupPlan } from "@/lib/validators/auth";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
+import type { ExamSlug } from "@/types/edtech";
+import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import {
   fetchAuthHealthWarning,
   messageFromUnknownAuthError,
@@ -25,16 +27,20 @@ export function SignupForm({
   initialPromo = "",
   initialInterval = "yearly",
   initialTier = "pro",
+  initialExam = "",
 }: {
   initialPlan?: SignupPlan | "";
   initialPromo?: string;
   initialInterval?: BillingInterval;
   initialTier?: SubscriptionTier;
+  initialExam?: ExamSlug | "";
 }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [dob, setDob] = useState("");
+  const [examSlug, setExamSlug] = useState<ExamSlug | "">(initialExam);
+  const [testDate, setTestDate] = useState("");
   const [accepted, setAccepted] = useState(false);
   const [error, setError] = useState("");
   const [configWarning, setConfigWarning] = useState<string | null>(null);
@@ -52,9 +58,19 @@ export function SignupForm({
     if (hint?.name) setName(hint.name);
   }, []);
 
+  useEffect(() => {
+    if (initialExam) setExamSlug(initialExam);
+  }, [initialExam]);
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+
+    if (!examSlug) {
+      setError("Choose the exam you're preparing for to continue.");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -71,6 +87,8 @@ export function SignupForm({
           plan,
           tier: initialTier,
           interval: initialInterval,
+          examSlug,
+          testDate: testDate || undefined,
         }),
       });
       const text = await res.text();
@@ -142,6 +160,64 @@ export function SignupForm({
         </p>
       )}
 
+      <fieldset className="space-y-3" disabled={loading}>
+        <legend className="apple-label">Which exam are you preparing for?</legend>
+        <p className="text-xs leading-relaxed text-[var(--color-ink-muted)]">
+          We&apos;ll open your dashboard to this exam. You can switch anytime later.
+        </p>
+        <div className="mt-1 grid gap-2 sm:grid-cols-2">
+          {EXAM_SLUGS.map((slug) => {
+            const exam = EXAM_CATALOG[slug];
+            const selected = examSlug === slug;
+            return (
+              <button
+                key={slug}
+                type="button"
+                role="radio"
+                aria-checked={selected}
+                onClick={() => setExamSlug(slug)}
+                className={`flex items-center justify-between gap-2 rounded-2xl border px-4 py-3 text-left transition-all duration-200 ${
+                  selected
+                    ? "border-[var(--color-accent)] bg-[var(--color-accent)]/[0.06] ring-2 ring-[var(--color-accent)]/15"
+                    : "border-black/[0.08] bg-[var(--color-surface-elevated)] hover:border-black/[0.12]"
+                }`}
+              >
+                <span className="min-w-0">
+                  <span className="block text-sm font-semibold text-[var(--color-ink)]">
+                    {exam.shortName}
+                  </span>
+                  <span className="mt-0.5 block truncate text-[0.6875rem] text-[var(--color-ink-muted)]">
+                    {exam.name}
+                  </span>
+                </span>
+                {selected && (
+                  <Check className="h-4 w-4 shrink-0 text-[var(--color-accent)]" aria-hidden />
+                )}
+              </button>
+            );
+          })}
+        </div>
+
+        {examSlug && (
+          <div className="pt-1">
+            <label htmlFor="signup-test-date" className="apple-label">
+              When&apos;s your test? <span className="font-normal text-[var(--color-ink-muted)]">(optional)</span>
+            </label>
+            <input
+              id="signup-test-date"
+              type="date"
+              value={testDate}
+              min={new Date().toISOString().slice(0, 10)}
+              onChange={(e) => setTestDate(e.target.value)}
+              className="apple-input mt-2"
+            />
+            <p className="mt-1.5 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+              We&apos;ll show a countdown on your dashboard. You can set or change this anytime.
+            </p>
+          </div>
+        )}
+      </fieldset>
+
       <fieldset className="space-y-4" disabled={loading}>
         <input
           required
@@ -190,7 +266,7 @@ export function SignupForm({
       <div className="space-y-2">
         <Button
           type="submit"
-          disabled={loading || !accepted || !!configWarning}
+          disabled={loading || !accepted || !examSlug || !!configWarning}
           className="w-full"
         >
           {loading
@@ -204,11 +280,15 @@ export function SignupForm({
             ? "Next: choose your plan and add payment. You won't be charged until your trial ends."
             : "Next: choose your plan and enter payment securely."}
         </p>
-        {!accepted && (
+        {!examSlug ? (
+          <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
+            Pick the exam you&apos;re preparing for above to continue.
+          </p>
+        ) : !accepted ? (
           <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
             Accept the terms above to continue.
           </p>
-        )}
+        ) : null}
       </div>
 
       <p className="text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">

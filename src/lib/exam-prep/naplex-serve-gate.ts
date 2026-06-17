@@ -32,8 +32,8 @@ export function prepareNaplexItemsForSession({
   items,
   limit,
 }: PrepareNaplexItemsParams): BankItem[] {
-  return serveQaPassedBankItems(
-    items.map((item) => prepareNaplexBankItem(item)),
-    limit
-  );
+  const vetted = items
+    .map((item) => prepareNaplexBankItem(item))
+    .filter((item) => naplexBankItemIsServeReady(item, { source: item.source ?? null }));
+  return serveQaPassedBankItems(vetted, limit);
 }

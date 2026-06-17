@@ -100,6 +100,19 @@ export async function POST(req: Request) {
     const access = await enforceQuestionBankFieldAccess(premium.userId, body.field);
     if (!access.ok) return access.response;
 
+    const {
+      checkStudyQuestionUsage,
+      recordStudyQuestionsServed,
+    } = await import("@/lib/study/usage-limits");
+    const usageCheck = await checkStudyQuestionUsage({
+      userId: premium.userId,
+      access: premium.access,
+      requestedCount: body.count,
+      adaptive: true,
+    });
+    if (!usageCheck.ok) return usageCheck.response;
+    const sessionCount = usageCheck.allowedCount;
+
     const subjectId = body.subjectId;
 
     let topicPerformance: TopicPerformance[] = body.topicPerformance ?? [];
@@ -116,7 +129,7 @@ export async function POST(req: Request) {
 
     const poolSize = Math.min(
       ADAPTIVE_QUESTION_POOL_PER_SUBJECT,
-      Math.max(body.count * 6, 60)
+      Math.max(sessionCount * 6, 60)
     );
 
     let items = await sampleQuestionBankItems({
@@ -158,13 +171,13 @@ export async function POST(req: Request) {
       userId: premium.userId,
       fieldId,
       questions: pool,
-      count: body.count,
+      count: sessionCount,
       studyMode,
       targetDifficulty: body.currentDifficulty as DifficultyLevel,
       excludeKeys,
     });
 
-    const quality = assessExamSessionQuality(orderedQuestions, body.count);
+    const quality = assessExamSessionQuality(orderedQuestions, sessionCount);
     assertExamSessionReady(quality, fieldId);
 
     const questions = orderedQuestions.map(toApiQuestion);
@@ -178,6 +191,13 @@ export async function POST(req: Request) {
         detail: f.detail,
       })),
     }));
+
+    await recordStudyQuestionsServed(
+      premium.userId,
+      questions.length,
+      "adaptive",
+      usageCheck.plan
+    );
 
     return NextResponse.json({
       field: body.field,

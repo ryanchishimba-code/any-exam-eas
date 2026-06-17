@@ -74,8 +74,18 @@ export async function POST(req: Request) {
       presetQuestionCount,
     });
 
-    const sessionId = await createExamSession(premium.userId, examSlug, {
+    const { checkMockExamStart } = await import("@/lib/study/usage-limits");
+    const usageCheck = await checkMockExamStart({
+      userId: premium.userId,
+      access: premium.access,
       questionCount: config.questionCount,
+      presetExam: Boolean(presetExamNumber),
+      lengthPreset: preset,
+    });
+    if (!usageCheck.ok) return usageCheck.response;
+
+    const sessionId = await createExamSession(premium.userId, examSlug, {
+      questionCount: usageCheck.allowedCount,
       timeLimitSec: config.timed ? config.timeLimitSec : null,
       fieldId: sessionFieldId,
       title: sessionTitle,
