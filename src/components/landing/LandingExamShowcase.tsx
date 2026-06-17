@@ -46,7 +46,9 @@ export function LandingExamShowcase({ bankCounts, className = "" }: LandingExamS
       aria-label="Board exams and question bank sizes"
     >
       <p className="aee-hero-exam-showcase__total">{totalQuestions}</p>
-      <p className="aee-hero-exam-showcase__kicker">Six board exams · one subscription</p>
+      <p className="aee-hero-exam-showcase__kicker">
+        6 major board exams · one subscription · much more affordable than UWorld
+      </p>
 
       <ul className="aee-hero-exam-showcase__grid">
         {LANDING_EXAMS.map((exam) => {

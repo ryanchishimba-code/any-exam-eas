@@ -18,13 +18,15 @@ import { LandingStickyCta } from "@/components/landing/LandingStickyCta";
 import { QuestionPreviewCard } from "@/components/landing/QuestionPreviewCard";
 import { LandingExamShowcase } from "@/components/landing/LandingExamShowcase";
 import { LandingOfferingBand } from "@/components/landing/LandingOfferingBand";
+import { LandingPricingPreview } from "@/components/landing/LandingPricingPreview";
 import { ChooseYourExam } from "@/components/home/ChooseYourExam";
-import { LandingHeroPriceValue } from "@/components/home/LandingHeroPriceValue";
 import { HowWeCompare } from "@/components/home/HowWeCompare";
 import {
+  LANDING_HERO_EYEBROW,
   LANDING_HERO_HEADLINE,
   LANDING_HERO_PRICE_TAGLINE,
   LANDING_HERO_SUBLINE,
+  LANDING_HERO_VALUE_LINE,
   LANDING_PASS_STATS,
   LANDING_SUCCESS_STORIES,
   LANDING_TRIAL_HREF,
@@ -90,6 +92,7 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
 
       <div className="aee-flagship-inner aee-flagship-hero__layout">
         <div className="aee-flagship-hero__copy">
+          <p className="aee-flagship-hero__eyebrow">{LANDING_HERO_EYEBROW}</p>
           <h1 id="flagship-hero-heading" className="aee-flagship-hero__headline aee-flagship-hero__headline--punchy">
             {LANDING_HERO_HEADLINE}
           </h1>
@@ -100,8 +103,9 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
             transition={{ duration: 0.5, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="aee-flagship-hero__subline">{LANDING_HERO_SUBLINE}</p>
+            <p className="aee-flagship-hero__value-line">{LANDING_HERO_VALUE_LINE}</p>
 
-            <LandingHeroTrustPills className="mt-5" />
+            <LandingHeroTrustPills className="mt-4" />
 
             <div className="aee-flagship-hero__ctas aee-flagship-hero__ctas--conversion">
               <LandingCta
@@ -254,36 +258,13 @@ export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsD
         eyebrow="Simple pricing"
         title={
           <>
-            Basic from {formatMonthlyPrice("basic")}/mo.{" "}
+            Basic or Pro —{" "}
             <span className="aee-flagship-gradient-text">{LANDING_HERO_PRICE_TAGLINE}</span>
           </>
         }
-        subtitle={`${formatTrialLabel()} · all six boards · Basic from ${formatMonthlyPrice("basic")}/mo · save up to 20% on annual`}
+        subtitle={`${formatTrialLabel()} on every plan · all six boards · save up to 20% on annual billing`}
       >
-        <div className="aee-flagship-pricing-stack">
-          <LandingHeroPriceValue className="mx-auto" bankCounts={bankCounts} />
-          <LandingCta
-            href={LANDING_TRIAL_HREF}
-            className="aee-flagship-cta--hero aee-flagship-cta--xl group mt-5 w-full max-w-md"
-            icon={
-              <ArrowRight
-                className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
-                aria-hidden
-              />
-            }
-          >
-            {formatTrialCtaLabel()}
-          </LandingCta>
-          <p className="mt-3 text-center text-sm leading-relaxed text-[var(--flagship-muted)]">
-            {TRIAL_PAYMENT_DISCLOSURE}
-          </p>
-          <Link
-            href={ROUTES.pricing}
-            className="mt-4 block text-center text-sm font-semibold text-[var(--flagship-teal)] hover:opacity-80"
-          >
-            Compare all plans →
-          </Link>
-        </div>
+        <LandingPricingPreview />
       </LandingSection>
 
       <section className="aee-flagship-final-cta" aria-labelledby="flagship-final-cta-heading">
@@ -293,7 +274,8 @@ export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsD
             Ready to pass with confidence?
           </h2>
           <p className="aee-flagship-final-cta__subtitle">
-            {formatTrialLabel()} · {formatMonthlyPrice()}/mo after trial · {PLATFORM_EXAM_LIST_MIDDOT}
+            {formatTrialLabel()} · Basic from {formatMonthlyPrice("basic")}/mo · Pro from{" "}
+            {formatMonthlyPrice("pro")}/mo · {PLATFORM_EXAM_LIST_MIDDOT}
           </p>
           <div className="aee-flagship-final-cta__actions">
             <LandingCta

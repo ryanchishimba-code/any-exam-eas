@@ -5317,6 +5317,12 @@ body {
   padding: 1rem 1.75rem;
   font-size: 1.0625rem;
   font-weight: 700;
+  box-shadow: 0 6px 28px rgba(0, 212, 200, 0.35);
+}
+
+.aee-flagship-cta--hero:hover {
+  box-shadow: 0 10px 36px rgba(0, 212, 200, 0.48);
+  transform: translateY(-2px);
 }
 
 .aee-flagship-cta--secondary {
@@ -5469,13 +5475,21 @@ body {
 }
 
 .aee-flagship-hero__eyebrow {
-  margin: 0 auto;
+  margin: 0 0 0.75rem;
   max-width: 36rem;
   font-size: clamp(0.6875rem, 1.4vw, 0.75rem);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--flagship-teal);
+}
+
+.aee-flagship-hero__value-line {
+  margin: 0.75rem 0 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--flagship-navy);
+  opacity: 0.85;
 }
 
 .aee-flagship-hero__subline {
@@ -5560,11 +5574,34 @@ body {
 }
 
 .aee-platform-advantage__title {
-  margin-top: 1rem;
+  margin: 0;
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--flagship-navy);
+}
+
+.aee-platform-advantage__title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.aee-platform-advantage__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--flagship-teal);
+  background: color-mix(in srgb, var(--flagship-teal) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--flagship-teal) 25%, transparent);
 }
 
 .aee-platform-advantage__detail {
@@ -6462,6 +6499,247 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+  }
+}
+
+/* Homepage pricing preview */
+.aee-landing-pricing {
+  max-width: 56rem;
+  margin-inline: auto;
+}
+
+.aee-landing-pricing__value-line {
+  margin: 0 0 1.25rem;
+  text-align: center;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--flagship-teal);
+}
+
+.aee-landing-pricing__interval {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.aee-landing-pricing__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .aee-landing-pricing__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+.aee-landing-pricing-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  border: 1px solid var(--flagship-border);
+  background: var(--flagship-surface);
+}
+
+.aee-landing-pricing-card--highlight {
+  border-color: color-mix(in srgb, var(--flagship-teal) 45%, var(--flagship-border));
+  box-shadow: 0 8px 32px rgba(0, 212, 200, 0.12);
+}
+
+.aee-landing-pricing-card__badge {
+  position: absolute;
+  top: -0.625rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #071a2c;
+  background: linear-gradient(135deg, var(--flagship-teal), #4da3ff);
+}
+
+.aee-landing-pricing-card__name {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--flagship-navy);
+}
+
+.aee-landing-pricing-card__tagline {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  color: var(--flagship-muted);
+}
+
+.aee-landing-pricing-card__price {
+  margin: 0.75rem 0 0;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--flagship-navy);
+}
+
+.aee-landing-pricing-card__period {
+  margin-left: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--flagship-muted);
+}
+
+.aee-landing-pricing-card__savings {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--flagship-teal);
+}
+
+.aee-landing-pricing-card__equiv {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--flagship-muted);
+}
+
+.aee-landing-pricing-card__features {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.aee-landing-pricing-card__features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--flagship-navy);
+}
+
+.aee-landing-pricing-card__feature--muted span {
+  color: var(--flagship-muted);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in srgb, var(--flagship-muted) 50%, transparent);
+}
+
+.aee-landing-pricing-card__feature--pro span {
+  font-weight: 600;
+}
+
+.aee-landing-pricing__table-wrap {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  border-radius: 1rem;
+  border: 1px solid var(--flagship-border);
+}
+
+.aee-landing-pricing__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.aee-landing-pricing__table th,
+.aee-landing-pricing__table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--flagship-border);
+}
+
+.aee-landing-pricing__table th {
+  font-weight: 700;
+  color: var(--flagship-navy);
+  background: var(--flagship-surface-alt);
+}
+
+.aee-landing-pricing__table tr.is-active td {
+  background: color-mix(in srgb, var(--flagship-teal) 6%, transparent);
+  font-weight: 600;
+}
+
+.aee-landing-pricing__save {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.375rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--flagship-teal);
+  background: color-mix(in srgb, var(--flagship-teal) 12%, transparent);
+}
+
+.aee-landing-pricing__anchor {
+  margin: 1rem 0 0;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--flagship-muted);
+}
+
+.aee-landing-pricing__disclosure {
+  margin: 0.75rem 0 0;
+  text-align: center;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--flagship-muted);
+}
+
+.aee-landing-pricing__full-link {
+  display: block;
+  margin-top: 0.75rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--flagship-teal);
+}
+
+.aee-landing-pricing__full-link:hover {
+  opacity: 0.85;
+}
+
+/* Exam marketing pages */
+.aee-exam-marketing__hero {
+  position: relative;
+  background:
+    radial-gradient(ellipse 70% 55% at 75% 15%, rgba(0, 212, 200, 0.1) 0%, transparent 55%),
+    linear-gradient(180deg, var(--flagship-surface) 0%, var(--flagship-surface-alt) 100%);
+  border-bottom: 1px solid var(--flagship-border);
+}
+
+.aee-exam-marketing__features {
+  background: var(--color-surface);
+}
+
+.aee-exam-marketing__includes {
+  background: var(--flagship-surface-alt);
+  border-block: 1px solid var(--flagship-border);
+}
+
+.aee-exam-marketing__includes-card {
+  padding: 1.5rem;
+  border-radius: 1.25rem;
+  border: 1px solid var(--flagship-border);
+  background: var(--flagship-surface);
+}
+
+.aee-exam-marketing__pricing {
+  background: var(--flagship-surface-alt);
+  border-top: 1px solid var(--flagship-border);
+}
+
+@media (min-width: 640px) {
+  .aee-exam-marketing__includes-card {
+    padding: 2rem;
   }
 }
 

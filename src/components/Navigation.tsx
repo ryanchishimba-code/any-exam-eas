@@ -15,7 +15,7 @@ import { useUserAccess } from "@/lib/client/use-user-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import { ROUTES } from "@/lib/routes";
+import { ROUTES, EXAM_NAV_ITEMS } from "@/lib/routes";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { formatTrialCtaLabel } from "@/lib/site";
@@ -23,10 +23,10 @@ import { formatTrialCtaLabel } from "@/lib/site";
 type NavLink = { href: string; label: string; adminOnly?: boolean };
 
 const guestLinks: NavLink[] = [
-  { href: "/#ngn-demo", label: "Try demo" },
-  { href: "/#choose-exam", label: "Exams" },
+  { href: "/#features", label: "Features" },
+  { href: "/#sample-questions", label: "Samples" },
   { href: ROUTES.resources, label: "Resources" },
-  { href: ROUTES.pricing, label: "Pricing" },
+  { href: "/#pricing", label: "Pricing" },
 ];
 
 const premiumLinks: NavLink[] = [
@@ -192,14 +192,15 @@ export function Navigation() {
               <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-ink-muted)]">
                 Exams
               </p>
-              {["nclex", "naplex", "usmle", "pance"].map((slug) => (
+              {EXAM_NAV_ITEMS.map((exam) => (
                 <Link
-                  key={slug}
-                  href={`/exams/${slug}`}
-                  className={`block py-2 text-sm uppercase ${navClass(pathname.startsWith(`/exams/${slug}`))}`}
+                  key={exam.slug}
+                  href={exam.href}
+                  className={`block py-2 text-sm ${navClass(pathname === exam.href || pathname.startsWith(`${exam.href}/`))}`}
                   onClick={closeMobile}
                 >
-                  {slug}
+                  {exam.label}
+                  <span className="ml-1 text-xs text-[var(--color-ink-muted)]">· {exam.stat}</span>
                 </Link>
               ))}
               <div className="my-3 border-t border-black/[0.06]" />

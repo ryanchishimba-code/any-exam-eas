@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { Crown } from "lucide-react";
 import { LANDING_UNIQUE_FEATURES } from "@/lib/landing/content";
 
 export function LandingFeaturesSection() {
@@ -39,7 +40,15 @@ export function LandingFeaturesSection() {
                 <span className="aee-platform-advantage__icon" aria-hidden>
                   <Icon className="h-5 w-5 text-white" strokeWidth={2.25} />
                 </span>
-                <h3 className="aee-platform-advantage__title">{feature.title}</h3>
+                <div className="aee-platform-advantage__title-row">
+                  <h3 className="aee-platform-advantage__title">{feature.title}</h3>
+                  {feature.proOnly ? (
+                    <span className="aee-platform-advantage__badge">
+                      <Crown className="h-3 w-3" aria-hidden />
+                      Pro
+                    </span>
+                  ) : null}
+                </div>
                 <p className="aee-platform-advantage__detail">{feature.detail}</p>
               </motion.li>
             );

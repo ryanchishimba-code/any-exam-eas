@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check, Map, BookOpen, BarChart3 } from "lucide-react";
+import { ArrowRight, Check, Crown, Map, BookOpen, BarChart3 } from "lucide-react";
 import {
   EXAM_SEO_CONFIG,
   EXAM_SEO_KEYS,
@@ -8,7 +8,15 @@ import {
   type ExamSeoKey,
 } from "@/lib/seo/exam-config";
 import { getArticlesForExam } from "@/lib/seo/resources-content";
-import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import {
+  LANDING_HERO_VALUE_LINE,
+  LANDING_TRIAL_HREF,
+  PLATFORM_EXAM_LIST_MIDDOT,
+} from "@/lib/landing/content";
+import { LandingCta } from "@/components/landing/LandingCta";
+import { LandingHeroTrustPills } from "@/components/landing/LandingHeroTrustPills";
+import { LandingPricingPreview } from "@/components/landing/LandingPricingPreview";
+import { HowWeCompare } from "@/components/home/HowWeCompare";
 import { ROUTES } from "@/lib/routes";
 import {
   formatMonthlyPrice,
@@ -24,106 +32,162 @@ export function ExamMarketingLanding({ examKey }: Props) {
   const config = getExamSeoConfig(examKey);
   const hub = getExamHub(examKey);
   const relatedArticles = getArticlesForExam(examKey).slice(0, 3);
-  const otherExams = EXAM_SEO_KEYS.filter((k) => k !== examKey).slice(0, 5);
+  const otherExams = EXAM_SEO_KEYS.filter((k) => k !== examKey);
 
   return (
     <div className="aee-exam-marketing">
-      <div className="mx-auto max-w-5xl px-5 pb-20 pt-[var(--page-top)] sm:px-6">
-        <nav aria-label="Breadcrumb" className="text-sm text-[var(--color-ink-muted)]">
-          <Link href={ROUTES.home} className="hover:text-[var(--color-accent)]">
-            Home
-          </Link>
-          <span className="mx-2 opacity-40">/</span>
-          <span className="font-medium text-[var(--color-ink)]">{config.shortName} Prep</span>
-        </nav>
-
-        <header className="mt-8">
-          <p
-            className="text-xs font-bold uppercase tracking-[0.14em]"
-            style={{ color: config.accentColor }}
-          >
-            {config.blueprintLabel}
-          </p>
-          <h1
-            className="mt-3 text-[clamp(2rem,5.5vw,3.25rem)] font-black leading-[1.02] tracking-[-0.04em]"
-            style={{ color: config.accentColor }}
-          >
-            {config.h1}
-          </h1>
-          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-[var(--color-ink-muted)]">
-            {config.heroSubline}
-          </p>
-          {hub ? (
-            <p className="mt-3 text-sm font-semibold text-[var(--color-ink)]">{hub.questionBankLabel}</p>
-          ) : null}
-
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Link
-              href={LANDING_TRIAL_HREF}
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-3.5 text-base font-bold text-white shadow-[var(--shadow-apple-btn)] transition hover:shadow-[var(--shadow-apple-btn-hover)]"
-            >
-              {formatTrialCtaLabel()}
-              <ArrowRight className="h-5 w-5" aria-hidden />
+      <section className="aee-exam-marketing__hero">
+        <div className="aee-flagship-inner mx-auto max-w-5xl px-5 pb-16 pt-[var(--page-top)] sm:px-6">
+          <nav aria-label="Breadcrumb" className="text-sm text-[var(--color-ink-muted)]">
+            <Link href={ROUTES.home} className="hover:text-[var(--color-accent)]">
+              Home
             </Link>
-            <Link
-              href={ROUTES.pricing}
-              className="inline-flex items-center rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-5 py-3.5 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-accent)]"
-            >
-              View pricing — Basic from {formatMonthlyPrice("basic")}/mo
-            </Link>
-          </div>
-          <p className="mt-3 text-xs text-[var(--color-ink-muted)]">{TRIAL_PAYMENT_DISCLOSURE}</p>
-        </header>
+            <span className="mx-2 opacity-40">/</span>
+            <span className="font-medium text-[var(--color-ink)]">{config.shortName} Prep</span>
+          </nav>
 
-        <section className="mt-14 grid gap-4 sm:grid-cols-3" aria-labelledby="exam-usps">
-          <h2 id="exam-usps" className="sr-only">
-            Why students choose AnyExamEasy for {config.shortName}
-          </h2>
-          {config.features.map((feature) => (
-            <div
-              key={feature.title}
-              className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-5 shadow-[var(--shadow-apple-sm)]"
+          <header className="mt-8 max-w-3xl">
+            <p className="aee-flagship-hero__eyebrow" style={{ color: config.accentColor }}>
+              {config.blueprintLabel} · Updated 2026
+            </p>
+            <h1
+              className="aee-flagship-hero__headline aee-flagship-hero__headline--punchy mt-3"
+              style={{ color: config.accentColor }}
             >
-              <h3 className="text-base font-bold text-[var(--color-ink)]">{feature.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">{feature.detail}</p>
+              {config.h1}
+            </h1>
+            <p className="aee-flagship-hero__subline mt-4">{config.heroSubline}</p>
+            {hub ? (
+              <p className="mt-3 text-sm font-semibold text-[var(--color-ink)]">
+                {hub.questionBankLabel} · plus 5 other board exams on the same plan
+              </p>
+            ) : null}
+            <p className="aee-flagship-hero__value-line">{LANDING_HERO_VALUE_LINE}</p>
+
+            <LandingHeroTrustPills className="mt-4" />
+
+            <div className="aee-flagship-hero__ctas aee-flagship-hero__ctas--conversion mt-6">
+              <LandingCta
+                href={LANDING_TRIAL_HREF}
+                className="aee-flagship-cta--hero aee-flagship-cta--xl group w-full sm:w-auto"
+                icon={
+                  <ArrowRight
+                    className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
+                }
+              >
+                {formatTrialCtaLabel()}
+              </LandingCta>
+              <Link href="#pricing" className="aee-flagship-cta aee-flagship-cta--secondary">
+                View pricing
+              </Link>
+              <Link href={ROUTES.home} className="aee-flagship-hero__sample-link aee-flagship-hero__sample-link--muted">
+                See all 6 exams
+              </Link>
             </div>
-          ))}
-        </section>
+            <p className="aee-flagship-hero__disclosure">{TRIAL_PAYMENT_DISCLOSURE}</p>
+          </header>
+        </div>
+      </section>
 
-        <section className="mt-14 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-6 sm:p-8" aria-labelledby="platform-includes">
-          <h2 id="platform-includes" className="text-xl font-bold text-[var(--color-ink)]">
-            Everything on your {config.shortName} study plan
-          </h2>
-          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-            {[
-              `${config.shortName} question bank + ${formatTrialLabel()}`,
-              "Blueprint-aligned Exam Roadmap",
-              "Normal lab values & clinical calculators",
-              "Top 503 Drugs pharmacology deck",
-              "Timed full-length exam simulations",
-              "Five other board exams on the same subscription",
-            ].map((item) => (
-              <li key={item} className="flex items-start gap-2 text-sm text-[var(--color-ink-muted)]">
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent)]" strokeWidth={2.5} aria-hidden />
-                {item}
+      <section className="aee-exam-marketing__features">
+        <div className="aee-flagship-inner mx-auto max-w-5xl px-5 py-12 sm:px-6">
+          <header className="aee-flagship-header aee-flagship-header--center mx-auto max-w-2xl text-center">
+            <p className="aee-flagship-eyebrow">Built for {config.shortName}</p>
+            <h2 className="aee-flagship-title">
+              Blueprint-aligned prep —{" "}
+              <span className="aee-flagship-gradient-text">without a $300+ QBank.</span>
+            </h2>
+          </header>
+
+          <ul className="aee-platform-advantages mt-10" aria-labelledby="exam-usps">
+            <h2 id="exam-usps" className="sr-only">
+              Why students choose AnyExamEasy for {config.shortName}
+            </h2>
+            {config.features.map((feature) => (
+              <li key={feature.title} className="aee-platform-advantage">
+                <h3 className="aee-platform-advantage__title">{feature.title}</h3>
+                <p className="aee-platform-advantage__detail">{feature.detail}</p>
               </li>
             ))}
           </ul>
-          <div className="mt-6 flex flex-wrap gap-4 text-sm font-semibold">
-            <span className="inline-flex items-center gap-1.5 text-[var(--color-ink)]">
-              <Map className="h-4 w-4 text-[var(--color-accent)]" aria-hidden /> Roadmap
-            </span>
-            <span className="inline-flex items-center gap-1.5 text-[var(--color-ink)]">
-              <BookOpen className="h-4 w-4 text-[var(--color-accent)]" aria-hidden /> Deep Dives (Pro)
-            </span>
-            <span className="inline-flex items-center gap-1.5 text-[var(--color-ink)]">
-              <BarChart3 className="h-4 w-4 text-[var(--color-accent)]" aria-hidden /> Analytics (Pro)
-            </span>
-          </div>
-        </section>
+        </div>
+      </section>
 
+      <section className="aee-exam-marketing__includes">
+        <div className="aee-flagship-inner mx-auto max-w-5xl px-5 py-12 sm:px-6">
+          <div className="aee-exam-marketing__includes-card" aria-labelledby="platform-includes">
+            <h2 id="platform-includes" className="aee-flagship-title text-xl">
+              Everything on your {config.shortName} study plan
+            </h2>
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+              {[
+                `${config.shortName} question bank + ${formatTrialLabel()}`,
+                "Blueprint-aligned Exam Roadmap",
+                "Normal lab values & clinical calculators",
+                "Top 503 Drugs pharmacology deck",
+                "Timed full-length exam simulations",
+                "Five other board exams on the same subscription",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-2 text-sm text-[var(--color-ink-muted)]">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--flagship-teal)]" strokeWidth={2.5} aria-hidden />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6 flex flex-wrap gap-4 text-sm font-semibold">
+              <span className="inline-flex items-center gap-1.5 text-[var(--color-ink)]">
+                <Map className="h-4 w-4 text-[var(--flagship-teal)]" aria-hidden /> Roadmap
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-[var(--color-ink)]">
+                <BookOpen className="h-4 w-4 text-[var(--flagship-teal)]" aria-hidden />
+                Deep Dives
+                <span className="aee-platform-advantage__badge">
+                  <Crown className="h-3 w-3" aria-hidden />
+                  Pro
+                </span>
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-[var(--color-ink)]">
+                <BarChart3 className="h-4 w-4 text-[var(--flagship-teal)]" aria-hidden />
+                Analytics
+                <span className="aee-platform-advantage__badge">
+                  <Crown className="h-3 w-3" aria-hidden />
+                  Pro
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="aee-flagship-compare-wrap" aria-labelledby="compare-heading">
+        <div className="aee-flagship-inner mx-auto max-w-5xl px-5 sm:px-6">
+          <HowWeCompare />
+        </div>
+      </section>
+
+      <section id="pricing" className="aee-exam-marketing__pricing scroll-mt-24">
+        <div className="aee-flagship-inner mx-auto max-w-5xl px-5 py-14 sm:px-6">
+          <header className="aee-flagship-header aee-flagship-header--center mx-auto max-w-2xl text-center">
+            <p className="aee-flagship-eyebrow">Simple pricing</p>
+            <h2 className="aee-flagship-title">
+              Basic from {formatMonthlyPrice("basic")}/mo ·{" "}
+              <span className="aee-flagship-gradient-text">Pro from {formatMonthlyPrice("pro")}/mo</span>
+            </h2>
+            <p className="aee-flagship-subtitle">
+              {formatTrialLabel()} · {PLATFORM_EXAM_LIST_MIDDOT} · save up to 20% on annual
+            </p>
+          </header>
+          <div className="mt-10">
+            <LandingPricingPreview />
+          </div>
+        </div>
+      </section>
+
+      <div className="aee-flagship-inner mx-auto max-w-5xl px-5 pb-20 sm:px-6">
         <section className="mt-14" aria-labelledby="study-tips">
-          <h2 id="study-tips" className="text-xl font-bold text-[var(--color-ink)]">
+          <h2 id="study-tips" className="aee-flagship-title text-xl">
             {config.shortName} study tips for 2026
           </h2>
           <div className="mt-5 space-y-6">
@@ -138,7 +202,7 @@ export function ExamMarketingLanding({ examKey }: Props) {
 
         {relatedArticles.length > 0 ? (
           <section className="mt-14" aria-labelledby="related-guides">
-            <h2 id="related-guides" className="text-xl font-bold text-[var(--color-ink)]">
+            <h2 id="related-guides" className="aee-flagship-title text-xl">
               {config.shortName} study guides & resources
             </h2>
             <ul className="mt-5 space-y-3">
@@ -163,7 +227,7 @@ export function ExamMarketingLanding({ examKey }: Props) {
         ) : null}
 
         <section className="mt-14" aria-labelledby="exam-faq">
-          <h2 id="exam-faq" className="text-xl font-bold text-[var(--color-ink)]">
+          <h2 id="exam-faq" className="aee-flagship-title text-xl">
             {config.shortName} prep FAQ
           </h2>
           <dl className="mt-5 space-y-5">
@@ -177,7 +241,7 @@ export function ExamMarketingLanding({ examKey }: Props) {
         </section>
 
         <section className="mt-14 border-t border-[var(--color-border)] pt-10" aria-labelledby="other-boards">
-          <h2 id="other-boards" className="text-sm font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
+          <h2 id="other-boards" className="aee-flagship-eyebrow">
             All six boards — one subscription
           </h2>
           <ul className="mt-4 flex flex-wrap gap-2">
@@ -198,20 +262,32 @@ export function ExamMarketingLanding({ examKey }: Props) {
           </ul>
         </section>
 
-        <section className="mt-14 rounded-2xl bg-[var(--color-ink)] px-6 py-10 text-center sm:px-10">
-          <h2 className="text-2xl font-bold text-[var(--color-bg)]">
-            Start {config.shortName} prep — {formatTrialLabel()}
-          </h2>
-          <p className="mx-auto mt-3 max-w-lg text-sm text-white/80">
-            Basic from {formatMonthlyPrice("basic")}/mo · Pro from {formatMonthlyPrice("pro")}/mo · All six board exams included
-          </p>
-          <Link
-            href={LANDING_TRIAL_HREF}
-            className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-8 py-3.5 text-base font-bold text-white"
-          >
-            {formatTrialCtaLabel()}
-            <ArrowRight className="h-5 w-5" aria-hidden />
-          </Link>
+        <section className="aee-flagship-final-cta mt-14 rounded-2xl px-6 py-10 text-center sm:px-10">
+          <div className="aee-flagship-final-cta__bg rounded-2xl" aria-hidden />
+          <div className="relative">
+            <h2 className="aee-flagship-final-cta__title">
+              Start {config.shortName} prep — {formatTrialLabel()}
+            </h2>
+            <p className="aee-flagship-final-cta__subtitle">
+              Basic from {formatMonthlyPrice("basic")}/mo · Pro from {formatMonthlyPrice("pro")}/mo · All six board exams
+            </p>
+            <div className="aee-flagship-final-cta__actions mt-6">
+              <LandingCta
+                href={LANDING_TRIAL_HREF}
+                variant="primary"
+                className="aee-flagship-cta--hero aee-flagship-cta--xl group aee-flagship-cta--on-dark"
+                icon={
+                  <ArrowRight
+                    className="h-5 w-5 transition-transform group-hover:translate-x-1"
+                    aria-hidden
+                  />
+                }
+              >
+                {formatTrialCtaLabel()}
+              </LandingCta>
+            </div>
+            <p className="aee-flagship-final-cta__legal mt-4">{TRIAL_PAYMENT_DISCLOSURE}</p>
+          </div>
         </section>
       </div>
     </div>

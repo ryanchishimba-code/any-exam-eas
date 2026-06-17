@@ -137,7 +137,8 @@ export const LANDING_PRICING_FEATURES = [
   `${TOP_500_DRUGS_COUNT} Top Drugs pharmacology deck`,
 ] as const;
 
-export const LANDING_HERO_EYEBROW = PLATFORM_EXAM_LIST_MIDDOT;
+export const LANDING_HERO_EYEBROW =
+  "6 Major Board Exams · One Subscription · Updated 2026";
 
 /** Primary signup destination — Pro annual is the default conversion path. */
 export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=yearly&tier=pro";
@@ -153,11 +154,15 @@ export const LANDING_HERO_EXAMS = [
 ] as const;
 
 /** Primary hero headline — benefit-driven, scannable above the fold. */
-export const LANDING_HERO_HEADLINE = "Six Boards. One Plan. Pass With Confidence.";
+export const LANDING_HERO_HEADLINE = "Pass Your Boards Without Paying for Six Separate QBanks.";
 
 /** Hero sub-headline — exams, tools, and price in one line. */
 export const LANDING_HERO_SUBLINE =
-  "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP · NPTE-PT — Roadmaps, Deep Dives, full-length mocks, and board-style banks. Basic from $34.99/mo, Pro from $49.99/mo. Less than one premium QBank elsewhere.";
+  "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT — Roadmaps, Deep Dives, full-length mocks, and board-style banks in one plan. Much more affordable than stacking UWorld subscriptions.";
+
+/** Short hero value line shown above CTAs. */
+export const LANDING_HERO_VALUE_LINE =
+  "Premium prep quality · fraction of the cost · cancel anytime";
 
 /** Three-column offering band below the hero. */
 export const LANDING_OFFERING_PILLARS = [
@@ -186,34 +191,52 @@ export const LANDING_HERO_TRUST_SIGNALS = [
   "Updated 2026",
   "Blueprint aligned",
   "14-day free trial",
+  "Cancel anytime",
 ] as const;
 
 /** Unique differentiators — icon cards on the landing page. */
 export const LANDING_UNIQUE_FEATURES = [
   {
     icon: Map,
-    title: "Proprietary Roadmap Tools",
-    detail: "Blueprint-based readiness plans show what to tackle next — linked to practice blocks and weak-area drills.",
+    title: "Proprietary Exam Roadmaps",
+    detail:
+      "Blueprint-aligned study plans for every exam show what to practice next — linked to weak-area drills and timed blocks.",
+    proOnly: false,
   },
   {
     icon: BookOpen,
-    title: "Deep Dive Modules",
-    detail: "Eight-section lessons open right after every question when you need textbook depth on a missed topic.",
+    title: "Full Deep Dive Modules",
+    detail:
+      "Eight-section lessons open from missed questions — textbook depth without leaving your session.",
+    proOnly: true,
   },
   {
-    icon: ShieldCheck,
-    title: "Superior Question Quality",
-    detail: "Varied, rigorous vignettes with teachable rationales — not template-swapped distractors or repetitive stems.",
+    icon: Pill,
+    title: "Top 503 Drugs Deck",
+    detail:
+      "High-yield pharmacology flashcards with MOA, brand names, and adverse effects — shared across nursing, medical, and pharmacy prep.",
+    proOnly: false,
   },
   {
     icon: Calculator,
-    title: "Clinical Calculators + Lab Values",
-    detail: "Normal lab references and board-relevant calculators built into your study flow — no tab-hopping.",
+    title: "Normal Lab Values + Calculators",
+    detail:
+      "Board-relevant reference ranges and clinical calculators built into your study flow — no tab-hopping.",
+    proOnly: false,
   },
   {
     icon: BarChart3,
-    title: "Performance Analytics",
-    detail: "Weak-area targeting and session trends so you know exactly where to focus before test day.",
+    title: "Advanced Analytics & Spaced Repetition",
+    detail:
+      "Weak-area targeting, performance trends, and SRS scheduling so you focus where points are actually lost.",
+    proOnly: true,
+  },
+  {
+    icon: ShieldCheck,
+    title: "Board-Style Question Quality",
+    detail:
+      "Varied clinical vignettes with teachable rationales — not template-swapped distractors or repetitive stems.",
+    proOnly: false,
   },
 ] as const;
 
@@ -263,9 +286,9 @@ export const LANDING_SOCIAL_PROOF = [
     detail: "One subscription — no per-exam stacking",
   },
   {
-    value: "$34.99",
-    label: "Basic from",
-    detail: "Pro from $49.99/mo — all 6 exams vs. $200–400+ each elsewhere",
+    value: "Basic",
+    label: "Starting plan",
+    detail: "Pro adds Deep Dives, analytics & unlimited mocks",
   },
   {
     value: "Roadmap",
@@ -387,7 +410,7 @@ export type LandingSuccessStory = {
 /** Illustrative outcome stats — not pass-rate guarantees. */
 export const LANDING_PASS_STATS = [
   { value: "6", label: "Board exams", detail: "One subscription — no per-exam stacking" },
-  { value: "$34.99", label: "Basic from", detail: "Pro from $49.99/mo — all 6 exams vs. $200–400+ each elsewhere" },
+  { value: "14 days", label: "Free trial", detail: "Evaluate every exam before you pay" },
   { value: "First try", label: "Passes reported", detail: "Students share first-attempt outcomes*" },
 ] as const;
 

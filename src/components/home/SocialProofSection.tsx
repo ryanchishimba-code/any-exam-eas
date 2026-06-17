@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { LANDING_SOCIAL_PROOF } from "@/lib/landing/content";
+import { formatMonthlyPrice } from "@/lib/site";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
 export function SocialProofSection({
@@ -10,13 +11,18 @@ export function SocialProofSection({
   bankCounts?: LandingBankCountsDisplay;
 }) {
   const reduceMotion = useReducedMotion();
+  const basicPrice = formatMonthlyPrice("basic");
 
   // Keep the headline stat in lockstep with the live hero count, never the static floor.
-  const stats = LANDING_SOCIAL_PROOF.map((item) =>
-    item.label === "Board-style questions" && bankCounts
-      ? { ...item, value: bankCounts.totalLabel }
-      : item
-  );
+  const stats = LANDING_SOCIAL_PROOF.map((item) => {
+    if (item.label === "Board-style questions" && bankCounts) {
+      return { ...item, value: bankCounts.totalLabel };
+    }
+    if (item.label === "Starting plan") {
+      return { ...item, value: `From ${basicPrice}` };
+    }
+    return item;
+  });
 
   return (
     <section

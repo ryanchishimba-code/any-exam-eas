@@ -74,7 +74,7 @@ export function formatTrialLabel(): string {
 }
 
 export function formatTrialCtaLabel(): string {
-  return "Start 14-day free trial";
+  return "Start 14-Day Free Trial";
 }
 
 export function formatTrialCtaWithSavings(
@@ -139,7 +139,7 @@ export function formatLandingConversionSubtitle(): string {
 }
 
 export function formatLandingStickyDetail(): string {
-  return `${formatTrialLabel()} · ${BILLING_TRIAL_DISCLOSURE}`;
+  return `Basic from ${formatMonthlyPrice("basic")}/mo · Pro from ${formatMonthlyPrice("pro")}/mo · ${formatTrialLabel()}`;
 }
 
 export const SIGNUP_PAYMENT_REQUIRED_NOTE =

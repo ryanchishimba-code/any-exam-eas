@@ -29,7 +29,10 @@ export function LandingStickyCta() {
       <div className="aee-landing-sticky-cta__inner">
         <div className="aee-landing-sticky-cta__copy">
           <p className="aee-landing-sticky-cta__price">
-            Only {formatMonthlyPrice()}
+            Basic {formatMonthlyPrice("basic")}
+            <span className="aee-landing-sticky-cta__period">/mo</span>
+            <span className="mx-1.5 opacity-50">·</span>
+            Pro {formatMonthlyPrice("pro")}
             <span className="aee-landing-sticky-cta__period">/mo</span>
           </p>
           <p className="aee-landing-sticky-cta__detail">{formatLandingStickyDetail()}</p>
