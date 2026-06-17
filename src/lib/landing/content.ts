@@ -156,9 +156,9 @@ export const LANDING_HERO_EXAMS = [
 /** Primary hero headline — benefit-driven, scannable above the fold. */
 export const LANDING_HERO_HEADLINE = "Premium Board Prep at an Accessible Price";
 
-/** Hero sub-headline body — price suffix appended via formatLandingHeroSubline(). */
+/** Hero sub-headline body — price shown separately via HighlightedPrice. */
 export const LANDING_HERO_SUBLINE_BODY =
-  "High-quality practice questions, smart Roadmaps, and integrated Deep Dives for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP & NPTE — all in one subscription starting at just";
+  "High-quality practice questions, smart Roadmaps, and integrated Deep Dives for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP & NPTE — all in one subscription.";
 
 /** Short reassurance directly under the primary hero CTA. */
 export const LANDING_HERO_CTA_DISCLOSURE =

@@ -19,12 +19,14 @@ import { QuestionPreviewCard } from "@/components/landing/QuestionPreviewCard";
 import { LandingExamShowcase } from "@/components/landing/LandingExamShowcase";
 import { LandingOfferingBand } from "@/components/landing/LandingOfferingBand";
 import { LandingHashScroll } from "@/components/landing/LandingHashScroll";
+import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
 import { LandingPricingPreview } from "@/components/landing/LandingPricingPreview";
 import { ChooseYourExam } from "@/components/home/ChooseYourExam";
 import { HowWeCompare } from "@/components/home/HowWeCompare";
 import {
   LANDING_HERO_CTA_DISCLOSURE,
   LANDING_HERO_PRICE_TAGLINE,
+  LANDING_HERO_SUBLINE_BODY,
   LANDING_PASS_STATS,
   LANDING_SUCCESS_STORIES,
   LANDING_TRIAL_HREF,
@@ -35,7 +37,6 @@ import { SocialProofSection } from "@/components/home/SocialProofSection";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
 import {
-  formatLandingHeroSubline,
   formatMonthlyPrice,
   formatTrialCtaLabel,
   formatTrialLabel,
@@ -101,7 +102,13 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="aee-flagship-hero__subline">{formatLandingHeroSubline()}</p>
+            <p className="aee-flagship-hero__subline">{LANDING_HERO_SUBLINE_BODY}</p>
+
+            <div className="aee-hero-price-callout" aria-label="Starting monthly price">
+              <span className="aee-hero-price-callout__label">Starting at just</span>
+              <HighlightedPrice size="hero-lg" period="/month" />
+              <span className="aee-hero-price-callout__note">· all 6 board exams</span>
+            </div>
 
             <LandingHeroTrustPills className="mt-5" />
 

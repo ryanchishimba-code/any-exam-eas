@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
 import { formatMonthlyPrice, formatTrialCtaLabel, formatLandingStickyDetail } from "@/lib/site";
 
 /** Fixed bottom bar — appears after the hero scrolls out of view. */
@@ -29,8 +30,7 @@ export function LandingStickyCta() {
       <div className="aee-landing-sticky-cta__inner">
         <div className="aee-landing-sticky-cta__copy">
           <p className="aee-landing-sticky-cta__price">
-            Basic {formatMonthlyPrice("basic")}
-            <span className="aee-landing-sticky-cta__period">/mo</span>
+            Basic <HighlightedPrice size="sm" period="/mo" />
             <span className="mx-1.5 opacity-50">·</span>
             Pro {formatMonthlyPrice("pro")}
             <span className="aee-landing-sticky-cta__period">/mo</span>

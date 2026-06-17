@@ -75,7 +75,7 @@ export function formatTrialLabel(): string {
 }
 
 export function formatLandingHeroSubline(): string {
-  return `${LANDING_HERO_SUBLINE_BODY} ${formatMonthlyPrice("basic")}/month.`;
+  return `${LANDING_HERO_SUBLINE_BODY} Starting at just ${formatMonthlyPrice("basic")}/month.`;
 }
 
 export function formatTrialCtaLabel(): string {
