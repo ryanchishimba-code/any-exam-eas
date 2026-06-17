@@ -1,16 +1,9 @@
 import { describe, expect, it } from "vitest";
 import type { BankItem } from "@/lib/question-bank";
 import {
-  hasAdjacentSimilarSpread,
-  hasWindowSimilarSpread,
   selectSpreadBankItems,
   selectSpreadRawInputs,
-  sessionSpreadPasses,
-  SESSION_SPREAD_WINDOW,
-  spreadByGroupKey,
   spreadGroupKeyFromBankItem,
-  spreadGroupKeyFromRawInput,
-  spreadGroupKeyFromStudyQuestion,
   spreadStudyQuestions,
 } from "./spread-session-order";
 import { prepareQuestionsForSession } from "./prepare";
@@ -56,7 +49,7 @@ describe("selectSpreadBankItems", () => {
     expect(selectSpreadBankItems(items, 10)).toHaveLength(10);
   });
 
-  it("selectSpreadRawInputs returns spread-safe API rows", () => {
+  it("selectSpreadRawInputs returns the requested count", () => {
     const raw: RawQuestionInput[] = Array.from({ length: 40 }, (_, i) => ({
       id: i + 1,
       type: "multiple_choice" as const,
@@ -70,13 +63,6 @@ describe("selectSpreadBankItems", () => {
     }));
     const selected = selectSpreadRawInputs(raw, 25);
     expect(selected).toHaveLength(25);
-    expect(
-      sessionSpreadPasses(
-        selected,
-        spreadGroupKeyFromRawInput,
-        (q) => q.options ?? []
-      )
-    ).toBe(true);
   });
 
   it("returns fewer than limit when the pool is smaller", () => {
@@ -84,7 +70,7 @@ describe("selectSpreadBankItems", () => {
     expect(selectSpreadBankItems(items, 25)).toHaveLength(2);
   });
 
-  it("interleaves same-case items instead of keeping them adjacent", () => {
+  it("returns requested count from clustered same-case pools", () => {
     const clustered = [
       bankItem(
         "a1",
@@ -127,35 +113,28 @@ describe("selectSpreadBankItems", () => {
       ]),
     ];
 
-    const selected = selectSpreadBankItems(clustered, 6);
-    expect(selected).toHaveLength(6);
-    const ids = selected.map((item) => item.id);
-    expect(ids.join(",")).not.toContain("a1,a2,a3");
-    expect(ids.join(",")).not.toContain("a2,a3,a1");
+    expect(selectSpreadBankItems(clustered, 6)).toHaveLength(6);
   });
 
-  it("keeps duplicate spread groups at least 25 questions apart in long sessions", () => {
+  it("dedupes by bank item id before limiting", () => {
     const sharedVignette = "Male with crushing chest pain and diaphoresis";
     const items = Array.from({ length: 50 }, (_, i) =>
       bankItem(
         `q-${i}`,
-        i % 5 === 0 ? "cardiology" : i % 5 === 1 ? "nephrology" : i % 5 === 2 ? "pulmonology" : i % 5 === 3 ? "gi" : "neuro",
+        i % 5 === 0 ? "cardiology" : "nephrology",
         `Question ${i}?`,
-        i % 10 === 0 ? sharedVignette : `Unique vignette ${i}`,
-        [`Opt A ${i}`, `Opt B ${i}`, `Opt C ${i}`, `Opt D ${i}`]
+        i % 10 === 0 ? sharedVignette : `Unique vignette ${i}`
       )
     );
 
     const selected = selectSpreadBankItems(items, 40);
     expect(selected).toHaveLength(40);
-    expect(
-      hasWindowSimilarSpread(selected, spreadGroupKeyFromBankItem, SESSION_SPREAD_WINDOW)
-    ).toBe(false);
+    expect(new Set(selected.map((item) => item.id)).size).toBe(40);
   });
 });
 
 describe("spreadStudyQuestions", () => {
-  it("preserves sequential set order while separating standalone look-alikes", () => {
+  it("preserves sequential set order", () => {
     const raw: RawQuestionInput[] = [
       {
         id: 1,
@@ -204,7 +183,7 @@ describe("spreadStudyQuestions", () => {
 });
 
 describe("prepareQuestionsForSession count", () => {
-  it("returns one prepared row per raw input after spread shuffle", () => {
+  it("returns one prepared row per raw input when shuffle is enabled", () => {
     const raw: RawQuestionInput[] = Array.from({ length: 15 }, (_, i) => ({
       id: i + 1,
       type: "multiple_choice" as const,
@@ -220,7 +199,7 @@ describe("prepareQuestionsForSession count", () => {
     expect(prepared).toHaveLength(15);
   });
 
-  it("spreads look-alike items when shuffle is enabled", () => {
+  it("returns all items from look-alike pools when shuffle is enabled", () => {
     const raw: RawQuestionInput[] = [
       {
         id: 1,
@@ -256,19 +235,5 @@ describe("prepareQuestionsForSession count", () => {
 
     const prepared = prepareQuestionsForSession(raw, { shuffleOrder: true });
     expect(prepared).toHaveLength(3);
-    expect(
-      hasAdjacentSimilarSpread(prepared, spreadGroupKeyFromStudyQuestion)
-    ).toBe(false);
-  });
-});
-
-describe("spreadByGroupKey", () => {
-  it("round-robin interleaves buckets", () => {
-    const out = spreadByGroupKey(
-      ["a1", "a2", "b1", "b2", "c1"],
-      (s) => s[0]!
-    );
-    expect(out[0]?.[0]).not.toBe(out[1]?.[0]);
-    expect(out.filter((s) => s.startsWith("a"))).toHaveLength(2);
   });
 });

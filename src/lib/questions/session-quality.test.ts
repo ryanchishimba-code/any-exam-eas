@@ -9,20 +9,12 @@ import {
   assessDifficultyMix,
   balanceDifficultyMix,
   enforceSessionCount,
-  hasWindowSimilarOptions,
   optionsAreTooSimilar,
   optionsFingerprint,
   resolveDifficultyBand,
   SESSION_QUALITY_REQUIREMENTS,
 } from "./session-quality";
-import {
-  hasAdjacentSimilarSpread,
-  hasWindowSimilarSpread,
-  selectSpreadBankItems,
-  SESSION_SPREAD_WINDOW,
-  spreadGroupKeyFromBankItem,
-  spreadGroupKeyFromStudyQuestion,
-} from "./spread-session-order";
+import { selectSpreadBankItems } from "./spread-session-order";
 import type { RawQuestionInput } from "./types";
 
 function bankItem(

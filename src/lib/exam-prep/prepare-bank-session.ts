@@ -37,7 +37,7 @@ export function filterBankItemsForServe(fieldId: string, items: BankItem[]): Ban
   return items;
 }
 
-/** Filter bank rows for session serve without capping — finalize handles spread and count. */
+/** Filter bank rows for session serve without capping — finalize handles count. */
 export function filterBankItemsForSessionPool(params: {
   fieldId: string;
   items: BankItem[];
@@ -58,13 +58,13 @@ export function filterBankItemsForSessionPool(params: {
   return filterBankItemsForServe(fieldId, items);
 }
 
-/** Filter, spread, and cap bank rows before mapping to client-facing questions. */
+/** Filter, shuffle, and cap bank rows before mapping to client-facing questions. */
 export function prepareBankItemsForSession(params: {
   fieldId: string;
   field: string;
   items: BankItem[];
   limit: number;
-  /** Spread-balanced pool size before finalize selects the session slice (defaults to limit). */
+  /** Pool size before finalize selects the session slice (defaults to limit). */
   poolLimit?: number;
 }): BankItem[] {
   const { fieldId, field, items, limit } = params;

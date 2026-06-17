@@ -94,29 +94,12 @@ export function batchPassesDiversity(items: BankItem[]): boolean {
   return auditBatchDiversity(items).length === 0;
 }
 
-/** Keep items that pass pairwise diversity; drop conflicting items individually. */
+/** Keep all items — variability constraints removed; use quality gates only. */
 export function filterBatchByDiversity(items: BankItem[]): {
   kept: BankItem[];
   dropped: number;
 } {
-  const kept: BankItem[] = [];
-  let dropped = 0;
-
-  for (const candidate of items) {
-    const trial = [...kept, candidate];
-    const newIdx = kept.length;
-    const issues = auditBatchDiversity(trial);
-    const conflicts = issues.some(
-      (issue) => issue.indexA === newIdx || issue.indexB === newIdx
-    );
-    if (conflicts) {
-      dropped++;
-      continue;
-    }
-    kept.push(candidate);
-  }
-
-  return { kept, dropped };
+  return { kept: items, dropped: 0 };
 }
 
 /** Dedupe items within a batch by vignette + stem hash. */

@@ -15,51 +15,12 @@ function stemKey(item: BankItem): string {
   return `${scenario}::${stem}`.slice(0, 200);
 }
 
-/**
- * Pick diverse items: spread topic categories, item types, and difficulties;
- * avoid near-duplicate stems in one session.
- */
+/** Dedupe by stem, shuffle, and return up to `want` items (no topic/difficulty spread rules). */
 export function selectDiverseMpjeItems(pool: BankItem[], want: number): BankItem[] {
   const unique = new Map<string, BankItem>();
   for (const item of pool) {
     const key = stemKey(item);
     if (!unique.has(key)) unique.set(key, item);
   }
-
-  const buckets = new Map<string, BankItem[]>();
-  for (const item of unique.values()) {
-    const topic = item.topicCategory ?? item.subjectId ?? "general";
-    const type = item.itemType ?? "mcq";
-    const diff = String(item.difficulty ?? 3);
-    const key = `${topic}|${type}|${diff}`;
-    (buckets.get(key) ?? buckets.set(key, []).get(key)!)!.push(item);
-  }
-
-  for (const [, items] of buckets) shuffle(items);
-
-  const keys = shuffle([...buckets.keys()]);
-  const picked: BankItem[] = [];
-  const usedTopics = new Map<string, number>();
-  const maxPerTopic = Math.max(2, Math.ceil(want / 8));
-
-  let guard = 0;
-  while (picked.length < want && guard < want * 40) {
-    guard++;
-    const key = keys[guard % keys.length]!;
-    const bucket = buckets.get(key);
-    if (!bucket?.length) continue;
-    const item = bucket.shift()!;
-    const topic = item.topicCategory ?? item.subjectId ?? "general";
-    const topicCount = usedTopics.get(topic) ?? 0;
-    if (topicCount >= maxPerTopic && picked.length < want - 5) continue;
-    picked.push(item);
-    usedTopics.set(topic, topicCount + 1);
-  }
-
-  if (picked.length < want) {
-    const rest = shuffle([...unique.values()].filter((i) => !picked.includes(i)));
-    picked.push(...rest.slice(0, want - picked.length));
-  }
-
-  return shuffle(picked).slice(0, want);
+  return shuffle([...unique.values()]).slice(0, want);
 }

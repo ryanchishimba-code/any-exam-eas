@@ -4,7 +4,6 @@ import { bankItemPassesIngestGate } from "@/lib/exam-prep/bank-ingest-gate";
 import { auditUsmleQaEditor } from "@/lib/exam-prep/usmle-qa-editor";
 import { isUsmleField } from "@/lib/exam-prep/usmle-bank-bridge";
 import { hasGenericPlaceholderOptions, normalizeQuestionOptions } from "@/lib/question-format";
-import { BATCH_DIVERSITY_USER_REMINDER } from "@/lib/engine/prompts/batch-diversity";
 import { SESSION_QUALITY_REQUIREMENTS } from "@/lib/questions/session-quality";
 import type {
   QuestionReportProposedFix,
@@ -69,9 +68,8 @@ function buildBankItemFromInput(input: SubmitQuestionReportInput): BankItem {
 function buildGenerationNotes(fieldId: string, issueCodes: string[]): string {
   const lines = [
     "Future generation must obey platform question rules:",
+    `- ${SESSION_QUALITY_REQUIREMENTS.exactCount}`,
     `- ${SESSION_QUALITY_REQUIREMENTS.strongDistractors}`,
-    `- ${SESSION_QUALITY_REQUIREMENTS.variedScenarios}`,
-    BATCH_DIVERSITY_USER_REMINDER.trim(),
   ];
 
   if (issueCodes.includes("generic_placeholder_options")) {
