@@ -134,6 +134,20 @@ describe("PANCE memory cards ↔ deep dive modules", () => {
   }
 });
 
+describe("USMLE memory cards ↔ deep dive modules", () => {
+  const usmleModules = REVIEW_MODULE_TOPICS.filter((t) => t.examSlug === "usmle");
+
+  for (const mod of usmleModules) {
+    it(`${mod.slug} has memory cards linked for deep dive`, () => {
+      const cards = getMemoryCardsByReviewModuleSlug("usmle", mod.slug);
+      expect(cards.length).toBeGreaterThanOrEqual(6);
+      for (const card of cards) {
+        expect(card.reviewModuleSlug).toBe(mod.slug);
+      }
+    });
+  }
+});
+
 describe("AANP FNP memory cards ↔ deep dive modules", () => {
   const aanpModules = REVIEW_MODULE_TOPICS.filter((t) => t.examSlug === "aanp-fnp");
 

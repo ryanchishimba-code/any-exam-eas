@@ -1086,6 +1086,51 @@ export const MEMORY_CARD_SOURCES: Record<string, MemoryCardSourceMeta> = {
     sourceUrl: "https://www.neurocriticalcare.org/resources/guidelines",
     lastReviewedAt: "2026-06-16",
   },
+  "usmle-acs-post-mi-complications": {
+    sourceLabel: "ACC/AHA STEMI/NSTEMI Guidelines",
+    sourceUrl: "https://www.acc.org/guidelines",
+    lastReviewedAt: "2026-06-16",
+  },
+  "usmle-acs-rv-infarct": {
+    sourceLabel: "ACC/AHA STEMI Guidelines — RV infarction",
+    sourceUrl: "https://www.acc.org/guidelines",
+    lastReviewedAt: "2026-06-16",
+  },
+  "usmle-acs-secondary-prevention": {
+    sourceLabel: "ACC/AHA Secondary Prevention Guideline",
+    sourceUrl: "https://www.acc.org/guidelines",
+    lastReviewedAt: "2026-06-16",
+  },
+  "usmle-myxedema-coma": {
+    sourceLabel: "ATA Hypothyroidism Guidelines",
+    sourceUrl: "https://www.thyroid.org/professionals/ata-professional-guidelines/",
+    lastReviewedAt: "2026-06-16",
+  },
+  "usmle-pheochromocytoma": {
+    sourceLabel: "Endocrine Society Pheochromocytoma CPG",
+    sourceUrl: "https://www.endocrine.org/clinical-practice-guidelines",
+    lastReviewedAt: "2026-06-16",
+  },
+  "usmle-rhabdomyolysis": {
+    sourceLabel: "OpenStax Anatomy & Physiology — muscle & kidney",
+    sourceUrl: "https://openstax.org/books/anatomy-and-physiology",
+    lastReviewedAt: "2026-06-16",
+  },
+  "usmle-contrast-nephropathy": {
+    sourceLabel: "KDIGO Acute Kidney Injury Guideline",
+    sourceUrl: "https://kdigo.org/guidelines/acute-kidney-injury/",
+    lastReviewedAt: "2026-06-16",
+  },
+  "usmle-ich-management": {
+    sourceLabel: "AHA/ASA Spontaneous ICH Guideline",
+    sourceUrl: "https://www.ahajournals.org/doi/10.1161/STR.0000000000000407",
+    lastReviewedAt: "2026-06-16",
+  },
+  "usmle-wernicke-thiamine": {
+    sourceLabel: "OpenStax Anatomy & Physiology — nervous system",
+    sourceUrl: "https://openstax.org/books/anatomy-and-physiology",
+    lastReviewedAt: "2026-06-16",
+  },
 };
 
 export function enrichMemoryCard(card: MemoryCard): MemoryCard {
