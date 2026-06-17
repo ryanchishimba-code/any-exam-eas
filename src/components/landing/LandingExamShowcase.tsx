@@ -2,6 +2,7 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import { LANDING_EXAMS } from "@/lib/landing/content";
 import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
+import { formatMonthlyPrice } from "@/lib/site";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
 type LandingExamShowcaseProps = {
@@ -47,7 +48,7 @@ export function LandingExamShowcase({ bankCounts, className = "" }: LandingExamS
     >
       <p className="aee-hero-exam-showcase__total">{totalQuestions}</p>
       <p className="aee-hero-exam-showcase__kicker">
-        6 major board exams · one subscription · much more affordable than UWorld
+        6 board exams · one subscription · starting at {formatMonthlyPrice("basic")}/mo
       </p>
 
       <ul className="aee-hero-exam-showcase__grid">

@@ -20,7 +20,7 @@ import { examMarketingPath } from "@/lib/seo/exam-config";
 
 /** Primary platform positioning — reuse across compare sections and SEO. */
 export const PLATFORM_TAGLINE =
-  "Pass your boards faster and cheaper — high-quality practice, smart tools, and one low price for every major exam.";
+  "Premium board prep for every major licensing exam — high-quality practice, smart Roadmaps, and one accessible subscription.";
 
 export const PLATFORM_EXAM_LIST = "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT";
 
@@ -154,15 +154,15 @@ export const LANDING_HERO_EXAMS = [
 ] as const;
 
 /** Primary hero headline — benefit-driven, scannable above the fold. */
-export const LANDING_HERO_HEADLINE = "Pass Your Boards Without Paying for Six Separate QBanks.";
+export const LANDING_HERO_HEADLINE = "Premium Board Prep at an Accessible Price";
 
-/** Hero sub-headline — exams, tools, and price in one line. */
-export const LANDING_HERO_SUBLINE =
-  "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT — Roadmaps, Deep Dives, full-length mocks, and board-style banks in one plan. Much more affordable than stacking UWorld subscriptions.";
+/** Hero sub-headline body — price suffix appended via formatLandingHeroSubline(). */
+export const LANDING_HERO_SUBLINE_BODY =
+  "High-quality practice questions, smart Roadmaps, and integrated Deep Dives for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP & NPTE — all in one subscription starting at just";
 
-/** Short hero value line shown above CTAs. */
-export const LANDING_HERO_VALUE_LINE =
-  "Premium prep quality · fraction of the cost · cancel anytime";
+/** Short reassurance directly under the primary hero CTA. */
+export const LANDING_HERO_CTA_DISCLOSURE =
+  "No credit card required to start • Cancel anytime";
 
 /** Three-column offering band below the hero. */
 export const LANDING_OFFERING_PILLARS = [
@@ -170,28 +170,27 @@ export const LANDING_OFFERING_PILLARS = [
     icon: Layers,
     title: "6 licensing exams included",
     detail:
-      "Stop buying separate $200–400+ subscriptions. Every major board track lives in one account — switch exams anytime.",
+      "Premium prep for every major board — USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE — in one accessible subscription.",
   },
   {
     icon: Map,
     title: "Roadmaps + Deep Dives built in",
     detail:
-      "Blueprint-aligned study plans show what to practice next. Pro unlocks Deep Dive modules, advanced analytics, and unlimited mock exams.",
+      "Blueprint-aligned study plans show what to practice next. Pro unlocks full Deep Dive modules, advanced analytics, and unlimited mock exams.",
   },
   {
     icon: Sparkles,
     title: "Basic or Pro — your call",
     detail:
-      "Basic covers all six banks, Roadmaps, labs, calculators, and Top 503 Drugs. Pro adds SRS, exportable notes, and enhanced explanations.",
+      "Start with Basic — all six banks, Roadmaps, labs, calculators, and Top 503 Drugs. Pro adds SRS, exportable notes, and enhanced explanations.",
   },
 ] as const;
 
-/** Subtle trust signals below hero CTAs. */
+/** Subtle trust signals below hero subheadline. */
 export const LANDING_HERO_TRUST_SIGNALS = [
-  "Updated 2026",
-  "Blueprint aligned",
-  "14-day free trial",
-  "Cancel anytime",
+  "Updated for 2026",
+  "Official Blueprint Aligned",
+  "6 Board Exams",
 ] as const;
 
 /** Unique differentiators — icon cards on the landing page. */
@@ -265,7 +264,7 @@ export const LANDING_HERO_PITCHES = [
 ] as const;
 
 /** Hero price anchor — what's included at the monthly rate. */
-export const LANDING_HERO_PRICE_TAGLINE = "Every board. Every tool. One price.";
+export const LANDING_HERO_PRICE_TAGLINE = "Premium prep. Accessible price.";
 
 export const LANDING_HERO_PRICE_INCLUDES = [
   `${MARKETING_QUESTION_COUNTS.total} board-style questions`,

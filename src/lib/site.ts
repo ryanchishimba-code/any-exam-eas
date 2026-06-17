@@ -20,6 +20,7 @@ import {
   type SubscriptionTier,
 } from "@/lib/subscription-tiers";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
+import { LANDING_HERO_SUBLINE_BODY } from "@/lib/landing/content";
 
 export const SITE_NAME = "Any Exam Easy";
 export const SITE_DOMAIN = "anyexameasy.com";
@@ -71,6 +72,10 @@ export function formatTrialEntryPrice(): string {
 
 export function formatTrialLabel(): string {
   return `${TRIAL_DAYS}-day free trial`;
+}
+
+export function formatLandingHeroSubline(): string {
+  return `${LANDING_HERO_SUBLINE_BODY} ${formatMonthlyPrice("basic")}/month.`;
 }
 
 export function formatTrialCtaLabel(): string {
@@ -129,10 +134,6 @@ export function formatTrialHeroOffer(): string {
 }
 
 export const TRIAL_PAYMENT_DISCLOSURE = `${TRIAL_DAYS}-day free trial · ${BILLING_TRIAL_DISCLOSURE} · cancel before trial ends and you won't be charged · ${BILLING_POLICY_SHORT}`;
-
-export function formatLandingHeroSubline(): string {
-  return "Professional board prep for all major exams at a fraction of competitor prices — 6 exams + powerful tools for less than one UWorld subscription.";
-}
 
 export function formatLandingConversionSubtitle(): string {
   return `${formatTrialLabel()} · ${BILLING_TRIAL_DISCLOSURE}`;

@@ -5140,7 +5140,35 @@ body {
 }
 
 .aee-flagship-hero--premium .aee-flagship-hero__subline {
-  max-width: 34rem;
+  max-width: 38rem;
+  font-size: clamp(1rem, 2.2vw, 1.125rem);
+  line-height: 1.65;
+}
+
+.aee-flagship-hero__disclosure--prominent {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--flagship-navy);
+  opacity: 0.88;
+}
+
+@media (prefers-color-scheme: dark) {
+  .aee-flagship-hero__disclosure--prominent {
+    color: var(--flagship-muted);
+    opacity: 1;
+  }
+}
+
+.aee-hero-trust-pills__item span:last-child {
+  color: var(--flagship-navy-soft);
+}
+
+@media (prefers-color-scheme: dark) {
+  .aee-hero-trust-pills__item span:last-child {
+    color: var(--flagship-muted);
+  }
 }
 
 .aee-flagship-hero__headline-lead {

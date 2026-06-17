@@ -22,11 +22,8 @@ import { LandingPricingPreview } from "@/components/landing/LandingPricingPrevie
 import { ChooseYourExam } from "@/components/home/ChooseYourExam";
 import { HowWeCompare } from "@/components/home/HowWeCompare";
 import {
-  LANDING_HERO_EYEBROW,
-  LANDING_HERO_HEADLINE,
+  LANDING_HERO_CTA_DISCLOSURE,
   LANDING_HERO_PRICE_TAGLINE,
-  LANDING_HERO_SUBLINE,
-  LANDING_HERO_VALUE_LINE,
   LANDING_PASS_STATS,
   LANDING_SUCCESS_STORIES,
   LANDING_TRIAL_HREF,
@@ -37,6 +34,7 @@ import { SocialProofSection } from "@/components/home/SocialProofSection";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
 import {
+  formatLandingHeroSubline,
   formatMonthlyPrice,
   formatTrialCtaLabel,
   formatTrialLabel,
@@ -92,9 +90,9 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
 
       <div className="aee-flagship-inner aee-flagship-hero__layout">
         <div className="aee-flagship-hero__copy">
-          <p className="aee-flagship-hero__eyebrow">{LANDING_HERO_EYEBROW}</p>
           <h1 id="flagship-hero-heading" className="aee-flagship-hero__headline aee-flagship-hero__headline--punchy">
-            {LANDING_HERO_HEADLINE}
+            Premium Board Prep{" "}
+            <span className="aee-flagship-hero__headline-accent">at an Accessible Price</span>
           </h1>
 
           <motion.div
@@ -102,15 +100,14 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="aee-flagship-hero__subline">{LANDING_HERO_SUBLINE}</p>
-            <p className="aee-flagship-hero__value-line">{LANDING_HERO_VALUE_LINE}</p>
+            <p className="aee-flagship-hero__subline">{formatLandingHeroSubline()}</p>
 
-            <LandingHeroTrustPills className="mt-4" />
+            <LandingHeroTrustPills className="mt-5" />
 
-            <div className="aee-flagship-hero__ctas aee-flagship-hero__ctas--conversion">
+            <div className="aee-flagship-hero__ctas aee-flagship-hero__ctas--conversion mt-6">
               <LandingCta
                 href={LANDING_TRIAL_HREF}
-                className="aee-flagship-cta--hero aee-flagship-cta--xl group w-full sm:w-auto"
+                className="aee-flagship-cta--hero aee-flagship-cta--xl aee-flagship-cta--primary group w-full sm:w-auto"
                 icon={
                   <ArrowRight
                     className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
@@ -128,7 +125,9 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
               </Link>
             </div>
 
-            <p className="aee-flagship-hero__disclosure">{TRIAL_PAYMENT_DISCLOSURE}</p>
+            <p className="aee-flagship-hero__disclosure aee-flagship-hero__disclosure--prominent">
+              {LANDING_HERO_CTA_DISCLOSURE}
+            </p>
           </motion.div>
         </div>
 
@@ -168,9 +167,9 @@ export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsD
         id="sample-questions"
         alt
         align="center"
-        eyebrow="Sample questions"
-        title="See the quality before you commit"
-        subtitle="Board-style stems, plausible distractors, and rationales you can learn from."
+        eyebrow="Try before you commit"
+        title="See the quality — then start your free trial"
+        subtitle="Board-style stems, plausible distractors, and rationales you can learn from. Premium prep you can evaluate risk-free."
       >
         <ul className="aee-flagship-question-grid aee-flagship-question-grid--three">
           {SAMPLE_QUESTIONS_FEATURED.map((q, i) => (
@@ -258,11 +257,11 @@ export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsD
         eyebrow="Simple pricing"
         title={
           <>
-            Basic or Pro —{" "}
+            Accessible pricing —{" "}
             <span className="aee-flagship-gradient-text">{LANDING_HERO_PRICE_TAGLINE}</span>
           </>
         }
-        subtitle={`${formatTrialLabel()} on every plan · all six boards · save up to 20% on annual billing`}
+        subtitle={`${formatTrialLabel()} · all six boards · Basic from ${formatMonthlyPrice("basic")}/mo · save up to 20% on annual`}
       >
         <LandingPricingPreview />
       </LandingSection>
@@ -271,11 +270,10 @@ export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsD
         <div className="aee-flagship-final-cta__bg" aria-hidden />
         <div className="aee-flagship-inner relative text-center">
           <h2 id="flagship-final-cta-heading" className="aee-flagship-final-cta__title">
-            Ready to pass with confidence?
+            Premium board prep starts here
           </h2>
           <p className="aee-flagship-final-cta__subtitle">
-            {formatTrialLabel()} · Basic from {formatMonthlyPrice("basic")}/mo · Pro from{" "}
-            {formatMonthlyPrice("pro")}/mo · {PLATFORM_EXAM_LIST_MIDDOT}
+            {formatTrialLabel()} · {LANDING_HERO_CTA_DISCLOSURE} · {PLATFORM_EXAM_LIST_MIDDOT}
           </p>
           <div className="aee-flagship-final-cta__actions">
             <LandingCta

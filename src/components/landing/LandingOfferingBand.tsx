@@ -13,8 +13,8 @@ export function LandingOfferingBand() {
         <header className="aee-landing-offering-band__header">
           <p className="aee-flagship-eyebrow">What you get</p>
           <h2 id="offering-band-heading" className="aee-landing-offering-band__title">
-            Serious board prep —{" "}
-            <span className="aee-flagship-gradient-text">without stacking $200+ subscriptions.</span>
+            Premium board prep —{" "}
+            <span className="aee-flagship-gradient-text">at a price that actually makes sense.</span>
           </h2>
           <p className="aee-landing-offering-band__lede">
             Basic from {formatMonthlyPrice("basic")}/mo · Pro from {formatMonthlyPrice("pro")}/mo ·{" "}

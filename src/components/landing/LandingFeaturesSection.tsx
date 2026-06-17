@@ -17,11 +17,11 @@ export function LandingFeaturesSection() {
         <header className="aee-flagship-header aee-flagship-header--center mx-auto max-w-2xl text-center">
           <p className="aee-flagship-eyebrow">What makes us different</p>
           <h2 id="features-heading" className="aee-flagship-title aee-flagship-title--lg">
-            More than a QBank —{" "}
-            <span className="aee-flagship-gradient-text">a complete study system.</span>
+            Premium tools —{" "}
+            <span className="aee-flagship-gradient-text">without the premium price tag.</span>
           </h2>
           <p className="aee-flagship-subtitle">
-            Roadmaps, Deep Dives, analytics, and reference tools — included, not upsold.
+            Roadmaps, Deep Dives, analytics, and reference tools — high-quality prep included, not upsold.
           </p>
         </header>
 

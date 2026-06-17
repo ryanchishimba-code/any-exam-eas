@@ -9,12 +9,12 @@ import {
 } from "@/lib/seo/exam-config";
 import { getArticlesForExam } from "@/lib/seo/resources-content";
 import {
-  LANDING_HERO_VALUE_LINE,
+  LANDING_HERO_CTA_DISCLOSURE,
+  LANDING_HERO_TRUST_SIGNALS,
   LANDING_TRIAL_HREF,
   PLATFORM_EXAM_LIST_MIDDOT,
 } from "@/lib/landing/content";
 import { LandingCta } from "@/components/landing/LandingCta";
-import { LandingHeroTrustPills } from "@/components/landing/LandingHeroTrustPills";
 import { LandingPricingPreview } from "@/components/landing/LandingPricingPreview";
 import { HowWeCompare } from "@/components/home/HowWeCompare";
 import { ROUTES } from "@/lib/routes";
@@ -62,9 +62,20 @@ export function ExamMarketingLanding({ examKey }: Props) {
                 {hub.questionBankLabel} · plus 5 other board exams on the same plan
               </p>
             ) : null}
-            <p className="aee-flagship-hero__value-line">{LANDING_HERO_VALUE_LINE}</p>
+            <p className="aee-flagship-hero__value-line">{config.heroSubline}</p>
 
-            <LandingHeroTrustPills className="mt-4" />
+            <ul className="aee-hero-trust-pills mt-4" aria-label="Platform trust signals">
+              {LANDING_HERO_TRUST_SIGNALS.map((signal, index) => (
+                <li key={signal} className="aee-hero-trust-pills__item">
+                  {index > 0 ? (
+                    <span className="aee-hero-trust-pills__dot" aria-hidden>
+                      ·
+                    </span>
+                  ) : null}
+                  <span>{signal}</span>
+                </li>
+              ))}
+            </ul>
 
             <div className="aee-flagship-hero__ctas aee-flagship-hero__ctas--conversion mt-6">
               <LandingCta
@@ -86,7 +97,9 @@ export function ExamMarketingLanding({ examKey }: Props) {
                 See all 6 exams
               </Link>
             </div>
-            <p className="aee-flagship-hero__disclosure">{TRIAL_PAYMENT_DISCLOSURE}</p>
+            <p className="aee-flagship-hero__disclosure aee-flagship-hero__disclosure--prominent">
+              {LANDING_HERO_CTA_DISCLOSURE}
+            </p>
           </header>
         </div>
       </section>
