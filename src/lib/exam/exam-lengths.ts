@@ -2,6 +2,10 @@ import { getFieldMeta, getFieldMetaById } from "@/lib/fields";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
 import { computeTimeLimitSec } from "@/lib/full-exam/config";
 import type { ExamSlug } from "@/lib/exams/catalog";
+import {
+  isUsmleFieldId,
+  usmleStepDefinition,
+} from "@/lib/exam-prep/usmle/steps";
 
 /** Board-style session types. */
 export type ExamSessionMode = "timed" | "bank";
@@ -20,6 +24,7 @@ const FIELD_ID_TO_BOARD: Record<string, BoardExamKey> = {
   nursing: "nclex",
   "usmle-step-1": "usmle",
   "usmle-step-2": "usmle",
+  "usmle-step-3": "usmle",
   pharmacy: "naplex",
   pance: "pance",
   "aanp-fnp": "aanp-fnp",
@@ -82,6 +87,10 @@ export function getTimedExamQuestionCount(
   fieldOrLabel: string,
   options?: { nclexLength?: NclexTimedVariant }
 ): number {
+  const fieldId = resolveFieldId(fieldOrLabel);
+  if (isUsmleFieldId(fieldId)) {
+    return usmleStepDefinition(fieldId)?.simulatedQuestionCount ?? 280;
+  }
   const board = resolveBoardExam(fieldOrLabel);
   if (!board) return 50;
   if (board === "nclex") {
@@ -170,6 +179,12 @@ export function formatExamLengthLabel(
   fieldOrLabel: string,
   options?: { nclexLength?: NclexTimedVariant }
 ): string {
+  const fieldId = resolveFieldId(fieldOrLabel);
+  if (isUsmleFieldId(fieldId)) {
+    const step = usmleStepDefinition(fieldId);
+    const count = step?.simulatedQuestionCount ?? 280;
+    return `${count} questions (${step?.name ?? "USMLE"})`;
+  }
   const board = resolveBoardExam(fieldOrLabel);
   const boardLabel = board ? BOARD_LABELS[board] : "Exam";
   if (board === "nclex") {

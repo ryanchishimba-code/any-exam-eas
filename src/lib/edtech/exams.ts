@@ -1,7 +1,8 @@
 import type { ExamDefinition, ExamSlug } from "@/types/edtech";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
+import { isUsmleFieldId, USMLE_COMBINED_TARGET, USMLE_STEPS } from "@/lib/exam-prep/usmle/steps";
 
-/** Static reference for the four supported exams (mirrors `exams` DB table). */
+/** Static reference for supported exams (mirrors `exams` DB table). */
 export const EXAM_CATALOG: Record<ExamSlug, ExamDefinition> = {
   nclex: {
     slug: "nclex",
@@ -15,10 +16,11 @@ export const EXAM_CATALOG: Record<ExamSlug, ExamDefinition> = {
   },
   usmle: {
     slug: "usmle",
-    name: "USMLE Step 2 CK",
+    name: "USMLE Step 1 · Step 2 CK · Step 3",
     shortName: "USMLE",
     fieldId: "usmle-step-2",
-    description: "Clinical vignettes, next-best-step management, and sequential sets.",
+    description:
+      "Full USMLE coverage — Step 1 basic sciences, Step 2 CK clinical vignettes, and Step 3 CCS-style cases.",
     accentClass: "from-indigo-500/15 to-violet-600/10 border-indigo-200/70",
     simulatedDurationMin: 240,
     simulatedQuestionCount: 280,
@@ -78,10 +80,12 @@ export function isExamSlug(slug: string): slug is ExamSlug {
   return slug in EXAM_CATALOG;
 }
 
-/** Map study field id to full-exam slug (USMLE steps → usmle; legacy ids → pance). */
+/** Map study field id to full-exam slug (all USMLE steps → usmle). */
 export function examSlugFromFieldId(fieldId: string): ExamSlug | null {
   const normalized = normalizeFieldId(fieldId);
-  if (normalized.startsWith("usmle-step")) return "usmle";
+  if (isUsmleFieldId(normalized)) return "usmle";
   const entry = Object.values(EXAM_CATALOG).find((e) => e.fieldId === normalized);
   return entry?.slug ?? null;
 }
+
+export { USMLE_STEPS, USMLE_COMBINED_TARGET };

@@ -35,7 +35,7 @@ export const EXAM_HUBS: ExamHubConfig[] = [
   {
     slug: "usmle",
     title: "USMLE Prep",
-    subtitle: "Clinical vignettes with mechanism-first rationales.",
+    subtitle: "Step 1 basic sciences, Step 2 CK clinical vignettes, and Step 3 CCS-style cases.",
     fieldId: "usmle-step-2",
     icon: Stethoscope,
     accentClass: "from-indigo-500/20 to-violet-600/10 border-indigo-200/60",

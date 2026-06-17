@@ -41,11 +41,12 @@ import {
 import {
   EXAM_FIELD_OPTIONS,
   PRACTICE_MODES,
+  USMLE_STEP_OPTIONS,
   practiceModeLaunchHref,
   resolvePracticeModeFromParams,
   type PracticeModeId,
 } from "@/lib/exam-prep/practice-modes";
-import type { ExamFieldId } from "@/lib/exam-prep/types";
+import type { PracticeFieldId } from "@/lib/subjects/field-ids";
 import { QuestionBankSetup } from "./QuestionBankSetup";
 import { QuestionBankExamHero } from "./question-bank/QuestionBankExamHero";
 import { StudyUsageBanner } from "@/components/study/StudyUsageBanner";
@@ -677,7 +678,7 @@ export function StudyBankPractice({
   }
 
   function launchPracticeMode(modeId: PracticeModeId) {
-    const href = practiceModeLaunchHref(fieldId as ExamFieldId, modeId, practiceBase);
+    const href = practiceModeLaunchHref(fieldId as PracticeFieldId, modeId, practiceBase);
     router.push(href);
   }
 
@@ -733,6 +734,35 @@ export function StudyBankPractice({
               ]}
             />
           </QuestionBankSection>
+
+          {examLocked && effectiveExamSlug === "usmle" ? (
+            <QuestionBankSection title="USMLE step" hint="Step 1, Step 2 CK, and Step 3 each have dedicated banks and roadmaps.">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+                {USMLE_STEP_OPTIONS.map((opt) => (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    onClick={() => {
+                      const meta = getFieldMetaById(opt.id);
+                      if (meta) setField(meta.label);
+                      router.replace(`${practiceBase}?field=${encodeURIComponent(opt.fieldParam)}`, {
+                        scroll: false,
+                      });
+                    }}
+                    className={cn(
+                      "rounded-[16px] border px-3 py-2.5 text-left text-sm transition active:scale-[0.99]",
+                      fieldId === opt.id
+                        ? "border-[var(--color-accent)]/35 bg-[var(--color-accent)]/5 ring-1 ring-[var(--color-accent)]/20"
+                        : "border-black/[0.06] bg-white hover:border-black/[0.1]"
+                    )}
+                  >
+                    <p className="font-semibold text-[var(--color-ink)]">{opt.label}</p>
+                    <p className="mt-0.5 text-[11px] text-[var(--color-ink-muted)]">{opt.format}</p>
+                  </button>
+                ))}
+              </div>
+            </QuestionBankSection>
+          ) : null}
 
           {!examLocked && (
             <QuestionBankSection title="Exam">

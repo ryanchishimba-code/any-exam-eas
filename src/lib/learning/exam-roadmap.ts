@@ -224,25 +224,36 @@ function buildPassFocusMessage(
   return `Nearly exam-ready on ${examName}. Sharpen ${top[0]} to close remaining gaps.`;
 }
 
-export function getBlueprintForExamSlug(examSlug: ExamSlug): ExamBlueprint | undefined {
+export function getBlueprintForExamSlug(
+  examSlug: ExamSlug,
+  usmleFieldId?: string
+): ExamBlueprint | undefined {
+  if (examSlug === "usmle" && usmleFieldId) {
+    return getExamBlueprint(usmleFieldId);
+  }
   return getExamBlueprint(EXAM_CATALOG[examSlug].fieldId);
 }
 
 export async function getExamRoadmapData(
   userId: string,
-  examSlug: ExamSlug
+  examSlug: ExamSlug,
+  options?: { usmleFieldId?: string }
 ): Promise<ExamRoadmapData | null> {
   const exam = EXAM_CATALOG[examSlug];
-  const blueprint = getExamBlueprint(exam.fieldId);
+  const fieldId =
+    examSlug === "usmle" && options?.usmleFieldId
+      ? options.usmleFieldId
+      : exam.fieldId;
+  const blueprint = getExamBlueprint(fieldId);
   if (!blueprint) return null;
 
   const [attempts, masteries] = await Promise.all([
     prisma.questionAttempt.findMany({
-      where: { userId, fieldId: exam.fieldId },
+      where: { userId, fieldId },
       select: { subjectId: true, correct: true },
     }),
     prisma.conceptMastery.findMany({
-      where: { userId, fieldId: exam.fieldId },
+      where: { userId, fieldId },
       select: { conceptKey: true, masteryScore: true },
     }),
   ]);
@@ -259,7 +270,7 @@ export async function getExamRoadmapData(
   return {
     examSlug,
     examName: blueprint.examName,
-    fieldId: exam.fieldId,
+    fieldId,
     blueprintSource: blueprint.sourceNote,
     overallReadiness,
     passFocusMessage: buildPassFocusMessage(

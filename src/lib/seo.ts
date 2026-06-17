@@ -70,7 +70,7 @@ const HOME_KEYWORDS = [
 
 export function buildHomeMetadata(): Metadata {
   const title = `${SITE_NAME} — NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE Prep (2026)`;
-  const description = `All-in-one board prep for NCLEX, USMLE Step 2 CK, NAPLEX, PANCE, AANP FNP, and NPTE-PT. Roadmaps, practice questions & Deep Dives. Basic from ${formatMonthlyPrice("basic")}/mo · ${formatTrialLabel()} · payment required at checkout.`;
+  const description = `All-in-one board prep for NCLEX, USMLE Step 1, Step 2 CK & Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT. Roadmaps, practice questions & Deep Dives. Basic from ${formatMonthlyPrice("basic")}/mo · ${formatTrialLabel()} · payment required at checkout.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 

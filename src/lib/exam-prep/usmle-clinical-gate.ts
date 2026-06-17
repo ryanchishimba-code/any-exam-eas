@@ -9,6 +9,11 @@ import { isAanpFnpCuratedItem } from "@/lib/question-bank/aanp-fnp-curated";
 import { isNptePtCuratedItem } from "@/lib/question-bank/npte-pt-curated";
 import { nptePtBankItemIsServeReady } from "./npte-pt/clinical-gate";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
+import {
+  isUsmleFieldId,
+  USMLE_STEP3_NON_VIGNETTE_ITEM_TYPES,
+} from "./usmle/steps";
+import { hasGenericPlaceholderOptions } from "@/lib/question-format";
 
 /** Split stored USMLE bank text into vignette + lead-in stem. */
 export function splitUsmleBankItem(item: BankItem): { vignette?: string; stem: string } {
@@ -49,6 +54,16 @@ export function usmleExamQuestionHasClinicalScenario(question: ExamQuestion): bo
   return validateClinicalVignette(question).length === 0;
 }
 
+/** Basic structural gate for items that do not use clinical vignettes. */
+function usmleItemPassesBasicMcqGate(item: BankItem): boolean {
+  if (!item.question?.trim() || item.question.trim().length < 12) return false;
+  if (!item.correctAnswer?.trim()) return false;
+  if ((item.options?.length ?? 0) < 4) return false;
+  if (hasGenericPlaceholderOptions(item.options ?? [])) return false;
+  if (!item.explanation?.trim() || item.explanation.trim().length < 20) return false;
+  return item.options.some((o) => o.trim() === item.correctAnswer.trim());
+}
+
 /** Curated seeds pass clinical gate; bulk-polished items must score exam-ready (≥8/10). */
 export function usmleBankItemIsServeReady(item: BankItem, fieldId: string): boolean {
   if (fieldId === "npte-pt") {
@@ -56,6 +71,26 @@ export function usmleBankItemIsServeReady(item: BankItem, fieldId: string): bool
   }
 
   const normalized = normalizeUsmleBankItemFields(item);
+  const itemType = normalized.itemType ?? "mcq";
+
+  if (fieldId === "usmle-step-3" && USMLE_STEP3_NON_VIGNETTE_ITEM_TYPES.has(itemType)) {
+    if (isUsmleCuratedItem(normalized)) return true;
+    return usmleItemPassesBasicMcqGate(normalized);
+  }
+
+  if (fieldId === "usmle-step-1") {
+    if (isUsmleCuratedItem(normalized)) return true;
+    if (!normalized.question?.trim() || normalized.question.trim().length < 12) return false;
+    if (!usmleItemPassesBasicMcqGate(normalized)) return false;
+    const report = auditUsmleQaEditor(normalized, {
+      fieldId,
+      source: "polished",
+      itemId: normalized.id,
+      difficulty: normalized.difficulty ?? null,
+    });
+    return report.overallScore >= 7 && !report.issues.some((i) => i.severity === "error");
+  }
+
   if (!usmleBankItemHasClinicalScenario(normalized)) return false;
 
   const exam = bankItemToUsmleExam(normalized, 0);

@@ -38,8 +38,8 @@ export type LandingExam = {
 export const LANDING_EXAMS: LandingExam[] = [
   {
     id: "usmle",
-    label: "USMLE Step 2 CK",
-    blurb: "Vignette MCQs · timed blocks",
+    label: "USMLE Step 1 · Step 2 CK · Step 3",
+    blurb: "Full USMLE — basic sciences, clinical vignettes, biostats & CCS",
     href: examMarketingPath("usmle"),
     icon: Stethoscope,
     color: EXAM_ACCENTS.usmle,

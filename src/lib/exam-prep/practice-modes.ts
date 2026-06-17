@@ -2,7 +2,8 @@
  * Unified practice modes — reflects 2015–2026 exam prep best practices.
  * Quick practice, full simulator, adaptive, topic review, test day.
  */
-import type { ExamFieldId } from "./types";
+import type { PracticeFieldId } from "@/lib/subjects/field-ids";
+import { USMLE_STEPS } from "@/lib/exam-prep/usmle/steps";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import { ROUTES } from "@/lib/routes";
@@ -25,7 +26,7 @@ export type PracticeModeDefinition = {
   description: string;
   icon: string;
   /** Study practice URL param or special route */
-  href: (fieldId: ExamFieldId) => string;
+  href: (fieldId: PracticeFieldId) => string;
   timing: string;
   bestFor: string;
 };
@@ -85,8 +86,22 @@ export const PRACTICE_MODES: PracticeModeDefinition[] = [
   },
 ];
 
+export const USMLE_STEP_OPTIONS = USMLE_STEPS.map((step) => ({
+  id: step.fieldId as PracticeFieldId,
+  label: step.shortName,
+  fieldParam: step.fieldId,
+  description: step.description,
+  timing: `${step.simulatedQuestionCount} questions · ~${Math.round(step.simulatedDurationMin / 60)} hours`,
+  format:
+    step.level === "step1"
+      ? "Basic science MCQs"
+      : step.level === "step3"
+        ? "MCQs · biostats · ethics · CCS-style"
+        : "Clinical vignettes · sequential sets",
+}));
+
 export const EXAM_FIELD_OPTIONS: {
-  id: ExamFieldId;
+  id: PracticeFieldId;
   label: string;
   fieldParam: string;
   description: string;
@@ -101,14 +116,7 @@ export const EXAM_FIELD_OPTIONS: {
     timing: "85–150 questions · adaptive",
     format: "NGN + traditional items",
   },
-  {
-    id: "usmle-step-2",
-    label: "USMLE",
-    fieldParam: "usmle-step-2",
-    description: "Clinical vignettes — sequential item sets, next-best-step management, and biostats.",
-    timing: "280 questions · ~9 hours",
-    format: "Vignettes · sequential sets",
-  },
+  ...USMLE_STEP_OPTIONS,
   {
     id: "pharmacy",
     label: "NAPLEX",
@@ -169,7 +177,7 @@ export function resolvePracticeModeFromParams(params: {
 
 /** Build a launch URL on the given base path with autostart. */
 export function practiceModeLaunchHref(
-  fieldId: ExamFieldId,
+  fieldId: PracticeFieldId,
   modeId: PracticeModeId,
   basePath: string
 ): string {

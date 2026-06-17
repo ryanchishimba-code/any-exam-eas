@@ -16,6 +16,7 @@ import {
   FIELD_ID_ALIASES,
   normalizeFieldId,
 } from "./field-ids";
+import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 
 const MODULES: Record<string, SubjectModule> = {
   nursing: nursingModule,
@@ -40,12 +41,19 @@ export function registerSubjectModule(module: SubjectModule): void {
 }
 
 export function getRegisteredSubjectIds(): string[] {
-  return [...EXAM_FIELD_IDS];
+  return [
+    "nursing",
+    ...USMLE_FIELD_IDS,
+    "pharmacy",
+    "pance",
+    "aanp-fnp",
+    "npte-pt",
+  ];
 }
 
 export function resolveSubjectModule(fieldId: string): SubjectModule {
   const id = normalizeFieldId(fieldId);
-  return MODULES[id] ?? usmleStep2Module;
+  return MODULES[id] ?? MODULES["usmle-step-2"]!;
 }
 
 export function getSubjectModuleByLabel(fieldLabel: string): SubjectModule {
@@ -68,7 +76,7 @@ export function getSubjectModuleByLabel(fieldLabel: string): SubjectModule {
 
 export function getAllFieldSubjects(): Record<string, SubjectArea[]> {
   return Object.fromEntries(
-    EXAM_FIELD_IDS.map((id) => [id, MODULES[id].subjectAreas])
+    getRegisteredSubjectIds().map((id) => [id, MODULES[id]!.subjectAreas])
   );
 }
 

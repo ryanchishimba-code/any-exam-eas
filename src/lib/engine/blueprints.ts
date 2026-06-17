@@ -578,10 +578,84 @@ const NPTE_PT: ExamBlueprint = {
   ],
 };
 
+/** USMLE Step 3 — Day 1 MCQs, biostatistics, ethics, abstracts, and CCS-style cases. */
+const USMLE_STEP_3: ExamBlueprint = {
+  fieldId: "usmle-step-3",
+  examName: "USMLE Step 3",
+  sourceNote: "USMLE Content Outline — Step 3 clinical encounter & independent practice",
+  vignetteMinRatio: 0.65,
+  categories: [
+    {
+      id: "internal-medicine",
+      label: "Internal Medicine",
+      weight: 0.25,
+      subjectIds: ["internal-medicine", "cardiology", "nephrology"],
+      highYieldTopics: ["hypertension", "diabetes", "COPD", "CHF", "AKI"],
+    },
+    {
+      id: "surgery",
+      label: "Surgery & Acute Care",
+      weight: 0.12,
+      subjectIds: ["emergency-medicine"],
+      highYieldTopics: ["post-op fever", "acute abdomen", "trauma", "wound care"],
+    },
+    {
+      id: "pediatrics",
+      label: "Pediatrics",
+      weight: 0.12,
+      subjectIds: ["pediatrics"],
+      highYieldTopics: ["well-child", "vaccines", "febrile infant", "asthma"],
+    },
+    {
+      id: "obgyn",
+      label: "OB/GYN",
+      weight: 0.1,
+      subjectIds: ["obgyn"],
+      highYieldTopics: ["prenatal care", "labor", "contraception", "postpartum"],
+    },
+    {
+      id: "psychiatry",
+      label: "Psychiatry",
+      weight: 0.08,
+      subjectIds: ["psychiatry"],
+      highYieldTopics: ["depression", "psychosis", "substance use", "suicide risk"],
+    },
+    {
+      id: "biostatistics",
+      label: "Biostatistics & Epidemiology",
+      weight: 0.1,
+      subjectIds: ["internal-medicine"],
+      highYieldTopics: ["sensitivity", "specificity", "NNT", "study design", "bias"],
+    },
+    {
+      id: "ethics",
+      label: "Medical Ethics & Legal",
+      weight: 0.08,
+      subjectIds: ["internal-medicine"],
+      highYieldTopics: ["informed consent", "capacity", "confidentiality", "mandatory reporting"],
+    },
+    {
+      id: "pharm-advertising",
+      label: "Pharmaceutical Ads & Abstracts",
+      weight: 0.07,
+      subjectIds: ["pharmacology"],
+      highYieldTopics: ["drug ad interpretation", "abstract appraisal", "trial endpoints"],
+    },
+    {
+      id: "ccs",
+      label: "CCS-Style Case Management",
+      weight: 0.08,
+      subjectIds: ["internal-medicine", "emergency-medicine"],
+      highYieldTopics: ["initial workup", "monitoring", "escalation", "disposition"],
+    },
+  ],
+};
+
 const BLUEPRINTS: Record<string, ExamBlueprint> = {
   nursing: NCLEX_RN,
   "usmle-step-1": USMLE_STEP_1,
   "usmle-step-2": USMLE_STEP_2,
+  "usmle-step-3": USMLE_STEP_3,
   pharmacy: NAPLEX,
   pance: PANCE,
   "aanp-fnp": AANP_FNP,
@@ -591,7 +665,8 @@ const BLUEPRINTS: Record<string, ExamBlueprint> = {
 export { AANP_FNP };
 
 export function getExamBlueprint(fieldId: string): ExamBlueprint | undefined {
-  return BLUEPRINTS[normalizeFieldId(fieldId)];
+  const id = fieldId.toLowerCase().replace(/\s+/g, "-");
+  return BLUEPRINTS[id] ?? BLUEPRINTS[normalizeFieldId(fieldId)];
 }
 
 export type QuestionSlot = {

@@ -5,6 +5,8 @@ import { setUserExamPreference } from "@/lib/edtech/exam-preference";
 import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
 import { loadUsmlePresetExamItems } from "@/lib/exam-prep/usmle/load-preset-exam";
 import { loadNptePtPresetExamItems } from "@/lib/exam-prep/npte-pt/load-preset-exam";
+import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
+import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
 import { requirePremiumApi } from "@/lib/api-access";
 import type { FullExamLengthPreset } from "@/types/full-exam";
 
@@ -38,6 +40,14 @@ export async function POST(req: Request) {
     let presetQuestionCount: number | undefined;
     let sessionFieldId = EXAM_CATALOG[examSlug].fieldId;
     let sessionTitle = `${EXAM_CATALOG[examSlug].shortName} Full Simulation`;
+
+    const requestedField = body.fieldId ? resolveQuestionBankFieldId(String(body.fieldId)) : null;
+    if (examSlug === "usmle" && requestedField && isUsmleFieldId(requestedField)) {
+      sessionFieldId = requestedField;
+      const step = usmleStepDefinition(requestedField);
+      presetQuestionCount = step?.simulatedQuestionCount;
+      sessionTitle = `${step?.name ?? "USMLE"} Full Simulation`;
+    }
 
     if (presetExamNumber && examSlug === "usmle") {
       const preset = await loadUsmlePresetExamItems(presetExamNumber);

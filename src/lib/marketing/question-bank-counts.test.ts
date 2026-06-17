@@ -72,7 +72,7 @@ describe("question-bank-counts display", () => {
 
     expect(display.exams).toHaveLength(6);
     expect(display.exams.map((e) => e.label)).toEqual([
-      "USMLE",
+      "USMLE (Step 1·2·3)",
       "NCLEX",
       "NAPLEX",
       "PANCE",

@@ -120,60 +120,62 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
   },
   usmle: {
     key: "usmle",
-    displayName: "USMLE Step 2 CK",
+    displayName: "USMLE Step 1 · Step 2 CK · Step 3",
     shortName: "USMLE",
-    metaTitle: "USMLE Step 2 CK Practice Questions 2026 — Vignettes & Exam Prep",
+    metaTitle: "USMLE Step 1, Step 2 CK & Step 3 Practice Questions 2026",
     metaDescription:
-      "USMLE Step 2 CK clinical vignettes, mechanism-first rationales, timed blocks, and study Roadmap. Affordable alternative to premium QBanks. 14-day free trial.",
+      "Full USMLE coverage — Step 1 basic sciences, Step 2 CK clinical vignettes, and Step 3 CCS-style cases. Timed blocks, blueprint Roadmaps, and Deep Dives. 14-day free trial.",
     keywords: [
+      "USMLE Step 1 practice questions",
       "USMLE Step 2 CK practice questions",
+      "USMLE Step 3 practice questions",
       "USMLE prep 2026",
       "USMLE question bank",
       "Step 2 CK study guide",
       "how to pass USMLE Step 2",
-      "free USMLE practice questions",
       "USMLE clinical vignettes",
       "AnyExamEasy USMLE",
     ],
-    h1: "USMLE Step 2 CK Prep — Clinical Vignettes & Next-Best-Step Practice",
+    h1: "USMLE Prep — Step 1, Step 2 CK & Step 3 Question Banks",
     heroSubline:
-      "Mechanism-driven Step 2 CK items with competitive distractors, full-length timed simulations, and integrated Roadmap tracking — plus NCLEX, NAPLEX, PANCE, FNP, and NPTE on the same plan.",
+      "48K+ USMLE items across all three steps — basic sciences, clinical vignettes, biostatistics, ethics, and CCS-style cases — plus NCLEX, NAPLEX, PANCE, FNP, and NPTE on the same plan.",
     accentColor: EXAM_ACCENTS.usmle,
-    blueprintLabel: "USMLE Step 2 CK content outline",
+    blueprintLabel: "USMLE content outline (Step 1 · Step 2 CK · Step 3)",
     features: [
       {
-        title: "Clinical vignette MCQs",
-        detail: "Next-best-step and diagnosis stems with teachable, mechanism-first rationales.",
+        title: "All three USMLE steps",
+        detail:
+          "Dedicated banks for Step 1 basic sciences, Step 2 CK clinical management, and Step 3 biostatistics, ethics, abstracts, and CCS-style cases.",
       },
       {
-        title: "Timed Step 2 blocks",
-        detail: "Build stamina with board-length sessions before your exam date.",
+        title: "Step-specific timed blocks",
+        detail: "Build stamina with board-length sessions for Step 1, Step 2 CK, or Step 3 Day 1 MCQs.",
       },
       {
-        title: "Performance analytics",
-        detail: "See system-based weak areas and drill them with adaptive practice (Pro).",
+        title: "Blueprint Roadmaps per step",
+        detail: "Track readiness by official content category — switch between Step 1, 2, and 3 anytime.",
       },
     ],
     studyTips: [
       {
-        heading: "Best USMLE Step 2 CK practice questions",
-        body: "Prioritize vignettes that test management and diagnosis with explanations linking pathophysiology to the correct next step.",
+        heading: "Best USMLE practice questions",
+        body: "Use step-specific banks — mechanisms and pathology for Step 1, next-best-step vignettes for Step 2 CK, and biostatistics/CCS cases for Step 3.",
       },
       {
         heading: "USMLE study roadmap",
-        body: "Follow a systems-based plan — rotate weak specialties weekly instead of over-studying strong areas.",
+        body: "Follow blueprint-weighted Roadmaps for each step instead of mixing Step 1 biochemistry with Step 3 ethics in one session.",
       },
     ],
     faqs: [
       {
-        question: "Does AnyExamEasy cover USMLE Step 2 CK?",
+        question: "Does AnyExamEasy cover all USMLE steps?",
         answer:
-          "Yes. Our USMLE track focuses on Step 2 CK-style clinical vignettes, timed practice, and blueprint-aligned Roadmap tools.",
+          "Yes. One subscription includes dedicated Step 1, Step 2 CK, and Step 3 question banks with step-specific Roadmaps and timed practice.",
       },
       {
         question: "How does pricing compare to UWorld?",
         answer:
-          "AnyExamEasy Basic starts at $34.99/mo and includes six board exams — UWorld typically charges $200–400+ per exam separately.",
+          "AnyExamEasy Basic starts at $34.99/mo and includes all three USMLE steps plus five other board exams — UWorld typically charges $200–400+ per exam separately.",
       },
       {
         question: "Are USMLE explanations detailed?",

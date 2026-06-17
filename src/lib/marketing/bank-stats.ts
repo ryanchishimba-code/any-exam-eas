@@ -5,12 +5,14 @@ import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import { AANP_FNP_TARGET_TOTAL } from "@/lib/exam-prep/aanp-fnp/types";
 import { NPTE_PT_TARGET_TOTAL } from "@/lib/exam-prep/npte-pt/types";
 import { PANCE_TARGET_TOTAL } from "@/lib/exam-prep/pance/types";
+import { USMLE_COMBINED_TARGET } from "@/lib/exam-prep/usmle/steps";
 
 /** Design target per field after bank sync (subjects × minimum items each). */
 export function targetQuestionCountForField(fieldId: string): number {
   if (fieldId === "aanp-fnp") return AANP_FNP_TARGET_TOTAL;
   if (fieldId === "pance") return PANCE_TARGET_TOTAL;
   if (fieldId === "npte-pt") return NPTE_PT_TARGET_TOTAL;
+  if (fieldId === "usmle-step-2" || fieldId === "usmle") return USMLE_COMBINED_TARGET;
   return getSubjectsForFieldId(fieldId).length * MIN_QUESTIONS_PER_SUBJECT;
 }
 
@@ -46,7 +48,7 @@ export const PUBLISHED_QUESTION_BANK_TOTAL = 50_000;
 export const MARKETING_QUESTION_COUNTS = {
   total: formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL),
   nursing: formatMarketingQuestionCount(fieldTargets.nursing),
-  usmle: formatMarketingQuestionCount(fieldTargets["usmle-step-2"]),
+  usmle: formatMarketingQuestionCount(USMLE_COMBINED_TARGET),
   pharmacy: formatMarketingQuestionCount(fieldTargets.pharmacy),
   pance: formatMarketingQuestionCount(fieldTargets.pance),
   aanpFnp: formatMarketingQuestionCount(fieldTargets["aanp-fnp"]),

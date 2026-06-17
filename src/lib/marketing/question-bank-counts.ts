@@ -2,6 +2,7 @@ import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
+import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 import {
   PUBLISHED_QUESTION_BANK_TOTAL,
   formatMarketingQuestionCount,
@@ -46,7 +47,7 @@ const LANDING_EXAM_COUNT_FIELDS: {
   label: string;
   color: string;
 }[] = [
-  { fieldId: "usmle-step-2", label: "USMLE", color: EXAM_ACCENTS.usmle },
+  { fieldId: "usmle-step-2", label: "USMLE (Step 1·2·3)", color: EXAM_ACCENTS.usmle },
   { fieldId: "nursing", label: "NCLEX", color: EXAM_ACCENTS.nclex },
   { fieldId: "pharmacy", label: "NAPLEX", color: EXAM_ACCENTS.naplex },
   { fieldId: "pance", label: "PANCE", color: EXAM_ACCENTS.pance },
@@ -93,26 +94,48 @@ async function fetchQuestionBankCountsFromDb(): Promise<QuestionBankCountsSnapsh
   const activeByField = new Map(activeRows.map((r) => [r.fieldId, r._count._all]));
   const servedByField = new Map(servedRows.map((r) => [r.fieldId, r._count._all]));
 
-  const fields = Object.fromEntries(
-    EXAM_FIELD_IDS.map((fieldId) => [
-      fieldId,
-      {
-        fieldId,
-        total: totalByField.get(fieldId) ?? 0,
-        active: activeByField.get(fieldId) ?? 0,
-        served: servedByField.get(fieldId) ?? 0,
-      },
-    ])
-  ) as Record<ExamFieldId, FieldQuestionBankCounts>;
+  const sumRows = (rows: typeof totalRows) =>
+    rows.reduce((acc, row) => acc + row._count._all, 0);
 
-  const totals = EXAM_FIELD_IDS.reduce(
-    (acc, fieldId) => ({
-      total: acc.total + fields[fieldId].total,
-      active: acc.active + fields[fieldId].active,
-      served: acc.served + fields[fieldId].served,
+  const usmleTotals = USMLE_FIELD_IDS.reduce(
+    (acc, stepId) => ({
+      total: acc.total + (totalByField.get(stepId) ?? 0),
+      active: acc.active + (activeByField.get(stepId) ?? 0),
+      served: acc.served + (servedByField.get(stepId) ?? 0),
     }),
     { total: 0, active: 0, served: 0 }
   );
+
+  const fields = Object.fromEntries(
+    EXAM_FIELD_IDS.map((fieldId) => {
+      if (fieldId === "usmle-step-2") {
+        return [
+          fieldId,
+          {
+            fieldId,
+            total: usmleTotals.total,
+            active: usmleTotals.active,
+            served: usmleTotals.served,
+          },
+        ];
+      }
+      return [
+        fieldId,
+        {
+          fieldId,
+          total: totalByField.get(fieldId) ?? 0,
+          active: activeByField.get(fieldId) ?? 0,
+          served: servedByField.get(fieldId) ?? 0,
+        },
+      ];
+    })
+  ) as Record<ExamFieldId, FieldQuestionBankCounts>;
+
+  const totals = {
+    total: sumRows(totalRows),
+    active: sumRows(activeRows),
+    served: sumRows(servedRows),
+  };
 
   return {
     fields,

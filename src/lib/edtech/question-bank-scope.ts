@@ -2,7 +2,12 @@ import { NextResponse } from "next/server";
 import { getFieldMeta } from "@/lib/fields";
 import { EXAM_CATALOG, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { getUserExamPreference, setUserExamPreference } from "@/lib/edtech/exam-preference";
-import { isExamFieldId, normalizeFieldId } from "@/lib/subjects/field-ids";
+import {
+  isExamFieldId,
+  isPracticeFieldId,
+  normalizeFieldId,
+} from "@/lib/subjects/field-ids";
+import { isUsmleFieldId, resolveUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import type { ExamSlug } from "@/types/edtech";
 
 export function fieldIdForExamSlug(examSlug: ExamSlug): string {
@@ -21,7 +26,9 @@ export function resolveQuestionBankFieldId(field: string): string {
 
 /** True when a study field id belongs to the user's selected exam. */
 export function fieldMatchesExamSlug(fieldId: string, examSlug: ExamSlug): boolean {
-  return fieldIdForExamSlug(examSlug) === normalizeFieldId(fieldId);
+  const normalized = normalizeFieldId(fieldId);
+  if (examSlug === "usmle") return isUsmleFieldId(normalized);
+  return fieldIdForExamSlug(examSlug) === normalized;
 }
 
 /** Align dashboard exam preference with an explicit field the user is practicing. */
@@ -31,7 +38,7 @@ export async function syncExamPreferenceForField(
 ): Promise<ExamSlug | null> {
   const normalizedFieldId = resolveQuestionBankFieldId(field);
   const examSlug = examSlugForFieldId(normalizedFieldId);
-  if (!examSlug || !isExamFieldId(normalizedFieldId)) return null;
+  if (!examSlug || !isPracticeFieldId(normalizedFieldId)) return null;
   await setUserExamPreference(userId, examSlug);
   return examSlug;
 }
@@ -59,7 +66,7 @@ export async function enforceQuestionBankFieldAccess(
   const fieldId = resolveQuestionBankFieldId(field);
   const targetSlug = examSlugForFieldId(fieldId);
 
-  if (!targetSlug || !isExamFieldId(fieldId)) {
+  if (!targetSlug || !isPracticeFieldId(fieldId)) {
     return {
       ok: false,
       response: NextResponse.json(
@@ -78,4 +85,13 @@ export async function enforceQuestionBankFieldAccess(
   }
 
   return { ok: true, examSlug: targetSlug, fieldId };
+}
+
+/** Resolve roadmap / analytics field for a USMLE slug + optional step query. */
+export function resolveUsmleRoadmapFieldId(stepParam?: string | null): string {
+  if (stepParam) {
+    const resolved = resolveUsmleFieldId(stepParam);
+    if (resolved) return resolved;
+  }
+  return fieldIdForExamSlug("usmle");
 }
