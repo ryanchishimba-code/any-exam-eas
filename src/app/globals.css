@@ -6251,6 +6251,20 @@ body {
   .aee-flagship-question-grid--three {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  .aee-flagship-question-grid--six {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .aee-flagship-question-grid--six {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.aee-flagship-section--samples {
+  scroll-margin-top: calc(var(--nav-height, 4rem) + 1rem);
 }
 
 .aee-flagship-question-card {

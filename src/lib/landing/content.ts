@@ -380,12 +380,55 @@ export const SAMPLE_QUESTION_PREVIEWS: SampleQuestionPreview[] = [
     rationale:
       "When A1c remains above goal on metformin monotherapy, guidelines support adding an agent with ASCVD, HF, or CKD benefit — not delaying intensification.",
   },
+  {
+    exam: "NAPLEX",
+    examColor: EXAM_ACCENTS.naplex,
+    stem:
+      "A prescription calls for 240 mL of a 2.5% w/v solution. The pharmacy stocks a 10% w/v concentrate. How many milliliters of concentrate and diluent are needed?",
+    options: [
+      "60 mL concentrate + 180 mL diluent",
+      "24 mL concentrate + 216 mL diluent",
+      "120 mL concentrate + 120 mL diluent",
+      "240 mL concentrate, no diluent",
+    ],
+    correct: "60 mL concentrate + 180 mL diluent",
+    rationale:
+      "Alligation: 240 mL × 2.5% = 6 g active drug → 6 g ÷ 10% = 60 mL concentrate; diluent fills to final 240 mL volume.",
+  },
+  {
+    exam: "PANCE",
+    examColor: EXAM_ACCENTS.pance,
+    stem:
+      "A 24-year-old presents after a tick bite with an expanding erythema migrans rash and mild arthralgias. No focal neuro deficits. Best initial management?",
+    options: [
+      "Doxycycline for early localized Lyme disease",
+      "Await serology before treating",
+      "Ceftriaxone IV for 14 days",
+      "Prednisone for presumed reactive arthritis",
+    ],
+    correct: "Doxycycline for early localized Lyme disease",
+    rationale:
+      "Erythema migrans in an endemic area is sufficient for clinical diagnosis — treat empirically without waiting for seroconversion.",
+  },
+  {
+    exam: "NPTE-PT",
+    examColor: EXAM_ACCENTS.nptePt,
+    stem:
+      "A physical therapist evaluates a patient 2 days post–total knee arthroplasty. Knee flexion 65°, moderate effusion, quadriceps activation lag. Priority intervention?",
+    options: [
+      "Quad sets, ankle pumps, and early ROM within precautions",
+      "Aggressive passive flexion to 120° today",
+      "Full-weight-bearing treadmill walking without assistive device",
+      "Ice only; defer mobilization until effusion resolves",
+    ],
+    correct: "Quad sets, ankle pumps, and early ROM within precautions",
+    rationale:
+      "Early post-TKA care emphasizes DVT prophylaxis, quad activation, and progressive ROM — not forcing flexion or high-load ambulation on post-op day 2.",
+  },
 ];
 
-/** Hero + preview section — flagship exams. */
-export const SAMPLE_QUESTIONS_FEATURED = SAMPLE_QUESTION_PREVIEWS.filter((q) =>
-  ["NCLEX-RN", "USMLE Step 2 CK", "AANP FNP"].includes(q.exam)
-);
+/** Landing sample section — one preview per board exam. */
+export const SAMPLE_QUESTIONS_FEATURED = SAMPLE_QUESTION_PREVIEWS;
 
 export const LANDING_METRICS = [
   { value: MARKETING_QUESTION_COUNTS.total, label: "Board-style items" },

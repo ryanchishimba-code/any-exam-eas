@@ -18,6 +18,7 @@ import { LandingStickyCta } from "@/components/landing/LandingStickyCta";
 import { QuestionPreviewCard } from "@/components/landing/QuestionPreviewCard";
 import { LandingExamShowcase } from "@/components/landing/LandingExamShowcase";
 import { LandingOfferingBand } from "@/components/landing/LandingOfferingBand";
+import { LandingHashScroll } from "@/components/landing/LandingHashScroll";
 import { LandingPricingPreview } from "@/components/landing/LandingPricingPreview";
 import { ChooseYourExam } from "@/components/home/ChooseYourExam";
 import { HowWeCompare } from "@/components/home/HowWeCompare";
@@ -147,6 +148,7 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
 export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
   return (
     <div className="aee-flagship aee-flagship--conversion">
+      <LandingHashScroll />
       <HeroSection bankCounts={bankCounts} />
 
       <LandingOfferingBand />
@@ -167,35 +169,46 @@ export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsD
         id="sample-questions"
         alt
         align="center"
-        eyebrow="Try before you commit"
-        title="See the quality — then start your free trial"
-        subtitle="Board-style stems, plausible distractors, and rationales you can learn from. Premium prep you can evaluate risk-free."
+        className="aee-flagship-section--samples"
+        eyebrow="Sample questions"
+        title={
+          <>
+            Premium question quality —{" "}
+            <span className="aee-flagship-gradient-text">see it before you commit.</span>
+          </>
+        }
+        subtitle="Board-style vignettes from all six exams — plausible distractors and teachable rationales, not template swaps."
       >
-        <ul className="aee-flagship-question-grid aee-flagship-question-grid--three">
+        <ul className="aee-flagship-question-grid aee-flagship-question-grid--six mt-10">
           {SAMPLE_QUESTIONS_FEATURED.map((q, i) => (
-            <Reveal key={q.exam} delay={i * 0.05}>
+            <Reveal key={q.exam} delay={i * 0.04}>
               <li>
                 <QuestionPreviewCard question={q} />
               </li>
             </Reveal>
           ))}
         </ul>
-        <Reveal className="mt-8 flex flex-wrap justify-center gap-3">
-          <LandingCta
-            href={LANDING_TRIAL_HREF}
-            className="aee-flagship-cta--hero group"
-            icon={
-              <ArrowRight
-                className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
-                aria-hidden
-              />
-            }
-          >
-            {formatTrialCtaLabel()}
-          </LandingCta>
-          <Link href={ROUTES.pricing} className="aee-flagship-cta aee-flagship-cta--secondary">
-            View pricing
-          </Link>
+        <Reveal className="mt-10 flex flex-col items-center gap-3">
+          <div className="flex flex-wrap justify-center gap-3">
+            <LandingCta
+              href={LANDING_TRIAL_HREF}
+              className="aee-flagship-cta--hero aee-flagship-cta--xl group"
+              icon={
+                <ArrowRight
+                  className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
+                  aria-hidden
+                />
+              }
+            >
+              {formatTrialCtaLabel()}
+            </LandingCta>
+            <Link href={ROUTES.pricing} className="aee-flagship-cta aee-flagship-cta--secondary">
+              View pricing
+            </Link>
+          </div>
+          <p className="text-center text-sm font-semibold text-[var(--flagship-navy-soft)]">
+            {LANDING_HERO_CTA_DISCLOSURE}
+          </p>
         </Reveal>
       </LandingSection>
 
