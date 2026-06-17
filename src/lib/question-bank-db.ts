@@ -45,6 +45,86 @@ export const ADAPTIVE_QUESTION_POOL_PER_SUBJECT = 80;
 
 const MIN_SUBJECT_ROWS_BEFORE_SEED = 5;
 
+const FIELD_TOTAL_CACHE_MS = 30_000;
+const fieldTotalCache = new Map<string, { total: number; at: number }>();
+
+async function getCachedActiveFieldTotal(fieldId: string): Promise<number> {
+  const hit = fieldTotalCache.get(fieldId);
+  if (hit && Date.now() - hit.at < FIELD_TOTAL_CACHE_MS) return hit.total;
+  const total = await prisma.questionBankItem.count({
+    where: activeFieldWhere(fieldId),
+  });
+  fieldTotalCache.set(fieldId, { total, at: Date.now() });
+  return total;
+}
+
+function curatedFieldSampleTarget(want: number, curatedAvailable: number): number {
+  if (curatedAvailable <= 0) return 0;
+  return Math.min(curatedAvailable, want);
+}
+
+async function sampleCuratedFieldItems(params: {
+  fieldId: string;
+  want: number;
+  curatedWhere: ReturnType<typeof activeFieldWhere> & Record<string, unknown>;
+  total: number;
+  curatedPullMultiplier?: number;
+  generalPullMultiplier?: number;
+}): Promise<BankItem[]> {
+  const {
+    fieldId,
+    want,
+    curatedWhere,
+    total,
+    curatedPullMultiplier = 3,
+    generalPullMultiplier = 2,
+  } = params;
+
+  const curatedTotal = await prisma.questionBankItem.count({ where: curatedWhere });
+  const curatedWant = curatedFieldSampleTarget(want, curatedTotal);
+  let collected: BankItem[] = [];
+
+  if (curatedWant > 0) {
+    const pull = Math.min(
+      QUESTION_BANK_SAMPLE_MAX_PULL,
+      Math.max(curatedWant * curatedPullMultiplier, curatedWant + 24)
+    );
+    const skip =
+      curatedTotal > pull ? Math.floor(Math.random() * Math.max(0, curatedTotal - pull)) : 0;
+    const rows = await prisma.questionBankItem.findMany({
+      where: curatedWhere,
+      skip,
+      take: pull,
+      orderBy: { id: "asc" },
+    });
+    collected = dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(
+      0,
+      curatedWant
+    );
+  }
+
+  const remaining = want - collected.length;
+  if (remaining > 0) {
+    const pullTarget = Math.min(
+      QUESTION_BANK_SAMPLE_MAX_PULL,
+      Math.max(remaining * generalPullMultiplier, remaining + 24)
+    );
+    const skip = total > pullTarget ? Math.floor(Math.random() * (total - pullTarget)) : 0;
+    const rows = await prisma.questionBankItem.findMany({
+      where: activeFieldWhere(fieldId),
+      skip,
+      take: pullTarget,
+      orderBy: { id: "asc" },
+    });
+    collected = dedupeSamplePool([
+      ...collected,
+      ...shuffleBankItems(rows.map(rowToBankItem)),
+    ]).slice(0, want);
+  }
+
+  return shuffleBankItems(collected).slice(0, want);
+}
+
 const PANCE_FIELD_ID = "pance";
 const AANP_FNP_FIELD_ID = "aanp-fnp";
 const NPTE_PT_FIELD_ID = "npte-pt";
@@ -559,8 +639,12 @@ export async function sampleQuestionBankItemsForField(params: {
   fieldId: string;
   count: number;
   stateCode?: string;
+  /** Skip seed/count probe on repeat pulls within the same request. */
+  skipEnsure?: boolean;
 }): Promise<BankItem[]> {
-  await ensureBankAvailable(params.fieldId);
+  if (!params.skipEnsure) {
+    await ensureBankAvailable(params.fieldId);
+  }
 
   if (isMpjeField(params.fieldId)) {
     if (params.stateCode) {
@@ -577,57 +661,46 @@ export async function sampleQuestionBankItemsForField(params: {
 
   const want = Math.max(1, params.count);
   const where = activeFieldWhere(params.fieldId);
-  const total = await prisma.questionBankItem.count({ where });
+  const total = params.skipEnsure
+    ? (fieldTotalCache.get(params.fieldId)?.total ??
+      (await getCachedActiveFieldTotal(params.fieldId)))
+    : await getCachedActiveFieldTotal(params.fieldId);
 
   if (total === 0) {
     return [];
   }
 
   if (isNursingFieldId(params.fieldId)) {
-    const curatedWhere = { ...where, ...curatedNclexWhereClause() };
-    const curatedTotal = await prisma.questionBankItem.count({ where: curatedWhere });
-    const curatedWant = nclexCuratedSampleTarget(want, curatedTotal);
-    let collected: BankItem[] = [];
+    return sampleCuratedFieldItems({
+      fieldId: params.fieldId,
+      want,
+      curatedWhere: { ...where, ...curatedNclexWhereClause() },
+      total,
+      curatedPullMultiplier: 2.5,
+      generalPullMultiplier: 2,
+    });
+  }
 
-    if (curatedWant > 0) {
-      const pull = Math.min(
-        QUESTION_BANK_SAMPLE_MAX_PULL,
-        Math.max(curatedWant * 4, curatedWant + 40)
-      );
-      const skip =
-        curatedTotal > pull ? Math.floor(Math.random() * Math.max(0, curatedTotal - pull)) : 0;
-      const rows = await prisma.questionBankItem.findMany({
-        where: curatedWhere,
-        skip,
-        take: pull,
-        orderBy: { id: "asc" },
-      });
-      collected = dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(
-        0,
-        curatedWant
-      );
-    }
+  if (isUsmleFieldId(params.fieldId)) {
+    return sampleCuratedFieldItems({
+      fieldId: params.fieldId,
+      want,
+      curatedWhere: { ...where, ...curatedUsmleWhereClause() },
+      total,
+      curatedPullMultiplier: 2.5,
+      generalPullMultiplier: 2,
+    });
+  }
 
-    const remaining = want - collected.length;
-    if (remaining > 0) {
-      const pullTarget = Math.min(
-        QUESTION_BANK_SAMPLE_MAX_PULL,
-        Math.max(remaining * 4, remaining + 40)
-      );
-      const skip = total > pullTarget ? Math.floor(Math.random() * (total - pullTarget)) : 0;
-      const rows = await prisma.questionBankItem.findMany({
-        where,
-        skip,
-        take: pullTarget,
-        orderBy: { id: "asc" },
-      });
-      collected = dedupeSamplePool([
-        ...collected,
-        ...shuffleBankItems(rows.map(rowToBankItem)),
-      ]).slice(0, want);
-    }
-
-    return shuffleBankItems(collected).slice(0, want);
+  if (isPharmacyFieldId(params.fieldId)) {
+    return sampleCuratedFieldItems({
+      fieldId: params.fieldId,
+      want,
+      curatedWhere: { ...where, ...curatedNaplexWhereClause() },
+      total,
+      curatedPullMultiplier: 2.5,
+      generalPullMultiplier: 2,
+    });
   }
 
   if (isPanceFieldId(params.fieldId)) {

@@ -250,6 +250,7 @@ export async function GET(req: Request) {
       items,
       limit,
       poolLimit: items.length,
+      skipRuntimeGate: true,
     });
   }
 

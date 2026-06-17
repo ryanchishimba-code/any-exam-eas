@@ -48,11 +48,10 @@ describe("full-length exam fields", () => {
       const full = buildSessionConfig(slug, "full", true);
       const sample = resolveExamBankSampleCount(EXAM_CATALOG[slug].fieldId, full.questionCount, true);
       expect(sample).toBeGreaterThanOrEqual(full.questionCount);
-      if (slug === "nclex") {
-        expect(sample).toBeGreaterThanOrEqual(255);
-      }
-      if (slug === "usmle") {
-        expect(sample).toBeGreaterThanOrEqual(full.questionCount + 150);
+      // Timed exams pull a modest headroom pool — gatherTimedExamBankItems tops up if gates thin the pool.
+      expect(sample).toBeLessThanOrEqual(500);
+      if (slug === "nclex" || slug === "usmle" || slug === "naplex") {
+        expect(sample).toBeGreaterThanOrEqual(full.questionCount + 48);
       }
     }
   });

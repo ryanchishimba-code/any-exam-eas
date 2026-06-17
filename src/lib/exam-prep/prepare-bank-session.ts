@@ -66,9 +66,15 @@ export function prepareBankItemsForSession(params: {
   limit: number;
   /** Pool size before finalize selects the session slice (defaults to limit). */
   poolLimit?: number;
+  /** Skip redundant runtime gates when gatherTimedExamBankItems already vetted rows. */
+  skipRuntimeGate?: boolean;
 }): BankItem[] {
   const { fieldId, field, items, limit } = params;
   const cap = Math.max(limit, params.poolLimit ?? limit);
+
+  if (params.skipRuntimeGate) {
+    return serveQaPassedBankItems(items, cap);
+  }
 
   if (fieldId === "nursing") {
     return prepareNclexItemsForSession({ items, field, limit: cap });
