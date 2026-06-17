@@ -19,6 +19,6 @@ describe("analyzeReportedQuestion", () => {
     expect(analysis.issueCodes).toContain("user_wrong_answer");
     expect(analysis.issueCodes).toContain("generic_placeholder_options");
     expect(analysis.proposedFix.changeSummary.length).toBeGreaterThan(0);
-    expect(analysis.generationNotes).toContain("BATCH DIVERSITY");
+    expect(analysis.generationNotes).toContain("platform question rules");
   });
 });

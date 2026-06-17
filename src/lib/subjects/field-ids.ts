@@ -33,6 +33,7 @@ export const FIELD_ID_ALIASES: Record<string, ExamFieldId> = {
   "usmle-step1": "usmle-step-2",
   "step-1": "usmle-step-2",
   "usmle-step-2": "usmle-step-2",
+  "usmle-step-2-ck": "usmle-step-2",
   "usmle-step2": "usmle-step-2",
   "step-2": "usmle-step-2",
   "usmle-step-3": "usmle-step-2",

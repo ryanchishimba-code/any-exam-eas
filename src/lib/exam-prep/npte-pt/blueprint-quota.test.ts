@@ -8,14 +8,14 @@ import {
 } from "./blueprint-quota";
 
 describe("NPTE-PT blueprint quotas", () => {
-  it("allocates 4000 questions proportional to FSBPT content weights", () => {
+  it("allocates 6000 questions proportional to FSBPT content weights", () => {
     const quotas = computeNptePtContentQuotas(NPTE_PT_TARGET_TOTAL);
     const total = quotas.reduce((s, q) => s + q.targetCount, 0);
-    expect(total).toBeGreaterThanOrEqual(3990);
-    expect(total).toBeLessThanOrEqual(4010);
+    expect(total).toBeGreaterThanOrEqual(5990);
+    expect(total).toBeLessThanOrEqual(6010);
 
     const msk = quotas.find((q) => q.contentCategory === "musculoskeletal");
-    expect(msk?.targetCount).toBe(1111);
+    expect(msk?.targetCount).toBe(1667);
     expect(msk?.weight).toBeCloseTo(0.2 / 0.72, 2);
   });
 
@@ -23,11 +23,11 @@ describe("NPTE-PT blueprint quotas", () => {
     const tasks = computeNptePtTaskQuotas(NPTE_PT_TARGET_TOTAL);
     expect(tasks).toHaveLength(3);
     const evalDx = tasks.find((t) => t.taskCategory === "evaluation-diagnosis-prognosis");
-    expect(evalDx?.targetCount).toBe(960);
+    expect(evalDx?.targetCount).toBe(1440);
   });
 
   it("returns category target for musculoskeletal at largest body-system weight", () => {
-    expect(getNptePtCategoryTarget("musculoskeletal")).toBe(1111);
+    expect(getNptePtCategoryTarget("musculoskeletal")).toBe(1667);
   });
 
   it("detects blueprint misalignment", () => {

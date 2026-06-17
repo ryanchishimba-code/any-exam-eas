@@ -4,7 +4,7 @@
  *
  * Usage:
  *   npm run db:generate-npte-pt-to-target
- *   npm run db:generate-npte-pt-to-target -- --batch-size 500 --target 4000
+ *   npm run db:generate-npte-pt-to-target -- --batch-size 500 --target 6000
  *
  * Checkpoint: artifacts/npte-pt-target-checkpoint.json
  * Log: artifacts/npte-pt-target-run.log

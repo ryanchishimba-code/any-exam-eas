@@ -14,7 +14,7 @@ describe("marketing bank stats", () => {
     expect(targetQuestionCountForField("pharmacy")).toBe(24_000);
     expect(targetQuestionCountForField("pance")).toBe(6000);
     expect(targetQuestionCountForField("aanp-fnp")).toBe(6000);
-    expect(targetQuestionCountForField("npte-pt")).toBe(4000);
+    expect(targetQuestionCountForField("npte-pt")).toBe(6000);
     expect(TOTAL_QUESTION_BANK_TARGET).toBeGreaterThan(80_000);
   });
 
@@ -29,7 +29,7 @@ describe("marketing bank stats", () => {
     expect(MARKETING_QUESTION_COUNTS.usmle).toBe("18K+");
     expect(MARKETING_QUESTION_COUNTS.pance).toBe("6K+");
     expect(MARKETING_QUESTION_COUNTS.aanpFnp).toBe("6K+");
-    expect(MARKETING_QUESTION_COUNTS.nptePt).toBe("4K+");
+    expect(MARKETING_QUESTION_COUNTS.nptePt).toBe("6K+");
     expect(TOP_500_DRUGS_COUNT).toBeGreaterThanOrEqual(500);
   });
 });

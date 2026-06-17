@@ -28,8 +28,9 @@ loadtests/k6/reports/*
 # local node runtime (portable install)
 /.tools/
 
-# misc
-.DS_Store
+# local generation / pipeline artifacts
+/artifacts/
+
 *.pem
 
 # debug

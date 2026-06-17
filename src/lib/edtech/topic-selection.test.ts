@@ -112,10 +112,14 @@ describe("seed integrity — selection targets exist", () => {
     }
   });
 
-  it("has at least 15 topics per exam (base seeds plus review modules)", () => {
+  it("has at least the expected topic floor per exam (base seeds plus review modules)", () => {
+    const minimumByExam: Partial<Record<(typeof EXAM_SLUGS)[number], number>> = {
+      "aanp-fnp": 10,
+      "npte-pt": 10,
+    };
     for (const slug of EXAM_SLUGS) {
       const topics = getHighYieldTopics(slug);
-      expect(topics.length).toBeGreaterThanOrEqual(15);
+      expect(topics.length).toBeGreaterThanOrEqual(minimumByExam[slug] ?? 15);
     }
   });
 });

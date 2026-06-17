@@ -31,9 +31,9 @@ describe("MPJE_PHYSICIAN_EDUCATOR_BATCH_08 QA", () => {
     expect(tags.some((t) => t.includes("minnesota"))).toBe(true);
   });
 
-  it("is wired into collectHighYieldSeedRows for pance bank sync", () => {
+  it("is wired into collectHighYieldSeedRows for mpje bank sync", () => {
     const rows = collectHighYieldSeedRows().filter(
-      (r) => r.fieldId === "pance" && r.item.tags?.includes("physician-educator-batch-08")
+      (r) => r.fieldId === "mpje" && r.item.tags?.includes("physician-educator-batch-08")
     );
     expect(rows.length).toBe(18);
   });
