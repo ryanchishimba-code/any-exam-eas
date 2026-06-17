@@ -19,15 +19,24 @@ import { auditBankItem } from "../src/lib/exam-prep/bank-audit";
 import { auditUsmleQaEditor } from "../src/lib/exam-prep/usmle-qa-editor";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
 import { bankItemContentHash } from "../src/lib/sync-question-bank";
-import { splitUsmleBankItem } from "../src/lib/exam-prep/usmle-clinical-gate";
+import { splitUsmleBankItem, usmleBankItemIsServeReady } from "../src/lib/exam-prep/usmle-clinical-gate";
+import { usmleServeMinQaScore } from "../src/lib/exam-prep/usmle/steps";
 import type { UsmleCurationResult } from "../src/lib/engine/curation";
 import type { UsmleQaReport } from "../src/lib/exam-prep/usmle-qa-editor";
 
 const prisma = new PrismaClient();
 
 const USMLE_FIELDS = ["usmle-step-1", "usmle-step-2", "usmle-step-3"] as const;
-const CHECKPOINT_PATH = path.join(process.cwd(), "artifacts/usmle-curate-checkpoint.json");
-const LOG_PATH = path.join(process.cwd(), "artifacts/usmle-curate-run.log");
+
+function checkpointPath(field?: string) {
+  const slug = field ?? "all";
+  return path.join(process.cwd(), `artifacts/usmle-curate-checkpoint-${slug}.json`);
+}
+
+function logPathFor(field?: string) {
+  const slug = field ?? "all";
+  return path.join(process.cwd(), `artifacts/usmle-curate-run-${slug}.log`);
+}
 
 type Checkpoint = {
   startedAt: string;
@@ -68,26 +77,26 @@ function parseArgs() {
   return { csv, limit, maxScore, minAccept, dryRun, offline, all, fromDb, resume, fresh, noRag, field };
 }
 
-function logLine(msg: string) {
+function logLine(msg: string, logPath: string) {
   const line = `[${new Date().toISOString()}] ${msg}`;
   console.log(line);
-  fs.mkdirSync(path.dirname(LOG_PATH), { recursive: true });
-  fs.appendFileSync(LOG_PATH, line + "\n");
+  fs.mkdirSync(path.dirname(logPath), { recursive: true });
+  fs.appendFileSync(logPath, line + "\n");
 }
 
-function loadCheckpoint(): Checkpoint | null {
-  if (!fs.existsSync(CHECKPOINT_PATH)) return null;
+function loadCheckpoint(path: string): Checkpoint | null {
+  if (!fs.existsSync(path)) return null;
   try {
-    return JSON.parse(fs.readFileSync(CHECKPOINT_PATH, "utf8")) as Checkpoint;
+    return JSON.parse(fs.readFileSync(path, "utf8")) as Checkpoint;
   } catch {
     return null;
   }
 }
 
-function saveCheckpoint(checkpoint: Checkpoint) {
-  fs.mkdirSync(path.dirname(CHECKPOINT_PATH), { recursive: true });
+function saveCheckpoint(checkpoint: Checkpoint, path: string) {
+  fs.mkdirSync(path.dirname(path), { recursive: true });
   checkpoint.updatedAt = new Date().toISOString();
-  fs.writeFileSync(CHECKPOINT_PATH, JSON.stringify(checkpoint, null, 2));
+  fs.writeFileSync(path, JSON.stringify(checkpoint, null, 2));
 }
 
 function parseCsvIds(csvPath: string, maxScore: number, limit: number): string[] {
@@ -151,17 +160,14 @@ function hashForRow(
 }
 
 function shouldPersist(
-  before: UsmleQaReport,
   result: UsmleCurationResult,
-  bankOk: boolean
+  fieldId: string
 ): boolean {
   if (result.action === "accepted") return false;
   const { vignette } = splitUsmleBankItem(result.item);
   if (!vignette || vignette.length < 40) return false;
   if (!result.item.options.includes(result.item.correctAnswer)) return false;
-  if (!bankOk) return false;
-  if (result.after.examReady) return true;
-  return result.after.overallScore >= before.overallScore + 0.5;
+  return usmleBankItemIsServeReady(result.item, fieldId);
 }
 
 async function resolveHashCollision(
@@ -214,9 +220,14 @@ async function main() {
   const { csv, limit, maxScore, minAccept, dryRun, offline, all, fromDb, resume, fresh, noRag, field } =
     parseArgs();
 
-  if (fresh && fs.existsSync(CHECKPOINT_PATH)) {
-    fs.unlinkSync(CHECKPOINT_PATH);
-    logLine("Fresh run — checkpoint cleared");
+  const ckptPath = checkpointPath(field);
+  const runLogPath = logPathFor(field);
+  const fieldMinAccept =
+    field && usmleServeMinQaScore(field) != null ? usmleServeMinQaScore(field)! : minAccept;
+
+  if (fresh && fs.existsSync(ckptPath)) {
+    fs.unlinkSync(ckptPath);
+    logLine("Fresh run — checkpoint cleared", runLogPath);
   }
 
   const effectiveLimit = all ? Number.MAX_SAFE_INTEGER : limit;
@@ -228,11 +239,11 @@ async function main() {
     ids = parseCsvIds(csv, maxScore, Number.MAX_SAFE_INTEGER);
   }
 
-  const prior = resume ? loadCheckpoint() : null;
+  const prior = resume ? loadCheckpoint(ckptPath) : null;
   const done = new Set(prior?.processed ?? []);
   if (done.size > 0) {
     ids = ids.filter((id) => !done.has(id));
-    logLine(`Resuming — ${done.size} already processed, ${ids.length} remaining`);
+    logLine(`Resuming — ${done.size} already processed, ${ids.length} remaining`, runLogPath);
   }
 
   const checkpoint: Checkpoint = prior ?? {
@@ -250,17 +261,20 @@ async function main() {
     },
   };
 
-  logLine(`USMLE AI curation — ${ids.length} item(s) queued`);
+  logLine(`USMLE AI curation — ${ids.length} item(s) queued`, runLogPath);
   logLine(
-    `  source: ${fromDb ? "db(qaPassed=false)" : csv}  max-score: ${maxScore}  min-accept: ${minAccept}`
+    `  source: ${fromDb ? "db(qaPassed=false)" : csv}  max-score: ${maxScore}  min-accept: ${fieldMinAccept}`,
+    runLogPath
   );
   const aiEnabled = isUsmleCurationEnabled() && !offline;
   logLine(
-    `  dry-run: ${dryRun}  offline: ${offline}  no-rag: ${noRag}  AI: ${aiEnabled}  ai-first: ${aiEnabled}`
+    `  dry-run: ${dryRun}  offline: ${offline}  no-rag: ${noRag}  AI: ${aiEnabled}  ai-first: ${aiEnabled}`,
+    runLogPath
   );
   if (!aiEnabled && !offline) {
     logLine(
-      "  WARNING: OPENAI_API_KEY not set — running rule-polish only. Add key to .env.local for AI rewrites."
+      "  WARNING: OPENAI_API_KEY not set — running rule-polish only. Add key to .env.local for AI rewrites.",
+      runLogPath
     );
   }
 
@@ -303,11 +317,11 @@ async function main() {
         itemId: row.id,
         source: row.source,
         difficulty: row.difficulty,
-        minAcceptScore: minAccept,
+        minAcceptScore: fieldMinAccept,
         offline,
         useRag: !noRag,
         aiFirst: aiEnabled,
-        maxAiAttempts: 1,
+        maxAiAttempts: 3,
         seed: seedFromId(row.id),
       });
 
@@ -315,16 +329,16 @@ async function main() {
       measured++;
 
       const bankOk = auditBankItem(result.item, row.fieldId).ok;
-      let qaPassed = result.after.examReady && bankOk;
+      let qaPassed = usmleBankItemIsServeReady(result.item, row.fieldId);
 
       if (result.action === "accepted") {
         checkpoint.counts.accepted = (checkpoint.counts.accepted ?? 0) + 1;
         checkpoint.processed.push(id);
-        if (processedThisRun % 50 === 0) saveCheckpoint(checkpoint);
+        if (processedThisRun % 50 === 0) saveCheckpoint(checkpoint, ckptPath);
         continue;
       }
 
-      if (!shouldPersist(beforeQa, result, bankOk)) {
+      if (!shouldPersist(result, row.fieldId)) {
         checkpoint.counts.rejected = (checkpoint.counts.rejected ?? 0) + 1;
         checkpoint.processed.push(id);
         continue;
@@ -338,21 +352,21 @@ async function main() {
       });
 
       if (collision) {
-        logLine(`  hash collision on ${id.slice(0, 10)}… — AI retry for unique vignette`);
+        logLine(`  hash collision on ${id.slice(0, 10)}… — AI retry for unique vignette`, runLogPath);
         result = await resolveHashCollision(
           { id: row.id, fieldId: row.fieldId, subjectId: row.subjectId },
           item,
           result,
           curateUsmleBankItem,
-          { minAccept, offline, noRag, aiFirst: aiEnabled, isUsmleCurationEnabled }
+          { minAccept: fieldMinAccept, offline, noRag, aiFirst: aiEnabled, isUsmleCurationEnabled }
         );
         finalHash = hashForRow(row.fieldId, row.subjectId, result.item);
         collision = await prisma.questionBankItem.findFirst({
           where: { contentHash: finalHash, NOT: { id: row.id } },
         });
         bankOk = auditBankItem(result.item, row.fieldId).ok;
-        qaPassed = result.after.examReady && bankOk;
-        if (!shouldPersist(beforeQa, result, bankOk)) {
+        qaPassed = usmleBankItemIsServeReady(result.item, row.fieldId);
+        if (!shouldPersist(result, row.fieldId)) {
           checkpoint.counts.rejected = (checkpoint.counts.rejected ?? 0) + 1;
           checkpoint.processed.push(id);
           continue;
@@ -360,7 +374,7 @@ async function main() {
       }
 
       if (collision) {
-        logLine(`  skip ${id.slice(0, 10)}… — hash collision after AI retry`);
+        logLine(`  skip ${id.slice(0, 10)}… — hash collision after AI retry`, runLogPath);
         checkpoint.counts.skipped = (checkpoint.counts.skipped ?? 0) + 1;
         continue;
       }
@@ -368,7 +382,8 @@ async function main() {
       if (dryRun) {
         if (processedThisRun <= 5 || processedThisRun % 100 === 0) {
           logLine(
-            `  [dry-run] ${row.fieldId}/${row.subjectId} ${id.slice(0, 10)}… ${result.action} QA ${beforeQa.overallScore.toFixed(1)} → ${result.after.overallScore.toFixed(1)}`
+            `  [dry-run] ${row.fieldId}/${row.subjectId} ${id.slice(0, 10)}… ${result.action} QA ${beforeQa.overallScore.toFixed(1)} → ${result.after.overallScore.toFixed(1)} serve=${qaPassed}`,
+            runLogPath
           );
         }
         checkpoint.processed.push(id);
@@ -398,47 +413,49 @@ async function main() {
 
       if (processedThisRun % 25 === 0 || result.action === "ai_curated") {
         logLine(
-          `  [${processedThisRun}/${ids.length}] ${result.action} ${id.slice(0, 10)}… QA ${beforeQa.overallScore.toFixed(1)} → ${result.after.overallScore.toFixed(1)}  qaPassed=${qaPassed}`
+          `  [${processedThisRun}/${ids.length}] ${result.action} ${id.slice(0, 10)}… QA ${beforeQa.overallScore.toFixed(1)} → ${result.after.overallScore.toFixed(1)}  qaPassed=${qaPassed}`,
+          runLogPath
         );
       }
     } catch (e) {
       const message = e instanceof Error ? e.message : String(e);
       const delay = rateLimitDelayMs(message);
       if (delay && aiEnabled) {
-        logLine(`  rate limit — sleeping ${Math.round(delay / 1000)}s`);
+        logLine(`  rate limit — sleeping ${Math.round(delay / 1000)}s`, runLogPath);
         await sleepMs(delay);
         processedThisRun--;
         continue;
       }
       checkpoint.counts.errors = (checkpoint.counts.errors ?? 0) + 1;
-      logLine(`  error ${id}: ${message}`);
+      logLine(`  error ${id}: ${message}`, runLogPath);
     }
 
     if (aiEnabled) await sleepMs(7000);
 
     checkpoint.processed.push(id);
-    if (processedThisRun % 10 === 0) saveCheckpoint(checkpoint);
+    if (processedThisRun % 10 === 0) saveCheckpoint(checkpoint, ckptPath);
   }
 
-  saveCheckpoint(checkpoint);
+  saveCheckpoint(checkpoint, ckptPath);
 
-  logLine(`── USMLE AI curation complete ──`);
-  logLine(`Queued this run: ${ids.length}`);
-  logLine(`Accepted:      ${checkpoint.counts.accepted ?? 0}`);
-  logLine(`Rule polished: ${checkpoint.counts.rule_polished ?? 0}`);
-  logLine(`AI curated:    ${checkpoint.counts.ai_curated ?? 0}`);
-  logLine(`Rejected:      ${checkpoint.counts.rejected ?? 0}`);
-  logLine(`Updated:       ${checkpoint.counts.updated ?? 0}`);
-  logLine(`Skipped:       ${checkpoint.counts.skipped ?? 0}`);
-  logLine(`Errors:        ${checkpoint.counts.errors ?? 0}`);
+  logLine(`── USMLE AI curation complete ──`, runLogPath);
+  logLine(`Queued this run: ${ids.length}`, runLogPath);
+  logLine(`Accepted:      ${checkpoint.counts.accepted ?? 0}`, runLogPath);
+  logLine(`Rule polished: ${checkpoint.counts.rule_polished ?? 0}`, runLogPath);
+  logLine(`AI curated:    ${checkpoint.counts.ai_curated ?? 0}`, runLogPath);
+  logLine(`Rejected:      ${checkpoint.counts.rejected ?? 0}`, runLogPath);
+  logLine(`Updated:       ${checkpoint.counts.updated ?? 0}`, runLogPath);
+  logLine(`Skipped:       ${checkpoint.counts.skipped ?? 0}`, runLogPath);
+  logLine(`Errors:        ${checkpoint.counts.errors ?? 0}`, runLogPath);
   if (measured > 0) {
-    logLine(`Avg QA:        ${(qaBeforeSum / measured).toFixed(2)} → ${(qaAfterSum / measured).toFixed(2)}`);
+    logLine(`Avg QA:        ${(qaBeforeSum / measured).toFixed(2)} → ${(qaAfterSum / measured).toFixed(2)}`, runLogPath);
   }
 }
 
 main()
   .catch((e) => {
-    logLine(`FATAL: ${e instanceof Error ? e.message : String(e)}`);
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error(`FATAL: ${msg}`);
     console.error(e);
     process.exit(1);
   })

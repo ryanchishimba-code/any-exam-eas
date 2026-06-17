@@ -10,7 +10,15 @@ export const SESSION_QUALITY_REQUIREMENTS = {
     "Return exactly the user-selected count — full exam, sprint, or custom bank length.",
   strongDistractors:
     "Each MCQ has four distinct, board-plausible distractors — never generic placeholders.",
+  boardReflective:
+    "Each item has a substantive stem, teaching rationale, and aligned answer choices — board-exam caliber.",
 } as const;
+
+export {
+  examQuestionMeetsBoardBar,
+  rawQuestionMeetsBoardBar,
+  studyQuestionMeetsBoardBar,
+} from "@/lib/exam-prep/board-serve-quality";
 
 export function resolveDifficultyBand(item: {
   difficulty?: number;

@@ -17,6 +17,7 @@ import {
 } from "./naplex-bank-audit";
 import { correctAnswerMatchesOption } from "./naplex-answer-align";
 import { hasGenericPlaceholderOptions } from "@/lib/question-format";
+import { BOARD_SERVE_MIN_EXPLANATION_CHARS } from "./board-serve-quality";
 
 export type BankAuditIssue = NclexAuditIssue | NaplexAuditIssue;
 
@@ -78,7 +79,10 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
     push("error", "empty_question", "Question stem is missing or too short.");
   }
 
-  if (!item.explanation?.trim() || item.explanation.trim().length < 20) {
+  if (
+    !item.explanation?.trim() ||
+    item.explanation.trim().length < BOARD_SERVE_MIN_EXPLANATION_CHARS
+  ) {
     push("error", "empty_explanation", "Explanation is missing or too short.");
   }
 

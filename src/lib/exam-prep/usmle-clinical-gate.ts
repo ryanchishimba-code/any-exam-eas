@@ -12,8 +12,10 @@ import { serveQaPassedBankItems } from "./serve-qa-passed";
 import {
   isUsmleFieldId,
   USMLE_STEP3_NON_VIGNETTE_ITEM_TYPES,
+  usmleServeMinQaScore,
 } from "./usmle/steps";
 import { hasGenericPlaceholderOptions } from "@/lib/question-format";
+import { BOARD_SERVE_MIN_EXPLANATION_CHARS } from "./board-serve-quality";
 
 /** Split stored USMLE bank text into vignette + lead-in stem. */
 export function splitUsmleBankItem(item: BankItem): { vignette?: string; stem: string } {
@@ -60,8 +62,23 @@ function usmleItemPassesBasicMcqGate(item: BankItem): boolean {
   if (!item.correctAnswer?.trim()) return false;
   if ((item.options?.length ?? 0) < 4) return false;
   if (hasGenericPlaceholderOptions(item.options ?? [])) return false;
-  if (!item.explanation?.trim() || item.explanation.trim().length < 20) return false;
+  if (
+    !item.explanation?.trim() ||
+    item.explanation.trim().length < BOARD_SERVE_MIN_EXPLANATION_CHARS
+  ) return false;
   return item.options.some((o) => o.trim() === item.correctAnswer.trim());
+}
+
+/** Returns true when the editorial QA report meets the field's board serve bar. */
+function usmleQaReportPassesServeBar(
+  report: ReturnType<typeof auditUsmleQaEditor>,
+  fieldId: string
+): boolean {
+  const minScore = serveScoreThreshold(fieldId);
+  if (minScore !== null) {
+    return report.overallScore >= minScore && !report.issues.some((i) => i.severity === "error");
+  }
+  return report.examReady;
 }
 
 /** Curated seeds pass clinical gate; bulk-polished items must score exam-ready (≥8/10). */
@@ -75,7 +92,14 @@ export function usmleBankItemIsServeReady(item: BankItem, fieldId: string): bool
 
   if (fieldId === "usmle-step-3" && USMLE_STEP3_NON_VIGNETTE_ITEM_TYPES.has(itemType)) {
     if (isUsmleCuratedItem(normalized)) return true;
-    return usmleItemPassesBasicMcqGate(normalized);
+    if (!usmleItemPassesBasicMcqGate(normalized)) return false;
+    const report = auditUsmleQaEditor(normalized, {
+      fieldId,
+      source: "polished",
+      itemId: normalized.id,
+      difficulty: normalized.difficulty ?? null,
+    });
+    return usmleQaReportPassesServeBar(report, fieldId);
   }
 
   if (fieldId === "usmle-step-1") {
@@ -88,7 +112,7 @@ export function usmleBankItemIsServeReady(item: BankItem, fieldId: string): bool
       itemId: normalized.id,
       difficulty: normalized.difficulty ?? null,
     });
-    return report.overallScore >= 7 && !report.issues.some((i) => i.severity === "error");
+    return usmleQaReportPassesServeBar(report, fieldId);
   }
 
   if (!usmleBankItemHasClinicalScenario(normalized)) return false;
@@ -112,13 +136,7 @@ export function usmleBankItemIsServeReady(item: BankItem, fieldId: string): bool
     difficulty: normalized.difficulty ?? null,
   });
 
-  // PANCE serves at a calibrated ≥7.5 bar (env-overridable); other fields keep
-  // the ≥8 "A+" examReady bar. The no-error requirement is enforced in both.
-  const minScore = serveScoreThreshold(fieldId);
-  if (minScore !== null) {
-    return report.overallScore >= minScore && !report.issues.some((i) => i.severity === "error");
-  }
-  return report.examReady;
+  return usmleQaReportPassesServeBar(report, fieldId);
 }
 
 /** Per-field serve-score threshold; null means use the default examReady (≥8) bar. */
@@ -128,7 +146,7 @@ function serveScoreThreshold(fieldId: string): number | null {
     const parsed = raw ? Number.parseFloat(raw) : NaN;
     return Number.isFinite(parsed) ? parsed : 7.5;
   }
-  return null;
+  return usmleServeMinQaScore(fieldId);
 }
 
 type PrepareUsmleItemsParams = {

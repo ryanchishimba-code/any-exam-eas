@@ -1,14 +1,19 @@
 #!/usr/bin/env node
 /**
- * Strict USMLE QA gate — only exam-ready items (≥8/10 overall, no errors) get qaPassed=true.
+ * USMLE serve QA gate — aligns qaPassed with runtime usmleBankItemIsServeReady.
+ * Step 1 / Step 3: ≥7.5 editorial score; Step 2 CK: ≥8.0 (exam-ready).
  *
  * Usage:
  *   npm run db:qa-gate-usmle-best
  *   npm run db:qa-gate-usmle-best:dry
+ *   npm run db:qa-gate-usmle-best -- --field usmle-step-1
  */
 import { PrismaClient } from "@prisma/client";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
 import { auditUsmleQaEditor } from "../src/lib/exam-prep/usmle-qa-editor";
+import { usmleBankItemIsServeReady } from "../src/lib/exam-prep/usmle-clinical-gate";
+import { usmleServeMinQaScore } from "../src/lib/exam-prep/usmle/steps";
+import { applyQaPassedBatch } from "./qa-gate-batch-utils";
 
 const prisma = new PrismaClient();
 const USMLE_FIELDS = ["usmle-step-1", "usmle-step-2", "usmle-step-3"] as const;
@@ -23,13 +28,17 @@ function parseFieldArg(): string | undefined {
 async function gateField(fieldId: (typeof USMLE_FIELDS)[number]) {
   const where = { fieldId, active: true };
   const total = await prisma.questionBankItem.count({ where });
+  const minScore = usmleServeMinQaScore(fieldId) ?? 8;
 
-  console.log(`\nUSMLE best gate — ${fieldId} (${total} active)${dryRun ? " [dry-run]" : ""}\n`);
+  console.log(
+    `\nUSMLE serve gate — ${fieldId} (${total} active, min QA ${minScore})${dryRun ? " [dry-run]" : ""}\n`
+  );
 
   let lastId: string | undefined;
   let processed = 0;
-  let ready = 0;
+  let serveReady = 0;
   let notReady = 0;
+  let examReadyOnly = 0;
   const issueCounts: Record<string, number> = {};
 
   while (true) {
@@ -50,40 +59,40 @@ async function gateField(fieldId: (typeof USMLE_FIELDS)[number]) {
         itemId: row.id,
         difficulty: row.difficulty ?? null,
       });
+      const passes = usmleBankItemIsServeReady(item, fieldId);
 
-      if (report.examReady) ready++;
+      if (passes) serveReady++;
       else notReady++;
+
+      if (report.examReady && !passes) examReadyOnly++;
 
       for (const issue of report.issues) {
         issueCounts[issue.code] = (issueCounts[issue.code] ?? 0) + 1;
       }
 
-      updates.push({ id: row.id, qaPassed: report.examReady });
+      updates.push({ id: row.id, qaPassed: passes });
     }
 
     if (!dryRun) {
-      const now = new Date();
-      await prisma.$transaction(
-        updates.map((u) =>
-          prisma.questionBankItem.update({
-            where: { id: u.id },
-            data: { qaPassed: u.qaPassed, qaAuditedAt: now },
-          })
-        )
-      );
+      await applyQaPassedBatch(prisma, updates, dryRun);
     }
 
     processed += rows.length;
     lastId = rows[rows.length - 1]!.id;
     if (processed % 2000 === 0 || processed === total) {
-      console.log(`  … ${processed}/${total} (ready ${ready}, blocked ${notReady})`);
+      console.log(`  … ${processed}/${total} (serve-ready ${serveReady}, blocked ${notReady})`);
     }
   }
 
   console.log(`\n── ${fieldId} gate complete ──`);
-  console.log(`Processed:  ${processed}`);
-  console.log(`Exam-ready: ${ready} (${processed ? ((ready / processed) * 100).toFixed(1) : 0}%)`);
-  console.log(`Blocked:    ${notReady}`);
+  console.log(`Processed:       ${processed}`);
+  console.log(
+    `Serve-ready:     ${serveReady} (${processed ? ((serveReady / processed) * 100).toFixed(1) : 0}%)`
+  );
+  console.log(`Blocked:         ${notReady}`);
+  if (examReadyOnly > 0) {
+    console.log(`Exam-ready only: ${examReadyOnly} (≥8 QA but failed serve bar)`);
+  }
   console.log(`Top blockers:`);
   for (const [code, count] of Object.entries(issueCounts).sort((a, b) => b[1] - a[1]).slice(0, 8)) {
     console.log(`  ${code}: ${count}`);

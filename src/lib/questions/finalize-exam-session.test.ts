@@ -66,7 +66,7 @@ describe("finalizeExamSessionQuestions", () => {
       vignette: `${prefix} vignette ${i} with clinical detail for case separation.`,
       options: [`${prefix}-A-${i}`, `${prefix}-B-${i}`, `${prefix}-C-${i}`, `${prefix}-D-${i}`],
       correctAnswer: `${prefix}-A-${i}`,
-      explanation: "Detailed explanation.",
+      explanation: "Detailed explanation with board-style clinical teaching rationale.",
       subjectId: i % 2 === 0 ? "cardiology" : "nephrology",
       difficultyLabel: (i % 3 === 0 ? "Easy" : i % 3 === 1 ? "Medium" : "Hard") as
         | "Easy"
@@ -129,8 +129,10 @@ describe("finalizeExamSessionQuestions", () => {
       })),
       1
     );
-    expect(quality.issues).toContain("generic_distractors");
-    expect(() => assertExamSessionReady(quality, "usmle-step-2")).toThrow(/distractor/i);
+    expect(quality.issues.some((i) => i === "generic_distractors" || i === "below_board_bar")).toBe(
+      true
+    );
+    expect(() => assertExamSessionReady(quality, "usmle-step-2")).toThrow(/board/i);
   });
 
   it("passes quality gates for a mixed full-length block", () => {
@@ -154,7 +156,7 @@ describe("finalizeExamSessionQuestions", () => {
           : `A ${30 + (i % 40)}-year-old ${i % 2 === 0 ? "man" : "woman"} presents with complaint ${i}. Vitals stable.`,
       options: [`Start drug A-${i}`, `Order test B-${i}`, `Refer specialty C-${i}`, `Reassure D-${i}`],
       correctAnswer: `Start drug A-${i}`,
-      explanation: "Clinical rationale.",
+      explanation: "Clinical rationale with teaching points for board review.",
       subjectId: ["assess", "diagnose", "plan", "evaluate"][i % 4],
       difficultyLabel: (i % 3 === 0 ? "Easy" : i % 3 === 1 ? "Medium" : "Hard") as
         | "Easy"
@@ -204,7 +206,7 @@ describe("all board exams — templated vignette banks", () => {
         vignette: templateV + (i % 5 === 0 ? " BP 120/80." : " HR 72. BMI 28."),
         options: [`Start therapy ${i}`, `Order labs ${i}`, `Refer specialty ${i}`, `Reassure ${i}`],
         correctAnswer: `Start therapy ${i}`,
-        explanation: "Clinical rationale.",
+        explanation: "Clinical rationale with teaching points for board review.",
         subjectId: ["topic-a", "topic-b", "topic-c", "topic-d"][i % 4],
         difficultyLabel: (i % 3 === 0 ? "Easy" : i % 3 === 1 ? "Medium" : "Hard") as
           | "Easy"

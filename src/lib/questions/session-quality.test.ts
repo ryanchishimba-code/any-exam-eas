@@ -35,9 +35,10 @@ function bankItem(
 
 describe("SESSION_QUALITY_REQUIREMENTS", () => {
   it("documents the session quality gates", () => {
-    expect(Object.keys(SESSION_QUALITY_REQUIREMENTS)).toHaveLength(2);
+    expect(Object.keys(SESSION_QUALITY_REQUIREMENTS)).toHaveLength(3);
     expect(SESSION_QUALITY_REQUIREMENTS.exactCount).toMatch(/count/i);
     expect(SESSION_QUALITY_REQUIREMENTS.strongDistractors).toMatch(/plausible/i);
+    expect(SESSION_QUALITY_REQUIREMENTS.boardReflective).toMatch(/board/i);
   });
 });
 

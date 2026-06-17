@@ -2,6 +2,7 @@
 import { PrismaClient } from "@prisma/client";
 import { assessNclexItemQuality } from "../src/lib/exam-prep/nclex-quality-gate";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
+import { applyQaPassedBatch } from "./qa-gate-batch-utils";
 
 const prisma = new PrismaClient();
 const BATCH = 400;
@@ -41,15 +42,7 @@ async function main() {
     }
 
     if (!dryRun) {
-      const now = new Date();
-      await prisma.$transaction(
-        updates.map((u) =>
-          prisma.questionBankItem.update({
-            where: { id: u.id },
-            data: { qaPassed: u.qaPassed, qaAuditedAt: now },
-          })
-        )
-      );
+      await applyQaPassedBatch(prisma, updates, dryRun);
     }
 
     processed += rows.length;

@@ -12,6 +12,7 @@ import {
   assessNaplexItemQuality,
   isNaplexBestQuality,
 } from "../src/lib/exam-prep/naplex-quality-gate";
+import { applyQaPassedBatch } from "./qa-gate-batch-utils";
 
 const prisma = new PrismaClient();
 const BATCH = 400;
@@ -65,15 +66,7 @@ async function main() {
     }
 
     if (!dryRun) {
-      const now = new Date();
-      await prisma.$transaction(
-        updates.map((u) =>
-          prisma.questionBankItem.update({
-            where: { id: u.id },
-            data: { qaPassed: u.qaPassed, qaAuditedAt: now },
-          })
-        )
-      );
+      await applyQaPassedBatch(prisma, updates, dryRun);
     }
 
     processed += rows.length;

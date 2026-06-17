@@ -29,4 +29,10 @@ describe("usmle steps", () => {
       USMLE_STEPS.reduce((sum, step) => sum + step.targetQuestions, 0)
     );
   });
+
+  it("defines per-step serve QA floors aligned with board difficulty", () => {
+    expect(USMLE_STEPS.find((s) => s.fieldId === "usmle-step-1")?.serveMinQaScore).toBe(7.5);
+    expect(USMLE_STEPS.find((s) => s.fieldId === "usmle-step-2")?.serveMinQaScore).toBe(8);
+    expect(USMLE_STEPS.find((s) => s.fieldId === "usmle-step-3")?.serveMinQaScore).toBe(7.5);
+  });
 });

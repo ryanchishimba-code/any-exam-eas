@@ -16,7 +16,7 @@ const richCombined: BankItem = {
 Which of the following is the most appropriate next step in management?`,
   options: ["A", "B", "C", "D"],
   correctAnswer: "A",
-  explanation: "STEMI inferior wall — activate cath lab.",
+  explanation: "STEMI inferior wall — activate cath lab and reperfusion pathway.",
 };
 
 const bareStem: BankItem = {
@@ -24,7 +24,7 @@ const bareStem: BankItem = {
   question: "Which mechanism best explains diuretic resistance?",
   options: ["A", "B", "C", "D"],
   correctAnswer: "A",
-  explanation: "Loop diuretic adaptation.",
+  explanation: "Loop diuretic adaptation requires longer teaching rationale.",
 };
 
 const curatedRich: BankItem = {

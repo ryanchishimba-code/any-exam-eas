@@ -4,6 +4,8 @@ import type { RawQuestionInput, StudyQuestion } from "./types";
 import {
   enforceSessionCount,
   hasGenericPlaceholderOptions,
+  rawQuestionMeetsBoardBar,
+  studyQuestionMeetsBoardBar,
 } from "./session-quality";
 import { selectSpreadRawInputs } from "./spread-session-order";
 import { QUESTION_BANK_SAMPLE_MAX_PULL } from "@/lib/question-bank-db";
@@ -100,6 +102,11 @@ export function assessExamSessionQuality(
   }
 
   for (const q of prepared) {
+    if (!studyQuestionMeetsBoardBar(q)) {
+      issues.push("below_board_bar");
+      break;
+    }
+
     if (
       (q.type === "multiple_choice" || q.type === "k_type" || q.type === "select_all") &&
       q.options.length > 0 &&
@@ -121,13 +128,14 @@ export function assessExamSessionQuality(
 
 /**
  * Prepare and validate a timed/full exam block before it reaches the client.
- * Quality gates: exact count + non-placeholder distractors only.
+ * Quality gates: exact count, board-caliber structure, and non-placeholder distractors.
  */
 export function finalizeExamSessionQuestions(
   raw: RawQuestionInput[],
   requested: number
 ): { prepared: StudyQuestion[]; quality: ExamSessionQualityReport } {
-  const selected = selectRawInputsForSession(raw, requested);
+  const vettedRaw = raw.filter(rawQuestionMeetsBoardBar);
+  const selected = selectRawInputsForSession(vettedRaw, requested);
   const prepared = enforceSessionCount(
     prepareQuestionsForSession(selected, { shuffleOrder: false }),
     requested
@@ -152,6 +160,12 @@ export function assertExamSessionReady(
   if (quality.issues.includes("generic_distractors")) {
     throw new Error(
       `Some ${fieldId} questions did not meet board-style distractor standards. Please try again.`
+    );
+  }
+
+  if (quality.issues.includes("below_board_bar")) {
+    throw new Error(
+      `Some ${fieldId} questions did not meet board-exam quality standards. Please try again.`
     );
   }
 

@@ -12,6 +12,7 @@ import { PrismaClient } from "@prisma/client";
 import { bankItemPassesIngestGate } from "../src/lib/exam-prep/bank-ingest-gate";
 import { auditBankItem, summarizeBankAudit } from "../src/lib/exam-prep/bank-audit";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
+import { applyQaPassedBatch } from "./qa-gate-batch-utils";
 
 const prisma = new PrismaClient();
 
@@ -68,15 +69,7 @@ async function main() {
     }
 
     if (!dryRun) {
-      const now = new Date();
-      await prisma.$transaction(
-        updates.map((u) =>
-          prisma.questionBankItem.update({
-            where: { id: u.id },
-            data: { qaPassed: u.qaPassed, qaAuditedAt: now },
-          })
-        )
-      );
+      await applyQaPassedBatch(prisma, updates, dryRun);
     }
 
     processed += rows.length;

@@ -16,6 +16,7 @@ loadEnvFiles();
 import { PrismaClient } from "@prisma/client";
 import { curateNclexBankItem, triageNclexBankItem } from "../src/lib/engine/curation";
 import { assessNclexItemQuality } from "../src/lib/exam-prep/nclex-quality-gate";
+import { nclexItemPassesTimedExamGate } from "../src/lib/exam-prep/nclex-serve-gate";
 import { enrichBankItemGuidelines } from "../src/lib/exam-prep/enrich-guidelines";
 import { hasNclexEditorialWarnFlags, nclexHasServeBlockIssues } from "../src/lib/exam-prep/nclex-bank-audit";
 import { needsNclexPolish } from "../src/lib/engine/polish/nclex-polish";
@@ -223,7 +224,7 @@ async function main() {
 
       const source = result.aiUsed ? "ai-curated" : "curated";
       const qaVerdict = assessNclexItemQuality(finalItem, { source });
-      const qaOk = qaVerdict.tier === "best";
+      const qaOk = qaVerdict.tier === "best" && nclexItemPassesTimedExamGate(finalItem);
 
       if (dryRun) {
         console.log(

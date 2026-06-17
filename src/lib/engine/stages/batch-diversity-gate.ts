@@ -1,5 +1,5 @@
 import type { ExamQuestion, GeneratedExam } from "../../ai";
-import { hasGenericPlaceholderOptions } from "@/lib/question-format";
+import { examQuestionMeetsBoardBar } from "@/lib/exam-prep/board-serve-quality";
 import { assessExamSessionQuality } from "@/lib/questions/finalize-exam-session";
 import { examQuestionToStudy } from "@/lib/questions/prepare";
 
@@ -14,23 +14,9 @@ export type GenerationQualityReport = {
 
 const MIN_RETURN_RATIO = 0.75;
 
-function isMcqLike(type: ExamQuestion["type"]): boolean {
-  return !type || type === "multiple_choice" || type === "true_false";
-}
-
 /** Per-item gate before a generated exam reaches the client. */
 export function examQuestionPassesGenerationGate(q: ExamQuestion): boolean {
-  if (!q.question?.trim() || q.question.trim().length < 12) return false;
-  if (!q.explanation?.trim() || q.explanation.trim().length < 20) return false;
-
-  if (isMcqLike(q.type)) {
-    if ((q.options?.length ?? 0) !== 4) return false;
-    if (hasGenericPlaceholderOptions(q.options ?? [])) return false;
-    if (!q.correctAnswer?.trim()) return false;
-    if (!q.options?.some((o) => o.trim() === q.correctAnswer.trim())) return false;
-  }
-
-  return true;
+  return examQuestionMeetsBoardBar(q);
 }
 
 /**
@@ -51,7 +37,10 @@ export function enforceGeneratedExamQuality(
   const quality = assessExamSessionQuality(finalPrepared, target);
 
   const blockingIssues = quality.issues.filter(
-    (issue) => issue === "generic_distractors" || issue.startsWith("count_mismatch")
+    (issue) =>
+      issue === "generic_distractors" ||
+      issue === "below_board_bar" ||
+      issue.startsWith("count_mismatch")
   );
 
   const passed =

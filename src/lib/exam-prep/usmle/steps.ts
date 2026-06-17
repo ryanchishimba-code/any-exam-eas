@@ -20,6 +20,8 @@ export type UsmleStepDefinition = {
   targetQuestions: number;
   simulatedQuestionCount: number;
   simulatedDurationMin: number;
+  /** Minimum editorial QA score (0–10) for non-curated items at serve time. */
+  serveMinQaScore: number;
 };
 
 export const USMLE_STEPS: UsmleStepDefinition[] = [
@@ -33,6 +35,7 @@ export const USMLE_STEPS: UsmleStepDefinition[] = [
     targetQuestions: 12_000,
     simulatedQuestionCount: 280,
     simulatedDurationMin: 420,
+    serveMinQaScore: 7.5,
   },
   {
     level: "step2",
@@ -44,6 +47,7 @@ export const USMLE_STEPS: UsmleStepDefinition[] = [
     targetQuestions: 18_000,
     simulatedQuestionCount: 280,
     simulatedDurationMin: 240,
+    serveMinQaScore: 8,
   },
   {
     level: "step3",
@@ -55,6 +59,7 @@ export const USMLE_STEPS: UsmleStepDefinition[] = [
     targetQuestions: 18_000,
     simulatedQuestionCount: 200,
     simulatedDurationMin: 240,
+    serveMinQaScore: 7.5,
   },
 ];
 
@@ -102,6 +107,12 @@ export function usmleStepDefinition(fieldId: string): UsmleStepDefinition | unde
 
 export function defaultUsmleFieldId(): UsmleFieldId {
   return "usmle-step-2";
+}
+
+/** Per-step editorial QA floor for non-curated bank items. */
+export function usmleServeMinQaScore(fieldId: string): number | null {
+  const step = usmleStepDefinition(fieldId);
+  return step?.serveMinQaScore ?? null;
 }
 
 /** Step 3 item types that do not require a clinical vignette for serve. */

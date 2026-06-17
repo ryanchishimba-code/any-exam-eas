@@ -9,6 +9,7 @@ import { auditBankItem } from "@/lib/exam-prep/bank-audit";
 import {
   normalizeUsmleBankItemFields,
   splitUsmleBankItem,
+  usmleBankItemIsServeReady,
 } from "@/lib/exam-prep/usmle-clinical-gate";
 import { bankItemToUsmleExam } from "@/lib/exam-prep/usmle-bank-bridge";
 import { auditUsmleQaEditor, type UsmleQaReport } from "@/lib/exam-prep/usmle-qa-editor";
@@ -136,8 +137,8 @@ function auditItem(
   });
 }
 
-function isAcceptable(qa: UsmleQaReport, bankOk: boolean, minScore: number): boolean {
-  return qa.examReady && qa.overallScore >= minScore && bankOk;
+function isAcceptable(item: BankItem, fieldId: string): boolean {
+  return usmleBankItemIsServeReady(item, fieldId);
 }
 
 function toRetrievedChunk(
@@ -320,7 +321,6 @@ export async function curateUsmleBankItem(
   rawItem: BankItem,
   opts: UsmleCuratorOptions
 ): Promise<UsmleCurationResult> {
-  const minScore = opts.minAcceptScore ?? 8;
   const maxAi = opts.maxAiAttempts ?? 3;
   const notes: string[] = [];
   const subjectId = rawItem.subjectId ?? "internal-medicine";
@@ -331,14 +331,14 @@ export async function curateUsmleBankItem(
   const before = auditItem(item, opts);
   let bankReport = auditBankItem(item, opts.fieldId);
 
-  if (isAcceptable(before, bankReport.ok, minScore)) {
+  if (isAcceptable(item, opts.fieldId)) {
     return {
       item,
       action: "accepted",
       before,
       after: before,
       bankOk: bankReport.ok,
-      notes: ["Already exam-ready"],
+      notes: ["Already serve-ready"],
     };
   }
 
@@ -357,7 +357,7 @@ export async function curateUsmleBankItem(
     const after = auditItem(item, opts);
     bankReport = auditBankItem(item, opts.fieldId);
 
-    if (isAcceptable(after, bankReport.ok, minScore)) {
+    if (isAcceptable(item, opts.fieldId)) {
       const unchanged =
         JSON.stringify({
           question: item.question,
@@ -386,7 +386,7 @@ export async function curateUsmleBankItem(
   const after = auditItem(item, opts);
   bankReport = auditBankItem(item, opts.fieldId);
 
-  if (opts.aiOnly && isAcceptable(after, bankReport.ok, minScore)) {
+  if (opts.aiOnly && isAcceptable(item, opts.fieldId)) {
     return {
       item,
       action: "ai_curated",
@@ -434,7 +434,7 @@ export async function curateUsmleBankItem(
       ? auditReflection
       : await reflectOnQuestion(bankItemToUsmleExam(bestItem, attempt), chunks, opts.fieldId);
 
-    if (!useAiFirst && passesQualityGate(reflection) && bestAfter.overallScore >= minScore && bestBankOk) {
+    if (!useAiFirst && passesQualityGate(reflection) && isAcceptable(bestItem, opts.fieldId)) {
       notes.push(`Self-RAG pass on attempt ${attempt + 1}`);
       break;
     }
@@ -486,7 +486,7 @@ export async function curateUsmleBankItem(
       );
     }
 
-    if (isAcceptable(candidateQa, candidateBank.ok, minScore)) {
+    if (isAcceptable(candidate, opts.fieldId)) {
       bestItem = candidate;
       bestAfter = candidateQa;
       bestBankOk = candidateBank.ok;
@@ -508,7 +508,7 @@ export async function curateUsmleBankItem(
     };
   }
 
-  if (isAcceptable(bestAfter, bestBankOk, minScore)) {
+  if (isAcceptable(bestItem, opts.fieldId)) {
     return {
       item: bestItem,
       action: "ai_curated",
@@ -520,18 +520,6 @@ export async function curateUsmleBankItem(
     };
   }
 
-  if (bestAfter.overallScore > before.overallScore + 0.5) {
-    return {
-      item: bestItem,
-      action: "ai_curated",
-      before,
-      after: bestAfter,
-      bankOk: bestBankOk,
-      reflection,
-      notes: [...notes, "Improved but below exam-ready threshold"],
-    };
-  }
-
   return {
     item: bestItem,
     action: "rejected",
@@ -539,7 +527,7 @@ export async function curateUsmleBankItem(
     after: bestAfter,
     bankOk: bestBankOk,
     reflection,
-    notes: [...notes, "Could not reach acceptable QA score"],
+    notes: [...notes, "Did not reach board serve-ready bar"],
   };
 }
 
