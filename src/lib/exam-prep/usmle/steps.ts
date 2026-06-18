@@ -1,5 +1,7 @@
 /** USMLE Step 1, Step 2 CK, and Step 3 — field ids, exam metadata, and routing helpers. */
 
+import type { UsmleStepLevel } from "./types";
+
 export const USMLE_FIELD_IDS = [
   "usmle-step-1",
   "usmle-step-2",
@@ -7,8 +9,6 @@ export const USMLE_FIELD_IDS = [
 ] as const;
 
 export type UsmleFieldId = (typeof USMLE_FIELD_IDS)[number];
-
-export type UsmleStepLevel = "step1" | "step2" | "step3";
 
 export type UsmleStepDefinition = {
   level: UsmleStepLevel;

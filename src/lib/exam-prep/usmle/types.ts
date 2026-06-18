@@ -17,7 +17,7 @@ export const USMLE_GENERATION_CONCURRENCY = 6;
 /** Max per-slot regeneration attempts when QA fails. */
 export const USMLE_SLOT_MAX_RETRIES = 4;
 
-export type UsmleStepLevel = "step1" | "step2";
+export type UsmleStepLevel = "step1" | "step2" | "step3";
 
 export type UsmlePhysicianTaskId =
   | "diagnosis"
