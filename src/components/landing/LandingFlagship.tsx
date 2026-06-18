@@ -13,6 +13,7 @@ import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { LandingFeaturesSection } from "@/components/landing/LandingFeaturesSection";
 import { LandingHeroTrustPills } from "@/components/landing/LandingHeroTrustPills";
+import { LandingHeroBenefits } from "@/components/landing/LandingHeroBenefits";
 import { LandingSection } from "@/components/landing/LandingSection";
 import { LandingStickyCta } from "@/components/landing/LandingStickyCta";
 import { QuestionPreviewCard } from "@/components/landing/QuestionPreviewCard";
@@ -25,8 +26,11 @@ import { ChooseYourExam } from "@/components/home/ChooseYourExam";
 import { HowWeCompare } from "@/components/home/HowWeCompare";
 import {
   LANDING_HERO_CTA_DISCLOSURE,
+  LANDING_HERO_EYEBROW,
+  LANDING_HERO_HEADLINE,
+  LANDING_HERO_HEADLINE_ACCENT,
   LANDING_HERO_PRICE_TAGLINE,
-  LANDING_HERO_SUBLINE_BODY,
+  formatFlagshipHeroSubline,
   LANDING_PASS_STATS,
   LANDING_SUCCESS_STORIES,
   LANDING_TRIAL_HREF,
@@ -92,9 +96,10 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
 
       <div className="aee-flagship-inner aee-flagship-hero__layout">
         <div className="aee-flagship-hero__copy">
+          <p className="aee-flagship-hero__eyebrow">{LANDING_HERO_EYEBROW}</p>
           <h1 id="flagship-hero-heading" className="aee-flagship-hero__headline aee-flagship-hero__headline--punchy">
-            Premium Board Prep{" "}
-            <span className="aee-flagship-hero__headline-accent">at an Accessible Price</span>
+            {LANDING_HERO_HEADLINE}{" "}
+            <span className="aee-flagship-hero__headline-accent">{LANDING_HERO_HEADLINE_ACCENT}</span>
           </h1>
 
           <motion.div
@@ -102,12 +107,16 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
           >
-            <p className="aee-flagship-hero__subline">{LANDING_HERO_SUBLINE_BODY}</p>
+            <p className="aee-flagship-hero__subline">
+              {formatFlagshipHeroSubline(bankCounts.totalLabel)}
+            </p>
 
-            <div className="aee-hero-price-callout" aria-label="Starting monthly price">
-              <span className="aee-hero-price-callout__label">Starting at just</span>
+            <LandingHeroBenefits className="mt-5" />
+
+            <div className="aee-hero-price-callout aee-hero-price-callout--compact" aria-label="Starting monthly price">
+              <span className="aee-hero-price-callout__label">From</span>
               <HighlightedPrice size="hero-lg" period="/month" />
-              <span className="aee-hero-price-callout__note">· all 6 board exams</span>
+              <span className="aee-hero-price-callout__note">· all 6 exams · {formatTrialLabel()}</span>
             </div>
 
             <LandingHeroTrustPills className="mt-5" />

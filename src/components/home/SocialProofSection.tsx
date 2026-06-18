@@ -34,11 +34,11 @@ export function SocialProofSection({
         <header className="aee-flagship-header aee-flagship-header--center mx-auto max-w-2xl text-center">
           <p className="aee-flagship-eyebrow">Proven results</p>
           <h2 id="social-proof-heading" className="aee-flagship-title">
-            Premium prep quality —{" "}
-            <span className="aee-flagship-gradient-text">at an accessible price.</span>
+            Board-caliber quality —{" "}
+            <span className="aee-flagship-gradient-text">without the premium price tag.</span>
           </h2>
           <p className="aee-flagship-subtitle">
-            One subscription. Six boards. High-quality practice without the high price tag.
+            Every session draws from QA-gated, serve-ready items — six boards, one subscription.
           </p>
         </header>
 

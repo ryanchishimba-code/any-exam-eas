@@ -43,10 +43,13 @@ export function LandingExamShowcase({ bankCounts, className = "" }: LandingExamS
 
   return (
     <div
-      className={`aee-hero-exam-showcase aee-hero-exam-showcase--static ${className}`.trim()}
+      className={`aee-hero-exam-showcase aee-hero-exam-showcase--static aee-hero-exam-showcase--hero-stat ${className}`.trim()}
       aria-label="Board exams and question bank sizes"
     >
-      <p className="aee-hero-exam-showcase__total">{totalQuestions}</p>
+      <div className="aee-hero-exam-showcase__stat">
+        <p className="aee-hero-exam-showcase__total">{totalQuestions}</p>
+        <p className="aee-hero-exam-showcase__badge">QA-gated · serve-ready only</p>
+      </div>
       <p className="aee-hero-exam-showcase__kicker">
         6 board exams · one subscription · starting at{" "}
         <HighlightedPrice size="sm" period="/mo" />

@@ -133,12 +133,12 @@ export const LANDING_PRICING_FEATURES = [
   "Curated vignettes with excellent explanations",
   "Performance analytics & weak-area targeting",
   "Normal lab values & clinical calculators",
-  "Reference Hub, Memory Cards & timed full exams",
+  "Library, Memory Cards & timed full exams",
   `${TOP_500_DRUGS_COUNT} Top Drugs pharmacology deck`,
 ] as const;
 
 export const LANDING_HERO_EYEBROW =
-  "6 Major Board Exams · One Subscription · Updated 2026";
+  "6 board exams · QA-gated question bank · Updated 2026";
 
 /** Primary signup destination — Pro annual is the default conversion path. */
 export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=yearly&tier=pro";
@@ -154,11 +154,20 @@ export const LANDING_HERO_EXAMS = [
 ] as const;
 
 /** Primary hero headline — benefit-driven, scannable above the fold. */
-export const LANDING_HERO_HEADLINE = "Premium Board Prep at an Accessible Price";
+export const LANDING_HERO_HEADLINE = "One subscription. Six boards.";
 
-/** Hero sub-headline body — price shown separately via HighlightedPrice. */
+/** Accent line under the primary headline. */
+export const LANDING_HERO_HEADLINE_ACCENT = "Board-caliber prep without the stacked bills.";
+
+/** Hero sub-headline body — pass live total via formatFlagshipHeroSubline(totalLabel). */
 export const LANDING_HERO_SUBLINE_BODY =
-  "High-quality practice questions, smart Roadmaps, and integrated Deep Dives for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP & NPTE — all in one subscription.";
+  "QA-gated vignettes, blueprint Roadmaps, and Deep Dives for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE — curated for serve-ready quality, not bulk filler.";
+
+export function formatFlagshipHeroSubline(totalLabel?: string): string {
+  const count = totalLabel?.trim();
+  if (!count) return LANDING_HERO_SUBLINE_BODY;
+  return `${count} serve-ready questions · ${LANDING_HERO_SUBLINE_BODY}`;
+}
 
 /** Short reassurance directly under the primary hero CTA. */
 export const LANDING_HERO_CTA_DISCLOSURE =
@@ -188,9 +197,9 @@ export const LANDING_OFFERING_PILLARS = [
 
 /** Subtle trust signals below hero subheadline. */
 export const LANDING_HERO_TRUST_SIGNALS = [
-  "Updated for 2026",
-  "Official Blueprint Aligned",
-  "6 Board Exams",
+  "QA-gated before serve",
+  "2026 blueprints",
+  "6 exams · 1 plan",
 ] as const;
 
 /** Unique differentiators — icon cards on the landing page. */
@@ -244,17 +253,17 @@ export const LANDING_HERO_HEADLINE_QUOTED = LANDING_HERO_HEADLINE;
 
 /** Scannable hero benefits — shown under the subline. */
 export const LANDING_HERO_BENEFITS = [
-  "Blueprint-aligned Roadmaps for every exam — not just a question bank",
-  "Six board exams in one plan — no stacking separate prep bills",
-  "Board-style vignettes with teachable, OER-backed rationales",
-  "Deep Dive lessons linked to the questions you miss",
+  "Only serve-ready items reach your sessions — weak bulk is filtered out",
+  "Six licensing exams under one plan — no $200–400/exam stacking",
+  "Clinical vignettes with teachable rationales, not template distractors",
+  "Deep Dive lessons open from the questions you miss",
 ] as const;
 
 /** @deprecated Legacy split headline — no longer used on the landing page. */
 export const LANDING_HERO_HEADLINE_LEGACY = "Your best companion";
 
 /** @deprecated Legacy split headline accent — no longer used on the landing page. */
-export const LANDING_HERO_HEADLINE_ACCENT = "for boards and clinical practice.";
+export const LANDING_HERO_HEADLINE_ACCENT_LEGACY = "for boards and clinical practice.";
 
 /** Three punchy hero benefits — scannable in under 3 seconds. */
 export const LANDING_HERO_PITCHES = [
@@ -268,7 +277,7 @@ export const LANDING_HERO_PRICE_TAGLINE = "Premium prep. Accessible price.";
 
 export const LANDING_HERO_PRICE_INCLUDES = [
   `${MARKETING_QUESTION_COUNTS.total} board-style questions`,
-  "Exam Roadmaps, Deep Dive modules & Reference Hub",
+  "Exam Roadmaps, Deep Dive modules & Library",
   "Analytics, lab values & clinical calculators",
 ] as const;
 
@@ -315,7 +324,7 @@ export const LANDING_STEPS = [
     icon: Library,
     title: "Review with Memory Cards & modules",
     detail:
-      "Use the Reference Hub for quick recall, then open linked Review Modules for eight-section deep dives on weak topics.",
+      "Use the Library for quick recall, then open linked Review Modules for eight-section deep dives on weak topics.",
   },
   {
     step: "04",
