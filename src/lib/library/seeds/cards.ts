@@ -2674,7 +2674,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
     bullets: [
       "Use ABW if >30% above IBW; actual weight if below IBW",
       "Low CrCl extends vancomycin interval and raises toxicity risk",
-      "Use Reference hub calculators for step-by-step CrCl and vanc loading",
+      "Use Library calculators for step-by-step CrCl and vanc loading",
     ],
     practiceTopicSlug: "nephrology",
     reviewModuleSlug: "infectious-disease",
@@ -3065,7 +3065,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
       "Use actual weight unless below IBW; use ABW = IBW + 0.4 × (actual − IBW) if >30% above IBW",
       "Many renally cleared drugs (vancomycin, aminoglycosides, DOACs) use CrCl — not eGFR",
       "Round to nearest whole number on NAPLEX (e.g. 70 y/o, 75 kg, SCr 2.4 → CrCl ≈ 30 mL/min)",
-      "Use the Reference hub calculators for step-by-step CrCl and vancomycin loading checks",
+      "Use the Library calculators for step-by-step CrCl and vancomycin loading checks",
     ],
     practiceTopicSlug: "pharmacology",
     sortOrder: 8,

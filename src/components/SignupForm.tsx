@@ -2,15 +2,22 @@
 
 import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
-import { Check } from "lucide-react";
+import { Check, Eye, EyeOff } from "lucide-react";
 import { LegalCheckbox } from "./LegalCheckbox";
 import { Button } from "./ui/Button";
+import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { MARKETING_DISCLAIMER } from "@/lib/site";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
 import type { BillingInterval } from "@/lib/billing-config";
 import type { SignupPlan } from "@/lib/validators/auth";
+import {
+  checkPassword,
+  isPasswordValid,
+  passwordError,
+  passwordRequirements,
+} from "@/lib/validators/password-policy";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import type { ExamSlug } from "@/types/edtech";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
@@ -38,6 +45,7 @@ export function SignupForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [dob, setDob] = useState("");
   const [examSlug, setExamSlug] = useState<ExamSlug | "">(initialExam);
   const [testDate, setTestDate] = useState("");
@@ -50,6 +58,13 @@ export function SignupForm({
   // exists). Registration always starts the free trial unless the visitor
   // explicitly arrived from a "subscribe now" link.
   const plan: SignupPlan = initialPlan === "subscribe" ? "subscribe" : "trial";
+
+  const googleEnabled = process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED === "true";
+
+  // Mirror the shared password policy so users get instant feedback instead of
+  // a rejected round-trip.
+  const passwordChecks = checkPassword(password);
+  const passwordValid = isPasswordValid(password);
 
   useEffect(() => {
     fetchAuthHealthWarning().then(setConfigWarning);
@@ -71,6 +86,12 @@ export function SignupForm({
       return;
     }
 
+    const pwError = passwordError(password);
+    if (pwError) {
+      setError(pwError);
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -89,6 +110,7 @@ export function SignupForm({
           interval: initialInterval,
           examSlug,
           testDate: testDate || undefined,
+          promoCode: initialPromo.trim() || undefined,
         }),
       });
       const text = await res.text();
@@ -158,6 +180,32 @@ export function SignupForm({
         <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
           {configWarning}
         </p>
+      )}
+
+      {googleEnabled && !configWarning && (
+        <div className="space-y-4">
+          <GoogleSignInButton
+            large
+            onClick={() => {
+              const trimmedEmail = email.trim();
+              if (trimmedEmail) {
+                saveReturningUserHint({
+                  email: trimmedEmail,
+                  name: name.trim() || undefined,
+                  lastMethod: "google",
+                });
+              }
+            }}
+          />
+          <div className="relative py-1">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-black/[0.06]" />
+            </div>
+            <p className="relative mx-auto w-fit bg-[var(--color-surface-elevated)] px-3 text-xs font-medium text-[var(--color-ink-muted)]">
+              or sign up with email
+            </p>
+          </div>
+        </div>
       )}
 
       <fieldset className="space-y-3" disabled={loading}>
@@ -237,16 +285,55 @@ export function SignupForm({
           onBlur={(e) => rememberEmail(e.target.value, { name: name.trim() || undefined })}
           className="apple-input"
         />
-        <input
-          required
-          type="password"
-          minLength={8}
-          autoComplete="new-password"
-          placeholder="Password (min 8 characters)"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="apple-input"
-        />
+        <div>
+          <div className="relative">
+            <input
+              required
+              type={showPassword ? "text" : "password"}
+              minLength={10}
+              autoComplete="new-password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="apple-input pr-12"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((v) => !v)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+              className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-ink)]"
+            >
+              {showPassword ? (
+                <EyeOff className="h-4 w-4" aria-hidden />
+              ) : (
+                <Eye className="h-4 w-4" aria-hidden />
+              )}
+            </button>
+          </div>
+          {password.length > 0 && (
+            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+              {passwordRequirements.map((req) => {
+                const ok = passwordChecks[req.id];
+                return (
+                  <li
+                    key={req.id}
+                    className={`flex items-center gap-1 text-[0.6875rem] ${
+                      ok
+                        ? "text-[var(--color-accent)]"
+                        : "text-[var(--color-ink-muted)]"
+                    }`}
+                  >
+                    <Check
+                      className={`h-3 w-3 shrink-0 ${ok ? "opacity-100" : "opacity-30"}`}
+                      aria-hidden
+                    />
+                    {req.label}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
         <div>
           <label className="apple-label">Date of birth (18+ required)</label>
           <input
@@ -266,7 +353,7 @@ export function SignupForm({
       <div className="space-y-2">
         <Button
           type="submit"
-          disabled={loading || !accepted || !examSlug || !!configWarning}
+          disabled={loading || !accepted || !examSlug || !passwordValid || !!configWarning}
           className="w-full"
         >
           {loading

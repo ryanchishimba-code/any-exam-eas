@@ -3,23 +3,23 @@
 import { Target, Flame, TrendingUp } from "lucide-react";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
-import { refUi } from "@/lib/reference/reference-ui";
+import { libUi } from "@/lib/library/library-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
-export type ReferenceHubStats = {
+export type LibraryHubStats = {
   readinessScore: number;
   studyStreakDays: number;
   overallAccuracy: number | null;
   motivationalMessage: string;
 };
 
-export function ReferenceHubHeader({
+export function LibraryHubHeader({
   examSlug,
   stats,
 }: {
   examSlug: ExamSlug;
-  stats: ReferenceHubStats;
+  stats: LibraryHubStats;
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const theme = EXAM_SELECTION_THEMES[examSlug];
@@ -37,13 +37,13 @@ export function ReferenceHubHeader({
           <ExamIcon className="h-5 w-5" aria-hidden />
         </span>
         <div>
-          <p className={refUi.eyebrow}>Reference</p>
-          <h1 className={refUi.title}>{exam.shortName} study hub</h1>
-          <p className={cn(refUi.subtitle, "mt-0.5 line-clamp-2 max-w-lg")}>{stats.motivationalMessage}</p>
+          <p className={libUi.eyebrow}>Library</p>
+          <h1 className={libUi.title}>{exam.shortName} study hub</h1>
+          <p className={cn(libUi.subtitle, "mt-0.5 line-clamp-2 max-w-lg")}>{stats.motivationalMessage}</p>
         </div>
       </div>
 
-      <div className={cn(refUi.chipRow, "w-full sm:w-auto sm:flex-wrap")}>
+      <div className={cn(libUi.chipRow, "w-full sm:w-auto sm:flex-wrap")}>
         <StatPill icon={Target} label="Readiness" value={`${stats.readinessScore}%`} />
         <StatPill icon={Flame} label="Streak" value={`${stats.studyStreakDays}d`} />
         {stats.overallAccuracy != null ? (
@@ -64,7 +64,7 @@ function StatPill({
   value: string;
 }) {
   return (
-    <div className={refUi.statPill}>
+    <div className={libUi.statPill}>
       <Icon className="h-3.5 w-3.5 text-[var(--color-ink-muted)]" aria-hidden />
       <span className="text-[11px] font-medium text-[var(--color-ink-muted)]">{label}</span>
       <span className="tabular-nums">{value}</span>

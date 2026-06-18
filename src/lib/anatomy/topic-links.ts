@@ -2,7 +2,7 @@ import { getDiseaseLinkById } from "@/lib/anatomy/clinical-links/registry";
 import { getReviewModuleAnatomy } from "@/lib/anatomy/review-module-anatomy";
 import { expandTopicSlugAliases } from "@/lib/anatomy/topic-slug-aliases";
 import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
-import { normalizeWeakAreaTopicKey } from "@/lib/reference/weak-area-map";
+import { normalizeWeakAreaTopicKey } from "@/lib/library/weak-area-map";
 import { ANATOMY_STRUCTURES } from "./structures";
 import type { AnatomyStructure } from "./types";
 

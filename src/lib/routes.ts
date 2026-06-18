@@ -17,7 +17,7 @@ export const ROUTES = {
   fullExam: "/full-exam",
   questionBank: "/question-bank",
   analytics: "/analytics",
-  reference: "/reference",
+  library: "/library",
   anatomy: "/anatomy",
   anatomyCatalog: "/anatomy/catalog",
   highYieldTopics: "/dashboard/topics",

@@ -1,8 +1,8 @@
 import {
   deepDiveTopicHref,
   practiceTopicHref,
-  referenceCardHref,
-  referenceTopicHref,
+  libraryCardHref,
+  libraryTopicHref,
 } from "@/lib/edtech/practice-links";
 import { getAnatomyStructuresForTopicSlug, type AnatomyStructureLink } from "@/lib/anatomy/topic-links";
 import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
@@ -16,7 +16,7 @@ export type { AnatomyStructureLink };
 export type ExamTopicStudyLinks = {
   topic: string;
   topicKey: string;
-  referenceHref: string;
+  libraryHref: string;
   practiceHref: string;
   memoryCardIds: string[];
   reviewModuleSlug?: string;
@@ -63,7 +63,7 @@ export function getExamTopicStudyLinks(
   return {
     topic,
     topicKey,
-    referenceHref: referenceTopicHref(examSlug, topicKey),
+    libraryHref: libraryTopicHref(examSlug, topicKey),
     practiceHref: practiceTopicHref(
       examSlug,
       reviewModule?.practiceTopicSlug ?? topicKey,
@@ -76,7 +76,7 @@ export function getExamTopicStudyLinks(
       : undefined,
     firstCardHref:
       memoryCardIds[0] != null
-        ? referenceCardHref(examSlug, memoryCardIds[0]!)
+        ? libraryCardHref(examSlug, memoryCardIds[0]!)
         : undefined,
     anatomyStructures: getAnatomyStructuresForTopicSlug(
       reviewModule?.slug ?? topicKey,

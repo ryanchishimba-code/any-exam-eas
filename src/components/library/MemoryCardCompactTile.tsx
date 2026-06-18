@@ -1,9 +1,9 @@
 "use client";
 
 import { ChevronRight } from "lucide-react";
-import { MEMORY_CARD_KIND_LABELS, type MemoryCard } from "@/lib/reference/types";
-import { getMemoryCardPreview } from "@/lib/reference/card-preview";
-import { refUi } from "@/lib/reference/reference-ui";
+import { MEMORY_CARD_KIND_LABELS, type MemoryCard } from "@/lib/library/types";
+import { getMemoryCardPreview } from "@/lib/library/card-preview";
+import { libUi } from "@/lib/library/library-ui";
 import { cn } from "@/lib/utils";
 
 export function MemoryCardCompactTile({
@@ -16,7 +16,7 @@ export function MemoryCardCompactTile({
   onOpen: () => void;
 }) {
   return (
-    <button type="button" onClick={onOpen} className={refUi.cardCompact}>
+    <button type="button" onClick={onOpen} className={libUi.cardCompact}>
       <div className="flex items-center gap-2">
         <span className="rounded-full bg-[var(--color-accent)]/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-[var(--color-accent)]">
           {MEMORY_CARD_KIND_LABELS[card.kind]}

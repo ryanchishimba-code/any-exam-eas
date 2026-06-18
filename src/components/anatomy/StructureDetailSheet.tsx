@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { StructureDetailHeader, StructureDetailPanel } from "@/components/anatomy/StructureDetailPanel";
 import type { AnatomyStructure } from "@/lib/anatomy/types";
-import type { MemoryCard } from "@/lib/reference/types";
+import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
 
 type Props = {

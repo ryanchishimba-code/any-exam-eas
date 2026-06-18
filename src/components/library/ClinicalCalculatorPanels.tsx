@@ -6,7 +6,7 @@ import {
   CalcField,
   CalcResultPanel,
   parsePositiveNum,
-} from "@/components/reference/CalculatorUi";
+} from "@/components/library/CalculatorUi";
 import {
   bodyMassIndex,
   bodySurfaceArea,
@@ -21,7 +21,7 @@ import {
   type BmiUnitMode,
   type BsaFormula,
   type MetricConversionKind,
-} from "@/lib/reference/calculations/clinical-calcs";
+} from "@/lib/library/calculations/clinical-calcs";
 
 export type ClinicalCalcId =
   | "bmi"

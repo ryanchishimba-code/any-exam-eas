@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
-import { generateReferenceStudyBrief } from "@/lib/reference/generate-study-brief";
+import { generateLibraryStudyBrief } from "@/lib/library/generate-study-brief";
 import type { ExamSlug } from "@/types/edtech";
 
 export const runtime = "nodejs";
@@ -33,11 +33,11 @@ export async function GET(req: Request) {
   const refresh = url.searchParams.get("refresh") === "1";
 
   try {
-    const brief = await generateReferenceStudyBrief(premium.userId, examSlug, { refresh });
+    const brief = await generateLibraryStudyBrief(premium.userId, examSlug, { refresh });
     return NextResponse.json(
       { brief },
       {
-        headers: brief.cached ? { "X-Reference-Brief-Cache": "hit" } : { "X-Reference-Brief-Cache": "miss" },
+        headers: brief.cached ? { "X-Library-Brief-Cache": "hit" } : { "X-Library-Brief-Cache": "miss" },
       }
     );
   } catch (e) {

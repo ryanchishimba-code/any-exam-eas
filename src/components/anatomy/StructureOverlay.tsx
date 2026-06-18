@@ -7,7 +7,7 @@ import {
 } from "@/components/anatomy/StructureDetailPanel";
 import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
 import type { AnatomyStructure } from "@/lib/anatomy/types";
-import type { MemoryCard } from "@/lib/reference/types";
+import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 

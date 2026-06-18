@@ -1,6 +1,6 @@
-/** Apple-style surface tokens for the Reference Hub. */
-export const refUi = {
-  page: "reference-hub w-full min-w-0 max-w-full space-y-3 overflow-x-hidden sm:space-y-4",
+/** Apple-style surface tokens for the Library. */
+export const libUi = {
+  page: "library-hub w-full min-w-0 max-w-full space-y-3 overflow-x-hidden sm:space-y-4",
   pageShell:
     "rounded-[20px] border border-black/[0.04] bg-gradient-to-b from-[#f5f5f7] to-[#eef0f4] p-0.5 sm:rounded-[28px] sm:p-1.5",
   panel:

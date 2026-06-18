@@ -1,4 +1,4 @@
-import type { ReferenceFocusArea, ReferenceStudyBrief } from "./study-brief-types";
+import type { LibraryFocusArea, LibraryStudyBrief } from "./study-brief-types";
 
 /** UI display caps — tighter than storage/validation where helpful. */
 export const BRIEF_DISPLAY = {
@@ -10,7 +10,7 @@ export const BRIEF_DISPLAY = {
   maxBoardUpdateChars: 220,
 } as const;
 
-export type BriefFocusAreaDisplay = ReferenceFocusArea & {
+export type BriefFocusAreaDisplay = LibraryFocusArea & {
   /** Hide boilerplate studyAction when action buttons cover it. */
   showStudyAction: boolean;
 };
@@ -52,8 +52,8 @@ function isDuplicateOfKnown(text: string, known: Set<string>): boolean {
   return false;
 }
 
-/** Trim and dedupe brief content for the Reference Hub UI. */
-export function prepareBriefForDisplay(brief: ReferenceStudyBrief): BriefDisplayModel {
+/** Trim and dedupe brief content for the Library UI. */
+export function prepareBriefForDisplay(brief: LibraryStudyBrief): BriefDisplayModel {
   const headline = truncate(brief.headline, BRIEF_DISPLAY.maxHeadlineChars);
   const summary = truncate(brief.summary, BRIEF_DISPLAY.maxSummaryChars);
 

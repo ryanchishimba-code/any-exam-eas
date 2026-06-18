@@ -2,9 +2,9 @@ import { describe, expect, it } from "vitest";
 import {
   sanitizeBoardUpdates,
   sanitizeFocusAreas,
-  validateReferenceBrief,
+  validateLibraryBrief,
 } from "./brief-validation";
-import type { ReferenceStudyBrief } from "./study-brief-types";
+import type { LibraryStudyBrief } from "./study-brief-types";
 
 describe("brief-validation", () => {
   it("sanitizes focus areas and drops empty pearls", () => {
@@ -36,8 +36,8 @@ describe("brief-validation", () => {
     expect(updates).toHaveLength(2);
   });
 
-  it("validateReferenceBrief strips invalid sources", () => {
-    const brief: ReferenceStudyBrief = {
+  it("validateLibraryBrief strips invalid sources", () => {
+    const brief: LibraryStudyBrief = {
       generatedAt: new Date().toISOString(),
       examSlug: "nclex",
       headline: "  Focus review  ",
@@ -52,7 +52,7 @@ describe("brief-validation", () => {
       aiPowered: true,
       memoryCardIds: [],
     };
-    const out = validateReferenceBrief(brief);
+    const out = validateLibraryBrief(brief);
     expect(out.headline).toBe("Focus review");
     expect(out.sources).toHaveLength(1);
   });

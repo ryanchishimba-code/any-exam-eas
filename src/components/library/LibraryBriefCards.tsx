@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
-import { MemoryCardTile } from "@/components/reference/MemoryCardTile";
-import type { MemoryCard } from "@/lib/reference/types";
+import { MemoryCardTile } from "@/components/library/MemoryCardTile";
+import type { MemoryCard } from "@/lib/library/types";
 
 type Props = {
   cards: MemoryCard[];
@@ -11,7 +11,7 @@ type Props = {
   onOpenCard: (card: MemoryCard) => void;
 };
 
-export function ReferenceBriefCards({ cards, cardIds, onOpenCard }: Props) {
+export function LibraryBriefCards({ cards, cardIds, onOpenCard }: Props) {
   const byId = new Map(cards.map((c) => [c.id, c]));
   const recommended = cardIds
     .map((id) => byId.get(id))

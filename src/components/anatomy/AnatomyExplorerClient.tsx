@@ -22,7 +22,7 @@ import { createCatalogOnlyBundle, createSupportiveBundle } from "@/lib/anatomy/s
 import type { AnatomySurfaceId } from "@/lib/anatomy/systems/surfaces/types";
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
 import { DEFAULT_STUDY_LAYERS } from "@/lib/anatomy/cartoon/layer-styles";
-import type { MemoryCard } from "@/lib/reference/types";
+import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";

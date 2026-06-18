@@ -26,13 +26,13 @@ import {
 } from "@/lib/edtech/practice-links";
 import { getAnatomyStructuresForMemoryCardIds } from "@/lib/anatomy/topic-links";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
-import { getCardMastery, setCardMastery } from "@/lib/reference/card-mastery";
-import { relatedDrugsForMemoryCard } from "@/lib/reference/hub-search";
-import { getRelatedMemoryCards } from "@/lib/reference/related-cards";
+import { getCardMastery, setCardMastery } from "@/lib/library/card-mastery";
+import { relatedDrugsForMemoryCard } from "@/lib/library/hub-search";
+import { getRelatedMemoryCards } from "@/lib/library/related-cards";
 import {
   MEMORY_CARD_KIND_LABELS,
   type MemoryCard,
-} from "@/lib/reference/types";
+} from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 

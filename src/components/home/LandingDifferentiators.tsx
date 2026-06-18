@@ -18,7 +18,7 @@ const ITEMS = [
   },
   {
     icon: Layers,
-    title: "Reference Hub & Memory Cards",
+    title: "Library & Memory Cards",
     detail:
       "High-yield flip cards by subject, weak-area shortcuts, and deep links to Review Modules — your study home base beyond the question bank.",
   },

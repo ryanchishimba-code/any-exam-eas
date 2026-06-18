@@ -17,7 +17,7 @@ export type EnrichedBankItem = BankItem & {
 export type RelatedStudyMeta = {
   /** Deep Dive review module on /dashboard/topics. */
   reviewModuleSlug?: string;
-  /** Memory cards on /reference. */
+  /** Memory cards on /library. */
   memoryCardIds?: string[];
   /** Related Top 500 drug names. */
   top500Drugs?: string[];

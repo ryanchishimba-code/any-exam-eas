@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { refUi } from "@/lib/reference/reference-ui";
+import { libUi } from "@/lib/library/library-ui";
 import { cn } from "@/lib/utils";
 
 const BASE_SECTIONS = [
@@ -12,7 +12,7 @@ const BASE_SECTIONS = [
   { id: "memory-cards", label: "Library" },
 ] as const;
 
-export function ReferenceHubNav({ examSlug }: { examSlug?: string }) {
+export function LibraryHubNav({ examSlug }: { examSlug?: string }) {
   const sections = BASE_SECTIONS.filter(
     (s) =>
       !("clinicalExam" in s && s.clinicalExam) ||
@@ -48,14 +48,14 @@ export function ReferenceHubNav({ examSlug }: { examSlug?: string }) {
   }, [examSlug]);
 
   return (
-    <nav aria-label="Reference hub sections" className={refUi.chipRow}>
+    <nav aria-label="Library sections" className={libUi.chipRow}>
       {sections.map((section) => (
         <a
           key={section.id}
           href={`#${section.id}`}
           className={cn(
-            refUi.chip,
-            active === section.id ? refUi.chipActive : refUi.chipIdle
+            libUi.chip,
+            active === section.id ? libUi.chipActive : libUi.chipIdle
           )}
         >
           {section.label}

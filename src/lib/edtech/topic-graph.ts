@@ -1,6 +1,6 @@
 import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
-import { getMemoryCardsByReviewModuleSlug } from "@/lib/reference/seeds";
-import type { MemoryCard } from "@/lib/reference/types";
+import { getMemoryCardsByReviewModuleSlug } from "@/lib/library/seeds";
+import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
 
 /** Human-readable titles for review module slugs (links, rationales). */

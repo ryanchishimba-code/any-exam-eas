@@ -2,7 +2,7 @@ import type { ConceptMasterySnapshot, RemediationRecommendation } from "./types"
 import { mistakeCategoryLabel } from "./mistake-analysis";
 import type { MistakeCategory } from "./types";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
-import { getExamTopicStudyLinks } from "@/lib/reference/exam-topic-bridge";
+import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 
 export function buildRemediationRecommendations(params: {

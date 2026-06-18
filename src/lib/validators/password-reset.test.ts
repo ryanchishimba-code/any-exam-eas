@@ -3,8 +3,8 @@ import {
   FORGOT_PASSWORD_SUCCESS_MESSAGE,
   forgotPasswordSchema,
   resetPasswordSchema,
-  strongPasswordError,
 } from "@/lib/validators/password-reset";
+import { passwordError } from "@/lib/validators/password-policy";
 
 describe("forgotPasswordSchema", () => {
   it("accepts a valid email and normalizes it", () => {
@@ -23,43 +23,43 @@ describe("forgotPasswordSchema", () => {
 });
 
 describe("resetPasswordSchema", () => {
-  it("accepts newPassword with strong rules", () => {
+  it("accepts newPassword that meets the policy", () => {
     const result = resetPasswordSchema.parse({
       token: "abc",
-      newPassword: "Secure1!",
+      newPassword: "SecurePass1",
     });
-    expect(result.newPassword).toBe("Secure1!");
+    expect(result.newPassword).toBe("SecurePass1");
   });
 
   it("accepts legacy password field", () => {
     const result = resetPasswordSchema.parse({
       token: "abc",
-      password: "Secure1!",
+      password: "SecurePass1",
     });
-    expect(result.newPassword).toBe("Secure1!");
+    expect(result.newPassword).toBe("SecurePass1");
   });
 
-  it("rejects weak passwords", () => {
+  it("rejects passwords that violate the policy", () => {
     expect(() =>
-      resetPasswordSchema.parse({ token: "abc", newPassword: "short" })
+      resetPasswordSchema.parse({ token: "abc", newPassword: "short1" })
     ).toThrow();
     expect(() =>
-      resetPasswordSchema.parse({ token: "abc", newPassword: "NoSymbol1" })
+      resetPasswordSchema.parse({ token: "abc", newPassword: "1234567890" })
     ).toThrow();
     expect(() =>
-      resetPasswordSchema.parse({ token: "abc", newPassword: "NoNumber!" })
+      resetPasswordSchema.parse({ token: "abc", newPassword: "abcdefghij" })
     ).toThrow();
   });
 });
 
-describe("strongPasswordError", () => {
+describe("passwordError", () => {
   it("returns null for valid passwords", () => {
-    expect(strongPasswordError("ValidPass1!")).toBeNull();
+    expect(passwordError("ValidPass1")).toBeNull();
   });
 
   it("reports missing requirements", () => {
-    expect(strongPasswordError("abc")).toMatch(/8 characters/);
-    expect(strongPasswordError("abcdefgh")).toMatch(/number/);
-    expect(strongPasswordError("Abcdefg1")).toMatch(/symbol/);
+    expect(passwordError("abc")).toMatch(/10 characters/);
+    expect(passwordError("abcdefghij")).toMatch(/number/);
+    expect(passwordError("1234567890")).toMatch(/letter/);
   });
 });

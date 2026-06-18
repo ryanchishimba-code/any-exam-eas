@@ -6,7 +6,7 @@ import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import {
   getExamTopicStudyLinks,
   getWeakTopicsFromBreakdown,
-} from "@/lib/reference/exam-topic-bridge";
+} from "@/lib/library/exam-topic-bridge";
 import type { FullExamTopicBreakdown } from "@/types/full-exam";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -31,7 +31,7 @@ export function FullExamStudyLinks({ examSlug, topicBreakdown }: Props) {
         </h2>
       </div>
       <p className="mt-1 text-sm text-slate-600">
-        Jump to your Reference hub — memory cards, review modules, and targeted practice.
+        Jump to your Library — memory cards, review modules, and targeted practice.
       </p>
 
       <ul className="mt-4 space-y-3">
@@ -54,11 +54,11 @@ export function FullExamStudyLinks({ examSlug, topicBreakdown }: Props) {
                 </div>
                 <div className="flex flex-wrap gap-2">
                   <Link
-                    href={links.referenceHref}
+                    href={links.libraryHref}
                     className="inline-flex items-center gap-1 rounded-lg bg-violet-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-violet-700"
                   >
                     <Sparkles className="h-3.5 w-3.5" aria-hidden />
-                    Reference
+                    Library
                   </Link>
                   <Link
                     href={links.practiceHref}

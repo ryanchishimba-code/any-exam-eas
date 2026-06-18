@@ -8,9 +8,9 @@ import { AnatomyExploreBridge } from "@/components/anatomy/AnatomyExploreBridge"
 import { REVIEW_MODULE_SECTION_ORDER } from "@/lib/edtech/review-modules/types";
 import type { AnatomyDiseasePearl, AnatomyStructureLink } from "@/lib/anatomy/topic-links";
 import type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
-import type { MemoryCard } from "@/lib/reference/types";
+import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
-import { MEMORY_CARD_KIND_LABELS } from "@/lib/reference/types";
+import { MEMORY_CARD_KIND_LABELS } from "@/lib/library/types";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 

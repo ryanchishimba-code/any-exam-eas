@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { CalculationResult } from "@/lib/reference/calculations/clinical-calcs";
+import type { CalculationResult } from "@/lib/library/calculations/clinical-calcs";
 
 export function parsePositiveNum(value: string): number | null {
   const n = Number.parseFloat(value);

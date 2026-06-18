@@ -4,17 +4,17 @@ import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { RefreshCw, Sparkles } from "lucide-react";
-import { ReferenceBriefSources } from "@/components/reference/ReferenceBriefSources";
-import { practiceTopicHref, referenceTopicHref } from "@/lib/edtech/practice-links";
+import { LibraryBriefSources } from "@/components/library/LibraryBriefSources";
+import { practiceTopicHref, libraryTopicHref } from "@/lib/edtech/practice-links";
 import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
-import { prepareBriefForDisplay } from "@/lib/reference/brief-display";
-import type { ReferenceStudyBrief } from "@/lib/reference/study-brief-types";
+import { prepareBriefForDisplay } from "@/lib/library/brief-display";
+import type { LibraryStudyBrief } from "@/lib/library/study-brief-types";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
 type Props = {
   examSlug: ExamSlug;
-  onBriefLoaded?: (brief: ReferenceStudyBrief) => void;
+  onBriefLoaded?: (brief: LibraryStudyBrief) => void;
 };
 
 const BRIEF_SURFACE =
@@ -51,8 +51,8 @@ function BriefActionButton({
   );
 }
 
-export function ReferenceAiBrief({ examSlug, onBriefLoaded }: Props) {
-  const [brief, setBrief] = useState<ReferenceStudyBrief | null>(null);
+export function LibraryAiBrief({ examSlug, onBriefLoaded }: Props) {
+  const [brief, setBrief] = useState<LibraryStudyBrief | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [retryAfterSec, setRetryAfterSec] = useState<number | null>(null);
@@ -71,8 +71,8 @@ export function ReferenceAiBrief({ examSlug, onBriefLoaded }: Props) {
       try {
         const qs = new URLSearchParams({ exam: examSlug });
         if (refresh) qs.set("refresh", "1");
-        const res = await fetch(`/api/reference/brief?${qs.toString()}`);
-        const data = (await res.json()) as { brief?: ReferenceStudyBrief; error?: string };
+        const res = await fetch(`/api/library/brief?${qs.toString()}`);
+        const data = (await res.json()) as { brief?: LibraryStudyBrief; error?: string };
 
         if (res.status === 429) {
           const retry = Number(res.headers.get("Retry-After") ?? "30");
@@ -227,7 +227,7 @@ export function ReferenceAiBrief({ examSlug, onBriefLoaded }: Props) {
                         Practice 10
                       </BriefActionButton>
                       <BriefActionButton
-                        href={referenceTopicHref(examSlug, area.topicKey)}
+                        href={libraryTopicHref(examSlug, area.topicKey)}
                         className="h-10 border border-slate-300 bg-slate-100 px-3 text-[11px] text-slate-900 hover:bg-slate-200 sm:h-9"
                       >
                         Memory cards
@@ -244,7 +244,7 @@ export function ReferenceAiBrief({ examSlug, onBriefLoaded }: Props) {
             ) : null}
 
             {brief && brief.sources.length > 0 ? (
-              <ReferenceBriefSources
+              <LibraryBriefSources
                 sources={brief.sources.slice(0, 8)}
                 variant="dark"
                 ctaClass={theme.ctaClass}

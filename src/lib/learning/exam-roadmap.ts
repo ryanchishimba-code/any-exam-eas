@@ -15,7 +15,7 @@ import {
   type BlueprintCategory,
   type ExamBlueprint,
 } from "@/lib/engine/blueprints";
-import { getExamTopicStudyLinks } from "@/lib/reference/exam-topic-bridge";
+import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import { prisma } from "@/lib/prisma";
 
 export type RoadmapReadinessKey = "strong" | "needs_review" | "needs_more_work";

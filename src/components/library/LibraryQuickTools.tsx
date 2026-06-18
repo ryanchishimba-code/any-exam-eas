@@ -19,12 +19,12 @@ import {
   highYieldTopicsHref,
   practiceTopicHref,
   questionBankHref,
-  referenceTopicHref,
+  libraryTopicHref,
   top500Href,
 } from "@/lib/edtech/practice-links";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
-import { refUi } from "@/lib/reference/reference-ui";
+import { libUi } from "@/lib/library/library-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -42,7 +42,7 @@ type Tool = {
   icon: typeof BookOpen;
 };
 
-export function ReferenceQuickTools({ examSlug }: { examSlug: ExamSlug }) {
+export function LibraryQuickTools({ examSlug }: { examSlug: ExamSlug }) {
   const fieldId = EXAM_CATALOG[examSlug].fieldId;
   const clinical = hasClinicalStudyTools(examSlug);
   const tools: Tool[] = [
@@ -78,7 +78,7 @@ export function ReferenceQuickTools({ examSlug }: { examSlug: ExamSlug }) {
   if (idTopic) {
     tools.splice(2, 0, {
       label: idTopic.label,
-      href: referenceTopicHref(examSlug, idTopic.topicKey),
+      href: libraryTopicHref(examSlug, idTopic.topicKey),
       icon: Microscope,
     });
   }
@@ -107,21 +107,21 @@ export function ReferenceQuickTools({ examSlug }: { examSlug: ExamSlug }) {
   return (
     <section id="hub-tools" aria-labelledby="quick-tools-heading" className="space-y-3">
       <div>
-        <h2 id="quick-tools-heading" className={refUi.sectionTitle}>
+        <h2 id="quick-tools-heading" className={libUi.sectionTitle}>
           Quick tools
         </h2>
-        <p className={cn(refUi.sectionHint, "mt-0.5")}>
+        <p className={cn(libUi.sectionHint, "mt-0.5")}>
           Jump to practice, analytics, and deep reference.
         </p>
       </div>
-      <div className={cn(refUi.chipRow, "snap-x snap-mandatory")}>
+      <div className={cn(libUi.chipRow, "snap-x snap-mandatory")}>
         {tools.map((tool) => (
           <Link
             key={tool.label}
             href={tool.href}
             className={cn(
-              refUi.chip,
-              refUi.chipIdle,
+              libUi.chip,
+              libUi.chipIdle,
               "min-w-[9.5rem] snap-start justify-between pr-2.5"
             )}
           >

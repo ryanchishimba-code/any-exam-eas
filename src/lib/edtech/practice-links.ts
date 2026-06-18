@@ -110,21 +110,21 @@ export function deepDiveTopicHref(examSlug: ExamSlug, topicSlug: string): string
   return highYieldTopicHref(examSlug, topicSlug, { deepDive: true });
 }
 
-export function referenceHref(examSlug?: ExamSlug): string {
-  if (!examSlug) return ROUTES.reference;
-  return `${ROUTES.reference}?exam=${encodeURIComponent(examSlug)}`;
+export function libraryHref(examSlug?: ExamSlug): string {
+  if (!examSlug) return ROUTES.library;
+  return `${ROUTES.library}?exam=${encodeURIComponent(examSlug)}`;
 }
 
 /** Future Stats integration: link to reference filtered by memory card id. */
-export function referenceCardHref(examSlug: ExamSlug, cardId: string): string {
+export function libraryCardHref(examSlug: ExamSlug, cardId: string): string {
   const qs = new URLSearchParams({ exam: examSlug, card: cardId });
-  return `${ROUTES.reference}?${qs.toString()}`;
+  return `${ROUTES.library}?${qs.toString()}`;
 }
 
 /** Link to reference hub with weak-area / topic recommendations highlighted. */
-export function referenceTopicHref(examSlug: ExamSlug, topicKey: string): string {
+export function libraryTopicHref(examSlug: ExamSlug, topicKey: string): string {
   const qs = new URLSearchParams({ exam: examSlug, topic: topicKey });
-  return `${ROUTES.reference}?${qs.toString()}`;
+  return `${ROUTES.library}?${qs.toString()}`;
 }
 
 /** Deep link to anatomy explorer with optional structure pre-selection. */

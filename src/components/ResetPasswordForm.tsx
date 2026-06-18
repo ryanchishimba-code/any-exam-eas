@@ -6,11 +6,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Check, Eye, EyeOff, Loader2, X } from "lucide-react";
 import { Button } from "./ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
+import { PASSWORD_RESET_EXPIRY_MINUTES } from "@/lib/validators/password-reset";
 import {
-  PASSWORD_RESET_EXPIRY_MINUTES,
-  checkStrongPassword,
-  strongPasswordError,
-} from "@/lib/validators/password-reset";
+  PASSWORD_MIN_LENGTH,
+  checkPassword,
+  isPasswordValid,
+  passwordError,
+  passwordRequirements,
+} from "@/lib/validators/password-policy";
 import { cn } from "@/lib/utils";
 
 function PasswordField({
@@ -44,7 +47,7 @@ function PasswordField({
           id={id}
           required
           type={show ? "text" : "password"}
-          minLength={8}
+          minLength={PASSWORD_MIN_LENGTH}
           autoComplete={autoComplete}
           value={value}
           onChange={(e) => onChange(e.target.value)}
@@ -96,8 +99,8 @@ export function ResetPasswordForm() {
   const [tokenExpired, setTokenExpired] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const checks = useMemo(() => checkStrongPassword(password), [password]);
-  const passwordReady = checks.minLength && checks.hasNumber && checks.hasSymbol;
+  const checks = useMemo(() => checkPassword(password), [password]);
+  const passwordReady = isPasswordValid(password);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -109,7 +112,7 @@ export function ResetPasswordForm() {
       return;
     }
 
-    const strengthError = strongPasswordError(password);
+    const strengthError = passwordError(password);
     if (strengthError) {
       setError(strengthError);
       return;
@@ -185,9 +188,9 @@ export function ResetPasswordForm() {
       />
 
       <ul id={requirementsId} className="space-y-1 rounded-xl border border-black/[0.06] bg-[var(--color-surface)] px-4 py-3" aria-live="polite">
-        <RequirementRow met={checks.minLength} label="At least 8 characters" />
-        <RequirementRow met={checks.hasNumber} label="At least one number" />
-        <RequirementRow met={checks.hasSymbol} label="At least one symbol (!@#$…)" />
+        {passwordRequirements.map((req) => (
+          <RequirementRow key={req.id} met={checks[req.id]} label={req.label} />
+        ))}
       </ul>
 
       <PasswordField

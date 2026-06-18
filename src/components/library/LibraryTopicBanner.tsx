@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { BookOpen, Sparkles, X } from "lucide-react";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
-import { practiceTopicHref, referenceHref } from "@/lib/edtech/practice-links";
+import { practiceTopicHref, libraryHref } from "@/lib/edtech/practice-links";
 import { getAnatomyStructuresForTopicSlug } from "@/lib/anatomy/topic-links";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -14,7 +14,7 @@ type Props = {
   memoryCardIds?: string[];
 };
 
-export function ReferenceTopicBanner({ examSlug, topicKey, cardCount, memoryCardIds = [] }: Props) {
+export function LibraryTopicBanner({ examSlug, topicKey, cardCount, memoryCardIds = [] }: Props) {
   const label = topicKey.replace(/-/g, " ");
   const anatomyStructures = getAnatomyStructuresForTopicSlug(topicKey, { memoryCardIds });
 
@@ -39,7 +39,7 @@ export function ReferenceTopicBanner({ examSlug, topicKey, cardCount, memoryCard
             Practice 10
           </Link>
           <Link
-            href={referenceHref(examSlug)}
+            href={libraryHref(examSlug)}
             className="inline-flex items-center gap-1 rounded-full border border-black/[0.08] bg-white px-3.5 py-2 text-[12px] font-semibold text-[var(--color-ink)] hover:bg-black/[0.02]"
           >
             <X className="h-3.5 w-3.5" aria-hidden />

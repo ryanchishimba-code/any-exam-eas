@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { ArrowRight, Sparkles, TrendingDown } from "lucide-react";
-import { MemoryCardCompactTile } from "@/components/reference/MemoryCardCompactTile";
-import { practiceTopicHref, referenceTopicHref } from "@/lib/edtech/practice-links";
-import { resolveCardsNeedingReview } from "@/lib/reference/card-mastery";
-import { getRecommendedMemoryCards } from "@/lib/reference/memory-cards";
-import { getPinnedMemoryCardIds } from "@/lib/reference/pinned-essentials";
-import { resolveRecentMemoryCards } from "@/lib/reference/recent-cards";
-import { refUi } from "@/lib/reference/reference-ui";
+import { MemoryCardCompactTile } from "@/components/library/MemoryCardCompactTile";
+import { practiceTopicHref, libraryTopicHref } from "@/lib/edtech/practice-links";
+import { resolveCardsNeedingReview } from "@/lib/library/card-mastery";
+import { getRecommendedMemoryCards } from "@/lib/library/memory-cards";
+import { getPinnedMemoryCardIds } from "@/lib/library/pinned-essentials";
+import { resolveRecentMemoryCards } from "@/lib/library/recent-cards";
+import { libUi } from "@/lib/library/library-ui";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
-import type { MemoryCard } from "@/lib/reference/types";
+import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -73,7 +73,7 @@ function buildPickedCards(
   return ordered.slice(0, 6);
 }
 
-export function ReferenceTodayRow({
+export function LibraryTodayRow({
   examSlug,
   cards,
   weakTopics,
@@ -91,24 +91,24 @@ export function ReferenceTodayRow({
         <div>
           <div className="flex items-center gap-2">
             <Sparkles className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
-            <h2 id="hub-picks-heading" className={refUi.sectionTitle}>
+            <h2 id="hub-picks-heading" className={libUi.sectionTitle}>
               Picked for you
             </h2>
           </div>
-          <p className={cn(refUi.sectionHint, "mt-0.5")}>
+          <p className={cn(libUi.sectionHint, "mt-0.5")}>
             Due cards and weak areas — tap to open.
           </p>
         </div>
       </div>
 
       {weakTopics.length > 0 ? (
-        <div className={refUi.chipRow}>
+        <div className={libUi.chipRow}>
           {weakTopics.slice(0, 4).map((topic) => {
             const slug = topic.id.replace(/^(tag|subject):/, "");
             return (
               <div key={topic.id} className="inline-flex shrink-0 snap-start items-center overflow-hidden rounded-full border border-amber-200/70 bg-amber-50/80">
                 <Link
-                  href={referenceTopicHref(examSlug, slug)}
+                  href={libraryTopicHref(examSlug, slug)}
                   className="inline-flex items-center gap-1.5 px-3 py-2 text-[12px] font-semibold text-amber-950"
                 >
                   <TrendingDown className="h-3.5 w-3.5 text-amber-600" aria-hidden />
@@ -129,7 +129,7 @@ export function ReferenceTodayRow({
       ) : null}
 
       {picked.length > 0 ? (
-        <div className={cn(refUi.chipRow, "snap-x snap-mandatory px-0.5")}>
+        <div className={cn(libUi.chipRow, "snap-x snap-mandatory px-0.5")}>
           {picked.map(({ card, badge }) => (
             <MemoryCardCompactTile
               key={card.id}

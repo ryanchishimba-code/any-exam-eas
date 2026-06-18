@@ -3,14 +3,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { AlertCircle } from "lucide-react";
-import { MemoryCardTile } from "@/components/reference/MemoryCardTile";
-import { resolveCardsNeedingReview } from "@/lib/reference/card-mastery";
-import type { MemoryCard } from "@/lib/reference/types";
+import { MemoryCardTile } from "@/components/library/MemoryCardTile";
+import { resolveCardsNeedingReview } from "@/lib/library/card-mastery";
+import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
 
 const MASTERY_EVENT = "aee-card-mastery-change";
 
-export function ReferenceCardsDue({
+export function LibraryCardsDue({
   examSlug,
   cards,
   onOpenCard,

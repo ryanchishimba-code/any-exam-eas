@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, TrendingDown } from "lucide-react";
-import { MemoryCardTile } from "@/components/reference/MemoryCardTile";
-import { referenceTopicHref, practiceTopicHref } from "@/lib/edtech/practice-links";
-import { getRecommendedMemoryCards } from "@/lib/reference/memory-cards";
-import { resolveCardsNeedingReview } from "@/lib/reference/card-mastery";
-import { getPinnedMemoryCardIds } from "@/lib/reference/pinned-essentials";
-import type { MemoryCard } from "@/lib/reference/types";
+import { MemoryCardTile } from "@/components/library/MemoryCardTile";
+import { libraryTopicHref, practiceTopicHref } from "@/lib/edtech/practice-links";
+import { getRecommendedMemoryCards } from "@/lib/library/memory-cards";
+import { resolveCardsNeedingReview } from "@/lib/library/card-mastery";
+import { getPinnedMemoryCardIds } from "@/lib/library/pinned-essentials";
+import type { MemoryCard } from "@/lib/library/types";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -20,7 +20,7 @@ type Props = {
   onOpenCard: (card: MemoryCard) => void;
 };
 
-export function ReferenceForYou({
+export function LibraryForYou({
   examSlug,
   cards,
   weakTopics,
@@ -77,7 +77,7 @@ export function ReferenceForYou({
               className="inline-flex items-center gap-1"
             >
               <Link
-                href={referenceTopicHref(examSlug, slug)}
+                href={libraryTopicHref(examSlug, slug)}
                 className="inline-flex items-center gap-2 rounded-l-full border border-amber-200/80 bg-amber-50/80 px-3 py-1.5 text-xs font-semibold text-amber-900 transition hover:border-amber-300 hover:bg-amber-100"
               >
                 <TrendingDown className="h-3.5 w-3.5 text-amber-600" aria-hidden />

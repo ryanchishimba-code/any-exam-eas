@@ -15,7 +15,7 @@ import { firstName } from "@/lib/client/returning-user";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import {
   questionBankHref,
-  referenceHref,
+  libraryHref,
 } from "@/lib/edtech/practice-links";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import { dbUi } from "@/lib/study/dashboard-ui";
@@ -37,9 +37,9 @@ const QUICK_ACTIONS = [
     icon: BookOpen,
   },
   {
-    title: "Reference",
+    title: "Library",
     description: "Brief & memory cards",
-    href: (slug: ExamSlug) => referenceHref(slug),
+    href: (slug: ExamSlug) => libraryHref(slug),
     icon: BookMarked,
   },
 ] as const;

@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 const BASE_ITEMS = [
   { href: ROUTES.dashboard, label: "Home", icon: LayoutGrid, exact: true },
-  { href: ROUTES.reference, label: "Ref", icon: BookMarked, ariaLabel: "Study Reference" },
+  { href: ROUTES.library, label: "Library", icon: BookMarked, ariaLabel: "Library" },
   { href: ROUTES.anatomy, label: "Anatomy", icon: Bone, ariaLabel: "Anatomy Explorer", clinicalOnly: true },
   { href: ROUTES.fullExam, label: "Exam", icon: Clock },
   { href: ROUTES.questionBank, label: "Bank", icon: BookOpen, ariaLabel: "Question Bank" },

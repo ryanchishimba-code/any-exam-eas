@@ -14,7 +14,7 @@ import {
   analyticsHref,
   highYieldTopicsHref,
   questionBankHref,
-  referenceHref,
+  libraryHref,
 } from "@/lib/edtech/practice-links";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
@@ -47,9 +47,9 @@ export function DashboardContinueRow({ examSlug }: { examSlug: ExamSlug }) {
       icon: BookOpen,
     },
     {
-      title: "Study Reference",
+      title: "Library",
       description: "AI brief and memory cards.",
-      href: referenceHref(examSlug),
+      href: libraryHref(examSlug),
       cta: "Open reference",
       icon: BookMarked,
     },

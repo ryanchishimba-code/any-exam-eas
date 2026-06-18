@@ -116,7 +116,7 @@ export function HomeBottomCta() {
           </span>
           <span className="mt-1 block sm:mt-0 sm:inline">
             <span className="hidden sm:inline"> · </span>
-            Reference Hub · Review Modules · Anatomy Studio · cancel anytime
+            Library · Review Modules · Anatomy Studio · cancel anytime
           </span>
         </p>
         <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">

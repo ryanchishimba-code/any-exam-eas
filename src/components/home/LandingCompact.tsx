@@ -77,7 +77,7 @@ const VALUE_PILLARS = [
   },
   {
     icon: Brain,
-    title: "Reference Hub & Memory Cards",
+    title: "Library & Memory Cards",
     detail: "High-yield flip cards, weak-area shortcuts, and links to Review Modules.",
   },
   {

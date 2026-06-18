@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 const BASE_NAV_ITEMS = [
   { href: ROUTES.dashboard, label: "Dashboard", icon: LayoutGrid, exact: true },
-  { href: ROUTES.reference, label: "Reference", icon: BookMarked },
+  { href: ROUTES.library, label: "Library", icon: BookMarked },
   { href: ROUTES.fullExam, label: "Full Exam", icon: Clock },
   { href: "__question_bank__", label: "Question Bank", icon: BookOpen },
   { href: ROUTES.anatomy, label: "Anatomy Explorer", icon: Bone, clinicalOnly: true },

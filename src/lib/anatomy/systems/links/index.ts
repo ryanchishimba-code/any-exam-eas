@@ -3,7 +3,7 @@
  * No viewer dependency.
  */
 
-import type { MemoryCard } from "@/lib/reference/types";
+import type { MemoryCard } from "@/lib/library/types";
 import {
   anatomyPracticeHref,
   highYieldTopicHref,

@@ -1,22 +1,22 @@
 "use client";
 
 import { ExternalLink } from "lucide-react";
-import { getReferenceExternalResources } from "@/lib/reference/external-resources";
-import { refUi } from "@/lib/reference/reference-ui";
+import { getLibraryExternalResources } from "@/lib/library/external-resources";
+import { libUi } from "@/lib/library/library-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
-export function ReferenceExternalResources({ examSlug }: { examSlug: ExamSlug }) {
-  const resources = getReferenceExternalResources(examSlug);
+export function LibraryExternalResources({ examSlug }: { examSlug: ExamSlug }) {
+  const resources = getLibraryExternalResources(examSlug);
   if (resources.length === 0) return null;
 
   return (
     <section id="hub-sources" aria-labelledby="external-resources-heading" className="space-y-3">
       <div>
-        <h2 id="external-resources-heading" className={refUi.sectionTitle}>
+        <h2 id="external-resources-heading" className={libUi.sectionTitle}>
           Trusted sources
         </h2>
-        <p className={cn(refUi.sectionHint, "mt-0.5")}>
+        <p className={cn(libUi.sectionHint, "mt-0.5")}>
           Guideline and reference sites linked from memory cards — open in a new tab.
         </p>
       </div>
@@ -28,8 +28,8 @@ export function ReferenceExternalResources({ examSlug }: { examSlug: ExamSlug })
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              refUi.chip,
-              refUi.chipIdle,
+              libUi.chip,
+              libUi.chipIdle,
               "h-auto flex-col items-start gap-0.5 px-3 py-2.5 text-left"
             )}
           >

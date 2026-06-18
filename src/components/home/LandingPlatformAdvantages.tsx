@@ -45,7 +45,7 @@ export const LANDING_PLATFORM_ADVANTAGES: PlatformAdvantage[] = [
  icon: FlaskConical,
  title: "Normal lab values",
  description:
- "Quick-reference ranges in the Reference Hub so you can interpret stems without leaving your study session.",
+ "Quick-reference ranges in the Library so you can interpret stems without leaving your study session.",
  },
  {
  icon: Calculator,

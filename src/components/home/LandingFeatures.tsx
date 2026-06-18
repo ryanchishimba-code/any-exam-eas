@@ -35,7 +35,7 @@ const benefits = [
   {
     icon: Layers,
     visualId: "hero-app-mockup",
-    outcome: "Reference Hub",
+    outcome: "Library",
     title: "Memory Cards & weak-area shortcuts",
     description:
       "Flip high-yield cards by subject, open linked Review Modules, and jump to drugs or anatomy from one study home base.",
@@ -104,7 +104,7 @@ export function LandingFeatures() {
             <span className="aee-display-accent-vibrant">serious licensing prep</span>
           </h2>
           <p className="mx-auto mt-2 max-w-xl text-sm text-[var(--color-ink-muted)]">
-            Curated question banks, Reference Hub, Review Modules, Anatomy Studio, and timed
+            Curated question banks, Library, Review Modules, Anatomy Studio, and timed
             simulations — without paying separately for each exam.
           </p>
         </div>

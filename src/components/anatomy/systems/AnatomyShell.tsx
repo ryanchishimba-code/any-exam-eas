@@ -10,7 +10,7 @@ import { SurfaceHost } from "@/components/anatomy/systems/SurfaceHost";
 import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
 import type { AnatomyBundle } from "@/lib/anatomy/systems/kernel/compose";
 import type { AnatomyLayer, AnatomyStructure, AnatomySystem } from "@/lib/anatomy/types";
-import type { MemoryCard } from "@/lib/reference/types";
+import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 

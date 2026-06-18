@@ -1,6 +1,6 @@
 import type { ExamSlug } from "@/types/edtech";
 
-/** Clinical study tools (Anatomy, Reference Hub, Top 500) are available for all board exams. */
+/** Clinical study tools (Anatomy, Library, Top 500) are available for all board exams. */
 export function hasClinicalStudyTools(_slug: ExamSlug | string | null | undefined): boolean {
   return true;
 }

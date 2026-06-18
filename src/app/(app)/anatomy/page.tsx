@@ -7,7 +7,7 @@ import { redirectMpjeFromClinicalRoutes } from "@/lib/edtech/exam-content-scope"
 import { getPrimaryStructureIdForProcedure } from "@/lib/anatomy/procedure-recommendations";
 import { getAnatomyStructure } from "@/lib/anatomy";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
-import { loadMemoryCards } from "@/lib/reference/memory-cards";
+import { loadMemoryCards } from "@/lib/library/memory-cards";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";

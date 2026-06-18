@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { BookMarked, Bone, GraduationCap, Pill } from "lucide-react";
-import { referenceCardHref } from "@/lib/edtech/practice-links";
+import { libraryCardHref } from "@/lib/edtech/practice-links";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import {
   resolveStudyLinksFromQuestion,
   type ResolvedQuestionStudyLinks,
-} from "@/lib/reference/question-study-links";
+} from "@/lib/library/question-study-links";
 import type { StudyQuestion } from "@/lib/questions/types";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -73,7 +73,7 @@ export function QuestionRelatedLinks({
           {links.memoryCardIds.map((cardId) => (
             <Link
               key={cardId}
-              href={referenceCardHref(examSlug, cardId)}
+              href={libraryCardHref(examSlug, cardId)}
               className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3 py-1.5 text-xs font-semibold text-teal-800 ring-1 ring-teal-200 transition hover:bg-teal-50"
             >
               <BookMarked className="h-3.5 w-3.5" aria-hidden />

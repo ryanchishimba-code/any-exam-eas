@@ -65,7 +65,7 @@ const exams: { id: string; title: string; href: string; icon: LucideIcon; benefi
 
 const subscriberValue = [
   {
-    title: "Reference Hub & Memory Cards",
+    title: "Library & Memory Cards",
     detail: "Flip high-yield cards, track weak areas, and open Review Modules from one study home base.",
   },
   {
@@ -94,7 +94,7 @@ export function LandingEssentials() {
             Everything you need for board exam prep.
           </h2>
           <p className="mx-auto mt-2 max-w-lg text-sm text-[var(--color-ink-muted)]">
-            NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — plus Reference Hub, Review Modules,
+            NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — plus Library, Review Modules,
             Anatomy Studio, and Top 500 Drugs that follow you across devices.
           </p>
         </div>

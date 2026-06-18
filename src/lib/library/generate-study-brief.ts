@@ -15,14 +15,14 @@ import type { SearchResult } from "@/lib/search";
 import {
   sanitizeBoardUpdates,
   sanitizeFocusAreas,
-  validateReferenceBrief,
+  validateLibraryBrief,
 } from "./brief-validation";
 import { getMemoryCardIdsForTopic } from "./memory-cards";
 import { getPinnedMemoryCardIds } from "./pinned-essentials";
 import type {
-  ReferenceBriefSource,
-  ReferenceFocusArea,
-  ReferenceStudyBrief,
+  LibraryBriefSource,
+  LibraryFocusArea,
+  LibraryStudyBrief,
 } from "./study-brief-types";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -47,7 +47,7 @@ function collectMemoryCardIds(examSlug: ExamSlug, weakTopics: WeakTopicRow[]): s
   return [...ids].slice(0, 12);
 }
 
-function toBriefSources(sources: SearchResult[], topic?: string): ReferenceBriefSource[] {
+function toBriefSources(sources: SearchResult[], topic?: string): LibraryBriefSource[] {
   return sources.map((s) => ({
     title: s.title,
     url: s.url,
@@ -56,9 +56,9 @@ function toBriefSources(sources: SearchResult[], topic?: string): ReferenceBrief
   }));
 }
 
-function dedupeBriefSources(sources: ReferenceBriefSource[]): ReferenceBriefSource[] {
+function dedupeBriefSources(sources: LibraryBriefSource[]): LibraryBriefSource[] {
   const seen = new Set<string>();
-  const out: ReferenceBriefSource[] = [];
+  const out: LibraryBriefSource[] = [];
   for (const source of sources) {
     const key = source.url.trim().toLowerCase();
     if (!key || seen.has(key)) continue;
@@ -72,7 +72,7 @@ async function gatherMultiTopicResearch(
   fieldId: string,
   examSlug: ExamSlug,
   weakTopics: WeakTopicRow[]
-): Promise<{ researchBrief: string; sources: ReferenceBriefSource[] }> {
+): Promise<{ researchBrief: string; sources: LibraryBriefSource[] }> {
   const exam = EXAM_CATALOG[examSlug];
   const topics =
     weakTopics.length > 0
@@ -118,11 +118,11 @@ function fallbackBrief(params: {
   examSlug: ExamSlug;
   weakTopics: WeakTopicRow[];
   researchBrief: string;
-  sources: ReferenceBriefSource[];
+  sources: LibraryBriefSource[];
   memoryCardIds: string[];
-}): ReferenceStudyBrief {
+}): LibraryStudyBrief {
   const exam = EXAM_CATALOG[params.examSlug];
-  const focusAreas: ReferenceFocusArea[] = params.weakTopics.slice(0, 3).map((t) => ({
+  const focusAreas: LibraryFocusArea[] = params.weakTopics.slice(0, 3).map((t) => ({
     topicKey: normalizeTopicKey(t.id),
     topicName: t.name,
     masteryScore: t.masteryScore,
@@ -138,7 +138,7 @@ function fallbackBrief(params: {
     .filter((l) => l.length > 20 && !l.startsWith("##"))
     .slice(0, 5);
 
-  return validateReferenceBrief({
+  return validateLibraryBrief({
     generatedAt: new Date().toISOString(),
     examSlug: params.examSlug,
     headline: params.weakTopics.length
@@ -165,9 +165,9 @@ async function synthesizeBriefWithAi(params: {
   examSlug: ExamSlug;
   weakTopics: WeakTopicRow[];
   researchBrief: string;
-  sources: ReferenceBriefSource[];
+  sources: LibraryBriefSource[];
   memoryCardIds: string[];
-}): Promise<ReferenceStudyBrief> {
+}): Promise<LibraryStudyBrief> {
   const exam = EXAM_CATALOG[params.examSlug];
   const weakBlock =
     params.weakTopics.length > 0
@@ -220,7 +220,7 @@ ${params.researchBrief.slice(0, 8000)}`,
   const focusAreas = sanitizeFocusAreas(parsed.focusAreas, params.weakTopics);
   const boardUpdates = sanitizeBoardUpdates(parsed.boardUpdates);
 
-  return validateReferenceBrief({
+  return validateLibraryBrief({
     generatedAt: new Date().toISOString(),
     examSlug: params.examSlug,
     headline: parsed.headline ?? `${exam.shortName} study brief`,
@@ -240,11 +240,11 @@ ${params.researchBrief.slice(0, 8000)}`,
   });
 }
 
-export async function generateReferenceStudyBrief(
+export async function generateLibraryStudyBrief(
   userId: string,
   examSlug: ExamSlug,
   options?: { refresh?: boolean }
-): Promise<ReferenceStudyBrief> {
+): Promise<LibraryStudyBrief> {
   const dashboard = await getStudentDashboardData(userId);
   const weakTopics = filterWeakTopicsForExam(dashboard.weakTopics, examSlug);
   const memoryCardIds = collectMemoryCardIds(examSlug, weakTopics);
@@ -253,7 +253,7 @@ export async function generateReferenceStudyBrief(
 
   if (options?.refresh) cacheDelete(cacheId);
 
-  const cached = cacheGet<ReferenceStudyBrief>(cacheId);
+  const cached = cacheGet<LibraryStudyBrief>(cacheId);
   if (cached && !options?.refresh) {
     return { ...cached, cached: true };
   }

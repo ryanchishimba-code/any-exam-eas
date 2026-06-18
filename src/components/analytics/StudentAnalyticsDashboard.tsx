@@ -7,12 +7,12 @@ import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_FIELD_OPTIONS } from "@/lib/exam-prep/practice-modes";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
-import { referenceTopicHref, spacedReviewHref } from "@/lib/edtech/practice-links";
-import { getExamTopicStudyLinks } from "@/lib/reference/exam-topic-bridge";
+import { libraryTopicHref, spacedReviewHref } from "@/lib/edtech/practice-links";
+import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import {
   getMemoryCardIdsForTopic,
   normalizeWeakAreaTopicKey,
-} from "@/lib/reference/weak-area-map";
+} from "@/lib/library/weak-area-map";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
@@ -301,7 +301,7 @@ function WeakTopicDeepDiveLink({
   );
 }
 
-/** Links a weak topic to its recommended memory cards on /reference, when any exist. */
+/** Links a weak topic to its recommended memory cards on /library, when any exist. */
 function WeakTopicCardsLink({
   conceptKey,
   fieldId,
@@ -315,7 +315,7 @@ function WeakTopicCardsLink({
 
   return (
     <Link
-      href={referenceTopicHref(examSlug, topicKey)}
+      href={libraryTopicHref(examSlug, topicKey)}
       className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-0.5 text-[11px] font-semibold text-violet-700 ring-1 ring-violet-200 transition hover:bg-violet-100"
     >
       <BookMarked className="h-3 w-3" aria-hidden />

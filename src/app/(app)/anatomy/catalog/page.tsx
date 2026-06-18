@@ -5,7 +5,7 @@ import { AnatomyExplorerClient } from "@/components/anatomy/AnatomyExplorerClien
 import { Skeleton } from "@/components/ui/skeleton";
 import { redirectMpjeFromClinicalRoutes } from "@/lib/edtech/exam-content-scope";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
-import { loadMemoryCards } from "@/lib/reference/memory-cards";
+import { loadMemoryCards } from "@/lib/library/memory-cards";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";

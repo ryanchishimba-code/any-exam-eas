@@ -51,7 +51,7 @@ export async function upsertMemoryCardMastery(
     update: { status },
   });
 
-  invalidateReferenceBriefCache(userId, examSlug);
+  invalidateLibraryBriefCache(userId, examSlug);
 
   return {
     cardId: row.cardId,
@@ -101,12 +101,12 @@ export async function syncMemoryCardMastery(
         })
       )
     );
-    invalidateReferenceBriefCache(userId, examSlug);
+    invalidateLibraryBriefCache(userId, examSlug);
   }
 
   return listMemoryCardMastery(userId, examSlug);
 }
 
-function invalidateReferenceBriefCache(userId: string, examSlug: ExamSlug): void {
+function invalidateLibraryBriefCache(userId: string, examSlug: ExamSlug): void {
   cacheDeleteMatching(cacheKey(["reference-brief", userId, examSlug]));
 }

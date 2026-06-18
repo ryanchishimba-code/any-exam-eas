@@ -1,24 +1,24 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
-import { ReferenceHubClient } from "@/components/reference/ReferenceHubClient";
-import type { ReferenceHubStats } from "@/components/reference/ReferenceHubHeader";
+import { LibraryHubClient } from "@/components/library/LibraryHubClient";
+import type { LibraryHubStats } from "@/components/library/LibraryHubHeader";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-preference";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
-import { loadMemoryCards } from "@/lib/reference/memory-cards";
-import { getMemoryCardSubjects } from "@/lib/reference/seeds";
+import { loadMemoryCards } from "@/lib/library/memory-cards";
+import { getMemoryCardSubjects } from "@/lib/library/seeds";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
 export const metadata = {
-  title: "Study Reference — Any Exam Easy",
+  title: "Library — Any Exam Easy",
   description:
     "AI-personalized study brief, quick tools, memory cards, drugs, and anatomy — your exam home base.",
 };
 
-function ReferenceSkeleton() {
+function LibrarySkeleton() {
   return (
     <div className="w-full space-y-4">
       <Skeleton className="h-20 w-full rounded-[18px]" />
@@ -28,7 +28,7 @@ function ReferenceSkeleton() {
   );
 }
 
-async function ReferenceContent({
+async function LibraryContent({
   userId,
   examOverride,
   initialCardId,
@@ -53,7 +53,7 @@ async function ReferenceContent({
     .filter((t) => t.fieldId === fieldId)
     .slice(0, 6);
 
-  const hubStats: ReferenceHubStats = {
+  const hubStats: LibraryHubStats = {
     readinessScore: dashboard.headline.readinessScore,
     studyStreakDays: dashboard.headline.studyStreakDays,
     overallAccuracy: dashboard.headline.overallAccuracy,
@@ -61,7 +61,7 @@ async function ReferenceContent({
   };
 
   return (
-    <ReferenceHubClient
+    <LibraryHubClient
       examSlug={examSlug}
       cards={cards}
       subjects={subjects}
@@ -77,13 +77,13 @@ type PageProps = {
   searchParams: Promise<{ exam?: string; card?: string; topic?: string }>;
 };
 
-export default async function ReferencePage({ searchParams }: PageProps) {
+export default async function LibraryPage({ searchParams }: PageProps) {
   const session = await auth();
   if (!session?.user?.id) {
-    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.reference)}`);
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.library)}`);
   }
 
-  await requirePremiumPage(ROUTES.reference);
+  await requirePremiumPage(ROUTES.library);
 
   const params = await searchParams;
   const examOverride = params.exam as ExamSlug | undefined;
@@ -91,8 +91,8 @@ export default async function ReferencePage({ searchParams }: PageProps) {
   const topicKey = params.topic;
 
   return (
-    <Suspense fallback={<ReferenceSkeleton />}>
-      <ReferenceContent
+    <Suspense fallback={<LibrarySkeleton />}>
+      <LibraryContent
         userId={session.user.id}
         examOverride={examOverride}
         initialCardId={initialCardId}

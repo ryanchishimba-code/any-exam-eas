@@ -13,7 +13,7 @@ describe("exam-topic-bridge", () => {
 
   it("returns reference and practice links for known topics", () => {
     const links = getExamTopicStudyLinks("usmle", "Cardiology");
-    expect(links.referenceHref).toContain("/reference");
+    expect(links.libraryHref).toContain("/library");
     expect(links.practiceHref).toContain("count=10");
     expect(links.memoryCardIds.length).toBeGreaterThan(0);
     expect(links.anatomyStructures.length).toBeGreaterThan(0);

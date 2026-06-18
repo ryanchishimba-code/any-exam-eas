@@ -9,9 +9,9 @@ import {
   deepDiveTopicHref,
   top500Href,
 } from "@/lib/edtech/practice-links";
-import { hubSearchHasResults, searchReferenceHub } from "@/lib/reference/hub-search";
+import { hubSearchHasResults, searchLibraryHub } from "@/lib/library/hub-search";
 import { isMpjeExam } from "@/lib/edtech/exam-content-scope";
-import type { MemoryCard } from "@/lib/reference/types";
+import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -23,7 +23,7 @@ type Props = {
   inputRef?: RefObject<HTMLInputElement | null>;
 };
 
-export function ReferenceHubSearch({ examSlug, cards, onOpenCard, onQueryChange, inputRef }: Props) {
+export function LibraryHubSearch({ examSlug, cards, onOpenCard, onQueryChange, inputRef }: Props) {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -31,7 +31,7 @@ export function ReferenceHubSearch({ examSlug, cards, onOpenCard, onQueryChange,
   const resolvedInputRef = inputRef ?? localInputRef;
 
   const results = useMemo(
-    () => (query.trim().length >= 2 ? searchReferenceHub(cards, examSlug, query) : null),
+    () => (query.trim().length >= 2 ? searchLibraryHub(cards, examSlug, query) : null),
     [cards, examSlug, query]
   );
 

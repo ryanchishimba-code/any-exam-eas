@@ -41,7 +41,7 @@ import {
 import { formatHms } from "@/lib/full-exam/config";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { StudyThisTopicButton } from "./StudyThisTopicButton";
-import { resolveStudyLinksFromQuestion } from "@/lib/reference/question-study-links";
+import { resolveStudyLinksFromQuestion } from "@/lib/library/question-study-links";
 import { Flag, AlertTriangle } from "lucide-react";
 import {
   ReportQuestionDialog,

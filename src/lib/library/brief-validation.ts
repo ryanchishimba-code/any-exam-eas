@@ -1,4 +1,4 @@
-import type { ReferenceFocusArea, ReferenceStudyBrief } from "./study-brief-types";
+import type { LibraryFocusArea, LibraryStudyBrief } from "./study-brief-types";
 
 const MIN_PEARL_LEN = 12;
 const MAX_PEARL_LEN = 280;
@@ -27,7 +27,7 @@ function cleanPearls(value: unknown): string[] {
 export function sanitizeFocusAreas(
   raw: unknown,
   weakTopics: Array<{ id: string; name: string; masteryScore: number }>
-): ReferenceFocusArea[] {
+): LibraryFocusArea[] {
   if (!Array.isArray(raw)) return [];
 
   const weakByKey = new Map(
@@ -37,7 +37,7 @@ export function sanitizeFocusAreas(
     ])
   );
 
-  const areas: ReferenceFocusArea[] = [];
+  const areas: LibraryFocusArea[] = [];
   for (const item of raw) {
     if (!item || typeof item !== "object") continue;
     const row = item as Record<string, unknown>;
@@ -84,7 +84,7 @@ export function sanitizeBoardUpdates(raw: unknown): string[] {
   return updates;
 }
 
-export function validateReferenceBrief(brief: ReferenceStudyBrief): ReferenceStudyBrief {
+export function validateLibraryBrief(brief: LibraryStudyBrief): LibraryStudyBrief {
   return {
     ...brief,
     headline: cleanString(brief.headline, 120) ?? "Your study brief",

@@ -1,13 +1,13 @@
 import type { ExamSlug } from "@/types/edtech";
 
-export type ReferenceExternalResource = {
+export type LibraryExternalResource = {
   label: string;
   description: string;
   url: string;
 };
 
-/** Trusted guideline and reference sites surfaced on the Reference hub. */
-export const REFERENCE_EXTERNAL_RESOURCES: Partial<Record<ExamSlug, ReferenceExternalResource[]>> = {
+/** Trusted guideline and reference sites surfaced on the Library. */
+export const LIBRARY_EXTERNAL_RESOURCES: Partial<Record<ExamSlug, LibraryExternalResource[]>> = {
   naplex: [
     {
       label: "IDSA Guidelines",
@@ -182,6 +182,6 @@ export const REFERENCE_EXTERNAL_RESOURCES: Partial<Record<ExamSlug, ReferenceExt
   ],
 };
 
-export function getReferenceExternalResources(examSlug: ExamSlug): ReferenceExternalResource[] {
-  return REFERENCE_EXTERNAL_RESOURCES[examSlug] ?? [];
+export function getLibraryExternalResources(examSlug: ExamSlug): LibraryExternalResource[] {
+  return LIBRARY_EXTERNAL_RESOURCES[examSlug] ?? [];
 }

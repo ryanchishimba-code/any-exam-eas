@@ -422,7 +422,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "What's included on every plan",
         paragraphs: [
-          "All six question banks, Exam Roadmaps, lab values, clinical calculators, Reference Hub, Memory Cards, and the Top 503 Drugs deck.",
+          "All six question banks, Exam Roadmaps, lab values, clinical calculators, Library, Memory Cards, and the Top 503 Drugs deck.",
           "Pro adds Deep Dive modules, advanced analytics, spaced repetition, unlimited mock exams, and exportable notes.",
         ],
       },

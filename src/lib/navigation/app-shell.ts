@@ -4,7 +4,7 @@ export const APP_SHELL_PREFIXES = [
   "/question-bank",
   "/analytics",
   "/full-exam",
-  "/reference",
+  "/library",
   "/anatomy",
 ] as const;
 

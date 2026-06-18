@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { BookMarked, CheckCircle2, ChevronRight, RotateCcw } from "lucide-react";
-import { getCardMastery } from "@/lib/reference/card-mastery";
-import { MEMORY_CARD_KIND_LABELS, type MemoryCard } from "@/lib/reference/types";
-import { getMemoryCardPreview } from "@/lib/reference/card-preview";
+import { getCardMastery } from "@/lib/library/card-mastery";
+import { MEMORY_CARD_KIND_LABELS, type MemoryCard } from "@/lib/library/types";
+import { getMemoryCardPreview } from "@/lib/library/card-preview";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 

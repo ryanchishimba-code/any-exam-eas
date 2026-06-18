@@ -146,14 +146,15 @@ function item(
 function expandConcepts(subject: FieldSubject): string[] {
   const fromHints = subject.examHints.split(/[,;]+/).map((s) => s.trim());
   const merged = [...subject.keywords, ...fromHints, subject.label];
+  const seen = new Set<string>();
   const out: string[] = [];
   for (const c of merged) {
-    if (!c) continue;
-    out.push(c);
-    out.push(`${c} assessment`);
-    out.push(`${c} management`);
-    out.push(`${c} complications`);
-    out.push(`${c} prevention`);
+    const concept = c?.trim();
+    if (!concept) continue;
+    const key = concept.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(concept);
   }
   return out;
 }
@@ -334,17 +335,17 @@ function buildMedicineQuestion(subject: FieldSubject, index: number, fieldId: st
       break;
     }
     default: {
-      const correct = `High-yield fact about ${concept} in ${subject.label}`;
-      const q = `${vignette}\n\nWhich statement is most accurate for this clinical scenario?`;
+      const correct = `Apply guideline-based management principles for ${concept}`;
+      const q = `${vignette}\n\nWhich principle should guide this patient's management?`;
       seed = item(
         subject.id,
         q,
         fourOptions(
           correct,
           [
-            `Outdated practice no longer taught for ${concept}`,
-            `Confuses ${concept} with an unrelated discipline`,
-            `Opposite of established ${concept} principles`,
+            `Disregard established guidelines for ${concept}`,
+            `Base the decision on a single unrelated symptom`,
+            `Defer all clinical reasoning to patient preference alone`,
           ],
           slot
         ),

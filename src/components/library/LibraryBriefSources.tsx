@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ExternalLink, ShieldCheck } from "lucide-react";
-import type { ReferenceBriefSource } from "@/lib/reference/study-brief-types";
+import type { LibraryBriefSource } from "@/lib/library/study-brief-types";
 import { cn } from "@/lib/utils";
 
-const SOURCE_LABELS: Record<ReferenceBriefSource["sourceType"], string> = {
+const SOURCE_LABELS: Record<LibraryBriefSource["sourceType"], string> = {
   oer: "OER",
   web: "Guideline",
   exam_focus: "Exam focus",
@@ -12,7 +12,7 @@ const SOURCE_LABELS: Record<ReferenceBriefSource["sourceType"], string> = {
 };
 
 type Props = {
-  sources: ReferenceBriefSource[];
+  sources: LibraryBriefSource[];
   className?: string;
   variant?: "light" | "dark";
   ctaClass?: string;
@@ -20,7 +20,7 @@ type Props = {
   extraCount?: number;
 };
 
-export function ReferenceBriefSources({
+export function LibraryBriefSources({
   sources,
   className,
   variant = "dark",

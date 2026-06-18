@@ -1,6 +1,6 @@
 import type { ExamSlug } from "@/types/edtech";
 
-/** High-yield memory cards surfaced on the Reference hub landing. */
+/** High-yield memory cards surfaced on the Library landing. */
 export const PINNED_MEMORY_CARD_IDS: Record<ExamSlug, string[]> = {
   nclex: [
     "nclex-precaution-types",

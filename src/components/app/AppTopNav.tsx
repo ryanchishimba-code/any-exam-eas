@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { LayoutGrid, LogOut, Menu, Settings, User } from "lucide-react";
+import { LogOut, Menu, Settings, User } from "lucide-react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
@@ -62,14 +62,6 @@ export function AppTopNav({ onMenuClick }: Props) {
 
         <div className="hidden min-w-0 flex-1 items-center gap-3 md:flex">
           <GlobalExamSwitcher variant="nav" />
-          <Link
-            href={`${ROUTES.selectExam}?switch=1`}
-            className="inline-flex items-center gap-1 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-elevated)]/80 px-2 py-1 text-[10px] font-semibold text-[var(--color-ink-muted)] transition hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)]"
-            title="Open exam selection"
-          >
-            <LayoutGrid className="h-3 w-3" aria-hidden />
-            Switch
-          </Link>
           <span className="mx-1 h-4 w-px bg-black/[0.08]" aria-hidden />
           {APP_LINKS.map((link) => (
             <Link

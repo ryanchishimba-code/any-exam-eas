@@ -1823,12 +1823,8 @@ body {
 }
 
 .aee-exam-cta {
-  opacity: 0;
-  transition: opacity 0.3s var(--ease-apple);
-}
-
-.aee-exam-card:hover .aee-exam-cta {
   opacity: 1;
+  transition: opacity 0.3s var(--ease-apple);
 }
 
 /* NCLEX — violet */

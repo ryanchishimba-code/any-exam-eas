@@ -93,7 +93,7 @@ function searchHubProcedures(query: string): HubProcedureHit[] {
     .filter((p) => p.structureId);
 }
 
-export function searchReferenceHub(
+export function searchLibraryHub(
   cards: MemoryCard[],
   examSlug: ExamSlug,
   query: string

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { MEMORY_CARDS } from "@/lib/reference/seeds";
+import { MEMORY_CARDS } from "@/lib/library/seeds";
 import { REVIEW_MODULE_CONTENT_BY_SLUG } from "@/lib/edtech/review-modules/content";
 import { attachAanpFnpStudyLinks, resolveAanpFnpStudyLinks } from "./study-links";
 

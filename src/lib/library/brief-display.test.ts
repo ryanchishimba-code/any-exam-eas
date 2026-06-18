@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { prepareBriefForDisplay } from "./brief-display";
-import type { ReferenceStudyBrief } from "./study-brief-types";
+import type { LibraryStudyBrief } from "./study-brief-types";
 
-function sampleBrief(overrides: Partial<ReferenceStudyBrief> = {}): ReferenceStudyBrief {
+function sampleBrief(overrides: Partial<LibraryStudyBrief> = {}): LibraryStudyBrief {
   return {
     generatedAt: "2026-06-13T12:00:00.000Z",
     examSlug: "nclex",

@@ -10,12 +10,12 @@ import {
   CalcStepsBox,
   calcPanelShell,
   parsePositiveNum,
-} from "@/components/reference/CalculatorUi";
+} from "@/components/library/CalculatorUi";
 import {
   CLINICAL_CALC_TABS,
   ClinicalCalculatorPanel,
   type ClinicalCalcId,
-} from "@/components/reference/ClinicalCalculatorPanels";
+} from "@/components/library/ClinicalCalculatorPanels";
 import {
   cockcroftGaultCrCl,
   meanArterialPressure,
@@ -25,8 +25,8 @@ import {
   vancomycinLoadingDose,
   vancomycinMonitoringFromTrough,
   type Sex,
-} from "@/lib/reference/calculations/pharmacy-calcs";
-import { refUi } from "@/lib/reference/reference-ui";
+} from "@/lib/library/calculations/pharmacy-calcs";
+import { libUi } from "@/lib/library/library-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -35,7 +35,7 @@ type CalcTab = ClinicalCalcId | PharmacyCalcTab;
 
 const CLINICAL_EXAMS: ExamSlug[] = ["naplex", "usmle", "nclex", "pance", "aanp-fnp", "npte-pt"];
 
-export function ReferenceCalculators({ examSlug }: { examSlug: ExamSlug }) {
+export function LibraryCalculators({ examSlug }: { examSlug: ExamSlug }) {
   const showVanc = examSlug === "naplex" || examSlug === "usmle";
   const showBedside =
     examSlug === "nclex" || examSlug === "pance" || examSlug === "aanp-fnp";
@@ -135,20 +135,20 @@ export function ReferenceCalculators({ examSlug }: { examSlug: ExamSlug }) {
   return (
     <section id="hub-calculators" aria-labelledby="calculators-heading" className="space-y-3">
       <div>
-        <h2 id="calculators-heading" className={refUi.sectionTitle}>
+        <h2 id="calculators-heading" className={libUi.sectionTitle}>
           <Calculator className="mr-1.5 inline h-4 w-4 text-[var(--color-accent)]" aria-hidden />
           Calculators
         </h2>
-        <p className={cn(refUi.sectionHint, "mt-0.5")}>{sectionHint}</p>
+        <p className={cn(libUi.sectionHint, "mt-0.5")}>{sectionHint}</p>
       </div>
 
-      <div className={refUi.chipRow}>
+      <div className={libUi.chipRow}>
         {tabs.map(({ id, label }) => (
           <button
             key={id}
             type="button"
             onClick={() => setTab(id)}
-            className={cn(refUi.chip, tab === id ? refUi.chipActive : refUi.chipIdle)}
+            className={cn(libUi.chip, tab === id ? libUi.chipActive : libUi.chipIdle)}
           >
             {label}
           </button>

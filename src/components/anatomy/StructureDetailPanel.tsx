@@ -9,11 +9,11 @@ import {
   anatomyPracticeHref,
   highYieldTopicHref,
   practiceTopicHref,
-  referenceCardHref,
+  libraryCardHref,
 } from "@/lib/edtech/practice-links";
 import type { AnatomyStructure } from "@/lib/anatomy/types";
 import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
-import type { MemoryCard } from "@/lib/reference/types";
+import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
 import { StructureClinicalLinks, resolvePathologyDiseaseId } from "@/components/anatomy/StructureClinicalLinks";
 import { StructureProcedureLinks } from "@/components/anatomy/StructureProcedureLinks";
@@ -137,7 +137,7 @@ export function StructureDetailPanel({
             {memoryCards.map((card) => (
               <li key={card.id}>
                 <Link
-                  href={referenceCardHref(examSlug, card.id)}
+                  href={libraryCardHref(examSlug, card.id)}
                   className="block rounded-[14px] bg-white px-3.5 py-3 text-[14px] transition hover:shadow-[var(--shadow-apple-sm)]"
                 >
                   <p className="font-semibold text-[var(--color-ink)]">{card.title}</p>

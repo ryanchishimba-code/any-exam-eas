@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { passwordSchema } from "@/lib/validators/password-policy";
 
 /** Normalize emails before storage and lookup (case-insensitive login). */
 export function normalizeEmail(email: string): string {
@@ -23,11 +24,7 @@ export const examSlugSchema = z.enum([
 
 export const signUpSchema = z.object({
   email: z.string().trim().email().transform(normalizeEmail),
-  password: z
-    .string()
-    .min(10, "Password must be at least 10 characters.")
-    .regex(/[A-Za-z]/, "Password must include a letter.")
-    .regex(/\d/, "Password must include a number."),
+  password: passwordSchema,
   name: z.string().trim().min(1, "Name is required."),
   dateOfBirth: z.string().min(1, "Date of birth is required."),
   acceptedTerms: z.literal(true, {

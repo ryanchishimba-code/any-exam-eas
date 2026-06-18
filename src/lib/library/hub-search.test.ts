@@ -1,25 +1,25 @@
 import { describe, expect, it } from "vitest";
 import { MEMORY_CARDS } from "./seeds";
-import { hubSearchHasResults, relatedDrugsForMemoryCard, searchReferenceHub } from "./hub-search";
+import { hubSearchHasResults, relatedDrugsForMemoryCard, searchLibraryHub } from "./hub-search";
 
 const NCLEX_CARDS = MEMORY_CARDS.filter((c) => c.examSlug === "nclex");
 
 describe("hub-search", () => {
   it("returns empty results for short queries", () => {
     const empty = { cards: [], drugs: [], modules: [], anatomy: [], procedures: [] };
-    expect(searchReferenceHub(NCLEX_CARDS, "nclex", "")).toEqual(empty);
-    expect(searchReferenceHub(NCLEX_CARDS, "nclex", "a")).toEqual(empty);
+    expect(searchLibraryHub(NCLEX_CARDS, "nclex", "")).toEqual(empty);
+    expect(searchLibraryHub(NCLEX_CARDS, "nclex", "a")).toEqual(empty);
   });
 
   it("finds memory cards by title keyword", () => {
     const card = NCLEX_CARDS[0];
     const keyword = card.title.split(" ")[0];
-    const { cards } = searchReferenceHub(NCLEX_CARDS, "nclex", keyword);
+    const { cards } = searchLibraryHub(NCLEX_CARDS, "nclex", keyword);
     expect(cards.some((c) => c.id === card.id)).toBe(true);
   });
 
   it("finds review modules for exam slug", () => {
-    const { modules } = searchReferenceHub(NCLEX_CARDS, "nclex", "sepsis");
+    const { modules } = searchLibraryHub(NCLEX_CARDS, "nclex", "sepsis");
     expect(Array.isArray(modules)).toBe(true);
   });
 
@@ -39,7 +39,7 @@ describe("hub-search", () => {
   });
 
   it("finds anatomy procedures by name", () => {
-    const { procedures } = searchReferenceHub(NCLEX_CARDS, "nclex", "appendectomy");
+    const { procedures } = searchLibraryHub(NCLEX_CARDS, "nclex", "appendectomy");
     expect(procedures.some((p) => p.id === "appendectomy")).toBe(true);
   });
 
@@ -52,7 +52,7 @@ describe("hub-search", () => {
 
   it("includes clinical search categories for PANCE", () => {
     const panceCards = MEMORY_CARDS.filter((c) => c.examSlug === "pance");
-    const { drugs, anatomy, procedures } = searchReferenceHub(panceCards, "pance", "heart");
+    const { drugs, anatomy, procedures } = searchLibraryHub(panceCards, "pance", "heart");
     expect(drugs.length + anatomy.length + procedures.length).toBeGreaterThan(0);
   });
 });

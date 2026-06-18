@@ -9,7 +9,7 @@ import { REVIEW_MODULE_TOPICS, mergeReviewModules } from "../seeds/review-module
 import { NAPLEX_HIGH_YIELD_TOPICS } from "../seeds/high-yield-naplex";
 import { NCLEX_HIGH_YIELD_TOPICS } from "../seeds/high-yield-nclex";
 import { AANP_FNP_HIGH_YIELD_TOPICS } from "../seeds/high-yield-aanp-fnp";
-import { getMemoryCardsByReviewModuleSlug } from "@/lib/reference/seeds";
+import { getMemoryCardsByReviewModuleSlug } from "@/lib/library/seeds";
 
 function sectionHasContent(section: ReviewModuleSection): boolean {
   return (

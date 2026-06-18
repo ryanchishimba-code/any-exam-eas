@@ -6,9 +6,9 @@ import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import {
   analyticsHref,
   practiceTopicHref,
-  referenceTopicHref,
+  libraryTopicHref,
 } from "@/lib/edtech/practice-links";
-import { getExamTopicStudyLinks } from "@/lib/reference/exam-topic-bridge";
+import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
@@ -78,10 +78,10 @@ export function DashboardWeakTopics({
                   </Link>
                 ) : null}
                 <Link
-                  href={referenceTopicHref(examSlug, slug)}
+                  href={libraryTopicHref(examSlug, slug)}
                   className="inline-flex items-center gap-1 rounded-lg border border-amber-300/80 bg-white px-3 py-1.5 text-[11px] font-bold text-amber-900 hover:bg-amber-50"
                 >
-                  Reference
+                  Library
                 </Link>
                 <Link
                   href={practiceTopicHref(examSlug, slug, 10)}

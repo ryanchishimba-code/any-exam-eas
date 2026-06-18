@@ -1,6 +1,6 @@
 import type { ExamSlug } from "@/types/edtech";
 
-export type ReferenceBriefSource = {
+export type LibraryBriefSource = {
   title: string;
   url: string;
   sourceType: "oer" | "web" | "exam_focus" | "curriculum";
@@ -8,7 +8,7 @@ export type ReferenceBriefSource = {
   topic?: string;
 };
 
-export type ReferenceFocusArea = {
+export type LibraryFocusArea = {
   topicKey: string;
   topicName: string;
   masteryScore?: number;
@@ -16,17 +16,17 @@ export type ReferenceFocusArea = {
   studyAction: string;
 };
 
-export type ReferenceStudyBrief = {
+export type LibraryStudyBrief = {
   generatedAt: string;
   examSlug: ExamSlug;
   headline: string;
   summary: string;
-  focusAreas: ReferenceFocusArea[];
+  focusAreas: LibraryFocusArea[];
   /** Current high-yield points synthesized from OER / guidelines. */
   boardUpdates: string[];
   sourceCount: number;
   /** Inspectable citations backing the brief. */
-  sources: ReferenceBriefSource[];
+  sources: LibraryBriefSource[];
   aiPowered: boolean;
   memoryCardIds: string[];
   /** True when served from cache (no fresh RAG/AI run). */

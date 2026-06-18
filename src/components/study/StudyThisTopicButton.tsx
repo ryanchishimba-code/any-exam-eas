@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { GraduationCap, Flag } from "lucide-react";
-import type { ResolvedQuestionStudyLinks } from "@/lib/reference/question-study-links";
+import type { ResolvedQuestionStudyLinks } from "@/lib/library/question-study-links";
 import { cn } from "@/lib/utils";
 
 type Props = {

@@ -1,5 +1,8 @@
 import type { Prisma } from "@prisma/client";
 
+/** Procedural bulk filler is never served — only genuine seed/curated items reach learners. */
+const EXCLUDE_BULK_FILLER = { NOT: { tags: { contains: "bulk-bank" } } } as const;
+
 /** MPJE pool: selected state + federal (null state_code). */
 export function mpjeStateOrFederalWhere(
   fieldId: string,
@@ -10,6 +13,7 @@ export function mpjeStateOrFederalWhere(
     fieldId,
     active: true,
     qaPassed: true,
+    ...EXCLUDE_BULK_FILLER,
     OR: [{ stateCode }, { stateCode: null }],
   };
   if (subjectId) base.subjectId = subjectId;
@@ -25,6 +29,7 @@ export function mpjeStateOnlyWhere(
     fieldId,
     active: true,
     qaPassed: true,
+    ...EXCLUDE_BULK_FILLER,
     stateCode,
   };
   if (subjectId) base.subjectId = subjectId;
@@ -39,6 +44,7 @@ export function mpjeFederalOnlyWhere(
     fieldId,
     active: true,
     qaPassed: true,
+    ...EXCLUDE_BULK_FILLER,
     stateCode: null,
   };
   if (subjectId) base.subjectId = subjectId;

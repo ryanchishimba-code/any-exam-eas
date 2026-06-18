@@ -37,59 +37,27 @@ export function ExamSwitcher({
 
   if (isNav) {
     return (
-      <div className="inline-flex items-center gap-1.5">
-        <label className="relative inline-flex items-center gap-1.5">
-          <GraduationCap className="h-3.5 w-3.5 text-[var(--color-accent)]" aria-hidden />
-          <span className="sr-only">Primary exam</span>
-          <div className="relative">
-            <select
-              value={currentExam}
-              disabled={pending}
-              onChange={onChange}
-              aria-label={`Primary exam: ${exam.name}`}
-              className="appearance-none rounded-lg border border-black/[0.08] bg-white/90 py-1.5 pl-2 pr-7 text-xs font-semibold text-[var(--color-ink)] shadow-sm transition hover:border-[var(--color-accent)]/40 focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/20"
-            >
-              {EXAM_SLUGS.map((slug) => (
-                <option key={slug} value={slug}>
-                  {EXAM_CATALOG[slug].shortName}
-                </option>
-              ))}
-            </select>
-            <ChevronDown
-              className="pointer-events-none absolute right-1.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400"
-              aria-hidden
-            />
-          </div>
-        </label>
+      <div
+        className="inline-flex items-center gap-1.5 rounded-lg border border-black/[0.08] bg-white/90 py-1.5 pl-2 pr-2.5 text-xs font-semibold text-[var(--color-ink)] shadow-sm"
+        aria-label={`Current exam: ${exam.name}`}
+      >
+        <GraduationCap className="h-3.5 w-3.5 text-[var(--color-accent)]" aria-hidden />
+        <span>{exam.shortName}</span>
       </div>
     );
   }
 
   if (isMobile) {
     return (
-      <label className="flex w-full flex-col gap-1.5">
+      <div className="flex w-full flex-col gap-1.5">
         <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
           My exam
         </span>
-        <div className="relative">
-          <select
-            value={currentExam}
-            disabled={pending}
-            onChange={onChange}
-            className="w-full appearance-none rounded-xl border border-slate-200 bg-white py-2.5 pl-3 pr-9 text-sm font-semibold text-slate-900"
-          >
-            {EXAM_SLUGS.map((slug) => (
-              <option key={slug} value={slug}>
-                {EXAM_CATALOG[slug].name}
-              </option>
-            ))}
-          </select>
-          <ChevronDown
-            className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
-            aria-hidden
-          />
+        <div className="flex w-full items-center gap-2 rounded-xl border border-slate-200 bg-white py-2.5 pl-3 pr-3 text-sm font-semibold text-slate-900">
+          <GraduationCap className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+          <span>{exam.name}</span>
         </div>
-      </label>
+      </div>
     );
   }
 

@@ -208,12 +208,26 @@ function dedupeSamplePool(items: BankItem[]): BankItem[] {
   return dedupeBankItemsById(items);
 }
 
+/**
+ * Procedural bulk filler (tagged "bulk-bank" by bulk-question-generator) is never
+ * served — only genuine seed/curated items reach learners.
+ */
+const EXCLUDE_BULK_FILLER: { NOT: { tags: { contains: string } } } = {
+  NOT: { tags: { contains: "bulk-bank" } },
+};
+
 function activeSubjectWhere(fieldId: string, subjectId: string) {
-  return { fieldId, subjectId, active: true as const, qaPassed: true as const };
+  return {
+    fieldId,
+    subjectId,
+    active: true as const,
+    qaPassed: true as const,
+    ...EXCLUDE_BULK_FILLER,
+  };
 }
 
 function activeFieldWhere(fieldId: string) {
-  return { fieldId, active: true as const, qaPassed: true as const };
+  return { fieldId, active: true as const, qaPassed: true as const, ...EXCLUDE_BULK_FILLER };
 }
 
 /** No in-memory fallback — only qaPassed DB rows are served. */
@@ -627,6 +641,7 @@ export async function countActiveQuestions(fieldId?: string) {
     where: {
       active: true,
       qaPassed: true,
+      ...EXCLUDE_BULK_FILLER,
       ...(fieldId ? { fieldId } : {}),
     },
   });

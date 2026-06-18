@@ -1,5 +1,5 @@
-import { MEMORY_CARDS } from "@/lib/reference/seeds";
-import { getMemoryCardIdsForTopic } from "@/lib/reference/weak-area-map";
+import { MEMORY_CARDS } from "@/lib/library/seeds";
+import { getMemoryCardIdsForTopic } from "@/lib/library/weak-area-map";
 import type { RelatedStudyMeta } from "../seed-helpers";
 import type { AanpFnpDomainId, AanpFnpPatientAgeGroupId } from "./types";
 

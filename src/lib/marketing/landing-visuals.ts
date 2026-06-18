@@ -16,9 +16,9 @@ export const LANDING_VISUALS: Record<string, LandingVisualSpec> = {
   "hero-app-mockup": {
     id: "hero-app-mockup",
     placement: "Hero — right column (desktop), below CTAs (mobile)",
-    alt: "Any Exam Easy study dashboard showing question bank, Reference Hub, full exam, and analytics navigation",
+    alt: "Any Exam Easy study dashboard showing question bank, Library, full exam, and analytics navigation",
     prompt:
-      "Clean SaaS product mockup on white background: mobile-first healthcare exam prep app dashboard, soft teal (#0d9488) accents, white cards with subtle shadows, bottom tab bar (Home, Bank, Ref, Exam, Stats), Reference Hub with memory card grid, minimal typography Inter/SF style, no fake faces, no pass-rate badges, professional medical edtech, 3D phone + desktop browser frame optional, ultra-minimal Apple-like aesthetic",
+      "Clean SaaS product mockup on white background: mobile-first healthcare exam prep app dashboard, soft teal (#0d9488) accents, white cards with subtle shadows, bottom tab bar (Home, Bank, Ref, Exam, Stats), Library with memory card grid, minimal typography Inter/SF style, no fake faces, no pass-rate badges, professional medical edtech, 3D phone + desktop browser frame optional, ultra-minimal Apple-like aesthetic",
     recommendedSize: "1200×900",
   },
   "feature-adaptive-learning": {

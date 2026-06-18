@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { BookMarked, ChevronDown } from "lucide-react";
-import { referenceCardHref } from "@/lib/edtech/practice-links";
+import { libraryCardHref } from "@/lib/edtech/practice-links";
 import type { ExamSlug } from "@/types/edtech";
-import type { MemoryCard } from "@/lib/reference/types";
+import type { MemoryCard } from "@/lib/library/types";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -50,7 +50,7 @@ export function RelatedMemoryCardsCollapsible({ examSlug, cards, className }: Pr
           {cards.map((card) => (
             <li key={card.id}>
               <Link
-                href={referenceCardHref(examSlug, card.id)}
+                href={libraryCardHref(examSlug, card.id)}
                 className="block rounded-xl bg-white px-3 py-2 text-sm font-medium text-slate-800 ring-1 ring-teal-200/80 transition hover:bg-teal-50"
               >
                 {card.title}
@@ -60,7 +60,7 @@ export function RelatedMemoryCardsCollapsible({ examSlug, cards, className }: Pr
         </ul>
       ) : (
         <p className="mt-2 text-xs text-teal-900/70">
-          Expand to review {cards.length} linked flashcards in Study Reference.
+          Expand to review {cards.length} linked flashcards in Library.
         </p>
       )}
     </section>

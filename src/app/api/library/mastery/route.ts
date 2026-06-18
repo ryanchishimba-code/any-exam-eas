@@ -5,7 +5,7 @@ import {
   listMemoryCardMastery,
   syncMemoryCardMastery,
   upsertMemoryCardMastery,
-} from "@/lib/reference/card-mastery-service";
+} from "@/lib/library/card-mastery-service";
 import type { ExamSlug } from "@/types/edtech";
 
 export const runtime = "nodejs";

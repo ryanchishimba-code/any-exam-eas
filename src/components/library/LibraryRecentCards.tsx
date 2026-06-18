@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Clock } from "lucide-react";
-import { MemoryCardTile } from "@/components/reference/MemoryCardTile";
-import { resolveRecentMemoryCards } from "@/lib/reference/recent-cards";
-import type { MemoryCard } from "@/lib/reference/types";
+import { MemoryCardTile } from "@/components/library/MemoryCardTile";
+import { resolveRecentMemoryCards } from "@/lib/library/recent-cards";
+import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
 
-export function ReferenceRecentCards({
+export function LibraryRecentCards({
   examSlug,
   cards,
   onOpenCard,

@@ -1,34 +1,34 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ReferenceAiBrief } from "@/components/reference/ReferenceAiBrief";
+import { LibraryAiBrief } from "@/components/library/LibraryAiBrief";
 import {
-  ReferenceHubHeader,
-  type ReferenceHubStats,
-} from "@/components/reference/ReferenceHubHeader";
-import { ReferenceHubNav } from "@/components/reference/ReferenceHubNav";
-import { ReferenceHubSearch } from "@/components/reference/ReferenceHubSearch";
-import { ReferenceQuickTools } from "@/components/reference/ReferenceQuickTools";
-import { ReferenceExternalResources } from "@/components/reference/ReferenceExternalResources";
-import { ReferenceCalculators } from "@/components/reference/ReferenceCalculators";
-import { ReferenceTodayRow } from "@/components/reference/ReferenceTodayRow";
-import { ReferenceTopicBanner } from "@/components/reference/ReferenceTopicBanner";
-import { MemoryCardTile } from "@/components/reference/MemoryCardTile";
-import { MemoryCardSheet } from "@/components/reference/MemoryCardSheet";
-import { applyMasteryStore, readMasteryStore } from "@/lib/reference/card-mastery";
-import { syncCardMasteryForExam } from "@/lib/reference/card-mastery-sync";
+  LibraryHubHeader,
+  type LibraryHubStats,
+} from "@/components/library/LibraryHubHeader";
+import { LibraryHubNav } from "@/components/library/LibraryHubNav";
+import { LibraryHubSearch } from "@/components/library/LibraryHubSearch";
+import { LibraryQuickTools } from "@/components/library/LibraryQuickTools";
+import { LibraryExternalResources } from "@/components/library/LibraryExternalResources";
+import { LibraryCalculators } from "@/components/library/LibraryCalculators";
+import { LibraryTodayRow } from "@/components/library/LibraryTodayRow";
+import { LibraryTopicBanner } from "@/components/library/LibraryTopicBanner";
+import { MemoryCardTile } from "@/components/library/MemoryCardTile";
+import { MemoryCardSheet } from "@/components/library/MemoryCardSheet";
+import { applyMasteryStore, readMasteryStore } from "@/lib/library/card-mastery";
+import { syncCardMasteryForExam } from "@/lib/library/card-mastery-sync";
 import {
   getCardsForTopicKey,
   queryMemoryCards,
-} from "@/lib/reference/memory-cards";
-import { rememberMemoryCard } from "@/lib/reference/recent-cards";
-import { refUi } from "@/lib/reference/reference-ui";
-import type { ReferenceStudyBrief } from "@/lib/reference/study-brief-types";
+} from "@/lib/library/memory-cards";
+import { rememberMemoryCard } from "@/lib/library/recent-cards";
+import { libUi } from "@/lib/library/library-ui";
+import type { LibraryStudyBrief } from "@/lib/library/study-brief-types";
 import {
   MEMORY_CARD_KIND_LABELS,
   type MemoryCard,
   type MemoryCardKind,
-} from "@/lib/reference/types";
+} from "@/lib/library/types";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -38,7 +38,7 @@ type Props = {
   cards: MemoryCard[];
   subjects: string[];
   weakTopics: WeakTopicRow[];
-  hubStats: ReferenceHubStats;
+  hubStats: LibraryHubStats;
   initialCardId?: string;
   topicKey?: string;
 };
@@ -50,7 +50,7 @@ const KIND_OPTIONS: Array<{ value: MemoryCardKind | "all"; label: string }> = [
   ).map(([value, label]) => ({ value, label })),
 ];
 
-export function ReferenceHubClient({
+export function LibraryHubClient({
   examSlug,
   cards,
   subjects,
@@ -63,7 +63,7 @@ export function ReferenceHubClient({
   const [kind, setKind] = useState<MemoryCardKind | "all">("all");
   const [hubSearchQuery, setHubSearchQuery] = useState("");
   const [selected, setSelected] = useState<MemoryCard | null>(null);
-  const [brief, setBrief] = useState<ReferenceStudyBrief | null>(null);
+  const [brief, setBrief] = useState<LibraryStudyBrief | null>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -94,7 +94,7 @@ export function ReferenceHubClient({
     [examSlug]
   );
 
-  const onBriefLoaded = useCallback((next: ReferenceStudyBrief) => {
+  const onBriefLoaded = useCallback((next: LibraryStudyBrief) => {
     setBrief(next);
   }, []);
 
@@ -132,28 +132,28 @@ export function ReferenceHubClient({
   const showLibraryFilters = hubSearchQuery.trim().length < 2 && !topicKey;
 
   return (
-    <div className={refUi.page}>
-      <ReferenceHubHeader examSlug={examSlug} stats={hubStats} />
+    <div className={libUi.page}>
+      <LibraryHubHeader examSlug={examSlug} stats={hubStats} />
 
-      <div className={refUi.stickyBar}>
-        <ReferenceHubSearch
+      <div className={libUi.stickyBar}>
+        <LibraryHubSearch
           examSlug={examSlug}
           cards={cards}
           onOpenCard={openCard}
           onQueryChange={setHubSearchQuery}
           inputRef={searchInputRef}
         />
-        <ReferenceHubNav examSlug={examSlug} />
+        <LibraryHubNav examSlug={examSlug} />
       </div>
 
-      <div className={refUi.pageShell}>
-        <div className={refUi.panel}>
-          <div className={refUi.panelSection}>
-            <ReferenceAiBrief examSlug={examSlug} onBriefLoaded={onBriefLoaded} />
+      <div className={libUi.pageShell}>
+        <div className={libUi.panel}>
+          <div className={libUi.panelSection}>
+            <LibraryAiBrief examSlug={examSlug} onBriefLoaded={onBriefLoaded} />
           </div>
 
-          <div className={cn(refUi.sectionDivider, refUi.panelSection)}>
-            <ReferenceTodayRow
+          <div className={cn(libUi.sectionDivider, libUi.panelSection)}>
+            <LibraryTodayRow
               examSlug={examSlug}
               cards={cards}
               weakTopics={weakTopics}
@@ -163,19 +163,19 @@ export function ReferenceHubClient({
             />
           </div>
 
-          <div className={cn(refUi.sectionDivider, refUi.panelSection)}>
-            <ReferenceQuickTools examSlug={examSlug} />
-            <ReferenceCalculators examSlug={examSlug} />
-            <ReferenceExternalResources examSlug={examSlug} />
+          <div className={cn(libUi.sectionDivider, libUi.panelSection)}>
+            <LibraryQuickTools examSlug={examSlug} />
+            <LibraryCalculators examSlug={examSlug} />
+            <LibraryExternalResources examSlug={examSlug} />
           </div>
 
           <section
             id="memory-cards"
             aria-labelledby="memory-cards-heading"
-            className={cn(refUi.sectionDivider, refUi.panelSection, "space-y-4")}
+            className={cn(libUi.sectionDivider, libUi.panelSection, "space-y-4")}
           >
             {topicKey ? (
-              <ReferenceTopicBanner
+              <LibraryTopicBanner
                 examSlug={examSlug}
                 topicKey={topicKey}
                 cardCount={scopedCards.length}
@@ -184,14 +184,14 @@ export function ReferenceHubClient({
             ) : null}
 
             <div>
-              <h2 id="memory-cards-heading" className={refUi.sectionTitle}>
+              <h2 id="memory-cards-heading" className={libUi.sectionTitle}>
                 {topicKey
                   ? "Topic library"
                   : hubSearchQuery.trim().length >= 2
                     ? "Search results"
                     : "Memory card library"}
               </h2>
-              <p className={cn(refUi.sectionHint, "mt-0.5")}>
+              <p className={cn(libUi.sectionHint, "mt-0.5")}>
                 {hubSearchQuery.trim().length >= 2
                   ? `${filtered.length} card(s) matching "${hubSearchQuery}"`
                   : topicKey
@@ -202,7 +202,7 @@ export function ReferenceHubClient({
 
             {showLibraryFilters ? (
               <div className="space-y-2.5">
-                <div className={refUi.chipRow}>
+                <div className={libUi.chipRow}>
                   <FilterPill
                     active={subject === "all"}
                     onClick={() => setSubject("all")}
@@ -217,7 +217,7 @@ export function ReferenceHubClient({
                     />
                   ))}
                 </div>
-                <div className={refUi.chipRow}>
+                <div className={libUi.chipRow}>
                   {KIND_OPTIONS.map((opt) => (
                     <FilterPill
                       key={opt.value}
@@ -232,18 +232,18 @@ export function ReferenceHubClient({
             ) : null}
 
             {filtered.length === 0 ? (
-              <div className={refUi.emptyState}>
+              <div className={libUi.emptyState}>
                 <p className="text-[15px] font-medium text-[var(--color-ink)]">
                   {topicKey ? "No memory cards mapped to this topic yet" : "No cards match your filters"}
                 </p>
-                <p className={cn(refUi.sectionHint, "mt-1")}>
+                <p className={cn(libUi.sectionHint, "mt-1")}>
                   {topicKey
                     ? "Try practice questions for this topic, or browse all cards."
                     : "Try a different subject or card type, or use search above."}
                 </p>
               </div>
             ) : (
-              <div className={refUi.cardGrid}>
+              <div className={libUi.cardGrid}>
                 {filtered.map((card) => (
                   <MemoryCardTile
                     key={card.id}
@@ -286,7 +286,7 @@ function FilterPill({
       type="button"
       onClick={onClick}
       className={cn(
-        refUi.filterPill,
+        libUi.filterPill,
         compact && "text-[11px]",
         active
           ? "bg-[var(--color-accent)] text-white shadow-[var(--shadow-apple-sm)]"

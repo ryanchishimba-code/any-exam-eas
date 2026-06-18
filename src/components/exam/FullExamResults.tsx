@@ -26,7 +26,7 @@ import { cn } from "@/lib/utils";
 import { FullExamStudyLinks } from "@/components/exam/FullExamStudyLinks";
 import { StudyThisTopicButton } from "@/components/study/StudyThisTopicButton";
 import { QuestionRelatedLinks } from "@/components/study/questions/QuestionRelatedLinks";
-import { resolveQuestionStudyLinks } from "@/lib/reference/question-study-links";
+import { resolveQuestionStudyLinks } from "@/lib/library/question-study-links";
 
 type ReviewView = "summary" | "overview" | "question";
 

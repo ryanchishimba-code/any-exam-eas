@@ -74,7 +74,7 @@ export async function syncCardMasteryForExam({
 
   let res: Response;
   try {
-    res = await fetch(`/api/reference/mastery?exam=${encodeURIComponent(examSlug)}`);
+    res = await fetch(`/api/library/mastery?exam=${encodeURIComponent(examSlug)}`);
   } catch {
     return;
   }
@@ -92,7 +92,7 @@ export async function syncCardMasteryForExam({
   if (deltas.length === 0) return;
 
   try {
-    const pushRes = await fetch("/api/reference/mastery", {
+    const pushRes = await fetch("/api/library/mastery", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ examSlug, entries: deltas }),
@@ -114,7 +114,7 @@ export async function persistCardMasteryToServer(
   status: CardMasteryStatus
 ): Promise<void> {
   try {
-    await fetch("/api/reference/mastery", {
+    await fetch("/api/library/mastery", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ examSlug, cardId, status }),
