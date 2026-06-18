@@ -6,7 +6,7 @@ import { NCLEX_TARGET_TOTAL } from "@/lib/exam-prep/nclex/types";
 import { AANP_FNP_TARGET_TOTAL } from "@/lib/exam-prep/aanp-fnp/types";
 import { NPTE_PT_TARGET_TOTAL } from "@/lib/exam-prep/npte-pt/types";
 import { PANCE_TARGET_TOTAL } from "@/lib/exam-prep/pance/types";
-import { USMLE_COMBINED_TARGET } from "@/lib/exam-prep/usmle/steps";
+import { USMLE_COMBINED_TARGET, USMLE_PUBLISHED_BANK_TOTAL } from "@/lib/exam-prep/usmle/steps";
 
 /** Design target per field after bank sync (subjects × minimum items each). */
 export function targetQuestionCountForField(fieldId: string): number {
@@ -16,6 +16,16 @@ export function targetQuestionCountForField(fieldId: string): number {
   if (fieldId === "nursing") return NCLEX_TARGET_TOTAL;
   if (fieldId === "usmle-step-2" || fieldId === "usmle") return USMLE_COMBINED_TARGET;
   return getSubjectsForFieldId(fieldId).length * MIN_QUESTIONS_PER_SUBJECT;
+}
+
+/**
+ * User-facing published bank size per field — reflects the curated serve bank
+ * (post quality-trim), never the aspirational generation target. Use for any
+ * count shown to users (labels, nav stats, showcase).
+ */
+export function publishedQuestionCountForField(fieldId: string): number {
+  if (fieldId === "usmle-step-2" || fieldId === "usmle") return USMLE_PUBLISHED_BANK_TOTAL;
+  return targetQuestionCountForField(fieldId);
 }
 
 export function formatMarketingQuestionCount(count: number): string {
@@ -50,7 +60,7 @@ export const PUBLISHED_QUESTION_BANK_TOTAL = 50_000;
 export const MARKETING_QUESTION_COUNTS = {
   total: formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL),
   nursing: formatMarketingQuestionCount(fieldTargets.nursing),
-  usmle: formatMarketingQuestionCount(USMLE_COMBINED_TARGET),
+  usmle: formatMarketingQuestionCount(USMLE_PUBLISHED_BANK_TOTAL),
   pharmacy: formatMarketingQuestionCount(fieldTargets.pharmacy),
   pance: formatMarketingQuestionCount(fieldTargets.pance),
   aanpFnp: formatMarketingQuestionCount(fieldTargets["aanp-fnp"]),
@@ -60,7 +70,7 @@ export const MARKETING_QUESTION_COUNTS = {
 export const TOP_500_DRUGS_COUNT = TOP_500_COUNT;
 
 export function questionBankLabelForField(fieldId: string): string {
-  return `${formatMarketingQuestionCount(targetQuestionCountForField(fieldId))} board-style items`;
+  return `${formatMarketingQuestionCount(publishedQuestionCountForField(fieldId))} board-style items`;
 }
 
 export function top500DrugsLabel(): string {

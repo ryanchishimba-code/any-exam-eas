@@ -28,11 +28,16 @@ export function usmlePresetExamIsServeReady(linkedCount: number, targetCount: nu
 export async function listUsmleFullPracticeExams(): Promise<UsmlePresetExamSummary[]> {
   const rows = await prisma.usmleFullPracticeExam.findMany({
     orderBy: { examNumber: "asc" },
-    include: { _count: { select: { questions: true } } },
+    include: {
+      // Count only links to questions still in the curated serve bank so a preset
+      // is never advertised once its items have been retired from the bank.
+      _count: {
+        select: { questions: { where: { question: { active: true, qaPassed: true } } } },
+      },
+    },
   });
 
   return rows
-    .filter((row) => row._count.questions > 0)
     .map((row) => ({
       examNumber: row.examNumber,
       title: row.title,
@@ -42,10 +47,9 @@ export async function listUsmleFullPracticeExams(): Promise<UsmlePresetExamSumma
       blueprintSummary: row.blueprintSummary as Record<string, number> | null,
       formatSummary: row.formatSummary as Record<string, number> | null,
       taskSummary: row.taskSummary as Record<string, number> | null,
-      qaPassed:
-        row.qaPassed ||
-        usmlePresetExamIsServeReady(row._count.questions, row.questionCount),
-    }));
+      qaPassed: usmlePresetExamIsServeReady(row._count.questions, row.questionCount),
+    }))
+    .filter((row) => usmlePresetExamIsServeReady(row.linkedCount, row.questionCount));
 }
 
 export async function loadUsmlePresetExamItems(
@@ -55,6 +59,8 @@ export async function loadUsmlePresetExamItems(
     where: { examNumber },
     include: {
       questions: {
+        // Only serve linked items still active and serve-ready in the curated bank.
+        where: { question: { active: true, qaPassed: true } },
         orderBy: { sortOrder: "asc" },
         include: { question: true },
       },
@@ -92,7 +98,7 @@ export async function loadUsmlePresetExamItems(
       blueprintSummary: row.blueprintSummary as Record<string, number> | null,
       formatSummary: row.formatSummary as Record<string, number> | null,
       taskSummary: row.taskSummary as Record<string, number> | null,
-      qaPassed: row.qaPassed || usmlePresetExamIsServeReady(items.length, row.questionCount),
+      qaPassed: usmlePresetExamIsServeReady(items.length, row.questionCount),
     },
     items,
     fieldId,

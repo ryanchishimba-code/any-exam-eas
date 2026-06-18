@@ -26,7 +26,7 @@ describe("marketing bank stats", () => {
 
   it("formats marketing labels conservatively from targets", () => {
     expect(MARKETING_QUESTION_COUNTS.nursing).toBe("7K+");
-    expect(MARKETING_QUESTION_COUNTS.usmle).toBe("48K+");
+    expect(MARKETING_QUESTION_COUNTS.usmle).toBe("11K+");
     expect(MARKETING_QUESTION_COUNTS.pance).toBe("6K+");
     expect(MARKETING_QUESTION_COUNTS.aanpFnp).toBe("6K+");
     expect(MARKETING_QUESTION_COUNTS.nptePt).toBe("6K+");
