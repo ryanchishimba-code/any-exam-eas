@@ -9,7 +9,7 @@ import {
 
 describe("marketing bank stats", () => {
   it("derives counts from subject areas × minimum bank size", () => {
-    expect(targetQuestionCountForField("nursing")).toBe(24_000);
+    expect(targetQuestionCountForField("nursing")).toBe(7000);
     expect(targetQuestionCountForField("usmle-step-2")).toBe(48_000);
     expect(targetQuestionCountForField("pharmacy")).toBe(24_000);
     expect(targetQuestionCountForField("pance")).toBe(6000);
@@ -25,7 +25,7 @@ describe("marketing bank stats", () => {
   });
 
   it("formats marketing labels conservatively from targets", () => {
-    expect(MARKETING_QUESTION_COUNTS.nursing).toBe("24K+");
+    expect(MARKETING_QUESTION_COUNTS.nursing).toBe("7K+");
     expect(MARKETING_QUESTION_COUNTS.usmle).toBe("48K+");
     expect(MARKETING_QUESTION_COUNTS.pance).toBe("6K+");
     expect(MARKETING_QUESTION_COUNTS.aanpFnp).toBe("6K+");

@@ -109,6 +109,8 @@
     "db:polish-nursing:pipeline": "npm run db:polish-nursing && npm run db:qa-gate-nclex-best",
     "db:qa-gate-nclex-best": "bash scripts/run-with-node.sh npx tsx scripts/qa-gate-nclex-best.ts",
     "db:qa-gate-nclex-best:dry": "npx tsx scripts/qa-gate-nclex-best.ts --dry-run",
+    "db:trim-nclex-to-target": "npx tsx scripts/trim-nclex-to-target.ts",
+    "db:trim-nclex-to-target:dry": "npx tsx scripts/trim-nclex-to-target.ts --dry-run",
     "db:elevate-nclex:all": "bash scripts/run-with-node.sh npx tsx scripts/elevate-nclex-bank.ts",
     "db:elevate-nclex:all:dry": "npx tsx scripts/elevate-nclex-bank.ts --dry-run",
     "db:nclex-80-target": "bash scripts/run-with-node.sh node scripts/nclex-80-target-pipeline.mjs",

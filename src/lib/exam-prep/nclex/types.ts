@@ -5,6 +5,9 @@ import type { QuestionSlot } from "@/lib/engine/blueprints";
 
 export const NCLEX_FULL_EXAM_VERSION = "gpt-4o-mini-nclex-full-exam-v1";
 
+/** Curated serve-ready NCLEX bank cap — quality-ranked top tier only. */
+export const NCLEX_TARGET_TOTAL = 7000;
+
 /** Default questions per full-length practice exam (NCLEX minimum pass range). */
 export const NCLEX_FULL_EXAM_DEFAULT_COUNT = 80;
 
