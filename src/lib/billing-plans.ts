@@ -154,7 +154,7 @@ export function intervalRenewalLabel(tier: SubscriptionTier, interval: BillingIn
   return `${formatPlanUsd(plan.totalUsd)} every ${plan.months} months (${formatPlanUsd(plan.monthlyEquivalentUsd)}/mo)`;
 }
 
-/** Compact pricing line for tier cards — e.g. "$34.99/mo | 3mo ≈ $99.99 | 12mo $349" */
+/** Compact pricing line for tier cards — e.g. "$27.99/mo | 3mo ≈ $79.77 | 12mo $269" */
 export function formatTierPricingSummary(tier: SubscriptionTier): string {
   const monthly = formatPlanUsd(TIER_MONTHLY_USD[tier]);
   const q = formatApproxUsd(intervalTotalUsd(tier, "quarterly"));

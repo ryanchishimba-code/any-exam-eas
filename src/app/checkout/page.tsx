@@ -40,7 +40,7 @@ export default async function CheckoutPage({
             ? formatTrialCheckoutDescription()
             : "Pick your billing cycle, then enter payment securely."
       }
-      maxWidth="max-w-4xl"
+      maxWidth="max-w-2xl"
     >
       <Suspense fallback={<p className="mt-8 text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
         <EmbeddedStripeCheckout />

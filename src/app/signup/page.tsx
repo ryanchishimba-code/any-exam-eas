@@ -1,6 +1,7 @@
 import { SignupForm } from "@/components/SignupForm";
 import { PageShell } from "@/components/PageShell";
 import { AuthCard } from "@/components/ui/AuthCard";
+import { contentWidth } from "@/lib/layout/shell-ui";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
@@ -49,7 +50,7 @@ export default async function SignupPage({
           : `Create your account in seconds. Choose your plan and add payment after — no charge for ${TRIAL_DAYS} days. Must be 18 or older.`
       }
       align="center"
-      maxWidth="max-w-lg"
+      maxWidth={contentWidth.focus}
       variant="premium"
     >
       <AuthCard>

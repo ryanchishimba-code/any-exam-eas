@@ -138,7 +138,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     ],
     h1: "USMLE Prep — Step 1, Step 2 CK & Step 3 Question Banks",
     heroSubline:
-      "48K+ USMLE items across all three steps — basic sciences, clinical vignettes, biostatistics, ethics, and CCS-style cases — plus NCLEX, NAPLEX, PANCE, FNP, and NPTE on the same plan.",
+      "11K+ USMLE items across all three steps — basic sciences, clinical vignettes, biostatistics, ethics, and CCS-style cases — plus NCLEX, NAPLEX, PANCE, FNP, and NPTE on the same plan.",
     accentColor: EXAM_ACCENTS.usmle,
     blueprintLabel: "USMLE content outline (Step 1 · Step 2 CK · Step 3)",
     features: [
@@ -175,7 +175,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       {
         question: "How does pricing compare to UWorld?",
         answer:
-          "AnyExamEasy Basic starts at $34.99/mo and includes all three USMLE steps plus five other board exams — UWorld typically charges $200–400+ per exam separately.",
+          "AnyExamEasy Basic starts at $27.99/mo and includes all three USMLE steps plus five other board exams — UWorld typically charges $200–400+ per exam separately.",
       },
       {
         question: "Are USMLE explanations detailed?",

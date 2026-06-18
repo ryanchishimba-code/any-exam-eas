@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { PageShell } from "@/components/PageShell";
 import {
   EXAM_SEO_CONFIG,
   EXAM_SEO_KEYS,
@@ -23,15 +24,12 @@ export default function ResourcesHubPage() {
   return (
     <>
       <JsonLdScript data={buildResourcesHubJsonLd()} />
-      <div className="mx-auto max-w-5xl px-5 pb-20 pt-[var(--page-top)] sm:px-6">
-        <p className="aee-flagship-eyebrow">Study resources</p>
-        <h1 className="mt-2 text-[clamp(2rem,4.5vw,2.75rem)] font-black tracking-[-0.035em] text-[var(--color-ink)]">
-          Board exam guides & free downloads
-        </h1>
-        <p className="mt-4 max-w-2xl text-lg text-[var(--color-ink-muted)]">
-          SEO-friendly study guides for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — plus
-          printable planners and cheat sheets when you start your free trial.
-        </p>
+      <PageShell
+        eyebrow="Study resources"
+        title="Board exam guides & free downloads"
+        description="SEO-friendly study guides for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — plus printable planners and cheat sheets when you start your free trial."
+        maxWidth="max-w-5xl"
+      >
         <Link
           href={LANDING_TRIAL_HREF}
           className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-bold text-white"
@@ -44,23 +42,47 @@ export default function ResourcesHubPage() {
           <h2 id="free-downloads" className="text-xl font-bold text-[var(--color-ink)]">
             Free downloads (with trial)
           </h2>
-          <ul className="mt-5 grid gap-4 sm:grid-cols-3">
-            {RESOURCE_DOWNLOADS.map((item) => (
-              <li
-                key={item.slug}
-                className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-5"
-              >
-                <h3 className="font-bold text-[var(--color-ink)]">{item.title}</h3>
-                <p className="mt-2 text-sm text-[var(--color-ink-muted)]">{item.description}</p>
-                <Link
-                  href={item.signupHref}
-                  className="mt-4 inline-flex text-sm font-semibold text-[var(--color-accent)]"
+          {RESOURCE_DOWNLOADS.length > 0 ? (
+            <Link
+              href={RESOURCE_DOWNLOADS[0]!.signupHref}
+              className="group mt-5 flex flex-col justify-between gap-4 rounded-3xl border border-[var(--color-accent)]/30 bg-[var(--color-accent)]/[0.05] p-6 sm:flex-row sm:items-center"
+            >
+              <div>
+                <span className="inline-flex rounded-full bg-[var(--color-accent)] px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
+                  Most popular
+                </span>
+                <h3 className="mt-3 text-lg font-bold text-[var(--color-ink)]">
+                  {RESOURCE_DOWNLOADS[0]!.title}
+                </h3>
+                <p className="mt-1.5 max-w-xl text-sm text-[var(--color-ink-muted)]">
+                  {RESOURCE_DOWNLOADS[0]!.description}
+                </p>
+              </div>
+              <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-bold text-white transition group-hover:gap-3">
+                Get access
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </span>
+            </Link>
+          ) : null}
+          {RESOURCE_DOWNLOADS.length > 1 ? (
+            <ul className="mt-4 grid gap-4 sm:grid-cols-2">
+              {RESOURCE_DOWNLOADS.slice(1).map((item) => (
+                <li
+                  key={item.slug}
+                  className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-5"
                 >
-                  Get access →
-                </Link>
-              </li>
-            ))}
-          </ul>
+                  <h3 className="font-bold text-[var(--color-ink)]">{item.title}</h3>
+                  <p className="mt-2 text-sm text-[var(--color-ink-muted)]">{item.description}</p>
+                  <Link
+                    href={item.signupHref}
+                    className="mt-4 inline-flex text-sm font-semibold text-[var(--color-accent)]"
+                  >
+                    Get access →
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </section>
 
         <section className="mt-14" aria-labelledby="exam-guides">
@@ -111,7 +133,7 @@ export default function ResourcesHubPage() {
             })}
           </ul>
         </section>
-      </div>
+      </PageShell>
     </>
   );
 }

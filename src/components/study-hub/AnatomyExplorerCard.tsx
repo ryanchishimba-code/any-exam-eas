@@ -6,7 +6,7 @@ export function AnatomyExplorerCard() {
   return (
     <Link
       href={ANATOMY_EXPLORER_PATH}
-      className="group flex items-center justify-between gap-4 rounded-[22px] border border-black/[0.06] bg-gradient-to-br from-[#f5f5f7] to-white p-6 shadow-[var(--shadow-apple-sm)] transition hover:shadow-[var(--shadow-apple-md)]"
+      className="group flex items-center justify-between gap-4 rounded-[22px] border border-black/[0.06] bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface-elevated)] p-6 shadow-[var(--shadow-apple-sm)] transition hover:shadow-[var(--shadow-apple-md)]"
     >
       <div className="flex items-start gap-4">
         <div className="rounded-2xl bg-white p-2.5 text-[var(--color-accent)] shadow-[var(--shadow-apple-sm)]">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { LibraryAiBrief } from "@/components/library/LibraryAiBrief";
 import {
   LibraryHubHeader,
@@ -64,7 +65,17 @@ export function LibraryHubClient({
   const [hubSearchQuery, setHubSearchQuery] = useState("");
   const [selected, setSelected] = useState<MemoryCard | null>(null);
   const [brief, setBrief] = useState<LibraryStudyBrief | null>(null);
+  const [toolsOpen, setToolsOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     void syncCardMasteryForExam({
@@ -164,9 +175,30 @@ export function LibraryHubClient({
           </div>
 
           <div className={cn(libUi.sectionDivider, libUi.panelSection)}>
-            <LibraryQuickTools examSlug={examSlug} />
-            <LibraryCalculators examSlug={examSlug} />
-            <LibraryExternalResources examSlug={examSlug} />
+            {!isDesktop && (
+              <button
+                type="button"
+                onClick={() => setToolsOpen((v) => !v)}
+                aria-expanded={toolsOpen}
+                className="flex w-full items-center justify-between rounded-xl bg-black/[0.03] px-3 py-2.5 text-sm font-semibold text-[var(--color-ink)]"
+              >
+                Study tools — calculators, lab values & resources
+                <ChevronDown
+                  className={cn(
+                    "h-4 w-4 shrink-0 text-[var(--color-ink-muted)] transition-transform",
+                    toolsOpen && "rotate-180"
+                  )}
+                  aria-hidden
+                />
+              </button>
+            )}
+            {(isDesktop || toolsOpen) && (
+              <div className={cn(!isDesktop && "mt-3")}>
+                <LibraryQuickTools examSlug={examSlug} />
+                <LibraryCalculators examSlug={examSlug} />
+                <LibraryExternalResources examSlug={examSlug} />
+              </div>
+            )}
           </div>
 
           <section

@@ -22,23 +22,26 @@ export default async function AnalyticsPage() {
 
   return (
     <div className="space-y-6">
-      <header>
-        <p className="text-xs font-bold uppercase tracking-[0.15em] text-teal-600">Analytics</p>
-        <h1 className="mt-2 text-3xl font-bold tracking-tight text-[var(--color-ink)]">
-          Track progress &amp; insights
-        </h1>
-        <p className="mt-2 max-w-2xl text-[var(--color-ink-muted)]">
-          Accuracy trends, weak areas, and readiness signals for your primary exam.
-        </p>
-      </header>
-
       <PremiumGate callbackPath={ROUTES.analytics}>
         <ProUpgradeGate feature="advanced_analytics" callbackPath={ROUTES.pricing}>
-          <Suspense
-            fallback={<p className="text-sm text-[var(--color-ink-muted)]">Loading analytics…</p>}
-          >
-            <StudentAnalyticsDashboard />
-          </Suspense>
+          <div className="space-y-6">
+            <header>
+              <p className="text-xs font-bold uppercase tracking-[0.15em] text-[var(--color-accent)]">
+                Analytics
+              </p>
+              <h1 className="mt-2 text-3xl font-bold tracking-tight text-[var(--color-ink)]">
+                Track progress &amp; insights
+              </h1>
+              <p className="mt-2 max-w-2xl text-[var(--color-ink-muted)]">
+                Accuracy trends, weak areas, and readiness signals for your primary exam.
+              </p>
+            </header>
+            <Suspense
+              fallback={<p className="text-sm text-[var(--color-ink-muted)]">Loading analytics…</p>}
+            >
+              <StudentAnalyticsDashboard />
+            </Suspense>
+          </div>
         </ProUpgradeGate>
       </PremiumGate>
     </div>

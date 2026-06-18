@@ -32,7 +32,27 @@ export function HomeExperience({ bankCounts }: { bankCounts: LandingBankCountsDi
     return (
       <>
         <Hero />
-        <div className="border-b border-[var(--color-border)] bg-[var(--color-surface)] py-4" aria-hidden />
+        <section
+          className="bg-[var(--color-surface)] py-12 sm:py-16"
+          aria-hidden
+        >
+          <div className="mx-auto max-w-3xl px-5 sm:px-6">
+            <div className="flex flex-col items-center gap-3">
+              <div className="h-3 w-28 animate-pulse rounded-full bg-[var(--color-border)]" />
+              <div className="h-7 w-64 animate-pulse rounded-lg bg-[var(--color-border)]" />
+              <div className="h-4 w-80 max-w-full animate-pulse rounded-md bg-[var(--color-border)]" />
+              <div className="mt-2 h-11 w-40 animate-pulse rounded-full bg-[var(--color-border)]" />
+            </div>
+            <div className="mt-10 grid gap-3 sm:grid-cols-3">
+              {[0, 1, 2].map((i) => (
+                <div
+                  key={i}
+                  className="h-24 animate-pulse rounded-2xl bg-[var(--color-border)]"
+                />
+              ))}
+            </div>
+          </div>
+        </section>
       </>
     );
   }

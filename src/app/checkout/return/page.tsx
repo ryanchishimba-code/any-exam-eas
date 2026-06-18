@@ -64,7 +64,7 @@ export default async function CheckoutReturnPage({
             Try checkout again
           </Link>
           <Link href={ROUTES.dashboard} className="text-sm text-[var(--color-accent)] hover:underline">
-            Back to Dashboard
+            Back to Study Hub
           </Link>
         </div>
       </div>

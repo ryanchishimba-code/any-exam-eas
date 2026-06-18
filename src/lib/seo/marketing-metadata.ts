@@ -17,6 +17,7 @@ import {
 } from "@/lib/seo";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { SITE_NAME, formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 
 function baseOpenGraph(title: string, description: string, path: string): Metadata {
   const url = absoluteUrl(path);
@@ -121,7 +122,7 @@ export function buildExamJsonLd(key: ExamSeoKey) {
         inLanguage: "en-US",
         offers: {
           "@type": "Offer",
-          price: "34.99",
+          price: TIER_MONTHLY_USD.basic.toFixed(2),
           priceCurrency: "USD",
           description: `${formatTrialLabel()} · Basic from ${formatMonthlyPrice("basic")}/mo`,
           url: absoluteUrl("/signup?plan=trial&tier=pro"),

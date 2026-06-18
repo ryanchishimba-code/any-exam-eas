@@ -6,9 +6,16 @@ export const APP_SHELL_PREFIXES = [
   "/full-exam",
   "/library",
   "/anatomy",
+  "/settings",
 ] as const;
 
-export const MINIMAL_CHROME_PREFIXES = ["/select-exam", "/login", "/auth/login"] as const;
+export const MINIMAL_CHROME_PREFIXES = [
+  "/select-exam",
+  "/login",
+  "/auth/login",
+  "/signup",
+  "/checkout",
+] as const;
 
 export function isAppShellRoute(pathname: string): boolean {
   return APP_SHELL_PREFIXES.some(

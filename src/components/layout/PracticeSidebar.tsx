@@ -7,7 +7,7 @@ import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 const MODES = [
-  { href: ROUTES.practiceHub, label: "Practice Hub", icon: LayoutGrid, exact: true },
+  { href: ROUTES.practiceHub, label: "Study Hub", icon: LayoutGrid, exact: true },
   { href: "/study/practice?mode=bank", label: "Question bank", icon: BookOpen },
   { href: "/study/practice?mode=timed", label: "Timed exam", icon: Clock },
   { href: "/study/analytics", label: "Analytics", icon: Zap },

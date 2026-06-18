@@ -1,6 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { FullExamResults } from "@/components/exam/FullExamResults";
+import { contentWidth } from "@/lib/layout/shell-ui";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { getExamSession } from "@/lib/exam-sessions/service";
 import { requireProFeaturePage } from "@/lib/require-pro-feature";
@@ -53,8 +54,8 @@ export default async function FullExamResultsPage({
         }));
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7]">
-      <div className="mx-auto max-w-3xl px-4 pb-8 pt-[var(--page-top)] sm:px-6">
+    <div className="bg-[var(--color-bg)]">
+      <div className={`mx-auto ${contentWidth.content} px-4 pb-8 sm:px-6`}>
         <FullExamResults
           examSlug={examSlug as ExamSlug}
           sessionId={sessionId}

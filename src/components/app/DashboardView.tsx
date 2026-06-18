@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import {
+  ArrowRight,
   ClipboardList,
   LayoutGrid,
   Target,
@@ -62,6 +63,7 @@ export function DashboardView({
   const showRecent = recentTests.length > 0;
   const showWeak = weakTopics.length > 0;
   const showSpacedReview = spacedReview.dueCount > 0;
+  const isNewUser = stats.questionsAnswered === 0 && !showRecent;
 
   return (
     <div className={dbUi.page}>
@@ -93,6 +95,35 @@ export function DashboardView({
 
       <div className={dbUi.pageShell}>
         <div className={dbUi.panel}>
+          {isNewUser ? (
+            <div className={dbUi.panelSection}>
+              <div className="rounded-3xl border border-[var(--color-accent)]/25 bg-[var(--color-accent)]/[0.05] p-6 sm:p-8">
+                <p className={dbUi.eyebrow}>Get started</p>
+                <h2 className="mt-1 text-xl font-bold text-[var(--color-ink)] sm:text-2xl">
+                  Welcome to {exam.name} prep, {firstName}.
+                </h2>
+                <p className={cn(dbUi.subtitle, "mt-2 max-w-xl")}>
+                  Take your first practice set and we&apos;ll start tracking readiness, weak topics,
+                  and your streak right here.
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  <Link
+                    href={ROUTES.questionBank}
+                    className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+                  >
+                    Start practicing
+                    <ArrowRight className="h-4 w-4" aria-hidden />
+                  </Link>
+                  <Link
+                    href={ROUTES.library}
+                    className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] px-5 py-2.5 text-sm font-semibold text-[var(--color-ink)] transition hover:bg-[var(--color-surface)]"
+                  >
+                    Browse the library
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ) : null}
           <div className={dbUi.panelSection}>
             <p className={dbUi.subtitle}>{headline.motivationalMessage}</p>
             <div className={dbUi.chipRow}>

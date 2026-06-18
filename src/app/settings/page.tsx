@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 import { auth } from "@/auth";
+import { AppShell } from "@/components/app/AppShell";
 import { SettingsClient } from "@/components/settings/SettingsClient";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
-import { ROUTES } from "@/lib/routes";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { checkAndRecordAccountIp } from "@/lib/account-ip-limit";
 import { getUserAccess } from "@/lib/access-control";
@@ -41,12 +41,12 @@ export default async function SettingsPage() {
   const pref = await getUserExamPreference(session.user.id);
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg)]">
-      <div className="mx-auto max-w-lg px-6 pb-24 pt-[var(--page-top)]">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+    <AppShell>
+      <div className="mx-auto w-full max-w-2xl">
+        <h1 className="text-3xl font-bold tracking-tight text-[var(--color-ink)]">
           Settings
         </h1>
-        <p className="mt-2 text-slate-600 dark:text-slate-400">
+        <p className="mt-2 text-[var(--color-ink-muted)]">
           Exam preferences, billing, and account.
         </p>
         <div className="mt-8">
@@ -56,12 +56,7 @@ export default async function SettingsPage() {
             examSlug={pref?.examSlug && isExamSlug(pref.examSlug) ? pref.examSlug : null}
           />
         </div>
-        <p className="mt-8 text-center text-sm text-slate-500">
-          <a href={ROUTES.practiceHub} className="text-teal-600 hover:underline dark:text-teal-400">
-            Back to Study Hub
-          </a>
-        </p>
       </div>
-    </div>
+    </AppShell>
   );
 }

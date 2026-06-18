@@ -7,7 +7,7 @@ export const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "14");
 export const TRIAL_INTRO_PRICE_USD = Number(process.env.TRIAL_INTRO_PRICE_USD ?? "17.99");
 
 /** @deprecated Use TIER_MONTHLY_USD from subscription-tiers — kept for API compat (Pro monthly). */
-export const MONTHLY_PRICE_USD = Number(process.env.PRO_MONTHLY_PRICE_USD ?? process.env.MONTHLY_PRICE_USD ?? "49.99");
+export const MONTHLY_PRICE_USD = Number(process.env.PRO_MONTHLY_PRICE_USD ?? process.env.MONTHLY_PRICE_USD ?? "38.99");
 
 /** Percent savings vs paying monthly for the same period. */
 export const BILLING_INTERVAL_SAVINGS = {
@@ -35,7 +35,7 @@ export const INTERVAL_DISPLAY_LABELS: Record<BillingInterval, string> = {
 };
 
 /** @deprecated Use intervalTotalUsd(tier, "yearly") from billing-plans. */
-export const YEARLY_PRICE_USD = Number(process.env.PRO_YEARLY_PRICE_USD ?? process.env.YEARLY_PRICE_USD ?? "499");
+export const YEARLY_PRICE_USD = Number(process.env.PRO_YEARLY_PRICE_USD ?? process.env.YEARLY_PRICE_USD ?? "375");
 
 export const GRACE_PERIOD_DAYS = Number(process.env.GRACE_PERIOD_DAYS ?? "3");
 

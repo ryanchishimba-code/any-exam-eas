@@ -53,6 +53,7 @@ export function SignupForm({
   const [error, setError] = useState("");
   const [configWarning, setConfigWarning] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [step, setStep] = useState<1 | 2>(1);
 
   // Plan, tier, and billing interval are chosen at checkout (after the account
   // exists). Registration always starts the free trial unless the visitor
@@ -65,6 +66,21 @@ export function SignupForm({
   // a rejected round-trip.
   const passwordChecks = checkPassword(password);
   const passwordValid = isPasswordValid(password);
+
+  // Step 1 collects the account; step 2 collects the exam + consent. Final
+  // submit still enforces everything server-side, so this only gates perceived
+  // length — it never relaxes validation.
+  const step1Valid =
+    name.trim().length > 0 && email.trim().length > 0 && passwordValid && dob.length > 0;
+
+  function goToExamStep() {
+    if (!step1Valid) {
+      setError("Add your name, email, a valid password, and date of birth to continue.");
+      return;
+    }
+    setError("");
+    setStep(2);
+  }
 
   useEffect(() => {
     fetchAuthHealthWarning().then(setConfigWarning);
@@ -80,6 +96,12 @@ export function SignupForm({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+
+    // Enter key on a step-1 field should advance, not submit.
+    if (step === 1) {
+      goToExamStep();
+      return;
+    }
 
     if (!examSlug) {
       setError("Choose the exam you're preparing for to continue.");
@@ -182,207 +204,245 @@ export function SignupForm({
         </p>
       )}
 
-      {googleEnabled && !configWarning && (
-        <div className="space-y-4">
-          <GoogleSignInButton
-            large
-            onClick={() => {
-              const trimmedEmail = email.trim();
-              if (trimmedEmail) {
-                saveReturningUserHint({
-                  email: trimmedEmail,
-                  name: name.trim() || undefined,
-                  lastMethod: "google",
-                });
-              }
-            }}
-          />
-          <div className="relative py-1">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-black/[0.06]" />
+      <ol className="flex items-center gap-2 text-xs font-semibold" aria-label="Sign up progress">
+        <li className={step === 1 ? "text-[var(--color-accent)]" : "text-[var(--color-ink-muted)]"}>
+          1. Your account
+        </li>
+        <li aria-hidden className="text-[var(--color-ink-muted)]">›</li>
+        <li className={step === 2 ? "text-[var(--color-accent)]" : "text-[var(--color-ink-muted)]"}>
+          2. Your exam
+        </li>
+      </ol>
+
+      {step === 1 ? (
+        <>
+          {googleEnabled && !configWarning && (
+            <div className="space-y-4">
+              <GoogleSignInButton
+                large
+                onClick={() => {
+                  const trimmedEmail = email.trim();
+                  if (trimmedEmail) {
+                    saveReturningUserHint({
+                      email: trimmedEmail,
+                      name: name.trim() || undefined,
+                      lastMethod: "google",
+                    });
+                  }
+                }}
+              />
+              <div className="relative py-1">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-black/[0.06]" />
+                </div>
+                <p className="relative mx-auto w-fit bg-[var(--color-surface-elevated)] px-3 text-xs font-medium text-[var(--color-ink-muted)]">
+                  or sign up with email
+                </p>
+              </div>
             </div>
-            <p className="relative mx-auto w-fit bg-[var(--color-surface-elevated)] px-3 text-xs font-medium text-[var(--color-ink-muted)]">
-              or sign up with email
-            </p>
-          </div>
-        </div>
-      )}
+          )}
 
-      <fieldset className="space-y-3" disabled={loading}>
-        <legend className="apple-label">Which exam are you preparing for?</legend>
-        <p className="text-xs leading-relaxed text-[var(--color-ink-muted)]">
-          We&apos;ll open your dashboard to this exam. You can switch anytime later.
-        </p>
-        <div className="mt-1 grid gap-2 sm:grid-cols-2">
-          {EXAM_SLUGS.map((slug) => {
-            const exam = EXAM_CATALOG[slug];
-            const selected = examSlug === slug;
-            return (
-              <button
-                key={slug}
-                type="button"
-                role="radio"
-                aria-checked={selected}
-                onClick={() => setExamSlug(slug)}
-                className={`flex items-center justify-between gap-2 rounded-2xl border px-4 py-3 text-left transition-all duration-200 ${
-                  selected
-                    ? "border-[var(--color-accent)] bg-[var(--color-accent)]/[0.06] ring-2 ring-[var(--color-accent)]/15"
-                    : "border-black/[0.08] bg-[var(--color-surface-elevated)] hover:border-black/[0.12]"
-                }`}
-              >
-                <span className="min-w-0">
-                  <span className="block text-sm font-semibold text-[var(--color-ink)]">
-                    {exam.shortName}
-                  </span>
-                  <span className="mt-0.5 block truncate text-[0.6875rem] text-[var(--color-ink-muted)]">
-                    {exam.name}
-                  </span>
-                </span>
-                {selected && (
-                  <Check className="h-4 w-4 shrink-0 text-[var(--color-accent)]" aria-hidden />
-                )}
-              </button>
-            );
-          })}
-        </div>
-
-        {examSlug && (
-          <div className="pt-1">
-            <label htmlFor="signup-test-date" className="apple-label">
-              When&apos;s your test? <span className="font-normal text-[var(--color-ink-muted)]">(optional)</span>
-            </label>
-            <input
-              id="signup-test-date"
-              type="date"
-              value={testDate}
-              min={new Date().toISOString().slice(0, 10)}
-              onChange={(e) => setTestDate(e.target.value)}
-              className="apple-input mt-2"
-            />
-            <p className="mt-1.5 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-              We&apos;ll show a countdown on your dashboard. You can set or change this anytime.
-            </p>
-          </div>
-        )}
-      </fieldset>
-
-      <fieldset className="space-y-4" disabled={loading}>
-        <input
-          required
-          placeholder="Full name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="apple-input"
-        />
-        <input
-          required
-          type="text"
-          inputMode="email"
-          autoComplete="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          onBlur={(e) => rememberEmail(e.target.value, { name: name.trim() || undefined })}
-          className="apple-input"
-        />
-        <div>
-          <div className="relative">
+          <fieldset className="space-y-4" disabled={loading}>
             <input
               required
-              type={showPassword ? "text" : "password"}
-              minLength={10}
-              autoComplete="new-password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="apple-input pr-12"
+              placeholder="Full name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="apple-input"
             />
-            <button
-              type="button"
-              onClick={() => setShowPassword((v) => !v)}
-              aria-label={showPassword ? "Hide password" : "Show password"}
-              className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-ink)]"
-            >
-              {showPassword ? (
-                <EyeOff className="h-4 w-4" aria-hidden />
-              ) : (
-                <Eye className="h-4 w-4" aria-hidden />
+            <input
+              required
+              type="text"
+              inputMode="email"
+              autoComplete="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onBlur={(e) => rememberEmail(e.target.value, { name: name.trim() || undefined })}
+              className="apple-input"
+            />
+            <div>
+              <div className="relative">
+                <input
+                  required
+                  type={showPassword ? "text" : "password"}
+                  minLength={10}
+                  autoComplete="new-password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="apple-input pr-12"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((v) => !v)}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                  className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-ink)]"
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-4 w-4" aria-hidden />
+                  ) : (
+                    <Eye className="h-4 w-4" aria-hidden />
+                  )}
+                </button>
+              </div>
+              {password.length > 0 && (
+                <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+                  {passwordRequirements.map((req) => {
+                    const ok = passwordChecks[req.id];
+                    return (
+                      <li
+                        key={req.id}
+                        className={`flex items-center gap-1 text-[0.6875rem] ${
+                          ok
+                            ? "text-[var(--color-accent)]"
+                            : "text-[var(--color-ink-muted)]"
+                        }`}
+                      >
+                        <Check
+                          className={`h-3 w-3 shrink-0 ${ok ? "opacity-100" : "opacity-30"}`}
+                          aria-hidden
+                        />
+                        {req.label}
+                      </li>
+                    );
+                  })}
+                </ul>
               )}
-            </button>
-          </div>
-          {password.length > 0 && (
-            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
-              {passwordRequirements.map((req) => {
-                const ok = passwordChecks[req.id];
+            </div>
+            <div>
+              <label className="apple-label">Date of birth (18+ required)</label>
+              <input
+                required
+                type="date"
+                value={dob}
+                onChange={(e) => setDob(e.target.value)}
+                className="apple-input mt-2"
+              />
+            </div>
+          </fieldset>
+
+          {error && <InlineError>{error}</InlineError>}
+
+          <Button
+            type="button"
+            onClick={goToExamStep}
+            disabled={loading || !step1Valid || !!configWarning}
+            className="w-full"
+          >
+            Continue
+          </Button>
+
+          <MemberLoginLink className="text-center" showEmailHint />
+        </>
+      ) : (
+        <>
+          <fieldset className="space-y-3" disabled={loading}>
+            <legend className="apple-label">Which exam are you preparing for?</legend>
+            <p className="text-xs leading-relaxed text-[var(--color-ink-muted)]">
+              We&apos;ll open your dashboard to this exam. You can switch anytime later.
+            </p>
+            <div className="mt-1 grid gap-2 sm:grid-cols-2">
+              {EXAM_SLUGS.map((slug) => {
+                const exam = EXAM_CATALOG[slug];
+                const selected = examSlug === slug;
                 return (
-                  <li
-                    key={req.id}
-                    className={`flex items-center gap-1 text-[0.6875rem] ${
-                      ok
-                        ? "text-[var(--color-accent)]"
-                        : "text-[var(--color-ink-muted)]"
+                  <button
+                    key={slug}
+                    type="button"
+                    role="radio"
+                    aria-checked={selected}
+                    onClick={() => setExamSlug(slug)}
+                    className={`flex items-center justify-between gap-2 rounded-2xl border px-4 py-3 text-left transition-all duration-200 ${
+                      selected
+                        ? "border-[var(--color-accent)] bg-[var(--color-accent)]/[0.06] ring-2 ring-[var(--color-accent)]/15"
+                        : "border-black/[0.08] bg-[var(--color-surface-elevated)] hover:border-black/[0.12]"
                     }`}
                   >
-                    <Check
-                      className={`h-3 w-3 shrink-0 ${ok ? "opacity-100" : "opacity-30"}`}
-                      aria-hidden
-                    />
-                    {req.label}
-                  </li>
+                    <span className="min-w-0">
+                      <span className="block text-sm font-semibold text-[var(--color-ink)]">
+                        {exam.shortName}
+                      </span>
+                      <span className="mt-0.5 block truncate text-[0.6875rem] text-[var(--color-ink-muted)]">
+                        {exam.name}
+                      </span>
+                    </span>
+                    {selected && (
+                      <Check className="h-4 w-4 shrink-0 text-[var(--color-accent)]" aria-hidden />
+                    )}
+                  </button>
                 );
               })}
-            </ul>
-          )}
-        </div>
-        <div>
-          <label className="apple-label">Date of birth (18+ required)</label>
-          <input
-            required
-            type="date"
-            value={dob}
-            onChange={(e) => setDob(e.target.value)}
-            className="apple-input mt-2"
-          />
-        </div>
-      </fieldset>
+            </div>
 
-      <LegalCheckbox checked={accepted} onChange={setAccepted} />
+            {examSlug && (
+              <div className="pt-1">
+                <label htmlFor="signup-test-date" className="apple-label">
+                  When&apos;s your test? <span className="font-normal text-[var(--color-ink-muted)]">(optional)</span>
+                </label>
+                <input
+                  id="signup-test-date"
+                  type="date"
+                  value={testDate}
+                  min={new Date().toISOString().slice(0, 10)}
+                  onChange={(e) => setTestDate(e.target.value)}
+                  className="apple-input mt-2"
+                />
+                <p className="mt-1.5 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+                  We&apos;ll show a countdown on your dashboard. You can set or change this anytime.
+                </p>
+              </div>
+            )}
+          </fieldset>
 
-      {error && <InlineError>{error}</InlineError>}
+          <LegalCheckbox checked={accepted} onChange={setAccepted} />
 
-      <div className="space-y-2">
-        <Button
-          type="submit"
-          disabled={loading || !accepted || !examSlug || !passwordValid || !!configWarning}
-          className="w-full"
-        >
-          {loading
-            ? "Creating your account…"
-            : plan === "trial"
-              ? `Start my ${TRIAL_DAYS}-day free trial`
-              : "Create my account"}
-        </Button>
-        <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-          {plan === "trial"
-            ? "Next: choose your plan and add payment. You won't be charged until your trial ends."
-            : "Next: choose your plan and enter payment securely."}
-        </p>
-        {!examSlug ? (
-          <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
-            Pick the exam you&apos;re preparing for above to continue.
+          {error && <InlineError>{error}</InlineError>}
+
+          <div className="space-y-2">
+            <Button
+              type="submit"
+              disabled={loading || !accepted || !examSlug || !passwordValid || !!configWarning}
+              className="w-full"
+            >
+              {loading
+                ? "Creating your account…"
+                : plan === "trial"
+                  ? `Start my ${TRIAL_DAYS}-day free trial`
+                  : "Create my account"}
+            </Button>
+            <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+              {plan === "trial"
+                ? "Next: choose your plan and add payment. You won't be charged until your trial ends."
+                : "Next: choose your plan and enter payment securely."}
+            </p>
+            {!examSlug ? (
+              <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
+                Pick the exam you&apos;re preparing for above to continue.
+              </p>
+            ) : !accepted ? (
+              <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
+                Accept the terms above to continue.
+              </p>
+            ) : null}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => {
+              setError("");
+              setStep(1);
+            }}
+            className="mx-auto block text-xs font-medium text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-ink)]"
+          >
+            ← Back to account details
+          </button>
+
+          <p className="text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+            {LEGAL_DISCLAIMERS.ageRequirement} {MARKETING_DISCLAIMER}
           </p>
-        ) : !accepted ? (
-          <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
-            Accept the terms above to continue.
-          </p>
-        ) : null}
-      </div>
-
-      <p className="text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-        {LEGAL_DISCLAIMERS.ageRequirement} {MARKETING_DISCLAIMER}
-      </p>
-
-      <MemberLoginLink className="text-center" showEmailHint />
+        </>
+      )}
     </form>
   );
 }

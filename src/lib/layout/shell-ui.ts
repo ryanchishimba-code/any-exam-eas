@@ -5,3 +5,16 @@ export const shellUi = {
   /** Page content fills the main column beside the sidebar. */
   page: "w-full min-w-0",
 } as const;
+
+/**
+ * Named content widths so marketing, app, and focused surfaces stay consistent
+ * instead of each page inventing its own max-w-* value.
+ */
+export const contentWidth = {
+  /** Wide marketing / reading column (resources, long-form). */
+  wide: "max-w-5xl",
+  /** Default content column for standard pages (pricing, results). */
+  content: "max-w-3xl",
+  /** Focused single-task column (auth, checkout). */
+  focus: "max-w-md",
+} as const;

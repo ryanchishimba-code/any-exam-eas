@@ -45,7 +45,7 @@ export function SettingsClient({
         </p>
         <Link
           href={`${ROUTES.selectExam}?switch=1`}
-          className="mt-4 inline-flex rounded-xl bg-teal-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-teal-700"
+          className="mt-4 inline-flex rounded-xl bg-[var(--color-accent)] px-4 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
         >
           Change exam
         </Link>

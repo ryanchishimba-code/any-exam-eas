@@ -50,7 +50,7 @@ export function SubscriberHome() {
   const name = session?.user?.name ? firstName(session.user.name) : null;
 
   return (
-    <section className="bg-[#f5f5f7] py-12 sm:py-16" aria-labelledby="subscriber-home-heading">
+    <section className="bg-[var(--color-surface)] py-12 sm:py-16" aria-labelledby="subscriber-home-heading">
       <div className="mx-auto max-w-3xl px-5 sm:px-6">
         <div className="text-center">
           <p className={cn(dbUi.eyebrow, "inline-flex items-center gap-1.5")}>
@@ -67,7 +67,7 @@ export function SubscriberHome() {
             href={STUDY_HUB_PATH}
             className="mt-5 inline-flex h-11 items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 text-[15px] font-semibold text-white shadow-[var(--shadow-apple-btn)] transition hover:shadow-[var(--shadow-apple-btn-hover)]"
           >
-            Open dashboard
+            Open Study Hub
             <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
         </div>
