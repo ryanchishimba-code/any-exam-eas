@@ -34,9 +34,11 @@ import {
   formatTrialLabel,
   TRIAL_PAYMENT_DISCLOSURE,
 } from "@/lib/site";
-import { getExamHub } from "@/lib/exams/catalog";
-
-type Props = { examKey: ExamSeoKey };
+type Props = {
+  examKey: ExamSeoKey;
+  /** Live compact question count for this exam, e.g. "8.2K+". */
+  questionCountLabel?: string;
+};
 
 /** Feature section icons cycle through these 3 by index. */
 const FEATURE_ICONS = [
@@ -46,12 +48,20 @@ const FEATURE_ICONS = [
   <TrendingUp key="trend" className="h-[18px] w-[18px]" strokeWidth={1.75} aria-hidden />,
 ];
 
-export function ExamMarketingLanding({ examKey }: Props) {
+export function ExamMarketingLanding({ examKey, questionCountLabel }: Props) {
   const config = getExamSeoConfig(examKey);
-  const hub = getExamHub(examKey);
   const relatedArticles = getArticlesForExam(examKey).slice(0, 3);
   const otherExams = EXAM_SEO_KEYS.filter((k) => k !== examKey);
   const isUsmle = examKey === "usmle";
+
+  // Premium hero stat chips — lead with the live, accurate count.
+  const heroStats: { value: string; label: string; accent?: boolean }[] = [
+    ...(questionCountLabel
+      ? [{ value: questionCountLabel, label: "serve-ready questions", accent: true }]
+      : []),
+    { value: "QA-gated", label: "no bulk filler" },
+    { value: "6 exams", label: "one subscription" },
+  ];
 
   return (
     <div className="aee-exam-marketing">
@@ -79,11 +89,30 @@ export function ExamMarketingLanding({ examKey }: Props) {
             <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-muted)] sm:text-lg">
               {config.heroSubline}
             </p>
-            {hub && !isUsmle ? (
-              <p className="mt-2 text-sm font-semibold text-[var(--color-ink)]">
-                {hub.questionBankLabel} · plus 5 other board exams on the same plan
-              </p>
-            ) : null}
+            <dl className="mt-5 flex flex-wrap gap-2.5" aria-label={`${config.shortName} at a glance`}>
+              {heroStats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="inline-flex items-baseline gap-1.5 rounded-full border px-3 py-1.5"
+                  style={
+                    stat.accent
+                      ? {
+                          borderColor: `${config.accentColor}55`,
+                          background: `${config.accentColor}12`,
+                        }
+                      : { borderColor: "var(--color-border)", background: "var(--color-surface)" }
+                  }
+                >
+                  <dd
+                    className="text-sm font-extrabold tracking-tight"
+                    style={{ color: stat.accent ? config.accentColor : "var(--color-ink)" }}
+                  >
+                    {stat.value}
+                  </dd>
+                  <dt className="text-xs font-medium text-[var(--color-ink-muted)]">{stat.label}</dt>
+                </div>
+              ))}
+            </dl>
 
             <ul
               className="mt-4 flex flex-wrap gap-x-4 gap-y-1"

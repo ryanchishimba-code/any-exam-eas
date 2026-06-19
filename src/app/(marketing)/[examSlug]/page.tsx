@@ -7,6 +7,10 @@ import {
   resolveExamSeoKey,
 } from "@/lib/seo/exam-config";
 import { buildExamJsonLd, buildExamMetadata } from "@/lib/seo/marketing-metadata";
+import {
+  buildLandingBankCountsDisplay,
+  getQuestionBankCounts,
+} from "@/lib/marketing/question-bank-counts";
 
 type Props = { params: Promise<{ examSlug: string }> };
 
@@ -29,10 +33,14 @@ export default async function ExamMarketingPage({ params }: Props) {
   const key = resolveExamSeoKey(examSlug);
   if (!key) notFound();
 
+  // Live, accurate per-exam question count for the hero (cached ~1h).
+  const bankCounts = buildLandingBankCountsDisplay(await getQuestionBankCounts());
+  const questionCountLabel = bankCounts.exams.find((row) => row.slug === key)?.countLabel;
+
   return (
     <>
       <JsonLdScript data={buildExamJsonLd(key)} />
-      <ExamMarketingLanding examKey={key} />
+      <ExamMarketingLanding examKey={key} questionCountLabel={questionCountLabel} />
     </>
   );
 }
