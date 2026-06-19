@@ -7,7 +7,7 @@ export const PANCE_BLUEPRINT_SOURCE =
   "NCCPA PANCE Content Blueprint (effective January 2025)";
 
 /** Official target for the curated + AI-generated PANCE bank. */
-export const PANCE_TARGET_TOTAL = 6000;
+export const PANCE_TARGET_TOTAL = 6700;
 
 /** Recommended seed count per medical content category before bulk AI generation. */
 export const PANCE_SEED_TARGET_PER_CATEGORY = 250;

@@ -209,14 +209,6 @@ function dedupeSamplePool(items: BankItem[]): BankItem[] {
 }
 
 /**
- * Procedural bulk filler (tagged "bulk-bank" by bulk-question-generator) is never
- * served — only genuine seed/curated items reach learners.
- */
-const EXCLUDE_BULK_FILLER: { NOT: { tags: { contains: string } } } = {
-  NOT: { tags: { contains: "bulk-bank" } },
-};
-
-/**
  * Step-separation guard. Step 3 items can share the `usmle-step-2` field (legacy
  * full-exam inserter), so the Step 2 CK bank must exclude `stepLevel="step3"`.
  * Expressed via `AND` (not `OR`/`NOT`) so it never collides when merged with the
@@ -235,7 +227,6 @@ function activeSubjectWhere(fieldId: string, subjectId: string) {
     subjectId,
     active: true as const,
     qaPassed: true as const,
-    ...EXCLUDE_BULK_FILLER,
     ...usmleStepSeparationWhere(fieldId),
   };
 }
@@ -245,7 +236,6 @@ function activeFieldWhere(fieldId: string) {
     fieldId,
     active: true as const,
     qaPassed: true as const,
-    ...EXCLUDE_BULK_FILLER,
     ...usmleStepSeparationWhere(fieldId),
   };
 }
@@ -661,8 +651,7 @@ export async function countActiveQuestions(fieldId?: string) {
     where: {
       active: true,
       qaPassed: true,
-      ...EXCLUDE_BULK_FILLER,
-      ...(fieldId ? { fieldId } : {}),
+      ...(fieldId ? { fieldId, ...usmleStepSeparationWhere(fieldId) } : {}),
     },
   });
 }

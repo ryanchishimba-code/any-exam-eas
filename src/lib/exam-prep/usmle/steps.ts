@@ -88,7 +88,7 @@ export const USMLE_COMBINED_TARGET = USMLE_STEPS.reduce((sum, s) => sum + s.targ
  * Curated serve bank after the quality trim — the top items kept across all three
  * steps. User-facing counts use this (not the aspirational generation target).
  */
-export const USMLE_PUBLISHED_BANK_TOTAL = 11_000;
+export const USMLE_PUBLISHED_BANK_TOTAL = 9_930;
 
 export function isUsmleFieldId(fieldId: string): fieldId is UsmleFieldId {
   return (USMLE_FIELD_IDS as readonly string[]).includes(fieldId);

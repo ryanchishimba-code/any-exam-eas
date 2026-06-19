@@ -8,6 +8,9 @@ export const NAPLEX_FULL_EXAM_VERSION = "gpt-4o-mini-naplex-full-exam-v1";
 /** Default questions per full-length NAPLEX practice exam. */
 export const NAPLEX_FULL_EXAM_DEFAULT_COUNT = 80;
 
+/** Curated serve bank size after quality trim. */
+export const NAPLEX_TARGET_TOTAL = 6500;
+
 /** Items per OpenAI call — satisfies batch-of-10 diversity rules. */
 export const NAPLEX_GENERATION_CHUNK_SIZE = 10;
 

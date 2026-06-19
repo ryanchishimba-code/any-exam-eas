@@ -46,13 +46,13 @@ function snapshotWithServed(
 describe("question-bank-counts display", () => {
   it("uses live served counts when available", () => {
     const snapshot = snapshotWithServed({
-      nursing: 11_359,
-      pharmacy: 21_190,
+      nursing: 7_000,
+      pharmacy: 6_500,
     });
 
-    expect(displayQuestionCountForField("nursing", snapshot)).toBe("11K+");
-    expect(displayQuestionCountForField("pharmacy", snapshot)).toBe("21K+");
-    expect(displayTotalQuestionCount(snapshot)).toBe("32K+");
+    expect(displayQuestionCountForField("nursing", snapshot)).toBe("7K+");
+    expect(displayQuestionCountForField("pharmacy", snapshot)).toBe("6K+");
+    expect(displayTotalQuestionCount(snapshot)).toBe("13K+");
   });
 
   it("falls back to design targets when served is zero", () => {
@@ -67,7 +67,7 @@ describe("question-bank-counts display", () => {
 
   it("builds six-exam landing display rows with question labels", () => {
     const display = buildLandingBankCountsDisplay(
-      snapshotWithServed({ nursing: 11_359, "usmle-step-2": 5_306, "aanp-fnp": 4_200 })
+      snapshotWithServed({ nursing: 7_000, "usmle-step-2": 9_930, "aanp-fnp": 4_598 })
     );
 
     expect(display.exams).toHaveLength(6);
@@ -79,10 +79,10 @@ describe("question-bank-counts display", () => {
       "AANP FNP",
       "NPTE-PT",
     ]);
-    expect(display.exams[0]?.countLabel).toBe("5K+");
-    expect(display.exams[0]?.questionsLabel).toBe("5,306 questions");
-    expect(display.exams[1]?.countLabel).toBe("11K+");
-    expect(display.exams[1]?.questionsLabel).toBe("11,359 questions");
-    expect(display.totalQuestionsLabel).toBe("20,865 questions");
+    expect(display.exams[0]?.countLabel).toBe("9K+");
+    expect(display.exams[0]?.questionsLabel).toBe("9,930 questions");
+    expect(display.exams[1]?.countLabel).toBe("7K+");
+    expect(display.exams[1]?.questionsLabel).toBe("7,000 questions");
+    expect(display.totalQuestionsLabel).toBe("21,528 questions");
   });
 });

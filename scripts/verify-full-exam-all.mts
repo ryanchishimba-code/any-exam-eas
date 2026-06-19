@@ -30,6 +30,7 @@ import {
 import { nptePtItemPassesTimedExamGate } from "../src/lib/exam-prep/npte-pt-serve-gate";
 import { usmleBankItemIsServeReady } from "../src/lib/exam-prep/usmle-clinical-gate";
 import { isUsmleField } from "../src/lib/exam-prep/usmle-bank-bridge";
+import { USMLE_STEPS } from "../src/lib/exam-prep/usmle/steps";
 import type { FullExamLengthPreset } from "../src/types/full-exam";
 
 const prisma = new PrismaClient();
@@ -186,6 +187,68 @@ async function main() {
       const r = await assembleFullExam(slug, preset);
       results.push({ slug, preset, ...r });
       console.log(r.ok ? "PASS" : "FAIL", `— ${r.detail} (${r.ms}ms)`);
+    }
+  }
+
+  if (!onlySlug && presets.includes("full")) {
+    for (const step of USMLE_STEPS) {
+      process.stdout.write(`  usmle/${step.level} (full)… `);
+      const config = buildSessionConfig("usmle", "full", true);
+      const limit = step.simulatedQuestionCount;
+      const started = Date.now();
+      try {
+        const sampleCount = resolveExamBankSampleCount(step.fieldId, limit, true);
+        let items = await gatherTimedExamBankItems({
+          fieldId: step.fieldId,
+          limit,
+          filterFn: (item) => usmleBankItemIsServeReady(item, step.fieldId),
+          initialSampleCount: sampleCount,
+        });
+        items = prepareBankItemsForSession({
+          fieldId: step.fieldId,
+          field: step.fieldId,
+          items,
+          limit,
+          poolLimit: items.length,
+        });
+        const rawInputs = items.map((item, i) => ({
+          ...bankItemToSessionRaw(step.fieldId, step.fieldId, item.subjectId ?? "__mixed__", item, i),
+          field: step.fieldId,
+          subjectId: item.subjectId ?? "__mixed__",
+          bankItemId: item.id,
+        }));
+        const { prepared, quality } = finalizeExamSessionQuestions(rawInputs, limit);
+        assertExamSessionReady(quality, step.fieldId);
+        const activeInBank = await countActiveQuestions(step.fieldId);
+        console.log(
+          "PASS",
+          `— ${prepared.length}/${limit} questions · quality OK (${Date.now() - started}ms)`
+        );
+        results.push({
+          slug: "usmle" as ExamSlug,
+          preset: "full",
+          requested: limit,
+          returned: prepared.length,
+          activeInBank,
+          ok: prepared.length === limit,
+          detail: `${step.level} ${prepared.length}/${limit}`,
+          ms: Date.now() - started,
+        });
+      } catch (e) {
+        const activeInBank = await countActiveQuestions(step.fieldId);
+        const detail = (e instanceof Error ? e.message : String(e)).slice(0, 200);
+        console.log("FAIL", `— ${detail}`);
+        results.push({
+          slug: "usmle" as ExamSlug,
+          preset: "full",
+          requested: limit,
+          returned: 0,
+          activeInBank,
+          ok: false,
+          detail: `${step.level}: ${detail}`,
+          ms: Date.now() - started,
+        });
+      }
     }
   }
 

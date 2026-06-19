@@ -3,6 +3,7 @@ import { TOP_500_COUNT } from "@/lib/drugs300/catalog";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import { NCLEX_TARGET_TOTAL } from "@/lib/exam-prep/nclex/types";
+import { NAPLEX_TARGET_TOTAL } from "@/lib/exam-prep/naplex/types";
 import { AANP_FNP_TARGET_TOTAL } from "@/lib/exam-prep/aanp-fnp/types";
 import { NPTE_PT_TARGET_TOTAL } from "@/lib/exam-prep/npte-pt/types";
 import { PANCE_TARGET_TOTAL } from "@/lib/exam-prep/pance/types";
@@ -14,6 +15,7 @@ export function targetQuestionCountForField(fieldId: string): number {
   if (fieldId === "pance") return PANCE_TARGET_TOTAL;
   if (fieldId === "npte-pt") return NPTE_PT_TARGET_TOTAL;
   if (fieldId === "nursing") return NCLEX_TARGET_TOTAL;
+  if (fieldId === "pharmacy") return NAPLEX_TARGET_TOTAL;
   if (fieldId === "usmle-step-2" || fieldId === "usmle") return USMLE_COMBINED_TARGET;
   return getSubjectsForFieldId(fieldId).length * MIN_QUESTIONS_PER_SUBJECT;
 }
@@ -25,6 +27,11 @@ export function targetQuestionCountForField(fieldId: string): number {
  */
 export function publishedQuestionCountForField(fieldId: string): number {
   if (fieldId === "usmle-step-2" || fieldId === "usmle") return USMLE_PUBLISHED_BANK_TOTAL;
+  if (fieldId === "nursing") return NCLEX_TARGET_TOTAL;
+  if (fieldId === "pharmacy") return NAPLEX_TARGET_TOTAL;
+  if (fieldId === "pance") return PANCE_TARGET_TOTAL;
+  if (fieldId === "aanp-fnp") return AANP_FNP_TARGET_TOTAL;
+  if (fieldId === "npte-pt") return NPTE_PT_TARGET_TOTAL;
   return targetQuestionCountForField(fieldId);
 }
 
@@ -54,7 +61,7 @@ export const TOTAL_QUESTION_BANK_TARGET = EXAM_FIELD_IDS.reduce(
  * `totals.served` count (currently ~52.6K) — never set it to the aspirational
  * `TOTAL_QUESTION_BANK_TARGET`, which counts questions we still plan to add.
  */
-export const PUBLISHED_QUESTION_BANK_TOTAL = 50_000;
+export const PUBLISHED_QUESTION_BANK_TOTAL = 38_000;
 
 /** User-facing counts derived from the live served bank — never the aspirational target. */
 export const MARKETING_QUESTION_COUNTS = {

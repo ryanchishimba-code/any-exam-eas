@@ -10,8 +10,8 @@ import type { UsmleStepLevel } from "./types";
  * Questions are already separated by `fieldId` (`usmle-step-1/2/3`) and indexed
  * via `@@index([fieldId, active, qaPassed])`, so counting is a single cheap
  * `groupBy` — we never load the questions themselves. Counts use the same serve
- * filter as the rest of the app (`active && qaPassed && not bulk-filler`) so the
- * number shown equals what a learner can actually practice.
+ * filter as the rest of the app (`active && qaPassed`) so the number shown equals
+ * what a learner can actually practice.
  *
  * Designed to extend to other multi-exam families later (e.g. COMLEX) by adding
  * a sibling builder that maps its field ids to option metadata.
@@ -87,8 +87,6 @@ async function fetchUsmleServedCounts(): Promise<Record<UsmleStepLevel, number>>
       fieldId: { in: [...USMLE_FIELD_IDS] },
       active: true,
       qaPassed: true,
-      // Mirror EXCLUDE_BULK_FILLER so the count matches what is actually served.
-      NOT: { tags: { contains: "bulk-bank" } },
     },
     _count: { _all: true },
   });

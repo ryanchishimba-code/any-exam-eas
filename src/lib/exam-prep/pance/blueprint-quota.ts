@@ -20,7 +20,7 @@ const CONTENT_IDS = PANCE_BLUEPRINT.categories.map((c) => c.id as PanceContentCa
 
 const TASK_IDS = PANCE_TASK_CATEGORIES.map((t) => t.id as PanceTaskCategoryId);
 
-/** Per-category question targets for a given bank size (default 6000). */
+/** Per-category question targets for a given bank size (default 6700). */
 export function computePanceContentQuotas(
   total = PANCE_TARGET_TOTAL
 ): PanceQuotaRow[] {
