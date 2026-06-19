@@ -21,6 +21,7 @@ import { BoardSeasonCountdown } from "@/components/landing/BoardSeasonCountdown"
 import { LandingShowcase } from "@/components/landing/flagship/LandingShowcase";
 import { LandingWhyChoose } from "@/components/landing/flagship/LandingWhyChoose";
 import { ChooseYourExam } from "@/components/home/ChooseYourExam";
+import { LandingAnatomyPreview } from "@/components/home/LandingAnatomyPreview";
 import {
   LANDING_HERO_CTA_DISCLOSURE,
   LANDING_HERO_EXAMS,
@@ -180,6 +181,8 @@ export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsD
       <HeroSection bankCounts={bankCounts} />
 
       <LandingShowcase />
+
+      <LandingAnatomyPreview />
 
       <ChooseYourExam bankCounts={bankCounts} />
 

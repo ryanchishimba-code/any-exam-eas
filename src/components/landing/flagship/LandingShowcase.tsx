@@ -12,7 +12,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Activity, HeartPulse, Pill } from "lucide-react";
+import { ArrowRight, Activity, BookOpen, HeartPulse, Pill, Scan } from "lucide-react";
 import { LandingVisualSlot } from "@/components/home/LandingVisualSlot";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -140,56 +140,70 @@ function DrugCard() {
   );
 }
 
-/** Anatomy Explorer reference panel. */
+/** Anatomy Studio showcase panel — 3D + CT Atlas + Guided Tours. */
 function AnatomyCard() {
-  const structures = [
-    "Right atrium",
-    "Right ventricle",
-    "Left atrium",
-    "Left ventricle",
-    "Aortic valve",
-    "Coronary arteries",
+  const structures = ["Right atrium", "Left ventricle", "Aortic valve", "LAD", "SA node", "Pericardium"];
+  const modes = [
+    { icon: Activity, label: "3D Atlas" },
+    { icon: Scan, label: "CT Mode" },
+    { icon: BookOpen, label: "Guided Tours" },
   ];
   return (
     <div className="flex h-full flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-5 shadow-[var(--shadow-apple-md)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-apple-lg)]">
-      <div className="flex items-center gap-3">
-        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-500/10">
-          <HeartPulse className="h-5 w-5 text-rose-500" aria-hidden />
-        </span>
-        <div>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent)]/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent)]">
-            <Activity className="h-3 w-3" aria-hidden />
-            Anatomy Explorer
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-rose-500/10">
+            <HeartPulse className="h-5 w-5 text-rose-500" aria-hidden />
           </span>
-          <h4 className="mt-1.5 text-lg font-bold text-[var(--color-ink)]">Heart</h4>
+          <div>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent)]/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent)]">
+              <Activity className="h-3 w-3" aria-hidden />
+              Anatomy Studio
+            </span>
+            <h4 className="mt-1 text-lg font-bold text-[var(--color-ink)]">Heart — Cardiovascular</h4>
+          </div>
         </div>
+        <span className="shrink-0 rounded-full bg-teal-600 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white">
+          Unique feature
+        </span>
       </div>
 
-      <p className="mt-3 text-sm text-[var(--color-ink-muted)]">
-        Tap any structure for clinical pearls, guided tours, scrollable CT slices, and one-click
-        jumps back to related practice.
-      </p>
+      <div className="mt-3 flex flex-wrap gap-1.5" aria-label="Available modes">
+        {modes.map(({ icon: Icon, label }) => (
+          <span
+            key={label}
+            className="inline-flex items-center gap-1 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-1 text-[10px] font-semibold text-[var(--color-ink-muted)]"
+          >
+            <Icon className="h-3 w-3" aria-hidden />
+            {label}
+          </span>
+        ))}
+      </div>
 
-      <ul className="mt-4 flex flex-wrap gap-2">
+      <ul className="mt-3 flex flex-wrap gap-1.5">
         {structures.map((s) => (
           <li
             key={s}
-            className="rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-1 text-xs font-medium text-[var(--color-ink)]"
+            className="rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-2.5 py-1 text-[11px] font-medium text-[var(--color-ink)]"
           >
             {s}
           </li>
         ))}
       </ul>
 
-      <div className="mt-4 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3 text-sm">
-        <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
-          Clinical pearl
+      <div className="mt-3 rounded-xl border border-rose-100 bg-rose-50/60 p-3 dark:border-rose-900/30 dark:bg-rose-950/20">
+        <p className="text-[10px] font-bold uppercase tracking-wide text-rose-700 dark:text-rose-400">
+          Clinical pearl — LAD
         </p>
-        <p className="mt-1 text-[var(--color-ink)]">
-          LAD occlusion → anterior MI (ST elevation V1–V4). The “widow-maker” supplies the
-          anterior LV and septum.
+        <p className="mt-1 text-[13px] leading-relaxed text-[var(--color-ink)]"><span className="font-semibold">LAD occlusion — anterior MI (V1–V4).</span> The
+          “widow-maker” supplies the anterior LV and septum — click to see the
+          full coronary tree in 3D.
         </p>
       </div>
+
+      <p className="mt-auto pt-3 text-[11px] font-medium text-[var(--color-ink-muted)]">
+        32 structures · 9 systems · CT Atlas · guided tours · drug &amp; procedure links
+      </p>
     </div>
   );
 }

@@ -72,10 +72,11 @@ const benefits = [
     icon: Bone,
     visualId: null,
     outcome: "Anatomy Studio",
-    title: "3D anatomy, video & CT Atlas",
+    title: "Interactive 3D atlas — no other board prep includes this",
     description:
-      "Interactive structures with clinical pearls, guided tours, scrollable CT slices, and one-click jumps to related practice.",
-    accent: "from-violet-500 to-indigo-500",
+      "Rotate full 3D organs, scroll CT Atlas slices, follow exam-scoped guided tours, and jump to practice questions — all linked from your study sessions.",
+    accent: "from-teal-500 to-cyan-500",
+    highlight: true,
   },
   {
     icon: MapPin,
@@ -112,13 +113,20 @@ export function LandingFeatures() {
         <ul className="mt-5 grid gap-3 sm:mt-6 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-4">
           {benefits.map((benefit, i) => {
             const Icon = benefit.icon;
+            const isHighlight = "highlight" in benefit && benefit.highlight;
             return (
               <li
                 key={benefit.title}
                 className="aee-reveal"
                 style={{ animationDelay: `${i * 40}ms` }}
               >
-                <article className="aee-feature-card group flex h-full flex-col bg-[var(--color-surface-elevated)]">
+                <article
+                  className={`aee-feature-card group flex h-full flex-col ${
+                    isHighlight
+                      ? "border-teal-500/30 bg-teal-50/60 dark:bg-teal-950/30"
+                      : "bg-[var(--color-surface-elevated)]"
+                  }`}
+                >
                   {benefit.visualId === "feature-pharmacology" ? (
                     <Top500DrugsVisual
                       variant="feature"
@@ -130,12 +138,19 @@ export function LandingFeatures() {
                       className="mb-3 aspect-[4/3] min-h-[7.5rem] overflow-hidden rounded-xl ring-1 ring-black/[0.04]"
                     />
                   ) : null}
-                  <span
-                    className={`aee-feature-icon bg-gradient-to-br ${benefit.accent}`}
-                    aria-hidden
-                  >
-                    <Icon className="h-5 w-5 text-white" strokeWidth={2} />
-                  </span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span
+                      className={`aee-feature-icon bg-gradient-to-br ${benefit.accent}`}
+                      aria-hidden
+                    >
+                      <Icon className="h-5 w-5 text-white" strokeWidth={2} />
+                    </span>
+                    {isHighlight && (
+                      <span className="rounded-full bg-teal-600 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white">
+                        Unique feature
+                      </span>
+                    )}
+                  </div>
                   <p className="mt-4 text-[0.6875rem] font-semibold uppercase tracking-wider text-teal-700">
                     {benefit.outcome}
                   </p>
