@@ -10,6 +10,7 @@ import {
   toggleFavorite,
 } from "@/lib/library/favorites";
 import { getCardsForTopicKey, queryMemoryCards } from "@/lib/library/memory-cards";
+import { groupCardsBySubject } from "@/lib/library/arrange";
 import { useSessionTone } from "@/lib/library/session-tone";
 import { useLibraryMotion } from "@/lib/library/use-library-motion";
 import { libUi } from "@/lib/library/library-ui";
@@ -105,6 +106,37 @@ export function LibraryCollection({
     [baseList, subject, kind, isSearching, trimmedQuery]
   );
 
+  // Browse the full "All" view as clean subject sections; keep search / weak /
+  // favorites as flat lists since those are smaller, contextual sets.
+  const grouped = tab === "all" && !isSearching;
+  const groups = useMemo(
+    () => (grouped ? groupCardsBySubject(filtered) : []),
+    [grouped, filtered]
+  );
+
+  const renderCard = (card: MemoryCard) => {
+    const isFav = favoriteSet.has(card.id);
+    return (
+      <div key={card.id} className="relative">
+        <MemoryCardTile card={card} examSlug={examSlug} onOpen={() => onOpenCard(card)} />
+        <motion.button
+          type="button"
+          aria-label={isFav ? "Remove from favorites" : "Save to favorites"}
+          aria-pressed={isFav}
+          whileTap={tap}
+          transition={spring}
+          onClick={() => toggleFavorite(examSlug, card.id)}
+          className="absolute right-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-[var(--color-ink-muted)] shadow-[var(--shadow-apple-sm)] backdrop-blur-sm transition-colors hover:text-amber-500"
+        >
+          <Star
+            className={cn("h-4 w-4 transition-colors", isFav && "fill-amber-400 text-amber-500")}
+            aria-hidden
+          />
+        </motion.button>
+      </div>
+    );
+  };
+
   return (
     <section
       id="library-collection"
@@ -168,15 +200,29 @@ export function LibraryCollection({
         })}
       </div>
 
+      {/* Subject quick-nav: always visible on the All tab so any subject is one
+          tap to find — no need to open the Filters panel. */}
+      {tab === "all" && !isSearching ? (
+        <div className={libUi.chipRow} role="group" aria-label="Jump to subject">
+          <FilterPill active={subject === "all"} onClick={() => setSubject("all")} label="All subjects" />
+          {subjects.map((s) => (
+            <FilterPill key={s} active={subject === s} onClick={() => setSubject(s)} label={s} />
+          ))}
+        </div>
+      ) : null}
+
       {/* Progressive disclosure: advanced filters stay hidden until requested. */}
       {showFilters ? (
         <div className="space-y-2.5 rounded-[16px] bg-black/[0.02] p-3">
-          <div className={libUi.chipRow}>
-            <FilterPill active={subject === "all"} onClick={() => setSubject("all")} label="All subjects" />
-            {subjects.map((s) => (
-              <FilterPill key={s} active={subject === s} onClick={() => setSubject(s)} label={s} />
-            ))}
-          </div>
+          {/* Subject pills only needed here when the inline quick-nav is hidden. */}
+          {tab !== "all" || isSearching ? (
+            <div className={libUi.chipRow}>
+              <FilterPill active={subject === "all"} onClick={() => setSubject("all")} label="All subjects" />
+              {subjects.map((s) => (
+                <FilterPill key={s} active={subject === s} onClick={() => setSubject(s)} label={s} />
+              ))}
+            </div>
+          ) : null}
           <div className={libUi.chipRow}>
             {KIND_OPTIONS.map((opt) => (
               <FilterPill
@@ -213,6 +259,28 @@ export function LibraryCollection({
                 : "Try a different search or clear your filters."}
           </p>
         </div>
+      ) : grouped ? (
+        <motion.div
+          key={`grouped:${subject}:${kind}`}
+          initial={reduce ? false : { opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="space-y-6"
+        >
+          {groups.map((group) => (
+            <section key={group.key} id={`subject-${group.key}`} aria-label={group.subject}>
+              <div className="mb-2.5 flex items-baseline gap-2">
+                <h3 className="text-[14px] font-semibold tracking-tight text-[var(--color-ink)]">
+                  {group.subject}
+                </h3>
+                <span className="text-[12px] tabular-nums text-[var(--color-ink-muted)]">
+                  {group.cards.length}
+                </span>
+              </div>
+              <div className={libUi.cardGrid}>{group.cards.map(renderCard)}</div>
+            </section>
+          ))}
+        </motion.div>
       ) : (
         <motion.div
           key={`${tab}:${trimmedQuery}:${subject}:${kind}`}
@@ -221,28 +289,7 @@ export function LibraryCollection({
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className={libUi.cardGrid}
         >
-          {filtered.map((card) => {
-            const isFav = favoriteSet.has(card.id);
-            return (
-              <div key={card.id} className="relative">
-                <MemoryCardTile card={card} examSlug={examSlug} onOpen={() => onOpenCard(card)} />
-                <motion.button
-                  type="button"
-                  aria-label={isFav ? "Remove from favorites" : "Save to favorites"}
-                  aria-pressed={isFav}
-                  whileTap={tap}
-                  transition={spring}
-                  onClick={() => toggleFavorite(examSlug, card.id)}
-                  className="absolute right-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-[var(--color-ink-muted)] shadow-[var(--shadow-apple-sm)] backdrop-blur-sm transition-colors hover:text-amber-500"
-                >
-                  <Star
-                    className={cn("h-4 w-4 transition-colors", isFav && "fill-amber-400 text-amber-500")}
-                    aria-hidden
-                  />
-                </motion.button>
-              </div>
-            );
-          })}
+          {filtered.map(renderCard)}
         </motion.div>
       )}
     </section>
