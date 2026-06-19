@@ -1,41 +1,33 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ChevronDown } from "lucide-react";
-import { LibraryAiBrief } from "@/components/library/LibraryAiBrief";
-import {
-  LibraryHubHeader,
-  type LibraryHubStats,
-} from "@/components/library/LibraryHubHeader";
-import { LibraryHubNav } from "@/components/library/LibraryHubNav";
-import { LibraryHubSearch } from "@/components/library/LibraryHubSearch";
-import { LibraryQuickTools } from "@/components/library/LibraryQuickTools";
-import { LibraryExternalResources } from "@/components/library/LibraryExternalResources";
-import { LibraryCalculators } from "@/components/library/LibraryCalculators";
-import { LibraryTodayRow } from "@/components/library/LibraryTodayRow";
-import { LibraryTopicBanner } from "@/components/library/LibraryTopicBanner";
-import { MemoryCardTile } from "@/components/library/MemoryCardTile";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { Search, X } from "lucide-react";
+import type { LibraryHubStats } from "@/components/library/LibraryHubHeader";
+import { LibraryWelcome } from "@/components/library/LibraryWelcome";
+import { LibraryRecommended } from "@/components/library/LibraryRecommended";
+import { LibraryCollection } from "@/components/library/LibraryCollection";
+import { LibraryProgress } from "@/components/library/LibraryProgress";
+import { SessionToneSelector } from "@/components/library/SessionToneSelector";
 import { MemoryCardSheet } from "@/components/library/MemoryCardSheet";
+import { StudyPageHeader } from "@/components/study/StudyPageHeader";
+import { practiceTopicHref } from "@/lib/edtech/practice-links";
+import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { applyMasteryStore, readMasteryStore } from "@/lib/library/card-mastery";
 import { syncCardMasteryForExam } from "@/lib/library/card-mastery-sync";
-import {
-  getCardsForTopicKey,
-  queryMemoryCards,
-} from "@/lib/library/memory-cards";
 import { rememberMemoryCard } from "@/lib/library/recent-cards";
+import { SessionToneProvider } from "@/lib/library/session-tone";
+import { useLibraryMotion } from "@/lib/library/use-library-motion";
 import { libUi } from "@/lib/library/library-ui";
-import type { LibraryStudyBrief } from "@/lib/library/study-brief-types";
-import {
-  MEMORY_CARD_KIND_LABELS,
-  type MemoryCard,
-  type MemoryCardKind,
-} from "@/lib/library/types";
+import { ROUTES } from "@/lib/routes";
+import type { MemoryCard } from "@/lib/library/types";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
 type Props = {
   examSlug: ExamSlug;
+  userName?: string | null;
   cards: MemoryCard[];
   subjects: string[];
   weakTopics: WeakTopicRow[];
@@ -44,15 +36,18 @@ type Props = {
   topicKey?: string;
 };
 
-const KIND_OPTIONS: Array<{ value: MemoryCardKind | "all"; label: string }> = [
-  { value: "all", label: "All types" },
-  ...(
-    Object.entries(MEMORY_CARD_KIND_LABELS) as Array<[MemoryCardKind, string]>
-  ).map(([value, label]) => ({ value, label })),
-];
+/** Turn a topic slug deep-link into a friendly initial search query. */
+function topicKeyToQuery(topicKey?: string): string {
+  if (!topicKey) return "";
+  return topicKey
+    .replace(/^(tag|subject):/, "")
+    .replace(/[-_]+/g, " ")
+    .trim();
+}
 
 export function LibraryHubClient({
   examSlug,
+  userName,
   cards,
   subjects,
   weakTopics,
@@ -60,23 +55,11 @@ export function LibraryHubClient({
   initialCardId,
   topicKey,
 }: Props) {
-  const [subject, setSubject] = useState<string>("all");
-  const [kind, setKind] = useState<MemoryCardKind | "all">("all");
-  const [hubSearchQuery, setHubSearchQuery] = useState("");
+  const [query, setQuery] = useState(() => topicKeyToQuery(topicKey));
   const [selected, setSelected] = useState<MemoryCard | null>(null);
-  const [brief, setBrief] = useState<LibraryStudyBrief | null>(null);
-  const [toolsOpen, setToolsOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  const motionProps = useLibraryMotion();
 
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 1024px)");
-    const update = () => setIsDesktop(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
+  // Merge local + server card mastery once per exam.
   useEffect(() => {
     void syncCardMasteryForExam({
       examSlug,
@@ -84,18 +67,6 @@ export function LibraryHubClient({
       writeLocal: (slug, store) => applyMasteryStore(slug, store),
     });
   }, [examSlug]);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        searchInputRef.current?.focus();
-        searchInputRef.current?.select();
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
 
   const openCard = useCallback(
     (card: MemoryCard) => {
@@ -105,227 +76,125 @@ export function LibraryHubClient({
     [examSlug]
   );
 
-  const onBriefLoaded = useCallback((next: LibraryStudyBrief) => {
-    setBrief(next);
-  }, []);
-
+  // Honor `?card=` deep links.
   useEffect(() => {
     if (!initialCardId) return;
     const match = cards.find((c) => c.id === initialCardId);
     if (match) openCard(match);
   }, [cards, initialCardId, openCard]);
 
+  // Honor `?topic=` deep links by scrolling to the (pre-filtered) collection.
   useEffect(() => {
     if (!topicKey) return;
-    const el = document.getElementById("memory-cards");
+    const el = document.getElementById("library-collection");
     if (!el) return;
-    const timer = window.setTimeout(() => {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 400);
+    const timer = window.setTimeout(
+      () => el.scrollIntoView({ behavior: "smooth", block: "start" }),
+      350
+    );
     return () => window.clearTimeout(timer);
   }, [topicKey]);
 
-  const scopedCards = useMemo(
-    () => (topicKey ? getCardsForTopicKey(cards, topicKey) : cards),
-    [cards, topicKey]
-  );
+  // The single primary action: a quick set on the weakest topic, else a mixed set.
+  const primaryHref = useMemo(() => {
+    const weakestSlug = weakTopics[0]?.id.replace(/^(tag|subject):/, "");
+    return practiceTopicHref(examSlug, weakestSlug ?? "mixed", 10);
+  }, [examSlug, weakTopics]);
 
-  const filtered = useMemo(
-    () =>
-      queryMemoryCards(scopedCards, {
-        subject,
-        kind,
-        query: hubSearchQuery.trim().length >= 2 ? hubSearchQuery : undefined,
-      }),
-    [scopedCards, subject, kind, hubSearchQuery]
-  );
-
-  const showLibraryFilters = hubSearchQuery.trim().length < 2 && !topicKey;
+  const examName = EXAM_CATALOG[examSlug]?.shortName ?? examSlug.toUpperCase();
 
   return (
-    <div className={libUi.page}>
-      <LibraryHubHeader examSlug={examSlug} stats={hubStats} />
-
-      <div className={libUi.stickyBar}>
-        <LibraryHubSearch
-          examSlug={examSlug}
-          cards={cards}
-          onOpenCard={openCard}
-          onQueryChange={setHubSearchQuery}
-          inputRef={searchInputRef}
+    <SessionToneProvider>
+      <div className={cn(libUi.page, "space-y-4 sm:space-y-5")}>
+        <StudyPageHeader
+          eyebrow="Library"
+          title={`${examName} Study Library`}
+          subtitle="Memory cards, weak topics, and personalized study recommendations."
+          breadcrumbs={[{ label: "Dashboard", href: ROUTES.dashboard }]}
         />
-        <LibraryHubNav examSlug={examSlug} />
-      </div>
 
-      <div className={libUi.pageShell}>
-        <div className={libUi.panel}>
-          <div className={libUi.panelSection}>
-            <LibraryAiBrief examSlug={examSlug} onBriefLoaded={onBriefLoaded} />
+        {/* Sticky search bar + tone selector. */}
+        <div className={libUi.stickyBar}>
+          <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center">
+            <div className="relative min-w-0 flex-1">
+              <Search
+                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--color-ink-muted)]"
+                aria-hidden
+              />
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search your library…"
+                aria-label="Search your library"
+                className="w-full rounded-full border border-black/[0.08] bg-white py-2.5 pl-9 pr-9 text-[14px] text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] outline-none transition placeholder:text-[var(--color-ink-muted)] focus:border-[var(--color-accent)]/40 focus:shadow-[0_0_0_3px_rgba(79,70,229,0.18)]"
+              />
+              {query ? (
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  aria-label="Clear search"
+                  className="absolute right-2.5 top-1/2 inline-flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full text-[var(--color-ink-muted)] hover:bg-black/[0.05] hover:text-[var(--color-ink)]"
+                >
+                  <X className="h-3.5 w-3.5" aria-hidden />
+                </button>
+              ) : null}
+            </div>
+            <div className="flex items-center justify-end">
+              <SessionToneSelector />
+            </div>
           </div>
+        </div>
 
-          <div className={cn(libUi.sectionDivider, libUi.panelSection)}>
-            <LibraryTodayRow
+        {/* Sections reveal in a calm, staggered sequence on first load. */}
+        <motion.div
+          variants={motionProps.container.variants}
+          initial={motionProps.container.initial}
+          animate={motionProps.container.animate}
+          className="space-y-4 sm:space-y-6"
+        >
+          <motion.div variants={motionProps.item.variants}>
+            <LibraryWelcome
+              userName={userName}
+              streakDays={hubStats.studyStreakDays}
+              primaryHref={primaryHref}
+            />
+          </motion.div>
+
+          <motion.div variants={motionProps.item.variants}>
+            <LibraryRecommended
               examSlug={examSlug}
-              cards={cards}
               weakTopics={weakTopics}
-              topicKey={topicKey}
-              briefCardIds={brief?.memoryCardIds}
+              cards={cards}
               onOpenCard={openCard}
             />
-          </div>
+          </motion.div>
 
-          <div className={cn(libUi.sectionDivider, libUi.panelSection)}>
-            {!isDesktop && (
-              <button
-                type="button"
-                onClick={() => setToolsOpen((v) => !v)}
-                aria-expanded={toolsOpen}
-                className="flex w-full items-center justify-between rounded-xl bg-black/[0.03] px-3 py-2.5 text-sm font-semibold text-[var(--color-ink)]"
-              >
-                Study tools — calculators, lab values & resources
-                <ChevronDown
-                  className={cn(
-                    "h-4 w-4 shrink-0 text-[var(--color-ink-muted)] transition-transform",
-                    toolsOpen && "rotate-180"
-                  )}
-                  aria-hidden
-                />
-              </button>
-            )}
-            {(isDesktop || toolsOpen) && (
-              <div className={cn(!isDesktop && "mt-3")}>
-                <LibraryQuickTools examSlug={examSlug} />
-                <LibraryCalculators examSlug={examSlug} />
-                <LibraryExternalResources examSlug={examSlug} />
-              </div>
-            )}
-          </div>
+          <motion.div variants={motionProps.item.variants}>
+            <LibraryCollection
+              examSlug={examSlug}
+              cards={cards}
+              subjects={subjects}
+              weakTopics={weakTopics}
+              query={query}
+              onOpenCard={openCard}
+            />
+          </motion.div>
 
-          <section
-            id="memory-cards"
-            aria-labelledby="memory-cards-heading"
-            className={cn(libUi.sectionDivider, libUi.panelSection, "space-y-4")}
-          >
-            {topicKey ? (
-              <LibraryTopicBanner
-                examSlug={examSlug}
-                topicKey={topicKey}
-                cardCount={scopedCards.length}
-                memoryCardIds={scopedCards.map((c) => c.id)}
-              />
-            ) : null}
+          <motion.div variants={motionProps.item.variants}>
+            <LibraryProgress examSlug={examSlug} weakTopics={weakTopics} stats={hubStats} />
+          </motion.div>
+        </motion.div>
 
-            <div>
-              <h2 id="memory-cards-heading" className={libUi.sectionTitle}>
-                {topicKey
-                  ? "Topic library"
-                  : hubSearchQuery.trim().length >= 2
-                    ? "Search results"
-                    : "Memory card library"}
-              </h2>
-              <p className={cn(libUi.sectionHint, "mt-0.5")}>
-                {hubSearchQuery.trim().length >= 2
-                  ? `${filtered.length} card(s) matching "${hubSearchQuery}"`
-                  : topicKey
-                    ? `${scopedCards.length} high-yield facts for this topic`
-                    : `${cards.length} facts — equations, pearls, tables, and common mistakes.`}
-              </p>
-            </div>
-
-            {showLibraryFilters ? (
-              <div className="space-y-2.5">
-                <div className={libUi.chipRow}>
-                  <FilterPill
-                    active={subject === "all"}
-                    onClick={() => setSubject("all")}
-                    label="All subjects"
-                  />
-                  {subjects.map((s) => (
-                    <FilterPill
-                      key={s}
-                      active={subject === s}
-                      onClick={() => setSubject(s)}
-                      label={s}
-                    />
-                  ))}
-                </div>
-                <div className={libUi.chipRow}>
-                  {KIND_OPTIONS.map((opt) => (
-                    <FilterPill
-                      key={opt.value}
-                      active={kind === opt.value}
-                      onClick={() => setKind(opt.value)}
-                      label={opt.label}
-                      compact
-                    />
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
-            {filtered.length === 0 ? (
-              <div className={libUi.emptyState}>
-                <p className="text-[15px] font-medium text-[var(--color-ink)]">
-                  {topicKey ? "No memory cards mapped to this topic yet" : "No cards match your filters"}
-                </p>
-                <p className={cn(libUi.sectionHint, "mt-1")}>
-                  {topicKey
-                    ? "Try practice questions for this topic, or browse all cards."
-                    : "Try a different subject or card type, or use search above."}
-                </p>
-              </div>
-            ) : (
-              <div className={libUi.cardGrid}>
-                {filtered.map((card) => (
-                  <MemoryCardTile
-                    key={card.id}
-                    card={card}
-                    examSlug={examSlug}
-                    onOpen={() => openCard(card)}
-                  />
-                ))}
-              </div>
-            )}
-          </section>
-        </div>
+        <MemoryCardSheet
+          card={selected}
+          allCards={cards}
+          examSlug={examSlug}
+          open={selected !== null}
+          onClose={() => setSelected(null)}
+          onOpenRelated={openCard}
+        />
       </div>
-
-      <MemoryCardSheet
-        card={selected}
-        allCards={cards}
-        examSlug={examSlug}
-        open={selected !== null}
-        onClose={() => setSelected(null)}
-        onOpenRelated={openCard}
-      />
-    </div>
-  );
-}
-
-function FilterPill({
-  active,
-  onClick,
-  label,
-  compact = false,
-}: {
-  active: boolean;
-  onClick: () => void;
-  label: string;
-  compact?: boolean;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        libUi.filterPill,
-        compact && "text-[11px]",
-        active
-          ? "bg-[var(--color-accent)] text-white shadow-[var(--shadow-apple-sm)]"
-          : "bg-black/[0.04] text-[var(--color-ink-muted)] hover:bg-black/[0.06] hover:text-[var(--color-ink)]"
-      )}
-    >
-      {label}
-    </button>
+    </SessionToneProvider>
   );
 }

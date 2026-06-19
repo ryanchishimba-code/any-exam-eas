@@ -314,6 +314,14 @@ export function StudyBankPractice({
         return;
       }
 
+      // A specific field WITHIN the locked exam (e.g. a chosen USMLE step like
+      // usmle-step-1 / usmle-step-3) — honor it instead of collapsing to the
+      // exam's default field (usmle-step-2).
+      if (paramMeta && paramMeta.id !== expectedId) {
+        setField(paramMeta.label);
+        return;
+      }
+
       setField(expectedMeta.label);
 
       if (!fieldParam || fieldParam !== expectedId) {

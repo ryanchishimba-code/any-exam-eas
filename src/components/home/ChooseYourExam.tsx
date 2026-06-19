@@ -1,12 +1,62 @@
+"use client";
+
+import { useMemo, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { BoardScrollPicker, type BoardPickerItem } from "@/components/marketing/BoardScrollPicker";
 import { LANDING_EXAMS } from "@/lib/landing/content";
+import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
-export function ChooseYourExam() {
+const SHORT_LABEL: Record<string, string> = {
+  usmle: "USMLE",
+  nclex: "NCLEX",
+  naplex: "NAPLEX",
+  pance: "PANCE",
+  "aanp-fnp": "AANP FNP",
+  "npte-pt": "NPTE-PT",
+};
+
+type ChooseYourExamProps = {
+  bankCounts?: LandingBankCountsDisplay;
+};
+
+export function ChooseYourExam({ bankCounts }: ChooseYourExamProps) {
+  // Merge static exam metadata with live per-exam counts (keyed by stable slug).
+  const exams = useMemo(() => {
+    return LANDING_EXAMS.map((exam) => {
+      const live = bankCounts?.exams.find((row) => row.slug === exam.id);
+      const shortLabel = SHORT_LABEL[exam.id] ?? exam.label;
+      return {
+        id: exam.id,
+        shortLabel,
+        fullLabel: exam.label,
+        blurb: exam.blurb,
+        href: exam.href,
+        color: exam.color,
+        icon: exam.icon,
+        countLabel: live?.countLabel ?? "—",
+        questionsLabel: live?.questionsLabel ?? `${live?.countLabel ?? "—"} questions`,
+      };
+    });
+  }, [bankCounts]);
+
+  const [selectedId, setSelectedId] = useState(exams[0]?.id ?? "usmle");
+  const selected = exams.find((e) => e.id === selectedId) ?? exams[0];
+
+  const pickerItems: BoardPickerItem[] = exams.map((exam) => ({
+    id: exam.id,
+    name: exam.shortLabel,
+    description: exam.blurb,
+    count: exam.countLabel,
+    accent: exam.color,
+  }));
+
+  const SelectedIcon = selected?.icon;
+
   return (
     <section
       id="choose-exam"
-      className="aee-landing-section aee-choose-exam--showcase aee-choose-exam--static scroll-mt-24"
+      className="aee-landing-section aee-pick-board scroll-mt-24"
       aria-labelledby="choose-exam-heading"
     >
       <div className="aee-flagship-inner">
@@ -17,46 +67,63 @@ export function ChooseYourExam() {
             <span className="aee-flagship-gradient-text">Zero extra checkout.</span>
           </h2>
           <p className="aee-flagship-subtitle mx-auto mt-4 max-w-2xl">
-            Each track ships with blueprint Roadmaps, timed full exams, topic banks, and rationales
-            grounded in open educational resources — switch boards anytime on one plan.
+            Spin the wheel to explore each board — blueprint Roadmaps, timed full exams, and
+            QA-gated rationales, all on one plan.
           </p>
         </div>
 
-        <ul className="aee-choose-exam__grid mt-12">
-          {LANDING_EXAMS.map((exam) => {
-            const Icon = exam.icon;
-            const theme = exam.id as "nclex" | "usmle" | "naplex" | "pance" | "aanp-fnp" | "npte-pt";
-            const displayTitle =
-              exam.id === "usmle" ? "USMLE" : exam.id === "aanp-fnp" ? "AANP FNP" : exam.label;
+        <div className="aee-pick-board__layout">
+          <BoardScrollPicker
+            items={pickerItems}
+            selectedId={selectedId}
+            onSelect={setSelectedId}
+            ariaLabel="Choose a board exam"
+          />
 
-            return (
-              <li key={exam.id}>
-                <Link
-                  href={exam.href}
-                  data-theme={theme}
-                  className="aee-exam-card aee-exam-card--showcase group block h-full"
-                  aria-label={`Start ${displayTitle} prep`}
-                >
-                  <span className="aee-exam-card-bar" aria-hidden />
-                  <span className="aee-exam-icon-wrap">
-                    <Icon className="h-7 w-7" strokeWidth={1.75} aria-hidden />
-                  </span>
-                  <h3
-                    className="aee-exam-title aee-exam-title--accent mt-5"
-                    style={{ color: exam.color }}
-                  >
-                    {displayTitle}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">{exam.blurb}</p>
-                  <span className="aee-exam-cta mt-5 inline-flex items-center gap-1 text-sm font-semibold">
-                    Start studying
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+          {selected ? (
+            <div
+              className="aee-pick-board__summary"
+              style={{ ["--summary-accent" as string]: selected.color } as CSSProperties}
+            >
+              <span className="aee-pick-board__summary-bar" aria-hidden />
+              {SelectedIcon ? (
+                <span className="aee-pick-board__summary-icon">
+                  <SelectedIcon className="h-6 w-6" strokeWidth={1.75} aria-hidden />
+                </span>
+              ) : null}
+
+              <h3 className="aee-pick-board__summary-title">{selected.shortLabel}</h3>
+              <p className="aee-pick-board__summary-desc">{selected.blurb}</p>
+
+              <div className="aee-pick-board__summary-stats">
+                <span className="aee-pick-board__stat">
+                  <span className="aee-pick-board__stat-value">{selected.countLabel}</span>
+                  <span className="aee-pick-board__stat-label">serve-ready questions</span>
+                </span>
+                <span className="aee-pick-board__stat">
+                  <span className="aee-pick-board__stat-value">QA-gated</span>
+                  <span className="aee-pick-board__stat-label">no bulk filler</span>
+                </span>
+              </div>
+
+              <Link
+                href={selected.href}
+                className="aee-pick-board__summary-cta group"
+                aria-label={`Start ${selected.shortLabel} prep`}
+              >
+                Start studying
+                <ArrowRight
+                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                  aria-hidden
+                />
+              </Link>
+
+              <p className="aee-pick-board__summary-note">
+                Switch boards anytime — all six exams included on one subscription.
+              </p>
+            </div>
+          ) : null}
+        </div>
       </div>
     </section>
   );

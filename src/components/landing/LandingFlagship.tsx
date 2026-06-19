@@ -171,7 +171,7 @@ export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsD
 
       <LandingFeaturesSection />
 
-      <ChooseYourExam />
+      <ChooseYourExam bankCounts={bankCounts} />
 
       <section className="aee-flagship-compare-wrap" aria-labelledby="compare-heading">
         <div className="aee-flagship-inner">

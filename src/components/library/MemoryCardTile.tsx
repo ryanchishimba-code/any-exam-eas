@@ -48,7 +48,7 @@ export function MemoryCardTile({
       type="button"
       onClick={onOpen}
       className={cn(
-        "group flex h-full w-full flex-col rounded-[18px] border border-black/[0.06] bg-white p-4 text-left shadow-[var(--shadow-apple-sm)] transition",
+        "group flex h-full w-full flex-col rounded-[18px] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-4 text-left shadow-[var(--shadow-apple-sm)] transition",
         "hover:-translate-y-0.5 hover:border-[var(--color-accent)]/25 hover:shadow-[var(--shadow-apple-md)] active:scale-[0.995]"
       )}
     >
@@ -81,7 +81,7 @@ export function MemoryCardTile({
       <p className="mt-1.5 line-clamp-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
         {card.teaser}
       </p>
-      <p className="mt-3 line-clamp-2 rounded-[12px] bg-black/[0.03] px-3 py-2 text-[12px] leading-relaxed text-[var(--color-ink)]">
+      <p className="mt-3 line-clamp-2 rounded-[12px] bg-[var(--color-surface)] px-3 py-2 text-[12px] leading-relaxed text-[var(--color-ink)]">
         {getMemoryCardPreview(card)}
       </p>
       <span className="mt-3 inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--color-accent)]">

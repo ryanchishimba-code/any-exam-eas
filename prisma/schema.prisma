@@ -394,6 +394,8 @@ model QuestionBankItem {
   @@index([fieldId, blueprintTopic, active])
   @@index([fieldId, itemType, active])
   @@index([fieldId, stepLevel, active])
+  /// Serve-filtered per-step counting/selection (USMLE step separation).
+  @@index([fieldId, stepLevel, active, qaPassed])
   @@index([fieldId, patientAgeGroup, active])
   @@index([fieldId, blueprintDomain, patientAgeGroup, active])
   naplexFullExamLinks NaplexFullPracticeExamQuestion[]

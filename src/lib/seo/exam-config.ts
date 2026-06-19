@@ -136,9 +136,9 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       "USMLE clinical vignettes",
       "AnyExamEasy USMLE",
     ],
-    h1: "USMLE Prep — Step 1, Step 2 CK & Step 3 Question Banks",
+    h1: "USMLE Step 1, Step 2 CK & Step 3 — all on one plan",
     heroSubline:
-      "11K+ USMLE items across all three steps — basic sciences, clinical vignettes, biostatistics, ethics, and CCS-style cases — plus NCLEX, NAPLEX, PANCE, FNP, and NPTE on the same plan.",
+      "Dedicated banks for every step — basic sciences, clinical vignettes, biostatistics, and CCS-style cases — with blueprint Roadmaps and Deep Dives on a single subscription.",
     accentColor: EXAM_ACCENTS.usmle,
     blueprintLabel: "USMLE content outline (Step 1 · Step 2 CK · Step 3)",
     features: [

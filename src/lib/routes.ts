@@ -12,6 +12,8 @@ export const ROUTES = {
   /** @deprecated use dashboard */
   practiceHub: "/dashboard",
   selectExam: "/select-exam",
+  /** USMLE Step 1 / Step 2 CK / Step 3 sub-selection. */
+  selectExamUsmle: "/select-exam/usmle",
   /** @deprecated use selectExam */
   examSelect: "/select-exam",
   fullExam: "/full-exam",

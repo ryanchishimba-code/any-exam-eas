@@ -8,6 +8,7 @@ import {
   QuestionBankSection,
   QuestionBankSegment,
 } from "@/components/study/question-bank/QuestionBankSection";
+import { StudyPageHeader } from "@/components/study/StudyPageHeader";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
   buildSessionConfig,
@@ -126,14 +127,12 @@ export function FullExamLauncher({
 
   return (
     <div className={cn(feUi.page, "w-full space-y-5")}>
-      <header className="px-0.5">
-        <p className={feUi.eyebrow}>Full simulated exam</p>
-        <h1 className={cn(feUi.title, "mt-1")}>{pageTitle}</h1>
-        <p className={cn(feUi.subtitle, "mt-2 max-w-xl")}>
-          Test-day conditions with a calm timer, flag-for-review, scratch pad, and detailed
-          breakdown when you finish.
-        </p>
-      </header>
+      <StudyPageHeader
+        eyebrow="Full simulated exam"
+        title={pageTitle}
+        subtitle="Test-day conditions with a calm timer, flag-for-review, scratch pad, and detailed breakdown when you finish."
+        breadcrumbs={[{ label: "Dashboard", href: ROUTES.dashboard }, { label: "Full Exam", href: ROUTES.fullExam }]}
+      />
 
       <div className={feUi.pageShell}>
         <div className={cn(feUi.panel, feUi.panelInner)}>

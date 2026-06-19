@@ -3,6 +3,7 @@ import { auth } from "@/auth";
 import { Suspense } from "react";
 import { PremiumGate } from "@/components/PremiumGate";
 import { StudyBankPractice } from "@/components/study/StudyBankPractice";
+import { StudyPageHeader } from "@/components/study/StudyPageHeader";
 import { getUserExamPreference, setUserExamPreference } from "@/lib/edtech/exam-preference";
 import { EXAM_CATALOG, examSlugFromFieldId, isExamSlug } from "@/lib/edtech/exams";
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
@@ -41,18 +42,13 @@ export default async function QuestionBankPage({
   const exam = EXAM_CATALOG[pref.examSlug];
 
   return (
-    <div className="w-full space-y-4">
-      <header className="px-0.5">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
-          Question Bank
-        </p>
-        <h1 className="mt-1.5 text-[28px] font-semibold tracking-tight text-[var(--color-ink)] sm:text-[32px]">
-          Practice {exam.shortName}
-        </h1>
-        <p className="mt-1.5 max-w-xl text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-          Pick a topic, tune your session, and start — every question matches your exam.
-        </p>
-      </header>
+    <div className="w-full space-y-5">
+      <StudyPageHeader
+        eyebrow="Question Bank"
+        title={`Practice ${exam.shortName}`}
+        subtitle="Pick a topic, tune your session, and start — every question matches your exam."
+        breadcrumbs={[{ label: "Dashboard", href: ROUTES.dashboard }]}
+      />
 
       <PremiumGate callbackPath={ROUTES.questionBank}>
         <Suspense fallback={<p className="text-sm text-[var(--color-ink-muted)]">Loading…</p>}>

@@ -26,6 +26,8 @@ export type QuestionBankCountsSnapshot = {
 };
 
 export type LandingExamCountDisplay = {
+  /** Stable exam id matching LANDING_EXAMS ids (usmle, nclex, …) for reliable mapping. */
+  slug: string;
   label: string;
   /** Compact marketing label, e.g. 24K+ */
   countLabel: string;
@@ -43,16 +45,17 @@ export type LandingBankCountsDisplay = {
 
 /** Homepage exam strip order — matches LANDING_HERO_EXAMS labels. */
 const LANDING_EXAM_COUNT_FIELDS: {
+  slug: string;
   fieldId: ExamFieldId;
   label: string;
   color: string;
 }[] = [
-  { fieldId: "usmle-step-2", label: "USMLE (Step 1·2·3)", color: EXAM_ACCENTS.usmle },
-  { fieldId: "nursing", label: "NCLEX", color: EXAM_ACCENTS.nclex },
-  { fieldId: "pharmacy", label: "NAPLEX", color: EXAM_ACCENTS.naplex },
-  { fieldId: "pance", label: "PANCE", color: EXAM_ACCENTS.pance },
-  { fieldId: "aanp-fnp", label: "AANP FNP", color: EXAM_ACCENTS.aanpFnp },
-  { fieldId: "npte-pt", label: "NPTE-PT", color: EXAM_ACCENTS.nptePt },
+  { slug: "usmle", fieldId: "usmle-step-2", label: "USMLE (Step 1·2·3)", color: EXAM_ACCENTS.usmle },
+  { slug: "nclex", fieldId: "nursing", label: "NCLEX", color: EXAM_ACCENTS.nclex },
+  { slug: "naplex", fieldId: "pharmacy", label: "NAPLEX", color: EXAM_ACCENTS.naplex },
+  { slug: "pance", fieldId: "pance", label: "PANCE", color: EXAM_ACCENTS.pance },
+  { slug: "aanp-fnp", fieldId: "aanp-fnp", label: "AANP FNP", color: EXAM_ACCENTS.aanpFnp },
+  { slug: "npte-pt", fieldId: "npte-pt", label: "NPTE-PT", color: EXAM_ACCENTS.nptePt },
 ];
 
 function emptyFieldCounts(fieldId: ExamFieldId): FieldQuestionBankCounts {
@@ -202,7 +205,8 @@ export function buildLandingBankCountsDisplay(
   return {
     totalLabel: displayTotalQuestionCount(snapshot),
     totalQuestionsLabel: displayTotalQuestionsDetail(snapshot),
-    exams: LANDING_EXAM_COUNT_FIELDS.map(({ fieldId, label, color }) => ({
+    exams: LANDING_EXAM_COUNT_FIELDS.map(({ slug, fieldId, label, color }) => ({
+      slug,
       label,
       color,
       countLabel: displayQuestionCountForField(fieldId, snapshot),

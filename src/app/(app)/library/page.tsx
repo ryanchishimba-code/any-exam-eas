@@ -30,11 +30,13 @@ function LibrarySkeleton() {
 
 async function LibraryContent({
   userId,
+  userName,
   examOverride,
   initialCardId,
   topicKey,
 }: {
   userId: string;
+  userName?: string | null;
   examOverride?: ExamSlug;
   initialCardId?: string;
   topicKey?: string;
@@ -63,6 +65,7 @@ async function LibraryContent({
   return (
     <LibraryHubClient
       examSlug={examSlug}
+      userName={userName}
       cards={cards}
       subjects={subjects}
       weakTopics={weakTopics}
@@ -94,6 +97,7 @@ export default async function LibraryPage({ searchParams }: PageProps) {
     <Suspense fallback={<LibrarySkeleton />}>
       <LibraryContent
         userId={session.user.id}
+        userName={session.user.name}
         examOverride={examOverride}
         initialCardId={initialCardId}
         topicKey={topicKey}

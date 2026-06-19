@@ -22,7 +22,13 @@ export async function insertUsmleFullExam(
 ): Promise<UsmleInsertResult> {
   let created = 0;
   let skipped = 0;
-  const fieldId = exam.stepLevel === "step1" ? "usmle-step-1" : "usmle-step-2";
+  // Keep fieldId aligned with the step so per-step serving/counts stay exact.
+  const fieldId =
+    exam.stepLevel === "step1"
+      ? "usmle-step-1"
+      : exam.stepLevel === "step3"
+        ? "usmle-step-3"
+        : "usmle-step-2";
   const questionIds: {
     sortOrder: number;
     questionBankItemId: string;

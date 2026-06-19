@@ -216,6 +216,19 @@ const EXCLUDE_BULK_FILLER: { NOT: { tags: { contains: string } } } = {
   NOT: { tags: { contains: "bulk-bank" } },
 };
 
+/**
+ * Step-separation guard. Step 3 items can share the `usmle-step-2` field (legacy
+ * full-exam inserter), so the Step 2 CK bank must exclude `stepLevel="step3"`.
+ * Expressed via `AND` (not `OR`/`NOT`) so it never collides when merged with the
+ * curated USMLE where-clause, and null-safe so untagged Step 2 rows still serve.
+ */
+function usmleStepSeparationWhere(fieldId: string) {
+  if (fieldId === "usmle-step-2") {
+    return { AND: [{ OR: [{ stepLevel: null }, { stepLevel: { not: "step3" } }] }] };
+  }
+  return {};
+}
+
 function activeSubjectWhere(fieldId: string, subjectId: string) {
   return {
     fieldId,
@@ -223,11 +236,18 @@ function activeSubjectWhere(fieldId: string, subjectId: string) {
     active: true as const,
     qaPassed: true as const,
     ...EXCLUDE_BULK_FILLER,
+    ...usmleStepSeparationWhere(fieldId),
   };
 }
 
 function activeFieldWhere(fieldId: string) {
-  return { fieldId, active: true as const, qaPassed: true as const, ...EXCLUDE_BULK_FILLER };
+  return {
+    fieldId,
+    active: true as const,
+    qaPassed: true as const,
+    ...EXCLUDE_BULK_FILLER,
+    ...usmleStepSeparationWhere(fieldId),
+  };
 }
 
 /** No in-memory fallback — only qaPassed DB rows are served. */

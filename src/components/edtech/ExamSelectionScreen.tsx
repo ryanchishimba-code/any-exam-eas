@@ -80,6 +80,15 @@ export function ExamSelectionScreen({
 
   function handleSelect(slug: ExamSlug) {
     setError(null);
+
+    // USMLE fans out into Step 1 / Step 2 CK / Step 3 — let the learner pick a
+    // step (with live per-step counts) before we lock in their bank.
+    if (slug === "usmle") {
+      setSelected(slug);
+      router.push(ROUTES.selectExamUsmle);
+      return;
+    }
+
     setSelected(slug);
     startTransition(async () => {
       const result = await persistExamPreference(slug);
