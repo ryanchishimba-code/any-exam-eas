@@ -54,11 +54,12 @@ export const TOTAL_QUESTION_BANK_TARGET = EXAM_FIELD_IDS.reduce(
 );
 
 /**
- * Conservative floor for the live served bank used in static marketing copy.
+ * Curated, QA-gated published bank size — the single source of truth for every
+ * user-facing total (hero, exam wheel, stats band, share, checkout).
  *
- * The homepage hero shows the live DB served total, so any hard-coded label must
- * stay at or below that number to avoid overstating the bank. Keep this ≤ the real
- * `totals.served` count (currently ~52.6K) — never set it to the aspirational
+ * This intentionally reflects the curated serve bank, NOT the raw live DB row
+ * count (which still includes pre-curation bulk). Keep it ≤ the sum of the
+ * per-field published counts and never set it to the aspirational
  * `TOTAL_QUESTION_BANK_TARGET`, which counts questions we still plan to add.
  */
 export const PUBLISHED_QUESTION_BANK_TOTAL = 38_000;

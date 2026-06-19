@@ -6,7 +6,7 @@ import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 import {
   PUBLISHED_QUESTION_BANK_TOTAL,
   formatMarketingQuestionCount,
-  targetQuestionCountForField,
+  publishedQuestionCountForField,
 } from "./bank-stats";
 
 const REVALIDATE_SECONDS = 3600;
@@ -164,39 +164,37 @@ export async function getQuestionBankCounts(): Promise<QuestionBankCountsSnapsho
   }
 }
 
+/**
+ * User-facing counts always reflect the curated, QA-gated published bank — not
+ * the raw live `served` rows in the DB (which still include pre-curation bulk).
+ * The snapshot is accepted for signature stability and the `degraded` flag but
+ * is intentionally not used for the displayed numbers, so every surface (hero,
+ * exam wheel, stats band, share, checkout) shows one consistent set of figures.
+ */
 export function displayQuestionCountForField(
   fieldId: ExamFieldId,
-  snapshot: QuestionBankCountsSnapshot
+  _snapshot?: QuestionBankCountsSnapshot
 ): string {
-  const served = snapshot.fields[fieldId]?.served ?? 0;
-  if (served > 0) return formatMarketingQuestionCount(served);
-  return formatMarketingQuestionCount(targetQuestionCountForField(fieldId));
+  return formatMarketingQuestionCount(publishedQuestionCountForField(fieldId));
 }
 
-export function displayTotalQuestionCount(snapshot: QuestionBankCountsSnapshot): string {
-  const served = snapshot.totals.served;
-  if (served > 0) return formatMarketingQuestionCount(served);
+export function displayTotalQuestionCount(
+  _snapshot?: QuestionBankCountsSnapshot
+): string {
   return formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL);
-}
-
-function formatHeroQuestionsLabel(count: number, compactFallback: string): string {
-  if (count > 0) return `${count.toLocaleString("en-US")} questions`;
-  return `${compactFallback} questions`;
 }
 
 export function displayQuestionCountDetailForField(
   fieldId: ExamFieldId,
-  snapshot: QuestionBankCountsSnapshot
+  snapshot?: QuestionBankCountsSnapshot
 ): string {
-  const served = snapshot.fields[fieldId]?.served ?? 0;
-  const compact = displayQuestionCountForField(fieldId, snapshot);
-  return formatHeroQuestionsLabel(served, compact);
+  return `${displayQuestionCountForField(fieldId, snapshot)} questions`;
 }
 
-export function displayTotalQuestionsDetail(snapshot: QuestionBankCountsSnapshot): string {
-  const served = snapshot.totals.served;
-  const compact = displayTotalQuestionCount(snapshot);
-  return formatHeroQuestionsLabel(served, compact);
+export function displayTotalQuestionsDetail(
+  snapshot?: QuestionBankCountsSnapshot
+): string {
+  return `${displayTotalQuestionCount(snapshot)} questions`;
 }
 
 export function buildLandingBankCountsDisplay(

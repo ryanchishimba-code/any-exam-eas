@@ -44,30 +44,31 @@ function snapshotWithServed(
 }
 
 describe("question-bank-counts display", () => {
-  it("uses live served counts when available", () => {
+  it("shows curated published counts, ignoring raw live served rows", () => {
+    // Inflated served values must NOT leak into user-facing counts.
     const snapshot = snapshotWithServed({
-      nursing: 7_000,
-      pharmacy: 6_500,
+      nursing: 99_000,
+      pharmacy: 99_000,
+      "usmle-step-2": 99_000,
     });
 
     expect(displayQuestionCountForField("nursing", snapshot)).toBe("7K+");
     expect(displayQuestionCountForField("pharmacy", snapshot)).toBe("6K+");
-    expect(displayTotalQuestionCount(snapshot)).toBe("13K+");
+    expect(displayQuestionCountForField("usmle-step-2", snapshot)).toBe("9K+");
   });
 
-  it("falls back to design targets when served is zero", () => {
-    const snapshot = snapshotWithServed({ pance: 0, "aanp-fnp": 0 });
+  it("always returns the published total floor regardless of live served", () => {
+    const expected = formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL);
 
-    expect(displayQuestionCountForField("pance", snapshot)).toBe("6K+");
-    expect(displayQuestionCountForField("aanp-fnp", snapshot)).toBe("6K+");
-    expect(displayTotalQuestionCount(snapshot)).toBe(
-      formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL)
-    );
+    expect(displayTotalQuestionCount(snapshotWithServed({ pance: 0 }))).toBe(expected);
+    expect(
+      displayTotalQuestionCount(snapshotWithServed({ nursing: 99_000, pharmacy: 99_000 }))
+    ).toBe(expected);
   });
 
-  it("builds six-exam landing display rows with question labels", () => {
+  it("builds six-exam landing display rows from the curated bank", () => {
     const display = buildLandingBankCountsDisplay(
-      snapshotWithServed({ nursing: 7_000, "usmle-step-2": 9_930, "aanp-fnp": 4_598 })
+      snapshotWithServed({ nursing: 99_000, "usmle-step-2": 99_000 })
     );
 
     expect(display.exams).toHaveLength(6);
@@ -80,9 +81,14 @@ describe("question-bank-counts display", () => {
       "NPTE-PT",
     ]);
     expect(display.exams[0]?.countLabel).toBe("9K+");
-    expect(display.exams[0]?.questionsLabel).toBe("9,930 questions");
+    expect(display.exams[0]?.questionsLabel).toBe("9K+ questions");
     expect(display.exams[1]?.countLabel).toBe("7K+");
-    expect(display.exams[1]?.questionsLabel).toBe("7,000 questions");
-    expect(display.totalQuestionsLabel).toBe("21,528 questions");
+    expect(display.exams[1]?.questionsLabel).toBe("7K+ questions");
+    expect(display.totalLabel).toBe(
+      formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL)
+    );
+    expect(display.totalQuestionsLabel).toBe(
+      `${formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL)} questions`
+    );
   });
 });
