@@ -16,6 +16,7 @@ import { LandingStickyCta } from "@/components/landing/LandingStickyCta";
 import { LandingHashScroll } from "@/components/landing/LandingHashScroll";
 import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
 import { LandingPricingPreview } from "@/components/landing/LandingPricingPreview";
+import { ProBenefitsComparison } from "@/components/pricing/ProBenefitsComparison";
 import { BoardSeasonCountdown } from "@/components/landing/BoardSeasonCountdown";
 import { LandingShowcase } from "@/components/landing/flagship/LandingShowcase";
 import { LandingWhyChoose } from "@/components/landing/flagship/LandingWhyChoose";
@@ -183,6 +184,10 @@ export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsD
       <ChooseYourExam bankCounts={bankCounts} />
 
       <LandingWhyChoose />
+
+      <section className="bg-[var(--color-surface)] py-20 sm:py-24">
+        <ProBenefitsComparison />
+      </section>
 
       <section id="pricing" className="scroll-mt-24 bg-[var(--color-bg)] py-20 sm:py-24">
         <div className="mx-auto max-w-5xl px-5 sm:px-6">

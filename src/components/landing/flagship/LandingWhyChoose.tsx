@@ -14,6 +14,7 @@ import {
   LANDING_SUCCESS_STORIES,
   UWORLD_COMPARE_ROWS,
 } from "@/lib/landing/content";
+import { CostComparisonChart } from "@/components/landing/CostComparisonChart";
 
 function Reveal({
   children,
@@ -90,6 +91,11 @@ export function LandingWhyChoose() {
             );
           })}
         </div>
+
+        {/* Cost analysis graph */}
+        <Reveal className="mt-16">
+          <CostComparisonChart />
+        </Reveal>
 
         {/* Comparison */}
         <Reveal className="mt-16">

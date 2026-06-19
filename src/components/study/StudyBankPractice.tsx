@@ -204,6 +204,7 @@ export function StudyBankPractice({
   const [error, setError] = useState("");
   const [upgradeHref, setUpgradeHref] = useState<string | null>(null);
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
+  const [subjectCounts, setSubjectCounts] = useState<Record<string, number> | null>(null);
   const autostartRequested = searchParams.get("autostart") === "1";
   const autostartAttempted = useRef(false);
   const topicReturnTo = useMemo(
@@ -213,6 +214,25 @@ export function StudyBankPractice({
 
   const subjects = useMemo(() => getSubjectsForField(field), [field]);
   const fieldId = useMemo(() => resolveFieldId(field), [field]);
+
+  // Live, serve-accurate question counts per topic for the current field. Sourced
+  // from /api/questions/subject-counts, which uses the exact serve filter — so the
+  // number shown beside a topic equals the pool that topic actually draws from.
+  useEffect(() => {
+    let cancelled = false;
+    setSubjectCounts(null);
+    fetch(`/api/questions/subject-counts?field=${encodeURIComponent(fieldId)}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (!cancelled && data?.counts) setSubjectCounts(data.counts as Record<string, number>);
+      })
+      .catch(() => {
+        if (!cancelled) setSubjectCounts(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [fieldId]);
   const isNclex = useMemo(() => isNclexField(field), [field]);
   const isMpje = useMemo(() => isMpjeField(fieldId), [fieldId]);
   const hubMode = resolvePracticeModeFromParams({
@@ -857,6 +877,7 @@ export function StudyBankPractice({
             <QuestionBankSetup
               subjects={subjects}
               subjectId={subjectId}
+              subjectCounts={subjectCounts}
               examLabel={lockedExam?.shortName ?? activeExamOption?.label}
               examDescription={activeExamOption?.description}
               onSubjectChange={(id) => {

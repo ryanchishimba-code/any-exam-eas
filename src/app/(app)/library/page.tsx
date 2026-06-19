@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { LibraryHubClient } from "@/components/library/LibraryHubClient";
 import type { LibraryHubStats } from "@/components/library/LibraryHubHeader";
+import { ProBenefitsCallout } from "@/components/ProBenefitsCallout";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-preference";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
@@ -63,16 +64,19 @@ async function LibraryContent({
   };
 
   return (
-    <LibraryHubClient
-      examSlug={examSlug}
-      userName={userName}
-      cards={cards}
-      subjects={subjects}
-      weakTopics={weakTopics}
-      hubStats={hubStats}
-      initialCardId={initialCardId}
-      topicKey={topicKey}
-    />
+    <div className="w-full space-y-4">
+      <ProBenefitsCallout />
+      <LibraryHubClient
+        examSlug={examSlug}
+        userName={userName}
+        cards={cards}
+        subjects={subjects}
+        weakTopics={weakTopics}
+        hubStats={hubStats}
+        initialCardId={initialCardId}
+        topicKey={topicKey}
+      />
+    </div>
   );
 }
 

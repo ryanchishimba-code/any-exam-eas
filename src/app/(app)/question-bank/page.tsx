@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { Suspense } from "react";
 import { PremiumGate } from "@/components/PremiumGate";
+import { ProBenefitsCallout } from "@/components/ProBenefitsCallout";
 import { StudyBankPractice } from "@/components/study/StudyBankPractice";
 import { StudyPageHeader } from "@/components/study/StudyPageHeader";
 import { getUserExamPreference, setUserExamPreference } from "@/lib/edtech/exam-preference";
@@ -49,6 +50,8 @@ export default async function QuestionBankPage({
         subtitle="Pick a topic, tune your session, and start — every question matches your exam."
         breadcrumbs={[{ label: "Dashboard", href: ROUTES.dashboard }]}
       />
+
+      <ProBenefitsCallout />
 
       <PremiumGate callbackPath={ROUTES.questionBank}>
         <Suspense fallback={<p className="text-sm text-[var(--color-ink-muted)]">Loading…</p>}>

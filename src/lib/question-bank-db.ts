@@ -657,6 +657,47 @@ export async function countActiveQuestions(fieldId?: string) {
 }
 
 /**
+ * Count of serve-ready questions for a single (field, subject).
+ *
+ * Uses the EXACT same `where` as the serve path (`activeSubjectWhere`), so this
+ * count can never disagree with what topic-filtered practice actually draws
+ * from. This is the trust-critical contract: displayed topic count === pool the
+ * filter serves. (Tested in question-bank-db.subject-counts.test.ts.)
+ */
+export async function countActiveSubjectQuestions(
+  fieldId: string,
+  subjectId: string
+): Promise<number> {
+  return prisma.questionBankItem.count({
+    where: activeSubjectWhere(fieldId, subjectId),
+  });
+}
+
+/**
+ * Serve-ready question counts for every subject in a field, in one query.
+ *
+ * Groups by `subjectId` using the field-level serve filter (`activeFieldWhere`),
+ * which is `activeSubjectWhere` minus the subject predicate — so each per-subject
+ * total here equals `countActiveSubjectQuestions(fieldId, subjectId)` by
+ * construction. Returns a plain map keyed by `subjectId`.
+ */
+export async function getSubjectServedCounts(
+  fieldId: string
+): Promise<Record<string, number>> {
+  const rows = await prisma.questionBankItem.groupBy({
+    by: ["subjectId"],
+    where: activeFieldWhere(fieldId),
+    _count: { _all: true },
+  });
+
+  const counts: Record<string, number> = {};
+  for (const row of rows) {
+    counts[row.subjectId] = row._count._all;
+  }
+  return counts;
+}
+
+/**
  * Random sample across all subjects in a field (for timed exam simulations).
  */
 export async function sampleQuestionBankItemsForField(params: {

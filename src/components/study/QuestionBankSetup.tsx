@@ -18,6 +18,7 @@ type SubjectOption = { id: string; label: string };
 type QuestionBankSetupProps = {
   subjects: SubjectOption[];
   subjectId: string;
+  subjectCounts?: Record<string, number> | null;
   onSubjectChange: (subjectId: string) => void;
   questionCount: number;
   onQuestionCountChange: (count: number) => void;
@@ -38,6 +39,7 @@ const STYLE_OPTIONS: { id: QuestionBankStyle; label: string; hint: string }[] = 
 export function QuestionBankSetup({
   subjects,
   subjectId,
+  subjectCounts,
   onSubjectChange,
   questionCount,
   onQuestionCountChange,
@@ -45,10 +47,14 @@ export function QuestionBankSetup({
   onPaceChange,
   bankStyle,
   onBankStyleChange,
+  examLabel,
 }: QuestionBankSetupProps) {
   const isCustomCount = !QUESTION_BANK_COUNT_PRESETS.includes(
     questionCount as (typeof QUESTION_BANK_COUNT_PRESETS)[number]
   );
+
+  const selectedSubject = subjects.find((s) => s.id === subjectId);
+  const selectedCount = subjectCounts?.[subjectId];
 
   return (
     <div className="space-y-6">
@@ -57,9 +63,32 @@ export function QuestionBankSetup({
         title="Choose a topic"
         hint="Search or scroll — every question matches your selected exam."
       >
+        {/* Current-filter breadcrumb: Exam → Topic · N questions. Makes the active
+            scope explicit and trustworthy (only this topic's questions will serve). */}
+        {selectedSubject ? (
+          <div className="mb-3 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[12px] text-[var(--color-ink-muted)]">
+            <span aria-hidden>Practicing</span>
+            {examLabel ? (
+              <>
+                <span className="font-medium text-[var(--color-ink)]">{examLabel}</span>
+                <span aria-hidden>›</span>
+              </>
+            ) : null}
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent)]/10 px-2.5 py-0.5 font-semibold text-[var(--color-accent)]">
+              {selectedSubject.label}
+            </span>
+            {typeof selectedCount === "number" ? (
+              <span className="tabular-nums">
+                · {selectedCount.toLocaleString()} {selectedCount === 1 ? "question" : "questions"}
+              </span>
+            ) : null}
+          </div>
+        ) : null}
+
         <QuestionBankTopicPicker
           subjects={subjects}
           subjectId={subjectId}
+          subjectCounts={subjectCounts}
           onSubjectChange={onSubjectChange}
         />
       </QuestionBankSection>

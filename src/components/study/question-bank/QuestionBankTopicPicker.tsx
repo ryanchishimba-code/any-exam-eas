@@ -10,10 +10,12 @@ type SubjectOption = { id: string; label: string };
 export function QuestionBankTopicPicker({
   subjects,
   subjectId,
+  subjectCounts,
   onSubjectChange,
 }: {
   subjects: SubjectOption[];
   subjectId: string;
+  subjectCounts?: Record<string, number> | null;
   onSubjectChange: (subjectId: string) => void;
 }) {
   const [query, setQuery] = useState("");
@@ -23,6 +25,13 @@ export function QuestionBankTopicPicker({
     if (!q) return subjects;
     return subjects.filter((s) => s.label.toLowerCase().includes(q));
   }, [query, subjects]);
+
+  // Sum only the subjects we can show counts for, so the total never claims more
+  // than the per-topic numbers add up to.
+  const totalCount = useMemo(() => {
+    if (!subjectCounts) return null;
+    return subjects.reduce((sum, s) => sum + (subjectCounts[s.id] ?? 0), 0);
+  }, [subjects, subjectCounts]);
 
   return (
     <div className="space-y-3">
@@ -50,6 +59,7 @@ export function QuestionBankTopicPicker({
           ) : (
             filtered.map((subject) => {
               const selected = subject.id === subjectId;
+              const count = subjectCounts?.[subject.id];
               return (
                 <li key={subject.id}>
                   <button
@@ -59,12 +69,24 @@ export function QuestionBankTopicPicker({
                     onClick={() => onSubjectChange(subject.id)}
                     className={cn(
                       qbUi.listItem,
-                      "rounded-[12px]",
+                      "flex w-full items-center justify-between gap-3 rounded-[12px]",
                       selected ? qbUi.listItemSelected : qbUi.listItemIdle
                     )}
                   >
                     <span className="font-medium">{subject.label}</span>
-                    {selected ? <Check className="h-4 w-4 shrink-0 opacity-90" aria-hidden /> : null}
+                    <span className="flex shrink-0 items-center gap-2">
+                      {typeof count === "number" ? (
+                        <span
+                          className={cn(
+                            "tabular-nums text-[12px]",
+                            selected ? "opacity-90" : "text-[var(--color-ink-muted)]"
+                          )}
+                        >
+                          {count.toLocaleString()}
+                        </span>
+                      ) : null}
+                      {selected ? <Check className="h-4 w-4 opacity-90" aria-hidden /> : null}
+                    </span>
                   </button>
                 </li>
               );
@@ -74,6 +96,9 @@ export function QuestionBankTopicPicker({
       </div>
       <p className="text-[12px] text-[var(--color-ink-muted)]">
         {subjects.length} topics · {filtered.length} shown
+        {totalCount !== null ? (
+          <> · {totalCount.toLocaleString()} questions available</>
+        ) : null}
       </p>
     </div>
   );
