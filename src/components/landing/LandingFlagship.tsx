@@ -116,16 +116,16 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
           </p>
 
           <ul
-            className="mt-9 flex flex-wrap items-center justify-center gap-2"
+            className="mt-9 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3"
             aria-label="Included board exams"
           >
             {LANDING_HERO_EXAMS.map((exam) => (
               <li
                 key={exam.label}
-                className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3 py-1.5 text-xs font-semibold text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)]"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-4 py-2 text-base font-bold tracking-tight text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-apple-md)] sm:px-5 sm:py-2.5 sm:text-lg"
               >
                 <span
-                  className="h-2 w-2 rounded-full"
+                  className="h-2.5 w-2.5 rounded-full sm:h-3 sm:w-3"
                   style={{ background: exam.color }}
                   aria-hidden
                 />
