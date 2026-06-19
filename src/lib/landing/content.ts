@@ -175,7 +175,7 @@ export function formatFlagshipHeroSubline(totalLabel?: string): string {
 
 /** Short reassurance directly under the primary hero CTA. */
 export const LANDING_HERO_CTA_DISCLOSURE =
-  "No credit card required to start • Cancel anytime";
+  "Payment method required • Not charged until your trial ends • Cancel anytime";
 
 /** Three-column offering band below the hero. */
 export const LANDING_OFFERING_PILLARS = [
