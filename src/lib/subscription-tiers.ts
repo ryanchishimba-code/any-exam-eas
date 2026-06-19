@@ -7,14 +7,14 @@ export const SUBSCRIPTION_TIERS: SubscriptionTier[] = ["basic", "pro"];
 
 /** Monthly anchor prices before multi-month savings. */
 export const TIER_MONTHLY_USD: Record<SubscriptionTier, number> = {
-  basic: Number(process.env.BASIC_MONTHLY_PRICE_USD ?? "27.99"),
-  pro: Number(process.env.PRO_MONTHLY_PRICE_USD ?? "38.99"),
+  basic: Number(process.env.BASIC_MONTHLY_PRICE_USD ?? "34.99"),
+  pro: Number(process.env.PRO_MONTHLY_PRICE_USD ?? "49.99"),
 };
 
-/** Fixed annual totals (marketing-optimized; effective ~20% savings vs monthly). */
+/** Fixed annual totals (marketing-optimized; effective ~17% savings vs monthly). */
 export const TIER_ANNUAL_USD: Record<SubscriptionTier, number> = {
-  basic: Number(process.env.BASIC_YEARLY_PRICE_USD ?? "269"),
-  pro: Number(process.env.PRO_YEARLY_PRICE_USD ?? "375"),
+  basic: Number(process.env.BASIC_YEARLY_PRICE_USD ?? "349"),
+  pro: Number(process.env.PRO_YEARLY_PRICE_USD ?? "499"),
 };
 
 export type TierDefinition = {

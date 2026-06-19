@@ -511,7 +511,7 @@ export const LANDING_TESTIMONIALS = LANDING_SUCCESS_STORIES;
 export const UWORLD_COMPARE_ROWS = [
   {
     label: "Monthly price",
-    us: "From $27.99/mo Basic · Pro $38.99/mo — all 6 exams",
+    us: "From $34.99/mo Basic · Pro $49.99/mo — all 6 exams",
     them: "$200–400+ per exam (UWorld sells each board separately)",
   },
   {

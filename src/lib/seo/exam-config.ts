@@ -175,7 +175,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       {
         question: "How does pricing compare to UWorld?",
         answer:
-          "AnyExamEasy Basic starts at $27.99/mo and includes all three USMLE steps plus five other board exams — UWorld typically charges $200–400+ per exam separately.",
+          "AnyExamEasy Basic starts at $34.99/mo and includes all three USMLE steps plus five other board exams — UWorld typically charges $200–400+ per exam separately.",
       },
       {
         question: "Are USMLE explanations detailed?",
