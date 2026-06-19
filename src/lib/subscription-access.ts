@@ -111,18 +111,11 @@ export function evaluateSubscriptionAccess(
         needsPaymentMethod: false,
       };
     }
+    // A payment method is required to start a trial. A "trialing" row without a
+    // Stripe subscription has no card on file, so it must complete checkout
+    // before any access is granted — surface it as the inactive/needs-payment
+    // state so the existing "Complete checkout" prompts take over.
     if (!subscription.stripeSubscriptionId) {
-      if (trialEndsAt && trialEndsAt > new Date()) {
-        return {
-          hasAccess: true,
-          status: "trialing",
-          ...meta,
-          trialEndsAt,
-          daysRemaining: daysUntil(trialEndsAt),
-          canStartCheckout: true,
-          needsPaymentMethod: true,
-        };
-      }
       return {
         hasAccess: false,
         status: "inactive",

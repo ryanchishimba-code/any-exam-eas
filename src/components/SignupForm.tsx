@@ -7,7 +7,7 @@ import { LegalCheckbox } from "./LegalCheckbox";
 import { Button } from "./ui/Button";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 import { InlineError } from "@/components/ui/StatusMessage";
-import { MARKETING_DISCLAIMER } from "@/lib/site";
+import { MARKETING_DISCLAIMER, SIGNUP_PAYMENT_REQUIRED_NOTE } from "@/lib/site";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
 import type { BillingInterval } from "@/lib/billing-config";
@@ -176,8 +176,8 @@ export function SignupForm({
 
   const trialHighlights = [
     "Full access to every question bank and full-length exam",
-    "No charge today — pick your plan and payment after you sign up",
-    "Cancel anytime before your trial ends",
+    "A payment method is required to start — you won't be charged until your trial ends",
+    "Cancel anytime before your trial ends for no charge",
   ];
 
   return (
@@ -413,7 +413,7 @@ export function SignupForm({
             </Button>
             <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
               {plan === "trial"
-                ? "Next: choose your plan and add payment. You won't be charged until your trial ends."
+                ? SIGNUP_PAYMENT_REQUIRED_NOTE
                 : "Next: choose your plan and enter payment securely."}
             </p>
             {!examSlug ? (

@@ -47,7 +47,7 @@ export default async function SignupPage({
       description={
         isSubscribe
           ? "Create your account, then choose your plan and pay securely. Must be 18 or older."
-          : `Create your account in seconds. Choose your plan and add payment after — no charge for ${TRIAL_DAYS} days. Must be 18 or older.`
+          : `Create your account, then add a payment method to start your ${TRIAL_DAYS}-day free trial. You won't be charged until the trial ends — cancel anytime before then for no charge. Must be 18 or older.`
       }
       align="center"
       maxWidth={contentWidth.focus}
