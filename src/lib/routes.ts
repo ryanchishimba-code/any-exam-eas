@@ -26,6 +26,7 @@ export const ROUTES = {
   practice: "/practice",
   exams: "/exams",
   resources: "/resources",
+  employers: "/employers",
   pricing: "/pricing",
   feedback: "/feedback",
   settings: "/settings",

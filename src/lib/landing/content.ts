@@ -17,6 +17,10 @@ import {
 import { MARKETING_QUESTION_COUNTS, TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { examMarketingPath } from "@/lib/seo/exam-config";
+import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
+
+/** Local price formatter — avoids a circular import with site.ts. */
+const monthly = (tier: "basic" | "pro") => `$${TIER_MONTHLY_USD[tier].toFixed(2)}`;
 
 /** Primary platform positioning — reuse across compare sections and SEO. */
 export const PLATFORM_TAGLINE =
@@ -511,7 +515,7 @@ export const LANDING_TESTIMONIALS = LANDING_SUCCESS_STORIES;
 export const UWORLD_COMPARE_ROWS = [
   {
     label: "Monthly price",
-    us: "From $34.99/mo Basic · Pro $49.99/mo — all 6 exams",
+    us: `From ${monthly("basic")}/mo Basic · Pro ${monthly("pro")}/mo — all 6 exams`,
     them: "$200–400+ per exam (UWorld sells each board separately)",
   },
   {

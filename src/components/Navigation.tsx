@@ -23,10 +23,8 @@ import { formatTrialCtaLabel } from "@/lib/site";
 type NavLink = { href: string; label: string; adminOnly?: boolean };
 
 const guestLinks: NavLink[] = [
-  { href: "/#features", label: "Features" },
-  { href: "/#sample-questions", label: "Samples" },
   { href: ROUTES.resources, label: "Resources" },
-  { href: "/#pricing", label: "Pricing" },
+  { href: ROUTES.employers, label: "For Employers" },
 ];
 
 const premiumLinks: NavLink[] = [
@@ -114,9 +112,11 @@ export function Navigation() {
         <BrandLogo href={brandHref} variant="nav" linkClassName="aee-nav-brand" priority />
 
         <ul className="aee-nav-links hidden lg:flex lg:items-center lg:gap-5" role="list">
-          <li>
-            <ExamsDropdown />
-          </li>
+          {isAuthenticated && hasPremiumAccess ? (
+            <li>
+              <ExamsDropdown />
+            </li>
+          ) : null}
           {links.map((l) => {
             const linkActive =
               l.href === ROUTES.dashboard ? practiceActive : isActive(l.href);
@@ -154,10 +154,10 @@ export function Navigation() {
               <LoginModalTrigger
                 callbackUrl={ROUTES.dashboard}
                 className="aee-nav-login max-[380px]:px-2.5"
-                aria-label="Log in to your account"
+                aria-label="Sign in to your account"
               >
                 <LogIn className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden />
-                <span className="max-[380px]:hidden">Log in</span>
+                <span className="max-[380px]:hidden">Sign in</span>
               </LoginModalTrigger>
               <Link href={LANDING_TRIAL_HREF} className="aee-nav-cta text-[0.8125rem] max-[380px]:px-3">
                 {formatTrialCtaLabel()}
@@ -189,21 +189,25 @@ export function Navigation() {
             transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
           >
             <div className="overflow-hidden py-4">
-              <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-ink-muted)]">
-                Exams
-              </p>
-              {EXAM_NAV_ITEMS.map((exam) => (
-                <Link
-                  key={exam.slug}
-                  href={exam.href}
-                  className={`block py-2 text-sm ${navClass(pathname === exam.href || pathname.startsWith(`${exam.href}/`))}`}
-                  onClick={closeMobile}
-                >
-                  {exam.label}
-                  <span className="ml-1 text-xs text-[var(--color-ink-muted)]">· {exam.stat}</span>
-                </Link>
-              ))}
-              <div className="my-3 border-t border-black/[0.06]" />
+              {isAuthenticated && hasPremiumAccess ? (
+                <>
+                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-ink-muted)]">
+                    Exams
+                  </p>
+                  {EXAM_NAV_ITEMS.map((exam) => (
+                    <Link
+                      key={exam.slug}
+                      href={exam.href}
+                      className={`block py-2 text-sm ${navClass(pathname === exam.href || pathname.startsWith(`${exam.href}/`))}`}
+                      onClick={closeMobile}
+                    >
+                      {exam.label}
+                      <span className="ml-1 text-xs text-[var(--color-ink-muted)]">· {exam.stat}</span>
+                    </Link>
+                  ))}
+                  <div className="my-3 border-t border-black/[0.06]" />
+                </>
+              ) : null}
               {links.map((l) => {
                 const linkActive =
                   l.href === ROUTES.dashboard ? practiceActive : isActive(l.href);
@@ -227,7 +231,7 @@ export function Navigation() {
                     onClick={closeMobile}
                   >
                     <LogIn className="h-4 w-4" strokeWidth={2.25} aria-hidden />
-                    Log in
+                    Sign in
                   </LoginModalTrigger>
                   <Link
                     href={LANDING_TRIAL_HREF}
