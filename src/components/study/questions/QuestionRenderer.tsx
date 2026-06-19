@@ -229,9 +229,14 @@ export function ExplanationPanel({
   return (
     <div className="mt-6 space-y-4">
       <div className="rounded-xl bg-[var(--color-surface)] p-4">
-        <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-          Rationale
-        </p>
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            Rationale
+          </p>
+          <span className="rounded-full bg-[var(--color-surface-elevated)] px-2 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]">
+            AI-assisted
+          </span>
+        </div>
         <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink)]">
           {question.explanation}
         </p>

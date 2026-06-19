@@ -188,7 +188,7 @@ export function LandingCompact() {
                     id="landing-drugs-heading"
                     className="mt-1 text-xl font-bold tracking-tight text-[var(--color-ink)]"
                   >
-                    Top 500 Drugs
+                    Top 503 Drugs
                   </h2>
                   <p className="mt-1 text-xs text-[var(--color-ink-muted)]">
                     High-yield flashcards for NCLEX, USMLE, and NAPLEX — generic, brand, MOA, and
@@ -196,7 +196,7 @@ export function LandingCompact() {
                   </p>
                 </div>
                 <div className="aee-landing-drugs-hub shrink-0" aria-hidden>
-                  <span className="text-2xl font-black text-teal-700">500</span>
+                  <span className="text-2xl font-black text-teal-700">503</span>
                 </div>
               </div>
 
@@ -206,7 +206,7 @@ export function LandingCompact() {
                 href="/study/drugs300"
                 className="aee-landing-inline-cta group mt-3 inline-flex items-center gap-1 text-sm font-semibold text-teal-700"
               >
-                Open the Top 500 deck
+                  Open the Top 503 deck
                 <ArrowRight
                   className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
                   aria-hidden

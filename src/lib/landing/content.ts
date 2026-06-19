@@ -93,7 +93,7 @@ export const LANDING_EXAMS: LandingExam[] = [
 export const LANDING_BENEFITS = [
   {
     visualId: "screenshot-question-bank" as const,
-    title: "Proven board-style practice that mirrors test day",
+    title: "Board-style practice that mirrors test day",
     detail:
       "Clinical vignettes, lead-ins, and choices are QA-checked before they reach your session — with teachable rationales, not template-swapped distractors.",
   },
@@ -161,7 +161,7 @@ export const LANDING_HERO_EXAMS = [
 export const LANDING_HERO_HEADLINE = "One subscription. Six boards.";
 
 /** Accent line under the primary headline. */
-export const LANDING_HERO_HEADLINE_ACCENT = "Board-caliber prep without the stacked bills.";
+export const LANDING_HERO_HEADLINE_ACCENT = "Board-style prep without the stacked bills.";
 
 /** Hero sub-headline body — pass live total via formatFlagshipHeroSubline(totalLabel). */
 export const LANDING_HERO_SUBLINE_BODY =
@@ -175,7 +175,7 @@ export function formatFlagshipHeroSubline(totalLabel?: string): string {
 
 /** Short reassurance directly under the primary hero CTA. */
 export const LANDING_HERO_CTA_DISCLOSURE =
-  "Payment method required • Not charged until your trial ends • Cancel anytime";
+  "Payment method required • Not charged until trial ends • Cancel before trial ends for no charge";
 
 /** Three-column offering band below the hero. */
 export const LANDING_OFFERING_PILLARS = [
@@ -260,7 +260,7 @@ export const LANDING_HERO_BENEFITS = [
   "Only serve-ready items reach your sessions — weak bulk is filtered out",
   "Six licensing exams under one plan — no $200–400/exam stacking",
   "Clinical vignettes with teachable rationales, not template distractors",
-  "Deep Dive lessons open from the questions you miss",
+  "Deep Dive lessons open from the questions you miss (Pro)",
 ] as const;
 
 /** @deprecated Legacy split headline — no longer used on the landing page. */
@@ -462,11 +462,11 @@ export type LandingSuccessStory = {
   avatarGradient: string;
 };
 
-/** Illustrative outcome stats — not pass-rate guarantees. */
+/** Platform stats for the social proof band — factual, no pass-rate claims. */
 export const LANDING_PASS_STATS = [
   { value: "6", label: "Board exams", detail: "One subscription — no per-exam stacking" },
   { value: "14 days", label: "Free trial", detail: "Evaluate every exam before you pay" },
-  { value: "First try", label: "Passes reported", detail: "Students share first-attempt outcomes*" },
+  { value: "Roadmap", label: "Per-exam study plan", detail: "Blueprint-aligned — integrated, not QBank-only" },
 ] as const;
 
 export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [
@@ -481,11 +481,11 @@ export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [
   },
   {
     quote:
-      "UWorld-quality rationales without buying Step 2 and PANCE as separate subscriptions. One plan covered both boards and saved me hundreds.",
+      "Detailed rationales without buying Step 2 and PANCE as separate subscriptions. One plan covered both boards and saved me hundreds.",
     name: "Ben K.",
     exam: "USMLE Step 2 CK · PANCE",
     initials: "BK",
-    outcome: "Passed Step 2 CK & PANCE",
+    outcome: "Studied Step 2 CK & PANCE",
     avatarGradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
   },
   {
@@ -499,11 +499,11 @@ export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [
   },
   {
     quote:
-      "I switched from UWorld after the trial. Same vignette rigor, better price, and I could prep NCLEX and pharmacology flashcards without a second bill.",
+      "I switched after the trial. Better price, and I could prep NCLEX and pharmacology flashcards without a second bill.",
     name: "Jordan T.",
     exam: "NCLEX-RN",
     initials: "JT",
-    outcome: "Passed NCLEX — switched from UWorld",
+    outcome: "NCLEX prep — switched plans",
     avatarGradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
   },
 ];

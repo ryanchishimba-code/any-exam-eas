@@ -48,6 +48,69 @@ export const PRO_ONLY_FEATURES = [
   "Enhanced detailed explanations",
 ] as const;
 
+/**
+ * Canonical Pro upgrade story — the single source of truth for "what Pro
+ * unlocks" copy used by the comparison component, landing pages, and in-app
+ * upsells. Keep this aligned with PRO_ONLY_FEATURES (the pricing checklist) and
+ * the runtime SubscriptionFeature gates in subscription-features.ts.
+ *
+ * `icon` is a stable key mapped to a lucide icon at the component layer so this
+ * module stays free of UI dependencies.
+ */
+export type ProFeatureHighlight = {
+  icon:
+    | "analytics"
+    | "srs"
+    | "mock"
+    | "deepdive"
+    | "notes"
+    | "explanations"
+    | "priority";
+  title: string;
+  blurb: string;
+};
+
+export const PRO_FEATURE_HIGHLIGHTS: readonly ProFeatureHighlight[] = [
+  {
+    icon: "analytics",
+    title: "Advanced analytics & weak-area targeting",
+    blurb: "See exactly where you're losing points, then drill the topics that move your score most.",
+  },
+  {
+    icon: "srs",
+    title: "Spaced Repetition System",
+    blurb: "Lock in what you learn with reviews timed to the moment you're about to forget.",
+  },
+  {
+    icon: "mock",
+    title: "Unlimited full-length mock exams",
+    blurb: "Rehearse the real thing as many times as you want, under true exam-day conditions.",
+  },
+  {
+    icon: "deepdive",
+    title: "Full Deep Dive Modules",
+    blurb: "Go beyond the answer with rich teaching woven into every question.",
+  },
+  {
+    icon: "notes",
+    title: "Exportable notes & progress reports",
+    blurb: "Take your notes and performance data anywhere — study your way.",
+  },
+  {
+    icon: "explanations",
+    title: "Enhanced detailed explanations",
+    blurb: "Deeper, clearer rationales that explain the why, not just the what.",
+  },
+  {
+    icon: "priority",
+    title: "Priority updates & early access",
+    blurb: "Get the newest questions and features first, every cycle.",
+  },
+] as const;
+
+/** Emotional headline reused across upgrade surfaces. */
+export const PRO_UPGRADE_HEADLINE = "Unlock your highest score potential";
+
 /** Trial study limits — shown in marketing copy. */
 export const TRIAL_STUDY_LIMITS = [
   "25 questions per day during free trial",
@@ -59,7 +122,7 @@ export const TIER_DEFINITIONS: Record<SubscriptionTier, TierDefinition> = {
   basic: {
     id: "basic",
     name: "Basic",
-    tagline: "Everything you need to pass — all 6 exams, one plan",
+    tagline: "Everything you need to prepare — all 6 exams, one plan",
     recommended: false,
     monthlyUsd: TIER_MONTHLY_USD.basic,
     features: UNIVERSAL_FEATURES,

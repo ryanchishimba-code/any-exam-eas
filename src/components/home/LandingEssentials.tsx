@@ -95,7 +95,7 @@ export function LandingEssentials() {
           </h2>
           <p className="mx-auto mt-2 max-w-lg text-sm text-[var(--color-ink-muted)]">
             NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — plus Library, Review Modules,
-            Anatomy Studio, and Top 500 Drugs that follow you across devices.
+            Anatomy Studio, and Top 503 Drugs that follow you across devices.
           </p>
         </div>
 
@@ -154,7 +154,7 @@ export function LandingEssentials() {
                 ))}
                 <li className="flex items-center gap-2">
                   <Check className="h-4 w-4 shrink-0" strokeWidth={2.5} aria-hidden />
-                  Cancel anytime — no phone call
+                  Cancel before trial ends — no charge
                 </li>
               </ul>
               <Link

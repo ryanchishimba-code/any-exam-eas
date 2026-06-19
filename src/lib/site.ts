@@ -144,7 +144,7 @@ export function formatLandingStickyDetail(): string {
 }
 
 export const SIGNUP_PAYMENT_REQUIRED_NOTE =
-  "Add your payment method at checkout — you won't be charged until your trial ends. Cancel anytime before then for no charge.";
+  "Add your payment method at checkout — you won't be charged until your trial ends. Cancel before your trial ends for no charge.";
 
 export function formatTrialPlanDetail(): string {
   return `${TRIAL_DAYS}-day free trial · payment required at checkout · not charged until trial ends · save up to 20% on annual`;

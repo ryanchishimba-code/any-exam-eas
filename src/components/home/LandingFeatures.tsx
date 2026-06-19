@@ -62,7 +62,7 @@ const benefits = [
   {
     icon: Pill,
     visualId: "feature-pharmacology",
-    outcome: "Top 500 Drugs",
+    outcome: "Top 503 Drugs",
     title: "Pharmacology flashcards built for boards",
     description:
       "Class-organized deck with generic, brand, MOA, and adverse effects — shared across nursing and pharmacy prep.",

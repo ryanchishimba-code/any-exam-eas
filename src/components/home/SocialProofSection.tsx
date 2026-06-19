@@ -32,9 +32,9 @@ export function SocialProofSection({
     >
       <div className="aee-flagship-inner">
         <header className="aee-flagship-header aee-flagship-header--center mx-auto max-w-2xl text-center">
-          <p className="aee-flagship-eyebrow">Proven results</p>
+          <p className="aee-flagship-eyebrow">What students say</p>
           <h2 id="social-proof-heading" className="aee-flagship-title">
-            Board-caliber quality —{" "}
+            Board-style quality —{" "}
             <span className="aee-flagship-gradient-text">without the premium price tag.</span>
           </h2>
           <p className="aee-flagship-subtitle">

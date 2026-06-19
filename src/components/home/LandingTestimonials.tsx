@@ -48,7 +48,7 @@ export function LandingTestimonials() {
             <span className="aee-display-accent-vibrant">more than one board.</span>
           </h2>
           <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-            Real comments from learners using Any Exam Easy — not paid endorsements.
+            Illustrative student feedback. Individual experiences and results vary significantly.
           </p>
         </div>
 

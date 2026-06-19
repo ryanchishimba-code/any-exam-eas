@@ -210,7 +210,7 @@ export function LandingShowcase() {
             id="showcase-heading"
             className="mt-3 text-3xl font-bold tracking-tight text-[var(--color-ink)] sm:text-4xl"
           >
-            Everything you need to pass — in one calm, focused workspace.
+            Everything you need to prepare — in one calm, focused workspace.
           </h2>
           <p className="mt-4 text-lg text-[var(--color-ink-muted)]">
             A study dashboard, question bank, analytics, and a full reference hub — built to feel

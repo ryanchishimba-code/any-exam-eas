@@ -25,6 +25,8 @@ import {
 } from "@/lib/landing/content";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { LandingPricingPreview } from "@/components/landing/LandingPricingPreview";
+import { ProBenefitsComparison } from "@/components/pricing/ProBenefitsComparison";
+import { CostComparisonChart } from "@/components/landing/CostComparisonChart";
 import { UsmleStepShowcase } from "@/components/marketing/UsmleStepShowcase";
 import { HowWeCompare } from "@/components/home/HowWeCompare";
 import { ROUTES } from "@/lib/routes";
@@ -82,6 +84,9 @@ export function ExamMarketingLanding({ examKey, questionCountLabel }: Props) {
               style={{ color: config.accentColor }}
             >
               {config.blueprintLabel} · 2026
+            </p>
+            <p className="mt-0.5 text-[9px] text-[var(--color-ink-muted)] opacity-70">
+              Not affiliated with or endorsed by the exam owner. Blueprint reference is for study alignment only.
             </p>
             <h1 className="mt-3 text-3xl font-extrabold leading-tight tracking-tight text-[var(--color-ink)] sm:text-4xl">
               {config.h1}
@@ -280,7 +285,15 @@ export function ExamMarketingLanding({ examKey, questionCountLabel }: Props) {
       >
         <div className="mx-auto max-w-5xl px-5 sm:px-6">
           <HowWeCompare />
+          <div className="mt-10">
+            <CostComparisonChart />
+          </div>
         </div>
+      </section>
+
+      {/* ── Pro benefits ────────────────────────────────────────────────── */}
+      <section className="border-b border-[var(--color-border)]/40 py-14">
+        <ProBenefitsComparison />
       </section>
 
       {/* ── Pricing ─────────────────────────────────────────────────────── */}

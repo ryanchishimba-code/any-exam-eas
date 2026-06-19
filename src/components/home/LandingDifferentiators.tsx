@@ -36,9 +36,9 @@ const ITEMS = [
   },
   {
     icon: Pill,
-    title: "Top 500 Drugs included",
+    title: "Top 503 Drugs included",
     detail:
-      "High-yield pharmacology deck shared across nursing and pharmacy prep — not a separate upsell.",
+      "High-yield pharmacology deck shared across nursing, medical, and pharmacy prep — not a separate upsell.",
   },
   {
     icon: MapPin,
@@ -66,7 +66,7 @@ export function LandingDifferentiators() {
             What you get here that typical prep giants split apart
           </h2>
           <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
-            UWorld-level rigor on question style — without buying six separate product lines.
+            Board-style vignettes with teachable rationales — without buying six separate product lines.
           </p>
         </div>
 
