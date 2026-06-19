@@ -199,14 +199,16 @@ async function main() {
 
   if (!DRY_RUN && totalChanges > 0) {
     let applied = 0;
+    const CHUNK = 2000;
     for (const { bucket, ids } of buckets.values()) {
-      for (let i = 0; i < ids.length; i += 500) {
-        const chunk = ids.slice(i, i + 500);
+      for (let i = 0; i < ids.length; i += CHUNK) {
+        const chunk = ids.slice(i, i + CHUNK);
         const r = await prisma.questionBankItem.updateMany({
           where: { id: { in: chunk } },
           data: { fieldId: bucket.fieldId, stepLevel: bucket.stepLevel },
         });
         applied += r.count;
+        console.log(`  ${bucket.fieldId}/${bucket.stepLevel}: +${r.count} (${applied} total)`);
       }
     }
     console.log(`Applied ${applied} update(s).`);
