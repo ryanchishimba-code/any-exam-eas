@@ -198,7 +198,7 @@ export function LandingShowcase() {
   return (
     <section
       id="product"
-      className="scroll-mt-24 bg-[var(--color-bg)] py-20 sm:py-24"
+      className="scroll-mt-24 border-y border-[var(--color-border)] bg-[var(--color-surface)] py-20 sm:py-24"
       aria-labelledby="showcase-heading"
     >
       <div className="mx-auto max-w-6xl px-5 sm:px-6">

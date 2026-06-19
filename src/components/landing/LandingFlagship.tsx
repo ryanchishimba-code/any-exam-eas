@@ -22,6 +22,7 @@ import { LandingWhyChoose } from "@/components/landing/flagship/LandingWhyChoose
 import { ChooseYourExam } from "@/components/home/ChooseYourExam";
 import {
   LANDING_HERO_CTA_DISCLOSURE,
+  LANDING_HERO_EXAMS,
   LANDING_HERO_EYEBROW,
   LANDING_HERO_HEADLINE,
   LANDING_HERO_HEADLINE_ACCENT,
@@ -113,6 +114,25 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
           <p className="mt-4 text-xs font-medium text-[var(--color-ink-muted)]">
             {LANDING_HERO_CTA_DISCLOSURE}
           </p>
+
+          <ul
+            className="mt-9 flex flex-wrap items-center justify-center gap-2"
+            aria-label="Included board exams"
+          >
+            {LANDING_HERO_EXAMS.map((exam) => (
+              <li
+                key={exam.label}
+                className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3 py-1.5 text-xs font-semibold text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)]"
+              >
+                <span
+                  className="h-2 w-2 rounded-full"
+                  style={{ background: exam.color }}
+                  aria-hidden
+                />
+                {exam.label}
+              </li>
+            ))}
+          </ul>
         </motion.div>
       </div>
 
