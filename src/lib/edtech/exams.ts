@@ -88,4 +88,13 @@ export function examSlugFromFieldId(fieldId: string): ExamSlug | null {
   return entry?.slug ?? null;
 }
 
+/**
+ * All study field ids that belong to an exam. USMLE spans its three step fields;
+ * every other exam maps to a single field. Used to scope per-exam analytics.
+ */
+export function examFieldIds(examSlug: ExamSlug): string[] {
+  if (examSlug === "usmle") return USMLE_STEPS.map((s) => s.fieldId);
+  return [EXAM_CATALOG[examSlug].fieldId];
+}
+
 export { USMLE_STEPS, USMLE_COMBINED_TARGET };

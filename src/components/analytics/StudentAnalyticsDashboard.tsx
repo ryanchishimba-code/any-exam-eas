@@ -5,8 +5,7 @@ import Link from "next/link";
 import { BookMarked, GraduationCap } from "lucide-react";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
-import { EXAM_FIELD_OPTIONS } from "@/lib/exam-prep/practice-modes";
-import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import { EXAM_CATALOG, examFieldIds, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { libraryTopicHref, spacedReviewHref } from "@/lib/edtech/practice-links";
 import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import {
@@ -14,6 +13,7 @@ import {
   normalizeWeakAreaTopicKey,
 } from "@/lib/library/weak-area-map";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
+import type { ExamSlug } from "@/types/edtech";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
@@ -23,11 +23,11 @@ type AnalyticsPayload = {
 };
 
 /** Illustrative national pass-rate references — not verified benchmarks for this product. */
-const REFERENCE_PASS_RATES: Record<string, number> = {
-  nursing: 88,
-  pharmacy: 89,
+const REFERENCE_PASS_RATES: Partial<Record<ExamSlug, number>> = {
+  nclex: 88,
+  naplex: 89,
   pance: 92,
-  "usmle-step-2": 92,
+  usmle: 92,
 };
 
 function practiceProgressIndex(
@@ -38,14 +38,22 @@ function practiceProgressIndex(
   return Math.min(100, Math.max(0, Math.round(readiness * 0.55 + acc * 0.45)));
 }
 
-export function StudentAnalyticsDashboard() {
+export function StudentAnalyticsDashboard({
+  examSlug,
+  examName,
+}: {
+  examSlug: ExamSlug;
+  examName: string;
+}) {
   const [data, setData] = useState<AnalyticsPayload | null>(null);
-  const [fieldFilter, setFieldFilter] = useState("all");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     Promise.all([
-      fetch("/api/learning/dashboard").then((r) => r.json()),
+      fetch(`/api/learning/dashboard?examSlug=${encodeURIComponent(examSlug)}`).then((r) =>
+        r.json()
+      ),
       fetch("/api/learning/profile").then((r) => r.json()),
     ])
       .then(([dashRes, profileRes]) => {
@@ -56,7 +64,7 @@ export function StudentAnalyticsDashboard() {
       })
       .catch(() => setData(null))
       .finally(() => setLoading(false));
-  }, []);
+  }, [examSlug]);
 
   if (loading) {
     return (
@@ -82,39 +90,34 @@ export function StudentAnalyticsDashboard() {
   }
 
   const { dashboard, profile } = data;
-  const primaryField = profile?.fieldReadiness?.[0]?.fieldId ?? "nursing";
+  const fieldIds = examFieldIds(examSlug);
+  const primaryField = EXAM_CATALOG[examSlug].fieldId;
   const progressIndex = practiceProgressIndex(
-    profile?.readinessScore ?? dashboard.headline.readinessScore,
+    dashboard.headline.readinessScore,
     dashboard.headline.overallAccuracy
   );
-  const referenceRate =
-    REFERENCE_PASS_RATES[fieldFilter === "all" ? primaryField : fieldFilter];
+  const referenceRate = REFERENCE_PASS_RATES[examSlug];
 
-  const weakTopics =
-    fieldFilter === "all"
-      ? dashboard.weakTopics
-      : dashboard.weakTopics.filter((t) => t.fieldId === fieldFilter);
+  // The API already scopes the payload to this exam; keep a defensive client
+  // filter so nothing from another exam can ever leak into the view.
+  const weakTopics = dashboard.weakTopics.filter((t) => fieldIds.includes(t.fieldId));
 
   const strongTopics =
-    profile?.strongestConcepts?.slice(0, 5).map((c) => c.conceptKey) ?? [];
-  const primaryExamSlug = examSlugFromFieldId(primaryField);
+    profile?.strongestConcepts
+      ?.filter((c) => fieldIds.includes(c.fieldId))
+      .slice(0, 5)
+      .map((c) => c.conceptKey) ?? [];
+  const primaryExamSlug = examSlug;
 
   return (
     <div className="space-y-10">
-      <div className="flex flex-wrap gap-2">
-        <FilterChip
-          active={fieldFilter === "all"}
-          onClick={() => setFieldFilter("all")}
-          label="All exams"
-        />
-        {EXAM_FIELD_OPTIONS.map((e) => (
-          <FilterChip
-            key={e.id}
-            active={fieldFilter === e.fieldParam}
-            onClick={() => setFieldFilter(e.fieldParam)}
-            label={e.label}
-          />
-        ))}
+      <div className="flex flex-wrap items-center gap-2">
+        <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)]/10 px-4 py-1.5 text-sm font-semibold text-[var(--color-accent)]">
+          {examName}
+        </span>
+        <span className="text-xs text-[var(--color-ink-muted)]">
+          Insights below are scoped to this exam. Switch exams from the top bar.
+        </span>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -125,8 +128,8 @@ export function StudentAnalyticsDashboard() {
         />
         <MetricCard
           label="Readiness score"
-          value={`${profile?.readinessScore ?? dashboard.headline.readinessScore}%`}
-          hint="Composite from your practice activity"
+          value={`${dashboard.headline.readinessScore}%`}
+          hint={`Composite from your ${examName} practice`}
         />
         <MetricCard
           label="Overall accuracy"
@@ -222,7 +225,7 @@ export function StudentAnalyticsDashboard() {
             </ul>
           )}
           <Button
-            href={`/question-bank?field=${fieldFilter === "all" ? primaryField : fieldFilter}&style=weak_areas`}
+            href={`/question-bank?field=${primaryField}&style=weak_areas`}
             variant="secondary"
             className="mt-4 w-full"
           >
@@ -247,7 +250,7 @@ export function StudentAnalyticsDashboard() {
         </section>
       )}
 
-      {fieldFilter === "pance" || primaryField === "pance" ? (
+      {examSlug === "pance" ? (
         <section className="rounded-2xl border border-rose-200/70 bg-rose-50/50 p-6">
           <h3 className="font-semibold text-rose-950">PANCE endurance check</h3>
           <p className="mt-2 text-sm text-rose-900/80">
@@ -355,27 +358,3 @@ function MetricCard({
   );
 }
 
-function FilterChip({
-  active,
-  onClick,
-  label,
-}: {
-  active: boolean;
-  onClick: () => void;
-  label: string;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        "rounded-full px-4 py-1.5 text-sm font-medium transition",
-        active
-          ? "bg-[var(--color-accent)] text-white"
-          : "bg-black/[0.04] text-[var(--color-ink-muted)] hover:bg-black/[0.08]"
-      )}
-    >
-      {label}
-    </button>
-  );
-}

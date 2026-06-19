@@ -1,4 +1,6 @@
 import { prisma } from "@/lib/prisma";
+import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import { normalizeFieldId } from "@/lib/subjects/field-ids";
 import { getLearningProfileSnapshot } from "./profile-service";
 
 export type AccuracyTrendPoint = {
@@ -70,13 +72,23 @@ function buildMotivationalMessage(
   return "One focused session today is a step in your prep journey.";
 }
 
-async function getAccuracyTrend(userId: string): Promise<AccuracyTrendPoint[]> {
+/** Optional per-exam scope. When set, every query is filtered to these fields. */
+type FieldScope = string[] | null;
+
+function fieldWhere(fieldIds: FieldScope) {
+  return fieldIds && fieldIds.length > 0 ? { fieldId: { in: fieldIds } } : {};
+}
+
+async function getAccuracyTrend(
+  userId: string,
+  fieldIds: FieldScope
+): Promise<AccuracyTrendPoint[]> {
   const since = new Date();
   since.setUTCDate(since.getUTCDate() - (TREND_DAYS - 1));
   since.setUTCHours(0, 0, 0, 0);
 
   const attempts = await prisma.questionAttempt.findMany({
-    where: { userId, createdAt: { gte: since } },
+    where: { userId, createdAt: { gte: since }, ...fieldWhere(fieldIds) },
     select: { correct: true, createdAt: true },
   });
 
@@ -118,30 +130,48 @@ function computeTrendDelta(trend: AccuracyTrendPoint[]): number | null {
   return Math.round(avg(second) - avg(first));
 }
 
-async function getSpacedReviewSummary(userId: string): Promise<SpacedReviewSummary> {
+async function getSpacedReviewSummary(
+  userId: string,
+  fieldIds: FieldScope
+): Promise<SpacedReviewSummary> {
   const now = new Date();
+  const scope = fieldWhere(fieldIds);
   const [dueCount, weakDueCount] = await Promise.all([
     prisma.questionMastery.count({
-      where: { userId, nextDue: { lte: now } },
+      where: { userId, nextDue: { lte: now }, ...scope },
     }),
     prisma.questionMastery.count({
       where: {
         userId,
         nextDue: { lte: now },
         abilityEstimate: { lt: 0.55 },
+        ...scope,
       },
     }),
   ]);
   return { dueCount, weakDueCount };
 }
 
-export async function getStudentDashboardData(userId: string): Promise<StudentDashboardData> {
+/**
+ * @param fieldIds Optional per-exam scope. When provided, every metric, trend,
+ *   weak/strong topic, spaced-review count, recent session, and the readiness
+ *   score is restricted to those study fields so analytics reflects only the
+ *   selected exam. Omit (or pass null/empty) for the global, all-exam view.
+ */
+export async function getStudentDashboardData(
+  userId: string,
+  fieldIds: FieldScope = null
+): Promise<StudentDashboardData> {
+  const scoped = Boolean(fieldIds && fieldIds.length > 0);
+  const attemptScope = fieldWhere(fieldIds);
+  const scopeSlug = scoped ? examSlugFromFieldId(fieldIds![0]) : null;
+
   const [profile, trend, masteries, completedRecords, totalAttempts, correctCount, spacedReview] =
     await Promise.all([
     getLearningProfileSnapshot(userId),
-    getAccuracyTrend(userId),
+    getAccuracyTrend(userId, fieldIds),
     prisma.conceptMastery.findMany({
-      where: { userId },
+      where: { userId, ...fieldWhere(fieldIds) },
       orderBy: { masteryScore: "asc" },
       take: 6,
     }),
@@ -153,11 +183,11 @@ export async function getStudentDashboardData(userId: string): Promise<StudentDa
         score: { not: null },
       },
       orderBy: { createdAt: "desc" },
-      take: 8,
+      take: scoped ? 40 : 8,
     }),
-    prisma.questionAttempt.count({ where: { userId } }),
-    prisma.questionAttempt.count({ where: { userId, correct: true } }),
-    getSpacedReviewSummary(userId),
+    prisma.questionAttempt.count({ where: { userId, ...attemptScope } }),
+    prisma.questionAttempt.count({ where: { userId, correct: true, ...attemptScope } }),
+    getSpacedReviewSummary(userId, fieldIds),
   ]);
 
   const examIds = completedRecords.map((r) => r.entityId);
@@ -169,6 +199,18 @@ export async function getStudentDashboardData(userId: string): Promise<StudentDa
         })
       : [];
   const examById = new Map(exams.map((e) => [e.id, e]));
+
+  // Recent sessions live in ProgressRecord (no fieldId) → match through the
+  // generated exam's field so a scoped view only shows the selected exam.
+  function recordInScope(entityId: string): boolean {
+    if (!scoped) return true;
+    const exam = examById.get(entityId);
+    if (!exam) return false;
+    const field = normalizeFieldId(exam.field);
+    if (fieldIds!.includes(field)) return true;
+    if (scopeSlug && examSlugFromFieldId(field) === scopeSlug) return true;
+    return Boolean(scopeSlug && exam.field === scopeSlug);
+  }
 
   const weaknessWeights = masteries.map((m) => {
     const gap = Math.max(0, 100 - m.masteryScore);
@@ -185,7 +227,10 @@ export async function getStudentDashboardData(userId: string): Promise<StudentDa
     weight: Math.round((m.weight / totalWeight) * 100),
   }));
 
-  const recentTests: RecentTestRow[] = completedRecords.map((r) => {
+  const recentTests: RecentTestRow[] = completedRecords
+    .filter((r) => recordInScope(r.entityId))
+    .slice(0, 8)
+    .map((r) => {
     const exam = examById.get(r.entityId);
     let correct: number | null = null;
     let total: number | null = null;
@@ -215,9 +260,20 @@ export async function getStudentDashboardData(userId: string): Promise<StudentDa
 
   const trendDelta = computeTrendDelta(trend);
 
+  // Readiness for a scoped view is the mean of the in-scope per-field readiness
+  // values (falls back to the global score when the field has no data yet).
+  const scopedReadiness = (() => {
+    if (!scoped) return profile.readinessScore;
+    const scores = profile.fieldReadiness
+      .filter((f) => fieldIds!.includes(f.fieldId))
+      .map((f) => f.score);
+    if (scores.length === 0) return 0;
+    return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+  })();
+
   return {
     headline: {
-      readinessScore: profile.readinessScore,
+      readinessScore: scopedReadiness,
       studyStreakDays: profile.studyStreakDays,
       overallAccuracy,
       totalAttempts,

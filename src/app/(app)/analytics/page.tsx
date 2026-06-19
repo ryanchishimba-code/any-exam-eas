@@ -5,6 +5,8 @@ import { PremiumGate } from "@/components/PremiumGate";
 import { ProUpgradeGate } from "@/components/ProUpgradeGate";
 import { StudentAnalyticsDashboard } from "@/components/analytics/StudentAnalyticsDashboard";
 import { requirePremiumPage } from "@/lib/require-premium-page";
+import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
@@ -20,6 +22,11 @@ export default async function AnalyticsPage() {
 
   await requirePremiumPage(ROUTES.analytics);
 
+  const pref = await getUserExamPreference(session.user.id);
+  if (!pref) redirect(ROUTES.selectExam);
+  const examSlug = pref.examSlug;
+  const examName = EXAM_CATALOG[examSlug].shortName;
+
   return (
     <div className="space-y-6">
       <PremiumGate callbackPath={ROUTES.analytics}>
@@ -33,13 +40,13 @@ export default async function AnalyticsPage() {
                 Track progress &amp; insights
               </h1>
               <p className="mt-2 max-w-2xl text-[var(--color-ink-muted)]">
-                Accuracy trends, weak areas, and readiness signals for your primary exam.
+                Accuracy trends, weak areas, and readiness signals for {examName}.
               </p>
             </header>
             <Suspense
               fallback={<p className="text-sm text-[var(--color-ink-muted)]">Loading analytics…</p>}
             >
-              <StudentAnalyticsDashboard />
+              <StudentAnalyticsDashboard examSlug={examSlug} examName={examName} />
             </Suspense>
           </div>
         </ProUpgradeGate>
