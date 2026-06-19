@@ -14,7 +14,7 @@
  * transforms and snap easing while keeping selection fully functional.
  */
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { useReducedMotion } from "framer-motion";
 
 export type BoardPickerItem = {
@@ -197,7 +197,7 @@ export function BoardScrollPicker({
   return (
     <div
       className={`aee-board-picker ${className}`.trim()}
-      style={{ ["--picker-accent" as string]: activeAccent }}
+      style={{ ["--picker-accent" as string]: activeAccent } as CSSProperties}
     >
       {/* Center selection band — colored by the active item's accent. */}
       <div className="aee-board-picker__band" aria-hidden />
@@ -230,11 +230,13 @@ export function BoardScrollPicker({
               onClick={() => selectIndex(index)}
               className="aee-board-picker__item"
               data-active={isActive}
-              style={{
-                height: ITEM_HEIGHT,
-                scrollSnapAlign: "center",
-                ["--row-accent" as string]: item.accent,
-              }}
+              style={
+                {
+                  height: ITEM_HEIGHT,
+                  scrollSnapAlign: "center",
+                  ["--row-accent" as string]: item.accent,
+                } as CSSProperties
+              }
             >
               <span className="aee-board-picker__dot" aria-hidden />
               <span className="aee-board-picker__text">
