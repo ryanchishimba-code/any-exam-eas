@@ -8,7 +8,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-preference";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { loadMemoryCards } from "@/lib/library/memory-cards";
-import { getMemoryCardSubjects } from "@/lib/library/seeds";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
@@ -50,7 +49,6 @@ async function LibraryContent({
     loadMemoryCards(userId, examSlug),
     getStudentDashboardData(userId),
   ]);
-  const subjects = getMemoryCardSubjects(examSlug);
   const fieldId = resolveExamFieldId(examSlug);
   const weakTopics = dashboard.weakTopics
     .filter((t) => t.fieldId === fieldId)
@@ -70,7 +68,6 @@ async function LibraryContent({
         examSlug={examSlug}
         userName={userName}
         cards={cards}
-        subjects={subjects}
         weakTopics={weakTopics}
         hubStats={hubStats}
         initialCardId={initialCardId}
