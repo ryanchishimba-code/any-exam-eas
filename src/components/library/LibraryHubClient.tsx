@@ -62,7 +62,6 @@ export function LibraryHubClient({
   examSlug,
   userName,
   cards,
-  subjects,
   weakTopics,
   hubStats,
   initialCardId,
