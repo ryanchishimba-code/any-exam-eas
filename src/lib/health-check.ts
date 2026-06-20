@@ -29,14 +29,21 @@ export async function runHealthChecks(): Promise<HealthReport> {
   ensureDatabaseUrlEnv();
   const url = resolveDatabaseUrl();
 
+  const { appBaseUrl, getEmailFromAddress, isPasswordResetEmailReady } = await import(
+    "@/lib/email/config"
+  );
+
   const checks: Record<string, string> = {
     nextauthSecret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET ? "ok" : "missing",
     passwordResetEmail:
       process.env.RESEND_API_KEY?.trim()
-        ? process.env.EMAIL_FROM?.includes("resend.dev")
+        ? process.env.EMAIL_FROM?.includes("resend.dev") || process.env.EMAIL_FROM?.includes("onboarding@")
           ? "resend-key-set-sandbox-from"
           : "ok"
         : "resend-key-missing",
+    passwordResetDeliverable: isPasswordResetEmailReady() ? "yes" : "no",
+    emailFrom: getEmailFromAddress(),
+    resetBaseUrl: appBaseUrl(),
     databaseUrl: "unknown",
     prisma: "unknown",
     drizzle: "unknown",

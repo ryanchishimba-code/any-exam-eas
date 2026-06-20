@@ -14,11 +14,17 @@ export function isEmailConfigured(): boolean {
 }
 
 /**
- * True when password reset emails can be attempted (Resend API key present).
- * Sandbox FROM only delivers to the Resend account owner until domain is verified.
+ * True when password reset emails can actually be delivered to users.
+ *
+ * Requires a Resend API key. In production we additionally reject the Resend
+ * sandbox sender (onboarding@resend.dev) because it only delivers to the Resend
+ * account owner — otherwise users get a silent "check your inbox" with no email.
+ * Verify your domain in Resend and set EMAIL_FROM to a verified address.
  */
 export function isPasswordResetEmailReady(): boolean {
-  return isEmailConfigured();
+  if (!isEmailConfigured()) return false;
+  if (process.env.NODE_ENV === "production" && isResendSandboxFrom()) return false;
+  return true;
 }
 
 export const PASSWORD_RESET_UNAVAILABLE_MESSAGE =
