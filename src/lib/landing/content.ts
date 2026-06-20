@@ -473,36 +473,36 @@ export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [
   {
     quote:
       "I passed NCLEX on my first try. The Roadmap told me exactly which med-surg topics I was weak on — I wasn't guessing what to study next.",
-    name: "Maria L.",
+    name: "Prisca M.",
     exam: "NCLEX-RN",
-    initials: "ML",
+    initials: "PM",
     outcome: "Passed NCLEX — first attempt",
     avatarGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
   },
   {
     quote:
       "Detailed rationales without buying Step 2 and PANCE as separate subscriptions. One plan covered both boards and saved me hundreds.",
-    name: "Ben K.",
+    name: "Gerard N.",
     exam: "USMLE Step 2 CK · PANCE",
-    initials: "BK",
+    initials: "GN",
     outcome: "Studied Step 2 CK & PANCE",
     avatarGradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
   },
   {
     quote:
       "NAPLEX calculations plus AANP FNP primary-care vignettes in one account. The integrated Roadmap was the feature I couldn't find bundled anywhere else.",
-    name: "Priya S.",
+    name: "Nathan C.",
     exam: "NAPLEX · AANP FNP",
-    initials: "PS",
+    initials: "NC",
     outcome: "Passed NAPLEX & AANP FNP",
     avatarGradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
   },
   {
     quote:
       "I switched after the trial. Better price, and I could prep NCLEX and pharmacology flashcards without a second bill.",
-    name: "Jordan T.",
+    name: "Brittany V.",
     exam: "NCLEX-RN",
-    initials: "JT",
+    initials: "BV",
     outcome: "NCLEX prep — switched plans",
     avatarGradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
   },

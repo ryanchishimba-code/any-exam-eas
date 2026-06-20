@@ -8,7 +8,7 @@ import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-cou
 import { useSession } from "next-auth/react";
 
 const LandingFlagship = dynamic(
-  () => import("@/components/landing/LandingFlagship").then((m) => m.LandingFlagship),
+  () => import("@/components/landing/v2/LandingFlagshipV2").then((m) => m.LandingFlagshipV2),
   { ssr: true }
 );
 

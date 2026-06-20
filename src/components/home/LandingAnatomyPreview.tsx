@@ -663,9 +663,7 @@ export function LandingAnatomyPreview() {
             >
               <span className="font-medium text-[var(--color-ink)]">{row.feature}</span>
               <span className="flex w-28 justify-center">
-                {row.others === true ? (
-                  <Check className="h-4 w-4 text-[var(--color-ink-muted)]" strokeWidth={2.5} aria-label="Yes" />
-                ) : row.others === false ? (
+                {row.others === false ? (
                   <Minus className="h-4 w-4 text-[var(--color-ink-muted)]/50" strokeWidth={2} aria-label="No" />
                 ) : (
                   <span className="text-[0.625rem] font-semibold text-[var(--color-ink-muted)]">{row.others}</span>
