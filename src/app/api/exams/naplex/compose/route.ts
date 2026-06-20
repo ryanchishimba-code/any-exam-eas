@@ -29,6 +29,8 @@ type ComposeBody = {
   outputFormat?: unknown;
   output_format?: unknown;
   seed?: unknown;
+  balanceAnswerKeys?: unknown;
+  balance_answer_keys?: unknown;
 };
 
 function asStringArray(value: unknown): string[] | undefined {
@@ -75,6 +77,8 @@ export async function POST(req: Request) {
 
   const focusAreas = asStringArray(body.focusAreas ?? body.focus_areas);
   const seed = Number.isFinite(Number(body.seed)) ? Number(body.seed) : undefined;
+  const balanceRaw = body.balanceAnswerKeys ?? body.balance_answer_keys;
+  const balanceAnswerKeys = balanceRaw === false ? false : undefined;
 
   try {
     const exam = await composeNaplexPracticeExam({
@@ -83,6 +87,7 @@ export async function POST(req: Request) {
       difficultyPreference,
       outputFormat,
       seed,
+      balanceAnswerKeys,
     });
     return NextResponse.json(exam);
   } catch (error) {

@@ -93,20 +93,38 @@ export function difficultyBand(difficulty?: number): "Easy" | "Medium" | "Hard" 
   return "Hard";
 }
 
+const PROVENANCE_TAG =
+  /^(naplex|v\d+|naplex-20\d\d|curated|seed|bulk-bank|full-exam.*|exam-\d+|physician-educator|naplex-polished|high-yield|case-vignette)$/;
+
 export function conceptKeysFor(item: BankItem): string[] {
   const keys = new Set<string>();
   for (const tag of item.tags ?? []) {
     const t = tag.trim().toLowerCase();
-    // Skip provenance/bookkeeping tags that aren't real concepts.
-    if (!t || t.length < 3) continue;
-    if (/^(naplex|v\d|naplex-2025|naplex-2026|curated|seed|bulk-bank|full-exam.*|exam-\d+|physician-educator|high-yield)$/.test(t)) {
-      continue;
-    }
+    // Skip provenance/bookkeeping tags — they aren't real concepts and would
+    // create false collisions (e.g. every item tagged "naplex").
+    if (!t || t.length < 3 || PROVENANCE_TAG.test(t)) continue;
     keys.add(t);
   }
+  // blueprintTopic is a specific high-yield concept; topicCategory is excluded
+  // because it is usually the broad subject slug (e.g. "pharmacology") and would
+  // collide across most items.
   if (item.blueprintTopic) keys.add(`topic:${item.blueprintTopic.trim().toLowerCase()}`);
-  if (item.topicCategory) keys.add(`cat:${item.topicCategory.trim().toLowerCase()}`);
   return [...keys];
+}
+
+export const NAPLEX_AREA_IDS = new Set([
+  "naplex-area1-foundations",
+  "naplex-area2-therapeutics",
+  "naplex-area3-treatment-planning",
+  "naplex-area4-safety",
+  "naplex-area5-management",
+]);
+
+/** Collapse 2025 area slugs + 2026 competency slugs to the canonical area id. */
+export function normalizeNaplexDomain(domain: string | undefined): string {
+  if (!domain) return "__unclassified__";
+  if (NAPLEX_AREA_IDS.has(domain)) return domain;
+  return SLUG_NORMALIZATION[domain] ?? "__unclassified__";
 }
 
 function normalizeDomain(domain: string | undefined, validIds: Set<string>): string {
@@ -115,6 +133,18 @@ function normalizeDomain(domain: string | undefined, validIds: Set<string>): str
   const mapped = SLUG_NORMALIZATION[domain];
   if (mapped && validIds.has(mapped)) return mapped;
   return "__unclassified__";
+}
+
+/**
+ * Exam-agnostic domain normalization for any blueprint: returns the matching
+ * category id, or "__unclassified__" when the item's domain isn't a known
+ * category. Used by the generic exam composer.
+ */
+export function normalizeBlueprintDomain(
+  domain: string | undefined,
+  validIds: Set<string>
+): string {
+  return normalizeDomain(domain, validIds);
 }
 
 /** Per-blueprint-category integer target counts for `numQuestions`. */

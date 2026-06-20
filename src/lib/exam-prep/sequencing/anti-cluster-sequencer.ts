@@ -65,8 +65,20 @@ export function sequenceItems<T>(
 
   const metas = items.map(toSequenceItem);
   const n = items.length;
+
+  // A domain with `k` items in `n` slots can be spread by at most floor(n/k)
+  // positions. Cap the requested gap at this feasible maximum so heavily
+  // weighted domains (e.g. NAPLEX Area 3 at 40%) are spread as far as possible
+  // rather than reported as endlessly "violating".
+  const domainCount = new Map<string, number>();
+  for (const m of metas) domainCount.set(m.domain, (domainCount.get(m.domain) ?? 0) + 1);
+  const effDomainGap = (domain: string): number => {
+    const k = domainCount.get(domain) ?? 1;
+    return Math.max(1, Math.min(cfg.domainMinGap, Math.floor(n / k)));
+  };
+
   if (n <= 1) {
-    return { ordered: [...items], report: buildReport(metas, cfg) };
+    return { ordered: [...items], report: buildReport(metas, cfg, effDomainGap) };
   }
 
   const remaining = new Set<number>(metas.map((_, i) => i));
@@ -93,7 +105,8 @@ export function sequenceItems<T>(
       const ld = lastDomainPos.get(c.domain);
       if (ld !== undefined) {
         const gap = pos - ld;
-        if (gap < cfg.domainMinGap) penalty += (cfg.domainMinGap - gap) * PENALTY.domain;
+        const want = effDomainGap(c.domain);
+        if (gap < want) penalty += (want - gap) * PENALTY.domain;
       }
 
       for (const concept of c.concepts) {
@@ -138,25 +151,33 @@ export function sequenceItems<T>(
 
   // Repair pass: composite-cost hill-climb that breaks answer streaks / adjacent
   // hard pairs / domain-gap violations without trading one for another.
-  localRepair(orderIdx, metas, cfg);
+  localRepair(orderIdx, metas, cfg, effDomainGap);
 
   const orderedMetas = orderIdx.map((i) => metas[i]);
   return {
     ordered: orderIdx.map((i) => items[i]),
-    report: buildReport(orderedMetas, cfg),
+    report: buildReport(orderedMetas, cfg, effDomainGap),
   };
 }
 
-/** Weighted total of remaining constraint violations + the earliest offender. */
+type ViolationScan = {
+  cost: number;
+  /** Offending positions grouped by priority (highest first). */
+  answer: number[];
+  adjacentHard: number[];
+  domain: number[];
+};
+
+/** Weighted total of remaining constraint violations + offending positions. */
 function scanViolations(
   order: SequenceItem[],
-  cfg: SequencingConfig
-): { cost: number; firstViolator: number } {
-  let answerViol = 0;
-  let domainViol = 0;
-  let adjHard = 0;
+  cfg: SequencingConfig,
+  effDomainGap: (domain: string) => number
+): ViolationScan {
+  const answer: number[] = [];
+  const adjacentHard: number[] = [];
+  const domain: number[] = [];
   let conceptViol = 0;
-  let earliest = Number.POSITIVE_INFINITY;
 
   let run = 1;
   const lastDomain = new Map<string, number>();
@@ -167,10 +188,7 @@ function scanViolations(
       const prev = order[pos - 1];
       if (item.answer === prev.answer) {
         run += 1;
-        if (run > cfg.maxAnswerStreak) {
-          answerViol += 1;
-          earliest = Math.min(earliest, pos);
-        }
+        if (run > cfg.maxAnswerStreak) answer.push(pos);
       } else {
         run = 1;
       }
@@ -179,70 +197,80 @@ function scanViolations(
         prev.difficulty >= cfg.hardDifficultyThreshold &&
         item.difficulty >= cfg.hardDifficultyThreshold
       ) {
-        adjHard += 1;
-        earliest = Math.min(earliest, pos);
+        adjacentHard.push(pos);
       }
     }
 
     const ld = lastDomain.get(item.domain);
-    if (ld !== undefined && pos - ld < cfg.domainMinGap) {
-      domainViol += 1;
-      earliest = Math.min(earliest, pos);
-    }
+    if (ld !== undefined && pos - ld < effDomainGap(item.domain)) domain.push(pos);
     lastDomain.set(item.domain, pos);
 
     for (const concept of item.concepts) {
       const lc = lastConcept.get(concept);
-      if (lc !== undefined && pos - lc < cfg.conceptMinGap) {
-        conceptViol += 1;
-        earliest = Math.min(earliest, pos);
-      }
+      if (lc !== undefined && pos - lc < cfg.conceptMinGap) conceptViol += 1;
       lastConcept.set(concept, pos);
     }
   });
 
-  const cost = answerViol * 1000 + domainViol * 120 + adjHard * 40 + conceptViol;
-  return { cost, firstViolator: Number.isFinite(earliest) ? earliest : -1 };
+  const cost = answer.length * 1000 + domain.length * 120 + adjacentHard.length * 40 + conceptViol;
+  return { cost, answer, adjacentHard, domain };
 }
 
-function localRepair(orderIdx: number[], metas: SequenceItem[], cfg: SequencingConfig): void {
+/**
+ * Hill-climb that fixes violations in priority order (answer streaks → adjacent
+ * hard → domain gaps). For each offender it takes the first strictly cost-
+ * reducing swap; an unfixable low-priority offender never blocks higher ones.
+ */
+function localRepair(
+  orderIdx: number[],
+  metas: SequenceItem[],
+  cfg: SequencingConfig,
+  effDomainGap: (domain: string) => number
+): void {
   const view = () => orderIdx.map((i) => metas[i]);
-  const limit = orderIdx.length * 4;
+  const limit = orderIdx.length * 12;
   let guard = 0;
 
-  let current = scanViolations(view(), cfg);
-  while (current.cost > 0 && current.firstViolator >= 0 && guard++ < limit) {
-    // Pivot on the earliest offender and its predecessor (the two members of an
-    // adjacency violation), so the climber can escape single-position plateaus.
-    const pivots = current.firstViolator > 0
-      ? [current.firstViolator, current.firstViolator - 1]
-      : [current.firstViolator];
-
-    let bestP = -1;
-    let bestJ = -1;
-    let bestCost = current.cost;
-
-    for (const p of pivots) {
-      for (let j = 0; j < orderIdx.length; j++) {
-        if (j === p) continue;
-        [orderIdx[p], orderIdx[j]] = [orderIdx[j], orderIdx[p]];
-        const c = scanViolations(view(), cfg).cost;
-        [orderIdx[p], orderIdx[j]] = [orderIdx[j], orderIdx[p]];
-        if (c < bestCost) {
-          bestCost = c;
-          bestP = p;
-          bestJ = j;
+  let scan = scanViolations(view(), cfg, effDomainGap);
+  while (scan.cost > 0 && guard++ < limit) {
+    // Each offender contributes itself and its predecessor as pivot candidates.
+    const offenders = [...scan.answer, ...scan.adjacentHard, ...scan.domain];
+    const pivots: number[] = [];
+    const seen = new Set<number>();
+    for (const o of offenders) {
+      for (const p of o > 0 ? [o, o - 1] : [o]) {
+        if (!seen.has(p)) {
+          seen.add(p);
+          pivots.push(p);
         }
       }
     }
 
-    if (bestJ < 0) break; // no improving swap available
-    [orderIdx[bestP], orderIdx[bestJ]] = [orderIdx[bestJ], orderIdx[bestP]];
-    current = scanViolations(view(), cfg);
+    let applied = false;
+    for (const p of pivots) {
+      for (let j = 0; j < orderIdx.length; j++) {
+        if (j === p) continue;
+        [orderIdx[p], orderIdx[j]] = [orderIdx[j], orderIdx[p]];
+        const next = scanViolations(view(), cfg, effDomainGap);
+        if (next.cost < scan.cost) {
+          scan = next;
+          applied = true;
+          break;
+        }
+        [orderIdx[p], orderIdx[j]] = [orderIdx[j], orderIdx[p]];
+      }
+      if (applied) break;
+    }
+
+    if (!applied) break; // local minimum reached
   }
 }
 
-function buildReport(order: SequenceItem[], cfg: SequencingConfig): SequencingReport {
+function buildReport(
+  order: SequenceItem[],
+  cfg: SequencingConfig,
+  effDomainGap: (domain: string) => number
+): SequencingReport {
   const answerDistribution: Record<string, number> = {};
   let longestAnswerStreak = order.length > 0 ? 1 : 0;
   let currentRun = order.length > 0 ? 1 : 0;
@@ -279,7 +307,7 @@ function buildReport(order: SequenceItem[], cfg: SequencingConfig): SequencingRe
     if (ld !== undefined) {
       const gap = pos - ld;
       domainMinSeparation = Math.min(domainMinSeparation, gap);
-      if (gap < cfg.domainMinGap) domainGapViolations += 1;
+      if (gap < effDomainGap(item.domain)) domainGapViolations += 1;
     }
     lastDomainAt.set(item.domain, pos);
 
@@ -302,7 +330,7 @@ function buildReport(order: SequenceItem[], cfg: SequencingConfig): SequencingRe
   }
   if (domainGapViolations > 0) {
     notes.push(
-      `${domainGapViolations} domain-spacing violation(s) — a domain has too many items for the requested length to fully separate.`
+      `${domainGapViolations} domain-spacing violation(s) below the feasible per-domain gap — pool is tightly constrained for the requested length.`
     );
   }
   if (conceptGapViolations > 0) {

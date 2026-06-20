@@ -186,6 +186,7 @@
     "db:seed-npte-pt-full-exams": "npx tsx scripts/seed-npte-pt-full-exams.ts",
     "db:generate-naplex-full-exams": "OPENAI_GENERATION_ONLY=1 npx tsx scripts/generate-naplex-full-exams.ts --insert",
     "db:generate-naplex-full-exams:dry": "OPENAI_GENERATION_ONLY=1 npx tsx scripts/generate-naplex-full-exams.ts --exams 1 --count 10 --dry-run",
+    "exam:compose-naplex": "bash scripts/run-with-node.sh npx tsx scripts/verify-naplex-compose.ts",
     "db:generate-usmle-full-exams": "OPENAI_GENERATION_ONLY=1 npx tsx scripts/generate-usmle-full-exams.ts --insert",
     "db:generate-usmle-full-exams:resume": "OPENAI_GENERATION_ONLY=1 npx tsx scripts/generate-usmle-full-exams.ts --insert --start-from 2",
     "db:generate-usmle-full-exams:dry": "OPENAI_GENERATION_ONLY=1 npx tsx scripts/generate-usmle-full-exams.ts --exams 1 --count 10 --dry-run",
