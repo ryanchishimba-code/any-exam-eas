@@ -8,6 +8,7 @@ import { StudyPageHeader } from "@/components/study/StudyPageHeader";
 import { getUserExamPreference, setUserExamPreference } from "@/lib/edtech/exam-preference";
 import { EXAM_CATALOG, examSlugFromFieldId, isExamSlug } from "@/lib/edtech/exams";
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
+import { loadSubjectCountsForUser } from "@/lib/study/load-subject-counts";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 
@@ -41,6 +42,8 @@ export default async function QuestionBankPage({
   if (!pref) redirect(ROUTES.selectExam);
 
   const exam = EXAM_CATALOG[pref.examSlug];
+  const fieldParam = sp.field ?? exam.fieldId;
+  const countsPayload = await loadSubjectCountsForUser(session.user.id, fieldParam);
 
   return (
     <div className="w-full space-y-5">
@@ -55,7 +58,12 @@ export default async function QuestionBankPage({
 
       <PremiumGate callbackPath={ROUTES.questionBank}>
         <Suspense fallback={<p className="text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
-          <StudyBankPractice preferredExamSlug={pref.examSlug} lockExam />
+          <StudyBankPractice
+            preferredExamSlug={pref.examSlug}
+            lockExam
+            initialSubjectCounts={countsPayload?.counts}
+            initialSubjectCountsFieldId={countsPayload?.fieldId}
+          />
         </Suspense>
       </PremiumGate>
     </div>

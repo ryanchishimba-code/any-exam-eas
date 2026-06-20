@@ -6,7 +6,7 @@ import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
 
 /** Sentinel subjectId the question-bank API treats as a mixed-topic session. */
-const MIXED_SUBJECT_ID = "__mixed__";
+export const MIXED_SUBJECT_ID = "__mixed__";
 
 /**
  * Resolve the bank fieldId that actually holds a topic. USMLE basic-science

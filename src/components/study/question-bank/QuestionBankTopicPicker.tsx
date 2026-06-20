@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Check, Search } from "lucide-react";
+import { Check, Layers, Search } from "lucide-react";
+import { MIXED_SUBJECT_ID, MIXED_SUBJECT_LABEL } from "@/lib/study/question-bank-setup";
 import { subjectVisual } from "@/lib/library/subject-icon";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import { cn } from "@/lib/utils";
@@ -19,11 +20,16 @@ export function QuestionBankTopicPicker({
   subjectId,
   subjectCounts,
   onSubjectChange,
+  allowMixed = true,
+  weakSubjectIds,
 }: {
   subjects: SubjectOption[];
   subjectId: string;
   subjectCounts?: Record<string, number> | null;
   onSubjectChange: (subjectId: string) => void;
+  /** When true, show an all-topics mixed session card (standard bank mode). */
+  allowMixed?: boolean;
+  weakSubjectIds?: string[];
 }) {
   const [query, setQuery] = useState("");
 
@@ -68,9 +74,17 @@ export function QuestionBankTopicPicker({
           aria-label="Topics"
         >
           <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+            {allowMixed && !query.trim() ? (
+              <MixedTopicCard
+                selected={subjectId === MIXED_SUBJECT_ID}
+                totalCount={totalCount}
+                onSelect={() => onSubjectChange(MIXED_SUBJECT_ID)}
+              />
+            ) : null}
             {filtered.map((subject) => {
               const selected = subject.id === subjectId;
               const count = subjectCounts?.[subject.id];
+              const isWeak = weakSubjectIds?.includes(subject.id);
               const { icon: Icon, tint } = subjectVisual(subject.label);
               return (
                 <button
@@ -78,9 +92,11 @@ export function QuestionBankTopicPicker({
                   type="button"
                   role="option"
                   aria-selected={selected}
+                  disabled={typeof count === "number" && count <= 0}
                   onClick={() => onSubjectChange(subject.id)}
                   className={cn(
                     "group relative flex flex-col rounded-[18px] border p-4 text-left transition active:scale-[0.99]",
+                    typeof count === "number" && count <= 0 && "cursor-not-allowed opacity-50",
                     selected
                       ? "border-[var(--color-accent)]/40 bg-[var(--color-accent)]/[0.06] ring-1 ring-[var(--color-accent)]/25"
                       : "border-[var(--color-border)] bg-[var(--color-surface-elevated)] shadow-[var(--shadow-apple-sm)] hover:-translate-y-0.5 hover:border-[var(--color-accent)]/25 hover:shadow-[var(--shadow-apple-md)]"
@@ -90,11 +106,18 @@ export function QuestionBankTopicPicker({
                     <span className={cn("inline-flex h-10 w-10 items-center justify-center rounded-2xl", tint)}>
                       <Icon className="h-5 w-5" aria-hidden />
                     </span>
-                    {selected ? (
-                      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-accent)] text-white">
-                        <Check className="h-3.5 w-3.5" aria-hidden />
-                      </span>
-                    ) : null}
+                    <div className="flex items-center gap-1.5">
+                      {isWeak ? (
+                        <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-800 dark:text-amber-200">
+                          Weak
+                        </span>
+                      ) : null}
+                      {selected ? (
+                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-accent)] text-white">
+                          <Check className="h-3.5 w-3.5" aria-hidden />
+                        </span>
+                      ) : null}
+                    </div>
                   </div>
                   <p className="mt-3 text-[15px] font-semibold leading-snug tracking-tight text-[var(--color-ink)]">
                     {subject.label}
@@ -118,5 +141,50 @@ export function QuestionBankTopicPicker({
         ) : null}
       </p>
     </div>
+  );
+}
+
+function MixedTopicCard({
+  selected,
+  totalCount,
+  onSelect,
+}: {
+  selected: boolean;
+  totalCount: number | null;
+  onSelect: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      role="option"
+      aria-selected={selected}
+      onClick={onSelect}
+      className={cn(
+        "group relative flex flex-col rounded-[18px] border p-4 text-left transition active:scale-[0.99]",
+        selected
+          ? "border-[var(--color-accent)]/40 bg-[var(--color-accent)]/[0.06] ring-1 ring-[var(--color-accent)]/25"
+          : "border-[var(--color-border)] bg-[var(--color-surface-elevated)] shadow-[var(--shadow-apple-sm)] hover:-translate-y-0.5 hover:border-[var(--color-accent)]/25 hover:shadow-[var(--shadow-apple-md)]"
+      )}
+    >
+      <div className="flex items-center justify-between gap-2">
+        <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-500/12 text-indigo-700 dark:text-indigo-300">
+          <Layers className="h-5 w-5" aria-hidden />
+        </span>
+        {selected ? (
+          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-accent)] text-white">
+            <Check className="h-3.5 w-3.5" aria-hidden />
+          </span>
+        ) : null}
+      </div>
+      <p className="mt-3 text-[15px] font-semibold leading-snug tracking-tight text-[var(--color-ink)]">
+        {MIXED_SUBJECT_LABEL}
+      </p>
+      <p className="mt-0.5 text-[12px] text-[var(--color-ink-muted)]">
+        Random across all topics
+        {totalCount !== null ? (
+          <> · {totalCount.toLocaleString()} questions</>
+        ) : null}
+      </p>
+    </button>
   );
 }

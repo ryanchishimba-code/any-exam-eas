@@ -67,8 +67,18 @@ import type { ExamQuestion } from "@/lib/ai";
 import { Button } from "@/components/ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { cn } from "@/lib/utils";
-import { parseTopicPracticeReturn } from "@/lib/edtech/practice-links";
+import { parseTopicPracticeReturn, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links";
 import { qbUi } from "@/lib/study/question-bank-ui";
+import {
+  availableQuestionCount,
+  estimateQuestionBankSessionMinutes,
+  readPersistedQuestionBankSetup,
+  validateQuestionBankSession,
+  writePersistedQuestionBankSetup,
+  isMixedSubjectId,
+  MIXED_SUBJECT_LABEL,
+} from "@/lib/study/question-bank-setup";
+import { QuestionBankSessionPreview } from "./question-bank/QuestionBankSessionPreview";
 import { TopicPracticeReturnBanner } from "./TopicPracticeReturnBanner";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -170,9 +180,14 @@ function initialFieldLabel(preferredExamSlug?: ExamSlug): string {
 export function StudyBankPractice({
   preferredExamSlug,
   lockExam = false,
+  initialSubjectCounts,
+  initialSubjectCountsFieldId,
 }: {
   preferredExamSlug?: ExamSlug;
   lockExam?: boolean;
+  /** Server-prefetched serve counts — avoids empty-state flash on /question-bank. */
+  initialSubjectCounts?: Record<string, number> | null;
+  initialSubjectCountsFieldId?: string;
 } = {}) {
   const router = useRouter();
   const pathname = usePathname();
@@ -204,7 +219,9 @@ export function StudyBankPractice({
   const [error, setError] = useState("");
   const [upgradeHref, setUpgradeHref] = useState<string | null>(null);
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
-  const [subjectCounts, setSubjectCounts] = useState<Record<string, number> | null>(null);
+  const [subjectCounts, setSubjectCounts] = useState<Record<string, number> | null>(
+    initialSubjectCounts ?? null
+  );
   const autostartRequested = searchParams.get("autostart") === "1";
   const autostartAttempted = useRef(false);
   const topicReturnTo = useMemo(
@@ -215,24 +232,27 @@ export function StudyBankPractice({
   const subjects = useMemo(() => getSubjectsForField(field), [field]);
   const fieldId = useMemo(() => resolveFieldId(field), [field]);
 
-  // Live, serve-accurate question counts per topic for the current field. Sourced
-  // from /api/questions/subject-counts, which uses the exact serve filter — so the
-  // number shown beside a topic equals the pool that topic actually draws from.
+  // Live serve-accurate counts per topic. Seed from server prefetch when available,
+  // then refresh on field change so step/exam switches stay accurate.
   useEffect(() => {
     let cancelled = false;
-    setSubjectCounts(null);
+    if (initialSubjectCountsFieldId === fieldId && initialSubjectCounts) {
+      setSubjectCounts(initialSubjectCounts);
+    } else if (initialSubjectCountsFieldId !== fieldId) {
+      setSubjectCounts(null);
+    }
     fetch(`/api/questions/subject-counts?field=${encodeURIComponent(fieldId)}`)
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
         if (!cancelled && data?.counts) setSubjectCounts(data.counts as Record<string, number>);
       })
       .catch(() => {
-        if (!cancelled) setSubjectCounts(null);
+        if (!cancelled && initialSubjectCountsFieldId !== fieldId) setSubjectCounts(null);
       });
     return () => {
       cancelled = true;
     };
-  }, [fieldId]);
+  }, [fieldId, initialSubjectCounts, initialSubjectCountsFieldId]);
   const isNclex = useMemo(() => isNclexField(field), [field]);
   const isMpje = useMemo(() => isMpjeField(fieldId), [fieldId]);
   const hubMode = resolvePracticeModeFromParams({
@@ -378,14 +398,29 @@ export function StudyBankPractice({
     if (isTimedExam) return;
 
     const countParam = searchParams.get("count");
-    if (countParam) setQuestionCount(clampQuestionBankCount(Number(countParam)));
+    if (countParam) {
+      setQuestionCount(clampQuestionBankCount(Number(countParam)));
+    } else {
+      const persisted = readPersistedQuestionBankSetup(fieldId);
+      if (persisted?.count) setQuestionCount(clampQuestionBankCount(persisted.count));
+    }
 
     const paceParam = searchParams.get("pace");
-    if (paceParam) setBankPace(parseQuestionBankPace(paceParam));
+    if (paceParam) {
+      setBankPace(parseQuestionBankPace(paceParam));
+    } else {
+      const persisted = readPersistedQuestionBankSetup(fieldId);
+      if (persisted?.pace) setBankPace(persisted.pace);
+    }
 
     const styleParam = searchParams.get("style");
-    if (styleParam) setBankStyle(parseQuestionBankStyle(styleParam));
-  }, [isTimedExam, searchParams]);
+    if (styleParam) {
+      setBankStyle(parseQuestionBankStyle(styleParam));
+    } else {
+      const persisted = readPersistedQuestionBankSetup(fieldId);
+      if (persisted?.style) setBankStyle(persisted.style);
+    }
+  }, [fieldId, isTimedExam, searchParams]);
 
   useEffect(() => {
     if (isTimedExam) return;
@@ -396,9 +431,38 @@ export function StudyBankPractice({
     }
 
     const subjectParam = searchParams.get("subjectId");
+    if (subjectParam === MIXED_SUBJECT_ID) {
+      setSubjectId(MIXED_SUBJECT_ID);
+      return;
+    }
     const match = subjectParam && list.some((s) => s.id === subjectParam);
-    setSubjectId(match ? subjectParam! : list[0].id);
-  }, [field, isTimedExam, searchParams]);
+    if (match) {
+      setSubjectId(subjectParam!);
+      return;
+    }
+
+    const persisted = readPersistedQuestionBankSetup(fieldId);
+    if (
+      persisted?.subjectId &&
+      (persisted.subjectId === MIXED_SUBJECT_ID ||
+        list.some((s) => s.id === persisted.subjectId))
+    ) {
+      setSubjectId(persisted.subjectId);
+      return;
+    }
+
+    setSubjectId(list[0]?.id ?? "");
+  }, [field, fieldId, isTimedExam, searchParams]);
+
+  useEffect(() => {
+    if (isTimedExam || !subjectId) return;
+    writePersistedQuestionBankSetup(fieldId, {
+      subjectId,
+      count: questionCount,
+      pace: bankPace,
+      style: bankStyle,
+    });
+  }, [fieldId, isTimedExam, subjectId, questionCount, bankPace, bankStyle]);
 
   function syncPracticeUrl(overrides?: {
     mpjeVariant?: MpjeVariant;
@@ -453,6 +517,19 @@ export function StudyBankPractice({
 
   async function start() {
     if (isMpje || !isTimedExam) syncPracticeUrl();
+
+    if (!isTimedExam) {
+      const validation = validateQuestionBankSession({
+        subjectId,
+        questionCount,
+        subjectCounts,
+        bankStyle,
+      });
+      if (!validation.ok) {
+        setError(validation.message ?? "Cannot start this session.");
+        return;
+      }
+    }
 
     setLoading(true);
     setError("");
@@ -666,7 +743,9 @@ export function StudyBankPractice({
   }, [autostartRequested, isTimedExam, subjectId, questions, loading]);
 
   if (questions) {
-    const topicLabel = subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
+    const topicLabel = isMixedSubjectId(subjectId)
+      ? MIXED_SUBJECT_LABEL
+      : subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
     const mpjeScope =
       isMpje && mpjeVariant === "state"
         ? ` · ${getMpjeState(mpjeState)?.name ?? mpjeState} MPJE`
@@ -713,6 +792,45 @@ export function StudyBankPractice({
   const activeMode = EXAM_MODES.find((m) => m.id === practiceMode);
   const activeExamOption = EXAM_FIELD_OPTIONS.find((opt) => opt.id === fieldId);
   const lockedExam = effectiveExamSlug ? EXAM_CATALOG[effectiveExamSlug] : null;
+
+  const bankSessionValidation = useMemo(
+    () =>
+      isTimedExam
+        ? { ok: true as const }
+        : validateQuestionBankSession({
+            subjectId,
+            questionCount,
+            subjectCounts,
+            bankStyle,
+          }),
+    [isTimedExam, subjectId, questionCount, subjectCounts, bankStyle]
+  );
+
+  const previewTopicLabel = useMemo(() => {
+    if (isTimedExam) return `${field} · Timed exam simulation`;
+    if (isMixedSubjectId(subjectId)) return MIXED_SUBJECT_LABEL;
+    return subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
+  }, [field, isTimedExam, subjectId, subjects]);
+
+  const previewAvailableCount = useMemo(
+    () => (isTimedExam ? null : availableQuestionCount(subjectId, subjectCounts)),
+    [isTimedExam, subjectId, subjectCounts]
+  );
+
+  const previewEstimatedMinutes = useMemo(
+    () => estimateQuestionBankSessionMinutes(questionCount, bankPace),
+    [questionCount, bankPace]
+  );
+
+  const previewTimedMinutes =
+    typeof timedSessionSeconds === "number" ? Math.ceil(timedSessionSeconds / 60) : undefined;
+
+  const canStartBank =
+    !isTimedExam &&
+    !!subjectId &&
+    bankSessionValidation.ok &&
+    !loading;
+  const canStartTimed = isTimedExam && !loading && (!isMpje || mpjeVariant !== "state" || !!mpjeState);
 
   return (
     <div
@@ -820,29 +938,31 @@ export function StudyBankPractice({
             </QuestionBankSection>
           )}
 
-          <QuestionBankSection
-            title="Quick start"
-            hint="Jump into a preset session — settings update automatically."
-          >
-            <div className={cn(qbUi.chipRow, "snap-x snap-mandatory px-0.5")}>
-              {PRACTICE_MODES.map((m) => {
-                const Icon = MODE_ICONS[m.icon as keyof typeof MODE_ICONS] ?? Zap;
-                const active = hubMode === m.id;
-                return (
-                  <button
-                    key={m.id}
-                    type="button"
-                    onClick={() => launchPracticeMode(m.id)}
-                    className={cn(qbUi.modeCard, active && qbUi.modeCardActive)}
-                  >
-                    <Icon className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
-                    <p className="mt-2 text-[14px] font-semibold text-[var(--color-ink)]">{m.label}</p>
-                    <p className="mt-0.5 text-[11px] text-[var(--color-ink-muted)]">{m.timing}</p>
-                  </button>
-                );
-              })}
-            </div>
-          </QuestionBankSection>
+          {!(onQuestionBank && examLocked) ? (
+            <QuestionBankSection
+              title="Quick start"
+              hint="Jump into a preset session — settings update automatically."
+            >
+              <div className={cn(qbUi.chipRow, "snap-x snap-mandatory px-0.5")}>
+                {PRACTICE_MODES.map((m) => {
+                  const Icon = MODE_ICONS[m.icon as keyof typeof MODE_ICONS] ?? Zap;
+                  const active = hubMode === m.id;
+                  return (
+                    <button
+                      key={m.id}
+                      type="button"
+                      onClick={() => launchPracticeMode(m.id)}
+                      className={cn(qbUi.modeCard, active && qbUi.modeCardActive)}
+                    >
+                      <Icon className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+                      <p className="mt-2 text-[14px] font-semibold text-[var(--color-ink)]">{m.label}</p>
+                      <p className="mt-0.5 text-[11px] text-[var(--color-ink-muted)]">{m.timing}</p>
+                    </button>
+                  );
+                })}
+              </div>
+            </QuestionBankSection>
+          ) : null}
 
           {isMpje && mpjeVariant === "state" ? <MpjePracticeBanner stateCode={mpjeState} /> : null}
 
@@ -882,10 +1002,18 @@ export function StudyBankPractice({
               examDescription={activeExamOption?.description}
               onSubjectChange={(id) => {
                 setSubjectId(id);
+                if (isMixedSubjectId(id) && bankStyle !== "standard") {
+                  setBankStyle("standard");
+                  syncPracticeUrl({ subjectId: id, style: "standard" });
+                  return;
+                }
                 syncPracticeUrl({ subjectId: id });
               }}
               questionCount={questionCount}
-              onQuestionCountChange={setQuestionCount}
+              onQuestionCountChange={(count) => {
+                setQuestionCount(count);
+                syncPracticeUrl({ count });
+              }}
               pace={bankPace}
               onPaceChange={(p) => {
                 setBankPace(p);
@@ -973,24 +1101,21 @@ export function StudyBankPractice({
             </div>
           ) : null}
 
-          <div className={qbUi.startBar}>
-            <Button
-              type="button"
-              disabled={loading || (!isTimedExam && !subjectId)}
-              className={qbUi.startBtn}
-              onClick={() => void start()}
-            >
-              {loading
-                ? "Loading…"
-                : isTimedExam
-                  ? `Start timed exam · ${timedCount} questions`
-                  : bankStyle === "adaptive"
-                    ? `Start adaptive · ${questionCount} questions`
-                    : bankStyle === "weak_areas"
-                      ? `Start weak-area drill · ${questionCount} questions`
-                      : `Start ${bankPace} practice · ${questionCount} questions`}
-            </Button>
-          </div>
+          <QuestionBankSessionPreview
+            topicLabel={previewTopicLabel}
+            questionCount={questionCount}
+            pace={bankPace}
+            bankStyle={bankStyle}
+            estimatedMinutes={previewEstimatedMinutes}
+            availableCount={previewAvailableCount}
+            validationMessage={bankSessionValidation.ok ? undefined : bankSessionValidation.message}
+            loading={loading}
+            disabled={!(canStartBank || canStartTimed)}
+            onStart={() => void start()}
+            isTimedExam={isTimedExam}
+            timedCount={timedCount}
+            timedMinutes={previewTimedMinutes}
+          />
         </div>
       </div>
     </div>
