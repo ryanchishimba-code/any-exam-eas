@@ -1,8 +1,25 @@
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
+import { isUsmleStep1Subject } from "@/lib/subjects/medicine/subject-splits";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
+
+/** Sentinel subjectId the question-bank API treats as a mixed-topic session. */
+const MIXED_SUBJECT_ID = "__mixed__";
+
+/**
+ * Resolve the bank fieldId that actually holds a topic. USMLE basic-science
+ * subjects (anatomy, physiology, …) live under Step 1, not the catalog default
+ * (Step 2 CK), so without this they would 404 the question-bank API.
+ */
+function topicFieldId(examSlug: ExamSlug, topicSlug: string): string {
+  const fieldId = EXAM_CATALOG[examSlug].fieldId;
+  if (fieldId.startsWith("usmle") && isUsmleStep1Subject(topicSlug)) {
+    return "usmle-step-1";
+  }
+  return fieldId;
+}
 
 /** Context for returning to a high-yield review module after practice. */
 export type TopicPracticeReturnContext = {
@@ -19,11 +36,15 @@ export function practiceTopicHref(
   count = 10,
   returnTo?: TopicPracticeReturnContext
 ): string {
-  const fieldId = EXAM_CATALOG[examSlug].fieldId;
+  const isMixed = topicSlug === "mixed" || topicSlug === MIXED_SUBJECT_ID;
+  const subjectId = isMixed ? MIXED_SUBJECT_ID : topicSlug;
+  const fieldId = isMixed
+    ? EXAM_CATALOG[examSlug].fieldId
+    : topicFieldId(examSlug, topicSlug);
   const qs = new URLSearchParams({
     field: fieldId,
     mode: "bank",
-    subjectId: topicSlug,
+    subjectId,
     count: String(count),
   });
   if (returnTo) {

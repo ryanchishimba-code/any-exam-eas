@@ -167,6 +167,7 @@
     "db:qa-gate-usmle-serve": "npm run db:qa-gate -- --field usmle-step-1 && npm run db:qa-gate -- --field usmle-step-2 && npm run db:qa-gate -- --field usmle-step-3",
     "db:qa-gate-usmle-serve:dry": "npm run db:qa-gate:dry -- --field usmle-step-1 && npm run db:qa-gate:dry -- --field usmle-step-2 && npm run db:qa-gate:dry -- --field usmle-step-3",
     "db:audit-bank-quality": "npx tsx scripts/audit-bank-quality-summary.ts",
+    "db:audit-subject-match": "npx tsx scripts/audit-subject-content-match.ts",
     "db:rebuild-bank": "node scripts/rebuild-question-bank.mjs",
     "db:rebuild-bank:dry": "node scripts/rebuild-question-bank.mjs --dry-run",
     "db:rebuild-bank:step2": "node scripts/rebuild-question-bank.mjs --field usmle-step-2 --mode field-reset",
