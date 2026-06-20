@@ -9,6 +9,7 @@ import { getUserExamPreference, setUserExamPreference } from "@/lib/edtech/exam-
 import { EXAM_CATALOG, examSlugFromFieldId, isExamSlug } from "@/lib/edtech/exams";
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { loadSubjectCountsForUser } from "@/lib/study/load-subject-counts";
+import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 
@@ -43,7 +44,10 @@ export default async function QuestionBankPage({
 
   const exam = EXAM_CATALOG[pref.examSlug];
   const fieldParam = sp.field ?? exam.fieldId;
-  const countsPayload = await loadSubjectCountsForUser(session.user.id, fieldParam);
+  const [countsPayload, dashboard] = await Promise.all([
+    loadSubjectCountsForUser(session.user.id, fieldParam),
+    getStudentDashboardData(session.user.id),
+  ]);
 
   return (
     <div className="w-full space-y-5">
@@ -63,6 +67,7 @@ export default async function QuestionBankPage({
             lockExam
             initialSubjectCounts={countsPayload?.counts}
             initialSubjectCountsFieldId={countsPayload?.fieldId}
+            weakTopics={dashboard.weakTopics}
           />
         </Suspense>
       </PremiumGate>

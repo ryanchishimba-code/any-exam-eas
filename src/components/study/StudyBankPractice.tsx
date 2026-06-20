@@ -79,6 +79,11 @@ import {
   MIXED_SUBJECT_LABEL,
 } from "@/lib/study/question-bank-setup";
 import { QuestionBankSessionPreview } from "./question-bank/QuestionBankSessionPreview";
+import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
+import {
+  primaryWeakSubjectId,
+  weakSubjectIdsForField,
+} from "@/lib/study/question-bank-weak-topics";
 import { TopicPracticeReturnBanner } from "./TopicPracticeReturnBanner";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -182,12 +187,15 @@ export function StudyBankPractice({
   lockExam = false,
   initialSubjectCounts,
   initialSubjectCountsFieldId,
+  weakTopics = [],
 }: {
   preferredExamSlug?: ExamSlug;
   lockExam?: boolean;
   /** Server-prefetched serve counts — avoids empty-state flash on /question-bank. */
   initialSubjectCounts?: Record<string, number> | null;
   initialSubjectCountsFieldId?: string;
+  /** Analytics weak topics — drives badges and default topic selection. */
+  weakTopics?: WeakTopicRow[];
 } = {}) {
   const router = useRouter();
   const pathname = usePathname();
@@ -231,6 +239,11 @@ export function StudyBankPractice({
 
   const subjects = useMemo(() => getSubjectsForField(field), [field]);
   const fieldId = useMemo(() => resolveFieldId(field), [field]);
+  const bankSubjectIds = useMemo(() => subjects.map((s) => s.id), [subjects]);
+  const weakSubjectIds = useMemo(
+    () => weakSubjectIdsForField(weakTopics, fieldId, bankSubjectIds),
+    [weakTopics, fieldId, bankSubjectIds]
+  );
 
   // Live serve-accurate counts per topic. Seed from server prefetch when available,
   // then refresh on field change so step/exam switches stay accurate.
@@ -451,8 +464,19 @@ export function StudyBankPractice({
       return;
     }
 
+    const styleParam = searchParams.get("style");
+    const preferWeak =
+      styleParam === "weak_areas" || styleParam === "adaptive" || weakSubjectIds.length > 0;
+    if (preferWeak) {
+      const weakest = primaryWeakSubjectId(weakTopics, fieldId, list.map((s) => s.id));
+      if (weakest) {
+        setSubjectId(weakest);
+        return;
+      }
+    }
+
     setSubjectId(list[0]?.id ?? "");
-  }, [field, fieldId, isTimedExam, searchParams]);
+  }, [field, fieldId, isTimedExam, searchParams, weakTopics, weakSubjectIds.length]);
 
   useEffect(() => {
     if (isTimedExam || !subjectId) return;
@@ -1024,6 +1048,7 @@ export function StudyBankPractice({
                 setBankStyle(s);
                 syncPracticeUrl({ style: s });
               }}
+              weakSubjectIds={weakSubjectIds}
             />
           ) : null}
 

@@ -75,8 +75,14 @@ export function QuestionBankSetup({
       <QuestionBankSection
         step={1}
         title="Choose a topic"
-        hint="Search or scroll — counts match the live serve pool for your exam."
+        hint="Search or scroll — weak topics from your dashboard are marked."
       >
+        {weakSubjectIds.length > 0 ? (
+          <p className="mb-3 rounded-[14px] border border-amber-200/70 bg-amber-500/8 px-3 py-2 text-[12px] text-amber-950 dark:text-amber-100">
+            {weakSubjectIds.length} weak topic{weakSubjectIds.length === 1 ? "" : "s"} flagged from
+            your practice history — start there for the biggest gains.
+          </p>
+        ) : null}
         {selectedSubject ? (
           <div className="mb-3 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[12px] text-[var(--color-ink-muted)]">
             <span aria-hidden>Practicing</span>
