@@ -2,11 +2,18 @@
 
 import { useMemo, useState } from "react";
 import { Check, Search } from "lucide-react";
+import { subjectVisual } from "@/lib/library/subject-icon";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import { cn } from "@/lib/utils";
 
 type SubjectOption = { id: string; label: string };
 
+/**
+ * Subject/organ-system picker — an Apple-style icon-card grid that mirrors the
+ * Library's Subjects view (shared `subjectVisual` glyphs/tints) for a consistent
+ * platform feel. Each card shows the live, serve-accurate question count; the
+ * selected card is clearly highlighted.
+ */
 export function QuestionBankTopicPicker({
   subjects,
   subjectId,
@@ -50,50 +57,60 @@ export function QuestionBankTopicPicker({
         />
       </label>
 
-      <div className={qbUi.insetGroup}>
-        <ul className="max-h-[min(52vh,320px)] overflow-y-auto p-1.5" role="listbox" aria-label="Topics">
-          {filtered.length === 0 ? (
-            <li className="px-4 py-8 text-center text-sm text-[var(--color-ink-muted)]">
-              No topics match &ldquo;{query}&rdquo;
-            </li>
-          ) : (
-            filtered.map((subject) => {
+      {filtered.length === 0 ? (
+        <div className={cn(qbUi.insetGroup, "px-4 py-10 text-center text-sm text-[var(--color-ink-muted)]")}>
+          No topics match &ldquo;{query}&rdquo;
+        </div>
+      ) : (
+        <div
+          className="max-h-[min(56vh,460px)] overflow-y-auto rounded-[16px] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          role="listbox"
+          aria-label="Topics"
+        >
+          <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+            {filtered.map((subject) => {
               const selected = subject.id === subjectId;
               const count = subjectCounts?.[subject.id];
+              const { icon: Icon, tint } = subjectVisual(subject.label);
               return (
-                <li key={subject.id}>
-                  <button
-                    type="button"
-                    role="option"
-                    aria-selected={selected}
-                    onClick={() => onSubjectChange(subject.id)}
-                    className={cn(
-                      qbUi.listItem,
-                      "flex w-full items-center justify-between gap-3 rounded-[12px]",
-                      selected ? qbUi.listItemSelected : qbUi.listItemIdle
-                    )}
-                  >
-                    <span className="font-medium">{subject.label}</span>
-                    <span className="flex shrink-0 items-center gap-2">
-                      {typeof count === "number" ? (
-                        <span
-                          className={cn(
-                            "tabular-nums text-[12px]",
-                            selected ? "opacity-90" : "text-[var(--color-ink-muted)]"
-                          )}
-                        >
-                          {count.toLocaleString()}
-                        </span>
-                      ) : null}
-                      {selected ? <Check className="h-4 w-4 opacity-90" aria-hidden /> : null}
+                <button
+                  key={subject.id}
+                  type="button"
+                  role="option"
+                  aria-selected={selected}
+                  onClick={() => onSubjectChange(subject.id)}
+                  className={cn(
+                    "group relative flex flex-col rounded-[18px] border p-4 text-left transition active:scale-[0.99]",
+                    selected
+                      ? "border-[var(--color-accent)]/40 bg-[var(--color-accent)]/[0.06] ring-1 ring-[var(--color-accent)]/25"
+                      : "border-[var(--color-border)] bg-[var(--color-surface-elevated)] shadow-[var(--shadow-apple-sm)] hover:-translate-y-0.5 hover:border-[var(--color-accent)]/25 hover:shadow-[var(--shadow-apple-md)]"
+                  )}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className={cn("inline-flex h-10 w-10 items-center justify-center rounded-2xl", tint)}>
+                      <Icon className="h-5 w-5" aria-hidden />
                     </span>
-                  </button>
-                </li>
+                    {selected ? (
+                      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-accent)] text-white">
+                        <Check className="h-3.5 w-3.5" aria-hidden />
+                      </span>
+                    ) : null}
+                  </div>
+                  <p className="mt-3 text-[15px] font-semibold leading-snug tracking-tight text-[var(--color-ink)]">
+                    {subject.label}
+                  </p>
+                  {typeof count === "number" ? (
+                    <p className="mt-0.5 text-[12px] tabular-nums text-[var(--color-ink-muted)]">
+                      {count.toLocaleString()} {count === 1 ? "question" : "questions"}
+                    </p>
+                  ) : null}
+                </button>
               );
-            })
-          )}
-        </ul>
-      </div>
+            })}
+          </div>
+        </div>
+      )}
+
       <p className="text-[12px] text-[var(--color-ink-muted)]">
         {subjects.length} topics · {filtered.length} shown
         {totalCount !== null ? (

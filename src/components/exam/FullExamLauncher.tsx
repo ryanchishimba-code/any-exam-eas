@@ -2,12 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { CheckCircle2, ChevronRight, Timer, Zap } from "lucide-react";
+import { ChevronRight, Zap } from "lucide-react";
 import { QuestionBankExamHero } from "@/components/study/question-bank/QuestionBankExamHero";
-import {
-  QuestionBankSection,
-  QuestionBankSegment,
-} from "@/components/study/question-bank/QuestionBankSection";
+import { QuestionBankSegment } from "@/components/study/question-bank/QuestionBankSection";
+import { FullExamLengthWheel } from "@/components/exam/FullExamLengthWheel";
 import { StudyPageHeader } from "@/components/study/StudyPageHeader";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
@@ -125,128 +123,87 @@ export function FullExamLauncher({
     );
   }
 
+  const summary = [
+    `${preview.questionCount} questions`,
+    preview.timed ? formatHms(preview.timeLimitSec) : "Untimed",
+    preview.adaptive ? "Adaptive mix" : "Standard mix",
+  ].join("  ·  ");
+
   return (
     <div className={cn(feUi.page, "w-full space-y-5")}>
       <StudyPageHeader
         eyebrow="Full simulated exam"
         title={pageTitle}
-        subtitle="Test-day conditions with a calm timer, flag-for-review, scratch pad, and detailed breakdown when you finish."
+        subtitle="Test-day conditions with a calm timer, flag-for-review, and a detailed breakdown when you finish."
         breadcrumbs={[{ label: "Dashboard", href: ROUTES.dashboard }, { label: "Full Exam", href: ROUTES.fullExam }]}
       />
 
       <div className={feUi.pageShell}>
         <div className={cn(feUi.panel, feUi.panelInner)}>
-          <QuestionBankExamHero exam={exam} examSlug={examSlug} />
+          <div className="mx-auto w-full max-w-xl space-y-7">
+            <QuestionBankExamHero exam={exam} examSlug={examSlug} />
 
-          <div className="grid gap-6 lg:grid-cols-[1fr,min(18rem,100%)]">
-            <div className="space-y-6">
-              <QuestionBankSection
-                step={1}
-                title="Exam length"
-                hint="Pick a sprint, extended run, or full board-length simulation."
+            {/* Length — tactile scroll wheel with live counts. */}
+            <div className="space-y-2">
+              <p className="text-center text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
+                Choose length
+              </p>
+              <FullExamLengthWheel options={options} value={preset} onChange={setPreset} />
+              <p
+                className="text-center text-[13px] font-medium tabular-nums text-[var(--color-ink-muted)]"
+                aria-live="polite"
               >
-                <div className="grid gap-2.5 sm:grid-cols-3">
-                  {options.map((opt) => (
-                    <button
-                      key={opt.preset}
-                      type="button"
-                      onClick={() => setPreset(opt.preset)}
-                      className={cn(
-                        feUi.lengthCard,
-                        preset === opt.preset && feUi.lengthCardActive
-                      )}
-                    >
-                      <p className="text-[14px] font-semibold text-[var(--color-ink)]">{opt.label}</p>
-                      <p className="mt-1 text-[12px] leading-snug text-[var(--color-ink-muted)]">
-                        {opt.description}
-                      </p>
-                    </button>
-                  ))}
-                </div>
-              </QuestionBankSection>
-
-              <QuestionBankSection
-                step={2}
-                title="Timing"
-                hint="Timed mode mirrors real exam pressure."
-              >
-                <QuestionBankSegment
-                  ariaLabel="Exam timing"
-                  value={timed ? "timed" : "untimed"}
-                  onChange={(v) => setTimed(v === "timed")}
-                  options={[
-                    { id: "timed", label: "Timed" },
-                    { id: "untimed", label: "Untimed" },
-                  ]}
-                />
-                <p className="mt-2 text-[12px] text-[var(--color-ink-muted)]">
-                  {timed
-                    ? "Countdown with pause support — recommended for test-day readiness."
-                    : "Timer counts up; practice pacing without pressure."}
-                </p>
-              </QuestionBankSection>
+                {summary}
+              </p>
             </div>
 
-            <aside className="lg:sticky lg:top-[calc(var(--nav-height)+1rem)] lg:self-start">
-              <div className={cn(feUi.insetGroup, "bg-white p-4 shadow-[var(--shadow-apple-sm)]")}>
-                <p className="text-[14px] font-semibold text-[var(--color-ink)]">Session preview</p>
-                <div className="mt-3 divide-y divide-black/[0.06]">
-                  <PreviewRow label="Questions" value={String(preview.questionCount)} />
-                  <PreviewRow
-                    label="Time limit"
-                    value={preview.timed ? formatHms(preview.timeLimitSec) : "None"}
-                  />
-                  <PreviewRow label="Mix" value={preview.adaptive ? "Adaptive" : "Standard"} />
-                </div>
-                <ul className="mt-4 space-y-2.5 text-[13px] text-[var(--color-ink-muted)]">
-                  {[
-                    "Auto-save every answer",
-                    "Flag, eliminate & scratch pad",
-                    "Rationales after submit",
-                  ].map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent)]" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                {error ? (
-                  <p className="mt-3 rounded-[12px] bg-rose-50 px-3 py-2 text-[13px] text-rose-700" role="alert">
-                    {error}
-                  </p>
-                ) : null}
-                <button
-                  type="button"
-                  disabled={pending}
-                  onClick={() => void startExam()}
-                  className={cn(feUi.startBtn, "mt-4 bg-[var(--color-accent)]")}
-                >
-                  <Zap className="h-4 w-4" aria-hidden />
-                  {pending
-                    ? "Starting…"
-                    : `Start ${preview.questionCount}-question exam`}
-                </button>
-                <Link
-                  href={ROUTES.dashboard}
-                  className="mt-3 flex items-center justify-center gap-0.5 text-[13px] font-semibold text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
-                >
-                  Back to dashboard
-                  <ChevronRight className="h-3.5 w-3.5" aria-hidden />
-                </Link>
-              </div>
-            </aside>
+            {/* Timing — minimal segmented control. */}
+            <div className="mx-auto w-full max-w-xs">
+              <QuestionBankSegment
+                ariaLabel="Exam timing"
+                value={timed ? "timed" : "untimed"}
+                onChange={(v) => setTimed(v === "timed")}
+                options={[
+                  { id: "timed", label: "Timed" },
+                  { id: "untimed", label: "Untimed" },
+                ]}
+              />
+            </div>
+
+            {error ? (
+              <p
+                className="mx-auto max-w-sm rounded-[12px] bg-rose-50 px-3 py-2 text-center text-[13px] text-rose-700"
+                role="alert"
+              >
+                {error}
+              </p>
+            ) : null}
+
+            {/* Single, unmistakable primary action. */}
+            <div className="mx-auto w-full max-w-sm space-y-3">
+              <button
+                type="button"
+                disabled={pending}
+                onClick={() => void startExam()}
+                className={cn(feUi.startBtn, "bg-[var(--color-accent)]")}
+              >
+                <Zap className="h-4 w-4" aria-hidden />
+                {pending ? "Starting…" : timed ? "Start Timed Exam" : "Start Untimed Exam"}
+              </button>
+              <p className="text-center text-[12px] text-[var(--color-ink-muted)]">
+                Auto-saves every answer · Flag &amp; review · Rationales after you submit
+              </p>
+              <Link
+                href={ROUTES.dashboard}
+                className="flex items-center justify-center gap-0.5 text-[13px] font-semibold text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
+              >
+                Back to dashboard
+                <ChevronRight className="h-3.5 w-3.5" aria-hidden />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-}
-
-function PreviewRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className={feUi.previewRow}>
-      <span className={feUi.previewLabel}>{label}</span>
-      <span className={feUi.previewValue}>{value}</span>
     </div>
   );
 }
