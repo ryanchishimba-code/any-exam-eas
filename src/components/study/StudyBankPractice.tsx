@@ -766,6 +766,35 @@ export function StudyBankPractice({
     void start();
   }, [autostartRequested, isTimedExam, subjectId, questions, loading]);
 
+  const bankSessionValidation = useMemo(
+    () =>
+      isTimedExam
+        ? { ok: true as const }
+        : validateQuestionBankSession({
+            subjectId,
+            questionCount,
+            subjectCounts,
+            bankStyle,
+          }),
+    [isTimedExam, subjectId, questionCount, subjectCounts, bankStyle]
+  );
+
+  const previewTopicLabel = useMemo(() => {
+    if (isTimedExam) return `${field} · Timed exam simulation`;
+    if (isMixedSubjectId(subjectId)) return MIXED_SUBJECT_LABEL;
+    return subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
+  }, [field, isTimedExam, subjectId, subjects]);
+
+  const previewAvailableCount = useMemo(
+    () => (isTimedExam ? null : availableQuestionCount(subjectId, subjectCounts)),
+    [isTimedExam, subjectId, subjectCounts]
+  );
+
+  const previewEstimatedMinutes = useMemo(
+    () => estimateQuestionBankSessionMinutes(questionCount, bankPace),
+    [questionCount, bankPace]
+  );
+
   if (questions) {
     const topicLabel = isMixedSubjectId(subjectId)
       ? MIXED_SUBJECT_LABEL
@@ -816,35 +845,6 @@ export function StudyBankPractice({
   const activeMode = EXAM_MODES.find((m) => m.id === practiceMode);
   const activeExamOption = EXAM_FIELD_OPTIONS.find((opt) => opt.id === fieldId);
   const lockedExam = effectiveExamSlug ? EXAM_CATALOG[effectiveExamSlug] : null;
-
-  const bankSessionValidation = useMemo(
-    () =>
-      isTimedExam
-        ? { ok: true as const }
-        : validateQuestionBankSession({
-            subjectId,
-            questionCount,
-            subjectCounts,
-            bankStyle,
-          }),
-    [isTimedExam, subjectId, questionCount, subjectCounts, bankStyle]
-  );
-
-  const previewTopicLabel = useMemo(() => {
-    if (isTimedExam) return `${field} · Timed exam simulation`;
-    if (isMixedSubjectId(subjectId)) return MIXED_SUBJECT_LABEL;
-    return subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
-  }, [field, isTimedExam, subjectId, subjects]);
-
-  const previewAvailableCount = useMemo(
-    () => (isTimedExam ? null : availableQuestionCount(subjectId, subjectCounts)),
-    [isTimedExam, subjectId, subjectCounts]
-  );
-
-  const previewEstimatedMinutes = useMemo(
-    () => estimateQuestionBankSessionMinutes(questionCount, bankPace),
-    [questionCount, bankPace]
-  );
 
   const previewTimedMinutes =
     typeof timedSessionSeconds === "number" ? Math.ceil(timedSessionSeconds / 60) : undefined;
