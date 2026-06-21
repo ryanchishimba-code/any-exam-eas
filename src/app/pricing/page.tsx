@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { Suspense } from "react";
+import { Sparkles } from "lucide-react";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY } from "@/lib/legal";
 import { formatMonthlyPrice, formatPricingHeadline, formatTrialLabel } from "@/lib/site";
+import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
 import { PricingTiers } from "@/components/pricing/PricingTiers";
 import { HowWeCompare } from "@/components/home/HowWeCompare";
 import { PageShell } from "@/components/PageShell";
@@ -31,10 +33,19 @@ export default async function PricingPage({
       {paywall && <PaywallNotice reason={paywall} />}
       {upgrade === "pro" && <ProUpgradeBanner feature={feature} />}
 
-      <p className="mx-auto mt-4 max-w-2xl text-center text-sm font-semibold text-[var(--color-accent)]">
-        6 exams + powerful tools for less than one UWorld subscription · Basic from{" "}
-        {formatMonthlyPrice("basic")}/mo · Pro from {formatMonthlyPrice("pro")}/mo ·{" "}
-        {formatTrialLabel()}
+      <div className="mx-auto mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+        <span className="inline-flex items-baseline gap-1.5 text-base font-bold text-[var(--color-ink)]">
+          From
+          <HighlightedPrice size="hero" period="/mo" />
+        </span>
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-[color-mix(in_srgb,var(--color-accent)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-accent)_14%,var(--color-surface-elevated))] px-3.5 py-1.5 text-sm font-extrabold tracking-tight text-[var(--color-accent)] shadow-[var(--shadow-apple-sm)]">
+          <Sparkles className="h-4 w-4" aria-hidden />
+          {formatTrialLabel()}
+        </span>
+      </div>
+      <p className="mx-auto mt-3 max-w-2xl text-center text-sm font-medium text-[var(--color-ink-muted)]">
+        6 exams + powerful tools for less than one UWorld subscription · Pro from{" "}
+        {formatMonthlyPrice("pro")}/mo
       </p>
 
       <div className="mt-14">

@@ -229,7 +229,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
             <span className="text-sm font-semibold text-[var(--color-ink-muted)]">
               all 6 exams
             </span>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent)] px-3.5 py-1.5 text-sm font-extrabold tracking-tight text-white shadow-[var(--shadow-apple-sm)]">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-[color-mix(in_srgb,var(--color-accent)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-accent)_14%,var(--color-surface-elevated))] px-3.5 py-1.5 text-sm font-extrabold tracking-tight text-[var(--color-accent)] shadow-[var(--shadow-apple-sm)]">
               <Sparkles className="h-4 w-4" aria-hidden />
               {formatTrialLabel()}
             </span>

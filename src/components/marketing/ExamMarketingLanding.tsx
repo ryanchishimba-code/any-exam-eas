@@ -6,6 +6,7 @@ import {
   Check,
   Crown,
   Map,
+  Sparkles,
   Timer,
   TrendingUp,
 } from "lucide-react";
@@ -24,6 +25,7 @@ import {
   PLATFORM_EXAM_LIST_MIDDOT,
 } from "@/lib/landing/content";
 import { LandingCta } from "@/components/landing/LandingCta";
+import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
 import { LandingPricingPreview } from "@/components/landing/LandingPricingPreview";
 import { ProBenefitsComparison } from "@/components/pricing/ProBenefitsComparison";
 import { CostComparisonChart } from "@/components/landing/CostComparisonChart";
@@ -158,7 +160,23 @@ export function ExamMarketingLanding({ examKey, questionCountLabel }: Props) {
                 View pricing →
               </Link>
             </div>
-            <p className="mt-2 text-xs text-[var(--color-ink-muted)]">
+            <div
+              className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2"
+              aria-label="Starting price and free trial"
+            >
+              <span className="inline-flex items-baseline gap-1.5 text-base font-bold text-[var(--color-ink)]">
+                From
+                <HighlightedPrice size="hero" period="/mo" />
+              </span>
+              <span className="text-sm font-semibold text-[var(--color-ink-muted)]">
+                all 6 exams
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-[color-mix(in_srgb,var(--color-accent)_38%,transparent)] bg-[color-mix(in_srgb,var(--color-accent)_14%,var(--color-surface-elevated))] px-3.5 py-1.5 text-sm font-extrabold tracking-tight text-[var(--color-accent)] shadow-[var(--shadow-apple-sm)]">
+                <Sparkles className="h-4 w-4" aria-hidden />
+                {formatTrialLabel()}
+              </span>
+            </div>
+            <p className="mt-3 text-xs text-[var(--color-ink-muted)]">
               {LANDING_HERO_CTA_DISCLOSURE}
             </p>
           </header>
