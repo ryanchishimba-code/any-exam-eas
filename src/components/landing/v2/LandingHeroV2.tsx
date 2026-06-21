@@ -187,14 +187,14 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
             id="hero-heading"
             className="mt-6 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-[var(--color-ink)] sm:text-5xl lg:text-6xl"
           >
-            Every board exam.{" "}
-            <span className="aee-flagship-gradient-text">One simple subscription.</span>
+            Premium Board Prep.{" "}
+            <span className="aee-flagship-gradient-text">Non-Premium Price.</span>
           </h1>
 
           <p className="mt-5 max-w-xl text-balance text-lg leading-relaxed text-[var(--color-ink-muted)]">
             {bankCounts.totalLabel} QA-gated, board-style questions with teachable rationales —
             plus blueprint Roadmaps and Deep Dives for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP &amp;
-            NPTE. All for less than one UWorld plan.
+            NPTE-PT. All for less than one UWorld plan.
           </p>
 
           <div className="mt-7 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">

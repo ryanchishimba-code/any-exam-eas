@@ -158,14 +158,14 @@ export const LANDING_HERO_EXAMS = [
 ] as const;
 
 /** Primary hero headline — benefit-driven, scannable above the fold. */
-export const LANDING_HERO_HEADLINE = "One subscription. Six boards.";
+export const LANDING_HERO_HEADLINE = "Premium Board Prep.";
 
 /** Accent line under the primary headline. */
-export const LANDING_HERO_HEADLINE_ACCENT = "Board-style prep without the stacked bills.";
+export const LANDING_HERO_HEADLINE_ACCENT = "Non-Premium Price.";
 
 /** Hero sub-headline body — pass live total via formatFlagshipHeroSubline(totalLabel). */
 export const LANDING_HERO_SUBLINE_BODY =
-  "QA-gated vignettes, blueprint Roadmaps, and Deep Dives for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE — curated for serve-ready quality, not bulk filler.";
+  "QA-gated vignettes, blueprint Roadmaps, and Deep Dives for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT — curated for serve-ready quality, not bulk filler.";
 
 export function formatFlagshipHeroSubline(totalLabel?: string): string {
   const count = totalLabel?.trim();
