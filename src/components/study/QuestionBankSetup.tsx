@@ -54,7 +54,7 @@ export function QuestionBankSetup({
   bankStyle,
   onBankStyleChange,
   examLabel,
-  weakSubjectIds,
+  weakSubjectIds = [],
   compact = false,
 }: QuestionBankSetupProps) {
   const countOptions = questionBankCountOptions();

@@ -1023,7 +1023,6 @@ export function StudyBankPractice({
               subjectId={subjectId}
               subjectCounts={subjectCounts}
               examLabel={lockedExam?.shortName ?? activeExamOption?.label}
-              examDescription={activeExamOption?.description}
               onSubjectChange={(id) => {
                 setSubjectId(id);
                 if (isMixedSubjectId(id) && bankStyle !== "standard") {
