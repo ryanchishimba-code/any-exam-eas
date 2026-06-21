@@ -16,7 +16,6 @@ import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { ROUTES, EXAM_NAV_ITEMS } from "@/lib/routes";
-import { LEGAL_ENTITY } from "@/lib/legal";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { formatTrialCtaLabel } from "@/lib/site";
@@ -25,10 +24,7 @@ type NavLink = { href: string; label: string; adminOnly?: boolean };
 
 const guestLinks: NavLink[] = [
   { href: ROUTES.resources, label: "Resources" },
-  {
-    href: `mailto:${LEGAL_ENTITY.supportEmail}?subject=${encodeURIComponent("Any Exam Easy — Contact")}`,
-    label: "Contact Us",
-  },
+  { href: ROUTES.feedback, label: "Contact Us" },
 ];
 
 const premiumLinks: NavLink[] = [

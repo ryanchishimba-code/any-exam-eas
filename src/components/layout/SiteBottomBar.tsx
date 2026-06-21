@@ -20,12 +20,12 @@ export function SiteBottomBar({ className }: Props) {
     >
       <p className="text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
         Questions or account help?{" "}
-        <a
-          href={mailto}
+        <Link
+          href={ROUTES.feedback}
           className="font-medium text-[var(--color-ink)] underline decoration-black/15 underline-offset-2 transition hover:text-[var(--color-accent)] hover:decoration-[var(--color-accent)]/40"
         >
           Contact us
-        </a>
+        </Link>
         <span aria-hidden> · </span>
         <a
           href={mailto}

@@ -32,17 +32,20 @@ export function Footer() {
         { href: ROUTES.pricing, label: "Pricing" },
       ];
 
-  const accountLinks = isAuthed
-    ? [
-        { href: ROUTES.practiceHub, label: "Practice Hub" },
-        { href: ROUTES.analytics, label: "Analytics" },
-        { href: ROUTES.feedback, label: "Feedback" },
-      ]
-    : [
-        { href: ROUTES.auth.login, label: "Log in" },
-        { href: ROUTES.auth.signup, label: "Sign up" },
-        { href: ROUTES.feedback, label: "Feedback" },
-      ];
+  const accountLinks = [
+    ...(isAuthed
+      ? [
+          { href: ROUTES.practiceHub, label: "Practice Hub" },
+          { href: ROUTES.analytics, label: "Analytics" },
+          { href: ROUTES.feedback, label: "Feedback" },
+        ]
+      : [
+          { href: ROUTES.auth.login, label: "Log in" },
+          { href: ROUTES.auth.signup, label: "Sign up" },
+          { href: ROUTES.feedback, label: "Feedback" },
+        ]),
+    { href: ROUTES.admin.login, label: "Admin login" },
+  ];
 
   return (
     <footer
@@ -86,7 +89,7 @@ export function Footer() {
             </p>
             <ul className="space-y-2" role="list">
               {accountLinks.map((l) => (
-                <li key={l.href}>
+                <li key={`${l.href}-${l.label}`}>
                   <Link
                     href={l.href}
                     className="text-sm text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
