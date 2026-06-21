@@ -11,7 +11,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Check, Flame, Map as MapIcon, ShieldCheck } from "lucide-react";
+import { ArrowRight, Check, Flame, Map as MapIcon, ShieldCheck, Sparkles } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { BoardSeasonCountdown } from "@/components/landing/BoardSeasonCountdown";
 import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
@@ -219,12 +219,20 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
           </div>
 
           <div
-            className="mt-4 inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm font-semibold text-[var(--color-ink-muted)]"
-            aria-label="Starting price"
+            className="mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2"
+            aria-label="Starting price and free trial"
           >
-            <span>From</span>
-            <HighlightedPrice size="sm" period="/mo" />
-            <span>· all 6 exams · {formatTrialLabel()}</span>
+            <span className="inline-flex items-baseline gap-1.5 text-base font-bold text-[var(--color-ink)]">
+              From
+              <HighlightedPrice size="hero" period="/mo" />
+            </span>
+            <span className="text-sm font-semibold text-[var(--color-ink-muted)]">
+              all 6 exams
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent)] px-3.5 py-1.5 text-sm font-extrabold tracking-tight text-white shadow-[var(--shadow-apple-sm)]">
+              <Sparkles className="h-4 w-4" aria-hidden />
+              {formatTrialLabel()}
+            </span>
           </div>
 
           <p className="mt-3 text-xs font-medium text-[var(--color-ink-muted)]">
