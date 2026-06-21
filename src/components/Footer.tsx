@@ -7,6 +7,7 @@ import { MARKETING_DISCLAIMER } from "@/lib/site";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
+import { SiteBottomBar } from "@/components/layout/SiteBottomBar";
 
 const legalLinks = [
   { href: "/legal/terms", label: "Terms of Service" },
@@ -114,6 +115,7 @@ export function Footer() {
             </ul>
           </nav>
         </div>
+        <SiteBottomBar className="mt-8" />
       </div>
     </footer>
   );
