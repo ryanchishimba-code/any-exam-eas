@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Shield } from "lucide-react";
+import { ArrowRight, Shield } from "lucide-react";
 import { messageForSignInError, resolveSignInFailure } from "@/lib/auth-client";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { completeLoginFlow } from "@/lib/client/post-login";
@@ -116,6 +117,23 @@ export function AdminLoginForm({ callbackUrl = "/admin" }: Props) {
           {loading ? "Signing in…" : "Sign in to admin"}
         </button>
       </form>
+
+      <div className="mt-6 border-t border-slate-200 pt-4">
+        <Link
+          href="/internal"
+          className="group flex items-center justify-between gap-3 rounded-lg px-1 py-1.5 text-sm text-slate-600 transition hover:text-slate-900"
+        >
+          <span>
+            Staff member? Go to the{" "}
+            <span className="font-medium text-slate-900">employee portal</span>
+          </span>
+          <ArrowRight
+            size={16}
+            className="shrink-0 text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-slate-700"
+            aria-hidden
+          />
+        </Link>
+      </div>
     </div>
   );
 }
