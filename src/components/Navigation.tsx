@@ -9,9 +9,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { AvatarDropdown } from "@/components/navigation/AvatarDropdown";
+import { AdminNavLink } from "@/components/navigation/AdminNavLink";
 import { ExamsDropdown } from "@/components/navigation/ExamsDropdown";
 import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
 import { useUserAccess } from "@/lib/client/use-user-access";
+import { useIsAdmin } from "@/lib/client/admin-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useClickOutside } from "@/hooks/useClickOutside";
@@ -20,9 +22,10 @@ import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { formatTrialCtaLabel } from "@/lib/site";
 
-type NavLink = { href: string; label: string; adminOnly?: boolean };
+type NavLink = { href: string; label: string };
 
 const guestLinks: NavLink[] = [
+  { href: ROUTES.about, label: "About" },
   { href: ROUTES.resources, label: "Resources" },
   { href: ROUTES.feedback, label: "Contact Us" },
 ];
@@ -31,7 +34,6 @@ const premiumLinks: NavLink[] = [
   { href: ROUTES.dashboard, label: "Dashboard" },
   { href: ROUTES.questionBank, label: "Question Bank" },
   { href: ROUTES.analytics, label: "Analytics" },
-  { href: ROUTES.admin.root, label: "Admin", adminOnly: true },
 ];
 
 function navClass(active: boolean) {
@@ -52,12 +54,11 @@ export function Navigation() {
   const isAuthenticated = status === "authenticated" && Boolean(session?.user);
   const resolvingAuthedAccess = isAuthenticated && accessLoading;
   const resolvingAuth = status === "loading" || resolvingAuthedAccess;
-  const isAdmin = (session?.user as { role?: string } | undefined)?.role === "admin";
+  const { isAdmin } = useIsAdmin();
 
   const links = useMemo(() => {
-    const base = isAuthenticated && hasPremiumAccess ? premiumLinks : guestLinks;
-    return base.filter((l) => !l.adminOnly || isAdmin);
-  }, [hasPremiumAccess, isAuthenticated, isAdmin]);
+    return isAuthenticated && hasPremiumAccess ? premiumLinks : guestLinks;
+  }, [hasPremiumAccess, isAuthenticated]);
 
   const closeMobile = useCallback(() => setOpen(false), []);
 
@@ -127,7 +128,6 @@ export function Navigation() {
                 className={`inline-flex items-center gap-1 text-xs ${navClass(linkActive)}`}
                 aria-current={linkActive ? "page" : undefined}
               >
-                {l.adminOnly && <Shield className="h-3 w-3" aria-hidden />}
                 {l.label}
               </Link>
             </li>
@@ -148,7 +148,10 @@ export function Navigation() {
               aria-hidden
             />
           ) : isAuthenticated ? (
-            <AvatarDropdown />
+            <>
+              <AdminNavLink className="hidden lg:inline-flex" />
+              <AvatarDropdown />
+            </>
           ) : (
             <div className="aee-nav-auth-group">
               <LoginModalTrigger
@@ -260,8 +263,9 @@ export function Navigation() {
                     </Link>
                   )}
                   {isAdmin && (
-                    <Link href={ROUTES.admin.root} className="aee-mobile-nav-item" onClick={closeMobile}>
-                      Admin
+                    <Link href={ROUTES.admin.root} className="aee-mobile-nav-item flex items-center gap-2" onClick={closeMobile}>
+                      <Shield className="h-4 w-4" aria-hidden />
+                      Admin dashboard
                     </Link>
                   )}
                   <button

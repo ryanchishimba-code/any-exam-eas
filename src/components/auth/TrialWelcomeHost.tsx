@@ -12,6 +12,7 @@ import {
   shouldShowTrialWelcome,
 } from "@/lib/client/trial-welcome";
 import { fetchSubscriptionStatus } from "@/lib/client/post-login";
+import { analytics } from "@/lib/analytics";
 
 type TrialWelcomeContextValue = {
   active: boolean;
@@ -80,6 +81,10 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
       setDaysRemaining(sub.daysRemaining ?? pending?.daysRemaining ?? 14);
       if (typeof sub.trialDays === "number") setTrialDays(sub.trialDays);
       setVisible(true);
+
+      if (welcomeParam) {
+        analytics.trialStarted({ plan_type: "trial" }, { persist: false });
+      }
     })();
   }, [pathname, router, searchParams, status, visible]);
 

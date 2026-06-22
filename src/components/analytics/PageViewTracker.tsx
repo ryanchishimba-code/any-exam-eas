@@ -2,22 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
-
-const BEACON_KEY = "aee_analytics_sid";
-
-function getOrCreateSessionId(): string {
-  if (typeof window === "undefined") return "";
-  try {
-    let sid = sessionStorage.getItem(BEACON_KEY);
-    if (!sid) {
-      sid = crypto.randomUUID();
-      sessionStorage.setItem(BEACON_KEY, sid);
-    }
-    return sid;
-  } catch {
-    return "";
-  }
-}
+import { getOrCreateAnalyticsSessionId } from "@/lib/analytics/client-session";
 
 export function PageViewTracker() {
   const pathname = usePathname();
@@ -38,7 +23,7 @@ export function PageViewTracker() {
         body: JSON.stringify({
           path: lastPath.current,
           durationSec,
-          sessionId: getOrCreateSessionId(),
+          sessionId: getOrCreateAnalyticsSessionId(),
           referrer: document.referrer || undefined,
         }),
       });
@@ -53,7 +38,7 @@ export function PageViewTracker() {
       keepalive: true,
       body: JSON.stringify({
         path,
-        sessionId: getOrCreateSessionId(),
+        sessionId: getOrCreateAnalyticsSessionId(),
         referrer: document.referrer || undefined,
       }),
     });
@@ -68,7 +53,7 @@ export function PageViewTracker() {
           JSON.stringify({
             path: lastPath.current,
             durationSec,
-            sessionId: getOrCreateSessionId(),
+            sessionId: getOrCreateAnalyticsSessionId(),
           }),
         ],
         { type: "application/json" }

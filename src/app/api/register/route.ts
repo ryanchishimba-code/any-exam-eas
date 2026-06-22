@@ -4,6 +4,8 @@ import { registerUser } from "@/lib/user-auth";
 import { signUpSchema } from "@/lib/validators/auth";
 import { ZodError } from "zod";
 import { trackEvent, logActivity } from "@/lib/analytics/events";
+import { saveTypedConversion } from "@/lib/analytics/conversions";
+import { CONVERSION_EVENTS } from "@/lib/analytics/conversion-types";
 import { EVENT_TYPES } from "@/lib/analytics/types";
 
 export const runtime = "nodejs";
@@ -25,6 +27,16 @@ export async function POST(req: Request) {
       metadata: { plan: user.plan },
       req,
     });
+    saveTypedConversion(
+      CONVERSION_EVENTS.SIGNUP_COMPLETED,
+      {
+        plan: input.plan,
+        tier: input.tier,
+        interval: input.interval,
+        exam_slug: input.examSlug,
+      },
+      { userId: user.id, req }
+    );
     void logActivity({
       userId: user.id,
       action: "register",

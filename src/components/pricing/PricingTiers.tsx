@@ -28,6 +28,7 @@ import { BillingIntervalPicker } from "@/components/pricing/BillingIntervalPicke
 import { PricingGuarantees } from "@/components/pricing/PricingGuarantees";
 import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import { Button } from "@/components/ui/Button";
+import { analytics } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 type AccessInfo = {
@@ -49,11 +50,13 @@ function TierCard({
   interval,
   checkoutHref,
   highlighted,
+  onSelectPlan,
 }: {
   tier: SubscriptionTier;
   interval: BillingInterval;
   checkoutHref: string;
   highlighted: boolean;
+  onSelectPlan: (tier: SubscriptionTier, interval: BillingInterval) => void;
 }) {
   const def = TIER_DEFINITIONS[tier];
   const plan = getBillingPlanTier(tier, interval);
@@ -118,7 +121,12 @@ function TierCard({
           )}
         </div>
 
-        <Button href={checkoutHref} className="mt-6 w-full" variant={highlighted ? "primary" : "secondary"}>
+        <Button
+          href={checkoutHref}
+          className="mt-6 w-full"
+          variant={highlighted ? "primary" : "secondary"}
+          onClick={() => onSelectPlan(tier, interval)}
+        >
           {formatTrialCtaLabel()}
         </Button>
         <p className="mt-2 text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
@@ -190,6 +198,14 @@ export function PricingTiers({ className }: PricingTiersProps) {
       .then(setAccess)
       .catch(() => {});
   }, [session?.user]);
+
+  useEffect(() => {
+    analytics.pricingViewed("/pricing");
+  }, []);
+
+  function handlePlanSelected(tier: SubscriptionTier, billingInterval: BillingInterval) {
+    analytics.planSelected(`${tier}_${billingInterval}`, { tier, interval: billingInterval });
+  }
 
   function checkoutHref(tier: SubscriptionTier) {
     const params = new URLSearchParams({ plan: "trial", interval, tier });
@@ -297,12 +313,14 @@ export function PricingTiers({ className }: PricingTiersProps) {
           interval={interval}
           checkoutHref={checkoutHref("basic")}
           highlighted={false}
+          onSelectPlan={handlePlanSelected}
         />
         <TierCard
           tier="pro"
           interval={interval}
           checkoutHref={checkoutHref("pro")}
           highlighted
+          onSelectPlan={handlePlanSelected}
         />
       </div>
 

@@ -28,6 +28,7 @@ import {
 } from "@/lib/auth-client";
 import { MemberLoginLink } from "@/components/auth/MemberLoginLink";
 import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/lib/client/returning-user";
+import { analytics } from "@/lib/analytics";
 
 export function SignupForm({
   initialPlan = "",
@@ -161,6 +162,16 @@ export function SignupForm({
         name: name.trim(),
         lastMethod: "email",
       });
+
+      analytics.signupCompleted(
+        {
+          plan,
+          tier: initialTier,
+          interval: initialInterval,
+          exam_slug: examSlug,
+        },
+        { persist: false }
+      );
 
       const promoQs = initialPromo.trim()
         ? `&promo=${encodeURIComponent(initialPromo.trim())}`

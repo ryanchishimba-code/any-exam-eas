@@ -3,6 +3,7 @@ import "./globals.css";
 import { SessionProvider } from "@/components/SessionProvider";
 import { LoginModalRoot } from "@/components/auth/LoginModalRoot";
 import { PageViewTrackerBoundary } from "@/components/analytics/PageViewTrackerBoundary";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { ShareFabLazy } from "@/components/share/ShareFabLazy";
 import { RootChrome } from "@/components/layout/RootChrome";
 import { ClientRecovery } from "@/components/ClientRecovery";
@@ -27,6 +28,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <ThemeProvider>
+          <GoogleAnalytics />
           <SessionProvider>
             <LoginModalRoot>
               <ClientRecovery />

@@ -9,6 +9,8 @@ import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import type Stripe from "stripe";
 import { trackEvent } from "@/lib/analytics/events";
+import { saveTypedConversion } from "@/lib/analytics/conversions";
+import { CONVERSION_EVENTS } from "@/lib/analytics/conversion-types";
 import { EVENT_TYPES } from "@/lib/analytics/types";
 import { recordTrialUsed } from "@/lib/trial-eligibility";
 import { sendPaymentFailedEmail } from "@/lib/email/billing-emails";
@@ -81,6 +83,18 @@ export async function POST(req: Request) {
           category: "billing",
           metadata: { status: stripeSub?.status ?? "active" },
         });
+
+        if (session.metadata?.plan === "trial" && stripeSub?.status === "trialing") {
+          saveTypedConversion(
+            CONVERSION_EVENTS.TRIAL_STARTED,
+            {
+              plan_type: "trial",
+              tier: parseSubscriptionTier(session.metadata?.tier),
+              interval: parseBillingInterval(session.metadata?.interval),
+            },
+            { userId }
+          );
+        }
       }
       break;
     }

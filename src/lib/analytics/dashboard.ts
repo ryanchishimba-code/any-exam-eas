@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { getFeedbackTrends } from "@/lib/feedback/service";
+import { aggregatePageViewEvents } from "./web-traffic";
 import { EVENT_TYPES } from "./types";
 
 function parseRange(fromParam?: string | null, toParam?: string | null, days = 30) {
@@ -23,8 +24,14 @@ export type AnalyticsDashboardData = {
   returningUsers: number;
   totalSessions: number;
   avgSessionDurationSec: number;
+  totalPageViews: number;
+  uniqueVisitors: number;
+  authenticatedPageViews: number;
+  anonymousPageViews: number;
   bounceRate: number;
   topPages: { path: string; views: number; avgDurationSec: number }[];
+  pageViewsByDay: { date: string; views: number; visitors: number }[];
+  topReferrers: { source: string; views: number }[];
   focusAreas: { area: string; interactions: number }[];
   deviceBreakdown: { deviceType: string; count: number }[];
   userGrowth: { date: string; signups: number; cumulative: number }[];
@@ -32,15 +39,6 @@ export type AnalyticsDashboardData = {
   feedbackSummary: { total: number; open: number; avgRating: number };
   pageTime: { path: string; totalSeconds: number; views: number }[];
 };
-
-function safeJsonMeta(raw: string | null): Record<string, unknown> {
-  if (!raw) return {};
-  try {
-    return JSON.parse(raw) as Record<string, unknown>;
-  } catch {
-    return {};
-  }
-}
 
 export async function getAnalyticsDashboard(
   fromParam?: string | null,
@@ -77,7 +75,7 @@ export async function getAnalyticsDashboard(
         eventType: EVENT_TYPES.PAGE_VIEW,
         createdAt: { gte: from, lte: to },
       },
-      select: { metadata: true, sessionId: true, userId: true },
+      select: { metadata: true, sessionId: true, userId: true, ipHash: true, createdAt: true },
     }),
     prisma.deviceHistory.groupBy({
       by: ["deviceType"],
@@ -124,43 +122,7 @@ export async function getAnalyticsDashboard(
         )
       : 0;
 
-  const viewsBySession = new Map<string, number>();
-  const pageStats = new Map<string, { views: number; durationSum: number }>();
-
-  for (const ev of pageViewEvents) {
-    const meta = safeJsonMeta(ev.metadata);
-    const path = String(meta.path ?? "/unknown");
-    const durationSec = Number(meta.durationSec ?? 0);
-
-    const entry = pageStats.get(path) ?? { views: 0, durationSum: 0 };
-    entry.views += 1;
-    entry.durationSum += Number.isFinite(durationSec) ? durationSec : 0;
-    pageStats.set(path, entry);
-
-    const sid = ev.sessionId ?? `anon-${ev.userId ?? "x"}`;
-    viewsBySession.set(sid, (viewsBySession.get(sid) ?? 0) + 1);
-  }
-
-  const bouncedSessions = Array.from(viewsBySession.values()).filter((c) => c <= 1).length;
-  const bounceRate =
-    viewsBySession.size > 0
-      ? Math.round((bouncedSessions / viewsBySession.size) * 1000) / 10
-      : 0;
-
-  const topPages = Array.from(pageStats.entries())
-    .map(([path, v]) => ({
-      path,
-      views: v.views,
-      avgDurationSec: v.views ? Math.round(v.durationSum / v.views) : 0,
-    }))
-    .sort((a, b) => b.views - a.views)
-    .slice(0, 12);
-
-  const pageTime = topPages.map((p) => ({
-    path: p.path,
-    totalSeconds: p.avgDurationSec * p.views,
-    views: p.views,
-  }));
+  const webTraffic = aggregatePageViewEvents(pageViewEvents, from, to);
 
   const signupsByDay = new Map<string, number>();
   for (const e of signupEvents) {
@@ -192,8 +154,14 @@ export async function getAnalyticsDashboard(
     returningUsers,
     totalSessions: sessions.length,
     avgSessionDurationSec,
-    bounceRate,
-    topPages,
+    totalPageViews: webTraffic.totalPageViews,
+    uniqueVisitors: webTraffic.uniqueVisitors,
+    authenticatedPageViews: webTraffic.authenticatedPageViews,
+    anonymousPageViews: webTraffic.anonymousPageViews,
+    bounceRate: webTraffic.bounceRate,
+    topPages: webTraffic.topPages,
+    pageViewsByDay: webTraffic.pageViewsByDay,
+    topReferrers: webTraffic.topReferrers,
     focusAreas: generationGroups.map((g) => ({
       area: g.field,
       interactions: g._count.field,
@@ -209,7 +177,7 @@ export async function getAnalyticsDashboard(
       open: openFeedback,
       avgRating: Math.round((feedbackAgg._avg.rating ?? 0) * 10) / 10,
     },
-    pageTime,
+    pageTime: webTraffic.pageTime,
   };
 }
 
@@ -223,6 +191,10 @@ export function dashboardToCsv(data: AnalyticsDashboardData): string {
     "summary,total_sessions," + data.totalSessions,
     "summary,avg_session_duration_sec," + data.avgSessionDurationSec,
     "summary,bounce_rate_pct," + data.bounceRate,
+    "summary,total_page_views," + data.totalPageViews,
+    "summary,unique_visitors," + data.uniqueVisitors,
+    "summary,authenticated_page_views," + data.authenticatedPageViews,
+    "summary,anonymous_page_views," + data.anonymousPageViews,
     "summary,feedback_total," + data.feedbackSummary.total,
     "summary,feedback_open," + data.feedbackSummary.open,
     "summary,feedback_avg_rating," + data.feedbackSummary.avgRating,
@@ -230,6 +202,9 @@ export function dashboardToCsv(data: AnalyticsDashboardData): string {
 
   for (const p of data.topPages) {
     lines.push(`top_pages,${escapeCsv(p.path)},${p.views}`);
+  }
+  for (const r of data.topReferrers) {
+    lines.push(`top_referrers,${escapeCsv(r.source)},${r.views}`);
   }
   for (const d of data.deviceBreakdown) {
     lines.push(`devices,${escapeCsv(d.deviceType)},${d.count}`);

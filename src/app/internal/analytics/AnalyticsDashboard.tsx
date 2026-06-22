@@ -191,20 +191,75 @@ export default function AnalyticsDashboard() {
       </div>
 
       <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <StatCard label="Page views" value={dashboard.totalPageViews} />
+        <StatCard label="Unique visitors" value={dashboard.uniqueVisitors} />
+        <StatCard label="Logged-in views" value={dashboard.authenticatedPageViews} />
+        <StatCard label="Anonymous views" value={dashboard.anonymousPageViews} />
+        <StatCard label="Bounce rate" value={`${dashboard.bounceRate}%`} />
         <StatCard label="Total users" value={dashboard.totalUsers} />
         <StatCard label="Active users (range)" value={dashboard.activeUsers} />
-        <StatCard label="Sessions" value={dashboard.totalSessions} />
+        <StatCard label="Sessions (login)" value={dashboard.totalSessions} />
         <StatCard
           label="Avg session"
           value={`${Math.floor(dashboard.avgSessionDurationSec / 60)}m ${dashboard.avgSessionDurationSec % 60}s`}
         />
-        <StatCard label="Bounce rate" value={`${dashboard.bounceRate}%`} />
         <StatCard label="New users" value={dashboard.newUsers} />
         <StatCard label="Returning users" value={dashboard.returningUsers} />
         <StatCard
           label="Feedback (avg ★)"
           value={`${dashboard.feedbackSummary.total} · ${dashboard.feedbackSummary.avgRating}`}
         />
+      </section>
+
+      <section>
+        <h2 className="mb-3 text-sm font-semibold">Web traffic</h2>
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <div className="rounded-xl border border-black/10 bg-white p-4">
+            <h3 className="mb-4 text-sm font-semibold">Page views & visitors</h3>
+            <div style={{ width: "100%", height: 260 }}>
+              <ResponsiveContainer>
+                <LineChart data={dashboard.pageViewsByDay}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="date" tick={{ fontSize: 11 }} />
+                  <YAxis allowDecimals={false} />
+                  <Tooltip />
+                  <Line
+                    type="monotone"
+                    dataKey="views"
+                    name="Page views"
+                    stroke="#4f46e5"
+                    strokeWidth={2}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="visitors"
+                    name="Unique visitors"
+                    stroke="#0ea5e9"
+                    strokeWidth={2}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          <div className="rounded-xl border border-black/10 bg-white p-4">
+            <h3 className="mb-4 text-sm font-semibold">Traffic sources</h3>
+            {dashboard.topReferrers.length === 0 ? (
+              <p className="text-sm text-black/50">No referrer data yet.</p>
+            ) : (
+              <div style={{ width: "100%", height: 260 }}>
+                <ResponsiveContainer>
+                  <BarChart data={dashboard.topReferrers} layout="vertical" margin={{ left: 8 }}>
+                    <XAxis type="number" allowDecimals={false} />
+                    <YAxis type="category" dataKey="source" width={120} tick={{ fontSize: 10 }} />
+                    <Tooltip />
+                    <Bar dataKey="views" fill="#6366f1" name="Page views" />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            )}
+          </div>
+        </div>
       </section>
 
       {overview && (

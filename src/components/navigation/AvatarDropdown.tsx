@@ -5,14 +5,16 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { AnimatePresence, motion } from "framer-motion";
-import { BookOpen, ChevronDown, Layers, LayoutGrid, LogOut, User } from "lucide-react";
+import { BookOpen, ChevronDown, Layers, LayoutGrid, LogOut, Shield, User } from "lucide-react";
 import { firstName } from "@/lib/client/returning-user";
+import { useIsAdmin } from "@/lib/client/admin-access";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { STUDY_HUB_PATH, TOP_500_DRUGS_PATH } from "@/lib/study-hub/config";
+import { ROUTES } from "@/lib/routes";
 
 function initials(name?: string | null, email?: string | null) {
   if (name?.trim()) {
@@ -30,6 +32,7 @@ export function AvatarDropdown() {
   const pathname = usePathname();
   const { data: session } = useSession();
   const { hasPremiumAccess } = useUserAccess();
+  const { isAdmin } = useIsAdmin();
   const { examSlug } = useAppPreferences();
   const clinical = hasClinicalStudyTools(examSlug);
   const menuId = useId();
@@ -200,6 +203,27 @@ export function AvatarDropdown() {
             </div>
 
             <ul className="py-1.5" role="none">
+              {isAdmin && (
+                <li role="none">
+                  <Link
+                    href={ROUTES.admin.root}
+                    role="menuitem"
+                    tabIndex={-1}
+                    className="aee-avatar-menu-item border-b border-black/[0.06] dark:border-white/[0.06]"
+                    onClick={close}
+                  >
+                    <span className="aee-avatar-menu-icon text-indigo-600 dark:text-indigo-400" aria-hidden>
+                      <Shield className="h-4 w-4" strokeWidth={2} />
+                    </span>
+                    <span>
+                      <span className="block text-sm font-medium text-[var(--color-ink)]">Admin dashboard</span>
+                      <span className="block text-[0.6875rem] text-[var(--color-ink-muted)]">
+                        Analytics, users & content
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              )}
               {menuItems.map((item) => {
                 const Icon = item.icon;
                 return (

@@ -37,6 +37,7 @@ model User {
   userSessions       UserSession[]
   activityLogs       ActivityLog[]
   analyticsEvents    AnalyticsEvent[]
+  conversionEvents   ConversionEvent[]
   preferences        UserPreference?
   generationHistory  GenerationHistory[]
   supportNotes       SupportNote[]       @relation("SupportNoteSubject")
@@ -725,6 +726,24 @@ model AnalyticsEvent {
   @@index([eventType, createdAt])
   @@index([userId, createdAt])
   @@index([category, createdAt])
+  @@index([createdAt])
+}
+
+/// Marketing & funnel conversion events (hybrid GA4 + internal dashboards).
+model ConversionEvent {
+  id         String   @id @default(cuid())
+  userId     String?
+  eventName  String
+  properties Json     @default("{}")
+  sessionId  String?
+  /// web = browser beacon · server = authoritative backend (signup, Stripe webhook)
+  source     String   @default("web")
+  createdAt  DateTime @default(now())
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([eventName, createdAt])
+  @@index([userId, createdAt])
+  @@index([sessionId, createdAt])
   @@index([createdAt])
 }
 
