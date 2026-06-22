@@ -13,6 +13,7 @@
 
 import Link from "next/link";
 import { BadgeCheck, Calendar, Zap } from "lucide-react";
+import { LEGAL_ENTITY } from "@/lib/legal";
 import { formatTrialLabel } from "@/lib/site";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 
@@ -97,12 +98,19 @@ export function LandingTrialGuarantee() {
         <div className="mt-8 flex flex-col items-center gap-2 rounded-2xl border border-[color-mix(in_srgb,var(--color-accent)_25%,transparent)] bg-[color-mix(in_srgb,var(--color-accent)_7%,var(--color-surface-elevated))] px-6 py-5 text-center sm:flex-row sm:justify-between sm:text-left">
           <div>
             <p className="text-sm font-bold text-[var(--color-ink)]">
-              30-day satisfaction commitment
+              30-Day Satisfaction Commitment
             </p>
             <p className="mt-0.5 text-xs leading-relaxed text-[var(--color-ink-muted)]">
-              If the quality of a question or explanation falls short of what
-              you expect, contact us within 30 days and we&apos;ll address it.
-              We stand behind every item on the platform.
+              If the quality of any question or explanation falls short of your
+              expectations, email us at{" "}
+              <a
+                href={`mailto:${LEGAL_ENTITY.supportEmail}`}
+                className="font-semibold text-[var(--color-ink)] underline underline-offset-2 transition hover:text-[var(--color-accent)]"
+              >
+                {LEGAL_ENTITY.supportEmail}
+              </a>{" "}
+              within 30 days and we&apos;ll make it right. We stand behind every
+              item on the platform.
             </p>
           </div>
           <Link
