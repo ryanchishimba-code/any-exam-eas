@@ -44,6 +44,9 @@ export const LEGAL_DISCLAIMERS = {
   testimonials:
     "Stories, quotes, and personas on our marketing pages are composite or illustrative examples created for demonstration only. They are not verified reviews, endorsements, or depictions of actual customers or guaranteed outcomes. Any described or implied results are not typical, are not guaranteed, and vary widely based on individual effort, prior knowledge, study time, and exam conditions. Past performance of other learners cannot predict your results.",
 
+  trademarks:
+    "All exam names and related marks are the property of their respective owners and are used here for identification and descriptive purposes only. USMLE® is a joint program of, and a registered trademark of, the Federation of State Medical Boards (FSMB) and the National Board of Medical Examiners (NBME). NCLEX®, NCLEX-RN®, and NCLEX-PN® are registered trademarks of the National Council of State Boards of Nursing, Inc. (NCSBN). NAPLEX® and MPJE® are registered trademarks of the National Association of Boards of Pharmacy (NABP). PANCE® is a registered trademark of the National Commission on Certification of Physician Assistants (NCCPA). NPTE® is a registered trademark of the Federation of State Boards of Physical Therapy (FSBPT). AANP® is a trademark of the American Association of Nurse Practitioners, and the FNP certification is administered by the AANP Certification Board. Any Exam Easy and AI Software Product Solutions, LLC are not affiliated with, authorized by, endorsed by, or sponsored by any of these organizations, and these organizations do not review, approve, license, or sponsor our content. Use of these names does not imply any affiliation or endorsement.",
+
   subscription:
     "A valid payment method is required to start a free trial. Unless legacy introductory pricing applies, you are not charged at signup; your saved payment method is charged when the trial ends unless you cancel before then. After your trial or paid period, subscriptions renew automatically on your saved payment method at the price and billing interval you selected unless canceled before renewal.",
 
@@ -84,6 +87,13 @@ export const LEGAL_DISCLAIMERS = {
     "These Terms are governed by the laws of the United States and the state in which AI Software Product Solutions, LLC is organized, without regard to conflict-of-law rules.",
 } as const;
 
+/**
+ * Compact trademark / non-affiliation notice for the footer and other tight
+ * spaces. The full attribution lives in `LEGAL_DISCLAIMERS.trademarks`.
+ */
+export const TRADEMARK_NOTICE =
+  "USMLE®, NCLEX®, NAPLEX®, MPJE®, PANCE®, NPTE®, AANP®, and other exam names are trademarks of their respective owners. Any Exam Easy is independent and is not affiliated with, endorsed by, or sponsored by these organizations.";
+
 export type LegalDisclaimerKey = keyof typeof LEGAL_DISCLAIMERS;
 
 /** Keys shown on the public Disclaimers page (excludes long-form terms-only clauses). */
@@ -97,6 +107,7 @@ export const PUBLIC_DISCLAIMER_KEYS: LegalDisclaimerKey[] = [
   "studySupport",
   "ageRequirement",
   "testimonials",
+  "trademarks",
   "subscription",
   "refundsAndAccess",
   "planChanges",

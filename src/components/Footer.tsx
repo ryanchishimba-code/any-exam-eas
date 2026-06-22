@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { MARKETING_DISCLAIMER } from "@/lib/site";
-import { LEGAL_ENTITY } from "@/lib/legal";
+import { LEGAL_ENTITY, TRADEMARK_NOTICE } from "@/lib/legal";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
 import { SiteBottomBar } from "@/components/layout/SiteBottomBar";
@@ -58,6 +58,9 @@ export function Footer() {
             <BrandLogo href={ROUTES.home} variant="footer" />
             <p className="mt-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
               {MARKETING_DISCLAIMER}
+            </p>
+            <p className="mt-3 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+              {TRADEMARK_NOTICE}
             </p>
             <p className="mt-4 text-xs text-[var(--color-ink-muted)]">
               © {new Date().getFullYear()} {LEGAL_ENTITY.productName}
