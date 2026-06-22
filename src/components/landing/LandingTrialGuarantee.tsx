@@ -13,7 +13,6 @@
 
 import Link from "next/link";
 import { BadgeCheck, Calendar, Zap } from "lucide-react";
-import { LEGAL_ENTITY } from "@/lib/legal";
 import { formatTrialLabel } from "@/lib/site";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 
@@ -106,12 +105,12 @@ export function LandingTrialGuarantee() {
               We stand behind every item on the platform.
             </p>
           </div>
-          <a
-            href={`mailto:${LEGAL_ENTITY.supportEmail}`}
+          <Link
+            href="/feedback"
             className="mt-3 shrink-0 rounded-full border border-[color-mix(in_srgb,var(--color-accent)_40%,transparent)] bg-[var(--color-surface-elevated)] px-4 py-2 text-xs font-bold text-[var(--color-accent)] transition hover:bg-[color-mix(in_srgb,var(--color-accent)_8%,var(--color-surface-elevated))] sm:mt-0"
           >
             Contact support →
-          </a>
+          </Link>
         </div>
 
         <p className="mt-5 text-center text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
