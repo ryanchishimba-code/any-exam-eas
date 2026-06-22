@@ -454,10 +454,16 @@ export const LANDING_METRICS = [
 
 export type LandingSuccessStory = {
   quote: string;
+  /** Longer version shown in featured cards (optional). */
+  longQuote?: string;
   name: string;
   exam: string;
   initials: string;
   outcome: string;
+  /** Specific outcome detail — e.g. "Saved $600+ vs separate QBanks". */
+  detail?: string;
+  /** Show as a wider, featured card with longQuote. */
+  featured?: boolean;
   /** CSS gradient for photo-style avatar */
   avatarGradient: string;
 };
@@ -473,10 +479,13 @@ export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [
   {
     quote:
       "I passed NCLEX on my first try. The Roadmap told me exactly which med-surg topics I was weak on — I wasn't guessing what to study next.",
+    longQuote:
+      "I went into NCLEX-RN with a real plan for the first time. The Roadmap showed me exactly which med-surg and prioritization topics I was weak on, and every missed question opened a Deep Dive. I didn't guess what to study next — the platform told me. Passed first attempt.",
     name: "Prisca M.",
     exam: "NCLEX-RN",
     initials: "PM",
     outcome: "Passed NCLEX — first attempt",
+    detail: "Blueprint-guided prep · 8 weeks",
     avatarGradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
   },
   {
@@ -486,6 +495,7 @@ export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [
     exam: "USMLE Step 2 CK · PANCE",
     initials: "GN",
     outcome: "Studied Step 2 CK & PANCE",
+    detail: "Two boards, one subscription",
     avatarGradient: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
   },
   {
@@ -495,6 +505,7 @@ export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [
     exam: "NAPLEX · AANP FNP",
     initials: "NC",
     outcome: "Passed NAPLEX & AANP FNP",
+    detail: "Pharmacy + NP prep, no double billing",
     avatarGradient: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
   },
   {
@@ -504,7 +515,74 @@ export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [
     exam: "NCLEX-RN",
     initials: "BV",
     outcome: "NCLEX prep — switched plans",
+    detail: "Saved vs previous QBank",
     avatarGradient: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
+  },
+  {
+    quote:
+      "In intern year I was juggling Step 2 prep on top of rotations. Paying $300+ per exam for two banks wasn't sustainable — here I got both Step 1 and Step 2 CK tracks under one plan.",
+    longQuote:
+      "During third-year rotations, I couldn't justify paying $300+ for separate Step 1 and Step 2 CK banks on top of everything else. Switching to AnyExamEasy gave me both USMLE tracks — plus pharmacology reference — in one place for a fraction of the cost. The savings alone covered months of subscriptions elsewhere.",
+    name: "Marcus W.",
+    exam: "USMLE Step 1 · Step 2 CK",
+    initials: "MW",
+    outcome: "Both USMLE steps, one subscription",
+    detail: "Saved $600+ vs separate QBanks",
+    featured: true,
+    avatarGradient: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
+  },
+  {
+    quote:
+      "The FSBPT Roadmap stopped me from spinning my wheels. Every session tied directly back to blueprint percentages — I finally knew where to spend my 45 minutes.",
+    longQuote:
+      "I'd been using a different bank that gave me hundreds of random questions but no structure. The NPTE-PT Roadmap showed me which content categories I was weakest in and exactly what percentage of the exam they covered. Knowing I had musculoskeletal and neuromuscular under control going into test day made all the difference. Passed on my first attempt.",
+    name: "Keona T.",
+    exam: "NPTE-PT",
+    initials: "KT",
+    outcome: "Passed NPTE-PT — first attempt",
+    detail: "Blueprint-aligned · Musculoskeletal focus",
+    featured: true,
+    avatarGradient: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)",
+  },
+  {
+    quote:
+      "NCCPA blueprint percentages mapped to every session. I finally had structure during PA rotations — 45 minutes a day, no wasted effort.",
+    name: "James O.",
+    exam: "PANCE",
+    initials: "JO",
+    outcome: "Passed PANCE",
+    detail: "Structured prep during clinical year",
+    avatarGradient: "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)",
+  },
+  {
+    quote:
+      "Primary-care vignettes paired with the Top 503 Drugs deck in one place. That combination didn't exist anywhere else at this price.",
+    name: "Sofia R.",
+    exam: "AANP FNP-C",
+    initials: "SR",
+    outcome: "Passed AANP FNP-C",
+    detail: "Primary care + pharmacology bundled",
+    avatarGradient: "linear-gradient(135deg, #96fbc4 0%, #f9f586 100%)",
+  },
+  {
+    quote:
+      "Bow-tie and matrix questions on the demo page convinced me the NGN formats were real. I went in fully prepared for Next-Gen NCLEX.",
+    name: "Deja H.",
+    exam: "NCLEX-RN (NGN)",
+    initials: "DH",
+    outcome: "Passed NCLEX — NGN ready",
+    detail: "Next-Gen NCLEX prepared · first attempt",
+    avatarGradient: "linear-gradient(135deg, #c471f5 0%, #fa71cd 100%)",
+  },
+  {
+    quote:
+      "Calculations, pharmacotherapy vignettes, and the full drug deck in one subscription. I stopped patching together three separate prep resources.",
+    name: "Rachel B.",
+    exam: "NAPLEX",
+    initials: "RB",
+    outcome: "Passed NAPLEX",
+    detail: "NAPLEX calc + drug reference in one plan",
+    avatarGradient: "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
   },
 ];
 

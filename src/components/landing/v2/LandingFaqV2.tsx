@@ -40,6 +40,18 @@ const FAQ: { q: string; a: string }[] = [
     q: "Can I cancel anytime?",
     a: "Yes. You can cancel anytime from your account settings. Canceling before your trial ends means you won't be charged at all.",
   },
+  {
+    q: "Why not just buy UWorld for the one exam I'm taking?",
+    a: `UWorld is a strong QBank — if you only need raw practice questions for a single board and the $200–400+ price tag fits your budget, it's a reasonable choice. Where AnyExamEasy differs: you get a structured blueprint Roadmap, Deep Dive review modules opened from the questions you miss, reference tools (Top 503 Drugs, lab values, calculators), and six boards under one plan. If you're only studying one exam and want just a QBank, we're transparent that you should compare. If you want guided prep or are studying more than one board, AnyExamEasy typically costs less and gives you more.`,
+  },
+  {
+    q: "Is this genuinely enough to pass my board exam?",
+    a: `No prep service can honestly guarantee a pass — and we won't. What we can say: every item is QA-gated before it enters your session (no bulk filler or template-swapped distractors), Roadmaps are aligned to current blueprints, and rationales are written to build real understanding. Students who pass do so because of how consistently they study, not because of any single resource. We're a serious tool built by clinicians — not a test-dump shortcut.`,
+  },
+  {
+    q: "What if I'm only studying for one exam right now?",
+    a: "That's fine — you can focus entirely on a single board. The Roadmap, question bank, and Deep Dives are all scoped per exam, so you're never forced to juggle six tracks at once. The multi-exam value is there when you need it (think recertification, dual licensing, or a second credential), but it doesn't clutter your experience when you don't.",
+  },
 ];
 
 export function LandingFaqV2() {

@@ -11,7 +11,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Check, Flame, Map as MapIcon, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Flame, Map as MapIcon, ShieldCheck, Sparkles, XCircle } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { BoardSeasonCountdown } from "@/components/landing/BoardSeasonCountdown";
 import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
@@ -245,6 +245,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
               { icon: ShieldCheck, label: "QA-gated before serve" },
               { icon: MapIcon, label: "Blueprint Roadmaps" },
               { icon: Check, label: "6 exams · 1 plan" },
+              { icon: XCircle, label: "Cancel free before day 14" },
             ].map(({ icon: Icon, label }) => (
               <li
                 key={label}

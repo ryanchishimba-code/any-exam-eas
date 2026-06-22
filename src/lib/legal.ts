@@ -6,6 +6,9 @@ export const LEGAL_ENTITY = {
   productDomain: "anyexameasy.com",
   supportEmail: "support@anyexameasy.com",
   legalEmail: "legal@anyexameasy.com",
+  supportPhone: "8176938685",
+  /** Formatted for display (e.g. "(817) 693-8685"). */
+  supportPhoneDisplay: "(817) 693-8685",
 } as const;
 
 export const LEGAL_LAST_UPDATED = "June 15, 2026";

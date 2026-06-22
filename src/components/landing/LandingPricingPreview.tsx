@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Crown, Sparkles, X } from "lucide-react";
+import { ArrowRight, Check, Crown, Sparkles, X, Zap } from "lucide-react";
 import type { BillingInterval } from "@/lib/billing-config";
 import { BillingIntervalPicker } from "@/components/pricing/BillingIntervalPicker";
 import { LandingCta } from "@/components/landing/LandingCta";
@@ -129,6 +129,27 @@ export function LandingPricingPreview() {
       <p className="aee-landing-pricing__value-line">
         6 exams + powerful tools for less than one UWorld subscription
       </p>
+
+      {/* Day-one trial features strip */}
+      <div className="mb-6 mt-2 rounded-2xl border border-[color-mix(in_srgb,var(--color-accent)_25%,transparent)] bg-[color-mix(in_srgb,var(--color-accent)_7%,var(--color-surface-elevated))] px-5 py-4">
+        <p className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-[var(--color-accent)]">
+          <Zap className="h-3.5 w-3.5 shrink-0" aria-hidden />
+          Unlocked from day one of your free trial
+        </p>
+        <ul className="mt-3 grid grid-cols-2 gap-x-6 gap-y-1.5 sm:grid-cols-4">
+          {[
+            "All 6 exam question banks",
+            "Blueprint Roadmaps",
+            "Top 503 Drugs deck",
+            "Memory Cards & calculators",
+          ].map((item) => (
+            <li key={item} className="flex items-center gap-1.5 text-xs text-[var(--color-ink)]">
+              <Check className="h-3.5 w-3.5 shrink-0 text-[var(--color-accent)]" aria-hidden />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <div className="aee-landing-pricing__interval">
         <BillingIntervalPicker value={interval} onChange={setInterval} variant="pricing" tier="pro" />

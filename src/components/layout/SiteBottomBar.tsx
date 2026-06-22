@@ -19,6 +19,13 @@ export function SiteBottomBar({ className }: Props) {
       )}
     >
       <p className="text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
+        <Link
+          href={ROUTES.about}
+          className="font-medium text-[var(--color-ink)] underline decoration-black/15 underline-offset-2 transition hover:text-[var(--color-accent)] hover:decoration-[var(--color-accent)]/40"
+        >
+          About
+        </Link>
+        <span aria-hidden> · </span>
         Questions or account help?{" "}
         <Link
           href={ROUTES.feedback}
@@ -32,6 +39,13 @@ export function SiteBottomBar({ className }: Props) {
           className="tabular-nums text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
         >
           {LEGAL_ENTITY.supportEmail}
+        </a>
+        <span aria-hidden> · </span>
+        <a
+          href={`tel:${LEGAL_ENTITY.supportPhone}`}
+          className="tabular-nums text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
+        >
+          {LEGAL_ENTITY.supportPhoneDisplay}
         </a>
       </p>
       <Link

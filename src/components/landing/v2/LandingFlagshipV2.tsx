@@ -30,6 +30,9 @@ import { LandingOfferingV2 } from "@/components/landing/v2/LandingOfferingV2";
 import { LandingShowcaseV2 } from "@/components/landing/v2/LandingShowcaseV2";
 import { LandingWhyChooseV2 } from "@/components/landing/v2/LandingWhyChooseV2";
 import { LandingFaqV2 } from "@/components/landing/v2/LandingFaqV2";
+import { LandingClinicianTrust } from "@/components/landing/LandingClinicianTrust";
+import { LandingTestimonialsV2 } from "@/components/landing/LandingTestimonialsV2";
+import { LandingTrialGuarantee } from "@/components/landing/LandingTrialGuarantee";
 import {
   LANDING_HERO_CTA_DISCLOSURE,
   LANDING_TRIAL_HREF,
@@ -55,6 +58,8 @@ export function LandingFlagshipV2({ bankCounts }: { bankCounts: LandingBankCount
 
       <LandingWhyChooseV2 />
 
+      <LandingClinicianTrust />
+
       <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] py-20 sm:py-24">
         <ProBenefitsComparison />
       </section>
@@ -78,7 +83,11 @@ export function LandingFlagshipV2({ bankCounts }: { bankCounts: LandingBankCount
         </div>
       </section>
 
+      <LandingTrialGuarantee />
+
       <LandingFaqV2 />
+
+      <LandingTestimonialsV2 />
 
       <section className="aee-flagship-final-cta" aria-labelledby="final-cta-heading">
         <div className="aee-flagship-final-cta__bg" aria-hidden />
@@ -115,6 +124,10 @@ export function LandingFlagshipV2({ bankCounts }: { bankCounts: LandingBankCount
           <p className="aee-flagship-final-cta__legal mt-2">{MARKETING_DISCLAIMER}</p>
           <p className="aee-flagship-final-cta__legal mt-2">
             {LEGAL_ENTITY.productName} is a product of {LEGAL_ENTITY.companyName}.{" "}
+            <Link href={ROUTES.about} className="aee-flagship-final-cta__legal-link">
+              About
+            </Link>
+            {" · "}
             <Link href="/legal/terms" className="aee-flagship-final-cta__legal-link">
               Terms
             </Link>
