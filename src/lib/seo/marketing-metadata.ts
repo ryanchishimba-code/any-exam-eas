@@ -97,6 +97,22 @@ export function buildPricingMetadata(): Metadata {
   };
 }
 
+export function buildAboutMetadata(): Metadata {
+  const title = "About Us — Liberating Premium Board Prep";
+  const description =
+    "AnyExamEasy is premium board prep without the premium price — 38K+ curated questions, Top 503 Drugs + clinical pearls, and roadmaps for USMLE, NCLEX, NAPLEX, PANCE, FNP & NPTE. Curated by licensed clinicians with 12+ years combined frontline experience. Proudly built in Texas.";
+  return {
+    ...baseOpenGraph(title, description, "/about"),
+    keywords: [
+      "about AnyExamEasy",
+      "affordable board exam prep",
+      "clinician-curated question bank",
+      "Top 503 drugs reference",
+      "USMLE NCLEX NAPLEX PANCE FNP NPTE prep",
+    ],
+  };
+}
+
 export function buildExamJsonLd(key: ExamSeoKey) {
   const config = getExamSeoConfig(key);
   const url = absoluteUrl(examMarketingPath(key));
