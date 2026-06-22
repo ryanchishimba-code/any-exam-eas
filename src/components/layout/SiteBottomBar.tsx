@@ -23,7 +23,7 @@ export function SiteBottomBar({ className }: Props) {
           href={ROUTES.about}
           className="font-medium text-[var(--color-ink)] underline decoration-black/15 underline-offset-2 transition hover:text-[var(--color-accent)] hover:decoration-[var(--color-accent)]/40"
         >
-          About
+          About Us
         </Link>
         <span aria-hidden> · </span>
         Questions or account help?{" "}

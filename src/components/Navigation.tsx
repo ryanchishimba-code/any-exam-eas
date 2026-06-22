@@ -25,7 +25,7 @@ import { formatTrialCtaLabel } from "@/lib/site";
 type NavLink = { href: string; label: string };
 
 const guestLinks: NavLink[] = [
-  { href: ROUTES.about, label: "About" },
+  { href: ROUTES.about, label: "About Us" },
   { href: ROUTES.resources, label: "Resources" },
   { href: ROUTES.feedback, label: "Contact Us" },
 ];
