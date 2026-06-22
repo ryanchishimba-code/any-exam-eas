@@ -523,6 +523,7 @@ export type CreateQuestionInput = {
   patientAgeGroup?: string;
   tags?: string[];
   draft?: boolean;
+  diagramUrl?: string;
 };
 
 export type CreateResult =
@@ -562,6 +563,7 @@ export async function createAdminQuestion(input: CreateQuestionInput): Promise<C
       tags: input.tags && input.tags.length ? JSON.stringify(input.tags) : null,
       source: "manual",
       generationVersion: "admin-manual-v1",
+      generationMeta: input.diagramUrl ? { diagramUrl: input.diagramUrl } : undefined,
       contentHash,
       // Drafts are inactive + pending; published items still require QA gating before serving.
       active: !input.draft,

@@ -15,7 +15,9 @@ import {
 import {
   BarChart3,
   FileText,
+  ListChecks,
   MessageSquare,
+  Quote,
   Settings,
   Users,
 } from "lucide-react";
@@ -42,6 +44,18 @@ type QuickLink = {
 
 const QUICK_LINKS: QuickLink[] = [
   {
+    href: ROUTES.admin.testimonials,
+    label: "Testimonials",
+    description: "Add, approve & feature stories",
+    icon: Quote,
+  },
+  {
+    href: ROUTES.admin.questions,
+    label: "Question bank",
+    description: "Search, edit & publish items",
+    icon: ListChecks,
+  },
+  {
     href: ROUTES.admin.analytics,
     label: "Traffic & analytics",
     description: "Page views, funnels, revenue",
@@ -55,8 +69,8 @@ const QUICK_LINKS: QuickLink[] = [
   },
   {
     href: ROUTES.admin.content,
-    label: "Content management",
-    description: "Blog posts & YouTube embeds",
+    label: "Content hub",
+    description: "Blog & YouTube (coming soon)",
     icon: FileText,
   },
   {

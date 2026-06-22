@@ -5,6 +5,7 @@ import {
   buildLandingBankCountsDisplay,
   getQuestionBankCounts,
 } from "@/lib/marketing/question-bank-counts";
+import { getPublishedTestimonials } from "@/lib/testimonials/published";
 import { buildHomeMetadata } from "@/lib/seo";
 
 /**
@@ -25,13 +26,16 @@ import { buildHomeMetadata } from "@/lib/seo";
 export const metadata: Metadata = buildHomeMetadata();
 
 export default async function HomePage() {
-  const snapshot = await getQuestionBankCounts();
+  const [snapshot, testimonials] = await Promise.all([
+    getQuestionBankCounts(),
+    getPublishedTestimonials(),
+  ]);
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
 
   return (
     <>
       <HomeJsonLd />
-      <HomeExperience bankCounts={bankCounts} />
+      <HomeExperience bankCounts={bankCounts} testimonials={testimonials} />
     </>
   );
 }

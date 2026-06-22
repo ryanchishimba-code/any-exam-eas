@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import { SubscriberHome } from "@/components/home/SubscriberHome";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
+import type { LandingSuccessStory } from "@/lib/landing/content";
 import { useSession } from "next-auth/react";
 
 const LandingFlagship = dynamic(
@@ -12,7 +13,13 @@ const LandingFlagship = dynamic(
   { ssr: true }
 );
 
-export function HomeExperience({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
+export function HomeExperience({
+  bankCounts,
+  testimonials,
+}: {
+  bankCounts: LandingBankCountsDisplay;
+  testimonials?: LandingSuccessStory[];
+}) {
   const { status } = useSession();
   const { hasPremiumAccess, loading: accessLoading } = useUserAccess();
   const isAuthed = status === "authenticated";
@@ -57,5 +64,5 @@ export function HomeExperience({ bankCounts }: { bankCounts: LandingBankCountsDi
     );
   }
 
-  return <LandingFlagship bankCounts={bankCounts} />;
+  return <LandingFlagship bankCounts={bankCounts} testimonials={testimonials} />;
 }

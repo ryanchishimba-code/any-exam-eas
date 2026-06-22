@@ -158,9 +158,12 @@ export function QuestionBankManager() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Question bank</h1>
-          <p className="mt-1 text-sm text-[var(--color-ink-muted)]">
-            Review, edit, and expand questions across every exam. All edits are logged.
+          <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-zinc-100">
+            Question bank
+          </h1>
+          <p className="mt-1 text-sm text-slate-500 dark:text-zinc-400">
+            Review, edit, and expand questions across every exam. Filter by board, bulk-approve, and
+            preview how items look to students.
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -215,7 +218,7 @@ export function QuestionBankManager() {
             </div>
           ) : null}
 
-          <div className="rounded-xl border border-black/[0.08] bg-white p-4">
+          <div className="rounded-xl border border-slate-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900">
             <div className="flex flex-wrap items-center gap-2">
               <form
                 className="flex flex-1 min-w-[14rem] items-center gap-2"

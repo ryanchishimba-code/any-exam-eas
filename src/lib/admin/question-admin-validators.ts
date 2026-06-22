@@ -39,6 +39,8 @@ export const createQuestionSchema = z
     patientAgeGroup: optionalText,
     tags: tagArray.optional(),
     draft: z.boolean().optional(),
+    /** Optional diagram — stored in generationMeta.diagramUrl (data URL or https URL). */
+    diagramUrl: z.string().trim().max(800_000).optional(),
   })
   .superRefine((val, ctx) => {
     const isMcq = !val.itemType || val.itemType === "mcq" || val.itemType === "vignette";

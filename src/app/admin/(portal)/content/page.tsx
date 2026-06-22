@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FileText, Youtube, ArrowLeft } from "lucide-react";
+import { FileText, ListChecks, Quote, Youtube, ArrowLeft } from "lucide-react";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
@@ -21,11 +21,51 @@ export default function AdminContentPage() {
           Content management
         </h1>
         <p className="mt-1 text-sm text-slate-500 dark:text-zinc-400">
-          Blog posts and YouTube resources — CMS integration coming soon.
+          Manage marketing content and the question bank — no code required.
         </p>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Link
+          href={ROUTES.admin.testimonials}
+          className="group rounded-xl border border-indigo-200/60 bg-white p-6 shadow-sm transition hover:border-indigo-300 hover:shadow-md dark:border-indigo-500/20 dark:bg-zinc-900"
+        >
+          <div className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600 dark:bg-indigo-500/15 dark:text-indigo-300">
+              <Quote className="h-5 w-5" aria-hidden />
+            </span>
+            <div>
+              <h2 className="font-semibold text-slate-900 group-hover:text-indigo-700 dark:text-zinc-100">
+                Testimonials
+              </h2>
+              <p className="text-xs text-slate-500 dark:text-zinc-400">Live on landing page</p>
+            </div>
+          </div>
+          <p className="mt-4 text-sm text-slate-600 dark:text-zinc-400">
+            Add quotes, photos, and outcomes. Approve before they appear publicly.
+          </p>
+        </Link>
+
+        <Link
+          href={ROUTES.admin.questions}
+          className="group rounded-xl border border-indigo-200/60 bg-white p-6 shadow-sm transition hover:border-indigo-300 hover:shadow-md dark:border-indigo-500/20 dark:bg-zinc-900"
+        >
+          <div className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700 dark:bg-emerald-500/15 dark:text-emerald-300">
+              <ListChecks className="h-5 w-5" aria-hidden />
+            </span>
+            <div>
+              <h2 className="font-semibold text-slate-900 group-hover:text-indigo-700 dark:text-zinc-100">
+                Question bank
+              </h2>
+              <p className="text-xs text-slate-500 dark:text-zinc-400">All exams</p>
+            </div>
+          </div>
+          <p className="mt-4 text-sm text-slate-600 dark:text-zinc-400">
+            Search, filter, bulk-approve, and add MCQs with live student preview.
+          </p>
+        </Link>
+
         <section className="rounded-xl border border-dashed border-slate-300 bg-white p-6 dark:border-zinc-700 dark:bg-zinc-900">
           <div className="flex items-center gap-3">
             <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-zinc-800">
@@ -33,12 +73,11 @@ export default function AdminContentPage() {
             </span>
             <div>
               <h2 className="font-semibold text-slate-900 dark:text-zinc-100">Blog</h2>
-              <p className="text-xs text-slate-500 dark:text-zinc-400">Articles & SEO landing pages</p>
+              <p className="text-xs text-slate-500 dark:text-zinc-400">Coming soon</p>
             </div>
           </div>
           <p className="mt-4 text-sm text-slate-600 dark:text-zinc-400">
-            Placeholder — wire to your headless CMS or markdown content repo. Track{" "}
-            <code className="text-xs">cta_clicked</code> on publish CTAs when live.
+            Wire to a headless CMS or markdown repo when ready.
           </p>
         </section>
 
@@ -49,12 +88,11 @@ export default function AdminContentPage() {
             </span>
             <div>
               <h2 className="font-semibold text-slate-900 dark:text-zinc-100">YouTube</h2>
-              <p className="text-xs text-slate-500 dark:text-zinc-400">Video library & embeds</p>
+              <p className="text-xs text-slate-500 dark:text-zinc-400">Coming soon</p>
             </div>
           </div>
           <p className="mt-4 text-sm text-slate-600 dark:text-zinc-400">
-            Placeholder — curate exam prep videos and embed on Resources. Top-performing content will
-            surface in admin analytics once view events are tracked.
+            Curate exam prep videos and embed on Resources.
           </p>
         </section>
       </div>

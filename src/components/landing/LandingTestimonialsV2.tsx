@@ -15,10 +15,19 @@ import { BadgeCheck, PlayCircle, Quote } from "lucide-react";
 import { Reveal } from "@/components/landing/v2/Reveal";
 import { LANDING_SUCCESS_STORIES, type LandingSuccessStory } from "@/lib/landing/content";
 
-const FEATURED = LANDING_SUCCESS_STORIES.filter((s) => s.featured);
-const COMPACT = LANDING_SUCCESS_STORIES.filter((s) => !s.featured).slice(0, 6);
+const DEFAULT_STORIES = LANDING_SUCCESS_STORIES;
 
 function Avatar({ story }: { story: LandingSuccessStory }) {
+  if (story.photoUrl) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={story.photoUrl}
+        alt=""
+        className="h-10 w-10 shrink-0 rounded-full object-cover ring-1 ring-[var(--color-border)]"
+      />
+    );
+  }
   return (
     <span
       className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
@@ -123,7 +132,14 @@ function VideoPlaceholderCard() {
   );
 }
 
-export function LandingTestimonialsV2() {
+export function LandingTestimonialsV2({
+  stories = DEFAULT_STORIES,
+}: {
+  stories?: LandingSuccessStory[];
+}) {
+  const FEATURED = stories.filter((s) => s.featured);
+  const COMPACT = stories.filter((s) => !s.featured).slice(0, 6);
+
   return (
     <section
       id="testimonials"

@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { X, Plus, Trash2 } from "lucide-react";
+import { useRef, useState } from "react";
+import { X, Plus, Trash2, Eye, EyeOff, ImagePlus } from "lucide-react";
 import { InlineError } from "@/components/ui/StatusMessage";
+import { QuestionStudentPreview } from "@/components/admin/questions/QuestionStudentPreview";
+import { compressImageToDataUrl } from "@/lib/images/compress-image";
 
 type FieldOption = { fieldId: string; examName: string };
 
@@ -35,7 +37,11 @@ export function AddQuestionForm({
   const [blueprintDomain, setBlueprintDomain] = useState("");
   const [blueprintTopic, setBlueprintTopic] = useState("");
   const [tags, setTags] = useState("");
+  const [diagramUrl, setDiagramUrl] = useState("");
+  const [diagramBusy, setDiagramBusy] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(false);
   const [draft, setDraft] = useState(true);
+  const diagramInputRef = useRef<HTMLInputElement>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -86,6 +92,7 @@ export function AddQuestionForm({
           tags: tags
             ? tags.split(",").map((t) => t.trim()).filter(Boolean)
             : undefined,
+          diagramUrl: diagramUrl.trim() || undefined,
           draft,
         }),
       });
@@ -107,15 +114,16 @@ export function AddQuestionForm({
         aria-label="Close"
         onClick={onClose}
       />
-      <div className="relative z-10 flex h-full w-full max-w-2xl flex-col overflow-y-auto bg-white shadow-2xl">
-        <div className="sticky top-0 flex items-center justify-between border-b border-black/[0.08] bg-white px-6 py-4">
-          <h2 className="text-lg font-semibold">Add a question</h2>
+      <div className="relative z-10 flex h-full w-full max-w-5xl flex-col overflow-y-auto bg-white shadow-2xl dark:bg-zinc-900">
+        <div className="sticky top-0 flex items-center justify-between border-b border-black/[0.08] bg-white px-6 py-4 dark:border-zinc-800 dark:bg-zinc-900">
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-zinc-100">Add a question</h2>
           <button type="button" onClick={onClose} className="rounded-lg p-1.5 hover:bg-black/[0.05]">
             <X size={18} />
           </button>
         </div>
 
-        <div className="flex-1 space-y-5 px-6 py-5">
+        <div className="flex-1 grid gap-6 px-6 py-5 lg:grid-cols-[1fr_22rem]">
+          <div className="space-y-5">
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block text-sm">
               <span className="mb-1 block font-medium">Exam</span>
@@ -268,6 +276,45 @@ export function AddQuestionForm({
             />
           </label>
 
+          <div className="text-sm">
+            <span className="mb-1 block font-medium">Diagram / image (optional)</span>
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={() => diagramInputRef.current?.click()}
+                disabled={diagramBusy}
+                className="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-slate-300 px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-50 dark:border-zinc-600 dark:text-zinc-300"
+              >
+                <ImagePlus size={14} />
+                {diagramBusy ? "Processing…" : "Upload diagram"}
+              </button>
+              {diagramUrl ? (
+                <button
+                  type="button"
+                  onClick={() => setDiagramUrl("")}
+                  className="text-xs text-rose-600 hover:underline"
+                >
+                  Remove
+                </button>
+              ) : null}
+              <input
+                ref={diagramInputRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  setDiagramBusy(true);
+                  void compressImageToDataUrl(file, { maxDimension: 960, quality: 0.85 })
+                    .then(setDiagramUrl)
+                    .catch((err) => setError(err instanceof Error ? err.message : String(err)))
+                    .finally(() => setDiagramBusy(false));
+                }}
+              />
+            </div>
+          </div>
+
           <label className="flex items-center gap-2 text-sm">
             <input
               type="checkbox"
@@ -281,9 +328,34 @@ export function AddQuestionForm({
           </label>
 
           {error ? <InlineError>{error}</InlineError> : null}
+          </div>
+
+          <div className="space-y-3 lg:sticky lg:top-4 lg:self-start">
+            <div className="flex items-center justify-between">
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">Live preview</p>
+              <button
+                type="button"
+                onClick={() => setShowAnswer((v) => !v)}
+                className="inline-flex items-center gap-1 text-xs font-medium text-[var(--color-accent)]"
+              >
+                {showAnswer ? <EyeOff size={14} /> : <Eye size={14} />}
+                {showAnswer ? "Hide answer" : "Show answer"}
+              </button>
+            </div>
+            <QuestionStudentPreview
+              scenario={scenario}
+              stem={question}
+              options={options}
+              correctAnswer={options[correctIndex] ?? ""}
+              explanation={explanation}
+              diagramUrl={diagramUrl || null}
+              examLabel={fields.find((f) => f.fieldId === fieldId)?.examName}
+              revealed={showAnswer}
+            />
+          </div>
         </div>
 
-        <div className="sticky bottom-0 flex justify-end gap-2 border-t border-black/[0.08] bg-white px-6 py-4">
+        <div className="sticky bottom-0 flex justify-end gap-2 border-t border-black/[0.08] bg-white px-6 py-4 dark:border-zinc-800 dark:bg-zinc-900">
           <button
             type="button"
             onClick={onClose}

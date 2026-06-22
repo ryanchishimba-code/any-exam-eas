@@ -43,7 +43,13 @@ import { ROUTES } from "@/lib/routes";
 import { formatTrialLabel, MARKETING_DISCLAIMER, TRIAL_PAYMENT_DISCLOSURE } from "@/lib/site";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
-export function LandingFlagshipV2({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
+export function LandingFlagshipV2({
+  bankCounts,
+  testimonials,
+}: {
+  bankCounts: LandingBankCountsDisplay;
+  testimonials?: import("@/lib/landing/content").LandingSuccessStory[];
+}) {
   return (
     <div className="aee-flagship aee-flagship--conversion">
       <LandingHashScroll />
@@ -87,7 +93,7 @@ export function LandingFlagshipV2({ bankCounts }: { bankCounts: LandingBankCount
 
       <LandingFaqV2 />
 
-      <LandingTestimonialsV2 />
+      <LandingTestimonialsV2 stories={testimonials} />
 
       <section className="aee-flagship-final-cta" aria-labelledby="final-cta-heading">
         <div className="aee-flagship-final-cta__bg" aria-hidden />

@@ -15,6 +15,8 @@ import {
   Shield,
   UserCog,
   FileText,
+  ListChecks,
+  Quote,
 } from "lucide-react";
 import { useState } from "react";
 import { signOutAndCleanup } from "@/lib/client/sign-out";
@@ -23,6 +25,8 @@ const navItems = [
   { href: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
   { href: "/admin/analytics", label: "Traffic & analytics", icon: BarChart3 },
   { href: "/admin/content", label: "Content", icon: FileText },
+  { href: "/admin/questions", label: "Question bank", icon: ListChecks },
+  { href: "/admin/testimonials", label: "Testimonials", icon: Quote },
   { href: "/admin/users", label: "Users", icon: Users },
   { href: "/admin/employees", label: "Employees", icon: UserCog },
   { href: "/admin/feedback", label: "Feedback", icon: MessageSquare },

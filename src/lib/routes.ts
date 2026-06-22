@@ -43,6 +43,8 @@ export const ROUTES = {
     login: "/admin/login",
     analytics: "/admin/analytics",
     content: "/admin/content",
+    questions: "/admin/questions",
+    testimonials: "/admin/testimonials",
     users: "/admin/users",
     feedback: "/admin/feedback",
     support: "/admin/support",

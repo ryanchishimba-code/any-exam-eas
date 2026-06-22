@@ -1190,3 +1190,43 @@ model UserTopicProgress {
   @@unique([userId, topicId])
   @@index([userId])
 }
+
+/// Marketing testimonials managed through the admin GUI (/admin/testimonials).
+/// Only rows with status = "approved" and deletedAt = null are shown publicly;
+/// when the table is empty the site falls back to the static success stories.
+model Testimonial {
+  id             String    @id @default(cuid())
+  name           String
+  /// Exam or role label, e.g. "NCLEX-RN" or "USMLE Step 2 CK · PANCE".
+  exam           String
+  quote          String
+  /// Optional longer quote shown on wide "featured" cards.
+  longQuote      String?
+  /// Short outcome line, e.g. "Passed NCLEX — first attempt".
+  outcome        String?
+  /// Optional supporting detail, e.g. "Saved $600+ vs separate QBanks".
+  detail         String?
+  /// Up to 3 initials for the gradient avatar; derived from name when blank.
+  initials       String?
+  /// Optional avatar image (compressed data URL or remote URL). Null = gradient avatar.
+  photoUrl       String?
+  /// CSS gradient string used for the fallback avatar.
+  avatarGradient String?
+  /// Optional 1–5 star rating.
+  rating         Int?      @db.SmallInt
+  /// Render as a wide, featured card on the public site.
+  featured       Boolean   @default(false)
+  /// Moderation gate: pending | approved | rejected. Only "approved" is public.
+  status         String    @default("pending")
+  /// Manual public ordering (lower = earlier).
+  sortOrder      Int       @default(0)
+  /// Soft-delete timestamp — enables "undo" after a delete.
+  deletedAt      DateTime?
+  /// Admin user id that created the row (audit trail).
+  createdById    String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([status, deletedAt, sortOrder])
+  @@index([deletedAt, createdAt])
+}

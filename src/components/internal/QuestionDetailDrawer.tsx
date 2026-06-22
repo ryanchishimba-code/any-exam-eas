@@ -1,8 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { X, Plus, Trash2, Pencil, History, AlertTriangle } from "lucide-react";
+import { X, Plus, Trash2, Pencil, History, AlertTriangle, Eye, EyeOff } from "lucide-react";
 import { InlineError } from "@/components/ui/StatusMessage";
+import { QuestionStudentPreview } from "@/components/admin/questions/QuestionStudentPreview";
 import type { AdminQuestionDetail } from "@/lib/admin/question-bank-admin";
 
 const STATUS_BADGE: Record<string, string> = {
@@ -43,6 +44,7 @@ export function QuestionDetailDrawer({
   const [blueprintTopic, setBlueprintTopic] = useState("");
   const [tags, setTags] = useState("");
   const [note, setNote] = useState("");
+  const [showAnswer, setShowAnswer] = useState(false);
 
   const seedEditState = useCallback((d: AdminQuestionDetail) => {
     setQuestion(d.question);
@@ -227,7 +229,32 @@ export function QuestionDetailDrawer({
                   setNote={setNote}
                 />
               ) : (
-                <ReadView detail={detail} />
+                <>
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-black/45">
+                      Student preview
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setShowAnswer((v) => !v)}
+                      className="inline-flex items-center gap-1 text-xs font-medium text-[var(--color-accent)]"
+                    >
+                      {showAnswer ? <EyeOff size={14} /> : <Eye size={14} />}
+                      {showAnswer ? "Hide answer" : "Show answer"}
+                    </button>
+                  </div>
+                  <QuestionStudentPreview
+                    scenario={detail.scenario ?? undefined}
+                    stem={detail.question}
+                    options={detail.options}
+                    correctAnswer={detail.correctAnswer}
+                    explanation={detail.explanation}
+                    diagramUrl={diagramFromMeta(detail.generationMeta)}
+                    examLabel={detail.examName}
+                    revealed={showAnswer}
+                  />
+                  <ReadView detail={detail} />
+                </>
               )}
 
               {actionMsg ? (
@@ -323,6 +350,11 @@ export function QuestionDetailDrawer({
       </div>
     </div>
   );
+}
+
+function diagramFromMeta(meta: Record<string, unknown> | null): string | null {
+  if (!meta || typeof meta.diagramUrl !== "string") return null;
+  return meta.diagramUrl;
 }
 
 function ReadView({ detail }: { detail: AdminQuestionDetail }) {

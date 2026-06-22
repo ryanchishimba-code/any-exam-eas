@@ -466,6 +466,8 @@ export type LandingSuccessStory = {
   featured?: boolean;
   /** CSS gradient for photo-style avatar */
   avatarGradient: string;
+  /** Optional admin-uploaded photo (data URL or remote URL). */
+  photoUrl?: string;
 };
 
 /** Platform stats for the social proof band — factual, no pass-rate claims. */
