@@ -19,7 +19,7 @@ export async function findOrCreateGoogleUser(params: {
   name?: string | null;
   image?: string | null;
   providerAccountId: string;
-  provider?: "google" | "apple";
+  provider?: "google" | "apple" | "linkedin";
 }): Promise<{ id: string; role: string }> {
   const email = normalizeEmail(params.email);
   const provider = params.provider ?? "google";

@@ -11,9 +11,12 @@
  *   - Legal disclaimer
  */
 
-import { BadgeCheck, PlayCircle, Quote } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, BadgeCheck, PlayCircle, Quote } from "lucide-react";
 import { Reveal } from "@/components/landing/v2/Reveal";
 import { LANDING_SUCCESS_STORIES, type LandingSuccessStory } from "@/lib/landing/content";
+import { SocialShareBar } from "@/components/social/SocialShareBar";
+import { ROUTES } from "@/lib/routes";
 
 const DEFAULT_STORIES = LANDING_SUCCESS_STORIES;
 
@@ -188,6 +191,22 @@ export function LandingTestimonialsV2({
             <CompactCard key={story.name} story={story} delay={i * 0.04} />
           ))}
           <VideoPlaceholderCard />
+        </div>
+
+        {/* Share + community CTA */}
+        <div className="mt-10 flex flex-col items-center gap-4">
+          <Link
+            href={ROUTES.community}
+            className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-5 py-2.5 text-sm font-bold text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] transition hover:shadow-[var(--shadow-apple-md)]"
+          >
+            Join the community wall
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
+          <SocialShareBar
+            entityType="story"
+            text="Real students passing their boards with AnyExamEasy 🎓"
+            url="https://www.anyexameasy.com"
+          />
         </div>
 
         {/* Legal */}

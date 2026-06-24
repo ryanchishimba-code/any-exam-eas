@@ -69,6 +69,8 @@ model User {
   passwordResetTokens PasswordResetToken[]
   examPreference     UserExamPreference?
   topicProgress      UserTopicProgress[]
+  socialPosts        UserSocialPost[]
+  socialShares       SocialShare[]
 }
 
 model Account {
@@ -1229,4 +1231,111 @@ model Testimonial {
 
   @@index([status, deletedAt, sortOrder])
   @@index([deletedAt, createdAt])
+}
+
+// --- Social / community (Phase 1: UGC wall, share tracking, brand accounts) ---
+
+/// User-generated community posts (study tips, wins, questions). Gated by
+/// moderation: only rows with approved = true AND deletedAt IS NULL are public.
+model UserSocialPost {
+  id           String    @id @default(cuid())
+  userId       String    @map("user_id")
+  /// Free-text body (length-capped + sanitized in the app layer).
+  content      String
+  /// Optional exam tag, e.g. "NCLEX", "USMLE" — used for feed filtering.
+  examType     String?   @map("exam_type")
+  /// Aggregate like counter (denormalized for cheap feed reads).
+  likes        Int       @default(0)
+  /// Moderation gate. False until a moderator approves; spec-mandated column.
+  approved     Boolean   @default(false)
+  /// Null = awaiting review. Set when a moderator approves OR rejects
+  /// (rejected = reviewedAt IS NOT NULL AND approved = false).
+  reviewedAt   DateTime? @map("reviewed_at")
+  reviewedById String?   @map("reviewed_by_id")
+  /// Soft-delete so moderators can undo and we keep an audit trail.
+  deletedAt    DateTime? @map("deleted_at")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([approved, deletedAt, createdAt])
+  @@index([userId, createdAt])
+  @@index([examType, approved, deletedAt])
+  @@map("user_social_posts")
+}
+
+/// Outbound share events (button clicks) for engagement analytics.
+model SocialShare {
+  id         String   @id @default(cuid())
+  /// Null for anonymous/logged-out visitors.
+  userId     String?  @map("user_id")
+  /// x | linkedin | facebook | whatsapp | copy
+  platform   String
+  /// What was shared, e.g. "question" | "result" | "progress" | "story" | "post".
+  entityType String   @map("entity_type")
+  /// Optional id/slug of the shared entity.
+  entityId   String?  @map("entity_id")
+  /// The canonical URL that was shared.
+  url        String?
+  sessionId  String?  @map("session_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([platform, createdAt])
+  @@index([entityType, createdAt])
+  @@index([createdAt])
+  @@map("social_shares")
+}
+
+/// Org/brand social channels for admin publishing (tokens encrypted at rest).
+/// Phase 1 stores connection metadata; outbound posting is wired in Phase 2
+/// (Ayrshare). Never selected into client components.
+model SocialAccount {
+  id                 String    @id @default(cuid())
+  /// Platform key, e.g. "x" | "linkedin" | "facebook". One row per platform.
+  platform           String    @unique
+  /// Human-readable handle shown in the admin UI, e.g. "@anyexameasy".
+  displayName        String?   @map("display_name")
+  /// Provider-side account id (Ayrshare profile key or platform user id).
+  externalId         String?   @map("external_id")
+  /// AES-256-GCM ciphertext (see src/lib/crypto/secret-box.ts). Never plaintext.
+  accessTokenCipher  String?   @map("access_token_cipher")
+  refreshTokenCipher String?   @map("refresh_token_cipher")
+  scope              String?
+  expiresAt          DateTime? @map("expires_at")
+  connected          Boolean   @default(false)
+  createdById        String?   @map("created_by_id")
+  createdAt          DateTime  @default(now()) @map("created_at")
+  updatedAt          DateTime  @updatedAt @map("updated_at")
+
+  @@map("social_accounts")
+}
+
+/// Outbound brand posts to publish/schedule to external channels (X, LinkedIn,
+/// Facebook) via the publishing adapter (Ayrshare). Our own cron drives timing
+/// so scheduling works regardless of the provider's native scheduler.
+model ScheduledSocialPost {
+  id          String    @id @default(cuid())
+  content     String
+  /// CSV of platform keys, e.g. "x,linkedin,facebook".
+  platforms   String
+  /// Optional CSV of media URLs to attach.
+  mediaUrls   String?   @map("media_urls")
+  /// draft | scheduled | publishing | published | failed | canceled
+  status      String    @default("scheduled")
+  /// When to publish. Null/now = publish on next cron tick.
+  scheduledAt DateTime? @map("scheduled_at")
+  publishedAt DateTime? @map("published_at")
+  /// Provider-side post id (Ayrshare) once published.
+  externalRef String?   @map("external_ref")
+  error       String?
+  createdById String?   @map("created_by_id")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  @@index([status, scheduledAt])
+  @@index([createdAt])
+  @@map("scheduled_social_posts")
 }

@@ -17,6 +17,7 @@ import {
   FileText,
   ListChecks,
   Quote,
+  Share2,
 } from "lucide-react";
 import { useState } from "react";
 import { signOutAndCleanup } from "@/lib/client/sign-out";
@@ -27,6 +28,7 @@ const navItems = [
   { href: "/admin/content", label: "Content", icon: FileText },
   { href: "/admin/questions", label: "Question bank", icon: ListChecks },
   { href: "/admin/testimonials", label: "Testimonials", icon: Quote },
+  { href: "/admin/social", label: "Social & community", icon: Share2 },
   { href: "/admin/users", label: "Users", icon: Users },
   { href: "/admin/employees", label: "Employees", icon: UserCog },
   { href: "/admin/feedback", label: "Feedback", icon: MessageSquare },

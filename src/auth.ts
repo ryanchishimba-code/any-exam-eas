@@ -2,6 +2,7 @@ import NextAuth, { CredentialsSignin } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import Apple from "next-auth/providers/apple";
+import LinkedIn from "next-auth/providers/linkedin";
 import { authConfig } from "@/auth.config";
 import { authenticateCredentials, recordUserLogin } from "@/lib/user-auth";
 import { loginSchema } from "@/lib/validators/auth";
@@ -47,6 +48,9 @@ const googleEnabled =
 const appleEnabled =
   !!process.env.APPLE_ID && !!process.env.APPLE_SECRET;
 
+const linkedinEnabled =
+  !!process.env.LINKEDIN_CLIENT_ID && !!process.env.LINKEDIN_CLIENT_SECRET;
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
   providers: [
@@ -63,6 +67,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         Apple({
           clientId: process.env.APPLE_ID!,
           clientSecret: process.env.APPLE_SECRET!,
+        }),
+      ]
+    : []),
+  ...(linkedinEnabled
+    ? [
+        LinkedIn({
+          clientId: process.env.LINKEDIN_CLIENT_ID!,
+          clientSecret: process.env.LINKEDIN_CLIENT_SECRET!,
         }),
       ]
     : []),
@@ -147,10 +159,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     ...authConfig.callbacks,
     async signIn({ user, account, profile }) {
-      if (
-        (account?.provider === "google" || account?.provider === "apple") &&
-        user.email
-      ) {
+      const oauthProviders = ["google", "apple", "linkedin"] as const;
+      type OAuthProvider = (typeof oauthProviders)[number];
+      const isOAuth = (p?: string): p is OAuthProvider =>
+        oauthProviders.includes(p as OAuthProvider);
+
+      if (isOAuth(account?.provider) && user.email) {
         const oauthProfile = profile as { sub?: string } | undefined;
         try {
           const linked = await findOrCreateGoogleUser({
@@ -158,7 +172,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             name: user.name,
             image: user.image,
             providerAccountId: oauthProfile?.sub ?? user.email,
-            provider: account.provider === "apple" ? "apple" : "google",
+            provider: account!.provider as OAuthProvider,
           });
           const dbUser = await prisma.user.findUnique({
             where: { id: linked.id },
@@ -197,7 +211,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const maxAge = remember ? SESSION_MONTH_SEC : SESSION_DAY_SEC;
         token.exp = Math.floor(Date.now() / 1000) + maxAge;
       } else if (
-        (account?.provider === "google" || account?.provider === "apple") &&
+        (account?.provider === "google" ||
+          account?.provider === "apple" ||
+          account?.provider === "linkedin") &&
         token.email
       ) {
         const dbUser = await prisma.user.findUnique({

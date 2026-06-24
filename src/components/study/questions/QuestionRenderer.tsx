@@ -34,6 +34,7 @@ import {
 } from "./UsmleFormats";
 import { QuestionRelatedLinks } from "./QuestionRelatedLinks";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import { SocialShareBar } from "@/components/social/SocialShareBar";
 
 type Props = {
   question: StudyQuestion;
@@ -310,6 +311,17 @@ export function ExplanationPanel({
           </ul>
         </div>
       )}
+
+      {/* Spoiler-safe: shares a "studying" message, never the answer. */}
+      <div className="flex justify-end border-t border-black/[0.06] pt-3 dark:border-white/[0.08]">
+        <SocialShareBar
+          entityType="question"
+          entityId={question.id}
+          text={`Sharpening my ${examSlug.toUpperCase()} prep with AnyExamEasy 💪`}
+          url="https://www.anyexameasy.com"
+          size="sm"
+        />
+      </div>
     </div>
   );
 }

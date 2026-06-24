@@ -21,6 +21,8 @@ export type Permission =
   | "feedback.view"
   | "feedback.manage"
   | "moderation.view"
+  | "social.moderate"
+  | "social.publish"
   | "questions.view"
   | "questions.edit"
   | "questions.publish"
@@ -44,6 +46,7 @@ const ROLE_PERMISSIONS: Record<StaffRole, Permission[]> = {
     "feedback.view",
     "feedback.manage",
     "moderation.view",
+    "social.moderate",
     "crm.view_users",
     "crm.edit_notes",
     "crm.edit_tags",
@@ -65,6 +68,8 @@ const ROLE_PERMISSIONS: Record<StaffRole, Permission[]> = {
     "crm.edit_tags",
     "crm.bookmark_users",
     "moderation.view",
+    "social.moderate",
+    "social.publish",
     "questions.view",
     "questions.edit",
     "questions.publish",
@@ -83,6 +88,8 @@ const ROLE_PERMISSIONS: Record<StaffRole, Permission[]> = {
     "crm.edit_tags",
     "crm.bookmark_users",
     "moderation.view",
+    "social.moderate",
+    "social.publish",
     "questions.view",
     "questions.edit",
     "questions.publish",

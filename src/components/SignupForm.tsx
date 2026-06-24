@@ -6,6 +6,7 @@ import { Check, Eye, EyeOff } from "lucide-react";
 import { LegalCheckbox } from "./LegalCheckbox";
 import { Button } from "./ui/Button";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
+import { SocialLoginButton } from "@/components/social/SocialLoginButton";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { MARKETING_DISCLAIMER, SIGNUP_PAYMENT_REQUIRED_NOTE } from "@/lib/site";
 import { TRIAL_DAYS } from "@/lib/billing-config";
@@ -62,6 +63,7 @@ export function SignupForm({
   const plan: SignupPlan = initialPlan === "subscribe" ? "subscribe" : "trial";
 
   const googleEnabled = process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED === "true";
+  const linkedinEnabled = process.env.NEXT_PUBLIC_LINKEDIN_AUTH_ENABLED === "true";
 
   // Mirror the shared password policy so users get instant feedback instead of
   // a rejected round-trip.
@@ -227,9 +229,25 @@ export function SignupForm({
 
       {step === 1 ? (
         <>
-          {googleEnabled && !configWarning && (
+          {(googleEnabled || linkedinEnabled) && !configWarning && (
             <div className="space-y-4">
-              <GoogleSignInButton
+              {googleEnabled && (
+                <GoogleSignInButton
+                  large
+                  onClick={() => {
+                    const trimmedEmail = email.trim();
+                    if (trimmedEmail) {
+                      saveReturningUserHint({
+                        email: trimmedEmail,
+                        name: name.trim() || undefined,
+                        lastMethod: "google",
+                      });
+                    }
+                  }}
+                />
+              )}
+              <SocialLoginButton
+                provider="linkedin"
                 large
                 onClick={() => {
                   const trimmedEmail = email.trim();
@@ -237,7 +255,7 @@ export function SignupForm({
                     saveReturningUserHint({
                       email: trimmedEmail,
                       name: name.trim() || undefined,
-                      lastMethod: "google",
+                      lastMethod: "linkedin",
                     });
                   }
                 }}

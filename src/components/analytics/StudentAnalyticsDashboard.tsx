@@ -15,6 +15,7 @@ import {
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import type { ExamSlug } from "@/types/edtech";
 import { Button } from "@/components/ui/Button";
+import { SocialShareBar } from "@/components/social/SocialShareBar";
 import { cn } from "@/lib/utils";
 
 type AnalyticsPayload = {
@@ -118,6 +119,13 @@ export function StudentAnalyticsDashboard({
         <span className="text-xs text-[var(--color-ink-muted)]">
           Insights below are scoped to this exam. Switch exams from the top bar.
         </span>
+        <SocialShareBar
+          entityType="progress"
+          text={`I'm ${dashboard.headline.readinessScore}% ready for ${examName} with AnyExamEasy! 🎯`}
+          url="https://www.anyexameasy.com"
+          size="sm"
+          className="ml-auto"
+        />
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

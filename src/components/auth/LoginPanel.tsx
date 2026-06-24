@@ -24,6 +24,7 @@ import {
   type ReturningUserHint,
 } from "@/lib/client/returning-user";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
+import { SocialLoginButton } from "@/components/social/SocialLoginButton";
 import { InlineError, StatusMessage } from "@/components/ui/StatusMessage";
 
 type LoginPanelProps = {
@@ -156,6 +157,13 @@ export function LoginPanel({
           onClick={() => rememberMethod("google")}
         />
       )}
+
+      <SocialLoginButton
+        provider="linkedin"
+        callbackUrl={safeCallbackUrl}
+        large
+        onClick={() => rememberMethod("linkedin")}
+      />
 
       {googleEnabled && (
         <div className="relative py-1">

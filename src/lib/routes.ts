@@ -30,6 +30,7 @@ export const ROUTES = {
   employers: "/employers",
   pricing: "/pricing",
   feedback: "/feedback",
+  community: "/community",
   settings: "/settings",
   drugs300: "/study/drugs300",
   auth: {
@@ -45,6 +46,7 @@ export const ROUTES = {
     content: "/admin/content",
     questions: "/admin/questions",
     testimonials: "/admin/testimonials",
+    social: "/admin/social",
     users: "/admin/users",
     feedback: "/admin/feedback",
     support: "/admin/support",

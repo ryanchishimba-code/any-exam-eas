@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FileText, ListChecks, Quote, Youtube, ArrowLeft } from "lucide-react";
+import { FileText, ListChecks, Quote, Share2, Youtube, ArrowLeft } from "lucide-react";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
@@ -63,6 +63,26 @@ export default function AdminContentPage() {
           </div>
           <p className="mt-4 text-sm text-slate-600 dark:text-zinc-400">
             Search, filter, bulk-approve, and add MCQs with live student preview.
+          </p>
+        </Link>
+
+        <Link
+          href={ROUTES.admin.social}
+          className="group rounded-xl border border-indigo-200/60 bg-white p-6 shadow-sm transition hover:border-indigo-300 hover:shadow-md dark:border-indigo-500/20 dark:bg-zinc-900"
+        >
+          <div className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-sky-50 text-sky-600 dark:bg-sky-500/15 dark:text-sky-300">
+              <Share2 className="h-5 w-5" aria-hidden />
+            </span>
+            <div>
+              <h2 className="font-semibold text-slate-900 group-hover:text-indigo-700 dark:text-zinc-100">
+                Social &amp; community
+              </h2>
+              <p className="text-xs text-slate-500 dark:text-zinc-400">Moderation &amp; engagement</p>
+            </div>
+          </div>
+          <p className="mt-4 text-sm text-slate-600 dark:text-zinc-400">
+            Approve community posts, publish official updates, and track share engagement.
           </p>
         </Link>
 

@@ -1,6 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { FullExamResults } from "@/components/exam/FullExamResults";
+import { SocialShareBar } from "@/components/social/SocialShareBar";
 import { contentWidth } from "@/lib/layout/shell-ui";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { getExamSession } from "@/lib/exam-sessions/service";
@@ -65,6 +66,15 @@ export default async function FullExamResultsPage({
           questions={questions}
           initialReviewOpen={sp.review === "1"}
         />
+
+        <div className="mt-6 flex justify-center">
+          <SocialShareBar
+            entityType="result"
+            entityId={sessionId}
+            text={`I scored ${examSession.score ?? 0}% on my ${examSlug.toUpperCase()} mock exam with AnyExamEasy! 🎓`}
+            url="https://www.anyexameasy.com"
+          />
+        </div>
       </div>
     </div>
   );
