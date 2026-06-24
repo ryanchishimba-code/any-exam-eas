@@ -29,6 +29,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { ProgressMetricsNotice } from "@/components/legal/ProgressMetricsNotice";
 import { PRACTICE_PROGRESS_LABEL } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 const WEAK_COLORS = ["#0071e3", "#5856d6", "#ff9500", "#ff375f", "#30d158", "#64d2ff"];
@@ -302,7 +303,7 @@ export function StudentDashboard() {
             <CardDescription>Scores from completed practice and mock exams</CardDescription>
           </div>
           <Link
-            href="/progress"
+            href={ROUTES.analytics}
             className="text-xs font-medium text-[var(--color-accent)] hover:underline"
           >
             Full history

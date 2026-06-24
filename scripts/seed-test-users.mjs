@@ -30,6 +30,8 @@ const testUsers = [
       planInterval: "yearly",
       trialEndsAt: daysFromNow(14),
       currentPeriodEnd: daysFromNow(14),
+      stripeCustomerId: "cus_seed_test_trial",
+      stripeSubscriptionId: "sub_seed_test_trial",
     },
   },
   {

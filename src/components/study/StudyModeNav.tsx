@@ -14,13 +14,12 @@ import {
 } from "lucide-react";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
+import { questionBankHref } from "@/lib/edtech/practice-links";
 import {
-  QUESTION_BANK_PATH,
   STUDY_HUB_PATH,
-  TIMED_EXAM_PATH,
   TOP_500_DRUGS_PATH,
 } from "@/lib/study-hub/config";
-import { ROUTES } from "@/lib/routes";
+import { ROUTES, fullExamHref } from "@/lib/routes";
 import { studyUi } from "@/lib/study/study-ui";
 import { cn } from "@/lib/utils";
 
@@ -32,12 +31,11 @@ type ModeItem = {
   clinicalOnly?: boolean;
 };
 
-const MODE_ITEMS: ModeItem[] = [
-  { id: "timed-exam", href: TIMED_EXAM_PATH, label: "Timed Exam", icon: Clock },
-  { id: "question-bank", href: QUESTION_BANK_PATH, label: "Question Bank", icon: SlidersHorizontal },
+const MODE_ITEM_DEFS: Omit<ModeItem, "href">[] = [
+  { id: "full-exam", label: "Full Exam", icon: Clock },
+  { id: "question-bank", label: "Question Bank", icon: SlidersHorizontal },
   {
     id: "top-500",
-    href: TOP_500_DRUGS_PATH,
     label: "Top 500 Drugs",
     icon: Layers,
     clinicalOnly: true,
@@ -56,20 +54,25 @@ function StudyModeNavInner() {
   const onAnalytics =
     pathname === ROUTES.analytics || pathname.startsWith(`${ROUTES.analytics}/`);
 
-  const modeItems = useMemo(
-    () => MODE_ITEMS.filter((item) => !item.clinicalOnly || clinical),
-    [clinical]
-  );
+  const modeItems = useMemo((): ModeItem[] => {
+    const fullExamLink = examSlug ? fullExamHref(examSlug) : ROUTES.fullExam;
+    const bankLink = questionBankHref(examSlug ?? undefined);
 
-  function isModeActive(href: string) {
-    if (href === TOP_500_DRUGS_PATH) return pathname.startsWith(TOP_500_DRUGS_PATH);
-    if (href === TIMED_EXAM_PATH) {
-      return pathname === href || pathname.startsWith(`${href}/`);
-    }
-    if (href === QUESTION_BANK_PATH) {
+    return MODE_ITEM_DEFS.filter((item) => !item.clinicalOnly || clinical).map((item) => {
+      if (item.id === "full-exam") return { ...item, href: fullExamLink };
+      if (item.id === "question-bank") return { ...item, href: bankLink };
+      if (item.id === "top-500") return { ...item, href: TOP_500_DRUGS_PATH };
+      return { ...item, href: STUDY_HUB_PATH };
+    });
+  }, [clinical, examSlug]);
+
+  function isModeActive(id: string, href: string) {
+    if (id === "full-exam") return pathname.startsWith(`${ROUTES.fullExam}/`);
+    if (id === "top-500") return pathname.startsWith(TOP_500_DRUGS_PATH);
+    if (id === "question-bank") {
       return (
         pathname === href ||
-        pathname.startsWith(`${href}/`) ||
+        pathname.startsWith(`${href.split("?")[0]}/`) ||
         (pathname.startsWith("/study/practice") && mode === "bank")
       );
     }
@@ -121,7 +124,7 @@ function StudyModeNavInner() {
 
       <div className={cn(studyUi.chipRow, "min-w-0 flex-1")}>
         {modeItems.map(({ id, href, label, icon: Icon }) => {
-          const active = isModeActive(href);
+          const active = isModeActive(id, href);
           return (
             <Link
               key={id}

@@ -11,17 +11,28 @@ export const metadata = {
 export default async function StudyPage({
   searchParams,
 }: {
-  searchParams: Promise<{ field?: string; mode?: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const params = await searchParams;
-  if (params.field && isExamFieldId(params.field)) {
+  if (params.field && isExamFieldId(String(params.field))) {
+    const field = String(params.field);
     if (params.mode === "timed") {
-      const slug = examSlugFromFieldId(params.field);
+      const slug = examSlugFromFieldId(field);
       redirect(slug ? fullExamHref(slug) : ROUTES.fullExam);
     }
-    const qs = new URLSearchParams({ field: params.field });
+    const qs = new URLSearchParams({ field });
     redirect(`${ROUTES.questionBank}?${qs.toString()}`);
   }
 
-  redirect(STUDY_HUB_PATH);
+  const preserved = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    if (key === "field" || key === "mode" || value == null) continue;
+    if (Array.isArray(value)) {
+      for (const item of value) preserved.append(key, item);
+    } else {
+      preserved.set(key, value);
+    }
+  }
+  const suffix = preserved.toString();
+  redirect(suffix ? `${STUDY_HUB_PATH}?${suffix}` : STUDY_HUB_PATH);
 }

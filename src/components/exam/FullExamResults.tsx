@@ -24,6 +24,7 @@ import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 import { feUi } from "@/lib/study/full-exam-ui";
 import { cn } from "@/lib/utils";
 import { FullExamStudyLinks } from "@/components/exam/FullExamStudyLinks";
+import { FullExamResultsInsights } from "@/components/exam/FullExamResultsInsights";
 import { StudyThisTopicButton } from "@/components/study/StudyThisTopicButton";
 import { QuestionRelatedLinks } from "@/components/study/questions/QuestionRelatedLinks";
 import { resolveQuestionStudyLinks } from "@/lib/library/question-study-links";
@@ -345,6 +346,22 @@ export function FullExamResults({
           ) : null}
         </div>
       ) : null}
+
+      <FullExamResultsInsights
+        examSlug={examSlug}
+        score={score}
+        analysis={analysis}
+        answers={answers}
+        onReviewMissed={
+          questions.length > 0
+            ? () => {
+                const firstMissed = answers.findIndex((a) => !a.correct);
+                setIndex(firstMissed >= 0 ? firstMissed : 0);
+                setView("question");
+              }
+            : undefined
+        }
+      />
 
       {analysis.topicBreakdown.length > 0 ? (
         <div className={cn(feUi.panel, "p-5 sm:p-6")}>

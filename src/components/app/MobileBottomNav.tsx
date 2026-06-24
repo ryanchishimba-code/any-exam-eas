@@ -3,23 +3,30 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
-import { BarChart3, BookMarked, BookOpen, Bone, Clock, LayoutGrid, Sparkles } from "lucide-react";
+import {
+  BarChart3,
+  BookMarked,
+  BookOpen,
+  Clock,
+  LayoutGrid,
+  Layers,
+  Sparkles,
+} from "lucide-react";
 import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { highYieldTopicsHref, questionBankHref } from "@/lib/edtech/practice-links";
 import { SHELL_CHROME_SPRING, STUDY_NAV_COLOR, STUDY_NAV_SPRING } from "@/lib/layout/nav-motion";
-import { ROUTES } from "@/lib/routes";
+import { ROUTES, fullExamHref } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
-const BASE_ITEMS = [
-  { href: ROUTES.dashboard, label: "Home", icon: LayoutGrid, exact: true },
-  { href: ROUTES.library, label: "Library", icon: BookMarked, ariaLabel: "Library" },
-  { href: ROUTES.anatomy, label: "Anatomy", icon: Bone, ariaLabel: "Anatomy Explorer", clinicalOnly: true },
-  { href: ROUTES.fullExam, label: "Exam", icon: Clock },
-  { href: ROUTES.questionBank, label: "Bank", icon: BookOpen, ariaLabel: "Question Bank" },
-  { href: ROUTES.analytics, label: "Stats", icon: BarChart3 },
-] as const;
+type NavItem = {
+  href: string;
+  label: string;
+  icon: typeof LayoutGrid;
+  exact?: boolean;
+  ariaLabel?: string;
+};
 
 function navHrefPath(href: string) {
   return href.split("?")[0]!;
@@ -31,22 +38,31 @@ export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) 
   const clinical = hasClinicalStudyTools(examSlug);
   const reduceMotion = useReducedMotion();
 
-  const items = useMemo(() => {
+  const items = useMemo((): NavItem[] => {
     const bankHref = examSlug ? questionBankHref(examSlug) : ROUTES.questionBank;
-    const withBank = BASE_ITEMS.map((item) =>
-      item.href === ROUTES.questionBank ? { ...item, href: bankHref } : item
-    );
-    if (clinical) return withBank;
-    return withBank.map((item) =>
-      "clinicalOnly" in item && item.clinicalOnly
-        ? {
-            href: highYieldTopicsHref(examSlug ?? "nclex"),
-            label: "Topics",
-            icon: Sparkles,
-            ariaLabel: "High-Yield Topics",
-          }
-        : item
-    );
+    const examHref = examSlug ? fullExamHref(examSlug) : ROUTES.fullExam;
+    const topicsHref = highYieldTopicsHref(examSlug ?? "nclex");
+
+    const core: NavItem[] = [
+      { href: ROUTES.dashboard, label: "Home", icon: LayoutGrid, exact: true },
+      { href: bankHref, label: "Bank", icon: BookOpen, ariaLabel: "Question Bank" },
+      { href: examHref, label: "Exam", icon: Clock, ariaLabel: "Full Exam" },
+      { href: ROUTES.analytics, label: "Stats", icon: BarChart3, ariaLabel: "Analytics" },
+    ];
+
+    if (clinical) {
+      return [
+        ...core,
+        { href: ROUTES.drugs300, label: "Drugs", icon: Layers, ariaLabel: "Top 500 Drugs" },
+        { href: topicsHref, label: "Topics", icon: Sparkles, ariaLabel: "High-Yield Topics" },
+      ];
+    }
+
+    return [
+      ...core,
+      { href: topicsHref, label: "Topics", icon: Sparkles, ariaLabel: "High-Yield Topics" },
+      { href: ROUTES.library, label: "Library", icon: BookMarked, ariaLabel: "Library" },
+    ];
   }, [clinical, examSlug]);
 
   return (
@@ -66,8 +82,8 @@ export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) 
         <ul className="mx-auto flex max-w-lg items-stretch justify-around px-2 pt-1">
           {items.map((item) => {
             const { href, label, icon: Icon } = item;
-            const exact = "exact" in item && item.exact;
-            const ariaLabel = "ariaLabel" in item ? item.ariaLabel : undefined;
+            const exact = item.exact;
+            const ariaLabel = item.ariaLabel;
             const hrefPath = navHrefPath(href);
             const active = exact
               ? pathname === hrefPath
@@ -84,9 +100,7 @@ export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) 
                     active ? "text-[var(--color-accent)]" : "text-[var(--color-ink-muted)]"
                   )}
                 >
-                  {active ? (
-                    <MobileNavPill />
-                  ) : null}
+                  {active ? <MobileNavPill /> : null}
                   <Icon
                     className={cn(
                       "relative h-5 w-5 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]",

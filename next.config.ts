@@ -108,11 +108,6 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
-        source: "/prep/:exam",
-        destination: "/:exam",
-        permanent: true,
-      },
-      {
         source: "/exams/:exam",
         destination: "/:exam",
         permanent: true,

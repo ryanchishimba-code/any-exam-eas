@@ -11,6 +11,7 @@ import { parseBillingInterval } from "@/lib/billing-plans";
 import { requireSessionGuard } from "@/lib/session-guard";
 import { requireStripePriceId } from "@/lib/stripe-prices";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
+import { ROUTES } from "@/lib/routes";
 
 export const runtime = "nodejs";
 
@@ -126,7 +127,7 @@ export async function POST(req: Request) {
     stripeCouponId,
     successUrl: embedded
       ? `${origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`
-      : `${origin}/study-hub?checkout=success`,
+      : `${origin}${ROUTES.dashboard}?checkout=success`,
     cancelUrl: embedded ? `${origin}/checkout?cancelled=1` : `${origin}/pricing?checkout=cancelled`,
   };
 

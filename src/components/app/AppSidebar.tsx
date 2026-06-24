@@ -20,7 +20,7 @@ import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { questionBankHref } from "@/lib/edtech/practice-links";
 import { STUDY_NAV_COLOR, STUDY_NAV_SPRING } from "@/lib/layout/nav-motion";
-import { ROUTES } from "@/lib/routes";
+import { ROUTES, fullExamHref } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 type NavItem = {
@@ -35,7 +35,7 @@ type NavItem = {
 const BASE_NAV_ITEMS: NavItem[] = [
   { id: "dashboard", href: ROUTES.dashboard, label: "Dashboard", icon: LayoutGrid, exact: true },
   { id: "library", href: ROUTES.library, label: "Library", icon: BookMarked },
-  { id: "full-exam", href: ROUTES.fullExam, label: "Full Exam", icon: Clock },
+  { id: "full-exam", href: "__full_exam__", label: "Full Exam", icon: Clock },
   { id: "question-bank", href: "__question_bank__", label: "Question Bank", icon: BookOpen },
   {
     id: "anatomy",
@@ -60,6 +60,9 @@ function navPath(href: string) {
 
 function isNavActive(pathname: string, href: string, exact?: boolean) {
   const path = navPath(href);
+  if (path.startsWith(`${ROUTES.fullExam}/`)) {
+    return pathname === path || pathname.startsWith(`${path}/`);
+  }
   return exact ? pathname === path : pathname === path || pathname.startsWith(`${path}/`);
 }
 
@@ -125,14 +128,21 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
 
   const navItems = useMemo(
     () =>
-      BASE_NAV_ITEMS.filter((item) => !item.clinicalOnly || clinical).map((item) =>
-        item.href === "__question_bank__"
-          ? {
-              ...item,
-              href: examSlug ? questionBankHref(examSlug) : ROUTES.questionBank,
-            }
-          : item
-      ),
+      BASE_NAV_ITEMS.filter((item) => !item.clinicalOnly || clinical).map((item) => {
+        if (item.href === "__question_bank__") {
+          return {
+            ...item,
+            href: examSlug ? questionBankHref(examSlug) : ROUTES.questionBank,
+          };
+        }
+        if (item.href === "__full_exam__") {
+          return {
+            ...item,
+            href: examSlug ? fullExamHref(examSlug) : ROUTES.fullExam,
+          };
+        }
+        return item;
+      }),
     [clinical, examSlug]
   );
 

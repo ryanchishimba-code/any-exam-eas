@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { X, Plus, Trash2, Pencil, History, AlertTriangle, Eye, EyeOff } from "lucide-react";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { QuestionStudentPreview } from "@/components/admin/questions/QuestionStudentPreview";
+import { QuestionQualitySection } from "@/components/internal/QuestionQualitySection";
 import type { AdminQuestionDetail } from "@/lib/admin/question-bank-admin";
 
 const STATUS_BADGE: Record<string, string> = {
@@ -204,6 +205,8 @@ export function QuestionDetailDrawer({
                   </span>
                 ) : null}
               </div>
+
+              <QuestionQualitySection questionId={detail.id} />
 
               {editing ? (
                 <EditFields

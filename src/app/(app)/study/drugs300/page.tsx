@@ -2,7 +2,6 @@ import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { auth } from "@/auth";
 import { PremiumGate } from "@/components/PremiumGate";
-import { StudyModeNav } from "@/components/study/StudyModeNav";
 import { redirectMpjeFromClinicalRoutes } from "@/lib/edtech/exam-content-scope";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { studyUi } from "@/lib/study/study-ui";
@@ -48,9 +47,6 @@ export default async function Drugs300Page() {
       </header>
 
       <PremiumGate callbackPath={ROUTES.drugs300}>
-        <div className={cn(studyUi.stickyBar, "mb-2")}>
-          <StudyModeNav />
-        </div>
         <Suspense fallback={<p className="text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
           <DrugReviewStudio />
         </Suspense>

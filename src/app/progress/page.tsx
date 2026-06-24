@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
-import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
+import { ROUTES } from "@/lib/routes";
 
 export default function ProgressRedirectPage() {
-  redirect(STUDY_HUB_PATH);
+  redirect(ROUTES.analytics);
 }

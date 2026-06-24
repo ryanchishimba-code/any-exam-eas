@@ -6,6 +6,8 @@ import { Button } from "./ui/Button";
 import { ManageBillingButton } from "./ManageBillingButton";
 import { ProgressTracker } from "./ProgressTracker";
 import { SubscribeButton } from "./SubscribeButton";
+import { ROUTES } from "@/lib/routes";
+import { studyHubProgressHref } from "@/lib/study-hub/config";
 
 type LessonPlan = {
   id: string;
@@ -79,14 +81,14 @@ export function DashboardClient({
                 <Button href="/study/practice?mode=bank" variant="secondary">
                   Question bank
                 </Button>
-                <Button href="/study-hub#progress" variant="ghost">
+                <Button href={studyHubProgressHref()} variant="ghost">
                   Progress
                 </Button>
               </>
             ) : (
               <SubscribeButton />
             )}
-            <Button href="/progress" variant="ghost">
+            <Button href={ROUTES.analytics} variant="ghost">
               View progress
             </Button>
           </div>

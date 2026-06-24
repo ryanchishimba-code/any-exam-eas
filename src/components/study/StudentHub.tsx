@@ -14,6 +14,7 @@ import { AppleLink } from "@/components/ui/AppleLink";
 import { ProgressMetricsNotice } from "@/components/legal/ProgressMetricsNotice";
 import { formatTrialEntryPrice, formatTrialLabel } from "@/lib/site";
 import { displayFirstName } from "@/lib/display-name";
+import { ROUTES } from "@/lib/routes";
 
 export function StudentHub({ suppressHero = false }: { suppressHero?: boolean }) {
   const { data: session } = useSession();
@@ -161,7 +162,7 @@ export function StudentHub({ suppressHero = false }: { suppressHero?: boolean })
             <h3 className="text-xs font-medium uppercase tracking-wide text-[var(--color-ink-muted)]">
               Recent tests
             </h3>
-            <AppleLink href="/study-hub">View Study Hub</AppleLink>
+            <AppleLink href={ROUTES.dashboard}>View Study Hub</AppleLink>
           </div>
           <ul className="mt-4 divide-y divide-black/[0.06]">
             {dashboard.recentTests.slice(0, 3).map((t) => (

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { AppleLink } from "@/components/ui/AppleLink";
 import { EXAM_MODES } from "@/lib/exam/modes";
+import { studyHubProgressHref } from "@/lib/study-hub/config";
 
 export type StudyFormat = "timed" | "bank" | "progress";
 
@@ -11,7 +12,7 @@ const progressMode = {
   id: "progress" as const,
   label: "Progress",
   description: "Practice trends, streaks, and test history.",
-  href: "/study-hub#progress",
+  href: studyHubProgressHref(),
   linkLabel: "View progress",
 };
 

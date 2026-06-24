@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Search, Sparkles, ChevronRight } from "lucide-react";
+import { Search, Sparkles, ChevronRight, BookOpen } from "lucide-react";
 import { HighYieldTopicPreviewCard } from "@/components/edtech/HighYieldTopicPreviewCard";
 import { HighYieldTopicPanel } from "@/components/edtech/HighYieldTopicPanel";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
@@ -12,6 +12,7 @@ import {
   clampTopicIndex,
 } from "@/lib/edtech/topic-selection";
 import { ROUTES } from "@/lib/routes";
+import { questionBankHref } from "@/lib/edtech/practice-links";
 import { studyUi } from "@/lib/study/study-ui";
 import type { ExamSlug, HighYieldTopic, TopicProgressMap } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -69,6 +70,7 @@ export function HighYieldTopicsClient({
   const activeIndex =
     activeTopic !== null ? filtered.findIndex((t) => t.slug === activeTopic.slug) : -1;
   const reviewedCount = topics.filter((t) => (progressMap[t.id]?.reviewCount ?? 0) > 0).length;
+  const masteryPct = topics.length ? Math.round((reviewedCount / topics.length) * 100) : 0;
 
   function openTopic(topic: HighYieldTopic) {
     setSelectedSlug(topic.slug);
@@ -117,6 +119,40 @@ export function HighYieldTopicsClient({
             <span className="font-semibold text-[var(--color-ink)]">{exam.name}</span>.
           </p>
         </header>
+
+        {/* ── Mastery + question bank shortcut ── */}
+        <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
+          <div className="rounded-[20px] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-4">
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+                  Topic mastery
+                </p>
+                <p className="mt-1 text-sm text-[var(--color-ink)]">
+                  {reviewedCount} of {topics.length} topics reviewed
+                </p>
+              </div>
+              <span className="text-2xl font-semibold tabular-nums text-[var(--color-accent)]">
+                {masteryPct}%
+              </span>
+            </div>
+            <div className="mt-3 h-2 overflow-hidden rounded-full bg-black/[0.06]">
+              <div
+                className="h-full rounded-full bg-[var(--color-accent)] transition-all duration-500"
+                style={{ width: `${masteryPct}%` }}
+              />
+            </div>
+          </div>
+
+          <Link
+            href={questionBankHref(examSlug)}
+            className="inline-flex items-center justify-center gap-2 rounded-[20px] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-5 py-4 text-sm font-semibold text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] transition hover:border-[var(--color-accent)]/30 hover:text-[var(--color-accent)]"
+          >
+            <BookOpen className="h-4 w-4 shrink-0" aria-hidden />
+            Question bank
+            <ChevronRight className="h-4 w-4 shrink-0 opacity-60" aria-hidden />
+          </Link>
+        </div>
 
         {/* ── Exam context ── */}
         <div className="flex items-center gap-3">
