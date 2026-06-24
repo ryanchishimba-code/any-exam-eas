@@ -19,8 +19,8 @@ import {
   STUDY_HUB_PATH,
   TIMED_EXAM_PATH,
   TOP_500_DRUGS_PATH,
-  studyHubProgressHref,
 } from "@/lib/study-hub/config";
+import { ROUTES } from "@/lib/routes";
 import { studyUi } from "@/lib/study/study-ui";
 import { cn } from "@/lib/utils";
 
@@ -42,7 +42,6 @@ const MODE_ITEMS: ModeItem[] = [
     icon: Layers,
     clinicalOnly: true,
   },
-  { id: "progress", href: studyHubProgressHref(), label: "Progress", icon: BarChart3 },
 ];
 
 function StudyModeNavInner() {
@@ -54,6 +53,8 @@ function StudyModeNavInner() {
 
   const onStudyHub =
     pathname === STUDY_HUB_PATH || pathname.startsWith(`${STUDY_HUB_PATH}/`);
+  const onAnalytics =
+    pathname === ROUTES.analytics || pathname.startsWith(`${ROUTES.analytics}/`);
 
   const modeItems = useMemo(
     () => MODE_ITEMS.filter((item) => !item.clinicalOnly || clinical),
@@ -72,9 +73,6 @@ function StudyModeNavInner() {
         (pathname.startsWith("/study/practice") && mode === "bank")
       );
     }
-    if (href === studyHubProgressHref()) {
-      return pathname === href || pathname.startsWith(`${href}/`);
-    }
     return pathname === href;
   }
 
@@ -83,23 +81,38 @@ function StudyModeNavInner() {
       className="flex flex-wrap items-center gap-2 sm:gap-2.5"
       aria-label="Study Hub navigation"
     >
-      <Link
-        href={STUDY_HUB_PATH}
-        aria-current={onStudyHub ? "page" : undefined}
-        className={cn(
-          "inline-flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] font-semibold transition active:scale-[0.98]",
-          onStudyHub
-            ? "bg-[var(--color-accent)] text-white shadow-[var(--shadow-apple-sm)]"
-            : "border border-[var(--color-accent)]/35 bg-[var(--color-accent)]/12 text-[var(--color-accent)] ring-1 ring-inset ring-[var(--color-accent)]/10 hover:bg-[var(--color-accent)]/18"
-        )}
-      >
-        {!onStudyHub ? (
-          <ArrowLeft className="h-3.5 w-3.5 shrink-0" aria-hidden />
-        ) : (
-          <LayoutGrid className="h-3.5 w-3.5 shrink-0" aria-hidden />
-        )}
-        Study Hub
-      </Link>
+      <div className="flex shrink-0 items-center gap-1.5">
+        <Link
+          href={STUDY_HUB_PATH}
+          aria-current={onStudyHub ? "page" : undefined}
+          className={cn(
+            "inline-flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] font-semibold transition active:scale-[0.98]",
+            onStudyHub
+              ? "bg-[var(--color-accent)] text-white shadow-[var(--shadow-apple-sm)]"
+              : "border border-[var(--color-accent)]/35 bg-[var(--color-accent)]/12 text-[var(--color-accent)] ring-1 ring-inset ring-[var(--color-accent)]/10 hover:bg-[var(--color-accent)]/18"
+          )}
+        >
+          {!onStudyHub ? (
+            <ArrowLeft className="h-3.5 w-3.5 shrink-0" aria-hidden />
+          ) : (
+            <LayoutGrid className="h-3.5 w-3.5 shrink-0" aria-hidden />
+          )}
+          Dashboard
+        </Link>
+
+        <Link
+          href={ROUTES.analytics}
+          aria-current={onAnalytics ? "page" : undefined}
+          className={cn(
+            studyUi.filterPill,
+            "inline-flex items-center gap-1.5",
+            onAnalytics ? studyUi.filterPillActive : studyUi.filterPillIdle
+          )}
+        >
+          <BarChart3 className="h-3.5 w-3.5 shrink-0" aria-hidden />
+          Analytics
+        </Link>
+      </div>
 
       <span
         className="hidden h-5 w-px shrink-0 bg-[var(--color-border)] sm:block"

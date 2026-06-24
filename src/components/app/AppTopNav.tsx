@@ -13,10 +13,12 @@ import { displayFirstName } from "@/lib/display-name";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
-const APP_LINKS = [
-  { href: ROUTES.fullExam, label: "Full Exam" },
+const PRIMARY_LINKS = [
+  { href: ROUTES.dashboard, label: "Dashboard" },
   { href: ROUTES.analytics, label: "Analytics" },
 ] as const;
+
+const CENTER_LINKS = [{ href: ROUTES.fullExam, label: "Full Exam" }] as const;
 
 function navLinkClass(active: boolean) {
   return cn(
@@ -45,11 +47,11 @@ export function AppTopNav({ onMenuClick }: Props) {
       <nav
         className={cn(
           shellUi.container,
-          "grid h-[var(--nav-height)] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 px-4 sm:gap-3 sm:px-6 xl:px-8"
+          "grid h-[var(--nav-height)] grid-cols-[auto_1fr_auto] items-center gap-2 px-4 sm:gap-3 sm:px-6 xl:px-8"
         )}
         aria-label="App navigation"
       >
-        <div className="flex min-w-0 items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <button
             type="button"
             onClick={onMenuClick}
@@ -60,10 +62,22 @@ export function AppTopNav({ onMenuClick }: Props) {
           </button>
 
           <BrandLogo href={ROUTES.dashboard} variant="nav" />
+
+          <div className="hidden items-center gap-3 md:flex">
+            {PRIMARY_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(navLinkClass(isActive(link.href)), "whitespace-nowrap")}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </div>
 
-        <div className="hidden items-center justify-center gap-4 md:flex">
-          {APP_LINKS.map((link) => (
+        <div className="hidden min-w-0 items-center justify-center gap-4 md:flex">
+          {CENTER_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -74,8 +88,8 @@ export function AppTopNav({ onMenuClick }: Props) {
           ))}
         </div>
 
-        <div className="flex min-w-0 items-center justify-end gap-1.5 sm:gap-2">
-          <div className="hidden shrink-0 md:block">
+        <div className="flex shrink-0 items-center justify-end gap-1.5 sm:gap-2">
+          <div className="hidden md:block">
             <GlobalExamSwitcher variant="nav" />
           </div>
           <ThemeToggle />
