@@ -137,7 +137,7 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
   );
 
   return (
-    <aside className={cn(embedded ? "block w-full" : "hidden w-56 shrink-0 lg:block")}>
+    <aside className={cn(embedded ? "block w-full" : "w-56 shrink-0")}>
       {embedded ? (
         <div className="mb-4">
           <GlobalExamSwitcher variant="mobile" onNavigate={onNavigate} />

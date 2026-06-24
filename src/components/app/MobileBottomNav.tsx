@@ -8,7 +8,7 @@ import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { highYieldTopicsHref, questionBankHref } from "@/lib/edtech/practice-links";
-import { STUDY_NAV_COLOR, STUDY_NAV_SPRING } from "@/lib/layout/nav-motion";
+import { SHELL_CHROME_SPRING, STUDY_NAV_COLOR, STUDY_NAV_SPRING } from "@/lib/layout/nav-motion";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -25,10 +25,11 @@ function navHrefPath(href: string) {
   return href.split("?")[0]!;
 }
 
-export function MobileBottomNav() {
+export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) {
   const pathname = usePathname();
   const { examSlug } = useAppPreferences();
   const clinical = hasClinicalStudyTools(examSlug);
+  const reduceMotion = useReducedMotion();
 
   const items = useMemo(() => {
     const bankHref = examSlug ? questionBankHref(examSlug) : ROUTES.questionBank;
@@ -49,9 +50,17 @@ export function MobileBottomNav() {
   }, [clinical, examSlug]);
 
   return (
-    <nav
+    <motion.nav
+      initial={false}
+      animate={{
+        y: concealed ? "100%" : "0%",
+        opacity: concealed ? 0 : 1,
+      }}
+      transition={reduceMotion ? { duration: 0 } : SHELL_CHROME_SPRING}
       className="fixed inset-x-0 bottom-0 z-50 border-t border-black/[0.06] bg-white/95 pb-[env(safe-area-inset-bottom,0px)] backdrop-blur-lg lg:hidden"
+      style={{ pointerEvents: concealed ? "none" : "auto" }}
       aria-label="Mobile study navigation"
+      aria-hidden={concealed}
     >
       <LayoutGroup id="mobile-bottom-nav">
         <ul className="mx-auto flex max-w-lg items-stretch justify-around px-2 pt-1">
@@ -92,7 +101,7 @@ export function MobileBottomNav() {
           })}
         </ul>
       </LayoutGroup>
-    </nav>
+    </motion.nav>
   );
 }
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ChevronRight, Zap } from "lucide-react";
 import { QuestionBankExamHero } from "@/components/study/question-bank/QuestionBankExamHero";
 import { QuestionBankSegment } from "@/components/study/question-bank/QuestionBankSection";
@@ -18,7 +19,6 @@ import {
 } from "@/lib/full-exam/config";
 import { acquireAutostartLock, releaseAutostartLock } from "@/lib/full-exam/autostart-lock";
 import { feUi } from "@/lib/study/full-exam-ui";
-import { navigateHard } from "@/lib/client/navigate-hard";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
@@ -37,6 +37,7 @@ export function FullExamLauncher({
   autostart = false,
   initialTimed = true,
 }: Props) {
+  const router = useRouter();
   const exam = EXAM_CATALOG[examSlug];
   const options = getLengthOptions(examSlug);
 
@@ -89,7 +90,7 @@ export function FullExamLauncher({
         setPending(false);
         return;
       }
-      navigateHard(href);
+      router.push(href);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not start exam");
       startingRef.current = false;

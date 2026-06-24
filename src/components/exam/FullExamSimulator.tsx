@@ -567,7 +567,7 @@ export function FullExamSimulator({
 
   if (loadError) {
     return (
-      <div className={cn(feUi.pageBg, "flex min-h-screen items-center justify-center p-6")}>
+      <div className={cn(feUi.pageBg, "flex items-center justify-center p-6")}>
         <div className={cn(feUi.panel, "max-w-md space-y-4 p-6 text-center")}>
           <p className="text-[15px] font-medium text-[var(--color-ink)]">{loadError}</p>
           {fieldId === "mpje" ? (
@@ -589,7 +589,7 @@ export function FullExamSimulator({
 
   if (!questions.length) {
     return (
-      <div className={cn(feUi.pageBg, "flex min-h-screen items-center justify-center p-6")}>
+      <div className={cn(feUi.pageBg, "flex items-center justify-center p-6")}>
         <p className="text-center text-[var(--color-ink-muted)]">
           No questions available yet. Sync the question bank and try again.
         </p>

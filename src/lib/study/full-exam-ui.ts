@@ -1,7 +1,7 @@
 /** Shared Apple-style surface tokens for Full Exam UI — theme-aware. */
 export const feUi = {
   page: "full-exam-ui",
-  pageBg: "min-h-screen bg-[var(--color-bg)]",
+  pageBg: "min-h-[calc(100dvh-var(--nav-height))] bg-[var(--color-bg)]",
   pageShell:
     "rounded-[28px] border border-[var(--color-border)] bg-[var(--color-surface)] p-1 sm:p-1.5",
   panel:
@@ -32,7 +32,7 @@ export const feUi = {
   startBtn:
     "flex h-12 w-full items-center justify-center gap-2 rounded-full text-[15px] font-semibold text-white shadow-[var(--shadow-apple-btn)] transition hover:shadow-[var(--shadow-apple-btn-hover)] disabled:opacity-50",
   glassHeader:
-    "sticky top-0 z-20 border-b border-[var(--color-border)] bg-[var(--color-surface-elevated)]/80 backdrop-blur-xl",
+    "sticky top-0 z-20 border-b border-[var(--color-border)] bg-[var(--color-surface-elevated)]/80 backdrop-blur-xl supports-[backdrop-filter]:bg-[var(--color-surface-elevated)]/70",
   glassFooter:
     "fixed inset-x-0 bottom-0 z-[70] border-t border-[var(--color-border)] bg-[var(--color-surface-elevated)]/90 pb-[env(safe-area-inset-bottom,0px)] backdrop-blur-xl",
   footerBtn:
