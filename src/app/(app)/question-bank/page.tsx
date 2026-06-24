@@ -5,9 +5,13 @@ import { PremiumGate } from "@/components/PremiumGate";
 import { ProBenefitsCallout } from "@/components/ProBenefitsCallout";
 import { StudyBankPractice } from "@/components/study/StudyBankPractice";
 import { StudyPageHeader } from "@/components/study/StudyPageHeader";
-import { getUserExamPreference, setUserExamPreference } from "@/lib/edtech/exam-preference";
-import { EXAM_CATALOG, examSlugFromFieldId, isExamSlug } from "@/lib/edtech/exams";
-import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
+import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import {
+  fieldIdForExamSlug,
+  fieldMatchesExamSlug,
+  resolveQuestionBankFieldId,
+} from "@/lib/edtech/question-bank-scope";
 import { loadSubjectCountsForUser } from "@/lib/study/load-subject-counts";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { requirePremiumPage } from "@/lib/require-premium-page";
@@ -21,7 +25,7 @@ export const metadata = {
 export default async function QuestionBankPage({
   searchParams,
 }: {
-  searchParams: Promise<{ field?: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const session = await auth();
   if (!session?.user?.id) {
@@ -31,19 +35,27 @@ export default async function QuestionBankPage({
   await requirePremiumPage(ROUTES.questionBank);
 
   const sp = await searchParams;
-  if (sp.field) {
-    const fieldId = resolveQuestionBankFieldId(sp.field);
-    const examSlug = examSlugFromFieldId(fieldId);
-    if (examSlug && isExamSlug(examSlug)) {
-      await setUserExamPreference(session.user.id, examSlug);
-    }
-  }
-
   const pref = await getUserExamPreference(session.user.id);
   if (!pref) redirect(ROUTES.selectExam);
 
   const exam = EXAM_CATALOG[pref.examSlug];
-  const fieldParam = sp.field ?? exam.fieldId;
+  const defaultFieldId = fieldIdForExamSlug(pref.examSlug);
+  let fieldParam = defaultFieldId;
+
+  if (sp.field) {
+    const resolvedFieldId = resolveQuestionBankFieldId(String(sp.field));
+    if (fieldMatchesExamSlug(resolvedFieldId, pref.examSlug)) {
+      fieldParam = resolvedFieldId;
+    } else {
+      const qs = new URLSearchParams();
+      for (const [key, value] of Object.entries(sp)) {
+        if (key === "field" || value == null) continue;
+        qs.set(key, Array.isArray(value) ? value[0]! : value);
+      }
+      qs.set("field", defaultFieldId);
+      redirect(`${ROUTES.questionBank}?${qs.toString()}`);
+    }
+  }
   const [countsPayload, dashboard] = await Promise.all([
     loadSubjectCountsForUser(session.user.id, fieldParam),
     getStudentDashboardData(session.user.id),

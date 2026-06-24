@@ -13,10 +13,12 @@ export function QuestionBankExamHero({
   exam,
   examSlug,
   description,
+  allowExamSwitch = false,
 }: {
   exam: (typeof EXAM_CATALOG)[ExamSlug];
   examSlug: ExamSlug;
   description?: string;
+  allowExamSwitch?: boolean;
 }) {
   const theme = EXAM_SELECTION_THEMES[examSlug];
   const Icon = theme.icon;
@@ -47,13 +49,15 @@ export function QuestionBankExamHero({
           <p className="mt-1 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
             {description ?? exam.description}
           </p>
-          <Link
-            href={`${ROUTES.selectExam}?switch=1`}
-            className="mt-2 inline-flex items-center gap-0.5 text-[13px] font-semibold text-[var(--color-accent)] hover:underline"
-          >
-            Switch exam
-            <ChevronRight className="h-3.5 w-3.5" aria-hidden />
-          </Link>
+          {allowExamSwitch ? (
+            <Link
+              href={`${ROUTES.selectExam}?switch=1`}
+              className="mt-2 inline-flex items-center gap-0.5 text-[13px] font-semibold text-[var(--color-accent)] hover:underline"
+            >
+              Switch exam
+              <ChevronRight className="h-3.5 w-3.5" aria-hidden />
+            </Link>
+          ) : null}
         </div>
       </div>
     </div>

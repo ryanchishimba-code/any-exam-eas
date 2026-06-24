@@ -47,7 +47,7 @@ export type QuestionBankFieldAccess =
   | { ok: true; examSlug: ExamSlug; fieldId: string }
   | { ok: false; response: NextResponse };
 
-/** Allow question requests for board exams; auto-switch preference to match the requested field. */
+/** Allow question requests for board exams; reject fields outside the user's selected exam. */
 export async function enforceQuestionBankFieldAccess(
   userId: string,
   field: string
@@ -81,10 +81,20 @@ export async function enforceQuestionBankFieldAccess(
   }
 
   if (!fieldMatchesExamSlug(fieldId, pref.examSlug)) {
-    await setUserExamPreference(userId, targetSlug);
+    return {
+      ok: false,
+      response: NextResponse.json(
+        {
+          error: "That field does not match your selected exam.",
+          code: "EXAM_FIELD_MISMATCH",
+          expectedExamSlug: pref.examSlug,
+        },
+        { status: 403 }
+      ),
+    };
   }
 
-  return { ok: true, examSlug: targetSlug, fieldId };
+  return { ok: true, examSlug: pref.examSlug, fieldId };
 }
 
 /** Resolve roadmap / analytics field for a USMLE slug + optional step query. */

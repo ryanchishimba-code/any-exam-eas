@@ -41,3 +41,12 @@ export function isFullExamSessionRoute(pathname: string): boolean {
   if (parts.length === 3) return true;
   return parts.length === 4 && parts[3] === "results";
 }
+
+/** Question bank + full-exam launcher — primary exam cannot be changed from chrome or URL. */
+export function isExamPracticeLockedRoute(pathname: string): boolean {
+  if (pathname === "/question-bank" || pathname.startsWith("/question-bank/")) {
+    return true;
+  }
+  const parts = pathname.split("/").filter(Boolean);
+  return parts[0] === "full-exam" && parts.length === 2;
+}

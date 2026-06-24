@@ -355,15 +355,11 @@ export function StudyBankPractice({
       if (!expectedMeta) return;
 
       if (paramMeta && !fieldMatchesExamSlug(paramMeta.id, effectiveExamSlug)) {
-        const requestedSlug = examSlugFromFieldId(paramMeta.id);
-        if (requestedSlug) {
-          void fetch("/api/user/exam-preference", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ examSlug: requestedSlug }),
-          });
-        }
-        setField(paramMeta.label);
+        setField(expectedMeta.label);
+        const qs = new URLSearchParams(searchParams.toString());
+        qs.set("field", expectedId);
+        if (onQuestionBank && !qs.has("mode")) qs.set("mode", "bank");
+        router.replace(`${practiceBase}?${qs.toString()}`, { scroll: false });
         return;
       }
 

@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { FullExamLauncher } from "@/components/exam/FullExamLauncher";
-import { setUserExamPreference } from "@/lib/edtech/exam-preference";
+import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { requireProFeaturePage } from "@/lib/require-pro-feature";
 import { fullExamHref, ROUTES } from "@/lib/routes";
@@ -37,7 +37,16 @@ export default async function FullExamLauncherPage({
 
   await requireProFeaturePage("unlimited_mock_exams", fullExamHref(examSlug as ExamSlug));
 
-  await setUserExamPreference(session.user.id, examSlug as ExamSlug);
+  const pref = await getUserExamPreference(session.user.id);
+  if (!pref) redirect(ROUTES.selectExam);
+  if (pref.examSlug !== examSlug) {
+    const qs = new URLSearchParams();
+    if (sp.mode) qs.set("mode", sp.mode);
+    if (sp.autostart) qs.set("autostart", sp.autostart);
+    if (sp.timed) qs.set("timed", sp.timed);
+    const suffix = qs.toString();
+    redirect(`${fullExamHref(pref.examSlug)}${suffix ? `?${suffix}` : ""}`);
+  }
 
   return (
     <FullExamLauncher

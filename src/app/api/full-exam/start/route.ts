@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createExamSession } from "@/lib/exam-sessions/service";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
-import { setUserExamPreference } from "@/lib/edtech/exam-preference";
+import { getUserExamPreference, touchExamStudied } from "@/lib/edtech/exam-preference";
 import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
 import { loadUsmlePresetExamItems } from "@/lib/exam-prep/usmle/load-preset-exam";
 import { loadNptePtPresetExamItems } from "@/lib/exam-prep/npte-pt/load-preset-exam";
@@ -35,7 +35,17 @@ export async function POST(req: Request) {
       : undefined;
 
   try {
-    await setUserExamPreference(premium.userId, examSlug);
+    const pref = await getUserExamPreference(premium.userId);
+    if (!pref) {
+      return NextResponse.json({ error: "Select an exam before starting." }, { status: 403 });
+    }
+    if (pref.examSlug !== examSlug) {
+      return NextResponse.json(
+        { error: "That exam does not match your selected exam.", code: "EXAM_MISMATCH" },
+        { status: 403 }
+      );
+    }
+    await touchExamStudied(premium.userId);
 
     let presetQuestionCount: number | undefined;
     let sessionFieldId = EXAM_CATALOG[examSlug].fieldId;

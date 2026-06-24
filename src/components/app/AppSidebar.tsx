@@ -20,6 +20,7 @@ import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { questionBankHref } from "@/lib/edtech/practice-links";
 import { STUDY_NAV_COLOR, STUDY_NAV_SPRING } from "@/lib/layout/nav-motion";
+import { isExamPracticeLockedRoute } from "@/lib/navigation/app-shell";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -124,6 +125,7 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
   const pathname = usePathname();
   const { examSlug } = useAppPreferences();
   const clinical = hasClinicalStudyTools(examSlug);
+  const examSwitchLocked = isExamPracticeLockedRoute(pathname);
   const pillId = embedded ? "study-sidebar-pill-mobile" : "study-sidebar-pill-desktop";
 
   const navItems = useMemo(
@@ -174,7 +176,7 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
             ))}
           </ul>
         </LayoutGroup>
-        {embedded ? (
+        {embedded && !examSwitchLocked ? (
           <Link
             href={`${ROUTES.selectExam}?switch=1`}
             onClick={onNavigate}
