@@ -131,7 +131,7 @@ export function ExamLanding({ slug }: Props) {
             icon={BookOpen}
             title="Deep dive modules"
             description="Textbook-style review tied to your question bank."
-            href={`${ROUTES.highYieldTopics}?exam=${slug}&deep=1`}
+            href={`${ROUTES.highYieldTopics}?mode=deep`}
           />
         </div>
       </section>

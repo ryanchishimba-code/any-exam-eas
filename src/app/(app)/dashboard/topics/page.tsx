@@ -30,11 +30,17 @@ async function TopicsContent({
   deepDive?: boolean;
 }) {
   const pref = await getUserExamPreference(userId);
-  const examSlug: ExamSlug =
-    examParam && isExamSlug(examParam) ? examParam : (pref?.examSlug ?? "nclex");
+  if (!pref) redirect(ROUTES.selectExam);
 
-  if (!pref && !examParam) {
-    redirect(ROUTES.selectExam);
+  const examSlug: ExamSlug = pref.examSlug;
+
+  // High-yield topics are scoped to the user's active exam — ignore mismatched ?exam= links.
+  if (examParam && isExamSlug(examParam) && examParam !== examSlug) {
+    const qs = new URLSearchParams();
+    if (topicParam) qs.set("topic", topicParam);
+    if (deepDive) qs.set("mode", "deep");
+    const suffix = qs.toString();
+    redirect(suffix ? `${ROUTES.highYieldTopics}?${suffix}` : ROUTES.highYieldTopics);
   }
 
   const topics = await loadHighYieldTopics(examSlug);

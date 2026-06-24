@@ -5,7 +5,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Search, Sparkles, ChevronRight } from "lucide-react";
 import { HighYieldTopicPreviewCard } from "@/components/edtech/HighYieldTopicPreviewCard";
 import { HighYieldTopicPanel } from "@/components/edtech/HighYieldTopicPanel";
-import { HighYieldExamWheel } from "@/components/edtech/HighYieldExamWheel";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getTopicCategories } from "@/lib/edtech/seeds";
 import {
@@ -119,18 +118,7 @@ export function HighYieldTopicsClient({
           </p>
         </header>
 
-        {/* ── Exam wheel ── */}
-        <section
-          className="rounded-[22px] border border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-6 shadow-[var(--shadow-apple-sm)]"
-          aria-label="Switch exam"
-        >
-          <p className="mb-4 text-center text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-ink-muted)]">
-            Choose your exam
-          </p>
-          <HighYieldExamWheel currentExam={examSlug} />
-        </section>
-
-        {/* ── Exam context divider ── */}
+        {/* ── Exam context ── */}
         <div className="flex items-center gap-3">
           <div className="h-px flex-1 bg-[var(--color-border)]" />
           <div className="flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3.5 py-1.5">

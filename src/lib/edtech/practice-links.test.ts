@@ -6,12 +6,9 @@ import {
 } from "./practice-links";
 
 describe("highYieldTopicsHref", () => {
-  it("includes exam query param when slug is provided", () => {
-    expect(highYieldTopicsHref("nclex")).toBe("/dashboard/topics?exam=nclex");
-    expect(highYieldTopicsHref("usmle")).toBe("/dashboard/topics?exam=usmle");
-  });
-
-  it("returns base route when slug is omitted", () => {
+  it("returns the topics route scoped to the user's active exam", () => {
+    expect(highYieldTopicsHref("nclex")).toBe("/dashboard/topics");
+    expect(highYieldTopicsHref("usmle")).toBe("/dashboard/topics");
     expect(highYieldTopicsHref()).toBe("/dashboard/topics");
   });
 });
@@ -49,7 +46,7 @@ describe("parseTopicPracticeReturn", () => {
     });
     const parsed = parseTopicPracticeReturn(params);
     expect(parsed).toEqual({
-      href: "/dashboard/topics?exam=nclex&topic=sepsis-shock",
+      href: "/dashboard/topics?topic=sepsis-shock",
       label: "Sepsis & Shock Prioritization",
     });
   });

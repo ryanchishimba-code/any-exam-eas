@@ -108,21 +108,17 @@ export function top500Href(examSlug: ExamSlug): string {
   return `${ROUTES.drugs300}?exam=${examSlug}`;
 }
 
-export function highYieldTopicsHref(examSlug?: ExamSlug): string {
-  if (!examSlug) return ROUTES.highYieldTopics;
-  return `${ROUTES.highYieldTopics}?exam=${encodeURIComponent(examSlug)}`;
+export function highYieldTopicsHref(_examSlug?: ExamSlug): string {
+  return ROUTES.highYieldTopics;
 }
 
-/** Deep link to a specific review module or topic slide-over. */
+/** Deep link to a specific review module or topic slide-over (scoped to active exam on load). */
 export function highYieldTopicHref(
-  examSlug: ExamSlug,
+  _examSlug: ExamSlug,
   topicSlug: string,
   opts?: { deepDive?: boolean }
 ): string {
-  const qs = new URLSearchParams({
-    exam: examSlug,
-    topic: topicSlug,
-  });
+  const qs = new URLSearchParams({ topic: topicSlug });
   if (opts?.deepDive) qs.set("mode", "deep");
   return `${ROUTES.highYieldTopics}?${qs.toString()}`;
 }

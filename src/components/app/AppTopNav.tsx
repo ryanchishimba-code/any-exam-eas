@@ -15,7 +15,6 @@ import { cn } from "@/lib/utils";
 
 const APP_LINKS = [
   { href: ROUTES.fullExam, label: "Full Exam" },
-  { href: ROUTES.questionBank, label: "Question Bank" },
   { href: ROUTES.analytics, label: "Analytics" },
 ] as const;
 

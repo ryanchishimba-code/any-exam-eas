@@ -437,7 +437,7 @@ export function buildDailyAssignment(
         kind: "review",
         title: "High-yield topics",
         description: "Textbook-style review modules.",
-        href: `/dashboard/topics?exam=${examSlug}`,
+        href: "/dashboard/topics",
         estimatedMinutes: 15,
       },
     ],
