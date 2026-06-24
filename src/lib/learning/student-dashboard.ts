@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
 import { getLearningProfileSnapshot } from "./profile-service";
+import { CACHE_TTL, cacheGetOrSet, cacheKey } from "@/lib/cache";
 
 export type AccuracyTrendPoint = {
   date: string;
@@ -152,13 +153,69 @@ async function getSpacedReviewSummary(
   return { dueCount, weakDueCount };
 }
 
+function mapWeakTopics(
+  masteries: {
+    conceptKey: string;
+    fieldId: string;
+    masteryScore: number;
+    attempts: number;
+  }[]
+): WeakTopicRow[] {
+  const weaknessWeights = masteries.map((m) => {
+    const gap = Math.max(0, 100 - m.masteryScore);
+    return { ...m, weight: gap * Math.sqrt(Math.max(m.attempts, 1)) };
+  });
+  const totalWeight = weaknessWeights.reduce((s, w) => s + w.weight, 0) || 1;
+
+  return weaknessWeights.map((m) => ({
+    id: m.conceptKey,
+    name: formatConceptLabel(m.conceptKey),
+    fieldId: m.fieldId,
+    masteryScore: Math.round(m.masteryScore),
+    attempts: m.attempts,
+    weight: Math.round((m.weight / totalWeight) * 100),
+  }));
+}
+
+/** Lightweight weak-topic fetch for question bank setup (skips trend/recent tests). */
+export async function getStudentWeakTopics(
+  userId: string,
+  fieldIds: FieldScope = null
+): Promise<WeakTopicRow[]> {
+  const scopeKey = fieldIds?.length ? fieldIds.join(",") : "all";
+  return cacheGetOrSet(
+    cacheKey(["weak-topics", userId, scopeKey]),
+    CACHE_TTL.learningDashboard,
+    async () => {
+      const masteries = await prisma.conceptMastery.findMany({
+        where: { userId, ...fieldWhere(fieldIds) },
+        orderBy: { masteryScore: "asc" },
+        take: 6,
+      });
+      return mapWeakTopics(masteries);
+    }
+  );
+}
+
+export async function getStudentDashboardData(
+  userId: string,
+  fieldIds: FieldScope = null
+): Promise<StudentDashboardData> {
+  const scopeKey = fieldIds?.length ? fieldIds.join(",") : "all";
+  return cacheGetOrSet(
+    cacheKey(["student-dashboard", userId, scopeKey]),
+    CACHE_TTL.learningDashboard,
+    () => loadStudentDashboardData(userId, fieldIds)
+  );
+}
+
 /**
  * @param fieldIds Optional per-exam scope. When provided, every metric, trend,
  *   weak/strong topic, spaced-review count, recent session, and the readiness
  *   score is restricted to those study fields so analytics reflects only the
  *   selected exam. Omit (or pass null/empty) for the global, all-exam view.
  */
-export async function getStudentDashboardData(
+async function loadStudentDashboardData(
   userId: string,
   fieldIds: FieldScope = null
 ): Promise<StudentDashboardData> {
@@ -212,20 +269,7 @@ export async function getStudentDashboardData(
     return Boolean(scopeSlug && exam.field === scopeSlug);
   }
 
-  const weaknessWeights = masteries.map((m) => {
-    const gap = Math.max(0, 100 - m.masteryScore);
-    return { ...m, weight: gap * Math.sqrt(Math.max(m.attempts, 1)) };
-  });
-  const totalWeight = weaknessWeights.reduce((s, w) => s + w.weight, 0) || 1;
-
-  const weakTopics: WeakTopicRow[] = weaknessWeights.map((m) => ({
-    id: m.conceptKey,
-    name: formatConceptLabel(m.conceptKey),
-    fieldId: m.fieldId,
-    masteryScore: Math.round(m.masteryScore),
-    attempts: m.attempts,
-    weight: Math.round((m.weight / totalWeight) * 100),
-  }));
+  const weakTopics = mapWeakTopics(masteries);
 
   const recentTests: RecentTestRow[] = completedRecords
     .filter((r) => recordInScope(r.entityId))

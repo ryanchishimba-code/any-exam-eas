@@ -101,6 +101,8 @@ export const CACHE_TTL = {
   researchBrief: 60 * 60 * 1000, // 1h — Tavily + synthesis
   subjectCatalog: 5 * 60 * 1000, // 5m
   learningDashboard: 30 * 1000, // 30s per user
+  examPreference: 60 * 1000, // 60s per user
+  userAccess: 30 * 1000, // 30s per user — dedupes requirePremiumPage
   referenceBrief: 2 * 60 * 60 * 1000, // 2h — AI + OER synthesis per user/exam
   subscriptionStatus: 30 * 1000, // 30s per user — dedupes nav + home fetches
   questionBankSlice: 10 * 60 * 1000, // 10m
@@ -108,4 +110,9 @@ export const CACHE_TTL = {
 
 export function invalidateSubscriptionStatusCache(userId: string): void {
   cacheDelete(cacheKey(["subscription-status", userId]));
+  cacheDelete(cacheKey(["user-access", userId]));
+}
+
+export function invalidateExamPreferenceCache(userId: string): void {
+  cacheDelete(cacheKey(["exam-preference", userId]));
 }

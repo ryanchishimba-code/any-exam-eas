@@ -5,7 +5,13 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   serverExternalPackages: ["stripe"],
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion"],
+    optimizePackageImports: [
+      "lucide-react",
+      "framer-motion",
+      "@react-three/drei",
+      "@react-three/fiber",
+      "three",
+    ],
   },
   images: {
     remotePatterns: [],

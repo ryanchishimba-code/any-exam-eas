@@ -1,9 +1,16 @@
+import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 import { ensureBoardExam } from "@/lib/edtech/board-exam-sync";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
+import {
+  CACHE_TTL,
+  cacheGetOrSet,
+  cacheKey,
+  invalidateExamPreferenceCache,
+} from "@/lib/cache";
 import type { ExamSlug, UserExamPreference } from "@/types/edtech";
 
-export async function getUserExamPreference(userId: string): Promise<UserExamPreference | null> {
+async function readUserExamPreference(userId: string): Promise<UserExamPreference | null> {
   try {
     const row = await prisma.userExamPreference.findUnique({ where: { userId } });
     if (!row) return null;
@@ -24,6 +31,15 @@ export async function getUserExamPreference(userId: string): Promise<UserExamPre
   }
 }
 
+/** Per-request dedupe + short TTL cache for hot navigation paths. */
+export const getUserExamPreference = cache(async (userId: string): Promise<UserExamPreference | null> => {
+  return cacheGetOrSet(
+    cacheKey(["exam-preference", userId]),
+    CACHE_TTL.examPreference,
+    () => readUserExamPreference(userId)
+  );
+});
+
 export async function setUserExamPreference(userId: string, examSlug: ExamSlug): Promise<void> {
   await ensureBoardExam(examSlug);
 
@@ -33,6 +49,7 @@ export async function setUserExamPreference(userId: string, examSlug: ExamSlug):
     create: { userId, examSlug, lastStudiedAt: now, updatedAt: now },
     update: { examSlug, lastStudiedAt: now, updatedAt: now },
   });
+  invalidateExamPreferenceCache(userId);
 }
 
 export async function touchExamStudied(userId: string): Promise<void> {
@@ -41,6 +58,7 @@ export async function touchExamStudied(userId: string): Promise<void> {
     where: { userId },
     data: { lastStudiedAt: now, updatedAt: now },
   });
+  invalidateExamPreferenceCache(userId);
 }
 
 export function resolveExamFieldId(examSlug: ExamSlug): string {

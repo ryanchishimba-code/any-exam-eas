@@ -3,8 +3,9 @@ import { auth } from "@/auth";
 import { Suspense } from "react";
 import { PremiumGate } from "@/components/PremiumGate";
 import { ProBenefitsCallout } from "@/components/ProBenefitsCallout";
-import { StudyBankPractice } from "@/components/study/StudyBankPractice";
 import { StudyPageHeader } from "@/components/study/StudyPageHeader";
+import { QuestionBankPracticeLoader } from "@/components/study/question-bank/QuestionBankPracticeLoader";
+import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
@@ -12,8 +13,6 @@ import {
   fieldMatchesExamSlug,
   resolveQuestionBankFieldId,
 } from "@/lib/edtech/question-bank-scope";
-import { loadSubjectCountsForUser } from "@/lib/study/load-subject-counts";
-import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 
@@ -21,6 +20,15 @@ export const metadata = {
   title: "Question Bank — Any Exam Easy",
   description: "Adaptive question bank with topic filters and detailed rationales.",
 };
+
+function QuestionBankPracticeSkeleton() {
+  return (
+    <div className="space-y-4">
+      <Skeleton className="h-28 w-full rounded-2xl" />
+      <Skeleton className="h-72 w-full rounded-[28px]" />
+    </div>
+  );
+}
 
 export default async function QuestionBankPage({
   searchParams,
@@ -56,10 +64,6 @@ export default async function QuestionBankPage({
       redirect(`${ROUTES.questionBank}?${qs.toString()}`);
     }
   }
-  const [countsPayload, dashboard] = await Promise.all([
-    loadSubjectCountsForUser(session.user.id, fieldParam),
-    getStudentDashboardData(session.user.id),
-  ]);
 
   return (
     <div className="w-full space-y-5">
@@ -73,13 +77,11 @@ export default async function QuestionBankPage({
       <ProBenefitsCallout />
 
       <PremiumGate callbackPath={ROUTES.questionBank}>
-        <Suspense fallback={<p className="text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
-          <StudyBankPractice
-            preferredExamSlug={pref.examSlug}
-            lockExam
-            initialSubjectCounts={countsPayload?.counts}
-            initialSubjectCountsFieldId={countsPayload?.fieldId}
-            weakTopics={dashboard.weakTopics}
+        <Suspense fallback={<QuestionBankPracticeSkeleton />}>
+          <QuestionBankPracticeLoader
+            userId={session.user.id}
+            examSlug={pref.examSlug}
+            fieldParam={fieldParam}
           />
         </Suspense>
       </PremiumGate>

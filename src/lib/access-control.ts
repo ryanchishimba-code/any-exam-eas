@@ -8,6 +8,7 @@ import {
   type SubscriptionAccess,
 } from "@/lib/subscription-access";
 import { hasFeatureAccess, type SubscriptionFeature } from "@/lib/subscription-features";
+import { CACHE_TTL, cacheGetOrSet, cacheKey } from "@/lib/cache";
 
 export { isPremiumPage, PREMIUM_PAGE_PREFIXES } from "@/lib/premium-routes";
 
@@ -82,6 +83,14 @@ function applyCompAndGrace(
 
 /** Full access decision for a signed-in user (subscription + account + staff). */
 export async function getUserAccess(userId: string): Promise<UserAccess> {
+  return cacheGetOrSet(
+    cacheKey(["user-access", userId]),
+    CACHE_TTL.userAccess,
+    () => resolveUserAccess(userId)
+  );
+}
+
+async function resolveUserAccess(userId: string): Promise<UserAccess> {
   const user = await prisma.user.findUnique({
     where: { id: userId },
     select: {

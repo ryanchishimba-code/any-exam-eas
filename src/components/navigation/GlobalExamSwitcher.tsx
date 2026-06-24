@@ -1,13 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { GraduationCap } from "lucide-react";
+import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { ExamSwitcher } from "@/components/edtech/ExamSwitcher";
 import { ROUTES } from "@/lib/routes";
-import { isExamSlug } from "@/lib/edtech/exams";
-import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -17,33 +15,7 @@ type Props = {
 
 export function GlobalExamSwitcher({ variant = "nav", onNavigate }: Props) {
   const { status } = useSession();
-  const [examSlug, setExamSlug] = useState<ExamSlug | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  const loadPreference = useCallback(async () => {
-    try {
-      const res = await fetch("/api/user/exam-preference", { cache: "no-store" });
-      const data = (await res.json()) as { examSlug?: string | null };
-      if (data.examSlug && isExamSlug(data.examSlug)) {
-        setExamSlug(data.examSlug);
-      } else {
-        setExamSlug(null);
-      }
-    } catch {
-      setExamSlug(null);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (status !== "authenticated") {
-      setLoading(false);
-      setExamSlug(null);
-      return;
-    }
-    void loadPreference();
-  }, [status, loadPreference]);
+  const { examSlug, loading, refresh } = useAppPreferences();
 
   if (status !== "authenticated") return null;
 
@@ -81,7 +53,7 @@ export function GlobalExamSwitcher({ variant = "nav", onNavigate }: Props) {
       variant={variant}
       onSwitched={() => {
         onNavigate?.();
-        void loadPreference();
+        void refresh();
       }}
     />
   );
