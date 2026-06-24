@@ -88,7 +88,8 @@ describe("assertAccountIpAllowed", () => {
     expect(result.ok).toBe(true);
   });
 
-  it("blocks a fourth distinct IP", async () => {
+  it("blocks a fourth distinct IP in production", async () => {
+    process.env.NODE_ENV = "production";
     findManyMock.mockResolvedValue([
       { ipHash: "a" },
       { ipHash: "b" },
@@ -101,6 +102,20 @@ describe("assertAccountIpAllowed", () => {
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.reason).toBe("too_many_ips");
     expect(MAX_ACCOUNT_IPS).toBe(3);
+  });
+
+  it("does NOT block a fourth distinct IP outside production (local dev)", async () => {
+    // NODE_ENV is "test" here (set in beforeEach); the limit must not apply.
+    findManyMock.mockResolvedValue([
+      { ipHash: "a" },
+      { ipHash: "b" },
+      { ipHash: "c" },
+    ]);
+    const result = await assertAccountIpAllowed("user-1", {
+      ipHash: "d",
+      role: "user",
+    });
+    expect(result.ok).toBe(true);
   });
 
   it("allows when IP is unknown in production", async () => {

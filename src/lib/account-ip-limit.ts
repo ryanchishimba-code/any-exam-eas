@@ -58,6 +58,9 @@ export async function assertAccountIpAllowed(
   userId: string,
   opts: { ipHash?: string; role?: string | null; email?: string | null }
 ): Promise<AccountIpCheckResult> {
+  // Never enforce network/device caps outside production — local dev and tests
+  // hit many networks (and localhost) and must not lock valid accounts out.
+  if (!isProductionRuntime()) return { ok: true };
   if (canBypassAccountIpLimit(opts.email, opts.role)) return { ok: true };
   // Device limits apply only when the network can be identified — never block auth on missing IP.
   if (!opts.ipHash) return { ok: true };

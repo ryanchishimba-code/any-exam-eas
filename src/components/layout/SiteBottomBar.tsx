@@ -40,13 +40,6 @@ export function SiteBottomBar({ className }: Props) {
         >
           {LEGAL_ENTITY.supportEmail}
         </a>
-        <span aria-hidden> · </span>
-        <a
-          href={`tel:${LEGAL_ENTITY.supportPhone}`}
-          className="tabular-nums text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
-        >
-          {LEGAL_ENTITY.supportPhoneDisplay}
-        </a>
       </p>
       <Link
         href={ROUTES.admin.login}
