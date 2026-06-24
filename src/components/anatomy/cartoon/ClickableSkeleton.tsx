@@ -130,6 +130,7 @@ export function ClickableSkeleton({
   const meshMap = useMemo(() => createBoneMeshMap(bones), [bones]);
   const focusId = highlightedId ?? selectedId;
   const baseOpacity = skinOn ? 0.78 : 0.96;
+  const dimOthers = Boolean(focusId);
 
   if (!visible) return null;
 
@@ -140,6 +141,8 @@ export function ClickableSkeleton({
         if (!geo) return null;
         const active = isBoneHighlighted(bone.id, focusId);
         const selected = selectedId === bone.id;
+        let opacity = active ? Math.min(0.98, baseOpacity + 0.04) : baseOpacity;
+        if (dimOthers && !active) opacity *= 0.34;
         return (
           <BoneMesh
             key={bone.id}
@@ -147,7 +150,7 @@ export function ClickableSkeleton({
             geometry={geo}
             active={active}
             selected={selected}
-            opacity={active ? Math.min(0.98, baseOpacity + 0.04) : baseOpacity}
+            opacity={opacity}
             onSelect={onSelect}
           />
         );

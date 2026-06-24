@@ -12,7 +12,16 @@ import { hasVolumeOrganAsset } from "@/lib/anatomy/cartoon/volume-organ-registry
 describe("visible-human-organs", () => {
   it("registers thoracic rib-cage organs from Visible Human male", () => {
     expect(Object.keys(VISIBLE_HUMAN_ORGANS)).toEqual(
-      expect.arrayContaining(["heart", "lungs", "liver", "spleen", "pancreas"])
+      expect.arrayContaining([
+        "heart",
+        "lungs",
+        "liver",
+        "spleen",
+        "pancreas",
+        "bladder",
+        "prostate",
+        "small-intestine",
+      ])
     );
     expect(VISIBLE_HUMAN_ORGANS.heart.fileName).toBe("VH_M_Heart.glb");
   });

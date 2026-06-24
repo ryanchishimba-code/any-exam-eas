@@ -254,6 +254,9 @@ const VH_ENABLED_PROFILES = new Set([
   "kidneys",
   "colon-frame",
   "brain",
+  "bladder-sac",
+  "prostate-disc",
+  "small-intestine-coils",
 ]);
 
 function VisibleHumanOrProcedural({
@@ -384,11 +387,18 @@ export function OrganVisual({ profile, geometry, style, mirrored = false, meshId
       );
     case "bladder-sac":
       return (
-        <group scale={[1.02, 0.68, 0.82]}>
-          <Surface style={style}>
-            <sphereGeometry args={[0.52, 16, 16]} />
-          </Surface>
-        </group>
+        <VisibleHumanOrProcedural
+          meshId={meshId}
+          profile={profile}
+          style={style}
+          procedural={
+            <group scale={[1.02, 0.68, 0.82]}>
+              <Surface style={style}>
+                <sphereGeometry args={[0.52, 16, 16]} />
+              </Surface>
+            </group>
+          }
+        />
       );
     case "pancreas-band":
       return (
@@ -529,15 +539,22 @@ export function OrganVisual({ profile, geometry, style, mirrored = false, meshId
         { pos: [0.07, 0.05, -0.04], rot: [0.65, 0.08, -0.28], r: 0.11, tube: 0.035 },
       ];
       return (
-        <group>
-          {coils.map((c, i) => (
-            <group key={i} position={c.pos} rotation={c.rot}>
-              <Surface style={style}>
-                <torusGeometry args={[c.r, c.tube, 10, 18, Math.PI * 1.35]} />
-              </Surface>
+        <VisibleHumanOrProcedural
+          meshId={meshId}
+          profile={profile}
+          style={style}
+          procedural={
+            <group>
+              {coils.map((c, i) => (
+                <group key={i} position={c.pos} rotation={c.rot}>
+                  <Surface style={style}>
+                    <torusGeometry args={[c.r, c.tube, 10, 18, Math.PI * 1.35]} />
+                  </Surface>
+                </group>
+              ))}
             </group>
-          ))}
-        </group>
+          }
+        />
       );
     }
     case "colon-frame":
@@ -604,11 +621,18 @@ export function OrganVisual({ profile, geometry, style, mirrored = false, meshId
       );
     case "prostate-disc":
       return (
-        <group scale={[1.08, 0.72, 0.92]}>
-          <Surface style={style}>
-            <sphereGeometry args={[0.48, 16, 16]} />
-          </Surface>
-        </group>
+        <VisibleHumanOrProcedural
+          meshId={meshId}
+          profile={profile}
+          style={style}
+          procedural={
+            <group scale={[1.08, 0.72, 0.92]}>
+              <Surface style={style}>
+                <sphereGeometry args={[0.48, 16, 16]} />
+              </Surface>
+            </group>
+          }
+        />
       );
     default:
       switch (geometry) {

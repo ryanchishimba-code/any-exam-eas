@@ -9,7 +9,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { ContactShadows, OrbitControls } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import type { PerspectiveCamera } from "three";
@@ -19,14 +19,11 @@ import { getAnatomyStructure } from "@/lib/anatomy";
 import { getBoneFocus, getBoneFocusDistance } from "@/lib/anatomy/bones";
 import { ANATOMY_MODULES, getAnatomyModule } from "@/lib/anatomy/modules/registry";
 import { getOrganDepthOrder } from "@/lib/anatomy/cartoon/organ-layout";
-import { CARTOON_CAMERA, CT_CAMERA, FIGURE } from "@/lib/anatomy/cartoon/proportions";
-import {
-  CARTOON_FLOOR,
-  CARTOON_SCENE_BG,
-  CARTOON_SCENE_FOG,
-} from "@/lib/anatomy/cartoon/palette";
+import { CARTOON_CAMERA, CT_CAMERA } from "@/lib/anatomy/cartoon/proportions";
+import { CARTOON_SCENE_BG } from "@/lib/anatomy/cartoon/palette";
 import type { AnatomyLayer, AnatomyStructure, AnatomySystem } from "@/lib/anatomy/types";
 import { cn } from "@/lib/utils";
+import { AnatomyStudioEnvironment } from "./AnatomyStudioEnvironment";
 import { CartoonBodyShell } from "./CartoonBodyShell";
 import { ClickableSkeleton } from "./ClickableSkeleton";
 import { CartoonOrganMesh } from "./CartoonOrganMesh";
@@ -93,6 +90,8 @@ function OrganModules({
         const isFocused = focusStructureId === structure.id;
         const isParentOfFocus = focusStructure?.parentId === structure.id;
         const isChildOfFocus = structure.parentId === focusStructureId;
+        const isRelated =
+          isFocused || connected || isParentOfFocus || isChildOfFocus;
         return (
           <CartoonOrganMesh
             key={mod.id}
@@ -101,8 +100,9 @@ function OrganModules({
             structureSystem={structure.system}
             systemFilter={systemFilter}
             visible={visibleLayers.has(mod.layer)}
-            highlighted={isFocused || connected || isParentOfFocus || isChildOfFocus}
+            highlighted={isRelated}
             selected={selectedId === structure.id}
+            deemphasized={Boolean(focusStructureId && !isRelated)}
             skinOn={skinOn}
             muscleStructuralOn={muscleStructuralOn}
             onSelect={() => onSelect(structure.id)}
@@ -263,7 +263,7 @@ function SceneRig({
     <>
       <CtRenderSettings active={ctActive} />
       <color attach="background" args={[ctActive ? ctWindow.background : CARTOON_SCENE_BG]} />
-      {ctActive ? null : <fog attach="fog" args={[CARTOON_SCENE_FOG, 8, 18]} />}
+      {ctActive ? <fog attach="fog" args={[ctWindow.background, 8, 18]} /> : null}
       {ctActive ? (
         <>
           <ambientLight intensity={0.35} color="#f0f0f4" />
@@ -281,33 +281,22 @@ function SceneRig({
         </>
       ) : (
         <>
-          <ambientLight intensity={0.34} color="#eef2f6" />
+          <AnatomyStudioEnvironment />
+          <ambientLight intensity={0.36} color="#f0f4f8" />
           <directionalLight
-            position={[3.5, 7.5, 4.5]}
-            intensity={1.35}
+            position={[3.8, 8, 5]}
+            intensity={1.42}
             castShadow
-            shadow-mapSize-width={1024}
-            shadow-mapSize-height={1024}
-            shadow-bias={-0.00015}
-            shadow-normalBias={0.02}
-            color="#fff8f0"
+            shadow-mapSize-width={2048}
+            shadow-mapSize-height={2048}
+            shadow-bias={-0.00012}
+            shadow-normalBias={0.022}
+            color="#fff1e6"
           />
-          <directionalLight position={[-4.5, 3.5, -1.5]} intensity={0.48} color="#b8c8d8" />
-          <directionalLight position={[0, 1.5, -5.5]} intensity={0.18} color="#ffffff" />
-          <pointLight position={[0, 1.8, 2.2]} intensity={0.22} color="#ffe8d8" distance={6} />
-          <hemisphereLight args={["#e8eef4", "#7a8a9a", 0.32]} />
-          <ContactShadows
-            position={[0, FIGURE.footY + 0.02, 0]}
-            opacity={0.5}
-            scale={13}
-            blur={2.6}
-            far={4.2}
-            color="#1a2430"
-          />
-          <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, FIGURE.footY + 0.02, 0]} receiveShadow>
-            <circleGeometry args={[4, 64]} />
-            <meshStandardMaterial color={CARTOON_FLOOR} roughness={0.92} metalness={0.05} />
-          </mesh>
+          <directionalLight position={[-4.8, 3.2, -1.2]} intensity={0.44} color="#c8d8e8" />
+          <directionalLight position={[0, 2, -5.5]} intensity={0.16} color="#ffffff" />
+          <pointLight position={[0, 2.1, 2.4]} intensity={0.24} color="#ffe8d4" distance={7} />
+          <hemisphereLight args={["#eef3f8", "#8a9aad", 0.34]} />
 
           <CartoonStructuralLayers visibleLayers={visibleLayers} skinOn={showSkin} />
           <CartoonNerveLayers visibleLayers={visibleLayers} skinOn={showSkin} />
@@ -420,10 +409,14 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
         "relative h-full w-full overflow-hidden rounded-2xl",
         ctActive
           ? "bg-[#161618]"
-          : "bg-gradient-to-b from-slate-100 via-slate-50 to-slate-200/80",
+          : "bg-[radial-gradient(ellipse_at_50%_18%,#f8fafc_0%,#edf2f7_42%,#dde5ee_100%)]",
         className
       )}
     >
+      <div
+        className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_100px_rgba(15,23,42,0.09)]"
+        aria-hidden
+      />
       <Canvas
         camera={{
           position: ctActive ? CT_CAMERA.position : CARTOON_CAMERA.position,
@@ -434,7 +427,7 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
-          gl.toneMappingExposure = ctActive ? 1 : 1.06;
+          gl.toneMappingExposure = ctActive ? 1 : 1.08;
           gl.shadowMap.enabled = !ctActive;
           if (!ctActive) gl.shadowMap.type = THREE.PCFSoftShadowMap;
         }}

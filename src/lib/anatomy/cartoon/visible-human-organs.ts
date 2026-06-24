@@ -91,6 +91,27 @@ export const VISIBLE_HUMAN_ORGANS: Record<string, VisibleHumanOrganDef> = {
     targetSize: 1.0,
     sex: "male",
   },
+  "small-intestine": {
+    meshId: "small-intestine",
+    fileName: "VH_M_Small_Intestine.glb",
+    targetSize: 1.0,
+    rotation: [0, 0, 0],
+    sex: "male",
+  },
+  bladder: {
+    meshId: "bladder",
+    fileName: "VH_M_Urinary_Bladder.glb",
+    targetSize: 0.75,
+    rotation: [0, 0, 0],
+    sex: "male",
+  },
+  prostate: {
+    meshId: "prostate",
+    fileName: "VH_M_Prostate.glb",
+    targetSize: 0.55,
+    rotation: [0, 0, 0],
+    sex: "male",
+  },
 };
 
 function readVolumeOrganBase(): string | undefined {

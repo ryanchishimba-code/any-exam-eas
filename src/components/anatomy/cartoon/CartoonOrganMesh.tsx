@@ -7,7 +7,7 @@ import type { Euler, Group } from "three";
 import { Vector3 } from "three";
 import type { AnatomyModuleDef } from "@/lib/anatomy/modules/types";
 import { getOrganDepthOrder } from "@/lib/anatomy/cartoon/organ-layout";
-import { CARTOON_OUTLINE } from "@/lib/anatomy/cartoon/palette";
+import { SelectionEmissivePulse } from "@/components/anatomy/cartoon/SelectionEmissivePulse";
 import { ANATOMY_SYSTEM_COLORS, blendHexColor } from "@/lib/anatomy/system-colors";
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
 import { useAnatomyPointer, useAnatomyHoverReset } from "@/components/anatomy/cartoon/AnatomyPointerProvider";
@@ -48,6 +48,7 @@ function OrganMeshInstance({
   mirrored,
   highlighted,
   selected,
+  deemphasized = false,
   skinOn,
   structureSystem,
   systemFilter,
@@ -60,6 +61,7 @@ function OrganMeshInstance({
   mirrored: boolean;
   highlighted: boolean;
   selected: boolean;
+  deemphasized?: boolean;
   skinOn: boolean;
   structureSystem?: AnatomySystem;
   systemFilter: AnatomySystem | "all";
@@ -106,12 +108,13 @@ function OrganMeshInstance({
     structureSystem !== systemFilter &&
     !active;
   if (systemFiltered) opacity *= 0.14;
+  if (deemphasized) opacity *= 0.34;
 
   const nerveGlow = def.layer === "nerve";
   const emissive =
     highlighted || selected ? "#7c3aed" : hovered ? "#8b5cf6" : nerveGlow ? "#fbbf24" : "#000000";
   const emissiveIntensity =
-    highlighted || selected ? 0.45 : hovered ? 0.18 : nerveGlow ? 0.28 : 0;
+    highlighted || selected ? 0.48 : hovered ? 0.2 : nerveGlow ? 0.28 : 0;
 
   const tintedColor = useMemo(() => {
     if (def.layer !== "organ") return def.color;
@@ -128,8 +131,8 @@ function OrganMeshInstance({
       opacity,
       emissive,
       emissiveIntensity,
-      outlineThickness: active ? 0.014 : 0,
-      outlineColor: active ? "#5b21b6" : CARTOON_OUTLINE,
+      outlineThickness: 0,
+      outlineColor: "#5b21b6",
     }),
     [active, emissive, emissiveIntensity, opacity, tintedColor]
   );
@@ -162,13 +165,15 @@ function OrganMeshInstance({
         setHovering(false);
       }}
     >
-      <OrganVisual
-        profile={def.profile}
-        geometry={def.geometry}
-        style={surfaceStyle}
-        mirrored={mirrored}
-        meshId={def.id}
-      />
+      <SelectionEmissivePulse active={selected} baseIntensity={emissiveIntensity}>
+        <OrganVisual
+          profile={def.profile}
+          geometry={def.geometry}
+          style={surfaceStyle}
+          mirrored={mirrored}
+          meshId={def.id}
+        />
+      </SelectionEmissivePulse>
 
       {showLabel ? (
         <Html
@@ -194,6 +199,7 @@ type Props = {
   visible: boolean;
   highlighted: boolean;
   selected: boolean;
+  deemphasized?: boolean;
   skinOn: boolean;
   onSelect: (id: string) => void;
   boneStructuralOn?: boolean;
@@ -208,6 +214,7 @@ export function CartoonOrganMesh({
   visible,
   highlighted,
   selected,
+  deemphasized = false,
   skinOn,
   onSelect,
   boneStructuralOn = false,
@@ -253,6 +260,7 @@ export function CartoonOrganMesh({
           mirrored={mirrored}
           highlighted={highlighted}
           selected={selected}
+          deemphasized={deemphasized}
           skinOn={skinOn}
           structureSystem={structureSystem}
           systemFilter={systemFilter}
