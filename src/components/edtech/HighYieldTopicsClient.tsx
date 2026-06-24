@@ -13,6 +13,7 @@ import {
   clampTopicIndex,
 } from "@/lib/edtech/topic-selection";
 import { ROUTES } from "@/lib/routes";
+import { studyUi } from "@/lib/study/study-ui";
 import type { ExamSlug, HighYieldTopic, TopicProgressMap } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
@@ -90,7 +91,7 @@ export function HighYieldTopicsClient({
     <>
       <div className="space-y-8">
         {/* ── Breadcrumb ── */}
-        <nav aria-label="Breadcrumb" className="text-sm text-slate-500">
+        <nav aria-label="Breadcrumb" className={studyUi.sectionHint}>
           <ol className="flex flex-wrap items-center gap-1">
             <li>
               <Link href={ROUTES.practiceHub} className="text-[var(--color-accent)] hover:underline">
@@ -100,7 +101,7 @@ export function HighYieldTopicsClient({
             <li aria-hidden>
               <ChevronRight className="inline h-3.5 w-3.5" />
             </li>
-            <li className="font-medium text-slate-700">High-Yield Topics</li>
+            <li className="font-medium text-[var(--color-ink)]">High-Yield Topics</li>
           </ol>
         </nav>
 
@@ -110,10 +111,8 @@ export function HighYieldTopicsClient({
             <Sparkles className="h-3.5 w-3.5" aria-hidden />
             Premium study summaries &amp; textbook modules
           </p>
-          <h1 className="text-[28px] font-semibold tracking-tight text-[var(--color-ink)] sm:text-[32px]">
-            High-Yield Topics
-          </h1>
-          <p className="text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
+          <h1 className={studyUi.title}>High-Yield Topics</h1>
+          <p className={studyUi.subtitle}>
             Focus on the {topics.length} topics that matter most — with Review Modules,
             clinical pearls, and practice questions curated for{" "}
             <span className="font-semibold text-[var(--color-ink)]">{exam.name}</span>.
@@ -142,18 +141,18 @@ export function HighYieldTopicsClient({
             <span className="text-[12px] text-[var(--color-ink-muted)]">
               · {topics.length} topics
               {reviewedCount > 0 && (
-                <span className="ml-1 text-teal-600">· {reviewedCount} reviewed</span>
+                <span className="ml-1 text-[var(--color-accent)]">· {reviewedCount} reviewed</span>
               )}
             </span>
           </div>
           <div className="h-px flex-1 bg-[var(--color-border)]" />
         </div>
 
-        {/* ── Search + category chips ── */}
-        <div className="space-y-3">
+        {/* ── Search + category chips (sticky while browsing) ── */}
+        <div className={studyUi.stickyBar}>
           <div className="relative">
             <Search
-              className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+              className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--color-ink-muted)]"
               aria-hidden
             />
             <input
@@ -161,11 +160,11 @@ export function HighYieldTopicsClient({
               placeholder="Search topics, categories, or keywords…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full rounded-[14px] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] py-3 pl-11 pr-4 text-[15px] shadow-[var(--shadow-apple-sm)] transition focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/20"
+              className={studyUi.searchInput}
             />
           </div>
 
-          <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by category">
+          <div className={studyUi.chipRow} role="group" aria-label="Filter by category">
             <FilterChip active={category === "all"} onClick={() => setCategory("all")}>
               All
             </FilterChip>
@@ -179,7 +178,7 @@ export function HighYieldTopicsClient({
 
         {/* ── Topic grid ── */}
         {filtered.length === 0 ? (
-          <p className="rounded-[18px] border border-dashed border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-16 text-center text-sm text-[var(--color-ink-muted)]">
+          <p className={studyUi.emptyState}>
             No topics match your search. Try a different keyword or category.
           </p>
         ) : (
@@ -233,10 +232,8 @@ function FilterChip({
       type="button"
       onClick={onClick}
       className={cn(
-        "rounded-full px-3.5 py-1.5 text-xs font-medium transition",
-        active
-          ? "bg-[var(--color-accent)] text-white shadow-sm"
-          : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+        studyUi.filterPill,
+        active ? studyUi.filterPillActive : studyUi.filterPillIdle
       )}
     >
       {children}

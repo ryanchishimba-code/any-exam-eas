@@ -13,6 +13,7 @@ import {
   verifyPassword,
 } from "@/lib/password-hash";
 import { signUpSchema, normalizeEmail, type SignUpInput } from "@/lib/validators/auth";
+import { normalizeStoredName } from "@/lib/display-name";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { hasConsumedTrial } from "@/lib/trial-eligibility";
@@ -58,7 +59,7 @@ export function toSafeUser(user: User): SafeUser {
   return {
     id: user.id,
     email: user.email,
-    name: user.name,
+    name: normalizeStoredName(user.name) ?? user.name,
     createdAt: user.createdAt,
     lastLoginAt: user.lastLoginAt,
   };
@@ -172,7 +173,7 @@ export async function registerUser(
           return tx.user.create({
             data: {
               email: parsed.email,
-              name: parsed.name,
+              name: normalizeStoredName(parsed.name) ?? parsed.name,
               ...passwordCredentialFields(passwordHash),
               dateOfBirth: dob,
               subscription: { create: subscriptionData },

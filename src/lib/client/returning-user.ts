@@ -1,5 +1,7 @@
 /** Client-only hints for returning visitors (localStorage). */
 
+import { displayFirstName, formatDisplayName } from "@/lib/display-name";
+
 export type LoginMethod = "google" | "email" | "apple" | "magic" | "linkedin";
 
 export type ReturningUserHint = {
@@ -72,6 +74,7 @@ export function saveReturningUserHint(partial: ReturningUserHint): void {
     ...(existing ?? {}),
     ...partial,
     email: partial.email.toLowerCase(),
+    name: partial.name ? formatDisplayName(partial.name) ?? partial.name : partial.name,
     lastVisitAt: new Date().toISOString(),
   };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
@@ -120,7 +123,5 @@ export function maskEmail(email: string): string {
 }
 
 export function firstName(name?: string | null, email?: string): string {
-  if (name?.trim()) return name.trim().split(/\s+/)[0] ?? "there";
-  if (email) return email.split("@")[0]?.replace(/[._]/g, " ") ?? "there";
-  return "there";
+  return displayFirstName(name, email);
 }

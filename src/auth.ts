@@ -20,6 +20,7 @@ import { logAdminAction } from "@/lib/audit";
 import {
   checkAndRecordAccountIp,
 } from "@/lib/account-ip-limit";
+import { formatDisplayName } from "@/lib/display-name";
 
 export { registerUser } from "@/lib/user-auth";
 
@@ -149,7 +150,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         return {
           id: user.id,
           email: user.email,
-          name: user.name,
+          name: formatDisplayName(user.name) ?? user.name,
           role,
           rememberMe,
         };
@@ -233,6 +234,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (session.user && token.id) {
         session.user.id = token.id as string;
         session.user.role = (token.role as string) ?? "user";
+        if (session.user.name) {
+          session.user.name = formatDisplayName(session.user.name) ?? session.user.name;
+        }
       }
       return session;
     },

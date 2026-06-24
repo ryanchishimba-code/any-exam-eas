@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { assertPublicSignupEmailAllowed, isAccountDisabled, OAuthAccountDisabledError } from "@/lib/account-security";
 import { normalizeEmail } from "@/lib/validators/auth";
+import { normalizeStoredName } from "@/lib/display-name";
 import { isAtLeast18 } from "@/lib/age";
 
 const DEFAULT_DOB = new Date("1990-01-01");
@@ -65,7 +66,7 @@ export async function findOrCreateGoogleUser(params: {
   const user = await prisma.user.create({
     data: {
       email,
-      name: params.name ?? null,
+      name: normalizeStoredName(params.name),
       image: params.image ?? null,
       emailVerified: new Date(),
       dateOfBirth: DEFAULT_DOB,

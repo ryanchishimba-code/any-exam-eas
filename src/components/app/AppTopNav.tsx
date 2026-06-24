@@ -9,6 +9,7 @@ import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { shellUi } from "@/lib/layout/shell-ui";
+import { displayFirstName } from "@/lib/display-name";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -91,7 +92,7 @@ export function AppTopNav({ onMenuClick }: Props) {
           >
             <User className="h-3.5 w-3.5 md:hidden" aria-hidden />
             <span className="hidden max-w-[8rem] truncate md:inline">
-              {session?.user?.name?.split(" ")[0] ?? "Account"}
+              {session?.user?.name ? displayFirstName(session.user.name) : "Account"}
             </span>
             <LogOut className="h-3.5 w-3.5" aria-hidden />
           </button>

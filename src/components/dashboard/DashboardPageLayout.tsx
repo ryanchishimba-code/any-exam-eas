@@ -2,6 +2,7 @@
 
 import { type ReactNode } from "react";
 import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar";
+import { displayFirstName } from "@/lib/display-name";
 
 type DashboardPageLayoutProps = {
   userName?: string | null;
@@ -25,7 +26,7 @@ export function DashboardPageLayout({
             Study Hub
           </p>
           <h1 className="apple-display mt-2 text-[clamp(2rem,5vw,2.75rem)]">
-            Hello{userName ? `, ${userName.split(" ")[0]}` : ""}.
+            Hello{userName ? `, ${displayFirstName(userName)}` : ""}.
           </h1>
           <p className="apple-subhead mt-3 max-w-xl text-[1.0625rem]">
             {hasPremiumAccess

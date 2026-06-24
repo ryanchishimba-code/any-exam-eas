@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { BookMarked, GraduationCap } from "lucide-react";
+import { ArrowRight, BarChart3, BookMarked, GraduationCap } from "lucide-react";
+import { ReadinessRing } from "@/components/study/ReadinessRing";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_CATALOG, examFieldIds, examSlugFromFieldId } from "@/lib/edtech/exams";
+import { recentTestHref } from "@/lib/edtech/recent-test-links";
 import { libraryTopicHref, spacedReviewHref } from "@/lib/edtech/practice-links";
 import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import {
@@ -13,6 +15,7 @@ import {
   normalizeWeakAreaTopicKey,
 } from "@/lib/library/weak-area-map";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
+import { studyUi } from "@/lib/study/study-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { Button } from "@/components/ui/Button";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
@@ -42,14 +45,17 @@ function practiceProgressIndex(
 export function StudentAnalyticsDashboard({
   examSlug,
   examName,
+  initialData,
 }: {
   examSlug: ExamSlug;
   examName: string;
+  initialData?: AnalyticsPayload;
 }) {
-  const [data, setData] = useState<AnalyticsPayload | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<AnalyticsPayload | null>(initialData ?? null);
+  const [loading, setLoading] = useState(!initialData);
 
   useEffect(() => {
+    if (initialData) return;
     setLoading(true);
     Promise.all([
       fetch(`/api/learning/dashboard?examSlug=${encodeURIComponent(examSlug)}`).then((r) =>
@@ -65,13 +71,16 @@ export function StudentAnalyticsDashboard({
       })
       .catch(() => setData(null))
       .finally(() => setLoading(false));
-  }, [examSlug]);
+  }, [examSlug, initialData]);
 
   if (loading) {
     return (
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="h-32 animate-pulse rounded-2xl bg-black/[0.04]" />
+          <div
+            key={i}
+            className="h-32 animate-pulse rounded-[20px] bg-[var(--color-surface)]"
+          />
         ))}
       </div>
     );
@@ -79,8 +88,8 @@ export function StudentAnalyticsDashboard({
 
   if (!data?.dashboard) {
     return (
-      <div className="rounded-2xl border border-dashed border-black/[0.1] p-10 text-center">
-        <p className="text-[var(--color-ink-muted)]">
+      <div className={studyUi.emptyState}>
+        <p>
           Complete practice sessions to unlock adaptive analytics and progress insights.
         </p>
         <Button href="/question-bank" className="mt-4">
@@ -110,23 +119,74 @@ export function StudentAnalyticsDashboard({
       .map((c) => c.conceptKey) ?? [];
   const primaryExamSlug = examSlug;
 
+  const srsDue = dashboard.spacedReview.dueCount;
+
   return (
-    <div className="space-y-10">
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)]/10 px-4 py-1.5 text-sm font-semibold text-[var(--color-accent)]">
-          {examName}
-        </span>
-        <span className="text-xs text-[var(--color-ink-muted)]">
-          Insights below are scoped to this exam. Switch exams from the top bar.
-        </span>
+    <div className="space-y-8">
+      <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div>
+          <p className={studyUi.eyebrow}>Analytics</p>
+          <h1 className={studyUi.title}>Your {examName} insights</h1>
+          <p className={cn(studyUi.subtitle, "mt-1 max-w-xl")}>
+            Readiness, accuracy trends, and weak areas — scoped to your active exam.
+          </p>
+        </div>
         <SocialShareBar
           entityType="progress"
           text={`I'm ${dashboard.headline.readinessScore}% ready for ${examName} with AnyExamEasy! 🎯`}
           url="https://www.anyexameasy.com"
           size="sm"
-          className="ml-auto"
         />
-      </div>
+      </header>
+
+      <section
+        className={cn(
+          studyUi.panel,
+          studyUi.panelPad,
+          "flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8"
+        )}
+      >
+        <ReadinessRing score={dashboard.headline.readinessScore} />
+        <div className="min-w-0 flex-1 space-y-2">
+          <p className={studyUi.eyebrow}>Readiness</p>
+          <p className="text-[20px] font-semibold tracking-tight text-[var(--color-ink)] sm:text-[22px]">
+            {dashboard.headline.readinessScore >= 75
+              ? "You're in strong shape — keep the momentum."
+              : dashboard.headline.readinessScore >= 50
+                ? "Solid progress — focus weak areas to climb faster."
+                : "Early stage — consistent practice builds readiness quickly."}
+          </p>
+          <p className={studyUi.sectionHint}>
+            {dashboard.headline.overallAccuracy != null
+              ? `${dashboard.headline.overallAccuracy}% accuracy across ${dashboard.headline.totalAttempts} attempts`
+              : `${dashboard.headline.totalAttempts} attempts logged`}
+            {dashboard.headline.studyStreakDays > 0
+              ? ` · ${dashboard.headline.studyStreakDays}-day streak`
+              : ""}
+          </p>
+        </div>
+      </section>
+
+      {srsDue > 0 ? (
+        <section className={cn(studyUi.panel, studyUi.panelPad, "flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between")}>
+          <div>
+            <p className={studyUi.eyebrow}>Spaced review</p>
+            <p className="mt-1 text-[17px] font-semibold text-[var(--color-ink)]">
+              {srsDue} question{srsDue === 1 ? "" : "s"} due now
+            </p>
+            <p className={cn(studyUi.sectionHint, "mt-0.5")}>
+              {dashboard.spacedReview.weakDueCount} flagged as weak — clear them before they slip.
+            </p>
+          </div>
+          <Link
+            href={spacedReviewHref(primaryExamSlug, Math.min(25, Math.max(10, srsDue)))}
+            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-apple-sm)] transition hover:opacity-90"
+          >
+            Review due
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
+        </section>
+      ) : null}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard
@@ -153,27 +213,7 @@ export function StudentAnalyticsDashboard({
           value={`${dashboard.headline.studyStreakDays}d`}
           hint={dashboard.headline.motivationalMessage}
         />
-        {dashboard.spacedReview.dueCount > 0 ? (
-          <MetricCard
-            label="Spaced review due"
-            value={String(dashboard.spacedReview.dueCount)}
-            hint={`${dashboard.spacedReview.weakDueCount} weak items ready`}
-            accent="amber"
-          />
-        ) : null}
       </div>
-
-      {dashboard.spacedReview.dueCount > 0 && primaryExamSlug ? (
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-indigo-200/70 bg-indigo-50/50 px-5 py-4">
-          <p className="text-sm text-indigo-900">
-            <span className="font-semibold">{dashboard.spacedReview.dueCount} questions</span> are
-            due for spaced review — missed items resurface on a smart schedule.
-          </p>
-          <Button href={spacedReviewHref(primaryExamSlug)} variant="secondary">
-            Review now
-          </Button>
-        </div>
-      ) : null}
 
       {referenceRate != null ? (
         <p className="text-xs text-[var(--color-ink-muted)]">
@@ -183,8 +223,11 @@ export function StudentAnalyticsDashboard({
       ) : null}
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <section className="rounded-2xl border border-black/[0.06] bg-white p-6 shadow-sm">
-          <h3 className="font-semibold text-[var(--color-ink)]">Accuracy trend (14 days)</h3>
+        <section className={studyUi.chartPanel}>
+          <div className="flex items-center gap-2">
+            <BarChart3 className="h-4 w-4 text-[var(--color-ink-muted)]" aria-hidden />
+            <h3 className={studyUi.sectionTitle}>Accuracy trend (14 days)</h3>
+          </div>
           <div className="mt-4 flex h-40 items-end gap-1">
             {dashboard.accuracyTrend.map((p) => (
               <div key={p.date} className="flex flex-1 flex-col items-center gap-1">
@@ -202,8 +245,8 @@ export function StudentAnalyticsDashboard({
           </div>
         </section>
 
-        <section className="rounded-2xl border border-black/[0.06] bg-white p-6 shadow-sm">
-          <h3 className="font-semibold text-[var(--color-ink)]">Weak areas — remediation</h3>
+        <section className={studyUi.chartPanel}>
+          <h3 className={studyUi.sectionTitle}>Weak areas — remediation</h3>
           {weakTopics.length === 0 ? (
             <p className="mt-4 text-sm text-[var(--color-ink-muted)]">
               No weak topics detected yet. Keep practicing!
@@ -222,9 +265,9 @@ export function StudentAnalyticsDashboard({
                       </span>
                     </span>
                   </div>
-                  <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-black/[0.06]">
+                  <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-[var(--color-border)]">
                     <div
-                      className="h-full rounded-full bg-amber-500"
+                      className="h-full rounded-full bg-[var(--color-accent)]"
                       style={{ width: `${t.masteryScore}%` }}
                     />
                   </div>
@@ -243,13 +286,13 @@ export function StudentAnalyticsDashboard({
       </div>
 
       {strongTopics.length > 0 && (
-        <section className="rounded-2xl border border-emerald-200/60 bg-emerald-50/40 p-6">
-          <h3 className="font-semibold text-emerald-900">Strong topics</h3>
+        <section className={cn(studyUi.panel, studyUi.panelPad, "border-[var(--color-accent)]/20 bg-[var(--color-accent)]/[0.04]")}>
+          <h3 className={studyUi.sectionTitle}>Strong topics</h3>
           <ul className="mt-3 flex flex-wrap gap-2">
             {strongTopics.map((c) => (
               <li
                 key={c}
-                className="rounded-full bg-white px-3 py-1 text-xs font-medium text-emerald-800 ring-1 ring-emerald-200"
+                className="rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3 py-1 text-xs font-medium text-[var(--color-ink)]"
               >
                 {c}
               </li>
@@ -259,9 +302,9 @@ export function StudentAnalyticsDashboard({
       )}
 
       {examSlug === "pance" ? (
-        <section className="rounded-2xl border border-rose-200/70 bg-rose-50/50 p-6">
-          <h3 className="font-semibold text-rose-950">PANCE endurance check</h3>
-          <p className="mt-2 text-sm text-rose-900/80">
+        <section className={cn(studyUi.panel, studyUi.panelPad)}>
+          <h3 className={studyUi.sectionTitle}>PANCE endurance check</h3>
+          <p className={cn(studyUi.sectionHint, "mt-2")}>
             Full 300-question / 5-hour simulation aligned to NCCPA timing — build stamina before test day.
           </p>
           <Button href={fullExamLaunchHref("pance", { mode: "full" })} className="mt-4">
@@ -272,12 +315,19 @@ export function StudentAnalyticsDashboard({
 
       {dashboard.recentTests.length > 0 && (
         <section>
-          <h3 className="font-semibold text-[var(--color-ink)]">Recent sessions</h3>
-          <ul className="mt-3 divide-y divide-black/[0.06] rounded-xl border border-black/[0.06] bg-white">
+          <h3 className={studyUi.sectionTitle}>Recent sessions</h3>
+          <ul className={cn(studyUi.panel, "mt-3 divide-y divide-[var(--color-border)]")}>
             {dashboard.recentTests.slice(0, 5).map((t) => (
-              <li key={t.id} className="flex items-center justify-between px-4 py-3 text-sm">
-                <span>{t.title}</span>
-                <span className="font-medium tabular-nums">{t.score}%</span>
+              <li key={t.id}>
+                <Link
+                  href={recentTestHref(primaryExamSlug, t)}
+                  className="flex items-center justify-between px-4 py-3 text-sm transition hover:bg-[var(--color-surface)]"
+                >
+                  <span className="font-medium text-[var(--color-ink)]">{t.title}</span>
+                  <span className="font-semibold tabular-nums text-[var(--color-ink)]">
+                    {t.score}%
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>
@@ -347,13 +397,11 @@ function MetricCard({
   accent?: "emerald" | "amber";
 }) {
   return (
-    <div className="rounded-2xl border border-black/[0.06] bg-white p-5 shadow-sm">
-      <p className="text-xs font-medium uppercase tracking-wide text-[var(--color-ink-muted)]">
-        {label}
-      </p>
+    <div className={studyUi.metricCard}>
+      <p className={studyUi.eyebrow}>{label}</p>
       <p
         className={cn(
-          "mt-2 text-3xl font-bold tabular-nums",
+          "mt-2 text-3xl font-bold tabular-nums tracking-tight",
           accent === "emerald" && "text-emerald-600",
           accent === "amber" && "text-amber-600",
           !accent && "text-[var(--color-ink)]"
@@ -361,7 +409,7 @@ function MetricCard({
       >
         {value}
       </p>
-      <p className="mt-1 text-xs text-[var(--color-ink-muted)]">{hint}</p>
+      <p className={cn(studyUi.sectionHint, "mt-1")}>{hint}</p>
     </div>
   );
 }

@@ -8,6 +8,7 @@ import { AppearanceSettings } from "@/components/settings/AppearanceSettings";
 import { BillingSettingsSection } from "@/components/settings/BillingSettingsSection";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { ROUTES } from "@/lib/routes";
+import { formatDisplayName } from "@/lib/display-name";
 import type { ExamSlug } from "@/types/edtech";
 
 export function SettingsClient({
@@ -28,7 +29,7 @@ export function SettingsClient({
       <section className="rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6 shadow-[var(--shadow-apple-sm)]">
         <h2 className="text-sm font-bold uppercase tracking-wider text-[var(--color-ink-muted)]">Account</h2>
         <p className="mt-3 text-lg font-semibold text-[var(--color-ink)]">
-          {name ?? "Student"}
+          {formatDisplayName(name) ?? "Student"}
         </p>
         <p className="text-sm text-[var(--color-ink-muted)]">{email}</p>
       </section>

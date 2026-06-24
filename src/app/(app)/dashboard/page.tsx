@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { requirePremiumPage } from "@/lib/require-premium-page";
-import { DashboardView } from "@/components/app/DashboardView";
+import { DashboardPageContent } from "@/components/app/DashboardPageContent";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-preference";
 import { getUserEdtechMetadata, getExamTestDate } from "@/lib/edtech/user-metadata";
@@ -52,7 +52,7 @@ async function DashboardContent({
     .slice(0, 6);
 
   return (
-    <DashboardView
+    <DashboardPageContent
       examSlug={examSlug}
       stats={stats}
       headline={{

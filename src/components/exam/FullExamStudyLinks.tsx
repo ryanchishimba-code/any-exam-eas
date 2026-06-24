@@ -7,8 +7,10 @@ import {
   getExamTopicStudyLinks,
   getWeakTopicsFromBreakdown,
 } from "@/lib/library/exam-topic-bridge";
+import { feUi } from "@/lib/study/full-exam-ui";
 import type { FullExamTopicBreakdown } from "@/types/full-exam";
 import type { ExamSlug } from "@/types/edtech";
+import { cn } from "@/lib/utils";
 
 type Props = {
   examSlug: ExamSlug;
@@ -22,15 +24,15 @@ export function FullExamStudyLinks({ examSlug, topicBreakdown }: Props) {
   return (
     <section
       aria-labelledby="exam-study-links-heading"
-      className="rounded-2xl border border-violet-200/80 bg-violet-50/60 p-5"
+      className={cn(feUi.panel, "p-5 sm:p-6")}
     >
       <div className="flex items-center gap-2">
-        <Sparkles className="h-4 w-4 text-violet-600" aria-hidden />
-        <h2 id="exam-study-links-heading" className="text-base font-bold text-slate-900">
-          Study these weak areas
+        <Sparkles className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+        <h2 id="exam-study-links-heading" className={feUi.sectionTitle}>
+          Review weak areas
         </h2>
       </div>
-      <p className="mt-1 text-sm text-slate-600">
+      <p className={cn(feUi.sectionHint, "mt-1")}>
         Jump to your Library — memory cards, review modules, and targeted practice.
       </p>
 
@@ -40,12 +42,12 @@ export function FullExamStudyLinks({ examSlug, topicBreakdown }: Props) {
           return (
             <li
               key={row.topic}
-              className="rounded-xl border border-violet-200/60 bg-white px-4 py-3 shadow-sm"
+              className="rounded-[16px] border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div>
-                  <p className="font-semibold text-slate-900">{row.topic}</p>
-                  <p className="text-xs text-slate-500">
+                  <p className="font-semibold text-[var(--color-ink)]">{row.topic}</p>
+                  <p className="text-xs text-[var(--color-ink-muted)]">
                     {row.correct}/{row.total} correct ({row.pct}%)
                     {links.memoryCardIds.length > 0
                       ? ` · ${links.memoryCardIds.length} memory card(s)`
@@ -55,14 +57,14 @@ export function FullExamStudyLinks({ examSlug, topicBreakdown }: Props) {
                 <div className="flex flex-wrap gap-2">
                   <Link
                     href={links.libraryHref}
-                    className="inline-flex items-center gap-1 rounded-lg bg-violet-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-violet-700"
+                    className="inline-flex items-center gap-1 rounded-full bg-[var(--color-accent)] px-3 py-1.5 text-xs font-bold text-white hover:opacity-90"
                   >
                     <Sparkles className="h-3.5 w-3.5" aria-hidden />
                     Library
                   </Link>
                   <Link
                     href={links.practiceHref}
-                    className="inline-flex items-center gap-1 rounded-lg border border-slate-300 bg-slate-50 px-3 py-1.5 text-xs font-bold text-slate-800 hover:bg-slate-100"
+                    className={cn(feUi.footerBtn, "px-3 py-1.5 text-xs")}
                   >
                     <BookOpen className="h-3.5 w-3.5" aria-hidden />
                     Practice 10
@@ -70,7 +72,7 @@ export function FullExamStudyLinks({ examSlug, topicBreakdown }: Props) {
                   {links.firstCardHref ? (
                     <Link
                       href={links.firstCardHref}
-                      className="inline-flex items-center gap-1 rounded-lg border border-amber-300 bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-900 hover:bg-amber-100"
+                      className={cn(feUi.footerBtn, "border-amber-300/60 bg-amber-500/10 px-3 py-1.5 text-xs text-amber-900")}
                     >
                       <BookMarked className="h-3.5 w-3.5" aria-hidden />
                       Memory card
@@ -79,7 +81,10 @@ export function FullExamStudyLinks({ examSlug, topicBreakdown }: Props) {
                   {links.deepDiveHref ? (
                     <Link
                       href={links.deepDiveHref}
-                      className="inline-flex items-center gap-1 rounded-lg border border-violet-300 bg-violet-50 px-3 py-1.5 text-xs font-bold text-violet-900 hover:bg-violet-100"
+                      className={cn(
+                        feUi.footerBtn,
+                        "border-[var(--color-accent)]/30 bg-[var(--color-accent)]/5 px-3 py-1.5 text-xs text-[var(--color-accent)]"
+                      )}
                     >
                       <GraduationCap className="h-3.5 w-3.5" aria-hidden />
                       Deep dive

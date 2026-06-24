@@ -2,12 +2,19 @@
 
 import Link from "next/link";
 import { ChevronRight, Clock } from "lucide-react";
-import { analyticsHref } from "@/lib/edtech/practice-links";
+import { recentTestHref } from "@/lib/edtech/recent-test-links";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { RecentTestRow } from "@/lib/learning/student-dashboard";
+import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
-export function DashboardRecentActivity({ recentTests }: { recentTests: RecentTestRow[] }) {
+export function DashboardRecentActivity({
+  examSlug,
+  recentTests,
+}: {
+  examSlug: ExamSlug;
+  recentTests: RecentTestRow[];
+}) {
   const items = recentTests.slice(0, 3);
   if (items.length === 0) return null;
 
@@ -28,7 +35,7 @@ export function DashboardRecentActivity({ recentTests }: { recentTests: RecentTe
           return (
             <Link
               key={test.id}
-              href={analyticsHref()}
+              href={recentTestHref(examSlug, test)}
               className={cn(dbUi.listRow, "border-b border-black/[0.04] last:border-0")}
             >
               <div className="min-w-0">

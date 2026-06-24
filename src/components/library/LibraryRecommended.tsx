@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, BookMarked, Target } from "lucide-react";
+import { ArrowRight, BookMarked, GraduationCap, Target } from "lucide-react";
 import { practiceTopicHref } from "@/lib/edtech/practice-links";
+import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import { getPinnedMemoryCardIds } from "@/lib/library/pinned-essentials";
 import { useSessionTone } from "@/lib/library/session-tone";
 import { useLibraryMotion } from "@/lib/library/use-library-motion";
@@ -24,7 +25,14 @@ const MAX_RECOMMENDATIONS = 3;
 
 /** A recommendation is either a weak topic (→ practice) or an essential card (→ open). */
 type Recommendation =
-  | { kind: "topic"; key: string; title: string; slug: string; mastery: number }
+  | {
+      kind: "topic";
+      key: string;
+      title: string;
+      slug: string;
+      mastery: number;
+      deepDiveHref?: string;
+    }
   | { kind: "card"; key: string; title: string; subject: string; card: MemoryCard };
 
 function buildRecommendations(
@@ -37,12 +45,14 @@ function buildRecommendations(
   // 1. Lead with weak areas — the highest-impact place to practice next.
   for (const topic of weakTopics.slice(0, MAX_RECOMMENDATIONS)) {
     const slug = topic.id.replace(/^(tag|subject):/, "");
+    const links = getExamTopicStudyLinks(examSlug, topic.name);
     recs.push({
       kind: "topic",
       key: topic.id,
       title: topic.name,
       slug,
       mastery: topic.masteryScore,
+      deepDiveHref: links.deepDiveHref,
     });
   }
 
@@ -105,16 +115,27 @@ export function LibraryRecommended({ examSlug, weakTopics, cards, onOpenCard }: 
               <p className={cn(libUi.sectionHint, "mt-1.5 flex-1 leading-relaxed")}>
                 {copy.recommendationReason(rec.title, rec.mastery)}
               </p>
-              <Link
-                href={practiceTopicHref(examSlug, rec.slug, 10)}
-                className="group mt-4 inline-flex items-center justify-center gap-1.5 rounded-xl bg-[var(--color-accent)] px-3.5 py-2.5 text-[13px] font-semibold text-white shadow-[var(--shadow-apple-btn)] transition-opacity hover:opacity-95"
-              >
-                Start 10 questions
-                <ArrowRight
-                  className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
-                  aria-hidden
-                />
-              </Link>
+              <div className="mt-4 flex flex-col gap-2">
+                <Link
+                  href={practiceTopicHref(examSlug, rec.slug, 10)}
+                  className="group inline-flex items-center justify-center gap-1.5 rounded-xl bg-[var(--color-accent)] px-3.5 py-2.5 text-[13px] font-semibold text-white shadow-[var(--shadow-apple-btn)] transition-opacity hover:opacity-95"
+                >
+                  Start 10 questions
+                  <ArrowRight
+                    className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
+                </Link>
+                {rec.deepDiveHref ? (
+                  <Link
+                    href={rec.deepDiveHref}
+                    className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-[var(--color-accent)]/25 bg-[var(--color-accent)]/[0.05] px-3.5 py-2.5 text-[13px] font-semibold text-[var(--color-accent)] transition-colors hover:bg-[var(--color-accent)]/[0.1]"
+                  >
+                    <GraduationCap className="h-3.5 w-3.5" aria-hidden />
+                    High-yield deep dive
+                  </Link>
+                ) : null}
+              </div>
             </motion.article>
           ) : (
             <motion.article

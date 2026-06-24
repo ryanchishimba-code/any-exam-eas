@@ -5,6 +5,7 @@ import {
   type EmailDeliveryResult,
 } from "@/lib/email/config";
 import { formatPlanUsd, getBillingPlanTier, parseBillingInterval } from "@/lib/billing-plans";
+import { displayFirstName } from "@/lib/display-name";
 import type { BillingInterval } from "@/lib/billing-config";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 
@@ -14,8 +15,8 @@ type BillingEmailParams = {
 };
 
 function greeting(name?: string | null): string {
-  const trimmed = name?.trim();
-  return trimmed ? `Hi ${trimmed},` : "Hi there,";
+  const first = displayFirstName(name);
+  return first !== "there" ? `Hi ${first},` : "Hi there,";
 }
 
 function formatEmailDate(date: Date): string {

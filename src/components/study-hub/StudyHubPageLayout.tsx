@@ -3,6 +3,7 @@
 import { Suspense, type ReactNode } from "react";
 import { StudyHubNav } from "./StudyHubNav";
 import { StudyUsageBanner } from "@/components/study/StudyUsageBanner";
+import { displayFirstName } from "@/lib/display-name";
 
 export function StudyHubPageLayout({
   userName,
@@ -22,7 +23,7 @@ export function StudyHubPageLayout({
             Study Hub
           </p>
           <h1 className="apple-display mt-2 text-[clamp(2rem,5vw,2.75rem)]">
-            {userName ? `Hi, ${userName.split(" ")[0]}.` : "Study Hub"}
+            {userName ? `Hi, ${displayFirstName(userName)}.` : "Study Hub"}
           </h1>
           <p className="mt-3 max-w-xl text-[1.0625rem] text-slate-600">
             Choose your board — USMLE, NCLEX, NAPLEX, COMLEX, or AANP FNP — then pick timed exam or

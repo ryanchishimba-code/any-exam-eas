@@ -24,6 +24,7 @@ import {
   top500Href,
 } from "@/lib/edtech/practice-links";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
+import { displayFirstName } from "@/lib/display-name";
 import { cn } from "@/lib/utils";
 
 type HubCard = {
@@ -120,7 +121,7 @@ export function StudyHubDashboard({
                 Study Hub
               </p>
               <h1 className="mt-1 text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-                {userName ? `Welcome back, ${userName.split(" ")[0]}` : "Welcome back"}
+                {userName ? `Welcome back, ${displayFirstName(userName)}` : "Welcome back"}
               </h1>
               <p className="mt-2 max-w-xl text-slate-600 dark:text-slate-400">
                 Preparing for{" "}

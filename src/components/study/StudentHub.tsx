@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/Button";
 import { AppleLink } from "@/components/ui/AppleLink";
 import { ProgressMetricsNotice } from "@/components/legal/ProgressMetricsNotice";
 import { formatTrialEntryPrice, formatTrialLabel } from "@/lib/site";
+import { displayFirstName } from "@/lib/display-name";
 
 export function StudentHub({ suppressHero = false }: { suppressHero?: boolean }) {
   const { data: session } = useSession();
@@ -60,7 +61,7 @@ export function StudentHub({ suppressHero = false }: { suppressHero?: boolean })
 
           <h2 className="apple-headline">
             {session?.user?.name
-              ? `Welcome back, ${session.user.name.split(" ")[0]}.`
+              ? `Welcome back, ${displayFirstName(session.user.name)}.`
               : "Your exam prep hub."}
           </h2>
           <p className="apple-subhead mt-3 max-w-md">

@@ -1,31 +1,25 @@
-"use client";
-
 import Link from "next/link";
 import {
   ArrowRight,
   ClipboardList,
+  Flame,
+  Gauge,
   LayoutGrid,
   Target,
   TrendingDown,
   TrendingUp,
-  Flame,
-  Gauge,
 } from "lucide-react";
-import { DashboardContinueRow } from "@/components/dashboard/DashboardContinueRow";
 import { DashboardExamCountdown } from "@/components/dashboard/DashboardExamCountdown";
-import { DashboardExploreRow } from "@/components/dashboard/DashboardExploreRow";
-import { DashboardRoadmapPreview } from "@/components/dashboard/DashboardRoadmapPreview";
-import { DashboardRecentActivity } from "@/components/dashboard/DashboardRecentActivity";
-import { DashboardSpacedReview } from "@/components/dashboard/DashboardSpacedReview";
-import { DashboardWeakTopics } from "@/components/dashboard/DashboardWeakTopics";
+import { DashboardTodayFocus } from "@/components/dashboard/DashboardTodayFocus";
+import { DashboardViewSections } from "@/components/app/DashboardViewSections";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { ROUTES } from "@/lib/routes";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import type { RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
+import { displayFirstName } from "@/lib/display-name";
 import { cn } from "@/lib/utils";
 
 export type DashboardHeadline = {
@@ -34,7 +28,7 @@ export type DashboardHeadline = {
   trendDelta: number | null;
 };
 
-export function DashboardView({
+export function DashboardPageContent({
   examSlug,
   stats,
   headline,
@@ -58,11 +52,8 @@ export function DashboardView({
   const exam = EXAM_CATALOG[examSlug];
   const theme = EXAM_SELECTION_THEMES[examSlug];
   const ExamIcon = theme.icon;
-  const firstName = userName?.split(" ")[0] ?? "there";
-  const showExplore = hasClinicalStudyTools(examSlug);
+  const firstName = displayFirstName(userName);
   const showRecent = recentTests.length > 0;
-  const showWeak = weakTopics.length > 0;
-  const showSpacedReview = spacedReview.dueCount > 0;
   const isNewUser = stats.questionsAnswered === 0 && !showRecent;
 
   return (
@@ -124,8 +115,22 @@ export function DashboardView({
               </div>
             </div>
           ) : null}
+
           <div className={dbUi.panelSection}>
-            <p className={dbUi.subtitle}>{headline.motivationalMessage}</p>
+            {isNewUser ? (
+              <p className={dbUi.subtitle}>{headline.motivationalMessage}</p>
+            ) : (
+              <DashboardTodayFocus
+                examSlug={examSlug}
+                examName={exam.name}
+                readinessScore={headline.readinessScore}
+                motivationalMessage={headline.motivationalMessage}
+                dueCount={spacedReview.dueCount}
+                topWeakTopic={weakTopics[0]?.name ?? null}
+                hasRecent={showRecent}
+              />
+            )}
+
             <div className={dbUi.chipRow}>
               <StatPill
                 icon={ClipboardList}
@@ -146,39 +151,14 @@ export function DashboardView({
             </div>
           </div>
 
-          <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
-            <DashboardContinueRow examSlug={examSlug} />
-          </div>
-
-          {roadmap ? (
-            <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
-              <DashboardRoadmapPreview examSlug={examSlug} roadmap={roadmap} />
-            </div>
-          ) : null}
-
-          {showSpacedReview ? (
-            <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
-              <DashboardSpacedReview examSlug={examSlug} spacedReview={spacedReview} />
-            </div>
-          ) : null}
-
-          {showWeak ? (
-            <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
-              <DashboardWeakTopics examSlug={examSlug} weakTopics={weakTopics} />
-            </div>
-          ) : null}
-
-          {showExplore ? (
-            <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
-              <DashboardExploreRow examSlug={examSlug} />
-            </div>
-          ) : null}
-
-          {showRecent ? (
-            <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
-              <DashboardRecentActivity recentTests={recentTests} />
-            </div>
-          ) : null}
+          <DashboardViewSections
+            examSlug={examSlug}
+            weakTopics={weakTopics}
+            spacedReview={spacedReview}
+            roadmap={roadmap}
+            recentTests={recentTests}
+            srsInFocus={!isNewUser && spacedReview.dueCount > 0}
+          />
         </div>
       </div>
     </div>

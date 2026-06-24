@@ -2,6 +2,7 @@
 
 import { type ReactNode } from "react";
 import { StudyGubNav } from "./StudyGubNav";
+import { displayFirstName } from "@/lib/display-name";
 
 export function StudyGubPageLayout({
   userName,
@@ -19,7 +20,7 @@ export function StudyGubPageLayout({
             StudyGub
           </p>
           <h1 className="apple-display mt-2 text-[clamp(2rem,5vw,2.75rem)]">
-            {userName ? `Hi, ${userName.split(" ")[0]}.` : "StudyGub"}
+            {userName ? `Hi, ${displayFirstName(userName)}.` : "StudyGub"}
           </h1>
           <p className="apple-subhead mt-3 max-w-xl text-[1.0625rem] text-slate-600">
             Question banks by exam and one shared Top 500 drug deck — nothing extra.

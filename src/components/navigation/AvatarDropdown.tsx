@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { BookOpen, ChevronDown, Layers, LayoutGrid, LogOut, Shield, User } from "lucide-react";
 import { firstName } from "@/lib/client/returning-user";
+import { formatDisplayName, displayFirstName } from "@/lib/display-name";
 import { useIsAdmin } from "@/lib/client/admin-access";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
@@ -151,9 +152,9 @@ export function AvatarDropdown() {
 
   if (!session?.user) return null;
 
-  const name = session.user.name ?? undefined;
+  const name = formatDisplayName(session.user.name) ?? undefined;
   const email = session.user.email ?? undefined;
-  const display = name ? firstName(name) : email?.split("@")[0] ?? "Account";
+  const display = name ? firstName(name) : email ? displayFirstName(null, email) : "Account";
 
   return (
     <div ref={rootRef} className="relative">

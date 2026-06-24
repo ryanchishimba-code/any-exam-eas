@@ -2,13 +2,14 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Compass, GraduationCap, LayoutGrid, Search, X } from "lucide-react";
+import { Compass, GraduationCap, LayoutGrid, Search, Wrench, X } from "lucide-react";
 import type { LibraryHubStats } from "@/components/library/LibraryHubHeader";
 import { LibraryWelcome } from "@/components/library/LibraryWelcome";
 import { LibraryRecommended } from "@/components/library/LibraryRecommended";
 import { LibraryProgress } from "@/components/library/LibraryProgress";
 import { LibrarySubjectsView } from "@/components/library/LibrarySubjectsView";
 import { LibraryExamWheel } from "@/components/library/LibraryExamWheel";
+import { LibraryQuickTools } from "@/components/library/LibraryQuickTools";
 import { FavoriteCardTile } from "@/components/library/FavoriteCardTile";
 import { SessionToneSelector } from "@/components/library/SessionToneSelector";
 import { MemoryCardSheet } from "@/components/library/MemoryCardSheet";
@@ -31,7 +32,7 @@ import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
-type LibraryTab = "for-you" | "subjects" | "exams";
+type LibraryTab = "for-you" | "subjects" | "exams" | "tools";
 
 type Props = {
   examSlug: ExamSlug;
@@ -46,6 +47,7 @@ type Props = {
 const TABS: Array<{ id: LibraryTab; label: string; icon: typeof Compass }> = [
   { id: "for-you", label: "For You", icon: Compass },
   { id: "subjects", label: "Subjects", icon: LayoutGrid },
+  { id: "tools", label: "Tools", icon: Wrench },
   { id: "exams", label: "Exams", icon: GraduationCap },
 ];
 
@@ -257,6 +259,8 @@ export function LibraryHubClient({
           </motion.div>
         ) : tab === "subjects" ? (
           <LibrarySubjectsView examSlug={examSlug} cards={cards} onOpenCard={openCard} />
+        ) : tab === "tools" ? (
+          <LibraryQuickTools examSlug={examSlug} />
         ) : (
           <LibraryExamWheel currentExam={examSlug} />
         )}
