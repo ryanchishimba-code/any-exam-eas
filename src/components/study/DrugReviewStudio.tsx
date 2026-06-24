@@ -1,12 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import {
   CalendarClock,
   ChevronLeft,
   ChevronRight,
   Layers,
+  LayoutGrid,
   Pill,
   RefreshCw,
   RotateCcw,
@@ -22,6 +24,7 @@ import { getDrugSearchHitById, type DrugSearchHit } from "@/lib/drugs300/search"
 import { EndActivityControl } from "./EndActivityControl";
 import { ActivitySessionToolbar } from "./ActivitySessionToolbar";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
+import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 
 const GRADES: ReviewGrade[] = [0, 1, 2, 3];
 
@@ -174,7 +177,7 @@ export function DrugReviewStudio() {
   const { cycle, stats, classProgress } = dashboard;
 
   return (
-    <div className="mt-8 space-y-6">
+    <div className="mt-6 space-y-6">
       {dashboard.resetApplied && (
         <div className="rounded-xl border border-cyan-200 bg-cyan-50 px-4 py-3 text-sm text-cyan-900">
           <RefreshCw className="mr-2 inline h-4 w-4" aria-hidden />
@@ -291,23 +294,34 @@ export function DrugReviewStudio() {
             <>
               <ActivitySessionToolbar
                 variant="teal"
+                className="top-[calc(var(--nav-height)+4.25rem)]"
                 actions={
-                  <EndActivityControl
-                    kind="activity"
-                    variant="teal"
-                    onConfirm={async (): Promise<ActivitySessionSummary> => {
-                      /* Graded cards persist via /api/drugs300/review on each grade */
-                      return {
-                        title: "Top 500 Drugs",
-                        activityType: "drugs",
-                        reviewed: stats.reviewed,
-                        mastered: stats.mastered,
-                        total: stats.total,
-                        progressPct: stats.progressPct,
-                        endedEarly: true,
-                      };
-                    }}
-                  />
+                  <>
+                    <Link
+                      href={STUDY_HUB_PATH}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-teal-300/80 bg-teal-50 px-3 py-1.5 text-xs font-semibold text-teal-900 transition hover:bg-teal-100"
+                    >
+                      <LayoutGrid className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                      <span className="hidden sm:inline">Study Hub</span>
+                      <span className="sm:hidden">Hub</span>
+                    </Link>
+                    <EndActivityControl
+                      kind="activity"
+                      variant="teal"
+                      onConfirm={async (): Promise<ActivitySessionSummary> => {
+                        /* Graded cards persist via /api/drugs300/review on each grade */
+                        return {
+                          title: "Top 500 Drugs",
+                          activityType: "drugs",
+                          reviewed: stats.reviewed,
+                          mastered: stats.mastered,
+                          total: stats.total,
+                          progressPct: stats.progressPct,
+                          endedEarly: true,
+                        };
+                      }}
+                    />
+                  </>
                 }
               >
                 <div className="text-sm text-slate-600">

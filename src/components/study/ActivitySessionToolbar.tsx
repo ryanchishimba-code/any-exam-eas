@@ -19,7 +19,7 @@ export function ActivitySessionToolbar({
   return (
     <div
       className={cn(
-        "sticky top-20 z-20 flex flex-wrap items-center justify-between gap-3 rounded-xl border px-3 py-2.5 backdrop-blur",
+        "sticky top-[calc(var(--nav-height)+0.5rem)] z-20 flex flex-wrap items-center justify-between gap-3 rounded-xl border px-3 py-2.5 backdrop-blur",
         variant === "dark"
           ? "border-white/10 bg-slate-950/95"
           : variant === "teal"

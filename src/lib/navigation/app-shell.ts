@@ -7,6 +7,7 @@ export const APP_SHELL_PREFIXES = [
   "/library",
   "/anatomy",
   "/settings",
+  "/study/drugs300",
 ] as const;
 
 export const MINIMAL_CHROME_PREFIXES = [

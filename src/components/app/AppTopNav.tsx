@@ -45,36 +45,39 @@ export function AppTopNav({ onMenuClick }: Props) {
       <nav
         className={cn(
           shellUi.container,
-          "flex h-[var(--nav-height)] items-center gap-2 px-4 sm:gap-3 sm:px-6 xl:px-8"
+          "grid h-[var(--nav-height)] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 px-4 sm:gap-3 sm:px-6 xl:px-8"
         )}
         aria-label="App navigation"
       >
-        <button
-          type="button"
-          onClick={onMenuClick}
-          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-[var(--color-ink-muted)] transition hover:bg-black/[0.04] hover:text-[var(--color-ink)] lg:hidden"
-          aria-label="Open study menu"
-        >
-          <Menu className="h-5 w-5" />
-        </button>
+        <div className="flex min-w-0 items-center gap-2">
+          <button
+            type="button"
+            onClick={onMenuClick}
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-[var(--color-ink-muted)] transition hover:bg-black/[0.04] hover:text-[var(--color-ink)] lg:hidden"
+            aria-label="Open study menu"
+          >
+            <Menu className="h-5 w-5" />
+          </button>
 
-        <BrandLogo href={ROUTES.dashboard} variant="nav" />
+          <BrandLogo href={ROUTES.dashboard} variant="nav" />
+        </div>
 
-        <div className="hidden min-w-0 flex-1 items-center gap-3 md:flex">
-          <GlobalExamSwitcher variant="nav" />
-          <span className="mx-1 h-4 w-px bg-black/[0.08]" aria-hidden />
+        <div className="hidden items-center justify-center gap-4 md:flex">
           {APP_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={navLinkClass(isActive(link.href))}
+              className={cn(navLinkClass(isActive(link.href)), "whitespace-nowrap")}
             >
               {link.label}
             </Link>
           ))}
         </div>
 
-        <div className="ml-auto flex items-center gap-1.5 sm:gap-2">
+        <div className="flex min-w-0 items-center justify-end gap-1.5 sm:gap-2">
+          <div className="hidden shrink-0 md:block">
+            <GlobalExamSwitcher variant="nav" />
+          </div>
           <ThemeToggle />
           <Link
             href={ROUTES.settings}
