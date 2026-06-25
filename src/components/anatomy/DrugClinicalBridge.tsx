@@ -1,20 +1,22 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { Activity, Bone, Stethoscope } from "lucide-react";
+import { Activity, Bone, ChevronDown, Stethoscope } from "lucide-react";
 import {
   anatomyStructureHref,
   drugUsedAsFirstLine,
   getClinicalContextForDrug,
 } from "@/lib/anatomy/clinical-links";
 import { getAnatomyStructure } from "@/lib/anatomy";
+import { cn } from "@/lib/utils";
 
 type Props = {
   drugId: string;
   compact?: boolean;
   variant?: "light" | "dark";
-  /** Cap height and scroll disease/structure links — keeps Top 500 layout tidy. */
-  scrollable?: boolean;
+  /** Collapse links behind a toggle — keeps Top 500 layout tidy. */
+  collapsible?: boolean;
 };
 
 /** Reverse bridge: drug card → anatomy structures, diseases, and endpoints. */
@@ -22,21 +24,37 @@ export function DrugClinicalBridge({
   drugId,
   compact = false,
   variant = "light",
-  scrollable = false,
+  collapsible = false,
 }: Props) {
+  const [expanded, setExpanded] = useState(false);
   const ctx = getClinicalContextForDrug(drugId);
   if (ctx.diseases.length === 0) return null;
 
   const topDiseases = ctx.diseases.slice(0, compact ? 2 : 4);
   const dark = variant === "dark";
+  const structureCount = ctx.structureIds.length;
+  const diseaseCount = ctx.diseases.length;
 
-  const scrollMaxClass = compact
-    ? "max-h-[min(11rem,36dvh)]"
-    : "max-h-[min(16rem,44dvh)]";
+  const sectionClass = compact
+    ? dark
+      ? "rounded-xl border border-cyan-400/25 bg-cyan-950/40 p-3"
+      : "rounded-xl border border-indigo-100 bg-indigo-50/50 p-3"
+    : dark
+      ? "rounded-2xl border border-cyan-400/25 bg-cyan-950/40 p-4"
+      : "rounded-2xl border border-indigo-100 bg-gradient-to-br from-indigo-50/80 to-white p-4";
+
+  const hintClass = dark ? "text-cyan-100/70" : "text-slate-500";
+  const chevronClass = dark ? "text-cyan-200" : "text-indigo-600";
+
+  const summaryParts: string[] = [];
+  if (structureCount > 0) {
+    summaryParts.push(`${structureCount} structure${structureCount === 1 ? "" : "s"}`);
+  }
+  summaryParts.push(`${diseaseCount} disease link${diseaseCount === 1 ? "" : "s"}`);
 
   const linksBody = (
     <>
-      {ctx.structureIds.length > 0 ? (
+      {structureCount > 0 ? (
         <div className="flex flex-wrap gap-1.5">
           {ctx.structureIds.map((structureId) => {
             const structure = getAnatomyStructure(structureId);
@@ -58,7 +76,7 @@ export function DrugClinicalBridge({
         </div>
       ) : null}
 
-      <ul className={`space-y-2 ${ctx.structureIds.length > 0 ? "mt-3" : ""} ${compact ? "" : "space-y-3"}`}>
+      <ul className={`space-y-2 ${structureCount > 0 ? "mt-3" : ""} ${compact ? "" : "space-y-3"}`}>
         {topDiseases.map((disease) => {
           const role = drugUsedAsFirstLine(disease, drugId) ? "First-line" : "Adjunct";
           const primaryStructure = disease.structureIds[0];
@@ -118,27 +136,65 @@ export function DrugClinicalBridge({
         })}
       </ul>
 
-      {compact && ctx.diseases.length > 2 ? (
-        <p className={`mt-2 text-[10px] ${dark ? "text-cyan-200/70" : "text-slate-500"}`}>
-          +{ctx.diseases.length - 2} more disease links — search drug for full preview
+      {compact && diseaseCount > 2 ? (
+        <p className={`mt-2 text-[10px] ${hintClass}`}>
+          +{diseaseCount - 2} more disease links — search drug for full preview
         </p>
       ) : null}
     </>
   );
 
+  if (collapsible) {
+    return (
+      <section className={sectionClass} aria-label="Anatomy and disease connections">
+        <button
+          type="button"
+          onClick={() => setExpanded((open) => !open)}
+          aria-expanded={expanded}
+          className="flex w-full items-start justify-between gap-3 text-left"
+        >
+          <span className="min-w-0">
+            <span className="flex items-center gap-2">
+              <Bone className={`h-4 w-4 shrink-0 ${dark ? "text-cyan-300" : "text-indigo-600"}`} aria-hidden />
+              <span className={`text-sm font-bold ${dark ? "text-cyan-50" : "text-slate-900"}`}>
+                Anatomy connections
+              </span>
+            </span>
+            <span className={`mt-1 block text-xs ${dark ? "text-cyan-100/80" : "text-slate-600"}`}>
+              {summaryParts.join(" · ")}
+            </span>
+          </span>
+          <ChevronDown
+            className={cn(
+              "mt-0.5 h-4 w-4 shrink-0 transition-transform",
+              chevronClass,
+              expanded && "rotate-180"
+            )}
+            aria-hidden
+          />
+        </button>
+
+        {!expanded ? (
+          <p className={`mt-2 text-xs ${hintClass}`}>
+            Expand to jump to 3D structures and disease links.
+          </p>
+        ) : (
+          <div
+            className={cn(
+              "mt-3 overflow-y-auto overscroll-contain rounded-lg border pr-1",
+              dark ? "border-cyan-400/20 bg-cyan-950/20" : "border-indigo-100/80 bg-white/60",
+              compact ? "max-h-[min(11rem,36dvh)]" : "max-h-[min(16rem,44dvh)]"
+            )}
+          >
+            <div className="p-2.5">{linksBody}</div>
+          </div>
+        )}
+      </section>
+    );
+  }
+
   return (
-    <section
-      className={
-        compact
-          ? dark
-            ? "rounded-xl border border-cyan-400/25 bg-cyan-950/40 p-3"
-            : "rounded-xl border border-indigo-100 bg-indigo-50/50 p-3"
-          : dark
-            ? "rounded-2xl border border-cyan-400/25 bg-cyan-950/40 p-4"
-            : "rounded-2xl border border-indigo-100 bg-gradient-to-br from-indigo-50/80 to-white p-4"
-      }
-      aria-label="Anatomy and disease connections"
-    >
+    <section className={sectionClass} aria-label="Anatomy and disease connections">
       <div className="flex items-center gap-2">
         <Bone className={`h-4 w-4 ${dark ? "text-cyan-300" : "text-indigo-600"}`} aria-hidden />
         <h4 className={`text-sm font-bold ${dark ? "text-cyan-50" : "text-slate-900"}`}>
@@ -148,20 +204,7 @@ export function DrugClinicalBridge({
       <p className={`mt-1 text-xs ${dark ? "text-cyan-100/80" : "text-slate-600"}`}>
         Where this drug meets disease — jump to the 3D structure.
       </p>
-
-      {scrollable ? (
-        <div
-          className={`mt-3 overflow-y-auto overscroll-contain rounded-lg border pr-1 ${
-            dark
-              ? "border-cyan-400/20 bg-cyan-950/20"
-              : "border-indigo-100/80 bg-white/60"
-          } ${scrollMaxClass}`}
-        >
-          <div className="p-2.5">{linksBody}</div>
-        </div>
-      ) : (
-        <div className="mt-3">{linksBody}</div>
-      )}
+      <div className="mt-3">{linksBody}</div>
     </section>
   );
 }

@@ -87,7 +87,7 @@ export function DrugSearchPreview({ drug, onClose }: Props) {
         </div>
       )}
 
-      <DrugClinicalBridge drugId={drug.id} scrollable />
+      <DrugClinicalBridge drugId={drug.id} collapsible />
     </div>
   );
 }

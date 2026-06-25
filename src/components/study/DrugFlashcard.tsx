@@ -86,7 +86,7 @@ export function DrugFlashcard({
 
       {flipped && (
         <div className="mt-3">
-          <DrugClinicalBridge drugId={card.drugId} compact scrollable variant="light" />
+          <DrugClinicalBridge drugId={card.drugId} compact collapsible variant="light" />
         </div>
       )}
 
