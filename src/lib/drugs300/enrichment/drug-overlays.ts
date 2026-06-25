@@ -167,6 +167,42 @@ export const DRUG_ENRICHMENT_OVERLAYS: Record<string, Partial<DrugEnrichment>> =
       "Schedule II — monthly prescriptions in many states; growth monitoring in children.",
     ],
   },
+  lisdexamfetamine: {
+    pearls: [
+      "Prodrug of d-amphetamine — requires GI cleavage; lower insufflation/injection abuse potential vs IR amphetamines.",
+      "Also FDA-approved for moderate-to-severe binge eating disorder (Vyvanse).",
+    ],
+  },
+  dexmethylphenidate: {
+    pearls: [
+      "Active d-threo enantiomer of methylphenidate — roughly half the mg dose of racemic methylphenidate.",
+      "Focalin XR once daily; same Schedule II monitoring as methylphenidate.",
+    ],
+  },
+  dextroamphetamine: {
+    pearls: [
+      "Pure d-amphetamine (Dexedrine) vs mixed salts in Adderall — know formulation differences on boards.",
+      "Schedule II — avoid in symptomatic cardiovascular disease; take early in day.",
+    ],
+  },
+  "viloxazine-extended-release": {
+    pearls: [
+      "Non-controlled NE reuptake inhibitor for ADHD (Qelbree) — slower onset than stimulants.",
+      "Not a stimulant or controlled substance — option when atomoxetine or α2 agonists considered.",
+    ],
+  },
+  "clonidine-extended-release": {
+    pearls: [
+      "Kapvay ER for ADHD — often adjunct to stimulants; same rebound HTN risk as IR clonidine if stopped abruptly.",
+      "Sedation and hypotension — useful when comorbid tic disorder or insomnia with stimulants.",
+    ],
+  },
+  methamphetamine: {
+    pearls: [
+      "Desoxyn is last-line Schedule II stimulant for ADHD when other agents fail — rarely prescribed.",
+      "Same abuse and cardiovascular monitoring as other amphetamines.",
+    ],
+  },
   amoxicillin: {
     pearls: [
       "First-line otitis media, strep pharyngitis, H. pylori triple therapy component.",

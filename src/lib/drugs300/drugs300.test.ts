@@ -5,7 +5,7 @@ import { applySpacedRepetition, initialSpacedRepetitionState } from "./spaced-re
 
 describe("drugs300", () => {
   it("catalog includes full GLP-1 class coverage", () => {
-    expect(TOP_500_COUNT).toBe(503);
+    expect(TOP_500_COUNT).toBe(509);
     const glpIds = [
       "dulaglutide",
       "exenatide",
@@ -21,6 +21,29 @@ describe("drugs300", () => {
     expect(getDrugById("semaglutide")?.brand).toContain("Ozempic");
     expect(getDrugById("tirzepatide")?.brand).toContain("Mounjaro");
     expect(getDrugById("lixisenatide")?.brand).toContain("Adlyxin");
+  });
+
+  it("catalog includes FDA-approved ADHD pharmacotherapy", () => {
+    const adhdIds = [
+      "methylphenidate",
+      "dexmethylphenidate",
+      "amphetamine-dextroamphetamine",
+      "dextroamphetamine",
+      "lisdexamfetamine",
+      "methamphetamine",
+      "atomoxetine",
+      "guanfacine",
+      "guanfacine-extended-release",
+      "clonidine",
+      "clonidine-extended-release",
+      "viloxazine-extended-release",
+    ];
+    for (const id of adhdIds) {
+      expect(getDrugById(id), id).toBeDefined();
+      expect(getDrugById(id)!.indications.toLowerCase()).toMatch(/adhd/);
+    }
+    expect(getDrugById("lisdexamfetamine")?.brand).toContain("Vyvanse");
+    expect(getDrugById("viloxazine-extended-release")?.brand).toContain("Qelbree");
   });
 
   it("uses quarterly cycle keys", () => {

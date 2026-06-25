@@ -223,6 +223,34 @@ const CLASS_RULES: ClassRule[] = [
   },
   {
     match: (d) =>
+      /norepinephrine reuptake inhibitor/i.test(d.therapeuticClass) &&
+      /adhd/i.test(d.indications),
+    merge: {
+      pearls: [
+        "Non-stimulant ADHD options (atomoxetine, viloxazine) — slower onset than stimulants; not controlled substances.",
+        "Atomoxetine: boxed warning for suicidal ideation in children/adolescents; monitor mood.",
+        "Screen hepatic function with atomoxetine; viloxazine may cause somnolence and nausea early in therapy.",
+      ],
+      guidelines: [FDA_LABELING, AAP_PEDIATRICS],
+      monitoring: "Mood/suicidality, growth, sleep, BP/HR; liver tests for atomoxetine.",
+    },
+  },
+  {
+    match: (d) =>
+      /α2 agonist|alpha-2 agonist|central α2/i.test(d.therapeuticClass) &&
+      /adhd/i.test(d.indications),
+    merge: {
+      pearls: [
+        "Non-stimulant α2 agonists (guanfacine ER, clonidine ER) — adjunct or monotherapy for ADHD.",
+        "Sedation and hypotension common; taper to avoid rebound hypertension.",
+        "Useful when tics, insomnia, or stimulant intolerance — often combined with stimulants.",
+      ],
+      guidelines: [FDA_LABELING, AAP_PEDIATRICS],
+      monitoring: "BP, HR, sedation, mood; never stop abruptly.",
+    },
+  },
+  {
+    match: (d) =>
       /contraceptive|progestin-only pill|combined hormonal|levonorgestrel|etonogestrel|norethindrone|medroxyprogesterone/i.test(
         `${d.therapeuticClass} ${d.generic} ${d.brand}`
       ),

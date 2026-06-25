@@ -1,6 +1,6 @@
 import { d } from "./entry";
 
-/** Board-exam extension — ranks 401–503. */
+/** Board-exam extension — ranks 401–509. */
 export const CLINCALC_5 = [
   d(401, "Tobramycin", "Nebcin", "Aminoglycoside antibiotic", "Gram-negative serious infections (Pseudomonas)", "Nephrotoxicity, ototoxicity; once-daily dosing levels", "Nebcin = NEBcin ears & kidneys — aminoglycoside trough levels"),
   d(402, "Trastuzumab", "Herceptin", "Anti-HER2 monoclonal antibody", "HER2+ breast and gastric cancer", "Cardiotoxicity (↓ EF), infusion reactions", "Herceptin = HER2 trastuzumab — monitor echocardiogram"),
@@ -105,4 +105,10 @@ export const CLINCALC_5 = [
   d(501, "Tirzepatide", "Mounjaro, Zepbound", "Dual GIP/GLP-1 receptor agonist", "Type 2 diabetes (Mounjaro), chronic weight management (Zepbound)", "Nausea, vomiting, diarrhea, pancreatitis (rare), gallbladder disease; CI MEN2/medullary thyroid carcinoma; delayed gastric emptying (ileus/gastroparesis risk)", "Mounjaro = MOUNTain of A1C & weight — dual GIP/GLP-1 weekly injection"),
   d(502, "Lixisenatide", "Adlyxin", "GLP-1 receptor agonist", "Type 2 diabetes (often add-on to basal insulin)", "Nausea, vomiting, headache; CI MEN2/medullary thyroid carcinoma; hypoglycemia risk with insulin/sulfonylurea", "Adlyxin = ADLyxin before meals — once-daily GLP-1 injectable"),
   d(503, "Albiglutide", "Tanzeum", "GLP-1 receptor agonist", "Type 2 diabetes (product withdrawn US 2018; class comparison)", "Nausea, diarrhea, injection-site reactions, pancreatitis (rare); CI MEN2/medullary thyroid carcinoma", "Tanzeum = TANzeum weekly GLP-1 — withdrawn but classic fusion-protein GLP-1 RA"),
+  d(504, "Lisdexamfetamine", "Vyvanse", "CNS stimulant (amphetamine prodrug)", "ADHD, binge eating disorder", "Insomnia, appetite loss, tachycardia, psychosis; Schedule II (prodrug requires GI activation)", "Vyvanse = VYvanse prodrug d-amp — swallow capsule; lower insufflation abuse"),
+  d(505, "Dexmethylphenidate", "Focalin, Focalin XR", "CNS stimulant (d-methylphenidate enantiomer)", "ADHD", "Insomnia, appetite loss, tachycardia, abuse (Schedule II)", "Focalin = FOcalin d-enantiomer — active R-methylphenidate at ~half methylphenidate dose"),
+  d(506, "Dextroamphetamine", "Dexedrine, Zenzedi, ProCentra", "CNS stimulant (d-amphetamine)", "ADHD, narcolepsy", "Insomnia, appetite loss, tachycardia, psychosis, abuse (Schedule II)", "Dexedrine = DEXedrine pure d-amp — Adderall is mixed amphetamine salts"),
+  d(507, "Clonidine (extended-release)", "Kapvay", "Central α2 agonist (extended-release)", "ADHD (non-stimulant adjunct)", "Sedation, hypotension, bradycardia, rebound hypertension if stopped abruptly", "Kapvay = KAPvay ADHD ER α2 — taper clonidine; never stop cold turkey"),
+  d(508, "Viloxazine (extended-release)", "Qelbree", "Norepinephrine reuptake inhibitor", "ADHD (non-stimulant)", "Somnolence, nausea, irritability; not a controlled substance", "Qelbree = QELbree NE block — viloxazine ER non-stimulant like Strattera"),
+  d(509, "Methamphetamine", "Desoxyn", "CNS stimulant (amphetamine)", "ADHD (refractory), short-term obesity", "Insomnia, appetite loss, abuse, cardiovascular effects; Schedule II last-line ADHD", "Desoxyn = DESoxyn last-resort stimulant — methamphetamine Schedule II ADHD"),
 ];

@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
   "source": "ClinCalc Top 500 (Any Exam Easy)",
-  "updatedAt": "2026-06-14T20:08:57.705Z",
-  "count": 503,
+  "updatedAt": "2026-06-25T04:26:08.805Z",
+  "count": 509,
   "drugs": [
     {
       "id": "atorvastatin",
@@ -282,7 +282,7 @@
       "generic": "Bupropion",
       "brand": "Wellbutrin",
       "class": "NDRI antidepressant / smoking cessation",
-      "indications": "MDD, seasonal affective disorder, smoking cessation",
+      "indications": "MDD, seasonal affective disorder, smoking cessation, ADHD (off-label adjunct)",
       "sideEffects": "Seizure risk (dose-dependent), insomnia, agitation, no sexual SE",
       "mnemonic": "BuPROPion = PROpagates energy; no weight/sex SE but seizure risk",
       "examRelevance": {
@@ -8051,6 +8051,102 @@
         "NAPLEX": true
       },
       "category": "endocrine"
+    },
+    {
+      "id": "lisdexamfetamine",
+      "rank": 504,
+      "generic": "Lisdexamfetamine",
+      "brand": "Vyvanse",
+      "class": "CNS stimulant (amphetamine prodrug)",
+      "indications": "ADHD, binge eating disorder",
+      "sideEffects": "Insomnia, appetite loss, tachycardia, psychosis; Schedule II (prodrug requires GI activation)",
+      "mnemonic": "Vyvanse = VYvanse prodrug d-amp — swallow capsule; lower insufflation abuse",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "dexmethylphenidate",
+      "rank": 505,
+      "generic": "Dexmethylphenidate",
+      "brand": "Focalin, Focalin XR",
+      "class": "CNS stimulant (d-methylphenidate enantiomer)",
+      "indications": "ADHD",
+      "sideEffects": "Insomnia, appetite loss, tachycardia, abuse (Schedule II)",
+      "mnemonic": "Focalin = FOcalin d-enantiomer — active R-methylphenidate at ~half methylphenidate dose",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "dextroamphetamine",
+      "rank": 506,
+      "generic": "Dextroamphetamine",
+      "brand": "Dexedrine, Zenzedi, ProCentra",
+      "class": "CNS stimulant (d-amphetamine)",
+      "indications": "ADHD, narcolepsy",
+      "sideEffects": "Insomnia, appetite loss, tachycardia, psychosis, abuse (Schedule II)",
+      "mnemonic": "Dexedrine = DEXedrine pure d-amp — Adderall is mixed amphetamine salts",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
+    },
+    {
+      "id": "clonidine-extended-release",
+      "rank": 507,
+      "generic": "Clonidine (extended-release)",
+      "brand": "Kapvay",
+      "class": "Central α2 agonist (extended-release)",
+      "indications": "ADHD (non-stimulant adjunct)",
+      "sideEffects": "Sedation, hypotension, bradycardia, rebound hypertension if stopped abruptly",
+      "mnemonic": "Kapvay = KAPvay ADHD ER α2 — taper clonidine; never stop cold turkey",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "viloxazine-extended-release",
+      "rank": 508,
+      "generic": "Viloxazine (extended-release)",
+      "brand": "Qelbree",
+      "class": "Norepinephrine reuptake inhibitor",
+      "indications": "ADHD (non-stimulant)",
+      "sideEffects": "Somnolence, nausea, irritability; not a controlled substance",
+      "mnemonic": "Qelbree = QELbree NE block — viloxazine ER non-stimulant like Strattera",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "immunologic-other"
+    },
+    {
+      "id": "methamphetamine",
+      "rank": 509,
+      "generic": "Methamphetamine",
+      "brand": "Desoxyn",
+      "class": "CNS stimulant (amphetamine)",
+      "indications": "ADHD (refractory), short-term obesity",
+      "sideEffects": "Insomnia, appetite loss, abuse, cardiovascular effects; Schedule II last-line ADHD",
+      "mnemonic": "Desoxyn = DESoxyn last-resort stimulant — methamphetamine Schedule II ADHD",
+      "examRelevance": {
+        "NCLEX": true,
+        "USMLE": true,
+        "NAPLEX": true
+      },
+      "category": "cns-psych"
     }
   ]
 }
