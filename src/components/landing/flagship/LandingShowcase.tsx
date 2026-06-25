@@ -5,7 +5,7 @@
  *
  * Device-framed real screenshots (dashboard, question bank, analytics) with
  * short benefit captions, plus two high-yield reference proofs rendered in-code
- * for crisp, dark-mode-safe fidelity: the Anatomy Explorer and a real Top-503
+ * for crisp, dark-mode-safe fidelity: the Anatomy Explorer and a real curated
  * drug card.
  */
 
@@ -14,6 +14,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Activity, BookOpen, HeartPulse, Pill, Scan } from "lucide-react";
 import { LandingVisualSlot } from "@/components/home/LandingVisualSlot";
+import { DRUGS_DECK_MARKETING_TITLE } from "@/lib/marketing/bank-stats";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -88,7 +89,7 @@ const SUPPORTING = [
   },
 ] as const;
 
-/** A real Top-503 Drugs reference card. */
+/** A real curated Top Drugs reference card. */
 function DrugCard() {
   return (
     <div className="flex h-full flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-5 shadow-[var(--shadow-apple-md)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-apple-lg)]">
@@ -96,7 +97,7 @@ function DrugCard() {
         <div>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent)]/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent)]">
             <Pill className="h-3 w-3" aria-hidden />
-            Top 503 Drugs
+            {DRUGS_DECK_MARKETING_TITLE}
           </span>
           <h4 className="mt-2.5 text-lg font-bold text-[var(--color-ink)]">Atorvastatin</h4>
           <p className="text-sm text-[var(--color-ink-muted)]">

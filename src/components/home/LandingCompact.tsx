@@ -15,7 +15,12 @@ import {
 } from "lucide-react";
 import { LandingVisualSlot } from "@/components/home/LandingVisualSlot";
 import { Top500DrugsVisual } from "@/components/home/Top500DrugsVisual";
-import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
+import {
+  DRUGS_DECK_MARKETING_TITLE,
+  MARKETING_QUESTION_COUNTS,
+  TOP_500_DRUGS_COUNT,
+  drugsDeckShortDetail,
+} from "@/lib/marketing/bank-stats";
 import { formatTrialCtaLabel, formatTrialHeroOffer } from "@/lib/site";
 
 const EXAMS = [
@@ -188,15 +193,14 @@ export function LandingCompact() {
                     id="landing-drugs-heading"
                     className="mt-1 text-xl font-bold tracking-tight text-[var(--color-ink)]"
                   >
-                    Top 503 Drugs
+                    {DRUGS_DECK_MARKETING_TITLE}
                   </h2>
                   <p className="mt-1 text-xs text-[var(--color-ink-muted)]">
-                    High-yield flashcards for NCLEX, USMLE, and NAPLEX — generic, brand, MOA, and
-                    adverse effects in one deck.
+                    {drugsDeckShortDetail()}
                   </p>
                 </div>
                 <div className="aee-landing-drugs-hub shrink-0" aria-hidden>
-                  <span className="text-2xl font-black text-teal-700">503</span>
+                  <span className="text-2xl font-black text-teal-700">{TOP_500_DRUGS_COUNT}</span>
                 </div>
               </div>
 
@@ -206,7 +210,7 @@ export function LandingCompact() {
                 href="/study/drugs300"
                 className="aee-landing-inline-cta group mt-3 inline-flex items-center gap-1 text-sm font-semibold text-teal-700"
               >
-                  Open the Top 503 deck
+                  Open the {DRUGS_DECK_MARKETING_TITLE} deck
                 <ArrowRight
                   className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
                   aria-hidden

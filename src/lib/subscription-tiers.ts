@@ -1,4 +1,5 @@
 import type { BillingInterval } from "@/lib/billing-config";
+import { drugsDeckFeatureLine } from "@/lib/marketing/bank-stats";
 
 /** Subscription tier — Basic or Pro. */
 export type SubscriptionTier = "basic" | "pro";
@@ -33,7 +34,7 @@ export const UNIVERSAL_FEATURES = [
   "Unlimited question bank & timed practice",
   "Proprietary Roadmap tools",
   "Normal Lab Values + Clinical Calculators",
-  "Top 503 Drugs database",
+  drugsDeckFeatureLine(),
 ] as const;
 
 /** Pro-only features. */

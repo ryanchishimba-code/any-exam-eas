@@ -155,7 +155,7 @@ export function Top500DrugsVisual({ className, variant = "panel" }: Props) {
 
       <div className="aee-top500-visual__footer">
         <Brain className="h-3 w-3 text-violet-500" aria-hidden />
-        <span>Generic · Brand · MOA · Adverse effects</span>
+        <span>Generic · Brand · MOA · Pearls · FDA search</span>
       </div>
 
       <figcaption className="sr-only">

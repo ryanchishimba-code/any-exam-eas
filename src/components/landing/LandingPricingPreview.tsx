@@ -12,6 +12,7 @@ import {
   BILLING_TRIAL_DISCLOSURE,
 } from "@/lib/billing-plans";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { DRUGS_DECK_MARKETING_TITLE } from "@/lib/marketing/bank-stats";
 import {
   PRO_ONLY_FEATURES,
   TIER_DEFINITIONS,
@@ -140,7 +141,7 @@ export function LandingPricingPreview() {
           {[
             "All 6 exam question banks",
             "Blueprint Roadmaps",
-            "Top 503 Drugs deck",
+            `${DRUGS_DECK_MARKETING_TITLE} + FDA reference`,
             "Memory Cards & calculators",
           ].map((item) => (
             <li key={item} className="flex items-center gap-1.5 text-xs text-[var(--color-ink)]">

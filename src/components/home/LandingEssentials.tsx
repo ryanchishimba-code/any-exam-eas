@@ -11,6 +11,7 @@ import {
   UserRound,
   type LucideIcon,
 } from "lucide-react";
+import { DRUGS_DECK_MARKETING_TITLE } from "@/lib/marketing/bank-stats";
 import {
   formatMonthlyPrice,
   formatTrialEntryPrice,
@@ -95,7 +96,7 @@ export function LandingEssentials() {
           </h2>
           <p className="mx-auto mt-2 max-w-lg text-sm text-[var(--color-ink-muted)]">
             NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — plus Library, Review Modules,
-            Anatomy Studio, and Top 503 Drugs that follow you across devices.
+            Anatomy Studio, and {DRUGS_DECK_MARKETING_TITLE} with FDA reference search that follow you across devices.
           </p>
         </div>
 

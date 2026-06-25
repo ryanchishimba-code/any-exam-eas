@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { LandingVisualSlot } from "@/components/home/LandingVisualSlot";
 import { Top500DrugsVisual } from "@/components/home/Top500DrugsVisual";
+import { DRUGS_DECK_MARKETING_TITLE, drugsDeckShortDetail } from "@/lib/marketing/bank-stats";
 
 const benefits = [
   {
@@ -62,10 +63,9 @@ const benefits = [
   {
     icon: Pill,
     visualId: "feature-pharmacology",
-    outcome: "Top 503 Drugs",
-    title: "Pharmacology flashcards built for boards",
-    description:
-      "Class-organized deck with generic, brand, MOA, and adverse effects — shared across nursing and pharmacy prep.",
+    outcome: DRUGS_DECK_MARKETING_TITLE,
+    title: "Pharmacology flashcards + FDA reference search",
+    description: drugsDeckShortDetail(),
     accent: "from-violet-500 to-indigo-500",
   },
   {
@@ -74,7 +74,7 @@ const benefits = [
     outcome: "Anatomy Studio",
     title: "Interactive 3D atlas — no other board prep includes this",
     description:
-      "Rotate full 3D organs, scroll CT Atlas slices, follow exam-scoped guided tours, and jump to practice questions — all linked from your study sessions.",
+      "Rotate full 3D organs, scroll CT Atlas slices, follow exam-scoped guided tours, and link drugs to anatomy structures — all from your study sessions.",
     accent: "from-teal-500 to-cyan-500",
     highlight: true,
   },

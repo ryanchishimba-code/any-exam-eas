@@ -1,5 +1,6 @@
 import { MIN_QUESTIONS_PER_SUBJECT } from "@/lib/bulk-question-generator";
 import { TOP_500_COUNT } from "@/lib/drugs300/catalog";
+import type { FdaDrugReferenceDocument } from "@/lib/drugs300/schema";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import { NCLEX_TARGET_TOTAL } from "@/lib/exam-prep/nclex/types";
@@ -8,6 +9,7 @@ import { AANP_FNP_TARGET_TOTAL } from "@/lib/exam-prep/aanp-fnp/types";
 import { NPTE_PT_TARGET_TOTAL } from "@/lib/exam-prep/npte-pt/types";
 import { PANCE_TARGET_TOTAL } from "@/lib/exam-prep/pance/types";
 import { USMLE_COMBINED_TARGET, USMLE_PUBLISHED_BANK_TOTAL } from "@/lib/exam-prep/usmle/steps";
+import fdaReferenceDocument from "../../../public/data/fda-approved-drugs.json";
 
 /** Design target per field after bank sync (subjects × minimum items each). */
 export function targetQuestionCountForField(fieldId: string): number {
@@ -77,10 +79,27 @@ export const MARKETING_QUESTION_COUNTS = {
 
 export const TOP_500_DRUGS_COUNT = TOP_500_COUNT;
 
-export function questionBankLabelForField(fieldId: string): string {
-  return `${formatMarketingQuestionCount(publishedQuestionCountForField(fieldId))} board-style items`;
+export const FDA_REFERENCE_DRUGS_COUNT = (fdaReferenceDocument as FdaDrugReferenceDocument).count;
+
+/** User-facing deck name — product is branded Top 500; catalog count tracks curated cards. */
+export const DRUGS_DECK_MARKETING_TITLE = `Top ${TOP_500_DRUGS_COUNT} Drugs`;
+
+export function formatMarketingDrugCount(count: number): string {
+  return formatMarketingQuestionCount(count);
+}
+
+export function drugsDeckFeatureLine(): string {
+  return `${TOP_500_DRUGS_COUNT} flashcards + ${formatMarketingDrugCount(FDA_REFERENCE_DRUGS_COUNT)} FDA reference search`;
+}
+
+export function drugsDeckShortDetail(): string {
+  return `${TOP_500_DRUGS_COUNT} curated flashcards with mnemonics, pearls, and spaced repetition — plus searchable FDA Drugs@FDA reference.`;
 }
 
 export function top500DrugsLabel(): string {
   return `${TOP_500_DRUGS_COUNT} high-yield drugs`;
+}
+
+export function questionBankLabelForField(fieldId: string): string {
+  return `${formatMarketingQuestionCount(publishedQuestionCountForField(fieldId))} board-style items`;
 }

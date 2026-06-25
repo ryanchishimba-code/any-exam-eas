@@ -14,7 +14,7 @@ import {
   Timer,
   type LucideIcon,
 } from "lucide-react";
-import { MARKETING_QUESTION_COUNTS, TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
+import { MARKETING_QUESTION_COUNTS, TOP_500_DRUGS_COUNT, DRUGS_DECK_MARKETING_TITLE, drugsDeckFeatureLine, drugsDeckShortDetail } from "@/lib/marketing/bank-stats";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { examMarketingPath } from "@/lib/seo/exam-config";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
@@ -119,13 +119,13 @@ export const LANDING_BENEFITS = [
     visualId: "feature-pharmacology" as const,
     title: `${TOP_500_DRUGS_COUNT} high-yield pharmacology flashcards`,
     detail:
-      "Generic, brand, MOA, and adverse effects — shared across nursing, medical, pharmacy, and NP prep.",
+      "Generic, brand, MOA, adverse effects, and guideline pearls — with anatomy links and searchable FDA reference across nursing, medical, pharmacy, and NP prep.",
   },
   {
     visualId: "feature-adaptive-learning" as const,
     title: "Anatomy Studio — 3D, video & CT Atlas",
     detail:
-      "Explore structures with clinical pearls, guided tours, scrollable CT slices, and one-click jumps back to related practice.",
+      "Explore structures with clinical pearls, guided tours, scrollable CT slices, drug-to-anatomy links, and one-click jumps back to related practice.",
   },
 ];
 
@@ -138,7 +138,7 @@ export const LANDING_PRICING_FEATURES = [
   "Performance analytics & weak-area targeting",
   "Normal lab values & clinical calculators",
   "Library, Memory Cards & timed full exams",
-  `${TOP_500_DRUGS_COUNT} Top Drugs pharmacology deck`,
+  `${DRUGS_DECK_MARKETING_TITLE} deck + FDA reference search`,
 ] as const;
 
 export const LANDING_HERO_EYEBROW =
@@ -195,7 +195,7 @@ export const LANDING_OFFERING_PILLARS = [
     icon: Sparkles,
     title: "Basic or Pro — your call",
     detail:
-      "Start with Basic — all six banks, Roadmaps, labs, calculators, and Top 503 Drugs. Pro adds SRS, exportable notes, and enhanced explanations.",
+      `Start with Basic — all six banks, Roadmaps, labs, calculators, and ${DRUGS_DECK_MARKETING_TITLE}. Pro adds SRS, exportable notes, and enhanced explanations.`,
   },
 ] as const;
 
@@ -224,9 +224,8 @@ export const LANDING_UNIQUE_FEATURES = [
   },
   {
     icon: Pill,
-    title: "Top 503 Drugs Deck",
-    detail:
-      "High-yield pharmacology flashcards with MOA, brand names, and adverse effects — shared across nursing, medical, and pharmacy prep.",
+    title: `${DRUGS_DECK_MARKETING_TITLE} + FDA Reference`,
+    detail: drugsDeckShortDetail(),
     proOnly: false,
   },
   {
@@ -558,7 +557,7 @@ export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [
   },
   {
     quote:
-      "Primary-care vignettes paired with the Top 503 Drugs deck in one place. That combination didn't exist anywhere else at this price.",
+      "Primary-care vignettes paired with the curated drug deck and FDA reference search in one place. That combination didn't exist anywhere else at this price.",
     name: "Sofia R.",
     exam: "AANP FNP-C",
     initials: "SR",
@@ -620,7 +619,7 @@ export const UWORLD_COMPARE_ROWS = [
   },
   {
     label: "Pharmacology deck",
-    us: `${TOP_500_DRUGS_COUNT} Top Drugs included`,
+    us: `${drugsDeckFeatureLine()} included`,
     them: "Often a separate purchase or scattered in banks",
   },
 ] as const;

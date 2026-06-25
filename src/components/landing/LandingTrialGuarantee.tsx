@@ -16,12 +16,13 @@ import { BadgeCheck, Calendar, Zap } from "lucide-react";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { formatTrialLabel } from "@/lib/site";
 import { TRIAL_DAYS } from "@/lib/billing-config";
+import { DRUGS_DECK_MARKETING_TITLE } from "@/lib/marketing/bank-stats";
 
 const PILLARS = [
   {
     icon: Zap,
     title: "Everything unlocks on day one",
-    body: "All 6 exam question banks, Blueprint Roadmaps, Deep Dive modules, Top 503 Drugs, Memory Cards, and clinical calculators are active the moment your trial starts.",
+    body: `All 6 exam question banks, Blueprint Roadmaps, Deep Dive modules, ${DRUGS_DECK_MARKETING_TITLE} with FDA reference search, Memory Cards, and clinical calculators are active the moment your trial starts.`,
   },
   {
     icon: Calendar,

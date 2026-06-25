@@ -7,7 +7,7 @@
  * crisp in light/dark mode and never ships a broken image. Four proofs:
  *  1. The core question + teachable-rationale experience (browser-framed)
  *  2. Progress analytics with weak-area targeting
- *  3. A real Top-503 drug card
+ *  3. A real Top 509 drug card
  *  4. The Anatomy Explorer
  */
 
@@ -25,6 +25,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/v2/Reveal";
+import { DRUGS_DECK_MARKETING_TITLE } from "@/lib/marketing/bank-stats";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -192,7 +193,7 @@ function DrugCard() {
       <div>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent)]/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent)]">
           <Pill className="h-3 w-3" aria-hidden />
-          Top 503 Drugs
+          {DRUGS_DECK_MARKETING_TITLE}
         </span>
         <h4 className="mt-2.5 text-lg font-bold text-[var(--color-ink)]">Atorvastatin</h4>
         <p className="text-sm text-[var(--color-ink-muted)]">

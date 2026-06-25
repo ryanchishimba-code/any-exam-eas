@@ -10,6 +10,7 @@ import {
   Pill,
   Scan,
 } from "lucide-react";
+import { DRUGS_DECK_MARKETING_TITLE, drugsDeckShortDetail } from "@/lib/marketing/bank-stats";
 
 const ITEMS = [
   {
@@ -52,9 +53,8 @@ const ITEMS = [
   },
   {
     icon: Pill,
-    title: "Top 503 Drugs included",
-    detail:
-      "High-yield pharmacology deck shared across nursing, medical, and pharmacy prep — not a separate upsell.",
+    title: `${DRUGS_DECK_MARKETING_TITLE} included`,
+    detail: `${drugsDeckShortDetail()} Not a separate upsell.`,
   },
   {
     icon: MapPin,

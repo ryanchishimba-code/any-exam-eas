@@ -10,7 +10,11 @@
 
 import { ChevronDown } from "lucide-react";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
-import { TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
+import {
+  DRUGS_DECK_MARKETING_TITLE,
+  TOP_500_DRUGS_COUNT,
+  drugsDeckFeatureLine,
+} from "@/lib/marketing/bank-stats";
 import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
 
 const FAQ: { q: string; a: string }[] = [
@@ -30,11 +34,11 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "How is this different from UWorld or AMBOSS?",
-    a: "UWorld sells a separate subscription per exam, and AMBOSS focuses primarily on USMLE/medical. AnyExamEasy gives you six boards under one plan, with an integrated blueprint Roadmap, Deep Dive review modules opened from missed questions, a 3D Anatomy Explorer, and the Top 503 Drugs deck included.",
+    a: `UWorld sells a separate subscription per exam, and AMBOSS focuses primarily on USMLE/medical. AnyExamEasy gives you six boards under one plan, with an integrated blueprint Roadmap, Deep Dive review modules opened from missed questions, a 3D Anatomy Explorer, and ${DRUGS_DECK_MARKETING_TITLE} with FDA reference search included.`,
   },
   {
     q: "Are the questions actually high quality?",
-    a: `Every item is QA-gated before it reaches your session. You get board-style clinical vignettes with teachable rationales — not template-swapped distractors or repetitive stems. The ${TOP_500_DRUGS_COUNT} Top Drugs pharmacology deck and reference tools are linked right from practice.`,
+    a: `Every item is QA-gated before it reaches your session. You get board-style clinical vignettes with teachable rationales — not template-swapped distractors or repetitive stems. The ${drugsDeckFeatureLine()} and reference tools are linked right from practice.`,
   },
   {
     q: "Can I cancel anytime?",
@@ -42,7 +46,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Why not just buy UWorld for the one exam I'm taking?",
-    a: `UWorld is a strong QBank — if you only need raw practice questions for a single board and the $200–400+ price tag fits your budget, it's a reasonable choice. Where AnyExamEasy differs: you get a structured blueprint Roadmap, Deep Dive review modules opened from the questions you miss, reference tools (Top 503 Drugs, lab values, calculators), and six boards under one plan. If you're only studying one exam and want just a QBank, we're transparent that you should compare. If you want guided prep or are studying more than one board, AnyExamEasy typically costs less and gives you more.`,
+    a: `UWorld is a strong QBank — if you only need raw practice questions for a single board and the $200–400+ price tag fits your budget, it's a reasonable choice. Where AnyExamEasy differs: you get a structured blueprint Roadmap, Deep Dive review modules opened from the questions you miss, reference tools (${DRUGS_DECK_MARKETING_TITLE}, FDA drug search, lab values, calculators), and six boards under one plan. If you're only studying one exam and want just a QBank, we're transparent that you should compare. If you want guided prep or are studying more than one board, AnyExamEasy typically costs less and gives you more.`,
   },
   {
     q: "Is this genuinely enough to pass my board exam?",
