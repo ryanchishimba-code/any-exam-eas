@@ -78,12 +78,17 @@ export function DrugFlashcard({
                   </p>
                 </div>
                 <DrugPearlsPanel enrichment={card.enrichment} variant="dark" />
-                <DrugClinicalBridge drugId={card.drugId} compact variant="dark" />
               </div>
             </div>
           </div>
         </div>
       </button>
+
+      {flipped && (
+        <div className="mt-3">
+          <DrugClinicalBridge drugId={card.drugId} compact scrollable variant="light" />
+        </div>
+      )}
 
       {flipped && (
         <button
