@@ -21,6 +21,7 @@ import { DrugSearch } from "@/components/study/DrugSearch";
 import { DrugSearchPreview } from "@/components/study/DrugSearchPreview";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { getDrugSearchHitById, type DrugSearchHit } from "@/lib/drugs300/search";
+import { useFdaDrugSearchIndex } from "@/hooks/useFdaDrugSearchIndex";
 import { EndActivityControl } from "./EndActivityControl";
 import { ActivitySessionToolbar } from "./ActivitySessionToolbar";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
@@ -42,6 +43,7 @@ export function DrugReviewStudio() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [selectedDrug, setSelectedDrug] = useState<DrugSearchHit | null>(null);
+  const { index: fdaIndex } = useFdaDrugSearchIndex();
 
   const current = cards[index];
   const activeClassStats = dashboard?.classProgress.find((c) => c.id === activeClass);
@@ -88,9 +90,9 @@ export function DrugReviewStudio() {
   useEffect(() => {
     const drugId = searchParams.get("drug");
     if (!drugId) return;
-    const hit = getDrugSearchHitById(drugId);
+    const hit = getDrugSearchHitById(drugId, fdaIndex);
     if (hit) setSelectedDrug(hit);
-  }, [searchParams]);
+  }, [searchParams, fdaIndex]);
 
   const handleDrugSelect = useCallback((drug: DrugSearchHit) => {
     setSelectedDrug(drug);

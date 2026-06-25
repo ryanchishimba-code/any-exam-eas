@@ -18,6 +18,7 @@ import { searchDrugs, type DrugSearchHit } from "@/lib/drugs300/search";
 import { cn } from "@/lib/utils";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useFloatingPosition } from "@/hooks/useFloatingPosition";
+import { useFdaDrugSearchIndex } from "@/hooks/useFdaDrugSearchIndex";
 
 type DrugSearchProps = {
   onSelect?: (drug: DrugSearchHit) => void;
@@ -46,10 +47,12 @@ export function DrugSearch({
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
 
+  const { index: fdaIndex } = useFdaDrugSearchIndex();
+
   const deferredQuery = useDeferredValue(query);
   const results = useMemo(
-    () => searchDrugs(deferredQuery, undefined, maxResults),
-    [deferredQuery, maxResults]
+    () => searchDrugs(deferredQuery, fdaIndex, maxResults),
+    [deferredQuery, fdaIndex, maxResults]
   );
 
   const showDropdown = open && query.trim().length > 0;
@@ -170,7 +173,13 @@ export function DrugSearch({
                     <div className="min-w-0 flex-1 text-left">
                       <div className="flex items-baseline gap-2">
                         <span className="aee-drug-search-generic">{drug.generic}</span>
-                        <span className="aee-drug-search-rank">#{drug.rank}</span>
+                        {drug.tier === "curated" && drug.rank != null ? (
+                          <span className="aee-drug-search-rank">#{drug.rank}</span>
+                        ) : (
+                          <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wide text-slate-500">
+                            FDA ref
+                          </span>
+                        )}
                       </div>
                       <p className="aee-drug-search-brand">{drug.brand}</p>
                     </div>

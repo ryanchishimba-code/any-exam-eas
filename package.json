@@ -41,6 +41,7 @@
     "db:seed-edtech": "npx tsx scripts/seed-edtech.ts",
     "seed": "npm run db:seed-edtech && npm run db:seed-user",
     "db:export-top300": "node node_modules/tsx/dist/cli.mjs scripts/export-top300-json.mjs",
+    "db:build-fda-reference": "node scripts/build-fda-drug-reference.mjs",
     "db:expire-trial": "node scripts/expire-user-trial.mjs",
     "test:questions": "tsx scripts/test-question-counts.mjs",
     "anatomy:fetch-vh": "node scripts/fetch-visible-human-organs.mjs",

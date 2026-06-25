@@ -42,7 +42,7 @@ export default async function Drugs300Page() {
         <h1 className={studyUi.title}>Top 500 Drugs</h1>
         <p className={cn(studyUi.subtitle, "mt-1 max-w-2xl")}>
           High-yield deck with guideline-aligned pearls (ADA, ACC/AHA, FDA) for NCLEX, USMLE, and
-          NAPLEX.
+          NAPLEX — plus searchable FDA reference for all approved ingredients.
         </p>
       </header>
 

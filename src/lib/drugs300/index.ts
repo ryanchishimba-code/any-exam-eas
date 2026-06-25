@@ -34,5 +34,14 @@ export {
 } from "./serialize";
 export { inferExamRelevance, mergeExamRelevance } from "./exam-relevance";
 export { dbRowFromRecord, recordFromDbRow, examRelevanceFromDb } from "./db-mapper";
-export { searchDrugs, getDrugSearchHitById, type DrugSearchHit } from "./search";
+export { searchDrugs, getDrugSearchHitById, getCuratedDrugSearchHitById, type DrugSearchHit, type DrugSearchTier } from "./search";
+export {
+  loadFdaReferenceCatalog,
+  loadFdaDrugSearchIndex,
+  buildFdaDrugSearchIndex,
+  getFdaDrugReferenceById,
+  isCuratedDrugId,
+  type FdaDrugSearchIndex,
+} from "./fda-reference";
+export type { FdaDrugReference, FdaDrugReferenceDocument } from "./schema";
 export { enrichDrug, hasDrugEnrichment, DRUG_GUIDELINE_NOTE, type EnrichedDrugView } from "./enrichment";

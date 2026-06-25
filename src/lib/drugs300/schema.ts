@@ -39,6 +39,28 @@ export type Top300DrugCatalogDocument = {
   drugs: Top300DrugRecord[];
 };
 
+/** Minimal FDA Drugs@FDA reference row (search supplement, not SRS flashcards). */
+export type FdaDrugReference = {
+  id: string;
+  generic: string;
+  brands: string[];
+  routes: string[];
+  dosageForms: string[];
+  marketingStatuses: string[];
+  applicationNumbers: string[];
+  sponsors: string[];
+  activelyMarketed: boolean;
+  fdaUrl: string;
+};
+
+export type FdaDrugReferenceDocument = {
+  version: string;
+  source: string;
+  updatedAt: string;
+  count: number;
+  drugs: FdaDrugReference[];
+};
+
 export type Top300DrugRecordInput = Omit<Top300DrugRecord, "id" | "examRelevance"> & {
   id?: string;
   examRelevance?: Partial<ExamRelevance>;

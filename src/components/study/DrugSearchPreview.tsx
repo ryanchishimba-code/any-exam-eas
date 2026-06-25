@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, Pill, X } from "lucide-react";
+import { BookOpen, ExternalLink, Pill, X } from "lucide-react";
 import type { DrugSearchHit } from "@/lib/drugs300/search";
 import { TOP_500_DRUGS } from "@/lib/drugs300/catalog";
 import { enrichDrug } from "@/lib/drugs300/enrichment";
@@ -12,9 +12,20 @@ type Props = {
   onClose: () => void;
 };
 
+function ReferenceList({ label, items }: { label: string; items: string[] }) {
+  if (items.length === 0) return null;
+  return (
+    <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-4">
+      <p className="text-[0.625rem] font-bold uppercase tracking-wider text-slate-600">{label}</p>
+      <p className="mt-2 text-sm leading-relaxed text-slate-700">{items.join(" · ")}</p>
+    </div>
+  );
+}
+
 export function DrugSearchPreview({ drug, onClose }: Props) {
-  const entry = TOP_500_DRUGS.find((d) => d.id === drug.id);
+  const entry = drug.tier === "curated" ? TOP_500_DRUGS.find((d) => d.id === drug.id) : undefined;
   const enrichment = entry ? enrichDrug(entry) : null;
+  const fda = drug.fdaReference;
 
   return (
     <div className="aee-drug-search-preview">
@@ -29,17 +40,23 @@ export function DrugSearchPreview({ drug, onClose }: Props) {
             <span className="text-[0.6875rem] font-semibold uppercase tracking-wider text-teal-700">
               {drug.drugClassLabel}
             </span>
-            <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[0.625rem] font-bold tabular-nums text-slate-500">
-              #{drug.rank}
-            </span>
+            {drug.tier === "curated" && drug.rank != null ? (
+              <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[0.625rem] font-bold tabular-nums text-slate-500">
+                #{drug.rank}
+              </span>
+            ) : (
+              <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[0.625rem] font-bold uppercase tracking-wide text-slate-500">
+                FDA reference
+              </span>
+            )}
           </div>
           <h3 className="mt-2 text-xl font-bold tracking-tight text-slate-900">
             {drug.generic}
           </h3>
           <p className="mt-1 text-sm text-slate-600">{drug.brand}</p>
-          <p className="mt-1 text-sm text-slate-500">
-            {drug.therapeuticClass}
-          </p>
+          {entry ? (
+            <p className="mt-1 text-sm text-slate-500">{drug.therapeuticClass}</p>
+          ) : null}
         </div>
         <button
           type="button"
@@ -51,43 +68,76 @@ export function DrugSearchPreview({ drug, onClose }: Props) {
         </button>
       </div>
 
-      {entry && (
-        <div className="mt-5 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-4">
-            <p className="flex items-center gap-1.5 text-[0.625rem] font-bold uppercase tracking-wider text-teal-700">
-              <BookOpen className="h-3.5 w-3.5" aria-hidden />
-              Indications
-            </p>
-            <p className="mt-2 text-sm leading-relaxed text-slate-700">
-              {entry.indications}
-            </p>
+      {entry ? (
+        <>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-4">
+              <p className="flex items-center gap-1.5 text-[0.625rem] font-bold uppercase tracking-wider text-teal-700">
+                <BookOpen className="h-3.5 w-3.5" aria-hidden />
+                Indications
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                {entry.indications}
+              </p>
+            </div>
+            <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-4">
+              <p className="flex items-center gap-1.5 text-[0.625rem] font-bold uppercase tracking-wider text-amber-700">
+                <Pill className="h-3.5 w-3.5" aria-hidden />
+                Key side effects
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                {entry.sideEffects}
+              </p>
+            </div>
           </div>
-          <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-4">
-            <p className="flex items-center gap-1.5 text-[0.625rem] font-bold uppercase tracking-wider text-amber-700">
-              <Pill className="h-3.5 w-3.5" aria-hidden />
-              Key side effects
+
+          {entry.mnemonic ? (
+            <p className="mt-4 rounded-xl border border-dashed border-teal-200 bg-teal-50/60 px-4 py-3 text-sm text-teal-900">
+              <span className="font-semibold">Mnemonic: </span>
+              {entry.mnemonic}
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-slate-700">
-              {entry.sideEffects}
-            </p>
+          ) : null}
+
+          {enrichment ? (
+            <div className="mt-4">
+              <DrugPearlsPanel enrichment={enrichment} variant="light" />
+            </div>
+          ) : null}
+
+          <DrugClinicalBridge drugId={drug.id} collapsible />
+        </>
+      ) : fda ? (
+        <div className="mt-5 space-y-4">
+          <p className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700">
+            Reference-only entry from FDA Drugs@FDA. Flashcards, mnemonics, and spaced repetition
+            stay on the curated Top 509 deck.
+          </p>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            <ReferenceList label="Routes" items={fda.routes} />
+            <ReferenceList label="Dosage forms" items={fda.dosageForms} />
+            <ReferenceList label="Marketing status" items={fda.marketingStatuses} />
+            <ReferenceList label="Sponsors" items={fda.sponsors} />
           </div>
+
+          {fda.applicationNumbers.length > 0 ? (
+            <p className="text-sm text-slate-600">
+              <span className="font-semibold text-slate-800">Application numbers: </span>
+              {fda.applicationNumbers.join(", ")}
+            </p>
+          ) : null}
+
+          <a
+            href={fda.fdaUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-teal-700 underline-offset-2 hover:underline"
+          >
+            View on Drugs@FDA
+            <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+          </a>
         </div>
-      )}
-
-      {entry?.mnemonic && (
-        <p className="mt-4 rounded-xl border border-dashed border-teal-200 bg-teal-50/60 px-4 py-3 text-sm text-teal-900">
-          <span className="font-semibold">Mnemonic: </span>
-          {entry.mnemonic}
-        </p>
-      )}
-
-      {enrichment && (
-        <div className="mt-4">
-          <DrugPearlsPanel enrichment={enrichment} variant="light" />
-        </div>
-      )}
-
-      <DrugClinicalBridge drugId={drug.id} collapsible />
+      ) : null}
     </div>
   );
 }
