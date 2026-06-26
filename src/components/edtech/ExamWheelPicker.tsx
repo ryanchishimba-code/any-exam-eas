@@ -16,6 +16,7 @@ import type {
   UsmleExamOption,
   UsmleExamOptionsPayload,
 } from "@/lib/exam-prep/usmle/exam-options";
+import { persistExamPreference } from "@/lib/edtech/actions";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -160,10 +161,18 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
     void refresh();
   }, [refresh]);
 
-  function start() {
+  async function start() {
     if (!selected) return;
     setPending(true);
+    setError(null);
+    const result = await persistExamPreference("usmle");
+    if (!result.ok) {
+      setError(result.error);
+      setPending(false);
+      return;
+    }
     router.push(selected.practiceHref);
+    router.refresh();
   }
 
   const hasData = options.length > 0;
