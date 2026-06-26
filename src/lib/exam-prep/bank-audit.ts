@@ -251,6 +251,40 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
     );
   }
 
+  // Degenerate correct answer — punctuation/whitespace only (e.g. a stray "."
+  // left when constructed-response numeric extraction wipes a text answer).
+  if (!/[A-Za-z0-9]/.test(item.correctAnswer ?? "")) {
+    push("error", "degenerate_correct_answer", "Correct answer has no usable content.");
+  }
+
+  // NAPLEX constructed-response items are calculations: the answer must be numeric.
+  if (
+    fieldId === "pharmacy" &&
+    itemType === "constructed_response" &&
+    !/\d/.test(item.correctAnswer ?? "")
+  ) {
+    push(
+      "error",
+      "constructed_response_not_numeric",
+      "Constructed-response (calculation) answer must contain a numeric value."
+    );
+  }
+
+  // Ordered-response stems must actually ask the student to sequence/prioritize.
+  if (fieldId === "pharmacy" && itemType === "ordered_response") {
+    const ordersSteps =
+      /\b(order|sequence|arrange|prioriti[sz]e|rank|in (?:what|which) order|place .* in (?:the )?(?:correct )?order|steps? in (?:the )?(?:correct )?order)\b/i.test(
+        stem
+      );
+    if (!ordersSteps) {
+      push(
+        "error",
+        "ordered_response_stem_mismatch",
+        "Ordered-response item stem does not ask the student to sequence or prioritize steps."
+      );
+    }
+  }
+
   // Cross-field giveaway detection (answer-in-stem, strawman distractors,
   // boilerplate rationales). Applied to clinical MCQ/SATA fields only.
   if (fieldId === "nursing" || fieldId === "pharmacy") {

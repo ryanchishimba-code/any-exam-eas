@@ -104,3 +104,69 @@ describe("auditGiveawayPatterns", () => {
     );
   });
 });
+
+describe("structural coherence (NAPLEX generation bugs)", () => {
+  function errorCodes(item: BankItem, fieldId: string): string[] {
+    return auditBankItem(item, fieldId)
+      .issues.filter((i) => i.severity === "error")
+      .map((i) => i.code);
+  }
+
+  it("rejects a degenerate '.' correct answer", () => {
+    const item: BankItem = {
+      ...base,
+      itemType: "constructed_response",
+      question: "Which monitoring parameter is most critical for this patient?",
+      options: [],
+      correctAnswer: ".",
+      explanation:
+        "The most critical monitoring parameter is renal function given SGLT2 inhibitor and metformin use, which requires periodic eGFR assessment for dose safety.",
+    };
+    const codes = errorCodes(item, "pharmacy");
+    expect(codes).toContain("degenerate_correct_answer");
+  });
+
+  it("rejects a non-numeric constructed-response (calculation) answer", () => {
+    const item: BankItem = {
+      ...base,
+      itemType: "constructed_response",
+      question: "Calculate the required daily dose for this patient.",
+      options: [],
+      correctAnswer: "Serum creatinine",
+      explanation:
+        "The daily dose is computed from the weight-based regimen and the patient's renal function as described in the vignette, then rounded to the nearest practical unit.",
+    };
+    expect(errorCodes(item, "pharmacy")).toContain("constructed_response_not_numeric");
+  });
+
+  it("accepts a valid numeric constructed-response answer", () => {
+    const item: BankItem = {
+      ...base,
+      itemType: "constructed_response",
+      scenario:
+        "A patient requires vancomycin dosed at 15 mg/kg for a measured weight of 80 kg; round to the nearest 250 mg.",
+      question: "Calculate the vancomycin dose in mg for this patient.",
+      options: [],
+      correctAnswer: "1250",
+      explanation:
+        "15 mg/kg × 80 kg = 1200 mg, rounded to the nearest 250 mg increment gives 1250 mg per dose for this patient.",
+    };
+    expect(errorCodes(item, "pharmacy")).not.toContain("constructed_response_not_numeric");
+    expect(errorCodes(item, "pharmacy")).not.toContain("degenerate_correct_answer");
+  });
+
+  it("rejects an ordered-response item whose stem is a single-best-answer prompt", () => {
+    const item: BankItem = {
+      ...base,
+      itemType: "ordered_response",
+      scenario:
+        "A 72-year-old man with heart failure and CKD on lisinopril and furosemide returns with worsening edema.",
+      question: "Which medication is the best choice to manage this patient's condition?",
+      options: ["Increase furosemide", "Add spironolactone", "Switch to losartan", "Add a thiazide"],
+      correctAnswer: "Increase furosemide|||Add spironolactone|||Switch to losartan|||Add a thiazide",
+      explanation:
+        "Diuretic optimization precedes neurohormonal adjustments; the sequence reflects guideline-directed escalation for decompensated heart failure with renal impairment.",
+    };
+    expect(errorCodes(item, "pharmacy")).toContain("ordered_response_stem_mismatch");
+  });
+});

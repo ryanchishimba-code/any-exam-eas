@@ -158,6 +158,13 @@ ${exemplarBlock}
 ASSIGNED SLOTS (one question per slot — follow exactly):
 ${slotLines.join("\n")}
 
+CRITICAL CORRECTNESS RULES (an item is unusable if any are violated):
+- The keyed correctAnswer MUST be the single BEST answer for THIS specific patient/vignette — not a statement that is merely true in general. If a more appropriate action exists (e.g. escalate/step-up therapy, refer to prescriber), that must be the keyed answer.
+- The question content MUST match the assigned subjectId and blueprintArea. Do NOT write an asthma question for a cardiovascular slot, etc.
+- For "constructed_response" (calculation): the stem must be a real calculation answerable from the vignette data, and correctAnswer MUST be a numeric value (digits), never a sentence.
+- For "ordered_response": the stem must explicitly ask the student to place/sequence/prioritize steps IN ORDER, and options must be the orderable steps.
+- Every distractor must be plausible and clearly wrong for a defensible clinical reason — never an absurd "never do this" giveaway.
+
 Return JSON: { "questions": [ ... ] }
 Each question object MUST include:
 - vignette (2–4 sentences: demographics, PMH, meds, labs/vitals — separate from stem)
@@ -220,11 +227,15 @@ function normalizeSpecialFormats(item: BankItem, slot: NaplexGenerationSlot): Ba
   }
 
   if (itemType === "constructed_response") {
-    const numeric = item.correctAnswer.replace(/[^\d.]/g, "").trim();
+    // Extract a numeric value, but never collapse a non-numeric text answer to
+    // a stray "."/empty string — keep the original so the QA gate can reject a
+    // mis-generated (non-calculation) constructed-response item with a clear code.
+    const numeric = item.correctAnswer.replace(/[^\d.]/g, "").replace(/^\.+|\.+$/g, "").trim();
+    const hasNumber = /\d/.test(numeric);
     const unit = (item.ngnPayload?.unit as string | undefined) ?? "mg";
     return {
       ...item,
-      correctAnswer: numeric || item.correctAnswer,
+      correctAnswer: hasNumber ? numeric : item.correctAnswer,
       ngnPayload: { ...item.ngnPayload, kind: "constructed", unit },
     };
   }
