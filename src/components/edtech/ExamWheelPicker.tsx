@@ -15,7 +15,7 @@ import type {
   UsmleExamOption,
   UsmleExamOptionsPayload,
 } from "@/lib/exam-prep/usmle/exam-options";
-import { persistExamPreference } from "@/lib/edtech/actions";
+import { persistUsmleStepPreference } from "@/lib/edtech/actions";
 import { navigateHard } from "@/lib/client/navigate-hard";
 import { cn } from "@/lib/utils";
 
@@ -72,9 +72,10 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
     [maxLevel]
   );
 
-  // Live fractional center (in item units) drives the per-row scale/opacity/tilt.
+  // Explicit index drives the CTA + summary; fractional center drives wheel visuals.
+  const [activeIndex, setActiveIndex] = useState(startIndex === -1 ? 0 : startIndex);
   const [center, setCenter] = useState<number>(startIndex === -1 ? 0 : startIndex);
-  const selectedIndex = Math.min(options.length - 1, Math.max(0, Math.round(center)));
+  const selectedIndex = activeIndex;
   const selected = options[selectedIndex];
 
   const scrollToIndex = useCallback(
@@ -82,9 +83,10 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
       const el = containerRef.current;
       if (!el) return;
       const clamped = Math.min(options.length - 1, Math.max(0, index));
+      setActiveIndex(clamped);
+      setCenter(clamped);
       programmaticRef.current = true;
       el.scrollTo({ top: clamped * ITEM_H, behavior });
-      // Release the programmatic guard after the smooth scroll settles.
       window.setTimeout(() => {
         programmaticRef.current = false;
       }, behavior === "smooth" ? 360 : 0);
@@ -95,9 +97,16 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
   // Center the initial option on mount (no animation, no scroll flash).
   useEffect(() => {
     scrollToIndex(startIndex === -1 ? 0 : startIndex, "auto");
-    setCenter(startIndex === -1 ? 0 : startIndex);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const settleScrollSelection = useCallback(() => {
+    const el = containerRef.current;
+    if (!el || programmaticRef.current) return;
+    const idx = Math.min(options.length - 1, Math.max(0, Math.round(el.scrollTop / ITEM_H)));
+    setActiveIndex(idx);
+    setCenter(idx);
+  }, [options.length]);
 
   const handleScroll = useCallback(() => {
     const el = containerRef.current;
@@ -164,7 +173,7 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
     if (!selected) return;
     setPending(true);
     setError(null);
-    const result = await persistExamPreference("usmle");
+    const result = await persistUsmleStepPreference(selected.fieldId);
     if (!result.ok) {
       setError(result.error);
       setPending(false);
@@ -233,6 +242,8 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
           aria-activedescendant={selected ? `usmle-wheel-${selected.level}` : undefined}
           tabIndex={0}
           onScroll={handleScroll}
+          onMouseUp={settleScrollSelection}
+          onTouchEnd={settleScrollSelection}
           onKeyDown={onKeyDown}
           className={cn(
             "h-full w-full overflow-y-auto overscroll-contain",
@@ -243,9 +254,9 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
           style={{ paddingTop: PAD, paddingBottom: PAD }}
         >
           {options.map((option, i) => {
+            const isSelected = i === activeIndex;
             const distance = i - center;
             const abs = Math.abs(distance);
-            const isSelected = i === selectedIndex;
             const scale = reduceMotion ? 1 : Math.max(0.78, 1 - abs * 0.13);
             const opacity = Math.max(0.32, 1 - abs * 0.34);
             const rotateX = reduceMotion ? 0 : Math.max(-55, Math.min(55, -distance * 22));

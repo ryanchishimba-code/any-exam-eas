@@ -22,6 +22,7 @@ export async function QuestionBankPracticeLoader({
     <StudyBankPractice
       preferredExamSlug={examSlug}
       lockExam
+      initialFieldId={fieldParam}
       initialSubjectCounts={countsPayload?.counts}
       initialSubjectCountsFieldId={countsPayload?.fieldId}
       weakTopics={weakTopics}

@@ -42,6 +42,38 @@ export async function persistExamPreference(
   }
 }
 
+/** Persist USMLE exam + the specific step bank (Step 1 / 2 CK / 3). */
+export async function persistUsmleStepPreference(
+  usmleFieldId: string
+): Promise<PersistExamPreferenceResult> {
+  const USMLE_FIELDS = new Set(["usmle-step-1", "usmle-step-2", "usmle-step-3"]);
+  if (!USMLE_FIELDS.has(usmleFieldId)) {
+    return { ok: false, error: "Invalid USMLE step." };
+  }
+
+  try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return { ok: false, error: "Please log in again to save your exam choice." };
+    }
+
+    await setUserExamPreference(session.user.id, "usmle");
+    await setUserEdtechMetadata(session.user.id, { usmleFieldId });
+    revalidatePath("/dashboard");
+    revalidatePath("/study-hub");
+    revalidatePath("/select-exam");
+    revalidatePath("/select-exam/usmle");
+    revalidatePath("/question-bank");
+    return { ok: true };
+  } catch (err) {
+    console.error("[persistUsmleStepPreference]", err);
+    return {
+      ok: false,
+      error: "We couldn't save your USMLE step. Check your connection and try again.",
+    };
+  }
+}
+
 export async function saveExamPreference(formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) {

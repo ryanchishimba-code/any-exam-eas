@@ -99,7 +99,12 @@ function saveCheckpoint(checkpoint: Checkpoint, checkpointFile: string) {
   fs.writeFileSync(checkpointFile, JSON.stringify(checkpoint, null, 2));
 }
 
-function parseCsvIds(csvPath: string, maxScore: number, limit: number): string[] {
+function parseCsvIds(
+  csvPath: string,
+  maxScore: number,
+  limit: number,
+  field?: string
+): string[] {
   if (!fs.existsSync(csvPath)) {
     throw new Error(`CSV not found: ${csvPath}. Run npm run db:audit-usmle first.`);
   }
@@ -109,7 +114,8 @@ function parseCsvIds(csvPath: string, maxScore: number, limit: number): string[]
     .map((line) => {
       const m = line.match(/^([^,]+),([^,]+),([^,]+),([^,]+),([0-9.]+),/);
       if (!m) return null;
-      const [, itemId, , , , scoreStr] = m;
+      const [, itemId, fieldId, , , scoreStr] = m;
+      if (field && fieldId !== field) return null;
       return { itemId: itemId!, overallScore: Number.parseFloat(scoreStr!) };
     })
     .filter((r): r is { itemId: string; overallScore: number } => r !== null)
@@ -233,10 +239,10 @@ async function main() {
   const effectiveLimit = all ? Number.MAX_SAFE_INTEGER : limit;
   let ids = fromDb
     ? await idsFromDb(field)
-    : parseCsvIds(csv, maxScore, effectiveLimit);
+    : parseCsvIds(csv, maxScore, effectiveLimit, field);
 
   if (all && !fromDb) {
-    ids = parseCsvIds(csv, maxScore, Number.MAX_SAFE_INTEGER);
+    ids = parseCsvIds(csv, maxScore, Number.MAX_SAFE_INTEGER, field);
   }
 
   const prior = resume ? loadCheckpoint(ckptPath) : null;

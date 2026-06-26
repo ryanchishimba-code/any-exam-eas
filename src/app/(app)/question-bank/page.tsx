@@ -16,6 +16,8 @@ import {
   syncExamPreferenceForField,
 } from "@/lib/edtech/question-bank-scope";
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
+import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
+import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 
@@ -53,6 +55,13 @@ export default async function QuestionBankPage({
   const defaultFieldId = fieldIdForExamSlug(examSlug);
   let fieldParam = defaultFieldId;
 
+  if (!sp.field && examSlug === "usmle") {
+    const meta = await getUserEdtechMetadata(session.user.id);
+    if (meta.usmleFieldId && isUsmleFieldId(meta.usmleFieldId)) {
+      fieldParam = meta.usmleFieldId;
+    }
+  }
+
   if (sp.field) {
     const resolvedFieldId = resolveQuestionBankFieldId(String(sp.field));
     if (fieldMatchesExamSlug(resolvedFieldId, examSlug)) {
@@ -82,6 +91,17 @@ export default async function QuestionBankPage({
       qs.set("field", defaultFieldId);
       redirect(`${ROUTES.questionBank}?${qs.toString()}`);
     }
+  }
+
+  if (!sp.field) {
+    const qs = new URLSearchParams();
+    for (const [key, value] of Object.entries(sp)) {
+      if (value == null) continue;
+      qs.set(key, Array.isArray(value) ? value[0]! : value);
+    }
+    qs.set("field", fieldParam);
+    if (!qs.has("mode")) qs.set("mode", "bank");
+    redirect(`${ROUTES.questionBank}?${qs.toString()}`);
   }
 
   const activeExam = EXAM_CATALOG[examSlug];

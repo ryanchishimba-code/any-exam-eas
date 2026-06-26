@@ -4,6 +4,9 @@ import { ArrowLeft } from "lucide-react";
 import { auth } from "@/auth";
 import { ExamWheelPicker } from "@/components/edtech/ExamWheelPicker";
 import { getUsmleExamOptionsWithCounts } from "@/lib/exam-prep/usmle/exam-options";
+import { usmleFieldIdToStepLevel } from "@/lib/exam-prep/usmle/steps";
+import type { UsmleStepLevel } from "@/lib/exam-prep/usmle/types";
+import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
@@ -24,6 +27,11 @@ export default async function SelectUsmleStepPage() {
   }
 
   const payload = await getUsmleExamOptionsWithCounts();
+  const meta = await getUserEdtechMetadata(session.user.id);
+  const savedLevel = meta.usmleFieldId
+    ? usmleFieldIdToStepLevel(meta.usmleFieldId)
+    : null;
+  const initialLevel: UsmleStepLevel = savedLevel ?? "step2";
 
   return (
     <div className="relative min-h-[calc(100vh-var(--page-top))] overflow-hidden bg-[var(--color-bg)]">
@@ -58,7 +66,7 @@ export default async function SelectUsmleStepPage() {
         </header>
 
         <div className="mt-12">
-          <ExamWheelPicker initialPayload={payload} initialLevel="step2" />
+          <ExamWheelPicker initialPayload={payload} initialLevel={initialLevel} />
         </div>
       </div>
     </div>

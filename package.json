@@ -169,6 +169,7 @@
     "db:curate-usmle:ai": "npx tsx scripts/curate-usmle-ai.ts",
     "db:curate-usmle:ai:dry": "npx tsx scripts/curate-usmle-ai.ts --dry-run --limit 5",
     "db:curate-usmle:ai:all": "npx tsx scripts/curate-usmle-ai.ts --all --max-score 10 --resume --no-rag",
+    "db:curate-usmle:ai:step1": "npx tsx scripts/curate-usmle-ai.ts --field usmle-step-1 --all --max-score 7.9 --resume",
     "db:curate-usmle:ai:step2": "npx tsx scripts/curate-usmle-ai.ts --from-db --all --field usmle-step-2 --resume --min-accept 8",
     "db:curate-usmle:ai:step3": "npx tsx scripts/curate-usmle-ai.ts --from-db --all --field usmle-step-3 --resume --min-accept 7.5",
     "db:curate-board-ai": "node scripts/curate-board-ai-pipeline.mjs",

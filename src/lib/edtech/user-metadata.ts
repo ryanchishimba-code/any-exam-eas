@@ -5,6 +5,8 @@ import { isMpjeUsJurisdiction } from "@/lib/mpje/us-jurisdictions";
 export type UserEdtechMetadata = {
   mpjeStateCode?: string;
   mpjeVariant?: MpjeVariant;
+  /** Last USMLE step bank the learner practiced (usmle-step-1/2/3). */
+  usmleFieldId?: string;
   /** Anticipated test date per exam, keyed by exam slug (ISO `YYYY-MM-DD`). */
   examTestDates?: Record<string, string>;
 };

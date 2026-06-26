@@ -21,7 +21,7 @@ import {
 } from "@/lib/exam/modes";
 import { mpjePracticeExamHref, STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import { EXAM_CATALOG, examSlugFromFieldId } from "@/lib/edtech/exams";
-import { persistExamPreference } from "@/lib/edtech/actions";
+import { persistExamPreference, persistUsmleStepPreference } from "@/lib/edtech/actions";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import {
   fieldIdForExamSlug,
@@ -175,7 +175,14 @@ function buildTimedPracticeUrl(
   return `${base}?${qs.toString()}`;
 }
 
-function initialFieldLabel(preferredExamSlug?: ExamSlug): string {
+function initialFieldLabel(
+  preferredExamSlug?: ExamSlug,
+  initialFieldId?: string
+): string {
+  if (initialFieldId) {
+    const meta = getFieldMetaById(initialFieldId);
+    if (meta) return meta.label;
+  }
   if (preferredExamSlug) {
     const meta = getFieldMetaById(fieldIdForExamSlug(preferredExamSlug));
     if (meta) return meta.label;
@@ -186,12 +193,15 @@ function initialFieldLabel(preferredExamSlug?: ExamSlug): string {
 export function StudyBankPractice({
   preferredExamSlug,
   lockExam = false,
+  initialFieldId,
   initialSubjectCounts,
   initialSubjectCountsFieldId,
   weakTopics = [],
 }: {
   preferredExamSlug?: ExamSlug;
   lockExam?: boolean;
+  /** Server-resolved field id from ?field= — keeps step selection in sync on first paint. */
+  initialFieldId?: string;
   /** Server-prefetched serve counts — avoids empty-state flash on /question-bank. */
   initialSubjectCounts?: Record<string, number> | null;
   initialSubjectCountsFieldId?: string;
@@ -215,7 +225,7 @@ export function StudyBankPractice({
   );
   const isTimedExam = practiceMode === "timed";
 
-  const [field, setField] = useState(() => initialFieldLabel(preferredExamSlug));
+  const [field, setField] = useState(() => initialFieldLabel(preferredExamSlug, initialFieldId));
   const [subjectId, setSubjectId] = useState("");
   const [questionCount, setQuestionCount] = useState(25);
   const [bankPace, setBankPace] = useState<QuestionBankPace>("untimed");
@@ -240,7 +250,13 @@ export function StudyBankPractice({
   );
 
   const subjects = useMemo(() => getSubjectsForField(field), [field]);
-  const fieldId = useMemo(() => resolveFieldId(field), [field]);
+  const fieldId = useMemo(() => {
+    if (fieldParam) {
+      const fromParam = getFieldMeta(fieldParam) ?? getFieldMetaById(fieldParam);
+      if (fromParam) return fromParam.id;
+    }
+    return resolveFieldId(field);
+  }, [field, fieldParam]);
   const bankSubjectIds = useMemo(() => subjects.map((s) => s.id), [subjects]);
   const weakSubjectIds = useMemo(
     () => weakSubjectIdsForField(weakTopics, fieldId, bankSubjectIds),
@@ -925,7 +941,11 @@ export function StudyBankPractice({
                     onClick={() => {
                       const meta = getFieldMetaById(opt.id);
                       if (meta) setField(meta.label);
-                      router.replace(`${practiceBase}?field=${encodeURIComponent(opt.fieldParam)}`, {
+                      void persistUsmleStepPreference(opt.fieldParam);
+                      const qs = new URLSearchParams(searchParams.toString());
+                      qs.set("field", opt.fieldParam);
+                      if (onQuestionBank && !qs.has("mode")) qs.set("mode", "bank");
+                      router.replace(`${practiceBase}?${qs.toString()}`, {
                         scroll: false,
                       });
                     }}
