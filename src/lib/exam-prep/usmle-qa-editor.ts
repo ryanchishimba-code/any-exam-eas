@@ -14,7 +14,8 @@ import {
   vignetteHasHistoryClues,
 } from "@/lib/engine/prompts/vignette";
 import type { BankItem } from "@/lib/question-bank";
-import { splitUsmleBankItem } from "@/lib/exam-prep/usmle-clinical-gate";
+import { isUsmleStep1Subject } from "@/lib/subjects/medicine/subject-splits";
+import { splitUsmleBankItem } from "./usmle-bank-split";
 
 export type UsmleQaDimension =
   | "vignetteQuality"
@@ -75,7 +76,24 @@ const WEAK_CORRECT =
   /^Focused .* evaluation with targeted history|^Pathophysiology of .* explains the dominant finding|^High-yield fact about/i;
 
 const LEAD_IN =
-  /most likely|most appropriate|best explains|next step|next best|diagnosis|management|mechanism|initial test|complication/i;
+  /most likely|most appropriate|best explains|best described|next step|next best|diagnosis|management|mechanism|initial test|complication|highest risk|adverse outcome|underlying pathophysiology|which explanation|which mechanism|what is the|which of the following|involves deficiency|irreversibly inhibits|primarily infects|best described as|downstream effect|must include|interpretation of the lab|most accurate|primarily by inhibiting|primarily supports|passes through|treated with|appears as|contribute to|which structure|which fibers|which vertebral|which downstream|which interpretation|inhibiting:/i;
+
+const STEP1_RECALL_STEM =
+  /involves deficiency|irreversibly inhibits|primarily infects|best described as|appears as|treated with|must include|end-systole|rate-limiting|residual volume|caseous necrosis|reed-sternberg|oral sabin|type iii hypersensitivity|urea cycle occurs|von gierke|organophosphate|staphylococcus|statins inhibit|primary contributor|mlf lesion|positive symptoms of schizophrenia|kussmaul|first-line for|epiglottitis classically|jaundice within|kawasaki disease|postpartum hemorrhage|dka features|atrial fibrillation stroke|tension pneumothorax|asthma pathophysiology|most filtered glucose|which structure|which fibers|which vertebral|passes through the diaphragm|downstream effect|interpretation of the lab/i;
+
+function isStep1FoundationRecall(
+  fieldId: string,
+  subjectId: string,
+  vignette: string,
+  stem: string
+): boolean {
+  return (
+    fieldId === "usmle-step-1" &&
+    isUsmleStep1Subject(subjectId) &&
+    !vignette &&
+    STEP1_RECALL_STEM.test(stem)
+  );
+}
 
 const NEXT_STEP_STEM = /next (?:best )?step|most appropriate (?:next )?(?:step|management|action)/i;
 
@@ -123,12 +141,17 @@ export function auditUsmleQaEditor(
   const source = meta.source ?? "unknown";
   const examQ = toExamQuestion(item, vignette, stem);
   const combined = `${vignette}\n${stem}\n${explanation}`;
+  const step1Recall = isStep1FoundationRecall(meta.fieldId, item.subjectId ?? "", vignette, stem);
 
   // ── Vignette quality ──
   let vignetteQuality = 5;
   if (!vignette) {
-    vignetteQuality -= 3;
-    pushIssue(issues, "missing_vignette", "No clinical vignette separated from stem.", "vignetteQuality", "error");
+    if (step1Recall) {
+      vignetteQuality = 7;
+    } else {
+      vignetteQuality -= 3;
+      pushIssue(issues, "missing_vignette", "No clinical vignette separated from stem.", "vignetteQuality", "error");
+    }
   } else {
     if (isVignetteRich(vignette)) vignetteQuality += 2;
     else pushIssue(issues, "thin_vignette", "Vignette lacks demographics, objective data, or depth.", "vignetteQuality", "error");
@@ -145,9 +168,11 @@ export function auditUsmleQaEditor(
     if (vignetteHasEtiologyClues(vignette)) vignetteQuality += 0.5;
   }
 
-  for (const msg of validateClinicalVignette(examQ)) {
-    vignetteQuality -= 0.8;
-    pushIssue(issues, "vignette_validation", msg, "vignetteQuality", "warn");
+  if (!step1Recall) {
+    for (const msg of validateClinicalVignette(examQ)) {
+      vignetteQuality -= 0.8;
+      pushIssue(issues, "vignette_validation", msg, "vignetteQuality", "warn");
+    }
   }
   if (hasOrphanDeicticStem(examQ)) {
     vignetteQuality -= 1.5;
@@ -255,9 +280,11 @@ export function auditUsmleQaEditor(
   }
   if (!stem.endsWith("?")) {
     overallPolish -= 0.5;
-    pushIssue(issues, "stem_punctuation", "Lead-in should end with a question mark.", "overallPolish", "info");
+    if (!step1Recall) {
+      pushIssue(issues, "stem_punctuation", "Lead-in should end with a question mark.", "overallPolish", "info");
+    }
   }
-  if (!LEAD_IN.test(stem)) {
+  if (!LEAD_IN.test(stem) && !step1Recall) {
     overallPolish -= 0.5;
     pushIssue(issues, "stem_lead_in", "Stem lacks USMLE-style lead-in phrasing.", "overallPolish", "warn");
   }

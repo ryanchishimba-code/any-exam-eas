@@ -84,19 +84,19 @@ function logLine(msg: string, logPath: string) {
   fs.appendFileSync(logPath, line + "\n");
 }
 
-function loadCheckpoint(path: string): Checkpoint | null {
-  if (!fs.existsSync(path)) return null;
+function loadCheckpoint(checkpointFile: string): Checkpoint | null {
+  if (!fs.existsSync(checkpointFile)) return null;
   try {
-    return JSON.parse(fs.readFileSync(path, "utf8")) as Checkpoint;
+    return JSON.parse(fs.readFileSync(checkpointFile, "utf8")) as Checkpoint;
   } catch {
     return null;
   }
 }
 
-function saveCheckpoint(checkpoint: Checkpoint, path: string) {
-  fs.mkdirSync(path.dirname(path), { recursive: true });
+function saveCheckpoint(checkpoint: Checkpoint, checkpointFile: string) {
+  fs.mkdirSync(path.dirname(checkpointFile), { recursive: true });
   checkpoint.updatedAt = new Date().toISOString();
-  fs.writeFileSync(path, JSON.stringify(checkpoint, null, 2));
+  fs.writeFileSync(checkpointFile, JSON.stringify(checkpoint, null, 2));
 }
 
 function parseCsvIds(csvPath: string, maxScore: number, limit: number): string[] {

@@ -56,7 +56,7 @@ const VIGNETTE_OPENER_PATTERN =
   /^a\s+\d{1,3}[-\s]?year[-\s]?old\s+(male|female|man|woman|patient|client)\b/i;
 
 const HISTORY_PATTERN =
-  /history|pmh|past medical|diagnosed|years ago|post-op|postoperative|admitted|known|medication|medications|allerg|smok|diabet|hypertens|pregnant|surgery|hospitalized|presents with|reports|complains|cardiomyopathy|chronic|chemotherapy|dialysis|insulin|on \w+\s+and|current (?:meds|therapies)|EF \d/i;
+  /history|pmh|past medical|diagnosed|years ago|post-op|postoperative|admitted|known|medication|medications|allerg|smok|diabet|hypertens|pregnant|surgery|hospitalized|presents(?: to| with| for)|brought to|reports|complains|cardiomyopathy|chronic|chemotherapy|dialysis|insulin|on \w+\s+and|current (?:meds|therapies)|EF \d/i;
 
 const ETIOLOGY_PATTERN =
   /due to|secondary to|after|following|newly started|recent|risk|etiology|cause|because|day post|weeks of|long-standing|insulin|infection|trauma|chemo|dialysis/i;

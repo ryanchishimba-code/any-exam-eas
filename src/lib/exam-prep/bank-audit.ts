@@ -15,6 +15,7 @@ import {
   auditNaplexBankItem,
   type NaplexAuditIssue,
 } from "./naplex-bank-audit";
+import { splitUsmleBankItem } from "./usmle-bank-split";
 import { correctAnswerMatchesOption } from "./naplex-answer-align";
 import {
   isNclexNgnItem,
@@ -40,8 +41,13 @@ const RESPIRATORY_DISTRESS =
 const GENERIC_WEAK_OPTION =
   /^(?:Document the finding and recheck|Delegate reassessment to UAP|Reassure the client that the finding is expected)/i;
 
+function isUsmleField(fieldId: string): boolean {
+  return fieldId.startsWith("usmle");
+}
+
 function resolveVignette(item: BankItem, fieldId: string): string {
   if (fieldId === "nursing") return resolveNclexVignette(item);
+  if (isUsmleField(fieldId)) return splitUsmleBankItem(item).vignette?.trim() ?? "";
   const explicit = item.vignette?.trim() || item.scenario?.trim() || "";
   if (explicit) return explicit;
   // Mirror resolveStem: a leading "\n\n"-separated block of >=40 chars is the
@@ -57,6 +63,7 @@ function resolveVignette(item: BankItem, fieldId: string): string {
 
 function resolveStem(item: BankItem, fieldId: string): string {
   if (fieldId === "nursing") return resolveNclexStem(item);
+  if (isUsmleField(fieldId)) return splitUsmleBankItem(item).stem;
   const vignette = resolveVignette(item, fieldId);
   const q = item.question?.trim() ?? "";
   if (vignette && q.startsWith(vignette)) {
@@ -80,7 +87,8 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
   const stem = resolveStem(item, fieldId);
   const blob = `${vignette}\n${stem}\n${item.question}`;
 
-  if (!item.question?.trim() || item.question.trim().length < 12) {
+  const minStemLen = isUsmleField(fieldId) && vignette ? 8 : 12;
+  if (!stem?.trim() || stem.trim().length < minStemLen) {
     push("error", "empty_question", "Question stem is missing or too short.");
   }
 
@@ -150,10 +158,21 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
       push("error", "ngn_answer_invalid", "NGN correctAnswer does not match the stored payload structure.");
     }
   } else {
-    if (item.options.length !== 4) {
-      push("error", "invalid_option_count", "MCQ items must have exactly four options.");
+    const mcqMaxOptions = isUsmleField(fieldId) ? 6 : 4;
+    if (item.options.length < 4 || item.options.length > mcqMaxOptions) {
+      push(
+        "error",
+        "invalid_option_count",
+        isUsmleField(fieldId)
+          ? "MCQ items must have 4–6 options."
+          : "MCQ items must have exactly four options."
+      );
     }
-    if (item.options.length === 4 && !correctAnswerMatchesOption(item.options, item.correctAnswer, itemType)) {
+    if (
+      item.options.length >= 4 &&
+      item.options.length <= mcqMaxOptions &&
+      !correctAnswerMatchesOption(item.options, item.correctAnswer, itemType)
+    ) {
       push("error", "correct_not_in_options", "correctAnswer must match one option exactly.");
     }
   }

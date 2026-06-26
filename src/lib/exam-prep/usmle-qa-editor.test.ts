@@ -32,6 +32,30 @@ describe("usmle-qa-editor", () => {
     expect(report.examReady || report.overallScore >= 7).toBe(true);
   });
 
+  it("allows Step 1 foundation recall items without a separated vignette", () => {
+    const recall: BankItem = {
+      subjectId: "biochemistry",
+      question: "Von Gierke disease involves deficiency of:?",
+      options: [
+        "Von Gierke disease (GSD I)",
+        "Pompe disease",
+        "McArdle disease",
+        "Tay-Sachs disease",
+      ],
+      correctAnswer: "Von Gierke disease (GSD I)",
+      explanation:
+        "G6Pase deficiency impairs gluconeogenesis and glycogenolysis, causing severe fasting hypoglycemia. Key concept: Von Gierke disease (GSD I).",
+      tags: ["seed"],
+      source: "seed",
+    };
+    const report = auditUsmleQaEditor(recall, {
+      fieldId: "usmle-step-1",
+      source: "seed",
+      itemId: "recall-1",
+    });
+    expect(report.issues.some((i) => i.code === "missing_vignette" && i.severity === "error")).toBe(false);
+  });
+
   it("flags thin items without vignettes", () => {
     const weak: BankItem = {
       subjectId: "pathology",

@@ -40,18 +40,20 @@ function parseArgs() {
   let maxScore = 7.9;
   let dryRun = false;
   let force = false;
+  let field: string | undefined;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--csv" && args[i + 1]) csv = args[++i]!;
+    else if (args[i] === "--field" && args[i + 1]) field = args[++i];
     else if (args[i] === "--limit" && args[i + 1]) limit = Number.parseInt(args[++i]!, 10);
     else if (args[i] === "--max-score" && args[i + 1]) maxScore = Number.parseFloat(args[++i]!);
     else if (args[i] === "--dry-run") dryRun = true;
     else if (args[i] === "--force") force = true;
   }
-  return { csv, limit, maxScore, dryRun, force };
+  return { csv, limit, maxScore, dryRun, force, field };
 }
 
-function parseCsvIds(csvPath: string, maxScore: number, limit: number): string[] {
+function parseCsvIds(csvPath: string, maxScore: number, limit: number, field?: string): string[] {
   if (!fs.existsSync(csvPath)) {
     throw new Error(`CSV not found: ${csvPath}. Run npm run db:audit-usmle first.`);
   }
@@ -62,7 +64,8 @@ function parseCsvIds(csvPath: string, maxScore: number, limit: number): string[]
     .map((line) => {
       const m = line.match(/^([^,]+),([^,]+),([^,]+),([^,]+),([0-9.]+),/);
       if (!m) return null;
-      const [, itemId, , , , scoreStr] = m;
+      const [, itemId, fieldId, , , scoreStr] = m;
+      if (field && fieldId !== field) return null;
       const overallScore = Number.parseFloat(scoreStr!);
       const critical = CRITICAL_ISSUES.has(
         line.split("|").find((p) => p.includes(":"))?.split(":")[0] ?? ""
@@ -83,11 +86,11 @@ function seedFromId(id: string): number {
 }
 
 async function main() {
-  const { csv, limit, maxScore, dryRun, force } = parseArgs();
-  const ids = parseCsvIds(csv, maxScore, limit);
+  const { csv, limit, maxScore, dryRun, force, field } = parseArgs();
+  const ids = parseCsvIds(csv, maxScore, limit, field);
 
   console.log(`\nUSMLE QA failing rewrite — ${ids.length} item(s) from ${csv}`);
-  console.log(`  max-score: ${maxScore}  dry-run: ${dryRun}  force: ${force}\n`);
+  console.log(`  field: ${field ?? "all"}  max-score: ${maxScore}  dry-run: ${dryRun}  force: ${force}\n`);
 
   let updated = 0;
   let skipped = 0;

@@ -61,4 +61,16 @@ describe("vignette quality", () => {
     const issues = validateClinicalVignette(baseQuestion({}));
     expect(issues.some((i) => i.includes("Missing vignette"))).toBe(true);
   });
+
+  it("recognizes presents-to vignettes as having history clues", () => {
+    const vignette =
+      "A 47-year-old man presents to the emergency department with severe epigastric pain radiating to the back.";
+    const issues = validateClinicalVignette(
+      baseQuestion({
+        vignette,
+        question: "Which mechanism best explains this patient's presentation?",
+      })
+    );
+    expect(issues.some((i) => i.includes("pertinent patient history"))).toBe(false);
+  });
 });
