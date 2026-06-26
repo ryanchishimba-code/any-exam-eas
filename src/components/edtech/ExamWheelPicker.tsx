@@ -7,7 +7,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { useRouter } from "next/navigation";
 import { useReducedMotion } from "framer-motion";
 import { ArrowRight, Loader2, RefreshCw } from "lucide-react";
 import { StatusMessage } from "@/components/ui/StatusMessage";
@@ -17,6 +16,7 @@ import type {
   UsmleExamOptionsPayload,
 } from "@/lib/exam-prep/usmle/exam-options";
 import { persistExamPreference } from "@/lib/edtech/actions";
+import { navigateHard } from "@/lib/client/navigate-hard";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -38,7 +38,6 @@ function formatCount(n: number): string {
 }
 
 export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Props) {
-  const router = useRouter();
   const reduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
@@ -171,8 +170,7 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
       setPending(false);
       return;
     }
-    router.push(selected.practiceHref);
-    router.refresh();
+    navigateHard(selected.practiceHref);
   }
 
   const hasData = options.length > 0;

@@ -31,6 +31,7 @@ export async function persistExamPreference(
     revalidatePath("/dashboard");
     revalidatePath("/study-hub");
     revalidatePath("/select-exam");
+    revalidatePath("/question-bank");
     return { ok: true };
   } catch (err) {
     console.error("[persistExamPreference]", err);
