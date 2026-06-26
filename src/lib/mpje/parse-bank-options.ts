@@ -1,4 +1,5 @@
 import type { BankItem } from "@/lib/question-bank";
+import { cleanOptionText } from "@/lib/question-format";
 
 export type ParsedBankOptions = {
   options: string[];
@@ -28,6 +29,10 @@ function readEnrichment(obj: Record<string, unknown>): Partial<ParsedBankOptions
   return out;
 }
 
+function isLetterPlaceholderOptions(options: string[]): boolean {
+  return options.length >= 3 && options.every((o) => /^[A-D]$/i.test(cleanOptionText(o).trim()));
+}
+
 /** Serialize MCQ options — plain array or enriched envelope with rationales. */
 export function serializeBankOptions(item: BankItem): string {
   const hasEnrichment =
@@ -36,7 +41,14 @@ export function serializeBankOptions(item: BankItem): string {
     (item.keyTakeaways?.length ?? 0) > 0;
 
   if (item.ngnPayload?.kind && item.itemType !== "mcq" && item.itemType !== "vignette") {
-    return JSON.stringify({ ...item.ngnPayload, options: item.options });
+    const payloadOpts = Array.isArray(item.ngnPayload.options)
+      ? item.ngnPayload.options.map(String)
+      : [];
+    const options =
+      payloadOpts.length >= 3 && !isLetterPlaceholderOptions(payloadOpts)
+        ? payloadOpts
+        : item.options;
+    return JSON.stringify({ ...item.ngnPayload, options });
   }
 
   const panceMeta =

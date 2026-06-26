@@ -7,6 +7,11 @@ import { hasOrphanDeicticStem } from "@/lib/engine/prompts/vignette";
 import { cleanOptionText } from "@/lib/question-format";
 import { hasShiftNoteArtifacts, isVagueClinicalJudgmentStem } from "@/lib/questions/shift-notes";
 import { isGenericPharmacologyBankItem } from "@/lib/engine/polish/nclex-generic-checks";
+import {
+  isNclexNgnItem,
+  nclexNgnCorrectAnswerValid,
+  shouldSkipMcqCorrectAnswerCheck,
+} from "@/lib/exam-prep/nclex-ngn-audit";
 
 export type NclexAuditIssue = {
   code: string;
@@ -353,11 +358,17 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
   }
 
   if (item.options.length >= 2 && item.correctAnswer) {
-    const cleanedOptions = item.options.map((o) => cleanOptionText(String(o)));
-    const cleanedCorrect = cleanOptionText(item.correctAnswer);
-    if (!cleanedOptions.some((o) => o.toLowerCase() === cleanedCorrect.toLowerCase())) {
-      push("error", "correct_not_in_options", "correctAnswer must match one option exactly.");
+    if (shouldSkipMcqCorrectAnswerCheck(item)) {
+      // NGN items store structured answers in ngnPayload — A–D placeholders are intentional.
+    } else {
+      const cleanedOptions = item.options.map((o) => cleanOptionText(String(o)));
+      const cleanedCorrect = cleanOptionText(item.correctAnswer);
+      if (!cleanedOptions.some((o) => o.toLowerCase() === cleanedCorrect.toLowerCase())) {
+        push("error", "correct_not_in_options", "correctAnswer must match one option exactly.");
+      }
     }
+  } else if (isNclexNgnItem(item) && item.correctAnswer && !nclexNgnCorrectAnswerValid(item)) {
+    push("error", "ngn_answer_invalid", "NGN correctAnswer does not match the stored payload structure.");
   }
 
   appendGenericNclexQualityIssues(item, vignette, blob, push);

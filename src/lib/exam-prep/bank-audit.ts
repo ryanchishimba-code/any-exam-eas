@@ -16,6 +16,11 @@ import {
   type NaplexAuditIssue,
 } from "./naplex-bank-audit";
 import { correctAnswerMatchesOption } from "./naplex-answer-align";
+import {
+  isNclexNgnItem,
+  nclexNgnCorrectAnswerValid,
+  resolveNclexNgnSelectableOptions,
+} from "./nclex-ngn-audit";
 import { hasGenericPlaceholderOptions } from "@/lib/question-format";
 import { BOARD_SERVE_MIN_EXPLANATION_CHARS } from "./board-serve-quality";
 
@@ -97,17 +102,27 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
       push("error", "correct_not_in_options", "correctAnswer must match one option exactly.");
     }
   } else if (itemType === "select_all" || itemType === "sata") {
-    if (item.options.length < 4) {
+    const options =
+      fieldId === "nursing" && isNclexNgnItem(item)
+        ? (resolveNclexNgnSelectableOptions(item) ?? item.options)
+        : item.options;
+    if (options.length < 4) {
       push("error", "invalid_option_count", "Select-all items must have at least four options.");
     }
-    if (!correctAnswerMatchesOption(item.options, item.correctAnswer, itemType)) {
-      push("error", "correct_not_in_options", "Every select-all answer must match an option exactly.");
+    if (!correctAnswerMatchesOption(options, item.correctAnswer, itemType)) {
+      if (!(fieldId === "nursing" && isNclexNgnItem(item) && nclexNgnCorrectAnswerValid(item))) {
+        push("error", "correct_not_in_options", "Every select-all answer must match an option exactly.");
+      }
     }
   } else if (itemType === "ordered_response") {
-    if (item.options.length < 3) {
+    const options =
+      fieldId === "nursing" && isNclexNgnItem(item)
+        ? (resolveNclexNgnSelectableOptions(item) ?? item.options)
+        : item.options;
+    if (options.length < 3) {
       push("error", "invalid_option_count", "Ordered-response items must have at least three steps.");
     }
-    const optionSet = new Set(item.options.map((o) => o.trim()));
+    const optionSet = new Set(options.map((o) => o.trim()));
     const parts = (item.correctAnswer.includes("|||")
       ? item.correctAnswer.split("|||")
       : item.correctAnswer.split(",")
@@ -115,7 +130,9 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
       .map((p) => p.trim())
       .filter(Boolean);
     if (parts.length < 2 || !parts.every((p) => optionSet.has(p))) {
-      push("error", "correct_not_in_options", "Ordered-response answer steps must match options exactly.");
+      if (!(fieldId === "nursing" && isNclexNgnItem(item) && nclexNgnCorrectAnswerValid(item))) {
+        push("error", "correct_not_in_options", "Ordered-response answer steps must match options exactly.");
+      }
     }
   } else if (itemType === "constructed_response") {
     if (!item.correctAnswer?.trim()) {
@@ -127,6 +144,10 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
     }
     if (!item.correctAnswer?.trim()) {
       push("error", "empty_correct_answer", "Drag-and-drop items require mapped correct pairs.");
+    }
+  } else if (fieldId === "nursing" && isNclexNgnItem(item)) {
+    if (item.correctAnswer && !nclexNgnCorrectAnswerValid(item)) {
+      push("error", "ngn_answer_invalid", "NGN correctAnswer does not match the stored payload structure.");
     }
   } else {
     if (item.options.length !== 4) {
@@ -144,7 +165,8 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
 
   if (
     item.options.length >= 4 &&
-    hasGenericPlaceholderOptions(item.options)
+    hasGenericPlaceholderOptions(item.options) &&
+    !(fieldId === "nursing" && isNclexNgnItem(item))
   ) {
     push(
       "error",

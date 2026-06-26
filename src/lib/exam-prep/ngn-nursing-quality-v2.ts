@@ -474,7 +474,7 @@ export const NGN_NURSING_QUALITY_V2: EnrichedBankItem[] = [
     "select_all",
     "Discharge teaching for new heart failure client.",
     "Select all essential teaching points. (Select all that apply.)",
-    "Daily weights,Low sodium diet,When to call provider,Sskip meds if feeling well",
+    "Daily weights,Low sodium diet,When to call provider,Skip meds if feeling well",
     "HF teaching: weights, diet, symptoms — never skip meds without provider.",
     {
       kind: "select_all",

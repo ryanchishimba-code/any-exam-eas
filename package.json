@@ -107,6 +107,8 @@
     "db:fix-naplex-stem-coherence:dry": "npx tsx scripts/fix-naplex-stem-coherence.ts --dry-run",
     "db:fix-naplex-audit-gaps": "npx tsx scripts/fix-naplex-audit-gaps.ts",
     "db:fix-naplex-audit-gaps:dry": "npx tsx scripts/fix-naplex-audit-gaps.ts --dry-run",
+    "db:fix-nclex-ngn-audit-gaps": "npx tsx scripts/fix-nclex-ngn-audit-gaps.ts",
+    "db:fix-nclex-ngn-audit-gaps:dry": "npx tsx scripts/fix-nclex-ngn-audit-gaps.ts --dry-run",
     "db:qa-gate-mpje-best": "bash scripts/run-with-node.sh npx tsx scripts/qa-gate-mpje-best.ts",
     "db:qa-gate-mpje-best:dry": "bash scripts/run-with-node.sh npx tsx scripts/qa-gate-mpje-best.ts --dry-run",
     "audit:mpje-seeds": "bash scripts/run-with-node.sh npx tsx scripts/audit-mpje-seeds-by-topic.ts",
