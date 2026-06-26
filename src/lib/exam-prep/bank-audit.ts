@@ -24,6 +24,7 @@ import {
 } from "./nclex-ngn-audit";
 import { hasGenericPlaceholderOptions } from "@/lib/question-format";
 import { BOARD_SERVE_MIN_EXPLANATION_CHARS } from "./board-serve-quality";
+import { auditGiveawayPatterns } from "./giveaway-audit";
 
 export type BankAuditIssue = NclexAuditIssue | NaplexAuditIssue;
 
@@ -248,6 +249,14 @@ function auditSharedBankItem(item: BankItem, fieldId: string): BankAuditReport {
       "diagnosis_management_mixed",
       "Diagnosis answer or option embeds management language (empiric therapy / pending culture)."
     );
+  }
+
+  // Cross-field giveaway detection (answer-in-stem, strawman distractors,
+  // boilerplate rationales). Applied to clinical MCQ/SATA fields only.
+  if (fieldId === "nursing" || fieldId === "pharmacy") {
+    for (const giveaway of auditGiveawayPatterns(item)) {
+      push(giveaway.severity, giveaway.code, giveaway.message);
+    }
   }
 
   const errors = issues.filter((i) => i.severity === "error");
