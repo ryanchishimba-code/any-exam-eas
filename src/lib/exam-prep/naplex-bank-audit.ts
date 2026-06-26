@@ -8,6 +8,7 @@ import {
   correctAnswerMatchesOption,
   explanationCorrectMismatch,
 } from "@/lib/exam-prep/naplex-answer-align";
+import { naplexStemOptionDrugMismatch } from "@/lib/exam-prep/naplex-stem-coherence";
 
 export type NaplexAuditIssue = {
   code: string;
@@ -54,9 +55,10 @@ const LEAD_IN_PATTERN =
   /(?:^Which\b|^What\b|^How\b|^Place\b|^Order\b|^Match\b|^Using\b|^Based\b|^Best\b|^Most\b|^Urgent\b|^Calculate\b|^Select\b|^Identify\b|^Determine\b|^Recommend\b|^The pharmacist|^A pharmacist|^A prescriber|^Estimated\b|^Calculated\b|^Total\b|^Bolus\b|^Equivalent\b|^Required\b|^Approximate\b|^Initial\b|^Stock\b|^Infusion rate|^Round to|must verify|is most likely|is primarily determined|primary pharmacokinetic|most appropriate|most essential|best explains|best describes|best indicates|best action|best choice|best next|best pharmacist|best empiric|best OTC|best lipid|best recommendation|next step|step-up|add-on|which of the following|select all|calculate|what is|what should|how many|how should|how much|at what rate|priority|should the pharmacist|is the priority|applies before|standard applies|before dispensing|before release|before the patient leaves|mechanism of action|pharmacist'?s priority|FIRST professional)/i;
 
 const CLINICAL_DATA_PATTERN =
-  /\d+\s*(?:mg\/dL|mEq\/L|mm Hg|\/min|× 10|g\/dL|mIU\/mL|°C|°F|U\/L|mm|%|mg\/kg|mL\/hr|mg|mEq|mL|kg|tablets|units)|\b(?:BP|LDL|A1[cC]|FEV|TSH|PHQ|SCr|Cr|K\+|EF|GFR)\b/i;
+  /\d+\s*(?:mg\/dL|mEq\/L|mm Hg|\/min|× 10|g\/dL|mIU\/mL|°C|°F|U\/L|mm|%|mg\/kg|mL\/hr|mg|mEq|mL|kg|tablets|units|hours?)|\d+[- ]kg|\d+[- ]day|\b(?:BP|LDL|A1[cC]|FEV|TSH|PHQ|SCr|Cr|K\+|EF|GFR|ANC|INR|eGFR)\b/i;
 
-const AGE_PATTERN = /\b\d{1,3}[- ]year[- ]old\b|\b\d{1,3}\s*y\/o\b|\bAge\s+\d{1,3}\b/i;
+const AGE_PATTERN =
+  /\b\d{1,3}[- ]year[- ]old\b|\b\d{1,3}\s*y\/o\b|\bAge\s+\d{1,3}\b|\(\d{1,3}\s*y\)|\b\d{1,2}\s*w[kK]\b|\b\d{1,2}\s*weeks?\s*gestation\b/i;
 
 const NAPLEX_PREFIX = /^NAPLEX\s+\d+:\s*/i;
 
@@ -93,7 +95,7 @@ export function auditNaplexBankItem(item: BankItem): NaplexAuditReport {
 
   const vignette = resolveNaplexVignette(item);
   const stem = resolveNaplexStem(item);
-  const blob = `${vignette}\n${stem}`;
+  const blob = [vignette, item.question, stem].filter(Boolean).join("\n");
 
   if (NAPLEX_PREFIX.test(item.question)) {
     push("error", "naplex_numbered_prefix", 'Question still uses legacy "NAPLEX N:" prefix — rewrite as a clinical stem.');
@@ -184,6 +186,15 @@ export function auditNaplexBankItem(item: BankItem): NaplexAuditReport {
       "error",
       "explanation_correct_mismatch",
       'Explanation "Correct:" line does not match the stored correctAnswer option.'
+    );
+  }
+
+  const mismatchedDrug = naplexStemOptionDrugMismatch(item);
+  if (mismatchedDrug) {
+    push(
+      "error",
+      "naplex_stem_option_mismatch",
+      `Options or explanation reference ${mismatchedDrug}, which does not appear in the vignette or stem.`
     );
   }
 

@@ -14,6 +14,7 @@ const BLOCKING_WARN_CODES = new Set([
   "naplex_stem_lead_in",
   "naplex_explanation_short",
   "naplex_controlled_substance_mismatch",
+  "naplex_stem_option_mismatch",
 ]);
 
 export type NaplexQualityVerdict = {
