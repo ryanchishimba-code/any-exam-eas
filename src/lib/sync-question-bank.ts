@@ -190,9 +190,23 @@ async function upsertSeedRow(
   return "updated";
 }
 
+/**
+ * Fields whose banks are filled via curated seeds + AI batch generation —
+ * NEVER the procedural bulk template generator. The templated output is too
+ * formulaic for these high-stakes exams (answer-in-stem, strawman distractors,
+ * boilerplate rationales), so we exclude them from automatic top-up. Adding a
+ * field here means its bank size is governed by curated/AI content only.
+ */
+const PROCEDURAL_TOPUP_EXCLUDED_FIELDS = new Set([
+  "pance",
+  "aanp-fnp",
+  "npte-pt",
+  "nursing", // NCLEX — curated/AI only
+  "pharmacy", // NAPLEX — curated/AI only
+]);
+
 async function topUpSubject(fieldId: string, subject: FieldSubject): Promise<number> {
-  // PANCE and AANP FNP banks are filled via curated seeds + AI batch generation — not procedural bulk templates.
-  if (fieldId === "pance" || fieldId === "aanp-fnp" || fieldId === "npte-pt") return 0;
+  if (PROCEDURAL_TOPUP_EXCLUDED_FIELDS.has(fieldId)) return 0;
 
   const existingCount = await prisma.questionBankItem.count({
     where: { fieldId, subjectId: subject.id, active: true },
@@ -311,6 +325,7 @@ async function runSync(): Promise<SyncQuestionBankResult> {
 
 export async function subjectBankNeedsTopUp(): Promise<boolean> {
   for (const { fieldId, subject } of collectAllSubjectAreas()) {
+    if (PROCEDURAL_TOPUP_EXCLUDED_FIELDS.has(fieldId)) continue;
     const count = await prisma.questionBankItem.count({
       where: { fieldId, subjectId: subject.id, active: true },
     });

@@ -136,6 +136,7 @@ export function buildDrugCatalogReferenceBlock(ctx: ExamGenerationContext): stri
       drugClassLabel: d.therapeuticClass,
       drugClassColor: "",
       score: 0,
+      tier: "curated" as const,
     }));
   }
 
