@@ -97,10 +97,13 @@ export function buildPricingMetadata(): Metadata {
   };
 }
 
-export function buildAboutMetadata(): Metadata {
+export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
   const title = "About Us — Liberating Premium Board Prep";
+  const countPhrase = serveReadyTotalLabel
+    ? `${serveReadyTotalLabel}`
+    : "serve-ready, QA-gated questions";
   const description =
-    "AnyExamEasy is premium board prep without the premium price — 38K+ curated questions, Top 503 Drugs + clinical pearls, and roadmaps for USMLE, NCLEX, NAPLEX, PANCE, FNP & NPTE. Curated by licensed clinicians with 12+ years combined frontline experience. Proudly built in Texas.";
+    `AnyExamEasy is premium board prep without the premium price — ${countPhrase}, Top 503 Drugs + clinical pearls, and roadmaps for USMLE, NCLEX, NAPLEX, PANCE, FNP & NPTE. Curated by licensed clinicians with 12+ years combined frontline experience. Proudly built in Texas.`;
   return {
     ...baseOpenGraph(title, description, "/about"),
     keywords: [

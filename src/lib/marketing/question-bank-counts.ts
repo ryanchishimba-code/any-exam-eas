@@ -4,7 +4,8 @@ import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
 import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 import {
-  PUBLISHED_QUESTION_BANK_TOTAL,
+  formatExactServeReadyCount,
+  formatExactServeReadyQuestions,
   formatMarketingQuestionCount,
   publishedQuestionCountForField,
 } from "./bank-stats";
@@ -29,16 +30,20 @@ export type LandingExamCountDisplay = {
   /** Stable exam id matching LANDING_EXAMS ids (usmle, nclex, …) for reliable mapping. */
   slug: string;
   label: string;
-  /** Compact marketing label, e.g. 24K+ */
+  /** Exact serve-ready count, e.g. 6,380 */
   countLabel: string;
-  /** Hero display, e.g. 24,532 questions or 24K+ questions */
+  /** Hero display, e.g. 6,380 serve-ready questions */
   questionsLabel: string;
+  /** Raw serve-ready count from DB (0 when degraded / unknown). */
+  served: number;
   color: string;
 };
 
 export type LandingBankCountsDisplay = {
   totalLabel: string;
   totalQuestionsLabel: string;
+  /** Sum of serve-ready rows across the six board exams. */
+  totalServed: number;
   exams: LandingExamCountDisplay[];
   degraded: boolean;
 };
@@ -165,48 +170,87 @@ export async function getQuestionBankCounts(): Promise<QuestionBankCountsSnapsho
 }
 
 /**
- * User-facing counts always reflect the curated, QA-gated published bank — not
- * the raw live `served` rows in the DB (which still include pre-curation bulk).
- * The snapshot is accepted for signature stability and the `degraded` flag but
- * is intentionally not used for the displayed numbers, so every surface (hero,
- * exam wheel, stats band, share, checkout) shows one consistent set of figures.
+ * Sum of qaPassed active rows for the six homepage board exams.
+ * USMLE is aggregated on `usmle-step-2` in the snapshot.
+ */
+export function landingServedTotal(snapshot: QuestionBankCountsSnapshot): number {
+  return EXAM_FIELD_IDS.reduce(
+    (sum, fieldId) => sum + (snapshot.fields[fieldId]?.served ?? 0),
+    0
+  );
+}
+
+function servedCountForField(
+  fieldId: ExamFieldId,
+  snapshot?: QuestionBankCountsSnapshot
+): number {
+  if (!snapshot || snapshot.degraded) return 0;
+  return snapshot.fields[fieldId]?.served ?? 0;
+}
+
+/**
+ * User-facing counts reflect the live qaPassed serve bank when the DB lookup
+ * succeeds; otherwise fall back to conservative published floor figures.
  */
 export function displayQuestionCountForField(
   fieldId: ExamFieldId,
-  _snapshot?: QuestionBankCountsSnapshot
+  snapshot?: QuestionBankCountsSnapshot
 ): string {
-  return formatMarketingQuestionCount(publishedQuestionCountForField(fieldId));
+  const served = servedCountForField(fieldId, snapshot);
+  if (served > 0) return formatExactServeReadyCount(served);
+  return formatExactServeReadyCount(publishedQuestionCountForField(fieldId));
 }
 
 export function displayTotalQuestionCount(
-  _snapshot?: QuestionBankCountsSnapshot
+  snapshot?: QuestionBankCountsSnapshot
 ): string {
-  return formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL);
+  if (snapshot && !snapshot.degraded) {
+    const total = landingServedTotal(snapshot);
+    if (total > 0) return formatExactServeReadyCount(total);
+  }
+  return formatExactServeReadyCount(
+    EXAM_FIELD_IDS.reduce((sum, fieldId) => sum + publishedQuestionCountForField(fieldId), 0)
+  );
 }
 
 export function displayQuestionCountDetailForField(
   fieldId: ExamFieldId,
   snapshot?: QuestionBankCountsSnapshot
 ): string {
-  return `${displayQuestionCountForField(fieldId, snapshot)} questions`;
+  const served = servedCountForField(fieldId, snapshot);
+  if (served > 0) return formatExactServeReadyQuestions(served);
+  return formatExactServeReadyQuestions(publishedQuestionCountForField(fieldId));
 }
 
 export function displayTotalQuestionsDetail(
   snapshot?: QuestionBankCountsSnapshot
 ): string {
-  return `${displayTotalQuestionCount(snapshot)} questions`;
+  if (snapshot && !snapshot.degraded) {
+    const total = landingServedTotal(snapshot);
+    if (total > 0) return formatExactServeReadyQuestions(total);
+  }
+  const fallback = EXAM_FIELD_IDS.reduce(
+    (sum, fieldId) => sum + publishedQuestionCountForField(fieldId),
+    0
+  );
+  return formatExactServeReadyQuestions(fallback);
 }
 
 export function buildLandingBankCountsDisplay(
   snapshot: QuestionBankCountsSnapshot
 ): LandingBankCountsDisplay {
+  const totalServed =
+    snapshot.degraded ? 0 : landingServedTotal(snapshot);
+
   return {
     totalLabel: displayTotalQuestionCount(snapshot),
     totalQuestionsLabel: displayTotalQuestionsDetail(snapshot),
+    totalServed,
     exams: LANDING_EXAM_COUNT_FIELDS.map(({ slug, fieldId, label, color }) => ({
       slug,
       label,
       color,
+      served: servedCountForField(fieldId, snapshot),
       countLabel: displayQuestionCountForField(fieldId, snapshot),
       questionsLabel: displayQuestionCountDetailForField(fieldId, snapshot),
     })),

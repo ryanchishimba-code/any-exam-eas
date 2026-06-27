@@ -2,16 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { BookOpen, GraduationCap, Layers } from "lucide-react";
-import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
+import {
+  formatExactServeReadyCount,
+  MARKETING_QUESTION_COUNTS,
+} from "@/lib/marketing/bank-stats";
 
 type CatalogResponse = {
   totalQuestions: number;
   subjects: { fieldId: string; title: string; questionCount: number }[];
 };
 
-function formatCount(n: number): string {
-  if (n >= 1000) return `${(n / 1000).toFixed(n >= 10000 ? 0 : 1).replace(/\.0$/, "")}k+`;
-  return n > 0 ? `${n}+` : "—";
+function formatLiveCount(n: number, fallback: string): string {
+  return n > 0 ? formatExactServeReadyCount(n) : fallback;
 }
 
 export function LiveBankStats({
@@ -43,8 +45,8 @@ export function LiveBankStats({
   const items = [
     {
       icon: BookOpen,
-      value: total > 0 ? formatCount(total) : MARKETING_QUESTION_COUNTS.total,
-      label: "Practice questions",
+      value: formatLiveCount(total, MARKETING_QUESTION_COUNTS.total),
+      label: "Serve-ready questions",
     },
     {
       icon: GraduationCap,
@@ -53,8 +55,8 @@ export function LiveBankStats({
     },
     {
       icon: Layers,
-      value: nursing > 0 ? formatCount(nursing) : MARKETING_QUESTION_COUNTS.nursing,
-      label: "Nursing bank",
+      value: formatLiveCount(nursing, MARKETING_QUESTION_COUNTS.nursing),
+      label: "NCLEX bank",
     },
   ];
 

@@ -44,6 +44,17 @@ export function formatMarketingQuestionCount(count: number): string {
   return count > 0 ? `${count}+` : "—";
 }
 
+/** Exact serve-ready count for landing and marketing (e.g. 6,380). */
+export function formatExactServeReadyCount(count: number): string {
+  if (count <= 0) return "—";
+  return count.toLocaleString("en-US");
+}
+
+export function formatExactServeReadyQuestions(count: number): string {
+  const label = formatExactServeReadyCount(count);
+  return label === "—" ? "— questions" : `${label} serve-ready questions`;
+}
+
 const fieldTargets = Object.fromEntries(
   EXAM_FIELD_IDS.map((fieldId) => [fieldId, targetQuestionCountForField(fieldId)])
 ) as Record<ExamFieldId, number>;
@@ -64,7 +75,7 @@ export const TOTAL_QUESTION_BANK_TARGET = EXAM_FIELD_IDS.reduce(
  * per-field published counts and never set it to the aspirational
  * `TOTAL_QUESTION_BANK_TARGET`, which counts questions we still plan to add.
  */
-export const PUBLISHED_QUESTION_BANK_TOTAL = 38_000;
+export const PUBLISHED_QUESTION_BANK_TOTAL = 54_809;
 
 /** User-facing counts derived from the live served bank — never the aspirational target. */
 export const MARKETING_QUESTION_COUNTS = {

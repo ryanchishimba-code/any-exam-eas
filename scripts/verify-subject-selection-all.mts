@@ -33,6 +33,9 @@ const BOARD_FIELDS = [
 ] as const;
 
 const SERVE_SAMPLE = 200;
+/** Best-tier clinical banks must show 100% qaPassed ↔ runtime gate alignment. */
+const STRICT_SERVE_FIELDS = new Set(["nursing", "pharmacy"]);
+const FULL_SERVE_AUDIT_MAX = 15_000;
 
 function parseFieldArg(): string | undefined {
   const idx = process.argv.indexOf("--field");
@@ -97,10 +100,12 @@ async function auditField(fieldId: string): Promise<FieldReport> {
   }
 
   const prisma = getScriptPrisma();
+  const auditAll =
+    STRICT_SERVE_FIELDS.has(fieldId) && servedTotal > 0 && servedTotal <= FULL_SERVE_AUDIT_MAX;
   const sampleRows = await prisma.questionBankItem.findMany({
     where: { fieldId, active: true, qaPassed: true },
-    orderBy: { updatedAt: "desc" },
-    take: Math.min(SERVE_SAMPLE, servedTotal || SERVE_SAMPLE),
+    ...(auditAll ? { orderBy: { id: "asc" } } : { orderBy: { updatedAt: "desc" } }),
+    ...(auditAll ? {} : { take: Math.min(SERVE_SAMPLE, servedTotal || SERVE_SAMPLE) }),
   });
 
   let serveReady = 0;
@@ -136,8 +141,11 @@ async function auditField(fieldId: string): Promise<FieldReport> {
     errors.push("no serve-ready questions in bank");
   }
 
-  if (serveAlignPct != null && serveAlignPct < 85) {
-    errors.push(`serve alignment ${serveAlignPct}% on qaPassed sample (target ≥85%)`);
+  const serveThreshold = STRICT_SERVE_FIELDS.has(fieldId) ? 100 : 85;
+  if (serveAlignPct != null && serveAlignPct < serveThreshold) {
+    errors.push(
+      `serve alignment ${serveAlignPct}% on qaPassed ${auditAll ? "full bank" : "sample"} (target ≥${serveThreshold}%)`
+    );
   }
 
   return {

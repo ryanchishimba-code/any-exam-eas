@@ -76,11 +76,11 @@ async function main() {
         const { PrismaClient } = await import("@prisma/client");
         const prisma = new PrismaClient();
         try {
-          const insertResult = await insertNclexFullExamItems(prisma, exam.items);
+          const insertResult = await insertNclexFullExamItems(prisma, exam, { batchId });
           totalInserted += insertResult.created;
           totalSkipped += insertResult.skipped;
           console.log(
-            `    DB: +${insertResult.created} inserted (${insertResult.skipped} skipped)`
+            `    DB: exam ${insertResult.examId} — +${insertResult.created} items, ${insertResult.linked} linked (${insertResult.skipped} skipped dupes)`
           );
         } finally {
           await prisma.$disconnect();

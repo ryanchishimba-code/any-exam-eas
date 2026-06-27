@@ -63,9 +63,10 @@ async function auditBankCounts(): Promise<boolean> {
 
     const fullSim = getTimedExamQuestionCount(fieldId);
     const simOk = served >= fullSim;
-    const targetOk = marketingTarget == null || served <= marketingTarget + 100;
-
-    if (!simOk || !targetOk) ok = false;
+    if (!simOk) ok = false;
+    if (marketingTarget != null && served > marketingTarget + 100) {
+      console.log(`  NOTE: ${label} served ${served} exceeds generation cap ${marketingTarget} — landing uses live DB counts`);
+    }
 
     const flags = [
       !simOk ? `NEED ${fullSim} for full sim` : null,
@@ -84,14 +85,14 @@ async function auditBankCounts(): Promise<boolean> {
     );
   }
 
-  const usmleMarketingOk = usmleServed <= USMLE_PUBLISHED_BANK_TOTAL + 500;
-  console.log(
-    `\nUSMLE combined: ${usmleServed} (marketing constant ${USMLE_PUBLISHED_BANK_TOTAL})`
-  );
-  if (!usmleMarketingOk) {
-    console.log("  WARN: update USMLE_PUBLISHED_BANK_TOTAL to match live served total");
-    ok = false;
+  if (usmleServed > USMLE_PUBLISHED_BANK_TOTAL + 500) {
+    console.log(
+      `  NOTE: live USMLE served (${usmleServed}) exceeds static fallback ${USMLE_PUBLISHED_BANK_TOTAL} — landing uses DB counts`
+    );
   }
+  console.log(
+    `\nUSMLE combined: ${usmleServed} (static fallback ${USMLE_PUBLISHED_BANK_TOTAL})`
+  );
 
   const totalServed = await prisma.questionBankItem.count({
     where: { active: true, qaPassed: true },

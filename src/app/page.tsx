@@ -7,6 +7,7 @@ import {
 } from "@/lib/marketing/question-bank-counts";
 import { getPublishedTestimonials } from "@/lib/testimonials/published";
 import { buildHomeMetadata } from "@/lib/seo";
+import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
 
 /**
  * AnyExamEasy.com — Flagship home route (`/`)
@@ -23,7 +24,25 @@ import { buildHomeMetadata } from "@/lib/seo";
  * Design system: `src/lib/landing/tokens.ts` + `.aee-flagship-*` in globals.css
  * Palette: navy #0A2540, teal #00D4C8 — dark-mode friendly via prefers-color-scheme
  */
-export const metadata: Metadata = buildHomeMetadata();
+export async function generateMetadata(): Promise<Metadata> {
+  const base = buildHomeMetadata();
+  try {
+    const snapshot = await getQuestionBankCounts();
+    const display = buildLandingBankCountsDisplay(snapshot);
+    if (!snapshot.degraded && display.totalServed > 0) {
+      const description = `All-in-one board prep for NCLEX, USMLE Step 1, Step 2 CK & Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT — ${display.totalQuestionsLabel}, Roadmaps & Deep Dives. Basic from ${formatMonthlyPrice("basic")}/mo · ${formatTrialLabel()} · payment required at checkout.`;
+      return {
+        ...base,
+        description,
+        openGraph: base.openGraph ? { ...base.openGraph, description } : undefined,
+        twitter: base.twitter ? { ...base.twitter, description } : undefined,
+      };
+    }
+  } catch {
+    /* keep static metadata when DB unavailable */
+  }
+  return base;
+}
 
 export default async function HomePage() {
   const [snapshot, testimonials] = await Promise.all([

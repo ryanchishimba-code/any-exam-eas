@@ -116,7 +116,7 @@ function HeroMockup({ totalLabel }: { totalLabel: string }) {
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3.5">
               <p className="text-xl font-bold text-[var(--color-ink)]">{totalLabel}</p>
-              <p className="text-[11px] text-[var(--color-ink-muted)]">Questions on tap</p>
+              <p className="text-[11px] text-[var(--color-ink-muted)]">Serve-ready on tap</p>
             </div>
             <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3.5">
               <p className="flex items-center gap-1 text-xl font-bold text-[var(--color-ink)]">
@@ -192,9 +192,9 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
           </h1>
 
           <p className="mt-5 max-w-xl text-balance text-lg leading-relaxed text-[var(--color-ink-muted)]">
-            {bankCounts.totalLabel} QA-gated, board-style questions with teachable rationales —
-            plus blueprint Roadmaps and Deep Dives for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP &amp;
-            NPTE-PT. All for less than one UWorld plan.
+            {bankCounts.totalQuestionsLabel} with teachable rationales — plus blueprint Roadmaps
+            and Deep Dives for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP &amp; NPTE-PT. All for less
+            than one UWorld plan.
           </p>
 
           <div className="mt-7 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">

@@ -14,16 +14,24 @@ import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ROUTES } from "@/lib/routes";
 import { formatTrialCtaLabel, formatTrialLabel } from "@/lib/site";
 import { buildAboutMetadata } from "@/lib/seo/marketing-metadata";
+import {
+  buildLandingBankCountsDisplay,
+  getQuestionBankCounts,
+} from "@/lib/marketing/question-bank-counts";
+import { TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
 
-export const metadata = buildAboutMetadata();
-
-// Hero stat chips — quick, scannable proof points.
-const HERO_STATS = [
-  { value: "38K+", label: "Curated questions" },
-  { value: "6", label: "Boards, one plan" },
-  { value: "503", label: "Top drugs + pearls" },
-  { value: "12+ yrs", label: "Clinician experience" },
-];
+export async function generateMetadata() {
+  try {
+    const snapshot = await getQuestionBankCounts();
+    const display = buildLandingBankCountsDisplay(snapshot);
+    if (!snapshot.degraded && display.totalServed > 0) {
+      return buildAboutMetadata(display.totalQuestionsLabel);
+    }
+  } catch {
+    /* static fallback */
+  }
+  return buildAboutMetadata();
+}
 
 // Clinician trust pillars.
 const TRUST_POINTS = [
@@ -47,7 +55,20 @@ const TRUST_POINTS = [
   },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const snapshot = await getQuestionBankCounts();
+  const bankCounts = buildLandingBankCountsDisplay(snapshot);
+
+  const heroStats = [
+    {
+      value: bankCounts.totalLabel,
+      label: "Serve-ready questions",
+    },
+    { value: "6", label: "Boards, one plan" },
+    { value: String(TOP_500_DRUGS_COUNT), label: "Top drugs + pearls" },
+    { value: "12+ yrs", label: "Clinician experience" },
+  ];
+
   return (
     <div className="bg-[var(--color-bg)]">
       {/* ── 1. Hero ──────────────────────────────────────────────────── */}
@@ -84,7 +105,7 @@ export default function AboutPage() {
 
           {/* Stat band */}
           <dl className="mx-auto mt-12 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-4">
-            {HERO_STATS.map((stat) => (
+            {heroStats.map((stat) => (
               <div
                 key={stat.label}
                 className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3 py-4 shadow-[var(--shadow-apple-sm)]"

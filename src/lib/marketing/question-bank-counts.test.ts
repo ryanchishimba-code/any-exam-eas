@@ -4,12 +4,9 @@ import {
   buildLandingBankCountsDisplay,
   displayQuestionCountForField,
   displayTotalQuestionCount,
+  landingServedTotal,
   type QuestionBankCountsSnapshot,
 } from "./question-bank-counts";
-import {
-  PUBLISHED_QUESTION_BANK_TOTAL,
-  formatMarketingQuestionCount,
-} from "./bank-stats";
 
 function snapshotWithServed(
   servedByField: Partial<Record<(typeof EXAM_FIELD_IDS)[number], number>>
@@ -44,51 +41,58 @@ function snapshotWithServed(
 }
 
 describe("question-bank-counts display", () => {
-  it("shows curated published counts, ignoring raw live served rows", () => {
-    // Inflated served values must NOT leak into user-facing counts.
+  it("shows exact live serve-ready counts from the DB snapshot", () => {
     const snapshot = snapshotWithServed({
-      nursing: 99_000,
-      pharmacy: 99_000,
-      "usmle-step-2": 99_000,
+      nursing: 6938,
+      pharmacy: 6380,
+      "usmle-step-2": 28373,
+      pance: 7081,
+      "aanp-fnp": 4598,
+      "npte-pt": 4124,
     });
 
-    expect(displayQuestionCountForField("nursing", snapshot)).toBe("7K+");
-    expect(displayQuestionCountForField("pharmacy", snapshot)).toBe("6K+");
-    expect(displayQuestionCountForField("usmle-step-2", snapshot)).toBe("9K+");
+    expect(displayQuestionCountForField("nursing", snapshot)).toBe("6,938");
+    expect(displayQuestionCountForField("pharmacy", snapshot)).toBe("6,380");
+    expect(displayQuestionCountForField("usmle-step-2", snapshot)).toBe("28,373");
+    expect(displayTotalQuestionCount(snapshot)).toBe("57,494");
+    expect(landingServedTotal(snapshot)).toBe(57_494);
   });
 
-  it("always returns the published total floor regardless of live served", () => {
-    const expected = formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL);
-
-    expect(displayTotalQuestionCount(snapshotWithServed({ pance: 0 }))).toBe(expected);
-    expect(
-      displayTotalQuestionCount(snapshotWithServed({ nursing: 99_000, pharmacy: 99_000 }))
-    ).toBe(expected);
-  });
-
-  it("builds six-exam landing display rows from the curated bank", () => {
+  it("builds six-exam landing display rows with serve-ready labels", () => {
     const display = buildLandingBankCountsDisplay(
-      snapshotWithServed({ nursing: 99_000, "usmle-step-2": 99_000 })
+      snapshotWithServed({
+        nursing: 6938,
+        pharmacy: 6380,
+        "usmle-step-2": 28373,
+        pance: 7081,
+        "aanp-fnp": 4598,
+        "npte-pt": 4124,
+      })
     );
 
     expect(display.exams).toHaveLength(6);
-    expect(display.exams.map((e) => e.label)).toEqual([
-      "USMLE (Step 1·2·3)",
-      "NCLEX",
-      "NAPLEX",
-      "PANCE",
-      "AANP FNP",
-      "NPTE-PT",
+    expect(display.exams.map((e) => e.slug)).toEqual([
+      "usmle",
+      "nclex",
+      "naplex",
+      "pance",
+      "aanp-fnp",
+      "npte-pt",
     ]);
-    expect(display.exams[0]?.countLabel).toBe("9K+");
-    expect(display.exams[0]?.questionsLabel).toBe("9K+ questions");
-    expect(display.exams[1]?.countLabel).toBe("7K+");
-    expect(display.exams[1]?.questionsLabel).toBe("7K+ questions");
-    expect(display.totalLabel).toBe(
-      formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL)
-    );
-    expect(display.totalQuestionsLabel).toBe(
-      `${formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL)} questions`
-    );
+    expect(display.exams[0]?.countLabel).toBe("28,373");
+    expect(display.exams[0]?.questionsLabel).toBe("28,373 serve-ready questions");
+    expect(display.exams[1]?.countLabel).toBe("6,938");
+    expect(display.exams[2]?.countLabel).toBe("6,380");
+    expect(display.totalLabel).toBe("57,494");
+    expect(display.totalQuestionsLabel).toBe("57,494 serve-ready questions");
+    expect(display.totalServed).toBe(57_494);
+  });
+
+  it("falls back to published floor counts when snapshot is degraded", () => {
+    const snapshot = snapshotWithServed({});
+    snapshot.degraded = true;
+
+    expect(displayQuestionCountForField("pharmacy", snapshot)).toBe("6,500");
+    expect(displayTotalQuestionCount(snapshot)).toBe("56,514");
   });
 });
