@@ -179,6 +179,8 @@
     "db:raise-usmle-exam-ready:step3": "npx tsx scripts/raise-usmle-exam-ready.ts --field usmle-step-3 --skip-curation",
     "db:backfill-usmle-step1": "npx tsx scripts/raise-usmle-exam-ready.ts --field usmle-step-1 --generate-only 2270",
     "db:sync-usmle-serve-ready": "npx tsx scripts/sync-usmle-serve-ready.ts",
+    "db:sync-nclex-serve-ready": "npx tsx scripts/sync-nclex-serve-ready.ts",
+    "db:retire-nclex-below-best": "npx tsx scripts/sync-nclex-serve-ready.ts --retire-non-best --retire-only",
     "db:backfill-usmle-step3": "npx tsx scripts/raise-usmle-exam-ready.ts --field usmle-step-3 --generate-only 1611",
     "db:curate-board-ai": "node scripts/curate-board-ai-pipeline.mjs",
     "db:curate-board-ai:dry": "node scripts/curate-board-ai-pipeline.mjs --dry-run",
