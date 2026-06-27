@@ -27,7 +27,7 @@ export function HighYieldTopicsClient({
   initialDeepDive?: boolean;
 }) {
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<string>("all");
+  const [category, setCategory] = useState<string | null>(null);
   const [selectedSlug, setSelectedSlug] = useState<string | null>(initialTopicSlug ?? null);
   const [progressMap, setProgressMap] = useState(initialProgress);
   const exam = EXAM_CATALOG[examSlug];
@@ -42,7 +42,7 @@ export function HighYieldTopicsClient({
   }, [initialProgress]);
 
   const filtered = useMemo(
-    () => filterHighYieldTopics(topics, query, category),
+    () => filterHighYieldTopics(topics, query, category ?? "all"),
     [topics, query, category]
   );
 
@@ -150,7 +150,7 @@ export function HighYieldTopicsClient({
           <p className={studyUi.emptyState}>
             No topics match your search. Try a different keyword or category.
           </p>
-        ) : category === "all" && grouped.length > 1 ? (
+        ) : (category === null || category === "all") && grouped.length > 1 ? (
           <div className="space-y-5 px-0.5">
             {grouped.map(([cat, catTopics]) => (
               <section key={cat} aria-labelledby={`topic-cat-${cat}`}>
