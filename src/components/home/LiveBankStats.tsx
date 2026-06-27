@@ -12,6 +12,13 @@ type CatalogResponse = {
   subjects: { fieldId: string; title: string; questionCount: number }[];
 };
 
+type BankCountsResponse = {
+  totalLabel: string;
+  totalQuestionsLabel: string;
+  totalServed: number;
+  degraded?: boolean;
+};
+
 function formatLiveCount(n: number, fallback: string): string {
   return n > 0 ? formatExactServeReadyCount(n) : fallback;
 }
@@ -24,28 +31,34 @@ export function LiveBankStats({
   compact?: boolean;
 }) {
   const [stats, setStats] = useState<CatalogResponse | null>(null);
+  const [bankCounts, setBankCounts] = useState<BankCountsResponse | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch("/api/catalog/subjects", { signal: controller.signal })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data: CatalogResponse | null) =>
-        setStats(data && Array.isArray(data.subjects) ? data : null)
-      )
-      .catch(() => {
-        /* aborted or network — keep marketing fallback */
-      });
+    Promise.all([
+      fetch("/api/catalog/subjects", { signal: controller.signal })
+        .then((r) => (r.ok ? r.json() : null))
+        .catch(() => null),
+      fetch("/api/marketing/bank-counts", { signal: controller.signal })
+        .then((r) => (r.ok ? r.json() : null))
+        .catch(() => null),
+    ]).then(([catalog, counts]) => {
+      setStats(catalog && Array.isArray(catalog.subjects) ? catalog : null);
+      setBankCounts(counts && typeof counts.totalLabel === "string" ? counts : null);
+    });
     return () => controller.abort();
   }, []);
 
-  const total = stats?.totalQuestions ?? 0;
+  const total = bankCounts?.totalServed ?? stats?.totalQuestions ?? 0;
   const nursing =
     stats?.subjects.find((s) => s.fieldId === "nursing")?.questionCount ?? 0;
 
   const items = [
     {
       icon: BookOpen,
-      value: formatLiveCount(total, MARKETING_QUESTION_COUNTS.total),
+      value:
+        bankCounts?.totalLabel ??
+        formatLiveCount(total, MARKETING_QUESTION_COUNTS.total),
       label: "Serve-ready questions",
     },
     {

@@ -62,7 +62,7 @@ export function LandingFlagshipV2({
 
       <ChooseYourExam bankCounts={bankCounts} />
 
-      <LandingWhyChooseV2 />
+      <LandingWhyChooseV2 bankCounts={bankCounts} />
 
       <LandingClinicianTrust />
 

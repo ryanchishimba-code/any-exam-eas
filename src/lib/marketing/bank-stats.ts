@@ -77,15 +77,15 @@ export const TOTAL_QUESTION_BANK_TARGET = EXAM_FIELD_IDS.reduce(
  */
 export const PUBLISHED_QUESTION_BANK_TOTAL = 54_809;
 
-/** User-facing counts derived from the live served bank — never the aspirational target. */
+/** Offline fallback when live DB counts are unavailable — exact serve-ready floors. */
 export const MARKETING_QUESTION_COUNTS = {
-  total: formatMarketingQuestionCount(PUBLISHED_QUESTION_BANK_TOTAL),
-  nursing: formatMarketingQuestionCount(fieldTargets.nursing),
-  usmle: formatMarketingQuestionCount(USMLE_PUBLISHED_BANK_TOTAL),
-  pharmacy: formatMarketingQuestionCount(fieldTargets.pharmacy),
-  pance: formatMarketingQuestionCount(fieldTargets.pance),
-  aanpFnp: formatMarketingQuestionCount(fieldTargets["aanp-fnp"]),
-  nptePt: formatMarketingQuestionCount(fieldTargets["npte-pt"]),
+  total: formatExactServeReadyCount(PUBLISHED_QUESTION_BANK_TOTAL),
+  nursing: formatExactServeReadyCount(publishedQuestionCountForField("nursing")),
+  usmle: formatExactServeReadyCount(USMLE_PUBLISHED_BANK_TOTAL),
+  pharmacy: formatExactServeReadyCount(publishedQuestionCountForField("pharmacy")),
+  pance: formatExactServeReadyCount(publishedQuestionCountForField("pance")),
+  aanpFnp: formatExactServeReadyCount(publishedQuestionCountForField("aanp-fnp")),
+  nptePt: formatExactServeReadyCount(publishedQuestionCountForField("npte-pt")),
 } as const;
 
 export const TOP_500_DRUGS_COUNT = TOP_500_COUNT;

@@ -9,6 +9,9 @@ import { getPublishedTestimonials } from "@/lib/testimonials/published";
 import { buildHomeMetadata } from "@/lib/seo";
 import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
 
+/** Always read live serve-ready counts from the database — never bake static marketing totals. */
+export const dynamic = "force-dynamic";
+
 /**
  * AnyExamEasy.com — Flagship home route (`/`)
  *

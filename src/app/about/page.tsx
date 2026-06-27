@@ -20,6 +20,8 @@ import {
 } from "@/lib/marketing/question-bank-counts";
 import { TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata() {
   try {
     const snapshot = await getQuestionBankCounts();

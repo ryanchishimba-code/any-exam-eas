@@ -1,4 +1,4 @@
-import { unstable_cache } from "next/cache";
+import { unstable_noStore as noStore } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
@@ -6,11 +6,10 @@ import { USMLE_FIELD_IDS } from "@/lib/exam-prep/usmle/steps";
 import {
   formatExactServeReadyCount,
   formatExactServeReadyQuestions,
-  formatMarketingQuestionCount,
   publishedQuestionCountForField,
 } from "./bank-stats";
 
-const REVALIDATE_SECONDS = 3600;
+const DB_RETRY_ATTEMPTS = 2;
 
 export type FieldQuestionBankCounts = {
   fieldId: ExamFieldId;
@@ -153,16 +152,26 @@ async function fetchQuestionBankCountsFromDb(): Promise<QuestionBankCountsSnapsh
   };
 }
 
-const getCachedQuestionBankCounts = unstable_cache(
-  fetchQuestionBankCountsFromDb,
-  ["marketing-question-bank-counts"],
-  { revalidate: REVALIDATE_SECONDS }
-);
+async function fetchQuestionBankCountsWithRetry(): Promise<QuestionBankCountsSnapshot> {
+  let lastError: unknown;
+  for (let attempt = 0; attempt < DB_RETRY_ATTEMPTS; attempt++) {
+    try {
+      return await fetchQuestionBankCountsFromDb();
+    } catch (error) {
+      lastError = error;
+      if (attempt + 1 < DB_RETRY_ATTEMPTS) {
+        await new Promise((r) => setTimeout(r, 250 * (attempt + 1)));
+      }
+    }
+  }
+  throw lastError;
+}
 
-/** Live question bank counts grouped by exam field — cached for landing pages. */
+/** Live question bank counts grouped by exam field — always fetched at request time. */
 export async function getQuestionBankCounts(): Promise<QuestionBankCountsSnapshot> {
+  noStore();
   try {
-    return await getCachedQuestionBankCounts();
+    return await fetchQuestionBankCountsWithRetry();
   } catch (error) {
     console.error("[marketing/question-bank-counts] lookup failed:", error);
     return buildEmptySnapshot(true);
@@ -234,6 +243,36 @@ export function displayTotalQuestionsDetail(
     0
   );
   return formatExactServeReadyQuestions(fallback);
+}
+
+/** Social proof band on the landing compare section — uses live totals when available. */
+export function buildLandingSocialProofStats(
+  bankCounts: LandingBankCountsDisplay
+): Array<{ value: string; label: string; detail: string }> {
+  return [
+    {
+      value: bankCounts.totalLabel,
+      label: "Serve-ready questions",
+      detail: bankCounts.degraded
+        ? "QA-gated vignettes across six licensing exams"
+        : `${bankCounts.totalQuestionsLabel} in the live bank`,
+    },
+    {
+      value: "6",
+      label: "Board exams",
+      detail: "One subscription — no per-exam stacking",
+    },
+    {
+      value: "Basic",
+      label: "Starting plan",
+      detail: "Pro adds Deep Dives, analytics & unlimited mocks",
+    },
+    {
+      value: "Roadmap",
+      label: "Per-exam study plan",
+      detail: "Blueprint-aligned — integrated, not QBank-only",
+    },
+  ];
 }
 
 export function buildLandingBankCountsDisplay(

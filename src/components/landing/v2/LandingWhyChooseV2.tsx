@@ -10,12 +10,12 @@
 
 import { Check, Minus } from "lucide-react";
 import { Reveal } from "@/components/landing/v2/Reveal";
-import {
-  LANDING_SOCIAL_PROOF,
-  LANDING_SUCCESS_STORIES,
-  LANDING_UNIQUE_FEATURES,
-} from "@/lib/landing/content";
+import { LANDING_SUCCESS_STORIES, LANDING_UNIQUE_FEATURES } from "@/lib/landing/content";
 import { TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
+import {
+  buildLandingSocialProofStats,
+  type LandingBankCountsDisplay,
+} from "@/lib/marketing/question-bank-counts";
 import { formatMonthlyPrice } from "@/lib/site";
 
 type CompareValue = { text: string; positive?: boolean };
@@ -82,8 +82,13 @@ function Cell({ value, isUs }: { value: CompareValue; isUs?: boolean }) {
   );
 }
 
-export function LandingWhyChooseV2() {
+export function LandingWhyChooseV2({
+  bankCounts,
+}: {
+  bankCounts: LandingBankCountsDisplay;
+}) {
   const testimonials = LANDING_SUCCESS_STORIES.slice(0, 3);
+  const socialProofStats = buildLandingSocialProofStats(bankCounts);
 
   return (
     <section
@@ -186,7 +191,7 @@ export function LandingWhyChooseV2() {
         {/* Stat band */}
         <div className="mt-16">
           <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {LANDING_SOCIAL_PROOF.map((stat) => (
+            {socialProofStats.map((stat) => (
               <li
                 key={stat.label}
                 className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-5 text-center"

@@ -12,6 +12,8 @@ import {
   getQuestionBankCounts,
 } from "@/lib/marketing/question-bank-counts";
 
+export const dynamic = "force-dynamic";
+
 type Props = { params: Promise<{ examSlug: string }> };
 
 const STATIC_SLUGS = [
