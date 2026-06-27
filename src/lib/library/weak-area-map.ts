@@ -169,6 +169,9 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
     "usmle-s1-hbv-serology",
     "usmle-meningitis-emergency",
     "usmle-hiv-oi-prophylaxis",
+    "usmle-cap-antibiotics",
+    "usmle-mrsa-agents",
+    "usmle-abx-spectrum",
   ],
 
   // USMLE Step 3 foundations
@@ -212,12 +215,6 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
     "usmle-abx-spectrum",
     "usmle-febrile-neutropenia",
     "usmle-crcl-dosing",
-  ],
-  microbiology: [
-    "usmle-cap-antibiotics",
-    "usmle-meningitis-emergency",
-    "usmle-mrsa-agents",
-    "usmle-abx-spectrum",
   ],
 
   // USMLE + PANCE review modules
