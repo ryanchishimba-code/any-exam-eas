@@ -1,17 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Search, Sparkles, ChevronRight, BookOpen } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { HighYieldTopicPreviewCard } from "@/components/edtech/HighYieldTopicPreviewCard";
 import { HighYieldTopicPanel } from "@/components/edtech/HighYieldTopicPanel";
+import { HighYieldTopicsHeader } from "@/components/edtech/HighYieldTopicsHeader";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import {
-  filterHighYieldTopics,
-  clampTopicIndex,
-} from "@/lib/edtech/topic-selection";
-import { ROUTES } from "@/lib/routes";
-import { questionBankHref } from "@/lib/edtech/practice-links";
+import { filterHighYieldTopics, clampTopicIndex } from "@/lib/edtech/topic-selection";
 import { studyUi } from "@/lib/study/study-ui";
 import type { ExamSlug, HighYieldTopic, TopicProgressMap } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -35,11 +30,12 @@ export function HighYieldTopicsClient({
   const [category, setCategory] = useState<string>("all");
   const [selectedSlug, setSelectedSlug] = useState<string | null>(initialTopicSlug ?? null);
   const [progressMap, setProgressMap] = useState(initialProgress);
+  const exam = EXAM_CATALOG[examSlug];
+
   const categories = useMemo(() => {
     const cats = new Set(topics.map((t) => t.category));
     return [...cats].sort();
   }, [topics]);
-  const exam = EXAM_CATALOG[examSlug];
 
   useEffect(() => {
     setProgressMap(initialProgress);
@@ -49,6 +45,16 @@ export function HighYieldTopicsClient({
     () => filterHighYieldTopics(topics, query, category),
     [topics, query, category]
   );
+
+  const grouped = useMemo(() => {
+    const map = new Map<string, HighYieldTopic[]>();
+    for (const topic of filtered) {
+      const list = map.get(topic.category) ?? [];
+      list.push(topic);
+      map.set(topic.category, list);
+    }
+    return [...map.entries()].sort(([a], [b]) => a.localeCompare(b));
+  }, [filtered]);
 
   const skipFilterReset = useRef(true);
 
@@ -68,17 +74,15 @@ export function HighYieldTopicsClient({
   }, [initialTopicSlug, filtered]);
 
   const activeTopic =
-    selectedSlug !== null
-      ? filtered.find((t) => t.slug === selectedSlug) ?? null
-      : null;
+    selectedSlug !== null ? (filtered.find((t) => t.slug === selectedSlug) ?? null) : null;
   const activeIndex =
     activeTopic !== null ? filtered.findIndex((t) => t.slug === activeTopic.slug) : -1;
   const reviewedCount = topics.filter((t) => (progressMap[t.id]?.reviewCount ?? 0) > 0).length;
   const masteryPct = topics.length ? Math.round((reviewedCount / topics.length) * 100) : 0;
 
-  function openTopic(topic: HighYieldTopic) {
+  const openTopic = useCallback((topic: HighYieldTopic) => {
     setSelectedSlug(topic.slug);
-  }
+  }, []);
 
   const handleReviewRecorded = useCallback((topicId: string, reviewCount: number) => {
     setProgressMap((prev) => ({
@@ -94,105 +98,40 @@ export function HighYieldTopicsClient({
 
   return (
     <>
-      <div className="space-y-8">
-        {/* ── Breadcrumb ── */}
-        <nav aria-label="Breadcrumb" className={studyUi.sectionHint}>
-          <ol className="flex flex-wrap items-center gap-1">
-            <li>
-              <Link href={ROUTES.practiceHub} className="text-[var(--color-accent)] hover:underline">
-                Study Hub
-              </Link>
-            </li>
-            <li aria-hidden>
-              <ChevronRight className="inline h-3.5 w-3.5" />
-            </li>
-            <li className="font-medium text-[var(--color-ink)]">High-Yield Topics</li>
-          </ol>
-        </nav>
+      <div className={studyUi.page}>
+        <HighYieldTopicsHeader
+          examSlug={examSlug}
+          examLabel={exam.name}
+          usmleStepLabel={usmleStepLabel}
+          topicCount={topics.length}
+          reviewedCount={reviewedCount}
+          masteryPct={masteryPct}
+        />
 
-        {/* ── Page header ── */}
-        <header className="space-y-2">
-          <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden />
-            Premium study summaries &amp; textbook modules
-          </p>
-          <h1 className={studyUi.title}>High-Yield Topics</h1>
-          <p className={studyUi.subtitle}>
-            Focus on the {topics.length} topics that matter most — with Review Modules,
-            clinical pearls, and practice questions curated for{" "}
-            <span className="font-semibold text-[var(--color-ink)]">
-              {examSlug === "usmle" && usmleStepLabel ? usmleStepLabel : exam.name}
-            </span>
-            .
-          </p>
-        </header>
-
-        {/* ── Mastery + question bank shortcut ── */}
-        <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
-          <div className="rounded-[20px] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-4">
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-                  Topic mastery
-                </p>
-                <p className="mt-1 text-sm text-[var(--color-ink)]">
-                  {reviewedCount} of {topics.length} topics reviewed
-                </p>
-              </div>
-              <span className="text-2xl font-semibold tabular-nums text-[var(--color-accent)]">
-                {masteryPct}%
-              </span>
-            </div>
-            <div className="mt-3 h-2 overflow-hidden rounded-full bg-black/[0.06]">
-              <div
-                className="h-full rounded-full bg-[var(--color-accent)] transition-all duration-500"
-                style={{ width: `${masteryPct}%` }}
-              />
-            </div>
-          </div>
-
-          <Link
-            href={questionBankHref(examSlug)}
-            className="inline-flex items-center justify-center gap-2 rounded-[20px] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-5 py-4 text-sm font-semibold text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] transition hover:border-[var(--color-accent)]/30 hover:text-[var(--color-accent)]"
-          >
-            <BookOpen className="h-4 w-4 shrink-0" aria-hidden />
-            Question bank
-            <ChevronRight className="h-4 w-4 shrink-0 opacity-60" aria-hidden />
-          </Link>
-        </div>
-
-        {/* ── Exam context ── */}
-        <div className="flex items-center gap-3">
-          <div className="h-px flex-1 bg-[var(--color-border)]" />
-          <div className="flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3.5 py-1.5">
-            <Sparkles className="h-3.5 w-3.5 text-[var(--color-accent)]" aria-hidden />
-            <span className="text-[12px] font-semibold text-[var(--color-ink)]">
-              {exam.shortName}
-            </span>
-            <span className="text-[12px] text-[var(--color-ink-muted)]">
-              · {topics.length} topics
-              {reviewedCount > 0 && (
-                <span className="ml-1 text-[var(--color-accent)]">· {reviewedCount} reviewed</span>
-              )}
-            </span>
-          </div>
-          <div className="h-px flex-1 bg-[var(--color-border)]" />
-        </div>
-
-        {/* ── Search + category chips (sticky while browsing) ── */}
         <div className={studyUi.stickyBar}>
-          <div className="relative">
+          <div className="relative min-w-0">
             <Search
-              className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--color-ink-muted)]"
+              className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--color-ink-muted)]"
               aria-hidden
             />
             <input
               type="search"
-              placeholder="Search topics, categories, or keywords…"
+              placeholder="Search topics…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              aria-label="Search topics"
               className={studyUi.searchInput}
             />
+            {query ? (
+              <button
+                type="button"
+                onClick={() => setQuery("")}
+                aria-label="Clear search"
+                className="absolute right-2 top-1/2 inline-flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-lg text-[var(--color-ink-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-ink)]"
+              >
+                <X className="h-3.5 w-3.5" aria-hidden />
+              </button>
+            ) : null}
           </div>
 
           <div className={studyUi.chipRow} role="group" aria-label="Filter by category">
@@ -201,33 +140,55 @@ export function HighYieldTopicsClient({
             </FilterChip>
             {categories.map((cat) => (
               <FilterChip key={cat} active={category === cat} onClick={() => setCategory(cat)}>
-                {cat}
+                {cat.replace(/^Step \d — /, "")}
               </FilterChip>
             ))}
           </div>
         </div>
 
-        {/* ── Topic grid ── */}
         {filtered.length === 0 ? (
           <p className={studyUi.emptyState}>
             No topics match your search. Try a different keyword or category.
           </p>
-        ) : (
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {filtered.map((topic) => (
-              <HighYieldTopicPreviewCard
-                key={topic.id}
-                topic={topic}
-                examSlug={examSlug}
-                progress={progressMap[topic.id]}
-                onViewSummary={() => openTopic(topic)}
-              />
+        ) : category === "all" && grouped.length > 1 ? (
+          <div className="space-y-5 px-0.5">
+            {grouped.map(([cat, catTopics]) => (
+              <section key={cat} aria-labelledby={`topic-cat-${cat}`}>
+                <h2 id={`topic-cat-${cat}`} className={cn(studyUi.sectionTitle, "mb-2 px-1")}>
+                  {cat}
+                </h2>
+                <ul className={studyUi.listSurface}>
+                  {catTopics.map((topic) => (
+                    <li key={topic.id}>
+                      <HighYieldTopicPreviewCard
+                        topic={topic}
+                        examSlug={examSlug}
+                        progress={progressMap[topic.id]}
+                        onViewSummary={() => openTopic(topic)}
+                        compact
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </section>
             ))}
           </div>
+        ) : (
+          <ul className={cn(studyUi.listSurface, "mx-0.5")} aria-label="Topics">
+            {filtered.map((topic) => (
+              <li key={topic.id}>
+                <HighYieldTopicPreviewCard
+                  topic={topic}
+                  examSlug={examSlug}
+                  progress={progressMap[topic.id]}
+                  onViewSummary={() => openTopic(topic)}
+                />
+              </li>
+            ))}
+          </ul>
         )}
       </div>
 
-      {/* ── Topic detail panel ── */}
       <HighYieldTopicPanel
         topic={activeTopic}
         examSlug={examSlug}
@@ -239,9 +200,7 @@ export function HighYieldTopicsClient({
           const next = filtered[clampTopicIndex(index, filtered.length)];
           if (next) setSelectedSlug(next.slug);
         }}
-        initialReviewCount={
-          activeTopic ? progressMap[activeTopic.id]?.reviewCount ?? 0 : 0
-        }
+        initialReviewCount={activeTopic ? (progressMap[activeTopic.id]?.reviewCount ?? 0) : 0}
         initialDeepDive={initialDeepDive}
         onReviewRecorded={handleReviewRecorded}
       />

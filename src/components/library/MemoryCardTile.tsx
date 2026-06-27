@@ -1,20 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BookMarked, CheckCircle2, ChevronRight, RotateCcw } from "lucide-react";
+import { CheckCircle2, ChevronRight, RotateCcw } from "lucide-react";
 import { getCardMastery } from "@/lib/library/card-mastery";
 import { MEMORY_CARD_KIND_LABELS, type MemoryCard } from "@/lib/library/types";
-import { getMemoryCardPreview } from "@/lib/library/card-preview";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
-const KIND_COLORS: Record<MemoryCard["kind"], string> = {
-  equation: "bg-blue-500/10 text-blue-700",
-  conversion: "bg-amber-500/10 text-amber-800",
-  fact: "bg-teal-500/10 text-teal-800",
-  table: "bg-violet-500/10 text-violet-800",
-  mistake: "bg-rose-500/10 text-rose-800",
-  pearl: "bg-emerald-500/10 text-emerald-800",
+const KIND_DOT: Record<MemoryCard["kind"], string> = {
+  equation: "bg-blue-500",
+  conversion: "bg-amber-500",
+  fact: "bg-teal-500",
+  table: "bg-violet-500",
+  mistake: "bg-rose-500",
+  pearl: "bg-emerald-500",
 };
 
 export function MemoryCardTile({
@@ -48,47 +47,47 @@ export function MemoryCardTile({
       type="button"
       onClick={onOpen}
       className={cn(
-        "group flex h-full w-full flex-col rounded-[18px] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-4 text-left shadow-[var(--shadow-apple-sm)] transition",
-        "hover:-translate-y-0.5 hover:border-[var(--color-accent)]/25 hover:shadow-[var(--shadow-apple-md)] active:scale-[0.995]"
+        "group flex h-full w-full flex-col rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] p-3.5 text-left transition",
+        "hover:border-[var(--color-accent)]/20 hover:bg-[var(--color-surface)]/40 active:scale-[0.995]"
       )}
     >
-      <div className="flex flex-wrap items-center gap-1.5">
-        <span className={cn("rounded-full px-2 py-0.5 text-[10px] font-bold", KIND_COLORS[card.kind])}>
-          {MEMORY_CARD_KIND_LABELS[card.kind]}
-        </span>
-        <span className="rounded-full bg-black/[0.04] px-2 py-0.5 text-[10px] font-semibold text-[var(--color-ink-muted)]">
-          {card.subject}
-        </span>
-        {mastery === "got-it" ? (
-          <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-800">
-            <CheckCircle2 className="h-3 w-3" aria-hidden />
-            Got it
-          </span>
-        ) : null}
-        {mastery === "need-review" ? (
-          <span className="inline-flex items-center gap-0.5 rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] font-bold text-amber-900">
-            <RotateCcw className="h-3 w-3" aria-hidden />
-            Review
-          </span>
-        ) : null}
+      <div className="flex items-start justify-between gap-2">
+        <div className="flex min-w-0 items-center gap-2">
+          <span
+            className={cn("mt-1.5 h-2 w-2 shrink-0 rounded-full", KIND_DOT[card.kind])}
+            title={MEMORY_CARD_KIND_LABELS[card.kind]}
+            aria-hidden
+          />
+          <div className="min-w-0">
+            <p className="truncate text-[11px] font-medium text-[var(--color-ink-muted)]">
+              {card.subject} · {card.topic}
+            </p>
+            <p className="mt-0.5 line-clamp-2 text-[15px] font-semibold leading-snug text-[var(--color-ink)] group-hover:text-[var(--color-accent)]">
+              {card.title}
+            </p>
+          </div>
+        </div>
+        <ChevronRight
+          className="mt-1 h-4 w-4 shrink-0 text-[var(--color-ink-muted)]/50 transition group-hover:text-[var(--color-accent)]"
+          aria-hidden
+        />
       </div>
-      <p className="mt-2 text-[11px] font-medium uppercase tracking-wide text-[var(--color-ink-muted)]">
-        {card.topic}
-      </p>
-      <p className="mt-0.5 text-[17px] font-semibold leading-snug text-[var(--color-ink)] group-hover:text-[var(--color-accent)]">
-        {card.title}
-      </p>
-      <p className="mt-1.5 line-clamp-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+
+      <p className="mt-2 line-clamp-2 text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
         {card.teaser}
       </p>
-      <p className="mt-3 line-clamp-2 rounded-[12px] bg-[var(--color-surface)] px-3 py-2 text-[12px] leading-relaxed text-[var(--color-ink)]">
-        {getMemoryCardPreview(card)}
-      </p>
-      <span className="mt-3 inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--color-accent)]">
-        <BookMarked className="h-3.5 w-3.5" aria-hidden />
-        Open card
-        <ChevronRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" aria-hidden />
-      </span>
+
+      {mastery === "got-it" ? (
+        <span className="mt-2 inline-flex w-fit items-center gap-1 text-[10px] font-semibold text-emerald-700">
+          <CheckCircle2 className="h-3 w-3" aria-hidden />
+          Got it
+        </span>
+      ) : mastery === "need-review" ? (
+        <span className="mt-2 inline-flex w-fit items-center gap-1 text-[10px] font-semibold text-amber-800">
+          <RotateCcw className="h-3 w-3" aria-hidden />
+          Review
+        </span>
+      ) : null}
     </button>
   );
 }

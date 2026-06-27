@@ -22,16 +22,11 @@ type Props = {
   onOpenCard: (card: MemoryCard) => void;
 };
 
-/**
- * Subjects tab — a calm, spacious grid of subject cards (icon · name · count ·
- * mastery), drilling into a focused detail grid of that subject's cards.
- */
 export function LibrarySubjectsView({ examSlug, cards, onOpenCard }: Props) {
   const { reduce } = useLibraryMotion();
   const favorites = useFavorites(examSlug);
   const [active, setActive] = useState<string | null>(null);
 
-  // Mastery is client-only; re-read when it changes so subject rings stay live.
   const [masteryTick, setMasteryTick] = useState(0);
   useEffect(() => {
     const onChange = (e: Event) => {
@@ -44,7 +39,6 @@ export function LibrarySubjectsView({ examSlug, cards, onOpenCard }: Props) {
 
   const groups = useMemo(() => groupCardsBySubject(cards), [cards]);
 
-  // got-it count per subject for a subtle mastery bar.
   const masteryBySubject = useMemo(() => {
     void masteryTick;
     const store = readMasteryStore(examSlug);
@@ -67,49 +61,45 @@ export function LibrarySubjectsView({ examSlug, cards, onOpenCard }: Props) {
     [cards, favorites.favoriteIds]
   );
 
-  // ---- Detail view ----
   if (active) {
     const isFavView = active === FAVORITES_KEY;
     const group = groups.find((g) => g.key === active);
-    const title = isFavView ? "Favorites" : group?.subject ?? "Subject";
-    const detailCards = isFavView ? favoriteCards : group?.cards ?? [];
+    const title = isFavView ? "Favorites" : (group?.subject ?? "Subject");
+    const detailCards = isFavView ? favoriteCards : (group?.cards ?? []);
 
     return (
-      <section aria-label={title} className="space-y-4">
-        <div className="flex items-center gap-3">
+      <section aria-label={title} className="space-y-3">
+        <div className="flex items-center gap-2">
           <button
             type="button"
             onClick={() => setActive(null)}
-            className="inline-flex h-9 items-center gap-1 rounded-full bg-black/[0.04] pl-2 pr-3.5 text-[13px] font-semibold text-[var(--color-ink)] transition hover:bg-black/[0.07]"
+            className="inline-flex h-8 items-center gap-0.5 rounded-lg px-2 text-[12px] font-semibold text-[var(--color-ink-muted)] transition hover:bg-[var(--color-surface)] hover:text-[var(--color-ink)]"
           >
             <ChevronLeft className="h-4 w-4" aria-hidden />
-            Subjects
+            All subjects
           </button>
-          <div className="min-w-0">
-            <h2 className="truncate text-[20px] font-semibold tracking-tight text-[var(--color-ink)]">
-              {title}
-            </h2>
-            <p className={libUi.sectionHint}>
-              {detailCards.length} {detailCards.length === 1 ? "card" : "cards"}
-            </p>
-          </div>
+          <span className="text-[var(--color-border)]" aria-hidden>
+            /
+          </span>
+          <h2 className="truncate text-[15px] font-semibold text-[var(--color-ink)]">{title}</h2>
+          <span className={cn(libUi.sectionHint, "ml-auto")}>{detailCards.length} cards</span>
         </div>
 
         {detailCards.length === 0 ? (
           <div className={libUi.emptyState}>
-            <p className="text-[15px] font-medium text-[var(--color-ink)]">No cards yet</p>
+            <p className="text-[14px] font-medium text-[var(--color-ink)]">No cards yet</p>
             <p className={cn(libUi.sectionHint, "mt-1")}>
               {isFavView
-                ? "Tap the star on any card to save it here."
+                ? "Star any card to save it here."
                 : "Cards for this subject will appear here."}
             </p>
           </div>
         ) : (
           <motion.div
             key={active}
-            initial={reduce ? false : { opacity: 0, y: 6 }}
+            initial={reduce ? false : { opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             className={libUi.cardGrid}
           >
             {detailCards.map((card) => (
@@ -128,19 +118,14 @@ export function LibrarySubjectsView({ examSlug, cards, onOpenCard }: Props) {
     );
   }
 
-  // ---- Grid view ----
   return (
-    <section aria-label="Browse by subject" className="space-y-4">
-      <div
-        className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3"
-        role="list"
-        aria-label="Subjects"
-      >
+    <section aria-label="Browse by subject" className="space-y-2">
+      <p className={cn(libUi.sectionHint, "px-0.5")}>
+        {groups.length} subjects · {cards.length} cards
+      </p>
+      <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3" role="list" aria-label="Subjects">
         {favoriteCards.length > 0 ? (
-          <SmartFavoritesTile
-            count={favoriteCards.length}
-            onClick={() => setActive(FAVORITES_KEY)}
-          />
+          <SmartFavoritesTile count={favoriteCards.length} onClick={() => setActive(FAVORITES_KEY)} />
         ) : null}
 
         {groups.map((group) => {
@@ -155,36 +140,39 @@ export function LibrarySubjectsView({ examSlug, cards, onOpenCard }: Props) {
               role="listitem"
               onClick={() => setActive(group.key)}
               className={cn(
-                "group flex flex-col rounded-[20px] border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-5 text-left shadow-[var(--shadow-apple-sm)] transition",
-                "hover:-translate-y-0.5 hover:border-[var(--color-accent)]/25 hover:shadow-[var(--shadow-apple-md)] active:scale-[0.99]"
+                libUi.surface,
+                "group flex items-center gap-3 p-3.5 text-left transition",
+                "hover:border-[var(--color-accent)]/20 hover:bg-[var(--color-surface)]/40 active:scale-[0.995]"
               )}
             >
-              <div className="flex items-center justify-between gap-2">
-                <span className={cn("inline-flex h-11 w-11 items-center justify-center rounded-2xl", tint)}>
-                  <Icon className="h-[22px] w-[22px]" aria-hidden />
-                </span>
-                <ChevronRight
-                  className="h-4 w-4 text-[var(--color-ink-muted)] transition group-hover:translate-x-0.5 group-hover:text-[var(--color-accent)]"
-                  aria-hidden
-                />
+              <span
+                className={cn(
+                  "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl",
+                  tint
+                )}
+              >
+                <Icon className="h-[18px] w-[18px]" aria-hidden />
+              </span>
+              <div className="min-w-0 flex-1">
+                <h3 className="truncate text-[14px] font-semibold text-[var(--color-ink)] group-hover:text-[var(--color-accent)]">
+                  {group.subject}
+                </h3>
+                <div className="mt-1.5 flex items-center gap-2">
+                  <span className="h-1 flex-1 overflow-hidden rounded-full bg-[var(--color-surface)]">
+                    <span
+                      className="block h-full rounded-full bg-[var(--color-accent)]/60 transition-[width] duration-500"
+                      style={{ width: `${pct}%` }}
+                    />
+                  </span>
+                  <span className="shrink-0 text-[10px] font-medium tabular-nums text-[var(--color-ink-muted)]">
+                    {total}
+                  </span>
+                </div>
               </div>
-              <h3 className="mt-4 text-[17px] font-semibold leading-snug tracking-tight text-[var(--color-ink)] group-hover:text-[var(--color-accent)]">
-                {group.subject}
-              </h3>
-              <p className={cn(libUi.sectionHint, "mt-0.5")}>
-                {total} {total === 1 ? "card" : "cards"}
-              </p>
-              <div className="mt-4 flex items-center gap-2">
-                <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-black/[0.06]">
-                  <span
-                    className="block h-full rounded-full bg-emerald-400 transition-[width] duration-500"
-                    style={{ width: `${pct}%` }}
-                  />
-                </span>
-                <span className="shrink-0 text-[11px] font-semibold tabular-nums text-[var(--color-ink-muted)]">
-                  {pct > 0 ? `${pct}%` : "New"}
-                </span>
-              </div>
+              <ChevronRight
+                className="h-4 w-4 shrink-0 text-[var(--color-ink-muted)]/40 group-hover:text-[var(--color-accent)]"
+                aria-hidden
+              />
             </button>
           );
         })}
@@ -200,25 +188,18 @@ function SmartFavoritesTile({ count, onClick }: { count: number; onClick: () => 
       role="listitem"
       onClick={onClick}
       className={cn(
-        "group flex flex-col rounded-[20px] border border-amber-200/70 bg-amber-50/60 p-5 text-left shadow-[var(--shadow-apple-sm)] transition",
-        "hover:-translate-y-0.5 hover:shadow-[var(--shadow-apple-md)] active:scale-[0.99]"
+        "flex items-center gap-3 rounded-2xl border border-amber-200/50 bg-amber-50/40 p-3.5 text-left transition",
+        "hover:border-amber-300/60 hover:bg-amber-50/70 active:scale-[0.995]"
       )}
     >
-      <div className="flex items-center justify-between gap-2">
-        <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-400/20 text-amber-600">
-          <Star className="h-[22px] w-[22px] fill-amber-400 text-amber-500" aria-hidden />
-        </span>
-        <ChevronRight
-          className="h-4 w-4 text-amber-500/70 transition group-hover:translate-x-0.5"
-          aria-hidden
-        />
+      <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-400/15 text-amber-600">
+        <Star className="h-[18px] w-[18px] fill-amber-400 text-amber-500" aria-hidden />
+      </span>
+      <div className="min-w-0 flex-1">
+        <h3 className="text-[14px] font-semibold text-amber-900">Favorites</h3>
+        <p className="text-[11px] text-amber-800/70">{count} saved</p>
       </div>
-      <h3 className="mt-4 text-[17px] font-semibold leading-snug tracking-tight text-amber-900">
-        Favorites
-      </h3>
-      <p className="mt-0.5 text-[13px] text-amber-700/80">
-        {count} saved {count === 1 ? "card" : "cards"}
-      </p>
+      <ChevronRight className="h-4 w-4 shrink-0 text-amber-600/50" aria-hidden />
     </button>
   );
 }

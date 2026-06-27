@@ -36,7 +36,7 @@ export function FavoriteCardTile({
         whileTap={tap}
         transition={spring}
         onClick={onToggleFavorite}
-        className="absolute right-2.5 top-2.5 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-[var(--color-ink-muted)] shadow-[var(--shadow-apple-sm)] backdrop-blur-sm transition-colors hover:text-amber-500"
+        className="absolute right-2.5 top-2.5 inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--color-surface-elevated)]/90 text-[var(--color-ink-muted)] backdrop-blur-sm transition-colors hover:text-amber-500"
       >
         <Star
           className={cn("h-4 w-4 transition-colors", isFavorite && "fill-amber-400 text-amber-500")}

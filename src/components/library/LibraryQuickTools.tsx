@@ -106,30 +106,33 @@ export function LibraryQuickTools({ examSlug }: { examSlug: ExamSlug }) {
 
   return (
     <section id="hub-tools" aria-labelledby="quick-tools-heading" className="space-y-3">
-      <div>
+      <div className="px-0.5">
         <h2 id="quick-tools-heading" className={libUi.sectionTitle}>
           Quick tools
         </h2>
         <p className={cn(libUi.sectionHint, "mt-0.5")}>
-          Jump to practice, analytics, and deep reference.
+          Practice, reference, and analytics.
         </p>
       </div>
-      <div className={cn(libUi.chipRow, "snap-x snap-mandatory")}>
+      <div className="grid gap-2 sm:grid-cols-2">
         {tools.map((tool) => (
           <Link
             key={tool.label}
             href={tool.href}
             className={cn(
-              libUi.chip,
-              libUi.chipIdle,
-              "min-w-[9.5rem] snap-start justify-between pr-2.5"
+              libUi.surface,
+              "group flex items-center justify-between gap-2 px-3.5 py-3 transition",
+              "hover:border-[var(--color-accent)]/20 hover:bg-[var(--color-surface)]/40"
             )}
           >
-            <span className="inline-flex items-center gap-2">
+            <span className="inline-flex items-center gap-2.5 text-[13px] font-medium text-[var(--color-ink)]">
               <tool.icon className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
               {tool.label}
             </span>
-            <ChevronRight className="h-3.5 w-3.5 opacity-40" aria-hidden />
+            <ChevronRight
+              className="h-3.5 w-3.5 text-[var(--color-ink-muted)]/40 transition group-hover:text-[var(--color-accent)]"
+              aria-hidden
+            />
           </Link>
         ))}
       </div>
