@@ -35,7 +35,7 @@ export const USMLE_STEPS: UsmleStepDefinition[] = [
     targetQuestions: 12_000,
     simulatedQuestionCount: 280,
     simulatedDurationMin: 420,
-    serveMinQaScore: 7.5,
+    serveMinQaScore: 8,
   },
   {
     level: "step2",
@@ -59,7 +59,7 @@ export const USMLE_STEPS: UsmleStepDefinition[] = [
     targetQuestions: 18_000,
     simulatedQuestionCount: 200,
     simulatedDurationMin: 240,
-    serveMinQaScore: 7.5,
+    serveMinQaScore: 8,
   },
 ];
 
@@ -88,7 +88,7 @@ export const USMLE_COMBINED_TARGET = USMLE_STEPS.reduce((sum, s) => sum + s.targ
  * Curated serve bank after the quality trim — the top items kept across all three
  * steps. User-facing counts use this (not the aspirational generation target).
  */
-export const USMLE_PUBLISHED_BANK_TOTAL = 9_930;
+export const USMLE_PUBLISHED_BANK_TOTAL = 24_314;
 
 export function isUsmleFieldId(fieldId: string): fieldId is UsmleFieldId {
   return (USMLE_FIELD_IDS as readonly string[]).includes(fieldId);

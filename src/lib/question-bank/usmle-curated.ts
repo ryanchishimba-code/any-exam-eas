@@ -18,24 +18,24 @@ export function isUsmleCuratedItem(item: Pick<BankItem, "tags">): boolean {
   return false;
 }
 
-/** Prisma filter: curated USMLE rows in a subject bank. */
+/** Prisma filter: exam-ready USMLE rows preferred in subject sampling. */
 export function curatedUsmleWhereClause() {
   return {
     OR: [
+      { source: { in: ["ai-curated", "curated", "polished", "seed", "generated"] } },
       { tags: { contains: "physician-educator" } },
       { tags: { contains: "clinical-vignette" } },
       { tags: { contains: "edtech-seed" } },
-      { source: "seed" as const },
     ],
     NOT: { tags: { contains: "bulk-bank" } },
   };
 }
 
-/** Share of a practice pull reserved for curated items when available. */
-export const USMLE_CURATED_SAMPLE_RATIO = 0.45;
+/** Share of a practice pull from exam-ready curated rows when available. */
+export const USMLE_CURATED_SAMPLE_RATIO = 0.85;
 
 export function curatedSampleTarget(want: number, curatedAvailable: number): number {
   if (curatedAvailable <= 0) return 0;
   const ratioTarget = Math.ceil(want * USMLE_CURATED_SAMPLE_RATIO);
-  return Math.min(curatedAvailable, Math.max(ratioTarget, Math.min(3, curatedAvailable)));
+  return Math.min(curatedAvailable, ratioTarget, want);
 }

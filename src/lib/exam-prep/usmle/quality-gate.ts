@@ -77,7 +77,12 @@ export function assessUsmleFullExamItem(
   stepLevel: UsmleStepLevel
 ): UsmleFullExamQcReport {
   const issues: string[] = [];
-  const fieldId = stepLevel === "step1" ? "usmle-step-1" : "usmle-step-2";
+  const fieldId =
+    stepLevel === "step1"
+      ? "usmle-step-1"
+      : stepLevel === "step3"
+        ? "usmle-step-3"
+        : "usmle-step-2";
   const subjectId = item.subjectId ?? "internal-medicine";
 
   const polished = polishUsmleBankItem(item, fieldId, subjectId, "USMLE", index);
@@ -134,7 +139,7 @@ export function assessUsmleFullExamItem(
   }
 
   const step = normalized.ngnPayload?.stepLevel;
-  if (step !== "step1" && step !== "step2") issues.push("step_level");
+  if (step !== "step1" && step !== "step2" && step !== "step3") issues.push("step_level");
 
   if (!normalized.tags?.includes("usmle-full-exam")) issues.push("missing_exam_tag");
 

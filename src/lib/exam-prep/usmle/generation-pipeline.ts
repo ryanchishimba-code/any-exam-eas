@@ -136,9 +136,15 @@ function systemAugmentation(stepLevel: UsmleStepLevel): string {
 }
 
 function userAugmentation(stepLevel: UsmleStepLevel): string {
+  const fieldId =
+    stepLevel === "step1"
+      ? "usmle-step-1"
+      : stepLevel === "step3"
+        ? "usmle-step-3"
+        : "usmle-step-2";
   const ctx = {
-    field: stepLevel === "step1" ? "usmle-step-1" : "usmle-step-2",
-    fieldId: stepLevel === "step1" ? "usmle-step-1" : "usmle-step-2",
+    field: fieldId,
+    fieldId,
     topic: "USMLE full-length block-style practice exam",
     questionCount: 10,
     difficulty: "hard" as const,
@@ -466,14 +472,17 @@ export async function generateUsmleFullExam(params: {
   examNumber: number;
   questionCount?: number;
   batchId: string;
+  /** Override step (e.g. step3 replacements); defaults from exam number parity. */
+  stepLevel?: UsmleStepLevel;
   onProgress?: (done: number, total: number) => void;
 }): Promise<UsmleFullExamBundle> {
   const questionCount = params.questionCount ?? resolveExamQuestionCount(params.examNumber);
   const slots = planUsmleFullExamSlots({
     examNumber: params.examNumber,
     questionCount,
+    stepLevel: params.stepLevel,
   });
-  const stepLevel = slots[0]?.stepLevel ?? "step1";
+  const stepLevel = slots[0]?.stepLevel ?? params.stepLevel ?? "step1";
   const exemplars = collectExemplars(stepLevel);
   const concurrency = resolveConcurrency();
 

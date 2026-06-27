@@ -10,7 +10,7 @@ import { PrismaClient } from "@prisma/client";
 import { collectHighYieldSeedRows } from "../src/lib/exam-prep/high-yield-index";
 import { bankItemContentHash } from "../src/lib/sync-question-bank";
 import { serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
-import { isUsmleCuratedItem } from "../src/lib/question-bank/usmle-curated";
+import { usmleBankItemIsServeReady } from "../src/lib/exam-prep/usmle-clinical-gate";
 import type { BankItem } from "../src/lib/question-bank";
 
 const prisma = new PrismaClient();
@@ -40,13 +40,13 @@ function seedRowToData(fieldId: string, subjectId: string, item: BankItem) {
     source: "seed" as const,
     contentHash,
     active: true,
-    qaPassed: isUsmleCuratedItem(item),
+    qaPassed: usmleBankItemIsServeReady(item, fieldId),
   };
 }
 
 async function main() {
   const rows = collectHighYieldSeedRows().filter(
-    (r) => r.fieldId.startsWith("usmle") && isUsmleCuratedItem(r.item)
+    (r) => r.fieldId.startsWith("usmle") && usmleBankItemIsServeReady(r.item, r.fieldId)
   );
 
   console.log(`\nUSMLE curated seed sync — ${rows.length} item(s)${dryRun ? " [dry-run]" : ""}\n`);

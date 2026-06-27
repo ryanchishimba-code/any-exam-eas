@@ -27,8 +27,10 @@ const bareStem: BankItem = {
   explanation: "Loop diuretic adaptation requires longer teaching rationale.",
 };
 
-const curatedRich: BankItem = {
+const examReadyRich: BankItem = {
   ...richCombined,
+  explanation:
+    "STEMI inferior wall — activate cath lab and reperfusion. Option B is wrong because nitrates without reperfusion delay definitive care. Option C is wrong because heparin alone does not restore flow. Option D is wrong because observation misses time-sensitive reperfusion.",
   tags: ["physician-educator", "clinical-vignette", "cardiology"],
 };
 
@@ -56,20 +58,20 @@ describe("usmle-clinical-gate", () => {
     expect(exam.question).toMatch(/next step/i);
   });
 
-  it("requires exam-ready QA for non-curated bulk items", () => {
+  it("requires exam-ready QA for all served items", () => {
     expect(usmleBankItemIsServeReady(bareStem, "usmle-step-2")).toBe(false);
-    expect(usmleBankItemIsServeReady(curatedRich, "usmle-step-2")).toBe(true);
+    expect(usmleBankItemIsServeReady(examReadyRich, "usmle-step-2")).toBe(true);
   });
 
   it("filters stale qaPassed rows that fail runtime clinical audit", () => {
     const prepared = prepareUsmleItemsForSession({
-      items: [bareStem, curatedRich],
+      items: [bareStem, examReadyRich],
       fieldId: "usmle-step-2",
       field: "usmle-step-2",
       limit: 2,
     });
 
     expect(prepared).toHaveLength(1);
-    expect(prepared[0]!.question).toBe(curatedRich.question);
+    expect(prepared[0]!.question).toBe(examReadyRich.question);
   });
 });

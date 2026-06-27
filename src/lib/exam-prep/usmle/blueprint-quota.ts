@@ -312,7 +312,8 @@ for (const bp of [
   HIGH_YIELD_BY_SYSTEM[bp.id] = bp.highYieldTopics ?? [];
 }
 
-function resolveStepLevel(examNumber: number): UsmleStepLevel {
+function resolveStepLevel(examNumber: number, override?: UsmleStepLevel): UsmleStepLevel {
+  if (override) return override;
   return examNumber % 2 === 1 ? "step1" : "step2";
 }
 
@@ -357,9 +358,10 @@ export function resolveExamQuestionCount(examNumber: number): number {
 export function planUsmleFullExamSlots(params: {
   examNumber: number;
   questionCount?: number;
+  stepLevel?: UsmleStepLevel;
 }): UsmleGenerationSlot[] {
   const { examNumber } = params;
-  const stepLevel = resolveStepLevel(examNumber);
+  const stepLevel = resolveStepLevel(examNumber, params.stepLevel);
   const questionCount = params.questionCount ?? resolveExamQuestionCount(examNumber);
   const examSeed = examNumber * 29;
   const blueprint = resolveBlueprint(stepLevel);
@@ -385,7 +387,8 @@ export function planUsmleFullExamSlots(params: {
 }
 
 export function resolveExamTitle(examNumber: number, stepLevel: UsmleStepLevel): string {
-  const label = stepLevel === "step1" ? "Step 1" : "Step 2 CK";
+  const label =
+    stepLevel === "step1" ? "Step 1" : stepLevel === "step3" ? "Step 3" : "Step 2 CK";
   return `USMLE ${label} Practice Exam ${examNumber}`;
 }
 
