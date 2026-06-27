@@ -25,6 +25,11 @@ import {
   ENDOCRINE_EMERGENCIES_MODULE,
   RENAL_ELECTROLYTES_MODULE,
   STROKE_NEURO_MODULE,
+  PATHOLOGY_NEOPLASIA_STEP1_MODULE,
+  PHARMACOLOGY_MOA_STEP1_MODULE,
+  BIOSTATISTICS_USMLE_STEP3_MODULE,
+  CCS_CASE_MANAGEMENT_USMLE_MODULE,
+  MEDICAL_ETHICS_USMLE_STEP3_MODULE,
 } from "@/lib/edtech/review-modules/content";
 import type { HighYieldTopic } from "@/types/edtech";
 
@@ -159,6 +164,56 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     practiceTopicSlug: "neurology",
     reviewModule: STROKE_NEURO_MODULE,
     sortOrder: 4,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "pathology-neoplasia",
+    title: "Pathology: Inflammation, Neoplasia & Hemodynamics",
+    overview:
+      "Granulomatous inflammation, malignant transformation hallmarks, and shock/edema mechanisms for Step 1.",
+    practiceTopicSlug: "pathology",
+    reviewModule: PATHOLOGY_NEOPLASIA_STEP1_MODULE,
+    sortOrder: 10,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "pharmacology-moa",
+    title: "Pharmacology: MOA, PK & Autonomic Drugs",
+    overview:
+      "Receptor pharmacology, CYP interactions, autonomic toxidromes, and classic antidote pairings for Step 1.",
+    practiceTopicSlug: "pharmacology",
+    reviewModule: PHARMACOLOGY_MOA_STEP1_MODULE,
+    sortOrder: 11,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "biostatistics-epidemiology",
+    title: "Biostatistics & Epidemiology",
+    overview:
+      "Sensitivity, NNT, bias, and trial appraisal for Step 3 abstract and drug-ad items.",
+    practiceTopicSlug: "internal-medicine",
+    reviewModule: BIOSTATISTICS_USMLE_STEP3_MODULE,
+    sortOrder: 20,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "medical-ethics-legal",
+    title: "Medical Ethics & Legal Medicine",
+    overview:
+      "Capacity, consent, confidentiality, and surrogate decision-making for Step 3.",
+    practiceTopicSlug: "internal-medicine",
+    reviewModule: MEDICAL_ETHICS_USMLE_STEP3_MODULE,
+    sortOrder: 21,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "ccs-case-management",
+    title: "CCS Case Management & Monitoring",
+    overview:
+      "Stabilize → diagnose → treat → monitor loops for Step 3 CCS-style items.",
+    practiceTopicSlug: "internal-medicine",
+    reviewModule: CCS_CASE_MANAGEMENT_USMLE_MODULE,
+    sortOrder: 22,
   }),
   defineReviewModuleTopic({
     examSlug: "pance",

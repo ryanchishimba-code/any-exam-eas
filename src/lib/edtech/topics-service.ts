@@ -1,6 +1,10 @@
 import { prisma } from "@/lib/prisma";
 import { getHighYieldTopics as getStaticTopics } from "@/lib/edtech/seeds";
 import {
+  filterHighYieldTopicsForUsmleStep,
+  resolveUsmleLibraryStep,
+} from "@/lib/edtech/usmle-library-catalog";
+import {
   mergeReviewModules,
   REVIEW_MODULE_TOPICS,
 } from "@/lib/edtech/seeds/review-module-topics";
@@ -101,7 +105,11 @@ function enrichStaticTopics(examSlug: ExamSlug, topics: HighYieldTopic[]): HighY
 }
 
 /** Prefer DB topics when seeded; fall back to static repo content. */
-export async function loadHighYieldTopics(examSlug: ExamSlug): Promise<HighYieldTopic[]> {
+export async function loadHighYieldTopics(
+  examSlug: ExamSlug,
+  options?: { usmleFieldId?: string | null }
+): Promise<HighYieldTopic[]> {
+  let topics: HighYieldTopic[];
   try {
     await syncReviewModuleTopics(examSlug);
     const rows = await prisma.highYieldTopic.findMany({
@@ -110,12 +118,19 @@ export async function loadHighYieldTopics(examSlug: ExamSlug): Promise<HighYield
     });
     if (rows.length > 0) {
       const mapped = rows.map(mapDbTopic);
-      return enrichStaticTopics(examSlug, mapped);
+      topics = enrichStaticTopics(examSlug, mapped);
+    } else {
+      topics = getStaticTopics(examSlug);
     }
   } catch {
-    /* table may not exist before migration */
+    topics = getStaticTopics(examSlug);
   }
-  return getStaticTopics(examSlug);
+
+  if (examSlug === "usmle" && options?.usmleFieldId) {
+    const step = resolveUsmleLibraryStep(options.usmleFieldId);
+    return filterHighYieldTopicsForUsmleStep(topics, step);
+  }
+  return topics;
 }
 
 export async function recordTopicView(userId: string, topicId: string): Promise<void> {

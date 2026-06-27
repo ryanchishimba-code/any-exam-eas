@@ -1,6 +1,10 @@
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import type { ExamSlug } from "@/types/edtech";
 import { filterMemoryCards, getMemoryCardsForExam } from "./seeds";
+import {
+  filterMemoryCardsForUsmleStep,
+  resolveUsmleLibraryStep,
+} from "@/lib/edtech/usmle-library-catalog";
 import { resolveCardsNeedingReview } from "./card-mastery";
 import { getMemoryCardIdsForTopic, normalizeWeakAreaTopicKey } from "./weak-area-map";
 import type { MemoryCard, MemoryCardKind } from "./types";
@@ -16,11 +20,16 @@ export type MemoryCardQuery = {
 /** Load memory cards for the user's exam (or override slug). */
 export async function loadMemoryCards(
   userId: string,
-  examSlug?: ExamSlug
+  examSlug?: ExamSlug,
+  options?: { usmleFieldId?: string | null }
 ): Promise<{ examSlug: ExamSlug; cards: MemoryCard[] }> {
   const pref = examSlug ? { examSlug } : await getUserExamPreference(userId);
   const slug = (examSlug ?? pref?.examSlug ?? "nclex") as ExamSlug;
-  return { examSlug: slug, cards: getMemoryCardsForExam(slug) };
+  let cards = getMemoryCardsForExam(slug);
+  if (slug === "usmle" && options?.usmleFieldId) {
+    cards = filterMemoryCardsForUsmleStep(cards, resolveUsmleLibraryStep(options.usmleFieldId));
+  }
+  return { examSlug: slug, cards };
 }
 
 export function queryMemoryCards(cards: MemoryCard[], opts: MemoryCardQuery): MemoryCard[] {

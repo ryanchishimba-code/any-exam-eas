@@ -1,15 +1,24 @@
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 import { NCLEX_HIGH_YIELD_TOPICS } from "./high-yield-nclex";
 import { USMLE_HIGH_YIELD_TOPICS } from "./high-yield-usmle";
+import { USMLE_STEP1_HIGH_YIELD_TOPICS } from "./high-yield-usmle-step1";
+import { USMLE_STEP3_HIGH_YIELD_TOPICS } from "./high-yield-usmle-step3";
 import { NAPLEX_HIGH_YIELD_TOPICS } from "./high-yield-naplex";
 import { PANCE_HIGH_YIELD_TOPICS } from "./high-yield-pance";
 import { AANP_FNP_HIGH_YIELD_TOPICS } from "./high-yield-aanp-fnp";
 import { NPTE_PT_HIGH_YIELD_TOPICS } from "./high-yield-npte-pt";
 import { mergeReviewModules } from "./review-module-topics";
+import { tagUsmleTopicSteps } from "@/lib/edtech/usmle-library-catalog";
+
+const USMLE_ALL_TOPICS = [
+  ...USMLE_HIGH_YIELD_TOPICS,
+  ...USMLE_STEP1_HIGH_YIELD_TOPICS,
+  ...USMLE_STEP3_HIGH_YIELD_TOPICS,
+].map(tagUsmleTopicSteps);
 
 export const HIGH_YIELD_BY_EXAM: Record<ExamSlug, HighYieldTopic[]> = {
   nclex: mergeReviewModules(NCLEX_HIGH_YIELD_TOPICS, "nclex"),
-  usmle: mergeReviewModules(USMLE_HIGH_YIELD_TOPICS, "usmle"),
+  usmle: mergeReviewModules(USMLE_ALL_TOPICS, "usmle"),
   naplex: mergeReviewModules(NAPLEX_HIGH_YIELD_TOPICS, "naplex"),
   pance: mergeReviewModules(PANCE_HIGH_YIELD_TOPICS, "pance"),
   "aanp-fnp": mergeReviewModules(AANP_FNP_HIGH_YIELD_TOPICS, "aanp-fnp"),

@@ -36,6 +36,7 @@ type LibraryTab = "for-you" | "subjects" | "exams" | "tools";
 
 type Props = {
   examSlug: ExamSlug;
+  usmleStepLabel?: string;
   userName?: string | null;
   cards: MemoryCard[];
   weakTopics: WeakTopicRow[];
@@ -62,6 +63,7 @@ function topicKeyToQuery(topicKey?: string): string {
 
 export function LibraryHubClient({
   examSlug,
+  usmleStepLabel,
   userName,
   cards,
   weakTopics,
@@ -121,14 +123,22 @@ export function LibraryHubClient({
   }, [examSlug, weakTopics]);
 
   const examName = EXAM_CATALOG[examSlug]?.shortName ?? examSlug.toUpperCase();
+  const libraryTitle =
+    examSlug === "usmle" && usmleStepLabel
+      ? `${usmleStepLabel} Study Library`
+      : `${examName} Study Library`;
 
   return (
     <SessionToneProvider>
       <div className={cn(libUi.page, "space-y-4 sm:space-y-5")}>
         <StudyPageHeader
           eyebrow="Library"
-          title={`${examName} Study Library`}
-          subtitle="Everything you need to review — organized and personal."
+          title={libraryTitle}
+          subtitle={
+            examSlug === "usmle" && usmleStepLabel
+              ? `Memory cards, tools, and review content aligned to ${usmleStepLabel}.`
+              : "Everything you need to review — organized and personal."
+          }
           breadcrumbs={[{ label: "Dashboard", href: ROUTES.dashboard }]}
         />
 

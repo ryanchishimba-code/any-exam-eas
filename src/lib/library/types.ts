@@ -42,6 +42,8 @@ export type MemoryCard = {
   sourceUrl?: string;
   /** ISO date when clinical content was last verified. */
   lastReviewedAt?: string;
+  /** Limit card to specific USMLE steps (omit = all USMLE learners). */
+  usmleSteps?: ("step1" | "step2" | "step3")[];
   sortOrder: number;
 };
 

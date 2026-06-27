@@ -15,6 +15,13 @@ import { SEPSIS_MODULE } from "./sepsis-shock";
 import { ENDOCRINE_EMERGENCIES_MODULE } from "./endocrine-emergencies-usmle";
 import { RENAL_ELECTROLYTES_MODULE } from "./renal-electrolytes-usmle";
 import { STROKE_NEURO_MODULE } from "./stroke-neuro-usmle";
+import { PATHOLOGY_NEOPLASIA_STEP1_MODULE } from "./pathology-neoplasia-step1";
+import { PHARMACOLOGY_MOA_STEP1_MODULE } from "./pharmacology-moa-step1";
+import {
+  BIOSTATISTICS_USMLE_STEP3_MODULE,
+  CCS_CASE_MANAGEMENT_USMLE_MODULE,
+  MEDICAL_ETHICS_USMLE_STEP3_MODULE,
+} from "./biostatistics-ethics-ccs-step3";
 
 import { DELEGATION_MODULE } from "./nclex-delegation-scope";
 import { AANP_ASSESS_MODULE } from "./aanp-assess-domain";
@@ -48,6 +55,11 @@ export {
   ENDOCRINE_EMERGENCIES_MODULE,
   RENAL_ELECTROLYTES_MODULE,
   STROKE_NEURO_MODULE,
+  PATHOLOGY_NEOPLASIA_STEP1_MODULE,
+  PHARMACOLOGY_MOA_STEP1_MODULE,
+  BIOSTATISTICS_USMLE_STEP3_MODULE,
+  CCS_CASE_MANAGEMENT_USMLE_MODULE,
+  MEDICAL_ETHICS_USMLE_STEP3_MODULE,
   DELEGATION_MODULE,
   DIABETES_PHARMACOTHERAPY_MODULE,
   HEART_FAILURE_MODULE,
@@ -81,5 +93,10 @@ export const REVIEW_MODULE_CONTENT_BY_SLUG: Record<string, ReviewModuleContent> 
   "endocrine-dm": ENDOCRINE_EMERGENCIES_MODULE,
   "renal-electrolytes": RENAL_ELECTROLYTES_MODULE,
   "neurology-stroke": STROKE_NEURO_MODULE,
+  "pathology-neoplasia": PATHOLOGY_NEOPLASIA_STEP1_MODULE,
+  "pharmacology-moa": PHARMACOLOGY_MOA_STEP1_MODULE,
+  "biostatistics-epidemiology": BIOSTATISTICS_USMLE_STEP3_MODULE,
+  "medical-ethics-legal": MEDICAL_ETHICS_USMLE_STEP3_MODULE,
+  "ccs-case-management": CCS_CASE_MANAGEMENT_USMLE_MODULE,
   delegation: DELEGATION_MODULE,
 };

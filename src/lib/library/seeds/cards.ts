@@ -1,6 +1,9 @@
 import type { MemoryCard } from "../types";
 import { AANP_FNP_MEMORY_CARDS } from "./cards-aanp-fnp";
 import { NPTE_PT_MEMORY_CARDS } from "./cards-npte-pt";
+import { USMLE_STEP1_MEMORY_CARDS } from "./cards-usmle-step1";
+import { USMLE_STEP2_CLINICAL_MEMORY_CARDS } from "./cards-usmle-step2-clinical";
+import { USMLE_STEP3_MEMORY_CARDS } from "./cards-usmle-step3";
 
 /** Static Memory Card library — seed to DB later if needed. */
 export const MEMORY_CARDS: MemoryCard[] = [
@@ -3109,4 +3112,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
     reviewModuleSlug: "delegation",
     sortOrder: 9,
   },
+  ...USMLE_STEP1_MEMORY_CARDS,
+  ...USMLE_STEP2_CLINICAL_MEMORY_CARDS,
+  ...USMLE_STEP3_MEMORY_CARDS,
 ];

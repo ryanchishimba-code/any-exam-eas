@@ -6,6 +6,8 @@ import type { LibraryHubStats } from "@/components/library/LibraryHubHeader";
 import { ProBenefitsCallout } from "@/components/ProBenefitsCallout";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-preference";
+import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
+import { usmleStepDefinition, defaultUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { loadMemoryCards } from "@/lib/library/memory-cards";
 import { requirePremiumPage } from "@/lib/require-premium-page";
@@ -45,8 +47,15 @@ async function LibraryContent({
   if (!pref && !examOverride) redirect(ROUTES.selectExam);
 
   const examSlug = (examOverride ?? pref?.examSlug ?? "nclex") as ExamSlug;
+  const meta = examSlug === "usmle" ? await getUserEdtechMetadata(userId) : null;
+  const usmleStep =
+    examSlug === "usmle"
+      ? usmleStepDefinition(meta?.usmleFieldId ?? defaultUsmleFieldId())
+      : null;
   const [{ cards }, dashboard] = await Promise.all([
-    loadMemoryCards(userId, examSlug),
+    loadMemoryCards(userId, examSlug, {
+      usmleFieldId: meta?.usmleFieldId,
+    }),
     getStudentDashboardData(userId),
   ]);
   const fieldId = resolveExamFieldId(examSlug);
@@ -66,6 +75,7 @@ async function LibraryContent({
       <ProBenefitsCallout />
       <LibraryHubClient
         examSlug={examSlug}
+        usmleStepLabel={usmleStep?.shortName}
         userName={userName}
         cards={cards}
         weakTopics={weakTopics}

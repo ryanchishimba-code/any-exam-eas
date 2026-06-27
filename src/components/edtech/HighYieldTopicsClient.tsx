@@ -6,7 +6,6 @@ import { Search, Sparkles, ChevronRight, BookOpen } from "lucide-react";
 import { HighYieldTopicPreviewCard } from "@/components/edtech/HighYieldTopicPreviewCard";
 import { HighYieldTopicPanel } from "@/components/edtech/HighYieldTopicPanel";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import { getTopicCategories } from "@/lib/edtech/seeds";
 import {
   filterHighYieldTopics,
   clampTopicIndex,
@@ -19,12 +18,14 @@ import { cn } from "@/lib/utils";
 
 export function HighYieldTopicsClient({
   examSlug,
+  usmleStepLabel,
   topics,
   progressMap: initialProgress,
   initialTopicSlug,
   initialDeepDive = false,
 }: {
   examSlug: ExamSlug;
+  usmleStepLabel?: string;
   topics: HighYieldTopic[];
   progressMap: TopicProgressMap;
   initialTopicSlug?: string | null;
@@ -34,7 +35,10 @@ export function HighYieldTopicsClient({
   const [category, setCategory] = useState<string>("all");
   const [selectedSlug, setSelectedSlug] = useState<string | null>(initialTopicSlug ?? null);
   const [progressMap, setProgressMap] = useState(initialProgress);
-  const categories = useMemo(() => getTopicCategories(examSlug), [examSlug]);
+  const categories = useMemo(() => {
+    const cats = new Set(topics.map((t) => t.category));
+    return [...cats].sort();
+  }, [topics]);
   const exam = EXAM_CATALOG[examSlug];
 
   useEffect(() => {
@@ -116,7 +120,10 @@ export function HighYieldTopicsClient({
           <p className={studyUi.subtitle}>
             Focus on the {topics.length} topics that matter most — with Review Modules,
             clinical pearls, and practice questions curated for{" "}
-            <span className="font-semibold text-[var(--color-ink)]">{exam.name}</span>.
+            <span className="font-semibold text-[var(--color-ink)]">
+              {examSlug === "usmle" && usmleStepLabel ? usmleStepLabel : exam.name}
+            </span>
+            .
           </p>
         </header>
 

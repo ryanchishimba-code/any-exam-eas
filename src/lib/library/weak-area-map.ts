@@ -109,7 +109,20 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
   ],
 
   // USMLE subjects (usmle-step-2)
-  cardiology: ["usmle-stemi-path", "usmle-acs-spectrum", "usmle-acs-antithrombotics"],
+  cardiology: [
+    "usmle-stemi-path",
+    "usmle-acs-spectrum",
+    "usmle-acs-antithrombotics",
+    "usmle-s2-hf-four-pillars",
+  ],
+  gastroenterology: ["usmle-s2-gi-bleed", "usmle-s2-pud-hpylori"],
+  obgyn: [
+    "usmle-s2-preeclampsia",
+    "usmle-s2-placenta-previa",
+    "usmle-s2-postpartum-hemorrhage",
+  ],
+  surgery: ["usmle-s2-acute-abdomen", "usmle-s2-postop-fever"],
+  rheumatology: ["usmle-s2-rheumatology-gout"],
   nephrology: ["usmle-hyperkalemia", "usmle-aki-fena", "usmle-crcl-dosing", "all-anion-gap"],
   neurology: ["usmle-stroke-tpa", "usmle-tpa-exclusions"],
   "internal-medicine": [
@@ -120,13 +133,22 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
     "usmle-mrsa-agents",
     "usmle-vanc-dosing",
   ],
-  pulmonology: ["usmle-cap-antibiotics", "usmle-mrsa-agents"],
+  pulmonology: [
+    "usmle-s2-copd-exac",
+    "usmle-s2-asthma-exac",
+    "usmle-s2-pe-workup",
+    "usmle-cap-antibiotics",
+  ],
   "emergency-medicine": [
+    "usmle-s2-anaphylaxis",
+    "usmle-s2-acute-abdomen",
     "usmle-meningitis-emergency",
     "usmle-hyperkalemia",
     "usmle-stroke-tpa",
   ],
   pharmacology: [
+    "usmle-s1-autonomic-table",
+    "usmle-s1-cyp-interactions",
     "usmle-cap-antibiotics",
     "usmle-acs-antithrombotics",
     "usmle-meningitis-emergency",
@@ -136,7 +158,36 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
     "naplex-hit-rule",
     "naplex-doac-renal-dose",
   ],
-  hematology: ["usmle-acs-antithrombotics", "naplex-reversal-chart", "naplex-hit-rule"],
+
+  // USMLE Step 1 basic sciences
+  anatomy: ["usmle-s1-pharyngeal-arches", "usmle-s1-cranial-nerves"],
+  physiology: ["usmle-s1-anion-gap", "usmle-s1-frank-starling"],
+  pathology: ["usmle-s1-granuloma-types", "usmle-s1-neoplasia-hallmarks"],
+  biochemistry: ["usmle-s1-urea-cycle", "usmle-s1-gsd-types"],
+  microbiology: [
+    "usmle-s1-hypersensitivity",
+    "usmle-s1-hbv-serology",
+    "usmle-meningitis-emergency",
+    "usmle-hiv-oi-prophylaxis",
+  ],
+
+  // USMLE Step 3 foundations
+  biostatistics: ["usmle-s3-snnout-sppin", "usmle-s3-nnt", "usmle-s3-study-design"],
+  "biostatistics-epidemiology": ["usmle-s3-snnout-sppin", "usmle-s3-nnt", "usmle-s3-study-design"],
+  "medical-ethics-legal": ["usmle-s3-capacity", "usmle-s3-consent-exceptions"],
+  "ccs-case-management": [
+    "usmle-s3-ccs-loop",
+    "usmle-s3-sepsis-ccs",
+    "usmle-s3-disposition",
+    "usmle-s3-dka-ccs",
+  ],
+  "pharmaceutical-ads-abstracts": ["usmle-s3-drug-ad-traps", "usmle-s3-nnt"],
+  hematology: [
+    "usmle-acs-antithrombotics",
+    "usmle-s2-heme-transfusion",
+    "naplex-reversal-chart",
+    "naplex-hit-rule",
+  ],
   "infectious-disease": [
     "pance-cap-outpatient",
     "pance-cap-inpatient",
@@ -308,7 +359,13 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
     "usmle-febrile-neutropenia",
   ],
   neurologic: ["usmle-stroke-tpa", "usmle-tpa-exclusions"],
-  psychiatry: ["pance-depression-screening", "fnp-depression-screening"],
+  psychiatry: [
+    "usmle-s2-serotonin-nms",
+    "usmle-s2-suicide-risk",
+    "usmle-s2-bipolar-no-ssri",
+    "pance-depression-screening",
+    "fnp-depression-screening",
+  ],
   reproductive: ["pance-prenatal-initial-visit"],
   endocrine: [
     "pance-diabetes-a1c-targets",
@@ -330,6 +387,9 @@ export const WEAK_AREA_MEMORY_CARD_MAP: Record<string, string[]> = {
   genitourinary: ["naplex-uti-pyelonephritis"],
   "professional-practice": ["pance-informed-consent"],
   pediatrics: [
+    "usmle-s2-febrile-neonate",
+    "usmle-s2-kawasaki",
+    "usmle-s2-bronchiolitis",
     "pance-febrile-infant-workup",
     "pance-sepsis-bundle",
     "fnp-pediatric-immunization",

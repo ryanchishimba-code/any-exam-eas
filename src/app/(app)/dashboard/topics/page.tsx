@@ -4,6 +4,8 @@ import { auth } from "@/auth";
 import { HighYieldTopicsClient } from "@/components/edtech/HighYieldTopicsClient";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
+import { usmleStepDefinition, defaultUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { loadHighYieldTopics } from "@/lib/edtech/topics-service";
 import { loadTopicProgressMap } from "@/lib/edtech/topic-progress";
@@ -43,7 +45,14 @@ async function TopicsContent({
     redirect(suffix ? `${ROUTES.highYieldTopics}?${suffix}` : ROUTES.highYieldTopics);
   }
 
-  const topics = await loadHighYieldTopics(examSlug);
+  const meta = examSlug === "usmle" ? await getUserEdtechMetadata(userId) : null;
+  const usmleStep =
+    examSlug === "usmle"
+      ? usmleStepDefinition(meta?.usmleFieldId ?? defaultUsmleFieldId())
+      : null;
+  const topics = await loadHighYieldTopics(examSlug, {
+    usmleFieldId: meta?.usmleFieldId,
+  });
   const progressMap = await loadTopicProgressMap(
     userId,
     topics.map((t) => t.id)
@@ -52,6 +61,7 @@ async function TopicsContent({
   return (
     <HighYieldTopicsClient
       examSlug={examSlug}
+      usmleStepLabel={usmleStep?.shortName}
       topics={topics}
       progressMap={progressMap}
       initialTopicSlug={topicParam}

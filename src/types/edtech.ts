@@ -38,6 +38,8 @@ export type HighYieldTopic = {
   relatedStructureIds?: string[];
   /** Premium 8-section textbook-style module (when present, panel renders full module UI). */
   reviewModule?: ReviewModuleContent;
+  /** When set, topic appears only for these USMLE steps in library/topics views. */
+  usmleSteps?: ("step1" | "step2" | "step3")[];
 };
 
 export type TopicProgressMap = Record<
