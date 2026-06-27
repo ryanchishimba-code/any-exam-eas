@@ -116,7 +116,7 @@ export type NclexStudyMetaPatch = {
 
 /** Align subject, topic label, review deep dives, memory cards, and Top 500 drug links. */
 export function buildNclexStudyMetaPatch(item: BankItem): NclexStudyMetaPatch {
-  const subjectId = resolveNclexSubjectId(item.subjectId);
+  const subjectId = resolveNclexSubjectId(item.subjectId ?? "basic-care-comfort");
   const subjectArea = getSubjectArea(NURSING_FIELD, subjectId);
   const topicCategory = subjectArea?.label ?? item.topicCategory ?? subjectId;
   const text = itemText(item);

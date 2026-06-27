@@ -33,6 +33,8 @@ export const libUi = {
   searchInput:
     "w-full rounded-xl border border-transparent bg-[var(--color-surface-elevated)] py-2 pl-9 pr-9 text-[13px] text-[var(--color-ink)] outline-none transition placeholder:text-[var(--color-ink-muted)] focus:border-[var(--color-accent)]/25 focus:bg-[var(--color-surface-elevated)]",
   cardGrid: "grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3",
+  cardCompact:
+    "flex w-full flex-col rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] p-3.5 text-left transition hover:border-[var(--color-accent)]/25 hover:bg-[var(--color-surface)]/60 active:scale-[0.99]",
   listSurface: "divide-y divide-[var(--color-border)]/60 overflow-hidden rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)]",
   listRow:
     "flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors hover:bg-[var(--color-surface)]/60",
