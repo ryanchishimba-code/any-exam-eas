@@ -87,7 +87,7 @@ export function QuestionBankCountWheel({ options, value, onChange }: Props) {
   return (
     <div className="relative mx-auto w-full max-w-sm select-none" style={{ height: WHEEL_H, perspective: "1000px" }}>
       <div
-        className="pointer-events-none absolute inset-x-1 top-1/2 -translate-y-1/2 rounded-2xl border border-[var(--color-accent)]/40 bg-[var(--color-accent)]/[0.06] shadow-[0_0_30px_-8px_rgba(99,102,241,0.4)] ring-1 ring-inset ring-white/40"
+        className="pointer-events-none absolute inset-x-1 top-1/2 -translate-y-1/2 rounded-xl border border-[var(--color-accent)]/25 bg-[var(--color-accent)]/[0.04]"
         style={{ height: ITEM_H }}
         aria-hidden
       />

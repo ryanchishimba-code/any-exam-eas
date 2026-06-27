@@ -1,19 +1,10 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  ClipboardList,
-  Flame,
-  Gauge,
-  LayoutGrid,
-  Target,
-  TrendingDown,
-  TrendingUp,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { DashboardExamCountdown } from "@/components/dashboard/DashboardExamCountdown";
+import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardTodayFocus } from "@/components/dashboard/DashboardTodayFocus";
 import { DashboardViewSections } from "@/components/app/DashboardViewSections";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { ROUTES } from "@/lib/routes";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
@@ -50,137 +41,64 @@ export function DashboardPageContent({
   testDate?: string | null;
 }) {
   const exam = EXAM_CATALOG[examSlug];
-  const theme = EXAM_SELECTION_THEMES[examSlug];
-  const ExamIcon = theme.icon;
   const firstName = displayFirstName(userName);
   const showRecent = recentTests.length > 0;
   const isNewUser = stats.questionsAnswered === 0 && !showRecent;
 
   return (
     <div className={dbUi.page}>
-      <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-        <div className="flex items-center gap-3">
-          <span
-            className={cn(
-              "flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-gradient-to-br text-white shadow-[var(--shadow-apple-sm)]",
-              theme.gradient
-            )}
-          >
-            <ExamIcon className="h-5 w-5" aria-hidden />
-          </span>
-          <div>
-            <p className={dbUi.eyebrow}>Dashboard</p>
-            <h1 className={dbUi.title}>Welcome back, {firstName}</h1>
-            <p className={cn(dbUi.subtitle, "mt-0.5")}>
-              <span className="font-medium text-[var(--color-ink)]">{exam.name}</span>
-            </p>
-          </div>
-        </div>
-        <Link href={`${ROUTES.selectExam}?switch=1`} className={dbUi.switchExam}>
-          <LayoutGrid className="h-3.5 w-3.5" aria-hidden />
-          Switch exam
-        </Link>
-      </header>
+      <DashboardHeader
+        examName={exam.name}
+        userName={userName}
+        readinessScore={headline.readinessScore}
+        accuracyPct={stats.accuracyPct}
+        streakDays={stats.streakDays}
+        questionsToday={stats.questionsToday}
+        trendDelta={headline.trendDelta}
+      />
 
       <DashboardExamCountdown examSlug={examSlug} examName={exam.name} testDate={testDate} />
 
-      <div className={dbUi.pageShell}>
-        <div className={dbUi.panel}>
-          {isNewUser ? (
-            <div className={dbUi.panelSection}>
-              <div className="rounded-3xl border border-[var(--color-accent)]/25 bg-[var(--color-accent)]/[0.05] p-6 sm:p-8">
-                <p className={dbUi.eyebrow}>Get started</p>
-                <h2 className="mt-1 text-xl font-bold text-[var(--color-ink)] sm:text-2xl">
-                  Welcome to {exam.name} prep, {firstName}.
-                </h2>
-                <p className={cn(dbUi.subtitle, "mt-2 max-w-xl")}>
-                  Take your first practice set and we&apos;ll start tracking readiness, weak topics,
-                  and your streak right here.
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2.5">
-                  <Link
-                    href={ROUTES.questionBank}
-                    className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
-                  >
-                    Start practicing
-                    <ArrowRight className="h-4 w-4" aria-hidden />
-                  </Link>
-                  <Link
-                    href={ROUTES.library}
-                    className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] px-5 py-2.5 text-sm font-semibold text-[var(--color-ink)] transition hover:bg-[var(--color-surface)]"
-                  >
-                    Browse the library
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ) : null}
-
-          <div className={dbUi.panelSection}>
-            {isNewUser ? (
-              <p className={dbUi.subtitle}>{headline.motivationalMessage}</p>
-            ) : (
-              <DashboardTodayFocus
-                examSlug={examSlug}
-                examName={exam.name}
-                readinessScore={headline.readinessScore}
-                motivationalMessage={headline.motivationalMessage}
-                dueCount={spacedReview.dueCount}
-                topWeakTopic={weakTopics[0]?.name ?? null}
-                hasRecent={showRecent}
-              />
-            )}
-
-            <div className={dbUi.chipRow}>
-              <StatPill
-                icon={ClipboardList}
-                label="Today"
-                value={String(stats.questionsToday)}
-                highlight={stats.questionsToday > 0}
-              />
-              <StatPill icon={Gauge} label="Readiness" value={`${headline.readinessScore}%`} />
-              <StatPill icon={Target} label="30-day accuracy" value={`${stats.accuracyPct}%`} />
-              <StatPill icon={Flame} label="Streak" value={`${stats.streakDays}d`} />
-              {headline.trendDelta != null ? (
-                <StatPill
-                  icon={headline.trendDelta >= 0 ? TrendingUp : TrendingDown}
-                  label="14-day trend"
-                  value={`${headline.trendDelta >= 0 ? "+" : ""}${headline.trendDelta}%`}
-                />
-              ) : null}
-            </div>
+      {isNewUser ? (
+        <section className={cn(dbUi.surface, "p-4 sm:p-5")}>
+          <p className={dbUi.eyebrow}>Get started</p>
+          <h2 className="mt-1 text-lg font-semibold text-[var(--color-ink)]">
+            Welcome to {exam.name} prep{firstName ? `, ${firstName}` : ""}.
+          </h2>
+          <p className={cn(dbUi.subtitle, "mt-1.5 max-w-xl")}>
+            Take your first practice set and we&apos;ll track readiness, weak topics, and your
+            streak here.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <Link href={ROUTES.questionBank} className={dbUi.primaryBtn}>
+              Start practicing
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+            </Link>
+            <Link href={ROUTES.library} className={dbUi.ghostBtn}>
+              Browse library
+            </Link>
           </div>
+        </section>
+      ) : (
+        <DashboardTodayFocus
+          examSlug={examSlug}
+          examName={exam.name}
+          readinessScore={headline.readinessScore}
+          motivationalMessage={headline.motivationalMessage}
+          dueCount={spacedReview.dueCount}
+          topWeakTopic={weakTopics[0]?.name ?? null}
+          hasRecent={showRecent}
+        />
+      )}
 
-          <DashboardViewSections
-            examSlug={examSlug}
-            weakTopics={weakTopics}
-            spacedReview={spacedReview}
-            roadmap={roadmap}
-            recentTests={recentTests}
-            srsInFocus={!isNewUser && spacedReview.dueCount > 0}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function StatPill({
-  icon: Icon,
-  label,
-  value,
-  highlight,
-}: {
-  icon: typeof Target;
-  label: string;
-  value: string;
-  highlight?: boolean;
-}) {
-  return (
-    <div className={highlight ? dbUi.statPillHighlight : dbUi.statPill}>
-      <Icon className="h-3.5 w-3.5 text-[var(--color-ink-muted)]" aria-hidden />
-      <span className="text-[11px] font-medium text-[var(--color-ink-muted)]">{label}</span>
-      <span>{value}</span>
+      <DashboardViewSections
+        examSlug={examSlug}
+        weakTopics={weakTopics}
+        spacedReview={spacedReview}
+        roadmap={roadmap}
+        recentTests={recentTests}
+        srsInFocus={!isNewUser && spacedReview.dueCount > 0}
+      />
     </div>
   );
 }

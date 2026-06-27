@@ -7,11 +7,9 @@ import { DashboardRecentActivity } from "@/components/dashboard/DashboardRecentA
 import { DashboardSpacedReview } from "@/components/dashboard/DashboardSpacedReview";
 import { DashboardWeakTopics } from "@/components/dashboard/DashboardWeakTopics";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
-import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import type { RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
-import { cn } from "@/lib/utils";
 
 export function DashboardViewSections({
   examSlug,
@@ -36,38 +34,20 @@ export function DashboardViewSections({
 
   return (
     <>
-      <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
-        <DashboardContinueRow examSlug={examSlug} />
-      </div>
+      <DashboardContinueRow examSlug={examSlug} />
 
-      {roadmap ? (
-        <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
-          <DashboardRoadmapPreview examSlug={examSlug} roadmap={roadmap} />
-        </div>
-      ) : null}
+      {roadmap ? <DashboardRoadmapPreview examSlug={examSlug} roadmap={roadmap} /> : null}
 
       {showSpacedReview ? (
-        <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
-          <DashboardSpacedReview examSlug={examSlug} spacedReview={spacedReview} />
-        </div>
+        <DashboardSpacedReview examSlug={examSlug} spacedReview={spacedReview} />
       ) : null}
 
-      {showWeak ? (
-        <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
-          <DashboardWeakTopics examSlug={examSlug} weakTopics={weakTopics} />
-        </div>
-      ) : null}
+      {showWeak ? <DashboardWeakTopics examSlug={examSlug} weakTopics={weakTopics} /> : null}
 
-      {showExplore ? (
-        <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
-          <DashboardExploreRow examSlug={examSlug} />
-        </div>
-      ) : null}
+      {showExplore ? <DashboardExploreRow examSlug={examSlug} /> : null}
 
       {showRecent ? (
-        <div className={cn(dbUi.sectionDivider, dbUi.panelSection)}>
-          <DashboardRecentActivity examSlug={examSlug} recentTests={recentTests} />
-        </div>
+        <DashboardRecentActivity examSlug={examSlug} recentTests={recentTests} />
       ) : null}
     </>
   );

@@ -13,6 +13,7 @@ import {
   questionBankCountOptions,
   validateQuestionBankSession,
 } from "@/lib/study/question-bank-setup";
+import { qbUi } from "@/lib/study/question-bank-ui";
 import { cn } from "@/lib/utils";
 import { QuestionBankCountWheel } from "./question-bank/QuestionBankCountWheel";
 import { QuestionBankSection, QuestionBankSegment } from "./question-bank/QuestionBankSection";
@@ -71,20 +72,19 @@ export function QuestionBankSetup({
   const selectedCount = availableQuestionCount(subjectId, subjectCounts);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       <QuestionBankSection
-        step={1}
         title="Choose a topic"
         hint="Search or scroll — weak topics from your dashboard are marked."
       >
         {weakSubjectIds.length > 0 ? (
-          <p className="mb-3 rounded-[14px] border border-amber-200/70 bg-amber-500/8 px-3 py-2 text-[12px] text-amber-950 dark:text-amber-100">
-            {weakSubjectIds.length} weak topic{weakSubjectIds.length === 1 ? "" : "s"} flagged from
-            your practice history — start there for the biggest gains.
+          <p className={cn(qbUi.surface, "px-3.5 py-2.5 text-[12px] text-[var(--color-ink-muted)]")}>
+            {weakSubjectIds.length} weak topic{weakSubjectIds.length === 1 ? "" : "s"} flagged —
+            start there for the biggest gains.
           </p>
         ) : null}
         {selectedSubject ? (
-          <div className="mb-3 flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[12px] text-[var(--color-ink-muted)]">
+          <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 px-0.5 text-[12px] text-[var(--color-ink-muted)]">
             <span aria-hidden>Practicing</span>
             {examLabel ? (
               <>
@@ -92,7 +92,7 @@ export function QuestionBankSetup({
                 <span aria-hidden>›</span>
               </>
             ) : null}
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent)]/10 px-2.5 py-0.5 font-semibold text-[var(--color-accent)]">
+            <span className="inline-flex items-center gap-1 rounded-full bg-[var(--color-accent)]/10 px-2 py-0.5 font-semibold text-[var(--color-accent)]">
               {selectedSubject.label}
             </span>
             {typeof selectedCount === "number" ? (
@@ -112,17 +112,20 @@ export function QuestionBankSetup({
         />
       </QuestionBankSection>
 
-      <QuestionBankSection step={2} title="Session settings" hint="Scroll to pick length, then tune how questions are chosen.">
+      <QuestionBankSection
+        title="Session settings"
+        hint="Pick length, then tune how questions are chosen."
+      >
         <div className="space-y-5">
           <div>
-            <p className="mb-3 text-[13px] font-medium text-[var(--color-ink-muted)]">Question count</p>
+            <p className={cn(qbUi.sectionHint, "mb-3 px-0.5")}>Question count</p>
             <QuestionBankCountWheel
               options={countOptions}
               value={clampQuestionBankCount(questionCount)}
               onChange={onQuestionCountChange}
             />
             {!validation.ok && validation.message && validation.maxAvailable ? (
-              <p className="mt-2 text-center text-[12px] text-amber-800 dark:text-amber-200" role="status">
+              <p className="mt-2 text-center text-[12px] text-amber-800" role="status">
                 {validation.message}
               </p>
             ) : null}
@@ -130,11 +133,12 @@ export function QuestionBankSetup({
 
           {!compact ? (
             <div>
-              <p className="mb-2 text-[13px] font-medium text-[var(--color-ink-muted)]">Selection style</p>
+              <p className={cn(qbUi.sectionHint, "mb-2 px-0.5")}>Selection style</p>
               <div className="grid gap-2 sm:grid-cols-3">
                 {STYLE_OPTIONS.map((option) => {
                   const disabledMixed =
                     isMixedSubjectId(subjectId) && option.id !== "standard";
+                  const active = bankStyle === option.id;
                   return (
                     <button
                       key={option.id}
@@ -142,15 +146,15 @@ export function QuestionBankSetup({
                       disabled={disabledMixed}
                       onClick={() => onBankStyleChange(option.id)}
                       className={cn(
-                        "rounded-[16px] border px-3.5 py-3 text-left transition active:scale-[0.99]",
-                        disabledMixed && "cursor-not-allowed opacity-45",
-                        bankStyle === option.id
-                          ? "border-[var(--color-accent)]/35 bg-[var(--color-accent)]/5 ring-1 ring-[var(--color-accent)]/20"
-                          : "border-black/[0.06] bg-white hover:border-black/[0.1]"
+                        qbUi.optionCard,
+                        active && qbUi.optionCardActive,
+                        disabledMixed && "cursor-not-allowed opacity-45"
                       )}
                     >
-                      <p className="text-[14px] font-semibold text-[var(--color-ink)]">{option.label}</p>
-                      <p className="mt-0.5 text-[12px] leading-snug text-[var(--color-ink-muted)]">
+                      <p className="text-[13px] font-semibold text-[var(--color-ink)]">
+                        {option.label}
+                      </p>
+                      <p className={cn(qbUi.sectionHint, "mt-0.5")}>
                         {disabledMixed ? "Pick a single topic for this mode" : option.hint}
                       </p>
                     </button>
@@ -161,7 +165,7 @@ export function QuestionBankSetup({
           ) : null}
 
           <div>
-            <p className="mb-2 text-[13px] font-medium text-[var(--color-ink-muted)]">Pace</p>
+            <p className={cn(qbUi.sectionHint, "mb-2 px-0.5")}>Pace</p>
             <QuestionBankSegment
               ariaLabel="Session pace"
               value={pace}
@@ -171,7 +175,7 @@ export function QuestionBankSetup({
                 { id: "timed", label: "Timed" },
               ]}
             />
-            <p className="mt-2 text-[12px] text-[var(--color-ink-muted)]">
+            <p className={cn(qbUi.sectionHint, "mt-2 px-0.5")}>
               {pace === "timed"
                 ? "Per-question timer to simulate exam pressure."
                 : "No clock — review rationales at your own speed."}

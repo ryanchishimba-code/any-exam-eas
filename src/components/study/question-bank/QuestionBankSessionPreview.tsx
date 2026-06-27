@@ -1,7 +1,6 @@
 "use client";
 
-import { AlertCircle } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { AlertCircle, ArrowRight } from "lucide-react";
 import type { QuestionBankPace, QuestionBankStyle } from "@/lib/exam/modes";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import { cn } from "@/lib/utils";
@@ -54,40 +53,35 @@ export function QuestionBankSessionPreview({
           : `Start ${pace} practice · ${questionCount} questions`;
 
   return (
-    <div className={qbUi.startBar}>
+    <div className={qbUi.stickyBar}>
       <div className="space-y-3">
-        <div className="flex flex-wrap items-start justify-between gap-3 px-0.5">
-          <div className="min-w-0 space-y-1">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--color-ink-muted)]">
-              Session preview
+        <div className="min-w-0 space-y-1">
+          <p className={qbUi.eyebrow}>Session preview</p>
+          <p className="truncate text-[14px] font-semibold text-[var(--color-ink)]">{topicLabel}</p>
+          <p className={qbUi.sectionHint}>
+            {isTimedExam ? (
+              <>
+                {timedCount?.toLocaleString()} questions
+                {typeof timedMinutes === "number" ? ` · ~${timedMinutes} min` : null}
+              </>
+            ) : (
+              <>
+                {questionCount} questions · {styleLabel(bankStyle)} ·{" "}
+                {pace === "timed" ? "Timed" : "Untimed"} · ~{estimatedMinutes} min
+              </>
+            )}
+          </p>
+          {typeof availableCount === "number" && !isTimedExam ? (
+            <p className="text-[11px] tabular-nums text-[var(--color-ink-muted)]">
+              {availableCount.toLocaleString()} available in pool
             </p>
-            <p className="truncate text-[15px] font-semibold text-[var(--color-ink)]">{topicLabel}</p>
-            <p className="text-[12px] text-[var(--color-ink-muted)]">
-              {isTimedExam ? (
-                <>
-                  {timedCount?.toLocaleString()} questions
-                  {typeof timedMinutes === "number" ? ` · ~${timedMinutes} min` : null}
-                </>
-              ) : (
-                <>
-                  {questionCount} questions · {styleLabel(bankStyle)} · {pace === "timed" ? "Timed" : "Untimed"}
-                  {` · ~${estimatedMinutes} min`}
-                </>
-              )}
-            </p>
-            {typeof availableCount === "number" && !isTimedExam ? (
-              <p className="text-[11px] tabular-nums text-[var(--color-ink-muted)]">
-                {availableCount.toLocaleString()} available in pool
-              </p>
-            ) : null}
-          </div>
+          ) : null}
         </div>
 
         {validationMessage ? (
           <div
             className={cn(
-              "flex items-start gap-2 rounded-[14px] border px-3 py-2.5 text-[12px]",
-              "border-amber-200/80 bg-amber-500/8 text-amber-950 dark:text-amber-100"
+              "flex items-start gap-2 rounded-xl border border-amber-200/60 bg-amber-500/6 px-3 py-2.5 text-[12px] text-amber-950"
             )}
             role="alert"
           >
@@ -96,14 +90,15 @@ export function QuestionBankSessionPreview({
           </div>
         ) : null}
 
-        <Button
+        <button
           type="button"
           disabled={disabled || loading}
-          className={qbUi.startBtn}
+          className={qbUi.primaryBtn}
           onClick={onStart}
         >
           {startLabel}
-        </Button>
+          <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+        </button>
       </div>
     </div>
   );

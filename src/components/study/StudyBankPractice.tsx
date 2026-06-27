@@ -49,7 +49,8 @@ import {
 } from "@/lib/exam-prep/practice-modes";
 import type { PracticeFieldId } from "@/lib/subjects/field-ids";
 import { QuestionBankSetup } from "./QuestionBankSetup";
-import { QuestionBankExamHero } from "./question-bank/QuestionBankExamHero";
+import { QuestionBankHeader } from "./question-bank/QuestionBankHeader";
+import type { QuestionBankHubStats } from "./question-bank/QuestionBankPracticeLoader";
 import { StudyUsageBanner } from "@/components/study/StudyUsageBanner";
 import { studyLimitMessage } from "@/lib/study/usage-limit-messages";
 import { QuestionBankSection, QuestionBankSegment } from "./question-bank/QuestionBankSection";
@@ -197,6 +198,10 @@ export function StudyBankPractice({
   initialSubjectCounts,
   initialSubjectCountsFieldId,
   weakTopics = [],
+  hubStats,
+  usmleStepLabel,
+  topicCount = null,
+  totalQuestions = null,
 }: {
   preferredExamSlug?: ExamSlug;
   lockExam?: boolean;
@@ -207,6 +212,10 @@ export function StudyBankPractice({
   initialSubjectCountsFieldId?: string;
   /** Analytics weak topics — drives badges and default topic selection. */
   weakTopics?: WeakTopicRow[];
+  hubStats?: QuestionBankHubStats;
+  usmleStepLabel?: string;
+  topicCount?: number | null;
+  totalQuestions?: number | null;
 } = {}) {
   const router = useRouter();
   const pathname = usePathname();
@@ -898,18 +907,21 @@ export function StudyBankPractice({
         </div>
       ) : null}
 
-      <div className={qbUi.pageShell}>
-        <StudyUsageBanner className="mb-4" compact={onQuestionBank} />
-        <div className={cn(qbUi.panel, qbUi.panelInner)}>
-          {examLocked && lockedExam && effectiveExamSlug ? (
-            <QuestionBankExamHero
-              exam={lockedExam}
-              examSlug={effectiveExamSlug}
-              description={activeExamOption?.description}
-            />
-          ) : null}
+      {onQuestionBank && examLocked && lockedExam && effectiveExamSlug ? (
+        <QuestionBankHeader
+          examName={lockedExam.shortName}
+          usmleStepLabel={usmleStepLabel}
+          practiceMode={practiceMode}
+          topicCount={topicCount}
+          totalQuestions={totalQuestions}
+          readinessScore={hubStats?.readinessScore}
+          streakDays={hubStats?.streakDays}
+        />
+      ) : null}
 
-          <QuestionBankSection title="Practice type" hint={activeMode?.description}>
+      <StudyUsageBanner compact={onQuestionBank} />
+
+      <QuestionBankSection title="Practice type" hint={activeMode?.description}>
             <QuestionBankSegment
               ariaLabel="Practice type"
               value={practiceMode}
@@ -950,14 +962,12 @@ export function StudyBankPractice({
                       });
                     }}
                     className={cn(
-                      "rounded-[16px] border px-3 py-2.5 text-left text-sm transition active:scale-[0.99]",
-                      fieldId === opt.id
-                        ? "border-[var(--color-accent)]/35 bg-[var(--color-accent)]/5 ring-1 ring-[var(--color-accent)]/20"
-                        : "border-black/[0.06] bg-white hover:border-black/[0.1]"
+                      qbUi.optionCard,
+                      fieldId === opt.id && qbUi.optionCardActive
                     )}
                   >
-                    <p className="font-semibold text-[var(--color-ink)]">{opt.label}</p>
-                    <p className="mt-0.5 text-[11px] text-[var(--color-ink-muted)]">{opt.format}</p>
+                    <p className="text-[13px] font-semibold text-[var(--color-ink)]">{opt.label}</p>
+                    <p className={cn(qbUi.sectionHint, "mt-0.5")}>{opt.format}</p>
                   </button>
                 ))}
               </div>
@@ -979,13 +989,11 @@ export function StudyBankPractice({
                       });
                     }}
                     className={cn(
-                      "rounded-[16px] border px-3 py-2.5 text-left text-sm transition active:scale-[0.99]",
-                      fieldId === opt.id
-                        ? "border-[var(--color-accent)]/35 bg-[var(--color-accent)]/5 ring-1 ring-[var(--color-accent)]/20"
-                        : "border-black/[0.06] bg-white hover:border-black/[0.1]"
+                      qbUi.optionCard,
+                      fieldId === opt.id && qbUi.optionCardActive
                     )}
                   >
-                    <p className="font-semibold text-[var(--color-ink)]">{opt.label}</p>
+                    <p className="text-[13px] font-semibold text-[var(--color-ink)]">{opt.label}</p>
                   </button>
                 ))}
               </div>
@@ -1021,7 +1029,7 @@ export function StudyBankPractice({
           {isMpje && mpjeVariant === "state" ? <MpjePracticeBanner stateCode={mpjeState} /> : null}
 
           {isMpje ? (
-            <div className="space-y-4 rounded-[18px] border border-black/[0.05] bg-black/[0.02] p-4">
+            <div className={cn(qbUi.surface, "space-y-4 p-4")}>
               <MpjeVariantSelector
                 variant={mpjeVariant}
                 onVariantChange={(v) => {
@@ -1096,10 +1104,10 @@ export function StudyBankPractice({
           ) : null}
 
           {isTimedExam ? (
-            <div className={qbUi.insetGroup}>
-              <div className="space-y-2 px-4 py-4">
-                <p className="text-[14px] font-semibold text-[var(--color-ink)]">Full exam simulation</p>
-                <p className="text-[13px] text-[var(--color-ink-muted)]">{lengthLabel}</p>
+            <div className={cn(qbUi.surface, "p-4")}>
+              <div className="space-y-2">
+                <p className="text-[13px] font-semibold text-[var(--color-ink)]">Full exam simulation</p>
+                <p className={qbUi.sectionHint}>{lengthLabel}</p>
                 <ul className="space-y-1.5 pt-1 text-[12px] text-[var(--color-ink-muted)]">
                   <li>Mixed questions from your full exam bank</li>
                   <li>No topic filter — mirrors test-day conditions</li>
@@ -1118,9 +1126,9 @@ export function StudyBankPractice({
           ) : null}
 
           {isMpje && mpjeVariant === "state" ? (
-            <div className="rounded-[18px] border border-amber-200/70 bg-gradient-to-br from-amber-500/8 to-orange-500/5 px-4 py-4">
-              <p className="text-[14px] font-semibold text-[var(--color-ink)]">MPJE board simulator</p>
-              <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">
+            <div className={cn(qbUi.surface, "p-4")}>
+              <p className="text-[13px] font-semibold text-[var(--color-ink)]">MPJE board simulator</p>
+              <p className={cn(qbUi.sectionHint, "mt-1")}>
                 120 questions · 2.5 hours · flag &amp; review for{" "}
                 {getMpjeState(mpjeState)?.name ?? (mpjeState || "federal")} law.
               </p>
@@ -1170,8 +1178,6 @@ export function StudyBankPractice({
             timedCount={timedCount}
             timedMinutes={previewTimedMinutes}
           />
-        </div>
-      </div>
     </div>
   );
 }

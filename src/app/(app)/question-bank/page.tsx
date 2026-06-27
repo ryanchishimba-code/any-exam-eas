@@ -3,7 +3,6 @@ import { auth } from "@/auth";
 import { Suspense } from "react";
 import { PremiumGate } from "@/components/PremiumGate";
 import { ProBenefitsCallout } from "@/components/ProBenefitsCallout";
-import { StudyPageHeader } from "@/components/study/StudyPageHeader";
 import { QuestionBankPracticeLoader } from "@/components/study/question-bank/QuestionBankPracticeLoader";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
@@ -18,6 +17,8 @@ import {
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
+import { usmleStepDefinition, defaultUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
+import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 
@@ -28,10 +29,43 @@ export const metadata = {
 
 function QuestionBankPracticeSkeleton() {
   return (
-    <div className="space-y-4">
+    <div className="question-bank-ui mx-auto w-full min-w-0 max-w-5xl space-y-5 pb-10">
       <Skeleton className="h-28 w-full rounded-2xl" />
-      <Skeleton className="h-72 w-full rounded-[28px]" />
+      <Skeleton className="h-10 w-48 rounded-xl" />
+      <Skeleton className="h-64 w-full rounded-2xl" />
+      <Skeleton className="h-40 w-full rounded-2xl" />
+      <Skeleton className="h-24 w-full rounded-2xl" />
     </div>
+  );
+}
+
+async function QuestionBankContent({
+  userId,
+  examSlug,
+  fieldParam,
+}: {
+  userId: string;
+  examSlug: keyof typeof EXAM_CATALOG;
+  fieldParam: string;
+}) {
+  const dashboard = await getStudentDashboardData(userId);
+  const meta = examSlug === "usmle" ? await getUserEdtechMetadata(userId) : null;
+  const usmleStep =
+    examSlug === "usmle"
+      ? usmleStepDefinition(meta?.usmleFieldId ?? defaultUsmleFieldId())
+      : null;
+
+  return (
+    <QuestionBankPracticeLoader
+      userId={userId}
+      examSlug={examSlug}
+      fieldParam={fieldParam}
+      usmleStepLabel={usmleStep?.shortName}
+      hubStats={{
+        readinessScore: dashboard.headline.readinessScore,
+        streakDays: dashboard.headline.studyStreakDays,
+      }}
+    />
   );
 }
 
@@ -67,8 +101,6 @@ export default async function QuestionBankPage({
     if (fieldMatchesExamSlug(resolvedFieldId, examSlug)) {
       fieldParam = resolvedFieldId;
     } else if (isPracticeFieldId(resolvedFieldId) && examSlugForFieldId(resolvedFieldId)) {
-      // Honor explicit deep links (e.g. USMLE step picker → usmle-step-1) by
-      // switching the user's active exam instead of bouncing to their old one.
       const synced = await syncExamPreferenceForField(session.user.id, resolvedFieldId);
       if (synced) {
         examSlug = synced;
@@ -104,22 +136,13 @@ export default async function QuestionBankPage({
     redirect(`${ROUTES.questionBank}?${qs.toString()}`);
   }
 
-  const activeExam = EXAM_CATALOG[examSlug];
-
   return (
     <div className="w-full space-y-5">
-      <StudyPageHeader
-        eyebrow="Question Bank"
-        title={`Practice ${activeExam.shortName}`}
-        subtitle="Pick a topic, tune your session, and start — every question matches your exam."
-        breadcrumbs={[{ label: "Dashboard", href: ROUTES.dashboard }]}
-      />
-
       <ProBenefitsCallout />
 
       <PremiumGate callbackPath={ROUTES.questionBank}>
         <Suspense fallback={<QuestionBankPracticeSkeleton />}>
-          <QuestionBankPracticeLoader
+          <QuestionBankContent
             userId={session.user.id}
             examSlug={examSlug}
             fieldParam={fieldParam}

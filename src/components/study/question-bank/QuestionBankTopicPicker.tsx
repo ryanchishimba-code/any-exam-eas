@@ -9,12 +9,6 @@ import { cn } from "@/lib/utils";
 
 type SubjectOption = { id: string; label: string };
 
-/**
- * Subject/organ-system picker — an Apple-style icon-card grid that mirrors the
- * Library's Subjects view (shared `subjectVisual` glyphs/tints) for a consistent
- * platform feel. Each card shows the live, serve-accurate question count; the
- * selected card is clearly highlighted.
- */
 export function QuestionBankTopicPicker({
   subjects,
   subjectId,
@@ -27,7 +21,6 @@ export function QuestionBankTopicPicker({
   subjectId: string;
   subjectCounts?: Record<string, number> | null;
   onSubjectChange: (subjectId: string) => void;
-  /** When true, show an all-topics mixed session card (standard bank mode). */
   allowMixed?: boolean;
   weakSubjectIds?: string[];
 }) {
@@ -39,19 +32,17 @@ export function QuestionBankTopicPicker({
     return subjects.filter((s) => s.label.toLowerCase().includes(q));
   }, [query, subjects]);
 
-  // Sum only the subjects we can show counts for, so the total never claims more
-  // than the per-topic numbers add up to.
   const totalCount = useMemo(() => {
     if (!subjectCounts) return null;
     return subjects.reduce((sum, s) => sum + (subjectCounts[s.id] ?? 0), 0);
   }, [subjects, subjectCounts]);
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2.5">
       <label className="relative block">
         <span className="sr-only">Search topics</span>
         <Search
-          className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--color-ink-muted)]"
+          className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--color-ink-muted)]"
           aria-hidden
         />
         <input
@@ -63,19 +54,17 @@ export function QuestionBankTopicPicker({
         />
       </label>
 
-      {filtered.length === 0 ? (
-        <div className={cn(qbUi.insetGroup, "px-4 py-10 text-center text-sm text-[var(--color-ink-muted)]")}>
-          No topics match &ldquo;{query}&rdquo;
-        </div>
+      {filtered.length === 0 && !(allowMixed && !query.trim()) ? (
+        <div className={qbUi.emptyState}>No topics match &ldquo;{query}&rdquo;</div>
       ) : (
         <div
-          className="max-h-[min(56vh,460px)] overflow-y-auto rounded-[16px] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="max-h-[min(52vh,420px)] overflow-y-auto rounded-2xl [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           role="listbox"
           aria-label="Topics"
         >
-          <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className={qbUi.listSurface}>
             {allowMixed && !query.trim() ? (
-              <MixedTopicCard
+              <MixedTopicRow
                 selected={subjectId === MIXED_SUBJECT_ID}
                 totalCount={totalCount}
                 onSelect={() => onSubjectChange(MIXED_SUBJECT_ID)}
@@ -85,6 +74,7 @@ export function QuestionBankTopicPicker({
               const selected = subject.id === subjectId;
               const count = subjectCounts?.[subject.id];
               const isWeak = weakSubjectIds?.includes(subject.id);
+              const disabled = typeof count === "number" && count <= 0;
               const { icon: Icon, tint } = subjectVisual(subject.label);
               return (
                 <button
@@ -92,41 +82,42 @@ export function QuestionBankTopicPicker({
                   type="button"
                   role="option"
                   aria-selected={selected}
-                  disabled={typeof count === "number" && count <= 0}
+                  disabled={disabled}
                   onClick={() => onSubjectChange(subject.id)}
                   className={cn(
-                    "group relative flex flex-col rounded-[18px] border p-4 text-left transition active:scale-[0.99]",
-                    typeof count === "number" && count <= 0 && "cursor-not-allowed opacity-50",
-                    selected
-                      ? "border-[var(--color-accent)]/40 bg-[var(--color-accent)]/[0.06] ring-1 ring-[var(--color-accent)]/25"
-                      : "border-[var(--color-border)] bg-[var(--color-surface-elevated)] shadow-[var(--shadow-apple-sm)] hover:-translate-y-0.5 hover:border-[var(--color-accent)]/25 hover:shadow-[var(--shadow-apple-md)]"
+                    qbUi.listRow,
+                    selected && qbUi.listRowSelected,
+                    disabled && "cursor-not-allowed opacity-45"
                   )}
                 >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className={cn("inline-flex h-10 w-10 items-center justify-center rounded-2xl", tint)}>
-                      <Icon className="h-5 w-5" aria-hidden />
-                    </span>
-                    <div className="flex items-center gap-1.5">
-                      {isWeak ? (
-                        <span className="rounded-full bg-amber-500/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-800 dark:text-amber-200">
-                          Weak
-                        </span>
-                      ) : null}
-                      {selected ? (
-                        <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-accent)] text-white">
-                          <Check className="h-3.5 w-3.5" aria-hidden />
-                        </span>
-                      ) : null}
-                    </div>
-                  </div>
-                  <p className="mt-3 text-[15px] font-semibold leading-snug tracking-tight text-[var(--color-ink)]">
-                    {subject.label}
-                  </p>
-                  {typeof count === "number" ? (
-                    <p className="mt-0.5 text-[12px] tabular-nums text-[var(--color-ink-muted)]">
-                      {count.toLocaleString()} {count === 1 ? "question" : "questions"}
+                  <span
+                    className={cn(
+                      "inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl",
+                      tint
+                    )}
+                  >
+                    <Icon className="h-4 w-4" aria-hidden />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-[13px] font-semibold text-[var(--color-ink)]">
+                      {subject.label}
                     </p>
-                  ) : null}
+                    {typeof count === "number" ? (
+                      <p className={qbUi.sectionHint}>
+                        {count.toLocaleString()} {count === 1 ? "question" : "questions"}
+                      </p>
+                    ) : null}
+                  </div>
+                  <div className="flex shrink-0 items-center gap-1.5">
+                    {isWeak ? (
+                      <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-800">
+                        Weak
+                      </span>
+                    ) : null}
+                    {selected ? (
+                      <Check className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+                    ) : null}
+                  </div>
                 </button>
               );
             })}
@@ -134,7 +125,7 @@ export function QuestionBankTopicPicker({
         </div>
       )}
 
-      <p className="text-[12px] text-[var(--color-ink-muted)]">
+      <p className={qbUi.sectionHint}>
         {subjects.length} topics · {filtered.length} shown
         {totalCount !== null ? (
           <> · {totalCount.toLocaleString()} questions available</>
@@ -144,7 +135,7 @@ export function QuestionBankTopicPicker({
   );
 }
 
-function MixedTopicCard({
+function MixedTopicRow({
   selected,
   totalCount,
   onSelect,
@@ -159,32 +150,19 @@ function MixedTopicCard({
       role="option"
       aria-selected={selected}
       onClick={onSelect}
-      className={cn(
-        "group relative flex flex-col rounded-[18px] border p-4 text-left transition active:scale-[0.99]",
-        selected
-          ? "border-[var(--color-accent)]/40 bg-[var(--color-accent)]/[0.06] ring-1 ring-[var(--color-accent)]/25"
-          : "border-[var(--color-border)] bg-[var(--color-surface-elevated)] shadow-[var(--shadow-apple-sm)] hover:-translate-y-0.5 hover:border-[var(--color-accent)]/25 hover:shadow-[var(--shadow-apple-md)]"
-      )}
+      className={cn(qbUi.listRow, selected && qbUi.listRowSelected)}
     >
-      <div className="flex items-center justify-between gap-2">
-        <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-500/12 text-indigo-700 dark:text-indigo-300">
-          <Layers className="h-5 w-5" aria-hidden />
-        </span>
-        {selected ? (
-          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[var(--color-accent)] text-white">
-            <Check className="h-3.5 w-3.5" aria-hidden />
-          </span>
-        ) : null}
+      <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[var(--color-accent)]/10 text-[var(--color-accent)]">
+        <Layers className="h-4 w-4" aria-hidden />
+      </span>
+      <div className="min-w-0 flex-1">
+        <p className="text-[13px] font-semibold text-[var(--color-ink)]">{MIXED_SUBJECT_LABEL}</p>
+        <p className={qbUi.sectionHint}>
+          Random across all topics
+          {totalCount !== null ? <> · {totalCount.toLocaleString()} questions</> : null}
+        </p>
       </div>
-      <p className="mt-3 text-[15px] font-semibold leading-snug tracking-tight text-[var(--color-ink)]">
-        {MIXED_SUBJECT_LABEL}
-      </p>
-      <p className="mt-0.5 text-[12px] text-[var(--color-ink-muted)]">
-        Random across all topics
-        {totalCount !== null ? (
-          <> · {totalCount.toLocaleString()} questions</>
-        ) : null}
-      </p>
+      {selected ? <Check className="h-4 w-4 shrink-0 text-[var(--color-accent)]" aria-hidden /> : null}
     </button>
   );
 }

@@ -10,16 +10,6 @@ import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
-/**
- * "Today's focus" hero — the one obvious next step on the dashboard.
- *
- * Apple-like: a single primary action, a calm readiness ring, and a one-line
- * reason. The action is chosen by pedagogical priority so the student never has
- * to decide what to do next:
- *   due spaced reviews → weakest area → keep practicing → first set.
- *
- * Purely presentational + link-based; preserves all existing dashboard behavior.
- */
 type NextAction = {
   label: string;
   href: string;
@@ -46,28 +36,28 @@ function resolveNextAction({
       href: spacedReviewHref(examSlug, count),
       reason:
         dueCount === 1
-          ? "1 question is due for spaced review — clear it before it slips."
-          : `${dueCount} questions are due for spaced review — clear them before they slip.`,
+          ? "1 question is due for spaced review."
+          : `${dueCount} questions are due for spaced review.`,
     };
   }
   if (topWeakTopic) {
     return {
       label: `Strengthen ${topWeakTopic}`,
       href: spacedReviewHref(examSlug, 15),
-      reason: "Your weakest area right now — a short adaptive set will lift it.",
+      reason: "Your weakest area — a short adaptive set will help.",
     };
   }
   if (hasRecent) {
     return {
       label: `Practice ${examName}`,
       href: questionBankHref(examSlug),
-      reason: "Nothing due — keep your streak going with a focused set.",
+      reason: "Nothing due — keep your streak with a focused set.",
     };
   }
   return {
     label: "Start your first set",
     href: questionBankHref(examSlug),
-    reason: "Take your first set to unlock readiness, streaks, and spaced review.",
+    reason: "Unlock readiness, streaks, and spaced review.",
   };
 }
 
@@ -99,37 +89,31 @@ export function DashboardTodayFocus({
   return (
     <section
       aria-labelledby="dashboard-focus-heading"
-      className="rounded-[20px] border border-[var(--color-border)] bg-[var(--color-surface)] p-5 sm:p-6"
+      className={cn(dbUi.surface, "p-4 sm:p-5")}
     >
-      <div className="flex flex-col items-center gap-5 sm:flex-row sm:items-center sm:gap-6">
-      <ReadinessRing score={readinessScore} />
+      <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-5">
+        <ReadinessRing score={readinessScore} />
 
-      <div className="min-w-0 flex-1 text-center sm:text-left">
-        <p id="dashboard-focus-heading" className={dbUi.eyebrow}>
-          Today&apos;s focus
-        </p>
-        <p className="mt-1 text-[17px] font-semibold leading-snug tracking-tight text-[var(--color-ink)] sm:text-[19px]">
-          {motivationalMessage}
-        </p>
-        <p className={cn(dbUi.sectionHint, "mt-1")}>{action.reason}</p>
+        <div className="min-w-0 flex-1 text-center sm:text-left">
+          <p id="dashboard-focus-heading" className={dbUi.eyebrow}>
+            Today&apos;s focus
+          </p>
+          <p className="mt-0.5 text-[16px] font-semibold leading-snug text-[var(--color-ink)]">
+            {motivationalMessage}
+          </p>
+          <p className={cn(dbUi.sectionHint, "mt-1")}>{action.reason}</p>
 
-        <div className="mt-4 flex flex-wrap items-center justify-center gap-2.5 sm:justify-start">
-          <Link
-            href={action.href}
-            className="inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-white shadow-[var(--shadow-apple-sm)] transition hover:opacity-90 active:scale-[0.99]"
-          >
-            {action.label}
-            <ArrowRight className="h-4 w-4" aria-hidden />
-          </Link>
-          <Link
-            href={analyticsHref()}
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] px-4 py-2.5 text-sm font-semibold text-[var(--color-ink)] transition hover:bg-[var(--color-surface)]"
-          >
-            <BarChart3 className="h-4 w-4 text-[var(--color-ink-muted)]" aria-hidden />
-            Insights
-          </Link>
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+            <Link href={action.href} className={dbUi.primaryBtn}>
+              {action.label}
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+            </Link>
+            <Link href={analyticsHref()} className={dbUi.ghostBtn}>
+              <BarChart3 className="h-3.5 w-3.5" aria-hidden />
+              Insights
+            </Link>
+          </div>
         </div>
-      </div>
       </div>
     </section>
   );
