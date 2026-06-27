@@ -138,6 +138,8 @@
     "db:enrich-nclex-guidelines:dry": "bash scripts/run-with-node.sh npx tsx scripts/enrich-bank-guidelines.ts --field nursing --dry-run --limit 50",
     "db:enrich-naplex-guidelines": "bash scripts/run-with-node.sh npx tsx scripts/enrich-bank-guidelines.ts --field pharmacy",
     "db:audit-nclex-served": "bash scripts/run-with-node.sh npx tsx scripts/audit-nclex-served-alignment.ts",
+    "db:rebalance-nclex-delegation": "bash scripts/run-with-node.sh npx tsx scripts/rebalance-nclex-delegation.ts",
+    "db:rebalance-nclex-delegation:dry": "npx tsx scripts/rebalance-nclex-delegation.ts --dry-run",
     "db:audit-nclex": "npx tsx scripts/audit-nclex-questions.ts",
     "db:audit-nclex:deep": "npx tsx scripts/audit-nclex-questions.ts --deep",
     "db:audit-nclex:json": "npx tsx scripts/audit-nclex-questions.ts --json",

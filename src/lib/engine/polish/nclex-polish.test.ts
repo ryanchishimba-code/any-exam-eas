@@ -221,8 +221,9 @@ describe("nclex-polish", () => {
       443
     );
     expect(changed).toBe(true);
-    expect(item.question).toMatch(/delegate|UAP/i);
-    expect(item.question).not.toMatch(/infection control measure/i);
+    expect(item.question).toMatch(/infection control|precautions/i);
+    expect(item.question).not.toMatch(/delegate|UAP/i);
+    expect(item.vignette).not.toMatch(/assign tasks to unlicensed assistive personnel/i);
     expect(auditBankItem(item, "nursing").ok).toBe(true);
   });
 });

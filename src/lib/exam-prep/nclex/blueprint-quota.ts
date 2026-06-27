@@ -79,13 +79,26 @@ const STEM_FORMATS = [
   "Which action should the nurse take first?",
   "Which finding should the nurse report to the provider immediately?",
   "Which intervention is the priority for this client?",
-  "Which action should the nurse delegate to the UAP?",
   "Which statement by the client indicates a need for further teaching?",
   "Which laboratory value requires immediate follow-up?",
   "Which nursing action is most appropriate?",
   "Which finding is the highest priority?",
   "Which action demonstrates safe nursing practice?",
   "Which response by the nurse is therapeutic?",
+] as const;
+
+const DELEGATION_STEM = "Which action should the nurse delegate to the UAP?";
+
+/** Weighted MOC topics — delegation is high-yield but not dominant (~12%). */
+const MOC_TOPIC_WEIGHTS = [
+  "prioritization",
+  "prioritization",
+  "prioritization",
+  "advocacy",
+  "informed consent",
+  "assignment",
+  "discharge planning",
+  "delegation",
 ] as const;
 
 /** Case study clinical themes — high-yield, board-level. */
@@ -112,11 +125,17 @@ function resolveSubjectId(slot: QuestionSlot): NclexClientNeedsId {
 }
 
 function pickTopic(subjectId: NclexClientNeedsId, index: number, examSeed: number): string {
+  if (subjectId === "management-of-care") {
+    return MOC_TOPIC_WEIGHTS[(index + examSeed) % MOC_TOPIC_WEIGHTS.length]!;
+  }
   const topics = HIGH_YIELD_ROTATION[subjectId];
   return topics[(index + examSeed) % topics.length]!;
 }
 
-function pickStemFormat(index: number, examSeed: number): string {
+function pickStemFormat(index: number, examSeed: number, blueprintTopic: string): string {
+  if (blueprintTopic === "delegation") {
+    return DELEGATION_STEM;
+  }
   return STEM_FORMATS[(index + examSeed) % STEM_FORMATS.length]!;
 }
 
@@ -178,13 +197,14 @@ export function planNclexFullExamSlots(params: {
 
   let slots: NclexGenerationSlot[] = baseSlots.map((slot, slotIndex) => {
     const subjectId = resolveSubjectId(slot);
+    const blueprintTopic = pickTopic(subjectId, slotIndex, examSeed);
     return {
       ...slot,
       slotIndex,
       subjectId,
-      blueprintTopic: pickTopic(subjectId, slotIndex, examSeed),
+      blueprintTopic,
       difficulty: 2 + ((slotIndex + examSeed) % 4),
-      stemFormat: pickStemFormat(slotIndex, examSeed),
+      stemFormat: pickStemFormat(slotIndex, examSeed, blueprintTopic),
     };
   });
 

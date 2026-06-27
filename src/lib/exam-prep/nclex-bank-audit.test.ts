@@ -22,6 +22,7 @@ describe("auditNclexBankItem", () => {
   it("flags stable delegation with unstable vitals", () => {
     const result = auditNclexBankItem(
       item({
+        subjectId: "management-of-care",
         vignette:
           "An 8-year-old boy with moderate persistent asthma is stable after initial assessment. SpO2 90%, peak flow 45% of personal best, retractions noted.",
         question: "Which task is appropriate to delegate to the UAP?",
@@ -33,6 +34,7 @@ describe("auditNclexBankItem", () => {
   it("flags delegation stem with handoff vignette", () => {
     const result = auditNclexBankItem(
       item({
+        subjectId: "management-of-care",
         vignette:
           "During shift handoff, the outgoing nurse reports a client with chest pain and diaphoresis.",
         question: "Which task is appropriate to delegate to the UAP?",
@@ -74,6 +76,7 @@ describe("auditNclexBankItem", () => {
   it("passes a coherent delegation item", () => {
     const result = auditNclexBankItem(
       item({
+        subjectId: "management-of-care",
         vignette:
           "A 62-year-old woman recovering from hip replacement is stable after initial assessment. She uses a walker and needs assistance with ambulation.",
         question: "Which task is appropriate to delegate to the UAP?",
@@ -118,6 +121,20 @@ describe("auditNclexBankItem", () => {
       })
     );
     expect(result.issues.some((i) => i.code === "stem_vignette_template_mismatch")).toBe(true);
+  });
+
+  it("flags delegation stem on non–management-of-care subject", () => {
+    const result = auditNclexBankItem(
+      item({
+        subjectId: "pharmacology-nursing",
+        vignette:
+          "Medical-surgical unit. Room 210. A 58-year-old man with type 2 diabetes is stable after initial assessment. The RN must assign tasks to unlicensed assistive personnel (UAP) while maintaining accountability.",
+        question: "Which task is appropriate for the nurse to delegate to UAP?",
+        options: ["A", "B", "C", "D"],
+        correctAnswer: "A",
+      })
+    );
+    expect(result.issues.some((i) => i.code === "delegation_wrong_subject")).toBe(true);
   });
 
   it("flags phantom diagnosis in delegation distractors", () => {

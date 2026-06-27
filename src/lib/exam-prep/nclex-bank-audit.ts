@@ -12,6 +12,11 @@ import {
   nclexNgnCorrectAnswerValid,
   shouldSkipMcqCorrectAnswerCheck,
 } from "@/lib/exam-prep/nclex-ngn-audit";
+import {
+  delegationAllowedForSubject,
+  hasNclexDelegationVignette,
+  isNclexDelegationStem,
+} from "@/lib/exam-prep/nclex/delegation-balance";
 
 export type NclexAuditIssue = {
   code: string;
@@ -34,9 +39,6 @@ const UNSTABLE_VITAL_CUES =
 
 const STABLE_ASSERTION =
   /stable after initial assessment|(?:client|patient) is stable|alert and oriented|asymptomatic|due for routine|discharge teaching only|chronic stable pain rated [12]\/10/i;
-
-const DELEGATION_VIGNETTE =
-  /assign tasks to (?:unlicensed assistive personnel|UAP)|maintaining accountability|delegate tasks to UAP/i;
 
 const INFECTION_STEM =
   /infection|precaution|isolation|PPE|hand hygiene|contact precaution|transmission-based|droplet precaution|airborne precaution/i;
@@ -215,6 +217,17 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
   }
 
   if (/delegate|UAP|unlicensed assistive personnel/i.test(stem)) {
+    if (
+      item.subjectId &&
+      isNclexDelegationStem(stem, vignette) &&
+      !delegationAllowedForSubject(item.subjectId)
+    ) {
+      push(
+        "error",
+        "delegation_wrong_subject",
+        "Delegation/UAP stem belongs under Management of Care, not this Client Needs category."
+      );
+    }
     if (!/UAP|unlicensed assistive personnel|assign tasks to/i.test(blob)) {
       push(
         "error",
@@ -259,7 +272,7 @@ export function auditNclexBankItem(item: BankItem): NclexAuditReport {
   }
 
   const clinicalBody = stripInfectionBoilerplate(vignette);
-  const vignetteDelegation = DELEGATION_VIGNETTE.test(vignette);
+  const vignetteDelegation = hasNclexDelegationVignette(vignette);
   const stemInfection = INFECTION_STEM.test(stem);
   const vignetteInfection =
     hasTrueInfectionContext(clinicalBody) || INFECTION_VIGNETTE.test(clinicalBody);

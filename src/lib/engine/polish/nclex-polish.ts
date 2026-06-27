@@ -13,6 +13,12 @@ import {
   resolveNclexStem,
   stripInfectionBoilerplate,
 } from "@/lib/exam-prep/nclex-bank-audit";
+import {
+  delegationAllowedForSubject,
+  hasNclexDelegationVignette,
+  isNclexDelegationStem,
+  NCLEX_DELEGATION_SUBJECT_ID,
+} from "@/lib/exam-prep/nclex/delegation-balance";
 
 const NCLEX_PREFIX = /^NCLEX\s+\d+:\s*/i;
 
@@ -687,25 +693,37 @@ function detectTemplate(stem: string, subjectId: string, seed: number, blob?: st
   const vignettePart = blob?.includes("\n\n") ? blob.split("\n\n")[0] ?? "" : "";
   const vignetteText = vignettePart || full;
   const clinicalBody = stripInfectionBoilerplate(vignetteText);
-
-  const vignetteDelegation =
-    /assign tasks to (?:unlicensed assistive personnel|UAP)|maintaining accountability/i.test(
-      vignetteText
-    );
+  const mocSubject = delegationAllowedForSubject(subjectId);
+  const stemIsDelegation = isNclexDelegationStem(stem);
+  const vignetteDelegation = hasNclexDelegationVignette(vignetteText);
   const vignetteInfection = hasTrueInfectionContext(clinicalBody);
   const stemInfection = /infection|precaution|isolation|PPE|hand hygiene|contact precaution|transmission-based/i.test(
     stem
   );
 
-  if (vignetteDelegation && stemInfection && !vignetteInfection) return "delegation";
-  if (stemInfection && !vignetteInfection) {
-    const inferred = inferNclexTemplateFromClinical(vignetteText, stem);
-    if (inferred) return inferred;
+  if (stemInfection) {
+    return "infection";
   }
-  if (vignetteInfection && stemInfection) return "infection";
-  if (vignetteDelegation || /delegate|UAP|unlicensed|LPN scope|assign/i.test(stem)) {
+
+  if (vignetteInfection) {
+    return "infection";
+  }
+
+  if (mocSubject && (stemIsDelegation || vignetteDelegation)) {
     return "delegation";
   }
+
+  if (stemIsDelegation && !mocSubject) {
+    if (stemInfection) return "infection";
+    if (/therapeutic|communication|anxiety|grief|response/i.test(stem)) return "communication";
+    if (/medication|insulin|dose|administer|pharm|drug/i.test(stem)) return "pharmacology";
+    if (/teach|discharge|learning|education|screening|vaccine/i.test(stem)) return "teaching";
+    if (/post-op|complication|diagnostic|lab|finding requires/i.test(stem)) return "risk";
+    if (/first|priority|assessed first|see first|immediate follow-up/i.test(stem)) {
+      return "prioritization";
+    }
+  }
+
   if (/infection|precaution|isolation|PPE|hand hygiene|contact precaution/i.test(stem)) {
     return "infection";
   }
@@ -719,7 +737,7 @@ function detectTemplate(stem: string, subjectId: string, seed: number, blob?: st
   if (/intervention|action should the nurse|priority action/i.test(stem)) return "intervention";
 
   const subjectPools: Record<string, string[]> = {
-    "management-of-care": ["prioritization", "delegation", "risk"],
+    [NCLEX_DELEGATION_SUBJECT_ID]: ["prioritization", "prioritization", "delegation", "risk"],
     "safety-infection": ["infection", "risk", "intervention"],
     "health-promotion": ["teaching", "intervention", "risk"],
     psychosocial: ["communication", "intervention", "risk"],
@@ -727,7 +745,7 @@ function detectTemplate(stem: string, subjectId: string, seed: number, blob?: st
     "basic-care-comfort": ["intervention", "teaching", "risk"],
     "reduction-risk": ["risk", "intervention", "prioritization"],
     "physiological-adaptation": ["intervention", "prioritization", "risk"],
-    fundamentals: ["intervention", "delegation", "teaching"],
+    fundamentals: ["intervention", "teaching", "risk"],
     "med-surg": ["intervention", "prioritization", "risk"],
     "maternal-child": ["intervention", "risk", "prioritization"],
     "pediatrics-nursing": ["intervention", "risk", "prioritization"],
@@ -737,6 +755,27 @@ function detectTemplate(stem: string, subjectId: string, seed: number, blob?: st
   if (pool) return pool[Math.abs(seed) % pool.length]!;
 
   return ["intervention", "prioritization", "risk", "teaching"][Math.abs(seed) % 4]!;
+}
+
+function inferRetryTemplate(
+  stem: string,
+  subjectId: string,
+  vignette: string | undefined
+): string | undefined {
+  if (/infection|precaution|isolation|PPE|hand hygiene|contact precaution|transmission-based/i.test(stem)) {
+    return "infection";
+  }
+  if (/assessed first|see first|highest priority|four clients|prioritize for immediate/i.test(stem)) {
+    return "prioritization";
+  }
+  if (/therapeutic|communication|anxiety|grief|response/i.test(stem)) return "communication";
+  if (/medication|insulin|dose|administer|pharm|drug/i.test(stem)) return "pharmacology";
+  if (/teach|discharge|learning|education|screening|vaccine/i.test(stem)) return "teaching";
+  if (delegationAllowedForSubject(subjectId) && isNclexDelegationStem(stem, vignette)) {
+    return "delegation";
+  }
+  const inferred = inferNclexTemplateFromClinical(vignette ?? "", stem);
+  return inferred ?? "intervention";
 }
 
 function roomLabel(seed: number): string {
@@ -1274,26 +1313,28 @@ export function polishNclexBankItem(
   let cleaned = buildPolishedItem(item, subjectId, subjectLabel, seed, template);
   let audit = auditNclexBankItem(cleaned);
 
-  const retryTemplateForCode: Record<string, string> = {
+  const retryTemplateForCode: Record<string, string | undefined> = {
     multi_client_vignette: "prioritization",
     priority_delegation_mismatch: "prioritization",
-    stem_vignette_template_mismatch: "delegation",
-    delegation_context_missing: "delegation",
-    phantom_client_in_options: "delegation",
+    stem_vignette_template_mismatch: undefined,
+    delegation_context_missing: undefined,
+    phantom_client_in_options: undefined,
     infection_stem_without_context: "intervention",
     infection_template_clinical_mismatch: "intervention",
     stable_unstable_mismatch: "prioritization",
     delegation_prioritization_mismatch: "prioritization",
-    delegation_handoff_mismatch: "delegation",
+    delegation_handoff_mismatch: "prioritization",
     stem_option_category_mismatch: "risk",
     malformed_finding_option: "risk",
+    delegation_wrong_subject: undefined,
   };
 
   for (let attempt = 0; !audit.ok && attempt < 5; attempt++) {
     const errorCode = audit.issues.find((i) => i.severity === "error")?.code;
     let nextTemplate =
-      (errorCode && retryTemplateForCode[errorCode]) ||
-      (/assign tasks to UAP/i.test(cleaned.vignette ?? "") ? "delegation" : undefined);
+      (errorCode && retryTemplateForCode[errorCode] !== undefined
+        ? retryTemplateForCode[errorCode]
+        : undefined) ?? inferRetryTemplate(stem, subjectId, cleaned.vignette ?? blob);
 
     if (
       errorCode === "infection_template_clinical_mismatch" ||
