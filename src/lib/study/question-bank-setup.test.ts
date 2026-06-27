@@ -16,6 +16,21 @@ describe("question-bank-setup", () => {
     expect(availableQuestionCount("cardio", counts)).toBe(40);
   });
 
+  it("treats empty counts as unknown (not zero)", () => {
+    expect(availableQuestionCount("cardio", {})).toBeNull();
+    expect(availableQuestionCount("cardio", null)).toBeNull();
+  });
+
+  it("allows session when counts are unknown", () => {
+    const result = validateQuestionBankSession({
+      subjectId: "cardio",
+      questionCount: 25,
+      subjectCounts: {},
+      bankStyle: "standard",
+    });
+    expect(result.ok).toBe(true);
+  });
+
   it("blocks when count exceeds pool", () => {
     const result = validateQuestionBankSession({
       subjectId: "cardio",

@@ -35,6 +35,7 @@ type QuestionBankSetupProps = {
   examLabel?: string;
   weakSubjectIds?: string[];
   compact?: boolean;
+  countsLoading?: boolean;
 };
 
 const STYLE_OPTIONS: { id: QuestionBankStyle; label: string; hint: string }[] = [
@@ -57,6 +58,7 @@ export function QuestionBankSetup({
   examLabel,
   weakSubjectIds = [],
   compact = false,
+  countsLoading = false,
 }: QuestionBankSetupProps) {
   const countOptions = questionBankCountOptions();
   const validation = validateQuestionBankSession({
@@ -109,6 +111,7 @@ export function QuestionBankSetup({
           subjectCounts={subjectCounts}
           onSubjectChange={onSubjectChange}
           weakSubjectIds={weakSubjectIds}
+          countsLoading={countsLoading}
         />
       </QuestionBankSection>
 
@@ -124,7 +127,7 @@ export function QuestionBankSetup({
               value={clampQuestionBankCount(questionCount)}
               onChange={onQuestionCountChange}
             />
-            {!validation.ok && validation.message && validation.maxAvailable ? (
+            {!validation.ok && validation.message ? (
               <p className="mt-2 text-center text-[12px] text-amber-800" role="status">
                 {validation.message}
               </p>

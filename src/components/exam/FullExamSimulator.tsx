@@ -109,6 +109,7 @@ export function FullExamSimulator({
   const [questions, setQuestions] = useState<StudyQuestion[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [loadAttempt, setLoadAttempt] = useState(0);
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, FullExamAnswerState>>(() =>
     hydrateAnswers(initialAnswers)
@@ -204,65 +205,71 @@ export function FullExamSimulator({
         qs.set("presetExamNumber", String(config.presetExamNumber));
       }
 
-      try {
-        const res = await fetch(`/api/questions?${qs.toString()}`);
-        const data = (await res.json()) as {
-          error?: string;
-          questions?: RawQuestionInput[];
-          bankItemIds?: string[];
-          requested?: number;
-        };
+      const maxAttempts = 3;
+      let lastError = "Could not load exam questions. Check your connection and try again.";
 
-        if (!res.ok) {
-          if (!cancelled) {
-            setLoadError(data.error ?? "Could not load exam questions.");
-            setQuestions([]);
+      for (let attempt = 0; attempt < maxAttempts; attempt++) {
+        if (cancelled) return;
+        if (attempt > 0) {
+          await new Promise((resolve) => setTimeout(resolve, 350 * attempt));
+        }
+
+        try {
+          const res = await fetch(`/api/questions?${qs.toString()}`, { cache: "no-store" });
+          const data = (await res.json()) as {
+            error?: string;
+            questions?: RawQuestionInput[];
+            bankItemIds?: string[];
+            requested?: number;
+          };
+
+          if (!res.ok) {
+            lastError = data.error ?? "Could not load exam questions.";
+            continue;
           }
-          return;
-        }
 
-        const expectedCount = data.requested ?? config.questionCount;
-        const bankIds = data.bankItemIds ?? [];
-        const raw: RawQuestionInput[] = (data.questions ?? []).map((q, i) => ({
-          ...q,
-          field: fieldId,
-          bankItemId: bankIds[i] ?? q.bankItemId,
-        }));
+          const expectedCount = data.requested ?? config.questionCount;
+          const bankIds = data.bankItemIds ?? [];
+          const raw: RawQuestionInput[] = (data.questions ?? []).map((q, i) => ({
+            ...q,
+            field: fieldId,
+            bankItemId: bankIds[i] ?? q.bankItemId,
+          }));
 
-        const prepared = mapApiQuestionsToStudy(raw, { shuffleOptions: false });
-        if (prepared.length !== expectedCount) {
-          if (!cancelled) {
-            setLoadError(
-              `Expected ${expectedCount} questions but received ${prepared.length}. Try again in a moment or choose a shorter exam length.`
-            );
-            setQuestions([]);
+          const prepared = mapApiQuestionsToStudy(raw, { shuffleOptions: false });
+          if (prepared.length !== expectedCount) {
+            lastError = `Expected ${expectedCount} questions but received ${prepared.length}. Try again in a moment or choose a shorter exam length.`;
+            continue;
           }
+
+          const items = prepared.slice(0, expectedCount).map((q, i) => ({
+            ...q,
+            id: bankIds[i] ?? q.bankItemId ?? q.id,
+            bankItemId: bankIds[i] ?? q.bankItemId,
+            field: fieldId,
+          }));
+
+          if (!cancelled) setQuestions(items);
           return;
+        } catch {
+          lastError = "Could not load exam questions. Check your connection and try again.";
         }
+      }
 
-        const items = prepared.slice(0, expectedCount).map((q, i) => ({
-          ...q,
-          id: bankIds[i] ?? q.bankItemId ?? q.id,
-          bankItemId: bankIds[i] ?? q.bankItemId,
-          field: fieldId,
-        }));
-
-        if (!cancelled) setQuestions(items);
-      } catch {
-        if (!cancelled) {
-          setLoadError("Could not load exam questions. Check your connection and try again.");
-          setQuestions([]);
-        }
-      } finally {
-        if (!cancelled) setLoading(false);
+      if (!cancelled) {
+        setLoadError(lastError);
+        setQuestions([]);
       }
     }
 
-    void loadQuestions();
+    void loadQuestions().finally(() => {
+      if (!cancelled) setLoading(false);
+    });
+
     return () => {
       cancelled = true;
     };
-  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.presetExamNumber]);
+  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.presetExamNumber, loadAttempt]);
 
   useEffect(() => {
     if (loading || submitting || paused) return;
@@ -575,13 +582,25 @@ export function FullExamSimulator({
               Choose your MPJE state in Settings or the study hub, then start again.
             </p>
           ) : null}
-          <button
-            type="button"
-            onClick={() => router.push(`/full-exam/${examSlug}`)}
-            className={feUi.footerBtnPrimary}
-          >
-            Back to launcher
-          </button>
+          <div className="flex flex-col gap-2 sm:flex-row sm:justify-center">
+            <button
+              type="button"
+              onClick={() => {
+                setLoadError(null);
+                setLoadAttempt((n) => n + 1);
+              }}
+              className={feUi.footerBtnPrimary}
+            >
+              Try again
+            </button>
+            <button
+              type="button"
+              onClick={() => router.push(`/full-exam/${examSlug}`)}
+              className={feUi.footerBtn}
+            >
+              Back to launcher
+            </button>
+          </div>
         </div>
       </div>
     );

@@ -1,6 +1,6 @@
 import { cacheGetOrSet, cacheKey, CACHE_TTL } from "@/lib/cache";
 import { enforceQuestionBankFieldAccess, resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
-import { getSubjectServedCounts } from "@/lib/question-bank-db";
+import { getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
 
 export type SubjectCountsPayload = {
   fieldId: string;
@@ -17,11 +17,17 @@ export async function loadSubjectCountsForUser(
   if (!access.ok) return null;
 
   const fieldId = resolveQuestionBankFieldId(fieldParam);
-  const counts = await cacheGetOrSet(
-    cacheKey(["subject-served-counts", fieldId]),
-    CACHE_TTL.subjectCatalog,
-    () => getSubjectServedCounts(fieldId)
-  );
-  const total = Object.values(counts).reduce((sum, n) => sum + n, 0);
-  return { fieldId, counts, total };
+
+  try {
+    const counts = await cacheGetOrSet(
+      cacheKey(["subject-served-counts", fieldId]),
+      CACHE_TTL.subjectCatalog,
+      () => getSubjectServedCountsWithRetry(fieldId)
+    );
+    const total = Object.values(counts).reduce((sum, n) => sum + n, 0);
+    return { fieldId, counts, total };
+  } catch (error) {
+    console.error("[load-subject-counts] lookup failed:", { fieldId, fieldParam, error });
+    return null;
+  }
 }

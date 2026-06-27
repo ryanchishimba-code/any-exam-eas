@@ -697,6 +697,26 @@ export async function getSubjectServedCounts(
   return counts;
 }
 
+const SUBJECT_COUNT_MAX_RETRIES = 2;
+
+/** Resilient wrapper for topic picker / API — retries transient Neon pool errors. */
+export async function getSubjectServedCountsWithRetry(
+  fieldId: string
+): Promise<Record<string, number>> {
+  let lastError: unknown;
+  for (let attempt = 0; attempt <= SUBJECT_COUNT_MAX_RETRIES; attempt++) {
+    try {
+      return await getSubjectServedCounts(fieldId);
+    } catch (error) {
+      lastError = error;
+      if (attempt < SUBJECT_COUNT_MAX_RETRIES) {
+        await new Promise((resolve) => setTimeout(resolve, 250 * (attempt + 1)));
+      }
+    }
+  }
+  throw lastError;
+}
+
 /**
  * Random sample across all subjects in a field (for timed exam simulations).
  */

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getSubjectServedCounts } from "@/lib/question-bank-db";
+import { getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
 import { cacheGetOrSet, cacheKey, CACHE_TTL } from "@/lib/cache";
 
 export const runtime = "nodejs";
@@ -34,14 +34,22 @@ export async function GET(req: Request) {
     const counts = await cacheGetOrSet(
       cacheKey(["subject-served-counts", fieldId]),
       CACHE_TTL.subjectCatalog,
-      () => getSubjectServedCounts(fieldId)
+      () => getSubjectServedCountsWithRetry(fieldId)
     );
 
     const total = Object.values(counts).reduce((sum, n) => sum + n, 0);
     return NextResponse.json({ field: fieldId, counts, total });
   } catch (error) {
     console.error("[questions/subject-counts] lookup failed:", error);
-    // Never break the picker on a count outage — return empty so the UI hides counts.
-    return NextResponse.json({ field: fieldId, counts: {}, total: 0 });
+    return NextResponse.json(
+      {
+        field: fieldId,
+        counts: {},
+        total: 0,
+        dbError: true,
+        error: "Could not load topic counts. Try again in a moment.",
+      },
+      { status: 503 }
+    );
   }
 }

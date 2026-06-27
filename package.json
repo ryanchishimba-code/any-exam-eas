@@ -23,6 +23,7 @@
     "db:verify-exam-modes": "bash scripts/run-with-node.sh npx tsx scripts/verify-exam-modes.mts",
     "db:verify-exam-modes:quick": "bash scripts/run-with-node.sh npx tsx scripts/verify-exam-modes.mts --quick",
     "db:verify-full-exam": "bash scripts/run-with-node.sh npx tsx scripts/verify-full-exam-all.mts",
+    "db:verify-subject-selection": "bash scripts/run-with-node.sh npx tsx scripts/verify-subject-selection-all.mts",
     "db:backfill-usmle-step": "npx tsx scripts/backfill-usmle-step-level.ts",
     "db:classify-usmle-step": "npx tsx scripts/classify-usmle-step-level.ts",
     "db:classify-usmle-step:dry": "npx tsx scripts/classify-usmle-step-level.ts --dry-run",

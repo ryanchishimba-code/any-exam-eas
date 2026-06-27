@@ -8,12 +8,15 @@
  */
 import { writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
-import { PrismaClient } from "@prisma/client";
+import {
+  disconnectScriptPrisma,
+  getScriptPrisma,
+} from "./lib/script-db.ts";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
 import { usmleBankItemIsServeReady, splitUsmleBankItem } from "../src/lib/exam-prep/usmle-clinical-gate";
 import { auditUsmleQaEditor } from "../src/lib/exam-prep/usmle-qa-editor";
 
-const prisma = new PrismaClient();
+const prisma = getScriptPrisma();
 const USMLE_FIELDS = ["usmle-step-1", "usmle-step-2", "usmle-step-3"] as const;
 const BATCH = 400;
 
@@ -171,4 +174,4 @@ main()
     console.error(e);
     process.exit(1);
   })
-  .finally(() => prisma.$disconnect());
+  .finally(() => disconnectScriptPrisma());

@@ -10,7 +10,7 @@ import {
   getFieldMeta,
   getFieldMetaById,
 } from "@/lib/fields";
-import { getSubjectsForField } from "@/lib/field-subjects";
+import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import {
   EXAM_MODES,
   clampQuestionBankCount,
@@ -126,6 +126,38 @@ function resolvePracticeMode(param: string | null, onQuestionBank: boolean): Pra
   return onQuestionBank ? "bank" : "timed";
 }
 
+function readBrowserSubjectParam(): string | null {
+  if (typeof window === "undefined") return null;
+  return new URLSearchParams(window.location.search).get("subjectId");
+}
+
+function resolveSubjectParam(
+  searchParams: Pick<URLSearchParams, "get">
+): string | null {
+  return searchParams.get("subjectId") ?? readBrowserSubjectParam();
+}
+
+function resolvePracticeSearchParam(
+  searchParams: Pick<URLSearchParams, "get">,
+  key: string
+): string | null {
+  return searchParams.get(key) ?? readBrowserSearchParam(key);
+}
+
+function readBrowserSearchParam(key: string): string | null {
+  if (typeof window === "undefined") return null;
+  return new URLSearchParams(window.location.search).get(key);
+}
+
+function practiceUrlSearchParams(
+  searchParams: Pick<URLSearchParams, "toString" | "get">
+): URLSearchParams {
+  if (typeof window !== "undefined" && window.location.search) {
+    return new URLSearchParams(window.location.search);
+  }
+  return new URLSearchParams(searchParams.toString());
+}
+
 function buildBankPracticeUrl(
   params: {
     fieldId: string;
@@ -222,7 +254,8 @@ export function StudyBankPractice({
   const searchParams = useSearchParams();
   const { examSlug: clientExamSlug, loading: prefLoading } = useAppPreferences();
   const modeParam = searchParams.get("mode");
-  const fieldParam = searchParams.get("field");
+  const fieldParam =
+    searchParams.get("field") ?? readBrowserSearchParam("field");
   const onQuestionBank = pathname === ROUTES.questionBank;
   const practiceBase = ROUTES.questionBank;
   const effectiveExamSlug = preferredExamSlug ?? clientExamSlug;
@@ -250,15 +283,16 @@ export function StudyBankPractice({
   const [subjectCounts, setSubjectCounts] = useState<Record<string, number> | null>(
     initialSubjectCounts ?? null
   );
+  const [countsLoading, setCountsLoading] = useState(() => initialSubjectCounts == null);
   const autostartRequested = searchParams.get("autostart") === "1";
   const autostartAttempted = useRef(false);
   const crossExamFieldSyncRef = useRef<string | null>(null);
+  const zeroPoolFallbackAppliedRef = useRef(false);
   const topicReturnTo = useMemo(
     () => parseTopicPracticeReturn(searchParams),
     [searchParams]
   );
 
-  const subjects = useMemo(() => getSubjectsForField(field), [field]);
   const fieldId = useMemo(() => {
     if (fieldParam) {
       const fromParam = getFieldMeta(fieldParam) ?? getFieldMetaById(fieldParam);
@@ -266,6 +300,7 @@ export function StudyBankPractice({
     }
     return resolveFieldId(field);
   }, [field, fieldParam]);
+  const subjects = useMemo(() => getSubjectsForFieldId(fieldId), [fieldId]);
   const bankSubjectIds = useMemo(() => subjects.map((s) => s.id), [subjects]);
   const weakSubjectIds = useMemo(
     () => weakSubjectIdsForField(weakTopics, fieldId, bankSubjectIds),
@@ -276,18 +311,57 @@ export function StudyBankPractice({
   // then refresh on field change so step/exam switches stay accurate.
   useEffect(() => {
     let cancelled = false;
-    if (initialSubjectCountsFieldId === fieldId && initialSubjectCounts) {
+    const seededForField =
+      initialSubjectCountsFieldId === fieldId && initialSubjectCounts;
+    if (seededForField) {
       setSubjectCounts(initialSubjectCounts);
-    } else if (initialSubjectCountsFieldId !== fieldId) {
-      setSubjectCounts(null);
+      setCountsLoading(false);
+    } else {
+      setCountsLoading(true);
+      if (initialSubjectCountsFieldId && initialSubjectCountsFieldId !== fieldId) {
+        setSubjectCounts(null);
+      }
     }
-    fetch(`/api/questions/subject-counts?field=${encodeURIComponent(fieldId)}`)
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data) => {
-        if (!cancelled && data?.counts) setSubjectCounts(data.counts as Record<string, number>);
+    fetch(`/api/questions/subject-counts?field=${encodeURIComponent(fieldId)}`, {
+      cache: "no-store",
+    })
+      .then(async (r) => {
+        const data = r.ok ? await r.json() : null;
+        return { ok: r.ok, data, status: r.status };
+      })
+      .then(({ ok, data, status }) => {
+        if (cancelled) return;
+        if (ok && data?.counts && Object.keys(data.counts).length > 0) {
+          setSubjectCounts(data.counts as Record<string, number>);
+          return;
+        }
+        if (status === 503 && data?.dbError && !cancelled) {
+          window.setTimeout(() => {
+            if (cancelled) return;
+            fetch(`/api/questions/subject-counts?field=${encodeURIComponent(fieldId)}`, {
+              cache: "no-store",
+            })
+              .then((r) => (r.ok ? r.json() : null))
+              .then((retryData) => {
+                if (
+                  !cancelled &&
+                  retryData?.counts &&
+                  Object.keys(retryData.counts).length > 0
+                ) {
+                  setSubjectCounts(retryData.counts as Record<string, number>);
+                }
+              })
+              .catch(() => undefined);
+          }, 600);
+        }
       })
       .catch(() => {
-        if (!cancelled && initialSubjectCountsFieldId !== fieldId) setSubjectCounts(null);
+        if (!cancelled && initialSubjectCountsFieldId !== fieldId) {
+          setSubjectCounts(null);
+        }
+      })
+      .finally(() => {
+        if (!cancelled) setCountsLoading(false);
       });
     return () => {
       cancelled = true;
@@ -395,7 +469,7 @@ export function StudyBankPractice({
           return;
         }
         setField(expectedMeta.label);
-        const qs = new URLSearchParams(searchParams.toString());
+        const qs = practiceUrlSearchParams(searchParams);
         qs.set("field", expectedId);
         if (onQuestionBank && !qs.has("mode")) qs.set("mode", "bank");
         router.replace(`${practiceBase}?${qs.toString()}`, { scroll: false });
@@ -412,8 +486,9 @@ export function StudyBankPractice({
 
       setField(expectedMeta.label);
 
-      if (!fieldParam || fieldParam !== expectedId) {
-        const qs = new URLSearchParams(searchParams.toString());
+      const activeField = fieldParam ?? readBrowserSearchParam("field");
+      if (!activeField || activeField !== expectedId) {
+        const qs = practiceUrlSearchParams(searchParams);
         qs.set("field", expectedId);
         if (onQuestionBank && !qs.has("mode")) qs.set("mode", "bank");
         router.replace(`${practiceBase}?${qs.toString()}`, { scroll: false });
@@ -445,7 +520,7 @@ export function StudyBankPractice({
   useEffect(() => {
     if (isTimedExam) return;
 
-    const countParam = searchParams.get("count");
+    const countParam = resolvePracticeSearchParam(searchParams, "count");
     if (countParam) {
       setQuestionCount(clampQuestionBankCount(Number(countParam)));
     } else {
@@ -453,7 +528,7 @@ export function StudyBankPractice({
       if (persisted?.count) setQuestionCount(clampQuestionBankCount(persisted.count));
     }
 
-    const paceParam = searchParams.get("pace");
+    const paceParam = resolvePracticeSearchParam(searchParams, "pace");
     if (paceParam) {
       setBankPace(parseQuestionBankPace(paceParam));
     } else {
@@ -461,7 +536,7 @@ export function StudyBankPractice({
       if (persisted?.pace) setBankPace(persisted.pace);
     }
 
-    const styleParam = searchParams.get("style");
+    const styleParam = resolvePracticeSearchParam(searchParams, "style");
     if (styleParam) {
       setBankStyle(parseQuestionBankStyle(styleParam));
     } else {
@@ -472,13 +547,13 @@ export function StudyBankPractice({
 
   useEffect(() => {
     if (isTimedExam) return;
-    const list = getSubjectsForField(field);
+    const list = getSubjectsForFieldId(fieldId);
     if (!list.length) {
       setSubjectId("");
       return;
     }
 
-    const subjectParam = searchParams.get("subjectId");
+    const subjectParam = resolveSubjectParam(searchParams);
     if (subjectParam === MIXED_SUBJECT_ID) {
       setSubjectId(MIXED_SUBJECT_ID);
       return;
@@ -491,6 +566,7 @@ export function StudyBankPractice({
 
     const persisted = readPersistedQuestionBankSetup(fieldId);
     if (
+      !resolveSubjectParam(searchParams) &&
       persisted?.subjectId &&
       (persisted.subjectId === MIXED_SUBJECT_ID ||
         list.some((s) => s.id === persisted.subjectId))
@@ -499,7 +575,7 @@ export function StudyBankPractice({
       return;
     }
 
-    const styleParam = searchParams.get("style");
+    const styleParam = resolvePracticeSearchParam(searchParams, "style");
     const preferWeak =
       styleParam === "weak_areas" || styleParam === "adaptive" || weakSubjectIds.length > 0;
     if (preferWeak) {
@@ -511,7 +587,57 @@ export function StudyBankPractice({
     }
 
     setSubjectId(list[0]?.id ?? "");
-  }, [field, fieldId, isTimedExam, searchParams, weakTopics, weakSubjectIds.length]);
+  }, [fieldId, isTimedExam, searchParams, weakTopics, weakSubjectIds.length]);
+
+  useEffect(() => {
+    zeroPoolFallbackAppliedRef.current = false;
+  }, [fieldId]);
+
+  // When counts first load, move off a zero-count topic (once per field visit).
+  useEffect(() => {
+    if (isTimedExam || countsLoading || !subjectCounts || zeroPoolFallbackAppliedRef.current) {
+      return;
+    }
+    zeroPoolFallbackAppliedRef.current = true;
+
+    const pool = availableQuestionCount(subjectId, subjectCounts);
+    if (pool === null || pool > 0) return;
+
+    const list = getSubjectsForFieldId(fieldId);
+    const fallback =
+      list.find((s) => (subjectCounts[s.id] ?? 0) > 0)?.id ??
+      (Object.values(subjectCounts).reduce((sum, n) => sum + n, 0) > 0
+        ? MIXED_SUBJECT_ID
+        : (list[0]?.id ?? ""));
+
+    if (fallback && fallback !== subjectId) {
+      setSubjectId(fallback);
+      syncPracticeUrl({ subjectId: fallback });
+    }
+  }, [isTimedExam, countsLoading, subjectCounts, subjectId, fieldId]);
+
+  // Shrink session length when the selected topic cannot fill the current count.
+  useEffect(() => {
+    if (isTimedExam || countsLoading || !subjectCounts || !subjectId) return;
+    const max = availableQuestionCount(subjectId, subjectCounts);
+    if (max === null || max <= 0 || questionCount <= max) return;
+    const clamped = clampQuestionBankCount(max);
+    setQuestionCount(clamped);
+    syncPracticeUrl({ count: clamped });
+  }, [isTimedExam, countsLoading, subjectCounts, subjectId, questionCount, fieldId]);
+
+  const subjectUrlSyncedRef = useRef(false);
+  useEffect(() => {
+    subjectUrlSyncedRef.current = false;
+  }, [fieldId]);
+
+  useEffect(() => {
+    if (isTimedExam || !subjectId) return;
+    if (resolveSubjectParam(searchParams)) return;
+    if (subjectUrlSyncedRef.current) return;
+    subjectUrlSyncedRef.current = true;
+    syncPracticeUrl({ subjectId });
+  }, [isTimedExam, subjectId, searchParams]);
 
   useEffect(() => {
     if (isTimedExam || !subjectId) return;
@@ -554,24 +680,25 @@ export function StudyBankPractice({
       return;
     }
     if (!resolvedSubjectId) return;
-    router.replace(
-      buildBankPracticeUrl(
-        {
-          fieldId,
-          subjectId: resolvedSubjectId,
-          count: overrides?.count ?? questionCount,
-          pace: overrides?.pace ?? bankPace,
-          style: overrides?.style ?? bankStyle,
-          mpjeVariant: isMpje ? resolvedVariant : undefined,
-          mpjeState:
-            isMpje && resolvedVariant === "state" && resolvedState
-              ? resolvedState
-              : undefined,
-        },
-        practiceBase
-      ),
-      { scroll: false }
+    const href = buildBankPracticeUrl(
+      {
+        fieldId,
+        subjectId: resolvedSubjectId,
+        count: overrides?.count ?? questionCount,
+        pace: overrides?.pace ?? bankPace,
+        style: overrides?.style ?? bankStyle,
+        mpjeVariant: isMpje ? resolvedVariant : undefined,
+        mpjeState:
+          isMpje && resolvedVariant === "state" && resolvedState
+            ? resolvedState
+            : undefined,
+      },
+      practiceBase
     );
+    if (typeof window !== "undefined") {
+      window.history.replaceState(window.history.state, "", href);
+    }
+    router.replace(href, { scroll: false });
   }
 
   async function start() {
@@ -888,7 +1015,8 @@ export function StudyBankPractice({
     !isTimedExam &&
     !!subjectId &&
     bankSessionValidation.ok &&
-    !loading;
+    !loading &&
+    !countsLoading;
   const canStartTimed = isTimedExam && !loading && (!isMpje || mpjeVariant !== "state" || !!mpjeState);
 
   return (
@@ -1086,6 +1214,7 @@ export function StudyBankPractice({
                 syncPracticeUrl({ style: s });
               }}
               weakSubjectIds={weakSubjectIds}
+              countsLoading={countsLoading}
             />
           ) : null}
 
@@ -1171,7 +1300,7 @@ export function StudyBankPractice({
             estimatedMinutes={previewEstimatedMinutes}
             availableCount={previewAvailableCount}
             validationMessage={bankSessionValidation.ok ? undefined : bankSessionValidation.message}
-            loading={loading}
+            loading={loading || countsLoading}
             disabled={!(canStartBank || canStartTimed)}
             onStart={() => void start()}
             isTimedExam={isTimedExam}

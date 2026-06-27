@@ -6,11 +6,14 @@
  *   npm run db:audit-bank-quality
  *   npm run db:audit-bank-quality -- --field usmle-step-2
  */
-import { PrismaClient } from "@prisma/client";
+import {
+  disconnectScriptPrisma,
+  getScriptPrisma,
+} from "./lib/script-db.ts";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
 import { bankItemPassesIngestGate } from "../src/lib/exam-prep/bank-ingest-gate";
 
-const prisma = new PrismaClient();
+const prisma = getScriptPrisma();
 
 const BOARD_FIELDS = [
   "nursing",
@@ -114,4 +117,4 @@ main()
     console.error(e);
     process.exit(1);
   })
-  .finally(() => prisma.$disconnect());
+  .finally(() => disconnectScriptPrisma());

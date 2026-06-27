@@ -43,7 +43,7 @@ export function availableQuestionCount(
   subjectId: string,
   subjectCounts: Record<string, number> | null | undefined
 ): number | null {
-  if (!subjectCounts) return null;
+  if (!subjectCounts || Object.keys(subjectCounts).length === 0) return null;
   if (isMixedSubjectId(subjectId)) {
     return Object.values(subjectCounts).reduce((sum, n) => sum + n, 0);
   }

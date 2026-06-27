@@ -7,7 +7,11 @@
  */
 import { writeFileSync, mkdirSync } from "node:fs";
 import path from "node:path";
-import { PrismaClient } from "@prisma/client";
+import {
+  assertScriptDbConnection,
+  disconnectScriptPrisma,
+  getScriptPrisma,
+} from "./lib/script-db.ts";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
 import {
   auditNclexBankItem,
@@ -20,7 +24,7 @@ import {
   isNclexBestQuality,
 } from "../src/lib/exam-prep/nclex-quality-gate";
 
-const prisma = new PrismaClient();
+const prisma = getScriptPrisma();
 const BATCH = 400;
 
 const ALIGNMENT_CODES = new Set([
@@ -161,4 +165,4 @@ main()
     console.error(e);
     process.exit(1);
   })
-  .finally(() => prisma.$disconnect());
+  .finally(() => disconnectScriptPrisma());

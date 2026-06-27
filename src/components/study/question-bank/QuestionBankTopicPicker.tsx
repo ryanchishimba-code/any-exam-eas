@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Check, Layers, Search } from "lucide-react";
+import { Check, Layers, Loader2, Search } from "lucide-react";
 import { MIXED_SUBJECT_ID, MIXED_SUBJECT_LABEL } from "@/lib/study/question-bank-setup";
 import { subjectVisual } from "@/lib/library/subject-icon";
 import { qbUi } from "@/lib/study/question-bank-ui";
@@ -16,6 +16,7 @@ export function QuestionBankTopicPicker({
   onSubjectChange,
   allowMixed = true,
   weakSubjectIds,
+  countsLoading = false,
 }: {
   subjects: SubjectOption[];
   subjectId: string;
@@ -23,6 +24,7 @@ export function QuestionBankTopicPicker({
   onSubjectChange: (subjectId: string) => void;
   allowMixed?: boolean;
   weakSubjectIds?: string[];
+  countsLoading?: boolean;
 }) {
   const [query, setQuery] = useState("");
 
@@ -74,7 +76,8 @@ export function QuestionBankTopicPicker({
               const selected = subject.id === subjectId;
               const count = subjectCounts?.[subject.id];
               const isWeak = weakSubjectIds?.includes(subject.id);
-              const disabled = typeof count === "number" && count <= 0;
+              const disabled =
+                !countsLoading && typeof count === "number" && count <= 0;
               const { icon: Icon, tint } = subjectVisual(subject.label);
               return (
                 <button
@@ -106,6 +109,8 @@ export function QuestionBankTopicPicker({
                       <p className={qbUi.sectionHint}>
                         {count.toLocaleString()} {count === 1 ? "question" : "questions"}
                       </p>
+                    ) : countsLoading ? (
+                      <p className={qbUi.sectionHint}>Loading count…</p>
                     ) : null}
                   </div>
                   <div className="flex shrink-0 items-center gap-1.5">
@@ -126,10 +131,19 @@ export function QuestionBankTopicPicker({
       )}
 
       <p className={qbUi.sectionHint}>
-        {subjects.length} topics · {filtered.length} shown
-        {totalCount !== null ? (
-          <> · {totalCount.toLocaleString()} questions available</>
-        ) : null}
+        {countsLoading ? (
+          <span className="inline-flex items-center gap-1.5">
+            <Loader2 className="h-3 w-3 animate-spin" aria-hidden />
+            Loading question counts…
+          </span>
+        ) : (
+          <>
+            {subjects.length} topics · {filtered.length} shown
+            {totalCount !== null ? (
+              <> · {totalCount.toLocaleString()} questions available</>
+            ) : null}
+          </>
+        )}
       </p>
     </div>
   );

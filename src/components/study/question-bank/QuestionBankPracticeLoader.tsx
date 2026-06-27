@@ -22,10 +22,14 @@ export async function QuestionBankPracticeLoader({
   hubStats?: QuestionBankHubStats;
   usmleStepLabel?: string;
 }) {
-  const [countsPayload, weakTopics] = await Promise.all([
+  const [countsResult, weakTopicsResult] = await Promise.allSettled([
     loadSubjectCountsForUser(userId, fieldParam),
     getStudentWeakTopics(userId, examFieldIds(examSlug)),
   ]);
+  const countsPayload =
+    countsResult.status === "fulfilled" ? countsResult.value : null;
+  const weakTopics =
+    weakTopicsResult.status === "fulfilled" ? weakTopicsResult.value : [];
 
   const totalQuestions = countsPayload?.counts
     ? Object.values(countsPayload.counts).reduce((sum, n) => sum + n, 0)
