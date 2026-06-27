@@ -109,6 +109,9 @@ export function LoginForm() {
           <motion.div key="login-view" {...panelMotion} className="space-y-5">
             <LoginPanel
               callbackUrl={callbackUrl}
+              onSuccess={() => {
+                redirecting.current = true;
+              }}
               onForgotPassword={() => setView("forgot")}
             />
 

@@ -24,10 +24,15 @@ export type ClientSubscriptionStatus = {
 };
 
 export async function fetchSubscriptionStatus(): Promise<ClientSubscriptionStatus | null> {
-  for (let attempt = 0; attempt < 3; attempt++) {
+  const attempts = 8;
+  for (let attempt = 0; attempt < attempts; attempt++) {
     try {
       const statusRes = await fetch("/api/subscription/status", { cache: "no-store" });
-      if (statusRes.status === 401) return null;
+      if (statusRes.status === 401) {
+        // Session cookie may not be visible to API routes yet right after sign-in.
+        await new Promise((resolve) => setTimeout(resolve, 200 * (attempt + 1)));
+        continue;
+      }
       if (!statusRes.ok) {
         await new Promise((resolve) => setTimeout(resolve, 200 * (attempt + 1)));
         continue;
@@ -41,14 +46,21 @@ export async function fetchSubscriptionStatus(): Promise<ClientSubscriptionStatu
 }
 
 async function fetchExamSlug(): Promise<string | null> {
-  try {
-    const res = await fetch("/api/user/exam-preference", { cache: "no-store" });
-    if (!res.ok) return null;
-    const data = (await res.json()) as { examSlug?: string | null };
-    return data.examSlug ?? null;
-  } catch {
-    return null;
+  for (let attempt = 0; attempt < 8; attempt++) {
+    try {
+      const res = await fetch("/api/user/exam-preference", { cache: "no-store" });
+      if (res.status === 401) {
+        await new Promise((resolve) => setTimeout(resolve, 200 * (attempt + 1)));
+        continue;
+      }
+      if (!res.ok) return null;
+      const data = (await res.json()) as { examSlug?: string | null };
+      return data.examSlug ?? null;
+    } catch {
+      await new Promise((resolve) => setTimeout(resolve, 200 * (attempt + 1)));
+    }
   }
+  return null;
 }
 
 export async function resolvePostLoginDestination(
@@ -101,7 +113,7 @@ export async function completeLoginFlow(params: {
   const status = await fetchSubscriptionStatus();
   const destination = await resolvePostLoginDestination(safeCallback, status);
 
-  params.router.push(destination);
+  params.router.replace(destination);
 
   return {
     destination,

@@ -23,7 +23,9 @@ export function resolvePostLoginDestination(
     return safe;
   }
 
-  if (!status?.hasAccess) {
+  // Only route to billing/reactivate when we have a definitive no-access response.
+  // A null status (API not ready yet) should not send users to settings.
+  if (status && !status.hasAccess) {
     if (
       safe.startsWith("/checkout") ||
       safe.startsWith("/signup") ||
@@ -48,16 +50,6 @@ export function resolvePostLoginDestination(
     return "/settings?reactivate=1";
   }
 
-  const headingToDashboard =
-    safe === ROUTES.dashboard ||
-    safe.startsWith(`${ROUTES.dashboard}/`) ||
-    safe.startsWith("/study-hub") ||
-    safe.startsWith("/studygub");
-
-  if (headingToDashboard && !examSlug) {
-    return ROUTES.selectExam;
-  }
-
   if (
     safe.startsWith("/study") ||
     safe.startsWith("/generate") ||
@@ -74,5 +66,6 @@ export function resolvePostLoginDestination(
     return safe;
   }
 
-  return examSlug ? ROUTES.dashboard : ROUTES.selectExam;
+  // Default: dashboard (it redirects to select-exam if no exam is saved yet).
+  return ROUTES.dashboard;
 }

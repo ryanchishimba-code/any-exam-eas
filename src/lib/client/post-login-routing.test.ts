@@ -14,10 +14,14 @@ describe("resolvePostLoginDestination", () => {
     ).toBe("/select-exam?switch=1");
   });
 
-  it("routes new users without an exam to /select-exam", () => {
+  it("routes subscribed users to dashboard even without a saved exam", () => {
     expect(
       resolvePostLoginDestination("/dashboard", { hasAccess: true }, null)
-    ).toBe("/select-exam");
+    ).toBe("/dashboard");
+  });
+
+  it("falls back to dashboard when subscription status is still loading", () => {
+    expect(resolvePostLoginDestination("/dashboard", null, null)).toBe("/dashboard");
   });
 
   it("sends inactive users without an exam to reactivate, not select-exam", () => {
