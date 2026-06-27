@@ -380,24 +380,45 @@ export function getTourById(id: string): AnatomyTour | undefined {
 
 function tourExamRelevance(tour: AnatomyTour, examSlug: ExamSlug): number {
   const focus = tour.examFocus.toLowerCase();
+  const id = tour.id;
+
   if (examSlug === "usmle") {
     if (focus.includes("usmle") && !focus.includes("nclex")) return 0;
     if (focus.includes("usmle / nclex") || focus.includes("usmle/nclex")) return 1;
     if (focus.includes("nclex")) return 2;
+    return 3;
   }
   if (examSlug === "nclex") {
     if (focus.includes("nclex") && !focus.includes("usmle")) return 0;
     if (focus.includes("usmle / nclex") || focus.includes("usmle/nclex")) return 1;
     if (focus.includes("usmle")) return 2;
+    return 3;
+  }
+  if (examSlug === "naplex") {
+    if (focus.includes("naplex")) return 0;
+    if (id === "gi-hepatobiliary" || id === "endocrine-hormones" || id === "renal-urinary") return 1;
+    return 2;
+  }
+  if (examSlug === "pance") {
+    if (id === "usmle-heart-anatomy" || id === "neuro-stroke-localization") return 0;
+    if (id === "msk-extremities" || id === "endocrine-hormones") return 1;
+    return 2;
+  }
+  if (examSlug === "aanp-fnp") {
+    if (id === "nclex-respiratory-basics" || id === "endocrine-hormones") return 0;
+    if (id === "usmle-heart-anatomy" || id === "renal-urinary") return 1;
+    return 2;
+  }
+  if (examSlug === "npte-pt") {
+    if (id === "msk-extremities") return 0;
+    if (id === "neuro-stroke-localization") return 1;
+    return 2;
   }
   return 0;
 }
 
-/** Tours sorted by relevance to the active exam (naplex/mpje show all, default order). */
+/** Tours sorted by relevance to the active exam. */
 export function getToursForExam(examSlug: ExamSlug): AnatomyTour[] {
-  if (examSlug !== "usmle" && examSlug !== "nclex") {
-    return ANATOMY_TOURS;
-  }
   return [...ANATOMY_TOURS].sort(
     (a, b) => tourExamRelevance(a, examSlug) - tourExamRelevance(b, examSlug)
   );

@@ -18,7 +18,7 @@ import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
 import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
-import { questionBankHref } from "@/lib/edtech/practice-links";
+import { anatomyHref, questionBankHref } from "@/lib/edtech/practice-links";
 import { STUDY_NAV_COLOR, STUDY_NAV_SPRING } from "@/lib/layout/nav-motion";
 import { isExamPracticeLockedRoute } from "@/lib/navigation/app-shell";
 import { ROUTES, fullExamHref } from "@/lib/routes";
@@ -40,7 +40,7 @@ const BASE_NAV_ITEMS: NavItem[] = [
   { id: "question-bank", href: "__question_bank__", label: "Question Bank", icon: BookOpen },
   {
     id: "anatomy",
-    href: ROUTES.anatomy,
+    href: "__anatomy__",
     label: "Anatomy Explorer",
     icon: Bone,
     clinicalOnly: true,
@@ -141,6 +141,12 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
           return {
             ...item,
             href: examSlug ? fullExamHref(examSlug) : ROUTES.fullExam,
+          };
+        }
+        if (item.href === "__anatomy__") {
+          return {
+            ...item,
+            href: examSlug ? anatomyHref(examSlug) : ROUTES.anatomy,
           };
         }
         return item;

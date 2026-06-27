@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import { X } from "lucide-react";
+import { AnatomyFeaturedPicks } from "@/components/anatomy/AnatomyFeaturedPicks";
 import { AnatomyQuickNav } from "@/components/anatomy/AnatomyQuickNav";
 import { AnatomyStudioHero } from "@/components/anatomy/AnatomyStudioHero";
 import { AnatomyShell } from "@/components/anatomy/systems/AnatomyShell";
@@ -117,11 +118,6 @@ export function AnatomyExplorerClient({
     onNavigateToStructure: handleNavigateToStructure,
     catalogOnly,
   });
-
-  useEffect(() => {
-    if (catalogOnly) return;
-    void import("@/components/anatomy/cartoon/CartoonAnatomyViewer");
-  }, [catalogOnly]);
 
   const filteredStructures = useMemo(() => {
     const results = searchAnatomyStructures(search, {
@@ -307,6 +303,15 @@ export function AnatomyExplorerClient({
               stats={catalogStats}
               onStartTour={startDefaultTour}
               catalogOnly={catalogOnly}
+            />
+          </div>
+
+          <div className={cn(anatomyUi.sectionDivider, anatomyUi.panelSection)}>
+            <AnatomyFeaturedPicks
+              examSlug={examSlug}
+              selectedId={selectedId}
+              onSelect={handleSelectStructure}
+              onPreview={quizActive ? undefined : setHoveredId}
             />
           </div>
 

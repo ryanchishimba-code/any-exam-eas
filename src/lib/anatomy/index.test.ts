@@ -64,6 +64,12 @@ describe("anatomy helpers", () => {
 
     const nclexTours = getToursForExam("nclex");
     expect(nclexTours[0]?.id).toBe("nclex-respiratory-basics");
+
+    const npteTours = getToursForExam("npte-pt");
+    expect(npteTours[0]?.id).toBe("msk-extremities");
+
+    const naplexTours = getToursForExam("naplex");
+    expect(naplexTours[0]?.id).toBe("endocrine-hormones");
   });
 
   it("uses interactive atlas view mode only", () => {
@@ -117,6 +123,8 @@ describe("anatomy helpers", () => {
     const nclex = getFeaturedStructuresForExam("nclex");
     expect(nclex.some((s) => s.id === "lungs")).toBe(true);
     expect(getDefaultTourIdForExam("usmle")).toBe("usmle-heart-anatomy");
+    expect(getDefaultTourIdForExam("npte-pt")).toBe("msk-extremities");
+    expect(getDefaultTourIdForExam("aanp-fnp")).toBe("endocrine-hormones");
   });
 
   it("assigns every organ-layer structure to an organ system", () => {

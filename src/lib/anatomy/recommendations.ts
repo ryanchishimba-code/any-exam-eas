@@ -32,7 +32,9 @@ export function getDefaultTourIdForExam(examSlug: ExamSlug): string {
     case "pance":
       return "usmle-heart-anatomy";
     case "aanp-fnp":
-      return "nclex-respiratory-basics";
+      return "endocrine-hormones";
+    case "npte-pt":
+      return "msk-extremities";
     default:
       return "usmle-heart-anatomy";
   }
