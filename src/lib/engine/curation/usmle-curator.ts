@@ -90,6 +90,8 @@ export type UsmleCuratorOptions = {
   aiOnly?: boolean;
   /** Skip rule polish for failing items — use AI rewrite directly (default when API available). */
   aiFirst?: boolean;
+  /** Require editorial exam-ready (≥8, no errors) instead of serve floor only. */
+  requireExamReady?: boolean;
   seed?: number;
 };
 
@@ -137,8 +139,11 @@ function auditItem(
   });
 }
 
-function isAcceptable(item: BankItem, fieldId: string): boolean {
-  return usmleBankItemIsServeReady(item, fieldId);
+function isAcceptable(item: BankItem, opts: UsmleCuratorOptions): boolean {
+  if (opts.requireExamReady) {
+    return auditItem(item, opts).examReady;
+  }
+  return usmleBankItemIsServeReady(item, opts.fieldId);
 }
 
 function toRetrievedChunk(
@@ -331,7 +336,7 @@ export async function curateUsmleBankItem(
   const before = auditItem(item, opts);
   let bankReport = auditBankItem(item, opts.fieldId);
 
-  if (isAcceptable(item, opts.fieldId)) {
+  if (isAcceptable(item, opts)) {
     return {
       item,
       action: "accepted",
@@ -357,7 +362,7 @@ export async function curateUsmleBankItem(
     const after = auditItem(item, opts);
     bankReport = auditBankItem(item, opts.fieldId);
 
-    if (isAcceptable(item, opts.fieldId)) {
+    if (isAcceptable(item, opts)) {
       const unchanged =
         JSON.stringify({
           question: item.question,
@@ -386,7 +391,7 @@ export async function curateUsmleBankItem(
   const after = auditItem(item, opts);
   bankReport = auditBankItem(item, opts.fieldId);
 
-  if (opts.aiOnly && isAcceptable(item, opts.fieldId)) {
+  if (opts.aiOnly && isAcceptable(item, opts)) {
     return {
       item,
       action: "ai_curated",
@@ -434,7 +439,7 @@ export async function curateUsmleBankItem(
       ? auditReflection
       : await reflectOnQuestion(bankItemToUsmleExam(bestItem, attempt), chunks, opts.fieldId);
 
-    if (!useAiFirst && passesQualityGate(reflection) && isAcceptable(bestItem, opts.fieldId)) {
+    if (!useAiFirst && passesQualityGate(reflection) && isAcceptable(bestItem, opts)) {
       notes.push(`Self-RAG pass on attempt ${attempt + 1}`);
       break;
     }
@@ -486,7 +491,7 @@ export async function curateUsmleBankItem(
       );
     }
 
-    if (isAcceptable(candidate, opts.fieldId)) {
+    if (isAcceptable(candidate, opts)) {
       bestItem = candidate;
       bestAfter = candidateQa;
       bestBankOk = candidateBank.ok;
@@ -508,7 +513,7 @@ export async function curateUsmleBankItem(
     };
   }
 
-  if (isAcceptable(bestItem, opts.fieldId)) {
+  if (isAcceptable(bestItem, opts)) {
     return {
       item: bestItem,
       action: "ai_curated",

@@ -28,14 +28,16 @@ const prisma = new PrismaClient();
 
 const USMLE_FIELDS = ["usmle-step-1", "usmle-step-2", "usmle-step-3"] as const;
 
-function checkpointPath(field?: string) {
+function checkpointPath(field?: string, examReady?: boolean) {
   const slug = field ?? "all";
-  return path.join(process.cwd(), `artifacts/usmle-curate-checkpoint-${slug}.json`);
+  const suffix = examReady ? "-exam-ready" : "";
+  return path.join(process.cwd(), `artifacts/usmle-curate-checkpoint-${slug}${suffix}.json`);
 }
 
-function logPathFor(field?: string) {
+function logPathFor(field?: string, examReady?: boolean) {
   const slug = field ?? "all";
-  return path.join(process.cwd(), `artifacts/usmle-curate-run-${slug}.log`);
+  const suffix = examReady ? "-exam-ready" : "";
+  return path.join(process.cwd(), `artifacts/usmle-curate-run-${slug}${suffix}.log`);
 }
 
 type Checkpoint = {
@@ -58,6 +60,7 @@ function parseArgs() {
   let resume = false;
   let fresh = false;
   let noRag = false;
+  let examReady = false;
   let field: string | undefined;
 
   for (let i = 0; i < args.length; i++) {
@@ -73,8 +76,9 @@ function parseArgs() {
     else if (args[i] === "--resume") resume = true;
     else if (args[i] === "--fresh") fresh = true;
     else if (args[i] === "--no-rag") noRag = true;
+    else if (args[i] === "--exam-ready") examReady = true;
   }
-  return { csv, limit, maxScore, minAccept, dryRun, offline, all, fromDb, resume, fresh, noRag, field };
+  return { csv, limit, maxScore, minAccept, dryRun, offline, all, fromDb, resume, fresh, noRag, examReady, field };
 }
 
 function logLine(msg: string, logPath: string) {
@@ -103,7 +107,8 @@ function parseCsvIds(
   csvPath: string,
   maxScore: number,
   limit: number,
-  field?: string
+  field?: string,
+  examReadyOnly?: boolean
 ): string[] {
   if (!fs.existsSync(csvPath)) {
     throw new Error(`CSV not found: ${csvPath}. Run npm run db:audit-usmle first.`);
@@ -112,11 +117,15 @@ function parseCsvIds(
   const rows = lines
     .slice(1)
     .map((line) => {
-      const m = line.match(/^([^,]+),([^,]+),([^,]+),([^,]+),([0-9.]+),/);
-      if (!m) return null;
-      const [, itemId, fieldId, , , scoreStr] = m;
+      const parts = line.split(",");
+      if (parts.length < 14) return null;
+      const itemId = parts[0]!;
+      const fieldId = parts[1]!;
+      const scoreStr = parts[4]!;
+      const examReadyVal = parts[13]!;
       if (field && fieldId !== field) return null;
-      return { itemId: itemId!, overallScore: Number.parseFloat(scoreStr!) };
+      if (examReadyOnly && examReadyVal !== "no") return null;
+      return { itemId, overallScore: Number.parseFloat(scoreStr) };
     })
     .filter((r): r is { itemId: string; overallScore: number } => r !== null)
     .filter((r) => r.overallScore <= maxScore);
@@ -167,12 +176,14 @@ function hashForRow(
 
 function shouldPersist(
   result: UsmleCurationResult,
-  fieldId: string
+  fieldId: string,
+  requireExamReady?: boolean
 ): boolean {
   if (result.action === "accepted") return false;
   const { vignette } = splitUsmleBankItem(result.item);
   if (!vignette || vignette.length < 40) return false;
   if (!result.item.options.includes(result.item.correctAnswer)) return false;
+  if (requireExamReady) return result.after.examReady;
   return usmleBankItemIsServeReady(result.item, fieldId);
 }
 
@@ -186,6 +197,7 @@ async function resolveHashCollision(
     offline: boolean;
     noRag: boolean;
     aiFirst: boolean;
+    requireExamReady?: boolean;
     isUsmleCurationEnabled: () => boolean;
   }
 ): Promise<UsmleCurationResult> {
@@ -206,6 +218,7 @@ async function resolveHashCollision(
       useRag: !opts.noRag,
       aiOnly: opts.isUsmleCurationEnabled() && !opts.offline,
       aiFirst: opts.aiFirst,
+      requireExamReady: opts.requireExamReady,
       seed: seedFromId(row.id) + attempt * 7919,
       maxAiAttempts: 3,
     });
@@ -223,13 +236,17 @@ async function main() {
     "../src/lib/engine/curation"
   );
 
-  const { csv, limit, maxScore, minAccept, dryRun, offline, all, fromDb, resume, fresh, noRag, field } =
+  const { csv, limit, maxScore, minAccept, dryRun, offline, all, fromDb, resume, fresh, noRag, examReady, field } =
     parseArgs();
 
-  const ckptPath = checkpointPath(field);
-  const runLogPath = logPathFor(field);
-  const fieldMinAccept =
-    field && usmleServeMinQaScore(field) != null ? usmleServeMinQaScore(field)! : minAccept;
+  const ckptPath = checkpointPath(field, examReady);
+  const runLogPath = logPathFor(field, examReady);
+  const fieldMinAccept = examReady
+    ? minAccept
+    : field && usmleServeMinQaScore(field) != null
+      ? usmleServeMinQaScore(field)!
+      : minAccept;
+  const effectiveMaxScore = examReady ? 10 : maxScore;
 
   if (fresh && fs.existsSync(ckptPath)) {
     fs.unlinkSync(ckptPath);
@@ -239,10 +256,10 @@ async function main() {
   const effectiveLimit = all ? Number.MAX_SAFE_INTEGER : limit;
   let ids = fromDb
     ? await idsFromDb(field)
-    : parseCsvIds(csv, maxScore, effectiveLimit, field);
+    : parseCsvIds(csv, effectiveMaxScore, effectiveLimit, field, examReady);
 
   if (all && !fromDb) {
-    ids = parseCsvIds(csv, maxScore, Number.MAX_SAFE_INTEGER, field);
+    ids = parseCsvIds(csv, effectiveMaxScore, Number.MAX_SAFE_INTEGER, field, examReady);
   }
 
   const prior = resume ? loadCheckpoint(ckptPath) : null;
@@ -269,7 +286,7 @@ async function main() {
 
   logLine(`USMLE AI curation — ${ids.length} item(s) queued`, runLogPath);
   logLine(
-    `  source: ${fromDb ? "db(qaPassed=false)" : csv}  max-score: ${maxScore}  min-accept: ${fieldMinAccept}`,
+    `  source: ${fromDb ? "db(qaPassed=false)" : csv}  max-score: ${effectiveMaxScore}  min-accept: ${fieldMinAccept}  exam-ready: ${examReady}`,
     runLogPath
   );
   const aiEnabled = isUsmleCurationEnabled() && !offline;
@@ -327,6 +344,7 @@ async function main() {
         offline,
         useRag: !noRag,
         aiFirst: aiEnabled,
+        requireExamReady: examReady,
         maxAiAttempts: 3,
         seed: seedFromId(row.id),
       });
@@ -335,7 +353,9 @@ async function main() {
       measured++;
 
       const bankOk = auditBankItem(result.item, row.fieldId).ok;
-      let qaPassed = usmleBankItemIsServeReady(result.item, row.fieldId);
+      let qaPassed = examReady
+        ? result.after.examReady
+        : usmleBankItemIsServeReady(result.item, row.fieldId);
 
       if (result.action === "accepted") {
         checkpoint.counts.accepted = (checkpoint.counts.accepted ?? 0) + 1;
@@ -344,7 +364,7 @@ async function main() {
         continue;
       }
 
-      if (!shouldPersist(result, row.fieldId)) {
+      if (!shouldPersist(result, row.fieldId, examReady)) {
         checkpoint.counts.rejected = (checkpoint.counts.rejected ?? 0) + 1;
         checkpoint.processed.push(id);
         continue;
@@ -364,15 +384,17 @@ async function main() {
           item,
           result,
           curateUsmleBankItem,
-          { minAccept: fieldMinAccept, offline, noRag, aiFirst: aiEnabled, isUsmleCurationEnabled }
+          { minAccept: fieldMinAccept, offline, noRag, aiFirst: aiEnabled, requireExamReady: examReady, isUsmleCurationEnabled }
         );
         finalHash = hashForRow(row.fieldId, row.subjectId, result.item);
         collision = await prisma.questionBankItem.findFirst({
           where: { contentHash: finalHash, NOT: { id: row.id } },
         });
         bankOk = auditBankItem(result.item, row.fieldId).ok;
-        qaPassed = usmleBankItemIsServeReady(result.item, row.fieldId);
-        if (!shouldPersist(result, row.fieldId)) {
+        qaPassed = examReady
+          ? result.after.examReady
+          : usmleBankItemIsServeReady(result.item, row.fieldId);
+        if (!shouldPersist(result, row.fieldId, examReady)) {
           checkpoint.counts.rejected = (checkpoint.counts.rejected ?? 0) + 1;
           checkpoint.processed.push(id);
           continue;
