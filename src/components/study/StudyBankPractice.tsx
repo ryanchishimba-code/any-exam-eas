@@ -252,7 +252,8 @@ export function StudyBankPractice({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const { examSlug: clientExamSlug, loading: prefLoading } = useAppPreferences();
+  const { examSlug: clientExamSlug, loading: prefLoading, setExamSlug, refresh: refreshExamPref } =
+    useAppPreferences();
   const modeParam = searchParams.get("mode");
   const fieldParam =
     searchParams.get("field") ?? readBrowserSearchParam("field");
@@ -466,8 +467,12 @@ export function StudyBankPractice({
           const syncKey = `${paramMeta.id}:${targetSlug}`;
           if (crossExamFieldSyncRef.current !== syncKey) {
             crossExamFieldSyncRef.current = syncKey;
-            void persistExamPreference(targetSlug).then((result) => {
-              if (result.ok) router.refresh();
+            void persistExamPreference(targetSlug).then(async (result) => {
+              if (result.ok) {
+                setExamSlug(targetSlug);
+                await refreshExamPref();
+                router.refresh();
+              }
             });
           }
           return;
@@ -517,8 +522,10 @@ export function StudyBankPractice({
     practiceBase,
     prefLoading,
     preferredExamSlug,
+    refreshExamPref,
     router,
     searchParams,
+    setExamSlug,
   ]);
 
   useEffect(() => {

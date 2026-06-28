@@ -9,7 +9,7 @@ export async function fillControlledInput(locator: Locator, value: string) {
 }
 
 export async function fillDateOfBirth(page: Page, isoDate: string) {
-  await page.locator('input[type="date"]').fill(isoDate);
+  await page.locator("#signup-dob").fill(isoDate);
 }
 
 export async function acceptSignupTerms(page: Page) {

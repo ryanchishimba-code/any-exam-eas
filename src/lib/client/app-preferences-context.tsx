@@ -18,6 +18,8 @@ export type AppPreferences = {
   mpjeStateCode: string | null;
   loading: boolean;
   refresh: () => Promise<void>;
+  /** Immediate UI update after saving a new exam (before navigation completes). */
+  setExamSlug: (slug: ExamSlug | null) => void;
 };
 
 const AppPreferencesContext = createContext<AppPreferences | null>(null);
@@ -32,9 +34,13 @@ export function AppPreferencesProvider({
   children,
 }: ProviderProps) {
   const { status } = useSession();
-  const [examSlug, setExamSlug] = useState<ExamSlug | null>(initialExamSlug);
+  const [examSlug, setExamSlugState] = useState<ExamSlug | null>(initialExamSlug);
   const [mpjeStateCode, setMpjeStateCode] = useState<string | null>(null);
   const [loading, setLoading] = useState(status === "authenticated" && !initialExamSlug);
+
+  const setExamSlug = useCallback((slug: ExamSlug | null) => {
+    setExamSlugState(slug);
+  }, []);
 
   const refresh = useCallback(async () => {
     try {
@@ -44,10 +50,10 @@ export function AppPreferencesProvider({
         examSlug?: string | null;
         mpjeStateCode?: string | null;
       };
-      setExamSlug(data.examSlug && isExamSlug(data.examSlug) ? data.examSlug : null);
+      setExamSlugState(data.examSlug && isExamSlug(data.examSlug) ? data.examSlug : null);
       setMpjeStateCode(data.mpjeStateCode ?? null);
     } catch {
-      setExamSlug(null);
+      setExamSlugState(null);
       setMpjeStateCode(null);
     } finally {
       setLoading(false);
@@ -56,22 +62,18 @@ export function AppPreferencesProvider({
 
   useEffect(() => {
     if (status !== "authenticated") {
-      setExamSlug(null);
+      setExamSlugState(null);
       setMpjeStateCode(null);
       setLoading(false);
       return;
     }
-    if (initialExamSlug) {
-      setExamSlug(initialExamSlug);
-      setLoading(false);
-      return;
-    }
+
     void refresh();
   }, [status, initialExamSlug, refresh]);
 
   const value = useMemo(
-    () => ({ examSlug, mpjeStateCode, loading, refresh }),
-    [examSlug, mpjeStateCode, loading, refresh]
+    () => ({ examSlug, mpjeStateCode, loading, refresh, setExamSlug }),
+    [examSlug, mpjeStateCode, loading, refresh, setExamSlug]
   );
 
   return (
@@ -81,9 +83,13 @@ export function AppPreferencesProvider({
 
 function useLocalAppPreferences(active: boolean): AppPreferences {
   const { status } = useSession();
-  const [examSlug, setExamSlug] = useState<ExamSlug | null>(null);
+  const [examSlug, setExamSlugState] = useState<ExamSlug | null>(null);
   const [mpjeStateCode, setMpjeStateCode] = useState<string | null>(null);
   const [loading, setLoading] = useState(active && status === "authenticated");
+
+  const setExamSlug = useCallback((slug: ExamSlug | null) => {
+    setExamSlugState(slug);
+  }, []);
 
   const refresh = useCallback(async () => {
     try {
@@ -93,10 +99,10 @@ function useLocalAppPreferences(active: boolean): AppPreferences {
         examSlug?: string | null;
         mpjeStateCode?: string | null;
       };
-      setExamSlug(data.examSlug && isExamSlug(data.examSlug) ? data.examSlug : null);
+      setExamSlugState(data.examSlug && isExamSlug(data.examSlug) ? data.examSlug : null);
       setMpjeStateCode(data.mpjeStateCode ?? null);
     } catch {
-      setExamSlug(null);
+      setExamSlugState(null);
       setMpjeStateCode(null);
     } finally {
       setLoading(false);
@@ -107,14 +113,14 @@ function useLocalAppPreferences(active: boolean): AppPreferences {
     if (!active) return;
     if (status !== "authenticated") {
       setLoading(false);
-      setExamSlug(null);
+      setExamSlugState(null);
       setMpjeStateCode(null);
       return;
     }
     void refresh();
   }, [active, status, refresh]);
 
-  return { examSlug, mpjeStateCode, loading, refresh };
+  return { examSlug, mpjeStateCode, loading, refresh, setExamSlug };
 }
 
 export function useAppPreferences(): AppPreferences {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition, useMemo, useEffect } from "react";
+import { useState, useTransition, useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
@@ -17,6 +17,7 @@ import { ExamCard } from "@/components/edtech/ExamCard";
 import { StatusMessage } from "@/components/ui/StatusMessage";
 import { persistExamPreference } from "@/lib/edtech/actions";
 import { fireExamSelectionConfetti } from "@/lib/edtech/confetti";
+import { navigateHard } from "@/lib/client/navigate-hard";
 import { EXAM_SLUGS, EXAM_CATALOG } from "@/lib/edtech/exams";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
@@ -78,6 +79,7 @@ export function ExamSelectionScreen({
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
+  const persistGenerationRef = useRef(0);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -106,8 +108,10 @@ export function ExamSelectionScreen({
     }
 
     setSelected(slug);
+    const generation = ++persistGenerationRef.current;
     startTransition(async () => {
       const result = await persistExamPreference(slug);
+      if (generation !== persistGenerationRef.current) return;
       if (!result.ok) {
         setError(result.error);
         setSelected(null);
@@ -120,13 +124,11 @@ export function ExamSelectionScreen({
         }
         setSuccess(true);
         window.setTimeout(() => {
-          router.push(ROUTES.practiceHub);
-          router.refresh();
+          navigateHard(ROUTES.dashboard);
         }, switchMode ? 400 : 900);
       } catch {
-        setError("Saved your exam, but navigation failed. Opening Study Hub…");
-        router.push(ROUTES.practiceHub);
-        router.refresh();
+        setError("Saved your exam, but navigation failed. Opening dashboard…");
+        navigateHard(ROUTES.dashboard);
       }
     });
   }

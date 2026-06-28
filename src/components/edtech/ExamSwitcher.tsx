@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { ChevronDown, GraduationCap, LayoutGrid } from "lucide-react";
 import { switchExamPreference } from "@/lib/edtech/actions";
+import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
@@ -21,6 +22,7 @@ export function ExamSwitcher({
 }) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
+  const { setExamSlug, refresh } = useAppPreferences();
   const exam = EXAM_CATALOG[currentExam];
   const isNav = variant === "nav";
   const isMobile = variant === "mobile";
@@ -28,9 +30,15 @@ export function ExamSwitcher({
   function onChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const next = e.target.value as ExamSlug;
     if (next === currentExam) return;
+    setExamSlug(next);
     startTransition(async () => {
-      await switchExamPreference(next);
+      const result = await switchExamPreference(next);
+      if (!result.ok) {
+        setExamSlug(currentExam);
+        return;
+      }
       onSwitched?.();
+      await refresh();
       router.refresh();
     });
   }

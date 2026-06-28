@@ -12,6 +12,8 @@ export const metadata = {
     "Bold, personalized prep for USMLE, NCLEX, NAPLEX, COMLEX, and AANP FNP.",
 };
 
+export const dynamic = "force-dynamic";
+
 type PageProps = {
   searchParams: Promise<{ switch?: string }>;
 };

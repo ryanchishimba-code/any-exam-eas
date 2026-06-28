@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { signIn } from "next-auth/react";
 import { Check, Eye, EyeOff } from "lucide-react";
 import { LegalCheckbox } from "./LegalCheckbox";
@@ -22,6 +22,11 @@ import {
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import type { ExamSlug } from "@/types/edtech";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
+import {
+  defaultExamDatePreview,
+  ExamDateWheelPicker,
+  todayIso,
+} from "@/components/edtech/ExamDateWheelPicker";
 import {
   fetchAuthHealthWarning,
   messageFromUnknownAuthError,
@@ -193,6 +198,9 @@ export function SignupForm({
     "Cancel anytime before your trial ends for no charge",
   ];
 
+  const today = useMemo(() => todayIso(), []);
+  const examDatePreview = useMemo(() => defaultExamDatePreview(today), [today]);
+
   return (
     <form onSubmit={handleSubmit} noValidate className="apple-card mt-10 space-y-6 p-8 md:p-10">
       {plan === "trial" && (
@@ -340,8 +348,11 @@ export function SignupForm({
               )}
             </div>
             <div>
-              <label className="apple-label">Date of birth (18+ required)</label>
+              <label htmlFor="signup-dob" className="apple-label">
+                Date of birth (18+ required)
+              </label>
               <input
+                id="signup-dob"
                 required
                 type="date"
                 value={dob}
@@ -405,20 +416,33 @@ export function SignupForm({
             </div>
 
             {examSlug && (
-              <div className="pt-1">
-                <label htmlFor="signup-test-date" className="apple-label">
-                  When&apos;s your test? <span className="font-normal text-[var(--color-ink-muted)]">(optional)</span>
-                </label>
-                <input
-                  id="signup-test-date"
-                  type="date"
-                  value={testDate}
-                  min={new Date().toISOString().slice(0, 10)}
-                  onChange={(e) => setTestDate(e.target.value)}
-                  className="apple-input mt-2"
-                />
-                <p className="mt-1.5 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-                  We&apos;ll show a countdown on your dashboard. You can set or change this anytime.
+              <div className="pt-2">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <label id="signup-test-date-label" className="apple-label">
+                    When&apos;s your test?{" "}
+                    <span className="font-normal text-[var(--color-ink-muted)]">(optional)</span>
+                  </label>
+                  {testDate ? (
+                    <button
+                      type="button"
+                      onClick={() => setTestDate("")}
+                      className="text-[0.6875rem] font-semibold text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
+                    >
+                      Skip for now
+                    </button>
+                  ) : null}
+                </div>
+                <div className="mt-3" aria-labelledby="signup-test-date-label">
+                  <ExamDateWheelPicker
+                    id="signup-test-date"
+                    value={testDate || examDatePreview}
+                    minDate={today}
+                    onChange={setTestDate}
+                  />
+                </div>
+                <p className="mt-2 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+                  Spin the wheels to set your date — we&apos;ll show a live countdown on your dashboard.
+                  Leave it unset if you&apos;re not sure yet.
                 </p>
               </div>
             )}

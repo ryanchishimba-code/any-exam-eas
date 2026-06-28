@@ -2,12 +2,7 @@ import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 import { ensureBoardExam } from "@/lib/edtech/board-exam-sync";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
-import {
-  CACHE_TTL,
-  cacheGetOrSet,
-  cacheKey,
-  invalidateExamPreferenceCache,
-} from "@/lib/cache";
+import { invalidateExamPreferenceCache } from "@/lib/cache";
 import type { ExamSlug, UserExamPreference } from "@/types/edtech";
 
 async function readUserExamPreference(userId: string): Promise<UserExamPreference | null> {
@@ -31,13 +26,9 @@ async function readUserExamPreference(userId: string): Promise<UserExamPreferenc
   }
 }
 
-/** Per-request dedupe + short TTL cache for hot navigation paths. */
+/** Per-request dedupe — always read fresh from DB (exam choice must not sit in TTL cache). */
 export const getUserExamPreference = cache(async (userId: string): Promise<UserExamPreference | null> => {
-  return cacheGetOrSet(
-    cacheKey(["exam-preference", userId]),
-    CACHE_TTL.examPreference,
-    () => readUserExamPreference(userId)
-  );
+  return readUserExamPreference(userId);
 });
 
 export async function setUserExamPreference(userId: string, examSlug: ExamSlug): Promise<void> {

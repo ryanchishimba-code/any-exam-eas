@@ -11,8 +11,18 @@ import type { MpjeVariant } from "@/lib/mpje/config";
 import { isMpjeUsJurisdiction } from "@/lib/mpje/us-jurisdictions";
 
 export type PersistExamPreferenceResult =
-  | { ok: true }
+  | { ok: true; examSlug: ExamSlug }
   | { ok: false; error: string };
+
+function revalidateExamPreferencePaths() {
+  revalidatePath("/dashboard", "layout");
+  revalidatePath("/question-bank", "layout");
+  revalidatePath("/analytics", "layout");
+  revalidatePath("/settings", "layout");
+  revalidatePath("/dashboard");
+  revalidatePath("/question-bank");
+  revalidatePath("/select-exam");
+}
 
 /** Persist exam without redirect — client handles confetti + navigation. */
 export async function persistExamPreference(
@@ -28,11 +38,8 @@ export async function persistExamPreference(
     }
 
     await setUserExamPreference(session.user.id, examSlug);
-    revalidatePath("/dashboard");
-    revalidatePath("/study-hub");
-    revalidatePath("/select-exam");
-    revalidatePath("/question-bank");
-    return { ok: true };
+    revalidateExamPreferencePaths();
+    return { ok: true, examSlug };
   } catch (err) {
     console.error("[persistExamPreference]", err);
     return {
@@ -59,12 +66,9 @@ export async function persistUsmleStepPreference(
 
     await setUserExamPreference(session.user.id, "usmle");
     await setUserEdtechMetadata(session.user.id, { usmleFieldId });
-    revalidatePath("/dashboard");
-    revalidatePath("/study-hub");
-    revalidatePath("/select-exam");
+    revalidateExamPreferencePaths();
     revalidatePath("/select-exam/usmle");
-    revalidatePath("/question-bank");
-    return { ok: true };
+    return { ok: true, examSlug: "usmle" };
   } catch (err) {
     console.error("[persistUsmleStepPreference]", err);
     return {
@@ -115,18 +119,27 @@ export async function saveMpjePreferences(input: {
   return { ok: true as const };
 }
 
-export async function switchExamPreference(examSlug: string) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    redirect("/auth/login?callbackUrl=/dashboard");
-  }
-  if (!isExamSlug(examSlug)) {
-    throw new Error("Invalid exam");
-  }
+export async function switchExamPreference(
+  examSlug: string
+): Promise<PersistExamPreferenceResult> {
+  try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return { ok: false, error: "Please log in again to save your exam choice." };
+    }
+    if (!isExamSlug(examSlug)) {
+      return { ok: false, error: "That exam is not available." };
+    }
 
-  await setUserExamPreference(session.user.id, examSlug);
-  revalidatePath("/dashboard");
-  revalidatePath("/study-hub");
-  revalidatePath("/dashboard/topics");
-  revalidatePath("/select-exam");
+    await setUserExamPreference(session.user.id, examSlug);
+    revalidateExamPreferencePaths();
+    revalidatePath("/dashboard/topics");
+    return { ok: true, examSlug };
+  } catch (err) {
+    console.error("[switchExamPreference]", err);
+    return {
+      ok: false,
+      error: "We couldn't save your exam choice. Check your connection and try again.",
+    };
+  }
 }

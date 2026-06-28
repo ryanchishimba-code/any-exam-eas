@@ -45,6 +45,8 @@ export async function POST(req: Request) {
 
   try {
     await setUserExamPreference(guard.userId, examSlug as ExamSlug);
+    revalidatePath("/dashboard", "layout");
+    revalidatePath("/question-bank", "layout");
     revalidatePath("/dashboard");
     revalidatePath("/study-hub");
     revalidatePath("/select-exam");
