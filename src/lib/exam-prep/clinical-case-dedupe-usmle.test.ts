@@ -5,7 +5,7 @@ import {
   dedupeItemsByClinicalCase,
   selectDiverseSessionBankItems,
 } from "./diverse-session-selection";
-import { selectSpreadRawInputs } from "@/lib/questions/spread-session-order";
+import { selectDiverseSessionRawInputs } from "@/lib/questions/spread-session-order";
 import type { RawQuestionInput } from "@/lib/questions/types";
 
 const AKI_CASE =
@@ -65,7 +65,7 @@ describe("USMLE Step 1 duplicate AKI templates", () => {
     expect(akiInSession).toHaveLength(1);
   });
 
-  it("finalize spread selection collapses duplicate bankItemIds with the same case", () => {
+  it("diverse raw selection collapses duplicate AKI templates", () => {
     const raw: RawQuestionInput[] = [
       akiItem("enc-1472", 69, "What is the most likely diagnosis?"),
       akiItem("enc-8663", 69, "Which diagnosis best explains this clinical presentation?"),
@@ -82,7 +82,7 @@ describe("USMLE Step 1 duplicate AKI templates", () => {
       bankItemId: item.id,
     }));
 
-    const selected = selectSpreadRawInputs(raw, 4);
+    const selected = selectDiverseSessionRawInputs(raw, 4);
     const akiSelected = selected.filter((row) => /muddy brown casts/i.test(row.question));
     expect(akiSelected).toHaveLength(1);
   });

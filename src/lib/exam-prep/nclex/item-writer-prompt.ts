@@ -48,6 +48,13 @@ Correct: Incentive spirometry q1–2h while awake + early ambulation (with pre-m
 EXAMPLE Q10 (Fetal monitoring — intrauterine resuscitation):
 G2P1 39 wks, epidural 45 min ago, late decelerations + minimal variability, BP 98/60.
 Correct: IV fluid bolus + left lateral reposition first to treat maternal hypotension from epidural sympathetic block.
+
+WEAK vs STRONG — risk/prioritization finding stems (never reuse templated stable distractors):
+WEAK: Options are "Urine output 60 mL/hr", "Pain 2/10 after analgesia", "Temp 98.4°F warm/dry" plus one acute finding.
+STRONG (GI bleed): Correct = pale, cool extremities with capillary refill 3 sec (perfusion/shock). Distractors = scenario-appropriate stable findings (clear lungs, oriented ×3, soft abdomen) — NOT the same three vitals templates on every item.
+STRONG (Asthma): Correct = intercostal retractions + SpO₂ 90% on room air. Distractors = strong pulses, speaking full sentences, afebrile skin — mutually exclusive ABC reasoning.
+STRONG (DKA): Correct = Kussmaul respirations + fruity breath (metabolic acidosis compensation). Distractors = oriented ×3, clear lungs, brisk turgor — glucose alone is insufficient discrimination.
+STRONG (C. diff): Correct = contact precautions + dedicated equipment + soap-and-water hand hygiene. Distractors = alcohol rub alone, droplet only, airborne/negative pressure — wrong transmission route.
 `.trim();
 
 export function buildNclexBoardQualityBlock(): string {

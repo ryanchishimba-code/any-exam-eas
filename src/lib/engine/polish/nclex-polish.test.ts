@@ -196,6 +196,34 @@ describe("nclex-polish", () => {
     expect(item.correctAnswer).toMatch(/intake and output/i);
   });
 
+  it("risk polish avoids templated urine/pain/temperature distractors", () => {
+    const genericRisk: BankItem = {
+      subjectId: "reduction-risk",
+      vignette:
+        "Medical-surgical unit, Room 412. A 77-year-old man with upper GI bleed. History of peptic ulcer disease and aspirin use; melena reported overnight. BP 90/56 mmHg, HR 118, RR 20, Hgb 7.2 g/dL. Pale, cool extremities, active melena, lightheaded when repositioning, capillary refill 3 seconds.",
+      question: "Which assessment finding should the nurse address first?",
+      options: [
+        "Pale, cool extremities, active melena, lightheaded when repositioning",
+        "Pain rated 2/10 after scheduled analgesia, consistent with routine recovery",
+        "Urine output 60 mL/hr of clear yellow urine over the past two hours",
+        "Temperature 98.4°F (36.9°C) with skin warm, dry, and intact",
+      ],
+      correctAnswer: "Pale, cool extremities, active melena, lightheaded when repositioning",
+      explanation: "Address perfusion first.",
+    };
+
+    const { item, changed } = polishNclexBankItem(
+      genericRisk,
+      "reduction-risk",
+      "Reduction of Risk Potential",
+      412
+    );
+    expect(changed).toBe(true);
+    expect(item.options.join(" ")).not.toMatch(/Urine output 60 mL\/hr|Pain rated 2\/10|Temperature 98\.4°F/);
+    expect(item.correctAnswer).toMatch(/pale|cool|capillary refill/i);
+    expect(auditBankItem(item, "nursing").ok).toBe(true);
+  });
+
   it("repairs delegation vignette grafted onto infection stem", () => {
     const broken: BankItem = {
       subjectId: "safety-infection",

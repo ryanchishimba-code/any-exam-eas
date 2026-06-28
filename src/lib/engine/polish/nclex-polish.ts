@@ -19,6 +19,7 @@ import {
   isNclexDelegationStem,
   NCLEX_DELEGATION_SUBJECT_ID,
 } from "@/lib/exam-prep/nclex/delegation-balance";
+import { isGenericRiskBankItem } from "@/lib/engine/polish/nclex-generic-checks";
 
 const NCLEX_PREFIX = /^NCLEX\s+\d+:\s*/i;
 
@@ -46,6 +47,9 @@ const WEAK_OPTION_PATTERNS = [
   /^Assume understanding if the client nods/i,
   /^Delay intervention until all other clients are discharged/i,
   /^Ignore provider orders and institutional policies/i,
+  /^Urine output 60 mL\/hr of clear yellow urine/i,
+  /^Pain rated 2\/10 after scheduled analgesia/i,
+  /^Temperature 98\.4°F \(36\.9°C\) with skin warm, dry, and intact/i,
 ];
 
 type NursingScenario = {
@@ -79,8 +83,8 @@ const SCENARIOS: NursingScenario[] = [
     setting: "Emergency department",
     dx: "type 2 diabetes with hyperglycemia",
     history: "Long-standing type 2 diabetes; ran out of insulin 2 days ago",
-    vitals: "BP 138/84 mmHg, HR 118, RR 28, temp 99.1°F (37.3°C)",
-    findings: "Glucose 412 mg/dL, dry mucous membranes, fruity breath odor, skin warm and dry, reports polyuria and thirst",
+    vitals: "BP 138/84 mmHg, HR 118, RR 28 deep and labored, temp 99.1°F (37.3°C)",
+    findings: "Glucose 412 mg/dL, deep rapid (Kussmaul) respirations, fruity breath odor, dry mucous membranes, reports polyuria and nausea",
     pathophys:
       "Insulin deficiency → hyperglycemia, osmotic diuresis, and risk for DKA/HHS — dehydration and acid-base imbalance may follow",
     nursePriority: "Initiate insulin and IV fluids per protocol; monitor glucose, electrolytes, and mental status closely",
@@ -683,6 +687,7 @@ export function scoreNclexBankItem(item: BankItem): number {
 
   if (WEAK_CORRECT_PATTERNS.some((re) => re.test(item.correctAnswer))) score -= 0.22;
   if (item.options.some((o) => WEAK_OPTION_PATTERNS.some((re) => re.test(o)))) score -= 0.18;
+  if (isGenericRiskBankItem(item)) score -= 0.2;
   if (isWeakPrioritizationBankItem(item)) score -= 0.35;
 
   return Math.max(0, Math.min(1, score));
@@ -1025,15 +1030,231 @@ function firstSignificantFinding(findings: string): string {
   return parts[0] ?? findings;
 }
 
+type RiskFindingCategory =
+  | "perfusion"
+  | "respiratory"
+  | "metabolic"
+  | "cardiac"
+  | "neuro"
+  | "ob"
+  | "infection"
+  | "general";
+
+function classifyRiskFindingCategory(scenario: NursingScenario): RiskFindingCategory {
+  const blob = `${scenario.dx} ${scenario.findings} ${scenario.pathophys}`.toLowerCase();
+  if (/bleed|shock|hypovolem|perfusion|melena|postpartum hemorrhage|blood loss/.test(blob)) return "perfusion";
+  if (/asthma|copd|respiratory|wheez|retraction|hypox|spo/.test(blob)) return "respiratory";
+  if (/diabetes|hyperglycemia|dka|kussmaul|acidosis|glucose/.test(blob)) return "metabolic";
+  if (/atrial fibrillation|heart failure|arrhythm|cardiac|crackles|edema/.test(blob)) return "cardiac";
+  if (/preeclampsia|eclampsia|seizure|stroke|clonus|headache/.test(blob)) return "neuro";
+  if (/postpartum|labor|preeclampsia|fetal/.test(blob)) return "ob";
+  if (/neutropenia|fever|infection|sepsis|difficile|c\. diff/.test(blob)) return "infection";
+  return "general";
+}
+
+/** Pick the highest-priority assessment finding for risk/prioritization stems. */
+function criticalFindingForRisk(scenario: NursingScenario): string {
+  const parts = scenario.findings.split(",").map((s) => s.trim()).filter(Boolean);
+  const category = classifyRiskFindingCategory(scenario);
+  const capRef = scenario.findings.match(/capillary refill (\d+) seconds?/i)?.[1];
+
+  const pick = (...patterns: RegExp[]) => parts.find((p) => patterns.some((re) => re.test(p)));
+
+  switch (category) {
+    case "perfusion": {
+      const perfusion = pick(/pale|cool|clammy|capillary|lightheaded|melena|boggy|saturated perineal/i);
+      if (perfusion && /pale|cool|clammy/i.test(perfusion) && capRef) {
+        return `${perfusion} with capillary refill of ${capRef} seconds`;
+      }
+      return perfusion ?? firstSignificantFinding(scenario.findings);
+    }
+    case "respiratory": {
+      const resp = pick(/retraction|wheez|accessory|short phrase|diminished breath|anxious and speaking/i);
+      const spo = scenario.vitals.match(/SpO[₂2]\s*(\d+)%/i)?.[1];
+      if (resp && spo) {
+        return `${resp} and SpO₂ ${spo}% on room air`;
+      }
+      return resp ?? firstSignificantFinding(scenario.findings);
+    }
+    case "metabolic": {
+      const acidosis = pick(/kussmaul|deep rapid|fruity breath/i);
+      const glucose = parts.find((p) => /glucose \d+/i.test(p));
+      if (acidosis && glucose) {
+        return `${acidosis} and ${glucose}`;
+      }
+      return acidosis ?? glucose ?? firstSignificantFinding(scenario.findings);
+    }
+    case "cardiac":
+      return pick(/crackles|irregular|dizziness|edema|JVD|palpitation/i) ?? firstSignificantFinding(scenario.findings);
+    case "neuro":
+      return pick(/clonus|headache|hyperreflexia|epigastric pain|protein|seizure/i) ?? firstSignificantFinding(scenario.findings);
+    case "ob":
+      return pick(/boggy|saturated|uterus|bleeding|clonus|headache|protein/i) ?? firstSignificantFinding(scenario.findings);
+    case "infection":
+      return pick(/temp|fever|chills|ANC|diarrhea|mucositis/i) ?? firstSignificantFinding(scenario.findings);
+    default:
+      return firstSignificantFinding(scenario.findings);
+  }
+}
+
+/** Scenario-specific stable findings — plausible but lower priority than the critical cue. */
+const RISK_STABLE_FINDING_POOLS: Record<RiskFindingCategory, string[][]> = {
+  perfusion: [
+    [
+      "Lungs clear to auscultation bilaterally with unlabored respirations at 16/min",
+      "Oriented to person, place, and time; denies chest pain or shortness of breath",
+      "Abdomen soft and non-tender with active bowel sounds in all four quadrants",
+    ],
+    [
+      "Capillary refill less than 2 seconds in nail beds with warm, pink extremities",
+      "No new bleeding noted on dressing inspection; surgical site dry and intact",
+      "Blood pressure 128/76 mmHg when rechecked after fluid bolus in a prior client",
+    ],
+  ],
+  respiratory: [
+    [
+      "Capillary refill less than 2 seconds with strong peripheral pulses",
+      "Afebrile with skin warm and dry; no accessory muscle use at rest",
+      "Alert and oriented, speaking in full sentences without pausing for breath",
+    ],
+    [
+      "Heart rate 88/min regular with no reported chest pain",
+      "Abdomen soft with bowel sounds present; last bowel movement yesterday",
+      "Urine output 50 mL/hr of clear yellow urine without hematuria",
+    ],
+  ],
+  metabolic: [
+    [
+      "Capillary refill less than 2 seconds with moist mucous membranes on reassessment of a stable client",
+      "Alert and oriented ×3, cooperative with care, and following commands appropriately",
+      "Lungs clear bilaterally with unlabored respirations at 18/min",
+    ],
+    [
+      "Skin turgor brisk with no reported abdominal pain on palpation",
+      "Blood pressure 122/74 mmHg with strong radial pulses bilaterally",
+      "Temperature 98.2°F (36.8°C) without chills or diaphoresis",
+    ],
+  ],
+  cardiac: [
+    [
+      "Lungs clear in upper lobes with no reported orthopnea at rest",
+      "Capillary refill less than 2 seconds; extremities warm without edema",
+      "Alert and oriented with no reported dizziness when lying flat",
+    ],
+    [
+      "Abdomen soft and non-tender; last bowel movement this morning",
+      "Skin warm and dry; no jugular vein distention at 45 degrees",
+      "Urine output 55 mL/hr of clear yellow urine without sediment",
+    ],
+  ],
+  neuro: [
+    [
+      "Lungs clear bilaterally with unlabored respirations at 16/min",
+      "Fetal heart rate 140 bpm with moderate variability on the monitor strip",
+      "Capillary refill less than 2 seconds with warm extremities",
+    ],
+    [
+      "Blood pressure 118/72 mmHg on repeat manual measurement",
+      "No visual changes or scotomata reported during the last hour",
+      "Reflexes 2+ and symmetric without clonus on prior assessment",
+    ],
+  ],
+  ob: [
+    [
+      "Lungs clear bilaterally; no shortness of breath at rest",
+      "Capillary refill less than 2 seconds with warm extremities",
+      "Lochia rubra moderate and expected for hours postpartum on pad check",
+    ],
+    [
+      "Bladder non-palpable after voiding 300 mL; fundus firm at umbilicus after massage",
+      "Blood pressure 118/70 mmHg with strong pedal pulses",
+      "Breast engorgement mild without redness, fever, or flu-like symptoms",
+    ],
+  ],
+  infection: [
+    [
+      "Capillary refill less than 2 seconds with pink nail beds",
+      "Lungs clear bilaterally with unlabored respirations",
+      "Oriented and cooperative; denies urinary retention or flank pain",
+    ],
+    [
+      "Blood pressure stable at 120/68 mmHg with strong peripheral pulses",
+      "Skin warm and dry without new rash or petechiae",
+      "Abdomen soft with active bowel sounds; tolerating clear liquids",
+    ],
+  ],
+  general: [
+    [
+      "Oriented to person, place, and time with GCS 15",
+      "Lungs clear bilaterally with unlabored respirations at 16/min",
+      "Capillary refill less than 2 seconds with warm, dry skin",
+    ],
+    [
+      "Abdomen soft and non-tender with bowel sounds in all quadrants",
+      "Strong pedal pulses bilaterally without unilateral calf swelling",
+      "Urine output adequate for age with clear yellow appearance",
+    ],
+  ],
+};
+
+function normalizeFindingText(text: string): string {
+  return text.toLowerCase().replace(/\s+/g, " ").trim();
+}
+
+function buildRiskDistractors(
+  scenario: NursingScenario,
+  correct: string,
+  seed: number
+): [string, string, string] {
+  const category = classifyRiskFindingCategory(scenario);
+  const pools = RISK_STABLE_FINDING_POOLS[category] ?? RISK_STABLE_FINDING_POOLS.general;
+  const pool = pools[Math.abs(seed + 11) % pools.length]!;
+  const correctNorm = normalizeFindingText(correct);
+
+  const secondary = scenario.findings
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .filter((part) => {
+      const norm = normalizeFindingText(part);
+      return norm.length >= 12 && !correctNorm.includes(norm) && !norm.includes(correctNorm.slice(0, 24));
+    })
+    .filter((part) => !/glucose \d+|spo[₂2]|capillary refill/i.test(part));
+
+  const candidates = [...secondary, ...pool];
+  const seen = new Set<string>([correctNorm]);
+  const picked: string[] = [];
+
+  for (const candidate of candidates) {
+    const norm = normalizeFindingText(candidate);
+    if (seen.has(norm) || norm.length < 12) continue;
+    seen.add(norm);
+    picked.push(candidate);
+    if (picked.length === 3) break;
+  }
+
+  while (picked.length < 3) {
+    const fallback =
+      RISK_STABLE_FINDING_POOLS.general[picked.length % RISK_STABLE_FINDING_POOLS.general.length]![
+        picked.length % 3
+      ]!;
+    const norm = normalizeFindingText(fallback);
+    if (!seen.has(norm)) {
+      seen.add(norm);
+      picked.push(fallback);
+    } else {
+      picked.push(`Skin warm and dry with capillary refill less than 2 seconds (stable reassessment finding)`);
+    }
+  }
+
+  return picked.slice(0, 3) as [string, string, string];
+}
+
 function buildRisk(scenario: NursingScenario, subjectLabel: string, seed: number) {
   // Stem asks for a finding, so every option must be a finding — never a
   // nursing action (the QA gate fails stem/option category mismatches).
-  const correct = firstSignificantFinding(scenario.findings);
-  const wrongs: [string, string, string] = [
-    "Pain rated 2/10 after scheduled analgesia, consistent with routine recovery",
-    "Urine output 60 mL/hr of clear yellow urine over the past two hours",
-    "Temperature 98.4°F (36.9°C) with skin warm, dry, and intact",
-  ];
+  const correct = criticalFindingForRisk(scenario);
+  const wrongs = buildRiskDistractors(scenario, correct, seed);
   const slot = Math.abs(seed + 7) % 4;
   const vignette = [
     `${scenario.setting}, ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} with ${scenario.dx}.`,
@@ -1146,8 +1367,8 @@ function buildNclexExplanation(
       if (priorityWhy) {
         return `• ${opt}: Incorrect — ${priorityWhy}`;
       }
-      if (/^(?:Pain rated|Urine output|Temperature 9)/i.test(opt)) {
-        return `• ${opt}: Incorrect — expected or stable finding within normal limits; it does not require immediate nursing follow-up.`;
+      if (/^(?:Pain rated|Urine output|Temperature 9|Capillary refill less than 2|Lungs clear|Oriented to person|Alert and oriented|Afebrile with skin warm)/i.test(opt)) {
+        return `• ${opt}: Incorrect — expected or stable finding within normal limits; it does not require immediate nursing follow-up for this client presentation.`;
       }
       if (/stable|chronic|discharge teaching|routine|3\/10|142 mg/i.test(opt)) {
         return `• ${opt}: Incorrect — stable, chronic, or scheduled needs are lower priority than the client with acute, unstable cues in the vignette.`;
@@ -1232,6 +1453,7 @@ export function needsNclexPolish(item: BankItem): boolean {
   const text = itemTextBlob(item);
   return (
     isWeakPrioritizationBankItem(item) ||
+    isGenericRiskBankItem(item) ||
     hasShiftNoteArtifacts(item.vignette ?? item.question) ||
     scoreNclexBankItem(item) < 0.62 ||
     NCLEX_PREFIX.test(item.question) ||

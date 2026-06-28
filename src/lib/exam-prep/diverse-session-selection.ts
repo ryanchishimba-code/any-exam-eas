@@ -1,6 +1,12 @@
 import type { BankItem } from "@/lib/question-bank";
 import { dedupeBankItemsById } from "@/lib/question-bank-db";
 import { clinicalCaseKey } from "@/lib/exam-prep/clinical-case-dedupe";
+import {
+  candidateViolatesExamRules,
+  primaryTestedConceptKey,
+  resolveExamUniquenessPolicy,
+  type ExamUniquenessPolicy,
+} from "@/lib/exam-prep/exam-similarity";
 import { conceptKeysFor } from "@/lib/exam-prep/naplex/blueprint-selection";
 import { sequenceItems } from "@/lib/exam-prep/sequencing/anti-cluster-sequencer";
 import type { SequenceItem } from "@/lib/exam-prep/sequencing/types";
@@ -11,6 +17,10 @@ export type DiverseSessionOptions = {
   seed?: number;
   /** Skip picking another item when this returns false (e.g. NCLEX delegation cap). */
   acceptCandidate?: (item: BankItem, selected: BankItem[]) => boolean;
+  /** Target session size — used to scale uniqueness policy for long exams. */
+  requestedCount?: number;
+  /** Optional explicit uniqueness policy (auto-resolved from pool + count when omitted). */
+  uniquenessPolicy?: ExamUniquenessPolicy;
 };
 
 function mulberry32(seed: number): () => number {
@@ -117,6 +127,7 @@ function roundRobinByDomain(
   items: BankItem[],
   limit: number,
   seed: number,
+  policy: ExamUniquenessPolicy,
   acceptCandidate?: DiverseSessionOptions["acceptCandidate"]
 ): BankItem[] {
   const byDomain = new Map<string, BankItem[]>();
@@ -131,11 +142,15 @@ function roundRobinByDomain(
   const selected: BankItem[] = [];
   const usedStems = new Set<string>();
   const usedCases = new Set<string>();
+  const usedConcepts = new Set<string>();
 
   const canTake = (candidate: BankItem, allowStemReuse: boolean) => {
     if (acceptCandidate && !acceptCandidate(candidate, selected)) return false;
+    if (candidateViolatesExamRules(candidate, selected, policy)) return false;
     const caseKey = clinicalCaseKey(candidate);
     if (usedCases.has(caseKey)) return false;
+    const conceptKey = primaryTestedConceptKey(candidate);
+    if (policy.maxPerConcept <= 1 && usedConcepts.has(conceptKey)) return false;
     const stem = normalizeStem(candidate.question);
     if (!allowStemReuse && usedStems.has(stem)) return false;
     return true;
@@ -144,6 +159,7 @@ function roundRobinByDomain(
   const take = (candidate: BankItem) => {
     selected.push(candidate);
     usedCases.add(clinicalCaseKey(candidate));
+    usedConcepts.add(primaryTestedConceptKey(candidate));
     usedStems.add(normalizeStem(candidate.question));
   };
 
@@ -207,6 +223,9 @@ export function selectDiverseSessionBankItems(
 
   const seed = opts.seed ?? ((Date.now() ^ 0x9e3779b9) >>> 0);
   const pool = dedupeItemsByClinicalCase(dedupeBankItemsById(items));
+  const policy =
+    opts.uniquenessPolicy ??
+    resolveExamUniquenessPolicy(opts.requestedCount ?? cap, pool);
 
   if (pool.length <= cap) {
     const { ordered } = sequenceItems(
@@ -218,7 +237,7 @@ export function selectDiverseSessionBankItems(
     return ordered.slice(0, cap);
   }
 
-  const selected = roundRobinByDomain(pool, cap, seed, opts.acceptCandidate);
+  const selected = roundRobinByDomain(pool, cap, seed, policy, opts.acceptCandidate);
   const base =
     selected.length >= cap
       ? selected

@@ -3,6 +3,7 @@ import { auditNclexBankItem, normalizeNclexBankItemFields, resolveNclexVignette 
 import { assessNclexItemQuality } from "@/lib/exam-prep/nclex-quality-gate";
 import { applyNclexStemRepairs } from "@/lib/engine/polish/nclex-generic-checks";
 import { enrichBankItemGuidelines } from "@/lib/exam-prep/enrich-guidelines";
+import { alignNaplexBankItemAnswers } from "@/lib/exam-prep/naplex-answer-align";
 import { polishNclexBankItem, scoreNclexBankItem, type NclexPolishResult } from "./nclex-polish";
 
 function changed(b: BankItem, a: BankItem) {
@@ -22,9 +23,23 @@ function explain(item: BankItem): BankItem {
   return {...item,explanation:`Clinical Judgment (CJMM): apply ABCs and evidence-based nursing scope.\n${exp||"Priority nursing action for this scenario."}\n\nWhy other options are incorrect:\n${lines}`};
 }
 
+function normalizePolishedItemType(item: BankItem): BankItem {
+  const aligned = alignNaplexBankItemAnswers(item);
+  let working = aligned.changed ? aligned.item : item;
+  const ngnTypes = new Set(["select_all", "sata", "bow_tie", "ngn_bowtie", "matrix", "highlight", "ordered_response", "unfolding_case"]);
+  const isStandardMcq =
+    working.options.length === 4 &&
+    !working.correctAnswer.includes("|||") &&
+    working.options.includes(working.correctAnswer);
+  if (isStandardMcq && ngnTypes.has(working.itemType ?? "")) {
+    working = { ...working, itemType: "vignette", ngnPayload: undefined };
+  }
+  return working;
+}
+
 function light(item: BankItem): BankItem {
   const polished = meta(explain(normalizeNclexBankItemFields(applyNclexStemRepairs(item))));
-  return enrichBankItemGuidelines(polished, "nursing").item;
+  return normalizePolishedItemType(enrichBankItemGuidelines(polished, "nursing").item);
 }
 
 export const ensureNclexCuratedMetadata = meta;

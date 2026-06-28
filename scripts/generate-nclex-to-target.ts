@@ -49,6 +49,7 @@ function parseArgs() {
   let maxBatches = 0;
   let metric: "active" | "qaPassed" = "qaPassed";
   let dryRun = false;
+  let resetCheckpoint = false;
 
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
@@ -60,9 +61,10 @@ function parseArgs() {
       const m = args[++i]!;
       if (m === "active" || m === "qaPassed") metric = m;
     } else if (a === "--dry-run") dryRun = true;
+    else if (a === "--reset-checkpoint") resetCheckpoint = true;
   }
 
-  return { target, examsPerBatch, countPerExam, maxBatches, metric, dryRun };
+  return { target, examsPerBatch, countPerExam, maxBatches, metric, dryRun, resetCheckpoint };
 }
 
 function log(line: string) {
@@ -112,7 +114,8 @@ function saveCheckpoint(cp: Checkpoint) {
 }
 
 async function main() {
-  const { target, examsPerBatch, countPerExam, maxBatches, metric, dryRun } = parseArgs();
+  const { target, examsPerBatch, countPerExam, maxBatches, metric, dryRun, resetCheckpoint } =
+    parseArgs();
   fs.mkdirSync(ARTIFACTS, { recursive: true });
 
   if (!process.env.OPENAI_API_KEY?.trim()) {
@@ -120,7 +123,7 @@ async function main() {
     process.exit(1);
   }
 
-  const prior = loadCheckpoint();
+  const prior = resetCheckpoint ? {} : loadCheckpoint();
   const startedAt = prior.startedAt ?? new Date().toISOString();
   let batchesCompleted = prior.batchesCompleted ?? 0;
   let consecutiveZeroInserts = prior.consecutiveZeroInserts ?? 0;
