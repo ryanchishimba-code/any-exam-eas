@@ -73,4 +73,58 @@ describe("naplex format coherence", () => {
     expect(fixed.correctAnswer).toBe("63");
     expect(fixed.options).toHaveLength(0);
   });
+
+  it("reclassifies constructed_response counseling item with corrupted numeric key", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "A 6-year-old girl presents to the pharmacy with her mother. She has a history of asthma and is currently taking albuterol as needed. The mother reports that the child has been wheezing more frequently and is using her inhaler multiple times a day. The mother asks about the appropriate dosage of montelukast for her daughter, as she has heard it can help with asthma control.",
+      question:
+        "Which counseling point is most important regarding the use of montelukast in this pediatric patient?",
+      options: [
+        "Montelukast should be taken in the morning for optimal effect.",
+        "Montelukast can be used as a rescue medication during asthma attacks.",
+        "Montelukast should be taken at least 1 hour before or 2 hours after meals.",
+        "Montelukast is not recommended for children under 2 years of age.",
+      ],
+      correctAnswer: "12",
+      explanation:
+        "Montelukast is a leukotriene receptor antagonist used for asthma management in children. It is important to counsel the mother that montelukast should be taken at least 1 hour before or 2 hours after meals to ensure optimal absorption and effectiveness.",
+      distractorRationale: {
+        "Montelukast should be taken in the morning for optimal effect.":
+          "Montelukast can be taken at any time of day.",
+        "Montelukast can be used as a rescue medication during asthma attacks.":
+          "Montelukast is a maintenance medication.",
+        "Montelukast is not recommended for children under 2 years of age.":
+          "Montelukast is approved for children as young as 6 months.",
+      },
+      itemType: "constructed_response",
+      ngnPayload: {
+        kind: "constructed",
+        unit: "mg",
+        segments: [
+          {
+            id: "montelukast",
+            text: "Montelukast should be taken at least 1 hour before or 2 hours after meals.",
+          },
+        ],
+      },
+    };
+
+    const codes = detectNaplexFormatIssues(item).map((i) => i.code);
+    expect(codes).toContain("naplex_stem_format_mismatch");
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.options).toHaveLength(4);
+    expect(fixed.correctAnswer).toBe(
+      "Montelukast should be taken at least 1 hour before or 2 hours after meals."
+    );
+    expect(fixed.ngnPayload?.kind).not.toBe("constructed");
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+    expect(
+      auditBankItem(fixed, "pharmacy").issues.some((i) => i.code === "constructed_response_not_numeric")
+    ).toBe(false);
+  });
 });

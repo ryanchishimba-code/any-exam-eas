@@ -187,7 +187,3 @@ export function explanationCorrectMismatch(item: BankItem): boolean {
   return impliedIdx !== storedIdx;
 }
 
-export function prepareNaplexBankItem(item: BankItem): BankItem {
-  const aligned = alignNaplexBankItemAnswers(item);
-  return aligned.item;
-}

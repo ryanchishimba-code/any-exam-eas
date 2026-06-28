@@ -10,7 +10,8 @@ import { VIGNETTE_REQUIREMENTS } from "@/lib/engine/prompts/vignette";
 import { UNIVERSAL_EXAM_SYSTEM } from "@/lib/engine/prompts/base";
 import { examQuestionToBankItem } from "@/lib/engine/curation/exam-to-bank";
 import { filterBankItemsForIngest } from "../bank-ingest-gate";
-import { prepareNaplexBankItem } from "../naplex-answer-align";
+import { prepareNaplexBankItem } from "../naplex-serve-gate";
+import { fixNaplexFormatCoherence } from "../naplex-format-coherence";
 import {
   dedupeBatchItems,
   filterBatchByDiversity,
@@ -184,6 +185,7 @@ Each question object MUST include:
 
 function normalizeSpecialFormats(item: BankItem, slot: NaplexGenerationSlot): BankItem {
   const itemType = item.itemType ?? "vignette";
+  let working = item;
 
   if (itemType === "ordered_response" && item.options.length >= 3) {
     const optionSet = new Set(item.options.map((o) => o.trim()));
@@ -228,19 +230,17 @@ function normalizeSpecialFormats(item: BankItem, slot: NaplexGenerationSlot): Ba
 
   if (itemType === "constructed_response") {
     // Extract a numeric value, but never collapse a non-numeric text answer to
-    // a stray "."/empty string — keep the original so the QA gate can reject a
-    // mis-generated (non-calculation) constructed-response item with a clear code.
+    // a stray "."/empty string — keep the original so format repair / QA can
+    // reclassify mis-generated counseling MCQs labeled as calculations.
     const numeric = item.correctAnswer.replace(/[^\d.]/g, "").replace(/^\.+|\.+$/g, "").trim();
     const hasNumber = /\d/.test(numeric);
     const unit = (item.ngnPayload?.unit as string | undefined) ?? "mg";
-    return {
+    working = {
       ...item,
       correctAnswer: hasNumber ? numeric : item.correctAnswer,
       ngnPayload: { ...item.ngnPayload, kind: "constructed", unit },
     };
-  }
-
-  if (itemType === "ngn_highlight" && item.vignette) {
+  } else if (itemType === "ngn_highlight" && item.vignette) {
     const segments = item.vignette
       .split(/(?<=[.!?])\s+/)
       .filter(Boolean)
@@ -261,7 +261,8 @@ function normalizeSpecialFormats(item: BankItem, slot: NaplexGenerationSlot): Ba
     };
   }
 
-  return item;
+  const formatFix = fixNaplexFormatCoherence(working);
+  return formatFix.changed ? formatFix.item : working;
 }
 
 function inferCorrectFromDistractors(

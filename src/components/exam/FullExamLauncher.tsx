@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChevronRight, Zap } from "lucide-react";
@@ -18,6 +18,8 @@ import {
   parseFullExamLengthPreset,
 } from "@/lib/full-exam/config";
 import { acquireAutostartLock, releaseAutostartLock } from "@/lib/full-exam/autostart-lock";
+import { ExamLoadingProgress } from "@/components/exam/ExamLoadingProgress";
+import { useLongRunningProgress } from "@/hooks/use-long-running-progress";
 import { feUi } from "@/lib/study/full-exam-ui";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
@@ -64,6 +66,16 @@ export function FullExamLauncher({
 
   const preview = buildSessionConfig(examSlug, preset, timed);
   const pageTitle = fullExamModeTitle(examSlug, preset);
+  const startSteps = useMemo(
+    () => [
+      { at: 0, label: "Preparing your session…" },
+      { at: 10, label: "Working on it — setting up your exam…" },
+      { at: 35, label: "Working on it — almost ready…" },
+      { at: 60, label: "Still working on it — hang tight…" },
+    ],
+    []
+  );
+  const startProgress = useLongRunningProgress(pending, { steps: startSteps });
 
   async function startExam() {
     if (startingRef.current) return;
@@ -130,13 +142,19 @@ export function FullExamLauncher({
 
   if (pending && autostart) {
     return (
-      <div className="flex min-h-[50vh] flex-col items-center justify-center gap-4">
+      <div className="flex min-h-[50vh] flex-col items-center justify-center gap-4 px-6">
         <div className="h-11 w-11 animate-spin rounded-full border-2 border-[var(--color-accent)] border-t-transparent" />
-        <div className="text-center">
+        <div className="w-full max-w-sm text-center">
           <p className="text-[17px] font-semibold text-[var(--color-ink)]">Starting {pageTitle}</p>
           <p className="mt-1 text-[13px] text-[var(--color-ink-muted)]">
-            {preview.questionCount} questions · preparing your session…
+            {preview.questionCount} questions
           </p>
+          <ExamLoadingProgress
+            className="mt-4"
+            progress={startProgress.progress}
+            status={startProgress.status}
+            showBar={startProgress.showBar}
+          />
         </div>
       </div>
     );
@@ -196,6 +214,15 @@ export function FullExamLauncher({
                 ]}
               />
             </div>
+
+            {pending ? (
+              <ExamLoadingProgress
+                className="mx-auto max-w-sm"
+                progress={startProgress.progress}
+                status={startProgress.status}
+                showBar={startProgress.showBar}
+              />
+            ) : null}
 
             {error ? (
               <p

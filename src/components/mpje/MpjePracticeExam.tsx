@@ -32,6 +32,8 @@ import {
 } from "@/lib/mpje/grade-answer";
 import { MpjeQuestionDisplay } from "@/components/mpje/MpjeQuestionDisplay";
 import { ExamActionBar } from "@/components/exam/ExamActionBar";
+import { ExamLoadingProgress } from "@/components/exam/ExamLoadingProgress";
+import { useLongRunningProgress } from "@/hooks/use-long-running-progress";
 import { cn } from "@/lib/utils";
 
 type ExamPayload = {
@@ -67,6 +69,21 @@ export function MpjePracticeExam() {
   const [showMissed, setShowMissed] = useState(false);
   const startedAt = useRef<number | null>(null);
   const autoSubmitted = useRef(false);
+  const loadingSteps = useMemo(
+    () => [
+      {
+        at: 0,
+        label: stateCode
+          ? `Building your ${stateCode} MPJE practice exam…`
+          : "Building your federal MPJE practice exam…",
+      },
+      { at: 10, label: "Working on it — assembling questions…" },
+      { at: 35, label: "Working on it — almost ready…" },
+      { at: 60, label: "Still working on it — hang tight…" },
+    ],
+    [stateCode]
+  );
+  const loadProgress = useLongRunningProgress(phase === "loading", { steps: loadingSteps });
 
   useEffect(() => {
     const param = parseOptionalMpjeStateParam(
@@ -267,8 +284,13 @@ export function MpjePracticeExam() {
 
   if (phase === "loading") {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center text-slate-500">
-        Building your {stateCode ? `${stateCode} ` : "federal "}MPJE practice exam…
+      <div className="flex min-h-[60vh] flex-col items-center justify-center px-6">
+        <ExamLoadingProgress
+          className="w-full max-w-sm"
+          progress={loadProgress.progress}
+          status={loadProgress.status}
+          showBar={loadProgress.showBar}
+        />
       </div>
     );
   }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export type LongRunningProgressStep = {
   /** Progress threshold (0–100) at which this label applies. */
@@ -33,6 +33,8 @@ export function useLongRunningProgress(active: boolean, opts?: Options) {
   const steps = opts?.steps ?? DEFAULT_EXAM_LOAD_STEPS;
   const barAfterMs = opts?.barAfterMs ?? 2500;
   const maxProgress = opts?.maxProgress ?? 94;
+  const stepsRef = useRef(steps);
+  stepsRef.current = steps;
 
   const [progress, setProgress] = useState(0);
   const [status, setStatus] = useState(steps[0]?.label ?? "Preparing your exam…");
@@ -41,20 +43,21 @@ export function useLongRunningProgress(active: boolean, opts?: Options) {
   useEffect(() => {
     if (!active) {
       setProgress(0);
-      setStatus(steps[0]?.label ?? "Preparing your exam…");
+      setStatus(stepsRef.current[0]?.label ?? "Preparing your exam…");
       setShowBar(false);
       return;
     }
 
+    const currentSteps = stepsRef.current;
     setProgress(4);
-    setStatus(labelForProgress(steps, 4));
+    setStatus(labelForProgress(currentSteps, 4));
 
     const barTimer = window.setTimeout(() => setShowBar(true), barAfterMs);
 
     const interval = window.setInterval(() => {
       setProgress((current) => {
         const next = Math.min(current + 1.5 + Math.random() * 3.5, maxProgress);
-        setStatus(labelForProgress(steps, next));
+        setStatus(labelForProgress(stepsRef.current, next));
         return next;
       });
     }, 650);
@@ -63,7 +66,7 @@ export function useLongRunningProgress(active: boolean, opts?: Options) {
       window.clearTimeout(barTimer);
       window.clearInterval(interval);
     };
-  }, [active, barAfterMs, maxProgress, steps]);
+  }, [active, barAfterMs, maxProgress]);
 
   return { progress, status, showBar };
 }

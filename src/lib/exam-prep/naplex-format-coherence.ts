@@ -4,6 +4,7 @@ import {
   correctAnswerMatchesOption,
   extractExplanationCorrectText,
   indexOfMatchingOption,
+  inferCorrectFromDistractors,
 } from "./naplex-answer-align";
 import { resolveNaplexStem, resolveNaplexVignette } from "./naplex-bank-audit";
 
@@ -60,6 +61,18 @@ export function detectNaplexFormatIssues(item: BankItem): NaplexFormatIssue[] {
   }
 
   if (
+    itemType === "constructed_response" &&
+    mcqStem &&
+    !calcStem &&
+    hasMcqOptions(item)
+  ) {
+    issues.push({
+      code: "naplex_stem_format_mismatch",
+      message:
+        "Calculation item uses a multiple-choice lead-in with four options — should be vignette MCQ, not numeric entry.",
+      severity: "error",
+    });
+  } else if (
     itemType === "constructed_response" &&
     mcqStem &&
     !calcStem &&
@@ -153,28 +166,125 @@ function buildHypertensiveEmergencyMcq(item: BankItem): BankItem {
   };
 }
 
-function reclassifyConstructedToMcq(item: BankItem): BankItem | null {
-  if (!hasMcqOptions(item)) return null;
-  const aligned = alignNaplexBankItemAnswers({
-    ...item,
-    itemType: "vignette",
-    ngnPayload: item.ngnPayload?.kind === "constructed" ? undefined : item.ngnPayload,
-  });
-  if (!correctAnswerMatchesOption(aligned.item.options, aligned.item.correctAnswer, "mcq")) {
-    const fromExplanation = extractExplanationCorrectText(item.explanation ?? "");
-    if (fromExplanation) {
-      const idx = indexOfMatchingOption(item.options, fromExplanation);
-      if (idx >= 0) {
-        return {
-          ...aligned.item,
-          correctAnswer: aligned.item.options[idx]!,
-          itemType: "vignette",
-        };
-      }
+/** Pull keyed option text from constructed-response payload segments (AI calc artifacts). */
+function inferCorrectFromConstructedPayload(item: BankItem): string | null {
+  const payload = item.ngnPayload;
+  if (!payload || payload.kind !== "constructed") return null;
+  const segments = payload.segments as Array<{ text?: string }> | undefined;
+  if (!Array.isArray(segments)) return null;
+  for (const seg of segments) {
+    const text = seg.text?.trim();
+    if (!text) continue;
+    const idx = indexOfMatchingOption(item.options, text);
+    if (idx >= 0) return item.options[idx]!;
+  }
+  return null;
+}
+
+/** True when a bare integer answer is unlikely to be a real calculation result. */
+function isCorruptedConstructedNumericAnswer(item: BankItem): boolean {
+  const answer = item.correctAnswer.trim();
+  if (!/^\d+(?:\.\d+)?$/.test(answer)) return false;
+  const stem = resolveNaplexStem(item);
+  if (CALC_LEAD_IN.test(stem)) return false;
+  if (MCQ_LEAD_IN.test(stem) && hasMcqOptions(item)) return true;
+  const n = parseFloat(answer);
+  return Number.isFinite(n) && n > 0 && n <= item.options.length * 4;
+}
+
+/** Find an option whose text appears in the explanation body. */
+function inferCorrectFromExplanationBody(item: BankItem): string | null {
+  const explanation = item.explanation?.trim() ?? "";
+  if (!explanation) return null;
+  const lower = explanation.toLowerCase();
+  let best: { option: string; index: number } | null = null;
+  for (let i = 0; i < item.options.length; i++) {
+    const option = item.options[i]!.trim();
+    if (option.length < 12) continue;
+    if (!lower.includes(option.toLowerCase())) continue;
+    if (!best || option.length > best.option.length) {
+      best = { option, index: i };
     }
+  }
+  return best?.option ?? null;
+}
+
+/** Match bare numeric keys (e.g. "4.5", "30") to the one option containing that value. */
+function inferCorrectFromNumericInOptions(item: BankItem): string | null {
+  const answer = item.correctAnswer.trim();
+  if (!/^\d+(?:\.\d+)?$/.test(answer)) return null;
+  const escaped = answer.replace(".", "\\.");
+  const pattern = new RegExp(`\\b${escaped}\\b`);
+  const matches = item.options.filter((o) => pattern.test(o));
+  if (matches.length === 1) return matches[0]!;
+  return null;
+}
+
+/** Last resort: small integer keys may be 1-based option indices from bad generation. */
+function inferCorrectFromOptionIndex(item: BankItem): string | null {
+  const n = parseInt(item.correctAnswer.trim(), 10);
+  if (!Number.isFinite(n) || n < 1 || n > item.options.length) return null;
+  if (item.options.length !== 4) return null;
+  // Only when the stored answer is a single digit index, not a clinical quantity.
+  if (!/^[1-4]$/.test(item.correctAnswer.trim())) return null;
+  return item.options[n - 1] ?? null;
+}
+
+function resolveMcqCorrectAnswer(item: BankItem): string | null {
+  const options = item.options;
+  const stored = item.correctAnswer.trim();
+
+  if (correctAnswerMatchesOption(options, stored, "mcq")) {
+    const idx = indexOfMatchingOption(options, stored);
+    return idx >= 0 ? options[idx]! : stored;
+  }
+
+  if (isCorruptedConstructedNumericAnswer(item)) {
+    // Ignore slot-index artifacts like "12" on a 4-option counseling item.
+  } else if (isNumericAnswer(stored) && CALC_LEAD_IN.test(resolveNaplexStem(item))) {
     return null;
   }
-  return { ...aligned.item, itemType: "vignette" };
+
+  const fromExplanation = extractExplanationCorrectText(item.explanation ?? "");
+  if (fromExplanation) {
+    const idx = indexOfMatchingOption(options, fromExplanation);
+    if (idx >= 0) return options[idx]!;
+  }
+
+  const fromBody = inferCorrectFromExplanationBody(item);
+  if (fromBody) return fromBody;
+
+  const fromNumericOption = inferCorrectFromNumericInOptions(item);
+  if (fromNumericOption) return fromNumericOption;
+
+  const fromPayload = inferCorrectFromConstructedPayload(item);
+  if (fromPayload) return fromPayload;
+
+  const fromDistractors = inferCorrectFromDistractors(options, item.distractorRationale);
+  if (fromDistractors) return fromDistractors;
+
+  const fromIndex = inferCorrectFromOptionIndex(item);
+  if (fromIndex) return fromIndex;
+
+  return null;
+}
+
+function reclassifyConstructedToMcq(item: BankItem): BankItem | null {
+  if (!hasMcqOptions(item)) return null;
+
+  const resolved = resolveMcqCorrectAnswer(item);
+  if (!resolved) return null;
+
+  const withoutCalcPayload =
+    item.ngnPayload?.kind === "constructed"
+      ? { ...item, ngnPayload: undefined }
+      : item;
+
+  return {
+    ...withoutCalcPayload,
+    itemType: "vignette",
+    correctAnswer: resolved,
+  };
 }
 
 function reclassifyMcqToConstructed(item: BankItem): BankItem | null {
