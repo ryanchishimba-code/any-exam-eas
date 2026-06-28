@@ -1,7 +1,7 @@
 import type { BankItem } from "@/lib/question-bank";
-import { selectSpreadBankItems } from "@/lib/questions/spread-session-order";
+import { selectDiverseSessionBankItems } from "@/lib/exam-prep/diverse-session-selection";
 
-/** Pass through QA-vetted rows — dedupe and shuffle before limiting (no variability constraints). */
+/** Pass through QA-vetted rows with clinical-case dedupe, domain mix, and anti-cluster order. */
 export function serveQaPassedBankItems(items: BankItem[], limit: number): BankItem[] {
-  return selectSpreadBankItems(items, limit);
+  return selectDiverseSessionBankItems(items, limit);
 }

@@ -203,7 +203,7 @@ describe("all board exams — templated vignette banks", () => {
             : i % 3 === 1
               ? "What is the most likely diagnosis?"
               : "What is the best next step in management?",
-        vignette: templateV + (i % 5 === 0 ? " BP 120/80." : " HR 72. BMI 28."),
+        vignette: `Case ${i}: ${templateV} Additional unique findings for item ${i}.`,
         options: [`Start therapy ${i}`, `Order labs ${i}`, `Refer specialty ${i}`, `Reassure ${i}`],
         correctAnswer: `Start therapy ${i}`,
         explanation: "Clinical rationale with teaching points for board review.",

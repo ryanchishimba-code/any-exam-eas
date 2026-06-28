@@ -1,6 +1,11 @@
 import type { BankItem } from "@/lib/question-bank";
 import { bankItemDedupeKey, shuffleBankItems } from "@/lib/question-bank-db";
 import {
+  clinicalCaseKey,
+  normalizeClinicalCaseText,
+  resolveClinicalVignetteText,
+} from "@/lib/exam-prep/clinical-case-dedupe";
+import {
   hasWindowSimilarOptions,
   optionsFromBankItem,
   optionsFromRawInput,
@@ -12,12 +17,31 @@ import { buildQuestionBlocks } from "./sequential-sets";
 /** @deprecated Variability window removed — kept for legacy tests and generation utilities. */
 export const SESSION_SPREAD_WINDOW = 7;
 
+function rawInputToBankItem(item: RawQuestionInput): BankItem {
+  return {
+    id: item.bankItemId,
+    subjectId: item.subjectId ?? "general",
+    question: item.question,
+    vignette: item.vignette,
+    scenario: item.vignette,
+    options: item.options ?? [],
+    correctAnswer: item.correctAnswer,
+    explanation: item.explanation ?? "",
+    tags: item.tags,
+    topicCategory: item.topicCategory,
+    blueprintDomain: item.field,
+    ngnPayload: item.ngnPayload,
+  };
+}
+
 function rawInputDedupeKey(item: RawQuestionInput): string {
+  const caseKey = clinicalCaseKey(rawInputToBankItem(item));
+  if (!caseKey.includes(":id:")) return caseKey;
   if (item.bankItemId) return item.bankItemId;
   const v = item.vignette?.trim() ?? "";
   const s = item.question.trim();
   const text = v ? `${v}|${s}` : s;
-  return `${item.subjectId ?? ""}:${text.toLowerCase().slice(0, 96)}`;
+  return `${item.subjectId ?? ""}:${normalizeClinicalCaseText(text).slice(0, 120)}`;
 }
 
 function dedupeRawInputsInOrder(items: RawQuestionInput[]): RawQuestionInput[] {
@@ -32,6 +56,10 @@ function dedupeRawInputsInOrder(items: RawQuestionInput[]): RawQuestionInput[] {
   return out;
 }
 
+function dedupeRawInputsByClinicalCase(items: RawQuestionInput[]): RawQuestionInput[] {
+  return dedupeRawInputsInOrder(items);
+}
+
 function dedupeBankItemsInOrder(items: BankItem[]): BankItem[] {
   const seen = new Set<string>();
   const out: BankItem[] = [];
@@ -44,9 +72,9 @@ function dedupeBankItemsInOrder(items: BankItem[]): BankItem[] {
   return out;
 }
 
-/** QA-filtered pool → dedupe, shuffle, return up to `limit` items (no spread/variability constraints). */
+/** QA-filtered pool → clinical-case dedupe, shuffle, return up to `limit` items. */
 export function selectSpreadRawInputs(items: RawQuestionInput[], limit: number): RawQuestionInput[] {
-  const deduped = dedupeRawInputsInOrder(items);
+  const deduped = dedupeRawInputsByClinicalCase(items);
   return shuffleBankItems(deduped).slice(0, Math.max(0, limit));
 }
 
@@ -82,7 +110,11 @@ export function spreadGroupKeyFromBankItem(item: BankItem): string {
     item.blueprintDomain?.trim() ||
     item.subjectId?.trim() ||
     "general";
-  return spreadGroupTopicKey(topic, item.vignette ?? item.scenario, item.question, item.id);
+  const vignetteText = normalizeClinicalCaseText(resolveClinicalVignetteText(item));
+  if (vignetteText.length >= 40) {
+    return `${topic}:v:${vignetteText.slice(0, 120)}`;
+  }
+  return spreadGroupTopicKey(topic, item.vignette ?? item.scenario, item.question, null);
 }
 
 export function spreadGroupKeyFromStudyQuestion(question: StudyQuestion): string {
