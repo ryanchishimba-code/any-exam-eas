@@ -122,11 +122,16 @@ if (pull.status !== 0) {
 }
 
 const env = parseEnvFile(fs.readFileSync(PULL_PATH, "utf8"));
-const db =
+const { loadEnvFiles, resolveDatabaseUrl } = await import("./resolve-database-url.mjs");
+loadEnvFiles();
+const localDb = resolveDatabaseUrl();
+const pulledDb =
   env.DATABASE_URL?.trim() ||
   env.exameasy_DATABASE_URL?.trim() ||
   env.exameasy_POSTGRES_URL?.trim() ||
   "";
+// Prefer local .env when production pull is empty or still on a stale integration DB.
+const db = localDb?.startsWith("postgres") ? localDb : pulledDb;
 const siteUrl = env.NEXT_PUBLIC_SITE_URL?.trim() || "https://www.anyexameasy.com";
 const authUrl = env.NEXTAUTH_URL?.trim() || siteUrl;
 const authSecret = env.NEXTAUTH_SECRET?.trim() || secret();

@@ -19,15 +19,15 @@ const skipGenerate = process.argv.includes("--skip-generate");
 const countArg = process.argv.find((a, i) => process.argv[i - 1] === "--count");
 const count = countArg ?? "500";
 
-const tsx = (script: string, ...args: string[]) =>
-  [process.execPath, ["node_modules/tsx/dist/cli.mjs", script, ...args]] as const;
+const tsx = (script, ...args) =>
+  [process.execPath, ["node_modules/tsx/dist/cli.mjs", script, ...args]];
 
-const steps: [string, readonly [string, string[]]][] = [
+const steps = [
   [
     dryRun ? "Sync PANCE seeds (dry-run via audit only)" : "Sync question bank (seeds)",
     dryRun
       ? tsx("scripts/audit-pance-bank.ts")
-      : ([process.execPath, ["scripts/sync-question-bank.mjs"]] as const),
+      : [process.execPath, ["scripts/sync-question-bank.mjs"]],
   ],
   ["Blueprint audit", tsx("scripts/audit-pance-bank.ts", "--json")],
 ];
@@ -49,7 +49,7 @@ steps.push([
   tsx("scripts/qa-gate-pance-best.ts", ...(dryRun ? ["--dry-run"] : [])),
 ]);
 
-function log(line: string) {
+function log(line) {
   const msg = `[${new Date().toISOString()}] ${line}\n`;
   appendFileSync(LOG, msg);
   process.stdout.write(msg);
@@ -60,8 +60,8 @@ writeFileSync(
   `=== PANCE pipeline ${new Date().toISOString()}${dryRun ? " [dry-run]" : ""} ===\n`
 );
 
-function runStep(label: string, bin: string, args: string[]) {
-  return new Promise<void>((resolve, reject) => {
+function runStep(label, bin, args) {
+  return new Promise((resolve, reject) => {
     log(`▶ START: ${label}`);
     const child = spawn(bin, args, { cwd: ROOT, stdio: ["ignore", "pipe", "pipe"], env: process.env });
     let stdout = "";

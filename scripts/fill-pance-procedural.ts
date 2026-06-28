@@ -135,22 +135,34 @@ async function main() {
 
   const activeBefore = await currentActive();
   const remaining = Math.max(0, target - activeBefore);
-  if (remaining === 0) {
-    console.log(`PANCE bank already at ${activeBefore}/${target}.`);
-    return;
-  }
-
-  let generationSeq = seqStart ?? readGenerationSeq();
-  if (generationSeq < activeBefore) generationSeq = activeBefore;
-  const generationSeqStart = generationSeq;
-
-  const attemptCount = Math.min(Math.ceil(count * 3.5), Math.ceil(remaining * 3.5));
   const countsByCategory = await categoryCounts();
   const quota = mergePanceQuotaWithCounts(countsByCategory, target);
   const deficitsByCategory: Record<string, number> = {};
   for (const q of quota) {
     deficitsByCategory[q.contentCategory] = q.deficit ?? 0;
   }
+  const totalDeficit = Object.values(deficitsByCategory).reduce((s, d) => s + d, 0);
+
+  if (remaining === 0 && totalDeficit === 0) {
+    console.log(`PANCE bank already at ${activeBefore}/${target}.`);
+    return;
+  }
+
+  // Rebalance path: total may exceed target while categories remain under-filled.
+  const insertBudget =
+    remaining > 0 ? Math.min(count, remaining) : Math.min(count, totalDeficit);
+
+  if (remaining === 0 && totalDeficit > 0) {
+    console.log(
+      `PANCE bank at ${activeBefore}/${target} — rebalancing ${totalDeficit} category deficit (${insertBudget} insert budget)`
+    );
+  }
+
+  let generationSeq = seqStart ?? readGenerationSeq();
+  if (generationSeq < activeBefore) generationSeq = activeBefore;
+  const generationSeqStart = generationSeq;
+
+  const attemptCount = Math.ceil(insertBudget * 3.5);
 
   console.log(
     `PANCE procedural fill: ${activeBefore}/${target} — attempting ${attemptCount} slots from seq ${generationSeq}`
@@ -169,7 +181,7 @@ async function main() {
   const batchId = `proc-${new Date().toISOString().slice(0, 10)}-${Math.random().toString(36).slice(2, 8)}`;
 
   for (let i = 0; i < slots.length; i++) {
-    if (inserted >= remaining) break;
+    if (inserted >= insertBudget) break;
 
     const slot = slots[i]!;
     const seq = generationSeq++;

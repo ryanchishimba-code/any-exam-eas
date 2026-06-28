@@ -71,6 +71,8 @@ export type StudyQuestion = {
   bankItemId?: string;
   difficulty?: string;
   qualityScore?: number;
+  /** Expert-tier rationale — lazy-rendered in Expert view. */
+  expertRationale?: import("@/lib/engine/rationale/expert-rationale-types").ExpertStructuredRationale;
 };
 
 export type SessionAnswer = {
@@ -118,4 +120,5 @@ export type RawQuestionInput = ExamQuestion & {
   bankItemId?: string;
   field?: string;
   subjectId?: string;
+  expertRationale?: import("@/lib/engine/rationale/expert-rationale-types").ExpertStructuredRationale;
 };

@@ -40,6 +40,7 @@ export function enforceGeneratedExamQuality(
     (issue) =>
       issue === "generic_distractors" ||
       issue === "below_board_bar" ||
+      issue === "similarity_violation" ||
       issue.startsWith("count_mismatch")
   );
 

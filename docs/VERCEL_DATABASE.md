@@ -153,6 +153,8 @@ npm run dev
 | `prisma: error` | Wrong password/URL; use **pooled** Neon string |
 | Login still shows config warning | Hard refresh; confirm `/api/health` is ok |
 | Empty question bank | Run cron sync (Part 5) |
+| Production has few questions vs local | Vercel Neon integration (`exameasy_*`) may point at a **different** branch than `.env`. Run `npm run vercel:fix-neon-db` to set `DATABASE_URL` on production/preview/development from local `.env`, then redeploy |
+| `DATABASE_URL` empty after `vercel env pull` | Production var may be `sensitive` or unset; app falls back to `exameasy_DATABASE_URL`. Fix with `npm run vercel:fix-neon-db` |
 
 ## Related
 

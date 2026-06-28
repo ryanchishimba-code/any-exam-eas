@@ -9,7 +9,7 @@ import type { EnrichedBankItem } from "../seed-helpers";
 
 export type NclexFullExamQcReport = {
   ok: boolean;
-  tier: "best" | "acceptable" | "reject";
+  tier: "best" | "serve" | "acceptable" | "reject";
   score: number;
   issues: string[];
 };
@@ -45,11 +45,12 @@ export function assessNclexFullExamItem(
   }
 
   const uniqueIssues = [...new Set(issues)];
-  const ok = uniqueIssues.length === 0 && verdict.tier === "best";
+  const serveOk = nclexBankItemIsServeReady(item);
+  const ok = uniqueIssues.length === 0 && serveOk;
 
   return {
     ok,
-    tier: ok ? "best" : verdict.tier,
+    tier: ok ? (verdict.tier === "best" ? "best" : "serve") : verdict.tier,
     score: verdict.score,
     issues: uniqueIssues,
   };

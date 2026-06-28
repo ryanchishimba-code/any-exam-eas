@@ -37,6 +37,8 @@ export type ExamQuestion = {
   difficultyLabel?: "Easy" | "Medium" | "Hard";
   /** Blueprint category (e.g. Management of Care, Pharmacotherapy). */
   topicCategory?: string;
+  /** Expert-tier rationale JSON (NCLEX UWorld-beating depth). */
+  expertRationale?: import("@/lib/engine/rationale/expert-rationale-types").ExpertStructuredRationale;
   /** Structured pharmacology metadata — required for NAPLEX / NCLEX pharm items. */
   drugProfile?: {
     generic: string;

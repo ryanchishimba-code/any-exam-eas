@@ -15,7 +15,7 @@ loadEnvFiles();
 ensureDatabaseUrlEnv();
 
 import { PrismaClient } from "@prisma/client";
-import { isNclexBestQuality } from "../src/lib/exam-prep/nclex-quality-gate";
+import { nclexBankItemIsServeReady } from "../src/lib/exam-prep/nclex-serve-gate";
 import { buildNclexStudyMetaPatch } from "../src/lib/exam-prep/nclex-study-meta";
 import { enrichBankItemFromRow, serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
 import { getSubjectsForFieldId } from "../src/lib/subjects/registry";
@@ -73,7 +73,7 @@ async function main() {
     for (const row of rows) {
       processed++;
       const item = enrichBankItemFromRow(row);
-      const shouldServe = isNclexBestQuality(item, { source: row.source });
+      const shouldServe = nclexBankItemIsServeReady(item, { source: row.source });
       if (shouldServe) best++;
       else if (retireNonBest) retireIdsList.push(row.id);
       qaUpdates.push({ id: row.id, qaPassed: shouldServe });
@@ -108,7 +108,7 @@ async function main() {
       await applyQaPassedBatch(prisma, qaUpdates.splice(0, qaUpdates.length), dryRun);
     }
 
-    if (processed % 2000 === 0) console.log(`  … ${processed} scanned (${best} best-tier)`);
+    if (processed % 2000 === 0) console.log(`  … ${processed} scanned (${best} serve-ready)`);
   }
 
   if (!dryRun && qaUpdates.length > 0) {
@@ -137,7 +137,7 @@ async function main() {
   console.log(`\n  ${FIELD}: ${served} serve-ready / ${active} active`);
   if (retired) console.log(`  retired (below best tier): ${retired}`);
   if (!retireOnly && processed) {
-    console.log(`  scanned: ${processed} (${((best / processed) * 100).toFixed(1)}% best-tier before retire)`);
+    console.log(`  scanned: ${processed} (${((best / processed) * 100).toFixed(1)}% serve-ready before retire)`);
   }
   if (subjectFixed) console.log(`  subject/topic fixes: ${subjectFixed}`);
   if (studyMetaFixed) console.log(`  study cross-link updates: ${studyMetaFixed}`);

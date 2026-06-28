@@ -146,6 +146,7 @@ export function examQuestionToStudy(
     qualityScore: q.qualityScore,
     difficulty: q.difficultyLabel?.toLowerCase(),
     chartData: q.chartData,
+    expertRationale: q.expertRationale,
   };
 }
 

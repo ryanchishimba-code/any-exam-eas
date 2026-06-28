@@ -1,4 +1,5 @@
 import type { BankItem } from "@/lib/question-bank";
+import { readExpertRationaleFromMeta } from "@/lib/engine/rationale/expert-rationale-types";
 import { cleanOptionText } from "@/lib/question-format";
 
 export type ParsedBankOptions = {
@@ -183,5 +184,9 @@ export function enrichBankItemFromRow(row: {
   } else if (statements?.length) {
     item.ngnPayload = { statements, itemFormat: row.itemType ?? "k_type" };
   }
+
+  const expertRationale = readExpertRationaleFromMeta(row.generationMeta);
+  if (expertRationale) item.expertRationale = expertRationale;
+
   return item;
 }

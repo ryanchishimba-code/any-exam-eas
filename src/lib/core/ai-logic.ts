@@ -1,5 +1,9 @@
 import { z } from "zod";
 import { isOpenAiPurposeAllowed } from "@/lib/openai-client";
+import {
+  buildRationaleMasterSystemPrompt,
+  buildRationaleUserPrompt,
+} from "@/lib/engine/prompts/rationale-generation";
 import type { AIExplanation, PersonalizedPlan } from "./types";
 import { AIExplanationSchema, PersonalizedPlanSchema } from "./types";
 
@@ -116,14 +120,19 @@ export class AILogicEngine {
     if (cached) return cached;
 
     const fallback = curatedFallback(input);
+    const field = input.field ?? "nursing";
     const ai = await callStructuredOpenAI(
       AIExplanationSchema,
-      "You are a medical board exam tutor. Return JSON matching the schema fields exactly.",
-      JSON.stringify({
-        stem: input.stem,
+      `${buildRationaleMasterSystemPrompt(field)}
+
+Also return this legacy tutor JSON shape for the UI:
+{ "summary": string, "whyCorrect": string, "whyIncorrect": { "option text": "why wrong" }, "keyTakeaways": string[], "pearls": string[], "relatedConcepts": string[], "difficultyLabel": string }`,
+      buildRationaleUserPrompt({
+        fieldId: field,
+        vignette: undefined,
+        question: input.stem,
         options: input.options,
-        correctAnswers: input.correctAnswers,
-        selectedAnswers: input.selectedAnswers,
+        correctAnswer: input.correctAnswers[0] ?? "",
         existingExplanation: input.explanation,
         tags: input.tags,
       })

@@ -5,17 +5,15 @@ import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 import {
   BarChart3,
-  BookMarked,
   BookOpen,
   Clock,
   LayoutGrid,
-  Layers,
+  Map,
   Sparkles,
 } from "lucide-react";
 import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
-import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
-import { highYieldTopicsHref, questionBankHref } from "@/lib/edtech/practice-links";
+import { questionBankHref } from "@/lib/edtech/practice-links";
 import { SHELL_CHROME_SPRING, STUDY_NAV_COLOR, STUDY_NAV_SPRING } from "@/lib/layout/nav-motion";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -35,35 +33,23 @@ function navHrefPath(href: string) {
 export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) {
   const pathname = usePathname();
   const { examSlug } = useAppPreferences();
-  const clinical = hasClinicalStudyTools(examSlug);
   const reduceMotion = useReducedMotion();
 
   const items = useMemo((): NavItem[] => {
     const bankHref = examSlug ? questionBankHref(examSlug) : ROUTES.questionBank;
     const examHref = examSlug ? fullExamHref(examSlug) : ROUTES.fullExam;
-    const topicsHref = highYieldTopicsHref(examSlug ?? "nclex");
 
     const core: NavItem[] = [
       { href: ROUTES.dashboard, label: "Home", icon: LayoutGrid, exact: true },
+      { href: ROUTES.roadmap, label: "Plan", icon: Map, ariaLabel: "Study Roadmap" },
       { href: bankHref, label: "Bank", icon: BookOpen, ariaLabel: "Question Bank" },
       { href: examHref, label: "Exam", icon: Clock, ariaLabel: "Full Exam" },
+      { href: ROUTES.learn, label: "Learn", icon: Sparkles, ariaLabel: "Learning Quilt" },
       { href: ROUTES.analytics, label: "Stats", icon: BarChart3, ariaLabel: "Analytics" },
     ];
 
-    if (clinical) {
-      return [
-        ...core,
-        { href: ROUTES.drugs300, label: "Drugs", icon: Layers, ariaLabel: "Top 500 Drugs" },
-        { href: topicsHref, label: "Topics", icon: Sparkles, ariaLabel: "High-Yield Topics" },
-      ];
-    }
-
-    return [
-      ...core,
-      { href: topicsHref, label: "Topics", icon: Sparkles, ariaLabel: "High-Yield Topics" },
-      { href: ROUTES.library, label: "Library", icon: BookMarked, ariaLabel: "Library" },
-    ];
-  }, [clinical, examSlug]);
+    return core;
+  }, [examSlug]);
 
   return (
     <motion.nav

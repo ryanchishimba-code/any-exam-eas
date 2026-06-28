@@ -16,6 +16,7 @@ export function LiveBankStats({
   const [nursingFallback, setNursingFallback] = useState(0);
 
   useEffect(() => {
+    if (bankCounts?.degraded) return;
     fetch("/api/catalog/subjects")
       .then((r) => (r.ok ? r.json() : null))
       .then((catalog) => {
@@ -27,26 +28,32 @@ export function LiveBankStats({
         }
       })
       .catch(() => undefined);
-  }, []);
+  }, [bankCounts?.degraded]);
+
+  const degraded = bankCounts?.degraded === true;
 
   const totalLabel =
-    bankCounts?.totalLabel && bankCounts.totalLabel !== "—"
+    !degraded && bankCounts?.totalLabel && bankCounts.totalLabel !== "—"
       ? bankCounts.totalLabel
-      : FALLBACK_QUESTION_COUNTS.total;
+      : degraded
+        ? "—"
+        : FALLBACK_QUESTION_COUNTS.total;
 
   const nursingLive = bankCounts?.exams.find((e) => e.slug === "nclex");
   const nursingLabel =
-    nursingLive?.countLabel && nursingLive.countLabel !== "—"
+    !degraded && nursingLive?.countLabel && nursingLive.countLabel !== "—"
       ? nursingLive.countLabel
-      : nursingFallback > 0
-        ? formatExactServeReadyCount(nursingFallback)
-        : FALLBACK_QUESTION_COUNTS.nursing;
+      : degraded
+        ? "—"
+        : nursingFallback > 0
+          ? formatExactServeReadyCount(nursingFallback)
+          : FALLBACK_QUESTION_COUNTS.nursing;
 
   const items = [
     {
       icon: BookOpen,
       value: totalLabel,
-      label: bankCounts?.degraded ? "Serve-ready questions (est.)" : "Serve-ready questions",
+      label: degraded ? "Serve-ready questions (updating)" : "Serve-ready questions",
     },
     {
       icon: GraduationCap,
@@ -56,7 +63,7 @@ export function LiveBankStats({
     {
       icon: Layers,
       value: nursingLabel,
-      label: "NCLEX bank",
+      label: degraded ? "NCLEX bank (updating)" : "NCLEX bank",
     },
   ];
 

@@ -115,9 +115,9 @@ export const PRO_UPGRADE_HEADLINE = "Unlock your highest score potential";
 
 /** Trial study limits — shown in marketing copy. */
 export const TRIAL_STUDY_LIMITS = [
-  "25 questions per day during free trial",
-  "150 total trial questions — enough to evaluate the platform",
-  "Short timed drills only · unlimited questions unlock when you subscribe",
+  "50 questions per day during free trial",
+  "300 total trial questions — enough to evaluate the platform",
+  "One 50-question mock exam · unlimited questions unlock when you subscribe",
 ] as const;
 
 export const TIER_DEFINITIONS: Record<SubscriptionTier, TierDefinition> = {

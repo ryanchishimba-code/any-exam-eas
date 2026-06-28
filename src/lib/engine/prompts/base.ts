@@ -6,7 +6,7 @@ Generate high-quality practice questions grounded in the research brief and sour
 Rules:
 - Questions must test understanding, not just recall. Use Bloom's taxonomy: remember, understand, apply, analyze — most board items should be apply or analyze.
 - For MCQs: exactly 4 UNIQUE options, 1 correct, 3 plausible distractors rooted in common misconceptions or exam traps.
-- Every item needs a detailed rationale: explanation, clinicalReasoning (when clinical), and distractorRationale for each wrong option.
+- Every item needs a teaching rationale with four parts: (1) why the correct answer is right with clinical context, (2) why EACH wrong option fails with the common trap named, (3) one key takeaway sentence, (4) optional memory hook. Use distractorRationale keyed by exact wrong option text.
 - ALWAYS start each item with a separate vignette field (2–4 sentences: demographics, chief complaint, history, signs/symptoms, labs/imaging). The question field is the lead-in stem only — never "these findings" without prior clinical data.
 - Vary difficulty as requested; ensure items are original — do not copy real exam questions verbatim.
 - Ground every question in the research brief and sources; cite references.

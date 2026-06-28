@@ -1,10 +1,10 @@
 "use client";
 
 import { memo, useState } from "react";
+import dynamic from "next/dynamic";
 import type { SequentialSetContext } from "@/lib/questions/sequential-sets";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { cleanOptionText } from "@/lib/question-format";
-import { StructuredRationalePanel } from "./StructuredRationalePanel";
 import { parseRationaleForDisplay } from "@/lib/engine/rationale/parse-rationale-display";
 import { NgnCjmmNote, NgnTypeInstructions, VignetteBlock } from "./NgnChrome";
 import {
@@ -38,6 +38,19 @@ import {
 import { QuestionRelatedLinks } from "./QuestionRelatedLinks";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
+
+const ExpertRationalePanel = dynamic(
+  () =>
+    import("./ExpertRationalePanel").then((m) => ({
+      default: m.ExpertRationalePanel,
+    })),
+  {
+    ssr: false,
+    loading: () => (
+      <p className="mt-2 text-sm text-[var(--color-ink-muted)]">Loading explanation…</p>
+    ),
+  }
+);
 
 type Props = {
   question: StudyQuestion;
@@ -231,7 +244,19 @@ export function ExplanationPanel({
   const [expanded, setExpanded] = useState(false);
   const examSlug = (field ? examSlugFromFieldId(field) : null) ?? "nclex";
 
-  const parsed = parseRationaleForDisplay(question.explanation);
+  const parsed = parseRationaleForDisplay(
+    question.explanation,
+    question.expertRationale
+  );
+  const hasExpert = Boolean(question.expertRationale || parsed.isExpert);
+  const concisePreview =
+    question.expertRationale?.whyCorrect.headline ||
+    parsed.keyTakeaway ||
+    parsed.whyCorrectHeadline ||
+    parsed.legacyBody?.slice(0, 220) ||
+    question.explanation?.slice(0, 220) ||
+    "Tap below for the full breakdown.";
+
   const hasDeepContent =
     Boolean(question.clinicalReasoning && !parsed.isStructured) ||
     Boolean(
@@ -240,7 +265,8 @@ export function ExplanationPanel({
         Object.keys(question.distractorRationale).length > 0
     ) ||
     Boolean(question.solutionSteps?.length && !parsed.keyTakeaway) ||
-    Boolean(question.references?.length);
+    Boolean(question.references?.length) ||
+    hasExpert;
 
   return (
     <div className="mt-6 space-y-4">
@@ -249,19 +275,22 @@ export function ExplanationPanel({
           <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
             Rationale
           </p>
-          <span className="rounded-full bg-[var(--color-surface-elevated)] px-2 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]">
-            AI-assisted
-          </span>
+          <div className="flex items-center gap-1.5">
+            {hasExpert ? (
+              <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-emerald-700 ring-1 ring-emerald-500/20 dark:text-emerald-400">
+                Expert
+              </span>
+            ) : null}
+            <span className="rounded-full bg-[var(--color-surface-elevated)] px-2 py-0.5 text-[9px] font-medium uppercase tracking-wide text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]">
+              AI-assisted
+            </span>
+          </div>
         </div>
         {expanded ? (
-          <StructuredRationalePanel question={question} />
+          <ExpertRationalePanel question={question} expertRationale={question.expertRationale} />
         ) : (
           <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-            {parsed.keyTakeaway ||
-              parsed.whyCorrectHeadline ||
-              parsed.legacyBody?.slice(0, 220) ||
-              question.explanation?.slice(0, 220) ||
-              "Tap below for the full breakdown."}
+            {concisePreview}
           </p>
         )}
         {(hasDeepContent || !expanded) && (

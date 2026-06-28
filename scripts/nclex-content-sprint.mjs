@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * NCLEX content sprint — sync serve-ready flags, enrich rationales, QA gate, audit.
+ * NCLEX content sprint — promote to 5K serve-ready, enrich, sync, audit.
  *
  * Usage:
  *   npm run db:nclex-sprint
@@ -21,14 +21,15 @@ function run(label, script, extraArgs = []) {
   }
 }
 
-console.log("NCLEX content sprint — sync → enrich → QA → audit\n");
+console.log("NCLEX content sprint — promote 5K → enrich → sync → audit\n");
 
-run("Sync NCLEX serve-ready", "db:sync-nclex-serve-ready");
+run("Promote NCLEX to 5K serve-ready", "db:promote-nclex-5k");
 if (!dryRun) {
-  run("Enrich NCLEX rationales (batch)", "db:enrich-nclex-guidelines");
+  run("Enrich NCLEX rationales (rule-based guidelines)", "db:enrich-nclex-guidelines");
 }
+run("Sync NCLEX serve-ready flags", "db:sync-nclex-serve-ready");
 run("NCLEX best-tier QA gate", "db:qa-gate-nclex-best");
 run("Audit NCLEX served alignment", "db:audit-nclex-served");
-run("Report NCLEX best rate", "db:report-nclex-best-rate");
+run("Report NCLEX serve rate", "db:report-nclex-serve-rate");
 
-console.log("\n✓ NCLEX sprint complete. Review artifacts/nclex-served-alignment-audit.json");
+console.log("\n✓ NCLEX sprint complete. Review artifacts/nclex-promote-5k-report.json");

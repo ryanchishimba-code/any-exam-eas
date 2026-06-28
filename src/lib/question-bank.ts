@@ -19,6 +19,7 @@ import {
 } from "./questions/finalize-exam-session";
 import { studyQuestionsToExamQuestions } from "./questions/prepare";
 import type { RawQuestionInput } from "./questions/types";
+import type { ExpertStructuredRationale } from "@/lib/engine/rationale/expert-rationale-types";
 
 function boardDifficultyLabel(
   difficulty: number | null | undefined
@@ -63,6 +64,7 @@ export type BankItem = {
   generationVersion?: string;
   reviewStatus?: "pending" | "approved" | "flagged" | "rejected";
   generationMeta?: Record<string, unknown>;
+  expertRationale?: ExpertStructuredRationale;
   clinicalReasoning?: string;
   distractorRationale?: Record<string, string>;
   keyTakeaways?: string[];

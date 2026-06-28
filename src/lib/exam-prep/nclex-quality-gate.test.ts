@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { BankItem } from "@/lib/question-bank";
-import { assessNclexItemQuality, isNclexBestQuality } from "./nclex-quality-gate";
+import { assessNclexItemQuality, assessNclexServeQuality, isNclexBestQuality, isNclexServeQuality } from "./nclex-quality-gate";
 
 const cDiffBest: BankItem = {
   subjectId: "safety-infection",
@@ -59,5 +59,13 @@ describe("nclex-quality-gate", () => {
     });
     expect(verdict.tier).toBe("reject");
     expect(verdict.issues).toContain("cartoon_distractors");
+  });
+
+  it("serve tier accepts polished items without structured refs when rationales present", () => {
+    const withoutRefs = { ...cDiffBest, references: undefined };
+    const serve = assessNclexServeQuality(withoutRefs, { source: "polished" });
+    expect(serve.ok).toBe(true);
+    expect(isNclexServeQuality(withoutRefs, { source: "polished" })).toBe(true);
+    expect(isNclexBestQuality(withoutRefs, { source: "polished" })).toBe(false);
   });
 });

@@ -24,6 +24,7 @@ import {
   summarizeExamBlueprint,
 } from "./blueprint-quota";
 import { assessNclexFullExamItem, nclexFullExamItemPasses } from "./quality-gate";
+import { maybeEnrichExpertBankItemRationale } from "@/lib/engine/rationale/generate-expert-rationale";
 import type {
   NclexFullExamBundle,
   NclexGenerationMeta,
@@ -246,7 +247,7 @@ function normalizeGeneratedExplanation(item: BankItem): BankItem {
           options.find((o) => o === opt) ??
           options.find((o) => stripOptionPrefix(o) === stripOptionPrefix(opt)) ??
           opt;
-        const reason = why.trim();
+        const reason = String(why ?? "").trim();
         const formatted = reason.replace(/^Incorrect\s*[—-]\s*/i, "");
         return `• ${matchedOpt}: Incorrect — ${formatted}`;
       });
@@ -401,16 +402,21 @@ async function generateChunk(params: {
       continue;
     }
 
-    bankItems.push({
-      ...item,
-      ngnPayload: {
-        ...item.ngnPayload,
-        generationMeta: {
-          ...(item.ngnPayload?.generationMeta as NclexGenerationMeta),
-          qcScore: assessNclexFullExamItem(item, globalIndex).score,
+    bankItems.push(
+      await maybeEnrichExpertBankItemRationale(
+        {
+          ...item,
+          ngnPayload: {
+            ...item.ngnPayload,
+            generationMeta: {
+              ...(item.ngnPayload?.generationMeta as NclexGenerationMeta),
+              qcScore: assessNclexFullExamItem(item, globalIndex).score,
+            },
+          },
         },
-      },
-    });
+        "nursing"
+      )
+    );
   }
 
   const deduped = dedupeBatchItems(bankItems);

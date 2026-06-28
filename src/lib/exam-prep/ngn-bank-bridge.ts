@@ -158,6 +158,7 @@ export function bankItemToExamQuestion(
             : "Medium"
         : undefined,
     references: item.references?.map((r) => r.citation ?? r.label),
+    expertRationale: item.expertRationale,
   };
 }
 

@@ -17,10 +17,12 @@ function meta(item: BankItem): BankItem {
 }
 
 function explain(item: BankItem): BankItem {
-  const exp=item.explanation?.trim()??"";
-  if(exp.length>=120&&/Why other options are incorrect/i.test(exp)&&/Incorrect —/i.test(exp)) return item;
-  const lines=item.options.filter(o=>o!==item.correctAnswer).map(o=>`• ${o}: Incorrect — does not reflect the highest-priority, safest nursing action for this clinical presentation.`).join("\n");
-  return {...item,explanation:`Clinical Judgment (CJMM): apply ABCs and evidence-based nursing scope.\n${exp||"Priority nursing action for this scenario."}\n\nWhy other options are incorrect:\n${lines}`};
+  const exp = item.explanation?.trim() ?? "";
+  if (exp.length >= 120 && /Why other options are incorrect/i.test(exp) && /Incorrect —/i.test(exp)) {
+    if (!/does not reflect the highest-priority, safest nursing action/i.test(exp)) return item;
+  }
+  if (exp.includes("## Why this answer is correct") && exp.includes("## Clinical pearl")) return item;
+  return item;
 }
 
 function normalizePolishedItemType(item: BankItem): BankItem {

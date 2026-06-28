@@ -3,16 +3,16 @@ import {
   hasNclexEditorialWarnFlags,
   nclexHasServeBlockIssues,
 } from "@/lib/exam-prep/nclex-bank-audit";
-import { isNclexBestQuality } from "./nclex-quality-gate";
+import { isNclexServeQuality } from "./nclex-quality-gate";
 import { selectNclexSessionBankItems } from "./nclex/session-selection";
 
 type NclexServeOpts = { source?: string | null };
 
-/** Serve only best-tier NCLEX items (full quality gate, no QA blockers). */
+/** Serve-ready NCLEX items — pragmatic quality bar with rationales (≥5K target). */
 export function nclexBankItemIsServeReady(item: BankItem, opts?: NclexServeOpts): boolean {
   if (nclexHasServeBlockIssues(item)) return false;
   if (hasNclexEditorialWarnFlags(item)) return false;
-  return isNclexBestQuality(item, opts);
+  return isNclexServeQuality(item, opts);
 }
 
 type PrepareNclexItemsParams = {

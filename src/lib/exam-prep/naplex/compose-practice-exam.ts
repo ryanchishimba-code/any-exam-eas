@@ -12,6 +12,8 @@ import { getExamBlueprint } from "@/lib/engine/blueprints";
 import { gatherTimedExamBankItems } from "@/lib/questions/timed-exam-sampling";
 import { naplexItemPassesTimedExamGate } from "@/lib/exam-prep/naplex-serve-gate";
 import { QUESTION_BANK_SAMPLE_MAX_PULL } from "@/lib/question-bank-db";
+import { auditExamSimilarity } from "@/lib/exam-prep/exam-similarity";
+import { dedupeItemsByClinicalCase, selectDiverseSessionBankItems } from "@/lib/exam-prep/diverse-session-selection";
 import { sequenceItems } from "@/lib/exam-prep/sequencing/anti-cluster-sequencer";
 import type { SequenceItem, SequencingConfig, SequencingReport } from "@/lib/exam-prep/sequencing/types";
 import {
@@ -144,6 +146,7 @@ export type ComposedExam = {
   questions: ComposedExamQuestion[];
   selectionSummary: SelectionSummary;
   sequencingReport: SequencingReport;
+  similarityFlags: string[];
 };
 
 const DOMAIN_LABELS = new Map<string, string>(
@@ -216,7 +219,7 @@ export async function composeNaplexPracticeExam(
     seed,
   });
 
-  const selected =
+  const rebalanced =
     params.balanceAnswerKeys === false
       ? rawSelected
       : (() => {
@@ -224,11 +227,21 @@ export async function composeNaplexPracticeExam(
           return rawSelected.map((item) => rebalanceAnswerKey(item, rng));
         })();
 
+  const caseUnique = dedupeItemsByClinicalCase(rebalanced);
+  const selected = selectDiverseSessionBankItems(caseUnique, numQuestions, {
+    seed,
+    requestedCount: numQuestions,
+  });
+
   const { ordered, report } = sequenceItems(
     selected,
     toSequenceItem,
     sequencingConfigFor(selected.length),
     seed
+  );
+
+  const similarityFlags = auditExamSimilarity(ordered).map(
+    (flag) => `${flag.code}:${flag.message}`
   );
 
   const questions = ordered.map((item, i) =>
@@ -248,6 +261,7 @@ export async function composeNaplexPracticeExam(
     questions,
     selectionSummary: summary,
     sequencingReport: report,
+    similarityFlags,
   };
 }
 

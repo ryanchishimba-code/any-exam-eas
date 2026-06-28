@@ -13,6 +13,8 @@ import type { BankItem } from "@/lib/question-bank";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
 import { gatherTimedExamBankItems } from "@/lib/questions/timed-exam-sampling";
 import { QUESTION_BANK_SAMPLE_MAX_PULL } from "@/lib/question-bank-db";
+import { auditExamSimilarity } from "@/lib/exam-prep/exam-similarity";
+import { dedupeItemsByClinicalCase, selectDiverseSessionBankItems } from "@/lib/exam-prep/diverse-session-selection";
 import { sequenceItems } from "@/lib/exam-prep/sequencing/anti-cluster-sequencer";
 import type {
   SequenceItem,
@@ -79,6 +81,8 @@ export type ComposedExam = {
   questions: ComposedExamQuestion[];
   selectionSummary: SelectionSummary;
   sequencingReport: SequencingReport;
+  /** Non-empty when the assembled exam still has similarity issues after filtering. */
+  similarityFlags: string[];
 };
 
 function answerKeyFor(item: BankItem): string {
@@ -158,11 +162,17 @@ export async function composeForConfig(
   });
   const pool = config.prepareItem ? rawPool.map(config.prepareItem) : rawPool;
 
-  const { items: selected, summary } = selectBlueprintBalancedSet(pool, blueprint, {
+  const { items: blueprintSelected, summary } = selectBlueprintBalancedSet(pool, blueprint, {
     numQuestions,
     focusAreas: params.focusAreas,
     difficultyPreference: params.difficultyPreference,
     seed,
+  });
+
+  const caseUnique = dedupeItemsByClinicalCase(blueprintSelected);
+  const selected = selectDiverseSessionBankItems(caseUnique, numQuestions, {
+    seed,
+    requestedCount: numQuestions,
   });
 
   const { ordered, report } = sequenceItems(
@@ -170,6 +180,10 @@ export async function composeForConfig(
     (item) => toSequenceItem(item, validIds),
     sequencingConfigFor(selected.length),
     seed
+  );
+
+  const similarityFlags = auditExamSimilarity(ordered).map(
+    (flag) => `${flag.code}:${flag.message}`
   );
 
   const questions = ordered.map((item, i) =>
@@ -190,6 +204,7 @@ export async function composeForConfig(
     questions,
     selectionSummary: summary,
     sequencingReport: report,
+    similarityFlags,
   };
 }
 

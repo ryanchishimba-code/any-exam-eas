@@ -21,7 +21,7 @@ import {
 } from "../src/lib/exam-prep/nclex-bank-audit";
 import {
   assessNclexItemQuality,
-  isNclexBestQuality,
+  isNclexServeQuality,
 } from "../src/lib/exam-prep/nclex-quality-gate";
 
 const prisma = getScriptPrisma();
@@ -88,7 +88,7 @@ async function main() {
       const audit = auditNclexBankItem(item);
       const verdict = assessNclexItemQuality(item, { source: row.source });
 
-      if (!isNclexBestQuality(item, { source: row.source })) servedNotBest++;
+      if (!isNclexServeQuality(item, { source: row.source })) servedNotBest++;
       if (nclexHasServeBlockIssues(item)) servedBlock++;
 
       const alignmentIssues = audit.issues.filter((i) => ALIGNMENT_CODES.has(i.code));
