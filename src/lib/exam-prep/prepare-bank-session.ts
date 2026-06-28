@@ -72,8 +72,9 @@ export function prepareBankItemsForSession(params: {
   const { fieldId, field, items, limit } = params;
   const cap = Math.max(limit, params.poolLimit ?? limit);
 
+  /** Timed gather already vetted + diversified — avoid a second selection pass. */
   if (params.skipRuntimeGate) {
-    return serveQaPassedBankItems(items, cap);
+    return items.slice(0, cap);
   }
 
   if (fieldId === "nursing") {

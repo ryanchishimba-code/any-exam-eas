@@ -33,7 +33,7 @@ Rules:
 - **Session player**: `dynamic()` import for `StudySessionPlayer`; memoize heavy list components.
 - **Topic picker**: virtualized list via `@tanstack/react-virtual` in `QuestionBankTopicPicker`.
 - **Live counts**: `/api/marketing/bank-counts` + React Query (`useLiveBankCounts`) — never inflate static marketing totals.
-- **Timed exams**: `skipRuntimeGate` when items are pre-vetted in `gatherTimedExamBankItems`; cap FullExamSimulator retries at 2.
+- **Timed exams**: `gatherTimedExamBankItems` runs diverse selection once; the API route skips a second `prepareBankItemsForSession` pass. `skipRuntimeGate` still slices only when other callers pre-vet rows.
 
 ## Caching layers
 

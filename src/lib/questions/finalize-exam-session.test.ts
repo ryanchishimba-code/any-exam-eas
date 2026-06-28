@@ -51,7 +51,7 @@ describe("full-length exam fields", () => {
       // Timed exams pull a modest headroom pool — gatherTimedExamBankItems tops up if gates thin the pool.
       expect(sample).toBeLessThanOrEqual(500);
       if (slug === "nclex" || slug === "usmle" || slug === "naplex") {
-        expect(sample).toBeGreaterThanOrEqual(full.questionCount + 48);
+        expect(sample).toBeGreaterThanOrEqual(full.questionCount + 32);
       }
     }
   });

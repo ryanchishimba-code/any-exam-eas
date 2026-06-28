@@ -56,7 +56,7 @@ export function resolveExamBankSampleCount(
   ) {
     return Math.min(
       QUESTION_BANK_SAMPLE_MAX_PULL,
-      Math.max(limit + 48, Math.ceil(limit * 1.75))
+      Math.max(limit + 32, Math.ceil(limit * 1.45))
     );
   }
 

@@ -26,8 +26,8 @@ const MAX_BANK_LIMIT = 100;
 const MAX_TIMED_LIMIT = 300;
 
 export async function GET(req: Request) {
-  const { requirePremiumApi } = await import("@/lib/api-access");
-  const premium = await requirePremiumApi();
+  const { requireStudyApi } = await import("@/lib/api-access");
+  const premium = await requireStudyApi();
   if (!premium.ok) return premium.response;
   const userId = premium.userId;
   const userAccess = premium.access;
@@ -244,14 +244,7 @@ export async function GET(req: Request) {
       poolLimit: items.length,
     });
   } else if (items.length > 0 && mixed && timedExam && !presetExamNumber) {
-    items = prepareBankItemsForSession({
-      fieldId,
-      field,
-      items,
-      limit,
-      poolLimit: items.length,
-      skipRuntimeGate: true,
-    });
+    items = items.slice(0, limit);
   }
 
   const resolvedSubjectId = mixed ? MIXED_SUBJECT_ID : subjectId!;

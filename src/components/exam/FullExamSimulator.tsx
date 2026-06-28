@@ -175,14 +175,16 @@ export function FullExamSimulator({
       setLoadError(null);
 
       let mpjeStateCode: string | null = null;
-      try {
-        const prefRes = await fetch("/api/user/exam-preference", { cache: "no-store" });
-        if (prefRes.ok) {
-          const pref = (await prefRes.json()) as { mpjeStateCode?: string | null };
-          mpjeStateCode = pref.mpjeStateCode ?? null;
+      if (fieldId === "mpje") {
+        try {
+          const prefRes = await fetch("/api/user/exam-preference", { cache: "no-store" });
+          if (prefRes.ok) {
+            const pref = (await prefRes.json()) as { mpjeStateCode?: string | null };
+            mpjeStateCode = pref.mpjeStateCode ?? null;
+          }
+        } catch {
+          // Non-fatal — MPJE may still work with federal-only bank.
         }
-      } catch {
-        // Non-fatal — MPJE may still work with federal-only bank.
       }
 
       const qs = new URLSearchParams({

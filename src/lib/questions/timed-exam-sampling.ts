@@ -19,11 +19,11 @@ function resolveTimedExamPoolTarget(limit: number): number {
   );
 }
 
-/** First DB pull size from expected gate pass rate (~85% for qaPassed clinical banks). */
+/** First DB pull size from expected gate pass rate (~92% for qaPassed clinical banks). */
 function resolveTimedExamPullSize(limit: number, poolTarget: number): number {
   return Math.min(
     QUESTION_BANK_SAMPLE_MAX_PULL,
-    Math.max(Math.ceil(poolTarget / 0.85), limit + 24, 40)
+    Math.max(Math.ceil(poolTarget / 0.92), limit + 16, 32)
   );
 }
 
@@ -84,9 +84,6 @@ export async function gatherTimedExamBankItems(params: {
     );
   }
 
-  if (vetted.length <= limit) {
-    return serveQaPassedBankItems(vetted, vetted.length);
-  }
-
-  return serveQaPassedBankItems(vetted, poolTarget);
+  const sessionSize = Math.min(vetted.length, limit);
+  return serveQaPassedBankItems(vetted, sessionSize);
 }
