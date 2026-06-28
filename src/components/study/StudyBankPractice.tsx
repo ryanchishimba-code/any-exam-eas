@@ -316,14 +316,18 @@ export function StudyBankPractice({
     if (seededForField) {
       setSubjectCounts(initialSubjectCounts);
       setCountsLoading(false);
-    } else {
-      setCountsLoading(true);
-      if (initialSubjectCountsFieldId && initialSubjectCountsFieldId !== fieldId) {
-        setSubjectCounts(null);
-      }
+      return () => {
+        cancelled = true;
+      };
     }
+
+    setCountsLoading(true);
+    if (initialSubjectCountsFieldId && initialSubjectCountsFieldId !== fieldId) {
+      setSubjectCounts(null);
+    }
+
     fetch(`/api/questions/subject-counts?field=${encodeURIComponent(fieldId)}`, {
-      cache: "no-store",
+      cache: "force-cache",
     })
       .then(async (r) => {
         const data = r.ok ? await r.json() : null;

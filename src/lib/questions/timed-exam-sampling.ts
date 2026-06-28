@@ -19,11 +19,11 @@ function resolveTimedExamPoolTarget(limit: number): number {
   );
 }
 
-/** First DB pull size from expected gate pass rate (~50% for gated clinical banks). */
+/** First DB pull size from expected gate pass rate (~85% for qaPassed clinical banks). */
 function resolveTimedExamPullSize(limit: number, poolTarget: number): number {
   return Math.min(
     QUESTION_BANK_SAMPLE_MAX_PULL,
-    Math.max(Math.ceil(poolTarget / 0.5), limit + 32, 48)
+    Math.max(Math.ceil(poolTarget / 0.85), limit + 24, 40)
   );
 }
 
@@ -57,7 +57,7 @@ export async function gatherTimedExamBankItems(params: {
     QUESTION_BANK_SAMPLE_MAX_PULL,
     Math.max(params.initialSampleCount, resolveTimedExamPullSize(limit, poolTarget))
   );
-  const maxRounds = 3;
+  const maxRounds = 2;
 
   for (let round = 0; round < maxRounds; round++) {
     if (vetted.length >= poolTarget) break;

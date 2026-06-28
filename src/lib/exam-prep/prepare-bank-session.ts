@@ -73,11 +73,7 @@ export function prepareBankItemsForSession(params: {
   const cap = Math.max(limit, params.poolLimit ?? limit);
 
   if (params.skipRuntimeGate) {
-    // Timed exams pre-vet in gatherTimedExamBankItems; clinical banks still re-run serve gates.
-    const clinicalTimedField = fieldId === "nursing" || fieldId === "pharmacy";
-    if (!clinicalTimedField) {
-      return serveQaPassedBankItems(items, cap);
-    }
+    return serveQaPassedBankItems(items, cap);
   }
 
   if (fieldId === "nursing") {

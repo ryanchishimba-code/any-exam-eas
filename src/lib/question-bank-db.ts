@@ -37,6 +37,7 @@ import {
   curatedNptePtWhereClause,
   curatedSampleTarget as nptePtCuratedSampleTarget,
 } from "@/lib/question-bank/npte-pt-curated";
+import { sampleQuestionBankRows } from "@/lib/question-bank/random-sample";
 /** Max rows read per sample query (keeps Neon queries bounded). */
 export const QUESTION_BANK_SAMPLE_MAX_PULL = 500;
 
@@ -46,7 +47,20 @@ export const ADAPTIVE_QUESTION_POOL_PER_SUBJECT = 80;
 const MIN_SUBJECT_ROWS_BEFORE_SEED = 5;
 
 const FIELD_TOTAL_CACHE_MS = 30_000;
+const CURATED_TOTAL_CACHE_MS = 60_000;
 const fieldTotalCache = new Map<string, { total: number; at: number }>();
+const curatedTotalCache = new Map<string, { total: number; at: number }>();
+
+async function getCachedCuratedTotal(
+  cacheKey: string,
+  where: ReturnType<typeof activeFieldWhere> & Record<string, unknown>
+): Promise<number> {
+  const hit = curatedTotalCache.get(cacheKey);
+  if (hit && Date.now() - hit.at < CURATED_TOTAL_CACHE_MS) return hit.total;
+  const total = await prisma.questionBankItem.count({ where });
+  curatedTotalCache.set(cacheKey, { total, at: Date.now() });
+  return total;
+}
 
 async function getCachedActiveFieldTotal(fieldId: string): Promise<number> {
   const hit = fieldTotalCache.get(fieldId);
@@ -80,7 +94,7 @@ async function sampleCuratedFieldItems(params: {
     generalPullMultiplier = 2,
   } = params;
 
-  const curatedTotal = await prisma.questionBankItem.count({ where: curatedWhere });
+  const curatedTotal = await getCachedCuratedTotal(`${fieldId}:curated`, curatedWhere);
   const curatedWant = curatedFieldSampleTarget(want, curatedTotal);
   let collected: BankItem[] = [];
 
@@ -89,14 +103,7 @@ async function sampleCuratedFieldItems(params: {
       QUESTION_BANK_SAMPLE_MAX_PULL,
       Math.max(curatedWant * curatedPullMultiplier, curatedWant + 24)
     );
-    const skip =
-      curatedTotal > pull ? Math.floor(Math.random() * Math.max(0, curatedTotal - pull)) : 0;
-    const rows = await prisma.questionBankItem.findMany({
-      where: curatedWhere,
-      skip,
-      take: pull,
-      orderBy: { id: "asc" },
-    });
+    const rows = await sampleQuestionBankRows({ where: curatedWhere, pull, total: curatedTotal });
     collected = dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(
       0,
       curatedWant
@@ -109,13 +116,7 @@ async function sampleCuratedFieldItems(params: {
       QUESTION_BANK_SAMPLE_MAX_PULL,
       Math.max(remaining * generalPullMultiplier, remaining + 24)
     );
-    const skip = total > pullTarget ? Math.floor(Math.random() * (total - pullTarget)) : 0;
-    const rows = await prisma.questionBankItem.findMany({
-      where: activeFieldWhere(fieldId),
-      skip,
-      take: pullTarget,
-      orderBy: { id: "asc" },
-    });
+    const rows = await sampleQuestionBankRows({ where: activeFieldWhere(fieldId), pull: pullTarget, total });
     collected = dedupeSamplePool([
       ...collected,
       ...shuffleBankItems(rows.map(rowToBankItem)),
@@ -523,14 +524,14 @@ async function sampleNclexSubjectItems(
   let collected: BankItem[] = [];
 
   if (curatedWant > 0) {
-    const curatedRows = await prisma.questionBankItem.findMany({
+    const pull = Math.min(
+      QUESTION_BANK_SAMPLE_MAX_PULL,
+      Math.max(curatedWant * 4, curatedWant + 20)
+    );
+    const curatedRows = await sampleQuestionBankRows({
       where: curatedWhere,
-      take: Math.min(curatedTotal, Math.max(curatedWant * 4, curatedWant + 20)),
-      skip:
-        curatedTotal > curatedWant
-          ? Math.floor(Math.random() * Math.max(0, curatedTotal - curatedWant))
-          : 0,
-      orderBy: { id: "asc" },
+      pull,
+      total: curatedTotal,
     });
     collected = dedupeSamplePool(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
       0,
@@ -568,26 +569,8 @@ async function sampleSubjectItemsRandom(
     return dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(0, want);
   }
 
-  let collected: BankItem[] = [];
-  let attempts = 0;
-
-  while (collected.length < want && attempts < 4) {
-    const pull = Math.min(pullTarget, total);
-    const skip = total > pull ? Math.floor(Math.random() * (total - pull)) : 0;
-    const rows = await prisma.questionBankItem.findMany({
-      where,
-      skip,
-      take: pull,
-      orderBy: { id: "asc" },
-    });
-    collected = dedupeSamplePool([
-      ...collected,
-      ...shuffleBankItems(rows.map(rowToBankItem)),
-    ]);
-    attempts++;
-  }
-
-  return shuffleBankItems(collected).slice(0, want);
+  const rows = await sampleQuestionBankRows({ where, pull: pullTarget, total });
+  return shuffleBankItems(dedupeSamplePool(rows.map(rowToBankItem))).slice(0, want);
 }
 
 async function sampleUsmleSubjectItems(
@@ -789,144 +772,36 @@ export async function sampleQuestionBankItemsForField(params: {
   }
 
   if (isPanceFieldId(params.fieldId)) {
-    const curatedWhere = { ...where, ...curatedPanceWhereClause() };
-    const curatedTotal = await prisma.questionBankItem.count({ where: curatedWhere });
-    const curatedWant = panceCuratedSampleTarget(want, curatedTotal);
-    let collected: BankItem[] = [];
-
-    if (curatedWant > 0) {
-      const pull = Math.min(
-        QUESTION_BANK_SAMPLE_MAX_PULL,
-        Math.max(curatedWant * 3, curatedWant + 30)
-      );
-      const skip =
-        curatedTotal > pull ? Math.floor(Math.random() * Math.max(0, curatedTotal - pull)) : 0;
-      const rows = await prisma.questionBankItem.findMany({
-        where: curatedWhere,
-        skip,
-        take: pull,
-        orderBy: { id: "asc" },
-      });
-      collected = dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(
-        0,
-        curatedWant
-      );
-    }
-
-    const remaining = want - collected.length;
-    if (remaining > 0) {
-      const pullTarget = Math.min(
-        QUESTION_BANK_SAMPLE_MAX_PULL,
-        Math.max(remaining * 2, remaining + 30)
-      );
-      const skip = total > pullTarget ? Math.floor(Math.random() * (total - pullTarget)) : 0;
-      const rows = await prisma.questionBankItem.findMany({
-        where,
-        skip,
-        take: pullTarget,
-        orderBy: { id: "asc" },
-      });
-      collected = dedupeSamplePool([
-        ...collected,
-        ...shuffleBankItems(rows.map(rowToBankItem)),
-      ]).slice(0, want);
-    }
-
-    return shuffleBankItems(collected).slice(0, want);
+    return sampleCuratedFieldItems({
+      fieldId: params.fieldId,
+      want,
+      curatedWhere: { ...where, ...curatedPanceWhereClause() },
+      total,
+      curatedPullMultiplier: 3,
+      generalPullMultiplier: 2,
+    });
   }
 
   if (isAanpFnpFieldId(params.fieldId)) {
-    const curatedWhere = { ...where, ...curatedAanpFnpWhereClause() };
-    const curatedTotal = await prisma.questionBankItem.count({ where: curatedWhere });
-    const curatedWant = aanpFnpCuratedSampleTarget(want, curatedTotal);
-    let collected: BankItem[] = [];
-
-    if (curatedWant > 0) {
-      const pull = Math.min(
-        QUESTION_BANK_SAMPLE_MAX_PULL,
-        Math.max(curatedWant * 3, curatedWant + 30)
-      );
-      const skip =
-        curatedTotal > pull ? Math.floor(Math.random() * Math.max(0, curatedTotal - pull)) : 0;
-      const rows = await prisma.questionBankItem.findMany({
-        where: curatedWhere,
-        skip,
-        take: pull,
-        orderBy: { id: "asc" },
-      });
-      collected = dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(
-        0,
-        curatedWant
-      );
-    }
-
-    const remaining = want - collected.length;
-    if (remaining > 0) {
-      const pullTarget = Math.min(
-        QUESTION_BANK_SAMPLE_MAX_PULL,
-        Math.max(remaining * 2, remaining + 30)
-      );
-      const skip = total > pullTarget ? Math.floor(Math.random() * (total - pullTarget)) : 0;
-      const rows = await prisma.questionBankItem.findMany({
-        where,
-        skip,
-        take: pullTarget,
-        orderBy: { id: "asc" },
-      });
-      collected = dedupeSamplePool([
-        ...collected,
-        ...shuffleBankItems(rows.map(rowToBankItem)),
-      ]).slice(0, want);
-    }
-
-    return shuffleBankItems(collected).slice(0, want);
+    return sampleCuratedFieldItems({
+      fieldId: params.fieldId,
+      want,
+      curatedWhere: { ...where, ...curatedAanpFnpWhereClause() },
+      total,
+      curatedPullMultiplier: 2.5,
+      generalPullMultiplier: 2,
+    });
   }
 
   if (isNptePtFieldId(params.fieldId)) {
-    const curatedWhere = { ...where, ...curatedNptePtWhereClause() };
-    const curatedTotal = await prisma.questionBankItem.count({ where: curatedWhere });
-    const curatedWant = nptePtCuratedSampleTarget(want, curatedTotal);
-    let collected: BankItem[] = [];
-
-    if (curatedWant > 0) {
-      const pull = Math.min(
-        QUESTION_BANK_SAMPLE_MAX_PULL,
-        Math.max(curatedWant * 3, curatedWant + 30)
-      );
-      const skip =
-        curatedTotal > pull ? Math.floor(Math.random() * Math.max(0, curatedTotal - pull)) : 0;
-      const rows = await prisma.questionBankItem.findMany({
-        where: curatedWhere,
-        skip,
-        take: pull,
-        orderBy: { id: "asc" },
-      });
-      collected = dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(
-        0,
-        curatedWant
-      );
-    }
-
-    const remaining = want - collected.length;
-    if (remaining > 0) {
-      const pullTarget = Math.min(
-        QUESTION_BANK_SAMPLE_MAX_PULL,
-        Math.max(remaining * 2, remaining + 30)
-      );
-      const skip = total > pullTarget ? Math.floor(Math.random() * (total - pullTarget)) : 0;
-      const rows = await prisma.questionBankItem.findMany({
-        where,
-        skip,
-        take: pullTarget,
-        orderBy: { id: "asc" },
-      });
-      collected = dedupeSamplePool([
-        ...collected,
-        ...shuffleBankItems(rows.map(rowToBankItem)),
-      ]).slice(0, want);
-    }
-
-    return shuffleBankItems(collected).slice(0, want);
+    return sampleCuratedFieldItems({
+      fieldId: params.fieldId,
+      want,
+      curatedWhere: { ...where, ...curatedNptePtWhereClause() },
+      total,
+      curatedPullMultiplier: 3,
+      generalPullMultiplier: 2,
+    });
   }
 
   const pullTarget = Math.min(
@@ -939,24 +814,6 @@ export async function sampleQuestionBankItemsForField(params: {
     return dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(0, want);
   }
 
-  let collected: BankItem[] = [];
-  let attempts = 0;
-
-  while (collected.length < want && attempts < 5) {
-    const pull = Math.min(pullTarget, total);
-    const skip = total > pull ? Math.floor(Math.random() * (total - pull)) : 0;
-    const rows = await prisma.questionBankItem.findMany({
-      where,
-      skip,
-      take: pull,
-      orderBy: { id: "asc" },
-    });
-    collected = dedupeSamplePool([
-      ...collected,
-      ...shuffleBankItems(rows.map(rowToBankItem)),
-    ]);
-    attempts++;
-  }
-
-  return shuffleBankItems(collected).slice(0, want);
+  const rows = await sampleQuestionBankRows({ where, pull: pullTarget, total });
+  return shuffleBankItems(dedupeSamplePool(rows.map(rowToBankItem))).slice(0, want);
 }

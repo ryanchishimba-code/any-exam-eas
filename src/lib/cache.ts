@@ -99,7 +99,7 @@ export function cacheKey(parts: (string | number | undefined | null)[]): string 
 /** Default TTLs tuned for cost vs freshness at ~3k MAU */
 export const CACHE_TTL = {
   researchBrief: 60 * 60 * 1000, // 1h — Tavily + synthesis
-  subjectCatalog: 5 * 60 * 1000, // 5m
+  subjectCatalog: 30 * 60 * 1000, // 30m — topic counts change infrequently post-sync
   learningDashboard: 30 * 1000, // 30s per user
   examPreference: 60 * 1000, // 60s per user
   userAccess: 30 * 1000, // 30s per user — dedupes requirePremiumPage

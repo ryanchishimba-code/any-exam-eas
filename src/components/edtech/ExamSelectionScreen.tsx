@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
@@ -17,7 +17,7 @@ import { ExamCard } from "@/components/edtech/ExamCard";
 import { StatusMessage } from "@/components/ui/StatusMessage";
 import { persistExamPreference } from "@/lib/edtech/actions";
 import { fireExamSelectionConfetti } from "@/lib/edtech/confetti";
-import { EXAM_SLUGS } from "@/lib/edtech/exams";
+import { EXAM_SLUGS, EXAM_CATALOG } from "@/lib/edtech/exams";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -76,7 +76,23 @@ export function ExamSelectionScreen({
   const [selected, setSelected] = useState<ExamSlug | null>(null);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const handle = window.setTimeout(() => setDebouncedQuery(searchQuery.trim().toLowerCase()), 250);
+    return () => window.clearTimeout(handle);
+  }, [searchQuery]);
+
+  const visibleSlugs = useMemo(() => {
+    if (!debouncedQuery) return EXAM_SLUGS;
+    return EXAM_SLUGS.filter((slug) => {
+      const exam = EXAM_CATALOG[slug];
+      const haystack = `${exam.name} ${exam.shortName} ${exam.description} ${slug}`.toLowerCase();
+      return haystack.includes(debouncedQuery);
+    });
+  }, [debouncedQuery]);
 
   function handleSelect(slug: ExamSlug) {
     setError(null);
@@ -214,12 +230,30 @@ export function ExamSelectionScreen({
           </div>
         ) : null}
 
+        <div className="mx-auto mt-10 max-w-md">
+          <label htmlFor="exam-search" className="sr-only">
+            Search exams
+          </label>
+          <input
+            id="exam-search"
+            type="search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search exams (e.g. NCLEX, FNP, NAPLEX)…"
+            className="w-full rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 text-sm text-slate-900 shadow-sm outline-none ring-teal-500/30 placeholder:text-slate-400 focus:border-teal-400 focus:ring-2 dark:border-slate-700 dark:bg-slate-900/80 dark:text-white"
+            autoComplete="off"
+          />
+          {debouncedQuery && visibleSlugs.length === 0 ? (
+            <p className="mt-3 text-center text-sm text-slate-500">No exams match your search.</p>
+          ) : null}
+        </div>
+
         <div
           className="mx-auto mt-12 grid max-w-5xl gap-5 sm:grid-cols-2 sm:gap-6 lg:gap-7"
           role="list"
           aria-label="Available exams"
         >
-          {EXAM_SLUGS.map((slug, index) => (
+          {visibleSlugs.map((slug, index) => (
             <div key={slug} role="listitem" className="h-full">
               <ExamCard
                 slug={slug}

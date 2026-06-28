@@ -18,7 +18,6 @@ import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { usmleStepDefinition, defaultUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
-import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 
@@ -48,7 +47,6 @@ async function QuestionBankContent({
   examSlug: keyof typeof EXAM_CATALOG;
   fieldParam: string;
 }) {
-  const dashboard = await getStudentDashboardData(userId);
   const meta = examSlug === "usmle" ? await getUserEdtechMetadata(userId) : null;
   const usmleStep =
     examSlug === "usmle"
@@ -61,10 +59,6 @@ async function QuestionBankContent({
       examSlug={examSlug}
       fieldParam={fieldParam}
       usmleStepLabel={usmleStep?.shortName}
-      hubStats={{
-        readinessScore: dashboard.headline.readinessScore,
-        streakDays: dashboard.headline.studyStreakDays,
-      }}
     />
   );
 }

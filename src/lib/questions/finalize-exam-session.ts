@@ -40,7 +40,7 @@ export function resolveExamBankSampleCount(
       fieldId === "pance" ||
       fieldId === "npte-pt" ||
       fieldId === "aanp-fnp";
-    if (fieldId === "aanp-fnp") return Math.min(Math.max(limit * 8, 60), 180);
+    if (fieldId === "aanp-fnp") return Math.min(Math.max(limit * 4, 40), 100);
     if (fieldId === "npte-pt") return Math.min(Math.max(limit * 6, 50), 150);
     if (clinicalPool) return Math.min(Math.max(limit * 6, 40), 120);
     return Math.max(limit, 40);

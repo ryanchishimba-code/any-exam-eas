@@ -205,7 +205,7 @@ export function FullExamSimulator({
         qs.set("presetExamNumber", String(config.presetExamNumber));
       }
 
-      const maxAttempts = 3;
+      const maxAttempts = 2;
       let lastError = "Could not load exam questions. Check your connection and try again.";
 
       for (let attempt = 0; attempt < maxAttempts; attempt++) {
