@@ -36,6 +36,27 @@ export function defaultExamDatePreview(from = todayIso()): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
+/** Latest DOB that satisfies 18+ (inclusive). */
+export function eighteenYearsAgoIso(from = todayIso()): string {
+  const d = new Date(`${from}T12:00:00`);
+  d.setFullYear(d.getFullYear() - 18);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
+/** Earliest selectable birth year (~100 years). */
+export function oldestBirthDateIso(from = todayIso()): string {
+  const d = new Date(`${from}T12:00:00`);
+  d.setFullYear(d.getFullYear() - 100);
+  return `${d.getFullYear()}-01-01`;
+}
+
+/** Suggested DOB preview (~25 years old). */
+export function defaultBirthDatePreview(from = todayIso()): string {
+  const d = new Date(`${from}T12:00:00`);
+  d.setFullYear(d.getFullYear() - 25);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
 function daysInMonth(month: number, year: number): number {
   return new Date(year, month, 0).getDate();
 }
@@ -58,14 +79,24 @@ function clampParts(
   month: number,
   day: number,
   year: number,
-  min: { month: number; day: number; year: number }
+  min?: { month: number; day: number; year: number },
+  max?: { month: number; day: number; year: number }
 ): { month: number; day: number; year: number } {
-  const y = Math.max(year, min.year);
+  let y = year;
   let m = month;
   let d = day;
 
-  if (y === min.year && m < min.month) m = min.month;
-  if (y === min.year && m === min.month && d < min.day) d = min.day;
+  if (min) {
+    y = Math.max(y, min.year);
+    if (y === min.year && m < min.month) m = min.month;
+    if (y === min.year && m === min.month && d < min.day) d = min.day;
+  }
+
+  if (max) {
+    y = Math.min(y, max.year);
+    if (y === max.year && m > max.month) m = max.month;
+    if (y === max.year && m === max.month && d > max.day) d = max.day;
+  }
 
   const dim = daysInMonth(m, y);
   if (d > dim) d = dim;
@@ -215,19 +246,39 @@ function WheelColumn({ label, options, selectedIndex, onSelect, compact }: Wheel
 
 type ExamDateWheelPickerProps = {
   value: string;
-  minDate: string;
   onChange: (isoDate: string) => void;
+  /** Earliest selectable date (exam dates — today or later). */
+  minDate?: string;
+  /** Latest selectable date (birth dates — 18+ cap). */
+  maxDate?: string;
   className?: string;
   id?: string;
+  /** Accessible name for the wheel group. */
+  ariaLabel?: string;
 };
 
-/** iOS-style month / day / year wheels for exam date selection. */
-export function ExamDateWheelPicker({ value, minDate, onChange, className, id }: ExamDateWheelPickerProps) {
-  const min = useMemo(() => parseIso(minDate), [minDate]);
+/** iOS-style month / day / year wheels — exam dates (future) or birth dates (past). */
+export function ExamDateWheelPicker({
+  value,
+  minDate,
+  maxDate,
+  onChange,
+  className,
+  id,
+  ariaLabel,
+}: ExamDateWheelPickerProps) {
+  const min = useMemo(
+    () => (minDate ? parseIso(minDate) : undefined),
+    [minDate]
+  );
+  const max = useMemo(
+    () => (maxDate ? parseIso(maxDate) : undefined),
+    [maxDate]
+  );
   const parsed = useMemo(() => parseIso(value), [value]);
   const clamped = useMemo(
-    () => clampParts(parsed.month, parsed.day, parsed.year, min),
-    [parsed, min]
+    () => clampParts(parsed.month, parsed.day, parsed.year, min, max),
+    [parsed, min, max]
   );
 
   const [month, setMonth] = useState(clamped.month);
@@ -241,9 +292,22 @@ export function ExamDateWheelPicker({ value, minDate, onChange, className, id }:
   }, [clamped.month, clamped.day, clamped.year]);
 
   const years = useMemo(() => {
-    const end = min.year + 3;
-    return Array.from({ length: end - min.year + 1 }, (_, i) => String(min.year + i));
-  }, [min.year]);
+    if (min && max) {
+      const start = min.year;
+      const end = max.year;
+      return Array.from({ length: end - start + 1 }, (_, i) => String(start + i));
+    }
+    if (min) {
+      const end = min.year + 3;
+      return Array.from({ length: end - min.year + 1 }, (_, i) => String(min.year + i));
+    }
+    if (max) {
+      const start = max.year - 100;
+      return Array.from({ length: max.year - start + 1 }, (_, i) => String(start + i));
+    }
+    const now = new Date().getFullYear();
+    return Array.from({ length: 4 }, (_, i) => String(now + i));
+  }, [min, max]);
 
   const maxDay = daysInMonth(month, year);
   const days = useMemo(
@@ -253,15 +317,17 @@ export function ExamDateWheelPicker({ value, minDate, onChange, className, id }:
 
   const emit = useCallback(
     (nextMonth: number, nextDay: number, nextYear: number) => {
-      const parts = clampParts(nextMonth, nextDay, nextYear, min);
+      const parts = clampParts(nextMonth, nextDay, nextYear, min, max);
       const iso = toIso(parts.month, parts.day, parts.year);
       setMonth(parts.month);
       setDay(parts.day);
       setYear(parts.year);
       if (iso !== value) onChange(iso);
     },
-    [min, onChange, value]
+    [min, max, onChange, value]
   );
+
+  const label = ariaLabel ?? (maxDate && !minDate ? "Date of birth" : "Exam date");
 
   return (
     <div
@@ -270,7 +336,7 @@ export function ExamDateWheelPicker({ value, minDate, onChange, className, id }:
         "rounded-2xl border border-teal-500/15 bg-gradient-to-br from-teal-500/[0.06] via-[var(--color-surface-elevated)] to-violet-500/[0.05] p-3 shadow-[0_12px_40px_-16px_rgba(20,184,166,0.35)] sm:p-4",
         className
       )}
-      aria-label="Exam date"
+      aria-label={label}
     >
       <div className="flex items-stretch gap-1 sm:gap-2">
         <WheelColumn

@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { CalendarClock, Check, Pencil, Sparkles, X } from "lucide-react";
+import { CalendarClock, Check, Sparkles } from "lucide-react";
 import { ExamDateWheelPicker, todayIso } from "@/components/edtech/ExamDateWheelPicker";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
@@ -161,7 +161,6 @@ export function DashboardExamCountdown({ examSlug, examName, testDate }: Dashboa
   const router = useRouter();
   const reduceMotion = useReducedMotion();
   const [date, setDate] = useState<string | null>(testDate);
-  const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState(testDate ?? "");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -183,9 +182,10 @@ export function DashboardExamCountdown({ examSlug, examName, testDate }: Dashboa
   const calDays = date ? calendarDaysUntil(date, now) : null;
   const isPast = calDays != null && calDays < 0;
   const isToday = calDays === 0;
-  const hasActiveCountdown = !!date && !isPast && !isToday && !editing;
+  const hasActiveCountdown = !!date && !isPast && !isToday;
   const tone = urgencyTone(calDays, !!date);
   const styles = TONE_STYLES[tone];
+  const draftDirty = Boolean(draft && draft !== date);
 
   const statusChip = (() => {
     if (!date) return "Not set";
@@ -218,7 +218,6 @@ export function DashboardExamCountdown({ examSlug, examName, testDate }: Dashboa
       }
       setDate(data.testDate ?? null);
       setDraft(data.testDate ?? "");
-      setEditing(false);
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not save test date.");
@@ -281,20 +280,6 @@ export function DashboardExamCountdown({ examSlug, examName, testDate }: Dashboa
             </p>
           </div>
         </div>
-
-        {date && !editing ? (
-          <button
-            type="button"
-            onClick={() => {
-              setDraft(date);
-              setEditing(true);
-            }}
-            className={dbUi.ghostBtn}
-          >
-            <Pencil className="h-3 w-3" aria-hidden />
-            Edit
-          </button>
-        ) : null}
       </div>
 
       <div className="relative mt-5 flex items-center justify-center gap-2 sm:gap-3">
@@ -324,50 +309,37 @@ export function DashboardExamCountdown({ examSlug, examName, testDate }: Dashboa
         ))}
       </div>
 
-      {(editing || !date) && (
-        <div className="relative mt-5 space-y-4 border-t border-[var(--color-border)]/50 pt-5">
-          <ExamDateWheelPicker value={draft || today} minDate={today} onChange={setDraft} />
-          <div className="flex flex-wrap items-center gap-2">
+      <div className="relative mt-5 space-y-4 border-t border-[var(--color-border)]/50 pt-5">
+        <ExamDateWheelPicker
+          value={draft || date || today}
+          minDate={today}
+          onChange={setDraft}
+        />
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            disabled={saving || !draft || (!draftDirty && !!date)}
+            onClick={() => save(draft)}
+            className={cn(
+              dbUi.primaryBtn,
+              "bg-gradient-to-r from-teal-600 to-cyan-600 shadow-[0_8px_24px_-8px_rgba(20,184,166,0.55)]"
+            )}
+          >
+            <Check className="h-3.5 w-3.5" aria-hidden />
+            {saving ? "Saving…" : date ? (draftDirty ? "Update date" : "Date saved") : "Start countdown"}
+          </button>
+          {date ? (
             <button
               type="button"
-              disabled={saving || !draft}
-              onClick={() => save(draft)}
-              className={cn(
-                dbUi.primaryBtn,
-                "bg-gradient-to-r from-teal-600 to-cyan-600 shadow-[0_8px_24px_-8px_rgba(20,184,166,0.55)]"
-              )}
+              disabled={saving}
+              onClick={() => save(null)}
+              className="ml-auto text-[12px] font-medium text-rose-600 hover:underline"
             >
-              <Check className="h-3.5 w-3.5" aria-hidden />
-              {saving ? "Saving…" : date ? "Update date" : "Start countdown"}
+              Clear date
             </button>
-            {editing ? (
-              <button
-                type="button"
-                disabled={saving}
-                onClick={() => {
-                  setEditing(false);
-                  setDraft(date ?? "");
-                  setError("");
-                }}
-                className="inline-flex items-center gap-1 px-2 py-2 text-[12px] font-medium text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
-              >
-                <X className="h-3.5 w-3.5" aria-hidden />
-                Cancel
-              </button>
-            ) : null}
-            {date && editing ? (
-              <button
-                type="button"
-                disabled={saving}
-                onClick={() => save(null)}
-                className="ml-auto text-[12px] font-medium text-rose-600 hover:underline"
-              >
-                Clear date
-              </button>
-            ) : null}
-          </div>
+          ) : null}
         </div>
-      )}
+      </div>
 
       {error ? <p className="relative mt-2 text-[12px] font-medium text-rose-600">{error}</p> : null}
     </section>

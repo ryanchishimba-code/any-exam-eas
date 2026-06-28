@@ -23,8 +23,11 @@ import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import type { ExamSlug } from "@/types/edtech";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import {
+  defaultBirthDatePreview,
   defaultExamDatePreview,
+  eighteenYearsAgoIso,
   ExamDateWheelPicker,
+  oldestBirthDateIso,
   todayIso,
 } from "@/components/edtech/ExamDateWheelPicker";
 import {
@@ -53,7 +56,7 @@ export function SignupForm({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [dob, setDob] = useState("");
+  const [dob, setDob] = useState(() => defaultBirthDatePreview());
   const [examSlug, setExamSlug] = useState<ExamSlug | "">(initialExam);
   const [testDate, setTestDate] = useState("");
   const [accepted, setAccepted] = useState(false);
@@ -200,6 +203,8 @@ export function SignupForm({
 
   const today = useMemo(() => todayIso(), []);
   const examDatePreview = useMemo(() => defaultExamDatePreview(today), [today]);
+  const birthMin = useMemo(() => oldestBirthDateIso(today), [today]);
+  const birthMax = useMemo(() => eighteenYearsAgoIso(today), [today]);
 
   return (
     <form onSubmit={handleSubmit} noValidate className="apple-card mt-10 space-y-6 p-8 md:p-10">
@@ -348,17 +353,22 @@ export function SignupForm({
               )}
             </div>
             <div>
-              <label htmlFor="signup-dob" className="apple-label">
+              <label id="signup-dob-label" className="apple-label">
                 Date of birth (18+ required)
               </label>
-              <input
-                id="signup-dob"
-                required
-                type="date"
-                value={dob}
-                onChange={(e) => setDob(e.target.value)}
-                className="apple-input mt-2"
-              />
+              <div className="mt-3" aria-labelledby="signup-dob-label">
+                <ExamDateWheelPicker
+                  id="signup-dob"
+                  value={dob}
+                  minDate={birthMin}
+                  maxDate={birthMax}
+                  ariaLabel="Date of birth"
+                  onChange={setDob}
+                />
+              </div>
+              <p className="mt-2 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+                Spin the wheels to set your birth date — same picker as your exam countdown.
+              </p>
             </div>
           </fieldset>
 
