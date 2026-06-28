@@ -9,7 +9,6 @@ import {
   Clock,
   LayoutGrid,
   Map,
-  Sparkles,
 } from "lucide-react";
 import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
@@ -44,7 +43,6 @@ export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) 
       { href: ROUTES.roadmap, label: "Plan", icon: Map, ariaLabel: "Study Roadmap" },
       { href: bankHref, label: "Bank", icon: BookOpen, ariaLabel: "Question Bank" },
       { href: examHref, label: "Exam", icon: Clock, ariaLabel: "Full Exam" },
-      { href: ROUTES.learn, label: "Learn", icon: Sparkles, ariaLabel: "Learning Quilt" },
       { href: ROUTES.analytics, label: "Stats", icon: BarChart3, ariaLabel: "Analytics" },
     ];
 

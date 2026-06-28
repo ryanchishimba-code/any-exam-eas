@@ -37,7 +37,6 @@ type NavItem = {
 const BASE_NAV_ITEMS: NavItem[] = [
   { id: "dashboard", href: ROUTES.dashboard, label: "Dashboard", icon: LayoutGrid, exact: true },
   { id: "roadmap", href: ROUTES.roadmap, label: "Roadmap", icon: Map },
-  { id: "learn", href: ROUTES.learn, label: "Learn", icon: Layers },
   { id: "library", href: ROUTES.library, label: "Library", icon: BookMarked },
   { id: "full-exam", href: "__full_exam__", label: "Full Exam", icon: Clock },
   { id: "question-bank", href: "__question_bank__", label: "Question Bank", icon: BookOpen },
