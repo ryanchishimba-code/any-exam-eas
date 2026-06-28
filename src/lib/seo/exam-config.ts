@@ -1,5 +1,13 @@
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import type { ExamRouteSlug } from "@/lib/routes";
+import {
+  SEO_TRIAL_META_SUFFIX,
+  SEO_TRIAL_META_WITH_BOARDS,
+  seoTrialIncludedFaq,
+  seoTrialLengthFaq,
+  seoTrialNaplexStudyTip,
+  seoTrialTryBeforePayFaq,
+} from "@/lib/seo/trial-copy";
 
 export type ExamSeoKey = ExamRouteSlug;
 
@@ -54,7 +62,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "NCLEX",
     metaTitle: "NCLEX Board Prep 2026 — Practice Questions, NGN & Study Roadmap",
     metaDescription:
-      "Pass NCLEX-RN with board-style practice questions, NGN formats (SATA, bow-tie, matrix), blueprint Roadmap, and Deep Dive review. 14-day free trial · all six boards included.",
+      `Pass NCLEX-RN with board-style practice questions, NGN formats (SATA, bow-tie, matrix), blueprint Roadmap, and Deep Dive review. ${SEO_TRIAL_META_WITH_BOARDS}.`,
     keywords: [
       "NCLEX prep 2026",
       "NCLEX practice questions",
@@ -103,8 +111,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       },
       {
         question: "Can I try NCLEX prep before paying?",
-        answer:
-          "Yes — start a 14-day free trial with full platform access. Add a payment method at checkout; you are not charged until the trial ends.",
+        answer: seoTrialTryBeforePayFaq(),
       },
       {
         question: "Is NCLEX prep included with other board exams?",
@@ -124,7 +131,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "USMLE",
     metaTitle: "USMLE Step 1, Step 2 CK & Step 3 Practice Questions 2026",
     metaDescription:
-      "Full USMLE coverage — Step 1 basic sciences, Step 2 CK clinical vignettes, and Step 3 CCS-style cases. Timed blocks, blueprint Roadmaps, and Deep Dives. 14-day free trial.",
+      `Full USMLE coverage — Step 1 basic sciences, Step 2 CK clinical vignettes, and Step 3 CCS-style cases. Timed blocks, blueprint Roadmaps, and Deep Dives. ${SEO_TRIAL_META_SUFFIX}.`,
     keywords: [
       "USMLE Step 1 practice questions",
       "USMLE Step 2 CK practice questions",
@@ -195,7 +202,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "NAPLEX",
     metaTitle: "NAPLEX Review 2026 — Pharmacy Practice Questions & Calculations",
     metaDescription:
-      "NAPLEX prep with calculations, patient cases, drug interactions, and pharmacotherapy vignettes. Blueprint Roadmap + Top 503 Drugs deck. Free 14-day trial.",
+      `NAPLEX prep with calculations, patient cases, drug interactions, and pharmacotherapy vignettes. Blueprint Roadmap + Top 503 Drugs deck. ${SEO_TRIAL_META_SUFFIX}.`,
     keywords: [
       "NAPLEX review 2026",
       "NAPLEX practice questions",
@@ -232,7 +239,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       },
       {
         heading: "Free NAPLEX practice questions",
-        body: "Start your 14-day trial to access the full NAPLEX bank and sample questions before subscribing.",
+        body: seoTrialNaplexStudyTip(),
       },
     ],
     faqs: [
@@ -261,7 +268,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "PANCE",
     metaTitle: "PANCE Exam Prep 2026 — NCCPA Blueprint Practice Questions",
     metaDescription:
-      "PANCE practice questions aligned to the NCCPA blueprint — cardiovascular, pulmonary, GI, MSK, and more. Roadmap, timed exams, Deep Dives. 14-day free trial.",
+      `PANCE practice questions aligned to the NCCPA blueprint — cardiovascular, pulmonary, GI, MSK, and more. Roadmap, timed exams, Deep Dives. ${SEO_TRIAL_META_SUFFIX}.`,
     keywords: [
       "PANCE exam prep 2026",
       "PANCE practice questions",
@@ -312,7 +319,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       },
       {
         question: "How long is the free trial?",
-        answer: "14 days with full platform access. Payment method required at checkout — not charged until the trial ends.",
+        answer: seoTrialLengthFaq(),
       },
     ],
     relatedResourceSlugs: [
@@ -327,7 +334,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "AANP FNP",
     metaTitle: "AANP FNP Certification Prep 2026 — AANPCB Practice Questions",
     metaDescription:
-      "AANP FNP board prep with primary-care vignettes across Assess, Diagnose, Plan, and Evaluate domains. Roadmap, Deep Dives, and analytics. Free 14-day trial.",
+      `AANP FNP board prep with primary-care vignettes across Assess, Diagnose, Plan, and Evaluate domains. Roadmap, Deep Dives, and analytics. ${SEO_TRIAL_META_SUFFIX}.`,
     keywords: [
       "AANP FNP prep 2026",
       "AANP FNP practice questions",
@@ -378,7 +385,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       },
       {
         question: "What's included in the free trial?",
-        answer: "14 days of full access to all question banks, Roadmaps, and reference tools.",
+        answer: seoTrialIncludedFaq(),
       },
     ],
     relatedResourceSlugs: [
@@ -393,7 +400,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "NPTE",
     metaTitle: "NPTE-PT Prep 2026 — Physical Therapy Board Practice Questions",
     metaDescription:
-      "NPTE-PT exam prep with FSBPT blueprint scenarios — MSK, neuromuscular, cardiopulmonary, modalities, and safety. Roadmap + timed full exams. Free trial.",
+      `NPTE-PT exam prep with FSBPT blueprint scenarios — MSK, neuromuscular, cardiopulmonary, modalities, and safety. Roadmap + timed full exams. ${SEO_TRIAL_META_SUFFIX}.`,
     keywords: [
       "NPTE prep 2026",
       "NPTE-PT practice questions",

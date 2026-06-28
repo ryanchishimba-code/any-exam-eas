@@ -55,11 +55,10 @@ export default function TermsPage() {
         <h3 className="mt-4 font-semibold text-[var(--color-ink)]">4.1 Free trial and signup</h3>
         <p className="mt-2">{LEGAL_DISCLAIMERS.subscription}</p>
         <p className="mt-2">
-          A valid payment method is required to start a free trial. Unless separate introductory
-          pricing is expressly disclosed at checkout, you are not charged when you sign up; your
-          saved payment method is charged when the trial period ends unless you cancel before the
-          trial ends. Free trials are limited to one per email address unless we authorize
-          otherwise in writing.
+          You may start a free trial without providing a payment method. Trial access includes a
+          limited number of practice questions and features as described at signup. A valid payment
+          method is required when you upgrade to a paid Basic or Pro subscription. Free trials are
+          limited to one per email address unless we authorize otherwise in writing.
         </p>
 
         <h3 className="mt-4 font-semibold text-[var(--color-ink)]">4.2 Recurring billing and auto-renewal</h3>

@@ -313,9 +313,8 @@ export const LANDING_STEPS = [
   {
     step: "01",
     icon: Layers,
-    title: "Create your account & add payment",
-    detail:
-      "Choose your board and billing plan — payment method required at checkout, nothing charged today. Cancel before your trial ends and you won't be billed.",
+    title: "Create your account",
+    detail: `Sign up with email or social login — no payment required. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions instantly.`,
   },
   {
     step: "02",

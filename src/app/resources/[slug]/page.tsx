@@ -14,6 +14,7 @@ import { getResourceArticle, RESOURCE_ARTICLES } from "@/lib/seo/resources-conte
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ROUTES } from "@/lib/routes";
 import { formatTrialCtaLabel } from "@/lib/site";
+import { seoResourcesCtaLine } from "@/lib/seo/trial-copy";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -75,9 +76,7 @@ export default async function ResourceArticlePage({ params }: Props) {
 
         <aside className="mt-12 rounded-2xl bg-[var(--color-ink)] px-6 py-8 text-center">
           <h2 className="text-xl font-bold text-[var(--color-bg)]">{formatTrialCtaLabel()}</h2>
-          <p className="mt-2 text-sm text-white/80">
-            Access all six board banks, Roadmaps, and reference tools — payment required at checkout, not charged until your trial ends.
-          </p>
+          <p className="mt-2 text-sm text-white/80">{seoResourcesCtaLine()}</p>
           <Link
             href={LANDING_TRIAL_HREF}
             className="mt-5 inline-flex items-center gap-2 rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-bold text-white"

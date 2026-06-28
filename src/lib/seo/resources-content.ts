@@ -1,4 +1,10 @@
 import type { ExamSeoKey } from "@/lib/seo/exam-config";
+import {
+  seoSixBoardTrialParagraph,
+  seoTrialHeading,
+  seoTrialResourceParagraph,
+  seoTrialTryNclexHeading,
+} from "@/lib/seo/trial-copy";
 
 export type ResourceDownload = {
   slug: string;
@@ -101,10 +107,8 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         ],
       },
       {
-        heading: "Try NCLEX prep free for 14 days",
-        paragraphs: [
-          "Start with a 14-day trial — payment required at checkout, not charged until trial ends — and access the full NCLEX bank plus USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT on the same plan.",
-        ],
+        heading: seoTrialTryNclexHeading(),
+        paragraphs: [seoTrialResourceParagraph()],
       },
     ],
   }),
@@ -427,10 +431,8 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         ],
       },
       {
-        heading: "Start with a 14-day free trial",
-        paragraphs: [
-          "Payment method required at checkout. Explore every exam track before choosing Basic or Pro billing — not charged until your trial ends.",
-        ],
+        heading: seoTrialHeading(),
+        paragraphs: [seoSixBoardTrialParagraph()],
       },
     ],
   }),
