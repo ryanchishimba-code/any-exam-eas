@@ -11,6 +11,7 @@ import {
   assertExamSessionReady,
   resolveExamBankSampleCount,
 } from "@/lib/questions/finalize-exam-session";
+import { selectNclexSessionBankItems } from "@/lib/exam-prep/nclex/session-selection";
 import type { NclexFullExamBundle } from "./types";
 import { planNclexFullExamSlots, summarizeCaseStudies } from "./blueprint-quota";
 import { serializeExamForImport } from "./generation-pipeline";
@@ -60,7 +61,7 @@ export async function composeNclexFullExamSet(params: {
           throw new Error(`Insufficient unique items: ${gathered.length}/${questionCount}`);
         }
 
-        const slice = gathered.slice(0, questionCount);
+        const slice = selectNclexSessionBankItems(gathered, questionCount, examNumber * 9973 + attempt);
         const rawInputs = slice.map((item, i) =>
           bankItemToRawQuestion(item, i, {
             field: "nursing",

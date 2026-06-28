@@ -4,7 +4,7 @@ import {
   nclexHasServeBlockIssues,
 } from "@/lib/exam-prep/nclex-bank-audit";
 import { isNclexBestQuality } from "./nclex-quality-gate";
-import { serveQaPassedBankItems } from "./serve-qa-passed";
+import { selectNclexSessionBankItems } from "./nclex/session-selection";
 
 type NclexServeOpts = { source?: string | null };
 
@@ -35,5 +35,6 @@ export function prepareNclexItemsForSession({
   items,
   limit,
 }: PrepareNclexItemsParams): BankItem[] {
-  return serveQaPassedBankItems(filterNclexItemsForSession(items), limit);
+  const vetted = filterNclexItemsForSession(items);
+  return selectNclexSessionBankItems(vetted, limit);
 }
