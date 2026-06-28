@@ -45,6 +45,8 @@ import type {
   FullExamAnswerState,
   FullExamSessionConfig,
 } from "@/types/full-exam";
+import { ExamLoadingProgress } from "@/components/exam/ExamLoadingProgress";
+import { useLongRunningProgress } from "@/hooks/use-long-running-progress";
 import { feUi } from "@/lib/study/full-exam-ui";
 import { cn } from "@/lib/utils";
 
@@ -133,6 +135,7 @@ export function FullExamSimulator({
   const [encouragement] = useState(
     () => ENCOURAGEMENT[Math.floor(Math.random() * ENCOURAGEMENT.length)]
   );
+  const loadProgress = useLongRunningProgress(loading);
 
   const pauseAccumSec = useRef(0);
   const pauseStarted = useRef<number | null>(null);
@@ -568,7 +571,11 @@ export function FullExamSimulator({
               <div key={i} className="h-12 animate-pulse rounded-[14px] bg-black/[0.04]" />
             ))}
           </div>
-          <p className="text-center text-[13px] text-[var(--color-ink-muted)]">Preparing your exam…</p>
+          <ExamLoadingProgress
+            progress={loadProgress.progress}
+            status={loadProgress.status}
+            showBar={loadProgress.showBar}
+          />
         </div>
       </div>
     );
