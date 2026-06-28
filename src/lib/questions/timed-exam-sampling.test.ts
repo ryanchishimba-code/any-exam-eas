@@ -52,4 +52,24 @@ describe("gatherTimedExamBankItems", () => {
     expect(result).toHaveLength(5);
     expect(mockSample).toHaveBeenCalledTimes(2);
   });
+
+  it("uses relaxed gate when strict pool cannot fill the exam", async () => {
+    const mockSample = vi.mocked(sampleQuestionBankItemsForField);
+    mockSample.mockResolvedValue([
+      item("1", true),
+      item("2", false),
+      item("3", false),
+      item("4", false),
+    ]);
+
+    const result = await gatherTimedExamBankItems({
+      fieldId: "nursing",
+      limit: 3,
+      filterFn: (row) => row.tags?.includes("pass") ?? false,
+      relaxedFilterFn: () => true,
+      initialSampleCount: 4,
+    });
+
+    expect(result).toHaveLength(3);
+  });
 });

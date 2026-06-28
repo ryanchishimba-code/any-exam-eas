@@ -118,10 +118,6 @@ export async function GET(req: Request) {
     }
   }
 
-  const { isUsmleField } = await import("@/lib/exam-prep/usmle-bank-bridge");
-  const usmleField = isUsmleField(fieldId);
-  const clinicalField =
-    usmleField || fieldId === "pance" || fieldId === "aanp-fnp" || fieldId === "npte-pt";
   const { bankItemToSessionRaw, prepareBankItemsForSession } = await import(
     "@/lib/exam-prep/prepare-bank-session"
   );
@@ -177,49 +173,27 @@ export async function GET(req: Request) {
     items = preset.items;
   } else if (mixed && timedExam) {
     const { gatherTimedExamBankItems } = await import("@/lib/questions/timed-exam-sampling");
+    const { timedExamGatePairForField } = await import("@/lib/exam-prep/exam-fill-gates");
+    const gates = timedExamGatePairForField(fieldId);
 
-    if (fieldId === "nursing") {
-      const { nclexItemPassesTimedExamGate } = await import("@/lib/exam-prep/nclex-serve-gate");
-      items = await gatherTimedExamBankItems({
-        fieldId,
-        limit,
-        filterFn: nclexItemPassesTimedExamGate,
-        initialSampleCount: sampleCount,
-      });
-    } else if (fieldId === "pharmacy") {
-      const { naplexItemPassesTimedExamGate, prepareNaplexBankItem } = await import(
-        "@/lib/exam-prep/naplex-serve-gate"
-      );
+    if (fieldId === "pharmacy") {
+      const { prepareNaplexBankItem } = await import("@/lib/exam-prep/naplex-serve-gate");
       items = (
         await gatherTimedExamBankItems({
           fieldId,
           limit,
-          filterFn: naplexItemPassesTimedExamGate,
+          filterFn: gates.strict,
+          relaxedFilterFn: gates.relaxed,
           initialSampleCount: sampleCount,
         })
       ).map(prepareNaplexBankItem);
-    } else if (fieldId === "npte-pt") {
-      const { nptePtItemPassesTimedExamGate } = await import(
-        "@/lib/exam-prep/npte-pt-serve-gate"
-      );
-      items = await gatherTimedExamBankItems({
-        fieldId,
-        limit,
-        filterFn: nptePtItemPassesTimedExamGate,
-        initialSampleCount: sampleCount,
-      });
-    } else if (clinicalField) {
-      const { usmleBankItemIsServeReady } = await import("@/lib/exam-prep/usmle-clinical-gate");
-      items = await gatherTimedExamBankItems({
-        fieldId,
-        limit,
-        filterFn: (item) => usmleBankItemIsServeReady(item, fieldId),
-        initialSampleCount: sampleCount,
-      });
     } else {
-      items = await sampleQuestionBankItemsForField({
+      items = await gatherTimedExamBankItems({
         fieldId,
-        count: sampleCount,
+        limit,
+        filterFn: gates.strict,
+        relaxedFilterFn: gates.relaxed,
+        initialSampleCount: sampleCount,
       });
     }
   } else if (mixed) {

@@ -2,8 +2,11 @@ import type { BankItem } from "@/lib/question-bank";
 import {
   hasNclexEditorialWarnFlags,
   nclexHasServeBlockIssues,
+  resolveNclexStem,
+  resolveNclexVignette,
 } from "@/lib/exam-prep/nclex-bank-audit";
-import { isNclexServeQuality } from "./nclex-quality-gate";
+import { BOARD_SERVE_MIN_EXPLANATION_CHARS } from "./board-serve-quality";
+import { isNclexServeQuality, isNclexExamFillQuality } from "./nclex-quality-gate";
 import { selectNclexSessionBankItems } from "./nclex/session-selection";
 
 type NclexServeOpts = { source?: string | null };
@@ -21,8 +24,31 @@ type PrepareNclexItemsParams = {
   limit: number;
 };
 
+/** Fast timed path: block critical audit codes + basic MCQ shape; trust DB qaPassed. */
+export function nclexItemPassesStructuralTimedGate(item: BankItem): boolean {
+  if (nclexHasServeBlockIssues(item)) return false;
+  if ((item.options?.length ?? 0) < 4) return false;
+
+  const answer = item.correctAnswer?.trim() ?? "";
+  if (!answer) return false;
+  if (!item.options.some((o) => o.trim() === answer)) return false;
+
+  const explanation = item.explanation?.trim() ?? "";
+  if (explanation.length < BOARD_SERVE_MIN_EXPLANATION_CHARS) return false;
+
+  const vignette = resolveNclexVignette(item);
+  const stem = resolveNclexStem(item);
+  if ((!vignette || vignette.length < 20) && stem.length < 40) return false;
+
+  return true;
+}
+
 export function nclexItemPassesTimedExamGate(item: BankItem): boolean {
   return nclexBankItemIsServeReady(item, { source: item.source ?? null });
+}
+
+export function nclexItemPassesRelaxedExamGate(item: BankItem): boolean {
+  return isNclexExamFillQuality(item, { source: item.source ?? null });
 }
 
 /** Defense-in-depth: DB qaPassed can be stale — re-audit before each session. */

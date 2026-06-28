@@ -135,6 +135,28 @@ describe("finalizeExamSessionQuestions", () => {
     expect(() => assertExamSessionReady(quality, "usmle-step-2")).toThrow(/board/i);
   });
 
+  it("fills from relaxed board bar when strict pool is too small", () => {
+    const strictOnly = buildPool(3, "strict");
+    const relaxedExtra = Array.from({ length: 5 }, (_, i) => ({
+      id: 100 + i,
+      type: "multiple_choice" as const,
+      question: `Relaxed Q ${i}?`,
+      vignette: `Relaxed vignette ${i}.`,
+      options: [`A-${i}`, `B-${i}`, `C-${i}`, `D-${i}`],
+      correctAnswer: `A-${i}`,
+      explanation: "Short but still valid teaching rationale.",
+      subjectId: "cardiology",
+      difficultyLabel: "Medium" as const,
+    }));
+
+    const { prepared, quality } = finalizeExamSessionQuestions(
+      [...strictOnly, ...relaxedExtra],
+      5
+    );
+    expect(prepared).toHaveLength(5);
+    expect(quality.ok).toBe(true);
+  });
+
   it("passes quality gates for a mixed full-length block", () => {
     const { prepared, quality } = finalizeExamSessionQuestions(buildPool(120, "pance"), 120);
     expect(prepared).toHaveLength(120);

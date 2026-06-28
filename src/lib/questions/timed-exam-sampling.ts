@@ -27,27 +27,47 @@ function resolveTimedExamPullSize(limit: number, poolTarget: number): number {
   );
 }
 
+function appendUniqueVetted(
+  vetted: BankItem[],
+  candidates: BankItem[],
+  filterFn: TimedExamFilterFn,
+  included: Set<string>,
+  poolTarget: number
+): void {
+  for (const item of candidates) {
+    if (vetted.length >= poolTarget) break;
+    const key = itemDedupeKey(item);
+    if (included.has(key)) continue;
+    if (!filterFn(item)) continue;
+    included.add(key);
+    vetted.push(item);
+  }
+}
+
 /**
  * Pull and vet enough bank rows for a timed/full exam session.
- * Uses a small number of DB round-trips, memoized runtime gates, and curated-first sampling.
+ * Falls back to a slightly lower QA bar when the strict pool cannot fill the exam.
  */
 export async function gatherTimedExamBankItems(params: {
   fieldId: string;
   limit: number;
   stateCode?: string;
   filterFn: TimedExamFilterFn;
+  relaxedFilterFn?: TimedExamFilterFn;
   initialSampleCount: number;
 }): Promise<BankItem[]> {
-  const { fieldId, limit, stateCode, filterFn } = params;
+  const { fieldId, limit, stateCode, filterFn, relaxedFilterFn } = params;
   const seen = new Set<string>();
+  const candidates: BankItem[] = [];
+  const included = new Set<string>();
   const vetted: BankItem[] = [];
   const gateCache = new Map<string, boolean>();
 
-  const passFilter = (item: BankItem): boolean => {
-    const cacheKey = item.id ?? itemDedupeKey(item);
+  const passFilter = (item: BankItem, fn: TimedExamFilterFn, label: "strict" | "relaxed"): boolean => {
+    const cacheKey = `${label}:${item.id ?? itemDedupeKey(item)}`;
     const cached = gateCache.get(cacheKey);
     if (cached !== undefined) return cached;
-    const ok = filterFn(item);
+    const ok = fn(item);
     gateCache.set(cacheKey, ok);
     return ok;
   };
@@ -57,7 +77,7 @@ export async function gatherTimedExamBankItems(params: {
     QUESTION_BANK_SAMPLE_MAX_PULL,
     Math.max(params.initialSampleCount, resolveTimedExamPullSize(limit, poolTarget))
   );
-  const maxRounds = 2;
+  const maxRounds = relaxedFilterFn ? 3 : 2;
 
   for (let round = 0; round < maxRounds; round++) {
     if (vetted.length >= poolTarget) break;
@@ -73,15 +93,63 @@ export async function gatherTimedExamBankItems(params: {
       const key = itemDedupeKey(item);
       if (seen.has(key)) continue;
       seen.add(key);
-      if (passFilter(item)) vetted.push(item);
+      candidates.push(item);
     }
+
+    appendUniqueVetted(
+      vetted,
+      candidates,
+      (item) => passFilter(item, filterFn, "strict"),
+      included,
+      poolTarget
+    );
 
     if (vetted.length >= limit) break;
 
-    pullSize = Math.min(
-      QUESTION_BANK_SAMPLE_MAX_PULL,
-      Math.ceil(pullSize * 1.25)
+    pullSize = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.ceil(pullSize * 1.25));
+  }
+
+  if (vetted.length < limit && relaxedFilterFn) {
+    appendUniqueVetted(
+      vetted,
+      candidates,
+      (item) => passFilter(item, relaxedFilterFn, "relaxed"),
+      included,
+      poolTarget
     );
+
+    if (vetted.length < limit) {
+      let relaxedPull = Math.min(
+        QUESTION_BANK_SAMPLE_MAX_PULL,
+        Math.max(pullSize, resolveTimedExamPullSize(limit, poolTarget))
+      );
+
+      for (let round = 0; round < 2 && vetted.length < limit; round++) {
+        const batch = await sampleQuestionBankItemsForField({
+          fieldId,
+          count: relaxedPull,
+          stateCode,
+          skipEnsure: true,
+        });
+
+        for (const item of batch) {
+          const key = itemDedupeKey(item);
+          if (seen.has(key)) continue;
+          seen.add(key);
+          candidates.push(item);
+        }
+
+        appendUniqueVetted(
+          vetted,
+          candidates,
+          (item) => passFilter(item, relaxedFilterFn, "relaxed"),
+          included,
+          poolTarget
+        );
+
+        relaxedPull = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.ceil(relaxedPull * 1.25));
+      }
+    }
   }
 
   const sessionSize = Math.min(vetted.length, limit);

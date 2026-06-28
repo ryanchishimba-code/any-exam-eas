@@ -17,6 +17,7 @@ export const SESSION_QUALITY_REQUIREMENTS = {
 export {
   examQuestionMeetsBoardBar,
   rawQuestionMeetsBoardBar,
+  rawQuestionMeetsRelaxedBoardBar,
   studyQuestionMeetsBoardBar,
 } from "@/lib/exam-prep/board-serve-quality";
 

@@ -11,6 +11,10 @@ export const BOARD_SERVE_MIN_STEM_CHARS = 12;
 export const BOARD_SERVE_MIN_EXPLANATION_CHARS = 40;
 export const BOARD_SERVE_MCQ_OPTION_COUNT = 4;
 
+/** Slightly lower structural bar when strict pool cannot fill a timed exam. */
+export const BOARD_EXAM_FILL_MIN_STEM_CHARS = 10;
+export const BOARD_EXAM_FILL_MIN_EXPLANATION_CHARS = 28;
+
 const MCQ_LIKE = new Set([
   "multiple_choice",
   "true_false",
@@ -46,11 +50,29 @@ function mcqOptionsMeetBoardBar(
 
 /** Structural board bar for raw/API question payloads. */
 export function rawQuestionMeetsBoardBar(q: RawQuestionInput): boolean {
+  return rawQuestionMeetsBoardBarWithThresholds(q, {
+    minStem: BOARD_SERVE_MIN_STEM_CHARS,
+    minExplanation: BOARD_SERVE_MIN_EXPLANATION_CHARS,
+  });
+}
+
+/** Lower structural bar when strict filtering cannot fill a timed exam. */
+export function rawQuestionMeetsRelaxedBoardBar(q: RawQuestionInput): boolean {
+  return rawQuestionMeetsBoardBarWithThresholds(q, {
+    minStem: BOARD_EXAM_FILL_MIN_STEM_CHARS,
+    minExplanation: BOARD_EXAM_FILL_MIN_EXPLANATION_CHARS,
+  });
+}
+
+function rawQuestionMeetsBoardBarWithThresholds(
+  q: RawQuestionInput,
+  thresholds: { minStem: number; minExplanation: number }
+): boolean {
   const stem = q.question?.trim() ?? "";
-  if (stem.length < BOARD_SERVE_MIN_STEM_CHARS) return false;
+  if (stem.length < thresholds.minStem) return false;
 
   const explanation = q.explanation?.trim() ?? "";
-  if (explanation.length < BOARD_SERVE_MIN_EXPLANATION_CHARS) return false;
+  if (explanation.length < thresholds.minExplanation) return false;
 
   return mcqOptionsMeetBoardBar(q.options, q.correctAnswer, q.type);
 }

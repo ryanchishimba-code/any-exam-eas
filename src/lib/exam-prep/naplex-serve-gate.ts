@@ -1,4 +1,6 @@
 import type { BankItem } from "@/lib/question-bank";
+import { auditBankItem } from "@/lib/exam-prep/bank-audit";
+import { rawQuestionMeetsBoardBar } from "./board-serve-quality";
 import { passesNaplexServeGate } from "./naplex-quality-gate";
 import { prepareNaplexBankItem } from "./naplex-answer-align";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
@@ -21,10 +23,29 @@ type PrepareNaplexItemsParams = {
   limit: number;
 };
 
+/** Fast timed path: format prep + shared structural audit; skip score/editorial tiering. */
+export function naplexItemPassesStructuralTimedGate(item: BankItem): boolean {
+  const prepared = prepareNaplexBankItem(item);
+  if (!auditBankItem(prepared, "pharmacy").ok) return false;
+  return rawQuestionMeetsBoardBar({
+    question: prepared.question,
+    options: prepared.options,
+    correctAnswer: prepared.correctAnswer,
+    explanation: prepared.explanation,
+    type: prepared.itemType ?? undefined,
+  });
+}
+
 /** Items are pre-filtered to qaPassed=true in the DB sample. */
 export function naplexItemPassesTimedExamGate(item: BankItem): boolean {
   const prepared = prepareNaplexBankItem(item);
   return naplexBankItemIsServeReady(prepared, { source: prepared.source ?? null });
+}
+
+/** Acceptable-tier NAPLEX rows when best-only pool cannot fill the exam. */
+export function naplexItemPassesRelaxedExamGate(item: BankItem): boolean {
+  const prepared = prepareNaplexBankItem(item);
+  return passesNaplexServeGate(prepared, { source: prepared.source ?? null, bestOnly: false });
 }
 
 /** Items are pre-filtered to qaPassed=true in the DB sample. */

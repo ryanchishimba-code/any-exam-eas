@@ -5,6 +5,7 @@ import {
   enforceSessionCount,
   hasGenericPlaceholderOptions,
   rawQuestionMeetsBoardBar,
+  rawQuestionMeetsRelaxedBoardBar,
   studyQuestionMeetsBoardBar,
 } from "./session-quality";
 import { selectSpreadRawInputs } from "./spread-session-order";
@@ -126,15 +127,12 @@ export function assessExamSessionQuality(
   };
 }
 
-/**
- * Prepare and validate a timed/full exam block before it reaches the client.
- * Quality gates: exact count, board-caliber structure, and non-placeholder distractors.
- */
-export function finalizeExamSessionQuestions(
+function finalizeWithBoardBar(
   raw: RawQuestionInput[],
-  requested: number
+  requested: number,
+  meetsBar: (q: RawQuestionInput) => boolean
 ): { prepared: StudyQuestion[]; quality: ExamSessionQualityReport } {
-  const vettedRaw = raw.filter(rawQuestionMeetsBoardBar);
+  const vettedRaw = raw.filter(meetsBar);
   const selected = selectRawInputsForSession(vettedRaw, requested);
   const prepared = enforceSessionCount(
     prepareQuestionsForSession(selected, { shuffleOrder: false }),
@@ -142,6 +140,37 @@ export function finalizeExamSessionQuestions(
   );
   const quality = assessExamSessionQuality(prepared, requested);
   return { prepared, quality };
+}
+
+/**
+ * Prepare and validate a timed/full exam block before it reaches the client.
+ * Quality gates: exact count, board-caliber structure, and non-placeholder distractors.
+ * Falls back to a slightly lower bar when the strict pool cannot fill the session.
+ */
+export function finalizeExamSessionQuestions(
+  raw: RawQuestionInput[],
+  requested: number
+): { prepared: StudyQuestion[]; quality: ExamSessionQualityReport } {
+  const strict = finalizeWithBoardBar(raw, requested, rawQuestionMeetsBoardBar);
+  if (strict.prepared.length >= requested && strict.quality.ok) {
+    return strict;
+  }
+
+  const relaxed = finalizeWithBoardBar(raw, requested, rawQuestionMeetsRelaxedBoardBar);
+  if (relaxed.prepared.length >= requested) {
+    const quality = assessExamSessionQuality(relaxed.prepared, requested);
+    return {
+      prepared: relaxed.prepared,
+      quality: {
+        ...quality,
+        ok:
+          quality.returned === requested &&
+          !quality.issues.includes("generic_distractors"),
+      },
+    };
+  }
+
+  return strict.prepared.length >= relaxed.prepared.length ? strict : relaxed;
 }
 
 export function assertExamSessionReady(

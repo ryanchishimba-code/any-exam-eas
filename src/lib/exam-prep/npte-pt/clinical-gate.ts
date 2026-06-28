@@ -83,3 +83,63 @@ export function nptePtBankItemIsServeReady(
   });
   return report.examReady;
 }
+
+/** Structural checks only — trust qaPassed on timed pulls (skip editorial re-audit). */
+export function nptePtBankItemPassesStructuralGate(item: BankItem): boolean {
+  const normalized = normalizeUsmleBankItemFields(item);
+  if (isNptePtCuratedItem(normalized)) return true;
+  if (!auditBankItem(normalized, "npte-pt").ok) return false;
+  if (!nptePtBankItemHasClinicalScenario(normalized)) return false;
+
+  const { stem } = splitUsmleBankItem(normalized);
+  if (!stem.endsWith("?")) return false;
+
+  const subjectId = normalized.subjectId ?? normalized.topicCategory ?? "";
+  if (!VALID_SUBJECTS.has(subjectId)) return false;
+
+  const explanation = normalized.explanation?.trim() ?? "";
+  if (explanation.length < 80) return false;
+
+  if ((normalized.options?.length ?? 0) < 4) return false;
+  const answer = normalized.correctAnswer?.trim() ?? "";
+  if (!answer) return false;
+  if (!normalized.options!.some((o) => o.trim() === answer)) return false;
+
+  return true;
+}
+
+/** Relaxed NPTE gate when strict serve pool cannot fill a timed exam. */
+export function nptePtBankItemIsExamFillReady(
+  item: BankItem,
+  source?: string | null
+): boolean {
+  const normalized = normalizeUsmleBankItemFields(item);
+  if (isNptePtCuratedItem(normalized)) return true;
+  if (!auditBankItem(normalized, "npte-pt").ok) return false;
+  if (!nptePtBankItemHasClinicalScenario(normalized)) return false;
+
+  const { stem } = splitUsmleBankItem(normalized);
+  if (!stem.endsWith("?")) return false;
+
+  const subjectId = normalized.subjectId ?? normalized.topicCategory ?? "";
+  if (!VALID_SUBJECTS.has(subjectId)) return false;
+
+  const explanation = normalized.explanation?.trim() ?? "";
+  if (explanation.length < 80) return false;
+
+  const resolvedSource = source ?? normalized.source ?? null;
+  if (resolvedSource === "generated") {
+    return true;
+  }
+
+  const report = auditUsmleQaEditor(normalized, {
+    fieldId: "npte-pt",
+    source: "polished",
+    itemId: normalized.id,
+    difficulty: normalized.difficulty ?? null,
+  });
+  return (
+    report.overallScore >= 7 &&
+    !report.issues.some((i) => i.severity === "error")
+  );
+}

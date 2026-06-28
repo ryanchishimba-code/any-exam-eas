@@ -1,6 +1,6 @@
 import type { BankItem } from "@/lib/question-bank";
 import { auditBankItem } from "@/lib/exam-prep/bank-audit";
-import { auditNclexBankItem, resolveNclexStem, resolveNclexVignette } from "./nclex-bank-audit";
+import { auditNclexBankItem, resolveNclexStem, resolveNclexVignette, nclexHasServeBlockIssues } from "./nclex-bank-audit";
 import {
   NCLEX_BOARD_QUALITY_CONTROLS,
   NCLEX_SERVE_QUALITY_CONTROLS,
@@ -212,4 +212,29 @@ export function isNclexBestQuality(item: BankItem, opts?: { source?: string | nu
 
 export function isNclexServeQuality(item: BankItem, opts?: { source?: string | null }): boolean {
   return assessNclexServeQuality(item, opts).ok;
+}
+
+/** Slightly lower bar when a timed exam cannot fill from strict serve-ready pool. */
+export const NCLEX_EXAM_FILL_MIN_SCORE = 0.56;
+export const NCLEX_EXAM_FILL_MIN_EXPLANATION = 72;
+export const NCLEX_EXAM_FILL_MIN_VIGNETTE = 30;
+
+export function isNclexExamFillQuality(item: BankItem, opts?: { source?: string | null }): boolean {
+  if (nclexHasServeBlockIssues(item)) return false;
+
+  const hardIssues = collectHardIssues(item, "serve", opts);
+  if (hardIssues.length > 0) return false;
+
+  const score = scoreNclexBankItem(item);
+  if (score < NCLEX_EXAM_FILL_MIN_SCORE) return false;
+
+  const vignette = resolveNclexVignette(item);
+  if (!vignette || vignette.length < NCLEX_EXAM_FILL_MIN_VIGNETTE) return false;
+
+  const explanation = item.explanation?.trim() ?? "";
+  if (explanation.length < NCLEX_EXAM_FILL_MIN_EXPLANATION) return false;
+
+  if ((item.options?.length ?? 0) < 4) return false;
+
+  return true;
 }

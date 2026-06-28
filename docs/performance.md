@@ -34,6 +34,7 @@ Rules:
 - **Topic picker**: virtualized list via `@tanstack/react-virtual` in `QuestionBankTopicPicker`.
 - **Live counts**: `/api/marketing/bank-counts` + React Query (`useLiveBankCounts`) — never inflate static marketing totals.
 - **Timed exams**: `gatherTimedExamBankItems` runs diverse selection once; the API route skips a second `prepareBankItemsForSession` pass. `skipRuntimeGate` still slices only when other callers pre-vet rows.
+- **Timed exam gates**: DB samples are `qaPassed=true`; `timedExamGatePairForField` applies **structural-only** filters first (block codes + MCQ shape, no editorial re-audit). If the pool still cannot fill the exam, a **relaxed editorial fallback** runs (`exam-fill-gates.ts`).
 
 ## Caching layers
 
