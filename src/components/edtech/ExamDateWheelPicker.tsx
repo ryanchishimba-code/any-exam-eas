@@ -60,7 +60,7 @@ function clampParts(
   year: number,
   min: { month: number; day: number; year: number }
 ): { month: number; day: number; year: number } {
-  let y = Math.max(year, min.year);
+  const y = Math.max(year, min.year);
   let m = month;
   let d = day;
 
