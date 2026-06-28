@@ -9,7 +9,7 @@ import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 import { SocialLoginButton } from "@/components/social/SocialLoginButton";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { MARKETING_DISCLAIMER, SIGNUP_PAYMENT_REQUIRED_NOTE } from "@/lib/site";
-import { TRIAL_DAYS } from "@/lib/billing-config";
+import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
 import type { BillingInterval } from "@/lib/billing-config";
 import type { SignupPlan } from "@/lib/validators/auth";
@@ -37,6 +37,7 @@ import {
 } from "@/lib/auth-client";
 import { MemberLoginLink } from "@/components/auth/MemberLoginLink";
 import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/lib/client/returning-user";
+import { markTrialWelcomePending } from "@/lib/client/trial-welcome";
 import { analytics } from "@/lib/analytics";
 
 export function SignupForm({
@@ -187,7 +188,13 @@ export function SignupForm({
         ? `&promo=${encodeURIComponent(initialPromo.trim())}`
         : "";
 
-      window.location.href = `/checkout?plan=${plan}&interval=${initialInterval}&tier=${initialTier}${promoQs}`;
+      if (plan === "subscribe") {
+        window.location.href = `/checkout?plan=subscribe&interval=${initialInterval}&tier=${initialTier}${promoQs}`;
+      } else {
+        markTrialWelcomePending(TRIAL_DAYS);
+        const examQs = examSlug ? `exam=${examSlug}&` : "";
+        window.location.href = `/select-exam?${examQs}welcome=trial`;
+      }
     } catch (err) {
       setError(messageFromUnknownAuthError(err));
     } finally {
@@ -196,9 +203,9 @@ export function SignupForm({
   }
 
   const trialHighlights = [
-    "Full access to every question bank and full-length exam",
-    "A payment method is required to start — you won't be charged until your trial ends",
-    "Cancel anytime before your trial ends for no charge",
+    `${TRIAL_LIFETIME_QUESTIONS} practice questions across every exam bank during your trial`,
+    "No payment method required — your trial starts instantly",
+    "Upgrade anytime for unlimited questions and rich explanations",
   ];
 
   const today = useMemo(() => todayIso(), []);

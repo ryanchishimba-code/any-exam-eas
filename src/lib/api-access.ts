@@ -77,6 +77,37 @@ export async function requirePremiumApi(req?: Request): Promise<ApiAuthResult> {
   return authResult;
 }
 
+/** Trial, paid, or post-trial free tier — usage caps enforced downstream. */
+export async function requireStudyApi(req?: Request): Promise<ApiAuthResult> {
+  const authResult = await requireAuthenticatedApi(req);
+  if (!authResult.ok) return authResult;
+
+  const { access } = authResult;
+  if (access.hasStudyAccess) {
+    return authResult;
+  }
+
+  if (access.blockReason === "suspended" || access.blockReason === "deleted") {
+    return {
+      ok: false,
+      response: accountDisabledResponse(access.accountStatus),
+    };
+  }
+  if (access.blockReason === "email_unverified") {
+    return {
+      ok: false,
+      response: NextResponse.json(
+        { error: "Email verification required", code: "EMAIL_UNVERIFIED" },
+        { status: 403 }
+      ),
+    };
+  }
+  return {
+    ok: false,
+    response: subscriptionRequiredResponse(access.subscription),
+  };
+}
+
 export async function requireProFeatureApi(
   feature: SubscriptionFeature,
   req?: Request

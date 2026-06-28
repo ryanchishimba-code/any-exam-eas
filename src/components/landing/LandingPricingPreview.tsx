@@ -12,10 +12,10 @@ import {
   BILLING_TRIAL_DISCLOSURE,
 } from "@/lib/billing-plans";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
-import { DRUGS_DECK_MARKETING_TITLE } from "@/lib/marketing/bank-stats";
 import {
   PRO_ONLY_FEATURES,
   TIER_DEFINITIONS,
+  TRIAL_STUDY_LIMITS,
   UNIVERSAL_FEATURES,
   type SubscriptionTier,
 } from "@/lib/subscription-tiers";
@@ -137,13 +137,8 @@ export function LandingPricingPreview() {
           <Zap className="h-3.5 w-3.5 shrink-0" aria-hidden />
           Unlocked from day one of your free trial
         </p>
-        <ul className="mt-3 grid grid-cols-2 gap-x-6 gap-y-1.5 sm:grid-cols-4">
-          {[
-            "All 6 exam question banks",
-            "Blueprint Roadmaps",
-            `${DRUGS_DECK_MARKETING_TITLE} + FDA reference`,
-            "Memory Cards & calculators",
-          ].map((item) => (
+        <ul className="mt-3 grid grid-cols-1 gap-x-6 gap-y-1.5 sm:grid-cols-2">
+          {TRIAL_STUDY_LIMITS.map((item) => (
             <li key={item} className="flex items-center gap-1.5 text-xs text-[var(--color-ink)]">
               <Check className="h-3.5 w-3.5 shrink-0 text-[var(--color-accent)]" aria-hidden />
               {item}

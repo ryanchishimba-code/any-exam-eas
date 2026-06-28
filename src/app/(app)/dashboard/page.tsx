@@ -1,7 +1,10 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
-import { requirePremiumPage } from "@/lib/require-premium-page";
+import { requireAppPage } from "@/lib/require-premium-page";
+import { getStudyUsageSnapshot } from "@/lib/study/usage-limits";
+import { resolveDashboardUpgradeContext } from "@/lib/dashboard/upgrade-banner";
+import type { UserAccess } from "@/lib/access-control";
 import { DashboardPageContent } from "@/components/app/DashboardPageContent";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-preference";
@@ -30,9 +33,11 @@ function DashboardSkeleton() {
 async function DashboardContent({
   userId,
   userName,
+  access,
 }: {
   userId: string;
   userName?: string | null;
+  access: UserAccess;
 }) {
   const pref = await getUserExamPreference(userId);
   if (!pref) redirect(ROUTES.selectExam);
@@ -40,11 +45,12 @@ async function DashboardContent({
   const examSlug = pref.examSlug;
   const fieldId = resolveExamFieldId(examSlug);
 
-  const [stats, dashboard, roadmap, metadata] = await Promise.all([
+  const [stats, dashboard, roadmap, metadata, usage] = await Promise.all([
     getExamScopedStats(userId, examSlug),
     getStudentDashboardData(userId),
     getExamRoadmapData(userId, examSlug),
     getUserEdtechMetadata(userId),
+    getStudyUsageSnapshot(access),
   ]);
 
   const testDate = getExamTestDate(metadata, examSlug);
@@ -68,6 +74,8 @@ async function DashboardContent({
       recentTests={dashboard.recentTests}
       userName={userName}
       testDate={testDate}
+      hasPremiumAccess={access.hasPremiumAccess}
+      upgrade={resolveDashboardUpgradeContext(access, usage)}
     />
   );
 }
@@ -78,11 +86,11 @@ export default async function DashboardPage() {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.dashboard)}`);
   }
 
-  await requirePremiumPage(ROUTES.dashboard);
+  const access = await requireAppPage(ROUTES.dashboard);
 
   return (
     <Suspense fallback={<DashboardSkeleton />}>
-      <DashboardContent userId={session.user.id} userName={session.user.name} />
+      <DashboardContent userId={session.user.id} userName={session.user.name} access={access} />
     </Suspense>
   );
 }

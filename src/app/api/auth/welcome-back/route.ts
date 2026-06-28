@@ -21,7 +21,7 @@ export async function GET() {
     totalAttempts: number;
   } | null = null;
 
-  if (access.hasPremiumAccess) {
+  if (access.hasAppAccess) {
     try {
       const dashboard = await getStudentDashboardData(session.user.id);
       headline = {
@@ -42,6 +42,7 @@ export async function GET() {
       email: session.user.email,
     },
     hasAccess: access.hasPremiumAccess,
+    hasAppAccess: access.hasAppAccess,
     headline,
   });
 }

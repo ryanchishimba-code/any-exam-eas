@@ -15,7 +15,7 @@ import {
   TOP_500_DRUGS_COUNT,
   drugsDeckFeatureLine,
 } from "@/lib/marketing/bank-stats";
-import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+import { formatMonthlyPrice, formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
 
 const FAQ: { q: string; a: string }[] = [
   {
@@ -30,7 +30,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Is there a free trial? Do I need a card?",
-    a: `Yes — a ${formatTrialLabel()}. A payment method is required at checkout, but you are not charged until the trial ends. Cancel before your trial ends and you won't be charged.`,
+    a: `Yes — a ${formatTrialLabel()} with ${formatTrialQuestionLimit()}. No payment method required at signup. Upgrade anytime for unlimited questions, goat-mode rationales, and AI Tutor.`,
   },
   {
     q: "How is this different from UWorld or AMBOSS?",

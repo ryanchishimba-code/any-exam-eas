@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Check, Crown, Shield, Sparkles, X } from "lucide-react";
 import type { BillingInterval } from "@/lib/billing-config";
@@ -33,6 +34,7 @@ import { cn } from "@/lib/utils";
 
 type AccessInfo = {
   hasAccess: boolean;
+  hasAppAccess?: boolean;
   status: string;
   daysRemaining: number | null;
   needsPaymentMethod?: boolean;
@@ -185,6 +187,8 @@ function TierCard({
 
 export function PricingTiers({ className }: PricingTiersProps) {
   const { data: session } = useSession();
+  const searchParams = useSearchParams();
+  const highlightTier = searchParams.get("highlight") === "basic" ? "basic" : "pro";
   const [interval, setInterval] = useState<BillingInterval>("yearly");
   const [access, setAccess] = useState<AccessInfo | null>(null);
 
@@ -208,28 +212,27 @@ export function PricingTiers({ className }: PricingTiersProps) {
   }
 
   function checkoutHref(tier: SubscriptionTier) {
-    const params = new URLSearchParams({ plan: "trial", interval, tier });
+    const upgradingFromTrial =
+      access?.status === "trialing" ||
+      access?.status === "trial_expired" ||
+      Boolean(access?.hasAppAccess && !access?.hasAccess);
+    const plan = session?.user && upgradingFromTrial ? "subscribe" : "trial";
+    const params = new URLSearchParams({ plan, interval, tier });
     return session?.user
       ? `/checkout?${params.toString()}`
       : `/signup?${params.toString()}`;
   }
 
-  if (session?.user && access?.hasAccess) {
+  if (session?.user && access?.hasAccess && access.status === "active") {
     return (
       <div className={cn("apple-bento p-8 text-center shadow-[var(--shadow-apple-sm)]", className)}>
         <p className="text-sm font-medium text-[var(--color-accent)]">You&apos;re all set</p>
         <p className="mt-2 text-lg font-semibold text-[var(--color-ink)]">
-          {access.status === "trialing"
-            ? `${formatTrialLabel()} active${access.daysRemaining != null ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left` : ""}`
-            : "Your subscription is active"}
+          Your subscription is active
           {access.planTier ? ` · ${access.planTier === "pro" ? "Pro" : "Basic"} plan` : ""}
         </p>
         <div className="mt-6 flex flex-col items-center gap-3">
-          {(access.status === "inactive" || access.status === "trialing") && access.needsPaymentMethod ? (
-            <Button href={`/checkout?plan=trial&interval=${interval}&tier=${access.planTier ?? "pro"}`}>
-              Complete checkout
-            </Button>
-          ) : access.planTier === "basic" ? (
+          {access.planTier === "basic" ? (
             <Button href={`/checkout?plan=subscribe&interval=${interval}&tier=pro`}>
               Upgrade to Pro
             </Button>
@@ -312,14 +315,14 @@ export function PricingTiers({ className }: PricingTiersProps) {
           tier="basic"
           interval={interval}
           checkoutHref={checkoutHref("basic")}
-          highlighted={false}
+          highlighted={highlightTier === "basic"}
           onSelectPlan={handlePlanSelected}
         />
         <TierCard
           tier="pro"
           interval={interval}
           checkoutHref={checkoutHref("pro")}
-          highlighted
+          highlighted={highlightTier === "pro"}
           onSelectPlan={handlePlanSelected}
         />
       </div>

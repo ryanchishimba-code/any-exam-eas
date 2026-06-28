@@ -7,7 +7,7 @@ import {
 } from "@/lib/marketing/question-bank-counts";
 import { getPublishedTestimonials } from "@/lib/testimonials/published";
 import { buildHomeMetadata } from "@/lib/seo";
-import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+import { formatMonthlyPrice, formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
 
 /** Always read live serve-ready counts from the database — never bake static marketing totals. */
 export const dynamic = "force-dynamic";
@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
     const snapshot = await getQuestionBankCounts();
     const display = buildLandingBankCountsDisplay(snapshot);
     if (!snapshot.degraded && display.totalServed > 0) {
-      const description = `All-in-one board prep for NCLEX, USMLE Step 1, Step 2 CK & Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT — ${display.totalQuestionsLabel}, Roadmaps & Deep Dives. Basic from ${formatMonthlyPrice("basic")}/mo · ${formatTrialLabel()} · payment required at checkout.`;
+      const description = `All-in-one board prep for NCLEX, USMLE Step 1, Step 2 CK & Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT — ${display.totalQuestionsLabel}, Roadmaps & Deep Dives. Basic from ${formatMonthlyPrice("basic")}/mo · ${formatTrialLabel()} · ${formatTrialQuestionLimit()} · no payment required.`;
       return {
         ...base,
         description,

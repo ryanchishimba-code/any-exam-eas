@@ -75,6 +75,23 @@ export async function countQuestionsServedSince(
   return sumServedFromLogs(logs);
 }
 
+async function freePeriodStart(userId: string): Promise<Date> {
+  const sub = await prisma.subscription.findUnique({
+    where: { userId },
+    select: { trialEndsAt: true, updatedAt: true },
+  });
+  if (sub?.trialEndsAt) return new Date(sub.trialEndsAt);
+  return sub?.updatedAt ?? new Date(0);
+}
+
+async function lifetimeUsagePeriodStart(
+  userId: string,
+  plan: StudyUsagePlan
+): Promise<Date> {
+  if (plan === "free") return freePeriodStart(userId);
+  return trialPeriodStart(userId);
+}
+
 async function trialPeriodStart(userId: string): Promise<Date> {
   const sub = await prisma.subscription.findUnique({
     where: { userId },
@@ -148,8 +165,11 @@ export async function getStudyUsageSnapshot(
 
   let usedTrialTotal: number | null = null;
   let remainingTrialTotal: number | null = null;
-  if (plan === "trial" && limits.trialLifetimeQuestions != null) {
-    const since = await trialPeriodStart(access.userId);
+  if (
+    (plan === "trial" || plan === "free") &&
+    limits.trialLifetimeQuestions != null
+  ) {
+    const since = await lifetimeUsagePeriodStart(access.userId, plan);
     usedTrialTotal = await countQuestionsServedSince(access.userId, since);
     remainingTrialTotal = Math.max(0, limits.trialLifetimeQuestions - usedTrialTotal);
   }
@@ -199,7 +219,7 @@ export type StudyUsageCheckResult =
   | { ok: false; response: NextResponse };
 
 function upgradeUrl(plan: StudyUsagePlan, reason: string): string {
-  if (plan === "trial") {
+  if (plan === "trial" || plan === "free") {
     return `/pricing?upgrade=subscribe&reason=${encodeURIComponent(reason)}`;
   }
   return `/pricing?upgrade=pro&reason=${encodeURIComponent(reason)}`;
@@ -334,26 +354,29 @@ export async function checkStudyQuestionUsage(
   }
 
   if (
-    plan === "trial" &&
+    (plan === "trial" || plan === "free") &&
     limits.trialLifetimeQuestions != null &&
     snapshot.usedTrialTotal != null &&
     snapshot.usedTrialTotal + allowedCount > limits.trialLifetimeQuestions
   ) {
     const remaining = snapshot.remainingTrialTotal ?? 0;
+    const label = plan === "free" ? "Free plan" : "Trial";
     return {
       ok: false,
       response: NextResponse.json(
         {
           error:
             remaining > 0
-              ? `Trial question allowance: ${remaining} questions left. Subscribe to keep studying.`
-              : `You've used all ${limits.trialLifetimeQuestions} trial questions. Subscribe to unlock the full bank.`,
-          code: "TRIAL_LIFETIME_LIMIT",
+              ? `${label} allowance: ${remaining} questions left. Upgrade to keep studying.`
+              : plan === "free"
+                ? `You've used all ${limits.trialLifetimeQuestions} free questions. Upgrade to unlock unlimited practice.`
+                : `You've used all ${limits.trialLifetimeQuestions} trial questions. Subscribe to unlock the full bank.`,
+          code: plan === "free" ? "FREE_LIFETIME_LIMIT" : "TRIAL_LIFETIME_LIMIT",
           plan,
           usedTrialTotal: snapshot.usedTrialTotal,
           trialLimit: limits.trialLifetimeQuestions,
           remainingTrialTotal: remaining,
-          upgradeUrl: upgradeUrl(plan, "trial_total"),
+          upgradeUrl: upgradeUrl(plan, plan === "free" ? "free_total" : "trial_total"),
         },
         { status: 429 }
       ),

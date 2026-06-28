@@ -1,15 +1,16 @@
 import { CreditCard, RotateCcw, ShieldCheck } from "lucide-react";
-import { formatMonthlyPrice, formatTrialTodayPrice, TRIAL_PAYMENT_DISCLOSURE } from "@/lib/site";
+import {
+  formatMonthlyPrice,
+  formatTrialLabel,
+  formatTrialQuestionLimit,
+  TRIAL_PAYMENT_DISCLOSURE,
+} from "@/lib/site";
 import { BILLING_POLICY_SHORT } from "@/lib/billing-plans";
-import { TRIAL_DAYS } from "@/lib/billing-config";
 import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 
 const items = [
-  { icon: CreditCard, label: "Add payment to start your free trial" },
-  {
-    icon: ShieldCheck,
-    label: `${formatTrialTodayPrice()} for ${TRIAL_DAYS} days · then from ${formatMonthlyPrice()}/mo · save up to 20%`,
-  },
+  { icon: ShieldCheck, label: formatTrialQuestionLimit() },
+  { icon: CreditCard, label: "No payment required to start your free trial" },
   { icon: RotateCcw, label: BILLING_POLICY_SHORT },
 ] as const;
 

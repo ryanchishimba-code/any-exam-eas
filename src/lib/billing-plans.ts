@@ -29,7 +29,7 @@ export const BILLING_GUARANTEE_HEADLINE =
 export const BILLING_GUARANTEE_POINTS = [
   "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT — all 6 exams in one subscription",
   "Integrated Exam Roadmaps plus board-style vignettes — without $200–400+ per-exam bundles",
-  "14-day free trial · Payment method required at checkout · Cancel before trial ends for no charge",
+  "3-day free trial · 60 practice questions · No payment required at signup · Upgrade anytime for unlimited access",
   "Plan changes during trial take effect when billing starts; on a paid subscription, changes take effect when your current term ends",
   "Update your saved payment method anytime for recurring billing",
 ] as const;
@@ -38,7 +38,7 @@ export const BILLING_POLICY_SHORT =
   "Cancel anytime. Payments are non-refundable — access continues through the end of your paid period.";
 
 export const BILLING_TRIAL_DISCLOSURE =
-  "Payment method required at checkout · Not charged until trial ends · Cancel before trial ends for no charge";
+  "No payment required to start · 3-day trial with 60 practice questions · Upgrade anytime for unlimited access";
 
 /** Plan change rules shown in Settings and checkout. */
 export const BILLING_PLAN_CHANGE_POLICY =

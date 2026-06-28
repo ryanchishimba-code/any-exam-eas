@@ -16,6 +16,7 @@ import {
   formatMonthlyPrice,
   formatTrialEntryPrice,
   formatTrialLabel,
+  formatTrialQuestionLimit,
 } from "@/lib/site";
 import { LANDING_PRICING_FEATURES } from "@/lib/landing/content";
 
@@ -75,7 +76,7 @@ const subscriberValue = [
   },
   {
     title: "Affordable full access",
-    detail: `${formatTrialEntryPrice()} to start · payment required · ${formatMonthlyPrice()}/mo after trial — all six exams, no $99+ bundles.`,
+    detail: `${formatTrialLabel()} · ${formatTrialQuestionLimit()} · no payment required · from ${formatMonthlyPrice()}/mo after upgrade — all six exams, no $99+ bundles.`,
   },
 ];
 

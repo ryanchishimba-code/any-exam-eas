@@ -14,25 +14,25 @@
 import Link from "next/link";
 import { BadgeCheck, Calendar, Zap } from "lucide-react";
 import { LEGAL_ENTITY } from "@/lib/legal";
-import { formatTrialLabel } from "@/lib/site";
-import { TRIAL_DAYS } from "@/lib/billing-config";
+import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
+import { formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
 import { DRUGS_DECK_MARKETING_TITLE } from "@/lib/marketing/bank-stats";
 
 const PILLARS = [
   {
     icon: Zap,
-    title: "Everything unlocks on day one",
-    body: `All 6 exam question banks, Blueprint Roadmaps, Deep Dive modules, ${DRUGS_DECK_MARKETING_TITLE} with FDA reference search, Memory Cards, and clinical calculators are active the moment your trial starts.`,
+    title: "Start practicing immediately",
+    body: `Explore all 6 exam banks, Roadmaps, ${DRUGS_DECK_MARKETING_TITLE}, Memory Cards, and calculators — ${TRIAL_LIFETIME_QUESTIONS} practice questions included during your ${TRIAL_DAYS}-day trial.`,
   },
   {
     icon: Calendar,
-    title: `${TRIAL_DAYS} days to decide — nothing billed until then`,
-    body: "Your card is on file only. Nothing is charged until your trial ends. Cancel from Settings in under a minute and you won't pay a cent.",
+    title: `${TRIAL_DAYS} days to explore — no card required`,
+    body: "Create your account with email or social login. No payment method needed. Upgrade anytime for unlimited questions and Pro features.",
   },
   {
     icon: BadgeCheck,
     title: "Not the right fit? We'll make it right.",
-    body: "Cancel before day 14 at no cost. Run into a quality issue on the platform? Reach out to support within your first 30 days and we'll do our best to resolve it.",
+    body: "After your trial, keep dashboard access with 20 free questions, or upgrade when you're ready. Run into a quality issue? Reach out to support within 30 days and we'll do our best to resolve it.",
   },
 ] as const;
 
@@ -63,10 +63,9 @@ export function LandingTrialGuarantee() {
             Try the whole platform free. Cancel any time.
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-            A payment method is required at checkout — it stays on file so
-            your subscription activates automatically after the trial.{" "}
+            {formatTrialQuestionLimit()} — no payment required to start.{" "}
             <strong className="font-semibold text-[var(--color-ink)]">
-              You are not charged until day {TRIAL_DAYS}.
+              Upgrade anytime for unlimited access.
             </strong>
           </p>
         </div>

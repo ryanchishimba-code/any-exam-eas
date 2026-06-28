@@ -1,7 +1,17 @@
 /** Billing/trial constants — edge-safe (no Stripe SDK). */
 
-/** Free trial period (days) — payment collected at checkout; charge after trial ends. */
-export const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "14");
+/** App-native free trial (days) — starts at signup without a payment method. */
+export const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "3");
+
+/** Lifetime question cap during app-native free trial. */
+export const TRIAL_LIFETIME_QUESTIONS = Number(
+  process.env.TRIAL_LIFETIME_QUESTIONS ?? "60"
+);
+
+/** Lifetime question cap after trial expires (restricted Free tier). */
+export const FREE_TIER_LIFETIME_QUESTIONS = Number(
+  process.env.FREE_TIER_LIFETIME_QUESTIONS ?? "20"
+);
 
 /** Optional paid intro (legacy). Omit STRIPE_TRIAL_INTRO_PRICE_ID for standard $0 trial. */
 export const TRIAL_INTRO_PRICE_USD = Number(process.env.TRIAL_INTRO_PRICE_USD ?? "17.99");

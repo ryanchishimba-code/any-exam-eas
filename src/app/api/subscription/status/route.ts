@@ -79,6 +79,9 @@ export async function GET(req: Request) {
 
   return NextResponse.json({
     hasAccess: access.hasPremiumAccess,
+    hasAppAccess: access.hasAppAccess,
+    hasStudyAccess: access.hasStudyAccess,
+    hasFreeTierAccess: access.hasFreeTierAccess,
     role: access.role,
     accountStatus: access.accountStatus,
     emailVerified: access.emailVerified,

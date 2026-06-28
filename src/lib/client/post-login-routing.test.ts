@@ -24,6 +24,16 @@ describe("resolvePostLoginDestination", () => {
     expect(resolvePostLoginDestination("/dashboard", null, null)).toBe("/dashboard");
   });
 
+  it("routes free-tier users with app access to dashboard", () => {
+    expect(
+      resolvePostLoginDestination(
+        "/dashboard",
+        { hasAccess: false, hasAppAccess: true, status: "trial_expired" },
+        "nclex"
+      )
+    ).toBe("/dashboard");
+  });
+
   it("sends inactive users without an exam to reactivate, not select-exam", () => {
     expect(
       resolvePostLoginDestination("/dashboard", { hasAccess: false }, null)

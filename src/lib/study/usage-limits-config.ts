@@ -1,6 +1,7 @@
 import type { UserAccess } from "@/lib/access-control";
+import { FREE_TIER_LIFETIME_QUESTIONS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 
-export type StudyUsagePlan = "trial" | "basic" | "pro" | "staff";
+export type StudyUsagePlan = "trial" | "free" | "basic" | "pro" | "staff";
 
 export type StudyUsageLimits = {
   /** Max questions served per UTC day. `null` = unlimited (paid tiers). */
@@ -23,14 +24,25 @@ export type StudyUsageLimits = {
 
 export const STUDY_USAGE_LIMITS: Record<StudyUsagePlan, StudyUsageLimits> = {
   trial: {
-    dailyQuestions: 50,
-    trialLifetimeQuestions: 300,
+    dailyQuestions: null,
+    trialLifetimeQuestions: TRIAL_LIFETIME_QUESTIONS,
     maxPerSession: 25,
     maxTimedExamLength: 50,
     allowPresetExams: false,
     allowShortMocks: true,
     allowFullLengthMocks: false,
     trialMockAllowance: 1,
+    allowAdaptive: false,
+  },
+  free: {
+    dailyQuestions: null,
+    trialLifetimeQuestions: FREE_TIER_LIFETIME_QUESTIONS,
+    maxPerSession: 10,
+    maxTimedExamLength: null,
+    allowPresetExams: false,
+    allowShortMocks: false,
+    allowFullLengthMocks: false,
+    trialMockAllowance: null,
     allowAdaptive: false,
   },
   basic: {
@@ -72,11 +84,12 @@ export const MOCK_EXAM_MIN_QUESTIONS = 50;
 
 export function resolveStudyUsagePlan(access: UserAccess): StudyUsagePlan {
   if (access.role === "staff") return "staff";
+  if (access.role === "free") return "free";
   if (access.role === "trial") return "trial";
   if (access.role === "subscriber") {
     return access.subscription.tier === "basic" ? "basic" : "pro";
   }
-  return "trial";
+  return "free";
 }
 
 export function clampStudySessionSize(
@@ -91,5 +104,5 @@ export function clampStudySessionSize(
 }
 
 export function planHasQuestionAccessLimits(plan: StudyUsagePlan): boolean {
-  return plan === "trial";
+  return plan === "trial" || plan === "free";
 }

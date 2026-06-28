@@ -3,8 +3,8 @@ import { intervalTotalUsd, parseBillingInterval } from "@/lib/billing-plans";
 import { resolveStoredTier } from "@/lib/subscription-features";
 import {
   sendNextBillingReminderEmail,
-  sendTrialEndingReminderEmail,
 } from "@/lib/email/billing-emails";
+import { sendTrialEndingUpgradeEmail } from "@/lib/email/trial-lifecycle-emails";
 import { getSubscriptionBillingDetails } from "@/lib/stripe";
 import { isStripeConfigured } from "@/lib/payments";
 
@@ -64,10 +64,11 @@ export async function runBillingReminderEmails(
       if (billing?.nextRecurringUsd) amountUsd = billing.nextRecurringUsd;
     }
 
-    const sent = await sendTrialEndingReminderEmail({
+    const sent = await sendTrialEndingUpgradeEmail({
       to: sub.user.email,
       name: sub.user.name,
       trialEndsAt,
+      hasStripeSubscription: Boolean(sub.stripeSubscriptionId),
       planInterval: interval,
       amountUsd,
     });

@@ -3,6 +3,7 @@ import { ROUTES } from "@/lib/routes";
 
 export type PostLoginSubscriptionStatus = {
   hasAccess?: boolean;
+  hasAppAccess?: boolean;
   status?: string;
   reactivation?: {
     method: "checkout" | "update_payment";
@@ -24,8 +25,7 @@ export function resolvePostLoginDestination(
   }
 
   // Only route to billing/reactivate when we have a definitive no-access response.
-  // A null status (API not ready yet) should not send users to settings.
-  if (status && !status.hasAccess) {
+  if (status && !status.hasAccess && !status.hasAppAccess) {
     if (
       safe.startsWith("/checkout") ||
       safe.startsWith("/signup") ||

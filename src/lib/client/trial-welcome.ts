@@ -1,3 +1,5 @@
+import { TRIAL_DAYS } from "@/lib/billing-config";
+
 /** Client-side flag set after login for active trial subscribers. */
 export const TRIAL_WELCOME_STORAGE_KEY = "aee_trial_welcome";
 
@@ -51,5 +53,5 @@ export function shouldShowTrialWelcome(): boolean {
 }
 
 export function initialTrialDaysRemaining(): number {
-  return peekTrialWelcomePending()?.daysRemaining ?? 14;
+  return peekTrialWelcomePending()?.daysRemaining ?? TRIAL_DAYS;
 }

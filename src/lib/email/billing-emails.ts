@@ -7,7 +7,6 @@ import {
 import { formatPlanUsd, getBillingPlanTier, parseBillingInterval } from "@/lib/billing-plans";
 import { displayFirstName } from "@/lib/display-name";
 import type { BillingInterval } from "@/lib/billing-config";
-import { TRIAL_DAYS } from "@/lib/billing-config";
 
 type BillingEmailParams = {
   to: string;
@@ -107,42 +106,19 @@ export async function sendTrialEndingReminderEmail(
     trialEndsAt: Date;
     planInterval: BillingInterval;
     amountUsd: number;
+    hasStripeSubscription?: boolean;
   }
 ): Promise<EmailDeliveryResult> {
-  if (!isEmailConfigured()) return { ok: false, reason: "not_configured" };
-
-  const settingsUrl = `${appBaseUrl()}/settings`;
-  const tier = getBillingPlanTier("pro", params.planInterval);
-  const when = formatEmailDate(params.trialEndsAt);
-  const amount = formatPlanUsd(params.amountUsd);
-
-  const bodyHtml = `
-    <p style="margin:0 0 16px;font-size:15px;color:#475569;">${greeting(params.name)}</p>
-    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Your ${TRIAL_DAYS}-day free trial ends in about 24 hours (<strong>${when}</strong>).</p>
-    <p style="margin:0 0 16px;font-size:15px;color:#475569;">Unless you cancel before then, your saved payment method will be charged <strong>${amount}</strong> for your ${tier.label} plan.</p>
-    <p style="margin:0;font-size:14px;color:#64748b;">Want to keep studying for free a bit longer? Cancel anytime before your trial ends and you won't be charged. You can also switch billing plans in Settings before billing starts.</p>`;
-
-  const text = [
-    greeting(params.name),
-    "",
-    `Your ${TRIAL_DAYS}-day free trial ends in about 24 hours (${when}).`,
-    `Unless you cancel before then, your saved payment method will be charged ${amount} for your ${tier.label} plan.`,
-    "",
-    "Cancel anytime before your trial ends to avoid being charged.",
-    "",
-    `Manage billing: ${settingsUrl}`,
-  ].join("\n");
-
-  return sendBillingEmail({
+  const { sendTrialEndingUpgradeEmail } = await import(
+    "@/lib/email/trial-lifecycle-emails"
+  );
+  return sendTrialEndingUpgradeEmail({
     to: params.to,
-    subject: `Your Any Exam Easy trial ends in 24 hours`,
-    html: billingEmailShell(
-      "Your free trial ends tomorrow",
-      bodyHtml,
-      "Manage subscription",
-      settingsUrl
-    ),
-    text,
+    name: params.name,
+    trialEndsAt: params.trialEndsAt,
+    hasStripeSubscription: params.hasStripeSubscription,
+    planInterval: params.planInterval,
+    amountUsd: params.amountUsd,
   });
 }
 

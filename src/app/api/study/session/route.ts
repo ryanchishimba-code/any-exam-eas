@@ -12,8 +12,8 @@ const saveSchema = z.object({
 });
 
 export async function POST(req: Request) {
-  const { requirePremiumApi } = await import("@/lib/api-access");
-  const premium = await requirePremiumApi();
+  const { requireStudyApi } = await import("@/lib/api-access");
+  const premium = await requireStudyApi();
   if (!premium.ok) return premium.response;
 
   try {
@@ -56,8 +56,8 @@ export async function POST(req: Request) {
 }
 
 export async function GET(req: Request) {
-  const { requirePremiumApi } = await import("@/lib/api-access");
-  const premium = await requirePremiumApi();
+  const { requireStudyApi } = await import("@/lib/api-access");
+  const premium = await requireStudyApi();
   if (!premium.ok) return premium.response;
 
   const id = new URL(req.url).searchParams.get("id");

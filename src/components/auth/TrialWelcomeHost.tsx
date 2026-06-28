@@ -11,6 +11,7 @@ import {
   peekTrialWelcomePending,
   shouldShowTrialWelcome,
 } from "@/lib/client/trial-welcome";
+import { TRIAL_DAYS } from "@/lib/billing-config";
 import { fetchSubscriptionStatus } from "@/lib/client/post-login";
 import { analytics } from "@/lib/analytics";
 
@@ -38,7 +39,7 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
 
   const [visible, setVisible] = useState(() => shouldShowTrialWelcome());
   const [daysRemaining, setDaysRemaining] = useState(initialTrialDaysRemaining);
-  const [trialDays, setTrialDays] = useState(14);
+  const [trialDays, setTrialDays] = useState(TRIAL_DAYS);
 
   useLayoutEffect(() => {
     onActiveChange?.(visible);

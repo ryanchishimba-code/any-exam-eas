@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { requirePremiumPage } from "@/lib/require-premium-page";
+import { requireStudyPage } from "@/lib/require-premium-page";
 
 export default async function StudyLayout({ children }: { children: ReactNode }) {
-  await requirePremiumPage("/study");
+  await requireStudyPage("/study");
   return <>{children}</>;
 }

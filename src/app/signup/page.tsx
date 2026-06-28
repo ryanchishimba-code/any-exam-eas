@@ -2,7 +2,7 @@ import { SignupForm } from "@/components/SignupForm";
 import { PageShell } from "@/components/PageShell";
 import { AuthCard } from "@/components/ui/AuthCard";
 import { contentWidth } from "@/lib/layout/shell-ui";
-import { TRIAL_DAYS } from "@/lib/billing-config";
+import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { isExamSlug } from "@/lib/edtech/exams";
@@ -47,7 +47,7 @@ export default async function SignupPage({
       description={
         isSubscribe
           ? "Create your account, then choose your plan and pay securely. Must be 18 or older."
-          : `Create your account, then add a payment method to start your ${TRIAL_DAYS}-day free trial. You won't be charged until the trial ends — cancel anytime before then for no charge. Must be 18 or older.`
+          : `Create your account with email or social login — no payment required. Your ${TRIAL_DAYS}-day free trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions instantly. Must be 18 or older.`
       }
       align="center"
       maxWidth={contentWidth.focus}

@@ -49,7 +49,7 @@ export function Navigation() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const { data: session, status } = useSession();
-  const { hasPremiumAccess, loading: accessLoading } = useUserAccess();
+  const { hasPremiumAccess, hasAppAccess, loading: accessLoading } = useUserAccess();
   const { signingOut, requestSignOut } = useSignOutConfirm({ callbackUrl: "/" });
 
   const isAuthenticated = status === "authenticated" && Boolean(session?.user);
@@ -58,8 +58,16 @@ export function Navigation() {
   const { isAdmin } = useIsAdmin();
 
   const links = useMemo(() => {
-    return isAuthenticated && hasPremiumAccess ? premiumLinks : guestLinks;
-  }, [hasPremiumAccess, isAuthenticated]);
+    if (!isAuthenticated) return guestLinks;
+    if (hasPremiumAccess) return premiumLinks;
+    if (hasAppAccess) {
+      return [
+        { href: ROUTES.dashboard, label: "Dashboard" },
+        { href: ROUTES.questionBank, label: "Question Bank" },
+      ];
+    }
+    return guestLinks;
+  }, [hasPremiumAccess, hasAppAccess, isAuthenticated]);
 
   const closeMobile = useCallback(() => setOpen(false), []);
 
@@ -99,7 +107,7 @@ export function Navigation() {
     requestSignOut();
   }
 
-  const brandHref = isAuthenticated && hasPremiumAccess ? ROUTES.dashboard : ROUTES.home;
+  const brandHref = isAuthenticated && hasAppAccess ? ROUTES.dashboard : ROUTES.home;
   const practiceActive =
     isActive(ROUTES.dashboard) ||
     pathname.startsWith("/exams") ||
@@ -114,7 +122,7 @@ export function Navigation() {
         <BrandLogo href={brandHref} variant="nav" linkClassName="aee-nav-brand" priority />
 
         <ul className="aee-nav-links hidden lg:flex lg:items-center lg:gap-5" role="list">
-          {isAuthenticated && hasPremiumAccess ? (
+          {isAuthenticated && hasAppAccess ? (
             <li>
               <ExamsDropdown />
             </li>
@@ -193,7 +201,7 @@ export function Navigation() {
             transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
           >
             <div className="overflow-hidden py-4">
-              {isAuthenticated && hasPremiumAccess ? (
+              {isAuthenticated && hasAppAccess ? (
                 <>
                   <p className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-[var(--color-ink-muted)]">
                     Exams

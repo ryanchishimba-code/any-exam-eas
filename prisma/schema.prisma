@@ -262,6 +262,8 @@ model Subscription {
   gracePeriodEndsAt    DateTime?
   /** Dedupes trial-ending reminder emails — stores the trialEndsAt we reminded for. */
   trialReminderForEndsAt DateTime?
+  /** Dedupes welcome email on trial start. */
+  welcomeEmailSentAt     DateTime?
   /** Dedupes pre-renewal reminder emails — stores the currentPeriodEnd we reminded for. */
   billingReminderForPeriodEnd DateTime?
   compAccessUntil      DateTime? // admin-granted complimentary access

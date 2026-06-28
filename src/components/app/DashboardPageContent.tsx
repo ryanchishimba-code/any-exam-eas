@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { DashboardExamCountdown } from "@/components/dashboard/DashboardExamCountdown";
+import { DashboardUpgradeBanner, type DashboardUpgradeProps } from "@/components/dashboard/DashboardUpgradeBanner";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardTodayFocus } from "@/components/dashboard/DashboardTodayFocus";
 import { DashboardViewSections } from "@/components/app/DashboardViewSections";
@@ -29,6 +30,8 @@ export function DashboardPageContent({
   recentTests,
   userName,
   testDate = null,
+  upgrade,
+  hasPremiumAccess = true,
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
@@ -39,6 +42,8 @@ export function DashboardPageContent({
   recentTests: RecentTestRow[];
   userName?: string | null;
   testDate?: string | null;
+  upgrade?: DashboardUpgradeProps | null;
+  hasPremiumAccess?: boolean;
 }) {
   const exam = EXAM_CATALOG[examSlug];
   const firstName = displayFirstName(userName);
@@ -59,6 +64,8 @@ export function DashboardPageContent({
 
       <DashboardExamCountdown examSlug={examSlug} examName={exam.name} testDate={testDate} />
 
+      {upgrade ? <DashboardUpgradeBanner {...upgrade} /> : null}
+
       {isNewUser ? (
         <section className={cn(dbUi.surface, "p-4 sm:p-5")}>
           <p className={dbUi.eyebrow}>Get started</p>
@@ -74,9 +81,11 @@ export function DashboardPageContent({
               Start practicing
               <ArrowRight className="h-3.5 w-3.5" aria-hidden />
             </Link>
-            <Link href={ROUTES.library} className={dbUi.ghostBtn}>
-              Browse library
-            </Link>
+            {hasPremiumAccess ? (
+              <Link href={ROUTES.library} className={dbUi.ghostBtn}>
+                Browse library
+              </Link>
+            ) : null}
           </div>
         </section>
       ) : (

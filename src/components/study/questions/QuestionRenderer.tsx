@@ -37,6 +37,7 @@ import {
 } from "./UsmleFormats";
 import { QuestionRelatedLinks } from "./QuestionRelatedLinks";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import { useUserAccess } from "@/lib/client/use-user-access";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
 
 const ExpertRationalePanel = dynamic(
@@ -242,6 +243,8 @@ export function ExplanationPanel({
   field?: string;
 }) {
   const [expanded, setExpanded] = useState(false);
+  const { role } = useUserAccess();
+  const conciseOnly = role === "trial" || role === "free";
   const examSlug = (field ? examSlugFromFieldId(field) : null) ?? "nclex";
 
   const parsed = parseRationaleForDisplay(
@@ -293,7 +296,7 @@ export function ExplanationPanel({
             {concisePreview}
           </p>
         )}
-        {(hasDeepContent || !expanded) && (
+        {(hasDeepContent || !expanded) && !conciseOnly ? (
           <button
             type="button"
             onClick={() => setExpanded((v) => !v)}
@@ -302,7 +305,11 @@ export function ExplanationPanel({
           >
             {expanded ? "Show less" : "View full explanation"}
           </button>
-        )}
+        ) : conciseOnly && hasDeepContent ? (
+          <p className="mt-3 text-xs text-[var(--color-ink-muted)]">
+            Upgrade to Basic or Pro for rich, detailed explanations.
+          </p>
+        ) : null}
       </div>
 
       {expanded && question.clinicalReasoning && !parsed.isStructured && (

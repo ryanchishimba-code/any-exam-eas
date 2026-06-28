@@ -16,7 +16,8 @@ import { signUpSchema, normalizeEmail, type SignUpInput } from "@/lib/validators
 import { normalizeStoredName } from "@/lib/display-name";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
-import { hasConsumedTrial } from "@/lib/trial-eligibility";
+import { hasConsumedTrial, recordTrialUsed } from "@/lib/trial-eligibility";
+import { trialEndsAtFromNow } from "@/lib/billing-config";
 
 const REGISTER_RETRIES = 6;
 
@@ -151,13 +152,23 @@ export async function registerUser(
     );
   }
 
-  const subscriptionData = {
-    status: "inactive" as const,
-    trialEndsAt: null,
-    plan: parsed.plan,
-    planTier,
-    planInterval,
-  };
+  const startsAppTrial = parsed.plan === "trial";
+
+  const subscriptionData = startsAppTrial
+    ? {
+        status: "trialing" as const,
+        trialEndsAt: trialEndsAtFromNow(),
+        plan: "trial" as const,
+        planTier,
+        planInterval,
+      }
+    : {
+        status: "inactive" as const,
+        trialEndsAt: null,
+        plan: parsed.plan,
+        planTier,
+        planInterval,
+      };
 
   try {
     const user = await withRegisterRetry(() =>
@@ -183,6 +194,13 @@ export async function registerUser(
         { maxWait: 15_000, timeout: 45_000 }
       )
     );
+
+    if (startsAppTrial) {
+      void recordTrialUsed(parsed.email, user.id);
+      void import("@/lib/trial-email-triggers").then((m) =>
+        m.triggerWelcomeTrialEmail(user.id)
+      );
+    }
 
     if (parsed.examSlug) {
       try {

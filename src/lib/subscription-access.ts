@@ -16,6 +16,8 @@ export type SubscriptionAccessStatus =
 
 export type SubscriptionAccess = {
   hasAccess: boolean;
+  /** Restricted post-trial tier — dashboard + limited questions. */
+  hasFreeAccess: boolean;
   status: SubscriptionAccessStatus;
   tier: SubscriptionTier;
   planDuration: BillingInterval;
@@ -74,6 +76,7 @@ export function evaluateSubscriptionAccess(
   if (!subscription) {
     return {
       hasAccess: false,
+      hasFreeAccess: false,
       status: "none",
       ...meta,
       trialEndsAt: null,
@@ -90,6 +93,7 @@ export function evaluateSubscriptionAccess(
   if (subscription.status === "active") {
     return {
       hasAccess: true,
+      hasFreeAccess: false,
       status: "active",
       ...meta,
       trialEndsAt,
@@ -103,6 +107,7 @@ export function evaluateSubscriptionAccess(
     if (trialEndsAt && trialEndsAt <= new Date()) {
       return {
         hasAccess: false,
+        hasFreeAccess: true,
         status: "trial_expired",
         ...meta,
         trialEndsAt,
@@ -111,24 +116,10 @@ export function evaluateSubscriptionAccess(
         needsPaymentMethod: false,
       };
     }
-    // A payment method is required to start a trial. A "trialing" row without a
-    // Stripe subscription has no card on file, so it must complete checkout
-    // before any access is granted — surface it as the inactive/needs-payment
-    // state so the existing "Complete checkout" prompts take over.
-    if (!subscription.stripeSubscriptionId) {
-      return {
-        hasAccess: false,
-        status: "inactive",
-        ...meta,
-        trialEndsAt,
-        daysRemaining: trialEndsAt ? daysUntil(trialEndsAt) : null,
-        canStartCheckout: true,
-        needsPaymentMethod: true,
-      };
-    }
     const daysRemaining = trialEndsAt ? daysUntil(trialEndsAt) : TRIAL_DAYS;
     return {
       hasAccess: true,
+      hasFreeAccess: false,
       status: "trialing",
       ...meta,
       trialEndsAt,
@@ -141,6 +132,7 @@ export function evaluateSubscriptionAccess(
   if (subscription.status === "inactive") {
     return {
       hasAccess: false,
+      hasFreeAccess: false,
       status: "inactive",
       ...meta,
       trialEndsAt,
@@ -153,6 +145,7 @@ export function evaluateSubscriptionAccess(
   if (subscription.status === "trial_expired") {
     return {
       hasAccess: false,
+      hasFreeAccess: true,
       status: "trial_expired",
       ...meta,
       trialEndsAt,
@@ -165,6 +158,7 @@ export function evaluateSubscriptionAccess(
   if (subscription.status === "past_due") {
     return {
       hasAccess: false,
+      hasFreeAccess: false,
       status: "past_due",
       ...meta,
       trialEndsAt,
@@ -177,6 +171,7 @@ export function evaluateSubscriptionAccess(
   if (subscription.status === "canceled") {
     return {
       hasAccess: false,
+      hasFreeAccess: false,
       status: "canceled",
       ...meta,
       trialEndsAt,
@@ -189,6 +184,7 @@ export function evaluateSubscriptionAccess(
   if (PREMIUM_STRIPE_STATUSES.has(subscription.status)) {
     return {
       hasAccess: true,
+      hasFreeAccess: false,
       status: subscription.status === "trialing" ? "trialing" : "active",
       ...meta,
       trialEndsAt,
@@ -200,6 +196,7 @@ export function evaluateSubscriptionAccess(
 
   return {
     hasAccess: false,
+    hasFreeAccess: false,
     status: "inactive",
     ...meta,
     trialEndsAt,

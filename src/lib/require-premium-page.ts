@@ -5,10 +5,7 @@ import { getUserAccess, type UserAccess } from "@/lib/access-control";
 import { checkAndRecordAccountIp } from "@/lib/account-ip-limit";
 import { resolvePaywallRedirect } from "@/lib/reactivation";
 
-/** Server-side paywall — redirects lapsed users to reactivate; staff bypass included. */
-export async function requirePremiumPage(
-  callbackPath = "/study"
-): Promise<UserAccess> {
+async function loadPageAccess(callbackPath: string): Promise<UserAccess> {
   const session = await auth();
   if (!session?.user?.id) {
     redirect(`/login?callbackUrl=${encodeURIComponent(callbackPath)}`);
@@ -42,10 +39,59 @@ export async function requirePremiumPage(
     redirect("/pricing?paywall=verify");
   }
 
-  if (!access.hasPremiumAccess) {
+  return access;
+}
+
+/** Dashboard and account home — trial, paid, or post-trial free tier. */
+export async function requireAppPage(callbackPath = "/dashboard"): Promise<UserAccess> {
+  const session = await auth();
+  const access = await loadPageAccess(callbackPath);
+
+  if (!access.hasAppAccess) {
     const destination = await resolvePaywallRedirect(
-      session.user.id,
-      session.user.email,
+      session!.user!.id,
+      session!.user!.email,
+      callbackPath,
+      access.subscription
+    );
+    redirect(destination);
+  }
+
+  return access;
+}
+
+/** Question bank / study entry — trial, paid, or free tier (usage caps apply in API). */
+export async function requireStudyPage(callbackPath = "/study"): Promise<UserAccess> {
+  const session = await auth();
+  const access = await loadPageAccess(callbackPath);
+
+  if (!access.hasStudyAccess) {
+    const destination = await resolvePaywallRedirect(
+      session!.user!.id,
+      session!.user!.email,
+      callbackPath,
+      access.subscription
+    );
+    redirect(destination);
+  }
+
+  return access;
+}
+
+/** Server-side paywall — trial + paid only (blocks post-trial free tier). */
+export async function requirePremiumPage(
+  callbackPath = "/study"
+): Promise<UserAccess> {
+  const session = await auth();
+  const access = await loadPageAccess(callbackPath);
+
+  if (!access.hasPremiumAccess) {
+    if (access.hasFreeTierAccess) {
+      redirect(`/dashboard?upgrade=1&return=${encodeURIComponent(callbackPath)}`);
+    }
+    const destination = await resolvePaywallRedirect(
+      session!.user!.id,
+      session!.user!.email,
       callbackPath,
       access.subscription
     );

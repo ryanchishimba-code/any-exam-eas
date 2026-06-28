@@ -1,6 +1,7 @@
 import {
   TRIAL_DAYS,
   TRIAL_INTRO_PRICE_USD,
+  TRIAL_LIFETIME_QUESTIONS,
   usesIntroTrialPricing,
 } from "@/lib/billing-config";
 import {
@@ -74,12 +75,17 @@ export function formatTrialLabel(): string {
   return `${TRIAL_DAYS}-day free trial`;
 }
 
-export function formatLandingHeroSubline(): string {
-  return `${LANDING_HERO_SUBLINE_BODY} Starting at just ${formatMonthlyPrice("basic")}/month.`;
+/** e.g. "60 practice questions during your 3-day trial" */
+export function formatTrialQuestionLimit(): string {
+  return `${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial`;
 }
 
 export function formatTrialCtaLabel(): string {
-  return "Start 14-Day Free Trial";
+  return `Start ${TRIAL_DAYS}-Day Free Trial`;
+}
+
+export function formatLandingHeroSubline(): string {
+  return `${LANDING_HERO_SUBLINE_BODY} Starting at just ${formatMonthlyPrice("basic")}/month.`;
 }
 
 export function formatTrialCtaWithSavings(
@@ -144,10 +150,10 @@ export function formatLandingStickyDetail(): string {
 }
 
 export const SIGNUP_PAYMENT_REQUIRED_NOTE =
-  "Add your payment method at checkout — you won't be charged until your trial ends. Cancel before your trial ends for no charge.";
+  `No payment required to start. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions instantly.`;
 
 export function formatTrialPlanDetail(): string {
-  return `${TRIAL_DAYS}-day free trial · payment required at checkout · not charged until trial ends · save up to 20% on annual`;
+  return `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} questions · no card required · upgrade anytime for unlimited access`;
 }
 
 export function formatTrialCheckoutDescription(): string {

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { requirePremiumApi } from "@/lib/api-access";
+import { requireStudyApi } from "@/lib/api-access";
 import {
   getStudyUsageSnapshot,
   STUDY_USAGE_LIMITS,
@@ -8,7 +8,7 @@ import {
 export const runtime = "nodejs";
 
 export async function GET(req: Request) {
-  const premium = await requirePremiumApi(req);
+  const premium = await requireStudyApi(req);
   if (!premium.ok) return premium.response;
 
   const snapshot = await getStudyUsageSnapshot(premium.access);

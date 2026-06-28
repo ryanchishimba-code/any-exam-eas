@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 export type UserAccessState = {
   loading: boolean;
   hasPremiumAccess: boolean;
+  hasAppAccess: boolean;
   status: string | null;
   role: string | null;
 };
@@ -13,6 +14,7 @@ export type UserAccessState = {
 const defaultState: UserAccessState = {
   loading: true,
   hasPremiumAccess: false,
+  hasAppAccess: false,
   status: null,
   role: null,
 };
@@ -42,12 +44,14 @@ async function fetchUserAccess(): Promise<UserAccessState> {
       if (!res.ok) throw new Error("status fetch failed");
       const data = (await res.json()) as {
         hasAccess?: boolean;
+        hasAppAccess?: boolean;
         status?: string;
         role?: string;
       };
       const next: UserAccessState = {
         loading: false,
         hasPremiumAccess: Boolean(data.hasAccess),
+        hasAppAccess: Boolean(data.hasAppAccess ?? data.hasAccess),
         status: data.status ?? null,
         role: data.role ?? null,
       };
@@ -57,6 +61,7 @@ async function fetchUserAccess(): Promise<UserAccessState> {
       const fallback: UserAccessState = {
         loading: false,
         hasPremiumAccess: false,
+        hasAppAccess: false,
         status: null,
         role: null,
       };
@@ -81,7 +86,7 @@ export function useUserAccess(): UserAccessState {
     if (sessionStatus !== "authenticated") {
       cachedAccess = null;
       inflightAccess = null;
-      setAccess({ loading: false, hasPremiumAccess: false, status: null, role: null });
+      setAccess({ loading: false, hasPremiumAccess: false, hasAppAccess: false, status: null, role: null });
       return;
     }
 

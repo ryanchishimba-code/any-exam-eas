@@ -18,7 +18,7 @@ import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { usmleStepDefinition, defaultUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
-import { requirePremiumPage } from "@/lib/require-premium-page";
+import { requireStudyPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
@@ -73,7 +73,7 @@ export default async function QuestionBankPage({
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.questionBank)}`);
   }
 
-  await requirePremiumPage(ROUTES.questionBank);
+  await requireStudyPage(ROUTES.questionBank);
 
   const sp = await searchParams;
   const pref = await getUserExamPreference(session.user.id);

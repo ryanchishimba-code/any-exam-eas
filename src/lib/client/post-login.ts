@@ -6,9 +6,12 @@ import type { LoginMethod } from "@/lib/client/returning-user";
 import { saveReturningUserHint } from "@/lib/client/returning-user";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { resolvePostLoginDestination as resolveDestination } from "@/lib/client/post-login-routing";
+import { TRIAL_DAYS } from "@/lib/billing-config";
+import { markTrialWelcomePending } from "@/lib/client/trial-welcome";
 
 export type ClientSubscriptionStatus = {
   hasAccess?: boolean;
+  hasAppAccess?: boolean;
   status?: string;
   daysRemaining?: number | null;
   trialEndsAt?: string | null;
@@ -111,7 +114,19 @@ export async function completeLoginFlow(params: {
   params.router.refresh();
 
   const status = await fetchSubscriptionStatus();
-  const destination = await resolvePostLoginDestination(safeCallback, status);
+  let destination = await resolvePostLoginDestination(safeCallback, status);
+
+  if (
+    status?.status === "trialing" &&
+    status.hasAccess &&
+    !destination.includes("welcome=trial")
+  ) {
+    const examSlug = await fetchExamSlug();
+    if (!examSlug) {
+      markTrialWelcomePending(status.daysRemaining ?? TRIAL_DAYS);
+      destination += destination.includes("?") ? "&welcome=trial" : "?welcome=trial";
+    }
+  }
 
   params.router.replace(destination);
 

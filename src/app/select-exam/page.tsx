@@ -36,7 +36,7 @@ export default async function SelectExamPage({ searchParams }: PageProps) {
 
   if (pref && !switchMode) {
     const access = await getUserAccess(session.user.id);
-    if (access.hasPremiumAccess) {
+    if (access.hasAppAccess) {
       redirect(ROUTES.dashboard);
     }
     redirect("/settings?reactivate=1");

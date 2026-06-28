@@ -17,6 +17,7 @@ import {
 import { MARKETING_QUESTION_COUNTS, TOP_500_DRUGS_COUNT, DRUGS_DECK_MARKETING_TITLE, drugsDeckFeatureLine, drugsDeckShortDetail } from "@/lib/marketing/bank-stats";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { examMarketingPath } from "@/lib/seo/exam-config";
+import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 
 /** Local price formatter — avoids a circular import with site.ts. */
@@ -175,7 +176,7 @@ export function formatFlagshipHeroSubline(totalLabel?: string): string {
 
 /** Short reassurance directly under the primary hero CTA. */
 export const LANDING_HERO_CTA_DISCLOSURE =
-  "Payment method required • Not charged until trial ends • Cancel before trial ends for no charge";
+  `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · No payment required · Upgrade anytime`;
 
 /** Three-column offering band below the hero. */
 export const LANDING_OFFERING_PILLARS = [
@@ -472,7 +473,11 @@ export type LandingSuccessStory = {
 /** Platform stats for the social proof band — factual, no pass-rate claims. */
 export const LANDING_PASS_STATS = [
   { value: "6", label: "Board exams", detail: "One subscription — no per-exam stacking" },
-  { value: "14 days", label: "Free trial", detail: "Evaluate every exam before you pay" },
+  {
+    value: `${TRIAL_DAYS} days`,
+    label: "Free trial",
+    detail: `${TRIAL_LIFETIME_QUESTIONS} practice questions across every exam — no card required`,
+  },
   { value: "Roadmap", label: "Per-exam study plan", detail: "Blueprint-aligned — integrated, not QBank-only" },
 ] as const;
 
@@ -614,7 +619,7 @@ export const UWORLD_COMPARE_ROWS = [
   },
   {
     label: "Trial entry",
-    us: "14-day free trial · Payment required at checkout",
+    us: `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} questions · No payment required`,
     them: "Limited demo or paid upfront bundles",
   },
   {

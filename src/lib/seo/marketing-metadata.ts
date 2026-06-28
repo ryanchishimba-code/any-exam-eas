@@ -16,7 +16,7 @@ import {
   getSiteUrl,
 } from "@/lib/seo";
 import { LEGAL_ENTITY } from "@/lib/legal";
-import { SITE_NAME, formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+import { SITE_NAME, formatMonthlyPrice, formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 
 function baseOpenGraph(title: string, description: string, path: string): Metadata {
@@ -91,7 +91,7 @@ export function buildResourceArticleMetadata(article: ResourceArticle): Metadata
 
 export function buildPricingMetadata(): Metadata {
   const title = "Pricing — Basic & Pro Board Exam Plans";
-  const description = `14-day free trial · Basic from ${formatMonthlyPrice("basic")}/mo · Pro from ${formatMonthlyPrice("pro")}/mo · All 6 board exams included · Save up to 20% on annual.`;
+  const description = `${formatTrialLabel()} · ${formatTrialQuestionLimit()} · Basic from ${formatMonthlyPrice("basic")}/mo · Pro from ${formatMonthlyPrice("pro")}/mo · All 6 board exams included · Save up to 20% on annual.`;
   return {
     ...baseOpenGraph(title, description, "/pricing"),
   };

@@ -16,6 +16,7 @@ export type UserAccessRole =
   | "guest"
   | "trial"
   | "subscriber"
+  | "free"
   | "expired"
   | "staff";
 
@@ -25,7 +26,14 @@ export type UserAccess = {
   accountStatus: string;
   emailVerified: boolean;
   subscription: SubscriptionAccess;
+  /** Active trial or paid subscription — full product access (subject to tier). */
   hasPremiumAccess: boolean;
+  /** Post-trial restricted tier — dashboard + limited questions. */
+  hasFreeTierAccess: boolean;
+  /** Dashboard and account surfaces (trial, paid, or free). */
+  hasAppAccess: boolean;
+  /** Question bank / study entry (trial, paid, or free with caps). */
+  hasStudyAccess: boolean;
   blockReason?: "suspended" | "deleted" | "subscription" | "email_unverified";
 };
 
@@ -56,6 +64,7 @@ function mapAccessRole(
   subscription: SubscriptionAccess
 ): UserAccessRole {
   if (staff) return "staff";
+  if (subscription.hasFreeAccess) return "free";
   if (subscription.hasAccess && subscription.status === "trialing") return "trial";
   if (subscription.hasAccess && subscription.status === "active") return "subscriber";
   return "expired";
@@ -73,6 +82,7 @@ function applyCompAndGrace(
     return {
       ...base,
       hasAccess: true,
+      hasFreeAccess: false,
       status: "active",
       canStartCheckout: false,
     };
@@ -110,6 +120,7 @@ async function resolveUserAccess(userId: string): Promise<UserAccess> {
       emailVerified: false,
       subscription: {
         hasAccess: false,
+        hasFreeAccess: false,
         status: "none",
         tier: "pro",
         planDuration: "yearly",
@@ -119,6 +130,9 @@ async function resolveUserAccess(userId: string): Promise<UserAccess> {
         needsPaymentMethod: false,
       },
       hasPremiumAccess: false,
+      hasFreeTierAccess: false,
+      hasAppAccess: false,
+      hasStudyAccess: false,
       blockReason: "subscription",
     };
   }
@@ -130,24 +144,37 @@ async function resolveUserAccess(userId: string): Promise<UserAccess> {
   subscription = applyCompAndGrace(sub, subscription);
 
   if (staff) {
-    subscription = { ...subscription, hasAccess: true, canStartCheckout: false };
+    subscription = { ...subscription, hasAccess: true, hasFreeAccess: false, canStartCheckout: false };
   }
 
   const emailVerified = !!user.emailVerified;
-  // Premium access is never reduced for discount codes — only subscription/account state.
-  let hasPremiumAccess = subscription.hasAccess && user.accountStatus === "active";
+  let hasFreeTierAccess =
+    !staff && subscription.hasFreeAccess && user.accountStatus === "active";
+  let hasPremiumAccess =
+    subscription.hasAccess && user.accountStatus === "active" && !hasFreeTierAccess;
+  let hasAppAccess = (hasPremiumAccess || hasFreeTierAccess || staff) && user.accountStatus === "active";
+  let hasStudyAccess = hasAppAccess;
   let blockReason: UserAccess["blockReason"];
 
   if (user.accountStatus === "deleted") {
     hasPremiumAccess = false;
+    hasFreeTierAccess = false;
+    hasAppAccess = false;
+    hasStudyAccess = false;
     blockReason = "deleted";
   } else if (user.accountStatus === "suspended") {
     hasPremiumAccess = false;
+    hasFreeTierAccess = false;
+    hasAppAccess = false;
+    hasStudyAccess = false;
     blockReason = "suspended";
-  } else if (!subscription.hasAccess && !staff) {
+  } else if (!hasPremiumAccess && !hasFreeTierAccess && !staff) {
     blockReason = "subscription";
   } else if (REQUIRE_EMAIL_VERIFICATION && !emailVerified && !staff) {
     hasPremiumAccess = false;
+    hasFreeTierAccess = false;
+    hasAppAccess = false;
+    hasStudyAccess = false;
     blockReason = "email_unverified";
   }
 
@@ -158,6 +185,9 @@ async function resolveUserAccess(userId: string): Promise<UserAccess> {
     emailVerified,
     subscription,
     hasPremiumAccess,
+    hasFreeTierAccess,
+    hasAppAccess,
+    hasStudyAccess,
     blockReason,
   };
 }

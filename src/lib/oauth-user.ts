@@ -3,6 +3,8 @@ import { assertPublicSignupEmailAllowed, isAccountDisabled, OAuthAccountDisabled
 import { normalizeEmail } from "@/lib/validators/auth";
 import { normalizeStoredName } from "@/lib/display-name";
 import { isAtLeast18 } from "@/lib/age";
+import { trialEndsAtFromNow } from "@/lib/billing-config";
+import { recordTrialUsed } from "@/lib/trial-eligibility";
 
 const DEFAULT_DOB = new Date("1990-01-01");
 
@@ -72,8 +74,8 @@ export async function findOrCreateGoogleUser(params: {
       dateOfBirth: DEFAULT_DOB,
       subscription: {
         create: {
-          status: "inactive",
-          trialEndsAt: null,
+          status: "trialing",
+          trialEndsAt: trialEndsAtFromNow(),
           plan: "trial",
           planTier: "pro",
           planInterval: "yearly",
@@ -92,6 +94,12 @@ export async function findOrCreateGoogleUser(params: {
   if (!isAtLeast18(user.dateOfBirth)) {
     /* placeholder DOB for OAuth signups — user must be 18+ per terms */
   }
+
+  void recordTrialUsed(email, user.id);
+
+  void import("@/lib/trial-email-triggers").then((m) =>
+    m.triggerWelcomeTrialEmail(user.id)
+  );
 
   return { id: user.id, role: user.role };
 }

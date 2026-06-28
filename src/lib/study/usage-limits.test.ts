@@ -72,12 +72,20 @@ describe("clampStudySessionSize", () => {
 });
 
 describe("trial limits", () => {
-  it("allows one 50-Q mock and higher daily cap", () => {
-    expect(STUDY_USAGE_LIMITS.trial.dailyQuestions).toBe(50);
-    expect(STUDY_USAGE_LIMITS.trial.trialLifetimeQuestions).toBe(300);
+  it("uses lifetime cap instead of daily cap during trial", () => {
+    expect(STUDY_USAGE_LIMITS.trial.dailyQuestions).toBeNull();
+    expect(STUDY_USAGE_LIMITS.trial.trialLifetimeQuestions).toBe(60);
     expect(STUDY_USAGE_LIMITS.trial.trialMockAllowance).toBe(1);
     expect(STUDY_USAGE_LIMITS.trial.allowShortMocks).toBe(true);
     expect(STUDY_USAGE_LIMITS.basic.allowShortMocks).toBe(true);
     expect(STUDY_USAGE_LIMITS.basic.allowFullLengthMocks).toBe(false);
+  });
+
+  it("restricts post-trial free tier to 20 lifetime questions", () => {
+    expect(STUDY_USAGE_LIMITS.free.trialLifetimeQuestions).toBe(20);
+    expect(STUDY_USAGE_LIMITS.free.allowShortMocks).toBe(false);
+    expect(resolveStudyUsagePlan(mockAccess({ role: "free", hasPremiumAccess: false }))).toBe(
+      "free"
+    );
   });
 });

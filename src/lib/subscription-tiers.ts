@@ -1,4 +1,5 @@
 import type { BillingInterval } from "@/lib/billing-config";
+import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { drugsDeckFeatureLine } from "@/lib/marketing/bank-stats";
 
 /** Subscription tier — Basic or Pro. */
@@ -115,9 +116,9 @@ export const PRO_UPGRADE_HEADLINE = "Unlock your highest score potential";
 
 /** Trial study limits — shown in marketing copy. */
 export const TRIAL_STUDY_LIMITS = [
-  "50 questions per day during free trial",
-  "300 total trial questions — enough to evaluate the platform",
-  "One 50-question mock exam · unlimited questions unlock when you subscribe",
+  `${TRIAL_LIFETIME_QUESTIONS} total questions during your ${TRIAL_DAYS}-day trial`,
+  "One 50-question mock exam · concise explanations during trial",
+  "Upgrade anytime for unlimited questions and rich Pro explanations",
 ] as const;
 
 export const TIER_DEFINITIONS: Record<SubscriptionTier, TierDefinition> = {

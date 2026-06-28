@@ -16,6 +16,7 @@ import {
   Zap,
 } from "lucide-react";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
@@ -357,7 +358,7 @@ function TrialGateOverlay({ systemsExplored }: { systemsExplored: number }) {
           />
         </Link>
         <p className="text-[10px] font-medium text-[var(--color-ink-muted)]">
-          14-day free trial · all 6 exams included · cancel before trial ends
+          {formatTrialLabel()} · {formatTrialQuestionLimit()} · all 6 exams included
         </p>
       </motion.div>
     </motion.div>
@@ -689,7 +690,7 @@ export function LandingAnatomyPreview() {
             />
           </Link>
           <p className="text-[0.6875rem] text-[var(--color-ink-muted)]">
-            Included in every plan · 14-day free trial · 32 structures · 9 body systems · CT Atlas · guided tours
+            Included in every plan · {formatTrialLabel()} · 32 structures · 9 body systems · CT Atlas · guided tours
           </p>
         </div>
 
