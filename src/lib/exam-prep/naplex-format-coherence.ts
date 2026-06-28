@@ -386,3 +386,10 @@ export function fixNaplexFormatCoherence(item: BankItem): NaplexFormatFixResult 
 export function itemHasFormatCoherenceIssue(item: BankItem): boolean {
   return detectNaplexFormatIssues(item).length > 0;
 }
+
+/** Full prep pipeline for serve/timed exams: format repair then answer alignment. */
+export function prepareNaplexBankItem(item: BankItem): BankItem {
+  const formatFixed = fixNaplexFormatCoherence(item);
+  const aligned = alignNaplexBankItemAnswers(formatFixed.item);
+  return aligned.item;
+}

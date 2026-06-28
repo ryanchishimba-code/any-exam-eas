@@ -2,11 +2,12 @@ import type { BankItem } from "@/lib/question-bank";
 import { auditBankItem } from "@/lib/exam-prep/bank-audit";
 import { rawQuestionMeetsBoardBar } from "./board-serve-quality";
 import { passesNaplexServeGate } from "./naplex-quality-gate";
-import { prepareNaplexBankItem } from "./naplex-answer-align";
+import { prepareNaplexBankItem } from "./naplex-format-coherence";
+import { bankItemToNaplexRaw } from "./naplex-bank-bridge";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
 
 export { normalizeNaplexBankItemFields } from "./naplex-bank-normalize";
-export { prepareNaplexBankItem } from "./naplex-answer-align";
+export { prepareNaplexBankItem } from "./naplex-format-coherence";
 
 /** Runtime audit helper — QA gate sets qaPassed; serve path trusts that flag. */
 export function naplexBankItemIsServeReady(
@@ -27,12 +28,16 @@ type PrepareNaplexItemsParams = {
 export function naplexItemPassesStructuralTimedGate(item: BankItem): boolean {
   const prepared = prepareNaplexBankItem(item);
   if (!auditBankItem(prepared, "pharmacy").ok) return false;
+  const raw = bankItemToNaplexRaw(prepared, 0, {
+    field: "pharmacy",
+    subjectId: prepared.subjectId ?? "pharmacy",
+  });
   return rawQuestionMeetsBoardBar({
-    question: prepared.question,
-    options: prepared.options,
-    correctAnswer: prepared.correctAnswer,
-    explanation: prepared.explanation,
-    type: prepared.itemType ?? undefined,
+    question: raw.question,
+    options: raw.options,
+    correctAnswer: raw.correctAnswer,
+    explanation: raw.explanation,
+    type: raw.type,
   });
 }
 

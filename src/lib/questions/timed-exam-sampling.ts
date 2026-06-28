@@ -13,9 +13,11 @@ function itemDedupeKey(item: BankItem): string {
 
 /** Pool size passed to finalize — modest headroom for dedupe/spread slice. */
 function resolveTimedExamPoolTarget(limit: number): number {
+  const base = Math.max(limit + 16, Math.ceil(limit * 1.35));
+  const dedupeHeadroom = limit >= 100 ? Math.ceil(limit * 0.08) : 0;
   return Math.min(
     QUESTION_BANK_SAMPLE_MAX_PULL,
-    Math.max(limit + 16, Math.ceil(limit * 1.35))
+    base + dedupeHeadroom
   );
 }
 
@@ -104,7 +106,7 @@ export async function gatherTimedExamBankItems(params: {
       poolTarget
     );
 
-    if (vetted.length >= limit) break;
+    if (vetted.length >= poolTarget) break;
 
     pullSize = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.ceil(pullSize * 1.25));
   }
@@ -152,6 +154,6 @@ export async function gatherTimedExamBankItems(params: {
     }
   }
 
-  const sessionSize = Math.min(vetted.length, limit);
-  return serveQaPassedBankItems(vetted, sessionSize);
+  const exportSize = Math.min(vetted.length, poolTarget);
+  return serveQaPassedBankItems(vetted, exportSize);
 }

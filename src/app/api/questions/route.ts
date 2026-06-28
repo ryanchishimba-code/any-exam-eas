@@ -217,8 +217,6 @@ export async function GET(req: Request) {
       limit,
       poolLimit: items.length,
     });
-  } else if (items.length > 0 && mixed && timedExam && !presetExamNumber) {
-    items = items.slice(0, limit);
   }
 
   const resolvedSubjectId = mixed ? MIXED_SUBJECT_ID : subjectId!;
