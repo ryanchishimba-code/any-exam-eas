@@ -5,7 +5,7 @@ import { SocialShareBar } from "@/components/social/SocialShareBar";
 import { contentWidth } from "@/lib/layout/shell-ui";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { getExamSession } from "@/lib/exam-sessions/service";
-import { requireProFeaturePage } from "@/lib/require-pro-feature";
+import { requirePremiumPage } from "@/lib/require-premium-page";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamQuestion, FullExamResultsAnalysis } from "@/types/full-exam";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
@@ -26,7 +26,7 @@ export default async function FullExamResultsPage({
     redirect(`/auth/login?callbackUrl=/full-exam/${examSlug}/${sessionId}/results`);
   }
 
-  await requireProFeaturePage("unlimited_mock_exams", `/full-exam/${examSlug}/${sessionId}/results`);
+  await requirePremiumPage(`/full-exam/${examSlug}/${sessionId}/results`);
 
   const examSession = await getExamSession(sessionId, session.user.id);
   if (!examSession) notFound();

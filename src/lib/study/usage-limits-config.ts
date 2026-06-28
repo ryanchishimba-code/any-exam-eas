@@ -11,20 +11,26 @@ export type StudyUsageLimits = {
   maxPerSession: number | null;
   maxTimedExamLength: number | null;
   allowPresetExams: boolean;
-  /** Full-length board simulations — Pro only. */
+  /** 50-question mock exams — Basic+ unlimited; trial gets one. */
+  allowShortMocks: boolean;
+  /** 100-Q and full-length board simulations — Pro only. */
   allowFullLengthMocks: boolean;
+  /** Trial lifetime 50-Q mock allowance. */
+  trialMockAllowance: number | null;
   /** Adaptive / weak-area selection — Pro only. */
   allowAdaptive: boolean;
 };
 
 export const STUDY_USAGE_LIMITS: Record<StudyUsagePlan, StudyUsageLimits> = {
   trial: {
-    dailyQuestions: 25,
-    trialLifetimeQuestions: 150,
-    maxPerSession: 15,
-    maxTimedExamLength: 25,
+    dailyQuestions: 50,
+    trialLifetimeQuestions: 300,
+    maxPerSession: 25,
+    maxTimedExamLength: 50,
     allowPresetExams: false,
+    allowShortMocks: true,
     allowFullLengthMocks: false,
+    trialMockAllowance: 1,
     allowAdaptive: false,
   },
   basic: {
@@ -33,7 +39,9 @@ export const STUDY_USAGE_LIMITS: Record<StudyUsagePlan, StudyUsageLimits> = {
     maxPerSession: null,
     maxTimedExamLength: null,
     allowPresetExams: true,
+    allowShortMocks: true,
     allowFullLengthMocks: false,
+    trialMockAllowance: null,
     allowAdaptive: false,
   },
   pro: {
@@ -42,7 +50,9 @@ export const STUDY_USAGE_LIMITS: Record<StudyUsagePlan, StudyUsageLimits> = {
     maxPerSession: null,
     maxTimedExamLength: null,
     allowPresetExams: true,
+    allowShortMocks: true,
     allowFullLengthMocks: true,
+    trialMockAllowance: null,
     allowAdaptive: true,
   },
   staff: {
@@ -51,7 +61,9 @@ export const STUDY_USAGE_LIMITS: Record<StudyUsagePlan, StudyUsageLimits> = {
     maxPerSession: null,
     maxTimedExamLength: null,
     allowPresetExams: true,
+    allowShortMocks: true,
     allowFullLengthMocks: true,
+    trialMockAllowance: null,
     allowAdaptive: true,
   },
 };

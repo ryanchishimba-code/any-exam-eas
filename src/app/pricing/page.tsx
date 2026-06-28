@@ -10,6 +10,10 @@ import { PageShell } from "@/components/PageShell";
 import { PaywallNotice } from "@/components/PaywallNotice";
 import { ProUpgradeBanner } from "@/components/pricing/ProUpgradeBanner";
 import { LANDING_HERO_TRUST_SIGNALS } from "@/lib/landing/content";
+import {
+  buildLandingBankCountsDisplay,
+  getQuestionBankCounts,
+} from "@/lib/marketing/question-bank-counts";
 
 import { buildPricingMetadata } from "@/lib/seo/marketing-metadata";
 
@@ -21,6 +25,8 @@ export default async function PricingPage({
   searchParams: Promise<{ paywall?: string; return?: string; upgrade?: string; feature?: string }>;
 }) {
   const { paywall, upgrade, feature } = await searchParams;
+  const bankSnapshot = await getQuestionBankCounts();
+  const bankCounts = buildLandingBankCountsDisplay(bankSnapshot);
 
   return (
     <PageShell
@@ -44,8 +50,17 @@ export default async function PricingPage({
         </span>
       </div>
       <p className="mx-auto mt-3 max-w-2xl text-center text-sm font-medium text-[var(--color-ink-muted)]">
-        6 exams + powerful tools for less than one UWorld subscription · Pro from{" "}
-        {formatMonthlyPrice("pro")}/mo
+        {bankCounts.degraded ? (
+          <>6 exams + powerful tools for less than one UWorld subscription · Pro from{" "}
+            {formatMonthlyPrice("pro")}/mo</>
+        ) : (
+          <>
+            <span className="font-semibold tabular-nums text-[var(--color-ink)]">
+              {bankCounts.totalLabel}
+            </span>{" "}
+            serve-ready questions · 6 exams · Pro from {formatMonthlyPrice("pro")}/mo
+          </>
+        )}
       </p>
 
       <div className="mt-14">

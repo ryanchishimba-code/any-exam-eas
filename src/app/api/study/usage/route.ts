@@ -22,12 +22,16 @@ export async function GET(req: Request) {
     remainingTrialTotal: snapshot.remainingTrialTotal,
     trialLimit: snapshot.limits.trialLifetimeQuestions,
     mockExamsThisMonth: snapshot.mockExamsThisMonth,
+    usedTrialMocks: snapshot.usedTrialMocks,
+    remainingTrialMocks: snapshot.remainingTrialMocks,
     limits: {
       maxPerSession: snapshot.limits.maxPerSession,
       maxTimedExamLength: snapshot.limits.maxTimedExamLength,
       allowAdaptive: snapshot.limits.allowAdaptive,
       allowPresetExams: snapshot.limits.allowPresetExams,
+      allowShortMocks: snapshot.limits.allowShortMocks,
       allowFullLengthMocks: snapshot.limits.allowFullLengthMocks,
+      trialMockAllowance: snapshot.limits.trialMockAllowance,
     },
     allPlans: STUDY_USAGE_LIMITS,
   });

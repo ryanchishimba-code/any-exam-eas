@@ -70,3 +70,14 @@ describe("clampStudySessionSize", () => {
     );
   });
 });
+
+describe("trial limits", () => {
+  it("allows one 50-Q mock and higher daily cap", () => {
+    expect(STUDY_USAGE_LIMITS.trial.dailyQuestions).toBe(50);
+    expect(STUDY_USAGE_LIMITS.trial.trialLifetimeQuestions).toBe(300);
+    expect(STUDY_USAGE_LIMITS.trial.trialMockAllowance).toBe(1);
+    expect(STUDY_USAGE_LIMITS.trial.allowShortMocks).toBe(true);
+    expect(STUDY_USAGE_LIMITS.basic.allowShortMocks).toBe(true);
+    expect(STUDY_USAGE_LIMITS.basic.allowFullLengthMocks).toBe(false);
+  });
+});

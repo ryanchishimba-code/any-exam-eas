@@ -3,7 +3,9 @@ import { auth } from "@/auth";
 import { FullExamLauncher } from "@/components/exam/FullExamLauncher";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { isExamSlug } from "@/lib/edtech/exams";
-import { requireProFeaturePage } from "@/lib/require-pro-feature";
+import { requirePremiumPage } from "@/lib/require-premium-page";
+import { getStudyUsageSnapshot } from "@/lib/study/usage-limits";
+import { resolveMockExamAccess } from "@/lib/study/mock-exam-access";
 import { fullExamHref, ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -35,7 +37,11 @@ export default async function FullExamLauncherPage({
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(fullExamHref(examSlug as ExamSlug))}`);
   }
 
-  await requireProFeaturePage("unlimited_mock_exams", fullExamHref(examSlug as ExamSlug));
+  const access = await requirePremiumPage(fullExamHref(examSlug as ExamSlug));
+  const usage = await getStudyUsageSnapshot(access);
+  const mockAccess = resolveMockExamAccess(usage.limits, usage.plan, {
+    usedTrialMocks: usage.usedTrialMocks,
+  });
 
   const pref = await getUserExamPreference(session.user.id);
   if (!pref) redirect(ROUTES.selectExam);
@@ -55,6 +61,7 @@ export default async function FullExamLauncherPage({
       initialMode={sp.mode ?? null}
       autostart={sp.autostart === "1"}
       initialTimed={sp.timed !== "0"}
+      mockAccess={mockAccess}
     />
   );
 }

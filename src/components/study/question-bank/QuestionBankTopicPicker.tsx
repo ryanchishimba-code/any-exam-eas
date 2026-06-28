@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import { Check, Layers, Loader2, Search } from "lucide-react";
 import { MIXED_SUBJECT_ID, MIXED_SUBJECT_LABEL } from "@/lib/study/question-bank-setup";
 import { subjectVisual } from "@/lib/library/subject-icon";
@@ -8,6 +9,8 @@ import { qbUi } from "@/lib/study/question-bank-ui";
 import { cn } from "@/lib/utils";
 
 type SubjectOption = { id: string; label: string };
+
+const TOPIC_ROW_HEIGHT = 56;
 
 export function QuestionBankTopicPicker({
   subjects,
@@ -27,6 +30,7 @@ export function QuestionBankTopicPicker({
   countsLoading?: boolean;
 }) {
   const [query, setQuery] = useState("");
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -38,6 +42,13 @@ export function QuestionBankTopicPicker({
     if (!subjectCounts) return null;
     return subjects.reduce((sum, s) => sum + (subjectCounts[s.id] ?? 0), 0);
   }, [subjects, subjectCounts]);
+
+  const virtualizer = useVirtualizer({
+    count: filtered.length,
+    getScrollElement: () => scrollRef.current,
+    estimateSize: () => TOPIC_ROW_HEIGHT,
+    overscan: 10,
+  });
 
   return (
     <div className="space-y-2.5">
@@ -60,6 +71,7 @@ export function QuestionBankTopicPicker({
         <div className={qbUi.emptyState}>No topics match &ldquo;{query}&rdquo;</div>
       ) : (
         <div
+          ref={scrollRef}
           className="max-h-[min(52vh,420px)] overflow-y-auto rounded-2xl [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           role="listbox"
           aria-label="Topics"
@@ -72,60 +84,75 @@ export function QuestionBankTopicPicker({
                 onSelect={() => onSubjectChange(MIXED_SUBJECT_ID)}
               />
             ) : null}
-            {filtered.map((subject) => {
-              const selected = subject.id === subjectId;
-              const count = subjectCounts?.[subject.id];
-              const isWeak = weakSubjectIds?.includes(subject.id);
-              const disabled =
-                !countsLoading && typeof count === "number" && count <= 0;
-              const { icon: Icon, tint } = subjectVisual(subject.label);
-              return (
-                <button
-                  key={subject.id}
-                  type="button"
-                  role="option"
-                  aria-selected={selected}
-                  disabled={disabled}
-                  onClick={() => onSubjectChange(subject.id)}
-                  className={cn(
-                    qbUi.listRow,
-                    selected && qbUi.listRowSelected,
-                    disabled && "cursor-not-allowed opacity-45"
-                  )}
-                >
-                  <span
+            <div
+              style={{
+                height: `${virtualizer.getTotalSize()}px`,
+                width: "100%",
+                position: "relative",
+              }}
+            >
+              {virtualizer.getVirtualItems().map((virtualRow) => {
+                const subject = filtered[virtualRow.index];
+                if (!subject) return null;
+                const selected = subject.id === subjectId;
+                const count = subjectCounts?.[subject.id];
+                const isWeak = weakSubjectIds?.includes(subject.id);
+                const disabled =
+                  !countsLoading && typeof count === "number" && count <= 0;
+                const { icon: Icon, tint } = subjectVisual(subject.label);
+                return (
+                  <button
+                    key={subject.id}
+                    type="button"
+                    role="option"
+                    aria-selected={selected}
+                    disabled={disabled}
+                    onClick={() => onSubjectChange(subject.id)}
                     className={cn(
-                      "inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl",
-                      tint
+                      qbUi.listRow,
+                      "absolute left-0 top-0 w-full",
+                      selected && qbUi.listRowSelected,
+                      disabled && "cursor-not-allowed opacity-45"
                     )}
+                    style={{
+                      height: `${virtualRow.size}px`,
+                      transform: `translateY(${virtualRow.start}px)`,
+                    }}
                   >
-                    <Icon className="h-4 w-4" aria-hidden />
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-[13px] font-semibold text-[var(--color-ink)]">
-                      {subject.label}
-                    </p>
-                    {typeof count === "number" ? (
-                      <p className={qbUi.sectionHint}>
-                        {count.toLocaleString()} {count === 1 ? "question" : "questions"}
+                    <span
+                      className={cn(
+                        "inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl",
+                        tint
+                      )}
+                    >
+                      <Icon className="h-4 w-4" aria-hidden />
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-[13px] font-semibold text-[var(--color-ink)]">
+                        {subject.label}
                       </p>
-                    ) : countsLoading ? (
-                      <p className={qbUi.sectionHint}>Loading count…</p>
-                    ) : null}
-                  </div>
-                  <div className="flex shrink-0 items-center gap-1.5">
-                    {isWeak ? (
-                      <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-800">
-                        Weak
-                      </span>
-                    ) : null}
-                    {selected ? (
-                      <Check className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
-                    ) : null}
-                  </div>
-                </button>
-              );
-            })}
+                      {typeof count === "number" ? (
+                        <p className={qbUi.sectionHint}>
+                          {count.toLocaleString()} {count === 1 ? "question" : "questions"}
+                        </p>
+                      ) : countsLoading ? (
+                        <p className={qbUi.sectionHint}>Loading count…</p>
+                      ) : null}
+                    </div>
+                    <div className="flex shrink-0 items-center gap-1.5">
+                      {isWeak ? (
+                        <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-[10px] font-semibold text-amber-800">
+                          Weak
+                        </span>
+                      ) : null}
+                      {selected ? (
+                        <Check className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+                      ) : null}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
       )}

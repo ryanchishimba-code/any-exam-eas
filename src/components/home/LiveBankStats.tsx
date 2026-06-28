@@ -2,26 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { BookOpen, GraduationCap, Layers } from "lucide-react";
-import {
-  formatExactServeReadyCount,
-  MARKETING_QUESTION_COUNTS,
-} from "@/lib/marketing/bank-stats";
-
-type CatalogResponse = {
-  totalQuestions: number;
-  subjects: { fieldId: string; title: string; questionCount: number }[];
-};
-
-type BankCountsResponse = {
-  totalLabel: string;
-  totalQuestionsLabel: string;
-  totalServed: number;
-  degraded?: boolean;
-};
-
-function formatLiveCount(n: number, fallback: string): string {
-  return n > 0 ? formatExactServeReadyCount(n) : fallback;
-}
+import { formatExactServeReadyCount, FALLBACK_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
+import { useLiveBankCounts } from "@/hooks/use-live-bank-counts";
 
 export function LiveBankStats({
   className = "",
@@ -30,36 +12,41 @@ export function LiveBankStats({
   className?: string;
   compact?: boolean;
 }) {
-  const [stats, setStats] = useState<CatalogResponse | null>(null);
-  const [bankCounts, setBankCounts] = useState<BankCountsResponse | null>(null);
+  const { data: bankCounts } = useLiveBankCounts();
+  const [nursingFallback, setNursingFallback] = useState(0);
 
   useEffect(() => {
-    const controller = new AbortController();
-    Promise.all([
-      fetch("/api/catalog/subjects", { signal: controller.signal })
-        .then((r) => (r.ok ? r.json() : null))
-        .catch(() => null),
-      fetch("/api/marketing/bank-counts", { signal: controller.signal })
-        .then((r) => (r.ok ? r.json() : null))
-        .catch(() => null),
-    ]).then(([catalog, counts]) => {
-      setStats(catalog && Array.isArray(catalog.subjects) ? catalog : null);
-      setBankCounts(counts && typeof counts.totalLabel === "string" ? counts : null);
-    });
-    return () => controller.abort();
+    fetch("/api/catalog/subjects")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((catalog) => {
+        if (catalog?.subjects) {
+          const n = catalog.subjects.find(
+            (s: { fieldId: string }) => s.fieldId === "nursing"
+          )?.questionCount;
+          if (typeof n === "number") setNursingFallback(n);
+        }
+      })
+      .catch(() => undefined);
   }, []);
 
-  const total = bankCounts?.totalServed ?? stats?.totalQuestions ?? 0;
-  const nursing =
-    stats?.subjects.find((s) => s.fieldId === "nursing")?.questionCount ?? 0;
+  const totalLabel =
+    bankCounts?.totalLabel && bankCounts.totalLabel !== "—"
+      ? bankCounts.totalLabel
+      : FALLBACK_QUESTION_COUNTS.total;
+
+  const nursingLive = bankCounts?.exams.find((e) => e.slug === "nclex");
+  const nursingLabel =
+    nursingLive?.countLabel && nursingLive.countLabel !== "—"
+      ? nursingLive.countLabel
+      : nursingFallback > 0
+        ? formatExactServeReadyCount(nursingFallback)
+        : FALLBACK_QUESTION_COUNTS.nursing;
 
   const items = [
     {
       icon: BookOpen,
-      value:
-        bankCounts?.totalLabel ??
-        formatLiveCount(total, MARKETING_QUESTION_COUNTS.total),
-      label: "Serve-ready questions",
+      value: totalLabel,
+      label: bankCounts?.degraded ? "Serve-ready questions (est.)" : "Serve-ready questions",
     },
     {
       icon: GraduationCap,
@@ -68,7 +55,7 @@ export function LiveBankStats({
     },
     {
       icon: Layers,
-      value: formatLiveCount(nursing, MARKETING_QUESTION_COUNTS.nursing),
+      value: nursingLabel,
       label: "NCLEX bank",
     },
   ];
@@ -108,9 +95,7 @@ export function LiveBankStats({
             strokeWidth={2}
             aria-hidden
           />
-          <p className="mt-2 text-sm font-bold tracking-tight text-[var(--color-ink)]">
-            {value}
-          </p>
+          <p className="mt-2 text-sm font-bold tracking-tight text-[var(--color-ink)]">{value}</p>
           <p className="mt-0.5 text-[0.625rem] leading-snug text-[var(--color-ink-muted)] sm:text-[0.6875rem]">
             {label}
           </p>

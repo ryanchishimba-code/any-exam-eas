@@ -2,7 +2,8 @@
 
 import { useEffect } from "react";
 import { Facebook, Linkedin, MessageCircle, X } from "lucide-react";
-import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
+import { FALLBACK_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
+import { useLiveBankCounts } from "@/hooks/use-live-bank-counts";
 
 const SITE = "https://www.anyexameasy.com";
 
@@ -12,12 +13,13 @@ type ShareModalProps = {
   examLabel?: string;
 };
 
-function shareText(examLabel: string) {
-  return `I'm studying for my ${examLabel} with Any Exam Easy — ${MARKETING_QUESTION_COUNTS.total} board-style questions and adaptive practice. Join me → ${SITE}`;
-}
-
 export function ShareModal({ open, onClose, examLabel = "board" }: ShareModalProps) {
-  const text = shareText(examLabel);
+  const { data: bankCounts } = useLiveBankCounts();
+  const total =
+    bankCounts?.totalLabel && bankCounts.totalLabel !== "—"
+      ? bankCounts.totalLabel
+      : FALLBACK_QUESTION_COUNTS.total;
+  const text = `I'm studying for my ${examLabel} with Any Exam Easy — ${total} serve-ready questions and adaptive practice. Join me → ${SITE}`;
   const encoded = encodeURIComponent(text);
   const url = encodeURIComponent(SITE);
 

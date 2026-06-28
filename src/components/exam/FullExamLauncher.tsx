@@ -22,6 +22,12 @@ import { feUi } from "@/lib/study/full-exam-ui";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
+import {
+  defaultMockPresetForAccess,
+  filterLengthOptionsForAccess,
+  mockPresetLockedMessage,
+  type MockExamAccess,
+} from "@/lib/study/mock-exam-access";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -29,6 +35,7 @@ type Props = {
   initialMode?: string | null;
   autostart?: boolean;
   initialTimed?: boolean;
+  mockAccess: MockExamAccess;
 };
 
 export function FullExamLauncher({
@@ -36,14 +43,20 @@ export function FullExamLauncher({
   initialMode,
   autostart = false,
   initialTimed = true,
+  mockAccess,
 }: Props) {
   const router = useRouter();
   const exam = EXAM_CATALOG[examSlug];
-  const options = getLengthOptions(examSlug);
+  const allOptions = getLengthOptions(examSlug);
+  const options = filterLengthOptionsForAccess(allOptions, mockAccess);
+  const defaultPreset = defaultMockPresetForAccess(mockAccess);
+  const lockedHint = mockPresetLockedMessage(mockAccess);
 
-  const [preset, setPreset] = useState<FullExamLengthPreset>(() =>
-    initialMode ? parseFullExamLengthPreset(initialMode) : "full"
-  );
+  const [preset, setPreset] = useState<FullExamLengthPreset>(() => {
+    const fromUrl = initialMode ? parseFullExamLengthPreset(initialMode) : null;
+    if (fromUrl && options.some((o) => o.preset === fromUrl)) return fromUrl;
+    return defaultPreset;
+  });
   const [timed, setTimed] = useState(initialTimed);
   const [pending, setPending] = useState(autostart);
   const [error, setError] = useState<string | null>(null);
@@ -100,8 +113,13 @@ export function FullExamLauncher({
   }
 
   useEffect(() => {
-    setPreset(initialMode ? parseFullExamLengthPreset(initialMode) : "full");
-  }, [initialMode]);
+    const fromUrl = initialMode ? parseFullExamLengthPreset(initialMode) : null;
+    if (fromUrl && options.some((o) => o.preset === fromUrl)) {
+      setPreset(fromUrl);
+      return;
+    }
+    setPreset(defaultPreset);
+  }, [initialMode, options, defaultPreset]);
 
   useEffect(() => {
     if (!autostart) return;
@@ -150,6 +168,14 @@ export function FullExamLauncher({
                 Choose length
               </p>
               <FullExamLengthWheel options={options} value={preset} onChange={setPreset} />
+              {lockedHint ? (
+                <p className="text-center text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
+                  {lockedHint}{" "}
+                  <Link href="/pricing?upgrade=pro&feature=unlimited_mock_exams" className="font-semibold text-[var(--color-accent)]">
+                    Compare plans
+                  </Link>
+                </p>
+              ) : null}
               <p
                 className="text-center text-[13px] font-medium tabular-nums text-[var(--color-ink-muted)]"
                 aria-live="polite"

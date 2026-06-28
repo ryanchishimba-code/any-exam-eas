@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { EmbeddedStripeCheckout } from "@/components/EmbeddedStripeCheckout";
 import { PageShell } from "@/components/PageShell";
+import { CheckoutLiveCounts } from "@/components/checkout/CheckoutLiveCounts";
 import { formatTrialCheckoutDescription } from "@/lib/site";
 
 export const metadata = {
@@ -42,6 +43,7 @@ export default async function CheckoutPage({
       }
       maxWidth="max-w-2xl"
     >
+      <CheckoutLiveCounts />
       <Suspense fallback={<p className="mt-8 text-sm text-[var(--color-ink-muted)]">Loading…</p>}>
         <EmbeddedStripeCheckout />
       </Suspense>

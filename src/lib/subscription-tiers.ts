@@ -32,6 +32,7 @@ export type TierDefinition = {
 export const UNIVERSAL_FEATURES = [
   "Full access to all 6 exams (USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, NPTE-PT)",
   "Unlimited question bank & timed practice",
+  "50-question practice mocks on every exam",
   "Proprietary Roadmap tools",
   "Normal Lab Values + Clinical Calculators",
   drugsDeckFeatureLine(),

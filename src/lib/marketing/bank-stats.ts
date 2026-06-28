@@ -23,9 +23,8 @@ export function targetQuestionCountForField(fieldId: string): number {
 }
 
 /**
- * User-facing published bank size per field — reflects the curated serve bank
- * (post quality-trim), never the aspirational generation target. Use for any
- * count shown to users (labels, nav stats, showcase).
+ * Offline fallback floor per field when live DB counts are unavailable.
+ * Prefer `displayQuestionCountForField()` / `getQuestionBankCounts()` for UI.
  */
 export function publishedQuestionCountForField(fieldId: string): number {
   if (fieldId === "usmle-step-2" || fieldId === "usmle") return USMLE_PUBLISHED_BANK_TOTAL;
@@ -78,7 +77,8 @@ export const TOTAL_QUESTION_BANK_TARGET = EXAM_FIELD_IDS.reduce(
 export const PUBLISHED_QUESTION_BANK_TOTAL = 54_809;
 
 /** Offline fallback when live DB counts are unavailable — exact serve-ready floors. */
-export const MARKETING_QUESTION_COUNTS = {
+/** Offline fallback labels — use live counts from `/api/marketing/bank-counts` in UI. */
+export const FALLBACK_QUESTION_COUNTS = {
   total: formatExactServeReadyCount(PUBLISHED_QUESTION_BANK_TOTAL),
   nursing: formatExactServeReadyCount(publishedQuestionCountForField("nursing")),
   usmle: formatExactServeReadyCount(USMLE_PUBLISHED_BANK_TOTAL),
@@ -87,6 +87,9 @@ export const MARKETING_QUESTION_COUNTS = {
   aanpFnp: formatExactServeReadyCount(publishedQuestionCountForField("aanp-fnp")),
   nptePt: formatExactServeReadyCount(publishedQuestionCountForField("npte-pt")),
 } as const;
+
+/** @deprecated Use FALLBACK_QUESTION_COUNTS or live bank-counts API. */
+export const MARKETING_QUESTION_COUNTS = FALLBACK_QUESTION_COUNTS;
 
 export const TOP_500_DRUGS_COUNT = TOP_500_COUNT;
 

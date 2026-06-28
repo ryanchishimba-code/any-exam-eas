@@ -97,6 +97,17 @@ export async function countMockExamsThisMonth(userId: string): Promise<number> {
   });
 }
 
+export async function countTrialMocks(userId: string): Promise<number> {
+  const since = await trialPeriodStart(userId);
+  return prisma.examSession.count({
+    where: {
+      userId,
+      createdAt: { gte: since },
+      questionCount: { gte: MOCK_EXAM_MIN_QUESTIONS },
+    },
+  });
+}
+
 export type StudyUsageSnapshot = {
   plan: StudyUsagePlan;
   limits: StudyUsageLimits;
@@ -105,6 +116,8 @@ export type StudyUsageSnapshot = {
   usedTrialTotal: number | null;
   remainingTrialTotal: number | null;
   mockExamsThisMonth: number;
+  usedTrialMocks: number | null;
+  remainingTrialMocks: number | null;
 };
 
 export async function getStudyUsageSnapshot(
@@ -122,6 +135,8 @@ export async function getStudyUsageSnapshot(
       usedTrialTotal: null,
       remainingTrialTotal: null,
       mockExamsThisMonth: 0,
+      usedTrialMocks: null,
+      remainingTrialMocks: null,
     };
   }
 
@@ -139,6 +154,13 @@ export async function getStudyUsageSnapshot(
     remainingTrialTotal = Math.max(0, limits.trialLifetimeQuestions - usedTrialTotal);
   }
 
+  let usedTrialMocks: number | null = null;
+  let remainingTrialMocks: number | null = null;
+  if (plan === "trial" && limits.trialMockAllowance != null) {
+    usedTrialMocks = await countTrialMocks(access.userId);
+    remainingTrialMocks = Math.max(0, limits.trialMockAllowance - usedTrialMocks);
+  }
+
   const mockExamsThisMonth = planHasQuestionAccessLimits(plan)
     ? await countMockExamsThisMonth(access.userId)
     : 0;
@@ -151,6 +173,8 @@ export async function getStudyUsageSnapshot(
     usedTrialTotal,
     remainingTrialTotal,
     mockExamsThisMonth,
+    usedTrialMocks,
+    remainingTrialMocks,
   };
 }
 
@@ -161,6 +185,7 @@ export type StudyUsageCheckInput = {
   timedExam?: boolean;
   presetExam?: boolean;
   adaptive?: boolean;
+  shortMock?: boolean;
   fullLengthMock?: boolean;
 };
 
@@ -230,9 +255,45 @@ export async function checkStudyQuestionUsage(
         {
           error:
             plan === "trial"
-              ? "Full-length mock exams unlock with a paid subscription. Try a 25-question timed drill on your trial."
-              : "Full-length mock exams are a Pro feature. Basic includes unlimited question bank access and timed practice.",
+              ? "Full-length mock exams unlock with Pro. Your trial includes one 50-question mock."
+              : "Full-length mock exams are a Pro feature. Basic includes unlimited 50-question mocks.",
           code: plan === "trial" ? "TRIAL_MOCK_LOCKED" : "PRO_MOCK_LOCKED",
+          plan,
+          upgradeUrl: upgradeUrl(plan, "full_mock"),
+        },
+        { status: 403 }
+      ),
+    };
+  }
+
+  if (input.shortMock && !limits.allowShortMocks) {
+    return {
+      ok: false,
+      response: NextResponse.json(
+        {
+          error: "Mock exams unlock with a paid subscription.",
+          code: "MOCK_LOCKED",
+          plan,
+          upgradeUrl: upgradeUrl(plan, "full_mock"),
+        },
+        { status: 403 }
+      ),
+    };
+  }
+
+  if (
+    input.shortMock &&
+    plan === "trial" &&
+    limits.trialMockAllowance != null &&
+    snapshot.usedTrialMocks != null &&
+    snapshot.usedTrialMocks >= limits.trialMockAllowance
+  ) {
+    return {
+      ok: false,
+      response: NextResponse.json(
+        {
+          error: `Your trial includes ${limits.trialMockAllowance} mock exam. Upgrade for unlimited mocks and full-length simulations.`,
+          code: "TRIAL_MOCK_USED",
           plan,
           upgradeUrl: upgradeUrl(plan, "full_mock"),
         },
@@ -309,9 +370,11 @@ export async function checkMockExamStart(input: {
   presetExam?: boolean;
   lengthPreset?: string;
 }): Promise<StudyUsageCheckResult> {
+  const isShortMock = input.lengthPreset === "50";
   const isFullLength =
     input.lengthPreset === "full" ||
-    input.questionCount >= MOCK_EXAM_MIN_QUESTIONS;
+    input.lengthPreset === "100" ||
+    (!isShortMock && input.questionCount >= 100);
 
   if (input.presetExam) {
     return checkStudyQuestionUsage({
@@ -333,13 +396,22 @@ export async function checkMockExamStart(input: {
     });
   }
 
+  if (isShortMock || input.questionCount >= MOCK_EXAM_MIN_QUESTIONS) {
+    return checkStudyQuestionUsage({
+      userId: input.userId,
+      access: input.access,
+      requestedCount: input.questionCount,
+      timedExam: true,
+      shortMock: true,
+    });
+  }
+
   return checkStudyQuestionUsage({
     userId: input.userId,
     access: input.access,
     requestedCount: input.questionCount,
     timedExam: true,
     presetExam: input.presetExam,
-    fullLengthMock: isFullLength,
   });
 }
 

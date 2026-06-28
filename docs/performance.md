@@ -6,6 +6,7 @@ Target: **sub-3s** first meaningful paint for exam selection and question-bank h
 
 - **Never OFFSET wide rows** (`options`, `explanation`). Use id-only random start + contiguous id window via `sampleQuestionBankRows` in `src/lib/question-bank/random-sample.ts`.
 - **Index serve paths**: `fieldId + active + qaPassed`, `fieldId + subjectId + active + qaPassed`, and partial index on serve-ready rows. See `prisma/migrations/20260623120000_question_bank_perf_indexes/`.
+- **Apply indexes on Neon**: `npm run db:apply-perf-indexes` (uses `CREATE INDEX IF NOT EXISTS` — safe to re-run).
 - **Cache counts** in-process (`fieldTotalCache`, `curatedTotalCache`) and via `cacheGetOrSet` (`CACHE_TTL.subjectCatalog`, 30m) for catalog metadata.
 - **Prefer pre-composed full exams** (NCLEX/NAPLEX presets) over runtime sampling for timed simulators when possible.
 
@@ -30,6 +31,8 @@ Rules:
 - **Question bank hub**: SSR seed subject counts via `QuestionBankPracticeLoader`; skip duplicate client fetch when `initialSubjectCountsFieldId` matches.
 - **Defer heavy SSR**: avoid `getStudentDashboardData` on question-bank page; load hub stats lazily if needed.
 - **Session player**: `dynamic()` import for `StudySessionPlayer`; memoize heavy list components.
+- **Topic picker**: virtualized list via `@tanstack/react-virtual` in `QuestionBankTopicPicker`.
+- **Live counts**: `/api/marketing/bank-counts` + React Query (`useLiveBankCounts`) — never inflate static marketing totals.
 - **Timed exams**: `skipRuntimeGate` when items are pre-vetted in `gatherTimedExamBankItems`; cap FullExamSimulator retries at 2.
 
 ## Caching layers
