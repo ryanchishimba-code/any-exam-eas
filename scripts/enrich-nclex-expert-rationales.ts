@@ -17,7 +17,7 @@ loadEnvFiles();
 
 import { PrismaClient } from "@prisma/client";
 import { isNclexServeQuality } from "../src/lib/exam-prep/nclex-quality-gate";
-import { EXPERT_RATIONALE_META_KEY, EXPERT_RATIONALE_VERSION } from "../src/lib/engine/rationale/expert-rationale-types";
+import { EXPERT_RATIONALE_META_KEY, EXPERT_RATIONALE_VERSION, readExpertRationaleFromMeta } from "../src/lib/engine/rationale/expert-rationale-types";
 import { generateExpertNclexRationale } from "../src/lib/engine/rationale/generate-expert-rationale";
 import { needsRationaleEnrichment, rationaleInputFromBankItem } from "../src/lib/engine/rationale";
 import { enrichBankItemFromRow, serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
@@ -80,6 +80,11 @@ async function main() {
       if (enriched >= limit) break;
       scanned++;
       lastId = row.id;
+
+      if (!force && readExpertRationaleFromMeta(row.generationMeta)) {
+        skipped++;
+        continue;
+      }
 
       const item = enrichBankItemFromRow(row);
       if (serveOnly && !isNclexServeQuality(item, { source: row.source })) {
