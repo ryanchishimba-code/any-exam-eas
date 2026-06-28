@@ -15,6 +15,10 @@ const BLOCKING_WARN_CODES = new Set([
   "naplex_explanation_short",
   "naplex_controlled_substance_mismatch",
   "naplex_stem_option_mismatch",
+  "naplex_stem_format_mismatch",
+  "naplex_conflicting_lead_ins",
+  "naplex_mcq_missing_correct_option",
+  "naplex_calc_stem_on_mcq",
 ]);
 
 export type NaplexQualityVerdict = {

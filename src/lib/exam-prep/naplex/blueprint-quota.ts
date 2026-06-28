@@ -139,7 +139,7 @@ const HIGH_YIELD_BY_AREA: Record<NaplexBlueprintAreaId, string[]> = {
   "naplex-2026-health-wellness": NAPLEX_2026_BLUEPRINT.categories[5]!.highYieldTopics!,
 };
 
-const STEM_FORMATS = [
+const MCQ_STEM_FORMATS = [
   "Which recommendation is most appropriate for this patient?",
   "Which action should the pharmacist take first?",
   "Which finding requires immediate follow-up?",
@@ -151,6 +151,18 @@ const STEM_FORMATS = [
   "Which statement by the patient indicates a need for further counseling?",
   "Which laboratory value warrants a therapeutic change?",
 ] as const;
+
+const CALC_STEM_FORMATS = [
+  "Calculate the dose in mg. Round to the nearest whole number.",
+  "How many tablets should be dispensed for this order?",
+  "At what rate (mL/hr) should the infusion pump be set? Round to the nearest whole number.",
+  "What is the total volume in mL? Round to one decimal place.",
+  "How many milligrams of drug are required for this preparation?",
+  "Calculate the concentration in mg/mL. Round to two decimal places.",
+] as const;
+
+/** @deprecated Use pickStemFormat(slot) — kept for tests importing STEM_FORMATS length. */
+export const STEM_FORMATS = MCQ_STEM_FORMATS;
 
 function resolveSubjectId(slot: { categoryId: string; subjectIds?: string[] }): string {
   return slot.subjectIds?.[0] ?? "pharmacology";
@@ -174,8 +186,9 @@ function pickTopic(area: NaplexBlueprintAreaId, index: number, examSeed: number)
   return topics[(index + examSeed) % topics.length]!;
 }
 
-function pickStemFormat(index: number, examSeed: number): string {
-  return STEM_FORMATS[(index + examSeed) % STEM_FORMATS.length]!;
+function pickStemFormat(index: number, examSeed: number, questionFormat: NaplexQuestionFormat): string {
+  const pool = questionFormat === "constructed_response" ? CALC_STEM_FORMATS : MCQ_STEM_FORMATS;
+  return pool[(index + examSeed) % pool.length]!;
 }
 
 /** Plan all slots for one full-length NAPLEX practice exam. */
@@ -199,7 +212,7 @@ export function planNaplexFullExamSlots(params: {
       blueprintArea,
       blueprintTopic: pickTopic(blueprintArea, slotIndex, examSeed),
       difficulty: 2 + ((slotIndex + examSeed) % 4),
-      stemFormat: pickStemFormat(slotIndex, examSeed),
+      stemFormat: pickStemFormat(slotIndex, examSeed, questionFormat),
       questionFormat,
     };
   });

@@ -9,6 +9,7 @@ import {
   explanationCorrectMismatch,
 } from "@/lib/exam-prep/naplex-answer-align";
 import { naplexStemOptionDrugMismatch } from "@/lib/exam-prep/naplex-stem-coherence";
+import { detectNaplexFormatIssues } from "@/lib/exam-prep/naplex-format-coherence";
 
 export type NaplexAuditIssue = {
   code: string;
@@ -196,6 +197,10 @@ export function auditNaplexBankItem(item: BankItem): NaplexAuditReport {
       "naplex_stem_option_mismatch",
       `Options or explanation reference ${mismatchedDrug}, which does not appear in the vignette or stem.`
     );
+  }
+
+  for (const issue of detectNaplexFormatIssues(item)) {
+    push(issue.severity, issue.code, issue.message);
   }
 
   const errors = issues.filter((i) => i.severity === "error");

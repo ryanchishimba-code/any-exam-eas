@@ -306,7 +306,13 @@ export function itemStillHasAuditGap(item: BankItem): boolean {
     (i) =>
       i.code === "naplex_missing_clinical_data" ||
       i.code === "naplex_stem_lead_in" ||
-      i.code === "naplex_explanation_short"
+      i.code === "naplex_explanation_short" ||
+      i.code === "naplex_stem_format_mismatch" ||
+      i.code === "naplex_conflicting_lead_ins" ||
+      i.code === "naplex_mcq_missing_correct_option" ||
+      i.code === "naplex_calc_stem_on_mcq" ||
+      i.code === "correct_not_in_options" ||
+      i.code === "constructed_response_not_numeric"
   );
 }
 

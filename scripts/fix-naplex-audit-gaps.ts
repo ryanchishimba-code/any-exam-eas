@@ -12,6 +12,7 @@ import {
   fixNaplexAuditGaps,
   itemStillHasAuditGap,
 } from "../src/lib/exam-prep/naplex-audit-gap-fixes";
+import { fixNaplexFormatCoherence } from "../src/lib/exam-prep/naplex-format-coherence";
 import { isNaplexBestQuality } from "../src/lib/exam-prep/naplex-quality-gate";
 import { enrichBankItemFromRow, serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
 import { bankItemContentHash } from "../src/lib/sync-question-bank";
@@ -39,7 +40,16 @@ async function main() {
     if (!beforeGap) continue;
 
     const { item: fixed, changed } = fixNaplexAuditGaps(before, row.id);
-    if (!changed) {
+    let working = fixed;
+    let anyChanged = changed;
+
+    const formatFix = fixNaplexFormatCoherence(working);
+    if (formatFix.changed) {
+      working = formatFix.item;
+      anyChanged = true;
+    }
+
+    if (!anyChanged) {
       if (beforeGap) {
         stillGapped++;
         remaining.push({
@@ -50,19 +60,20 @@ async function main() {
       continue;
     }
 
-    const afterGap = itemStillHasAuditGap(fixed);
-    const qaPassed = isNaplexBestQuality(fixed, { source: row.source });
+    const afterGap = itemStillHasAuditGap(working);
+    const qaPassed = isNaplexBestQuality(working, { source: row.source });
 
     if (!dryRun) {
       await prisma.questionBankItem.update({
         where: { id: row.id },
         data: {
-          scenario: fixed.vignette ?? fixed.scenario ?? null,
-          question: fixed.question,
-          options: serializeBankOptions(fixed),
-          correctAnswer: fixed.correctAnswer,
-          explanation: fixed.explanation,
-          contentHash: bankItemContentHash("pharmacy", fixed.subjectId, fixed),
+          scenario: working.vignette ?? working.scenario ?? null,
+          question: working.question,
+          options: serializeBankOptions(working),
+          correctAnswer: working.correctAnswer,
+          explanation: working.explanation,
+          itemType: working.itemType ?? row.itemType,
+          contentHash: bankItemContentHash("pharmacy", working.subjectId, working),
           qaPassed,
           qaAuditedAt: new Date(),
           updatedAt: new Date(),
@@ -75,7 +86,7 @@ async function main() {
       stillGapped++;
       remaining.push({
         id: row.id,
-        codes: auditNaplexBankItem(fixed).issues.map((i) => i.code),
+        codes: auditNaplexBankItem(working).issues.map((i) => i.code),
       });
     }
   }
