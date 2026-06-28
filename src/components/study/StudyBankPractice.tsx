@@ -87,14 +87,14 @@ import {
   weakSubjectIdsForField,
 } from "@/lib/study/question-bank-weak-topics";
 import { TopicPracticeReturnBanner } from "./TopicPracticeReturnBanner";
+import { QuestionSessionSkeleton } from "./QuestionSessionSkeleton";
+import { useSubjectCounts } from "@/hooks/use-subject-counts";
 import type { ExamSlug } from "@/types/edtech";
 
 const StudySessionPlayer = dynamic(
   () => import("./StudySessionPlayer").then((m) => m.StudySessionPlayer),
   {
-    loading: () => (
-      <p className="py-8 text-center text-sm text-[var(--color-ink-muted)]">Loading session…</p>
-    ),
+    loading: () => <QuestionSessionSkeleton />,
   }
 );
 
@@ -281,10 +281,6 @@ export function StudyBankPractice({
   const [error, setError] = useState("");
   const [upgradeHref, setUpgradeHref] = useState<string | null>(null);
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
-  const [subjectCounts, setSubjectCounts] = useState<Record<string, number> | null>(
-    initialSubjectCounts ?? null
-  );
-  const [countsLoading, setCountsLoading] = useState(() => initialSubjectCounts == null);
   const autostartRequested = searchParams.get("autostart") === "1";
   const autostartAttempted = useRef(false);
   const crossExamFieldSyncRef = useRef<string | null>(null);
@@ -301,6 +297,13 @@ export function StudyBankPractice({
     }
     return resolveFieldId(field);
   }, [field, fieldParam]);
+  const {
+    data: subjectCounts = null,
+    isLoading: countsLoading,
+  } = useSubjectCounts(fieldId, {
+    initialCounts: initialSubjectCounts ?? null,
+    initialFieldId: initialSubjectCountsFieldId ?? null,
+  });
   const subjects = useMemo(() => getSubjectsForFieldId(fieldId), [fieldId]);
   const bankSubjectIds = useMemo(() => subjects.map((s) => s.id), [subjects]);
   const weakSubjectIds = useMemo(
@@ -308,70 +311,6 @@ export function StudyBankPractice({
     [weakTopics, fieldId, bankSubjectIds]
   );
 
-  // Live serve-accurate counts per topic. Seed from server prefetch when available,
-  // then refresh on field change so step/exam switches stay accurate.
-  useEffect(() => {
-    let cancelled = false;
-    const seededForField =
-      initialSubjectCountsFieldId === fieldId && initialSubjectCounts;
-    if (seededForField) {
-      setSubjectCounts(initialSubjectCounts);
-      setCountsLoading(false);
-      return () => {
-        cancelled = true;
-      };
-    }
-
-    setCountsLoading(true);
-    if (initialSubjectCountsFieldId && initialSubjectCountsFieldId !== fieldId) {
-      setSubjectCounts(null);
-    }
-
-    fetch(`/api/questions/subject-counts?field=${encodeURIComponent(fieldId)}`, {
-      cache: "force-cache",
-    })
-      .then(async (r) => {
-        const data = r.ok ? await r.json() : null;
-        return { ok: r.ok, data, status: r.status };
-      })
-      .then(({ ok, data, status }) => {
-        if (cancelled) return;
-        if (ok && data?.counts && Object.keys(data.counts).length > 0) {
-          setSubjectCounts(data.counts as Record<string, number>);
-          return;
-        }
-        if (status === 503 && data?.dbError && !cancelled) {
-          window.setTimeout(() => {
-            if (cancelled) return;
-            fetch(`/api/questions/subject-counts?field=${encodeURIComponent(fieldId)}`, {
-              cache: "no-store",
-            })
-              .then((r) => (r.ok ? r.json() : null))
-              .then((retryData) => {
-                if (
-                  !cancelled &&
-                  retryData?.counts &&
-                  Object.keys(retryData.counts).length > 0
-                ) {
-                  setSubjectCounts(retryData.counts as Record<string, number>);
-                }
-              })
-              .catch(() => undefined);
-          }, 600);
-        }
-      })
-      .catch(() => {
-        if (!cancelled && initialSubjectCountsFieldId !== fieldId) {
-          setSubjectCounts(null);
-        }
-      })
-      .finally(() => {
-        if (!cancelled) setCountsLoading(false);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [fieldId, initialSubjectCounts, initialSubjectCountsFieldId]);
   const isNclex = useMemo(() => isNclexField(field), [field]);
   const isMpje = useMemo(() => isMpjeField(fieldId), [fieldId]);
   const hubMode = resolvePracticeModeFromParams({

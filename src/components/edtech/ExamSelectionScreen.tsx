@@ -42,28 +42,19 @@ function FloatingBackground() {
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(20,184,166,0.12),transparent_55%)] dark:bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(45,212,191,0.08),transparent_55%)]" />
-      {FLOATING_ICONS.map(({ Icon, className }, i) => (
-        <motion.div
-          key={i}
-          className={cn("absolute", className)}
-          animate={
-            reduceMotion
-              ? undefined
-              : {
-                  y: [0, -12, 0],
-                  opacity: [0.4, 0.7, 0.4],
-                }
-          }
-          transition={{
-            duration: 6 + i * 0.8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        >
-          <Icon className="h-10 w-10 sm:h-14 sm:w-14" strokeWidth={1.25} />
-        </motion.div>
-      ))}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(79,70,229,0.06),transparent_55%)] dark:bg-[radial-gradient(ellipse_120%_80%_at_50%_-20%,rgba(46,231,220,0.05),transparent_55%)]" />
+      {!reduceMotion
+        ? FLOATING_ICONS.slice(0, 2).map(({ Icon, className }, i) => (
+            <motion.div
+              key={i}
+              className={cn("absolute opacity-40", className)}
+              animate={{ y: [0, -8, 0], opacity: [0.25, 0.45, 0.25] }}
+              transition={{ duration: 8 + i, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <Icon className="h-8 w-8 sm:h-10 sm:w-10" strokeWidth={1.25} />
+            </motion.div>
+          ))
+        : null}
     </div>
   );
 }

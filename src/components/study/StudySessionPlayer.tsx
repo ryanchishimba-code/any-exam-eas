@@ -43,6 +43,7 @@ import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { StudyThisTopicButton } from "./StudyThisTopicButton";
 import { resolveStudyLinksFromQuestion } from "@/lib/library/question-study-links";
 import { Flag, AlertTriangle } from "lucide-react";
+import { studyUi } from "@/lib/study/study-ui";
 import {
   ReportQuestionDialog,
   buildReportContext,
@@ -413,8 +414,34 @@ export function StudySessionPlayer({
   }
 
   useEffect(() => {
+    function isEditableTarget(target: EventTarget | null) {
+      if (!(target instanceof HTMLElement)) return false;
+      const tag = target.tagName;
+      return (
+        tag === "INPUT" ||
+        tag === "TEXTAREA" ||
+        tag === "SELECT" ||
+        target.isContentEditable
+      );
+    }
+
     function onKey(e: KeyboardEvent) {
-      if (!current || answer?.revealed) return;
+      if (isEditableTarget(e.target)) return;
+
+      if (answer?.revealed) {
+        const key = e.key.toLowerCase();
+        if (key === "j" || key === "arrowright" || key === "l") {
+          e.preventDefault();
+          goNext();
+        }
+        if (key === "k" || key === "arrowleft" || key === "h") {
+          e.preventDefault();
+          goPrev();
+        }
+        return;
+      }
+
+      if (!current) return;
       const num = Number(e.key);
       if (num >= 1 && num <= current.options.length) {
         toggleSelect(current.options[num - 1]);
@@ -499,7 +526,7 @@ export function StudySessionPlayer({
 
   return (
     <div
-      className="mt-8 space-y-4"
+      className={`${studyUi.sessionShell} mt-8`}
       onTouchStart={(e) => {
         touchStart.current = e.touches[0].clientX;
       }}
@@ -523,16 +550,16 @@ export function StudySessionPlayer({
         />
       </div>
 
-      <div className="h-1.5 overflow-hidden rounded-full bg-black/[0.06]">
+      <div className={studyUi.sessionProgress} role="progressbar" aria-valuenow={Math.round(progressPct)} aria-valuemin={0} aria-valuemax={100} aria-label="Session progress">
         <div
-          className="h-full bg-[var(--color-accent)] transition-[width] duration-200 ease-out"
+          className={studyUi.sessionProgressFill}
           style={{ width: `${progressPct}%` }}
         />
       </div>
 
       <article
         key={current.id}
-        className="aee-question-enter rounded-2xl border border-black/[0.08] bg-white p-4 shadow-sm sm:p-6 md:p-8"
+        className={`${studyUi.sessionCard} space-y-4 p-4 sm:p-6 md:p-8`}
       >
           {(sessionState.mode === "adaptive" ||
             sessionState.mode === "weak_area" ||
@@ -584,7 +611,7 @@ export function StudySessionPlayer({
               type="button"
               disabled={!canSubmitSelection()}
               onClick={() => void revealAnswer(selected)}
-              className="mt-8 w-full rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-medium text-white disabled:opacity-40 sm:w-auto sm:px-10"
+              className={`mt-8 w-full sm:w-auto sm:px-10 ${studyUi.sessionPrimaryBtn}`}
             >
               {current.type === "ordered_response" &&
               selected.length !== current.correctAnswers.length
@@ -650,7 +677,7 @@ export function StudySessionPlayer({
           type="button"
           onClick={goPrev}
           disabled={sessionState.currentIndex === 0}
-          className="w-full rounded-full border px-5 py-2.5 text-sm disabled:opacity-30 sm:w-auto"
+          className={`w-full sm:w-auto ${studyUi.sessionGhostBtn}`}
         >
           Back
         </button>
@@ -658,11 +685,24 @@ export function StudySessionPlayer({
           type="button"
           onClick={() => (answer?.revealed ? goNext() : void revealAnswer(selected))}
           disabled={!answer?.revealed && !selected.length}
-          className="w-full rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-medium text-white disabled:opacity-40 sm:w-auto"
+          className={`w-full sm:w-auto ${studyUi.sessionPrimaryBtn}`}
         >
           Next
         </button>
       </div>
+      ) : null}
+
+      {answer?.revealed && !showReturnActions && !showCompletion ? (
+        <p className={studyUi.keyboardHint} aria-hidden>
+          <kbd className="rounded border border-[var(--color-border)]/60 px-1.5 py-0.5 font-sans">J</kbd>
+          {" / "}
+          <kbd className="rounded border border-[var(--color-border)]/60 px-1.5 py-0.5 font-sans">K</kbd>
+          {" to navigate · "}
+          <kbd className="rounded border border-[var(--color-border)]/60 px-1.5 py-0.5 font-sans">1</kbd>
+          –
+          <kbd className="rounded border border-[var(--color-border)]/60 px-1.5 py-0.5 font-sans">9</kbd>
+          {" select on next question"}
+        </p>
       ) : null}
 
       <ReportQuestionDialog

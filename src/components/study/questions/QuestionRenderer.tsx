@@ -1,8 +1,11 @@
 "use client";
 
+import { memo, useState } from "react";
 import type { SequentialSetContext } from "@/lib/questions/sequential-sets";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { cleanOptionText } from "@/lib/question-format";
+import { StructuredRationalePanel } from "./StructuredRationalePanel";
+import { parseRationaleForDisplay } from "@/lib/engine/rationale/parse-rationale-display";
 import { NgnCjmmNote, NgnTypeInstructions, VignetteBlock } from "./NgnChrome";
 import {
   BowTieQuestion,
@@ -44,7 +47,7 @@ type Props = {
   sequentialContext?: SequentialSetContext | null;
 };
 
-export function QuestionRenderer({
+export const QuestionRenderer = memo(function QuestionRenderer({
   question,
   selected,
   revealed,
@@ -216,7 +219,7 @@ export function QuestionRenderer({
       )}
     </>
   );
-}
+});
 
 export function ExplanationPanel({
   question,
@@ -225,11 +228,23 @@ export function ExplanationPanel({
   question: StudyQuestion;
   field?: string;
 }) {
+  const [expanded, setExpanded] = useState(false);
   const examSlug = (field ? examSlugFromFieldId(field) : null) ?? "nclex";
+
+  const parsed = parseRationaleForDisplay(question.explanation);
+  const hasDeepContent =
+    Boolean(question.clinicalReasoning && !parsed.isStructured) ||
+    Boolean(
+      question.distractorRationale &&
+        !parsed.isStructured &&
+        Object.keys(question.distractorRationale).length > 0
+    ) ||
+    Boolean(question.solutionSteps?.length && !parsed.keyTakeaway) ||
+    Boolean(question.references?.length);
 
   return (
     <div className="mt-6 space-y-4">
-      <div className="rounded-xl bg-[var(--color-surface)] p-4">
+      <div className="rounded-xl border border-[var(--color-border)]/60 bg-[var(--color-surface)]/80 p-4 backdrop-blur-sm">
         <div className="flex items-center justify-between gap-2">
           <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
             Rationale
@@ -238,12 +253,30 @@ export function ExplanationPanel({
             AI-assisted
           </span>
         </div>
-        <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink)]">
-          {question.explanation}
-        </p>
+        {expanded ? (
+          <StructuredRationalePanel question={question} />
+        ) : (
+          <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+            {parsed.keyTakeaway ||
+              parsed.whyCorrectHeadline ||
+              parsed.legacyBody?.slice(0, 220) ||
+              question.explanation?.slice(0, 220) ||
+              "Tap below for the full breakdown."}
+          </p>
+        )}
+        {(hasDeepContent || !expanded) && (
+          <button
+            type="button"
+            onClick={() => setExpanded((v) => !v)}
+            className="mt-3 text-sm font-semibold text-[var(--color-accent)] transition hover:opacity-80"
+            aria-expanded={expanded}
+          >
+            {expanded ? "Show less" : "View full explanation"}
+          </button>
+        )}
       </div>
 
-      {question.clinicalReasoning && (
+      {expanded && question.clinicalReasoning && !parsed.isStructured && (
         <div className="rounded-xl border border-[var(--color-accent)]/15 bg-[var(--color-accent)]/5 p-4">
           <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)]">
             Clinical reasoning
@@ -254,7 +287,9 @@ export function ExplanationPanel({
         </div>
       )}
 
-      {question.distractorRationale &&
+      {expanded &&
+        question.distractorRationale &&
+        !parsed.isStructured &&
         Object.keys(question.distractorRationale).length > 0 && (
           <div className="rounded-xl border border-black/[0.06] p-4">
             <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
@@ -273,7 +308,10 @@ export function ExplanationPanel({
           </div>
         )}
 
-      {question.solutionSteps && question.solutionSteps.length > 0 && (
+      {expanded &&
+        question.solutionSteps &&
+        question.solutionSteps.length > 0 &&
+        !parsed.keyTakeaway && (
         <div className="rounded-xl border border-emerald-200/60 bg-emerald-50/40 p-4">
           <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
             Key takeaway
@@ -288,9 +326,9 @@ export function ExplanationPanel({
         </div>
       )}
 
-      <QuestionRelatedLinks question={question} examSlug={examSlug} />
+      {expanded && <QuestionRelatedLinks question={question} examSlug={examSlug} />}
 
-      {question.references && question.references.length > 0 && (
+      {expanded && question.references && question.references.length > 0 && (
         <div className="text-xs text-[var(--color-ink-muted)]">
           <span className="font-semibold uppercase tracking-wide">Sources</span>
           <ul className="mt-1 list-inside list-disc">

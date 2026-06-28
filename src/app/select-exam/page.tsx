@@ -27,11 +27,10 @@ export default async function SelectExamPage({ searchParams }: PageProps) {
   const params = await searchParams;
   const switchMode = params.switch === "1" || params.switch === "true";
 
-  try {
-    await ensureAllBoardExams();
-  } catch (err) {
+  // Non-blocking bootstrap — page renders immediately; sync runs in background.
+  void ensureAllBoardExams().catch((err) => {
     console.error("[select-exam] board exam bootstrap failed:", err);
-  }
+  });
 
   const pref = await getUserExamPreference(session.user.id);
 

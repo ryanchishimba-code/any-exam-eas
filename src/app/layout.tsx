@@ -7,6 +7,8 @@ import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { ShareFabLazy } from "@/components/share/ShareFabLazy";
 import { RootChrome } from "@/components/layout/RootChrome";
 import { ClientRecovery } from "@/components/ClientRecovery";
+import { PwaRegister } from "@/components/PwaRegister";
+import { AppQueryProvider } from "@/lib/client/query-provider";
 import { ThemeScript } from "@/components/theme/ThemeScript";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { buildRootMetadata } from "@/lib/seo";
@@ -28,15 +30,18 @@ export default function RootLayout({
           Skip to main content
         </a>
         <ThemeProvider>
-          <GoogleAnalytics />
-          <SessionProvider>
-            <LoginModalRoot>
-              <ClientRecovery />
-            <PageViewTrackerBoundary />
-            <RootChrome>{children}</RootChrome>
-            <ShareFabLazy />
-          </LoginModalRoot>
-        </SessionProvider>
+          <AppQueryProvider>
+            <GoogleAnalytics />
+            <SessionProvider>
+              <LoginModalRoot>
+                <ClientRecovery />
+                <PwaRegister />
+                <PageViewTrackerBoundary />
+                <RootChrome>{children}</RootChrome>
+                <ShareFabLazy />
+              </LoginModalRoot>
+            </SessionProvider>
+          </AppQueryProvider>
         </ThemeProvider>
       </body>
     </html>
