@@ -24,7 +24,7 @@ export function usmleExamQuestionHasClinicalScenario(question: ExamQuestion): bo
 }
 
 /** Basic structural gate for items that do not use clinical vignettes. */
-function usmleItemPassesBasicMcqGate(item: BankItem): boolean {
+export function usmleBankItemPassesBasicTimedGate(item: BankItem, _fieldId?: string): boolean {
   if (!item.question?.trim() || item.question.trim().length < 12) return false;
   if (!item.correctAnswer?.trim()) return false;
   if ((item.options?.length ?? 0) < 4) return false;
@@ -37,17 +37,27 @@ function usmleItemPassesBasicMcqGate(item: BankItem): boolean {
   return item.options.some((o) => o.trim() === item.correctAnswer.trim());
 }
 
+/** Last-resort timed gate — DB rows are qaPassed; only require answerable MCQ shape. */
+export function usmleBankItemPassesMinimalTimedGate(item: BankItem): boolean {
+  const normalized = normalizeUsmleBankItemFields(item);
+  if (!normalized.question?.trim() || normalized.question.trim().length < 8) return false;
+  if (!normalized.correctAnswer?.trim()) return false;
+  if ((normalized.options?.length ?? 0) < 2) return false;
+  if (!normalized.explanation?.trim() || normalized.explanation.trim().length < 16) return false;
+  return true;
+}
+
 /** Structural checks only — trust qaPassed on timed pulls (skip editorial re-audit). */
 export function usmleBankItemPassesStructuralGate(item: BankItem, fieldId: string): boolean {
   const normalized = normalizeUsmleBankItemFields(item);
   const itemType = normalized.itemType ?? "mcq";
 
   if (fieldId === "usmle-step-3" && USMLE_STEP3_NON_VIGNETTE_ITEM_TYPES.has(itemType)) {
-    return usmleItemPassesBasicMcqGate(normalized);
+    return usmleBankItemPassesBasicTimedGate(normalized, fieldId);
   }
 
   if (fieldId === "usmle-step-1") {
-    return usmleItemPassesBasicMcqGate(normalized);
+    return usmleBankItemPassesBasicTimedGate(normalized, fieldId);
   }
 
   if (!usmleBankItemHasClinicalScenario(normalized)) return false;

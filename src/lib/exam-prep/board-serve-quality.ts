@@ -64,6 +64,14 @@ export function rawQuestionMeetsRelaxedBoardBar(q: RawQuestionInput): boolean {
   });
 }
 
+/** Minimal structural bar — last tier before unfiltered fill. */
+export function rawQuestionMeetsMinimalBoardBar(q: RawQuestionInput): boolean {
+  return rawQuestionMeetsBoardBarWithThresholds(q, {
+    minStem: 8,
+    minExplanation: 16,
+  });
+}
+
 function rawQuestionMeetsBoardBarWithThresholds(
   q: RawQuestionInput,
   thresholds: { minStem: number; minExplanation: number }

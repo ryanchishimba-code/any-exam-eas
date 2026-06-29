@@ -17,6 +17,11 @@ import { buildQuestionBlocks } from "./sequential-sets";
 /** @deprecated Variability window removed — kept for legacy tests and generation utilities. */
 export const SESSION_SPREAD_WINDOW = 7;
 
+/** Above this count, dedupe by bank row id — not clinical vignette — so templated banks can fill. */
+export const LONG_SESSION_CLINICAL_DEDUPE_MAX = 100;
+
+export type SessionDedupeMode = "clinical" | "id";
+
 function rawInputToBankItem(item: RawQuestionInput): BankItem {
   return {
     id: item.bankItemId,
@@ -60,6 +65,34 @@ function dedupeRawInputsByClinicalCase(items: RawQuestionInput[]): RawQuestionIn
   return dedupeRawInputsInOrder(items);
 }
 
+function dedupeRawInputsByBankId(items: RawQuestionInput[]): RawQuestionInput[] {
+  const seen = new Set<string>();
+  const out: RawQuestionInput[] = [];
+  for (const item of items) {
+    const key =
+      item.bankItemId?.trim() ||
+      (item.id != null ? String(item.id) : "") ||
+      item.question.trim().toLowerCase();
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(item);
+  }
+  return out;
+}
+
+function dedupeRawInputsForSession(
+  items: RawQuestionInput[],
+  requestedCount: number,
+  dedupeMode?: SessionDedupeMode
+): RawQuestionInput[] {
+  if (dedupeMode === "id") return dedupeRawInputsByBankId(items);
+  if (dedupeMode === "clinical") return dedupeRawInputsByClinicalCase(items);
+  if (requestedCount >= LONG_SESSION_CLINICAL_DEDUPE_MAX) {
+    return dedupeRawInputsByBankId(items);
+  }
+  return dedupeRawInputsByClinicalCase(items);
+}
+
 function dedupeBankItemsInOrder(items: BankItem[]): BankItem[] {
   const seen = new Set<string>();
   const out: BankItem[] = [];
@@ -72,9 +105,14 @@ function dedupeBankItemsInOrder(items: BankItem[]): BankItem[] {
   return out;
 }
 
-/** QA-filtered pool → clinical-case dedupe, shuffle, return up to `limit` items. */
-export function selectSpreadRawInputs(items: RawQuestionInput[], limit: number): RawQuestionInput[] {
-  const deduped = dedupeRawInputsByClinicalCase(items);
+/** QA-filtered pool → dedupe, shuffle, return up to `limit` items. */
+export function selectSpreadRawInputs(
+  items: RawQuestionInput[],
+  limit: number,
+  opts?: { requestedCount?: number; dedupeMode?: SessionDedupeMode }
+): RawQuestionInput[] {
+  const requested = opts?.requestedCount ?? limit;
+  const deduped = dedupeRawInputsForSession(items, requested, opts?.dedupeMode);
   return shuffleBankItems(deduped).slice(0, Math.max(0, limit));
 }
 

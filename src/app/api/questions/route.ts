@@ -261,7 +261,7 @@ export async function GET(req: Request) {
   let sessionQuality;
 
   try {
-    const finalized = finalizeExamSessionQuestions(rawInputs, limit);
+    const finalized = finalizeExamSessionQuestions(rawInputs, limit, { fieldId });
     prepared = finalized.prepared;
     sessionQuality = finalized.quality;
     if (!presetExamNumber) {

@@ -1,9 +1,13 @@
 import type { BankItem } from "@/lib/question-bank";
 import {
+  dedupeBankItemsById,
   QUESTION_BANK_SAMPLE_MAX_PULL,
   sampleQuestionBankItemsForField,
 } from "@/lib/question-bank-db";
 import { serveQaPassedBankItems } from "@/lib/exam-prep/serve-qa-passed";
+import { gatherUsmleTimedExamBankItems } from "@/lib/exam-prep/usmle/progressive-exam-fill";
+import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
+import { LONG_SESSION_CLINICAL_DEDUPE_MAX } from "@/lib/questions/spread-session-order";
 
 export type TimedExamFilterFn = (item: BankItem) => boolean;
 
@@ -58,6 +62,15 @@ export async function gatherTimedExamBankItems(params: {
   relaxedFilterFn?: TimedExamFilterFn;
   initialSampleCount: number;
 }): Promise<BankItem[]> {
+  if (isUsmleFieldId(params.fieldId)) {
+    return gatherUsmleTimedExamBankItems({
+      fieldId: params.fieldId,
+      limit: params.limit,
+      initialSampleCount: params.initialSampleCount,
+      stateCode: params.stateCode,
+    });
+  }
+
   const { fieldId, limit, stateCode, filterFn, relaxedFilterFn } = params;
   const seen = new Set<string>();
   const candidates: BankItem[] = [];
@@ -75,14 +88,21 @@ export async function gatherTimedExamBankItems(params: {
   };
 
   const poolTarget = resolveTimedExamPoolTarget(limit);
+  const longExam = limit >= LONG_SESSION_CLINICAL_DEDUPE_MAX;
+  const exportTarget = longExam ? Math.max(limit, poolTarget) : poolTarget;
+  const hasEnoughVetted = () =>
+    longExam
+      ? dedupeBankItemsById(vetted).length >= limit
+      : vetted.length >= poolTarget;
+
   let pullSize = Math.min(
     QUESTION_BANK_SAMPLE_MAX_PULL,
     Math.max(params.initialSampleCount, resolveTimedExamPullSize(limit, poolTarget))
   );
-  const maxRounds = relaxedFilterFn ? 3 : 2;
+  const maxRounds = longExam ? 5 : relaxedFilterFn ? 3 : 2;
 
   for (let round = 0; round < maxRounds; round++) {
-    if (vetted.length >= poolTarget) break;
+    if (hasEnoughVetted()) break;
 
     const batch = await sampleQuestionBankItemsForField({
       fieldId,
@@ -106,12 +126,12 @@ export async function gatherTimedExamBankItems(params: {
       poolTarget
     );
 
-    if (vetted.length >= poolTarget) break;
+    if (hasEnoughVetted()) break;
 
     pullSize = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.ceil(pullSize * 1.25));
   }
 
-  if (vetted.length < limit && relaxedFilterFn) {
+  if (!hasEnoughVetted() && vetted.length < limit && relaxedFilterFn) {
     appendUniqueVetted(
       vetted,
       candidates,
@@ -120,13 +140,13 @@ export async function gatherTimedExamBankItems(params: {
       poolTarget
     );
 
-    if (vetted.length < limit) {
+    if (!hasEnoughVetted()) {
       let relaxedPull = Math.min(
         QUESTION_BANK_SAMPLE_MAX_PULL,
         Math.max(pullSize, resolveTimedExamPullSize(limit, poolTarget))
       );
 
-      for (let round = 0; round < 2 && vetted.length < limit; round++) {
+      for (let round = 0; round < 2 && !hasEnoughVetted(); round++) {
         const batch = await sampleQuestionBankItemsForField({
           fieldId,
           count: relaxedPull,
@@ -152,6 +172,10 @@ export async function gatherTimedExamBankItems(params: {
         relaxedPull = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.ceil(relaxedPull * 1.25));
       }
     }
+  }
+
+  if (longExam) {
+    return dedupeBankItemsById(vetted).slice(0, Math.min(exportTarget, vetted.length));
   }
 
   const exportSize = Math.min(vetted.length, poolTarget);

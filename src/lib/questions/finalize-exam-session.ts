@@ -10,6 +10,8 @@ import {
 } from "./session-quality";
 import { selectSpreadRawInputs } from "./spread-session-order";
 import { QUESTION_BANK_SAMPLE_MAX_PULL } from "@/lib/question-bank-db";
+import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
+import { finalizeUsmleExamSessionQuestions } from "@/lib/exam-prep/usmle/progressive-exam-fill";
 
 /** Field ids used by full-length NCLEX, NAPLEX, USMLE, and PANCE simulators. */
 export const FULL_EXAM_FIELD_IDS = new Set([
@@ -85,10 +87,11 @@ function selectRawInputsForSession(
   requested: number,
   shuffle = false
 ): RawQuestionInput[] {
+  const spreadOpts = { requestedCount: requested };
   if (!shuffle) {
-    return selectSpreadRawInputs(raw, requested);
+    return selectSpreadRawInputs(raw, requested, spreadOpts);
   }
-  return selectSpreadRawInputs(shuffleBankItems(raw), requested);
+  return selectSpreadRawInputs(shuffleBankItems(raw), requested, spreadOpts);
 }
 
 export function assessExamSessionQuality(
@@ -146,11 +149,17 @@ function finalizeWithBoardBar(
  * Prepare and validate a timed/full exam block before it reaches the client.
  * Quality gates: exact count, board-caliber structure, and non-placeholder distractors.
  * Falls back to a slightly lower bar when the strict pool cannot fill the session.
+ * USMLE fields use progressive tier relaxation until the requested count is met.
  */
 export function finalizeExamSessionQuestions(
   raw: RawQuestionInput[],
-  requested: number
+  requested: number,
+  opts?: { fieldId?: string }
 ): { prepared: StudyQuestion[]; quality: ExamSessionQualityReport } {
+  if (opts?.fieldId && isUsmleFieldId(opts.fieldId)) {
+    return finalizeUsmleExamSessionQuestions(raw, requested);
+  }
+
   const strict = finalizeWithBoardBar(raw, requested, rawQuestionMeetsBoardBar);
   if (strict.prepared.length >= requested && strict.quality.ok) {
     return strict;

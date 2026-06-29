@@ -464,7 +464,9 @@ export async function getBankQuestions(params: {
     };
   });
 
-  const { prepared, quality } = finalizeExamSessionQuestions(rawInputs, params.count);
+  const { prepared, quality } = finalizeExamSessionQuestions(rawInputs, params.count, {
+    fieldId,
+  });
   assertExamSessionReady(quality, fieldId);
   return studyQuestionsToExamQuestions(prepared);
 }

@@ -97,7 +97,8 @@ describe("finalizeExamSessionQuestions", () => {
       const limit = 280;
       const { prepared, quality } = finalizeExamSessionQuestions(
         buildPool(limit + 20, "usmle"),
-        limit
+        limit,
+        { fieldId: "usmle-step-2" }
       );
       expect(prepared).toHaveLength(limit);
       expect(quality.returned).toBe(limit);
