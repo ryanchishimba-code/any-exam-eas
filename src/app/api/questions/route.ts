@@ -25,6 +25,9 @@ const MIXED_SUBJECT_ID = "__mixed__";
 const MAX_BANK_LIMIT = 100;
 const MAX_TIMED_LIMIT = 300;
 
+export const runtime = "nodejs";
+export const maxDuration = 300;
+
 export async function GET(req: Request) {
   const { requireStudyApi } = await import("@/lib/api-access");
   const premium = await requireStudyApi();

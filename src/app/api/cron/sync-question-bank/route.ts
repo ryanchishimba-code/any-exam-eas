@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 import { syncQuestionBank } from "@/lib/sync-question-bank";
 
 export const maxDuration = 300;
@@ -21,6 +22,10 @@ export async function GET(req: Request) {
   }
 
   const result = await syncQuestionBank();
+
+  if (result.status === "success") {
+    revalidateTag("question-bank-counts");
+  }
 
   return NextResponse.json(result, {
     status: result.status === "success" ? 200 : 500,

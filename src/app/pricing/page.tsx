@@ -12,12 +12,13 @@ import { ProUpgradeBanner } from "@/components/pricing/ProUpgradeBanner";
 import { LANDING_HERO_TRUST_SIGNALS } from "@/lib/landing/content";
 import {
   buildLandingBankCountsDisplay,
-  getQuestionBankCounts,
+  getCachedQuestionBankCounts,
 } from "@/lib/marketing/question-bank-counts";
 
 import { buildPricingMetadata } from "@/lib/seo/marketing-metadata";
 
 export const metadata = buildPricingMetadata();
+export const revalidate = 3600;
 
 export default async function PricingPage({
   searchParams,
@@ -25,7 +26,7 @@ export default async function PricingPage({
   searchParams: Promise<{ paywall?: string; return?: string; upgrade?: string; feature?: string }>;
 }) {
   const { paywall, upgrade, feature } = await searchParams;
-  const bankSnapshot = await getQuestionBankCounts();
+  const bankSnapshot = await getCachedQuestionBankCounts();
   const bankCounts = buildLandingBankCountsDisplay(bankSnapshot);
 
   return (

@@ -1,6 +1,6 @@
 {
   "buildCommand": "npm run vercel-build",
-  "installCommand": "npm install",
+  "installCommand": "npm ci",
   "crons": [
     {
       "path": "/api/cron/sync-question-bank",
@@ -20,7 +20,27 @@
     },
     {
       "path": "/api/cron/social-publish",
-      "schedule": "*/5 * * * *"
+      "schedule": "*/15 * * * *"
     }
-  ]
+  ],
+  "functions": {
+    "src/app/api/questions/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/cron/sync-question-bank/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/cron/analytics-retention/route.ts": {
+      "maxDuration": 300
+    },
+    "src/app/api/full-exam/start/route.ts": {
+      "maxDuration": 60
+    },
+    "src/app/api/ai/generate/route.ts": {
+      "maxDuration": 120
+    },
+    "src/app/api/generate-test/route.ts": {
+      "maxDuration": 120
+    }
+  }
 }

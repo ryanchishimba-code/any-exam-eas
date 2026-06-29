@@ -9,10 +9,10 @@ import {
 import { buildExamJsonLd, buildExamMetadata } from "@/lib/seo/marketing-metadata";
 import {
   buildLandingBankCountsDisplay,
-  getQuestionBankCounts,
+  getCachedQuestionBankCounts,
 } from "@/lib/marketing/question-bank-counts";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 type Props = { params: Promise<{ examSlug: string }> };
 
@@ -36,7 +36,7 @@ export default async function ExamMarketingPage({ params }: Props) {
   if (!key) notFound();
 
   // Live, accurate per-exam question count for the hero (cached ~1h).
-  const bankCounts = buildLandingBankCountsDisplay(await getQuestionBankCounts());
+  const bankCounts = buildLandingBankCountsDisplay(await getCachedQuestionBankCounts());
   const questionCountLabel = bankCounts.exams.find((row) => row.slug === key)?.countLabel;
 
   return (

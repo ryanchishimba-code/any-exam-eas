@@ -16,15 +16,15 @@ import { formatTrialCtaLabel, formatTrialLabel } from "@/lib/site";
 import { buildAboutMetadata } from "@/lib/seo/marketing-metadata";
 import {
   buildLandingBankCountsDisplay,
-  getQuestionBankCounts,
+  getCachedQuestionBankCounts,
 } from "@/lib/marketing/question-bank-counts";
 import { TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 export async function generateMetadata() {
   try {
-    const snapshot = await getQuestionBankCounts();
+    const snapshot = await getCachedQuestionBankCounts();
     const display = buildLandingBankCountsDisplay(snapshot);
     if (!snapshot.degraded && display.totalServed > 0) {
       return buildAboutMetadata(display.totalQuestionsLabel);
@@ -58,7 +58,7 @@ const TRUST_POINTS = [
 ];
 
 export default async function AboutPage() {
-  const snapshot = await getQuestionBankCounts();
+  const snapshot = await getCachedQuestionBankCounts();
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
 
   const heroStats = [

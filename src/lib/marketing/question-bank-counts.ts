@@ -1,4 +1,4 @@
-import { unstable_noStore as noStore } from "next/cache";
+import { unstable_cache, unstable_noStore as noStore } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
@@ -176,6 +176,24 @@ export async function getQuestionBankCounts(): Promise<QuestionBankCountsSnapsho
     console.error("[marketing/question-bank-counts] lookup failed:", error);
     return buildEmptySnapshot(true);
   }
+}
+
+const fetchCachedQuestionBankCounts = unstable_cache(
+  async () => {
+    try {
+      return await fetchQuestionBankCountsWithRetry();
+    } catch (error) {
+      console.error("[marketing/question-bank-counts] cached lookup failed:", error);
+      return buildEmptySnapshot(true);
+    }
+  },
+  ["marketing-question-bank-counts"],
+  { revalidate: 3600, tags: ["question-bank-counts"] }
+);
+
+/** Cached counts for marketing/landing pages — revalidates hourly (or via cron tag). */
+export async function getCachedQuestionBankCounts(): Promise<QuestionBankCountsSnapshot> {
+  return fetchCachedQuestionBankCounts();
 }
 
 /**

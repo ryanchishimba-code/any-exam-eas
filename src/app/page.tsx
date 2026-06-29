@@ -3,14 +3,14 @@ import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
 import { HomeExperience } from "@/components/home/HomeExperience";
 import {
   buildLandingBankCountsDisplay,
-  getQuestionBankCounts,
+  getCachedQuestionBankCounts,
 } from "@/lib/marketing/question-bank-counts";
-import { getPublishedTestimonials } from "@/lib/testimonials/published";
+import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 import { buildHomeMetadata } from "@/lib/seo";
 import { formatMonthlyPrice, formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
 
-/** Always read live serve-ready counts from the database — never bake static marketing totals. */
-export const dynamic = "force-dynamic";
+/** ISR — bank counts refresh hourly; invalidated after question-bank cron sync. */
+export const revalidate = 3600;
 
 /**
  * AnyExamEasy.com — Flagship home route (`/`)
@@ -30,7 +30,7 @@ export const dynamic = "force-dynamic";
 export async function generateMetadata(): Promise<Metadata> {
   const base = buildHomeMetadata();
   try {
-    const snapshot = await getQuestionBankCounts();
+    const snapshot = await getCachedQuestionBankCounts();
     const display = buildLandingBankCountsDisplay(snapshot);
     if (!snapshot.degraded && display.totalServed > 0) {
       const description = `All-in-one board prep for NCLEX, USMLE Step 1, Step 2 CK & Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT — ${display.totalQuestionsLabel}, Roadmaps & Deep Dives. Pro at ${formatMonthlyPrice("pro")}/mo · ${formatTrialLabel()} · ${formatTrialQuestionLimit()} · no payment required.`;
@@ -49,8 +49,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function HomePage() {
   const [snapshot, testimonials] = await Promise.all([
-    getQuestionBankCounts(),
-    getPublishedTestimonials(),
+    getCachedQuestionBankCounts(),
+    getCachedPublishedTestimonials(),
   ]);
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
 

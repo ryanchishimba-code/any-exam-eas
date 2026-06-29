@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
+/** Standalone is for Docker/AWS only — Vercel uses its own serverless output (faster builds). */
+const useStandaloneOutput = !process.env.VERCEL;
+
 const nextConfig: NextConfig = {
-  output: "standalone",
+  ...(useStandaloneOutput ? { output: "standalone" as const } : {}),
   poweredByHeader: false,
   serverExternalPackages: ["stripe"],
   experimental: {

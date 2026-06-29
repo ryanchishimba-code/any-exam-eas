@@ -1,3 +1,4 @@
+import { unstable_cache } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import {
   LANDING_SUCCESS_STORIES,
@@ -46,4 +47,21 @@ export async function getPublishedTestimonials(
     // DB unavailable / table not migrated yet — keep the site working.
     return LANDING_SUCCESS_STORIES;
   }
+}
+
+async function fetchPublishedTestimonials(limit: number): Promise<LandingSuccessStory[]> {
+  return getPublishedTestimonials(limit);
+}
+
+const fetchCachedPublishedTestimonials = unstable_cache(
+  async (limit: number) => fetchPublishedTestimonials(limit),
+  ["published-testimonials"],
+  { revalidate: 3600, tags: ["published-testimonials"] }
+);
+
+/** Cached testimonials for public marketing pages. */
+export async function getCachedPublishedTestimonials(
+  limit = 12
+): Promise<LandingSuccessStory[]> {
+  return fetchCachedPublishedTestimonials(limit);
 }

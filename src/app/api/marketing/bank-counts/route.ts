@@ -1,16 +1,15 @@
 import { NextResponse } from "next/server";
 import {
   buildLandingBankCountsDisplay,
-  getQuestionBankCounts,
+  getCachedQuestionBankCounts,
 } from "@/lib/marketing/question-bank-counts";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 3600;
 
-/** Public live serve-ready counts for landing surfaces and client fallbacks. */
+/** Public serve-ready counts for landing surfaces and client fallbacks. */
 export async function GET() {
   try {
-    const snapshot = await getQuestionBankCounts();
+    const snapshot = await getCachedQuestionBankCounts();
     const display = buildLandingBankCountsDisplay(snapshot);
     return NextResponse.json(
       {
@@ -19,7 +18,7 @@ export async function GET() {
       },
       {
         headers: {
-          "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+          "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
         },
       }
     );
