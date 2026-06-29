@@ -15,6 +15,7 @@ import { ArrowRight, Check, Flame, Map as MapIcon, ShieldCheck, Sparkles, XCircl
 import { LandingCta } from "@/components/landing/LandingCta";
 import { BoardSeasonCountdown } from "@/components/landing/BoardSeasonCountdown";
 import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
+import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
   LANDING_HERO_CTA_DISCLOSURE,
   LANDING_HERO_EXAMS,
@@ -245,7 +246,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
               { icon: ShieldCheck, label: "QA-gated before serve" },
               { icon: MapIcon, label: "Blueprint Roadmaps" },
               { icon: Check, label: "6 exams · 1 plan" },
-              { icon: XCircle, label: "Cancel free before day 14" },
+              { icon: XCircle, label: `Cancel free before day ${TRIAL_DAYS}` },
             ].map(({ icon: Icon, label }) => (
               <li
                 key={label}

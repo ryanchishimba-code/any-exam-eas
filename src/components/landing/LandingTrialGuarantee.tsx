@@ -7,7 +7,7 @@
  * what "free trial" means before they encounter final objections. Three
  * columns cover:
  *   1. What unlocks on day one
- *   2. Zero charge until day 14
+ *   2. No charge during trial — no card required
  *   3. Quality commitment / support guarantee
  */
 
