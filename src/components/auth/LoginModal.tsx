@@ -110,7 +110,7 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
   return (
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-[200] flex items-end justify-center p-0 sm:items-center sm:p-4">
+        <div className="fixed inset-0 z-[200] flex items-end justify-center p-0 sm:items-center sm:p-5 lg:p-8">
           <motion.button
             type="button"
             aria-label="Close login dialog"
@@ -118,6 +118,7 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             onClick={onClose}
           />
 
@@ -125,11 +126,11 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
             role="dialog"
             aria-modal="true"
             aria-labelledby="login-modal-title"
-            initial={{ opacity: 0, y: 16, scale: 0.99 }}
+            initial={{ opacity: 0, y: 24, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 12, scale: 0.99 }}
-            transition={{ duration: 0.18, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative z-10 flex max-h-[92vh] w-full max-w-md flex-col overflow-hidden rounded-t-[1.75rem] bg-white shadow-[0_24px_80px_rgba(8,145,178,0.25)] sm:rounded-[1.75rem]"
+            exit={{ opacity: 0, y: 16, scale: 0.98 }}
+            transition={{ duration: 0.24, ease: [0.25, 0.1, 0.25, 1] }}
+            className="relative z-10 flex max-h-[96dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-[1.75rem] bg-white shadow-[0_24px_80px_rgba(8,145,178,0.22)] sm:max-h-[min(92vh,760px)] sm:max-w-xl sm:rounded-[1.75rem] lg:max-w-2xl"
           >
             <div className="relative overflow-hidden bg-gradient-to-br from-[#0e7490] via-[#0891b2] to-[#0284c7] px-6 pb-7 pt-6 text-white">
               <button
@@ -188,7 +189,7 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
               </motion.p>
             </div>
 
-            <div className="flex-1 overflow-y-auto px-6 py-6">
+            <div className="flex-1 overflow-y-auto px-5 py-5 sm:px-8 sm:py-7">
               <AnimatePresence mode="wait" initial={false}>
                 {view === "login" ? (
                   <motion.div key="login-panel" {...panelMotion}>

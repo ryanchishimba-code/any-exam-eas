@@ -4,7 +4,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-const ITEM_H = 48;
+/** Row height — 44px keeps iOS-friendly touch targets while staying compact. */
+const ITEM_H = 44;
 const VISIBLE = 3;
 const WHEEL_H = ITEM_H * VISIBLE;
 const PAD = (WHEEL_H - ITEM_H) / 2;
@@ -165,23 +166,23 @@ function WheelColumn({ label, options, selectedIndex, onSelect, compact }: Wheel
   const roundedCenter = Math.min(options.length - 1, Math.max(0, Math.round(center)));
 
   return (
-    <div className="flex min-w-0 flex-1 flex-col items-center gap-1">
-      <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
+    <div className="flex min-w-0 flex-1 flex-col items-center gap-0.5">
+      <span className="text-[9px] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-muted)]">
         {label}
       </span>
-      <div className="relative w-full select-none" style={{ height: WHEEL_H, perspective: "900px" }}>
+      <div className="relative w-full select-none" style={{ height: WHEEL_H }}>
         <div
-          className="pointer-events-none absolute inset-x-0.5 top-1/2 z-0 -translate-y-1/2 rounded-xl border border-teal-400/35 bg-teal-500/[0.08] shadow-[0_0_24px_-6px_rgba(20,184,166,0.45)] ring-1 ring-inset ring-white/30 dark:ring-white/10"
+          className="pointer-events-none absolute inset-x-1 top-1/2 z-0 -translate-y-1/2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]/80"
           style={{ height: ITEM_H }}
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-x-0 top-0 z-10 bg-gradient-to-b from-[var(--color-surface-elevated)] to-transparent"
+          className="pointer-events-none absolute inset-x-0 top-0 z-10 bg-gradient-to-b from-[var(--color-surface-elevated)] via-[var(--color-surface-elevated)]/90 to-transparent"
           style={{ height: PAD }}
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[var(--color-surface-elevated)] to-transparent"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[var(--color-surface-elevated)] via-[var(--color-surface-elevated)]/90 to-transparent"
           style={{ height: PAD }}
           aria-hidden
         />
@@ -195,8 +196,8 @@ function WheelColumn({ label, options, selectedIndex, onSelect, compact }: Wheel
           className={cn(
             "relative z-[1] h-full w-full overflow-y-auto overscroll-contain",
             "[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-            "snap-y snap-mandatory scroll-smooth rounded-2xl",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500/50"
+            "snap-y snap-mandatory scroll-smooth rounded-xl",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/35"
           )}
           style={{ paddingTop: PAD, paddingBottom: PAD }}
         >
@@ -204,29 +205,29 @@ function WheelColumn({ label, options, selectedIndex, onSelect, compact }: Wheel
             const distance = i - center;
             const abs = Math.abs(distance);
             const isSelected = i === roundedCenter;
-            const scale = reduceMotion ? 1 : Math.max(0.78, 1 - abs * 0.14);
-            const opacity = Math.max(0.28, 1 - abs * 0.38);
-            const rotateX = reduceMotion ? 0 : Math.max(-50, Math.min(50, -distance * 22));
+            const scale = reduceMotion ? 1 : Math.max(0.86, 1 - abs * 0.1);
+            const opacity = Math.max(0.35, 1 - abs * 0.32);
+            const rotateX = reduceMotion ? 0 : Math.max(-28, Math.min(28, -distance * 14));
             return (
               <div
                 key={`${label}-${option}-${i}`}
                 role="option"
                 aria-selected={isSelected}
                 onClick={() => scrollToIndex(i, "smooth")}
-                className="flex snap-center cursor-pointer items-center justify-center"
+                className="flex min-h-[44px] snap-center cursor-pointer items-center justify-center touch-manipulation"
                 style={{ height: ITEM_H }}
               >
                 <span
                   className={cn(
-                    "truncate px-1 font-bold tabular-nums tracking-tight",
-                    compact ? "text-sm" : "text-[15px]",
+                    "truncate px-0.5 tabular-nums tracking-tight",
+                    compact ? "text-xs" : "text-sm",
                     isSelected
-                      ? "bg-gradient-to-br from-teal-600 to-cyan-500 bg-clip-text text-transparent dark:from-teal-300 dark:to-cyan-300"
-                      : "text-[var(--color-ink-muted)]"
+                      ? "font-semibold text-[var(--color-ink)]"
+                      : "font-medium text-[var(--color-ink-muted)]"
                   )}
                   style={{
                     opacity,
-                    transform: `rotateX(${rotateX}deg) scale(${scale})`,
+                    transform: reduceMotion ? undefined : `rotateX(${rotateX}deg) scale(${scale})`,
                     transformOrigin: "center",
                     transition: reduceMotion
                       ? "opacity 120ms linear"
@@ -257,7 +258,7 @@ type ExamDateWheelPickerProps = {
   ariaLabel?: string;
 };
 
-/** iOS-style month / day / year wheels — exam dates (future) or birth dates (past). */
+/** Compact iOS-style month / day / year wheels for signup dates. */
 export function ExamDateWheelPicker({
   value,
   minDate,
@@ -333,19 +334,19 @@ export function ExamDateWheelPicker({
     <div
       id={id}
       className={cn(
-        "rounded-2xl border border-teal-500/15 bg-gradient-to-br from-teal-500/[0.06] via-[var(--color-surface-elevated)] to-violet-500/[0.05] p-3 shadow-[0_12px_40px_-16px_rgba(20,184,166,0.35)] sm:p-4",
+        "rounded-xl border border-black/[0.06] bg-[var(--color-surface)]/60 p-2 sm:p-2.5",
         className
       )}
       aria-label={label}
     >
-      <div className="flex items-stretch gap-1 sm:gap-2">
+      <div className="flex items-stretch gap-0.5 sm:gap-1">
         <WheelColumn
           label="Month"
           options={[...MONTHS]}
           selectedIndex={month - 1}
           onSelect={(i) => emit(i + 1, day, year)}
         />
-        <div className="w-px shrink-0 self-center bg-[var(--color-border)]/50" aria-hidden />
+        <div className="w-px shrink-0 self-center bg-[var(--color-border)]/40" aria-hidden />
         <WheelColumn
           label="Day"
           options={days}
@@ -353,7 +354,7 @@ export function ExamDateWheelPicker({
           onSelect={(i) => emit(month, i + 1, year)}
           compact
         />
-        <div className="w-px shrink-0 self-center bg-[var(--color-border)]/50" aria-hidden />
+        <div className="w-px shrink-0 self-center bg-[var(--color-border)]/40" aria-hidden />
         <WheelColumn
           label="Year"
           options={years}

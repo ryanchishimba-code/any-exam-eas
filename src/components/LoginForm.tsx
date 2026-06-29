@@ -67,7 +67,7 @@ export function LoginForm() {
 
   if (status === "authenticated") {
     return (
-      <div className="apple-card mt-10 flex flex-col items-center gap-3 p-10 text-center">
+      <div className="flex flex-col items-center gap-3 py-8 text-center">
         <span
           className="inline-block h-8 w-8 animate-spin rounded-full border-2 border-[var(--color-accent)] border-t-transparent"
           aria-hidden
@@ -80,7 +80,7 @@ export function LoginForm() {
   }
 
   return (
-    <div className="apple-card mt-10 space-y-5 p-8 md:p-10">
+    <div className="relative w-full space-y-5">
       {resetSuccess && view === "login" && (
         <StatusMessage variant="success">
           Your password was updated. Log in with your new password.

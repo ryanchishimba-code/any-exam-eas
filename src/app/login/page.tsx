@@ -15,7 +15,7 @@ export default function LoginPage() {
       title="Log in to continue"
       description="USMLE, NCLEX, NAPLEX, COMLEX, and AANP FNP practice — synced across devices."
       align="center"
-      maxWidth={contentWidth.focus}
+      maxWidth={contentWidth.auth}
       variant="premium"
     >
       <AuthCard>

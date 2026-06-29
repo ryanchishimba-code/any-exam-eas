@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Lock } from "lucide-react";
+import { Lock, Loader2 } from "lucide-react";
 import {
   fetchAuthHealthWarning,
   messageForSignInError,
@@ -54,6 +54,7 @@ export function LoginPanel({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [emailTouched, setEmailTouched] = useState(false);
   const [configWarning, setConfigWarning] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [redirecting, setRedirecting] = useState(false);
@@ -135,6 +136,8 @@ export function LoginPanel({
   const googleHighlighted = hint?.lastMethod === "google" || hint?.lastMethod === "apple";
 
   const busy = loading || redirecting;
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const showEmailError = emailTouched && email.trim().length > 0 && !emailValid;
 
   return (
     <div className="space-y-5">
@@ -176,20 +179,32 @@ export function LoginPanel({
         </div>
       )}
 
-      <form onSubmit={handlePasswordLogin} className="space-y-3" noValidate>
-        <input
-          required
-          type="email"
-          autoComplete="email"
-          placeholder="Email"
-          value={email}
-          disabled={busy}
-          onChange={(e) => setEmail(e.target.value)}
-          onBlur={(e) =>
-            rememberEmail(e.target.value, { name: hint?.name, lastMethod: hint?.lastMethod })
-          }
-          className="apple-input"
-        />
+      <form onSubmit={handlePasswordLogin} className="space-y-3" noValidate aria-busy={busy}>
+        <div>
+          <input
+            required
+            type="email"
+            autoComplete="email"
+            placeholder="Email"
+            value={email}
+            disabled={busy}
+            aria-invalid={showEmailError || undefined}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              if (error) setError("");
+            }}
+            onBlur={(e) => {
+              setEmailTouched(true);
+              rememberEmail(e.target.value, { name: hint?.name, lastMethod: hint?.lastMethod });
+            }}
+            className="apple-input"
+          />
+          {showEmailError && (
+            <p className="mt-1.5 text-xs text-[var(--color-danger,#dc2626)]" role="alert">
+              Enter a valid email address.
+            </p>
+          )}
+        </div>
         <input
           required
           type="password"
@@ -197,7 +212,10 @@ export function LoginPanel({
           placeholder="Password"
           value={password}
           disabled={busy}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            if (error) setError("");
+          }}
           className="apple-input"
         />
         <div className="flex justify-end">
@@ -224,7 +242,11 @@ export function LoginPanel({
           disabled={busy || !!configWarning}
           className="login-modal-btn-primary w-full"
         >
-          <Lock className="h-4 w-4" aria-hidden />
+          {busy ? (
+            <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+          ) : (
+            <Lock className="h-4 w-4" aria-hidden />
+          )}
           {redirecting
             ? "Welcome back…"
             : loading

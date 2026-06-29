@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { signIn } from "next-auth/react";
-import { Check, Eye, EyeOff } from "lucide-react";
+import { Check, Eye, EyeOff, Loader2 } from "lucide-react";
 import { LegalCheckbox } from "./LegalCheckbox";
 import { Button } from "./ui/Button";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
@@ -39,6 +40,13 @@ import { MemberLoginLink } from "@/components/auth/MemberLoginLink";
 import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/lib/client/returning-user";
 import { markTrialWelcomePending } from "@/lib/client/trial-welcome";
 import { analytics } from "@/lib/analytics";
+
+const stepMotion = {
+  initial: { opacity: 0, y: 10 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -8 },
+  transition: { duration: 0.22, ease: [0.25, 0.1, 0.25, 1] as const },
+};
 
 export function SignupForm({
   initialPlan = "",
@@ -214,7 +222,12 @@ export function SignupForm({
   const birthMax = useMemo(() => eighteenYearsAgoIso(today), [today]);
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="apple-card mt-10 space-y-6 p-8 md:p-10">
+    <form onSubmit={handleSubmit} noValidate className="relative w-full space-y-6">
+      <AuthLoadingOverlay
+        show={loading}
+        message="Creating your account…"
+        className="rounded-2xl"
+      />
       {plan === "trial" && (
         <div className="rounded-2xl border border-[var(--color-accent)]/25 bg-[var(--color-accent)]/[0.06] p-5">
           <p className="text-sm font-semibold text-[var(--color-ink)]">
@@ -238,17 +251,30 @@ export function SignupForm({
       )}
 
       <ol className="flex items-center gap-2 text-xs font-semibold" aria-label="Sign up progress">
-        <li className={step === 1 ? "text-[var(--color-accent)]" : "text-[var(--color-ink-muted)]"}>
+        <li
+          className={`rounded-full px-2.5 py-1 transition-colors ${
+            step === 1
+              ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+              : "text-[var(--color-ink-muted)]"
+          }`}
+        >
           1. Your account
         </li>
         <li aria-hidden className="text-[var(--color-ink-muted)]">›</li>
-        <li className={step === 2 ? "text-[var(--color-accent)]" : "text-[var(--color-ink-muted)]"}>
+        <li
+          className={`rounded-full px-2.5 py-1 transition-colors ${
+            step === 2
+              ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+              : "text-[var(--color-ink-muted)]"
+          }`}
+        >
           2. Your exam
         </li>
       </ol>
 
-      {step === 1 ? (
-        <>
+      <AnimatePresence mode="wait" initial={false}>
+        {step === 1 ? (
+          <motion.div key="signup-step-1" {...stepMotion} className="space-y-6">
           {(googleEnabled || linkedinEnabled) && !configWarning && (
             <div className="space-y-4">
               {googleEnabled && (
@@ -363,7 +389,7 @@ export function SignupForm({
               <label id="signup-dob-label" className="apple-label">
                 Date of birth (18+ required)
               </label>
-              <div className="mt-3" aria-labelledby="signup-dob-label">
+              <div className="mt-2" aria-labelledby="signup-dob-label">
                 <ExamDateWheelPicker
                   id="signup-dob"
                   value={dob}
@@ -373,9 +399,6 @@ export function SignupForm({
                   onChange={setDob}
                 />
               </div>
-              <p className="mt-2 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-                Spin the wheels to set your birth date — same picker as your exam countdown.
-              </p>
             </div>
           </fieldset>
 
@@ -391,9 +414,9 @@ export function SignupForm({
           </Button>
 
           <MemberLoginLink className="text-center" showEmailHint />
-        </>
-      ) : (
-        <>
+          </motion.div>
+        ) : (
+          <motion.div key="signup-step-2" {...stepMotion} className="space-y-6">
           <fieldset className="space-y-3" disabled={loading}>
             <legend className="apple-label">Which exam are you preparing for?</legend>
             <p className="text-xs leading-relaxed text-[var(--color-ink-muted)]">
@@ -449,7 +472,7 @@ export function SignupForm({
                     </button>
                   ) : null}
                 </div>
-                <div className="mt-3" aria-labelledby="signup-test-date-label">
+                <div className="mt-2" aria-labelledby="signup-test-date-label">
                   <ExamDateWheelPicker
                     id="signup-test-date"
                     value={testDate || examDatePreview}
@@ -457,10 +480,6 @@ export function SignupForm({
                     onChange={setTestDate}
                   />
                 </div>
-                <p className="mt-2 text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-                  Spin the wheels to set your date — we&apos;ll show a live countdown on your dashboard.
-                  Leave it unset if you&apos;re not sure yet.
-                </p>
               </div>
             )}
           </fieldset>
@@ -473,13 +492,18 @@ export function SignupForm({
             <Button
               type="submit"
               disabled={loading || !accepted || !examSlug || !passwordValid || !!configWarning}
-              className="w-full"
+              className="w-full gap-2"
             >
-              {loading
-                ? "Creating your account…"
-                : plan === "trial"
-                  ? `Start my ${TRIAL_DAYS}-day free trial`
-                  : "Create my account"}
+              {loading ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+                  Creating your account…
+                </>
+              ) : plan === "trial" ? (
+                `Start my ${TRIAL_DAYS}-day free trial`
+              ) : (
+                "Create my account"
+              )}
             </Button>
             <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
               {plan === "trial"
@@ -511,8 +535,9 @@ export function SignupForm({
           <p className="text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
             {LEGAL_DISCLAIMERS.ageRequirement} {MARKETING_DISCLAIMER}
           </p>
-        </>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </form>
   );
 }

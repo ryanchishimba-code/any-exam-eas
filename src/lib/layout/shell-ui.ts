@@ -15,6 +15,8 @@ export const contentWidth = {
   wide: "max-w-5xl",
   /** Default content column for standard pages (pricing, results). */
   content: "max-w-3xl",
-  /** Focused single-task column (auth, checkout). */
+  /** Focused single-task column (legacy — prefer auth). */
   focus: "max-w-md",
+  /** Sign up / log in — wider on desktop, full width on mobile. */
+  auth: "max-w-xl lg:max-w-2xl",
 } as const;

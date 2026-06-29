@@ -50,7 +50,7 @@ export default async function SignupPage({
           : `Create your account with email or social login — no payment required. Your ${TRIAL_DAYS}-day free trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions instantly. Must be 18 or older.`
       }
       align="center"
-      maxWidth={contentWidth.focus}
+      maxWidth={contentWidth.auth}
       variant="premium"
     >
       <AuthCard>
