@@ -18,7 +18,7 @@ export function SocialProofSection({
     if (item.label === "Board-style questions" && bankCounts) {
       return { ...item, value: bankCounts.totalLabel };
     }
-    if (item.label === "Starting plan") {
+    if (item.label === "One plan") {
       return { ...item, value: proPrice };
     }
     return item;

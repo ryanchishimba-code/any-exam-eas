@@ -293,7 +293,7 @@ export async function changeSubscriptionPlan(params: {
 
   const newPriceId = requireStripePriceId(params.tier, params.interval);
   const onTrial = sub.status === "trialing";
-  const isLegacyBasicUpgrade = parseSubscriptionTier(sub.metadata?.tier) === "basic";
+  const isLegacyBasicUpgrade = sub.metadata?.tier === "basic";
 
   if (onTrial || isLegacyBasicUpgrade) {
     const updated = await stripe.subscriptions.update(params.stripeSubscriptionId, {

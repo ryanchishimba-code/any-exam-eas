@@ -19,6 +19,8 @@ export const PRO_FEATURE_LABELS: Record<SubscriptionFeature, string> = {
   exportable_notes: "Exportable notes",
   enhanced_explanations: "Enhanced explanations",
   flashcards: "Flashcards",
+  ai_tutor: "AI Tutor",
+  anatomy_explorer: "Anatomy Explorer",
 };
 
 export function proUpgradeHref(feature: SubscriptionFeature): string {

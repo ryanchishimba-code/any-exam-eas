@@ -13,6 +13,7 @@ import type { BillingInterval } from "@/lib/billing-config";
 import { parseBillingInterval, BILLING_POLICY_SHORT } from "@/lib/billing-plans";
 import type { DiscountValidation } from "@/lib/discount/types";
 import { formatUsd, hasDiscount } from "@/lib/promo-pricing";
+import type { SubscriptionTier } from "@/lib/subscription-tiers";
 import type { SignupPlan } from "@/lib/validators/auth";
 
 let stripePromise: Promise<Stripe | null> | null = null;
@@ -27,7 +28,7 @@ function getStripe(publishableKey: string) {
 export function EmbeddedStripeCheckout() {
   const searchParams = useSearchParams();
   const plan: SignupPlan = searchParams.get("plan") === "trial" ? "trial" : "subscribe";
-  const tier = useMemo(() => {
+  const tier = useMemo((): SubscriptionTier => {
     const raw = searchParams.get("tier");
     return raw === "pro" ? "pro" : "pro";
   }, [searchParams]);
@@ -40,7 +41,7 @@ export function EmbeddedStripeCheckout() {
 
   const [phase, setPhase] = useState<"review" | "payment">("review");
   const [selectedPlan, setSelectedPlan] = useState<SignupPlan>(plan);
-  const [selectedTier, setSelectedTier] = useState(tier);
+  const [selectedTier, setSelectedTier] = useState<SubscriptionTier>(tier);
   const [selectedInterval, setSelectedInterval] = useState<BillingInterval>(interval);
   const [appliedDiscount, setAppliedDiscount] = useState<DiscountValidation | null>(null);
   const [publishableKey, setPublishableKey] = useState<string | null>(null);
@@ -105,7 +106,7 @@ export function EmbeddedStripeCheckout() {
   function handleContinueToPayment(
     discount: DiscountValidation | null,
     nextPlan: SignupPlan,
-    nextTier: typeof tier,
+    nextTier: SubscriptionTier,
     nextInterval: BillingInterval
   ) {
     setSelectedPlan(nextPlan);

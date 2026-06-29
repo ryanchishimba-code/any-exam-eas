@@ -4,7 +4,7 @@ import { isVignetteRich, validateClinicalVignette } from "@/lib/engine/prompts/v
 import { auditUsmleQaEditor } from "./usmle-qa-editor";
 import { bankItemToUsmleExam } from "./usmle-bank-bridge";
 import { isUsmleFieldId, USMLE_STEP3_NON_VIGNETTE_ITEM_TYPES } from "./usmle/steps";
-import { nptePtBankItemIsServeReady } from "./npte-pt/clinical-gate";
+import { nptePtBankItemIsExamFillReady, nptePtBankItemIsServeReady } from "./npte-pt/clinical-gate";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
 import { hasGenericPlaceholderOptions } from "@/lib/question-format";
 import { BOARD_SERVE_MIN_EXPLANATION_CHARS } from "./board-serve-quality";

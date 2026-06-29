@@ -32,13 +32,7 @@ export function naplexItemPassesStructuralTimedGate(item: BankItem): boolean {
     field: "pharmacy",
     subjectId: prepared.subjectId ?? "pharmacy",
   });
-  return rawQuestionMeetsBoardBar({
-    question: raw.question,
-    options: raw.options,
-    correctAnswer: raw.correctAnswer,
-    explanation: raw.explanation,
-    type: raw.type,
-  });
+  return rawQuestionMeetsBoardBar(raw);
 }
 
 /** Items are pre-filtered to qaPassed=true in the DB sample. */
