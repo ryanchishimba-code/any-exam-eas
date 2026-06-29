@@ -24,9 +24,9 @@ export function AboutCtas() {
       <Link
         href={ROUTES.toolkit}
         className="text-sm font-medium text-[var(--color-accent)] hover:underline"
-        onClick={() => analytics.ctaClicked("explore_resources", "about_hero")}
+        onClick={() => analytics.ctaClicked("explore_toolkit", "about_hero")}
       >
-        Explore study resources
+        Explore the toolkit
       </Link>
     </div>
   );

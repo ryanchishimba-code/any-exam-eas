@@ -26,7 +26,8 @@ export const ROUTES = {
   highYieldTopics: "/dashboard/topics",
   practice: "/practice",
   exams: "/exams",
-  resources: "/resources",
+  /** Legacy hub URL — use `toolkit`; individual articles remain at `/resources/[slug]`. */
+  resources: "/toolkit",
   toolkit: "/toolkit",
   about: "/about",
   employers: "/employers",

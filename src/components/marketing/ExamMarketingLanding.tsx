@@ -397,7 +397,7 @@ export function ExamMarketingLanding({ examKey, questionCountLabel }: Props) {
               id="related-guides"
               className="text-lg font-bold text-[var(--color-ink)]"
             >
-              {config.shortName} study guides &amp; resources
+              {config.shortName} study guides
             </h2>
             <ul className="mt-4 space-y-2">
               {relatedArticles.map((article) => (

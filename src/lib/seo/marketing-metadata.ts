@@ -64,19 +64,23 @@ export function buildExamMetadata(slug: string): Metadata {
 }
 
 export function buildResourcesHubMetadata(): Metadata {
-  const title = "Board Exam Study Resources & Guides (2026)";
-  const description = `Free study guides for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — practice question tips, blueprints, and downloadable planners. ${formatTrialLabel()}.`;
-  const path = "/resources";
+  return buildToolkitHubMetadata();
+}
+
+export function buildToolkitHubMetadata(): Metadata {
+  const title = "Toolkit — Your Complete Board Exam Prep (2026)";
+  const description = `Everything you need to pass — school notes, AnyExamEasy practice & roadmaps, and testing readiness tools for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT. ${formatTrialLabel()}.`;
+  const path = "/toolkit";
   return {
     ...baseOpenGraph(title, description, path),
     keywords: [
-      "board exam study guide",
+      "board exam toolkit",
       "NCLEX study resources",
       "USMLE study guide",
       "NAPLEX review",
       "PANCE prep guide",
       "NPTE study guide",
-      "free board exam resources",
+      "board exam prep",
     ],
   };
 }
@@ -181,14 +185,18 @@ export function buildArticleJsonLd(article: ResourceArticle) {
 }
 
 export function buildResourcesHubJsonLd() {
-  const url = absoluteUrl("/resources");
+  return buildToolkitHubJsonLd();
+}
+
+export function buildToolkitHubJsonLd() {
+  const url = absoluteUrl("/toolkit");
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Board Exam Study Resources",
+    name: "AnyExamEasy Toolkit",
     url,
     description:
-      "Study guides and free resources for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT board exam prep.",
+      "Complete board exam prep toolkit for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — exam breakdowns, study guides, and readiness tools.",
     hasPart: RESOURCE_ARTICLES.slice(0, 12).map((a) => ({
       "@type": "Article",
       name: a.title,

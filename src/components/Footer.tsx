@@ -29,6 +29,7 @@ export function Footer() {
       ]
     : [
         { href: ROUTES.practiceHub, label: "Practice Hub" },
+        { href: ROUTES.toolkit, label: "Toolkit" },
         { href: ROUTES.pricing, label: "Pricing" },
       ];
 
