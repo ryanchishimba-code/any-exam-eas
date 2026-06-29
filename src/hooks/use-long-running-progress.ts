@@ -31,7 +31,7 @@ type Options = {
 /** Simulated progress for async exam loads — bar appears after a short delay. */
 export function useLongRunningProgress(active: boolean, opts?: Options) {
   const steps = opts?.steps ?? DEFAULT_EXAM_LOAD_STEPS;
-  const barAfterMs = opts?.barAfterMs ?? 2500;
+  const barAfterMs = opts?.barAfterMs ?? 900;
   const maxProgress = opts?.maxProgress ?? 94;
   const stepsRef = useRef(steps);
   stepsRef.current = steps;

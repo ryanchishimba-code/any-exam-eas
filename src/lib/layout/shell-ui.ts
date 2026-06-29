@@ -18,5 +18,5 @@ export const contentWidth = {
   /** Focused single-task column (legacy — prefer auth). */
   focus: "max-w-md",
   /** Sign up / log in — wider on desktop, full width on mobile. */
-  auth: "max-w-xl lg:max-w-2xl",
+  auth: "max-w-2xl lg:max-w-3xl",
 } as const;

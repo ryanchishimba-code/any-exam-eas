@@ -4,11 +4,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-/** Row height — 44px keeps iOS-friendly touch targets while staying compact. */
-const ITEM_H = 44;
-const VISIBLE = 3;
-const WHEEL_H = ITEM_H * VISIBLE;
-const PAD = (WHEEL_H - ITEM_H) / 2;
+/** Row height — compact mode uses 36px; default keeps iOS-friendly 44px targets. */
+const ITEM_H_DEFAULT = 44;
+const ITEM_H_COMPACT = 36;
+const VISIBLE_DEFAULT = 3;
+const VISIBLE_COMPACT = 2;
 
 const MONTHS = [
   "January",
@@ -111,9 +111,24 @@ type WheelColumnProps = {
   selectedIndex: number;
   onSelect: (index: number) => void;
   compact?: boolean;
+  itemHeight?: number;
+  wheelHeight?: number;
+  pad?: number;
 };
 
-function WheelColumn({ label, options, selectedIndex, onSelect, compact }: WheelColumnProps) {
+function WheelColumn({
+  label,
+  options,
+  selectedIndex,
+  onSelect,
+  compact,
+  itemHeight = ITEM_H_DEFAULT,
+  wheelHeight,
+  pad,
+}: WheelColumnProps) {
+  const itemH = itemHeight;
+  const wheelH = wheelHeight ?? itemH * VISIBLE_DEFAULT;
+  const padding = pad ?? (wheelH - itemH) / 2;
   const reduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
@@ -126,12 +141,12 @@ function WheelColumn({ label, options, selectedIndex, onSelect, compact }: Wheel
       if (!el) return;
       const clamped = Math.min(options.length - 1, Math.max(0, index));
       programmaticRef.current = true;
-      el.scrollTo({ top: clamped * ITEM_H, behavior });
+      el.scrollTo({ top: clamped * itemH, behavior });
       window.setTimeout(() => {
         programmaticRef.current = false;
       }, behavior === "smooth" ? 360 : 0);
     },
-    [options.length]
+    [options.length, itemH]
   );
 
   useEffect(() => {
@@ -144,11 +159,11 @@ function WheelColumn({ label, options, selectedIndex, onSelect, compact }: Wheel
     if (!el || rafRef.current != null) return;
     rafRef.current = requestAnimationFrame(() => {
       rafRef.current = null;
-      const idx = Math.min(options.length - 1, Math.max(0, Math.round(el.scrollTop / ITEM_H)));
-      setCenter(el.scrollTop / ITEM_H);
+      const idx = Math.min(options.length - 1, Math.max(0, Math.round(el.scrollTop / itemH)));
+      setCenter(el.scrollTop / itemH);
       onSelect(idx);
     });
-  }, [onSelect, options.length]);
+  }, [onSelect, options.length, itemH]);
 
   const onKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -170,20 +185,20 @@ function WheelColumn({ label, options, selectedIndex, onSelect, compact }: Wheel
       <span className="text-[9px] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-muted)]">
         {label}
       </span>
-      <div className="relative w-full select-none" style={{ height: WHEEL_H }}>
+      <div className="relative w-full select-none" style={{ height: wheelH }}>
         <div
           className="pointer-events-none absolute inset-x-1 top-1/2 z-0 -translate-y-1/2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]/80"
-          style={{ height: ITEM_H }}
+          style={{ height: itemH }}
           aria-hidden
         />
         <div
           className="pointer-events-none absolute inset-x-0 top-0 z-10 bg-gradient-to-b from-[var(--color-surface-elevated)] via-[var(--color-surface-elevated)]/90 to-transparent"
-          style={{ height: PAD }}
+          style={{ height: padding }}
           aria-hidden
         />
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-[var(--color-surface-elevated)] via-[var(--color-surface-elevated)]/90 to-transparent"
-          style={{ height: PAD }}
+          style={{ height: padding }}
           aria-hidden
         />
         <div
@@ -199,7 +214,7 @@ function WheelColumn({ label, options, selectedIndex, onSelect, compact }: Wheel
             "snap-y snap-mandatory scroll-smooth rounded-xl",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/35"
           )}
-          style={{ paddingTop: PAD, paddingBottom: PAD }}
+          style={{ paddingTop: padding, paddingBottom: padding }}
         >
           {options.map((option, i) => {
             const distance = i - center;
@@ -214,8 +229,8 @@ function WheelColumn({ label, options, selectedIndex, onSelect, compact }: Wheel
                 role="option"
                 aria-selected={isSelected}
                 onClick={() => scrollToIndex(i, "smooth")}
-                className="flex min-h-[44px] snap-center cursor-pointer items-center justify-center touch-manipulation"
-                style={{ height: ITEM_H }}
+                className="flex snap-center cursor-pointer items-center justify-center touch-manipulation"
+                style={{ height: itemH, minHeight: itemH }}
               >
                 <span
                   className={cn(
@@ -256,6 +271,8 @@ type ExamDateWheelPickerProps = {
   id?: string;
   /** Accessible name for the wheel group. */
   ariaLabel?: string;
+  /** Compact wheels for signup — shorter and less visually dominant. */
+  variant?: "default" | "compact";
 };
 
 /** Compact iOS-style month / day / year wheels for signup dates. */
@@ -267,7 +284,12 @@ export function ExamDateWheelPicker({
   className,
   id,
   ariaLabel,
+  variant = "compact",
 }: ExamDateWheelPickerProps) {
+  const itemH = variant === "compact" ? ITEM_H_COMPACT : ITEM_H_DEFAULT;
+  const visible = variant === "compact" ? VISIBLE_COMPACT : VISIBLE_DEFAULT;
+  const wheelH = itemH * visible;
+  const padding = (wheelH - itemH) / 2;
   const min = useMemo(
     () => (minDate ? parseIso(minDate) : undefined),
     [minDate]
@@ -334,7 +356,8 @@ export function ExamDateWheelPicker({
     <div
       id={id}
       className={cn(
-        "rounded-xl border border-black/[0.06] bg-[var(--color-surface)]/60 p-2 sm:p-2.5",
+        "rounded-xl border border-black/[0.05] bg-[var(--color-surface)]/40 p-1.5 sm:p-2",
+        variant === "compact" && "shadow-none",
         className
       )}
       aria-label={label}
@@ -345,6 +368,9 @@ export function ExamDateWheelPicker({
           options={[...MONTHS]}
           selectedIndex={month - 1}
           onSelect={(i) => emit(i + 1, day, year)}
+          itemHeight={itemH}
+          wheelHeight={wheelH}
+          pad={padding}
         />
         <div className="w-px shrink-0 self-center bg-[var(--color-border)]/40" aria-hidden />
         <WheelColumn
@@ -353,6 +379,9 @@ export function ExamDateWheelPicker({
           selectedIndex={Math.min(day - 1, days.length - 1)}
           onSelect={(i) => emit(month, i + 1, year)}
           compact
+          itemHeight={itemH}
+          wheelHeight={wheelH}
+          pad={padding}
         />
         <div className="w-px shrink-0 self-center bg-[var(--color-border)]/40" aria-hidden />
         <WheelColumn
@@ -361,6 +390,9 @@ export function ExamDateWheelPicker({
           selectedIndex={Math.max(0, years.indexOf(String(year)))}
           onSelect={(i) => emit(month, day, Number(years[i]))}
           compact
+          itemHeight={itemH}
+          wheelHeight={wheelH}
+          pad={padding}
         />
       </div>
     </div>

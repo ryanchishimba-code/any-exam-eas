@@ -674,7 +674,7 @@ export function FullExamSimulator({
 
           <div className={cn(feUi.insetGroup, "bg-white p-4")}>
             <p className="text-[13px] font-semibold text-[var(--color-ink)]">Question overview</p>
-            <ol className="mt-3 grid grid-cols-5 gap-1.5 sm:grid-cols-8 md:grid-cols-10">
+            <ol className="mt-3 grid grid-cols-4 gap-1.5 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-10">
               {questions.map((_, i) => {
                 const answered = hasSelection(answers[i]?.selected ?? []);
                 const flagged = Boolean(answers[i]?.flagged);
@@ -907,7 +907,7 @@ export function FullExamSimulator({
             </button>
             <button
               type="button"
-              className={cn(feUi.footerBtn, "hidden sm:inline-flex")}
+              className={feUi.footerBtn}
               onClick={() => setNotesOpen((v) => !v)}
             >
               {notesOpen ? (

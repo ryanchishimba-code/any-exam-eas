@@ -452,7 +452,7 @@ export function StudySessionPlayer({
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  });
+  }, [answer?.revealed, current, selected, sessionState.currentIndex]);
 
   useEffect(() => {
     if (!complete || progressSaved.current) return;

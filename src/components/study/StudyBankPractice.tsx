@@ -907,6 +907,17 @@ export function StudyBankPractice({
     [questionCount, bankPace]
   );
 
+  if (loading && !questions) {
+    return (
+      <div
+        id="practice-launcher"
+        className={cn(qbUi.page, onQuestionBank ? "mt-0 scroll-mt-20" : "mt-8 scroll-mt-24")}
+      >
+        <QuestionSessionSkeleton />
+      </div>
+    );
+  }
+
   if (questions) {
     const topicLabel = isMixedSubjectId(subjectId)
       ? MIXED_SUBJECT_LABEL

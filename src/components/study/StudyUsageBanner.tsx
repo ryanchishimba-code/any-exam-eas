@@ -42,23 +42,38 @@ export function StudyUsageBanner({ className, compact }: StudyUsageBannerProps) 
     };
   }, []);
 
-  if (!usage || usage.plan !== "trial") return null;
+  if (!usage || (usage.plan !== "trial" && usage.plan !== "free")) return null;
 
   const upgradeHref = "/pricing?upgrade=subscribe&reason=study_limits";
+  const isFree = usage.plan === "free";
   const runningLow =
     (usage.remainingToday ?? 99) <= 5 ||
-    (usage.remainingTrialTotal != null && usage.remainingTrialTotal <= 20);
+    (!isFree &&
+      usage.remainingTrialTotal != null &&
+      usage.remainingTrialTotal <= 20);
 
   if (compact) {
     return (
       <p className={cn("text-xs text-[var(--color-ink-muted)]", className)}>
-        Trial: {usage.remainingToday ?? 0} questions left today
-        {usage.remainingTrialTotal != null
-          ? ` · ${usage.remainingTrialTotal} total remaining`
-          : ""}
-        .{" "}
+        {isFree ? (
+          <>
+            Free plan: {usage.remainingToday ?? 0} questions left today
+            {usage.limits.maxPerSession != null
+              ? ` · max ${usage.limits.maxPerSession} per session`
+              : ""}
+            .{" "}
+          </>
+        ) : (
+          <>
+            Trial: {usage.remainingToday ?? 0} questions left today
+            {usage.remainingTrialTotal != null
+              ? ` · ${usage.remainingTrialTotal} total remaining`
+              : ""}
+            .{" "}
+          </>
+        )}
         <Link href={upgradeHref} className="text-[var(--color-accent)] hover:underline">
-          Subscribe for unlimited access
+          {isFree ? "Upgrade to Pro" : "Subscribe for unlimited access"}
         </Link>
       </p>
     );
@@ -82,18 +97,28 @@ export function StudyUsageBanner({ className, compact }: StudyUsageBannerProps) 
             ) : (
               <Zap className="h-4 w-4 shrink-0 text-[var(--color-accent)]" aria-hidden />
             )}
-            Free trial — limited question access
+            {isFree ? "Free plan — limited question access" : "Free trial — limited question access"}
           </p>
           <p className="mt-1 text-xs text-[var(--color-ink-muted)]">
-            Up to {usage.dailyLimit} questions/day · {usage.trialLimit} total during trial · max{" "}
-            {usage.limits.maxPerSession ?? 15} per session · short timed drills only. Subscribe for
-            unlimited questions; upgrade to Pro for advanced tools.
+            {isFree ? (
+              <>
+                Up to {usage.dailyLimit ?? 10} questions/day · max{" "}
+                {usage.limits.maxPerSession ?? 10} per session · short timed drills only. Upgrade to
+                Pro for unlimited questions and advanced tools.
+              </>
+            ) : (
+              <>
+                Up to {usage.dailyLimit} questions/day · {usage.trialLimit} total during trial · max{" "}
+                {usage.limits.maxPerSession ?? 15} per session · short timed drills only. Subscribe
+                for unlimited questions; upgrade to Pro for advanced tools.
+              </>
+            )}
           </p>
           <div className="mt-2 flex flex-wrap gap-2 text-xs">
             <span className="rounded-full bg-white/80 px-2.5 py-1 font-medium text-[var(--color-ink)]">
               Today: {usage.usedToday}/{usage.dailyLimit ?? "∞"}
             </span>
-            {usage.trialLimit != null && (
+            {!isFree && usage.trialLimit != null && (
               <span className="rounded-full bg-white/80 px-2.5 py-1 font-medium text-[var(--color-ink)]">
                 Trial total: {usage.usedTrialTotal}/{usage.trialLimit}
               </span>
@@ -102,7 +127,7 @@ export function StudyUsageBanner({ className, compact }: StudyUsageBannerProps) 
         </div>
         <Button href={upgradeHref} className="shrink-0 gap-1.5">
           <Sparkles className="h-4 w-4" aria-hidden />
-          Subscribe now
+          {isFree ? "Upgrade to Pro" : "Subscribe now"}
         </Button>
       </div>
     </div>

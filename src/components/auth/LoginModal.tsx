@@ -110,7 +110,7 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
   return (
     <AnimatePresence>
       {open && (
-        <div className="fixed inset-0 z-[200] flex items-end justify-center p-0 sm:items-center sm:p-5 lg:p-8">
+        <div className="fixed inset-0 z-[200] flex items-end justify-center p-0 sm:items-center sm:p-6 lg:p-10">
           <motion.button
             type="button"
             aria-label="Close login dialog"
@@ -126,11 +126,11 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
             role="dialog"
             aria-modal="true"
             aria-labelledby="login-modal-title"
-            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+            initial={{ opacity: 0, y: 28, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 16, scale: 0.98 }}
-            transition={{ duration: 0.24, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative z-10 flex max-h-[96dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-[1.75rem] bg-white shadow-[0_24px_80px_rgba(8,145,178,0.22)] sm:max-h-[min(92vh,760px)] sm:max-w-xl sm:rounded-[1.75rem] lg:max-w-2xl"
+            exit={{ opacity: 0, y: 20, scale: 0.98 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className="relative z-10 flex max-h-[96dvh] w-full max-w-lg flex-col overflow-hidden rounded-t-[1.75rem] bg-white shadow-[0_24px_80px_rgba(8,145,178,0.22)] sm:max-h-[min(94vh,820px)] sm:max-w-2xl sm:rounded-[1.75rem] lg:max-w-3xl"
           >
             <div className="relative overflow-hidden bg-gradient-to-br from-[#0e7490] via-[#0891b2] to-[#0284c7] px-6 pb-7 pt-6 text-white">
               <button

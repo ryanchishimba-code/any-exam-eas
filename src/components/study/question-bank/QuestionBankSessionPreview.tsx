@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertCircle, ArrowRight } from "lucide-react";
+import { AlertCircle, ArrowRight, Loader2 } from "lucide-react";
 import type { QuestionBankPace, QuestionBankStyle } from "@/lib/exam/modes";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import { cn } from "@/lib/utils";
@@ -42,16 +42,6 @@ export function QuestionBankSessionPreview({
   timedCount,
   timedMinutes,
 }: Props) {
-  const startLabel = loading
-    ? "Loading…"
-    : isTimedExam
-      ? `Start timed exam · ${timedCount ?? questionCount} questions`
-      : bankStyle === "adaptive"
-        ? `Start adaptive · ${questionCount} questions`
-        : bankStyle === "weak_areas"
-          ? `Start weak-area drill · ${questionCount} questions`
-          : `Start ${pace} practice · ${questionCount} questions`;
-
   return (
     <div className={qbUi.stickyBar}>
       <div className="space-y-3">
@@ -93,11 +83,26 @@ export function QuestionBankSessionPreview({
         <button
           type="button"
           disabled={disabled || loading}
-          className={qbUi.primaryBtn}
+          className={cn(qbUi.primaryBtn, loading && "opacity-90")}
           onClick={onStart}
         >
-          {startLabel}
-          <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+          {loading ? (
+            <>
+              <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden />
+              Preparing session…
+            </>
+          ) : (
+            <>
+              {isTimedExam
+                ? `Start timed exam · ${timedCount ?? questionCount} questions`
+                : bankStyle === "adaptive"
+                  ? `Start adaptive · ${questionCount} questions`
+                  : bankStyle === "weak_areas"
+                    ? `Start weak-area drill · ${questionCount} questions`
+                    : `Start ${pace} practice · ${questionCount} questions`}
+              <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+            </>
+          )}
         </button>
       </div>
     </div>

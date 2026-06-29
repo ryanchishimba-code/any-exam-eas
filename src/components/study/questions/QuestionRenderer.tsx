@@ -244,7 +244,7 @@ export function ExplanationPanel({
 }) {
   const [expanded, setExpanded] = useState(false);
   const { role } = useUserAccess();
-  const conciseOnly = role === "trial" || role === "free";
+  const conciseOnly = role === "free";
   const examSlug = (field ? examSlugFromFieldId(field) : null) ?? "nclex";
 
   const parsed = parseRationaleForDisplay(
