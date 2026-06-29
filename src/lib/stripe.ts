@@ -293,10 +293,9 @@ export async function changeSubscriptionPlan(params: {
 
   const newPriceId = requireStripePriceId(params.tier, params.interval);
   const onTrial = sub.status === "trialing";
-  const isUpgrade =
-    params.tier === "pro" && parseSubscriptionTier(sub.metadata?.tier) === "basic";
+  const isLegacyBasicUpgrade = parseSubscriptionTier(sub.metadata?.tier) === "basic";
 
-  if (onTrial || isUpgrade) {
+  if (onTrial || isLegacyBasicUpgrade) {
     const updated = await stripe.subscriptions.update(params.stripeSubscriptionId, {
       items: [{ id: item.id, price: newPriceId }],
       proration_behavior: onTrial ? "none" : "create_prorations",

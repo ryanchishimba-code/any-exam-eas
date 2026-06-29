@@ -323,10 +323,8 @@ export function ExamMarketingLanding({ examKey, questionCountLabel }: Props) {
           <header className="mx-auto max-w-2xl text-center">
             <p className="aee-flagship-eyebrow">Simple pricing</p>
             <h2 className="aee-flagship-title">
-              Basic from {formatMonthlyPrice("basic")}/mo ·{" "}
-              <span className="aee-flagship-gradient-text">
-                Pro from {formatMonthlyPrice("pro")}/mo
-              </span>
+              Pro at{" "}
+              <span className="aee-flagship-gradient-text">{formatMonthlyPrice("pro")}/mo</span>
             </h2>
             <p className="aee-flagship-subtitle">
               {formatTrialLabel()} · {PLATFORM_EXAM_LIST_MIDDOT} · save up to 20% annual
@@ -465,8 +463,7 @@ export function ExamMarketingLanding({ examKey, questionCountLabel }: Props) {
               Start {config.shortName} prep — {formatTrialLabel()}
             </h2>
             <p className="aee-flagship-final-cta__subtitle">
-              Basic from {formatMonthlyPrice("basic")}/mo · Pro from{" "}
-              {formatMonthlyPrice("pro")}/mo · All six board exams
+              Pro at {formatMonthlyPrice("pro")}/mo · All six board exams · {formatTrialLabel()}
             </p>
             <div className="aee-flagship-final-cta__actions mt-6">
               <LandingCta

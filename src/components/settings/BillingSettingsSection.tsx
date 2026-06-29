@@ -232,7 +232,7 @@ export function BillingSettingsSection() {
                 ? SIGNUP_PAYMENT_REQUIRED_NOTE
                 : onTrial
                   ? "Payment method on file. You are not charged until the trial ends — cancel anytime before then for no charge."
-                  : `Current plan: ${currentTier === "pro" ? "Pro" : "Basic"} · ${getBillingPlanTier(currentTier, currentInterval).label}. Payments are non-refundable.`}
+                  : `Current plan: Pro · ${getBillingPlanTier(currentTier, currentInterval).label}. Payments are non-refundable.`}
             </p>
           </div>
 

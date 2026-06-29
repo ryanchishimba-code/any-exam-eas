@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
     const snapshot = await getQuestionBankCounts();
     const display = buildLandingBankCountsDisplay(snapshot);
     if (!snapshot.degraded && display.totalServed > 0) {
-      const description = `All-in-one board prep for NCLEX, USMLE Step 1, Step 2 CK & Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT — ${display.totalQuestionsLabel}, Roadmaps & Deep Dives. Basic from ${formatMonthlyPrice("basic")}/mo · ${formatTrialLabel()} · ${formatTrialQuestionLimit()} · no payment required.`;
+      const description = `All-in-one board prep for NCLEX, USMLE Step 1, Step 2 CK & Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT — ${display.totalQuestionsLabel}, Roadmaps & Deep Dives. Pro at ${formatMonthlyPrice("pro")}/mo · ${formatTrialLabel()} · ${formatTrialQuestionLimit()} · no payment required.`;
       return {
         ...base,
         description,

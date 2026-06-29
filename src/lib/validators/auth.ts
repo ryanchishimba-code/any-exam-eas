@@ -10,7 +10,7 @@ export const signupPlanSchema = z.enum(["trial", "subscribe"], {
   errorMap: () => ({ message: "Choose a trial or subscription plan to continue." }),
 });
 
-export const subscriptionTierSchema = z.enum(["basic", "pro"]).default("pro");
+export const subscriptionTierSchema = z.literal("pro").default("pro");
 
 /** Exam slugs offered at signup — mirrors EXAM_CATALOG in @/lib/edtech/exams. */
 export const examSlugSchema = z.enum([

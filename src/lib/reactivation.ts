@@ -25,7 +25,7 @@ export function appendReturnParam(path: string, returnPath: string): string {
 export function buildCheckoutPath(
   plan: "trial" | "subscribe",
   reactivate = true,
-  tier: "basic" | "pro" = "pro"
+  tier: "pro" = "pro"
 ): string {
   const params = new URLSearchParams({
     plan,

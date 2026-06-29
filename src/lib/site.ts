@@ -48,7 +48,7 @@ export {
   BILLING_TRIAL_DISCLOSURE,
 };
 
-export function formatMonthlyPrice(tier: SubscriptionTier = "basic"): string {
+export function formatMonthlyPrice(tier: SubscriptionTier = "pro"): string {
   return `$${TIER_MONTHLY_USD[tier].toFixed(2)}`;
 }
 
@@ -85,7 +85,7 @@ export function formatTrialCtaLabel(): string {
 }
 
 export function formatLandingHeroSubline(): string {
-  return `${LANDING_HERO_SUBLINE_BODY} Starting at just ${formatMonthlyPrice("basic")}/month.`;
+  return `${LANDING_HERO_SUBLINE_BODY} Pro at ${formatMonthlyPrice("pro")}/month.`;
 }
 
 export function formatTrialCtaWithSavings(
@@ -146,7 +146,7 @@ export function formatLandingConversionSubtitle(): string {
 }
 
 export function formatLandingStickyDetail(): string {
-  return `Basic from ${formatMonthlyPrice("basic")}/mo · Pro from ${formatMonthlyPrice("pro")}/mo · ${formatTrialLabel()}`;
+  return `Pro at ${formatMonthlyPrice("pro")}/mo · ${formatTrialLabel()}`;
 }
 
 export const SIGNUP_PAYMENT_REQUIRED_NOTE =
@@ -164,9 +164,9 @@ export const TRIAL_CARD_DISCLOSURE = TRIAL_PAYMENT_DISCLOSURE;
 
 export function formatPricingHeadline(): string {
   if (usesIntroTrialPricing()) {
-    return `${formatTrialIntroPrice()} / ${TRIAL_DAYS}-day trial → from ${formatStartingPrice()}/mo`;
+    return `${formatTrialIntroPrice()} / ${TRIAL_DAYS}-day trial → Pro from ${formatStartingPrice()}/mo`;
   }
-  return `${TRIAL_DAYS}-day free trial · Basic from ${formatMonthlyPrice("basic")}/mo · Pro from ${formatMonthlyPrice("pro")}/mo`;
+  return `${TRIAL_DAYS}-day free trial · Pro at ${formatMonthlyPrice("pro")}/mo · no payment required`;
 }
 
 export function formatTierPriceLine(plan: BillingPlanTier): string {
@@ -183,8 +183,8 @@ export function formatTierAfterTrialLine(
   return `After trial: ${intervalRenewalLabel(tier, interval)}`;
 }
 
-export function formatTierName(tier: SubscriptionTier): string {
-  return tier === "pro" ? "Pro" : "Basic";
+export function formatTierName(_tier: SubscriptionTier = "pro"): string {
+  return "Pro";
 }
 
 export { parseSubscriptionTier };

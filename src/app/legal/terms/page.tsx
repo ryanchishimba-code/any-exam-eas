@@ -57,7 +57,7 @@ export default function TermsPage() {
         <p className="mt-2">
           You may start a free trial without providing a payment method. Trial access includes a
           limited number of practice questions and features as described at signup. A valid payment
-          method is required when you upgrade to a paid Basic or Pro subscription. Free trials are
+          method is required when you upgrade to a paid Pro subscription. Free trials are
           limited to one per email address unless we authorize otherwise in writing.
         </p>
 

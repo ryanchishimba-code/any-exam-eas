@@ -16,7 +16,7 @@ type ProUpgradeGateProps = {
   callbackPath?: string;
 };
 
-/** Renders children for Pro users; upgrade prompt for Basic subscribers. */
+/** Renders children for Pro/trial users; upgrade prompt for free-tier users. */
 export async function ProUpgradeGate({
   feature,
   children,
@@ -44,9 +44,8 @@ export async function ProUpgradeGate({
         Upgrade to unlock {label}
       </h2>
       <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-        Your Basic plan includes all 6 exams, question banks, Roadmaps, and clinical tools.
-        {label} is part of Pro — plus advanced analytics, unlimited mock exams, spaced repetition,
-        and enhanced explanations.
+        {label} is included with Pro — unlimited questions, AI Tutor, analytics, mock exams, and
+        everything for all 6 boards.
       </p>
       <div className="mt-6 flex flex-col items-center gap-3">
         <Button href={proUpgradeHref(feature)} className="gap-2">

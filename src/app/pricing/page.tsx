@@ -31,7 +31,7 @@ export default async function PricingPage({
   return (
     <PageShell
       eyebrow="6 Major Board Exams · One Subscription"
-      title="Basic or Pro — every board included."
+      title="One Pro plan — every board included."
       description={formatPricingHeadline()}
       align="center"
       maxWidth="max-w-5xl"
@@ -51,14 +51,14 @@ export default async function PricingPage({
       </div>
       <p className="mx-auto mt-3 max-w-2xl text-center text-sm font-medium text-[var(--color-ink-muted)]">
         {bankCounts.degraded ? (
-          <>6 exams + powerful tools for less than one UWorld subscription · Pro from{" "}
+          <>6 exams + powerful tools for less than one UWorld subscription · Pro at{" "}
             {formatMonthlyPrice("pro")}/mo</>
         ) : (
           <>
             <span className="font-semibold tabular-nums text-[var(--color-ink)]">
               {bankCounts.totalLabel}
             </span>{" "}
-            serve-ready questions · 6 exams · Pro from {formatMonthlyPrice("pro")}/mo
+            serve-ready questions · 6 exams · Pro at {formatMonthlyPrice("pro")}/mo
           </>
         )}
       </p>

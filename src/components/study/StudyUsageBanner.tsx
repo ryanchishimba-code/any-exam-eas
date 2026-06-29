@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 type StudyUsageResponse = {
-  plan: "trial" | "basic" | "pro" | "staff";
+  plan: "trial" | "free" | "pro" | "staff";
   usedToday: number;
   remainingToday: number | null;
   dailyLimit: number | null;
@@ -25,7 +25,7 @@ type StudyUsageBannerProps = {
   compact?: boolean;
 };
 
-/** Shown only for free-trial users — paid Basic and Pro have unlimited question access. */
+/** Shown for trial and free-tier users — Pro subscribers have unlimited question access. */
 export function StudyUsageBanner({ className, compact }: StudyUsageBannerProps) {
   const [usage, setUsage] = useState<StudyUsageResponse | null>(null);
 

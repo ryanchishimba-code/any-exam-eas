@@ -21,7 +21,7 @@ import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 
 /** Local price formatter — avoids a circular import with site.ts. */
-const monthly = (tier: "basic" | "pro") => `$${TIER_MONTHLY_USD[tier].toFixed(2)}`;
+const monthly = () => `$${TIER_MONTHLY_USD.pro.toFixed(2)}`;
 
 /** Primary platform positioning — reuse across compare sections and SEO. */
 export const PLATFORM_TAGLINE =
@@ -194,9 +194,9 @@ export const LANDING_OFFERING_PILLARS = [
   },
   {
     icon: Sparkles,
-    title: "Basic or Pro — your call",
+    title: "One Pro plan — everything included",
     detail:
-      `Start with Basic — all six banks, Roadmaps, labs, calculators, and ${DRUGS_DECK_MARKETING_TITLE}. Pro adds SRS, exportable notes, and enhanced explanations.`,
+      `All six banks, Roadmaps, AI Tutor, analytics, unlimited mocks, ${DRUGS_DECK_MARKETING_TITLE}, and more — one simple subscription.`,
   },
 ] as const;
 
@@ -298,9 +298,9 @@ export const LANDING_SOCIAL_PROOF = [
     detail: "One subscription — no per-exam stacking",
   },
   {
-    value: "Basic",
-    label: "Starting plan",
-    detail: "Pro adds Deep Dives, analytics & unlimited mocks",
+    value: "Pro",
+    label: "One plan",
+    detail: "Everything for all 6 boards at $34.99/mo",
   },
   {
     value: "Roadmap",
@@ -598,7 +598,7 @@ export const LANDING_TESTIMONIALS = LANDING_SUCCESS_STORIES;
 export const UWORLD_COMPARE_ROWS = [
   {
     label: "Monthly price",
-    us: `From ${monthly("basic")}/mo Basic · Pro ${monthly("pro")}/mo — all 6 exams`,
+    us: `Pro at ${monthly()}/mo — all 6 exams included`,
     them: "$200–400+ per exam (UWorld sells each board separately)",
   },
   {

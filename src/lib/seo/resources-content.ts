@@ -416,7 +416,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "six-board-exams-one-subscription",
     title: "Six Board Exams, One Subscription — NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE",
     metaDescription:
-      "Why students switch from per-exam QBanks to AnyExamEasy — six licensing tracks, Roadmaps, Deep Dives, and Basic/Pro pricing.",
+      "Why students switch from per-exam QBanks to AnyExamEasy — six licensing tracks, Roadmaps, Deep Dives, and one Pro plan.",
     examTags: ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"],
     keywords: ["board exam prep subscription", "UWorld alternative", "affordable board prep"],
     readingMinutes: 8,

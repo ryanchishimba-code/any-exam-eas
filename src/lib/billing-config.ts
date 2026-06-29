@@ -3,9 +3,9 @@
 /** App-native free trial (days) — starts at signup without a payment method. */
 export const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "3");
 
-/** Lifetime question cap during app-native free trial. */
+/** Lifetime question cap during app-native free trial (soft limit with full Pro access). */
 export const TRIAL_LIFETIME_QUESTIONS = Number(
-  process.env.TRIAL_LIFETIME_QUESTIONS ?? "60"
+  process.env.TRIAL_LIFETIME_QUESTIONS ?? "150"
 );
 
 /** Lifetime question cap after trial expires (restricted Free tier). */

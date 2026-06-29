@@ -38,5 +38,5 @@ export function seoResourcesCtaLine(): string {
 }
 
 export function seoSixBoardTrialParagraph(): string {
-  return `No payment required at signup. Explore every exam track with ${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial before choosing Basic or Pro.`;
+  return `No payment required at signup. Explore every exam track with ${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial, then upgrade to Pro for unlimited access.`;
 }

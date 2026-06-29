@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Align Stripe Price objects with Basic + Pro billing config.
+ * Align Stripe Price objects with Pro billing config.
  * Creates new prices when amounts drift (Stripe prices are immutable).
  *
  * Usage:
@@ -19,19 +19,13 @@ const Stripe = require("stripe").default;
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const ENV_PATH = join(root, ".env");
 
-const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "14");
+const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "3");
 
 const TIERS = {
-  basic: {
-    productName: "Any Exam Easy Basic",
-    monthlyUsd: Number(process.env.BASIC_MONTHLY_PRICE_USD ?? "34.99"),
-    yearlyUsd: Number(process.env.BASIC_YEARLY_PRICE_USD ?? "349"),
-    envPrefix: "STRIPE_BASIC_PRICE_ID",
-  },
   pro: {
     productName: "Any Exam Easy Pro",
-    monthlyUsd: Number(process.env.PRO_MONTHLY_PRICE_USD ?? "49.99"),
-    yearlyUsd: Number(process.env.PRO_YEARLY_PRICE_USD ?? "499"),
+    monthlyUsd: Number(process.env.PRO_MONTHLY_PRICE_USD ?? process.env.MONTHLY_PRICE_USD ?? "34.99"),
+    yearlyUsd: Number(process.env.PRO_YEARLY_PRICE_USD ?? process.env.YEARLY_PRICE_USD ?? "349"),
     envPrefix: "STRIPE_PRO_PRICE_ID",
     legacyKeys: {
       monthly: "STRIPE_PRICE_ID",
@@ -151,15 +145,13 @@ async function main() {
     process.exit(1);
   }
 
-  console.log(`Syncing Basic + Pro Stripe prices (TRIAL_DAYS=${TRIAL_DAYS}, payment at checkout)…`);
+  console.log(`Syncing Pro Stripe prices (TRIAL_DAYS=${TRIAL_DAYS})…`);
   const stripe = new Stripe(secret);
   const account = await stripe.accounts.retrieve();
   console.log(`Account: ${account.id} (${secret.startsWith("sk_live_") ? "live" : "test"})`);
 
   envContent = setEnvValue(envContent, "TRIAL_DAYS", String(TRIAL_DAYS));
-  envContent = setEnvValue(envContent, "BASIC_MONTHLY_PRICE_USD", String(TIERS.basic.monthlyUsd));
   envContent = setEnvValue(envContent, "PRO_MONTHLY_PRICE_USD", String(TIERS.pro.monthlyUsd));
-  envContent = setEnvValue(envContent, "BASIC_YEARLY_PRICE_USD", String(TIERS.basic.yearlyUsd));
   envContent = setEnvValue(envContent, "PRO_YEARLY_PRICE_USD", String(TIERS.pro.yearlyUsd));
   envContent = setEnvValue(envContent, "STRIPE_TRIAL_INTRO_PRICE_ID", "");
 

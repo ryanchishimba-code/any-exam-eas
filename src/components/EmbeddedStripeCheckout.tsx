@@ -29,7 +29,7 @@ export function EmbeddedStripeCheckout() {
   const plan: SignupPlan = searchParams.get("plan") === "trial" ? "trial" : "subscribe";
   const tier = useMemo(() => {
     const raw = searchParams.get("tier");
-    return raw === "basic" || raw === "pro" ? raw : "pro";
+    return raw === "pro" ? "pro" : "pro";
   }, [searchParams]);
   const interval = useMemo(() => {
     const raw = searchParams.get("interval");

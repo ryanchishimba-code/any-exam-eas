@@ -182,12 +182,12 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       {
         question: "How does pricing compare to UWorld?",
         answer:
-          "AnyExamEasy Basic starts at $27.99/mo and includes all three USMLE steps plus five other board exams — UWorld typically charges $200–400+ per exam separately.",
+          "AnyExamEasy Pro is $34.99/mo and includes all three USMLE steps plus five other board exams — UWorld typically charges $200–400+ per exam separately.",
       },
       {
         question: "Are USMLE explanations detailed?",
         answer:
-          "Every item includes a teachable rationale. Pro subscribers get enhanced explanations and Deep Dive modules on missed topics.",
+          "Every item includes a teachable rationale. Pro includes enhanced goat-mode explanations and Deep Dive modules on missed topics.",
       },
     ],
     relatedResourceSlugs: [
@@ -315,7 +315,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       },
       {
         question: "Can I prep for PANCE and USMLE on one plan?",
-        answer: "Yes — all six board tracks are included in Basic and Pro subscriptions.",
+        answer: "Yes — all six board tracks are included in one Pro subscription.",
       },
       {
         question: "How long is the free trial?",

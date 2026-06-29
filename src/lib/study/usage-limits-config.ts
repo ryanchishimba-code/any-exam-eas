@@ -1,24 +1,21 @@
 import type { UserAccess } from "@/lib/access-control";
 import { FREE_TIER_LIFETIME_QUESTIONS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 
-export type StudyUsagePlan = "trial" | "free" | "basic" | "pro" | "staff";
+export type StudyUsagePlan = "trial" | "free" | "pro" | "staff";
 
 export type StudyUsageLimits = {
   /** Max questions served per UTC day. `null` = unlimited (paid tiers). */
   dailyQuestions: number | null;
-  /** Lifetime cap during free trial only. */
+  /** Lifetime cap during free trial or post-trial free tier. */
   trialLifetimeQuestions: number | null;
-  /** Session size cap. `null` = no cap (paid tiers use bank defaults). */
+  /** Session size cap. `null` = no cap. */
   maxPerSession: number | null;
   maxTimedExamLength: number | null;
   allowPresetExams: boolean;
-  /** 50-question mock exams — Basic+ unlimited; trial gets one. */
   allowShortMocks: boolean;
-  /** 100-Q and full-length board simulations — Pro only. */
   allowFullLengthMocks: boolean;
-  /** Trial lifetime 50-Q mock allowance. */
+  /** Trial mock allowance — `null` = unlimited during trial. */
   trialMockAllowance: number | null;
-  /** Adaptive / weak-area selection — Pro only. */
   allowAdaptive: boolean;
 };
 
@@ -26,13 +23,13 @@ export const STUDY_USAGE_LIMITS: Record<StudyUsagePlan, StudyUsageLimits> = {
   trial: {
     dailyQuestions: null,
     trialLifetimeQuestions: TRIAL_LIFETIME_QUESTIONS,
-    maxPerSession: 25,
-    maxTimedExamLength: 50,
-    allowPresetExams: false,
+    maxPerSession: null,
+    maxTimedExamLength: null,
+    allowPresetExams: true,
     allowShortMocks: true,
-    allowFullLengthMocks: false,
-    trialMockAllowance: 1,
-    allowAdaptive: false,
+    allowFullLengthMocks: true,
+    trialMockAllowance: null,
+    allowAdaptive: true,
   },
   free: {
     dailyQuestions: null,
@@ -41,17 +38,6 @@ export const STUDY_USAGE_LIMITS: Record<StudyUsagePlan, StudyUsageLimits> = {
     maxTimedExamLength: null,
     allowPresetExams: false,
     allowShortMocks: false,
-    allowFullLengthMocks: false,
-    trialMockAllowance: null,
-    allowAdaptive: false,
-  },
-  basic: {
-    dailyQuestions: null,
-    trialLifetimeQuestions: null,
-    maxPerSession: null,
-    maxTimedExamLength: null,
-    allowPresetExams: true,
-    allowShortMocks: true,
     allowFullLengthMocks: false,
     trialMockAllowance: null,
     allowAdaptive: false,
@@ -86,9 +72,7 @@ export function resolveStudyUsagePlan(access: UserAccess): StudyUsagePlan {
   if (access.role === "staff") return "staff";
   if (access.role === "free") return "free";
   if (access.role === "trial") return "trial";
-  if (access.role === "subscriber") {
-    return access.subscription.tier === "basic" ? "basic" : "pro";
-  }
+  if (access.role === "subscriber") return "pro";
   return "free";
 }
 

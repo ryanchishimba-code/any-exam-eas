@@ -27,10 +27,10 @@ export const BILLING_GUARANTEE_HEADLINE =
   "Professional board prep for all major exams at a fraction of competitor prices.";
 
 export const BILLING_GUARANTEE_POINTS = [
-  "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT — all 6 exams in one subscription",
+  "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT — all 6 exams in one Pro plan",
   "Integrated Exam Roadmaps plus board-style vignettes — without $200–400+ per-exam bundles",
-  "3-day free trial · 60 practice questions · No payment required at signup · Upgrade anytime for unlimited access",
-  "Plan changes during trial take effect when billing starts; on a paid subscription, changes take effect when your current term ends",
+  "3-day free trial · 150 practice questions · No payment required at signup · Upgrade anytime for unlimited access",
+  "Cancel anytime — access continues through the end of your paid period",
   "Update your saved payment method anytime for recurring billing",
 ] as const;
 
@@ -38,7 +38,7 @@ export const BILLING_POLICY_SHORT =
   "Cancel anytime. Payments are non-refundable — access continues through the end of your paid period.";
 
 export const BILLING_TRIAL_DISCLOSURE =
-  "No payment required to start · 3-day trial with 60 practice questions · Upgrade anytime for unlimited access";
+  "No payment required to start · 3-day trial with full Pro access (150 practice questions) · Upgrade anytime for unlimited access";
 
 /** Plan change rules shown in Settings and checkout. */
 export const BILLING_PLAN_CHANGE_POLICY =
@@ -124,9 +124,7 @@ export function getBillingPlanTier(
 
 export const BILLING_PLAN_TIERS: BillingPlanTier[] = (
   ["monthly", "quarterly", "semiannual", "yearly"] as BillingInterval[]
-).flatMap((interval) =>
-  (["basic", "pro"] as SubscriptionTier[]).map((tier) => getBillingPlanTier(tier, interval))
-);
+).map((interval) => getBillingPlanTier("pro", interval));
 
 export function getBillingPlanTiersForTier(tier: SubscriptionTier): BillingPlanTier[] {
   return (["monthly", "quarterly", "semiannual", "yearly"] as BillingInterval[]).map((interval) =>

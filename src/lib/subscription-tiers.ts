@@ -2,21 +2,19 @@ import type { BillingInterval } from "@/lib/billing-config";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { drugsDeckFeatureLine } from "@/lib/marketing/bank-stats";
 
-/** Subscription tier — Basic or Pro. */
-export type SubscriptionTier = "basic" | "pro";
+/** Single paid subscription tier — Pro only. */
+export type SubscriptionTier = "pro";
 
-export const SUBSCRIPTION_TIERS: SubscriptionTier[] = ["basic", "pro"];
+export const SUBSCRIPTION_TIERS: SubscriptionTier[] = ["pro"];
 
-/** Monthly anchor prices before multi-month savings. */
+/** Monthly anchor price before multi-month savings. */
 export const TIER_MONTHLY_USD: Record<SubscriptionTier, number> = {
-  basic: Number(process.env.BASIC_MONTHLY_PRICE_USD ?? "27.99"),
-  pro: Number(process.env.PRO_MONTHLY_PRICE_USD ?? "34.99"),
+  pro: Number(process.env.PRO_MONTHLY_PRICE_USD ?? process.env.MONTHLY_PRICE_USD ?? "34.99"),
 };
 
 /** Fixed annual totals (marketing-optimized; effective ~17% savings vs monthly). */
 export const TIER_ANNUAL_USD: Record<SubscriptionTier, number> = {
-  basic: Number(process.env.BASIC_YEARLY_PRICE_USD ?? "279"),
-  pro: Number(process.env.PRO_YEARLY_PRICE_USD ?? "349"),
+  pro: Number(process.env.PRO_YEARLY_PRICE_USD ?? process.env.YEARLY_PRICE_USD ?? "349"),
 };
 
 export type TierDefinition = {
@@ -26,40 +24,30 @@ export type TierDefinition = {
   recommended: boolean;
   monthlyUsd: number;
   features: readonly string[];
-  proOnly?: boolean;
 };
 
-/** Universal features included on both tiers. */
-export const UNIVERSAL_FEATURES = [
-  "Full access to all 6 exams (USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, NPTE-PT)",
-  "Unlimited question bank & timed practice",
-  "50-question practice mocks on every exam",
-  "Proprietary Roadmap tools",
-  "Normal Lab Values + Clinical Calculators",
-  drugsDeckFeatureLine(),
-] as const;
-
-/** Pro-only features. */
-export const PRO_ONLY_FEATURES = [
-  "Full Deep Dive Modules (integrated with questions)",
-  "Advanced performance analytics & weak area targeting",
-  "Spaced Repetition System",
-  "Priority content updates",
+/** Everything included in Pro — one plan, all features. */
+export const PRO_FEATURES = [
+  "Full access to all 6 exam banks (USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, NPTE-PT)",
+  "Unlimited questions & rich goat-mode rationales",
+  "AI Tutor",
   "Unlimited full-length mock exams",
-  "Adaptive & weak-area question selection",
+  "Advanced analytics & weak-area targeting",
+  "Spaced Repetition System",
+  "Full Deep Dive Modules",
+  "Proprietary Roadmaps",
+  "Top 509 Drugs deck & Anatomy Explorer",
+  "Normal Lab Values + Clinical Calculators",
   "Exportable notes & progress reports",
-  "Enhanced detailed explanations",
+  "Priority content updates",
 ] as const;
 
-/**
- * Canonical Pro upgrade story — the single source of truth for "what Pro
- * unlocks" copy used by the comparison component, landing pages, and in-app
- * upsells. Keep this aligned with PRO_ONLY_FEATURES (the pricing checklist) and
- * the runtime SubscriptionFeature gates in subscription-features.ts.
- *
- * `icon` is a stable key mapped to a lucide icon at the component layer so this
- * module stays free of UI dependencies.
- */
+/** @deprecated Alias for marketing surfaces that referenced UNIVERSAL + PRO split. */
+export const UNIVERSAL_FEATURES = PRO_FEATURES;
+
+/** @deprecated Alias — all features are Pro now. */
+export const PRO_ONLY_FEATURES = PRO_FEATURES;
+
 export type ProFeatureHighlight = {
   icon:
     | "analytics"
@@ -68,7 +56,8 @@ export type ProFeatureHighlight = {
     | "deepdive"
     | "notes"
     | "explanations"
-    | "priority";
+    | "priority"
+    | "tutor";
   title: string;
   blurb: string;
 };
@@ -90,6 +79,11 @@ export const PRO_FEATURE_HIGHLIGHTS: readonly ProFeatureHighlight[] = [
     blurb: "Rehearse the real thing as many times as you want, under true exam-day conditions.",
   },
   {
+    icon: "tutor",
+    title: "AI Tutor",
+    blurb: "Get instant help on tough concepts without leaving your study flow.",
+  },
+  {
     icon: "deepdive",
     title: "Full Deep Dive Modules",
     blurb: "Go beyond the answer with rich teaching woven into every question.",
@@ -101,7 +95,7 @@ export const PRO_FEATURE_HIGHLIGHTS: readonly ProFeatureHighlight[] = [
   },
   {
     icon: "explanations",
-    title: "Enhanced detailed explanations",
+    title: "Rich goat-mode explanations",
     blurb: "Deeper, clearer rationales that explain the why, not just the what.",
   },
   {
@@ -111,46 +105,37 @@ export const PRO_FEATURE_HIGHLIGHTS: readonly ProFeatureHighlight[] = [
   },
 ] as const;
 
-/** Emotional headline reused across upgrade surfaces. */
-export const PRO_UPGRADE_HEADLINE = "Unlock your highest score potential";
+export const PRO_UPGRADE_HEADLINE = "One plan. Everything you need for all 6 boards.";
+
+export const PRICING_VALUE_HEADLINE =
+  "One Plan. Everything You Need for All 6 Boards.";
 
 /** Trial study limits — shown in marketing copy. */
 export const TRIAL_STUDY_LIMITS = [
-  `${TRIAL_LIFETIME_QUESTIONS} total questions during your ${TRIAL_DAYS}-day trial`,
-  "One 50-question mock exam · concise explanations during trial",
-  "Upgrade anytime for unlimited questions and rich Pro explanations",
+  `${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial`,
+  "Full Pro access — all 6 banks, mocks, AI Tutor, analytics & more",
+  "No payment required at signup · upgrade anytime for unlimited questions",
 ] as const;
 
 export const TIER_DEFINITIONS: Record<SubscriptionTier, TierDefinition> = {
-  basic: {
-    id: "basic",
-    name: "Basic",
-    tagline: "Everything you need to prepare — all 6 exams, one plan",
-    recommended: false,
-    monthlyUsd: TIER_MONTHLY_USD.basic,
-    features: UNIVERSAL_FEATURES,
-  },
   pro: {
     id: "pro",
     name: "Pro",
-    tagline: "Advanced analytics, Deep Dives & unlimited mock exams",
+    tagline: "Everything you need for all 6 boards — one simple plan",
     recommended: true,
     monthlyUsd: TIER_MONTHLY_USD.pro,
-    features: [...UNIVERSAL_FEATURES, ...PRO_ONLY_FEATURES],
-    proOnly: true,
+    features: PRO_FEATURES,
   },
 };
 
-export function parseSubscriptionTier(value: unknown): SubscriptionTier {
-  if (value === "basic" || value === "pro") return value;
+export function parseSubscriptionTier(_value?: unknown): SubscriptionTier {
   return "pro";
 }
 
-export function getTierDefinition(tier: SubscriptionTier): TierDefinition {
+export function getTierDefinition(tier: SubscriptionTier = "pro"): TierDefinition {
   return TIER_DEFINITIONS[tier];
 }
 
-/** Lowest monthly anchor — used in marketing "from $X/mo" copy. */
 export function startingMonthlyUsd(): number {
-  return Math.min(TIER_MONTHLY_USD.basic, TIER_MONTHLY_USD.pro);
+  return TIER_MONTHLY_USD.pro;
 }

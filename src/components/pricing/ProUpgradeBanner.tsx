@@ -21,7 +21,8 @@ export function ProUpgradeBanner({
         Upgrade to Pro to unlock {label}
       </p>
       <p className="mt-1 text-xs text-[var(--color-ink-muted)]">
-        Your Basic plan covers all 6 exams and core tools — Pro adds analytics, Deep Dives, mock exams, and more.
+        One plan — unlimited questions, AI Tutor, analytics, mock exams, and everything for all 6
+        boards.
       </p>
     </div>
   );

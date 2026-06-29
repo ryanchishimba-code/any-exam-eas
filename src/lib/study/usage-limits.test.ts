@@ -13,8 +13,12 @@ function mockAccess(partial: Partial<UserAccess>): UserAccess {
     accountStatus: "active",
     emailVerified: true,
     hasPremiumAccess: true,
+    hasFreeTierAccess: false,
+    hasAppAccess: true,
+    hasStudyAccess: true,
     subscription: {
       hasAccess: true,
+      hasFreeAccess: false,
       status: "trialing",
       tier: "pro",
       planDuration: "yearly",
@@ -28,20 +32,8 @@ function mockAccess(partial: Partial<UserAccess>): UserAccess {
 }
 
 describe("resolveStudyUsagePlan", () => {
-  it("maps trial, basic, pro, and staff roles", () => {
+  it("maps trial, pro, and staff roles", () => {
     expect(resolveStudyUsagePlan(mockAccess({ role: "trial" }))).toBe("trial");
-    expect(
-      resolveStudyUsagePlan(
-        mockAccess({
-          role: "subscriber",
-          subscription: {
-            ...mockAccess({}).subscription,
-            status: "active",
-            tier: "basic",
-          },
-        })
-      )
-    ).toBe("basic");
     expect(
       resolveStudyUsagePlan(
         mockAccess({
@@ -59,26 +51,23 @@ describe("resolveStudyUsagePlan", () => {
 });
 
 describe("clampStudySessionSize", () => {
-  it("caps trial sessions but not paid plans", () => {
-    expect(clampStudySessionSize("trial", 50, false)).toBe(
-      STUDY_USAGE_LIMITS.trial.maxPerSession
-    );
-    expect(clampStudySessionSize("basic", 50, false)).toBe(50);
+  it("does not cap trial or paid sessions", () => {
+    expect(clampStudySessionSize("trial", 50, false)).toBe(50);
+    expect(clampStudySessionSize("pro", 50, false)).toBe(50);
     expect(clampStudySessionSize("pro", 200, true)).toBe(200);
-    expect(clampStudySessionSize("trial", 100, true)).toBe(
-      STUDY_USAGE_LIMITS.trial.maxTimedExamLength
-    );
+    expect(clampStudySessionSize("trial", 225, true)).toBe(225);
+    expect(clampStudySessionSize("free", 100, true)).toBe(10);
   });
 });
 
 describe("trial limits", () => {
-  it("uses lifetime cap instead of daily cap during trial", () => {
+  it("uses lifetime cap with full Pro feature access during trial", () => {
     expect(STUDY_USAGE_LIMITS.trial.dailyQuestions).toBeNull();
-    expect(STUDY_USAGE_LIMITS.trial.trialLifetimeQuestions).toBe(60);
-    expect(STUDY_USAGE_LIMITS.trial.trialMockAllowance).toBe(1);
+    expect(STUDY_USAGE_LIMITS.trial.trialLifetimeQuestions).toBe(150);
+    expect(STUDY_USAGE_LIMITS.trial.trialMockAllowance).toBeNull();
     expect(STUDY_USAGE_LIMITS.trial.allowShortMocks).toBe(true);
-    expect(STUDY_USAGE_LIMITS.basic.allowShortMocks).toBe(true);
-    expect(STUDY_USAGE_LIMITS.basic.allowFullLengthMocks).toBe(false);
+    expect(STUDY_USAGE_LIMITS.trial.allowFullLengthMocks).toBe(true);
+    expect(STUDY_USAGE_LIMITS.trial.allowAdaptive).toBe(true);
   });
 
   it("restricts post-trial free tier to 20 lifetime questions", () => {

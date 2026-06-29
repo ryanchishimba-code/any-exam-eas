@@ -31,7 +31,7 @@ export type ScaleReadinessReport = {
 };
 
 const BILLING_INTERVALS = Object.keys(BILLING_INTERVAL_SAVINGS) as BillingInterval[];
-const SUBSCRIPTION_TIERS: SubscriptionTier[] = ["basic", "pro"];
+const SUBSCRIPTION_TIERS: SubscriptionTier[] = ["pro"];
 
 function check(id: string, status: ScaleCheckStatus, detail: string): ScaleReadinessCheck {
   return { id, status, detail };

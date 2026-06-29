@@ -4,8 +4,7 @@
  * AboutShowdown — the "Showdown" section of the About page.
  *
  * Two premium Recharts visuals that make the value story obvious:
- *  1. Bar chart — annual cost to prep ALL six boards: our real Basic/Pro
- *     prices vs. buying six premium single-exam QBanks.
+ *  1. Bar chart — annual cost to prep ALL six boards: Pro vs. buying six premium single-exam QBanks.
  *  2. Radar chart — a feature/value comparison where AnyExamEasy clearly
  *     covers the most ground.
  *
@@ -55,7 +54,6 @@ type CostBar = { name: string; cost: number; label: string; highlight: boolean }
 
 const COST_DATA: CostBar[] = [
   { name: "AnyExamEasy Pro", cost: TIER_ANNUAL_USD.pro, label: `${usd(TIER_ANNUAL_USD.pro)}/yr`, highlight: true },
-  { name: "AnyExamEasy Basic", cost: TIER_ANNUAL_USD.basic, label: `${usd(TIER_ANNUAL_USD.basic)}/yr`, highlight: true },
   {
     name: "6 single-exam QBanks",
     cost: COMPETITOR_MID,

@@ -24,7 +24,7 @@ export async function GET() {
     configured,
     allIntervalsConfigured,
     publishableKey: publishableKey || null,
-    monthlyPriceUsd: TIER_MONTHLY_USD.basic,
+    monthlyPriceUsd: TIER_MONTHLY_USD.pro,
     proMonthlyPriceUsd: TIER_MONTHLY_USD.pro,
     trialDays: TRIAL_DAYS,
     paymentMethods: PAYMENT_METHODS,

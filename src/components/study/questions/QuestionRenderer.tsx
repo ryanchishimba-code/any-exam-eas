@@ -307,7 +307,7 @@ export function ExplanationPanel({
           </button>
         ) : conciseOnly && hasDeepContent ? (
           <p className="mt-3 text-xs text-[var(--color-ink-muted)]">
-            Upgrade to Basic or Pro for rich, detailed explanations.
+            Upgrade to Pro for rich, detailed explanations.
           </p>
         ) : null}
       </div>

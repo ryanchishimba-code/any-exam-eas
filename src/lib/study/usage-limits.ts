@@ -240,8 +240,8 @@ export async function checkStudyQuestionUsage(
         {
           error:
             plan === "trial"
-              ? "Adaptive practice is a Pro feature. Subscribe for unlimited questions, then upgrade to Pro for personalized sessions."
-              : "Adaptive practice requires a Pro plan.",
+              ? "Adaptive practice requires a Pro subscription after your trial."
+              : "Adaptive practice requires a Pro subscription.",
           code: plan === "trial" ? "TRIAL_FEATURE_LOCKED" : "PRO_FEATURE_REQUIRED",
           plan,
           feature: "adaptive",
@@ -274,9 +274,9 @@ export async function checkStudyQuestionUsage(
       response: NextResponse.json(
         {
           error:
-            plan === "trial"
-              ? "Full-length mock exams unlock with Pro. Your trial includes one 50-question mock."
-              : "Full-length mock exams are a Pro feature. Basic includes unlimited 50-question mocks.",
+            plan === "free"
+              ? "Full-length mock exams require a Pro subscription."
+              : "Full-length mock exams require a Pro subscription.",
           code: plan === "trial" ? "TRIAL_MOCK_LOCKED" : "PRO_MOCK_LOCKED",
           plan,
           upgradeUrl: upgradeUrl(plan, "full_mock"),

@@ -90,8 +90,8 @@ export function buildResourceArticleMetadata(article: ResourceArticle): Metadata
 }
 
 export function buildPricingMetadata(): Metadata {
-  const title = "Pricing — Basic & Pro Board Exam Plans";
-  const description = `${formatTrialLabel()} · ${formatTrialQuestionLimit()} · Basic from ${formatMonthlyPrice("basic")}/mo · Pro from ${formatMonthlyPrice("pro")}/mo · All 6 board exams included · Save up to 20% on annual.`;
+  const title = "Pricing — Pro Board Exam Plan";
+  const description = `${formatTrialLabel()} · ${formatTrialQuestionLimit()} · Pro at ${formatMonthlyPrice("pro")}/mo · All 6 board exams included · Save up to 20% on annual.`;
   return {
     ...baseOpenGraph(title, description, "/pricing"),
   };
@@ -141,9 +141,9 @@ export function buildExamJsonLd(key: ExamSeoKey) {
         inLanguage: "en-US",
         offers: {
           "@type": "Offer",
-          price: TIER_MONTHLY_USD.basic.toFixed(2),
+          price: TIER_MONTHLY_USD.pro.toFixed(2),
           priceCurrency: "USD",
-          description: `${formatTrialLabel()} · Basic from ${formatMonthlyPrice("basic")}/mo`,
+          description: `${formatTrialLabel()} · Pro at ${formatMonthlyPrice("pro")}/mo`,
           url: absoluteUrl("/signup?plan=trial&tier=pro"),
         },
       },

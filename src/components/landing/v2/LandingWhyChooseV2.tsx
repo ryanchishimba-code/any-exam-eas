@@ -35,7 +35,7 @@ const COMPARE_ROWS: CompareRow[] = [
   },
   {
     label: "Monthly price",
-    us: { text: `From ${formatMonthlyPrice("basic")}/mo · Pro ${formatMonthlyPrice("pro")}/mo`, positive: true },
+    us: { text: `Pro at ${formatMonthlyPrice("pro")}/mo`, positive: true },
     uworld: { text: "$200–400+ per exam" },
     amboss: { text: "~$30–60/mo per track" },
   },

@@ -13,9 +13,8 @@ const PERKS = [
 ];
 
 /**
- * In-app upgrade nudge shown ONLY to premium Basic users (hidden for Pro and
- * staff). Self-resolves the viewer's tier so callers can drop it in without
- * threading access props. Uses `advanced_analytics` as the Pro litmus feature.
+ * Legacy in-app upgrade nudge — hidden now that Pro is the only paid tier and trial
+ * includes full Pro access. Kept for callers; returns null for current access models.
  */
 export async function ProBenefitsCallout({ className }: { className?: string }) {
   const session = await auth();

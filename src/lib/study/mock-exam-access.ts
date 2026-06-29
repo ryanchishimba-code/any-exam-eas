@@ -44,18 +44,8 @@ export function defaultMockPresetForAccess(
 
 export function mockPresetLockedMessage(access: MockExamAccess): string | null {
   if (access.allowFullLengthMocks) return null;
-  if (access.plan === "trial") {
-    const remaining =
-      access.trialMockAllowance != null && access.usedTrialMocks != null
-        ? Math.max(0, access.trialMockAllowance - access.usedTrialMocks)
-        : access.trialMockAllowance;
-    if (remaining === 0) {
-      return "Your trial includes one 50-question mock. Upgrade for unlimited mocks and full-length exams.";
-    }
-    return "Trial includes one 50-question mock. 100-Q and full-length exams require Pro.";
+  if (access.plan === "free") {
+    return "Full-length mock exams require a Pro subscription.";
   }
-  if (access.plan === "basic") {
-    return "Basic includes unlimited 50-question mocks. Full-length adaptive exams require Pro.";
-  }
-  return null;
+  return "Mock exams require a Pro subscription.";
 }

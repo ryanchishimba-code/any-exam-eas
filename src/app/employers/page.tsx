@@ -36,7 +36,7 @@ const VALUE_PROPS = [
   {
     icon: Wallet,
     title: "A fraction of per-exam pricing",
-    detail: `From ${formatMonthlyPrice("basic")}/seat per month vs. $200–400+ per exam elsewhere — predictable budgeting for cohorts of any size.`,
+    detail: `Pro at ${formatMonthlyPrice("pro")}/seat per month vs. $200–400+ per exam elsewhere — predictable budgeting for cohorts of any size.`,
   },
   {
     icon: BarChart3,

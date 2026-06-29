@@ -109,10 +109,9 @@ export async function GET(req: Request) {
     trialEndsAt:
       sub?.trialEndsAt?.toISOString() ?? subscription.trialEndsAt?.toISOString() ?? null,
     trialDays: TRIAL_DAYS,
-    monthlyPriceUsd: TIER_MONTHLY_USD.basic,
+    monthlyPriceUsd: TIER_MONTHLY_USD.pro,
     proMonthlyPriceUsd: TIER_MONTHLY_USD.pro,
     yearlyPriceUsd: TIER_ANNUAL_USD.pro,
-    basicYearlyPriceUsd: TIER_ANNUAL_USD.basic,
     reactivation: reactivationInfo?.available
       ? {
           method: reactivationInfo.method,

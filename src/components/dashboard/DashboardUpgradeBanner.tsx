@@ -37,7 +37,7 @@ function statusLine({ variant, daysRemaining, usage }: DashboardUpgradeProps): s
     return "You're on the Free plan";
   }
 
-  return "You're on the Basic plan";
+  return "";
 }
 
 function headline(variant: DashboardUpgradeProps["variant"]): string {
@@ -45,9 +45,7 @@ function headline(variant: DashboardUpgradeProps["variant"]): string {
     case "trial":
       return "You're doing great — keep the momentum going.";
     case "free":
-      return "Your trial has ended — you can still practice.";
-    case "basic":
-      return "You're on Basic — Pro unlocks the full toolkit.";
+      return "Your trial has ended — upgrade to keep studying.";
   }
 }
 
@@ -56,8 +54,6 @@ function eyebrow(variant: DashboardUpgradeProps["variant"]): string {
     case "trial":
       return "Free trial";
     case "free":
-      return "Upgrade to continue";
-    case "basic":
       return "Upgrade to Pro";
   }
 }

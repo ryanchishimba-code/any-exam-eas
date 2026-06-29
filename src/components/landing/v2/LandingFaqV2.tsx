@@ -24,9 +24,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "How much does it cost?",
-    a: `Basic starts at ${formatMonthlyPrice("basic")}/month and Pro at ${formatMonthlyPrice(
-      "pro"
-    )}/month — both include all six exams. Annual billing saves roughly 17% versus monthly. That's typically less than a single per-exam UWorld or AMBOSS subscription.`,
+    a: `Pro is ${formatMonthlyPrice("pro")}/month and includes all six exams. Annual billing saves roughly 17% versus monthly. That's typically less than a single per-exam UWorld or AMBOSS subscription.`,
   },
   {
     q: "Is there a free trial? Do I need a card?",

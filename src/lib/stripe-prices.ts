@@ -6,17 +6,11 @@ import {
 import { intervalTotalUsd } from "@/lib/billing-plans";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 
-/** Env var for each Stripe Price object (tier × interval). */
+/** Env var for each Stripe Price object (Pro × interval). */
 export const STRIPE_PRICE_ENV_KEYS: Record<
   SubscriptionTier,
   Record<BillingInterval, string>
 > = {
-  basic: {
-    monthly: "STRIPE_BASIC_PRICE_ID_MONTHLY",
-    quarterly: "STRIPE_BASIC_PRICE_ID_QUARTERLY",
-    semiannual: "STRIPE_BASIC_PRICE_ID_SEMIANNUAL",
-    yearly: "STRIPE_BASIC_PRICE_ID_YEARLY",
-  },
   pro: {
     monthly: "STRIPE_PRO_PRICE_ID_MONTHLY",
     quarterly: "STRIPE_PRO_PRICE_ID_QUARTERLY",
@@ -31,6 +25,14 @@ const LEGACY_STRIPE_PRICE_ENV_KEYS: Record<BillingInterval, string> = {
   quarterly: "STRIPE_PRICE_ID_QUARTERLY",
   semiannual: "STRIPE_PRICE_ID_SEMIANNUAL",
   yearly: "STRIPE_PRICE_ID_YEARLY",
+};
+
+/** Legacy Basic price env keys — still recognized for existing subscriptions. */
+const LEGACY_BASIC_STRIPE_PRICE_ENV_KEYS: Record<BillingInterval, string> = {
+  monthly: "STRIPE_BASIC_PRICE_ID_MONTHLY",
+  quarterly: "STRIPE_BASIC_PRICE_ID_QUARTERLY",
+  semiannual: "STRIPE_BASIC_PRICE_ID_SEMIANNUAL",
+  yearly: "STRIPE_BASIC_PRICE_ID_YEARLY",
 };
 
 /** Expected charge in USD — must match Stripe Price unit_amount / 100. */
@@ -81,11 +83,9 @@ export function getStripePriceId(
   const value = process.env[key]?.trim();
   if (value?.startsWith("price_")) return value;
 
-  if (tier === "pro") {
-    const legacyKey = LEGACY_STRIPE_PRICE_ENV_KEYS[interval];
-    const legacy = process.env[legacyKey]?.trim();
-    if (legacy?.startsWith("price_")) return legacy;
-  }
+  const legacyKey = LEGACY_STRIPE_PRICE_ENV_KEYS[interval];
+  const legacy = process.env[legacyKey]?.trim();
+  if (legacy?.startsWith("price_")) return legacy;
 
   return undefined;
 }
@@ -102,11 +102,15 @@ export function intervalFromPriceId(priceId: string): {
   tier: SubscriptionTier;
   interval: BillingInterval;
 } | null {
-  for (const tier of ["basic", "pro"] as SubscriptionTier[]) {
-    for (const interval of Object.keys(STRIPE_PRICE_ENV_KEYS.basic) as BillingInterval[]) {
-      if (getStripePriceId(tier, interval) === priceId) {
-        return { tier, interval };
-      }
+  for (const interval of Object.keys(STRIPE_PRICE_ENV_KEYS.pro) as BillingInterval[]) {
+    if (getStripePriceId("pro", interval) === priceId) {
+      return { tier: "pro", interval };
+    }
+  }
+  for (const interval of Object.keys(LEGACY_BASIC_STRIPE_PRICE_ENV_KEYS) as BillingInterval[]) {
+    const legacyBasic = process.env[LEGACY_BASIC_STRIPE_PRICE_ENV_KEYS[interval]]?.trim();
+    if (legacyBasic === priceId) {
+      return { tier: "pro", interval };
     }
   }
   return null;
@@ -143,19 +147,16 @@ export type StripePriceSetupStatus = {
 };
 
 export function getStripePriceSetupStatus(): StripePriceSetupStatus[] {
-  const tiers: SubscriptionTier[] = ["basic", "pro"];
-  const intervals = Object.keys(STRIPE_PRICE_ENV_KEYS.basic) as BillingInterval[];
-  return tiers.flatMap((tier) =>
-    intervals.map((interval) => ({
-      tier,
-      interval,
-      envKey: STRIPE_PRICE_ENV_KEYS[tier][interval],
-      configured: isIntervalPriceConfigured(tier, interval),
-      priceId: getStripePriceId(tier, interval) ?? null,
-      expectedUsd: expectedIntervalUsd(tier, interval),
-      savingsPercent: BILLING_INTERVAL_SAVINGS[interval],
-    }))
-  );
+  const intervals = Object.keys(STRIPE_PRICE_ENV_KEYS.pro) as BillingInterval[];
+  return intervals.map((interval) => ({
+    tier: "pro" as const,
+    interval,
+    envKey: STRIPE_PRICE_ENV_KEYS.pro[interval],
+    configured: isIntervalPriceConfigured("pro", interval),
+    priceId: getStripePriceId("pro", interval) ?? null,
+    expectedUsd: expectedIntervalUsd("pro", interval),
+    savingsPercent: BILLING_INTERVAL_SAVINGS[interval],
+  }));
 }
 
 export function getMissingStripePriceEnvKeys(): string[] {
@@ -164,7 +165,7 @@ export function getMissingStripePriceEnvKeys(): string[] {
     .map((s) => s.envKey);
 }
 
-/** True when all tier × interval prices are configured. */
+/** True when all Pro interval prices are configured. */
 export function areAllTierPricesConfigured(): boolean {
   return getMissingStripePriceEnvKeys().length === 0;
 }
@@ -175,8 +176,7 @@ export function isProFullyConfigured(): boolean {
   return intervals.every((i) => isIntervalPriceConfigured("pro", i));
 }
 
-/** True when Basic tier has all intervals. */
+/** @deprecated Basic tier removed — alias for isProFullyConfigured. */
 export function isBasicFullyConfigured(): boolean {
-  const intervals = Object.keys(STRIPE_PRICE_ENV_KEYS.basic) as BillingInterval[];
-  return intervals.every((i) => isIntervalPriceConfigured("basic", i));
+  return isProFullyConfigured();
 }

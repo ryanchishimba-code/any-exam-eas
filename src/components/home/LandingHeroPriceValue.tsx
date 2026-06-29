@@ -16,23 +16,20 @@ export function LandingHeroPriceValue({
   className = "",
   bankCounts,
 }: LandingHeroPriceValueProps) {
-  // First bullet is the question-count claim — drive it from the live bank, not the static floor.
   const includes = bankCounts
     ? [`${bankCounts.totalLabel} board-style questions`, ...LANDING_HERO_PRICE_INCLUDES.slice(1)]
     : LANDING_HERO_PRICE_INCLUDES;
   return (
     <div
       className={`aee-hero-price-value ${className}`.trim()}
-      aria-label={`Basic from ${formatMonthlyPrice("basic")} per month includes full platform access`}
+      aria-label={`Pro at ${formatMonthlyPrice("pro")} per month includes full platform access`}
     >
-      <p className="aee-hero-price-value__only">Basic from</p>
+      <p className="aee-hero-price-value__only">Pro at</p>
       <p className="aee-hero-price-value__amount">
-        <span className="aee-hero-price-value__figure">{formatMonthlyPrice("basic")}</span>
+        <span className="aee-hero-price-value__figure">{formatMonthlyPrice("pro")}</span>
         <span className="aee-hero-price-value__period">/mo</span>
       </p>
-      <p className="mt-1 text-xs font-medium text-[var(--color-accent)]">
-        Pro from {formatMonthlyPrice("pro")}/mo · {formatTrialLabel()}
-      </p>
+      <p className="mt-1 text-xs font-medium text-[var(--color-accent)]">{formatTrialLabel()}</p>
 
       <ul className="aee-hero-price-value__includes">
         {includes.map((item) => (

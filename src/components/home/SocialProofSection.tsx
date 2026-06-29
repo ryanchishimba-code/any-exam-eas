@@ -11,7 +11,7 @@ export function SocialProofSection({
   bankCounts?: LandingBankCountsDisplay;
 }) {
   const reduceMotion = useReducedMotion();
-  const basicPrice = formatMonthlyPrice("basic");
+  const proPrice = formatMonthlyPrice("pro");
 
   // Keep the headline stat in lockstep with the live hero count, never the static floor.
   const stats = LANDING_SOCIAL_PROOF.map((item) => {
@@ -19,7 +19,7 @@ export function SocialProofSection({
       return { ...item, value: bankCounts.totalLabel };
     }
     if (item.label === "Starting plan") {
-      return { ...item, value: `From ${basicPrice}` };
+      return { ...item, value: proPrice };
     }
     return item;
   });

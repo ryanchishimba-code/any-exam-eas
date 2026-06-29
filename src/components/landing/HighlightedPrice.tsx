@@ -9,9 +9,9 @@ type HighlightedPriceProps = {
   className?: string;
 };
 
-/** Teal-accent price pill — draws the eye to Basic/Pro monthly anchors. */
+/** Teal-accent price pill — draws the eye to the Pro monthly anchor. */
 export function HighlightedPrice({
-  tier = "basic",
+  tier = "pro",
   period = "/month",
   size = "md",
   className,

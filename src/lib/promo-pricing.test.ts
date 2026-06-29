@@ -21,7 +21,7 @@ describe("promo-pricing", () => {
   });
 
   it("interval totals match tier pricing", () => {
-    expect(intervalTotalUsd("basic", "monthly")).toBeCloseTo(27.99, 2);
+    expect(intervalTotalUsd("pro", "monthly")).toBeCloseTo(34.99, 2);
     expect(intervalTotalUsd("pro", "yearly")).toBe(349);
     const yearly = getBillingPlanTier("pro", "yearly");
     expect(yearly.recommended).toBe(true);

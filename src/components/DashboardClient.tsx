@@ -102,11 +102,11 @@ export function DashboardClient({
           <h2 className="text-xl font-semibold tracking-tight">Subscription</h2>
           <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
             {access.status === "active"
-              ? `${access.tier === "pro" ? "Pro" : "Basic"} plan active.`
+              ? "Pro plan active."
               : access.status === "past_due"
                 ? "Your last payment failed — study access is paused until you update your payment method."
                 : access.status === "trialing"
-                  ? `${access.tier === "pro" ? "Pro" : "Basic"} trial active${access.daysRemaining != null ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left` : ""}. Payment on file — cancel anytime before trial ends for no charge.`
+                  ? `Pro trial active${access.daysRemaining != null ? ` · ${access.daysRemaining} day${access.daysRemaining === 1 ? "" : "s"} left` : ""}. No payment required — upgrade anytime for unlimited questions.`
                   : access.status === "inactive" && access.needsPaymentMethod
                     ? "Complete checkout to start your free trial — payment required, not charged until trial ends."
                     : access.status === "canceled"
@@ -119,11 +119,6 @@ export function DashboardClient({
             {access.status === "active" ? (
               <>
                 <ManageBillingButton label="Cancel or manage billing" />
-                {access.tier === "basic" && (
-                  <Button href="/checkout?plan=subscribe&interval=yearly&tier=pro" variant="secondary">
-                    Upgrade to Pro
-                  </Button>
-                )}
               </>
             ) : access.status === "past_due" ? (
               <ManageBillingButton label="Update payment method" intent="payment_method" variant="secondary" />
@@ -137,12 +132,7 @@ export function DashboardClient({
               </Button>
             ) : access.status === "trialing" ? (
               <>
-                <ManageBillingButton label="Cancel or manage billing" />
-                {access.tier === "basic" && (
-                  <Button href={`/checkout?plan=subscribe&interval=${access.planDuration}&tier=pro`} variant="secondary">
-                    Upgrade to Pro
-                  </Button>
-                )}
+                <ManageBillingButton label="Upgrade to Pro" />
               </>
             ) : access.canStartCheckout ? (
               <SubscribeButton variant="secondary" />

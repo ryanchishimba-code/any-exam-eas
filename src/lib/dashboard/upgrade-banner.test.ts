@@ -37,24 +37,24 @@ const usage: StudyUsageSnapshot = {
   remainingToday: null,
   limits: {
     dailyQuestions: null,
-    trialLifetimeQuestions: 60,
-    maxPerSession: 25,
-    maxTimedExamLength: 50,
-    allowPresetExams: false,
+    trialLifetimeQuestions: 150,
+    maxPerSession: null,
+    maxTimedExamLength: null,
+    allowPresetExams: true,
     allowShortMocks: true,
-    allowFullLengthMocks: false,
-    trialMockAllowance: 1,
-    allowAdaptive: false,
+    allowFullLengthMocks: true,
+    trialMockAllowance: null,
+    allowAdaptive: true,
   },
   usedTrialTotal: 40,
   remainingTrialTotal: 110,
   mockExamsThisMonth: 0,
-  usedTrialMocks: 0,
-  remainingTrialMocks: 1,
+  usedTrialMocks: null,
+  remainingTrialMocks: null,
 };
 
 describe("resolveDashboardUpgradeContext", () => {
-  it("shows for trial users even when plan tier is pro", () => {
+  it("shows for trial users", () => {
     const ctx = resolveDashboardUpgradeContext(mockAccess({ role: "trial" }), usage);
     expect(ctx?.variant).toBe("trial");
   });
@@ -76,22 +76,6 @@ describe("resolveDashboardUpgradeContext", () => {
       { ...usage, plan: "free", remainingTrialTotal: 12 }
     );
     expect(ctx?.variant).toBe("free");
-  });
-
-  it("shows for active Basic subscribers", () => {
-    const ctx = resolveDashboardUpgradeContext(
-      mockAccess({
-        role: "subscriber",
-        subscription: {
-          ...mockAccess({}).subscription,
-          status: "active",
-          tier: "basic",
-          daysRemaining: null,
-        },
-      }),
-      usage
-    );
-    expect(ctx?.variant).toBe("basic");
   });
 
   it("hides for active Pro subscribers", () => {

@@ -71,7 +71,7 @@ const HOME_KEYWORDS = [
 
 export function buildHomeMetadata(): Metadata {
   const title = `${SITE_NAME} — NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE Prep (2026)`;
-  const description = `All-in-one board prep for NCLEX, USMLE Step 1, Step 2 CK & Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT. Roadmaps, practice questions & Deep Dives. Basic from ${formatMonthlyPrice("basic")}/mo · ${formatTrialLabel()} · ${formatTrialQuestionLimit()} · no payment required.`;
+  const description = `All-in-one board prep for NCLEX, USMLE Step 1, Step 2 CK & Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT. Roadmaps, practice questions & Deep Dives. Pro at ${formatMonthlyPrice("pro")}/mo · ${formatTrialLabel()} · ${formatTrialQuestionLimit()} · no payment required.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 
@@ -187,7 +187,7 @@ export function buildHomeJsonLd() {
           "@type": "Offer",
           price: MONTHLY_PRICE_USD,
           priceCurrency: "USD",
-          description: `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · no payment required · Basic from ${formatMonthlyPrice("basic")}/mo · Pro from ${formatMonthlyPrice("pro")}/mo · save up to 20% on annual`,
+          description: `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · no payment required · Pro at ${formatMonthlyPrice("pro")}/mo · save up to 20% on annual`,
         },
         description:
           "Board exam prep with integrated Roadmaps, adaptive practice, and OER-backed explanations for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT.",

@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { LANDING_OFFERING_PILLARS } from "@/lib/landing/content";
 import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
-import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+import { formatTrialLabel } from "@/lib/site";
 
 export function LandingOfferingBand() {
   const reduceMotion = useReducedMotion();
@@ -18,8 +18,8 @@ export function LandingOfferingBand() {
             <span className="aee-flagship-gradient-text">at a price that actually makes sense.</span>
           </h2>
           <p className="aee-landing-offering-band__lede">
-            Basic from <HighlightedPrice size="md" period="/mo" /> · Pro from{" "}
-            {formatMonthlyPrice("pro")}/mo · {formatTrialLabel()} on every plan
+            Pro at <HighlightedPrice size="md" period="/mo" /> · {formatTrialLabel()} · no payment
+            required at signup
           </p>
         </header>
 

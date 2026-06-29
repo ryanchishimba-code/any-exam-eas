@@ -263,9 +263,9 @@ export function buildLandingSocialProofStats(
       detail: "One subscription — no per-exam stacking",
     },
     {
-      value: "Basic",
-      label: "Starting plan",
-      detail: "Pro adds Deep Dives, analytics & unlimited mocks",
+      value: "Pro",
+      label: "One plan",
+      detail: "Everything for all 6 boards",
     },
     {
       value: "Roadmap",

@@ -15,10 +15,8 @@ describe("stripe-prices", () => {
   });
 
   it("computes expected USD amounts matching billing-plans", () => {
-    expect(expectedIntervalUsd("basic", "monthly")).toBeCloseTo(27.99, 2);
-    expect(expectedIntervalUsd("basic", "quarterly")).toBeCloseTo(79.77, 1);
-    expect(expectedIntervalUsd("basic", "yearly")).toBe(279);
     expect(expectedIntervalUsd("pro", "monthly")).toBeCloseTo(34.99, 2);
+    expect(expectedIntervalUsd("pro", "quarterly")).toBeCloseTo(99.72, 1);
     expect(expectedIntervalUsd("pro", "yearly")).toBe(349);
   });
 
