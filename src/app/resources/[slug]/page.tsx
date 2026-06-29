@@ -45,8 +45,8 @@ export default async function ResourceArticlePage({ params }: Props) {
             Home
           </Link>
           <span className="mx-2 opacity-40">/</span>
-          <Link href="/resources" className="hover:text-[var(--color-accent)]">
-            Resources
+          <Link href="/toolkit" className="hover:text-[var(--color-accent)]">
+            Toolkit
           </Link>
         </nav>
 
@@ -97,8 +97,8 @@ export default async function ResourceArticlePage({ params }: Props) {
         </aside>
 
         <footer className="mt-10 border-t border-[var(--color-border)] pt-6">
-          <Link href="/resources" className="text-sm font-semibold text-[var(--color-accent)]">
-            ← All resources
+          <Link href="/toolkit" className="text-sm font-semibold text-[var(--color-accent)]">
+            ← Toolkit
           </Link>
         </footer>
       </article>

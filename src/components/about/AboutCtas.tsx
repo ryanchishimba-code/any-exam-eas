@@ -22,7 +22,7 @@ export function AboutCtas() {
         View pricing
       </Button>
       <Link
-        href={ROUTES.resources}
+        href={ROUTES.toolkit}
         className="text-sm font-medium text-[var(--color-accent)] hover:underline"
         onClick={() => analytics.ctaClicked("explore_resources", "about_hero")}
       >

@@ -6,7 +6,7 @@ import { RESOURCE_ARTICLES } from "@/lib/seo/resources-content";
 const STATIC_ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] }[] = [
   { path: "", priority: 1, changeFrequency: "weekly" },
   { path: "/pricing", priority: 0.9, changeFrequency: "weekly" },
-  { path: "/resources", priority: 0.85, changeFrequency: "weekly" },
+  { path: "/toolkit", priority: 0.9, changeFrequency: "weekly" },
   { path: "/signup", priority: 0.8, changeFrequency: "monthly" },
   { path: "/login", priority: 0.5, changeFrequency: "monthly" },
   { path: "/legal/terms", priority: 0.3, changeFrequency: "yearly" },

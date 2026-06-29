@@ -173,7 +173,7 @@ export function buildHomeJsonLd() {
           "@type": "SearchAction",
           target: {
             "@type": "EntryPoint",
-            urlTemplate: `${url}/resources?q={search_term_string}`,
+            urlTemplate: `${url}/toolkit?q={search_term_string}`,
           },
           "query-input": "required name=search_term_string",
         },

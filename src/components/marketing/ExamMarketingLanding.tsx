@@ -418,10 +418,10 @@ export function ExamMarketingLanding({ examKey, questionCountLabel }: Props) {
               ))}
             </ul>
             <Link
-              href="/resources"
+              href="/toolkit"
               className="mt-4 inline-block text-sm font-semibold text-[var(--color-accent)]"
             >
-              Browse all resources →
+              Browse the toolkit →
             </Link>
           </section>
         )}

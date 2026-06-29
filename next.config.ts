@@ -82,6 +82,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/resources",
+        destination: "/toolkit",
+        permanent: true,
+      },
+      {
         source: "/employee/login",
         destination: "/auth/login?callbackUrl=%2Finternal",
         permanent: false,

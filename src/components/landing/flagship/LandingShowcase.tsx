@@ -287,10 +287,10 @@ export function LandingShowcase() {
 
         <div className="mt-12 text-center">
           <Link
-            href={ROUTES.resources}
+            href={ROUTES.toolkit}
             className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-accent)] transition hover:gap-2.5"
           >
-            Explore study resources
+            Explore the toolkit
             <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
         </div>
