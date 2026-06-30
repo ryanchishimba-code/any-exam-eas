@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
 import { requirePremiumApi } from "@/lib/api-access";
 import { isExamSlug } from "@/lib/edtech/exams";
-import { listNclexFullPracticeExams } from "@/lib/exam-prep/nclex/load-preset-exam";
-import { listUsmleFullPracticeExams } from "@/lib/exam-prep/usmle/load-preset-exam";
-import { listNptePtFullPracticeExams } from "@/lib/exam-prep/npte-pt/load-preset-exam";
+import { listPresetExamsForSlug } from "@/lib/exam-prep/load-preset-exam";
+import { PRESET_EXAM_MAX } from "@/lib/exam-prep/preset-exam-config";
 
 export const runtime = "nodejs";
 
@@ -16,20 +15,6 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Invalid exam" }, { status: 400 });
   }
 
-  if (examSlug === "nclex") {
-    const exams = await listNclexFullPracticeExams();
-    return NextResponse.json({ exams });
-  }
-
-  if (examSlug === "usmle") {
-    const exams = await listUsmleFullPracticeExams();
-    return NextResponse.json({ exams });
-  }
-
-  if (examSlug === "npte-pt") {
-    const exams = await listNptePtFullPracticeExams();
-    return NextResponse.json({ exams });
-  }
-
-  return NextResponse.json({ exams: [] });
+  const exams = await listPresetExamsForSlug(examSlug);
+  return NextResponse.json({ exams, maxPresets: PRESET_EXAM_MAX });
 }

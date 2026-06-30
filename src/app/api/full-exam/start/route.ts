@@ -3,8 +3,7 @@ import { createExamSession } from "@/lib/exam-sessions/service";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { getUserExamPreference, touchExamStudied } from "@/lib/edtech/exam-preference";
 import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
-import { loadUsmlePresetExamItems } from "@/lib/exam-prep/usmle/load-preset-exam";
-import { loadNptePtPresetExamItems } from "@/lib/exam-prep/npte-pt/load-preset-exam";
+import { loadPresetExamItems } from "@/lib/exam-prep/load-preset-exam";
 import { clampPresetExamNumber } from "@/lib/exam-prep/preset-exam-config";
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
@@ -29,11 +28,9 @@ export async function POST(req: Request) {
   const timed = body.timed !== false;
   const nclexLength =
     body.nclexLength === "maximum" ? ("maximum" as const) : ("minimum" as const);
-  const presetExamNumber =
-    (examSlug === "nclex" || examSlug === "usmle" || examSlug === "npte-pt") &&
-    Number.isFinite(Number(body.presetExamNumber))
-      ? clampPresetExamNumber(Number(body.presetExamNumber))
-      : undefined;
+  const presetExamNumber = Number.isFinite(Number(body.presetExamNumber))
+    ? clampPresetExamNumber(Number(body.presetExamNumber))
+    : undefined;
   const focusAreas = Array.isArray(body.focusAreas)
     ? body.focusAreas.map(String).filter(Boolean)
     : Array.isArray(body.focus_areas)
@@ -65,33 +62,20 @@ export async function POST(req: Request) {
       sessionTitle = `${step?.name ?? "USMLE"} Full Simulation`;
     }
 
-    if (presetExamNumber && examSlug === "usmle") {
-      const loaded = await loadUsmlePresetExamItems(presetExamNumber);
+    if (presetExamNumber) {
+      const loaded = await loadPresetExamItems(examSlug, presetExamNumber);
       if (!loaded) {
         return NextResponse.json(
           {
-            error: `USMLE Practice Exam ${presetExamNumber} is not available yet.`,
+            error: `${EXAM_CATALOG[examSlug].shortName} Practice Exam ${presetExamNumber} is not available. Run db:seed-validated-full-exams first.`,
+            code: "PRESET_EXAM_UNAVAILABLE",
           },
           { status: 503 }
         );
       }
-      presetQuestionCount = loaded.exam.questionCount;
-      sessionFieldId = loaded.fieldId;
-      sessionTitle = loaded.exam.title;
-    } else if (presetExamNumber && examSlug === "npte-pt") {
-      const loaded = await loadNptePtPresetExamItems(presetExamNumber);
-      if (!loaded) {
-        return NextResponse.json(
-          {
-            error: `NPTE-PT Practice Exam ${presetExamNumber} is not available. Run db:seed-npte-pt-full-exams first.`,
-          },
-          { status: 503 }
-        );
-      }
-      presetQuestionCount = loaded.exam.questionCount;
-      sessionTitle = loaded.exam.title;
-    } else if (presetExamNumber) {
-      sessionTitle = `${EXAM_CATALOG[examSlug].shortName} Practice Exam ${presetExamNumber}`;
+      presetQuestionCount = loaded.questionCount;
+      if (loaded.fieldId) sessionFieldId = loaded.fieldId;
+      sessionTitle = loaded.title;
     }
 
     const config = buildSessionConfig(examSlug, preset, timed, {

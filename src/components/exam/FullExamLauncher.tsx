@@ -17,8 +17,10 @@ import {
   fullExamSessionHref,
   parseFullExamLengthPreset,
 } from "@/lib/full-exam/config";
+import { PRESET_EXAM_QUESTION_COUNT } from "@/lib/exam-prep/preset-exam-config";
 import { acquireAutostartLock, releaseAutostartLock } from "@/lib/full-exam/autostart-lock";
 import { ExamLoadingProgress } from "@/components/exam/ExamLoadingProgress";
+import { FullExamPresetPicker } from "@/components/exam/FullExamPresetPicker";
 import { useLongRunningProgress } from "@/hooks/use-long-running-progress";
 import { feUi } from "@/lib/study/full-exam-ui";
 import { ROUTES } from "@/lib/routes";
@@ -60,11 +62,15 @@ export function FullExamLauncher({
     return defaultPreset;
   });
   const [timed, setTimed] = useState(initialTimed);
+  const [presetExamNumber, setPresetExamNumber] = useState<number | null>(null);
   const [pending, setPending] = useState(autostart);
   const [error, setError] = useState<string | null>(null);
   const startingRef = useRef(false);
 
-  const preview = buildSessionConfig(examSlug, preset, timed);
+  const preview = buildSessionConfig(examSlug, preset, timed, {
+    presetExamNumber: presetExamNumber ?? undefined,
+    presetQuestionCount: presetExamNumber ? PRESET_EXAM_QUESTION_COUNT[examSlug] : undefined,
+  });
   const pageTitle = fullExamModeTitle(examSlug, preset);
   const startSteps = useMemo(
     () => [
@@ -91,6 +97,7 @@ export function FullExamLauncher({
           examSlug,
           lengthPreset: preset,
           timed,
+          ...(presetExamNumber ? { presetExamNumber } : {}),
         }),
       });
       const data = (await res.json().catch(() => ({}))) as {
@@ -214,6 +221,13 @@ export function FullExamLauncher({
                 ]}
               />
             </div>
+
+            <FullExamPresetPicker
+              examSlug={examSlug}
+              value={presetExamNumber}
+              onChange={setPresetExamNumber}
+              className="mx-auto w-full max-w-xs"
+            />
 
             {pending ? (
               <ExamLoadingProgress

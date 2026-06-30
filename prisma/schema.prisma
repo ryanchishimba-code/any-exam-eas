@@ -416,6 +416,8 @@ model QuestionBankItem {
   usmleFullExamLinks  UsmleFullPracticeExamQuestion[]
   nclexFullExamLinks  NclexFullPracticeExamQuestion[]
   nptePtFullExamLinks NptePtFullPracticeExamQuestion[]
+  panceFullExamLinks  PanceFullPracticeExamQuestion[]
+  aanpFnpFullExamLinks AanpFnpFullPracticeExamQuestion[]
 }
 
 /// Curated NAPLEX full-length practice exams (2026 blueprint, 75–85 questions each).
@@ -580,6 +582,80 @@ model NptePtFullPracticeExamQuestion {
   @@index([examId])
   @@index([questionBankItemId])
   @@map("npte_pt_full_practice_exam_questions")
+}
+
+/// Curated PANCE full-length practice exams (NCCPA blueprint).
+model PanceFullPracticeExam {
+  id                String   @id @default(cuid())
+  examNumber        Int      @unique
+  title             String
+  questionCount     Int
+  blueprintSummary  Json?
+  batchId           String?
+  generationVersion String?
+  qaPassed          Boolean  @default(false)
+  qaReport          Json?
+  active            Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  questions         PanceFullPracticeExamQuestion[]
+
+  @@index([active, examNumber])
+  @@map("pance_full_practice_exams")
+}
+
+model PanceFullPracticeExamQuestion {
+  id                 String   @id @default(cuid())
+  examId             String
+  questionBankItemId String
+  sortOrder          Int
+  contentCategory    String?
+  createdAt          DateTime @default(now())
+  exam               PanceFullPracticeExam @relation(fields: [examId], references: [id], onDelete: Cascade)
+  question           QuestionBankItem       @relation(fields: [questionBankItemId], references: [id], onDelete: Cascade)
+
+  @@unique([examId, sortOrder])
+  @@unique([examId, questionBankItemId])
+  @@index([examId])
+  @@index([questionBankItemId])
+  @@map("pance_full_practice_exam_questions")
+}
+
+/// Curated AANP FNP full-length practice exams.
+model AanpFnpFullPracticeExam {
+  id                String   @id @default(cuid())
+  examNumber        Int      @unique
+  title             String
+  questionCount     Int
+  blueprintSummary  Json?
+  batchId           String?
+  generationVersion String?
+  qaPassed          Boolean  @default(false)
+  qaReport          Json?
+  active            Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  questions         AanpFnpFullPracticeExamQuestion[]
+
+  @@index([active, examNumber])
+  @@map("aanp_fnp_full_practice_exams")
+}
+
+model AanpFnpFullPracticeExamQuestion {
+  id                 String   @id @default(cuid())
+  examId             String
+  questionBankItemId String
+  sortOrder          Int
+  blueprintDomain    String?
+  createdAt          DateTime @default(now())
+  exam               AanpFnpFullPracticeExam @relation(fields: [examId], references: [id], onDelete: Cascade)
+  question           QuestionBankItem         @relation(fields: [questionBankItemId], references: [id], onDelete: Cascade)
+
+  @@unique([examId, sortOrder])
+  @@unique([examId, questionBankItemId])
+  @@index([examId])
+  @@index([questionBankItemId])
+  @@map("aanp_fnp_full_practice_exam_questions")
 }
 
 /// Official AANPCB FNP blueprint domains, age groups, and clinical systems.

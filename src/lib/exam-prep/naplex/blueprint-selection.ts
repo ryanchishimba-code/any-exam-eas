@@ -94,7 +94,7 @@ export function difficultyBand(difficulty?: number): "Easy" | "Medium" | "Hard" 
 }
 
 const PROVENANCE_TAG =
-  /^(naplex|v\d+|naplex-20\d\d|curated|seed|bulk-bank|full-exam.*|exam-\d+|physician-educator|naplex-polished|high-yield|case-vignette)$/;
+  /^(naplex|v\d+|naplex-20\d\d|curated|seed|bulk-bank|full-exam.*|exam-\d+|physician-educator|naplex-polished|nclex-polished|cjmm-polished|high-yield|case-vignette|.*-polished|cjmm-.*|ngn-.*|qa-passed)$/;
 
 export function conceptKeysFor(item: BankItem): string[] {
   const keys = new Set<string>();

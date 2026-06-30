@@ -114,13 +114,15 @@ export function resolveExamUniquenessPolicy(
   if (pool?.length) {
     const uniqueConcepts = new Set(pool.map(primaryTestedConceptKey)).size;
     if (uniqueConcepts > 0 && requestedCount > uniqueConcepts) {
-      maxPerConcept = Math.min(4, Math.ceil(requestedCount / uniqueConcepts));
+      maxPerConcept = Math.min(6, Math.ceil(requestedCount / Math.max(uniqueConcepts, 1)));
     } else if (requestedCount >= 100) {
-      maxPerConcept = 2;
+      maxPerConcept = 3;
     } else if (requestedCount >= 60) {
-      maxPerConcept = 1;
+      maxPerConcept = 2;
     }
   } else if (requestedCount >= 100) {
+    maxPerConcept = 3;
+  } else if (requestedCount >= 60) {
     maxPerConcept = 2;
   }
 

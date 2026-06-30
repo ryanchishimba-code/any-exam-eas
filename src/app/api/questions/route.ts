@@ -21,6 +21,8 @@ import type { ExamQuestion } from "@/lib/ai";
 import { trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
 import { clampPresetExamNumber } from "@/lib/exam-prep/preset-exam-config";
+import { examSlugFromFieldId } from "@/lib/edtech/exams";
+import { loadPresetExamItems } from "@/lib/exam-prep/load-preset-exam";
 import {
   composeBlueprintTimedExamSession,
   fieldSupportsBlueprintTimedExam,
@@ -145,41 +147,19 @@ export async function GET(req: Request) {
 
   let items: BankItem[];
 
-  if (presetExamNumber && fieldId === "nursing" && timedExam) {
-    const { loadNclexPresetExamItems } = await import("@/lib/exam-prep/nclex/load-preset-exam");
-    const preset = await loadNclexPresetExamItems(presetExamNumber);
-    if (!preset) {
+  if (presetExamNumber && timedExam) {
+    const examSlug = examSlugFromFieldId(fieldId);
+    if (!examSlug) {
       return NextResponse.json(
-        {
-          error: `NCLEX Practice Exam ${presetExamNumber} is not available. Run db:seed-validated-full-exams first.`,
-          code: "PRESET_EXAM_UNAVAILABLE",
-        },
+        { error: "Preset exams are not available for this field.", code: "PRESET_EXAM_UNAVAILABLE" },
         { status: 404 }
       );
     }
-    items = preset.items;
-  } else if (presetExamNumber && fieldId.startsWith("usmle") && timedExam) {
-    const { loadUsmlePresetExamItems } = await import("@/lib/exam-prep/usmle/load-preset-exam");
-    const preset = await loadUsmlePresetExamItems(presetExamNumber);
+    const preset = await loadPresetExamItems(examSlug, presetExamNumber);
     if (!preset) {
       return NextResponse.json(
         {
-          error: `USMLE Practice Exam ${presetExamNumber} is not available yet. Generation may still be in progress.`,
-          code: "PRESET_EXAM_UNAVAILABLE",
-        },
-        { status: 404 }
-      );
-    }
-    items = preset.items;
-  } else if (presetExamNumber && fieldId === "npte-pt" && timedExam) {
-    const { loadNptePtPresetExamItems } = await import(
-      "@/lib/exam-prep/npte-pt/load-preset-exam"
-    );
-    const preset = await loadNptePtPresetExamItems(presetExamNumber);
-    if (!preset) {
-      return NextResponse.json(
-        {
-          error: `NPTE-PT Practice Exam ${presetExamNumber} is not available. Run db:seed-npte-pt-full-exams first.`,
+          error: `Practice Exam ${presetExamNumber} is not available. Run db:seed-validated-full-exams first.`,
           code: "PRESET_EXAM_UNAVAILABLE",
         },
         { status: 404 }

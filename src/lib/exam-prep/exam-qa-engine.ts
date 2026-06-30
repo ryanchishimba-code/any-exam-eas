@@ -42,6 +42,34 @@ export type ExamQaRequest = {
   difficultyPreference?: DifficultyPreference;
   /** Max self-heal rounds before failing. */
   maxHealAttempts?: number;
+  /** Skip bank rows already used in a batch compose. */
+  excludeQuestionIds?: Set<string>;
+  /** Preset exam number for SQL manifest / titles. */
+  examNumber?: number;
+};
+
+export type ValidatedExamBatchRequest = ExamQaRequest & {
+  examCount: number;
+  startExamNumber?: number;
+};
+
+export type ValidatedExamBatchEntry = {
+  examNumber: number;
+  status: "PASSED" | "FAILED";
+  questionIds: string[];
+  blueprintSummary: Record<string, number>;
+  fixes: ExamQaFix[];
+  finalCheck: FinalExamCheckReport;
+};
+
+export type ValidatedExamBatchResult = {
+  batchId: string;
+  examSlug: string;
+  examName: string;
+  requestedExams: number;
+  composedExams: number;
+  failedAtExamNumber?: number;
+  entries: ValidatedExamBatchEntry[];
 };
 
 export type ExamQaFix = {
@@ -71,14 +99,14 @@ export type ValidatedExamResult = {
   sql: string;
 };
 
-const MAX_HEAL_ATTEMPTS = 8;
+const MAX_HEAL_ATTEMPTS = 16;
 
 function resolvePoolLimit(numQuestions: number, attempt: number): number {
   const base = Math.min(
     QUESTION_BANK_SAMPLE_MAX_PULL,
-    Math.max(numQuestions * 3, numQuestions + 80)
+    Math.max(numQuestions * 4, numQuestions + 120)
   );
-  return Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, base + attempt * 40);
+  return Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, base + attempt * 60);
 }
 
 function sequencingConfigFor(n: number) {
@@ -141,7 +169,8 @@ function composeFromPool(
   pool: BankItem[],
   config: ExamComposeConfig,
   numQuestions: number,
-  seed: number
+  seed: number,
+  focusAreas?: string[]
 ): { items: BankItem[]; blueprintShortfalls: string[] } {
   const blueprint = getExamBlueprint(config.fieldId);
   if (!blueprint) throw new Error(`Blueprint not found for fieldId "${config.fieldId}".`);
@@ -149,6 +178,7 @@ function composeFromPool(
   const { items: blueprintSelected, summary } = selectBlueprintBalancedSet(pool, blueprint, {
     numQuestions,
     seed,
+    focusAreas,
   });
 
   const shortfalls = summary.rows
@@ -334,6 +364,18 @@ function examTableForSlug(slug: string): {
         linkTable: "npte_pt_full_practice_exam_questions",
         examNumberCol: "examNumber",
       };
+    case "pance":
+      return {
+        examTable: "pance_full_practice_exams",
+        linkTable: "pance_full_practice_exam_questions",
+        examNumberCol: "examNumber",
+      };
+    case "aanp-fnp":
+      return {
+        examTable: "aanp_fnp_full_practice_exams",
+        linkTable: "aanp_fnp_full_practice_exam_questions",
+        examNumberCol: "examNumber",
+      };
     default:
       return null;
   }
@@ -420,6 +462,7 @@ export async function composeValidatedExam(
   const seed = request.seed ?? ((Date.now() ^ 0x51ed270b) >>> 0);
   const maxAttempts = request.maxHealAttempts ?? MAX_HEAL_ATTEMPTS;
   const fixes: ExamQaFix[] = [];
+  const excludeIds = request.excludeQuestionIds;
 
   let pool: BankItem[] = [];
   let selected: BankItem[] = [];
@@ -432,6 +475,11 @@ export async function composeValidatedExam(
     blueprintShortfalls: [],
   };
 
+  const gateWithExclusions: typeof config.gate = (item) => {
+    if (excludeIds?.size && item.id && excludeIds.has(item.id)) return false;
+    return config.gate(item);
+  };
+
   for (let attempt = 0; attempt < maxAttempts; attempt++) {
     const poolLimit = resolvePoolLimit(numQuestions, attempt);
     const attemptSeed = (seed + attempt * 0x9e3779b9) >>> 0;
@@ -439,7 +487,7 @@ export async function composeValidatedExam(
     const rawPool = await gatherTimedExamBankItems({
       fieldId: config.fieldId,
       limit: poolLimit,
-      filterFn: config.gate,
+      filterFn: gateWithExclusions,
       initialSampleCount: poolLimit,
     });
     pool = config.prepareItem ? rawPool.map(config.prepareItem) : rawPool;
@@ -453,7 +501,7 @@ export async function composeValidatedExam(
       continue;
     }
 
-    const composed = composeFromPool(pool, config, numQuestions, attemptSeed);
+    const composed = composeFromPool(pool, config, numQuestions, attemptSeed, request.focusAreas);
     selected = composed.items;
 
     finalCheck = runFinalExamCheck(
@@ -500,7 +548,7 @@ export async function composeValidatedExam(
   const sql = renderValidatedExamSql({
     examSlug: config.slug,
     examName: config.examName,
-    examNumber: 1,
+    examNumber: request.examNumber ?? 1,
     questionCount: numQuestions,
     questionIds,
     status: passed ? "PASSED" : "FAILED",
@@ -519,6 +567,90 @@ export async function composeValidatedExam(
     sql,
   };
 }
+
+function summarizeBlueprint(items: BankItem[]): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const item of items) {
+    const key = item.blueprintDomain ?? item.subjectId ?? "general";
+    counts[key] = (counts[key] ?? 0) + 1;
+  }
+  return counts;
+}
+
+/**
+ * Compose multiple QA-validated preset exams with global question deduplication.
+ * Stops early if the bank cannot supply another unique exam.
+ */
+export async function composeValidatedExamBatch(
+  request: ValidatedExamBatchRequest
+): Promise<ValidatedExamBatchResult> {
+  const config = resolveExamComposeConfig(request.examSlug);
+  if (!config) {
+    throw new Error(
+      `Unknown exam "${request.examSlug}". Supported: nclex, naplex, usmle-step-1, usmle-step-2, usmle-step-3, pance, aanp-fnp, npte-pt.`
+    );
+  }
+
+  const examCount = Math.max(1, Math.floor(request.examCount));
+  const startExamNumber = request.startExamNumber ?? 1;
+  const batchId = `qa-batch-${request.examSlug}-${new Date().toISOString().slice(0, 10)}-${Math.random().toString(36).slice(2, 8)}`;
+  const usedIds = new Set<string>(request.excludeQuestionIds ?? []);
+  const entries: ValidatedExamBatchEntry[] = [];
+  const baseSeed = request.seed ?? ((Date.now() ^ 0x51ed270b) >>> 0);
+
+  for (let i = 0; i < examCount; i++) {
+    const examNumber = startExamNumber + i;
+    const result = await composeValidatedExam({
+      ...request,
+      examSlug: config.slug,
+      excludeQuestionIds: usedIds,
+      examNumber,
+      seed: (baseSeed + examNumber * 0x9e3779b9) >>> 0,
+    });
+
+    entries.push({
+      examNumber,
+      status: result.status,
+      questionIds: result.exam?.questions.map((q) => q.questionId).filter(Boolean) ?? [],
+      blueprintSummary: result.exam
+        ? result.exam.questions.reduce<Record<string, number>>((acc, q) => {
+            const key = q.domainLabel ?? q.domainId ?? "general";
+            acc[key] = (acc[key] ?? 0) + 1;
+            return acc;
+          }, {})
+        : {},
+      fixes: result.fixes,
+      finalCheck: result.finalCheck,
+    });
+
+    if (result.status !== "PASSED" || !result.exam) {
+      return {
+        batchId,
+        examSlug: config.slug,
+        examName: config.examName,
+        requestedExams: examCount,
+        composedExams: entries.filter((e) => e.status === "PASSED").length,
+        failedAtExamNumber: examNumber,
+        entries,
+      };
+    }
+
+    for (const q of result.exam.questions) {
+      if (q.questionId) usedIds.add(q.questionId);
+    }
+  }
+
+  return {
+    batchId,
+    examSlug: config.slug,
+    examName: config.examName,
+    requestedExams: examCount,
+    composedExams: entries.length,
+    entries,
+  };
+}
+
+export { summarizeBlueprint };
 
 /** In-memory validation for tests — no database. */
 export function composeValidatedExamFromPool(
