@@ -1,4 +1,5 @@
-import { EXAM_ACCENTS } from "@/lib/landing/tokens";
+import { formatPlanUsd } from "@/lib/billing-plans";
+import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import type { ExamRouteSlug } from "@/lib/routes";
 import {
   SEO_TRIAL_META_SUFFIX,
@@ -182,7 +183,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       {
         question: "How does pricing compare to UWorld?",
         answer:
-          "AnyExamEasy Pro is $34.99/mo and includes all three USMLE steps plus five other board exams — UWorld typically charges $200–400+ per exam separately.",
+          `AnyExamEasy Pro is ${formatPlanUsd(TIER_MONTHLY_USD.pro)}/mo and includes all three USMLE steps plus five other board exams — UWorld typically charges $200–400+ per exam separately.`,
       },
       {
         question: "Are USMLE explanations detailed?",

@@ -18,10 +18,11 @@ import { MARKETING_QUESTION_COUNTS, TOP_500_DRUGS_COUNT, DRUGS_DECK_MARKETING_TI
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { examMarketingPath } from "@/lib/seo/exam-config";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
+import { formatPlanUsd } from "@/lib/billing-plans";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 
 /** Local price formatter — avoids a circular import with site.ts. */
-const monthly = () => `$${TIER_MONTHLY_USD.pro.toFixed(2)}`;
+const monthly = () => formatPlanUsd(TIER_MONTHLY_USD.pro);
 
 /** Primary platform positioning — reuse across compare sections and SEO. */
 export const PLATFORM_TAGLINE =
@@ -300,7 +301,7 @@ export const LANDING_SOCIAL_PROOF = [
   {
     value: "Pro",
     label: "One plan",
-    detail: "Everything for all 6 boards at $34.99/mo",
+    detail: `Everything for all 6 boards at ${monthly()}/mo`,
   },
   {
     value: "Roadmap",

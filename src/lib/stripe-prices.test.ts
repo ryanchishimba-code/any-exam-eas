@@ -15,9 +15,9 @@ describe("stripe-prices", () => {
   });
 
   it("computes expected USD amounts matching billing-plans", () => {
-    expect(expectedIntervalUsd("pro", "monthly")).toBeCloseTo(34.99, 2);
-    expect(expectedIntervalUsd("pro", "quarterly")).toBeCloseTo(99.72, 1);
-    expect(expectedIntervalUsd("pro", "yearly")).toBe(349);
+    expect(expectedIntervalUsd("pro", "monthly")).toBe(34);
+    expect(expectedIntervalUsd("pro", "quarterly")).toBeCloseTo(96.9, 1);
+    expect(expectedIntervalUsd("pro", "yearly")).toBe(340);
   });
 
   it("maps Stripe recurring intervals", () => {

@@ -49,11 +49,11 @@ export {
 };
 
 export function formatMonthlyPrice(tier: SubscriptionTier = "pro"): string {
-  return `$${TIER_MONTHLY_USD[tier].toFixed(2)}`;
+  return formatPlanUsd(TIER_MONTHLY_USD[tier]);
 }
 
 export function formatStartingPrice(): string {
-  return `$${startingMonthlyUsd().toFixed(2)}`;
+  return formatPlanUsd(startingMonthlyUsd());
 }
 
 /** Amount charged at checkout to start a trial ($0 unless legacy intro pricing is enabled). */
