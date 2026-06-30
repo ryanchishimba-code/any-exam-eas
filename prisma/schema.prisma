@@ -385,6 +385,13 @@ model QuestionBankItem {
   /// Set by scripts/qa-gate-question-bank.ts — only qaPassed items are served in practice.
   qaPassed        Boolean  @default(false)
   qaAuditedAt     DateTime?
+  /// Semantic embedding (pgvector, text-embedding-3-large) — managed via raw SQL in curation scripts.
+  /// qualityScore, clusterId, keepRecommendation, reviewFlag — NCLEX curation engine outputs.
+  qualityScore      Float?   @map("quality_score")
+  clusterId         String?  @map("cluster_id")
+  keepRecommendation Boolean? @map("keep_recommendation")
+  reviewFlag        Boolean? @map("review_flag")
+  curationMeta      Json?    @map("curation_meta")
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
@@ -403,6 +410,8 @@ model QuestionBankItem {
   @@index([fieldId, stepLevel, active, qaPassed])
   @@index([fieldId, patientAgeGroup, active])
   @@index([fieldId, blueprintDomain, patientAgeGroup, active])
+  @@index([fieldId, clusterId])
+  @@index([fieldId, keepRecommendation, qualityScore])
   naplexFullExamLinks NaplexFullPracticeExamQuestion[]
   usmleFullExamLinks  UsmleFullPracticeExamQuestion[]
   nclexFullExamLinks  NclexFullPracticeExamQuestion[]
