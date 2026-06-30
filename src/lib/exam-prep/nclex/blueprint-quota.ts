@@ -11,7 +11,7 @@ import type { NclexClientNeedsId, NclexGenerationSlot } from "./types";
 const NCLEX_BLUEPRINT = getExamBlueprint("nursing")!;
 
 /** High-yield topics ordered for exam composition (highest yield first). */
-const HIGH_YIELD_ROTATION: Record<NclexClientNeedsId, string[]> = {
+export const HIGH_YIELD_ROTATION: Record<NclexClientNeedsId, string[]> = {
   "management-of-care": [
     "delegation",
     "prioritization",
