@@ -209,6 +209,9 @@ export function FullExamSimulator({
       if (config.presetExamNumber) {
         qs.set("presetExamNumber", String(config.presetExamNumber));
       }
+      if (config.focusAreas?.length) {
+        qs.set("focusAreas", config.focusAreas.join(","));
+      }
 
       const maxAttempts = 2;
       let lastError = "Could not load exam questions. Check your connection and try again.";
@@ -274,7 +277,7 @@ export function FullExamSimulator({
     return () => {
       cancelled = true;
     };
-  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.presetExamNumber, loadAttempt]);
+  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.presetExamNumber, config.focusAreas, loadAttempt]);
 
   useEffect(() => {
     if (loading || submitting || paused) return;

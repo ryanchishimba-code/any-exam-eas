@@ -33,6 +33,18 @@ import {
   resolveExamComposeConfig,
   type ExamComposeConfig,
 } from "./exam-compose-config";
+import { timedExamGatePairForField } from "@/lib/exam-prep/exam-fill-gates";
+import {
+  type ProgressiveComposeTier,
+  PROGRESSIVE_COMPOSE_TIERS,
+  minQuestionsForTier,
+  padToMinimum,
+  resolveTierUniquenessPolicy,
+  sessionMeetsTierFill,
+  startingTierIndex,
+  tierByIndex,
+  trimToRequested,
+} from "@/lib/exam-prep/progressive-compose";
 
 export type ComposeOutputFormat =
   | "ids_only"
@@ -46,6 +58,10 @@ export type ComposeExamParams = {
   difficultyPreference?: DifficultyPreference;
   outputFormat?: ComposeOutputFormat;
   seed?: number;
+  /** Skip bank rows already used in a preset batch. */
+  excludeQuestionIds?: Set<string>;
+  /** Override progressive tier (default: strict only). */
+  progressiveTierIndex?: number;
 };
 
 export type ComposedExamQuestion = {
@@ -122,10 +138,6 @@ function sequencingConfigFor(n: number): Partial<SequencingConfig> {
   return { domainMinGap: 4, conceptMinGap: 5 };
 }
 
-function resolvePoolLimit(numQuestions: number): number {
-  return Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.max(numQuestions * 3, numQuestions + 80));
-}
-
 /** Compose + sequence an exam for any supported board from the live bank. */
 export async function composePracticeExam(
   examSlug: string,
@@ -142,7 +154,44 @@ export async function composeForConfig(
   config: ExamComposeConfig,
   params: ComposeExamParams
 ): Promise<ComposedExam> {
+  const tierIndex = params.progressiveTierIndex ?? 0;
+  const result = await composeForConfigWithTier(config, params, tierByIndex(tierIndex));
+  if (!result) {
+    throw new Error(`Could not compose ${config.examName} exam at tier ${tierIndex}.`);
+  }
+  return result.exam;
+}
+
+export type ProgressiveComposeResult = {
+  exam: ComposedExam;
+  items: BankItem[];
+  tier: ProgressiveComposeTier;
+  tierIndex: number;
+};
+
+export async function composePracticeExamProgressive(
+  examSlug: string,
+  params: ComposeExamParams & { failedStreak?: number; examsComposed?: number }
+): Promise<ProgressiveComposeResult | null> {
+  const config = resolveExamComposeConfig(examSlug);
+  if (!config) throw new Error(`Unknown exam slug "${examSlug}".`);
+
+  const start = startingTierIndex(params.failedStreak ?? 0, params.examsComposed ?? 0);
+  for (let tierIndex = start; tierIndex < PROGRESSIVE_COMPOSE_TIERS.length; tierIndex++) {
+    const tier = PROGRESSIVE_COMPOSE_TIERS[tierIndex]!;
+    const result = await composeForConfigWithTier(config, params, tier);
+    if (result) return { ...result, tierIndex };
+  }
+  return null;
+}
+
+async function composeForConfigWithTier(
+  config: ExamComposeConfig,
+  params: ComposeExamParams,
+  tier: ProgressiveComposeTier
+): Promise<{ exam: ComposedExam; items: BankItem[]; tier: ProgressiveComposeTier } | null> {
   const numQuestions = Math.max(1, Math.floor(params.numQuestions));
+  const minCount = minQuestionsForTier(numQuestions, tier);
   const format = params.outputFormat ?? "full_exam_study";
   const seed = params.seed ?? 0x51ed270b;
 
@@ -153,14 +202,36 @@ export async function composeForConfig(
   const validIds = new Set(blueprint.categories.map((c) => c.id));
   const labelById = new Map(blueprint.categories.map((c) => [c.id, c.label] as const));
 
-  const poolLimit = resolvePoolLimit(numQuestions);
+  const poolLimit = Math.min(
+    QUESTION_BANK_SAMPLE_MAX_PULL,
+    Math.max(numQuestions * 4, numQuestions + 120)
+  );
+  const excludeIds = tier.allowCrossExamReuse ? undefined : params.excludeQuestionIds;
+  const gates = timedExamGatePairForField(config.fieldId);
+  const gateFn = tier.useRelaxedGate && gates.relaxed ? gates.relaxed : gates.strict;
+
+  const gateWithExclusions: typeof config.gate = (item) => {
+    if (excludeIds?.size && item.id && excludeIds.has(item.id)) return false;
+    if (tier.useRelaxedGate) {
+      return (gates.relaxed ?? gateFn)(item);
+    }
+    return config.gate(item);
+  };
+
   const rawPool = await gatherTimedExamBankItems({
     fieldId: config.fieldId,
     limit: poolLimit,
-    filterFn: config.gate,
+    filterFn: gateWithExclusions,
+    relaxedFilterFn: tier.useRelaxedGate ? gates.relaxed : undefined,
     initialSampleCount: poolLimit,
   });
-  const pool = config.prepareItem ? rawPool.map(config.prepareItem) : rawPool;
+  const pool = (config.prepareItem ? rawPool.map(config.prepareItem) : rawPool).filter(
+    (item) => item.id
+  );
+
+  if (pool.length < minCount) return null;
+
+  const policy = resolveTierUniquenessPolicy(numQuestions, pool, tier);
 
   const { items: blueprintSelected, summary } = selectBlueprintBalancedSet(pool, blueprint, {
     numQuestions,
@@ -169,21 +240,37 @@ export async function composeForConfig(
     seed,
   });
 
-  const caseUnique = dedupeItemsByClinicalCase(blueprintSelected);
-  const selected = selectDiverseSessionBankItems(caseUnique, numQuestions, {
-    seed,
-    requestedCount: numQuestions,
-  });
+  const casePool = tier.dedupeClinicalCases
+    ? dedupeItemsByClinicalCase(blueprintSelected)
+    : blueprintSelected;
+
+  let selected: BankItem[];
+  if (tier.useDiverseSelection) {
+    selected = selectDiverseSessionBankItems(casePool, numQuestions, {
+      seed,
+      requestedCount: numQuestions,
+      uniquenessPolicy: policy,
+    });
+  } else {
+    selected = shuffleWithSeed(casePool, seed).slice(0, numQuestions);
+  }
+
+  const usedInExam = new Set(selected.map((i) => i.id).filter(Boolean) as string[]);
+  selected = padToMinimum(selected, pool, minCount, usedInExam);
+
+  if (!sessionMeetsTierFill(selected.length, numQuestions, tier)) return null;
+
+  const finalItems = trimToRequested(selected, numQuestions);
 
   const { ordered, report } = sequenceItems(
-    selected,
+    finalItems,
     (item) => toSequenceItem(item, validIds),
-    sequencingConfigFor(selected.length),
+    sequencingConfigFor(finalItems.length),
     seed
   );
 
   const similarityFlags = auditExamSimilarity(ordered).map(
-    (flag) => `${flag.code}:${flag.message}`
+    (flag) => `[${tier.id}] ${flag.code}:${flag.message}`
   );
 
   const questions = ordered.map((item, i) =>
@@ -192,20 +279,41 @@ export async function composeForConfig(
 
   const total = ordered.length;
   return {
-    header: {
-      exam: config.examName,
-      title: `${config.examName} Practice Exam — ${total} items (curated + optimally sequenced)`,
-      totalQuestions: total,
-      estimatedMinutes: Math.round(total * config.minutesPerItem),
-      boardReference: config.boardReference,
-      note: "Curated from approved, QA-passed bank items and sequenced to spread similar content and remove answer-pattern predictability.",
+    items: ordered,
+    tier,
+    exam: {
+      header: {
+        exam: config.examName,
+        title: `${config.examName} Practice Exam — ${total} items (${tier.label})`,
+        totalQuestions: total,
+        estimatedMinutes: Math.round(total * config.minutesPerItem),
+        boardReference: config.boardReference,
+        note: `Composed at tier "${tier.id}" (${tier.label}). Curated from serve-ready bank items with progressive quality thresholds.`,
+      },
+      format,
+      questions,
+      selectionSummary: summary,
+      sequencingReport: report,
+      similarityFlags,
     },
-    format,
-    questions,
-    selectionSummary: summary,
-    sequencingReport: report,
-    similarityFlags,
   };
+}
+
+function shuffleWithSeed<T>(items: T[], seed: number): T[] {
+  let a = seed >>> 0;
+  const rng = () => {
+    a |= 0;
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+  const out = [...items];
+  for (let i = out.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
 }
 
 function shapeQuestion(

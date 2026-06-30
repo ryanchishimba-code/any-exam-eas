@@ -20,6 +20,12 @@ import { studyQuestionsToExamQuestions } from "@/lib/questions/prepare";
 import type { ExamQuestion } from "@/lib/ai";
 import { trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
+import { clampPresetExamNumber } from "@/lib/exam-prep/preset-exam-config";
+import {
+  composeBlueprintTimedExamSession,
+  fieldSupportsBlueprintTimedExam,
+} from "@/lib/exam-prep/compose/compose-timed-exam-session";
+import type { BankItem } from "@/lib/question-bank";
 
 const MIXED_SUBJECT_ID = "__mixed__";
 const MAX_BANK_LIMIT = 100;
@@ -86,11 +92,17 @@ export async function GET(req: Request) {
 
   const presetExamNumberRaw = searchParams.get("presetExamNumber");
   const presetExamNumber =
-    (fieldId === "nursing" || fieldId.startsWith("usmle") || fieldId === "npte-pt") &&
-    presetExamNumberRaw &&
-    Number.isFinite(Number(presetExamNumberRaw))
-      ? Math.max(1, Math.min(10, Number(presetExamNumberRaw)))
+    presetExamNumberRaw && Number.isFinite(Number(presetExamNumberRaw))
+      ? clampPresetExamNumber(Number(presetExamNumberRaw))
       : undefined;
+
+  const focusAreasParam = searchParams.get("focusAreas") ?? searchParams.get("focus_areas");
+  const focusAreas = focusAreasParam
+    ? focusAreasParam
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean)
+    : undefined;
 
   const {
     checkStudyQuestionUsage,
@@ -131,7 +143,7 @@ export async function GET(req: Request) {
   } = await import("@/lib/questions/finalize-exam-session");
   const sampleCount = resolveExamBankSampleCount(fieldId, limit, timedExam);
 
-  let items: Awaited<ReturnType<typeof sampleQuestionBankItemsForField>>;
+  let items: BankItem[];
 
   if (presetExamNumber && fieldId === "nursing" && timedExam) {
     const { loadNclexPresetExamItems } = await import("@/lib/exam-prep/nclex/load-preset-exam");
@@ -139,7 +151,7 @@ export async function GET(req: Request) {
     if (!preset) {
       return NextResponse.json(
         {
-          error: `NCLEX Practice Exam ${presetExamNumber} is not available. Run db:seed-nclex-full-exams first.`,
+          error: `NCLEX Practice Exam ${presetExamNumber} is not available. Run db:seed-validated-full-exams first.`,
           code: "PRESET_EXAM_UNAVAILABLE",
         },
         { status: 404 }
@@ -174,6 +186,22 @@ export async function GET(req: Request) {
       );
     }
     items = preset.items;
+  } else if (mixed && timedExam && fieldSupportsBlueprintTimedExam(fieldId)) {
+    const composed = await composeBlueprintTimedExamSession({
+      fieldId,
+      numQuestions: limit,
+      focusAreas,
+    });
+    if (!composed) {
+      return NextResponse.json(
+        {
+          error: `Could not compose a ${limit}-question exam aligned to the board blueprint. Try again shortly.`,
+          code: "EXAM_SESSION_UNAVAILABLE",
+        },
+        { status: 503 }
+      );
+    }
+    items = composed.items;
   } else if (mixed && timedExam) {
     const { gatherTimedExamBankItems } = await import("@/lib/questions/timed-exam-sampling");
     const { timedExamGatePairForField } = await import("@/lib/exam-prep/exam-fill-gates");

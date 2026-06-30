@@ -5,6 +5,7 @@ import { getUserExamPreference, touchExamStudied } from "@/lib/edtech/exam-prefe
 import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
 import { loadUsmlePresetExamItems } from "@/lib/exam-prep/usmle/load-preset-exam";
 import { loadNptePtPresetExamItems } from "@/lib/exam-prep/npte-pt/load-preset-exam";
+import { clampPresetExamNumber } from "@/lib/exam-prep/preset-exam-config";
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
 import { requirePremiumApi } from "@/lib/api-access";
@@ -31,7 +32,12 @@ export async function POST(req: Request) {
   const presetExamNumber =
     (examSlug === "nclex" || examSlug === "usmle" || examSlug === "npte-pt") &&
     Number.isFinite(Number(body.presetExamNumber))
-      ? Math.max(1, Math.min(10, Number(body.presetExamNumber)))
+      ? clampPresetExamNumber(Number(body.presetExamNumber))
+      : undefined;
+  const focusAreas = Array.isArray(body.focusAreas)
+    ? body.focusAreas.map(String).filter(Boolean)
+    : Array.isArray(body.focus_areas)
+      ? body.focus_areas.map(String).filter(Boolean)
       : undefined;
 
   try {
@@ -60,8 +66,8 @@ export async function POST(req: Request) {
     }
 
     if (presetExamNumber && examSlug === "usmle") {
-      const preset = await loadUsmlePresetExamItems(presetExamNumber);
-      if (!preset) {
+      const loaded = await loadUsmlePresetExamItems(presetExamNumber);
+      if (!loaded) {
         return NextResponse.json(
           {
             error: `USMLE Practice Exam ${presetExamNumber} is not available yet.`,
@@ -69,12 +75,12 @@ export async function POST(req: Request) {
           { status: 503 }
         );
       }
-      presetQuestionCount = preset.exam.questionCount;
-      sessionFieldId = preset.fieldId;
-      sessionTitle = preset.exam.title;
+      presetQuestionCount = loaded.exam.questionCount;
+      sessionFieldId = loaded.fieldId;
+      sessionTitle = loaded.exam.title;
     } else if (presetExamNumber && examSlug === "npte-pt") {
-      const preset = await loadNptePtPresetExamItems(presetExamNumber);
-      if (!preset) {
+      const loaded = await loadNptePtPresetExamItems(presetExamNumber);
+      if (!loaded) {
         return NextResponse.json(
           {
             error: `NPTE-PT Practice Exam ${presetExamNumber} is not available. Run db:seed-npte-pt-full-exams first.`,
@@ -82,8 +88,8 @@ export async function POST(req: Request) {
           { status: 503 }
         );
       }
-      presetQuestionCount = preset.exam.questionCount;
-      sessionTitle = preset.exam.title;
+      presetQuestionCount = loaded.exam.questionCount;
+      sessionTitle = loaded.exam.title;
     } else if (presetExamNumber) {
       sessionTitle = `${EXAM_CATALOG[examSlug].shortName} Practice Exam ${presetExamNumber}`;
     }
@@ -92,6 +98,7 @@ export async function POST(req: Request) {
       nclexLength: examSlug === "nclex" ? nclexLength : undefined,
       presetExamNumber,
       presetQuestionCount,
+      focusAreas,
     });
 
     const { checkMockExamStart } = await import("@/lib/study/usage-limits");

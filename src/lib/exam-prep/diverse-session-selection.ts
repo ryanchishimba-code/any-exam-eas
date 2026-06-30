@@ -227,16 +227,6 @@ export function selectDiverseSessionBankItems(
     opts.uniquenessPolicy ??
     resolveExamUniquenessPolicy(opts.requestedCount ?? cap, pool);
 
-  if (pool.length <= cap) {
-    const { ordered } = sequenceItems(
-      pool,
-      toSequenceItem,
-      sequencingConfigForSession(pool.length),
-      seed
-    );
-    return ordered.slice(0, cap);
-  }
-
   const selected = roundRobinByDomain(pool, cap, seed, policy, opts.acceptCandidate);
   const base =
     selected.length >= cap

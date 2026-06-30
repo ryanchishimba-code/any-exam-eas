@@ -52,24 +52,30 @@ export function buildSessionConfig(
   examSlug: ExamSlug,
   preset: FullExamLengthPreset,
   timed: boolean,
-  opts?: { nclexLength?: "minimum" | "maximum"; presetExamNumber?: number; presetQuestionCount?: number }
+  opts?: {
+    nclexLength?: "minimum" | "maximum";
+    presetExamNumber?: number;
+    presetQuestionCount?: number;
+    focusAreas?: string[];
+  }
 ): FullExamSessionConfig {
   const option = getLengthOptions(examSlug).find((o) => o.preset === preset)!;
   let questionCount = option.questionCount;
   if (examSlug === "nclex" && opts?.nclexLength === "maximum") {
     questionCount = 150;
   }
-  if (opts?.presetExamNumber && examSlug === "nclex") {
-    questionCount = 80;
-  }
-  if (opts?.presetExamNumber && examSlug === "usmle" && opts.presetQuestionCount) {
-    questionCount = opts.presetQuestionCount;
-  }
-  if (opts?.presetExamNumber && examSlug === "npte-pt" && opts.presetQuestionCount) {
-    questionCount = opts.presetQuestionCount;
-  }
-  if (opts?.presetExamNumber && examSlug === "npte-pt" && !opts.presetQuestionCount) {
-    questionCount = 80;
+  if (opts?.presetExamNumber) {
+    const presetCounts: Partial<Record<ExamSlug, number>> = {
+      nclex: 80,
+      naplex: 85,
+      pance: 100,
+      "aanp-fnp": 135,
+      "npte-pt": 80,
+    };
+    questionCount =
+      opts.presetQuestionCount ??
+      presetCounts[examSlug] ??
+      option.questionCount;
   }
   return {
     lengthPreset: preset,
@@ -83,12 +89,8 @@ export function buildSessionConfig(
           ...(opts?.presetExamNumber ? { presetExamNumber: opts.presetExamNumber } : {}),
         }
       : {}),
-    ...(examSlug === "usmle" && opts?.presetExamNumber
-      ? { presetExamNumber: opts.presetExamNumber }
-      : {}),
-    ...(examSlug === "npte-pt" && opts?.presetExamNumber
-      ? { presetExamNumber: opts.presetExamNumber }
-      : {}),
+    ...(opts?.presetExamNumber ? { presetExamNumber: opts.presetExamNumber } : {}),
+    ...(opts?.focusAreas?.length ? { focusAreas: opts.focusAreas } : {}),
   };
 }
 
