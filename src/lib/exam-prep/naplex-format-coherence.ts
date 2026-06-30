@@ -5,6 +5,8 @@ import {
   extractExplanationCorrectText,
   indexOfMatchingOption,
   inferCorrectFromDistractors,
+  inferCorrectFromExplanationRecommendation,
+  inferCorrectFromWrongOptionsSection,
 } from "./naplex-answer-align";
 import { resolveNaplexStem, resolveNaplexVignette } from "./naplex-bank-audit";
 
@@ -13,13 +15,30 @@ export type NaplexFormatIssue = {
     | "naplex_stem_format_mismatch"
     | "naplex_conflicting_lead_ins"
     | "naplex_mcq_missing_correct_option"
-    | "naplex_calc_stem_on_mcq";
+    | "naplex_calc_stem_on_mcq"
+    | "naplex_orphan_calc_stem";
   message: string;
   severity: "error";
 };
 
+/** Generic calculation stems from blueprint slot rotation — must not attach to non-calc vignettes. */
+export const GENERIC_BLUEPRINT_CALC_STEMS = [
+  "Calculate the dose in mg. Round to the nearest whole number.",
+  "How many tablets should be dispensed for this order?",
+  "At what rate (mL/hr) should the infusion pump be set? Round to the nearest whole number.",
+  "What is the total volume in mL? Round to one decimal place.",
+  "How many milligrams of drug are required for this preparation?",
+  "Calculate the concentration in mg/mL. Round to two decimal places.",
+] as const;
+
+const MCQ_CLINICAL_VIGNETTE =
+  /\b(?:addiction|substance abuse|non-opioid|concern about|exploring|counsel|counseling|alternative therap|most appropriate|next best step|which (?:recommendation|action|finding|medication|alternative)|patient asks|mother asks|expresses concern|monitoring parameter|drug interaction|therapeutic change|immediate follow-up)\b/i;
+
+const CALC_ORDER_CONTEXT =
+  /\b(?:order(?:ed)?|Rx:|dispense|infus(?:e|ion)|prepare|compound|dilut|reconstitut|available (?:suspension|vial|stock|concentrate)|bag contains|mg\/kg|mcg\/kg|mg\/m²|mL\/hr|every \d+ hours?.*\d+\s*mg|q\d+h.*\d+\s*mg|round to (?:one|two|nearest))\b/i;
+
 const MCQ_LEAD_IN =
-  /\b(?:which (?:finding|action|medication|intervention|recommendation|counseling|monitoring|drug|alternative|statement|laboratory)|what is the (?:most|best|priority)|most appropriate|best choice|best next|select all|which of the following)\b/i;
+  /\b(?:which (?:finding|action|medication|intervention|recommendation|counseling|monitoring|drug|alternative|statement|laboratory)|what is the (?:most|best|priority|next|appropriate|expected)|most appropriate|best choice|best next|next best step|select all|which of the following|what counseling|expected (?:duration|time frame))\b/i;
 
 const CALC_LEAD_IN =
   /\b(?:calculate|how many|how much|at what rate|round to|what is the (?:rate|dose|volume|concentration|quantity|total|amount|number|daily dose|infusion rate))\b/i;
@@ -43,6 +62,91 @@ function isNumericAnswer(answer: string): boolean {
   return /^\d+(?:\.\d+)?$/.test(trimmed.replace(/[^\d.]/g, ""));
 }
 
+export function isGenericBlueprintCalcStem(stem: string): boolean {
+  const normalized = stem.trim();
+  return GENERIC_BLUEPRINT_CALC_STEMS.some(
+    (template) => normalized === template || normalized.startsWith(template.replace(/\.$/, ""))
+  );
+}
+
+/** True when vignette contains enough order/dispensing data to support a calculation stem. */
+export function vignetteSupportsCalculation(item: BankItem): boolean {
+  const vignette = resolveNaplexVignette(item);
+  if (!vignette || vignette.length < 20) return false;
+
+  const numericAnchors =
+    vignette.match(
+      /\d+(?:\.\d+)?\s*(?:mg\/kg|mcg\/kg|mg\/m²|mg\/mL|mcg\/mL|mL\/hr|g\/kg|mEq\/mL|units\/mL|mg\/\d+\s*mL)/gi
+    ) ?? [];
+  if (numericAnchors.length >= 1) return true;
+
+  const dosePairs =
+    vignette.match(/\d+(?:\.\d+)?\s*(?:mg|mcg|g|mL|L|units|tablets?|capsules?|mEq)/gi) ?? [];
+  const hasOrder = CALC_ORDER_CONTEXT.test(vignette);
+  if (hasOrder && dosePairs.length >= 2) return true;
+
+  if (/\d+\s*(?:mg|mcg|g|mL)\b.*(?:every|q\d+h|over \d+|× \d+ day)/i.test(vignette)) return true;
+  if (/(?:BSA|CrCl|ideal body weight|IBW|4-2-1|alligation|C1V1)/i.test(vignette)) return true;
+
+  return false;
+}
+
+export function orphanGenericCalcStemIssue(item: BankItem): { codes: string[] } | null {
+  const itemType = item.itemType ?? "mcq";
+  if (itemType !== "constructed_response") return null;
+
+  const stem = resolveNaplexStem(item);
+  const genericStem = isGenericBlueprintCalcStem(stem);
+  const calcLeadIn = CALC_LEAD_IN.test(stem);
+  if (!genericStem && !calcLeadIn) return null;
+
+  if (vignetteSupportsCalculation(item)) return null;
+
+  const vignette = resolveNaplexVignette(item);
+  const clinicalMcq =
+    MCQ_CLINICAL_VIGNETTE.test(vignette) ||
+    MCQ_LEAD_IN.test(vignette) ||
+    (!calcLeadIn && hasMcqOptions(item));
+
+  if (!genericStem && !clinicalMcq) return null;
+
+  return { codes: ["naplex_orphan_calc_stem"] };
+}
+
+export function detectOrphanGenericCalcStem(item: BankItem): NaplexFormatIssue | null {
+  const issue = orphanGenericCalcStemIssue(item);
+  if (!issue) return null;
+  return {
+    code: "naplex_orphan_calc_stem",
+    message:
+      "Generic calculation stem is attached to a clinical vignette without calculable order data (e.g. counseling-only case).",
+    severity: "error",
+  };
+}
+
+function inferMcqStemFromVignette(vignette: string): string {
+  const v = vignette.toLowerCase();
+  if (/addiction|non-opioid|substance abuse|concern about.*(?:addict|opioid)/.test(v)) {
+    return "Which alternative therapy is most appropriate?";
+  }
+  if (/counsel|mother asks|patient asks|counseling point/.test(v)) {
+    return "Which counseling point is most important?";
+  }
+  if (/drug interaction|concomitant|polypharmacy/.test(v)) {
+    return "Which drug interaction poses the greatest risk?";
+  }
+  if (/laboratory|lab value|a1c|creatinine|potassium|inr/.test(v)) {
+    return "Which laboratory value warrants a therapeutic change?";
+  }
+  if (/monitor|follow-up|parameter/.test(v)) {
+    return "Which monitoring parameter is most critical?";
+  }
+  if (/emergency|severe|chest pain|st-segment|st elevation/.test(v)) {
+    return "What is the next best step in management?";
+  }
+  return "Which recommendation is most appropriate for this patient?";
+}
+
 export function detectNaplexFormatIssues(item: BankItem): NaplexFormatIssue[] {
   const issues: NaplexFormatIssue[] = [];
   const itemType = item.itemType ?? "mcq";
@@ -62,9 +166,8 @@ export function detectNaplexFormatIssues(item: BankItem): NaplexFormatIssue[] {
 
   if (
     itemType === "constructed_response" &&
-    mcqStem &&
-    !calcStem &&
-    hasMcqOptions(item)
+    hasMcqOptions(item) &&
+    !calcStem
   ) {
     issues.push({
       code: "naplex_stem_format_mismatch",
@@ -76,6 +179,7 @@ export function detectNaplexFormatIssues(item: BankItem): NaplexFormatIssue[] {
     itemType === "constructed_response" &&
     mcqStem &&
     !calcStem &&
+    !hasMcqOptions(item) &&
     !isNumericAnswer(item.correctAnswer)
   ) {
     issues.push({
@@ -121,6 +225,9 @@ export function detectNaplexFormatIssues(item: BankItem): NaplexFormatIssue[] {
       severity: "error",
     });
   }
+
+  const orphanCalc = detectOrphanGenericCalcStem(item);
+  if (orphanCalc) issues.push(orphanCalc);
 
   return issues;
 }
@@ -220,6 +327,42 @@ function inferCorrectFromNumericInOptions(item: BankItem): string | null {
   return null;
 }
 
+/** Match option text using dose/time phrases repeated in the explanation body. */
+function inferCorrectFromExplanationContext(item: BankItem): string | null {
+  const explanation = item.explanation?.trim().toLowerCase() ?? "";
+  if (explanation.length < 40) return null;
+
+  type Scored = { option: string; score: number };
+  const scored: Scored[] = item.options.map((option) => {
+    const words = option
+      .toLowerCase()
+      .split(/[^a-z0-9%/]+/)
+      .filter((w) => w.length > 2);
+    const score = words.reduce((sum, word) => sum + (explanation.includes(word) ? 1 : 0), 0);
+    return { option, score };
+  });
+
+  const best = scored.reduce<Scored | null>(
+    (acc, row) => (!acc || row.score > acc.score ? row : acc),
+    null
+  );
+  if (!best || best.score < 3) return null;
+
+  const tied = scored.filter((row) => row.score === best.score);
+  return tied.length === 1 ? tied[0]!.option : null;
+}
+
+/** Recover schedule answers corrupted into one integer (e.g. 12512 → 125 mg q12h). */
+function inferCorrectFromConcatenatedSchedule(item: BankItem): string | null {
+  const answer = item.correctAnswer.trim();
+  if (!/^\d{4,6}$/.test(answer)) return null;
+  for (const option of item.options) {
+    const digits = option.replace(/\D/g, "");
+    if (digits && answer.includes(digits) && digits.length >= 3) return option;
+  }
+  return null;
+}
+
 /** Last resort: small integer keys may be 1-based option indices from bad generation. */
 function inferCorrectFromOptionIndex(item: BankItem): string | null {
   const n = parseInt(item.correctAnswer.trim(), 10);
@@ -240,7 +383,11 @@ function resolveMcqCorrectAnswer(item: BankItem): string | null {
   }
 
   if (isCorruptedConstructedNumericAnswer(item)) {
-    // Ignore slot-index artifacts like "12" on a 4-option counseling item.
+    const fromNumericOption = inferCorrectFromNumericInOptions(item);
+    if (fromNumericOption) return fromNumericOption;
+
+    const fromIndex = inferCorrectFromOptionIndex(item);
+    if (fromIndex) return fromIndex;
   } else if (isNumericAnswer(stored) && CALC_LEAD_IN.test(resolveNaplexStem(item))) {
     return null;
   }
@@ -250,6 +397,12 @@ function resolveMcqCorrectAnswer(item: BankItem): string | null {
     const idx = indexOfMatchingOption(options, fromExplanation);
     if (idx >= 0) return options[idx]!;
   }
+
+  const fromWrongSection = inferCorrectFromWrongOptionsSection(options, item.explanation ?? "");
+  if (fromWrongSection) return fromWrongSection;
+
+  const fromPriority = inferCorrectFromExplanationRecommendation(options, item.explanation ?? "");
+  if (fromPriority) return fromPriority;
 
   const fromBody = inferCorrectFromExplanationBody(item);
   if (fromBody) return fromBody;
@@ -262,6 +415,12 @@ function resolveMcqCorrectAnswer(item: BankItem): string | null {
 
   const fromDistractors = inferCorrectFromDistractors(options, item.distractorRationale);
   if (fromDistractors) return fromDistractors;
+
+  const fromContext = inferCorrectFromExplanationContext(item);
+  if (fromContext) return fromContext;
+
+  const fromSchedule = inferCorrectFromConcatenatedSchedule(item);
+  if (fromSchedule) return fromSchedule;
 
   const fromIndex = inferCorrectFromOptionIndex(item);
   if (fromIndex) return fromIndex;
@@ -283,6 +442,7 @@ function reclassifyConstructedToMcq(item: BankItem): BankItem | null {
   return {
     ...withoutCalcPayload,
     itemType: "vignette",
+    options: item.options,
     correctAnswer: resolved,
   };
 }
@@ -349,6 +509,23 @@ export function fixNaplexFormatCoherence(item: BankItem): NaplexFormatFixResult 
     return { item: working, changed, note };
   }
 
+  if (orphanGenericCalcStemIssue(working)) {
+    const vignette = resolveNaplexVignette(working) || working.vignette || working.scenario || "";
+    const mcqStem = inferMcqStemFromVignette(vignette);
+    if (hasMcqOptions(working)) {
+      const mcq = reclassifyConstructedToMcq({
+        ...working,
+        question: mcqStem,
+        ngnPayload: working.ngnPayload?.kind === "constructed" ? undefined : working.ngnPayload,
+      });
+      if (mcq) {
+        working = mcq;
+        changed = true;
+        note = "repaired orphan calc stem → clinical vignette MCQ";
+      }
+    }
+  }
+
   const itemType = working.itemType ?? "mcq";
   if (itemType === "constructed_response" && hasMcqOptions(working)) {
     const mcq = reclassifyConstructedToMcq(working);
@@ -384,7 +561,7 @@ export function fixNaplexFormatCoherence(item: BankItem): NaplexFormatFixResult 
 }
 
 export function itemHasFormatCoherenceIssue(item: BankItem): boolean {
-  return detectNaplexFormatIssues(item).length > 0;
+  return detectNaplexFormatIssues(item).length > 0 || orphanGenericCalcStemIssue(item) !== null;
 }
 
 /** Full prep pipeline for serve/timed exams: format repair then answer alignment. */

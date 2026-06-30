@@ -62,6 +62,76 @@ export function inferCorrectFromDistractors(
   return null;
 }
 
+/** When explanation lists why other options are wrong, the remaining option is correct. */
+export function inferCorrectFromWrongOptionsSection(
+  options: string[],
+  explanation: string
+): string | null {
+  const wrongSection = explanation.match(/why other options are incorrect:([\s\S]+)/i)?.[1];
+  if (!wrongSection) return null;
+
+  const wrongOptions = options.filter((option) => {
+    const lead = option.split(":")[0]?.trim() ?? option.trim();
+    const probe = lead.slice(0, Math.min(lead.length, 28)).toLowerCase();
+    return probe.length >= 8 && wrongSection.toLowerCase().includes(probe);
+  });
+
+  if (wrongOptions.length !== options.length - 1) return null;
+  return options.find((option) => !wrongOptions.includes(option)) ?? null;
+}
+
+/** Match recommendation language in the explanation body to a single option. */
+export function inferCorrectFromExplanationRecommendation(
+  options: string[],
+  explanation: string
+): string | null {
+  const lower = explanation.trim().toLowerCase();
+  if (lower.length < 40) return null;
+
+  const zones = [
+    lower.match(/immediate management includes ([^.]+)/)?.[1],
+    lower.match(/includes administering ([^.]+)/)?.[1],
+    lower.match(/(?:adding|recommend(?:ed|ing)?(?:\s+\w+){0,4}?\s+)([a-z0-9][^.]{8,120})/)?.[1],
+    lower.match(/first[- ]line[^.]{0,30}?([a-z0-9][^.]{8,120})/)?.[1],
+  ].filter(Boolean) as string[];
+
+  for (const zone of zones) {
+    const matches = options.filter((option) => {
+      const anchor = option.toLowerCase().split(/\s+/).find((word) => word.length > 5) ?? "";
+      return (anchor && zone.includes(anchor)) || zone.includes(option.toLowerCase().slice(0, 24));
+    });
+    if (matches.length === 1) return matches[0]!;
+  }
+
+  return null;
+}
+
+/**
+ * High-confidence recovery for MCQ answers after mislabeled constructed_response repair.
+ * Returns null when no single option can be inferred safely.
+ */
+export function recoverMisclassifiedMcqAnswer(item: BankItem): string | null {
+  if (item.options.length !== 4) return null;
+
+  const explanation = item.explanation ?? "";
+  const fromCorrectLine = extractExplanationCorrectText(explanation);
+  if (fromCorrectLine) {
+    const idx = indexOfMatchingOption(item.options, fromCorrectLine);
+    if (idx >= 0) return item.options[idx]!;
+  }
+
+  const fromWrongSection = inferCorrectFromWrongOptionsSection(item.options, explanation);
+  if (fromWrongSection) return fromWrongSection;
+
+  const fromDistractors = inferCorrectFromDistractors(item.options, item.distractorRationale);
+  if (fromDistractors) return fromDistractors;
+
+  const fromRecommendation = inferCorrectFromExplanationRecommendation(item.options, explanation);
+  if (fromRecommendation) return fromRecommendation;
+
+  return null;
+}
+
 /**
  * Align stored correctAnswer with options and explanation text.
  * Uses exact normalized match, explanation "Correct:" line, or distractor inference.
@@ -126,6 +196,15 @@ export function alignNaplexBankItemAnswers(item: BankItem): NaplexAnswerAlignRes
         note: "correctAnswer aligned to explanation Correct: line",
       };
     }
+  }
+
+  const fromWrongSection = inferCorrectFromWrongOptionsSection(options, item.explanation ?? "");
+  if (fromWrongSection) {
+    return {
+      item: { ...item, correctAnswer: fromWrongSection },
+      changed: true,
+      note: "correctAnswer inferred from explanation wrong-options section",
+    };
   }
 
   const fromDistractors = inferCorrectFromDistractors(options, item.distractorRationale);

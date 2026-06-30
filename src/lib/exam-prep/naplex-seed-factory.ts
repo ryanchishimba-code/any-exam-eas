@@ -150,7 +150,7 @@ export function naplexCalcCase(
     explanation,
     {
       ...meta,
-      tags: [...(meta.tags ?? []), "case-calculation"],
+      tags: [...(meta.tags ?? []), "case-calculation", "physician-educator"],
       difficulty: meta.difficulty ?? 4,
     },
     solutionSteps

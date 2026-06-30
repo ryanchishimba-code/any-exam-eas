@@ -209,7 +209,7 @@ export function scoreNaplexBankItem(item: BankItem): number {
   if (item.options.length === 4 && item.options.includes(item.correctAnswer)) score += 0.08;
 
   const tags = (item.tags ?? []).map((t) => t.toLowerCase());
-  if (tags.some((t) => ["vignette", "high-yield", "v2", "physician-educator", "case-vignette"].includes(t))) {
+  if (tags.some((t) => ["vignette", "high-yield", "v2", "physician-educator", "case-vignette", "case-calculation", "procedural-calc"].includes(t))) {
     score += 0.06;
   }
   if (item.itemType === "vignette") score += 0.08;

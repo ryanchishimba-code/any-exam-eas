@@ -12,6 +12,7 @@ export function isNaplexCuratedItem(
 ): boolean {
   const tags = item.tags ?? [];
   if (tags.includes("physician-educator")) return true;
+  if (tags.includes("case-calculation")) return true;
   if (tags.includes("naplex-polished")) return true;
   if (tags.includes("curated")) return true;
   if (tags.includes("high-yield") && !tags.includes("bulk-bank")) return true;

@@ -239,3 +239,39 @@ export function summarizeExamFormats(slots: NaplexGenerationSlot[]): Record<stri
 export function stemFormatForIndex(index: number): string {
   return STEM_FORMATS[index % STEM_FORMATS.length]!;
 }
+
+export type NaplexQuotaRow = {
+  blueprintArea: NaplexBlueprintAreaId;
+  label: string;
+  weight: number;
+  targetCount: number;
+  currentCount?: number;
+  deficit?: number;
+};
+
+/** Per blueprint-area question targets for a given bank size (default 6500). */
+export function computeNaplexBlueprintQuotas(
+  total = 6500
+): NaplexQuotaRow[] {
+  return NAPLEX_2026_BLUEPRINT.categories.map((cat) => ({
+    blueprintArea: cat.id as NaplexBlueprintAreaId,
+    label: cat.label,
+    weight: cat.weight,
+    targetCount: Math.round(total * cat.weight),
+  }));
+}
+
+/** Merge live DB counts (keyed by blueprintDomain) with blueprint targets. */
+export function mergeNaplexQuotaWithCounts(
+  countsByArea: Record<string, number>,
+  total = 6500
+): NaplexQuotaRow[] {
+  return computeNaplexBlueprintQuotas(total).map((row) => {
+    const currentCount = countsByArea[row.blueprintArea] ?? 0;
+    return {
+      ...row,
+      currentCount,
+      deficit: Math.max(0, row.targetCount - currentCount),
+    };
+  });
+}

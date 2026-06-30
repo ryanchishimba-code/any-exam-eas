@@ -74,6 +74,35 @@ describe("naplex format coherence", () => {
     expect(fixed.options).toHaveLength(0);
   });
 
+  it("reclassifies next-best-step management item stored as constructed_response", () => {
+    const item: BankItem = {
+      subjectId: "cardiovascular-rx",
+      vignette:
+        "A 30-year-old male presents to the emergency department with severe chest pain radiating to his left arm. An ECG shows ST-segment elevation in leads II, III, and aVF.",
+      question: "What is the next best step in management?",
+      options: [
+        "Administer aspirin 325 mg orally.",
+        "Start intravenous nitroglycerin.",
+        "Perform coronary angiography.",
+        "Initiate fibrinolytic therapy.",
+      ],
+      correctAnswer: "325",
+      explanation:
+        "Correct: Administer aspirin 325 mg orally. — immediate non-enteric aspirin is recommended in STEMI unless contraindicated.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mg" },
+    };
+
+    const codes = detectNaplexFormatIssues(item).map((i) => i.code);
+    expect(codes).toContain("naplex_stem_format_mismatch");
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.correctAnswer).toBe("Administer aspirin 325 mg orally.");
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
   it("reclassifies constructed_response counseling item with corrupted numeric key", () => {
     const item: BankItem = {
       subjectId: "patient-counseling",
@@ -126,5 +155,34 @@ describe("naplex format coherence", () => {
     expect(
       auditBankItem(fixed, "pharmacy").issues.some((i) => i.code === "constructed_response_not_numeric")
     ).toBe(false);
+  });
+
+  it("repairs hydrocodone counseling vignette with orphan generic volume calc stem", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "A 55-year-old female patient with chronic pain is currently taking hydrocodone/acetaminophen for pain management. She expresses concern about the potential for addiction and is interested in exploring non-opioid alternatives. She has no history of substance abuse and is stable on her current medication.",
+      question: "What is the total volume in mL? Round to one decimal place.",
+      options: [
+        "Initiate physical therapy and scheduled acetaminophen monotherapy",
+        "Switch to extended-release oxycodone for smoother analgesia",
+        "Recommend NSAID monotherapy without gastric-risk assessment",
+        "Continue hydrocodone/acetaminophen and defer non-opioid discussion",
+      ],
+      correctAnswer: "12",
+      explanation:
+        "Correct: Initiate physical therapy and scheduled acetaminophen monotherapy — for stable chronic pain with opioid concern, non-opioid multimodal strategies are preferred when appropriate.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mg" },
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain("naplex_orphan_calc_stem");
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.question).toMatch(/alternative therapy/i);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
   });
 });

@@ -2,6 +2,7 @@ import type { BankItem } from "@/lib/question-bank";
 import { auditBankItem } from "@/lib/exam-prep/bank-audit";
 import { auditNaplexBankItem, resolveNaplexStem, resolveNaplexVignette } from "./naplex-bank-audit";
 import { normalizeNaplexBankItemFields } from "./naplex-bank-normalize";
+import { detectNaplexFormatIssues } from "./naplex-format-coherence";
 import { scoreNaplexBankItem } from "@/lib/engine/polish/naplex-polish";
 import { isNaplexCuratedItem } from "@/lib/question-bank/naplex-curated";
 
@@ -19,6 +20,7 @@ const BLOCKING_WARN_CODES = new Set([
   "naplex_conflicting_lead_ins",
   "naplex_mcq_missing_correct_option",
   "naplex_calc_stem_on_mcq",
+  "naplex_orphan_calc_stem",
 ]);
 
 export type NaplexQualityVerdict = {
@@ -55,6 +57,10 @@ export function assessNaplexItemQuality(
     if (issue.severity === "warn" && BLOCKING_WARN_CODES.has(issue.code)) {
       issues.push(issue.code);
     }
+  }
+
+  for (const issue of detectNaplexFormatIssues(normalized)) {
+    issues.push(issue.code);
   }
 
   const vignette = resolveNaplexVignette(normalized);
