@@ -181,6 +181,11 @@ function buildSlotPrompt(
     if (s.questionFormat === "sequential") {
       parts.push("multi-step: same vignette, 2 related questions in one object with sequentialSteps array");
     }
+    if (s.questionFormat === "calculation") {
+      parts.push(
+        "quantitative calculation: provide all data needed in vignette; stem asks for a numeric result with units; exactly one option matches verified math; include step-by-step solution in explanation"
+      );
+    }
     return `${i + 1}. ${parts.join(" | ")}`;
   });
 

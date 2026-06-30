@@ -35,7 +35,8 @@ export type UsmleQuestionFormat =
   | "image_based"
   | "sequential"
   | "biostats"
-  | "ethics";
+  | "ethics"
+  | "calculation";
 
 export type UsmleGenerationSlot = QuestionSlot & {
   slotIndex: number;

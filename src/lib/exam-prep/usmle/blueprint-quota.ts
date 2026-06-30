@@ -3,6 +3,7 @@
  */
 import {
   allocateQuestionsByBlueprint,
+  getExamBlueprint,
   type ExamBlueprint,
 } from "@/lib/engine/blueprints";
 import type {
@@ -24,6 +25,7 @@ export const USMLE_STEP1_2026_BLUEPRINT: ExamBlueprint = {
     { format: "image_based", weight: 0.08, label: "Image / exhibit" },
     { format: "sequential", weight: 0.06, label: "Multi-step sequential" },
     { format: "biostats", weight: 0.05, label: "Biostatistics / epidemiology" },
+    { format: "calculation", weight: 0.08, label: "Quantitative calculation" },
   ],
   categories: [
     {
@@ -185,12 +187,13 @@ export const USMLE_STEP2_2026_BLUEPRINT: ExamBlueprint = {
     { format: "image_based", weight: 0.07, label: "Image / exhibit" },
     { format: "sequential", weight: 0.08, label: "Multi-step sequential" },
     { format: "ethics", weight: 0.04, label: "Ethics / professionalism" },
+    { format: "calculation", weight: 0.06, label: "Quantitative calculation" },
   ],
   categories: [
     {
       id: "internal-medicine",
       label: "Internal Medicine",
-      weight: 0.6,
+      weight: 0.55,
       subjectIds: ["internal-medicine", "cardiology", "pulmonology", "nephrology"],
       highYieldTopics: [
         "ACS management",
@@ -208,7 +211,7 @@ export const USMLE_STEP2_2026_BLUEPRINT: ExamBlueprint = {
     {
       id: "pediatrics",
       label: "Pediatrics",
-      weight: 0.22,
+      weight: 0.2,
       subjectIds: ["pediatrics"],
       highYieldTopics: [
         "vaccine schedule",
@@ -240,7 +243,7 @@ export const USMLE_STEP2_2026_BLUEPRINT: ExamBlueprint = {
     {
       id: "obgyn",
       label: "OB/GYN",
-      weight: 0.05,
+      weight: 0.1,
       subjectIds: ["obgyn"],
       highYieldTopics: [
         "preeclampsia",
@@ -254,7 +257,7 @@ export const USMLE_STEP2_2026_BLUEPRINT: ExamBlueprint = {
     {
       id: "psychiatry",
       label: "Psychiatry",
-      weight: 0.03,
+      weight: 0.05,
       subjectIds: ["psychiatry"],
       highYieldTopics: [
         "major depression",
@@ -289,6 +292,8 @@ const STEP1_STEM_FORMATS = [
   "Which histologic finding is most expected?",
   "Which pathophysiologic process best explains these findings?",
   "Which of the following is the most likely diagnosis?",
+  "What is the anion gap (mEq/L)?",
+  "Calculate the predicted pH using the Henderson–Hasselbalch equation.",
 ] as const;
 
 const STEP2_STEM_FORMATS = [
@@ -302,12 +307,26 @@ const STEP2_STEM_FORMATS = [
   "Which of the following is the most appropriate referral?",
   "What is the most likely underlying cause?",
   "Which of the following is contraindicated in this patient?",
+  "What is the estimated creatinine clearance (mL/min)?",
+  "What is the maintenance IV fluid rate (mL/hr)?",
+] as const;
+
+const STEP3_STEM_FORMATS = [
+  "Which of the following is the most likely diagnosis?",
+  "What is the most appropriate next step in management?",
+  "What is the number needed to treat (NNT)?",
+  "What is the positive predictive value (PPV)?",
+  "What is the positive likelihood ratio (LR+)?",
+  "What is the calculated carboplatin dose (mg)?",
+  "Which study design is most appropriate?",
+  "Which ethical principle is most relevant?",
 ] as const;
 
 const HIGH_YIELD_BY_SYSTEM: Record<string, string[]> = {};
 for (const bp of [
   ...USMLE_STEP1_2026_BLUEPRINT.categories,
   ...USMLE_STEP2_2026_BLUEPRINT.categories,
+  ...(getExamBlueprint("usmle-step-3")?.categories ?? []),
 ]) {
   HIGH_YIELD_BY_SYSTEM[bp.id] = bp.highYieldTopics ?? [];
 }
@@ -318,7 +337,11 @@ function resolveStepLevel(examNumber: number, override?: UsmleStepLevel): UsmleS
 }
 
 function resolveBlueprint(stepLevel: UsmleStepLevel): ExamBlueprint {
-  return stepLevel === "step1" ? USMLE_STEP1_2026_BLUEPRINT : USMLE_STEP2_2026_BLUEPRINT;
+  if (stepLevel === "step1") return USMLE_STEP1_2026_BLUEPRINT;
+  if (stepLevel === "step3") {
+    return getExamBlueprint("usmle-step-3") ?? USMLE_STEP2_2026_BLUEPRINT;
+  }
+  return USMLE_STEP2_2026_BLUEPRINT;
 }
 
 function resolveSubjectId(slot: { categoryId: string; subjectIds?: string[] }, index: number): string {
@@ -332,6 +355,7 @@ function resolveQuestionFormat(ngnFormat?: string): UsmleQuestionFormat {
   if (ngnFormat === "sequential") return "sequential";
   if (ngnFormat === "biostats") return "biostats";
   if (ngnFormat === "ethics") return "ethics";
+  if (ngnFormat === "calculation") return "calculation";
   return "vignette";
 }
 
@@ -345,7 +369,12 @@ function pickPhysicianTask(index: number, examSeed: number): UsmlePhysicianTaskI
 }
 
 function pickStemFormat(stepLevel: UsmleStepLevel, index: number, examSeed: number): string {
-  const formats = stepLevel === "step1" ? STEP1_STEM_FORMATS : STEP2_STEM_FORMATS;
+  const formats =
+    stepLevel === "step1"
+      ? STEP1_STEM_FORMATS
+      : stepLevel === "step3"
+        ? STEP3_STEM_FORMATS
+        : STEP2_STEM_FORMATS;
   return formats[(index + examSeed) % formats.length]!;
 }
 
@@ -414,4 +443,45 @@ export function summarizeExamTasks(slots: UsmleGenerationSlot[]): Record<string,
     summary[slot.physicianTask] = (summary[slot.physicianTask] ?? 0) + 1;
   }
   return summary;
+}
+
+export type UsmleQuotaRow = {
+  categoryId: string;
+  label: string;
+  weight: number;
+  targetCount: number;
+  currentCount?: number;
+  deficit?: number;
+  surplus?: number;
+};
+
+/** Per blueprint-category targets for a given bank size. */
+export function computeUsmleBlueprintQuotas(
+  blueprint: ExamBlueprint,
+  total: number
+): UsmleQuotaRow[] {
+  return blueprint.categories.map((cat) => ({
+    categoryId: cat.id,
+    label: cat.label,
+    weight: cat.weight,
+    targetCount: Math.round(total * cat.weight),
+  }));
+}
+
+/** Merge live category counts with blueprint targets. */
+export function mergeUsmleQuotaWithCounts(
+  blueprint: ExamBlueprint,
+  countsByCategory: Record<string, number>,
+  total: number
+): UsmleQuotaRow[] {
+  return computeUsmleBlueprintQuotas(blueprint, total).map((row) => {
+    const currentCount = countsByCategory[row.categoryId] ?? 0;
+    const delta = currentCount - row.targetCount;
+    return {
+      ...row,
+      currentCount,
+      deficit: Math.max(0, row.targetCount - currentCount),
+      surplus: Math.max(0, delta),
+    };
+  });
 }

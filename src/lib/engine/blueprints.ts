@@ -584,6 +584,12 @@ const USMLE_STEP_3: ExamBlueprint = {
   examName: "USMLE Step 3",
   sourceNote: "USMLE Content Outline — Step 3 clinical encounter & independent practice",
   vignetteMinRatio: 0.65,
+  ngnMix: [
+    { format: "biostats", weight: 0.12, label: "Biostatistics / epidemiology" },
+    { format: "calculation", weight: 0.08, label: "Quantitative calculation" },
+    { format: "ethics", weight: 0.08, label: "Medical ethics" },
+    { format: "sequential", weight: 0.05, label: "Multi-step sequential" },
+  ],
   categories: [
     {
       id: "internal-medicine",
