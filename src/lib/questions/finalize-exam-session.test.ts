@@ -76,6 +76,23 @@ describe("finalizeExamSessionQuestions", () => {
   }
 
   it(
+    "returns exact count for NCLEX sprint sessions with fieldId nursing",
+    () => {
+      for (const limit of [50, 85, 100]) {
+        const { prepared, quality } = finalizeExamSessionQuestions(
+          buildPool(limit + 24, `nclex${limit}`),
+          limit,
+          { fieldId: "nursing" }
+        );
+        expect(prepared).toHaveLength(limit);
+        expect(quality.returned).toBe(limit);
+        assertExamSessionReady({ ...quality, ok: quality.returned === limit }, "nursing");
+      }
+    },
+    15_000
+  );
+
+  it(
     "returns exact count for standard full-exam preset sizes",
     () => {
       for (const limit of [50, 85, 100, 120]) {

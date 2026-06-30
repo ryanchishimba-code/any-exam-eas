@@ -22,6 +22,8 @@
     "db:verify-questions": "npx tsx scripts/verify-question-bank.ts",
     "db:verify-exam-modes": "bash scripts/run-with-node.sh npx tsx scripts/verify-exam-modes.mts",
     "db:verify-exam-modes:quick": "bash scripts/run-with-node.sh npx tsx scripts/verify-exam-modes.mts --quick",
+    "db:verify-nclex-count": "bash scripts/run-with-node.sh npx tsx scripts/verify-nclex-count.ts",
+    "db:verify-nclex-count:85": "bash scripts/run-with-node.sh npx tsx scripts/verify-nclex-count.ts --limit 85",
     "db:verify-full-exam": "bash scripts/run-with-node.sh npx tsx scripts/verify-full-exam-all.mts",
     "db:verify-subject-selection": "bash scripts/run-with-node.sh npx tsx scripts/verify-subject-selection-all.mts",
     "verify:product-live": "bash scripts/run-with-node.sh npx tsx scripts/verify-product-live.mts",
