@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { SignupForm } from "@/components/SignupForm";
 import { PageShell } from "@/components/PageShell";
 import { AuthCard } from "@/components/ui/AuthCard";
@@ -53,6 +55,15 @@ export default async function SignupPage({
       maxWidth={contentWidth.auth}
       variant="premium"
     >
+      <div className="mb-6 text-center">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-ink)]"
+        >
+          <ArrowLeft className="h-4 w-4 shrink-0" aria-hidden />
+          Return home
+        </Link>
+      </div>
       <AuthCard>
         <SignupForm
           initialPlan={initialPlan}
