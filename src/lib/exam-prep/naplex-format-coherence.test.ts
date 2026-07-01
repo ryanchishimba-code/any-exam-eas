@@ -2,9 +2,12 @@ import { describe, expect, it } from "vitest";
 import type { BankItem } from "@/lib/question-bank";
 import { auditBankItem } from "./bank-audit";
 import {
+  calculationContextSupportsStem,
   detectNaplexFormatIssues,
   fixNaplexFormatCoherence,
   itemHasFormatCoherenceIssue,
+  orphanGenericCalcStemIssue,
+  stemIsSelfContainedCalc,
 } from "./naplex-format-coherence";
 
 const base: BankItem = {
@@ -201,5 +204,44 @@ describe("naplex format coherence", () => {
     expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
       "naplex_clinical_stem_numeric_options"
     );
+  });
+
+  it("flags constructed_response with generic volume stem and clinical-only vignette", () => {
+    const item: BankItem = {
+      subjectId: "cardiovascular-rx",
+      vignette:
+        "A 45-year-old woman with hypertension and hyperlipidemia presents for an atorvastatin refill. She reports muscle aches. Current meds: lisinopril and metoprolol.",
+      question: "Calculate the concentration in mg/mL.",
+      options: [],
+      correctAnswer: "20",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mg/mL" },
+    };
+
+    expect(orphanGenericCalcStemIssue(item)?.codes).toContain("naplex_orphan_calc_stem");
+    expect(calculationContextSupportsStem(item)).toBe(false);
+  });
+
+  it("accepts self-contained tablet dispense stem without vignette calc data", () => {
+    const stem =
+      "How many tablets of ezetimibe should be dispensed for a 30-day supply at a dose of 10 mg daily?";
+    expect(stemIsSelfContainedCalc(stem)).toBe(true);
+  });
+
+  it("rejects generic infusion-rate stem with only oral-dose vignette", () => {
+    const item: BankItem = {
+      subjectId: "cardiovascular-rx",
+      vignette:
+        "A 70-year-old male with CKD stage 3 is prescribed metoprolol succinate 50 mg daily for hypertension.",
+      question: "At what rate (mL/hr) should the infusion pump be set?",
+      options: [],
+      correctAnswer: "10",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mL/hr" },
+    };
+
+    expect(orphanGenericCalcStemIssue(item)?.codes).toContain("naplex_orphan_calc_stem");
   });
 });

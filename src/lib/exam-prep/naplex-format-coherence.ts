@@ -26,11 +26,15 @@ export type NaplexFormatIssue = {
 /** Generic calculation stems from blueprint slot rotation — must not attach to non-calc vignettes. */
 export const GENERIC_BLUEPRINT_CALC_STEMS = [
   "Calculate the dose in mg. Round to the nearest whole number.",
+  "Calculate the dose in mg.",
   "How many tablets should be dispensed for this order?",
   "At what rate (mL/hr) should the infusion pump be set? Round to the nearest whole number.",
+  "At what rate (mL/hr) should the infusion pump be set?",
   "What is the total volume in mL? Round to one decimal place.",
+  "What is the total volume in mL?",
   "How many milligrams of drug are required for this preparation?",
   "Calculate the concentration in mg/mL. Round to two decimal places.",
+  "Calculate the concentration in mg/mL.",
 ] as const;
 
 const MCQ_CLINICAL_VIGNETTE =
@@ -110,24 +114,66 @@ export function vignetteSupportsCalculation(item: BankItem): boolean {
   return false;
 }
 
+/** True when the stem alone states enough numeric order data to perform the calculation. */
+export function stemIsSelfContainedCalc(stem: string): boolean {
+  const s = stem.trim();
+  if (!s || !CALC_LEAD_IN.test(s)) return false;
+
+  const hasDaySupply = /\d+\s*-?\s*day/i.test(s);
+  const hasScheduledDose =
+    /\d+(?:\.\d+)?\s*(?:mg|mcg|g|units)\b.{0,48}(?:daily|every|q\d+h|\/day|once|twice|per day|po\b)/i.test(
+      s
+    );
+  if (hasDaySupply && hasScheduledDose) return true;
+  if (/how many tablets/i.test(s) && hasDaySupply && /\d+(?:\.\d+)?\s*(?:mg|mcg)/i.test(s)) {
+    return true;
+  }
+
+  if (/(?:mg\/kg|mcg\/kg|mg\/m²)/i.test(s) && /(?:weighing|weight|\d+\s*kg\b)/i.test(s)) {
+    return true;
+  }
+
+  if (
+    /\d+(?:\.\d+)?\s*(?:mg|mcg|g)\b.{0,48}\d+(?:\.\d+)?\s*mL\b|\d+(?:\.\d+)?\s*mg\/mL/i.test(
+      s
+    )
+  ) {
+    return true;
+  }
+
+  if (
+    /\d+(?:\.\d+)?\s*mL\b.{0,48}(?:over|in)\s*\d+(?:\.\d+)?\s*(?:h|hr|hours?)/i.test(s)
+  ) {
+    return true;
+  }
+
+  if (
+    /\d+(?:\.\d+)?\s*(?:mg|mcg)\b.{0,32}over\s*\d+(?:\.\d+)?\s*(?:h|hr|hours?)/i.test(s) &&
+    /\d+(?:\.\d+)?\s*mL\b/i.test(s)
+  ) {
+    return true;
+  }
+
+  if (/(?:alligation|C1V1|4-2-1|dextrose|normal saline|NS\b|D5W|dilute to \d+)/i.test(s)) {
+    return true;
+  }
+
+  return false;
+}
+
+/** Vignette or stem provides calculable inputs for a calculation lead-in. */
+export function calculationContextSupportsStem(item: BankItem): boolean {
+  if (vignetteSupportsCalculation(item)) return true;
+  return stemIsSelfContainedCalc(resolveNaplexStem(item));
+}
+
 export function orphanGenericCalcStemIssue(item: BankItem): { codes: string[] } | null {
   const itemType = item.itemType ?? "mcq";
   if (itemType !== "constructed_response") return null;
 
   const stem = resolveNaplexStem(item);
-  const genericStem = isGenericBlueprintCalcStem(stem);
-  const calcLeadIn = CALC_LEAD_IN.test(stem);
-  if (!genericStem && !calcLeadIn) return null;
-
-  if (vignetteSupportsCalculation(item)) return null;
-
-  const vignette = resolveNaplexVignette(item);
-  const clinicalMcq =
-    MCQ_CLINICAL_VIGNETTE.test(vignette) ||
-    MCQ_LEAD_IN.test(vignette) ||
-    (!calcLeadIn && hasMcqOptions(item));
-
-  if (!genericStem && !clinicalMcq) return null;
+  if (!CALC_LEAD_IN.test(stem)) return null;
+  if (calculationContextSupportsStem(item)) return null;
 
   return { codes: ["naplex_orphan_calc_stem"] };
 }
@@ -138,7 +184,7 @@ export function detectOrphanGenericCalcStem(item: BankItem): NaplexFormatIssue |
   return {
     code: "naplex_orphan_calc_stem",
     message:
-      "Generic calculation stem is attached to a clinical vignette without calculable order data (e.g. counseling-only case).",
+      "Calculation stem lacks calculable order data in the vignette and stem (e.g. generic volume/dose prompt on a counseling-only case).",
     severity: "error",
   };
 }

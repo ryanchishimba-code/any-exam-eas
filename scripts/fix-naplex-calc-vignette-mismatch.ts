@@ -78,7 +78,7 @@ async function main() {
     if (!dryRun && !auditOnly) {
       await prisma.questionBankItem.update({
         where: { id: row.id },
-        data: { active: false, qaPassed: false, qaAuditedAt: new Date(), updatedAt: new Date() },
+        data: { active: false, qaPassed: false, reviewStatus: "rejected", qaAuditedAt: new Date(), updatedAt: new Date() },
       });
     }
   }
