@@ -460,18 +460,20 @@ export function CtAtlasRig({
   const [maxTier, setMaxTier] = useState<CtAtlasLoadTier>(0);
 
   useEffect(() => {
-    const t1 = window.setTimeout(() => setMaxTier((t) => (t < 1 ? 1 : t)), CT_ATLAS_TIER_DELAYS_MS[1]);
+    const t1 = setTimeout(() => setMaxTier((t) => (t < 1 ? 1 : t)), CT_ATLAS_TIER_DELAYS_MS[1]);
     const runTier2 = () => setMaxTier((t) => (t < 2 ? 2 : t));
+    let t2: ReturnType<typeof setTimeout> | undefined;
     let idleId: number | undefined;
-    if ("requestIdleCallback" in window) {
-      idleId = window.requestIdleCallback(runTier2, { timeout: 2500 });
+    if (typeof requestIdleCallback === "function") {
+      idleId = requestIdleCallback(runTier2, { timeout: 2500 });
     } else {
-      window.setTimeout(runTier2, CT_ATLAS_TIER_DELAYS_MS[2]);
+      t2 = setTimeout(runTier2, CT_ATLAS_TIER_DELAYS_MS[2]);
     }
     return () => {
-      window.clearTimeout(t1);
-      if (idleId != null && "cancelIdleCallback" in window) {
-        window.cancelIdleCallback(idleId);
+      clearTimeout(t1);
+      if (t2 != null) clearTimeout(t2);
+      if (idleId != null && typeof cancelIdleCallback === "function") {
+        cancelIdleCallback(idleId);
       }
     };
   }, []);

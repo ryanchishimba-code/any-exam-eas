@@ -45,13 +45,13 @@ export function startStagedCtAtlasPreload(visibleLayers?: Set<AnatomyLayer>): vo
   const layers = visibleLayers ?? new Set(DEFAULT_STUDY_LAYERS);
   preloadCtAtlasTier(0, layers);
 
-  window.setTimeout(() => preloadCtAtlasTier(1, layers), CT_ATLAS_TIER_DELAYS_MS[1]);
+  setTimeout(() => preloadCtAtlasTier(1, layers), CT_ATLAS_TIER_DELAYS_MS[1]);
 
   const runTier2 = () => preloadCtAtlasTier(2, layers);
-  if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-    window.requestIdleCallback(runTier2, { timeout: 2500 });
+  if (typeof requestIdleCallback === "function") {
+    requestIdleCallback(runTier2, { timeout: 2500 });
   } else {
-    window.setTimeout(runTier2, CT_ATLAS_TIER_DELAYS_MS[2]);
+    setTimeout(runTier2, CT_ATLAS_TIER_DELAYS_MS[2]);
   }
 }
 
