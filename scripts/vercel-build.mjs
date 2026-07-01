@@ -1,10 +1,22 @@
 import { spawnSync } from "node:child_process";
 import { ensureDatabaseUrl, shouldRunMigrations } from "./prisma-env.mjs";
 
+function buildEnv() {
+  const env = { ...process.env };
+  if (process.env.VERCEL) {
+    env.NEXT_TELEMETRY_DISABLED = "1";
+    // Keep heap bounded on 8GB build machines — parallel workers are disabled in next.config.
+    env.NODE_OPTIONS = [env.NODE_OPTIONS, "--max-old-space-size=6144"]
+      .filter(Boolean)
+      .join(" ");
+  }
+  return env;
+}
+
 function run(command, args, { allowFail = false } = {}) {
   const result = spawnSync(command, args, {
     stdio: "inherit",
-    env: process.env,
+    env: buildEnv(),
     shell: true,
   });
   if (result.status !== 0 && !allowFail) process.exit(result.status ?? 1);

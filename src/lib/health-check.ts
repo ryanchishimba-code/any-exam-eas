@@ -60,7 +60,8 @@ export async function runHealthChecks(): Promise<HealthReport> {
 
   if (checks.databaseUrl === "postgresql" || checks.databaseUrl === "sqlite-local") {
     try {
-      const { prisma } = await import("@/lib/prisma");
+      const { getPrisma } = await import("@/lib/prisma");
+      const prisma = getPrisma();
       await Promise.race([
         prisma.$queryRaw`SELECT 1`,
         new Promise<never>((_, reject) =>
@@ -68,18 +69,6 @@ export async function runHealthChecks(): Promise<HealthReport> {
         ),
       ]);
       checks.prisma = "ok";
-      const now = Date.now();
-      if (!bankCountCache || now - bankCountCache.at > BANK_COUNT_TTL_MS) {
-        const count = await Promise.race([
-          prisma.questionBankItem.count({ where: { active: true } }),
-          new Promise<never>((_, reject) =>
-            setTimeout(() => reject(new Error("bank_count_timeout")), 8_000)
-          ),
-        ]);
-        bankCountCache = { count, at: now };
-      }
-      const count = bankCountCache.count;
-      checks.questionBank = count > 0 ? `ok (${count} active)` : "empty-run-cron-sync";
     } catch (e) {
       checks.prisma = "error";
       const detail = e instanceof Error ? e.message : "error";
@@ -87,6 +76,29 @@ export async function runHealthChecks(): Promise<HealthReport> {
         checks.prismaDetail = detail;
       } else {
         console.error("[health] prisma:", detail);
+      }
+    }
+
+    if (checks.prisma === "ok") {
+      try {
+        const { getPrisma } = await import("@/lib/prisma");
+        const prisma = getPrisma();
+        const now = Date.now();
+        if (!bankCountCache || now - bankCountCache.at > BANK_COUNT_TTL_MS) {
+          const count = await Promise.race([
+            prisma.questionBankItem.count({ where: { active: true } }),
+            new Promise<never>((_, reject) =>
+              setTimeout(() => reject(new Error("bank_count_timeout")), 8_000)
+            ),
+          ]);
+          bankCountCache = { count, at: now };
+        }
+        const count = bankCountCache.count;
+        checks.questionBank = count > 0 ? `ok (${count} active)` : "empty-run-cron-sync";
+      } catch (e) {
+        checks.questionBank = "timeout";
+        const detail = e instanceof Error ? e.message : "error";
+        console.error("[health] questionBank:", detail);
       }
     }
 
