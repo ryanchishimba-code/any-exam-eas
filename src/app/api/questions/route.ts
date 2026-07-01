@@ -203,7 +203,7 @@ export async function GET(req: Request) {
         fieldId,
         limit,
         filterFn: gates.strict,
-        relaxedFilterFn: gates.relaxed,
+        relaxedFilterFn: fieldId === "nursing" ? undefined : gates.relaxed,
         initialSampleCount: sampleCount,
       });
     }

@@ -16,9 +16,17 @@ type Props = {
   value: number | null;
   onChange: (examNumber: number | null) => void;
   className?: string;
+  /** When true, hide random mix — user must pick a validated preset. */
+  requirePreset?: boolean;
 };
 
-export function FullExamPresetPicker({ examSlug, value, onChange, className }: Props) {
+export function FullExamPresetPicker({
+  examSlug,
+  value,
+  onChange,
+  className,
+  requirePreset = false,
+}: Props) {
   const [presets, setPresets] = useState<PresetSummary[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,7 +37,13 @@ export function FullExamPresetPicker({ examSlug, value, onChange, className }: P
       .then((res) => (res.ok ? res.json() : { exams: [] }))
       .then((data: { exams?: PresetSummary[] }) => {
         if (cancelled) return;
-        setPresets(data.exams ?? []);
+        const loaded = data.exams ?? [];
+        setPresets(loaded);
+        if (requirePreset && loaded.length > 0 && value == null) {
+          const first =
+            loaded.find((e) => e.qaPassed !== false)?.examNumber ?? loaded[0]!.examNumber;
+          onChange(first);
+        }
       })
       .catch(() => {
         if (!cancelled) setPresets([]);
@@ -40,7 +54,7 @@ export function FullExamPresetPicker({ examSlug, value, onChange, className }: P
     return () => {
       cancelled = true;
     };
-  }, [examSlug]);
+  }, [examSlug, requirePreset, value, onChange]);
 
   if (loading) {
     return (
@@ -58,16 +72,17 @@ export function FullExamPresetPicker({ examSlug, value, onChange, className }: P
         Curated practice exams
       </p>
       <label className="block text-[12px] font-medium text-[var(--color-ink-muted)]">
-        Optional preset
+        {requirePreset ? "Practice exam" : "Optional preset"}
         <select
           className="mt-1.5 w-full rounded-xl border border-[var(--color-border)] bg-white px-3 py-2.5 text-[14px] text-[var(--color-ink)] shadow-sm"
           value={value ?? ""}
           onChange={(e) => {
             const raw = e.target.value;
+            if (requirePreset && !raw) return;
             onChange(raw ? Number(raw) : null);
           }}
         >
-          <option value="">Random adaptive mix</option>
+          {!requirePreset ? <option value="">Random adaptive mix</option> : null}
           {presets.map((exam) => (
             <option key={exam.examNumber} value={exam.examNumber}>
               Exam {exam.examNumber} · {exam.questionCount} Q
@@ -77,7 +92,9 @@ export function FullExamPresetPicker({ examSlug, value, onChange, className }: P
         </select>
       </label>
       <p className="text-center text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
-        Presets are blueprint-balanced with diverse answer choices and no duplicate cases within each exam.
+        {requirePreset
+          ? "Validated blueprint-balanced exams with board-level items only."
+          : "Presets are blueprint-balanced with diverse answer choices and no duplicate cases within each exam."}
       </p>
     </div>
   );

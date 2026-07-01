@@ -6,6 +6,7 @@ import type { BankItem } from "@/lib/question-bank";
 import type { SelectionSummary } from "@/lib/exam-prep/naplex/blueprint-selection";
 import { composePracticeExamProgressive } from "./compose-practice-exam";
 import { resolveExamComposeConfig } from "./exam-compose-config";
+import { userFacingComposeTiers } from "@/lib/exam-prep/progressive-compose";
 
 export type ComposeTimedExamSessionParams = {
   fieldId: string;
@@ -44,6 +45,7 @@ export async function composeBlueprintTimedExamSession(
     focusAreas: params.focusAreas?.length ? params.focusAreas : undefined,
     outputFormat: "ids_only",
     seed,
+    tiers: userFacingComposeTiers(params.fieldId),
   });
 
   if (!result || result.items.length < numQuestions) return null;

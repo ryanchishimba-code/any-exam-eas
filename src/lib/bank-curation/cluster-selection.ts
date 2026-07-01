@@ -1,5 +1,9 @@
-import { NCLEX_RN } from "@/lib/engine/blueprints";
+import { getExamBlueprint } from "@/lib/engine/blueprints";
 import type { QualityScoreResult } from "./types";
+
+function nclexBlueprint() {
+  return getExamBlueprint("nursing")!;
+}
 
 export type ScoredItem = {
   id: string;
@@ -82,7 +86,7 @@ export function allocateToTarget(
   items: ScoredItem[],
   target: number
 ): { kept: ScoredItem[]; dropped: ScoredItem[] } {
-  const categories = NCLEX_RN.categories;
+  const categories = nclexBlueprint().categories;
   const targets = new Map<string, number>();
   let allocated = 0;
   for (const cat of categories) {
@@ -144,7 +148,7 @@ export function buildCategoryBalance(
   after: ScoredItem[],
   target: number
 ) {
-  return NCLEX_RN.categories.map((cat) => {
+  return nclexBlueprint().categories.map((cat) => {
     const beforeCount = before.filter(
       (item) => resolveClientNeedsCategory(item.subjectId) === cat.id
     ).length;

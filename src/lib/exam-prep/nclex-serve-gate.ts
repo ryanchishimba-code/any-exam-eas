@@ -6,7 +6,11 @@ import {
   resolveNclexVignette,
 } from "@/lib/exam-prep/nclex-bank-audit";
 import { BOARD_SERVE_MIN_EXPLANATION_CHARS } from "./board-serve-quality";
-import { isNclexServeQuality, isNclexExamFillQuality } from "./nclex-quality-gate";
+import {
+  isNclexBestQuality,
+  isNclexServeQuality,
+  isNclexExamFillQuality,
+} from "./nclex-quality-gate";
 import { selectNclexSessionBankItems } from "./nclex/session-selection";
 
 type NclexServeOpts = { source?: string | null };
@@ -45,6 +49,20 @@ export function nclexItemPassesStructuralTimedGate(item: BankItem): boolean {
 
 export function nclexItemPassesTimedExamGate(item: BankItem): boolean {
   return nclexBankItemIsServeReady(item, { source: item.source ?? null });
+}
+
+/** Board-caliber bar for user-facing full exams (UWorld/Archer tier). */
+export function nclexBankItemIsBestReady(item: BankItem, opts?: NclexServeOpts): boolean {
+  if (nclexHasServeBlockIssues(item)) return false;
+  if (hasNclexEditorialWarnFlags(item)) return false;
+  if (/plausible but not the priority action for this client's presentation/i.test(item.explanation ?? "")) {
+    return false;
+  }
+  return isNclexBestQuality(item, opts);
+}
+
+export function nclexItemPassesBestExamGate(item: BankItem): boolean {
+  return nclexBankItemIsBestReady(item, { source: item.source ?? null });
 }
 
 export function nclexItemPassesRelaxedExamGate(item: BankItem): boolean {

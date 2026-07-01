@@ -136,7 +136,7 @@ export async function scoreQuestion(
     contentHash: row.id,
     createdAt: new Date(),
     updatedAt: new Date(),
-  } as QuestionBankItem;
+  } as unknown as QuestionBankItem;
 
   const item = enrichBankItemFromRow(bankRow);
   const rule = ruleScoreToTen(item, row.source);
@@ -172,6 +172,6 @@ export function scoreQuestionSync(row: CurationQuestionRow): QualityScoreResult 
     contentHash: row.id,
     createdAt: new Date(),
     updatedAt: new Date(),
-  } as QuestionBankItem;
+  } as unknown as QuestionBankItem;
   return ruleScoreToTen(enrichBankItemFromRow(bankRow), row.source);
 }

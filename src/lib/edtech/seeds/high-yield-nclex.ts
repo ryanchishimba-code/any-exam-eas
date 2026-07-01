@@ -1,4 +1,5 @@
 import { defineExamTopics } from "./topic-factory";
+import { sigCodeAbbreviationTopic } from "./sig-code-abbreviations";
 
 export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   {
@@ -453,4 +454,5 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
     ],
     practiceTopicSlug: "management-of-care",
   },
+  sigCodeAbbreviationTopic("nclex"),
 ]);

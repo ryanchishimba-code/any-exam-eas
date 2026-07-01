@@ -128,7 +128,7 @@ export async function runCurationPipeline(
   }
 
   if (opts.scoreOnly) {
-    await persistScores(prisma, scored, runId);
+    if (!opts.dryRun) await persistScores(prisma, scored, runId);
     return finishEarly(runId, startedAt, inputCount, embeddedCount, opts, groups.size);
   }
 
@@ -176,7 +176,11 @@ export async function runCurationPipeline(
     });
   }
 
-  await persistCurationResults(prisma, scored, finalDecisions, runId);
+  if (!opts.dryRun) {
+    await persistCurationResults(prisma, scored, finalDecisions, runId);
+  } else {
+    console.log("  dry-run: skipping curation metadata persist to DB");
+  }
 
   if (opts.apply && !opts.dryRun) {
     await applyCuration(prisma, keptIds);

@@ -82,7 +82,10 @@ export function buildSessionConfig(
     questionCount,
     timed,
     timeLimitSec: computeTimeLimitSec(examSlug, questionCount, timed),
-    adaptive: preset === "full" && !opts?.presetExamNumber,
+    adaptive:
+      preset === "full" &&
+      !opts?.presetExamNumber &&
+      !(examSlug === "nclex"),
     ...(examSlug === "nclex"
       ? {
           nclexLength: opts?.nclexLength ?? "minimum",

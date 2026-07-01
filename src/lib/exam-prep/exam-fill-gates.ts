@@ -4,8 +4,8 @@ import {
   naplexItemPassesStructuralTimedGate,
 } from "./naplex-serve-gate";
 import {
+  nclexItemPassesBestExamGate,
   nclexItemPassesRelaxedExamGate,
-  nclexItemPassesStructuralTimedGate,
 } from "./nclex-serve-gate";
 import {
   nptePtItemPassesRelaxedExamGate,
@@ -29,7 +29,7 @@ export type TimedExamGatePair = {
 export function timedExamGatePairForField(fieldId: string): TimedExamGatePair {
   if (fieldId === "nursing") {
     return {
-      strict: nclexItemPassesStructuralTimedGate,
+      strict: nclexItemPassesBestExamGate,
       relaxed: nclexItemPassesRelaxedExamGate,
     };
   }

@@ -39,8 +39,15 @@ export async function ensurePgVectorExtension(prisma: PrismaClient): Promise<voi
   await prisma.$executeRawUnsafe(`CREATE EXTENSION IF NOT EXISTS vector`);
 }
 
-/** Create HNSW index after embeddings exist (safe to re-run). */
+/** Create HNSW index after embeddings exist (safe to re-run). Skips when dim > 2000 (pgvector HNSW limit). */
 export async function ensureEmbeddingIndex(prisma: PrismaClient): Promise<void> {
+  const { CURATION_EMBEDDING_DIM } = await import("./embeddings");
+  if (CURATION_EMBEDDING_DIM > 2000) {
+    console.log(
+      `  skipping HNSW index (${CURATION_EMBEDDING_DIM} dims > pgvector 2000 limit; neighbor search uses sequential scan)`
+    );
+    return;
+  }
   await prisma.$executeRawUnsafe(`
     CREATE INDEX IF NOT EXISTS "QuestionBankItem_embedding_hnsw_idx"
     ON "QuestionBankItem" USING hnsw (embedding vector_cosine_ops)

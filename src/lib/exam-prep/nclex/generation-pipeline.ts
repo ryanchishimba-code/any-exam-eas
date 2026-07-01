@@ -8,7 +8,9 @@ import { BATCH_DIVERSITY_RULES } from "@/lib/engine/prompts/batch-diversity";
 import { NURSING_EXAM_SYSTEM_AUGMENTATION } from "@/lib/subjects/nursing/prompts";
 import { VIGNETTE_REQUIREMENTS } from "@/lib/engine/prompts/vignette";
 import { UNIVERSAL_EXAM_SYSTEM } from "@/lib/engine/prompts/base";
+import { buildOerGroundingBlock } from "@/lib/engine/prompts/oer-grounding";
 import { buildHighYieldRequirements } from "@/lib/engine/prompts/high-yield";
+import { gatherAdvancedStudyMaterial } from "@/lib/rag/orchestrator";
 import { nursingModule } from "@/lib/subjects/nursing";
 import { examQuestionToBankItem } from "@/lib/engine/curation/exam-to-bank";
 import { filterBankItemsForIngest } from "../bank-ingest-gate";
@@ -36,6 +38,7 @@ import {
   NCLEX_FULL_EXAM_VERSION,
   NCLEX_GENERATION_CHUNK_SIZE,
   NCLEX_GENERATION_CONCURRENCY,
+  resolveNclexGenerationModel,
 } from "./types";
 
 const openai = getOpenAiClient("generation");
@@ -81,28 +84,54 @@ async function withOpenAiRetries<T>(label: string, fn: () => Promise<T>): Promis
 }
 
 function collectExemplars(): BankItem[] {
-  return [...NCLEX_CURATED_QUALITY, ...NGN_NURSING_SEEDS].slice(0, 6).map((item) => ({
+  return [...NCLEX_CURATED_QUALITY, ...NGN_NURSING_SEEDS].slice(0, 4).map((item) => ({
     subjectId: item.subjectId,
     vignette: item.vignette,
     question: item.question,
     options: item.options,
     correctAnswer: item.correctAnswer,
     explanation: item.explanation,
+    clinicalReasoning: item.clinicalReasoning,
+    distractorRationale: item.distractorRationale,
     itemType: item.itemType,
     tags: item.tags,
     ngnPayload: item.ngnPayload,
   }));
 }
 
+function formatExemplar(e: BankItem, index: number): string {
+  const lines = [
+    `[${index + 1}] Client Needs: ${e.subjectId ?? "physiological-adaptation"}`,
+    `Vignette:\n${e.vignette ?? ""}`,
+    `Stem: ${e.question}`,
+    `Options:\n${(e.options ?? []).map((o, i) => `  ${String.fromCharCode(65 + i)}. ${o}`).join("\n")}`,
+    `Correct: ${e.correctAnswer}`,
+  ];
+  if (e.clinicalReasoning?.trim()) {
+    lines.push(`Clinical reasoning (CJMM): ${e.clinicalReasoning.trim()}`);
+  }
+  const dr = e.distractorRationale ?? {};
+  const wrong = (e.options ?? []).filter(
+    (o) => o.trim().toLowerCase() !== (e.correctAnswer ?? "").trim().toLowerCase()
+  );
+  if (Object.keys(dr).length > 0 || wrong.length > 0) {
+    lines.push("Distractor rationales (YOU MUST provide one per wrong option, citing vignette data):");
+    for (const opt of wrong) {
+      const why =
+        dr[opt] ??
+        Object.entries(dr).find(([k]) => k.trim().toLowerCase() === opt.trim().toLowerCase())?.[1];
+      if (why) lines.push(`  • ${opt}: ${why}`);
+    }
+  }
+  return lines.join("\n");
+}
+
 function buildExemplarBlock(exemplars: BankItem[]): string {
   return exemplars.length
-    ? `QUALITY EXEMPLARS (mirror depth and distractor logic — do NOT copy):\n${exemplars
-        .slice(0, 3)
-        .map(
-          (e, i) =>
-            `[${i + 1}] Client Needs: ${e.subjectId}\nVignette: ${(e.vignette ?? "").slice(0, 250)}…\nStem: ${e.question.slice(0, 120)}…\nCorrect: ${e.correctAnswer}`
-        )
-        .join("\n\n")}`
+    ? `QUALITY EXEMPLARS (mirror depth, vitals/labs trends, and distractor logic — do NOT copy scenarios):\n\n${exemplars
+        .slice(0, 2)
+        .map((e, i) => formatExemplar(e, i))
+        .join("\n\n---\n\n")}`
     : "";
 }
 
@@ -117,7 +146,38 @@ function resolveItemType(slot: NclexGenerationSlot): string {
   return "vignette";
 }
 
-function buildSlotPrompt(slots: NclexGenerationSlot[], exemplarBlock: string): string {
+async function buildOerBriefForSlots(slots: NclexGenerationSlot[]): Promise<string> {
+  const topics = [...new Set(slots.map((s) => s.blueprintTopic))].slice(0, 4);
+  const topic = topics.join("; ");
+  const subjectId = slots[0]?.subjectId;
+  try {
+    const ctx = await gatherAdvancedStudyMaterial("nursing", topic, subjectId);
+    const chunkLines = ctx.retrievedChunks
+      .slice(0, 8)
+      .map((c, i) => `[${i + 1}] ${c.title} (${c.url})\n${c.content.slice(0, 600)}`);
+    const brief = ctx.researchBrief?.trim();
+    if (brief || chunkLines.length > 0) {
+      return [
+        buildOerGroundingBlock(),
+        brief ? `RESEARCH BRIEF:\n${brief}` : "",
+        chunkLines.length ? `OER SOURCE EXCERPTS:\n${chunkLines.join("\n\n")}` : "",
+      ]
+        .filter(Boolean)
+        .join("\n\n");
+    }
+  } catch (err) {
+    console.warn(
+      `[nclex-full-exam] OER brief fetch failed (${topic}): ${err instanceof Error ? err.message : String(err)}`
+    );
+  }
+  return buildOerGroundingBlock();
+}
+
+function buildSlotPrompt(
+  slots: NclexGenerationSlot[],
+  exemplarBlock: string,
+  oerBlock: string
+): string {
   const highYieldBlock = buildHighYieldRequirements(nursingModule, {
     field: "nursing",
     fieldId: "nursing",
@@ -157,6 +217,8 @@ ${BATCH_DIVERSITY_RULES}
 
 ${VIGNETTE_REQUIREMENTS}
 
+${oerBlock}
+
 ${exemplarBlock}
 
 ASSIGNED SLOTS (one question per slot — follow exactly):
@@ -180,17 +242,34 @@ Each question object MUST include:
 - tags (include "nclex-ngn", "curated", "full-exam-generated")`;
 }
 
+function countDistractorRationales(exam: ExamQuestion): number {
+  const dr = exam.distractorRationale ?? {};
+  return Object.keys(dr).filter((k) => k.trim() && dr[k]?.trim()).length;
+}
+
 function parseGenerationResponse(raw: string): ExamQuestion[] {
   const parsed = JSON.parse(raw) as { questions?: ExamQuestion[] };
   return Array.isArray(parsed.questions) ? parsed.questions : [];
 }
 
-function stripOptionPrefix(option: string): string {
-  return option.replace(/^(?:[A-Da-d]|[1-4])[.)]\s*/, "").trim();
+function stripOptionPrefix(option: unknown): string {
+  return String(option ?? "")
+    .replace(/^(?:[A-Da-d]|[1-4])[.)]\s*/, "")
+    .trim();
 }
 
-function normalizeOptions(raw: string[]): [string, string, string, string] {
-  const cleaned = raw.map(stripOptionPrefix).filter(Boolean);
+function coerceOptions(raw: unknown): string[] {
+  if (Array.isArray(raw)) return raw.map((o) => String(o ?? "").trim()).filter(Boolean);
+  if (raw && typeof raw === "object") {
+    return Object.values(raw as Record<string, unknown>)
+      .map((o) => String(o ?? "").trim())
+      .filter(Boolean);
+  }
+  return [];
+}
+
+function normalizeOptions(raw: unknown): [string, string, string, string] {
+  const cleaned = coerceOptions(raw).map(stripOptionPrefix).filter(Boolean);
   while (cleaned.length < 4) cleaned.push(`Option ${cleaned.length + 1}`);
   return cleaned.slice(0, 4) as [string, string, string, string];
 }
@@ -255,11 +334,6 @@ function normalizeGeneratedExplanation(item: BankItem): BankItem {
       explanation = explanation.replace(/\n\nWhy other options are incorrect:[\s\S]*$/i, "").trim();
       explanation = `${explanation}\n\nWhy other options are incorrect:\n${lines.join("\n")}`.trim();
     }
-  } else if (wrongOptions.length > 0 && !/Incorrect —/i.test(explanation)) {
-    const lines = wrongOptions.map(
-      (opt) => `• ${opt}: Incorrect — plausible but not the priority action for this client's presentation.`
-    );
-    explanation = `${explanation}\n\nWhy other options are incorrect:\n${lines.join("\n")}`.trim();
   }
 
   const references =
@@ -283,11 +357,12 @@ function slotToBankItem(
   examNumber: number,
   qcScore: number
 ): BankItem {
+  const model = resolveNclexGenerationModel();
   const meta: NclexGenerationMeta = {
     batchId,
     examNumber,
     slotIndex: slot.slotIndex,
-    model: "gpt-4o-mini",
+    model,
     pipelineVersion: NCLEX_FULL_EXAM_VERSION,
     qcScore,
     generatedAt: new Date().toISOString(),
@@ -355,9 +430,12 @@ async function generateChunk(params: {
     throw new Error("OPENAI_API_KEY required for NCLEX full exam generation.");
   }
 
+  const model = resolveNclexGenerationModel();
+  const oerBlock = await buildOerBriefForSlots(params.slots);
+
   const completion = await withOpenAiRetries("OpenAI completion", () =>
     openai!.chat.completions.create({
-      model: "gpt-4o-mini",
+      model,
       messages: [
         {
           role: "system",
@@ -365,7 +443,7 @@ async function generateChunk(params: {
         },
         {
           role: "user",
-          content: buildSlotPrompt(params.slots, buildExemplarBlock(params.exemplars)),
+          content: buildSlotPrompt(params.slots, buildExemplarBlock(params.exemplars), oerBlock),
         },
       ],
       temperature: 0.34,
@@ -390,33 +468,46 @@ async function generateChunk(params: {
       continue;
     }
 
-    const item = normalizeGeneratedExplanation(
-      slotToBankItem(exam, slot, params.batchId, params.examNumber, 0)
-    );
-    const globalIndex = slot.slotIndex;
-
-    if (!nclexFullExamItemPasses(item, globalIndex)) {
-      const qc = assessNclexFullExamItem(item, globalIndex);
+    if (countDistractorRationales(exam) < 3) {
       rejected++;
-      issues.push(`slot-${slot.slotIndex}:${qc.issues.join(",")}`);
+      issues.push(`slot-${slot.slotIndex}:missing_distractor_rationales`);
       continue;
     }
 
-    bankItems.push(
-      await maybeEnrichExpertBankItemRationale(
-        {
-          ...item,
-          ngnPayload: {
-            ...item.ngnPayload,
-            generationMeta: {
-              ...(item.ngnPayload?.generationMeta as NclexGenerationMeta),
-              qcScore: assessNclexFullExamItem(item, globalIndex).score,
+    try {
+      const item = normalizeGeneratedExplanation(
+        slotToBankItem(exam, slot, params.batchId, params.examNumber, 0)
+      );
+      const globalIndex = slot.slotIndex;
+
+      if (!nclexFullExamItemPasses(item, globalIndex)) {
+        const qc = assessNclexFullExamItem(item, globalIndex);
+        rejected++;
+        issues.push(`slot-${slot.slotIndex}:${qc.issues.join(",")}`);
+        continue;
+      }
+
+      bankItems.push(
+        await maybeEnrichExpertBankItemRationale(
+          {
+            ...item,
+            ngnPayload: {
+              ...item.ngnPayload,
+              generationMeta: {
+                ...(item.ngnPayload?.generationMeta as NclexGenerationMeta),
+                qcScore: assessNclexFullExamItem(item, globalIndex).score,
+              },
             },
           },
-        },
-        "nursing"
-      )
-    );
+          "nursing"
+        )
+      );
+    } catch (err) {
+      rejected++;
+      issues.push(
+        `slot-${slot.slotIndex}:parse_error:${err instanceof Error ? err.message : String(err)}`
+      );
+    }
   }
 
   const deduped = dedupeBatchItems(bankItems);
@@ -500,13 +591,17 @@ export async function generateNclexFullExam(params: {
   examNumber: number;
   questionCount?: number;
   batchId: string;
+  /** Override slot plan (e.g. gap-fill toward blueprint deficits). */
+  slots?: NclexGenerationSlot[];
   onProgress?: (done: number, total: number) => void;
 }): Promise<NclexFullExamBundle> {
   const questionCount = params.questionCount ?? NCLEX_FULL_EXAM_DEFAULT_COUNT;
-  const slots = planNclexFullExamSlots({
-    examNumber: params.examNumber,
-    questionCount,
-  });
+  const slots =
+    params.slots ??
+    planNclexFullExamSlots({
+      examNumber: params.examNumber,
+      questionCount,
+    });
   const exemplars = collectExemplars();
   const concurrency = resolveConcurrency();
 

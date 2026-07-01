@@ -36,6 +36,7 @@ const BLOCKING_ERROR_CODES = new Set([
   "generic_pharmacology_distractors",
   "clinical_medication_vignette_mismatch",
   "delegation_wrong_subject",
+  "generic_distractor_rationales",
 ]);
 const BLOCKING_WARN_CODES = new Set(["duplicate_vignette_in_stem", "answer_leaked_in_vignette"]);
 const SERVE_SOFT_ISSUES = new Set([
@@ -87,6 +88,10 @@ function collectHardIssues(
   if (isGenericCommunicationBankItem(item)) issues.push("generic_communication_distractors");
   if (isGenericPharmacologyBankItem(item)) issues.push("generic_pharmacology_distractors");
   if (isGenericInterventionBankItem(item)) issues.push("generic_intervention_distractors");
+
+  if (/plausible but not the priority action for this client's presentation/i.test(item.explanation ?? "")) {
+    issues.push("generic_distractor_rationales");
+  }
 
   const stem = resolveNclexStem(item);
   if (

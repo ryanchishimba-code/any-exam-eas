@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { PrismaClient } from "@prisma/client";
-import { assessNclexItemQuality } from "../src/lib/exam-prep/nclex-quality-gate";
+import { nclexItemPassesBestExamGate } from "../src/lib/exam-prep/nclex-serve-gate";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
 import { applyQaPassedBatch } from "./qa-gate-batch-utils";
 
@@ -17,9 +17,7 @@ async function main() {
   let lastId: string | undefined;
   let processed = 0;
   let best = 0;
-  let acceptable = 0;
   let reject = 0;
-  const issueCounts: Record<string, number> = {};
 
   while (true) {
     const rows = await prisma.questionBankItem.findMany({
@@ -33,12 +31,10 @@ async function main() {
 
     for (const row of rows) {
       const item = enrichBankItemFromRow(row);
-      const verdict = assessNclexItemQuality(item, { source: row.source });
-      if (verdict.tier === "best") best++;
-      else if (verdict.tier === "acceptable") acceptable++;
+      const pass = nclexItemPassesBestExamGate(item);
+      if (pass) best++;
       else reject++;
-      for (const code of verdict.issues) issueCounts[code] = (issueCounts[code] ?? 0) + 1;
-      updates.push({ id: row.id, qaPassed: verdict.tier === "best" });
+      updates.push({ id: row.id, qaPassed: pass });
     }
 
     if (!dryRun) {
@@ -54,10 +50,7 @@ async function main() {
 
   const rate = processed ? (best / processed) * 100 : 0;
   console.log(`\nBest (serve): ${best} (${rate.toFixed(1)}%)`);
-  console.log(`Top blockers:`);
-  for (const [code, count] of Object.entries(issueCounts).sort((a, b) => b[1] - a[1]).slice(0, 10)) {
-    console.log(`  ${code}: ${count}`);
-  }
+  console.log(`Rejected: ${reject}`);
   console.log(rate >= TARGET ? `\n✓ ≥${TARGET}% target met.` : `\n⚠ Below ${TARGET}%`);
 }
 

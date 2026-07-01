@@ -7,6 +7,8 @@ import {
   type QuestionSlot,
 } from "@/lib/engine/blueprints";
 import type { NclexClientNeedsId, NclexGenerationSlot } from "./types";
+import { NCLEX_BEST_TARGET_TOTAL } from "./types";
+import { SUBJECT_TO_CLIENT_NEEDS } from "@/lib/bank-curation/cluster-selection";
 
 const NCLEX_BLUEPRINT = getExamBlueprint("nursing")!;
 
@@ -244,4 +246,166 @@ export function summarizeCaseStudies(
 
 export function stemFormatForIndex(index: number): string {
   return STEM_FORMATS[index % STEM_FORMATS.length]!;
+}
+
+export type NclexQuotaRow = {
+  categoryId: string;
+  label: string;
+  weight: number;
+  targetCount: number;
+  currentCount?: number;
+  deficit?: number;
+};
+
+export function resolveNclexClientNeedsCategory(subjectId: string): string {
+  if (NCLEX_BLUEPRINT.categories.some((c) => c.id === subjectId)) return subjectId;
+  return SUBJECT_TO_CLIENT_NEEDS[subjectId] ?? "management-of-care";
+}
+
+/** Per Client Needs targets for a given best-tier bank size. */
+export function computeNclexBlueprintQuotas(total = NCLEX_BEST_TARGET_TOTAL): NclexQuotaRow[] {
+  return NCLEX_BLUEPRINT.categories.map((cat) => ({
+    categoryId: cat.id,
+    label: cat.label,
+    weight: cat.weight,
+    targetCount: Math.round(total * cat.weight),
+  }));
+}
+
+export function mergeNclexQuotaWithCounts(
+  countsByCategory: Record<string, number>,
+  total = NCLEX_BEST_TARGET_TOTAL
+): NclexQuotaRow[] {
+  return computeNclexBlueprintQuotas(total).map((row) => {
+    const currentCount = countsByCategory[row.categoryId] ?? 0;
+    return {
+      ...row,
+      currentCount,
+      deficit: Math.max(0, row.targetCount - currentCount),
+    };
+  });
+}
+
+function primarySubjectForCategory(categoryId: string): NclexClientNeedsId {
+  const cat = NCLEX_BLUEPRINT.categories.find((c) => c.id === categoryId);
+  const sid = cat?.subjectIds?.[0];
+  if (sid && sid in HIGH_YIELD_ROTATION) return sid as NclexClientNeedsId;
+  return "physiological-adaptation";
+}
+
+/** Proportional slot counts by blueprint deficit (largest-remainder). */
+export function allocateGapFillSlotsByDeficit(
+  questionCount: number,
+  deficitByCategory: Record<string, number>
+): string[] {
+  const entries = Object.entries(deficitByCategory).filter(([, d]) => d > 0);
+  if (entries.length === 0) return [];
+
+  const totalDeficit = entries.reduce((sum, [, d]) => sum + d, 0);
+  const exact = entries.map(([categoryId, deficit]) => ({
+    categoryId,
+    exact: (deficit / totalDeficit) * questionCount,
+  }));
+
+  const counts = exact.map(({ categoryId, exact: e }) => ({
+    categoryId,
+    count: Math.floor(e),
+    remainder: e - Math.floor(e),
+  }));
+
+  let assigned = counts.reduce((sum, row) => sum + row.count, 0);
+  const byRemainder = [...counts].sort((a, b) => b.remainder - a.remainder);
+  for (const row of byRemainder) {
+    if (assigned >= questionCount) break;
+    row.count++;
+    assigned++;
+  }
+
+  while (assigned > questionCount) {
+    const row = counts.sort((a, b) => b.count - a.count)[0];
+    if (!row || row.count <= 1) break;
+    row.count--;
+    assigned--;
+  }
+
+  const slots: string[] = [];
+  for (const { categoryId, count } of counts) {
+    for (let i = 0; i < count; i++) slots.push(categoryId);
+  }
+
+  // Interleave so each chunk gets mixed categories
+  const buckets = new Map<string, string[]>();
+  for (const cat of slots) {
+    const list = buckets.get(cat) ?? [];
+    list.push(cat);
+    buckets.set(cat, list);
+  }
+  const interleaved: string[] = [];
+  const keys = [...buckets.keys()];
+  while (interleaved.length < questionCount) {
+    let added = false;
+    for (const key of keys) {
+      const bucket = buckets.get(key)!;
+      if (bucket.length > 0) {
+        interleaved.push(bucket.shift()!);
+        added = true;
+        if (interleaved.length >= questionCount) break;
+      }
+    }
+    if (!added) break;
+  }
+
+  return interleaved;
+}
+
+/**
+ * Build an exam plan overweighting blueprint-deficit Client Needs categories.
+ * Used for gap-fill generation batches.
+ */
+export function planNclexGapFillExamSlots(params: {
+  examNumber: number;
+  questionCount?: number;
+  focusCategoryIds: string[];
+  /** When set, slots are allocated proportionally to deficit (all under-target areas). */
+  deficitByCategory?: Record<string, number>;
+}): NclexGenerationSlot[] {
+  const { examNumber, questionCount = 80, focusCategoryIds, deficitByCategory } = params;
+  if (!focusCategoryIds.length) {
+    return planNclexFullExamSlots({ examNumber, questionCount });
+  }
+
+  const examSeed = examNumber * 19;
+  const categories = focusCategoryIds.filter((id) =>
+    NCLEX_BLUEPRINT.categories.some((c) => c.id === id)
+  );
+
+  const categoryPlan =
+    deficitByCategory && Object.keys(deficitByCategory).length > 0
+      ? allocateGapFillSlotsByDeficit(questionCount, deficitByCategory).filter((id) =>
+          categories.includes(id)
+        )
+      : [];
+
+  const slots: NclexGenerationSlot[] = [];
+
+  for (let i = 0; i < questionCount; i++) {
+    const categoryId =
+      categoryPlan[i] ?? categories[i % categories.length]!;
+    const cat = NCLEX_BLUEPRINT.categories.find((c) => c.id === categoryId)!;
+    const subjectId = primarySubjectForCategory(categoryId);
+    const blueprintTopic = pickTopic(subjectId, i, examSeed);
+
+    slots.push({
+      categoryId,
+      categoryLabel: cat.label,
+      slotIndex: i,
+      subjectId,
+      blueprintTopic,
+      difficulty: 2 + ((i + examSeed) % 4),
+      stemFormat: pickStemFormat(i, examSeed, blueprintTopic),
+      highYieldFirst: true,
+    });
+  }
+
+  return injectCaseStudyGroups(slots, examNumber);
 }

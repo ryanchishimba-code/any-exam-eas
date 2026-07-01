@@ -3,7 +3,18 @@
  */
 import type { QuestionSlot } from "@/lib/engine/blueprints";
 
-export const NCLEX_FULL_EXAM_VERSION = "gpt-4o-mini-nclex-full-exam-v1";
+export const NCLEX_FULL_EXAM_VERSION = "gpt-4o-nclex-full-exam-v2";
+
+/** Default OpenAI model for NCLEX generation (override with NCLEX_GENERATION_MODEL). */
+export const NCLEX_GENERATION_MODEL = "gpt-4o";
+
+/** Target best-tier serve bank after curation. */
+export const NCLEX_BEST_TARGET_TOTAL = 4000;
+
+export function resolveNclexGenerationModel(): string {
+  const raw = process.env.NCLEX_GENERATION_MODEL?.trim();
+  return raw || NCLEX_GENERATION_MODEL;
+}
 
 /** Aspirational NCLEX generation target (includes pre-curation backlog). */
 export const NCLEX_TARGET_TOTAL = 7000;

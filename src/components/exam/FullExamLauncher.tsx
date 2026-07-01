@@ -62,14 +62,20 @@ export function FullExamLauncher({
     return defaultPreset;
   });
   const [timed, setTimed] = useState(initialTimed);
-  const [presetExamNumber, setPresetExamNumber] = useState<number | null>(null);
+  const nclexPresetRequired = examSlug === "nclex";
+  const [presetExamNumber, setPresetExamNumber] = useState<number | null>(() =>
+    nclexPresetRequired ? 1 : null
+  );
   const [pending, setPending] = useState(autostart);
   const [error, setError] = useState<string | null>(null);
   const startingRef = useRef(false);
 
   const preview = buildSessionConfig(examSlug, preset, timed, {
-    presetExamNumber: presetExamNumber ?? undefined,
-    presetQuestionCount: presetExamNumber ? PRESET_EXAM_QUESTION_COUNT[examSlug] : undefined,
+    presetExamNumber: (presetExamNumber ?? (nclexPresetRequired ? 1 : null)) ?? undefined,
+    presetQuestionCount:
+      presetExamNumber || nclexPresetRequired
+        ? PRESET_EXAM_QUESTION_COUNT[examSlug]
+        : undefined,
   });
   const pageTitle = fullExamModeTitle(examSlug, preset);
   const startSteps = useMemo(
@@ -89,6 +95,8 @@ export function FullExamLauncher({
     setError(null);
     setPending(true);
     const lockKey = `${examSlug}:${preset}:${timed ? "1" : "0"}`;
+    const effectivePreset =
+      presetExamNumber ?? (nclexPresetRequired ? 1 : null);
     try {
       const res = await fetch("/api/full-exam/start", {
         method: "POST",
@@ -97,7 +105,7 @@ export function FullExamLauncher({
           examSlug,
           lengthPreset: preset,
           timed,
-          ...(presetExamNumber ? { presetExamNumber } : {}),
+          ...(effectivePreset ? { presetExamNumber: effectivePreset } : {}),
         }),
       });
       const data = (await res.json().catch(() => ({}))) as {
@@ -226,6 +234,7 @@ export function FullExamLauncher({
               examSlug={examSlug}
               value={presetExamNumber}
               onChange={setPresetExamNumber}
+              requirePreset={nclexPresetRequired}
               className="mx-auto w-full max-w-xs"
             />
 

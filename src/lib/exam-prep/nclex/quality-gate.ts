@@ -4,8 +4,13 @@
 import type { BankItem } from "@/lib/question-bank";
 import { assessNclexItemQuality } from "../nclex-quality-gate";
 import { assessNclexCuratedSeedItem } from "../nclex-curated-seeds-quality";
-import { nclexBankItemIsServeReady } from "../nclex-serve-gate";
+import { nclexBankItemIsBestReady } from "../nclex-serve-gate";
 import type { EnrichedBankItem } from "../seed-helpers";
+import { hasNclexDistractorRationales } from "../nclex-quality-gate";
+
+function hasStructuredDistractorBlock(item: BankItem): boolean {
+  return hasNclexDistractorRationales(item);
+}
 
 export type NclexFullExamQcReport = {
   ok: boolean;
@@ -25,13 +30,13 @@ export function assessNclexFullExamItem(
     issues.push(...verdict.issues);
   }
 
-  if (!nclexBankItemIsServeReady(item)) {
-    issues.push("serve_gate_fail");
+  if (!nclexBankItemIsBestReady(item)) {
+    issues.push("best_gate_fail");
   }
 
   const explanation = item.explanation?.trim() ?? "";
   if (explanation.length < 120) issues.push("explanation_too_short");
-  if (!/Why other options are incorrect/i.test(explanation)) {
+  if (!/Why other options are incorrect/i.test(explanation) && !hasStructuredDistractorBlock(item)) {
     issues.push("missing_distractor_rationales");
   }
 
@@ -45,8 +50,8 @@ export function assessNclexFullExamItem(
   }
 
   const uniqueIssues = [...new Set(issues)];
-  const serveOk = nclexBankItemIsServeReady(item);
-  const ok = uniqueIssues.length === 0 && serveOk;
+  const bestOk = nclexBankItemIsBestReady(item);
+  const ok = uniqueIssues.length === 0 && bestOk;
 
   return {
     ok,

@@ -9,7 +9,7 @@
 
 import type { BankItem } from "@/lib/question-bank";
 import type { TimedExamFilterFn } from "@/lib/questions/timed-exam-sampling";
-import { nclexItemPassesTimedExamGate } from "@/lib/exam-prep/nclex-serve-gate";
+import { nclexItemPassesBestExamGate } from "@/lib/exam-prep/nclex-serve-gate";
 import {
   naplexItemPassesTimedExamGate,
   prepareNaplexBankItem,
@@ -44,7 +44,7 @@ const CONFIGS: Record<string, ExamComposeConfig> = {
     examName: "NCLEX-RN",
     boardReference: "NCSBN NCLEX-RN Test Plan (2023) — Client Needs categories",
     minutesPerItem: 1.5,
-    gate: nclexItemPassesTimedExamGate,
+    gate: nclexItemPassesBestExamGate,
   },
   naplex: {
     slug: "naplex",
