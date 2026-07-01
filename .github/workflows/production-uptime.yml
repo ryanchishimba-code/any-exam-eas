@@ -1,0 +1,41 @@
+name: Production uptime
+
+on:
+  schedule:
+    # Every 5 minutes — free GitHub-hosted liveness monitor
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+concurrency:
+  group: production-uptime
+  cancel-in-progress: false
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Public liveness (/api/health)
+        env:
+          PRODUCTION_URL: https://www.anyexameasy.com
+        run: |
+          set -euo pipefail
+          body="$(curl -fsS -m 20 "${PRODUCTION_URL}/api/health")"
+          echo "$body"
+          echo "$body" | grep -q '"ok"[[:space:]]*:[[:space:]]*true'
+
+      - name: Detailed readiness (optional)
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          PRODUCTION_URL: https://www.anyexameasy.com
+        run: |
+          set -euo pipefail
+          if [ -z "${CRON_SECRET:-}" ]; then
+            echo "Skipping detailed health (add CRON_SECRET repo secret to enable DB checks)"
+            exit 0
+          fi
+          report="$(curl -fsS -m 25 -H "Authorization: Bearer ${CRON_SECRET}" "${PRODUCTION_URL}/api/health")"
+          echo "$report" | grep -q '"prisma"[[:space:]]*:[[:space:]]*"ok"'
+          echo "$report" | grep -q '"databaseUrl"[[:space:]]*:[[:space:]]*"postgresql"'

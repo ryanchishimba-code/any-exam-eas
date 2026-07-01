@@ -2,11 +2,15 @@ import type { NextConfig } from "next";
 
 /** Standalone is for Docker/AWS only — Vercel uses its own serverless output (faster builds). */
 const useStandaloneOutput = !process.env.VERCEL;
+const onVercel = !!process.env.VERCEL;
 
 const nextConfig: NextConfig = {
   ...(useStandaloneOutput ? { output: "standalone" as const } : {}),
   poweredByHeader: false,
   serverExternalPackages: ["stripe"],
+  // CI runs lint + typecheck; skipping on Vercel avoids build OOM on type-heavy apps.
+  eslint: { ignoreDuringBuilds: onVercel },
+  typescript: { ignoreDuringBuilds: onVercel },
   experimental: {
     optimizePackageImports: [
       "lucide-react",

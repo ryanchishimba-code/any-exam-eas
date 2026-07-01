@@ -156,6 +156,36 @@ npm run dev
 | Production has few questions vs local | Vercel Neon integration (`exameasy_*`) may point at a **different** branch than `.env`. Run `npm run vercel:fix-neon-db` to set `DATABASE_URL` on production/preview/development from local `.env`, then redeploy |
 | `DATABASE_URL` empty after `vercel env pull` | Production var may be `sensitive` or unset; app falls back to `exameasy_DATABASE_URL`. Fix with `npm run vercel:fix-neon-db` |
 
+## Production hardening (recommended)
+
+### 1. Lock canonical Neon URL on Vercel
+
+After any Neon or env change:
+
+```bash
+npm run vercel:fix-neon-db          # sync DATABASE_URL + POSTGRES_* from .env.local
+npm run vercel:fix-neon-db:verify   # audit only — no writes
+```
+
+This sets explicit `DATABASE_URL`, `POSTGRES_URL`, and `POSTGRES_PRISMA_URL` on **production, preview, and development**, overriding stale Vercel Neon integration vars (`exameasy_*`).
+
+In the Vercel dashboard, ensure those vars are also checked for **Build**.
+
+### 2. Uptime monitoring
+
+**GitHub Actions (included):** `.github/workflows/production-uptime.yml` pings `/api/health` every 5 minutes and on every `main` push. Failed runs appear under **Actions → Production uptime**.
+
+Optional: add repo secret `CRON_SECRET` to enable the detailed DB/prisma check step.
+
+**External (optional):** [Better Stack](https://betterstack.com/uptime) or [UptimeRobot](https://uptimerobot.com) on `https://www.anyexameasy.com/api/health` — expect HTTP 200 and `"ok":true`.
+
+Local check:
+
+```bash
+npm run ops:health
+CRON_SECRET=... npm run ops:health:detailed
+```
+
 ## Related
 
 - [README.md](../README.md) — full app setup

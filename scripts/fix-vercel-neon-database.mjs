@@ -167,6 +167,41 @@ async function redeployViaApi({ token, projectId, teamId, projectName }) {
   return true;
 }
 
+async function verifyProductionEnv(token, projectId, teamId, canonical) {
+  const envs = await listEnv(token, projectId, teamId);
+  const entry = envs.find(
+    (e) => e.key === "DATABASE_URL" && e.target?.includes("production")
+  );
+  if (!entry) {
+    console.error("✗ Production DATABASE_URL not set in Vercel");
+    return false;
+  }
+  const productionUrl = await decryptEnv(token, projectId, teamId, entry.id);
+  const production = describeUrl(productionUrl);
+  const match =
+    production.host === canonical.host && production.database === canonical.database;
+  if (match) {
+    console.log(`✓ Production DATABASE_URL matches canonical (${canonical.host}/${canonical.database})`);
+  } else {
+    console.error("✗ Production DATABASE_URL mismatch:");
+    console.error(`  production: ${production.host}/${production.database}`);
+    console.error(`  canonical:  ${canonical.host}/${canonical.database}`);
+  }
+  return match;
+}
+
+async function verifyPublicHealth() {
+  try {
+    const res = await fetch(`${PRODUCTION_URL}/api/health`, { cache: "no-store" });
+    const body = await res.json().catch(() => ({}));
+    const ok = res.status === 200 && body.ok === true;
+    console.log(`${ok ? "✓" : "✗"} Public health: HTTP ${res.status} ok=${body.ok ?? false}`);
+    return ok;
+  } catch (error) {
+    console.error("✗ Public health request failed:", error instanceof Error ? error.message : error);
+    return false;
+  }
+}
 async function verifyProductionQuestionCount(token, projectId, teamId, expectedHost) {
   const envs = await listEnv(token, projectId, teamId);
   const cronEntry = envs.find(
@@ -217,9 +252,17 @@ async function main() {
     console.warn("Warning: DATABASE_URL hostname may not be Neon pooler (-pooler).");
   }
 
+  const verifyOnly = process.argv.includes("--verify");
   const token = loadAuth();
   const { projectId, teamId, projectName } = loadProject();
   const existing = await listEnv(token, projectId, teamId);
+
+  if (verifyOnly) {
+    console.log("Verify-only — no Vercel env writes.\n");
+    const envOk = await verifyProductionEnv(token, projectId, teamId, canonical);
+    const healthOk = await verifyPublicHealth();
+    process.exit(envOk && healthOk ? 0 : 1);
+  }
 
   const integrationEntry = existing.find((e) => e.key === "exameasy_DATABASE_URL");
   if (integrationEntry) {
@@ -244,6 +287,10 @@ async function main() {
     await upsertDatabaseUrl(token, projectId, teamId, existing, databaseUrl, target);
     console.log(`✓ DATABASE_URL, POSTGRES_URL, POSTGRES_PRISMA_URL → ${target}`);
   }
+
+  console.log("");
+  await verifyProductionEnv(token, projectId, teamId, canonical);
+  await verifyPublicHealth();
 
   if (process.argv.includes("--redeploy")) {
     console.log("\nTriggering production redeploy…");
