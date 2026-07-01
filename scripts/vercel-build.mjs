@@ -5,8 +5,8 @@ function buildEnv() {
   const env = { ...process.env };
   if (process.env.VERCEL) {
     env.NEXT_TELEMETRY_DISABLED = "1";
-    // Keep heap bounded on 8GB build machines — parallel workers are disabled in next.config.
-    env.NODE_OPTIONS = [env.NODE_OPTIONS, "--max-old-space-size=6144"]
+    // Leave headroom for webpack native allocations on Vercel's 8GB builders.
+    env.NODE_OPTIONS = [env.NODE_OPTIONS, "--max-old-space-size=4096"]
       .filter(Boolean)
       .join(" ");
   }
