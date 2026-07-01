@@ -1,13 +1,15 @@
 import { describe, expect, it } from "vitest";
-import { userFacingComposeTiers, NCLEX_USER_FACING_COMPOSE_TIERS } from "@/lib/exam-prep/progressive-compose";
+import { userFacingComposeTiers, USER_FACING_PROGRESSIVE_TIERS } from "@/lib/exam-prep/progressive-compose";
 import { nclexItemPassesBestExamGate } from "@/lib/exam-prep/nclex-serve-gate";
 import type { BankItem } from "@/lib/question-bank";
 
 describe("NCLEX phase 1 quality bar", () => {
-  it("NCLEX user-facing compose uses strict tier only", () => {
-    expect(userFacingComposeTiers("nursing")).toEqual(NCLEX_USER_FACING_COMPOSE_TIERS);
-    expect(userFacingComposeTiers("nursing")).toHaveLength(1);
+  it("NCLEX user-facing compose uses progressive tiers with exact fill", () => {
+    expect(userFacingComposeTiers("nursing")).toEqual(USER_FACING_PROGRESSIVE_TIERS);
+    expect(userFacingComposeTiers("nursing").length).toBeGreaterThan(1);
+    expect(userFacingComposeTiers("nursing").every((tier) => tier.minFillRatio === 1)).toBe(true);
     expect(userFacingComposeTiers("nursing")[0]!.useRelaxedGate).toBe(false);
+    expect(userFacingComposeTiers("nursing").some((tier) => tier.useRelaxedGate)).toBe(true);
   });
 
   it("rejects items with auto-padded generic distractor rationales", () => {

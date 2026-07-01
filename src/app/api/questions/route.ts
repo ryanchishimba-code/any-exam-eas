@@ -21,12 +21,7 @@ import type { ExamQuestion } from "@/lib/ai";
 import { trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
 import { clampPresetExamNumber } from "@/lib/exam-prep/preset-exam-config";
-import { examSlugFromFieldId } from "@/lib/edtech/exams";
-import { loadPresetExamItems } from "@/lib/exam-prep/load-preset-exam";
-import {
-  composeBlueprintTimedExamSession,
-  fieldSupportsBlueprintTimedExam,
-} from "@/lib/exam-prep/compose/compose-timed-exam-session";
+import { fieldSupportsBlueprintTimedExam } from "@/lib/exam-prep/compose/compose-timed-exam-session";
 import type { BankItem } from "@/lib/question-bank";
 
 const MIXED_SUBJECT_ID = "__mixed__";
@@ -147,66 +142,50 @@ export async function GET(req: Request) {
 
   let items: BankItem[];
 
-  if (presetExamNumber && timedExam) {
-    const examSlug = examSlugFromFieldId(fieldId);
-    if (!examSlug) {
-      return NextResponse.json(
-        { error: "Preset exams are not available for this field.", code: "PRESET_EXAM_UNAVAILABLE" },
-        { status: 404 }
-      );
-    }
-    const preset = await loadPresetExamItems(examSlug, presetExamNumber);
-    if (!preset) {
-      return NextResponse.json(
-        {
-          error: `Practice Exam ${presetExamNumber} is not available. Run db:seed-validated-full-exams first.`,
-          code: "PRESET_EXAM_UNAVAILABLE",
-        },
-        { status: 404 }
-      );
-    }
-    items = preset.items;
-  } else if (mixed && timedExam && fieldSupportsBlueprintTimedExam(fieldId)) {
-    const composed = await composeBlueprintTimedExamSession({
+  if (mixed && timedExam) {
+    const { assembleTimedExamSessionItems } = await import(
+      "@/lib/exam-prep/compose/assemble-timed-exam-session"
+    );
+    const assembled = await assembleTimedExamSessionItems({
       fieldId,
-      numQuestions: limit,
+      field,
+      limit,
+      presetExamNumber,
       focusAreas,
+      sampleCount,
     });
-    if (!composed) {
+
+    if (!assembled) {
+      if (presetExamNumber) {
+        return NextResponse.json(
+          {
+            error: `Practice Exam ${presetExamNumber} is not available. Run db:seed-validated-full-exams first.`,
+            code: "PRESET_EXAM_UNAVAILABLE",
+          },
+          { status: 404 }
+        );
+      }
+      if (fieldSupportsBlueprintTimedExam(fieldId)) {
+        return NextResponse.json(
+          {
+            error: `Could not compose a ${limit}-question exam aligned to the board blueprint. Try again shortly.`,
+            code: "EXAM_SESSION_UNAVAILABLE",
+          },
+          { status: 503 }
+        );
+      }
       return NextResponse.json(
         {
-          error: `Could not compose a ${limit}-question exam aligned to the board blueprint. Try again shortly.`,
-          code: "EXAM_SESSION_UNAVAILABLE",
+          error: "No questions available for this selection.",
+          code: "EMPTY_BANK",
+          fieldId,
+          subjectId: MIXED_SUBJECT_ID,
         },
-        { status: 503 }
+        { status: 404 }
       );
     }
-    items = composed.items;
-  } else if (mixed && timedExam) {
-    const { gatherTimedExamBankItems } = await import("@/lib/questions/timed-exam-sampling");
-    const { timedExamGatePairForField } = await import("@/lib/exam-prep/exam-fill-gates");
-    const gates = timedExamGatePairForField(fieldId);
 
-    if (fieldId === "pharmacy") {
-      const { prepareNaplexBankItem } = await import("@/lib/exam-prep/naplex-serve-gate");
-      items = (
-        await gatherTimedExamBankItems({
-          fieldId,
-          limit,
-          filterFn: gates.strict,
-          relaxedFilterFn: gates.relaxed,
-          initialSampleCount: sampleCount,
-        })
-      ).map(prepareNaplexBankItem);
-    } else {
-      items = await gatherTimedExamBankItems({
-        fieldId,
-        limit,
-        filterFn: gates.strict,
-        relaxedFilterFn: fieldId === "nursing" ? undefined : gates.relaxed,
-        initialSampleCount: sampleCount,
-      });
-    }
+    items = assembled.items;
   } else if (mixed) {
     items = await sampleQuestionBankItemsForField({
       fieldId,

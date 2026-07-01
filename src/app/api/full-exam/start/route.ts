@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { createExamSession } from "@/lib/exam-sessions/service";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { getUserExamPreference, touchExamStudied } from "@/lib/edtech/exam-preference";
-import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
+import { buildSessionConfig, fullExamSessionHref, usesCuratedPresetExam } from "@/lib/full-exam/config";
 import { loadPresetExamItems } from "@/lib/exam-prep/load-preset-exam";
 import { clampPresetExamNumber } from "@/lib/exam-prep/preset-exam-config";
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
@@ -28,9 +28,11 @@ export async function POST(req: Request) {
   const timed = body.timed !== false;
   const nclexLength =
     body.nclexLength === "maximum" ? ("maximum" as const) : ("minimum" as const);
-  const presetExamNumber = Number.isFinite(Number(body.presetExamNumber))
+  const presetExamNumberRaw = Number.isFinite(Number(body.presetExamNumber))
     ? clampPresetExamNumber(Number(body.presetExamNumber))
     : undefined;
+  const presetExamNumber =
+    usesCuratedPresetExam(preset) && presetExamNumberRaw ? presetExamNumberRaw : undefined;
   const focusAreas = Array.isArray(body.focusAreas)
     ? body.focusAreas.map(String).filter(Boolean)
     : Array.isArray(body.focus_areas)

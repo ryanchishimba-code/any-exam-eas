@@ -64,7 +64,8 @@ export function buildSessionConfig(
   if (examSlug === "nclex" && opts?.nclexLength === "maximum") {
     questionCount = 150;
   }
-  if (opts?.presetExamNumber) {
+  // Curated preset exams are fixed-length; 50/100 sprints use the length wheel count.
+  if (opts?.presetExamNumber && preset === "full") {
     const presetCounts: Partial<Record<ExamSlug, number>> = {
       nclex: 80,
       naplex: 85,
@@ -134,6 +135,7 @@ export function parseFullExamLengthPreset(
   value: string | null | undefined
 ): FullExamLengthPreset {
   const normalized = value?.trim().toLowerCase().replace(/\s+/g, "") ?? "";
+  if (normalized === "50" || normalized === "50q") return "50";
   if (normalized === "100" || normalized === "100q") return "100";
   if (
     normalized === "full" ||
@@ -143,7 +145,12 @@ export function parseFullExamLengthPreset(
   ) {
     return "full";
   }
-  return "full";
+  return "50";
+}
+
+/** Curated preset bank rows apply only on full-length mock selection. */
+export function usesCuratedPresetExam(lengthPreset: FullExamLengthPreset): boolean {
+  return lengthPreset === "full";
 }
 
 /** Launcher URL with optional preset + autostart for dashboard / hub shortcuts. */

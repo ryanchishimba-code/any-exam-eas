@@ -23,25 +23,6 @@ export type ProgressiveComposeTier = {
   maxPerConceptBoost: number;
 };
 
-/** NCLEX user-facing exams — strict board bar only; no relaxed/fill tiers. */
-export const NCLEX_USER_FACING_COMPOSE_TIERS: ProgressiveComposeTier[] = [
-  {
-    id: "strict",
-    label: "Strict board bar",
-    minFillRatio: 1,
-    allowCrossExamReuse: false,
-    dedupeClinicalCases: true,
-    useDiverseSelection: true,
-    useRelaxedGate: false,
-    maxPerConceptBoost: 0,
-  },
-];
-
-export function userFacingComposeTiers(fieldId: string): ProgressiveComposeTier[] {
-  if (fieldId === "nursing") return NCLEX_USER_FACING_COMPOSE_TIERS;
-  return PROGRESSIVE_COMPOSE_TIERS;
-}
-
 export const PROGRESSIVE_COMPOSE_TIERS: ProgressiveComposeTier[] = [
   {
     id: "strict",
@@ -94,6 +75,23 @@ export const PROGRESSIVE_COMPOSE_TIERS: ProgressiveComposeTier[] = [
     maxPerConceptBoost: 12,
   },
 ];
+
+/**
+ * Live mock / full-exam compose ladder — same relaxation steps as batch preset
+ * generation, but every tier must hit the exact requested count (50, 100, full).
+ */
+export const USER_FACING_PROGRESSIVE_TIERS: ProgressiveComposeTier[] =
+  PROGRESSIVE_COMPOSE_TIERS.map((tier) => ({
+    ...tier,
+    minFillRatio: 1,
+  }));
+
+/** @deprecated Use USER_FACING_PROGRESSIVE_TIERS. */
+export const NCLEX_USER_FACING_COMPOSE_TIERS = USER_FACING_PROGRESSIVE_TIERS;
+
+export function userFacingComposeTiers(_fieldId: string): ProgressiveComposeTier[] {
+  return USER_FACING_PROGRESSIVE_TIERS;
+}
 
 export function minQuestionsForTier(requested: number, tier: ProgressiveComposeTier): number {
   return Math.max(1, Math.ceil(requested * tier.minFillRatio));

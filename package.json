@@ -25,6 +25,7 @@
     "db:verify-nclex-count": "bash scripts/run-with-node.sh npx tsx scripts/verify-nclex-count.ts",
     "db:verify-nclex-count:85": "bash scripts/run-with-node.sh npx tsx scripts/verify-nclex-count.ts --limit 85",
     "db:verify-full-exam": "bash scripts/run-with-node.sh npx tsx scripts/verify-full-exam-all.mts",
+    "db:verify-exam-lengths": "bash scripts/run-with-node.sh npx tsx scripts/verify-exam-length-output.mts",
     "db:verify-subject-selection": "bash scripts/run-with-node.sh npx tsx scripts/verify-subject-selection-all.mts",
     "verify:product-live": "bash scripts/run-with-node.sh npx tsx scripts/verify-product-live.mts",
     "db:backfill-usmle-step": "npx tsx scripts/backfill-usmle-step-level.ts",

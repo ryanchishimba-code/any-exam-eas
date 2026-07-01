@@ -156,7 +156,7 @@ export function finalizeExamSessionQuestions(
   requested: number,
   opts?: { fieldId?: string }
 ): { prepared: StudyQuestion[]; quality: ExamSessionQualityReport } {
-  if (opts?.fieldId && isUsmleFieldId(opts.fieldId)) {
+  if (opts?.fieldId && (isUsmleFieldId(opts.fieldId) || isFullExamField(opts.fieldId))) {
     return finalizeUsmleExamSessionQuestions(raw, requested);
   }
 
