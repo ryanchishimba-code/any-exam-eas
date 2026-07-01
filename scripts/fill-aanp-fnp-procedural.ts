@@ -17,14 +17,13 @@ import { PrismaClient } from "@prisma/client";
 import { generateBulkQuestionsForSubject } from "../src/lib/bulk-question-generator";
 import { polishUsmleBankItem } from "../src/lib/engine/polish/usmle-polish";
 import {
-  assessAanpFnpBankItem,
-  isAanpFnpBestQuality,
   mergeAanpFnpAgeGroupQuotaWithCounts,
   mergeAanpFnpDomainQuotaWithCounts,
   planAanpFnpGenerationSlots,
   AANP_FNP_GENERATION_VERSION,
   AANP_FNP_TARGET_TOTAL,
 } from "../src/lib/exam-prep/aanp-fnp";
+import { runAanpFnpHybridGateSync } from "../src/lib/exam-prep/aanp-fnp/hybrid-gate";
 import { repairAanpFnpBankItemDeterministic } from "../src/lib/exam-prep/aanp-fnp/vignette-repair";
 import { getFieldSubject } from "../src/lib/field-subjects";
 import { bankItemContentHash } from "../src/lib/sync-question-bank";
@@ -196,16 +195,18 @@ async function main() {
       continue;
     }
 
-    if (!isAanpFnpBestQuality(item, { minScore })) {
+    const gate = runAanpFnpHybridGateSync(item, { source: "generated" });
+    if (!gate.ingestReady) {
       rejected++;
       continue;
     }
+    const readyItem = gate.item;
 
     accepted++;
     if (dryRun) continue;
 
     const subjectId = slot.clinicalSystem;
-    const hash = bankItemContentHash("aanp-fnp", subjectId, item);
+    const hash = bankItemContentHash("aanp-fnp", subjectId, readyItem);
     const exists = await prisma.questionBankItem.findUnique({
       where: { contentHash: hash },
       select: { id: true },
@@ -215,29 +216,28 @@ async function main() {
       continue;
     }
 
-    const qc = assessAanpFnpBankItem(item, { source: "generated" });
-    const generationMeta = item.ngnPayload?.generationMeta ?? null;
+    const generationMeta = readyItem.ngnPayload?.generationMeta ?? null;
 
     await prisma.questionBankItem.create({
       data: {
         fieldId: "aanp-fnp",
         subjectId,
-        scenario: item.vignette ?? null,
-        difficulty: item.difficulty ?? slot.difficulty,
+        scenario: readyItem.vignette ?? null,
+        difficulty: readyItem.difficulty ?? slot.difficulty,
         topicCategory: subjectId,
         blueprintDomain: slot.blueprintDomain,
         patientAgeGroup: slot.patientAgeGroup,
         blueprintTopic: slot.blueprintTopic,
         generationVersion: AANP_FNP_GENERATION_VERSION,
-        reviewStatus: qc.reviewStatus,
+        reviewStatus: gate.reviewStatus,
         generationMeta: generationMeta ?? undefined,
         itemType: "vignette",
-        question: item.question,
-        options: serializeBankOptions(item),
-        correctAnswer: item.correctAnswer,
-        explanation: item.explanation,
-        tags: item.tags ? JSON.stringify(item.tags) : null,
-        references: item.references?.length ? item.references : undefined,
+        question: readyItem.question,
+        options: serializeBankOptions(readyItem),
+        correctAnswer: readyItem.correctAnswer,
+        explanation: readyItem.explanation,
+        tags: readyItem.tags ? JSON.stringify(readyItem.tags) : null,
+        references: readyItem.references?.length ? readyItem.references : undefined,
         source: "generated",
         contentHash: hash,
         active: true,
