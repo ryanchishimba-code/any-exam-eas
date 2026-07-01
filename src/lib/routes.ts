@@ -1,8 +1,16 @@
 import type { ExamSlug } from "@/lib/exams/catalog";
 import { examMarketingPath } from "@/lib/seo/exam-config";
-import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import type { ExamSlug as EdtechExamSlug } from "@/types/edtech";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
+
+/** Nav stat labels — mirrors FALLBACK_QUESTION_COUNTS in bank-stats.ts (avoids import cycle). */
+const EXAM_NAV_STATS = {
+  nursing: "5,000",
+  usmle: "24,314",
+  pharmacy: "6,500",
+  aanpFnp: "6,000",
+  nptePt: "6,000",
+} as const;
 
 /** Canonical app routes — use these in nav, links, and redirects. */
 export const ROUTES = {
@@ -74,7 +82,7 @@ export const EXAM_NAV_ITEMS: {
     href: "/nclex",
     fieldId: "nursing",
     practiceHref: "/practice/nclex",
-    stat: `${MARKETING_QUESTION_COUNTS.nursing} items`,
+    stat: `${EXAM_NAV_STATS.nursing} items`,
   },
   {
     slug: "usmle",
@@ -83,7 +91,7 @@ export const EXAM_NAV_ITEMS: {
     href: "/usmle",
     fieldId: "usmle-step-2",
     practiceHref: "/practice/usmle",
-    stat: `${MARKETING_QUESTION_COUNTS.usmle} items`,
+    stat: `${EXAM_NAV_STATS.usmle} items`,
   },
   {
     slug: "naplex",
@@ -92,7 +100,7 @@ export const EXAM_NAV_ITEMS: {
     href: "/naplex",
     fieldId: "pharmacy",
     practiceHref: "/practice/naplex",
-    stat: `${MARKETING_QUESTION_COUNTS.pharmacy} items`,
+    stat: `${EXAM_NAV_STATS.pharmacy} items`,
   },
   {
     slug: "pance",
@@ -110,7 +118,7 @@ export const EXAM_NAV_ITEMS: {
     href: "/aanp-fnp",
     fieldId: "aanp-fnp",
     practiceHref: "/practice/aanp-fnp",
-    stat: `${MARKETING_QUESTION_COUNTS.aanpFnp} items`,
+    stat: `${EXAM_NAV_STATS.aanpFnp} items`,
   },
   {
     slug: "npte-pt",
@@ -119,7 +127,7 @@ export const EXAM_NAV_ITEMS: {
     href: "/npte-pt",
     fieldId: "npte-pt",
     practiceHref: "/practice/npte-pt",
-    stat: `${MARKETING_QUESTION_COUNTS.nptePt} items`,
+    stat: `${EXAM_NAV_STATS.nptePt} items`,
   },
 ];
 
