@@ -40,12 +40,21 @@ describe("resolveDatabaseUrl", () => {
     expect(resolveDatabaseUrl()).toBe(REAL_URL);
   });
 
-  it("resolves prefixed Vercel Neon vars", () => {
+  it("resolves prefixed Vercel Neon vars off Vercel only", () => {
     process.env = {
       DATABASE_URL: "",
       exameasy_POSTGRES_URL: REAL_URL,
     };
     expect(resolveDatabaseUrl()).toBe(REAL_URL);
+  });
+
+  it("does not fall back to integration vars on Vercel", () => {
+    process.env = {
+      VERCEL: "1",
+      DATABASE_URL: "",
+      exameasy_POSTGRES_URL: REAL_URL,
+    };
+    expect(resolveDatabaseUrl()).toBe("");
   });
 });
 

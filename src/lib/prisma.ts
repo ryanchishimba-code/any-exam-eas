@@ -11,9 +11,6 @@ const isNextBuild = process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD;
 
 if (!isNextBuild) {
   ensureDatabaseUrlEnv();
-  if (process.env.VERCEL) {
-    assertRuntimeDatabaseUrl();
-  }
 }
 
 /** Bump when Prisma schema adds/changes models so dev HMR replaces stale clients. */
@@ -28,6 +25,9 @@ const globalForPrisma = globalThis as GlobalPrisma;
 
 function createPrismaClient(): PrismaClient {
   ensureDatabaseUrlEnv();
+  if (process.env.VERCEL) {
+    assertRuntimeDatabaseUrl();
+  }
   const url = getRuntimeDatabaseUrl();
   return new PrismaClient({
     log: process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
@@ -50,6 +50,14 @@ function isPrismaClientCurrent(client: PrismaClient | undefined): client is Pris
 
 export function getPrisma(): PrismaClient {
   ensureDatabaseUrlEnv();
+  if (process.env.VERCEL) {
+    try {
+      assertRuntimeDatabaseUrl();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "DATABASE_URL misconfigured";
+      throw new Error(`[db] ${message}`);
+    }
+  }
   const cached = globalForPrisma.prisma;
   const versionMatch = globalForPrisma.prismaSchemaVersion === PRISMA_SCHEMA_VERSION;
 
@@ -69,8 +77,14 @@ export function getPrisma(): PrismaClient {
   return client;
 }
 
-/** @deprecated Prefer `getPrisma()` in new code — kept for existing imports. */
-export const prisma = getPrisma();
+/** Lazy proxy so importing `@/lib/prisma` does not open a DB connection at module load. */
+export const prisma: PrismaClient = new Proxy({} as PrismaClient, {
+  get(_target, prop, receiver) {
+    const client = getPrisma();
+    const value = Reflect.get(client, prop, client);
+    return typeof value === "function" ? value.bind(client) : value;
+  },
+});
 
 const dbUrl = ensureDatabaseUrlEnv();
 if (process.env.NODE_ENV === "development" && dbUrl.startsWith("file:")) {

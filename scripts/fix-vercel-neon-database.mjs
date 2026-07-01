@@ -93,8 +93,8 @@ async function decryptEnv(token, projectId, teamId, id) {
   return typeof raw === "string" ? raw.trim() : String(raw ?? "").trim();
 }
 
-async function upsertDatabaseUrl(token, projectId, teamId, existing, url, target) {
-  const matches = existing.filter((e) => e.key === "DATABASE_URL" && e.target?.includes(target));
+async function upsertEnvVar(token, projectId, teamId, existing, key, url, target) {
+  const matches = existing.filter((e) => e.key === key && e.target?.includes(target));
   for (const entry of matches) {
     await deleteEnv(token, projectId, teamId, entry.id);
     existing.splice(existing.indexOf(entry), 1);
@@ -109,7 +109,7 @@ async function upsertDatabaseUrl(token, projectId, teamId, existing, url, target
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        key: "DATABASE_URL",
+        key,
         value: url,
         type: "encrypted",
         target: [target],
@@ -118,11 +118,15 @@ async function upsertDatabaseUrl(token, projectId, teamId, existing, url, target
   );
   const data = await res.json();
   if (!res.ok) {
-    throw new Error(
-      `Failed DATABASE_URL (${target}): ${data.error?.message ?? res.status}`
-    );
+    throw new Error(`Failed ${key} (${target}): ${data.error?.message ?? res.status}`);
   }
-  existing.push({ id: data.created?.id ?? data.id, key: "DATABASE_URL", target: [target] });
+  existing.push({ id: data.created?.id ?? data.id, key, target: [target] });
+}
+
+async function upsertDatabaseUrl(token, projectId, teamId, existing, url, target) {
+  for (const key of ["DATABASE_URL", "POSTGRES_URL", "POSTGRES_PRISMA_URL"]) {
+    await upsertEnvVar(token, projectId, teamId, existing, key, url, target);
+  }
 }
 
 async function redeployViaApi({ token, projectId, teamId, projectName }) {
@@ -238,7 +242,7 @@ async function main() {
 
   for (const target of TARGETS) {
     await upsertDatabaseUrl(token, projectId, teamId, existing, databaseUrl, target);
-    console.log(`✓ DATABASE_URL → ${target}`);
+    console.log(`✓ DATABASE_URL, POSTGRES_URL, POSTGRES_PRISMA_URL → ${target}`);
   }
 
   if (process.argv.includes("--redeploy")) {

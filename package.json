@@ -53,6 +53,8 @@
     "test:sample-questions": "tsx scripts/generate-sample-questions.mts",
     "vercel:setup": "node scripts/vercel-setup.mjs",
     "vercel:db": "node scripts/vercel-database.mjs",
+    "vercel:push-db-url": "node scripts/push-vercel-database-url.mjs",
+    "vercel:push-db-url:deploy": "node scripts/push-vercel-database-url.mjs --redeploy",
     "vercel:connect-neon": "node scripts/connect-vercel-neon.mjs",
     "vercel:stripe": "node scripts/vercel-stripe-push.mjs --redeploy",
     "vercel:pricing-env": "node scripts/vercel-pricing-env.mjs --redeploy",

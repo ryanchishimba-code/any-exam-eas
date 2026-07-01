@@ -12,6 +12,13 @@ const DATABASE_URL_CANDIDATES = [
   "NEON_DATABASE_URL",
 ] as const;
 
+/** Vercel Neon integration injects `{project}_DATABASE_URL` — often a stale branch. */
+function isIntegrationPrefixedDatabaseKey(key: string): boolean {
+  return /^[a-z0-9_-]+_(DATABASE_URL|POSTGRES_URL|POSTGRES_PRISMA_URL|POSTGRES_URL_NON_POOLING)$/.test(
+    key
+  );
+}
+
 function isUsableDatabaseUrl(url: string | undefined): url is string {
   if (!url?.trim()) return false;
   if (isBuildPlaceholderDatabaseUrl(url)) return false;
@@ -29,8 +36,17 @@ export function resolveDatabaseUrl(): string {
     if (isUsableDatabaseUrl(value)) return value;
   }
 
+  // On Vercel, never fall back to integration-prefixed vars — they may point at the
+  // wrong Neon branch while DATABASE_URL is the canonical production database.
+  if (process.env.VERCEL) {
+    return "";
+  }
+
   for (const [key, value] of Object.entries(process.env)) {
     if (!value || !isUsableDatabaseUrl(value)) continue;
+    if (isIntegrationPrefixedDatabaseKey(key)) {
+      return value;
+    }
     if (
       key.endsWith("_POSTGRES_URL") ||
       key.endsWith("_DATABASE_URL") ||

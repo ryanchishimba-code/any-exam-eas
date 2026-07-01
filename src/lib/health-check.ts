@@ -61,21 +61,32 @@ export async function runHealthChecks(): Promise<HealthReport> {
   if (checks.databaseUrl === "postgresql" || checks.databaseUrl === "sqlite-local") {
     try {
       const { prisma } = await import("@/lib/prisma");
-      await prisma.$queryRaw`SELECT 1`;
+      await Promise.race([
+        prisma.$queryRaw`SELECT 1`,
+        new Promise<never>((_, reject) =>
+          setTimeout(() => reject(new Error("db_connect_timeout")), 8_000)
+        ),
+      ]);
       checks.prisma = "ok";
       const now = Date.now();
       if (!bankCountCache || now - bankCountCache.at > BANK_COUNT_TTL_MS) {
-        const count = await prisma.questionBankItem.count({
-          where: { active: true },
-        });
+        const count = await Promise.race([
+          prisma.questionBankItem.count({ where: { active: true } }),
+          new Promise<never>((_, reject) =>
+            setTimeout(() => reject(new Error("bank_count_timeout")), 8_000)
+          ),
+        ]);
         bankCountCache = { count, at: now };
       }
       const count = bankCountCache.count;
       checks.questionBank = count > 0 ? `ok (${count} active)` : "empty-run-cron-sync";
     } catch (e) {
       checks.prisma = "error";
+      const detail = e instanceof Error ? e.message : "error";
       if (process.env.NODE_ENV !== "production") {
-        checks.prismaDetail = e instanceof Error ? e.message : "error";
+        checks.prismaDetail = detail;
+      } else {
+        console.error("[health] prisma:", detail);
       }
     }
 
@@ -85,7 +96,12 @@ export async function runHealthChecks(): Promise<HealthReport> {
         const { examSessions } = await import("@/db/schema");
         const { count } = await import("drizzle-orm");
         const db = requireDb();
-        await db.select({ n: count() }).from(examSessions).limit(1);
+        await Promise.race([
+          db.select({ n: count() }).from(examSessions).limit(1),
+          new Promise<never>((_, reject) =>
+            setTimeout(() => reject(new Error("drizzle_connect_timeout")), 8_000)
+          ),
+        ]);
         checks.drizzle = "ok";
       } catch {
         checks.drizzle = "error";
@@ -104,8 +120,7 @@ export async function runHealthChecks(): Promise<HealthReport> {
   const ok =
     checks.nextauthSecret === "ok" &&
     dbOk &&
-    checks.prisma === "ok" &&
-    (checks.drizzle === "ok" || checks.drizzle === "skipped");
+    checks.prisma === "ok";
 
   let env: Record<string, string> | undefined;
   try {

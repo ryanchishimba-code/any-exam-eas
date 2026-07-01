@@ -19,6 +19,9 @@ export const metadata = {
   description: "Your personalized NCLEX, USMLE, NAPLEX, and PANCE study dashboard.",
 };
 
+/** Neon cold starts + parallel dashboard queries can exceed the default 10s on Vercel. */
+export const maxDuration = 60;
+
 function DashboardSkeleton() {
   return (
     <div className="dashboard-ui mx-auto w-full min-w-0 max-w-5xl space-y-5 pb-10">

@@ -71,6 +71,11 @@ export function resolveDatabaseUrl() {
     const value = process.env[key];
     if (isUsable(value)) return value;
   }
+
+  if (process.env.VERCEL) {
+    return "";
+  }
+
   for (const [key, value] of Object.entries(process.env)) {
     if (!isUsable(value)) continue;
     if (
