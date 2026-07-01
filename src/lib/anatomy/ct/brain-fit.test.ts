@@ -22,7 +22,7 @@ describe("brain-fit", () => {
     expect(cranial!.min.y).toBeGreaterThan(0.9);
   });
 
-  it("prefers vault floor when spinal cord ends below the cranium", () => {
+  it("anchors junction to spinal cord top when cord is present", () => {
     const atlas = new Group();
     const skin = new Mesh(new BoxGeometry(0.48, 2.35, 0.34), new MeshBasicMaterial());
     skin.userData.atlasOrganId = "skin";
@@ -35,10 +35,11 @@ describe("brain-fit", () => {
     const skinBox = new Box3().setFromObject(skin);
     const junction = getCraniocervicalJunctionY(atlas, skinBox);
     const cordTop = new Box3().setFromObject(cord).max.y;
-    expect(junction).toBeGreaterThanOrEqual(cordTop);
+    expect(junction).toBeLessThan(cordTop);
+    expect(junction).toBeCloseTo(cordTop, 1);
   });
 
-  it("seats brain inside the cranial vault above the junction", () => {
+  it("seats brain base on spinal cord and inside cranial vault", () => {
     const atlas = new Group();
     const skin = new Mesh(new BoxGeometry(0.48, 2.35, 0.34), new MeshBasicMaterial());
     skin.userData.atlasOrganId = "skin";
@@ -57,8 +58,10 @@ describe("brain-fit", () => {
     const brainBox = new Box3().setFromObject(brain);
     const cranial = getCranialVaultWorldBounds(atlas)!;
     const junction = getCraniocervicalJunctionY(atlas, new Box3().setFromObject(skin));
+    const cordBox = new Box3().setFromObject(cord);
 
-    expect(brainBox.min.y).toBeGreaterThanOrEqual(junction - 0.02);
+    expect(brainBox.min.y).toBeGreaterThan(junction);
+    expect(brainBox.min.y).toBeLessThanOrEqual(cordBox.max.y + 0.03);
     expect(brainBox.max.y).toBeLessThanOrEqual(cranial.max.y + 0.02);
     expect(brainBox.getCenter(new Vector3()).y).toBeGreaterThan(junction);
   });
@@ -92,7 +95,9 @@ describe("brain-fit", () => {
 
     brain.updateMatrixWorld(true);
     const box = new Box3().setFromObject(brain);
-    expect(box.min.y).toBeGreaterThan(FIGURE.neckY);
-    expect(box.max.y).toBeGreaterThan(FIGURE.headY);
+    const vault = getCranialVaultWorldBounds(new Group())!;
+    expect(box.min.y).toBeGreaterThanOrEqual(vault.min.y);
+    expect(box.min.y).toBeLessThanOrEqual(vault.min.y + 0.03);
+    expect(box.max.y).toBeLessThanOrEqual(vault.max.y + 0.02);
   });
 });

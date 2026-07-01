@@ -8,6 +8,12 @@ const CRANIAL_VAULT_PADDING = 0.97;
 /** Visual downscale from vault-fit size (0.7 = 30% smaller). */
 const BRAIN_DISPLAY_SCALE = 0.7;
 
+/** Slight overlap so brainstem meets spinal cord without a visible gap. */
+const BRAINSTEM_CORD_OVERLAP = 0.012;
+
+/** Fine-tune upward after cord junction anchor (world units). */
+const BRAIN_SEAT_LIFT = 0.02;
+
 function headHalfHeight(): number {
   return FIGURE.headRadius * FIGURE.headScaleY;
 }
@@ -80,22 +86,55 @@ export function getReferenceBodyBoxForBrainFit(atlasRoot: Object3D): Box3 {
   return getFigureStandingBodyBox();
 }
 
-/** Y of craniocervical junction — brainstem sits just above spinal cord / throat. */
+/** Y of craniocervical junction — Allen brainstem base sits on spinal cord top. */
 export function getCraniocervicalJunctionY(atlasRoot: Object3D, bodyBox: Box3): number {
+  const cordBox = atlasOrganBox(atlasRoot, "spinal-cord");
+  if (cordBox) {
+    return cordBox.max.y - BRAINSTEM_CORD_OVERLAP;
+  }
+
   const size = new Vector3();
   bodyBox.getSize(size);
   const vaultFloor = cranialVaultFloorY(bodyBox);
   const vaultHeight = bodyBox.max.y - vaultFloor;
+  return vaultFloor + vaultHeight * 0.12;
+}
 
-  const cordBox = atlasOrganBox(atlasRoot, "spinal-cord");
+function getSpinalCordWorldBounds(atlasRoot: Object3D): Box3 | null {
+  return atlasOrganBox(atlasRoot, "spinal-cord");
+}
+
+/** Place scaled brain so its base meets the junction and aligns with cord midline when present. */
+function seatBrainOnJunction(
+  brainRoot: Object3D,
+  scaledBox: Box3,
+  junctionY: number,
+  vaultCenter: Vector3,
+  cordBox: Box3 | null
+) {
+  const scaledCenter = new Vector3();
+  scaledBox.getCenter(scaledCenter);
+
+  let targetX = vaultCenter.x;
+  let targetZ = vaultCenter.z;
   if (cordBox) {
-    // VH cord mesh often stops short of the vault — keep the brain base inside the cranium.
-    const cordJunction = cordBox.max.y;
-    const vaultJunction = vaultFloor + vaultHeight * 0.1;
-    return Math.max(cordJunction, vaultJunction);
+    const cordCenter = new Vector3();
+    cordBox.getCenter(cordCenter);
+    targetX = cordCenter.x;
+    targetZ = cordCenter.z;
   }
 
-  return vaultFloor + vaultHeight * 0.12;
+  const worldPos = new Vector3(
+    targetX - scaledCenter.x,
+    junctionY - scaledBox.min.y + BRAIN_SEAT_LIFT,
+    targetZ - scaledCenter.z
+  );
+
+  if (brainRoot.parent) {
+    brainRoot.parent.updateMatrixWorld(true);
+    brainRoot.parent.worldToLocal(worldPos);
+  }
+  brainRoot.position.copy(worldPos);
 }
 
 /** Cranial vault envelope from fitted VH skin (preferred) or FIGURE head bounds. */
@@ -121,9 +160,7 @@ export function fitAllenBrainToFigure(root: Object3D) {
   root.updateMatrixWorld(true);
   const box = new Box3().setFromObject(root);
   const size = new Vector3();
-  const center = new Vector3();
   box.getSize(size);
-  box.getCenter(center);
 
   const scaleByWidth = cranialSpan / Math.max(size.x, size.y, size.z, 1e-6);
   const scaleByHeight = (availableHeight * CRANIAL_VAULT_PADDING) / Math.max(size.y, 1e-6);
@@ -132,12 +169,8 @@ export function fitAllenBrainToFigure(root: Object3D) {
 
   root.rotation.set(0, Math.PI, 0);
   root.updateMatrixWorld(true);
-  box.setFromObject(root);
-  box.getCenter(center);
-
-  const targetBrainCenterY = junctionY + availableHeight * 0.58;
-  const headCenter = new Vector3(0, targetBrainCenterY, FIGURE.centerZ + 0.01);
-  root.position.set(headCenter.x - center.x, headCenter.y - center.y, headCenter.z - center.z);
+  const scaledBox = new Box3().setFromObject(root);
+  seatBrainOnJunction(root, scaledBox, junctionY, new Vector3(0, 0, FIGURE.centerZ + 0.01), null);
 }
 
 /**
@@ -154,9 +187,12 @@ export function fitAllenBrainToAtlas(atlasRoot: Object3D, brainRoot: Object3D) {
   const skinBox = atlasOrganBox(atlasRoot, "skin");
   const usingFigureVault = !skinBox || skinBox.isEmpty();
   const bodyBox = skinBox && !skinBox.isEmpty() ? skinBox : getFigureStandingBodyBox();
-  const junctionY = usingFigureVault
-    ? getFigureCranialVaultBox().min.y
-    : getCraniocervicalJunctionY(atlasRoot, bodyBox);
+  const cordBox = getSpinalCordWorldBounds(atlasRoot);
+  const junctionY = cordBox
+    ? getCraniocervicalJunctionY(atlasRoot, bodyBox)
+    : usingFigureVault
+      ? getFigureCranialVaultBox().min.y
+      : getCraniocervicalJunctionY(atlasRoot, bodyBox);
   const cranialTop = targetBox.max.y;
 
   brainRoot.scale.set(1, 1, 1);
@@ -182,21 +218,5 @@ export function fitAllenBrainToAtlas(atlasRoot: Object3D, brainRoot: Object3D) {
 
   brainRoot.updateMatrixWorld(true);
   const scaledBox = new Box3().setFromObject(brainRoot);
-  const scaledCenter = new Vector3();
-  scaledBox.getCenter(scaledCenter);
-
-  const vaultHeight = Math.max(cranialTop - junctionY, 1e-6);
-  const targetBrainCenterY = junctionY + vaultHeight * 0.58;
-
-  const worldPos = new Vector3(
-    targetCenter.x - scaledCenter.x,
-    targetBrainCenterY - scaledCenter.y,
-    targetCenter.z - scaledCenter.z
-  );
-
-  if (brainRoot.parent) {
-    brainRoot.parent.updateMatrixWorld(true);
-    brainRoot.parent.worldToLocal(worldPos);
-  }
-  brainRoot.position.copy(worldPos);
+  seatBrainOnJunction(brainRoot, scaledBox, junctionY, targetCenter, cordBox);
 }
