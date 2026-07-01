@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import { useMemo } from "react";
 import type * as THREE from "three";
-import { TISSUE_PBR } from "@/lib/anatomy/cartoon/palette";
+import { TISSUE_PBR, type TissueKind } from "@/lib/anatomy/cartoon/palette";
 import { buildCatalogSkullGeometry } from "@/lib/anatomy/cartoon/skull-geometry";
 import {
   buildCatalogAortaGeometry,
@@ -31,6 +31,7 @@ export type OrganSurfaceStyle = {
   emissiveIntensity: number;
   outlineThickness: number;
   outlineColor: string;
+  tissue?: TissueKind;
   roughness?: number;
   metalness?: number;
 };
@@ -55,6 +56,7 @@ function Surface({ style, children }: { style: OrganSurfaceStyle; children: Reac
       metalness={style.metalness ?? TISSUE_PBR.organ.metalness}
       outlineThickness={style.outlineThickness}
       outlineColor={style.outlineColor}
+      tissue={style.tissue}
     >
       {children}
     </TissueSurface>
@@ -80,6 +82,7 @@ function CatalogOrganMesh({
         emissiveIntensity={style.emissiveIntensity}
         roughness={style.roughness ?? pbr.roughness}
         metalness={style.metalness ?? pbr.metalness}
+        tissue={style.tissue ?? "organ"}
       />
     </mesh>
   );

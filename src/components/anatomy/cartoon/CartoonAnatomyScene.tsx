@@ -19,11 +19,13 @@ import { getAnatomyStructure } from "@/lib/anatomy";
 import { getBoneFocus, getBoneFocusDistance } from "@/lib/anatomy/bones";
 import { ANATOMY_MODULES, getAnatomyModule } from "@/lib/anatomy/modules/registry";
 import { getOrganDepthOrder } from "@/lib/anatomy/cartoon/organ-layout";
+import { isMeshIdCoveredByAtlas } from "@/lib/anatomy/ct/ct-atlas-registry";
 import { CARTOON_CAMERA, CT_CAMERA } from "@/lib/anatomy/cartoon/proportions";
 import { CARTOON_SCENE_BG } from "@/lib/anatomy/cartoon/palette";
 import type { AnatomyLayer, AnatomyStructure, AnatomySystem } from "@/lib/anatomy/types";
 import { cn } from "@/lib/utils";
 import { AnatomyStudioEnvironment } from "./AnatomyStudioEnvironment";
+import { AnatomySceneLighting } from "./AnatomySceneLighting";
 import { AnatomyPostFX } from "./AnatomyPostFX";
 import { CartoonBodyShell } from "./CartoonBodyShell";
 import { ClickableSkeleton } from "./ClickableSkeleton";
@@ -57,6 +59,7 @@ function OrganModules({
   highlightedId,
   onSelect,
   skinOn,
+  skipAtlasMeshes = false,
 }: {
   structures: AnatomyStructure[];
   visibleLayers: Set<AnatomyLayer>;
@@ -65,6 +68,7 @@ function OrganModules({
   highlightedId: string | null;
   onSelect: (id: string) => void;
   skinOn: boolean;
+  skipAtlasMeshes?: boolean;
 }) {
   const structureByMesh = useMemo(
     () => new Map(structures.map((s) => [s.meshId, s])),
@@ -87,6 +91,7 @@ function OrganModules({
       {sortedModules.map((mod) => {
         const structure = structureByMesh.get(mod.id);
         if (!structure) return null;
+        if (skipAtlasMeshes && isMeshIdCoveredByAtlas(mod.id)) return null;
         const connected = isNeuroConnected(focusStructureId, structure.id);
         const isFocused = focusStructureId === structure.id;
         const isParentOfFocus = focusStructure?.parentId === structure.id;
@@ -118,7 +123,7 @@ function CtRenderSettings({ active }: { active: boolean }) {
   const { gl } = useThree();
   useEffect(() => {
     gl.toneMapping = active ? THREE.NoToneMapping : THREE.ACESFilmicToneMapping;
-    gl.toneMappingExposure = active ? 1 : 1.12;
+    gl.toneMappingExposure = active ? 1 : 1.24;
   }, [active, gl]);
   return null;
 }
@@ -182,6 +187,7 @@ function SceneRig({
 }) {
   const { camera } = useThree();
   const ctActive = ctMode && isCtAtlasEnabled();
+  const clinicalAtlasActive = isCtAtlasEnabled() && !ctActive;
   const cameraConfig = ctActive ? CT_CAMERA : CARTOON_CAMERA;
   const defaultCamPos = useMemo(() => new Vector3(...cameraConfig.position), [cameraConfig.position]);
   const defaultTarget = useMemo(() => new Vector3(...cameraConfig.target), [cameraConfig.target]);
@@ -238,12 +244,11 @@ function SceneRig({
 
   useEffect(() => {
     if (!isCtAtlasEnabled()) return;
-    const timer = window.setTimeout(() => preloadCtAtlas(), 1200);
-    return () => window.clearTimeout(timer);
+    preloadCtAtlas();
   }, []);
 
   useEffect(() => {
-    if (!isVisibleHumanOrganEnabled() || ctActive) return;
+    if (!isVisibleHumanOrganEnabled() || ctActive || clinicalAtlasActive) return;
 
     const visibleMeshIds = ANATOMY_MODULES.filter(
       (mod) => mod.layer === "organ" && visibleLayers.has("organ") && VISIBLE_HUMAN_ORGANS[mod.id]
@@ -258,7 +263,9 @@ function SceneRig({
     }
     const timer = window.setTimeout(preload, 600);
     return () => window.clearTimeout(timer);
-  }, [ctActive, visibleLayers]);
+  }, [clinicalAtlasActive, ctActive, visibleLayers]);
+
+  const atlasSkinLayer = clinicalAtlasActive && showSkin;
 
   return (
     <>
@@ -277,33 +284,38 @@ function SceneRig({
             selectedId={selectedId}
             highlightedId={highlightedId}
             onSelect={onSelect}
+            shading="pacs"
           />
           <NeuroConnectionRig focusStructureId={focusStructureId} />
         </>
       ) : (
         <>
           <AnatomyStudioEnvironment />
-          <ambientLight intensity={0.28} color="#c8d4e4" />
-          <directionalLight
-            position={[3.8, 8, 5]}
-            intensity={1.55}
-            castShadow
-            shadow-mapSize-width={2048}
-            shadow-mapSize-height={2048}
-            shadow-bias={-0.00012}
-            shadow-normalBias={0.022}
-            color="#fff4ea"
-          />
-          <directionalLight position={[-4.8, 3.2, -1.2]} intensity={0.38} color="#7dd3fc" />
-          <directionalLight position={[0, 2, -5.5]} intensity={0.12} color="#e0f2fe" />
-          <pointLight position={[0, 2.1, 2.4]} intensity={0.32} color="#fcd9b8" distance={7} />
-          <hemisphereLight args={["#1e293b", "#020617", 0.42]} />
+          <AnatomySceneLighting />
 
-          <CartoonStructuralLayers visibleLayers={visibleLayers} skinOn={showSkin} />
-          <CartoonNerveLayers visibleLayers={visibleLayers} skinOn={showSkin} />
+          {clinicalAtlasActive ? (
+            <CtAtlasRig
+              visibleLayers={visibleLayers}
+              systemFilter={systemFilter}
+              windowId="soft"
+              clipPlaneId={ctClipPlaneId}
+              sliceOffset={ctSliceOffset}
+              selectedId={selectedId}
+              highlightedId={highlightedId}
+              onSelect={onSelect}
+              shading="clinical"
+            />
+          ) : null}
+
+          <CartoonStructuralLayers
+            visibleLayers={visibleLayers}
+            skinOn={showSkin && !atlasSkinLayer}
+            skipVascularShell={clinicalAtlasActive}
+          />
+          <CartoonNerveLayers visibleLayers={visibleLayers} skinOn={showSkin && !atlasSkinLayer} />
           <ClickableSkeleton
             visible={visibleLayers.has("bone")}
-            skinOn={showSkin}
+            skinOn={showSkin && !atlasSkinLayer}
             selectedId={selectedId}
             highlightedId={highlightedId}
             onSelect={onSelect}
@@ -316,6 +328,7 @@ function SceneRig({
             highlightedId={highlightedId}
             onSelect={onSelect}
             skinOn={showSkin}
+            skipAtlasMeshes={clinicalAtlasActive}
           />
           <StructuralPickRig
             visibleLayers={visibleLayers}
@@ -324,7 +337,7 @@ function SceneRig({
             onSelect={onSelect}
           />
           <NeuroConnectionRig focusStructureId={focusStructureId} />
-          <CartoonBodyShell ghost={!showSkin} />
+          {!atlasSkinLayer ? <CartoonBodyShell ghost={!showSkin} /> : null}
           <AnatomyPostFX />
         </>
       )}
@@ -394,7 +407,7 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
   const [zoomLevel, setZoomLevel] = useState(1);
   const [resetToken, setResetToken] = useState(0);
   const ctActive = ctMode && isCtAtlasEnabled();
-  const clipActive = ctActive && ctClipPlaneId !== "off";
+  const clipActive = isCtAtlasEnabled() && ctClipPlaneId !== "off";
 
   useImperativeHandle(ref, () => ({
     zoomIn: () => setZoomLevel((z) => Math.min(2.2, z + 0.2)),
@@ -409,12 +422,16 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
     <div
       className={cn(
         "relative h-full w-full overflow-hidden rounded-2xl",
-        ctActive ? "bg-[#161618]" : "bg-[#080b10]",
+        ctActive ? "bg-[#161618]" : "bg-[#05080c]",
         className
       )}
     >
       <div
-        className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_120px_rgba(0,0,0,0.35)]"
+        className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(ellipse_at_50%_35%,rgba(34,211,238,0.07)_0%,transparent_52%)]"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_140px_rgba(0,0,0,0.45)]"
         aria-hidden
       />
       <Canvas
@@ -422,12 +439,12 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
           position: ctActive ? CT_CAMERA.position : CARTOON_CAMERA.position,
           fov: ctActive ? CT_CAMERA.fov : CARTOON_CAMERA.fov,
         }}
-        dpr={[1, 1.5]}
+        dpr={[1, 2.5]}
         shadows={!ctActive}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
-          gl.toneMappingExposure = ctActive ? 1 : 1.14;
+          gl.toneMappingExposure = ctActive ? 1 : 1.32;
           gl.shadowMap.enabled = !ctActive;
           if (!ctActive) gl.shadowMap.type = THREE.PCFSoftShadowMap;
         }}

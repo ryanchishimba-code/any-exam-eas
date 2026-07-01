@@ -25,6 +25,8 @@ type Props = {
   ctSliceOffset?: number;
   onCtSliceOffsetChange?: (offset: number) => void;
   showCtControls?: boolean;
+  /** MPR slice controls in default studio view (VH atlas without PACS mode). */
+  showSliceControls?: boolean;
   className?: string;
   floating?: boolean;
 };
@@ -46,6 +48,7 @@ export function AnatomyExplorerControls({
   ctSliceOffset = 0,
   onCtSliceOffsetChange,
   showCtControls = false,
+  showSliceControls = true,
   className,
   floating = true,
 }: Props) {
@@ -95,11 +98,11 @@ export function AnatomyExplorerControls({
           </ControlButton>
           {showCtControls && onCtModeChange ? (
             <ControlButton
-              label={ctMode ? "Cartoon model" : "CT atlas"}
+              label={ctMode ? "Studio 3D (clinical shading)" : "PACS greyscale (CT windowing)"}
               active={ctMode}
               onClick={() => onCtModeChange(!ctMode)}
             >
-              <span className="px-0.5 text-[11px] font-semibold">{ctMode ? "CT" : "3D"}</span>
+              <span className="px-0.5 text-[11px] font-semibold">{ctMode ? "PACS" : "3D"}</span>
             </ControlButton>
           ) : null}
         </div>
@@ -108,10 +111,10 @@ export function AnatomyExplorerControls({
           <p className="truncate text-[13px] font-medium text-[var(--color-ink)]">{selectedName}</p>
         ) : null}
 
-        {showCtControls && ctMode && onCtWindowChange && onCtClipChange ? (
+        {showCtControls && ctMode && onCtWindowChange ? (
           <details open className="border-t border-black/[0.05] px-2 pb-2 pt-2">
             <summary className="cursor-pointer text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
-              CT window & slices
+              CT window
             </summary>
             <div className="mt-2 flex flex-wrap items-center gap-2">
               {CT_WINDOW_ORDER.map((id) => (
@@ -122,7 +125,19 @@ export function AnatomyExplorerControls({
                   onClick={() => onCtWindowChange(id)}
                 />
               ))}
-              <span className="mx-1 hidden h-4 w-px bg-black/10 sm:inline" aria-hidden />
+            </div>
+          </details>
+        ) : null}
+
+        {showCtControls && showSliceControls && onCtClipChange ? (
+          <details
+            open={ctClipPlaneId !== "off"}
+            className="border-t border-black/[0.05] px-2 pb-2 pt-2"
+          >
+            <summary className="cursor-pointer text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
+              Cross-section (MPR)
+            </summary>
+            <div className="mt-2 flex flex-wrap items-center gap-2">
               {CT_CLIP_PLANES.map(({ id, label }) => (
                 <ChipButton
                   key={id}

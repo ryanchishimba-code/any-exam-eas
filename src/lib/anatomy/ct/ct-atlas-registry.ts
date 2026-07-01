@@ -129,6 +129,11 @@ export function getAtlasEntryForMeshId(meshId: string): CtAtlasOrganEntry | unde
   return CT_ATLAS_ORGANS.find((e) => entryMatchesMeshId(e, meshId));
 }
 
+/** True when the VH atlas supplies this mesh (skip procedural duplicate). */
+export function isMeshIdCoveredByAtlas(meshId: string): boolean {
+  return Boolean(getAtlasEntryForMeshId(meshId));
+}
+
 /** Mesh ids associated with an atlas GLB (primary + aliases). */
 export function meshIdsForAtlasEntry(entry: CtAtlasOrganEntry): string[] {
   return [entry.meshId, ...(entry.aliasMeshIds ?? [])];

@@ -10,11 +10,17 @@ import { getOrganDepthOrder } from "@/lib/anatomy/cartoon/organ-layout";
 import { SelectionEmissivePulse } from "@/components/anatomy/cartoon/SelectionEmissivePulse";
 import { ANATOMY_SYSTEM_COLORS, blendHexColor } from "@/lib/anatomy/system-colors";
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
+import type { TissueKind } from "@/lib/anatomy/cartoon/palette";
 import { useAnatomyPointer, useAnatomyHoverReset } from "@/components/anatomy/cartoon/AnatomyPointerProvider";
 import { isPrimaryPointerHit } from "@/lib/anatomy/cartoon/anatomy-raycast";
 import { OrganVisual, STRUCTURAL_BONE_MESH_IDS, STRUCTURAL_MUSCLE_MESH_IDS, type OrganSurfaceStyle } from "./OrganVisual";
 
 const BILATERAL_MESH_IDS = new Set(["biceps", "humerus", "femur", "tibia", "scapula"]);
+
+function layerToTissue(layer: AnatomyLayer): TissueKind {
+  if (layer === "vascular") return "vessel";
+  return layer === "skin" ? "skin" : layer;
+}
 
 function resolveOpacity(
   layer: AnatomyLayer,
@@ -110,17 +116,17 @@ function OrganMeshInstance({
     structureSystem !== systemFilter &&
     !active;
   if (systemFiltered) opacity *= 0.14;
-  if (deemphasized) opacity *= 0.34;
+  if (deemphasized) opacity *= 0.22;
   opacity *= layerFade;
 
   const nerveGlow = def.layer === "nerve";
   const emissive =
     highlighted || selected ? "#22d3ee" : hovered ? "#67e8f9" : nerveGlow ? "#fbbf24" : "#000000";
   const emissiveIntensity =
-    highlighted || selected ? 0.55 : hovered ? 0.28 : nerveGlow ? 0.28 : 0;
+    highlighted || selected ? 0.78 : hovered ? 0.36 : nerveGlow ? 0.34 : 0;
 
-  const outlineThickness = selected ? 0.024 : highlighted ? 0.018 : hovered ? 0.013 : 0;
-  const outlineColor = selected ? "#22d3ee" : highlighted ? "#67e8f9" : "#a78bfa";
+  const outlineThickness = selected ? 0.034 : highlighted ? 0.024 : hovered ? 0.016 : 0;
+  const outlineColor = selected ? "#67e8f9" : highlighted ? "#22d3ee" : "#a5f3fc";
 
   const tintedColor = useMemo(() => {
     if (def.layer !== "organ") return def.color;
@@ -139,8 +145,9 @@ function OrganMeshInstance({
       emissiveIntensity,
       outlineThickness,
       outlineColor,
+      tissue: layerToTissue(def.layer),
     }),
-    [emissive, emissiveIntensity, opacity, outlineColor, outlineThickness, tintedColor]
+    [def.layer, emissive, emissiveIntensity, opacity, outlineColor, outlineThickness, tintedColor]
   );
 
   const euler = rotation as Euler | undefined;
@@ -188,7 +195,7 @@ function OrganMeshInstance({
           position={[0, 0.75, 0]}
           style={{ pointerEvents: "none", whiteSpace: "nowrap" }}
         >
-          <span className="rounded-full border border-cyan-500/30 bg-[#0f172a]/90 px-2.5 py-1 text-[11px] font-bold text-cyan-100 shadow-[0_0_12px_rgba(34,211,238,0.25)]">
+          <span className="rounded-full border border-cyan-400/40 bg-[#0b1220]/92 px-2.5 py-1 text-[11px] font-bold text-cyan-50 shadow-[0_0_16px_rgba(34,211,238,0.35)]">
             {label}
           </span>
         </Html>

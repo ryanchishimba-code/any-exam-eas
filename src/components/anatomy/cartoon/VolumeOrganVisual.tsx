@@ -3,7 +3,7 @@
 import { useGLTF } from "@react-three/drei";
 import { Component, type ReactNode, useMemo } from "react";
 import type { Group } from "three";
-import { Box3, Mesh, MeshStandardMaterial, Vector3 } from "three";
+import { Box3, Mesh, MeshPhysicalMaterial, Vector3 } from "three";
 import type { OrganSurfaceStyle } from "@/components/anatomy/cartoon/OrganVisual";
 import { TISSUE_PBR } from "@/lib/anatomy/cartoon/palette";
 import {
@@ -34,12 +34,19 @@ class GltfLoadBoundary extends Component<
 }
 
 function tissueMaterial(style: OrganSurfaceStyle) {
-  return new MeshStandardMaterial({
+  const pbr = TISSUE_PBR.organ;
+  return new MeshPhysicalMaterial({
     color: style.color,
     emissive: style.emissive,
     emissiveIntensity: style.emissiveIntensity,
-    roughness: style.roughness ?? TISSUE_PBR.organ.roughness,
-    metalness: style.metalness ?? TISSUE_PBR.organ.metalness,
+    roughness: style.roughness ?? pbr.roughness,
+    metalness: style.metalness ?? pbr.metalness,
+    clearcoat: pbr.clearcoat,
+    clearcoatRoughness: pbr.clearcoatRoughness,
+    sheen: pbr.sheen,
+    sheenRoughness: pbr.sheenRoughness,
+    sheenColor: style.color,
+    envMapIntensity: pbr.envMapIntensity,
     transparent: style.opacity < 1,
     opacity: style.opacity,
     depthWrite: style.opacity > 0.65,
@@ -65,7 +72,9 @@ function prepareScene(scene: Group, targetSize: number, style: OrganSurfaceStyle
   const mat = tissueMaterial(style);
   clone.traverse((node) => {
     if (node instanceof Mesh) {
+      node.geometry?.computeVertexNormals();
       node.castShadow = true;
+      node.receiveShadow = true;
       node.material = mat;
     }
   });

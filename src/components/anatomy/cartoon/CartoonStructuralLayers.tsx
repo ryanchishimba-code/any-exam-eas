@@ -17,6 +17,8 @@ import { noopRaycast } from "@/lib/anatomy/cartoon/anatomy-raycast";
 type Props = {
   visibleLayers: Set<AnatomyLayer>;
   skinOn: boolean;
+  /** Hide procedural vascular shell when VH atlas supplies vasculature. */
+  skipVascularShell?: boolean;
 };
 
 function tube(from: THREE.Vector3, to: THREE.Vector3, radius: number) {
@@ -249,9 +251,13 @@ function buildVascularGeometry() {
 }
 
 /** Full-body muscle and vascular shells — bones use ClickableSkeleton. */
-export function CartoonStructuralLayers({ visibleLayers, skinOn }: Props) {
+export function CartoonStructuralLayers({
+  visibleLayers,
+  skinOn,
+  skipVascularShell = false,
+}: Props) {
   const showMuscle = visibleLayers.has("muscle");
-  const showVascular = visibleLayers.has("vascular");
+  const showVascular = visibleLayers.has("vascular") && !skipVascularShell;
 
   const muscleGeo = useMemo(() => (showMuscle ? buildMuscleGeometry() : null), [showMuscle]);
   const vascularGeo = useMemo(

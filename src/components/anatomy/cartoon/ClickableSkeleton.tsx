@@ -97,6 +97,7 @@ function BoneMesh({
           emissiveIntensity={emissiveIntensity}
           roughness={TISSUE_PBR.bone.roughness}
           metalness={TISSUE_PBR.bone.metalness}
+          tissue="bone"
         />
       </mesh>
       {hovered ? (
