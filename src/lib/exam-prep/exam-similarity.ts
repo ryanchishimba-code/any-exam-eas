@@ -4,11 +4,17 @@
  * non-overlapping answer choices, and board-level batch coherence.
  */
 import type { BankItem } from "@/lib/question-bank";
-import { clinicalCaseKey, normalizeClinicalCaseText, resolveClinicalVignetteText } from "@/lib/exam-prep/clinical-case-dedupe";
+import {
+  clinicalCaseKey,
+  normalizeClinicalCaseText,
+  resolveClinicalVignetteText,
+  sessionDedupeKey,
+} from "@/lib/exam-prep/clinical-case-dedupe";
 import { conceptKeysFor } from "@/lib/exam-prep/naplex/blueprint-selection";
 import {
   normOptionKey,
   optionChoiceSimilarity,
+  optionsFingerprint,
 } from "@/lib/questions/session-quality";
 
 const BROAD_TOPIC_SLUGS = new Set([
@@ -130,8 +136,8 @@ export function resolveExamUniquenessPolicy(
   return {
     maxPerConcept,
     optionOverlapThreshold: longExam ? 0.85 : 0.75,
-    blockOptionOverlapInSelection: requestedCount <= 25,
-    blockOptionOverlapInAudit: requestedCount <= 40,
+    blockOptionOverlapInSelection: true,
+    blockOptionOverlapInAudit: requestedCount <= 150,
   };
 }
 
@@ -240,22 +246,40 @@ export function optionsOverlapTooMuch(
   return optionChoiceSimilarity(a, b) >= threshold;
 }
 
+function optionsLookLikePlaceholders(options: string[] | undefined): boolean {
+  if (!options?.length) return true;
+  return options.every((o) => /^[A-D](?:\s|$)/i.test(o.trim()) || o.trim().length <= 2);
+}
+
+export function optionsAreIdentical(a: BankItem, b: BankItem): boolean {
+  const fa = optionsFingerprint(a.options);
+  const fb = optionsFingerprint(b.options);
+  return Boolean(fa && fa === fb);
+}
+
+/** Identical answer sets with real choice text — skips A/B/C/D test placeholders. */
+export function identicalRealOptionSets(a: BankItem, b: BankItem): boolean {
+  if (!optionsAreIdentical(a, b)) return false;
+  return !optionsLookLikePlaceholders(a.options);
+}
+
 /** True when adding candidate would violate same-exam uniqueness rules. */
 export function candidateViolatesExamRules(
   candidate: BankItem,
   selected: BankItem[],
   policy: ExamUniquenessPolicy = DEFAULT_EXAM_UNIQUENESS
 ): boolean {
-  const caseKey = clinicalCaseKey(candidate);
   const conceptKey = primaryTestedConceptKey(candidate);
 
   for (const existing of selected) {
-    if (clinicalCaseKey(existing) === caseKey) return true;
+    if (sessionDedupeKey(existing) === sessionDedupeKey(candidate)) return true;
+    if (clinicalCaseKey(existing) === clinicalCaseKey(candidate)) return true;
+    if (identicalRealOptionSets(existing, candidate)) return true;
   }
 
   if (conceptCountIn(selected, conceptKey) >= policy.maxPerConcept) return true;
 
-  if (policy.blockOptionOverlapInSelection) {
+  if (policy.blockOptionOverlapInSelection && !optionsLookLikePlaceholders(candidate.options)) {
     for (const existing of selected) {
       if (
         optionsOverlapTooMuch(candidate.options, existing.options, policy.optionOverlapThreshold)
@@ -377,12 +401,27 @@ export function auditBlockingExamSimilarityFast(
     for (let j = i + 1; j < items.length; j++) {
       const a = items[i]!;
       const b = items[j]!;
-      if (clinicalCaseKey(a) === clinicalCaseKey(b)) {
+      if (sessionDedupeKey(a) === sessionDedupeKey(b)) {
+        issues.push({
+          indexA: i,
+          indexB: j,
+          code: "duplicate_clinical_case",
+          message: `Items ${i} and ${j} are the same served question (stem/vignette/choices).`,
+        });
+      } else if (clinicalCaseKey(a) === clinicalCaseKey(b)) {
         issues.push({
           indexA: i,
           indexB: j,
           code: "duplicate_clinical_case",
           message: `Items ${i} and ${j} repeat the same clinical vignette.`,
+        });
+      }
+      if (identicalRealOptionSets(a, b)) {
+        issues.push({
+          indexA: i,
+          indexB: j,
+          code: "option_overlap",
+          message: `Items ${i} and ${j} share the same answer-choice set.`,
         });
       }
       if (conceptPairExceedsPolicy(a, b, policy)) {
@@ -480,15 +519,29 @@ export function batchPassesDiversity(items: BankItem[]): boolean {
   return examPassesSimilarityRules(items);
 }
 
-/** Dedupe items within a batch by clinical case key. */
+/** Dedupe items within a batch by served-question identity (vignette + stem + choices). */
 export function dedupeBatchItems(items: BankItem[]): BankItem[] {
   const seen = new Set<string>();
   const out: BankItem[] = [];
   for (const item of items) {
-    const key = clinicalCaseKey(item);
+    const key = sessionDedupeKey(item);
     if (seen.has(key)) continue;
     seen.add(key);
     out.push(item);
   }
   return out;
+}
+
+/** Final greedy pass — drop later items that violate same-exam uniqueness rules. */
+export function enforceExamItemUniqueness(
+  items: BankItem[],
+  requestedCount?: number
+): BankItem[] {
+  const policy = resolveExamUniquenessPolicy(requestedCount ?? items.length, items);
+  const kept: BankItem[] = [];
+  for (const item of items) {
+    if (candidateViolatesExamRules(item, kept, policy)) continue;
+    kept.push(item);
+  }
+  return kept;
 }

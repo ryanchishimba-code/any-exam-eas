@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { BankItem } from "@/lib/question-bank";
 import {
+  auditBlockingExamSimilarity,
   auditExamSimilarity,
   candidateViolatesExamRules,
   filterBatchByExamSimilarity,
@@ -89,5 +90,43 @@ describe("selectDiverseSessionBankItems with exam-engine rules", () => {
     expect(auditExamSimilarity(session).some((i) => i.code === "duplicate_tested_concept")).toBe(
       false
     );
+  });
+
+  it("includes at most one NCLEX DKA template clone per exam", () => {
+    const stem = "Which finding requires immediate nursing follow-up?";
+    const options = [
+      "fruity breath odor",
+      "deep rapid (Kussmaul) respirations and Glucose 412 mg/dL",
+      "dry mucous membranes",
+      "reports polyuria and nausea",
+    ];
+    const dka = (id: string, room: number) => ({
+      id,
+      subjectId: "med-surg",
+      question: stem,
+      vignette: `Emergency department, Room ${room}. 56-year-old man with type 2 diabetes with hyperglycemia. Long-standing type 2 diabetes; ran out of insulin 2 days ago. BP 138/84 mmHg, HR 118, RR 28 deep and labored, temp 99.1°F (37.3°C). Glucose 412 mg/dL, deep rapid (Kussmaul) respirations, fruity breath odor, dry mucous membranes, reports polyuria and nausea.`,
+      options,
+      correctAnswer: options[1]!,
+      explanation: "Kussmaul respirations with severe hyperglycemia suggest DKA.",
+    });
+
+    const pool = [
+      dka("dka-1", 548),
+      dka("dka-2", 312),
+      dka("dka-3", 401),
+      ...Array.from({ length: 20 }, (_, i) => ({
+        id: `other-${i}`,
+        subjectId: "pharmacology",
+        question: `Unique pharmacology vignette ${i} with enough detail for case separation.\nWhat is the mechanism?`,
+        options: [`Mechanism A ${i}`, `Mechanism B ${i}`, `Mechanism C ${i}`, `Mechanism D ${i}`],
+        correctAnswer: `Mechanism A ${i}`,
+        explanation: "Unique explanation.",
+      })),
+    ];
+
+    const session = selectDiverseSessionBankItems(pool, 10, { seed: 42, requestedCount: 10 });
+    const dkaInSession = session.filter((row) => row.options.join("|") === options.join("|"));
+    expect(dkaInSession).toHaveLength(1);
+    expect(auditBlockingExamSimilarity(session, 10)).toHaveLength(0);
   });
 });

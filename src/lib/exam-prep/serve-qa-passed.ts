@@ -1,7 +1,11 @@
 import type { BankItem } from "@/lib/question-bank";
-import { selectDiverseSessionBankItems } from "@/lib/exam-prep/diverse-session-selection";
+import { finalizeExamSessionItems } from "@/lib/exam-prep/finalize-exam-selection";
 
-/** Pass through QA-vetted rows with clinical-case dedupe, domain mix, and anti-cluster order. */
-export function serveQaPassedBankItems(items: BankItem[], limit: number): BankItem[] {
-  return selectDiverseSessionBankItems(items, limit, { requestedCount: limit });
+/** Pass through QA-vetted rows with cross-exam similarity guards before serve. */
+export function serveQaPassedBankItems(
+  items: BankItem[],
+  limit: number,
+  opts?: { seed?: number }
+): BankItem[] {
+  return finalizeExamSessionItems(items, limit, { requestedCount: limit, seed: opts?.seed });
 }

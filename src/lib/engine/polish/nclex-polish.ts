@@ -1208,7 +1208,7 @@ function buildRiskDistractors(
 ): [string, string, string] {
   const category = classifyRiskFindingCategory(scenario);
   const pools = RISK_STABLE_FINDING_POOLS[category] ?? RISK_STABLE_FINDING_POOLS.general;
-  const pool = pools[Math.abs(seed + 11) % pools.length]!;
+  const poolFlat = pools.flat();
   const correctNorm = normalizeFindingText(correct);
 
   const secondary = scenario.findings
@@ -1221,22 +1221,36 @@ function buildRiskDistractors(
     })
     .filter((part) => !/glucose \d+|spo[₂2]|capillary refill/i.test(part));
 
-  const candidates = [...secondary, ...pool];
-  const seen = new Set<string>([correctNorm]);
-  const picked: string[] = [];
+  const candidates: string[] = [];
+  const seenCand = new Set<string>();
+  const addCandidate = (text: string) => {
+    const norm = normalizeFindingText(text);
+    if (norm.length < 12 || seenCand.has(norm)) return;
+    seenCand.add(norm);
+    candidates.push(text);
+  };
 
-  for (const candidate of candidates) {
+  for (const part of secondary) addCandidate(part);
+  for (let i = 0; i < poolFlat.length; i++) {
+    addCandidate(poolFlat[(Math.abs(seed + i * 13) % poolFlat.length)]!);
+  }
+
+  const start = Math.abs(seed + 11) % Math.max(1, candidates.length);
+  const picked: string[] = [];
+  const seen = new Set<string>([correctNorm]);
+
+  for (let i = 0; i < candidates.length && picked.length < 3; i++) {
+    const candidate = candidates[(start + i) % candidates.length]!;
     const norm = normalizeFindingText(candidate);
-    if (seen.has(norm) || norm.length < 12) continue;
+    if (seen.has(norm)) continue;
     seen.add(norm);
     picked.push(candidate);
-    if (picked.length === 3) break;
   }
 
   while (picked.length < 3) {
     const fallback =
       RISK_STABLE_FINDING_POOLS.general[picked.length % RISK_STABLE_FINDING_POOLS.general.length]![
-        picked.length % 3
+        (Math.abs(seed) + picked.length) % 3
       ]!;
     const norm = normalizeFindingText(fallback);
     if (!seen.has(norm)) {
@@ -1272,13 +1286,33 @@ function buildRisk(scenario: NursingScenario, subjectLabel: string, seed: number
   };
 }
 
-function buildIntervention(scenario: NursingScenario, subjectLabel: string, seed: number) {
-  const correct = scenario.nursePriority;
-  const wrongs: [string, string, string] = [
+const INTERVENTION_WRONG_SETS: [string, string, string][] = [
+  [
     "Complete routine comfort measures for all other assigned clients before addressing abnormal findings",
     "Wait until the next scheduled assessment round to recheck vital signs despite acute changes",
     "Restrict all oral intake for 24 hours without provider order or further assessment",
-  ];
+  ],
+  [
+    "Document the finding and recheck at the next routine vital sign round in four hours",
+    "Reassure the client that mild changes are expected and delay provider notification",
+    "Delegate the full nursing assessment to UAP and focus on room turnover tasks",
+  ],
+  [
+    "Administer PRN acetaminophen and reevaluate after the next meal tray is delivered",
+    "Place the client supine with legs elevated and continue monitoring without notifying the provider",
+    "Hold all scheduled medications and wait for the oncoming shift to reassess priorities",
+  ],
+  [
+    "Complete discharge teaching for stable clients before addressing abnormal assessment data",
+    "Ask the client to drink extra fluids and recheck symptoms at the next shift handoff",
+    "Request the family to monitor the client overnight without RN reassessment of vital signs",
+  ],
+];
+
+function buildIntervention(scenario: NursingScenario, subjectLabel: string, seed: number) {
+  const correct = scenario.nursePriority;
+  const wrongs =
+    INTERVENTION_WRONG_SETS[Math.abs(seed + 5) % INTERVENTION_WRONG_SETS.length]!;
   const slot = Math.abs(seed + 6) % 4;
   const vignette = [
     `${scenario.setting}, ${roomLabel(seed)}. ${describeClient(scenario.age, scenario.sex)} with ${scenario.dx}.`,

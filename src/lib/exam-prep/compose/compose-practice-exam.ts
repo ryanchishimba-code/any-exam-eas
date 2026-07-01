@@ -13,8 +13,9 @@ import type { BankItem } from "@/lib/question-bank";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
 import { gatherTimedExamBankItems } from "@/lib/questions/timed-exam-sampling";
 import { QUESTION_BANK_SAMPLE_MAX_PULL } from "@/lib/question-bank-db";
-import { auditExamSimilarity } from "@/lib/exam-prep/exam-similarity";
-import { dedupeItemsByClinicalCase, selectDiverseSessionBankItems } from "@/lib/exam-prep/diverse-session-selection";
+import { dedupeItemsByClinicalCase, sessionDedupeKey } from "@/lib/exam-prep/diverse-session-selection";
+import { auditExamSimilarity, enforceExamItemUniqueness } from "@/lib/exam-prep/exam-similarity";
+import { finalizeExamSessionItems } from "@/lib/exam-prep/finalize-exam-selection";
 import { sequenceItems } from "@/lib/exam-prep/sequencing/anti-cluster-sequencer";
 import type {
   SequenceItem,
@@ -39,11 +40,11 @@ import {
   PROGRESSIVE_COMPOSE_TIERS,
   minQuestionsForTier,
   padToMinimum,
-  resolveTierUniquenessPolicy,
   sessionMeetsTierFill,
   startingTierIndex,
   tierByIndex,
   trimToRequested,
+  userFacingComposeTiers,
 } from "@/lib/exam-prep/progressive-compose";
 
 export type ComposeOutputFormat =
@@ -171,14 +172,20 @@ export type ProgressiveComposeResult = {
 
 export async function composePracticeExamProgressive(
   examSlug: string,
-  params: ComposeExamParams & { failedStreak?: number; examsComposed?: number }
+  params: ComposeExamParams & {
+    failedStreak?: number;
+    examsComposed?: number;
+    /** Override tier ladder (e.g. NCLEX strict-only for live exams). */
+    tiers?: ProgressiveComposeTier[];
+  }
 ): Promise<ProgressiveComposeResult | null> {
   const config = resolveExamComposeConfig(examSlug);
   if (!config) throw new Error(`Unknown exam slug "${examSlug}".`);
 
+  const tiers = params.tiers ?? userFacingComposeTiers(config.fieldId);
   const start = startingTierIndex(params.failedStreak ?? 0, params.examsComposed ?? 0);
-  for (let tierIndex = start; tierIndex < PROGRESSIVE_COMPOSE_TIERS.length; tierIndex++) {
-    const tier = PROGRESSIVE_COMPOSE_TIERS[tierIndex]!;
+  for (let tierIndex = start; tierIndex < tiers.length; tierIndex++) {
+    const tier = tiers[tierIndex]!;
     const result = await composeForConfigWithTier(config, params, tier);
     if (result) return { ...result, tierIndex };
   }
@@ -231,8 +238,6 @@ async function composeForConfigWithTier(
 
   if (pool.length < minCount) return null;
 
-  const policy = resolveTierUniquenessPolicy(numQuestions, pool, tier);
-
   const { items: blueprintSelected, summary } = selectBlueprintBalancedSet(pool, blueprint, {
     numQuestions,
     focusAreas: params.focusAreas,
@@ -246,21 +251,23 @@ async function composeForConfigWithTier(
 
   let selected: BankItem[];
   if (tier.useDiverseSelection) {
-    selected = selectDiverseSessionBankItems(casePool, numQuestions, {
+    selected = finalizeExamSessionItems(casePool, numQuestions, {
       seed,
       requestedCount: numQuestions,
-      uniquenessPolicy: policy,
     });
   } else {
     selected = shuffleWithSeed(casePool, seed).slice(0, numQuestions);
   }
 
-  const usedInExam = new Set(selected.map((i) => i.id).filter(Boolean) as string[]);
-  selected = padToMinimum(selected, pool, minCount, usedInExam);
+  const usedInExam = new Set(selected.map((i) => sessionDedupeKey(i)));
+  selected = padToMinimum(selected, pool, minCount, usedInExam, sessionDedupeKey);
 
   if (!sessionMeetsTierFill(selected.length, numQuestions, tier)) return null;
 
-  const finalItems = trimToRequested(selected, numQuestions);
+  let finalItems = trimToRequested(selected, numQuestions);
+  finalItems = enforceExamItemUniqueness(finalItems, numQuestions);
+
+  if (!sessionMeetsTierFill(finalItems.length, numQuestions, tier)) return null;
 
   const { ordered, report } = sequenceItems(
     finalItems,

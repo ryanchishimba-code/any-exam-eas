@@ -23,6 +23,25 @@ export type ProgressiveComposeTier = {
   maxPerConceptBoost: number;
 };
 
+/** NCLEX user-facing exams — strict board bar only; no relaxed/fill tiers. */
+export const NCLEX_USER_FACING_COMPOSE_TIERS: ProgressiveComposeTier[] = [
+  {
+    id: "strict",
+    label: "Strict board bar",
+    minFillRatio: 1,
+    allowCrossExamReuse: false,
+    dedupeClinicalCases: true,
+    useDiverseSelection: true,
+    useRelaxedGate: false,
+    maxPerConceptBoost: 0,
+  },
+];
+
+export function userFacingComposeTiers(fieldId: string): ProgressiveComposeTier[] {
+  if (fieldId === "nursing") return NCLEX_USER_FACING_COMPOSE_TIERS;
+  return PROGRESSIVE_COMPOSE_TIERS;
+}
+
 export const PROGRESSIVE_COMPOSE_TIERS: ProgressiveComposeTier[] = [
   {
     id: "strict",
@@ -89,8 +108,8 @@ export function resolveTierUniquenessPolicy(
   return {
     ...base,
     maxPerConcept: base.maxPerConcept + tier.maxPerConceptBoost,
-    blockOptionOverlapInSelection: tier.id === "strict" && requested <= 25,
-    blockOptionOverlapInAudit: tier.id === "strict" && requested <= 40,
+    blockOptionOverlapInSelection: tier.id !== "fill",
+    blockOptionOverlapInAudit: tier.id !== "fill",
   };
 }
 

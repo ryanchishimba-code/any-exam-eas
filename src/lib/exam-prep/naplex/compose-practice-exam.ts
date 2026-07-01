@@ -13,7 +13,8 @@ import { gatherTimedExamBankItems } from "@/lib/questions/timed-exam-sampling";
 import { naplexItemPassesTimedExamGate } from "@/lib/exam-prep/naplex-serve-gate";
 import { QUESTION_BANK_SAMPLE_MAX_PULL } from "@/lib/question-bank-db";
 import { auditExamSimilarity } from "@/lib/exam-prep/exam-similarity";
-import { dedupeItemsByClinicalCase, selectDiverseSessionBankItems } from "@/lib/exam-prep/diverse-session-selection";
+import { dedupeItemsByClinicalCase } from "@/lib/exam-prep/diverse-session-selection";
+import { finalizeExamSessionItems } from "@/lib/exam-prep/finalize-exam-selection";
 import { sequenceItems } from "@/lib/exam-prep/sequencing/anti-cluster-sequencer";
 import type { SequenceItem, SequencingConfig, SequencingReport } from "@/lib/exam-prep/sequencing/types";
 import {
@@ -228,7 +229,7 @@ export async function composeNaplexPracticeExam(
         })();
 
   const caseUnique = dedupeItemsByClinicalCase(rebalanced);
-  const selected = selectDiverseSessionBankItems(caseUnique, numQuestions, {
+  const selected = finalizeExamSessionItems(caseUnique, numQuestions, {
     seed,
     requestedCount: numQuestions,
   });

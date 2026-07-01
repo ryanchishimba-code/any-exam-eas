@@ -30,7 +30,7 @@ describe("resolveExamUniquenessPolicy", () => {
     );
     const policy = resolveExamUniquenessPolicy(135, pool);
     expect(policy.maxPerConcept).toBeGreaterThanOrEqual(2);
-    expect(policy.blockOptionOverlapInSelection).toBe(false);
+    expect(policy.blockOptionOverlapInSelection).toBe(true);
   });
 
   it("still blocks duplicate clinical cases under relaxed policy", () => {

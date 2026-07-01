@@ -16,8 +16,9 @@ import {
 } from "@/lib/exam-prep/exam-similarity";
 import {
   dedupeItemsByClinicalCase,
-  selectDiverseSessionBankItems,
+  sessionDedupeKey,
 } from "@/lib/exam-prep/diverse-session-selection";
+import { finalizeExamSessionItems } from "@/lib/exam-prep/finalize-exam-selection";
 import {
   type ComposedExam,
 } from "@/lib/exam-prep/compose/compose-practice-exam";
@@ -186,19 +187,23 @@ function composeFromPool(
     .map((r) => `${r.domainLabel} (−${r.shortfall})`);
 
   const caseUnique = dedupeItemsByClinicalCase(blueprintSelected);
-  let selected = selectDiverseSessionBankItems(caseUnique, numQuestions, {
+  let selected = finalizeExamSessionItems(caseUnique, numQuestions, {
     seed,
     requestedCount: numQuestions,
   });
 
   if (selected.length < numQuestions) {
-    const used = new Set(selected.map((i) => i.id).filter(Boolean));
-    const spare = pool.filter((i) => i.id && !used.has(i.id));
-    const extra = selectDiverseSessionBankItems(spare, numQuestions - selected.length, {
+    const used = new Set(selected.map((i) => sessionDedupeKey(i)));
+    const spare = pool.filter((i) => !used.has(sessionDedupeKey(i)));
+    const extra = finalizeExamSessionItems(spare, numQuestions - selected.length, {
       seed: seed ^ 0xdeadbeef,
       requestedCount: numQuestions,
     });
     selected = [...selected, ...extra].slice(0, numQuestions);
+    selected = finalizeExamSessionItems(selected, numQuestions, {
+      seed: seed ^ 0xcafe,
+      requestedCount: numQuestions,
+    });
   }
 
   const { ordered } = sequenceItems(
@@ -301,22 +306,23 @@ function selfHealSelection(
     });
   }
 
-  const usedIds = new Set(kept.map((i) => i.id).filter(Boolean) as string[]);
-  const spare = pool.filter((i) => i.id && !usedIds.has(i.id));
+  const usedKeys = new Set(kept.map((i) => sessionDedupeKey(i)));
+  const spare = pool.filter((i) => !usedKeys.has(sessionDedupeKey(i)));
   const need = requested - kept.length;
   if (need <= 0) return kept.slice(0, requested);
 
   const policy = resolveExamUniquenessPolicy(requested, pool);
-  const additions = selectDiverseSessionBankItems(spare, need, {
+  const additions = finalizeExamSessionItems(spare, need, {
     seed,
     requestedCount: requested,
   });
   const merged = [...kept];
   for (const item of additions) {
-    if (!item.id || usedIds.has(item.id)) continue;
+    const key = sessionDedupeKey(item);
+    if (usedKeys.has(key)) continue;
     if (candidateViolatesExamRules(item, merged, policy)) continue;
     merged.push(item);
-    usedIds.add(item.id);
+    usedKeys.add(key);
     fixes.push({
       code: "backfill",
       message: `Added replacement item ${item.id}.`,

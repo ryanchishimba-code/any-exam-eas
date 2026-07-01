@@ -196,6 +196,21 @@ describe("nclex-polish", () => {
     expect(item.correctAnswer).toMatch(/intake and output/i);
   });
 
+  it("risk polish varies distractors by seed for the same scenario template", () => {
+    const genericRisk: BankItem = {
+      subjectId: "reduction-risk",
+      question: "Which finding requires immediate nursing follow-up?",
+      options: ["A", "B", "C", "D"],
+      correctAnswer: "A",
+      explanation: "Short",
+    };
+
+    const a = polishNclexBankItem(genericRisk, "reduction-risk", "Reduction of Risk Potential", 12).item;
+    const b = polishNclexBankItem(genericRisk, "reduction-risk", "Reduction of Risk Potential", 97).item;
+
+    expect(a.options.sort().join("|")).not.toBe(b.options.sort().join("|"));
+  });
+
   it("risk polish avoids templated urine/pain/temperature distractors", () => {
     const genericRisk: BankItem = {
       subjectId: "reduction-risk",

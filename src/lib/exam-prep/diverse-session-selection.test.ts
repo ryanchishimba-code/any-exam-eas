@@ -27,16 +27,35 @@ function item(
 }
 
 describe("dedupeItemsByClinicalCase", () => {
-  it("keeps one standalone item per shared vignette cluster", () => {
-    const shared = "Male with crushing chest pain and diaphoresis in the ED.";
+  it("keeps one standalone item per shared vignette cluster when stem and choices match", () => {
+    const shared = "Male with crushing chest pain and diaphoresis in the ED with enough detail.";
+    const stem = "Which finding requires immediate nursing follow-up?";
+    const options = ["ST elevation", "Crackles", "Bradycardia", "Polyuria"];
     const pool = [
-      item("a1", "med-surg", "Which action first?", shared),
-      item("a2", "med-surg", "Which medication next?", shared),
+      item("a1", "med-surg", stem, shared, options),
+      item("a2", "med-surg", stem, `${shared} Room 402.`, options),
       item("b1", "renal", "Best fluid?", "Oliguria after major surgery"),
     ];
     const deduped = dedupeItemsByClinicalCase(pool);
     expect(deduped).toHaveLength(2);
     expect(deduped.map((row) => row.id).sort()).toEqual(["a1", "b1"]);
+  });
+
+  it("collapses template NCLEX items with identical answer sets", () => {
+    const stem = "Which finding requires immediate nursing follow-up?";
+    const options = [
+      "fruity breath odor",
+      "deep rapid (Kussmaul) respirations and Glucose 412 mg/dL",
+      "dry mucous membranes",
+      "reports polyuria and nausea",
+    ];
+    const pool = [
+      item("a", "med-surg", stem, "Emergency department, Room 548. DKA vignette with enough detail.", options),
+      item("b", "med-surg", stem, "Emergency department, Room 312. Different room same DKA template.", options),
+      item("c", "med-surg", "Which intervention first?", "Unique COPD vignette with wheezing.", ["A", "B", "C", "D"]),
+    ];
+    const deduped = dedupeItemsByClinicalCase(pool);
+    expect(deduped.map((row) => row.id).sort()).toEqual(["a", "c"]);
   });
 });
 
@@ -84,10 +103,22 @@ describe("selectDiverseSessionBankItems", () => {
     const stemB = "Which finding should the nurse report immediately?";
     const pool = [
       ...Array.from({ length: 8 }, (_, i) =>
-        item(`a-${i}`, "med-surg", stemA, `Unique med-surg vignette ${i}`)
+        item(
+          `a-${i}`,
+          "med-surg",
+          stemA,
+          `Unique med-surg vignette ${i} with enough clinical detail.`,
+          [`Option A${i}`, `Option B${i}`, `Option C${i}`, `Option D${i}`]
+        )
       ),
       ...Array.from({ length: 8 }, (_, i) =>
-        item(`b-${i}`, "pharmacology-nursing", stemB, `Unique pharm vignette ${i}`)
+        item(
+          `b-${i}`,
+          "pharmacology-nursing",
+          stemB,
+          `Unique pharm vignette ${i} with enough clinical detail.`,
+          [`Option A${i}`, `Option B${i}`, `Option C${i}`, `Option D${i}`]
+        )
       ),
     ];
     const diverse = selectDiverseSessionBankItems(pool, 6, { seed: 7 });

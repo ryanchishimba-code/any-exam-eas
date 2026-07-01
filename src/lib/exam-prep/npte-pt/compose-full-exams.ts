@@ -10,6 +10,9 @@ import {
   assertExamSessionReady,
   resolveExamBankSampleCount,
 } from "@/lib/questions/finalize-exam-session";
+import { dedupeItemsByClinicalCase, sessionDedupeKey } from "@/lib/exam-prep/diverse-session-selection";
+import { finalizeExamSessionItems } from "@/lib/exam-prep/finalize-exam-selection";
+import { enforceExamItemUniqueness } from "@/lib/exam-prep/exam-similarity";
 import { timedExamGatePairForField } from "@/lib/exam-prep/exam-fill-gates";
 import {
   PROGRESSIVE_COMPOSE_TIERS,
@@ -86,10 +89,23 @@ export async function composeNptePtFullExamSet(params: {
             continue;
           }
 
-          let slice = gathered.slice(0, questionCount);
-          const usedInExam = new Set(slice.map((i) => itemDedupeKey(i)));
-          slice = padToMinimum(slice, gathered, minCount, usedInExam, itemDedupeKey);
+          let slice: BankItem[];
+          if (tier.useDiverseSelection) {
+            const casePool = tier.dedupeClinicalCases
+              ? dedupeItemsByClinicalCase(gathered)
+              : gathered;
+            slice = finalizeExamSessionItems(casePool, questionCount, {
+              seed: examNumber * 9973 + attempt + tierIdx * 101,
+              requestedCount: questionCount,
+            });
+          } else {
+            slice = gathered.slice(0, questionCount);
+          }
+
+          const usedInExam = new Set(slice.map((i) => sessionDedupeKey(i)));
+          slice = padToMinimum(slice, gathered, minCount, usedInExam, sessionDedupeKey);
           slice = trimToRequested(slice, questionCount);
+          slice = enforceExamItemUniqueness(slice, questionCount);
 
           if (!sessionMeetsTierFill(slice.length, questionCount, tier)) {
             lastError = new Error(

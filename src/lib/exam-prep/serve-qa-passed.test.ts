@@ -12,12 +12,12 @@ const item = (q: string, id?: string): BankItem => ({
 });
 
 describe("serveQaPassedBankItems", () => {
-  it("dedupes by id and stem", () => {
+  it("dedupes identical served questions (same stem and placeholder choices)", () => {
     const out = serveQaPassedBankItems(
       [item("Same stem?", "a"), item("Same stem?", "b"), item("Other?")],
       5
     );
-    expect(out).toHaveLength(3);
+    expect(out).toHaveLength(2);
   });
 
   it("respects limit", () => {

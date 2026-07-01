@@ -21,7 +21,7 @@ import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
 import {
   applyStemCap,
   buildRankedRow,
-  pickBestPerClinicalCase,
+  pickBestPerSessionDedupeKey,
   summarizeDedupe,
   type RankedBankRow,
 } from "../src/lib/exam-prep/clinical-case-dedupe";
@@ -52,7 +52,7 @@ const FIELD_SPECS: Record<string, FieldSpec> = {
   nursing: {
     fieldId: "nursing",
     label: "NCLEX",
-    defaultStemCap: 80,
+    defaultStemCap: 3,
     rank: (item, source) => {
       const verdict = assessNclexItemQuality(item, { source });
       const serveReady = nclexBankItemIsServeReady(item, { source });
@@ -267,13 +267,13 @@ async function trimField(
   const allRows = await loadActiveRows(fieldId);
   console.log(`  active rows scanned: ${allRows.length}`);
 
-  const casePass = pickBestPerClinicalCase(allRows);
+  const casePass = pickBestPerSessionDedupeKey(allRows);
   let keep = casePass.keep;
   let retire = [...casePass.retire];
 
   const afterCase = summarizeDedupe(allRows.length, keep, retire);
   console.log(
-    `  after case dedupe: keep ${afterCase.kept}, retire ${afterCase.retired} (${afterCase.uniqueClinicalCases} unique cases)`
+    `  after session dedupe (vignette + stem + choices): keep ${afterCase.kept}, retire ${afterCase.retired} (${afterCase.uniqueClinicalCases} unique keys)`
   );
 
   if (stemCap > 0) {

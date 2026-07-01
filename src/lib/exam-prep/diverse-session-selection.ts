@@ -1,6 +1,6 @@
 import type { BankItem } from "@/lib/question-bank";
 import { dedupeBankItemsById } from "@/lib/question-bank-db";
-import { clinicalCaseKey } from "@/lib/exam-prep/clinical-case-dedupe";
+import { clinicalCaseKey, sessionDedupeKey } from "@/lib/exam-prep/clinical-case-dedupe";
 import {
   candidateViolatesExamRules,
   primaryTestedConceptKey,
@@ -11,7 +11,7 @@ import { conceptKeysFor } from "@/lib/exam-prep/naplex/blueprint-selection";
 import { sequenceItems } from "@/lib/exam-prep/sequencing/anti-cluster-sequencer";
 import type { SequenceItem } from "@/lib/exam-prep/sequencing/types";
 
-export { clinicalCaseKey } from "@/lib/exam-prep/clinical-case-dedupe";
+export { clinicalCaseKey, sessionDedupeKey } from "@/lib/exam-prep/clinical-case-dedupe";
 
 export type DiverseSessionOptions = {
   seed?: number;
@@ -58,7 +58,7 @@ export function sessionDomainFor(item: BankItem): string {
   );
 }
 
-/** One standalone item per clinical case; preserve sequential NGN blocks. */
+/** One item per session dedupe key (vignette + stem + choices; template stems ignore vignette). */
 export function dedupeItemsByClinicalCase(items: BankItem[]): BankItem[] {
   const sequentialBySet = new Map<string, BankItem[]>();
   const standaloneSeen = new Set<string>();
@@ -73,7 +73,7 @@ export function dedupeItemsByClinicalCase(items: BankItem[]): BankItem[] {
       continue;
     }
 
-    const key = clinicalCaseKey(item);
+    const key = sessionDedupeKey(item);
     if (standaloneSeen.has(key)) continue;
     standaloneSeen.add(key);
     out.push(item);
@@ -147,7 +147,7 @@ function roundRobinByDomain(
   const canTake = (candidate: BankItem, allowStemReuse: boolean) => {
     if (acceptCandidate && !acceptCandidate(candidate, selected)) return false;
     if (candidateViolatesExamRules(candidate, selected, policy)) return false;
-    const caseKey = clinicalCaseKey(candidate);
+    const caseKey = sessionDedupeKey(candidate);
     if (usedCases.has(caseKey)) return false;
     const conceptKey = primaryTestedConceptKey(candidate);
     if (policy.maxPerConcept <= 1 && usedConcepts.has(conceptKey)) return false;
@@ -158,7 +158,7 @@ function roundRobinByDomain(
 
   const take = (candidate: BankItem) => {
     selected.push(candidate);
-    usedCases.add(clinicalCaseKey(candidate));
+    usedCases.add(sessionDedupeKey(candidate));
     usedConcepts.add(primaryTestedConceptKey(candidate));
     usedStems.add(normalizeStem(candidate.question));
   };
@@ -209,6 +209,25 @@ function roundRobinByDomain(
   return selected;
 }
 
+function fillSessionToLimit(
+  selected: BankItem[],
+  pool: BankItem[],
+  cap: number,
+  policy: ExamUniquenessPolicy,
+  acceptCandidate?: DiverseSessionOptions["acceptCandidate"]
+): BankItem[] {
+  if (selected.length >= cap) return selected.slice(0, cap);
+
+  const out = [...selected];
+  for (const item of pool) {
+    if (out.length >= cap) break;
+    if (candidateViolatesExamRules(item, out, policy)) continue;
+    if (acceptCandidate && !acceptCandidate(item, out)) continue;
+    out.push(item);
+  }
+  return out.slice(0, cap);
+}
+
 /**
  * Pick a diverse session slice, then anti-cluster delivery order so similar
  * vignettes, domains, and answer keys do not appear back-to-back.
@@ -228,14 +247,7 @@ export function selectDiverseSessionBankItems(
     resolveExamUniquenessPolicy(opts.requestedCount ?? cap, pool);
 
   const selected = roundRobinByDomain(pool, cap, seed, policy, opts.acceptCandidate);
-  const base =
-    selected.length >= cap
-      ? selected
-      : (() => {
-          const picked = new Set(selected.map((i) => i.id ?? clinicalCaseKey(i)));
-          const remainder = pool.filter((i) => !picked.has(i.id ?? clinicalCaseKey(i)));
-          return [...selected, ...remainder].slice(0, cap);
-        })();
+  const base = fillSessionToLimit(selected, pool, cap, policy, opts.acceptCandidate);
   const { ordered } = sequenceItems(
     base,
     toSequenceItem,
