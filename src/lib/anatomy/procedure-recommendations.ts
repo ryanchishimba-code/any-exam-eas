@@ -1,4 +1,7 @@
 import type { ExamSlug } from "@/types/edtech";
+import { getAnatomyStructure } from "@/lib/anatomy";
+import { isStructureRenderableInCtAtlas, resolveCtViewportStructureId } from "@/lib/anatomy/ct/ct-atlas-coverage";
+import { isCtAtlasEnabled } from "@/lib/anatomy/ct/ct-windows";
 import { getHighYieldProcedures, getProcedureById } from "./procedures";
 
 const EXAM_FEATURED_PROCEDURE_IDS: Record<ExamSlug, string[]> = {
@@ -36,6 +39,14 @@ export function getDefaultProcedureTourIdForExam(examSlug: ExamSlug): string {
 export function getPrimaryStructureIdForProcedure(procedureId: string): string | null {
   const proc = getProcedureById(procedureId);
   if (!proc) return null;
+  const candidates = [...(proc.subregionIds ?? []), ...proc.structureIds];
+  if (isCtAtlasEnabled()) {
+    for (const id of candidates) {
+      const resolved = resolveCtViewportStructureId(id);
+      const structure = getAnatomyStructure(resolved);
+      if (structure && isStructureRenderableInCtAtlas(structure)) return resolved;
+    }
+  }
   return proc.subregionIds?.[0] ?? proc.structureIds[0] ?? null;
 }
 

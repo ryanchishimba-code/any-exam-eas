@@ -1,7 +1,19 @@
-import type { Object3D } from "three";
+import type { Mesh, Object3D } from "three";
 import { Box3, Plane, Vector3 } from "three";
 import { FIGURE } from "@/lib/anatomy/cartoon/proportions";
 import type { CtClipPlaneId } from "./ct-atlas-registry";
+
+function atlasBoundingBox(root: Object3D): Box3 {
+  root.updateMatrixWorld(true);
+  let skinBox: Box3 | null = null;
+  root.traverse((node) => {
+    const mesh = node as Mesh;
+    if (!mesh.isMesh || mesh.userData.atlasOrganId !== "skin") return;
+    const box = new Box3().setFromObject(mesh);
+    if (!box.isEmpty()) skinBox = box;
+  });
+  return skinBox ?? new Box3().setFromObject(root);
+}
 
 /** Fit Visible Human atlas (shared VH coords) into the FIGURE scene box. */
 export function fitVisibleHumanAtlas(root: Object3D) {
@@ -10,8 +22,7 @@ export function fitVisibleHumanAtlas(root: Object3D) {
   const targetHeight = crownY - floorY;
   const targetCenterY = (crownY + floorY) / 2;
 
-  root.updateMatrixWorld(true);
-  const box = new Box3().setFromObject(root);
+  const box = atlasBoundingBox(root);
   const size = new Vector3();
   const center = new Vector3();
   box.getSize(size);

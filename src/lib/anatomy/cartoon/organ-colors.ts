@@ -51,6 +51,7 @@ export const ORGAN_MESH_COLORS: Record<string, string> = {
   "adrenal-glands": ORGAN_COLORS.adrenal,
   bladder: ORGAN_COLORS.bladder,
   prostate: ORGAN_COLORS.prostate,
+  pelvis: ORGAN_COLORS.boneAccent,
   "spinal-cord": ORGAN_COLORS.nerve,
   "carotid-artery": ORGAN_COLORS.artery,
   aorta: "#B5179E",

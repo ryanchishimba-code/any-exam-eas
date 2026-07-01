@@ -286,6 +286,25 @@ const CORE_ANATOMY_STRUCTURES: AnatomyStructure[] = [
     keywords: ["urinary", "trigone", "retention", "hematuria"],
   },
   {
+    id: "pelvis",
+    name: "Pelvis",
+    system: "skeletal",
+    layer: "bone",
+    description:
+      "Bony ring formed by the two hip bones (innominates), sacrum, and coccyx. Supports the trunk and transmits weight to the lower limbs.",
+    clinicalFacts: [
+      "Open-book pelvic fracture can cause life-threatening hemorrhage — bind and resuscitate early",
+      "Acetabulum articulates with femoral head — posterior hip dislocation risks sciatic nerve injury",
+      "Pubic symphysis and sacroiliac joints allow limited motion during childbirth and gait",
+    ],
+    pathologies: ["Pelvic fracture", "Hip dislocation", "Osteitis pubis"],
+    highYield: true,
+    memoryCardIds: [],
+    practiceTopicSlug: "anatomy",
+    meshId: "pelvis",
+    keywords: ["hip", "innominate", "acetabulum", "sacrum"],
+  },
+  {
     id: "femur",
     name: "Femur",
     system: "skeletal",

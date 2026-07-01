@@ -2,7 +2,7 @@
 
 import { useGLTF } from "@react-three/drei";
 import { Html } from "@react-three/drei";
-import { Component, type ReactNode, useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { Component, type ReactNode, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { Group, Mesh, Plane } from "three";
 import { DoubleSide, MeshBasicMaterial } from "three";
 import {
@@ -18,7 +18,7 @@ import { fitAllenBrainToAtlas, fitAllenBrainToFigure } from "@/lib/anatomy/ct/br
 import {
   CT_ORGAN_HU,
   CT_WINDOWS,
-  huToHex,
+  blendHuTintHex,
   type CtWindowId,
 } from "@/lib/anatomy/ct/ct-windows";
 import { getNeuroConnectedStructureIds } from "@/lib/anatomy/neuro-connections";
@@ -61,6 +61,45 @@ class GltfLoadBoundary extends Component<
   }
 }
 
+function buildOrganMaterial(opts: {
+  entry: CtAtlasOrganEntry;
+  windowId: CtWindowId;
+  hu: number;
+  tintColor: string;
+  emphasized: boolean;
+  selected: boolean;
+  dimmed: boolean;
+  clippingPlanes: Plane[];
+  shading: AtlasShading;
+}) {
+  const { entry, windowId, hu, tintColor, emphasized, selected, dimmed, clippingPlanes, shading } = opts;
+  const window = CT_WINDOWS[windowId];
+  const opacity = entry.opacity ?? (entry.layer === "skin" ? 0.18 : 0.98);
+
+  if (shading === "clinical") {
+    return createClinicalOrganMaterial({
+      entry,
+      tintColor,
+      emphasized,
+      selected,
+      dimmed,
+      clippingPlanes,
+    });
+  }
+
+  const tintWeight = entry.layer === "skin" ? 0.08 : entry.layer === "bone" ? 0.22 : 0.42;
+  const baseColor = emphasized ? "#ddd6fe" : blendHuTintHex(hu, tintColor, window, tintWeight);
+
+  return new MeshBasicMaterial({
+    color: baseColor,
+    transparent: opacity < 1 || dimmed,
+    opacity: dimmed ? opacity * 0.38 : opacity,
+    depthWrite: opacity > 0.5 && !dimmed,
+    side: entry.layer === "skin" ? DoubleSide : undefined,
+    clippingPlanes,
+  });
+}
+
 function CtAtlasOrganMeshInner({
   entry,
   url,
@@ -71,7 +110,7 @@ function CtAtlasOrganMeshInner({
   selected,
   dimmed,
   onPick,
-  onLoaded,
+  onGeometryReady,
   headAnchored = false,
   deferHeadFit = false,
   shading = "pacs",
@@ -85,13 +124,14 @@ function CtAtlasOrganMeshInner({
   selected: boolean;
   dimmed: boolean;
   onPick: () => void;
-  onLoaded: () => void;
+  onGeometryReady: () => void;
   headAnchored?: boolean;
   deferHeadFit?: boolean;
   shading?: AtlasShading;
 }) {
   const [hovered, setHovered] = useState(false);
   const emphasized = highlighted || selected || hovered;
+  const geometryReady = useRef(false);
   const { setHovering } = useAnatomyPointer();
 
   const clearHover = useCallback(() => {
@@ -108,77 +148,59 @@ function CtAtlasOrganMeshInner({
     return getAnatomyStructureByMeshId(entry.meshId)?.name ?? entry.meshId;
   }, [entry]);
   const { scene } = useGLTF(url);
-  const window = CT_WINDOWS[windowId];
   const hu = CT_ORGAN_HU[entry.id] ?? CT_ORGAN_HU[entry.meshId] ?? 40;
+  const tintColor =
+    getAnatomyModule(entry.meshId)?.color ??
+    ORGAN_MESH_COLORS[entry.meshId] ??
+    ORGAN_MESH_COLORS[entry.id] ??
+    "#9ca3af";
 
-  const prepared = useMemo(() => {
+  const meshRoot = useMemo(() => {
     const clone = scene.clone(true);
     if (headAnchored && !deferHeadFit) fitAllenBrainToFigure(clone);
-
-    const mod = getAnatomyModule(entry.meshId);
-    const tintColor =
-      mod?.color ?? ORGAN_MESH_COLORS[entry.meshId] ?? ORGAN_MESH_COLORS[entry.id] ?? "#9ca3af";
-
-    const mat =
-      shading === "clinical"
-        ? createClinicalOrganMaterial({
-            entry,
-            tintColor,
-            emphasized,
-            selected,
-            dimmed,
-            clippingPlanes,
-          })
-        : (() => {
-            const baseColor = huToHex(hu, window);
-            const opacity = entry.opacity ?? (entry.layer === "skin" ? 0.18 : 0.98);
-            return new MeshBasicMaterial({
-              color: emphasized ? "#ddd6fe" : baseColor,
-              transparent: opacity < 1 || dimmed,
-              opacity: dimmed ? opacity * 0.38 : opacity,
-              depthWrite: opacity > 0.5 && !dimmed,
-              side: entry.layer === "skin" ? DoubleSide : undefined,
-              clippingPlanes,
-            });
-          })();
 
     clone.traverse((node) => {
       if ((node as Mesh).isMesh) {
         const mesh = node as Mesh;
         mesh.geometry?.computeVertexNormals();
-        mesh.castShadow = shading === "clinical";
-        mesh.receiveShadow = shading === "clinical";
-        mesh.material = mat;
         mesh.userData.atlasOrganId = entry.id;
         mesh.userData.meshId = entry.meshId;
       }
     });
     return clone;
-  }, [
-    scene,
-    entry,
-    windowId,
-    window,
-    hu,
-    emphasized,
-    selected,
-    dimmed,
-    clippingPlanes,
-    headAnchored,
-    deferHeadFit,
-    shading,
-  ]);
+  }, [scene, entry.id, entry.meshId, headAnchored, deferHeadFit]);
 
   useLayoutEffect(() => {
-    onLoaded();
-  }, [prepared, onLoaded]);
+    if (geometryReady.current) return;
+    geometryReady.current = true;
+    onGeometryReady();
+  }, [meshRoot, onGeometryReady]);
+
+  useEffect(() => {
+    const material = buildOrganMaterial({
+      entry,
+      windowId,
+      hu,
+      tintColor,
+      emphasized,
+      selected,
+      dimmed,
+      clippingPlanes,
+      shading,
+    });
+    meshRoot.traverse((node) => {
+      if ((node as Mesh).isMesh) {
+        (node as Mesh).material = material;
+      }
+    });
+  }, [meshRoot, entry, windowId, hu, tintColor, emphasized, selected, dimmed, clippingPlanes, shading]);
 
   if (!visible) return null;
 
   return (
     <group>
       <primitive
-        object={prepared}
+        object={meshRoot}
         onClick={(e: ThreeEvent<MouseEvent>) => {
           if (!isPrimaryPointerHit(e)) return;
           e.stopPropagation();
@@ -220,7 +242,7 @@ function CtAtlasOrganMesh({
   selected,
   dimmed,
   onPick,
-  onLoaded,
+  onGeometryReady,
   deferHeadFit = false,
   shading = "pacs",
 }: {
@@ -232,7 +254,7 @@ function CtAtlasOrganMesh({
   selected: boolean;
   dimmed: boolean;
   onPick: () => void;
-  onLoaded: () => void;
+  onGeometryReady: () => void;
   deferHeadFit?: boolean;
   shading?: AtlasShading;
 }) {
@@ -249,7 +271,7 @@ function CtAtlasOrganMesh({
       selected={selected}
       dimmed={dimmed}
       onPick={onPick}
-      onLoaded={onLoaded}
+      onGeometryReady={onGeometryReady}
       headAnchored={headAnchored}
       deferHeadFit={deferHeadFit}
       shading={shading}
@@ -268,7 +290,7 @@ function CtAtlasOrganMeshWithFallback({
   selected,
   dimmed,
   onPick,
-  onLoaded,
+  onGeometryReady,
   headAnchored = false,
   deferHeadFit = false,
   shading = "pacs",
@@ -283,7 +305,7 @@ function CtAtlasOrganMeshWithFallback({
   selected: boolean;
   dimmed: boolean;
   onPick: () => void;
-  onLoaded: () => void;
+  onGeometryReady: () => void;
   headAnchored?: boolean;
   deferHeadFit?: boolean;
   shading?: AtlasShading;
@@ -305,7 +327,7 @@ function CtAtlasOrganMeshWithFallback({
         selected={selected}
         dimmed={dimmed}
         onPick={onPick}
-        onLoaded={onLoaded}
+        onGeometryReady={onGeometryReady}
         headAnchored={headAnchored}
         deferHeadFit={deferHeadFit}
         shading={shading}
@@ -324,7 +346,7 @@ function CtAtlasOrganMeshWithFallback({
         selected={selected}
         dimmed={dimmed}
         onPick={onPick}
-        onLoaded={onLoaded}
+        onGeometryReady={onGeometryReady}
         headAnchored={headAnchored}
         deferHeadFit={deferHeadFit}
         shading={shading}
@@ -347,6 +369,7 @@ export function CtAtlasRig({
   const rootRef = useRef<Group>(null);
   const brainRef = useRef<Group>(null);
   const loadGeneration = useRef(0);
+  const loadedOrgans = useRef(new Set<string>());
 
   const scheduleRefit = useCallback(() => {
     if (!rootRef.current) return;
@@ -354,11 +377,20 @@ export function CtAtlasRig({
     requestAnimationFrame(() => {
       if (gen !== loadGeneration.current || !rootRef.current) return;
       fitVisibleHumanAtlas(rootRef.current);
-      if (brainRef.current) {
+      if (loadedOrgans.current.has("skin") && brainRef.current) {
         fitAllenBrainToAtlas(rootRef.current, brainRef.current);
       }
     });
   }, []);
+
+  const onOrganGeometryReady = useCallback(
+    (entryId: string) => {
+      if (loadedOrgans.current.has(entryId)) return;
+      loadedOrgans.current.add(entryId);
+      scheduleRefit();
+    },
+    [scheduleRefit]
+  );
 
   const clippingPlanes = useMemo(
     () => createCtClipPlanes(clipPlaneId, sliceOffset),
@@ -413,7 +445,7 @@ export function CtAtlasRig({
               selected={selected}
               dimmed={systemFiltered}
               onPick={pickStructure}
-              onLoaded={scheduleRefit}
+              onGeometryReady={() => onOrganGeometryReady(entry.id)}
               shading={shading}
             />
           );
@@ -447,7 +479,7 @@ export function CtAtlasRig({
               selected={selected}
               dimmed={systemFiltered}
               onPick={pickStructure}
-              onLoaded={scheduleRefit}
+              onGeometryReady={() => onOrganGeometryReady(entry.id)}
               deferHeadFit
               shading={shading}
             />

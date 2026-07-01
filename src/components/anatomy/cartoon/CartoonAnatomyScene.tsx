@@ -234,7 +234,7 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
     onSelect,
     autoSpin = false,
     className,
-    ctWindowId = "bone",
+    ctWindowId = "soft",
     ctClipPlaneId = "off",
     ctSliceOffset = 0,
   }: SceneProps,

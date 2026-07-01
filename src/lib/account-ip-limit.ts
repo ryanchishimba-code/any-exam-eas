@@ -117,29 +117,33 @@ export async function enforceAccountIpLimit(
 export async function recordAccountIpAccess(userId: string, ipHash: string): Promise<void> {
   if (!ipHash) return;
 
-  const since = new Date(Date.now() - ACCOUNT_IP_WINDOW_MS);
-  const existing = await prisma.userSession.findFirst({
-    where: {
-      userId,
-      ipHash,
-      lastSeenAt: { gte: since },
-    },
-    orderBy: { lastSeenAt: "desc" },
-  });
-
-  if (existing) {
-    await prisma.userSession.update({
-      where: { id: existing.id },
-      data: { lastSeenAt: new Date() },
+  try {
+    const since = new Date(Date.now() - ACCOUNT_IP_WINDOW_MS);
+    const existing = await prisma.userSession.findFirst({
+      where: {
+        userId,
+        ipHash,
+        lastSeenAt: { gte: since },
+      },
+      orderBy: { lastSeenAt: "desc" },
     });
-    return;
-  }
 
-  await prisma.userSession.create({
-    data: {
-      userId,
-      ipHash,
-      lastSeenAt: new Date(),
-    },
-  });
+    if (existing) {
+      await prisma.userSession.update({
+        where: { id: existing.id },
+        data: { lastSeenAt: new Date() },
+      });
+      return;
+    }
+
+    await prisma.userSession.create({
+      data: {
+        userId,
+        ipHash,
+        lastSeenAt: new Date(),
+      },
+    });
+  } catch {
+    /* non-blocking — stale user ids or pool timeouts must not break auth */
+  }
 }

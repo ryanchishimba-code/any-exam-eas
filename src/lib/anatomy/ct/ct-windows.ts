@@ -116,6 +116,25 @@ export function huToHex(hu: number, window: CtWindow): string {
   return `#${c}${c}${c}`;
 }
 
+/** Blend organ tint into CT greyscale so structures stay distinguishable. */
+export function blendHuTintHex(
+  hu: number,
+  tintHex: string,
+  window: CtWindow,
+  tintWeight = 0.38
+): string {
+  const w = Math.max(0, Math.min(1, tintWeight));
+  const lum = Math.round(huToDisplayIntensity(hu, window) * 255);
+  const tr = parseInt(tintHex.slice(1, 3), 16);
+  const tg = parseInt(tintHex.slice(3, 5), 16);
+  const tb = parseInt(tintHex.slice(5, 7), 16);
+  const mix = (a: number, b: number) => Math.round(a * (1 - w) + b * w);
+  const r = mix(lum, tr);
+  const g = mix(lum, tg);
+  const b = mix(lum, tb);
+  return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
+}
+
 export function isCtAtlasEnabled(): boolean {
   if (typeof process !== "undefined" && process.env.NEXT_PUBLIC_ANATOMY_CT_MODE === "0") {
     return false;

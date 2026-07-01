@@ -43,7 +43,7 @@ export const CartoonAnatomyViewer = forwardRef<CartoonViewerHandle, Props>(funct
 ) {
   const sceneRef = useRef<CartoonSceneHandle>(null);
   const ctAvailable = isCtAtlasEnabled();
-  const [ctWindowId, setCtWindowId] = useState<CtWindowId>("bone");
+  const [ctWindowId, setCtWindowId] = useState<CtWindowId>("soft");
   const [ctClipPlaneId, setCtClipPlaneId] = useState<CtClipPlaneId>("off");
   const [ctSliceOffset, setCtSliceOffset] = useState(0);
 

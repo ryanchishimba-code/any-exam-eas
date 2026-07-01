@@ -3,6 +3,7 @@ import {
   CT_ORGAN_HU,
   CT_WINDOWS,
   CT_WINDOW_ORDER,
+  blendHuTintHex,
   huToHex,
   huToIntensity,
   isCtAtlasEnabled,
@@ -25,6 +26,13 @@ describe("ct-windows", () => {
   it("renders greyscale hex from windowed intensity", () => {
     expect(huToHex(40, CT_WINDOWS.soft)).toMatch(/^#[0-9a-f]{6}$/i);
     expect(huToHex(-600, CT_WINDOWS.lung)).toMatch(/^#[0-9a-f]{6}$/i);
+  });
+
+  it("blends organ tint into windowed greyscale", () => {
+    const grey = huToHex(40, CT_WINDOWS.soft);
+    const tinted = blendHuTintHex(40, "#E63946", CT_WINDOWS.soft, 0.5);
+    expect(tinted).not.toBe(grey);
+    expect(tinted).toMatch(/^#[0-9a-f]{6}$/i);
   });
 
   it("assigns organ HU keys for atlas entries", () => {

@@ -21,6 +21,8 @@ import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
 import { getDefaultTourIdForExam } from "@/lib/anatomy/recommendations";
 import { getPrimaryStructureIdForProcedure } from "@/lib/anatomy/procedure-recommendations";
 import { searchProcedures } from "@/lib/anatomy/procedures";
+import { isStructureBrowsableInCtAtlas } from "@/lib/anatomy/ct/ct-atlas-coverage";
+import { isCtAtlasEnabled } from "@/lib/anatomy/ct/ct-windows";
 import { createCatalogOnlyBundle, createSupportiveBundle } from "@/lib/anatomy/systems";
 import type { AnatomySurfaceId } from "@/lib/anatomy/systems/surfaces/types";
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
@@ -124,15 +126,18 @@ export function AnatomyExplorerClient({
   });
 
   const filteredStructures = useMemo(() => {
-    const results = searchAnatomyStructures(search, {
+    let results = searchAnatomyStructures(search, {
       highYieldOnly,
       system: systemFilter,
     });
     if (!search.trim()) {
-      return results.filter((s) => !s.parentId);
+      results = results.filter((s) => !s.parentId);
+    }
+    if (!catalogOnly && isCtAtlasEnabled()) {
+      results = results.filter(isStructureBrowsableInCtAtlas);
     }
     return results;
-  }, [search, highYieldOnly, systemFilter]);
+  }, [search, highYieldOnly, systemFilter, catalogOnly]);
 
   const selectedStructure = selectedId ? (getAnatomyStructure(selectedId) ?? null) : null;
   const relatedCards = useMemo(

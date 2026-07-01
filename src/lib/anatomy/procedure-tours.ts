@@ -54,11 +54,10 @@ export const ANATOMY_PROCEDURE_TOURS: AnatomyTour[] = [
     examFocus: "USMLE Step 2 / NCLEX",
     steps: [
       {
-        structureId: "gallbladder",
-        subregionId: "gallbladder-cystic-duct",
+        structureId: "liver",
         procedureId: "lap-chole",
         narration:
-          "Lap chole is first-line for symptomatic stones — critical view of safety prevents CBD injury.",
+          "Lap chole is first-line for symptomatic stones — critical view of safety prevents CBD injury. Gallbladder lies in the hepatic fossa.",
       },
       {
         structureId: "pancreas",
@@ -204,7 +203,7 @@ export const ANATOMY_PROCEDURE_TOURS: AnatomyTour[] = [
           "Large-vessel stroke → thrombectomy when available. tPA has hemorrhage exclusions — time is brain.",
       },
       {
-        structureId: "skull",
+        structureId: "brain",
         procedureId: "craniotomy",
         narration:
           "Epidural hematoma = lucid interval + lens-shaped bleed — emergent craniotomy. Subdural = crescent in elderly.",
@@ -309,8 +308,7 @@ export const ANATOMY_PROCEDURE_TOURS: AnatomyTour[] = [
           "PEG for enteral access >4 weeks — still assess aspiration risk and goals of care.",
       },
       {
-        structureId: "trachea",
-        subregionId: "trachea-carina",
+        structureId: "lungs",
         procedureId: "bronchoscopy",
         narration:
           "Carina divides main bronchi — bronchoscopy for hemoptysis, BAL, and endobronchial biopsy.",

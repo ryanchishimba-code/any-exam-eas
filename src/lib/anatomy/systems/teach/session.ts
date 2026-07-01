@@ -1,4 +1,6 @@
 import { ANATOMY_QUIZ_QUESTIONS, getTourById } from "../../tours";
+import { resolveCtViewportStructureId } from "../../ct/ct-atlas-coverage";
+import { isCtAtlasEnabled } from "../../ct/ct-windows";
 import type { AnatomyQuizQuestion, AnatomyTour, AnatomyTourStep } from "../../types";
 import {
   INITIAL_TEACH_STATE,
@@ -13,7 +15,9 @@ export function createInitialTeachState(): TeachState {
 }
 
 function resolveTourHighlightId(step: AnatomyTourStep): string {
-  return step.subregionId ?? step.structureId;
+  const raw = step.subregionId ?? step.structureId;
+  if (isCtAtlasEnabled()) return resolveCtViewportStructureId(raw);
+  return raw;
 }
 
 export function getTeachTour(state: TeachState): AnatomyTour | null {
