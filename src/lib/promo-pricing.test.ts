@@ -17,12 +17,12 @@ describe("promo-pricing", () => {
   it("trial plan shows $0 due today", () => {
     const pricing = buildPlanPricing("trial", "pro", "yearly");
     expect(pricing.primary.discounted).toBe(0);
-    expect(pricing.recurring?.discounted).toBe(340);
+    expect(pricing.recurring?.discounted).toBe(349.99);
   });
 
   it("interval totals match tier pricing", () => {
-    expect(intervalTotalUsd("pro", "monthly")).toBe(34);
-    expect(intervalTotalUsd("pro", "yearly")).toBe(340);
+    expect(intervalTotalUsd("pro", "monthly")).toBe(34.99);
+    expect(intervalTotalUsd("pro", "yearly")).toBe(349.99);
     const yearly = getBillingPlanTier("pro", "yearly");
     expect(yearly.recommended).toBe(true);
     expect(yearly.savingsPercent).toBeGreaterThan(0);

@@ -24,8 +24,8 @@ const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "3");
 const TIERS = {
   pro: {
     productName: "Any Exam Easy Pro",
-    monthlyUsd: Number(process.env.PRO_MONTHLY_PRICE_USD ?? process.env.MONTHLY_PRICE_USD ?? "34"),
-    yearlyUsd: Number(process.env.PRO_YEARLY_PRICE_USD ?? process.env.YEARLY_PRICE_USD ?? "340"),
+    monthlyUsd: Number(process.env.PRO_MONTHLY_PRICE_USD ?? process.env.MONTHLY_PRICE_USD ?? "34.99"),
+    yearlyUsd: Number(process.env.PRO_YEARLY_PRICE_USD ?? process.env.YEARLY_PRICE_USD ?? "349.99"),
     envPrefix: "STRIPE_PRO_PRICE_ID",
     legacyKeys: {
       monthly: "STRIPE_PRICE_ID",
