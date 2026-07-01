@@ -21,6 +21,11 @@ import {
   checkAndRecordAccountIp,
 } from "@/lib/account-ip-limit";
 import { formatDisplayName } from "@/lib/display-name";
+import { DbUnavailableError } from "@/lib/db-resilience";
+
+class DatabaseUnavailable extends CredentialsSignin {
+  code = "database_unavailable";
+}
 
 export { registerUser } from "@/lib/user-auth";
 
@@ -87,6 +92,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         rememberMe: { label: "Remember me", type: "text" },
       },
       async authorize(credentials, request) {
+        try {
         const parsed = loginSchema.safeParse(credentials);
         if (!parsed.success) return null;
 
@@ -154,6 +160,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           role,
           rememberMe,
         };
+        } catch (err) {
+          if (err instanceof DbUnavailableError) throw new DatabaseUnavailable();
+          throw err;
+        }
       },
     }),
   ],

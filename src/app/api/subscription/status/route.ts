@@ -11,8 +11,10 @@ import { isStripeConfigured } from "@/lib/payments";
 import { requireSessionGuard } from "@/lib/session-guard";
 
 export const runtime = "nodejs";
+export const maxDuration = 30;
 
 export async function GET(req: Request) {
+  try {
   const guard = await requireSessionGuard(req);
   if (!guard.ok) return guard.response;
 
@@ -123,4 +125,14 @@ export async function GET(req: Request) {
         }
       : null,
   });
+  } catch (error) {
+    const { respondDbUnavailable } = await import("@/lib/api-db-error");
+    const dbResponse = respondDbUnavailable(error);
+    if (dbResponse) return dbResponse;
+    console.error("[api/subscription/status]", error);
+    return NextResponse.json(
+      { error: "internal_error", message: "Could not load subscription status." },
+      { status: 500 }
+    );
+  }
 }

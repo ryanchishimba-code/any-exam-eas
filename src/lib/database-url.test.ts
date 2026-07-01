@@ -90,3 +90,16 @@ describe("getNeonHttpDatabaseUrl", () => {
     expect(httpUrl).toContain("sslmode=require");
   });
 });
+
+describe("withPoolParams", () => {
+  it("overrides connection_limit=5 on Vercel to serverless-safe limit", () => {
+    process.env = {
+      VERCEL: "1",
+      DATABASE_URL: `${REAL_URL}&connection_limit=5&pool_timeout=20`,
+    };
+    const pooled = withPoolParams(process.env.DATABASE_URL!);
+    expect(pooled).toContain("connection_limit=1");
+    expect(pooled).toContain("pool_timeout=30");
+    expect(pooled).toContain("pgbouncer=true");
+  });
+});

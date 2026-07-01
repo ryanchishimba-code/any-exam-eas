@@ -6,24 +6,20 @@ import { invalidateExamPreferenceCache } from "@/lib/cache";
 import type { ExamSlug, UserExamPreference } from "@/types/edtech";
 
 async function readUserExamPreference(userId: string): Promise<UserExamPreference | null> {
-  try {
-    const row = await prisma.userExamPreference.findUnique({ where: { userId } });
-    if (!row) return null;
+  const row = await prisma.userExamPreference.findUnique({ where: { userId } });
+  if (!row) return null;
 
-    let examSlug = row.examSlug;
-    if (examSlug === "mpje" || !isExamSlug(examSlug)) {
-      examSlug = "pance";
-      await setUserExamPreference(userId, "pance");
-    }
-
-    return {
-      userId: row.userId,
-      examSlug: examSlug as ExamSlug,
-      lastStudiedAt: row.lastStudiedAt,
-    };
-  } catch {
-    return null;
+  let examSlug = row.examSlug;
+  if (examSlug === "mpje" || !isExamSlug(examSlug)) {
+    examSlug = "pance";
+    await setUserExamPreference(userId, "pance");
   }
+
+  return {
+    userId: row.userId,
+    examSlug: examSlug as ExamSlug,
+    lastStudiedAt: row.lastStudiedAt,
+  };
 }
 
 /** Per-request dedupe — always read fresh from DB (exam choice must not sit in TTL cache). */

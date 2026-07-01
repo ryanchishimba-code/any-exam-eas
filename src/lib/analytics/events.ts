@@ -222,6 +222,12 @@ export async function startUserSession(
   req?: Request
 ): Promise<string | undefined> {
   try {
+    const userExists = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { id: true },
+    });
+    if (!userExists) return undefined;
+
     const ua = getUserAgent(req);
     const parsed = parseUserAgent(ua ?? null);
     const session = await prisma.userSession.create({

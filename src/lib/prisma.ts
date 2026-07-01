@@ -7,8 +7,7 @@ import {
   getRuntimeDatabaseUrl,
   isPostgresDatabaseUrl,
 } from "@/lib/database-url";
-
-const SLOW_QUERY_MS = 500;
+import { executeWithRetry } from "@/lib/db-resilience";
 
 const isNextBuild = process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD;
 
@@ -17,7 +16,7 @@ if (!isNextBuild) {
 }
 
 /** Bump when Prisma schema adds/changes models so dev HMR replaces stale clients. */
-const PRISMA_SCHEMA_VERSION = 5;
+const PRISMA_SCHEMA_VERSION = 6;
 
 type GlobalPrisma = typeof globalThis & {
   prisma?: PrismaClient;
@@ -42,13 +41,12 @@ function createPrismaClient(): PrismaClient {
   return base.$extends({
     query: {
       $allOperations({ model, operation, args, query }) {
-        const label = `${model ?? "raw"}.${operation}`;
-        const started = Date.now();
-        return query(args).finally(() => {
-          const ms = Date.now() - started;
-          if (ms >= SLOW_QUERY_MS) {
-            console.warn(`[db:slow] prisma:${label} ${ms}ms`);
-          }
+        const label = `prisma:${model ?? "raw"}.${operation}`;
+        return executeWithRetry(() => query(args), {
+          label,
+          maxAttempts: 4,
+          timeoutMs: 20_000,
+          baseDelayMs: 250,
         });
       },
     },

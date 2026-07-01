@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/client";
 import type { User } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
-import { executeWithRetry, withPrisma } from "@/lib/db-resilience";
+import { executeWithRetry, isTransientDbError } from "@/lib/db-resilience";
 import { isAtLeast18 } from "@/lib/age";
 import {
   assertPublicSignupEmailAllowed,
@@ -46,18 +46,14 @@ export function toSafeUser(user: User): SafeUser {
 
 export async function findUserByEmail(email: string): Promise<User | null> {
   const normalized = normalizeEmail(email);
-  const exact = await withPrisma("auth.findUserByEmail", () =>
-    prisma.user.findUnique({
-      where: { email: normalized },
-    })
-  );
+  const exact = await prisma.user.findUnique({
+    where: { email: normalized },
+  });
   if (exact) return exact;
 
-  return withPrisma("auth.findUserByEmailInsensitive", () =>
-    prisma.user.findFirst({
-      where: { email: { equals: normalized, mode: "insensitive" } },
-    })
-  );
+  return prisma.user.findFirst({
+    where: { email: { equals: normalized, mode: "insensitive" } },
+  });
 }
 
 export async function verifyUserPassword(

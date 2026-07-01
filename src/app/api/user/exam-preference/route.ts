@@ -7,8 +7,10 @@ import type { ExamSlug } from "@/types/edtech";
 import { optionalSessionGuard, requireSessionGuard } from "@/lib/session-guard";
 
 export const runtime = "nodejs";
+export const maxDuration = 30;
 
 export async function GET(req: Request) {
+  try {
   const guard = await optionalSessionGuard(req);
   if (!guard.ok) return guard.response;
   if (!guard.userId) {
@@ -21,6 +23,12 @@ export async function GET(req: Request) {
     examSlug: pref?.examSlug ?? null,
     mpjeStateCode: meta?.mpjeStateCode ?? null,
   });
+  } catch (error) {
+    const { respondDbUnavailable } = await import("@/lib/api-db-error");
+    const dbResponse = respondDbUnavailable(error);
+    if (dbResponse) return dbResponse;
+    throw error;
+  }
 }
 
 export async function POST(req: Request) {
@@ -55,6 +63,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, examSlug });
   } catch (err) {
     console.error("[POST /api/user/exam-preference]", err);
+    const { respondDbUnavailable } = await import("@/lib/api-db-error");
+    const dbResponse = respondDbUnavailable(err);
+    if (dbResponse) return dbResponse;
     return NextResponse.json(
       { ok: false, error: "Failed to save exam preference" },
       { status: 500 }

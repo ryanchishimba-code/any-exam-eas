@@ -1,7 +1,6 @@
 import type { BankItem } from "@/lib/question-bank";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { prisma } from "@/lib/prisma";
-import { withPrisma } from "@/lib/db-resilience";
 import {
   ensureStaticSeedsForField,
   ensureSubjectHasQuestions,
@@ -58,9 +57,7 @@ async function getCachedCuratedTotal(
 ): Promise<number> {
   const hit = curatedTotalCache.get(cacheKey);
   if (hit && Date.now() - hit.at < CURATED_TOTAL_CACHE_MS) return hit.total;
-  const total = await withPrisma("questionBank.curatedCount", () =>
-    prisma.questionBankItem.count({ where })
-  );
+  const total = await prisma.questionBankItem.count({ where });
   curatedTotalCache.set(cacheKey, { total, at: Date.now() });
   return total;
 }
@@ -68,11 +65,9 @@ async function getCachedCuratedTotal(
 async function getCachedActiveFieldTotal(fieldId: string): Promise<number> {
   const hit = fieldTotalCache.get(fieldId);
   if (hit && Date.now() - hit.at < FIELD_TOTAL_CACHE_MS) return hit.total;
-  const total = await withPrisma("questionBank.fieldCount", () =>
-    prisma.questionBankItem.count({
-      where: activeFieldWhere(fieldId),
-    })
-  );
+  const total = await prisma.questionBankItem.count({
+    where: activeFieldWhere(fieldId),
+  });
   fieldTotalCache.set(fieldId, { total, at: Date.now() });
   return total;
 }
@@ -685,14 +680,11 @@ export async function getSubjectServedCounts(
   return counts;
 }
 
-/** Resilient wrapper for topic picker / API — retries transient Neon pool errors. */
+/** Resilient wrapper for topic picker / API — retries via global Prisma extension. */
 export async function getSubjectServedCountsWithRetry(
   fieldId: string
 ): Promise<Record<string, number>> {
-  return withPrisma("questionBank.subjectCounts", () => getSubjectServedCounts(fieldId), {
-    maxAttempts: 3,
-    timeoutMs: 20_000,
-  });
+  return getSubjectServedCounts(fieldId);
 }
 
 /**

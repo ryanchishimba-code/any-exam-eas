@@ -13,6 +13,8 @@ export const metadata = {
 };
 
 export const dynamic = "force-dynamic";
+/** Board exam bootstrap + preference read can hit Neon on cold start. */
+export const maxDuration = 30;
 
 type PageProps = {
   searchParams: Promise<{ switch?: string }>;

@@ -5,7 +5,7 @@ import {
   isSqliteDatabaseUrl,
   resolveDatabaseUrl,
 } from "@/lib/database-url";
-import { withNeon, withPrisma } from "@/lib/db-resilience";
+import { withNeon } from "@/lib/db-resilience";
 
 let bankCountCache: { count: number; at: number } | null = null;
 const BANK_COUNT_TTL_MS = 30_000;
@@ -38,10 +38,10 @@ async function pingPostgresViaNeon(): Promise<void> {
 async function pingViaPrisma(): Promise<void> {
   const { getPrisma } = await import("@/lib/prisma");
   const prisma = getPrisma();
-  await withPrisma(
-    "health.ping",
-    () => withTimeout(prisma.$queryRaw`SELECT 1`, PRISMA_PING_TIMEOUT_MS, "prisma_ping"),
-    { maxAttempts: DB_RETRY_ATTEMPTS, timeoutMs: PRISMA_PING_TIMEOUT_MS + 500 }
+  await withTimeout(
+    prisma.$queryRaw`SELECT 1`,
+    PRISMA_PING_TIMEOUT_MS,
+    "prisma_ping"
   );
 }
 
