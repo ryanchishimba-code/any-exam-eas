@@ -135,6 +135,8 @@
     "db:audit-naplex-calc-vignette-mismatch": "npx tsx scripts/audit-naplex-calc-vignette-mismatch.ts",
     "db:fix-naplex-calc-vignette-mismatch": "npx tsx scripts/fix-naplex-calc-vignette-mismatch.ts",
     "db:fix-naplex-calc-vignette-mismatch:dry": "npx tsx scripts/fix-naplex-calc-vignette-mismatch.ts --dry-run",
+    "db:fix-naplex-clinical-numeric-mismatch": "npx tsx scripts/fix-naplex-clinical-numeric-mismatch.ts",
+    "db:fix-naplex-clinical-numeric-mismatch:dry": "npx tsx scripts/fix-naplex-clinical-numeric-mismatch.ts --dry-run",
     "db:fix-naplex-unscorable": "npm run db:align-naplex-answers && npm run db:fix-naplex-stem-coherence && npm run db:fix-naplex-format && npm run db:fix-naplex-audit-gaps && npm run db:qa-gate-naplex-best",
     "db:fix-naplex-unscorable:dry": "npm run db:align-naplex-answers -- --dry-run && npm run db:fix-naplex-stem-coherence:dry && npm run db:fix-naplex-format:dry && npm run db:fix-naplex-audit-gaps:dry && npm run db:qa-gate-naplex-best:dry",
     "db:fix-nclex-ngn-audit-gaps": "npx tsx scripts/fix-nclex-ngn-audit-gaps.ts",

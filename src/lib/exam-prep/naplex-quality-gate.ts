@@ -21,6 +21,7 @@ const BLOCKING_WARN_CODES = new Set([
   "naplex_mcq_missing_correct_option",
   "naplex_calc_stem_on_mcq",
   "naplex_orphan_calc_stem",
+  "naplex_clinical_stem_numeric_options",
 ]);
 
 export type NaplexQualityVerdict = {

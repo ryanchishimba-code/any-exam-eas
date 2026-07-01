@@ -9,6 +9,7 @@ import {
   inferCorrectFromWrongOptionsSection,
 } from "./naplex-answer-align";
 import { resolveNaplexStem, resolveNaplexVignette } from "./naplex-bank-audit";
+import { repairClinicalNumericMismatch } from "./naplex-clinical-numeric-repair";
 
 export type NaplexFormatIssue = {
   code:
@@ -16,7 +17,8 @@ export type NaplexFormatIssue = {
     | "naplex_conflicting_lead_ins"
     | "naplex_mcq_missing_correct_option"
     | "naplex_calc_stem_on_mcq"
-    | "naplex_orphan_calc_stem";
+    | "naplex_orphan_calc_stem"
+    | "naplex_clinical_stem_numeric_options";
   message: string;
   severity: "error";
 };
@@ -53,6 +55,23 @@ function blob(item: BankItem): string {
 
 function hasMcqOptions(item: BankItem): boolean {
   return item.options.filter((o) => o.trim().length > 2).length >= 4;
+}
+
+function isNumericOnlyOption(option: string): boolean {
+  const trimmed = option.trim();
+  if (!trimmed) return false;
+  if (NUMERIC_ANSWER.test(trimmed)) return true;
+  return /^\d+(?:\.\d+)?$/.test(trimmed);
+}
+
+function allOptionsNumericOnly(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 0);
+  return usable.length >= 4 && usable.every(isNumericOnlyOption);
+}
+
+function isClinicalMcqStem(item: BankItem): boolean {
+  const stem = resolveNaplexStem(item);
+  return MCQ_LEAD_IN.test(stem) && !CALC_LEAD_IN.test(stem);
 }
 
 function isNumericAnswer(answer: string): boolean {
@@ -222,6 +241,20 @@ export function detectNaplexFormatIssues(item: BankItem): NaplexFormatIssue[] {
     issues.push({
       code: "naplex_stem_format_mismatch",
       message: "Stem embeds numeric-entry instructions alongside a multiple-choice lead-in.",
+      severity: "error",
+    });
+  }
+
+  if (
+    (itemType === "mcq" || itemType === "vignette" || itemType === "case_based") &&
+    hasMcqOptions(item) &&
+    isClinicalMcqStem(item) &&
+    allOptionsNumericOnly(item.options)
+  ) {
+    issues.push({
+      code: "naplex_clinical_stem_numeric_options",
+      message:
+        "Clinical or counseling MCQ stem expects qualitative answer choices, but all options are bare numeric values.",
       severity: "error",
     });
   }
@@ -507,6 +540,13 @@ export function fixNaplexFormatCoherence(item: BankItem): NaplexFormatFixResult 
     changed = true;
     note = "rewrote hypertensive emergency as MCQ";
     return { item: working, changed, note };
+  }
+
+  const clinicalNumeric = repairClinicalNumericMismatch(working);
+  if (clinicalNumeric.changed) {
+    working = clinicalNumeric.item;
+    changed = true;
+    note = clinicalNumeric.note;
   }
 
   if (orphanGenericCalcStemIssue(working)) {

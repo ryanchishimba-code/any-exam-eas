@@ -311,6 +311,7 @@ export function itemStillHasAuditGap(item: BankItem): boolean {
       i.code === "naplex_conflicting_lead_ins" ||
       i.code === "naplex_mcq_missing_correct_option" ||
       i.code === "naplex_calc_stem_on_mcq" ||
+      i.code === "naplex_clinical_stem_numeric_options" ||
       i.code === "correct_not_in_options" ||
       i.code === "constructed_response_not_numeric"
   );

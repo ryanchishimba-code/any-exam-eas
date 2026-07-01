@@ -185,4 +185,21 @@ describe("naplex format coherence", () => {
     expect(fixed.options).toContain(fixed.correctAnswer);
     expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
   });
+
+  it("detects counseling MCQ stem paired with numeric-only dose options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "A 10-year-old boy with asthma is prescribed albuterol for acute wheezing episodes. His mother asks about the proper dosing and how to use the inhaler correctly.",
+      question: "Which counseling point is most important?",
+      options: ["2 mg", "4 mg", "6 mg", "8 mg"],
+      correctAnswer: "4 mg",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_stem_numeric_options"
+    );
+  });
 });
