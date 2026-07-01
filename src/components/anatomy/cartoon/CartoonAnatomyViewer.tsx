@@ -46,6 +46,15 @@ export const CartoonAnatomyViewer = forwardRef<CartoonViewerHandle, Props>(funct
   const [ctWindowId, setCtWindowId] = useState<CtWindowId>("soft");
   const [ctClipPlaneId, setCtClipPlaneId] = useState<CtClipPlaneId>("off");
   const [ctSliceOffset, setCtSliceOffset] = useState(0);
+  const [atlasBooting, setAtlasBooting] = useState(ctAvailable);
+
+  const handleAtlasTier0Ready = useCallback(() => setAtlasBooting(false), []);
+
+  useEffect(() => {
+    if (!atlasBooting) return;
+    const t = window.setTimeout(() => setAtlasBooting(false), 4500);
+    return () => window.clearTimeout(t);
+  }, [atlasBooting]);
 
   const focusId = highlightedId ?? selectedId;
   const focusStructure = focusId ? getAnatomyStructure(focusId) : null;
@@ -84,8 +93,19 @@ export const CartoonAnatomyViewer = forwardRef<CartoonViewerHandle, Props>(funct
           ctWindowId={ctWindowId}
           ctClipPlaneId={ctClipPlaneId}
           ctSliceOffset={ctSliceOffset}
+          onAtlasTier0Ready={handleAtlasTier0Ready}
           className="h-full rounded-none border-0 shadow-none"
         />
+
+        {atlasBooting ? (
+          <div
+            className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#161618]/75 backdrop-blur-[2px]"
+            aria-hidden
+          >
+            <div className="h-9 w-9 animate-pulse rounded-full border-2 border-cyan-400/40 border-t-cyan-300/90" />
+            <p className="text-xs font-medium text-cyan-100/80">Loading 3D atlas…</p>
+          </div>
+        ) : null}
 
         <AnatomyExplorerControls
           onZoomIn={handleZoomIn}

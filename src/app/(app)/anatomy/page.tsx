@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { AnatomyExplorerClient } from "@/components/anatomy/AnatomyExplorerClient";
+import { CtAtlasHeadHints } from "@/components/anatomy/ct/CtAtlasHeadHints";
 import { Skeleton } from "@/components/ui/skeleton";
 import { redirectMpjeFromClinicalRoutes } from "@/lib/edtech/exam-content-scope";
 import { getPrimaryStructureIdForProcedure } from "@/lib/anatomy/procedure-recommendations";
@@ -90,6 +91,7 @@ export default async function AnatomyPage({ searchParams }: PageProps) {
   await requirePremiumPage(ROUTES.anatomy);
   return (
     <div className="w-full space-y-4">
+      <CtAtlasHeadHints />
       <header className="sr-only">
         <h1>Anatomy Explorer</h1>
       </header>

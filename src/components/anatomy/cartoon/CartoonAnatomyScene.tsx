@@ -23,7 +23,7 @@ import { CT_CAMERA } from "@/lib/anatomy/cartoon/proportions";
 import type { AnatomyLayer, AnatomyStructure, AnatomySystem } from "@/lib/anatomy/types";
 import { cn } from "@/lib/utils";
 import { AnatomyPointerProvider, useAnatomyPointer } from "./AnatomyPointerProvider";
-import { CtAtlasRig, preloadCtAtlas } from "@/components/anatomy/ct/CtAtlasRig";
+import { CtAtlasRig } from "@/components/anatomy/ct/CtAtlasRig";
 import { NeuroConnectionRig } from "./NeuroConnectionRig";
 import { CT_WINDOWS, isCtAtlasEnabled, type CtWindowId } from "@/lib/anatomy/ct/ct-windows";
 import type { CtClipPlaneId } from "@/lib/anatomy/ct/ct-atlas-registry";
@@ -92,6 +92,7 @@ function SceneRig({
   ctWindowId,
   ctClipPlaneId,
   ctSliceOffset,
+  onAtlasTier0Ready,
 }: {
   visibleLayers: Set<AnatomyLayer>;
   systemFilter: AnatomySystem | "all";
@@ -105,6 +106,7 @@ function SceneRig({
   ctWindowId: CtWindowId;
   ctClipPlaneId: CtClipPlaneId;
   ctSliceOffset: number;
+  onAtlasTier0Ready?: () => void;
 }) {
   const { camera } = useThree();
   const cameraConfig = CT_CAMERA;
@@ -211,11 +213,6 @@ function SceneRig({
   const ctWindow = CT_WINDOWS[ctWindowId];
   const focusStructureId = highlightedId ?? selectedId;
 
-  useEffect(() => {
-    if (!isCtAtlasEnabled()) return;
-    preloadCtAtlas();
-  }, []);
-
   if (!isCtAtlasEnabled()) {
     return (
       <>
@@ -241,6 +238,7 @@ function SceneRig({
         highlightedId={highlightedId}
         onSelect={onSelect}
         shading="pacs"
+        onTier0Ready={onAtlasTier0Ready}
       />
       <NeuroConnectionRig focusStructureId={focusStructureId} />
 
@@ -274,6 +272,7 @@ type SceneProps = {
   ctWindowId?: CtWindowId;
   ctClipPlaneId?: CtClipPlaneId;
   ctSliceOffset?: number;
+  onAtlasTier0Ready?: () => void;
 };
 
 function LocalClippingToggle({ enabled }: { enabled: boolean }) {
@@ -299,6 +298,7 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
     ctWindowId = "soft",
     ctClipPlaneId = "off",
     ctSliceOffset = 0,
+    onAtlasTier0Ready,
   }: SceneProps,
   ref
 ) {
@@ -320,7 +320,7 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
     <div className={cn("relative h-full w-full overflow-hidden rounded-2xl bg-[#161618]", className)}>
       <Canvas
         camera={{ position: CT_CAMERA.position, fov: CT_CAMERA.fov }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.NoToneMapping;
@@ -343,6 +343,7 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
               ctWindowId={ctWindowId}
               ctClipPlaneId={ctClipPlaneId}
               ctSliceOffset={ctSliceOffset}
+              onAtlasTier0Ready={onAtlasTier0Ready}
             />
           </Suspense>
         </AnatomyPointerProvider>

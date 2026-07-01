@@ -108,9 +108,9 @@ describe("ct-atlas-registry", () => {
     expect(center.y).toBeGreaterThan(0);
   });
 
-  it("lists preload URLs for all atlas organs (local + CDN candidates)", () => {
+  it("lists primary preload URL per atlas organ", () => {
     const urls = getCtAtlasPreloadUrls();
-    expect(urls.length).toBeGreaterThan(CT_ATLAS_ORGANS.length);
+    expect(urls.length).toBe(CT_ATLAS_ORGANS.length);
     expect(urls.every((u) => u.endsWith(".glb"))).toBe(true);
   });
 });

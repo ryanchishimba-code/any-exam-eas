@@ -24,6 +24,7 @@ import { searchProcedures } from "@/lib/anatomy/procedures";
 import { isStructureBrowsableInCtAtlas } from "@/lib/anatomy/ct/ct-atlas-coverage";
 import { isCtAtlasEnabled } from "@/lib/anatomy/ct/ct-windows";
 import { createCatalogOnlyBundle, createSupportiveBundle } from "@/lib/anatomy/systems";
+import { useCtAtlasWarmup } from "@/components/anatomy/ct/useCtAtlasWarmup";
 import type { AnatomySurfaceId } from "@/lib/anatomy/systems/surfaces/types";
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
 import { DEFAULT_STUDY_LAYERS } from "@/lib/anatomy/cartoon/layer-styles";
@@ -74,6 +75,7 @@ export function AnatomyExplorerClient({
   const [systemFilter, setSystemFilter] = useState<AnatomySystem | "all">("all");
   const [highYieldOnly, setHighYieldOnly] = useState(false);
   const [visibleLayers, setVisibleLayers] = useState<Set<AnatomyLayer>>(() => new Set(DEFAULT_VISIBLE));
+  useCtAtlasWarmup(visibleLayers);
   const [selectedId, setSelectedId] = useState<string | null>(() => {
     if (initialStructureId && getAnatomyStructure(initialStructureId)) return initialStructureId;
     return null;

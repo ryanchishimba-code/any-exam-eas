@@ -111,13 +111,7 @@ export function resolveCtAtlasUrl(fileName: string): string {
 }
 
 export function getCtAtlasPreloadUrls(): string[] {
-  const urls = new Set<string>();
-  for (const entry of CT_ATLAS_ORGANS) {
-    for (const url of resolveCtAtlasUrlCandidates(entry.fileName)) {
-      urls.add(url);
-    }
-  }
-  return [...urls];
+  return CT_ATLAS_ORGANS.map((entry) => resolveCtAtlasUrl(entry.fileName));
 }
 
 export function entryMatchesMeshId(entry: CtAtlasOrganEntry, meshId: string): boolean {

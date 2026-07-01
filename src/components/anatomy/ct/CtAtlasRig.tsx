@@ -30,6 +30,14 @@ import { getNeuroConnectedStructureIds } from "@/lib/anatomy/neuro-connections";
 import { getAnatomyModule } from "@/lib/anatomy/modules/registry";
 import { ORGAN_MESH_COLORS } from "@/lib/anatomy/cartoon/organ-colors";
 import { createClinicalOrganMaterial } from "@/lib/anatomy/clinical/clinical-organ-material";
+import {
+  CT_ATLAS_TIER_DELAYS_MS,
+  forceEntryIdsForMeshIds,
+  shouldMountCtAtlasEntry,
+  type CtAtlasLoadTier,
+} from "@/lib/anatomy/ct/ct-atlas-load-plan";
+import { getPreparedAtlasScene } from "@/lib/anatomy/ct/ct-atlas-scene-cache";
+import { preloadCtAtlasEntries } from "@/lib/anatomy/ct/ct-atlas-preload";
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
 import { getAnatomyStructure, getAnatomyStructureByMeshId } from "@/lib/anatomy";
 import type { ThreeEvent } from "@react-three/fiber";
@@ -176,22 +184,24 @@ function CtAtlasOrganMeshInner({
     "#9ca3af";
 
   const meshRoot = useMemo(() => {
-    const clone = scene.clone(true);
-    if (headAnchored && !deferHeadFit) fitAllenBrainToFigure(clone);
+    return getPreparedAtlasScene(url, scene, (clone) => {
+      if (headAnchored && !deferHeadFit) fitAllenBrainToFigure(clone);
 
-    clone.traverse((node) => {
-      if ((node as Mesh).isMesh) {
-        const mesh = node as Mesh;
-        mesh.geometry?.computeVertexNormals();
-        mesh.userData.atlasOrganId = entry.id;
-        mesh.userData.meshId = entry.meshId;
-        if (segmentedBrain) {
-          mesh.userData.brainRegionId = resolveBrainRegionForAllenMeshName(mesh.name);
+      clone.traverse((node) => {
+        if ((node as Mesh).isMesh) {
+          const mesh = node as Mesh;
+          if (mesh.geometry && !mesh.geometry.attributes.normal) {
+            mesh.geometry.computeVertexNormals();
+          }
+          mesh.userData.atlasOrganId = entry.id;
+          mesh.userData.meshId = entry.meshId;
+          if (segmentedBrain) {
+            mesh.userData.brainRegionId = resolveBrainRegionForAllenMeshName(mesh.name);
+          }
         }
-      }
+      });
     });
-    return clone;
-  }, [scene, entry.id, entry.meshId, headAnchored, deferHeadFit, segmentedBrain]);
+  }, [url, scene, entry.id, entry.meshId, headAnchored, deferHeadFit, segmentedBrain]);
 
   useLayoutEffect(() => {
     if (geometryReady.current) return;
@@ -440,11 +450,31 @@ export function CtAtlasRig({
   highlightedId,
   onSelect,
   shading = "pacs",
-}: RigProps) {
+  onTier0Ready,
+}: RigProps & { onTier0Ready?: () => void }) {
   const rootRef = useRef<Group>(null);
   const brainRef = useRef<Group>(null);
   const loadGeneration = useRef(0);
   const loadedOrgans = useRef(new Set<string>());
+  const tier0ReadyRef = useRef(false);
+  const [maxTier, setMaxTier] = useState<CtAtlasLoadTier>(0);
+
+  useEffect(() => {
+    const t1 = window.setTimeout(() => setMaxTier((t) => (t < 1 ? 1 : t)), CT_ATLAS_TIER_DELAYS_MS[1]);
+    const runTier2 = () => setMaxTier((t) => (t < 2 ? 2 : t));
+    let idleId: number | undefined;
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(runTier2, { timeout: 2500 });
+    } else {
+      window.setTimeout(runTier2, CT_ATLAS_TIER_DELAYS_MS[2]);
+    }
+    return () => {
+      window.clearTimeout(t1);
+      if (idleId != null && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+    };
+  }, []);
 
   const scheduleRefit = useCallback(() => {
     if (!rootRef.current) return;
@@ -457,15 +487,6 @@ export function CtAtlasRig({
       }
     });
   }, []);
-
-  const onOrganGeometryReady = useCallback(
-    (entryId: string) => {
-      if (loadedOrgans.current.has(entryId)) return;
-      loadedOrgans.current.add(entryId);
-      scheduleRefit();
-    },
-    [scheduleRefit]
-  );
 
   const clippingPlanes = useMemo(
     () => createCtClipPlanes(clipPlaneId, sliceOffset),
@@ -492,6 +513,39 @@ export function CtAtlasRig({
     return meshIds;
   }, [focusStructureIds]);
 
+  const forceEntryIds = useMemo(() => forceEntryIdsForMeshIds(focusMeshIds), [focusMeshIds]);
+
+  const mountCtx = useMemo(
+    () => ({
+      visibleLayers,
+      maxTier,
+      forceEntryIds,
+    }),
+    [visibleLayers, maxTier, forceEntryIds]
+  );
+
+  useEffect(() => {
+    if (forceEntryIds.size === 0) return;
+    preloadCtAtlasEntries(forceEntryIds);
+  }, [forceEntryIds]);
+
+  const onOrganGeometryReady = useCallback(
+    (entryId: string) => {
+      if (loadedOrgans.current.has(entryId)) return;
+      loadedOrgans.current.add(entryId);
+      scheduleRefit();
+      if (tier0ReadyRef.current) return;
+      const tier0Entries = CT_ATLAS_ORGANS.filter((e) =>
+        shouldMountCtAtlasEntry(e, { ...mountCtx, maxTier: 0 })
+      );
+      if (tier0Entries.length > 0 && tier0Entries.every((e) => loadedOrgans.current.has(e.id))) {
+        tier0ReadyRef.current = true;
+        onTier0Ready?.();
+      }
+    },
+    [mountCtx, onTier0Ready, scheduleRefit]
+  );
+
   const focusBrainRegionIds = useMemo(() => {
     const regions = new Set<string>();
     for (const structureId of focusStructureIds) {
@@ -507,6 +561,8 @@ export function CtAtlasRig({
     <>
       <group ref={rootRef}>
         {vhAtlasOrgans.map((entry) => {
+          if (!shouldMountCtAtlasEntry(entry, mountCtx)) return null;
+
           const visible = visibleLayers.has(entry.layer);
           const structureForMesh = getAnatomyStructureByMeshId(entry.meshId);
           const system = structureForMesh?.system ?? entry.system;
@@ -541,6 +597,8 @@ export function CtAtlasRig({
         })}
       </group>
       {headAnchoredOrgans.map((entry) => {
+        if (!shouldMountCtAtlasEntry(entry, mountCtx)) return null;
+
         const visible = visibleLayers.has(entry.layer);
         const structureForMesh = getAnatomyStructureByMeshId(entry.meshId);
         const system = structureForMesh?.system ?? entry.system;
@@ -577,8 +635,4 @@ export function CtAtlasRig({
   );
 }
 
-export function preloadCtAtlas() {
-  for (const url of CT_ATLAS_ORGANS.flatMap((o) => resolveCtAtlasUrlCandidates(o.fileName))) {
-    useGLTF.preload(url);
-  }
-}
+export { startStagedCtAtlasPreload as preloadCtAtlas } from "@/lib/anatomy/ct/ct-atlas-preload";
