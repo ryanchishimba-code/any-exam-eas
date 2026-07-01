@@ -11,9 +11,11 @@ export const CARTOON_EYE_IRIS = "#3d3028";
 export const CARTOON_SOCKET = "#3a2e38";
 export const CARTOON_LIP = "#9a5a58";
 export const CARTOON_OUTLINE = "#1a1838";
-export const CARTOON_SCENE_BG = "#e8eef5";
-export const CARTOON_SCENE_FOG = "#d8e2ec";
-export const CARTOON_FLOOR = "#c5d0dc";
+export const CARTOON_SCENE_BG = "#0a0e14";
+export const CARTOON_SCENE_FOG = "#06080c";
+export const CARTOON_FLOOR = "#121820";
+/** Studio backdrop sphere for dark medical viewer. */
+export const CARTOON_STUDIO_BACKDROP = "#141a24";
 export const CARTOON_BONE = "#ebe6de";
 export const CARTOON_BONE_SHADOW = "#d4cec4";
 export const CARTOON_MUSCLE = "#a67a58";

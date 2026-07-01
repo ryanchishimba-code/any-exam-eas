@@ -24,6 +24,7 @@ import { CARTOON_SCENE_BG } from "@/lib/anatomy/cartoon/palette";
 import type { AnatomyLayer, AnatomyStructure, AnatomySystem } from "@/lib/anatomy/types";
 import { cn } from "@/lib/utils";
 import { AnatomyStudioEnvironment } from "./AnatomyStudioEnvironment";
+import { AnatomyPostFX } from "./AnatomyPostFX";
 import { CartoonBodyShell } from "./CartoonBodyShell";
 import { ClickableSkeleton } from "./ClickableSkeleton";
 import { CartoonOrganMesh } from "./CartoonOrganMesh";
@@ -117,7 +118,7 @@ function CtRenderSettings({ active }: { active: boolean }) {
   const { gl } = useThree();
   useEffect(() => {
     gl.toneMapping = active ? THREE.NoToneMapping : THREE.ACESFilmicToneMapping;
-    gl.toneMappingExposure = active ? 1 : 1.06;
+    gl.toneMappingExposure = active ? 1 : 1.12;
   }, [active, gl]);
   return null;
 }
@@ -219,7 +220,7 @@ function SceneRig({
   useFrame(() => {
     const controls = controlsRef.current;
     if (!controls) return;
-    controls.target.lerp(desiredTarget, 0.1);
+    controls.target.lerp(desiredTarget, 0.14);
     controls.minDistance = cameraConfig.minDistance / zoomLevel;
     controls.maxDistance = cameraConfig.maxDistance / zoomLevel;
     const persp = camera as PerspectiveCamera;
@@ -227,7 +228,7 @@ function SceneRig({
     cameraGoalRef.current
       .copy(controls.target)
       .addScaledVector(cameraDirRef.current, focusDistance.current);
-    persp.position.lerp(cameraGoalRef.current, 0.08);
+    persp.position.lerp(cameraGoalRef.current, 0.11);
     controls.update();
   });
 
@@ -282,21 +283,21 @@ function SceneRig({
       ) : (
         <>
           <AnatomyStudioEnvironment />
-          <ambientLight intensity={0.36} color="#f0f4f8" />
+          <ambientLight intensity={0.28} color="#c8d4e4" />
           <directionalLight
             position={[3.8, 8, 5]}
-            intensity={1.42}
+            intensity={1.55}
             castShadow
             shadow-mapSize-width={2048}
             shadow-mapSize-height={2048}
             shadow-bias={-0.00012}
             shadow-normalBias={0.022}
-            color="#fff1e6"
+            color="#fff4ea"
           />
-          <directionalLight position={[-4.8, 3.2, -1.2]} intensity={0.44} color="#c8d8e8" />
-          <directionalLight position={[0, 2, -5.5]} intensity={0.16} color="#ffffff" />
-          <pointLight position={[0, 2.1, 2.4]} intensity={0.24} color="#ffe8d4" distance={7} />
-          <hemisphereLight args={["#eef3f8", "#8a9aad", 0.34]} />
+          <directionalLight position={[-4.8, 3.2, -1.2]} intensity={0.38} color="#7dd3fc" />
+          <directionalLight position={[0, 2, -5.5]} intensity={0.12} color="#e0f2fe" />
+          <pointLight position={[0, 2.1, 2.4]} intensity={0.32} color="#fcd9b8" distance={7} />
+          <hemisphereLight args={["#1e293b", "#020617", 0.42]} />
 
           <CartoonStructuralLayers visibleLayers={visibleLayers} skinOn={showSkin} />
           <CartoonNerveLayers visibleLayers={visibleLayers} skinOn={showSkin} />
@@ -324,6 +325,7 @@ function SceneRig({
           />
           <NeuroConnectionRig focusStructureId={focusStructureId} />
           <CartoonBodyShell ghost={!showSkin} />
+          <AnatomyPostFX />
         </>
       )}
 
@@ -407,14 +409,12 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
     <div
       className={cn(
         "relative h-full w-full overflow-hidden rounded-2xl",
-        ctActive
-          ? "bg-[#161618]"
-          : "bg-[radial-gradient(ellipse_at_50%_18%,#f8fafc_0%,#edf2f7_42%,#dde5ee_100%)]",
+        ctActive ? "bg-[#161618]" : "bg-[#080b10]",
         className
       )}
     >
       <div
-        className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_100px_rgba(15,23,42,0.09)]"
+        className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_120px_rgba(0,0,0,0.35)]"
         aria-hidden
       />
       <Canvas
@@ -427,7 +427,7 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         onCreated={({ gl }) => {
           gl.toneMapping = THREE.ACESFilmicToneMapping;
-          gl.toneMappingExposure = ctActive ? 1 : 1.08;
+          gl.toneMappingExposure = ctActive ? 1 : 1.14;
           gl.shadowMap.enabled = !ctActive;
           if (!ctActive) gl.shadowMap.type = THREE.PCFSoftShadowMap;
         }}

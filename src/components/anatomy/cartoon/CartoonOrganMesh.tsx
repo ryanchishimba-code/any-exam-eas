@@ -4,7 +4,7 @@ import { Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Euler, Group } from "three";
-import { Vector3 } from "three";
+import { MathUtils, Vector3 } from "three";
 import type { AnatomyModuleDef } from "@/lib/anatomy/modules/types";
 import { getOrganDepthOrder } from "@/lib/anatomy/cartoon/organ-layout";
 import { SelectionEmissivePulse } from "@/components/anatomy/cartoon/SelectionEmissivePulse";
@@ -50,6 +50,7 @@ function OrganMeshInstance({
   selected,
   deemphasized = false,
   skinOn,
+  layerFade = 1,
   structureSystem,
   systemFilter,
   onSelect,
@@ -63,6 +64,7 @@ function OrganMeshInstance({
   selected: boolean;
   deemphasized?: boolean;
   skinOn: boolean;
+  layerFade?: number;
   structureSystem?: AnatomySystem;
   systemFilter: AnatomySystem | "all";
   onSelect: (id: string) => void;
@@ -109,12 +111,16 @@ function OrganMeshInstance({
     !active;
   if (systemFiltered) opacity *= 0.14;
   if (deemphasized) opacity *= 0.34;
+  opacity *= layerFade;
 
   const nerveGlow = def.layer === "nerve";
   const emissive =
-    highlighted || selected ? "#7c3aed" : hovered ? "#8b5cf6" : nerveGlow ? "#fbbf24" : "#000000";
+    highlighted || selected ? "#22d3ee" : hovered ? "#67e8f9" : nerveGlow ? "#fbbf24" : "#000000";
   const emissiveIntensity =
-    highlighted || selected ? 0.48 : hovered ? 0.2 : nerveGlow ? 0.28 : 0;
+    highlighted || selected ? 0.55 : hovered ? 0.28 : nerveGlow ? 0.28 : 0;
+
+  const outlineThickness = selected ? 0.024 : highlighted ? 0.018 : hovered ? 0.013 : 0;
+  const outlineColor = selected ? "#22d3ee" : highlighted ? "#67e8f9" : "#a78bfa";
 
   const tintedColor = useMemo(() => {
     if (def.layer !== "organ") return def.color;
@@ -131,10 +137,10 @@ function OrganMeshInstance({
       opacity,
       emissive,
       emissiveIntensity,
-      outlineThickness: 0,
-      outlineColor: "#5b21b6",
+      outlineThickness,
+      outlineColor,
     }),
-    [active, emissive, emissiveIntensity, opacity, tintedColor]
+    [emissive, emissiveIntensity, opacity, outlineColor, outlineThickness, tintedColor]
   );
 
   const euler = rotation as Euler | undefined;
@@ -182,7 +188,7 @@ function OrganMeshInstance({
           position={[0, 0.75, 0]}
           style={{ pointerEvents: "none", whiteSpace: "nowrap" }}
         >
-          <span className="rounded-full border border-violet-200 bg-white px-2.5 py-1 text-[11px] font-bold text-indigo-900 shadow-md">
+          <span className="rounded-full border border-cyan-500/30 bg-[#0f172a]/90 px-2.5 py-1 text-[11px] font-bold text-cyan-100 shadow-[0_0_12px_rgba(34,211,238,0.25)]">
             {label}
           </span>
         </Html>
@@ -220,7 +226,26 @@ export function CartoonOrganMesh({
   boneStructuralOn = false,
   muscleStructuralOn = false,
 }: Props) {
-  if (!visible) return null;
+  const fadeRef = useRef(visible ? 1 : 0);
+  const [layerFade, setLayerFade] = useState(visible ? 1 : 0);
+  const [rendering, setRendering] = useState(visible);
+  const frameRef = useRef(0);
+
+  useEffect(() => {
+    if (visible) setRendering(true);
+  }, [visible]);
+
+  useFrame(() => {
+    const target = visible ? 1 : 0;
+    fadeRef.current = MathUtils.lerp(fadeRef.current, target, 0.14);
+    frameRef.current += 1;
+    if (frameRef.current % 2 === 0) {
+      setLayerFade(fadeRef.current);
+    }
+    if (!visible && fadeRef.current < 0.025) setRendering(false);
+  });
+
+  if (!rendering) return null;
 
   const hideDuplicateBone =
     boneStructuralOn &&
@@ -262,6 +287,7 @@ export function CartoonOrganMesh({
           selected={selected}
           deemphasized={deemphasized}
           skinOn={skinOn}
+          layerFade={layerFade}
           structureSystem={structureSystem}
           systemFilter={systemFilter}
           onSelect={onSelect}

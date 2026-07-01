@@ -9,6 +9,8 @@ import { StructureOverlay } from "@/components/anatomy/StructureOverlay";
 import { SurfaceHost } from "@/components/anatomy/systems/SurfaceHost";
 import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
 import type { AnatomyBundle } from "@/lib/anatomy/systems/kernel/compose";
+import type { CartoonViewerHandle } from "@/components/anatomy/systems/SurfaceHost";
+import type { AnatomyAssistAction } from "@/lib/anatomy/assist-actions";
 import type { AnatomyLayer, AnatomyStructure, AnatomySystem } from "@/lib/anatomy/types";
 import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
@@ -55,6 +57,9 @@ type Props = {
   onOverlayOpenChange: (v: boolean) => void;
   mobileSheetOpen: boolean;
   onMobileSheetOpenChange: (v: boolean) => void;
+  viewerRef?: React.RefObject<CartoonViewerHandle | null>;
+  onViewerReady?: (api: CartoonViewerHandle) => void;
+  onExecuteAssistActions?: (actions: AnatomyAssistAction[]) => void;
 };
 
 function FloatingTool({
@@ -70,7 +75,7 @@ function FloatingTool({
     <button
       type="button"
       onClick={onClick}
-      className={cn(anatomyUi.glass, "inline-flex items-center gap-1.5 px-3 py-2 text-[13px] font-medium text-[var(--color-ink)] transition hover:bg-white")}
+      className={cn(anatomyUi.glass, "inline-flex items-center gap-1.5 px-3 py-2 text-[13px] font-medium text-[var(--anatomy-ink)] transition hover:bg-white/[0.08]")}
       aria-label={label}
     >
       {children}
@@ -114,6 +119,9 @@ export function AnatomyShell({
   onOverlayOpenChange,
   mobileSheetOpen,
   onMobileSheetOpenChange,
+  viewerRef,
+  onViewerReady,
+  onExecuteAssistActions,
 }: Props) {
   const hasViewport = bundle.surface.hasViewport;
 
@@ -122,10 +130,10 @@ export function AnatomyShell({
       <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-black/[0.04]">
         <Layers3 className="h-6 w-6 text-[var(--color-ink-muted)]" aria-hidden />
       </div>
-      <p className="text-[17px] font-semibold tracking-tight text-[var(--color-ink)]">
+      <p className="text-[17px] font-semibold tracking-tight text-[var(--anatomy-ink)]">
         Select a structure
       </p>
-      <p className="mt-2 max-w-[240px] text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
+      <p className="mt-2 max-w-[240px] text-[14px] leading-relaxed text-[var(--anatomy-ink-muted)]">
         {hasViewport
           ? "Tap the 3D model or choose from the list to see pearls, procedures, and practice links."
           : "Search the catalog or start a guided tour to open clinical details here."}
@@ -141,6 +149,9 @@ export function AnatomyShell({
       onClose={onCloseStructure}
       onSelectSubregion={onSelectSubregion}
       focusedProcedureId={focusedProcedureId}
+      visibleLayers={visibleLayers}
+      systemFilter={sidebarProps.systemFilter}
+      onExecuteAssistActions={onExecuteAssistActions}
     />
   ) : (
     emptyDetail
@@ -159,6 +170,9 @@ export function AnatomyShell({
           onClose={() => onMobileSheetOpenChange(false)}
           onSelectSubregion={onSelectSubregion}
           focusedProcedureId={focusedProcedureId}
+          visibleLayers={visibleLayers}
+          systemFilter={sidebarProps.systemFilter}
+          onExecuteAssistActions={onExecuteAssistActions}
         />
       </div>
     );
@@ -184,9 +198,9 @@ export function AnatomyShell({
                 onClick={() => onSidebarOpenChange(!sidebarOpen)}
               >
                 {sidebarOpen ? (
-                  <PanelLeftClose className="h-4 w-4 text-[var(--color-ink-muted)]" />
+                  <PanelLeftClose className="h-4 w-4 text-[var(--anatomy-ink-muted)]" />
                 ) : (
-                  <PanelLeftOpen className="h-4 w-4 text-[var(--color-ink-muted)]" />
+                  <PanelLeftOpen className="h-4 w-4 text-[var(--anatomy-ink-muted)]" />
                 )}
                 <span className="hidden sm:inline">Structures</span>
               </FloatingTool>
@@ -194,12 +208,12 @@ export function AnatomyShell({
                 label={overlayOpen ? "Hide details" : "Show details"}
                 onClick={() => onOverlayOpenChange(!overlayOpen)}
               >
-                <Layers3 className="h-4 w-4 text-[var(--color-ink-muted)]" />
+                <Layers3 className="h-4 w-4 text-[var(--anatomy-ink-muted)]" />
                 <span className="hidden sm:inline">Details</span>
               </FloatingTool>
             </div>
             {selectedStructure ? (
-              <span className={cn(anatomyUi.glass, "px-3 py-2 text-[13px] font-medium text-[var(--color-ink)]")}>
+              <span className={cn(anatomyUi.glass, "px-3 py-2 text-[13px] font-medium text-[var(--anatomy-ink)]")}>
                 {selectedStructure.name}
               </span>
             ) : null}
@@ -221,11 +235,13 @@ export function AnatomyShell({
               onToggleLayer={onToggleLayer}
               quizActive={quizActive}
               className="h-full"
+              viewerRef={viewerRef}
+              onViewerReady={onViewerReady}
             />
           </motion.div>
 
-          <details className="border-t border-black/[0.06] bg-white/90 lg:hidden">
-            <summary className="cursor-pointer px-4 py-3 text-[14px] font-semibold text-[var(--color-ink)]">
+          <details className="border-t border-white/[0.06] bg-[var(--anatomy-panel)]/90 lg:hidden">
+            <summary className="cursor-pointer px-4 py-3 text-[14px] font-semibold text-[var(--anatomy-ink)]">
               Browse structures
             </summary>
             <div className="max-h-80 overflow-y-auto border-t border-black/[0.05] p-3">
@@ -236,7 +252,7 @@ export function AnatomyShell({
 
         <div
           className={cn(
-            "hidden min-w-0 border-l border-black/[0.06] lg:block",
+            "hidden min-w-0 border-l border-white/[0.06] lg:block",
             !overlayOpen && "lg:hidden"
           )}
         >
@@ -250,10 +266,10 @@ export function AnatomyShell({
           onClick={() => onMobileSheetOpenChange(true)}
           className={cn(
             anatomyUi.glass,
-            "fixed bottom-20 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 px-5 py-3 text-[14px] font-semibold text-[var(--color-ink)] lg:hidden"
+            "fixed bottom-20 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 px-5 py-3 text-[14px] font-semibold text-[var(--anatomy-ink)] lg:hidden"
           )}
         >
-          <BookOpen className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+          <BookOpen className="h-4 w-4 text-cyan-400" aria-hidden />
           {selectedStructure.name}
         </button>
       ) : null}
@@ -266,6 +282,9 @@ export function AnatomyShell({
         onClose={() => onMobileSheetOpenChange(false)}
         onSelectSubregion={onSelectSubregion}
         focusedProcedureId={focusedProcedureId}
+        visibleLayers={visibleLayers}
+        systemFilter={sidebarProps.systemFilter}
+        onExecuteAssistActions={onExecuteAssistActions}
       />
     </>
   );

@@ -7,6 +7,8 @@ import {
 } from "@/components/anatomy/StructureDetailPanel";
 import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
 import type { AnatomyStructure } from "@/lib/anatomy/types";
+import type { AnatomyAssistAction } from "@/lib/anatomy/assist-actions";
+import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
 import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -20,6 +22,9 @@ type Props = {
   onOpenStudio?: () => void;
   onSelectSubregion?: (subregionId: string) => void;
   focusedProcedureId?: string | null;
+  visibleLayers?: Set<AnatomyLayer>;
+  systemFilter?: AnatomySystem | "all";
+  onExecuteAssistActions?: (actions: AnatomyAssistAction[]) => void;
 };
 
 export function StructureOverlay({
@@ -31,6 +36,9 @@ export function StructureOverlay({
   onOpenStudio,
   onSelectSubregion,
   focusedProcedureId,
+  visibleLayers,
+  systemFilter,
+  onExecuteAssistActions,
 }: Props) {
   return (
     <AnimatePresence>
@@ -56,6 +64,9 @@ export function StructureOverlay({
             onOpenStudio={onOpenStudio}
             onSelectSubregion={onSelectSubregion}
             initialFocusedProcedureId={focusedProcedureId}
+            visibleLayers={visibleLayers}
+            systemFilter={systemFilter}
+            onExecuteAssistActions={onExecuteAssistActions}
           />
         </motion.aside>
       ) : null}

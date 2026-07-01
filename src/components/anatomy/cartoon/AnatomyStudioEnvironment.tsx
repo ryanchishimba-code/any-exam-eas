@@ -6,6 +6,7 @@ import {
   CARTOON_FLOOR,
   CARTOON_SCENE_BG,
   CARTOON_SCENE_FOG,
+  CARTOON_STUDIO_BACKDROP,
 } from "@/lib/anatomy/cartoon/palette";
 
 /** Soft studio backdrop + floor disc for the cartoon anatomy scene. */
@@ -17,16 +18,16 @@ export function AnatomyStudioEnvironment() {
 
       <mesh position={[0, FIGURE.headY + 0.15, -4.2]} scale={[16, 11, 1]}>
         <sphereGeometry args={[1, 32, 32]} />
-        <meshBasicMaterial color="#f3f6fa" />
+        <meshBasicMaterial color={CARTOON_STUDIO_BACKDROP} />
       </mesh>
 
       <ContactShadows
         position={[0, FIGURE.footY + 0.02, 0]}
-        opacity={0.42}
+        opacity={0.55}
         scale={14}
-        blur={2.8}
+        blur={3.2}
         far={4.5}
-        color="#1a2430"
+        color="#000000"
       />
 
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, FIGURE.footY + 0.015, 0]} receiveShadow>

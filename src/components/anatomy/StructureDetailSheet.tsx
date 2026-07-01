@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { StructureDetailHeader, StructureDetailPanel } from "@/components/anatomy/StructureDetailPanel";
-import type { AnatomyStructure } from "@/lib/anatomy/types";
+import type { AnatomyAssistAction } from "@/lib/anatomy/assist-actions";
+import type { AnatomyLayer, AnatomyStructure, AnatomySystem } from "@/lib/anatomy/types";
 import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -17,6 +18,9 @@ type Props = {
   onOpenStudio?: () => void;
   onSelectSubregion?: (subregionId: string) => void;
   focusedProcedureId?: string | null;
+  visibleLayers?: Set<AnatomyLayer>;
+  systemFilter?: AnatomySystem | "all";
+  onExecuteAssistActions?: (actions: AnatomyAssistAction[]) => void;
 };
 
 export function StructureDetailSheet({
@@ -29,6 +33,9 @@ export function StructureDetailSheet({
   onOpenStudio,
   onSelectSubregion,
   focusedProcedureId,
+  visibleLayers,
+  systemFilter,
+  onExecuteAssistActions,
 }: Props) {
   const [mounted, setMounted] = useState(false);
 
@@ -63,7 +70,7 @@ export function StructureDetailSheet({
         role="dialog"
         aria-modal="true"
         aria-labelledby="anatomy-structure-title"
-        className="relative z-10 flex max-h-[min(88vh,640px)] w-full flex-col overflow-hidden rounded-t-[28px] border border-black/[0.06] bg-white/95 shadow-[var(--shadow-apple-lg)] backdrop-blur-xl"
+        className="relative z-10 flex max-h-[min(88vh,640px)] w-full flex-col overflow-hidden rounded-t-[28px] border border-white/[0.08] bg-[var(--anatomy-panel-elevated)] shadow-[0_-12px_48px_rgba(0,0,0,0.5)] backdrop-blur-xl"
       >
         <div className="mx-auto mt-2 h-1 w-10 shrink-0 rounded-full bg-black/10" aria-hidden />
         <StructureDetailHeader structure={structure} onClose={onClose} />
@@ -78,6 +85,9 @@ export function StructureDetailSheet({
           onOpenStudio={onOpenStudio}
           onSelectSubregion={onSelectSubregion}
           initialFocusedProcedureId={focusedProcedureId}
+          visibleLayers={visibleLayers}
+          systemFilter={systemFilter}
+          onExecuteAssistActions={onExecuteAssistActions}
         />
       </div>
     </div>,

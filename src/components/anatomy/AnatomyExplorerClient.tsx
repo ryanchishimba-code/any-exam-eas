@@ -1,12 +1,14 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { X } from "lucide-react";
 import { AnatomyFeaturedPicks } from "@/components/anatomy/AnatomyFeaturedPicks";
 import { AnatomyQuickNav } from "@/components/anatomy/AnatomyQuickNav";
 import { AnatomyStudioHero } from "@/components/anatomy/AnatomyStudioHero";
 import { AnatomyShell } from "@/components/anatomy/systems/AnatomyShell";
+import type { CartoonViewerHandle } from "@/components/anatomy/systems/SurfaceHost";
+import { useAnatomyAssistBridge } from "@/components/anatomy/useAnatomyAssistBridge";
 import { useTeachSession } from "@/components/anatomy/systems/useTeachSession";
 import {
   getAllAnatomyStructures,
@@ -87,6 +89,8 @@ export function AnatomyExplorerClient({
   );
   const [invalidStructureDismissed, setInvalidStructureDismissed] = useState(false);
   const [teachExpanded, setTeachExpanded] = useState(false);
+  const viewerRef = useRef<CartoonViewerHandle | null>(null);
+  const resetViewFnRef = useRef<(() => void) | null>(null);
 
   const catalogOnly = !bundle.surface.hasViewport;
 
@@ -200,6 +204,16 @@ export function AnatomyExplorerClient({
     });
   }, []);
 
+  const handleResetView = useCallback(() => {
+    resetViewFnRef.current?.();
+    viewerRef.current?.resetView();
+  }, []);
+
+  const handleViewerReady = useCallback((api: CartoonViewerHandle) => {
+    resetViewFnRef.current = api.resetView;
+    viewerRef.current = api;
+  }, []);
+
   const { handleStructureSelect: handleTeachPick, highlightedId, quizActive, quizHint, startTour } =
     teach;
 
@@ -216,6 +230,14 @@ export function AnatomyExplorerClient({
     },
     [handleTeachPick, syncStructureParam]
   );
+
+  const assistBridge = useAnatomyAssistBridge({
+    onSelectStructure: handleSelectStructure,
+    onToggleLayer: toggleLayer,
+    onSetSystemFilter: setSystemFilter,
+    onResetView: handleResetView,
+    visibleLayers,
+  });
 
   const handleCloseStructure = useCallback(() => {
     setSelectedId(null);
@@ -371,6 +393,9 @@ export function AnatomyExplorerClient({
               onOverlayOpenChange={setOverlayOpen}
               mobileSheetOpen={mobileSheetOpen}
               onMobileSheetOpenChange={setMobileSheetOpen}
+              viewerRef={viewerRef}
+              onViewerReady={handleViewerReady}
+              onExecuteAssistActions={assistBridge.executeActions}
             />
           </div>
 

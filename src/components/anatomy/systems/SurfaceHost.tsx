@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import type { AnatomySurfaceId } from "@/lib/anatomy/systems/surfaces/types";
 import { resolveAnatomySurface } from "@/lib/anatomy/systems/surfaces";
 import type { AnatomyLayer, AnatomyStructure, AnatomySystem } from "@/lib/anatomy/types";
+import type { CartoonViewerHandle } from "@/components/anatomy/cartoon/CartoonAnatomyViewer";
 import { AnatomyViewerSkeleton } from "@/components/anatomy/AnatomyViewerSkeleton";
 import { cn } from "@/lib/utils";
 
@@ -23,6 +24,8 @@ const AnatomyEngineSurface = dynamic(
   { ssr: false, loading: () => <AnatomyViewerSkeleton /> }
 );
 
+export type { CartoonViewerHandle };
+
 type ViewportProps = {
   structures: AnatomyStructure[];
   visibleLayers: Set<AnatomyLayer>;
@@ -33,10 +36,13 @@ type ViewportProps = {
   onToggleLayer?: (layer: AnatomyLayer) => void;
   quizActive?: boolean;
   className?: string;
+  onViewerReady?: (api: CartoonViewerHandle) => void;
 };
 
 type Props = ViewportProps & {
   surfaceId?: AnatomySurfaceId;
+  viewerRef?: React.RefObject<CartoonViewerHandle | null>;
+  onViewerReady?: (api: CartoonViewerHandle) => void;
 };
 
 /** Renders the 3D cartoon anatomy viewport (production default). */
@@ -51,6 +57,8 @@ export function SurfaceHost({
   onToggleLayer,
   quizActive = false,
   className,
+  viewerRef,
+  onViewerReady,
 }: Props) {
   const surface = resolveAnatomySurface(surfaceId);
 
@@ -61,6 +69,7 @@ export function SurfaceHost({
   if (surface.id === "cartoon-3d") {
     return (
       <CartoonAnatomyViewer
+        ref={viewerRef}
         structures={structures}
         visibleLayers={visibleLayers}
         systemFilter={systemFilter}
@@ -70,6 +79,7 @@ export function SurfaceHost({
         onToggleLayer={onToggleLayer}
         quizActive={quizActive}
         className={className}
+        onViewerReady={onViewerReady}
       />
     );
   }
@@ -89,6 +99,7 @@ export function SurfaceHost({
 
   return (
     <CartoonAnatomyViewer
+      ref={viewerRef}
       structures={structures}
       visibleLayers={visibleLayers}
       systemFilter={systemFilter}
