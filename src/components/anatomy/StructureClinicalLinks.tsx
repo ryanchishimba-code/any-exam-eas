@@ -32,10 +32,10 @@ export function StructureClinicalLinks({
   return (
     <section aria-label="Disease states and treatments">
       <div className="mb-2 flex items-center gap-2">
-        <Stethoscope className="h-4 w-4 text-indigo-600" aria-hidden />
-        <h4 className="text-sm font-bold text-[var(--color-ink)]">Disease → drug → endpoints</h4>
+        <Stethoscope className="h-4 w-4 text-cyan-400" aria-hidden />
+        <h4 className="text-sm font-bold text-[var(--anatomy-ink)]">Disease → drug → endpoints</h4>
       </div>
-      <p className="mb-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+      <p className="mb-3 text-xs leading-relaxed text-[var(--anatomy-ink-muted)]">
         Tap a related condition above or explore each thread — drugs open the Top 500 card.
       </p>
 
@@ -76,8 +76,8 @@ function DiseaseCard({
       id={`disease-${disease.id}`}
       className={`rounded-2xl border p-3 transition ${
         focused
-          ? "border-indigo-400 bg-indigo-50 ring-2 ring-indigo-200"
-          : "border-indigo-100 bg-indigo-50/40"
+          ? "border-cyan-500/40 bg-[#283040] ring-1 ring-cyan-500/25"
+          : "border-white/[0.08] bg-[#222b38]"
       }`}
     >
       <button
@@ -85,23 +85,23 @@ function DiseaseCard({
         onClick={onFocus}
         className="flex w-full flex-wrap items-center gap-2 text-left"
       >
-        <p className="text-sm font-semibold text-[var(--color-ink)]">{disease.name}</p>
+        <p className="text-sm font-semibold text-[var(--anatomy-ink)]">{disease.name}</p>
         {disease.highYield ? (
-          <Badge className="bg-amber-100 text-amber-900">High-yield</Badge>
+          <Badge className="bg-amber-500/15 text-amber-200">High-yield</Badge>
         ) : null}
         {disease.generated ? (
-          <Badge className="bg-slate-100 text-slate-600">Auto-linked</Badge>
+          <Badge className="bg-white/[0.08] text-[var(--anatomy-ink-muted)]">Auto-linked</Badge>
         ) : null}
       </button>
 
-      <p className="mt-1.5 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+      <p className="mt-1.5 text-xs leading-relaxed text-[var(--anatomy-ink-muted)]">
         {disease.pathophysiology}
       </p>
 
       {disease.presentation.length > 0 ? (
         <ul className="mt-2 space-y-1">
           {disease.presentation.slice(0, 3).map((item) => (
-            <li key={item} className="text-xs text-[var(--color-ink)]">
+            <li key={item} className="text-xs text-[var(--anatomy-ink)]">
               · {item}
             </li>
           ))}
@@ -121,10 +121,10 @@ function DiseaseCard({
 
       {disease.treatmentGoals && disease.treatmentGoals.length > 0 ? (
         <div className="mt-2">
-          <p className="text-[10px] font-bold uppercase tracking-wide text-emerald-700">Goals</p>
+          <p className="text-[10px] font-bold uppercase tracking-wide text-emerald-400">Goals</p>
           <ul className="mt-1 space-y-0.5">
             {disease.treatmentGoals.map((g) => (
-              <li key={g} className="text-xs text-[var(--color-ink)]">
+              <li key={g} className="text-xs text-[var(--anatomy-ink)]">
                 · {g}
               </li>
             ))}
@@ -134,7 +134,7 @@ function DiseaseCard({
 
       {disease.firstLineDrugs.length > 0 ? (
         <div className="mt-3">
-          <p className="text-[10px] font-bold uppercase tracking-wide text-indigo-700">
+          <p className="text-[10px] font-bold uppercase tracking-wide text-violet-300">
             First-line therapy
           </p>
           <ul className="mt-1.5 space-y-1.5">
@@ -147,7 +147,7 @@ function DiseaseCard({
 
       {disease.adjunctDrugs.length > 0 ? (
         <div className="mt-2">
-          <p className="text-[10px] font-bold uppercase tracking-wide text-slate-600">
+          <p className="text-[10px] font-bold uppercase tracking-wide text-[var(--anatomy-ink-muted)]">
             Adjunct / special situations
           </p>
           <ul className="mt-1.5 space-y-1.5">
@@ -159,14 +159,14 @@ function DiseaseCard({
       ) : null}
 
       {disease.counselingPearl ? (
-        <p className="mt-2 rounded-lg bg-white/80 px-2.5 py-2 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
-          <strong className="font-semibold text-[var(--color-ink)]">Counseling:</strong>{" "}
+        <p className="mt-2 rounded-lg bg-[#283040] px-2.5 py-2 text-[11px] leading-relaxed text-[var(--anatomy-ink-muted)]">
+          <strong className="font-semibold text-[var(--anatomy-ink)]">Counseling:</strong>{" "}
           {disease.counselingPearl}
         </p>
       ) : null}
 
       {disease.examPearl ? (
-        <p className="mt-2 rounded-lg border border-amber-100 bg-amber-50/80 px-2.5 py-2 text-[11px] leading-relaxed text-amber-950">
+        <p className="mt-2 rounded-lg border border-amber-500/25 bg-amber-500/10 px-2.5 py-2 text-[11px] leading-relaxed text-amber-100">
           <strong className="font-semibold">Board pearl:</strong> {disease.examPearl}
         </p>
       ) : null}
@@ -186,7 +186,7 @@ function EndpointGroup({
   if (!endpoints?.length) return null;
   return (
     <div className="mt-2">
-      <p className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-slate-600">
+      <p className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-[var(--anatomy-ink-muted)]">
         {icon}
         {title}
       </p>
@@ -194,12 +194,12 @@ function EndpointGroup({
         {endpoints.map((ep) => (
           <li
             key={`${ep.label}-${ep.target ?? ""}`}
-            className="rounded-md bg-white/90 px-2 py-1 text-[10px] text-[var(--color-ink)] ring-1 ring-black/[0.05]"
+            className="rounded-md bg-[#2f3a4a] px-2 py-1 text-[10px] text-[var(--anatomy-ink)] ring-1 ring-white/[0.06]"
           >
             <span className="font-semibold">{ep.label}</span>
-            {ep.target ? <span className="text-[var(--color-ink-muted)]"> → {ep.target}</span> : null}
+            {ep.target ? <span className="text-[var(--anatomy-ink-muted)]"> → {ep.target}</span> : null}
             {ep.frequency ? (
-              <span className="block text-[var(--color-ink-muted)]">{ep.frequency}</span>
+              <span className="block text-[var(--anatomy-ink-muted)]">{ep.frequency}</span>
             ) : null}
           </li>
         ))}
@@ -219,15 +219,15 @@ function DrugRow({
     <li>
       <Link
         href={anatomyDrugHref(drug.id)}
-        className={`flex items-start gap-2 rounded-xl border px-3 py-2 text-sm transition hover:border-indigo-200 hover:bg-white ${
-          subdued ? "border-black/[0.05] bg-white/60" : "border-indigo-100 bg-white"
+        className={`flex items-start gap-2 rounded-xl border px-3 py-2 text-sm transition hover:border-cyan-500/30 hover:bg-[#2e3848] ${
+          subdued ? "border-white/[0.06] bg-[#222b38]" : "border-white/[0.08] bg-[#283040]"
         }`}
       >
-        <Pill className="mt-0.5 h-3.5 w-3.5 shrink-0 text-indigo-500" aria-hidden />
+        <Pill className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-400" aria-hidden />
         <span className="min-w-0">
-          <span className="font-semibold text-[var(--color-ink)]">{drug.generic}</span>
-          <span className="text-[var(--color-ink-muted)]"> ({drug.brand})</span>
-          <span className="mt-0.5 block text-[10px] text-[var(--color-ink-muted)]">
+          <span className="font-semibold text-[var(--anatomy-ink)]">{drug.generic}</span>
+          <span className="text-[var(--anatomy-ink-muted)]"> ({drug.brand})</span>
+          <span className="mt-0.5 block text-[10px] text-[var(--anatomy-ink-muted)]">
             {drug.therapeuticClass}
           </span>
         </span>

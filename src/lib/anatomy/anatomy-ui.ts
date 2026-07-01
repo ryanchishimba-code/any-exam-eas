@@ -6,7 +6,7 @@ export const anatomyUi = {
   panel:
     "overflow-hidden rounded-[22px] border border-white/[0.08] bg-[var(--anatomy-panel)] shadow-[0_8px_32px_rgba(0,0,0,0.35)]",
   panelFlat:
-    "overflow-hidden border-[var(--anatomy-border)] bg-[var(--anatomy-panel-elevated)]",
+    "overflow-hidden border-[var(--anatomy-border)] bg-[var(--anatomy-panel-elevated)] shadow-[-16px_0_48px_rgba(0,0,0,0.55)]",
   panelSection: "space-y-4 p-4 sm:p-5 md:p-6",
   sectionDivider: "border-t border-white/[0.06]",
   viewerSection: "min-w-0",
@@ -40,7 +40,7 @@ export const anatomyUi = {
     "rounded-[10px] px-3 py-1.5 text-[13px] font-medium text-[var(--anatomy-ink-muted)] transition",
   segmentBtnActive: "bg-white/[0.1] text-[var(--anatomy-ink)] shadow-sm",
   detailSection:
-    "rounded-[18px] border border-white/[0.06] bg-black/20 p-4",
+    "rounded-[18px] border border-white/[0.08] bg-[#1e2733] p-4",
   viewportShell:
     "relative w-full min-w-0 overflow-hidden bg-[#080b10]",
   viewportHeight:

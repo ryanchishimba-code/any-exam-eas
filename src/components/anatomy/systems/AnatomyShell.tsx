@@ -252,7 +252,7 @@ export function AnatomyShell({
 
         <div
           className={cn(
-            "hidden min-w-0 border-l border-white/[0.06] lg:block",
+            "hidden min-w-0 border-l border-white/[0.06] bg-[var(--anatomy-panel-elevated)] lg:block",
             !overlayOpen && "lg:hidden"
           )}
         >

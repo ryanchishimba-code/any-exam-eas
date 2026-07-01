@@ -47,10 +47,10 @@ export function StructureProcedureLinks({
   return (
     <section aria-label="Surgical procedures">
       <div className="mb-2 flex items-center gap-2">
-        <Syringe className="h-4 w-4 text-indigo-600" aria-hidden />
-        <h4 className="text-sm font-bold text-[var(--color-ink)]">Procedures & surgeries</h4>
+        <Syringe className="h-4 w-4 text-cyan-400" aria-hidden />
+        <h4 className="text-sm font-bold text-[var(--anatomy-ink)]">Procedures & surgeries</h4>
       </div>
-      <p className="mb-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+      <p className="mb-3 text-xs leading-relaxed text-[var(--anatomy-ink-muted)]">
         Board-relevant operations for {structure.name.toLowerCase()} — tap to expand indications
         and pearls.
       </p>
@@ -62,7 +62,7 @@ export function StructureProcedureLinks({
             procedures={emergent}
             focusedProcedureId={activeId}
             onFocusProcedure={setFocus}
-            accent="border-rose-200 bg-rose-50/50"
+            accent="border-rose-500/25 bg-[#2a2228]"
           />
         ) : null}
         {urgent.length > 0 ? (
@@ -71,7 +71,7 @@ export function StructureProcedureLinks({
             procedures={urgent}
             focusedProcedureId={activeId}
             onFocusProcedure={setFocus}
-            accent="border-amber-200 bg-amber-50/40"
+            accent="border-amber-500/25 bg-[#2a2820]"
           />
         ) : null}
         {elective.length > 0 ? (
@@ -80,7 +80,7 @@ export function StructureProcedureLinks({
             procedures={elective}
             focusedProcedureId={activeId}
             onFocusProcedure={setFocus}
-            accent="border-slate-200 bg-slate-50/60"
+            accent="border-white/[0.08] bg-[#222b38]"
           />
         ) : null}
       </div>
@@ -103,7 +103,7 @@ function ProcedureGroup({
 }) {
   return (
     <div>
-      <p className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-[var(--color-ink-muted)]">
+      <p className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-[var(--anatomy-ink-muted)]">
         {label}
       </p>
       <ul className="space-y-2">
@@ -139,43 +139,43 @@ function ProcedureCard({
         onClick={onFocus}
         className={cn(
           "w-full rounded-xl border p-3 text-left transition",
-          focused ? "border-indigo-300 bg-indigo-50/80 shadow-sm" : accent,
-          "hover:border-indigo-200 hover:shadow-sm"
+          focused ? "border-cyan-500/40 bg-[#283040] shadow-sm" : accent,
+          "hover:border-cyan-500/30 hover:bg-[#2a3442]"
         )}
       >
         <div className="flex flex-wrap items-start justify-between gap-2">
-          <p className="text-sm font-semibold text-[var(--color-ink)]">{procedure.name}</p>
+          <p className="text-sm font-semibold text-[var(--anatomy-ink)]">{procedure.name}</p>
           <div className="flex flex-wrap gap-1">
             {procedure.highYield ? (
-              <Badge className="bg-amber-100 text-[10px] text-amber-900">High-yield</Badge>
+              <Badge className="bg-amber-500/15 text-[10px] text-amber-200">High-yield</Badge>
             ) : null}
-            <Badge className="bg-white/80 text-[10px] text-slate-700">
+            <Badge className="bg-white/[0.08] text-[10px] text-[var(--anatomy-ink-muted)]">
               {PROCEDURE_APPROACH_LABELS[procedure.approach]}
             </Badge>
           </div>
         </div>
 
         {focused ? (
-          <div className="mt-3 space-y-2 border-t border-black/[0.06] pt-3 text-xs leading-relaxed">
+          <div className="mt-3 space-y-2 border-t border-white/[0.08] pt-3 text-xs leading-relaxed">
             <p>
-              <span className="font-semibold text-[var(--color-ink)]">Indication: </span>
+              <span className="font-semibold text-[var(--anatomy-ink)]">Indication: </span>
               {procedure.indication}
             </p>
-            <blockquote className="rounded-lg border-l-2 border-indigo-400 bg-white/70 px-2.5 py-2 font-medium text-[var(--color-ink)]">
+            <blockquote className="rounded-lg border-l-2 border-cyan-500/50 bg-[#283040] px-2.5 py-2 font-medium text-[var(--anatomy-ink)]">
               {procedure.examPearl}
             </blockquote>
             {procedure.complications.length > 0 ? (
               <p>
-                <span className="font-semibold text-[var(--color-ink)]">Complications: </span>
+                <span className="font-semibold text-[var(--anatomy-ink)]">Complications: </span>
                 {procedure.complications.join("; ")}
               </p>
             ) : null}
-            <p className="text-[10px] uppercase tracking-wide text-[var(--color-ink-muted)]">
+            <p className="text-[10px] uppercase tracking-wide text-[var(--anatomy-ink-muted)]">
               {PROCEDURE_URGENCY_LABELS[procedure.urgency]}
             </p>
           </div>
         ) : (
-          <p className="mt-1 line-clamp-2 text-xs text-[var(--color-ink-muted)]">
+          <p className="mt-1 line-clamp-2 text-xs text-[var(--anatomy-ink-muted)]">
             {procedure.indication}
           </p>
         )}

@@ -56,7 +56,7 @@ export function StructureDetailPanel({
 
   return (
     <div className="flex-1 space-y-4 overflow-y-auto p-4 sm:p-5">
-      <p className="text-[15px] leading-relaxed text-[var(--anatomy-ink-muted)]">
+      <p className="text-[15px] leading-relaxed text-[var(--anatomy-ink)]">
         {structure.description}
       </p>
 
@@ -79,7 +79,7 @@ export function StructureDetailPanel({
       ) : null}
 
       {structure.clinicalFacts[0] ? (
-        <blockquote className="rounded-[18px] border-l-[3px] border-cyan-500 bg-cyan-500/[0.08] px-4 py-3.5 text-[15px] font-medium leading-relaxed text-[var(--anatomy-ink)]">
+        <blockquote className="rounded-[18px] border-l-[3px] border-cyan-500 bg-cyan-500/15 px-4 py-3.5 text-[15px] font-medium leading-relaxed text-[var(--anatomy-ink)]">
           {structure.clinicalFacts[0]}
         </blockquote>
       ) : null}
@@ -91,7 +91,7 @@ export function StructureDetailPanel({
             {structure.clinicalFacts.slice(1).map((fact) => (
               <li
                 key={fact}
-                className="rounded-[12px] bg-white/[0.04] px-3 py-2.5 text-[14px] leading-relaxed text-[var(--anatomy-ink)]"
+                className="rounded-[12px] bg-[#283040] px-3 py-2.5 text-[14px] leading-relaxed text-[var(--anatomy-ink)]"
               >
                 {fact}
               </li>
@@ -103,7 +103,7 @@ export function StructureDetailPanel({
       {structure.pathologies && structure.pathologies.length > 0 ? (
         <section className={anatomyUi.detailSection}>
           <SectionHeading icon={Brain} title="Related conditions" />
-          <p className="mt-1 text-[12px] text-[var(--color-ink-muted)]">
+          <p className="mt-1 text-[12px] text-[var(--anatomy-ink-muted)]">
             Tap a condition to jump to drugs and endpoints below.
           </p>
           <div className="mt-3 flex flex-wrap gap-1.5">
@@ -112,7 +112,7 @@ export function StructureDetailPanel({
               const active = diseaseId && focusedDiseaseId === diseaseId;
               if (!diseaseId) {
                 return (
-                  <Badge key={p} className="rounded-full bg-black/[0.05] text-[var(--color-ink)]">
+                  <Badge key={p} className="rounded-full bg-[#283040] text-[var(--anatomy-ink)]">
                     {p}
                   </Badge>
                 );
@@ -125,8 +125,8 @@ export function StructureDetailPanel({
                   className={cn(
                     "rounded-full px-3 py-1.5 text-[12px] font-medium transition",
                     active
-                      ? "bg-[var(--color-accent)] text-white shadow-sm"
-                      : "bg-white text-[var(--color-ink)] ring-1 ring-black/[0.06] hover:bg-black/[0.02]"
+                      ? "bg-cyan-600 text-white shadow-sm"
+                      : "bg-[#283040] text-[var(--anatomy-ink)] ring-1 ring-white/[0.08] hover:bg-[#2e3848]"
                   )}
                 >
                   {p}
@@ -156,10 +156,10 @@ export function StructureDetailPanel({
               <li key={card.id}>
                 <Link
                   href={libraryCardHref(examSlug, card.id)}
-                  className="block rounded-[14px] bg-white px-3.5 py-3 text-[14px] transition hover:shadow-[var(--shadow-apple-sm)]"
+                  className="block rounded-[14px] border border-white/[0.08] bg-[#283040] px-3.5 py-3 text-[14px] transition hover:border-cyan-500/25 hover:bg-[#2e3848]"
                 >
-                  <p className="font-semibold text-[var(--color-ink)]">{card.title}</p>
-                  <p className="mt-0.5 text-[12px] text-[var(--color-ink-muted)]">{card.teaser}</p>
+                  <p className="font-semibold text-[var(--anatomy-ink)]">{card.title}</p>
+                  <p className="mt-0.5 text-[12px] text-[var(--anatomy-ink-muted)]">{card.teaser}</p>
                 </Link>
               </li>
             ))}
@@ -230,7 +230,7 @@ export function StructureDetailHeader({
   const parent = structure.parentId ? getAnatomyStructure(structure.parentId) : null;
 
   return (
-    <div className="border-b border-white/[0.06] px-4 py-4 sm:px-5">
+    <div className="border-b border-white/[0.08] bg-[#1a222d] px-4 py-4 sm:px-5">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-1.5">

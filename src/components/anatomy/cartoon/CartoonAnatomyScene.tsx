@@ -3,6 +3,7 @@
 import {
   forwardRef,
   Suspense,
+  useCallback,
   useEffect,
   useImperativeHandle,
   useMemo,
@@ -11,7 +12,7 @@ import {
 } from "react";
 import { OrbitControls } from "@react-three/drei";
 import type { OrbitControls as OrbitControlsImpl } from "three-stdlib";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import type { PerspectiveCamera } from "three";
 import * as THREE from "three";
 import { Vector3 } from "three";
@@ -44,8 +45,10 @@ function CtRenderSettings() {
 
 function ScenePointerBridge({
   controlsRef,
+  onOrbitingChange,
 }: {
   controlsRef: React.RefObject<OrbitControlsImpl | null>;
+  onOrbitingChange?: (orbiting: boolean) => void;
 }) {
   const { resetAllHovers } = useAnatomyPointer();
   const gl = useThree((state) => state.gl);
@@ -53,10 +56,18 @@ function ScenePointerBridge({
   useEffect(() => {
     const controls = controlsRef.current;
     if (!controls) return;
-    const onStart = () => resetAllHovers();
+    const onStart = () => {
+      resetAllHovers();
+      onOrbitingChange?.(true);
+    };
+    const onEnd = () => onOrbitingChange?.(false);
     controls.addEventListener("start", onStart);
-    return () => controls.removeEventListener("start", onStart);
-  }, [controlsRef, resetAllHovers]);
+    controls.addEventListener("end", onEnd);
+    return () => {
+      controls.removeEventListener("start", onStart);
+      controls.removeEventListener("end", onEnd);
+    };
+  }, [controlsRef, onOrbitingChange, resetAllHovers]);
 
   useEffect(() => {
     const el = gl.domElement;
@@ -99,52 +110,103 @@ function SceneRig({
   const cameraConfig = CT_CAMERA;
   const defaultCamPos = useMemo(() => new Vector3(...cameraConfig.position), [cameraConfig.position]);
   const defaultTarget = useMemo(() => new Vector3(...cameraConfig.target), [cameraConfig.target]);
-  const desiredTarget = useMemo(() => new Vector3(), []);
-  const focusDistance = useRef(cameraConfig.position[2]);
-  const cameraDirRef = useRef(new Vector3());
-  const cameraGoalRef = useRef(new Vector3());
+  const userOrbitingRef = useRef(false);
+  const pendingFocusIdRef = useRef<string | null>(null);
+  const zoomLevelRef = useRef(zoomLevel);
+  zoomLevelRef.current = zoomLevel;
+  const prevZoomRef = useRef(zoomLevel);
+
+  const applyOrbitLimits = useCallback(() => {
+    const controls = controlsRef.current;
+    if (!controls) return;
+    const z = zoomLevelRef.current;
+    controls.minDistance = cameraConfig.minDistance / z;
+    controls.maxDistance = cameraConfig.maxDistance / z;
+  }, [cameraConfig.maxDistance, cameraConfig.minDistance, controlsRef]);
+
+  const applyCameraFocus = useCallback(
+    (structureId: string | null) => {
+      const controls = controlsRef.current;
+      if (!controls) return;
+      const persp = camera as PerspectiveCamera;
+      const z = zoomLevelRef.current;
+
+      if (!structureId) {
+        controls.target.copy(defaultTarget);
+        persp.position.copy(defaultCamPos);
+        applyOrbitLimits();
+        controls.update();
+        return;
+      }
+
+      const structure = getAnatomyStructure(structureId);
+      if (!structure) return;
+      const mod = getAnatomyModule(structure.meshId);
+      const focus = mod?.position ?? getBoneFocus(structure.id);
+      if (!focus) return;
+
+      controls.target.set(focus[0], focus[1], focus[2]);
+      const offset = new Vector3().subVectors(persp.position, controls.target);
+      if (offset.lengthSq() < 1e-8) {
+        offset.set(0, 0, 1);
+      } else {
+        offset.normalize();
+      }
+      const baseDistance = mod?.focusDistance ?? getBoneFocusDistance(structure.id);
+      persp.position.copy(controls.target).addScaledVector(offset, baseDistance / z);
+      applyOrbitLimits();
+      controls.update();
+    },
+    [applyOrbitLimits, camera, controlsRef, defaultCamPos, defaultTarget]
+  );
 
   useEffect(() => {
     const controls = controlsRef.current;
     if (!controls) return;
+    const persp = camera as PerspectiveCamera;
     controls.target.copy(defaultTarget);
-    camera.position.copy(defaultCamPos);
-    focusDistance.current = cameraConfig.position[2];
+    persp.position.copy(defaultCamPos);
+    applyOrbitLimits();
     controls.update();
-  }, [camera, cameraConfig.position, cameraConfig.target, controlsRef, defaultCamPos, defaultTarget, resetToken]);
+    pendingFocusIdRef.current = null;
+    prevZoomRef.current = zoomLevelRef.current;
+  }, [resetToken, defaultTarget, defaultCamPos, camera, applyOrbitLimits, controlsRef]);
 
   useEffect(() => {
-    const focusId = highlightedId ?? selectedId;
-    if (!focusId) {
-      desiredTarget.copy(defaultTarget);
-      focusDistance.current = cameraConfig.position[2] / zoomLevel;
+    if (userOrbitingRef.current) {
+      pendingFocusIdRef.current = selectedId;
       return;
     }
-    const structure = getAnatomyStructure(focusId);
-    if (!structure) return;
-    const mod = getAnatomyModule(structure.meshId);
-    const focus = mod?.position ?? getBoneFocus(structure.id);
-    if (!focus) return;
-    desiredTarget.set(focus[0], focus[1], focus[2]);
-    const baseDistance = mod?.focusDistance ?? getBoneFocusDistance(structure.id);
-    const previewOnly = Boolean(highlightedId && highlightedId !== selectedId);
-    focusDistance.current = (previewOnly ? baseDistance * 1.08 : baseDistance) / zoomLevel;
-  }, [cameraConfig.position, defaultTarget, desiredTarget, highlightedId, selectedId, zoomLevel]);
+    applyCameraFocus(selectedId);
+    pendingFocusIdRef.current = null;
+  }, [selectedId, applyCameraFocus]);
 
-  useFrame(() => {
+  useEffect(() => {
+    if (prevZoomRef.current === zoomLevel) return;
+    const prev = prevZoomRef.current;
+    prevZoomRef.current = zoomLevel;
+
     const controls = controlsRef.current;
     if (!controls) return;
-    controls.target.lerp(desiredTarget, 0.14);
-    controls.minDistance = cameraConfig.minDistance / zoomLevel;
-    controls.maxDistance = cameraConfig.maxDistance / zoomLevel;
     const persp = camera as PerspectiveCamera;
-    cameraDirRef.current.subVectors(persp.position, controls.target).normalize();
-    cameraGoalRef.current
-      .copy(controls.target)
-      .addScaledVector(cameraDirRef.current, focusDistance.current);
-    persp.position.lerp(cameraGoalRef.current, 0.11);
+    const offset = new Vector3().subVectors(persp.position, controls.target);
+    if (offset.lengthSq() < 1e-8) return;
+
+    persp.position.copy(controls.target).addScaledVector(offset, offset.length() * (prev / zoomLevel));
+    applyOrbitLimits();
     controls.update();
-  });
+  }, [zoomLevel, applyOrbitLimits, camera, controlsRef]);
+
+  const handleOrbitingChange = useCallback(
+    (orbiting: boolean) => {
+      userOrbitingRef.current = orbiting;
+      if (!orbiting && pendingFocusIdRef.current !== null) {
+        applyCameraFocus(pendingFocusIdRef.current);
+        pendingFocusIdRef.current = null;
+      }
+    },
+    [applyCameraFocus]
+  );
 
   const ctWindow = CT_WINDOWS[ctWindowId];
   const focusStructureId = highlightedId ?? selectedId;
@@ -182,7 +244,7 @@ function SceneRig({
       />
       <NeuroConnectionRig focusStructureId={focusStructureId} />
 
-      <ScenePointerBridge controlsRef={controlsRef} />
+      <ScenePointerBridge controlsRef={controlsRef} onOrbitingChange={handleOrbitingChange} />
       <OrbitControls
         ref={controlsRef}
         enablePan

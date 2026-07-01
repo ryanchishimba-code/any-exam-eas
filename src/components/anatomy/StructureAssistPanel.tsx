@@ -167,7 +167,7 @@ export function StructureAssistPanel({
 
       <div
         ref={scrollRef}
-        className="max-h-44 space-y-2 overflow-y-auto rounded-[14px] bg-black/25 p-2.5"
+        className="max-h-44 space-y-2 overflow-y-auto rounded-[14px] bg-[#121820] p-2.5"
       >
         {messages.length === 0 ? (
           <p className="text-[12px] leading-relaxed text-[var(--anatomy-ink-muted)]">
@@ -181,8 +181,8 @@ export function StructureAssistPanel({
               className={cn(
                 "rounded-[12px] px-3 py-2 text-[13px] leading-relaxed",
                 m.role === "user"
-                  ? "ml-6 bg-cyan-500/15 text-[var(--anatomy-ink)]"
-                  : "mr-4 bg-white/[0.06] text-[var(--anatomy-ink-muted)]"
+                  ? "ml-6 bg-cyan-500/20 text-[var(--anatomy-ink)]"
+                  : "mr-4 bg-[#283040] text-[var(--anatomy-ink-muted)]"
               )}
             >
               {m.content}
