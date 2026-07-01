@@ -1,4 +1,5 @@
 import { defineExamTopics } from "./topic-factory";
+import { sigCodeAbbreviationTopic } from "./sig-code-abbreviations";
 
 export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
   {
@@ -481,4 +482,5 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
     ],
     practiceTopicSlug: "patient-counseling",
   },
+  sigCodeAbbreviationTopic("naplex"),
 ]);

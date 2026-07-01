@@ -13,6 +13,9 @@ export type UsmleBlueprintBankRow = {
   itemType?: string | null;
   blueprintDomain?: string | null;
   blueprintTopic?: string | null;
+  tags?: string | null;
+  question?: string | null;
+  scenario?: string | null;
 };
 
 /** Explicit Step 1 basic-science → organ-system mapping (pathology spans many categories). */

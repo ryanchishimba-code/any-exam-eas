@@ -1,4 +1,5 @@
 import { defineExamTopics } from "./topic-factory";
+import { sigCodeAbbreviationTopic } from "./sig-code-abbreviations";
 
 export const NPTE_PT_HIGH_YIELD_TOPICS = defineExamTopics("npte-pt", [
   {
@@ -100,4 +101,5 @@ export const NPTE_PT_HIGH_YIELD_TOPICS = defineExamTopics("npte-pt", [
     pitfalls: ["Practicing outside state licensure", "Vague documentation without functional measures"],
     practiceTopicSlug: "professional-responsibilities",
   },
+  sigCodeAbbreviationTopic("npte-pt"),
 ]);

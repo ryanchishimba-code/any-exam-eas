@@ -1,4 +1,5 @@
 import { defineExamTopics } from "./topic-factory";
+import { sigCodeAbbreviationTopic } from "./sig-code-abbreviations";
 
 export const PANCE_HIGH_YIELD_TOPICS = defineExamTopics("pance", [
   {
@@ -196,4 +197,5 @@ export const PANCE_HIGH_YIELD_TOPICS = defineExamTopics("pance", [
     pitfalls: ["Assuming spouse can consent for competent adult", "Continuing beyond scope without collaboration"],
     practiceTopicSlug: "professional-practice",
   },
+  sigCodeAbbreviationTopic("pance"),
 ]);

@@ -25,11 +25,13 @@ function item(
 }
 
 describe("dedupeNclexItemsByClinicalCase", () => {
-  it("keeps one standalone item per shared vignette cluster", () => {
-    const shared = "Male with crushing chest pain and diaphoresis in the ED.";
+  it("keeps one standalone item per shared vignette cluster when stem and choices match", () => {
+    const shared = "Male with crushing chest pain and diaphoresis in the ED with enough detail.";
+    const stem = "Which finding requires immediate nursing follow-up?";
+    const options = ["ST elevation", "Crackles", "Bradycardia", "Polyuria"];
     const pool = [
-      item("a1", "med-surg", "Which action first?", shared),
-      item("a2", "med-surg", "Which medication next?", shared),
+      item("a1", "med-surg", stem, shared, options),
+      item("a2", "med-surg", stem, `${shared} Room 402.`, options),
       item("b1", "renal", "Best fluid?", "Oliguria after major surgery"),
     ];
     const deduped = dedupeNclexItemsByClinicalCase(pool);

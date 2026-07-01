@@ -1,4 +1,5 @@
 import { defineExamTopics } from "./topic-factory";
+import { sigCodeAbbreviationTopic } from "./sig-code-abbreviations";
 
 export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
   {
@@ -465,4 +466,5 @@ export const USMLE_HIGH_YIELD_TOPICS = defineExamTopics("usmle", [
     ],
     practiceTopicSlug: "internal-medicine",
   },
+  sigCodeAbbreviationTopic("usmle"),
 ]);

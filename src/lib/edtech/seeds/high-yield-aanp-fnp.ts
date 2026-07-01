@@ -1,6 +1,7 @@
 /** Legacy AANP FNP seed data — wired into HIGH_YIELD_BY_EXAM. */
 import type { ExamSlug } from "@/types/edtech";
 import { defineExamTopics } from "./topic-factory";
+import { sigCodeAbbreviationTopic } from "./sig-code-abbreviations";
 
 export const AANP_FNP_HIGH_YIELD_TOPICS = defineExamTopics("aanp-fnp" satisfies ExamSlug, [
   {
@@ -111,4 +112,5 @@ export const AANP_FNP_HIGH_YIELD_TOPICS = defineExamTopics("aanp-fnp" satisfies 
     pitfalls: ["Applying adult dosing or workup algorithms to pediatric patients"],
     practiceTopicSlug: "pediatrics",
   },
+  sigCodeAbbreviationTopic("aanp-fnp"),
 ]);

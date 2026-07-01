@@ -1,4 +1,5 @@
 import { formatPlanUsd } from "@/lib/billing-plans";
+import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import type { ExamRouteSlug } from "@/lib/routes";
 import {
