@@ -22,7 +22,7 @@ describe("brain-fit", () => {
     expect(cranial!.min.y).toBeGreaterThan(0.9);
   });
 
-  it("uses spinal cord top as craniocervical junction", () => {
+  it("prefers vault floor when spinal cord ends below the cranium", () => {
     const atlas = new Group();
     const skin = new Mesh(new BoxGeometry(0.48, 2.35, 0.34), new MeshBasicMaterial());
     skin.userData.atlasOrganId = "skin";
@@ -32,11 +32,13 @@ describe("brain-fit", () => {
     cord.position.set(0, 0.55, FIGURE.centerZ - 0.08);
     atlas.add(skin, cord);
 
+    const skinBox = new Box3().setFromObject(skin);
+    const junction = getCraniocervicalJunctionY(atlas, skinBox);
     const cordTop = new Box3().setFromObject(cord).max.y;
-    expect(getCraniocervicalJunctionY(atlas, new Box3().setFromObject(skin))).toBeCloseTo(cordTop, 3);
+    expect(junction).toBeGreaterThan(cordTop);
   });
 
-  it("seats brain base above spinal cord (over the throat)", () => {
+  it("seats brain inside the cranial vault above the junction", () => {
     const atlas = new Group();
     const skin = new Mesh(new BoxGeometry(0.48, 2.35, 0.34), new MeshBasicMaterial());
     skin.userData.atlasOrganId = "skin";
@@ -53,11 +55,12 @@ describe("brain-fit", () => {
 
     brain.updateMatrixWorld(true);
     const brainBox = new Box3().setFromObject(brain);
-    const cordTop = new Box3().setFromObject(cord).max.y;
+    const cranial = getCranialVaultWorldBounds(atlas)!;
+    const junction = getCraniocervicalJunctionY(atlas, new Box3().setFromObject(skin));
 
-    expect(brainBox.min.y).toBeGreaterThanOrEqual(cordTop - 0.01);
-    expect(brainBox.max.y).toBeLessThanOrEqual(getCranialVaultWorldBounds(atlas)!.max.y + 0.02);
-    expect(brainBox.getCenter(new Vector3()).y).toBeGreaterThan(cordTop);
+    expect(brainBox.min.y).toBeGreaterThanOrEqual(junction - 0.02);
+    expect(brainBox.max.y).toBeLessThanOrEqual(cranial.max.y + 0.02);
+    expect(brainBox.getCenter(new Vector3()).y).toBeGreaterThan(junction);
   });
 
   it("falls back to figure neck junction when atlas bounds are missing", () => {

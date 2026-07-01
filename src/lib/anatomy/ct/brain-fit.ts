@@ -33,15 +33,29 @@ function cranialSliceFromBodyBox(bodyBox: Box3): Box3 {
   );
 }
 
-/** Y of craniocervical junction — brainstem sits just above spinal cord / throat. */
-export function getCraniocervicalJunctionY(atlasRoot: Object3D, bodyBox: Box3): number {
-  const cordBox = atlasOrganBox(atlasRoot, "spinal-cord");
-  if (cordBox) return cordBox.max.y;
-
+/** Lower bound of cranial vault slice (foramen magnum region). */
+function cranialVaultFloorY(bodyBox: Box3): number {
   const size = new Vector3();
   bodyBox.getSize(size);
-  const cranialFloor = bodyBox.max.y - size.y * CRANIAL_HEIGHT_FRACTION;
-  return cranialFloor + size.y * 0.01;
+  return bodyBox.max.y - size.y * CRANIAL_HEIGHT_FRACTION;
+}
+
+/** Y of craniocervical junction — brainstem sits just above spinal cord / throat. */
+export function getCraniocervicalJunctionY(atlasRoot: Object3D, bodyBox: Box3): number {
+  const size = new Vector3();
+  bodyBox.getSize(size);
+  const vaultFloor = cranialVaultFloorY(bodyBox);
+  const vaultHeight = bodyBox.max.y - vaultFloor;
+
+  const cordBox = atlasOrganBox(atlasRoot, "spinal-cord");
+  if (cordBox) {
+    // VH cord mesh often stops short of the vault — keep the brain base inside the cranium.
+    const cordJunction = cordBox.max.y;
+    const vaultJunction = vaultFloor + vaultHeight * 0.1;
+    return Math.max(cordJunction, vaultJunction);
+  }
+
+  return vaultFloor + vaultHeight * 0.12;
 }
 
 /** Cranial vault envelope from fitted VH skin (preferred) or full atlas bbox. */
@@ -120,12 +134,23 @@ export function fitAllenBrainToAtlas(atlasRoot: Object3D, brainRoot: Object3D) {
   brainRoot.rotation.set(0, Math.PI, 0);
   brainRoot.updateMatrixWorld(true);
 
+  brainRoot.updateMatrixWorld(true);
   const scaledBox = new Box3().setFromObject(brainRoot);
   const scaledCenter = new Vector3();
   scaledBox.getCenter(scaledCenter);
-  brainRoot.position.set(
+
+  const vaultHeight = Math.max(cranialTop - junctionY, 1e-6);
+  const targetBrainCenterY = junctionY + vaultHeight * 0.52;
+
+  const worldPos = new Vector3(
     targetCenter.x - scaledCenter.x,
-    junctionY - scaledBox.min.y + BRAINSTEM_JUNCTION_PAD,
+    targetBrainCenterY - scaledCenter.y,
     targetCenter.z - scaledCenter.z
   );
+
+  if (brainRoot.parent) {
+    brainRoot.parent.updateMatrixWorld(true);
+    brainRoot.parent.worldToLocal(worldPos);
+  }
+  brainRoot.position.copy(worldPos);
 }

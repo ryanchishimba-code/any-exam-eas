@@ -437,11 +437,7 @@ export function CtAtlasRig({
         const selected = structureId != null && selectedId === structureId;
 
         return (
-          <group
-            key={entry.id}
-            ref={brainRef}
-            visible={visible}
-          >
+          <group key={entry.id} ref={brainRef} visible={visible}>
             <CtAtlasOrganMesh
               entry={entry}
               windowId={windowId}

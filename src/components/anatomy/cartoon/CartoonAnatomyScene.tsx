@@ -23,8 +23,6 @@ import type { AnatomyLayer, AnatomyStructure, AnatomySystem } from "@/lib/anatom
 import { cn } from "@/lib/utils";
 import { AnatomyPointerProvider, useAnatomyPointer } from "./AnatomyPointerProvider";
 import { CtAtlasRig, preloadCtAtlas } from "@/components/anatomy/ct/CtAtlasRig";
-import { CtThoracicBonesRig } from "@/components/anatomy/ct/CtThoracicBonesRig";
-import { createCtClipPlanes } from "@/lib/anatomy/ct/ct-atlas-fit";
 import { NeuroConnectionRig } from "./NeuroConnectionRig";
 import { CT_WINDOWS, isCtAtlasEnabled, type CtWindowId } from "@/lib/anatomy/ct/ct-windows";
 import type { CtClipPlaneId } from "@/lib/anatomy/ct/ct-atlas-registry";
@@ -150,14 +148,6 @@ function SceneRig({
 
   const ctWindow = CT_WINDOWS[ctWindowId];
   const focusStructureId = highlightedId ?? selectedId;
-  const showBones = visibleLayers.has("bone");
-  const boneSystemFiltered =
-    systemFilter !== "all" && systemFilter !== "skeletal";
-
-  const clippingPlanes = useMemo(
-    () => createCtClipPlanes(ctClipPlaneId, ctSliceOffset),
-    [ctClipPlaneId, ctSliceOffset]
-  );
 
   useEffect(() => {
     if (!isCtAtlasEnabled()) return;
@@ -189,15 +179,6 @@ function SceneRig({
         highlightedId={highlightedId}
         onSelect={onSelect}
         shading="pacs"
-      />
-      <CtThoracicBonesRig
-        visible={showBones}
-        windowId={ctWindowId}
-        clippingPlanes={clippingPlanes}
-        selectedId={selectedId}
-        highlightedId={highlightedId}
-        onSelect={onSelect}
-        systemFiltered={boneSystemFiltered}
       />
       <NeuroConnectionRig focusStructureId={focusStructureId} />
 
@@ -246,7 +227,6 @@ function LocalClippingToggle({ enabled }: { enabled: boolean }) {
 
 export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(function CartoonAnatomyScene(
   {
-    structures: _structures,
     visibleLayers,
     systemFilter = "all",
     selectedId,
@@ -257,7 +237,7 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
     ctWindowId = "bone",
     ctClipPlaneId = "off",
     ctSliceOffset = 0,
-  },
+  }: SceneProps,
   ref
 ) {
   const controlsRef = useRef<OrbitControlsImpl>(null);
