@@ -1,22 +1,10 @@
 import { spawnSync } from "node:child_process";
 import { ensureDatabaseUrl, shouldRunMigrations } from "./prisma-env.mjs";
 
-function buildEnv() {
-  const env = { ...process.env };
-  if (process.env.VERCEL) {
-    env.NEXT_TELEMETRY_DISABLED = "1";
-    // Leave headroom for webpack native allocations on Vercel's 8GB builders.
-    env.NODE_OPTIONS = [env.NODE_OPTIONS, "--max-old-space-size=4096"]
-      .filter(Boolean)
-      .join(" ");
-  }
-  return env;
-}
-
 function run(command, args, { allowFail = false } = {}) {
   const result = spawnSync(command, args, {
     stdio: "inherit",
-    env: buildEnv(),
+    env: process.env,
     shell: true,
   });
   if (result.status !== 0 && !allowFail) process.exit(result.status ?? 1);

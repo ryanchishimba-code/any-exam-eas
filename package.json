@@ -2,6 +2,9 @@
   "name": "any-exam-easy",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "clean": "rm -rf .next",
     "dev": "node scripts/local-dev.mjs",
@@ -345,6 +348,14 @@
     "db:qa-physician": "node scripts/qa-physician-pipeline.mjs",
     "db:qa-naplex": "node scripts/qa-naplex-pipeline.mjs",
     "db:qa-naplex:dry": "node scripts/qa-naplex-pipeline.mjs --dry-run",
+    "qa:scan": "bash scripts/run-with-node.sh npx tsx scripts/qa-scan-serve-ready.ts",
+    "qa:scan:heuristics": "bash scripts/run-with-node.sh npx tsx scripts/qa-scan-serve-ready.ts --heuristics-only",
+    "qa:scan:naplex": "bash scripts/run-with-node.sh npx tsx scripts/qa-scan-serve-ready.ts --exam=naplex --heuristics-only",
+    "qa:scan:llm": "bash scripts/run-with-node.sh npx tsx scripts/qa-scan-serve-ready.ts --llm",
+    "db:improve-qa-warns": "bash scripts/run-with-node.sh npx tsx scripts/improve-qa-scan-warns.ts",
+    "db:improve-qa-warns:dry": "bash scripts/run-with-node.sh npx tsx scripts/improve-qa-scan-warns.ts --dry-run",
+    "db:improve-qa-warns:polish": "bash scripts/run-with-node.sh npx tsx scripts/improve-qa-scan-warns.ts --polish-weak",
+    "test:qa:scan": "vitest run src/lib/qa-scan/qa-scan.test.ts src/lib/exam-prep/qa-warn-fixes.test.ts",
     "test:load": "node scripts/load-test-concurrent.mjs http://127.0.0.1:3000 20 5",
     "test:load:100": "node scripts/load-test-concurrent.mjs http://127.0.0.1:3000 100 8",
     "test:load:100:prod": "node scripts/load-test-concurrent.mjs https://www.anyexameasy.com 100 20",

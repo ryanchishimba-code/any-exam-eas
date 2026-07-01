@@ -19,13 +19,6 @@ const nextConfig: NextConfig = {
       "@react-three/fiber",
       "three",
     ],
-    // Vercel default builders OOM on parallel Next/webpack workers for this app.
-    ...(process.env.VERCEL
-      ? {
-          cpus: 1,
-          webpackBuildWorker: false,
-        }
-      : {}),
   },
   images: {
     remotePatterns: [],
