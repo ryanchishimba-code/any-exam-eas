@@ -67,7 +67,7 @@ export function AnatomyExplorerControls({
             </span>
           ) : null}
           {selectedName && floating ? (
-            <span className="hidden max-w-[10rem] truncate px-2 text-[12px] font-medium text-[var(--color-ink-muted)] sm:inline">
+            <span className="hidden max-w-[10rem] truncate px-2 text-[12px] font-medium text-white/80 sm:inline">
               {selectedName}
             </span>
           ) : null}
@@ -179,7 +179,7 @@ function ControlButton({
         "rounded-full p-2 transition active:scale-95",
         active
           ? "bg-[var(--color-accent)] text-white shadow-sm"
-          : "text-[var(--color-ink-muted)] hover:bg-black/[0.05] hover:text-[var(--color-ink)]"
+          : "text-white/70 hover:bg-white/[0.08] hover:text-white"
       )}
     >
       {children}

@@ -51,6 +51,7 @@ export function StructureOverlay({
           transition={{ type: "spring", stiffness: 380, damping: 32 }}
           className={cn(
             anatomyUi.panelFlat,
+            anatomyUi.detailPanel,
             "hidden h-full min-w-0 flex-col rounded-none border-x-0 border-y-0 lg:flex",
             anatomyUi.panelHeight
           )}

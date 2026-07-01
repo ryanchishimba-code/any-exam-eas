@@ -56,7 +56,7 @@ export function StructureDetailPanel({
 
   return (
     <div className="flex-1 space-y-4 overflow-y-auto p-4 sm:p-5">
-      <p className="text-[15px] leading-relaxed text-[var(--anatomy-ink)]">
+      <p className="text-[15px] leading-relaxed text-white">
         {structure.description}
       </p>
 
@@ -79,7 +79,7 @@ export function StructureDetailPanel({
       ) : null}
 
       {structure.clinicalFacts[0] ? (
-        <blockquote className="rounded-[18px] border-l-[3px] border-cyan-500 bg-cyan-500/15 px-4 py-3.5 text-[15px] font-medium leading-relaxed text-[var(--anatomy-ink)]">
+        <blockquote className="rounded-[18px] border-l-[3px] border-cyan-500 bg-cyan-500/15 px-4 py-3.5 text-[15px] font-medium leading-relaxed text-white">
           {structure.clinicalFacts[0]}
         </blockquote>
       ) : null}
@@ -91,7 +91,7 @@ export function StructureDetailPanel({
             {structure.clinicalFacts.slice(1).map((fact) => (
               <li
                 key={fact}
-                className="rounded-[12px] bg-[#283040] px-3 py-2.5 text-[14px] leading-relaxed text-[var(--anatomy-ink)]"
+                className="rounded-[12px] bg-[#283040] px-3 py-2.5 text-[14px] leading-relaxed text-white"
               >
                 {fact}
               </li>
@@ -103,7 +103,7 @@ export function StructureDetailPanel({
       {structure.pathologies && structure.pathologies.length > 0 ? (
         <section className={anatomyUi.detailSection}>
           <SectionHeading icon={Brain} title="Related conditions" />
-          <p className="mt-1 text-[12px] text-[var(--anatomy-ink-muted)]">
+          <p className="mt-1 text-[12px] text-white/70">
             Tap a condition to jump to drugs and endpoints below.
           </p>
           <div className="mt-3 flex flex-wrap gap-1.5">
@@ -112,7 +112,7 @@ export function StructureDetailPanel({
               const active = diseaseId && focusedDiseaseId === diseaseId;
               if (!diseaseId) {
                 return (
-                  <Badge key={p} className="rounded-full bg-[#283040] text-[var(--anatomy-ink)]">
+                  <Badge key={p} className="rounded-full bg-[#283040] text-white">
                     {p}
                   </Badge>
                 );
@@ -126,7 +126,7 @@ export function StructureDetailPanel({
                     "rounded-full px-3 py-1.5 text-[12px] font-medium transition",
                     active
                       ? "bg-cyan-600 text-white shadow-sm"
-                      : "bg-[#283040] text-[var(--anatomy-ink)] ring-1 ring-white/[0.08] hover:bg-[#2e3848]"
+                      : "bg-[#283040] text-white ring-1 ring-white/[0.08] hover:bg-[#2e3848]"
                   )}
                 >
                   {p}
@@ -158,8 +158,8 @@ export function StructureDetailPanel({
                   href={libraryCardHref(examSlug, card.id)}
                   className="block rounded-[14px] border border-white/[0.08] bg-[#283040] px-3.5 py-3 text-[14px] transition hover:border-cyan-500/25 hover:bg-[#2e3848]"
                 >
-                  <p className="font-semibold text-[var(--anatomy-ink)]">{card.title}</p>
-                  <p className="mt-0.5 text-[12px] text-[var(--anatomy-ink-muted)]">{card.teaser}</p>
+                  <p className="font-semibold text-white">{card.title}</p>
+                  <p className="mt-0.5 text-[12px] text-white/70">{card.teaser}</p>
                 </Link>
               </li>
             ))}
@@ -215,7 +215,7 @@ function SectionHeading({
   return (
     <div className="flex items-center gap-2">
       <Icon className="h-4 w-4 text-cyan-400" aria-hidden />
-      <h4 className="text-[14px] font-semibold text-[var(--anatomy-ink)]">{title}</h4>
+      <h4 className="text-[14px] font-semibold text-white">{title}</h4>
     </div>
   );
 }
@@ -240,16 +240,16 @@ export function StructureDetailHeader({
                 High-yield
               </Badge>
             ) : null}
-            <Badge className="rounded-full bg-white/[0.06] capitalize text-[var(--anatomy-ink-muted)]">
+            <Badge className="rounded-full bg-white/[0.06] capitalize text-white/70">
               {structure.system}
             </Badge>
             {parent ? (
-              <Badge className="rounded-full bg-white/[0.06] text-[var(--anatomy-ink-muted)]">
+              <Badge className="rounded-full bg-white/[0.06] text-white/70">
                 {parent.name}
               </Badge>
             ) : null}
           </div>
-          <h3 className="mt-2 text-[22px] font-semibold tracking-tight text-[var(--anatomy-ink)]">
+          <h3 className="mt-2 text-[22px] font-semibold tracking-tight text-white">
             {structure.name}
           </h3>
         </div>
@@ -257,7 +257,7 @@ export function StructureDetailHeader({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full bg-white/[0.06] p-2 text-[var(--anatomy-ink-muted)] transition hover:bg-white/[0.1]"
+            className="rounded-full bg-white/[0.06] p-2 text-white/70 transition hover:bg-white/[0.1]"
             aria-label="Close structure details"
           >
             <X className="h-4 w-4" aria-hidden />

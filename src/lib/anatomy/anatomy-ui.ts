@@ -1,6 +1,9 @@
 /** Shared medical dark-theme tokens for Anatomy Explorer UI. */
 export const anatomyUi = {
-  page: "anatomy-explorer w-full space-y-4 [--anatomy-ink:#e8edf4] [--anatomy-ink-muted:#94a3b8] [--anatomy-accent:#22d3ee] [--anatomy-panel:#0f1419] [--anatomy-panel-elevated:#151b24] [--anatomy-border:rgba(255,255,255,0.08)]",
+  page: "anatomy-explorer w-full space-y-4 [--anatomy-ink:#ffffff] [--anatomy-ink-muted:#94a3b8] [--anatomy-accent:#22d3ee] [--anatomy-panel:#0f1419] [--anatomy-panel-elevated:#151b24] [--anatomy-border:rgba(255,255,255,0.08)]",
+  /** Organ detail panel — white copy on dark panel; includes tokens for portaled mobile sheet. */
+  detailPanel:
+    "anatomy-detail-panel [--anatomy-ink:#ffffff] [--anatomy-ink-muted:#94a3b8] [--anatomy-accent:#22d3ee] [--anatomy-panel:#0f1419] [--anatomy-panel-elevated:#151b24] [--anatomy-border:rgba(255,255,255,0.08)] text-white",
   pageShell:
     "rounded-[28px] border border-white/[0.06] bg-gradient-to-b from-[#0a0e14] to-[#06080c] p-1 sm:p-1.5 shadow-[0_24px_80px_rgba(0,0,0,0.45)]",
   panel:

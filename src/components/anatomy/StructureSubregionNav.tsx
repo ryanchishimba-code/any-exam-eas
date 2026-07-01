@@ -25,9 +25,9 @@ export function StructureSubregionNav({
     <section aria-label="Anatomical sub-regions" className={anatomyUi.detailSection}>
       <div className="flex items-center gap-2">
         <Layers className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
-        <h4 className="text-[14px] font-semibold text-[var(--color-ink)]">Sub-regions</h4>
+        <h4 className="text-[14px] font-semibold text-white">Sub-regions</h4>
       </div>
-      <p className="mt-1 text-[12px] text-[var(--color-ink-muted)]">
+      <p className="mt-1 text-[12px] text-white/70">
         Tap to highlight a subdivision on the 3D model.
       </p>
       <div className="mt-3 flex flex-wrap gap-1.5">
