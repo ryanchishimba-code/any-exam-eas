@@ -10,6 +10,11 @@ describe("ct-atlas-coverage", () => {
   it("marks VH atlas organs as renderable", () => {
     expect(isStructureRenderableInCtAtlas(getAnatomyStructure("heart")!)).toBe(true);
     expect(isStructureRenderableInCtAtlas(getAnatomyStructure("pelvis")!)).toBe(true);
+    expect(isStructureRenderableInCtAtlas(getAnatomyStructure("brain-frontal-lobe")!)).toBe(true);
+  });
+
+  it("shows brain lobes under the brain parent in CT browse", () => {
+    expect(isStructureBrowsableInCtAtlas(getAnatomyStructure("brain-frontal-lobe")!)).toBe(true);
   });
 
   it("hides catalog-only structures from CT browse list", () => {

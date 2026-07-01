@@ -183,46 +183,49 @@ function PancreasVisual({ style }: { style: OrganSurfaceStyle }) {
 }
 
 function BrainProceduralVisual({ style }: { style: OrganSurfaceStyle }) {
+  const lobeStyle = (scale: number) => ({ ...style, opacity: style.opacity * scale });
   return (
     <group scale={[0.98, 0.88, 0.92]}>
-      <group scale={[0.94, 0.82, 0.88]}>
+      {/* Frontal — anterior */}
+      <group position={[0, 0.06, 0.14]} scale={[0.72, 0.62, 0.58]}>
         <Surface style={style}>
-          <sphereGeometry args={[0.78, SEG, SEG]} />
+          <sphereGeometry args={[0.62, SEG, SEG, 0, Math.PI * 2, 0, Math.PI * 0.55]} />
         </Surface>
       </group>
-      <group position={[0, 0.02, 0]} scale={[0.04, 0.82, 0.72]}>
-        <Surface style={{ ...style, opacity: style.opacity * 0.55 }}>
-          <boxGeometry args={[0.5, 0.9, 0.08]} />
-        </Surface>
-      </group>
-      <group position={[0, 0.12, 0.16]} scale={[0.88, 0.58, 0.5]}>
+      {/* Parietal — superior */}
+      <group position={[0, 0.22, -0.02]} scale={[0.78, 0.48, 0.72]}>
         <Surface style={style}>
-          <sphereGeometry args={[0.52, 14, 14]} />
+          <sphereGeometry args={[0.58, SEG, SEG, 0, Math.PI * 2, 0, Math.PI * 0.45]} />
         </Surface>
       </group>
-      <group position={[0, 0.08, -0.18]} scale={[0.82, 0.62, 0.55]}>
-        <Surface style={style}>
-          <sphereGeometry args={[0.48, 14, 14]} />
-        </Surface>
-      </group>
+      {/* Temporal — lateral (both sides) */}
       {([-1, 1] as const).map((sx) => (
-        <group key={sx} position={[sx * 0.36, -0.02, 0.02]} scale={[0.48, 0.52, 0.46]}>
+        <group key={sx} position={[sx * 0.34, -0.02, 0.04]} scale={[0.42, 0.5, 0.44]}>
           <Surface style={style}>
             <sphereGeometry args={[0.44, 12, 12]} />
           </Surface>
-          <group position={[0, -0.04, 0.06]} scale={[0.55, 0.28, 0.35]}>
-            <Surface style={{ ...style, opacity: style.opacity * 0.88 }}>
-              <sphereGeometry args={[0.32, 8, 8]} />
-            </Surface>
-          </group>
         </group>
       ))}
-      <group position={[0, -0.22, -0.18]} scale={[0.8, 0.5, 0.62]}>
+      {/* Occipital — posterior */}
+      <group position={[0, 0.04, -0.2]} scale={[0.68, 0.58, 0.5]}>
+        <Surface style={style}>
+          <sphereGeometry args={[0.5, 14, 14]} />
+        </Surface>
+      </group>
+      {/* Interhemispheric fissure */}
+      <group position={[0, 0.02, 0]} scale={[0.04, 0.82, 0.72]}>
+        <Surface style={lobeStyle(0.55)}>
+          <boxGeometry args={[0.5, 0.9, 0.08]} />
+        </Surface>
+      </group>
+      {/* Cerebellum */}
+      <group position={[0, -0.24, -0.18]} scale={[0.82, 0.48, 0.62]}>
         <Surface style={style}>
           <sphereGeometry args={[0.44, 14, 14]} />
         </Surface>
       </group>
-      <group position={[0, -0.32, -0.08]} scale={[0.14, 0.22, 0.14]}>
+      {/* Brainstem */}
+      <group position={[0, -0.34, -0.06]} scale={[0.14, 0.22, 0.14]}>
         <Surface style={style}>
           <capsuleGeometry args={[0.12, 0.18, 6, 10]} />
         </Surface>

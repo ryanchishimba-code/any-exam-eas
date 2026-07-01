@@ -16,6 +16,11 @@ import {
 import { createCtClipPlanes, fitVisibleHumanAtlas } from "@/lib/anatomy/ct/ct-atlas-fit";
 import { fitAllenBrainToAtlas, fitAllenBrainToFigure } from "@/lib/anatomy/ct/brain-fit";
 import {
+  getBrainRegionDef,
+  isBrainRegionStructureId,
+  resolveBrainRegionForAllenMeshName,
+} from "@/lib/anatomy/ct/brain-regions";
+import {
   CT_ORGAN_HU,
   CT_WINDOWS,
   blendHuTintHex,
@@ -108,6 +113,8 @@ function CtAtlasOrganMeshInner({
   visible,
   highlighted,
   selected,
+  selectedId,
+  focusBrainRegionIds,
   dimmed,
   onPick,
   onGeometryReady,
@@ -122,31 +129,44 @@ function CtAtlasOrganMeshInner({
   visible: boolean;
   highlighted: boolean;
   selected: boolean;
+  selectedId?: string | null;
+  focusBrainRegionIds?: Set<string>;
   dimmed: boolean;
-  onPick: () => void;
+  onPick: (structureId: string) => void;
   onGeometryReady: () => void;
   headAnchored?: boolean;
   deferHeadFit?: boolean;
   shading?: AtlasShading;
 }) {
+  const segmentedBrain = entry.id === "brain";
   const [hovered, setHovered] = useState(false);
-  const emphasized = highlighted || selected || hovered;
+  const [hoveredRegionId, setHoveredRegionId] = useState<string | null>(null);
   const geometryReady = useRef(false);
   const { setHovering } = useAnatomyPointer();
 
   const clearHover = useCallback(() => {
     setHovered(false);
+    setHoveredRegionId(null);
     setHovering(false);
   }, [setHovering]);
   useAnatomyHoverReset(clearHover);
+  const defaultStructureId = useMemo(
+    () => resolveStructureIdForAtlasEntry(entry) ?? entry.meshId,
+    [entry]
+  );
   const label = useMemo(() => {
+    if (hoveredRegionId) {
+      const structure = getAnatomyStructure(hoveredRegionId);
+      if (structure) return structure.name;
+      return getBrainRegionDef(hoveredRegionId)?.label ?? hoveredRegionId;
+    }
     const resolvedId = resolveStructureIdForAtlasEntry(entry);
     if (resolvedId) {
       const structure = getAnatomyStructure(resolvedId);
       if (structure) return structure.name;
     }
     return getAnatomyStructureByMeshId(entry.meshId)?.name ?? entry.meshId;
-  }, [entry]);
+  }, [entry, hoveredRegionId]);
   const { scene } = useGLTF(url);
   const hu = CT_ORGAN_HU[entry.id] ?? CT_ORGAN_HU[entry.meshId] ?? 40;
   const tintColor =
@@ -165,10 +185,13 @@ function CtAtlasOrganMeshInner({
         mesh.geometry?.computeVertexNormals();
         mesh.userData.atlasOrganId = entry.id;
         mesh.userData.meshId = entry.meshId;
+        if (segmentedBrain) {
+          mesh.userData.brainRegionId = resolveBrainRegionForAllenMeshName(mesh.name);
+        }
       }
     });
     return clone;
-  }, [scene, entry.id, entry.meshId, headAnchored, deferHeadFit]);
+  }, [scene, entry.id, entry.meshId, headAnchored, deferHeadFit, segmentedBrain]);
 
   useLayoutEffect(() => {
     if (geometryReady.current) return;
@@ -177,23 +200,50 @@ function CtAtlasOrganMeshInner({
   }, [meshRoot, onGeometryReady]);
 
   useEffect(() => {
-    const material = buildOrganMaterial({
-      entry,
-      windowId,
-      hu,
-      tintColor,
-      emphasized,
-      selected,
-      dimmed,
-      clippingPlanes,
-      shading,
-    });
+    const lobeFocusActive =
+      segmentedBrain && focusBrainRegionIds != null && focusBrainRegionIds.size > 0;
+
     meshRoot.traverse((node) => {
-      if ((node as Mesh).isMesh) {
-        (node as Mesh).material = material;
-      }
+      if (!(node as Mesh).isMesh) return;
+      const mesh = node as Mesh;
+      const regionId = mesh.userData.brainRegionId as string | undefined;
+      const regionMatch = Boolean(regionId && focusBrainRegionIds?.has(regionId));
+      const meshSelected =
+        selected || (segmentedBrain && regionId != null && selectedId === regionId);
+      const meshHighlighted = highlighted || meshSelected || regionMatch;
+      const meshDimmed =
+        dimmed ||
+        (lobeFocusActive && !regionMatch && !meshSelected && selectedId !== "brain");
+
+      const material = buildOrganMaterial({
+        entry,
+        windowId,
+        hu,
+        tintColor,
+        emphasized: meshHighlighted || hovered,
+        selected: meshSelected,
+        dimmed: meshDimmed,
+        clippingPlanes,
+        shading,
+      });
+      mesh.material = material;
     });
-  }, [meshRoot, entry, windowId, hu, tintColor, emphasized, selected, dimmed, clippingPlanes, shading]);
+  }, [
+    meshRoot,
+    entry,
+    windowId,
+    hu,
+    tintColor,
+    highlighted,
+    selected,
+    selectedId,
+    focusBrainRegionIds,
+    dimmed,
+    hovered,
+    clippingPlanes,
+    shading,
+    segmentedBrain,
+  ]);
 
   if (!visible) return null;
 
@@ -204,16 +254,27 @@ function CtAtlasOrganMeshInner({
         onClick={(e: ThreeEvent<MouseEvent>) => {
           if (!isPrimaryPointerHit(e)) return;
           e.stopPropagation();
-          onPick();
+          const mesh = e.object as Mesh;
+          const regionId = mesh.userData.brainRegionId as string | undefined;
+          if (segmentedBrain && regionId) {
+            onPick(regionId);
+            return;
+          }
+          onPick(defaultStructureId);
         }}
         onPointerOver={(e: ThreeEvent<PointerEvent>) => {
           if (!isPrimaryPointerHit(e)) return;
           e.stopPropagation();
           setHovered(true);
           setHovering(true);
+          if (segmentedBrain) {
+            const regionId = (e.object as Mesh).userData.brainRegionId as string | undefined;
+            setHoveredRegionId(regionId ?? null);
+          }
         }}
         onPointerOut={() => {
           setHovered(false);
+          setHoveredRegionId(null);
           setHovering(false);
         }}
       />
@@ -240,6 +301,8 @@ function CtAtlasOrganMesh({
   visible,
   highlighted,
   selected,
+  selectedId = null,
+  focusBrainRegionIds,
   dimmed,
   onPick,
   onGeometryReady,
@@ -252,8 +315,10 @@ function CtAtlasOrganMesh({
   visible: boolean;
   highlighted: boolean;
   selected: boolean;
+  selectedId?: string | null;
+  focusBrainRegionIds?: Set<string>;
   dimmed: boolean;
-  onPick: () => void;
+  onPick: (structureId: string) => void;
   onGeometryReady: () => void;
   deferHeadFit?: boolean;
   shading?: AtlasShading;
@@ -269,6 +334,8 @@ function CtAtlasOrganMesh({
       visible={visible}
       highlighted={highlighted}
       selected={selected}
+      selectedId={selectedId}
+      focusBrainRegionIds={focusBrainRegionIds}
       dimmed={dimmed}
       onPick={onPick}
       onGeometryReady={onGeometryReady}
@@ -288,6 +355,8 @@ function CtAtlasOrganMeshWithFallback({
   visible,
   highlighted,
   selected,
+  selectedId = null,
+  focusBrainRegionIds,
   dimmed,
   onPick,
   onGeometryReady,
@@ -303,8 +372,10 @@ function CtAtlasOrganMeshWithFallback({
   visible: boolean;
   highlighted: boolean;
   selected: boolean;
+  selectedId?: string | null;
+  focusBrainRegionIds?: Set<string>;
   dimmed: boolean;
-  onPick: () => void;
+  onPick: (structureId: string) => void;
   onGeometryReady: () => void;
   headAnchored?: boolean;
   deferHeadFit?: boolean;
@@ -325,6 +396,8 @@ function CtAtlasOrganMeshWithFallback({
         visible={visible}
         highlighted={highlighted}
         selected={selected}
+        selectedId={selectedId}
+        focusBrainRegionIds={focusBrainRegionIds}
         dimmed={dimmed}
         onPick={onPick}
         onGeometryReady={onGeometryReady}
@@ -344,6 +417,8 @@ function CtAtlasOrganMeshWithFallback({
         visible={visible}
         highlighted={highlighted}
         selected={selected}
+        selectedId={selectedId}
+        focusBrainRegionIds={focusBrainRegionIds}
         dimmed={dimmed}
         onPick={onPick}
         onGeometryReady={onGeometryReady}
@@ -405,10 +480,24 @@ export function CtAtlasRig({
   const focusMeshIds = useMemo(() => {
     const meshIds = new Set<string>();
     for (const structureId of focusStructureIds) {
-      const meshId = getAnatomyStructure(structureId)?.meshId;
-      if (meshId) meshIds.add(meshId);
+      const structure = getAnatomyStructure(structureId);
+      if (!structure) continue;
+      if (isBrainRegionStructureId(structure.id)) {
+        meshIds.add(structure.meshId);
+        meshIds.add("brain");
+        continue;
+      }
+      if (structure.meshId) meshIds.add(structure.meshId);
     }
     return meshIds;
+  }, [focusStructureIds]);
+
+  const focusBrainRegionIds = useMemo(() => {
+    const regions = new Set<string>();
+    for (const structureId of focusStructureIds) {
+      if (isBrainRegionStructureId(structureId)) regions.add(structureId);
+    }
+    return regions;
   }, [focusStructureIds]);
 
   const vhAtlasOrgans = CT_ATLAS_ORGANS.filter((entry) => entry.fit !== "head");
@@ -427,12 +516,12 @@ export function CtAtlasRig({
             focusMeshIds.size > 0 &&
             [...focusMeshIds].some((meshId) => entryMatchesMeshId(entry, meshId));
 
-          const pickStructure = () => {
-            const structureId = resolveStructureIdForAtlasEntry(entry);
-            if (structureId) onSelect(structureId);
-          };
           const structureId = resolveStructureIdForAtlasEntry(entry);
           const selected = structureId != null && selectedId === structureId;
+
+          const pickStructure = (structureId: string) => {
+            onSelect(structureId);
+          };
 
           return (
             <CtAtlasOrganMesh
@@ -461,10 +550,6 @@ export function CtAtlasRig({
           focusMeshIds.size > 0 &&
           [...focusMeshIds].some((meshId) => entryMatchesMeshId(entry, meshId));
 
-        const pickStructure = () => {
-          const structureId = resolveStructureIdForAtlasEntry(entry);
-          if (structureId) onSelect(structureId);
-        };
         const structureId = resolveStructureIdForAtlasEntry(entry);
         const selected = structureId != null && selectedId === structureId;
 
@@ -477,8 +562,10 @@ export function CtAtlasRig({
               visible
               highlighted={highlighted}
               selected={selected}
+              selectedId={selectedId}
+              focusBrainRegionIds={focusBrainRegionIds}
               dimmed={systemFiltered}
-              onPick={pickStructure}
+              onPick={onSelect}
               onGeometryReady={() => onOrganGeometryReady(entry.id)}
               deferHeadFit
               shading={shading}

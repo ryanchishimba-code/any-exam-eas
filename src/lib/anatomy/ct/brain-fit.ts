@@ -140,7 +140,7 @@ export function fitAllenBrainToAtlas(atlasRoot: Object3D, brainRoot: Object3D) {
   scaledBox.getCenter(scaledCenter);
 
   const vaultHeight = Math.max(cranialTop - junctionY, 1e-6);
-  const targetBrainCenterY = junctionY + vaultHeight * 0.52;
+  const targetBrainCenterY = junctionY + vaultHeight * 0.56;
 
   const worldPos = new Vector3(
     targetCenter.x - scaledCenter.x,

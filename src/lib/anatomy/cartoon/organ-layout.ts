@@ -132,9 +132,39 @@ export const ORGAN_MODULE_LAYOUT: Record<string, Layout> = {
     depthOrder: 7,
   },
   "brain-brainstem": {
-    position: [0, 1.48, -0.02],
-    scale: [0.055, 0.08, 0.05],
+    position: [0, 1.44, -0.05],
+    scale: [0.055, 0.07, 0.05],
     depthOrder: 2,
+  },
+  "brain-frontal-lobe": {
+    position: [0, 1.58, 0.11],
+    scale: [0.2, 0.16, 0.14],
+    depthOrder: 2,
+  },
+  "brain-parietal-lobe": {
+    position: [0, 1.64, -0.04],
+    scale: [0.18, 0.12, 0.12],
+    depthOrder: 2,
+  },
+  "brain-temporal-lobe": {
+    position: [0.11, 1.52, 0.03],
+    scale: [0.12, 0.14, 0.1],
+    depthOrder: 2,
+  },
+  "brain-occipital-lobe": {
+    position: [0, 1.54, -0.15],
+    scale: [0.14, 0.12, 0.1],
+    depthOrder: 2,
+  },
+  "brain-cerebellum": {
+    position: [0, 1.38, -0.13],
+    scale: [0.16, 0.1, 0.12],
+    depthOrder: 2,
+  },
+  "brain-insula": {
+    position: [0.07, 1.52, 0.05],
+    scale: [0.06, 0.1, 0.06],
+    depthOrder: 3,
   },
   "stomach-pylorus": {
     position: [0.1, 0.44, 0.04],
