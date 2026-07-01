@@ -90,7 +90,7 @@ function assessScreening(items: EnrichedBankItem[], seen: Set<string>): void {
 }
 
 function assessPediatric(items: EnrichedBankItem[], seen: Set<string>): void {
-  for (let months of [2, 4, 6, 9, 12, 15, 18]) {
+  for (const months of [2, 4, 6, 9, 12, 15, 18]) {
     push(
       items,
       seen,
@@ -121,8 +121,8 @@ function assessPediatric(items: EnrichedBankItem[], seen: Set<string>): void {
 }
 
 function diagnoseEndocrine(items: EnrichedBankItem[], seen: Set<string>): void {
-  for (let a1c of [6.8, 7.2, 7.8, 8.4, 9.1]) {
-    for (let age of [28, 35, 42, 49]) {
+  for (const a1c of [6.8, 7.2, 7.8, 8.4, 9.1]) {
+    for (const age of [28, 35, 42, 49]) {
       push(
         items,
         seen,
@@ -154,7 +154,7 @@ function diagnoseEndocrine(items: EnrichedBankItem[], seen: Set<string>): void {
 }
 
 function diagnoseCardiovascular(items: EnrichedBankItem[], seen: Set<string>): void {
-  for (let sbp of [148, 158, 168, 178]) {
+  for (const sbp of [148, 158, 168, 178]) {
     const stage = sbp >= 160 ? "Stage 2 hypertension" : "Stage 1 hypertension";
     push(
       items,
@@ -186,7 +186,7 @@ function diagnoseCardiovascular(items: EnrichedBankItem[], seen: Set<string>): v
 }
 
 function planInfectious(items: EnrichedBankItem[], seen: Set<string>): void {
-  for (let day of [1, 2, 3, 5, 7]) {
+  for (const day of [1, 2, 3, 5, 7]) {
     push(
       items,
       seen,
@@ -217,7 +217,7 @@ function planInfectious(items: EnrichedBankItem[], seen: Set<string>): void {
 }
 
 function planPsychiatry(items: EnrichedBankItem[], seen: Set<string>): void {
-  for (let age of [16, 17]) {
+  for (const age of [16, 17]) {
     push(
       items,
       seen,
@@ -248,7 +248,7 @@ function planPsychiatry(items: EnrichedBankItem[], seen: Set<string>): void {
 }
 
 function evaluateGeriatrics(items: EnrichedBankItem[], seen: Set<string>): void {
-  for (let age of [72, 78, 84, 90]) {
+  for (const age of [72, 78, 84, 90]) {
     push(
       items,
       seen,

@@ -654,7 +654,7 @@ function pushExpandedTemplates(items: NclexOerSeed[], seen: Set<string>): void {
     }
   }
 
-  for (let o2 of [84, 86, 88, 90]) {
+  for (const o2 of [84, 86, 88, 90]) {
     push(items, seen, {
       subjectId: "reduction-risk",
       topicCategory: "Reduction of Risk Potential",
@@ -672,7 +672,7 @@ function pushExpandedTemplates(items: NclexOerSeed[], seen: Set<string>): void {
     });
   }
 
-  for (let glucose of [42, 48, 54, 58]) {
+  for (const glucose of [42, 48, 54, 58]) {
     push(items, seen, {
       subjectId: "physiological-adaptation",
       topicCategory: "Physiological Adaptation",
