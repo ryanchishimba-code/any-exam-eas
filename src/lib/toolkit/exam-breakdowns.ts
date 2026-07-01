@@ -7,9 +7,12 @@ export type ToolkitExamBreakdown = {
   subtitle: string;
   accent: string;
   prepHref: string;
+  /** Short summary for SEO / JSON-LD. */
   whatItTests: string;
   duration: string;
   questions: string;
+  /** Expand-panel bullets — scannable exam facts. */
+  detailBullets: string[];
   officialBoard: { label: string; href: string };
 };
 
@@ -24,6 +27,12 @@ export const TOOLKIT_EXAMS: ToolkitExamBreakdown[] = [
       "Tests your ability to apply basic sciences (Step 1), clinical knowledge for patient care (Step 2 CK), and unsupervised practice readiness including management and CCS cases (Step 3).",
     duration: "Step 1: 8 hours | Step 2 CK: 9 hours | Step 3: Two days (~7 + 9 hours)",
     questions: "Step 1: ~280 MCQs | Step 2 CK: ~316–318 MCQs | Step 3: ~412 MCQs + 13–14 CCS cases",
+    detailBullets: [
+      "Step 1 — basic science foundations for safe medical practice (~280 MCQs, 8 hours)",
+      "Step 2 CK — clinical knowledge for supervised patient care (~316 MCQs, 9 hours)",
+      "Step 3 — unsupervised practice, management, and CCS cases (two-day format)",
+      "Computer-based, single-best-answer format across all steps",
+    ],
     officialBoard: { label: "usmle.org", href: "https://www.usmle.org" },
   },
   {
@@ -36,6 +45,12 @@ export const TOOLKIT_EXAMS: ToolkitExamBreakdown[] = [
       "Measures clinical judgment, safe and effective care, health promotion, psychosocial integrity, and physiological integrity using the Next Generation NCLEX format with case studies.",
     duration: "Up to 5 hours",
     questions: "85 to 150 items (includes clinical judgment case studies)",
+    detailBullets: [
+      "Next Gen NCLEX (NGN) — clinical judgment and case-study items",
+      "Client Needs: management of care, safety, pharmacology, and more",
+      "Computer-adaptive length — 85 to 150 items, up to 5 hours",
+      "Required for RN licensure in the U.S. and Canada",
+    ],
     officialBoard: { label: "nclex.com", href: "https://www.nclex.com" },
   },
   {
@@ -48,6 +63,12 @@ export const TOOLKIT_EXAMS: ToolkitExamBreakdown[] = [
       "Assesses your ability to apply knowledge in safe and effective pharmacy practice — from pharmacotherapy and drug information to patient safety and calculations.",
     duration: "6 hours",
     questions: "225 questions (200 scored, 25 pretest)",
+    detailBullets: [
+      "Pharmacotherapy, drug information, and patient safety",
+      "Compounding, calculations, and federal pharmacy law",
+      "225 items over 6 hours (200 scored + 25 pretest)",
+      "Required for pharmacist licensure in the U.S.",
+    ],
     officialBoard: { label: "nabp.pharmacy", href: "https://nabp.pharmacy" },
   },
   {
@@ -60,6 +81,12 @@ export const TOOLKIT_EXAMS: ToolkitExamBreakdown[] = [
       "Evaluates medical knowledge across organ systems and task areas needed for entry-level physician assistant practice.",
     duration: "5 hours",
     questions: "300 multiple-choice questions",
+    detailBullets: [
+      "Organ-system and task-based blueprint (cardiovascular, pulmonary, etc.)",
+      "Single-best-answer multiple choice — 300 questions, 5 hours",
+      "Entry-level competency for physician assistant practice",
+      "Administered by NCCPA for PA certification",
+    ],
     officialBoard: { label: "nccpa.net", href: "https://www.nccpa.net" },
   },
   {
@@ -72,6 +99,12 @@ export const TOOLKIT_EXAMS: ToolkitExamBreakdown[] = [
       "Focuses on clinical knowledge for family nurse practitioners — assessment, diagnosis, planning, and evaluation across the patient lifespan.",
     duration: "3 hours",
     questions: "150 questions (135 scored)",
+    detailBullets: [
+      "AANPCB domains: Assess, Diagnose, Plan, and Evaluate",
+      "Primary care across the lifespan — newborn through older adult",
+      "150 items in 3 hours (135 scored + 15 pretest)",
+      "Certifies Family Nurse Practitioners (FNP-BC)",
+    ],
     officialBoard: { label: "aanpcert.org", href: "https://www.aanpcert.org" },
   },
   {
@@ -84,6 +117,12 @@ export const TOOLKIT_EXAMS: ToolkitExamBreakdown[] = [
       "Assesses entry-level competence in physical therapy practice, including evaluation, diagnosis, prognosis, intervention, and safety.",
     duration: "5 hours",
     questions: "225 multiple-choice questions (180 scored)",
+    detailBullets: [
+      "Body-system blueprint — musculoskeletal, neuromuscular, cardiovascular, etc.",
+      "Evaluation, diagnosis, prognosis, intervention, and safety",
+      "225 MCQs over 5 hours (180 scored + 45 pretest)",
+      "Required for physical therapist licensure in the U.S.",
+    ],
     officialBoard: { label: "fsbpt.org", href: "https://www.fsbpt.org" },
   },
 ];

@@ -137,11 +137,11 @@ export default function ToolkitPage() {
               Find Out About Each Exam
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[var(--color-ink-muted)]">
-              Click any exam below to see exactly what it tests, how long it is, number of questions,
-              and what you need to succeed.
+              Tap any exam below to expand a quick breakdown — format, scope, and what you need to
+              succeed.
             </p>
           </div>
-          <div className="mx-auto mt-12 max-w-3xl">
+          <div className="mx-auto mt-12 max-w-xl">
             <ToolkitExamAccordion exams={TOOLKIT_EXAMS} />
           </div>
         </section>
