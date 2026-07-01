@@ -11,6 +11,7 @@ import {
   buildLandingBankCountsDisplay,
   getCachedQuestionBankCounts,
 } from "@/lib/marketing/question-bank-counts";
+import { getUsmleExamOptionsWithCounts } from "@/lib/exam-prep/usmle/exam-options";
 
 export const revalidate = 3600;
 
@@ -39,10 +40,24 @@ export default async function ExamMarketingPage({ params }: Props) {
   const bankCounts = buildLandingBankCountsDisplay(await getCachedQuestionBankCounts());
   const questionCountLabel = bankCounts.exams.find((row) => row.slug === key)?.countLabel;
 
+  const usmleStepCounts =
+    key === "usmle"
+      ? Object.fromEntries(
+          (await getUsmleExamOptionsWithCounts()).options.map((opt) => [
+            opt.level,
+            opt.questionCount,
+          ])
+        )
+      : undefined;
+
   return (
     <>
       <JsonLdScript data={buildExamJsonLd(key)} />
-      <ExamMarketingLanding examKey={key} questionCountLabel={questionCountLabel} />
+      <ExamMarketingLanding
+        examKey={key}
+        questionCountLabel={questionCountLabel}
+        usmleStepCounts={usmleStepCounts}
+      />
     </>
   );
 }

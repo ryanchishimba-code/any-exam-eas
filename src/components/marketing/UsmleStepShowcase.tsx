@@ -80,9 +80,31 @@ const SCAFFOLD: ShowcaseStep[] = USMLE_STEPS.map((step) => ({
 type ApiOption = { fieldId?: string; level?: string; questionCount?: number };
 type ApiResponse = { options?: ApiOption[] };
 
-export function UsmleStepShowcase() {
-  const [counts, setCounts] = useState<Record<string, number>>({});
-  const [loaded, setLoaded] = useState(false);
+function toCountMap(options?: ApiOption[]): Partial<Record<UsmleStepLevel, number>> {
+  const map: Partial<Record<UsmleStepLevel, number>> = {};
+  for (const opt of options ?? []) {
+    if (
+      (opt.level === "step1" || opt.level === "step2" || opt.level === "step3") &&
+      typeof opt.questionCount === "number"
+    ) {
+      map[opt.level] = opt.questionCount;
+    }
+  }
+  return map;
+}
+
+export function UsmleStepShowcase({
+  initialStepCounts,
+}: {
+  /** Server-rendered counts so SEO/crawlers and first paint show live totals. */
+  initialStepCounts?: Partial<Record<UsmleStepLevel, number>>;
+}) {
+  const [counts, setCounts] = useState<Partial<Record<UsmleStepLevel, number>>>(
+    () => initialStepCounts ?? {}
+  );
+  const [loaded, setLoaded] = useState(
+    Boolean(initialStepCounts && Object.values(initialStepCounts).some((n) => n > 0))
+  );
   const [selectedLevel, setSelectedLevel] = useState<UsmleStepLevel>("step2");
 
   useEffect(() => {
@@ -91,13 +113,7 @@ export function UsmleStepShowcase() {
       .then((r) => r.json())
       .then((data: ApiResponse) => {
         if (cancelled) return;
-        const map: Record<string, number> = {};
-        for (const opt of data.options ?? []) {
-          if (opt.level && typeof opt.questionCount === "number") {
-            map[opt.level] = opt.questionCount;
-          }
-        }
-        setCounts(map);
+        setCounts(toCountMap(data.options));
         setLoaded(true);
       })
       .catch(() => {
@@ -114,7 +130,7 @@ export function UsmleStepShowcase() {
   );
 
   const countLabel = (count: number) =>
-    loaded && count > 0 ? formatMarketingQuestionCount(count) : "—";
+    count > 0 ? formatMarketingQuestionCount(count) : loaded ? "—" : "…";
 
   const pickerItems: BoardPickerItem[] = steps.map((step) => ({
     id: step.level,

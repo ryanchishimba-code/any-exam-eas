@@ -42,6 +42,8 @@ type Props = {
   examKey: ExamSeoKey;
   /** Live compact question count for this exam, e.g. "8.2K+". */
   questionCountLabel?: string;
+  /** Per-step serve-ready counts for the USMLE step picker (SSR). */
+  usmleStepCounts?: Partial<Record<"step1" | "step2" | "step3", number>>;
 };
 
 /** Feature section icons cycle through these 3 by index. */
@@ -52,7 +54,7 @@ const FEATURE_ICONS = [
   <TrendingUp key="trend" className="h-[18px] w-[18px]" strokeWidth={1.75} aria-hidden />,
 ];
 
-export function ExamMarketingLanding({ examKey, questionCountLabel }: Props) {
+export function ExamMarketingLanding({ examKey, questionCountLabel, usmleStepCounts }: Props) {
   const config = getExamSeoConfig(examKey);
   const relatedArticles = getArticlesForExam(examKey).slice(0, 3);
   const otherExams = EXAM_SEO_KEYS.filter((k) => k !== examKey);
@@ -187,7 +189,7 @@ export function ExamMarketingLanding({ examKey, questionCountLabel }: Props) {
       {isUsmle && (
         <section className="border-b border-[var(--color-border)]/40 py-12">
           <div className="mx-auto max-w-5xl px-5 sm:px-6">
-            <UsmleStepShowcase />
+            <UsmleStepShowcase initialStepCounts={usmleStepCounts} />
           </div>
         </section>
       )}

@@ -31,6 +31,7 @@ const KEYS = [
   { key: "STRIPE_PRICE_ID_SEMIANNUAL", sensitive: false, optional: true },
   { key: "STRIPE_PRICE_ID_YEARLY", sensitive: false, optional: true },
   { key: "TRIAL_DAYS", sensitive: false },
+  { key: "TRIAL_LIFETIME_QUESTIONS", sensitive: false, optional: true },
   { key: "BASIC_MONTHLY_PRICE_USD", sensitive: false, optional: true },
   { key: "PRO_MONTHLY_PRICE_USD", sensitive: false, optional: true },
   { key: "BASIC_YEARLY_PRICE_USD", sensitive: false, optional: true },

@@ -54,6 +54,7 @@
     "vercel:db": "node scripts/vercel-database.mjs",
     "vercel:connect-neon": "node scripts/connect-vercel-neon.mjs",
     "vercel:stripe": "node scripts/vercel-stripe-push.mjs --redeploy",
+    "vercel:pricing-env": "node scripts/vercel-pricing-env.mjs --redeploy",
     "db:check": "node scripts/check-db-connection.mjs",
     "aws:setup": "node scripts/aws-setup.mjs",
     "aws:deploy": "node scripts/aws-deploy.mjs",
