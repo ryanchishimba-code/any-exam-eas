@@ -391,6 +391,7 @@ export const ANATOMY_SUBREGION_STRUCTURES: AnatomyStructure[] = [
       "Insular stroke can present with pain, autonomic instability, or speech disturbance",
       "Central to the salience network linking emotion and bodily state",
     ],
+    highYield: false,
     memoryCardIds: [],
     practiceTopicSlug: "neurology-stroke",
     meshId: "brain-insula",
