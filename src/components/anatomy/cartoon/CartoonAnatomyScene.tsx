@@ -17,31 +17,15 @@ import * as THREE from "three";
 import { Vector3 } from "three";
 import { getAnatomyStructure } from "@/lib/anatomy";
 import { getBoneFocus, getBoneFocusDistance } from "@/lib/anatomy/bones";
-import { ANATOMY_MODULES, getAnatomyModule } from "@/lib/anatomy/modules/registry";
-import { getOrganDepthOrder } from "@/lib/anatomy/cartoon/organ-layout";
-import { isMeshIdCoveredByAtlas } from "@/lib/anatomy/ct/ct-atlas-registry";
-import { CARTOON_CAMERA, CT_CAMERA } from "@/lib/anatomy/cartoon/proportions";
-import { CARTOON_SCENE_BG } from "@/lib/anatomy/cartoon/palette";
+import { getAnatomyModule } from "@/lib/anatomy/modules/registry";
+import { CT_CAMERA } from "@/lib/anatomy/cartoon/proportions";
 import type { AnatomyLayer, AnatomyStructure, AnatomySystem } from "@/lib/anatomy/types";
 import { cn } from "@/lib/utils";
-import { AnatomyStudioEnvironment } from "./AnatomyStudioEnvironment";
-import { AnatomySceneLighting } from "./AnatomySceneLighting";
-import { AnatomyPostFX } from "./AnatomyPostFX";
-import { CartoonBodyShell } from "./CartoonBodyShell";
-import { ClickableSkeleton } from "./ClickableSkeleton";
-import { CartoonOrganMesh } from "./CartoonOrganMesh";
-import { CartoonStructuralLayers } from "./CartoonStructuralLayers";
-import { CartoonNerveLayers } from "./CartoonNerveLayers";
-import { StructuralPickRig } from "./StructuralPickRig";
 import { AnatomyPointerProvider, useAnatomyPointer } from "./AnatomyPointerProvider";
 import { CtAtlasRig, preloadCtAtlas } from "@/components/anatomy/ct/CtAtlasRig";
-import { preloadVisibleHumanOrgans } from "./VolumeOrganVisual";
+import { CtThoracicBonesRig } from "@/components/anatomy/ct/CtThoracicBonesRig";
+import { createCtClipPlanes } from "@/lib/anatomy/ct/ct-atlas-fit";
 import { NeuroConnectionRig } from "./NeuroConnectionRig";
-import { isNeuroConnected } from "@/lib/anatomy/neuro-connections";
-import {
-  isVisibleHumanOrganEnabled,
-  VISIBLE_HUMAN_ORGANS,
-} from "@/lib/anatomy/cartoon/visible-human-organs";
 import { CT_WINDOWS, isCtAtlasEnabled, type CtWindowId } from "@/lib/anatomy/ct/ct-windows";
 import type { CtClipPlaneId } from "@/lib/anatomy/ct/ct-atlas-registry";
 
@@ -51,80 +35,12 @@ export type CartoonSceneHandle = {
   resetView: () => void;
 };
 
-function OrganModules({
-  structures,
-  visibleLayers,
-  systemFilter,
-  selectedId,
-  highlightedId,
-  onSelect,
-  skinOn,
-  skipAtlasMeshes = false,
-}: {
-  structures: AnatomyStructure[];
-  visibleLayers: Set<AnatomyLayer>;
-  systemFilter: AnatomySystem | "all";
-  selectedId: string | null;
-  highlightedId: string | null;
-  onSelect: (id: string) => void;
-  skinOn: boolean;
-  skipAtlasMeshes?: boolean;
-}) {
-  const structureByMesh = useMemo(
-    () => new Map(structures.map((s) => [s.meshId, s])),
-    [structures]
-  );
-  const muscleStructuralOn = visibleLayers.has("muscle");
-  const sortedModules = useMemo(
-    () =>
-      [...ANATOMY_MODULES]
-        .filter((m) => m.layer !== "bone")
-        .sort((a, b) => getOrganDepthOrder(a.id) - getOrganDepthOrder(b.id)),
-    []
-  );
-
-  const focusStructureId = highlightedId ?? selectedId;
-  const focusStructure = focusStructureId ? getAnatomyStructure(focusStructureId) : null;
-
-  return (
-    <>
-      {sortedModules.map((mod) => {
-        const structure = structureByMesh.get(mod.id);
-        if (!structure) return null;
-        if (skipAtlasMeshes && isMeshIdCoveredByAtlas(mod.id)) return null;
-        const connected = isNeuroConnected(focusStructureId, structure.id);
-        const isFocused = focusStructureId === structure.id;
-        const isParentOfFocus = focusStructure?.parentId === structure.id;
-        const isChildOfFocus = structure.parentId === focusStructureId;
-        const isRelated =
-          isFocused || connected || isParentOfFocus || isChildOfFocus;
-        return (
-          <CartoonOrganMesh
-            key={mod.id}
-            def={mod}
-            label={structure.name}
-            structureSystem={structure.system}
-            systemFilter={systemFilter}
-            visible={visibleLayers.has(mod.layer)}
-            highlighted={isRelated}
-            selected={selectedId === structure.id}
-            deemphasized={Boolean(focusStructureId && !isRelated)}
-            skinOn={skinOn}
-            muscleStructuralOn={muscleStructuralOn}
-            onSelect={() => onSelect(structure.id)}
-          />
-        );
-      })}
-    </>
-  );
-}
-
-function CtRenderSettings({ active }: { active: boolean }) {
+function CtRenderSettings() {
   const { gl } = useThree();
   useEffect(() => {
-    gl.toneMapping = active ? THREE.NoToneMapping : THREE.ACESFilmicToneMapping;
-    gl.toneMappingExposure = active ? 1 : 1.24;
-  }, [active, gl]);
+    gl.toneMapping = THREE.NoToneMapping;
+    gl.toneMappingExposure = 1;
+  }, [gl]);
   return null;
 }
 
@@ -155,7 +71,6 @@ function ScenePointerBridge({
 }
 
 function SceneRig({
-  structures,
   visibleLayers,
   systemFilter,
   selectedId,
@@ -165,12 +80,10 @@ function SceneRig({
   zoomLevel,
   resetToken,
   controlsRef,
-  ctMode,
   ctWindowId,
   ctClipPlaneId,
   ctSliceOffset,
 }: {
-  structures: AnatomyStructure[];
   visibleLayers: Set<AnatomyLayer>;
   systemFilter: AnatomySystem | "all";
   selectedId: string | null;
@@ -180,15 +93,12 @@ function SceneRig({
   zoomLevel: number;
   resetToken: number;
   controlsRef: React.RefObject<OrbitControlsImpl | null>;
-  ctMode: boolean;
   ctWindowId: CtWindowId;
   ctClipPlaneId: CtClipPlaneId;
   ctSliceOffset: number;
 }) {
   const { camera } = useThree();
-  const ctActive = ctMode && isCtAtlasEnabled();
-  const clinicalAtlasActive = isCtAtlasEnabled() && !ctActive;
-  const cameraConfig = ctActive ? CT_CAMERA : CARTOON_CAMERA;
+  const cameraConfig = CT_CAMERA;
   const defaultCamPos = useMemo(() => new Vector3(...cameraConfig.position), [cameraConfig.position]);
   const defaultTarget = useMemo(() => new Vector3(...cameraConfig.target), [cameraConfig.target]);
   const desiredTarget = useMemo(() => new Vector3(), []);
@@ -203,7 +113,7 @@ function SceneRig({
     camera.position.copy(defaultCamPos);
     focusDistance.current = cameraConfig.position[2];
     controls.update();
-  }, [camera, cameraConfig.position, cameraConfig.target, controlsRef, defaultCamPos, defaultTarget, resetToken, ctActive]);
+  }, [camera, cameraConfig.position, cameraConfig.target, controlsRef, defaultCamPos, defaultTarget, resetToken]);
 
   useEffect(() => {
     const focusId = highlightedId ?? selectedId;
@@ -238,109 +148,58 @@ function SceneRig({
     controls.update();
   });
 
-  const showSkin = visibleLayers.has("skin");
   const ctWindow = CT_WINDOWS[ctWindowId];
   const focusStructureId = highlightedId ?? selectedId;
+  const showBones = visibleLayers.has("bone");
+  const boneSystemFiltered =
+    systemFilter !== "all" && systemFilter !== "skeletal";
+
+  const clippingPlanes = useMemo(
+    () => createCtClipPlanes(ctClipPlaneId, ctSliceOffset),
+    [ctClipPlaneId, ctSliceOffset]
+  );
 
   useEffect(() => {
     if (!isCtAtlasEnabled()) return;
     preloadCtAtlas();
   }, []);
 
-  useEffect(() => {
-    if (!isVisibleHumanOrganEnabled() || ctActive || clinicalAtlasActive) return;
-
-    const visibleMeshIds = ANATOMY_MODULES.filter(
-      (mod) => mod.layer === "organ" && visibleLayers.has("organ") && VISIBLE_HUMAN_ORGANS[mod.id]
-    ).map((mod) => mod.id);
-
-    if (visibleMeshIds.length === 0) return;
-
-    const preload = () => preloadVisibleHumanOrgans(visibleMeshIds);
-    if (typeof requestIdleCallback !== "undefined") {
-      const id = requestIdleCallback(preload, { timeout: 2500 });
-      return () => cancelIdleCallback(id);
-    }
-    const timer = window.setTimeout(preload, 600);
-    return () => window.clearTimeout(timer);
-  }, [clinicalAtlasActive, ctActive, visibleLayers]);
-
-  const atlasSkinLayer = clinicalAtlasActive && showSkin;
+  if (!isCtAtlasEnabled()) {
+    return (
+      <>
+        <color attach="background" args={["#161618"]} />
+        <ambientLight intensity={0.4} />
+      </>
+    );
+  }
 
   return (
     <>
-      <CtRenderSettings active={ctActive} />
-      <color attach="background" args={[ctActive ? ctWindow.background : CARTOON_SCENE_BG]} />
-      {ctActive ? <fog attach="fog" args={[ctWindow.background, 8, 18]} /> : null}
-      {ctActive ? (
-        <>
-          <ambientLight intensity={0.35} color="#f0f0f4" />
-          <CtAtlasRig
-            visibleLayers={visibleLayers}
-            systemFilter={systemFilter}
-            windowId={ctWindowId}
-            clipPlaneId={ctClipPlaneId}
-            sliceOffset={ctSliceOffset}
-            selectedId={selectedId}
-            highlightedId={highlightedId}
-            onSelect={onSelect}
-            shading="pacs"
-          />
-          <NeuroConnectionRig focusStructureId={focusStructureId} />
-        </>
-      ) : (
-        <>
-          <AnatomyStudioEnvironment />
-          <AnatomySceneLighting />
-
-          {clinicalAtlasActive ? (
-            <CtAtlasRig
-              visibleLayers={visibleLayers}
-              systemFilter={systemFilter}
-              windowId="soft"
-              clipPlaneId={ctClipPlaneId}
-              sliceOffset={ctSliceOffset}
-              selectedId={selectedId}
-              highlightedId={highlightedId}
-              onSelect={onSelect}
-              shading="clinical"
-            />
-          ) : null}
-
-          <CartoonStructuralLayers
-            visibleLayers={visibleLayers}
-            skinOn={showSkin && !atlasSkinLayer}
-            skipVascularShell={clinicalAtlasActive}
-          />
-          <CartoonNerveLayers visibleLayers={visibleLayers} skinOn={showSkin && !atlasSkinLayer} />
-          <ClickableSkeleton
-            visible={visibleLayers.has("bone")}
-            skinOn={showSkin && !atlasSkinLayer}
-            selectedId={selectedId}
-            highlightedId={highlightedId}
-            onSelect={onSelect}
-          />
-          <OrganModules
-            structures={structures}
-            visibleLayers={visibleLayers}
-            systemFilter={systemFilter}
-            selectedId={selectedId}
-            highlightedId={highlightedId}
-            onSelect={onSelect}
-            skinOn={showSkin}
-            skipAtlasMeshes={clinicalAtlasActive}
-          />
-          <StructuralPickRig
-            visibleLayers={visibleLayers}
-            selectedId={selectedId}
-            highlightedId={highlightedId}
-            onSelect={onSelect}
-          />
-          <NeuroConnectionRig focusStructureId={focusStructureId} />
-          {!atlasSkinLayer ? <CartoonBodyShell ghost={!showSkin} /> : null}
-          <AnatomyPostFX />
-        </>
-      )}
+      <CtRenderSettings />
+      <color attach="background" args={[ctWindow.background]} />
+      <fog attach="fog" args={[ctWindow.background, 8, 18]} />
+      <ambientLight intensity={0.35} color="#f0f0f4" />
+      <CtAtlasRig
+        visibleLayers={visibleLayers}
+        systemFilter={systemFilter}
+        windowId={ctWindowId}
+        clipPlaneId={ctClipPlaneId}
+        sliceOffset={ctSliceOffset}
+        selectedId={selectedId}
+        highlightedId={highlightedId}
+        onSelect={onSelect}
+        shading="pacs"
+      />
+      <CtThoracicBonesRig
+        visible={showBones}
+        windowId={ctWindowId}
+        clippingPlanes={clippingPlanes}
+        selectedId={selectedId}
+        highlightedId={highlightedId}
+        onSelect={onSelect}
+        systemFiltered={boneSystemFiltered}
+      />
+      <NeuroConnectionRig focusStructureId={focusStructureId} />
 
       <ScenePointerBridge controlsRef={controlsRef} />
       <OrbitControls
@@ -369,7 +228,6 @@ type SceneProps = {
   onSelect: (id: string) => void;
   autoSpin?: boolean;
   className?: string;
-  ctMode?: boolean;
   ctWindowId?: CtWindowId;
   ctClipPlaneId?: CtClipPlaneId;
   ctSliceOffset?: number;
@@ -388,7 +246,7 @@ function LocalClippingToggle({ enabled }: { enabled: boolean }) {
 
 export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(function CartoonAnatomyScene(
   {
-    structures,
+    structures: _structures,
     visibleLayers,
     systemFilter = "all",
     selectedId,
@@ -396,8 +254,7 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
     onSelect,
     autoSpin = false,
     className,
-    ctMode = false,
-    ctWindowId = "soft",
+    ctWindowId = "bone",
     ctClipPlaneId = "off",
     ctSliceOffset = 0,
   },
@@ -406,7 +263,6 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
   const controlsRef = useRef<OrbitControlsImpl>(null);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [resetToken, setResetToken] = useState(0);
-  const ctActive = ctMode && isCtAtlasEnabled();
   const clipActive = isCtAtlasEnabled() && ctClipPlaneId !== "off";
 
   useImperativeHandle(ref, () => ({
@@ -419,41 +275,20 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
   }));
 
   return (
-    <div
-      className={cn(
-        "relative h-full w-full overflow-hidden rounded-2xl",
-        ctActive ? "bg-[#161618]" : "bg-[#05080c]",
-        className
-      )}
-    >
-      <div
-        className="pointer-events-none absolute inset-0 rounded-[inherit] bg-[radial-gradient(ellipse_at_50%_35%,rgba(34,211,238,0.07)_0%,transparent_52%)]"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_140px_rgba(0,0,0,0.45)]"
-        aria-hidden
-      />
+    <div className={cn("relative h-full w-full overflow-hidden rounded-2xl bg-[#161618]", className)}>
       <Canvas
-        camera={{
-          position: ctActive ? CT_CAMERA.position : CARTOON_CAMERA.position,
-          fov: ctActive ? CT_CAMERA.fov : CARTOON_CAMERA.fov,
-        }}
-        dpr={[1, 2.5]}
-        shadows={!ctActive}
+        camera={{ position: CT_CAMERA.position, fov: CT_CAMERA.fov }}
+        dpr={[1, 2]}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         onCreated={({ gl }) => {
-          gl.toneMapping = THREE.ACESFilmicToneMapping;
-          gl.toneMappingExposure = ctActive ? 1 : 1.32;
-          gl.shadowMap.enabled = !ctActive;
-          if (!ctActive) gl.shadowMap.type = THREE.PCFSoftShadowMap;
+          gl.toneMapping = THREE.NoToneMapping;
+          gl.toneMappingExposure = 1;
         }}
       >
         <AnatomyPointerProvider>
           <LocalClippingToggle enabled={clipActive} />
           <Suspense fallback={null}>
             <SceneRig
-              structures={structures}
               visibleLayers={visibleLayers}
               systemFilter={systemFilter}
               selectedId={selectedId}
@@ -463,7 +298,6 @@ export const CartoonAnatomyScene = forwardRef<CartoonSceneHandle, SceneProps>(fu
               zoomLevel={zoomLevel}
               resetToken={resetToken}
               controlsRef={controlsRef}
-              ctMode={ctMode}
               ctWindowId={ctWindowId}
               ctClipPlaneId={ctClipPlaneId}
               ctSliceOffset={ctSliceOffset}

@@ -89,6 +89,8 @@ export const CT_ORGAN_HU: Record<string, number> = {
   "knee-r": 320,
   femur: 350,
   tibia: 340,
+  skull: 420,
+  sternum: 310,
   trachea: -450,
   esophagus: 28,
   aorta: 90,

@@ -43,8 +43,7 @@ export const CartoonAnatomyViewer = forwardRef<CartoonViewerHandle, Props>(funct
 ) {
   const sceneRef = useRef<CartoonSceneHandle>(null);
   const ctAvailable = isCtAtlasEnabled();
-  const [ctMode, setCtMode] = useState(false);
-  const [ctWindowId, setCtWindowId] = useState<CtWindowId>("soft");
+  const [ctWindowId, setCtWindowId] = useState<CtWindowId>("bone");
   const [ctClipPlaneId, setCtClipPlaneId] = useState<CtClipPlaneId>("off");
   const [ctSliceOffset, setCtSliceOffset] = useState(0);
 
@@ -82,7 +81,6 @@ export const CartoonAnatomyViewer = forwardRef<CartoonViewerHandle, Props>(funct
           highlightedId={highlightedId}
           onSelect={onSelect}
           autoSpin={false}
-          ctMode={ctMode}
           ctWindowId={ctWindowId}
           ctClipPlaneId={ctClipPlaneId}
           ctSliceOffset={ctSliceOffset}
@@ -97,15 +95,17 @@ export const CartoonAnatomyViewer = forwardRef<CartoonViewerHandle, Props>(funct
           quizActive={quizActive}
           skinOn={skinOn}
           onPeelSkin={onToggleLayer ? handlePeelSkin : undefined}
-          ctMode={ctMode}
-          onCtModeChange={ctAvailable ? setCtMode : undefined}
           ctWindowId={ctWindowId}
-          onCtWindowChange={setCtWindowId}
+          onCtWindowChange={ctAvailable ? setCtWindowId : undefined}
           ctClipPlaneId={ctClipPlaneId}
-          onCtClipChange={(id) => {
-            setCtClipPlaneId(id);
-            if (id === "off") setCtSliceOffset(0);
-          }}
+          onCtClipChange={
+            ctAvailable
+              ? (id) => {
+                  setCtClipPlaneId(id);
+                  if (id === "off") setCtSliceOffset(0);
+                }
+              : undefined
+          }
           ctSliceOffset={ctSliceOffset}
           onCtSliceOffsetChange={setCtSliceOffset}
           showCtControls={ctAvailable}

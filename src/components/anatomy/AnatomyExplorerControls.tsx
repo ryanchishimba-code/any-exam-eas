@@ -16,8 +16,6 @@ type Props = {
   quizActive?: boolean;
   skinOn?: boolean;
   onPeelSkin?: () => void;
-  ctMode?: boolean;
-  onCtModeChange?: (value: boolean) => void;
   ctWindowId?: CtWindowId;
   onCtWindowChange?: (id: CtWindowId) => void;
   ctClipPlaneId?: CtClipPlaneId;
@@ -25,8 +23,6 @@ type Props = {
   ctSliceOffset?: number;
   onCtSliceOffsetChange?: (offset: number) => void;
   showCtControls?: boolean;
-  /** MPR slice controls in default studio view (VH atlas without PACS mode). */
-  showSliceControls?: boolean;
   className?: string;
   floating?: boolean;
 };
@@ -39,16 +35,13 @@ export function AnatomyExplorerControls({
   quizActive = false,
   skinOn = true,
   onPeelSkin,
-  ctMode = false,
-  onCtModeChange,
-  ctWindowId = "soft",
+  ctWindowId = "bone",
   onCtWindowChange,
   ctClipPlaneId = "off",
   onCtClipChange,
   ctSliceOffset = 0,
   onCtSliceOffsetChange,
   showCtControls = false,
-  showSliceControls = true,
   className,
   floating = true,
 }: Props) {
@@ -78,7 +71,7 @@ export function AnatomyExplorerControls({
               {selectedName}
             </span>
           ) : null}
-          {onPeelSkin && !ctMode ? (
+          {onPeelSkin ? (
             <ControlButton
               label={skinOn ? "Peel skin" : "Show skin"}
               active={!skinOn}
@@ -96,22 +89,13 @@ export function AnatomyExplorerControls({
           <ControlButton label="Reset view" onClick={onResetView}>
             <Focus className="h-4 w-4" aria-hidden />
           </ControlButton>
-          {showCtControls && onCtModeChange ? (
-            <ControlButton
-              label={ctMode ? "Studio 3D (clinical shading)" : "PACS greyscale (CT windowing)"}
-              active={ctMode}
-              onClick={() => onCtModeChange(!ctMode)}
-            >
-              <span className="px-0.5 text-[11px] font-semibold">{ctMode ? "PACS" : "3D"}</span>
-            </ControlButton>
-          ) : null}
         </div>
 
         {!floating && selectedName ? (
           <p className="truncate text-[13px] font-medium text-[var(--color-ink)]">{selectedName}</p>
         ) : null}
 
-        {showCtControls && ctMode && onCtWindowChange ? (
+        {showCtControls && onCtWindowChange ? (
           <details open className="border-t border-black/[0.05] px-2 pb-2 pt-2">
             <summary className="cursor-pointer text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
               CT window
@@ -129,7 +113,7 @@ export function AnatomyExplorerControls({
           </details>
         ) : null}
 
-        {showCtControls && showSliceControls && onCtClipChange ? (
+        {showCtControls && onCtClipChange ? (
           <details
             open={ctClipPlaneId !== "off"}
             className="border-t border-black/[0.05] px-2 pb-2 pt-2"
