@@ -4,8 +4,10 @@ import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
 import {
   getAnatomyStructuresForMemoryCardIds,
   getAnatomyStructuresForTopicSlug,
+  mergeAnatomyStructureLinks,
   type AnatomyStructureLink,
 } from "@/lib/anatomy/topic-links";
+import { inferAnatomyStructuresFromText } from "@/lib/anatomy/structure-inference";
 import type { StudyQuestion } from "@/lib/questions/types";
 import type { ExamSlug } from "@/types/edtech";
 import { getExamTopicStudyLinks, type ExamTopicStudyLinks } from "./exam-topic-bridge";
@@ -24,6 +26,8 @@ export type QuestionStudyContext = {
   subjectId?: string;
   tags?: string[];
   topicCategory?: string;
+  /** Question stem + rationale text for anatomy inference. */
+  stem?: string;
   ngnPayload?: Record<string, unknown> | null;
 };
 
@@ -128,18 +132,21 @@ export function resolveQuestionStudyLinks(
 
   const explicitStructureIds = [...payloadStructureIds, ...cardStructureIds];
 
-  const anatomyFromCards = getAnatomyStructuresForMemoryCardIds(memoryCardIds, {
+  const fromCards = getAnatomyStructuresForMemoryCardIds(memoryCardIds, {
     structureIds: explicitStructureIds,
   });
-  const anatomyStructures =
-    anatomyFromCards.length > 0
-      ? anatomyFromCards
-      : topicLinks.anatomyStructures.length > 0
-        ? topicLinks.anatomyStructures
-        : getAnatomyStructuresForTopicSlug(topicLinks.topicKey, {
-            memoryCardIds,
-            structureIds: explicitStructureIds,
-          });
+  const fromTopic =
+    topicLinks.anatomyStructures.length > 0
+      ? topicLinks.anatomyStructures
+      : getAnatomyStructuresForTopicSlug(topicLinks.topicKey, {
+          memoryCardIds,
+          structureIds: explicitStructureIds,
+        });
+  const fromText = ctx.stem?.trim()
+    ? inferAnatomyStructuresFromText(ctx.stem, { limit: 3 })
+    : [];
+
+  const anatomyStructures = mergeAnatomyStructureLinks(fromCards, fromTopic, fromText).slice(0, 3);
 
   return {
     primaryDeepDive,
@@ -155,9 +162,11 @@ export function resolveStudyLinksFromQuestion(
   examSlug: ExamSlug,
   question: StudyQuestion
 ): ResolvedQuestionStudyLinks {
+  const stem = [question.stem, question.explanation].filter(Boolean).join("\n");
   return resolveQuestionStudyLinks(examSlug, {
     subjectId: question.subjectId,
     tags: question.tags,
     ngnPayload: question.ngnPayload as Record<string, unknown> | null | undefined,
+    stem,
   });
 }

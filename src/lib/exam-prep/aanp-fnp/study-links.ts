@@ -1,5 +1,6 @@
 import { MEMORY_CARDS } from "@/lib/library/seeds";
 import { getMemoryCardIdsForTopic } from "@/lib/library/weak-area-map";
+import { enrichRelatedStudyMeta } from "../anatomy-study-meta";
 import type { RelatedStudyMeta } from "../seed-helpers";
 import type { AanpFnpDomainId, AanpFnpPatientAgeGroupId } from "./types";
 
@@ -126,7 +127,7 @@ export function attachAanpFnpStudyLinks(
   const inheritedModule =
     typeof inheritFrom?.reviewModuleSlug === "string" ? inheritFrom.reviewModuleSlug : undefined;
 
-  const resolved =
+  const base =
     inheritedIds.length > 0
       ? {
           reviewModuleSlug: inheritedModule,
@@ -134,9 +135,19 @@ export function attachAanpFnpStudyLinks(
         }
       : resolveAanpFnpStudyLinks(params);
 
+  const resolved = enrichRelatedStudyMeta(base, {
+    reviewModuleSlug: base.reviewModuleSlug,
+    subjectId: params.clinicalSystem,
+    blueprintSystem: params.clinicalSystem,
+    blueprintTopic: params.blueprintTopic,
+    memoryCardIds: base.memoryCardIds,
+    text: params.blueprintTopic,
+  });
+
   return {
     ...ngnPayload,
     ...(resolved.reviewModuleSlug ? { reviewModuleSlug: resolved.reviewModuleSlug } : {}),
     ...(resolved.memoryCardIds?.length ? { memoryCardIds: resolved.memoryCardIds } : {}),
+    ...(resolved.structureIds?.length ? { structureIds: resolved.structureIds } : {}),
   };
 }

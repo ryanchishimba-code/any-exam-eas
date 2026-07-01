@@ -362,7 +362,11 @@ export function ExplanationPanel({
         </div>
       )}
 
-      {expanded && <QuestionRelatedLinks question={question} examSlug={examSlug} />}
+      <QuestionRelatedLinks question={question} examSlug={examSlug} sections="anatomy" />
+
+      {expanded ? (
+        <QuestionRelatedLinks question={question} examSlug={examSlug} sections="non-anatomy" />
+      ) : null}
 
       {expanded && question.references && question.references.length > 0 && (
         <div className="text-xs text-[var(--color-ink-muted)]">

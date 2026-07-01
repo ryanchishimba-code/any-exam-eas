@@ -22,11 +22,14 @@ export function QuestionRelatedLinks({
   question,
   examSlug = "nclex",
   links: linksOverride,
+  sections = "all",
 }: {
   question: StudyQuestion;
   examSlug?: ExamSlug;
   /** Pre-resolved links (e.g. full-exam review with topicCategory only). */
   links?: ResolvedQuestionStudyLinks;
+  /** Which link groups to render. */
+  sections?: "all" | "anatomy" | "non-anatomy";
 }) {
   const links = linksOverride ?? resolveStudyLinksFromQuestion(examSlug, question);
   const top500Drugs = readTop500Drugs(question);
@@ -38,22 +41,47 @@ export function QuestionRelatedLinks({
   const hasDrugs = clinical && (top500Drugs?.length ?? 0) > 0;
   const hasTakeaway = Boolean(links.keyTakeaway);
 
-  if (!hasDeepDives && !hasCards && !hasAnatomy && !hasDrugs && !hasTakeaway) return null;
+  const showAnatomy = sections === "all" || sections === "anatomy";
+  const showNonAnatomy = sections === "all" || sections === "non-anatomy";
+
+  if (
+    showAnatomy &&
+    showNonAnatomy &&
+    !hasDeepDives &&
+    !hasCards &&
+    !hasAnatomy &&
+    !hasDrugs &&
+    !hasTakeaway
+  ) {
+    return null;
+  }
+  if (sections === "anatomy" && !hasAnatomy) return null;
+  if (
+    sections === "non-anatomy" &&
+    !hasDeepDives &&
+    !hasCards &&
+    !hasDrugs &&
+    !hasTakeaway
+  ) {
+    return null;
+  }
 
   return (
     <div className="rounded-xl border border-violet-200/60 bg-violet-50/40 p-4">
-      <p className="text-xs font-semibold uppercase tracking-wide text-violet-700">
-        Related study content
-      </p>
+      {showNonAnatomy ? (
+        <p className="text-xs font-semibold uppercase tracking-wide text-violet-700">
+          Related study content
+        </p>
+      ) : null}
 
-      {links.keyTakeaway ? (
+      {showNonAnatomy && links.keyTakeaway ? (
         <p className="mt-2 text-sm font-medium leading-relaxed text-[var(--color-ink)]">
           <span className="text-violet-700">High-yield takeaway: </span>
           {links.keyTakeaway}
         </p>
       ) : null}
 
-      {hasDeepDives ? (
+      {showNonAnatomy && hasDeepDives ? (
         <div className="mt-3 flex flex-wrap gap-2">
           {links.relatedDeepDives.map((mod) => (
             <Link
@@ -68,7 +96,7 @@ export function QuestionRelatedLinks({
         </div>
       ) : null}
 
-      {hasCards ? (
+      {showNonAnatomy && hasCards ? (
         <div className="mt-3 flex flex-wrap gap-2">
           {links.memoryCardIds.map((cardId) => (
             <Link
@@ -83,8 +111,8 @@ export function QuestionRelatedLinks({
         </div>
       ) : null}
 
-      {hasAnatomy ? (
-        <div className="mt-3">
+      {showAnatomy && hasAnatomy ? (
+        <div className={showNonAnatomy && (hasTakeaway || hasDeepDives || hasCards) ? "mt-3" : ""}>
           <p className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
             <Bone className="h-3 w-3" aria-hidden />
             Explore in Anatomy
@@ -95,7 +123,7 @@ export function QuestionRelatedLinks({
         </div>
       ) : null}
 
-      {hasDrugs && top500Drugs ? (
+      {showNonAnatomy && hasDrugs && top500Drugs ? (
         <div className="mt-3">
           <p className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
             <Pill className="h-3 w-3" aria-hidden />

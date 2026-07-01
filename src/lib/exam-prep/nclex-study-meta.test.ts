@@ -34,5 +34,8 @@ describe("nclex-study-meta", () => {
     expect((patch.ngnPayload.top500Drugs as string[]).some((d) => /norepinephrine/i.test(d))).toBe(
       true
     );
+    expect(patch.ngnPayload.reviewModuleSlug).toBe("sepsis-shock");
+    expect(Array.isArray(patch.ngnPayload.structureIds)).toBe(true);
+    expect((patch.ngnPayload.structureIds as string[]).length).toBeGreaterThan(0);
   });
 });

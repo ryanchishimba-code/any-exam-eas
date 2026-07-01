@@ -166,3 +166,49 @@ export function anatomyProcedureHref(
 export function anatomyPracticeHref(examSlug: ExamSlug, count = 10): string {
   return practiceTopicHref(examSlug, "anatomy", count);
 }
+
+type StructurePracticeInput = {
+  id: string;
+  name: string;
+  practiceTopicSlug: string;
+};
+
+/** Bank practice on a structure's topic with return-to-anatomy after the session. */
+export function structurePracticeHref(
+  examSlug: ExamSlug,
+  structure: StructurePracticeInput,
+  count = 10
+): string {
+  const fieldId = topicFieldId(examSlug, structure.practiceTopicSlug);
+  const qs = new URLSearchParams({
+    field: fieldId,
+    mode: "bank",
+    subjectId: structure.practiceTopicSlug,
+    count: String(count),
+    returnExam: examSlug,
+    returnStructure: structure.id,
+    returnStructureName: structure.name,
+  });
+  return `${ROUTES.questionBank}?${qs.toString()}`;
+}
+
+/** Parse return link after practice launched from Anatomy Explorer. */
+export function parseAnatomyPracticeReturn(
+  params: Pick<URLSearchParams, "get">
+): { href: string; label: string } | null {
+  const returnExam = params.get("returnExam");
+  const returnStructure = params.get("returnStructure")?.trim();
+  if (!returnExam || !returnStructure || !isExamSlug(returnExam)) return null;
+  const name = params.get("returnStructureName")?.trim();
+  return {
+    href: anatomyHref(returnExam, returnStructure),
+    label: name ? `${name} in Anatomy` : "Anatomy Explorer",
+  };
+}
+
+/** Topic review module return takes precedence over anatomy when both are set. */
+export function parsePracticeReturn(
+  params: Pick<URLSearchParams, "get">
+): { href: string; label: string } | null {
+  return parseTopicPracticeReturn(params) ?? parseAnatomyPracticeReturn(params);
+}

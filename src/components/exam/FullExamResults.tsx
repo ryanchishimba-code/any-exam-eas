@@ -74,6 +74,7 @@ export function FullExamResults({
   const isCorrect = currentAnswer?.correct ?? false;
   const studyLinks = resolveQuestionStudyLinks(examSlug, {
     topicCategory: current?.topicCategory,
+    stem: current ? [current.question, current.explanation].filter(Boolean).join("\n") : undefined,
   });
 
   const notesPreview = answers
@@ -173,6 +174,7 @@ export function FullExamResults({
           <div className="mt-4 space-y-3">
             <StudyThisTopicButton
               links={studyLinks}
+              examSlug={examSlug}
               missed={!isCorrect}
               flagged={Boolean(currentAnswer?.flagged)}
             />

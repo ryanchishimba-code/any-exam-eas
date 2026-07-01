@@ -69,7 +69,7 @@ import type { ExamQuestion } from "@/lib/ai";
 import { Button } from "@/components/ui/Button";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { cn } from "@/lib/utils";
-import { parseTopicPracticeReturn, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links";
+import { parsePracticeReturn, MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links";
 import { qbUi } from "@/lib/study/question-bank-ui";
 import {
   availableQuestionCount,
@@ -286,7 +286,7 @@ export function StudyBankPractice({
   const crossExamFieldSyncRef = useRef<string | null>(null);
   const zeroPoolFallbackAppliedRef = useRef(false);
   const topicReturnTo = useMemo(
-    () => parseTopicPracticeReturn(searchParams),
+    () => parsePracticeReturn(searchParams),
     [searchParams]
   );
 

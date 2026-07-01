@@ -8,8 +8,8 @@ import { Button } from "@/components/ui/Button";
 import {
   anatomyPracticeHref,
   highYieldTopicHref,
-  practiceTopicHref,
   libraryCardHref,
+  structurePracticeHref,
 } from "@/lib/edtech/practice-links";
 import type { AnatomyStructure } from "@/lib/anatomy/types";
 import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
@@ -160,18 +160,18 @@ export function StructureDetailPanel({
           </Button>
         ) : null}
         <Button
-          href={practiceTopicHref(examSlug, structure.practiceTopicSlug, 10)}
+          href={structurePracticeHref(examSlug, structure, 10)}
           variant="primary"
           className="h-11 w-full justify-center rounded-full text-[14px] font-semibold shadow-[var(--shadow-apple-btn)]"
         >
-          Practice questions
+          Practice {structure.name} questions
         </Button>
         <Button
           href={anatomyPracticeHref(examSlug, 10)}
           variant="secondary"
           className="h-11 w-full justify-center rounded-full text-[14px]"
         >
-          Anatomy practice
+          All anatomy practice
         </Button>
         {structure.highYieldTopicSlug ? (
           <Button

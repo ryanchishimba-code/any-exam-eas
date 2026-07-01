@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
   highYieldTopicsHref,
+  parseAnatomyPracticeReturn,
+  parsePracticeReturn,
   parseTopicPracticeReturn,
   practiceTopicHref,
+  structurePracticeHref,
 } from "./practice-links";
 
 describe("highYieldTopicsHref", () => {
@@ -53,5 +56,56 @@ describe("parseTopicPracticeReturn", () => {
 
   it("returns null when return params are missing", () => {
     expect(parseTopicPracticeReturn(new URLSearchParams())).toBeNull();
+  });
+});
+
+describe("structurePracticeHref", () => {
+  it("embeds anatomy return params for round-trip from explorer", () => {
+    const href = structurePracticeHref(
+      "usmle",
+      { id: "heart", name: "Heart", practiceTopicSlug: "cardiovascular" },
+      10
+    );
+    const url = new URL(href, "http://localhost");
+    expect(url.searchParams.get("field")).toBe("usmle-step-2");
+    expect(url.searchParams.get("subjectId")).toBe("cardiovascular");
+    expect(url.searchParams.get("returnStructure")).toBe("heart");
+    expect(url.searchParams.get("returnStructureName")).toBe("Heart");
+  });
+});
+
+describe("parseAnatomyPracticeReturn", () => {
+  it("rebuilds anatomy explorer href from bank params", () => {
+    const params = new URLSearchParams({
+      returnExam: "usmle",
+      returnStructure: "heart",
+      returnStructureName: "Heart",
+    });
+    expect(parseAnatomyPracticeReturn(params)).toEqual({
+      href: "/anatomy?exam=usmle&structure=heart",
+      label: "Heart in Anatomy",
+    });
+  });
+});
+
+describe("parsePracticeReturn", () => {
+  it("prefers review module return over anatomy return", () => {
+    const params = new URLSearchParams({
+      returnExam: "nclex",
+      returnTopic: "sepsis-shock",
+      returnTitle: "Sepsis module",
+      returnStructure: "heart",
+      returnStructureName: "Heart",
+    });
+    expect(parsePracticeReturn(params)?.label).toBe("Sepsis module");
+  });
+
+  it("falls back to anatomy return when no topic return", () => {
+    const params = new URLSearchParams({
+      returnExam: "usmle",
+      returnStructure: "liver",
+      returnStructureName: "Liver",
+    });
+    expect(parsePracticeReturn(params)?.href).toContain("structure=liver");
   });
 });

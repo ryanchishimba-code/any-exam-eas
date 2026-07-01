@@ -4,6 +4,7 @@ import { TOP_500_DRUGS } from "@/lib/drugs300/catalog";
 import { getMemoryCardIdsForTopic } from "@/lib/library/weak-area-map";
 import { getSubjectArea, getSubjectsForFieldId } from "@/lib/subjects/registry";
 import { resolveNclexStem, resolveNclexVignette } from "./nclex-bank-audit";
+import { enrichRelatedStudyMeta, relatedMetaFromPayload } from "./anatomy-study-meta";
 
 const NURSING_FIELD = "nursing";
 
@@ -151,6 +152,21 @@ export function buildNclexStudyMetaPatch(item: BankItem): NclexStudyMetaPatch {
       ngnPayload.top500Drugs = drugs;
       changed = true;
     }
+  }
+
+  const studyMeta = enrichRelatedStudyMeta(relatedMetaFromPayload(ngnPayload), {
+    reviewModuleSlug,
+    subjectId,
+    topicCategory,
+    memoryCardIds,
+    text,
+  });
+  if (
+    studyMeta.structureIds &&
+    JSON.stringify(ngnPayload.structureIds ?? []) !== JSON.stringify(studyMeta.structureIds)
+  ) {
+    ngnPayload.structureIds = studyMeta.structureIds;
+    changed = true;
   }
 
   return { subjectId, topicCategory, ngnPayload, changed };

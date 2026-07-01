@@ -631,6 +631,7 @@ export function StudySessionPlayer({
               </p>
               <StudyThisTopicButton
                 links={studyLinks}
+                examSlug={examSlug}
                 missed={answer.correct !== true}
                 flagged={isFlagged}
               />
