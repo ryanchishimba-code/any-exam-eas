@@ -6,7 +6,7 @@ import type { BankItem } from "@/lib/question-bank";
 describe("NCLEX phase 1 quality bar", () => {
   it("NCLEX user-facing compose uses progressive tiers with exact fill", () => {
     expect(userFacingComposeTiers("nursing")).toEqual(USER_FACING_PROGRESSIVE_TIERS);
-    expect(userFacingComposeTiers("nursing").length).toBeGreaterThan(1);
+    expect(userFacingComposeTiers("nursing").length).toBeGreaterThan(5);
     expect(userFacingComposeTiers("nursing").every((tier) => tier.minFillRatio === 1)).toBe(true);
     expect(userFacingComposeTiers("nursing")[0]!.useRelaxedGate).toBe(false);
     expect(userFacingComposeTiers("nursing").some((tier) => tier.useRelaxedGate)).toBe(true);
