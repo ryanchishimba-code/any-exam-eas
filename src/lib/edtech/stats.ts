@@ -1,6 +1,7 @@
 import { and, count, eq, gte, sql } from "drizzle-orm";
 import { requireDb } from "@/db";
 import { learningProfiles, questionAttempts } from "@/db/schema";
+import { withDrizzle } from "@/lib/db-resilience";
 import { resolveExamFieldId } from "@/lib/edtech/exam-preference";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
 
@@ -17,7 +18,6 @@ export async function getExamScopedStats(
   examSlug: ExamSlug
 ): Promise<StudyHubQuickStats> {
   try {
-    const db = requireDb();
     const fieldId = resolveExamFieldId(examSlug);
     const since = new Date();
     since.setUTCDate(since.getUTCDate() - 30);
@@ -25,36 +25,42 @@ export async function getExamScopedStats(
     const todayStart = new Date();
     todayStart.setUTCHours(0, 0, 0, 0);
 
-    const [attemptRow] = await db
-      .select({
-        total: count(),
-        correct: sql<number>`sum(case when ${questionAttempts.correct} then 1 else 0 end)::int`,
-      })
-      .from(questionAttempts)
-      .where(
-        and(
-          eq(questionAttempts.userId, userId),
-          eq(questionAttempts.fieldId, fieldId),
-          gte(questionAttempts.createdAt, since)
+    const [attemptRow] = await withDrizzle("stats.attempts30d", () =>
+      requireDb()
+        .select({
+          total: count(),
+          correct: sql<number>`sum(case when ${questionAttempts.correct} then 1 else 0 end)::int`,
+        })
+        .from(questionAttempts)
+        .where(
+          and(
+            eq(questionAttempts.userId, userId),
+            eq(questionAttempts.fieldId, fieldId),
+            gte(questionAttempts.createdAt, since)
+          )
         )
-      );
+    );
 
-    const [todayRow] = await db
-      .select({ total: count() })
-      .from(questionAttempts)
-      .where(
-        and(
-          eq(questionAttempts.userId, userId),
-          eq(questionAttempts.fieldId, fieldId),
-          gte(questionAttempts.createdAt, todayStart)
+    const [todayRow] = await withDrizzle("stats.attemptsToday", () =>
+      requireDb()
+        .select({ total: count() })
+        .from(questionAttempts)
+        .where(
+          and(
+            eq(questionAttempts.userId, userId),
+            eq(questionAttempts.fieldId, fieldId),
+            gte(questionAttempts.createdAt, todayStart)
+          )
         )
-      );
+    );
 
-    const [profile] = await db
-      .select({ streak: learningProfiles.studyStreakDays })
-      .from(learningProfiles)
-      .where(eq(learningProfiles.userId, userId))
-      .limit(1);
+    const [profile] = await withDrizzle("stats.profile", () =>
+      requireDb()
+        .select({ streak: learningProfiles.studyStreakDays })
+        .from(learningProfiles)
+        .where(eq(learningProfiles.userId, userId))
+        .limit(1)
+    );
 
     const total = Number(attemptRow?.total ?? 0);
     const correct = Number(attemptRow?.correct ?? 0);

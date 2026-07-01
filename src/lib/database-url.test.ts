@@ -1,8 +1,10 @@
 import { afterEach, describe, expect, it } from "vitest";
 import {
   assertRuntimeDatabaseUrl,
+  getNeonHttpDatabaseUrl,
   isBuildPlaceholderDatabaseUrl,
   resolveDatabaseUrl,
+  withPoolParams,
 } from "./database-url";
 
 const BUILD_PLACEHOLDER =
@@ -71,5 +73,20 @@ describe("assertRuntimeDatabaseUrl", () => {
   it("throws the not-set message when no database URL is configured", () => {
     process.env = {};
     expect(() => assertRuntimeDatabaseUrl()).toThrow("DATABASE_URL is not set");
+  });
+});
+
+describe("getNeonHttpDatabaseUrl", () => {
+  it("strips Prisma pool params for the HTTP driver", () => {
+    process.env = {
+      DATABASE_URL: REAL_URL,
+    };
+    const pooled = withPoolParams(REAL_URL);
+    process.env.DATABASE_URL = pooled;
+    const httpUrl = getNeonHttpDatabaseUrl();
+    expect(httpUrl).toContain("-pooler");
+    expect(httpUrl).not.toContain("connection_limit=");
+    expect(httpUrl).not.toContain("pgbouncer=");
+    expect(httpUrl).toContain("sslmode=require");
   });
 });

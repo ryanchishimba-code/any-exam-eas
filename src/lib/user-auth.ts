@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 import type { User } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { executeWithRetry, withPrisma } from "@/lib/db-resilience";
 import { isAtLeast18 } from "@/lib/age";
 import {
   assertPublicSignupEmailAllowed,
@@ -21,36 +22,13 @@ import { trialEndsAtFromNow } from "@/lib/billing-config";
 
 const REGISTER_RETRIES = 6;
 
-function isTransientDbError(e: unknown): boolean {
-  if (e instanceof Prisma.PrismaClientKnownRequestError) {
-    if (e.code === "P2034") return true;
-    const msg = e.message.toLowerCase();
-    if (msg.includes("database is locked") || msg.includes("sqlite_busy")) return true;
-    if (msg.includes("socket timeout") || msg.includes("timed out")) return true;
-  }
-  if (e instanceof Error) {
-    const msg = e.message.toLowerCase();
-    return (
-      msg.includes("database is locked") ||
-      msg.includes("sqlite_busy") ||
-      msg.includes("socket timeout")
-    );
-  }
-  return false;
-}
-
 async function withRegisterRetry<T>(fn: () => Promise<T>): Promise<T> {
-  let lastError: unknown;
-  for (let attempt = 0; attempt < REGISTER_RETRIES; attempt++) {
-    try {
-      return await fn();
-    } catch (e) {
-      lastError = e;
-      if (!isTransientDbError(e) || attempt === REGISTER_RETRIES - 1) throw e;
-      await new Promise((r) => setTimeout(r, 80 * (attempt + 1) ** 2));
-    }
-  }
-  throw lastError;
+  return executeWithRetry(fn, {
+    label: "auth.register",
+    maxAttempts: REGISTER_RETRIES,
+    baseDelayMs: 80,
+    timeoutMs: 20_000,
+  });
 }
 
 /** Public user fields — never expose passwordHash to clients. */
@@ -68,14 +46,18 @@ export function toSafeUser(user: User): SafeUser {
 
 export async function findUserByEmail(email: string): Promise<User | null> {
   const normalized = normalizeEmail(email);
-  const exact = await prisma.user.findUnique({
-    where: { email: normalized },
-  });
+  const exact = await withPrisma("auth.findUserByEmail", () =>
+    prisma.user.findUnique({
+      where: { email: normalized },
+    })
+  );
   if (exact) return exact;
 
-  return prisma.user.findFirst({
-    where: { email: { equals: normalized, mode: "insensitive" } },
-  });
+  return withPrisma("auth.findUserByEmailInsensitive", () =>
+    prisma.user.findFirst({
+      where: { email: { equals: normalized, mode: "insensitive" } },
+    })
+  );
 }
 
 export async function verifyUserPassword(

@@ -1,4 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import type { PrismaClient } from "@prisma/client";
+import { PrismaClient as PrismaClientCtor } from "@prisma/client";
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
 import {
   assertRuntimeDatabaseUrl,
@@ -6,6 +7,8 @@ import {
   getRuntimeDatabaseUrl,
   isPostgresDatabaseUrl,
 } from "@/lib/database-url";
+
+const SLOW_QUERY_MS = 500;
 
 const isNextBuild = process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD;
 
@@ -29,12 +32,27 @@ function createPrismaClient(): PrismaClient {
     assertRuntimeDatabaseUrl();
   }
   const url = getRuntimeDatabaseUrl();
-  return new PrismaClient({
+  const base = new PrismaClientCtor({
     log: process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
     ...(url && isPostgresDatabaseUrl(url)
       ? { datasources: { db: { url } } }
       : {}),
   });
+
+  return base.$extends({
+    query: {
+      $allOperations({ model, operation, args, query }) {
+        const label = `${model ?? "raw"}.${operation}`;
+        const started = Date.now();
+        return query(args).finally(() => {
+          const ms = Date.now() - started;
+          if (ms >= SLOW_QUERY_MS) {
+            console.warn(`[db:slow] prisma:${label} ${ms}ms`);
+          }
+        });
+      },
+    },
+  }) as unknown as PrismaClient;
 }
 
 function isPrismaClientCurrent(client: PrismaClient | undefined): client is PrismaClient {

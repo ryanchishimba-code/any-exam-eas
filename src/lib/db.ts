@@ -9,3 +9,13 @@ export {
   schema,
   type AppDatabase,
 } from "@/db";
+
+export {
+  DbUnavailableError,
+  executeWithRetry,
+  isTransientDbError,
+  toUserFacingDbError,
+  withDrizzle,
+  withNeon,
+  withPrisma,
+} from "@/lib/db-resilience";

@@ -8,7 +8,7 @@ import { drizzle } from "drizzle-orm/neon-http";
 import type { NeonHttpDatabase } from "drizzle-orm/neon-http";
 import {
   ensureDatabaseUrlEnv,
-  getRuntimeDatabaseUrl,
+  getNeonHttpDatabaseUrl,
   isPostgresDatabaseUrl,
 } from "@/lib/database-url";
 import * as schema from "./schema";
@@ -21,7 +21,7 @@ let cachedUrl: string | null = null;
 
 function resolveConnectionString(): string {
   ensureDatabaseUrlEnv();
-  const url = getRuntimeDatabaseUrl();
+  const url = getNeonHttpDatabaseUrl();
   if (!url || !isPostgresDatabaseUrl(url)) {
     throw new Error(
       "DATABASE_URL is not configured. Set a Neon pooled postgresql:// URL (see docs/VERCEL_DATABASE.md)."

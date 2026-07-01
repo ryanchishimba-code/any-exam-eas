@@ -4,6 +4,7 @@ import { examSessions } from "@/db/schema";
 import { createId } from "@/lib/id";
 import type { ExamSlug } from "@/lib/exams/catalog";
 import { examSlugToFieldId } from "@/lib/exams/catalog";
+import { withDrizzle } from "@/lib/db-resilience";
 import { mergeExamAnswers } from "./scoring";
 
 export { mergeExamAnswers, calculateExamScorePercent } from "./scoring";
@@ -31,34 +32,36 @@ export async function createExamSession(
     sessionConfig?: Record<string, unknown>;
   }
 ) {
-  const db = requireDb();
   const id = createId();
   const now = new Date();
-  await db.insert(examSessions).values({
-    id,
-    userId,
-    examType,
-    fieldId: opts?.fieldId ?? examSlugToFieldId(examType),
-    title: opts?.title ?? `${examType.toUpperCase()} practice`,
-    status: "in_progress",
-    answers: [],
-    analysis: opts?.sessionConfig ? { sessionConfig: opts.sessionConfig } : null,
-    questionCount: opts?.questionCount ?? 0,
-    timeLimitSec: opts?.timeLimitSec ?? null,
-    startedAt: now,
-    createdAt: now,
-    updatedAt: now,
-  });
+  await withDrizzle("examSessions.create", () =>
+    requireDb().insert(examSessions).values({
+      id,
+      userId,
+      examType,
+      fieldId: opts?.fieldId ?? examSlugToFieldId(examType),
+      title: opts?.title ?? `${examType.toUpperCase()} practice`,
+      status: "in_progress",
+      answers: [],
+      analysis: opts?.sessionConfig ? { sessionConfig: opts.sessionConfig } : null,
+      questionCount: opts?.questionCount ?? 0,
+      timeLimitSec: opts?.timeLimitSec ?? null,
+      startedAt: now,
+      createdAt: now,
+      updatedAt: now,
+    })
+  );
   return id;
 }
 
 export async function getExamSession(sessionId: string, userId: string) {
-  const db = requireDb();
-  const [row] = await db
-    .select()
-    .from(examSessions)
-    .where(and(eq(examSessions.id, sessionId), eq(examSessions.userId, userId)))
-    .limit(1);
+  const [row] = await withDrizzle("examSessions.get", () =>
+    requireDb()
+      .select()
+      .from(examSessions)
+      .where(and(eq(examSessions.id, sessionId), eq(examSessions.userId, userId)))
+      .limit(1)
+  );
   return row ?? null;
 }
 
@@ -75,11 +78,12 @@ export async function appendExamAnswer(
     : [];
   const next = mergeExamAnswers(answers, answer);
 
-  const db = requireDb();
-  await db
-    .update(examSessions)
-    .set({ answers: next, updatedAt: new Date() })
-    .where(eq(examSessions.id, sessionId));
+  await withDrizzle("examSessions.appendAnswer", () =>
+    requireDb()
+      .update(examSessions)
+      .set({ answers: next, updatedAt: new Date() })
+      .where(eq(examSessions.id, sessionId))
+  );
 
   return next;
 }
@@ -94,31 +98,33 @@ export async function completeExamSession(
     endedEarly?: boolean;
   }
 ) {
-  const db = requireDb();
   const now = new Date();
-  await db
-    .update(examSessions)
-    .set({
-      status: payload.endedEarly ? "ended_early" : "completed",
-      score: payload.score,
-      weakAreas: payload.weakAreas,
-      analysis: payload.analysis ?? null,
-      completedAt: now,
-      updatedAt: now,
-    })
-    .where(and(eq(examSessions.id, sessionId), eq(examSessions.userId, userId)));
+  await withDrizzle("examSessions.complete", () =>
+    requireDb()
+      .update(examSessions)
+      .set({
+        status: payload.endedEarly ? "ended_early" : "completed",
+        score: payload.score,
+        weakAreas: payload.weakAreas,
+        analysis: payload.analysis ?? null,
+        completedAt: now,
+        updatedAt: now,
+      })
+      .where(and(eq(examSessions.id, sessionId), eq(examSessions.userId, userId)))
+  );
 }
 
 export async function listUserExamSessions(userId: string, examType?: string, limit = 30) {
-  const db = requireDb();
   const conditions = examType
     ? and(eq(examSessions.userId, userId), eq(examSessions.examType, examType))
     : eq(examSessions.userId, userId);
 
-  return db
-    .select()
-    .from(examSessions)
-    .where(conditions)
-    .orderBy(desc(examSessions.createdAt))
-    .limit(limit);
+  return withDrizzle("examSessions.listUser", () =>
+    requireDb()
+      .select()
+      .from(examSessions)
+      .where(conditions)
+      .orderBy(desc(examSessions.createdAt))
+      .limit(limit)
+  );
 }

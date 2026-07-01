@@ -6,6 +6,8 @@ import {
 } from "@/lib/health-check";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+export const maxDuration = 30;
 
 /** Uptime / load-balancer check — public body is `{ ok }` only; details require Bearer CRON_SECRET. */
 export async function GET(req: Request) {

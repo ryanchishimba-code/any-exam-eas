@@ -1,6 +1,7 @@
 import type { BankItem } from "@/lib/question-bank";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { prisma } from "@/lib/prisma";
+import { withPrisma } from "@/lib/db-resilience";
 import {
   ensureStaticSeedsForField,
   ensureSubjectHasQuestions,
@@ -57,7 +58,9 @@ async function getCachedCuratedTotal(
 ): Promise<number> {
   const hit = curatedTotalCache.get(cacheKey);
   if (hit && Date.now() - hit.at < CURATED_TOTAL_CACHE_MS) return hit.total;
-  const total = await prisma.questionBankItem.count({ where });
+  const total = await withPrisma("questionBank.curatedCount", () =>
+    prisma.questionBankItem.count({ where })
+  );
   curatedTotalCache.set(cacheKey, { total, at: Date.now() });
   return total;
 }
@@ -65,9 +68,11 @@ async function getCachedCuratedTotal(
 async function getCachedActiveFieldTotal(fieldId: string): Promise<number> {
   const hit = fieldTotalCache.get(fieldId);
   if (hit && Date.now() - hit.at < FIELD_TOTAL_CACHE_MS) return hit.total;
-  const total = await prisma.questionBankItem.count({
-    where: activeFieldWhere(fieldId),
-  });
+  const total = await withPrisma("questionBank.fieldCount", () =>
+    prisma.questionBankItem.count({
+      where: activeFieldWhere(fieldId),
+    })
+  );
   fieldTotalCache.set(fieldId, { total, at: Date.now() });
   return total;
 }
@@ -680,24 +685,14 @@ export async function getSubjectServedCounts(
   return counts;
 }
 
-const SUBJECT_COUNT_MAX_RETRIES = 2;
-
 /** Resilient wrapper for topic picker / API — retries transient Neon pool errors. */
 export async function getSubjectServedCountsWithRetry(
   fieldId: string
 ): Promise<Record<string, number>> {
-  let lastError: unknown;
-  for (let attempt = 0; attempt <= SUBJECT_COUNT_MAX_RETRIES; attempt++) {
-    try {
-      return await getSubjectServedCounts(fieldId);
-    } catch (error) {
-      lastError = error;
-      if (attempt < SUBJECT_COUNT_MAX_RETRIES) {
-        await new Promise((resolve) => setTimeout(resolve, 250 * (attempt + 1)));
-      }
-    }
-  }
-  throw lastError;
+  return withPrisma("questionBank.subjectCounts", () => getSubjectServedCounts(fieldId), {
+    maxAttempts: 3,
+    timeoutMs: 20_000,
+  });
 }
 
 /**

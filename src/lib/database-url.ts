@@ -141,6 +141,32 @@ export function getRuntimeDatabaseUrl(): string {
   return withPoolParams(raw);
 }
 
+/**
+ * Connection string for @neondatabase/serverless HTTP driver.
+ * Uses the pooled Neon host but strips Prisma-only pool query params.
+ */
+export function getNeonHttpDatabaseUrl(): string {
+  const raw = resolveDatabaseUrl();
+  if (!raw || !isPostgresDatabaseUrl(raw)) return raw;
+  try {
+    const parsed = new URL(raw);
+    for (const key of [
+      "connection_limit",
+      "pool_timeout",
+      "connect_timeout",
+      "pgbouncer",
+    ]) {
+      parsed.searchParams.delete(key);
+    }
+    if (!parsed.searchParams.has("sslmode")) {
+      parsed.searchParams.set("sslmode", "require");
+    }
+    return parsed.toString();
+  } catch {
+    return raw;
+  }
+}
+
 export function assertRuntimeDatabaseUrl() {
   const url = resolveDatabaseUrl();
 

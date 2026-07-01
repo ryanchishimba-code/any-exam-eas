@@ -5,6 +5,7 @@ import {
   isSqliteDatabaseUrl,
   resolveDatabaseUrl,
 } from "@/lib/database-url";
+import { withNeon, withPrisma } from "@/lib/db-resilience";
 
 let bankCountCache: { count: number; at: number } | null = null;
 const BANK_COUNT_TTL_MS = 30_000;
@@ -13,7 +14,7 @@ let databasePingCache: { ok: boolean; at: number } | null = null;
 const DATABASE_PING_TTL_MS = 30_000;
 const DB_PING_TIMEOUT_MS = 5_000;
 const PRISMA_PING_TIMEOUT_MS = 10_000;
-const DB_RETRY_ATTEMPTS = 2;
+const DB_RETRY_ATTEMPTS = 3;
 
 async function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
   return Promise.race([
@@ -27,13 +28,21 @@ async function withTimeout<T>(promise: Promise<T>, ms: number, label: string): P
 async function pingPostgresViaNeon(): Promise<void> {
   const { getNeonSql } = await import("@/db");
   const sql = getNeonSql();
-  await withTimeout(sql`SELECT 1 as n`, DB_PING_TIMEOUT_MS, "neon_ping");
+  await withNeon(
+    "health.ping",
+    () => withTimeout(sql`SELECT 1 as n`, DB_PING_TIMEOUT_MS, "neon_ping"),
+    { maxAttempts: DB_RETRY_ATTEMPTS, timeoutMs: DB_PING_TIMEOUT_MS + 500 }
+  );
 }
 
 async function pingViaPrisma(): Promise<void> {
   const { getPrisma } = await import("@/lib/prisma");
   const prisma = getPrisma();
-  await withTimeout(prisma.$queryRaw`SELECT 1`, PRISMA_PING_TIMEOUT_MS, "prisma_ping");
+  await withPrisma(
+    "health.ping",
+    () => withTimeout(prisma.$queryRaw`SELECT 1`, PRISMA_PING_TIMEOUT_MS, "prisma_ping"),
+    { maxAttempts: DB_RETRY_ATTEMPTS, timeoutMs: PRISMA_PING_TIMEOUT_MS + 500 }
+  );
 }
 
 async function pingDatabase(
@@ -44,30 +53,22 @@ async function pingDatabase(
     return databasePingCache.ok ? "ok" : "error";
   }
 
-  let lastError: unknown;
-  for (let attempt = 0; attempt < DB_RETRY_ATTEMPTS; attempt++) {
-    try {
-      if (dbKind === "postgresql") {
-        await pingPostgresViaNeon();
-      } else {
-        await pingViaPrisma();
-      }
-      databasePingCache = { ok: true, at: Date.now() };
-      return "ok";
-    } catch (error) {
-      lastError = error;
-      if (attempt + 1 < DB_RETRY_ATTEMPTS) {
-        await new Promise((resolve) => setTimeout(resolve, 300 * (attempt + 1)));
-      }
+  try {
+    if (dbKind === "postgresql") {
+      await pingPostgresViaNeon();
+    } else {
+      await pingViaPrisma();
     }
+    databasePingCache = { ok: true, at: Date.now() };
+    return "ok";
+  } catch (error) {
+    databasePingCache = { ok: false, at: Date.now() };
+    console.error(
+      "[health] databasePing:",
+      error instanceof Error ? error.message : error
+    );
+    return "error";
   }
-
-  databasePingCache = { ok: false, at: Date.now() };
-  console.error(
-    "[health] databasePing:",
-    lastError instanceof Error ? lastError.message : lastError
-  );
-  return "error";
 }
 
 export type HealthReport = {

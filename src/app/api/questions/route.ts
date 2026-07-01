@@ -31,6 +31,7 @@ export const runtime = "nodejs";
 export const maxDuration = 300;
 
 export async function GET(req: Request) {
+  try {
   const { requireStudyApi } = await import("@/lib/api-access");
   const premium = await requireStudyApi();
   if (!premium.ok) return premium.response;
@@ -310,4 +311,14 @@ export async function GET(req: Request) {
         }
       : {}),
   });
+  } catch (error) {
+    const { respondDbUnavailable } = await import("@/lib/api-db-error");
+    const dbResponse = respondDbUnavailable(error);
+    if (dbResponse) return dbResponse;
+    console.error("[api/questions]", error);
+    return NextResponse.json(
+      { error: "internal_error", message: "Something went wrong loading questions." },
+      { status: 500 }
+    );
+  }
 }

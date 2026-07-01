@@ -9,11 +9,13 @@ import { requirePremiumApi } from "@/lib/api-access";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 
 export const runtime = "nodejs";
+export const maxDuration = 30;
 
 export async function PATCH(
   req: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  try {
   const premium = await requirePremiumApi();
   if (!premium.ok) return premium.response;
 
@@ -58,4 +60,10 @@ export async function PATCH(
   }
 
   return NextResponse.json({ answers });
+  } catch (error) {
+    const { respondDbUnavailable } = await import("@/lib/api-db-error");
+    const dbResponse = respondDbUnavailable(error);
+    if (dbResponse) return dbResponse;
+    throw error;
+  }
 }
