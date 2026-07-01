@@ -341,6 +341,7 @@ export function AnatomyExplorerClient({
               selectedId={selectedId}
               onSelect={handleSelectStructure}
               onPreview={quizActive ? undefined : setHoveredId}
+              structureFilter={!catalogOnly && isCtAtlasEnabled() ? isStructureBrowsableInCtAtlas : undefined}
             />
           </div>
 
@@ -351,6 +352,7 @@ export function AnatomyExplorerClient({
               onSelectStructure={handleSelectStructure}
               onSelectProcedure={handleSelectProcedure}
               onPreviewStructure={quizActive ? undefined : setHoveredId}
+              structureFilter={!catalogOnly && isCtAtlasEnabled() ? isStructureBrowsableInCtAtlas : undefined}
             />
           </div>
 

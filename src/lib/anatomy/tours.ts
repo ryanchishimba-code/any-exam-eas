@@ -61,9 +61,9 @@ export const ANATOMY_TOURS: AnatomyTour[] = [
     examFocus: "USMLE / NCLEX",
     steps: [
       {
-        structureId: "brain",
+        structureId: "spinal-cord",
         narration:
-          "MCA territory strokes cause contralateral face/arm weakness; dominant hemisphere → aphasia.",
+          "MCA territory strokes cause contralateral face/arm weakness; dominant hemisphere → aphasia. Localize with cord and vascular anatomy.",
       },
       {
         structureId: "carotid-artery",
@@ -229,10 +229,10 @@ export const ANATOMY_QUIZ_QUESTIONS: AnatomyQuizQuestion[] = [
     distractorIds: ["heart", "diaphragm", "stomach"],
   },
   {
-    id: "q-brain",
-    prompt: "Click the central organ where MCA territory strokes cause contralateral weakness.",
-    structureId: "brain",
-    distractorIds: ["spinal-cord", "skull", "thyroid"],
+    id: "q-spinal-cord",
+    prompt: "Click the CNS structure running through the vertebral canal.",
+    structureId: "spinal-cord",
+    distractorIds: ["skull", "thyroid", "esophagus"],
   },
   {
     id: "q-kidneys",
@@ -322,7 +322,7 @@ export const ANATOMY_QUIZ_QUESTIONS: AnatomyQuizQuestion[] = [
     id: "q-skull",
     prompt: "Click the bony structure — epidural hematoma often follows middle meningeal artery injury.",
     structureId: "skull",
-    distractorIds: ["brain", "vertebral-column", "sternum"],
+    distractorIds: ["spinal-cord", "vertebral-column", "sternum"],
   },
   {
     id: "q-esophagus",

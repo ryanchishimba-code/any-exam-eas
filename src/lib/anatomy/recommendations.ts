@@ -4,12 +4,12 @@ import { ANATOMY_STRUCTURES } from "./structures";
 const byId = new Map(ANATOMY_STRUCTURES.map((s) => [s.id, s]));
 
 const EXAM_FEATURED_IDS: Record<ExamSlug, string[]> = {
-  nclex: ["heart", "lungs", "diaphragm", "kidneys", "brain", "spleen"],
-  usmle: ["heart", "brain", "liver", "kidneys", "aorta", "pancreas"],
+  nclex: ["heart", "lungs", "diaphragm", "kidneys", "spinal-cord", "spleen"],
+  usmle: ["heart", "spinal-cord", "liver", "kidneys", "aorta", "pancreas"],
   naplex: ["liver", "kidneys", "heart", "thyroid", "lungs", "pancreas"],
-  pance: ["heart", "lungs", "liver", "kidneys", "thyroid", "brain"],
-  "aanp-fnp": ["heart", "thyroid", "lungs", "kidneys", "liver", "brain"],
-  "npte-pt": ["brain", "heart", "lungs", "femur", "scapula", "spinal-cord"],
+  pance: ["heart", "lungs", "liver", "kidneys", "thyroid", "spinal-cord"],
+  "aanp-fnp": ["heart", "thyroid", "lungs", "kidneys", "liver", "spinal-cord"],
+  "npte-pt": ["spinal-cord", "heart", "lungs", "femur", "scapula", "aorta"],
 };
 
 /** High-yield structures prioritized for the active exam. */

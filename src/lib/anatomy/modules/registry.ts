@@ -19,7 +19,6 @@ function withLayout(mod: AnatomyModuleDef): AnatomyModuleDef {
 
 /** Organ / vessel / nerve / muscle modules — bones use ClickableSkeleton + bone catalog. */
 const BASE_MODULES: AnatomyModuleDef[] = [
-  { id: "brain", layer: "organ", position: [0, 1.56, 0.015], scale: [0.26, 0.22, 0.28], color: ORGAN_COLORS.brain, geometry: "sphere", profile: "brain", focusDistance: 1.45 },
   { id: "thyroid", layer: "organ", position: [0, 1.14, 0.14], scale: [0.14, 0.07, 0.09], color: ORGAN_COLORS.thyroid, geometry: "box", profile: "thyroid", focusDistance: 1.35 },
   { id: "trachea", layer: "organ", position: [0, 1.18, 0.1], scale: [0.06, 0.18, 0.06], color: ORGAN_COLORS.trachea, geometry: "cylinder", profile: "trachea-tube", focusDistance: 1.4 },
   { id: "carotid-artery", layer: "vascular", position: [0, 1.19, 0.07], scale: [0.11, 0.13, 0.11], color: ORGAN_COLORS.artery, geometry: "cylinder", profile: "carotid-pair", focusDistance: 1.35, metalness: 0.12 },
@@ -61,13 +60,6 @@ const SUBREGION_MODULE_DEFS: Omit<AnatomyModuleDef, "position" | "scale" | "rota
   { id: "kidney-renal-pelvis", layer: "organ", color: ORGAN_COLORS.kidney, geometry: "sphere", focusDistance: 1.45 },
   { id: "thyroid-isthmus", layer: "organ", color: ORGAN_COLORS.thyroid, geometry: "box", profile: "thyroid", focusDistance: 1.3 },
   { id: "prostate-peripheral-zone", layer: "organ", color: ORGAN_COLORS.prostate, geometry: "sphere", profile: "prostate-disc", focusDistance: 1.2 },
-  { id: "brain-brainstem", layer: "organ", color: ORGAN_COLORS.brain, geometry: "cylinder", profile: "nerve-cord", focusDistance: 1.35 },
-  { id: "brain-frontal-lobe", layer: "organ", color: ORGAN_COLORS.brain, geometry: "sphere", profile: "brain", focusDistance: 1.25 },
-  { id: "brain-parietal-lobe", layer: "organ", color: ORGAN_COLORS.brain, geometry: "sphere", profile: "brain", focusDistance: 1.25 },
-  { id: "brain-temporal-lobe", layer: "organ", color: ORGAN_COLORS.brain, geometry: "sphere", profile: "brain", focusDistance: 1.25 },
-  { id: "brain-occipital-lobe", layer: "organ", color: ORGAN_COLORS.brain, geometry: "sphere", profile: "brain", focusDistance: 1.25 },
-  { id: "brain-cerebellum", layer: "organ", color: ORGAN_COLORS.brain, geometry: "sphere", profile: "brain", focusDistance: 1.3 },
-  { id: "brain-insula", layer: "organ", color: ORGAN_COLORS.brain, geometry: "sphere", profile: "brain", focusDistance: 1.28 },
   { id: "stomach-pylorus", layer: "organ", color: ORGAN_COLORS.stomach, geometry: "sphere", focusDistance: 1.3 },
   { id: "colon-sigmoid", layer: "organ", color: ORGAN_COLORS.colon, geometry: "box", focusDistance: 1.38, opacity: 0.9 },
   { id: "bladder-trigone", layer: "organ", color: ORGAN_COLORS.bladder, geometry: "box", focusDistance: 1.25 },

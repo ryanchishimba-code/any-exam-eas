@@ -10,12 +10,7 @@ describe("ct-atlas-coverage", () => {
   it("marks VH atlas organs as renderable", () => {
     expect(isStructureRenderableInCtAtlas(getAnatomyStructure("heart")!)).toBe(true);
     expect(isStructureRenderableInCtAtlas(getAnatomyStructure("pelvis")!)).toBe(true);
-    expect(isStructureRenderableInCtAtlas(getAnatomyStructure("brain")!)).toBe(false);
-    expect(isStructureRenderableInCtAtlas(getAnatomyStructure("brain-frontal-lobe")!)).toBe(false);
-  });
-
-  it("hides brain lobes from CT browse when no brain mesh is loaded", () => {
-    expect(isStructureBrowsableInCtAtlas(getAnatomyStructure("brain-frontal-lobe")!)).toBe(false);
+    expect(isStructureRenderableInCtAtlas(getAnatomyStructure("spinal-cord")!)).toBe(true);
   });
 
   it("hides catalog-only structures from CT browse list", () => {
@@ -29,6 +24,5 @@ describe("ct-atlas-coverage", () => {
     expect(resolveCtViewportStructureId("heart-aortic-valve")).toBe("heart");
     expect(resolveCtViewportStructureId("trachea-carina")).toBe("lungs");
     expect(resolveCtViewportStructureId("skull")).toBe("spinal-cord");
-    expect(resolveCtViewportStructureId("brain")).toBe("spinal-cord");
   });
 });

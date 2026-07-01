@@ -492,7 +492,7 @@ export const CURATED_DISEASE_LINKS_LONGTAIL: AnatomyDiseaseLink[] = [
   {
     id: "cavernous-sinus-thrombosis",
     name: "Cavernous sinus thrombosis",
-    structureIds: ["skull", "brain"],
+    structureIds: ["skull", "spinal-cord"],
     pathologyLabel: "Cavernous sinus thrombosis",
     pathophysiology: "Septic or aseptic thrombosis of cavernous sinus → cranial neuropathies.",
     presentation: ["Headache, fever, proptosis", "CN III/IV/VI palsies"],

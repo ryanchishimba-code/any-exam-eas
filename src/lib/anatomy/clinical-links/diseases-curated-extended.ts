@@ -128,7 +128,7 @@ export const CURATED_DISEASE_LINKS_EXTENDED: AnatomyDiseaseLink[] = [
   {
     id: "bacterial-meningitis",
     name: "Bacterial meningitis",
-    structureIds: ["brain"],
+    structureIds: ["spinal-cord"],
     pathologyLabel: "Meningitis",
     pathophysiology: "Bacterial invasion of meninges → inflammation, ↑ ICP, sepsis.",
     presentation: ["Fever, headache, neck stiffness, altered mental status"],
@@ -142,7 +142,7 @@ export const CURATED_DISEASE_LINKS_EXTENDED: AnatomyDiseaseLink[] = [
   {
     id: "subdural-hematoma",
     name: "Subdural hematoma",
-    structureIds: ["brain", "skull"],
+    structureIds: ["spinal-cord", "skull"],
     pathologyLabel: "Subdural hematoma",
     pathophysiology: "Bridging vein rupture → blood between dura and arachnoid.",
     presentation: ["Headache, confusion, focal deficits", "Crescent on CT (acute/subacute)"],
@@ -155,7 +155,7 @@ export const CURATED_DISEASE_LINKS_EXTENDED: AnatomyDiseaseLink[] = [
   {
     id: "uncal-herniation",
     name: "Brain herniation",
-    structureIds: ["brain"],
+    structureIds: ["spinal-cord"],
     pathologyLabel: "Herniation",
     pathophysiology: "↑ ICP displaces brain tissue → brainstem compression.",
     presentation: ["↓ LOC, blown pupil (uncal), Cushing reflex"],
@@ -168,7 +168,7 @@ export const CURATED_DISEASE_LINKS_EXTENDED: AnatomyDiseaseLink[] = [
   {
     id: "epidural-hematoma",
     name: "Epidural hematoma",
-    structureIds: ["skull", "brain"],
+    structureIds: ["skull", "spinal-cord"],
     pathologyLabel: "Epidural hematoma",
     pathophysiology: "Middle meningeal artery bleed → lentiform hematoma, rapid expansion.",
     presentation: ["Lucid interval classic", "Head trauma, lateralizing signs"],

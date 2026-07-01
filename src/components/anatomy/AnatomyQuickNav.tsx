@@ -5,6 +5,7 @@ import {
   getAllAnatomyStructures,
   groupStructuresBySystem,
 } from "@/lib/anatomy";
+import type { AnatomyStructure } from "@/lib/anatomy/types";
 import {
   ANATOMY_PROCEDURES,
   PROCEDURE_URGENCY_LABELS,
@@ -21,6 +22,7 @@ type Props = {
   onSelectProcedure?: (procedureId: string, structureId: string) => void;
   /** Hover / keyboard focus preview — rotates 3D camera to structure. */
   onPreviewStructure?: (structureId: string | null) => void;
+  structureFilter?: (structure: AnatomyStructure) => boolean;
 };
 
 const URGENCY_ORDER: ProcedureUrgency[] = ["emergent", "urgent", "elective"];
@@ -49,10 +51,14 @@ export function AnatomyQuickNav({
   onSelectStructure,
   onSelectProcedure,
   onPreviewStructure,
+  structureFilter,
 }: Props) {
   const structureGroups = useMemo(
-    () =>
-      groupStructuresBySystem(getAllAnatomyStructures()).map(({ system, structures }) => ({
+    () => {
+      const catalog = structureFilter
+        ? getAllAnatomyStructures().filter(structureFilter)
+        : getAllAnatomyStructures();
+      return groupStructuresBySystem(catalog).map(({ system, structures }) => ({
         id: system,
         label: ANATOMY_SYSTEM_LABELS[system],
         items: sortStructuresForDropdown(structures).map((s) => ({
@@ -60,8 +66,9 @@ export function AnatomyQuickNav({
           label: structureOptionLabel(s.name, s.highYield, Boolean(s.parentId)),
           focusId: s.id,
         })),
-      })),
-    []
+      }));
+    },
+    [structureFilter]
   );
 
   const procedureGroups = useMemo(() => {

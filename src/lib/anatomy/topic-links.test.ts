@@ -26,7 +26,7 @@ describe("anatomy topic-links", () => {
 
   it("resolves structures from memory card ids", () => {
     const hits = getAnatomyStructuresForMemoryCardIds(["usmle-stroke-tpa"]);
-    expect(hits.some((s) => s.id === "brain")).toBe(true);
+    expect(hits.some((s) => s.id === "spinal-cord")).toBe(true);
   });
 
   it("prefers explicit structureIds on memory cards", () => {

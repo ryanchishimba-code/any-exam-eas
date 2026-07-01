@@ -196,20 +196,19 @@ export const ANATOMY_PROCEDURE_TOURS: AnatomyTour[] = [
     examFocus: "USMLE / NCLEX",
     steps: [
       {
-        structureId: "brain",
-        subregionId: "brain-brainstem",
+        structureId: "spinal-cord",
         procedureId: "mechanical-thrombectomy",
         narration:
           "Large-vessel stroke → thrombectomy when available. tPA has hemorrhage exclusions — time is brain.",
       },
       {
-        structureId: "brain",
+        structureId: "skull",
         procedureId: "craniotomy",
         narration:
           "Epidural hematoma = lucid interval + lens-shaped bleed — emergent craniotomy. Subdural = crescent in elderly.",
       },
       {
-        structureId: "brain",
+        structureId: "skull",
         procedureId: "evd-vp-shunt",
         narration:
           "Hydrocephalus with declining mental status → EVD for ICP control and CSF drainage.",

@@ -205,15 +205,6 @@ export function LateralFigure({ visibleLayers, selectedId, highlightedId }: Prop
         strokeWidth={3}
         strokeLinecap="round"
       />
-      <Organ
-        id="brain"
-        visibleLayers={visibleLayers}
-        selectedId={selectedId}
-        highlightedId={highlightedId}
-        d="M 88 34 Q 108 28 124 38 Q 128 50 118 58 Q 98 56 88 46 Z"
-        fill={ATLAS_SYSTEM_FILLS.nervous}
-        fillOpacity={0.5}
-      />
     </g>
   );
 }

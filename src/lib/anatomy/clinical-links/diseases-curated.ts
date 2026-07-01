@@ -148,7 +148,7 @@ export const CURATED_DISEASE_LINKS: AnatomyDiseaseLink[] = [
   {
     id: "atrial-fibrillation-stroke",
     name: "Atrial fibrillation / stroke prevention",
-    structureIds: ["heart", "carotid-artery", "brain"],
+    structureIds: ["heart", "carotid-artery", "spinal-cord"],
     pathologyLabel: "Stroke",
     pathophysiology: "Left atrial thrombus embolizes → anterior circulation stroke.",
     presentation: ["Sudden focal neuro deficit", "AF on ECG increases cardioembolic risk"],
@@ -308,7 +308,7 @@ export const CURATED_DISEASE_LINKS: AnatomyDiseaseLink[] = [
   {
     id: "ischemic-stroke-brain",
     name: "Ischemic stroke",
-    structureIds: ["brain", "carotid-artery"],
+    structureIds: ["spinal-cord", "carotid-artery"],
     pathologyLabel: "Stroke",
     pathophysiology: "Arterial occlusion → focal brain ischemia in vascular territory.",
     presentation: ["Sudden unilateral weakness, speech change, visual loss"],

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import type { AnatomyStructure } from "@/lib/anatomy/types";
 import { getFeaturedStructuresForExam } from "@/lib/anatomy/recommendations";
 import { anatomyUi } from "@/lib/anatomy/anatomy-ui";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
@@ -12,11 +13,16 @@ type Props = {
   selectedId: string | null;
   onSelect: (id: string) => void;
   onPreview?: (id: string | null) => void;
+  /** Optional filter — e.g. CT atlas browse list. */
+  structureFilter?: (structure: AnatomyStructure) => boolean;
 };
 
 /** Exam-scoped high-yield structure shortcuts below the page hero. */
-export function AnatomyFeaturedPicks({ examSlug, selectedId, onSelect, onPreview }: Props) {
-  const featured = useMemo(() => getFeaturedStructuresForExam(examSlug), [examSlug]);
+export function AnatomyFeaturedPicks({ examSlug, selectedId, onSelect, onPreview, structureFilter }: Props) {
+  const featured = useMemo(() => {
+    const items = getFeaturedStructuresForExam(examSlug);
+    return structureFilter ? items.filter(structureFilter) : items;
+  }, [examSlug, structureFilter]);
   const exam = EXAM_CATALOG[examSlug];
 
   if (featured.length === 0) return null;

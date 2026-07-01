@@ -106,26 +106,6 @@ const CORE_ANATOMY_STRUCTURES: AnatomyStructure[] = [
     keywords: ["airway", "carina", "bronchi", "intubation"],
   },
   {
-    id: "brain",
-    name: "Brain",
-    system: "nervous",
-    layer: "organ",
-    description:
-      "Central organ of the nervous system. Cerebrum (cortex + subcortical), cerebellum, brainstem. Protected by meninges and CSF.",
-    clinicalFacts: [
-      "Middle cerebral artery territory: contralateral face/arm weakness, aphasia if dominant hemisphere",
-      "CN III palsy + blown pupil suggests posterior communicating artery aneurysm",
-      "Uncal herniation compresses CN III and posterior cerebral artery",
-    ],
-    pathologies: ["Stroke", "Subdural hematoma", "Herniation", "Meningitis"],
-    highYield: true,
-    memoryCardIds: ["usmle-stroke-tpa", "usmle-tpa-exclusions", "usmle-meningitis-emergency"],
-    practiceTopicSlug: "neurology-stroke",
-    highYieldTopicSlug: "neurology-stroke",
-    meshId: "brain",
-    keywords: ["cerebrum", "cortex", "cerebellum", "neuro"],
-  },
-  {
     id: "spinal-cord",
     name: "Spinal Cord",
     system: "nervous",

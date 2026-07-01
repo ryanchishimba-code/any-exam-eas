@@ -13,30 +13,23 @@ export type NeuroConnection = {
 
 /** Bidirectional lookup: structure id → connected structure ids. */
 export const NEURO_CONNECTION_GRAPH: Record<string, string[]> = {
-  brain: ["spinal-cord", "skull", "carotid-artery"],
-  "spinal-cord": ["brain", "skull"],
-  skull: ["brain", "spinal-cord"],
-  "carotid-artery": ["brain", "skull"],
+  "spinal-cord": ["skull", "carotid-artery"],
+  skull: ["spinal-cord", "carotid-artery"],
+  "carotid-artery": ["skull", "spinal-cord"],
 };
 
 export const NEURO_CONNECTIONS: NeuroConnection[] = [
   {
-    from: "brain",
-    to: "spinal-cord",
-    kind: "ascending",
-    label: "Brainstem → spinal cord (CNS continuity)",
-  },
-  {
     from: "carotid-artery",
-    to: "brain",
+    to: "skull",
     kind: "vascular",
     label: "Internal carotid → anterior circulation",
   },
   {
     from: "skull",
-    to: "brain",
+    to: "spinal-cord",
     kind: "protective",
-    label: "Calvaria & meninges protect brain parenchyma",
+    label: "Vertebral column protects spinal cord",
   },
 ];
 

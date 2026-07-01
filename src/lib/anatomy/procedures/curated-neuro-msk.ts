@@ -4,8 +4,7 @@ export const NEURO_MSK_PROCEDURES: AnatomyProcedure[] = [
   {
     id: "craniotomy",
     name: "Craniotomy",
-    structureIds: ["brain", "skull"],
-    subregionIds: ["brain-brainstem"],
+    structureIds: ["skull", "spinal-cord"],
     approach: "open",
     urgency: "emergent",
     indication: "Evacuation of epidural/subdural hematoma, resection of accessible brain tumor, decompressive surgery",
@@ -16,7 +15,7 @@ export const NEURO_MSK_PROCEDURES: AnatomyProcedure[] = [
   {
     id: "burr-hole-evacuation",
     name: "Burr hole evacuation",
-    structureIds: ["skull", "brain"],
+    structureIds: ["skull", "spinal-cord"],
     approach: "open",
     urgency: "emergent",
     indication: "Subdural hematoma in deteriorating patient when formal craniotomy delayed",
@@ -27,8 +26,7 @@ export const NEURO_MSK_PROCEDURES: AnatomyProcedure[] = [
   {
     id: "evd-vp-shunt",
     name: "External ventricular drain / VP shunt",
-    structureIds: ["brain"],
-    subregionIds: ["brain-brainstem"],
+    structureIds: ["skull", "spinal-cord"],
     approach: "open",
     urgency: "emergent",
     indication: "Hydrocephalus, elevated ICP with ventricular enlargement, normal-pressure hydrocephalus (shunt)",
@@ -39,7 +37,7 @@ export const NEURO_MSK_PROCEDURES: AnatomyProcedure[] = [
   {
     id: "mechanical-thrombectomy",
     name: "Mechanical thrombectomy (endovascular)",
-    structureIds: ["brain", "carotid-artery"],
+    structureIds: ["spinal-cord", "carotid-artery"],
     approach: "endovascular",
     urgency: "emergent",
     indication: "Large-vessel ischemic stroke within extended window with salvageable penumbra",

@@ -341,15 +341,6 @@ export function AnteriorFigure({ visibleLayers, selectedId, highlightedId }: Pro
         stroke="url(#atlas-bone)"
         strokeWidth={5}
       />
-      <Organ
-        id="brain"
-        visibleLayers={visibleLayers}
-        selectedId={selectedId}
-        highlightedId={highlightedId}
-        d="M 100 32 Q 120 24 140 32 Q 148 44 140 56 Q 120 62 100 56 Q 92 44 100 32 Z"
-        fill={ATLAS_SYSTEM_FILLS.nervous}
-        fillOpacity={0.55}
-      />
     </g>
   );
 }

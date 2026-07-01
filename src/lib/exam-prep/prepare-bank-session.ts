@@ -1,5 +1,6 @@
 import type { ExamQuestion } from "@/lib/ai";
 import type { BankItem } from "@/lib/question-bank";
+import { applyAnatomyStudyMetaToBankItem } from "./apply-bank-anatomy-meta";
 import { bankItemToRawQuestion } from "./ngn-bank-bridge";
 import { bankItemToNaplexRaw } from "./naplex-bank-bridge";
 import { bankItemToUsmleRaw, isUsmleField } from "./usmle-bank-bridge";
@@ -98,14 +99,16 @@ export function bankItemToSessionRaw(
   item: BankItem,
   index: number
 ): ExamQuestion {
+  const enriched = applyAnatomyStudyMetaToBankItem(item);
+
   if (fieldId === "nursing") {
-    return bankItemToRawQuestion(item, index, { field, subjectId });
+    return bankItemToRawQuestion(enriched, index, { field, subjectId });
   }
   if (fieldId === "pharmacy") {
-    return bankItemToNaplexRaw(item, index, { field, subjectId });
+    return bankItemToNaplexRaw(enriched, index, { field, subjectId });
   }
   if (isClinicalVignetteField(fieldId) || isUsmleField(fieldId)) {
-    return bankItemToUsmleRaw(item, index, { field: fieldId, subjectId });
+    return bankItemToUsmleRaw(enriched, index, { field: fieldId, subjectId });
   }
-  return bankItemToRawQuestion(item, index, { field, subjectId });
+  return bankItemToRawQuestion(enriched, index, { field, subjectId });
 }

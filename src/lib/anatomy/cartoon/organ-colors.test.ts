@@ -12,7 +12,7 @@ describe("organ-colors", () => {
       "pancreas",
       "colon",
       "kidneys",
-      "brain",
+      "spinal-cord",
     ];
     const colors = organIds.map((id) => getOrganMeshColor(id));
     const unique = new Set(colors);

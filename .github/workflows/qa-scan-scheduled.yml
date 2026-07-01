@@ -1,0 +1,75 @@
+name: QA scan (scheduled sample)
+
+on:
+  schedule:
+    # Weekly heuristic scan + small LLM sample (cost-controlled)
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      exam:
+        description: Exam slug (naplex, nclex, usmle, all)
+        required: false
+        default: all
+      llm:
+        description: Enable LLM review
+        type: boolean
+        default: false
+      limit:
+        description: Max items to scan (0 = all)
+        required: false
+        default: "2000"
+
+concurrency:
+  group: qa-scan-scheduled
+  cancel-in-progress: false
+
+jobs:
+  qa-scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Heuristic QA scan
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          EXAM="${{ github.event.inputs.exam || 'all' }}"
+          LIMIT="${{ github.event.inputs.limit || '2000' }}"
+          npx tsx scripts/qa-scan-serve-ready.ts \
+            --exam="$EXAM" \
+            --limit="$LIMIT" \
+            --heuristics-only \
+            --out=artifacts
+
+      - name: LLM sample (optional)
+        if: github.event.inputs.llm == 'true'
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_ALLOWED_PURPOSES: curation
+        run: |
+          EXAM="${{ github.event.inputs.exam || 'all' }}"
+          npx tsx scripts/qa-scan-serve-ready.ts \
+            --exam="$EXAM" \
+            --limit=200 \
+            --llm \
+            --llm-limit=200 \
+            --sample-rate=0.05 \
+            --out=artifacts
+
+      - name: Upload QA artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-scan-report
+          path: artifacts/qa-scan-*
+          if-no-files-found: ignore

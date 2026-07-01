@@ -3,11 +3,13 @@ import { getReviewModuleTitle } from "@/lib/edtech/topic-graph";
 import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
 import {
   getAnatomyStructuresForMemoryCardIds,
+  getAnatomyStructuresForStructureIds,
   getAnatomyStructuresForTopicSlug,
   mergeAnatomyStructureLinks,
   type AnatomyStructureLink,
 } from "@/lib/anatomy/topic-links";
 import { inferAnatomyStructuresFromText } from "@/lib/anatomy/structure-inference";
+import { resolveStructureIdsForStudyItem } from "@/lib/exam-prep/anatomy-study-meta";
 import type { StudyQuestion } from "@/lib/questions/types";
 import type { ExamSlug } from "@/types/edtech";
 import { getExamTopicStudyLinks, type ExamTopicStudyLinks } from "./exam-topic-bridge";
@@ -130,7 +132,26 @@ export function resolveQuestionStudyLinks(
     ? ctx.ngnPayload!.structureIds.map(String)
     : [];
 
-  const explicitStructureIds = [...payloadStructureIds, ...cardStructureIds];
+  const inferredStructureIds =
+    payloadStructureIds.length >= 3
+      ? payloadStructureIds
+      : resolveStructureIdsForStudyItem({
+          reviewModuleSlug: meta.reviewModuleSlug,
+          subjectId: ctx.subjectId,
+          topicCategory: ctx.topicCategory,
+          blueprintSystem:
+            typeof ctx.ngnPayload?.blueprintSystem === "string"
+              ? ctx.ngnPayload.blueprintSystem
+              : undefined,
+          blueprintTopic:
+            typeof ctx.ngnPayload?.blueprintTopic === "string"
+              ? ctx.ngnPayload.blueprintTopic
+              : undefined,
+          memoryCardIds: meta.memoryCardIds,
+          text: ctx.stem,
+        });
+
+  const explicitStructureIds = [...payloadStructureIds, ...inferredStructureIds, ...cardStructureIds];
 
   const fromCards = getAnatomyStructuresForMemoryCardIds(memoryCardIds, {
     structureIds: explicitStructureIds,
@@ -145,8 +166,14 @@ export function resolveQuestionStudyLinks(
   const fromText = ctx.stem?.trim()
     ? inferAnatomyStructuresFromText(ctx.stem, { limit: 3 })
     : [];
+  const fromResolved = getAnatomyStructuresForStructureIds(inferredStructureIds, 3);
 
-  const anatomyStructures = mergeAnatomyStructureLinks(fromCards, fromTopic, fromText).slice(0, 3);
+  const anatomyStructures = mergeAnatomyStructureLinks(
+    fromCards,
+    fromTopic,
+    fromResolved,
+    fromText
+  ).slice(0, 3);
 
   return {
     primaryDeepDive,
