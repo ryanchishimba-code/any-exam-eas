@@ -206,9 +206,6 @@ export function FullExamSimulator({
       if (fieldId === "nursing" && config.nclexLength) {
         qs.set("nclexLength", config.nclexLength);
       }
-      if (config.presetExamNumber) {
-        qs.set("presetExamNumber", String(config.presetExamNumber));
-      }
       if (config.focusAreas?.length) {
         qs.set("focusAreas", config.focusAreas.join(","));
       }
@@ -277,7 +274,7 @@ export function FullExamSimulator({
     return () => {
       cancelled = true;
     };
-  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.presetExamNumber, config.focusAreas, loadAttempt]);
+  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.focusAreas, loadAttempt]);
 
   useEffect(() => {
     if (loading || submitting || paused) return;

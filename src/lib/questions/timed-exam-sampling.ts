@@ -1,53 +1,26 @@
 import type { BankItem } from "@/lib/question-bank";
-import {
-  dedupeBankItemsById,
-  QUESTION_BANK_SAMPLE_MAX_PULL,
-  sampleQuestionBankItemsForField,
-} from "@/lib/question-bank-db";
+import { dedupeBankItemsById } from "@/lib/question-bank-db";
 import { serveQaPassedBankItems } from "@/lib/exam-prep/serve-qa-passed";
+import { gatherProgressiveBankPool } from "@/lib/exam-prep/gather-progressive-bank-pool";
+import { timedExamGatherLadderForField } from "@/lib/exam-prep/exam-fill-gates";
 import { gatherUsmleTimedExamBankItems } from "@/lib/exam-prep/usmle/progressive-exam-fill";
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { LONG_SESSION_CLINICAL_DEDUPE_MAX } from "@/lib/questions/spread-session-order";
+import {
+  resolveProgressivePoolLimit,
+  resolveProgressivePullSize,
+} from "@/lib/exam-prep/progressive-exam-relaxation";
 
 export type TimedExamFilterFn = (item: BankItem) => boolean;
 
-function itemDedupeKey(item: BankItem): string {
-  return item.id ?? `${item.subjectId ?? ""}:${item.question.trim().toLowerCase()}`;
-}
-
-/** Pool size passed to finalize — modest headroom for dedupe/spread slice. */
+/** @deprecated Use resolveProgressivePoolLimit from progressive-exam-relaxation. */
 function resolveTimedExamPoolTarget(limit: number): number {
-  const base = Math.max(limit + 16, Math.ceil(limit * 1.35));
-  const dedupeHeadroom = limit >= 100 ? Math.ceil(limit * 0.08) : 0;
-  return Math.min(
-    QUESTION_BANK_SAMPLE_MAX_PULL,
-    base + dedupeHeadroom
-  );
+  return resolveProgressivePoolLimit(limit);
 }
 
-/** First DB pull size from expected gate pass rate (~92% for qaPassed clinical banks). */
+/** @deprecated Use resolveProgressivePullSize from progressive-exam-relaxation. */
 function resolveTimedExamPullSize(limit: number, poolTarget: number): number {
-  return Math.min(
-    QUESTION_BANK_SAMPLE_MAX_PULL,
-    Math.max(Math.ceil(poolTarget / 0.92), limit + 16, 32)
-  );
-}
-
-function appendUniqueVetted(
-  vetted: BankItem[],
-  candidates: BankItem[],
-  filterFn: TimedExamFilterFn,
-  included: Set<string>,
-  poolTarget: number
-): void {
-  for (const item of candidates) {
-    if (vetted.length >= poolTarget) break;
-    const key = itemDedupeKey(item);
-    if (included.has(key)) continue;
-    if (!filterFn(item)) continue;
-    included.add(key);
-    vetted.push(item);
-  }
+  return resolveProgressivePullSize(limit, poolTarget);
 }
 
 /**
@@ -71,113 +44,27 @@ export async function gatherTimedExamBankItems(params: {
     });
   }
 
-  const { fieldId, limit, stateCode, filterFn, relaxedFilterFn } = params;
-  const seen = new Set<string>();
-  const candidates: BankItem[] = [];
-  const included = new Set<string>();
-  const vetted: BankItem[] = [];
-  const gateCache = new Map<string, boolean>();
+  const { fieldId, limit, relaxedFilterFn } = params;
+  const ladder = timedExamGatherLadderForField(fieldId);
+  const maxTierIndex = relaxedFilterFn
+    ? Math.min(ladder.length - 1, Math.max(1, ladder.length - 2))
+    : 0;
 
-  const passFilter = (item: BankItem, fn: TimedExamFilterFn, label: "strict" | "relaxed"): boolean => {
-    const cacheKey = `${label}:${item.id ?? itemDedupeKey(item)}`;
-    const cached = gateCache.get(cacheKey);
-    if (cached !== undefined) return cached;
-    const ok = fn(item);
-    gateCache.set(cacheKey, ok);
-    return ok;
-  };
+  const gathered = await gatherProgressiveBankPool({
+    fieldId,
+    limit,
+    maxTierIndex,
+    initialSampleCount: params.initialSampleCount,
+    stateCode: params.stateCode,
+  });
 
-  const poolTarget = resolveTimedExamPoolTarget(limit);
   const longExam = limit >= LONG_SESSION_CLINICAL_DEDUPE_MAX;
-  const exportTarget = longExam ? Math.max(limit, poolTarget) : poolTarget;
-  const hasEnoughVetted = () =>
-    longExam
-      ? dedupeBankItemsById(vetted).length >= limit
-      : vetted.length >= poolTarget;
-
-  let pullSize = Math.min(
-    QUESTION_BANK_SAMPLE_MAX_PULL,
-    Math.max(params.initialSampleCount, resolveTimedExamPullSize(limit, poolTarget))
-  );
-  const maxRounds = longExam ? 5 : relaxedFilterFn ? 3 : 2;
-
-  for (let round = 0; round < maxRounds; round++) {
-    if (hasEnoughVetted()) break;
-
-    const batch = await sampleQuestionBankItemsForField({
-      fieldId,
-      count: pullSize,
-      stateCode,
-      skipEnsure: round > 0,
-    });
-
-    for (const item of batch) {
-      const key = itemDedupeKey(item);
-      if (seen.has(key)) continue;
-      seen.add(key);
-      candidates.push(item);
-    }
-
-    appendUniqueVetted(
-      vetted,
-      candidates,
-      (item) => passFilter(item, filterFn, "strict"),
-      included,
-      poolTarget
-    );
-
-    if (hasEnoughVetted()) break;
-
-    pullSize = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.ceil(pullSize * 1.25));
-  }
-
-  if (!hasEnoughVetted() && vetted.length < limit && relaxedFilterFn) {
-    appendUniqueVetted(
-      vetted,
-      candidates,
-      (item) => passFilter(item, relaxedFilterFn, "relaxed"),
-      included,
-      poolTarget
-    );
-
-    if (!hasEnoughVetted()) {
-      let relaxedPull = Math.min(
-        QUESTION_BANK_SAMPLE_MAX_PULL,
-        Math.max(pullSize, resolveTimedExamPullSize(limit, poolTarget))
-      );
-
-      for (let round = 0; round < 2 && !hasEnoughVetted(); round++) {
-        const batch = await sampleQuestionBankItemsForField({
-          fieldId,
-          count: relaxedPull,
-          stateCode,
-          skipEnsure: true,
-        });
-
-        for (const item of batch) {
-          const key = itemDedupeKey(item);
-          if (seen.has(key)) continue;
-          seen.add(key);
-          candidates.push(item);
-        }
-
-        appendUniqueVetted(
-          vetted,
-          candidates,
-          (item) => passFilter(item, relaxedFilterFn, "relaxed"),
-          included,
-          poolTarget
-        );
-
-        relaxedPull = Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.ceil(relaxedPull * 1.25));
-      }
-    }
-  }
+  const poolTarget = resolveTimedExamPoolTarget(limit);
 
   if (longExam) {
-    return dedupeBankItemsById(vetted).slice(0, Math.min(exportTarget, vetted.length));
+    return dedupeBankItemsById(gathered).slice(0, Math.max(limit, poolTarget));
   }
 
-  const exportSize = Math.min(vetted.length, poolTarget);
-  return serveQaPassedBankItems(vetted, exportSize);
+  const exportSize = Math.min(gathered.length, poolTarget);
+  return serveQaPassedBankItems(gathered, exportSize);
 }

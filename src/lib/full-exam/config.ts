@@ -54,8 +54,6 @@ export function buildSessionConfig(
   timed: boolean,
   opts?: {
     nclexLength?: "minimum" | "maximum";
-    presetExamNumber?: number;
-    presetQuestionCount?: number;
     focusAreas?: string[];
   }
 ): FullExamSessionConfig {
@@ -64,36 +62,15 @@ export function buildSessionConfig(
   if (examSlug === "nclex" && opts?.nclexLength === "maximum") {
     questionCount = 150;
   }
-  // Curated preset exams are fixed-length; 50/100 sprints use the length wheel count.
-  if (opts?.presetExamNumber && preset === "full") {
-    const presetCounts: Partial<Record<ExamSlug, number>> = {
-      nclex: 80,
-      naplex: 85,
-      pance: 100,
-      "aanp-fnp": 135,
-      "npte-pt": 80,
-    };
-    questionCount =
-      opts.presetQuestionCount ??
-      presetCounts[examSlug] ??
-      option.questionCount;
-  }
   return {
     lengthPreset: preset,
     questionCount,
     timed,
     timeLimitSec: computeTimeLimitSec(examSlug, questionCount, timed),
-    adaptive:
-      preset === "full" &&
-      !opts?.presetExamNumber &&
-      !(examSlug === "nclex"),
+    adaptive: preset === "full" && examSlug !== "nclex",
     ...(examSlug === "nclex"
-      ? {
-          nclexLength: opts?.nclexLength ?? "minimum",
-          ...(opts?.presetExamNumber ? { presetExamNumber: opts.presetExamNumber } : {}),
-        }
+      ? { nclexLength: opts?.nclexLength ?? "minimum" }
       : {}),
-    ...(opts?.presetExamNumber ? { presetExamNumber: opts.presetExamNumber } : {}),
     ...(opts?.focusAreas?.length ? { focusAreas: opts.focusAreas } : {}),
   };
 }
@@ -146,11 +123,6 @@ export function parseFullExamLengthPreset(
     return "full";
   }
   return "50";
-}
-
-/** Curated preset bank rows apply only on full-length mock selection. */
-export function usesCuratedPresetExam(lengthPreset: FullExamLengthPreset): boolean {
-  return lengthPreset === "full";
 }
 
 /** Launcher URL with optional preset + autostart for dashboard / hub shortcuts. */

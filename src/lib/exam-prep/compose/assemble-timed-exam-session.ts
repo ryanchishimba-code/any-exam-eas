@@ -2,10 +2,14 @@
  * Shared timed/full-exam assembly — mirrors /api/questions?mode=timed&scope=field.
  */
 import type { BankItem } from "@/lib/question-bank";
-import { examSlugFromFieldId } from "@/lib/edtech/exams";
-import { loadPresetExamItems } from "@/lib/exam-prep/load-preset-exam";
 import { prepareNaplexBankItem } from "@/lib/exam-prep/naplex-serve-gate";
-import { timedExamGatePairForField } from "@/lib/exam-prep/exam-fill-gates";
+import { timedExamGatePairForField, timedExamGatherLadderForField } from "@/lib/exam-prep/exam-fill-gates";
+import { gatherProgressiveBankPool } from "@/lib/exam-prep/gather-progressive-bank-pool";
+import { EXACT_FILL_COMPOSE_TIER } from "@/lib/exam-prep/progressive-compose";
+import {
+  fillExamItemsToCount,
+  resolveComposePoolLimit,
+} from "@/lib/exam-prep/progressive-exam-relaxation";
 import { gatherTimedExamBankItems } from "@/lib/questions/timed-exam-sampling";
 import {
   composeBlueprintTimedExamSession,
@@ -16,14 +20,13 @@ export type AssembleTimedExamSessionParams = {
   fieldId: string;
   field: string;
   limit: number;
-  presetExamNumber?: number;
   focusAreas?: string[];
   sampleCount: number;
 };
 
 export type AssembleTimedExamSessionResult = {
   items: BankItem[];
-  source: "preset" | "blueprint" | "gather";
+  source: "blueprint" | "gather";
   tierId?: string;
 };
 
@@ -31,15 +34,7 @@ export type AssembleTimedExamSessionResult = {
 export async function assembleTimedExamSessionItems(
   params: AssembleTimedExamSessionParams
 ): Promise<AssembleTimedExamSessionResult | null> {
-  const { fieldId, limit, presetExamNumber, focusAreas, sampleCount } = params;
-
-  if (presetExamNumber) {
-    const examSlug = examSlugFromFieldId(fieldId);
-    if (!examSlug) return null;
-    const preset = await loadPresetExamItems(examSlug, presetExamNumber);
-    if (!preset?.items.length) return null;
-    return { items: preset.items, source: "preset" };
-  }
+  const { fieldId, limit, focusAreas, sampleCount } = params;
 
   if (fieldSupportsBlueprintTimedExam(fieldId)) {
     const composed = await composeBlueprintTimedExamSession({
@@ -47,8 +42,35 @@ export async function assembleTimedExamSessionItems(
       numQuestions: limit,
       focusAreas,
     });
-    if (!composed?.items.length) return null;
-    return { items: composed.items, source: "blueprint", tierId: composed.tierId };
+    if (composed?.items.length && composed.items.length >= limit) {
+      return { items: composed.items, source: "blueprint", tierId: composed.tierId };
+    }
+
+    const ladder = timedExamGatherLadderForField(fieldId);
+    const poolLimit = resolveComposePoolLimit(limit);
+    const gathered = await gatherProgressiveBankPool({
+      fieldId,
+      limit: poolLimit,
+      maxTierIndex: ladder.length - 1,
+      initialSampleCount: sampleCount,
+      prepareItem: fieldId === "pharmacy" ? prepareNaplexBankItem : undefined,
+    });
+
+    if (gathered.length >= limit) {
+      const seed = (Date.now() ^ 0x51ed270b) >>> 0;
+      const filled = fillExamItemsToCount(
+        gathered.slice(0, limit),
+        gathered,
+        limit,
+        EXACT_FILL_COMPOSE_TIER,
+        seed
+      );
+      if (filled.length >= limit) {
+        return { items: filled.slice(0, limit), source: "gather", tierId: EXACT_FILL_COMPOSE_TIER.id };
+      }
+    }
+
+    return null;
   }
 
   const gates = timedExamGatePairForField(fieldId);
@@ -75,5 +97,20 @@ export async function assembleTimedExamSessionItems(
   }
 
   if (!items.length) return null;
-  return { items, source: "gather" };
+
+  if (items.length >= limit) {
+    const seed = (Date.now() ^ 0x51ed270b) >>> 0;
+    const filled = fillExamItemsToCount(
+      items.slice(0, limit),
+      items,
+      limit,
+      EXACT_FILL_COMPOSE_TIER,
+      seed
+    );
+    if (filled.length >= limit) {
+      return { items: filled.slice(0, limit), source: "gather" };
+    }
+  }
+
+  return null;
 }

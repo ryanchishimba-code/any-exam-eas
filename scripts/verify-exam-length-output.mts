@@ -15,11 +15,7 @@ ensureDatabaseUrlEnv();
 
 import { PrismaClient } from "@prisma/client";
 import { EXAM_CATALOG, EXAM_SLUGS, type ExamSlug } from "../src/lib/edtech/exams";
-import {
-  buildSessionConfig,
-  usesCuratedPresetExam,
-} from "../src/lib/full-exam/config";
-import { loadPresetExamItems } from "../src/lib/exam-prep/load-preset-exam";
+import { buildSessionConfig } from "../src/lib/full-exam/config";
 import { assembleTimedExamSessionItems } from "../src/lib/exam-prep/compose/assemble-timed-exam-session";
 import {
   bankItemToSessionRaw,
@@ -56,22 +52,7 @@ async function verifyExamLength(
   const fieldId = exam.fieldId;
   const field = fieldId;
 
-  const usesCurated = usesCuratedPresetExam(lengthPreset);
-  let presetExamNumber: number | undefined;
-  let presetQuestionCount: number | undefined;
-
-  if (usesCurated) {
-    const loaded = await loadPresetExamItems(examSlug, 1);
-    if (loaded) {
-      presetExamNumber = 1;
-      presetQuestionCount = loaded.questionCount;
-    }
-  }
-
-  const sessionConfig = buildSessionConfig(examSlug, lengthPreset, true, {
-    presetExamNumber,
-    presetQuestionCount,
-  });
+  const sessionConfig = buildSessionConfig(examSlug, lengthPreset, true);
   const limit = sessionConfig.questionCount;
   const sampleCount = resolveExamBankSampleCount(fieldId, limit, true);
 
@@ -80,7 +61,6 @@ async function verifyExamLength(
       fieldId,
       field,
       limit,
-      presetExamNumber: sessionConfig.presetExamNumber,
       sampleCount,
     });
 
@@ -106,14 +86,7 @@ async function verifyExamLength(
     }));
 
     const { prepared, quality } = finalizeExamSessionQuestions(rawInputs, limit, { fieldId });
-
-    if (sessionConfig.presetExamNumber) {
-      if (prepared.length !== limit) {
-        throw new Error(`Preset exam returned ${prepared.length}/${limit} questions`);
-      }
-    } else {
-      assertExamSessionReady(quality, fieldId);
-    }
+    assertExamSessionReady(quality, fieldId);
 
     const returned = prepared.length;
     const ok = returned === limit;

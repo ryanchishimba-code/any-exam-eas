@@ -2,9 +2,7 @@ import { NextResponse } from "next/server";
 import { createExamSession } from "@/lib/exam-sessions/service";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { getUserExamPreference, touchExamStudied } from "@/lib/edtech/exam-preference";
-import { buildSessionConfig, fullExamSessionHref, usesCuratedPresetExam } from "@/lib/full-exam/config";
-import { loadPresetExamItems } from "@/lib/exam-prep/load-preset-exam";
-import { clampPresetExamNumber } from "@/lib/exam-prep/preset-exam-config";
+import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
 import { requirePremiumApi } from "@/lib/api-access";
@@ -28,11 +26,6 @@ export async function POST(req: Request) {
   const timed = body.timed !== false;
   const nclexLength =
     body.nclexLength === "maximum" ? ("maximum" as const) : ("minimum" as const);
-  const presetExamNumberRaw = Number.isFinite(Number(body.presetExamNumber))
-    ? clampPresetExamNumber(Number(body.presetExamNumber))
-    : undefined;
-  const presetExamNumber =
-    usesCuratedPresetExam(preset) && presetExamNumberRaw ? presetExamNumberRaw : undefined;
   const focusAreas = Array.isArray(body.focusAreas)
     ? body.focusAreas.map(String).filter(Boolean)
     : Array.isArray(body.focus_areas)
@@ -52,7 +45,6 @@ export async function POST(req: Request) {
     }
     await touchExamStudied(premium.userId);
 
-    let presetQuestionCount: number | undefined;
     let sessionFieldId = EXAM_CATALOG[examSlug].fieldId;
     let sessionTitle = `${EXAM_CATALOG[examSlug].shortName} Full Simulation`;
 
@@ -60,30 +52,11 @@ export async function POST(req: Request) {
     if (examSlug === "usmle" && requestedField && isUsmleFieldId(requestedField)) {
       sessionFieldId = requestedField;
       const step = usmleStepDefinition(requestedField);
-      presetQuestionCount = step?.simulatedQuestionCount;
       sessionTitle = `${step?.name ?? "USMLE"} Full Simulation`;
-    }
-
-    if (presetExamNumber) {
-      const loaded = await loadPresetExamItems(examSlug, presetExamNumber);
-      if (!loaded) {
-        return NextResponse.json(
-          {
-            error: `${EXAM_CATALOG[examSlug].shortName} Practice Exam ${presetExamNumber} is not available. Run db:seed-validated-full-exams first.`,
-            code: "PRESET_EXAM_UNAVAILABLE",
-          },
-          { status: 503 }
-        );
-      }
-      presetQuestionCount = loaded.questionCount;
-      if (loaded.fieldId) sessionFieldId = loaded.fieldId;
-      sessionTitle = loaded.title;
     }
 
     const config = buildSessionConfig(examSlug, preset, timed, {
       nclexLength: examSlug === "nclex" ? nclexLength : undefined,
-      presetExamNumber,
-      presetQuestionCount,
       focusAreas,
     });
 
@@ -92,7 +65,6 @@ export async function POST(req: Request) {
       userId: premium.userId,
       access: premium.access,
       questionCount: config.questionCount,
-      presetExam: Boolean(presetExamNumber),
       lengthPreset: preset,
     });
     if (!usageCheck.ok) return usageCheck.response;

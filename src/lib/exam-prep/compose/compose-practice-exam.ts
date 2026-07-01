@@ -11,10 +11,14 @@
 
 import type { BankItem } from "@/lib/question-bank";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
-import { gatherTimedExamBankItems } from "@/lib/questions/timed-exam-sampling";
-import { QUESTION_BANK_SAMPLE_MAX_PULL } from "@/lib/question-bank-db";
+import { gatherProgressiveBankPool } from "@/lib/exam-prep/gather-progressive-bank-pool";
+import {
+  fillExamItemsToCount,
+  maxGatherTierIndexForComposeTier,
+  resolveComposePoolLimit,
+} from "@/lib/exam-prep/progressive-exam-relaxation";
 import { dedupeItemsByClinicalCase, sessionDedupeKey } from "@/lib/exam-prep/diverse-session-selection";
-import { auditExamSimilarity, enforceExamItemUniqueness } from "@/lib/exam-prep/exam-similarity";
+import { auditExamSimilarity } from "@/lib/exam-prep/exam-similarity";
 import { finalizeExamSessionItems } from "@/lib/exam-prep/finalize-exam-selection";
 import { sequenceItems } from "@/lib/exam-prep/sequencing/anti-cluster-sequencer";
 import type {
@@ -34,7 +38,6 @@ import {
   resolveExamComposeConfig,
   type ExamComposeConfig,
 } from "./exam-compose-config";
-import { timedExamGatePairForField } from "@/lib/exam-prep/exam-fill-gates";
 import {
   type ProgressiveComposeTier,
   PROGRESSIVE_COMPOSE_TIERS,
@@ -43,7 +46,6 @@ import {
   sessionMeetsTierFill,
   startingTierIndex,
   tierByIndex,
-  trimToRequested,
   userFacingComposeTiers,
 } from "@/lib/exam-prep/progressive-compose";
 
@@ -209,32 +211,20 @@ async function composeForConfigWithTier(
   const validIds = new Set(blueprint.categories.map((c) => c.id));
   const labelById = new Map(blueprint.categories.map((c) => [c.id, c.label] as const));
 
-  const poolLimit = Math.min(
-    QUESTION_BANK_SAMPLE_MAX_PULL,
-    Math.max(numQuestions * 4, numQuestions + 120)
-  );
+  const poolLimit = resolveComposePoolLimit(numQuestions);
   const excludeIds = tier.allowCrossExamReuse ? undefined : params.excludeQuestionIds;
-  const gates = timedExamGatePairForField(config.fieldId);
-  const gateFn = tier.useRelaxedGate && gates.relaxed ? gates.relaxed : gates.strict;
+  const maxGatherTierIndex = maxGatherTierIndexForComposeTier(config.fieldId, tier);
 
-  const gateWithExclusions: typeof config.gate = (item) => {
-    if (excludeIds?.size && item.id && excludeIds.has(item.id)) return false;
-    if (tier.useRelaxedGate) {
-      return (gates.relaxed ?? gateFn)(item);
-    }
-    return config.gate(item);
-  };
-
-  const rawPool = await gatherTimedExamBankItems({
-    fieldId: config.fieldId,
-    limit: poolLimit,
-    filterFn: gateWithExclusions,
-    relaxedFilterFn: tier.useRelaxedGate ? gates.relaxed : undefined,
-    initialSampleCount: poolLimit,
-  });
-  const pool = (config.prepareItem ? rawPool.map(config.prepareItem) : rawPool).filter(
-    (item) => item.id
-  );
+  const pool = (
+    await gatherProgressiveBankPool({
+      fieldId: config.fieldId,
+      limit: poolLimit,
+      maxTierIndex: maxGatherTierIndex,
+      initialSampleCount: poolLimit,
+      excludeQuestionIds: excludeIds,
+      prepareItem: config.prepareItem,
+    })
+  ).filter((item) => item.id);
 
   if (pool.length < minCount) return null;
 
@@ -264,8 +254,7 @@ async function composeForConfigWithTier(
 
   if (!sessionMeetsTierFill(selected.length, numQuestions, tier)) return null;
 
-  let finalItems = trimToRequested(selected, numQuestions);
-  finalItems = enforceExamItemUniqueness(finalItems, numQuestions);
+  const finalItems = fillExamItemsToCount(selected, pool, numQuestions, tier, seed);
 
   if (!sessionMeetsTierFill(finalItems.length, numQuestions, tier)) return null;
 

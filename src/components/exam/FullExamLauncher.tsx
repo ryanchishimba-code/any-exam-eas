@@ -16,12 +16,9 @@ import {
   getLengthOptions,
   fullExamSessionHref,
   parseFullExamLengthPreset,
-  usesCuratedPresetExam,
 } from "@/lib/full-exam/config";
-import { PRESET_EXAM_QUESTION_COUNT } from "@/lib/exam-prep/preset-exam-config";
 import { acquireAutostartLock, releaseAutostartLock } from "@/lib/full-exam/autostart-lock";
 import { ExamLoadingProgress } from "@/components/exam/ExamLoadingProgress";
-import { FullExamPresetPicker } from "@/components/exam/FullExamPresetPicker";
 import { useLongRunningProgress } from "@/hooks/use-long-running-progress";
 import { feUi } from "@/lib/study/full-exam-ui";
 import { ROUTES } from "@/lib/routes";
@@ -63,25 +60,11 @@ export function FullExamLauncher({
     return defaultPreset;
   });
   const [timed, setTimed] = useState(initialTimed);
-  const usesCuratedPreset = usesCuratedPresetExam(preset);
-  const nclexPresetRequired = examSlug === "nclex" && usesCuratedPreset;
-  const [presetExamNumber, setPresetExamNumber] = useState<number | null>(() =>
-    nclexPresetRequired ? 1 : null
-  );
   const [pending, setPending] = useState(autostart);
   const [error, setError] = useState<string | null>(null);
   const startingRef = useRef(false);
 
-  const preview = buildSessionConfig(examSlug, preset, timed, {
-    presetExamNumber:
-      usesCuratedPreset && (presetExamNumber ?? (nclexPresetRequired ? 1 : null))
-        ? (presetExamNumber ?? 1)
-        : undefined,
-    presetQuestionCount:
-      usesCuratedPreset && (presetExamNumber || nclexPresetRequired)
-        ? PRESET_EXAM_QUESTION_COUNT[examSlug]
-        : undefined,
-  });
+  const preview = buildSessionConfig(examSlug, preset, timed);
   const pageTitle = fullExamModeTitle(examSlug, preset);
   const startSteps = useMemo(
     () => [
@@ -100,9 +83,6 @@ export function FullExamLauncher({
     setError(null);
     setPending(true);
     const lockKey = `${examSlug}:${preset}:${timed ? "1" : "0"}`;
-    const curatedPreset =
-      usesCuratedPresetExam(preset) &&
-      (presetExamNumber ?? (examSlug === "nclex" ? 1 : null));
     try {
       const res = await fetch("/api/full-exam/start", {
         method: "POST",
@@ -111,7 +91,6 @@ export function FullExamLauncher({
           examSlug,
           lengthPreset: preset,
           timed,
-          ...(curatedPreset ? { presetExamNumber: curatedPreset } : {}),
         }),
       });
       const data = (await res.json().catch(() => ({}))) as {
@@ -235,16 +214,6 @@ export function FullExamLauncher({
                 ]}
               />
             </div>
-
-            {usesCuratedPreset ? (
-              <FullExamPresetPicker
-                examSlug={examSlug}
-                value={presetExamNumber}
-                onChange={setPresetExamNumber}
-                requirePreset={nclexPresetRequired}
-                className="mx-auto w-full max-w-xs"
-              />
-            ) : null}
 
             {pending ? (
               <ExamLoadingProgress

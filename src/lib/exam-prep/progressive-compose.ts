@@ -76,15 +76,29 @@ export const PROGRESSIVE_COMPOSE_TIERS: ProgressiveComposeTier[] = [
   },
 ];
 
+/** Last-resort tier for live exams — guarantees exact count from the widest pool. */
+export const EXACT_FILL_COMPOSE_TIER: ProgressiveComposeTier = {
+  id: "exact-fill",
+  label: "Exact count guarantee",
+  minFillRatio: 1,
+  allowCrossExamReuse: true,
+  dedupeClinicalCases: false,
+  useDiverseSelection: false,
+  useRelaxedGate: true,
+  maxPerConceptBoost: 20,
+};
+
 /**
  * Live mock / full-exam compose ladder — same relaxation steps as batch preset
  * generation, but every tier must hit the exact requested count (50, 100, full).
  */
-export const USER_FACING_PROGRESSIVE_TIERS: ProgressiveComposeTier[] =
-  PROGRESSIVE_COMPOSE_TIERS.map((tier) => ({
+export const USER_FACING_PROGRESSIVE_TIERS: ProgressiveComposeTier[] = [
+  ...PROGRESSIVE_COMPOSE_TIERS.map((tier) => ({
     ...tier,
     minFillRatio: 1,
-  }));
+  })),
+  EXACT_FILL_COMPOSE_TIER,
+];
 
 /** @deprecated Use USER_FACING_PROGRESSIVE_TIERS. */
 export const NCLEX_USER_FACING_COMPOSE_TIERS = USER_FACING_PROGRESSIVE_TIERS;
@@ -106,8 +120,8 @@ export function resolveTierUniquenessPolicy(
   return {
     ...base,
     maxPerConcept: base.maxPerConcept + tier.maxPerConceptBoost,
-    blockOptionOverlapInSelection: tier.id !== "fill",
-    blockOptionOverlapInAudit: tier.id !== "fill",
+    blockOptionOverlapInSelection: tier.id !== "fill" && tier.id !== "exact-fill",
+    blockOptionOverlapInAudit: tier.id !== "fill" && tier.id !== "exact-fill",
   };
 }
 

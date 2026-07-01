@@ -20,7 +20,6 @@ import { studyQuestionsToExamQuestions } from "@/lib/questions/prepare";
 import type { ExamQuestion } from "@/lib/ai";
 import { trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
-import { clampPresetExamNumber } from "@/lib/exam-prep/preset-exam-config";
 import { fieldSupportsBlueprintTimedExam } from "@/lib/exam-prep/compose/compose-timed-exam-session";
 import type { BankItem } from "@/lib/question-bank";
 
@@ -87,12 +86,6 @@ export async function GET(req: Request) {
       );
   let limit = Math.min(resolvedLimit, maxLimit);
 
-  const presetExamNumberRaw = searchParams.get("presetExamNumber");
-  const presetExamNumber =
-    presetExamNumberRaw && Number.isFinite(Number(presetExamNumberRaw))
-      ? clampPresetExamNumber(Number(presetExamNumberRaw))
-      : undefined;
-
   const focusAreasParam = searchParams.get("focusAreas") ?? searchParams.get("focus_areas");
   const focusAreas = focusAreasParam
     ? focusAreasParam
@@ -110,8 +103,7 @@ export async function GET(req: Request) {
     access: userAccess,
     requestedCount: limit,
     timedExam,
-    presetExam: Boolean(presetExamNumber && timedExam),
-    fullLengthMock: timedExam && limit >= 50 && !presetExamNumber,
+    fullLengthMock: timedExam && limit >= 50,
   });
   if (!usageCheck.ok) return usageCheck.response;
   limit = usageCheck.allowedCount;
@@ -150,21 +142,11 @@ export async function GET(req: Request) {
       fieldId,
       field,
       limit,
-      presetExamNumber,
       focusAreas,
       sampleCount,
     });
 
     if (!assembled) {
-      if (presetExamNumber) {
-        return NextResponse.json(
-          {
-            error: `Practice Exam ${presetExamNumber} is not available. Run db:seed-validated-full-exams first.`,
-            code: "PRESET_EXAM_UNAVAILABLE",
-          },
-          { status: 404 }
-        );
-      }
       if (fieldSupportsBlueprintTimedExam(fieldId)) {
         return NextResponse.json(
           {
@@ -254,11 +236,7 @@ export async function GET(req: Request) {
     const finalized = finalizeExamSessionQuestions(rawInputs, limit, { fieldId });
     prepared = finalized.prepared;
     sessionQuality = finalized.quality;
-    if (!presetExamNumber) {
-      assertExamSessionReady(sessionQuality, fieldId);
-    } else if (prepared.length !== limit) {
-      throw new Error(`Preset exam returned ${prepared.length}/${limit} questions`);
-    }
+    assertExamSessionReady(sessionQuality, fieldId);
   } catch (e) {
     const message =
       e instanceof Error ? e.message : "Could not build exam session at the requested length";

@@ -1,41 +1,21 @@
 import { describe, expect, it } from "vitest";
-import {
-  buildSessionConfig,
-  parseFullExamLengthPreset,
-  usesCuratedPresetExam,
-} from "./config";
+import { buildSessionConfig, parseFullExamLengthPreset } from "./config";
 
 describe("buildSessionConfig", () => {
-  it("keeps 50/100 sprint counts when a curated preset is also selected", () => {
-    expect(
-      buildSessionConfig("nclex", "100", false, {
-        presetExamNumber: 1,
-        presetQuestionCount: 80,
-      }).questionCount
-    ).toBe(100);
-
-    expect(
-      buildSessionConfig("nclex", "50", true, {
-        presetExamNumber: 1,
-        presetQuestionCount: 80,
-      }).questionCount
-    ).toBe(50);
+  it("uses length wheel counts for 50/100 sprints", () => {
+    expect(buildSessionConfig("nclex", "100", false).questionCount).toBe(100);
+    expect(buildSessionConfig("nclex", "50", true).questionCount).toBe(50);
   });
 
-  it("uses curated preset count only for full-length mocks", () => {
-    expect(
-      buildSessionConfig("nclex", "full", true, {
-        presetExamNumber: 1,
-        presetQuestionCount: 80,
-      }).questionCount
-    ).toBe(80);
+  it("uses catalog full-length counts for full mocks", () => {
+    expect(buildSessionConfig("nclex", "full", true).questionCount).toBe(85);
+    expect(buildSessionConfig("naplex", "full", true).questionCount).toBe(225);
+    expect(buildSessionConfig("pance", "full", true).questionCount).toBe(300);
+  });
 
-    expect(
-      buildSessionConfig("naplex", "full", true, {
-        presetExamNumber: 2,
-        presetQuestionCount: 85,
-      }).questionCount
-    ).toBe(85);
+  it("enables adaptive mix for full-length non-NCLEX exams", () => {
+    expect(buildSessionConfig("naplex", "full", true).adaptive).toBe(true);
+    expect(buildSessionConfig("nclex", "full", true).adaptive).toBe(false);
   });
 });
 
@@ -45,13 +25,5 @@ describe("parseFullExamLengthPreset", () => {
     expect(parseFullExamLengthPreset("100q")).toBe("100");
     expect(parseFullExamLengthPreset("full-length")).toBe("full");
     expect(parseFullExamLengthPreset("")).toBe("50");
-  });
-});
-
-describe("usesCuratedPresetExam", () => {
-  it("is true only for full-length selection", () => {
-    expect(usesCuratedPresetExam("full")).toBe(true);
-    expect(usesCuratedPresetExam("50")).toBe(false);
-    expect(usesCuratedPresetExam("100")).toBe(false);
   });
 });

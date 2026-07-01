@@ -1,6 +1,5 @@
 /**
- * Unified practice modes — reflects 2015–2026 exam prep best practices.
- * Quick practice, full simulator, adaptive, topic review, test day.
+ * Study launch modes — full simulated exam or custom question bank only.
  */
 import type { PracticeFieldId } from "@/lib/subjects/field-ids";
 import { USMLE_STEPS } from "@/lib/exam-prep/usmle/steps";
@@ -13,12 +12,7 @@ const bankUrl = (fieldId: string, extra?: Record<string, string>) => {
   return `${ROUTES.questionBank}?${qs.toString()}`;
 };
 
-export type PracticeModeId =
-  | "quick"
-  | "simulator"
-  | "adaptive"
-  | "topic"
-  | "test_day";
+export type PracticeModeId = "simulator" | "bank";
 
 export type PracticeModeDefinition = {
   id: PracticeModeId;
@@ -33,17 +27,8 @@ export type PracticeModeDefinition = {
 
 export const PRACTICE_MODES: PracticeModeDefinition[] = [
   {
-    id: "quick",
-    label: "Quick Practice",
-    description: "10–25 questions on a focused topic. Ideal for daily warm-up and weak-area drills.",
-    icon: "zap",
-    href: (fieldId) => bankUrl(fieldId, { count: "15", style: "standard" }),
-    timing: "15–20 min",
-    bestFor: "Busy days, targeted review",
-  },
-  {
     id: "simulator",
-    label: "Full Simulator",
+    label: "Full Exam",
     description:
       "Board-length timed exam with mixed topics — mirrors real USMLE, NAPLEX, NCLEX, or PANCE format.",
     icon: "clock",
@@ -51,38 +36,17 @@ export const PRACTICE_MODES: PracticeModeDefinition[] = [
       examSlugFromFieldId(fieldId)
         ? fullExamLaunchHref(examSlugFromFieldId(fieldId)!, { mode: "full", autostart: true })
         : ROUTES.fullExam,
-    timing: "2–3 hours",
+    timing: "Full length",
     bestFor: "Endurance and exam-day readiness",
   },
   {
-    id: "adaptive",
-    label: "Adaptive practice",
-    description: "Prioritizes weak topics from your attempt history with spaced review.",
-    icon: "brain",
-    href: (fieldId) => bankUrl(fieldId, { style: "adaptive", count: "25" }),
-    timing: "20–40 min",
-    bestFor: "Targeted review of missed topics",
-  },
-  {
-    id: "topic",
-    label: "Topic Review",
-    description: "Pick a blueprint domain or subject — med-surg, pharmacotherapy, primary care, etc.",
+    id: "bank",
+    label: "Question Bank",
+    description: "Custom practice — pick a topic, set question count, timed or untimed.",
     icon: "book",
     href: (fieldId) => bankUrl(fieldId),
     timing: "Flexible",
-    bestFor: "First-pass learning and remediation",
-  },
-  {
-    id: "test_day",
-    label: "Test Day",
-    description: "Strict timing, no explanations until end, distraction-free UI — closest to real exam conditions.",
-    icon: "flag",
-    href: (fieldId) =>
-      examSlugFromFieldId(fieldId)
-        ? fullExamLaunchHref(examSlugFromFieldId(fieldId)!, { mode: "full", autostart: true })
-        : ROUTES.fullExam,
-    timing: "Full exam block",
-    bestFor: "Final-week confidence check",
+    bestFor: "Focused review and daily drills",
   },
 ];
 
@@ -166,13 +130,12 @@ export function resolvePracticeModeFromParams(params: {
   count?: string | null;
 }): PracticeModeId {
   const explicit = params.practiceMode;
-  if (explicit && PRACTICE_MODES.some((m) => m.id === explicit)) {
-    return explicit as PracticeModeId;
+  if (explicit === "simulator" || explicit === "test_day") return "simulator";
+  if (explicit === "bank" || explicit === "topic" || explicit === "quick" || explicit === "adaptive") {
+    return "bank";
   }
   if (params.mode === "timed") return "simulator";
-  if (params.style === "adaptive" || params.style === "weak_areas") return "adaptive";
-  if (params.count === "15") return "quick";
-  return "topic";
+  return "bank";
 }
 
 /** Build a launch URL on the given base path with autostart. */
@@ -184,7 +147,7 @@ export function practiceModeLaunchHref(
   const mode = getPracticeMode(modeId);
   if (!mode) return basePath;
 
-  if (modeId === "simulator" || modeId === "test_day") {
+  if (modeId === "simulator") {
     const slug = examSlugFromFieldId(fieldId);
     if (slug) return fullExamLaunchHref(slug, { mode: "full", autostart: true });
   }

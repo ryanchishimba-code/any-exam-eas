@@ -1092,7 +1092,7 @@ export function StudyBankPractice({
           {!(onQuestionBank && examLocked) ? (
             <QuestionBankSection
               title="Quick start"
-              hint="Jump into a preset session — settings update automatically."
+              hint="Full exam or question bank — pick how you want to practice."
             >
               <div className={cn(qbUi.chipRow, "snap-x snap-mandatory px-0.5")}>
                 {PRACTICE_MODES.map((m) => {
