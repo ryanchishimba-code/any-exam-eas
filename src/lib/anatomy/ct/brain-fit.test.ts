@@ -63,6 +63,26 @@ describe("brain-fit", () => {
     expect(brainBox.getCenter(new Vector3()).y).toBeGreaterThan(junction);
   });
 
+  it("scales an oversized brain down when skin is not loaded", () => {
+    const atlas = new Group();
+    const cord = new Mesh(new BoxGeometry(0.04, 1.1, 0.04), new MeshBasicMaterial());
+    cord.userData.atlasOrganId = "spinal-cord";
+    cord.position.set(0, 0.55, FIGURE.centerZ - 0.08);
+    atlas.add(cord);
+
+    const brain = new Group();
+    brain.add(new Mesh(new BoxGeometry(2, 2, 2), new MeshBasicMaterial()));
+
+    fitAllenBrainToAtlas(atlas, brain);
+
+    brain.updateMatrixWorld(true);
+    const brainBox = new Box3().setFromObject(brain);
+    const cranial = getCranialVaultWorldBounds(atlas)!;
+
+    expect(brainBox.max.x - brainBox.min.x).toBeLessThan(0.45);
+    expect(brainBox.max.y).toBeLessThanOrEqual(cranial.max.y + 0.05);
+  });
+
   it("falls back to figure neck junction when atlas bounds are missing", () => {
     const brain = new Group();
     brain.add(new Mesh(new BoxGeometry(2, 2, 2), new MeshBasicMaterial()));

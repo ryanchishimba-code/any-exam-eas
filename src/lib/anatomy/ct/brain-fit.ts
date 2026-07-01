@@ -1,15 +1,18 @@
 import type { Mesh, Object3D } from "three";
 import { Box3, Vector3 } from "three";
-import { FIGURE } from "@/lib/anatomy/cartoon/proportions";
-
-/** Crown-to-foramen region as a fraction of fitted standing height. */
-const CRANIAL_HEIGHT_FRACTION = 0.115;
+import { FIGURE, getFigureHeadHeight } from "@/lib/anatomy/cartoon/proportions";
 
 /** Brain mesh should sit slightly inside the skin cranial vault (lateral). */
 const CRANIAL_VAULT_PADDING = 0.9;
 
 /** Small lift above spinal cord / throat junction (foramen magnum clearance). */
 const BRAINSTEM_JUNCTION_PAD = 0.004;
+
+function cranialHeightFraction(): number {
+  const crownY = FIGURE.headY + FIGURE.headRadius * FIGURE.headScaleY;
+  const standingHeight = crownY - FIGURE.footY;
+  return getFigureHeadHeight() / Math.max(standingHeight, 1e-6);
+}
 
 function atlasOrganBox(root: Object3D, organId: string): Box3 | null {
   let found: Box3 | null = null;
@@ -26,7 +29,8 @@ function atlasOrganBox(root: Object3D, organId: string): Box3 | null {
 function cranialSliceFromBodyBox(bodyBox: Box3): Box3 {
   const size = new Vector3();
   bodyBox.getSize(size);
-  const minY = bodyBox.max.y - size.y * CRANIAL_HEIGHT_FRACTION;
+  const cranialFraction = cranialHeightFraction();
+  const minY = bodyBox.max.y - size.y * cranialFraction;
   return new Box3(
     new Vector3(bodyBox.min.x, minY, bodyBox.min.z),
     bodyBox.max.clone()
@@ -37,7 +41,23 @@ function cranialSliceFromBodyBox(bodyBox: Box3): Box3 {
 function cranialVaultFloorY(bodyBox: Box3): number {
   const size = new Vector3();
   bodyBox.getSize(size);
-  return bodyBox.max.y - size.y * CRANIAL_HEIGHT_FRACTION;
+  return bodyBox.max.y - size.y * cranialHeightFraction();
+}
+
+/** Standing figure envelope when VH skin is not loaded (staged atlas). */
+function getFigureStandingBodyBox(): Box3 {
+  const crownY = FIGURE.headY + FIGURE.headRadius * FIGURE.headScaleY;
+  return new Box3(
+    new Vector3(-FIGURE.shoulderSpan, FIGURE.footY, FIGURE.centerZ - 0.22),
+    new Vector3(FIGURE.shoulderSpan, crownY, FIGURE.centerZ + 0.22)
+  );
+}
+
+/** Prefer fitted skin; fall back to FIGURE standing bounds so brain fit works without skin. */
+export function getReferenceBodyBoxForBrainFit(atlasRoot: Object3D): Box3 {
+  const skinBox = atlasOrganBox(atlasRoot, "skin");
+  if (skinBox && !skinBox.isEmpty()) return skinBox;
+  return getFigureStandingBodyBox();
 }
 
 /** Y of craniocervical junction — brainstem sits just above spinal cord / throat. */
@@ -58,14 +78,11 @@ export function getCraniocervicalJunctionY(atlasRoot: Object3D, bodyBox: Box3): 
   return vaultFloor + vaultHeight * 0.12;
 }
 
-/** Cranial vault envelope from fitted VH skin (preferred) or full atlas bbox. */
+/** Cranial vault envelope from fitted VH skin (preferred) or FIGURE standing bounds. */
 export function getCranialVaultWorldBounds(atlasRoot: Object3D): Box3 | null {
   atlasRoot.updateMatrixWorld(true);
-
-  const skinBox = atlasOrganBox(atlasRoot, "skin");
-  const bodyBox = skinBox ?? new Box3().setFromObject(atlasRoot);
+  const bodyBox = getReferenceBodyBoxForBrainFit(atlasRoot);
   if (bodyBox.isEmpty()) return null;
-
   return cranialSliceFromBodyBox(bodyBox);
 }
 
@@ -109,7 +126,7 @@ export function fitAllenBrainToAtlas(atlasRoot: Object3D, brainRoot: Object3D) {
   }
 
   const skinBox = atlasOrganBox(atlasRoot, "skin");
-  const bodyBox = skinBox ?? targetBox;
+  const bodyBox = skinBox && !skinBox.isEmpty() ? skinBox : getReferenceBodyBoxForBrainFit(atlasRoot);
   const junctionY = getCraniocervicalJunctionY(atlasRoot, bodyBox);
   const cranialTop = targetBox.max.y;
 

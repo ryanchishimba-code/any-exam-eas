@@ -482,7 +482,7 @@ export function CtAtlasRig({
     requestAnimationFrame(() => {
       if (gen !== loadGeneration.current || !rootRef.current) return;
       fitVisibleHumanAtlas(rootRef.current);
-      if (loadedOrgans.current.has("skin") && brainRef.current) {
+      if (brainRef.current) {
         fitAllenBrainToAtlas(rootRef.current, brainRef.current);
       }
     });
