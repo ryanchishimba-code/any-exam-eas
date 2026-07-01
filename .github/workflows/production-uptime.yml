@@ -37,5 +37,5 @@ jobs:
             exit 0
           fi
           report="$(curl -fsS -m 25 -H "Authorization: Bearer ${CRON_SECRET}" "${PRODUCTION_URL}/api/health")"
-          echo "$report" | grep -q '"prisma"[[:space:]]*:[[:space:]]*"ok"'
+          echo "$report" | grep -q '"databasePing"[[:space:]]*:[[:space:]]*"ok"'
           echo "$report" | grep -q '"databaseUrl"[[:space:]]*:[[:space:]]*"postgresql"'

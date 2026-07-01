@@ -133,6 +133,11 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
+        source: "/practice-hub",
+        destination: "/dashboard",
+        permanent: false,
+      },
+      {
         source: "/exams/:exam",
         destination: "/:exam",
         permanent: true,

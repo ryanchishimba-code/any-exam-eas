@@ -1,14 +1,19 @@
 import { NextResponse } from "next/server";
-import { isHealthDetailAuthorized, runHealthChecks } from "@/lib/health-check";
+import {
+  isHealthDetailAuthorized,
+  runHealthChecks,
+  runPublicHealthCheck,
+} from "@/lib/health-check";
 
 export const dynamic = "force-dynamic";
 
 /** Uptime / load-balancer check — public body is `{ ok }` only; details require Bearer CRON_SECRET. */
 export async function GET(req: Request) {
   try {
-    const report = await runHealthChecks();
+    const detailed = isHealthDetailAuthorized(req);
+    const report = detailed ? await runHealthChecks() : await runPublicHealthCheck();
 
-    if (isHealthDetailAuthorized(req)) {
+    if (detailed) {
       return NextResponse.json(report, { status: report.ok ? 200 : 503 });
     }
 

@@ -55,9 +55,10 @@ async function main() {
   if (detailed) {
     console.log(JSON.stringify(body, null, 2));
     const db = body.checks?.databaseUrl ?? "?";
+    const ping = body.checks?.databasePing ?? "?";
     const prisma = body.checks?.prisma ?? "?";
     const bank = body.checks?.questionBank ?? "?";
-    console.log(`\nSummary: ok=${body.ok} db=${db} prisma=${prisma} bank=${bank}`);
+    console.log(`\nSummary: ok=${body.ok} db=${db} ping=${ping} prisma=${prisma} bank=${bank}`);
   } else {
     console.log(`${baseUrl}/api/health → HTTP ${res.status} ok=${body.ok ?? false}`);
   }

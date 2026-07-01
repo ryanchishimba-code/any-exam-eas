@@ -9,6 +9,67 @@ import {
 let bankCountCache: { count: number; at: number } | null = null;
 const BANK_COUNT_TTL_MS = 30_000;
 
+let databasePingCache: { ok: boolean; at: number } | null = null;
+const DATABASE_PING_TTL_MS = 30_000;
+const DB_PING_TIMEOUT_MS = 5_000;
+const PRISMA_PING_TIMEOUT_MS = 10_000;
+const DB_RETRY_ATTEMPTS = 2;
+
+async function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error(`${label}_timeout`)), ms)
+    ),
+  ]);
+}
+
+async function pingPostgresViaNeon(): Promise<void> {
+  const { getNeonSql } = await import("@/db");
+  const sql = getNeonSql();
+  await withTimeout(sql`SELECT 1 as n`, DB_PING_TIMEOUT_MS, "neon_ping");
+}
+
+async function pingViaPrisma(): Promise<void> {
+  const { getPrisma } = await import("@/lib/prisma");
+  const prisma = getPrisma();
+  await withTimeout(prisma.$queryRaw`SELECT 1`, PRISMA_PING_TIMEOUT_MS, "prisma_ping");
+}
+
+async function pingDatabase(
+  dbKind: "postgresql" | "sqlite-local"
+): Promise<"ok" | "error"> {
+  const now = Date.now();
+  if (databasePingCache && now - databasePingCache.at < DATABASE_PING_TTL_MS) {
+    return databasePingCache.ok ? "ok" : "error";
+  }
+
+  let lastError: unknown;
+  for (let attempt = 0; attempt < DB_RETRY_ATTEMPTS; attempt++) {
+    try {
+      if (dbKind === "postgresql") {
+        await pingPostgresViaNeon();
+      } else {
+        await pingViaPrisma();
+      }
+      databasePingCache = { ok: true, at: Date.now() };
+      return "ok";
+    } catch (error) {
+      lastError = error;
+      if (attempt + 1 < DB_RETRY_ATTEMPTS) {
+        await new Promise((resolve) => setTimeout(resolve, 300 * (attempt + 1)));
+      }
+    }
+  }
+
+  databasePingCache = { ok: false, at: Date.now() };
+  console.error(
+    "[health] databasePing:",
+    lastError instanceof Error ? lastError.message : lastError
+  );
+  return "error";
+}
+
 export type HealthReport = {
   ok: boolean;
   checks: Record<string, string>;
@@ -24,30 +85,14 @@ export function isHealthDetailAuthorized(req: Request): boolean {
   return authHeader === `Bearer ${secret}`;
 }
 
-/** Full internal health report (requires Bearer CRON_SECRET on the route). */
-export async function runHealthChecks(): Promise<HealthReport> {
-  ensureDatabaseUrlEnv();
-  const url = resolveDatabaseUrl();
+function isDatabaseConfigured(checks: Record<string, string>): boolean {
+  return checks.databaseUrl === "postgresql" || checks.databaseUrl === "sqlite-local";
+}
 
-  const { appBaseUrl, getEmailFromAddress, isPasswordResetEmailReady } = await import(
-    "@/lib/email/config"
-  );
-
+function buildBaseChecks(url: string): Record<string, string> {
   const checks: Record<string, string> = {
-    nextauthSecret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET ? "ok" : "missing",
-    passwordResetEmail:
-      process.env.RESEND_API_KEY?.trim()
-        ? process.env.EMAIL_FROM?.includes("resend.dev") || process.env.EMAIL_FROM?.includes("onboarding@")
-          ? "resend-key-set-sandbox-from"
-          : "ok"
-        : "resend-key-missing",
-    passwordResetDeliverable: isPasswordResetEmailReady() ? "yes" : "no",
-    emailFrom: getEmailFromAddress(),
-    resetBaseUrl: appBaseUrl(),
     databaseUrl: "unknown",
-    prisma: "unknown",
-    drizzle: "unknown",
-    questionBank: "unknown",
+    databasePing: "unknown",
   };
 
   if (!url) checks.databaseUrl = "missing";
@@ -58,20 +103,104 @@ export async function runHealthChecks(): Promise<HealthReport> {
   else if (isBuildPlaceholderDatabaseUrl(url)) checks.databaseUrl = "build-placeholder";
   else if (isPostgresDatabaseUrl(url)) checks.databaseUrl = "postgresql";
 
-  if (checks.databaseUrl === "postgresql" || checks.databaseUrl === "sqlite-local") {
-    try {
-      const { getPrisma } = await import("@/lib/prisma");
-      const prisma = getPrisma();
-      await Promise.race([
-        prisma.$queryRaw`SELECT 1`,
-        new Promise<never>((_, reject) =>
-          setTimeout(() => reject(new Error("db_connect_timeout")), 8_000)
-        ),
-      ]);
-      checks.prisma = "ok";
-    } catch (e) {
+  return checks;
+}
+
+/** Fast public liveness — Neon HTTP ping (serverless-safe), cached 30s. */
+export async function runPublicHealthCheck(): Promise<Pick<HealthReport, "ok" | "checks">> {
+  ensureDatabaseUrlEnv();
+  const url = resolveDatabaseUrl();
+  const checks = buildBaseChecks(url);
+  checks.nextauthSecret =
+    process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET ? "ok" : "missing";
+
+  if (isDatabaseConfigured(checks)) {
+    checks.databasePing = await pingDatabase(
+      checks.databaseUrl === "sqlite-local" ? "sqlite-local" : "postgresql"
+    );
+  } else {
+    checks.databasePing = "skipped";
+  }
+
+  const ok =
+    checks.nextauthSecret === "ok" &&
+    isDatabaseConfigured(checks) &&
+    checks.databasePing === "ok";
+
+  return { ok, checks };
+}
+
+/** Full internal health report (requires Bearer CRON_SECRET on the route). */
+export async function runHealthChecks(): Promise<HealthReport> {
+  ensureDatabaseUrlEnv();
+  const url = resolveDatabaseUrl();
+
+  const { appBaseUrl, getEmailFromAddress, isPasswordResetEmailReady } = await import(
+    "@/lib/email/config"
+  );
+
+  const checks: Record<string, string> = {
+    ...buildBaseChecks(url),
+    nextauthSecret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET ? "ok" : "missing",
+    passwordResetEmail:
+      process.env.RESEND_API_KEY?.trim()
+        ? process.env.EMAIL_FROM?.includes("resend.dev") || process.env.EMAIL_FROM?.includes("onboarding@")
+          ? "resend-key-set-sandbox-from"
+          : "ok"
+        : "resend-key-missing",
+    passwordResetDeliverable: isPasswordResetEmailReady() ? "yes" : "no",
+    emailFrom: getEmailFromAddress(),
+    resetBaseUrl: appBaseUrl(),
+    prisma: "unknown",
+    drizzle: "unknown",
+    questionBank: "unknown",
+  };
+
+  if (isDatabaseConfigured(checks)) {
+    checks.databasePing = await pingDatabase(
+      checks.databaseUrl === "sqlite-local" ? "sqlite-local" : "postgresql"
+    );
+
+    const [prismaResult, drizzleResult, bankResult] = await Promise.allSettled([
+      pingViaPrisma().then(() => "ok" as const),
+      checks.databaseUrl === "postgresql"
+        ? (async () => {
+            const { requireDb } = await import("@/db");
+            const { examSessions } = await import("@/db/schema");
+            const { count } = await import("drizzle-orm");
+            const db = requireDb();
+            await withTimeout(
+              db.select({ n: count() }).from(examSessions).limit(1),
+              DB_PING_TIMEOUT_MS,
+              "drizzle_ping"
+            );
+            return "ok" as const;
+          })()
+        : Promise.resolve("skipped" as const),
+      (async () => {
+        if (checks.databasePing !== "ok") return "skipped" as const;
+        const { getPrisma } = await import("@/lib/prisma");
+        const prisma = getPrisma();
+        const now = Date.now();
+        if (!bankCountCache || now - bankCountCache.at > BANK_COUNT_TTL_MS) {
+          const count = await withTimeout(
+            prisma.questionBankItem.count({ where: { active: true } }),
+            PRISMA_PING_TIMEOUT_MS,
+            "bank_count"
+          );
+          bankCountCache = { count, at: now };
+        }
+        const count = bankCountCache.count;
+        return count > 0 ? (`ok (${count} active)` as const) : ("empty-run-cron-sync" as const);
+      })(),
+    ]);
+
+    if (prismaResult.status === "fulfilled") {
+      checks.prisma = prismaResult.value;
+    } else {
       checks.prisma = "error";
-      const detail = e instanceof Error ? e.message : "error";
+      const detail =
+        prismaResult.reason instanceof Error ? prismaResult.reason.message : "error";
       if (process.env.NODE_ENV !== "production") {
         checks.prismaDetail = detail;
       } else {
@@ -79,60 +208,31 @@ export async function runHealthChecks(): Promise<HealthReport> {
       }
     }
 
-    if (checks.prisma === "ok") {
-      try {
-        const { getPrisma } = await import("@/lib/prisma");
-        const prisma = getPrisma();
-        const now = Date.now();
-        if (!bankCountCache || now - bankCountCache.at > BANK_COUNT_TTL_MS) {
-          const count = await Promise.race([
-            prisma.questionBankItem.count({ where: { active: true } }),
-            new Promise<never>((_, reject) =>
-              setTimeout(() => reject(new Error("bank_count_timeout")), 8_000)
-            ),
-          ]);
-          bankCountCache = { count, at: now };
-        }
-        const count = bankCountCache.count;
-        checks.questionBank = count > 0 ? `ok (${count} active)` : "empty-run-cron-sync";
-      } catch (e) {
-        checks.questionBank = "timeout";
-        const detail = e instanceof Error ? e.message : "error";
-        console.error("[health] questionBank:", detail);
-      }
+    if (drizzleResult.status === "fulfilled") {
+      checks.drizzle = drizzleResult.value;
+    } else {
+      checks.drizzle = checks.databaseUrl === "postgresql" ? "error" : "skipped";
     }
 
-    if (checks.databaseUrl === "postgresql") {
-      try {
-        const { requireDb } = await import("@/db");
-        const { examSessions } = await import("@/db/schema");
-        const { count } = await import("drizzle-orm");
-        const db = requireDb();
-        await Promise.race([
-          db.select({ n: count() }).from(examSessions).limit(1),
-          new Promise<never>((_, reject) =>
-            setTimeout(() => reject(new Error("drizzle_connect_timeout")), 8_000)
-          ),
-        ]);
-        checks.drizzle = "ok";
-      } catch {
-        checks.drizzle = "error";
-      }
+    if (bankResult.status === "fulfilled") {
+      checks.questionBank = bankResult.value;
     } else {
-      checks.drizzle = "skipped";
+      checks.questionBank = "timeout";
+      const detail =
+        bankResult.reason instanceof Error ? bankResult.reason.message : "error";
+      console.error("[health] questionBank:", detail);
     }
   } else {
+    checks.databasePing = "skipped";
     checks.prisma = "skipped";
     checks.drizzle = "skipped";
     checks.questionBank = "skipped";
   }
 
-  const dbOk =
-    checks.databaseUrl === "postgresql" || checks.databaseUrl === "sqlite-local";
   const ok =
     checks.nextauthSecret === "ok" &&
-    dbOk &&
-    checks.prisma === "ok";
+    isDatabaseConfigured(checks) &&
+    checks.databasePing === "ok";
 
   let env: Record<string, string> | undefined;
   try {
