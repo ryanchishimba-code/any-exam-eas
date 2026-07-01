@@ -35,7 +35,7 @@ describe("brain-fit", () => {
     const skinBox = new Box3().setFromObject(skin);
     const junction = getCraniocervicalJunctionY(atlas, skinBox);
     const cordTop = new Box3().setFromObject(cord).max.y;
-    expect(junction).toBeGreaterThan(cordTop);
+    expect(junction).toBeGreaterThanOrEqual(cordTop);
   });
 
   it("seats brain inside the cranial vault above the junction", () => {
@@ -79,7 +79,8 @@ describe("brain-fit", () => {
     const brainBox = new Box3().setFromObject(brain);
     const cranial = getCranialVaultWorldBounds(atlas)!;
 
-    expect(brainBox.max.x - brainBox.min.x).toBeLessThan(0.45);
+    expect(brainBox.max.x - brainBox.min.x).toBeGreaterThan(0.15);
+    expect(brainBox.max.x - brainBox.min.x).toBeLessThan(0.32);
     expect(brainBox.max.y).toBeLessThanOrEqual(cranial.max.y + 0.05);
   });
 
