@@ -8,9 +8,8 @@ const nextConfig: NextConfig = {
   ...(useStandaloneOutput ? { output: "standalone" as const } : {}),
   poweredByHeader: false,
   serverExternalPackages: ["stripe"],
-  // CI runs lint + typecheck; skipping on Vercel avoids build OOM on type-heavy apps.
+  // CI runs lint + typecheck; skipping ESLint on Vercel avoids build OOM on large apps.
   eslint: { ignoreDuringBuilds: onVercel },
-  typescript: { ignoreDuringBuilds: onVercel },
   experimental: {
     optimizePackageImports: [
       "lucide-react",
