@@ -60,7 +60,7 @@ describe("ct-atlas-load-plan", () => {
   });
 
   it("forces load for focused mesh ids", () => {
-    const forced = forceEntryIdsForMeshIds(["brain-frontal"]);
-    expect(forced.has("brain")).toBe(true);
+    const forced = forceEntryIdsForMeshIds(["heart"]);
+    expect(forced.has("heart")).toBe(true);
   });
 });

@@ -7,8 +7,6 @@ import { getAnatomyStructureByMeshId } from "@/lib/anatomy/systems/catalog/queri
 import type { AnatomyLayer, AnatomySystem } from "@/lib/anatomy/types";
 import { HRA_CDN_BASE, LOCAL_VH_BASE } from "@/lib/anatomy/cartoon/visible-human-organs";
 
-export type CtAtlasFitStrategy = "vh-atlas" | "head";
-
 export type CtAtlasOrganEntry = {
   /** Unique atlas key. */
   id: string;
@@ -20,8 +18,6 @@ export type CtAtlasOrganEntry = {
   /** Optional extra meshIds that map to this GLB. */
   aliasMeshIds?: string[];
   opacity?: number;
-  /** VH shared coords vs independent cranial fit (Allen brain). */
-  fit?: CtAtlasFitStrategy;
 };
 
 export const CT_ATLAS_ORGANS: CtAtlasOrganEntry[] = [
@@ -52,15 +48,6 @@ export const CT_ATLAS_ORGANS: CtAtlasOrganEntry[] = [
   { id: "colon", fileName: "SBU_M_Intestine_Large.glb", meshId: "colon", layer: "organ", system: "digestive", aliasMeshIds: ["appendix"] },
   { id: "bladder", fileName: "VH_M_Urinary_Bladder.glb", meshId: "bladder", layer: "organ", system: "urinary" },
   { id: "prostate", fileName: "VH_M_Prostate.glb", meshId: "prostate", layer: "organ", system: "urinary" },
-  {
-    id: "brain",
-    fileName: "Allen_M_Brain.glb",
-    meshId: "brain",
-    layer: "organ",
-    system: "nervous",
-    fit: "head",
-    opacity: 0.96,
-  },
   { id: "spinal-cord", fileName: "VH_M_Spinal_Cord.glb", meshId: "spinal-cord", layer: "nerve", system: "nervous" },
   { id: "thymus", fileName: "VH_M_Thymus.glb", meshId: "thyroid", layer: "organ", system: "endocrine" },
   // Skeletal — HuBMAP v1.2 pelvis/knee GLBs (pelvis, femur, patellae).

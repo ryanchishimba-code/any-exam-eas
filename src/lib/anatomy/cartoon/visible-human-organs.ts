@@ -71,14 +71,6 @@ export const VISIBLE_HUMAN_ORGANS: Record<string, VisibleHumanOrganDef> = {
     rotation: [0, 0, -0.35],
     sex: "male",
   },
-  brain: {
-    meshId: "brain",
-    /** Allen Brain Reference Atlas (CC BY 4.0) — high-resolution cortical surface. */
-    fileName: "Allen_M_Brain.glb",
-    targetSize: 1.05,
-    rotation: [0.04, Math.PI, -0.02],
-    sex: "male",
-  },
   "spinal-cord": {
     meshId: "spinal-cord",
     fileName: "VH_M_Spinal_Cord.glb",

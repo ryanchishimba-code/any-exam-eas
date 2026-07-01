@@ -1,6 +1,5 @@
 import { getAnatomyStructure } from "@/lib/anatomy";
 import type { AnatomyStructure } from "@/lib/anatomy/types";
-import { isBrainRegionStructureId } from "./brain-regions";
 import {
   CT_ATLAS_ORGANS,
   isMeshIdCoveredByAtlas,
@@ -11,7 +10,8 @@ import {
 const CT_VIEWPORT_STRUCTURE_FALLBACKS: Record<string, string> = {
   trachea: "lungs",
   "trachea-carina": "lungs",
-  skull: "brain",
+  skull: "spinal-cord",
+  brain: "spinal-cord",
   gallbladder: "liver",
   "gallbladder-cystic-duct": "liver",
   diaphragm: "lungs",
@@ -38,16 +38,11 @@ const RENDERABLE_STRUCTURE_IDS = getCtAtlasRenderableStructureIds();
 
 export function isStructureRenderableInCtAtlas(structure: AnatomyStructure): boolean {
   if (RENDERABLE_STRUCTURE_IDS.has(structure.id)) return true;
-  if (structure.parentId === "brain" && isBrainRegionStructureId(structure.id)) return true;
   return isMeshIdCoveredByAtlas(structure.meshId);
 }
 
 /** Sidebar / search list — top-level structures with a 3D CT mesh (hides orphan bones). */
 export function isStructureBrowsableInCtAtlas(structure: AnatomyStructure): boolean {
-  if (structure.parentId === "brain" && isBrainRegionStructureId(structure.id)) {
-    const brain = getAnatomyStructure("brain");
-    return brain ? isStructureBrowsableInCtAtlas(brain) : false;
-  }
   if (structure.parentId) {
     const parent = getAnatomyStructure(structure.parentId);
     return parent ? isStructureBrowsableInCtAtlas(parent) : false;

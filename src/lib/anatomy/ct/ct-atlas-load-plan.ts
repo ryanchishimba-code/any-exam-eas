@@ -27,7 +27,6 @@ export const CT_ATLAS_ENTRY_TIER: Record<string, CtAtlasLoadTier> = {
   bladder: 2,
   prostate: 2,
   thymus: 2,
-  brain: 2,
   skin: 3,
 };
 
@@ -58,9 +57,6 @@ export function forceEntryIdsForMeshIds(meshIds: Iterable<string>): Set<string> 
   for (const meshId of meshIds) {
     const entry = getAtlasEntryForMeshId(meshId);
     if (entry) ids.add(entry.id);
-    if (meshId === "brain" || meshId.startsWith("brain-")) {
-      ids.add("brain");
-    }
   }
   return ids;
 }

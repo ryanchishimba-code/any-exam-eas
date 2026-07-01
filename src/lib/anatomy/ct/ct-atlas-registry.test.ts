@@ -15,13 +15,6 @@ import {
 } from "./ct-atlas-registry";
 
 describe("ct-atlas-registry", () => {
-  it("registers Allen brain with head-anchored fit", () => {
-    const brain = CT_ATLAS_ORGANS.find((o) => o.id === "brain");
-    expect(brain?.fileName).toBe("Allen_M_Brain.glb");
-    expect(brain?.fit).toBe("head");
-    expect(resolveStructureIdForMeshId("brain")).toBe("brain");
-  });
-
   it("registers full VH male atlas with shared coordinate space", () => {
     expect(CT_ATLAS_ORGANS.length).toBeGreaterThanOrEqual(14);
     expect(CT_ATLAS_ORGANS.map((o) => o.fileName)).toEqual(
