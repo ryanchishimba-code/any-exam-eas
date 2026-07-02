@@ -1,6 +1,6 @@
 "use client";
 
-import type { DrugClassId, DrugClassProgress } from "@/lib/drugs300";
+import type { DrugClassId, DrugClassProgress } from "@/lib/drugs300/dto";
 
 type Props = {
   classes: DrugClassProgress[];

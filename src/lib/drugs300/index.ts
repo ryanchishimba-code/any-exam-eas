@@ -1,15 +1,13 @@
 export { TOP_500_DRUGS, TOP_500_COUNT, TOP_300_DRUGS, TOP_300_COUNT, getTop500DrugCatalog, getTop300DrugCatalog, type DrugEntry } from "./catalog";
 export { getCurrentDrugCycle, getCycleKey, type DrugReviewCycleInfo } from "./cycles";
 export { GRADE_LABELS, type ReviewGrade } from "./spaced-repetition";
+export type { DrugCardDto, DrugClassProgress, DrugReviewDashboard } from "./dto";
 export {
   ensureDrugReviewCycle,
   getDrugReviewDashboard,
   getDueDrugCards,
   recordDrugReview,
   getOrCreateMnemonic,
-  type DrugCardDto,
-  type DrugClassProgress,
-  type DrugReviewDashboard,
 } from "./service";
 export {
   DRUG_CLASSES,

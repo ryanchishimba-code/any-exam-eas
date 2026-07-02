@@ -13,8 +13,8 @@ import {
   RefreshCw,
   RotateCcw,
 } from "lucide-react";
-import type { DrugCardDto, DrugClassId, DrugReviewDashboard, ReviewGrade } from "@/lib/drugs300";
-import { GRADE_LABELS } from "@/lib/drugs300";
+import type { DrugCardDto, DrugClassId, DrugReviewDashboard, ReviewGrade } from "@/lib/drugs300/dto";
+import { GRADE_LABELS } from "@/lib/drugs300/spaced-repetition";
 import { DrugClassFilter, DrugClassFilterPills } from "@/components/study/DrugClassFilter";
 import { DrugFlashcard } from "@/components/study/DrugFlashcard";
 import { DrugSearch } from "@/components/study/DrugSearch";
@@ -42,6 +42,7 @@ export function DrugReviewStudio() {
   const [cardsLoading, setCardsLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [cardsError, setCardsError] = useState("");
   const [selectedDrug, setSelectedDrug] = useState<DrugSearchHit | null>(null);
   const { index: fdaIndex } = useFdaDrugSearchIndex();
 
@@ -50,18 +51,20 @@ export function DrugReviewStudio() {
 
   const loadCards = useCallback(async (classId: DrugClassId) => {
     setCardsLoading(true);
+    setCardsError("");
     try {
       const dueRes = await fetch(
         `/api/drugs300/due?limit=30&class=${encodeURIComponent(classId)}`
       );
       const dueData = await dueRes.json();
-      if (!dueRes.ok) throw new Error(dueData.error ?? "Failed to load cards");
+      if (!dueRes.ok) throw new Error(dueData.error ?? dueData.message ?? "Failed to load cards");
       setCards(dueData.cards ?? []);
       setIndex(0);
       setFlipped(false);
       setMnemonic(null);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Error loading cards");
+      setCardsError(e instanceof Error ? e.message : "Error loading cards");
+      setCards([]);
     } finally {
       setCardsLoading(false);
     }
@@ -70,10 +73,13 @@ export function DrugReviewStudio() {
   const load = useCallback(async () => {
     setLoading(true);
     setError("");
+    setCardsError("");
     try {
       const progressRes = await fetch("/api/drugs300/progress");
       const progressData = await progressRes.json();
-      if (!progressRes.ok) throw new Error(progressData.error ?? "Failed to load progress");
+      if (!progressRes.ok) {
+        throw new Error(progressData.error ?? progressData.message ?? "Failed to load progress");
+      }
       setDashboard(progressData);
       await loadCards(activeClass);
     } catch (e) {
@@ -101,7 +107,7 @@ export function DrugReviewStudio() {
   async function selectClass(classId: DrugClassId) {
     if (classId === activeClass) return;
     setActiveClass(classId);
-    setError("");
+    setCardsError("");
     await loadCards(classId);
     const progressRes = await fetch("/api/drugs300/progress");
     const progressData = await progressRes.json();
@@ -119,7 +125,14 @@ export function DrugReviewStudio() {
         body: JSON.stringify({ drugId: current.drugId, grade }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "Review failed");
+      if (!res.ok) {
+        if (data.code === "database_unavailable") {
+          throw new Error(
+            "Progress could not be saved — the study database is temporarily offline. Try again shortly."
+          );
+        }
+        throw new Error(data.error ?? data.message ?? "Review failed");
+      }
 
       const progressRes = await fetch("/api/drugs300/progress");
       const progressData = await progressRes.json();
@@ -187,6 +200,13 @@ export function DrugReviewStudio() {
         </div>
       )}
 
+      {dashboard.offline && (
+        <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950">
+          Study progress is temporarily offline — flashcards still load from the curated Top 500
+          deck. Grades will save once the database reconnects.
+        </div>
+      )}
+
       <div className="space-y-4">
         <DrugSearch onSelect={handleDrugSelect} portaled={false} />
         {selectedDrug && (
@@ -221,7 +241,7 @@ export function DrugReviewStudio() {
         </div>
       </div>
 
-      {error && <InlineError>{error}</InlineError>}
+      {(error || cardsError) && <InlineError>{error || cardsError}</InlineError>}
 
       <div className="grid gap-6 lg:grid-cols-[260px_1fr] lg:gap-8">
         {/* Class sidebar — desktop */}
@@ -281,6 +301,19 @@ export function DrugReviewStudio() {
 
           {cardsLoading ? (
             <div className="aee-drugs-skeleton mx-auto h-[420px] max-w-lg rounded-3xl" />
+          ) : cardsError ? (
+            <div className="rounded-2xl border border-rose-100 bg-white p-12 text-center">
+              <Pill className="mx-auto h-12 w-12 text-rose-400" aria-hidden />
+              <p className="mt-4 text-lg font-semibold text-slate-900">Could not load flashcards</p>
+              <p className="mt-2 text-sm text-slate-600">{cardsError}</p>
+              <button
+                type="button"
+                onClick={() => void loadCards(activeClass)}
+                className="mt-6 rounded-xl bg-teal-600 px-4 py-2.5 text-sm font-semibold text-white"
+              >
+                Try again
+              </button>
+            </div>
           ) : !current ? (
             <div className="rounded-2xl border border-teal-100 bg-white p-12 text-center">
               <Pill className="mx-auto h-12 w-12 text-teal-500" aria-hidden />

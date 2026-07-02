@@ -1,6 +1,5 @@
 import { MIN_QUESTIONS_PER_SUBJECT } from "@/lib/bulk-question-generator";
 import { TOP_500_COUNT } from "@/lib/drugs300/catalog";
-import type { FdaDrugReferenceDocument } from "@/lib/drugs300/schema";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import { NCLEX_PUBLISHED_SERVE_TOTAL, NCLEX_TARGET_TOTAL } from "@/lib/exam-prep/nclex/types";
@@ -9,7 +8,9 @@ import { AANP_FNP_TARGET_TOTAL } from "@/lib/exam-prep/aanp-fnp/types";
 import { NPTE_PT_TARGET_TOTAL } from "@/lib/exam-prep/npte-pt/types";
 import { PANCE_TARGET_TOTAL } from "@/lib/exam-prep/pance/types";
 import { USMLE_COMBINED_TARGET, USMLE_PUBLISHED_BANK_TOTAL } from "@/lib/exam-prep/usmle/steps";
-import fdaReferenceDocument from "../../../public/data/fda-approved-drugs.json";
+
+/** FDA Drugs@FDA reference count — keep in sync with public/data/fda-approved-drugs.json. */
+export const FDA_REFERENCE_DRUGS_COUNT = 2723;
 
 /** Design target per field after bank sync (subjects × minimum items each). */
 export function targetQuestionCountForField(fieldId: string): number {
@@ -92,8 +93,6 @@ export const FALLBACK_QUESTION_COUNTS = {
 export const MARKETING_QUESTION_COUNTS = FALLBACK_QUESTION_COUNTS;
 
 export const TOP_500_DRUGS_COUNT = TOP_500_COUNT;
-
-export const FDA_REFERENCE_DRUGS_COUNT = (fdaReferenceDocument as FdaDrugReferenceDocument).count;
 
 /** User-facing deck name — product is branded Top 500; catalog count tracks curated cards. */
 export const DRUGS_DECK_MARKETING_TITLE = `Top ${TOP_500_DRUGS_COUNT} Drugs`;

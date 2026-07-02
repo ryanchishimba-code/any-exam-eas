@@ -2,6 +2,10 @@ import { describe, expect, it } from "vitest";
 import { getCycleKey } from "./cycles";
 import { TOP_500_COUNT, getDrugById } from "./catalog";
 import { applySpacedRepetition, initialSpacedRepetitionState } from "./spaced-repetition";
+import {
+  buildOfflineDrugReviewDashboard,
+  buildOfflineDueDrugCards,
+} from "./offline-fallback";
 
 describe("drugs300", () => {
   it("catalog includes full GLP-1 class coverage", () => {
@@ -64,5 +68,17 @@ describe("drugs300", () => {
       reviewedAt: now,
     });
     expect(again.nextReviewAt.getTime()).toBeLessThan(easy.nextReviewAt.getTime());
+  });
+
+  it("serves offline dashboard and due cards from curated catalog", () => {
+    const dashboard = buildOfflineDrugReviewDashboard();
+    expect(dashboard.offline).toBe(true);
+    expect(dashboard.stats.total).toBe(TOP_500_COUNT);
+    expect(dashboard.stats.due).toBe(TOP_500_COUNT);
+
+    const cards = buildOfflineDueDrugCards(5, "all");
+    expect(cards).toHaveLength(5);
+    expect(cards[0]?.generic.length).toBeGreaterThan(0);
+    expect(cards[0]?.due).toBe(true);
   });
 });

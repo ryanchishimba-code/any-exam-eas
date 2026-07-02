@@ -25,6 +25,9 @@ export async function POST(req: Request) {
     if (e instanceof z.ZodError) {
       return NextResponse.json({ error: e.errors[0]?.message ?? "Invalid body" }, { status: 400 });
     }
+    const { respondDbUnavailable } = await import("@/lib/api-db-error");
+    const dbResponse = respondDbUnavailable(e);
+    if (dbResponse) return dbResponse;
     const message = e instanceof Error ? e.message : "Mnemonic generation failed";
     return NextResponse.json({ error: message }, { status: 500 });
   }

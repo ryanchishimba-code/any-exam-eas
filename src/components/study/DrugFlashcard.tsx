@@ -1,7 +1,7 @@
 "use client";
 
 import { Brain, Sparkles } from "lucide-react";
-import type { DrugCardDto } from "@/lib/drugs300";
+import type { DrugCardDto } from "@/lib/drugs300/dto";
 import { DrugClinicalBridge } from "@/components/anatomy/DrugClinicalBridge";
 import { DrugPearlsPanel } from "@/components/study/DrugPearlsPanel";
 

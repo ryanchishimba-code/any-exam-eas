@@ -1,4 +1,9 @@
+import { DbUnavailableError } from "@/lib/db-resilience";
 import { getPrisma } from "@/lib/prisma";
+import {
+  buildOfflineDrugReviewDashboard,
+  buildOfflineDueDrugCards,
+} from "./offline-fallback";
 import {
   TOP_500_COUNT,
   TOP_500_DRUGS,
@@ -8,8 +13,7 @@ import {
   type DrugClassId,
   type DrugEntry,
 } from "./catalog";
-import type { ExamRelevance } from "./schema";
-import type { EnrichedDrugView } from "./enrichment";
+import type { DrugCardDto, DrugClassProgress, DrugReviewDashboard } from "./dto";
 import { getCurrentDrugCycle, isCycleExpired } from "./cycles";
 import { generateDrugMnemonic } from "./mnemonic";
 import { enrichDrug } from "./enrichment";
@@ -19,59 +23,6 @@ import {
   isDue,
   type ReviewGrade,
 } from "./spaced-repetition";
-
-export type DrugCardDto = {
-  drugId: string;
-  rank: number;
-  generic: string;
-  brand: string;
-  therapeuticClass: string;
-  drugClass: Exclude<DrugClassId, "all">;
-  drugClassLabel: string;
-  indications: string;
-  sideEffects: string;
-  mnemonic: string;
-  examRelevance: ExamRelevance;
-  repetitions: number;
-  intervalDays: number;
-  mastered: boolean;
-  nextReviewAt: string;
-  customMnemonic: string | null;
-  due: boolean;
-  enrichment: EnrichedDrugView;
-};
-
-export type DrugClassProgress = {
-  id: DrugClassId;
-  label: string;
-  shortLabel: string;
-  color: string;
-  total: number;
-  mastered: number;
-  due: number;
-  reviewed: number;
-  progressPct: number;
-};
-
-export type DrugReviewDashboard = {
-  cycle: {
-    key: string;
-    label: string;
-    startedAt: string;
-    endsAt: string;
-    daysRemaining: number;
-    refreshNote: string;
-  };
-  stats: {
-    total: number;
-    due: number;
-    mastered: number;
-    reviewed: number;
-    progressPct: number;
-  };
-  classProgress: DrugClassProgress[];
-  resetApplied: boolean;
-};
 
 function toDto(
   drug: DrugEntry,
@@ -182,54 +133,62 @@ export async function ensureDrugReviewCycle(userId: string): Promise<{ resetAppl
 }
 
 export async function getDrugReviewDashboard(userId: string): Promise<DrugReviewDashboard> {
-  const prisma = getPrisma();
-  const { resetApplied } = await ensureDrugReviewCycle(userId);
-  const cycle = getCurrentDrugCycle();
-  const now = new Date();
+  try {
+    const prisma = getPrisma();
+    const { resetApplied } = await ensureDrugReviewCycle(userId);
+    const cycle = getCurrentDrugCycle();
+    const now = new Date();
 
-  const progress = await prisma.drugCardProgress.findMany({
-    where: { userId, cycleKey: cycle.key },
-  });
+    const progress = await prisma.drugCardProgress.findMany({
+      where: { userId, cycleKey: cycle.key },
+    });
 
-  const progressByDrug = new Map(progress.map((p) => [p.drugId, p]));
-  let due = 0;
-  let mastered = 0;
+    const progressByDrug = new Map(progress.map((p) => [p.drugId, p]));
+    let due = 0;
+    let mastered = 0;
 
-  for (const drug of TOP_500_DRUGS) {
-    const row = progressByDrug.get(drug.id);
-    if (!row) {
-      due += 1;
-      continue;
+    for (const drug of TOP_500_DRUGS) {
+      const row = progressByDrug.get(drug.id);
+      if (!row) {
+        due += 1;
+        continue;
+      }
+      if (row.mastered) mastered += 1;
+      if (isDue(row.nextReviewAt, now)) due += 1;
     }
-    if (row.mastered) mastered += 1;
-    if (isDue(row.nextReviewAt, now)) due += 1;
+
+    const reviewed = progress.filter((p) => p.repetitions > 0).length;
+    const progressPct =
+      TOP_500_COUNT > 0 ? Math.round((mastered / TOP_500_COUNT) * 100) : 0;
+
+    const classProgress = computeClassProgress(progressByDrug, now);
+
+    return {
+      cycle: {
+        key: cycle.key,
+        label: cycle.label,
+        startedAt: cycle.startedAt.toISOString(),
+        endsAt: cycle.endsAt.toISOString(),
+        daysRemaining: cycle.daysRemaining,
+        refreshNote: cycle.refreshNote,
+      },
+      stats: {
+        total: TOP_500_COUNT,
+        due,
+        mastered,
+        reviewed,
+        progressPct,
+      },
+      classProgress,
+      resetApplied,
+      offline: false,
+    };
+  } catch (error) {
+    if (error instanceof DbUnavailableError) {
+      return buildOfflineDrugReviewDashboard();
+    }
+    throw error;
   }
-
-  const reviewed = progress.filter((p) => p.repetitions > 0).length;
-  const progressPct =
-    TOP_500_COUNT > 0 ? Math.round((mastered / TOP_500_COUNT) * 100) : 0;
-
-  const classProgress = computeClassProgress(progressByDrug, now);
-
-  return {
-    cycle: {
-      key: cycle.key,
-      label: cycle.label,
-      startedAt: cycle.startedAt.toISOString(),
-      endsAt: cycle.endsAt.toISOString(),
-      daysRemaining: cycle.daysRemaining,
-      refreshNote: cycle.refreshNote,
-    },
-    stats: {
-      total: TOP_500_COUNT,
-      due,
-      mastered,
-      reviewed,
-      progressPct,
-    },
-    classProgress,
-    resetApplied,
-  };
 }
 
 export async function getDueDrugCards(
@@ -237,48 +196,55 @@ export async function getDueDrugCards(
   limit = 20,
   classId: DrugClassId = "all"
 ): Promise<DrugCardDto[]> {
-  const prisma = getPrisma();
-  await ensureDrugReviewCycle(userId);
-  const cycle = getCurrentDrugCycle();
-  const now = new Date();
+  try {
+    const prisma = getPrisma();
+    await ensureDrugReviewCycle(userId);
+    const cycle = getCurrentDrugCycle();
+    const now = new Date();
 
-  const progress = await prisma.drugCardProgress.findMany({
-    where: { userId, cycleKey: cycle.key },
-  });
-  const progressByDrug = new Map(progress.map((p) => [p.drugId, p]));
+    const progress = await prisma.drugCardProgress.findMany({
+      where: { userId, cycleKey: cycle.key },
+    });
+    const progressByDrug = new Map(progress.map((p) => [p.drugId, p]));
 
-  const pool = TOP_500_DRUGS.filter((d) => drugMatchesClass(d.therapeuticClass, classId));
+    const pool = TOP_500_DRUGS.filter((d) => drugMatchesClass(d.therapeuticClass, classId));
 
-  const dueDrugs: DrugCardDto[] = [];
+    const dueDrugs: DrugCardDto[] = [];
 
-  for (const drug of pool) {
-    const row = progressByDrug.get(drug.id);
-    if (!row) {
-      dueDrugs.push(
-        toDto(
-          drug,
-          { ...initialSpacedRepetitionState(now), mnemonic: null },
-          now
-        )
-      );
-    } else if (isDue(row.nextReviewAt, now) && !row.mastered) {
-      dueDrugs.push(toDto(drug, row, now));
-    }
-    if (dueDrugs.length >= limit) break;
-  }
-
-  if (dueDrugs.length < limit) {
     for (const drug of pool) {
-      if (dueDrugs.some((d) => d.drugId === drug.id)) continue;
       const row = progressByDrug.get(drug.id);
-      if (row?.mastered) {
+      if (!row) {
+        dueDrugs.push(
+          toDto(
+            drug,
+            { ...initialSpacedRepetitionState(now), mnemonic: null },
+            now
+          )
+        );
+      } else if (isDue(row.nextReviewAt, now) && !row.mastered) {
         dueDrugs.push(toDto(drug, row, now));
       }
       if (dueDrugs.length >= limit) break;
     }
-  }
 
-  return dueDrugs.slice(0, limit);
+    if (dueDrugs.length < limit) {
+      for (const drug of pool) {
+        if (dueDrugs.some((d) => d.drugId === drug.id)) continue;
+        const row = progressByDrug.get(drug.id);
+        if (row?.mastered) {
+          dueDrugs.push(toDto(drug, row, now));
+        }
+        if (dueDrugs.length >= limit) break;
+      }
+    }
+
+    return dueDrugs.slice(0, limit);
+  } catch (error) {
+    if (error instanceof DbUnavailableError) {
+      return buildOfflineDueDrugCards(limit, classId);
+    }
+    throw error;
+  }
 }
 
 export async function recordDrugReview(
