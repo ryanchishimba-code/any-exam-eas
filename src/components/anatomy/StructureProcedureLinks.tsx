@@ -48,9 +48,9 @@ export function StructureProcedureLinks({
     <section aria-label="Surgical procedures">
       <div className="mb-2 flex items-center gap-2">
         <Syringe className="h-4 w-4 text-cyan-400" aria-hidden />
-        <h4 className="text-sm font-bold text-[var(--anatomy-ink)]">Procedures & surgeries</h4>
+        <h4 className="text-sm font-bold text-white">Procedures & surgeries</h4>
       </div>
-      <p className="mb-3 text-xs leading-relaxed text-[var(--anatomy-ink-muted)]">
+      <p className="mb-3 text-xs leading-relaxed text-white/70">
         Board-relevant operations for {structure.name.toLowerCase()} — tap to expand indications
         and pearls.
       </p>
@@ -103,7 +103,7 @@ function ProcedureGroup({
 }) {
   return (
     <div>
-      <p className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-[var(--anatomy-ink-muted)]">
+      <p className="mb-1.5 text-[10px] font-bold uppercase tracking-wider text-white/70">
         {label}
       </p>
       <ul className="space-y-2">
@@ -144,38 +144,38 @@ function ProcedureCard({
         )}
       >
         <div className="flex flex-wrap items-start justify-between gap-2">
-          <p className="text-sm font-semibold text-[var(--anatomy-ink)]">{procedure.name}</p>
+          <p className="text-sm font-semibold text-white">{procedure.name}</p>
           <div className="flex flex-wrap gap-1">
             {procedure.highYield ? (
               <Badge className="bg-amber-500/15 text-[10px] text-amber-200">High-yield</Badge>
             ) : null}
-            <Badge className="bg-white/[0.08] text-[10px] text-[var(--anatomy-ink-muted)]">
+            <Badge className="bg-white/[0.08] text-[10px] text-white/70">
               {PROCEDURE_APPROACH_LABELS[procedure.approach]}
             </Badge>
           </div>
         </div>
 
         {focused ? (
-          <div className="mt-3 space-y-2 border-t border-white/[0.08] pt-3 text-xs leading-relaxed">
+          <div className="mt-3 space-y-2 border-t border-white/[0.08] pt-3 text-xs leading-relaxed text-white">
             <p>
-              <span className="font-semibold text-[var(--anatomy-ink)]">Indication: </span>
+              <span className="font-semibold text-white">Indication: </span>
               {procedure.indication}
             </p>
-            <blockquote className="rounded-lg border-l-2 border-cyan-500/50 bg-[#283040] px-2.5 py-2 font-medium text-[var(--anatomy-ink)]">
+            <blockquote className="rounded-lg border-l-2 border-cyan-500/50 bg-[#283040] px-2.5 py-2 font-medium text-white">
               {procedure.examPearl}
             </blockquote>
             {procedure.complications.length > 0 ? (
               <p>
-                <span className="font-semibold text-[var(--anatomy-ink)]">Complications: </span>
+                <span className="font-semibold text-white">Complications: </span>
                 {procedure.complications.join("; ")}
               </p>
             ) : null}
-            <p className="text-[10px] uppercase tracking-wide text-[var(--anatomy-ink-muted)]">
+            <p className="text-[10px] uppercase tracking-wide text-white/70">
               {PROCEDURE_URGENCY_LABELS[procedure.urgency]}
             </p>
           </div>
         ) : (
-          <p className="mt-1 line-clamp-2 text-xs text-[var(--anatomy-ink-muted)]">
+          <p className="mt-1 line-clamp-2 text-xs text-white/70">
             {procedure.indication}
           </p>
         )}

@@ -162,7 +162,7 @@ export function StructureAssistPanel({
     <section className={cn(anatomyUi.detailSection, "flex flex-col gap-3 !p-3")}>
       <div className="flex items-center gap-2">
         <Sparkles className="h-4 w-4 text-cyan-400" aria-hidden />
-        <h4 className="text-[14px] font-semibold text-[var(--anatomy-ink)]">AI Anatomy Tutor</h4>
+        <h4 className="text-[14px] font-semibold text-white">AI Anatomy Tutor</h4>
       </div>
 
       <div
@@ -170,7 +170,7 @@ export function StructureAssistPanel({
         className="max-h-44 space-y-2 overflow-y-auto rounded-[14px] bg-[#121820] p-2.5"
       >
         {messages.length === 0 ? (
-          <p className="text-[12px] leading-relaxed text-[var(--anatomy-ink-muted)]">
+          <p className="text-[12px] leading-relaxed text-white/70">
             Ask about {structure?.name ?? "any structure"}. The tutor can highlight anatomy, toggle
             layers, and reset the camera.
           </p>
@@ -181,8 +181,8 @@ export function StructureAssistPanel({
               className={cn(
                 "rounded-[12px] px-3 py-2 text-[13px] leading-relaxed",
                 m.role === "user"
-                  ? "ml-6 bg-cyan-500/20 text-[var(--anatomy-ink)]"
-                  : "mr-4 bg-[#283040] text-[var(--anatomy-ink-muted)]"
+                  ? "ml-6 bg-cyan-500/20 text-white"
+                  : "mr-4 bg-[#283040] text-white/70"
               )}
             >
               {m.content}
@@ -190,7 +190,7 @@ export function StructureAssistPanel({
           ))
         )}
         {loading ? (
-          <div className="flex items-center gap-2 text-[12px] text-[var(--anatomy-ink-muted)]">
+          <div className="flex items-center gap-2 text-[12px] text-white/70">
             <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden />
             Thinking…
           </div>
@@ -210,7 +210,7 @@ export function StructureAssistPanel({
             type="button"
             disabled={loading}
             onClick={() => void sendMessage(s)}
-            className="rounded-full border border-white/[0.08] bg-white/[0.04] px-2.5 py-1 text-[11px] text-[var(--anatomy-ink-muted)] transition hover:border-cyan-500/30 hover:text-[var(--anatomy-ink)]"
+            className="rounded-full border border-white/[0.08] bg-white/[0.04] px-2.5 py-1 text-[11px] text-white/70 transition hover:border-cyan-500/30 hover:text-white"
           >
             {s}
           </button>
@@ -240,7 +240,7 @@ export function StructureAssistPanel({
             "inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition",
             listening
               ? "border-red-400/50 bg-red-500/20 text-red-300"
-              : "border-white/[0.1] bg-white/[0.06] text-[var(--anatomy-ink-muted)] hover:text-[var(--anatomy-ink)]"
+              : "border-white/[0.1] bg-white/[0.06] text-white/70 hover:text-white"
           )}
           aria-label={listening ? "Stop voice input" : "Start voice input"}
         >
