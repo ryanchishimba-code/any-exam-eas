@@ -3,6 +3,8 @@ import type { BankItem } from "@/lib/question-bank";
 import { auditBankItem } from "./bank-audit";
 import {
   calculationContextSupportsStem,
+  clinicalCounselingIntentCalcMismatchIssue,
+  clinicalVignetteUnrelatedCalcIssue,
   detectNaplexFormatIssues,
   fixNaplexFormatCoherence,
   itemHasFormatCoherenceIssue,
@@ -243,5 +245,481 @@ describe("naplex format coherence", () => {
     };
 
     expect(orphanGenericCalcStemIssue(item)?.codes).toContain("naplex_orphan_calc_stem");
+  });
+
+  it("flags uncalculable mg/mL concentration from mcg per actuation only", () => {
+    const stem =
+      "Calculate the concentration in mg/mL of the salmeterol/fluticasone inhaler if it contains 250 mcg of fluticasone and 50 mcg of salmeterol per actuation in a 120-actuation canister.";
+    expect(calculationContextSupportsStem({
+      subjectId: "compounding-calculations",
+      vignette: "A technician is reviewing product labeling.",
+      question: stem,
+      options: [],
+      correctAnswer: "0.5",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+    })).toBe(false);
+  });
+
+  it("rewrites asthma exacerbation vignette with orphan concentration calc to ED MCQ", () => {
+    const item: BankItem = {
+      subjectId: "respiratory-rx",
+      vignette:
+        "A 30-year-old female presents to the emergency department with an asthma exacerbation. She is currently using a salmeterol/fluticasone inhaler and has been prescribed albuterol for rescue use. Her vital signs show a heart rate of 120 bpm and oxygen saturation of 88% on room air. She has a history of anxiety and is currently taking sertraline.",
+      question:
+        "Calculate the concentration in mg/mL of the salmeterol/fluticasone inhaler if it contains 250 mcg of fluticasone and 50 mcg of salmeterol per actuation in a 120-actuation canister.",
+      options: [],
+      correctAnswer: "0.12",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mg/mL" },
+    };
+
+    expect(orphanGenericCalcStemIssue(item)?.codes).toContain("naplex_orphan_calc_stem");
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.question).toMatch(/most appropriate pharmacist recommendation/i);
+    expect(fixed.options).toHaveLength(4);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(fixed.correctAnswer).toMatch(/beta-agonist|bronchodilator/i);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites asthma follow-up poor-control vignette with uncalculable fluticasone concentration", () => {
+    const item: BankItem = {
+      subjectId: "respiratory-rx",
+      vignette:
+        "A 30-year-old female patient with asthma presents to the clinic for a follow-up visit. She is currently using albuterol as a rescue inhaler and has been prescribed fluticasone/salmeterol for maintenance therapy. She reports using her albuterol inhaler more than twice a week and has frequent nighttime awakenings due to asthma symptoms.",
+      question:
+        "Calculate the concentration of fluticasone in mg/mL in the prescribed fluticasone/salmeterol inhaler, which contains 45 mcg of fluticasone per actuation.",
+      options: [],
+      correctAnswer: "0.045",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mg/mL" },
+    };
+
+    expect(orphanGenericCalcStemIssue(item)?.codes).toContain("naplex_orphan_calc_stem");
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.question).toMatch(/most appropriate recommendation/i);
+    expect(fixed.correctAnswer).toMatch(/step-up|prescriber|uncontrolled/i);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("retargets pediatric mg/kg vignette with mismatched concentration stem to per-dose calc", () => {
+    const item: BankItem = {
+      subjectId: "medication-dispensing",
+      vignette:
+        "A 12-year-old boy weighing 40 kg is prescribed amoxicillin for an ear infection. The recommended pediatric dosing is 20 mg/kg/day divided into two doses. He has no known drug allergies and is otherwise healthy.",
+      question: "Calculate the concentration in mg/mL. Round to two decimal places.",
+      options: [],
+      correctAnswer: "0.5",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mg/mL" },
+    };
+
+    expect(calculationContextSupportsStem(item)).toBe(false);
+    expect(orphanGenericCalcStemIssue(item)?.codes).toContain("naplex_orphan_calc_stem");
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("constructed_response");
+    expect(fixed.question).toMatch(/dose in mg for each divided dose/i);
+    expect(fixed.correctAnswer).toBe("400");
+    expect(fixed.ngnPayload?.unit).toBe("mg");
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites hydrocodone side-effect vignette with orphan 30-day mL volume calc (no options)", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "A 58-year-old female with chronic pain is prescribed hydrocodone/acetaminophen 5/325 mg every 6 hours as needed. She has a history of opioid use and is currently taking gabapentin for neuropathic pain. She reports occasional dizziness and constipation since starting the hydrocodone.",
+      question: "What is the total volume in mL that should be dispensed for a 30-day supply?",
+      options: [],
+      correctAnswer: "120",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mL" },
+    };
+
+    expect(orphanGenericCalcStemIssue(item)?.codes).toContain("naplex_orphan_calc_stem");
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.question).toMatch(/counseling point/i);
+    expect(fixed.correctAnswer).toMatch(/CNS depression|constipation|acetaminophen/i);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites hydromorphone adherence vignette with orphan mL volume calc", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "A 55-year-old male with a history of chronic pain is prescribed hydromorphone 4 mg every 4 hours as needed. He reports that he often forgets to take his medication and sometimes takes it more frequently than prescribed. His current medications include gabapentin and ibuprofen.",
+      question: "What is the total volume in mL?",
+      options: [],
+      correctAnswer: "90",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mL" },
+    };
+
+    expect(orphanGenericCalcStemIssue(item)?.codes).toContain("naplex_orphan_calc_stem");
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.question).toMatch(/counseling point/i);
+    expect(fixed.correctAnswer).toMatch(/maximum daily dose|prescriber|extra doses/i);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites COPD worsening vignette with unrelated self-contained amlodipine tablet calc", () => {
+    const item: BankItem = {
+      subjectId: "respiratory-rx",
+      vignette:
+        "A 70-year-old male with a history of hypertension and chronic obstructive pulmonary disease (COPD) presents to the pharmacy for a refill of his medications. He is currently taking lisinopril, amlodipine, and tiotropium. He reports feeling more short of breath and has a cough that worsens at night. His blood pressure is 140/85 mm Hg.",
+      question:
+        "How many tablets of amlodipine should be dispensed for this order if the prescription is for 30 days at a dose of 5 mg daily?",
+      options: [],
+      correctAnswer: "30",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "tablets" },
+    };
+
+    expect(stemIsSelfContainedCalc(item.question)).toBe(true);
+    expect(calculationContextSupportsStem(item)).toBe(true);
+    expect(orphanGenericCalcStemIssue(item)).toBeNull();
+    expect(clinicalVignetteUnrelatedCalcIssue(item)?.codes).toContain(
+      "naplex_clinical_vignette_unrelated_calc"
+    );
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_calc"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.question).toMatch(/most appropriate recommendation/i);
+    expect(fixed.correctAnswer).toMatch(/prescriber|exacerbation|COPD/i);
+    expect(fixed.options).toHaveLength(4);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites sepsis renal impairment vignette with orphan preparation mg calc", () => {
+    const item: BankItem = {
+      subjectId: "infectious-disease-rx",
+      vignette:
+        "A 40-year-old female with a diagnosis of sepsis is started on piperacillin-tazobactam 4.5 g IV every 6 hours. She has a history of renal impairment with an eGFR of 40 mL/min. Her current medications include metformin and lisinopril.",
+      question: "How many milligrams of drug are required for this preparation?",
+      options: [],
+      correctAnswer: "4500",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mg" },
+    };
+
+    expect(calculationContextSupportsStem(item)).toBe(false);
+    expect(orphanGenericCalcStemIssue(item)?.codes).toContain("naplex_orphan_calc_stem");
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.question).toMatch(/medication therapy/i);
+    expect(fixed.correctAnswer).toMatch(/metformin|renal|piperacillin|eGFR/i);
+    expect(fixed.options).toHaveLength(4);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites sepsis pneumonia ceftriaxone vignette with orphan preparation mg calc", () => {
+    const item: BankItem = {
+      subjectId: "infectious-disease-rx",
+      vignette:
+        "A 60-year-old male with sepsis secondary to pneumonia is started on ceftriaxone 2 g IV every 24 hours. He has a history of renal impairment with an eGFR of 30 mL/min. His current medications include metformin and lisinopril.",
+      question: "How many milligrams of drug are required for this preparation?",
+      options: [],
+      correctAnswer: "2000",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mg" },
+    };
+
+    expect(calculationContextSupportsStem(item)).toBe(false);
+    expect(orphanGenericCalcStemIssue(item)?.codes).toContain("naplex_orphan_calc_stem");
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.question).toMatch(/medication therapy/i);
+    expect(fixed.correctAnswer).toMatch(/metformin|ceftriaxone|eGFR/i);
+    expect(fixed.options).toHaveLength(4);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites apixaban bruising refill vignette with orphan generic tablet dispense calc", () => {
+    const item: BankItem = {
+      subjectId: "cardiovascular-rx",
+      vignette:
+        "A 65-year-old female with a history of atrial fibrillation and hypertension presents to the pharmacy for a refill of her apixaban. She reports experiencing some mild bruising but denies any significant bleeding. Her current medications include amlodipine and lisinopril. Her renal function is stable with a CrCl of 60 mL/min.",
+      question: "How many tablets should be dispensed for this order?",
+      options: [],
+      correctAnswer: "60",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mg" },
+    };
+
+    expect(calculationContextSupportsStem(item)).toBe(false);
+    expect(orphanGenericCalcStemIssue(item)?.codes).toContain("naplex_orphan_calc_stem");
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.question).toMatch(/counseling point/i);
+    expect(fixed.correctAnswer).toMatch(/bruising|bleeding|apixaban|prescriber/i);
+    expect(fixed.options).toHaveLength(4);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(fixed.ngnPayload).toBeUndefined();
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites apixaban bleeding-risk vignette with calculable tablet dispense calc", () => {
+    const item: BankItem = {
+      subjectId: "cardiovascular-rx",
+      vignette:
+        "A 72-year-old male with a history of atrial fibrillation is prescribed apixaban 5 mg twice daily. He has a CrCl of 45 mL/min and is concerned about bleeding risks. He is currently taking metoprolol and lisinopril. He has no known drug allergies.",
+      question: "How many tablets of apixaban should be dispensed for a 30-day supply?",
+      options: [],
+      correctAnswer: "60",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mg" },
+    };
+
+    expect(calculationContextSupportsStem(item)).toBe(true);
+    expect(clinicalCounselingIntentCalcMismatchIssue(item)?.codes).toContain(
+      "naplex_clinical_vignette_unrelated_calc"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.question).toMatch(/counseling point/i);
+    expect(fixed.correctAnswer).toMatch(/bleeding|prescriber|renal|dose/i);
+    expect(fixed.options).toHaveLength(4);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites elderly tramadol dizziness/confusion vignette with orphan mg dose calc", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "A 70-year-old female patient with a history of chronic pain is prescribed tramadol 50 mg every 8 hours. During a follow-up visit, her daughter reports that the patient has been experiencing dizziness and confusion. The patient's current medications include lisinopril and atorvastatin. Her renal function is normal.",
+      question: "Calculate the dose in mg. Round to the nearest whole number.",
+      options: [],
+      correctAnswer: "50",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mg" },
+    };
+
+    expect(calculationContextSupportsStem(item)).toBe(false);
+    expect(orphanGenericCalcStemIssue(item)?.codes).toContain("naplex_orphan_calc_stem");
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.question).toMatch(/counseling point/i);
+    expect(fixed.correctAnswer).toMatch(/dizziness|confusion|prescriber|tramadol|CNS/i);
+    expect(fixed.options).toHaveLength(4);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites ibuprofen/lisinopril interaction vignette with unrelated infusion rate calc", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "A 55-year-old woman with a history of hypertension is prescribed lisinopril and atorvastatin. She is currently taking ibuprofen for chronic knee pain. She reports no side effects but is concerned about potential interactions with her medications. Her blood pressure is well-controlled at 120/75 mm Hg.",
+      question:
+        "At what rate (mL/hr) should the infusion pump be set if the patient is to receive 1000 mL of IV fluids over 8 hours?",
+      options: [],
+      correctAnswer: "125",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mL/hr" },
+    };
+
+    expect(calculationContextSupportsStem(item)).toBe(true);
+    expect(clinicalCounselingIntentCalcMismatchIssue(item)?.codes).toContain(
+      "naplex_clinical_vignette_unrelated_calc"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.question).toMatch(/counseling point/i);
+    expect(fixed.correctAnswer).toMatch(/ibuprofen|lisinopril|NSAID|renal|interaction/i);
+    expect(fixed.options).toHaveLength(4);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites penicillin allergy amoxicillin vignette with orphan total volume mL options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "A 28-year-old female presents to the pharmacy with a prescription for amoxicillin for a suspected bacterial infection. She reports a history of a severe allergic reaction to penicillin, including hives and difficulty breathing. She is concerned about taking this medication.",
+      question:
+        "Select the one best response for this scenario.\nWhat is the total volume in mL? Round to one decimal place.",
+      options: ["200 mL", "250 mL", "150 mL", "100 mL"],
+      correctAnswer: "200 mL",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(calculationContextSupportsStem(item)).toBe(false);
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_stem_numeric_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.correctAnswer).toMatch(/do not dispense|contraindication|prescriber|penicillin|amoxicillin/i);
+    expect(fixed.options.every((o) => !/^\d+\s*mL$/i.test(o.trim()))).toBe(true);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites metformin CKD safety concern vignette with orphan mg dose calc options", () => {
+    const item: BankItem = {
+      subjectId: "cardiovascular-rx",
+      vignette:
+        "A 65-year-old male with chronic kidney disease is prescribed metformin for type 2 diabetes. His current eGFR is 45 mL/min. He expresses concern about the safety of this medication given his renal function.",
+      question:
+        "Select the one best response for this scenario.\nCalculate the dose in mg. Round to the nearest whole number.",
+      options: ["500 mg", "750 mg", "1000 mg", "1250 mg"],
+      correctAnswer: "1000 mg",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(calculationContextSupportsStem(item)).toBe(false);
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_stem_numeric_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.correctAnswer).toMatch(/metformin|eGFR|renal|prescriber|lactic acidosis|contraindicated/i);
+    expect(fixed.options.every((o) => !/^\d+\s*mg$/i.test(o.trim()))).toBe(true);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rejects tablet dispense calc when vignette has dose and frequency but no day supply", () => {
+    const item: BankItem = {
+      subjectId: "medication-dispensing",
+      vignette:
+        "A 65-year-old female presents to the pharmacy with a new prescription for amoxicillin 500 mg three times daily for a urinary tract infection (UTI). She has a history of hypertension and is currently taking lisinopril 20 mg daily. Her renal function is stable with a serum creatinine of 1.0 mg/dL. She reports no known drug allergies.",
+      question: "How many tablets should be dispensed for this order?",
+      options: ["42 tablets", "60 tablets", "30 tablets", "21 tablets"],
+      correctAnswer: "21 tablets",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(calculationContextSupportsStem(item)).toBe(false);
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_stem_numeric_options"
+    );
+  });
+
+  it("rewrites UTI amoxicillin vignette with incomplete tablet dispense calc to counseling MCQ", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "A 65-year-old female presents to the pharmacy with a new prescription for amoxicillin 500 mg three times daily for a urinary tract infection (UTI). She has a history of hypertension and is currently taking lisinopril 20 mg daily. Her renal function is stable with a serum creatinine of 1.0 mg/dL. She reports no known drug allergies.",
+      question:
+        "Select the one best response for this scenario.\nHow many tablets should be dispensed for this order?",
+      options: ["42 tablets", "60 tablets", "30 tablets", "21 tablets"],
+      correctAnswer: "21 tablets",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/counseling point is most important/i);
+    expect(fixed.correctAnswer).toMatch(/full course|complete|day supply|lisinopril/i);
+    expect(fixed.options.every((o) => !/^\d+\s*tablets?$/i.test(o.trim()))).toBe(true);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites pregnancy topical antibiotic safety vignette with orphan mg dose calc", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "A 28-year-old pregnant woman is prescribed a topical antibiotic for a skin infection. She is concerned about the safety of the medication for her unborn child. Her medical history is unremarkable, and she is currently taking prenatal vitamins.",
+      question:
+        "Select the one best response for this scenario.\nCalculate the dose in mg. Round to the nearest whole number.",
+      options: ["500 mg", "1500 mg", "2000 mg", "1000 mg"],
+      correctAnswer: "1000 mg",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(calculationContextSupportsStem(item)).toBe(false);
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_stem_numeric_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/counseling point is most important/i);
+    expect(fixed.correctAnswer).toMatch(/topical|systemic absorption|pregnancy|obstetric|prescriber/i);
+    expect(fixed.options.every((o) => !/^\d+\s*mg$/i.test(o.trim()))).toBe(true);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites sepsis ICU ceftriaxone-vancomycin vignette with orphan preparation mg calc", () => {
+    const item: BankItem = {
+      subjectId: "infectious-disease-rx",
+      vignette:
+        "A 70-year-old male with sepsis is being treated in the ICU. He is currently on ceftriaxone 2 g IV every 12 hours. His renal function is stable with an eGFR of 70 mL/min. The physician orders an additional dose of vancomycin 1 g IV.",
+      question: "How many milligrams of drug are required for this preparation?",
+      options: [],
+      correctAnswer: "1000",
+      explanation: "Placeholder.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mg" },
+    };
+
+    expect(calculationContextSupportsStem(item)).toBe(false);
+    expect(orphanGenericCalcStemIssue(item)?.codes).toContain("naplex_orphan_calc_stem");
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.itemType).toBe("vignette");
+    expect(fixed.question).toMatch(/medication therapy/i);
+    expect(fixed.correctAnswer).toMatch(/vancomycin|therapeutic drug monitoring|trough|AUC|renal function/i);
+    expect(fixed.options).toHaveLength(4);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
   });
 });
