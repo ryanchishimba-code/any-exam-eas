@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { getCachedSession } from "@/lib/auth/session";
 import { HighYieldTopicsClient } from "@/components/edtech/HighYieldTopicsClient";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
@@ -20,6 +20,17 @@ export const metadata = {
     "Exam-specific textbook-style review modules and condensed study topics with must-know facts and practice links.",
 };
 
+function TopicsSkeleton() {
+  return (
+    <div className="mx-auto max-w-5xl space-y-5 px-0.5">
+      <Skeleton className="h-8 w-48" />
+      <Skeleton className="h-20 w-full rounded-2xl" />
+      <Skeleton className="h-12 w-full rounded-2xl" />
+      <Skeleton className="h-64 w-full rounded-2xl" />
+    </div>
+  );
+}
+
 async function TopicsContent({
   userId,
   examParam,
@@ -36,7 +47,6 @@ async function TopicsContent({
 
   const examSlug: ExamSlug = pref.examSlug;
 
-  // High-yield topics are scoped to the user's active exam — ignore mismatched ?exam= links.
   if (examParam && isExamSlug(examParam) && examParam !== examSlug) {
     const qs = new URLSearchParams();
     if (topicParam) qs.set("topic", topicParam);
@@ -50,6 +60,7 @@ async function TopicsContent({
     examSlug === "usmle"
       ? usmleStepDefinition(meta?.usmleFieldId ?? defaultUsmleFieldId())
       : null;
+
   const topics = await loadHighYieldTopics(examSlug, {
     usmleFieldId: meta?.usmleFieldId,
   });
@@ -70,14 +81,32 @@ async function TopicsContent({
   );
 }
 
-function TopicsSkeleton() {
+async function TopicsPageInner({
+  exam,
+  topic,
+  deepDive,
+}: {
+  exam?: string;
+  topic?: string;
+  deepDive: boolean;
+}) {
+  const session = await getCachedSession();
+  if (!session?.user?.id) {
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.highYieldTopics)}`);
+  }
+
+  await requirePremiumPage(ROUTES.highYieldTopics);
+  if (deepDive) {
+    await requireProFeaturePage("deep_dive_modules", ROUTES.highYieldTopics);
+  }
+
   return (
-    <div className="mx-auto max-w-5xl space-y-5 px-0.5">
-      <Skeleton className="h-8 w-48" />
-      <Skeleton className="h-20 w-full rounded-2xl" />
-      <Skeleton className="h-12 w-full rounded-2xl" />
-      <Skeleton className="h-64 w-full rounded-2xl" />
-    </div>
+    <TopicsContent
+      userId={session.user.id}
+      examParam={exam}
+      topicParam={topic}
+      deepDive={deepDive}
+    />
   );
 }
 
@@ -86,26 +115,11 @@ export default async function HighYieldTopicsPage({
 }: {
   searchParams: Promise<{ exam?: string; topic?: string; mode?: string }>;
 }) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.highYieldTopics)}`);
-  }
-
-  await requirePremiumPage(ROUTES.highYieldTopics);
   const { exam, topic, mode } = await searchParams;
-
-  if (mode === "deep") {
-    await requireProFeaturePage("deep_dive_modules", ROUTES.highYieldTopics);
-  }
 
   return (
     <Suspense fallback={<TopicsSkeleton />}>
-      <TopicsContent
-        userId={session.user.id}
-        examParam={exam}
-        topicParam={topic}
-        deepDive={mode === "deep"}
-      />
+      <TopicsPageInner exam={exam} topic={topic} deepDive={mode === "deep"} />
     </Suspense>
   );
 }

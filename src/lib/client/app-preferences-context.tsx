@@ -61,9 +61,18 @@ export function AppPreferencesProvider({
   }, []);
 
   useEffect(() => {
+    setExamSlugState(initialExamSlug);
+  }, [initialExamSlug]);
+
+  useEffect(() => {
     if (status !== "authenticated") {
       setExamSlugState(null);
       setMpjeStateCode(null);
+      setLoading(false);
+      return;
+    }
+
+    if (initialExamSlug) {
       setLoading(false);
       return;
     }

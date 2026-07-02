@@ -1,11 +1,11 @@
 import {
   buildLandingBankCountsDisplay,
-  getQuestionBankCounts,
+  getCachedQuestionBankCounts,
 } from "@/lib/marketing/question-bank-counts";
 
 /** Server-rendered live bank totals on checkout for trust before payment. */
 export async function CheckoutLiveCounts() {
-  const snapshot = await getQuestionBankCounts();
+  const snapshot = await getCachedQuestionBankCounts();
   const display = buildLandingBankCountsDisplay(snapshot);
 
   return (

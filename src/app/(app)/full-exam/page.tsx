@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { getCachedSession } from "@/lib/auth/session";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { fullExamHref, ROUTES } from "@/lib/routes";
 
@@ -8,7 +8,7 @@ export default async function FullExamIndexPage({
 }: {
   searchParams: Promise<{ mode?: string; autostart?: string; timed?: string }>;
 }) {
-  const session = await auth();
+  const session = await getCachedSession();
   if (!session?.user?.id) {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.fullExam)}`);
   }

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import {
   isHealthDetailAuthorized,
+  runAuthConfigCheck,
   runHealthChecks,
   runPublicHealthCheck,
 } from "@/lib/health-check";
@@ -12,6 +13,12 @@ export const maxDuration = 30;
 /** Uptime / load-balancer check — public body is `{ ok }` only; details require Bearer CRON_SECRET. */
 export async function GET(req: Request) {
   try {
+    const url = new URL(req.url);
+    if (url.searchParams.get("config") === "1") {
+      const { ok } = runAuthConfigCheck();
+      return NextResponse.json({ ok }, { status: ok ? 200 : 503 });
+    }
+
     const detailed = isHealthDetailAuthorized(req);
     const report = detailed ? await runHealthChecks() : await runPublicHealthCheck();
 

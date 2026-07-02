@@ -4,19 +4,15 @@ import Google from "next-auth/providers/google";
 import Apple from "next-auth/providers/apple";
 import LinkedIn from "next-auth/providers/linkedin";
 import { authConfig } from "@/auth.config";
-import { authenticateCredentials, recordUserLogin } from "@/lib/user-auth";
+import { authenticateCredentials } from "@/lib/user-auth";
 import { loginSchema } from "@/lib/validators/auth";
 import { prisma } from "@/lib/prisma";
 import { findOrCreateGoogleUser, OAuthLinkBlockedError } from "@/lib/oauth-user";
 import { OAuthAccountDisabledError } from "@/lib/account-security";
 import {
-  trackEvent,
-  logActivity,
-  startUserSession,
-} from "@/lib/analytics/events";
-import { EVENT_TYPES } from "@/lib/analytics/types";
-import { isStaffRole } from "@/lib/permissions";
-import { logAdminAction } from "@/lib/audit";
+  scheduleCredentialsLoginSideEffects,
+  scheduleOAuthLoginTouch,
+} from "@/lib/auth/login-side-effects";
 import {
   checkAndRecordAccountIp,
 } from "@/lib/account-ip-limit";
@@ -109,12 +105,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const user = authResult.user;
 
         const req = request as Request | undefined;
-
-        const dbUser = await prisma.user.findUnique({
-          where: { id: user.id },
-          select: { role: true },
-        });
-        const role = dbUser?.role ?? "user";
+        const role = user.role ?? "user";
 
         const ipCheck = await checkAndRecordAccountIp(
           user.id,
@@ -125,30 +116,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         );
         if (!ipCheck.ok) throw new TooManyIpAddresses();
 
-        await recordUserLogin(user.id);
-
-        const sessionId = await startUserSession(user.id, req);
-        trackEvent({
-          userId: user.id,
-          sessionId,
-          eventType: EVENT_TYPES.USER_LOGIN,
-          category: "auth",
-          req,
-        });
-        void logActivity({
-          userId: user.id,
-          action: "login",
-          summary: "Signed in with email and password",
-        });
-
-        if (isStaffRole(role)) {
-          void logAdminAction({
-            actorId: user.id,
-            action: "STAFF_LOGIN",
-            req,
-            metadata: { method: "credentials" },
-          });
-        }
+        scheduleCredentialsLoginSideEffects(user.id, role, req);
 
         const rememberMe =
           credentials?.rememberMe === "true" || credentials?.rememberMe === true;
@@ -185,13 +153,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             providerAccountId: oauthProfile?.sub ?? user.email,
             provider: account!.provider as OAuthProvider,
           });
-          const dbUser = await prisma.user.findUnique({
-            where: { id: linked.id },
-            select: { accountStatus: true },
-          });
-          if (dbUser?.accountStatus === "suspended" || dbUser?.accountStatus === "deleted") {
-            return false;
-          }
           user.id = linked.id;
           (user as { role?: string }).role = linked.role;
 
@@ -205,6 +166,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           if (!ipCheck.ok) {
             return `/login?error=${ipCheck.reason}`;
           }
+          scheduleOAuthLoginTouch(linked.id);
         } catch (e) {
           if (e instanceof OAuthLinkBlockedError || e instanceof OAuthAccountDisabledError) {
             return false;
@@ -225,7 +187,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         (account?.provider === "google" ||
           account?.provider === "apple" ||
           account?.provider === "linkedin") &&
-        token.email
+        token.email &&
+        !token.id
       ) {
         const dbUser = await prisma.user.findUnique({
           where: { email: String(token.email).toLowerCase() },

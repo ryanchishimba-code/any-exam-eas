@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { AboutValueCards } from "@/components/about/AboutValueCards";
-import { AboutShowdown } from "@/components/about/AboutShowdown";
+import { AboutShowdownLazy } from "@/components/about/AboutShowdownLazy";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ROUTES } from "@/lib/routes";
 import { formatTrialCtaLabel, formatTrialLabel } from "@/lib/site";
@@ -201,7 +201,7 @@ export default async function AboutPage() {
             </p>
           </div>
           <div className="mt-10">
-            <AboutShowdown />
+            <AboutShowdownLazy />
           </div>
         </div>
       </section>

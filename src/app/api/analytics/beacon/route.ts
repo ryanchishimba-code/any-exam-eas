@@ -3,7 +3,7 @@ import { ZodError } from "zod";
 import { enforceRateLimit } from "@/lib/api-rate-limit";
 import { analyticsBeaconSchema } from "@/lib/analytics/beacon-schema";
 import { trackPageView, touchUserSession } from "@/lib/analytics/events";
-import { optionalSessionGuard } from "@/lib/session-guard";
+import { readOptionalSessionUser } from "@/lib/session-guard";
 
 export const runtime = "nodejs";
 
@@ -20,8 +20,7 @@ export async function POST(req: Request) {
       body = text ? JSON.parse(text) : {};
     }
     const input = analyticsBeaconSchema.parse(body);
-    const guard = await optionalSessionGuard(req);
-    if (!guard.ok) return guard.response;
+    const sessionUser = await readOptionalSessionUser();
 
     if (input.path.startsWith("/internal") || input.path.startsWith("/api/")) {
       return NextResponse.json({ ok: true, skipped: true });
@@ -29,7 +28,7 @@ export async function POST(req: Request) {
 
     trackPageView({
       path: input.path,
-      userId: guard.userId,
+      userId: sessionUser?.userId,
       sessionId: input.sessionId,
       durationSec: input.durationSec,
       referrer: input.referrer,

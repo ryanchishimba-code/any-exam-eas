@@ -50,6 +50,7 @@ export function useSubjectCounts(fieldId: string, options: UseSubjectCountsOptio
     initialData: seeded ? initialCounts! : undefined,
     placeholderData: seeded ? initialCounts! : undefined,
     staleTime: 5 * 60 * 1000,
+    refetchOnMount: seeded ? false : undefined,
     enabled: Boolean(fieldId),
   });
 }

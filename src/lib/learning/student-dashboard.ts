@@ -1,4 +1,6 @@
+import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
+import { isPostgresDatabaseUrl, resolveDatabaseUrl } from "@/lib/database-url";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
 import { getLearningProfileSnapshot } from "./profile-service";
@@ -80,7 +82,26 @@ function fieldWhere(fieldIds: FieldScope) {
   return fieldIds && fieldIds.length > 0 ? { fieldId: { in: fieldIds } } : {};
 }
 
-async function getAccuracyTrend(
+function buildTrendPoints(
+  byDay: Map<string, { correct: number; total: number }>
+): AccuracyTrendPoint[] {
+  const points: AccuracyTrendPoint[] = [];
+  for (let i = TREND_DAYS - 1; i >= 0; i--) {
+    const d = new Date();
+    d.setUTCDate(d.getUTCDate() - i);
+    const key = d.toISOString().slice(0, 10);
+    const entry = byDay.get(key);
+    points.push({
+      date: key,
+      label: d.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+      accuracy: entry ? Math.round((entry.correct / entry.total) * 100) : null,
+      attempts: entry?.total ?? 0,
+    });
+  }
+  return points;
+}
+
+async function getAccuracyTrendLegacy(
   userId: string,
   fieldIds: FieldScope
 ): Promise<AccuracyTrendPoint[]> {
@@ -102,20 +123,70 @@ async function getAccuracyTrend(
     byDay.set(key, entry);
   }
 
-  const points: AccuracyTrendPoint[] = [];
-  for (let i = TREND_DAYS - 1; i >= 0; i--) {
-    const d = new Date();
-    d.setUTCDate(d.getUTCDate() - i);
-    const key = d.toISOString().slice(0, 10);
-    const entry = byDay.get(key);
-    points.push({
-      date: key,
-      label: d.toLocaleDateString("en-US", { month: "short", day: "numeric" }),
-      accuracy: entry ? Math.round((entry.correct / entry.total) * 100) : null,
-      attempts: entry?.total ?? 0,
-    });
+  return buildTrendPoints(byDay);
+}
+
+async function getAccuracyTrendSql(
+  userId: string,
+  fieldIds: FieldScope
+): Promise<AccuracyTrendPoint[]> {
+  const since = new Date();
+  since.setUTCDate(since.getUTCDate() - (TREND_DAYS - 1));
+  since.setUTCHours(0, 0, 0, 0);
+
+  const fieldClause =
+    fieldIds && fieldIds.length > 0
+      ? Prisma.sql`AND "fieldId" IN (${Prisma.join(fieldIds)})`
+      : Prisma.empty;
+
+  const rows = await prisma.$queryRaw<
+    { day: Date; total: number; correct: number }[]
+  >(Prisma.sql`
+    SELECT
+      (DATE("createdAt" AT TIME ZONE 'UTC')) AS day,
+      COUNT(*)::int AS total,
+      SUM(CASE WHEN "correct" THEN 1 ELSE 0 END)::int AS correct
+    FROM "QuestionAttempt"
+    WHERE "userId" = ${userId}
+      AND "createdAt" >= ${since}
+      ${fieldClause}
+    GROUP BY 1
+    ORDER BY 1
+  `);
+
+  const byDay = new Map<string, { correct: number; total: number }>();
+  for (const row of rows) {
+    const key =
+      row.day instanceof Date
+        ? row.day.toISOString().slice(0, 10)
+        : String(row.day).slice(0, 10);
+    byDay.set(key, { correct: row.correct, total: row.total });
   }
-  return points;
+
+  return buildTrendPoints(byDay);
+}
+
+async function getAccuracyTrend(
+  userId: string,
+  fieldIds: FieldScope
+): Promise<AccuracyTrendPoint[]> {
+  const url = resolveDatabaseUrl();
+  if (isPostgresDatabaseUrl(url)) {
+    return getAccuracyTrendSql(userId, fieldIds);
+  }
+  return getAccuracyTrendLegacy(userId, fieldIds);
+}
+
+function sumAttemptCounts(
+  groups: { correct: boolean; _count: { _all: number } }[]
+): { totalAttempts: number; correctCount: number } {
+  let totalAttempts = 0;
+  let correctCount = 0;
+  for (const group of groups) {
+    totalAttempts += group._count._all;
+    if (group.correct) correctCount += group._count._all;
+  }
+  return { totalAttempts, correctCount };
 }
 
 function computeTrendDelta(trend: AccuracyTrendPoint[]): number | null {
@@ -209,6 +280,45 @@ export async function getStudentDashboardData(
   );
 }
 
+export type LibraryHubStats = {
+  readinessScore: number;
+  studyStreakDays: number;
+  overallAccuracy: number | null;
+  motivationalMessage: string;
+};
+
+/** Lightweight stats for the library hub — skips trend/recent-tests work. */
+export async function getLibraryHubStats(userId: string): Promise<LibraryHubStats> {
+  return cacheGetOrSet(
+    cacheKey(["library-hub-stats", userId]),
+    CACHE_TTL.learningDashboard,
+    async () => {
+      const [profile, attemptGroups] = await Promise.all([
+        getLearningProfileSnapshot(userId),
+        prisma.questionAttempt.groupBy({
+          by: ["correct"],
+          where: { userId },
+          _count: { _all: true },
+        }),
+      ]);
+      const { totalAttempts, correctCount } = sumAttemptCounts(attemptGroups);
+      const overallAccuracy =
+        totalAttempts > 0 ? Math.round((correctCount / totalAttempts) * 100) : null;
+
+      return {
+        readinessScore: profile.readinessScore,
+        studyStreakDays: profile.studyStreakDays,
+        overallAccuracy,
+        motivationalMessage: buildMotivationalMessage(
+          profile.studyStreakDays,
+          null,
+          overallAccuracy
+        ),
+      };
+    }
+  );
+}
+
 /**
  * @param fieldIds Optional per-exam scope. When provided, every metric, trend,
  *   weak/strong topic, spaced-review count, recent session, and the readiness
@@ -223,7 +333,7 @@ async function loadStudentDashboardData(
   const attemptScope = fieldWhere(fieldIds);
   const scopeSlug = scoped ? examSlugFromFieldId(fieldIds![0]) : null;
 
-  const [profile, trend, masteries, completedRecords, totalAttempts, correctCount, spacedReview] =
+  const [profile, trend, masteries, completedRecords, attemptGroups, spacedReview] =
     await Promise.all([
     getLearningProfileSnapshot(userId),
     getAccuracyTrend(userId, fieldIds),
@@ -242,10 +352,15 @@ async function loadStudentDashboardData(
       orderBy: { createdAt: "desc" },
       take: scoped ? 40 : 8,
     }),
-    prisma.questionAttempt.count({ where: { userId, ...attemptScope } }),
-    prisma.questionAttempt.count({ where: { userId, correct: true, ...attemptScope } }),
+    prisma.questionAttempt.groupBy({
+      by: ["correct"],
+      where: { userId, ...attemptScope },
+      _count: { _all: true },
+    }),
     getSpacedReviewSummary(userId, fieldIds),
   ]);
+
+  const { totalAttempts, correctCount } = sumAttemptCounts(attemptGroups);
 
   const examIds = completedRecords.map((r) => r.entityId);
   const exams =

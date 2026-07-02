@@ -1,8 +1,10 @@
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { getCachedSession } from "@/lib/auth/session";
 import { PremiumGate } from "@/components/PremiumGate";
 import { ProUpgradeGate } from "@/components/ProUpgradeGate";
 import { StudentAnalyticsDashboard } from "@/components/analytics/StudentAnalyticsDashboard";
+import { Skeleton } from "@/components/ui/skeleton";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-preference";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
@@ -16,8 +18,17 @@ export const metadata = {
   description: "Track readiness, weak topics, and accuracy trends across your board exam.",
 };
 
-export default async function AnalyticsPage() {
-  const session = await auth();
+function AnalyticsSkeleton() {
+  return (
+    <div className={studyUi.page}>
+      <Skeleton className="h-12 w-64 rounded-xl" />
+      <Skeleton className="mt-6 h-80 w-full rounded-[28px]" />
+    </div>
+  );
+}
+
+async function AnalyticsPageInner() {
+  const session = await getCachedSession();
   if (!session?.user?.id) {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.analytics)}`);
   }
@@ -37,16 +48,24 @@ export default async function AnalyticsPage() {
   ]);
 
   return (
+    <PremiumGate callbackPath={ROUTES.analytics}>
+      <ProUpgradeGate feature="advanced_analytics" callbackPath={ROUTES.pricing}>
+        <StudentAnalyticsDashboard
+          examSlug={examSlug}
+          examName={examName}
+          initialData={{ dashboard, profile }}
+        />
+      </ProUpgradeGate>
+    </PremiumGate>
+  );
+}
+
+export default async function AnalyticsPage() {
+  return (
     <div className={studyUi.page}>
-      <PremiumGate callbackPath={ROUTES.analytics}>
-        <ProUpgradeGate feature="advanced_analytics" callbackPath={ROUTES.pricing}>
-          <StudentAnalyticsDashboard
-            examSlug={examSlug}
-            examName={examName}
-            initialData={{ dashboard, profile }}
-          />
-        </ProUpgradeGate>
-      </PremiumGate>
+      <Suspense fallback={<AnalyticsSkeleton />}>
+        <AnalyticsPageInner />
+      </Suspense>
     </div>
   );
 }

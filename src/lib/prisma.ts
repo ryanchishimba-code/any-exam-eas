@@ -44,9 +44,9 @@ function createPrismaClient(): PrismaClient {
         const label = `prisma:${model ?? "raw"}.${operation}`;
         return executeWithRetry(() => query(args), {
           label,
-          maxAttempts: 4,
-          timeoutMs: 20_000,
-          baseDelayMs: 250,
+          maxAttempts: 3,
+          timeoutMs: 10_000,
+          baseDelayMs: 150,
         });
       },
     },

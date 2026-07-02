@@ -1,4 +1,4 @@
-import { auth } from "@/auth";
+import { getCachedSession } from "@/lib/auth/session";
 import { AppPreferencesProvider } from "@/lib/client/app-preferences-context";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { AppShell } from "@/components/app/AppShell";
@@ -7,7 +7,7 @@ import { TrialWelcomeRoot } from "@/components/auth/TrialWelcomeRoot";
 import { SiteBottomBar } from "@/components/layout/SiteBottomBar";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
-  const session = await auth();
+  const session = await getCachedSession();
   const pref = session?.user?.id ? await getUserExamPreference(session.user.id) : null;
 
   return (

@@ -26,10 +26,12 @@ import {
 } from "@/lib/landing/content";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
-import { LandingPricingPreview } from "@/components/landing/LandingPricingPreview";
-import { ProBenefitsComparison } from "@/components/pricing/ProBenefitsComparison";
-import { CostComparisonChart } from "@/components/landing/CostComparisonChart";
-import { UsmleStepShowcase } from "@/components/marketing/UsmleStepShowcase";
+import {
+  CostComparisonChartLazy,
+  LandingPricingPreviewLazy,
+  ProBenefitsComparisonLazy,
+  UsmleStepShowcaseLazy,
+} from "@/components/marketing/ExamMarketingSectionsLazy";
 import { HowWeCompare } from "@/components/home/HowWeCompare";
 import { ROUTES } from "@/lib/routes";
 import {
@@ -189,7 +191,7 @@ export function ExamMarketingLanding({ examKey, questionCountLabel, usmleStepCou
       {isUsmle && (
         <section className="border-b border-[var(--color-border)]/40 py-12">
           <div className="mx-auto max-w-5xl px-5 sm:px-6">
-            <UsmleStepShowcase initialStepCounts={usmleStepCounts} />
+            <UsmleStepShowcaseLazy initialStepCounts={usmleStepCounts} />
           </div>
         </section>
       )}
@@ -306,14 +308,14 @@ export function ExamMarketingLanding({ examKey, questionCountLabel, usmleStepCou
         <div className="mx-auto max-w-5xl px-5 sm:px-6">
           <HowWeCompare />
           <div className="mt-10">
-            <CostComparisonChart />
+            <CostComparisonChartLazy />
           </div>
         </div>
       </section>
 
       {/* ── Pro benefits ────────────────────────────────────────────────── */}
       <section className="border-b border-[var(--color-border)]/40 py-14">
-        <ProBenefitsComparison />
+        <ProBenefitsComparisonLazy />
       </section>
 
       {/* ── Pricing ─────────────────────────────────────────────────────── */}
@@ -333,7 +335,7 @@ export function ExamMarketingLanding({ examKey, questionCountLabel, usmleStepCou
             </p>
           </header>
           <div className="mt-10">
-            <LandingPricingPreview />
+            <LandingPricingPreviewLazy />
           </div>
         </div>
       </section>

@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { getCachedSession } from "@/lib/auth/session";
 import { FullExamLauncher } from "@/components/exam/FullExamLauncher";
+import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { requirePremiumPage } from "@/lib/require-premium-page";
@@ -21,23 +23,33 @@ export async function generateMetadata({
   };
 }
 
-export default async function FullExamLauncherPage({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ examSlug: string }>;
-  searchParams: Promise<{ mode?: string; autostart?: string; timed?: string }>;
-}) {
-  const { examSlug } = await params;
-  const sp = await searchParams;
-  if (!isExamSlug(examSlug)) redirect(ROUTES.dashboard);
+function FullExamLauncherSkeleton() {
+  return (
+    <div className="mx-auto w-full max-w-3xl space-y-4 px-4 py-8">
+      <Skeleton className="h-10 w-64" />
+      <Skeleton className="h-48 w-full rounded-2xl" />
+      <Skeleton className="h-12 w-full rounded-xl" />
+    </div>
+  );
+}
 
-  const session = await auth();
+async function FullExamLauncherInner({
+  examSlug,
+  mode,
+  autostart,
+  timed,
+}: {
+  examSlug: ExamSlug;
+  mode?: string;
+  autostart?: string;
+  timed?: string;
+}) {
+  const session = await getCachedSession();
   if (!session?.user?.id) {
-    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(fullExamHref(examSlug as ExamSlug))}`);
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(fullExamHref(examSlug))}`);
   }
 
-  const access = await requirePremiumPage(fullExamHref(examSlug as ExamSlug));
+  const access = await requirePremiumPage(fullExamHref(examSlug));
   const usage = await getStudyUsageSnapshot(access);
   const mockAccess = resolveMockExamAccess(usage.limits, usage.plan, {
     usedTrialMocks: usage.usedTrialMocks,
@@ -47,21 +59,46 @@ export default async function FullExamLauncherPage({
   if (!pref) redirect(ROUTES.selectExam);
   if (pref.examSlug !== examSlug) {
     const qs = new URLSearchParams();
-    if (sp.mode) qs.set("mode", sp.mode);
-    if (sp.autostart) qs.set("autostart", sp.autostart);
-    if (sp.timed) qs.set("timed", sp.timed);
+    if (mode) qs.set("mode", mode);
+    if (autostart) qs.set("autostart", autostart);
+    if (timed) qs.set("timed", timed);
     const suffix = qs.toString();
     redirect(`${fullExamHref(pref.examSlug)}${suffix ? `?${suffix}` : ""}`);
   }
 
   return (
     <FullExamLauncher
-      key={`${sp.mode ?? "default"}-${sp.autostart ?? "0"}-${sp.timed ?? "1"}`}
-      examSlug={examSlug as ExamSlug}
-      initialMode={sp.mode ?? null}
-      autostart={sp.autostart === "1"}
-      initialTimed={sp.timed !== "0"}
+      key={`${mode ?? "default"}-${autostart ?? "0"}-${timed ?? "1"}`}
+      examSlug={examSlug}
+      initialMode={mode ?? null}
+      autostart={autostart === "1"}
+      initialTimed={timed !== "0"}
       mockAccess={mockAccess}
     />
+  );
+}
+
+export default async function FullExamLauncherPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ examSlug: string }>;
+  searchParams: Promise<{ mode?: string; autostart?: string; timed?: string }>;
+}) {
+  const { examSlug: rawSlug } = await params;
+  const sp = await searchParams;
+  if (!isExamSlug(rawSlug)) redirect(ROUTES.dashboard);
+
+  const examSlug = rawSlug as ExamSlug;
+
+  return (
+    <Suspense fallback={<FullExamLauncherSkeleton />}>
+      <FullExamLauncherInner
+        examSlug={examSlug}
+        mode={sp.mode}
+        autostart={sp.autostart}
+        timed={sp.timed}
+      />
+    </Suspense>
   );
 }

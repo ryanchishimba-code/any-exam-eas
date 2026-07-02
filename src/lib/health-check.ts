@@ -107,6 +107,16 @@ function buildBaseChecks(url: string): Record<string, string> {
   return checks;
 }
 
+/** Env-only check for login/signup UI — no database ping. */
+export function runAuthConfigCheck(): { ok: boolean } {
+  ensureDatabaseUrlEnv();
+  const url = resolveDatabaseUrl();
+  const checks = buildBaseChecks(url);
+  const nextauthOk = Boolean(process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET);
+  const dbConfigured = isDatabaseConfigured(checks);
+  return { ok: nextauthOk && dbConfigured };
+}
+
 /** Fast public liveness — Neon HTTP ping (serverless-safe), cached 30s. */
 export async function runPublicHealthCheck(): Promise<Pick<HealthReport, "ok" | "checks">> {
   ensureDatabaseUrlEnv();

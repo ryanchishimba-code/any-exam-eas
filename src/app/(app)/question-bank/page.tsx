@@ -1,10 +1,10 @@
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
 import { Suspense } from "react";
 import { PremiumGate } from "@/components/PremiumGate";
 import { ProBenefitsCallout } from "@/components/ProBenefitsCallout";
 import { QuestionBankPracticeLoader } from "@/components/study/question-bank/QuestionBankPracticeLoader";
 import { Skeleton } from "@/components/ui/skeleton";
+import { getCachedSession } from "@/lib/auth/session";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
@@ -17,7 +17,7 @@ import {
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
-import { usmleStepDefinition, defaultUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
+import { usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
 import { requireStudyPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 
@@ -42,48 +42,44 @@ async function QuestionBankContent({
   userId,
   examSlug,
   fieldParam,
+  usmleStepLabel,
 }: {
   userId: string;
   examSlug: keyof typeof EXAM_CATALOG;
   fieldParam: string;
+  usmleStepLabel?: string;
 }) {
-  const meta = examSlug === "usmle" ? await getUserEdtechMetadata(userId) : null;
-  const usmleStep =
-    examSlug === "usmle"
-      ? usmleStepDefinition(meta?.usmleFieldId ?? defaultUsmleFieldId())
-      : null;
-
   return (
     <QuestionBankPracticeLoader
       userId={userId}
       examSlug={examSlug}
       fieldParam={fieldParam}
-      usmleStepLabel={usmleStep?.shortName}
+      usmleStepLabel={usmleStepLabel}
     />
   );
 }
 
-export default async function QuestionBankPage({
-  searchParams,
+async function QuestionBankPageInner({
+  sp,
 }: {
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
+  sp: Record<string, string | string[] | undefined>;
 }) {
-  const session = await auth();
+  const session = await getCachedSession();
   if (!session?.user?.id) {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.questionBank)}`);
   }
 
   await requireStudyPage(ROUTES.questionBank);
 
-  const sp = await searchParams;
   const pref = await getUserExamPreference(session.user.id);
   if (!pref) redirect(ROUTES.selectExam);
 
   let examSlug = pref.examSlug;
   const defaultFieldId = fieldIdForExamSlug(examSlug);
   let fieldParam = defaultFieldId;
+  let usmleStepLabel: string | undefined;
 
-  if (!sp.field && examSlug === "usmle") {
+  if (examSlug === "usmle" && !sp.field) {
     const meta = await getUserEdtechMetadata(session.user.id);
     if (meta.usmleFieldId && isUsmleFieldId(meta.usmleFieldId)) {
       fieldParam = meta.usmleFieldId;
@@ -130,17 +126,34 @@ export default async function QuestionBankPage({
     redirect(`${ROUTES.questionBank}?${qs.toString()}`);
   }
 
+  if (examSlug === "usmle" && isUsmleFieldId(fieldParam)) {
+    usmleStepLabel = usmleStepDefinition(fieldParam).shortName;
+  }
+
+  return (
+    <QuestionBankContent
+      userId={session.user.id}
+      examSlug={examSlug}
+      fieldParam={fieldParam}
+      usmleStepLabel={usmleStepLabel}
+    />
+  );
+}
+
+export default async function QuestionBankPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const sp = await searchParams;
+
   return (
     <div className="w-full space-y-5">
       <ProBenefitsCallout />
 
       <PremiumGate callbackPath={ROUTES.questionBank}>
         <Suspense fallback={<QuestionBankPracticeSkeleton />}>
-          <QuestionBankContent
-            userId={session.user.id}
-            examSlug={examSlug}
-            fieldParam={fieldParam}
-          />
+          <QuestionBankPageInner sp={sp} />
         </Suspense>
       </PremiumGate>
     </div>

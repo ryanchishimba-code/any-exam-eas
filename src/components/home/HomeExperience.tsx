@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 import { Hero } from "@/components/Hero";
-import { SubscriberHome } from "@/components/home/SubscriberHome";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 import type { LandingSuccessStory } from "@/lib/landing/content";
@@ -11,6 +10,26 @@ import { useSession } from "next-auth/react";
 const LandingFlagship = dynamic(
   () => import("@/components/landing/v2/LandingFlagshipV2").then((m) => m.LandingFlagshipV2),
   { ssr: true }
+);
+
+const SubscriberHome = dynamic(
+  () => import("@/components/home/SubscriberHome").then((m) => m.SubscriberHome),
+  {
+    loading: () => (
+      <section className="bg-[var(--color-surface)] py-12 sm:py-16" aria-hidden>
+        <div className="mx-auto max-w-3xl px-5 sm:px-6">
+          <div className="mt-10 grid gap-3 sm:grid-cols-3">
+            {[0, 1, 2].map((i) => (
+              <div
+                key={i}
+                className="h-24 animate-pulse rounded-2xl bg-[var(--color-border)]"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    ),
+  }
 );
 
 export function HomeExperience({

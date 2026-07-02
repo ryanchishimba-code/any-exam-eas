@@ -49,9 +49,11 @@ export async function getRecentDistinctIpHashes(userId: string): Promise<string[
       ipHash: { not: null },
     },
     select: { ipHash: true },
+    distinct: ["ipHash"],
+    take: MAX_ACCOUNT_IPS + 1,
   });
 
-  return [...new Set(rows.map((r) => r.ipHash).filter((h): h is string => Boolean(h)))];
+  return rows.map((r) => r.ipHash).filter((h): h is string => Boolean(h));
 }
 
 export async function assertAccountIpAllowed(

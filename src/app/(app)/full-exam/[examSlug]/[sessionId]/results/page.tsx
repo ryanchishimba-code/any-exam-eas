@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import { notFound, redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { getCachedSession } from "@/lib/auth/session";
 import { FullExamResults } from "@/components/exam/FullExamResults";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
+import { Skeleton } from "@/components/ui/skeleton";
 import { contentWidth } from "@/lib/layout/shell-ui";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { getExamSession } from "@/lib/exam-sessions/service";
@@ -10,18 +12,25 @@ import type { ExamSlug } from "@/types/edtech";
 import type { FullExamQuestion, FullExamResultsAnalysis } from "@/types/full-exam";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 
-export default async function FullExamResultsPage({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ examSlug: string; sessionId: string }>;
-  searchParams: Promise<{ review?: string }>;
-}) {
-  const { examSlug, sessionId } = await params;
-  const sp = await searchParams;
-  if (!isExamSlug(examSlug)) notFound();
+function ResultsSkeleton() {
+  return (
+    <div className={`mx-auto ${contentWidth.content} space-y-4 px-4 py-8 sm:px-6`}>
+      <Skeleton className="h-32 w-full rounded-2xl" />
+      <Skeleton className="h-64 w-full rounded-2xl" />
+    </div>
+  );
+}
 
-  const session = await auth();
+async function FullExamResultsInner({
+  examSlug,
+  sessionId,
+  reviewOpen,
+}: {
+  examSlug: ExamSlug;
+  sessionId: string;
+  reviewOpen: boolean;
+}) {
+  const session = await getCachedSession();
   if (!session?.user?.id) {
     redirect(`/auth/login?callbackUrl=/full-exam/${examSlug}/${sessionId}/results`);
   }
@@ -55,26 +64,50 @@ export default async function FullExamResultsPage({
         }));
 
   return (
+    <>
+      <FullExamResults
+        examSlug={examSlug}
+        sessionId={sessionId}
+        score={examSession.score ?? 0}
+        analysis={analysis}
+        answers={answers}
+        questions={questions}
+        initialReviewOpen={reviewOpen}
+      />
+
+      <div className="mt-6 flex justify-center">
+        <SocialShareBar
+          entityType="result"
+          entityId={sessionId}
+          text={`I scored ${examSession.score ?? 0}% on my ${examSlug.toUpperCase()} mock exam with AnyExamEasy! 🎓`}
+          url="https://www.anyexameasy.com"
+        />
+      </div>
+    </>
+  );
+}
+
+export default async function FullExamResultsPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ examSlug: string; sessionId: string }>;
+  searchParams: Promise<{ review?: string }>;
+}) {
+  const { examSlug, sessionId } = await params;
+  const sp = await searchParams;
+  if (!isExamSlug(examSlug)) notFound();
+
+  return (
     <div className="bg-[var(--color-bg)]">
       <div className={`mx-auto ${contentWidth.content} px-4 pb-8 sm:px-6`}>
-        <FullExamResults
-          examSlug={examSlug as ExamSlug}
-          sessionId={sessionId}
-          score={examSession.score ?? 0}
-          analysis={analysis}
-          answers={answers}
-          questions={questions}
-          initialReviewOpen={sp.review === "1"}
-        />
-
-        <div className="mt-6 flex justify-center">
-          <SocialShareBar
-            entityType="result"
-            entityId={sessionId}
-            text={`I scored ${examSession.score ?? 0}% on my ${examSlug.toUpperCase()} mock exam with AnyExamEasy! 🎓`}
-            url="https://www.anyexameasy.com"
+        <Suspense fallback={<ResultsSkeleton />}>
+          <FullExamResultsInner
+            examSlug={examSlug as ExamSlug}
+            sessionId={sessionId}
+            reviewOpen={sp.review === "1"}
           />
-        </div>
+        </Suspense>
       </div>
     </div>
   );

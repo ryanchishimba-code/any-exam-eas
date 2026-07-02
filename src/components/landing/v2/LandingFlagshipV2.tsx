@@ -20,19 +20,21 @@ import Link from "next/link";
 import { ArrowRight, LogIn } from "lucide-react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { LandingCta } from "@/components/landing/LandingCta";
-import { LandingStickyCta } from "@/components/landing/LandingStickyCta";
 import { LandingHashScroll } from "@/components/landing/LandingHashScroll";
-import { LandingPricingPreview } from "@/components/landing/LandingPricingPreview";
-import { ProBenefitsComparison } from "@/components/pricing/ProBenefitsComparison";
-import { ChooseYourExam } from "@/components/home/ChooseYourExam";
 import { LandingHeroV2 } from "@/components/landing/v2/LandingHeroV2";
-import { LandingOfferingV2 } from "@/components/landing/v2/LandingOfferingV2";
-import { LandingShowcaseV2 } from "@/components/landing/v2/LandingShowcaseV2";
-import { LandingWhyChooseV2 } from "@/components/landing/v2/LandingWhyChooseV2";
-import { LandingFaqV2 } from "@/components/landing/v2/LandingFaqV2";
-import { LandingClinicianTrust } from "@/components/landing/LandingClinicianTrust";
-import { LandingTestimonialsV2 } from "@/components/landing/LandingTestimonialsV2";
-import { LandingTrialGuarantee } from "@/components/landing/LandingTrialGuarantee";
+import {
+  ChooseYourExam,
+  LandingClinicianTrust,
+  LandingFaqV2,
+  LandingOfferingV2,
+  LandingPricingPreview,
+  LandingShowcaseV2,
+  LandingStickyCta,
+  LandingTestimonialsV2,
+  LandingTrialGuarantee,
+  LandingWhyChooseV2,
+  ProBenefitsComparison,
+} from "@/components/landing/v2/LandingFlagshipSectionsLazy";
 import {
   LANDING_HERO_CTA_DISCLOSURE,
   LANDING_TRIAL_HREF,

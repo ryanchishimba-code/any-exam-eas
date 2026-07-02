@@ -44,6 +44,41 @@ export function toSafeUser(user: User): SafeUser {
   };
 }
 
+/** Fields required for credential sign-in — keeps login queries lean. */
+export type CredentialUser = Pick<
+  User,
+  "id" | "email" | "name" | "passwordHash" | "accountStatus" | "role"
+>;
+
+export async function findUserForCredentials(email: string): Promise<CredentialUser | null> {
+  const normalized = normalizeEmail(email);
+  const user = await prisma.user.findUnique({
+    where: { email: normalized },
+    select: {
+      id: true,
+      email: true,
+      name: true,
+      passwordHash: true,
+      accountStatus: true,
+      role: true,
+    },
+  });
+  if (user) return user;
+
+  // Legacy rows before lowercase normalization — one fallback query only when needed.
+  return prisma.user.findFirst({
+    where: { email: { equals: normalized, mode: "insensitive" } },
+    select: {
+      id: true,
+      email: true,
+      name: true,
+      passwordHash: true,
+      accountStatus: true,
+      role: true,
+    },
+  });
+}
+
 export async function findUserByEmail(email: string): Promise<User | null> {
   const normalized = normalizeEmail(email);
   const exact = await prisma.user.findUnique({
@@ -67,14 +102,14 @@ export async function verifyUserPassword(
 export type CredentialAuthFailure = "invalid" | "no_password" | "invalid_hash" | "blocked";
 
 export type CredentialAuthResult =
-  | { ok: true; user: User }
+  | { ok: true; user: CredentialUser }
   | { ok: false; reason: CredentialAuthFailure };
 
 export async function authenticateCredentials(
   email: string,
   password: string
 ): Promise<CredentialAuthResult> {
-  const user = await findUserByEmail(email);
+  const user = await findUserForCredentials(email);
   if (!user) return { ok: false, reason: "invalid" };
 
   const blocked = credentialsLoginBlocked(user);

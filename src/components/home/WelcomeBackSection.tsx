@@ -45,23 +45,43 @@ export function WelcomeBackSection() {
       return;
     }
 
+    let cancelled = false;
     setLoadingWelcome(true);
-    fetch("/api/auth/welcome-back")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data: WelcomeData | null) => {
-        setWelcome(data);
-        if (data?.user.email) {
-          saveReturningUserHint({
-            email: data.user.email,
-            name: data.user.name ?? undefined,
-            readinessScore: data.headline?.readinessScore,
-            studyStreakDays: data.headline?.studyStreakDays,
-          });
-        }
-      })
-      .catch(() => setWelcome(null))
-      .finally(() => setLoadingWelcome(false));
-  }, [session?.user, status]);
+
+    const run = () => {
+      fetch("/api/auth/welcome-back")
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data: WelcomeData | null) => {
+          if (cancelled) return;
+          setWelcome(data);
+          if (data?.user.email) {
+            saveReturningUserHint({
+              email: data.user.email,
+              name: data.user.name ?? undefined,
+              readinessScore: data.headline?.readinessScore,
+              studyStreakDays: data.headline?.studyStreakDays,
+            });
+          }
+        })
+        .finally(() => {
+          if (!cancelled) setLoadingWelcome(false);
+        });
+    };
+
+    if (typeof requestIdleCallback !== "undefined") {
+      const id = requestIdleCallback(run, { timeout: 2500 });
+      return () => {
+        cancelled = true;
+        cancelIdleCallback(id);
+      };
+    }
+
+    const timer = window.setTimeout(run, 300);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, [status, session?.user]);
 
   const displayName = welcome?.user.name
     ? firstName(welcome.user.name)

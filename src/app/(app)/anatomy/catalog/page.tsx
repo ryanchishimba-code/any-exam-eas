@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { getCachedSession } from "@/lib/auth/session";
 import { AnatomyExplorerClient } from "@/components/anatomy/AnatomyExplorerClient";
 import { Skeleton } from "@/components/ui/skeleton";
 import { redirectMpjeFromClinicalRoutes } from "@/lib/edtech/exam-content-scope";
@@ -51,12 +51,14 @@ async function AnatomyCatalogContent({
   );
 }
 
-type PageProps = {
-  searchParams: Promise<{ exam?: string; structure?: string }>;
-};
-
-export default async function AnatomyCatalogPage({ searchParams }: PageProps) {
-  const session = await auth();
+async function AnatomyCatalogPageInner({
+  examOverride,
+  initialStructureId,
+}: {
+  examOverride?: ExamSlug;
+  initialStructureId?: string;
+}) {
+  const session = await getCachedSession();
   if (!session?.user?.id) {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.anatomyCatalog)}`);
   }
@@ -64,6 +66,20 @@ export default async function AnatomyCatalogPage({ searchParams }: PageProps) {
   await redirectMpjeFromClinicalRoutes(session.user.id);
   await requirePremiumPage(ROUTES.anatomy);
 
+  return (
+    <AnatomyCatalogContent
+      userId={session.user.id}
+      examOverride={examOverride}
+      initialStructureId={initialStructureId}
+    />
+  );
+}
+
+type PageProps = {
+  searchParams: Promise<{ exam?: string; structure?: string }>;
+};
+
+export default async function AnatomyCatalogPage({ searchParams }: PageProps) {
   const params = await searchParams;
   const examOverride = params.exam as ExamSlug | undefined;
   const initialStructureId = params.structure?.trim() || undefined;
@@ -78,8 +94,7 @@ export default async function AnatomyCatalogPage({ searchParams }: PageProps) {
       </header>
 
       <Suspense fallback={<AnatomySkeleton />}>
-        <AnatomyCatalogContent
-          userId={session.user.id}
+        <AnatomyCatalogPageInner
           examOverride={examOverride}
           initialStructureId={initialStructureId}
         />

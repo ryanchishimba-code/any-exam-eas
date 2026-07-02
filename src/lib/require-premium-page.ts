@@ -1,12 +1,12 @@
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
-import { auth } from "@/auth";
+import { getCachedSession } from "@/lib/auth/session";
 import { getUserAccess, type UserAccess } from "@/lib/access-control";
 import { checkAndRecordAccountIp } from "@/lib/account-ip-limit";
 import { resolvePaywallRedirect } from "@/lib/reactivation";
 
 async function loadPageAccess(callbackPath: string): Promise<UserAccess> {
-  const session = await auth();
+  const session = await getCachedSession();
   if (!session?.user?.id) {
     redirect(`/login?callbackUrl=${encodeURIComponent(callbackPath)}`);
   }
@@ -44,7 +44,7 @@ async function loadPageAccess(callbackPath: string): Promise<UserAccess> {
 
 /** Dashboard and account home — trial, paid, or post-trial free tier. */
 export async function requireAppPage(callbackPath = "/dashboard"): Promise<UserAccess> {
-  const session = await auth();
+  const session = await getCachedSession();
   const access = await loadPageAccess(callbackPath);
 
   if (!access.hasAppAccess) {
@@ -62,7 +62,7 @@ export async function requireAppPage(callbackPath = "/dashboard"): Promise<UserA
 
 /** Question bank / study entry — trial, paid, or free tier (usage caps apply in API). */
 export async function requireStudyPage(callbackPath = "/study"): Promise<UserAccess> {
-  const session = await auth();
+  const session = await getCachedSession();
   const access = await loadPageAccess(callbackPath);
 
   if (!access.hasStudyAccess) {
@@ -82,7 +82,7 @@ export async function requireStudyPage(callbackPath = "/study"): Promise<UserAcc
 export async function requirePremiumPage(
   callbackPath = "/study"
 ): Promise<UserAccess> {
-  const session = await auth();
+  const session = await getCachedSession();
   const access = await loadPageAccess(callbackPath);
 
   if (!access.hasPremiumAccess) {

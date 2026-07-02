@@ -19,6 +19,9 @@ export function messageForSignInError(
   if (reason === "account_disabled") {
     return "This account is suspended or closed. Contact support if you need help.";
   }
+  if (reason === "database_unavailable") {
+    return "Sign-in is temporarily unavailable. Please wait a moment and try again.";
+  }
   if (reason === "Configuration") {
     return "Sign-in is unavailable because the server is missing auth or database configuration.";
   }
@@ -41,7 +44,7 @@ export function resolveSignInFailure(result?: {
 
 export async function fetchAuthHealthWarning(): Promise<string | null> {
   try {
-    const res = await fetch("/api/health", { cache: "no-store" });
+    const res = await fetch("/api/health?config=1", { cache: "no-store" });
     const data = (await res.json()) as { ok?: boolean };
 
     if (!data.ok) {

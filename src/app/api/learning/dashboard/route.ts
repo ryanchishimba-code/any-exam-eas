@@ -38,8 +38,15 @@ export async function GET(req: Request) {
     () => getStudentDashboardData(premium.userId, fieldIds)
   );
 
-  return NextResponse.json({
-    dashboard,
-    scope: { examSlug, fieldIds: fieldIds ?? [] },
-  });
+  return NextResponse.json(
+    {
+      dashboard,
+      scope: { examSlug, fieldIds: fieldIds ?? [] },
+    },
+    {
+      headers: {
+        "Cache-Control": "private, max-age=15, stale-while-revalidate=30",
+      },
+    }
+  );
 }

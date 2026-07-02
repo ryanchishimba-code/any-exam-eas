@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { getCachedSession } from "@/lib/auth/session";
 import { requireAppPage } from "@/lib/require-premium-page";
 import { getStudyUsageSnapshot } from "@/lib/study/usage-limits";
 import { resolveDashboardUpgradeContext } from "@/lib/dashboard/upgrade-banner";
@@ -83,8 +83,8 @@ async function DashboardContent({
   );
 }
 
-export default async function DashboardPage() {
-  const session = await auth();
+async function DashboardPageInner() {
+  const session = await getCachedSession();
   if (!session?.user?.id) {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.dashboard)}`);
   }
@@ -92,8 +92,14 @@ export default async function DashboardPage() {
   const access = await requireAppPage(ROUTES.dashboard);
 
   return (
+    <DashboardContent userId={session.user.id} userName={session.user.name} access={access} />
+  );
+}
+
+export default async function DashboardPage() {
+  return (
     <Suspense fallback={<DashboardSkeleton />}>
-      <DashboardContent userId={session.user.id} userName={session.user.name} access={access} />
+      <DashboardPageInner />
     </Suspense>
   );
 }

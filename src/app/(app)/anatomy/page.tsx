@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { getCachedSession } from "@/lib/auth/session";
 import { AnatomyExplorerClient } from "@/components/anatomy/AnatomyExplorerClient";
 import { CtAtlasHeadHints } from "@/components/anatomy/ct/CtAtlasHeadHints";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -12,6 +12,7 @@ import { loadMemoryCards } from "@/lib/library/memory-cards";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
+
 export const metadata = {
   title: "3D Anatomy Model — Any Exam Easy",
   description:
@@ -55,6 +56,35 @@ async function AnatomyContent({
   );
 }
 
+async function AnatomyPageInner({
+  examOverride,
+  initialStructureId,
+  initialProcedureId,
+  callbackPath,
+}: {
+  examOverride?: ExamSlug;
+  initialStructureId?: string;
+  initialProcedureId?: string;
+  callbackPath: string;
+}) {
+  const session = await getCachedSession();
+  if (!session?.user?.id) {
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callbackPath)}`);
+  }
+
+  await redirectMpjeFromClinicalRoutes(session.user.id);
+  await requirePremiumPage(ROUTES.anatomy);
+
+  return (
+    <AnatomyContent
+      userId={session.user.id}
+      examOverride={examOverride}
+      initialStructureId={initialStructureId}
+      initialProcedureId={initialProcedureId}
+    />
+  );
+}
+
 type PageProps = {
   searchParams: Promise<{ exam?: string; structure?: string; procedure?: string; surface?: string }>;
 };
@@ -82,13 +112,6 @@ export default async function AnatomyPage({ searchParams }: PageProps) {
     ? `${ROUTES.anatomy}?${callbackQuery.toString()}`
     : ROUTES.anatomy;
 
-  const session = await auth();
-  if (!session?.user?.id) {
-    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callbackPath)}`);
-  }
-
-  await redirectMpjeFromClinicalRoutes(session.user.id);
-  await requirePremiumPage(ROUTES.anatomy);
   return (
     <div className="w-full space-y-4">
       <CtAtlasHeadHints />
@@ -97,11 +120,11 @@ export default async function AnatomyPage({ searchParams }: PageProps) {
       </header>
 
       <Suspense fallback={<AnatomySkeleton />}>
-        <AnatomyContent
-          userId={session.user.id}
+        <AnatomyPageInner
           examOverride={examOverride}
           initialStructureId={initialStructureId}
           initialProcedureId={initialProcedureId}
+          callbackPath={callbackPath}
         />
       </Suspense>
     </div>

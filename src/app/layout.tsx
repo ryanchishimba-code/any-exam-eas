@@ -9,6 +9,7 @@ import { RootChrome } from "@/components/layout/RootChrome";
 import { ClientRecovery } from "@/components/ClientRecovery";
 import { PwaRegister } from "@/components/PwaRegister";
 import { AppQueryProvider } from "@/lib/client/query-provider";
+import { UserAccessProvider } from "@/lib/client/user-access-context";
 import { ThemeScript } from "@/components/theme/ThemeScript";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { buildRootMetadata } from "@/lib/seo";
@@ -33,6 +34,7 @@ export default function RootLayout({
           <AppQueryProvider>
             <GoogleAnalytics />
             <SessionProvider>
+              <UserAccessProvider>
               <LoginModalRoot>
                 <ClientRecovery />
                 <PwaRegister />
@@ -40,6 +42,7 @@ export default function RootLayout({
                 <RootChrome>{children}</RootChrome>
                 <ShareFabLazy />
               </LoginModalRoot>
+              </UserAccessProvider>
             </SessionProvider>
           </AppQueryProvider>
         </ThemeProvider>

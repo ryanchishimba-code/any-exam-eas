@@ -38,6 +38,15 @@ export async function requireSessionGuard(req?: Request): Promise<SessionGuardRe
   return { ok: true, session, userId: session.user.id };
 }
 
+/** Optional auth for low-risk telemetry — no IP-limit DB work. */
+export async function readOptionalSessionUser(): Promise<
+  { userId: string; session: Session } | undefined
+> {
+  const session = await auth();
+  if (!session?.user?.id) return undefined;
+  return { userId: session.user.id, session };
+}
+
 /** Optional auth — enforces IP limit only when a session exists. */
 export async function optionalSessionGuard(req?: Request): Promise<OptionalSessionGuardResult> {
   const session = await auth();

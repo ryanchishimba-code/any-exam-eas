@@ -4,11 +4,21 @@ import { useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { getOrCreateAnalyticsSessionId } from "@/lib/analytics/client-session";
 
+function postBeacon(body: Record<string, unknown>) {
+  void fetch("/api/analytics/beacon", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    keepalive: true,
+    body: JSON.stringify(body),
+  });
+}
+
 export function PageViewTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const enteredAt = useRef<number>(Date.now());
   const lastPath = useRef<string>("");
+  const pendingPageview = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const path =
@@ -16,32 +26,36 @@ export function PageViewTracker() {
 
     if (lastPath.current && lastPath.current !== path) {
       const durationSec = Math.round((Date.now() - enteredAt.current) / 1000);
-      void fetch("/api/analytics/beacon", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        keepalive: true,
-        body: JSON.stringify({
-          path: lastPath.current,
-          durationSec,
-          sessionId: getOrCreateAnalyticsSessionId(),
-          referrer: document.referrer || undefined,
-        }),
+      postBeacon({
+        path: lastPath.current,
+        durationSec,
+        sessionId: getOrCreateAnalyticsSessionId(),
+        referrer: document.referrer || undefined,
       });
       enteredAt.current = Date.now();
     }
 
     lastPath.current = path;
 
-    void fetch("/api/analytics/beacon", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      keepalive: true,
-      body: JSON.stringify({
+    if (pendingPageview.current) {
+      clearTimeout(pendingPageview.current);
+    }
+
+    pendingPageview.current = setTimeout(() => {
+      postBeacon({
         path,
         sessionId: getOrCreateAnalyticsSessionId(),
         referrer: document.referrer || undefined,
-      }),
-    });
+      });
+      pendingPageview.current = null;
+    }, 120);
+
+    return () => {
+      if (pendingPageview.current) {
+        clearTimeout(pendingPageview.current);
+        pendingPageview.current = null;
+      }
+    };
   }, [pathname, searchParams]);
 
   useEffect(() => {

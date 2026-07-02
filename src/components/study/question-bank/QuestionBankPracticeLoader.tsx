@@ -1,4 +1,4 @@
-import { StudyBankPractice } from "@/components/study/StudyBankPractice";
+import { StudyBankPracticeLazy } from "@/components/study/StudyBankPracticeLazy";
 import { examFieldIds } from "@/lib/edtech/exams";
 import { getStudentWeakTopics } from "@/lib/learning/student-dashboard";
 import { loadSubjectCountsForUser } from "@/lib/study/load-subject-counts";
@@ -36,7 +36,7 @@ export async function QuestionBankPracticeLoader({
     : null;
 
   return (
-    <StudyBankPractice
+    <StudyBankPracticeLazy
       preferredExamSlug={examSlug}
       lockExam
       initialFieldId={fieldParam}

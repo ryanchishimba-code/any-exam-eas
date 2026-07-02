@@ -27,40 +27,40 @@ export type ClientSubscriptionStatus = {
 };
 
 export async function fetchSubscriptionStatus(): Promise<ClientSubscriptionStatus | null> {
-  const attempts = 8;
+  const attempts = 5;
   for (let attempt = 0; attempt < attempts; attempt++) {
     try {
-      const statusRes = await fetch("/api/subscription/status", { cache: "no-store" });
+      const statusRes = await fetch("/api/subscription/status?lite=1", { cache: "no-store" });
       if (statusRes.status === 401) {
-        // Session cookie may not be visible to API routes yet right after sign-in.
-        await new Promise((resolve) => setTimeout(resolve, 200 * (attempt + 1)));
+        await new Promise((resolve) => setTimeout(resolve, 100 * (attempt + 1)));
         continue;
       }
       if (!statusRes.ok) {
-        await new Promise((resolve) => setTimeout(resolve, 200 * (attempt + 1)));
+        await new Promise((resolve) => setTimeout(resolve, 100 * (attempt + 1)));
         continue;
       }
       return (await statusRes.json()) as ClientSubscriptionStatus;
     } catch {
-      await new Promise((resolve) => setTimeout(resolve, 200 * (attempt + 1)));
+      await new Promise((resolve) => setTimeout(resolve, 100 * (attempt + 1)));
     }
   }
   return null;
 }
 
 async function fetchExamSlug(): Promise<string | null> {
-  for (let attempt = 0; attempt < 8; attempt++) {
+  const attempts = 5;
+  for (let attempt = 0; attempt < attempts; attempt++) {
     try {
       const res = await fetch("/api/user/exam-preference", { cache: "no-store" });
       if (res.status === 401) {
-        await new Promise((resolve) => setTimeout(resolve, 200 * (attempt + 1)));
+        await new Promise((resolve) => setTimeout(resolve, 100 * (attempt + 1)));
         continue;
       }
       if (!res.ok) return null;
       const data = (await res.json()) as { examSlug?: string | null };
       return data.examSlug ?? null;
     } catch {
-      await new Promise((resolve) => setTimeout(resolve, 200 * (attempt + 1)));
+      await new Promise((resolve) => setTimeout(resolve, 100 * (attempt + 1)));
     }
   }
   return null;
@@ -68,10 +68,11 @@ async function fetchExamSlug(): Promise<string | null> {
 
 export async function resolvePostLoginDestination(
   callbackUrl: string,
-  status: ClientSubscriptionStatus | null
+  status: ClientSubscriptionStatus | null,
+  examSlug?: string | null
 ): Promise<string> {
-  const examSlug = await fetchExamSlug();
-  return resolveDestination(callbackUrl, status, examSlug);
+  const slug = examSlug === undefined ? await fetchExamSlug() : examSlug;
+  return resolveDestination(callbackUrl, status, slug);
 }
 
 async function fetchAccountName(): Promise<string | undefined> {
@@ -106,22 +107,24 @@ export async function completeLoginFlow(params: {
     lastMethod: params.method === "magic" ? "email" : params.method,
   });
 
-  for (let attempt = 0; attempt < 8; attempt++) {
+  for (let attempt = 0; attempt < 5; attempt++) {
     const session = await getSession();
     if (session?.user?.email) break;
-    await new Promise((resolve) => setTimeout(resolve, 150));
+    await new Promise((resolve) => setTimeout(resolve, 80 * (attempt + 1)));
   }
   params.router.refresh();
 
-  const status = await fetchSubscriptionStatus();
-  let destination = await resolvePostLoginDestination(safeCallback, status);
+  const [status, examSlug] = await Promise.all([
+    fetchSubscriptionStatus(),
+    fetchExamSlug(),
+  ]);
+  let destination = await resolvePostLoginDestination(safeCallback, status, examSlug);
 
   if (
     status?.status === "trialing" &&
     status.hasAccess &&
     !destination.includes("welcome=trial")
   ) {
-    const examSlug = await fetchExamSlug();
     if (!examSlug) {
       markTrialWelcomePending(status.daysRemaining ?? TRIAL_DAYS);
       destination += destination.includes("?") ? "&welcome=trial" : "?welcome=trial";

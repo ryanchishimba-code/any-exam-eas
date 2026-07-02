@@ -17,8 +17,10 @@ export async function GET(req: Request) {
     return NextResponse.json({ examSlug: null });
   }
 
-  const pref = await getUserExamPreference(guard.userId);
-  const meta = pref ? await getUserEdtechMetadata(guard.userId) : null;
+  const [pref, meta] = await Promise.all([
+    getUserExamPreference(guard.userId),
+    getUserEdtechMetadata(guard.userId),
+  ]);
   return NextResponse.json({
     examSlug: pref?.examSlug ?? null,
     mpjeStateCode: meta?.mpjeStateCode ?? null,

@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { getCachedSession } from "@/lib/auth/session";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { fullExamHref, ROUTES } from "@/lib/routes";
 
@@ -24,7 +24,7 @@ export default async function StudyPracticePage({
 
   if (params.field === "drugs300") redirect(ROUTES.drugs300);
 
-  const session = await auth();
+  const session = await getCachedSession();
   if (!session?.user?.id) {
     const qs = new URLSearchParams();
     for (const [key, value] of Object.entries(params)) {

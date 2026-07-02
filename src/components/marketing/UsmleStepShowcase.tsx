@@ -93,6 +93,19 @@ function toCountMap(options?: ApiOption[]): Partial<Record<UsmleStepLevel, numbe
   return map;
 }
 
+function hasCompleteStepCounts(
+  counts?: Partial<Record<UsmleStepLevel, number>>
+): boolean {
+  return (
+    typeof counts?.step1 === "number" &&
+    counts.step1 > 0 &&
+    typeof counts?.step2 === "number" &&
+    counts.step2 > 0 &&
+    typeof counts?.step3 === "number" &&
+    counts.step3 > 0
+  );
+}
+
 export function UsmleStepShowcase({
   initialStepCounts,
 }: {
@@ -102,12 +115,11 @@ export function UsmleStepShowcase({
   const [counts, setCounts] = useState<Partial<Record<UsmleStepLevel, number>>>(
     () => initialStepCounts ?? {}
   );
-  const [loaded, setLoaded] = useState(
-    Boolean(initialStepCounts && Object.values(initialStepCounts).some((n) => n > 0))
-  );
-  const [selectedLevel, setSelectedLevel] = useState<UsmleStepLevel>("step2");
+  const [loaded, setLoaded] = useState(() => hasCompleteStepCounts(initialStepCounts));
 
   useEffect(() => {
+    if (hasCompleteStepCounts(initialStepCounts)) return;
+
     let cancelled = false;
     fetch("/api/exams/usmle")
       .then((r) => r.json())
@@ -122,7 +134,9 @@ export function UsmleStepShowcase({
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [initialStepCounts]);
+
+  const [selectedLevel, setSelectedLevel] = useState<UsmleStepLevel>("step2");
 
   const steps = useMemo(
     () => SCAFFOLD.map((s) => ({ ...s, questionCount: counts[s.level] ?? 0 })),
