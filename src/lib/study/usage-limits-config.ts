@@ -16,6 +16,8 @@ export type StudyUsageLimits = {
   allowFullLengthMocks: boolean;
   /** Trial mock allowance — `null` = unlimited during trial. */
   trialMockAllowance: number | null;
+  /** Full-length adaptive exam allowance during trial (`full` preset). `null` = unlimited. */
+  trialFullAdaptiveAllowance: number | null;
   allowAdaptive: boolean;
 };
 
@@ -29,6 +31,7 @@ export const STUDY_USAGE_LIMITS: Record<StudyUsagePlan, StudyUsageLimits> = {
     allowShortMocks: true,
     allowFullLengthMocks: true,
     trialMockAllowance: null,
+    trialFullAdaptiveAllowance: 1,
     allowAdaptive: true,
   },
   free: {
@@ -40,6 +43,7 @@ export const STUDY_USAGE_LIMITS: Record<StudyUsagePlan, StudyUsageLimits> = {
     allowShortMocks: false,
     allowFullLengthMocks: false,
     trialMockAllowance: null,
+    trialFullAdaptiveAllowance: null,
     allowAdaptive: false,
   },
   pro: {
@@ -51,6 +55,7 @@ export const STUDY_USAGE_LIMITS: Record<StudyUsagePlan, StudyUsageLimits> = {
     allowShortMocks: true,
     allowFullLengthMocks: true,
     trialMockAllowance: null,
+    trialFullAdaptiveAllowance: null,
     allowAdaptive: true,
   },
   staff: {
@@ -62,6 +67,7 @@ export const STUDY_USAGE_LIMITS: Record<StudyUsagePlan, StudyUsageLimits> = {
     allowShortMocks: true,
     allowFullLengthMocks: true,
     trialMockAllowance: null,
+    trialFullAdaptiveAllowance: null,
     allowAdaptive: true,
   },
 };

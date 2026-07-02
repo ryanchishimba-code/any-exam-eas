@@ -125,6 +125,22 @@ export async function countTrialMocks(userId: string): Promise<number> {
   });
 }
 
+export async function countTrialFullAdaptiveExams(userId: string): Promise<number> {
+  const since = await trialPeriodStart(userId);
+  const sessions = await prisma.examSession.findMany({
+    where: {
+      userId,
+      createdAt: { gte: since },
+    },
+    select: { analysis: true },
+  });
+
+  return sessions.filter((session) => {
+    const analysis = session.analysis as { sessionConfig?: { lengthPreset?: string } } | null;
+    return analysis?.sessionConfig?.lengthPreset === "full";
+  }).length;
+}
+
 export type StudyUsageSnapshot = {
   plan: StudyUsagePlan;
   limits: StudyUsageLimits;
@@ -135,6 +151,8 @@ export type StudyUsageSnapshot = {
   mockExamsThisMonth: number;
   usedTrialMocks: number | null;
   remainingTrialMocks: number | null;
+  usedTrialFullAdaptive: number | null;
+  remainingTrialFullAdaptive: number | null;
 };
 
 export async function getStudyUsageSnapshot(
@@ -154,6 +172,8 @@ export async function getStudyUsageSnapshot(
       mockExamsThisMonth: 0,
       usedTrialMocks: null,
       remainingTrialMocks: null,
+      usedTrialFullAdaptive: null,
+      remainingTrialFullAdaptive: null,
     };
   }
 
@@ -181,6 +201,16 @@ export async function getStudyUsageSnapshot(
     remainingTrialMocks = Math.max(0, limits.trialMockAllowance - usedTrialMocks);
   }
 
+  let usedTrialFullAdaptive: number | null = null;
+  let remainingTrialFullAdaptive: number | null = null;
+  if (plan === "trial" && limits.trialFullAdaptiveAllowance != null) {
+    usedTrialFullAdaptive = await countTrialFullAdaptiveExams(access.userId);
+    remainingTrialFullAdaptive = Math.max(
+      0,
+      limits.trialFullAdaptiveAllowance - usedTrialFullAdaptive
+    );
+  }
+
   const mockExamsThisMonth = planHasQuestionAccessLimits(plan)
     ? await countMockExamsThisMonth(access.userId)
     : 0;
@@ -195,6 +225,8 @@ export async function getStudyUsageSnapshot(
     mockExamsThisMonth,
     usedTrialMocks,
     remainingTrialMocks,
+    usedTrialFullAdaptive,
+    remainingTrialFullAdaptive,
   };
 }
 
@@ -207,6 +239,7 @@ export type StudyUsageCheckInput = {
   adaptive?: boolean;
   shortMock?: boolean;
   fullLengthMock?: boolean;
+  fullAdaptiveMock?: boolean;
 };
 
 export type StudyUsageCheckResult =
@@ -279,6 +312,29 @@ export async function checkStudyQuestionUsage(
               : "Full-length mock exams require a Pro subscription.",
           code: plan === "trial" ? "TRIAL_MOCK_LOCKED" : "PRO_MOCK_LOCKED",
           plan,
+          upgradeUrl: upgradeUrl(plan, "full_mock"),
+        },
+        { status: 403 }
+      ),
+    };
+  }
+
+  if (
+    input.fullAdaptiveMock &&
+    plan === "trial" &&
+    limits.trialFullAdaptiveAllowance != null &&
+    snapshot.usedTrialFullAdaptive != null &&
+    snapshot.usedTrialFullAdaptive >= limits.trialFullAdaptiveAllowance
+  ) {
+    return {
+      ok: false,
+      response: NextResponse.json(
+        {
+          error: `Your trial includes ${limits.trialFullAdaptiveAllowance} full-length adaptive exam. Upgrade for unlimited full simulations.`,
+          code: "TRIAL_FULL_ADAPTIVE_USED",
+          plan,
+          usedTrialFullAdaptive: snapshot.usedTrialFullAdaptive,
+          trialFullAdaptiveAllowance: limits.trialFullAdaptiveAllowance,
           upgradeUrl: upgradeUrl(plan, "full_mock"),
         },
         { status: 403 }
@@ -406,6 +462,17 @@ export async function checkMockExamStart(input: {
       requestedCount: input.questionCount,
       timedExam: true,
       presetExam: true,
+    });
+  }
+
+  if (input.lengthPreset === "full") {
+    return checkStudyQuestionUsage({
+      userId: input.userId,
+      access: input.access,
+      requestedCount: input.questionCount,
+      timedExam: true,
+      fullLengthMock: true,
+      fullAdaptiveMock: true,
     });
   }
 

@@ -24,6 +24,8 @@ export async function GET(req: Request) {
     mockExamsThisMonth: snapshot.mockExamsThisMonth,
     usedTrialMocks: snapshot.usedTrialMocks,
     remainingTrialMocks: snapshot.remainingTrialMocks,
+    usedTrialFullAdaptive: snapshot.usedTrialFullAdaptive,
+    remainingTrialFullAdaptive: snapshot.remainingTrialFullAdaptive,
     limits: {
       maxPerSession: snapshot.limits.maxPerSession,
       maxTimedExamLength: snapshot.limits.maxTimedExamLength,
@@ -32,6 +34,7 @@ export async function GET(req: Request) {
       allowShortMocks: snapshot.limits.allowShortMocks,
       allowFullLengthMocks: snapshot.limits.allowFullLengthMocks,
       trialMockAllowance: snapshot.limits.trialMockAllowance,
+      trialFullAdaptiveAllowance: snapshot.limits.trialFullAdaptiveAllowance,
     },
     allPlans: STUDY_USAGE_LIMITS,
   });

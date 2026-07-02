@@ -1,180 +1,233 @@
 {
-  "generatedAt": "2026-06-13T20:06:01.491Z",
+  "generatedAt": "2026-06-30T22:58:06.356Z",
   "summary": {
-    "total": 24166,
-    "pass": 24162,
-    "fail": 4,
+    "total": 9787,
+    "pass": 9764,
+    "fail": 23,
     "bySeverity": {
-      "warn": 470,
-      "error": 4
+      "warn": 35,
+      "error": 46
     },
     "byCode": {
-      "naplex_missing_clinical_data": 470,
-      "naplex_stem_lead_in": 4
+      "naplex_missing_clinical_data": 35,
+      "naplex_stem_lead_in": 23,
+      "naplex_explanation_short": 23
     }
   },
-  "passRate": 99.98344781925019,
-  "polishNeeded": 21594,
-  "qaGateFail": 4,
-  "lowQuality": 20,
-  "withWarnings": 470,
-  "withErrors": 4,
+  "passRate": 99.7649943803004,
+  "polishNeeded": 85,
+  "qaGateFail": 27,
+  "lowQuality": 40,
+  "withWarnings": 35,
+  "withErrors": 23,
   "bySubject": {
     "pharmacokinetics": {
-      "total": 2012,
-      "pass": 2011,
-      "fail": 1,
+      "total": 13,
+      "pass": 10,
+      "fail": 3,
       "warnOnly": 0,
       "byCode": {
-        "naplex_missing_clinical_data": 276,
-        "naplex_stem_lead_in": 1
-      }
-    },
-    "pharmacology": {
-      "total": 2029,
-      "pass": 2029,
-      "fail": 0,
-      "warnOnly": 0,
-      "byCode": {
-        "naplex_missing_clinical_data": 172
-      }
-    },
-    "pharmaceutics": {
-      "total": 2008,
-      "pass": 2008,
-      "fail": 0,
-      "warnOnly": 0,
-      "byCode": {
-        "naplex_missing_clinical_data": 2
-      }
-    },
-    "compounding-calculations": {
-      "total": 2022,
-      "pass": 2022,
-      "fail": 0,
-      "warnOnly": 0,
-      "byCode": {
-        "naplex_missing_clinical_data": 2
+        "naplex_stem_lead_in": 3,
+        "naplex_explanation_short": 3
       }
     },
     "cardiovascular-rx": {
-      "total": 2020,
-      "pass": 2020,
-      "fail": 0,
+      "total": 2227,
+      "pass": 2225,
+      "fail": 2,
       "warnOnly": 0,
       "byCode": {
+        "naplex_stem_lead_in": 2,
+        "naplex_explanation_short": 2,
         "naplex_missing_clinical_data": 1
       }
     },
-    "infectious-disease-rx": {
-      "total": 2018,
-      "pass": 2018,
-      "fail": 0,
+    "pharmacy-law": {
+      "total": 7,
+      "pass": 5,
+      "fail": 2,
       "warnOnly": 0,
       "byCode": {
-        "naplex_missing_clinical_data": 1
-      }
-    },
-    "endocrine-rx": {
-      "total": 2015,
-      "pass": 2015,
-      "fail": 0,
-      "warnOnly": 0,
-      "byCode": {}
-    },
-    "cns-rx": {
-      "total": 2006,
-      "pass": 2006,
-      "fail": 0,
-      "warnOnly": 0,
-      "byCode": {}
-    },
-    "oncology-rx": {
-      "total": 2002,
-      "pass": 2002,
-      "fail": 0,
-      "warnOnly": 0,
-      "byCode": {}
-    },
-    "otc-self-care": {
-      "total": 2007,
-      "pass": 2007,
-      "fail": 0,
-      "warnOnly": 0,
-      "byCode": {
+        "naplex_stem_lead_in": 2,
+        "naplex_explanation_short": 2,
         "naplex_missing_clinical_data": 2
       }
     },
     "patient-counseling": {
-      "total": 2021,
-      "pass": 2019,
+      "total": 3060,
+      "pass": 3058,
       "fail": 2,
       "warnOnly": 0,
       "byCode": {
-        "naplex_missing_clinical_data": 12,
-        "naplex_stem_lead_in": 2
+        "naplex_stem_lead_in": 2,
+        "naplex_explanation_short": 2,
+        "naplex_missing_clinical_data": 4
       }
     },
-    "pharmacy-law": {
-      "total": 2006,
-      "pass": 2005,
-      "fail": 1,
+    "infectious-disease-rx": {
+      "total": 20,
+      "pass": 18,
+      "fail": 2,
       "warnOnly": 0,
       "byCode": {
-        "naplex_missing_clinical_data": 2,
-        "naplex_stem_lead_in": 1
+        "naplex_stem_lead_in": 2,
+        "naplex_explanation_short": 2
       }
+    },
+    "cns-rx": {
+      "total": 6,
+      "pass": 4,
+      "fail": 2,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_stem_lead_in": 2,
+        "naplex_explanation_short": 2,
+        "naplex_missing_clinical_data": 1
+      }
+    },
+    "compounding-calculations": {
+      "total": 2394,
+      "pass": 2394,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_missing_clinical_data": 1
+      }
+    },
+    "pharmaceutics": {
+      "total": 5,
+      "pass": 3,
+      "fail": 2,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_stem_lead_in": 2,
+        "naplex_explanation_short": 2,
+        "naplex_missing_clinical_data": 1
+      }
+    },
+    "pharmacology": {
+      "total": 1308,
+      "pass": 1306,
+      "fail": 2,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_missing_clinical_data": 24,
+        "naplex_stem_lead_in": 2,
+        "naplex_explanation_short": 2
+      }
+    },
+    "endocrine-rx": {
+      "total": 11,
+      "pass": 9,
+      "fail": 2,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_stem_lead_in": 2,
+        "naplex_explanation_short": 2
+      }
+    },
+    "otc-self-care": {
+      "total": 718,
+      "pass": 716,
+      "fail": 2,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_stem_lead_in": 2,
+        "naplex_explanation_short": 2,
+        "naplex_missing_clinical_data": 1
+      }
+    },
+    "oncology-rx": {
+      "total": 2,
+      "pass": 0,
+      "fail": 2,
+      "warnOnly": 0,
+      "byCode": {
+        "naplex_stem_lead_in": 2,
+        "naplex_explanation_short": 2
+      }
+    },
+    "pharmacotherapy-oncology": {
+      "total": 16,
+      "pass": 16,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {}
     }
   },
   "topCodeCounts": {
-    "naplex_missing_clinical_data": 470,
-    "naplex_stem_lead_in": 4
+    "naplex_missing_clinical_data": 35,
+    "naplex_stem_lead_in": 23,
+    "naplex_explanation_short": 23
   },
   "samples": {
     "naplex_missing_clinical_data": [
       {
-        "itemId": "cmpnjq99615pw1ymx82xjfflt",
-        "subjectId": "pharmacokinetics",
-        "vignette": "A clinical pharmacist verifies dosing for Azelastine (Astelin) before dispensing.",
-        "stem": "What is the total daily dose?",
+        "itemId": "cmqvjab7v001k1yxkbngeau0s",
+        "subjectId": "pharmacology",
+        "vignette": "A pharmacist reviews a formulary request for a new medication for a patient with chronic pain. The medication is a novel opioid analgesic that has recently been approved. The pharmacist needs to evalu",
+        "stem": "Which action should the pharmacist take first?",
         "message": "Clinical stem lacks patient age and numeric labs, vitals, or doses."
       },
       {
-        "itemId": "cmpnjq99615q31ymxhvkgrr56",
-        "subjectId": "pharmacokinetics",
-        "vignette": "A clinical pharmacist verifies dosing for Azelastine (Astelin) before dispensing.",
-        "stem": "What is the total daily dose?",
+        "itemId": "cmqvqccpc001p1yysotsb9q8s",
+        "subjectId": "pharmacology",
+        "vignette": "A clinical trial is evaluating a new antihypertensive medication. The primary endpoint is the reduction in systolic blood pressure after 12 weeks of treatment. The trial design includes randomization ",
+        "stem": "Which monitoring parameter is most critical?",
         "message": "Clinical stem lacks patient age and numeric labs, vitals, or doses."
       },
       {
-        "itemId": "cmpnjq99615qa1ymxyuczx3w2",
-        "subjectId": "pharmacokinetics",
-        "vignette": "A clinical pharmacist verifies dosing for Azelastine (Astelin) before dispensing.",
-        "stem": "What is the total daily dose?",
+        "itemId": "cmqvqccss001q1yysk3gw9l7e",
+        "subjectId": "pharmacology",
+        "vignette": "A pharmacist reviews a patient's medication profile and notices the patient is taking warfarin and has recently started taking a new herbal supplement. The patient reports feeling more fatigued than u",
+        "stem": "Which drug interaction poses the greatest risk?",
         "message": "Clinical stem lacks patient age and numeric labs, vitals, or doses."
       }
     ],
     "naplex_stem_lead_in": [
       {
-        "itemId": "cmq339r0300371yiujmn46ovo",
+        "itemId": "cmqvw5rsb0020ju048loih6wz",
         "subjectId": "pharmacokinetics",
-        "vignette": "J.T., 72 y/o woman, 60 kg | SCr 1.6 mg/dL (stable) | For vancomycin dosing estimate",
-        "stem": "Using Cockcroft–Gault (female), which estimated creatinine clearance (mL/min) is closest?",
+        "vignette": "",
+        "stem": "First-pass metabolism occurs mainly in:",
         "message": "Stem should use NAPLEX-style lead-in (most appropriate, calculate, select all, etc.)."
       },
       {
-        "itemId": "cmq339u2w004f1yiuvl3al953",
-        "subjectId": "pharmacy-law",
+        "itemId": "cmqvw5rsu0021ju04bgh9j8dx",
+        "subjectId": "pharmacokinetics",
         "vignette": "",
-        "stem": "A pharmacist discovers a colleague diverting controlled substances. The FIRST professional obligation is to:",
+        "stem": "Half-life is the time for:",
         "message": "Stem should use NAPLEX-style lead-in (most appropriate, calculate, select all, etc.)."
       },
       {
-        "itemId": "cmq9fimvx003j1yrw0g04bw3s",
-        "subjectId": "patient-counseling",
+        "itemId": "cmqvw5rtc0022ju04uuhalnk7",
+        "subjectId": "pharmacokinetics",
         "vignette": "",
-        "stem": "A test item focuses on Patient Counseling & Medication Adherence. Which statement is most accurate?",
+        "stem": "Therapeutic drug monitoring is critical for:",
         "message": "Stem should use NAPLEX-style lead-in (most appropriate, calculate, select all, etc.)."
+      }
+    ],
+    "naplex_explanation_short": [
+      {
+        "itemId": "cmqvw5rsb0020ju048loih6wz",
+        "subjectId": "pharmacokinetics",
+        "vignette": "",
+        "stem": "First-pass metabolism occurs mainly in:",
+        "message": "Explanation should be at least 100 characters with drug-specific rationale."
+      },
+      {
+        "itemId": "cmqvw5rsu0021ju04bgh9j8dx",
+        "subjectId": "pharmacokinetics",
+        "vignette": "",
+        "stem": "Half-life is the time for:",
+        "message": "Explanation should be at least 100 characters with drug-specific rationale."
+      },
+      {
+        "itemId": "cmqvw5rtc0022ju04uuhalnk7",
+        "subjectId": "pharmacokinetics",
+        "vignette": "",
+        "stem": "Therapeutic drug monitoring is critical for:",
+        "message": "Explanation should be at least 100 characters with drug-specific rationale."
       }
     ]
   }

@@ -1,714 +1,233 @@
 
-▶ elevate
-
-NCLEX elevate — 24214 items
-
-  … 50/24214, updated 47, best 29
-  … 100/24214, updated 97, best 70
-  … 150/24214, updated 147, best 113
-  … 200/24214, updated 197, best 155
-  … 250/24214, updated 245, best 197
-  … 300/24214, updated 293, best 240
-  … 350/24214, updated 342, best 276
-  … 400/24214, updated 388, best 314
-  … 450/24214, updated 438, best 351
-  … 500/24214, updated 487, best 389
-  … 550/24214, updated 533, best 429
-  … 600/24214, updated 581, best 472
-  … 650/24214, updated 629, best 514
-  … 700/24214, updated 678, best 557
-  … 750/24214, updated 724, best 597
-  … 800/24214, updated 771, best 639
-  … 850/24214, updated 815, best 681
-  … 900/24214, updated 865, best 724
-  … 950/24214, updated 911, best 764
-  … 1000/24214, updated 960, best 805
-  … 1050/24214, updated 1007, best 844
-  … 1100/24214, updated 1056, best 885
-  … 1150/24214, updated 1105, best 922
-  … 1200/24214, updated 1153, best 960
-  … 1250/24214, updated 1203, best 1000
-  … 1300/24214, updated 1246, best 1042
-  … 1350/24214, updated 1291, best 1081
-  … 1400/24214, updated 1337, best 1121
-  … 1450/24214, updated 1386, best 1157
-  … 1500/24214, updated 1433, best 1199
-  … 1550/24214, updated 1479, best 1235
-  … 1600/24214, updated 1529, best 1277
-  … 1650/24214, updated 1575, best 1314
-  … 1700/24214, updated 1621, best 1356
-  … 1750/24214, updated 1663, best 1395
-  … 1800/24214, updated 1707, best 1435
-  … 1850/24214, updated 1755, best 1475
-  … 1900/24214, updated 1800, best 1520
-  … 1950/24214, updated 1845, best 1557
-  … 2000/24214, updated 1888, best 1598
-  … 2050/24214, updated 1936, best 1625
-  … 2100/24214, updated 1986, best 1640
-  … 2150/24214, updated 2036, best 1663
-  … 2200/24214, updated 2086, best 1688
-  … 2250/24214, updated 2136, best 1706
-  … 2300/24214, updated 2186, best 1731
-  … 2350/24214, updated 2236, best 1755
-  … 2400/24214, updated 2286, best 1774
-  … 2450/24214, updated 2336, best 1795
-  … 2500/24214, updated 2386, best 1821
-  … 2550/24214, updated 2436, best 1847
-  … 2600/24214, updated 2486, best 1876
-  … 2650/24214, updated 2536, best 1893
-  … 2700/24214, updated 2586, best 1916
-  … 2750/24214, updated 2636, best 1939
-  … 2800/24214, updated 2686, best 1956
-  … 2850/24214, updated 2736, best 1983
-  … 2900/24214, updated 2786, best 2009
-  … 2950/24214, updated 2836, best 2030
-  … 3000/24214, updated 2886, best 2053
-  … 3050/24214, updated 2936, best 2076
-  … 3100/24214, updated 2986, best 2105
-  … 3150/24214, updated 3036, best 2129
-  … 3200/24214, updated 3086, best 2155
-  … 3250/24214, updated 3136, best 2174
-  … 3300/24214, updated 3186, best 2198
-  … 3350/24214, updated 3236, best 2218
-  … 3400/24214, updated 3286, best 2243
-  … 3450/24214, updated 3336, best 2265
-  … 3500/24214, updated 3386, best 2286
-  … 3550/24214, updated 3436, best 2307
-  … 3600/24214, updated 3486, best 2325
-  … 3650/24214, updated 3536, best 2342
-  … 3700/24214, updated 3586, best 2366
-  … 3750/24214, updated 3636, best 2390
-  … 3800/24214, updated 3686, best 2409
-  … 3850/24214, updated 3736, best 2430
-  … 3900/24214, updated 3786, best 2447
-  … 3950/24214, updated 3836, best 2475
-  … 4000/24214, updated 3886, best 2497
-  … 4050/24214, updated 3936, best 2515
-  … 4100/24214, updated 3986, best 2532
-  … 4150/24214, updated 4036, best 2549
-  … 4200/24214, updated 4086, best 2569
-  … 4250/24214, updated 4136, best 2587
-  … 4300/24214, updated 4186, best 2604
-  … 4350/24214, updated 4236, best 2619
-  … 4400/24214, updated 4286, best 2640
-  … 4450/24214, updated 4336, best 2664
-  … 4500/24214, updated 4386, best 2683
-  … 4550/24214, updated 4436, best 2703
-  … 4600/24214, updated 4486, best 2716
-  … 4650/24214, updated 4536, best 2732
-  … 4700/24214, updated 4586, best 2749
-  … 4750/24214, updated 4636, best 2765
-  … 4800/24214, updated 4686, best 2786
-  … 4850/24214, updated 4736, best 2805
-  … 4900/24214, updated 4786, best 2828
-  … 4950/24214, updated 4836, best 2848
-  … 5000/24214, updated 4886, best 2864
-  … 5050/24214, updated 4936, best 2889
-  … 5100/24214, updated 4986, best 2914
-  … 5150/24214, updated 5036, best 2926
-  … 5200/24214, updated 5086, best 2950
-  … 5250/24214, updated 5136, best 2968
-  … 5300/24214, updated 5186, best 2986
-  … 5350/24214, updated 5236, best 3002
-  … 5400/24214, updated 5286, best 3017
-  … 5450/24214, updated 5336, best 3034
-  … 5500/24214, updated 5386, best 3058
-  … 5550/24214, updated 5436, best 3076
-  … 5600/24214, updated 5486, best 3091
-  … 5650/24214, updated 5536, best 3114
-  … 5700/24214, updated 5586, best 3133
-  … 5750/24214, updated 5636, best 3158
-  … 5800/24214, updated 5686, best 3173
-  … 5850/24214, updated 5736, best 3193
-  … 5900/24214, updated 5786, best 3218
-  … 5950/24214, updated 5836, best 3234
-  … 6000/24214, updated 5886, best 3256
-  … 6050/24214, updated 5936, best 3278
-  … 6100/24214, updated 5986, best 3305
-  … 6150/24214, updated 6036, best 3332
-  … 6200/24214, updated 6086, best 3361
-  … 6250/24214, updated 6136, best 3392
-  … 6300/24214, updated 6186, best 3419
-  … 6350/24214, updated 6236, best 3450
-  … 6400/24214, updated 6286, best 3483
-  … 6450/24214, updated 6336, best 3506
-  … 6500/24214, updated 6386, best 3536
-  … 6550/24214, updated 6436, best 3566
-  … 6600/24214, updated 6486, best 3602
-  … 6650/24214, updated 6536, best 3629
-  … 6700/24214, updated 6586, best 3661
-  … 6750/24214, updated 6636, best 3686
-  … 6800/24214, updated 6686, best 3716
-  … 6850/24214, updated 6736, best 3743
-  … 6900/24214, updated 6786, best 3773
-  … 6950/24214, updated 6836, best 3804
-  … 7000/24214, updated 6886, best 3837
-  … 7050/24214, updated 6936, best 3866
-  … 7100/24214, updated 6986, best 3898
-  … 7150/24214, updated 7036, best 3926
-  … 7200/24214, updated 7086, best 3958
-  … 7250/24214, updated 7136, best 3988
-  … 7300/24214, updated 7186, best 4014
-  … 7350/24214, updated 7236, best 4044
-  … 7400/24214, updated 7286, best 4073
-  … 7450/24214, updated 7336, best 4110
-  … 7500/24214, updated 7386, best 4138
-  … 7550/24214, updated 7436, best 4168
-  … 7600/24214, updated 7486, best 4195
-  … 7650/24214, updated 7536, best 4219
-  … 7700/24214, updated 7586, best 4245
-  … 7750/24214, updated 7636, best 4276
-  … 7800/24214, updated 7686, best 4304
-  … 7850/24214, updated 7736, best 4335
-  … 7900/24214, updated 7786, best 4363
-  … 7950/24214, updated 7836, best 4386
-  … 8000/24214, updated 7886, best 4406
-  … 8050/24214, updated 7936, best 4427
-  … 8100/24214, updated 7986, best 4445
-  … 8150/24214, updated 8036, best 4459
-  … 8200/24214, updated 8086, best 4481
-  … 8250/24214, updated 8136, best 4500
-  … 8300/24214, updated 8186, best 4517
-  … 8350/24214, updated 8236, best 4533
-  … 8400/24214, updated 8286, best 4554
-  … 8450/24214, updated 8336, best 4574
-  … 8500/24214, updated 8386, best 4590
-  … 8550/24214, updated 8436, best 4603
-  … 8600/24214, updated 8486, best 4614
-  … 8650/24214, updated 8536, best 4638
-  … 8700/24214, updated 8586, best 4654
-  … 8750/24214, updated 8636, best 4677
-  … 8800/24214, updated 8686, best 4686
-  … 8850/24214, updated 8736, best 4713
-  … 8900/24214, updated 8786, best 4732
-  … 8950/24214, updated 8836, best 4753
-  … 9000/24214, updated 8886, best 4773
-  … 9050/24214, updated 8936, best 4793
-  … 9100/24214, updated 8986, best 4811
-  … 9150/24214, updated 9036, best 4823
-  … 9200/24214, updated 9086, best 4843
-  … 9250/24214, updated 9136, best 4866
-  … 9300/24214, updated 9186, best 4882
-  … 9350/24214, updated 9236, best 4906
-  … 9400/24214, updated 9286, best 4926
-  … 9450/24214, updated 9336, best 4948
-  … 9500/24214, updated 9386, best 4971
-  … 9550/24214, updated 9436, best 4988
-  … 9600/24214, updated 9486, best 5011
-  … 9650/24214, updated 9536, best 5028
-  … 9700/24214, updated 9586, best 5044
-  … 9750/24214, updated 9636, best 5062
-  … 9800/24214, updated 9686, best 5081
-  … 9850/24214, updated 9736, best 5096
-  … 9900/24214, updated 9786, best 5113
-  … 9950/24214, updated 9836, best 5133
-  … 10000/24214, updated 9886, best 5154
-  … 10050/24214, updated 9936, best 5174
-  … 10100/24214, updated 9986, best 5187
-  … 10150/24214, updated 10036, best 5215
-  … 10200/24214, updated 10086, best 5232
-  … 10250/24214, updated 10136, best 5252
-  … 10300/24214, updated 10186, best 5273
-  … 10350/24214, updated 10236, best 5293
-  … 10400/24214, updated 10286, best 5314
-  … 10450/24214, updated 10336, best 5330
-  … 10500/24214, updated 10386, best 5347
-  … 10550/24214, updated 10436, best 5370
-  … 10600/24214, updated 10486, best 5389
-  … 10650/24214, updated 10536, best 5408
-  … 10700/24214, updated 10586, best 5425
-  … 10750/24214, updated 10636, best 5444
-  … 10800/24214, updated 10686, best 5463
-  … 10850/24214, updated 10736, best 5484
-  … 10900/24214, updated 10786, best 5504
-  … 10950/24214, updated 10836, best 5518
-  … 11000/24214, updated 10886, best 5541
-  … 11050/24214, updated 10936, best 5560
-  … 11100/24214, updated 10986, best 5587
-  … 11150/24214, updated 11036, best 5606
-  … 11200/24214, updated 11086, best 5625
-  … 11250/24214, updated 11136, best 5648
-  … 11300/24214, updated 11186, best 5664
-  … 11350/24214, updated 11236, best 5685
-  … 11400/24214, updated 11286, best 5711
-  … 11450/24214, updated 11336, best 5732
-  … 11500/24214, updated 11386, best 5748
-  … 11550/24214, updated 11436, best 5769
-  … 11600/24214, updated 11486, best 5789
-  … 11650/24214, updated 11536, best 5811
-  … 11700/24214, updated 11586, best 5824
-  … 11750/24214, updated 11636, best 5843
-  … 11800/24214, updated 11686, best 5869
-  … 11850/24214, updated 11736, best 5890
-  … 11900/24214, updated 11786, best 5900
-  … 11950/24214, updated 11836, best 5924
-  … 12000/24214, updated 11886, best 5940
-  … 12050/24214, updated 11936, best 5962
-  … 12100/24214, updated 11986, best 5987
-  … 12150/24214, updated 12036, best 6014
-  … 12200/24214, updated 12086, best 6039
-  … 12250/24214, updated 12136, best 6067
-  … 12300/24214, updated 12186, best 6092
-  … 12350/24214, updated 12236, best 6117
-  … 12400/24214, updated 12286, best 6136
-  … 12450/24214, updated 12336, best 6157
-  … 12500/24214, updated 12386, best 6175
-  … 12550/24214, updated 12436, best 6207
-  … 12600/24214, updated 12486, best 6228
-  … 12650/24214, updated 12536, best 6252
-  … 12700/24214, updated 12586, best 6275
-  … 12750/24214, updated 12636, best 6298
-  … 12800/24214, updated 12686, best 6320
-  … 12850/24214, updated 12736, best 6343
-  … 12900/24214, updated 12786, best 6361
-  … 12950/24214, updated 12836, best 6382
-  … 13000/24214, updated 12886, best 6400
-  … 13050/24214, updated 12936, best 6423
-  … 13100/24214, updated 12986, best 6448
-  … 13150/24214, updated 13036, best 6466
-  … 13200/24214, updated 13086, best 6488
-  … 13250/24214, updated 13136, best 6514
-  … 13300/24214, updated 13186, best 6544
-  … 13350/24214, updated 13236, best 6567
-  … 13400/24214, updated 13286, best 6592
-  … 13450/24214, updated 13336, best 6614
-  … 13500/24214, updated 13386, best 6641
-  … 13550/24214, updated 13436, best 6663
-  … 13600/24214, updated 13486, best 6681
-  … 13650/24214, updated 13536, best 6698
-  … 13700/24214, updated 13586, best 6712
-  … 13750/24214, updated 13636, best 6736
-  … 13800/24214, updated 13686, best 6755
-  … 13850/24214, updated 13736, best 6771
-  … 13900/24214, updated 13786, best 6793
-  … 13950/24214, updated 13836, best 6815
-  … 14000/24214, updated 13886, best 6833
-  … 14050/24214, updated 13936, best 6854
-  … 14100/24214, updated 13986, best 6878
-  … 14150/24214, updated 14036, best 6901
-  … 14200/24214, updated 14086, best 6926
-  … 14250/24214, updated 14136, best 6947
-  … 14300/24214, updated 14186, best 6972
-  … 14350/24214, updated 14236, best 6995
-  … 14400/24214, updated 14286, best 7022
-  … 14450/24214, updated 14336, best 7041
-  … 14500/24214, updated 14386, best 7067
-  … 14550/24214, updated 14436, best 7091
-  … 14600/24214, updated 14486, best 7114
-  … 14650/24214, updated 14536, best 7138
-  … 14700/24214, updated 14586, best 7163
-  … 14750/24214, updated 14636, best 7183
-  … 14800/24214, updated 14686, best 7203
-  … 14850/24214, updated 14736, best 7224
-  … 14900/24214, updated 14786, best 7251
-  … 14950/24214, updated 14836, best 7279
-  … 15000/24214, updated 14886, best 7307
-  … 15050/24214, updated 14936, best 7329
-  … 15100/24214, updated 14986, best 7349
-  … 15150/24214, updated 15036, best 7371
-  … 15200/24214, updated 15086, best 7393
-  … 15250/24214, updated 15136, best 7417
-  … 15300/24214, updated 15186, best 7441
-  … 15350/24214, updated 15236, best 7465
-  … 15400/24214, updated 15286, best 7490
-  … 15450/24214, updated 15336, best 7514
-  … 15500/24214, updated 15386, best 7538
-  … 15550/24214, updated 15436, best 7563
-  … 15600/24214, updated 15486, best 7585
-  … 15650/24214, updated 15536, best 7613
-  … 15700/24214, updated 15586, best 7638
-  … 15750/24214, updated 15636, best 7666
-  … 15800/24214, updated 15686, best 7690
-  … 15850/24214, updated 15736, best 7710
-  … 15900/24214, updated 15786, best 7733
-  … 15950/24214, updated 15836, best 7763
-  … 16000/24214, updated 15886, best 7789
-  … 16050/24214, updated 15936, best 7817
-  … 16100/24214, updated 15986, best 7844
-  … 16150/24214, updated 16036, best 7870
-  … 16200/24214, updated 16086, best 7898
-  … 16250/24214, updated 16136, best 7928
-  … 16300/24214, updated 16186, best 7956
-  … 16350/24214, updated 16236, best 7985
-  … 16400/24214, updated 16286, best 8021
-  … 16450/24214, updated 16336, best 8050
-  … 16500/24214, updated 16386, best 8082
-  … 16550/24214, updated 16436, best 8115
-  … 16600/24214, updated 16486, best 8148
-  … 16650/24214, updated 16536, best 8175
-  … 16700/24214, updated 16586, best 8205
-  … 16750/24214, updated 16636, best 8231
-  … 16800/24214, updated 16686, best 8263
-  … 16850/24214, updated 16736, best 8290
-  … 16900/24214, updated 16786, best 8323
-  … 16950/24214, updated 16836, best 8351
-  … 17000/24214, updated 16886, best 8375
-  … 17050/24214, updated 16936, best 8403
-  … 17100/24214, updated 16986, best 8425
-  … 17150/24214, updated 17036, best 8452
-  … 17200/24214, updated 17086, best 8485
-  … 17250/24214, updated 17136, best 8511
-  … 17300/24214, updated 17186, best 8539
-  … 17350/24214, updated 17236, best 8567
-  … 17400/24214, updated 17286, best 8596
-  … 17450/24214, updated 17336, best 8623
-  … 17500/24214, updated 17386, best 8649
-  … 17550/24214, updated 17436, best 8677
-  … 17600/24214, updated 17486, best 8709
-  … 17650/24214, updated 17536, best 8738
-  … 17700/24214, updated 17586, best 8766
-  … 17750/24214, updated 17636, best 8794
-  … 17800/24214, updated 17685, best 8822
-  … 17850/24214, updated 17735, best 8844
-  … 17900/24214, updated 17785, best 8877
-  … 17950/24214, updated 17835, best 8906
-  … 18000/24214, updated 17885, best 8935
-  … 18050/24214, updated 17935, best 8961
-  … 18100/24214, updated 17985, best 8983
-  … 18150/24214, updated 18035, best 9008
-  … 18200/24214, updated 18085, best 9032
-  … 18250/24214, updated 18135, best 9053
-  … 18300/24214, updated 18185, best 9072
-  … 18350/24214, updated 18235, best 9093
-  … 18400/24214, updated 18285, best 9114
-  … 18450/24214, updated 18335, best 9131
-  … 18500/24214, updated 18385, best 9150
-  … 18550/24214, updated 18435, best 9173
-  … 18600/24214, updated 18485, best 9185
-  … 18650/24214, updated 18535, best 9201
-  … 18700/24214, updated 18585, best 9222
-  … 18750/24214, updated 18635, best 9243
-  … 18800/24214, updated 18685, best 9262
-  … 18850/24214, updated 18735, best 9288
-  … 18900/24214, updated 18785, best 9304
-  … 18950/24214, updated 18835, best 9327
-  … 19000/24214, updated 18885, best 9344
-  … 19050/24214, updated 18935, best 9367
-  … 19100/24214, updated 18985, best 9389
-  … 19150/24214, updated 19035, best 9409
-  … 19200/24214, updated 19085, best 9433
-  … 19250/24214, updated 19135, best 9455
-  … 19300/24214, updated 19185, best 9476
-  … 19350/24214, updated 19235, best 9489
-  … 19400/24214, updated 19285, best 9504
-  … 19450/24214, updated 19335, best 9524
-  … 19500/24214, updated 19385, best 9544
-  … 19550/24214, updated 19435, best 9563
-  … 19600/24214, updated 19485, best 9588
-  … 19650/24214, updated 19535, best 9609
-  … 19700/24214, updated 19585, best 9629
-  … 19750/24214, updated 19635, best 9651
-  … 19800/24214, updated 19685, best 9676
-  … 19850/24214, updated 19735, best 9698
-  … 19900/24214, updated 19785, best 9727
-  … 19950/24214, updated 19835, best 9750
-  … 20000/24214, updated 19885, best 9776
-  … 20050/24214, updated 19935, best 9796
-  … 20100/24214, updated 19985, best 9816
-  … 20150/24214, updated 20035, best 9837
-  … 20200/24214, updated 20085, best 9853
-  … 20250/24214, updated 20135, best 9879
-  … 20300/24214, updated 20185, best 9895
-  … 20350/24214, updated 20235, best 9911
-  … 20400/24214, updated 20285, best 9940
-  … 20450/24214, updated 20334, best 9956
-  … 20500/24214, updated 20384, best 9982
-  … 20550/24214, updated 20434, best 10001
-  … 20600/24214, updated 20484, best 10025
-  … 20650/24214, updated 20534, best 10051
-  … 20700/24214, updated 20583, best 10074
-  … 20750/24214, updated 20633, best 10091
-  … 20800/24214, updated 20683, best 10109
-  … 20850/24214, updated 20733, best 10129
-  … 20900/24214, updated 20783, best 10149
-  … 20950/24214, updated 20833, best 10168
-  … 21000/24214, updated 20882, best 10197
-  … 21050/24214, updated 20932, best 10218
-  … 21100/24214, updated 20982, best 10237
-  … 21150/24214, updated 21031, best 10260
-  … 21200/24214, updated 21081, best 10285
-  … 21250/24214, updated 21131, best 10305
-  … 21300/24214, updated 21180, best 10323
-  … 21350/24214, updated 21229, best 10342
-  … 21400/24214, updated 21278, best 10361
-  … 21450/24214, updated 21328, best 10388
-  … 21500/24214, updated 21375, best 10412
-  … 21550/24214, updated 21425, best 10429
-  … 21600/24214, updated 21475, best 10452
-  … 21650/24214, updated 21524, best 10470
-  … 21700/24214, updated 21574, best 10492
-  … 21750/24214, updated 21623, best 10513
-  … 21800/24214, updated 21673, best 10538
-  … 21850/24214, updated 21722, best 10557
-  … 21900/24214, updated 21771, best 10579
-  … 21950/24214, updated 21821, best 10600
-  … 22000/24214, updated 21871, best 10625
-  … 22050/24214, updated 21921, best 10641
-  … 22100/24214, updated 21971, best 10663
-  … 22150/24214, updated 22021, best 10683
-  … 22200/24214, updated 22071, best 10709
-  … 22250/24214, updated 22121, best 10725
-  … 22300/24214, updated 22171, best 10741
-  … 22350/24214, updated 22221, best 10756
-  … 22400/24214, updated 22271, best 10774
-  … 22450/24214, updated 22321, best 10795
-  … 22500/24214, updated 22371, best 10809
-  … 22550/24214, updated 22421, best 10825
-  … 22600/24214, updated 22471, best 10844
-  … 22650/24214, updated 22521, best 10867
-  … 22700/24214, updated 22571, best 10886
-  … 22750/24214, updated 22621, best 10907
-  … 22800/24214, updated 22671, best 10928
-  … 22850/24214, updated 22721, best 10946
-  … 22900/24214, updated 22771, best 10959
-  … 22950/24214, updated 22820, best 10981
-  … 23000/24214, updated 22870, best 11000
-  … 23050/24214, updated 22920, best 11016
-  … 23100/24214, updated 22970, best 11038
-  … 23150/24214, updated 23019, best 11058
-  … 23200/24214, updated 23069, best 11076
-  … 23250/24214, updated 23118, best 11090
-  … 23300/24214, updated 23167, best 11110
-  … 23350/24214, updated 23217, best 11122
-  … 23400/24214, updated 23266, best 11142
-  … 23450/24214, updated 23315, best 11160
-  … 23500/24214, updated 23365, best 11179
-  … 23550/24214, updated 23415, best 11205
-  … 23600/24214, updated 23464, best 11225
-  … 23650/24214, updated 23514, best 11246
-  … 23700/24214, updated 23564, best 11264
-  … 23750/24214, updated 23614, best 11278
-  … 23800/24214, updated 23664, best 11295
-  … 23850/24214, updated 23714, best 11309
-  … 23900/24214, updated 23764, best 11331
-  … 23950/24214, updated 23814, best 11348
-  … 24000/24214, updated 23864, best 11368
-  … 24050/24214, updated 23913, best 11383
-  … 24100/24214, updated 23962, best 11407
-  … 24150/24214, updated 24009, best 11430
-  … 24200/24214, updated 24054, best 11454
-
-Updated: 24066 | Best tier: 11463 (47.3%)
-
-▶ prioritization
-
-NCLEX polish — 24214 active nursing items (weak prioritization only)
-
-  … scanned 500/24214, updated 0
-  … scanned 1000/24214, updated 0
-  … scanned 1500/24214, updated 0
-  … scanned 2000/24214, updated 0
-  … scanned 2500/24214, updated 0
-  … scanned 3000/24214, updated 0
-  … scanned 3500/24214, updated 0
-  … scanned 4000/24214, updated 0
-  … scanned 4500/24214, updated 0
-  … scanned 5000/24214, updated 0
-  … scanned 5500/24214, updated 0
-  … scanned 6000/24214, updated 0
-  … scanned 6500/24214, updated 0
-  … scanned 7000/24214, updated 0
-  … scanned 7500/24214, updated 0
-  … scanned 8000/24214, updated 0
-  … scanned 8500/24214, updated 0
-  … scanned 9000/24214, updated 0
-  … scanned 9500/24214, updated 0
-  … scanned 10000/24214, updated 0
-  … scanned 10500/24214, updated 0
-  … scanned 11000/24214, updated 0
-  … scanned 11500/24214, updated 0
-  … scanned 12000/24214, updated 0
-  … scanned 12500/24214, updated 0
-  … scanned 13000/24214, updated 0
-  … scanned 13500/24214, updated 0
-  … scanned 14000/24214, updated 0
-  … scanned 14500/24214, updated 0
-  … scanned 15000/24214, updated 0
-  … scanned 15500/24214, updated 0
-  … scanned 16000/24214, updated 0
-  … scanned 16500/24214, updated 0
-  … scanned 17000/24214, updated 0
-  … scanned 17500/24214, updated 0
-  … scanned 18000/24214, updated 0
-  … scanned 18500/24214, updated 0
-  … scanned 19000/24214, updated 0
-  … scanned 19500/24214, updated 0
-  … scanned 20000/24214, updated 0
-  … scanned 20500/24214, updated 0
-  … scanned 21000/24214, updated 0
-  … scanned 21500/24214, updated 0
-  … scanned 22000/24214, updated 0
-  … scanned 22500/24214, updated 0
-  … scanned 23000/24214, updated 0
-  … scanned 23500/24214, updated 0
-  … scanned 24000/24214, updated 0
-
-Scanned:     24214
-Candidates:  0
-Updated:   0
-Skipped:     24214
-Hash collisions: 0
-Errors:      0
-Avg quality: 1.000 → 1.000
+NCLEX Question Bank Curation Engine
+  target: 6000
+  mode: full
+  dry-run: true
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 25/100
+  embedded batch progress 50/100
+  embedded batch progress 75/100
+  embedded batch progress 100/100
+  embedded batch progress 10/10
+PrismaClientKnownRequestError: 
+Invalid `prisma.$executeRawUnsafe()` invocation:
 
 
-▶ gate
-
-NCLEX best QA gate — 24214 active nursing items
-
-  … 2000/24214 (best 1487, reject 513)
-  … 4000/24214 (best 2384, reject 1616)
-  … 6000/24214 (best 3147, reject 2853)
-  … 8000/24214 (best 4295, reject 3705)
-▶ gate (resume)
-
-NCLEX best QA gate — 24214 active nursing items
-
-  … 2000/24214 (best 1487, reject 513)
-  … 4000/24214 (best 2384, reject 1616)
-  … 6000/24214 (best 3147, reject 2853)
-  … 8000/24214 (best 4295, reject 3705)
-  … 10000/24214 (best 5039, reject 4961)
-  … 12000/24214 (best 5828, reject 6172)
-  … 14000/24214 (best 6720, reject 7280)
-  … 16000/24214 (best 7676, reject 8324)
-  … 18000/24214 (best 8822, reject 9178)
-  … 20000/24214 (best 9659, reject 10341)
-  … 22000/24214 (best 10498, reject 11502)
-  … 24000/24214 (best 11235, reject 12765)
-  … 24214/24214 (best 11320, reject 12894)
-
-Best (serve): 11320 (46.7%)
-Top blockers:
-  cartoon_distractors: 8019
-  generic_intervention_distractors: 4599
-  generic_pharmacology_distractors: 4295
-  generic_communication_distractors: 2237
-  generic_risk_distractors: 1142
-  generic_teaching_distractors: 469
-  duplicate_vignette_in_stem: 140
-  generic_delegation_correct: 119
-  correct_not_in_options: 11
-  explanation_too_short: 10
-
-⚠ Below 80%
-▶ report
-
-NCLEX best-rate report — 24214 active items
-
-  … 5000/24214
-  … 10000/24214
-  … 15000/24214
-  … 20000/24214
-  … 24214/24214
-
-Best tier: 11320 / 24214 (46.7%)
-DB qaPassed: 11320 (stale if >> best tier)
-
-⚠ Below 80%
-Report: /Users/ryanchishimba/Desktop/cursor/artifacts/nclex-best-rate-report.json
-
---- POLISH PIPELINE ---
-
-> any-exam-easy@0.1.0 db:polish-nursing:pipeline
-> npm run db:polish-nursing && npm run db:qa-gate-nclex-best
-
-
-> any-exam-easy@0.1.0 db:polish-nursing
-> npx tsx scripts/polish-nursing-questions.ts
-
-
-NCLEX polish — 24214 active nursing items
-
-  … scanned 500/24214, updated 1
-  … scanned 1000/24214, updated 5
-  … scanned 1500/24214, updated 8
-  … scanned 2000/24214, updated 12
-  … scanned 2500/24214, updated 13
-  … scanned 3000/24214, updated 13
-  … scanned 3500/24214, updated 13
-  … scanned 4000/24214, updated 13
-  … scanned 4500/24214, updated 13
-  … scanned 5000/24214, updated 13
-  … scanned 5500/24214, updated 13
-  … scanned 6000/24214, updated 13
-  … scanned 6500/24214, updated 13
-  … scanned 7000/24214, updated 13
-  … scanned 7500/24214, updated 13
-  … scanned 8000/24214, updated 13
-  … scanned 8500/24214, updated 13
-  … scanned 9000/24214, updated 13
-  … scanned 9500/24214, updated 13
-  … scanned 10000/24214, updated 13
-  … scanned 10500/24214, updated 13
-  … scanned 11000/24214, updated 13
-  … scanned 11500/24214, updated 13
-  … scanned 12000/24214, updated 13
-  … scanned 12500/24214, updated 13
-  … scanned 13000/24214, updated 13
-  … scanned 13500/24214, updated 13
-  … scanned 14000/24214, updated 13
-  … scanned 14500/24214, updated 13
-  … scanned 15000/24214, updated 13
-  … scanned 15500/24214, updated 13
-  … scanned 16000/24214, updated 13
-  … scanned 16500/24214, updated 13
-  … scanned 17000/24214, updated 13
-  … scanned 17500/24214, updated 13
-  … scanned 18000/24214, updated 14
-  … scanned 18500/24214, updated 14
-  … scanned 19000/24214, updated 14
-  … scanned 19500/24214, updated 14
-  … scanned 20000/24214, updated 14
-  … scanned 20500/24214, updated 15
-  … scanned 21000/24214, updated 17
-  … scanned 21500/24214, updated 23
-  … scanned 22000/24214, updated 28
-  … scanned 22500/24214, updated 28
-  … scanned 23000/24214, updated 29
-  … scanned 23500/24214, updated 34
-  … scanned 24000/24214, updated 35
-
-Scanned:     24214
-Candidates:  153
-Updated:   50
-Skipped:     24164
-Hash collisions: 103
-Errors:      0
-Avg quality: 1.000 → 1.000
-
-
-> any-exam-easy@0.1.0 db:qa-gate-nclex-best
-> bash scripts/run-with-node.sh npx tsx scripts/qa-gate-nclex-best.ts
-
-
-NCLEX best QA gate — 24214 active nursing items
-
-  … 2000/24214 (best 1500, reject 500)
-  … 4000/24214 (best 2397, reject 1603)
-  … 6000/24214 (best 3160, reject 2840)
-  … 8000/24214 (best 4308, reject 3692)
-  … 10000/24214 (best 5052, reject 4948)
-  … 12000/24214 (best 5841, reject 6159)
-  … 14000/24214 (best 6733, reject 7267)
-  … 16000/24214 (best 7689, reject 8311)
-  … 18000/24214 (best 8836, reject 9164)
-  … 20000/24214 (best 9673, reject 10327)
-  … 22000/24214 (best 10524, reject 11476)
-  … 24000/24214 (best 11267, reject 12733)
-  … 24214/24214 (best 11359, reject 12855)
-
-Best (serve): 11359 (46.9%)
-Top blockers:
-  cartoon_distractors: 8020
-  generic_intervention_distractors: 4602
-  generic_pharmacology_distractors: 4295
-  generic_communication_distractors: 2237
-  generic_risk_distractors: 1142
-  generic_teaching_distractors: 469
-  generic_delegation_correct: 101
-  duplicate_vignette_in_stem: 101
-  correct_not_in_options: 9
-  missing_vignette: 2
-
-⚠ Below 80%
+Raw query failed. Code: `54000`. Message: `ERROR: column cannot have more than 2000 dimensions for hnsw index`
+    at ei.handleRequestError (/Users/ryanchishimba/Desktop/cursor/node_modules/@prisma/client/src/runtime/RequestHandler.ts:228:13)
+    at ei.handleAndLogRequestError (/Users/ryanchishimba/Desktop/cursor/node_modules/@prisma/client/src/runtime/RequestHandler.ts:174:12)
+    at ei.request (/Users/ryanchishimba/Desktop/cursor/node_modules/@prisma/client/src/runtime/RequestHandler.ts:143:12)
+    at async a (/Users/ryanchishimba/Desktop/cursor/node_modules/@prisma/client/src/runtime/getPrismaClient.ts:833:24)
+    at async ensureEmbeddingIndex (/Users/ryanchishimba/Desktop/cursor/src/lib/bank-curation/pgvector-store.ts:44:3)
+    at async runCurationPipeline (/Users/ryanchishimba/Desktop/cursor/src/lib/bank-curation/pipeline.ts:71:5)
+    at async main (/Users/ryanchishimba/Desktop/cursor/scripts/curate-nclex-bank-engine.ts:40:18) {
+  code: 'P2010',
+  meta: {
+    code: '54000',
+    message: 'ERROR: column cannot have more than 2000 dimensions for hnsw index'
+  },
+  clientVersion: '6.19.3'
+}

@@ -1,73 +1,12 @@
 {
-  "generatedAt": "2026-06-14T20:01:04.272Z",
-  "active": 24295,
-  "served": 11392,
-  "servedNotBest": 11363,
+  "generatedAt": "2026-07-02T14:19:31.344Z",
+  "active": 4083,
+  "served": 3963,
+  "servedNotBest": 0,
   "servedBlock": 0,
-  "servedWithAlignmentIssues": 5,
-  "alignmentRatePercent": 99.9561095505618,
-  "alignmentIssueCounts": {
-    "correct_not_in_options": 5
-  },
-  "qaBlockers": {
-    "missing_guideline_reference": 11357,
-    "missing_distractor_rationales": 33,
-    "weak_distractor_rationales": 33,
-    "explanation_too_short": 32,
-    "score_below_best_bar": 32,
-    "missing_vignette": 29,
-    "correct_not_in_options": 5
-  },
-  "samples": [
-    {
-      "id": "cmqd9u15g001l1y0tzqkgxzwx",
-      "subjectId": "med-surg",
-      "codes": [
-        "correct_not_in_options"
-      ],
-      "vignette": "POD2 abdominal surgery.",
-      "stem": "For each finding, select the best column.",
-      "correctAnswer": "SpO₂ 87% on RA|||Intervene now,Serosanguineous dressing drainage|||Expected,New chest pain|||Interve"
-    },
-    {
-      "id": "cmqd9u1hr001p1y0twnzjkq0i",
-      "subjectId": "psychosocial",
-      "codes": [
-        "correct_not_in_options"
-      ],
-      "vignette": "Voluntary psych admission — rights education.",
-      "stem": "Match right to category.",
-      "correctAnswer": "Refuse medications (if competent)|||Client right,Leave AMA with process|||Client right,Seclusion wit"
-    },
-    {
-      "id": "cmqd9u1pn001s1y0t0urxpbaz",
-      "subjectId": "reduction-risk",
-      "codes": [
-        "correct_not_in_options"
-      ],
-      "vignette": "Older adult fall risk assessment.",
-      "stem": "Match intervention to category.",
-      "correctAnswer": "Bed alarm|||Fall precaution,Slippery socks only|||Increases risk,Routine toileting schedule|||Fall p"
-    },
-    {
-      "id": "cmqd9u2nf00241y0tkpzqvvxs",
-      "subjectId": "safety-infection",
-      "codes": [
-        "correct_not_in_options"
-      ],
-      "vignette": "Needlestick from used IV needle during busy shift.",
-      "stem": "Select all immediate steps. (Select all that apply.)",
-      "correctAnswer": "Wash area per protocol,Report to occupational health,Draw source patient labs per policy,Ignore if s"
-    },
-    {
-      "id": "cmqd9u2t200261y0t60v0ad7c",
-      "subjectId": "reduction-risk",
-      "codes": [
-        "correct_not_in_options"
-      ],
-      "vignette": "Fire alarm on unit — smoke smell near med room.",
-      "stem": "Select all first responses. (Select all that apply.)",
-      "correctAnswer": "Pull alarm if not sounding,Close doors,Evacuate per RACE,Use elevator quickly"
-    }
-  ]
+  "servedWithAlignmentIssues": 0,
+  "alignmentRatePercent": 100,
+  "alignmentIssueCounts": {},
+  "qaBlockers": {},
+  "samples": []
 }

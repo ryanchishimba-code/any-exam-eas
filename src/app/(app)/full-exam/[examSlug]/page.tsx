@@ -85,6 +85,7 @@ export default async function FullExamLauncherPage({
   const usage = await getStudyUsageSnapshot(access);
   const mockAccess = resolveMockExamAccess(usage.limits, usage.plan, {
     usedTrialMocks: usage.usedTrialMocks,
+    usedTrialFullAdaptive: usage.usedTrialFullAdaptive,
   });
 
   const pref = await getUserExamPreference(session.user.id);

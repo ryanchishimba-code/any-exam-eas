@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   defaultMockPresetForAccess,
   filterLengthOptionsForAccess,
+  isTrialFullAdaptiveExhausted,
   resolveMockExamAccess,
 } from "@/lib/study/mock-exam-access";
 import { STUDY_USAGE_LIMITS } from "@/lib/study/usage-limits-config";
@@ -25,7 +26,26 @@ describe("mock-exam-access", () => {
   it("allows Pro and trial full-length presets", () => {
     const pro = resolveMockExamAccess(STUDY_USAGE_LIMITS.pro, "pro");
     expect(defaultMockPresetForAccess(pro)).toBe("full");
-    const trial = resolveMockExamAccess(STUDY_USAGE_LIMITS.trial, "trial");
+    const trial = resolveMockExamAccess(STUDY_USAGE_LIMITS.trial, "trial", {
+      usedTrialFullAdaptive: 0,
+    });
     expect(defaultMockPresetForAccess(trial)).toBe("full");
+  });
+
+  it("hides full-length adaptive preset after trial allowance is used", () => {
+    const access = resolveMockExamAccess(STUDY_USAGE_LIMITS.trial, "trial", {
+      usedTrialFullAdaptive: 1,
+    });
+    expect(isTrialFullAdaptiveExhausted(access)).toBe(true);
+    const options = filterLengthOptionsForAccess(
+      [
+        { preset: "50", label: "50", description: "", questionCount: 50 },
+        { preset: "100", label: "100", description: "", questionCount: 100 },
+        { preset: "full", label: "Full", description: "", questionCount: 135 },
+      ],
+      access
+    );
+    expect(options.map((o) => o.preset)).toEqual(["50", "100"]);
+    expect(defaultMockPresetForAccess(access)).toBe("100");
   });
 });

@@ -65,6 +65,7 @@ describe("trial limits", () => {
     expect(STUDY_USAGE_LIMITS.trial.dailyQuestions).toBeNull();
     expect(STUDY_USAGE_LIMITS.trial.trialLifetimeQuestions).toBe(150);
     expect(STUDY_USAGE_LIMITS.trial.trialMockAllowance).toBeNull();
+    expect(STUDY_USAGE_LIMITS.trial.trialFullAdaptiveAllowance).toBe(1);
     expect(STUDY_USAGE_LIMITS.trial.allowShortMocks).toBe(true);
     expect(STUDY_USAGE_LIMITS.trial.allowFullLengthMocks).toBe(true);
     expect(STUDY_USAGE_LIMITS.trial.allowAdaptive).toBe(true);

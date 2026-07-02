@@ -44,6 +44,7 @@ const usage: StudyUsageSnapshot = {
     allowShortMocks: true,
     allowFullLengthMocks: true,
     trialMockAllowance: null,
+    trialFullAdaptiveAllowance: 1,
     allowAdaptive: true,
   },
   usedTrialTotal: 40,
@@ -51,6 +52,8 @@ const usage: StudyUsageSnapshot = {
   mockExamsThisMonth: 0,
   usedTrialMocks: null,
   remainingTrialMocks: null,
+  usedTrialFullAdaptive: 0,
+  remainingTrialFullAdaptive: 1,
 };
 
 describe("resolveDashboardUpgradeContext", () => {
