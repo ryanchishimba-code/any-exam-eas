@@ -7,6 +7,7 @@
  *   Hero (countdown + 1 CTA + product mockup)
  *     → Visual showcase (question, analytics, drug card, anatomy)
  *     → Pick your board (tactile scroll wheel + live counts)
+ *     → Six-exam comparison table
  *     → Why choose us (UWorld/AMBOSS compare + proof)
  *     → Pro benefits
  *     → Pricing
@@ -25,6 +26,7 @@ import { LandingHeroV2 } from "@/components/landing/v2/LandingHeroV2";
 import {
   ChooseYourExam,
   LandingClinicianTrust,
+  LandingCrossExamComparison,
   LandingFaqV2,
   LandingOfferingV2,
   LandingPricingPreview,
@@ -63,6 +65,8 @@ export function LandingFlagshipV2({
       <LandingShowcaseV2 />
 
       <ChooseYourExam bankCounts={bankCounts} />
+
+      <LandingCrossExamComparison />
 
       <LandingWhyChooseV2 bankCounts={bankCounts} />
 

@@ -1,10 +1,10 @@
 /**
- * FSBPT NPTE-PT Test Content Outline (effective January 2024).
+ * FSBPT NPTE-PT Test Content Outline (current for 2026).
  * Source: https://www.fsbpt.org/FreeResources/NPTEDevelopment.aspx
  */
 
 export const NPTE_PT_BLUEPRINT_SOURCE =
-  "FSBPT NPTE-PT Test Content Outline (effective January 2024)";
+  "FSBPT NPTE-PT Test Content Outline (current for 2026)";
 
 /** Official target for the curated + AI-generated NPTE-PT bank. */
 export const NPTE_PT_TARGET_TOTAL = 6000;

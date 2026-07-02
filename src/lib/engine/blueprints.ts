@@ -489,14 +489,14 @@ const AANP_FNP: ExamBlueprint = {
   ],
 };
 
-/** FSBPT NPTE-PT Test Content Outline (effective January 2024). */
+/** FSBPT NPTE-PT Test Content Outline (current for 2026). */
 /** Raw FSBPT content-area shares sum to ~72%; normalized to 100% for roadmap weighting. */
 const NPTE_PT_CONTENT_WEIGHT_SUM = 0.72;
 
 const NPTE_PT: ExamBlueprint = {
   fieldId: "npte-pt",
   examName: "NPTE-PT",
-  sourceNote: "FSBPT NPTE-PT Test Content Outline (2024) — body systems & non-systems",
+  sourceNote: "FSBPT NPTE-PT Test Content Outline (current for 2026) — body systems & non-systems",
   vignetteMinRatio: 0.9,
   categories: [
     {
@@ -504,14 +504,30 @@ const NPTE_PT: ExamBlueprint = {
       label: "Musculoskeletal System",
       weight: 0.2 / NPTE_PT_CONTENT_WEIGHT_SUM,
       subjectIds: ["musculoskeletal"],
-      highYieldTopics: ["rotator cuff", "ACL rehab", "low back pain", "manual therapy", "post-op TKA"],
+      highYieldTopics: [
+        "low back pain",
+        "rotator cuff",
+        "ACL rehab",
+        "TKA/THA",
+        "manual therapy",
+        "special tests",
+        "gait deviations",
+      ],
     },
     {
       id: "neuromuscular-nervous",
       label: "Neuromuscular & Nervous Systems",
       weight: 0.17 / NPTE_PT_CONTENT_WEIGHT_SUM,
       subjectIds: ["neuromuscular-nervous"],
-      highYieldTopics: ["stroke", "SCI", "TBI", "Parkinson", "gait training", "balance"],
+      highYieldTopics: [
+        "stroke",
+        "SCI",
+        "Parkinson",
+        "vestibular",
+        "balance",
+        "gait training",
+        "peripheral nerve",
+      ],
     },
     {
       id: "cardiovascular-pulmonary",

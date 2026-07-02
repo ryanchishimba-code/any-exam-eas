@@ -1,8 +1,13 @@
 /**
- * NCCPA 2025 NPTE-PT blueprint — proportional quotas and generation slot planning.
+ * FSBPT NPTE-PT blueprint — proportional quotas and generation slot planning.
  */
 import { getExamBlueprint } from "@/lib/engine/blueprints";
 import { NPTE_PT_TASK_CATEGORIES } from "@/lib/edtech/learning-hub/npte-pt-learning-paths";
+import {
+  highYieldTopicsForCategory2026,
+  labelForNptePt2026TopicSlug,
+  pickNptePt2026BlueprintTopic,
+} from "./blueprint-topics-2026";
 import type {
   NptePtContentCategoryId,
   NptePtGenerationSlot,
@@ -13,6 +18,11 @@ import type {
 import { NPTE_PT_TARGET_TOTAL } from "./types";
 
 export { NPTE_PT_BLUEPRINT_SOURCE } from "./types";
+export {
+  highYieldTopicsForCategory2026,
+  labelForNptePt2026TopicSlug,
+  pickNptePt2026BlueprintTopic,
+} from "./blueprint-topics-2026";
 
 const NPTE_PT_BLUEPRINT = getExamBlueprint("npte-pt")!;
 
@@ -70,10 +80,12 @@ export function mergeNptePtQuotaWithCounts(
   });
 }
 
-/** High-yield topic examples per content category (from NCCPA blueprint). */
+/** High-yield topic slugs per content category (2026 granular registry). */
 export function highYieldTopicsForCategory(
   contentCategory: NptePtContentCategoryId
 ): string[] {
+  const topics2026 = highYieldTopicsForCategory2026(contentCategory);
+  if (topics2026.length > 0) return topics2026;
   const cat = NPTE_PT_BLUEPRINT.categories.find((c) => c.id === contentCategory);
   return cat?.highYieldTopics ?? [];
 }
@@ -100,11 +112,10 @@ function pickTaskForSlot(
 
 function pickTopic(
   contentCategory: NptePtContentCategoryId,
-  index: number
+  index: number,
+  seed = 0
 ): string {
-  const topics = highYieldTopicsForCategory(contentCategory);
-  if (topics.length === 0) return contentCategory.replace(/-/g, " ");
-  return topics[index % topics.length]!;
+  return pickNptePt2026BlueprintTopic(contentCategory, index, seed);
 }
 
 const PRESENTATION_HINTS: NptePtGenerationSlot["presentationHint"][] = [
@@ -138,7 +149,7 @@ export function planNptePtGenerationSlots(params: {
     const catIndex = (i + seed) % categories.length;
     const contentCategory = categories[catIndex]!;
     const taskCategory = pickTaskForSlot(contentCategory, i + seed);
-    const blueprintTopic = pickTopic(contentCategory, i + seed);
+    const blueprintTopic = pickTopic(contentCategory, i, seed);
     const difficulty = 2 + ((i + seed) % 4);
     const presentationHint =
       PRESENTATION_HINTS[(i + seed) % PRESENTATION_HINTS.length];
@@ -197,7 +208,7 @@ export function planNptePtFullExamSlots(params: {
       slots.push({
         contentCategory: row.contentCategory,
         taskCategory: pickTaskForSlot(row.contentCategory, slotIndex + examSeed),
-        blueprintTopic: pickTopic(row.contentCategory, slotIndex + examSeed),
+        blueprintTopic: pickTopic(row.contentCategory, slotIndex, examSeed),
         difficulty: 2 + ((slotIndex + examSeed) % 4),
         presentationHint:
           PRESENTATION_HINTS[(slotIndex + examSeed) % PRESENTATION_HINTS.length],
@@ -211,7 +222,7 @@ export function planNptePtFullExamSlots(params: {
     slots.push({
       contentCategory,
       taskCategory: pickTaskForSlot(contentCategory, slotIndex + examSeed),
-      blueprintTopic: pickTopic(contentCategory, slotIndex + examSeed),
+      blueprintTopic: pickTopic(contentCategory, slotIndex, examSeed),
       difficulty: 2 + ((slotIndex + examSeed) % 4),
       presentationHint:
         PRESENTATION_HINTS[(slotIndex + examSeed) % PRESENTATION_HINTS.length],

@@ -4,7 +4,7 @@ import { sigCodeAbbreviationTopic } from "./sig-code-abbreviations";
 export const NPTE_PT_HIGH_YIELD_TOPICS = defineExamTopics("npte-pt", [
   {
     slug: "musculoskeletal",
-    category: "Musculoskeletal (20%)",
+    category: "Musculoskeletal (~28%)",
     title: "Musculoskeletal System",
     overview: "Rotator cuff, ACL rehab, low back pain, manual therapy, and post-op TKA/THA progression.",
     summary:
@@ -17,7 +17,7 @@ export const NPTE_PT_HIGH_YIELD_TOPICS = defineExamTopics("npte-pt", [
   },
   {
     slug: "neuromuscular-nervous",
-    category: "Neuromuscular (17%)",
+    category: "Neuromuscular (~24%)",
     title: "Neuromuscular & Nervous Systems",
     overview: "Stroke, SCI, TBI, Parkinson, gait training, and balance interventions.",
     summary:
@@ -100,6 +100,55 @@ export const NPTE_PT_HIGH_YIELD_TOPICS = defineExamTopics("npte-pt", [
     pearls: ["Objective, measurable goals support medical necessity and reimbursement."],
     pitfalls: ["Practicing outside state licensure", "Vague documentation without functional measures"],
     practiceTopicSlug: "professional-responsibilities",
+  },
+  {
+    slug: "system-interactions",
+    category: "System Interactions (~5%)",
+    title: "Pediatrics, Geriatrics & Acute Care",
+    overview: "CP, torticollis, falls prevention, ICU mobilization, oncology fatigue, and lifespan modifiers.",
+    summary:
+      "System interactions content spans pediatric developmental conditions, geriatric fall risk, acute care/ICU early mobility, and oncology-related deconditioning — often tested as cross-cutting vignettes.",
+    keyConcepts: ["Cerebral palsy", "Torticollis", "Falls prevention", "ICU mobilization", "Oncology fatigue"],
+    mustKnowFacts: ["TUG >12 seconds suggests elevated fall risk", "Infant torticollis needs early stretching, not delayed treatment"],
+    pearls: ["ICU mobility requires team coordination and line/tube precautions."],
+    pitfalls: ["Treating pediatric CP with passive-only care", "Deferring all ICU mobility regardless of stability"],
+    practiceTopicSlug: "system-interactions",
+  },
+  {
+    slug: "genitourinary",
+    category: "Genitourinary (~2%)",
+    title: "Pelvic Floor & Women's Health",
+    overview: "Urinary incontinence, pelvic floor training, and pregnancy-related pain.",
+    summary: "GU content tests stress vs urge incontinence, supervised pelvic floor muscle training, and pregnancy-related musculoskeletal pain management.",
+    keyConcepts: ["Stress incontinence", "Pelvic floor training", "Pregnancy pain", "Post-prostatectomy rehab"],
+    mustKnowFacts: ["PFMT is first-line for stress urinary incontinence", "Oxford scale grades pelvic floor strength"],
+    pearls: ["Functional integration of pelvic floor contractions with daily activities improves outcomes."],
+    pitfalls: ["High-impact exercise before pelvic floor training in postpartum stress incontinence"],
+    practiceTopicSlug: "genitourinary",
+  },
+  {
+    slug: "lymphatic",
+    category: "Lymphatic (~3%)",
+    title: "Lymphedema Management",
+    overview: "Complete decongestive therapy, compression, and oncology-related lymphedema.",
+    summary: "Lymphatic items test CDT components — manual lymph drainage, compression bandaging/garments, skin care, and therapeutic exercise.",
+    keyConcepts: ["CDT", "Compression", "MLD", "Oncology lymphedema"],
+    mustKnowFacts: ["CDT combines MLD, compression, skin care, and exercise", "Monitor for infection in lymphedematous limbs"],
+    pearls: ["Compression is essential — exercise alone without compression is insufficient for lymphedema."],
+    pitfalls: ["Heat application over infected or congested limb", "Aggressive resistance without compression garment"],
+    practiceTopicSlug: "lymphatic",
+  },
+  {
+    slug: "research-evidence",
+    category: "Research & EBP (~2%)",
+    title: "Evidence-Based Practice",
+    overview: "Sensitivity/specificity, outcome measures, MCID, and RCT appraisal.",
+    summary: "Research content distinguishes statistical vs clinical significance, interprets diagnostic test properties, and applies MCID to outcome measure changes.",
+    keyConcepts: ["Sensitivity", "Specificity", "MCID", "RCT appraisal", "Likelihood ratios"],
+    mustKnowFacts: ["p < 0.05 does not guarantee clinical importance — compare to MCID", "High sensitivity helps rule out disease"],
+    pearls: ["Apply MCID when interpreting outcome measure changes in clinical trials."],
+    pitfalls: ["Equating statistical significance with patient-meaningful improvement"],
+    practiceTopicSlug: "research-evidence",
   },
   sigCodeAbbreviationTopic("npte-pt"),
 ]);

@@ -8,7 +8,7 @@ export const STROKE_REHABILITATION_MODULE: ReviewModuleContent = {
       id: "why-it-matters",
       title: T["why-it-matters"],
       paragraphs: [
-        "Neuromuscular & nervous system content (~17%) spans stroke, SCI, TBI, and progressive neurologic conditions. Items emphasize lesion-appropriate interventions, motor learning principles, and safe mobility progression.",
+        "Neuromuscular & nervous system content (~24%) spans stroke, SCI, TBI, vestibular disorders, and progressive neurologic conditions. Items emphasize lesion-appropriate interventions, motor learning principles, and safe mobility progression.",
       ],
     },
     {

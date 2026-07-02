@@ -33,6 +33,10 @@ import { AANP_PEDIATRICS_MODULE } from "./aanp-pediatrics-high-yield";
 import { MSK_REHABILITATION_MODULE } from "./msk-rehabilitation";
 import { STROKE_REHABILITATION_MODULE } from "./stroke-rehabilitation";
 import { CARDIOPULMONARY_REHAB_MODULE } from "./cardiopulmonary-rehab";
+import { THERAPEUTIC_MODALITIES_NPTE_MODULE } from "./therapeutic-modalities-npte";
+import { NPTE_VESTIBULAR_BALANCE_MODULE } from "./npte-vestibular-balance";
+import { NPTE_PEDS_GERIATRICS_MODULE } from "./npte-peds-geriatrics-rehab";
+import { NPTE_SAFETY_RED_FLAGS_MODULE } from "./npte-safety-red-flags";
 import { AANP_FNP_SYSTEM_REVIEW_MODULES } from "./aanp-fnp-system-modules";
 
 export {
@@ -52,6 +56,9 @@ export {
   STROKE_REHABILITATION_MODULE,
   CARDIOPULMONARY_REHAB_MODULE,
   THERAPEUTIC_MODALITIES_NPTE_MODULE,
+  NPTE_VESTIBULAR_BALANCE_MODULE,
+  NPTE_PEDS_GERIATRICS_MODULE,
+  NPTE_SAFETY_RED_FLAGS_MODULE,
   ENDOCRINE_EMERGENCIES_MODULE,
   RENAL_ELECTROLYTES_MODULE,
   STROKE_NEURO_MODULE,
@@ -90,6 +97,9 @@ export const REVIEW_MODULE_CONTENT_BY_SLUG: Record<string, ReviewModuleContent> 
   "stroke-rehabilitation": STROKE_REHABILITATION_MODULE,
   "cardiopulmonary-rehab": CARDIOPULMONARY_REHAB_MODULE,
   "therapeutic-modalities": THERAPEUTIC_MODALITIES_NPTE_MODULE,
+  "npte-vestibular-balance": NPTE_VESTIBULAR_BALANCE_MODULE,
+  "npte-peds-geriatrics": NPTE_PEDS_GERIATRICS_MODULE,
+  "npte-safety-red-flags": NPTE_SAFETY_RED_FLAGS_MODULE,
   "endocrine-dm": ENDOCRINE_EMERGENCIES_MODULE,
   "renal-electrolytes": RENAL_ELECTROLYTES_MODULE,
   "neurology-stroke": STROKE_NEURO_MODULE,

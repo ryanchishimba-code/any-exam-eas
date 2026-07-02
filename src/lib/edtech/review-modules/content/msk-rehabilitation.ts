@@ -8,7 +8,7 @@ export const MSK_REHABILITATION_MODULE: ReviewModuleContent = {
       id: "why-it-matters",
       title: T["why-it-matters"],
       paragraphs: [
-        "Musculoskeletal content is the largest NPTE-PT category (~20%). Items test examination findings, special tests, exercise dosage, manual therapy indications, and post-operative progression for shoulder, spine, hip, and knee conditions.",
+        "Musculoskeletal content is the largest NPTE-PT category (~28%). Items test examination findings, special tests, exercise dosage, manual therapy indications, and post-operative progression for shoulder, spine, hip, and knee conditions.",
       ],
     },
     {

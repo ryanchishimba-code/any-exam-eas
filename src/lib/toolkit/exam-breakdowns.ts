@@ -5,6 +5,12 @@ import {
   NAPLEX_HIGH_YIELD_FOCUS_AREAS,
   NAPLEX_OUTLINE_SOURCE,
 } from "@/lib/exam-prep/naplex/content-outline";
+import {
+  NPTE_PT_BODY_SYSTEMS,
+  NPTE_PT_EXAM_DOMAINS,
+  NPTE_PT_HIGH_YIELD_FOCUS_AREAS,
+  NPTE_PT_OUTLINE_SOURCE,
+} from "@/lib/exam-prep/npte-pt/content-outline";
 
 export type ToolkitExamBreakdown = {
   id: string;
@@ -121,14 +127,17 @@ export const TOOLKIT_EXAMS: ToolkitExamBreakdown[] = [
     accent: EXAM_ACCENTS.nptePt,
     prepHref: examMarketingPath("npte-pt"),
     whatItTests:
-      "Assesses entry-level competence in physical therapy practice, including evaluation, diagnosis, prognosis, intervention, and safety.",
+      "Assesses entry-level competence in physical therapy — examination, evaluation, diagnosis, prognosis, intervention, and safety across the lifespan.",
     duration: "5 hours",
-    questions: "225 multiple-choice questions (180 scored)",
+    questions: "250 multiple-choice questions (180 scored + 70 pretest)",
     detailBullets: [
-      "Body-system blueprint — musculoskeletal, neuromuscular, cardiovascular, etc.",
-      "Evaluation, diagnosis, prognosis, intervention, and safety",
-      "225 MCQs over 5 hours (180 scored + 45 pretest)",
-      "Required for physical therapist licensure in the U.S.",
+      ...NPTE_PT_EXAM_DOMAINS.map(
+        (d) => `${d.label} (${d.weightLabel}) — ${d.summary.split("—")[0]?.trim() ?? d.summary}`
+      ),
+      `High-yield systems: ${NPTE_PT_BODY_SYSTEMS.slice(0, 2).map((s) => s.label).join(" & ")} (~52% combined)`,
+      `Focus: ${NPTE_PT_HIGH_YIELD_FOCUS_AREAS.slice(0, 2).join("; ")}`,
+      "250 MCQs over 5 hours (180 scored + 70 pretest)",
+      NPTE_PT_OUTLINE_SOURCE,
     ],
     officialBoard: { label: "fsbpt.org", href: "https://www.fsbpt.org" },
   },

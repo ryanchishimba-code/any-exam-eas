@@ -4,6 +4,7 @@ import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { ToolkitBackpackIllustration } from "@/components/toolkit/ToolkitBackpackIllustration";
 import { ToolkitExamAccordion } from "@/components/toolkit/ToolkitExamAccordion";
+import { ToolkitCrossExamComparison } from "@/components/toolkit/ToolkitCrossExamComparison";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ROUTES } from "@/lib/routes";
 import { TOOLKIT_EXAMS } from "@/lib/toolkit/exam-breakdowns";
@@ -145,6 +146,8 @@ export default function ToolkitPage() {
             <ToolkitExamAccordion exams={TOOLKIT_EXAMS} />
           </div>
         </section>
+
+        <ToolkitCrossExamComparison />
 
         {/* Final CTA */}
         <section className="border-t border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-16 sm:py-20">

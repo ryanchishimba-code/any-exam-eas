@@ -7,6 +7,9 @@ import { NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_01 } from "./npte-pt-physician-educato
 import { NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_02 } from "./npte-pt-physician-educator-batch-02";
 import { NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_03 } from "./npte-pt-physician-educator-batch-03";
 import { NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_04 } from "./npte-pt-physician-educator-batch-04";
+import { NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_05 } from "./npte-pt-physician-educator-batch-05";
+import { NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_06 } from "./npte-pt-physician-educator-batch-06";
+import { NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_07 } from "./npte-pt-physician-educator-batch-07";
 import { NPTE_PT_SEED_TARGET_PER_CATEGORY } from "@/lib/exam-prep/npte-pt/types";
 
 export type NptePtSeedBatch = {
@@ -39,6 +42,24 @@ export const NPTE_PT_SEED_BATCHES: NptePtSeedBatch[] = [
     id: "physician-educator-batch-04",
     contentCategory: "mixed-non-systems",
     items: NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_04,
+    reviewed: true,
+  },
+  {
+    id: "physician-educator-batch-05",
+    contentCategory: "musculoskeletal",
+    items: NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_05,
+    reviewed: true,
+  },
+  {
+    id: "physician-educator-batch-06",
+    contentCategory: "neuromuscular-nervous",
+    items: NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_06,
+    reviewed: true,
+  },
+  {
+    id: "physician-educator-batch-07",
+    contentCategory: "system-interactions",
+    items: NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_07,
     reviewed: true,
   },
 ];
@@ -81,4 +102,7 @@ export {
   NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_02,
   NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_03,
   NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_04,
+  NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_05,
+  NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_06,
+  NPTE_PT_PHYSICIAN_EDUCATOR_BATCH_07,
 };

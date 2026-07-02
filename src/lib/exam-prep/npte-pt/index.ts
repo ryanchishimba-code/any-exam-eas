@@ -1,4 +1,6 @@
 export * from "./types";
+export * from "./content-outline";
+export * from "./blueprint-topics-2026";
 export * from "./clinical-gate";
 export * from "./blueprint-quota";
 export * from "./batch-diversity";

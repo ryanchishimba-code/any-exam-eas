@@ -34,6 +34,11 @@ const LandingWhyChooseV2 = dynamic(
   { loading: () => <SectionPlaceholder className="py-16" /> }
 );
 
+const LandingCrossExamComparison = dynamic(
+  () => import("./LandingCrossExamComparison").then((m) => m.LandingCrossExamComparison),
+  { loading: () => <SectionPlaceholder className="py-16" /> }
+);
+
 const LandingClinicianTrust = dynamic(
   () => import("@/components/landing/LandingClinicianTrust").then((m) => m.LandingClinicianTrust),
   { loading: () => <SectionPlaceholder className="py-12" /> }
@@ -73,6 +78,7 @@ export {
   LandingOfferingV2,
   LandingShowcaseV2,
   ChooseYourExam,
+  LandingCrossExamComparison,
   LandingWhyChooseV2,
   LandingClinicianTrust,
   ProBenefitsComparison,

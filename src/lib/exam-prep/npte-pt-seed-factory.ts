@@ -15,7 +15,7 @@ function baseTags(meta: NptePtMeta, extra: string[] = []) {
   return [
     "npte-pt",
     "v1",
-    "NPTE-PT-2024",
+    "NPTE-PT-2026",
     ...(meta.blueprintSystem ? [meta.blueprintSystem] : []),
     ...extra,
     ...(meta.tags ?? []),

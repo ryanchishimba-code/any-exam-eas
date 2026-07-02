@@ -22,6 +22,9 @@ import {
   STROKE_REHABILITATION_MODULE,
   CARDIOPULMONARY_REHAB_MODULE,
   THERAPEUTIC_MODALITIES_NPTE_MODULE,
+  NPTE_VESTIBULAR_BALANCE_MODULE,
+  NPTE_PEDS_GERIATRICS_MODULE,
+  NPTE_SAFETY_RED_FLAGS_MODULE,
   ENDOCRINE_EMERGENCIES_MODULE,
   RENAL_ELECTROLYTES_MODULE,
   STROKE_NEURO_MODULE,
@@ -414,6 +417,36 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     practiceTopicSlug: "therapeutic-modalities",
     reviewModule: THERAPEUTIC_MODALITIES_NPTE_MODULE,
     sortOrder: 3,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "npte-pt",
+    slug: "npte-vestibular-balance",
+    title: "Vestibular & Balance Disorders",
+    overview:
+      "BPPV repositioning, gaze stabilization, and peripheral vs central vertigo — high-yield neuromuscular extension.",
+    practiceTopicSlug: "neuromuscular-nervous",
+    reviewModule: NPTE_VESTIBULAR_BALANCE_MODULE,
+    sortOrder: 4,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "npte-pt",
+    slug: "npte-peds-geriatrics",
+    title: "Pediatrics & Geriatrics",
+    overview:
+      "CP, torticollis, falls prevention, frailty, and lifespan modifiers across NPTE-PT systems.",
+    practiceTopicSlug: "system-interactions",
+    reviewModule: NPTE_PEDS_GERIATRICS_MODULE,
+    sortOrder: 5,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "npte-pt",
+    slug: "npte-safety-red-flags",
+    title: "Safety & Red Flags",
+    overview:
+      "When to refer, exercise contraindications, infection control, and fall risk — heavily tested cross-cutting content.",
+    practiceTopicSlug: "safety-protection",
+    reviewModule: NPTE_SAFETY_RED_FLAGS_MODULE,
+    sortOrder: 6,
   }),
 ];
 
