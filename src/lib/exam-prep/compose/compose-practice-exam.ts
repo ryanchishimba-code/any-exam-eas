@@ -16,6 +16,8 @@ import {
   fillExamItemsToCount,
   maxGatherTierIndexForComposeTier,
   resolveComposePoolLimit,
+  resolveLiveComposePoolLimit,
+  resolveProgressivePullSize,
 } from "@/lib/exam-prep/progressive-exam-relaxation";
 import { dedupeItemsByClinicalCase, sessionDedupeKey } from "@/lib/exam-prep/diverse-session-selection";
 import { auditExamSimilarity } from "@/lib/exam-prep/exam-similarity";
@@ -65,6 +67,8 @@ export type ComposeExamParams = {
   excludeQuestionIds?: Set<string>;
   /** Override progressive tier (default: strict only). */
   progressiveTierIndex?: number;
+  /** Cap DB pool size for live user-facing compose (skips batch-sized pulls). */
+  livePoolLimit?: number;
 };
 
 export type ComposedExamQuestion = {
@@ -211,7 +215,7 @@ async function composeForConfigWithTier(
   const validIds = new Set(blueprint.categories.map((c) => c.id));
   const labelById = new Map(blueprint.categories.map((c) => [c.id, c.label] as const));
 
-  const poolLimit = resolveComposePoolLimit(numQuestions);
+  const poolLimit = params.livePoolLimit ?? resolveComposePoolLimit(numQuestions);
   const excludeIds = tier.allowCrossExamReuse ? undefined : params.excludeQuestionIds;
   const maxGatherTierIndex = maxGatherTierIndexForComposeTier(config.fieldId, tier);
 
@@ -220,7 +224,13 @@ async function composeForConfigWithTier(
       fieldId: config.fieldId,
       limit: poolLimit,
       maxTierIndex: maxGatherTierIndex,
-      initialSampleCount: poolLimit,
+      initialSampleCount: Math.min(
+        poolLimit,
+        params.livePoolLimit
+          ? resolveProgressivePullSize(numQuestions, poolLimit)
+          : poolLimit
+      ),
+      maxRoundsPerTier: params.livePoolLimit ? 1 : undefined,
       excludeQuestionIds: excludeIds,
       prepareItem: config.prepareItem,
     })

@@ -6,7 +6,8 @@ import type { BankItem } from "@/lib/question-bank";
 import type { SelectionSummary } from "@/lib/exam-prep/naplex/blueprint-selection";
 import { composePracticeExamProgressive } from "./compose-practice-exam";
 import { resolveExamComposeConfig } from "./exam-compose-config";
-import { userFacingComposeTiers } from "@/lib/exam-prep/progressive-compose";
+import { userFacingComposeTiers, EXACT_FILL_COMPOSE_TIER } from "@/lib/exam-prep/progressive-compose";
+import { resolveLiveComposePoolLimit } from "@/lib/exam-prep/progressive-exam-relaxation";
 
 export type ComposeTimedExamSessionParams = {
   fieldId: string;
@@ -14,6 +15,8 @@ export type ComposeTimedExamSessionParams = {
   /** Blueprint category ids/labels to overweight; omit for full board mix. */
   focusAreas?: string[];
   seed?: number;
+  /** Live user request — single exact-fill tier with a capped pool. */
+  liveFast?: boolean;
 };
 
 export type ComposeTimedExamSessionResult = {
@@ -39,13 +42,15 @@ export async function composeBlueprintTimedExamSession(
 
   const numQuestions = Math.max(1, Math.floor(params.numQuestions));
   const seed = params.seed ?? ((Date.now() ^ 0x51ed270b) >>> 0);
+  const liveFast = params.liveFast === true;
 
   const result = await composePracticeExamProgressive(config.slug, {
     numQuestions,
     focusAreas: params.focusAreas?.length ? params.focusAreas : undefined,
     outputFormat: "ids_only",
     seed,
-    tiers: userFacingComposeTiers(params.fieldId),
+    tiers: liveFast ? [EXACT_FILL_COMPOSE_TIER] : userFacingComposeTiers(params.fieldId),
+    livePoolLimit: liveFast ? resolveLiveComposePoolLimit(numQuestions) : undefined,
   });
 
   if (!result || result.items.length < numQuestions) return null;

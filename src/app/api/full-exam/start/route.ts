@@ -51,7 +51,6 @@ export async function POST(req: Request) {
         { status: 403 }
       );
     }
-    await touchExamStudied(premium.userId);
 
     let sessionFieldId = EXAM_CATALOG[examSlug].fieldId;
     let sessionTitle = `${EXAM_CATALOG[examSlug].shortName} Full Simulation`;
@@ -128,7 +127,8 @@ export async function POST(req: Request) {
       assembleSource: assembled.source,
     });
 
-    await recordStudyQuestionsServed(
+    void touchExamStudied(premium.userId);
+    void recordStudyQuestionsServed(
       premium.userId,
       clientPayload.questions.length,
       "exam_session",

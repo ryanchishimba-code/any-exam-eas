@@ -26,6 +26,15 @@ export function resolveProgressivePoolLimit(limit: number): number {
   return Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, base + dedupeHeadroom);
 }
 
+/** Live request pool cap — avoids multi-hundred-row compose pulls on user-facing starts. */
+export function resolveLiveComposePoolLimit(numQuestions: number): number {
+  const progressive = resolveProgressivePoolLimit(numQuestions);
+  return Math.min(
+    QUESTION_BANK_SAMPLE_MAX_PULL,
+    Math.max(progressive, resolveProgressivePullSize(numQuestions, progressive))
+  );
+}
+
 /** Compose pulls need a wider pool than gather-only paths for blueprint balancing. */
 export function resolveComposePoolLimit(numQuestions: number): number {
   if (numQuestions <= 100) {

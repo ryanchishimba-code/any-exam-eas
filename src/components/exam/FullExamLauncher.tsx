@@ -156,6 +156,7 @@ export function FullExamLauncher({
           bankItemIds: data.bankItemIds,
         });
       }
+      router.prefetch(href);
       router.push(href);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not start exam");

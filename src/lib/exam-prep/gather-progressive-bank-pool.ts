@@ -44,6 +44,8 @@ export type GatherProgressiveBankPoolParams = {
   /** Highest gather-gate tier index to use (inclusive). */
   maxTierIndex: number;
   initialSampleCount?: number;
+  /** DB sampling rounds per gate tier (default 2; live exams use 1). */
+  maxRoundsPerTier?: number;
   stateCode?: string;
   excludeQuestionIds?: Set<string>;
   prepareItem?: (item: BankItem) => BankItem;
@@ -57,6 +59,7 @@ export async function gatherProgressiveBankPool(
   params: GatherProgressiveBankPoolParams
 ): Promise<BankItem[]> {
   const { fieldId, limit, stateCode, excludeQuestionIds, prepareItem } = params;
+  const maxRoundsPerTier = Math.max(1, params.maxRoundsPerTier ?? 2);
   const ladder = timedExamGatherLadderForField(fieldId);
   const maxTierIndex = Math.min(
     Math.max(0, params.maxTierIndex),
@@ -101,7 +104,7 @@ export async function gatherProgressiveBankPool(
     );
     if (countSelected() >= limit) break;
 
-    for (let round = 0; round < 2 && countSelected() < limit; round++) {
+    for (let round = 0; round < maxRoundsPerTier && countSelected() < limit; round++) {
       const batch = await sampleQuestionBankItemsForField({
         fieldId,
         count: pullSize,

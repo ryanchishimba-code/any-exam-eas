@@ -1,6 +1,6 @@
 /**
- * Single-pull timed exam gather for 50/100-question sprints — avoids blueprint
- * compose and multi-tier progressive pulls that add 30–90s on live requests.
+ * Fast timed exam gather — one or two DB pulls with a single serve gate.
+ * Avoids blueprint compose and multi-tier progressive pulls on live requests.
  */
 import type { BankItem } from "@/lib/question-bank";
 import { sampleQuestionBankItemsForField } from "@/lib/question-bank-db";
@@ -14,12 +14,16 @@ export function isSprintTimedExamLimit(limit: number): boolean {
   return limit > 0 && limit <= SPRINT_MAX;
 }
 
-function itemKey(item: BankItem): string {
-  return item.id ?? `${item.subjectId ?? ""}:${item.question.trim().toLowerCase()}`;
+/** DB pull size for fast gather — scales with session length, capped for latency. */
+export function resolveFastTimedPullSize(limit: number): number {
+  if (limit <= SPRINT_MAX) {
+    return Math.min(180, Math.max(limit + 28, Math.ceil(limit * 1.35)));
+  }
+  return Math.min(420, Math.max(limit + 48, Math.ceil(limit * 1.22)));
 }
 
-function resolveSprintPullSize(limit: number): number {
-  return Math.min(180, Math.max(limit + 28, Math.ceil(limit * 1.35)));
+function itemKey(item: BankItem): string {
+  return item.id ?? `${item.subjectId ?? ""}:${item.question.trim().toLowerCase()}`;
 }
 
 /** Prefer the serve gate when present; fall back to structural. */
@@ -69,10 +73,10 @@ export async function gatherSprintTimedExamPool(params: {
 }): Promise<BankItem[]> {
   const { fieldId, limit } = params;
   const prepareItem = resolveSprintPrepareItem(fieldId, params.prepareItem);
-  if (!isSprintTimedExamLimit(limit)) return [];
+  if (limit <= 0) return [];
 
   const filterFn = sprintFilterForField(fieldId);
-  const pullSize = resolveSprintPullSize(limit);
+  const pullSize = resolveFastTimedPullSize(limit);
   const seen = new Set<string>();
   const selected: BankItem[] = [];
 

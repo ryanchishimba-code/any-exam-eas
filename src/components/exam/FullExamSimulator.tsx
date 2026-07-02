@@ -205,7 +205,7 @@ export function FullExamSimulator({
       }
 
       const cached = takeFullExamSessionPayload(sessionId);
-      if (cached?.questions?.length === expectedCount) {
+      if (cached?.questions?.length && cached.questions.length >= expectedCount) {
         try {
           const items = mapLoadedQuestions(
             cached.questions as RawQuestionInput[],
@@ -243,81 +243,13 @@ export function FullExamSimulator({
           }
         }
       } catch {
-        // Fall back to live compose below.
-      }
-
-      let mpjeStateCode: string | null = null;
-      if (fieldId === "mpje") {
-        try {
-          const prefRes = await fetch("/api/user/exam-preference", { cache: "no-store" });
-          if (prefRes.ok) {
-            const pref = (await prefRes.json()) as { mpjeStateCode?: string | null };
-            mpjeStateCode = pref.mpjeStateCode ?? null;
-          }
-        } catch {
-          // Non-fatal — MPJE may still work with federal-only bank.
-        }
-      }
-
-      const qs = new URLSearchParams({
-        field: fieldId,
-        mode: "timed",
-        scope: "field",
-        limit: String(config.questionCount),
-      });
-      if (config.adaptive) qs.set("mixed", "1");
-      qs.set("meta", "0");
-      if (fieldId === "mpje" && mpjeStateCode) {
-        qs.set("state", mpjeStateCode);
-        qs.set("mpjeState", mpjeStateCode);
-        qs.set("mpjeVariant", "state");
-      }
-      if (fieldId === "nursing" && config.nclexLength) {
-        qs.set("nclexLength", config.nclexLength);
-      }
-      if (config.focusAreas?.length) {
-        qs.set("focusAreas", config.focusAreas.join(","));
-      }
-
-      const maxAttempts = 2;
-      let lastError = "Could not load exam questions. Check your connection and try again.";
-
-      for (let attempt = 0; attempt < maxAttempts; attempt++) {
-        if (cancelled) return;
-        if (attempt > 0) {
-          await new Promise((resolve) => setTimeout(resolve, 350 * attempt));
-        }
-
-        try {
-          const res = await fetch(`/api/questions?${qs.toString()}`, { cache: "no-store" });
-          const data = (await res.json()) as {
-            error?: string;
-            questions?: RawQuestionInput[];
-            bankItemIds?: string[];
-            requested?: number;
-          };
-
-          if (!res.ok) {
-            lastError = data.error ?? "Could not load exam questions.";
-            continue;
-          }
-
-          const expectedCount = config.questionCount;
-          const bankIds = data.bankItemIds ?? [];
-          const items = mapLoadedQuestions(
-            (data.questions ?? []) as RawQuestionInput[],
-            bankIds
-          );
-
-          if (!cancelled) setQuestions(items);
-          return;
-        } catch {
-          lastError = "Could not load exam questions. Check your connection and try again.";
-        }
+        // Prefetch failed — do not re-compose via /api/questions (adds 30–90s).
       }
 
       if (!cancelled) {
-        setLoadError(lastError);
+        setLoadError(
+          "Could not load your exam session. Return to the launcher and start again."
+        );
         setQuestions([]);
       }
     }
