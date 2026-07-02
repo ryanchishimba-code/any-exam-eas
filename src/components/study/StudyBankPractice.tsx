@@ -83,6 +83,7 @@ import { qbUi } from "@/lib/study/question-bank-ui";
 import {
   availableQuestionCount,
   estimateQuestionBankSessionMinutes,
+  questionBankCountOptionsForAvailable,
   readPersistedQuestionBankSetup,
   validateQuestionBankSession,
   writePersistedQuestionBankSetup,
@@ -602,15 +603,19 @@ export function StudyBankPractice({
     }
   }, [isTimedExam, countsLoading, subjectCounts, subjectId, fieldId]);
 
-  // Shrink session length when the selected topic cannot fill the current count.
+  // When the topic pool is smaller than the selected count, snap to the largest valid preset.
   useEffect(() => {
     if (isTimedExam || countsLoading || !subjectCounts || !subjectId) return;
     const max = availableQuestionCount(subjectId, subjectCounts);
-    if (max === null || max <= 0 || questionCount <= max) return;
-    const clamped = clampQuestionBankCount(max);
-    setQuestionCount(clamped);
-    syncPracticeUrl({ count: clamped });
-  }, [isTimedExam, countsLoading, subjectCounts, subjectId, questionCount, fieldId]);
+    if (max === null || max <= 0) return;
+    const options = questionBankCountOptionsForAvailable(max);
+    const largest = options[options.length - 1]?.value;
+    if (largest == null) return;
+    if (questionCount <= largest) return;
+    setQuestionCount(largest);
+    syncPracticeUrl({ count: largest });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subjectId, fieldId, subjectCounts, countsLoading, isTimedExam]);
 
   const subjectUrlSyncedRef = useRef(false);
   useEffect(() => {

@@ -109,6 +109,19 @@ export async function POST(req: Request) {
       adaptive: true,
     });
     if (!usageCheck.ok) return usageCheck.response;
+
+    if (usageCheck.allowedCount < body.count) {
+      return NextResponse.json(
+        {
+          error: `Your plan allows ${usageCheck.allowedCount} questions per session. Choose ${usageCheck.allowedCount} or fewer, or upgrade for larger sessions.`,
+          code: "SESSION_SIZE_CAPPED",
+          allowedCount: usageCheck.allowedCount,
+          requested: body.count,
+        },
+        { status: 403 }
+      );
+    }
+
     const sessionCount = usageCheck.allowedCount;
 
     const subjectId = body.subjectId;

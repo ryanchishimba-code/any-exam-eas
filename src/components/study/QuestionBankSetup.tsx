@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  clampQuestionBankCount,
+  QUESTION_BANK_COUNT_PRESETS,
   type QuestionBankPace,
   type QuestionBankStyle,
 } from "@/lib/exam/modes";
@@ -10,7 +10,8 @@ import {
   MIXED_SUBJECT_LABEL,
   availableQuestionCount,
   isMixedSubjectId,
-  questionBankCountOptions,
+  questionBankCountOptionsForAvailable,
+  resolveWheelCountValue,
   validateQuestionBankSession,
 } from "@/lib/study/question-bank-setup";
 import { qbUi } from "@/lib/study/question-bank-ui";
@@ -60,7 +61,9 @@ export function QuestionBankSetup({
   compact = false,
   countsLoading = false,
 }: QuestionBankSetupProps) {
-  const countOptions = questionBankCountOptions();
+  const maxAvailable = availableQuestionCount(subjectId, subjectCounts);
+  const countOptions = questionBankCountOptionsForAvailable(maxAvailable);
+  const wheelValue = resolveWheelCountValue(questionCount, countOptions);
   const validation = validateQuestionBankSession({
     subjectId,
     questionCount,
@@ -71,7 +74,7 @@ export function QuestionBankSetup({
   const selectedSubject = isMixedSubjectId(subjectId)
     ? { id: MIXED_SUBJECT_ID, label: MIXED_SUBJECT_LABEL }
     : subjects.find((s) => s.id === subjectId);
-  const selectedCount = availableQuestionCount(subjectId, subjectCounts);
+  const selectedCount = maxAvailable;
 
   return (
     <div className="space-y-5">
@@ -122,11 +125,25 @@ export function QuestionBankSetup({
         <div className="space-y-5">
           <div>
             <p className={cn(qbUi.sectionHint, "mb-3 px-0.5")}>Question count</p>
-            <QuestionBankCountWheel
-              options={countOptions}
-              value={clampQuestionBankCount(questionCount)}
-              onChange={onQuestionCountChange}
-            />
+            {countOptions.length === 0 ? (
+              <p className="text-center text-[12px] text-amber-800" role="status">
+                Not enough serve-ready questions for this topic yet.
+              </p>
+            ) : (
+              <QuestionBankCountWheel
+                options={countOptions}
+                value={wheelValue}
+                onChange={onQuestionCountChange}
+              />
+            )}
+            {maxAvailable != null &&
+            maxAvailable > 0 &&
+            maxAvailable < QUESTION_BANK_COUNT_PRESETS[0] ? (
+              <p className="mt-2 text-center text-[12px] text-[var(--color-ink-muted)]" role="status">
+                This topic has {maxAvailable.toLocaleString()} serve-ready question
+                {maxAvailable === 1 ? "" : "s"} — counts above that are hidden.
+              </p>
+            ) : null}
             {!validation.ok && validation.message ? (
               <p className="mt-2 text-center text-[12px] text-amber-800" role="status">
                 {validation.message}

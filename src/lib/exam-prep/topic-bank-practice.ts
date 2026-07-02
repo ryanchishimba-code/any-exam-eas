@@ -18,7 +18,7 @@ export function resolveTopicBankSampleCount(limit: number): number {
   return Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.max(limit * 6, 80));
 }
 
-const TOPIC_GATHER_MAX_ROUNDS = 2;
+const TOPIC_GATHER_MAX_ROUNDS = 4;
 
 /**
  * Pull and vet enough single-topic rows for an exact-count session.
@@ -60,10 +60,7 @@ export async function gatherTopicBankSessionPool(params: {
     }
 
     if (merged.length >= minVetted) break;
-    if (round === 0 && vetted.length > 0 && merged.length < params.sessionLimit) {
-      // Gate pass rate too low — one more round rarely helps; stop early.
-      break;
-    }
+    if (merged.length >= params.sessionLimit) break;
   }
 
   return dedupeBankItemsById(merged).slice(0, poolTarget);

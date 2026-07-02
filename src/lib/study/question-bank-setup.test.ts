@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   MIXED_SUBJECT_ID,
   availableQuestionCount,
+  questionBankCountOptionsForAvailable,
+  resolveWheelCountValue,
   validateQuestionBankSession,
 } from "./question-bank-setup";
 
@@ -82,5 +84,22 @@ describe("question-bank-setup", () => {
       taskCategory: "diagnosis",
     });
     expect(result.ok).toBe(true);
+  });
+
+  it("limits wheel options to topic pool size", () => {
+    expect(questionBankCountOptionsForAvailable(6).map((o) => o.value)).toEqual([6]);
+    expect(questionBankCountOptionsForAvailable(40).map((o) => o.value)).toEqual([10, 25]);
+    expect(questionBankCountOptionsForAvailable(100).map((o) => o.value)).toEqual([
+      10, 25, 50, 75, 100,
+    ]);
+    expect(questionBankCountOptionsForAvailable(null).map((o) => o.value)).toEqual([
+      10, 25, 50, 75, 100,
+    ]);
+  });
+
+  it("snaps wheel value to nearest allowed preset", () => {
+    const options = questionBankCountOptionsForAvailable(6);
+    expect(resolveWheelCountValue(25, options)).toBe(6);
+    expect(resolveWheelCountValue(6, options)).toBe(6);
   });
 });

@@ -1,5 +1,6 @@
 import {
   QUESTION_BANK_COUNT_PRESETS,
+  QUESTION_BANK_MIN_COUNT,
   clampQuestionBankCount,
   type QuestionBankPace,
   type QuestionBankStyle,
@@ -16,10 +17,8 @@ export type QuestionBankCountOption = {
   description: string;
 };
 
-/** Scroll-wheel options — same presets for every board exam. */
-export function questionBankCountOptions(): QuestionBankCountOption[] {
-  return QUESTION_BANK_COUNT_PRESETS.map((value) => ({
-    value,
+function describeCountOption(value: number): Pick<QuestionBankCountOption, "label" | "description"> {
+  return {
     label: `${value} questions`,
     description:
       value <= 10
@@ -31,7 +30,55 @@ export function questionBankCountOptions(): QuestionBankCountOption[] {
             : value <= 75
               ? "Long block"
               : "Maximum bank session",
+  };
+}
+
+/** Scroll-wheel options — same presets for every board exam. */
+export function questionBankCountOptions(): QuestionBankCountOption[] {
+  return QUESTION_BANK_COUNT_PRESETS.map((value) => ({
+    value,
+    ...describeCountOption(value),
   }));
+}
+
+/** Limit wheel choices to what the selected topic can actually fill. */
+export function questionBankCountOptionsForAvailable(
+  maxAvailable: number | null
+): QuestionBankCountOption[] {
+  const base = questionBankCountOptions();
+  if (maxAvailable == null) return base;
+
+  const capped = Math.max(0, Math.floor(maxAvailable));
+  if (capped < QUESTION_BANK_MIN_COUNT) return [];
+
+  const allowedValues = base.map((o) => o.value).filter((value) => value <= capped);
+
+  if (!allowedValues.includes(capped)) {
+    allowedValues.push(capped);
+    allowedValues.sort((a, b) => a - b);
+  }
+
+  return allowedValues.map((value) => {
+    const preset = base.find((o) => o.value === value);
+    return (
+      preset ?? {
+        value,
+        ...describeCountOption(value),
+      }
+    );
+  });
+}
+
+/** Snap a requested count to the nearest wheel option (never above pool max). */
+export function resolveWheelCountValue(
+  questionCount: number,
+  options: QuestionBankCountOption[]
+): number {
+  const clamped = clampQuestionBankCount(questionCount);
+  if (options.some((o) => o.value === clamped)) return clamped;
+  const atOrBelow = options.filter((o) => o.value <= clamped);
+  if (atOrBelow.length > 0) return atOrBelow[atOrBelow.length - 1]!.value;
+  return options[0]?.value ?? clamped;
 }
 
 export function isMixedSubjectId(subjectId: string): boolean {

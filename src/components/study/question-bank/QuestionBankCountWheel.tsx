@@ -23,7 +23,13 @@ export function QuestionBankCountWheel({ options, value, onChange }: Props) {
   const rafRef = useRef<number | null>(null);
   const programmaticRef = useRef(false);
 
-  const startIndex = Math.max(0, options.findIndex((o) => o.value === value));
+  const resolvedValue =
+    options.find((o) => o.value === value)?.value ??
+    options.filter((o) => o.value <= value).at(-1)?.value ??
+    options[0]?.value ??
+    value;
+
+  const startIndex = Math.max(0, options.findIndex((o) => o.value === resolvedValue));
   const [center, setCenter] = useState(startIndex === -1 ? 0 : startIndex);
   const selectedIndex = Math.min(options.length - 1, Math.max(0, Math.round(center)));
 
@@ -48,19 +54,19 @@ export function QuestionBankCountWheel({ options, value, onChange }: Props) {
   }, []);
 
   useEffect(() => {
-    const idx = options.findIndex((o) => o.value === value);
+    const idx = options.findIndex((o) => o.value === resolvedValue);
     if (idx >= 0 && idx !== selectedIndex && !programmaticRef.current) {
       scrollToIndex(idx, "smooth");
       setCenter(idx);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
+  }, [resolvedValue, options]);
 
   useEffect(() => {
     const opt = options[selectedIndex];
-    if (opt && opt.value !== value) onChange(opt.value);
+    if (opt && opt.value !== resolvedValue) onChange(opt.value);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedIndex]);
+  }, [selectedIndex, options]);
 
   const handleScroll = useCallback(() => {
     const el = containerRef.current;
