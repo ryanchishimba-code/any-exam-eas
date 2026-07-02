@@ -3,7 +3,7 @@ import {
   isPostgresDatabaseUrl,
   resolveDatabaseUrl,
 } from "@/lib/database-url";
-import { isDistributedRateLimitEnabled } from "@/lib/rate-limit-distributed";
+import { isUpstashRedisEnabled } from "@/lib/upstash-redis";
 import {
   isIntervalPriceConfigured,
   STRIPE_PRICE_ENV_KEYS,
@@ -85,7 +85,7 @@ export function runScaleReadinessChecks(): ScaleReadinessReport {
   );
 
   checks.push(
-    isDistributedRateLimitEnabled()
+    isUpstashRedisEnabled()
       ? check("upstash", "ok", "Upstash Redis configured")
       : check(
           "upstash",

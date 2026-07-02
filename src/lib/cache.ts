@@ -1,7 +1,15 @@
 /**
- * In-process TTL cache for serverless-friendly hot paths.
- * At 3k MAU on Vercel, pair with Neon + short TTLs; upgrade to Redis/Upstash for cross-instance cache.
+ * Two-tier cache: in-process L1 + optional Upstash Redis L2 for cross-instance hits.
+ * Hot paths (user access, subscription status, exam preference) use cacheGetOrSetDeduped.
  */
+import {
+  redisCacheDelete,
+  redisCacheGet,
+  redisCacheSet,
+  isUpstashRedisEnabled,
+} from "@/lib/upstash-redis";
+
+export { isUpstashRedisEnabled };
 
 type Entry<T> = { expiresAt: number; value: T };
 
@@ -38,12 +46,16 @@ export function cacheSet<T>(key: string, value: T, ttlMs: number): void {
 
 export function cacheDelete(key: string): void {
   store.delete(key);
+  void redisCacheDelete(key);
 }
 
-/** Delete all entries whose key starts with `prefix` (e.g. brief cache per user/exam). */
+/** Delete all entries whose key starts with `prefix` (L1 only — use targeted deletes for Redis). */
 export function cacheDeleteMatching(prefix: string): void {
   for (const key of store.keys()) {
-    if (key.startsWith(prefix)) store.delete(key);
+    if (key.startsWith(prefix)) {
+      store.delete(key);
+      void redisCacheDelete(key);
+    }
   }
 }
 
@@ -54,12 +66,20 @@ export async function cacheGetOrSet<T>(
 ): Promise<T> {
   const hit = cacheGet<T>(key);
   if (hit != null) return hit;
+
+  const remoteHit = await redisCacheGet<T>(key);
+  if (remoteHit != null) {
+    cacheSet(key, remoteHit, ttlMs);
+    return remoteHit;
+  }
+
   const value = await factory();
   cacheSet(key, value, ttlMs);
+  await redisCacheSet(key, value, ttlMs);
   return value;
 }
 
-/** Coalesce concurrent cache misses for the same key (prevents duplicate RAG/AI work). */
+/** Coalesce concurrent cache misses for the same key (prevents duplicate DB work). */
 const inflight = new Map<string, Promise<unknown>>();
 
 export async function cacheGetOrSetDeduped<T>(
@@ -70,12 +90,19 @@ export async function cacheGetOrSetDeduped<T>(
   const hit = cacheGet<T>(key);
   if (hit != null) return hit;
 
+  const remoteHit = await redisCacheGet<T>(key);
+  if (remoteHit != null) {
+    cacheSet(key, remoteHit, ttlMs);
+    return remoteHit;
+  }
+
   const pending = inflight.get(key);
   if (pending) return pending as Promise<T>;
 
   const promise = factory()
-    .then((value) => {
+    .then(async (value) => {
       cacheSet(key, value, ttlMs);
+      await redisCacheSet(key, value, ttlMs);
       inflight.delete(key);
       return value;
     })
@@ -96,7 +123,7 @@ export function cacheKey(parts: (string | number | undefined | null)[]): string 
   return parts.filter((p) => p != null && p !== "").join(":");
 }
 
-/** Default TTLs tuned for cost vs freshness at ~3k MAU */
+/** Default TTLs tuned for cost vs freshness at scale */
 export const CACHE_TTL = {
   researchBrief: 60 * 60 * 1000, // 1h — Tavily + synthesis
   subjectCatalog: 30 * 60 * 1000, // 30m — topic counts change infrequently post-sync

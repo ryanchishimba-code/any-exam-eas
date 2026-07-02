@@ -1,24 +1,10 @@
 import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
+import { getUpstashRedis } from "@/lib/upstash-redis";
 
 const limiterCache = new Map<string, Ratelimit>();
 
-let redisClient: Redis | null | undefined;
-
-function getRedis(): Redis | null {
-  if (redisClient !== undefined) return redisClient;
-  const url = process.env.UPSTASH_REDIS_REST_URL?.trim();
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN?.trim();
-  if (!url || !token) {
-    redisClient = null;
-    return null;
-  }
-  redisClient = new Redis({ url, token });
-  return redisClient;
-}
-
 export function isDistributedRateLimitEnabled(): boolean {
-  return getRedis() !== null;
+  return getUpstashRedis() !== null;
 }
 
 export async function checkDistributedRateLimit(
@@ -26,7 +12,7 @@ export async function checkDistributedRateLimit(
   limit: number,
   windowMs: number
 ): Promise<{ ok: true } | { ok: false; retryAfterSec: number } | null> {
-  const redis = getRedis();
+  const redis = getUpstashRedis();
   if (!redis) return null;
 
   const cacheKey = `${limit}:${windowMs}`;
