@@ -4,16 +4,29 @@ const CACHE_PREFIX = "aee:cache:";
 
 let redisClient: Redis | null | undefined;
 
+/** Resolve REST credentials (Vercel integration may use KV_* or UPSTASH_* names). */
+function resolveUpstashRestCredentials(): { url: string; token: string } | null {
+  const url =
+    process.env.UPSTASH_REDIS_REST_URL?.trim() ||
+    process.env.KV_REST_API_URL?.trim() ||
+    process.env.KV_URL?.trim();
+  const token =
+    process.env.UPSTASH_REDIS_REST_TOKEN?.trim() ||
+    process.env.KV_REST_API_TOKEN?.trim() ||
+    process.env.KV_REST_API_READ_ONLY_TOKEN?.trim();
+  if (!url || !token) return null;
+  return { url, token };
+}
+
 /** Shared Upstash client for rate limits + cross-instance cache. */
 export function getUpstashRedis(): Redis | null {
   if (redisClient !== undefined) return redisClient;
-  const url = process.env.UPSTASH_REDIS_REST_URL?.trim();
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN?.trim();
-  if (!url || !token) {
+  const creds = resolveUpstashRestCredentials();
+  if (!creds) {
     redisClient = null;
     return null;
   }
-  redisClient = new Redis({ url, token });
+  redisClient = new Redis({ url: creds.url, token: creds.token });
   return redisClient;
 }
 

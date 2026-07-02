@@ -90,7 +90,7 @@ export function runScaleReadinessChecks(): ScaleReadinessReport {
       : check(
           "upstash",
           process.env.VERCEL ? "fail" : "warn",
-          "Set UPSTASH_REDIS_REST_URL + TOKEN — required at multi-instance scale"
+          "Set UPSTASH_REDIS_REST_URL + TOKEN (or KV_REST_API_*) — required at multi-instance scale"
         )
   );
 
