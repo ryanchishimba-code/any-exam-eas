@@ -103,6 +103,9 @@ export function UserAccessProvider({ children }: { children: ReactNode }) {
       return;
     }
 
+    // Always refresh on sign-in — stale cache can show premium UI after expiry.
+    cachedAccess = null;
+
     let cancelled = false;
     void fetchUserAccess().then((next) => {
       if (!cancelled) setAccess(next);

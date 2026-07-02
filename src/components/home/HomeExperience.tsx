@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 import { Hero } from "@/components/Hero";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
@@ -41,9 +42,19 @@ export function HomeExperience({
 }) {
   const { status } = useSession();
   const { hasPremiumAccess, loading: accessLoading } = useUserAccess();
+  const [accessTimedOut, setAccessTimedOut] = useState(false);
   const isAuthed = status === "authenticated";
+  const resolvingPremiumAccess = isAuthed && accessLoading && !accessTimedOut;
   const showSubscriberHome = isAuthed && !accessLoading && hasPremiumAccess;
-  const resolvingPremiumAccess = isAuthed && accessLoading;
+
+  useEffect(() => {
+    if (!isAuthed || !accessLoading) {
+      setAccessTimedOut(false);
+      return;
+    }
+    const timer = window.setTimeout(() => setAccessTimedOut(true), 4000);
+    return () => window.clearTimeout(timer);
+  }, [isAuthed, accessLoading]);
 
   if (showSubscriberHome) {
     return (

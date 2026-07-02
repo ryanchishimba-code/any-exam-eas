@@ -101,7 +101,7 @@
     "stripe:sync-prices:deploy": "node scripts/stripe-sync-prices.mjs --push-vercel",
     "stripe:free-trial": "node scripts/stripe-free-trial.mjs",
     "stripe:free-trial:deploy": "node scripts/stripe-free-trial.mjs --redeploy",
-    "test:smoke:prod": "node scripts/smoke-test.mjs https://any-exam-eas.vercel.app",
+    "test:smoke:prod": "node scripts/smoke-test.mjs https://www.anyexameasy.com",
     "test:flows": "node scripts/test-feature-flows.mjs",
     "test:flows:prod": "node scripts/test-feature-flows.mjs https://www.anyexameasy.com",
     "email:test-reset": "node scripts/test-reset-email.mjs",
