@@ -26,6 +26,7 @@ import {
 } from "@/lib/exam-prep/prepare-bank-session";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 const bodySchema = z.object({
   field: z.string().min(1),
@@ -236,6 +237,9 @@ export async function POST(req: Request) {
     if (e instanceof Error && e.message.includes("Not enough")) {
       return NextResponse.json({ error: e.message, code: "SESSION_UNAVAILABLE" }, { status: 503 });
     }
+    const { respondDbUnavailable } = await import("@/lib/api-db-error");
+    const dbResponse = respondDbUnavailable(e);
+    if (dbResponse) return dbResponse;
     return NextResponse.json({ error: "Invalid adaptive session request." }, { status: 400 });
   }
 }

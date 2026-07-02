@@ -23,6 +23,8 @@ export const metadata = {
     "AI-personalized study brief, quick tools, memory cards, drugs, and anatomy — your exam home base.",
 };
 
+export const maxDuration = 60;
+
 function LibrarySkeleton() {
   return (
     <div className="w-full space-y-4">
@@ -36,20 +38,16 @@ function LibrarySkeleton() {
 async function LibraryContent({
   userId,
   userName,
-  examOverride,
+  examSlug,
   initialCardId,
   topicKey,
 }: {
   userId: string;
   userName?: string | null;
-  examOverride?: ExamSlug;
+  examSlug: ExamSlug;
   initialCardId?: string;
   topicKey?: string;
 }) {
-  const pref = await getUserExamPreference(userId);
-  if (!pref && !examOverride) redirect(ROUTES.selectExam);
-
-  const examSlug = (examOverride ?? pref?.examSlug ?? "nclex") as ExamSlug;
   const fieldId = resolveExamFieldId(examSlug);
   const meta = examSlug === "usmle" ? await getUserEdtechMetadata(userId) : null;
   const usmleStep =
@@ -90,33 +88,6 @@ async function LibraryContent({
   );
 }
 
-async function LibraryPageInner({
-  examOverride,
-  initialCardId,
-  topicKey,
-}: {
-  examOverride?: ExamSlug;
-  initialCardId?: string;
-  topicKey?: string;
-}) {
-  const session = await getCachedSession();
-  if (!session?.user?.id) {
-    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.library)}`);
-  }
-
-  await requirePremiumPage(ROUTES.library);
-
-  return (
-    <LibraryContent
-      userId={session.user.id}
-      userName={session.user.name}
-      examOverride={examOverride}
-      initialCardId={initialCardId}
-      topicKey={topicKey}
-    />
-  );
-}
-
 type PageProps = {
   searchParams: Promise<{ exam?: string; card?: string; topic?: string }>;
 };
@@ -127,10 +98,23 @@ export default async function LibraryPage({ searchParams }: PageProps) {
   const initialCardId = params.card;
   const topicKey = params.topic;
 
+  const session = await getCachedSession();
+  if (!session?.user?.id) {
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.library)}`);
+  }
+
+  await requirePremiumPage(ROUTES.library);
+
+  const pref = await getUserExamPreference(session.user.id);
+  const examSlug = (examOverride ?? pref?.examSlug ?? null) as ExamSlug | null;
+  if (!examSlug) redirect(ROUTES.selectExam);
+
   return (
     <Suspense fallback={<LibrarySkeleton />}>
-      <LibraryPageInner
-        examOverride={examOverride}
+      <LibraryContent
+        userId={session.user.id}
+        userName={session.user.name}
+        examSlug={examSlug}
         initialCardId={initialCardId}
         topicKey={topicKey}
       />

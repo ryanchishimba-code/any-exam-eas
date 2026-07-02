@@ -7,9 +7,11 @@ import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { getStudyUsageSnapshot } from "@/lib/study/usage-limits";
-import { resolveMockExamAccess } from "@/lib/study/mock-exam-access";
+import { resolveMockExamAccess, type MockExamAccess } from "@/lib/study/mock-exam-access";
 import { fullExamHref, ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
+
+export const maxDuration = 60;
 
 export async function generateMetadata({
   params,
@@ -33,39 +35,19 @@ function FullExamLauncherSkeleton() {
   );
 }
 
-async function FullExamLauncherInner({
+async function FullExamLauncherContent({
   examSlug,
   mode,
   autostart,
   timed,
+  mockAccess,
 }: {
   examSlug: ExamSlug;
   mode?: string;
   autostart?: string;
   timed?: string;
+  mockAccess: MockExamAccess;
 }) {
-  const session = await getCachedSession();
-  if (!session?.user?.id) {
-    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(fullExamHref(examSlug))}`);
-  }
-
-  const access = await requirePremiumPage(fullExamHref(examSlug));
-  const usage = await getStudyUsageSnapshot(access);
-  const mockAccess = resolveMockExamAccess(usage.limits, usage.plan, {
-    usedTrialMocks: usage.usedTrialMocks,
-  });
-
-  const pref = await getUserExamPreference(session.user.id);
-  if (!pref) redirect(ROUTES.selectExam);
-  if (pref.examSlug !== examSlug) {
-    const qs = new URLSearchParams();
-    if (mode) qs.set("mode", mode);
-    if (autostart) qs.set("autostart", autostart);
-    if (timed) qs.set("timed", timed);
-    const suffix = qs.toString();
-    redirect(`${fullExamHref(pref.examSlug)}${suffix ? `?${suffix}` : ""}`);
-  }
-
   return (
     <FullExamLauncher
       key={`${mode ?? "default"}-${autostart ?? "0"}-${timed ?? "1"}`}
@@ -91,13 +73,36 @@ export default async function FullExamLauncherPage({
 
   const examSlug = rawSlug as ExamSlug;
 
+  const session = await getCachedSession();
+  if (!session?.user?.id) {
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(fullExamHref(examSlug))}`);
+  }
+
+  const access = await requirePremiumPage(fullExamHref(examSlug));
+  const usage = await getStudyUsageSnapshot(access);
+  const mockAccess = resolveMockExamAccess(usage.limits, usage.plan, {
+    usedTrialMocks: usage.usedTrialMocks,
+  });
+
+  const pref = await getUserExamPreference(session.user.id);
+  if (!pref) redirect(ROUTES.selectExam);
+  if (pref.examSlug !== examSlug) {
+    const qs = new URLSearchParams();
+    if (sp.mode) qs.set("mode", sp.mode);
+    if (sp.autostart) qs.set("autostart", sp.autostart);
+    if (sp.timed) qs.set("timed", sp.timed);
+    const suffix = qs.toString();
+    redirect(`${fullExamHref(pref.examSlug)}${suffix ? `?${suffix}` : ""}`);
+  }
+
   return (
     <Suspense fallback={<FullExamLauncherSkeleton />}>
-      <FullExamLauncherInner
+      <FullExamLauncherContent
         examSlug={examSlug}
         mode={sp.mode}
         autostart={sp.autostart}
         timed={sp.timed}
+        mockAccess={mockAccess}
       />
     </Suspense>
   );

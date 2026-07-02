@@ -49,13 +49,12 @@ async function RoadmapContent({
   return <ExamRoadmapDashboard data={roadmap} />;
 }
 
-async function RoadmapPageInner({
-  examParam,
-  stepParam,
+export default async function ExamRoadmapPage({
+  searchParams,
 }: {
-  examParam?: string;
-  stepParam?: string;
+  searchParams: Promise<{ exam?: string; step?: string }>;
 }) {
+  const params = await searchParams;
   const session = await getCachedSession();
   if (!session?.user?.id) {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.roadmap)}`);
@@ -63,17 +62,17 @@ async function RoadmapPageInner({
 
   await requirePremiumPage(ROUTES.roadmap);
 
-  let examSlug: ExamSlug | null = isExamSlug(examParam ?? "") ? (examParam as ExamSlug) : null;
+  let examSlug: ExamSlug | null = isExamSlug(params.exam ?? "") ? (params.exam as ExamSlug) : null;
   if (!examSlug) {
     const pref = await getUserExamPreference(session.user.id);
     examSlug = pref?.examSlug ?? "nclex";
   }
 
   const usmleFieldId =
-    examSlug === "usmle" ? resolveUsmleRoadmapFieldId(stepParam) : undefined;
+    examSlug === "usmle" ? resolveUsmleRoadmapFieldId(params.step) : undefined;
 
   return (
-    <>
+    <div className="mx-auto max-w-4xl px-4 pb-24 pt-[var(--page-top)] sm:px-6">
       {examSlug === "usmle" ? (
         <div className="mb-6">
           <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
@@ -84,26 +83,12 @@ async function RoadmapPageInner({
           </Suspense>
         </div>
       ) : null}
-      <RoadmapContent
-        userId={session.user.id}
-        examSlug={examSlug}
-        usmleFieldId={usmleFieldId}
-      />
-    </>
-  );
-}
-
-export default async function ExamRoadmapPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ exam?: string; step?: string }>;
-}) {
-  const params = await searchParams;
-
-  return (
-    <div className="mx-auto max-w-4xl px-4 pb-24 pt-[var(--page-top)] sm:px-6">
       <Suspense fallback={<RoadmapSkeleton />}>
-        <RoadmapPageInner examParam={params.exam} stepParam={params.step} />
+        <RoadmapContent
+          userId={session.user.id}
+          examSlug={examSlug}
+          usmleFieldId={usmleFieldId}
+        />
       </Suspense>
     </div>
   );

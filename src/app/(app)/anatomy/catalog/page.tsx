@@ -16,6 +16,8 @@ export const metadata = {
     "Browse anatomy structures, guided tours, and quizzes — pearls and practice without a body viewer.",
 };
 
+export const maxDuration = 60;
+
 function AnatomySkeleton() {
   return (
     <div className="space-y-4">
@@ -34,11 +36,6 @@ async function AnatomyCatalogContent({
   examOverride?: ExamSlug;
   initialStructureId?: string;
 }) {
-  if (!examOverride) {
-    const pref = await getUserExamPreference(userId);
-    if (!pref) redirect(ROUTES.selectExam);
-  }
-
   const { examSlug, cards } = await loadMemoryCards(userId, examOverride);
 
   return (
@@ -47,30 +44,6 @@ async function AnatomyCatalogContent({
       memoryCards={cards}
       initialStructureId={initialStructureId}
       initialSurfaceId="none"
-    />
-  );
-}
-
-async function AnatomyCatalogPageInner({
-  examOverride,
-  initialStructureId,
-}: {
-  examOverride?: ExamSlug;
-  initialStructureId?: string;
-}) {
-  const session = await getCachedSession();
-  if (!session?.user?.id) {
-    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.anatomyCatalog)}`);
-  }
-
-  await redirectMpjeFromClinicalRoutes(session.user.id);
-  await requirePremiumPage(ROUTES.anatomy);
-
-  return (
-    <AnatomyCatalogContent
-      userId={session.user.id}
-      examOverride={examOverride}
-      initialStructureId={initialStructureId}
     />
   );
 }
@@ -84,6 +57,19 @@ export default async function AnatomyCatalogPage({ searchParams }: PageProps) {
   const examOverride = params.exam as ExamSlug | undefined;
   const initialStructureId = params.structure?.trim() || undefined;
 
+  const session = await getCachedSession();
+  if (!session?.user?.id) {
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.anatomyCatalog)}`);
+  }
+
+  await redirectMpjeFromClinicalRoutes(session.user.id);
+  await requirePremiumPage(ROUTES.anatomy);
+
+  if (!examOverride) {
+    const pref = await getUserExamPreference(session.user.id);
+    if (!pref) redirect(ROUTES.selectExam);
+  }
+
   return (
     <div className="space-y-4">
       <header>
@@ -94,7 +80,8 @@ export default async function AnatomyCatalogPage({ searchParams }: PageProps) {
       </header>
 
       <Suspense fallback={<AnatomySkeleton />}>
-        <AnatomyCatalogPageInner
+        <AnatomyCatalogContent
+          userId={session.user.id}
           examOverride={examOverride}
           initialStructureId={initialStructureId}
         />

@@ -6,9 +6,11 @@ import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config"
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
 import { requirePremiumApi } from "@/lib/api-access";
+import { respondDbUnavailable } from "@/lib/api-db-error";
 import type { FullExamLengthPreset } from "@/types/full-exam";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 export async function POST(req: Request) {
   const premium = await requirePremiumApi();
@@ -83,6 +85,8 @@ export async function POST(req: Request) {
       config,
     });
   } catch (e) {
+    const dbResponse = respondDbUnavailable(e);
+    if (dbResponse) return dbResponse;
     const message = e instanceof Error ? e.message : "Could not start exam";
     return NextResponse.json({ error: message }, { status: 503 });
   }

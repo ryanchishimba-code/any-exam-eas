@@ -12,6 +12,8 @@ import type { ExamSlug } from "@/types/edtech";
 import type { FullExamQuestion, FullExamResultsAnalysis } from "@/types/full-exam";
 import type { ExamAnswerRecord } from "@/lib/exam-sessions/service";
 
+export const maxDuration = 60;
+
 function ResultsSkeleton() {
   return (
     <div className={`mx-auto ${contentWidth.content} space-y-4 px-4 py-8 sm:px-6`}>
@@ -21,23 +23,18 @@ function ResultsSkeleton() {
   );
 }
 
-async function FullExamResultsInner({
+async function FullExamResultsContent({
   examSlug,
   sessionId,
+  userId,
   reviewOpen,
 }: {
   examSlug: ExamSlug;
   sessionId: string;
+  userId: string;
   reviewOpen: boolean;
 }) {
-  const session = await getCachedSession();
-  if (!session?.user?.id) {
-    redirect(`/auth/login?callbackUrl=/full-exam/${examSlug}/${sessionId}/results`);
-  }
-
-  await requirePremiumPage(`/full-exam/${examSlug}/${sessionId}/results`);
-
-  const examSession = await getExamSession(sessionId, session.user.id);
+  const examSession = await getExamSession(sessionId, userId);
   if (!examSession) notFound();
 
   if (examSession.status === "in_progress") {
@@ -98,13 +95,21 @@ export default async function FullExamResultsPage({
   const sp = await searchParams;
   if (!isExamSlug(examSlug)) notFound();
 
+  const session = await getCachedSession();
+  if (!session?.user?.id) {
+    redirect(`/auth/login?callbackUrl=/full-exam/${examSlug}/${sessionId}/results`);
+  }
+
+  await requirePremiumPage(`/full-exam/${examSlug}/${sessionId}/results`);
+
   return (
     <div className="bg-[var(--color-bg)]">
       <div className={`mx-auto ${contentWidth.content} px-4 pb-8 sm:px-6`}>
         <Suspense fallback={<ResultsSkeleton />}>
-          <FullExamResultsInner
+          <FullExamResultsContent
             examSlug={examSlug as ExamSlug}
             sessionId={sessionId}
+            userId={session.user.id}
             reviewOpen={sp.review === "1"}
           />
         </Suspense>

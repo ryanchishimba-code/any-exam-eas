@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+import { respondDbUnavailable } from "@/lib/api-db-error";
 
 export const runtime = "nodejs";
+export const maxDuration = 30;
 
 const saveSchema = z.object({
   session: z.record(z.unknown()),
@@ -50,8 +52,14 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ ok: true });
-  } catch {
-    return NextResponse.json({ error: "Invalid session payload." }, { status: 400 });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ error: "Invalid session payload." }, { status: 400 });
+    }
+    const dbResponse = respondDbUnavailable(error);
+    if (dbResponse) return dbResponse;
+    console.error("[api/study/session] POST failed:", error);
+    return NextResponse.json({ error: "Could not save session." }, { status: 500 });
   }
 }
 
@@ -65,13 +73,20 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "id required" }, { status: 400 });
   }
 
-  const row = await prisma.studySession.findFirst({
-    where: { id, userId: premium.userId },
-  });
-  if (!row) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
-  }
+  try {
+    const row = await prisma.studySession.findFirst({
+      where: { id, userId: premium.userId },
+    });
+    if (!row) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
 
-  const parsed = JSON.parse(row.stateJson) as Record<string, unknown>;
-  return NextResponse.json({ session: parsed, meta: row });
+    const parsed = JSON.parse(row.stateJson) as Record<string, unknown>;
+    return NextResponse.json({ session: parsed, meta: row });
+  } catch (error) {
+    const dbResponse = respondDbUnavailable(error);
+    if (dbResponse) return dbResponse;
+    console.error("[api/study/session] GET failed:", error);
+    return NextResponse.json({ error: "Could not load session." }, { status: 500 });
+  }
 }

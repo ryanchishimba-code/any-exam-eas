@@ -1,0 +1,88 @@
+import { redirect } from "next/navigation";
+import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import {
+  examSlugForFieldId,
+  fieldIdForExamSlug,
+  fieldMatchesExamSlug,
+  resolveQuestionBankFieldId,
+  syncExamPreferenceForField,
+} from "@/lib/edtech/question-bank-scope";
+import { isPracticeFieldId } from "@/lib/subjects/field-ids";
+import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
+import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
+import { usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
+import { ROUTES } from "@/lib/routes";
+import type { ExamSlug } from "@/types/edtech";
+
+export type QuestionBankRoute = {
+  examSlug: ExamSlug;
+  fieldParam: string;
+  usmleStepLabel?: string;
+};
+
+/** Auth + search-param normalization must run outside Suspense so redirects are not swallowed. */
+export async function resolveQuestionBankRoute(
+  userId: string,
+  sp: Record<string, string | string[] | undefined>
+): Promise<QuestionBankRoute> {
+  const pref = await getUserExamPreference(userId);
+  if (!pref) redirect(ROUTES.selectExam);
+
+  let examSlug = pref.examSlug;
+  const defaultFieldId = fieldIdForExamSlug(examSlug);
+  let fieldParam = defaultFieldId;
+  let usmleStepLabel: string | undefined;
+
+  if (examSlug === "usmle" && !sp.field) {
+    const meta = await getUserEdtechMetadata(userId);
+    if (meta.usmleFieldId && isUsmleFieldId(meta.usmleFieldId)) {
+      fieldParam = meta.usmleFieldId;
+    }
+  }
+
+  if (sp.field) {
+    const resolvedFieldId = resolveQuestionBankFieldId(String(sp.field));
+    if (fieldMatchesExamSlug(resolvedFieldId, examSlug)) {
+      fieldParam = resolvedFieldId;
+    } else if (isPracticeFieldId(resolvedFieldId) && examSlugForFieldId(resolvedFieldId)) {
+      const synced = await syncExamPreferenceForField(userId, resolvedFieldId);
+      if (synced) {
+        examSlug = synced;
+        fieldParam = resolvedFieldId;
+      } else {
+        const qs = new URLSearchParams();
+        for (const [key, value] of Object.entries(sp)) {
+          if (key === "field" || value == null) continue;
+          qs.set(key, Array.isArray(value) ? value[0]! : value);
+        }
+        qs.set("field", defaultFieldId);
+        redirect(`${ROUTES.questionBank}?${qs.toString()}`);
+      }
+    } else {
+      const qs = new URLSearchParams();
+      for (const [key, value] of Object.entries(sp)) {
+        if (key === "field" || value == null) continue;
+        qs.set(key, Array.isArray(value) ? value[0]! : value);
+      }
+      qs.set("field", defaultFieldId);
+      redirect(`${ROUTES.questionBank}?${qs.toString()}`);
+    }
+  }
+
+  if (!sp.field) {
+    const qs = new URLSearchParams();
+    for (const [key, value] of Object.entries(sp)) {
+      if (value == null) continue;
+      qs.set(key, Array.isArray(value) ? value[0]! : value);
+    }
+    qs.set("field", fieldParam);
+    if (!qs.has("mode")) qs.set("mode", "bank");
+    redirect(`${ROUTES.questionBank}?${qs.toString()}`);
+  }
+
+  if (examSlug === "usmle" && isUsmleFieldId(fieldParam)) {
+    usmleStepLabel = usmleStepDefinition(fieldParam)?.shortName;
+  }
+
+  return { examSlug, fieldParam, usmleStepLabel };
+}

@@ -13,6 +13,7 @@ import { getExamScopedStats } from "@/lib/edtech/stats";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { ROUTES } from "@/lib/routes";
+import type { ExamSlug } from "@/types/edtech";
 
 export const metadata = {
   title: "Dashboard — Any Exam Easy",
@@ -37,15 +38,13 @@ async function DashboardContent({
   userId,
   userName,
   access,
+  examSlug,
 }: {
   userId: string;
   userName?: string | null;
   access: UserAccess;
+  examSlug: ExamSlug;
 }) {
-  const pref = await getUserExamPreference(userId);
-  if (!pref) redirect(ROUTES.selectExam);
-
-  const examSlug = pref.examSlug;
   const fieldId = resolveExamFieldId(examSlug);
 
   const [stats, dashboard, roadmap, metadata, usage] = await Promise.all([
@@ -83,23 +82,24 @@ async function DashboardContent({
   );
 }
 
-async function DashboardPageInner() {
+export default async function DashboardPage() {
   const session = await getCachedSession();
   if (!session?.user?.id) {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.dashboard)}`);
   }
 
   const access = await requireAppPage(ROUTES.dashboard);
+  const pref = await getUserExamPreference(session.user.id);
+  if (!pref) redirect(ROUTES.selectExam);
 
-  return (
-    <DashboardContent userId={session.user.id} userName={session.user.name} access={access} />
-  );
-}
-
-export default async function DashboardPage() {
   return (
     <Suspense fallback={<DashboardSkeleton />}>
-      <DashboardPageInner />
+      <DashboardContent
+        userId={session.user.id}
+        userName={session.user.name}
+        access={access}
+        examSlug={pref.examSlug}
+      />
     </Suspense>
   );
 }

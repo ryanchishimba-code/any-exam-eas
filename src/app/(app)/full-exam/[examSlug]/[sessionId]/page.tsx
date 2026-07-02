@@ -10,6 +10,8 @@ import { requirePremiumPage } from "@/lib/require-premium-page";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamSessionConfig } from "@/types/full-exam";
 
+export const maxDuration = 60;
+
 function ExamSessionSkeleton() {
   return (
     <div className="mx-auto w-full max-w-4xl space-y-4 px-4 py-6">
@@ -19,23 +21,18 @@ function ExamSessionSkeleton() {
   );
 }
 
-async function FullExamSessionInner({
+async function FullExamSessionContent({
   examSlug,
   sessionId,
+  userId,
 }: {
   examSlug: ExamSlug;
   sessionId: string;
+  userId: string;
 }) {
-  const session = await getCachedSession();
-  if (!session?.user?.id) {
-    redirect(`/auth/login?callbackUrl=/full-exam/${examSlug}/${sessionId}`);
-  }
-
-  await requirePremiumPage(`/full-exam/${examSlug}/${sessionId}`);
-
   let examSession = null;
   try {
-    examSession = await getExamSession(sessionId, session.user.id);
+    examSession = await getExamSession(sessionId, userId);
   } catch {
     notFound();
   }
@@ -76,9 +73,20 @@ export default async function FullExamSessionPage({
   const { examSlug, sessionId } = await params;
   if (!isExamSlug(examSlug)) notFound();
 
+  const session = await getCachedSession();
+  if (!session?.user?.id) {
+    redirect(`/auth/login?callbackUrl=/full-exam/${examSlug}/${sessionId}`);
+  }
+
+  await requirePremiumPage(`/full-exam/${examSlug}/${sessionId}`);
+
   return (
     <Suspense fallback={<ExamSessionSkeleton />}>
-      <FullExamSessionInner examSlug={examSlug as ExamSlug} sessionId={sessionId} />
+      <FullExamSessionContent
+        examSlug={examSlug as ExamSlug}
+        sessionId={sessionId}
+        userId={session.user.id}
+      />
     </Suspense>
   );
 }

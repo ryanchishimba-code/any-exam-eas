@@ -19,6 +19,8 @@ export const metadata = {
     "Orbit a stylized 3D body, explore organs, and jump into pearls, tours, and board-style practice.",
 };
 
+export const maxDuration = 60;
+
 function AnatomySkeleton() {
   return (
     <div className="space-y-4">
@@ -39,46 +41,12 @@ async function AnatomyContent({
   initialStructureId?: string;
   initialProcedureId?: string;
 }) {
-  if (!examOverride) {
-    const pref = await getUserExamPreference(userId);
-    if (!pref) redirect(ROUTES.selectExam);
-  }
-
   const { examSlug, cards } = await loadMemoryCards(userId, examOverride);
 
   return (
     <AnatomyExplorerClient
       examSlug={examSlug}
       memoryCards={cards}
-      initialStructureId={initialStructureId}
-      initialProcedureId={initialProcedureId}
-    />
-  );
-}
-
-async function AnatomyPageInner({
-  examOverride,
-  initialStructureId,
-  initialProcedureId,
-  callbackPath,
-}: {
-  examOverride?: ExamSlug;
-  initialStructureId?: string;
-  initialProcedureId?: string;
-  callbackPath: string;
-}) {
-  const session = await getCachedSession();
-  if (!session?.user?.id) {
-    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callbackPath)}`);
-  }
-
-  await redirectMpjeFromClinicalRoutes(session.user.id);
-  await requirePremiumPage(ROUTES.anatomy);
-
-  return (
-    <AnatomyContent
-      userId={session.user.id}
-      examOverride={examOverride}
       initialStructureId={initialStructureId}
       initialProcedureId={initialProcedureId}
     />
@@ -112,6 +80,19 @@ export default async function AnatomyPage({ searchParams }: PageProps) {
     ? `${ROUTES.anatomy}?${callbackQuery.toString()}`
     : ROUTES.anatomy;
 
+  const session = await getCachedSession();
+  if (!session?.user?.id) {
+    redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(callbackPath)}`);
+  }
+
+  await redirectMpjeFromClinicalRoutes(session.user.id);
+  await requirePremiumPage(ROUTES.anatomy);
+
+  if (!examOverride) {
+    const pref = await getUserExamPreference(session.user.id);
+    if (!pref) redirect(ROUTES.selectExam);
+  }
+
   return (
     <div className="w-full space-y-4">
       <CtAtlasHeadHints />
@@ -120,11 +101,11 @@ export default async function AnatomyPage({ searchParams }: PageProps) {
       </header>
 
       <Suspense fallback={<AnatomySkeleton />}>
-        <AnatomyPageInner
+        <AnatomyContent
+          userId={session.user.id}
           examOverride={examOverride}
           initialStructureId={initialStructureId}
           initialProcedureId={initialProcedureId}
-          callbackPath={callbackPath}
         />
       </Suspense>
     </div>

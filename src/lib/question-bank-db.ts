@@ -1,10 +1,6 @@
 import type { BankItem } from "@/lib/question-bank";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import { prisma } from "@/lib/prisma";
-import {
-  ensureStaticSeedsForField,
-  ensureSubjectHasQuestions,
-} from "@/lib/ensure-field-seeds";
 import { isMpjeField } from "@/lib/mpje/config";
 import {
   sampleMpjeFederalOnlyItems,
@@ -43,8 +39,6 @@ export const QUESTION_BANK_SAMPLE_MAX_PULL = 500;
 
 /** Default pool size per subject for adaptive selection. */
 export const ADAPTIVE_QUESTION_POOL_PER_SUBJECT = 80;
-
-const MIN_SUBJECT_ROWS_BEFORE_SEED = 5;
 
 const FIELD_TOTAL_CACHE_MS = 30_000;
 const CURATED_TOTAL_CACHE_MS = 60_000;
@@ -255,20 +249,10 @@ function staticSeedFallback(
 
 /** Seed only when a bank is empty — never on every sample/count request. */
 async function ensureBankAvailable(fieldId: string, subjectId?: string): Promise<void> {
-  if (subjectId) {
-    const count = await prisma.questionBankItem.count({
-      where: { fieldId, subjectId, active: true, qaPassed: true },
-    });
-    if (count >= MIN_SUBJECT_ROWS_BEFORE_SEED) return;
-    await ensureSubjectHasQuestions(fieldId, subjectId);
-    return;
-  }
-
-  const count = await prisma.questionBankItem.count({
-    where: { fieldId, active: true, qaPassed: true },
-  });
-  if (count > 0) return;
-  await ensureStaticSeedsForField(fieldId);
+  // Never seed or generate on read paths — cron sync-question-bank owns top-ups.
+  // Inline writes during GET/POST sampling caused multi-second timeouts on cold Neon.
+  void fieldId;
+  void subjectId;
 }
 
 /**

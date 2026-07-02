@@ -2,100 +2,137 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { trackEvent } from "@/lib/analytics/events";
 import { EVENT_TYPES } from "@/lib/analytics/types";
+import { respondDbUnavailable } from "@/lib/api-db-error";
+
+export const runtime = "nodejs";
+export const maxDuration = 30;
 
 export async function GET() {
-  const { requirePremiumApi } = await import("@/lib/api-access");
-  const premium = await requirePremiumApi();
-  if (!premium.ok) return premium.response;
-  const userId = premium.userId;
+  try {
+    const { requirePremiumApi } = await import("@/lib/api-access");
+    const premium = await requirePremiumApi();
+    if (!premium.ok) return premium.response;
+    const userId = premium.userId;
 
-  const records = await prisma.progressRecord.findMany({
-    where: { userId },
-    orderBy: { createdAt: "desc" },
-    take: 50,
-  });
+    const [records, exams, quilts] = await Promise.all([
+      prisma.progressRecord.findMany({
+        where: { userId },
+        orderBy: { createdAt: "desc" },
+        take: 50,
+      }),
+      prisma.generatedExam.findMany({
+        where: { userId },
+        orderBy: { createdAt: "desc" },
+        take: 10,
+        select: {
+          id: true,
+          title: true,
+          field: true,
+          topic: true,
+          questionCount: true,
+          createdAt: true,
+        },
+      }),
+      prisma.learningQuilt.findMany({
+        where: { userId },
+        orderBy: { createdAt: "desc" },
+        take: 10,
+        select: {
+          id: true,
+          title: true,
+          field: true,
+          topic: true,
+          preferredMode: true,
+          createdAt: true,
+        },
+      }),
+    ]);
 
-  const exams = await prisma.generatedExam.findMany({
-    where: { userId },
-    orderBy: { createdAt: "desc" },
-    take: 10,
-    select: { id: true, title: true, field: true, topic: true, questionCount: true, createdAt: true },
-  });
+    const completedExams = records.filter(
+      (r) => r.entityType === "exam" && r.completed
+    ).length;
+    const quiltSessions = records.filter((r) => r.entityType === "quilt").length;
+    const scores = records
+      .map((r) => r.score)
+      .filter((s): s is number => s != null);
+    const avgScore =
+      scores.length > 0 ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null;
 
-  const quilts = await prisma.learningQuilt.findMany({
-    where: { userId },
-    orderBy: { createdAt: "desc" },
-    take: 10,
-    select: { id: true, title: true, field: true, topic: true, preferredMode: true, createdAt: true },
-  });
-
-  const completedExams = records.filter(
-    (r) => r.entityType === "exam" && r.completed
-  ).length;
-  const quiltSessions = records.filter((r) => r.entityType === "quilt").length;
-  const scores = records
-    .map((r) => r.score)
-    .filter((s): s is number => s != null);
-  const avgScore =
-    scores.length > 0 ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length) : null;
-
-  return NextResponse.json({
-    summary: {
-      totalEvents: records.length,
-      examsCompleted: completedExams,
-      quiltSessions,
-      avgScorePercent: avgScore,
-    },
-    recent: records.map((r) => ({
-      id: r.id,
-      entityType: r.entityType,
-      entityId: r.entityId,
-      score: r.score,
-      completed: r.completed,
-      metadata: r.metadata ? safeParse(r.metadata) : null,
-      createdAt: r.createdAt.toISOString(),
-    })),
-    exams,
-    quilts,
-  });
+    return NextResponse.json({
+      summary: {
+        totalEvents: records.length,
+        examsCompleted: completedExams,
+        quiltSessions,
+        avgScorePercent: avgScore,
+      },
+      recent: records.map((r) => ({
+        id: r.id,
+        entityType: r.entityType,
+        entityId: r.entityId,
+        score: r.score,
+        completed: r.completed,
+        metadata: r.metadata ? safeParse(r.metadata) : null,
+        createdAt: r.createdAt.toISOString(),
+      })),
+      exams,
+      quilts,
+    });
+  } catch (error) {
+    const dbResponse = respondDbUnavailable(error);
+    if (dbResponse) return dbResponse;
+    console.error("[api/progress] GET failed:", error);
+    return NextResponse.json({ error: "Could not load progress." }, { status: 500 });
+  }
 }
 
 export async function POST(req: Request) {
-  const { requirePremiumApi } = await import("@/lib/api-access");
-  const premium = await requirePremiumApi();
-  if (!premium.ok) return premium.response;
-  const userId = premium.userId;
+  try {
+    const { requirePremiumApi } = await import("@/lib/api-access");
+    const premium = await requirePremiumApi();
+    if (!premium.ok) return premium.response;
+    const userId = premium.userId;
 
-  const body = await req.json();
-  const { entityType, entityId, score, completed, metadata } = body;
+    const body = await req.json();
+    const { entityType, entityId, score, completed, metadata } = body;
 
-  if (!entityType || !entityId) {
-    return NextResponse.json({ error: "entityType and entityId required" }, { status: 400 });
-  }
+    if (!entityType || !entityId) {
+      return NextResponse.json({ error: "entityType and entityId required" }, { status: 400 });
+    }
 
-  const record = await prisma.progressRecord.create({
-    data: {
+    const record = await prisma.progressRecord.create({
+      data: {
+        userId,
+        entityType: String(entityType),
+        entityId: String(entityId),
+        score: score != null ? Number(score) : null,
+        completed: Boolean(completed),
+        metadata: metadata ? JSON.stringify(metadata) : null,
+      },
+    });
+
+    trackEvent({
       userId,
-      entityType: String(entityType),
-      entityId: String(entityId),
-      score: score != null ? Number(score) : null,
-      completed: Boolean(completed),
-      metadata: metadata ? JSON.stringify(metadata) : null,
-    },
-  });
+      eventType: EVENT_TYPES.PROGRESS_UPDATED,
+      category: "engagement",
+      metadata: {
+        entityType: String(entityType),
+        entityId: String(entityId),
+        score,
+        completed: Boolean(completed),
+      },
+      req,
+    });
 
-  trackEvent({
-    userId,
-    eventType: EVENT_TYPES.PROGRESS_UPDATED,
-    category: "engagement",
-    metadata: { entityType: String(entityType), entityId: String(entityId), score, completed: Boolean(completed) },
-    req,
-  });
-
-  return NextResponse.json({
-    id: record.id,
-    createdAt: record.createdAt.toISOString(),
-  });
+    return NextResponse.json({
+      id: record.id,
+      createdAt: record.createdAt.toISOString(),
+    });
+  } catch (error) {
+    const dbResponse = respondDbUnavailable(error);
+    if (dbResponse) return dbResponse;
+    console.error("[api/progress] POST failed:", error);
+    return NextResponse.json({ error: "Could not save progress." }, { status: 500 });
+  }
 }
 
 function safeParse(s: string): unknown {

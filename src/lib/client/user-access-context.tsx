@@ -44,6 +44,28 @@ if (typeof window !== "undefined") {
   });
 }
 
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function fetchUserAccessOnce(): Promise<UserAccessState> {
+  const res = await fetch("/api/subscription/status?lite=1", { cache: "no-store" });
+  if (!res.ok) throw new Error(`status fetch failed (${res.status})`);
+  const data = (await res.json()) as {
+    hasAccess?: boolean;
+    hasAppAccess?: boolean;
+    status?: string;
+    role?: string;
+  };
+  return {
+    loading: false,
+    hasPremiumAccess: Boolean(data.hasAccess),
+    hasAppAccess: Boolean(data.hasAppAccess ?? data.hasAccess),
+    status: data.status ?? null,
+    role: data.role ?? null,
+  };
+}
+
 async function fetchUserAccess(): Promise<UserAccessState> {
   if (cachedAccess && !cachedAccess.loading) {
     return cachedAccess;
@@ -54,25 +76,23 @@ async function fetchUserAccess(): Promise<UserAccessState> {
   }
 
   inflightAccess = (async () => {
+    const maxAttempts = 3;
     try {
-      const res = await fetch("/api/subscription/status?lite=1", { cache: "no-store" });
-      if (!res.ok) throw new Error("status fetch failed");
-      const data = (await res.json()) as {
-        hasAccess?: boolean;
-        hasAppAccess?: boolean;
-        status?: string;
-        role?: string;
-      };
-      const next: UserAccessState = {
-        loading: false,
-        hasPremiumAccess: Boolean(data.hasAccess),
-        hasAppAccess: Boolean(data.hasAppAccess ?? data.hasAccess),
-        status: data.status ?? null,
-        role: data.role ?? null,
-      };
-      cachedAccess = next;
-      return next;
+      for (let attempt = 0; attempt < maxAttempts; attempt++) {
+        try {
+          const next = await fetchUserAccessOnce();
+          cachedAccess = next;
+          return next;
+        } catch (error) {
+          const isLast = attempt + 1 >= maxAttempts;
+          if (isLast) throw error;
+          await sleep(250 * 2 ** attempt);
+        }
+      }
+      throw new Error("status fetch exhausted retries");
     } catch {
+      // Keep last-known access for authed chrome; avoid downgrading to guest nav on blips.
+      if (cachedAccess) return { ...cachedAccess, loading: false };
       return loggedOutState;
     } finally {
       inflightAccess = null;
