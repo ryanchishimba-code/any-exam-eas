@@ -27,7 +27,12 @@ import {
   fieldIdForExamSlug,
   fieldMatchesExamSlug,
 } from "@/lib/edtech/question-bank-scope";
-import { fullExamLaunchHref, fullExamSessionHref } from "@/lib/full-exam/config";
+import {
+  fullExamLaunchHref,
+  fullExamSessionHref,
+  resolveLengthPresetFromQuestionCount,
+} from "@/lib/full-exam/config";
+import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { stashFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
 import { navigateHard } from "@/lib/client/navigate-hard";
 import { ROUTES, fullExamHref } from "@/lib/routes";
@@ -719,14 +724,21 @@ export function StudyBankPractice({
       if (isTimedExam) {
         const examSlug = examSlugFromFieldId(fieldId);
         if (examSlug) {
+          const resolvedFieldId = resolveFieldId(field);
+          const lengthPreset = resolveLengthPresetFromQuestionCount(examSlug, timedCount, {
+            nclexLength: isNclex ? nclexLength : undefined,
+          });
           const res = await fetch("/api/full-exam/start", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               examSlug,
-              lengthPreset: "full",
+              lengthPreset,
               timed: true,
               ...(isNclex ? { nclexLength } : {}),
+              ...(examSlug === "usmle" && isUsmleFieldId(resolvedFieldId)
+                ? { fieldId: resolvedFieldId }
+                : {}),
             }),
           });
           const data = (await res.json().catch(() => ({}))) as {

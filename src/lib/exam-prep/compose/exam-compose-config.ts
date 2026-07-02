@@ -10,6 +10,7 @@
 import type { BankItem } from "@/lib/question-bank";
 import type { TimedExamFilterFn } from "@/lib/questions/timed-exam-sampling";
 import { nclexItemPassesBestExamGate } from "@/lib/exam-prep/nclex-serve-gate";
+import { prepareNclexBankItem } from "@/lib/exam-prep/nclex-format-coherence";
 import {
   naplexItemPassesTimedExamGate,
   prepareNaplexBankItem,
@@ -45,6 +46,7 @@ const CONFIGS: Record<string, ExamComposeConfig> = {
     boardReference: "NCSBN NCLEX-RN Test Plan (2023) — Client Needs categories",
     minutesPerItem: 1.5,
     gate: nclexItemPassesBestExamGate,
+    prepareItem: prepareNclexBankItem,
   },
   naplex: {
     slug: "naplex",
@@ -121,6 +123,20 @@ const SLUG_ALIASES: Record<string, string> = {
 export function resolveExamComposeConfig(slug: string): ExamComposeConfig | undefined {
   const key = slug.trim().toLowerCase();
   return CONFIGS[key] ?? CONFIGS[SLUG_ALIASES[key] ?? ""];
+}
+
+/** Resolve compose config from a bank fieldId (e.g. nursing, usmle-step-2). */
+export function resolveExamComposeConfigByFieldId(fieldId: string): ExamComposeConfig | undefined {
+  const direct = Object.values(CONFIGS).find((c) => c.fieldId === fieldId);
+  if (direct) return direct;
+  return resolveExamComposeConfig(fieldId);
+}
+
+/** Per-field item normalization for timed/full-exam assembly (NCLEX + NAPLEX today). */
+export function timedExamPrepareItemForField(
+  fieldId: string
+): ((item: BankItem) => BankItem) | undefined {
+  return resolveExamComposeConfigByFieldId(fieldId)?.prepareItem;
 }
 
 export function listComposableExamSlugs(): string[] {

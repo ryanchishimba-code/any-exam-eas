@@ -2,8 +2,9 @@
  * Shared timed/full-exam assembly — mirrors /api/questions?mode=timed&scope=field.
  */
 import type { BankItem } from "@/lib/question-bank";
-import { prepareNaplexBankItem } from "@/lib/exam-prep/naplex-serve-gate";
+import { prepareBoardBankItem } from "@/lib/exam-prep/board-serve-registry";
 import { timedExamGatePairForField, timedExamGatherLadderForField } from "@/lib/exam-prep/exam-fill-gates";
+import { timedExamPrepareItemForField } from "./exam-compose-config";
 import { gatherProgressiveBankPool } from "@/lib/exam-prep/gather-progressive-bank-pool";
 import { EXACT_FILL_COMPOSE_TIER } from "@/lib/exam-prep/progressive-compose";
 import {
@@ -37,6 +38,10 @@ export type AssembleTimedExamSessionResult = {
   presetExamNumber?: number;
 };
 
+function prepareTimedExamItem(fieldId: string, item: BankItem): BankItem {
+  return timedExamPrepareItemForField(fieldId)?.(item) ?? prepareBoardBankItem(fieldId, item);
+}
+
 /** Load bank items for a timed mock using the same path as the questions API. */
 export async function assembleTimedExamSessionItems(
   params: AssembleTimedExamSessionParams
@@ -62,7 +67,7 @@ export async function assembleTimedExamSessionItems(
     const sprintItems = await gatherSprintTimedExamPool({
       fieldId,
       limit,
-      prepareItem: fieldId === "pharmacy" ? prepareNaplexBankItem : undefined,
+      prepareItem: (item) => prepareTimedExamItem(fieldId, item),
     });
     if (sprintItems.length >= limit) {
       return { items: sprintItems.slice(0, limit), source: "gather" };
@@ -77,7 +82,7 @@ export async function assembleTimedExamSessionItems(
       limit: poolLimit,
       maxTierIndex: Math.min(2, ladder.length - 1),
       initialSampleCount: Math.min(sampleCount, poolLimit),
-      prepareItem: fieldId === "pharmacy" ? prepareNaplexBankItem : undefined,
+      prepareItem: (item) => prepareTimedExamItem(fieldId, item),
     });
 
     if (gathered.length >= limit) {
@@ -112,7 +117,7 @@ export async function assembleTimedExamSessionItems(
       limit: poolLimit,
       maxTierIndex: ladder.length - 1,
       initialSampleCount: sampleCount,
-      prepareItem: fieldId === "pharmacy" ? prepareNaplexBankItem : undefined,
+      prepareItem: (item) => prepareTimedExamItem(fieldId, item),
     });
 
     if (gathered.length >= limit) {
@@ -133,27 +138,15 @@ export async function assembleTimedExamSessionItems(
   }
 
   const gates = timedExamGatePairForField(fieldId);
-  let items: BankItem[];
-
-  if (fieldId === "pharmacy") {
-    items = (
-      await gatherTimedExamBankItems({
-        fieldId,
-        limit,
-        filterFn: gates.strict,
-        relaxedFilterFn: gates.relaxed,
-        initialSampleCount: sampleCount,
-      })
-    ).map(prepareNaplexBankItem);
-  } else {
-    items = await gatherTimedExamBankItems({
+  const items = (
+    await gatherTimedExamBankItems({
       fieldId,
       limit,
       filterFn: gates.strict,
       relaxedFilterFn: gates.relaxed,
       initialSampleCount: sampleCount,
-    });
-  }
+    })
+  ).map((item) => prepareTimedExamItem(fieldId, item));
 
   if (!items.length) return null;
 

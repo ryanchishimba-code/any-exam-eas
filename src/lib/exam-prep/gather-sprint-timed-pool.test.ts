@@ -4,6 +4,7 @@ import {
   isSprintTimedExamLimit,
 } from "@/lib/exam-prep/gather-sprint-timed-pool";
 import { resolveComposePoolLimit } from "@/lib/exam-prep/progressive-exam-relaxation";
+import { BOARD_FIELD_IDS } from "@/lib/exam-prep/board-serve-registry";
 
 describe("gather-sprint-timed-pool", () => {
   it("treats 50 and 100 as sprint limits", () => {
@@ -12,9 +13,11 @@ describe("gather-sprint-timed-pool", () => {
     expect(isSprintTimedExamLimit(101)).toBe(false);
   });
 
-  it("returns empty for non-sprint limits", async () => {
-    await expect(gatherSprintTimedExamPool({ fieldId: "pharmacy", limit: 225 })).resolves.toEqual(
-      []
+  it("returns empty for non-sprint limits on every board field", async () => {
+    await Promise.all(
+      BOARD_FIELD_IDS.map((fieldId) =>
+        expect(gatherSprintTimedExamPool({ fieldId, limit: 225 })).resolves.toEqual([])
+      )
     );
   });
 });

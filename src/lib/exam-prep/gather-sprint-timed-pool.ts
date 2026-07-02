@@ -4,7 +4,9 @@
  */
 import type { BankItem } from "@/lib/question-bank";
 import { sampleQuestionBankItemsForField } from "@/lib/question-bank-db";
+import { prepareBoardBankItem } from "@/lib/exam-prep/board-serve-registry";
 import { timedExamGatherLadderForField } from "@/lib/exam-prep/exam-fill-gates";
+import { timedExamPrepareItemForField } from "@/lib/exam-prep/compose/exam-compose-config";
 
 const SPRINT_MAX = 100;
 
@@ -50,12 +52,23 @@ function collectFromBatch(
   }
 }
 
+function resolveSprintPrepareItem(
+  fieldId: string,
+  prepareItem?: (item: BankItem) => BankItem
+): (item: BankItem) => BankItem {
+  if (prepareItem) return prepareItem;
+  const fromConfig = timedExamPrepareItemForField(fieldId);
+  if (fromConfig) return fromConfig;
+  return (item) => prepareBoardBankItem(fieldId, item);
+}
+
 export async function gatherSprintTimedExamPool(params: {
   fieldId: string;
   limit: number;
   prepareItem?: (item: BankItem) => BankItem;
 }): Promise<BankItem[]> {
-  const { fieldId, limit, prepareItem } = params;
+  const { fieldId, limit } = params;
+  const prepareItem = resolveSprintPrepareItem(fieldId, params.prepareItem);
   if (!isSprintTimedExamLimit(limit)) return [];
 
   const filterFn = sprintFilterForField(fieldId);

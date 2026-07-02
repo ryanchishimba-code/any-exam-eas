@@ -113,6 +113,35 @@ export function fullExamResultsHref(
   return `${base}?review=1`;
 }
 
+/** Map a target question count back to a launcher length preset for any board. */
+export function resolveLengthPresetFromQuestionCount(
+  examSlug: ExamSlug,
+  questionCount: number,
+  opts?: { nclexLength?: "minimum" | "maximum" }
+): FullExamLengthPreset {
+  const options = getLengthOptions(examSlug);
+  const sprint50 = options.find((o) => o.preset === "50");
+  const sprint100 = options.find((o) => o.preset === "100");
+  const full = options.find((o) => o.preset === "full");
+
+  if (sprint50 && questionCount === sprint50.questionCount) return "50";
+  if (sprint100 && questionCount === sprint100.questionCount) return "100";
+
+  if (examSlug === "nclex") {
+    const nclexFull =
+      opts?.nclexLength === "maximum"
+        ? buildSessionConfig("nclex", "full", true, { nclexLength: "maximum" }).questionCount
+        : buildSessionConfig("nclex", "full", true).questionCount;
+    if (questionCount === nclexFull) return "full";
+  } else if (full && questionCount === full.questionCount) {
+    return "full";
+  }
+
+  if (questionCount <= 50) return "50";
+  if (questionCount <= 100) return "100";
+  return "full";
+}
+
 export function parseFullExamLengthPreset(
   value: string | null | undefined
 ): FullExamLengthPreset {
