@@ -9,6 +9,10 @@ import {
   NAPLEX_OUTLINE_SOURCE,
   type NaplexContentDomainId,
 } from "@/lib/exam-prep/naplex/content-outline";
+import {
+  PANCE_KNOWLEDGE_AREAS,
+  PANCE_OUTLINE_SOURCE,
+} from "@/lib/exam-prep/pance/content-outline";
 
 export type BlueprintCategory = {
   id: string;
@@ -336,119 +340,19 @@ const NAPLEX: ExamBlueprint = {
   })),
 };
 
-/** NCCPA PANCE Content Blueprint (effective January 2025). */
+/** NCCPA PANCE Content Blueprint (current for 2026). */
 const PANCE: ExamBlueprint = {
   fieldId: "pance",
   examName: "PANCE",
-  sourceNote: "NCCPA PANCE Content Blueprint (effective January 2025)",
+  sourceNote: `${PANCE_OUTLINE_SOURCE} — task areas + 14 knowledge areas`,
   vignetteMinRatio: 0.85,
-  categories: [
-    {
-      id: "cardiovascular",
-      label: "Cardiovascular System",
-      weight: 0.11,
-      subjectIds: ["cardiovascular"],
-      highYieldTopics: ["ACS", "heart failure", "arrhythmias", "hypertension", "valvular disease"],
-    },
-    {
-      id: "pulmonary",
-      label: "Pulmonary System",
-      weight: 0.09,
-      subjectIds: ["pulmonary"],
-      highYieldTopics: ["COPD", "asthma", "pneumonia", "PE", "pleural effusion"],
-    },
-    {
-      id: "gastrointestinal",
-      label: "Gastrointestinal / Nutrition",
-      weight: 0.08,
-      subjectIds: ["gastrointestinal"],
-      highYieldTopics: ["GERD", "pancreatitis", "hepatitis", "IBD", "GI bleeding"],
-    },
-    {
-      id: "musculoskeletal",
-      label: "Musculoskeletal System",
-      weight: 0.08,
-      subjectIds: ["musculoskeletal"],
-      highYieldTopics: ["fractures", "arthritis", "back pain", "compartment syndrome"],
-    },
-    {
-      id: "infectious-diseases",
-      label: "Infectious Diseases",
-      weight: 0.07,
-      subjectIds: ["infectious-diseases"],
-      highYieldTopics: ["sepsis", "HIV", "meningitis", "skin infections", "antibiotic selection"],
-    },
-    {
-      id: "neurologic",
-      label: "Neurologic System",
-      weight: 0.07,
-      subjectIds: ["neurologic"],
-      highYieldTopics: ["stroke", "seizure", "headache", "MS", "neuropathy"],
-    },
-    {
-      id: "psychiatry",
-      label: "Psychiatry / Behavioral Science",
-      weight: 0.07,
-      subjectIds: ["psychiatry"],
-      highYieldTopics: ["depression", "anxiety", "psychosis", "substance use", "suicide risk"],
-    },
-    {
-      id: "reproductive",
-      label: "Reproductive System",
-      weight: 0.07,
-      subjectIds: ["reproductive"],
-      highYieldTopics: ["pregnancy complications", "STIs", "contraception", "gynecologic emergencies"],
-    },
-    {
-      id: "endocrine",
-      label: "Endocrine System",
-      weight: 0.06,
-      subjectIds: ["endocrine"],
-      highYieldTopics: ["diabetes", "thyroid", "DKA", "adrenal disorders"],
-    },
-    {
-      id: "eent",
-      label: "Eyes, Ears, Nose & Throat",
-      weight: 0.06,
-      subjectIds: ["eent"],
-      highYieldTopics: ["red eye", "otitis", "sinusitis", "pharyngitis", "vertigo"],
-    },
-    {
-      id: "hematologic",
-      label: "Hematologic System",
-      weight: 0.05,
-      subjectIds: ["hematologic"],
-      highYieldTopics: ["anemia", "coagulopathy", "thrombocytopenia", "bleeding disorders"],
-    },
-    {
-      id: "renal",
-      label: "Renal System",
-      weight: 0.05,
-      subjectIds: ["renal"],
-      highYieldTopics: ["AKI", "CKD", "electrolytes", "acid-base", "dialysis"],
-    },
-    {
-      id: "dermatologic",
-      label: "Dermatologic System",
-      weight: 0.04,
-      subjectIds: ["dermatologic"],
-      highYieldTopics: ["cellulitis", "rash patterns", "drug eruptions", "melanoma screening"],
-    },
-    {
-      id: "genitourinary",
-      label: "Genitourinary System",
-      weight: 0.04,
-      subjectIds: ["genitourinary"],
-      highYieldTopics: ["UTI", "BPH", "nephrolithiasis", "urologic emergencies"],
-    },
-    {
-      id: "professional-practice",
-      label: "Professional Practice",
-      weight: 0.06,
-      subjectIds: ["professional-practice"],
-      highYieldTopics: ["ethics", "consent", "scope of practice", "patient safety", "documentation"],
-    },
-  ],
+  categories: PANCE_KNOWLEDGE_AREAS.map((area) => ({
+    id: area.id,
+    label: area.label,
+    weight: area.weight,
+    subjectIds: area.subjectIds,
+    highYieldTopics: area.highYieldTopics,
+  })),
 };
 
 /** AANPCB FNP Content Outline (2024+ blueprint). */

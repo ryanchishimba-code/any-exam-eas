@@ -94,7 +94,7 @@ export const EXAM_FIELD_OPTIONS: {
     label: "PANCE",
     fieldParam: "pance",
     description:
-      "NCCPA blueprint — 15 content categories with clinical vignettes and systems-based reasoning.",
+      "NCCPA 2026 blueprint — 14 knowledge areas, 8 task areas, clinical vignettes across the lifespan.",
     timing: "300 questions · 5 hours",
     format: "Clinical MCQ vignettes",
   },

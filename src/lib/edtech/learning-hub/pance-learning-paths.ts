@@ -1,16 +1,12 @@
 import type { TopicModuleDefinition } from "./topic-module-template";
+import { PANCE_TASK_AREAS } from "@/lib/exam-prep/pance/content-outline";
 
-/** NCCPA PANCE task categories (2025 blueprint) — used in prompts and roadmap labels. */
-export const PANCE_TASK_CATEGORIES = [
-  { id: "history-physical", label: "History & Physical Exam", weight: 0.16 },
-  { id: "diagnosis", label: "Formulating Diagnosis", weight: 0.18 },
-  { id: "labs", label: "Diagnostic & Laboratory Studies", weight: 0.1 },
-  { id: "prevention", label: "Health Maintenance & Prevention", weight: 0.11 },
-  { id: "intervention", label: "Clinical Intervention", weight: 0.16 },
-  { id: "pharmacotherapy", label: "Pharmaceutical Therapeutics", weight: 0.15 },
-  { id: "foundational", label: "Foundational Scientific Concepts", weight: 0.08 },
-  { id: "professional", label: "Professional Practice", weight: 0.06 },
-] as const;
+/** NCCPA PANCE task areas (2026 blueprint) — used in prompts and roadmap labels. */
+export const PANCE_TASK_CATEGORIES = PANCE_TASK_AREAS.map((task) => ({
+  id: task.id,
+  label: task.label,
+  weight: task.weight,
+}));
 
 export type PanceLearningStage = {
   id: "systems-review" | "clinical-application" | "board-crunch";

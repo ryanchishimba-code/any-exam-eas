@@ -222,21 +222,23 @@ function usmleStepSeparationWhere(fieldId: string) {
   return {};
 }
 
-function activeSubjectWhere(fieldId: string, subjectId: string) {
+function activeSubjectWhere(fieldId: string, subjectId: string, taskCategory?: string | null) {
   return {
     fieldId,
     subjectId,
     active: true as const,
     qaPassed: true as const,
+    ...(taskCategory?.trim() ? { taskCategory: taskCategory.trim() } : {}),
     ...usmleStepSeparationWhere(fieldId),
   };
 }
 
-function activeFieldWhere(fieldId: string) {
+function activeFieldWhere(fieldId: string, taskCategory?: string | null) {
   return {
     fieldId,
     active: true as const,
     qaPassed: true as const,
+    ...(taskCategory?.trim() ? { taskCategory: taskCategory.trim() } : {}),
     ...usmleStepSeparationWhere(fieldId),
   };
 }
@@ -281,8 +283,18 @@ export async function sampleQuestionBankItems(params: {
   stateCode?: string;
   /** Extra rows to pull before dedupe (default 2× count, min count + 20). */
   poolMultiplier?: number;
+  /** PANCE: optional NCCPA task-area filter. */
+  taskCategory?: string | null;
 }): Promise<BankItem[]> {
   await ensureBankAvailable(params.fieldId, params.subjectId);
+
+  if (params.subjectId === "__mixed__" && params.taskCategory && isPanceFieldId(params.fieldId)) {
+    return sampleQuestionBankItemsForField({
+      fieldId: params.fieldId,
+      count: params.count,
+      taskCategory: params.taskCategory,
+    });
+  }
 
   if (isMpjeField(params.fieldId)) {
     if (params.stateCode) {
@@ -308,8 +320,21 @@ export async function sampleQuestionBankItems(params: {
   }
 
   const want = Math.max(1, params.count);
-  const where = activeSubjectWhere(params.fieldId, params.subjectId);
+  const where = activeSubjectWhere(params.fieldId, params.subjectId, params.taskCategory);
   const total = await prisma.questionBankItem.count({ where });
+
+  if (total === 0 && params.taskCategory && isPanceFieldId(params.fieldId)) {
+    return samplePanceSubjectItems(
+      params.fieldId,
+      params.subjectId,
+      want,
+      activeSubjectWhere(params.fieldId, params.subjectId),
+      await prisma.questionBankItem.count({
+        where: activeSubjectWhere(params.fieldId, params.subjectId),
+      }),
+      null
+    );
+  }
 
   if (total === 0) {
     return staticSeedFallback(params.fieldId, params.subjectId, want);
@@ -328,7 +353,14 @@ export async function sampleQuestionBankItems(params: {
   }
 
   if (isPanceFieldId(params.fieldId)) {
-    return samplePanceSubjectItems(params.fieldId, params.subjectId, want, where, total);
+    return samplePanceSubjectItems(
+      params.fieldId,
+      params.subjectId,
+      want,
+      where,
+      total,
+      params.taskCategory ?? null
+    );
   }
 
   if (isAanpFnpFieldId(params.fieldId)) {
@@ -347,7 +379,8 @@ async function samplePanceSubjectItems(
   subjectId: string,
   want: number,
   baseWhere: ReturnType<typeof activeSubjectWhere>,
-  total: number
+  total: number,
+  taskCategory: string | null
 ): Promise<BankItem[]> {
   const curatedWhere = { ...baseWhere, ...curatedPanceWhereClause() };
   const curatedTotal = await prisma.questionBankItem.count({ where: curatedWhere });
@@ -375,6 +408,20 @@ async function samplePanceSubjectItems(
   if (remaining > 0) {
     const general = await sampleSubjectItemsRandom(remaining, baseWhere, total, 2);
     collected = dedupeSamplePool([...collected, ...general]);
+  }
+
+  if (collected.length < want && taskCategory) {
+    const unfilteredWhere = activeSubjectWhere(fieldId, subjectId);
+    const fallbackTotal = await prisma.questionBankItem.count({ where: unfilteredWhere });
+    if (fallbackTotal > 0) {
+      const fallback = await sampleSubjectItemsRandom(
+        want - collected.length,
+        unfilteredWhere,
+        fallbackTotal,
+        2
+      );
+      collected = dedupeSamplePool([...collected, ...fallback]);
+    }
   }
 
   if (collected.length === 0) {
@@ -696,6 +743,8 @@ export async function sampleQuestionBankItemsForField(params: {
   stateCode?: string;
   /** Skip seed/count probe on repeat pulls within the same request. */
   skipEnsure?: boolean;
+  /** PANCE: optional NCCPA task-area filter. */
+  taskCategory?: string | null;
 }): Promise<BankItem[]> {
   if (!params.skipEnsure) {
     await ensureBankAvailable(params.fieldId);
@@ -715,7 +764,7 @@ export async function sampleQuestionBankItemsForField(params: {
   }
 
   const want = Math.max(1, params.count);
-  const where = activeFieldWhere(params.fieldId);
+  const where = activeFieldWhere(params.fieldId, params.taskCategory);
   const total = params.skipEnsure
     ? (fieldTotalCache.get(params.fieldId)?.total ??
       (await getCachedActiveFieldTotal(params.fieldId)))

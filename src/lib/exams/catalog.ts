@@ -53,7 +53,7 @@ export const EXAM_HUBS: ExamHubConfig[] = [
   {
     slug: "pance",
     title: "PANCE Prep",
-    subtitle: "NCCPA blueprint vignettes — systems-based clinical reasoning across 15 content categories.",
+    subtitle: "NCCPA 2026 blueprint — clinical vignettes across 14 knowledge areas and 8 task areas.",
     fieldId: "pance",
     icon: HeartPulse,
     accentClass: "from-rose-500/20 to-pink-600/10 border-rose-200/60",

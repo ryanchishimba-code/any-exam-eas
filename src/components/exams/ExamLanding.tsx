@@ -18,6 +18,10 @@ import {
 import { ExamCard } from "@/components/exams/ExamCard";
 import { getExamHub } from "@/lib/exams/catalog";
 import { roadmapHref } from "@/lib/learning/exam-roadmap";
+import {
+  PANCE_FEATURED_DRILLS,
+  panceTaskPracticeHref,
+} from "@/lib/exam-prep/pance/practice-focus";
 import { practiceHref, ROUTES, type ExamRouteSlug } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -95,8 +99,8 @@ export function ExamLanding({ slug }: Props) {
                 NCCPA Exam Roadmap
               </h2>
               <p className="mt-1 max-w-xl text-sm text-[var(--color-ink-muted)]">
-                Track readiness across all 15 medical content categories from the official PANCE
-                blueprint — cardiovascular, pulmonary, GI, ID, and more.
+                Track readiness across 14 NCCPA knowledge areas and 8 task areas — cardiovascular,
+                pulmonary, diagnosis, pharmacotherapy, and more.
               </p>
             </div>
             <Link
@@ -106,6 +110,50 @@ export function ExamLanding({ slug }: Props) {
               <Map className="h-4 w-4" aria-hidden />
               Open roadmap
             </Link>
+          </div>
+        </section>
+      )}
+
+      {slug === "pance" && (
+        <section className="mt-8" aria-labelledby="pance-task-drills">
+          <h2
+            id="pance-task-drills"
+            className="text-sm font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]"
+          >
+            Task-area practice
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[var(--color-ink-muted)]">
+            Board-style vignettes filtered by NCCPA task — differential diagnosis, pharmacotherapy,
+            and clinical intervention.
+          </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            {PANCE_FEATURED_DRILLS.map((drill) => (
+              <Link
+                key={drill.id}
+                href={panceTaskPracticeHref(drill.taskCategory, {
+                  count: drill.count,
+                  autostart: true,
+                })}
+                className="group flex h-full flex-col rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] p-4 shadow-[var(--shadow-apple-sm)] transition hover:-translate-y-0.5 hover:border-rose-200/80"
+              >
+                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-rose-600">
+                  {drill.count} questions
+                </p>
+                <h3 className="mt-2 font-semibold text-[var(--color-ink)] group-hover:text-rose-700">
+                  {drill.title}
+                </h3>
+                <p className="mt-1 flex-1 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+                  {drill.subtitle}
+                </p>
+                <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-accent)]">
+                  Start drill
+                  <ArrowRight
+                    className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
+                </span>
+              </Link>
+            ))}
           </div>
         </section>
       )}

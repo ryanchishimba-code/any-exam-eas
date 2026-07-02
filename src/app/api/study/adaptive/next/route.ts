@@ -44,6 +44,7 @@ const bodySchema = z.object({
   excludeQuestionKeys: z.array(z.string()).optional(),
   weakFocusRatio: z.number().min(0.2).max(0.9).optional(),
   studyMode: z.enum(["adaptive", "weak_area", "practice", "timed", "mock"]).optional(),
+  taskCategory: z.string().optional(),
 });
 
 function toApiQuestion(prepared: ReturnType<typeof examQuestionToStudy>): ExamQuestion {
@@ -137,6 +138,7 @@ export async function POST(req: Request) {
       subjectId,
       count: poolSize,
       poolMultiplier: 2,
+      taskCategory: body.taskCategory,
     });
 
     items = prepareBankItemsForSession({

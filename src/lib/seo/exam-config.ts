@@ -283,37 +283,37 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     ],
     h1: "PANCE Exam Prep 2026 — NCCPA Blueprint Vignettes",
     heroSubline:
-      "Physician assistant board prep with systems-based vignettes, 15-category Roadmap tracking, and full-length timed simulations — one subscription covers six licensing exams.",
+      "Physician assistant board prep with clinical vignettes, 14 NCCPA knowledge-area Roadmap tracking, task-area practice, and full-length 300-question simulations — one subscription covers six licensing exams.",
     accentColor: EXAM_ACCENTS.pance,
-    blueprintLabel: "NCCPA PANCE content blueprint",
+    blueprintLabel: "NCCPA PANCE Content Blueprint (2026)",
     features: [
       {
-        title: "15-category Roadmap",
-        detail: "Track readiness across every NCCPA medical content category from one dashboard.",
+        title: "14 knowledge-area Roadmap",
+        detail: "Track readiness across NCCPA organ-system weights — cardiovascular (13%), pulmonary (10%), and more.",
       },
       {
-        title: "Clinical vignette bank",
-        detail: "Next-best diagnostic step and first-line management scenarios with teachable rationales.",
+        title: "Task-area vignette bank",
+        detail: "Diagnosis, pharmacotherapy, labs, and health maintenance stems with integrated pharmacology.",
       },
       {
         title: "Timed PANCE simulations",
-        detail: "Build endurance with board-length blocks before exam day (Pro for unlimited mocks).",
+        detail: "300-question, 5-hour board blocks with pediatrics and women's health mixed in (Pro for unlimited mocks).",
       },
     ],
     studyTips: [
       {
         heading: "PANCE study guide & roadmap",
-        body: "Map weekly study to NCCPA categories — overweight cardiovascular and pulmonary if those are weak on diagnostics.",
+        body: "Map weekly study to NCCPA knowledge areas — cardiovascular and pulmonary are highest weight; include pediatrics and emergency stabilization.",
       },
       {
         heading: "Best PANCE practice questions 2026",
-        body: "Choose vignettes with plausible distractors and explanations that reinforce PA scope and first-line therapy.",
+        body: "Choose clinical vignettes with differential diagnosis distractors, guideline-based management, and pharmacology integrated across systems.",
       },
     ],
     faqs: [
       {
         question: "Is AnyExamEasy aligned to the NCCPA PANCE blueprint?",
-        answer: "Yes. Our PANCE Roadmap and question tagging follow NCCPA medical content categories.",
+        answer: "Yes. Our PANCE Roadmap follows NCCPA task areas and organ-system weights for 2026 — 300 questions over 5 hours.",
       },
       {
         question: "Can I prep for PANCE and USMLE on one plan?",

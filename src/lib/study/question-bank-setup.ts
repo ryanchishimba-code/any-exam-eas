@@ -62,11 +62,19 @@ export function validateQuestionBankSession(params: {
   questionCount: number;
   subjectCounts: Record<string, number> | null | undefined;
   bankStyle: QuestionBankStyle;
+  taskCategory?: string | null;
 }): QuestionBankSessionValidation {
-  const { subjectId, questionCount, subjectCounts, bankStyle } = params;
+  const { subjectId, questionCount, subjectCounts, bankStyle, taskCategory } = params;
 
   if (!subjectId) {
     return { ok: false, message: "Choose a topic before starting." };
+  }
+
+  if (taskCategory && bankStyle !== "standard") {
+    return {
+      ok: false,
+      message: "Task-area focus works with Standard selection only.",
+    };
   }
 
   if (isMixedSubjectId(subjectId) && bankStyle !== "standard") {
@@ -116,6 +124,7 @@ export type PersistedQuestionBankSetup = {
   count?: number;
   pace?: QuestionBankPace;
   style?: QuestionBankStyle;
+  taskCategory?: string | null;
 };
 
 const STORAGE_PREFIX = "qb-setup:";

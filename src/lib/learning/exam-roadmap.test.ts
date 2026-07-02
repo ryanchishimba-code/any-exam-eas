@@ -98,16 +98,16 @@ describe("exam roadmap", () => {
     expect(overall).toBe(70);
   });
 
-  it("builds PANCE roadmap from NCCPA 2025 blueprint (15 categories)", () => {
+  it("builds PANCE roadmap from NCCPA 2026 blueprint (14 knowledge areas)", () => {
     const blueprint = getExamBlueprint("pance")!;
-    expect(blueprint.categories).toHaveLength(15);
+    expect(blueprint.categories).toHaveLength(14);
     const weightSum = blueprint.categories.reduce((s, c) => s + c.weight, 0);
     expect(Math.round(weightSum * 100)).toBe(100);
 
     const topics = buildRoadmapTopics(blueprint, "pance", new Map(), new Map());
-    expect(topics).toHaveLength(15);
-    expect(topics.find((t) => t.categoryId === "cardiovascular")?.blueprintWeightPct).toBe(11);
-    expect(topics.find((t) => t.categoryId === "pulmonary")?.blueprintWeightPct).toBe(9);
+    expect(topics).toHaveLength(14);
+    expect(topics.find((t) => t.categoryId === "cardiovascular")?.blueprintWeightPct).toBe(13);
+    expect(topics.find((t) => t.categoryId === "pulmonary")?.blueprintWeightPct).toBe(10);
   });
 
   it("builds NPTE-PT roadmap from FSBPT 2024 blueprint (14 categories)", () => {

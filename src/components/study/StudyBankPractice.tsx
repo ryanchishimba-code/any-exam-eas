@@ -88,7 +88,13 @@ import {
 } from "@/lib/study/question-bank-weak-topics";
 import { TopicPracticeReturnBanner } from "./TopicPracticeReturnBanner";
 import { QuestionSessionSkeleton } from "./QuestionSessionSkeleton";
+import { PanceTaskFocus } from "./question-bank/PanceTaskFocus";
 import { useSubjectCounts } from "@/hooks/use-subject-counts";
+import type { PanceTaskAreaId } from "@/lib/exam-prep/pance/content-outline";
+import {
+  parsePanceTaskCategoryParam,
+  sessionLabelWithTask,
+} from "@/lib/exam-prep/pance/practice-focus";
 import type { ExamSlug } from "@/types/edtech";
 
 const StudySessionPlayer = dynamic(
@@ -167,6 +173,7 @@ function buildBankPracticeUrl(
     style?: QuestionBankStyle;
     mpjeVariant?: MpjeVariant;
     mpjeState?: string;
+    taskCategory?: PanceTaskAreaId | null;
   },
   base = ROUTES.questionBank
 ) {
@@ -178,6 +185,7 @@ function buildBankPracticeUrl(
     pace: params.pace,
   });
   if (params.style && params.style !== "standard") qs.set("style", params.style);
+  if (params.taskCategory) qs.set("taskCategory", params.taskCategory);
   if (params.mpjeVariant) qs.set("mpjeVariant", params.mpjeVariant);
   if (params.mpjeState) {
     qs.set("state", params.mpjeState);
@@ -277,6 +285,13 @@ export function StudyBankPractice({
   const [nclexLength, setNclexLength] = useState<NclexTimedVariant>("minimum");
   const [mpjeVariant, setMpjeVariant] = useState<MpjeVariant>("state");
   const [mpjeState, setMpjeState] = useState("");
+  const [taskCategory, setTaskCategory] = useState<PanceTaskAreaId | null>(() =>
+    parsePanceTaskCategoryParam(
+      typeof window !== "undefined"
+        ? new URLSearchParams(window.location.search).get("taskCategory")
+        : null
+    )
+  );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [upgradeHref, setUpgradeHref] = useState<string | null>(null);
@@ -313,6 +328,7 @@ export function StudyBankPractice({
 
   const isNclex = useMemo(() => isNclexField(field), [field]);
   const isMpje = useMemo(() => isMpjeField(fieldId), [fieldId]);
+  const isPance = fieldId === "pance";
   const hubMode = resolvePracticeModeFromParams({
     practiceMode: searchParams.get("practiceMode"),
     mode: searchParams.get("mode"),
@@ -468,6 +484,16 @@ export function StudyBankPractice({
   ]);
 
   useEffect(() => {
+    const parsed = parsePanceTaskCategoryParam(resolvePracticeSearchParam(searchParams, "taskCategory"));
+    setTaskCategory(parsed);
+  }, [searchParams]);
+
+  useEffect(() => {
+    if (isPance) return;
+    if (taskCategory) setTaskCategory(null);
+  }, [isPance, taskCategory]);
+
+  useEffect(() => {
     if (isTimedExam) return;
 
     const countParam = resolvePracticeSearchParam(searchParams, "count");
@@ -596,8 +622,9 @@ export function StudyBankPractice({
       count: questionCount,
       pace: bankPace,
       style: bankStyle,
+      taskCategory: isPance ? taskCategory : null,
     });
-  }, [fieldId, isTimedExam, subjectId, questionCount, bankPace, bankStyle]);
+  }, [fieldId, isTimedExam, subjectId, questionCount, bankPace, bankStyle, isPance, taskCategory]);
 
   function syncPracticeUrl(overrides?: {
     mpjeVariant?: MpjeVariant;
@@ -606,6 +633,7 @@ export function StudyBankPractice({
     count?: number;
     pace?: QuestionBankPace;
     style?: QuestionBankStyle;
+    taskCategory?: PanceTaskAreaId | null;
   }) {
     const resolvedVariant = overrides?.mpjeVariant ?? mpjeVariant;
     const resolvedState = overrides?.mpjeState ?? mpjeState;
@@ -630,6 +658,8 @@ export function StudyBankPractice({
       return;
     }
     if (!resolvedSubjectId) return;
+    const resolvedTaskCategory =
+      overrides?.taskCategory !== undefined ? overrides.taskCategory : taskCategory;
     const href = buildBankPracticeUrl(
       {
         fieldId,
@@ -637,6 +667,7 @@ export function StudyBankPractice({
         count: overrides?.count ?? questionCount,
         pace: overrides?.pace ?? bankPace,
         style: overrides?.style ?? bankStyle,
+        taskCategory: isPance ? resolvedTaskCategory : null,
         mpjeVariant: isMpje ? resolvedVariant : undefined,
         mpjeState:
           isMpje && resolvedVariant === "state" && resolvedState
@@ -660,6 +691,7 @@ export function StudyBankPractice({
         questionCount,
         subjectCounts,
         bankStyle,
+        taskCategory: isPance ? taskCategory : null,
       });
       if (!validation.ok) {
         setError(validation.message ?? "Cannot start this session.");
@@ -762,6 +794,7 @@ export function StudyBankPractice({
             count: limit,
             currentDifficulty: "medium",
             studyMode: bankStyle === "weak_areas" ? "weak_area" : "adaptive",
+            ...(isPance && taskCategory ? { taskCategory } : {}),
             ...(isMpje
               ? {
                   mpjeVariant,
@@ -819,6 +852,7 @@ export function StudyBankPractice({
         }
       }
       qs.set("subjectId", effectiveSubjectId);
+      if (isPance && taskCategory) qs.set("taskCategory", taskCategory);
 
       const res = await fetch(`/api/questions?${qs.toString()}`);
       const data = await res.json();
@@ -887,15 +921,18 @@ export function StudyBankPractice({
             questionCount,
             subjectCounts,
             bankStyle,
+            taskCategory: isPance ? taskCategory : null,
           }),
-    [isTimedExam, subjectId, questionCount, subjectCounts, bankStyle]
+    [isTimedExam, subjectId, questionCount, subjectCounts, bankStyle, isPance, taskCategory]
   );
 
   const previewTopicLabel = useMemo(() => {
     if (isTimedExam) return `${field} · Timed exam simulation`;
-    if (isMixedSubjectId(subjectId)) return MIXED_SUBJECT_LABEL;
-    return subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
-  }, [field, isTimedExam, subjectId, subjects]);
+    const base = isMixedSubjectId(subjectId)
+      ? MIXED_SUBJECT_LABEL
+      : subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
+    return isPance ? sessionLabelWithTask(base, taskCategory) : base;
+  }, [field, isTimedExam, subjectId, subjects, isPance, taskCategory]);
 
   const previewAvailableCount = useMemo(
     () => (isTimedExam ? null : availableQuestionCount(subjectId, subjectCounts)),
@@ -922,6 +959,9 @@ export function StudyBankPractice({
     const topicLabel = isMixedSubjectId(subjectId)
       ? MIXED_SUBJECT_LABEL
       : subjects.find((s) => s.id === subjectId)?.label ?? "Question bank";
+    const scopedTopicLabel = isPance
+      ? sessionLabelWithTask(topicLabel, taskCategory)
+      : topicLabel;
     const mpjeScope =
       isMpje && mpjeVariant === "state"
         ? ` · ${getMpjeState(mpjeState)?.name ?? mpjeState} MPJE`
@@ -930,7 +970,7 @@ export function StudyBankPractice({
           : "";
     const title = isTimedExam
       ? `${field}${mpjeScope} · Timed exam · ${questions.length} questions`
-      : `${field}${mpjeScope} · ${topicLabel} · ${questions.length} questions · ${
+      : `${field}${mpjeScope} · ${scopedTopicLabel} · ${questions.length} questions · ${
           bankStyle === "adaptive"
             ? "Adaptive practice"
             : bankStyle === "weak_areas"
@@ -1142,6 +1182,41 @@ export function StudyBankPractice({
                 />
               ) : null}
             </div>
+          ) : null}
+
+          {isPance && !isTimedExam ? (
+            <QuestionBankSection
+              title="NCCPA task areas"
+              hint="Sharpen diagnosis, pharmacotherapy, and other board tasks — works with any organ-system topic."
+            >
+              <PanceTaskFocus
+                taskCategory={taskCategory}
+                disabled={bankStyle !== "standard"}
+                onTaskCategoryChange={(next) => {
+                  if (bankStyle !== "standard") {
+                    setBankStyle("standard");
+                  }
+                  setTaskCategory(next);
+                  syncPracticeUrl({ taskCategory: next, style: "standard" });
+                }}
+                onFeaturedSelect={(next, count) => {
+                  const clamped = clampQuestionBankCount(count);
+                  setBankStyle("standard");
+                  setQuestionCount(clamped);
+                  setTaskCategory(next);
+                  syncPracticeUrl({
+                    taskCategory: next,
+                    count: clamped,
+                    style: "standard",
+                  });
+                }}
+              />
+              {bankStyle !== "standard" ? (
+                <p className={cn(qbUi.sectionHint, "px-0.5")}>
+                  Switch to Standard selection to filter by task area.
+                </p>
+              ) : null}
+            </QuestionBankSection>
           ) : null}
 
           {!isTimedExam ? (

@@ -61,4 +61,26 @@ describe("question-bank-setup", () => {
     });
     expect(result.ok).toBe(false);
   });
+
+  it("blocks task-area focus with non-standard selection", () => {
+    const result = validateQuestionBankSession({
+      subjectId: "cardio",
+      questionCount: 25,
+      subjectCounts: counts,
+      bankStyle: "adaptive",
+      taskCategory: "diagnosis",
+    });
+    expect(result.ok).toBe(false);
+  });
+
+  it("allows task-area focus with standard selection", () => {
+    const result = validateQuestionBankSession({
+      subjectId: MIXED_SUBJECT_ID,
+      questionCount: 25,
+      subjectCounts: counts,
+      bankStyle: "standard",
+      taskCategory: "diagnosis",
+    });
+    expect(result.ok).toBe(true);
+  });
 });

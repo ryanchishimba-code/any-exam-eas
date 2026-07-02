@@ -1,7 +1,8 @@
 /**
- * NCCPA 2025 PANCE blueprint — proportional quotas and generation slot planning.
+ * NCCPA 2026 PANCE blueprint — proportional quotas and generation slot planning.
  */
 import { getExamBlueprint } from "@/lib/engine/blueprints";
+import { normalizePanceContentCategory } from "@/lib/exam-prep/pance/content-outline";
 import { PANCE_TASK_CATEGORIES } from "@/lib/edtech/learning-hub/pance-learning-paths";
 import type {
   PanceContentCategoryId,
@@ -15,6 +16,17 @@ import { PANCE_TARGET_TOTAL } from "./types";
 export { PANCE_BLUEPRINT_SOURCE } from "./types";
 
 const PANCE_BLUEPRINT = getExamBlueprint("pance")!;
+
+function normalizeContentCounts(
+  countsByCategory: Record<string, number>
+): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const [key, count] of Object.entries(countsByCategory)) {
+    const normalized = normalizePanceContentCategory(key);
+    out[normalized] = (out[normalized] ?? 0) + count;
+  }
+  return out;
+}
 
 const CONTENT_IDS = PANCE_BLUEPRINT.categories.map((c) => c.id as PanceContentCategoryId);
 
@@ -49,8 +61,9 @@ export function getPanceCategoryTarget(
   contentCategory: string,
   total = PANCE_TARGET_TOTAL
 ): number {
+  const normalized = normalizePanceContentCategory(contentCategory);
   const row = computePanceContentQuotas(total).find(
-    (q) => q.contentCategory === contentCategory
+    (q) => q.contentCategory === normalized
   );
   return row?.targetCount ?? Math.round(total / CONTENT_IDS.length);
 }
@@ -60,8 +73,9 @@ export function mergePanceQuotaWithCounts(
   countsByCategory: Record<string, number>,
   total = PANCE_TARGET_TOTAL
 ): PanceQuotaRow[] {
+  const normalizedCounts = normalizeContentCounts(countsByCategory);
   return computePanceContentQuotas(total).map((row) => {
-    const currentCount = countsByCategory[row.contentCategory] ?? 0;
+    const currentCount = normalizedCounts[row.contentCategory] ?? 0;
     return {
       ...row,
       currentCount,
@@ -94,7 +108,7 @@ function pickTaskForSlot(
   contentCategory: PanceContentCategoryId,
   index: number
 ): PanceTaskCategoryId {
-  if (contentCategory === "professional-practice") return "professional";
+  if (contentCategory === "other") return "professional";
   const tasks = TASK_IDS.filter((t) => t !== "professional");
   return tasks[index % tasks.length]!;
 }
@@ -132,7 +146,7 @@ export function planPanceGenerationSlots(params: {
   if (count <= 0) return [];
 
   const deficitFor = (id: PanceContentCategoryId): number =>
-    Math.max(0, deficitsByCategory[id] ?? 0);
+    Math.max(0, normalizeContentCounts(deficitsByCategory)[id] ?? 0);
 
   const positive = CONTENT_IDS.filter((id) => deficitFor(id) > 0);
   const totalDeficit = positive.reduce((sum, id) => sum + deficitFor(id), 0);
@@ -217,9 +231,10 @@ export function assessBlueprintAlignment(
   countsByCategory: Record<string, number>,
   total: number
 ): { aligned: boolean; deviations: { category: string; expected: number; actual: number; deltaPct: number }[] } {
+  const normalizedCounts = normalizeContentCounts(countsByCategory);
   const quotas = computePanceContentQuotas(total);
   const deviations = quotas.map((q) => {
-    const actual = countsByCategory[q.contentCategory] ?? 0;
+    const actual = normalizedCounts[q.contentCategory] ?? 0;
     const expected = q.targetCount;
     const deltaPct =
       expected > 0 ? Math.round(((actual - expected) / expected) * 100) : 0;

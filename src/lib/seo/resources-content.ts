@@ -6,6 +6,12 @@ import {
   NAPLEX_PLATFORM_STUDY_FEATURES,
 } from "@/lib/exam-prep/naplex/content-outline";
 import {
+  PANCE_HIGH_YIELD_FOCUS_AREAS,
+  PANCE_KNOWLEDGE_AREAS,
+  PANCE_OUTLINE_SOURCE,
+  PANCE_PLATFORM_STUDY_FEATURES,
+} from "@/lib/exam-prep/pance/content-outline";
+import {
   seoSixBoardTrialParagraph,
   seoTrialHeading,
   seoTrialResourceParagraph,
@@ -287,25 +293,35 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "NCCPA category coverage",
         paragraphs: [
-          "Ensure your bank spans all 15 medical content categories — overweighting one system creates surprise gaps on exam day.",
+          "Ensure your bank spans all 14 NCCPA knowledge areas — overweighting one system creates surprise gaps on exam day.",
         ],
       },
     ],
   }),
   article({
     slug: "pance-study-guide-nccpa-blueprint",
-    title: "PANCE Study Guide — NCCPA Blueprint Roadmap",
+    title: "PANCE Study Guide — NCCPA Blueprint Roadmap (2026)",
     metaDescription:
-      "Use the NCCPA PANCE blueprint to build a weekly study Roadmap with category-level readiness tracking.",
+      "PANCE study guide aligned to the NCCPA task areas and organ-system weights — cardiovascular (13%), treatment tasks, and primary care across the lifespan.",
     examTags: ["pance"],
     primaryExam: "pance",
-    keywords: ["PANCE study guide", "NCCPA blueprint PANCE"],
+    keywords: ["PANCE study guide", "NCCPA blueprint PANCE", "PANCE content outline 2026"],
     sections: [
       {
-        heading: "Category-weighted scheduling",
+        heading: "Organ-system weights (2026 blueprint)",
         paragraphs: [
-          "Cardiovascular and pulmonary typically dominate — but don't neglect EENT, reproductive, and professional practice.",
+          PANCE_KNOWLEDGE_AREAS.map(
+            (d) => `${d.label} (${d.weightLabel}): ${d.topics.slice(0, 2).join("; ")}.`
+          ).join(" "),
         ],
+      },
+      {
+        heading: "Highest-yield study priorities",
+        paragraphs: [PANCE_HIGH_YIELD_FOCUS_AREAS.join(" · ")],
+      },
+      {
+        heading: "How AnyExamEasy aligns to the outline",
+        paragraphs: [PANCE_PLATFORM_STUDY_FEATURES.join(" · "), PANCE_OUTLINE_SOURCE],
       },
     ],
   }),

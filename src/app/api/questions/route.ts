@@ -95,6 +95,8 @@ export async function GET(req: Request) {
         .filter(Boolean)
     : undefined;
 
+  const taskCategory = searchParams.get("taskCategory")?.trim() || undefined;
+
   const {
     checkStudyQuestionUsage,
     recordStudyQuestionsServed,
@@ -173,12 +175,14 @@ export async function GET(req: Request) {
     items = await sampleQuestionBankItemsForField({
       fieldId,
       count: sampleCount,
+      taskCategory,
     });
   } else {
     items = await sampleQuestionBankItems({
       fieldId,
       subjectId: subjectId!,
       count: sampleCount,
+      taskCategory,
     });
   }
 

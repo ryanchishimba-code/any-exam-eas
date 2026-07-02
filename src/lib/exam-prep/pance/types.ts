@@ -1,10 +1,9 @@
 /**
- * NCCPA PANCE Content Blueprint (effective January 2025).
+ * NCCPA PANCE Content Blueprint (current for 2026).
  * Source: https://www.nccpa.net/pance-content-blueprint/
  */
 
-export const PANCE_BLUEPRINT_SOURCE =
-  "NCCPA PANCE Content Blueprint (effective January 2025)";
+export { PANCE_OUTLINE_SOURCE as PANCE_BLUEPRINT_SOURCE } from "./content-outline";
 
 /** Official target for the curated + AI-generated PANCE bank. */
 export const PANCE_TARGET_TOTAL = 6700;
@@ -47,10 +46,9 @@ export type PanceContentCategoryId =
   | "endocrine"
   | "eent"
   | "hematologic"
-  | "renal"
   | "dermatologic"
   | "genitourinary"
-  | "professional-practice";
+  | "other";
 
 export type PanceGenerationSlot = {
   contentCategory: PanceContentCategoryId;

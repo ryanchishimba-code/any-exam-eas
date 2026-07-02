@@ -1,4 +1,6 @@
 export * from "./types";
+export * from "./content-outline";
+export * from "./practice-focus";
 export * from "./blueprint-quota";
 export * from "./batch-diversity";
 export * from "./physician-educator-quality";

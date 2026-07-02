@@ -59,7 +59,7 @@ const CONFIGS: Record<string, ExamComposeConfig> = {
     slug: "pance",
     fieldId: "pance",
     examName: "PANCE",
-    boardReference: "NCCPA PANCE Content Blueprint — organ systems + task areas",
+    boardReference: "NCCPA PANCE Content Blueprint (2026) — task areas + organ systems",
     minutesPerItem: 1.0,
     gate: usmleGate("pance"),
   },
