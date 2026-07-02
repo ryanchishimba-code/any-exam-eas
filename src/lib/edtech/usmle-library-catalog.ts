@@ -1,4 +1,5 @@
 import type { UsmleStepLevel } from "@/lib/exam-prep/usmle/types";
+import { getUsmle2026Topic } from "@/lib/exam-prep/usmle/blueprint-topics-2026";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
 import type { MemoryCard } from "@/lib/library/types";
 import { usmleFieldIdToStepLevel } from "@/lib/exam-prep/usmle/steps";
@@ -46,7 +47,19 @@ export function resolveUsmleLibraryStep(fieldId?: string | null): UsmleLibrarySt
   return usmleFieldIdToStepLevel(fieldId ?? "") ?? "step2";
 }
 
+const CROSS_CUTTING_2026_SLUGS = new Set([
+  "biostatistics-interpretation",
+  "ethics-professionalism",
+  "sdoh-health-equity",
+  "diagnostic-test-interpretation",
+  "pharmacology-interactions",
+  "emergency-acls",
+]);
+
 export function usmleStepsForTopicSlug(slug: string): UsmleLibraryStep[] {
+  const from2026 = getUsmle2026Topic(slug);
+  if (from2026) return [from2026.stepLevel];
+  if (CROSS_CUTTING_2026_SLUGS.has(slug)) return ["step1", "step2", "step3"];
   if (STEP1_SLUGS.has(slug)) return ["step1"];
   if (STEP3_ONLY_SLUGS.has(slug)) return ["step3"];
   if (CLINICAL_SLUGS.has(slug)) return ["step2", "step3"];

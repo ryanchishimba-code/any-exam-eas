@@ -1,6 +1,7 @@
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 import { NCLEX_HIGH_YIELD_TOPICS } from "./high-yield-nclex";
 import { USMLE_HIGH_YIELD_TOPICS } from "./high-yield-usmle";
+import { USMLE_2026_HIGH_YIELD_TOPICS } from "./high-yield-usmle-2026";
 import { USMLE_STEP1_HIGH_YIELD_TOPICS } from "./high-yield-usmle-step1";
 import { USMLE_STEP3_HIGH_YIELD_TOPICS } from "./high-yield-usmle-step3";
 import { NAPLEX_HIGH_YIELD_TOPICS } from "./high-yield-naplex";
@@ -14,6 +15,7 @@ const USMLE_ALL_TOPICS = [
   ...USMLE_HIGH_YIELD_TOPICS,
   ...USMLE_STEP1_HIGH_YIELD_TOPICS,
   ...USMLE_STEP3_HIGH_YIELD_TOPICS,
+  ...USMLE_2026_HIGH_YIELD_TOPICS,
 ].map(tagUsmleTopicSteps);
 
 export const HIGH_YIELD_BY_EXAM: Record<ExamSlug, HighYieldTopic[]> = {

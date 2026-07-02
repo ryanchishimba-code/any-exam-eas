@@ -30,6 +30,11 @@ import {
   summarizeExamTasks,
 } from "./blueprint-quota";
 import {
+  buildUsmle2026TopicCatalogBlock,
+  labelForUsmle2026TopicSlug,
+  USMLE_PLATFORM_CONTENT_GUIDANCE,
+} from "./blueprint-topics-2026";
+import {
   assessUsmleFullExamItem,
   normalizeUsmleFullExamItem,
   usmleFullExamItemPasses,
@@ -166,7 +171,8 @@ function buildSlotPrompt(
     const parts = [
       `Organ system: ${s.categoryLabel}`,
       `subjectId: ${s.subjectId}`,
-      `topic: ${s.blueprintTopic}`,
+      `topic slug: ${s.blueprintTopic}`,
+      `topic focus: ${labelForUsmle2026TopicSlug(s.blueprintTopic)}`,
       `physician task: ${s.physicianTask}`,
       `difficulty: ${s.difficulty}/5`,
       `stem style: ${s.stemFormat}`,
@@ -189,9 +195,13 @@ function buildSlotPrompt(
     return `${i + 1}. ${parts.join(" | ")}`;
   });
 
-  return `Generate exactly ${slots.length} USMLE ${stepLevel === "step1" ? "Step 1" : "Step 2 CK"} block-style practice questions for a full-length simulated exam.
+  return `Generate exactly ${slots.length} USMLE ${stepLevel === "step1" ? "Step 1" : stepLevel === "step3" ? "Step 3" : "Step 2 CK"} block-style practice questions for a full-length simulated exam.
 
 ${userAugmentation(stepLevel)}
+
+${buildUsmle2026TopicCatalogBlock(stepLevel)}
+
+${USMLE_PLATFORM_CONTENT_GUIDANCE}
 
 ${BATCH_DIVERSITY_RULES}
 
@@ -217,7 +227,7 @@ Each question object MUST include:
 - difficultyLabel (Easy | Medium | Hard)
 - chartData (for image_based: { kind: "exhibit", title, description, findings[] }; for lab_interpretation: include labTable)
 - references (array with USMLE Content Outline 2026 / guideline citations)
-- tags (include "usmle-full-exam", "USMLE-2026", "curated", step level, blueprint system slug)`;
+- tags (include "usmle-full-exam", "USMLE-2026", "curated", step level, blueprint system slug, and assigned topic slug)`;
 }
 
 function parseGenerationResponse(raw: string): ExamQuestion[] {

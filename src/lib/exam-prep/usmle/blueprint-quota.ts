@@ -12,6 +12,9 @@ import type {
   UsmleQuestionFormat,
   UsmleStepLevel,
 } from "./types";
+import {
+  pickUsmle2026BlueprintTopic,
+} from "./blueprint-topics-2026";
 
 /** USMLE Step 1 — integrated organ systems (2026 content outline weights). */
 export const USMLE_STEP1_2026_BLUEPRINT: ExamBlueprint = {
@@ -322,15 +325,6 @@ const STEP3_STEM_FORMATS = [
   "Which ethical principle is most relevant?",
 ] as const;
 
-const HIGH_YIELD_BY_SYSTEM: Record<string, string[]> = {};
-for (const bp of [
-  ...USMLE_STEP1_2026_BLUEPRINT.categories,
-  ...USMLE_STEP2_2026_BLUEPRINT.categories,
-  ...(getExamBlueprint("usmle-step-3")?.categories ?? []),
-]) {
-  HIGH_YIELD_BY_SYSTEM[bp.id] = bp.highYieldTopics ?? [];
-}
-
 function resolveStepLevel(examNumber: number, override?: UsmleStepLevel): UsmleStepLevel {
   if (override) return override;
   return examNumber % 2 === 1 ? "step1" : "step2";
@@ -359,9 +353,13 @@ function resolveQuestionFormat(ngnFormat?: string): UsmleQuestionFormat {
   return "vignette";
 }
 
-function pickTopic(systemId: string, index: number, examSeed: number): string {
-  const topics = HIGH_YIELD_BY_SYSTEM[systemId] ?? ["high-yield clinical integration"];
-  return topics[(index + examSeed) % topics.length]!;
+function pickTopic(
+  stepLevel: UsmleStepLevel,
+  systemId: string,
+  index: number,
+  examSeed: number
+): string {
+  return pickUsmle2026BlueprintTopic(stepLevel, systemId, index, examSeed);
 }
 
 function pickPhysicianTask(index: number, examSeed: number): UsmlePhysicianTaskId {
@@ -406,7 +404,7 @@ export function planUsmleFullExamSlots(params: {
       stepLevel,
       subjectId,
       blueprintSystem: slot.categoryId,
-      blueprintTopic: pickTopic(slot.categoryId, slotIndex, examSeed),
+      blueprintTopic: pickTopic(stepLevel, slot.categoryId, slotIndex, examSeed),
       physicianTask: pickPhysicianTask(slotIndex, examSeed),
       difficulty: 2 + ((slotIndex + examSeed) % 4),
       stemFormat: pickStemFormat(stepLevel, slotIndex, examSeed),
