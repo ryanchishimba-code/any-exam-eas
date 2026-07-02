@@ -4,6 +4,12 @@
  */
 import type { BankItem } from "@/lib/question-bank";
 import {
+  allNclex2026TopicSlugs,
+  NCLEX_2026_TOPIC_KEYWORDS,
+} from "./blueprint-topics-2026";
+
+const NCLEX_2026_TOPIC_SLUG_SET = new Set(allNclex2026TopicSlugs());
+import {
   normalizeClinicalCaseText,
   resolveClinicalVignetteText,
 } from "@/lib/exam-prep/clinical-case-dedupe";
@@ -128,6 +134,7 @@ export const NCLEX_BROAD_BLUEPRINT_TOPICS = new Set([
 ]);
 
 const VIGNETTE_TOPIC_PATTERNS: { pattern: RegExp; topic: string }[] = [
+  ...NCLEX_2026_TOPIC_KEYWORDS.map(({ slug, pattern }) => ({ pattern, topic: slug })),
   { pattern: /clostridioides difficile|c\.?\s*diff(?:icile)?/i, topic: "c-difficile-infection" },
   { pattern: /preeclampsia|eclampsia|clonus.*proteinuria/i, topic: "preeclampsia-severe-features" },
   { pattern: /postpartum.*hemorrhage|boggy uterus|heavy vaginal bleeding/i, topic: "postpartum-hemorrhage" },
@@ -182,6 +189,7 @@ export function isSkillOnlyNclexBlueprintTopic(topic: string | null | undefined)
 export function isBroadNclexBlueprintTopic(topic: string | null | undefined): boolean {
   if (!topic?.trim()) return true;
   const slug = slugifyNclexTopic(topic);
+  if (NCLEX_2026_TOPIC_SLUG_SET.has(slug)) return false;
   if (slug.length < 4) return true;
   return NCLEX_BROAD_BLUEPRINT_TOPICS.has(slug) || NCLEX_BROAD_BLUEPRINT_TOPICS.has(topic.trim().toLowerCase());
 }

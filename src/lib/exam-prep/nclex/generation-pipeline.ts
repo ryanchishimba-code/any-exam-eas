@@ -25,6 +25,7 @@ import {
   summarizeCaseStudies,
   summarizeExamBlueprint,
 } from "./blueprint-quota";
+import { buildNclex2026TopicCatalogBlock, labelForNclex2026TopicSlug } from "./blueprint-topics-2026";
 import { assessNclexFullExamItem, nclexFullExamItemPasses } from "./quality-gate";
 import { maybeEnrichExpertBankItemRationale } from "@/lib/engine/rationale/generate-expert-rationale";
 import type {
@@ -193,7 +194,8 @@ function buildSlotPrompt(
     const parts = [
       `Client Needs: ${s.categoryLabel}`,
       `subjectId: ${s.subjectId}`,
-      `topic: ${s.blueprintTopic}`,
+      `topic slug: ${s.blueprintTopic}`,
+      `topic focus: ${labelForNclex2026TopicSlug(s.blueprintTopic)}`,
       `difficulty: ${s.difficulty}/5`,
       `stem style: ${s.stemFormat}`,
     ];
@@ -212,6 +214,8 @@ function buildSlotPrompt(
 ${NURSING_EXAM_SYSTEM_AUGMENTATION}
 
 ${highYieldBlock}
+
+${buildNclex2026TopicCatalogBlock()}
 
 ${BATCH_DIVERSITY_RULES}
 
@@ -239,7 +243,7 @@ Each question object MUST include:
 - ngnFormat (when assigned: bow_tie | matrix | select_all | ordered_response | highlight | unfolding_case)
 - caseStep (when case study: 1–6)
 - references (array with NCSBN NCLEX-RN Test Plan / CJMM citation)
-- tags (include "nclex-ngn", "curated", "full-exam-generated")`;
+- tags (include "nclex-ngn", "curated", "full-exam-generated", and the assigned topic slug)`;
 }
 
 function countDistractorRationales(exam: ExamQuestion): number {

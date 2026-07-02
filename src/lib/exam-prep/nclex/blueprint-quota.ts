@@ -9,73 +9,15 @@ import {
 import type { NclexClientNeedsId, NclexGenerationSlot } from "./types";
 import { NCLEX_BEST_TARGET_TOTAL } from "./types";
 import { SUBJECT_TO_CLIENT_NEEDS } from "@/lib/bank-curation/cluster-selection";
+import {
+  NCLEX_2026_HIGH_YIELD_ROTATION,
+  pickNclex2026BlueprintTopic,
+} from "./blueprint-topics-2026";
 
 const NCLEX_BLUEPRINT = getExamBlueprint("nursing")!;
 
-/** High-yield topics ordered for exam composition (highest yield first). */
-export const HIGH_YIELD_ROTATION: Record<NclexClientNeedsId, string[]> = {
-  "management-of-care": [
-    "delegation",
-    "prioritization",
-    "advocacy",
-    "informed consent",
-    "assignment",
-    "discharge planning",
-  ],
-  "safety-infection": [
-    "standard precautions",
-    "transmission-based precautions",
-    "falls",
-    "restraints",
-    "medication safety",
-    "fire safety",
-  ],
-  "health-promotion": [
-    "screening",
-    "immunizations",
-    "lifestyle teaching",
-    "prenatal care",
-    "developmental milestones",
-  ],
-  psychosocial: [
-    "therapeutic communication",
-    "crisis intervention",
-    "grief",
-    "abuse reporting",
-    "cultural competence",
-  ],
-  "basic-care-comfort": [
-    "nutrition",
-    "elimination",
-    "sleep",
-    "mobility",
-    "pain management",
-    "pressure injury prevention",
-  ],
-  "pharmacology-nursing": [
-    "insulin",
-    "anticoagulants",
-    "opioids",
-    "medication rights",
-    "IV therapy",
-    "high-alert medications",
-  ],
-  "reduction-risk": [
-    "diagnostic tests",
-    "post-procedure monitoring",
-    "complications",
-    "lab interpretation",
-    "preoperative care",
-  ],
-  "physiological-adaptation": [
-    "sepsis",
-    "shock",
-    "respiratory failure",
-    "electrolytes",
-    "cardiac emergencies",
-    "heart failure",
-  ],
-};
+/** High-yield topic slugs for exam composition (2026 Client Needs catalog). */
+export const HIGH_YIELD_ROTATION = NCLEX_2026_HIGH_YIELD_ROTATION;
 
 const STEM_FORMATS = [
   "Which action should the nurse take first?",
@@ -91,30 +33,18 @@ const STEM_FORMATS = [
 
 const DELEGATION_STEM = "Which action should the nurse delegate to the UAP?";
 
-/** Weighted MOC topics — delegation is high-yield but not dominant (~12%). */
-const MOC_TOPIC_WEIGHTS = [
-  "prioritization",
-  "prioritization",
-  "prioritization",
-  "advocacy",
-  "informed consent",
-  "assignment",
-  "discharge planning",
-  "delegation",
-] as const;
-
-/** Case study clinical themes — high-yield, board-level. */
+/** Case study clinical themes — high-yield, board-level (2026 topic slugs). */
 const CASE_STUDY_THEMES = [
-  { topic: "sepsis progression", subjectId: "physiological-adaptation" as NclexClientNeedsId },
-  { topic: "heart failure decompensation", subjectId: "physiological-adaptation" as NclexClientNeedsId },
-  { topic: "post-operative complications", subjectId: "reduction-risk" as NclexClientNeedsId },
-  { topic: "diabetic crisis management", subjectId: "pharmacology-nursing" as NclexClientNeedsId },
-  { topic: "psychiatric emergency", subjectId: "psychosocial" as NclexClientNeedsId },
-  { topic: "labor and delivery emergency", subjectId: "physiological-adaptation" as NclexClientNeedsId },
-  { topic: "pediatric respiratory distress", subjectId: "physiological-adaptation" as NclexClientNeedsId },
-  { topic: "anticoagulant toxicity", subjectId: "pharmacology-nursing" as NclexClientNeedsId },
-  { topic: "multi-client prioritization", subjectId: "management-of-care" as NclexClientNeedsId },
-  { topic: "isolation and infection outbreak", subjectId: "safety-infection" as NclexClientNeedsId },
+  { topic: "shock-sepsis", subjectId: "physiological-adaptation" as NclexClientNeedsId },
+  { topic: "cardiac-emergencies", subjectId: "physiological-adaptation" as NclexClientNeedsId },
+  { topic: "postoperative-monitoring", subjectId: "reduction-risk" as NclexClientNeedsId },
+  { topic: "endocrine-emergencies", subjectId: "pharmacology-nursing" as NclexClientNeedsId },
+  { topic: "suicide-risk", subjectId: "psychosocial" as NclexClientNeedsId },
+  { topic: "labor-fetal-monitoring", subjectId: "health-promotion" as NclexClientNeedsId },
+  { topic: "respiratory-emergencies", subjectId: "physiological-adaptation" as NclexClientNeedsId },
+  { topic: "interactions-antidotes", subjectId: "pharmacology-nursing" as NclexClientNeedsId },
+  { topic: "prioritization", subjectId: "management-of-care" as NclexClientNeedsId },
+  { topic: "transmission-based-precautions", subjectId: "safety-infection" as NclexClientNeedsId },
 ];
 
 const ITEMS_PER_CASE_STUDY = 6;
@@ -127,15 +57,11 @@ function resolveSubjectId(slot: QuestionSlot): NclexClientNeedsId {
 }
 
 function pickTopic(subjectId: NclexClientNeedsId, index: number, examSeed: number): string {
-  if (subjectId === "management-of-care") {
-    return MOC_TOPIC_WEIGHTS[(index + examSeed) % MOC_TOPIC_WEIGHTS.length]!;
-  }
-  const topics = HIGH_YIELD_ROTATION[subjectId];
-  return topics[(index + examSeed) % topics.length]!;
+  return pickNclex2026BlueprintTopic(subjectId, index, examSeed);
 }
 
 function pickStemFormat(index: number, examSeed: number, blueprintTopic: string): string {
-  if (blueprintTopic === "delegation") {
+  if (blueprintTopic === "delegation-assignment" || blueprintTopic === "delegation") {
     return DELEGATION_STEM;
   }
   return STEM_FORMATS[(index + examSeed) % STEM_FORMATS.length]!;

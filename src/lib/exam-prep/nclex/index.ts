@@ -1,4 +1,5 @@
 export * from "./types";
+export * from "./blueprint-topics-2026";
 export * from "./blueprint-quota";
 export * from "./quality-gate";
 export * from "./generation-pipeline";

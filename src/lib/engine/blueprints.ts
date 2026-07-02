@@ -4,6 +4,11 @@
  */
 
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
+import {
+  NAPLEX_CONTENT_OUTLINE,
+  NAPLEX_OUTLINE_SOURCE,
+  type NaplexContentDomainId,
+} from "@/lib/exam-prep/naplex/content-outline";
 
 export type BlueprintCategory = {
   id: string;
@@ -34,7 +39,7 @@ export type ExamBlueprint = {
 const NCLEX_RN: ExamBlueprint = {
   fieldId: "nursing",
   examName: "NCLEX",
-  sourceNote: "NCSBN NCLEX-RN Test Plan + Clinical Judgment Measurement Model (CJMM)",
+  sourceNote: "NCSBN NCLEX-RN 2026 Test Plan + Clinical Judgment Measurement Model (CJMM)",
   vignetteMinRatio: 0.65,
   ngnMix: [
     { format: "unfolding_case", weight: 0.1, label: "Unfolding clinical case" },
@@ -47,58 +52,106 @@ const NCLEX_RN: ExamBlueprint = {
     {
       id: "management-of-care",
       label: "Management of Care",
-      weight: 0.2,
+      weight: 0.18,
       subjectIds: ["management-of-care"],
-      highYieldTopics: ["delegation", "prioritization", "advocacy", "informed consent"],
+      highYieldTopics: [
+        "prioritization",
+        "delegation-assignment",
+        "ethical-principles",
+        "informed-consent-advance-directives",
+        "disaster-triage",
+      ],
     },
     {
       id: "safety-infection",
       label: "Safety & Infection Control",
-      weight: 0.12,
+      weight: 0.13,
       subjectIds: ["safety-infection"],
-      highYieldTopics: ["standard precautions", "transmission-based precautions", "restraints", "falls"],
+      highYieldTopics: [
+        "standard-precautions-hand-hygiene",
+        "transmission-based-precautions",
+        "ppe-donning-doffing",
+        "fall-prevention-restraints",
+        "medication-error-prevention",
+      ],
     },
     {
       id: "health-promotion",
       label: "Health Promotion",
       weight: 0.09,
       subjectIds: ["health-promotion"],
-      highYieldTopics: ["screening", "immunizations", "lifestyle teaching"],
+      highYieldTopics: [
+        "immunization-schedules",
+        "health-screening",
+        "prenatal-fetal-development",
+        "postpartum-bubble-he",
+        "pediatric-milestones",
+      ],
     },
     {
       id: "psychosocial",
       label: "Psychosocial Integrity",
       weight: 0.09,
       subjectIds: ["psychosocial"],
-      highYieldTopics: ["therapeutic communication", "crisis", "grief", "abuse reporting"],
+      highYieldTopics: [
+        "therapeutic-communication",
+        "suicide-risk",
+        "substance-use-withdrawal",
+        "abuse-neglect",
+        "grief-loss",
+      ],
     },
     {
       id: "basic-care",
       label: "Basic Care & Comfort",
       weight: 0.09,
       subjectIds: ["basic-care-comfort"],
-      highYieldTopics: ["nutrition", "elimination", "sleep", "mobility"],
+      highYieldTopics: [
+        "pain-management",
+        "nutrition-feeding",
+        "pressure-injury-staging",
+        "elimination-catheter",
+        "mobility-assistive-devices",
+      ],
     },
     {
       id: "pharmacology",
       label: "Pharmacological Therapies",
-      weight: 0.15,
+      weight: 0.16,
       subjectIds: ["pharmacology-nursing"],
-      highYieldTopics: ["medication rights", "anticoagulants", "insulin", "opioids", "IV therapy"],
+      highYieldTopics: [
+        "cardiovascular-meds",
+        "endocrine-meds",
+        "pain-opioids-nsaids",
+        "interactions-antidotes",
+        "dosage-calculations",
+      ],
     },
     {
       id: "risk-reduction",
       label: "Reduction of Risk Potential",
       weight: 0.12,
       subjectIds: ["reduction-risk"],
-      highYieldTopics: ["diagnostic tests", "post-procedure monitoring", "complications"],
+      highYieldTopics: [
+        "critical-lab-values",
+        "diagnostic-tests",
+        "pre-post-procedure",
+        "postoperative-monitoring",
+        "fluid-balance-io",
+      ],
     },
     {
       id: "physiological-adaptation",
       label: "Physiological Adaptation",
       weight: 0.14,
       subjectIds: ["physiological-adaptation", "med-surg"],
-      highYieldTopics: ["shock", "respiratory failure", "electrolytes", "cardiac emergencies"],
+      highYieldTopics: [
+        "cardiac-emergencies",
+        "respiratory-emergencies",
+        "endocrine-emergencies",
+        "shock-sepsis",
+        "renal-urinary",
+      ],
     },
   ],
 };
@@ -243,75 +296,44 @@ const USMLE_STEP_2: ExamBlueprint = {
 };
 
 /** NABP NAPLEX Content Outline (2025, effective May 1) — five domains. */
+const NAPLEX_DOMAIN_SUBJECTS: Record<NaplexContentDomainId, string[]> = {
+  "naplex-area1-foundations": [
+    "pharmacology",
+    "pharmacokinetics",
+    "pharmaceutics",
+    "compounding-calculations",
+  ],
+  "naplex-area2-therapeutics": [
+    "pharmacology",
+    "cardiovascular-rx",
+    "infectious-disease-rx",
+    "endocrine-rx",
+    "cns-rx",
+  ],
+  "naplex-area3-treatment-planning": [
+    "cardiovascular-rx",
+    "infectious-disease-rx",
+    "endocrine-rx",
+    "cns-rx",
+    "patient-counseling",
+    "otc-self-care",
+  ],
+  "naplex-area4-safety": ["pharmacy-law", "patient-counseling"],
+  "naplex-area5-management": ["pharmacy-law", "patient-counseling"],
+};
+
 const NAPLEX: ExamBlueprint = {
   fieldId: "pharmacy",
   examName: "NAPLEX",
-  sourceNote:
-    "NABP NAPLEX Content Outline (2025) — 25% Foundations, 25% Medication Use, 40% Treatment Planning, 5% Professional Practice, 5% Management",
+  sourceNote: `${NAPLEX_OUTLINE_SOURCE} — 25% Foundations, 25% Medication Use, 40% Treatment Planning, 5% Professional Practice, 5% Management`,
   vignetteMinRatio: 0.6,
-  categories: [
-    {
-      id: "naplex-area1-foundations",
-      label: "Foundational Knowledge for Pharmacy Practice",
-      weight: 0.25,
-      subjectIds: ["pharmacology", "pharmacokinetics", "pharmaceutics", "compounding-calculations"],
-      highYieldTopics: ["PK/PD", "calculations", "compounding", "pharmaceutics", "biopharmaceutics"],
-    },
-    {
-      id: "naplex-area2-therapeutics",
-      label: "Medication Use Process",
-      weight: 0.25,
-      subjectIds: [
-        "pharmacology",
-        "cardiovascular-rx",
-        "infectious-disease-rx",
-        "endocrine-rx",
-        "cns-rx",
-      ],
-      highYieldTopics: [
-        "dispensing",
-        "monitoring",
-        "drug interactions",
-        "immunizations",
-        "MTM",
-        "REMS",
-      ],
-    },
-    {
-      id: "naplex-area3-treatment-planning",
-      label: "Person-Centered Assessment & Treatment Planning",
-      weight: 0.4,
-      subjectIds: [
-        "cardiovascular-rx",
-        "infectious-disease-rx",
-        "endocrine-rx",
-        "cns-rx",
-        "patient-counseling",
-        "otc-self-care",
-      ],
-      highYieldTopics: [
-        "guideline-based therapy",
-        "special populations",
-        "adherence",
-        "therapeutic substitution",
-        "clinical scenarios",
-      ],
-    },
-    {
-      id: "naplex-area4-safety",
-      label: "Professional Practice",
-      weight: 0.05,
-      subjectIds: ["pharmacy-law", "patient-counseling"],
-      highYieldTopics: ["ethics", "HIPAA", "error reporting", "patient safety", "diversion"],
-    },
-    {
-      id: "naplex-area5-management",
-      label: "Pharmacy Management & Leadership",
-      weight: 0.05,
-      subjectIds: ["pharmacy-law", "patient-counseling"],
-      highYieldTopics: ["inventory", "precepting", "operations", "quality improvement"],
-    },
-  ],
+  categories: NAPLEX_CONTENT_OUTLINE.map((domain) => ({
+    id: domain.id,
+    label: domain.label,
+    weight: domain.weight,
+    subjectIds: NAPLEX_DOMAIN_SUBJECTS[domain.id],
+    highYieldTopics: domain.highYieldTopics,
+  })),
 };
 
 /** NCCPA PANCE Content Blueprint (effective January 2025). */
