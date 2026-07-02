@@ -10,7 +10,6 @@ export async function GET(req: Request) {
   if (!auth.ok) return auth.response;
 
   const { searchParams } = new URL(req.url);
-  const limit = Math.min(Number(searchParams.get("limit") ?? 20), 50);
   const classParam = searchParams.get("class") ?? "all";
   const validClasses = [
     "all",
@@ -26,6 +25,15 @@ export async function GET(req: Request) {
   const classId = validClasses.includes(classParam as (typeof validClasses)[number])
     ? (classParam as (typeof validClasses)[number])
     : "all";
+
+  const limitParam = searchParams.get("limit");
+  const poolMax = classId === "all" ? 50 : 200;
+  const limit =
+    limitParam != null && limitParam !== ""
+      ? Math.min(Math.max(Number(limitParam) || poolMax, 1), poolMax)
+      : classId === "all"
+        ? 30
+        : poolMax;
 
   try {
     const cards = await getDueDrugCards(auth.userId, limit, classId);

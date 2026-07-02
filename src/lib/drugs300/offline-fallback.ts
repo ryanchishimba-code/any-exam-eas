@@ -95,5 +95,6 @@ export function buildOfflineDueDrugCards(
 ): DrugCardDto[] {
   const now = new Date();
   const pool = TOP_500_DRUGS.filter((d) => drugMatchesClass(d.therapeuticClass, classId));
-  return pool.slice(0, limit).map((drug) => toOfflineDto(drug, now));
+  const effectiveLimit = classId === "all" ? limit : pool.length;
+  return pool.slice(0, effectiveLimit).map((drug) => toOfflineDto(drug, now));
 }

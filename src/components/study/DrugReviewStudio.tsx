@@ -13,7 +13,7 @@ import {
   RefreshCw,
   RotateCcw,
 } from "lucide-react";
-import type { DrugCardDto, DrugClassId, DrugReviewDashboard, ReviewGrade } from "@/lib/drugs300/dto";
+import type { DrugCardDto, DrugClassId, DrugClassProgress, DrugReviewDashboard, ReviewGrade } from "@/lib/drugs300/dto";
 import { GRADE_LABELS } from "@/lib/drugs300/spaced-repetition";
 import { DrugClassFilter, DrugClassFilterPills } from "@/components/study/DrugClassFilter";
 import { DrugFlashcard } from "@/components/study/DrugFlashcard";
@@ -49,13 +49,18 @@ export function DrugReviewStudio() {
   const current = cards[index];
   const activeClassStats = dashboard?.classProgress.find((c) => c.id === activeClass);
 
-  const loadCards = useCallback(async (classId: DrugClassId) => {
+  const loadCards = useCallback(async (classId: DrugClassId, classProgress?: DrugClassProgress[]) => {
     setCardsLoading(true);
     setCardsError("");
     try {
-      const dueRes = await fetch(
-        `/api/drugs300/due?limit=30&class=${encodeURIComponent(classId)}`
-      );
+      const classMeta = classProgress?.find((c) => c.id === classId);
+      const params = new URLSearchParams({ class: classId });
+      if (classId === "all") {
+        params.set("limit", "50");
+      } else if (classMeta?.total) {
+        params.set("limit", String(classMeta.total));
+      }
+      const dueRes = await fetch(`/api/drugs300/due?${params.toString()}`);
       const dueData = await dueRes.json();
       if (!dueRes.ok) throw new Error(dueData.error ?? dueData.message ?? "Failed to load cards");
       setCards(dueData.cards ?? []);
@@ -81,7 +86,7 @@ export function DrugReviewStudio() {
         throw new Error(progressData.error ?? progressData.message ?? "Failed to load progress");
       }
       setDashboard(progressData);
-      await loadCards(activeClass);
+      await loadCards(activeClass, progressData.classProgress);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Error loading drug review");
     } finally {
@@ -108,10 +113,13 @@ export function DrugReviewStudio() {
     if (classId === activeClass) return;
     setActiveClass(classId);
     setCardsError("");
-    await loadCards(classId);
     const progressRes = await fetch("/api/drugs300/progress");
     const progressData = await progressRes.json();
     if (progressRes.ok) setDashboard(progressData);
+    await loadCards(
+      classId,
+      progressRes.ok ? progressData.classProgress : dashboard?.classProgress
+    );
   }
 
   async function submitGrade(grade: ReviewGrade) {
@@ -143,7 +151,7 @@ export function DrugReviewStudio() {
       if (index < cards.length - 1) {
         setIndex((i) => i + 1);
       } else {
-        await loadCards(activeClass);
+        await loadCards(activeClass, dashboard?.classProgress);
       }
     } catch (e) {
       setError(e instanceof Error ? e.message : "Error saving review");
@@ -190,6 +198,15 @@ export function DrugReviewStudio() {
   }
 
   const { cycle, stats, classProgress } = dashboard;
+
+  const cardTotal =
+    activeClass !== "all" && activeClassStats
+      ? activeClassStats.total
+      : stats.total;
+  const cardLabel =
+    cards.length > 0 && cards.length < cardTotal
+      ? `Card ${index + 1} of ${cards.length} (${cardTotal} in ${activeClassStats?.shortLabel ?? "deck"})`
+      : `Card ${index + 1} of ${cards.length}`;
 
   return (
     <div className="mt-6 space-y-6">
@@ -361,7 +378,7 @@ export function DrugReviewStudio() {
               >
                 <div className="text-sm text-slate-600">
                   <span>
-                    Card {index + 1} of {cards.length}
+                    {cardLabel}
                     {current.due && (
                       <span className="ml-2 rounded-full bg-teal-100 px-2 py-0.5 text-xs font-semibold text-teal-800">
                         Due

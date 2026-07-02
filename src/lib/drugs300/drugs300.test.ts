@@ -80,5 +80,10 @@ describe("drugs300", () => {
     expect(cards).toHaveLength(5);
     expect(cards[0]?.generic.length).toBeGreaterThan(0);
     expect(cards[0]?.due).toBe(true);
+
+    const cvClass = dashboard.classProgress.find((c) => c.id === "cardiovascular");
+    expect(cvClass?.total).toBeGreaterThan(30);
+    const cvCards = buildOfflineDueDrugCards(30, "cardiovascular");
+    expect(cvCards).toHaveLength(cvClass!.total);
   });
 });

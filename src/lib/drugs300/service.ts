@@ -208,6 +208,8 @@ export async function getDueDrugCards(
     const progressByDrug = new Map(progress.map((p) => [p.drugId, p]));
 
     const pool = TOP_500_DRUGS.filter((d) => drugMatchesClass(d.therapeuticClass, classId));
+    const effectiveLimit =
+      classId === "all" ? limit : Math.min(limit, pool.length);
 
     const dueDrugs: DrugCardDto[] = [];
 
@@ -224,21 +226,32 @@ export async function getDueDrugCards(
       } else if (isDue(row.nextReviewAt, now) && !row.mastered) {
         dueDrugs.push(toDto(drug, row, now));
       }
-      if (dueDrugs.length >= limit) break;
+      if (dueDrugs.length >= effectiveLimit) break;
     }
 
-    if (dueDrugs.length < limit) {
+    if (dueDrugs.length < effectiveLimit) {
+      for (const drug of pool) {
+        if (dueDrugs.some((d) => d.drugId === drug.id)) continue;
+        const row = progressByDrug.get(drug.id);
+        if (row && !row.mastered && !isDue(row.nextReviewAt, now)) {
+          dueDrugs.push(toDto(drug, row, now));
+        }
+        if (dueDrugs.length >= effectiveLimit) break;
+      }
+    }
+
+    if (dueDrugs.length < effectiveLimit) {
       for (const drug of pool) {
         if (dueDrugs.some((d) => d.drugId === drug.id)) continue;
         const row = progressByDrug.get(drug.id);
         if (row?.mastered) {
           dueDrugs.push(toDto(drug, row, now));
         }
-        if (dueDrugs.length >= limit) break;
+        if (dueDrugs.length >= effectiveLimit) break;
       }
     }
 
-    return dueDrugs.slice(0, limit);
+    return dueDrugs.slice(0, effectiveLimit);
   } catch (error) {
     if (error instanceof DbUnavailableError) {
       return buildOfflineDueDrugCards(limit, classId);
