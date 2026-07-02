@@ -682,6 +682,14 @@ export function StudyBankPractice({
     router.replace(href, { scroll: false });
   }
 
+  function expectExactSessionCount(received: number, expected: number) {
+    if (received !== expected) {
+      throw new Error(
+        `Expected ${expected} questions but received ${received}. Try fewer questions or another topic.`
+      );
+    }
+  }
+
   async function start() {
     if (isMpje || !isTimedExam) syncPracticeUrl();
 
@@ -774,6 +782,7 @@ export function StudyBankPractice({
         if (raw.length === 0) {
           throw new Error("No questions in bank for this exam yet.");
         }
+        expectExactSessionCount(raw.length, limit);
         setQuestions(raw);
         return;
       }
@@ -823,6 +832,7 @@ export function StudyBankPractice({
         if (raw.length === 0) {
           throw new Error("No questions in bank for this selection.");
         }
+        expectExactSessionCount(raw.length, limit);
         const questionReasoning: Record<string, string> = {};
         raw.forEach((q, i) => {
           questionReasoning[String(q.id)] =
@@ -853,6 +863,10 @@ export function StudyBankPractice({
       }
       qs.set("subjectId", effectiveSubjectId);
       if (isPance && taskCategory) qs.set("taskCategory", taskCategory);
+      const nclexPreset = searchParams.get("nclexPreset");
+      if (nclexPreset) qs.set("nclexPreset", nclexPreset);
+      const difficultyTierParam = searchParams.get("difficultyTier");
+      if (difficultyTierParam) qs.set("difficultyTier", difficultyTierParam);
 
       const res = await fetch(`/api/questions?${qs.toString()}`);
       const data = await res.json();
@@ -876,6 +890,7 @@ export function StudyBankPractice({
             : "No questions in bank for this topic yet."
         );
       }
+      expectExactSessionCount(raw.length, limit);
       setQuestions(raw);
     } catch (e) {
       const message = e instanceof Error ? e.message : "Failed to load";

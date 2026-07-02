@@ -65,14 +65,17 @@ export async function GET(req: Request) {
   if (!access.ok) return access.response;
 
   const nclexLength = parseNclexTimedVariant(searchParams.get("nclexLength"));
+  const nclexPresetEarly = searchParams.get("nclexPreset")?.trim();
   const mixed =
     timedExam ||
     searchParams.get("scope") === "field" ||
     subjectId === MIXED_SUBJECT_ID ||
-    searchParams.get("mixed") === "1";
+    searchParams.get("mixed") === "1" ||
+    (fieldId === "nursing" && Boolean(nclexPresetEarly));
 
   const maxLimit = timedExam ? MAX_TIMED_LIMIT : MAX_BANK_LIMIT;
-  const requestedLimit = Number(searchParams.get("limit"));
+  const requestedCountParam = Number(searchParams.get("limit") ?? searchParams.get("count"));
+  const requestedLimit = Number.isFinite(requestedCountParam) ? requestedCountParam : NaN;
   const defaultLimit = timedExam
     ? resolveTimedExamLimit(field, undefined, nclexLength)
     : 25;
@@ -94,6 +97,23 @@ export async function GET(req: Request) {
         .map((s) => s.trim())
         .filter(Boolean)
     : undefined;
+
+  const nclexPresetParam = searchParams.get("nclexPreset")?.trim() || undefined;
+  const difficultyTier = searchParams.get("difficultyTier")?.trim() || undefined;
+
+  let nclexPresetConfig: Awaited<
+    ReturnType<(typeof import("@/lib/exam-prep/nclex/study-presets"))["getNclexStudyPreset"]>
+  > | undefined;
+  if (fieldId === "nursing" && nclexPresetParam) {
+    const { getNclexStudyPreset } = await import("@/lib/exam-prep/nclex/study-presets");
+    nclexPresetConfig = getNclexStudyPreset(nclexPresetParam as never);
+    if (!nclexPresetConfig) {
+      return NextResponse.json(
+        { error: `Unknown NCLEX preset: ${nclexPresetParam}`, code: "INVALID_NCLEX_PRESET" },
+        { status: 400 }
+      );
+    }
+  }
 
   const taskCategory = searchParams.get("taskCategory")?.trim() || undefined;
 
@@ -133,7 +153,15 @@ export async function GET(req: Request) {
     finalizeExamSessionQuestions,
     assertExamSessionReady,
   } = await import("@/lib/questions/finalize-exam-session");
-  const sampleCount = resolveExamBankSampleCount(fieldId, limit, timedExam);
+  const bankPractice = questionBank && !timedExam;
+  const topicPractice = bankPractice;
+  const sampleCount = resolveExamBankSampleCount(fieldId, limit, timedExam, {
+    topicPractice,
+    bankPractice,
+  });
+  const presetSampleCount = nclexPresetConfig
+    ? Math.min(400, Math.max(sampleCount, nclexPresetConfig.count * 15, 120))
+    : sampleCount;
 
   let items: BankItem[];
 
@@ -174,14 +202,14 @@ export async function GET(req: Request) {
   } else if (mixed) {
     items = await sampleQuestionBankItemsForField({
       fieldId,
-      count: sampleCount,
+      count: presetSampleCount,
       taskCategory,
     });
   } else {
     items = await sampleQuestionBankItems({
       fieldId,
       subjectId: subjectId!,
-      count: sampleCount,
+      count: presetSampleCount,
       taskCategory,
     });
   }
@@ -193,7 +221,27 @@ export async function GET(req: Request) {
       items,
       limit,
       poolLimit: items.length,
+      topicPractice,
     });
+  }
+
+  if (nclexPresetConfig) {
+    const { filterItemsForNclexPreset, shuffleBankItems } = await import(
+      "@/lib/exam-prep/nclex/session-preset-filters"
+    );
+    const pool = filterItemsForNclexPreset(items, nclexPresetConfig);
+    const minPool = Math.min(5, limit);
+    const source = pool.length >= minPool ? pool : items;
+    items = shuffleBankItems(source).slice(0, limit);
+  } else if (fieldId === "nursing" && difficultyTier) {
+    const { matchesNclexDifficultyTier, shuffleBankItems } = await import(
+      "@/lib/exam-prep/nclex/session-preset-filters"
+    );
+    const tier = difficultyTier as "foundation" | "exam" | "trap";
+    const pool = items.filter((item) => matchesNclexDifficultyTier(item, tier));
+    if (pool.length >= 5) {
+      items = shuffleBankItems(pool).slice(0, limit);
+    }
   }
 
   const resolvedSubjectId = mixed ? MIXED_SUBJECT_ID : subjectId!;
@@ -238,7 +286,10 @@ export async function GET(req: Request) {
   let sessionQuality;
 
   try {
-    const finalized = finalizeExamSessionQuestions(rawInputs, limit, { fieldId });
+    const finalized = finalizeExamSessionQuestions(rawInputs, limit, {
+      fieldId,
+      topicPractice,
+    });
     prepared = finalized.prepared;
     sessionQuality = finalized.quality;
     assertExamSessionReady(sessionQuality, fieldId);

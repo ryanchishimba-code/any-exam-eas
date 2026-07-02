@@ -55,6 +55,16 @@ describe("full-length exam fields", () => {
       }
     }
   });
+
+  it("requests a large bank sample for 100Q untimed sessions (including mixed topics)", () => {
+    const sample = resolveExamBankSampleCount("nursing", 100, false, { bankPractice: true });
+    expect(sample).toBeGreaterThanOrEqual(500);
+  });
+
+  it("requests extra headroom for 100Q timed mocks", () => {
+    const sample = resolveExamBankSampleCount("nursing", 100, true);
+    expect(sample).toBeGreaterThanOrEqual(180);
+  });
 });
 
 describe("finalizeExamSessionQuestions", () => {
@@ -91,6 +101,30 @@ describe("finalizeExamSessionQuestions", () => {
     },
     15_000
   );
+
+  it("returns exact count for NCLEX single-topic bank practice (25Q)", () => {
+    const templateStem = "Which client should the nurse see first?";
+    const pool: RawQuestionInput[] = Array.from({ length: 80 }, (_, i) => ({
+      id: i + 1,
+      type: "multiple_choice" as const,
+      bankItemId: `moc-${i}`,
+      question: templateStem,
+      vignette: `Room ${400 + i}. Client ${i} with unique clinical findings for prioritization.`,
+      options: [`Action A-${i}`, `Action B-${i}`, `Action C-${i}`, `Action D-${i}`],
+      correctAnswer: `Action A-${i}`,
+      explanation: "Detailed board-style rationale with teaching points for prioritization.",
+      subjectId: "management-of-care",
+      difficultyLabel: "Medium" as const,
+    }));
+
+    const { prepared, quality } = finalizeExamSessionQuestions(pool, 25, {
+      fieldId: "nursing",
+      topicPractice: true,
+    });
+    expect(prepared).toHaveLength(25);
+    expect(quality.returned).toBe(25);
+    assertExamSessionReady({ ...quality, ok: true }, "nursing");
+  });
 
   it(
     "returns exact count for standard full-exam preset sizes",

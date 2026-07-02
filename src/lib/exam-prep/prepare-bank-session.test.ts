@@ -32,4 +32,30 @@ describe("prepareBankItemsForSession", () => {
     expect(out.map((i) => i.id)).toEqual(["1", "2", "3"]);
     expect(serveQaPassedBankItems).not.toHaveBeenCalled();
   });
+
+  it("topicPractice uses spread selection for single-topic sessions", () => {
+    const pool = Array.from({ length: 30 }, (_, i) => ({
+      id: String(i),
+      subjectId: "pharmacology",
+      question: "Which monitoring parameter is most appropriate after initiation?",
+      vignette: `A 64-year-old man case ${i} with hypertension receives lisinopril.`,
+      options: ["Serum potassium and creatinine within 1–2 weeks", "B", "C", "D"],
+      correctAnswer: "Serum potassium and creatinine within 1–2 weeks",
+      explanation:
+        "Correct: serum potassium and creatinine — ACE inhibitor initiation requires renal and electrolyte monitoring within 1–2 weeks per standard guidance.",
+      tags: ["physician-educator", "high-yield"],
+      source: "curated",
+    }));
+
+    const out = prepareBankItemsForSession({
+      fieldId: "pharmacy",
+      field: "pharmacy",
+      items: pool,
+      limit: 25,
+      topicPractice: true,
+    });
+
+    expect(out).toHaveLength(25);
+    expect(new Set(out.map((i) => i.id)).size).toBe(25);
+  });
 });

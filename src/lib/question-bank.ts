@@ -447,6 +447,7 @@ export async function getBankQuestions(params: {
     items: pool,
     limit: params.count,
     poolLimit: pool.length,
+    topicPractice: true,
   });
 
   if (vetted.length === 0) {
@@ -466,6 +467,7 @@ export async function getBankQuestions(params: {
 
   const { prepared, quality } = finalizeExamSessionQuestions(rawInputs, params.count, {
     fieldId,
+    topicPractice: true,
   });
   assertExamSessionReady(quality, fieldId);
   return studyQuestionsToExamQuestions(prepared);

@@ -8,10 +8,14 @@ import {
   rawQuestionMeetsRelaxedBoardBar,
   studyQuestionMeetsBoardBar,
 } from "./session-quality";
-import { selectSpreadRawInputs } from "./spread-session-order";
+import { selectSpreadRawInputs, type SessionDedupeMode } from "./spread-session-order";
 import { QUESTION_BANK_SAMPLE_MAX_PULL } from "@/lib/question-bank-db";
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { finalizeUsmleExamSessionQuestions } from "@/lib/exam-prep/usmle/progressive-exam-fill";
+import {
+  resolveTopicBankSampleCount,
+  supportsTopicBankPractice,
+} from "@/lib/exam-prep/topic-bank-practice";
 
 /** Field ids used by full-length NCLEX, NAPLEX, USMLE, and PANCE simulators. */
 export const FULL_EXAM_FIELD_IDS = new Set([
@@ -33,8 +37,16 @@ export function isFullExamField(fieldId: string): boolean {
 export function resolveExamBankSampleCount(
   fieldId: string,
   limit: number,
-  timedExam: boolean
+  timedExam: boolean,
+  opts?: { topicPractice?: boolean; bankPractice?: boolean }
 ): number {
+  if (
+    !timedExam &&
+    (opts?.bankPractice || (opts?.topicPractice && supportsTopicBankPractice(fieldId)))
+  ) {
+    return resolveTopicBankSampleCount(limit);
+  }
+
   if (!timedExam) {
     const clinicalPool =
       fieldId === "nursing" ||
@@ -59,7 +71,7 @@ export function resolveExamBankSampleCount(
   ) {
     return Math.min(
       QUESTION_BANK_SAMPLE_MAX_PULL,
-      Math.max(limit + 32, Math.ceil(limit * 1.45))
+      Math.max(limit + (limit >= 100 ? 80 : 32), Math.ceil(limit * (limit >= 100 ? 2 : 1.45)))
     );
   }
 
@@ -85,9 +97,10 @@ export type ExamSessionQualityReport = {
 function selectRawInputsForSession(
   raw: RawQuestionInput[],
   requested: number,
-  shuffle = false
+  shuffle = false,
+  dedupeMode?: SessionDedupeMode
 ): RawQuestionInput[] {
-  const spreadOpts = { requestedCount: requested };
+  const spreadOpts = { requestedCount: requested, dedupeMode };
   if (!shuffle) {
     return selectSpreadRawInputs(raw, requested, spreadOpts);
   }
@@ -133,16 +146,29 @@ export function assessExamSessionQuality(
 function finalizeWithBoardBar(
   raw: RawQuestionInput[],
   requested: number,
-  meetsBar: (q: RawQuestionInput) => boolean
+  meetsBar: (q: RawQuestionInput) => boolean,
+  dedupeMode?: SessionDedupeMode
 ): { prepared: StudyQuestion[]; quality: ExamSessionQualityReport } {
   const vettedRaw = raw.filter(meetsBar);
-  const selected = selectRawInputsForSession(vettedRaw, requested);
+  const selected = selectRawInputsForSession(vettedRaw, requested, false, dedupeMode);
   const prepared = enforceSessionCount(
     prepareQuestionsForSession(selected, { shuffleOrder: false }),
     requested
   );
   const quality = assessExamSessionQuality(prepared, requested);
   return { prepared, quality };
+}
+
+/** Progressive tier relaxation — timed/full exams only, not single-topic bank practice. */
+function usesProgressiveExamFinalize(
+  fieldId: string | undefined,
+  requested: number,
+  topicPractice?: boolean
+): boolean {
+  if (!fieldId || topicPractice) return false;
+  if (isUsmleFieldId(fieldId) && requested >= 50) return true;
+  if (isFullExamField(fieldId) && requested >= 50) return true;
+  return false;
 }
 
 /**
@@ -154,18 +180,25 @@ function finalizeWithBoardBar(
 export function finalizeExamSessionQuestions(
   raw: RawQuestionInput[],
   requested: number,
-  opts?: { fieldId?: string }
+  opts?: { fieldId?: string; topicPractice?: boolean }
 ): { prepared: StudyQuestion[]; quality: ExamSessionQualityReport } {
-  if (opts?.fieldId && (isUsmleFieldId(opts.fieldId) || isFullExamField(opts.fieldId))) {
+  if (usesProgressiveExamFinalize(opts?.fieldId, requested, opts?.topicPractice)) {
     return finalizeUsmleExamSessionQuestions(raw, requested);
   }
 
-  const strict = finalizeWithBoardBar(raw, requested, rawQuestionMeetsBoardBar);
+  const dedupeMode: SessionDedupeMode | undefined = opts?.topicPractice ? "id" : undefined;
+
+  const strict = finalizeWithBoardBar(raw, requested, rawQuestionMeetsBoardBar, dedupeMode);
   if (strict.prepared.length >= requested && strict.quality.ok) {
     return strict;
   }
 
-  const relaxed = finalizeWithBoardBar(raw, requested, rawQuestionMeetsRelaxedBoardBar);
+  const relaxed = finalizeWithBoardBar(
+    raw,
+    requested,
+    rawQuestionMeetsRelaxedBoardBar,
+    dedupeMode
+  );
   if (relaxed.prepared.length >= requested) {
     const quality = assessExamSessionQuality(relaxed.prepared, requested);
     return {

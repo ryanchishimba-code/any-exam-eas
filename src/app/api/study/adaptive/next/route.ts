@@ -2,10 +2,8 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getFieldSubject } from "@/lib/field-subjects";
 import { getFieldMeta } from "@/lib/fields";
-import {
-  ADAPTIVE_QUESTION_POOL_PER_SUBJECT,
-  sampleQuestionBankItems,
-} from "@/lib/question-bank-db";
+import { resolveTopicBankSampleCount } from "@/lib/exam-prep/topic-bank-practice";
+import { sampleQuestionBankItems } from "@/lib/question-bank-db";
 import { runAdaptiveSelection } from "@/lib/core/prisma-adapter";
 import {
   topicPerformanceFromWeakness,
@@ -129,10 +127,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unknown subject for this field." }, { status: 400 });
     }
 
-    const poolSize = Math.min(
-      ADAPTIVE_QUESTION_POOL_PER_SUBJECT,
-      Math.max(sessionCount * 6, 60)
-    );
+    const poolSize = resolveTopicBankSampleCount(sessionCount);
 
     let items = await sampleQuestionBankItems({
       fieldId,
@@ -147,6 +142,7 @@ export async function POST(req: Request) {
       field: body.field,
       items,
       limit: poolSize,
+      topicPractice: true,
     });
 
     const pool: ReturnType<typeof examQuestionToStudy>[] = items.map((item, i) =>

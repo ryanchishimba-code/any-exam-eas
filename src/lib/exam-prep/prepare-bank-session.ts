@@ -4,7 +4,11 @@ import { applyAnatomyStudyMetaToBankItem } from "./apply-bank-anatomy-meta";
 import { bankItemToRawQuestion } from "./ngn-bank-bridge";
 import { bankItemToNaplexRaw } from "./naplex-bank-bridge";
 import { bankItemToUsmleRaw, isUsmleField } from "./usmle-bank-bridge";
-import { filterNclexItemsForSession, prepareNclexItemsForSession } from "./nclex-serve-gate";
+import {
+  filterNclexItemsForSession,
+  prepareNclexItemsForSession,
+} from "./nclex-serve-gate";
+import { selectSpreadBankItems } from "@/lib/questions/spread-session-order";
 import {
   naplexBankItemIsServeReady,
   prepareNaplexBankItem,
@@ -43,20 +47,17 @@ export function filterBankItemsForSessionPool(params: {
   fieldId: string;
   items: BankItem[];
 }): BankItem[] {
-  const { fieldId, items } = params;
+  return filterBankItemsForServe(params.fieldId, params.items);
+}
 
-  if (fieldId === "nursing") {
-    return filterNclexItemsForSession(items);
-  }
-  if (fieldId === "pharmacy") {
-    return items
-      .map((item) => prepareNaplexBankItem(item))
-      .filter((item) => naplexBankItemIsServeReady(item, { source: item.source ?? null }));
-  }
-  if (isClinicalVignetteField(fieldId)) {
-    return items.filter((item) => usmleBankItemIsServeReady(item, fieldId));
-  }
-  return filterBankItemsForServe(fieldId, items);
+/** Single-topic bank practice — ID dedupe only; avoids full-exam template collapse. */
+export function prepareTopicBankItemsForSession(params: {
+  fieldId: string;
+  items: BankItem[];
+  limit: number;
+}): BankItem[] {
+  const vetted = filterBankItemsForSessionPool(params);
+  return selectSpreadBankItems(vetted, params.limit);
 }
 
 /** Filter, shuffle, and cap bank rows before mapping to client-facing questions. */
@@ -69,6 +70,8 @@ export function prepareBankItemsForSession(params: {
   poolLimit?: number;
   /** Skip redundant runtime gates when gatherTimedExamBankItems already vetted rows. */
   skipRuntimeGate?: boolean;
+  /** Single-topic question bank (not mixed / not timed) — lighter dedupe, no exam diversity rules. */
+  topicPractice?: boolean;
 }): BankItem[] {
   const { fieldId, field, items, limit } = params;
   const cap = Math.max(limit, params.poolLimit ?? limit);
@@ -76,6 +79,10 @@ export function prepareBankItemsForSession(params: {
   /** Timed gather already vetted + diversified — avoid a second selection pass. */
   if (params.skipRuntimeGate) {
     return items.slice(0, cap);
+  }
+
+  if (params.topicPractice) {
+    return prepareTopicBankItemsForSession({ fieldId, items, limit });
   }
 
   if (fieldId === "nursing") {

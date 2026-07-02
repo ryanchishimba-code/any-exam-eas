@@ -25,8 +25,8 @@ const steps = [
   ["USMLE Step 3 serve gate", tsx("scripts/qa-gate-usmle-best.ts", "--field", "usmle-step-3", ...dry)],
   ["NAPLEX best gate", tsx("scripts/qa-gate-naplex-best.ts", ...dry)],
   ["PANCE best gate", tsx("scripts/qa-gate-pance-best.ts", ...dry)],
-  ["AANP FNP ingest gate", tsx("scripts/qa-gate-question-bank.ts", "--field", "aanp-fnp", ...dry)],
-  ["NPTE-PT ingest gate", tsx("scripts/qa-gate-question-bank.ts", "--field", "npte-pt", ...dry)],
+  ["AANP FNP best gate", tsx("scripts/qa-gate-aanp-fnp-best.ts", ...dry)],
+  ["NPTE-PT best gate", tsx("scripts/qa-gate-npte-pt-best.ts", ...dry)],
   ["Quality snapshot", tsx("scripts/audit-bank-quality-summary.ts")],
 ];
 

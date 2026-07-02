@@ -16,7 +16,7 @@ loadEnvFiles();
 import { PrismaClient } from "@prisma/client";
 import { curateNclexBankItem, triageNclexBankItem } from "../src/lib/engine/curation";
 import { assessNclexItemQuality } from "../src/lib/exam-prep/nclex-quality-gate";
-import { nclexItemPassesTimedExamGate } from "../src/lib/exam-prep/nclex-serve-gate";
+import { nclexItemPassesBestExamGate, nclexItemPassesTimedExamGate } from "../src/lib/exam-prep/nclex-serve-gate";
 import { enrichBankItemGuidelines } from "../src/lib/exam-prep/enrich-guidelines";
 import { hasNclexEditorialWarnFlags, nclexHasServeBlockIssues } from "../src/lib/exam-prep/nclex-bank-audit";
 import { needsNclexPolish } from "../src/lib/engine/polish/nclex-polish";
@@ -39,6 +39,7 @@ function parseArgs() {
   let editorial = false;
   let failing = false;
   let safety = false;
+  let serveReady = false;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--limit" && args[i + 1]) limit = parseInt(args[++i], 10);
@@ -51,9 +52,22 @@ function parseArgs() {
     else if (args[i] === "--editorial") editorial = true;
     else if (args[i] === "--failing") failing = true;
     else if (args[i] === "--safety") safety = true;
+    else if (args[i] === "--serve-ready") serveReady = true;
   }
 
-  return { limit, subject, dryRun, aiOnly, forceAi, noAi, all, editorial, failing, safety };
+  return {
+    limit,
+    subject,
+    dryRun,
+    aiOnly,
+    forceAi,
+    noAi,
+    all,
+    editorial,
+    failing,
+    safety,
+    serveReady,
+  };
 }
 
 function seedFromId(id: string): number {
@@ -135,10 +149,23 @@ async function collectSafetyRows(
 }
 
 async function main() {
-  const { limit, subject, dryRun, aiOnly, forceAi, noAi, all, editorial, failing, safety } =
-    parseArgs();
+  const {
+    limit,
+    subject,
+    dryRun,
+    aiOnly,
+    forceAi,
+    noAi,
+    all,
+    editorial,
+    failing,
+    safety,
+    serveReady,
+  } = parseArgs();
 
-  if (!noAi && (aiOnly || forceAi)) requireOpenAiKey();
+  const useForceAi = forceAi || serveReady;
+
+  if (!noAi && (aiOnly || useForceAi)) requireOpenAiKey();
 
   const rows = editorial
     ? await collectEditorialRows(limit > 0 ? limit : 0, subject)
@@ -149,6 +176,7 @@ async function main() {
             fieldId: "nursing",
             active: true,
             ...(failing ? { qaPassed: false } : {}),
+            ...(serveReady ? { qaPassed: true } : {}),
             ...(subject ? { subjectId: subject } : {}),
           },
           orderBy: { id: "asc" },
@@ -156,7 +184,7 @@ async function main() {
         });
 
   console.log(
-    `\nNCLEX curation engine — ${rows.length} item(s)${dryRun ? " [dry-run]" : ""}${aiOnly ? " [AI only]" : ""}${editorial ? " [editorial queue]" : ""}${failing ? " [qa failures]" : ""}${safety ? " [safety blocks]" : ""}\n`
+    `\nNCLEX curation engine — ${rows.length} item(s)${dryRun ? " [dry-run]" : ""}${aiOnly ? " [AI only]" : ""}${editorial ? " [editorial queue]" : ""}${failing ? " [qa failures]" : ""}${serveReady ? " [serve-ready]" : ""}${safety ? " [safety blocks]" : ""}\n`
   );
 
   const stats = {
@@ -167,6 +195,7 @@ async function main() {
     aiRewrite: 0,
     failed: 0,
     updated: 0,
+    keptOriginal: 0,
     errors: 0,
   };
 
@@ -175,7 +204,7 @@ async function main() {
     const item = enrichBankItemFromRow(row);
     const triage = triageNclexBankItem(item);
 
-    if (!all && !aiOnly && !forceAi && !triage.needsPolish && triage.qaGateOk) {
+    if (!all && !aiOnly && !useForceAi && !triage.needsPolish && triage.qaGateOk) {
       stats.skipped++;
       stats.pass++;
       continue;
@@ -190,7 +219,7 @@ async function main() {
         seed: seedFromId(row.id),
         useAi: !noAi,
         aiOnly,
-        forceAi,
+        forceAi: useForceAi,
       });
 
       if (result.stage === "pass" && !result.changed) {
@@ -223,8 +252,20 @@ async function main() {
       }
 
       const source = result.aiUsed ? "ai-curated" : "curated";
-      const qaVerdict = assessNclexItemQuality(finalItem, { source });
-      const qaOk = qaVerdict.tier === "best" && nclexItemPassesTimedExamGate(finalItem);
+      const itemForGate = { ...finalItem, source };
+      const qaOk =
+        row.qaPassed || serveReady
+          ? nclexItemPassesBestExamGate(itemForGate)
+          : assessNclexItemQuality(finalItem, { source }).tier === "best" &&
+            nclexItemPassesTimedExamGate(itemForGate);
+
+      if (row.qaPassed && !qaOk) {
+        stats.keptOriginal++;
+        console.log(
+          `  [keep] ${row.id.slice(0, 10)}… ${result.qualityBefore.toFixed(2)}→${result.qualityAfter.toFixed(2)} — rewrite below best gate`
+        );
+        continue;
+      }
 
       if (dryRun) {
         console.log(
@@ -266,6 +307,7 @@ async function main() {
   console.log(`Rule polish:  ${stats.rulePolish}`);
   console.log(`AI rewrite:   ${stats.aiRewrite}`);
   console.log(`Failed QA:    ${stats.failed}`);
+  if (stats.keptOriginal) console.log(`Kept original: ${stats.keptOriginal}`);
   console.log(`${dryRun ? "Would update" : "Updated"}:    ${stats.updated}`);
   console.log(`Errors:       ${stats.errors}`);
   console.log("");

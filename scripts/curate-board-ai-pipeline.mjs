@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 /**
- * Industry-grade AI curation pipeline — Self-RAG USMLE + NCLEX rewrites,
- * then strict serve gates. Resumable; logs to artifacts/curate-board-ai.log
+ * Industry-grade AI curation pipeline — editorial rewrites + serve gates across all board exams.
+ * Resumable; logs to artifacts/curate-board-ai.log
  *
  *   npm run db:curate-board-ai
  *   npm run db:curate-board-ai:dry
+ *   npm run db:curate-board-ai -- --field pance
  */
 import { appendFileSync, mkdirSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -13,53 +14,67 @@ import { join } from "node:path";
 const ROOT = process.cwd();
 const LOG = join(ROOT, "artifacts", "curate-board-ai.log");
 const dryRun = process.argv.includes("--dry-run");
+
+function fieldArg() {
+  const idx = process.argv.indexOf("--field");
+  if (idx >= 0 && process.argv[idx + 1]) {
+    return ["--field", process.argv[idx + 1]];
+  }
+  return ["--field", "all"];
+}
+
 mkdirSync(join(ROOT, "artifacts"), { recursive: true });
 
 const tsx = (script, ...args) => [process.execPath, ["node_modules/tsx/dist/cli.mjs", script, ...args]];
 const dry = dryRun ? ["--dry-run"] : [];
+const field = fieldArg();
 
 const steps = [
   [
-    "USMLE Step 2 AI curation (qaPassed=false, Self-RAG)",
+    "Board editorial AI curation",
     tsx(
-      "scripts/curate-usmle-ai.ts",
-      "--from-db",
-      "--all",
-      "--field",
-      "usmle-step-2",
-      "--resume",
-      "--min-accept",
-      "8",
+      "scripts/curate-board-questions.ts",
+      ...field,
+      "--editorial",
+      "--force-ai",
+      "--limit",
+      dryRun ? "20" : "500",
       ...dry
     ),
   ],
   [
-    "USMLE Step 2 serve gate",
-    tsx("scripts/qa-gate-usmle-best.ts", "--field", "usmle-step-2", ...dry),
-  ],
-  [
-    "USMLE Step 3 AI curation (qaPassed=false, Self-RAG)",
+    "Board failing items AI curation",
     tsx(
-      "scripts/curate-usmle-ai.ts",
-      "--from-db",
-      "--all",
-      "--field",
-      "usmle-step-3",
-      "--resume",
-      "--min-accept",
-      "7.5",
+      "scripts/curate-board-questions.ts",
+      ...field,
+      "--failing",
+      "--force-ai",
+      "--limit",
+      dryRun ? "10" : "300",
       ...dry
     ),
   ],
   [
-    "USMLE Step 3 serve gate",
-    tsx("scripts/qa-gate-usmle-best.ts", "--field", "usmle-step-3", ...dry),
+    "Board rationale enrichment",
+    tsx(
+      "scripts/enrich-board-expert-rationales.ts",
+      ...field,
+      "--serve-only",
+      "--limit",
+      dryRun ? "10" : "200",
+      ...dry
+    ),
   ],
-  [
-    "NCLEX AI curation (qaPassed=false, force-ai)",
-    tsx("scripts/curate-nclex-questions.ts", "--failing", "--force-ai", "--all", ...dry),
-  ],
+  ["Board serve-ready sync", tsx("scripts/sync-board-serve-ready.ts", ...field, ...dry)],
   ["NCLEX best gate", tsx("scripts/qa-gate-nclex-best.ts", ...dry)],
+  ["NAPLEX best gate", tsx("scripts/qa-gate-naplex-best.ts", ...dry)],
+  ["USMLE Step 1 serve gate", tsx("scripts/qa-gate-usmle-best.ts", "--field", "usmle-step-1", ...dry)],
+  ["USMLE Step 2 serve gate", tsx("scripts/qa-gate-usmle-best.ts", "--field", "usmle-step-2", ...dry)],
+  ["USMLE Step 3 serve gate", tsx("scripts/qa-gate-usmle-best.ts", "--field", "usmle-step-3", ...dry)],
+  ["PANCE best gate", tsx("scripts/qa-gate-pance-best.ts", ...dry)],
+  ["AANP FNP best gate", tsx("scripts/qa-gate-aanp-fnp-best.ts", ...dry)],
+  ["NPTE-PT best gate", tsx("scripts/qa-gate-npte-pt-best.ts", ...dry)],
+  ["User-ready verification", tsx("scripts/verify-board-user-ready.ts", ...field)],
   ["Quality snapshot", tsx("scripts/audit-bank-quality-summary.ts")],
 ];
 
