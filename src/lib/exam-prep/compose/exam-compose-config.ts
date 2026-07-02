@@ -50,7 +50,7 @@ const CONFIGS: Record<string, ExamComposeConfig> = {
     slug: "naplex",
     fieldId: "pharmacy",
     examName: "NAPLEX",
-    boardReference: "NABP NAPLEX Content Outline (2025) — five competency areas",
+    boardReference: "NABP NAPLEX Content Outline (effective May 1, 2025) — five content domains",
     minutesPerItem: 1.6,
     gate: naplexItemPassesTimedExamGate,
     prepareItem: prepareNaplexBankItem,

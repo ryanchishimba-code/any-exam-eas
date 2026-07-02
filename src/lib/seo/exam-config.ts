@@ -219,7 +219,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     heroSubline:
       "Board-style NAPLEX items with math walkthroughs, patient counseling scenarios, and a pharmacy blueprint Roadmap — bundled with nursing, medical, PA, FNP, and PT prep.",
     accentColor: EXAM_ACCENTS.naplex,
-    blueprintLabel: "NABP NAPLEX competency areas",
+    blueprintLabel: "NABP NAPLEX Content Outline (five domains)",
     features: [
       {
         title: "Calculation & compounding items",

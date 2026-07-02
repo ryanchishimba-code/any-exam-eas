@@ -85,7 +85,7 @@ export const EXAM_FIELD_OPTIONS: {
     id: "pharmacy",
     label: "NAPLEX",
     fieldParam: "pharmacy",
-    description: "NAPLEX 2025 blueprint — 5 domains, calculations, treatment planning, safety.",
+    description: "NABP five-domain blueprint (2025) — calculations, treatment planning (~40%), medication use, and professional practice.",
     timing: "225 questions · 6 hours",
     format: "Clinical scenarios + calculations",
   },

@@ -1,5 +1,10 @@
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { examMarketingPath } from "@/lib/seo/exam-config";
+import {
+  NAPLEX_CONTENT_OUTLINE,
+  NAPLEX_HIGH_YIELD_FOCUS_AREAS,
+  NAPLEX_OUTLINE_SOURCE,
+} from "@/lib/exam-prep/naplex/content-outline";
 
 export type ToolkitExamBreakdown = {
   id: string;
@@ -60,14 +65,16 @@ export const TOOLKIT_EXAMS: ToolkitExamBreakdown[] = [
     accent: EXAM_ACCENTS.naplex,
     prepHref: examMarketingPath("naplex"),
     whatItTests:
-      "Assesses your ability to apply knowledge in safe and effective pharmacy practice — from pharmacotherapy and drug information to patient safety and calculations.",
+      "Assesses safe and effective pharmacy practice across five NABP content domains — from calculations and PK/PD through medication use, guideline-based treatment planning, professional practice, and pharmacy management.",
     duration: "6 hours",
     questions: "225 questions (200 scored, 25 pretest)",
     detailBullets: [
-      "Pharmacotherapy, drug information, and patient safety",
-      "Compounding, calculations, and federal pharmacy law",
+      ...NAPLEX_CONTENT_OUTLINE.map(
+        (d) => `${d.label} (${d.weightLabel}) — ${d.summary.split("—")[0]?.trim() ?? d.summary}`
+      ),
+      `High-yield: ${NAPLEX_HIGH_YIELD_FOCUS_AREAS.slice(0, 3).join("; ")}`,
       "225 items over 6 hours (200 scored + 25 pretest)",
-      "Required for pharmacist licensure in the U.S.",
+      NAPLEX_OUTLINE_SOURCE,
     ],
     officialBoard: { label: "nabp.pharmacy", href: "https://nabp.pharmacy" },
   },

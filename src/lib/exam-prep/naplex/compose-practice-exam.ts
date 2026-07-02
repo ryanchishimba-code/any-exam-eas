@@ -29,7 +29,7 @@ import {
 export const NAPLEX_COMPOSE_FIELD_ID = "pharmacy";
 /** NAPLEX: ~1.6 min/item (225 items / 6 hours). */
 const MINUTES_PER_ITEM = 1.6;
-export const NAPLEX_BOARD_REFERENCE = "NABP NAPLEX Content Outline (2025) — five competency areas";
+export const NAPLEX_BOARD_REFERENCE = "NABP NAPLEX Content Outline (effective May 1, 2025) — five content domains";
 
 /**
  * Item formats whose option order is semantic (must NOT be reshuffled).

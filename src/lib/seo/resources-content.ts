@@ -1,5 +1,11 @@
 import type { ExamSeoKey } from "@/lib/seo/exam-config";
 import {
+  NAPLEX_CONTENT_OUTLINE,
+  NAPLEX_HIGH_YIELD_FOCUS_AREAS,
+  NAPLEX_OUTLINE_SOURCE,
+  NAPLEX_PLATFORM_STUDY_FEATURES,
+} from "@/lib/exam-prep/naplex/content-outline";
+import {
   seoSixBoardTrialParagraph,
   seoTrialHeading,
   seoTrialResourceParagraph,
@@ -244,18 +250,28 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "naplex-study-guide-blueprint",
-    title: "NAPLEX Study Guide & Blueprint Review",
+    title: "NAPLEX Study Guide & Blueprint Review (2026)",
     metaDescription:
-      "NAPLEX study guide aligned to NABP competency areas — pharmacotherapy, calculations, and patient assessment.",
+      "NAPLEX study guide aligned to the NABP five-domain content outline — calculations, medication use, treatment planning (~40%), and professional practice.",
     examTags: ["naplex"],
     primaryExam: "naplex",
-    keywords: ["NAPLEX study guide", "NAPLEX blueprint"],
+    keywords: ["NAPLEX study guide", "NAPLEX blueprint", "NAPLEX content outline 2026"],
     sections: [
       {
-        heading: "Competency-area checklist",
+        heading: "Five NABP content domains (effective May 2025)",
         paragraphs: [
-          "Track progress across drug therapy, compounding, patient assessment, and federal pharmacy law review.",
+          NAPLEX_CONTENT_OUTLINE.map(
+            (d) => `${d.label} (${d.weightLabel}): ${d.topics.slice(0, 3).join("; ")}.`
+          ).join(" "),
         ],
+      },
+      {
+        heading: "Highest-yield study priorities",
+        paragraphs: [NAPLEX_HIGH_YIELD_FOCUS_AREAS.join(" · ")],
+      },
+      {
+        heading: "How AnyExamEasy aligns to the outline",
+        paragraphs: [NAPLEX_PLATFORM_STUDY_FEATURES.join(" · "), NAPLEX_OUTLINE_SOURCE],
       },
     ],
   }),
