@@ -89,8 +89,17 @@ export const EXACT_FILL_COMPOSE_TIER: ProgressiveComposeTier = {
 };
 
 /**
- * Live mock / full-exam compose ladder — same relaxation steps as batch preset
- * generation, but every tier must hit the exact requested count (50, 100, full).
+ * Live mock / full-exam compose ladder — strict → balanced → exact-fill only.
+ * Batch preset generation still uses the full PROGRESSIVE_COMPOSE_TIERS ladder.
+ */
+export const LIVE_TIMED_EXAM_COMPOSE_TIERS: ProgressiveComposeTier[] = [
+  PROGRESSIVE_COMPOSE_TIERS[0]!,
+  PROGRESSIVE_COMPOSE_TIERS[1]!,
+  EXACT_FILL_COMPOSE_TIER,
+];
+
+/**
+ * @deprecated Prefer LIVE_TIMED_EXAM_COMPOSE_TIERS for user-facing timed exams.
  */
 export const USER_FACING_PROGRESSIVE_TIERS: ProgressiveComposeTier[] = [
   ...PROGRESSIVE_COMPOSE_TIERS.map((tier) => ({
@@ -100,11 +109,11 @@ export const USER_FACING_PROGRESSIVE_TIERS: ProgressiveComposeTier[] = [
   EXACT_FILL_COMPOSE_TIER,
 ];
 
-/** @deprecated Use USER_FACING_PROGRESSIVE_TIERS. */
-export const NCLEX_USER_FACING_COMPOSE_TIERS = USER_FACING_PROGRESSIVE_TIERS;
+/** @deprecated Use LIVE_TIMED_EXAM_COMPOSE_TIERS. */
+export const NCLEX_USER_FACING_COMPOSE_TIERS = LIVE_TIMED_EXAM_COMPOSE_TIERS;
 
 export function userFacingComposeTiers(_fieldId: string): ProgressiveComposeTier[] {
-  return USER_FACING_PROGRESSIVE_TIERS;
+  return LIVE_TIMED_EXAM_COMPOSE_TIERS;
 }
 
 export function minQuestionsForTier(requested: number, tier: ProgressiveComposeTier): number {

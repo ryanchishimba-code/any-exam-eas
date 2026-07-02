@@ -78,9 +78,18 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
             <span className="text-[var(--color-accent)]">{LANDING_HERO_HEADLINE_ACCENT}</span>
           </h1>
 
-          <p className="mt-5 max-w-xl text-balance text-lg leading-relaxed text-[var(--color-ink-muted)]">
-            {bankCounts.totalLabel} board-style questions across all six exams — QA-gated, with
-            teachable rationales and a Roadmap that tells you exactly what to study next.
+          <div className="mt-5" aria-label={`${bankCounts.totalQuestionsLabel} on the platform`}>
+            <span className="aee-landing-question-count aee-landing-question-count--hero">
+              {bankCounts.totalLabel}
+            </span>
+            <span className="aee-landing-question-count--hero-label">
+              board-style questions
+            </span>
+          </div>
+
+          <p className="mt-4 max-w-xl text-balance text-lg leading-relaxed text-[var(--color-ink-muted)]">
+            Across all six exams — QA-gated, with teachable rationales and a Roadmap that tells
+            you exactly what to study next.
           </p>
 
           <div

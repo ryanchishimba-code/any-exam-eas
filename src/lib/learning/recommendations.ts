@@ -4,6 +4,7 @@ import type { MistakeCategory } from "./types";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import { ROUTES, fullExamHref } from "@/lib/routes";
+import { getNclexStudyPreset, nclexPresetPracticeHref } from "@/lib/exam-prep/nclex/study-presets";
 
 export function buildRemediationRecommendations(params: {
   fieldId: string;
@@ -36,13 +37,39 @@ export function buildRemediationRecommendations(params: {
     });
   }
 
+  if (!params.correct && examSlug === "nclex" && params.subjectId === "management-of-care") {
+    const preset = getNclexStudyPreset("prioritization-workshop");
+    if (preset) {
+      recs.push({
+        type: "weak_area_quiz",
+        title: "Prioritization workshop (25Q)",
+        description: "ABC triage block matched to this miss.",
+        href: nclexPresetPracticeHref("nclex", preset),
+        priority: 1,
+      });
+    }
+  }
+
+  if (!params.correct && examSlug === "nclex") {
+    const trap = getNclexStudyPreset("trap-tier-drill");
+    if (trap) {
+      recs.push({
+        type: "weak_area_quiz",
+        title: "Trap-tier drill",
+        description: "Practice FIRST/MOST/BEST elimination on similar items.",
+        href: nclexPresetPracticeHref("nclex", trap),
+        priority: 2,
+      });
+    }
+  }
+
   if (!params.correct && params.mistakeCategory) {
     recs.push({
       type: "foundational_review",
       title: `${mistakeCategoryLabel(params.mistakeCategory)} review`,
       description: "Topic-focused question bank session on this reasoning pattern.",
       href: `${ROUTES.questionBank}?${fieldQ}${subjectParam}`,
-      priority: 1,
+      priority: 3,
     });
   }
 
@@ -52,7 +79,7 @@ export function buildRemediationRecommendations(params: {
       title: "Topic practice",
       description: "Flexible question bank session on your weak areas.",
       href: `${ROUTES.questionBank}?${fieldQ}${subjectParam}`,
-      priority: 2,
+      priority: 4,
     });
   }
 
@@ -64,7 +91,7 @@ export function buildRemediationRecommendations(params: {
       const slug = examSlugFromFieldId(params.fieldId);
       return slug ? fullExamHref(slug) : ROUTES.fullExam;
     })(),
-    priority: 3,
+    priority: 5,
   });
 
   return recs.sort((a, b) => a.priority - b.priority);

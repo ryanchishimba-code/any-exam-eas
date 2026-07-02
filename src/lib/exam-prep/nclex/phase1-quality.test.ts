@@ -1,13 +1,17 @@
 import { describe, expect, it } from "vitest";
-import { userFacingComposeTiers, USER_FACING_PROGRESSIVE_TIERS } from "@/lib/exam-prep/progressive-compose";
+import {
+  LIVE_TIMED_EXAM_COMPOSE_TIERS,
+  userFacingComposeTiers,
+} from "@/lib/exam-prep/progressive-compose";
 import { nclexItemPassesBestExamGate } from "@/lib/exam-prep/nclex-serve-gate";
 import type { BankItem } from "@/lib/question-bank";
 
 describe("NCLEX phase 1 quality bar", () => {
-  it("NCLEX user-facing compose uses progressive tiers with exact fill", () => {
-    expect(userFacingComposeTiers("nursing")).toEqual(USER_FACING_PROGRESSIVE_TIERS);
-    expect(userFacingComposeTiers("nursing").length).toBeGreaterThan(5);
-    expect(userFacingComposeTiers("nursing").every((tier) => tier.minFillRatio === 1)).toBe(true);
+  it("NCLEX user-facing compose uses a short exact-fill ladder", () => {
+    expect(userFacingComposeTiers("nursing")).toEqual(LIVE_TIMED_EXAM_COMPOSE_TIERS);
+    expect(userFacingComposeTiers("nursing").length).toBe(3);
+    expect(userFacingComposeTiers("nursing")[0]!.minFillRatio).toBe(1);
+    expect(userFacingComposeTiers("nursing").at(-1)!.minFillRatio).toBe(1);
     expect(userFacingComposeTiers("nursing")[0]!.useRelaxedGate).toBe(false);
     expect(userFacingComposeTiers("nursing").some((tier) => tier.useRelaxedGate)).toBe(true);
   });

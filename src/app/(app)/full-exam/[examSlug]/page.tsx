@@ -40,21 +40,24 @@ async function FullExamLauncherContent({
   mode,
   autostart,
   timed,
+  nclexCat,
   mockAccess,
 }: {
   examSlug: ExamSlug;
   mode?: string;
   autostart?: string;
   timed?: string;
+  nclexCat?: string;
   mockAccess: MockExamAccess;
 }) {
   return (
     <FullExamLauncher
-      key={`${mode ?? "default"}-${autostart ?? "0"}-${timed ?? "1"}`}
+      key={`${mode ?? "default"}-${autostart ?? "0"}-${timed ?? "1"}-${nclexCat ?? "0"}`}
       examSlug={examSlug}
       initialMode={mode ?? null}
       autostart={autostart === "1"}
       initialTimed={timed !== "0"}
+      initialNclexCat={nclexCat === "1"}
       mockAccess={mockAccess}
     />
   );
@@ -65,7 +68,7 @@ export default async function FullExamLauncherPage({
   searchParams,
 }: {
   params: Promise<{ examSlug: string }>;
-  searchParams: Promise<{ mode?: string; autostart?: string; timed?: string }>;
+  searchParams: Promise<{ mode?: string; autostart?: string; timed?: string; nclexCat?: string }>;
 }) {
   const { examSlug: rawSlug } = await params;
   const sp = await searchParams;
@@ -91,6 +94,7 @@ export default async function FullExamLauncherPage({
     if (sp.mode) qs.set("mode", sp.mode);
     if (sp.autostart) qs.set("autostart", sp.autostart);
     if (sp.timed) qs.set("timed", sp.timed);
+    if (sp.nclexCat) qs.set("nclexCat", sp.nclexCat);
     const suffix = qs.toString();
     redirect(`${fullExamHref(pref.examSlug)}${suffix ? `?${suffix}` : ""}`);
   }
@@ -102,6 +106,7 @@ export default async function FullExamLauncherPage({
         mode={sp.mode}
         autostart={sp.autostart}
         timed={sp.timed}
+        nclexCat={sp.nclexCat}
         mockAccess={mockAccess}
       />
     </Suspense>

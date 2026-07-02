@@ -33,6 +33,13 @@ import {
   BIOSTATISTICS_USMLE_STEP3_MODULE,
   CCS_CASE_MANAGEMENT_USMLE_MODULE,
   MEDICAL_ETHICS_USMLE_STEP3_MODULE,
+  FLUIDS_ELECTROLYTES_NCLEX_MODULE,
+  LEGAL_ETHICAL_NCLEX_MODULE,
+  MATERNAL_NEWBORN_MODULE,
+  PEDIATRICS_NCLEX_MODULE,
+  PHARM_HIGH_ALERT_MODULE,
+  PRIORITIZATION_WORKSHOP_MODULE,
+  PSYCH_THERAPEUTIC_MODULE,
 } from "@/lib/edtech/review-modules/content";
 import type { HighYieldTopic } from "@/types/edtech";
 
@@ -117,6 +124,76 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     practiceTopicSlug: "management-of-care",
     reviewModule: DELEGATION_MODULE,
     sortOrder: 2,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "nclex",
+    slug: "prioritization",
+    title: "Prioritization & Triage Workshop",
+    overview:
+      "Master see-first triage with ABC framing, assignment parsing, and NCLEX trap elimination.",
+    practiceTopicSlug: "management-of-care",
+    reviewModule: PRIORITIZATION_WORKSHOP_MODULE,
+    sortOrder: 3,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "nclex",
+    slug: "postpartum",
+    title: "Maternal-Newborn Emergencies",
+    overview:
+      "PPH, preeclampsia, FHR patterns, and newborn transition — high-acuity L&D judgment.",
+    practiceTopicSlug: "maternal-child",
+    reviewModule: MATERNAL_NEWBORN_MODULE,
+    sortOrder: 4,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "nclex",
+    slug: "medication-safety",
+    title: "Pharm: High-Alert & Calculations",
+    overview:
+      "Insulin, heparin, opioids, electrolyte replacements, and safe dosage calculation.",
+    practiceTopicSlug: "pharmacology-nursing",
+    reviewModule: PHARM_HIGH_ALERT_MODULE,
+    sortOrder: 5,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "nclex",
+    slug: "psychiatric",
+    title: "Psych & Therapeutic Communication",
+    overview:
+      "Suicide precautions, de-escalation, therapeutic responses, and psych medication monitoring.",
+    practiceTopicSlug: "psychosocial",
+    reviewModule: PSYCH_THERAPEUTIC_MODULE,
+    sortOrder: 6,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "nclex",
+    slug: "electrolytes",
+    title: "Fluids, Electrolytes & Renal",
+    overview:
+      "K⁺/Na⁺/Ca²⁺/Mg²⁺ patterns, acid-base context, and safe replacement nursing actions.",
+    practiceTopicSlug: "physiological-adaptation",
+    reviewModule: FLUIDS_ELECTROLYTES_NCLEX_MODULE,
+    sortOrder: 7,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "nclex",
+    slug: "pediatrics",
+    title: "Pediatric Growth, Safety & Immunizations",
+    overview:
+      "Age-specific vitals, dehydration, immunization rules, and mandatory reporting.",
+    practiceTopicSlug: "pediatrics-nursing",
+    reviewModule: PEDIATRICS_NCLEX_MODULE,
+    sortOrder: 8,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "nclex",
+    slug: "legal-ethical",
+    title: "Legal, Ethical & Advocacy",
+    overview:
+      "Informed consent, mandatory reporting, HIPAA, and refusing unsafe assignments.",
+    practiceTopicSlug: "management-of-care",
+    reviewModule: LEGAL_ETHICAL_NCLEX_MODULE,
+    sortOrder: 9,
   }),
   defineReviewModuleTopic({
     examSlug: "usmle",

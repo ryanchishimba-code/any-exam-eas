@@ -102,6 +102,35 @@ describe("finalizeExamSessionQuestions", () => {
     15_000
   );
 
+  it("returns exact count for NAPLEX 100Q single-topic bank practice", () => {
+    const pool: RawQuestionInput[] = Array.from({ length: 120 }, (_, i) => ({
+      id: i + 1,
+      type: "multiple_choice" as const,
+      bankItemId: `naplex-${i}`,
+      question: `Which monitoring parameter is most appropriate after initiation (case ${i})?`,
+      vignette: `A 64-year-old man with hypertension (BP 158/92 mmHg) receives lisinopril case ${i}.`,
+      options: [
+        "Serum potassium and creatinine within 1–2 weeks",
+        "Daily fasting glucose only",
+        "INR every 3 days",
+        "No laboratory monitoring",
+      ],
+      correctAnswer: "Serum potassium and creatinine within 1–2 weeks",
+      explanation:
+        "Correct: serum potassium and creatinine — ACE inhibitor initiation requires renal and electrolyte monitoring.",
+      subjectId: "pharmacology",
+      difficultyLabel: "Medium" as const,
+    }));
+
+    const { prepared, quality } = finalizeExamSessionQuestions(pool, 100, {
+      fieldId: "pharmacy",
+      topicPractice: true,
+    });
+    expect(prepared).toHaveLength(100);
+    expect(quality.returned).toBe(100);
+    assertExamSessionReady({ ...quality, ok: true }, "pharmacy");
+  });
+
   it("returns exact count for NCLEX single-topic bank practice (25Q)", () => {
     const templateStem = "Which client should the nurse see first?";
     const pool: RawQuestionInput[] = Array.from({ length: 80 }, (_, i) => ({

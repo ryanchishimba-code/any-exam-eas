@@ -61,8 +61,6 @@ export async function GET(req: Request) {
     "@/lib/edtech/question-bank-scope"
   );
   const fieldId = resolveQuestionBankFieldId(field);
-  const access = await enforceQuestionBankFieldAccess(userId, field);
-  if (!access.ok) return access.response;
 
   const nclexLength = parseNclexTimedVariant(searchParams.get("nclexLength"));
   const nclexPresetEarly = searchParams.get("nclexPreset")?.trim();
@@ -88,7 +86,25 @@ export async function GET(req: Request) {
     : clampQuestionBankCount(
         Number.isFinite(requestedLimit) ? requestedLimit : defaultLimit
       );
-  let limit = Math.min(resolvedLimit, maxLimit);
+  const requestedSessionCount = Math.min(resolvedLimit, maxLimit);
+  const timedFullMock = timedExam && requestedSessionCount >= 50;
+
+  const [access, usageCheck] = await Promise.all([
+    enforceQuestionBankFieldAccess(userId, field),
+    (async () => {
+      const { checkStudyQuestionUsage } = await import("@/lib/study/usage-limits");
+      return checkStudyQuestionUsage({
+        userId,
+        access: userAccess,
+        requestedCount: requestedSessionCount,
+        timedExam,
+        fullLengthMock: timedFullMock,
+      });
+    })(),
+  ]);
+  if (!access.ok) return access.response;
+  if (!usageCheck.ok) return usageCheck.response;
+  let limit = usageCheck.allowedCount;
 
   const focusAreasParam = searchParams.get("focusAreas") ?? searchParams.get("focus_areas");
   const focusAreas = focusAreasParam
@@ -117,19 +133,7 @@ export async function GET(req: Request) {
 
   const taskCategory = searchParams.get("taskCategory")?.trim() || undefined;
 
-  const {
-    checkStudyQuestionUsage,
-    recordStudyQuestionsServed,
-  } = await import("@/lib/study/usage-limits");
-  const usageCheck = await checkStudyQuestionUsage({
-    userId,
-    access: userAccess,
-    requestedCount: limit,
-    timedExam,
-    fullLengthMock: timedExam && limit >= 50,
-  });
-  if (!usageCheck.ok) return usageCheck.response;
-  limit = usageCheck.allowedCount;
+  const { recordStudyQuestionsServed } = await import("@/lib/study/usage-limits");
 
   if (!mixed) {
     if (!subjectId) {
@@ -152,7 +156,12 @@ export async function GET(req: Request) {
     resolveExamBankSampleCount,
     finalizeExamSessionQuestions,
     assertExamSessionReady,
+    mapApiQuestionsToStudy,
+    assessExamSessionQuality,
   } = await import("@/lib/questions/finalize-exam-session");
+  const { gatherTopicBankSessionPool } = await import(
+    "@/lib/exam-prep/topic-bank-practice"
+  );
   const bankPractice = questionBank && !timedExam;
   const topicPractice = bankPractice;
   const sampleCount = resolveExamBankSampleCount(fieldId, limit, timedExam, {
@@ -160,10 +169,11 @@ export async function GET(req: Request) {
     bankPractice,
   });
   const presetSampleCount = nclexPresetConfig
-    ? Math.min(400, Math.max(sampleCount, nclexPresetConfig.count * 15, 120))
+    ? Math.min(400, Math.max(sampleCount, nclexPresetConfig.count * 4, 80))
     : sampleCount;
 
   let items: BankItem[];
+  let preAssembledTimed = false;
 
   if (mixed && timedExam) {
     const { assembleTimedExamSessionItems } = await import(
@@ -199,10 +209,18 @@ export async function GET(req: Request) {
     }
 
     items = assembled.items;
+    preAssembledTimed = items.length >= limit;
   } else if (mixed) {
     items = await sampleQuestionBankItemsForField({
       fieldId,
       count: presetSampleCount,
+      taskCategory,
+    });
+  } else if (bankPractice) {
+    items = await gatherTopicBankSessionPool({
+      fieldId,
+      subjectId: subjectId!,
+      sessionLimit: limit,
       taskCategory,
     });
   } else {
@@ -214,7 +232,7 @@ export async function GET(req: Request) {
     });
   }
 
-  if (items.length > 0 && !(mixed && timedExam)) {
+  if (items.length > 0 && !(mixed && timedExam) && !bankPractice) {
     items = prepareBankItemsForSession({
       fieldId,
       field,
@@ -245,6 +263,16 @@ export async function GET(req: Request) {
   }
 
   const resolvedSubjectId = mixed ? MIXED_SUBJECT_ID : subjectId!;
+
+  if (bankPractice && items.length < limit) {
+    return NextResponse.json(
+      {
+        error: `Not enough ${fieldId} questions available for this topic (${items.length}/${limit}). Try fewer questions or another topic.`,
+        code: "SESSION_UNAVAILABLE",
+      },
+      { status: 503 }
+    );
+  }
 
   if (items.length === 0) {
     return NextResponse.json(
@@ -286,12 +314,41 @@ export async function GET(req: Request) {
   let sessionQuality;
 
   try {
-    const finalized = finalizeExamSessionQuestions(rawInputs, limit, {
-      fieldId,
-      topicPractice,
-    });
-    prepared = finalized.prepared;
-    sessionQuality = finalized.quality;
+    if (preAssembledTimed && items.length >= limit) {
+      const selected = items.slice(0, limit);
+      const rawForMap = selected.map((item, i) =>
+        bankItemToSessionRaw(fieldId, field, item.subjectId ?? resolvedSubjectId, item, i)
+      );
+      const rawInputsForMap = rawForMap.map((q, i) => ({
+        ...q,
+        field,
+        subjectId: selected[i]?.subjectId ?? resolvedSubjectId,
+        bankItemId: selected[i]?.id ?? undefined,
+        difficultyLabel:
+          q.difficultyLabel ??
+          (selected[i]?.difficulty != null
+            ? selected[i]!.difficulty! <= 2
+              ? "Easy"
+              : selected[i]!.difficulty! >= 4
+                ? "Hard"
+                : "Medium"
+            : undefined),
+      }));
+      prepared = mapApiQuestionsToStudy(rawInputsForMap, { shuffleOptions: false });
+      sessionQuality = assessExamSessionQuality(prepared, limit);
+      if (sessionQuality.returned !== limit) {
+        throw new Error(
+          `Not enough ${fieldId} questions available (${sessionQuality.returned}/${limit}). Try a shorter exam length.`
+        );
+      }
+    } else {
+      const finalized = finalizeExamSessionQuestions(rawInputs, limit, {
+        fieldId,
+        topicPractice,
+      });
+      prepared = finalized.prepared;
+      sessionQuality = finalized.quality;
+    }
     assertExamSessionReady(sessionQuality, fieldId);
   } catch (e) {
     const message =

@@ -25,6 +25,19 @@ const KEYWORD_REVIEW_MODULES: Array<{ slug: string; pattern: RegExp }> = [
     pattern: /\binfection control|PPE|contact precaution|c\.?\s*diff|mrsa|isolation precaution|transmission-based/i,
   },
   { slug: "delegation", pattern: /\bdelegate|delegation|unlicensed assistive|UAP\b|scope of practice\b/i },
+  { slug: "prioritization", pattern: /\bpriorit|see first|highest priority|assignment.*room\b/i },
+  { slug: "postpartum", pattern: /\bpostpartum|preeclampsia|eclampsia|fundus|fhr|labor\b|newborn transition\b/i },
+  {
+    slug: "medication-safety",
+    pattern: /\binsulin|heparin|warfarin|pca morphine|naloxone|dosage calc|high.alert med\b/i,
+  },
+  { slug: "psychiatric", pattern: /\btherapeutic communication|suicide|suicidal|restraint|ciwa\b|psych\b/i },
+  {
+    slug: "electrolytes",
+    pattern: /\belectrolyte|hyperkalemia|hypokalemia|hyponatremia|chvostek|trousseau\b/i,
+  },
+  { slug: "pediatrics", pattern: /\bpediatric|infant|fontanel|immunization schedule|child abuse\b/i },
+  { slug: "legal-ethical", pattern: /\binformed consent|hipaa|mandatory report|advance directive\b/i },
 ];
 
 function itemText(item: BankItem): string {

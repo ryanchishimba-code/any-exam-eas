@@ -115,9 +115,13 @@ function HeroMockup({ totalLabel }: { totalLabel: string }) {
         {/* Stat tiles + streak */}
         <div className="flex flex-col gap-4">
           <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3.5">
-              <p className="text-xl font-bold text-[var(--color-ink)]">{totalLabel}</p>
-              <p className="text-[11px] text-[var(--color-ink-muted)]">Serve-ready on tap</p>
+            <div className="rounded-2xl border border-[color-mix(in_srgb,var(--color-accent)_28%,var(--color-border))] bg-[color-mix(in_srgb,var(--color-accent)_8%,var(--color-surface))] p-3.5">
+              <p className="aee-landing-question-count aee-landing-question-count--mockup">
+                {totalLabel}
+              </p>
+              <p className="text-[11px] font-semibold text-[var(--color-ink-muted)]">
+                Serve-ready on tap
+              </p>
             </div>
             <div className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-3.5">
               <p className="flex items-center gap-1 text-xl font-bold text-[var(--color-ink)]">
@@ -192,10 +196,18 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
             <span className="aee-flagship-gradient-text">Non-Premium Price.</span>
           </h1>
 
-          <p className="mt-5 max-w-xl text-balance text-lg leading-relaxed text-[var(--color-ink-muted)]">
-            {bankCounts.totalQuestionsLabel} with teachable rationales — plus blueprint Roadmaps
-            and Deep Dives for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP &amp; NPTE-PT. All for less
-            than one UWorld plan.
+          <div className="mt-5" aria-label={`${bankCounts.totalQuestionsLabel} on the platform`}>
+            <span className="aee-landing-question-count aee-landing-question-count--hero">
+              {bankCounts.totalLabel}
+            </span>
+            <span className="aee-landing-question-count--hero-label">
+              serve-ready questions
+            </span>
+          </div>
+
+          <p className="mt-4 max-w-xl text-balance text-lg leading-relaxed text-[var(--color-ink-muted)]">
+            Teachable rationales — plus blueprint Roadmaps and Deep Dives for USMLE, NCLEX,
+            NAPLEX, PANCE, AANP FNP &amp; NPTE-PT. All for less than one UWorld plan.
           </p>
 
           <div className="mt-7 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">

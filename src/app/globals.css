@@ -5255,16 +5255,73 @@ body {
 .aee-board-picker__count {
   margin-left: auto;
   flex-shrink: 0;
-  font-size: 0.9375rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
   color: var(--color-ink);
-  opacity: 0.55;
+  opacity: 0.65;
 }
 
 .aee-board-picker__item[data-active="true"] .aee-board-picker__count {
   opacity: 1;
+  font-size: 1.0625rem;
   color: var(--row-accent);
+}
+
+/* ——— Landing question count highlights ——— */
+.aee-landing-question-count {
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.aee-landing-question-count--hero {
+  display: block;
+  font-size: clamp(2.25rem, 6vw, 3.25rem);
+  line-height: 1;
+  background: linear-gradient(
+    135deg,
+    var(--flagship-navy, var(--color-ink)) 0%,
+    var(--color-accent) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.aee-landing-question-count--hero-label {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.aee-landing-question-count--metric {
+  display: block;
+  font-size: clamp(1.875rem, 4.5vw, 2.375rem);
+  line-height: 1.05;
+  color: var(--color-accent);
+}
+
+.aee-landing-question-count--stat {
+  font-size: 1.3125rem;
+  color: var(--summary-accent, var(--color-accent));
+}
+
+.aee-landing-question-count--mockup {
+  font-size: 1.75rem;
+  line-height: 1.1;
+  color: var(--color-accent);
+}
+
+.aee-landing-question-count--inline {
+  font-size: 1.2em;
+  font-weight: 900;
+  color: var(--color-accent);
 }
 
 /* --- Summary card for the selected board --- */
@@ -5340,6 +5397,14 @@ body {
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--color-ink);
+}
+
+.aee-pick-board__stat--questions .aee-pick-board__stat-value {
+  font-size: 1.3125rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--summary-accent, var(--color-accent));
 }
 
 .aee-pick-board__stat-label {

@@ -213,6 +213,9 @@ function PriorityRow({ topic }: { topic: RoadmapTopicRow }) {
  <p className="font-semibold text-[var(--color-ink)]">{topic.label}</p>
  <p className="text-xs text-[var(--color-ink-muted)]">
  {topic.blueprintWeightPct}% of exam · {topic.readinessScore}% ready
+ {topic.gapToPass != null && topic.gapToPass > 0 ? (
+ <span className="text-rose-600"> · {topic.gapToPass} pts to 75% pass target</span>
+ ) : null}
  </p>
  </div>
  <div className="flex flex-wrap items-center gap-2">

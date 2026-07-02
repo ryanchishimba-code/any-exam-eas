@@ -8,7 +8,6 @@ import {
   filterNclexItemsForSession,
   prepareNclexItemsForSession,
 } from "./nclex-serve-gate";
-import { selectSpreadBankItems } from "@/lib/questions/spread-session-order";
 import {
   naplexBankItemIsServeReady,
   prepareNaplexBankItem,
@@ -50,14 +49,13 @@ export function filterBankItemsForSessionPool(params: {
   return filterBankItemsForServe(params.fieldId, params.items);
 }
 
-/** Single-topic bank practice — ID dedupe only; avoids full-exam template collapse. */
+/** Single-topic bank practice — return the full vetted pool; finalize selects the session slice. */
 export function prepareTopicBankItemsForSession(params: {
   fieldId: string;
   items: BankItem[];
   limit: number;
 }): BankItem[] {
-  const vetted = filterBankItemsForSessionPool(params);
-  return selectSpreadBankItems(vetted, params.limit);
+  return filterBankItemsForSessionPool(params);
 }
 
 /** Filter, shuffle, and cap bank rows before mapping to client-facing questions. */

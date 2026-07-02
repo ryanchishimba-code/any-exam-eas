@@ -159,13 +159,16 @@ function finalizeWithBoardBar(
   return { prepared, quality };
 }
 
-/** Progressive tier relaxation — timed/full exams only, not single-topic bank practice. */
+/** Progressive tier relaxation for timed/full exams and large single-topic bank sessions. */
 function usesProgressiveExamFinalize(
   fieldId: string | undefined,
   requested: number,
   topicPractice?: boolean
 ): boolean {
-  if (!fieldId || topicPractice) return false;
+  if (!fieldId) return false;
+  if (topicPractice) {
+    return supportsTopicBankPractice(fieldId) && requested >= 50;
+  }
   if (isUsmleFieldId(fieldId) && requested >= 50) return true;
   if (isFullExamField(fieldId) && requested >= 50) return true;
   return false;

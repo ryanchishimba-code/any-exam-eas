@@ -21,7 +21,7 @@ describe("NCLEX item-writer prompt", () => {
     const block = buildNclexBoardQualityBlock();
     expect(block).toMatch(/Prioritization/);
     expect(block).toMatch(/CALIBRATION EXAMPLES/);
-    expect(buildNclexTopicMixBlock()).toMatch(/40-question/);
+    expect(buildNclexTopicMixBlock()).toMatch(/80-question/);
   });
 
   it("builds curation system prompt with JSON schema", () => {

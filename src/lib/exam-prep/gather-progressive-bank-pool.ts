@@ -101,7 +101,7 @@ export async function gatherProgressiveBankPool(
     );
     if (countSelected() >= limit) break;
 
-    for (let round = 0; round < 5 && countSelected() < limit; round++) {
+    for (let round = 0; round < 2 && countSelected() < limit; round++) {
       const batch = await sampleQuestionBankItemsForField({
         fieldId,
         count: pullSize,

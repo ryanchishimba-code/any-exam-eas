@@ -1549,7 +1549,7 @@ const COLON_SCREENING_MISPLACED_OPTION =
 
 function allOptionsPostpartumHemorrhageMisplaced(options: string[]): boolean {
   const usable = options.filter((o) => o.trim().length > 2);
-  return usable.length >= 4 && usable.filter((o) => PPH_MISPLACED_OPTION.test(o)).length >= 3;
+  return usable.length >= 4 && usable.every((o) => PPH_MISPLACED_OPTION.test(o));
 }
 
 const PPH_RECOVERY_MISPLACED_OPTION =
@@ -1888,6 +1888,7 @@ function optionsRelateToPostpartumHemorrhage(options: string[]): boolean {
 export function isPostpartumHemorrhageOptionsMismatch(item: BankItem): boolean {
   const vignette = resolveNaplexVignette(item);
   if (!isPostpartumHemorrhageVignette(vignette) || !hasMcqOptions(item)) return false;
+  if (optionsRelateToPostpartumHemorrhage(item.options)) return false;
   if (allOptionsPostpartumHemorrhageMisplaced(item.options)) return true;
   if (allOptionsPostpartumRecoveryMisplaced(item.options)) return true;
   return (
@@ -2134,9 +2135,9 @@ export function isLaborDeliveryPrioritizationOptionsMismatch(item: BankItem): bo
 
 function isMedSurgPrioritizationVignette(vignette: string, stem?: string): boolean {
   const blob = [vignette, stem].filter(Boolean).join("\n").toLowerCase();
-  const roomCount = vignette.match(/\broom \d+\b/gi)?.length ?? 0;
+  const roomCount = countAssignmentRooms(vignette);
   const multiClient =
-    /\b(?:four clients|assigned four|four assigned clients|assignment context)\b/.test(blob) ||
+    /\b(?:four clients|assigned(?:\s+to)?\s+four|four assigned clients|assignment context)\b/.test(blob) ||
     roomCount >= 3;
   const medSurg =
     /\b(?:medical-surgical|med-surg|med surg)\b/.test(blob) ||
@@ -2144,8 +2145,45 @@ function isMedSurgPrioritizationVignette(vignette: string, stem?: string): boole
       /\b(?:post-op|heart failure|\bcopd\b|atrial fibrillation|pca morphine|knee replacement)\b/.test(
         vignette
       ));
-  return multiClient && medSurg;
+  return multiClient && medSurg && roomCount >= 3;
 }
+
+function scoreMedSurgUrgency(text: string): number {
+  const t = text.toLowerCase();
+  if (/\b(?:rr\s*8|respiratory rate 8|pinpoint pupils|pca morphine)\b/.test(t) && /\b(?:somnolen|opioid|morphine)\b/.test(t)) {
+    return 100;
+  }
+  if (/\b(?:copd|accessory muscle|spo?₂?\s*86|short phrases)\b/.test(t)) {
+    return 85;
+  }
+  if (/\b(?:heart failure|crackles|88\/54|hypotension)\b/.test(t) && /\bbp\s*(?:of\s*)?88\//.test(t)) {
+    return 80;
+  }
+  if (/\b(?:atrial fibrillation|hr 138|new onset)\b/.test(t)) {
+    return 50;
+  }
+  return 0;
+}
+
+function summarizeMedSurgCase(text: string): string {
+  const t = text.toLowerCase();
+  if (/\b(?:pca morphine|pinpoint pupils|rr\s*8)\b/.test(t)) {
+    return "post-op day 1 on PCA morphine with RR 8/min, somnolence, and pinpoint pupils";
+  }
+  if (/\b(?:heart failure|crackles)\b/.test(t)) {
+    return "heart failure with hypotension, crackles, and SpO₂ 91% on 2 L NC";
+  }
+  if (/\b(?:copd|accessory muscle)\b/.test(t)) {
+    return "COPD exacerbation with accessory muscle use and SpO₂ 86%";
+  }
+  if (/\b(?:atrial fibrillation|hr 138)\b/.test(t)) {
+    return "new-onset atrial fibrillation with HR 138, dizzy but alert on telemetry";
+  }
+  return text.length > 120 ? `${text.slice(0, 117)}...` : text;
+}
+
+const CANONICAL_MEDSURG_ASSIGNMENT_VIGNETTE =
+  "The nurse is assigned four clients on a medical-surgical unit. Room 518: 58-year-old man post-op day 1 knee replacement on PCA morphine. RR 8, SpO₂ 91% on room air, somnolent but arousable, pinpoint pupils. Room 523: 68-year-old woman with heart failure, BP 88/54, HR 112, crackles bilaterally, SpO₂ 91% on 2 L NC, weight up 2 kg. Room 510: 72-year-old man COPD exacerbation, RR 32, SpO₂ 86% on 2 L, accessory muscle use, speaking in short phrases. Room 516: 61-year-old woman new onset atrial fibrillation, HR 138 irregular, BP 104/70, dizzy but alert, on telemetry.";
 
 function optionsRelateToMedSurgPrioritization(options: string[]): boolean {
   return options.some((o) =>
@@ -2589,14 +2627,38 @@ export function buildLaborDeliveryPrioritizationMcq(item: BankItem): BankItem {
 }
 
 export function buildMedSurgPrioritizationMcq(item: BankItem): BankItem {
-  const vignette =
-    resolveNaplexVignette(item) ||
-    "A nurse on a medical-surgical unit is assigned multiple clients requiring prioritization.";
+  let vignette = resolveNaplexVignette(item) || CANONICAL_MEDSURG_ASSIGNMENT_VIGNETTE;
+  let roomCases = extractAssignmentRoomCases(vignette);
+  if (roomCases.length < 3) {
+    vignette = CANONICAL_MEDSURG_ASSIGNMENT_VIGNETTE;
+    roomCases = extractAssignmentRoomCases(vignette);
+  }
+
+  const priorityCase =
+    roomCases.length > 0
+      ? [...roomCases].sort((a, b) => scoreMedSurgUrgency(b.text) - scoreMedSurgUrgency(a.text))[0]!
+      : null;
+  const priorityRoom = priorityCase?.room ?? "518";
+  const priorityLabel = priorityCase
+    ? `Room ${priorityCase.room} — ${summarizeMedSurgCase(priorityCase.text)}`
+    : "Room 518 — post-op day 1 on PCA morphine with RR 8/min, somnolence, and pinpoint pupils";
+
+  const distractorCases = roomCases.filter((c) => c.room !== priorityRoom);
+  const defaultDistractors = [
+    { room: "523", text: "heart failure with hypotension, crackles, and SpO₂ 91% on 2 L NC" },
+    { room: "510", text: "COPD exacerbation with accessory muscle use and SpO₂ 86%" },
+    { room: "516", text: "new-onset atrial fibrillation with HR 138, dizzy but alert on telemetry" },
+  ];
+  const distractors =
+    distractorCases.length >= 3
+      ? distractorCases.slice(0, 3)
+      : defaultDistractors.filter((d) => d.room !== priorityRoom);
+
   const options = [
-    "Room 518 — post-op day 1 on PCA morphine with respiratory rate 8/min, somnolence, and pinpoint pupils; assess this client first for opioid-induced respiratory depression and prepare for naloxone and airway support.",
-    "Room 523 — heart failure with hypotension and crackles; prioritize influenza vaccination before addressing hypoxemia and volume overload.",
-    "Room 510 — COPD exacerbation with SpO₂ 86%; defer bronchodilator escalation until flu vaccine contraindications are reviewed.",
-    "Room 516 — new atrial fibrillation with HR 138; see this client before the somnolent patient with RR 8 on PCA morphine.",
+    `${priorityLabel}; assess this client first for opioid-induced respiratory depression and prepare for naloxone and airway support.`,
+    `Room ${distractors[0]?.room ?? "523"} — ${summarizeMedSurgCase(distractors[0]?.text ?? "heart failure with hypotension, crackles, and SpO₂ 91% on 2 L NC")}; see this client first for diuretic titration and fluid restriction teaching.`,
+    `Room ${distractors[1]?.room ?? "510"} — ${summarizeMedSurgCase(distractors[1]?.text ?? "COPD exacerbation with accessory muscle use and SpO₂ 86%")}; prioritize bronchodilator nebulizer and oxygen escalation before the somnolent PCA patient.`,
+    `Room ${distractors[2]?.room ?? "516"} — ${summarizeMedSurgCase(distractors[2]?.text ?? "new-onset atrial fibrillation with HR 138, dizzy but alert on telemetry")}; assess for rate control and anticoagulation counseling before the patient with RR 8 on PCA morphine.`,
   ] as BankItem["options"];
   const correctAnswer = options[0]!;
   return {
@@ -2607,7 +2669,7 @@ export function buildMedSurgPrioritizationMcq(item: BankItem): BankItem {
     options,
     correctAnswer,
     explanation:
-      "Correct: See Room 518 first — RR 8/min on PCA morphine with somnolence and pinpoint pupils indicates opioid-induced respiratory depression, an immediate airway emergency requiring assessment, possible naloxone, and PCA hold/adjustment. Room 510 COPD exacerbation (SpO₂ 86%) and Room 523 heart failure decompensation are urgent but the patient with impending respiratory failure from opioids takes ABC priority. Room 516 has rapid AF but is alert with BP 104/70. Influenza vaccine tasks are unrelated to acute inpatient triage.",
+      `Correct: See Room ${priorityRoom} first — RR 8/min on PCA morphine with somnolence and pinpoint pupils indicates opioid-induced respiratory depression, an immediate airway emergency requiring assessment, possible naloxone, and PCA hold/adjustment. Room 510 COPD exacerbation (SpO₂ 86%) and Room 523 heart failure decompensation are urgent but the patient with impending respiratory failure from opioids takes ABC priority. Room 516 has rapid AF but is alert with BP 104/70. Influenza vaccine tasks are unrelated to acute inpatient triage.`,
     itemType: "vignette",
     ngnPayload: undefined,
     subjectId: item.subjectId || "patient-counseling",

@@ -33,7 +33,7 @@ describe("prepareBankItemsForSession", () => {
     expect(serveQaPassedBankItems).not.toHaveBeenCalled();
   });
 
-  it("topicPractice uses spread selection for single-topic sessions", () => {
+  it("topicPractice returns the full vetted pool for finalize to select from", () => {
     const pool = Array.from({ length: 30 }, (_, i) => ({
       id: String(i),
       subjectId: "pharmacology",
@@ -55,7 +55,7 @@ describe("prepareBankItemsForSession", () => {
       topicPractice: true,
     });
 
-    expect(out).toHaveLength(25);
-    expect(new Set(out.map((i) => i.id)).size).toBe(25);
+    expect(out).toHaveLength(30);
+    expect(new Set(out.map((i) => i.id)).size).toBe(30);
   });
 });

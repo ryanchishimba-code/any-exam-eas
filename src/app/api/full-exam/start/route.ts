@@ -28,6 +28,7 @@ export async function POST(req: Request) {
   const timed = body.timed !== false;
   const nclexLength =
     body.nclexLength === "maximum" ? ("maximum" as const) : ("minimum" as const);
+  const nclexCat = body.nclexCat === true || body.nclexCat === "1";
   const focusAreas = Array.isArray(body.focusAreas)
     ? body.focusAreas.map(String).filter(Boolean)
     : Array.isArray(body.focus_areas)
@@ -60,6 +61,7 @@ export async function POST(req: Request) {
     const config = buildSessionConfig(examSlug, preset, timed, {
       nclexLength: examSlug === "nclex" ? nclexLength : undefined,
       focusAreas,
+      nclexCat: examSlug === "nclex" ? nclexCat : undefined,
     });
 
     const { checkMockExamStart } = await import("@/lib/study/usage-limits");

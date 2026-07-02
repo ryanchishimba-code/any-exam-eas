@@ -2,8 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getFieldSubject } from "@/lib/field-subjects";
 import { getFieldMeta } from "@/lib/fields";
-import { resolveTopicBankSampleCount } from "@/lib/exam-prep/topic-bank-practice";
-import { sampleQuestionBankItems } from "@/lib/question-bank-db";
+import { gatherTopicBankSessionPool } from "@/lib/exam-prep/topic-bank-practice";
 import { runAdaptiveSelection } from "@/lib/core/prisma-adapter";
 import {
   topicPerformanceFromWeakness,
@@ -20,7 +19,6 @@ import {
 } from "@/lib/questions/finalize-exam-session";
 import {
   bankItemToSessionRaw,
-  prepareBankItemsForSession,
 } from "@/lib/exam-prep/prepare-bank-session";
 
 export const runtime = "nodejs";
@@ -127,23 +125,22 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unknown subject for this field." }, { status: 400 });
     }
 
-    const poolSize = resolveTopicBankSampleCount(sessionCount);
-
-    let items = await sampleQuestionBankItems({
+    let items = await gatherTopicBankSessionPool({
       fieldId,
       subjectId,
-      count: poolSize,
-      poolMultiplier: 2,
+      sessionLimit: sessionCount,
       taskCategory: body.taskCategory,
     });
 
-    items = prepareBankItemsForSession({
-      fieldId,
-      field: body.field,
-      items,
-      limit: poolSize,
-      topicPractice: true,
-    });
+    if (items.length < sessionCount) {
+      return NextResponse.json(
+        {
+          error: `Not enough ${fieldId} questions available for this topic (${items.length}/${sessionCount}). Try fewer questions or another topic.`,
+          code: "SESSION_UNAVAILABLE",
+        },
+        { status: 503 }
+      );
+    }
 
     const pool: ReturnType<typeof examQuestionToStudy>[] = items.map((item, i) =>
       examQuestionToStudy(

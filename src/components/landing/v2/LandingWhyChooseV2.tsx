@@ -196,7 +196,15 @@ export function LandingWhyChooseV2({
                 key={stat.label}
                 className="rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-5 text-center"
               >
-                <p className="text-2xl font-bold text-[var(--color-ink)]">{stat.value}</p>
+                <p
+                  className={
+                    stat.label === "Serve-ready questions"
+                      ? "aee-landing-question-count aee-landing-question-count--metric"
+                      : "text-2xl font-bold text-[var(--color-ink)]"
+                  }
+                >
+                  {stat.value}
+                </p>
                 <p className="mt-1 text-xs font-semibold text-[var(--color-ink)]">{stat.label}</p>
                 <p className="mt-1 text-[11px] leading-snug text-[var(--color-ink-muted)]">
                   {stat.detail}

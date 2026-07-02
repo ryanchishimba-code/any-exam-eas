@@ -13,6 +13,10 @@ export type FullExamSessionConfig = {
   nclexLength?: "minimum" | "maximum";
   /** Blueprint category ids/labels to focus — omit for full board topic mix. */
   focusAreas?: string[];
+  /** NCLEX rule-based CAT simulation (75–145Q stop rules). */
+  nclexCat?: boolean;
+  /** Hide score summary — weak-area remediation only. */
+  silentReview?: boolean;
 };
 
 export type FullExamQuestion = {

@@ -358,6 +358,24 @@ export async function sampleQuestionBankItems(params: {
   return sampleSubjectItemsRandom(want, where, total, params.poolMultiplier);
 }
 
+async function sampleCuratedSubjectRows(
+  curatedWhere: ReturnType<typeof activeSubjectWhere>,
+  curatedTotal: number,
+  curatedWant: number
+): Promise<BankItem[]> {
+  if (curatedWant <= 0 || curatedTotal <= 0) return [];
+  const pull = Math.min(
+    QUESTION_BANK_SAMPLE_MAX_PULL,
+    Math.max(curatedWant * 4, curatedWant + 20)
+  );
+  const rows = await sampleQuestionBankRows({
+    where: curatedWhere,
+    pull,
+    total: curatedTotal,
+  });
+  return dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(0, curatedWant);
+}
+
 async function samplePanceSubjectItems(
   fieldId: string,
   subjectId: string,
@@ -373,19 +391,7 @@ async function samplePanceSubjectItems(
   let collected: BankItem[] = [];
 
   if (curatedWant > 0) {
-    const curatedRows = await prisma.questionBankItem.findMany({
-      where: curatedWhere,
-      take: Math.min(curatedTotal, Math.max(curatedWant * 3, curatedWant + 10)),
-      skip:
-        curatedTotal > curatedWant
-          ? Math.floor(Math.random() * Math.max(0, curatedTotal - curatedWant))
-          : 0,
-      orderBy: { id: "asc" },
-    });
-    collected = dedupeSamplePool(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
-      0,
-      curatedWant
-    );
+    collected = await sampleCuratedSubjectRows(curatedWhere, curatedTotal, curatedWant);
   }
 
   const remaining = want - collected.length;
@@ -429,19 +435,7 @@ async function sampleAanpFnpSubjectItems(
   let collected: BankItem[] = [];
 
   if (curatedWant > 0) {
-    const curatedRows = await prisma.questionBankItem.findMany({
-      where: curatedWhere,
-      take: Math.min(curatedTotal, Math.max(curatedWant * 3, curatedWant + 10)),
-      skip:
-        curatedTotal > curatedWant
-          ? Math.floor(Math.random() * Math.max(0, curatedTotal - curatedWant))
-          : 0,
-      orderBy: { id: "asc" },
-    });
-    collected = dedupeSamplePool(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
-      0,
-      curatedWant
-    );
+    collected = await sampleCuratedSubjectRows(curatedWhere, curatedTotal, curatedWant);
   }
 
   const remaining = want - collected.length;
@@ -471,19 +465,7 @@ async function sampleNptePtSubjectItems(
   let collected: BankItem[] = [];
 
   if (curatedWant > 0) {
-    const curatedRows = await prisma.questionBankItem.findMany({
-      where: curatedWhere,
-      take: Math.min(curatedTotal, Math.max(curatedWant * 3, curatedWant + 10)),
-      skip:
-        curatedTotal > curatedWant
-          ? Math.floor(Math.random() * Math.max(0, curatedTotal - curatedWant))
-          : 0,
-      orderBy: { id: "asc" },
-    });
-    collected = dedupeSamplePool(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
-      0,
-      curatedWant
-    );
+    collected = await sampleCuratedSubjectRows(curatedWhere, curatedTotal, curatedWant);
   }
 
   const remaining = want - collected.length;
@@ -513,19 +495,7 @@ async function sampleNaplexSubjectItems(
   let collected: BankItem[] = [];
 
   if (curatedWant > 0) {
-    const curatedRows = await prisma.questionBankItem.findMany({
-      where: curatedWhere,
-      take: Math.min(curatedTotal, Math.max(curatedWant * 3, curatedWant + 10)),
-      skip:
-        curatedTotal > curatedWant
-          ? Math.floor(Math.random() * Math.max(0, curatedTotal - curatedWant))
-          : 0,
-      orderBy: { id: "asc" },
-    });
-    collected = dedupeSamplePool(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
-      0,
-      curatedWant
-    );
+    collected = await sampleCuratedSubjectRows(curatedWhere, curatedTotal, curatedWant);
   }
 
   const remaining = want - collected.length;
@@ -618,19 +588,7 @@ async function sampleUsmleSubjectItems(
   let collected: BankItem[] = [];
 
   if (curatedWant > 0) {
-    const curatedRows = await prisma.questionBankItem.findMany({
-      where: curatedWhere,
-      take: Math.min(curatedTotal, Math.max(curatedWant * 3, curatedWant + 10)),
-      skip:
-        curatedTotal > curatedWant
-          ? Math.floor(Math.random() * Math.max(0, curatedTotal - curatedWant))
-          : 0,
-      orderBy: { id: "asc" },
-    });
-    collected = dedupeSamplePool(shuffleBankItems(curatedRows.map(rowToBankItem))).slice(
-      0,
-      curatedWant
-    );
+    collected = await sampleCuratedSubjectRows(curatedWhere, curatedTotal, curatedWant);
   }
 
   const remaining = want - collected.length;

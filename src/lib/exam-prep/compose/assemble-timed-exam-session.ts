@@ -15,6 +15,7 @@ import {
   composeBlueprintTimedExamSession,
   fieldSupportsBlueprintTimedExam,
 } from "./compose-timed-exam-session";
+import { tryLoadTimedPresetSession } from "@/lib/exam-prep/try-timed-preset-exam";
 
 export type AssembleTimedExamSessionParams = {
   fieldId: string;
@@ -26,8 +27,9 @@ export type AssembleTimedExamSessionParams = {
 
 export type AssembleTimedExamSessionResult = {
   items: BankItem[];
-  source: "blueprint" | "gather";
+  source: "preset" | "blueprint" | "gather";
   tierId?: string;
+  presetExamNumber?: number;
 };
 
 /** Load bank items for a timed mock using the same path as the questions API. */
@@ -35,6 +37,21 @@ export async function assembleTimedExamSessionItems(
   params: AssembleTimedExamSessionParams
 ): Promise<AssembleTimedExamSessionResult | null> {
   const { fieldId, limit, focusAreas, sampleCount } = params;
+
+  if (!focusAreas?.length) {
+    const preset = await tryLoadTimedPresetSession({
+      fieldId,
+      limit,
+      seed: (Date.now() ^ 0x51ed270b) >>> 0,
+    });
+    if (preset) {
+      return {
+        items: preset.items,
+        source: "preset",
+        presetExamNumber: preset.examNumber,
+      };
+    }
+  }
 
   if (fieldSupportsBlueprintTimedExam(fieldId)) {
     const composed = await composeBlueprintTimedExamSession({

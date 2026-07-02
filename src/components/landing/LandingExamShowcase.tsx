@@ -18,25 +18,21 @@ const EXAM_SHORT_LABEL: Record<string, string> = {
   "npte-pt": "NPTE-PT",
 };
 
-function questionsLabelForExam(
-  examId: string,
-  bankCounts: LandingBankCountsDisplay
-): string {
-  const match = bankCounts.exams.find((row) => row.slug === examId);
-  return match?.questionsLabel ?? "— serve-ready questions";
-}
-
 export function LandingExamShowcase({ bankCounts, className = "" }: LandingExamShowcaseProps) {
-  const totalQuestions =
-    bankCounts.totalQuestionsLabel ?? `${bankCounts.totalLabel} questions`;
-
   return (
     <div
       className={`aee-hero-exam-showcase aee-hero-exam-showcase--static aee-hero-exam-showcase--hero-stat ${className}`.trim()}
       aria-label="Board exams and question bank sizes"
     >
       <div className="aee-hero-exam-showcase__stat">
-        <p className="aee-hero-exam-showcase__total">{totalQuestions}</p>
+        <p className="aee-hero-exam-showcase__total">
+          <span className="aee-landing-question-count aee-landing-question-count--hero">
+            {bankCounts.totalLabel}
+          </span>
+          <span className="mt-1 block text-lg font-bold text-[var(--flagship-navy,var(--color-ink))]">
+            serve-ready questions
+          </span>
+        </p>
         <p className="aee-hero-exam-showcase__badge">QA-gated · serve-ready only</p>
       </div>
       <p className="aee-hero-exam-showcase__kicker">
@@ -47,7 +43,8 @@ export function LandingExamShowcase({ bankCounts, className = "" }: LandingExamS
       <ul className="aee-hero-exam-showcase__grid">
         {LANDING_EXAMS.map((exam) => {
           const shortLabel = EXAM_SHORT_LABEL[exam.id] ?? exam.label;
-          const questionsLabel = questionsLabelForExam(exam.id, bankCounts);
+          const countLabel =
+            bankCounts.exams.find((row) => row.slug === exam.id)?.countLabel ?? "—";
 
           return (
             <li
@@ -57,7 +54,12 @@ export function LandingExamShowcase({ bankCounts, className = "" }: LandingExamS
             >
               <Link href={exam.href} className="aee-hero-exam-showcase__link group">
                 <span className="aee-hero-exam-showcase__name">{shortLabel}</span>
-                <span className="aee-hero-exam-showcase__count">{questionsLabel}</span>
+                <span className="aee-hero-exam-showcase__count">
+                  <span className="aee-landing-question-count aee-landing-question-count--inline">
+                    {countLabel}
+                  </span>
+                  <span className="font-semibold"> serve-ready</span>
+                </span>
               </Link>
             </li>
           );

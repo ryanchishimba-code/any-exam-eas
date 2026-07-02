@@ -5,6 +5,7 @@ import {
   resolveNclexStem,
   resolveNclexVignette,
 } from "@/lib/exam-prep/nclex-bank-audit";
+import { prepareNclexBankItem } from "./nclex-format-coherence";
 import { BOARD_SERVE_MIN_EXPLANATION_CHARS } from "./board-serve-quality";
 import {
   isNclexBestQuality,
@@ -12,6 +13,8 @@ import {
   isNclexExamFillQuality,
 } from "./nclex-quality-gate";
 import { selectNclexSessionBankItems } from "./nclex/session-selection";
+
+export { prepareNclexBankItem } from "./nclex-format-coherence";
 
 type NclexServeOpts = { source?: string | null };
 
@@ -71,7 +74,9 @@ export function nclexItemPassesRelaxedExamGate(item: BankItem): boolean {
 
 /** Defense-in-depth: DB qaPassed can be stale — re-audit before each session. */
 export function filterNclexItemsForSession(items: BankItem[]): BankItem[] {
-  return items.filter((item) => nclexBankItemIsServeReady(item, { source: item.source ?? null }));
+  return items
+    .map((item) => prepareNclexBankItem(item))
+    .filter((item) => nclexBankItemIsServeReady(item, { source: item.source ?? null }));
 }
 
 /** Defense-in-depth: DB qaPassed can be stale — re-audit before each session. */

@@ -17,6 +17,11 @@ describe("buildSessionConfig", () => {
     expect(buildSessionConfig("naplex", "full", true).adaptive).toBe(true);
     expect(buildSessionConfig("nclex", "full", true).adaptive).toBe(false);
   });
+
+  it("enables NCLEX CAT adaptive when nclexCat is set", () => {
+    expect(buildSessionConfig("nclex", "full", true, { nclexCat: true }).adaptive).toBe(true);
+    expect(buildSessionConfig("nclex", "full", true, { nclexCat: true }).nclexCat).toBe(true);
+  });
 });
 
 describe("parseFullExamLengthPreset", () => {

@@ -67,7 +67,7 @@ export function InsightPanel({ insight, remediation, correct }: Props) {
             Recommended next
           </p>
           <ul className="mt-2 space-y-2">
-            {remediation.slice(0, 2).map((r) => (
+            {remediation.slice(0, 3).map((r) => (
               <li key={r.href}>
                 <Link
                   href={r.href}

@@ -55,6 +55,7 @@ export function buildSessionConfig(
   opts?: {
     nclexLength?: "minimum" | "maximum";
     focusAreas?: string[];
+    nclexCat?: boolean;
   }
 ): FullExamSessionConfig {
   const option = getLengthOptions(examSlug).find((o) => o.preset === preset)!;
@@ -62,14 +63,18 @@ export function buildSessionConfig(
   if (examSlug === "nclex" && opts?.nclexLength === "maximum") {
     questionCount = 150;
   }
+  if (examSlug === "nclex" && opts?.nclexCat) {
+    questionCount = opts.nclexLength === "maximum" ? 145 : 85;
+  }
+  const nclexCat = examSlug === "nclex" && opts?.nclexCat === true;
   return {
     lengthPreset: preset,
     questionCount,
     timed,
     timeLimitSec: computeTimeLimitSec(examSlug, questionCount, timed),
-    adaptive: preset === "full" && examSlug !== "nclex",
+    adaptive: (preset === "full" && examSlug !== "nclex") || nclexCat,
     ...(examSlug === "nclex"
-      ? { nclexLength: opts?.nclexLength ?? "minimum" }
+      ? { nclexLength: opts?.nclexLength ?? "minimum", nclexCat }
       : {}),
     ...(opts?.focusAreas?.length ? { focusAreas: opts.focusAreas } : {}),
   };
@@ -128,12 +133,13 @@ export function parseFullExamLengthPreset(
 /** Launcher URL with optional preset + autostart for dashboard / hub shortcuts. */
 export function fullExamLaunchHref(
   examSlug: ExamSlug,
-  opts?: { mode?: FullExamLengthPreset; autostart?: boolean; timed?: boolean }
+  opts?: { mode?: FullExamLengthPreset; autostart?: boolean; timed?: boolean; nclexCat?: boolean }
 ): string {
   const params = new URLSearchParams();
   if (opts?.mode) params.set("mode", opts.mode);
   if (opts?.autostart) params.set("autostart", "1");
   if (opts?.timed === false) params.set("timed", "0");
+  if (opts?.nclexCat) params.set("nclexCat", "1");
   const query = params.toString();
   return query ? `${fullExamHref(examSlug)}?${query}` : fullExamHref(examSlug);
 }

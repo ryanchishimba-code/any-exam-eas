@@ -243,7 +243,9 @@ export function BoardScrollPicker({
                 <span className="aee-board-picker__name">{item.name}</span>
                 <span className="aee-board-picker__desc">{item.description}</span>
               </span>
-              <span className="aee-board-picker__count">{item.count}</span>
+              <span className="aee-board-picker__count aee-landing-question-count">
+                {item.count}
+              </span>
             </button>
           );
         })}

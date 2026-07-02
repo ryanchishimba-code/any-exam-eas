@@ -37,6 +37,7 @@ type Props = {
   initialMode?: string | null;
   autostart?: boolean;
   initialTimed?: boolean;
+  initialNclexCat?: boolean;
   mockAccess: MockExamAccess;
 };
 
@@ -45,6 +46,7 @@ export function FullExamLauncher({
   initialMode,
   autostart = false,
   initialTimed = true,
+  initialNclexCat = false,
   mockAccess,
 }: Props) {
   const router = useRouter();
@@ -60,11 +62,14 @@ export function FullExamLauncher({
     return defaultPreset;
   });
   const [timed, setTimed] = useState(initialTimed);
+  const [nclexCat, setNclexCat] = useState(initialNclexCat && examSlug === "nclex");
   const [pending, setPending] = useState(autostart);
   const [error, setError] = useState<string | null>(null);
   const startingRef = useRef(false);
 
-  const preview = buildSessionConfig(examSlug, preset, timed);
+  const preview = buildSessionConfig(examSlug, preset, timed, {
+    nclexCat: examSlug === "nclex" ? nclexCat : undefined,
+  });
   const pageTitle = fullExamModeTitle(examSlug, preset);
   const startSteps = useMemo(
     () => [
@@ -91,6 +96,7 @@ export function FullExamLauncher({
           examSlug,
           lengthPreset: preset,
           timed,
+          nclexCat: examSlug === "nclex" ? nclexCat : undefined,
         }),
       });
       const data = (await res.json().catch(() => ({}))) as {
@@ -214,6 +220,23 @@ export function FullExamLauncher({
                 ]}
               />
             </div>
+
+            {examSlug === "nclex" && preset === "full" ? (
+              <label className="mx-auto flex max-w-sm cursor-pointer items-center gap-3 rounded-xl border border-black/[0.06] bg-white px-4 py-3 text-sm">
+                <input
+                  type="checkbox"
+                  checked={nclexCat}
+                  onChange={(e) => setNclexCat(e.target.checked)}
+                  className="h-4 w-4 rounded border-slate-300"
+                />
+                <span>
+                  <span className="font-medium text-[var(--color-ink)]">CAT-style adaptive</span>
+                  <span className="mt-0.5 block text-xs text-[var(--color-ink-muted)]">
+                    Mixed blueprint exam with 75–145Q stop rules (practice simulation).
+                  </span>
+                </span>
+              </label>
+            ) : null}
 
             {pending ? (
               <ExamLoadingProgress

@@ -39,6 +39,10 @@ export type RoadmapTopicRow = {
   highYieldTopics: string[];
   practiceHref: string;
   deepDiveHref?: string;
+  /** Target readiness score for first-attempt pass focus. */
+  passTargetScore?: number;
+  /** Points below pass target (0 if at/above). */
+  gapToPass?: number;
 };
 
 export type ExamRoadmapData = {
@@ -170,6 +174,8 @@ function buildTopicRow(
     highYieldTopics: category.highYieldTopics ?? [],
     practiceHref: practiceTopicHref(examSlug, primarySubject, 15),
     deepDiveHref: topicLinks.deepDiveHref,
+    passTargetScore: 75,
+    gapToPass: Math.max(0, 75 - readinessScore),
   };
 }
 
