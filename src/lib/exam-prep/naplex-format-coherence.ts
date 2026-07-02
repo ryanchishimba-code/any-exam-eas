@@ -19,7 +19,8 @@ export type NaplexFormatIssue = {
     | "naplex_calc_stem_on_mcq"
     | "naplex_orphan_calc_stem"
     | "naplex_clinical_vignette_unrelated_calc"
-    | "naplex_clinical_stem_numeric_options";
+    | "naplex_clinical_stem_numeric_options"
+    | "naplex_clinical_vignette_unrelated_options";
   message: string;
   severity: "error";
 };
@@ -494,6 +495,9 @@ export function detectNaplexFormatIssues(item: BankItem): NaplexFormatIssue[] {
 
   const counselingCalcMismatch = detectClinicalCounselingIntentCalcMismatch(item);
   if (counselingCalcMismatch) issues.push(counselingCalcMismatch);
+
+  const unrelatedOptions = detectClinicalVignetteUnrelatedOptions(item);
+  if (unrelatedOptions) issues.push(unrelatedOptions);
 
   return issues;
 }
@@ -1402,6 +1406,24 @@ function buildOrphanClinicalCalcMcqRepair(item: BankItem): BankItem {
   if (isPregnancyTopicalAntibioticSafetyVignette(vignette)) {
     return buildPregnancyTopicalAntibioticCounselingMcq(item);
   }
+  if (isAnaphylaxisEmergencyOptionsMismatch(item)) return buildAnaphylaxisEmergencyMcq(item);
+  if (isSeverePreeclampsiaOptionsMismatch(item)) return buildSeverePreeclampsiaEmergencyMcq(item);
+  if (isPsychiatricSuicideRiskOptionsMismatch(item)) return buildPsychiatricSuicideRiskMcq(item);
+  if (isPsychiatricUnitPrioritizationOptionsMismatch(item)) {
+    return buildPsychiatricUnitPrioritizationMcq(item);
+  }
+  if (isPostpartumHemorrhageOptionsMismatch(item)) return buildPostpartumHemorrhageEmergencyMcq(item);
+  if (isEmergencyDepartmentPrioritizationOptionsMismatch(item)) {
+    return buildEmergencyDepartmentPrioritizationMcq(item);
+  }
+  if (isPediatricEdPrioritizationOptionsMismatch(item)) return buildPediatricEdPrioritizationMcq(item);
+  if (isLaborDeliveryPrioritizationOptionsMismatch(item)) return buildLaborDeliveryPrioritizationMcq(item);
+  if (isMedSurgPrioritizationOptionsMismatch(item)) return buildMedSurgPrioritizationMcq(item);
+  if (isAcuteDecompensatedHeartFailureOptionsMismatch(item)) {
+    return buildAcuteDecompensatedHeartFailureMcq(item);
+  }
+  if (isUpperGiBleedOptionsMismatch(item)) return buildUpperGiBleedEmergencyMcq(item);
+  if (isWarfarinBleedingOptionsMismatch(item)) return buildWarfarinBleedingMcq(item);
   if (isMetforminRenalSafetyCounselingVignette(vignette)) return buildMetforminRenalSafetyMcq(item);
   if (isPenicillinAllergyAmoxicillinVignette(vignette)) return buildPenicillinAllergyCounselingMcq(item);
   if (isNsaidAceInteractionCounselingVignette(vignette)) return buildNsaidAceInteractionMcq(item);
@@ -1481,6 +1503,1224 @@ function isHypertensiveEmergencyMismatch(item: BankItem): boolean {
     (MCQ_LEAD_IN.test(resolveNaplexStem(item)) ||
       /which finding requires immediate follow-up/i.test(resolveNaplexStem(item)))
   );
+}
+
+const SCREENING_LIFESTYLE_OPTION =
+  /\b(?:body mass index|\bbmi\b|waist circumference|daytime fatigue|difficulty sleeping|poor sleep|sedentary lifestyle|weight loss counseling)\b/i;
+
+const OB_WELLNESS_MISPLACED_OPTION =
+  /\b(?:safe weight loss|weight loss during pregnancy|small, frequent meals|manage nausea|dietitian|nutritional counseling|hydration status)\b/i;
+
+function allOptionsScreeningLifestyle(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.every((o) => SCREENING_LIFESTYLE_OPTION.test(o));
+}
+
+function allOptionsObstetricWellnessMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.every((o) => OB_WELLNESS_MISPLACED_OPTION.test(o));
+}
+
+const PROCEDURE_PREP_MISPLACED_OPTION =
+  /\b(?:during the procedure|procedure is routine|clear liquid diet|what to expect during|importance of the clear liquid)\b/i;
+
+function allOptionsProcedurePrepMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return (
+    usable.length >= 4 &&
+    usable.filter((o) => PROCEDURE_PREP_MISPLACED_OPTION.test(o) || /discuss (?:his|her|their) anxiety further/i.test(o))
+      .length >= 3
+  );
+}
+
+const POSTOP_MEDICAL_MISPLACED_OPTION =
+  /\b(?:pain medication|iv fluid rate|abdomen for distension|abdominal distension|encourage the client to ambulate|ambulate in the hallway)\b/i;
+
+function allOptionsPostOpMedicalMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.filter((o) => POSTOP_MEDICAL_MISPLACED_OPTION.test(o)).length >= 3;
+}
+
+const PPH_MISPLACED_OPTION =
+  /\b(?:lethargy|oxygen flow rate|deep breaths|chest x-ray|chest x ray|encourage the client to take deep breaths)\b/i;
+
+const COLON_SCREENING_MISPLACED_OPTION =
+  /\b(?:colon cancer|colonoscopy|colorectal|screening recommendations)\b/i;
+
+function allOptionsPostpartumHemorrhageMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.filter((o) => PPH_MISPLACED_OPTION.test(o)).length >= 3;
+}
+
+const PPH_RECOVERY_MISPLACED_OPTION =
+  /\b(?:absence of flatus|anxiety about recovery|severe abdominal pain|stable vital signs)\b/i;
+
+function allOptionsPostpartumRecoveryMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.every((o) => PPH_RECOVERY_MISPLACED_OPTION.test(o));
+}
+
+function allOptionsColonCancerScreeningMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.every((o) => COLON_SCREENING_MISPLACED_OPTION.test(o));
+}
+
+const WOUND_CARE_MISPLACED_OPTION =
+  /\b(?:hydrocolloid dressing|change positions every 2 hours|proper nutrition to promote healing|size and appearance of the wound|wound care|turning schedule)\b/i;
+
+function allOptionsWoundCareMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.every((o) => WOUND_CARE_MISPLACED_OPTION.test(o));
+}
+
+const GENERAL_WELLNESS_MISPLACED_OPTION =
+  /\b(?:registered dietitian|balanced diet rich in fruits|personalized exercise plan|regular health screenings|health screenings|exercise plan|nutritional counseling)\b/i;
+
+function allOptionsGeneralWellnessMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.every((o) => GENERAL_WELLNESS_MISPLACED_OPTION.test(o));
+}
+
+const FIRE_SAFETY_MISPLACED_OPTION =
+  /\b(?:escape plan in case of fire|smoke detectors|flammable materials away from heat|test smoke detectors monthly|fire safety)\b/i;
+
+function allOptionsFireSafetyMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.every((o) => FIRE_SAFETY_MISPLACED_OPTION.test(o));
+}
+
+const CHART_REVIEW_MISPLACED_OPTION =
+  /\b(?:history of gastrointestinal bleeding|taking atorvastatin|prescription for lisinopril|low-sodium diet|atorvastatin at bedtime)\b/i;
+
+function allOptionsChartReviewMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.every((o) => CHART_REVIEW_MISPLACED_OPTION.test(o));
+}
+
+const AMBULATION_FALL_MISPLACED_OPTION =
+  /\b(?:pain level before ambulation|provide a walker|ambulate with assistance|fall prevention strategies|encourage the client to ambulate)\b/i;
+
+function allOptionsAmbulationFallPreventionMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.every((o) => AMBULATION_FALL_MISPLACED_OPTION.test(o));
+}
+
+const MEDICATION_COUNSELING_MISPLACED_OPTION =
+  /\b(?:take the medication with food|potential side effects|renal function before administration|completing the full course of antibiotics|full course of antibiotics)\b/i;
+
+function allOptionsMedicationCounselingMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.every((o) => MEDICATION_COUNSELING_MISPLACED_OPTION.test(o));
+}
+
+const MINOR_FINDING_MISPLACED_OPTION =
+  /\b(?:headache that is relieved by acetaminophen|blood pressure is \d{2,3}\/\d{2,3}|recent nosebleeds|occasional bruising)\b/i;
+
+function allOptionsMinorFindingMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.every((o) => MINOR_FINDING_MISPLACED_OPTION.test(o));
+}
+
+function countAssignmentRooms(vignette: string): number {
+  return vignette.match(/\broom \d+\b/gi)?.length ?? 0;
+}
+
+function extractAssignmentRoomCases(vignette: string): Array<{ room: string; text: string }> {
+  const re = /\b(?:In\s+)?Room\s+(\d+)\b/gi;
+  const markers: Array<{ room: string; start: number }> = [];
+  let match: RegExpExecArray | null;
+  while ((match = re.exec(vignette)) !== null) {
+    markers.push({ room: match[1]!, start: match.index + match[0].length });
+  }
+  return markers.map((entry, index) => ({
+    room: entry.room,
+    text: vignette
+      .slice(entry.start, markers[index + 1]?.start ?? vignette.length)
+      .trim()
+      .replace(/^(?:\s*[:,]\s*|\s+(?:contains|has)\s+)/i, "")
+      .replace(/\.\s*$/, ""),
+  }));
+}
+
+const DIABETIC_EYE_MISPLACED_OPTION =
+  /\b(?:eye exam|diabetic retinopathy|need for eye exams|schedule an eye exam)\b/i;
+
+function allOptionsDiabeticEyeCareMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return (
+    usable.length >= 4 &&
+    usable.filter(
+      (o) =>
+        DIABETIC_EYE_MISPLACED_OPTION.test(o) || /document the discussion in the client'?s chart/i.test(o)
+    ).length >= 3
+  );
+}
+
+const DIABETES_EDUCATION_MISPLACED_OPTION =
+  /\b(?:blood glucose monitoring|signs and symptoms of hypoglycemia|injection techniques|dietary modifications)\b/i;
+
+function allOptionsDiabetesEducationMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.every((o) => DIABETES_EDUCATION_MISPLACED_OPTION.test(o));
+}
+
+const WARFARIN_MISPLACED_OPTION =
+  /\b(?:inr monitoring|elevated inr|hold the next dose of warfarin|administer vitamin k|warfarin)\b/i;
+
+function allOptionsWarfarinAnticoagMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.every((o) => WARFARIN_MISPLACED_OPTION.test(o));
+}
+
+const FLU_VACCINE_MISPLACED_OPTION =
+  /\b(?:flu vaccine|influenza vaccine|contraindications to the vaccine|follow-up appointment for the vaccine)\b/i;
+
+function allOptionsFluVaccineMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.every((o) => FLU_VACCINE_MISPLACED_OPTION.test(o));
+}
+
+const OPIOID_AIRWAY_MISPLACED_OPTION =
+  /\b(?:naloxone|intubate|secure the airway|high-flow nasal cannula|supplemental oxygen via high-flow)\b/i;
+
+function allOptionsOpioidAirwayMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return (
+    usable.length >= 4 &&
+    usable.filter(
+      (o) =>
+        OPIOID_AIRWAY_MISPLACED_OPTION.test(o) || /monitor vital signs every 5 minutes/i.test(o)
+    ).length >= 3
+  );
+}
+
+function isAnaphylaxisEmergencyVignette(vignette: string): boolean {
+  const v = vignette.toLowerCase();
+  if (/\b(?:anaphylaxis|anaphylactic)\b/.test(v)) return true;
+  return (
+    /\b(?:urticaria|hives|stridor|angioedema|facial swelling|tongue swelling)\b/.test(v) &&
+    /\b(?:hypotension|bp\s*\d{2}\/\d{2}|allerg|ceftriaxone|cef(?:triaxone|epime)|epinephrine)\b/.test(v)
+  );
+}
+
+function optionsRelateToAnaphylaxis(options: string[]): boolean {
+  return options.some((o) =>
+    /epinephrine|hypotension|stridor|urticaria|airway|anaphy|ceftriaxone|angioedema|facial.*swelling|tongue swelling|discontinuation of the triggering|stop the (?:infusion|antibiotic)/i.test(
+      o
+    )
+  );
+}
+
+const INSULIN_ADMIN_MISPLACED_OPTION =
+  /\b(?:insulin lispro|six rights|mar is unavailable|another client'?s medication|document administration before giving)\b/i;
+
+function allOptionsInsulinAdminMisplaced(options: string[]): boolean {
+  const usable = options.filter((o) => o.trim().length > 2);
+  return usable.length >= 4 && usable.filter((o) => INSULIN_ADMIN_MISPLACED_OPTION.test(o)).length >= 3;
+}
+
+export function isAnaphylaxisEmergencyOptionsMismatch(item: BankItem): boolean {
+  const vignette = resolveNaplexVignette(item);
+  if (!isAnaphylaxisEmergencyVignette(vignette) || !hasMcqOptions(item)) return false;
+  if (allOptionsScreeningLifestyle(item.options)) return true;
+  if (allOptionsInsulinAdminMisplaced(item.options)) return true;
+  const stem = resolveNaplexStem(item);
+  return (
+    (/requires immediate nursing follow-up|finding requires immediate|take first to ensure client safety|nursing action should the nurse take first|immediate intervention|most appropriate immediate action/i.test(
+      stem
+    ) ||
+      /assessment finding should the nurse address first|finding should the nurse address/i.test(stem)) &&
+    !optionsRelateToAnaphylaxis(item.options)
+  );
+}
+
+function isSeverePreeclampsiaVignette(vignette: string): boolean {
+  const v = vignette.toLowerCase();
+  const preeclampsia =
+    /\b(?:preeclampsia|pre-eclampsia|eclampsia|hellp)\b/.test(v) ||
+    (/\b(?:pregnan|gestation|trimester|weeks gestation|labor and delivery)\b/.test(v) &&
+      /\b(?:proteinuria|3\+ protein|\+\+\+ protein|epigastric pain|clonus|hyperreflexia)\b/.test(v));
+  const severeFeatures =
+    /\bsevere features\b/.test(v) ||
+    /\b(?:epigastric pain|clonus|hyperreflexia|severe headache)\b/.test(v) ||
+    /\bbp\s*(?:of\s*)?(?:1[6-9]\d|2\d{2})\s*\/\s*(?:10[0-9]|[89]\d)\b/.test(v) ||
+    /(?:1[6-9]\d|2\d{2})\s*\/\s*(?:10[0-9]|[89]\d)\s*mm\s*hg/i.test(v);
+  return preeclampsia && severeFeatures;
+}
+
+function optionsRelateToPreeclampsia(options: string[]): boolean {
+  return options.some((o) =>
+    /magnesium|eclampsia|preeclampsia|blood pressure|antihypertensive|seizure|clonus|epigastric|delivery|labetalol|hydralazine|hellp|nicardipine/i.test(
+      o
+    )
+  );
+}
+
+export function isSeverePreeclampsiaOptionsMismatch(item: BankItem): boolean {
+  const vignette = resolveNaplexVignette(item);
+  if (!isSeverePreeclampsiaVignette(vignette) || !hasMcqOptions(item)) return false;
+  if (allOptionsObstetricWellnessMisplaced(item.options)) return true;
+  return (
+    /assessment finding should the nurse address first|finding should the nurse address/i.test(
+      resolveNaplexStem(item)
+    ) && !optionsRelateToPreeclampsia(item.options)
+  );
+}
+
+function isPsychiatricSuicideRiskVignette(vignette: string): boolean {
+  const v = vignette.toLowerCase();
+  const psychContext =
+    /\b(?:psychiatric|inpatient psych|mental health unit|behavioral health)\b/.test(v) ||
+    /\b(?:major depressive|depression|suicidal ideation|suicide|self-harm|overdose plan)\b/.test(v);
+  const suicideRisk =
+    /\b(?:suicidal ideation|suicide|plan to overdose|goodbye note|don't want to be here|kill myself|end my life)\b/.test(
+      v
+    );
+  return psychContext && suicideRisk;
+}
+
+function optionsRelateToPsychiatricSuicideRisk(options: string[]): boolean {
+  return options.some((o) =>
+    /suicide|suicidal|self-harm|1:1|one-to-one|constant observation|q15|safety precaution|lethal means|goodbye|hopelessness|contract for safety|do not leave|line-of-sight/i.test(
+      o
+    )
+  );
+}
+
+export function isPsychiatricSuicideRiskOptionsMismatch(item: BankItem): boolean {
+  const vignette = resolveNaplexVignette(item);
+  if (!isPsychiatricSuicideRiskVignette(vignette) || !hasMcqOptions(item)) return false;
+  if (allOptionsProcedurePrepMisplaced(item.options)) return true;
+  if (allOptionsPostOpMedicalMisplaced(item.options)) return true;
+  return (
+    /assessment finding should the nurse address first|finding should the nurse address/i.test(
+      resolveNaplexStem(item)
+    ) && !optionsRelateToPsychiatricSuicideRisk(item.options)
+  );
+}
+
+function isPsychiatricUnitPrioritizationVignette(vignette: string, stem?: string): boolean {
+  const blob = [vignette, stem].filter(Boolean).join("\n").toLowerCase();
+  const roomCount = countAssignmentRooms(vignette);
+  const multiClient =
+    /\b(?:four clients|assigned(?:\s+to)?\s+four|four assigned clients|assignment context)\b/.test(blob) ||
+    roomCount >= 3;
+  const psychUnit =
+    /\b(?:inpatient psychiatric|psychiatric unit|mental health unit|behavioral health unit)\b/.test(blob) ||
+    (roomCount >= 3 &&
+      /\b(?:depression|suicidal|alcohol withdrawal|manic episode|grief|safety contract)\b/.test(vignette));
+  return multiClient && psychUnit;
+}
+
+function optionsRelateToPsychiatricPrioritization(options: string[]): boolean {
+  return options.some((o) =>
+    /room \d+|suicide|suicidal|self-harm|withdrawal|manic|depression|goodbye|see first|highest priority|alcohol withdrawal|safety contract/i.test(
+      o
+    )
+  );
+}
+
+function scorePsychiatricUrgency(text: string): number {
+  const t = text.toLowerCase();
+  if (
+    /\b(?:goodbye note|how i would do it|suicidal|kill myself|end my life)\b/.test(t) ||
+    (/\bdepression\b/.test(t) && /\b(?:plan|goodbye|poor eye contact)\b/.test(t))
+  ) {
+    return 100;
+  }
+  if (/\b(?:alcohol withdrawal|last drink|tremors|diaphoresis)\b/.test(t) && /\bhr\s*1[0-2]\d|hr 124\b/.test(t)) {
+    return 85;
+  }
+  if (/\b(?:manic|pacing|pressured speech|refused.*lithium)\b/.test(t)) {
+    return 50;
+  }
+  if (/\b(?:grief|tearful|denies si|safety contract|voluntary admission)\b/.test(t)) {
+    return 20;
+  }
+  return 0;
+}
+
+function summarizePsychiatricCase(text: string): string {
+  const t = text.toLowerCase();
+  if (/\b(?:goodbye note|how i would do it)\b/.test(t) || (/\bdepression\b/.test(t) && /\bplan\b/.test(t))) {
+    return "19-year-old with depression, stated suicide plan, and written goodbye note";
+  }
+  if (/\b(?:alcohol withdrawal|last drink)\b/.test(t)) {
+    return "45-year-old in alcohol withdrawal with tachycardia, tremors, and diaphoresis";
+  }
+  if (/\b(?:manic|pacing|pressured speech)\b/.test(t)) {
+    return "28-year-old in manic episode with pacing and pressured speech who refused lithium";
+  }
+  if (/\b(?:grief|safety contract)\b/.test(t)) {
+    return "52-year-old voluntary admission for grief with safety contract and no SI/HI";
+  }
+  return text.length > 120 ? `${text.slice(0, 117)}...` : text;
+}
+
+export function isPsychiatricUnitPrioritizationOptionsMismatch(item: BankItem): boolean {
+  const vignette = resolveNaplexVignette(item);
+  const stem = resolveNaplexStem(item);
+  if (!isPsychiatricUnitPrioritizationVignette(vignette, stem) || !hasMcqOptions(item)) return false;
+  if (allOptionsMinorFindingMisplaced(item.options)) return true;
+  return (
+    /highest priority|see first|which client|assess first|prioritize for immediate assessment/i.test(stem) &&
+    !optionsRelateToPsychiatricPrioritization(item.options)
+  );
+}
+
+function isPostpartumHemorrhageVignette(vignette: string): boolean {
+  const v = vignette.toLowerCase();
+  return (
+    /\b(?:postpartum hemorrhage|postpartum haemorrhage|\bpph\b)\b/.test(v) ||
+    (/\b(?:labor and delivery|postpartum|vaginal delivery)\b/.test(v) &&
+      /\b(?:blood loss|hemorrhage|haemorrhage|boggy uterus|fundal massage|saturated.*pad|uterine atony)\b/.test(v))
+  );
+}
+
+function optionsRelateToPostpartumHemorrhage(options: string[]): boolean {
+  return options.some((o) =>
+    /uterotonic|oxytocin|pitocin|methylergonovine|methergine|carboprost|hemabate|misoprostol|cytotec|fundal massage|boggy uterus|blood loss|hemorrhage|haemorrhage|fluid resuscitation|transfusion|bleeding|uterine atony/i.test(
+      o
+    )
+  );
+}
+
+export function isPostpartumHemorrhageOptionsMismatch(item: BankItem): boolean {
+  const vignette = resolveNaplexVignette(item);
+  if (!isPostpartumHemorrhageVignette(vignette) || !hasMcqOptions(item)) return false;
+  if (allOptionsPostpartumHemorrhageMisplaced(item.options)) return true;
+  if (allOptionsPostpartumRecoveryMisplaced(item.options)) return true;
+  return (
+    (/requires immediate nursing follow-up|finding requires immediate/i.test(resolveNaplexStem(item)) ||
+      /assessment finding should the nurse address first|finding should the nurse address/i.test(
+        resolveNaplexStem(item)
+      )) &&
+    !optionsRelateToPostpartumHemorrhage(item.options)
+  );
+}
+
+function isPediatricEdPrioritizationVignette(vignette: string, stem?: string): boolean {
+  const blob = [vignette, stem].filter(Boolean).join("\n").toLowerCase();
+  const roomCount = countAssignmentRooms(vignette);
+  const multiClient =
+    /\b(?:four clients|assigned(?:\s+to)?\s+four|four assigned clients)\b/.test(blob) || roomCount >= 3;
+  const pediatricEd =
+    /\b(?:pediatric emergency|peds ed|pediatric ed|children'?s emergency)\b/.test(blob) ||
+    (/\b(?:week-old|\d+-week-old|(?:[0-9]|1[0-7])-year-old)\b/.test(vignette) &&
+      /\bemergency\b/.test(blob));
+  return multiClient && pediatricEd;
+}
+
+function extractEdRoomCases(vignette: string): Array<{ room: string; text: string }> {
+  return extractAssignmentRoomCases(vignette);
+}
+
+function scoreEdUrgency(text: string): number {
+  const t = text.toLowerCase();
+  if (
+    /\b(?:urticaria|stridor|angioedema|facial|tongue swelling)\b/.test(t) &&
+    (/\b(?:ceftriaxone|cef(?:triaxone|epime)|allerg|anaphy)\b/.test(t) ||
+      /\bbp\s*(?:of\s*)?(?:7[0-9]|8[0-4])\//.test(t))
+  ) {
+    return 100;
+  }
+  if (/\b(?:substernal pressure|chest pain|troponin|diaphoresis|myocardial)\b/.test(t)) {
+    return 85;
+  }
+  if (/\b(?:glucose 3[89]\d|glucose 4\d\d|out of insulin|dka|diabetic ketoacidosis)\b/.test(t)) {
+    return 70;
+  }
+  if (/\b(?:psych|anxiety|contract for safety|suicidal plan|voluntary psych)\b/.test(t)) {
+    return 20;
+  }
+  return 0;
+}
+
+function summarizeEdCase(text: string): string {
+  const t = text.toLowerCase();
+  if (/\b(?:urticaria|stridor|ceftriaxone)\b/.test(t)) {
+    return "34-year-old with anaphylaxis after IV ceftriaxone (hypotension, urticaria, angioedema, stridor, hypoxemia)";
+  }
+  if (/\b(?:substernal pressure|troponin)\b/.test(t)) {
+    return "58-year-old with substernal chest pressure and diaphoresis, troponin pending";
+  }
+  if (/\b(?:glucose 3[89]\d|glucose 4\d\d|out of insulin)\b/.test(t)) {
+    return "57-year-old with hyperglycemia after 48 hours without insulin";
+  }
+  if (/\b(?:psych|anxiety|contract for safety)\b/.test(t)) {
+    return "22-year-old voluntary psych admission with stable vitals and no suicidal plan";
+  }
+  return text.length > 120 ? `${text.slice(0, 117)}...` : text;
+}
+
+function isEmergencyDepartmentPrioritizationVignette(vignette: string, stem?: string): boolean {
+  const blob = [vignette, stem].filter(Boolean).join("\n").toLowerCase();
+  const roomCount = vignette.match(/\broom \d+\b/gi)?.length ?? 0;
+  const multiClient =
+    /\b(?:four clients|assigned four|four assigned clients|assignment context)\b/.test(blob) ||
+    roomCount >= 3;
+  const edUnit =
+    /\b(?:emergency department|\bed\b)\b/.test(blob) &&
+    !/\b(?:pediatric emergency|peds ed|pediatric ed|children'?s emergency)\b/.test(blob);
+  return multiClient && edUnit;
+}
+
+function optionsRelateToEdPrioritization(options: string[]): boolean {
+  return options.some((o) =>
+    /room \d+|anaphy|epinephrine|stridor|urticaria|ceftriaxone|chest pain|troponin|hyperglycemia|glucose|see first|highest priority|prioritize/i.test(
+      o
+    )
+  );
+}
+
+export function isEmergencyDepartmentPrioritizationOptionsMismatch(item: BankItem): boolean {
+  const vignette = resolveNaplexVignette(item);
+  const stem = resolveNaplexStem(item);
+  if (!isEmergencyDepartmentPrioritizationVignette(vignette, stem) || !hasMcqOptions(item)) return false;
+  if (allOptionsFireSafetyMisplaced(item.options)) return true;
+  return (
+    /highest priority|see first|which client|prioritize for immediate assessment|assess first/i.test(stem) &&
+    !optionsRelateToEdPrioritization(item.options)
+  );
+}
+
+function optionsRelateToPediatricPrioritization(options: string[]): boolean {
+  return options.some((o) =>
+    /room \d+|asthma|spo?₂?|hypox|retractions|infant|lethargic|fracture|vomiting|see first|highest priority|forearm deformity/i.test(
+      o
+    )
+  );
+}
+
+function extractPediatricEdRoomCases(vignette: string): Array<{ room: string; text: string }> {
+  return extractAssignmentRoomCases(vignette);
+}
+
+function scorePediatricEdUrgency(text: string): number {
+  const t = text.toLowerCase();
+  if (
+    /\basthma\b/.test(t) &&
+    (/\bspo?₂?\s*8[0-9]|88%|retractions|short phrases|rr\s*3[0-9]/i.test(t))
+  ) {
+    return 100;
+  }
+  if (/\b(?:week-old|infant)\b/.test(t) && /\b(?:lethargic|102|fever|poor feeding|capillary refill)/i.test(t)) {
+    return 80;
+  }
+  if (/\b(?:deformity|fracture|fall)\b/.test(t) && /\bneurovascular intact/i.test(t)) {
+    return 50;
+  }
+  if (/\b(?:vomiting|diarrhea)\b/.test(t) && /\balert\b/.test(t)) {
+    return 30;
+  }
+  return 0;
+}
+
+function summarizePediatricEdCase(text: string): string {
+  const t = text.toLowerCase();
+  if (/\basthma\b/.test(t)) {
+    return "9-year-old with asthma exacerbation, SpO₂ 88% on room air, intercostal retractions, and tachypnea";
+  }
+  if (/\b(?:week-old|infant)\b/.test(t)) {
+    return "6-week-old infant with fever, lethargy, and poor feeding";
+  }
+  if (/\b(?:deformity|fracture|fall)\b/.test(t)) {
+    return "14-year-old with forearm deformity after a fall but intact neurovascular status";
+  }
+  if (/\b(?:vomiting|diarrhea)\b/.test(t)) {
+    return "4-year-old with vomiting and diarrhea who remains alert and drinking";
+  }
+  return text.length > 120 ? `${text.slice(0, 117)}...` : text;
+}
+
+export function isPediatricEdPrioritizationOptionsMismatch(item: BankItem): boolean {
+  const vignette = resolveNaplexVignette(item);
+  const stem = resolveNaplexStem(item);
+  if (!isPediatricEdPrioritizationVignette(vignette, stem) || !hasMcqOptions(item)) return false;
+  if (allOptionsColonCancerScreeningMisplaced(item.options)) return true;
+  if (allOptionsWoundCareMisplaced(item.options)) return true;
+  if (allOptionsChartReviewMisplaced(item.options)) return true;
+  if (allOptionsAmbulationFallPreventionMisplaced(item.options)) return true;
+  if (allOptionsMedicationCounselingMisplaced(item.options)) return true;
+  return (
+    /highest priority|see first|which client|prioritize for immediate assessment/i.test(stem) &&
+    !optionsRelateToPediatricPrioritization(item.options)
+  );
+}
+
+function isLaborDeliveryPrioritizationVignette(vignette: string, stem?: string): boolean {
+  const blob = [vignette, stem].filter(Boolean).join("\n").toLowerCase();
+  const roomCount = vignette.match(/\broom \d+\b/gi)?.length ?? 0;
+  const multiClient =
+    /\b(?:four clients|assigned four|four assigned clients|assignment context)\b/.test(blob) ||
+    roomCount >= 3;
+  const ldUnit =
+    /\b(?:labor and delivery|\bl&d\b|postpartum hour|active labor|cervical exam|g1p0)\b/.test(blob) ||
+    (/\b\d+ weeks\b/.test(vignette) &&
+      /\b(?:preeclampsia|fetal movement|uterus boggy|postpartum)\b/.test(vignette));
+  return multiClient && ldUnit;
+}
+
+function optionsRelateToObstetricPrioritization(options: string[]): boolean {
+  return options.some((o) =>
+    /room \d+|preeclampsia|postpartum hemorrhage|fetal movement|active labor|see first|highest priority|magnesium|uterotonic|clonus|boggy uterus/i.test(
+      o
+    )
+  );
+}
+
+function extractLaborDeliveryRoomCases(vignette: string): Array<{ room: string; text: string }> {
+  const re = /\bRoom\s+(\d+)\s*:\s*/gi;
+  const markers: Array<{ room: string; start: number }> = [];
+  let match: RegExpExecArray | null;
+  while ((match = re.exec(vignette)) !== null) {
+    markers.push({ room: match[1]!, start: match.index + match[0].length });
+  }
+  return markers.map((entry, index) => ({
+    room: entry.room,
+    text: vignette.slice(entry.start, markers[index + 1]?.start ?? vignette.length).trim().replace(/\.\s*$/, ""),
+  }));
+}
+
+function scoreLaborDeliveryUrgency(text: string): number {
+  const t = text.toLowerCase();
+  if (
+    (/\b(?:clonus|hyperreflexia|epigastric pain)\b/.test(t) || /\b1(?:6[89]|7\d)\/\d{2,3}\b/.test(t)) &&
+    /\b(?:protein|headache|\bg1p0\b|\d+ weeks)\b/.test(t)
+  ) {
+    return 100;
+  }
+  if (/\b(?:boggy|saturated perineal pad|postpartum hour|heavy bleeding)\b/.test(t)) {
+    return 90;
+  }
+  if (/\bdecreased fetal movement\b/.test(t)) {
+    return 70;
+  }
+  if (/\b(?:active labor|cervical exam|\d+ cm)\b/.test(t)) {
+    return 40;
+  }
+  return 0;
+}
+
+function summarizeLaborDeliveryCase(text: string): string {
+  const t = text.toLowerCase();
+  if (/\b(?:clonus|hyperreflexia|epigastric|168\/104)\b/.test(t) && /\b(?:protein|headache|\bg1p0\b)/.test(t)) {
+    return "29-year-old at 36 weeks with preeclampsia with severe features (BP 168/104, headache, epigastric pain, 3+ protein, clonus)";
+  }
+  if (/\b(?:boggy|saturated perineal pad|postpartum)\b/.test(t)) {
+    return "postpartum client with boggy uterus and heavy bleeding";
+  }
+  if (/\bdecreased fetal movement\b/.test(t)) {
+    return "client with decreased fetal movement requiring fetal assessment";
+  }
+  if (/\b(?:active labor|cervical exam)\b/.test(t)) {
+    return "stable active labor at 7 cm";
+  }
+  return text.length > 120 ? `${text.slice(0, 117)}...` : text;
+}
+
+export function isLaborDeliveryPrioritizationOptionsMismatch(item: BankItem): boolean {
+  const vignette = resolveNaplexVignette(item);
+  const stem = resolveNaplexStem(item);
+  if (!isLaborDeliveryPrioritizationVignette(vignette, stem) || !hasMcqOptions(item)) return false;
+  if (allOptionsWarfarinAnticoagMisplaced(item.options)) return true;
+  if (allOptionsGeneralWellnessMisplaced(item.options)) return true;
+  if (allOptionsObstetricWellnessMisplaced(item.options)) return true;
+  return (
+    /highest priority|see first|which client|assess first/i.test(stem) &&
+    !optionsRelateToObstetricPrioritization(item.options)
+  );
+}
+
+function isMedSurgPrioritizationVignette(vignette: string, stem?: string): boolean {
+  const blob = [vignette, stem].filter(Boolean).join("\n").toLowerCase();
+  const roomCount = vignette.match(/\broom \d+\b/gi)?.length ?? 0;
+  const multiClient =
+    /\b(?:four clients|assigned four|four assigned clients|assignment context)\b/.test(blob) ||
+    roomCount >= 3;
+  const medSurg =
+    /\b(?:medical-surgical|med-surg|med surg)\b/.test(blob) ||
+    (roomCount >= 3 &&
+      /\b(?:post-op|heart failure|\bcopd\b|atrial fibrillation|pca morphine|knee replacement)\b/.test(
+        vignette
+      ));
+  return multiClient && medSurg;
+}
+
+function optionsRelateToMedSurgPrioritization(options: string[]): boolean {
+  return options.some((o) =>
+    /room \d+|respiratory rate|spo?₂?|morphine|opioid|naloxone|heart failure|copd|atrial fibrillation|see first|highest priority|hypotension|crackles/i.test(
+      o
+    )
+  );
+}
+
+export function isMedSurgPrioritizationOptionsMismatch(item: BankItem): boolean {
+  const vignette = resolveNaplexVignette(item);
+  const stem = resolveNaplexStem(item);
+  if (!isMedSurgPrioritizationVignette(vignette, stem) || !hasMcqOptions(item)) return false;
+  if (allOptionsFluVaccineMisplaced(item.options)) return true;
+  return (
+    /highest priority|see first|which client/i.test(stem) &&
+    !optionsRelateToMedSurgPrioritization(item.options)
+  );
+}
+
+function isAcuteDecompensatedHeartFailureVignette(vignette: string): boolean {
+  const v = vignette.toLowerCase();
+  return (
+    /\b(?:acute decompensated heart failure|decompensated heart failure|\badhf\b|fluid overload|volume overload)\b/.test(
+      v
+    ) ||
+    (/\b(?:heart failure|\bhf\b|\bchf\b)\b/.test(v) &&
+      /\b(?:furosemide|crackles|pitting edema|weight up|2\+ edema|jugular)\b/.test(v))
+  );
+}
+
+function optionsRelateToHeartFailureDecompensation(options: string[]): boolean {
+  return options.some((o) =>
+    /furosemide|diuretic|fluid|overload|crackles|edema|hypotension|orthostatic|oxygen|heart failure|weight gain|lasix|afterload|preload|prescriber/i.test(
+      o
+    )
+  );
+}
+
+export function isAcuteDecompensatedHeartFailureOptionsMismatch(item: BankItem): boolean {
+  const vignette = resolveNaplexVignette(item);
+  if (!isAcuteDecompensatedHeartFailureVignette(vignette) || !hasMcqOptions(item)) return false;
+  if (allOptionsDiabeticEyeCareMisplaced(item.options)) return true;
+  return (
+    (/requires immediate nursing follow-up|finding requires immediate/i.test(resolveNaplexStem(item)) ||
+      /assessment finding should the nurse address first|finding should the nurse address/i.test(
+        resolveNaplexStem(item)
+      )) &&
+    !optionsRelateToHeartFailureDecompensation(item.options)
+  );
+}
+
+function isWarfarinBleedingVignette(vignette: string): boolean {
+  const v = vignette.toLowerCase();
+  const anticoag =
+    /\b(?:warfarin|coumadin|\binr\b|anticoagulation|deep vein thrombosis|\bdvt\b)\b/.test(v);
+  const bleedingOrSupratherapeutic =
+    /\b(?:nosebleed|epistaxis|melena|tarry stool|dark stool|gum bleeding|hematuria|bleeding|hemorrhage)\b/.test(
+      v
+    ) || /\binr\s*(?:of\s*)?(?:[4-9]\.\d|[4-9]\b|3\.[5-9])/.test(v);
+  return anticoag && bleedingOrSupratherapeutic;
+}
+
+function optionsRelateToWarfarinBleeding(options: string[]): boolean {
+  return options.some((o) =>
+    /warfarin|inr|vitamin k|hold.*dose|bleed|melena|epistaxis|nosebleed|reversal|anticoag|notify|prescriber|provider|hemoglobin|ffp|prothrombin complex|tarry stool/i.test(
+      o
+    )
+  );
+}
+
+export function isWarfarinBleedingOptionsMismatch(item: BankItem): boolean {
+  const vignette = resolveNaplexVignette(item);
+  if (!isWarfarinBleedingVignette(vignette) || !hasMcqOptions(item)) return false;
+  if (allOptionsOpioidAirwayMisplaced(item.options)) return true;
+  return (
+    (/requires immediate nursing follow-up|finding requires immediate/i.test(resolveNaplexStem(item)) ||
+      /assessment finding should the nurse address first|finding should the nurse address/i.test(
+        resolveNaplexStem(item)
+      )) &&
+    !optionsRelateToWarfarinBleeding(item.options)
+  );
+}
+
+function isUpperGiBleedHemorrhageVignette(vignette: string): boolean {
+  const v = vignette.toLowerCase();
+  const bleedContext =
+    /\b(?:upper gastrointestinal bleed|upper gi bleed|\bugib\b|gastrointestinal bleed|gi bleed|melena|hematemesis|coffee-ground|peptic ulcer)\b/.test(
+      v
+    );
+  const instability =
+    /\b(?:hypotension|pale|cool extremities|lightheaded|capillary refill|hemoglobin|hgb)\b/.test(v) ||
+    /\bbp\s*(?:of\s*)?\d{2}\/\d{2}\b/.test(v) ||
+    /\b(?:7\.\d|8\.\d)\s*g\/dl\b/.test(v);
+  return bleedContext && instability;
+}
+
+function optionsRelateToGiBleed(options: string[]): boolean {
+  return options.some((o) =>
+    /bleed|hemorrhage|melena|hemoglobin|transfusion|iv access|fluid resuscitation|notify|prescriber|endoscopy|ppi|aspirin|orthostatic|hypotension|blood pressure/i.test(
+      o
+    )
+  );
+}
+
+export function isUpperGiBleedOptionsMismatch(item: BankItem): boolean {
+  const vignette = resolveNaplexVignette(item);
+  if (!isUpperGiBleedHemorrhageVignette(vignette) || !hasMcqOptions(item)) return false;
+  if (allOptionsDiabetesEducationMisplaced(item.options)) return true;
+  return (
+    (/requires immediate nursing follow-up|finding requires immediate/i.test(resolveNaplexStem(item)) ||
+      /assessment finding should the nurse address first|finding should the nurse address/i.test(
+        resolveNaplexStem(item)
+      )) &&
+    !optionsRelateToGiBleed(item.options)
+  );
+}
+
+export function clinicalVignetteUnrelatedOptionsIssue(item: BankItem): { codes: string[] } | null {
+  if (isAnaphylaxisEmergencyOptionsMismatch(item)) {
+    return { codes: ["naplex_clinical_vignette_unrelated_options"] };
+  }
+  if (isSeverePreeclampsiaOptionsMismatch(item)) {
+    return { codes: ["naplex_clinical_vignette_unrelated_options"] };
+  }
+  if (isPsychiatricSuicideRiskOptionsMismatch(item)) {
+    return { codes: ["naplex_clinical_vignette_unrelated_options"] };
+  }
+  if (isPsychiatricUnitPrioritizationOptionsMismatch(item)) {
+    return { codes: ["naplex_clinical_vignette_unrelated_options"] };
+  }
+  if (isPostpartumHemorrhageOptionsMismatch(item)) {
+    return { codes: ["naplex_clinical_vignette_unrelated_options"] };
+  }
+  if (isEmergencyDepartmentPrioritizationOptionsMismatch(item)) {
+    return { codes: ["naplex_clinical_vignette_unrelated_options"] };
+  }
+  if (isPediatricEdPrioritizationOptionsMismatch(item)) {
+    return { codes: ["naplex_clinical_vignette_unrelated_options"] };
+  }
+  if (isLaborDeliveryPrioritizationOptionsMismatch(item)) {
+    return { codes: ["naplex_clinical_vignette_unrelated_options"] };
+  }
+  if (isMedSurgPrioritizationOptionsMismatch(item)) {
+    return { codes: ["naplex_clinical_vignette_unrelated_options"] };
+  }
+  if (isAcuteDecompensatedHeartFailureOptionsMismatch(item)) {
+    return { codes: ["naplex_clinical_vignette_unrelated_options"] };
+  }
+  if (isUpperGiBleedOptionsMismatch(item)) {
+    return { codes: ["naplex_clinical_vignette_unrelated_options"] };
+  }
+  if (isWarfarinBleedingOptionsMismatch(item)) {
+    return { codes: ["naplex_clinical_vignette_unrelated_options"] };
+  }
+  return null;
+}
+
+export function detectClinicalVignetteUnrelatedOptions(item: BankItem): NaplexFormatIssue | null {
+  const issue = clinicalVignetteUnrelatedOptionsIssue(item);
+  if (!issue) return null;
+  return {
+    code: "naplex_clinical_vignette_unrelated_options",
+    message:
+      "Acute clinical emergency vignette is paired with unrelated wellness or lifestyle answer choices instead of appropriate emergency management.",
+    severity: "error",
+  };
+}
+
+export function buildSeverePreeclampsiaEmergencyMcq(item: BankItem): BankItem {
+  const vignette =
+    resolveNaplexVignette(item) ||
+    "A pregnant patient at term develops preeclampsia with severe features including elevated blood pressure, proteinuria, headache, epigastric pain, and clonus.";
+  const options = [
+    "Recognize preeclampsia with severe features as an obstetric emergency; initiate magnesium sulfate for seizure prophylaxis, antihypertensive therapy per protocol, close maternal-fetal monitoring, and coordinate expedited delivery evaluation.",
+    "Provide counseling on safe weight loss during pregnancy as the priority intervention.",
+    "Encourage small, frequent meals for nausea without addressing blood pressure or neurologic symptoms.",
+    "Refer to a dietitian for nutritional counseling before initiating magnesium or blood pressure management.",
+  ] as BankItem["options"];
+  const correctAnswer = options[0]!;
+  return {
+    ...item,
+    vignette,
+    scenario: vignette,
+    question: "What is the most appropriate immediate action?",
+    options,
+    correctAnswer,
+    explanation:
+      "Correct: Treat as preeclampsia with severe features — BP 168/104 mmHg, 3+ proteinuria, severe headache, epigastric pain, and clonus indicate severe disease with eclampsia/HELLP risk. Management requires magnesium sulfate seizure prophylaxis, controlled antihypertensive therapy, maternal-fetal monitoring, and delivery planning per ACOG guidance. Weight-loss counseling, nausea meal advice, or dietitian referral alone ignore life-threatening hypertension and neurologic warning signs. Hydration assessment alone does not address the primary obstetric emergency.",
+    itemType: "vignette",
+    ngnPayload: undefined,
+    subjectId: item.subjectId || "patient-counseling",
+    topicCategory: item.topicCategory ?? "Severe Preeclampsia",
+  };
+}
+
+export function buildPsychiatricUnitPrioritizationMcq(item: BankItem): BankItem {
+  const vignette =
+    resolveNaplexVignette(item) ||
+    "A nurse on an inpatient psychiatric unit is assigned multiple clients requiring prioritization.";
+  const roomCases = extractAssignmentRoomCases(vignette);
+  const priorityCase =
+    roomCases.length > 0
+      ? [...roomCases].sort((a, b) => scorePsychiatricUrgency(b.text) - scorePsychiatricUrgency(a.text))[0]!
+      : null;
+  const priorityRoom = priorityCase?.room ?? "135";
+  const priorityLabel = priorityCase
+    ? `Room ${priorityCase.room} — ${summarizePsychiatricCase(priorityCase.text)}`
+    : "Room 135 — 19-year-old with depression, stated suicide plan, and written goodbye note";
+
+  const distractorCases = roomCases.filter((c) => c.room !== priorityRoom);
+  const defaultDistractors = [
+    { room: "132", text: "45-year-old in alcohol withdrawal with tachycardia, tremors, and diaphoresis" },
+    { room: "138", text: "28-year-old in manic episode with pacing and pressured speech who refused lithium" },
+    { room: "129", text: "52-year-old voluntary admission for grief with safety contract and no SI/HI" },
+  ];
+  const distractors =
+    distractorCases.length >= 3
+      ? distractorCases.slice(0, 3)
+      : defaultDistractors.filter((d) => d.room !== priorityRoom);
+
+  const options = [
+    `${priorityLabel}; assess this client first because imminent suicide risk takes priority.`,
+    `Room ${distractors[0]?.room ?? "132"} — ${summarizePsychiatricCase(distractors[0]?.text ?? "45-year-old in alcohol withdrawal with tachycardia, tremors, and diaphoresis")}; defer assessment until minor headache complaints are addressed.`,
+    `Room ${distractors[1]?.room ?? "138"} — ${summarizePsychiatricCase(distractors[1]?.text ?? "28-year-old in manic episode with pacing and pressured speech who refused lithium")}; prioritize routine blood pressure documentation before suicide risk assessment.`,
+    `Room ${distractors[2]?.room ?? "129"} — ${summarizePsychiatricCase(distractors[2]?.text ?? "52-year-old voluntary admission for grief with safety contract and no SI/HI")}; see this client before the patient with a stated suicide plan and goodbye note.`,
+  ] as BankItem["options"];
+  const correctAnswer = options[0]!;
+  return {
+    ...item,
+    vignette,
+    scenario: vignette,
+    question: "Four clients require attention. Which client is the highest priority for the nurse to see first?",
+    options,
+    correctAnswer,
+    explanation:
+      `Correct: See Room ${priorityRoom} first — depression with a stated suicide plan and written goodbye note indicates high imminent self-harm risk requiring immediate assessment, suicide precautions, and prescriber notification. Alcohol withdrawal with tachycardia (Room 132) is also urgent but typically follows active suicidal ideation with plan and means. Manic episode and stable grief admission are lower triage priorities. Headache relief, routine blood pressure values, nosebleeds, and bruising are unrelated to psychiatric unit triage.`,
+    itemType: "vignette",
+    ngnPayload: undefined,
+    subjectId: item.subjectId || "patient-counseling",
+    topicCategory: item.topicCategory ?? "Psychiatric Unit Prioritization",
+  };
+}
+
+export function buildPsychiatricSuicideRiskMcq(item: BankItem): BankItem {
+  const vignette =
+    resolveNaplexVignette(item) ||
+    "An inpatient with major depressive disorder and active suicidal ideation is admitted after expressing a plan to overdose.";
+  const options = [
+    "Implement suicide precautions immediately: maintain continuous or line-of-sight observation, remove access to lethal means, conduct a focused suicide risk assessment (plan, intent, means), and notify the prescriber per unit protocol.",
+    "Provide pre-procedure teaching about what to expect during the procedure.",
+    "Reassure the patient that the upcoming procedure is routine and low risk.",
+    "Explain clear-liquid diet instructions before addressing suicidal statements or the goodbye note.",
+  ] as BankItem["options"];
+  const correctAnswer = options[0]!;
+  return {
+    ...item,
+    vignette,
+    scenario: vignette,
+    question: "What is the most appropriate immediate action?",
+    options,
+    correctAnswer,
+    explanation:
+      "Correct: Implement suicide precautions and urgent risk assessment — active suicidal ideation with a stated overdose plan and a written goodbye note indicates high imminent risk on an inpatient psychiatric unit. Priority actions include continuous or line-of-sight observation, removal of lethal means, focused assessment of plan/intent/means, and prescriber notification per protocol. Pre-procedure teaching, routine reassurance, or diet instructions ignore acute suicide risk and are unsafe delays.",
+    itemType: "vignette",
+    ngnPayload: undefined,
+    subjectId: item.subjectId || "patient-counseling",
+    topicCategory: item.topicCategory ?? "Suicide Risk Precautions",
+  };
+}
+
+export function buildPostpartumHemorrhageEmergencyMcq(item: BankItem): BankItem {
+  const vignette =
+    resolveNaplexVignette(item) ||
+    "A postpartum patient develops heavy vaginal bleeding with a boggy uterus and tachycardia shortly after delivery.";
+  const options = [
+    "Recognize postpartum hemorrhage from uterine atony; continue fundal massage, administer uterotonic therapy per protocol (e.g., oxytocin, methylergonovine, or carboprost), establish IV access with fluid/blood resuscitation, quantify blood loss, notify the provider immediately, and prepare for surgical escalation if bleeding persists.",
+    "Notify the healthcare provider of lethargy as the sole priority without addressing ongoing hemorrhage or hypotension.",
+    "Increase the oxygen flow rate without uterotonic therapy or hemorrhage assessment.",
+    "Prepare the client for a chest X-ray before managing the boggy uterus and active bleeding.",
+  ] as BankItem["options"];
+  const correctAnswer = options[0]!;
+  return {
+    ...item,
+    vignette,
+    scenario: vignette,
+    question: "What is the most appropriate immediate action?",
+    options,
+    correctAnswer,
+    explanation:
+      "Correct: Treat postpartum hemorrhage from uterine atony — saturated perineal pad, boggy uterus above the umbilicus, tachycardia, and hypotension (94/60) after delivery indicate ongoing hemorrhage with early shock. Management requires continued fundal massage, uterotonic medications, IV resuscitation, blood loss quantification, immediate provider notification, and readiness for procedural escalation. Lethargy is not the documented finding and does not replace hemorrhage management. Oxygen titration or chest imaging does not address uterine atony as the primary cause of bleeding.",
+    itemType: "vignette",
+    ngnPayload: undefined,
+    subjectId: item.subjectId || "patient-counseling",
+    topicCategory: item.topicCategory ?? "Postpartum Hemorrhage",
+  };
+}
+
+export function buildEmergencyDepartmentPrioritizationMcq(item: BankItem): BankItem {
+  const vignette =
+    resolveNaplexVignette(item) ||
+    "A nurse in an emergency department is assigned multiple clients requiring prioritization.";
+  const roomCases = extractEdRoomCases(vignette);
+  const priorityCase =
+    roomCases.length > 0
+      ? [...roomCases].sort((a, b) => scoreEdUrgency(b.text) - scoreEdUrgency(a.text))[0]!
+      : null;
+  const priorityRoom = priorityCase?.room ?? "136";
+  const priorityLabel = priorityCase
+    ? `Room ${priorityCase.room} — ${summarizeEdCase(priorityCase.text)}`
+    : "Room 136 — 34-year-old with anaphylaxis after IV ceftriaxone (hypotension, urticaria, angioedema, stridor, hypoxemia)";
+
+  const distractorCases = roomCases.filter((c) => c.room !== priorityRoom);
+  const defaultDistractors = [
+    { room: "139", text: "58-year-old with substernal chest pressure and diaphoresis, troponin pending" },
+    { room: "134", text: "57-year-old with hyperglycemia after 48 hours without insulin" },
+    { room: "143", text: "22-year-old voluntary psych admission with stable vitals and no suicidal plan" },
+  ];
+  const distractors =
+    distractorCases.length >= 3
+      ? distractorCases.slice(0, 3)
+      : defaultDistractors.filter((d) => d.room !== priorityRoom);
+
+  const options = [
+    `${priorityLabel}; assess this client first because anaphylaxis with airway compromise is an immediate life threat.`,
+    `Room ${distractors[0]?.room ?? "139"} — ${summarizeEdCase(distractors[0]?.text ?? "58-year-old with substernal chest pressure and diaphoresis, troponin pending")}; defer assessment until fire safety education is completed.`,
+    `Room ${distractors[1]?.room ?? "134"} — ${summarizeEdCase(distractors[1]?.text ?? "57-year-old with hyperglycemia after 48 hours without insulin")}; prioritize smoke detector counseling before treating hyperglycemia.`,
+    `Room ${distractors[2]?.room ?? "143"} — ${summarizeEdCase(distractors[2]?.text ?? "22-year-old voluntary psych admission with stable vitals and no suicidal plan")}; see this client before the hypotensive patient with stridor.`,
+  ] as BankItem["options"];
+  const correctAnswer = options[0]!;
+  return {
+    ...item,
+    vignette,
+    scenario: vignette,
+    question: "Four clients require attention. Which client is the highest priority for the nurse to see first?",
+    options,
+    correctAnswer,
+    explanation:
+      `Correct: See Room ${priorityRoom} first — anaphylaxis after IV ceftriaxone with BP 74/42 mmHg, tachycardia, hypoxemia, urticaria, angioedema, and stridor is an immediate airway and circulation emergency requiring epinephrine, airway support, IV fluids, oxygen, and discontinuation of the offending agent. Chest pain with troponin pending and severe hyperglycemia are urgent but the patient with stridor and shock physiology takes ABC priority. Stable voluntary psych admission is lowest acuity. Fire escape plans and smoke detector counseling are unrelated to ED triage.`,
+    itemType: "vignette",
+    ngnPayload: undefined,
+    subjectId: item.subjectId || "patient-counseling",
+    topicCategory: item.topicCategory ?? "Emergency Department Prioritization",
+  };
+}
+
+export function buildPediatricEdPrioritizationMcq(item: BankItem): BankItem {
+  const vignette =
+    resolveNaplexVignette(item) ||
+    "A nurse in a pediatric emergency department is assigned multiple clients requiring prioritization.";
+  const roomCases = extractPediatricEdRoomCases(vignette);
+  const priorityCase =
+    roomCases.length > 0
+      ? [...roomCases].sort((a, b) => scorePediatricEdUrgency(b.text) - scorePediatricEdUrgency(a.text))[0]!
+      : null;
+  const priorityRoom = priorityCase?.room ?? "107";
+  const priorityLabel = priorityCase
+    ? `Room ${priorityCase.room} — ${summarizePediatricEdCase(priorityCase.text)}`
+    : "Room 107 — 9-year-old with asthma exacerbation, SpO₂ 88% on room air, intercostal retractions, and tachypnea";
+
+  const distractorCases = roomCases.filter((c) => c.room !== priorityRoom);
+  const defaultDistractors = [
+    { room: "110", text: "6-week-old infant with fever, lethargy, and poor feeding" },
+    { room: "113", text: "14-year-old with forearm deformity after a fall but intact neurovascular status" },
+    { room: "106", text: "4-year-old with vomiting and diarrhea who remains alert and drinking" },
+  ];
+  const distractors =
+    distractorCases.length >= 3
+      ? distractorCases.slice(0, 3)
+      : defaultDistractors.filter((d) => d.room !== priorityRoom);
+
+  const options = [
+    `${priorityLabel}; assess this client first because airway and breathing compromise take priority.`,
+    `Room ${distractors[0]?.room ?? "110"} — ${summarizePediatricEdCase(distractors[0]?.text ?? "6-week-old infant with fever, lethargy, and poor feeding")}; defer assessment until all lower-acuity clients are seen.`,
+    `Room ${distractors[1]?.room ?? "113"} — ${summarizePediatricEdCase(distractors[1]?.text ?? "14-year-old with forearm deformity after a fall but intact neurovascular status")}; this musculoskeletal injury outranks hypoxemia.`,
+    `Room ${distractors[2]?.room ?? "106"} — ${summarizePediatricEdCase(distractors[2]?.text ?? "4-year-old with vomiting and diarrhea who remains alert and drinking")}; prioritize this client before the hypoxemic child with retractions.`,
+  ] as BankItem["options"];
+  const correctAnswer = options[0]!;
+  return {
+    ...item,
+    vignette,
+    scenario: vignette,
+    question: "Four clients require attention. Which client is the highest priority for the nurse to see first?",
+    options,
+    correctAnswer,
+    explanation:
+      `Correct: See Room ${priorityRoom} first — the child with known asthma, hypoxemia (SpO₂ 88%), tachypnea, retractions, and short phrases of speech has acute respiratory compromise. ABC prioritization places unstable airway/breathing before the febrile lethargic infant, the stable neurovascular fracture, and the alert dehydrated toddler. Chart review items such as medication history or diet orders are unrelated to pediatric ED triage.`,
+    itemType: "vignette",
+    ngnPayload: undefined,
+    subjectId: item.subjectId || "patient-counseling",
+    topicCategory: item.topicCategory ?? "Pediatric ED Prioritization",
+  };
+}
+
+export function buildLaborDeliveryPrioritizationMcq(item: BankItem): BankItem {
+  const vignette =
+    resolveNaplexVignette(item) ||
+    "A nurse on a labor and delivery unit is assigned multiple obstetric clients requiring prioritization.";
+  const roomCases = extractLaborDeliveryRoomCases(vignette);
+  const priorityCase =
+    roomCases.length > 0
+      ? [...roomCases].sort((a, b) => scoreLaborDeliveryUrgency(b.text) - scoreLaborDeliveryUrgency(a.text))[0]!
+      : null;
+  const priorityRoom = priorityCase?.room ?? "42";
+  const priorityLabel = priorityCase
+    ? `Room ${priorityCase.room} — ${summarizeLaborDeliveryCase(priorityCase.text)}`
+    : "Room 42 — 29-year-old at 36 weeks with preeclampsia with severe features (BP 168/104, headache, epigastric pain, 3+ protein, clonus)";
+
+  const distractorCases = roomCases.filter((c) => c.room !== priorityRoom);
+  const defaultDistractors = [
+    { room: "44", text: "postpartum client with boggy uterus and heavy bleeding" },
+    { room: "47", text: "client with decreased fetal movement requiring fetal assessment" },
+    { room: "40", text: "stable active labor at 7 cm" },
+  ];
+  const distractors =
+    distractorCases.length >= 3
+      ? distractorCases.slice(0, 3)
+      : defaultDistractors.filter((d) => d.room !== priorityRoom);
+
+  const options = [
+    `${priorityLabel}; assess this client first because eclampsia risk takes priority.`,
+    `Room ${distractors[0]?.room ?? "44"} — ${summarizeLaborDeliveryCase(distractors[0]?.text ?? "postpartum client with boggy uterus and heavy bleeding")}; defer assessment until wellness counseling is completed.`,
+    `Room ${distractors[1]?.room ?? "47"} — ${summarizeLaborDeliveryCase(distractors[1]?.text ?? "client with decreased fetal movement requiring fetal assessment")}; prioritize diet and exercise education before fetal assessment.`,
+    `Room ${distractors[2]?.room ?? "40"} — ${summarizeLaborDeliveryCase(distractors[2]?.text ?? "stable active labor at 7 cm")}; see this client before the hypertensive client with clonus.`,
+  ] as BankItem["options"];
+  const correctAnswer = options[0]!;
+  return {
+    ...item,
+    vignette,
+    scenario: vignette,
+    question: "Four clients require attention. Which client is the highest priority for the nurse to see first?",
+    options,
+    correctAnswer,
+    explanation:
+      `Correct: See Room ${priorityRoom} first — preeclampsia with severe features (BP ≥160/110, headache, epigastric pain, proteinuria, clonus) is an obstetric emergency requiring immediate evaluation and magnesium sulfate/antihypertensive therapy per protocol. Postpartum hemorrhage and decreased fetal movement also require prompt assessment but severe antepartum preeclampsia with neurologic findings typically takes priority over stable labor. Dietitian referral, exercise planning, and general health screening are unrelated to acute labor and delivery triage.`,
+    itemType: "vignette",
+    ngnPayload: undefined,
+    subjectId: item.subjectId || "patient-counseling",
+    topicCategory: item.topicCategory ?? "Labor Delivery Prioritization",
+  };
+}
+
+export function buildMedSurgPrioritizationMcq(item: BankItem): BankItem {
+  const vignette =
+    resolveNaplexVignette(item) ||
+    "A nurse on a medical-surgical unit is assigned multiple clients requiring prioritization.";
+  const options = [
+    "Room 518 — post-op day 1 on PCA morphine with respiratory rate 8/min, somnolence, and pinpoint pupils; assess this client first for opioid-induced respiratory depression and prepare for naloxone and airway support.",
+    "Room 523 — heart failure with hypotension and crackles; prioritize influenza vaccination before addressing hypoxemia and volume overload.",
+    "Room 510 — COPD exacerbation with SpO₂ 86%; defer bronchodilator escalation until flu vaccine contraindications are reviewed.",
+    "Room 516 — new atrial fibrillation with HR 138; see this client before the somnolent patient with RR 8 on PCA morphine.",
+  ] as BankItem["options"];
+  const correctAnswer = options[0]!;
+  return {
+    ...item,
+    vignette,
+    scenario: vignette,
+    question: "Four clients require attention. Which client is the highest priority for the nurse to see first?",
+    options,
+    correctAnswer,
+    explanation:
+      "Correct: See Room 518 first — RR 8/min on PCA morphine with somnolence and pinpoint pupils indicates opioid-induced respiratory depression, an immediate airway emergency requiring assessment, possible naloxone, and PCA hold/adjustment. Room 510 COPD exacerbation (SpO₂ 86%) and Room 523 heart failure decompensation are urgent but the patient with impending respiratory failure from opioids takes ABC priority. Room 516 has rapid AF but is alert with BP 104/70. Influenza vaccine tasks are unrelated to acute inpatient triage.",
+    itemType: "vignette",
+    ngnPayload: undefined,
+    subjectId: item.subjectId || "patient-counseling",
+    topicCategory: item.topicCategory ?? "Med-Surg Prioritization",
+  };
+}
+
+export function buildAcuteDecompensatedHeartFailureMcq(item: BankItem): BankItem {
+  const vignette =
+    resolveNaplexVignette(item) ||
+    "A patient with acute decompensated heart failure on IV diuretic therapy develops worsening congestion and hypotension.";
+  const options = [
+    "Notify the prescriber immediately for worsening volume overload with weight gain, crackles, edema, hypoxemia, and hypotension with orthostatic dizziness; reassess diuretic response, oxygen needs, and volume status before pursuing unrelated preventive screenings.",
+    "Schedule an eye exam as the priority follow-up while congestion and hypotension are actively worsening.",
+    "Document a preventive counseling discussion in the chart without addressing the 2.5-kg weight gain, crackles, or BP 88/54 mmHg.",
+    "Educate about diabetic retinopathy before notifying the prescriber about acute heart failure decompensation.",
+  ] as BankItem["options"];
+  const correctAnswer = options[0]!;
+  return {
+    ...item,
+    vignette,
+    scenario: vignette,
+    question: "What is the most appropriate immediate action?",
+    options,
+    correctAnswer,
+    explanation:
+      "Correct: Notify the prescriber and reassess acute decompensated heart failure — weight up 2.5 kg, bilateral crackles, 2+ pitting edema, SpO₂ 91% on supplemental oxygen, and BP 88/54 with dizziness on standing indicate worsening congestion with hemodynamic compromise on IV furosemide. The nurse/pharmacist must escalate assessment of diuresis, perfusion, and oxygenation rather than prioritize diabetic eye screening. Eye exams and retinopathy education are important in chronic diabetes care but do not address this acute cardiopulmonary deterioration. Charting alone without clinical escalation is unsafe.",
+    itemType: "vignette",
+    ngnPayload: undefined,
+    subjectId: item.subjectId || "cardiovascular-rx",
+    topicCategory: item.topicCategory ?? "Acute Decompensated Heart Failure",
+  };
+}
+
+export function buildWarfarinBleedingMcq(item: BankItem): BankItem {
+  const vignette =
+    resolveNaplexVignette(item) ||
+    "A patient on warfarin for deep vein thrombosis develops a supratherapeutic INR with epistaxis and melena.";
+  const options = [
+    "Supratherapeutic INR of 4.8 with epistaxis and dark tarry stools indicating anticoagulant-related bleeding",
+    "Unilateral calf swelling and warmth consistent with known deep vein thrombosis",
+    "Blood pressure 126/80 mmHg within expected limits",
+    "Respiratory rate 16 breaths/min without signs of respiratory compromise",
+  ] as BankItem["options"];
+  const correctAnswer = options[0]!;
+  return {
+    ...item,
+    vignette,
+    scenario: vignette,
+    question: "Which finding requires immediate nursing follow-up?",
+    options,
+    correctAnswer,
+    explanation:
+      "Correct: INR 4.8 exceeds the usual therapeutic range and, together with epistaxis and melena, indicates active anticoagulant-related bleeding that requires immediate provider notification, holding warfarin, hemoglobin assessment, and possible reversal per protocol. Calf swelling and warmth reflect the underlying DVT and are expected unless acute compartment syndrome is suspected. Stable blood pressure and normal respiratory rate do not override the bleeding risk from supratherapeutic anticoagulation.",
+    itemType: "vignette",
+    ngnPayload: undefined,
+    subjectId: item.subjectId || "patient-counseling",
+    topicCategory: item.topicCategory ?? "Warfarin Bleeding",
+  };
+}
+
+export function buildUpperGiBleedEmergencyMcq(item: BankItem): BankItem {
+  const vignette =
+    resolveNaplexVignette(item) ||
+    "A patient with an upper gastrointestinal bleed develops hypotension, tachycardia, and symptomatic anemia.";
+  const options = [
+    "Recognize hemodynamic instability from acute upper GI bleeding; establish large-bore IV access, initiate fluid resuscitation and transfusion per protocol for hemoglobin 7.2 g/dL with hypotension, hold nonessential antiplatelet therapy such as aspirin pending prescriber direction, notify the provider immediately, and prepare for urgent endoscopic evaluation.",
+    "Discuss regular blood glucose monitoring while the client is pale with BP 90/56 mmHg and active melena.",
+    "Teach hypoglycemia symptoms before addressing orthostatic lightheadedness and anemia.",
+    "Instruct on insulin injection technique instead of escalating care for ongoing GI hemorrhage.",
+  ] as BankItem["options"];
+  const correctAnswer = options[0]!;
+  return {
+    ...item,
+    vignette,
+    scenario: vignette,
+    question: "What is the most appropriate immediate action?",
+    options,
+    correctAnswer,
+    explanation:
+      "Correct: Treat unstable upper GI bleeding — melena with BP 90/56 mmHg, HR 118, hemoglobin 7.2 g/dL, pallor, cool extremities, delayed capillary refill, and orthostatic symptoms indicate significant hemorrhage with hypovolemia. Priorities include IV access, volume resuscitation, transfusion evaluation, holding aspirin when appropriate, provider notification, and urgent source control/endoscopy. Diabetes self-management education is not the immediate priority during active hemorrhagic shock physiology.",
+    itemType: "vignette",
+    ngnPayload: undefined,
+    subjectId: item.subjectId || "patient-counseling",
+    topicCategory: item.topicCategory ?? "Upper GI Bleed",
+  };
+}
+
+export function buildAnaphylaxisEmergencyMcq(item: BankItem): BankItem {
+  const vignette =
+    resolveNaplexVignette(item) ||
+    "A patient develops anaphylaxis shortly after IV antibiotic administration in the emergency department.";
+  const options = [
+    "Recommend immediate intramuscular epinephrine, secure the airway, IV fluid resuscitation, supplemental oxygen, and discontinuation of the triggering antibiotic; update allergy documentation because beta-lactam cross-reactivity may contribute in patients with penicillin allergy.",
+    "Continue ceftriaxone and administer oral diphenhydramine alone because the infection requires uninterrupted beta-lactam therapy.",
+    "Defer epinephrine until laboratory confirmation of IgE-mediated allergy is available.",
+    "Counsel on weight management and sleep hygiene before addressing hypotension and stridor.",
+  ] as BankItem["options"];
+  const correctAnswer = options[0]!;
+  return {
+    ...item,
+    vignette,
+    scenario: vignette,
+    question: "What is the most appropriate immediate action?",
+    options,
+    correctAnswer,
+    explanation:
+      "Correct: Recommend immediate IM epinephrine and supportive care — anaphylaxis with hypotension (74/42), tachycardia, hypoxemia, urticaria, angioedema, and stridor after ceftriaxone in a patient with documented penicillin allergy is a medical emergency requiring epinephrine first, airway management, fluids, oxygen, and stopping the offending agent. Cross-reactivity between penicillins and cephalosporins can occur. Antihistamine monotherapy is insufficient for hemodynamic compromise. Delaying epinephrine for lab confirmation is unsafe. Lifestyle counseling is inappropriate during acute anaphylaxis.",
+    itemType: "vignette",
+    ngnPayload: undefined,
+    subjectId: item.subjectId || "patient-counseling",
+    topicCategory: item.topicCategory ?? "Anaphylaxis Emergency",
+  };
 }
 
 function buildHypertensiveEmergencyMcq(item: BankItem): BankItem {
@@ -1747,6 +2987,90 @@ export function fixNaplexFormatCoherence(item: BankItem): NaplexFormatFixResult 
     return { item: working, changed, note };
   }
 
+  if (isAnaphylaxisEmergencyOptionsMismatch(working)) {
+    working = buildAnaphylaxisEmergencyMcq(working);
+    changed = true;
+    note = "rewrote anaphylaxis emergency vignette with unrelated screening options → emergency MCQ";
+    return { item: working, changed, note };
+  }
+
+  if (isSeverePreeclampsiaOptionsMismatch(working)) {
+    working = buildSeverePreeclampsiaEmergencyMcq(working);
+    changed = true;
+    note = "rewrote severe preeclampsia vignette with unrelated wellness options → emergency MCQ";
+    return { item: working, changed, note };
+  }
+
+  if (isPsychiatricSuicideRiskOptionsMismatch(working)) {
+    working = buildPsychiatricSuicideRiskMcq(working);
+    changed = true;
+    note = "rewrote psychiatric suicide-risk vignette with unrelated procedure options → safety MCQ";
+    return { item: working, changed, note };
+  }
+
+  if (isPsychiatricUnitPrioritizationOptionsMismatch(working)) {
+    working = buildPsychiatricUnitPrioritizationMcq(working);
+    changed = true;
+    note = "rewrote psychiatric unit prioritization vignette with unrelated options → triage MCQ";
+    return { item: working, changed, note };
+  }
+
+  if (isPostpartumHemorrhageOptionsMismatch(working)) {
+    working = buildPostpartumHemorrhageEmergencyMcq(working);
+    changed = true;
+    note = "rewrote postpartum hemorrhage vignette with unrelated respiratory options → emergency MCQ";
+    return { item: working, changed, note };
+  }
+
+  if (isEmergencyDepartmentPrioritizationOptionsMismatch(working)) {
+    working = buildEmergencyDepartmentPrioritizationMcq(working);
+    changed = true;
+    note = "rewrote emergency department prioritization vignette with unrelated options → triage MCQ";
+    return { item: working, changed, note };
+  }
+
+  if (isPediatricEdPrioritizationOptionsMismatch(working)) {
+    working = buildPediatricEdPrioritizationMcq(working);
+    changed = true;
+    note = "rewrote pediatric ED prioritization vignette with unrelated options → triage MCQ";
+    return { item: working, changed, note };
+  }
+
+  if (isLaborDeliveryPrioritizationOptionsMismatch(working)) {
+    working = buildLaborDeliveryPrioritizationMcq(working);
+    changed = true;
+    note = "rewrote labor and delivery prioritization vignette with unrelated options → triage MCQ";
+    return { item: working, changed, note };
+  }
+
+  if (isMedSurgPrioritizationOptionsMismatch(working)) {
+    working = buildMedSurgPrioritizationMcq(working);
+    changed = true;
+    note = "rewrote med-surg prioritization vignette with unrelated flu vaccine options → triage MCQ";
+    return { item: working, changed, note };
+  }
+
+  if (isAcuteDecompensatedHeartFailureOptionsMismatch(working)) {
+    working = buildAcuteDecompensatedHeartFailureMcq(working);
+    changed = true;
+    note = "rewrote acute decompensated heart failure vignette with unrelated diabetic eye options → clinical MCQ";
+    return { item: working, changed, note };
+  }
+
+  if (isUpperGiBleedOptionsMismatch(working)) {
+    working = buildUpperGiBleedEmergencyMcq(working);
+    changed = true;
+    note = "rewrote upper GI bleed vignette with unrelated diabetes education options → hemorrhage MCQ";
+    return { item: working, changed, note };
+  }
+
+  if (isWarfarinBleedingOptionsMismatch(working)) {
+    working = buildWarfarinBleedingMcq(working);
+    changed = true;
+    note = "rewrote warfarin bleeding vignette with unrelated opioid/airway options → anticoagulant bleed MCQ";
+    return { item: working, changed, note };
+  }
+
   if (clinicalVignetteUnrelatedCalcIssue(working)) {
     const wasCopd = isCopdWorseningVignette(resolveNaplexVignette(working));
     working = buildClinicalVignetteUnrelatedCalcMcq(working);
@@ -1960,7 +3284,8 @@ export function itemHasFormatCoherenceIssue(item: BankItem): boolean {
     detectNaplexFormatIssues(item).length > 0 ||
     orphanGenericCalcStemIssue(item) !== null ||
     clinicalVignetteUnrelatedCalcIssue(item) !== null ||
-    clinicalCounselingIntentCalcMismatchIssue(item) !== null
+    clinicalCounselingIntentCalcMismatchIssue(item) !== null ||
+    clinicalVignetteUnrelatedOptionsIssue(item) !== null
   );
 }
 

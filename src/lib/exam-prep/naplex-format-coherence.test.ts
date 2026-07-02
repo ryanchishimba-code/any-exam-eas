@@ -722,4 +722,660 @@ describe("naplex format coherence", () => {
     expect(fixed.options).toContain(fixed.correctAnswer);
     expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
   });
+
+  it("rewrites anaphylaxis ED vignette with unrelated screening lifestyle options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "Emergency department, Room 572. 36-year-old woman with anaphylaxis after antibiotic administration. Received IV ceftriaxone 10 minutes ago for pyelonephritis; history of penicillin allergy documented. BP 74/42 mmHg, HR 130, RR 30, SpO₂ 89% on room air. Diffuse urticaria, facial and tongue swelling, audible stridor, anxiety, diaphoresis.",
+      question:
+        "Select the one best response for this scenario.\nWhich finding requires immediate nursing follow-up?",
+      options: [
+        "Body mass index of 32",
+        "Daytime fatigue",
+        "Waist circumference of 42 inches",
+        "Difficulty sleeping",
+      ],
+      correctAnswer: "Daytime fatigue",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/most appropriate immediate action/i);
+    expect(fixed.correctAnswer).toMatch(/epinephrine|airway|ceftriaxone|allerg/i);
+    expect(fixed.options.every((o) => !/body mass index|waist circumference|daytime fatigue|difficulty sleeping/i.test(o))).toBe(
+      true
+    );
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites anaphylaxis ED vignette with unrelated insulin administration options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "A 35-year-old woman with a known history of penicillin allergy presents to the emergency department in anaphylaxis after receiving IV ceftriaxone for pyelonephritis. She exhibits vital signs of BP 74/42 mmHg, HR 130, RR 30, and SpO₂ 89% on room air. The client also shows diffuse urticaria, facial and tongue swelling, audible stridor, anxiety, and diaphoresis, indicating a severe allergic reaction requiring immediate intervention.",
+      question: "Which nursing action should the nurse take first to ensure client safety?",
+      options: [
+        "Document administration before giving the medication to save time",
+        "Administer insulin lispro without verifying the client's identity or allergy history",
+        "Use another client's medication if the MAR is unavailable",
+        "Verify the six rights, check allergies and relevant labs, and assess BP 74/42 mmHg before administering insulin lispro",
+      ],
+      correctAnswer:
+        "Verify the six rights, check allergies and relevant labs, and assess BP 74/42 mmHg before administering insulin lispro",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/most appropriate immediate action/i);
+    expect(fixed.correctAnswer).toMatch(/epinephrine|airway|ceftriaxone|fluid resuscitation/i);
+    expect(fixed.options.every((o) => !/insulin lispro|six rights|mar is unavailable|another client'?s medication/i.test(o))).toBe(
+      true
+    );
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites severe preeclampsia vignette with unrelated obstetric wellness options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "Labor and delivery unit, Room 559. A 26-year-old woman with preeclampsia with severe features is in her first pregnancy at 36 weeks gestation. She has no prenatal complications until today. Current vital signs show BP 168/104 mmHg, HR 96, RR 20, and temp 98.6°F (37°C). Urine dipstick reveals 3+ protein, and she reports epigastric pain and a headache rated 8/10. Neurological assessment shows hyperreflexia with clonus.",
+      question:
+        "Select the one best response for this scenario.\nWhich assessment finding should the nurse address first?",
+      options: [
+        "Provide information about safe weight loss during pregnancy",
+        "Encourage small, frequent meals to manage nausea",
+        "Refer the client to a dietitian for nutritional counseling",
+        "Assess the client's hydration status",
+      ],
+      correctAnswer: "Assess the client's hydration status",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/most appropriate immediate action/i);
+    expect(fixed.correctAnswer).toMatch(/magnesium|preeclampsia|seizure|delivery|blood pressure/i);
+    expect(fixed.options).not.toContain("Assess the client's hydration status");
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites psychiatric suicide-risk vignette with unrelated procedure prep options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "Inpatient psychiatric unit, Room 355. 22-year-old man with major depressive disorder with suicidal ideation. Admitted after expressing plan to overdose; first psychiatric hospitalization. BP 122/78 mmHg, HR 82, RR 16. Flat affect, states 'I don't want to be here anymore,' has written a goodbye note, poor eye contact.",
+      question:
+        "Select the one best response for this scenario.\nWhich assessment finding should the nurse address first?",
+      options: [
+        "Provide information on what to expect during the procedure.",
+        "Offer to discuss his anxiety further.",
+        "Reassure the client that the procedure is routine.",
+        "Explain the importance of the clear liquid diet.",
+      ],
+      correctAnswer: "Offer to discuss his anxiety further.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/most appropriate immediate action/i);
+    expect(fixed.correctAnswer).toMatch(/suicide|observation|lethal means|prescriber|risk assessment/i);
+    expect(fixed.options).not.toContain("Explain the importance of the clear liquid diet.");
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites psychiatric suicide-risk vignette with unrelated post-op medical options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "Inpatient psychiatric unit, Room 223. 22-year-old man with major depressive disorder with suicidal ideation. Admitted after expressing plan to overdose; first psychiatric hospitalization. BP 122/78 mmHg, HR 82, RR 16. Flat affect, states 'I don't want to be here anymore,' has written a goodbye note, poor eye contact.",
+      question:
+        "Select the one best response for this scenario.\nWhich assessment finding should the nurse address first?",
+      options: [
+        "Administer the prescribed pain medication.",
+        "Increase the IV fluid rate.",
+        "Assess the client's abdomen for distension.",
+        "Encourage the client to ambulate.",
+      ],
+      correctAnswer: "Increase the IV fluid rate.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/most appropriate immediate action/i);
+    expect(fixed.correctAnswer).toMatch(/suicide|observation|lethal means|prescriber|risk assessment/i);
+    expect(fixed.options).not.toContain("Encourage the client to ambulate.");
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites postpartum hemorrhage vignette with unrelated respiratory follow-up options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "Labor and delivery unit, Room 278. 24-year-old woman with postpartum hemorrhage. Vaginal delivery 30 minutes ago; estimated blood loss now increasing. BP 94/60 mmHg, HR 124, RR 22. Saturated perineal pad in 5 minutes, uterus boggy above umbilicus, fundal massage minimally effective.",
+      question:
+        "Select the one best response for this scenario.\nWhich finding requires immediate nursing follow-up?",
+      options: [
+        "Notify the healthcare provider of the lethargy.",
+        "Increase the oxygen flow rate.",
+        "Encourage the client to take deep breaths.",
+        "Prepare the client for a chest X-ray.",
+      ],
+      correctAnswer: "Increase the oxygen flow rate.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/most appropriate immediate action/i);
+    expect(fixed.correctAnswer).toMatch(/uterotonic|hemorrhage|fundal massage|oxytocin|blood loss/i);
+    expect(fixed.options).not.toContain("Prepare the client for a chest X-ray.");
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites postpartum hemorrhage vignette with unrelated post-delivery recovery options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "A 24-year-old woman, G1P1, is in the labor and delivery unit, 30 minutes postpartum following a vaginal delivery. She is experiencing postpartum hemorrhage with an estimated blood loss that is increasing. Her vital signs show a blood pressure of 94/60 mmHg, heart rate of 124 bpm, and respiratory rate of 22 breaths per minute. The client has saturated a perineal pad in 5 minutes, and the uterus is boggy above the umbilicus, with fundal massage proving minimally effective.",
+      question: "Which assessment finding should the nurse address first?",
+      options: [
+        "Absence of flatus since surgery",
+        "Anxiety about recovery",
+        "Severe abdominal pain",
+        "Stable vital signs",
+      ],
+      correctAnswer: "Severe abdominal pain",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/most appropriate immediate action/i);
+    expect(fixed.correctAnswer).toMatch(/uterotonic|hemorrhage|fundal massage|oxytocin|blood loss/i);
+    expect(
+      fixed.options.every((o) => !/absence of flatus|anxiety about recovery|stable vital signs/i.test(o))
+    ).toBe(true);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites pediatric ED prioritization vignette with unrelated colon cancer screening options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "The nurse is assigned four clients on a pediatric emergency department. Room 101: 9-year-old with known asthma, RR 34, SpO₂ 88% on room air, intercostal retractions, speaking in short phrases. Room 104: 6-week-old infant, temp 102.2°F (39.0°C), lethargic, poor feeding x 24 hours, capillary refill 3 seconds. Room 107: 14-year-old forearm deformity after fall, neurovascular intact, pain 7/10, distal pulses 2+. Room 100: 4-year-old with vomiting/diarrhea 24 hours, alert, drinking small sips, HR 110, BP 98/60, no fever.",
+      question:
+        "Select the one best response for this scenario.\nFour clients require attention. Which client is the highest priority for the nurse to see first?",
+      options: [
+        "Assess the client's understanding of screening recommendations.",
+        "Provide educational materials about colon cancer.",
+        "Schedule the client for a colonoscopy.",
+        "Discuss the risks and benefits of colonoscopy.",
+      ],
+      correctAnswer: "Schedule the client for a colonoscopy.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/highest priority.*see first/i);
+    expect(fixed.correctAnswer).toMatch(/room 101|asthma|spo?₂?|retractions|airway|breathing/i);
+    expect(fixed.options.every((o) => !/colon cancer|colonoscopy|screening recommendations/i.test(o))).toBe(
+      true
+    );
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites pediatric ED prioritization vignette with unrelated wound care options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "The nurse is assigned four clients on a pediatric emergency department. Room 107: 9-year-old with known asthma, RR 34, SpO₂ 88% on room air, intercostal retractions, speaking in short phrases. Room 110: 6-week-old infant, temp 102.2°F (39.0°C), lethargic, poor feeding x 24 hours, capillary refill 3 seconds. Room 113: 14-year-old forearm deformity after fall, neurovascular intact, pain 7/10, distal pulses 2+. Room 106: 4-year-old with vomiting/diarrhea 24 hours, alert, drinking small sips, HR 110, BP 98/60, no fever.",
+      question: "Which client should the nurse prioritize for immediate assessment?",
+      options: [
+        "Encourage the client to change positions every 2 hours.",
+        "Apply a hydrocolloid dressing to the wound.",
+        "Educate the client on proper nutrition to promote healing.",
+        "Document the size and appearance of the wound.",
+      ],
+      correctAnswer: "Apply a hydrocolloid dressing to the wound.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/highest priority.*see first/i);
+    expect(fixed.correctAnswer).toMatch(/room 107|asthma|spo?₂?|retractions|airway|breathing/i);
+    expect(
+      fixed.options.every(
+        (o) => !/hydrocolloid|change positions every 2 hours|proper nutrition to promote healing|size and appearance of the wound/i.test(o)
+      )
+    ).toBe(true);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites pediatric ED prioritization vignette with unrelated ambulation options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "The nurse is assigned four clients on a pediatric emergency department. Room 56: 9-year-old with known asthma, RR 34, SpO₂ 88% on room air, intercostal retractions, speaking in short phrases. Room 59: 6-week-old infant, temp 102.2°F (39.0°C), lethargic, poor feeding x 24 hours, capillary refill 3 seconds. Room 62: 14-year-old forearm deformity after fall, neurovascular intact, pain 7/10, distal pulses 2+. Room 55: 4-year-old with vomiting/diarrhea 24 hours, alert, drinking small sips, HR 110, BP 98/60, no fever.",
+      question: "The nurse receives report on four assigned clients. Which client should the nurse assess first?",
+      options: [
+        "Assess the client’s pain level before ambulation.",
+        "Provide a walker for the client to use.",
+        "Encourage the client to ambulate with assistance.",
+        "Educate the client about fall prevention strategies.",
+      ],
+      correctAnswer: "Provide a walker for the client to use.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/highest priority.*see first/i);
+    expect(fixed.correctAnswer).toMatch(/room 56|asthma|spo?₂?|retractions|airway|breathing/i);
+    expect(
+      fixed.options.every(
+        (o) => !/walker|ambulate with assistance|fall prevention strategies|pain level before ambulation/i.test(o)
+      )
+    ).toBe(true);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites pediatric ED prioritization vignette with unrelated medication counseling options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "The nurse is assigned to a pediatric emergency department with four clients. In Room 50, a 9-year-old with a history of asthma presents with a respiratory rate of 34 breaths per minute, an SpO₂ of 88% on room air, and intercostal retractions, speaking only in short phrases. In Room 53, a 6-week-old infant has a temperature of 102.2°F (39.0°C), is lethargic, has poor feeding for the past 24 hours, and exhibits a capillary refill time of 3 seconds. Room 56 contains a 14-year-old with a forearm deformity after a fall; neurovascular status is intact, but the client reports pain of 7/10, and distal pulses are 2+. Finally, in Room 49, a 4-year-old is experiencing vomiting and diarrhea for 24 hours, is alert, drinking small sips, with a heart rate of 110 and a blood pressure of 98/60, but has no fever.",
+      question: "Which client should the nurse assess first?",
+      options: [
+        "Instruct the client to take the medication with food.",
+        "Educate the client about potential side effects.",
+        "Assess the client's renal function before administration.",
+        "Ensure the client understands the importance of completing the full course of antibiotics.",
+      ],
+      correctAnswer: "Educate the client about potential side effects.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/highest priority.*see first/i);
+    expect(fixed.correctAnswer).toMatch(/room 50|asthma|spo?₂?|retractions|airway|breathing/i);
+    expect(
+      fixed.options.every(
+        (o) =>
+          !/take the medication with food|potential side effects|renal function before administration|full course of antibiotics/i.test(
+            o
+          )
+      )
+    ).toBe(true);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites pediatric ED prioritization vignette with unrelated chart review options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "nurse in a pediatric emergency department is assigned to four clients. Room 56 contains a 9-year-old with a history of asthma, presenting with a respiratory rate of 34 breaths per minute, oxygen saturation of 88% on room air, and intercostal retractions, speaking only in short phrases. In Room 59, a 6-week-old infant has a temperature of 102.2°F (39.0°C), is lethargic, has poor feeding for the past 24 hours, and exhibits a capillary refill time of 3 seconds. Room 62 has a 14-year-old with a forearm deformity after a fall; neurovascular status is intact, but the client reports pain at 7/10, and distal pulses are 2+. Finally, Room 55 has a 4-year-old with vomiting and diarrhea for 24 hours, who is alert, drinking small sips of fluid, has a heart rate of 110 beats per minute, and a blood pressure of 98/60 mmHg, with no fever present.",
+      question:
+        "Four clients require attention. Which client is the highest priority for the nurse to see first?",
+      options: [
+        "The client has a history of gastrointestinal bleeding.",
+        "The client reports taking atorvastatin at bedtime.",
+        "The client has a new prescription for lisinopril.",
+        "The client is currently on a low-sodium diet.",
+      ],
+      correctAnswer: "The client reports taking atorvastatin at bedtime.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/highest priority.*see first/i);
+    expect(fixed.correctAnswer).toMatch(/room 56|asthma|spo?₂?|retractions|airway|breathing/i);
+    expect(
+      fixed.options.every(
+        (o) => !/atorvastatin|lisinopril|low-sodium diet|gastrointestinal bleeding/i.test(o)
+      )
+    ).toBe(true);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites acute decompensated heart failure vignette with unrelated diabetic eye care options", () => {
+    const item: BankItem = {
+      subjectId: "cardiovascular-rx",
+      vignette:
+        "Medical-surgical unit, Room 276. 70-year-old woman with acute decompensated heart failure. Admitted 24 hours ago for fluid overload; receiving IV furosemide and daily weights. BP 88/54 mmHg, HR 112, RR 24, SpO₂ 91% on 2 L nasal cannula. Crackles bilaterally, 2+ pitting edema to knees, weight up 2.5 kg since yesterday, dizziness on standing.",
+      question:
+        "Select the one best response for this scenario.\nWhich finding requires immediate nursing follow-up?",
+      options: [
+        "Schedule an eye exam for the client.",
+        "Document the discussion in the client's chart.",
+        "Assess the client's understanding of the need for eye exams.",
+        "Educate the client about diabetic retinopathy.",
+      ],
+      correctAnswer: "Assess the client's understanding of the need for eye exams.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/most appropriate immediate action/i);
+    expect(fixed.correctAnswer).toMatch(/prescriber|heart failure|furosemide|volume overload|hypotension|weight gain/i);
+    expect(fixed.options).not.toContain("Educate the client about diabetic retinopathy.");
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites upper GI bleed vignette with unrelated diabetes education options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "A 77-year-old male is admitted to the medical-surgical unit with an upper gastrointestinal bleed. His medical history includes peptic ulcer disease and chronic aspirin use. Overnight, he experienced melena, and upon assessment, his vital signs reveal a blood pressure of 90/56 mmHg, heart rate of 118 bpm, and hemoglobin level of 7.2 g/dL. The client appears pale with cool extremities, reports feeling lightheaded when repositioning, and has a capillary refill time of 3 seconds.",
+      question:
+        "Select the one best response for this scenario.\nWhich assessment finding should the nurse address first?",
+      options: [
+        "Discuss the importance of regular blood glucose monitoring.",
+        "Teach the client about signs and symptoms of hypoglycemia.",
+        "Instruct the client on proper injection techniques.",
+        "Provide information on dietary modifications.",
+      ],
+      correctAnswer: "Teach the client about signs and symptoms of hypoglycemia.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/most appropriate immediate action/i);
+    expect(fixed.correctAnswer).toMatch(/bleed|hemoglobin|transfusion|iv access|aspirin|resuscitation|endoscop/i);
+    expect(fixed.options).not.toContain("Instruct the client on proper injection techniques.");
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites psychiatric unit prioritization vignette with unrelated minor finding options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "The nurse is assigned four clients on a inpatient psychiatric unit. Room 135: 19-year-old man admitted for depression, states 'I know how I would do it,' has written goodbye note, poor eye contact. Room 132: 45-year-old man alcohol withdrawal, HR 124, tremors, diaphoresis, BP 158/98, last drink 24 hours ago. Room 138: 28-year-old woman manic episode, pacing, pressured speech, refused morning lithium, vitals stable. Room 129: 52-year-old woman voluntary admission for grief, tearful but denies SI/HI, signed safety contract.",
+      question:
+        "Four clients require attention. Which client is the highest priority for the nurse to see first?",
+      options: [
+        "Client has a headache that is relieved by acetaminophen.",
+        "Client's blood pressure is 110/70 mmHg.",
+        "Client reports recent nosebleeds.",
+        "Client reports occasional bruising.",
+      ],
+      correctAnswer: "Client has a headache that is relieved by acetaminophen.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/highest priority.*see first/i);
+    expect(fixed.correctAnswer).toMatch(/room 135|suicide|goodbye|depression/i);
+    expect(
+      fixed.options.every(
+        (o) => !/headache that is relieved by acetaminophen|blood pressure is 110\/70|nosebleeds|occasional bruising/i.test(o)
+      )
+    ).toBe(true);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites emergency department prioritization vignette with unrelated fire safety options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "The nurse is assigned four clients on a emergency department. Room 136: 34-year-old woman received IV ceftriaxone 15 minutes ago for pyelonephritis. BP 74/42 mmHg, HR 130, RR 30, SpO₂ 89%. Diffuse urticaria, facial/tongue swelling, audible stridor. Room 139: 58-year-old man with 40 minutes of substernal pressure, diaphoresis, nausea. BP 156/92, HR 98, SpO₂ 95%. ECG pending; troponin sent. Room 134: 57-year-old man with type 2 diabetes, out of insulin 48 hours. Glucose 398 mg/dL, HR 116, RR 26, dry mucous membranes, reports nausea. Room 143: 22-year-old man voluntary psych admission for anxiety, denies suicidal plan, contract for safety, vitals stable.",
+      question: "Which client should the nurse prioritize for immediate assessment?",
+      options: [
+        "Suggest the client to have an escape plan in case of fire.",
+        "Instruct the client to place smoke detectors in every room.",
+        "Encourage the client to keep flammable materials away from heat sources.",
+        "Advise the client to test smoke detectors monthly.",
+      ],
+      correctAnswer: "Instruct the client to place smoke detectors in every room.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/highest priority.*see first/i);
+    expect(fixed.correctAnswer).toMatch(/room 136|anaphy|stridor|ceftriaxone|urticaria/i);
+    expect(
+      fixed.options.every(
+        (o) => !/escape plan|smoke detectors|flammable materials|test smoke detectors monthly/i.test(o)
+      )
+    ).toBe(true);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites labor and delivery prioritization vignette with unrelated warfarin options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "The nurse is assigned four clients on a labor and delivery unit. Room 51: 29-year-old G1P0 at 36 weeks, BP 168/104 mmHg, headache 8/10, epigastric pain, 3+ protein, hyperreflexia with clonus. Room 53: 26-year-old woman postpartum hour 1, saturated perineal pad in 5 minutes, uterus boggy at umbilicus, HR 118, BP 96/62. Room 56: 31-year-old woman at 38 weeks, reports decreased fetal movement x 12 hours, FHR 130 with moderate variability, no decelerations. Room 49: 24-year-old woman in active labor, cervical exam 7 cm, pain 8/10, FHR 145 with accelerations, maternal vitals stable.",
+      question:
+        "Select the one best response for this scenario.\nFour clients require attention. Which client is the highest priority for the nurse to see first?",
+      options: [
+        "Educate the client on the importance of INR monitoring.",
+        "Notify the healthcare provider of the elevated INR.",
+        "Instruct the client to hold the next dose of warfarin.",
+        "Administer vitamin K as ordered.",
+      ],
+      correctAnswer: "Notify the healthcare provider of the elevated INR.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/highest priority.*see first/i);
+    expect(fixed.correctAnswer).toMatch(/room 51|preeclampsia|clonus|epigastric|magnesium/i);
+    expect(fixed.options.every((o) => !/^Educate the client on the importance of INR monitoring\.?$/i.test(o.trim()))).toBe(
+      true
+    );
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites labor and delivery prioritization vignette with unrelated wellness options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "The nurse is assigned four clients on a labor and delivery unit. Room 42: 29-year-old G1P0 at 36 weeks, BP 168/104 mmHg, headache 8/10, epigastric pain, 3+ protein, hyperreflexia with clonus. Room 44: 26-year-old woman postpartum hour 1, saturated perineal pad in 5 minutes, uterus boggy at umbilicus, HR 118, BP 96/62. Room 47: 31-year-old woman at 38 weeks, reports decreased fetal movement x 12 hours, FHR 130 with moderate variability, no decelerations. Room 40: 24-year-old woman in active labor, cervical exam 7 cm, pain 8/10, FHR 145 with accelerations, maternal vitals stable.",
+      question: "The nurse receives report on four assigned clients. Which client should the nurse assess first?",
+      options: [
+        "Refer the client to a registered dietitian.",
+        "Encourage a balanced diet rich in fruits and vegetables.",
+        "Develop a personalized exercise plan.",
+        "Discuss the importance of regular health screenings.",
+      ],
+      correctAnswer: "Refer the client to a registered dietitian.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/highest priority.*see first/i);
+    expect(fixed.correctAnswer).toMatch(/room 42|preeclampsia|clonus|epigastric/i);
+    expect(
+      fixed.options.every(
+        (o) => !/registered dietitian|balanced diet rich in fruits|personalized exercise plan|regular health screenings/i.test(o)
+      )
+    ).toBe(true);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites med-surg prioritization vignette with unrelated flu vaccine options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "The nurse is assigned four clients on a medical-surgical unit. Room 518: A 58-year-old man, post-op day 1 from a knee replacement, is on PCA morphine. His respiratory rate is 8 breaths per minute, SpO₂ is 91% on room air, and he is somnolent but arousable with pinpoint pupils. Room 523: A 68-year-old woman with heart failure presents with hypotension (BP 88/54), tachycardia (HR 112), bilateral crackles, and SpO₂ of 91% on 2 L of nasal cannula, with a weight increase of 2 kg. Room 510: A 72-year-old man is experiencing a COPD exacerbation with a respiratory rate of 32 breaths per minute, SpO₂ of 86% on 2 L of oxygen, and is using accessory muscles to breathe while speaking in short phrases. Room 516: A 61-year-old woman has new-onset atrial fibrillation with a heart rate of 138, irregular rhythm, BP of 104/70, and is dizzy but alert while on telemetry.",
+      question:
+        "Select the one best response for this scenario.\nFour clients require attention. Which client is the highest priority for the nurse to see first?",
+      options: [
+        "Educate the client on the benefits of the flu vaccine.",
+        "Administer the flu vaccine.",
+        "Schedule a follow-up appointment for the vaccine.",
+        "Check for any contraindications to the vaccine.",
+      ],
+      correctAnswer: "Administer the flu vaccine.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/highest priority.*see first/i);
+    expect(fixed.correctAnswer).toMatch(/room 518|morphine|respiratory depression|naloxone|opioid|rr 8/i);
+    expect(fixed.options.every((o) => !/flu vaccine|influenza vaccine/i.test(o))).toBe(true);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
+
+  it("rewrites warfarin bleeding vignette with unrelated opioid and airway options", () => {
+    const item: BankItem = {
+      subjectId: "patient-counseling",
+      vignette:
+        "Medical-surgical unit, Room 378. 39-year-old man with deep vein thrombosis with anticoagulation. Started warfarin 3 days ago; INR drawn this morning. BP 126/80 mmHg, HR 88, RR 16. Unilateral calf swelling and warmth, INR 4.8, reports nosebleed and dark tarry stools.",
+      scenario:
+        "Medical-surgical unit, Room 378. 39-year-old man with deep vein thrombosis with anticoagulation. Started warfarin 3 days ago; INR drawn this morning. BP 126/80 mmHg, HR 88, RR 16. Unilateral calf swelling and warmth, INR 4.8, reports nosebleed and dark tarry stools.",
+      question: "Which finding requires immediate nursing follow-up?",
+      options: [
+        "Provide supplemental oxygen via high-flow nasal cannula.",
+        "Monitor vital signs every 5 minutes.",
+        "Administer additional doses of naloxone.",
+        "Intubate the client to secure the airway.",
+      ],
+      correctAnswer: "Provide supplemental oxygen via high-flow nasal cannula.",
+      explanation: "Placeholder.",
+      itemType: "vignette",
+    };
+
+    expect(detectNaplexFormatIssues(item).map((i) => i.code)).toContain(
+      "naplex_clinical_vignette_unrelated_options"
+    );
+
+    const { item: fixed, changed } = fixNaplexFormatCoherence(item);
+    expect(changed).toBe(true);
+    expect(fixed.question).toMatch(/finding requires immediate nursing follow-up/i);
+    expect(fixed.correctAnswer).toMatch(/inr|epistaxis|melena|bleed|tarry stool/i);
+    expect(fixed.options.every((o) => !/naloxone|intubate|high-flow nasal cannula/i.test(o))).toBe(true);
+    expect(fixed.options).toContain(fixed.correctAnswer);
+    expect(itemHasFormatCoherenceIssue(fixed)).toBe(false);
+  });
 });
