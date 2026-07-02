@@ -2,27 +2,33 @@ import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 import { ensureBoardExam } from "@/lib/edtech/board-exam-sync";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
-import { invalidateExamPreferenceCache } from "@/lib/cache";
+import { CACHE_TTL, cacheGetOrSetDeduped, cacheKey, invalidateExamPreferenceCache } from "@/lib/cache";
 import type { ExamSlug, UserExamPreference } from "@/types/edtech";
 
 async function readUserExamPreference(userId: string): Promise<UserExamPreference | null> {
-  const row = await prisma.userExamPreference.findUnique({ where: { userId } });
-  if (!row) return null;
+  return cacheGetOrSetDeduped(
+    cacheKey(["exam-preference", userId]),
+    CACHE_TTL.examPreference,
+    async () => {
+      const row = await prisma.userExamPreference.findUnique({ where: { userId } });
+      if (!row) return null;
 
-  let examSlug = row.examSlug;
-  if (examSlug === "mpje" || !isExamSlug(examSlug)) {
-    examSlug = "pance";
-    await setUserExamPreference(userId, "pance");
-  }
+      let examSlug = row.examSlug;
+      if (examSlug === "mpje" || !isExamSlug(examSlug)) {
+        examSlug = "pance";
+        await setUserExamPreference(userId, "pance");
+      }
 
-  return {
-    userId: row.userId,
-    examSlug: examSlug as ExamSlug,
-    lastStudiedAt: row.lastStudiedAt,
-  };
+      return {
+        userId: row.userId,
+        examSlug: examSlug as ExamSlug,
+        lastStudiedAt: row.lastStudiedAt,
+      };
+    }
+  );
 }
 
-/** Per-request dedupe — always read fresh from DB (exam choice must not sit in TTL cache). */
+/** Per-request dedupe on top of short TTL cache. */
 export const getUserExamPreference = cache(async (userId: string): Promise<UserExamPreference | null> => {
   return readUserExamPreference(userId);
 });

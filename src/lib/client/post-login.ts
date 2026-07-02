@@ -27,7 +27,7 @@ export type ClientSubscriptionStatus = {
 };
 
 export async function fetchSubscriptionStatus(): Promise<ClientSubscriptionStatus | null> {
-  const attempts = 5;
+  const attempts = 2;
   for (let attempt = 0; attempt < attempts; attempt++) {
     try {
       const statusRes = await fetch("/api/subscription/status?lite=1", { cache: "no-store" });
@@ -48,7 +48,7 @@ export async function fetchSubscriptionStatus(): Promise<ClientSubscriptionStatu
 }
 
 async function fetchExamSlug(): Promise<string | null> {
-  const attempts = 5;
+  const attempts = 2;
   for (let attempt = 0; attempt < attempts; attempt++) {
     try {
       const res = await fetch("/api/user/exam-preference", { cache: "no-store" });
@@ -107,10 +107,10 @@ export async function completeLoginFlow(params: {
     lastMethod: params.method === "magic" ? "email" : params.method,
   });
 
-  for (let attempt = 0; attempt < 5; attempt++) {
+  for (let attempt = 0; attempt < 2; attempt++) {
     const session = await getSession();
     if (session?.user?.email) break;
-    await new Promise((resolve) => setTimeout(resolve, 80 * (attempt + 1)));
+    await new Promise((resolve) => setTimeout(resolve, 120 * (attempt + 1)));
   }
   params.router.refresh();
 

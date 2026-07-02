@@ -102,9 +102,9 @@ export const CACHE_TTL = {
   subjectCatalog: 30 * 60 * 1000, // 30m — topic counts change infrequently post-sync
   learningDashboard: 30 * 1000, // 30s per user
   examPreference: 60 * 1000, // 60s per user
-  userAccess: 30 * 1000, // 30s per user — dedupes requirePremiumPage
+  userAccess: 60 * 1000, // 60s per user — dedupes requirePremiumPage + nav
   referenceBrief: 2 * 60 * 60 * 1000, // 2h — AI + OER synthesis per user/exam
-  subscriptionStatus: 30 * 1000, // 30s per user — dedupes nav + home fetches
+  subscriptionStatus: 60 * 1000, // 60s per user — dedupes nav + home fetches
   questionBankSlice: 10 * 60 * 1000, // 10m
 } as const;
 

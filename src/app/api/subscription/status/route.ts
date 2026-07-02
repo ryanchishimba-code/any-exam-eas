@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getUserAccess } from "@/lib/access-control";
-import { cacheGetOrSet, cacheKey, CACHE_TTL } from "@/lib/cache";
+import { cacheGetOrSetDeduped, cacheKey, CACHE_TTL } from "@/lib/cache";
 import { requireSessionGuard } from "@/lib/session-guard";
 import {
   buildFullSubscriptionStatus,
@@ -17,7 +17,7 @@ export async function GET(req: Request) {
 
   const lite = new URL(req.url).searchParams.get("lite") === "1";
 
-  const access = await cacheGetOrSet(
+  const access = await cacheGetOrSetDeduped(
     cacheKey(["subscription-status", guard.userId]),
     CACHE_TTL.subscriptionStatus,
     () => getUserAccess(guard.userId)

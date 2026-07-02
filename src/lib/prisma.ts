@@ -45,8 +45,8 @@ function createPrismaClient(): PrismaClient {
         return executeWithRetry(() => query(args), {
           label,
           maxAttempts: process.env.VERCEL ? 2 : 3,
-          timeoutMs: process.env.VERCEL ? 8_000 : 10_000,
-          baseDelayMs: 150,
+          timeoutMs: process.env.VERCEL ? 5_000 : 10_000,
+          baseDelayMs: 100,
         });
       },
     },

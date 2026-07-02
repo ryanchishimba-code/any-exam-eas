@@ -1,8 +1,7 @@
 import { redirect } from "next/navigation";
-import { headers } from "next/headers";
 import { getCachedSession } from "@/lib/auth/session";
 import { getUserAccess, type UserAccess } from "@/lib/access-control";
-import { checkAndRecordAccountIp } from "@/lib/account-ip-limit";
+import { redirectIfDbUnavailable } from "@/lib/page-access-error";
 import { resolvePaywallRedirect } from "@/lib/reactivation";
 
 async function loadPageAccess(callbackPath: string): Promise<UserAccess> {
@@ -11,24 +10,11 @@ async function loadPageAccess(callbackPath: string): Promise<UserAccess> {
     redirect(`/login?callbackUrl=${encodeURIComponent(callbackPath)}`);
   }
 
-  const ipCheck = await checkAndRecordAccountIp(
-    session.user.id,
-    session.user.role,
-    undefined,
-    await headers(),
-    session.user.email
-  );
-  if (!ipCheck.ok) {
-    redirect(
-      `/login?error=${ipCheck.reason}&callbackUrl=${encodeURIComponent(callbackPath)}`
-    );
-  }
-
-  let access;
+  let access: UserAccess;
   try {
     access = await getUserAccess(session.user.id);
-  } catch {
-    redirect(`/login?callbackUrl=${encodeURIComponent(callbackPath)}`);
+  } catch (error) {
+    redirectIfDbUnavailable(error);
   }
 
   if (access.blockReason === "suspended" || access.blockReason === "deleted") {

@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import { getUserAccess, userHasFeature, type UserAccess } from "@/lib/access-control";
 import { subscriptionRequiredResponse, proFeatureRequiredResponse } from "@/lib/api-subscription";
-import { enforceAccountIpLimit } from "@/lib/account-ip-limit";
 import { isAccountDisabled } from "@/lib/account-security";
 import type { SubscriptionFeature } from "@/lib/subscription-features";
 
@@ -19,24 +18,13 @@ function accountDisabledResponse(status: string): NextResponse {
   return NextResponse.json({ error: message, code }, { status: 403 });
 }
 
-export async function requireAuthenticatedApi(req?: Request): Promise<ApiAuthResult> {
+export async function requireAuthenticatedApi(_req?: Request): Promise<ApiAuthResult> {
   const session = await auth();
   if (!session?.user?.id) {
     return {
       ok: false,
       response: NextResponse.json({ error: "Unauthorized" }, { status: 401 }),
     };
-  }
-
-  const ipBlocked = await enforceAccountIpLimit(
-    session.user.id,
-    session.user.role,
-    req,
-    undefined,
-    session.user.email
-  );
-  if (ipBlocked) {
-    return { ok: false, response: ipBlocked };
   }
 
   const access = await getUserAccess(session.user.id);

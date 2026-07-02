@@ -76,7 +76,7 @@ async function fetchUserAccess(): Promise<UserAccessState> {
   }
 
   inflightAccess = (async () => {
-    const maxAttempts = 3;
+    const maxAttempts = 2;
     try {
       for (let attempt = 0; attempt < maxAttempts; attempt++) {
         try {
@@ -86,12 +86,11 @@ async function fetchUserAccess(): Promise<UserAccessState> {
         } catch (error) {
           const isLast = attempt + 1 >= maxAttempts;
           if (isLast) throw error;
-          await sleep(250 * 2 ** attempt);
+          await sleep(300 * 2 ** attempt);
         }
       }
       throw new Error("status fetch exhausted retries");
     } catch {
-      // Keep last-known access for authed chrome; avoid downgrading to guest nav on blips.
       if (cachedAccess) return { ...cachedAccess, loading: false };
       return loggedOutState;
     } finally {
@@ -105,9 +104,16 @@ async function fetchUserAccess(): Promise<UserAccessState> {
 const UserAccessContext = createContext<UserAccessState | null>(null);
 
 /** Single subscription fetch for nav, footer, home, and other chrome. */
-export function UserAccessProvider({ children }: { children: ReactNode }) {
+export function UserAccessProvider({
+  children,
+  initialAccess = null,
+}: {
+  children: ReactNode;
+  initialAccess?: UserAccessState | null;
+}) {
   const { status: sessionStatus } = useSession();
   const [access, setAccess] = useState<UserAccessState>(() => {
+    if (initialAccess && !initialAccess.loading) return initialAccess;
     if (sessionStatus === "authenticated" && cachedAccess) return cachedAccess;
     if (sessionStatus === "unauthenticated") return loggedOutState;
     return defaultState;
@@ -123,7 +129,12 @@ export function UserAccessProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    // Always refresh on sign-in — stale cache can show premium UI after expiry.
+    if (initialAccess && !initialAccess.loading) {
+      cachedAccess = initialAccess;
+      setAccess(initialAccess);
+      return;
+    }
+
     cachedAccess = null;
 
     let cancelled = false;
@@ -134,7 +145,7 @@ export function UserAccessProvider({ children }: { children: ReactNode }) {
     return () => {
       cancelled = true;
     };
-  }, [sessionStatus]);
+  }, [sessionStatus, initialAccess]);
 
   const value = useMemo(() => access, [access]);
 

@@ -120,12 +120,6 @@ export async function recordAccountIpAccess(userId: string, ipHash: string): Pro
   if (!ipHash) return;
 
   try {
-    const userExists = await prisma.user.findUnique({
-      where: { id: userId },
-      select: { id: true },
-    });
-    if (!userExists) return;
-
     const since = new Date(Date.now() - ACCOUNT_IP_WINDOW_MS);
     const existing = await prisma.userSession.findFirst({
       where: {

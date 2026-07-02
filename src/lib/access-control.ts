@@ -3,12 +3,12 @@ import { prisma } from "@/lib/prisma";
 import { isStaffRole } from "@/lib/permissions";
 import {
   evaluateSubscriptionAccess,
-  expireTrialIfNeeded,
+  normalizeSubscriptionForRead,
   subscriptionHasFeature,
   type SubscriptionAccess,
 } from "@/lib/subscription-access";
 import { hasFeatureAccess, type SubscriptionFeature } from "@/lib/subscription-features";
-import { CACHE_TTL, cacheGetOrSet, cacheKey } from "@/lib/cache";
+import { CACHE_TTL, cacheGetOrSetDeduped, cacheKey } from "@/lib/cache";
 
 export { isPremiumPage, PREMIUM_PAGE_PREFIXES } from "@/lib/premium-routes";
 
@@ -93,7 +93,7 @@ function applyCompAndGrace(
 
 /** Full access decision for a signed-in user (subscription + account + staff). */
 export async function getUserAccess(userId: string): Promise<UserAccess> {
-  return cacheGetOrSet(
+  return cacheGetOrSetDeduped(
     cacheKey(["user-access", userId]),
     CACHE_TTL.userAccess,
     () => resolveUserAccess(userId)
@@ -138,8 +138,7 @@ async function resolveUserAccess(userId: string): Promise<UserAccess> {
   }
 
   const staff = isStaffRole(user.role);
-  let sub = user.subscription;
-  sub = await expireTrialIfNeeded(sub);
+  let sub = normalizeSubscriptionForRead(user.subscription);
   let subscription = evaluateSubscriptionAccess(sub);
   subscription = applyCompAndGrace(sub, subscription);
 

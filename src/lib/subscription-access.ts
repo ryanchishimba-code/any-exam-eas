@@ -34,7 +34,22 @@ function daysUntil(date: Date): number {
   return Math.max(0, Math.ceil((date.getTime() - Date.now()) / (1000 * 60 * 60 * 24)));
 }
 
-/** Mark local app trial as expired when past trialEndsAt. */
+/** Treat expired trials as expired on read — avoid write-on-read during page loads. */
+export function normalizeSubscriptionForRead(
+  subscription: Subscription | null
+): Subscription | null {
+  if (!subscription) return null;
+  if (
+    subscription.status === "trialing" &&
+    subscription.trialEndsAt &&
+    subscription.trialEndsAt <= new Date()
+  ) {
+    return { ...subscription, status: "trial_expired" };
+  }
+  return subscription;
+}
+
+/** Mark local app trial as expired when past trialEndsAt (cron/webhook/login paths). */
 export async function expireTrialIfNeeded(
   subscription: Subscription | null
 ): Promise<Subscription | null> {

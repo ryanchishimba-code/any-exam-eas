@@ -1,7 +1,8 @@
-import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
+import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { getUserAccess } from "@/lib/access-control";
+import { redirectIfDbUnavailable } from "@/lib/page-access-error";
 import { resolvePaywallRedirect } from "@/lib/reactivation";
 import { AccessBlockedNotice } from "./AccessBlockedNotice";
 
@@ -21,8 +22,8 @@ export async function PremiumGate({
   let access;
   try {
     access = await getUserAccess(session.user.id);
-  } catch {
-    redirect(`/login?callbackUrl=${encodeURIComponent(callbackPath)}`);
+  } catch (error) {
+    redirectIfDbUnavailable(error);
   }
 
   if (access.blockReason === "suspended") {
