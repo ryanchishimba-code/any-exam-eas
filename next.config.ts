@@ -112,8 +112,13 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/mpje",
-        destination: "/exams/mpje",
-        permanent: false,
+        destination: "/naplex",
+        permanent: true,
+      },
+      {
+        source: "/exams/mpje",
+        destination: "/naplex",
+        permanent: true,
       },
       {
         source: "/studygub",

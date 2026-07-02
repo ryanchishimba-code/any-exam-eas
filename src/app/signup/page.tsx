@@ -9,7 +9,7 @@ import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { isExamSlug } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
-import type { SignupPlan } from "@/lib/validators/auth";
+import { MARKETING_DISCLAIMER } from "@/lib/site";
 
 export const metadata = {
   title: "Sign Up — Any Exam Easy",
@@ -73,6 +73,9 @@ export default async function SignupPage({
           initialExam={initialExam}
         />
       </AuthCard>
+      <p className="mx-auto mt-6 max-w-md text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+        {MARKETING_DISCLAIMER}
+      </p>
     </PageShell>
   );
 }

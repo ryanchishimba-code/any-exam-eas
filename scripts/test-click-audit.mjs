@@ -23,7 +23,7 @@ const PUBLIC_DESTINATIONS = [
   { label: "Exam NCLEX landing", path: "/exams/nclex", expect: [200, 307], markers: ["NCLEX", "Nursing"] },
   { label: "Exam USMLE landing", path: "/exams/usmle", expect: [200, 307], markers: ["USMLE"] },
   { label: "Exam NAPLEX landing", path: "/exams/naplex", expect: [200, 307], markers: ["NAPLEX"] },
-  { label: "Exam MPJE landing", path: "/exams/mpje", expect: [200, 307], markers: ["MPJE"] },
+  { label: "Exam MPJE landing (legacy → NAPLEX)", path: "/exams/mpje", expect: [200, 307, 308], markers: ["NAPLEX", "Pharmacy"] },
 ];
 
 const AUTH_DESTINATIONS = [
