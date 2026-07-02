@@ -33,7 +33,7 @@ import { AANP_PEDIATRICS_MODULE } from "./aanp-pediatrics-high-yield";
 import { MSK_REHABILITATION_MODULE } from "./msk-rehabilitation";
 import { STROKE_REHABILITATION_MODULE } from "./stroke-rehabilitation";
 import { CARDIOPULMONARY_REHAB_MODULE } from "./cardiopulmonary-rehab";
-import { THERAPEUTIC_MODALITIES_NPTE_MODULE } from "./therapeutic-modalities-npte";
+import { AANP_FNP_SYSTEM_REVIEW_MODULES } from "./aanp-fnp-system-modules";
 
 export {
   ACS_MODULE,
@@ -99,4 +99,5 @@ export const REVIEW_MODULE_CONTENT_BY_SLUG: Record<string, ReviewModuleContent> 
   "medical-ethics-legal": MEDICAL_ETHICS_USMLE_STEP3_MODULE,
   "ccs-case-management": CCS_CASE_MANAGEMENT_USMLE_MODULE,
   delegation: DELEGATION_MODULE,
+  ...AANP_FNP_SYSTEM_REVIEW_MODULES,
 };

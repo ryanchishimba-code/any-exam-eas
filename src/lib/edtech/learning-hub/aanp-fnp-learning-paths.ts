@@ -1,3 +1,11 @@
+/**
+ * AANPCB FNP learning paths — domain foundations + 12 system-based clinical modules.
+ */
+import {
+  AANP_FNP_2026_TOPIC_GROUPS,
+  aanpFnpSystemModuleSlug,
+} from "@/lib/exam-prep/aanp-fnp/blueprint-topics-2026";
+import type { AanpFnpClinicalSystemId } from "@/lib/exam-prep/aanp-fnp/types";
 import type { TopicModuleDefinition, TopicModuleStage } from "./topic-module-template";
 
 /** AANPCB FNP patient age groups — cross-cutting blueprint dimension. */
@@ -29,7 +37,8 @@ export const AANP_FNP_LEARNING_STAGES: AanpFnpLearningStage[] = [
   {
     id: "clinical-integration",
     label: "Clinical integration",
-    description: "Lifespan vignettes across cardiovascular, pulmonary, endocrine, women's health, and more.",
+    description:
+      "System-based primary care vignettes — cardiovascular through dermatology/ENT with guideline-directed therapy.",
     audience: "Clinical rotations",
   },
   {
@@ -40,8 +49,7 @@ export const AANP_FNP_LEARNING_STAGES: AanpFnpLearningStage[] = [
   },
 ];
 
-/** AANP FNP topic modules mapped to blueprint domains and deep-dive content. */
-export const AANP_FNP_TOPIC_MODULES: TopicModuleDefinition[] = [
+const DOMAIN_MODULES: TopicModuleDefinition[] = [
   {
     id: "aanp-assess-screening",
     examSlug: "aanp-fnp",
@@ -88,20 +96,70 @@ export const AANP_FNP_TOPIC_MODULES: TopicModuleDefinition[] = [
     sortOrder: 2,
   },
   {
-    id: "aanp-cardio-acs",
+    id: "aanp-evaluate-outcomes",
     examSlug: "aanp-fnp",
-    slug: "acute-coronary-syndrome",
-    stage: "clinical-application",
-    system: "Cardiovascular",
-    title: "Acute Coronary Syndrome",
-    overview: "STEMI vs NSTEMI pathways for AANP FNP cardiovascular vignettes.",
-    skills: ["diagnosis", "next_step"],
-    estimatedMinutes: 35,
-    reviewTopicSlug: "acute-coronary-syndrome",
-    questions: { practiceTopicSlug: "cardiovascular", reviewCount: 15, curatedOnly: true },
-    tags: ["cardiovascular", "acs"],
+    slug: "aanp-evaluate-domain",
+    stage: "board-crunch",
+    system: "Evaluate",
+    title: "Outcomes & Follow-Up",
+    overview: "Monitor treatment response, adverse effects, and modify plans — Domain IV (15%).",
+    skills: ["evaluate"],
+    estimatedMinutes: 30,
+    reviewTopicSlug: "aanp-evaluate-domain",
+    questions: { practiceTopicSlug: "evaluate", reviewCount: 15, curatedOnly: true },
+    tags: ["evaluate", "monitoring"],
     sortOrder: 3,
   },
+];
+
+const SYSTEM_STAGE: Record<string, TopicModuleStage> = {
+  "very-high": "clinical-application",
+  high: "clinical-application",
+  standard: "systems-review",
+};
+
+const SYSTEM_SKILLS: Record<string, TopicModuleDefinition["skills"]> = {
+  cardiovascular: ["diagnosis", "next_step", "pharm_moa"],
+  pulmonary: ["diagnosis", "next_step"],
+  endocrine: ["next_step", "pharm_moa", "interpretation"],
+  "infectious-disease": ["diagnosis", "next_step"],
+  gastrointestinal: ["diagnosis", "next_step"],
+  musculoskeletal: ["diagnosis", "next_step"],
+  neurology: ["diagnosis", "next_step"],
+  "psychiatry-behavioral": ["diagnosis", "next_step", "assess"],
+  "womens-health": ["assess", "next_step"],
+  pediatrics: ["assess", "diagnosis"],
+  geriatrics: ["assess", "next_step", "evaluate"],
+  "dermatology-ent": ["diagnosis", "next_step"],
+};
+
+function buildSystemModules(): TopicModuleDefinition[] {
+  return AANP_FNP_2026_TOPIC_GROUPS.map((group, index) => {
+    const slug = aanpFnpSystemModuleSlug(group.categoryId);
+    const topTopics = group.topics.slice(0, 3).map((t) => t.label).join(", ");
+    return {
+      id: `aanp-sys-${group.categoryId}`,
+      examSlug: "aanp-fnp",
+      slug,
+      stage: SYSTEM_STAGE[group.yield] ?? "clinical-application",
+      system: group.label,
+      title: `${group.label} Primary Care`,
+      overview: `${group.yield === "very-high" ? "Very high yield — " : ""}Case vignettes: ${topTopics}, and more.`,
+      skills: SYSTEM_SKILLS[group.categoryId] ?? ["diagnosis", "next_step"],
+      estimatedMinutes: group.yield === "very-high" ? 40 : 35,
+      reviewTopicSlug: slug,
+      questions: {
+        practiceTopicSlug: group.categoryId,
+        reviewCount: group.yield === "very-high" ? 20 : 15,
+        curatedOnly: true,
+      },
+      tags: [group.categoryId, group.yield, "system-module"],
+      sortOrder: 10 + index,
+    };
+  });
+}
+
+const LIFESPAN_MODULES: TopicModuleDefinition[] = [
   {
     id: "aanp-geri-high-yield",
     examSlug: "aanp-fnp",
@@ -115,7 +173,7 @@ export const AANP_FNP_TOPIC_MODULES: TopicModuleDefinition[] = [
     reviewTopicSlug: "aanp-geriatrics-high-yield",
     questions: { practiceTopicSlug: "geriatrics", reviewCount: 20, curatedOnly: true },
     tags: ["geriatrics", "Beers"],
-    sortOrder: 4,
+    sortOrder: 90,
   },
   {
     id: "aanp-peds-high-yield",
@@ -130,13 +188,20 @@ export const AANP_FNP_TOPIC_MODULES: TopicModuleDefinition[] = [
     reviewTopicSlug: "aanp-pediatrics-high-yield",
     questions: { practiceTopicSlug: "pediatrics", reviewCount: 15, curatedOnly: true },
     tags: ["pediatrics", "lifespan"],
-    sortOrder: 5,
+    sortOrder: 91,
   },
+];
+
+/** AANP FNP topic modules — domains, 12 body systems, and lifespan high-yield. */
+export const AANP_FNP_TOPIC_MODULES: TopicModuleDefinition[] = [
+  ...DOMAIN_MODULES,
+  ...buildSystemModules(),
+  ...LIFESPAN_MODULES,
 ];
 
 const AANP_STAGE_TO_MODULE: Record<AanpFnpLearningStage["id"], TopicModuleStage[]> = {
   "domain-foundations": ["foundations"],
-  "clinical-integration": ["clinical-application"],
+  "clinical-integration": ["clinical-application", "systems-review"],
   "board-crunch": ["board-crunch"],
 };
 
@@ -149,4 +214,10 @@ export function aanpFnpModulesForStage(
 
 export function getAanpFnpModuleBySlug(slug: string): TopicModuleDefinition | undefined {
   return AANP_FNP_TOPIC_MODULES.find((m) => m.slug === slug);
+}
+
+export function getAanpFnpSystemModuleByClinicalSystem(
+  clinicalSystem: AanpFnpClinicalSystemId
+): TopicModuleDefinition | undefined {
+  return getAanpFnpModuleBySlug(aanpFnpSystemModuleSlug(clinicalSystem));
 }

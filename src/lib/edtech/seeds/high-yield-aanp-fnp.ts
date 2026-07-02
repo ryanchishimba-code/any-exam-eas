@@ -2,6 +2,7 @@
 import type { ExamSlug } from "@/types/edtech";
 import { defineExamTopics } from "./topic-factory";
 import { sigCodeAbbreviationTopic } from "./sig-code-abbreviations";
+import { AANP_FNP_SYSTEM_HIGH_YIELD_TOPICS } from "./aanp-fnp-system-high-yield";
 
 export const AANP_FNP_HIGH_YIELD_TOPICS = defineExamTopics("aanp-fnp" satisfies ExamSlug, [
   {
@@ -112,5 +113,6 @@ export const AANP_FNP_HIGH_YIELD_TOPICS = defineExamTopics("aanp-fnp" satisfies 
     pitfalls: ["Applying adult dosing or workup algorithms to pediatric patients"],
     practiceTopicSlug: "pediatrics",
   },
+  ...AANP_FNP_SYSTEM_HIGH_YIELD_TOPICS,
   sigCodeAbbreviationTopic("aanp-fnp"),
 ]);

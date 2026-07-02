@@ -21,6 +21,7 @@ import {
 } from "./batch-diversity";
 import { runAanpFnpHybridGate } from "./hybrid-gate";
 import { stemFormatForIndex, planAanpFnpGenerationSlots } from "./blueprint-quota";
+import { buildAanpFnp2026TopicCatalogBlock } from "./blueprint-topics-2026";
 import { attachAanpFnpStudyLinks } from "./study-links";
 import type { AanpFnpGenerationMeta, AanpFnpGenerationSlot } from "./types";
 import {
@@ -81,6 +82,8 @@ function buildSlotPrompt(
   return `Generate exactly ${slots.length} original AANP FNP-C practice questions.
 
 ${AANP_FNP_EXAM_SYSTEM_AUGMENTATION}
+
+${buildAanpFnp2026TopicCatalogBlock()}
 
 ${AANP_FNP_CLINICAL_GATE_CHECKLIST}
 
@@ -172,6 +175,15 @@ function slotToBankItem(
         clinicalSystem: slot.clinicalSystem,
         blueprintTopic: slot.blueprintTopic,
         patientAgeGroup: slot.patientAgeGroup,
+        text: [
+          exam.vignette,
+          exam.question,
+          exam.explanation,
+          ...(exam.options ?? []),
+          exam.correctAnswer,
+        ]
+          .filter(Boolean)
+          .join("\n"),
       }
     ),
   };

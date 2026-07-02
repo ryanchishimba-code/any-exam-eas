@@ -29,7 +29,7 @@ function baseTags(meta: AanpFnpMeta, extra: string[] = []) {
   ];
 }
 
-function payload(meta: AanpFnpMeta, extra: Record<string, unknown> = {}) {
+function payload(meta: AanpFnpMeta, extra: Record<string, unknown> = {}, text?: string) {
   const domain = (meta.blueprintDomain ?? meta.clinicalSystem ?? "assess") as string;
   const base = {
     clinicalSystem: meta.clinicalSystem,
@@ -46,6 +46,7 @@ function payload(meta: AanpFnpMeta, extra: Record<string, unknown> = {}) {
       clinicalSystem: meta.clinicalSystem ?? domain,
       blueprintTopic: meta.blueprintTopic ?? "primary care",
       patientAgeGroup: meta.patientAgeGroup,
+      text,
     },
     meta.related as Record<string, unknown> | undefined
   );
@@ -71,7 +72,7 @@ export function aanpFnpVignette(
       correctAnswer: correct,
       explanation,
       itemType: "vignette",
-      ngnPayload: payload(meta, { kind: "vignette" }),
+      ngnPayload: payload(meta, { kind: "vignette" }, [vignette, stem, explanation, ...options, correct].join("\n")),
       tags: baseTags(meta, ["clinical-vignette"]),
       blueprintDomain: domain,
       patientAgeGroup: meta.patientAgeGroup,
@@ -104,7 +105,11 @@ export function aanpFnpMcq(
       correctAnswer: correct,
       explanation,
       itemType: hasVignette ? "vignette" : "mcq",
-      ngnPayload: payload(meta, { kind: hasVignette ? "vignette" : "mcq" }),
+      ngnPayload: payload(
+        meta,
+        { kind: hasVignette ? "vignette" : "mcq" },
+        [vignette, stem, explanation, ...options, correct].filter(Boolean).join("\n")
+      ),
       tags: baseTags(meta),
       blueprintDomain: domain,
       patientAgeGroup: meta.patientAgeGroup,

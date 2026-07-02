@@ -1,7 +1,12 @@
 /**
  * AANPCB FNP blueprint — proportional quotas and generation slot planning.
  */
-import { AANP_FNP_SUBJECTS } from "@/lib/subjects/aanp-fnp/subjects";
+import {
+  computeAanpFnpClinicalSystemWeightMap,
+  highYieldTopicsForSystem,
+  pickAanpFnp2026BlueprintTopic,
+  pickAanpFnp2026ClinicalSystem,
+} from "./blueprint-topics-2026";
 import type {
   AanpFnpAgeGroupQuotaRow,
   AanpFnpClinicalSystemId,
@@ -17,17 +22,98 @@ import {
   AANP_FNP_DOMAIN_WEIGHTS,
   AANP_FNP_TARGET_TOTAL,
 } from "./types";
+import { AANP_FNP_2026_TOPIC_GROUPS } from "./blueprint-topics-2026";
 
 export { AANP_FNP_BLUEPRINT_SOURCE } from "./types";
+export { highYieldTopicsForSystem } from "./blueprint-topics-2026";
 
-const CLINICAL_SYSTEM_IDS = AANP_FNP_SUBJECTS.filter((s) =>
-  ["cardiovascular", "pulmonary", "endocrine", "womens-health", "pediatrics", "geriatrics", "psychiatry-behavioral", "infectious-disease"].includes(
-    s.id
-  )
-).map((s) => s.id as AanpFnpClinicalSystemId);
+export type AanpFnpClinicalSystemQuotaRow = {
+  system: AanpFnpClinicalSystemId;
+  label: string;
+  weight: number;
+  targetCount: number;
+  currentCount?: number;
+  deficit?: number;
+};
 
+export type AanpFnpTopicQuotaRow = {
+  topicSlug: string;
+  label: string;
+  clinicalSystem: AanpFnpClinicalSystemId;
+  targetCount: number;
+  currentCount?: number;
+  deficit?: number;
+};
+
+const CLINICAL_SYSTEM_WEIGHTS = computeAanpFnpClinicalSystemWeightMap();
+const CLINICAL_SYSTEM_IDS = Object.keys(CLINICAL_SYSTEM_WEIGHTS) as AanpFnpClinicalSystemId[];
 const DOMAIN_IDS = Object.keys(AANP_FNP_DOMAIN_WEIGHTS) as AanpFnpDomainId[];
 const AGE_GROUP_IDS = Object.keys(AANP_FNP_AGE_GROUP_WEIGHTS) as AanpFnpPatientAgeGroupId[];
+
+/** Per clinical-system targets (yield-weighted rotation). */
+export function computeAanpFnpClinicalSystemQuotas(
+  total = AANP_FNP_TARGET_TOTAL
+): AanpFnpClinicalSystemQuotaRow[] {
+  return CLINICAL_SYSTEM_IDS.map((system) => {
+    const group = AANP_FNP_2026_TOPIC_GROUPS.find((g) => g.categoryId === system);
+    return {
+      system,
+      label: group?.label ?? system,
+      weight: CLINICAL_SYSTEM_WEIGHTS[system],
+      targetCount: Math.round(total * CLINICAL_SYSTEM_WEIGHTS[system]),
+    };
+  });
+}
+
+/** Per-topic targets — evenly split within each clinical system. */
+export function computeAanpFnpTopicQuotas(
+  total = AANP_FNP_TARGET_TOTAL
+): AanpFnpTopicQuotaRow[] {
+  const rows: AanpFnpTopicQuotaRow[] = [];
+  for (const group of AANP_FNP_2026_TOPIC_GROUPS) {
+    const systemTarget = Math.round(total * CLINICAL_SYSTEM_WEIGHTS[group.categoryId]);
+    const perTopic = Math.max(1, Math.round(systemTarget / group.topics.length));
+    for (const topic of group.topics) {
+      rows.push({
+        topicSlug: topic.slug,
+        label: topic.label,
+        clinicalSystem: group.categoryId,
+        targetCount: perTopic,
+      });
+    }
+  }
+  return rows;
+}
+
+/** Merge live DB counts with clinical-system targets. */
+export function mergeAanpFnpClinicalSystemQuotaWithCounts(
+  countsBySystem: Record<string, number>,
+  total = AANP_FNP_TARGET_TOTAL
+): AanpFnpClinicalSystemQuotaRow[] {
+  return computeAanpFnpClinicalSystemQuotas(total).map((row) => {
+    const currentCount = countsBySystem[row.system] ?? 0;
+    return {
+      ...row,
+      currentCount,
+      deficit: Math.max(0, row.targetCount - currentCount),
+    };
+  });
+}
+
+/** Merge live DB counts with per-topic targets (subjectId or blueprintTopic slug). */
+export function mergeAanpFnpTopicQuotaWithCounts(
+  countsByTopic: Record<string, number>,
+  total = AANP_FNP_TARGET_TOTAL
+): AanpFnpTopicQuotaRow[] {
+  return computeAanpFnpTopicQuotas(total).map((row) => {
+    const currentCount = countsByTopic[row.topicSlug] ?? 0;
+    return {
+      ...row,
+      currentCount,
+      deficit: Math.max(0, row.targetCount - currentCount),
+    };
+  });
+}
 
 /** Per-domain question targets for a given bank size (default 6000). */
 export function computeAanpFnpDomainQuotas(
@@ -92,23 +178,6 @@ export function mergeAanpFnpAgeGroupQuotaWithCounts(
   });
 }
 
-/** High-yield topic examples per clinical system. */
-export function highYieldTopicsForSystem(
-  clinicalSystem: AanpFnpClinicalSystemId
-): string[] {
-  const map: Record<AanpFnpClinicalSystemId, string[]> = {
-    cardiovascular: ["hypertension", "heart failure", "ACS", "atrial fibrillation", "lipid management"],
-    pulmonary: ["asthma", "COPD", "pneumonia", "PE", "sleep apnea"],
-    endocrine: ["type 2 diabetes", "thyroid disorders", "DKA", "obesity", "osteoporosis"],
-    "womens-health": ["prenatal care", "contraception", "menopause", "STI screening", "breast health"],
-    pediatrics: ["well-child", "febrile infant", "ADHD", "immunizations", "developmental milestones"],
-    geriatrics: ["polypharmacy", "falls", "delirium", "dementia", "Beers Criteria"],
-    "psychiatry-behavioral": ["depression", "anxiety", "substance use", "suicide risk", "SSRI monitoring"],
-    "infectious-disease": ["UTI", "CAP", "HIV", "sepsis", "antibiotic selection"],
-  };
-  return map[clinicalSystem] ?? [];
-}
-
 /** Lead-in stem formats to rotate for batch diversity. */
 const STEM_FORMATS = [
   "most likely diagnosis",
@@ -139,8 +208,8 @@ function pickAgeGroupForSlot(index: number, deficits: Record<string, number>): A
   return sorted[index % sorted.length]!;
 }
 
-function pickClinicalSystem(index: number): AanpFnpClinicalSystemId {
-  return CLINICAL_SYSTEM_IDS[index % CLINICAL_SYSTEM_IDS.length]!;
+function pickClinicalSystem(index: number, seed = 0): AanpFnpClinicalSystemId {
+  return pickAanpFnp2026ClinicalSystem(index, seed);
 }
 
 /**
@@ -159,9 +228,8 @@ export function planAanpFnpGenerationSlots(params: {
     const idx = i + seed;
     const blueprintDomain = pickDomainForSlot(idx, domainDeficits);
     const patientAgeGroup = pickAgeGroupForSlot(idx, ageGroupDeficits);
-    const clinicalSystem = pickClinicalSystem(idx);
-    const topics = highYieldTopicsForSystem(clinicalSystem);
-    const blueprintTopic = topics[idx % topics.length] ?? clinicalSystem;
+    const clinicalSystem = pickClinicalSystem(idx, seed);
+    const blueprintTopic = pickAanpFnp2026BlueprintTopic(clinicalSystem, idx, seed);
     const difficulty = 2 + (idx % 4);
 
     slots.push({

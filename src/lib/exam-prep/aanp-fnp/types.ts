@@ -47,11 +47,29 @@ export type AanpFnpClinicalSystemId =
   | "cardiovascular"
   | "pulmonary"
   | "endocrine"
+  | "gastrointestinal"
+  | "musculoskeletal"
+  | "neurology"
   | "womens-health"
   | "pediatrics"
   | "geriatrics"
   | "psychiatry-behavioral"
-  | "infectious-disease";
+  | "infectious-disease"
+  | "dermatology-ent";
+
+/** Study-oriented content categories (AnyExamEasy 2026 outline). */
+export type AanpFnpContentCategoryId =
+  | "assessment-diagnosis"
+  | "management-pharmacotherapeutics"
+  | "professional-role-health-policy"
+  | "health-promotion-disease-prevention";
+
+/** Coarse lifespan bands for vignette variety and roadmap weighting. */
+export type AanpFnpLifespanBandId =
+  | "pediatrics"
+  | "adults"
+  | "geriatrics"
+  | "womens-health";
 
 export type AanpFnpGenerationSlot = {
   blueprintDomain: AanpFnpDomainId;

@@ -164,6 +164,15 @@ function seedToVariantBankItem(
         clinicalSystem,
         blueprintTopic: topic,
         patientAgeGroup: ageGroup,
+        text: [
+          base.vignette,
+          base.question,
+          base.explanation,
+          ...(base.options ?? []),
+          base.correctAnswer,
+        ]
+          .filter(Boolean)
+          .join("\n"),
       },
       seed.ngnPayload ?? undefined
     ),

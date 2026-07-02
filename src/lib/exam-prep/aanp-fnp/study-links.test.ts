@@ -8,14 +8,14 @@ const aanpCardIds = new Set(
 );
 
 describe("resolveAanpFnpStudyLinks", () => {
-  it("maps STEMI diagnose items to ACS module and fnp cards", () => {
+  it("maps STEMI diagnose items to cardiovascular system module and fnp cards", () => {
     const links = resolveAanpFnpStudyLinks({
       blueprintDomain: "diagnose",
       clinicalSystem: "cardiovascular",
       blueprintTopic: "ACS STEMI",
       patientAgeGroup: "middle-adult",
     });
-    expect(links.reviewModuleSlug).toBe("acute-coronary-syndrome");
+    expect(links.reviewModuleSlug).toBe("aanp-system-cardiovascular");
     expect(links.memoryCardIds?.length).toBeGreaterThan(0);
     for (const id of links.memoryCardIds ?? []) {
       expect(aanpCardIds.has(id)).toBe(true);
@@ -52,6 +52,28 @@ describe("resolveAanpFnpStudyLinks", () => {
       patientAgeGroup: "older-adult",
     });
     expect((links.memoryCardIds ?? []).length).toBeLessThanOrEqual(4);
+  });
+
+  it("extracts Top 500 drug links from vignette text", () => {
+    const links = resolveAanpFnpStudyLinks({
+      blueprintDomain: "plan",
+      clinicalSystem: "endocrine",
+      blueprintTopic: "diabetes-ada-guidelines",
+      patientAgeGroup: "middle-adult",
+      text: "Start metformin 500 mg twice daily. Consider adding empagliflozin if ASCVD risk is elevated.",
+    });
+    expect(links.top500Drugs?.length).toBeGreaterThan(0);
+    expect(links.top500Drugs?.some((d) => /metformin/i.test(d))).toBe(true);
+  });
+
+  it("maps blueprint topic slug to system module", () => {
+    const links = resolveAanpFnpStudyLinks({
+      blueprintDomain: "plan",
+      clinicalSystem: "pulmonary",
+      blueprintTopic: "asthma-gina-stepwise",
+      patientAgeGroup: "child",
+    });
+    expect(links.reviewModuleSlug).toBe("aanp-system-pulmonary");
   });
 
   it("review module slugs resolve to registered content", () => {

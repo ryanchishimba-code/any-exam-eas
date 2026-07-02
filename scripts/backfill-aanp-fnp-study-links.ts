@@ -51,8 +51,9 @@ async function main() {
     const item = enrichBankItemFromRow(row);
     const payload = item.ngnPayload ?? {};
     const existingIds = Array.isArray(payload.memoryCardIds) ? payload.memoryCardIds : [];
+    const existingDrugs = Array.isArray(payload.top500Drugs) ? payload.top500Drugs : [];
 
-    if (existingIds.length > 0) {
+    if (existingIds.length > 0 && existingDrugs.length > 0) {
       skipped++;
       continue;
     }
@@ -79,10 +80,21 @@ async function main() {
       clinicalSystem,
       blueprintTopic: topic,
       patientAgeGroup: ageGroup,
+      text: [
+        item.vignette,
+        item.scenario,
+        item.question,
+        item.explanation,
+        ...(item.options ?? []),
+        item.correctAnswer,
+      ]
+        .filter(Boolean)
+        .join("\n"),
     });
 
     const nextIds = Array.isArray(nextPayload.memoryCardIds) ? nextPayload.memoryCardIds : [];
-    if (nextIds.length === 0 && !nextPayload.reviewModuleSlug) {
+    const nextDrugs = Array.isArray(nextPayload.top500Drugs) ? nextPayload.top500Drugs : [];
+    if (nextIds.length === 0 && !nextPayload.reviewModuleSlug && nextDrugs.length === 0) {
       skipped++;
       continue;
     }

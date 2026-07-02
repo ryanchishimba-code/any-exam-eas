@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   assessAanpFnpBlueprintAlignment,
   computeAanpFnpAgeGroupQuotas,
+  computeAanpFnpClinicalSystemQuotas,
   computeAanpFnpDomainQuotas,
 } from "./blueprint-quota";
 import { AANP_FNP_TARGET_TOTAL } from "./types";
@@ -35,5 +36,13 @@ describe("AANP FNP blueprint quotas", () => {
     const result = assessAanpFnpBlueprintAlignment(counts, AANP_FNP_TARGET_TOTAL);
     expect(result.aligned).toBe(false);
     expect(result.deviations.some((d) => d.domain === "assess" && d.deltaPct > 5)).toBe(true);
+  });
+
+  it("allocates clinical systems proportional to yield weights", () => {
+    const quotas = computeAanpFnpClinicalSystemQuotas(6000);
+    expect(quotas.length).toBe(12);
+    const cv = quotas.find((q) => q.system === "cardiovascular");
+    const derm = quotas.find((q) => q.system === "dermatology-ent");
+    expect(cv!.targetCount).toBeGreaterThan(derm!.targetCount);
   });
 });
