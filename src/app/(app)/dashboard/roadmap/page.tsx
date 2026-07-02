@@ -62,10 +62,12 @@ export default async function ExamRoadmapPage({
 
   await requirePremiumPage(ROUTES.roadmap);
 
-  let examSlug: ExamSlug | null = isExamSlug(params.exam ?? "") ? (params.exam as ExamSlug) : null;
-  if (!examSlug) {
-    const pref = await getUserExamPreference(session.user.id);
-    examSlug = pref?.examSlug ?? "nclex";
+  const pref = await getUserExamPreference(session.user.id);
+  if (!pref) redirect(ROUTES.selectExam);
+
+  const examSlug = pref.examSlug;
+  if (params.exam && isExamSlug(params.exam) && params.exam !== examSlug) {
+    redirect(ROUTES.roadmap);
   }
 
   const usmleFieldId =

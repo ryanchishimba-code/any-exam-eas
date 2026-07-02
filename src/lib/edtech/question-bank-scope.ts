@@ -31,7 +31,7 @@ export function fieldMatchesExamSlug(fieldId: string, examSlug: ExamSlug): boole
   return fieldIdForExamSlug(examSlug) === normalized;
 }
 
-/** Align dashboard exam preference with an explicit field the user is practicing. */
+/** @deprecated Do not switch exam preference from URL field params — redirect to the user's selected exam instead. */
 export async function syncExamPreferenceForField(
   userId: string,
   field: string

@@ -6,7 +6,7 @@ import { getExamQuestionCountBySlug } from "@/lib/exam/exam-lengths";
 import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
 import { parseRequestedLengthPreset } from "@/lib/exam/session-count";
 import { isExamSlug } from "@/lib/edtech/exams";
-import { setUserExamPreference } from "@/lib/edtech/exam-preference";
+import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { requirePremiumApi } from "@/lib/api-access";
 
 export const runtime = "nodejs";
@@ -25,7 +25,16 @@ export async function POST(req: Request) {
 
   try {
     if (isExamSlug(examType)) {
-      await setUserExamPreference(premium.userId, examType);
+      const pref = await getUserExamPreference(premium.userId);
+      if (!pref) {
+        return NextResponse.json({ error: "Select an exam before starting." }, { status: 403 });
+      }
+      if (pref.examSlug !== examType) {
+        return NextResponse.json(
+          { error: "That exam does not match your selected exam.", code: "EXAM_MISMATCH" },
+          { status: 403 }
+        );
+      }
 
       const lengthPreset = parseRequestedLengthPreset(body.lengthPreset);
       const nclexLength =

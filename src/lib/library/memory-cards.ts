@@ -24,7 +24,10 @@ export async function loadMemoryCards(
   options?: { usmleFieldId?: string | null }
 ): Promise<{ examSlug: ExamSlug; cards: MemoryCard[] }> {
   const pref = examSlug ? { examSlug } : await getUserExamPreference(userId);
-  const slug = (examSlug ?? pref?.examSlug ?? "nclex") as ExamSlug;
+  if (!pref?.examSlug) {
+    throw new Error("Select an exam before loading memory cards.");
+  }
+  const slug = (examSlug ?? pref.examSlug) as ExamSlug;
   let cards = getMemoryCardsForExam(slug);
   if (slug === "usmle" && options?.usmleFieldId) {
     cards = filterMemoryCardsForUsmleStep(cards, resolveUsmleLibraryStep(options.usmleFieldId));

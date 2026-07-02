@@ -46,8 +46,9 @@ const QUICK_ACTIONS = [
 
 export function SubscriberHome() {
   const { data: session } = useSession();
-  const { examSlug } = useAppPreferences();
+  const { examSlug, loading: prefLoading } = useAppPreferences();
   const name = session?.user?.name ? firstName(session.user.name) : null;
+  const activeExamSlug = examSlug ?? null;
 
   return (
     <section className="bg-[var(--color-surface)] py-12 sm:py-16" aria-labelledby="subscriber-home-heading">
@@ -77,25 +78,33 @@ export function SubscriberHome() {
             <div className={dbUi.panelSection}>
               <h3 className={dbUi.sectionTitle}>Quick start</h3>
               <div className={cn(dbUi.chipRow, "mt-3")}>
-                {QUICK_ACTIONS.map((action) => (
-                  <Link
-                    key={action.title}
-                    href={action.href((examSlug ?? "nclex") as ExamSlug)}
-                    className={dbUi.actionCard}
-                  >
-                    <action.icon className="h-5 w-5 text-[var(--color-accent)]" aria-hidden />
-                    <p className="mt-2 text-[15px] font-semibold text-[var(--color-ink)]">
-                      {action.title}
-                    </p>
-                    <p className="mt-0.5 text-[12px] text-[var(--color-ink-muted)]">
-                      {action.description}
-                    </p>
-                    <span className="mt-3 inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--color-accent)]">
-                      Go
-                      <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-                    </span>
-                  </Link>
-                ))}
+                {QUICK_ACTIONS.map((action) =>
+                  activeExamSlug ? (
+                    <Link
+                      key={action.title}
+                      href={action.href(activeExamSlug)}
+                      className={dbUi.actionCard}
+                    >
+                      <action.icon className="h-5 w-5 text-[var(--color-accent)]" aria-hidden />
+                      <p className="mt-2 text-[15px] font-semibold text-[var(--color-ink)]">
+                        {action.title}
+                      </p>
+                      <p className="mt-0.5 text-[12px] text-[var(--color-ink-muted)]">
+                        {action.description}
+                      </p>
+                      <span className="mt-3 inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--color-accent)]">
+                        Go
+                        <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                      </span>
+                    </Link>
+                  ) : prefLoading ? (
+                    <div
+                      key={action.title}
+                      className={cn(dbUi.actionCard, "animate-pulse opacity-60")}
+                      aria-hidden
+                    />
+                  ) : null
+                )}
               </div>
             </div>
 

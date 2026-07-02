@@ -13,6 +13,8 @@ import { useUserAccess } from "@/lib/client/use-user-access";
 import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
+import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { questionBankHref } from "@/lib/edtech/practice-links";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { STUDY_HUB_PATH, TOP_500_DRUGS_PATH } from "@/lib/study-hub/config";
 import { ROUTES } from "@/lib/routes";
@@ -69,12 +71,12 @@ export function AvatarDropdown() {
           description: "Question banks, reference hub & Top 500 drugs",
           icon: LayoutGrid,
         },
-        ...(clinical
+        ...(clinical && examSlug
           ? [
               {
-                href: "/question-bank?field=nursing",
-                label: "NCLEX",
-                description: "Nursing question bank",
+                href: questionBankHref(examSlug),
+                label: EXAM_CATALOG[examSlug].shortName,
+                description: `${EXAM_CATALOG[examSlug].shortName} question bank`,
                 icon: BookOpen,
               },
               {

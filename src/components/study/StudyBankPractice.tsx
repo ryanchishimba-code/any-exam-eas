@@ -21,7 +21,7 @@ import {
 } from "@/lib/exam/modes";
 import { mpjePracticeExamHref, STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import { EXAM_CATALOG, examSlugFromFieldId } from "@/lib/edtech/exams";
-import { persistExamPreference, persistUsmleStepPreference } from "@/lib/edtech/actions";
+import { persistUsmleStepPreference } from "@/lib/edtech/actions";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import {
   fieldIdForExamSlug,
@@ -308,7 +308,6 @@ export function StudyBankPractice({
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
   const autostartRequested = searchParams.get("autostart") === "1";
   const autostartAttempted = useRef(false);
-  const crossExamFieldSyncRef = useRef<string | null>(null);
   const zeroPoolFallbackAppliedRef = useRef(false);
   const topicReturnTo = useMemo(
     () => parsePracticeReturn(searchParams),
@@ -427,22 +426,6 @@ export function StudyBankPractice({
       if (!expectedMeta) return;
 
       if (paramMeta && !fieldMatchesExamSlug(paramMeta.id, effectiveExamSlug)) {
-        const targetSlug = examSlugFromFieldId(paramMeta.id);
-        if (targetSlug) {
-          setField(paramMeta.label);
-          const syncKey = `${paramMeta.id}:${targetSlug}`;
-          if (crossExamFieldSyncRef.current !== syncKey) {
-            crossExamFieldSyncRef.current = syncKey;
-            void persistExamPreference(targetSlug).then(async (result) => {
-              if (result.ok) {
-                setExamSlug(targetSlug);
-                await refreshExamPref();
-                router.refresh();
-              }
-            });
-          }
-          return;
-        }
         setField(expectedMeta.label);
         const qs = practiceUrlSearchParams(searchParams);
         qs.set("field", expectedId);

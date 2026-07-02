@@ -1,13 +1,10 @@
 import { redirect } from "next/navigation";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import {
-  examSlugForFieldId,
   fieldIdForExamSlug,
   fieldMatchesExamSlug,
   resolveQuestionBankFieldId,
-  syncExamPreferenceForField,
 } from "@/lib/edtech/question-bank-scope";
-import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
@@ -44,20 +41,6 @@ export async function resolveQuestionBankRoute(
     const resolvedFieldId = resolveQuestionBankFieldId(String(sp.field));
     if (fieldMatchesExamSlug(resolvedFieldId, examSlug)) {
       fieldParam = resolvedFieldId;
-    } else if (isPracticeFieldId(resolvedFieldId) && examSlugForFieldId(resolvedFieldId)) {
-      const synced = await syncExamPreferenceForField(userId, resolvedFieldId);
-      if (synced) {
-        examSlug = synced;
-        fieldParam = resolvedFieldId;
-      } else {
-        const qs = new URLSearchParams();
-        for (const [key, value] of Object.entries(sp)) {
-          if (key === "field" || value == null) continue;
-          qs.set(key, Array.isArray(value) ? value[0]! : value);
-        }
-        qs.set("field", defaultFieldId);
-        redirect(`${ROUTES.questionBank}?${qs.toString()}`);
-      }
     } else {
       const qs = new URLSearchParams();
       for (const [key, value] of Object.entries(sp)) {

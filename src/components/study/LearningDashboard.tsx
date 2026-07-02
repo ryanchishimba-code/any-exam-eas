@@ -5,19 +5,30 @@ import Link from "next/link";
 import type { PersonalizedPlan } from "@/lib/core/types";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_MODES } from "@/lib/exam/modes";
+import { useAppPreferences } from "@/lib/client/use-app-preferences";
+import { fieldIdForExamSlug } from "@/lib/edtech/question-bank-scope";
 import { Button } from "@/components/ui/Button";
 import { ProgressMetricsNotice } from "@/components/legal/ProgressMetricsNotice";
 import { PRACTICE_PROGRESS_HINT, PRACTICE_PROGRESS_LABEL } from "@/lib/site";
 
 export function LearningDashboard() {
+  const { examSlug, loading: prefLoading } = useAppPreferences();
   const [profile, setProfile] = useState<LearningProfileSnapshot | null>(null);
   const [plan, setPlan] = useState<PersonalizedPlan | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (prefLoading) return;
+    if (!examSlug) {
+      setProfile(null);
+      setPlan(null);
+      setLoading(false);
+      return;
+    }
+    const fieldId = fieldIdForExamSlug(examSlug);
     Promise.all([
       fetch("/api/learning/profile").then((r) => r.json()),
-      fetch("/api/learning/plan?field=nursing").then((r) => r.json()),
+      fetch(`/api/learning/plan?field=${encodeURIComponent(fieldId)}`).then((r) => r.json()),
     ])
       .then(([profileRes, planRes]) => {
         setProfile(profileRes.profile ?? null);
@@ -28,7 +39,7 @@ export function LearningDashboard() {
         setPlan(null);
       })
       .finally(() => setLoading(false));
-  }, []);
+  }, [examSlug, prefLoading]);
 
   if (loading) {
     return (
