@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChevronRight, Zap } from "lucide-react";
@@ -53,8 +53,11 @@ export function FullExamLauncher({
 }: Props) {
   const router = useRouter();
   const exam = EXAM_CATALOG[examSlug];
-  const allOptions = getLengthOptions(examSlug);
-  const options = filterLengthOptionsForAccess(allOptions, mockAccess);
+  const allOptions = useMemo(() => getLengthOptions(examSlug), [examSlug]);
+  const options = useMemo(
+    () => filterLengthOptionsForAccess(allOptions, mockAccess),
+    [allOptions, mockAccess.allowFullLengthMocks, mockAccess.allowShortMocks]
+  );
   const defaultPreset = defaultMockPresetForAccess(mockAccess);
   const lockedHint = mockPresetLockedMessage(mockAccess);
 
@@ -63,11 +66,21 @@ export function FullExamLauncher({
     if (fromUrl && options.some((o) => o.preset === fromUrl)) return fromUrl;
     return defaultPreset;
   });
+  const presetRef = useRef<FullExamLengthPreset>(preset);
   const [timed, setTimed] = useState(initialTimed);
   const [nclexCat, setNclexCat] = useState(initialNclexCat && examSlug === "nclex");
   const [pending, setPending] = useState(autostart);
   const [error, setError] = useState<string | null>(null);
   const startingRef = useRef(false);
+
+  const handlePresetChange = useCallback((next: FullExamLengthPreset) => {
+    presetRef.current = next;
+    setPreset(next);
+  }, []);
+
+  useEffect(() => {
+    presetRef.current = preset;
+  }, [preset]);
 
   const preview = buildSessionConfig(examSlug, preset, timed, {
     nclexCat: examSlug === "nclex" ? nclexCat : undefined,
@@ -92,7 +105,7 @@ export function FullExamLauncher({
     startingRef.current = true;
     setError(null);
     setPending(true);
-    const activePreset = presetOverride ?? preset;
+    const activePreset = presetOverride ?? presetRef.current;
     const sessionConfig = buildSessionConfig(examSlug, activePreset, timed, {
       nclexCat: examSlug === "nclex" ? nclexCat : undefined,
     });
@@ -152,14 +165,20 @@ export function FullExamLauncher({
     }
   }
 
+  // Deep-link only — never reset the wheel to full-length on unrelated re-renders.
   useEffect(() => {
-    const fromUrl = initialMode ? parseFullExamLengthPreset(initialMode) : null;
+    if (!initialMode) return;
+    const fromUrl = parseFullExamLengthPreset(initialMode);
     if (fromUrl && options.some((o) => o.preset === fromUrl)) {
-      setPreset(fromUrl);
-      return;
+      handlePresetChange(fromUrl);
     }
-    setPreset(defaultPreset);
-  }, [initialMode, options, defaultPreset]);
+  }, [initialMode, options, handlePresetChange]);
+
+  // If plan access changes and the current preset is locked, fall back once.
+  useEffect(() => {
+    if (options.some((o) => o.preset === presetRef.current)) return;
+    handlePresetChange(defaultPreset);
+  }, [options, defaultPreset, handlePresetChange]);
 
   const autostartRanRef = useRef(false);
 
@@ -169,7 +188,7 @@ export function FullExamLauncher({
     const fromUrl = initialMode ? parseFullExamLengthPreset(initialMode) : null;
     const activePreset =
       fromUrl && options.some((o) => o.preset === fromUrl) ? fromUrl : defaultPreset;
-    setPreset(activePreset);
+    handlePresetChange(activePreset);
     void startExam(activePreset, { autostart: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [autostart]);
@@ -219,7 +238,7 @@ export function FullExamLauncher({
               <p className="text-center text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
                 Choose length
               </p>
-              <FullExamLengthWheel options={options} value={preset} onChange={setPreset} />
+              <FullExamLengthWheel options={options} value={preset} onChange={handlePresetChange} />
               {lockedHint ? (
                 <p className="text-center text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
                   {lockedHint}{" "}
@@ -289,7 +308,7 @@ export function FullExamLauncher({
               <button
                 type="button"
                 disabled={pending}
-                onClick={() => void startExam()}
+                onClick={() => void startExam(presetRef.current)}
                 className={cn(feUi.startBtn, "bg-[var(--color-accent)]")}
               >
                 <Zap className="h-4 w-4" aria-hidden />

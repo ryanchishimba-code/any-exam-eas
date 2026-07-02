@@ -10,7 +10,9 @@ describe("buildSessionConfig", () => {
   it("uses length wheel counts for 50/100 sprints on every board", () => {
     for (const slug of EXAM_SLUGS) {
       expect(buildSessionConfig(slug, "100", false).questionCount).toBe(100);
+      expect(buildSessionConfig(slug, "100", true).adaptive).toBe(false);
       expect(buildSessionConfig(slug, "50", true).questionCount).toBe(50);
+      expect(buildSessionConfig(slug, "50", true).adaptive).toBe(false);
     }
   });
 

@@ -36,7 +36,8 @@ export function FullExamLengthWheel({ options, value, onChange }: Props) {
       if (!el) return;
       const idx = Math.min(options.length - 1, Math.max(0, Math.round(el.scrollTop / ITEM_H)));
       const opt = options[idx];
-      if (opt && opt.preset !== value) onChange(opt.preset);
+      if (!opt) return;
+      if (opt.preset !== value) onChange(opt.preset);
       if (behavior === "smooth") {
         window.setTimeout(() => {
           const settled = containerRef.current;
@@ -46,7 +47,7 @@ export function FullExamLengthWheel({ options, value, onChange }: Props) {
             Math.max(0, Math.round(settled.scrollTop / ITEM_H))
           );
           const settledOpt = options[settledIdx];
-          if (settledOpt) onChange(settledOpt.preset);
+          if (settledOpt && settledOpt.preset !== value) onChange(settledOpt.preset);
         }, 380);
       }
     },
@@ -86,14 +87,7 @@ export function FullExamLengthWheel({ options, value, onChange }: Props) {
       setCenter(idx);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
-
-  // Report the centered option upward.
-  useEffect(() => {
-    const opt = options[selectedIndex];
-    if (opt && opt.preset !== value) onChange(opt.preset);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedIndex]);
+  }, [value, options]);
 
   const handleScroll = useCallback(() => {
     const el = containerRef.current;
@@ -110,6 +104,10 @@ export function FullExamLengthWheel({ options, value, onChange }: Props) {
       scrollEndTimerRef.current = null;
       syncPresetFromScroll("auto");
     }, 120);
+  }, [syncPresetFromScroll]);
+
+  const handleScrollEnd = useCallback(() => {
+    syncPresetFromScroll("auto");
   }, [syncPresetFromScroll]);
 
   const onKeyDown = useCallback(
@@ -149,6 +147,8 @@ export function FullExamLengthWheel({ options, value, onChange }: Props) {
         aria-label="Exam length"
         tabIndex={0}
         onScroll={handleScroll}
+        onPointerUp={handleScrollEnd}
+        onTouchEnd={handleScrollEnd}
         onKeyDown={onKeyDown}
         className={cn(
           "h-full w-full overflow-y-auto overscroll-contain",

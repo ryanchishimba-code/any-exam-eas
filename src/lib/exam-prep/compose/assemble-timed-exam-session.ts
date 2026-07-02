@@ -48,7 +48,7 @@ export async function assembleTimedExamSessionItems(
 ): Promise<AssembleTimedExamSessionResult | null> {
   const { fieldId, limit, focusAreas, sampleCount } = params;
 
-  if (!focusAreas?.length) {
+  if (!focusAreas?.length && !isSprintTimedExamLimit(limit)) {
     const preset = await tryLoadTimedPresetSession({
       fieldId,
       limit,
