@@ -362,6 +362,11 @@ export async function GET(req: Request) {
     );
   }
 
+  if (prepared.length > limit) {
+    prepared = prepared.slice(0, limit);
+    sessionQuality = assessExamSessionQuality(prepared, limit);
+  }
+
   const questions: ExamQuestion[] = studyQuestionsToExamQuestions(prepared);
 
   const includeMeta = searchParams.get("meta") !== "0";

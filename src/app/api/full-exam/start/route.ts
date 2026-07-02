@@ -7,10 +7,14 @@ import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
 import { requirePremiumApi } from "@/lib/api-access";
 import { respondDbUnavailable } from "@/lib/api-db-error";
+import { assembleTimedExamSessionItems } from "@/lib/exam-prep/compose/assemble-timed-exam-session";
+import { preparedTimedExamItemsForClient } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
+import { resolveExamBankSampleCount } from "@/lib/questions/finalize-exam-session";
+import { recordStudyQuestionsServed } from "@/lib/study/usage-limits";
 import type { FullExamLengthPreset } from "@/types/full-exam";
 
 export const runtime = "nodejs";
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 export async function POST(req: Request) {
   const premium = await requirePremiumApi();
@@ -73,18 +77,57 @@ export async function POST(req: Request) {
     });
     if (!usageCheck.ok) return usageCheck.response;
 
+    const limit = usageCheck.allowedCount;
+    const sampleCount = resolveExamBankSampleCount(sessionFieldId, limit, true);
+    const assembled = await assembleTimedExamSessionItems({
+      fieldId: sessionFieldId,
+      field: sessionFieldId,
+      limit,
+      focusAreas,
+      sampleCount,
+    });
+
+    if (!assembled || assembled.items.length < limit) {
+      return NextResponse.json(
+        {
+          error: `Could not compose a ${limit}-question exam aligned to the board blueprint. Try again shortly.`,
+          code: "EXAM_SESSION_UNAVAILABLE",
+        },
+        { status: 503 }
+      );
+    }
+
+    const clientPayload = preparedTimedExamItemsForClient(
+      sessionFieldId,
+      sessionFieldId,
+      assembled.items,
+      limit
+    );
+
     const sessionId = await createExamSession(premium.userId, examSlug, {
-      questionCount: usageCheck.allowedCount,
+      questionCount: limit,
       timeLimitSec: config.timed ? config.timeLimitSec : null,
       fieldId: sessionFieldId,
       title: sessionTitle,
       sessionConfig: config,
+      prefetchedQuestionIds: clientPayload.bankItemIds,
+      assembleSource: assembled.source,
     });
+
+    await recordStudyQuestionsServed(
+      premium.userId,
+      clientPayload.questions.length,
+      "exam_session",
+      usageCheck.plan
+    );
 
     return NextResponse.json({
       sessionId,
       redirectUrl: fullExamSessionHref(examSlug, sessionId),
       config,
+      questions: clientPayload.questions,
+      bankItemIds: clientPayload.bankItemIds,
+      requested: limit,
     });
   } catch (e) {
     const dbResponse = respondDbUnavailable(e);

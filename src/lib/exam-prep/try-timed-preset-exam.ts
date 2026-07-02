@@ -51,16 +51,18 @@ export async function tryLoadTimedPresetSession(params: {
   if (!examSlug) return null;
 
   const seed = params.seed ?? ((Date.now() ^ 0x51ed270b) >>> 0);
-  for (const examNumber of presetExamNumbersToTry(seed)) {
-    const loaded = await loadPresetExamItems(examSlug, examNumber);
-    if (!loaded || loaded.items.length < params.limit) continue;
-    if (loaded.fieldId && loaded.fieldId !== params.fieldId) continue;
+  const examNumbers = presetExamNumbersToTry(seed);
 
-    const items = seededShuffle(loaded.items, seed).slice(0, params.limit);
-    if (items.length < params.limit) continue;
+  const loaded = await Promise.all(
+    examNumbers.map(async (examNumber) => {
+      const row = await loadPresetExamItems(examSlug, examNumber);
+      if (!row || row.items.length < params.limit) return null;
+      if (row.fieldId && row.fieldId !== params.fieldId) return null;
+      const items = seededShuffle(row.items, seed ^ examNumber).slice(0, params.limit);
+      if (items.length < params.limit) return null;
+      return { items, examSlug, examNumber: row.examNumber };
+    })
+  );
 
-    return { items, examSlug, examNumber: loaded.examNumber };
-  }
-
-  return null;
+  return loaded.find((row) => row != null) ?? null;
 }

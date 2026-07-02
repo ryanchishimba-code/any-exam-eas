@@ -1,0 +1,82 @@
+/**
+ * Single-pull timed exam gather for 50/100-question sprints — avoids blueprint
+ * compose and multi-tier progressive pulls that add 30–90s on live requests.
+ */
+import type { BankItem } from "@/lib/question-bank";
+import { sampleQuestionBankItemsForField } from "@/lib/question-bank-db";
+import { timedExamGatherLadderForField } from "@/lib/exam-prep/exam-fill-gates";
+
+const SPRINT_MAX = 100;
+
+export function isSprintTimedExamLimit(limit: number): boolean {
+  return limit > 0 && limit <= SPRINT_MAX;
+}
+
+function itemKey(item: BankItem): string {
+  return item.id ?? `${item.subjectId ?? ""}:${item.question.trim().toLowerCase()}`;
+}
+
+function resolveSprintPullSize(limit: number): number {
+  return Math.min(180, Math.max(limit + 28, Math.ceil(limit * 1.35)));
+}
+
+/** Prefer the serve gate when present; fall back to structural. */
+function sprintFilterForField(fieldId: string) {
+  const ladder = timedExamGatherLadderForField(fieldId);
+  return (
+    ladder.find((t) => t.id === "serve") ??
+    ladder.find((t) => t.id === "best") ??
+    ladder.find((t) => t.id === "structural") ??
+    ladder[0]!
+  ).filter;
+}
+
+function collectFromBatch(
+  batch: BankItem[],
+  filterFn: (item: BankItem) => boolean,
+  prepareItem: ((item: BankItem) => BankItem) | undefined,
+  limit: number,
+  seen: Set<string>,
+  out: BankItem[]
+): void {
+  for (const item of batch) {
+    if (out.length >= limit) break;
+    const key = itemKey(item);
+    if (seen.has(key)) continue;
+    const prepared = prepareItem ? prepareItem(item) : item;
+    if (!filterFn(prepared)) continue;
+    seen.add(key);
+    out.push(prepared);
+  }
+}
+
+export async function gatherSprintTimedExamPool(params: {
+  fieldId: string;
+  limit: number;
+  prepareItem?: (item: BankItem) => BankItem;
+}): Promise<BankItem[]> {
+  const { fieldId, limit, prepareItem } = params;
+  if (!isSprintTimedExamLimit(limit)) return [];
+
+  const filterFn = sprintFilterForField(fieldId);
+  const pullSize = resolveSprintPullSize(limit);
+  const seen = new Set<string>();
+  const selected: BankItem[] = [];
+
+  const first = await sampleQuestionBankItemsForField({
+    fieldId,
+    count: pullSize,
+  });
+  collectFromBatch(first, filterFn, prepareItem, limit, seen, selected);
+
+  if (selected.length < limit) {
+    const retry = await sampleQuestionBankItemsForField({
+      fieldId,
+      count: pullSize,
+      skipEnsure: true,
+    });
+    collectFromBatch(retry, filterFn, prepareItem, limit, seen, selected);
+  }
+
+  return selected.slice(0, limit);
+}

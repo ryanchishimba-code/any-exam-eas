@@ -5,6 +5,8 @@ describe("buildSessionConfig", () => {
   it("uses length wheel counts for 50/100 sprints", () => {
     expect(buildSessionConfig("nclex", "100", false).questionCount).toBe(100);
     expect(buildSessionConfig("nclex", "50", true).questionCount).toBe(50);
+    expect(buildSessionConfig("naplex", "100", true).questionCount).toBe(100);
+    expect(buildSessionConfig("naplex", "50", true).questionCount).toBe(50);
   });
 
   it("uses catalog full-length counts for full mocks", () => {

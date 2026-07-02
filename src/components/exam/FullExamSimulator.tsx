@@ -29,6 +29,7 @@ import {
   serializeExamSelection,
 } from "@/lib/full-exam/answer-serialize";
 import { fullExamResultsHref } from "@/lib/full-exam/config";
+import { takeFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
 import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
 import {
   calculateExamScorePercent,
@@ -177,6 +178,74 @@ export function FullExamSimulator({
       setLoading(true);
       setLoadError(null);
 
+      const expectedCount = config.questionCount;
+
+      function mapLoadedQuestions(
+        apiQuestions: RawQuestionInput[],
+        bankIds: string[]
+      ): StudyQuestion[] {
+        const raw: RawQuestionInput[] = apiQuestions.map((q, i) => ({
+          ...q,
+          field: fieldId,
+          bankItemId: bankIds[i] ?? q.bankItemId,
+        }));
+        const prepared = mapApiQuestionsToStudy(raw, { shuffleOptions: false });
+        const delivered = prepared.slice(0, expectedCount);
+        if (delivered.length !== expectedCount) {
+          throw new Error(
+            `Expected ${expectedCount} questions but received ${delivered.length}. Try again in a moment or choose a shorter exam length.`
+          );
+        }
+        return delivered.map((q, i) => ({
+          ...q,
+          id: bankIds[i] ?? q.bankItemId ?? q.id,
+          bankItemId: bankIds[i] ?? q.bankItemId,
+          field: fieldId,
+        }));
+      }
+
+      const cached = takeFullExamSessionPayload(sessionId);
+      if (cached?.questions?.length === expectedCount) {
+        try {
+          const items = mapLoadedQuestions(
+            cached.questions as RawQuestionInput[],
+            cached.bankItemIds
+          );
+          if (!cancelled) setQuestions(items);
+          return;
+        } catch (e) {
+          if (!cancelled) {
+            setLoadError(e instanceof Error ? e.message : "Could not load exam questions.");
+            setQuestions([]);
+          }
+          return;
+        } finally {
+          if (!cancelled) setLoading(false);
+        }
+      }
+
+      try {
+        const prefetchRes = await fetch(`/api/full-exam/${sessionId}/questions`, {
+          cache: "no-store",
+        });
+        if (prefetchRes.ok) {
+          const prefetchData = (await prefetchRes.json()) as {
+            questions?: RawQuestionInput[];
+            bankItemIds?: string[];
+          };
+          if (prefetchData.questions?.length) {
+            const items = mapLoadedQuestions(
+              prefetchData.questions,
+              prefetchData.bankItemIds ?? []
+            );
+            if (!cancelled) setQuestions(items);
+            return;
+          }
+        }
+      } catch {
+        // Fall back to live compose below.
+      }
+
       let mpjeStateCode: string | null = null;
       if (fieldId === "mpje") {
         try {
@@ -233,26 +302,12 @@ export function FullExamSimulator({
             continue;
           }
 
-          const expectedCount = data.requested ?? config.questionCount;
+          const expectedCount = config.questionCount;
           const bankIds = data.bankItemIds ?? [];
-          const raw: RawQuestionInput[] = (data.questions ?? []).map((q, i) => ({
-            ...q,
-            field: fieldId,
-            bankItemId: bankIds[i] ?? q.bankItemId,
-          }));
-
-          const prepared = mapApiQuestionsToStudy(raw, { shuffleOptions: false });
-          if (prepared.length !== expectedCount) {
-            lastError = `Expected ${expectedCount} questions but received ${prepared.length}. Try again in a moment or choose a shorter exam length.`;
-            continue;
-          }
-
-          const items = prepared.slice(0, expectedCount).map((q, i) => ({
-            ...q,
-            id: bankIds[i] ?? q.bankItemId ?? q.id,
-            bankItemId: bankIds[i] ?? q.bankItemId,
-            field: fieldId,
-          }));
+          const items = mapLoadedQuestions(
+            (data.questions ?? []) as RawQuestionInput[],
+            bankIds
+          );
 
           if (!cancelled) setQuestions(items);
           return;
@@ -274,7 +329,7 @@ export function FullExamSimulator({
     return () => {
       cancelled = true;
     };
-  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.focusAreas, loadAttempt]);
+  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.focusAreas, loadAttempt, sessionId]);
 
   useEffect(() => {
     if (loading || submitting || paused) return;

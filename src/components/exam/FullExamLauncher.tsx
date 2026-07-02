@@ -22,8 +22,10 @@ import { ExamLoadingProgress } from "@/components/exam/ExamLoadingProgress";
 import { useLongRunningProgress } from "@/hooks/use-long-running-progress";
 import { feUi } from "@/lib/study/full-exam-ui";
 import { ROUTES } from "@/lib/routes";
+import { stashFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
+import type { ExamQuestion } from "@/lib/ai";
 import {
   defaultMockPresetForAccess,
   filterLengthOptionsForAccess,
@@ -87,14 +89,17 @@ export function FullExamLauncher({
     startingRef.current = true;
     setError(null);
     setPending(true);
-    const lockKey = `${examSlug}:${preset}:${timed ? "1" : "0"}`;
+    const sessionConfig = buildSessionConfig(examSlug, preset, timed, {
+      nclexCat: examSlug === "nclex" ? nclexCat : undefined,
+    });
+    const lockKey = `${examSlug}:${sessionConfig.lengthPreset}:${timed ? "1" : "0"}`;
     try {
       const res = await fetch("/api/full-exam/start", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           examSlug,
-          lengthPreset: preset,
+          lengthPreset: sessionConfig.lengthPreset,
           timed,
           nclexCat: examSlug === "nclex" ? nclexCat : undefined,
         }),
@@ -103,6 +108,8 @@ export function FullExamLauncher({
         sessionId?: string;
         redirectUrl?: string;
         error?: string;
+        questions?: ExamQuestion[];
+        bankItemIds?: string[];
       };
       if (!res.ok) {
         setError(data.error ?? "Could not start exam");
@@ -120,6 +127,12 @@ export function FullExamLauncher({
         releaseAutostartLock(lockKey);
         setPending(false);
         return;
+      }
+      if (data.sessionId && data.questions?.length && data.bankItemIds?.length) {
+        stashFullExamSessionPayload(data.sessionId, {
+          questions: data.questions,
+          bankItemIds: data.bankItemIds,
+        });
       }
       router.push(href);
     } catch (e) {

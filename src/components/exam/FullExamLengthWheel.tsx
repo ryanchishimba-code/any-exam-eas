@@ -27,7 +27,31 @@ export function FullExamLengthWheel({ options, value, onChange }: Props) {
   const reduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
+  const scrollEndTimerRef = useRef<number | null>(null);
   const programmaticRef = useRef(false);
+
+  const syncPresetFromScroll = useCallback(
+    (behavior: ScrollBehavior) => {
+      const el = containerRef.current;
+      if (!el) return;
+      const idx = Math.min(options.length - 1, Math.max(0, Math.round(el.scrollTop / ITEM_H)));
+      const opt = options[idx];
+      if (opt && opt.preset !== value) onChange(opt.preset);
+      if (behavior === "smooth") {
+        window.setTimeout(() => {
+          const settled = containerRef.current;
+          if (!settled) return;
+          const settledIdx = Math.min(
+            options.length - 1,
+            Math.max(0, Math.round(settled.scrollTop / ITEM_H))
+          );
+          const settledOpt = options[settledIdx];
+          if (settledOpt) onChange(settledOpt.preset);
+        }, 380);
+      }
+    },
+    [onChange, options, value]
+  );
 
   const startIndex = Math.max(0, options.findIndex((o) => o.preset === value));
   const [center, setCenter] = useState(startIndex === -1 ? 0 : startIndex);
@@ -78,7 +102,15 @@ export function FullExamLengthWheel({ options, value, onChange }: Props) {
       rafRef.current = null;
       setCenter(el.scrollTop / ITEM_H);
     });
-  }, []);
+    if (programmaticRef.current) return;
+    if (scrollEndTimerRef.current != null) {
+      window.clearTimeout(scrollEndTimerRef.current);
+    }
+    scrollEndTimerRef.current = window.setTimeout(() => {
+      scrollEndTimerRef.current = null;
+      syncPresetFromScroll("auto");
+    }, 120);
+  }, [syncPresetFromScroll]);
 
   const onKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -138,7 +170,10 @@ export function FullExamLengthWheel({ options, value, onChange }: Props) {
               key={option.preset}
               role="option"
               aria-selected={isSelected}
-              onClick={() => scrollToIndex(i, "smooth")}
+              onClick={() => {
+                onChange(option.preset);
+                scrollToIndex(i, "smooth");
+              }}
               className="flex snap-center items-center justify-center"
               style={{ height: ITEM_H }}
             >

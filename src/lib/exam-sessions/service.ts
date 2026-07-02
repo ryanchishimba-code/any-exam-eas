@@ -30,10 +30,22 @@ export async function createExamSession(
     title?: string;
     fieldId?: string;
     sessionConfig?: Record<string, unknown>;
+    prefetchedQuestionIds?: string[];
+    assembleSource?: string;
   }
 ) {
   const id = createId();
   const now = new Date();
+  const analysis =
+    opts?.sessionConfig || opts?.prefetchedQuestionIds?.length
+      ? {
+          ...(opts.sessionConfig ? { sessionConfig: opts.sessionConfig } : {}),
+          ...(opts.prefetchedQuestionIds?.length
+            ? { prefetchedQuestionIds: opts.prefetchedQuestionIds }
+            : {}),
+          ...(opts.assembleSource ? { assembleSource: opts.assembleSource } : {}),
+        }
+      : null;
   await withDrizzle("examSessions.create", () =>
     requireDb().insert(examSessions).values({
       id,
@@ -43,7 +55,7 @@ export async function createExamSession(
       title: opts?.title ?? `${examType.toUpperCase()} practice`,
       status: "in_progress",
       answers: [],
-      analysis: opts?.sessionConfig ? { sessionConfig: opts.sessionConfig } : null,
+      analysis,
       questionCount: opts?.questionCount ?? 0,
       timeLimitSec: opts?.timeLimitSec ?? null,
       startedAt: now,

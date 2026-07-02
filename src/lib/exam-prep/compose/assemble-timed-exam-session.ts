@@ -9,6 +9,7 @@ import { EXACT_FILL_COMPOSE_TIER } from "@/lib/exam-prep/progressive-compose";
 import {
   fillExamItemsToCount,
   resolveComposePoolLimit,
+  resolveProgressivePoolLimit,
 } from "@/lib/exam-prep/progressive-exam-relaxation";
 import { gatherTimedExamBankItems } from "@/lib/questions/timed-exam-sampling";
 import {
@@ -16,6 +17,10 @@ import {
   fieldSupportsBlueprintTimedExam,
 } from "./compose-timed-exam-session";
 import { tryLoadTimedPresetSession } from "@/lib/exam-prep/try-timed-preset-exam";
+import {
+  gatherSprintTimedExamPool,
+  isSprintTimedExamLimit,
+} from "@/lib/exam-prep/gather-sprint-timed-pool";
 
 export type AssembleTimedExamSessionParams = {
   fieldId: string;
@@ -53,7 +58,44 @@ export async function assembleTimedExamSessionItems(
     }
   }
 
-  if (fieldSupportsBlueprintTimedExam(fieldId)) {
+  if (isSprintTimedExamLimit(limit) && !focusAreas?.length) {
+    const sprintItems = await gatherSprintTimedExamPool({
+      fieldId,
+      limit,
+      prepareItem: fieldId === "pharmacy" ? prepareNaplexBankItem : undefined,
+    });
+    if (sprintItems.length >= limit) {
+      return { items: sprintItems.slice(0, limit), source: "gather" };
+    }
+  }
+
+  if (!focusAreas?.length) {
+    const poolLimit = resolveProgressivePoolLimit(limit);
+    const ladder = timedExamGatherLadderForField(fieldId);
+    const gathered = await gatherProgressiveBankPool({
+      fieldId,
+      limit: poolLimit,
+      maxTierIndex: Math.min(2, ladder.length - 1),
+      initialSampleCount: Math.min(sampleCount, poolLimit),
+      prepareItem: fieldId === "pharmacy" ? prepareNaplexBankItem : undefined,
+    });
+
+    if (gathered.length >= limit) {
+      const seed = (Date.now() ^ 0x51ed270b) >>> 0;
+      const filled = fillExamItemsToCount(
+        gathered.slice(0, limit),
+        gathered,
+        limit,
+        EXACT_FILL_COMPOSE_TIER,
+        seed
+      );
+      if (filled.length >= limit) {
+        return { items: filled.slice(0, limit), source: "gather", tierId: EXACT_FILL_COMPOSE_TIER.id };
+      }
+    }
+  }
+
+  if (fieldSupportsBlueprintTimedExam(fieldId) && !isSprintTimedExamLimit(limit)) {
     const composed = await composeBlueprintTimedExamSession({
       fieldId,
       numQuestions: limit,

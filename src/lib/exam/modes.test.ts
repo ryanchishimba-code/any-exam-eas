@@ -64,6 +64,9 @@ describe("exam lengths", () => {
     expect(resolveTimedExamLimit("usmle-step-2", 100)).toBe(100);
     expect(resolveTimedExamLimit("usmle-step-2", 280)).toBe(280);
     expect(resolveTimedExamLimit("pharmacy", 50)).toBe(50);
+    expect(resolveTimedExamLimit("pharmacy", 100)).toBe(100);
+    expect(resolveTimedExamLimit("pharmacy", 225)).toBe(225);
+    expect(resolveTimedExamLimit("pharmacy", 99)).toBe(225);
     expect(resolveTimedExamLimit("pance", 100)).toBe(100);
     expect(resolveTimedExamLimit("pance", 99)).toBe(300);
   });

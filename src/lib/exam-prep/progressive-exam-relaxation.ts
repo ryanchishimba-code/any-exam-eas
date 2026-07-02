@@ -28,6 +28,12 @@ export function resolveProgressivePoolLimit(limit: number): number {
 
 /** Compose pulls need a wider pool than gather-only paths for blueprint balancing. */
 export function resolveComposePoolLimit(numQuestions: number): number {
+  if (numQuestions <= 100) {
+    return Math.min(
+      QUESTION_BANK_SAMPLE_MAX_PULL,
+      Math.max(numQuestions + 36, Math.ceil(numQuestions * 2))
+    );
+  }
   return Math.min(
     QUESTION_BANK_SAMPLE_MAX_PULL,
     Math.max(

@@ -28,6 +28,7 @@ import {
   fieldMatchesExamSlug,
 } from "@/lib/edtech/question-bank-scope";
 import { fullExamLaunchHref, fullExamSessionHref } from "@/lib/full-exam/config";
+import { stashFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
 import { navigateHard } from "@/lib/client/navigate-hard";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import {
@@ -733,6 +734,8 @@ export function StudyBankPractice({
             redirectUrl?: string;
             error?: string;
             upgradeUrl?: string;
+            questions?: import("@/lib/ai").ExamQuestion[];
+            bankItemIds?: string[];
           };
           if (!res.ok) {
             setUpgradeHref(data.upgradeUrl ?? null);
@@ -743,6 +746,12 @@ export function StudyBankPractice({
             (data.sessionId ? fullExamSessionHref(examSlug, data.sessionId) : null);
           if (!href) {
             throw new Error("Session was not created. Please try again.");
+          }
+          if (data.sessionId && data.questions?.length && data.bankItemIds?.length) {
+            stashFullExamSessionPayload(data.sessionId, {
+              questions: data.questions,
+              bankItemIds: data.bankItemIds,
+            });
           }
           navigateHard(href);
           return;
