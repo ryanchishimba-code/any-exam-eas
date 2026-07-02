@@ -1,6 +1,13 @@
 import { spawnSync } from "node:child_process";
 import { ensureDatabaseUrl, shouldRunMigrations } from "./prisma-env.mjs";
 
+/** Vercel builders have ~8GB RAM; Next.js/webpack needs explicit heap headroom. */
+function ensureBuildHeap() {
+  if (process.env.NODE_OPTIONS?.includes("max-old-space-size")) return;
+  const extra = process.env.VERCEL ? "--max-old-space-size=6144" : "--max-old-space-size=8192";
+  process.env.NODE_OPTIONS = [process.env.NODE_OPTIONS, extra].filter(Boolean).join(" ").trim();
+}
+
 function run(command, args, { allowFail = false } = {}) {
   const result = spawnSync(command, args, {
     stdio: "inherit",
@@ -64,5 +71,6 @@ if (shouldRunMigrations()) {
   );
 }
 
+ensureBuildHeap();
 run("npx", ["next", "build"]);
 run("node", ["scripts/mark-production-build.mjs"]);
