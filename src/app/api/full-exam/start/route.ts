@@ -5,13 +5,16 @@ import { getUserExamPreference, touchExamStudied } from "@/lib/edtech/exam-prefe
 import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
+import {
+  parseRequestedLengthPreset,
+  syncSessionConfigQuestionCount,
+} from "@/lib/exam/session-count";
 import { requirePremiumApi } from "@/lib/api-access";
 import { respondDbUnavailable } from "@/lib/api-db-error";
 import { assembleTimedExamSessionItems } from "@/lib/exam-prep/compose/assemble-timed-exam-session";
 import { preparedTimedExamItemsForClient } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
 import { resolveExamBankSampleCount } from "@/lib/questions/finalize-exam-session";
 import { recordStudyQuestionsServed } from "@/lib/study/usage-limits";
-import type { FullExamLengthPreset } from "@/types/full-exam";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
@@ -26,9 +29,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid exam" }, { status: 400 });
   }
 
-  const preset = (["50", "100", "full"].includes(body.lengthPreset)
-    ? body.lengthPreset
-    : "full") as FullExamLengthPreset;
+  const preset = parseRequestedLengthPreset(body.lengthPreset);
   const timed = body.timed !== false;
   const nclexLength =
     body.nclexLength === "maximum" ? ("maximum" as const) : ("minimum" as const);
@@ -66,6 +67,7 @@ export async function POST(req: Request) {
       nclexLength: examSlug === "nclex" ? nclexLength : undefined,
       focusAreas,
       nclexCat: examSlug === "nclex" ? nclexCat : undefined,
+      fieldId: sessionFieldId,
     });
 
     const { checkMockExamStart } = await import("@/lib/study/usage-limits");
@@ -78,6 +80,16 @@ export async function POST(req: Request) {
     if (!usageCheck.ok) return usageCheck.response;
 
     const limit = usageCheck.allowedCount;
+    if (limit !== config.questionCount) {
+      return NextResponse.json(
+        {
+          error: `Your plan allows ${limit} questions per session. Choose ${limit} or fewer, or upgrade for larger sessions.`,
+          code: "SESSION_SIZE_CAPPED",
+          allowedCount: limit,
+        },
+        { status: 403 }
+      );
+    }
     const sampleCount = resolveExamBankSampleCount(sessionFieldId, limit, true);
     const assembled = await assembleTimedExamSessionItems({
       fieldId: sessionFieldId,
@@ -104,12 +116,14 @@ export async function POST(req: Request) {
       limit
     );
 
+    const sessionConfig = syncSessionConfigQuestionCount(config, examSlug, limit);
+
     const sessionId = await createExamSession(premium.userId, examSlug, {
       questionCount: limit,
-      timeLimitSec: config.timed ? config.timeLimitSec : null,
+      timeLimitSec: sessionConfig.timed ? sessionConfig.timeLimitSec : null,
       fieldId: sessionFieldId,
       title: sessionTitle,
-      sessionConfig: config,
+      sessionConfig,
       prefetchedQuestionIds: clientPayload.bankItemIds,
       assembleSource: assembled.source,
     });
@@ -124,7 +138,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       sessionId,
       redirectUrl: fullExamSessionHref(examSlug, sessionId),
-      config,
+      config: sessionConfig,
       questions: clientPayload.questions,
       bankItemIds: clientPayload.bankItemIds,
       requested: limit,

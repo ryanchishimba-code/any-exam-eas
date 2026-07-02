@@ -4,6 +4,7 @@ import type { ExamSlug } from "@/lib/exams/catalog";
 import { getExamHub } from "@/lib/exams/catalog";
 import { getExamQuestionCountBySlug } from "@/lib/exam/exam-lengths";
 import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
+import { parseRequestedLengthPreset } from "@/lib/exam/session-count";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { setUserExamPreference } from "@/lib/edtech/exam-preference";
 import { requirePremiumApi } from "@/lib/api-access";
@@ -26,18 +27,35 @@ export async function POST(req: Request) {
     if (isExamSlug(examType)) {
       await setUserExamPreference(premium.userId, examType);
 
-      const sessionConfig = buildSessionConfig(examType, "full", true);
+      const lengthPreset = parseRequestedLengthPreset(body.lengthPreset);
+      const nclexLength =
+        body.nclexLength === "maximum" ? ("maximum" as const) : ("minimum" as const);
+      const sessionConfig = buildSessionConfig(examType, lengthPreset, true, {
+        nclexLength: examType === "nclex" ? nclexLength : undefined,
+        fieldId: body.fieldId ? String(body.fieldId) : undefined,
+      });
       const { checkMockExamStart } = await import("@/lib/study/usage-limits");
       const usageCheck = await checkMockExamStart({
         userId: premium.userId,
         access: premium.access,
         questionCount: sessionConfig.questionCount,
-        lengthPreset: "full",
+        lengthPreset,
       });
       if (!usageCheck.ok) return usageCheck.response;
 
+      if (usageCheck.allowedCount !== sessionConfig.questionCount) {
+        return NextResponse.json(
+          {
+            error: `Your plan allows ${usageCheck.allowedCount} questions per session. Choose ${usageCheck.allowedCount} or fewer, or upgrade for larger sessions.`,
+            code: "SESSION_SIZE_CAPPED",
+            allowedCount: usageCheck.allowedCount,
+          },
+          { status: 403 }
+        );
+      }
+
       const id = await createExamSession(premium.userId, examType, {
-        questionCount: usageCheck.allowedCount,
+        questionCount: sessionConfig.questionCount,
         timeLimitSec: sessionConfig.timeLimitSec,
         title: body.title ?? `${examType.toUpperCase()} full exam`,
         sessionConfig,

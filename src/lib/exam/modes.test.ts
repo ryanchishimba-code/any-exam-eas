@@ -4,6 +4,7 @@ import {
   getExamQuestionCount,
   getExamQuestionCountBySlug,
   getTimedExamQuestionCount,
+  resolveBoardFullQuestionCount,
   resolveTimedExamLimit,
 } from "./exam-lengths";
 
@@ -63,12 +64,26 @@ describe("exam lengths", () => {
     expect(resolveTimedExamLimit("usmle-step-2", 50)).toBe(50);
     expect(resolveTimedExamLimit("usmle-step-2", 100)).toBe(100);
     expect(resolveTimedExamLimit("usmle-step-2", 280)).toBe(280);
+    expect(resolveTimedExamLimit("usmle-step-3", 200)).toBe(200);
+    expect(resolveTimedExamLimit("usmle-step-3", 99)).toBe(200);
     expect(resolveTimedExamLimit("pharmacy", 50)).toBe(50);
     expect(resolveTimedExamLimit("pharmacy", 100)).toBe(100);
     expect(resolveTimedExamLimit("pharmacy", 225)).toBe(225);
     expect(resolveTimedExamLimit("pharmacy", 99)).toBe(225);
     expect(resolveTimedExamLimit("pance", 100)).toBe(100);
     expect(resolveTimedExamLimit("pance", 99)).toBe(300);
+  });
+
+  it("uses 120 for MPJE timed exams", () => {
+    expect(resolveBoardFullQuestionCount("mpje")).toBe(120);
+    expect(resolveTimedExamLimit("mpje", 120)).toBe(120);
+    expect(resolveTimedExamLimit("mpje", 50)).toBe(50);
+    expect(resolveTimedExamLimit("mpje", 99)).toBe(120);
+  });
+
+  it("uses step-aware counts for USMLE fields", () => {
+    expect(getTimedExamQuestionCount("usmle-step-3")).toBe(200);
+    expect(getTimedExamQuestionCount("usmle-step-1")).toBe(280);
   });
 
   it("uses 280 for USMLE, 225 for NAPLEX, and 300 for PANCE", () => {

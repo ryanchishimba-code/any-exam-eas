@@ -1,4 +1,5 @@
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { resolveBoardFullQuestionCount } from "@/lib/exam/exam-lengths";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset, FullExamSessionConfig } from "@/types/full-exam";
 
@@ -10,9 +11,12 @@ export type LengthOption = {
 };
 
 /** Exam-specific length choices shown on the launcher. */
-export function getLengthOptions(examSlug: ExamSlug): LengthOption[] {
+export function getLengthOptions(examSlug: ExamSlug, fieldId?: string): LengthOption[] {
   const exam = EXAM_CATALOG[examSlug];
-  const full = exam.simulatedQuestionCount;
+  let full = exam.simulatedQuestionCount;
+  if (examSlug === "usmle" && fieldId) {
+    full = resolveBoardFullQuestionCount(fieldId);
+  }
 
   return [
     {
@@ -56,9 +60,11 @@ export function buildSessionConfig(
     nclexLength?: "minimum" | "maximum";
     focusAreas?: string[];
     nclexCat?: boolean;
+    /** USMLE step field — overrides full-length count (e.g. Step 3 = 200). */
+    fieldId?: string;
   }
 ): FullExamSessionConfig {
-  const option = getLengthOptions(examSlug).find((o) => o.preset === preset)!;
+  const option = getLengthOptions(examSlug, opts?.fieldId).find((o) => o.preset === preset)!;
   let questionCount = option.questionCount;
   if (examSlug === "nclex" && opts?.nclexLength === "maximum") {
     questionCount = 150;

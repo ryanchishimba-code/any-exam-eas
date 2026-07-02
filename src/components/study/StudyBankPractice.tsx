@@ -30,8 +30,11 @@ import {
 import {
   fullExamLaunchHref,
   fullExamSessionHref,
-  resolveLengthPresetFromQuestionCount,
 } from "@/lib/full-exam/config";
+import {
+  assertExactQuestionCount,
+  resolveLengthPresetForField,
+} from "@/lib/exam/session-count";
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { stashFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
 import { navigateHard } from "@/lib/client/navigate-hard";
@@ -341,20 +344,21 @@ export function StudyBankPractice({
     style: searchParams.get("style"),
     count: searchParams.get("count"),
   });
+  const timedFieldKey = isMpje ? fieldId : field;
   const timedCount = useMemo(
-    () => getTimedExamQuestionCount(field, isNclex ? { nclexLength } : undefined),
-    [field, isNclex, nclexLength]
+    () => getTimedExamQuestionCount(timedFieldKey, isNclex ? { nclexLength } : undefined),
+    [timedFieldKey, isNclex, nclexLength]
   );
   const lengthLabel = useMemo(
-    () => formatExamLengthLabel(field, isNclex ? { nclexLength } : undefined),
-    [field, isNclex, nclexLength]
+    () => formatExamLengthLabel(timedFieldKey, isNclex ? { nclexLength } : undefined),
+    [timedFieldKey, isNclex, nclexLength]
   );
   const timedSessionSeconds = useMemo(
     () =>
       isTimedExam
-        ? computeTimedExamTimeLimitSec(field, timedCount, isNclex ? { nclexLength } : undefined)
+        ? computeTimedExamTimeLimitSec(timedFieldKey, timedCount, isNclex ? { nclexLength } : undefined)
         : undefined,
-    [isTimedExam, field, timedCount, isNclex, nclexLength]
+    [isTimedExam, timedFieldKey, timedCount, isNclex, nclexLength]
   );
   const sessionStudyMode: StudyMode = isTimedExam
     ? "timed"
@@ -689,11 +693,7 @@ export function StudyBankPractice({
   }
 
   function expectExactSessionCount(received: number, expected: number) {
-    if (received !== expected) {
-      throw new Error(
-        `Expected ${expected} questions but received ${received}. Try fewer questions or another topic.`
-      );
-    }
+    assertExactQuestionCount(received, expected);
   }
 
   async function start() {
@@ -725,8 +725,9 @@ export function StudyBankPractice({
         const examSlug = examSlugFromFieldId(fieldId);
         if (examSlug) {
           const resolvedFieldId = resolveFieldId(field);
-          const lengthPreset = resolveLengthPresetFromQuestionCount(examSlug, timedCount, {
+          const lengthPreset = resolveLengthPresetForField(examSlug, timedCount, {
             nclexLength: isNclex ? nclexLength : undefined,
+            fieldId: isUsmleFieldId(resolvedFieldId) ? resolvedFieldId : undefined,
           });
           const res = await fetch("/api/full-exam/start", {
             method: "POST",
@@ -748,10 +749,14 @@ export function StudyBankPractice({
             upgradeUrl?: string;
             questions?: import("@/lib/ai").ExamQuestion[];
             bankItemIds?: string[];
+            requested?: number;
           };
           if (!res.ok) {
             setUpgradeHref(data.upgradeUrl ?? null);
             throw new Error(studyLimitMessage(data) || data.error || "Could not start timed exam");
+          }
+          if (data.questions?.length) {
+            expectExactSessionCount(data.questions.length, limit);
           }
           const href =
             data.redirectUrl ??

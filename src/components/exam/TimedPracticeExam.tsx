@@ -7,6 +7,7 @@ import { ShareModal } from "@/components/share/ShareModal";
 import { EndExamControl } from "@/components/study/EndExamControl";
 import { ExamActionBar } from "@/components/exam/ExamActionBar";
 import { formatHms } from "@/lib/full-exam/config";
+import { assertExactQuestionCount } from "@/lib/exam/session-count";
 import {
   buildWeakAreasFromField,
   calculateExamScorePercent,
@@ -50,6 +51,7 @@ export function TimedPracticeExam({
   const [secondsLeft, setSecondsLeft] = useState(timeLimitSec);
   const [shareOpen, setShareOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {
     const qs = new URLSearchParams({
@@ -61,9 +63,13 @@ export function TimedPracticeExam({
     if (examType === "nclex") qs.set("nclexLength", nclexLength);
     qs.set("meta", "0");
 
+    setLoadError(null);
     fetch(`/api/questions?${qs.toString()}`)
-      .then((r) => r.json())
-      .then((d) => {
+      .then(async (r) => {
+        const d = await r.json();
+        if (!r.ok) {
+          throw new Error(d.error ?? "Could not load timed exam");
+        }
         const bankIds: string[] = d.bankItemIds ?? [];
         const items = (d.questions ?? []).map(
           (
@@ -83,7 +89,12 @@ export function TimedPracticeExam({
             explanation: q.explanation,
           })
         );
+        assertExactQuestionCount(items.length, questionCount, "timed exam");
         setQuestions(items);
+      })
+      .catch((e) => {
+        setLoadError(e instanceof Error ? e.message : "Could not load timed exam");
+        setQuestions([]);
       })
       .finally(() => setLoading(false));
   }, [fieldId, examType, questionCount, nclexLength]);
@@ -203,6 +214,14 @@ export function TimedPracticeExam({
 
   if (loading) {
     return <p className="py-20 text-center text-slate-500">Loading exam…</p>;
+  }
+
+  if (loadError) {
+    return (
+      <p className="py-20 text-center text-rose-400" role="alert">
+        {loadError}
+      </p>
+    );
   }
 
   if (!questions.length) {

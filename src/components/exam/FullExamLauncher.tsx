@@ -84,15 +84,24 @@ export function FullExamLauncher({
   );
   const startProgress = useLongRunningProgress(pending, { steps: startSteps });
 
-  async function startExam() {
+  async function startExam(
+    presetOverride?: FullExamLengthPreset,
+    opts?: { autostart?: boolean }
+  ) {
     if (startingRef.current) return;
     startingRef.current = true;
     setError(null);
     setPending(true);
-    const sessionConfig = buildSessionConfig(examSlug, preset, timed, {
+    const activePreset = presetOverride ?? preset;
+    const sessionConfig = buildSessionConfig(examSlug, activePreset, timed, {
       nclexCat: examSlug === "nclex" ? nclexCat : undefined,
     });
     const lockKey = `${examSlug}:${sessionConfig.lengthPreset}:${timed ? "1" : "0"}`;
+    if (opts?.autostart && !acquireAutostartLock(lockKey)) {
+      startingRef.current = false;
+      setPending(false);
+      return;
+    }
     try {
       const res = await fetch("/api/full-exam/start", {
         method: "POST",
@@ -114,7 +123,7 @@ export function FullExamLauncher({
       if (!res.ok) {
         setError(data.error ?? "Could not start exam");
         startingRef.current = false;
-        releaseAutostartLock(lockKey);
+        if (opts?.autostart) releaseAutostartLock(lockKey);
         setPending(false);
         return;
       }
@@ -124,7 +133,7 @@ export function FullExamLauncher({
       if (!href) {
         setError("Session was not created. Please try again.");
         startingRef.current = false;
-        releaseAutostartLock(lockKey);
+        if (opts?.autostart) releaseAutostartLock(lockKey);
         setPending(false);
         return;
       }
@@ -138,7 +147,7 @@ export function FullExamLauncher({
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not start exam");
       startingRef.current = false;
-      releaseAutostartLock(lockKey);
+      if (opts?.autostart) releaseAutostartLock(lockKey);
       setPending(false);
     }
   }
@@ -152,12 +161,18 @@ export function FullExamLauncher({
     setPreset(defaultPreset);
   }, [initialMode, options, defaultPreset]);
 
+  const autostartRanRef = useRef(false);
+
   useEffect(() => {
-    if (!autostart) return;
-    const lockKey = `${examSlug}:${preset}:${timed ? "1" : "0"}`;
-    if (!acquireAutostartLock(lockKey)) return;
-    void startExam();
-  }, [autostart, examSlug, preset, timed]);
+    if (!autostart || autostartRanRef.current) return;
+    autostartRanRef.current = true;
+    const fromUrl = initialMode ? parseFullExamLengthPreset(initialMode) : null;
+    const activePreset =
+      fromUrl && options.some((o) => o.preset === fromUrl) ? fromUrl : defaultPreset;
+    setPreset(activePreset);
+    void startExam(activePreset, { autostart: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autostart]);
 
   if (pending && autostart) {
     return (

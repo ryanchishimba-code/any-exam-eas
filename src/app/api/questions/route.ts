@@ -104,7 +104,20 @@ export async function GET(req: Request) {
   ]);
   if (!access.ok) return access.response;
   if (!usageCheck.ok) return usageCheck.response;
-  let limit = usageCheck.allowedCount;
+
+  if (usageCheck.allowedCount < requestedSessionCount) {
+    return NextResponse.json(
+      {
+        error: `Your plan allows ${usageCheck.allowedCount} questions per session. Choose ${usageCheck.allowedCount} or fewer, or upgrade for larger sessions.`,
+        code: "SESSION_SIZE_CAPPED",
+        allowedCount: usageCheck.allowedCount,
+        requested: requestedSessionCount,
+      },
+      { status: 403 }
+    );
+  }
+
+  const limit = usageCheck.allowedCount;
 
   const focusAreasParam = searchParams.get("focusAreas") ?? searchParams.get("focus_areas");
   const focusAreas = focusAreasParam
@@ -365,6 +378,16 @@ export async function GET(req: Request) {
   if (prepared.length > limit) {
     prepared = prepared.slice(0, limit);
     sessionQuality = assessExamSessionQuality(prepared, limit);
+  }
+
+  if (prepared.length !== limit) {
+    return NextResponse.json(
+      {
+        error: `Not enough ${fieldId} questions available (${prepared.length}/${limit}). Try a shorter exam length.`,
+        code: timedExam ? "EXAM_SESSION_UNAVAILABLE" : "SESSION_UNAVAILABLE",
+      },
+      { status: 503 }
+    );
   }
 
   const questions: ExamQuestion[] = studyQuestionsToExamQuestions(prepared);

@@ -1,13 +1,15 @@
 import { getFieldMeta, getFieldMetaById } from "@/lib/fields";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
+import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { computeTimeLimitSec } from "@/lib/full-exam/config";
 import type { ExamSlug } from "@/lib/exams/catalog";
+import { MPJE_PRACTICE_EXAM_QUESTION_COUNT } from "@/lib/mpje/practice-exam-config";
+import { isMpjeField } from "@/lib/mpje/config";
 import {
   isUsmleFieldId,
   usmleStepDefinition,
 } from "@/lib/exam-prep/usmle/steps";
 
-/** Board-style session types. */
 export type ExamSessionMode = "timed" | "bank";
 
 export type BoardExamKey = "nclex" | "usmle" | "naplex" | "pance" | "aanp-fnp" | "npte-pt";
@@ -29,7 +31,6 @@ const FIELD_ID_TO_BOARD: Record<string, BoardExamKey> = {
   pance: "pance",
   "aanp-fnp": "aanp-fnp",
   "npte-pt": "npte-pt",
-  mpje: "pance",
 };
 
 const SLUG_TO_BOARD: Record<ExamSlug, BoardExamKey | null> = {
@@ -83,21 +84,29 @@ export function isNclexField(fieldOrLabel: string): boolean {
   return resolveBoardExam(fieldOrLabel) === "nclex";
 }
 
-export function getTimedExamQuestionCount(
+/** Board full-length count for a field (USMLE step-aware, NCLEX minimum by default). */
+export function resolveBoardFullQuestionCount(
   fieldOrLabel: string,
-  options?: { nclexLength?: NclexTimedVariant }
+  nclexLength: NclexTimedVariant = "minimum"
 ): number {
+  if (isMpjeField(fieldOrLabel)) return MPJE_PRACTICE_EXAM_QUESTION_COUNT;
   const fieldId = resolveFieldId(fieldOrLabel);
   if (isUsmleFieldId(fieldId)) {
     return usmleStepDefinition(fieldId)?.simulatedQuestionCount ?? 280;
   }
-  const board = resolveBoardExam(fieldOrLabel);
-  if (!board) return 50;
-  if (board === "nclex") {
-    const variant = options?.nclexLength ?? "minimum";
-    return NCLEX_TIMED_COUNTS[variant];
+  if (fieldId === "nursing") {
+    return NCLEX_TIMED_COUNTS[nclexLength];
   }
-  return TIMED_EXAM_COUNTS[board];
+  const catalog = Object.values(EXAM_CATALOG).find((e) => e.fieldId === fieldId);
+  if (catalog) return catalog.simulatedQuestionCount;
+  return 50;
+}
+
+export function getTimedExamQuestionCount(
+  fieldOrLabel: string,
+  options?: { nclexLength?: NclexTimedVariant }
+): number {
+  return resolveBoardFullQuestionCount(fieldOrLabel, options?.nclexLength ?? "minimum");
 }
 
 const SPRINT_EXAM_LIMITS = new Set([50, 100]);
@@ -120,7 +129,7 @@ export function resolveTimedExamLimit(
     return NCLEX_TIMED_COUNTS[nclexLength ?? "minimum"];
   }
   if (board) {
-    const full = TIMED_EXAM_COUNTS[board];
+    const full = resolveBoardFullQuestionCount(fieldOrLabel, nclexLength);
     if (
       requestedLimit &&
       (SPRINT_EXAM_LIMITS.has(requestedLimit) || requestedLimit === full)
@@ -129,6 +138,17 @@ export function resolveTimedExamLimit(
     }
     return full;
   }
+  if (isMpjeField(fieldOrLabel)) {
+    const full = MPJE_PRACTICE_EXAM_QUESTION_COUNT;
+    if (
+      requestedLimit &&
+      (SPRINT_EXAM_LIMITS.has(requestedLimit) || requestedLimit === full)
+    ) {
+      return requestedLimit;
+    }
+    return full;
+  }
+  const fieldId = resolveFieldId(fieldOrLabel);
   if (requestedLimit && SPRINT_EXAM_LIMITS.has(requestedLimit)) {
     return requestedLimit;
   }

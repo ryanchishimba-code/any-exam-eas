@@ -21,6 +21,9 @@ describe("buildSessionConfig", () => {
     expect(buildSessionConfig("aanp-fnp", "full", true).questionCount).toBe(135);
     expect(buildSessionConfig("npte-pt", "full", true).questionCount).toBe(250);
     expect(buildSessionConfig("usmle", "full", true).questionCount).toBe(280);
+    expect(
+      buildSessionConfig("usmle", "full", true, { fieldId: "usmle-step-3" }).questionCount
+    ).toBe(200);
   });
 
   it("enables adaptive mix for full-length non-NCLEX exams", () => {
