@@ -234,7 +234,7 @@ export function FullExamLauncher({
           <div className="mx-auto w-full max-w-xl space-y-7">
             <QuestionBankExamHero exam={exam} examSlug={examSlug} />
 
-            {/* Length — tactile scroll wheel with live counts. */}
+            {/* Length — tap presets with live counts. */}
             <div className="space-y-2">
               <p className="text-center text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
                 Choose length
