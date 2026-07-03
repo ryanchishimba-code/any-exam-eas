@@ -64,3 +64,49 @@ export function calendarDaysUntil(isoDate: string, now = Date.now()): number {
   const target = new Date(`${isoDate}T00:00:00`);
   return Math.round((target.getTime() - today.getTime()) / 86_400_000);
 }
+
+/** ISO `YYYY-MM-DD` → compact `MMDDYYYY` for typed entry. */
+export function isoToMmddyyyy(iso: string): string {
+  const match = iso.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return "";
+  const [, year, month, day] = match;
+  return `${month}${day}${year}`;
+}
+
+/** Parse `MMDDYYYY` (digits only) to ISO date, or null when invalid. */
+export function parseMmddyyyy(raw: string): string | null {
+  const digits = raw.replace(/\D/g, "");
+  if (digits.length !== 8) return null;
+
+  const month = digits.slice(0, 2);
+  const day = digits.slice(2, 4);
+  const year = digits.slice(4, 8);
+  const monthNum = Number(month);
+  const dayNum = Number(day);
+  const yearNum = Number(year);
+
+  if (monthNum < 1 || monthNum > 12 || dayNum < 1 || dayNum > 31 || yearNum < 1900) {
+    return null;
+  }
+
+  const iso = `${year}-${month}-${day}`;
+  const parsed = new Date(`${iso}T12:00:00`);
+  if (
+    parsed.getFullYear() !== yearNum ||
+    parsed.getMonth() + 1 !== monthNum ||
+    parsed.getDate() !== dayNum
+  ) {
+    return null;
+  }
+
+  return iso;
+}
+
+export function isIsoWithinBounds(
+  iso: string,
+  bounds: { minDate?: string; maxDate?: string }
+): boolean {
+  if (bounds.minDate && iso < bounds.minDate) return false;
+  if (bounds.maxDate && iso > bounds.maxDate) return false;
+  return true;
+}
