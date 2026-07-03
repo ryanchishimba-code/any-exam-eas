@@ -5,6 +5,7 @@ import { CalendarDays } from "lucide-react";
 import {
   addMonthsToIso,
   calendarDaysUntil,
+  defaultBirthDatePreview,
   formatDdmmyyyyDigits,
   formatExamDateLong,
   formatExamDateShort,
@@ -49,22 +50,24 @@ function relativeHint(iso: string, minDate?: string): string {
 
 function typedInputError(
   raw: string,
-  minDate?: string,
-  maxDate?: string
+  options: { minDate?: string; maxDate?: string; isBirthDate?: boolean }
 ): string | null {
+  const { minDate, maxDate, isBirthDate } = options;
   const digits = raw.replace(/\D/g, "");
   if (digits.length === 0) return null;
   if (digits.length < 8) return null;
   const iso = parseDdmmyyyy(raw);
   if (!iso) return "Enter a valid date (dd/mm/yyyy)";
   if (!isIsoWithinBounds(iso, { minDate, maxDate })) {
+    if (isBirthDate && maxDate && iso > maxDate) return "You must be at least 18 years old";
+    if (isBirthDate && minDate && iso < minDate) return "Enter a valid birth year";
     if (minDate && iso < minDate) return "Choose today or a future date";
     if (maxDate && iso > maxDate) return "Date is outside the allowed range";
   }
   return null;
 }
 
-/** Exam / DOB date entry — typed dd/mm/yyyy for exams, native picker for birth dates. */
+/** Exam / DOB date entry — typed dd/mm/yyyy with auto-formatting (works on mobile). */
 export function ExamDatePicker({
   value,
   minDate,
@@ -78,15 +81,15 @@ export function ExamDatePicker({
   const generatedId = useId();
   const inputId = id ?? generatedId;
   const inputRef = useRef<HTMLInputElement>(null);
-  const isBirthDate = Boolean(maxDate && !minDate);
+  const isBirthDate = Boolean(maxDate);
   const isExamDate = Boolean(minDate && !maxDate);
   const showQuickPicks = isExamDate && variant === "default";
   const compact = variant === "compact";
-  const useTypedInput = isExamDate;
 
   const label = ariaLabel ?? (isBirthDate ? "Date of birth" : "Exam date");
   const today = useMemo(() => todayIso(), []);
   const quickBase = minDate ?? today;
+  const birthExample = useMemo(() => defaultBirthDatePreview(today), [today]);
 
   const [typed, setTyped] = useState(() => (value ? isoToDdmmyyyy(value) : ""));
 
@@ -104,7 +107,7 @@ export function ExamDatePicker({
   );
 
   const digits = typed.replace(/\D/g, "");
-  const inputError = useTypedInput ? typedInputError(typed, minDate, maxDate) : null;
+  const inputError = typedInputError(typed, { minDate, maxDate, isBirthDate });
   const parsedIso = digits.length === 8 ? parseDdmmyyyy(typed) : null;
   const displayIso =
     parsedIso && isIsoWithinBounds(parsedIso, { minDate, maxDate }) ? parsedIso : value;
@@ -124,19 +127,7 @@ export function ExamDatePicker({
     commitTypedValue(formatted);
   }
 
-  function openPicker() {
-    const el = inputRef.current;
-    if (!el) return;
-    try {
-      el.showPicker?.();
-    } catch {
-      el.focus();
-      el.click();
-    }
-  }
-
-  if (useTypedInput) {
-    return (
+  return (
       <div className={cn("space-y-3", className)}>
         <div
           className={cn(
@@ -182,7 +173,8 @@ export function ExamDatePicker({
                 id={inputId}
                 type="text"
                 inputMode="numeric"
-                autoComplete="off"
+                autoComplete={isBirthDate ? "bday" : "off"}
+                enterKeyHint="done"
                 spellCheck={false}
                 value={typed}
                 placeholder="dd/mm/yyyy"
@@ -192,7 +184,7 @@ export function ExamDatePicker({
                 aria-invalid={inputError ? true : undefined}
                 aria-describedby={inputError ? `${inputId}-error` : `${inputId}-hint`}
                 className={cn(
-                  "mt-1 w-full bg-transparent font-mono text-[15px] font-semibold tracking-[0.04em] text-[var(--color-ink)] outline-none placeholder:font-sans placeholder:font-normal placeholder:tracking-normal placeholder:text-[var(--color-ink-muted)]/70 sm:text-base",
+                  "mt-1 min-h-[44px] w-full touch-manipulation bg-transparent font-mono text-[16px] font-semibold tracking-[0.04em] text-[var(--color-ink)] outline-none placeholder:font-sans placeholder:font-normal placeholder:tracking-normal placeholder:text-[var(--color-ink-muted)]/70 sm:text-base",
                   inputError && "text-rose-600 dark:text-rose-400"
                 )}
               />
@@ -203,11 +195,21 @@ export function ExamDatePicker({
               ) : displayIso ? (
                 <p id={`${inputId}-hint`} className="mt-1 text-[12px] text-[var(--color-ink-muted)]">
                   {formatExamDateLong(displayIso)}
-                  {!compact ? ` · ${relativeHint(displayIso, minDate)}` : ""}
+                  {!compact && isExamDate ? ` · ${relativeHint(displayIso, minDate)}` : ""}
+                  {!compact && isBirthDate ? " · Must be 18 or older" : ""}
                 </p>
               ) : (
                 <p id={`${inputId}-hint`} className="mt-1 text-[12px] text-[var(--color-ink-muted)]">
-                  Example: {isoToDdmmyyyy(addMonthsToIso(today, 3))} ({formatExamDateShort(addMonthsToIso(today, 3))})
+                  {isBirthDate ? (
+                    <>
+                      Example: {isoToDdmmyyyy(birthExample)} ({formatExamDateShort(birthExample)})
+                    </>
+                  ) : (
+                    <>
+                      Example: {isoToDdmmyyyy(addMonthsToIso(today, 3))} (
+                      {formatExamDateShort(addMonthsToIso(today, 3))})
+                    </>
+                  )}
                 </p>
               )}
             </div>
@@ -240,72 +242,4 @@ export function ExamDatePicker({
         ) : null}
       </div>
     );
-  }
-
-  return (
-    <div className={cn("space-y-3", className)}>
-      <div
-        className={cn(
-          "group relative overflow-hidden rounded-2xl border transition-colors",
-          compact
-            ? "border-black/[0.08] bg-[var(--color-surface-elevated)] hover:border-[var(--color-accent)]/25"
-            : "border-[var(--color-border)]/60 bg-[var(--color-surface)]/60 hover:border-teal-400/35"
-        )}
-      >
-        {!compact ? (
-          <div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-500/[0.04] via-transparent to-cyan-500/[0.06]"
-            aria-hidden
-          />
-        ) : null}
-
-        <button
-          type="button"
-          onClick={openPicker}
-          className={cn(
-            "relative flex w-full items-center gap-3 text-left transition active:scale-[0.995]",
-            compact ? "px-3.5 py-3" : "px-4 py-3.5 sm:px-5 sm:py-4"
-          )}
-          aria-labelledby={`${inputId}-label`}
-        >
-          <span
-            className={cn(
-              "flex shrink-0 items-center justify-center rounded-xl",
-              compact
-                ? "h-9 w-9 bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
-                : "h-11 w-11 bg-gradient-to-br from-teal-500/15 to-cyan-500/15 text-teal-600 dark:text-teal-400"
-            )}
-          >
-            <CalendarDays className={compact ? "h-4 w-4" : "h-5 w-5"} aria-hidden />
-          </span>
-
-          <span className="min-w-0 flex-1">
-            <span
-              id={`${inputId}-label`}
-              className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-muted)]"
-            >
-              {label}
-            </span>
-            <span className="mt-0.5 block truncate text-[15px] font-semibold tracking-tight text-[var(--color-ink)] sm:text-base">
-              {value ? formatExamDateLong(value) : "Select a date"}
-            </span>
-          </span>
-        </button>
-
-        <input
-          ref={inputRef}
-          id={inputId}
-          type="date"
-          value={value}
-          min={minDate}
-          max={maxDate}
-          onChange={(e) => {
-            if (e.target.value) onChange(e.target.value);
-          }}
-          aria-label={label}
-          className="sr-only"
-        />
-      </div>
-    </div>
-  );
 }
