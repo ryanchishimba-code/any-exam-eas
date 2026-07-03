@@ -1,10 +1,8 @@
 import type { BankItem } from "@/lib/question-bank";
 import type { BlueprintDomain, ExamItemType, ExamReference } from "./types";
-import {
-  enrichRelatedStudyMeta,
-  relatedMetaFromPayload,
-  type StudyStructureContext,
-} from "./anatomy-study-meta";
+import type { StudyStructureContext } from "./anatomy-study-meta";
+
+export type { RelatedStudyMeta } from "./anatomy-study-meta";
 
 export type EnrichedBankItem = BankItem & {
   difficulty?: number;
@@ -16,20 +14,6 @@ export type EnrichedBankItem = BankItem & {
   vignette?: string;
   /** NGN structured payload (bow-tie, matrix, etc.) — stored in options JSON when non-MCQ. */
   ngnPayload?: Record<string, unknown>;
-};
-
-/** Cross-links rendered after the rationale (QuestionRelatedLinks) — merged into ngnPayload. */
-export type RelatedStudyMeta = {
-  /** Deep Dive review module on /dashboard/topics. */
-  reviewModuleSlug?: string;
-  /** Memory cards on /library. */
-  memoryCardIds?: string[];
-  /** 3D anatomy structures to surface in related links. */
-  structureIds?: string[];
-  /** Related Top 500 drug names. */
-  top500Drugs?: string[];
-  /** One-line high-yield takeaway shown above the links. */
-  keyTakeaway?: string;
 };
 
 export function enrichItem(
@@ -75,6 +59,8 @@ export function enrichItem(
     text: studyText,
   };
 
+  const { enrichRelatedStudyMeta, relatedMetaFromPayload } =
+    require("./anatomy-study-meta") as typeof import("./anatomy-study-meta");
   const studyMeta = enrichRelatedStudyMeta(relatedMetaFromPayload(payload), ctx);
   const nextPayload = { ...payload, ...studyMeta };
 

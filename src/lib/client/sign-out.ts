@@ -1,5 +1,6 @@
 import { signOut } from "next-auth/react";
 import { clearReturningUserHint } from "./returning-user";
+import { clearExamTransientClientState } from "./exam-switch-reset";
 
 /** Clears client-side access cache after sign-out. */
 export function clearUserAccessCache(): void {
@@ -23,6 +24,7 @@ export async function signOutAndCleanup(
 
   clearReturningUserHint();
   clearUserAccessCache();
+  clearExamTransientClientState();
 
   try {
     await signOut({ redirect: false });

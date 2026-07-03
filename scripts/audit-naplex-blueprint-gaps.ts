@@ -19,6 +19,7 @@ import {
   mergeNaplexQuotaWithCounts,
   NAPLEX_2026_BLUEPRINT,
 } from "../src/lib/exam-prep/naplex/blueprint-quota";
+import { aggregateNaplex2026BlueprintCounts } from "../src/lib/exam-prep/naplex/legacy-blueprint-map";
 import { NAPLEX_TARGET_TOTAL } from "../src/lib/exam-prep/naplex/types";
 
 const prisma = new PrismaClient();
@@ -43,7 +44,7 @@ function parseArgs() {
 
 async function countByBlueprintArea(metric: "active" | "qaPassed") {
   const rows = await prisma.questionBankItem.groupBy({
-    by: ["blueprintDomain"],
+    by: ["blueprintDomain", "subjectId", "itemType"],
     where: {
       fieldId: "pharmacy",
       active: true,
@@ -52,44 +53,65 @@ async function countByBlueprintArea(metric: "active" | "qaPassed") {
     _count: { id: true },
   });
 
-  const counts: Record<string, number> = {};
+  const rawCounts: Record<string, number> = {};
   let unmapped = 0;
 
   for (const row of rows) {
     const key = row.blueprintDomain?.trim() || "(unmapped)";
     if (key === "(unmapped)") unmapped += row._count.id;
-    else counts[key] = (counts[key] ?? 0) + row._count.id;
+    else rawCounts[key] = (rawCounts[key] ?? 0) + row._count.id;
   }
 
-  return { counts, unmapped };
+  const normalizedCounts = aggregateNaplex2026BlueprintCounts(
+    rows.map((row) => ({
+      blueprintDomain: row.blueprintDomain,
+      subjectId: row.subjectId,
+      itemType: row.itemType,
+      count: row._count.id,
+    }))
+  );
+
+  const normalizedRecord = Object.fromEntries(
+    Object.entries(normalizedCounts).map(([k, v]) => [k, v])
+  ) as Record<string, number>;
+
+  return { counts: rawCounts, normalizedCounts: normalizedRecord, unmapped };
 }
 
 function buildMarkdown(
   target: number,
   metric: string,
   totalActive: number,
-  quotas: ReturnType<typeof mergeNaplexQuotaWithCounts>,
+  quotasRaw: ReturnType<typeof mergeNaplexQuotaWithCounts>,
+  quotasNormalized: ReturnType<typeof mergeNaplexQuotaWithCounts>,
   unmapped: number
 ) {
-  const totalDeficit = quotas.reduce((s, q) => s + (q.deficit ?? 0), 0);
+  const totalDeficit = quotasNormalized.reduce((s, q) => s + (q.deficit ?? 0), 0);
   const lines = [
     `# NAPLEX Blueprint Gap Report`,
     ``,
     `- **Target bank size:** ${target}`,
     `- **Metric:** ${metric}`,
     `- **Active items counted:** ${totalActive}`,
-    `- **Unmapped blueprintDomain:** ${unmapped}`,
-    `- **Total blueprint deficit:** ${totalDeficit}`,
+    `- **Unmapped blueprintDomain (raw):** ${unmapped}`,
+    `- **Total blueprint deficit (2026 normalized):** ${totalDeficit}`,
     `- **Source:** ${NAPLEX_2026_BLUEPRINT.sourceNote}`,
+    ``,
+    `## 2026 blueprint (legacy domains mapped)`,
     ``,
     `| Blueprint area | Weight | Target | Current | Deficit |`,
     `|----------------|--------|--------|---------|---------|`,
   ];
 
-  for (const q of quotas) {
+  for (const q of quotasNormalized) {
     lines.push(
       `| ${q.label} | ${(q.weight * 100).toFixed(1)}% | ${q.targetCount} | ${q.currentCount ?? 0} | ${q.deficit ?? 0} |`
     );
+  }
+
+  lines.push("", "## Raw blueprintDomain keys (unmapped legacy slugs)", "");
+  for (const q of quotasRaw.filter((r) => (r.currentCount ?? 0) > 0)) {
+    lines.push(`- ${q.blueprintArea}: ${q.currentCount}`);
   }
 
   return lines.join("\n");
@@ -98,7 +120,7 @@ function buildMarkdown(
 async function main() {
   const { target, json, metric } = parseArgs();
 
-  const [totalActive, totalQaPassed, { counts, unmapped }] = await Promise.all([
+  const [totalActive, totalQaPassed, { counts, normalizedCounts, unmapped }] = await Promise.all([
     prisma.questionBankItem.count({ where: { fieldId: "pharmacy", active: true } }),
     prisma.questionBankItem.count({
       where: { fieldId: "pharmacy", active: true, qaPassed: true },
@@ -106,8 +128,9 @@ async function main() {
     countByBlueprintArea(metric),
   ]);
 
-  const quotas = mergeNaplexQuotaWithCounts(counts, target);
-  const totalDeficit = quotas.reduce((s, q) => s + (q.deficit ?? 0), 0);
+  const quotasRaw = mergeNaplexQuotaWithCounts(counts, target);
+  const quotasNormalized = mergeNaplexQuotaWithCounts(normalizedCounts, target);
+  const totalDeficit = quotasNormalized.reduce((s, q) => s + (q.deficit ?? 0), 0);
   const counted = metric === "qaPassed" ? totalQaPassed : totalActive;
 
   const report = {
@@ -119,8 +142,10 @@ async function main() {
     countedForMetric: counted,
     unmappedBlueprintDomain: unmapped,
     totalDeficit,
-    quotas: computeNaplexBlueprintQuotas(target).map((q) => {
-      const merged = quotas.find((m) => m.blueprintArea === q.blueprintArea)!;
+    rawDomainCounts: counts,
+    normalized2026Counts: normalizedCounts,
+    quotasNormalized: computeNaplexBlueprintQuotas(target).map((q) => {
+      const merged = quotasNormalized.find((m) => m.blueprintArea === q.blueprintArea)!;
       return {
         blueprintArea: q.blueprintArea,
         label: q.label,
@@ -128,6 +153,13 @@ async function main() {
         targetCount: q.targetCount,
         currentCount: merged.currentCount ?? 0,
         deficit: merged.deficit ?? 0,
+      };
+    }),
+    quotasRaw: computeNaplexBlueprintQuotas(target).map((q) => {
+      const merged = quotasRaw.find((m) => m.blueprintArea === q.blueprintArea)!;
+      return {
+        blueprintArea: q.blueprintArea,
+        currentCount: merged.currentCount ?? 0,
       };
     }),
   };
@@ -138,15 +170,15 @@ async function main() {
   const mdPath = path.join(artifacts, "naplex-blueprint-gap-summary.md");
 
   writeFileSync(jsonPath, JSON.stringify(report, null, 2));
-  writeFileSync(mdPath, buildMarkdown(target, metric, counted, quotas, unmapped));
+  writeFileSync(mdPath, buildMarkdown(target, metric, counted, quotasRaw, quotasNormalized, unmapped));
 
   if (json) {
     console.log(JSON.stringify(report, null, 2));
   } else {
     console.log(`\nNAPLEX blueprint gap audit (${metric}, target ${target})\n`);
-    console.log(`Active: ${totalActive} | qaPassed: ${totalQaPassed} | unmapped: ${unmapped}`);
-    console.log(`Total deficit: ${totalDeficit}\n`);
-    for (const q of report.quotas) {
+    console.log(`Active: ${totalActive} | qaPassed: ${totalQaPassed} | unmapped raw: ${unmapped}`);
+    console.log(`Total deficit (2026 normalized): ${totalDeficit}\n`);
+    for (const q of report.quotasNormalized) {
       const status = q.deficit > 0 ? `need ${q.deficit}` : "OK";
       console.log(
         `  ${q.label}: ${q.currentCount}/${q.targetCount} (${(q.weight * 100).toFixed(1)}%) — ${status}`

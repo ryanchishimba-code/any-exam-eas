@@ -489,6 +489,8 @@ export async function generateUsmleFullExam(params: {
   batchId: string;
   /** Override step (e.g. step3 replacements); defaults from exam number parity. */
   stepLevel?: UsmleStepLevel;
+  focusSubjectId?: string;
+  focusCategoryId?: string;
   onProgress?: (done: number, total: number) => void;
 }): Promise<UsmleFullExamBundle> {
   const questionCount = params.questionCount ?? resolveExamQuestionCount(params.examNumber);
@@ -496,6 +498,8 @@ export async function generateUsmleFullExam(params: {
     examNumber: params.examNumber,
     questionCount,
     stepLevel: params.stepLevel,
+    focusSubjectId: params.focusSubjectId,
+    focusCategoryId: params.focusCategoryId,
   });
   const stepLevel = slots[0]?.stepLevel ?? params.stepLevel ?? "step1";
   const exemplars = collectExemplars(stepLevel);

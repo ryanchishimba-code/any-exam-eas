@@ -81,6 +81,12 @@ export function LibraryHubClient({
     });
   }, [examSlug]);
 
+  useEffect(() => {
+    setTab("home");
+    setQuery("");
+    setSelected(null);
+  }, [examSlug]);
+
   const openCard = useCallback(
     (card: MemoryCard) => {
       rememberMemoryCard(card.id, examSlug);

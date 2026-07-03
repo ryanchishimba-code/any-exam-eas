@@ -499,12 +499,14 @@ export async function generateNaplexFullExam(params: {
   examNumber: number;
   questionCount?: number;
   batchId: string;
+  focusSubjectId?: string;
   onProgress?: (done: number, total: number) => void;
 }): Promise<NaplexFullExamBundle> {
   const questionCount = params.questionCount ?? NAPLEX_FULL_EXAM_DEFAULT_COUNT;
   const slots = planNaplexFullExamSlots({
     examNumber: params.examNumber,
     questionCount,
+    focusSubjectId: params.focusSubjectId,
   });
   const exemplars = collectExemplars();
   const concurrency = resolveConcurrency();
@@ -590,6 +592,8 @@ export async function generateNaplexFullExamSet(params: {
   examCount?: number;
   questionCountPerExam?: number;
   batchId?: string;
+  /** Per-exam subject focus (index aligns with exam number − 1). */
+  focusSubjectIds?: string[];
   onExamComplete?: (exam: NaplexFullExamBundle) => void | Promise<void>;
 }): Promise<NaplexGenerationResult> {
   const examCount = params.examCount ?? 10;
@@ -603,10 +607,12 @@ export async function generateNaplexFullExamSet(params: {
 
   for (let examNumber = 1; examNumber <= examCount; examNumber++) {
     console.log(`\n[naplex-full-exam] === Generating Exam ${examNumber}/${examCount} ===`);
+    const focusSubjectId = params.focusSubjectIds?.[(examNumber - 1) % params.focusSubjectIds.length];
     const exam = await generateNaplexFullExam({
       examNumber,
       questionCount: params.questionCountPerExam,
       batchId,
+      focusSubjectId,
       onProgress: (done, total) => {
         if (done % 20 === 0 || done === total) {
           console.log(`  Exam ${examNumber}: ${done}/${total} slots processed`);

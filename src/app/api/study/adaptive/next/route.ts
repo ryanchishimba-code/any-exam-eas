@@ -20,6 +20,7 @@ import {
 import {
   bankItemToSessionRaw,
 } from "@/lib/exam-prep/prepare-bank-session";
+import { resolveQuestionBankSessionCount } from "@/lib/study/question-bank-setup";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -27,7 +28,7 @@ export const maxDuration = 60;
 const bodySchema = z.object({
   field: z.string().min(1),
   subjectId: z.string().min(1),
-  count: z.number().int().min(1).max(300).default(15),
+  count: z.number().int().min(1).max(300).default(25),
   currentDifficulty: z.enum(["easy", "medium", "hard"]).default("medium"),
   topicPerformance: z
     .array(
@@ -90,6 +91,7 @@ export async function POST(req: Request) {
 
   try {
     const body = bodySchema.parse(await req.json());
+    const requestedCount = resolveQuestionBankSessionCount(body.count);
     const { resolveQuestionBankFieldId, enforceQuestionBankFieldAccess } = await import(
       "@/lib/edtech/question-bank-scope"
     );
@@ -105,24 +107,24 @@ export async function POST(req: Request) {
     const usageCheck = await checkStudyQuestionUsage({
       userId: premium.userId,
       access: premium.access,
-      requestedCount: body.count,
+      requestedCount,
       adaptive: true,
     });
     if (!usageCheck.ok) return usageCheck.response;
 
-    if (usageCheck.allowedCount < body.count) {
+    if (usageCheck.allowedCount < requestedCount) {
       return NextResponse.json(
         {
           error: `Your plan allows ${usageCheck.allowedCount} questions per session. Choose ${usageCheck.allowedCount} or fewer, or upgrade for larger sessions.`,
           code: "SESSION_SIZE_CAPPED",
           allowedCount: usageCheck.allowedCount,
-          requested: body.count,
+          requested: requestedCount,
         },
         { status: 403 }
       );
     }
 
-    const sessionCount = usageCheck.allowedCount;
+    const sessionCount = resolveQuestionBankSessionCount(usageCheck.allowedCount);
 
     const subjectId = body.subjectId;
 

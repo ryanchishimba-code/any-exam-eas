@@ -1,6 +1,8 @@
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 import { auth } from "@/auth";
 import { ExamSelectionScreen } from "@/components/edtech/ExamSelectionScreen";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ensureAllBoardExams } from "@/lib/edtech/board-exam-sync";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { getUserAccess } from "@/lib/access-control";
@@ -45,9 +47,19 @@ export default async function SelectExamPage({ searchParams }: PageProps) {
   }
 
   return (
-    <ExamSelectionScreen
-      switchMode={switchMode}
-      currentExam={pref?.examSlug ?? null}
-    />
+    <Suspense
+      fallback={
+        <div className="mx-auto flex min-h-[50vh] max-w-4xl flex-col gap-4 px-4 py-12">
+          <Skeleton className="h-10 w-64 rounded-xl" />
+          <Skeleton className="h-48 w-full rounded-2xl" />
+          <Skeleton className="h-48 w-full rounded-2xl" />
+        </div>
+      }
+    >
+      <ExamSelectionScreen
+        switchMode={switchMode}
+        currentExam={pref?.examSlug ?? null}
+      />
+    </Suspense>
   );
 }

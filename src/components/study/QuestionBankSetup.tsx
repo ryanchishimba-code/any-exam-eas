@@ -1,13 +1,13 @@
 "use client";
 
 import {
-  QUESTION_BANK_COUNT_PRESETS,
   type QuestionBankPace,
   type QuestionBankStyle,
 } from "@/lib/exam/modes";
 import {
   MIXED_SUBJECT_ID,
   MIXED_SUBJECT_LABEL,
+  QUESTION_BANK_WHEEL_PRESETS,
   availableQuestionCount,
   isMixedSubjectId,
   questionBankCountOptionsForAvailable,
@@ -124,10 +124,14 @@ export function QuestionBankSetup({
       >
         <div className="space-y-5">
           <div>
-            <p className={cn(qbUi.sectionHint, "mb-3 px-0.5")}>Question count</p>
+            <p className={cn(qbUi.sectionHint, "mb-3 px-0.5")}>Number of Questions</p>
             {countOptions.length === 0 ? (
               <p className="text-center text-[12px] text-amber-800" role="status">
-                Not enough serve-ready questions for this topic yet.
+                {maxAvailable != null &&
+                maxAvailable > 0 &&
+                maxAvailable < QUESTION_BANK_WHEEL_PRESETS[0]
+                  ? `This topic has ${maxAvailable.toLocaleString()} serve-ready question${maxAvailable === 1 ? "" : "s"} — choose a topic with at least 25 to start.`
+                  : "Not enough serve-ready questions for this topic yet."}
               </p>
             ) : (
               <QuestionBankCountWheel
@@ -136,14 +140,6 @@ export function QuestionBankSetup({
                 onChange={onQuestionCountChange}
               />
             )}
-            {maxAvailable != null &&
-            maxAvailable > 0 &&
-            maxAvailable < QUESTION_BANK_COUNT_PRESETS[0] ? (
-              <p className="mt-2 text-center text-[12px] text-[var(--color-ink-muted)]" role="status">
-                This topic has {maxAvailable.toLocaleString()} serve-ready question
-                {maxAvailable === 1 ? "" : "s"} — counts above that are hidden.
-              </p>
-            ) : null}
             {!validation.ok && validation.message ? (
               <p className="mt-2 text-center text-[12px] text-amber-800" role="status">
                 {validation.message}

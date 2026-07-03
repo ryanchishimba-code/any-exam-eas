@@ -1,7 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useReducedMotion } from "framer-motion";
+import {
+  pickerWheelScrollerClassName,
+  usePickerWheelScroll,
+} from "@/hooks/usePickerWheelScroll";
 import { cn } from "@/lib/utils";
 
 /** Row height — compact mode uses 36px; default keeps iOS-friendly 44px targets. */
@@ -130,58 +134,38 @@ function WheelColumn({
   const wheelH = wheelHeight ?? itemH * VISIBLE_DEFAULT;
   const padding = pad ?? (wheelH - itemH) / 2;
   const reduceMotion = useReducedMotion();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number | null>(null);
-  const programmaticRef = useRef(false);
   const [center, setCenter] = useState(selectedIndex);
+  const roundedCenter = Math.min(options.length - 1, Math.max(0, Math.round(center)));
 
-  const scrollToIndex = useCallback(
-    (index: number, behavior: ScrollBehavior) => {
-      const el = containerRef.current;
-      if (!el) return;
-      const clamped = Math.min(options.length - 1, Math.max(0, index));
-      programmaticRef.current = true;
-      el.scrollTo({ top: clamped * itemH, behavior });
-      window.setTimeout(() => {
-        programmaticRef.current = false;
-      }, behavior === "smooth" ? 360 : 0);
-    },
-    [options.length, itemH]
-  );
+  const {
+    containerRef,
+    scrollToIndex,
+    handleScroll,
+    onPointerDown,
+    onPointerUp,
+    onPointerCancel,
+    onTouchStart,
+    onTouchEnd,
+    makeKeyDownHandler,
+  } = usePickerWheelScroll({
+    itemHeight: itemH,
+    itemCount: options.length,
+    selectedIndex: roundedCenter,
+    onSelectedIndexChange: onSelect,
+    onCenterChange: setCenter,
+    reduceMotion,
+    settleDelayMs: 80,
+  });
 
   useEffect(() => {
     scrollToIndex(selectedIndex, "auto");
     setCenter(selectedIndex);
   }, [selectedIndex, options.length, scrollToIndex]);
 
-  const handleScroll = useCallback(() => {
-    const el = containerRef.current;
-    if (!el || rafRef.current != null) return;
-    rafRef.current = requestAnimationFrame(() => {
-      rafRef.current = null;
-      const idx = Math.min(options.length - 1, Math.max(0, Math.round(el.scrollTop / itemH)));
-      setCenter(el.scrollTop / itemH);
-      onSelect(idx);
-    });
-  }, [onSelect, options.length, itemH]);
-
-  const onKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLDivElement>) => {
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        scrollToIndex(selectedIndex + 1, "smooth");
-      } else if (e.key === "ArrowUp") {
-        e.preventDefault();
-        scrollToIndex(selectedIndex - 1, "smooth");
-      }
-    },
-    [selectedIndex, scrollToIndex]
-  );
-
-  const roundedCenter = Math.min(options.length - 1, Math.max(0, Math.round(center)));
+  const onKeyDown = useMemo(() => makeKeyDownHandler(), [makeKeyDownHandler]);
 
   return (
-    <div className="flex min-w-0 flex-1 flex-col items-center gap-0.5">
+    <div className="flex min-w-0 flex-1 flex-col items-center gap-0.5 overscroll-y-contain">
       <span className="text-[9px] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-muted)]">
         {label}
       </span>
@@ -207,12 +191,15 @@ function WheelColumn({
           aria-label={label}
           tabIndex={0}
           onScroll={handleScroll}
+          onPointerDown={onPointerDown}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerCancel}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
           onKeyDown={onKeyDown}
           className={cn(
-            "relative z-[1] h-full w-full overflow-y-auto overscroll-contain",
-            "[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-            "snap-y snap-mandatory scroll-smooth rounded-xl",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/35"
+            pickerWheelScrollerClassName,
+            "relative z-[1] rounded-xl focus-visible:ring-[var(--color-accent)]/35"
           )}
           style={{ paddingTop: padding, paddingBottom: padding }}
         >

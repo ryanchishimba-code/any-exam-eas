@@ -16,6 +16,7 @@ import {
   resolveTimedExamLimit,
 } from "@/lib/exam/exam-lengths";
 import { clampQuestionBankCount } from "@/lib/exam/modes";
+import { resolveQuestionBankSessionCount } from "@/lib/study/question-bank-setup";
 import { studyQuestionsToExamQuestions } from "@/lib/questions/prepare";
 import type { ExamQuestion } from "@/lib/ai";
 import { trackEvent } from "@/lib/analytics/events";
@@ -83,9 +84,13 @@ export async function GET(req: Request) {
         Number.isFinite(requestedLimit) ? requestedLimit : undefined,
         nclexLength
       )
-    : clampQuestionBankCount(
-        Number.isFinite(requestedLimit) ? requestedLimit : defaultLimit
-      );
+    : questionBank
+      ? resolveQuestionBankSessionCount(
+          Number.isFinite(requestedLimit) ? requestedLimit : defaultLimit
+        )
+      : clampQuestionBankCount(
+          Number.isFinite(requestedLimit) ? requestedLimit : defaultLimit
+        );
   const requestedSessionCount = Math.min(resolvedLimit, maxLimit);
   const timedFullMock = timedExam && requestedSessionCount >= 50;
 

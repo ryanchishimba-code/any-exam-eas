@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { GraduationCap } from "lucide-react";
@@ -13,11 +14,8 @@ type Props = {
   onNavigate?: () => void;
 };
 
-export function GlobalExamSwitcher({ variant = "nav", onNavigate }: Props) {
-  const { status } = useSession();
+function GlobalExamSwitcherInner({ variant = "nav", onNavigate }: Props) {
   const { examSlug, loading, refresh } = useAppPreferences();
-
-  if (status !== "authenticated") return null;
 
   if (loading) {
     return (
@@ -56,5 +54,26 @@ export function GlobalExamSwitcher({ variant = "nav", onNavigate }: Props) {
         void refresh();
       }}
     />
+  );
+}
+
+export function GlobalExamSwitcher(props: Props) {
+  const { status } = useSession();
+  if (status !== "authenticated") return null;
+
+  return (
+    <Suspense
+      fallback={
+        <span
+          className={cn(
+            "inline-block animate-pulse rounded-lg bg-black/[0.06]",
+            props.variant === "nav" ? "h-8 w-24" : "h-10 w-full"
+          )}
+          aria-hidden
+        />
+      }
+    >
+      <GlobalExamSwitcherInner {...props} />
+    </Suspense>
   );
 }

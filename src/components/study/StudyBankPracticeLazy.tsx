@@ -23,5 +23,6 @@ const StudyBankPractice = dynamic(
 export function StudyBankPracticeLazy(
   props: ComponentProps<typeof StudyBankPractice>
 ) {
-  return <StudyBankPractice {...props} />;
+  const scopeKey = `${props.preferredExamSlug ?? "open"}:${props.initialFieldId ?? "default"}`;
+  return <StudyBankPractice key={scopeKey} {...props} />;
 }

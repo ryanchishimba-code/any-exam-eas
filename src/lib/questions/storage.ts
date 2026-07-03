@@ -43,3 +43,20 @@ export function clearSessionLocally(sessionId: string): void {
     /* ignore */
   }
 }
+
+/** Drop all persisted study sessions — call on exam switch or sign-out. */
+export function clearAllStudySessionsLocally(): void {
+  if (typeof window === "undefined") return;
+  try {
+    const keys: string[] = [];
+    for (let i = 0; i < window.localStorage.length; i += 1) {
+      const key = window.localStorage.key(i);
+      if (key?.startsWith(`${PREFIX}:`)) keys.push(key);
+    }
+    for (const key of keys) {
+      window.localStorage.removeItem(key);
+    }
+  } catch {
+    /* ignore */
+  }
+}

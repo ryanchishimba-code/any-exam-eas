@@ -1,7 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useReducedMotion } from "framer-motion";
+import {
+  pickerWheelScrollerClassName,
+  usePickerWheelScroll,
+} from "@/hooks/usePickerWheelScroll";
 import type { LengthOption } from "@/lib/full-exam/config";
 import type { FullExamLengthPreset } from "@/types/full-exam";
 import { cn } from "@/lib/utils";
@@ -25,61 +29,45 @@ type Props = {
  */
 export function FullExamLengthWheel({ options, value, onChange }: Props) {
   const reduceMotion = useReducedMotion();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number | null>(null);
-  const scrollEndTimerRef = useRef<number | null>(null);
-  const programmaticRef = useRef(false);
-
-  const syncPresetFromScroll = useCallback(
-    (behavior: ScrollBehavior) => {
-      const el = containerRef.current;
-      if (!el) return;
-      const idx = Math.min(options.length - 1, Math.max(0, Math.round(el.scrollTop / ITEM_H)));
-      const opt = options[idx];
-      if (!opt) return;
-      if (opt.preset !== value) onChange(opt.preset);
-      if (behavior === "smooth") {
-        window.setTimeout(() => {
-          const settled = containerRef.current;
-          if (!settled) return;
-          const settledIdx = Math.min(
-            options.length - 1,
-            Math.max(0, Math.round(settled.scrollTop / ITEM_H))
-          );
-          const settledOpt = options[settledIdx];
-          if (settledOpt && settledOpt.preset !== value) onChange(settledOpt.preset);
-        }, 380);
-      }
-    },
-    [onChange, options, value]
-  );
 
   const startIndex = Math.max(0, options.findIndex((o) => o.preset === value));
   const [center, setCenter] = useState(startIndex === -1 ? 0 : startIndex);
   const selectedIndex = Math.min(options.length - 1, Math.max(0, Math.round(center)));
 
-  const scrollToIndex = useCallback(
-    (index: number, behavior: ScrollBehavior) => {
-      const el = containerRef.current;
-      if (!el) return;
-      const clamped = Math.min(options.length - 1, Math.max(0, index));
-      programmaticRef.current = true;
-      el.scrollTo({ top: clamped * ITEM_H, behavior });
-      window.setTimeout(() => {
-        programmaticRef.current = false;
-      }, behavior === "smooth" ? 360 : 0);
+  const handleIndexChange = useCallback(
+    (index: number) => {
+      const opt = options[index];
+      if (opt && opt.preset !== value) onChange(opt.preset);
     },
-    [options.length]
+    [onChange, options, value]
   );
 
-  // Center the initial option without animation.
+  const {
+    containerRef,
+    scrollToIndex,
+    programmaticRef,
+    handleScroll,
+    onPointerDown,
+    onPointerUp,
+    onPointerCancel,
+    onTouchStart,
+    onTouchEnd,
+    makeKeyDownHandler,
+  } = usePickerWheelScroll({
+    itemHeight: ITEM_H,
+    itemCount: options.length,
+    selectedIndex,
+    onSelectedIndexChange: handleIndexChange,
+    onCenterChange: setCenter,
+    reduceMotion,
+  });
+
   useEffect(() => {
     scrollToIndex(startIndex === -1 ? 0 : startIndex, "auto");
     setCenter(startIndex === -1 ? 0 : startIndex);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Keep the wheel in sync if the preset is changed elsewhere (e.g. deep link).
   useEffect(() => {
     const idx = options.findIndex((o) => o.preset === value);
     if (idx >= 0 && idx !== selectedIndex && !programmaticRef.current) {
@@ -89,42 +77,13 @@ export function FullExamLengthWheel({ options, value, onChange }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value, options]);
 
-  const handleScroll = useCallback(() => {
-    const el = containerRef.current;
-    if (!el || rafRef.current != null) return;
-    rafRef.current = requestAnimationFrame(() => {
-      rafRef.current = null;
-      setCenter(el.scrollTop / ITEM_H);
-    });
-    if (programmaticRef.current) return;
-    if (scrollEndTimerRef.current != null) {
-      window.clearTimeout(scrollEndTimerRef.current);
-    }
-    scrollEndTimerRef.current = window.setTimeout(() => {
-      scrollEndTimerRef.current = null;
-      syncPresetFromScroll("auto");
-    }, 120);
-  }, [syncPresetFromScroll]);
-
-  const handleScrollEnd = useCallback(() => {
-    syncPresetFromScroll("auto");
-  }, [syncPresetFromScroll]);
-
-  const onKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLDivElement>) => {
-      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
-        e.preventDefault();
-        scrollToIndex(selectedIndex + 1, "smooth");
-      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
-        e.preventDefault();
-        scrollToIndex(selectedIndex - 1, "smooth");
-      }
-    },
-    [selectedIndex, scrollToIndex]
-  );
+  const onKeyDown = useMemo(() => makeKeyDownHandler(), [makeKeyDownHandler]);
 
   return (
-    <div className="relative mx-auto w-full max-w-sm select-none" style={{ height: WHEEL_H, perspective: "1000px" }}>
+    <div
+      className="relative mx-auto w-full max-w-sm select-none overscroll-y-contain"
+      style={{ height: WHEEL_H, perspective: "1000px" }}
+    >
       <div
         className="pointer-events-none absolute inset-x-1 top-1/2 -translate-y-1/2 rounded-2xl border border-[var(--color-accent)]/40 bg-[var(--color-accent)]/[0.06] shadow-[0_0_30px_-8px_rgba(99,102,241,0.4)] ring-1 ring-inset ring-white/40"
         style={{ height: ITEM_H }}
@@ -147,15 +106,13 @@ export function FullExamLengthWheel({ options, value, onChange }: Props) {
         aria-label="Exam length"
         tabIndex={0}
         onScroll={handleScroll}
-        onPointerUp={handleScrollEnd}
-        onTouchEnd={handleScrollEnd}
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerCancel}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
         onKeyDown={onKeyDown}
-        className={cn(
-          "h-full w-full overflow-y-auto overscroll-contain",
-          "[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-          "snap-y snap-mandatory scroll-smooth rounded-[24px]",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/60"
-        )}
+        className={cn(pickerWheelScrollerClassName, "rounded-[24px]")}
         style={{ paddingTop: PAD, paddingBottom: PAD }}
       >
         {options.map((option, i) => {
@@ -174,7 +131,7 @@ export function FullExamLengthWheel({ options, value, onChange }: Props) {
                 onChange(option.preset);
                 scrollToIndex(i, "smooth");
               }}
-              className="flex snap-center items-center justify-center"
+              className="flex snap-center items-center justify-center touch-manipulation"
               style={{ height: ITEM_H }}
             >
               <div

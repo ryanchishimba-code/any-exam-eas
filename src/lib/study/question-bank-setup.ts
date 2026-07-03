@@ -1,6 +1,4 @@
 import {
-  QUESTION_BANK_COUNT_PRESETS,
-  QUESTION_BANK_MIN_COUNT,
   clampQuestionBankCount,
   type QuestionBankPace,
   type QuestionBankStyle,
@@ -8,6 +6,11 @@ import {
 import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links";
 
 export { MIXED_SUBJECT_ID };
+
+/** Fixed question-bank wheel choices — not used by timed/mock exams. */
+export const QUESTION_BANK_WHEEL_PRESETS = [25, 50, 75] as const;
+
+export type QuestionBankWheelPreset = (typeof QUESTION_BANK_WHEEL_PRESETS)[number];
 
 export const MIXED_SUBJECT_LABEL = "Mixed topics";
 
@@ -21,27 +24,23 @@ function describeCountOption(value: number): Pick<QuestionBankCountOption, "labe
   return {
     label: `${value} questions`,
     description:
-      value <= 10
-        ? "Quick drill"
-        : value <= 25
-          ? "Focused session"
-          : value <= 50
-            ? "Standard block"
-            : value <= 75
-              ? "Long block"
-              : "Maximum bank session",
+      value <= 25
+        ? "Focused session"
+        : value <= 50
+          ? "Standard block"
+          : "Long block",
   };
 }
 
-/** Scroll-wheel options — same presets for every board exam. */
+/** Scroll-wheel options — 25 / 50 / 75 for every board exam question bank. */
 export function questionBankCountOptions(): QuestionBankCountOption[] {
-  return QUESTION_BANK_COUNT_PRESETS.map((value) => ({
+  return QUESTION_BANK_WHEEL_PRESETS.map((value) => ({
     value,
     ...describeCountOption(value),
   }));
 }
 
-/** Limit wheel choices to what the selected topic can actually fill. */
+/** Limit wheel choices to presets the selected topic can fill (25 minimum). */
 export function questionBankCountOptionsForAvailable(
   maxAvailable: number | null
 ): QuestionBankCountOption[] {
@@ -49,24 +48,10 @@ export function questionBankCountOptionsForAvailable(
   if (maxAvailable == null) return base;
 
   const capped = Math.max(0, Math.floor(maxAvailable));
-  if (capped < QUESTION_BANK_MIN_COUNT) return [];
+  const minPreset = QUESTION_BANK_WHEEL_PRESETS[0];
+  if (capped < minPreset) return [];
 
-  const allowedValues = base.map((o) => o.value).filter((value) => value <= capped);
-
-  if (!allowedValues.includes(capped)) {
-    allowedValues.push(capped);
-    allowedValues.sort((a, b) => a - b);
-  }
-
-  return allowedValues.map((value) => {
-    const preset = base.find((o) => o.value === value);
-    return (
-      preset ?? {
-        value,
-        ...describeCountOption(value),
-      }
-    );
-  });
+  return base.filter((option) => option.value <= capped);
 }
 
 /** Snap a requested count to the nearest wheel option (never above pool max). */
@@ -79,6 +64,23 @@ export function resolveWheelCountValue(
   const atOrBelow = options.filter((o) => o.value <= clamped);
   if (atOrBelow.length > 0) return atOrBelow[atOrBelow.length - 1]!.value;
   return options[0]?.value ?? clamped;
+}
+
+export function isQuestionBankWheelCount(value: number): value is QuestionBankWheelPreset {
+  return (QUESTION_BANK_WHEEL_PRESETS as readonly number[]).includes(value);
+}
+
+/** Resolve a bank session size to 25 / 50 / 75 (optionally capped by topic pool). */
+export function resolveQuestionBankSessionCount(
+  requested: number,
+  maxAvailable?: number | null
+): QuestionBankWheelPreset {
+  const options = questionBankCountOptionsForAvailable(maxAvailable ?? null);
+  const resolved = resolveWheelCountValue(
+    requested,
+    options.length > 0 ? options : questionBankCountOptions()
+  );
+  return resolved as QuestionBankWheelPreset;
 }
 
 export function isMixedSubjectId(subjectId: string): boolean {
@@ -132,7 +134,14 @@ export function validateQuestionBankSession(params: {
   }
 
   const maxAvailable = availableQuestionCount(subjectId, subjectCounts);
-  if (maxAvailable === null) return { ok: true };
+  const count = clampQuestionBankCount(questionCount);
+
+  if (maxAvailable === null) {
+    if (!isQuestionBankWheelCount(count)) {
+      return { ok: false, message: "Choose 25, 50, or 75 questions for this session." };
+    }
+    return { ok: true };
+  }
 
   if (maxAvailable <= 0) {
     return {
@@ -144,7 +153,24 @@ export function validateQuestionBankSession(params: {
     };
   }
 
-  const count = clampQuestionBankCount(questionCount);
+  const options = questionBankCountOptionsForAvailable(maxAvailable);
+  if (options.length === 0) {
+    return {
+      ok: false,
+      message: isMixedSubjectId(subjectId)
+        ? "Not enough serve-ready questions in this exam bank for a 25-question session."
+        : "This topic needs at least 25 serve-ready questions. Try another topic.",
+      maxAvailable,
+    };
+  }
+  if (!options.some((o) => o.value === count)) {
+    return {
+      ok: false,
+      message: `Choose ${options.map((o) => o.value).join(", ")} questions for this topic.`,
+      maxAvailable,
+    };
+  }
+
   if (count > maxAvailable) {
     return {
       ok: false,

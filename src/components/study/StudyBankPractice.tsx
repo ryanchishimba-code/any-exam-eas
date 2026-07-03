@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { BookOpen, Brain, Clock, Flag, Zap } from "lucide-react";
@@ -13,7 +13,6 @@ import {
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import {
   EXAM_MODES,
-  clampQuestionBankCount,
   parseQuestionBankPace,
   parseQuestionBankStyle,
   type QuestionBankPace,
@@ -83,8 +82,11 @@ import { qbUi } from "@/lib/study/question-bank-ui";
 import {
   availableQuestionCount,
   estimateQuestionBankSessionMinutes,
+  questionBankCountOptions,
   questionBankCountOptionsForAvailable,
   readPersistedQuestionBankSetup,
+  resolveQuestionBankSessionCount,
+  resolveWheelCountValue,
   validateQuestionBankSession,
   writePersistedQuestionBankSetup,
   isMixedSubjectId,
@@ -100,6 +102,7 @@ import { TopicPracticeReturnBanner } from "./TopicPracticeReturnBanner";
 import { QuestionSessionSkeleton } from "./QuestionSessionSkeleton";
 import { PanceTaskFocus } from "./question-bank/PanceTaskFocus";
 import { useSubjectCounts } from "@/hooks/use-subject-counts";
+import { useExamFieldSessionReset } from "@/hooks/use-exam-field-session-reset";
 import type { PanceTaskAreaId } from "@/lib/exam-prep/pance/content-outline";
 import {
   parsePanceTaskCategoryParam,
@@ -306,9 +309,12 @@ export function StudyBankPractice({
   const [error, setError] = useState("");
   const [upgradeHref, setUpgradeHref] = useState<string | null>(null);
   const [questions, setQuestions] = useState<RawQuestionInput[] | null>(null);
+  const [sessionEpoch, setSessionEpoch] = useState(0);
   const autostartRequested = searchParams.get("autostart") === "1";
   const autostartAttempted = useRef(false);
   const zeroPoolFallbackAppliedRef = useRef(false);
+  const fetchGenerationRef = useRef(0);
+  const [examSwitching, setExamSwitching] = useState(false);
   const topicReturnTo = useMemo(
     () => parsePracticeReturn(searchParams),
     [searchParams]
@@ -321,6 +327,31 @@ export function StudyBankPractice({
     }
     return resolveFieldId(field);
   }, [field, fieldParam]);
+
+  const examScopeKey = useMemo(
+    () => `${effectiveExamSlug ?? "open"}:${fieldId}`,
+    [effectiveExamSlug, fieldId]
+  );
+
+  const resetPracticeSession = useCallback(() => {
+    fetchGenerationRef.current += 1;
+    setQuestions(null);
+    setAdaptiveMeta(null);
+    setError("");
+    setUpgradeHref(null);
+    setLoading(false);
+    setSubjectId("");
+    setSessionEpoch((epoch) => epoch + 1);
+    autostartAttempted.current = false;
+    zeroPoolFallbackAppliedRef.current = false;
+  }, []);
+
+  useExamFieldSessionReset(examScopeKey, resetPracticeSession);
+
+  useEffect(() => {
+    setExamSwitching(true);
+  }, [examScopeKey]);
+
   const {
     data: subjectCounts = null,
     isLoading: countsLoading,
@@ -328,6 +359,11 @@ export function StudyBankPractice({
     initialCounts: initialSubjectCounts ?? null,
     initialFieldId: initialSubjectCountsFieldId ?? null,
   });
+
+  useEffect(() => {
+    if (!countsLoading) setExamSwitching(false);
+  }, [countsLoading, fieldId]);
+
   const subjects = useMemo(() => getSubjectsForFieldId(fieldId), [fieldId]);
   const bankSubjectIds = useMemo(() => subjects.map((s) => s.id), [subjects]);
   const weakSubjectIds = useMemo(
@@ -491,11 +527,13 @@ export function StudyBankPractice({
     if (isTimedExam) return;
 
     const countParam = resolvePracticeSearchParam(searchParams, "count");
+    const snapToWheel = (raw: number) =>
+      resolveWheelCountValue(raw, questionBankCountOptions());
     if (countParam) {
-      setQuestionCount(clampQuestionBankCount(Number(countParam)));
+      setQuestionCount(snapToWheel(Number(countParam)));
     } else {
       const persisted = readPersistedQuestionBankSetup(fieldId);
-      if (persisted?.count) setQuestionCount(clampQuestionBankCount(persisted.count));
+      if (persisted?.count) setQuestionCount(snapToWheel(persisted.count));
     }
 
     const paceParam = resolvePracticeSearchParam(searchParams, "pace");
@@ -586,17 +624,20 @@ export function StudyBankPractice({
     }
   }, [isTimedExam, countsLoading, subjectCounts, subjectId, fieldId]);
 
-  // When the topic pool is smaller than the selected count, snap to the largest valid preset.
+  // Snap count to a valid 25 / 50 / 75 preset for the current topic pool.
   useEffect(() => {
     if (isTimedExam || countsLoading || !subjectCounts || !subjectId) return;
     const max = availableQuestionCount(subjectId, subjectCounts);
     if (max === null || max <= 0) return;
     const options = questionBankCountOptionsForAvailable(max);
-    const largest = options[options.length - 1]?.value;
-    if (largest == null) return;
-    if (questionCount <= largest) return;
-    setQuestionCount(largest);
-    syncPracticeUrl({ count: largest });
+    if (options.length === 0) return;
+    setQuestionCount((current) => {
+      const resolved = resolveWheelCountValue(current, options);
+      if (resolved !== current) {
+        syncPracticeUrl({ count: resolved });
+      }
+      return resolved;
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subjectId, fieldId, subjectCounts, countsLoading, isTimedExam]);
 
@@ -701,13 +742,22 @@ export function StudyBankPractice({
       }
     }
 
+    const generation = ++fetchGenerationRef.current;
+    const isStale = () => generation !== fetchGenerationRef.current;
+
     setLoading(true);
     setError("");
     setUpgradeHref(null);
     setQuestions(null);
     setAdaptiveMeta(null);
+    setSessionEpoch((epoch) => epoch + 1);
     try {
-      const limit = isTimedExam ? timedCount : questionCount;
+      const limit = isTimedExam
+        ? timedCount
+        : resolveQuestionBankSessionCount(
+            questionCount,
+            availableQuestionCount(subjectId, subjectCounts)
+          );
 
       if (isTimedExam) {
         const examSlug = examSlugFromFieldId(fieldId);
@@ -758,6 +808,7 @@ export function StudyBankPractice({
               bankItemIds: data.bankItemIds,
             });
           }
+          if (isStale()) return;
           navigateHard(href);
           return;
         }
@@ -797,6 +848,7 @@ export function StudyBankPractice({
           throw new Error("No questions in bank for this exam yet.");
         }
         expectExactSessionCount(raw.length, limit);
+        if (isStale()) return;
         setQuestions(raw);
         return;
       }
@@ -858,6 +910,7 @@ export function StudyBankPractice({
           questionReasoning,
           recommendedDifficulty: data.adaptive?.recommendedDifficulty,
         });
+        if (isStale()) return;
         setQuestions(raw);
         return;
       }
@@ -905,8 +958,10 @@ export function StudyBankPractice({
         );
       }
       expectExactSessionCount(raw.length, limit);
+      if (isStale()) return;
       setQuestions(raw);
     } catch (e) {
+      if (isStale()) return;
       const message = e instanceof Error ? e.message : "Failed to load";
       if (isMpje && /no questions|empty/i.test(message)) {
         setError(
@@ -916,7 +971,7 @@ export function StudyBankPractice({
         setError(message);
       }
     } finally {
-      setLoading(false);
+      if (!isStale()) setLoading(false);
     }
   }
 
@@ -973,7 +1028,7 @@ export function StudyBankPractice({
     [questionCount, bankPace]
   );
 
-  if (loading && !questions) {
+  if ((loading && !questions) || (examSwitching && !questions)) {
     return (
       <div
         id="practice-launcher"
@@ -1015,6 +1070,7 @@ export function StudyBankPractice({
           <TopicPracticeReturnBanner returnTo={topicReturnTo} />
         ) : null}
         <StudySessionPlayer
+          key={`${examScopeKey}:${sessionEpoch}`}
           field={field}
           subjectId={isTimedExam ? "__mixed__" : subjectId}
           questions={questions}
@@ -1229,13 +1285,18 @@ export function StudyBankPractice({
                   syncPracticeUrl({ taskCategory: next, style: "standard" });
                 }}
                 onFeaturedSelect={(next, count) => {
-                  const clamped = clampQuestionBankCount(count);
+                  const max = availableQuestionCount(subjectId, subjectCounts);
+                  const options =
+                    max != null && max > 0
+                      ? questionBankCountOptionsForAvailable(max)
+                      : questionBankCountOptions();
+                  const resolved = resolveWheelCountValue(count, options);
                   setBankStyle("standard");
-                  setQuestionCount(clamped);
+                  setQuestionCount(resolved);
                   setTaskCategory(next);
                   syncPracticeUrl({
                     taskCategory: next,
-                    count: clamped,
+                    count: resolved,
                     style: "standard",
                   });
                 }}

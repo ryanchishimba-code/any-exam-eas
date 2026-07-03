@@ -1,14 +1,14 @@
 "use client";
 
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { ArrowRight, Loader2, RefreshCw } from "lucide-react";
+import { useQueryClient } from "@tanstack/react-query";
+import {
+  pickerWheelScrollerClassName,
+  usePickerWheelScroll,
+} from "@/hooks/usePickerWheelScroll";
+import { prepareClientForExamSwitch } from "@/lib/client/exam-switch-reset";
 import { StatusMessage } from "@/components/ui/StatusMessage";
 import { Skeleton } from "@/components/ui/skeleton";
 import type {
@@ -39,9 +39,7 @@ function formatCount(n: number): string {
 
 export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Props) {
   const reduceMotion = useReducedMotion();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number | null>(null);
-  const programmaticRef = useRef(false);
+  const queryClient = useQueryClient();
 
   const [payload, setPayload] = useState<UsmleExamOptionsPayload>(initialPayload);
   const [refreshing, setRefreshing] = useState(false);
@@ -72,74 +70,39 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
     [maxLevel]
   );
 
-  // Explicit index drives the CTA + summary; fractional center drives wheel visuals.
   const [activeIndex, setActiveIndex] = useState(startIndex === -1 ? 0 : startIndex);
   const [center, setCenter] = useState<number>(startIndex === -1 ? 0 : startIndex);
   const selectedIndex = activeIndex;
   const selected = options[selectedIndex];
 
-  const scrollToIndex = useCallback(
-    (index: number, behavior: ScrollBehavior) => {
-      const el = containerRef.current;
-      if (!el) return;
-      const clamped = Math.min(options.length - 1, Math.max(0, index));
-      setActiveIndex(clamped);
-      setCenter(clamped);
-      programmaticRef.current = true;
-      el.scrollTo({ top: clamped * ITEM_H, behavior });
-      window.setTimeout(() => {
-        programmaticRef.current = false;
-      }, behavior === "smooth" ? 360 : 0);
+  const {
+    containerRef,
+    scrollToIndex,
+    handleScroll,
+    onPointerDown,
+    onPointerUp,
+    onPointerCancel,
+    onTouchStart,
+    onTouchEnd,
+    makeKeyDownHandler,
+  } = usePickerWheelScroll({
+    itemHeight: ITEM_H,
+    itemCount: options.length,
+    selectedIndex,
+    onSelectedIndexChange: (idx) => {
+      setActiveIndex(idx);
+      setCenter(idx);
     },
-    [options.length]
-  );
+    onCenterChange: setCenter,
+    reduceMotion,
+  });
 
-  // Center the initial option on mount (no animation, no scroll flash).
   useEffect(() => {
     scrollToIndex(startIndex === -1 ? 0 : startIndex, "auto");
+    setActiveIndex(startIndex === -1 ? 0 : startIndex);
+    setCenter(startIndex === -1 ? 0 : startIndex);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const settleScrollSelection = useCallback(() => {
-    const el = containerRef.current;
-    if (!el || programmaticRef.current) return;
-    const idx = Math.min(options.length - 1, Math.max(0, Math.round(el.scrollTop / ITEM_H)));
-    setActiveIndex(idx);
-    setCenter(idx);
-  }, [options.length]);
-
-  const handleScroll = useCallback(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    if (rafRef.current != null) return;
-    rafRef.current = requestAnimationFrame(() => {
-      rafRef.current = null;
-      setCenter(el.scrollTop / ITEM_H);
-    });
-  }, []);
-
-  const onKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLDivElement>) => {
-      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
-        e.preventDefault();
-        scrollToIndex(selectedIndex + 1, "smooth");
-      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
-        e.preventDefault();
-        scrollToIndex(selectedIndex - 1, "smooth");
-      } else if (e.key === "Home") {
-        e.preventDefault();
-        scrollToIndex(0, "smooth");
-      } else if (e.key === "End") {
-        e.preventDefault();
-        scrollToIndex(options.length - 1, "smooth");
-      } else if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        start();
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [selectedIndex, options.length, scrollToIndex]
-  );
 
   const refresh = useCallback(async () => {
     setRefreshing(true);
@@ -161,15 +124,7 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
     }
   }, [initialPayload]);
 
-  // Refresh once on mount so counts are live even if the page was cached.
-  const didFetch = useRef(false);
-  useEffect(() => {
-    if (didFetch.current) return;
-    didFetch.current = true;
-    void refresh();
-  }, [refresh]);
-
-  async function start() {
+  const start = useCallback(async () => {
     if (!selected) return;
     setPending(true);
     setError(null);
@@ -179,8 +134,28 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
       setPending(false);
       return;
     }
+    prepareClientForExamSwitch(queryClient, "usmle");
     navigateHard(selected.practiceHref);
-  }
+  }, [selected]);
+
+  const onKeyDown = useMemo(
+    () =>
+      makeKeyDownHandler((e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          void start();
+        }
+      }),
+    [makeKeyDownHandler, start]
+  );
+
+  // Refresh once on mount so counts are live even if the page was cached.
+  const didFetch = useRef(false);
+  useEffect(() => {
+    if (didFetch.current) return;
+    didFetch.current = true;
+    void refresh();
+  }, [refresh]);
 
   const hasData = options.length > 0;
 
@@ -214,7 +189,7 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
 
       {/* Wheel */}
       <div
-        className="relative w-full select-none"
+        className="relative w-full select-none overscroll-y-contain"
         style={{ height: WHEEL_H, perspective: "1000px" }}
       >
         {/* Center selection band */}
@@ -242,14 +217,15 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
           aria-activedescendant={selected ? `usmle-wheel-${selected.level}` : undefined}
           tabIndex={0}
           onScroll={handleScroll}
-          onMouseUp={settleScrollSelection}
-          onTouchEnd={settleScrollSelection}
+          onPointerDown={onPointerDown}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerCancel}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
           onKeyDown={onKeyDown}
           className={cn(
-            "h-full w-full overflow-y-auto overscroll-contain",
-            "[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-            "snap-y snap-mandatory scroll-smooth",
-            "rounded-[28px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]"
+            pickerWheelScrollerClassName,
+            "rounded-[28px] focus-visible:ring-indigo-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)]"
           )}
           style={{ paddingTop: PAD, paddingBottom: PAD }}
         >
@@ -268,7 +244,7 @@ export function ExamWheelPicker({ initialPayload, initialLevel = "step2" }: Prop
                 role="option"
                 aria-selected={isSelected}
                 onClick={() => scrollToIndex(i, "smooth")}
-                className="flex snap-center items-center justify-center"
+                className="flex snap-center items-center justify-center touch-manipulation"
                 style={{ height: ITEM_H }}
               >
                 <div

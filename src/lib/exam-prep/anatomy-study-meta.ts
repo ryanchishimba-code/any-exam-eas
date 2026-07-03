@@ -1,7 +1,16 @@
-import { getReviewModuleAnatomy } from "@/lib/anatomy/review-module-anatomy";
-import { inferAnatomyStructuresFromText } from "@/lib/anatomy/structure-inference";
-import { getAnatomyStructuresForTopicSlug } from "@/lib/anatomy/topic-links";
-import type { RelatedStudyMeta } from "./seed-helpers";
+/** Cross-links rendered after the rationale (QuestionRelatedLinks) — merged into ngnPayload. */
+export type RelatedStudyMeta = {
+  /** Deep Dive review module on /dashboard/topics. */
+  reviewModuleSlug?: string;
+  /** Memory cards on /library. */
+  memoryCardIds?: string[];
+  /** 3D anatomy structures to surface in related links. */
+  structureIds?: string[];
+  /** Related Top 500 drug names. */
+  top500Drugs?: string[];
+  /** One-line high-yield takeaway shown above the links. */
+  keyTakeaway?: string;
+};
 
 /** High-yield topic/system → default 3D structures (cardio, MSK, neuro first). */
 const TOPIC_STRUCTURE_IDS: Record<string, string[]> = {
@@ -129,35 +138,50 @@ export function resolveStructureIdsForStudyItem(ctx: StudyStructureContext): str
   const limit = ctx.limit ?? 3;
   let out: string[] = [];
 
-  if (ctx.reviewModuleSlug) {
-    out = mergeIds(out, getReviewModuleAnatomy(ctx.reviewModuleSlug)?.structureIds ?? [], limit);
-  }
+  if (ctx.reviewModuleSlug || ctx.text?.trim() || ctx.memoryCardIds?.length) {
+    const { getReviewModuleAnatomy } =
+      require("@/lib/anatomy/review-module-anatomy") as typeof import("@/lib/anatomy/review-module-anatomy");
+    const { getAnatomyStructuresForTopicSlug } =
+      require("@/lib/anatomy/topic-links") as typeof import("@/lib/anatomy/topic-links");
+    const { inferAnatomyStructuresFromText } =
+      require("@/lib/anatomy/structure-inference") as typeof import("@/lib/anatomy/structure-inference");
 
-  out = mergeIds(
-    out,
-    idsFromTopicKeys([ctx.subjectId, ctx.topicCategory, ctx.blueprintSystem, ctx.blueprintTopic]),
-    limit
-  );
+    if (ctx.reviewModuleSlug) {
+      out = mergeIds(out, getReviewModuleAnatomy(ctx.reviewModuleSlug)?.structureIds ?? [], limit);
+    }
 
-  if (out.length < limit) {
-    const topicKey =
-      ctx.reviewModuleSlug ?? ctx.blueprintTopic ?? ctx.subjectId ?? ctx.topicCategory ?? "";
-    if (topicKey) {
+    out = mergeIds(
+      out,
+      idsFromTopicKeys([ctx.subjectId, ctx.topicCategory, ctx.blueprintSystem, ctx.blueprintTopic]),
+      limit
+    );
+
+    if (out.length < limit) {
+      const topicKey =
+        ctx.reviewModuleSlug ?? ctx.blueprintTopic ?? ctx.subjectId ?? ctx.topicCategory ?? "";
+      if (topicKey) {
+        out = mergeIds(
+          out,
+          getAnatomyStructuresForTopicSlug(topicKey, {
+            memoryCardIds: ctx.memoryCardIds,
+            limit,
+          }).map((s) => s.id),
+          limit
+        );
+      }
+    }
+
+    if (out.length < limit && ctx.text?.trim()) {
       out = mergeIds(
         out,
-        getAnatomyStructuresForTopicSlug(topicKey, {
-          memoryCardIds: ctx.memoryCardIds,
-          limit,
-        }).map((s) => s.id),
+        inferAnatomyStructuresFromText(ctx.text, { limit: limit - out.length }).map((s) => s.id),
         limit
       );
     }
-  }
-
-  if (out.length < limit && ctx.text?.trim()) {
+  } else {
     out = mergeIds(
       out,
-      inferAnatomyStructuresFromText(ctx.text, { limit: limit - out.length }).map((s) => s.id),
+      idsFromTopicKeys([ctx.subjectId, ctx.topicCategory, ctx.blueprintSystem, ctx.blueprintTopic]),
       limit
     );
   }

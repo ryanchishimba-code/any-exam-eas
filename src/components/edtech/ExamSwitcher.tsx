@@ -1,10 +1,15 @@
 "use client";
 
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useTransition } from "react";
-import { ChevronDown, GraduationCap, LayoutGrid } from "lucide-react";
+import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
+import { ChevronDown, GraduationCap, LayoutGrid, Loader2 } from "lucide-react";
 import { switchExamPreference } from "@/lib/edtech/actions";
+import {
+  prepareClientForExamSwitch,
+  resolvePathAfterExamSwitch,
+} from "@/lib/client/exam-switch-reset";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { ROUTES } from "@/lib/routes";
@@ -21,6 +26,9 @@ export function ExamSwitcher({
   onSwitched?: () => void;
 }) {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const queryClient = useQueryClient();
   const [pending, startTransition] = useTransition();
   const { setExamSlug, refresh } = useAppPreferences();
   const exam = EXAM_CATALOG[currentExam];
@@ -37,9 +45,19 @@ export function ExamSwitcher({
         setExamSlug(currentExam);
         return;
       }
+      prepareClientForExamSwitch(queryClient, next);
       onSwitched?.();
       await refresh();
-      router.refresh();
+      const nextPath = resolvePathAfterExamSwitch(
+        pathname,
+        new URLSearchParams(searchParams.toString()),
+        next
+      );
+      if (nextPath !== pathname) {
+        router.push(nextPath);
+      } else {
+        router.refresh();
+      }
     });
   }
 
@@ -79,7 +97,11 @@ export function ExamSwitcher({
           value={currentExam}
           disabled={pending}
           onChange={onChange}
-          className="appearance-none rounded-xl border border-slate-200 bg-white py-2 pl-3 pr-9 text-sm font-semibold text-slate-900 shadow-sm transition hover:border-slate-300 focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/20"
+          aria-busy={pending}
+          className={cn(
+            "appearance-none rounded-xl border border-slate-200 bg-white py-2 pl-3 pr-9 text-sm font-semibold text-slate-900 shadow-sm transition hover:border-slate-300 focus:border-[var(--color-accent)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/20",
+            pending && "opacity-70"
+          )}
         >
           {EXAM_SLUGS.map((slug) => (
             <option key={slug} value={slug}>
@@ -91,6 +113,12 @@ export function ExamSwitcher({
           className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
           aria-hidden
         />
+        {pending ? (
+          <Loader2
+            className="pointer-events-none absolute right-8 top-1/2 h-3.5 w-3.5 -translate-y-1/2 animate-spin text-[var(--color-accent)]"
+            aria-hidden
+          />
+        ) : null}
       </div>
       <span className="hidden text-sm text-slate-500 sm:inline">{exam.name}</span>
       </label>

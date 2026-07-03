@@ -191,14 +191,28 @@ function pickStemFormat(index: number, examSeed: number, questionFormat: NaplexQ
   return pool[(index + examSeed) % pool.length]!;
 }
 
+/** Pharmacotherapy subjectIds used for gap-fill generation. */
+export const NAPLEX_PHARMACOTHERAPY_SUBJECT_IDS = [
+  "cardiovascular-rx",
+  "infectious-disease-rx",
+  "endocrine-rx",
+  "cns-rx",
+] as const;
+
 /** Plan all slots for one full-length NAPLEX practice exam. */
 export function planNaplexFullExamSlots(params: {
   examNumber: number;
   questionCount?: number;
+  /** When set, all slots target this subject (pharmacotherapy gap-fill). */
+  focusSubjectId?: string;
 }): NaplexGenerationSlot[] {
-  const { examNumber, questionCount = 80 } = params;
+  const { examNumber, questionCount = 80, focusSubjectId } = params;
   const examSeed = examNumber * 23;
-  const baseSlots = allocateQuestionsByBlueprint(questionCount, NAPLEX_2026_BLUEPRINT);
+  const baseSlots = allocateQuestionsByBlueprint(
+    questionCount,
+    NAPLEX_2026_BLUEPRINT,
+    focusSubjectId
+  );
 
   return baseSlots.map((slot, slotIndex) => {
     const blueprintArea = resolveBlueprintArea(slot.categoryId);

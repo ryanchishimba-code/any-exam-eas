@@ -75,6 +75,7 @@ async function LibraryContent({
     <div className="w-full space-y-4">
       <ProBenefitsCallout />
       <LibraryHubClient
+        key={examSlug}
         examSlug={examSlug}
         usmleStepLabel={usmleStep?.shortName}
         userName={userName}

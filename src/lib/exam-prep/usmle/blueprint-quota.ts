@@ -5,6 +5,7 @@ import {
   allocateQuestionsByBlueprint,
   getExamBlueprint,
   type ExamBlueprint,
+  type QuestionSlot,
 } from "@/lib/engine/blueprints";
 import type {
   UsmleGenerationSlot,
@@ -381,18 +382,59 @@ export function resolveExamQuestionCount(examNumber: number): number {
   return 75 + ((examNumber * 3) % 11);
 }
 
+/** Step 3 format categories for gap-fill generation. */
+export const USMLE_STEP3_FORMAT_CATEGORY_IDS = [
+  "biostatistics",
+  "ethics",
+  "pharm-advertising",
+  "ccs",
+] as const;
+
+const CATEGORY_NGN_FORMAT: Record<string, string | undefined> = {
+  biostatistics: "biostats",
+  ethics: "ethics",
+  ccs: "sequential",
+};
+
+function allocateUsmleCategoryFocused(
+  questionCount: number,
+  blueprint: ExamBlueprint,
+  categoryId: string
+): QuestionSlot[] {
+  const category = blueprint.categories.find((c) => c.id === categoryId);
+  if (!category) throw new Error(`Unknown blueprint category: ${categoryId}`);
+
+  const slots: QuestionSlot[] = [];
+  for (let i = 0; i < questionCount; i++) {
+    slots.push({
+      categoryId: category.id,
+      categoryLabel: category.label,
+      subjectIds: category.subjectIds,
+      highYieldTopics: category.highYieldTopics,
+      ngnFormat: CATEGORY_NGN_FORMAT[categoryId],
+    });
+  }
+  return slots;
+}
+
 /** Plan all slots for one full-length USMLE block-style practice exam. */
 export function planUsmleFullExamSlots(params: {
   examNumber: number;
   questionCount?: number;
   stepLevel?: UsmleStepLevel;
+  /** Focus all slots on one subject (e.g. pediatrics, physiology). */
+  focusSubjectId?: string;
+  /** Focus all slots on one blueprint category (e.g. biostatistics, ccs). */
+  focusCategoryId?: string;
 }): UsmleGenerationSlot[] {
-  const { examNumber } = params;
+  const { examNumber, focusSubjectId, focusCategoryId } = params;
   const stepLevel = resolveStepLevel(examNumber, params.stepLevel);
   const questionCount = params.questionCount ?? resolveExamQuestionCount(examNumber);
   const examSeed = examNumber * 29;
   const blueprint = resolveBlueprint(stepLevel);
-  const baseSlots = allocateQuestionsByBlueprint(questionCount, blueprint);
+  const baseSlots = focusCategoryId
+    ? allocateUsmleCategoryFocused(questionCount, blueprint, focusCategoryId)
+    : allocateQuestionsByBlueprint(questionCount, blueprint, focusSubjectId);
 
   return baseSlots.map((slot, slotIndex) => {
     const questionFormat = resolveQuestionFormat(slot.ngnFormat);

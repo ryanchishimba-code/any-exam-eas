@@ -1,7 +1,8 @@
 "use client";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { clearAllStudySessionsLocally } from "@/lib/questions/storage";
 
 /** Shared React Query client — tuned for fast perceived loads and stable bank counts. */
 export function AppQueryProvider({ children }: { children: ReactNode }) {
@@ -18,6 +19,15 @@ export function AppQueryProvider({ children }: { children: ReactNode }) {
         },
       })
   );
+
+  useEffect(() => {
+    const onSignOut = () => {
+      client.clear();
+      clearAllStudySessionsLocally();
+    };
+    window.addEventListener("aee:clear-access-cache", onSignOut);
+    return () => window.removeEventListener("aee:clear-access-cache", onSignOut);
+  }, [client]);
 
   return <QueryClientProvider client={client}>{children}</QueryClientProvider>;
 }

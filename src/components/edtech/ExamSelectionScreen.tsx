@@ -1,8 +1,11 @@
 "use client";
 
-import { useState, useTransition, useMemo, useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef, useState, useTransition } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useAppPreferences } from "@/lib/client/use-app-preferences";
+import { prepareClientForExamSwitch, resolvePathAfterExamSwitch } from "@/lib/client/exam-switch-reset";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import {
   Activity,
@@ -64,6 +67,10 @@ export function ExamSelectionScreen({
   currentExam = null,
 }: ExamSelectionScreenProps) {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const queryClient = useQueryClient();
+  const { setExamSlug } = useAppPreferences();
   const [pending, startTransition] = useTransition();
   const [selected, setSelected] = useState<ExamSlug | null>(null);
   const [success, setSuccess] = useState(false);
@@ -109,17 +116,34 @@ export function ExamSelectionScreen({
         return;
       }
 
+      prepareClientForExamSwitch(queryClient, slug);
+      setExamSlug(slug);
+
       try {
         if (!switchMode) {
           await fireExamSelectionConfetti();
         }
         setSuccess(true);
+        const destination = switchMode
+          ? resolvePathAfterExamSwitch(
+              pathname,
+              new URLSearchParams(searchParams.toString()),
+              slug
+            )
+          : ROUTES.dashboard;
         window.setTimeout(() => {
-          navigateHard(ROUTES.dashboard);
+          navigateHard(destination);
         }, switchMode ? 400 : 900);
       } catch {
         setError("Saved your exam, but navigation failed. Opening dashboard…");
-        navigateHard(ROUTES.dashboard);
+        const fallback = switchMode
+          ? resolvePathAfterExamSwitch(
+              pathname,
+              new URLSearchParams(searchParams.toString()),
+              slug
+            )
+          : ROUTES.dashboard;
+        navigateHard(fallback);
       }
     });
   }

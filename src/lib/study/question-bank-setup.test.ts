@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
   MIXED_SUBJECT_ID,
+  QUESTION_BANK_WHEEL_PRESETS,
   availableQuestionCount,
   questionBankCountOptionsForAvailable,
   resolveWheelCountValue,
+  resolveQuestionBankSessionCount,
   validateQuestionBankSession,
 } from "./question-bank-setup";
 
@@ -86,20 +88,35 @@ describe("question-bank-setup", () => {
     expect(result.ok).toBe(true);
   });
 
-  it("limits wheel options to topic pool size", () => {
-    expect(questionBankCountOptionsForAvailable(6).map((o) => o.value)).toEqual([6]);
-    expect(questionBankCountOptionsForAvailable(40).map((o) => o.value)).toEqual([10, 25]);
-    expect(questionBankCountOptionsForAvailable(100).map((o) => o.value)).toEqual([
-      10, 25, 50, 75, 100,
-    ]);
+  it("limits wheel options to 25 / 50 / 75 presets within topic pool", () => {
+    expect(questionBankCountOptionsForAvailable(6).map((o) => o.value)).toEqual([]);
+    expect(questionBankCountOptionsForAvailable(24).map((o) => o.value)).toEqual([]);
+    expect(questionBankCountOptionsForAvailable(40).map((o) => o.value)).toEqual([25]);
+    expect(questionBankCountOptionsForAvailable(100).map((o) => o.value)).toEqual([25, 50, 75]);
     expect(questionBankCountOptionsForAvailable(null).map((o) => o.value)).toEqual([
-      10, 25, 50, 75, 100,
+      ...QUESTION_BANK_WHEEL_PRESETS,
     ]);
   });
 
   it("snaps wheel value to nearest allowed preset", () => {
-    const options = questionBankCountOptionsForAvailable(6);
-    expect(resolveWheelCountValue(25, options)).toBe(6);
-    expect(resolveWheelCountValue(6, options)).toBe(6);
+    const options = questionBankCountOptionsForAvailable(40);
+    expect(resolveWheelCountValue(75, options)).toBe(25);
+    expect(resolveWheelCountValue(25, options)).toBe(25);
+  });
+
+  it("blocks non-wheel counts when pool is known", () => {
+    const result = validateQuestionBankSession({
+      subjectId: "pulm",
+      questionCount: 10,
+      subjectCounts: counts,
+      bankStyle: "standard",
+    });
+    expect(result.ok).toBe(false);
+  });
+
+  it("resolves session count to wheel presets", () => {
+    expect(resolveQuestionBankSessionCount(40)).toBe(25);
+    expect(resolveQuestionBankSessionCount(40, 40)).toBe(25);
+    expect(resolveQuestionBankSessionCount(60)).toBe(50);
   });
 });

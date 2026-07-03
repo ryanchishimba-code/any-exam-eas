@@ -8,6 +8,9 @@
 import { appendFileSync, mkdirSync, writeFileSync } from "node:fs";
 import { spawn } from "node:child_process";
 import { join } from "node:path";
+import { loadEnvFiles } from "./resolve-database-url.mjs";
+
+loadEnvFiles();
 
 const ROOT = process.cwd();
 const LOG = join(ROOT, "artifacts", "naplex-best-pipeline.log");

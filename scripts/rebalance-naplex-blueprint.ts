@@ -19,8 +19,10 @@ loadEnvFiles();
 ensureDatabaseUrlEnv();
 
 import { PrismaClient } from "@prisma/client";
-import { mergeNaplexQuotaWithCounts } from "../src/lib/exam-prep/naplex/blueprint-quota";
+import { mergeNaplexQuotaWithCounts, NAPLEX_PHARMACOTHERAPY_SUBJECT_IDS } from "../src/lib/exam-prep/naplex/blueprint-quota";
 import { NAPLEX_TARGET_TOTAL } from "../src/lib/exam-prep/naplex/types";
+
+const DEFAULT_PHARM_SUBJECTS = [...NAPLEX_PHARMACOTHERAPY_SUBJECT_IDS];
 
 const prisma = new PrismaClient();
 const ARTIFACTS = path.join(process.cwd(), "artifacts");
@@ -35,6 +37,8 @@ function parseArgs() {
   let maxBatches = 10;
   let metric: "active" | "qaPassed" = "active";
   let dryRun = false;
+  let subjects: string[] = [];
+  let focusArea = "naplex-2026-pharmacotherapy";
 
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
@@ -45,10 +49,17 @@ function parseArgs() {
     else if (a === "--metric" && args[i + 1]) {
       const m = args[++i]!;
       if (m === "active" || m === "qaPassed") metric = m;
-    } else if (a === "--dry-run") dryRun = true;
+    } else if (a === "--subjects" && args[i + 1]) {
+      subjects = args[++i]!.split(",").map((s) => s.trim()).filter(Boolean);
+    } else if (a === "--area" && args[i + 1]) focusArea = args[++i]!;
+    else if (a === "--dry-run") dryRun = true;
   }
 
-  return { target, examsPerBatch, countPerExam, maxBatches, metric, dryRun };
+  if (subjects.length === 0 && args.includes("--pharmacotherapy")) {
+    subjects = DEFAULT_PHARM_SUBJECTS;
+  }
+
+  return { target, examsPerBatch, countPerExam, maxBatches, metric, dryRun, subjects, focusArea };
 }
 
 function log(line: string) {
@@ -97,7 +108,8 @@ async function blueprintDeficits(target: number, metric: "active" | "qaPassed") 
 }
 
 async function main() {
-  const { target, examsPerBatch, countPerExam, maxBatches, metric, dryRun } = parseArgs();
+  const { target, examsPerBatch, countPerExam, maxBatches, metric, dryRun, subjects, focusArea } =
+    parseArgs();
   fs.mkdirSync(ARTIFACTS, { recursive: true });
 
   if (!dryRun && !process.env.OPENAI_API_KEY?.trim()) {
@@ -105,8 +117,11 @@ async function main() {
     process.exit(1);
   }
 
+  const subjectRotation = subjects.length > 0 ? subjects : DEFAULT_PHARM_SUBJECTS;
+  const subjectMode = subjects.length > 0 || process.argv.includes("--pharmacotherapy");
+
   log(
-    `NAPLEX blueprint rebalance — target ${target} (${metric}), ${examsPerBatch} exam(s) × ${countPerExam}/batch, max ${maxBatches}${dryRun ? " [dry-run]" : ""}`
+    `NAPLEX blueprint rebalance — target ${target} (${metric}), ${examsPerBatch} exam(s) × ${countPerExam}/batch, max ${maxBatches}${dryRun ? " [dry-run]" : ""}${subjectMode ? ` [subjects: ${subjectRotation.join(", ")}]` : ""}`
   );
 
   let batches = 0;
@@ -118,8 +133,15 @@ async function main() {
   while (true) {
     const { quotas, totalDeficit } = await blueprintDeficits(target, metric);
     const under = quotas.filter((q) => (q.deficit ?? 0) > 0);
+    const focusQuota = quotas.find((q) => q.blueprintArea === focusArea);
+    const areaDeficit = subjectMode ? (focusQuota?.deficit ?? 0) : totalDeficit;
 
     log(`Blueprint deficit: ${totalDeficit} across ${under.length} areas`);
+    if (subjectMode && focusQuota) {
+      log(
+        `  Focus area ${focusQuota.label}: ${focusQuota.currentCount ?? 0}/${focusQuota.targetCount} (need ${areaDeficit})`
+      );
+    }
     for (const q of under) {
       log(`  ${q.label}: ${q.currentCount ?? 0}/${q.targetCount} (need ${q.deficit})`);
     }
@@ -129,31 +151,40 @@ async function main() {
       JSON.stringify({ target, metric, totalDeficit, quotas, batches, updatedAt: new Date().toISOString() }, null, 2)
     );
 
-    if (totalDeficit === 0) {
-      log("All blueprint areas at or above target. Done.");
+    if (areaDeficit === 0) {
+      log(
+        subjectMode
+          ? `Focus area ${focusArea} at or above target. Done.`
+          : "All blueprint areas at or above target. Done."
+      );
       break;
     }
 
     if (batches >= maxBatches) {
-      log(`Max batches (${maxBatches}) reached. Stopping with deficit ${totalDeficit}.`);
+      log(`Max batches (${maxBatches}) reached. Stopping with deficit ${areaDeficit}.`);
       break;
     }
 
     if (dryRun) {
       log(
-        `Dry run — would generate ${examsPerBatch} exam(s) × ${countPerExam} to fill ${totalDeficit} deficit.`
+        `Dry run — would generate ${examsPerBatch} exam(s) × ${countPerExam} to fill ${areaDeficit} deficit.`
       );
       break;
     }
 
-    log(`▶ Generate batch ${batches + 1}: ${examsPerBatch} exam(s) × ${countPerExam}`);
-    const genCode = await runScript("scripts/generate-naplex-full-exams.ts", [
+    const batchSubject = subjectRotation[batches % subjectRotation.length]!;
+    log(`▶ Generate batch ${batches + 1}: ${examsPerBatch} exam(s) × ${countPerExam}${subjectMode ? ` [${batchSubject}]` : ""}`);
+    const genArgs = [
       "--exams",
       String(examsPerBatch),
       "--count",
       String(countPerExam),
       "--insert",
-    ]);
+    ];
+    if (subjectMode) {
+      genArgs.push("--subjects", batchSubject);
+    }
+    const genCode = await runScript("scripts/generate-naplex-full-exams.ts", genArgs);
 
     if (genCode !== 0) {
       log(`Generate failed (exit ${genCode}). Waiting 60s…`);

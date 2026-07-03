@@ -9,6 +9,11 @@
  */
 import fs from "node:fs";
 import path from "node:path";
+import { loadEnvFiles, ensureDatabaseUrlEnv } from "./resolve-database-url.mjs";
+
+loadEnvFiles();
+ensureDatabaseUrlEnv();
+
 import { PrismaClient } from "@prisma/client";
 import { auditUsmleQaEditor } from "../src/lib/exam-prep/usmle-qa-editor";
 import {

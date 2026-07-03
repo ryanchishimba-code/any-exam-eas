@@ -1,9 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useReducedMotion } from "framer-motion";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
+import {
+  pickerWheelScrollerClassName,
+  usePickerWheelScroll,
+} from "@/hooks/usePickerWheelScroll";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
@@ -28,8 +32,6 @@ type Props = {
 export function LibraryExamWheel({ currentExam }: Props) {
   const router = useRouter();
   const reduceMotion = useReducedMotion();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number | null>(null);
 
   const options = EXAM_SLUGS;
   const startIndex = Math.max(0, options.indexOf(currentExam));
@@ -39,29 +41,29 @@ export function LibraryExamWheel({ currentExam }: Props) {
   const selectedIndex = Math.min(options.length - 1, Math.max(0, Math.round(center)));
   const selected = options[selectedIndex];
 
-  const scrollToIndex = useCallback(
-    (index: number, behavior: ScrollBehavior) => {
-      const el = containerRef.current;
-      if (!el) return;
-      const clamped = Math.min(options.length - 1, Math.max(0, index));
-      el.scrollTo({ top: clamped * ITEM_H, behavior });
-    },
-    [options.length]
-  );
+  const {
+    containerRef,
+    scrollToIndex,
+    handleScroll,
+    onPointerDown,
+    onPointerUp,
+    onPointerCancel,
+    onTouchStart,
+    onTouchEnd,
+    makeKeyDownHandler,
+  } = usePickerWheelScroll({
+    itemHeight: ITEM_H,
+    itemCount: options.length,
+    selectedIndex,
+    onSelectedIndexChange: setCenter,
+    onCenterChange: setCenter,
+    reduceMotion,
+  });
 
   useEffect(() => {
     scrollToIndex(startIndex, "auto");
     setCenter(startIndex);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleScroll = useCallback(() => {
-    const el = containerRef.current;
-    if (!el || rafRef.current != null) return;
-    rafRef.current = requestAnimationFrame(() => {
-      rafRef.current = null;
-      setCenter(el.scrollTop / ITEM_H);
-    });
   }, []);
 
   const open = useCallback(() => {
@@ -71,27 +73,25 @@ export function LibraryExamWheel({ currentExam }: Props) {
     router.push(`${ROUTES.library}?exam=${selected}`);
   }, [router, selected, currentExam]);
 
-  const onKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLDivElement>) => {
-      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
-        e.preventDefault();
-        scrollToIndex(selectedIndex + 1, "smooth");
-      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
-        e.preventDefault();
-        scrollToIndex(selectedIndex - 1, "smooth");
-      } else if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        open();
-      }
-    },
-    [selectedIndex, scrollToIndex, open]
+  const onKeyDown = useMemo(
+    () =>
+      makeKeyDownHandler((e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          open();
+        }
+      }),
+    [makeKeyDownHandler, open]
   );
 
   const isCurrent = selected === currentExam;
 
   return (
     <section aria-label="Switch exam" className="mx-auto flex max-w-md flex-col items-center py-2">
-      <div className="relative w-full select-none" style={{ height: WHEEL_H, perspective: "1000px" }}>
+      <div
+        className="relative w-full select-none overscroll-y-contain"
+        style={{ height: WHEEL_H, perspective: "1000px" }}
+      >
         <div
           className="pointer-events-none absolute inset-x-2 top-1/2 -translate-y-1/2 rounded-2xl border border-[var(--color-accent)]/40 bg-[var(--color-accent)]/[0.06] shadow-[0_0_30px_-8px_rgba(99,102,241,0.4)] ring-1 ring-inset ring-white/40"
           style={{ height: ITEM_H }}
@@ -115,12 +115,15 @@ export function LibraryExamWheel({ currentExam }: Props) {
           aria-activedescendant={selected ? `library-exam-${selected}` : undefined}
           tabIndex={0}
           onScroll={handleScroll}
+          onPointerDown={onPointerDown}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerCancel}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
           onKeyDown={onKeyDown}
           className={cn(
-            "h-full w-full overflow-y-auto overscroll-contain",
-            "[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-            "snap-y snap-mandatory scroll-smooth rounded-[28px]",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/70"
+            pickerWheelScrollerClassName,
+            "rounded-[28px] focus-visible:ring-[var(--color-accent)]/70"
           )}
           style={{ paddingTop: PAD, paddingBottom: PAD }}
         >
@@ -139,7 +142,7 @@ export function LibraryExamWheel({ currentExam }: Props) {
                 role="option"
                 aria-selected={isSelected}
                 onClick={() => scrollToIndex(i, "smooth")}
-                className="flex snap-center items-center justify-center"
+                className="flex snap-center items-center justify-center touch-manipulation"
                 style={{ height: ITEM_H }}
               >
                 <div

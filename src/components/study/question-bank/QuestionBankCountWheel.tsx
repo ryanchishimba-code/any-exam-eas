@@ -1,7 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useReducedMotion } from "framer-motion";
+import {
+  pickerWheelScrollerClassName,
+  usePickerWheelScroll,
+} from "@/hooks/usePickerWheelScroll";
 import type { QuestionBankCountOption } from "@/lib/study/question-bank-setup";
 import { cn } from "@/lib/utils";
 
@@ -19,9 +23,6 @@ type Props = {
 /** Scroll-wheel question count selector — matches Full Exam / Library wheels. */
 export function QuestionBankCountWheel({ options, value, onChange }: Props) {
   const reduceMotion = useReducedMotion();
-  const containerRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number | null>(null);
-  const programmaticRef = useRef(false);
 
   const resolvedValue =
     options.find((o) => o.value === value)?.value ??
@@ -33,19 +34,33 @@ export function QuestionBankCountWheel({ options, value, onChange }: Props) {
   const [center, setCenter] = useState(startIndex === -1 ? 0 : startIndex);
   const selectedIndex = Math.min(options.length - 1, Math.max(0, Math.round(center)));
 
-  const scrollToIndex = useCallback(
-    (index: number, behavior: ScrollBehavior) => {
-      const el = containerRef.current;
-      if (!el) return;
-      const clamped = Math.min(options.length - 1, Math.max(0, index));
-      programmaticRef.current = true;
-      el.scrollTo({ top: clamped * ITEM_H, behavior });
-      window.setTimeout(() => {
-        programmaticRef.current = false;
-      }, behavior === "smooth" ? 360 : 0);
+  const handleIndexChange = useCallback(
+    (index: number) => {
+      const opt = options[index];
+      if (opt && opt.value !== resolvedValue) onChange(opt.value);
     },
-    [options.length]
+    [onChange, options, resolvedValue]
   );
+
+  const {
+    containerRef,
+    scrollToIndex,
+    programmaticRef,
+    handleScroll,
+    onPointerDown,
+    onPointerUp,
+    onPointerCancel,
+    onTouchStart,
+    onTouchEnd,
+    makeKeyDownHandler,
+  } = usePickerWheelScroll({
+    itemHeight: ITEM_H,
+    itemCount: options.length,
+    selectedIndex,
+    onSelectedIndexChange: handleIndexChange,
+    onCenterChange: setCenter,
+    reduceMotion,
+  });
 
   useEffect(() => {
     scrollToIndex(startIndex === -1 ? 0 : startIndex, "auto");
@@ -62,36 +77,13 @@ export function QuestionBankCountWheel({ options, value, onChange }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [resolvedValue, options]);
 
-  useEffect(() => {
-    const opt = options[selectedIndex];
-    if (opt && opt.value !== resolvedValue) onChange(opt.value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedIndex, options]);
-
-  const handleScroll = useCallback(() => {
-    const el = containerRef.current;
-    if (!el || rafRef.current != null) return;
-    rafRef.current = requestAnimationFrame(() => {
-      rafRef.current = null;
-      setCenter(el.scrollTop / ITEM_H);
-    });
-  }, []);
-
-  const onKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLDivElement>) => {
-      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
-        e.preventDefault();
-        scrollToIndex(selectedIndex + 1, "smooth");
-      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
-        e.preventDefault();
-        scrollToIndex(selectedIndex - 1, "smooth");
-      }
-    },
-    [selectedIndex, scrollToIndex]
-  );
+  const onKeyDown = useMemo(() => makeKeyDownHandler(), [makeKeyDownHandler]);
 
   return (
-    <div className="relative mx-auto w-full max-w-sm select-none" style={{ height: WHEEL_H, perspective: "1000px" }}>
+    <div
+      className="relative mx-auto w-full max-w-sm select-none overscroll-y-contain"
+      style={{ height: WHEEL_H, perspective: "1000px" }}
+    >
       <div
         className="pointer-events-none absolute inset-x-1 top-1/2 -translate-y-1/2 rounded-xl border border-[var(--color-accent)]/25 bg-[var(--color-accent)]/[0.04]"
         style={{ height: ITEM_H }}
@@ -111,16 +103,16 @@ export function QuestionBankCountWheel({ options, value, onChange }: Props) {
       <div
         ref={containerRef}
         role="listbox"
-        aria-label="Question count"
+        aria-label="Number of Questions"
         tabIndex={0}
         onScroll={handleScroll}
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerCancel}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
         onKeyDown={onKeyDown}
-        className={cn(
-          "h-full w-full overflow-y-auto overscroll-contain",
-          "[-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
-          "snap-y snap-mandatory scroll-smooth rounded-[24px]",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/60"
-        )}
+        className={cn(pickerWheelScrollerClassName, "rounded-[24px]")}
         style={{ paddingTop: PAD, paddingBottom: PAD }}
       >
         {options.map((option, i) => {
@@ -136,7 +128,7 @@ export function QuestionBankCountWheel({ options, value, onChange }: Props) {
               role="option"
               aria-selected={isSelected}
               onClick={() => scrollToIndex(i, "smooth")}
-              className="flex snap-center items-center justify-center"
+              className="flex snap-center items-center justify-center touch-manipulation"
               style={{ height: ITEM_H }}
             >
               <div

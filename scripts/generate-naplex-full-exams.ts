@@ -28,19 +28,23 @@ function parseArgs() {
   let count = 80;
   let dryRun = false;
   let insert = false;
+  let subjects: string[] = [];
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--exams" && args[i + 1]) exams = parseInt(args[++i]!, 10);
     else if (args[i] === "--count" && args[i + 1]) count = parseInt(args[++i]!, 10);
     else if (args[i] === "--dry-run") dryRun = true;
     else if (args[i] === "--insert") insert = true;
+    else if (args[i] === "--subjects" && args[i + 1]) {
+      subjects = args[++i]!.split(",").map((s) => s.trim()).filter(Boolean);
+    }
   }
 
-  return { exams, count, dryRun, insert };
+  return { exams, count, dryRun, insert, subjects };
 }
 
 async function main() {
-  const { exams, count, dryRun, insert } = parseArgs();
+  const { exams, count, dryRun, insert, subjects } = parseArgs();
   const ARTIFACTS = path.join(process.cwd(), "artifacts");
   fs.mkdirSync(ARTIFACTS, { recursive: true });
 
@@ -50,15 +54,24 @@ async function main() {
   }
 
   console.log(`Generating ${exams} NAPLEX full-length exams (${count} questions each)…`);
+  if (subjects.length) {
+    console.log(`  Subject focus rotation: ${subjects.join(", ")}`);
+  }
 
   const batchId = `naplex-full-${new Date().toISOString().slice(0, 10)}-${Math.random().toString(36).slice(2, 8)}`;
   let totalInserted = 0;
   let totalSkipped = 0;
 
+  const focusSubjectIds =
+    subjects.length > 0
+      ? Array.from({ length: exams }, (_, i) => subjects[i % subjects.length]!)
+      : undefined;
+
   const result = await generateNaplexFullExamSet({
     examCount: exams,
     questionCountPerExam: count,
     batchId,
+    focusSubjectIds,
     onExamComplete: async (exam) => {
       const exportData = serializeExamForImport(exam);
       const examPath = path.join(

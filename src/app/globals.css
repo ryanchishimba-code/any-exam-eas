@@ -5164,6 +5164,8 @@ body {
   z-index: 1;
   overflow-y: auto;
   overscroll-behavior: contain;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
   -webkit-mask-image: linear-gradient(
