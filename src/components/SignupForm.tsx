@@ -28,10 +28,10 @@ import {
   defaultBirthDatePreview,
   defaultExamDatePreview,
   eighteenYearsAgoIso,
-  ExamDateWheelPicker,
   oldestBirthDateIso,
   todayIso,
-} from "@/components/edtech/ExamDateWheelPicker";
+} from "@/lib/edtech/exam-date-utils";
+import { ExamDatePicker } from "@/components/edtech/ExamDatePicker";
 import {
   fetchAuthHealthWarning,
   messageFromUnknownAuthError,
@@ -391,12 +391,13 @@ export function SignupForm({
                 Date of birth (18+ required)
               </label>
               <div className="mt-2" aria-labelledby="signup-dob-label">
-                <ExamDateWheelPicker
+                <ExamDatePicker
                   id="signup-dob"
                   value={dob}
                   minDate={birthMin}
                   maxDate={birthMax}
                   ariaLabel="Date of birth"
+                  variant="compact"
                   onChange={setDob}
                 />
               </div>
@@ -474,10 +475,11 @@ export function SignupForm({
                   ) : null}
                 </div>
                 <div className="mt-2" aria-labelledby="signup-test-date-label">
-                  <ExamDateWheelPicker
+                  <ExamDatePicker
                     id="signup-test-date"
                     value={testDate || examDatePreview}
                     minDate={today}
+                    variant="compact"
                     onChange={setTestDate}
                   />
                 </div>

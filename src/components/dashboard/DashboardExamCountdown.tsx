@@ -4,7 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { CalendarClock, Check, Sparkles } from "lucide-react";
-import { ExamDateWheelPicker, todayIso } from "@/components/edtech/ExamDateWheelPicker";
+import { ExamDatePicker } from "@/components/edtech/ExamDatePicker";
+import { formatExamDateLong, todayIso } from "@/lib/edtech/exam-date-utils";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { cn } from "@/lib/utils";
 
@@ -35,15 +36,6 @@ function calendarDaysUntil(isoDate: string, now: number): number {
   today.setHours(0, 0, 0, 0);
   const target = new Date(`${isoDate}T00:00:00`);
   return Math.round((target.getTime() - today.getTime()) / MS.day);
-}
-
-function formatLongDate(isoDate: string): string {
-  return new Date(`${isoDate}T00:00:00`).toLocaleDateString(undefined, {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
 }
 
 function urgencyTone(calDays: number | null, hasDate: boolean): UrgencyTone {
@@ -272,11 +264,11 @@ export function DashboardExamCountdown({ examSlug, examName, testDate }: Dashboa
             <p className="mt-1 text-[13px] font-medium text-[var(--color-ink)] sm:text-[14px]">
               {date
                 ? isPast
-                  ? `${examName} · ${formatLongDate(date)}`
+                  ? `${examName} · ${formatExamDateLong(date)}`
                   : isToday
                     ? `Today is the day — good luck with your ${examName}!`
-                    : `${examName} · ${formatLongDate(date)}`
-                : `Spin the wheels below to set your ${examName} date.`}
+                    : `${examName} · ${formatExamDateLong(date)}`
+                : `Choose your ${examName} test date below.`}
             </p>
           </div>
         </div>
@@ -310,10 +302,11 @@ export function DashboardExamCountdown({ examSlug, examName, testDate }: Dashboa
       </div>
 
       <div className="relative mt-5 space-y-4 border-t border-[var(--color-border)]/50 pt-5">
-        <ExamDateWheelPicker
+        <ExamDatePicker
           value={draft || date || today}
           minDate={today}
           onChange={setDraft}
+          ariaLabel={`${examName} test date`}
         />
         <div className="flex flex-wrap items-center gap-2">
           <button
