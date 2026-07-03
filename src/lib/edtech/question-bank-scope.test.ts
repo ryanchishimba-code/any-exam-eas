@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  canonicalPracticeFieldId,
   examSlugForFieldId,
   fieldIdForExamSlug,
   fieldMatchesExamSlug,
@@ -46,5 +47,12 @@ describe("question-bank-scope", () => {
     expect(resolveQuestionBankFieldId("usmle")).toBe("usmle-step-2");
     expect(resolveQuestionBankFieldId("nclex")).toBe("nursing");
     expect(resolveQuestionBankFieldId("NAPLEX")).toBe("pharmacy");
+  });
+
+  it("resolves canonical practice field per exam selection", () => {
+    expect(canonicalPracticeFieldId("nclex")).toBe("nursing");
+    expect(canonicalPracticeFieldId("usmle", "usmle-step-1")).toBe("usmle-step-1");
+    expect(canonicalPracticeFieldId("usmle", null)).toBe("usmle-step-2");
+    expect(canonicalPracticeFieldId("pance")).toBe("pance");
   });
 });

@@ -61,7 +61,7 @@ export async function GET(req: Request) {
   const { resolveQuestionBankFieldId, enforceQuestionBankFieldAccess } = await import(
     "@/lib/edtech/question-bank-scope"
   );
-  const fieldId = resolveQuestionBankFieldId(field);
+  const requestedFieldId = resolveQuestionBankFieldId(field);
 
   const nclexLength = parseNclexTimedVariant(searchParams.get("nclexLength"));
   const nclexPresetEarly = searchParams.get("nclexPreset")?.trim();
@@ -70,7 +70,7 @@ export async function GET(req: Request) {
     searchParams.get("scope") === "field" ||
     subjectId === MIXED_SUBJECT_ID ||
     searchParams.get("mixed") === "1" ||
-    (fieldId === "nursing" && Boolean(nclexPresetEarly));
+    (requestedFieldId === "nursing" && Boolean(nclexPresetEarly));
 
   const maxLimit = timedExam ? MAX_TIMED_LIMIT : MAX_BANK_LIMIT;
   const requestedCountParam = Number(searchParams.get("limit") ?? searchParams.get("count"));
@@ -109,6 +109,7 @@ export async function GET(req: Request) {
   ]);
   if (!access.ok) return access.response;
   if (!usageCheck.ok) return usageCheck.response;
+  const fieldId = access.fieldId;
 
   if (usageCheck.allowedCount < requestedSessionCount) {
     return NextResponse.json(

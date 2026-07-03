@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { isExamSlug } from "@/lib/edtech/exams";
-import { fieldIdForExamSlug } from "@/lib/edtech/question-bank-scope";
+import {
+  enforceUserExamSlugAccess,
+  resolveCanonicalPracticeFieldId,
+} from "@/lib/edtech/question-bank-scope";
+import { filterBankItemsForPracticeField } from "@/lib/edtech/exam-item-scope";
 import { sampleQuestionBankItems, sampleQuestionBankItemsForField } from "@/lib/question-bank-db";
 import { bankItemToSessionRaw } from "@/lib/exam-prep/prepare-bank-session";
 
@@ -26,16 +30,16 @@ export async function GET(req: Request, { params }: RouteParams) {
     return NextResponse.json({ error: "Unknown exam" }, { status: 404 });
   }
 
+  const slugAccess = await enforceUserExamSlugAccess(premium.userId, examSlug);
+  if (!slugAccess.ok) return slugAccess.response;
+
   const url = new URL(req.url);
   const page = parsePositiveInt(url.searchParams.get("page"), 1);
   const limit = Math.min(parsePositiveInt(url.searchParams.get("limit"), 20), MAX_PAGE_SIZE);
   const subjectId = url.searchParams.get("subjectId")?.trim() || null;
   const includeExplanation = url.searchParams.get("includeExplanation") === "1";
 
-  const fieldId = fieldIdForExamSlug(examSlug);
-  if (!fieldId) {
-    return NextResponse.json({ error: "Exam has no question bank" }, { status: 404 });
-  }
+  const fieldId = await resolveCanonicalPracticeFieldId(premium.userId, examSlug);
 
   const { enforceQuestionBankFieldAccess } = await import("@/lib/edtech/question-bank-scope");
   const access = await enforceQuestionBankFieldAccess(premium.userId, fieldId);
@@ -43,9 +47,12 @@ export async function GET(req: Request, { params }: RouteParams) {
 
   try {
     const pull = Math.min(limit * 3, 120);
-    const items = subjectId
-      ? await sampleQuestionBankItems({ fieldId, subjectId, count: pull })
-      : await sampleQuestionBankItemsForField({ fieldId, count: pull, skipEnsure: true });
+    const items = filterBankItemsForPracticeField(
+      subjectId
+        ? await sampleQuestionBankItems({ fieldId, subjectId, count: pull })
+        : await sampleQuestionBankItemsForField({ fieldId, count: pull, skipEnsure: true }),
+      fieldId
+    );
 
     const offset = (page - 1) * limit;
     const slice = items.slice(offset, offset + limit);

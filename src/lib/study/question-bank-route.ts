@@ -3,6 +3,7 @@ import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import {
   fieldIdForExamSlug,
   fieldMatchesExamSlug,
+  resolveCanonicalPracticeFieldId,
   resolveQuestionBankFieldId,
 } from "@/lib/edtech/question-bank-scope";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
@@ -39,7 +40,8 @@ export async function resolveQuestionBankRoute(
 
   if (sp.field) {
     const resolvedFieldId = resolveQuestionBankFieldId(String(sp.field));
-    if (fieldMatchesExamSlug(resolvedFieldId, examSlug)) {
+    const canonicalFieldId = await resolveCanonicalPracticeFieldId(userId, examSlug);
+    if (fieldMatchesExamSlug(resolvedFieldId, examSlug) && resolvedFieldId === canonicalFieldId) {
       fieldParam = resolvedFieldId;
     } else {
       const qs = new URLSearchParams();
@@ -47,7 +49,7 @@ export async function resolveQuestionBankRoute(
         if (key === "field" || value == null) continue;
         qs.set(key, Array.isArray(value) ? value[0]! : value);
       }
-      qs.set("field", defaultFieldId);
+      qs.set("field", canonicalFieldId);
       redirect(`${ROUTES.questionBank}?${qs.toString()}`);
     }
   }

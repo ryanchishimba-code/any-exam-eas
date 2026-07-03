@@ -1,4 +1,4 @@
-import type { ExamQuestion } from "@/lib/ai";
+import { filterBankItemsForPracticeField } from "@/lib/edtech/exam-item-scope";
 import type { BankItem } from "@/lib/question-bank";
 import { applyAnatomyStudyMetaToBankItem } from "./apply-bank-anatomy-meta";
 import { bankItemToRawQuestion } from "./ngn-bank-bridge";
@@ -27,18 +27,19 @@ function isClinicalVignetteField(fieldId: string): boolean {
 
 /** Runtime re-audit — never trust stale qaPassed flags from the DB alone. */
 export function filterBankItemsForServe(fieldId: string, items: BankItem[]): BankItem[] {
+  const scoped = filterBankItemsForPracticeField(items, fieldId);
   if (fieldId === "nursing") {
-    return filterNclexItemsForSession(items);
+    return filterNclexItemsForSession(scoped);
   }
   if (fieldId === "pharmacy") {
-    return items
+    return scoped
       .map((item) => prepareNaplexBankItem(item))
       .filter((item) => naplexBankItemIsServeReady(item, { source: item.source ?? null }));
   }
   if (isClinicalVignetteField(fieldId)) {
-    return items.filter((item) => usmleBankItemIsServeReady(item, fieldId));
+    return scoped.filter((item) => usmleBankItemIsServeReady(item, fieldId));
   }
-  return items;
+  return scoped;
 }
 
 /** Filter bank rows for session serve without capping — finalize handles count. */

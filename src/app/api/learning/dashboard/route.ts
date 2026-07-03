@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { cacheGetOrSet, cacheKey, CACHE_TTL } from "@/lib/cache";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
-import { examFieldIds, isExamSlug } from "@/lib/edtech/exams";
+import { isExamSlug } from "@/lib/edtech/exams";
+import {
+  resolveCanonicalPracticeFieldId,
+  resolveQuestionBankFieldId,
+} from "@/lib/edtech/question-bank-scope";
 
 export const runtime = "nodejs";
 
@@ -11,24 +15,30 @@ export async function GET(req: Request) {
   const premium = await requirePremiumApi();
   if (!premium.ok) return premium.response;
 
-  // Scope analytics to one exam: an explicit ?examSlug= wins, otherwise the
-  // user's saved exam preference. ?field= narrows to a single study field
-  // (e.g. a single USMLE step) when it belongs to that exam.
+  // Scope analytics to the user's saved exam only — ignore cross-exam ?examSlug= overrides.
   const url = new URL(req.url);
   const examParam = url.searchParams.get("examSlug");
   const fieldParam = url.searchParams.get("field");
 
-  let examSlug = examParam && isExamSlug(examParam) ? examParam : null;
-  if (!examSlug) {
-    const pref = await getUserExamPreference(premium.userId);
-    examSlug = pref?.examSlug ?? null;
+  const pref = await getUserExamPreference(premium.userId);
+  if (examParam && isExamSlug(examParam) && pref && examParam !== pref.examSlug) {
+    return NextResponse.json(
+      {
+        error: "That exam does not match your selected exam.",
+        code: "EXAM_MISMATCH",
+        expectedExamSlug: pref.examSlug,
+      },
+      { status: 403 }
+    );
   }
+
+  const examSlug = pref?.examSlug ?? null;
 
   let fieldIds: string[] | null = null;
   if (examSlug) {
-    const examFields = examFieldIds(examSlug);
-    fieldIds =
-      fieldParam && examFields.includes(fieldParam) ? [fieldParam] : examFields;
+    const canonicalFieldId = await resolveCanonicalPracticeFieldId(premium.userId, examSlug);
+    const resolvedField = fieldParam ? resolveQuestionBankFieldId(fieldParam) : null;
+    fieldIds = resolvedField === canonicalFieldId ? [canonicalFieldId] : [canonicalFieldId];
   }
 
   const scopeId = `${examSlug ?? "all"}:${fieldIds?.length === 1 ? fieldIds[0] : "*"}`;

@@ -33,12 +33,16 @@ export async function POST(req: Request) {
     );
   }
 
-  const subject = getFieldSubject(field, subjectId);
+  const { enforceQuestionBankFieldAccess } = await import("@/lib/edtech/question-bank-scope");
+  const access = await enforceQuestionBankFieldAccess(userId, field);
+  if (!access.ok) return access.response;
+  const resolvedField = access.fieldId;
+  const subject = getFieldSubject(resolvedField, subjectId);
   if (!subject) {
     return NextResponse.json({ error: "Invalid subject for this field" }, { status: 400 });
   }
 
-  const resolvedTopic = buildScopedTopic(field, subjectId, topic?.trim());
+  const resolvedTopic = buildScopedTopic(resolvedField, subjectId, topic?.trim());
 
   const count = Number(questionCount ?? 10);
   if (!isValidQuestionCount(count)) {
@@ -51,7 +55,7 @@ export async function POST(req: Request) {
   const started = Date.now();
 
   const { sources, researchBrief, sourceCounts, advanced } = await gatherStudyMaterial(
-    field,
+    resolvedField,
     resolvedTopic,
     subjectId
   );
@@ -66,7 +70,7 @@ export async function POST(req: Request) {
   let exam;
   try {
     exam = await generateExam({
-      field,
+      field: resolvedField,
       topic: resolvedTopic,
       subjectId,
       difficulty: difficulty ?? "medium",
@@ -81,12 +85,12 @@ export async function POST(req: Request) {
       userId: userId,
       eventType: EVENT_TYPES.QUESTION_GENERATION_FAILED,
       category: "education",
-      metadata: { field, subjectId, topic: resolvedTopic, error: message },
+      metadata: { field: resolvedField, subjectId, topic: resolvedTopic, error: message },
       req,
     });
     void recordGeneration({
       userId: userId,
-      field,
+      field: resolvedField,
       subjectId,
       topic: resolvedTopic,
       difficulty: difficulty ?? "medium",
@@ -132,7 +136,7 @@ export async function POST(req: Request) {
     eventType: EVENT_TYPES.QUESTION_GENERATED,
     category: "education",
     metadata: {
-      field,
+      field: resolvedField,
       subject: subject.label,
       subjectId,
       topic: resolvedTopic,
@@ -146,12 +150,12 @@ export async function POST(req: Request) {
     userId: userId,
     action: "exam_generated",
     summary: `Generated ${exam.questions.length} questions — ${subject.label}`,
-    metadata: { examId: saved.id, field, subjectId },
+    metadata: { examId: saved.id, field: resolvedField, subjectId },
   });
   void recordGeneration({
     userId: userId,
     examId: saved.id,
-    field,
+    field: resolvedField,
     subjectId,
     topic: resolvedTopic,
     difficulty: difficulty ?? "medium",

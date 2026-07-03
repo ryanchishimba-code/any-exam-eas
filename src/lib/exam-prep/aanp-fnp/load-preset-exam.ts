@@ -4,7 +4,7 @@
 import { prisma } from "@/lib/prisma";
 import { enrichBankItemFromRow } from "@/lib/mpje/parse-bank-options";
 import type { BankItem } from "@/lib/question-bank";
-import { usmleBankItemIsServeReady } from "@/lib/exam-prep/usmle-clinical-gate";
+import { usmleBankItemPassesStructuralGate } from "@/lib/exam-prep/usmle-clinical-gate";
 
 export type AanpFnpPresetExamSummary = {
   examNumber: number;
@@ -50,6 +50,7 @@ export async function loadAanpFnpPresetExamItems(
     where: { examNumber, active: true },
     include: {
       questions: {
+        where: { question: { active: true, qaPassed: true } },
         orderBy: { sortOrder: "asc" },
         include: { question: true },
       },
@@ -64,7 +65,7 @@ export async function loadAanpFnpPresetExamItems(
     const item = enrichBankItemFromRow(link.question);
     item.id = link.question.id;
     item.source = link.question.source ?? undefined;
-    if (!usmleBankItemIsServeReady(item, FIELD_ID)) continue;
+    if (!usmleBankItemPassesStructuralGate(item, FIELD_ID)) continue;
     items.push(item);
   }
 

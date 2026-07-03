@@ -52,6 +52,7 @@ export async function loadNptePtPresetExamItems(
     where: { examNumber, active: true },
     include: {
       questions: {
+        where: { question: { active: true, qaPassed: true } },
         orderBy: { sortOrder: "asc" },
         include: { question: true },
       },
