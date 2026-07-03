@@ -1,20 +1,28 @@
 import { describe, expect, it } from "vitest";
 import {
-  isoToMmddyyyy,
-  parseMmddyyyy,
+  formatDdmmyyyyDigits,
+  isoToDdmmyyyy,
+  parseDdmmyyyy,
   isIsoWithinBounds,
 } from "./exam-date-utils";
 
 describe("exam-date-utils typed entry", () => {
-  it("round-trips ISO dates through mmddyyyy", () => {
-    expect(isoToMmddyyyy("2026-07-03")).toBe("07032026");
-    expect(parseMmddyyyy("07032026")).toBe("2026-07-03");
+  it("round-trips ISO dates through dd/mm/yyyy", () => {
+    expect(isoToDdmmyyyy("2026-07-03")).toBe("03/07/2026");
+    expect(parseDdmmyyyy("03/07/2026")).toBe("2026-07-03");
+    expect(parseDdmmyyyy("03072026")).toBe("2026-07-03");
+  });
+
+  it("formats digits with slashes while typing", () => {
+    expect(formatDdmmyyyyDigits("03")).toBe("03");
+    expect(formatDdmmyyyyDigits("0307")).toBe("03/07");
+    expect(formatDdmmyyyyDigits("03072026")).toBe("03/07/2026");
   });
 
   it("rejects invalid calendar dates", () => {
-    expect(parseMmddyyyy("02302026")).toBeNull();
-    expect(parseMmddyyyy("13012026")).toBeNull();
-    expect(parseMmddyyyy("0703")).toBeNull();
+    expect(parseDdmmyyyy("30/02/2026")).toBeNull();
+    expect(parseDdmmyyyy("32/01/2026")).toBeNull();
+    expect(parseDdmmyyyy("03/07")).toBeNull();
   });
 
   it("enforces min/max bounds", () => {

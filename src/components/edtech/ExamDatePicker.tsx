@@ -5,11 +5,12 @@ import { CalendarDays } from "lucide-react";
 import {
   addMonthsToIso,
   calendarDaysUntil,
+  formatDdmmyyyyDigits,
   formatExamDateLong,
   formatExamDateShort,
-  isoToMmddyyyy,
+  isoToDdmmyyyy,
   isIsoWithinBounds,
-  parseMmddyyyy,
+  parseDdmmyyyy,
   todayIso,
 } from "@/lib/edtech/exam-date-utils";
 import { cn } from "@/lib/utils";
@@ -47,14 +48,15 @@ function relativeHint(iso: string, minDate?: string): string {
 }
 
 function typedInputError(
-  digits: string,
+  raw: string,
   minDate?: string,
   maxDate?: string
 ): string | null {
+  const digits = raw.replace(/\D/g, "");
   if (digits.length === 0) return null;
   if (digits.length < 8) return null;
-  const iso = parseMmddyyyy(digits);
-  if (!iso) return "Enter a valid date (mmddyyyy)";
+  const iso = parseDdmmyyyy(raw);
+  if (!iso) return "Enter a valid date (dd/mm/yyyy)";
   if (!isIsoWithinBounds(iso, { minDate, maxDate })) {
     if (minDate && iso < minDate) return "Choose today or a future date";
     if (maxDate && iso > maxDate) return "Date is outside the allowed range";
@@ -62,7 +64,7 @@ function typedInputError(
   return null;
 }
 
-/** Exam / DOB date entry — typed mmddyyyy for exams, native picker for birth dates. */
+/** Exam / DOB date entry — typed dd/mm/yyyy for exams, native picker for birth dates. */
 export function ExamDatePicker({
   value,
   minDate,
@@ -86,10 +88,10 @@ export function ExamDatePicker({
   const today = useMemo(() => todayIso(), []);
   const quickBase = minDate ?? today;
 
-  const [typed, setTyped] = useState(() => (value ? isoToMmddyyyy(value) : ""));
+  const [typed, setTyped] = useState(() => (value ? isoToDdmmyyyy(value) : ""));
 
   useEffect(() => {
-    setTyped(value ? isoToMmddyyyy(value) : "");
+    setTyped(value ? isoToDdmmyyyy(value) : "");
   }, [value]);
 
   const quickOptions = useMemo(
@@ -101,23 +103,25 @@ export function ExamDatePicker({
     [quickBase]
   );
 
+  const digits = typed.replace(/\D/g, "");
   const inputError = useTypedInput ? typedInputError(typed, minDate, maxDate) : null;
-  const parsedIso = typed.length === 8 ? parseMmddyyyy(typed) : null;
+  const parsedIso = digits.length === 8 ? parseDdmmyyyy(typed) : null;
   const displayIso =
     parsedIso && isIsoWithinBounds(parsedIso, { minDate, maxDate }) ? parsedIso : value;
 
-  function commitTypedDigits(digits: string) {
-    if (digits.length !== 8) return;
-    const iso = parseMmddyyyy(digits);
+  function commitTypedValue(raw: string) {
+    const d = raw.replace(/\D/g, "");
+    if (d.length !== 8) return;
+    const iso = parseDdmmyyyy(raw);
     if (iso && isIsoWithinBounds(iso, { minDate, maxDate })) {
       onChange(iso);
     }
   }
 
   function handleTypedChange(raw: string) {
-    const digits = raw.replace(/\D/g, "").slice(0, 8);
-    setTyped(digits);
-    commitTypedDigits(digits);
+    const formatted = formatDdmmyyyyDigits(raw);
+    setTyped(formatted);
+    commitTypedValue(formatted);
   }
 
   function openPicker() {
@@ -181,14 +185,14 @@ export function ExamDatePicker({
                 autoComplete="off"
                 spellCheck={false}
                 value={typed}
-                placeholder="mmddyyyy"
+                placeholder="dd/mm/yyyy"
                 onChange={(e) => handleTypedChange(e.target.value)}
-                onBlur={() => commitTypedDigits(typed)}
+                onBlur={() => commitTypedValue(typed)}
                 aria-label={label}
                 aria-invalid={inputError ? true : undefined}
                 aria-describedby={inputError ? `${inputId}-error` : `${inputId}-hint`}
                 className={cn(
-                  "mt-1 w-full bg-transparent font-mono text-[15px] font-semibold tracking-[0.08em] text-[var(--color-ink)] outline-none placeholder:font-sans placeholder:font-normal placeholder:tracking-normal placeholder:text-[var(--color-ink-muted)]/70 sm:text-base",
+                  "mt-1 w-full bg-transparent font-mono text-[15px] font-semibold tracking-[0.04em] text-[var(--color-ink)] outline-none placeholder:font-sans placeholder:font-normal placeholder:tracking-normal placeholder:text-[var(--color-ink-muted)]/70 sm:text-base",
                   inputError && "text-rose-600 dark:text-rose-400"
                 )}
               />
@@ -203,7 +207,7 @@ export function ExamDatePicker({
                 </p>
               ) : (
                 <p id={`${inputId}-hint`} className="mt-1 text-[12px] text-[var(--color-ink-muted)]">
-                  Example: {isoToMmddyyyy(addMonthsToIso(today, 3))} ({formatExamDateShort(addMonthsToIso(today, 3))})
+                  Example: {isoToDdmmyyyy(addMonthsToIso(today, 3))} ({formatExamDateShort(addMonthsToIso(today, 3))})
                 </p>
               )}
             </div>
