@@ -268,16 +268,40 @@ async function composeForConfigWithTier(
 
   if (!sessionMeetsTierFill(finalItems.length, numQuestions, tier)) return null;
 
-  const { ordered, report } = sequenceItems(
-    finalItems,
-    (item) => toSequenceItem(item, validIds),
-    sequencingConfigFor(finalItems.length),
-    seed
-  );
+  let ordered: BankItem[];
+  let report: ReturnType<typeof sequenceItems>["report"];
+  const liveFast = params.livePoolLimit != null;
 
-  const similarityFlags = auditExamSimilarity(ordered).map(
-    (flag) => `[${tier.id}] ${flag.code}:${flag.message}`
-  );
+  if (liveFast) {
+    ordered = finalItems;
+    report = {
+      total: ordered.length,
+      domainMinSeparation: Number.POSITIVE_INFINITY,
+      conceptMinSeparation: Number.POSITIVE_INFINITY,
+      answerDistribution: {},
+      longestAnswerStreak: 0,
+      adjacentHardPairs: 0,
+      domainGapViolations: 0,
+      conceptGapViolations: 0,
+      passed: true,
+      notes: ["Live fast path — skipped anti-cluster sequencing."],
+    };
+  } else {
+    const sequenced = sequenceItems(
+      finalItems,
+      (item) => toSequenceItem(item, validIds),
+      sequencingConfigFor(finalItems.length),
+      seed
+    );
+    ordered = sequenced.ordered;
+    report = sequenced.report;
+  }
+
+  const similarityFlags = liveFast
+    ? []
+    : auditExamSimilarity(ordered).map(
+        (flag) => `[${tier.id}] ${flag.code}:${flag.message}`
+      );
 
   const questions = ordered.map((item, i) =>
     shapeQuestion(item, i + 1, format, validIds, labelById)

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { createExamSession } from "@/lib/exam-sessions/service";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { getUserExamPreference, touchExamStudied } from "@/lib/edtech/exam-preference";
+import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { buildSessionConfig, fullExamSessionHref } from "@/lib/full-exam/config";
 import { resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
@@ -56,10 +57,19 @@ export async function POST(req: Request) {
     let sessionTitle = `${EXAM_CATALOG[examSlug].shortName} Full Simulation`;
 
     const requestedField = body.fieldId ? resolveQuestionBankFieldId(String(body.fieldId)) : null;
-    if (examSlug === "usmle" && requestedField && isUsmleFieldId(requestedField)) {
-      sessionFieldId = requestedField;
-      const step = usmleStepDefinition(requestedField);
+    if (examSlug === "usmle") {
+      const meta = await getUserEdtechMetadata(premium.userId);
+      const resolvedField =
+        requestedField && isUsmleFieldId(requestedField)
+          ? requestedField
+          : meta.usmleFieldId && isUsmleFieldId(meta.usmleFieldId)
+            ? meta.usmleFieldId
+            : sessionFieldId;
+      sessionFieldId = resolvedField;
+      const step = usmleStepDefinition(resolvedField);
       sessionTitle = `${step?.name ?? "USMLE"} Full Simulation`;
+    } else if (requestedField) {
+      sessionFieldId = requestedField;
     }
 
     const config = buildSessionConfig(examSlug, preset, timed, {

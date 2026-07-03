@@ -34,6 +34,7 @@ export async function gatherTimedExamBankItems(params: {
   filterFn: TimedExamFilterFn;
   relaxedFilterFn?: TimedExamFilterFn;
   initialSampleCount: number;
+  maxRoundsPerTier?: number;
 }): Promise<BankItem[]> {
   if (isUsmleFieldId(params.fieldId)) {
     return gatherUsmleTimedExamBankItems({
@@ -41,6 +42,7 @@ export async function gatherTimedExamBankItems(params: {
       limit: params.limit,
       initialSampleCount: params.initialSampleCount,
       stateCode: params.stateCode,
+      maxRoundsPerTier: params.maxRoundsPerTier,
     });
   }
 

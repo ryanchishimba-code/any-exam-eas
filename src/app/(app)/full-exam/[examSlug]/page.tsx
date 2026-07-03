@@ -4,7 +4,9 @@ import { getCachedSession } from "@/lib/auth/session";
 import { FullExamLauncher } from "@/components/exam/FullExamLauncher";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { isExamSlug } from "@/lib/edtech/exams";
+import { defaultUsmleFieldId, isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { getStudyUsageSnapshot } from "@/lib/study/usage-limits";
 import { resolveMockExamAccess, type MockExamAccess } from "@/lib/study/mock-exam-access";
@@ -37,6 +39,7 @@ function FullExamLauncherSkeleton() {
 
 async function FullExamLauncherContent({
   examSlug,
+  fieldId,
   mode,
   autostart,
   timed,
@@ -44,6 +47,7 @@ async function FullExamLauncherContent({
   mockAccess,
 }: {
   examSlug: ExamSlug;
+  fieldId?: string;
   mode?: string;
   autostart?: string;
   timed?: string;
@@ -52,8 +56,9 @@ async function FullExamLauncherContent({
 }) {
   return (
     <FullExamLauncher
-      key={`${mode ?? "default"}-${autostart ?? "0"}-${timed ?? "1"}-${nclexCat ?? "0"}`}
+      key={`${fieldId ?? "default"}-${mode ?? "default"}-${autostart ?? "0"}-${timed ?? "1"}-${nclexCat ?? "0"}`}
       examSlug={examSlug}
+      fieldId={fieldId}
       initialMode={mode ?? null}
       autostart={autostart === "1"}
       initialTimed={timed !== "0"}
@@ -100,10 +105,20 @@ export default async function FullExamLauncherPage({
     redirect(`${fullExamHref(pref.examSlug)}${suffix ? `?${suffix}` : ""}`);
   }
 
+  let usmleFieldId: string | undefined;
+  if (examSlug === "usmle") {
+    const meta = await getUserEdtechMetadata(session.user.id);
+    const resolved = meta.usmleFieldId && isUsmleFieldId(meta.usmleFieldId)
+      ? meta.usmleFieldId
+      : defaultUsmleFieldId();
+    usmleFieldId = resolved;
+  }
+
   return (
     <Suspense fallback={<FullExamLauncherSkeleton />}>
       <FullExamLauncherContent
         examSlug={examSlug}
+        fieldId={usmleFieldId}
         mode={sp.mode}
         autostart={sp.autostart}
         timed={sp.timed}

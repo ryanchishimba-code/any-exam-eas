@@ -36,6 +36,8 @@ import { cn } from "@/lib/utils";
 
 type Props = {
   examSlug: ExamSlug;
+  /** USMLE step field (usmle-step-1/2/3) — drives full-length count and assembly. */
+  fieldId?: string;
   initialMode?: string | null;
   autostart?: boolean;
   initialTimed?: boolean;
@@ -45,6 +47,7 @@ type Props = {
 
 export function FullExamLauncher({
   examSlug,
+  fieldId,
   initialMode,
   autostart = false,
   initialTimed = true,
@@ -53,7 +56,7 @@ export function FullExamLauncher({
 }: Props) {
   const router = useRouter();
   const exam = EXAM_CATALOG[examSlug];
-  const allOptions = useMemo(() => getLengthOptions(examSlug), [examSlug]);
+  const allOptions = useMemo(() => getLengthOptions(examSlug, fieldId), [examSlug, fieldId]);
   const options = useMemo(
     () => filterLengthOptionsForAccess(allOptions, mockAccess),
     [allOptions, mockAccess.allowFullLengthMocks, mockAccess.allowShortMocks]
@@ -84,8 +87,9 @@ export function FullExamLauncher({
 
   const preview = buildSessionConfig(examSlug, preset, timed, {
     nclexCat: examSlug === "nclex" ? nclexCat : undefined,
+    fieldId: examSlug === "usmle" ? fieldId : undefined,
   });
-  const pageTitle = fullExamModeTitle(examSlug, preset);
+  const pageTitle = fullExamModeTitle(examSlug, preset, fieldId);
   const startSteps = useMemo(
     () => [
       { at: 0, label: "Preparing your session…" },
@@ -108,6 +112,7 @@ export function FullExamLauncher({
     const activePreset = presetOverride ?? presetRef.current;
     const sessionConfig = buildSessionConfig(examSlug, activePreset, timed, {
       nclexCat: examSlug === "nclex" ? nclexCat : undefined,
+      fieldId: examSlug === "usmle" ? fieldId : undefined,
     });
     const lockKey = `${examSlug}:${sessionConfig.lengthPreset}:${timed ? "1" : "0"}`;
     if (opts?.autostart && !acquireAutostartLock(lockKey)) {
@@ -123,6 +128,7 @@ export function FullExamLauncher({
           examSlug,
           lengthPreset: sessionConfig.lengthPreset,
           timed,
+          fieldId: examSlug === "usmle" ? fieldId : undefined,
           nclexCat: examSlug === "nclex" ? nclexCat : undefined,
         }),
       });

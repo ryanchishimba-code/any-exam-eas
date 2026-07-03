@@ -26,6 +26,12 @@ import {
 } from "./compose-timed-exam-session";
 import { tryLoadTimedPresetSession } from "@/lib/exam-prep/try-timed-preset-exam";
 import { gatherSprintTimedExamPool } from "@/lib/exam-prep/gather-sprint-timed-pool";
+import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
+
+/** USMLE presets are step-scoped; skip the heavy preset join when it cannot match. */
+function skipTimedPresetForField(fieldId: string): boolean {
+  return isUsmleFieldId(fieldId);
+}
 
 export type AssembleTimedExamSessionParams = {
   fieldId: string;
@@ -72,7 +78,7 @@ export async function assembleTimedExamSessionItems(
   const prepare = (item: BankItem) => prepareTimedExamItem(fieldId, item);
   const seed = (Date.now() ^ 0x51ed270b) >>> 0;
 
-  if (!focusAreas?.length) {
+  if (!focusAreas?.length && !skipTimedPresetForField(fieldId)) {
     const preset = await tryLoadTimedPresetSession({ fieldId, limit, seed });
     if (preset) {
       return {
@@ -113,7 +119,12 @@ export async function assembleTimedExamSessionItems(
     if (filled) return filled;
   }
 
-  if (fieldSupportsBlueprintTimedExam(fieldId) && !focusAreas?.length) {
+  // Live sprints (≤100) rarely need blueprint compose; long exams use gather below.
+  if (
+    fieldSupportsBlueprintTimedExam(fieldId) &&
+    !focusAreas?.length &&
+    limit <= 100
+  ) {
     const composed = await composeBlueprintTimedExamSession({
       fieldId,
       numQuestions: limit,
@@ -133,6 +144,7 @@ export async function assembleTimedExamSessionItems(
       filterFn: gates.strict,
       relaxedFilterFn: gates.relaxed,
       initialSampleCount: Math.min(sampleCount, resolveProgressivePullSize(limit, limit + 32)),
+      maxRoundsPerTier: 1,
     })
   ).map(prepare);
 

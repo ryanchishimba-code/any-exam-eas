@@ -1,5 +1,6 @@
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { resolveBoardFullQuestionCount } from "@/lib/exam/exam-lengths";
+import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset, FullExamSessionConfig } from "@/types/full-exam";
 
@@ -44,9 +45,17 @@ export function getLengthOptions(examSlug: ExamSlug, fieldId?: string): LengthOp
 export function computeTimeLimitSec(
   examSlug: ExamSlug,
   questionCount: number,
-  timed: boolean
+  timed: boolean,
+  fieldId?: string
 ): number {
   if (!timed) return 0;
+  if (examSlug === "usmle" && fieldId && isUsmleFieldId(fieldId)) {
+    const step = usmleStepDefinition(fieldId);
+    if (step) {
+      const secPerQuestion = (step.simulatedDurationMin * 60) / step.simulatedQuestionCount;
+      return Math.round(secPerQuestion * questionCount);
+    }
+  }
   const exam = EXAM_CATALOG[examSlug];
   const secPerQuestion = (exam.simulatedDurationMin * 60) / exam.simulatedQuestionCount;
   return Math.round(secPerQuestion * questionCount);
@@ -77,7 +86,7 @@ export function buildSessionConfig(
     lengthPreset: preset,
     questionCount,
     timed,
-    timeLimitSec: computeTimeLimitSec(examSlug, questionCount, timed),
+    timeLimitSec: computeTimeLimitSec(examSlug, questionCount, timed, opts?.fieldId),
     adaptive: (preset === "full" && examSlug !== "nclex") || nclexCat,
     ...(examSlug === "nclex"
       ? { nclexLength: opts?.nclexLength ?? "minimum", nclexCat }
@@ -181,9 +190,10 @@ export function fullExamLaunchHref(
 
 export function fullExamModeTitle(
   examSlug: ExamSlug,
-  preset: FullExamLengthPreset
+  preset: FullExamLengthPreset,
+  fieldId?: string
 ): string {
-  const option = getLengthOptions(examSlug).find((o) => o.preset === preset);
+  const option = getLengthOptions(examSlug, fieldId).find((o) => o.preset === preset);
   if (!option) return `${EXAM_CATALOG[examSlug].shortName} Practice Test`;
   if (preset === "full") return `${EXAM_CATALOG[examSlug].shortName} Full-Length Exam`;
   return `${option.questionCount} Question Practice Test`;

@@ -53,6 +53,8 @@ export async function gatherUsmleTimedExamBankItems(params: {
   limit: number;
   initialSampleCount: number;
   stateCode?: string;
+  /** Live exams use 1 round per gate tier (default). */
+  maxRoundsPerTier?: number;
 }): Promise<BankItem[]> {
   const ladder = timedExamGatherLadderForField(params.fieldId);
   return gatherProgressiveBankPool({
@@ -61,6 +63,7 @@ export async function gatherUsmleTimedExamBankItems(params: {
     maxTierIndex: ladder.length - 1,
     initialSampleCount: params.initialSampleCount,
     stateCode: params.stateCode,
+    maxRoundsPerTier: params.maxRoundsPerTier ?? 1,
   });
 }
 
