@@ -1,111 +1,110 @@
 {
-  "generatedAt": "2026-06-14T03:04:32.216Z",
-  "dryRun": false,
-  "totalReviewed": 24286,
-  "kept": 16691,
-  "archived": 7595,
-  "keepRatePercent": 68.72683850778226,
+  "generatedAt": "2026-07-03T01:55:36.736Z",
+  "dryRun": true,
+  "totalReviewed": 6485,
+  "kept": 5987,
+  "archived": 498,
+  "keepRatePercent": 92.32074016962221,
   "tiers": {
-    "best": 16691,
-    "acceptable": 3442,
-    "reject": 4153
+    "best": 5987,
+    "acceptable": 43,
+    "reject": 455
   },
   "topRejectReasons": {
-    "weak_naplex_correct": 3711,
-    "weak_naplex_options": 3606,
-    "duplicate_vignette_in_stem": 386,
-    "naplex_explanation_short": 30,
-    "explanation_too_short": 30,
-    "missing_vignette": 29,
-    "naplex_stem_lead_in": 25,
-    "correct_not_in_options": 6,
-    "naplex_controlled_substance_mismatch": 1,
-    "empty_explanation": 1
+    "naplex_clinical_stem_numeric_options": 274,
+    "naplex_orphan_calc_stem": 91,
+    "naplex_clinical_vignette_unrelated_calc": 54,
+    "naplex_clinical_vignette_unrelated_options": 28,
+    "naplex_explanation_short": 25,
+    "missing_vignette": 25,
+    "explanation_too_short": 25,
+    "naplex_stem_lead_in": 24,
+    "empty_explanation": 23
   },
   "bySubject": {
-    "pharmacokinetics": {
-      "best": 1435,
-      "acceptable": 293,
-      "reject": 295,
-      "kept": 1435,
-      "archived": 588
-    },
-    "pharmacology": {
-      "best": 1140,
-      "acceptable": 339,
-      "reject": 565,
-      "kept": 1140,
-      "archived": 904
-    },
-    "pharmaceutics": {
-      "best": 1430,
-      "acceptable": 288,
-      "reject": 295,
-      "kept": 1430,
-      "archived": 583
+    "patient-counseling": {
+      "best": 2598,
+      "acceptable": 8,
+      "reject": 92,
+      "kept": 2598,
+      "archived": 100
     },
     "compounding-calculations": {
-      "best": 1636,
-      "acceptable": 201,
-      "reject": 203,
-      "kept": 1636,
-      "archived": 404
-    },
-    "cardiovascular-rx": {
-      "best": 1446,
-      "acceptable": 292,
-      "reject": 296,
-      "kept": 1446,
-      "archived": 588
-    },
-    "infectious-disease-rx": {
-      "best": 1443,
-      "acceptable": 294,
-      "reject": 294,
-      "kept": 1443,
-      "archived": 588
-    },
-    "endocrine-rx": {
-      "best": 1440,
-      "acceptable": 294,
-      "reject": 294,
-      "kept": 1440,
-      "archived": 588
-    },
-    "cns-rx": {
-      "best": 1431,
-      "acceptable": 286,
-      "reject": 295,
-      "kept": 1431,
-      "archived": 581
-    },
-    "oncology-rx": {
-      "best": 1427,
-      "acceptable": 286,
-      "reject": 291,
-      "kept": 1427,
-      "archived": 577
-    },
-    "otc-self-care": {
-      "best": 1433,
-      "acceptable": 288,
-      "reject": 290,
-      "kept": 1433,
-      "archived": 578
-    },
-    "patient-counseling": {
-      "best": 1344,
-      "acceptable": 293,
-      "reject": 397,
-      "kept": 1344,
-      "archived": 690
+      "best": 1201,
+      "acceptable": 6,
+      "reject": 16,
+      "kept": 1201,
+      "archived": 22
     },
     "pharmacy-law": {
-      "best": 1086,
-      "acceptable": 288,
-      "reject": 638,
-      "kept": 1086,
-      "archived": 926
+      "best": 2,
+      "acceptable": 2,
+      "reject": 3,
+      "kept": 2,
+      "archived": 5
+    },
+    "cardiovascular-rx": {
+      "best": 380,
+      "acceptable": 5,
+      "reject": 299,
+      "kept": 380,
+      "archived": 304
+    },
+    "pharmacology": {
+      "best": 1159,
+      "acceptable": 3,
+      "reject": 14,
+      "kept": 1159,
+      "archived": 17
+    },
+    "otc-self-care": {
+      "best": 637,
+      "acceptable": 2,
+      "reject": 5,
+      "kept": 637,
+      "archived": 7
+    },
+    "pharmacokinetics": {
+      "best": 2,
+      "acceptable": 3,
+      "reject": 7,
+      "kept": 2,
+      "archived": 10
+    },
+    "pharmaceutics": {
+      "best": 0,
+      "acceptable": 2,
+      "reject": 3,
+      "kept": 0,
+      "archived": 5
+    },
+    "infectious-disease-rx": {
+      "best": 6,
+      "acceptable": 6,
+      "reject": 3,
+      "kept": 6,
+      "archived": 9
+    },
+    "endocrine-rx": {
+      "best": 1,
+      "acceptable": 6,
+      "reject": 6,
+      "kept": 1,
+      "archived": 12
+    },
+    "cns-rx": {
+      "best": 1,
+      "acceptable": 0,
+      "reject": 5,
+      "kept": 1,
+      "archived": 5
+    },
+    "oncology-rx": {
+      "best": 0,
+      "acceptable": 0,
+      "reject": 2,
+      "kept": 0,
+      "archived": 2
     }
   }
 }

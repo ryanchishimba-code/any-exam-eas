@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-06-30T22:33:48.586Z",
+  "generatedAt": "2026-07-03T01:58:55.396Z",
   "byField": [
     {
       "fieldId": "usmle-step-1",
-      "active": 7383,
-      "served": 7268,
+      "active": 7371,
+      "served": 7302,
       "servedNotReady": 0,
-      "servedWithAlignmentIssues": 6,
-      "alignmentRatePercent": 99.91744634012107,
+      "servedWithAlignmentIssues": 4,
+      "alignmentRatePercent": 99.94522048753765,
       "alignmentIssueCounts": {
-        "criteria_only_in_explanation": 3,
+        "criteria_only_in_explanation": 1,
         "vignette_validation": 3
       },
       "samples": [
         {
-          "id": "cmqasnt7y002h1ycywnco1y4q",
+          "id": "cmr31dl0d00bujs04f8llovqz",
           "subjectId": "pharmacology",
           "codes": [
             "criteria_only_in_explanation"
@@ -25,7 +25,7 @@
           "overallScore": 8.6
         },
         {
-          "id": "cmqasnubs002n1ycyhcgt2s11",
+          "id": "cmr31dl6c00byjs040ruov63z",
           "subjectId": "microbiology",
           "codes": [
             "vignette_validation"
@@ -36,8 +36,8 @@
           "overallScore": 8.2
         },
         {
-          "id": "cmqasnvl500311ycyi6nguxqd",
-          "subjectId": "pathology",
+          "id": "cmr31dlg700c6js04kwjp2jta",
+          "subjectId": "nephrology",
           "codes": [
             "vignette_validation"
           ],
@@ -47,7 +47,7 @@
           "overallScore": 8.4
         },
         {
-          "id": "cmqatq1ld00091y8f3dayc0pm",
+          "id": "cmr31dlmr00cbjs04jxvf1dgi",
           "subjectId": "microbiology",
           "codes": [
             "vignette_validation"
@@ -56,41 +56,19 @@
           "stem": "Which of the following host factors most likely increased his susceptibility to this infection despite vaccination?",
           "correctAnswer": "Deficiency of terminal complement components (C5–C9)",
           "overallScore": 8.3
-        },
-        {
-          "id": "cmqkgnrx80evsl3049nfobi3z",
-          "subjectId": "pharmacology",
-          "codes": [
-            "criteria_only_in_explanation"
-          ],
-          "vignette": "A 21-year-old man presents to the emergency department with polyuria, polydipsia, nausea, and abdominal pain after running out of insulin for the past two days while traveling. His",
-          "stem": "What is the most appropriate management for this patient?",
-          "correctAnswer": "Isotonic IV fluids followed by insulin drip with hourly glucose and electrolyte monitoring",
-          "overallScore": 8
-        },
-        {
-          "id": "cmqkgnt8c0g4sl304eki6ebat",
-          "subjectId": "biochemistry",
-          "codes": [
-            "criteria_only_in_explanation"
-          ],
-          "vignette": "A 23-year-old man presents to the emergency department with polyuria, polydipsia, nausea, and abdominal pain after running out of insulin two days ago during a trip. His vital sign",
-          "stem": "What is the most appropriate management for this patient?",
-          "correctAnswer": "Isotonic IV fluids followed by insulin drip with hourly glucose and electrolyte monitoring",
-          "overallScore": 8
         }
       ]
     },
     {
       "fieldId": "usmle-step-2",
-      "active": 5929,
-      "served": 5770,
+      "active": 11396,
+      "served": 11336,
       "servedNotReady": 0,
-      "servedWithAlignmentIssues": 9,
-      "alignmentRatePercent": 99.84402079722705,
+      "servedWithAlignmentIssues": 4,
+      "alignmentRatePercent": 99.96471418489767,
       "alignmentIssueCounts": {
         "weak_distractors": 2,
-        "criteria_only_in_explanation": 7
+        "criteria_only_in_explanation": 2
       },
       "samples": [
         {
@@ -102,29 +80,7 @@
           "vignette": "A 25-year-old man presents to the emergency department with polyuria, polydipsia, nausea, and abdominal pain. Type 1 diabetes; ran out of insulin 2 days ago during travel. Vital si",
           "stem": "Which laboratory finding is most consistent with the underlying diagnosis?",
           "correctAnswer": "Glucose 486 mg/dL, pH 7.18, HCO₃⁻ 10 mEq/L, anion gap 22, ketones 4+ — supports Diabetic ketoacidosi",
-          "overallScore": 8.3
-        },
-        {
-          "id": "cmqasntjy002k1ycy8v4zf10y",
-          "subjectId": "obgyn",
-          "codes": [
-            "criteria_only_in_explanation"
-          ],
-          "vignette": "A 26-year-old woman, G2P1, at 7 weeks gestation by last menstrual period presents with sharp left lower quadrant pain and light vaginal spotting for six hours. She has no medical p",
-          "stem": "Which of the following is the most appropriate next step in management?",
-          "correctAnswer": "Methotrexate intramuscular injection",
-          "overallScore": 8.5
-        },
-        {
-          "id": "cmqasnus2002s1ycyyhnfs4kq",
-          "subjectId": "pulmonology",
-          "codes": [
-            "criteria_only_in_explanation"
-          ],
-          "vignette": "A 62-year-old woman with recently diagnosed breast cancer is sent to the emergency department from oncology clinic because she became light-headed while waiting for labs. She repor",
-          "stem": "Which of the following is the most appropriate next step in management?",
-          "correctAnswer": "CT pulmonary angiography",
-          "overallScore": 8.6
+          "overallScore": 8.1
         },
         {
           "id": "cmqatq1qw000b1y8f3d3vgsao",
@@ -135,69 +91,36 @@
           "vignette": "A 70-year-old man presents to the inpatient ward with decreased urine output and confusion. NSAID use for osteoarthritis; hypertension; baseline creatinine 1.0 mg/dL. Vital signs: ",
           "stem": "Which diagnostic test is most appropriate at this time?",
           "correctAnswer": "Urinalysis with sediment, FENa/FeUrea, and renal ultrasound to assess obstruction",
-          "overallScore": 8.4
+          "overallScore": 8.3
         },
         {
-          "id": "cmqxdesqt00b81ymag1dgdikg",
-          "subjectId": "psychiatry",
+          "id": "cmr31dl3p00bwjs04r0gu19l0",
+          "subjectId": "obgyn",
           "codes": [
             "criteria_only_in_explanation"
           ],
-          "vignette": "A 22-year-old woman presents to the emergency department with a 3-day history of binge eating followed by self-induced vomiting. She reports feeling out of control during these epi",
-          "stem": "What is the most appropriate next step in management?",
-          "correctAnswer": "Start fluoxetine",
-          "overallScore": 8.1
+          "vignette": "A 26-year-old woman, G2P1, at 7 weeks gestation by last menstrual period presents with sharp left lower quadrant pain and light vaginal spotting for six hours. She has no medical p",
+          "stem": "Which of the following is the most appropriate next step in management?",
+          "correctAnswer": "Methotrexate intramuscular injection",
+          "overallScore": 8.5
         },
         {
-          "id": "cmqxdy62q000n1y79xfv1snpb",
-          "subjectId": "nephrology",
+          "id": "cmr31dlaj00c1js04c0smuort",
+          "subjectId": "pulmonology",
           "codes": [
             "criteria_only_in_explanation"
           ],
-          "vignette": "A 72-year-old woman with a history of hypertension and chronic kidney disease presents to the emergency department with shortness of breath and swelling in her legs. On examination",
-          "stem": "What is the most appropriate next step in management?",
-          "correctAnswer": "Administer furosemide intravenously",
-          "overallScore": 8.4
-        },
-        {
-          "id": "cmqxdy7ha00151y79slfi841c",
-          "subjectId": "pediatrics",
-          "codes": [
-            "criteria_only_in_explanation"
-          ],
-          "vignette": "A 6-month-old infant is brought to the clinic for a well-child visit. The mother expresses concern about the infant's yellowish skin and eyes that have been present for the past we",
-          "stem": "What is the most appropriate next step in management?",
-          "correctAnswer": "Observation and follow-up in one week",
-          "overallScore": 8.1
-        },
-        {
-          "id": "cmqxdy83y001d1y79rx61wczw",
-          "subjectId": "pediatrics",
-          "codes": [
-            "criteria_only_in_explanation"
-          ],
-          "vignette": "A 3-day-old newborn is evaluated for jaundice. The mother reports that the baby was born at 38 weeks via vaginal delivery and has been breastfeeding well. On examination, the infan",
-          "stem": "What is the most appropriate next step in management?",
-          "correctAnswer": "Continue breastfeeding",
-          "overallScore": 8.1
-        },
-        {
-          "id": "cmqxeeb0q004j1y79o2pcc1ag",
-          "subjectId": "pediatrics",
-          "codes": [
-            "criteria_only_in_explanation"
-          ],
-          "vignette": "A 5-year-old boy presents to the emergency department with a high fever of 39.5°C (103.1°F) for the past three days, along with a rash that started on his trunk and spread to his e",
-          "stem": "What is the most appropriate next step in management?",
-          "correctAnswer": "Provide supportive care and hydration",
-          "overallScore": 8.1
+          "vignette": "A 62-year-old woman with recently diagnosed breast cancer is sent to the emergency department from oncology clinic because she became light-headed while waiting for labs. She repor",
+          "stem": "Which of the following is the most appropriate next step in management?",
+          "correctAnswer": "CT pulmonary angiography",
+          "overallScore": 8.6
         }
       ]
     },
     {
       "fieldId": "usmle-step-3",
-      "active": 10725,
-      "served": 10595,
+      "active": 10926,
+      "served": 10882,
       "servedNotReady": 0,
       "servedWithAlignmentIssues": 0,
       "alignmentRatePercent": 100,
@@ -206,8 +129,8 @@
     }
   ],
   "totals": {
-    "served": 23633,
+    "served": 29520,
     "stale": 0,
-    "alignment": 15
+    "alignment": 8
   }
 }

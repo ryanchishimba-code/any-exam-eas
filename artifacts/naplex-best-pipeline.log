@@ -1,2 +1,79 @@
-=== NAPLEX best-only pipeline 2026-06-13T20:00:09.670Z ===
-[2026-06-13T20:00:09.671Z] ▶ START: NAPLEX polish
+=== NAPLEX best-full pipeline 2026-07-03T02:08:40.564Z ===
+[2026-07-03T02:08:40.565Z] ▶ START: Polish
+
+NAPLEX polish — 6485/6485 active pharmacy items
+
+  … 500/6485 scanned, 0 updated
+  … 1000/6485 scanned, 0 updated
+  … 1500/6485 scanned, 0 updated
+  … 2000/6485 scanned, 0 updated
+  … 2500/6485 scanned, 0 updated
+  … 3000/6485 scanned, 0 updated
+  … 3500/6485 scanned, 0 updated
+  … 4000/6485 scanned, 0 updated
+  … 4500/6485 scanned, 0 updated
+  … 5000/6485 scanned, 0 updated
+  … 5500/6485 scanned, 0 updated
+  … 6000/6485 scanned, 0 updated
+
+Scanned:     6485
+Candidates:  206
+Updated:   4
+Skipped:     6481
+Hash collisions: 0
+Errors:      0
+Avg quality: 0.897 → 0.897
+
+[2026-07-03T02:08:48.224Z] ✓ DONE: Polish
+[2026-07-03T02:08:48.224Z] ▶ START: AI elevate
+
+NAPLEX AI best elevation — 13 candidate(s) of 800 scanned
+
+  [below-bar] cmqd1mx5y0… reject→reject score 0.92→1.00 | naplex_stem_format_mismatch
+  [below-bar] cmqvjaa320… reject→reject score 0.90→0.90 | naplex_clinical_vignette_unrelated_options
+  [below-bar] cmqvk1ilh0… reject→reject score 0.90→0.90 | naplex_clinical_vignette_unrelated_options
+  [below-bar] cmqvkc3920… reject→reject score 0.90→0.90 | naplex_clinical_vignette_unrelated_options
+  [below-bar] cmqvklw0u0… reject→reject score 0.90→0.90 | naplex_clinical_vignette_unrelated_options
+  [below-bar] cmqvkly110… reject→reject score 0.90→0.90 | naplex_clinical_vignette_unrelated_options
+  [below-bar] cmqvkwpbd0… reject→reject score 0.90→0.90 | naplex_clinical_vignette_unrelated_options
+  [below-bar] cmqvmu4cg0… reject→reject score 0.90→0.90 | naplex_clinical_vignette_unrelated_options
+
+── AI elevation summary ──
+Candidates:   13
+Scanned:      13
+Elevated:   5
+Still below:  8
+Unchanged:    0
+Errors:       0
+
+[2026-07-03T02:11:56.414Z] ✓ DONE: AI elevate
+[2026-07-03T02:11:56.415Z] ▶ START: Best-only QA gate
+
+NAPLEX best-only QA gate — 6485 active item(s)
+
+  … 2000/6485 (best 1985, acceptable 0, reject 15)
+  … 4000/6485 (best 3951, acceptable 0, reject 49)
+  … 6000/6485 (best 5899, acceptable 0, reject 101)
+  … 6485/6485 (best 6260, acceptable 43, reject 182)
+
+── Best-only gate complete ──
+Processed:    6485
+Best tier:    6260 (will serve)
+Acceptable:   43 (polished but not served)
+Rejected:     182
+
+Top reject reasons:
+  naplex_orphan_calc_stem: 91
+  naplex_clinical_vignette_unrelated_calc: 30
+  missing_vignette: 25
+  naplex_stem_lead_in: 24
+  naplex_explanation_short: 24
+  explanation_too_short: 24
+  naplex_clinical_vignette_unrelated_options: 23
+  empty_explanation: 22
+  weak_naplex_correct: 5
+
+Students will see: 6260 best-tier NAPLEX items
+
+[2026-07-03T02:12:15.086Z] ✓ DONE: Best-only QA gate
+[2026-07-03T02:12:15.086Z] === Best-full pipeline complete ===
