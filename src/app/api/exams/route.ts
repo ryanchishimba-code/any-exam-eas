@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { cacheGetOrSet, cacheKey, CACHE_TTL } from "@/lib/cache";
+import { cacheGetOrSet, cacheKey, CACHE_TTL, CACHE_STALE } from "@/lib/cache";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
 import { countActiveQuestions } from "@/lib/question-bank-db";
@@ -46,7 +46,8 @@ export async function GET() {
           totalQuestions: exams.reduce((sum, e) => sum + e.questionCount, 0),
           updatedAt: new Date().toISOString(),
         };
-      }
+      },
+      { staleTtlMs: CACHE_STALE.examCatalog }
     );
 
     return NextResponse.json(payload, { headers: CACHE_HEADERS });

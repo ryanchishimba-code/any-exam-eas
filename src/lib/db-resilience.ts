@@ -31,6 +31,18 @@ const DEFAULT_TIMEOUT_MS = 15_000;
 const DEFAULT_BASE_DELAY_MS = 200;
 const DEFAULT_SLOW_QUERY_MS = 500;
 
+/** Shared Prisma $extends retry settings — tuned for Neon cold starts on Vercel. */
+export function getPrismaRetryOptions(): Required<
+  Pick<ExecuteWithRetryOptions, "maxAttempts" | "timeoutMs" | "baseDelayMs">
+> {
+  const vercel = Boolean(process.env.VERCEL);
+  return {
+    maxAttempts: Number(process.env.PRISMA_MAX_ATTEMPTS ?? (vercel ? 3 : 3)),
+    timeoutMs: Number(process.env.PRISMA_QUERY_TIMEOUT_MS ?? (vercel ? 20_000 : 15_000)),
+    baseDelayMs: vercel ? 150 : 200,
+  };
+}
+
 const TRANSIENT_PRISMA_CODES = new Set([
   "P1001", // Can't reach database server
   "P1002", // Advisory lock / timeout

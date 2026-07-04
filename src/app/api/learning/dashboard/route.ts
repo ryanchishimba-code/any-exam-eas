@@ -1,16 +1,17 @@
 import { NextResponse } from "next/server";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
-import { cacheGetOrSet, cacheKey, CACHE_TTL } from "@/lib/cache";
+import { cacheGetOrSet, cacheKey, CACHE_TTL, CACHE_STALE } from "@/lib/cache";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { isExamSlug } from "@/lib/edtech/exams";
 import {
   resolveCanonicalPracticeFieldId,
   resolveQuestionBankFieldId,
 } from "@/lib/edtech/question-bank-scope";
+import { withDbCatch } from "@/lib/api-db-error";
 
 export const runtime = "nodejs";
 
-export async function GET(req: Request) {
+export const GET = withDbCatch(async (req: Request) => {
   const { requirePremiumApi } = await import("@/lib/api-access");
   const premium = await requirePremiumApi();
   if (!premium.ok) return premium.response;
@@ -45,7 +46,8 @@ export async function GET(req: Request) {
   const dashboard = await cacheGetOrSet(
     cacheKey(["student-dashboard", premium.userId, scopeId]),
     CACHE_TTL.learningDashboard,
-    () => getStudentDashboardData(premium.userId, fieldIds)
+    () => getStudentDashboardData(premium.userId, fieldIds),
+    { staleTtlMs: CACHE_STALE.learningDashboard }
   );
 
   return NextResponse.json(
@@ -59,4 +61,4 @@ export async function GET(req: Request) {
       },
     }
   );
-}
+});

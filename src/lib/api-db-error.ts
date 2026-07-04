@@ -20,3 +20,25 @@ export function respondDbUnavailable(error?: unknown) {
     headers: { "Retry-After": "3" },
   });
 }
+
+type RouteHandler<TArgs extends unknown[]> = (
+  ...args: TArgs
+) => Promise<Response | NextResponse>;
+
+/**
+ * Wrap an API route handler so transient DB errors return 503 instead of 500.
+ * Re-throws non-DB errors for Next.js / framework handling.
+ */
+export function withDbCatch<TArgs extends unknown[]>(
+  handler: RouteHandler<TArgs>
+): RouteHandler<TArgs> {
+  return async (...args: TArgs) => {
+    try {
+      return await handler(...args);
+    } catch (error) {
+      const dbResponse = respondDbUnavailable(error);
+      if (dbResponse) return dbResponse;
+      throw error;
+    }
+  };
+}

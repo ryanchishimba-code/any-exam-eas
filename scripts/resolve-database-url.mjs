@@ -48,17 +48,20 @@ export function withPoolParams(url) {
   if (!url || !/^postgres(ql)?:\/\//.test(url)) return url;
   try {
     const parsed = new URL(url);
-    if (!parsed.searchParams.has("connection_limit")) {
-      parsed.searchParams.set(
-        "connection_limit",
-        process.env.PRISMA_CONNECTION_LIMIT ?? "5"
-      );
-    }
-    if (!parsed.searchParams.has("pool_timeout")) {
-      parsed.searchParams.set("pool_timeout", process.env.PRISMA_POOL_TIMEOUT ?? "20");
-    }
-    if (!parsed.searchParams.has("connect_timeout")) {
-      parsed.searchParams.set("connect_timeout", "10");
+    const connectionLimit =
+      process.env.PRISMA_CONNECTION_LIMIT ??
+      (process.env.VERCEL ? "1" : "5");
+    parsed.searchParams.set("connection_limit", connectionLimit);
+    parsed.searchParams.set(
+      "pool_timeout",
+      process.env.PRISMA_POOL_TIMEOUT ?? (process.env.VERCEL ? "30" : "20")
+    );
+    parsed.searchParams.set(
+      "connect_timeout",
+      process.env.PRISMA_CONNECT_TIMEOUT ?? "10"
+    );
+    if (process.env.VERCEL) {
+      parsed.searchParams.set("pgbouncer", "true");
     }
     return parsed.toString();
   } catch {

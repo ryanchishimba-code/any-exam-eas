@@ -1,8 +1,9 @@
 /**
- * Shared Prisma client for CLI scripts — resolves Neon/Vercel env vars and
- * bounds the connection pool so audit jobs don't exhaust Neon limits.
+ * Shared Prisma client for CLI scripts — resolves Neon/Vercel env vars,
+ * bounds the connection pool, and retries transient failures.
  */
-import { PrismaClient } from "@prisma/client";
+import type { PrismaClient } from "@prisma/client";
+import { createResilientPrismaClient } from "@/lib/prisma-resilient-client";
 import { loadEnvFiles, ensureDatabaseUrlEnv } from "../resolve-database-url.mjs";
 
 loadEnvFiles();
@@ -18,7 +19,7 @@ let client: PrismaClient | null = null;
 
 export function getScriptPrisma(): PrismaClient {
   if (!client) {
-    client = new PrismaClient({
+    client = createResilientPrismaClient({
       log: process.env.DEBUG_PRISMA ? ["query", "error", "warn"] : ["error"],
     });
   }

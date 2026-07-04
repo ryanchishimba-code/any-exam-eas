@@ -1,13 +1,7 @@
 import type { PrismaClient } from "@prisma/client";
-import { PrismaClient as PrismaClientCtor } from "@prisma/client";
 import { PHASE_PRODUCTION_BUILD } from "next/constants";
-import {
-  assertRuntimeDatabaseUrl,
-  ensureDatabaseUrlEnv,
-  getRuntimeDatabaseUrl,
-  isPostgresDatabaseUrl,
-} from "@/lib/database-url";
-import { executeWithRetry } from "@/lib/db-resilience";
+import { assertRuntimeDatabaseUrl, ensureDatabaseUrlEnv, isPostgresDatabaseUrl } from "@/lib/database-url";
+import { createResilientPrismaClient } from "@/lib/prisma-resilient-client";
 
 const isNextBuild = process.env.NEXT_PHASE === PHASE_PRODUCTION_BUILD;
 
@@ -26,32 +20,10 @@ type GlobalPrisma = typeof globalThis & {
 const globalForPrisma = globalThis as GlobalPrisma;
 
 function createPrismaClient(): PrismaClient {
-  ensureDatabaseUrlEnv();
-  if (process.env.VERCEL) {
-    assertRuntimeDatabaseUrl();
-  }
-  const url = getRuntimeDatabaseUrl();
-  const base = new PrismaClientCtor({
-    log: process.env.NODE_ENV === "development" ? ["error", "warn"] : ["error"],
-    ...(url && isPostgresDatabaseUrl(url)
-      ? { datasources: { db: { url } } }
-      : {}),
-  });
-
-  return base.$extends({
-    query: {
-      $allOperations({ model, operation, args, query }) {
-        const label = `prisma:${model ?? "raw"}.${operation}`;
-        return executeWithRetry(() => query(args), {
-          label,
-          maxAttempts: process.env.VERCEL ? 2 : 3,
-          timeoutMs: process.env.VERCEL ? 5_000 : 10_000,
-          baseDelayMs: 100,
-        });
-      },
-    },
-  }) as unknown as PrismaClient;
+  return createResilientPrismaClient();
 }
+
+export { createResilientPrismaClient } from "@/lib/prisma-resilient-client";
 
 function isPrismaClientCurrent(client: PrismaClient | undefined): client is PrismaClient {
   return Boolean(

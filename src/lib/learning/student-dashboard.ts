@@ -4,7 +4,7 @@ import { isPostgresDatabaseUrl, resolveDatabaseUrl } from "@/lib/database-url";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
 import { getLearningProfileSnapshot } from "./profile-service";
-import { CACHE_TTL, cacheGetOrSet, cacheKey } from "@/lib/cache";
+import { CACHE_TTL, cacheGetOrSet, cacheKey, CACHE_STALE } from "@/lib/cache";
 
 export type AccuracyTrendPoint = {
   date: string;
@@ -276,7 +276,8 @@ export async function getStudentDashboardData(
   return cacheGetOrSet(
     cacheKey(["student-dashboard", userId, scopeKey]),
     CACHE_TTL.learningDashboard,
-    () => loadStudentDashboardData(userId, fieldIds)
+    () => loadStudentDashboardData(userId, fieldIds),
+    { staleTtlMs: CACHE_STALE.learningDashboard }
   );
 }
 

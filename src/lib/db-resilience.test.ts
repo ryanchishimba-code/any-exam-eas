@@ -3,6 +3,7 @@ import { Prisma } from "@prisma/client";
 import {
   DbUnavailableError,
   executeWithRetry,
+  getPrismaRetryOptions,
   isTransientDbError,
   retryDelayMs,
 } from "@/lib/db-resilience";
@@ -34,6 +35,17 @@ describe("retryDelayMs", () => {
     expect(retryDelayMs(0, 200)).toBeGreaterThanOrEqual(200);
     expect(retryDelayMs(0, 200)).toBeLessThan(450);
     expect(retryDelayMs(2, 200)).toBeGreaterThanOrEqual(800);
+  });
+});
+
+describe("getPrismaRetryOptions", () => {
+  it("uses longer timeouts on Vercel", () => {
+    const prev = process.env.VERCEL;
+    process.env.VERCEL = "1";
+    const opts = getPrismaRetryOptions();
+    expect(opts.maxAttempts).toBeGreaterThanOrEqual(3);
+    expect(opts.timeoutMs).toBeGreaterThanOrEqual(15_000);
+    process.env.VERCEL = prev;
   });
 });
 

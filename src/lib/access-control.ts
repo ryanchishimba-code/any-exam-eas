@@ -8,7 +8,7 @@ import {
   type SubscriptionAccess,
 } from "@/lib/subscription-access";
 import { hasFeatureAccess, type SubscriptionFeature } from "@/lib/subscription-features";
-import { CACHE_TTL, cacheGetOrSetDeduped, cacheKey } from "@/lib/cache";
+import { CACHE_TTL, cacheGetOrSetDeduped, cacheKey, CACHE_STALE } from "@/lib/cache";
 
 export { isPremiumPage, PREMIUM_PAGE_PREFIXES } from "@/lib/premium-routes";
 
@@ -96,7 +96,8 @@ export async function getUserAccess(userId: string): Promise<UserAccess> {
   return cacheGetOrSetDeduped(
     cacheKey(["user-access", userId]),
     CACHE_TTL.userAccess,
-    () => resolveUserAccess(userId)
+    () => resolveUserAccess(userId),
+    { staleTtlMs: CACHE_STALE.userAccess }
   );
 }
 

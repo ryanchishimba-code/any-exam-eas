@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
-import { cacheGetOrSet, cacheKey, CACHE_TTL } from "@/lib/cache";
+import { cacheGetOrSet, cacheKey, CACHE_TTL, CACHE_STALE } from "@/lib/cache";
+import { respondDbUnavailable } from "@/lib/api-db-error";
 
 export const runtime = "nodejs";
 
@@ -34,12 +35,15 @@ export async function GET(req: Request) {
     const counts = await cacheGetOrSet(
       cacheKey(["subject-served-counts", fieldId]),
       CACHE_TTL.subjectCatalog,
-      () => getSubjectServedCountsWithRetry(fieldId)
+      () => getSubjectServedCountsWithRetry(fieldId),
+      { staleTtlMs: CACHE_STALE.subjectCatalog }
     );
 
     const total = Object.values(counts).reduce((sum, n) => sum + n, 0);
     return NextResponse.json({ field: fieldId, counts, total });
   } catch (error) {
+    const dbResponse = respondDbUnavailable(error);
+    if (dbResponse) return dbResponse;
     console.error("[questions/subject-counts] lookup failed:", error);
     return NextResponse.json(
       {

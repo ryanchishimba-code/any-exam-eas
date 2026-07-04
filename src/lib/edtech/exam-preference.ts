@@ -2,7 +2,7 @@ import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 import { ensureBoardExam } from "@/lib/edtech/board-exam-sync";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
-import { CACHE_TTL, cacheGetOrSetDeduped, cacheKey, invalidateExamPreferenceCache } from "@/lib/cache";
+import { CACHE_TTL, cacheGetOrSetDeduped, cacheKey, invalidateExamPreferenceCache, CACHE_STALE } from "@/lib/cache";
 import type { ExamSlug, UserExamPreference } from "@/types/edtech";
 
 async function readUserExamPreference(userId: string): Promise<UserExamPreference | null> {
@@ -24,7 +24,8 @@ async function readUserExamPreference(userId: string): Promise<UserExamPreferenc
         examSlug: examSlug as ExamSlug,
         lastStudiedAt: row.lastStudiedAt,
       };
-    }
+    },
+    { staleTtlMs: CACHE_STALE.examPreference }
   );
 }
 

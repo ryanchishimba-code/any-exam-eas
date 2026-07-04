@@ -1,4 +1,4 @@
-import { cacheGetOrSet, cacheKey, CACHE_TTL } from "@/lib/cache";
+import { cacheGetOrSet, cacheKey, CACHE_TTL, CACHE_STALE } from "@/lib/cache";
 import { enforceQuestionBankFieldAccess, resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
 
@@ -22,7 +22,8 @@ export async function loadSubjectCountsForUser(
     const counts = await cacheGetOrSet(
       cacheKey(["subject-served-counts", fieldId]),
       CACHE_TTL.subjectCatalog,
-      () => getSubjectServedCountsWithRetry(fieldId)
+      () => getSubjectServedCountsWithRetry(fieldId),
+      { staleTtlMs: CACHE_STALE.subjectCatalog }
     );
     const total = Object.values(counts).reduce((sum, n) => sum + n, 0);
     return { fieldId, counts, total };

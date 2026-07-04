@@ -1,6 +1,7 @@
 /**
  * Two-tier cache: in-process L1 + optional Upstash Redis L2 for cross-instance hits.
  * Hot paths (user access, subscription status, exam preference) use cacheGetOrSetDeduped.
+ * Pass `staleTtlMs` to serve expired entries when the DB is temporarily unavailable.
  */
 import {
   redisCacheDelete,
@@ -8,19 +9,25 @@ import {
   redisCacheSet,
   isUpstashRedisEnabled,
 } from "@/lib/upstash-redis";
+import { isTransientDbError } from "@/lib/db-resilience";
 
 export { isUpstashRedisEnabled };
 
-type Entry<T> = { expiresAt: number; value: T };
+type Entry<T> = { expiresAt: number; staleUntil: number; value: T };
 
 const store = new Map<string, Entry<unknown>>();
 
 const MAX_ENTRIES = 500;
 
+export type CacheResilienceOptions = {
+  /** Keep serving expired entries for this long on transient DB errors. */
+  staleTtlMs?: number;
+};
+
 function prune(): void {
   const now = Date.now();
   for (const [key, entry] of store) {
-    if (entry.expiresAt <= now) store.delete(key);
+    if (entry.staleUntil <= now) store.delete(key);
   }
   if (store.size <= MAX_ENTRIES) return;
   const sorted = [...store.entries()].sort((a, b) => a[1].expiresAt - b[1].expiresAt);
@@ -29,19 +36,35 @@ function prune(): void {
   }
 }
 
-export function cacheGet<T>(key: string): T | null {
+function cacheGetEntry<T>(key: string): { value: T; fresh: boolean } | null {
   const entry = store.get(key);
   if (!entry) return null;
-  if (Date.now() > entry.expiresAt) {
+  const now = Date.now();
+  if (now > entry.staleUntil) {
     store.delete(key);
     return null;
   }
-  return entry.value as T;
+  return { value: entry.value as T, fresh: now <= entry.expiresAt };
 }
 
-export function cacheSet<T>(key: string, value: T, ttlMs: number): void {
+export function cacheGet<T>(key: string): T | null {
+  const hit = cacheGetEntry<T>(key);
+  return hit?.fresh ? hit.value : null;
+}
+
+export function cacheSet<T>(
+  key: string,
+  value: T,
+  ttlMs: number,
+  staleTtlMs = 0
+): void {
   prune();
-  store.set(key, { value, expiresAt: Date.now() + ttlMs });
+  const now = Date.now();
+  store.set(key, {
+    value,
+    expiresAt: now + ttlMs,
+    staleUntil: now + ttlMs + staleTtlMs,
+  });
 }
 
 export function cacheDelete(key: string): void {
@@ -59,24 +82,44 @@ export function cacheDeleteMatching(prefix: string): void {
   }
 }
 
-export async function cacheGetOrSet<T>(
+async function readThroughCache<T>(
   key: string,
   ttlMs: number,
-  factory: () => Promise<T>
+  factory: () => Promise<T>,
+  options?: CacheResilienceOptions
 ): Promise<T> {
-  const hit = cacheGet<T>(key);
-  if (hit != null) return hit;
+  const staleTtlMs = options?.staleTtlMs ?? 0;
+  const l1 = cacheGetEntry<T>(key);
+  if (l1?.fresh) return l1.value;
 
   const remoteHit = await redisCacheGet<T>(key);
   if (remoteHit != null) {
-    cacheSet(key, remoteHit, ttlMs);
+    cacheSet(key, remoteHit, ttlMs, staleTtlMs);
     return remoteHit;
   }
 
-  const value = await factory();
-  cacheSet(key, value, ttlMs);
-  await redisCacheSet(key, value, ttlMs);
-  return value;
+  try {
+    const value = await factory();
+    cacheSet(key, value, ttlMs, staleTtlMs);
+    const redisTtl = staleTtlMs > 0 ? ttlMs + staleTtlMs : ttlMs;
+    await redisCacheSet(key, value, redisTtl);
+    return value;
+  } catch (error) {
+    if (staleTtlMs > 0 && l1 && isTransientDbError(error)) {
+      console.warn(`[cache:stale] serving stale L1 entry for ${key}`);
+      return l1.value;
+    }
+    throw error;
+  }
+}
+
+export async function cacheGetOrSet<T>(
+  key: string,
+  ttlMs: number,
+  factory: () => Promise<T>,
+  options?: CacheResilienceOptions
+): Promise<T> {
+  return readThroughCache(key, ttlMs, factory, options);
 }
 
 /** Coalesce concurrent cache misses for the same key (prevents duplicate DB work). */
@@ -85,24 +128,24 @@ const inflight = new Map<string, Promise<unknown>>();
 export async function cacheGetOrSetDeduped<T>(
   key: string,
   ttlMs: number,
-  factory: () => Promise<T>
+  factory: () => Promise<T>,
+  options?: CacheResilienceOptions
 ): Promise<T> {
-  const hit = cacheGet<T>(key);
-  if (hit != null) return hit;
+  const staleTtlMs = options?.staleTtlMs ?? 0;
+  const l1 = cacheGetEntry<T>(key);
+  if (l1?.fresh) return l1.value;
 
   const remoteHit = await redisCacheGet<T>(key);
   if (remoteHit != null) {
-    cacheSet(key, remoteHit, ttlMs);
+    cacheSet(key, remoteHit, ttlMs, staleTtlMs);
     return remoteHit;
   }
 
   const pending = inflight.get(key);
   if (pending) return pending as Promise<T>;
 
-  const promise = factory()
-    .then(async (value) => {
-      cacheSet(key, value, ttlMs);
-      await redisCacheSet(key, value, ttlMs);
+  const promise = readThroughCache(key, ttlMs, factory, options)
+    .then((value) => {
       inflight.delete(key);
       return value;
     })
@@ -133,6 +176,15 @@ export const CACHE_TTL = {
   referenceBrief: 2 * 60 * 60 * 1000, // 2h — AI + OER synthesis per user/exam
   subscriptionStatus: 60 * 1000, // 60s per user — dedupes nav + home fetches
   questionBankSlice: 10 * 60 * 1000, // 10m
+} as const;
+
+/** Stale windows for resilient cache reads when Neon is briefly unavailable. */
+export const CACHE_STALE = {
+  subjectCatalog: 2 * 60 * 60 * 1000, // 2h
+  learningDashboard: 5 * 60 * 1000, // 5m
+  userAccess: 10 * 60 * 1000, // 10m
+  examPreference: 10 * 60 * 1000, // 10m
+  examCatalog: 60 * 60 * 1000, // 1h
 } as const;
 
 export function invalidateSubscriptionStatusCache(userId: string): void {

@@ -81,13 +81,15 @@ function hasConfiguredBuildPlaceholder(): boolean {
   return false;
 }
 
-/** Ensure process.env.DATABASE_URL is populated for Prisma/Drizzle CLI tools. */
+/** Ensure process.env.DATABASE_URL is populated with pool params for Prisma/Drizzle. */
 export function ensureDatabaseUrlEnv(): string {
   const resolved = resolveDatabaseUrl();
-  if (resolved && process.env.DATABASE_URL !== resolved) {
-    process.env.DATABASE_URL = resolved;
+  if (!resolved) return resolved;
+  const bounded = withPoolParams(resolved);
+  if (process.env.DATABASE_URL !== bounded) {
+    process.env.DATABASE_URL = bounded;
   }
-  return resolved;
+  return bounded;
 }
 
 export function isBuildPlaceholderDatabaseUrl(url = process.env.DATABASE_URL ?? "") {
