@@ -10,7 +10,7 @@ import {
   buildArticleJsonLd,
   buildResourceArticleMetadata,
 } from "@/lib/seo/marketing-metadata";
-import { getResourceArticle, getArticlesForExam } from "@/lib/seo/resources-content";
+import { getResourceArticle, getArticlesForExam, RESOURCE_ARTICLES } from "@/lib/seo/resources-content";
 import { ResourceArticleSection } from "@/components/resources/ResourceArticleSection";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ROUTES } from "@/lib/routes";
