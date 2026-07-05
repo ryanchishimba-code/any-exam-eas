@@ -5,6 +5,7 @@ import { RESOURCE_ARTICLES } from "@/lib/seo/resources-content";
 
 const STATIC_ROUTES: { path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[0]["changeFrequency"] }[] = [
   { path: "", priority: 1, changeFrequency: "weekly" },
+  { path: "/about", priority: 0.85, changeFrequency: "monthly" },
   { path: "/pricing", priority: 0.9, changeFrequency: "weekly" },
   { path: "/toolkit", priority: 0.9, changeFrequency: "weekly" },
   { path: "/signup", priority: 0.8, changeFrequency: "monthly" },
@@ -32,6 +33,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
+  const examAliasEntries = [
+    { path: "/npte", priority: 0.85 },
+  ].map(({ path, priority }) => ({
+    url: `${base}${path}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority,
+  }));
+
   const resourceEntries = RESOURCE_ARTICLES.map((article) => ({
     url: `${base}/resources/${article.slug}`,
     lastModified: new Date(article.updatedAt),
@@ -39,5 +49,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...examEntries, ...resourceEntries];
+  return [...staticEntries, ...examEntries, ...examAliasEntries, ...resourceEntries];
 }

@@ -2,4 +2,4 @@
 export const HERO_IMAGE_PATH = "/images/hero.jpg";
 
 export const HERO_IMAGE_ALT =
-  "Healthcare student using Any Exam Easy to prepare for NCLEX, USMLE, NAPLEX, and MPJE licensing exams";
+  "Healthcare student using AnyExamEasy for NCLEX, USMLE, and NAPLEX board exam prep with adaptive roadmap";

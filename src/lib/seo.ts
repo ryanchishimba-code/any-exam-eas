@@ -52,31 +52,29 @@ export function absoluteUrl(path: string): string {
   return `${getSiteUrl()}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
+import { SEO_KEYWORD_CLUSTERS, SEO_LIVE_STATS, seoPlatformPitch } from "@/lib/seo/seo-copy";
+
 const HOME_KEYWORDS = [
-  "NCLEX prep 2026",
-  "NCLEX practice questions",
-  "USMLE Step 2 CK practice questions",
-  "NAPLEX review 2026",
+  ...SEO_KEYWORD_CLUSTERS.nclex,
+  ...SEO_KEYWORD_CLUSTERS.naplex,
+  ...SEO_KEYWORD_CLUSTERS.usmle,
+  ...SEO_KEYWORD_CLUSTERS.multiExam,
   "PANCE exam prep",
   "AANP FNP certification prep",
-  "NPTE practice questions",
   "NPTE-PT board prep",
-  "affordable board exam prep",
-  "UWorld alternative",
-  "six board exams one subscription",
-  "board exam study guide",
-  "free board exam trial",
+  "spaced repetition board prep",
+  "clinician-built Qbank",
   "AnyExamEasy",
 ];
 
 export function buildHomeMetadata(): Metadata {
-  const title = `${SITE_NAME} — NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE Prep (2026)`;
-  const description = `All-in-one board prep for NCLEX, USMLE Step 1, Step 2 CK & Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT. Roadmaps, practice questions & Deep Dives. Pro at ${formatMonthlyPrice("pro")}/mo · ${formatTrialLabel()} · ${formatTrialQuestionLimit()} · no payment required.`;
+  const title = `${SITE_NAME} — NCLEX, USMLE & NAPLEX Prep | ${SEO_LIVE_STATS.questionCount} Questions (2026)`;
+  const description = `${seoPlatformPitch()} ${SEO_LIVE_STATS.trialDays}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day money-back guarantee · Pro at ${formatMonthlyPrice("pro")}/mo · ${formatTrialQuestionLimit()}.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 
   return {
-    title,
+    title: { absolute: title },
     description,
     keywords: HOME_KEYWORDS,
     authors: [{ name: SITE_NAME, url }],
@@ -159,8 +157,8 @@ export function buildHomeJsonLd() {
         legalName: LEGAL_ENTITY.companyName,
         url,
         logo: absoluteUrl("/icons/icon-192.png"),
-        description:
-          `${LEGAL_ENTITY.productName} — board exam prep for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT with integrated Roadmaps and adaptive practice.`,
+        description: `${LEGAL_ENTITY.productName} — ${seoPlatformPitch()}`,
+        sameAs: [url],
       },
       {
         "@type": "WebSite",
@@ -188,9 +186,57 @@ export function buildHomeJsonLd() {
           price: MONTHLY_PRICE_USD,
           priceCurrency: "USD",
           description: `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · no payment required · Pro at ${formatMonthlyPrice("pro")}/mo · save up to 20% on annual`,
+          url: absoluteUrl("/pricing"),
         },
+        description: seoPlatformPitch(),
+      },
+      {
+        "@type": "Product",
+        name: `${SITE_NAME} Pro — Multi-Exam Board Prep`,
+        description: seoPlatformPitch(),
+        image: absoluteUrl(DEFAULT_OG_IMAGE_PATH),
+        brand: { "@type": "Brand", name: SITE_NAME },
+        offers: {
+          "@type": "Offer",
+          price: MONTHLY_PRICE_USD,
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+          url: absoluteUrl("/signup?plan=trial&tier=pro"),
+          priceValidUntil: `${new Date().getFullYear()}-12-31`,
+          description: `${SEO_LIVE_STATS.trialDays}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day money-back guarantee`,
+        },
+      },
+      {
+        "@type": "HowTo",
+        name: "How to study for NCLEX, USMLE, or NAPLEX with AnyExamEasy",
         description:
-          "Board exam prep with integrated Roadmaps, adaptive practice, and OER-backed explanations for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT.",
+          "A blueprint-aligned study workflow using adaptive Roadmaps, AI Tutor review, and spaced repetition.",
+        step: [
+          {
+            "@type": "HowToStep",
+            position: 1,
+            name: "Choose your exam",
+            text: "Select NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, or NPTE-PT — all six share one subscription.",
+          },
+          {
+            "@type": "HowToStep",
+            position: 2,
+            name: "Follow your Blueprint Roadmap",
+            text: "Complete daily question sets prioritized by weak blueprint categories surfaced in your Roadmap.",
+          },
+          {
+            "@type": "HowToStep",
+            position: 3,
+            name: "Review with AI Tutor & Deep Dives",
+            text: "Open rationales, AI Tutor coaching, and eight-section Deep Dive modules for missed topics.",
+          },
+          {
+            "@type": "HowToStep",
+            position: 4,
+            name: "Reinforce with Spaced Repetition",
+            text: "Queue weak topics and memory cards for spaced review before timed mock exams.",
+          },
+        ],
       },
     ],
   };

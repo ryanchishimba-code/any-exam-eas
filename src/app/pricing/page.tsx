@@ -15,7 +15,8 @@ import {
   getCachedQuestionBankCounts,
 } from "@/lib/marketing/question-bank-counts";
 
-import { buildPricingMetadata } from "@/lib/seo/marketing-metadata";
+import { buildPricingMetadata, buildPricingJsonLd } from "@/lib/seo/marketing-metadata";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 
 export const metadata = buildPricingMetadata();
 export const revalidate = 3600;
@@ -30,6 +31,8 @@ export default async function PricingPage({
   const bankCounts = buildLandingBankCountsDisplay(bankSnapshot);
 
   return (
+    <>
+      <JsonLdScript data={buildPricingJsonLd()} />
     <PageShell
       eyebrow="6 Major Board Exams · One Subscription"
       title="One Pro plan — every board included."
@@ -89,5 +92,6 @@ export default async function PricingPage({
         . {LEGAL_ENTITY.productName} is a product of {LEGAL_ENTITY.companyName}.
       </p>
     </PageShell>
+    </>
   );
 }

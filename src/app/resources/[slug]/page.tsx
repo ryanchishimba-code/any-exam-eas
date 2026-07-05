@@ -10,7 +10,8 @@ import {
   buildArticleJsonLd,
   buildResourceArticleMetadata,
 } from "@/lib/seo/marketing-metadata";
-import { getResourceArticle, RESOURCE_ARTICLES } from "@/lib/seo/resources-content";
+import { getResourceArticle, getArticlesForExam } from "@/lib/seo/resources-content";
+import { ResourceArticleSection } from "@/components/resources/ResourceArticleSection";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ROUTES } from "@/lib/routes";
 import { formatTrialCtaLabel } from "@/lib/site";
@@ -35,6 +36,9 @@ export default async function ResourceArticlePage({ params }: Props) {
   if (!article) notFound();
 
   const primaryExam = article.primaryExam;
+  const relatedArticles = primaryExam
+    ? getArticlesForExam(primaryExam).filter((a) => a.slug !== slug).slice(0, 4)
+    : [];
 
   return (
     <>
@@ -63,16 +67,29 @@ export default async function ResourceArticlePage({ params }: Props) {
 
         <div className="prose prose-neutral mt-10 max-w-none dark:prose-invert">
           {article.sections.map((section) => (
-            <section key={section.heading} className="mb-10">
-              <h2 className="text-xl font-bold text-[var(--color-ink)]">{section.heading}</h2>
-              {section.paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 40)} className="mt-3 text-[var(--color-ink-muted)] leading-relaxed">
-                  {paragraph}
-                </p>
-              ))}
-            </section>
+            <ResourceArticleSection key={section.heading} section={section} />
           ))}
         </div>
+
+        {relatedArticles.length > 0 ? (
+          <nav className="mt-10 rounded-2xl border border-[var(--color-border)] p-6" aria-label="Related study guides">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-[var(--color-ink)]">
+              Related guides
+            </h2>
+            <ul className="mt-3 space-y-2" role="list">
+              {relatedArticles.map((related) => (
+                <li key={related.slug}>
+                  <Link
+                    href={`/resources/${related.slug}`}
+                    className="text-sm font-medium text-[var(--color-accent)] hover:underline"
+                  >
+                    {related.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ) : null}
 
         <aside className="mt-12 rounded-2xl bg-[var(--color-ink)] px-6 py-8 text-center">
           <h2 className="text-xl font-bold text-[var(--color-bg)]">{formatTrialCtaLabel()}</h2>

@@ -1,7 +1,7 @@
 /** Brand assets for marketing and app chrome. */
 export const BRAND_LOGO = {
   src: "/images/brand/anyexameasy-logo.png",
-  alt: "AnyExamEasy — USMLE, NCLEX, NAPLEX, COMLEX, and AANP FNP exam prep",
+  alt: "AnyExamEasy — NCLEX, USMLE, NAPLEX, PANCE, AANP FNP & NPTE-PT board exam prep",
   width: 687,
   height: 1024,
 } as const;

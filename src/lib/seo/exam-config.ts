@@ -10,6 +10,7 @@ import {
   seoTrialNaplexStudyTip,
   seoTrialTryBeforePayFaq,
 } from "@/lib/seo/trial-copy";
+import { SEO_LIVE_STATS, seoPlatformPitch } from "@/lib/seo/seo-copy";
 
 export type ExamSeoKey = ExamRouteSlug;
 
@@ -62,18 +63,22 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     key: "nclex",
     displayName: "NCLEX-RN",
     shortName: "NCLEX",
-    metaTitle: "NCLEX Board Prep 2026 — Practice Questions, NGN & Study Roadmap",
+    metaTitle: "NCLEX Prep 2026 — Qbank, NGN Questions & Adaptive Roadmap",
     metaDescription:
-      `Pass NCLEX-RN with board-style practice questions, NGN formats (SATA, bow-tie, matrix), blueprint Roadmap, and Deep Dive review. ${SEO_TRIAL_META_WITH_BOARDS}.`,
+      `${SEO_LIVE_STATS.questionCount} NCLEX-RN practice questions with NGN formats (SATA, bow-tie, matrix), AI Tutor, adaptive Blueprint Roadmap, and Spaced Repetition. Clinician-built, QA-gated. ${SEO_LIVE_STATS.trialDays}-day free trial · UWorld alternative on one multi-exam plan. ${SEO_TRIAL_META_WITH_BOARDS}.`,
     keywords: [
       "NCLEX prep 2026",
       "NCLEX practice questions",
+      "NCLEX Qbank",
       "NCLEX study guide",
       "NCLEX-RN review",
       "free NCLEX practice questions",
       "how to pass NCLEX first try",
       "NGN NCLEX questions",
       "NCLEX question bank",
+      "UWorld NCLEX alternative",
+      "best NCLEX Qbank 2026",
+      "AI tutor NCLEX prep",
       "AnyExamEasy NCLEX",
     ],
     h1: "NCLEX Board Prep 2026 — Practice Questions & Clinical Judgment",
@@ -125,16 +130,19 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       "best-nclex-practice-questions-2026",
       "how-to-pass-nclex-first-try",
       "nclex-study-guide-roadmap",
+      "nclex-vs-uworld-comparison-2026",
+      "uworld-alternative-multi-exam-prep-2026",
     ],
   },
   usmle: {
     key: "usmle",
     displayName: "USMLE Step 1 · Step 2 CK · Step 3",
     shortName: "USMLE",
-    metaTitle: "USMLE Step 1, Step 2 CK & Step 3 Practice Questions 2026",
+    metaTitle: "USMLE Practice Questions 2026 — Step 1, Step 2 CK & Step 3 Qbank",
     metaDescription:
-      `Full USMLE coverage — Step 1 basic sciences, Step 2 CK clinical vignettes, and Step 3 CCS-style cases. Timed blocks, blueprint Roadmaps, and Deep Dives. ${SEO_TRIAL_META_SUFFIX}.`,
+      `USMLE Qbank with Step 1, Step 2 CK & Step 3 vignettes, adaptive Blueprint Roadmaps, AI Tutor, and ${SEO_LIVE_STATS.topDrugsLabel}. ${seoPlatformPitch()} ${SEO_LIVE_STATS.trialDays}-day trial · UWorld alternative. ${SEO_TRIAL_META_SUFFIX}.`,
     keywords: [
+      "USMLE practice questions",
       "USMLE Step 1 practice questions",
       "USMLE Step 2 CK practice questions",
       "USMLE Step 3 practice questions",
@@ -143,6 +151,9 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       "Step 2 CK study guide",
       "how to pass USMLE Step 2",
       "USMLE clinical vignettes",
+      "UWorld USMLE alternative",
+      "best USMLE Qbank 2026",
+      "AI tutor USMLE prep",
       "AnyExamEasy USMLE",
     ],
     h1: "USMLE Step 1, Step 2 CK & Step 3 — all on one plan",
@@ -196,16 +207,19 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       "best-usmle-step-2-practice-questions-2026",
       "usmle-step-2-study-guide-roadmap",
       "how-to-pass-usmle-step-2-first-try",
+      "usmle-step-1-practice-questions-2026",
+      "uworld-alternative-multi-exam-prep-2026",
     ],
   },
   naplex: {
     key: "naplex",
     displayName: "NAPLEX",
     shortName: "NAPLEX",
-    metaTitle: "NAPLEX Review 2026 — Pharmacy Practice Questions & Calculations",
+    metaTitle: "NAPLEX Qbank 2026 — Practice Questions, Calculations & Blueprint",
     metaDescription:
-      `NAPLEX prep with calculations, patient cases, drug interactions, and pharmacotherapy vignettes. Blueprint Roadmap + Top 503 Drugs deck. ${SEO_TRIAL_META_SUFFIX}.`,
+      `NAPLEX prep with calculations, patient cases, and pharmacotherapy vignettes. ${SEO_LIVE_STATS.topDrugsLabel}, adaptive Blueprint Roadmap, AI Tutor, and Spaced Repetition. ${SEO_LIVE_STATS.trialDays}-day free trial. ${SEO_TRIAL_META_SUFFIX}.`,
     keywords: [
+      "NAPLEX Qbank",
       "NAPLEX review 2026",
       "NAPLEX practice questions",
       "NAPLEX study guide",
@@ -213,6 +227,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       "how to pass NAPLEX first try",
       "free NAPLEX practice questions",
       "NAPLEX question bank",
+      "best NAPLEX review 2026",
       "AnyExamEasy NAPLEX",
     ],
     h1: "NAPLEX Review 2026 — Calculations, Cases & Pharmacotherapy",
@@ -230,7 +245,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
         detail: "Drug interactions, monitoring, and therapeutic substitution scenarios.",
       },
       {
-        title: "Top 503 Drugs deck",
+        title: "Top 509 Drugs deck",
         detail: "High-yield pharmacology flashcards shared across pharmacy and clinical tracks.",
       },
     ],
@@ -262,6 +277,8 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       "best-naplex-practice-questions-2026",
       "how-to-pass-naplex-first-try",
       "naplex-study-guide-blueprint",
+      "naplex-calculations-study-guide-2026",
+      "uworld-alternative-multi-exam-prep-2026",
     ],
   },
   pance: {

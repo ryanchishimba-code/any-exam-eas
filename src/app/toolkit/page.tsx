@@ -1,54 +1,22 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
-import { LandingCta } from "@/components/landing/LandingCta";
 import { ToolkitBackpackIllustration } from "@/components/toolkit/ToolkitBackpackIllustration";
 import { ToolkitExamAccordion } from "@/components/toolkit/ToolkitExamAccordion";
 import { ToolkitCrossExamComparison } from "@/components/toolkit/ToolkitCrossExamComparison";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ROUTES } from "@/lib/routes";
 import { TOOLKIT_EXAMS } from "@/lib/toolkit/exam-breakdowns";
-import { absoluteUrl } from "@/lib/seo";
+import { ToolkitStudyGuides } from "@/components/toolkit/ToolkitStudyGuides";
+import { buildToolkitHubJsonLd, buildToolkitHubMetadata } from "@/lib/seo/marketing-metadata";
 
 export const revalidate = 86400;
 
-export const metadata: Metadata = {
-  title: "Toolkit — Your Complete Board Exam Prep | AnyExamEasy",
-  description:
-    "Everything you need to pass — school notes, AnyExamEasy practice & roadmaps, and testing readiness tools. Explore all six board exams in one premium prep toolkit.",
-  alternates: { canonical: absoluteUrl("/toolkit") },
-  openGraph: {
-    title: "Toolkit — Your Complete Board Exam Prep",
-    description:
-      "School notes give you the foundation. AnyExamEasy turns knowledge into confidence. Explore USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT.",
-    url: absoluteUrl("/toolkit"),
-  },
-};
-
-function buildToolkitJsonLd() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "AnyExamEasy Toolkit",
-    description: "Complete board exam prep toolkit for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT.",
-    url: absoluteUrl("/toolkit"),
-    mainEntity: {
-      "@type": "ItemList",
-      itemListElement: TOOLKIT_EXAMS.map((exam, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        name: exam.title,
-        description: exam.whatItTests,
-        url: absoluteUrl(exam.prepHref),
-      })),
-    },
-  };
-}
+export const metadata = buildToolkitHubMetadata();
 
 export default function ToolkitPage() {
   return (
     <>
-      <JsonLdScript data={buildToolkitJsonLd()} />
+      <JsonLdScript data={buildToolkitHubJsonLd()} />
       <div className="min-h-screen bg-[var(--color-bg)]">
         {/* Hero */}
         <section className="relative overflow-hidden px-6 pt-[var(--page-top)]">
@@ -148,6 +116,8 @@ export default function ToolkitPage() {
         </section>
 
         <ToolkitCrossExamComparison />
+
+        <ToolkitStudyGuides />
 
         {/* Final CTA */}
         <section className="border-t border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-16 sm:py-20">

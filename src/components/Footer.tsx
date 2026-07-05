@@ -7,7 +7,24 @@ import { MARKETING_DISCLAIMER } from "@/lib/site";
 import { LEGAL_ENTITY, TRADEMARK_NOTICE } from "@/lib/legal";
 import { useUserAccess } from "@/lib/client/use-user-access";
 import { EXAM_NAV_ITEMS, ROUTES } from "@/lib/routes";
+import { examMarketingPath } from "@/lib/seo/exam-config";
 import { SiteBottomBar } from "@/components/layout/SiteBottomBar";
+
+const MARKETING_EXAM_LINKS = [
+  { href: examMarketingPath("nclex"), label: "NCLEX prep" },
+  { href: examMarketingPath("usmle"), label: "USMLE prep" },
+  { href: examMarketingPath("naplex"), label: "NAPLEX prep" },
+  { href: examMarketingPath("pance"), label: "PANCE prep" },
+  { href: examMarketingPath("aanp-fnp"), label: "AANP FNP prep" },
+  { href: examMarketingPath("npte-pt"), label: "NPTE prep" },
+];
+
+const STUDY_GUIDE_LINKS = [
+  { href: "/resources/uworld-alternative-multi-exam-prep-2026", label: "UWorld alternative guide" },
+  { href: "/resources/nclex-vs-uworld-comparison-2026", label: "NCLEX vs UWorld" },
+  { href: "/resources/ai-tutor-adaptive-board-prep-2026", label: "AI Tutor board prep" },
+  { href: "/resources/best-value-multi-exam-board-prep-2026", label: "Best value multi-exam prep" },
+];
 
 const legalLinks = [
   { href: "/legal/terms", label: "Terms of Service" },
@@ -31,6 +48,8 @@ export function Footer() {
         { href: ROUTES.practiceHub, label: "Practice Hub" },
         { href: ROUTES.toolkit, label: "Toolkit" },
         { href: ROUTES.pricing, label: "Pricing" },
+        { href: "/about", label: "About" },
+        ...MARKETING_EXAM_LINKS.slice(0, 3),
       ];
 
   const accountLinks = [
@@ -54,7 +73,7 @@ export function Footer() {
       role="contentinfo"
     >
       <div className="mx-auto max-w-[980px] px-5 sm:px-6">
-        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-5">
           <div className="md:col-span-1">
             <BrandLogo href={ROUTES.home} variant="footer" />
             <p className="mt-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
@@ -102,6 +121,31 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+            </ul>
+          </nav>
+          <nav aria-label="Study guide links">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--color-ink)]">
+              Study guides
+            </p>
+            <ul className="space-y-2" role="list">
+              {STUDY_GUIDE_LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-sm text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href={ROUTES.toolkit}
+                  className="text-sm font-semibold text-[var(--color-accent)] transition hover:underline"
+                >
+                  All guides →
+                </Link>
+              </li>
             </ul>
           </nav>
           <nav aria-label="Legal links">

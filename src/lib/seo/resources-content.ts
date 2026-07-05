@@ -17,6 +17,8 @@ import {
   seoTrialResourceParagraph,
   seoTrialTryNclexHeading,
 } from "@/lib/seo/trial-copy";
+import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
+import { ADDITIONAL_RESOURCE_ARTICLES } from "@/lib/seo/additional-resource-articles";
 
 export type ResourceDownload = {
   slug: string;
@@ -24,6 +26,13 @@ export type ResourceDownload = {
   description: string;
   examTags: ExamSeoKey[];
   signupHref: string;
+};
+
+export type ResourceSection = {
+  heading: string;
+  paragraphs: string[];
+  bullets?: string[];
+  comparisonRows?: { feature: string; anyExamEasy: string; typicalQbank: string }[];
 };
 
 export type ResourceArticle = {
@@ -36,7 +45,7 @@ export type ResourceArticle = {
   updatedAt: string;
   readingMinutes: number;
   intro: string;
-  sections: { heading: string; paragraphs: string[] }[];
+  sections: ResourceSection[];
   primaryExam?: ExamSeoKey;
 };
 
@@ -90,7 +99,7 @@ function article(
   };
 }
 
-/** SEO resource articles — 18 guides targeting high-intent exam keywords. */
+/** SEO resource articles — guides targeting high-intent exam keywords. */
 export const RESOURCE_ARTICLES: ResourceArticle[] = [
   article({
     slug: "best-nclex-practice-questions-2026",
@@ -115,7 +124,19 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         heading: "Why a Roadmap beats random QBank churn",
         paragraphs: [
           "Random 75-question sets feel productive but hide weak Client Needs categories. A blueprint-aligned Roadmap surfaces gaps after every session.",
-          "AnyExamEasy links missed topics to Deep Dive modules so you can go from question → structured review in one click.",
+          "AnyExamEasy links missed topics to Deep Dive modules and AI Tutor coaching so you can go from question → structured review in one click.",
+        ],
+      },
+      {
+        heading: "NCLEX Qbank comparison checklist (2026)",
+        paragraphs: ["Use this checklist when evaluating NCLEX prep platforms:"],
+        bullets: [
+          "NGN formats: SATA, bow-tie, matrix, unfolding cases",
+          "Clinical judgment stems with plausible distractors",
+          "Blueprint category tracking (NCSBN Client Needs)",
+          "AI coaching or structured rationale review on misses",
+          "Timed mock exams matching board pacing",
+          "Multi-exam value if you also need USMLE or NAPLEX prep",
         ],
       },
       {
@@ -144,6 +165,15 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         heading: "Simulate test-day conditions",
         paragraphs: [
           "Use full-length timed sessions to practice endurance and decision speed. AnyExamEasy timed simulations mirror board pacing.",
+        ],
+      },
+      {
+        heading: "4-week NCLEX first-attempt timeline",
+        comparisonRows: [
+          { feature: "Week 1", anyExamEasy: "Diagnostic sets + Roadmap baseline", typicalQbank: "Untimed review blocks" },
+          { feature: "Week 2", anyExamEasy: "Weak Client Needs + NGN formats daily", typicalQbank: "Random mixed sets" },
+          { feature: "Week 3", anyExamEasy: "Timed blocks + Spaced Repetition queue", typicalQbank: "Self-scheduled mocks" },
+          { feature: "Week 4", anyExamEasy: "Full mocks + AI Tutor on flagged items", typicalQbank: "Light review only" },
         ],
       },
     ],
@@ -180,6 +210,15 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         paragraphs: [
           "Step 2 CK rewards next-best-step reasoning. The best items include competitive distractors that reflect real clinical alternatives.",
           "Avoid banks that reuse the same stem template with swapped diagnoses — variation trains pattern recognition without memorization.",
+        ],
+      },
+      {
+        heading: "USMLE Qbank feature comparison",
+        comparisonRows: [
+          { feature: "Steps covered", anyExamEasy: "Step 1, Step 2 CK, Step 3", typicalQbank: "Often one step per plan" },
+          { feature: "Study path", anyExamEasy: "Adaptive Blueprint Roadmap per step", typicalQbank: "Performance charts" },
+          { feature: "Pharmacology", anyExamEasy: SEO_LIVE_STATS.topDrugsLabel, typicalQbank: "Varies" },
+          { feature: "AI support", anyExamEasy: "AI Tutor on missed vignettes", typicalQbank: "Static explanations" },
         ],
       },
     ],
@@ -232,7 +271,16 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         heading: "Balance math and clinical cases",
         paragraphs: [
           "Split weekly study between calculation drills and case-based management — both are heavily represented on NAPLEX.",
-          "AnyExamEasy includes a Top 503 Drugs deck for brand/generic mastery alongside the NAPLEX bank.",
+          `AnyExamEasy includes ${SEO_LIVE_STATS.topDrugsLabel} for brand/generic mastery alongside the NAPLEX bank.`,
+        ],
+      },
+      {
+        heading: "NAPLEX prep platform comparison",
+        comparisonRows: [
+          { feature: "Calculations", anyExamEasy: "Dedicated math + case mix", typicalQbank: "Varies by vendor" },
+          { feature: "Blueprint tracking", anyExamEasy: "NABP five-domain Roadmap", typicalQbank: "Topic lists only" },
+          { feature: "Drug deck", anyExamEasy: SEO_LIVE_STATS.topDrugsLabel, typicalQbank: "Separate resource" },
+          { feature: "Multi-exam value", anyExamEasy: "NCLEX + USMLE + 4 more included", typicalQbank: "Pharmacy-only" },
         ],
       },
     ],
@@ -468,6 +516,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       },
     ],
   }),
+  ...ADDITIONAL_RESOURCE_ARTICLES,
 ];
 
 export function getResourceArticle(slug: string): ResourceArticle | undefined {

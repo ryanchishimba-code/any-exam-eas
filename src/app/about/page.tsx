@@ -13,7 +13,8 @@ import { AboutShowdownLazy } from "@/components/about/AboutShowdownLazy";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ROUTES } from "@/lib/routes";
 import { formatTrialCtaLabel, formatTrialLabel } from "@/lib/site";
-import { buildAboutMetadata } from "@/lib/seo/marketing-metadata";
+import { buildAboutMetadata, buildAboutJsonLd } from "@/lib/seo/marketing-metadata";
+import { JsonLdScript } from "@/components/seo/JsonLdScript";
 import {
   buildLandingBankCountsDisplay,
   getCachedQuestionBankCounts,
@@ -72,6 +73,8 @@ export default async function AboutPage() {
   ];
 
   return (
+    <>
+      <JsonLdScript data={buildAboutJsonLd()} />
     <div className="bg-[var(--color-bg)]">
       {/* ── 1. Hero ──────────────────────────────────────────────────── */}
       <section className="relative overflow-hidden px-6 pt-[var(--page-top)]">
@@ -300,5 +303,6 @@ export default async function AboutPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }
