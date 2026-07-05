@@ -194,4 +194,13 @@ export function invalidateSubscriptionStatusCache(userId: string): void {
 
 export function invalidateExamPreferenceCache(userId: string): void {
   cacheDelete(cacheKey(["exam-preference", userId]));
+  invalidateLearningDashboardCache(userId);
+}
+
+/** Drop per-user dashboard / weak-topic caches when the selected exam changes. */
+export function invalidateLearningDashboardCache(userId: string): void {
+  const dashboardPrefix = cacheKey(["student-dashboard", userId]);
+  cacheDeleteMatching(`${dashboardPrefix}:`);
+  cacheDeleteMatching(`${cacheKey(["weak-topics", userId])}:`);
+  cacheDeleteMatching(`${cacheKey(["library-hub-stats", userId])}:`);
 }

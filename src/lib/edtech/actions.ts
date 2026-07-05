@@ -18,9 +18,11 @@ function revalidateExamPreferencePaths() {
   revalidatePath("/dashboard", "layout");
   revalidatePath("/question-bank", "layout");
   revalidatePath("/analytics", "layout");
+  revalidatePath("/library", "layout");
   revalidatePath("/settings", "layout");
   revalidatePath("/dashboard");
   revalidatePath("/question-bank");
+  revalidatePath("/library");
   revalidatePath("/select-exam");
 }
 

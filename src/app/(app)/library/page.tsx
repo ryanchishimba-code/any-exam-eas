@@ -60,7 +60,7 @@ async function LibraryContent({
       usmleFieldId: meta?.usmleFieldId,
     }),
     getStudentWeakTopics(userId, [fieldId]),
-    getLibraryHubStats(userId),
+    getLibraryHubStats(userId, [fieldId]),
   ]);
 
   const weakTopicsSlice = weakTopics.slice(0, 6);
@@ -107,12 +107,14 @@ export default async function LibraryPage({ searchParams }: PageProps) {
   await requirePremiumPage(ROUTES.library);
 
   const pref = await getUserExamPreference(session.user.id);
-  const examSlug = (examOverride ?? pref?.examSlug ?? null) as ExamSlug | null;
-  if (!examSlug) redirect(ROUTES.selectExam);
+  if (!pref) redirect(ROUTES.selectExam);
+
+  const examSlug = (examOverride ?? pref.examSlug) as ExamSlug;
 
   return (
     <Suspense fallback={<LibrarySkeleton />}>
       <LibraryContent
+        key={examSlug}
         userId={session.user.id}
         userName={session.user.name}
         examSlug={examSlug}

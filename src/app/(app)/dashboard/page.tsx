@@ -49,7 +49,7 @@ async function DashboardContent({
 
   const [stats, dashboard, roadmap, metadata, usage] = await Promise.all([
     getExamScopedStats(userId, examSlug),
-    getStudentDashboardData(userId),
+    getStudentDashboardData(userId, [fieldId]),
     getExamRoadmapData(userId, examSlug),
     getUserEdtechMetadata(userId),
     getStudyUsageSnapshot(access),
@@ -57,9 +57,7 @@ async function DashboardContent({
 
   const testDate = getExamTestDate(metadata, examSlug);
 
-  const weakTopics = dashboard.weakTopics
-    .filter((t) => t.fieldId === fieldId)
-    .slice(0, 6);
+  const weakTopics = dashboard.weakTopics.slice(0, 6);
 
   return (
     <DashboardPageContent
@@ -95,6 +93,7 @@ export default async function DashboardPage() {
   return (
     <Suspense fallback={<DashboardSkeleton />}>
       <DashboardContent
+        key={pref.examSlug}
         userId={session.user.id}
         userName={session.user.name}
         access={access}

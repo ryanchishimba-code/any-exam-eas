@@ -170,6 +170,7 @@ const FIELD_SPECS: Record<string, FieldSpec> = {
 function parseArgs() {
   const args = process.argv.slice(2);
   let dryRun = false;
+  let duplicatesOnly = false;
   let fields = "nursing,pance";
   let stemCapOverride: number | undefined;
   const stemCapByField: Record<string, number> = {};
@@ -177,6 +178,7 @@ function parseArgs() {
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
     if (a === "--dry-run") dryRun = true;
+    else if (a === "--duplicates-only") duplicatesOnly = true;
     else if (a === "--fields" && args[i + 1]) fields = args[++i]!;
     else if (a === "--stem-cap" && args[i + 1]) stemCapOverride = Number.parseInt(args[++i]!, 10);
     else if (a.startsWith("--stem-cap-") && args[i + 1]) {
@@ -190,7 +192,7 @@ function parseArgs() {
       ? Object.keys(FIELD_SPECS)
       : fields.split(",").map((f) => f.trim()).filter(Boolean);
 
-  return { dryRun, fieldIds, stemCapOverride, stemCapByField };
+  return { dryRun, duplicatesOnly, fieldIds, stemCapOverride, stemCapByField };
 }
 
 async function loadActiveRows(fieldId: string) {
@@ -255,6 +257,7 @@ function stemCapForField(
 async function trimField(
   fieldId: string,
   dryRun: boolean,
+  duplicatesOnly: boolean,
   stemCapOverride: number | undefined,
   stemCapByField: Record<string, number>
 ) {
@@ -286,15 +289,21 @@ async function trimField(
     );
   }
 
-  const keepIds = new Set(keep.filter((r) => r.serveReady).map((r) => r.id));
-  const notServeReadyKeep = keep.filter((r) => !r.serveReady).map((r) => r.id);
-  const idsToRetire = [
-    ...new Set([
-      ...retire.map((r) => r.id),
-      ...notServeReadyKeep,
-      ...allRows.filter((r) => !keepIds.has(r.id)).map((r) => r.id),
-    ]),
-  ];
+  const keepIds = duplicatesOnly
+    ? new Set(keep.map((r) => r.id))
+    : new Set(keep.filter((r) => r.serveReady).map((r) => r.id));
+  const notServeReadyKeep = duplicatesOnly
+    ? []
+    : keep.filter((r) => !r.serveReady).map((r) => r.id);
+  const idsToRetire = duplicatesOnly
+    ? [...new Set(retire.map((r) => r.id))]
+    : [
+        ...new Set([
+          ...retire.map((r) => r.id),
+          ...notServeReadyKeep,
+          ...allRows.filter((r) => !keepIds.has(r.id)).map((r) => r.id),
+        ]),
+      ];
 
   const summary = summarizeDedupe(
     allRows.length,
@@ -304,10 +313,16 @@ async function trimField(
 
   if (!dryRun) {
     await deactivateBankIds(idsToRetire, dryRun);
-    await markKeptServeReady([...keepIds], dryRun);
-    console.log(`  ✓ retired ${idsToRetire.length}, kept ${keepIds.size} serve-ready`);
+    if (!duplicatesOnly) {
+      await markKeptServeReady([...keepIds], dryRun);
+    }
+    console.log(
+      `  ✓ retired ${idsToRetire.length}${duplicatesOnly ? " duplicates" : ""}, kept ${keepIds.size}${duplicatesOnly ? "" : " serve-ready"}`
+    );
   } else {
-    console.log(`  [dry-run] would retire ${idsToRetire.length}, keep ${keepIds.size}`);
+    console.log(
+      `  [dry-run] would retire ${idsToRetire.length}${duplicatesOnly ? " duplicates" : ""}, keep ${keepIds.size}`
+    );
   }
 
   return {
@@ -322,8 +337,8 @@ async function trimField(
 }
 
 async function main() {
-  const { dryRun, fieldIds, stemCapOverride, stemCapByField } = parseArgs();
-  console.log(`\nTrim duplicate clinical cases${dryRun ? " [dry-run]" : ""}`);
+  const { dryRun, duplicatesOnly, fieldIds, stemCapOverride, stemCapByField } = parseArgs();
+  console.log(`\nTrim duplicate clinical cases${dryRun ? " [dry-run]" : ""}${duplicatesOnly ? " [duplicates-only]" : ""}`);
   console.log(`Fields: ${fieldIds.join(", ")}`);
 
   const reports = [];
@@ -332,7 +347,7 @@ async function main() {
       console.warn(`Skipping unknown field: ${fieldId}`);
       continue;
     }
-    reports.push(await trimField(fieldId, dryRun, stemCapOverride, stemCapByField));
+    reports.push(await trimField(fieldId, dryRun, duplicatesOnly, stemCapOverride, stemCapByField));
   }
 
   mkdirSync(join(ROOT, "artifacts"), { recursive: true });

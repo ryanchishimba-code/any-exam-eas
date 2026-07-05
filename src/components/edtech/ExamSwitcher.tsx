@@ -10,6 +10,7 @@ import {
   prepareClientForExamSwitch,
   resolvePathAfterExamSwitch,
 } from "@/lib/client/exam-switch-reset";
+import { navigateHard } from "@/lib/client/navigate-hard";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { ROUTES } from "@/lib/routes";
@@ -53,7 +54,14 @@ export function ExamSwitcher({
         new URLSearchParams(searchParams.toString()),
         next
       );
-      if (nextPath !== pathname) {
+      const onLibrary =
+        pathname === ROUTES.library || pathname.startsWith(`${ROUTES.library}/`);
+      if (pathname === ROUTES.dashboard) {
+        // Soft refresh can leave stale RSC payload on the dashboard after an exam switch.
+        navigateHard(ROUTES.dashboard);
+      } else if (onLibrary) {
+        navigateHard(nextPath);
+      } else if (nextPath !== pathname) {
         router.push(nextPath);
       } else {
         router.refresh();

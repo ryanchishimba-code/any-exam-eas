@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 import { useReducedMotion } from "framer-motion";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import {
@@ -9,6 +8,7 @@ import {
   usePickerWheelScroll,
 } from "@/hooks/usePickerWheelScroll";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
+import { navigateHard } from "@/lib/client/navigate-hard";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -30,7 +30,6 @@ type Props = {
  * the CTA opens that exam's library.
  */
 export function LibraryExamWheel({ currentExam }: Props) {
-  const router = useRouter();
   const reduceMotion = useReducedMotion();
 
   const options = EXAM_SLUGS;
@@ -70,8 +69,8 @@ export function LibraryExamWheel({ currentExam }: Props) {
     if (!selected) return;
     if (selected === currentExam) return;
     setPending(true);
-    router.push(`${ROUTES.library}?exam=${selected}`);
-  }, [router, selected, currentExam]);
+    navigateHard(`${ROUTES.library}?exam=${selected}`);
+  }, [selected, currentExam]);
 
   const onKeyDown = useMemo(
     () =>

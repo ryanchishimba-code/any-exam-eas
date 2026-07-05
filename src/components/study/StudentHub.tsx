@@ -15,9 +15,11 @@ import { ProgressMetricsNotice } from "@/components/legal/ProgressMetricsNotice"
 import { formatTrialEntryPrice, formatTrialLabel } from "@/lib/site";
 import { displayFirstName } from "@/lib/display-name";
 import { ROUTES } from "@/lib/routes";
+import { useAppPreferences } from "@/lib/client/use-app-preferences";
 
 export function StudentHub({ suppressHero = false }: { suppressHero?: boolean }) {
   const { data: session } = useSession();
+  const { examSlug, loading: prefLoading } = useAppPreferences();
   const [dashboard, setDashboard] = useState<StudentDashboardData | null>(null);
   const [subjects, setSubjects] = useState<SubjectCatalogEntry[]>([]);
   const [loading, setLoading] = useState(!!session?.user);
@@ -30,16 +32,17 @@ export function StudentHub({ suppressHero = false }: { suppressHero?: boolean })
   }, []);
 
   useEffect(() => {
-    if (!session?.user) {
-      setLoading(false);
+    if (!session?.user || prefLoading) {
+      if (!session?.user) setLoading(false);
       return;
     }
-    fetch("/api/learning/dashboard")
+    setLoading(true);
+    fetch("/api/learning/dashboard", { cache: "no-store" })
       .then((r) => r.json())
       .then((d) => setDashboard(d.dashboard ?? null))
       .catch(() => setDashboard(null))
       .finally(() => setLoading(false));
-  }, [session?.user]);
+  }, [session?.user, examSlug, prefLoading]);
 
   const headline = dashboard?.headline;
   const featured = subjects.filter((s) => s.trending || s.recommended).slice(0, 5);

@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import { StudentDashboardCharts } from "@/components/dashboard/StudentDashboardChartsLazy";
+import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -27,16 +28,19 @@ function scoreBg(score: number): string {
 }
 
 export function StudentDashboard() {
+  const { examSlug, loading: prefLoading } = useAppPreferences();
   const [data, setData] = useState<StudentDashboardData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/learning/dashboard")
+    if (prefLoading) return;
+    setLoading(true);
+    fetch("/api/learning/dashboard", { cache: "no-store" })
       .then((r) => r.json())
       .then((d) => setData(d.dashboard ?? null))
       .catch(() => setData(null))
       .finally(() => setLoading(false));
-  }, []);
+  }, [examSlug, prefLoading]);
 
   if (loading) {
     return (

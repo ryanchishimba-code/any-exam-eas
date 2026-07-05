@@ -289,16 +289,23 @@ export type LibraryHubStats = {
 };
 
 /** Lightweight stats for the library hub — skips trend/recent-tests work. */
-export async function getLibraryHubStats(userId: string): Promise<LibraryHubStats> {
+export async function getLibraryHubStats(
+  userId: string,
+  fieldIds: FieldScope = null
+): Promise<LibraryHubStats> {
+  const scopeKey = fieldIds?.length ? fieldIds.join(",") : "all";
   return cacheGetOrSet(
-    cacheKey(["library-hub-stats", userId]),
+    cacheKey(["library-hub-stats", userId, scopeKey]),
     CACHE_TTL.learningDashboard,
     async () => {
+      const scoped = Boolean(fieldIds && fieldIds.length > 0);
+      const attemptScope = fieldWhere(fieldIds);
+
       const [profile, attemptGroups] = await Promise.all([
         getLearningProfileSnapshot(userId),
         prisma.questionAttempt.groupBy({
           by: ["correct"],
-          where: { userId },
+          where: { userId, ...attemptScope },
           _count: { _all: true },
         }),
       ]);
@@ -306,8 +313,17 @@ export async function getLibraryHubStats(userId: string): Promise<LibraryHubStat
       const overallAccuracy =
         totalAttempts > 0 ? Math.round((correctCount / totalAttempts) * 100) : null;
 
+      const readinessScore = (() => {
+        if (!scoped) return profile.readinessScore;
+        const scores = profile.fieldReadiness
+          .filter((f) => fieldIds!.includes(f.fieldId))
+          .map((f) => f.score);
+        if (scores.length === 0) return 0;
+        return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+      })();
+
       return {
-        readinessScore: profile.readinessScore,
+        readinessScore,
         studyStreakDays: profile.studyStreakDays,
         overallAccuracy,
         motivationalMessage: buildMotivationalMessage(
@@ -316,7 +332,8 @@ export async function getLibraryHubStats(userId: string): Promise<LibraryHubStat
           overallAccuracy
         ),
       };
-    }
+    },
+    { staleTtlMs: CACHE_STALE.learningDashboard }
   );
 }
 
