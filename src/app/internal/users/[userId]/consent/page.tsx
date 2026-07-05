@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import Link from "next/link";
 import { requireInternalPermission } from "@/lib/internal/auth";
 import { getUserConsentSnapshot } from "@/lib/legal/consent-record";
-import { LEGAL_ENTITY } from "@/lib/legal";
+import { LEGAL_DISCLAIMERS, LEGAL_ENTITY } from "@/lib/legal";
 
 type Props = { params: Promise<{ userId: string }> };
 
@@ -105,14 +105,28 @@ export default async function UserConsentPage({ params }: Props) {
         </section>
       </div>
 
+      <section className="rounded-2xl border border-amber-200/60 bg-amber-50/50 p-5 text-sm text-black/75">
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-amber-900/70">
+          Content provider &amp; exam disclaimer
+        </h2>
+        <p className="mt-2">{LEGAL_DISCLAIMERS.contentProvider}</p>
+        <p className="mt-2">{LEGAL_DISCLAIMERS.notOfficialExamContent}</p>
+        <p className="mt-2">{LEGAL_DISCLAIMERS.supplementaryStudyRequired}</p>
+      </section>
+
       <section className="rounded-2xl border border-dashed border-black/15 bg-black/[0.02] p-5 text-sm text-black/70">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-black/45">Attestations</h2>
-        <ul className="mt-3 list-disc space-y-2 pl-5">
-          <li>Terms of Service (version {snapshot.termsVersion})</li>
-          <li>Privacy Policy (version {snapshot.privacyVersion})</li>
-          <li>Age 18+ representation at registration</li>
-          <li>Educational use &amp; academic integrity acknowledgment</li>
-        </ul>
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-black/45">
+          Attestations accepted at registration
+        </h2>
+        <p className="mt-1 text-xs text-black/45">
+          Attestation version: {snapshot.attestationVersion}
+          {snapshot.source === "inferred" ? " · Inferred record (full text shown for reference)" : ""}
+        </p>
+        <ol className="mt-3 list-decimal space-y-2.5 pl-5">
+          {snapshot.attestations.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ol>
         {snapshot.ipAddress ? (
           <p className="mt-4 text-xs text-black/45">Captured IP: {snapshot.ipAddress}</p>
         ) : null}

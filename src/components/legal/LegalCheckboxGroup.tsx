@@ -1,6 +1,7 @@
 "use client";
 
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
+import { getSignupConsentSummaryLines } from "@/lib/legal/consent-attestations";
 import Link from "next/link";
 
 type Props = {
@@ -38,7 +39,7 @@ export function LegalCheckboxGroup({
           className="mt-1"
           required
         />
-        <span>
+        <div>
           I agree to the{" "}
           <Link href="/legal/terms" className="text-[var(--color-accent)] underline">
             Terms of Service
@@ -51,10 +52,17 @@ export function LegalCheckboxGroup({
           <Link href="/legal/disclaimer" className="text-[var(--color-accent)] underline">
             Educational Disclaimer
           </Link>
-          . I understand content is for study support only, billing terms include auto-renewal and
-          non-refundable payments as described in the Terms, and I am responsible for verifying
-          accuracy.
-        </span>
+          . I understand and agree that:
+          <ul className="mt-2 list-disc space-y-1 pl-4 text-[var(--color-ink-muted)]">
+            {getSignupConsentSummaryLines().map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+          <p className="mt-2">
+            Billing terms include auto-renewal and non-refundable payments as described in the Terms.{" "}
+            {LEGAL_DISCLAIMERS.userResponsibility}
+          </p>
+        </div>
       </label>
     </div>
   );

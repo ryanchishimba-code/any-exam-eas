@@ -1,5 +1,9 @@
 import { prisma } from "@/lib/prisma";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
+import {
+  CONSENT_ATTESTATION_VERSION,
+  getSignupConsentAttestations,
+} from "@/lib/legal/consent-attestations";
 
 export type ConsentSignupMethod = "credentials" | "google" | "apple" | "linkedin";
 
@@ -17,6 +21,8 @@ export type UserConsentSnapshot = {
   userAgent: string | null;
   metadata: Record<string, unknown> | null;
   source: "recorded" | "inferred";
+  attestations: string[];
+  attestationVersion: string;
 };
 
 export type ConsentListSummary = {
@@ -40,6 +46,7 @@ export async function recordUserLegalConsent(input: {
 }): Promise<void> {
   const ipAddress = input.req ? clientIpFromRequest(input.req) : null;
   const userAgent = input.req?.headers.get("user-agent") ?? null;
+  const attestations = getSignupConsentAttestations();
 
   await prisma.userLegalConsent.upsert({
     where: { userId: input.userId },
@@ -50,10 +57,36 @@ export async function recordUserLegalConsent(input: {
       signupMethod: input.signupMethod ?? "credentials",
       ipAddress,
       userAgent,
-      metadata: input.metadata ? JSON.stringify(input.metadata) : null,
+      metadata: JSON.stringify({
+        ...(input.metadata ?? {}),
+        attestationVersion: CONSENT_ATTESTATION_VERSION,
+        attestations,
+      }),
     },
     update: {},
   });
+}
+
+function attestationsFromMetadata(
+  metadata: Record<string, unknown> | null,
+  source: "recorded" | "inferred"
+): { attestations: string[]; attestationVersion: string } {
+  if (metadata && Array.isArray(metadata.attestations)) {
+    const texts = metadata.attestations.filter((a): a is string => typeof a === "string");
+    if (texts.length > 0) {
+      return {
+        attestations: texts,
+        attestationVersion:
+          typeof metadata.attestationVersion === "string"
+            ? metadata.attestationVersion
+            : CONSENT_ATTESTATION_VERSION,
+      };
+    }
+  }
+  return {
+    attestations: getSignupConsentAttestations(),
+    attestationVersion: source === "inferred" ? "inferred" : CONSENT_ATTESTATION_VERSION,
+  };
 }
 
 export async function getUserConsentSnapshot(userId: string): Promise<UserConsentSnapshot | null> {
@@ -71,6 +104,11 @@ export async function getUserConsentSnapshot(userId: string): Promise<UserConsen
   if (!user) return null;
 
   if (user.legalConsent) {
+    const metadata = user.legalConsent.metadata
+      ? (JSON.parse(user.legalConsent.metadata) as Record<string, unknown>)
+      : null;
+    const { attestations, attestationVersion } = attestationsFromMetadata(metadata, "recorded");
+
     return {
       userId: user.id,
       email: user.email,
@@ -83,10 +121,10 @@ export async function getUserConsentSnapshot(userId: string): Promise<UserConsen
       signupMethod: user.legalConsent.signupMethod,
       ipAddress: user.legalConsent.ipAddress,
       userAgent: user.legalConsent.userAgent,
-      metadata: user.legalConsent.metadata
-        ? (JSON.parse(user.legalConsent.metadata) as Record<string, unknown>)
-        : null,
+      metadata,
       source: "recorded",
+      attestations,
+      attestationVersion,
     };
   }
 
@@ -104,6 +142,8 @@ export async function getUserConsentSnapshot(userId: string): Promise<UserConsen
     userAgent: null,
     metadata: null,
     source: "inferred",
+    attestations: getSignupConsentAttestations(),
+    attestationVersion: "inferred",
   };
 }
 
@@ -135,6 +175,9 @@ export function renderConsentDocument(snapshot: UserConsentSnapshot): string {
   const meta = snapshot.metadata;
   const plan = typeof meta?.plan === "string" ? meta.plan : null;
   const examSlug = typeof meta?.examSlug === "string" ? meta.examSlug : null;
+  const attestationItems = snapshot.attestations
+    .map((item) => `<li>${escapeHtml(item)}</li>`)
+    .join("\n      ");
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -151,14 +194,21 @@ export function renderConsentDocument(snapshot: UserConsentSnapshot): string {
     dt { color: #666; }
     dd { margin: 0; font-weight: 500; }
     ul { margin: 0.5rem 0 0; padding-left: 1.2rem; font-size: 0.88rem; color: #333; }
+    ul li { margin-bottom: 0.55rem; }
     .badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 999px; font-size: 0.72rem; font-weight: 600; background: #f0f9ff; color: #0369a1; }
     .inferred { background: #fef3c7; color: #92400e; }
+    .notice { font-size: 0.85rem; color: #444; background: #fafafa; border-radius: 8px; padding: 0.75rem 1rem; margin-top: 0.5rem; }
     @media print { body { margin: 0; } }
   </style>
 </head>
 <body>
   <h1>User consent &amp; attestation record</h1>
   <p class="meta">${LEGAL_ENTITY.productName} · ${LEGAL_ENTITY.companyName} · Internal use only</p>
+
+  <section>
+    <h2>Content provider</h2>
+    <p class="notice">${escapeHtml(LEGAL_DISCLAIMERS.contentProvider)} ${escapeHtml(LEGAL_DISCLAIMERS.notOfficialExamContent)}</p>
+  </section>
 
   <section>
     <h2>Account</h2>
@@ -176,6 +226,7 @@ export function renderConsentDocument(snapshot: UserConsentSnapshot): string {
       <dt>Accepted at</dt><dd>${escapeHtml(accepted)} UTC</dd>
       <dt>Terms version</dt><dd>${escapeHtml(snapshot.termsVersion)}</dd>
       <dt>Privacy version</dt><dd>${escapeHtml(snapshot.privacyVersion)}</dd>
+      <dt>Attestation version</dt><dd>${escapeHtml(snapshot.attestationVersion)}</dd>
       <dt>Signup method</dt><dd>${escapeHtml(snapshot.signupMethod)}</dd>
       <dt>Record type</dt><dd><span class="badge ${snapshot.source === "inferred" ? "inferred" : ""}">${snapshot.source === "recorded" ? "Recorded consent" : "Inferred from account creation"}</span></dd>
       ${plan ? `<dt>Plan at signup</dt><dd>${escapeHtml(plan)}</dd>` : ""}
@@ -185,13 +236,15 @@ export function renderConsentDocument(snapshot: UserConsentSnapshot): string {
   </section>
 
   <section>
-    <h2>Attestations accepted</h2>
+    <h2>Attestations accepted at registration</h2>
     <ul>
-      <li>Terms of Service (version ${escapeHtml(snapshot.termsVersion)})</li>
-      <li>Privacy Policy (version ${escapeHtml(snapshot.privacyVersion)})</li>
-      <li>${escapeHtml(LEGAL_DISCLAIMERS.ageRequirement)}</li>
-      <li>${escapeHtml(LEGAL_DISCLAIMERS.userResponsibility)}</li>
+      ${attestationItems}
     </ul>
+  </section>
+
+  <section>
+    <h2>Legal footer</h2>
+    <p class="notice">${escapeHtml(LEGAL_DISCLAIMERS.supplementaryStudyRequired)} ${escapeHtml(LEGAL_DISCLAIMERS.noGuarantee)}</p>
   </section>
 </body>
 </html>`;
