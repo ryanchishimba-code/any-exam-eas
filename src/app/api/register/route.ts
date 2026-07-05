@@ -20,6 +20,20 @@ export async function POST(req: Request) {
     const input = signUpSchema.parse(body);
     const user = await registerUser(input);
 
+    void import("@/lib/legal/consent-record").then(({ recordUserLegalConsent }) =>
+      recordUserLegalConsent({
+        userId: user.id,
+        signupMethod: "credentials",
+        req,
+        metadata: {
+          plan: input.plan,
+          examSlug: input.examSlug,
+          tier: input.tier,
+          interval: input.interval,
+        },
+      })
+    );
+
     trackEvent({
       userId: user.id,
       eventType: EVENT_TYPES.USER_REGISTERED,

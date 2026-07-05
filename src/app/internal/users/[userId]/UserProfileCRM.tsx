@@ -1,8 +1,12 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
+import { FileCheck2, RefreshCw, ShieldCheck } from "lucide-react";
 import { AdminAccessControls } from "@/components/crm/AdminAccessControls";
 import { StaffRoleControls } from "@/components/crm/StaffRoleControls";
+import { summarizeBillingCycle } from "@/lib/crm/billing-cycle";
+import { summarizeConsentForList } from "@/lib/legal/consent-record";
 
 type SupportNote = {
   id: string;
@@ -84,6 +88,25 @@ export default function UserProfileCRM({
 
   const generationHistory = (profile.generationHistory ?? []) as GenerationHistoryRow[];
   const activityTimeline = (profile.activityTimeline ?? []) as ActivityTimelineRow[];
+
+  const billing = useMemo(
+    () => summarizeBillingCycle(profile.subscription),
+    [profile.subscription]
+  );
+  const consent = useMemo(
+    () =>
+      summarizeConsentForList(
+        profile.legalConsent
+          ? {
+              acceptedAt: new Date(profile.legalConsent.acceptedAt),
+              termsVersion: profile.legalConsent.termsVersion,
+              signupMethod: profile.legalConsent.signupMethod,
+            }
+          : null,
+        new Date(profile.user.createdAt)
+      ),
+    [profile.legalConsent, profile.user.createdAt]
+  );
 
   async function addNote() {
     setBusy(true);
@@ -191,6 +214,55 @@ export default function UserProfileCRM({
           </div>
         </div>
       </section>
+
+      {canManageStaff ? (
+        <section className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+          <div className="rounded-xl border border-sky-200/60 bg-gradient-to-br from-sky-50/80 to-white p-4">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-sky-700" aria-hidden />
+              <h2 className="text-sm font-semibold">Consent vault</h2>
+            </div>
+            <p className="mt-2 text-sm text-black/65">
+              Terms, privacy, and age attestation captured at signup.
+            </p>
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Link
+                href={`/internal/users/${userId}/consent`}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-sky-700 px-3 py-1.5 text-xs font-semibold text-white hover:bg-sky-800"
+              >
+                <FileCheck2 className="h-3.5 w-3.5" aria-hidden />
+                Open consent record
+              </Link>
+              <span
+                className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-semibold ${
+                  consent.source === "recorded"
+                    ? "bg-sky-100 text-sky-800"
+                    : "bg-amber-100 text-amber-900"
+                }`}
+              >
+                {consent.source === "recorded" ? "On file" : "Inferred from signup"}
+              </span>
+            </div>
+            <p className="mt-2 text-xs text-black/50">
+              Accepted {new Date(consent.acceptedAt).toLocaleString()} · Terms {consent.termsVersion}
+            </p>
+          </div>
+
+          <div className="rounded-xl border border-emerald-200/60 bg-gradient-to-br from-emerald-50/70 to-white p-4">
+            <div className="flex items-center gap-2">
+              <RefreshCw className="h-4 w-4 text-emerald-800" aria-hidden />
+              <h2 className="text-sm font-semibold">Rebill cycle</h2>
+            </div>
+            <p className="mt-2 text-lg font-semibold tracking-tight text-emerald-950">{billing.label}</p>
+            <p className="mt-1 text-sm text-black/65">{billing.detail}</p>
+            {billing.renewsAt ? (
+              <p className="mt-2 text-xs text-black/50">
+                Next milestone: {new Date(billing.renewsAt).toLocaleString()}
+              </p>
+            ) : null}
+          </div>
+        </section>
+      ) : null}
 
       <AdminAccessControls userId={userId} />
 

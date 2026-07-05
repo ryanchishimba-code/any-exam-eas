@@ -32,7 +32,7 @@ export default async function InternalUsersPage() {
           ) : null}
         </p>
       </div>
-      <UserSearch />
+      <UserSearch showAdminColumns={canManageStaff} />
     </div>
   );
 }

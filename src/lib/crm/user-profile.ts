@@ -1,5 +1,8 @@
 import { prisma } from "@/lib/prisma";
 
+export { searchUsers, serializeInternalUserRows } from "@/lib/crm/internal-user-list";
+export type { InternalUserListRow } from "@/lib/crm/internal-user-list";
+
 export async function getCrmUserProfile(userId: string) {
   const user = await prisma.user.findUnique({
     where: { id: userId },
@@ -7,6 +10,7 @@ export async function getCrmUserProfile(userId: string) {
       subscription: true,
       usageMetrics: true,
       preferences: true,
+      legalConsent: true,
       supportNotes: {
         orderBy: [{ pinned: "desc" }, { createdAt: "desc" }],
         take: 50,
@@ -61,6 +65,7 @@ export async function getCrmUserProfile(userId: string) {
     subscription: user.subscription,
     usageMetrics: user.usageMetrics,
     preferences: user.preferences,
+    legalConsent: user.legalConsent,
     supportNotes: user.supportNotes,
     internalTags: user.internalTags,
     bookmarks: user.bookmarksReceived,
@@ -77,50 +82,4 @@ export async function getCrmUserProfile(userId: string) {
     })),
     counts: { exams: examCount, quilts: quiltCount },
   };
-}
-
-export async function searchUsers(query: string, limit = 25) {
-  const q = query.trim().toLowerCase();
-  if (!q) {
-    return prisma.user.findMany({
-      where: { accountStatus: { not: "deleted" } },
-      orderBy: { lastActiveAt: "desc" },
-      take: limit,
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        role: true,
-        accountStatus: true,
-        lastActiveAt: true,
-        lastLoginAt: true,
-        createdAt: true,
-        usageMetrics: true,
-        subscription: { select: { status: true, trialEndsAt: true } },
-      },
-    });
-  }
-
-  return prisma.user.findMany({
-    where: {
-      accountStatus: { not: "deleted" },
-      OR: [
-        { email: { contains: q } },
-        { name: { contains: q } },
-      ],
-    },
-    take: limit,
-    select: {
-      id: true,
-      name: true,
-      email: true,
-      role: true,
-      accountStatus: true,
-      lastActiveAt: true,
-      lastLoginAt: true,
-      createdAt: true,
-      usageMetrics: true,
-      subscription: { select: { status: true, trialEndsAt: true } },
-    },
-  });
 }
