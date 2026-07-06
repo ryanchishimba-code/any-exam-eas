@@ -209,7 +209,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
           </div>
 
           <p className="mt-4 max-w-xl text-balance text-lg leading-relaxed text-[var(--color-ink-muted)]">
-            {formatFlagshipHeroSubline(bankCounts.totalQuestionsLabel)}
+            {formatFlagshipHeroSubline(bankCounts.totalLabel)}
           </p>
 
           <div className="mt-7 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">

@@ -31,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
     const snapshot = await getCachedQuestionBankCounts();
     const display = buildLandingBankCountsDisplay(snapshot);
     if (!snapshot.degraded && display.totalServed > 0) {
-      return buildHomeMetadata(display.totalQuestionsLabel);
+      return buildHomeMetadata(display.totalLabel);
     }
   } catch {
     /* keep static metadata when DB unavailable */
