@@ -160,19 +160,19 @@ export const LANDING_HERO_EXAMS = [
 ] as const;
 
 /** Primary hero headline — benefit-driven, scannable above the fold. */
-export const LANDING_HERO_HEADLINE = "Premium Board Prep.";
+export const LANDING_HERO_HEADLINE = "NCLEX, USMLE & NAPLEX Prep";
 
 /** Accent line under the primary headline. */
-export const LANDING_HERO_HEADLINE_ACCENT = "Non-Premium Price.";
+export const LANDING_HERO_HEADLINE_ACCENT = "One Plan. Best Value.";
 
 /** Hero sub-headline body — pass live total via formatFlagshipHeroSubline(totalLabel). */
 export const LANDING_HERO_SUBLINE_BODY =
-  "QA-gated vignettes, blueprint Roadmaps, and Deep Dives for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT — curated for serve-ready quality, not bulk filler.";
+  "Top 509 Drugs, AI Tutor, adaptive Blueprint Roadmaps, and Spaced Repetition for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT — clinician-built, QA-gated, not bulk filler.";
 
 export function formatFlagshipHeroSubline(totalLabel?: string): string {
   const count = totalLabel?.trim();
   if (!count) return LANDING_HERO_SUBLINE_BODY;
-  return `${count} serve-ready questions · ${LANDING_HERO_SUBLINE_BODY}`;
+  return `${count} QA-gated questions · ${LANDING_HERO_SUBLINE_BODY}`;
 }
 
 /** Short reassurance directly under the primary hero CTA. */
@@ -203,8 +203,9 @@ export const LANDING_OFFERING_PILLARS = [
 
 /** Subtle trust signals below hero subheadline. */
 export const LANDING_HERO_TRUST_SIGNALS = [
-  "QA-gated before serve",
-  "2026 blueprints",
+  "QA-gated · clinician-built",
+  "AI Tutor + Roadmaps",
+  "UWorld alternative value",
   "6 exams · 1 plan",
 ] as const;
 

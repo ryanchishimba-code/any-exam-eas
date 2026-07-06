@@ -19,7 +19,10 @@ import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
   LANDING_HERO_CTA_DISCLOSURE,
   LANDING_HERO_EXAMS,
+  LANDING_HERO_HEADLINE,
+  LANDING_HERO_HEADLINE_ACCENT,
   LANDING_TRIAL_HREF,
+  formatFlagshipHeroSubline,
 } from "@/lib/landing/content";
 import { formatTrialLabel } from "@/lib/site";
 import { landingVideoSrc } from "@/lib/marketing/landing-visuals";
@@ -183,7 +186,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
           className="flex flex-col items-center"
         >
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)]">
-            6 board exams · One subscription · Updated for 2026
+            NCLEX · USMLE · NAPLEX · PANCE · FNP · NPTE · Updated for 2026
           </p>
 
           <BoardSeasonCountdown className="mt-5" />
@@ -192,8 +195,8 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
             id="hero-heading"
             className="mt-6 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-[var(--color-ink)] sm:text-5xl lg:text-6xl"
           >
-            Premium Board Prep.{" "}
-            <span className="aee-flagship-gradient-text">Non-Premium Price.</span>
+            {LANDING_HERO_HEADLINE}.{" "}
+            <span className="aee-flagship-gradient-text">{LANDING_HERO_HEADLINE_ACCENT}</span>
           </h1>
 
           <div className="mt-5" aria-label={`${bankCounts.totalQuestionsLabel} on the platform`}>
@@ -206,8 +209,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
           </div>
 
           <p className="mt-4 max-w-xl text-balance text-lg leading-relaxed text-[var(--color-ink-muted)]">
-            Teachable rationales — plus blueprint Roadmaps and Deep Dives for USMLE, NCLEX,
-            NAPLEX, PANCE, AANP FNP &amp; NPTE-PT. All for less than one UWorld plan.
+            {formatFlagshipHeroSubline(bankCounts.totalQuestionsLabel)}
           </p>
 
           <div className="mt-7 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">
@@ -255,9 +257,10 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
           {/* Trust strip */}
           <ul className="mt-7 flex flex-wrap items-center justify-center gap-2 text-xs font-semibold text-[var(--color-ink-muted)]">
             {[
-              { icon: ShieldCheck, label: "QA-gated before serve" },
-              { icon: MapIcon, label: "Blueprint Roadmaps" },
-              { icon: Check, label: "6 exams · 1 plan" },
+              { icon: ShieldCheck, label: "QA-gated · clinician-built" },
+              { icon: Sparkles, label: "AI Tutor + Spaced Repetition" },
+              { icon: MapIcon, label: "Adaptive Blueprint Roadmaps" },
+              { icon: Check, label: "UWorld alternative value" },
               { icon: XCircle, label: `Cancel free before day ${TRIAL_DAYS}` },
             ].map(({ icon: Icon, label }) => (
               <li

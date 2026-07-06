@@ -67,9 +67,10 @@ const HOME_KEYWORDS = [
   "AnyExamEasy",
 ];
 
-export function buildHomeMetadata(): Metadata {
-  const title = `${SITE_NAME} — NCLEX, USMLE & NAPLEX Prep | ${SEO_LIVE_STATS.questionCount} Questions (2026)`;
-  const description = `${seoPlatformPitch()} ${SEO_LIVE_STATS.trialDays}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day money-back guarantee · Pro at ${formatMonthlyPrice("pro")}/mo · ${formatTrialQuestionLimit()}.`;
+export function buildHomeMetadata(totalQuestionsLabel?: string): Metadata {
+  const countLabel = totalQuestionsLabel?.trim() || SEO_LIVE_STATS.questionCount;
+  const title = `${SITE_NAME} — NCLEX, USMLE & NAPLEX Prep | ${countLabel} Questions (2026)`;
+  const description = `${seoPlatformPitch(countLabel)} ${SEO_LIVE_STATS.trialDays}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day money-back guarantee · Pro at ${formatMonthlyPrice("pro")}/mo · ${formatTrialQuestionLimit()}.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 

@@ -7,7 +7,6 @@ import {
 } from "@/lib/marketing/question-bank-counts";
 import { getCachedPublishedTestimonials } from "@/lib/testimonials/published";
 import { buildHomeMetadata } from "@/lib/seo";
-import { formatMonthlyPrice, formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
 
 /** ISR — bank counts refresh hourly; invalidated after question-bank cron sync. */
 export const revalidate = 3600;
@@ -28,23 +27,16 @@ export const revalidate = 3600;
  * Palette: navy #0A2540, teal #00D4C8 — dark-mode friendly via prefers-color-scheme
  */
 export async function generateMetadata(): Promise<Metadata> {
-  const base = buildHomeMetadata();
   try {
     const snapshot = await getCachedQuestionBankCounts();
     const display = buildLandingBankCountsDisplay(snapshot);
     if (!snapshot.degraded && display.totalServed > 0) {
-      const description = `All-in-one board prep for NCLEX, USMLE Step 1, Step 2 CK & Step 3, NAPLEX, PANCE, AANP FNP, and NPTE-PT — ${display.totalQuestionsLabel}, Roadmaps & Deep Dives. Pro at ${formatMonthlyPrice("pro")}/mo · ${formatTrialLabel()} · ${formatTrialQuestionLimit()} · no payment required.`;
-      return {
-        ...base,
-        description,
-        openGraph: base.openGraph ? { ...base.openGraph, description } : undefined,
-        twitter: base.twitter ? { ...base.twitter, description } : undefined,
-      };
+      return buildHomeMetadata(display.totalQuestionsLabel);
     }
   } catch {
     /* keep static metadata when DB unavailable */
   }
-  return base;
+  return buildHomeMetadata();
 }
 
 export default async function HomePage() {

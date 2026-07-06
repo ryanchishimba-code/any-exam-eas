@@ -46,10 +46,21 @@ export const SEO_KEYWORD_CLUSTERS = {
   ],
 } as const;
 
-export function seoQuestionBankPhrase(): string {
-  return `${SEO_LIVE_STATS.questionCount} QA-gated practice questions`;
+export function seoQuestionBankPhrase(totalLabel?: string): string {
+  const count = totalLabel?.trim() || SEO_LIVE_STATS.questionCount;
+  return `${count} QA-gated practice questions`;
 }
 
-export function seoPlatformPitch(): string {
-  return `${seoQuestionBankPhrase()}, ${SEO_LIVE_STATS.topDrugsLabel}, AI Tutor, adaptive Blueprint Roadmaps, and Spaced Repetition — built by licensed clinicians (${SEO_LIVE_STATS.clinicianYears} years combined).`;
+export function seoPlatformPitch(totalLabel?: string): string {
+  return `${seoQuestionBankPhrase(totalLabel)}, ${SEO_LIVE_STATS.topDrugsLabel}, AI Tutor, adaptive Blueprint Roadmaps, and Spaced Repetition — built by licensed clinicians (${SEO_LIVE_STATS.clinicianYears} years combined).`;
+}
+
+/** Homepage H1 — keyword-led, visible content for Google and users. */
+export const SEO_HOME_H1 = "NCLEX, USMLE & NAPLEX Prep";
+export const SEO_HOME_H1_ACCENT = "One Plan. Best Value.";
+
+/** Homepage subline template; inject live question total when available. */
+export function seoHomeHeroSubline(totalLabel?: string): string {
+  const count = totalLabel?.trim() || SEO_LIVE_STATS.questionCount;
+  return `${count} QA-gated questions, ${SEO_LIVE_STATS.topDrugsLabel}, AI Tutor, adaptive Blueprint Roadmaps, and Spaced Repetition — clinician-built (${SEO_LIVE_STATS.clinicianYears} years). A UWorld alternative for multi-exam prep.`;
 }
