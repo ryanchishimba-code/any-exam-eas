@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { JsonLdScript } from "@/components/seo/JsonLdScript";
+import { LandingCta } from "@/components/landing/LandingCta";
 import { ToolkitBackpackIllustration } from "@/components/toolkit/ToolkitBackpackIllustration";
 import { ToolkitExamAccordion } from "@/components/toolkit/ToolkitExamAccordion";
 import { ToolkitCrossExamComparison } from "@/components/toolkit/ToolkitCrossExamComparison";
