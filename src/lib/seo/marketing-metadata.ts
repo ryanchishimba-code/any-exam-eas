@@ -20,6 +20,11 @@ import { SITE_NAME, formatMonthlyPrice, formatTrialLabel, formatTrialQuestionLim
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import { SEO_LIVE_STATS, seoPlatformPitch } from "@/lib/seo/seo-copy";
 import { TRIAL_DAYS } from "@/lib/billing-config";
+import {
+  formatUsd,
+  UWORLD_THREE_EXAM_MIN,
+  threeExamSavingsPercent,
+} from "@/lib/seo/competitor-comparison";
 
 function baseOpenGraph(
   title: string,
@@ -112,6 +117,68 @@ export function buildPricingMetadata(): Metadata {
       "affordable NCLEX Qbank",
       "USMLE question bank price",
       "NAPLEX prep subscription",
+    ],
+  };
+}
+
+export function buildCompareMetadata(): Metadata {
+  const title = `Compare — AnyExamEasy vs UWorld, Archer, Kaplan & RxPrep (2026)`;
+  const description = `Side-by-side comparison: ${formatMonthlyPrice("pro")}/mo for 6 board exams vs ${formatUsd(UWORLD_THREE_EXAM_MIN)}+ stacking UWorld subscriptions. Features, pricing, NCLEX vs Archer, NAPLEX vs RxPrep. ${SEO_LIVE_STATS.trialDays}-day free trial.`;
+  return {
+    ...baseOpenGraph(title, description, "/compare", { absoluteTitle: true }),
+    keywords: [
+      "AnyExamEasy vs UWorld",
+      "NCLEX vs Archer",
+      "NAPLEX vs RxPrep",
+      "UWorld alternative comparison",
+      "best value board exam prep 2026",
+      "multi-exam Qbank comparison",
+    ],
+  };
+}
+
+export function buildCompareJsonLd() {
+  const url = absoluteUrl("/compare");
+  const site = getSiteUrl();
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: site },
+          { "@type": "ListItem", position: 2, name: "Compare", item: url },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "How does AnyExamEasy compare to UWorld on price?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: `AnyExamEasy Pro is ${formatMonthlyPrice("pro")}/month for all six board exams. Stacking UWorld for NCLEX, USMLE Step 2 CK, and NAPLEX QBank costs at least ${formatUsd(UWORLD_THREE_EXAM_MIN)} at shortest public tiers — roughly ${threeExamSavingsPercent()}% more than three months of AnyExamEasy.`,
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Is AnyExamEasy a good UWorld alternative for multi-exam prep?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: `${seoPlatformPitch()} One Pro subscription covers NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE with adaptive Blueprint Roadmaps and AI Tutor — without buying separate per-exam subscriptions.`,
+            },
+          },
+          {
+            "@type": "Question",
+            name: "NCLEX vs Archer Review — which is better value?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Archer Review starts around $79/month for NCLEX-only QBank + CAT. AnyExamEasy includes NCLEX plus five other board exams on one plan with Roadmaps, AI Tutor, and Spaced Repetition — better value if you need more than one licensing exam.",
+            },
+          },
+        ],
+      },
     ],
   };
 }

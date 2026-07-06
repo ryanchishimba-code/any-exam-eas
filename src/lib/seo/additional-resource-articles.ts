@@ -316,4 +316,164 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       },
     ],
   }),
+  article({
+    slug: "nclex-vs-archer-comparison-2026",
+    title: "NCLEX vs Archer Review: Which Qbank Is Better Value in 2026?",
+    metaDescription:
+      "NCLEX prep comparison — Archer Review vs AnyExamEasy on price, unlimited CAT, NGN coverage, adaptive Roadmaps, and when a multi-exam plan saves money.",
+    examTags: ["nclex"],
+    primaryExam: "nclex",
+    keywords: [
+      "NCLEX vs Archer",
+      "Archer Review NCLEX alternative",
+      "Archer vs AnyExamEasy",
+      "best NCLEX Qbank budget 2026",
+    ],
+    readingMinutes: 8,
+    intro:
+      "Archer Review is a popular budget NCLEX option with unlimited CAT and strong mobile ratings. AnyExamEasy competes on multi-exam value — NCLEX plus USMLE, NAPLEX, and more on one subscription with adaptive Roadmaps and AI Tutor.",
+    sections: [
+      {
+        heading: "Price: NCLEX-only vs six exams on one plan",
+        paragraphs: [
+          "Archer QBank + CAT starts around $79/month for NCLEX-RN only. Sure PASS and Intense PREP tiers add live review and coaching at $159–$399+.",
+          "AnyExamEasy Pro includes NCLEX and five other board exams — useful if you are RN-to-NP, dual-track, or planning USMLE or NAPLEX on the same timeline.",
+        ],
+        competitorLabel: "Archer Review",
+        comparisonRows: [
+          {
+            feature: "Entry price",
+            anyExamEasy: `Pro from ${SEO_LIVE_STATS.trialDays}-day free trial · all 6 exams`,
+            typicalQbank: "QBank + CAT from ~$79/mo (NCLEX only)",
+          },
+          {
+            feature: "Exam coverage",
+            anyExamEasy: "NCLEX + USMLE + NAPLEX + PANCE + FNP + NPTE",
+            typicalQbank: "NCLEX-RN only",
+          },
+          {
+            feature: "CAT practice tests",
+            anyExamEasy: "Timed mocks + Roadmap-driven sets",
+            typicalQbank: "Unlimited CAT (strong Archer strength)",
+          },
+          {
+            feature: "Adaptive study path",
+            anyExamEasy: "Blueprint Roadmap per exam",
+            typicalQbank: "Performance stats; self-directed schedule",
+          },
+          {
+            feature: "AI coaching",
+            anyExamEasy: "AI Tutor on missed rationales",
+            typicalQbank: "Not included on base QBank tier",
+          },
+        ],
+      },
+      {
+        heading: "When Archer wins",
+        bullets: [
+          "NCLEX is your only licensing exam and budget is the top priority.",
+          "You want unlimited CAT without thinking about other board subscriptions.",
+          "Mobile-first study with Archer’s highly rated app is your primary workflow.",
+        ],
+      },
+      {
+        heading: "When AnyExamEasy wins",
+        bullets: [
+          "You need NCLEX plus another board (USMLE, NAPLEX, PANCE, FNP, or NPTE).",
+          "You want Roadmap, AI Tutor, Spaced Repetition, and Top 509 Drugs in one workflow.",
+          `${SEO_LIVE_STATS.trialDays}-day free trial and ${SEO_LIVE_STATS.moneyBackDays}-day guarantee reduce upfront risk.`,
+        ],
+      },
+      {
+        heading: seoTrialHeading(),
+        paragraphs: [seoTrialResourceParagraph()],
+      },
+    ],
+  }),
+  article({
+    slug: "naplex-vs-rxprep-comparison-2026",
+    title: "NAPLEX vs RxPrep: Qbank, Calculations & Best Value (2026)",
+    metaDescription:
+      "Compare AnyExamEasy vs RxPrep (UWorld Pharmacy) for NAPLEX — calculations drills, Top 509 Drugs, pricing, and when a multi-exam subscription beats pharmacy-only prep.",
+    examTags: ["naplex"],
+    primaryExam: "naplex",
+    keywords: [
+      "NAPLEX vs RxPrep",
+      "RxPrep alternative",
+      "NAPLEX Qbank comparison 2026",
+      "best NAPLEX prep value",
+    ],
+    readingMinutes: 9,
+    intro:
+      "RxPrep (UWorld Pharmacy) is the established NAPLEX brand with a calc-heavy QBank and premium video course. AnyExamEasy bundles NAPLEX with nursing and medical boards — plus Top 509 Drugs, calculation drills, and adaptive Roadmaps on one Pro plan.",
+    sections: [
+      {
+        heading: "Pricing: pharmacy-only vs multi-exam Pro",
+        paragraphs: [
+          "RxPrep NAPLEX QBank starts at $299 for 60-day access; the full online course runs $999+ for 180 days with video lectures and course book.",
+          "AnyExamEasy Pro covers NAPLEX alongside NCLEX, USMLE, PANCE, FNP, and NPTE — relevant for dual-degree students or clinicians adding certifications.",
+        ],
+        competitorLabel: "RxPrep (UWorld)",
+        comparisonRows: [
+          {
+            feature: "NAPLEX QBank access",
+            anyExamEasy: "Included in Pro · NABP blueprint Roadmap",
+            typicalQbank: "QBank from $299/60d · Course from $999/180d",
+          },
+          {
+            feature: "Calculations prep",
+            anyExamEasy: "Daily calc drills + timed mixed blocks",
+            typicalQbank: "Strong calc coverage in RxPrep QBank",
+          },
+          {
+            feature: "Drug reference",
+            anyExamEasy: `${SEO_LIVE_STATS.topDrugsLabel} + case-linked review`,
+            typicalQbank: "Course book + drug tables in premium tiers",
+          },
+          {
+            feature: "Video lectures",
+            anyExamEasy: "Deep Dive modules from missed questions",
+            typicalQbank: "Full video course (premium RxPrep tier)",
+          },
+          {
+            feature: "Other board exams",
+            anyExamEasy: "5 additional exams on same subscription",
+            typicalQbank: "Pharmacy-only",
+          },
+        ],
+      },
+      {
+        heading: "When RxPrep wins",
+        bullets: [
+          "NAPLEX is your only exam and you want the pharmacy category leader with video course + course book.",
+          "Institutional or faculty recommendation specifically names RxPrep as the standard.",
+          "Budget allows $999+ for the full 180-day online course with lectures.",
+        ],
+      },
+      {
+        heading: "When AnyExamEasy wins",
+        bullets: [
+          "You are PharmD plus RN, PA, or MD track and need more than pharmacy prep.",
+          "You want Top 509 Drugs, AI Tutor, and Spaced Repetition integrated with NAPLEX practice.",
+          "Pro monthly pricing beats stacking RxPrep QBank with separate nursing or medical subscriptions.",
+        ],
+      },
+      {
+        heading: "NAPLEX calculations workflow",
+        paragraphs: [
+          "Pair 15–20 untimed calculation items daily with case-based pharmacotherapy blocks. AnyExamEasy Roadmap surfaces weak NABP domains after each session.",
+        ],
+        comparisonRows: [
+          { feature: "Mon–Wed", anyExamEasy: "Calc drills + Top 509 flashcards", typicalQbank: "RxPrep math sets" },
+          { feature: "Thu–Fri", anyExamEasy: "Mixed patient cases + timed calcs", typicalQbank: "QBank case sets" },
+          { feature: "Sat", anyExamEasy: "Full timed mock block", typicalQbank: "Self-assessment (add-on)" },
+        ],
+        competitorLabel: "Typical schedule",
+      },
+      {
+        heading: seoTrialHeading(),
+        paragraphs: [seoSixBoardTrialParagraph()],
+      },
+    ],
+  }),
 ];

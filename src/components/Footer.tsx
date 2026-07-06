@@ -20,10 +20,11 @@ const MARKETING_EXAM_LINKS = [
 ];
 
 const STUDY_GUIDE_LINKS = [
+  { href: "/compare", label: "Compare vs competitors" },
   { href: "/resources/uworld-alternative-multi-exam-prep-2026", label: "UWorld alternative guide" },
   { href: "/resources/nclex-vs-uworld-comparison-2026", label: "NCLEX vs UWorld" },
-  { href: "/resources/ai-tutor-adaptive-board-prep-2026", label: "AI Tutor board prep" },
-  { href: "/resources/best-value-multi-exam-board-prep-2026", label: "Best value multi-exam prep" },
+  { href: "/resources/nclex-vs-archer-comparison-2026", label: "NCLEX vs Archer" },
+  { href: "/resources/naplex-vs-rxprep-comparison-2026", label: "NAPLEX vs RxPrep" },
 ];
 
 const legalLinks = [

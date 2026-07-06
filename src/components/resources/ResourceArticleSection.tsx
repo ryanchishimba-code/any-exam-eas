@@ -30,7 +30,7 @@ export function ResourceArticleSection({ section }: { section: ResourceSection }
                   AnyExamEasy
                 </th>
                 <th scope="col" className="px-4 py-3 font-semibold text-[var(--color-ink-muted)]">
-                  Typical QBank
+                  {section.competitorLabel ?? "Typical QBank"}
                 </th>
               </tr>
             </thead>

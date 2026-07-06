@@ -33,6 +33,8 @@ export type ResourceSection = {
   paragraphs: string[];
   bullets?: string[];
   comparisonRows?: { feature: string; anyExamEasy: string; typicalQbank: string }[];
+  /** Third column header for comparison tables (default: Typical QBank). */
+  competitorLabel?: string;
 };
 
 export type ResourceArticle = {
