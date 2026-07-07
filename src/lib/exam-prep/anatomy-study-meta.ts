@@ -1,4 +1,7 @@
 /** Cross-links rendered after the rationale (QuestionRelatedLinks) — merged into ngnPayload. */
+import { getReviewModuleAnatomy } from "@/lib/anatomy/review-module-anatomy";
+import { inferAnatomyStructuresFromText } from "@/lib/anatomy/structure-inference";
+
 export type RelatedStudyMeta = {
   /** Deep Dive review module on /dashboard/topics. */
   reviewModuleSlug?: string;
@@ -139,13 +142,6 @@ export function resolveStructureIdsForStudyItem(ctx: StudyStructureContext): str
   let out: string[] = [];
 
   if (ctx.reviewModuleSlug || ctx.text?.trim() || ctx.memoryCardIds?.length) {
-    const { getReviewModuleAnatomy } =
-      require("@/lib/anatomy/review-module-anatomy") as typeof import("@/lib/anatomy/review-module-anatomy");
-    const { getAnatomyStructuresForTopicSlug } =
-      require("@/lib/anatomy/topic-links") as typeof import("@/lib/anatomy/topic-links");
-    const { inferAnatomyStructuresFromText } =
-      require("@/lib/anatomy/structure-inference") as typeof import("@/lib/anatomy/structure-inference");
-
     if (ctx.reviewModuleSlug) {
       out = mergeIds(out, getReviewModuleAnatomy(ctx.reviewModuleSlug)?.structureIds ?? [], limit);
     }
@@ -155,21 +151,6 @@ export function resolveStructureIdsForStudyItem(ctx: StudyStructureContext): str
       idsFromTopicKeys([ctx.subjectId, ctx.topicCategory, ctx.blueprintSystem, ctx.blueprintTopic]),
       limit
     );
-
-    if (out.length < limit) {
-      const topicKey =
-        ctx.reviewModuleSlug ?? ctx.blueprintTopic ?? ctx.subjectId ?? ctx.topicCategory ?? "";
-      if (topicKey) {
-        out = mergeIds(
-          out,
-          getAnatomyStructuresForTopicSlug(topicKey, {
-            memoryCardIds: ctx.memoryCardIds,
-            limit,
-          }).map((s) => s.id),
-          limit
-        );
-      }
-    }
 
     if (out.length < limit && ctx.text?.trim()) {
       out = mergeIds(

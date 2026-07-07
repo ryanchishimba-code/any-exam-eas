@@ -1,7 +1,9 @@
 /**
  * USMLE high-yield topic registry — step-aware domain taxonomy for Study Hub navigation.
  */
+import type { DrugClassId } from "@/lib/drugs300/drug-classes";
 import type { HighYieldTopic } from "@/types/edtech";
+import type { UsmleStudyPresetId } from "@/lib/exam-prep/usmle/study-presets";
 import type { UsmleStepLevel } from "@/lib/exam-prep/usmle/types";
 import {
   USMLE_STEP1_TOPIC_GROUPS,
@@ -204,6 +206,9 @@ export const USMLE_STEP3_DOMAINS: UsmleStudyDomain[] = [
 export type UsmleTopicMeta = {
   studyDomain: UsmleStudyDomainId;
   blueprintTopicSlugs?: string[];
+  relatedDrugClasses?: Exclude<DrugClassId, "all">[];
+  top500DrugSlugs?: string[];
+  relatedPresetIds?: UsmleStudyPresetId[];
   primary?: boolean;
 };
 
@@ -240,44 +245,163 @@ const STEP3_CATEGORY_DOMAIN: Record<string, UsmleStudyDomainId> = {
 /** Flagship review-module and broad topic slugs — explicit domain mapping. */
 const USMLE_TOPIC_REGISTRY: Record<string, UsmleTopicMeta> = {
   // Step 1 flagship modules
-  "pathology-neoplasia": { studyDomain: "usmle-s1-pathology", primary: true },
-  "pharmacology-moa": { studyDomain: "usmle-s1-pharmacology", primary: true },
+  "pathology-neoplasia": {
+    studyDomain: "usmle-s1-pathology",
+    primary: true,
+    relatedPresetIds: ["step1-path-drill"],
+  },
+  "pharmacology-moa": {
+    studyDomain: "usmle-s1-pharmacology",
+    primary: true,
+    relatedDrugClasses: ["cardiovascular", "antibiotics", "cns-psych", "endocrine"],
+    top500DrugSlugs: ["metoprolol", "lisinopril", "amoxicillin", "sertraline", "metformin"],
+    relatedPresetIds: ["step1-pharm-drill"],
+  },
   "physiology-systems": { studyDomain: "usmle-s1-physiology", primary: true },
   "biochemistry-metabolism": { studyDomain: "usmle-s1-biochemistry", primary: true },
-  "microbiology-immunology": { studyDomain: "usmle-s1-micro-immuno", primary: true },
+  "microbiology-immunology": {
+    studyDomain: "usmle-s1-micro-immuno",
+    primary: true,
+    relatedDrugClasses: ["antibiotics", "immunologic-other"],
+    top500DrugSlugs: ["amoxicillin", "azithromycin", "vancomycin"],
+  },
   "anatomy-embryology": { studyDomain: "usmle-s1-anatomy", primary: true },
 
   // Step 2 flagship modules
-  "acute-coronary-syndrome": { studyDomain: "usmle-s2-cardiopulmonary", primary: true },
-  cardiovascular: { studyDomain: "usmle-s2-cardiopulmonary", primary: true },
-  pulmonary: { studyDomain: "usmle-s2-cardiopulmonary", primary: true },
-  "renal-electrolytes": { studyDomain: "usmle-s2-nephro-endocrine", primary: true },
-  "endocrine-dm": { studyDomain: "usmle-s2-nephro-endocrine", primary: true },
-  gastroenterology: { studyDomain: "usmle-s2-gi-hepatology", primary: true },
-  "infectious-disease": { studyDomain: "usmle-s2-infectious", primary: true },
-  "neurology-stroke": { studyDomain: "usmle-s2-neuro", primary: true },
-  "hematology-oncology": { studyDomain: "usmle-s2-heme-rheum", primary: true },
+  "acute-coronary-syndrome": {
+    studyDomain: "usmle-s2-cardiopulmonary",
+    primary: true,
+    relatedDrugClasses: ["cardiovascular", "pain-inflammation"],
+    top500DrugSlugs: ["aspirin", "metoprolol", "lisinopril", "atorvastatin", "heparin"],
+    relatedPresetIds: ["step2-cardiology-block"],
+  },
+  cardiovascular: {
+    studyDomain: "usmle-s2-cardiopulmonary",
+    primary: true,
+    relatedDrugClasses: ["cardiovascular"],
+    top500DrugSlugs: ["metoprolol", "furosemide", "amlodipine", "losartan"],
+    relatedPresetIds: ["step2-cardiology-block"],
+  },
+  pulmonary: {
+    studyDomain: "usmle-s2-cardiopulmonary",
+    primary: true,
+    relatedDrugClasses: ["respiratory"],
+    top500DrugSlugs: ["albuterol", "montelukast", "prednisone"],
+    relatedPresetIds: ["step2-pulmonary-block"],
+  },
+  "renal-electrolytes": {
+    studyDomain: "usmle-s2-nephro-endocrine",
+    primary: true,
+    relatedDrugClasses: ["cardiovascular", "endocrine"],
+    top500DrugSlugs: ["furosemide", "hydrochlorothiazide", "potassium-chloride"],
+  },
+  "endocrine-dm": {
+    studyDomain: "usmle-s2-nephro-endocrine",
+    primary: true,
+    relatedDrugClasses: ["endocrine"],
+    top500DrugSlugs: ["metformin", "insulin-glargine", "levothyroxine", "glucagon"],
+    relatedPresetIds: ["step2-endocrine-block"],
+  },
+  gastroenterology: {
+    studyDomain: "usmle-s2-gi-hepatology",
+    primary: true,
+    relatedDrugClasses: ["gastrointestinal"],
+    top500DrugSlugs: ["omeprazole", "pantoprazole", "ondansetron"],
+  },
+  "infectious-disease": {
+    studyDomain: "usmle-s2-infectious",
+    primary: true,
+    relatedDrugClasses: ["antibiotics"],
+    top500DrugSlugs: ["vancomycin", "azithromycin", "amoxicillin", "ciprofloxacin"],
+    relatedPresetIds: ["step2-id-block"],
+  },
+  "neurology-stroke": {
+    studyDomain: "usmle-s2-neuro",
+    primary: true,
+    relatedDrugClasses: ["cardiovascular", "cns-psych"],
+    top500DrugSlugs: ["alteplase", "levetiracetam", "aspirin"],
+  },
+  "hematology-oncology": {
+    studyDomain: "usmle-s2-heme-rheum",
+    primary: true,
+    relatedDrugClasses: ["immunologic-other"],
+  },
   rheumatology: { studyDomain: "usmle-s2-heme-rheum", primary: true },
   obstetrics: { studyDomain: "usmle-s2-ob-peds", primary: true },
   pediatrics: { studyDomain: "usmle-s2-ob-peds", primary: true },
-  psychiatry: { studyDomain: "usmle-s2-psych", primary: true },
-  "emergency-toxicology": { studyDomain: "usmle-s2-emergency", primary: true },
-  "dermatology-allergic": { studyDomain: "usmle-s2-derm", primary: true },
+  psychiatry: {
+    studyDomain: "usmle-s2-psych",
+    primary: true,
+    relatedDrugClasses: ["cns-psych"],
+    top500DrugSlugs: ["sertraline", "escitalopram", "bupropion", "gabapentin"],
+    relatedPresetIds: ["step2-psych-block"],
+  },
+  "emergency-toxicology": {
+    studyDomain: "usmle-s2-emergency",
+    primary: true,
+    relatedDrugClasses: ["pain-inflammation", "cns-psych"],
+    top500DrugSlugs: ["naloxone", "epinephrine", "acetaminophen"],
+  },
+  "dermatology-allergic": {
+    studyDomain: "usmle-s2-derm",
+    primary: true,
+    relatedDrugClasses: ["respiratory", "immunologic-other"],
+  },
   "ethics-biostats": { studyDomain: "usmle-s3-biostatistics" },
 
   // Step 3 flagship modules
-  "biostatistics-epidemiology": { studyDomain: "usmle-s3-biostatistics", primary: true },
+  "biostatistics-epidemiology": {
+    studyDomain: "usmle-s3-biostatistics",
+    primary: true,
+    relatedPresetIds: ["step3-biostats-sprint"],
+  },
   "medical-ethics-legal": { studyDomain: "usmle-s3-ethics", primary: true },
-  "ccs-case-management": { studyDomain: "usmle-s3-ccs", primary: true },
+  "ccs-case-management": {
+    studyDomain: "usmle-s3-ccs",
+    primary: true,
+    relatedPresetIds: ["step3-ccs-drill"],
+  },
   "pharmaceutical-ads-abstracts": { studyDomain: "usmle-s3-evidence", primary: true },
+  "next-best-step": {
+    studyDomain: "usmle-s3-ccs",
+    primary: true,
+    relatedPresetIds: ["step3-ccs-drill"],
+  },
+  "ccs-monitoring-escalation": {
+    studyDomain: "usmle-s3-ccs",
+    primary: true,
+    relatedPresetIds: ["step3-ccs-drill"],
+  },
+  "ccs-initial-workup": {
+    studyDomain: "usmle-s3-ccs",
+    primary: true,
+    relatedPresetIds: ["step3-ccs-drill"],
+  },
+  "ambulatory-chronic-care": {
+    studyDomain: "usmle-s3-ccs",
+    primary: true,
+  },
+  "nnt-arr": {
+    studyDomain: "usmle-s3-biostatistics",
+    primary: true,
+    relatedPresetIds: ["step3-biostats-sprint"],
+  },
 
   // Cross-cutting 2026 topics
   "biostatistics-interpretation": { studyDomain: "usmle-s3-biostatistics" },
   "ethics-professionalism": { studyDomain: "usmle-s3-ethics" },
   "sdoh-health-equity": { studyDomain: "usmle-s3-ethics" },
   "diagnostic-test-interpretation": { studyDomain: "usmle-s3-biostatistics" },
-  "pharmacology-interactions": { studyDomain: "usmle-s1-pharmacology" },
-  "emergency-acls": { studyDomain: "usmle-s2-emergency" },
+  "pharmacology-interactions": {
+    studyDomain: "usmle-s1-pharmacology",
+    relatedDrugClasses: ["cardiovascular", "antibiotics", "cns-psych", "endocrine"],
+    top500DrugSlugs: ["warfarin", "simvastatin", "sertraline"],
+  },
+  "emergency-acls": {
+    studyDomain: "usmle-s2-emergency",
+    relatedDrugClasses: ["cardiovascular"],
+    top500DrugSlugs: ["epinephrine", "amiodarone", "atropine"],
+  },
 };
 
 function build2026Registry(): Record<string, UsmleTopicMeta> {
@@ -364,6 +488,59 @@ const FULL_REGISTRY: Record<string, UsmleTopicMeta> = {
 const ALL_DOMAINS = [...USMLE_STEP1_DOMAINS, ...USMLE_STEP2_DOMAINS, ...USMLE_STEP3_DOMAINS];
 const DOMAIN_BY_ID = new Map(ALL_DOMAINS.map((d) => [d.id, d]));
 
+/** Blueprint category id → primary topic slug, keyed by USMLE field id. */
+const USMLE_CATEGORY_PRIMARY: Record<string, Record<string, string>> = {
+  "usmle-step-1": {
+    anatomy: "anatomy-embryology",
+    physiology: "physiology-systems",
+    pathology: "pathology-neoplasia",
+    pharmacology: "pharmacology-moa",
+    biochemistry: "biochemistry-metabolism",
+    microbiology: "microbiology-immunology",
+  },
+  "usmle-step-2": {
+    cardiovascular: "acute-coronary-syndrome",
+    respiratory: "pulmonary",
+    gastrointestinal: "gastroenterology",
+    endocrine: "endocrine-dm",
+    "infectious-disease": "infectious-disease",
+    "internal-medicine": "renal-electrolytes",
+    surgery: "emergency-toxicology",
+    pediatrics: "pediatrics",
+    obgyn: "obstetrics",
+    psychiatry: "psychiatry",
+    "emergency-medicine": "emergency-toxicology",
+  },
+  "usmle-step-3": {
+    "internal-medicine": "cardiovascular",
+    surgery: "emergency-toxicology",
+    pediatrics: "pediatrics",
+    obgyn: "obstetrics",
+    psychiatry: "psychiatry",
+    biostatistics: "biostatistics-epidemiology",
+    ethics: "medical-ethics-legal",
+    "pharm-advertising": "pharmaceutical-ads-abstracts",
+    ccs: "ccs-case-management",
+  },
+};
+
+const USMLE_SUBJECT_PRIMARY: Record<string, string> = {
+  cardiology: "acute-coronary-syndrome",
+  pulmonology: "pulmonary",
+  nephrology: "renal-electrolytes",
+  pharmacology: "pharmacology-moa",
+  pathology: "pathology-neoplasia",
+  physiology: "physiology-systems",
+  biochemistry: "biochemistry-metabolism",
+  microbiology: "microbiology-immunology",
+  anatomy: "anatomy-embryology",
+  psychiatry: "psychiatry",
+  pediatrics: "pediatrics",
+  obgyn: "obstetrics",
+  "emergency-medicine": "emergency-toxicology",
+  "internal-medicine": "renal-electrolytes",
+};
+
 export function getUsmleStudyDomains(step: UsmleStepLevel): UsmleStudyDomain[] {
   if (step === "step1") return USMLE_STEP1_DOMAINS;
   if (step === "step3") return USMLE_STEP3_DOMAINS;
@@ -387,6 +564,9 @@ export function enrichUsmleTopic(topic: HighYieldTopic): HighYieldTopic {
     category: domain?.label ?? topic.category,
     clientNeedsDomain: meta.studyDomain,
     blueprintTopicSlugs: meta.blueprintTopicSlugs ?? topic.blueprintTopicSlugs,
+    relatedDrugClasses: meta.relatedDrugClasses,
+    top500DrugSlugs: meta.top500DrugSlugs,
+    relatedPresetIds: meta.relatedPresetIds,
   };
 }
 
@@ -408,10 +588,31 @@ export function groupUsmleTopicsByDomain(
 }
 
 export function resolveUsmleTopicSlugForBlueprint(blueprintSlug: string): string | undefined {
+  const normalized = blueprintSlug.toLowerCase();
+  if (FULL_REGISTRY[blueprintSlug]?.studyDomain) return blueprintSlug;
   for (const [slug, meta] of Object.entries(FULL_REGISTRY)) {
-    if (meta.blueprintTopicSlugs?.some((b) => b.toLowerCase() === blueprintSlug.toLowerCase())) {
+    if (meta.blueprintTopicSlugs?.some((b) => b.toLowerCase() === normalized)) {
       return slug;
     }
+  }
+  return undefined;
+}
+
+export function resolveUsmleTopicSlugForCategory(
+  categoryId: string,
+  fieldId: string
+): string | undefined {
+  return USMLE_CATEGORY_PRIMARY[fieldId]?.[categoryId];
+}
+
+export function resolveUsmleTopicSlugForSubject(
+  subjectId: string,
+  fieldId?: string
+): string | undefined {
+  const fromSubject = USMLE_SUBJECT_PRIMARY[subjectId];
+  if (fromSubject) return fromSubject;
+  if (fieldId) {
+    return USMLE_CATEGORY_PRIMARY[fieldId]?.[subjectId];
   }
   return undefined;
 }

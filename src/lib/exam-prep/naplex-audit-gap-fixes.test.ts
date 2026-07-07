@@ -44,4 +44,38 @@ describe("naplex audit gap fixes", () => {
   it("covers all 25 foundation ids", () => {
     expect(Object.keys(NAPLEX_FOUNDATION_GAP_FIXES)).toHaveLength(25);
   });
+
+  it("auto-rewrites bare legacy PK flashcard without hand-authored id map", () => {
+    const item: BankItem = {
+      subjectId: "pharmacokinetics",
+      question: "First-pass metabolism occurs mainly in:",
+      options: ["Liver", "Kidney", "Lung only", "Skin"],
+      correctAnswer: "Liver",
+      explanation: "Reduces oral bioavailability.",
+      tags: ["test"],
+    };
+    const { item: fixed } = fixNaplexAuditGaps(item, "cmr31dd4e002sjs04llzlzqgk");
+    expect(fixed.vignette).toContain("52-year-old");
+    expect(fixed.question).toMatch(/Which organ/i);
+    expect((fixed.explanation ?? "").length).toBeGreaterThanOrEqual(100);
+    expect(auditNaplexBankItem(fixed).ok).toBe(true);
+  });
+
+  it("enriches sparse clinical vignette missing age and vitals", () => {
+    const item: BankItem = {
+      subjectId: "pharmacology",
+      vignette: "Patient picking up extended-release oxycodone. State law requires consultation.",
+      question: "Which opioid safety counseling is most essential?",
+      options: ["Take extra doses for breakthrough pain", "Do not drive until stable", "Share with family", "Crush tablets"],
+      correctAnswer: "Do not drive until stable",
+      explanation:
+        "Correct: Do not drive until stable — opioids cause sedation and impair reaction time; counsel on storage, disposal, and naloxone access as appropriate.",
+      tags: ["test"],
+    };
+    const { item: fixed } = fixNaplexAuditGaps(item, "cmr31dgxr0078js04hkhi2rms");
+    expect(fixed.vignette).toMatch(/52-year-old/);
+    expect(auditNaplexBankItem(fixed).issues.some((i) => i.code === "naplex_missing_clinical_data")).toBe(
+      false
+    );
+  });
 });

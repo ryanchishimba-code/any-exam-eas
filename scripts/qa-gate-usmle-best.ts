@@ -7,8 +7,12 @@
  *   npm run db:qa-gate-usmle-best
  *   npm run db:qa-gate-usmle-best:dry
  *   npm run db:qa-gate-usmle-best -- --field usmle-step-1
+ *   npm run db:qa-gate-usmle-best -- --topics
+ *   npm run db:qa-gate-usmle-best -- --topics-only
+ *   npm run db:qa-gate-usmle-best -- --skip-topics
  */
 import { PrismaClient } from "@prisma/client";
+import { execSync } from "node:child_process";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
 import { auditUsmleQaEditor } from "../src/lib/exam-prep/usmle-qa-editor";
 import { usmleBankItemIsServeReady } from "../src/lib/exam-prep/usmle-clinical-gate";
@@ -19,10 +23,25 @@ const prisma = new PrismaClient();
 const USMLE_FIELDS = ["usmle-step-1", "usmle-step-2", "usmle-step-3"] as const;
 const BATCH = 400;
 const dryRun = process.argv.includes("--dry-run");
+const topicsOnly = process.argv.includes("--topics-only");
+const topicsFlag = process.argv.includes("--topics") || topicsOnly;
 
 function parseFieldArg(): string | undefined {
   const idx = process.argv.indexOf("--field");
   return idx >= 0 ? process.argv[idx + 1] : undefined;
+}
+
+function runTopicGate(): boolean {
+  console.log("\nUSMLE topic integration gate (registry, content, roadmap links)\n");
+  try {
+    execSync("bash scripts/run-with-node.sh npx tsx scripts/usmle-topic-qa-gate.ts", {
+      stdio: "inherit",
+      cwd: process.cwd(),
+    });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 async function gateField(fieldId: (typeof USMLE_FIELDS)[number]) {
@@ -107,6 +126,17 @@ async function gateField(fieldId: (typeof USMLE_FIELDS)[number]) {
 }
 
 async function main() {
+  const skipTopics = process.argv.includes("--skip-topics");
+
+  if (topicsFlag || !skipTopics) {
+    const ok = runTopicGate();
+    if (!ok) process.exit(1);
+    if (topicsOnly) {
+      console.log("");
+      return;
+    }
+  }
+
   const fieldFilter = parseFieldArg();
   if (fieldFilter && !USMLE_FIELDS.includes(fieldFilter as (typeof USMLE_FIELDS)[number])) {
     console.error(`Unknown --field "${fieldFilter}". Expected: ${USMLE_FIELDS.join(", ")}`);

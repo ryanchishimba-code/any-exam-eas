@@ -1,6 +1,11 @@
 import type { BankItem } from "@/lib/question-bank";
 import type { BlueprintDomain, ExamItemType, ExamReference } from "./types";
-import type { StudyStructureContext } from "./anatomy-study-meta";
+import {
+  enrichRelatedStudyMeta,
+  relatedMetaFromPayload,
+  type RelatedStudyMeta,
+  type StudyStructureContext,
+} from "./anatomy-study-meta";
 
 export type { RelatedStudyMeta } from "./anatomy-study-meta";
 
@@ -59,8 +64,6 @@ export function enrichItem(
     text: studyText,
   };
 
-  const { enrichRelatedStudyMeta, relatedMetaFromPayload } =
-    require("./anatomy-study-meta") as typeof import("./anatomy-study-meta");
   const studyMeta = enrichRelatedStudyMeta(relatedMetaFromPayload(payload), ctx);
   const nextPayload = { ...payload, ...studyMeta };
 

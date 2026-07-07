@@ -6,6 +6,7 @@ export type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
 import type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
 import type { DrugClassId } from "@/lib/drugs300/drug-classes";
 import type { NclexStudyPresetId } from "@/lib/exam-prep/nclex/study-presets";
+import type { UsmleStudyPresetId } from "@/lib/exam-prep/usmle/study-presets";
 
 export type ExamDefinition = {
   slug: ExamSlug;
@@ -48,8 +49,8 @@ export type HighYieldTopic = {
   relatedDrugClasses?: Exclude<DrugClassId, "all">[];
   /** Specific Top 500 generic drug slugs for quick review links. */
   top500DrugSlugs?: string[];
-  /** NCLEX study preset ids that pair with this topic. */
-  relatedPresetIds?: NclexStudyPresetId[];
+  /** Study preset ids that pair with this topic (NCLEX or USMLE). */
+  relatedPresetIds?: (NclexStudyPresetId | UsmleStudyPresetId)[];
   /** When set, topic appears only for these USMLE steps in library/topics views. */
   usmleSteps?: ("step1" | "step2" | "step3")[];
 };

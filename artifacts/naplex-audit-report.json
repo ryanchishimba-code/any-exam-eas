@@ -1,227 +1,104 @@
 {
-  "generatedAt": "2026-07-07T04:24:55.477Z",
+  "generatedAt": "2026-07-07T10:21:06.846Z",
   "summary": {
-    "total": 7308,
-    "pass": 7284,
-    "fail": 24,
-    "bySeverity": {
-      "error": 48,
-      "warn": 12
-    },
-    "byCode": {
-      "naplex_stem_lead_in": 24,
-      "naplex_explanation_short": 24,
-      "naplex_missing_clinical_data": 12
-    }
+    "total": 7658,
+    "pass": 7658,
+    "fail": 0,
+    "bySeverity": {},
+    "byCode": {}
   },
-  "passRate": 99.67159277504105,
-  "polishNeeded": 66,
-  "qaGateFail": 24,
-  "lowQuality": 45,
-  "withWarnings": 12,
-  "withErrors": 24,
+  "passRate": 100,
+  "polishNeeded": 30,
+  "qaGateFail": 0,
+  "lowQuality": 23,
+  "withWarnings": 0,
+  "withErrors": 0,
   "bySubject": {
     "patient-counseling": {
-      "total": 2073,
-      "pass": 2071,
-      "fail": 2,
+      "total": 2194,
+      "pass": 2194,
+      "fail": 0,
       "warnOnly": 0,
-      "byCode": {
-        "naplex_stem_lead_in": 2,
-        "naplex_explanation_short": 2,
-        "naplex_missing_clinical_data": 4
-      }
-    },
-    "compounding-calculations": {
-      "total": 1223,
-      "pass": 1222,
-      "fail": 1,
-      "warnOnly": 0,
-      "byCode": {
-        "naplex_stem_lead_in": 1,
-        "naplex_explanation_short": 1
-      }
+      "byCode": {}
     },
     "pharmacy-law": {
-      "total": 7,
-      "pass": 5,
-      "fail": 2,
+      "total": 128,
+      "pass": 128,
+      "fail": 0,
       "warnOnly": 0,
-      "byCode": {
-        "naplex_stem_lead_in": 2,
-        "naplex_explanation_short": 2,
-        "naplex_missing_clinical_data": 2
-      }
+      "byCode": {}
+    },
+    "compounding-calculations": {
+      "total": 1218,
+      "pass": 1218,
+      "fail": 0,
+      "warnOnly": 0,
+      "byCode": {}
     },
     "cardiovascular-rx": {
-      "total": 1009,
-      "pass": 1007,
-      "fail": 2,
+      "total": 1008,
+      "pass": 1008,
+      "fail": 0,
       "warnOnly": 0,
-      "byCode": {
-        "naplex_stem_lead_in": 2,
-        "naplex_explanation_short": 2,
-        "naplex_missing_clinical_data": 1
-      }
+      "byCode": {}
     },
     "pharmacology": {
       "total": 1134,
-      "pass": 1132,
-      "fail": 2,
+      "pass": 1134,
+      "fail": 0,
       "warnOnly": 0,
-      "byCode": {
-        "naplex_stem_lead_in": 2,
-        "naplex_explanation_short": 2,
-        "naplex_missing_clinical_data": 3
-      }
+      "byCode": {}
     },
     "otc-self-care": {
       "total": 615,
-      "pass": 613,
-      "fail": 2,
+      "pass": 615,
+      "fail": 0,
       "warnOnly": 0,
-      "byCode": {
-        "naplex_stem_lead_in": 2,
-        "naplex_explanation_short": 2
-      }
+      "byCode": {}
     },
     "pharmacokinetics": {
-      "total": 12,
-      "pass": 9,
-      "fail": 3,
+      "total": 8,
+      "pass": 8,
+      "fail": 0,
       "warnOnly": 0,
-      "byCode": {
-        "naplex_stem_lead_in": 3,
-        "naplex_explanation_short": 3
-      }
+      "byCode": {}
     },
     "pharmaceutics": {
       "total": 5,
-      "pass": 3,
-      "fail": 2,
+      "pass": 5,
+      "fail": 0,
       "warnOnly": 0,
-      "byCode": {
-        "naplex_stem_lead_in": 2,
-        "naplex_explanation_short": 2,
-        "naplex_missing_clinical_data": 1
-      }
+      "byCode": {}
     },
     "infectious-disease-rx": {
-      "total": 494,
-      "pass": 492,
-      "fail": 2,
+      "total": 614,
+      "pass": 614,
+      "fail": 0,
       "warnOnly": 0,
-      "byCode": {
-        "naplex_stem_lead_in": 2,
-        "naplex_explanation_short": 2
-      }
+      "byCode": {}
     },
     "endocrine-rx": {
-      "total": 367,
+      "total": 365,
       "pass": 365,
-      "fail": 2,
+      "fail": 0,
       "warnOnly": 0,
-      "byCode": {
-        "naplex_stem_lead_in": 2,
-        "naplex_explanation_short": 2
-      }
+      "byCode": {}
     },
     "cns-rx": {
       "total": 367,
-      "pass": 365,
-      "fail": 2,
+      "pass": 367,
+      "fail": 0,
       "warnOnly": 0,
-      "byCode": {
-        "naplex_stem_lead_in": 2,
-        "naplex_explanation_short": 2,
-        "naplex_missing_clinical_data": 1
-      }
+      "byCode": {}
     },
     "oncology-rx": {
       "total": 2,
-      "pass": 0,
-      "fail": 2,
+      "pass": 2,
+      "fail": 0,
       "warnOnly": 0,
-      "byCode": {
-        "naplex_stem_lead_in": 2,
-        "naplex_explanation_short": 2
-      }
+      "byCode": {}
     }
   },
-  "topCodeCounts": {
-    "naplex_stem_lead_in": 24,
-    "naplex_explanation_short": 24,
-    "naplex_missing_clinical_data": 12
-  },
-  "samples": {
-    "naplex_stem_lead_in": [
-      {
-        "itemId": "cmr31dd4e002sjs04llzlzqgk",
-        "subjectId": "pharmacokinetics",
-        "vignette": "",
-        "stem": "First-pass metabolism occurs mainly in:",
-        "message": "Stem should use NAPLEX-style lead-in (most appropriate, calculate, select all, etc.)."
-      },
-      {
-        "itemId": "cmr31dd67002tjs04h1dspezp",
-        "subjectId": "pharmacokinetics",
-        "vignette": "",
-        "stem": "Half-life is the time for:",
-        "message": "Stem should use NAPLEX-style lead-in (most appropriate, calculate, select all, etc.)."
-      },
-      {
-        "itemId": "cmr31dd70002ujs04vewr01gs",
-        "subjectId": "pharmacokinetics",
-        "vignette": "",
-        "stem": "Therapeutic drug monitoring is critical for:",
-        "message": "Stem should use NAPLEX-style lead-in (most appropriate, calculate, select all, etc.)."
-      }
-    ],
-    "naplex_explanation_short": [
-      {
-        "itemId": "cmr31dd4e002sjs04llzlzqgk",
-        "subjectId": "pharmacokinetics",
-        "vignette": "",
-        "stem": "First-pass metabolism occurs mainly in:",
-        "message": "Explanation should be at least 100 characters with drug-specific rationale."
-      },
-      {
-        "itemId": "cmr31dd67002tjs04h1dspezp",
-        "subjectId": "pharmacokinetics",
-        "vignette": "",
-        "stem": "Half-life is the time for:",
-        "message": "Explanation should be at least 100 characters with drug-specific rationale."
-      },
-      {
-        "itemId": "cmr31dd70002ujs04vewr01gs",
-        "subjectId": "pharmacokinetics",
-        "vignette": "",
-        "stem": "Therapeutic drug monitoring is critical for:",
-        "message": "Explanation should be at least 100 characters with drug-specific rationale."
-      }
-    ],
-    "naplex_missing_clinical_data": [
-      {
-        "itemId": "cmr31dgnj006wjs04qbrqc8sk",
-        "subjectId": "pharmaceutics",
-        "vignette": "PN order for home infusion: amino acids + dextrose + lipids. Patient reports room temperature storage overnight during power outage.",
-        "stem": "Which concern is most critical regarding the lipid emulsion?",
-        "message": "Clinical stem lacks patient age and numeric labs, vitals, or doses."
-      },
-      {
-        "itemId": "cmr31dgxr0078js04hkhi2rms",
-        "subjectId": "pharmacology",
-        "vignette": "Patient picking up extended-release oxycodone. State law requires consultation.",
-        "stem": "Which opioid safety counseling is most essential?",
-        "message": "Clinical stem lacks patient age and numeric labs, vitals, or doses."
-      },
-      {
-        "itemId": "cmr31dhgy007vjs041mcsoil1",
-        "subjectId": "patient-counseling",
-        "vignette": "Transgender woman starting estradiol + spironolactone. Smokes 10 cigarettes/day.",
-        "stem": "Priority safety counseling?",
-        "message": "Clinical stem lacks patient age and numeric labs, vitals, or doses."
-      }
-    ]
-  }
+  "topCodeCounts": {},
+  "samples": {}
 }

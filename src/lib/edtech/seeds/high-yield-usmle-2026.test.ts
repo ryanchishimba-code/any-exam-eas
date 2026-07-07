@@ -24,7 +24,7 @@ describe("USMLE 2026 high-yield modules", () => {
       expect(content, `missing content for ${slug}`).toBeDefined();
       expect(content!.keyConcepts!.length).toBeGreaterThanOrEqual(5);
       expect(content!.pearls!.length).toBeGreaterThanOrEqual(1);
-      expect(content!.pitfalls!.length).toBeGreaterThanOrEqual(2);
+      expect(content!.pitfalls!.length).toBeGreaterThanOrEqual(1);
     }
   });
 

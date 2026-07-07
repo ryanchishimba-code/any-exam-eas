@@ -15,18 +15,28 @@ import {
   type BlueprintCategory,
   type ExamBlueprint,
 } from "@/lib/engine/blueprints";
-import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
+import { getExamTopicStudyLinks, topicNameToSlug } from "@/lib/library/exam-topic-bridge";
 import { drugs300ClassHref } from "@/lib/edtech/practice-links";
 import { getDrugClassMeta } from "@/lib/drugs300/drug-classes";
 import {
   resolveNclexTopicSlugForBlueprint,
   resolveNclexTopicSlugForSubject,
 } from "@/lib/exam-prep/nclex/topic-registry";
+import {
+  resolveUsmleTopicSlugForBlueprint,
+  resolveUsmleTopicSlugForCategory,
+  resolveUsmleTopicSlugForSubject,
+} from "@/lib/exam-prep/usmle/topic-registry";
 import { getHighYieldTopic } from "@/lib/edtech/seeds";
 import {
   getNclexStudyPreset,
   nclexPresetPracticeHref,
 } from "@/lib/exam-prep/nclex/study-presets";
+import {
+  getUsmleStudyPreset,
+  usmlePresetPracticeHref,
+  type UsmleStudyPresetId,
+} from "@/lib/exam-prep/usmle/study-presets";
 import { prisma } from "@/lib/prisma";
 
 export type RoadmapReadinessKey = "strong" | "needs_review" | "needs_more_work";
@@ -169,12 +179,13 @@ function buildTopicRow(
   category: BlueprintCategory,
   stats: SubjectStats,
   masteryScores: number[],
-  examSlug: ExamSlug
+  examSlug: ExamSlug,
+  fieldId?: string
 ): RoadmapTopicRow {
   const readinessScore = computeCategoryReadinessScore(stats, masteryScores);
   const { key, label } = classifyReadiness(readinessScore, stats.attempts);
   const primarySubject = category.subjectIds?.[0] ?? category.id;
-  const topicLinks = getExamTopicStudyLinks(examSlug, primarySubject);
+  const topicLinks = getExamTopicStudyLinks(examSlug, primarySubject, { fieldId });
 
   let studyTopicSlugs = topicLinks.relatedTopicSlugs;
   let drugClassHref = topicLinks.drugClassLinks?.[0]?.href;
@@ -204,9 +215,42 @@ function buildTopicRow(
           drugClassLabel = classMeta.shortLabel;
         }
         if (card.relatedPresetIds?.[0]) {
-          const preset = getNclexStudyPreset(card.relatedPresetIds[0]);
+          const preset = getNclexStudyPreset(card.relatedPresetIds[0] as Parameters<typeof getNclexStudyPreset>[0]);
           if (preset) {
             presetHref = nclexPresetPracticeHref(examSlug, preset);
+            presetLabel = preset.title;
+          }
+        }
+      }
+    }
+  }
+
+  if (examSlug === "usmle" && fieldId) {
+    const fromCategory = resolveUsmleTopicSlugForCategory(category.id, fieldId);
+    const fromSubject = resolveUsmleTopicSlugForSubject(primarySubject, fieldId);
+    const fromBlueprint = category.highYieldTopics?.[0]
+      ? resolveUsmleTopicSlugForBlueprint(topicNameToSlug(category.highYieldTopics[0]))
+      : undefined;
+    const primarySlug = fromCategory ?? fromSubject ?? fromBlueprint;
+    if (primarySlug) {
+      const card = getHighYieldTopic("usmle", primarySlug);
+      if (card) {
+        studyTopicSlugs = [card.slug];
+        topicsHubHref = `/dashboard/topics?exam=usmle&topic=${encodeURIComponent(card.slug)}`;
+        if (card.reviewModule) {
+          deepDiveHref =
+            topicLinks.deepDiveHref ??
+            `/dashboard/topics?exam=usmle&topic=${encodeURIComponent(card.slug)}&mode=deep`;
+        }
+        if (card.relatedDrugClasses?.[0]) {
+          const classMeta = getDrugClassMeta(card.relatedDrugClasses[0]);
+          drugClassHref = drugs300ClassHref(card.relatedDrugClasses[0]);
+          drugClassLabel = classMeta.shortLabel;
+        }
+        if (card.relatedPresetIds?.[0]) {
+          const preset = getUsmleStudyPreset(card.relatedPresetIds[0] as UsmleStudyPresetId);
+          if (preset) {
+            presetHref = usmlePresetPracticeHref(examSlug, preset);
             presetLabel = preset.title;
           }
         }
@@ -250,7 +294,7 @@ export function buildRoadmapTopics(
   return blueprint.categories.map((category) => {
     const stats = sumStatsForSubjects(category.subjectIds, attemptMap);
     const masteryScores = masteryForSubjects(category.subjectIds, masteryMap);
-    return buildTopicRow(category, stats, masteryScores, examSlug);
+    return buildTopicRow(category, stats, masteryScores, examSlug, blueprint.fieldId);
   });
 }
 

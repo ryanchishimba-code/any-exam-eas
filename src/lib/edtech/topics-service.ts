@@ -4,10 +4,10 @@ import {
   filterHighYieldTopicsForUsmleStep,
   resolveUsmleLibraryStep,
 } from "@/lib/edtech/usmle-library-catalog";
-import {
-  mergeReviewModules,
-  REVIEW_MODULE_TOPICS,
-} from "@/lib/edtech/seeds/review-module-topics";
+import { mergeReviewModules, REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
+import { enrichNclexTopics } from "@/lib/exam-prep/nclex/topic-registry";
+import { enrichNaplexTopics } from "@/lib/exam-prep/naplex/topic-registry";
+import { enrichUsmleTopics } from "@/lib/exam-prep/usmle/topic-registry";
 import type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 
@@ -100,8 +100,12 @@ function mapDbTopic(row: {
   };
 }
 
-function enrichStaticTopics(examSlug: ExamSlug, topics: HighYieldTopic[]): HighYieldTopic[] {
-  return mergeReviewModules(topics, examSlug);
+function enrichLoadedTopics(examSlug: ExamSlug, topics: HighYieldTopic[]): HighYieldTopic[] {
+  const merged = mergeReviewModules(topics, examSlug);
+  if (examSlug === "nclex") return enrichNclexTopics(merged);
+  if (examSlug === "usmle") return enrichUsmleTopics(merged);
+  if (examSlug === "naplex") return enrichNaplexTopics(merged);
+  return merged;
 }
 
 /** Prefer DB topics when seeded; fall back to static repo content. */
@@ -118,7 +122,7 @@ export async function loadHighYieldTopics(
     });
     if (rows.length > 0) {
       const mapped = rows.map(mapDbTopic);
-      topics = enrichStaticTopics(examSlug, mapped);
+      topics = enrichLoadedTopics(examSlug, mapped);
     } else {
       topics = getStaticTopics(examSlug);
     }

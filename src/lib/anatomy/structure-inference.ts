@@ -1,6 +1,12 @@
 import { ANATOMY_STRUCTURES } from "./structures";
-import type { AnatomyStructureLink } from "./topic-links";
-import { mergeAnatomyStructureLinks } from "./topic-links";
+import type { AnatomyStructure } from "./types";
+
+type AnatomyStructureLink = {
+  id: string;
+  name: string;
+  system: AnatomyStructure["system"];
+  highYield: boolean;
+};
 
 function normalize(text: string): string {
   return text.toLowerCase().replace(/[^a-z0-9\s-]/g, " ");
@@ -71,5 +77,5 @@ export function inferAnatomyStructuresFromText(
     .slice(0, limit)
     .map(({ structure }) => toLink(structure));
 
-  return mergeAnatomyStructureLinks(scored).slice(0, limit);
+  return scored;
 }

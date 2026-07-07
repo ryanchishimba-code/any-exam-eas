@@ -1,4 +1,6 @@
 import { expandTopicSlugAliases } from "@/lib/anatomy/topic-slug-aliases";
+import { getReviewModuleAnatomy } from "@/lib/anatomy/review-module-anatomy";
+import { getDiseaseLinkById } from "@/lib/anatomy/clinical-links/registry";
 import { normalizeWeakAreaTopicKey } from "@/lib/library/weak-area-map";
 import { ANATOMY_STRUCTURES } from "./structures";
 import type { AnatomyStructure } from "./types";
@@ -33,19 +35,7 @@ function toStructureLink(structure: AnatomyStructure): AnatomyStructureLink {
 /** Topic aliases — review module slug → practice subject slug, cross-exam aliases. */
 function topicAliasSlugs(topicKey: string): Set<string> {
   const normalized = normalizeTopicKey(topicKey);
-  const aliases = expandTopicSlugAliases(normalized);
-
-  const { REVIEW_MODULE_TOPICS } =
-    require("@/lib/edtech/seeds/review-module-topics") as typeof import("@/lib/edtech/seeds/review-module-topics");
-  const reviewModule = REVIEW_MODULE_TOPICS.find(
-    (m) => m.slug === normalized || m.practiceTopicSlug === normalized
-  );
-  if (reviewModule) {
-    aliases.add(reviewModule.slug);
-    aliases.add(reviewModule.practiceTopicSlug);
-  }
-
-  return aliases;
+  return expandTopicSlugAliases(normalized);
 }
 
 function scoreStructureForTopic(
@@ -123,10 +113,6 @@ export function mergeAnatomyStructureLinks(
 export function getAnatomyDiseasePearlsForReviewModule(
   moduleSlug: string
 ): AnatomyDiseasePearl[] {
-  const { getReviewModuleAnatomy } =
-    require("@/lib/anatomy/review-module-anatomy") as typeof import("@/lib/anatomy/review-module-anatomy");
-  const { getDiseaseLinkById } =
-    require("@/lib/anatomy/clinical-links/registry") as typeof import("@/lib/anatomy/clinical-links/registry");
   const anatomy = getReviewModuleAnatomy(moduleSlug);
   if (!anatomy?.diseaseIds?.length) return [];
 
@@ -149,8 +135,6 @@ export function getAnatomyStructuresForReviewModule(
   moduleSlug: string,
   limit = 3
 ): AnatomyStructureLink[] {
-  const { getReviewModuleAnatomy } =
-    require("@/lib/anatomy/review-module-anatomy") as typeof import("@/lib/anatomy/review-module-anatomy");
   const anatomy = getReviewModuleAnatomy(moduleSlug);
   if (!anatomy?.structureIds.length) return [];
   return getAnatomyStructuresForStructureIds(anatomy.structureIds, limit);

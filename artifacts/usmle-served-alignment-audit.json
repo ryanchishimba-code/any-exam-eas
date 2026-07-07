@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-06T12:26:06.267Z",
+  "generatedAt": "2026-07-07T10:28:55.145Z",
   "byField": [
     {
       "fieldId": "usmle-step-1",
-      "active": 4111,
+      "active": 4089,
       "served": 3057,
       "servedNotReady": 0,
       "servedWithAlignmentIssues": 6,
@@ -83,7 +83,7 @@
     },
     {
       "fieldId": "usmle-step-2",
-      "active": 6544,
+      "active": 6521,
       "served": 5912,
       "servedNotReady": 0,
       "servedWithAlignmentIssues": 57,
@@ -262,13 +262,15 @@
     },
     {
       "fieldId": "usmle-step-3",
-      "active": 8397,
-      "served": 7504,
-      "servedNotReady": 0,
-      "servedWithAlignmentIssues": 217,
-      "alignmentRatePercent": 97.10820895522389,
+      "active": 9572,
+      "served": 8423,
+      "servedNotReady": 1,
+      "servedWithAlignmentIssues": 293,
+      "alignmentRatePercent": 96.52142941944676,
       "alignmentIssueCounts": {
-        "criteria_only_in_explanation": 214,
+        "criteria_only_in_explanation": 289,
+        "missing_vignette": 1,
+        "vignette_validation": 1,
         "weak_distractors": 3
       },
       "samples": [
@@ -441,8 +443,8 @@
     }
   ],
   "totals": {
-    "served": 16473,
-    "stale": 0,
-    "alignment": 280
+    "served": 17392,
+    "stale": 1,
+    "alignment": 356
   }
 }

@@ -107,3 +107,168 @@ export const PHARMACEUTICAL_ADS_ABSTRACTS_STEP3_MODULE = buildUsmleReviewModule(
     "Screening biases: lead-time, length, selection — look for mortality reduction not just survival",
   ],
 });
+
+/** Step 3 "next best step" decision framework — highest-yield MCQ pattern. */
+export const NEXT_BEST_STEP_STEP3_MODULE = buildUsmleReviewModule({
+  why: [
+    "'Next best step' is the most common Step 3 vignette format. The correct answer is the single action that should happen first among several eventually necessary steps — not the most complete workup or the definitive long-term therapy.",
+    "Board writers include options that are true but delayed, incomplete for acuity, or contraindicated for this patient. Unstable patients always get ABCs and life-threatening treatment before elective testing.",
+  ],
+  concepts: [
+    "Unstable → resuscitation before diagnosis (except simultaneous stat tests that change immediate management)",
+    "Stable → most sensitive/specific test or first-line therapy for most likely diagnosis",
+    "Treat before LP delay when bacterial meningitis with sepsis — antibiotics after cultures if possible, not before when delay harmful",
+    "STEMI: reperfusion beats arranging outpatient stress test",
+    "Symptomatic hypoglycemia: glucose before adjusting basal insulin",
+    "Tension pneumothorax: needle decompression before CT",
+    "Ectopic pregnancy unstable: OR; stable and criteria met: methotrexate",
+    "Patient-specific contraindications: pregnancy, allergy, renal function, anticoagulation",
+    "Definitive vs temporizing: chest tube before OR for tension PTX; OR for perforated viscus",
+  ],
+  clinical: [
+    "Crushing chest pain + ST elevation → activate reperfusion; not troponin trend alone",
+    "Altered mental status → fingerstick glucose before CT",
+    "Anaphylaxis → IM epinephrine lateral thigh; not oral antihistamine alone",
+    "Active GI bleed unstable → resuscitate + PPI ± endoscopy pathway; not colonoscopy first for melena when hemodynamically unstable (upper source until proven)",
+    "Febrile neonate → full sepsis workup + empiric antibiotics + admit",
+    "Status epilepticus → benzodiazepine → second-line AED → ICU if refractory",
+  ],
+  tables: [
+    {
+      caption: "Priority ladder for next-best-step items",
+      headers: ["Priority", "Examples", "Wrong-but-tempting option"],
+      rows: [
+        ["Life threat", "Airway, breathing, circulation", "Comprehensive metabolic panel only"],
+        ["Time-critical diagnosis treatment", "tPA window, antibiotics in meningitis", "Outpatient follow-up"],
+        ["Rule-out emergency", "ECG, glucose, pregnancy test", "MRI brain first"],
+        ["Definitive therapy", "Insulin in DKA after K⁺ check", "Oral metformin in DKA"],
+        ["Disposition/plan", "Admit, follow-up, education", "Discharge without treating cause"],
+      ],
+    },
+  ],
+  visual: [
+    "ABCs triangle before diagnostic tree in every unstable vignette",
+    "Two correct answers → pick the one that happens first AND matches acuity",
+  ],
+  misconceptions: [
+    "Choosing comprehensive workup when single emergent intervention needed",
+    "Selecting long-term management before acute stabilization",
+    "Ignoring 'first' or 'most appropriate initial' wording in stem",
+  ],
+  pearls: [
+    "When two answers seem correct, ask: which happens in the next 5 minutes?",
+    "Stable outpatient vignettes favor guideline first-line therapy over subspecialty referral first",
+  ],
+  summary: [
+    "Unstable → ABCs and treat life threats immediately",
+    "Stable → best test or first-line therapy for leading diagnosis",
+    "Read 'initial,' 'first,' and 'next' literally — sequence matters",
+  ],
+});
+
+/** CCS monitoring, escalation, and disposition — second half of case simulations. */
+export const CCS_MONITORING_ESCALATION_STEP3_MODULE = buildUsmleReviewModule({
+  why: [
+    "After initial stabilization, Step 3 CCS cases test whether you monitor appropriately, recognize deterioration, escalate level of care, and discharge safely. Many failures come from advancing time without new orders when the patient worsens.",
+    "Monitoring frequency, repeat labs, and consult timing must match acuity. Improvement allows de-escalation; deterioration demands ICU, procedure, or broader antibiotics.",
+  ],
+  concepts: [
+    "Set vital sign frequency: q15min when unstable, q4h when stable on floor",
+    "Repeat lactate in sepsis — clearance guides resuscitation",
+    "Transfer to ICU: vasopressor requirement, invasive ventilation, active arrhythmia with instability",
+    "Failure of medical management → procedural/surgical intervention (drain empyema, OR for peritonitis)",
+    "Improvement → wean oxygen, transition IV to PO, plan discharge with follow-up",
+    "Discharge criteria: hemodynamically stable, PO intake, pain controlled, safe support at home",
+    "High-risk discharges: CHF (weight monitoring), DKA (insulin teaching), PE (anticoagulation adherence)",
+    "Document rationale when escalating or refusing discharge",
+  ],
+  clinical: [
+    "Pneumonia day 2: fever, rising WBC — broaden coverage or drain loculated effusion; do not discharge",
+    "CHF patient +10 lb weight gain — increase diuretic before discharge",
+    "Post-op tachycardia POD 3 anastomosis — CT for leak before treating as pneumonia alone",
+    "Asthma: peak flow improved after nebulizer — observe, then discharge with steroid taper Rx",
+    "PE on anticoagulation — ensure LMWH/DOAC prescription and follow-up INR if warfarin",
+  ],
+  tables: [
+    {
+      caption: "Escalation triggers",
+      headers: ["Finding", "Escalation", "Avoid"],
+      rows: [
+        ["Hypotension on fluids", "ICU, vasopressors", "Discharge"],
+        ["Rising lactate", "Broaden sepsis workup/therapy", "Same abx only"],
+        ["New O₂ requirement", "Increase monitoring, ABG", "Routine floor care"],
+        ["Altered mental status", "Stat glucose, head CT, ICU if GCS ↓", "Observation only"],
+      ],
+    },
+  ],
+  visual: [
+    "Vital sign trend arrow at each CCS time block — act on direction not single value",
+    "Disposition checklist: stable? PO? controlled? educated? follow-up?",
+  ],
+  misconceptions: [
+    "Advancing clock without orders when patient deteriorated",
+    "Discharging patient still on IV vasopressors",
+    "Same monitoring frequency after clinical improvement or decompensation",
+  ],
+  pearls: [
+    "CCS punishes failure to repeat assessment after intervention",
+    "When in doubt, consult early for time-sensitive conditions (cardiology, surgery, IR)",
+  ],
+  summary: [
+    "Monitor → reassess → escalate OR de-escalate each time block",
+    "ICU for vasopressors, ventilation, or close titration needs",
+    "Safe discharge = stable + PO regimen + follow-up + return precautions",
+  ],
+});
+
+/** Ambulatory chronic disease management — Step 3 outpatient vignettes. */
+export const AMBULATORY_CHRONIC_CARE_STEP3_MODULE = buildUsmleReviewModule({
+  why: [
+    "Step 3 heavily tests longitudinal outpatient management: diabetes, hypertension, hyperlipidemia, preventive screening, and medication adherence — not just inpatient emergencies.",
+    "Vignettes reward guideline-concordant care, cost-effective testing, and addressing social barriers to adherence.",
+  ],
+  concepts: [
+    "Diabetes: metformin first unless contraindicated; GLP-1/SGLT2i for ASCVD/HF/CKD regardless of A1c when indicated",
+    "Hypertension: thiazide/ACEi/ARB/CCB — combine classes for control; goal often <130/80 in diabetics",
+    "Statin intensity by 10-year ASCVD risk calculator",
+    "Annual diabetes complications screening: retinal exam, urine albumin, foot exam",
+    "USPSTF screening: colonoscopy 45–75, mammography individualized, LDCT for high-risk smokers",
+    "Avoid low-yield imaging: uncomplicated low back pain <6 weeks without red flags",
+    "Medication reconciliation and generic alternatives for cost",
+  ],
+  clinical: [
+    "Type 2 DM + ASCVD → add SGLT2i or GLP-1 with CV benefit",
+    "BP 148/92 on lisinopril 10 mg → add thiazide or increase ACEi, not skip to clonidine",
+    "Former smoker 30 pack-years → lung cancer screening LDCT",
+    "Healthy pre-op cholecystectomy → no routine ECG/CXR without indication",
+  ],
+  tables: [
+    {
+      caption: "High-value vs low-value care traps",
+      headers: ["Scenario", "High-value", "Low-value trap"],
+      rows: [
+        ["Low back pain 2 weeks", "NSAIDs, activity", "MRI lumbar spine"],
+        ["Stable CAD", "Statin, BP control", "Annual stress test"],
+        ["Healthy young pre-op", "Focused history", "Routine labs panel"],
+      ],
+    },
+  ],
+  visual: [
+    "ASCVD risk calculator inputs → statin intensity decision",
+    "Diabetes complications screening calendar at annual visit",
+  ],
+  misconceptions: [
+    "Adding third antihypertensive without assessing adherence and cost",
+    "Tight A1c in frail elderly without benefit",
+    "Screening low-risk populations with poor PPV",
+  ],
+  pearls: [
+    "Individualize A1c targets — avoid hypoglycemia in elderly",
+    "Hepatitis C screen all adults once per USPSTF",
+  ],
+  summary: [
+    "Guideline-concordant chronic care + prevention at every outpatient visit",
+    "Address adherence, cost, and SDOH when control is poor",
+    "Choose Wisely — avoid unnecessary tests",
+  ],
+});

@@ -138,6 +138,7 @@ export const USMLE_2026_CONTENT_STEP2_EXTRA: Record<string, Usmle2026StudyConten
       "LBO: colonoscopy for malignant obstruction can decompress/stent",
       "Gallstone ileus: air in biliary tree — rigler triad",
       "Partial vs complete — partial may resolve with NG decompression",
+      "Closed-loop obstruction: fixed point both ends — emergent surgery even if partial",
     ],
     mustKnowFacts: [
       "Never give oral contrast in complete obstruction if surgery planned emergently",
@@ -154,9 +155,10 @@ export const USMLE_2026_CONTENT_STEP2_EXTRA: Record<string, Usmle2026StudyConten
     summary:
       "Indirect inguinal: patent processus vaginalis through internal ring — lateral to inferior epigastrics; most common in infants and young men. Direct: Hesselbach triangle weakness — older men.\n\nIncarcerated hernia: irreducible, painful — urgent surgery if cannot reduce. Strangulated: compromised blood supply — emergent.",
     keyConcepts: [
+      "Indirect inguinal: lateral to inferior epigastrics through internal ring",
+      "Direct inguinal: Hesselbach triangle — acquired weakness in older men",
       "Femoral hernia: below inguinal ligament — high incarceration risk in women",
       "Richter hernia: partial bowel wall only — can strangulate with minimal obstruction",
-      "Sports hernia: athletic pubalgia — not true hernia",
       "Umbilical hernia in infant often closes by age 5",
       "Mesh repair standard for adult inguinal hernia",
     ],

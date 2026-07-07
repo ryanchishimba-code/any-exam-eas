@@ -7,7 +7,7 @@ import { auditUsmleQaEditor } from "../usmle-qa-editor";
 import {
   normalizeUsmleBankItemFields,
   splitUsmleBankItem,
-} from "../usmle-clinical-gate";
+} from "../usmle-bank-split";
 import { isNptePtCuratedItem } from "@/lib/question-bank/npte-pt-curated";
 import { NPTE_PT_SUBJECTS } from "@/lib/subjects/npte-pt/subjects";
 

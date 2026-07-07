@@ -5,6 +5,11 @@ import {
   getNclexStudyPreset,
   nclexPresetPracticeHref,
 } from "@/lib/exam-prep/nclex/study-presets";
+import {
+  getUsmleStudyPreset,
+  usmlePresetPracticeHref,
+  type UsmleStudyPresetId,
+} from "@/lib/exam-prep/usmle/study-presets";
 import type { HighYieldTopic } from "@/types/edtech";
 
 export type TopicDrugLink = {
@@ -64,16 +69,31 @@ export function buildTopicPresetLinks(
   examSlug: HighYieldTopic["examSlug"],
   topic: HighYieldTopic
 ): TopicPresetLink[] {
-  if (examSlug !== "nclex") return [];
-  return (topic.relatedPresetIds ?? [])
-    .map((id) => {
-      const preset = getNclexStudyPreset(id);
-      if (!preset) return null;
-      return {
-        id,
-        label: preset.title,
-        href: nclexPresetPracticeHref(examSlug, preset),
-      };
-    })
-    .filter((x): x is TopicPresetLink => x != null);
+  if (examSlug === "nclex") {
+    return (topic.relatedPresetIds ?? [])
+      .map((id) => {
+        const preset = getNclexStudyPreset(id as Parameters<typeof getNclexStudyPreset>[0]);
+        if (!preset) return null;
+        return {
+          id,
+          label: preset.title,
+          href: nclexPresetPracticeHref(examSlug, preset),
+        };
+      })
+      .filter((x): x is TopicPresetLink => x != null);
+  }
+  if (examSlug === "usmle") {
+    return (topic.relatedPresetIds ?? [])
+      .map((id) => {
+        const preset = getUsmleStudyPreset(id as UsmleStudyPresetId);
+        if (!preset) return null;
+        return {
+          id,
+          label: preset.title,
+          href: usmlePresetPracticeHref(examSlug, preset),
+        };
+      })
+      .filter((x): x is TopicPresetLink => x != null);
+  }
+  return [];
 }

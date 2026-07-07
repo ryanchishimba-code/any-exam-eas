@@ -85,6 +85,9 @@ import {
   DERMATOLOGY_ALLERGIC_USMLE_MODULE,
   ETHICS_BIOSTATS_USMLE_MODULE,
   PHARMACEUTICAL_ADS_ABSTRACTS_STEP3_MODULE,
+  NEXT_BEST_STEP_STEP3_MODULE,
+  CCS_MONITORING_ESCALATION_STEP3_MODULE,
+  AMBULATORY_CHRONIC_CARE_STEP3_MODULE,
 } from "@/lib/edtech/review-modules/content";
 import type { HighYieldTopic } from "@/types/edtech";
 
@@ -624,6 +627,56 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     practiceTopicSlug: "pharmacology",
     reviewModule: PHARMACEUTICAL_ADS_ABSTRACTS_STEP3_MODULE,
     sortOrder: 23,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "next-best-step",
+    title: "Next Best Step — Step 3 Decision Framework",
+    overview:
+      "Prioritize the single immediate action in management vignettes — stabilize first, then diagnose and treat.",
+    practiceTopicSlug: "internal-medicine",
+    reviewModule: NEXT_BEST_STEP_STEP3_MODULE,
+    sortOrder: 24,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "ccs-monitoring-escalation",
+    title: "CCS Monitoring, Escalation & Disposition",
+    overview:
+      "Timed reassessment, ICU escalation, and safe discharge criteria for Step 3 CCS-style cases.",
+    practiceTopicSlug: "internal-medicine",
+    reviewModule: CCS_MONITORING_ESCALATION_STEP3_MODULE,
+    sortOrder: 25,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "ccs-initial-workup",
+    title: "CCS Initial Workup & Stabilization",
+    overview:
+      "First CCS time block — ABCs, targeted diagnostics, and avoid shotgun ordering.",
+    practiceTopicSlug: "internal-medicine",
+    reviewModule: CCS_CASE_MANAGEMENT_USMLE_MODULE,
+    sortOrder: 26,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "ambulatory-chronic-care",
+    title: "Ambulatory Chronic Disease Management",
+    overview:
+      "Outpatient diabetes, HTN, lipids, prevention, and high-value care for Step 3.",
+    practiceTopicSlug: "internal-medicine",
+    reviewModule: AMBULATORY_CHRONIC_CARE_STEP3_MODULE,
+    sortOrder: 27,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "nnt-arr",
+    title: "NNT, ARR & Trial Statistics Deep Dive",
+    overview:
+      "Calculate and interpret NNT/NNH from trial data — embedded in Step 3 abstract items.",
+    practiceTopicSlug: "internal-medicine",
+    reviewModule: BIOSTATISTICS_USMLE_STEP3_MODULE,
+    sortOrder: 28,
   }),
   defineReviewModuleTopic({
     examSlug: "usmle",

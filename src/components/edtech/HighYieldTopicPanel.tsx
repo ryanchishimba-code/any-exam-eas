@@ -104,18 +104,16 @@ export function HighYieldTopicPanel({
     return getAnatomyDiseasePearlsForReviewModule(topic.slug);
   }, [topic?.slug]);
 
-  const drugLinks = useMemo(
-    () => (topic && examSlug === "nclex" ? buildTopicDrugLinks(topic) : []),
-    [topic, examSlug]
-  );
-  const drugClassLinks = useMemo(
-    () => (topic && examSlug === "nclex" ? buildTopicDrugClassLinks(topic) : []),
-    [topic, examSlug]
-  );
+  const drugLinks = useMemo(() => (topic ? buildTopicDrugLinks(topic) : []), [topic]);
+  const drugClassLinks = useMemo(() => (topic ? buildTopicDrugClassLinks(topic) : []), [topic]);
   const presetLinks = useMemo(
-    () => (topic && examSlug === "nclex" ? buildTopicPresetLinks(examSlug, topic) : []),
+    () =>
+      topic && (examSlug === "nclex" || examSlug === "usmle")
+        ? buildTopicPresetLinks(examSlug, topic)
+        : [],
     [topic, examSlug]
   );
+  const showStudyDrugLinks = examSlug === "nclex" || examSlug === "usmle";
 
   useBodyScrollLock(open);
 
@@ -306,7 +304,7 @@ export function HighYieldTopicPanel({
                 />
               ) : null}
 
-              {examSlug === "nclex" &&
+              {showStudyDrugLinks &&
               (drugLinks.length > 0 || drugClassLinks.length > 0 || presetLinks.length > 0) ? (
                 <section className="mb-6 mt-6 space-y-3 rounded-2xl border border-teal-200/60 bg-teal-50/40 p-4">
                   <h3 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wide text-teal-900">

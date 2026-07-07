@@ -377,7 +377,7 @@ export function HighYieldTopicsClient({
               expandedDomainIds={expandedDomainIds}
               onToggleDomain={toggleDomain}
               onOpenTopic={openTopic}
-              showStepNumbers={examSlug === "nclex"}
+              showStepNumbers={examSlug === "nclex" || examSlug === "usmle"}
               pathOrder={pathOrderMap}
             />
           </div>
