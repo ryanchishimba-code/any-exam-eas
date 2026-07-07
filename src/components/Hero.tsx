@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { ArrowRight, LogIn } from "lucide-react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { LandingTrialTrust } from "@/components/home/LandingTrialTrust";
+import { NoPaymentTrialCallout } from "@/components/marketing/NoPaymentTrialCallout";
 import { TrustBar } from "@/components/home/TrustBar";
 import {
   firstName,
@@ -169,6 +170,7 @@ export function Hero({ compareLayout = false }: { compareLayout?: boolean }) {
                   </>
                 ) : (
                   <>
+                    <NoPaymentTrialCallout variant="badge" className="w-full sm:w-auto" />
                     <Link
                       href={LANDING_TRIAL_HREF}
                       className="aee-btn-hero-xl group inline-flex w-full items-center justify-center gap-2.5 sm:w-auto"

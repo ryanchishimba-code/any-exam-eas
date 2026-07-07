@@ -25,6 +25,7 @@ import {
 } from "@/lib/subscription-tiers";
 import { BillingIntervalPicker } from "@/components/pricing/BillingIntervalPicker";
 import { PricingGuarantees } from "@/components/pricing/PricingGuarantees";
+import { NoPaymentTrialCallout } from "@/components/marketing/NoPaymentTrialCallout";
 import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
 import { Button } from "@/components/ui/Button";
 import { analytics } from "@/lib/analytics";
@@ -104,9 +105,11 @@ export function PricingTiers({ className }: PricingTiersProps) {
 
   return (
     <div className={cn("mx-auto max-w-3xl space-y-10", className)}>
+      <NoPaymentTrialCallout variant="prominent" className="mx-auto max-w-xl" />
+
       <div className="text-center">
         <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[var(--color-accent)]">
-          {formatTrialLabel()} · no payment required
+          {formatTrialLabel()}
         </p>
         <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-3xl">
           {PRICING_VALUE_HEADLINE}
@@ -152,14 +155,15 @@ export function PricingTiers({ className }: PricingTiersProps) {
       </div>
 
       <div className="relative overflow-hidden rounded-[28px] border border-[var(--color-accent)] bg-white shadow-[var(--shadow-apple-md)] ring-2 ring-[var(--color-accent)]/20">
-        <div className="absolute inset-x-0 top-0 flex justify-center">
+        <NoPaymentTrialCallout variant="ribbon" className="rounded-none" />
+        <div className="absolute inset-x-0 top-8 flex justify-center">
           <span className="inline-flex items-center gap-1 rounded-b-xl bg-[var(--color-accent)] px-4 py-1 text-xs font-semibold text-white">
             <Crown className="h-3 w-3" aria-hidden />
             {isAnnual ? "Best value" : "Pro"}
           </span>
         </div>
 
-        <div className="px-6 pt-12 pb-6">
+        <div className="px-6 pt-14 pb-6">
           <div className="flex items-baseline justify-between gap-2">
             <h3 className="text-xl font-semibold text-[var(--color-ink)]">Pro</h3>
             <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[0.6875rem] font-semibold text-emerald-800">
@@ -200,7 +204,10 @@ export function PricingTiers({ className }: PricingTiersProps) {
           >
             {formatTrialCtaLabel()}
           </Button>
-          <p className="mt-2 text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
+          <p className="mt-2 text-center text-xs font-semibold text-emerald-800">
+            No payment method required to start
+          </p>
+          <p className="mt-1 text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
             {formatTrialCtaSubline("pro", interval)}
           </p>
         </div>

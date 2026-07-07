@@ -1,9 +1,10 @@
 import { Check } from "lucide-react";
+import { NoPaymentTrialCallout } from "@/components/marketing/NoPaymentTrialCallout";
 import {
   LANDING_HERO_PRICE_INCLUDES,
   LANDING_HERO_PRICE_TAGLINE,
 } from "@/lib/landing/content";
-import { formatMonthlyPrice, formatTrialLabel } from "@/lib/site";
+import { formatMonthlyPrice } from "@/lib/site";
 import { BILLING_TRIAL_DISCLOSURE } from "@/lib/billing-plans";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
@@ -29,7 +30,9 @@ export function LandingHeroPriceValue({
         <span className="aee-hero-price-value__figure">{formatMonthlyPrice("pro")}</span>
         <span className="aee-hero-price-value__period">/mo</span>
       </p>
-      <p className="mt-1 text-xs font-medium text-[var(--color-accent)]">{formatTrialLabel()}</p>
+      <p className="mt-2">
+        <NoPaymentTrialCallout variant="compact" />
+      </p>
 
       <ul className="aee-hero-price-value__includes">
         {includes.map((item) => (

@@ -12,6 +12,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, LogIn } from "lucide-react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { LandingCta } from "@/components/landing/LandingCta";
+import { NoPaymentTrialCallout } from "@/components/marketing/NoPaymentTrialCallout";
 import { LandingStickyCta } from "@/components/landing/LandingStickyCta";
 import { LandingHashScroll } from "@/components/landing/LandingHashScroll";
 import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
@@ -101,7 +102,9 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
             <span>· all 6 exams · {formatTrialLabel()}</span>
           </div>
 
-          <div className="mt-7 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <div className="mt-7 flex w-full flex-col items-center gap-3">
+            <NoPaymentTrialCallout variant="badge" />
+            <div className="flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <LandingCta
               href={LANDING_TRIAL_HREF}
               className="aee-flagship-cta--hero aee-flagship-cta--xl aee-flagship-cta--primary group w-full sm:w-auto"
@@ -120,6 +123,7 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
             >
               See how it works
             </Link>
+            </div>
           </div>
 
           <p className="mt-4 text-xs font-medium text-[var(--color-ink-muted)]">

@@ -25,6 +25,7 @@ import {
   PLATFORM_EXAM_LIST_MIDDOT,
 } from "@/lib/landing/content";
 import { LandingCta } from "@/components/landing/LandingCta";
+import { NoPaymentTrialCallout } from "@/components/marketing/NoPaymentTrialCallout";
 import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
 import {
   CostComparisonChartLazy,
@@ -144,7 +145,9 @@ export function ExamMarketingLanding({ examKey, questionCountLabel, usmleStepCou
               ))}
             </ul>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+            <NoPaymentTrialCallout variant="badge" className="mt-6" />
+
+            <div className="mt-4 flex flex-wrap items-center gap-3">
               <LandingCta
                 href={LANDING_TRIAL_HREF}
                 className="aee-flagship-cta--hero group w-full sm:w-auto"

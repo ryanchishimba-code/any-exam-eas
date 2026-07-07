@@ -146,8 +146,17 @@ export function formatLandingConversionSubtitle(): string {
 }
 
 export function formatLandingStickyDetail(): string {
-  return `Pro at ${formatMonthlyPrice("pro")}/mo · ${formatTrialLabel()}`;
+  return `No payment required · Pro at ${formatMonthlyPrice("pro")}/mo · ${formatTrialLabel()}`;
 }
+
+/** Primary headline for no-payment trial callouts. */
+export const NO_PAYMENT_TRIAL_HEADLINE = "No payment method required";
+
+/** Supporting copy under the headline on prominent callouts. */
+export const NO_PAYMENT_TRIAL_SUBLINE = `Start your ${TRIAL_DAYS}-day free trial instantly with email or social login — no card, no checkout until you choose to upgrade.`;
+
+/** Short badge label for CTAs and sticky bars. */
+export const NO_PAYMENT_TRIAL_BADGE = "No card required";
 
 export const SIGNUP_PAYMENT_REQUIRED_NOTE =
   `No payment required to start. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions instantly.`;

@@ -13,6 +13,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Check, Flame, Map as MapIcon, ShieldCheck, Sparkles, XCircle } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
+import { NoPaymentTrialCallout } from "@/components/marketing/NoPaymentTrialCallout";
 import { BoardSeasonCountdown } from "@/components/landing/BoardSeasonCountdown";
 import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
 import { TRIAL_DAYS } from "@/lib/billing-config";
@@ -212,7 +213,9 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
             {formatFlagshipHeroSubline(bankCounts.totalLabel)}
           </p>
 
-          <div className="mt-7 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <div className="mt-7 flex w-full flex-col items-center gap-3">
+            <NoPaymentTrialCallout variant="badge" />
+            <div className="flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <LandingCta
               href={LANDING_TRIAL_HREF}
               className="aee-flagship-cta--hero aee-flagship-cta--xl aee-flagship-cta--primary group w-full sm:w-auto"
@@ -231,6 +234,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
             >
               See how it works
             </Link>
+            </div>
           </div>
 
           <div

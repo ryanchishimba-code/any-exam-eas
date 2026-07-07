@@ -11,6 +11,7 @@ import { SocialLoginButton } from "@/components/social/SocialLoginButton";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { AuthLoadingOverlay } from "@/components/ui/AuthLoadingOverlay";
 import { MARKETING_DISCLAIMER, SIGNUP_PAYMENT_REQUIRED_NOTE } from "@/lib/site";
+import { NoPaymentTrialCallout } from "@/components/marketing/NoPaymentTrialCallout";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
 import type { BillingInterval } from "@/lib/billing-config";
@@ -213,7 +214,7 @@ export function SignupForm({
 
   const trialHighlights = [
     `${TRIAL_LIFETIME_QUESTIONS} practice questions across every exam bank during your trial`,
-    "No payment method required — your trial starts instantly",
+    "Full Pro access — Roadmaps, Deep Dives, and all six board banks",
     "Upgrade anytime for unlimited questions and rich explanations",
   ];
 
@@ -230,18 +231,21 @@ export function SignupForm({
         className="rounded-2xl"
       />
       {plan === "trial" && (
-        <div className="rounded-2xl border border-[var(--color-accent)]/25 bg-[var(--color-accent)]/[0.06] p-5">
-          <p className="text-sm font-semibold text-[var(--color-ink)]">
-            Start your {TRIAL_DAYS}-day free trial
-          </p>
-          <ul className="mt-3 space-y-2">
-            {trialHighlights.map((item) => (
-              <li key={item} className="flex items-start gap-2 text-xs leading-relaxed text-[var(--color-ink-muted)]">
-                <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-accent)]" aria-hidden />
-                {item}
-              </li>
-            ))}
-          </ul>
+        <div className="space-y-4">
+          <NoPaymentTrialCallout variant="prominent" />
+          <div className="rounded-2xl border border-[var(--color-border)]/80 bg-[var(--color-surface)]/50 p-4">
+            <p className="text-sm font-semibold text-[var(--color-ink)]">
+              Your {TRIAL_DAYS}-day free trial includes
+            </p>
+            <ul className="mt-3 space-y-2">
+              {trialHighlights.map((item) => (
+                <li key={item} className="flex items-start gap-2 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+                  <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-accent)]" aria-hidden />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       )}
 
@@ -509,9 +513,11 @@ export function SignupForm({
               )}
             </Button>
             <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-              {plan === "trial"
-                ? SIGNUP_PAYMENT_REQUIRED_NOTE
-                : "Next: choose your plan and enter payment securely."}
+              {plan === "trial" ? (
+                <span className="font-semibold text-emerald-800">{SIGNUP_PAYMENT_REQUIRED_NOTE}</span>
+              ) : (
+                "Next: choose your plan and enter payment securely."
+              )}
             </p>
             {!examSlug ? (
               <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
