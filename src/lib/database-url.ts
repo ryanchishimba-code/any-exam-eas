@@ -118,7 +118,7 @@ export function withPoolParams(url: string): string {
     const parsed = new URL(url);
     const connectionLimit =
       process.env.PRISMA_CONNECTION_LIMIT ??
-      (process.env.VERCEL ? "1" : "5");
+      (process.env.VERCEL ? "3" : "5");
     // Always enforce — Vercel Neon integration URLs often ship with limit=5.
     parsed.searchParams.set("connection_limit", connectionLimit);
     parsed.searchParams.set(

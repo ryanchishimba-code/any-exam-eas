@@ -38,7 +38,7 @@ export function getPrismaRetryOptions(): Required<
   const vercel = Boolean(process.env.VERCEL);
   return {
     maxAttempts: Number(process.env.PRISMA_MAX_ATTEMPTS ?? (vercel ? 3 : 3)),
-    timeoutMs: Number(process.env.PRISMA_QUERY_TIMEOUT_MS ?? (vercel ? 20_000 : 15_000)),
+    timeoutMs: Number(process.env.PRISMA_QUERY_TIMEOUT_MS ?? (vercel ? 35_000 : 15_000)),
     baseDelayMs: vercel ? 150 : 200,
   };
 }

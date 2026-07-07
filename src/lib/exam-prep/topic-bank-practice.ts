@@ -18,7 +18,7 @@ export function resolveTopicBankSampleCount(limit: number): number {
   return Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, Math.max(limit * 6, 80));
 }
 
-const TOPIC_GATHER_MAX_ROUNDS = 4;
+const TOPIC_GATHER_MAX_ROUNDS = 2;
 
 /**
  * Pull and vet enough single-topic rows for an exact-count session.

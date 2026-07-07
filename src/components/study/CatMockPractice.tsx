@@ -81,7 +81,7 @@ export function CatMockPractice() {
     setError("");
     try {
       const res = await fetch(
-        `/api/questions?field=${encodeURIComponent(field)}&subjectId=${encodeURIComponent(subjectId)}&limit=100`
+        `/api/questions?field=${encodeURIComponent(field)}&subjectId=${encodeURIComponent(subjectId)}&limit=100&meta=0`
       );
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Could not load questions");
