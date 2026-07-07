@@ -8,7 +8,7 @@ AI-powered exam generation and adaptive learning quilts — Apple-inspired, dyna
 - **Learning quilt** — Flashcard and quiz tiles; choose flashcards, quiz, or mixed mode
 - **Accounts** — Email signup, 18+ verification, progress tracking
 - **Lesson plans** — K–12 and professional (medicine, nursing, pharmacy, engineering, etc.)
-- **Billing** — 3-day free trial (150 practice questions, no payment required) then Pro at $34.99/mo via Stripe (see `src/lib/billing-config.ts`)
+- **Billing** — 3-day free trial (150 practice questions, no payment required) then Pro at $27.99/mo via Stripe (see `src/lib/billing-config.ts`)
 - **Legal** — Terms, Privacy, and liability disclaimers (review with a lawyer before launch)
 
 ## Testing

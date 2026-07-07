@@ -28,7 +28,7 @@ const PAGES = [
     path: "/pricing",
     expect: 200,
     links: ["/signup"],
-    text: ["trial", "29.99"],
+    text: ["trial", "27.99"],
   },
   {
     path: "/feedback",

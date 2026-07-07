@@ -14,7 +14,7 @@ const password = process.env.LOAD_TEST_PASSWORD ?? "DevPassword1!";
 /** path, allowed HTTP statuses, substrings that must appear in HTML (any match = ok) */
 const PUBLIC_DESTINATIONS = [
   { label: "Home", path: "/", expect: [200], markers: ["One subscription", "Four licensing", "NCLEX"] },
-  { label: "Pricing", path: "/pricing", expect: [200], markers: ["trial", "29.99"] },
+  { label: "Pricing", path: "/pricing", expect: [200], markers: ["trial", "27.99"] },
   { label: "Signup", path: "/signup", expect: [200], markers: ["Choose your plan", "study support tool"] },
   { label: "Auth login", path: "/auth/login", expect: [200], markers: ["Log in", "NCLEX"] },
   { label: "Feedback", path: "/feedback", expect: [200], markers: ["feedback", "Send"] },

@@ -52,7 +52,7 @@ async function main() {
   let envContent = readFileSync(ENV_PATH, "utf8");
   envContent = setEnvValue(envContent, INTRO_KEY, "");
   writeFileSync(ENV_PATH, envContent);
-  console.log(`✓ cleared ${INTRO_KEY} in .env (free trial: $0 today, then $29.99/mo)`);
+  console.log(`✓ cleared ${INTRO_KEY} in .env (free trial: $0 today, then $27.99/mo)`);
 
   for (const target of ["production", "preview", "development"]) {
     removeVercelEnv(INTRO_KEY, target);

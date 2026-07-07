@@ -116,7 +116,7 @@ if (!configured) {
 
     const priceId = process.env.STRIPE_PRICE_ID;
     const price = await stripe.prices.retrieve(priceId);
-    const monthlyUsd = Number(process.env.MONTHLY_PRICE_USD ?? "32.99");
+    const monthlyUsd = Number(process.env.MONTHLY_PRICE_USD ?? "27.99");
     const actualUsd = (price.unit_amount ?? 0) / 100;
     if (price.active) ok("STRIPE_PRICE_ID", `${priceId} active (${price.currency} ${actualUsd})`);
     else fail("STRIPE_PRICE_ID", "price exists but inactive");
