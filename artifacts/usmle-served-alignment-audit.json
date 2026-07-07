@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-07-03T01:58:55.396Z",
+  "generatedAt": "2026-07-06T12:26:06.267Z",
   "byField": [
     {
       "fieldId": "usmle-step-1",
-      "active": 7371,
-      "served": 7302,
+      "active": 4111,
+      "served": 3057,
       "servedNotReady": 0,
-      "servedWithAlignmentIssues": 4,
-      "alignmentRatePercent": 99.94522048753765,
+      "servedWithAlignmentIssues": 6,
+      "alignmentRatePercent": 99.80372914622178,
       "alignmentIssueCounts": {
-        "criteria_only_in_explanation": 1,
+        "criteria_only_in_explanation": 3,
         "vignette_validation": 3
       },
       "samples": [
@@ -37,7 +37,7 @@
         },
         {
           "id": "cmr31dlg700c6js04kwjp2jta",
-          "subjectId": "nephrology",
+          "subjectId": "pathology",
           "codes": [
             "vignette_validation"
           ],
@@ -56,19 +56,41 @@
           "stem": "Which of the following host factors most likely increased his susceptibility to this infection despite vaccination?",
           "correctAnswer": "Deficiency of terminal complement components (C5–C9)",
           "overallScore": 8.3
+        },
+        {
+          "id": "cmr8adznj00tq1yw26o5bqez8",
+          "subjectId": "physiology",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 70-year-old man presents with sudden onset of right-sided weakness and difficulty speaking. His blood pressure is 180/100 mm Hg. A CT scan of the head shows an ischemic stroke in",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Administer tissue plasminogen activator (tPA)",
+          "overallScore": 8
+        },
+        {
+          "id": "cmr8dyn18007e1yazwcp664n0",
+          "subjectId": "biochemistry",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 55-year-old man presents to the emergency department with sudden onset of severe chest pain radiating to his back. He is diaphoretic and has a blood pressure of 80/50 mm Hg. A CT",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Start beta-blocker therapy",
+          "overallScore": 8.1
         }
       ]
     },
     {
       "fieldId": "usmle-step-2",
-      "active": 11396,
-      "served": 11336,
+      "active": 6544,
+      "served": 5912,
       "servedNotReady": 0,
-      "servedWithAlignmentIssues": 4,
-      "alignmentRatePercent": 99.96471418489767,
+      "servedWithAlignmentIssues": 57,
+      "alignmentRatePercent": 99.03585926928281,
       "alignmentIssueCounts": {
         "weak_distractors": 2,
-        "criteria_only_in_explanation": 2
+        "criteria_only_in_explanation": 55
       },
       "samples": [
         {
@@ -114,23 +136,313 @@
           "stem": "Which of the following is the most appropriate next step in management?",
           "correctAnswer": "CT pulmonary angiography",
           "overallScore": 8.6
+        },
+        {
+          "id": "cmr31dlog00cdjs04mxofce08",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 67-year-old man with advanced dementia is hospitalized for aspiration pneumonia. He pulls out his IV lines and tries to climb out of bed. He cannot state the year or recognize hi",
+          "stem": "Which of the following is the most appropriate action?",
+          "correctAnswer": "Honor the valid advance directive and use noninvasive treatments aligned with his documented goals",
+          "overallScore": 8.1
+        },
+        {
+          "id": "cmr4gwfjj00041ydeqcn6hror",
+          "subjectId": "pediatrics",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 5-year-old boy presents to the pediatric clinic with a 2-day history of fever, cough, and difficulty breathing. His mother reports that he has been wheezing and has had a runny n",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Initiate bronchodilator therapy",
+          "overallScore": 8.3
+        },
+        {
+          "id": "cmr4gwg1d00091ydepsq9s7sx",
+          "subjectId": "pediatrics",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 72-year-old woman presents to the emergency department with acute shortness of breath that started two hours ago. She has a history of hypertension and heart failure, and her med",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Administer intravenous furosemide",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmr4gwino000y1ydevotjwxl0",
+          "subjectId": "pediatrics",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 4-year-old girl presents to the pediatric clinic with a 2-day history of fever, cough, and a runny nose. Her mother reports that she has been increasingly irritable and has had d",
+          "stem": "Which of the following is the most appropriate management?",
+          "correctAnswer": "Albuterol nebulization",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmr4gwj5x00131ydetm020iom",
+          "subjectId": "pediatrics",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 2-year-old girl is brought to the pediatric clinic with a 3-day history of fever, cough, and difficulty breathing. Her mother reports that she has been more irritable than usual ",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Administer albuterol nebulization",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmr4gwk6x001d1ydefy227rep",
+          "subjectId": "pediatrics",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 2-month-old male infant presents to the emergency department with a fever of 39.5°C (103.1°F) and irritability. His mother reports that he has been feeding poorly and has had a d",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Start intravenous antibiotics",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmr4hngrk006i1yde3n152jpd",
+          "subjectId": "pediatrics",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 2-year-old boy is brought to the pediatric clinic with a 3-day history of fever, cough, and difficulty breathing. His mother reports that he has been more irritable than usual an",
+          "stem": "Which of the following is the most appropriate next step in management?",
+          "correctAnswer": "Prescribe a bronchodilator",
+          "overallScore": 8
+        },
+        {
+          "id": "cmr4hnl6e007c1ydeqom2jrp5",
+          "subjectId": "pediatrics",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 4-year-old girl presents to the pediatric clinic with a 2-day history of fever, cough, and difficulty breathing. Her mother reports that she has been wheezing and has had a histo",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Initiate nebulized albuterol",
+          "overallScore": 8.3
+        },
+        {
+          "id": "cmr4hztir009y1ydem5aapgfq",
+          "subjectId": "pediatrics",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 4-year-old girl is brought to the pediatric clinic with a 2-day history of fever, cough, and wheezing. Her mother reports that the child has been increasingly irritable and has h",
+          "stem": "What is the most appropriate management for this child's condition?",
+          "correctAnswer": "Albuterol nebulization",
+          "overallScore": 8.1
+        },
+        {
+          "id": "cmr4hztzq00a41ydedcppxwfv",
+          "subjectId": "pediatrics",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 12-year-old boy is brought to the clinic for a well-child visit. He is noted to have a body mass index (BMI) above the 95th percentile for his age. His mother expresses concern a",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Initiate lifestyle modification counseling",
+          "overallScore": 8.3
+        },
+        {
+          "id": "cmr4hzu2j00a51ydeh825zmg8",
+          "subjectId": "pediatrics",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 2-year-old girl is brought to the pediatric clinic for her routine check-up. Her mother reports that she has been healthy, with no recent illnesses, but she is concerned about he",
+          "stem": "What is the most appropriate management for this patient?",
+          "correctAnswer": "Administer the MMR vaccine today",
+          "overallScore": 8.1
         }
       ]
     },
     {
       "fieldId": "usmle-step-3",
-      "active": 10926,
-      "served": 10882,
+      "active": 8397,
+      "served": 7504,
       "servedNotReady": 0,
-      "servedWithAlignmentIssues": 0,
-      "alignmentRatePercent": 100,
-      "alignmentIssueCounts": {},
-      "samples": []
+      "servedWithAlignmentIssues": 217,
+      "alignmentRatePercent": 97.10820895522389,
+      "alignmentIssueCounts": {
+        "criteria_only_in_explanation": 214,
+        "weak_distractors": 3
+      },
+      "samples": [
+        {
+          "id": "cmr4bag1j004g1yky9vfhrlsk",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 32-year-old woman presents to the emergency department with a chief complaint of severe abdominal pain and vomiting. She has a history of type 1 diabetes and was recently diagnos",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Administer intravenous fluids and insulin",
+          "overallScore": 8.4
+        },
+        {
+          "id": "cmr4bahqr004x1ykyschj9fa1",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 35-year-old woman presents to the emergency department with a chief complaint of severe abdominal pain and vomiting. She has a history of alcohol use disorder and has not eaten f",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Administer intravenous fluids and electrolytes",
+          "overallScore": 8.4
+        },
+        {
+          "id": "cmr4bnykh00bc1ykynwibtaih",
+          "subjectId": "emergency-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 45-year-old woman presents to the emergency department with severe abdominal pain and vomiting for the past 12 hours. She has a history of gallstones and is currently on no medic",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Administer intravenous fluids and analgesics",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmr4c4ufj00ht1ykywstku186",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 45-year-old woman presents to the emergency department with severe abdominal pain and vomiting. She has a history of chronic alcohol use and has not eaten for the past two days. ",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Administer intravenous fluids and electrolytes",
+          "overallScore": 8.4
+        },
+        {
+          "id": "cmr4cbw6800ks1yky3bq8y4vp",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 62-year-old woman presents to the emergency department with a 2-day history of worsening shortness of breath and a productive cough. She has a history of COPD and is currently on",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Initiate non-invasive positive pressure ventilation",
+          "overallScore": 8.1
+        },
+        {
+          "id": "cmr4cbwvp00l01ykycd78lb8u",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 60-year-old woman presents to the emergency department with acute onset of right-sided weakness and slurred speech. Her blood pressure is 180/100 mm Hg, and her neurological exam",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Administer intravenous thrombolytics",
+          "overallScore": 8.1
+        },
+        {
+          "id": "cmr4cnsve00ny1ykyqsse91no",
+          "subjectId": "emergency-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 72-year-old woman presents to the emergency department with severe shortness of breath and a cough productive of pink, frothy sputum. Her vital signs reveal a blood pressure of 9",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Administer diuretics",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmr4cveoa00s21yky9wz75kg4",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 62-year-old woman presents to the emergency department with a 2-day history of increasing shortness of breath and a productive cough. She has a history of COPD and is currently o",
+          "stem": "What is the next best step in management?",
+          "correctAnswer": "Initiate noninvasive positive pressure ventilation",
+          "overallScore": 8.4
+        },
+        {
+          "id": "cmr4dbby600xu1ykypkxzpg5w",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 65-year-old woman with a history of hypertension and hyperlipidemia presents with sudden onset of right-sided weakness and difficulty speaking. Her blood pressure is 180/100 mm H",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Administer tissue plasminogen activator (tPA)",
+          "overallScore": 8.1
+        },
+        {
+          "id": "cmr4dbekm00yi1ykyfwbi0ymg",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 72-year-old woman presents to the emergency department with shortness of breath and a productive cough for the past week. She has a history of chronic obstructive pulmonary disea",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Administer nebulized albuterol",
+          "overallScore": 8
+        },
+        {
+          "id": "cmr4dj9pa011a1yky1oma2rrx",
+          "subjectId": "emergency-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 72-year-old woman presents to the emergency department with severe shortness of breath and a productive cough. She has a history of COPD and is currently on a long-acting beta-ag",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Initiate non-invasive positive pressure ventilation",
+          "overallScore": 8.2
+        },
+        {
+          "id": "cmr4dqssn014y1ykysgtmqar2",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 62-year-old woman presents to the emergency department with a 2-day history of increasing shortness of breath and a productive cough. She has a history of hypertension and type 2",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Start intravenous antibiotics",
+          "overallScore": 8.3
+        },
+        {
+          "id": "cmr4dzaf201901yky840p2hi7",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 70-year-old woman presents to the emergency department with sudden onset of right-sided weakness and difficulty speaking. Her medical history includes hypertension and hyperlipid",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Administer tissue plasminogen activator (tPA)",
+          "overallScore": 8.3
+        },
+        {
+          "id": "cmr4e6i4x01b41ykygru431zd",
+          "subjectId": "internal-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 45-year-old woman presents to the emergency department with a 2-day history of worsening shortness of breath and a productive cough. She has a history of asthma and is currently ",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Administer systemic corticosteroids",
+          "overallScore": 8.1
+        },
+        {
+          "id": "cmr4eehsh01e81ykyjqh0vza0",
+          "subjectId": "emergency-medicine",
+          "codes": [
+            "criteria_only_in_explanation"
+          ],
+          "vignette": "A 45-year-old man with a history of COPD presents to the emergency department with worsening shortness of breath and a productive cough for the past three days. He is currently on ",
+          "stem": "What is the most appropriate next step in management?",
+          "correctAnswer": "Provide supplemental oxygen",
+          "overallScore": 8.1
+        }
+      ]
     }
   ],
   "totals": {
-    "served": 29520,
+    "served": 16473,
     "stale": 0,
-    "alignment": 8
+    "alignment": 280
   }
 }

@@ -6,7 +6,7 @@
  *   npm run db:rebalance-usmle -- --field usmle-step-3 --categories biostatistics,ethics,pharm-advertising,ccs
  *   npm run db:rebalance-usmle -- --field usmle-step-2 --subjects pediatrics
  *   npm run db:rebalance-usmle -- --field usmle-step-1 --subjects physiology,anatomy
- *   npm run db:rebalance-usmle -- --dry-run
+ *   npm run db:rebalance-usmle -- --field usmle-step-3 --fill-deficits
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -48,6 +48,7 @@ function parseArgs() {
   let maxBatches = 15;
   let metric: "active" | "qaPassed" = "active";
   let dryRun = false;
+  let fillDeficits = false;
   let categories: string[] = [];
   let subjects: string[] = [];
 
@@ -67,10 +68,21 @@ function parseArgs() {
     } else if (a === "--step3-formats") {
       categories = [...USMLE_STEP3_FORMAT_CATEGORY_IDS];
       field = "usmle-step-3";
-    } else if (a === "--dry-run") dryRun = true;
+    } else if (a === "--fill-deficits") fillDeficits = true;
+    else if (a === "--dry-run") dryRun = true;
   }
 
-  return { field, examsPerBatch, countPerExam, maxBatches, metric, dryRun, categories, subjects };
+  return {
+    field,
+    examsPerBatch,
+    countPerExam,
+    maxBatches,
+    metric,
+    dryRun,
+    fillDeficits,
+    categories,
+    subjects,
+  };
 }
 
 function log(line: string) {
@@ -104,8 +116,17 @@ async function categoryCounts(fieldId: string, metric: "active" | "qaPassed") {
 }
 
 async function main() {
-  const { field, examsPerBatch, countPerExam, maxBatches, metric, dryRun, categories, subjects } =
-    parseArgs();
+  const {
+    field,
+    examsPerBatch,
+    countPerExam,
+    maxBatches,
+    metric,
+    dryRun,
+    fillDeficits,
+    categories,
+    subjects,
+  } = parseArgs();
 
   const stepLevel = FIELD_TO_STEP[field];
   if (!stepLevel) {
@@ -124,17 +145,17 @@ async function main() {
     process.exit(1);
   }
 
-  const categoryMode = categories.length > 0;
-  const subjectMode = subjects.length > 0;
-  const focusRotation = categoryMode ? categories : subjectMode ? subjects : [];
+  const categoryMode = categories.length > 0 || fillDeficits;
+  const subjectMode = !fillDeficits && subjects.length > 0;
+  const staticFocus = categoryMode && !fillDeficits ? categories : subjectMode ? subjects : [];
 
-  if (focusRotation.length === 0) {
-    console.error("Pass --categories or --subjects (or --step3-formats).");
+  if (!fillDeficits && staticFocus.length === 0) {
+    console.error("Pass --categories, --subjects, --step3-formats, or --fill-deficits.");
     process.exit(1);
   }
 
   log(
-    `USMLE rebalance — ${field} (${metric}), ${examsPerBatch} exam(s) × ${countPerExam}, max ${maxBatches}${dryRun ? " [dry-run]" : ""} [focus: ${focusRotation.join(", ")}]`
+    `USMLE rebalance — ${field} (${metric}), ${examsPerBatch} exam(s) × ${countPerExam}, max ${maxBatches}${dryRun ? " [dry-run]" : ""}${fillDeficits ? " [fill-deficits]" : ` [focus: ${staticFocus.join(", ")}]`}`
   );
 
   let batches = 0;
@@ -144,13 +165,19 @@ async function main() {
   while (batches < maxBatches) {
     const { counts, total } = await categoryCounts(field, metric);
     const quotas = mergeUsmleQuotaWithCounts(blueprint, counts, total);
-    const under = quotas.filter((q) => focusRotation.includes(q.categoryId) && (q.deficit ?? 0) > 0);
+    const focusRotation = fillDeficits
+      ? quotas.filter((q) => (q.deficit ?? 0) > 0).map((q) => q.categoryId)
+      : staticFocus;
+    const under = fillDeficits
+      ? quotas.filter((q) => (q.deficit ?? 0) > 0)
+      : quotas.filter((q) => focusRotation.includes(q.categoryId) && (q.deficit ?? 0) > 0);
     const totalDeficit = under.reduce((s, q) => s + (q.deficit ?? 0), 0);
 
     log(`Deficit in focus areas: ${totalDeficit} across ${under.length} categories`);
-    for (const q of under) {
+    for (const q of under.slice(0, 12)) {
       log(`  ${q.label}: ${q.currentCount ?? 0}/${q.targetCount} (need ${q.deficit})`);
     }
+    if (under.length > 12) log(`  … and ${under.length - 12} more`);
 
     if (totalDeficit === 0) {
       log("Focus areas at or above target. Done.");
@@ -162,22 +189,28 @@ async function main() {
       break;
     }
 
+    if (focusRotation.length === 0) {
+      log("No focus categories with deficit. Done.");
+      break;
+    }
+
     const batchId = `usmle-gap-${field}-${Date.now()}`;
 
     for (let e = 0; e < examsPerBatch; e++) {
       const focusKey = focusRotation[(batches * examsPerBatch + e) % focusRotation.length]!;
       examCounter++;
 
+      const useSubjectFocus = field === "usmle-step-1" || subjectMode;
       const genParams = {
         examNumber: examCounter,
         questionCount: countPerExam,
         batchId,
         stepLevel,
-        ...(categoryMode ? { focusCategoryId: focusKey } : { focusSubjectId: focusKey }),
+        ...(useSubjectFocus ? { focusSubjectId: focusKey } : { focusCategoryId: focusKey }),
       };
 
       log(
-        `▶ Generate exam ${examCounter}: ${countPerExam} slots — ${categoryMode ? "category" : "subject"} ${focusKey}`
+        `▶ Generate exam ${examCounter}: ${countPerExam} slots — ${useSubjectFocus ? "subject" : "category"} ${focusKey}`
       );
 
       try {

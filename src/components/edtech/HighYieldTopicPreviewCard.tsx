@@ -57,12 +57,14 @@ export function HighYieldTopicPreviewCard({
   examSlug: _examSlug,
   onViewSummary,
   compact = false,
+  stepNumber,
 }: {
   topic: HighYieldTopic;
   progress?: TopicProgressMap[string];
   examSlug: ExamSlug;
   onViewSummary: () => void;
   compact?: boolean;
+  stepNumber?: number;
 }) {
   const reviewCount = progress?.reviewCount ?? 0;
   const reviewed = reviewCount > 0;
@@ -77,13 +79,21 @@ export function HighYieldTopicPreviewCard({
     >
       <span
         className={cn(
-          "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl",
-          reviewed
-            ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
-            : "bg-[var(--color-surface)] text-[var(--color-ink-muted)]"
+          "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-[11px] font-bold tabular-nums",
+          stepNumber !== undefined
+            ? reviewed
+              ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+              : "bg-[var(--color-surface)] text-[var(--color-ink-muted)]"
+            : reviewed
+              ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+              : "bg-[var(--color-surface)] text-[var(--color-ink-muted)]"
         )}
       >
-        <CategoryIcon className="h-[18px] w-[18px]" aria-hidden />
+        {stepNumber !== undefined ? (
+          <span aria-hidden>{stepNumber}</span>
+        ) : (
+          <CategoryIcon className="h-[18px] w-[18px]" aria-hidden />
+        )}
       </span>
 
       <div className="min-w-0 flex-1 text-left">

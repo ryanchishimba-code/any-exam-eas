@@ -1,19 +1,48 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Search, X } from "lucide-react";
+import { LayoutGrid, List, Search, X } from "lucide-react";
+import { HighYieldDomainAccordion } from "@/components/edtech/HighYieldDomainAccordion";
 import { HighYieldTopicPreviewCard } from "@/components/edtech/HighYieldTopicPreviewCard";
 import { HighYieldTopicPanel } from "@/components/edtech/HighYieldTopicPanel";
+import { HighYieldTopicsGuide } from "@/components/edtech/HighYieldTopicsGuide";
 import { HighYieldTopicsHeader } from "@/components/edtech/HighYieldTopicsHeader";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { filterHighYieldTopics, clampTopicIndex } from "@/lib/edtech/topic-selection";
 import {
+  buildTopicGroups,
+  getNextTopicInPath,
+} from "@/lib/edtech/topic-navigation";
+import {
   groupNclexTopicsByDomain,
   NCLEX_CLIENT_NEEDS_DOMAINS,
 } from "@/lib/exam-prep/nclex/topic-registry";
+import {
+  NCLEX_LEARNING_PATH_ORDER,
+  sortTopicsByNclexPath,
+} from "@/lib/exam-prep/nclex/topic-learning-path";
+import {
+  groupNaplexTopicsByDomain,
+  NAPLEX_CONTENT_DOMAINS,
+} from "@/lib/exam-prep/naplex/topic-registry";
 import { studyUi } from "@/lib/study/study-ui";
 import type { ExamSlug, HighYieldTopic, TopicProgressMap } from "@/types/edtech";
 import { cn } from "@/lib/utils";
+
+type ViewMode = "guide" | "browse";
+
+const GUIDE_EXAMS: ExamSlug[] = ["nclex", "naplex"];
+const GUIDE_TOPIC_THRESHOLD = 12;
+
+function sortTopicsByNaplexDomain(topics: HighYieldTopic[]): HighYieldTopic[] {
+  const domainOrder = new Map(NAPLEX_CONTENT_DOMAINS.map((d, i) => [d.id, i]));
+  return [...topics].sort((a, b) => {
+    const da = domainOrder.get(a.clientNeedsDomain ?? "") ?? 99;
+    const db = domainOrder.get(b.clientNeedsDomain ?? "") ?? 99;
+    if (da !== db) return da - db;
+    return a.title.localeCompare(b.title);
+  });
+}
 
 export function HighYieldTopicsClient({
   examSlug,
@@ -30,15 +59,25 @@ export function HighYieldTopicsClient({
   initialTopicSlug?: string | null;
   initialDeepDive?: boolean;
 }) {
+  const supportsGuide =
+    GUIDE_EXAMS.includes(examSlug) && topics.length >= GUIDE_TOPIC_THRESHOLD;
+
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<ViewMode>(supportsGuide ? "guide" : "browse");
+  const [focusedDomainId, setFocusedDomainId] = useState<string | null>(null);
+  const [expandedDomainIds, setExpandedDomainIds] = useState<Set<string>>(() => new Set());
   const [selectedSlug, setSelectedSlug] = useState<string | null>(initialTopicSlug ?? null);
   const [progressMap, setProgressMap] = useState(initialProgress);
   const exam = EXAM_CATALOG[examSlug];
+  const initializedExpand = useRef(false);
 
   const categories = useMemo(() => {
     if (examSlug === "nclex") {
       return NCLEX_CLIENT_NEEDS_DOMAINS.map((d) => d.label);
+    }
+    if (examSlug === "naplex") {
+      return NAPLEX_CONTENT_DOMAINS.map((d) => d.label);
     }
     const cats = new Set(topics.map((t) => t.category));
     return [...cats].sort();
@@ -53,11 +92,60 @@ export function HighYieldTopicsClient({
     [topics, query, category]
   );
 
+  const isFiltering = query.trim().length > 0 || (category !== null && category !== "all");
+  const effectiveView: ViewMode = supportsGuide && !isFiltering ? viewMode : "browse";
+
+  const pathOrderMap = useMemo(() => {
+    if (examSlug !== "nclex") return undefined;
+    return new Map(NCLEX_LEARNING_PATH_ORDER.map((slug, index) => [slug, index]));
+  }, [examSlug]);
+
+  const topicGroups = useMemo(() => {
+    if (examSlug === "nclex") {
+      const grouped = groupNclexTopicsByDomain(filtered);
+      return buildTopicGroups(grouped, progressMap, sortTopicsByNclexPath);
+    }
+    if (examSlug === "naplex") {
+      const grouped = groupNaplexTopicsByDomain(filtered);
+      return buildTopicGroups(grouped, progressMap, sortTopicsByNaplexDomain);
+    }
+    return [];
+  }, [examSlug, filtered, progressMap]);
+
+  const displayGroups = useMemo(() => {
+    if (!focusedDomainId) return topicGroups;
+    return topicGroups.filter((g) => g.id === focusedDomainId);
+  }, [topicGroups, focusedDomainId]);
+
+  const navigationTopics = useMemo(() => {
+    if (isFiltering) return filtered;
+    if (examSlug === "nclex") return sortTopicsByNclexPath(filtered);
+    if (examSlug === "naplex") return sortTopicsByNaplexDomain(filtered);
+    return filtered;
+  }, [examSlug, filtered, isFiltering]);
+
+  const nextTopic = useMemo(() => {
+    if (examSlug === "nclex") {
+      return getNextTopicInPath(topics, progressMap, NCLEX_LEARNING_PATH_ORDER);
+    }
+    if (examSlug === "naplex") {
+      const ordered = sortTopicsByNaplexDomain(topics);
+      return ordered.find((t) => (progressMap[t.id]?.reviewCount ?? 0) === 0) ?? ordered[0] ?? null;
+    }
+    return null;
+  }, [examSlug, topics, progressMap]);
+
   const grouped = useMemo(() => {
     if (examSlug === "nclex" && (category === null || category === "all")) {
       return groupNclexTopicsByDomain(filtered).map(({ domain, topics: domainTopics }) => [
         domain.weightPct > 0 ? `${domain.label} (${domain.weightPct}%)` : domain.label,
-        domainTopics,
+        sortTopicsByNclexPath(domainTopics),
+      ] as const);
+    }
+    if (examSlug === "naplex" && (category === null || category === "all")) {
+      return groupNaplexTopicsByDomain(filtered).map(({ domain, topics: domainTopics }) => [
+        domain.weightPct > 0 ? domain.label : domain.label,
+        sortTopicsByNaplexDomain(domainTopics),
       ] as const);
     }
     const map = new Map<string, HighYieldTopic[]>();
@@ -81,15 +169,27 @@ export function HighYieldTopicsClient({
 
   useEffect(() => {
     if (!initialTopicSlug) return;
-    if (filtered.some((t) => t.slug === initialTopicSlug)) {
+    if (navigationTopics.some((t) => t.slug === initialTopicSlug)) {
       setSelectedSlug(initialTopicSlug);
     }
-  }, [initialTopicSlug, filtered]);
+  }, [initialTopicSlug, navigationTopics]);
+
+  useEffect(() => {
+    if (!supportsGuide || initializedExpand.current || topicGroups.length === 0) return;
+    initializedExpand.current = true;
+    const firstIncomplete = topicGroups.find((g) => g.reviewed < g.total);
+    const seed = firstIncomplete?.id ?? topicGroups[0]?.id;
+    if (seed) setExpandedDomainIds(new Set([seed]));
+  }, [supportsGuide, topicGroups]);
 
   const activeTopic =
-    selectedSlug !== null ? (filtered.find((t) => t.slug === selectedSlug) ?? null) : null;
+    selectedSlug !== null
+      ? (navigationTopics.find((t) => t.slug === selectedSlug) ?? null)
+      : null;
   const activeIndex =
-    activeTopic !== null ? filtered.findIndex((t) => t.slug === activeTopic.slug) : -1;
+    activeTopic !== null
+      ? navigationTopics.findIndex((t) => t.slug === activeTopic.slug)
+      : -1;
   const reviewedCount = topics.filter((t) => (progressMap[t.id]?.reviewCount ?? 0) > 0).length;
   const masteryPct = topics.length ? Math.round((reviewedCount / topics.length) * 100) : 0;
 
@@ -109,6 +209,31 @@ export function HighYieldTopicsClient({
     }));
   }, []);
 
+  const toggleDomain = useCallback((domainId: string) => {
+    setExpandedDomainIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(domainId)) next.delete(domainId);
+      else next.add(domainId);
+      return next;
+    });
+  }, []);
+
+  const handleSelectDomain = useCallback((domainId: string | null) => {
+    setFocusedDomainId(domainId);
+    if (domainId) {
+      setExpandedDomainIds(new Set([domainId]));
+      requestAnimationFrame(() => {
+        document
+          .getElementById(`topic-domain-${domainId}`)
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
+  }, []);
+
+  const handleContinue = useCallback(() => {
+    if (nextTopic) openTopic(nextTopic);
+  }, [nextTopic, openTopic]);
+
   return (
     <>
       <div className={studyUi.page}>
@@ -122,47 +247,92 @@ export function HighYieldTopicsClient({
         />
 
         <div className={studyUi.stickyBar}>
-          <div className="relative min-w-0">
-            <Search
-              className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--color-ink-muted)]"
-              aria-hidden
-            />
-            <input
-              type="search"
-              placeholder="Search topics…"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              aria-label="Search topics"
-              className={studyUi.searchInput}
-            />
-            {query ? (
-              <button
-                type="button"
-                onClick={() => setQuery("")}
-                aria-label="Clear search"
-                className="absolute right-2 top-1/2 inline-flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-lg text-[var(--color-ink-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-ink)]"
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+            <div className="relative min-w-0 flex-1">
+              <Search
+                className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--color-ink-muted)]"
+                aria-hidden
+              />
+              <input
+                type="search"
+                placeholder="Search topics…"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                aria-label="Search topics"
+                className={studyUi.searchInput}
+              />
+              {query ? (
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  aria-label="Clear search"
+                  className="absolute right-2 top-1/2 inline-flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-lg text-[var(--color-ink-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-ink)]"
+                >
+                  <X className="h-3.5 w-3.5" aria-hidden />
+                </button>
+              ) : null}
+            </div>
+
+            {supportsGuide ? (
+              <div
+                className="inline-flex shrink-0 rounded-xl border border-[var(--color-border)]/80 bg-[var(--color-surface)]/50 p-0.5"
+                role="tablist"
+                aria-label="Topics layout"
               >
-                <X className="h-3.5 w-3.5" aria-hidden />
-              </button>
+                <ViewToggle
+                  active={effectiveView === "guide"}
+                  onClick={() => setViewMode("guide")}
+                  icon={LayoutGrid}
+                  label="Guide"
+                />
+                <ViewToggle
+                  active={effectiveView === "browse"}
+                  onClick={() => setViewMode("browse")}
+                  icon={List}
+                  label="Browse"
+                />
+              </div>
             ) : null}
           </div>
 
-          <div className={studyUi.chipRow} role="group" aria-label="Filter by category">
-            <FilterChip active={category === "all"} onClick={() => setCategory("all")}>
-              All
-            </FilterChip>
-            {categories.map((cat) => (
-              <FilterChip key={cat} active={category === cat} onClick={() => setCategory(cat)}>
-                {cat.replace(/^Step \d — /, "")}
+          {effectiveView === "browse" ? (
+            <div className={studyUi.chipRow} role="group" aria-label="Filter by category">
+              <FilterChip active={category === "all"} onClick={() => setCategory("all")}>
+                All
               </FilterChip>
-            ))}
-          </div>
+              {categories.map((cat) => (
+                <FilterChip key={cat} active={category === cat} onClick={() => setCategory(cat)}>
+                  {cat.replace(/^Step \d — /, "")}
+                </FilterChip>
+              ))}
+            </div>
+          ) : null}
         </div>
 
         {filtered.length === 0 ? (
           <p className={studyUi.emptyState}>
             No topics match your search. Try a different keyword or category.
           </p>
+        ) : effectiveView === "guide" && topicGroups.length > 0 ? (
+          <div className="space-y-5">
+            <HighYieldTopicsGuide
+              nextTopic={nextTopic}
+              groups={topicGroups}
+              focusedDomainId={focusedDomainId}
+              onContinue={handleContinue}
+              onSelectDomain={handleSelectDomain}
+            />
+            <HighYieldDomainAccordion
+              examSlug={examSlug}
+              groups={displayGroups}
+              progressMap={progressMap}
+              expandedDomainIds={expandedDomainIds}
+              onToggleDomain={toggleDomain}
+              onOpenTopic={openTopic}
+              showStepNumbers={examSlug === "nclex"}
+              pathOrder={pathOrderMap}
+            />
+          </div>
         ) : (category === null || category === "all") && grouped.length > 1 ? (
           <div className="space-y-5 px-0.5">
             {grouped.map(([cat, catTopics]) => (
@@ -179,6 +349,11 @@ export function HighYieldTopicsClient({
                         progress={progressMap[topic.id]}
                         onViewSummary={() => openTopic(topic)}
                         compact
+                        stepNumber={
+                          examSlug === "nclex" && pathOrderMap?.has(topic.slug)
+                            ? pathOrderMap.get(topic.slug)! + 1
+                            : undefined
+                        }
                       />
                     </li>
                   ))}
@@ -208,9 +383,9 @@ export function HighYieldTopicsClient({
         open={activeTopic !== null}
         onClose={() => setSelectedSlug(null)}
         topicIndex={activeIndex >= 0 ? activeIndex : 0}
-        topicCount={filtered.length}
+        topicCount={navigationTopics.length}
         onNavigate={(index) => {
-          const next = filtered[clampTopicIndex(index, filtered.length)];
+          const next = navigationTopics[clampTopicIndex(index, navigationTopics.length)];
           if (next) setSelectedSlug(next.slug);
         }}
         initialReviewCount={activeTopic ? (progressMap[activeTopic.id]?.reviewCount ?? 0) : 0}
@@ -218,6 +393,36 @@ export function HighYieldTopicsClient({
         onReviewRecorded={handleReviewRecorded}
       />
     </>
+  );
+}
+
+function ViewToggle({
+  active,
+  onClick,
+  icon: Icon,
+  label,
+}: {
+  active: boolean;
+  onClick: () => void;
+  icon: typeof LayoutGrid;
+  label: string;
+}) {
+  return (
+    <button
+      type="button"
+      role="tab"
+      aria-selected={active}
+      onClick={onClick}
+      className={cn(
+        "inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] font-semibold transition",
+        active
+          ? "bg-[var(--color-accent)] text-white shadow-sm"
+          : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
+      )}
+    >
+      <Icon className="h-3.5 w-3.5" aria-hidden />
+      {label}
+    </button>
   );
 }
 

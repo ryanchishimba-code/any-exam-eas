@@ -1,12 +1,14 @@
 {
-  "generatedAt": "2026-07-02T14:19:31.344Z",
-  "active": 4083,
-  "served": 3963,
+  "generatedAt": "2026-07-06T11:42:20.226Z",
+  "active": 6059,
+  "served": 6059,
   "servedNotBest": 0,
   "servedBlock": 0,
   "servedWithAlignmentIssues": 0,
   "alignmentRatePercent": 100,
   "alignmentIssueCounts": {},
-  "qaBlockers": {},
+  "qaBlockers": {
+    "weak_distractor_rationales": 22
+  },
   "samples": []
 }

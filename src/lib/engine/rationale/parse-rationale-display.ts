@@ -23,6 +23,7 @@ export type ParsedRationaleDisplay = {
   realWorldApplication?: string;
   layeredDepth?: { basic: string; intermediate: string; advanced: string };
   visualCues: Array<{ label: string; description: string }>;
+  visualBlocks: import("./visual-rationale-types").VisualRationaleBlock[];
   crossReferences: Array<{ exam: string; topic: string; note: string }>;
   isExpert: boolean;
   /** Full text fallback for legacy items. */
@@ -108,6 +109,7 @@ export function parseExpertRationaleForDisplay(
     realWorldApplication: expert.realWorldApplication,
     layeredDepth: expert.layeredDepth,
     visualCues: expert.visualCues ?? [],
+    visualBlocks: expert.visualBlocks ?? [],
     crossReferences: expert.crossReferences ?? [],
     isExpert: true,
     isStructured: true,
@@ -152,6 +154,7 @@ export function parseRationaleForDisplay(
     highYieldFacts: [],
     commonPitfalls: [],
     visualCues: [],
+    visualBlocks: [],
     crossReferences: [],
     isStructured: false,
     isExpert: false,

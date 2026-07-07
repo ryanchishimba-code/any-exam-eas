@@ -61,6 +61,14 @@ import {
   IMMUNIZATION_NCLEX_MODULE,
   PRENATAL_LABOR_NCLEX_MODULE,
   GI_EMERGENCIES_NCLEX_MODULE,
+  NAPLEX_CALCULATIONS_MODULE,
+  NAPLEX_ASTHMA_COPD_MODULE,
+  NAPLEX_PSYCHOTROPICS_MODULE,
+  NAPLEX_RENAL_CKD_MODULE,
+  NAPLEX_TOXICOLOGY_MODULE,
+  NAPLEX_GERIATRICS_MODULE,
+  NAPLEX_TDM_MODULE,
+  NAPLEX_GI_PHARMACOTHERAPY_MODULE,
 } from "@/lib/edtech/review-modules/content";
 import type { HighYieldTopic } from "@/types/edtech";
 
@@ -115,6 +123,86 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     practiceTopicSlug: "pharmacy-law",
     reviewModule: CONTROLLED_SUBSTANCES_MODULE,
     sortOrder: 4,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "naplex",
+    slug: "calculations-workshop",
+    title: "Pharmaceutical Calculations Workshop",
+    overview:
+      "IV drip rates, D/H×Q, alligation, CrCl, reconstitution, and high-alert concentration checks — board-style math mastery.",
+    practiceTopicSlug: "compounding-calculations",
+    reviewModule: NAPLEX_CALCULATIONS_MODULE,
+    sortOrder: 5,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "naplex",
+    slug: "asthma-copd-inhalers",
+    title: "Asthma, COPD & Inhaler Therapy",
+    overview:
+      "GINA/GOLD step therapy, inhaler device counseling, CAP regimens, and COPD exacerbation management for NAPLEX.",
+    practiceTopicSlug: "pharmacology",
+    reviewModule: NAPLEX_ASTHMA_COPD_MODULE,
+    sortOrder: 6,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "naplex",
+    slug: "psychotropics-monitoring",
+    title: "Psychotropics & CNS Pharmacotherapy",
+    overview:
+      "Antidepressant selection, antipsychotic monitoring, lithium/valproate levels, serotonin syndrome, and clozapine REMS.",
+    practiceTopicSlug: "cns-rx",
+    reviewModule: NAPLEX_PSYCHOTROPICS_MODULE,
+    sortOrder: 7,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "naplex",
+    slug: "renal-ckd-pharmacotherapy",
+    title: "Renal Disease & CKD Pharmacotherapy",
+    overview:
+      "CrCl dosing, DOAC adjustments, dialysis supplemental dosing, CKD complications, and ACEi/ARB in proteinuric disease.",
+    practiceTopicSlug: "compounding-calculations",
+    reviewModule: NAPLEX_RENAL_CKD_MODULE,
+    sortOrder: 8,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "naplex",
+    slug: "toxicology-antidotes",
+    title: "Toxicology & Antidote Management",
+    overview:
+      "Acetaminophen/NAC, opioid reversal, digoxin Fab, toxic alcohols, and high-yield antidote matching for NAPLEX.",
+    practiceTopicSlug: "pharmacology",
+    reviewModule: NAPLEX_TOXICOLOGY_MODULE,
+    sortOrder: 9,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "naplex",
+    slug: "geriatrics-beers",
+    title: "Geriatrics & Beers Criteria",
+    overview:
+      "Potentially inappropriate medications in older adults, anticholinergic burden, deprescribing, and MTM for polypharmacy.",
+    practiceTopicSlug: "patient-counseling",
+    reviewModule: NAPLEX_GERIATRICS_MODULE,
+    sortOrder: 10,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "naplex",
+    slug: "tdm-monitoring",
+    title: "Therapeutic Drug Monitoring",
+    overview:
+      "Vancomycin AUC/MIC, aminoglycoside nomograms, digoxin/lithium/phenytoin levels, and methotrexate weekly safety.",
+    practiceTopicSlug: "pharmacology",
+    reviewModule: NAPLEX_TDM_MODULE,
+    sortOrder: 11,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "naplex",
+    slug: "gi-pharmacotherapy",
+    title: "GI Pharmacotherapy & Liver Disease",
+    overview:
+      "GERD/PPI counseling, H. pylori regimens, IBD biologics, hepatic encephalopathy, ascites, and opioid-induced constipation.",
+    practiceTopicSlug: "pharmacology",
+    reviewModule: NAPLEX_GI_PHARMACOTHERAPY_MODULE,
+    sortOrder: 12,
   }),
   defineReviewModuleTopic({
     examSlug: "nclex",

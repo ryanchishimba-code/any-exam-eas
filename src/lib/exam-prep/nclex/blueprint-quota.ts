@@ -7,7 +7,7 @@ import {
   type QuestionSlot,
 } from "@/lib/engine/blueprints";
 import type { NclexClientNeedsId, NclexGenerationSlot } from "./types";
-import { NCLEX_BEST_TARGET_TOTAL } from "./types";
+import { NCLEX_BEST_TARGET_TOTAL, NCLEX_NGN_SERVE_TARGETS } from "./types";
 import { SUBJECT_TO_CLIENT_NEEDS } from "@/lib/bank-curation/cluster-selection";
 import {
   NCLEX_2026_HIGH_YIELD_ROTATION,
@@ -334,4 +334,57 @@ export function planNclexGapFillExamSlots(params: {
   }
 
   return injectCaseStudyGroups(slots, examNumber);
+}
+
+const NGN_STANDALONE_ROTATION = [
+  "select_all",
+  "bow_tie",
+  "matrix",
+  "ordered_response",
+  "highlight",
+] as const;
+
+/**
+ * NGN-heavy exam plan: 3 unfolding case studies (18 items) + stand-alone NGN formats.
+ * Used to close the format gap vs real NCLEX (~15–25% NGN + 18 case-study items).
+ */
+export function planNclexNgnGapFillExamSlots(params: {
+  examNumber: number;
+  questionCount?: number;
+}): NclexGenerationSlot[] {
+  const { examNumber, questionCount = 80 } = params;
+  const base = planNclexFullExamSlots({ examNumber, questionCount });
+  let formatIdx = 0;
+
+  return base.map((slot) => {
+    if (slot.caseGroupId) return slot;
+    const ngnFormat = NGN_STANDALONE_ROTATION[formatIdx % NGN_STANDALONE_ROTATION.length]!;
+    formatIdx++;
+    return { ...slot, ngnFormat };
+  });
+}
+
+/** Count serve-ready items by NGN itemType for gap tracking. */
+export function countNclexNgnByItemType(
+  rows: Array<{ itemType?: string | null }>
+): Record<string, number> {
+  const counts: Record<string, number> = {};
+  for (const row of rows) {
+    const type = row.itemType?.trim() || "vignette";
+    counts[type] = (counts[type] ?? 0) + 1;
+  }
+  return counts;
+}
+
+export function nclexNgnDeficits(
+  countsByType: Record<string, number>,
+  targets: Record<string, number> = NCLEX_NGN_SERVE_TARGETS
+): Array<{ itemType: string; current: number; target: number; deficit: number }> {
+  return Object.entries(targets)
+    .map(([itemType, target]) => {
+      const current = countsByType[itemType] ?? 0;
+      return { itemType, current, target, deficit: Math.max(0, target - current) };
+    })
+    .filter((row) => row.deficit > 0)
+    .sort((a, b) => b.deficit - a.deficit);
 }

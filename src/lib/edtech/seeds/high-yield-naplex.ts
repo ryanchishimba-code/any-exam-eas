@@ -387,38 +387,6 @@ export const NAPLEX_HIGH_YIELD_TOPICS = defineExamTopics("naplex", [
     practiceTopicSlug: "otc-self-care",
   },
   {
-    slug: "anticoagulants",
-    category: "Drug Classes",
-    title: "Anticoagulants: Heparin, Warfarin & DOACs",
-    overview:
-      "Master anticoagulant mechanisms, monitoring parameters, reversal agents, and patient counseling for NAPLEX.",
-    summary:
-      "Anticoagulation is a high-stakes pharmacotherapy area with multiple NAPLEX-tested drugs and distinct monitoring requirements for each. Unfractionated heparin (UFH) works by activating antithrombin III to inhibit thrombin and factor Xa; monitor aPTT (goal 60–100 sec, or per protocol); reverse with protamine sulfate. Low molecular weight heparins (enoxaparin, dalteparin) primarily inhibit factor Xa with more predictable pharmacokinetics — anti-Xa monitoring in renal impairment, obesity, or pregnancy; partial reversal with protamine; dose-reduce in CrCl <30 mL/min.\n\nWarfarin inhibits vitamin K-dependent clotting factor synthesis (II, VII, IX, X, protein C and S). Monitor INR; therapeutic range is typically 2–3 (2.5–3.5 for mechanical mitral valve). Warfarin has a long list of drug and dietary interactions — consistent vitamin K intake is essential. Reversal: hold warfarin; vitamin K (slow reversal); 4-factor PCC (Kcentra) for urgent reversal; FFP as alternative. Initiation of warfarin causes a transient hypercoagulable state due to short half-lives of protein C and S — bridge with heparin for VTE or afib when indicated.\n\nDirect oral anticoagulants (DOACs) offer predictable pharmacokinetics without routine monitoring. Direct thrombin inhibitor: dabigatran (Pradaxa) — reversed by idarucizumab (Praxbind). Factor Xa inhibitors: rivaroxaban, apixaban, edoxaban — reversed by andexanet alfa (Andexxa) for major bleeding. DOACs are renally cleared to varying degrees; assess renal function before prescribing and periodically. Apixaban is least renally cleared (~27%) and preferred in CKD; dabigatran is most renally cleared (~80%) and generally avoided in severe renal impairment.",
-    keyConcepts: [
-      "UFH: monitor aPTT; reverse with protamine sulfate 1 mg per 100 units UFH given in prior 4 hours",
-      "Enoxaparin: anti-Xa monitoring in obesity, pregnancy, CrCl <30 — dose adjust or use UFH",
-      "Warfarin: INR goal 2–3 for most VTE/afib; 2.5–3.5 for mechanical mitral valve",
-      "Warfarin reversal: hold + vitamin K (PO/IV) for non-urgent; 4-factor PCC for urgent/life-threatening",
-      "Dabigatran reversal: idarucizumab (Praxbind) — monoclonal antibody; rapid reversal",
-      "Factor Xa inhibitor reversal: andexanet alfa (Andexxa); activated charcoal if <2 hours post-dose",
-      "DOAC drug interactions: P-gp and CYP3A4 inhibitors/inducers significantly affect levels",
-      "Heparin-induced thrombocytopenia (HIT): platelet count drop 5–14 days after heparin start; stop heparin, start non-heparin anticoagulant (argatroban, fondaparinux, or DOAC)",
-    ],
-    mustKnowFacts: [
-      "Warfarin is initiated with heparin bridge for VTE because protein C and S (natural anticoagulants) decline first, creating a transient hypercoagulable state before full anticoagulation is achieved",
-      "HIT is immune-mediated; fondaparinux does not cause HIT and can be used as an alternative anticoagulant",
-    ],
-    pearls: [
-      "Apixaban twice-daily dosing after acute VTE (10 mg BID × 7 days, then 5 mg BID) does not require bridging with heparin — oral-only regimen simplifies treatment.",
-      "Rivaroxaban must be taken with the evening meal (15 mg and 20 mg doses) for adequate absorption — food increases bioavailability from ~66% to ~100%.",
-    ],
-    pitfalls: [
-      "Stopping heparin without starting an alternative anticoagulant in a patient with suspected HIT — thrombosis risk remains high",
-      "Not dose-adjusting DOACs for renal function or using the wrong reduction criteria — especially critical for dabigatran and rivaroxaban",
-    ],
-    practiceTopicSlug: "pharmacology",
-  },
-  {
     slug: "hiv-opportunistic-infections",
     category: "Drug Classes",
     title: "HIV & Opportunistic Infection Prophylaxis",

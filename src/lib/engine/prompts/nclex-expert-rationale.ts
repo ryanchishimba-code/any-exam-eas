@@ -31,6 +31,18 @@ export const NCLEX_EXPERT_RATIONALE_JSON_SCHEMA = `{
     "advanced": "string — edge cases, contraindications, when to escalate"
   },
   "visualCues": [{ "label": "string", "description": "string — suggested chart, lab, or algorithm image" }],
+  "visualBlocks": [
+    {
+      "kind": "lab_table",
+      "title": "string",
+      "rows": [{ "label": "string", "value": "string", "reference": "string", "abnormal": true, "note": "string" }]
+    },
+    {
+      "kind": "flow",
+      "title": "Clinical judgment pathway",
+      "steps": ["string — 3 to 6 CJMM steps"]
+    }
+  ],
   "crossReferences": [{ "exam": "NAPLEX|USMLE|etc", "topic": "string", "note": "string" }],
   "keyTakeaway": "string",
   "memoryHook": "string (optional)"
@@ -71,6 +83,7 @@ If NOT medication-related, set pharmacologyTieIn to "" or omit.
 - realWorldApplication (red flags, when to escalate)
 - layeredDepth (basic → intermediate → advanced)
 - visualCues (suggest a lab value table, ECG finding, or algorithm — text only)
+- visualBlocks (structured JSON tables — when vignette has labs/vitals include lab_table with reference ranges and abnormal flags; include flow from CJMM steps)
 - crossReferences (e.g., NAPLEX overlap for drug items)
 
 ## Output

@@ -6,6 +6,7 @@
  * Usage:
  *   npm run db:sync-usmle-serve-ready
  *   npm run db:sync-usmle-serve-ready -- --trust-active   # skip per-item audit (fast)
+ *   npm run db:sync-usmle-serve-ready -- --subjects-only  # remap orphan subjectIds only
  *   npm run db:sync-usmle-serve-ready -- --dry-run
  */
 import { loadEnvFiles, ensureDatabaseUrlEnv } from "./resolve-database-url.mjs";
@@ -26,6 +27,7 @@ const UPDATE_CHUNK = 500;
 
 const dryRun = process.argv.includes("--dry-run");
 const trustActive = process.argv.includes("--trust-active");
+const subjectsOnly = process.argv.includes("--subjects-only");
 
 const SUBJECT_ALIASES: Record<string, Record<string, string>> = {
   "usmle-step-1": {
@@ -67,6 +69,14 @@ const SUBJECT_ALIASES: Record<string, Record<string, string>> = {
     biostats: "internal-medicine",
     biostatistics: "internal-medicine",
     ethics: "internal-medicine",
+    pharmacology: "internal-medicine",
+    pharma: "internal-medicine",
+    endocrinology: "internal-medicine",
+    gastroenterology: "internal-medicine",
+    ophthalmology: "internal-medicine",
+    "infectious-disease": "internal-medicine",
+    obstetrics: "obgyn",
+    surgery: "emergency-medicine",
   },
 };
 
@@ -166,7 +176,9 @@ async function syncField(fieldId: (typeof USMLE_FIELDS)[number]) {
       if (topicCategory !== row.topicCategory) patch.topicCategory = topicCategory;
       if (stepLevel && row.stepLevel !== stepLevel) patch.stepLevel = stepLevel;
 
-      if (trustActive) {
+      if (subjectsOnly) {
+        // subject/topic/stepLevel patches only — handled below
+      } else if (trustActive) {
         if (!row.qaPassed) {
           patch.qaPassed = true;
           patch.qaAuditedAt = new Date();
@@ -230,7 +242,7 @@ async function syncField(fieldId: (typeof USMLE_FIELDS)[number]) {
 }
 
 async function main() {
-  const mode = trustActive ? "trust-active" : "exam-ready audit";
+  const mode = subjectsOnly ? "subjects-only" : trustActive ? "trust-active" : "exam-ready audit";
   console.log(`\nUSMLE serve sync (${mode})${dryRun ? " [dry-run]" : ""}\n`);
 
   if (!dryRun) {

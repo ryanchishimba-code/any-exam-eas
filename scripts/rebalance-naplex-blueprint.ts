@@ -20,9 +20,21 @@ ensureDatabaseUrlEnv();
 
 import { PrismaClient } from "@prisma/client";
 import { mergeNaplexQuotaWithCounts, NAPLEX_PHARMACOTHERAPY_SUBJECT_IDS } from "../src/lib/exam-prep/naplex/blueprint-quota";
+import { aggregateNaplex2026BlueprintCounts } from "../src/lib/exam-prep/naplex/legacy-blueprint-map";
+import type { NaplexBlueprintAreaId } from "../src/lib/exam-prep/naplex/types";
 import { NAPLEX_TARGET_TOTAL } from "../src/lib/exam-prep/naplex/types";
 
 const DEFAULT_PHARM_SUBJECTS = [...NAPLEX_PHARMACOTHERAPY_SUBJECT_IDS];
+
+/** Map 2026 deficit areas → generation subject focus. */
+const AREA_FOCUS_SUBJECTS: Record<NaplexBlueprintAreaId, string[]> = {
+  "naplex-2026-pharmacotherapy": [...NAPLEX_PHARMACOTHERAPY_SUBJECT_IDS],
+  "naplex-2026-patient-centered-care": ["patient-counseling", "pharmacology"],
+  "naplex-2026-pharmacist-tasks": ["pharmacy-law", "patient-counseling"],
+  "naplex-2026-medication-dispensing": ["compounding-calculations", "pharmaceutics"],
+  "naplex-2026-drug-information": ["pharmacology", "pharmacokinetics"],
+  "naplex-2026-health-wellness": ["otc-self-care", "patient-counseling"],
+};
 
 const prisma = new PrismaClient();
 const ARTIFACTS = path.join(process.cwd(), "artifacts");
@@ -39,6 +51,7 @@ function parseArgs() {
   let dryRun = false;
   let subjects: string[] = [];
   let focusArea = "naplex-2026-pharmacotherapy";
+  let fillDeficits = false;
 
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
@@ -52,6 +65,7 @@ function parseArgs() {
     } else if (a === "--subjects" && args[i + 1]) {
       subjects = args[++i]!.split(",").map((s) => s.trim()).filter(Boolean);
     } else if (a === "--area" && args[i + 1]) focusArea = args[++i]!;
+    else if (a === "--fill-deficits") fillDeficits = true;
     else if (a === "--dry-run") dryRun = true;
   }
 
@@ -59,7 +73,7 @@ function parseArgs() {
     subjects = DEFAULT_PHARM_SUBJECTS;
   }
 
-  return { target, examsPerBatch, countPerExam, maxBatches, metric, dryRun, subjects, focusArea };
+  return { target, examsPerBatch, countPerExam, maxBatches, metric, dryRun, subjects, focusArea, fillDeficits };
 }
 
 function log(line: string) {
@@ -87,7 +101,7 @@ function runScript(script: string, scriptArgs: string[]): Promise<number> {
 
 async function blueprintDeficits(target: number, metric: "active" | "qaPassed") {
   const rows = await prisma.questionBankItem.groupBy({
-    by: ["blueprintDomain"],
+    by: ["blueprintDomain", "subjectId", "itemType"],
     where: {
       fieldId: "pharmacy",
       active: true,
@@ -96,19 +110,23 @@ async function blueprintDeficits(target: number, metric: "active" | "qaPassed") 
     _count: { id: true },
   });
 
-  const counts: Record<string, number> = {};
-  for (const row of rows) {
-    if (!row.blueprintDomain?.trim()) continue;
-    counts[row.blueprintDomain] = (counts[row.blueprintDomain] ?? 0) + row._count.id;
-  }
+  const aggregated = aggregateNaplex2026BlueprintCounts(
+    rows.map((row) => ({
+      blueprintDomain: row.blueprintDomain,
+      subjectId: row.subjectId,
+      itemType: row.itemType,
+      count: row._count.id,
+    }))
+  );
 
+  const counts: Record<string, number> = { ...aggregated };
   const quotas = mergeNaplexQuotaWithCounts(counts, target);
   const totalDeficit = quotas.reduce((s, q) => s + (q.deficit ?? 0), 0);
   return { quotas, totalDeficit };
 }
 
 async function main() {
-  const { target, examsPerBatch, countPerExam, maxBatches, metric, dryRun, subjects, focusArea } =
+  let { target, examsPerBatch, countPerExam, maxBatches, metric, dryRun, subjects, focusArea, fillDeficits } =
     parseArgs();
   fs.mkdirSync(ARTIFACTS, { recursive: true });
 
@@ -117,11 +135,11 @@ async function main() {
     process.exit(1);
   }
 
-  const subjectRotation = subjects.length > 0 ? subjects : DEFAULT_PHARM_SUBJECTS;
-  const subjectMode = subjects.length > 0 || process.argv.includes("--pharmacotherapy");
+  let subjectRotation = subjects.length > 0 ? subjects : DEFAULT_PHARM_SUBJECTS;
+  let subjectMode = subjects.length > 0 || process.argv.includes("--pharmacotherapy") || fillDeficits;
 
   log(
-    `NAPLEX blueprint rebalance — target ${target} (${metric}), ${examsPerBatch} exam(s) × ${countPerExam}/batch, max ${maxBatches}${dryRun ? " [dry-run]" : ""}${subjectMode ? ` [subjects: ${subjectRotation.join(", ")}]` : ""}`
+    `NAPLEX blueprint rebalance — target ${target} (${metric}), ${examsPerBatch} exam(s) × ${countPerExam}/batch, max ${maxBatches}${dryRun ? " [dry-run]" : ""}${fillDeficits ? " [fill-deficits]" : subjectMode ? ` [subjects: ${subjectRotation.join(", ")}]` : ""}`
   );
 
   let batches = 0;
@@ -133,8 +151,20 @@ async function main() {
   while (true) {
     const { quotas, totalDeficit } = await blueprintDeficits(target, metric);
     const under = quotas.filter((q) => (q.deficit ?? 0) > 0);
+
+    if (fillDeficits && under.length > 0) {
+      const top = [...under].sort((a, b) => (b.deficit ?? 0) - (a.deficit ?? 0))[0]!;
+      focusArea = top.blueprintArea;
+      subjectRotation = AREA_FOCUS_SUBJECTS[top.blueprintArea as NaplexBlueprintAreaId] ?? DEFAULT_PHARM_SUBJECTS;
+      subjectMode = true;
+    }
+
     const focusQuota = quotas.find((q) => q.blueprintArea === focusArea);
-    const areaDeficit = subjectMode ? (focusQuota?.deficit ?? 0) : totalDeficit;
+    const areaDeficit = fillDeficits
+      ? (focusQuota?.deficit ?? 0)
+      : subjectMode
+        ? (focusQuota?.deficit ?? 0)
+        : totalDeficit;
 
     log(`Blueprint deficit: ${totalDeficit} across ${under.length} areas`);
     if (subjectMode && focusQuota) {

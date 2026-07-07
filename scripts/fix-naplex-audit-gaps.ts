@@ -64,6 +64,22 @@ async function main() {
     const qaPassed = isNaplexBestQuality(working, { source: row.source });
 
     if (!dryRun) {
+      const newHash = bankItemContentHash("pharmacy", working.subjectId, working);
+      const duplicate = await prisma.questionBankItem.findFirst({
+        where: { contentHash: newHash, NOT: { id: row.id } },
+        select: { id: true },
+      });
+
+      if (duplicate) {
+        await prisma.questionBankItem.update({
+          where: { id: row.id },
+          data: { active: false, qaPassed: false, qaAuditedAt: new Date() },
+        });
+        console.log(`  retired duplicate ${row.id.slice(0, 12)}… (matches ${duplicate.id.slice(0, 12)}…)`);
+        updated++;
+        continue;
+      }
+
       await prisma.questionBankItem.update({
         where: { id: row.id },
         data: {

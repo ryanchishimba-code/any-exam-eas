@@ -3,6 +3,7 @@
  * Persisted in `QuestionBankItem.generationMeta.expertRationale` (JSON).
  */
 import type { StructuredRationale } from "../prompts/rationale-generation";
+import type { VisualRationaleBlock } from "./visual-rationale-types";
 
 export type LayeredDepth = {
   basic: string;
@@ -35,6 +36,8 @@ export type ExpertStructuredRationale = StructuredRationale & {
   realWorldApplication: string;
   layeredDepth?: LayeredDepth;
   visualCues?: VisualCue[];
+  /** Structured lab tables, comparison charts, and care algorithms for UI rendering. */
+  visualBlocks?: VisualRationaleBlock[];
   crossReferences?: CrossReference[];
 };
 

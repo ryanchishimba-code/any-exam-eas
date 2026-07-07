@@ -3,7 +3,7 @@
  * Bulk-upgrade NCLEX rationales to expert tier (UWorld-beating depth).
  *
  * Usage:
- *   npm run db:enrich-nclex-expert -- --limit 50
+ *   npm run db:enrich-nclex-expert -- --missing-expert --limit 500
  *   npm run db:enrich-nclex-expert:dry -- --limit 10
  *   npm run db:enrich-nclex-expert -- --serve-only --limit 200
  *
@@ -19,6 +19,7 @@ import { PrismaClient } from "@prisma/client";
 import { isNclexServeQuality } from "../src/lib/exam-prep/nclex-quality-gate";
 import { EXPERT_RATIONALE_META_KEY, EXPERT_RATIONALE_VERSION, readExpertRationaleFromMeta } from "../src/lib/engine/rationale/expert-rationale-types";
 import { generateExpertNclexRationale } from "../src/lib/engine/rationale/generate-expert-rationale";
+import { attachVisualRationaleToItem } from "../src/lib/engine/rationale/enrich-visual-rationale";
 import { needsRationaleEnrichment, rationaleInputFromBankItem } from "../src/lib/engine/rationale";
 import { enrichBankItemFromRow, serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
 import { bankItemContentHash } from "../src/lib/sync-question-bank";
@@ -33,6 +34,7 @@ function parseArgs() {
   let dryRun = false;
   let serveOnly = true;
   let force = false;
+  let missingExpert = false;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--limit" && args[i + 1]) limit = parseInt(args[++i]!, 10);
@@ -40,9 +42,10 @@ function parseArgs() {
     else if (args[i] === "--serve-only") serveOnly = true;
     else if (args[i] === "--all-active") serveOnly = false;
     else if (args[i] === "--force") force = true;
+    else if (args[i] === "--missing-expert") missingExpert = true;
   }
 
-  return { limit, dryRun, serveOnly, force };
+  return { limit, dryRun, serveOnly, force, missingExpert };
 }
 
 function sleep(ms: number) {
@@ -50,11 +53,11 @@ function sleep(ms: number) {
 }
 
 async function main() {
-  const { limit, dryRun, serveOnly, force } = parseArgs();
+  const { limit, dryRun, serveOnly, force, missingExpert } = parseArgs();
   if (!dryRun) requireOpenAiKey();
 
   console.log(
-    `\nNCLEX expert rationale enrichment${serveOnly ? " [serve-ready]" : ""}${dryRun ? " [dry-run]" : ""} limit ${limit}\n`
+    `\nNCLEX expert rationale enrichment${serveOnly ? " [serve-ready]" : ""}${missingExpert ? " [missing-expert]" : ""}${dryRun ? " [dry-run]" : ""} limit ${limit}\n`
   );
 
   let lastId: string | undefined;
@@ -93,13 +96,19 @@ async function main() {
       }
 
       const check = needsRationaleEnrichment(item);
-      if (!force && !check.needs) {
+      const lacksExpertJson = !readExpertRationaleFromMeta(row.generationMeta);
+      if (!force && !missingExpert && !check.needs) {
+        skipped++;
+        continue;
+      }
+      if (missingExpert && !lacksExpertJson && !force) {
         skipped++;
         continue;
       }
 
       if (dryRun) {
-        console.log(`  [dry-run] ${row.id.slice(0, 8)}… — ${check.reasons.join(", ")}`);
+        const reason = missingExpert && lacksExpertJson ? "missing_expert_json" : check.reasons.join(", ");
+        console.log(`  [dry-run] ${row.id.slice(0, 8)}… — ${reason}`);
         enriched++;
         continue;
       }
@@ -114,6 +123,18 @@ async function main() {
         await sleep(DELAY_MS);
         continue;
       }
+
+      const withVisuals = attachVisualRationaleToItem({
+        ...item,
+        explanation: result.assembled.explanation,
+        distractorRationale: result.assembled.distractorRationale,
+        expertRationale: result.structured,
+      });
+
+      const expertPayload =
+        withVisuals.expertRationale ??
+        readExpertRationaleFromMeta(withVisuals.ngnPayload?.generationMeta) ??
+        result.structured;
 
       const hash = bankItemContentHash("nursing", item.subjectId ?? "nursing", {
         ...item,
@@ -139,7 +160,7 @@ async function main() {
           contentHash: hash,
           generationMeta: {
             ...priorMeta,
-            [EXPERT_RATIONALE_META_KEY]: result.structured,
+            [EXPERT_RATIONALE_META_KEY]: expertPayload,
             expertRationaleVersion: EXPERT_RATIONALE_VERSION,
             rationaleEnrichedAt: new Date().toISOString(),
             rationaleModel: result.model,

@@ -28,6 +28,7 @@ import {
 import { buildNclex2026TopicCatalogBlock, labelForNclex2026TopicSlug } from "./blueprint-topics-2026";
 import { assessNclexFullExamItem, nclexFullExamItemPasses } from "./quality-gate";
 import { maybeEnrichExpertBankItemRationale } from "@/lib/engine/rationale/generate-expert-rationale";
+import { attachVisualRationaleToItem } from "@/lib/engine/rationale/enrich-visual-rationale";
 import type {
   NclexFullExamBundle,
   NclexGenerationMeta,
@@ -492,18 +493,20 @@ async function generateChunk(params: {
       }
 
       bankItems.push(
-        await maybeEnrichExpertBankItemRationale(
-          {
-            ...item,
-            ngnPayload: {
-              ...item.ngnPayload,
-              generationMeta: {
-                ...(item.ngnPayload?.generationMeta as NclexGenerationMeta),
-                qcScore: assessNclexFullExamItem(item, globalIndex).score,
+        attachVisualRationaleToItem(
+          await maybeEnrichExpertBankItemRationale(
+            {
+              ...item,
+              ngnPayload: {
+                ...item.ngnPayload,
+                generationMeta: {
+                  ...(item.ngnPayload?.generationMeta as NclexGenerationMeta),
+                  qcScore: assessNclexFullExamItem(item, globalIndex).score,
+                },
               },
             },
-          },
-          "nursing"
+            "nursing"
+          )
         )
       );
     } catch (err) {

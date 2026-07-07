@@ -5,6 +5,7 @@ import { USMLE_STEP1_MEMORY_CARDS } from "./cards-usmle-step1";
 import { USMLE_STEP2_CLINICAL_MEMORY_CARDS } from "./cards-usmle-step2-clinical";
 import { USMLE_STEP3_MEMORY_CARDS } from "./cards-usmle-step3";
 import { NCLEX_STRATEGY_MEMORY_CARDS } from "./cards-nclex-strategy";
+import { NAPLEX_EXTENDED_MEMORY_CARDS } from "./cards-naplex-extended";
 
 /** Static Memory Card library — seed to DB later if needed. */
 export const MEMORY_CARDS: MemoryCard[] = [
@@ -3114,6 +3115,7 @@ export const MEMORY_CARDS: MemoryCard[] = [
     sortOrder: 9,
   },
   ...NCLEX_STRATEGY_MEMORY_CARDS,
+  ...NAPLEX_EXTENDED_MEMORY_CARDS,
   ...USMLE_STEP1_MEMORY_CARDS,
   ...USMLE_STEP2_CLINICAL_MEMORY_CARDS,
   ...USMLE_STEP3_MEMORY_CARDS,

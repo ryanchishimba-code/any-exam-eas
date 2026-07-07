@@ -9,6 +9,7 @@ import {
 import type { ExpertStructuredRationale } from "@/lib/engine/rationale/expert-rationale-types";
 import { cleanOptionText } from "@/lib/question-format";
 import type { StudyQuestion } from "@/lib/questions/types";
+import { RationaleVisualPanel } from "./RationaleVisualPanel";
 import { cn } from "@/lib/utils";
 import {
   Beaker,
@@ -178,6 +179,10 @@ export function ExpertRationalePanel({ question, expertRationale }: ExpertRation
             </button>
           ))}
         </div>
+      ) : null}
+
+      {parsed.visualBlocks.length > 0 ? (
+        <RationaleVisualPanel blocks={parsed.visualBlocks} />
       ) : null}
 
       <CoreRationaleBody parsed={parsed} />

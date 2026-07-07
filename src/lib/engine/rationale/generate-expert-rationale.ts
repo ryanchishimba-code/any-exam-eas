@@ -13,6 +13,8 @@ import {
   assembleExpertRationale,
   type AssembledExpertRationale,
 } from "./assemble-expert-rationale";
+import { attachVisualRationaleToItem } from "./enrich-visual-rationale";
+import type { VisualRationaleBlock } from "./visual-rationale-types";
 import type { ExpertStructuredRationale } from "./expert-rationale-types";
 import { EXPERT_RATIONALE_META_KEY, EXPERT_RATIONALE_VERSION } from "./expert-rationale-types";
 
@@ -51,6 +53,38 @@ const ExpertRationaleSchema = z.object({
         label: z.string().min(3),
         description: z.string().min(10),
       })
+    )
+    .optional(),
+  visualBlocks: z
+    .array(
+      z.discriminatedUnion("kind", [
+        z.object({
+          kind: z.literal("lab_table"),
+          title: z.string().min(3),
+          rows: z
+            .array(
+              z.object({
+                label: z.string().min(1),
+                value: z.string().min(1),
+                reference: z.string().optional(),
+                abnormal: z.boolean().optional(),
+                note: z.string().optional(),
+              })
+            )
+            .min(2),
+        }),
+        z.object({
+          kind: z.literal("comparison"),
+          title: z.string().min(3),
+          headers: z.tuple([z.string(), z.string(), z.string()]),
+          rows: z.array(z.tuple([z.string(), z.string(), z.string()])).min(1),
+        }),
+        z.object({
+          kind: z.literal("flow"),
+          title: z.string().min(3),
+          steps: z.array(z.string().min(8)).min(3).max(7),
+        }),
+      ])
     )
     .optional(),
   crossReferences: z
@@ -120,9 +154,10 @@ export async function generateExpertNclexRationale(
 
       if (!quality.ok && attempt < maxRetries) continue;
 
-      const assembled = assembleExpertRationale(parsed.data as ExpertStructuredRationale);
+      const withVisuals = augmentExpertVisualBlocks(parsed.data as ExpertStructuredRationale);
+      const assembled = assembleExpertRationale(withVisuals);
       return {
-        structured: parsed.data as ExpertStructuredRationale,
+        structured: withVisuals,
         assembled,
         quality,
         model: "gpt-4o-mini",
@@ -137,12 +172,32 @@ export async function generateExpertNclexRationale(
   return null;
 }
 
+function augmentExpertVisualBlocks(expert: ExpertStructuredRationale): ExpertStructuredRationale {
+  const blocks: VisualRationaleBlock[] = [...(expert.visualBlocks ?? [])];
+
+  if (expert.stepByStepReasoning.length >= 3 && !blocks.some((b) => b.kind === "flow")) {
+    blocks.push({
+      kind: "flow",
+      title: "Clinical judgment pathway",
+      steps: expert.stepByStepReasoning,
+    });
+  }
+
+  return blocks.length ? { ...expert, visualBlocks: blocks } : expert;
+}
+
+function finalizeEnrichedItem(
+  item: import("@/lib/question-bank").BankItem
+): import("@/lib/question-bank").BankItem {
+  return attachVisualRationaleToItem(item);
+}
+
 /** Expert-tier enrich for NCLEX generation when RATIONALE_ENRICH_ON_GENERATE=1. */
 export async function maybeEnrichExpertBankItemRationale(
   item: import("@/lib/question-bank").BankItem,
   fieldId: string
 ): Promise<import("@/lib/question-bank").BankItem> {
-  if (process.env.RATIONALE_ENRICH_ON_GENERATE !== "1") return item;
+  if (process.env.RATIONALE_ENRICH_ON_GENERATE !== "1") return finalizeEnrichedItem(item);
   if (fieldId !== "nursing") {
     const { maybeEnrichBankItemRationale } = await import("./generate-rationale");
     return maybeEnrichBankItemRationale(item, fieldId);
@@ -154,11 +209,11 @@ export async function maybeEnrichExpertBankItemRationale(
     "./generate-rationale"
   );
   const check = needsRationaleEnrichment(item);
-  if (!check.needs) return item;
+  if (!check.needs) return finalizeEnrichedItem(item);
 
   const result = await generateExpertNclexRationale(rationaleInputFromBankItem(item, fieldId));
   if (!result?.quality.ok) {
-    return maybeEnrichBankItemRationale(item, fieldId);
+    return finalizeEnrichedItem(await maybeEnrichBankItemRationale(item, fieldId));
   }
 
   const applied = applyAssembledRationale(
@@ -175,7 +230,7 @@ export async function maybeEnrichExpertBankItemRationale(
       ? (item.ngnPayload.generationMeta as Record<string, unknown>)
       : {};
 
-  return {
+  return finalizeEnrichedItem({
     ...applied,
     ngnPayload: {
       ...(item.ngnPayload ?? {}),
@@ -186,5 +241,5 @@ export async function maybeEnrichExpertBankItemRationale(
         rationaleQualityScore: result.quality.score,
       },
     },
-  };
+  });
 }

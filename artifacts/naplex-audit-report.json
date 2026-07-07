@@ -1,40 +1,32 @@
 {
-  "generatedAt": "2026-07-03T01:55:19.982Z",
+  "generatedAt": "2026-07-07T04:24:55.477Z",
   "summary": {
-    "total": 6485,
-    "pass": 6049,
-    "fail": 436,
+    "total": 7308,
+    "pass": 7284,
+    "fail": 24,
     "bySeverity": {
-      "error": 498,
-      "warn": 10
+      "error": 48,
+      "warn": 12
     },
     "byCode": {
-      "naplex_orphan_calc_stem": 91,
-      "naplex_clinical_vignette_unrelated_options": 28,
-      "naplex_clinical_stem_numeric_options": 274,
-      "naplex_clinical_vignette_unrelated_calc": 56,
       "naplex_stem_lead_in": 24,
-      "naplex_explanation_short": 25,
-      "naplex_missing_clinical_data": 10
+      "naplex_explanation_short": 24,
+      "naplex_missing_clinical_data": 12
     }
   },
-  "passRate": 93.27679259830379,
-  "polishNeeded": 475,
-  "qaGateFail": 436,
-  "lowQuality": 47,
-  "withWarnings": 10,
-  "withErrors": 436,
+  "passRate": 99.67159277504105,
+  "polishNeeded": 66,
+  "qaGateFail": 24,
+  "lowQuality": 45,
+  "withWarnings": 12,
+  "withErrors": 24,
   "bySubject": {
     "patient-counseling": {
-      "total": 2698,
-      "pass": 2608,
-      "fail": 90,
+      "total": 2073,
+      "pass": 2071,
+      "fail": 2,
       "warnOnly": 0,
       "byCode": {
-        "naplex_clinical_vignette_unrelated_options": 9,
-        "naplex_clinical_stem_numeric_options": 64,
-        "naplex_orphan_calc_stem": 15,
-        "naplex_clinical_vignette_unrelated_calc": 2,
         "naplex_stem_lead_in": 2,
         "naplex_explanation_short": 2,
         "naplex_missing_clinical_data": 4
@@ -42,15 +34,12 @@
     },
     "compounding-calculations": {
       "total": 1223,
-      "pass": 1208,
-      "fail": 15,
+      "pass": 1222,
+      "fail": 1,
       "warnOnly": 0,
       "byCode": {
-        "naplex_orphan_calc_stem": 5,
-        "naplex_clinical_vignette_unrelated_options": 7,
-        "naplex_explanation_short": 2,
-        "naplex_clinical_stem_numeric_options": 2,
-        "naplex_stem_lead_in": 1
+        "naplex_stem_lead_in": 1,
+        "naplex_explanation_short": 1
       }
     },
     "pharmacy-law": {
@@ -65,52 +54,45 @@
       }
     },
     "cardiovascular-rx": {
-      "total": 684,
-      "pass": 388,
-      "fail": 296,
+      "total": 1009,
+      "pass": 1007,
+      "fail": 2,
       "warnOnly": 0,
       "byCode": {
-        "naplex_clinical_vignette_unrelated_options": 2,
-        "naplex_orphan_calc_stem": 65,
-        "naplex_clinical_stem_numeric_options": 208,
-        "naplex_clinical_vignette_unrelated_calc": 54,
         "naplex_stem_lead_in": 2,
         "naplex_explanation_short": 2,
         "naplex_missing_clinical_data": 1
       }
     },
     "pharmacology": {
-      "total": 1176,
-      "pass": 1167,
-      "fail": 9,
+      "total": 1134,
+      "pass": 1132,
+      "fail": 2,
       "warnOnly": 0,
       "byCode": {
-        "naplex_clinical_vignette_unrelated_options": 7,
         "naplex_stem_lead_in": 2,
         "naplex_explanation_short": 2,
-        "naplex_missing_clinical_data": 1
+        "naplex_missing_clinical_data": 3
       }
     },
     "otc-self-care": {
-      "total": 644,
-      "pass": 639,
-      "fail": 5,
+      "total": 615,
+      "pass": 613,
+      "fail": 2,
       "warnOnly": 0,
       "byCode": {
-        "naplex_clinical_vignette_unrelated_options": 3,
         "naplex_stem_lead_in": 2,
         "naplex_explanation_short": 2
       }
     },
     "pharmacokinetics": {
       "total": 12,
-      "pass": 5,
-      "fail": 7,
+      "pass": 9,
+      "fail": 3,
       "warnOnly": 0,
       "byCode": {
         "naplex_stem_lead_in": 3,
-        "naplex_explanation_short": 3,
-        "naplex_orphan_calc_stem": 4
+        "naplex_explanation_short": 3
       }
     },
     "pharmaceutics": {
@@ -125,8 +107,8 @@
       }
     },
     "infectious-disease-rx": {
-      "total": 15,
-      "pass": 13,
+      "total": 494,
+      "pass": 492,
       "fail": 2,
       "warnOnly": 0,
       "byCode": {
@@ -135,19 +117,18 @@
       }
     },
     "endocrine-rx": {
-      "total": 13,
-      "pass": 9,
-      "fail": 4,
+      "total": 367,
+      "pass": 365,
+      "fail": 2,
       "warnOnly": 0,
       "byCode": {
         "naplex_stem_lead_in": 2,
-        "naplex_explanation_short": 2,
-        "naplex_orphan_calc_stem": 2
+        "naplex_explanation_short": 2
       }
     },
     "cns-rx": {
-      "total": 6,
-      "pass": 4,
+      "total": 367,
+      "pass": 365,
       "fail": 2,
       "warnOnly": 0,
       "byCode": {
@@ -168,107 +149,11 @@
     }
   },
   "topCodeCounts": {
-    "naplex_clinical_stem_numeric_options": 274,
-    "naplex_orphan_calc_stem": 91,
-    "naplex_clinical_vignette_unrelated_calc": 56,
-    "naplex_clinical_vignette_unrelated_options": 28,
-    "naplex_explanation_short": 25,
     "naplex_stem_lead_in": 24,
-    "naplex_missing_clinical_data": 10
+    "naplex_explanation_short": 24,
+    "naplex_missing_clinical_data": 12
   },
   "samples": {
-    "naplex_orphan_calc_stem": [
-      {
-        "itemId": "cmqd1mx5y00av1ychd4be2bd4",
-        "subjectId": "compounding-calculations",
-        "vignette": "Order: KCl 40 mEq in 1000 mL D5W IV continuous. The prescriber orders a maximum infusion rate of 10 mEq/hr. Pharmacy prepares the full 1000 mL bag.",
-        "stem": "At what rate (mL/hr) should the nurse set the infusion pump to deliver 10 mEq/hr? (Round to the nearest whole number.)",
-        "message": "Calculation stem lacks calculable order data in the vignette and stem (e.g. generic volume/dose prompt on a counseling-only case)."
-      },
-      {
-        "itemId": "cmqxauoxc000h1yprig6ebnvj",
-        "subjectId": "cardiovascular-rx",
-        "vignette": "A 40-year-old male with sepsis secondary to pneumonia is started on piperacillin-tazobactam. His renal function is stable with a serum creatinine of 1.0 mg/dL. The physician orders a loading dose of 4",
-        "stem": "How many milligrams of drug are required for this preparation?",
-        "message": "Calculation stem lacks calculable order data in the vignette and stem (e.g. generic volume/dose prompt on a counseling-only case)."
-      },
-      {
-        "itemId": "cmr03uryg000n1ypu3ooe4e72",
-        "subjectId": "patient-counseling",
-        "vignette": "A 15-year-old girl presents to the pharmacy with a prescription for a liquid formulation of ibuprofen for her recent knee injury. She weighs 50 kg. The recommended dose is 10 mg/kg every 6 hours as ne",
-        "stem": "Calculate the concentration in mg/mL. Round to two decimal places.",
-        "message": "Calculation stem lacks calculable order data in the vignette and stem (e.g. generic volume/dose prompt on a counseling-only case)."
-      }
-    ],
-    "naplex_clinical_vignette_unrelated_options": [
-      {
-        "itemId": "cmqgswlj100131ytwck5mmrsy",
-        "subjectId": "patient-counseling",
-        "vignette": "A 76-year-old female patient presents to the pharmacy with a prescription for lisinopril 10 mg daily for hypertension. She has a history of heart failure and is currently taking furosemide 40 mg daily",
-        "stem": "Which finding requires immediate follow-up?",
-        "message": "Acute clinical emergency vignette is paired with unrelated wellness or lifestyle answer choices instead of appropriate emergency management."
-      },
-      {
-        "itemId": "cmqvjaa3200181yxkuhvivwx0",
-        "subjectId": "compounding-calculations",
-        "vignette": "A 65-year-old female with a history of heart failure is prescribed furosemide 40 mg daily. She presents to the pharmacy with a new prescription for digoxin. Her current medications include lisinopril ",
-        "stem": "Which finding requires immediate follow-up?",
-        "message": "Acute clinical emergency vignette is paired with unrelated wellness or lifestyle answer choices instead of appropriate emergency management."
-      },
-      {
-        "itemId": "cmqvk1ilh00121yvdzc6rq5b4",
-        "subjectId": "patient-counseling",
-        "vignette": "A 65-year-old woman with a history of heart failure and atrial fibrillation is prescribed apixaban for anticoagulation. She is also taking lisinopril and furosemide. During a routine follow-up, her IN",
-        "stem": "Which finding requires immediate follow-up?",
-        "message": "Acute clinical emergency vignette is paired with unrelated wellness or lifestyle answer choices instead of appropriate emergency management."
-      }
-    ],
-    "naplex_clinical_stem_numeric_options": [
-      {
-        "itemId": "cmqxaup43000j1ypr3mdcdpd2",
-        "subjectId": "patient-counseling",
-        "vignette": "A 30-year-old woman is prescribed isotretinoin for severe acne. She has a history of depression and is currently taking an SSRI. She is counseled on the importance of avoiding pregnancy while on isotr",
-        "stem": "At what rate (mL/hr) should the infusion pump be set? Round to the nearest whole number.",
-        "message": "Generic calculation stem on a clinical vignette is paired with bare numeric MCQ options without solvable order data."
-      },
-      {
-        "itemId": "cmr03ur26000e1ypu5zecsg9q",
-        "subjectId": "cardiovascular-rx",
-        "vignette": "A 65-year-old female presents to the pharmacy with a prescription for amoxicillin 500 mg three times daily for 10 days for a community-acquired pneumonia. She has a history of hypertension and is curr",
-        "stem": "How many tablets should be dispensed for this order?",
-        "message": "Generic calculation stem on a clinical vignette is paired with bare numeric MCQ options without solvable order data."
-      },
-      {
-        "itemId": "cmr03urd7000h1ypu87flfgit",
-        "subjectId": "cardiovascular-rx",
-        "vignette": "A 40-year-old female patient is prescribed a new medication for her hypertension. She is currently taking lisinopril and has no known drug allergies. During her follow-up visit, her blood pressure is ",
-        "stem": "Calculate the dose in mg. Round to the nearest whole number.",
-        "message": "Generic calculation stem on a clinical vignette is paired with bare numeric MCQ options without solvable order data."
-      }
-    ],
-    "naplex_clinical_vignette_unrelated_calc": [
-      {
-        "itemId": "cmr045eth004h1ypuwftyuy14",
-        "subjectId": "cardiovascular-rx",
-        "vignette": "A 70-year-old male patient with a history of atrial fibrillation and hypertension is prescribed rivaroxaban 20 mg once daily. He has a CrCl of 45 mL/min and is currently taking amlodipine and metoprol",
-        "stem": "Calculate the dose in mg. Round to the nearest whole number.",
-        "message": "Counseling-focused clinical vignette is paired with an unrelated dispense or calculation stem (e.g. tablet count when the patient asks about bleeding risk)."
-      },
-      {
-        "itemId": "cmr04gb6k000j1y47f7tmxtyv",
-        "subjectId": "cardiovascular-rx",
-        "vignette": "A 65-year-old female with a history of atrial fibrillation is prescribed rivaroxaban 20 mg daily for anticoagulation. She is also taking atorvastatin 40 mg daily. Her renal function is stable with a c",
-        "stem": "How many tablets should be dispensed for this order?",
-        "message": "Counseling-focused clinical vignette is paired with an unrelated dispense or calculation stem (e.g. tablet count when the patient asks about bleeding risk)."
-      },
-      {
-        "itemId": "cmr04qxq2004c1y47fyn5orhb",
-        "subjectId": "cardiovascular-rx",
-        "vignette": "A 65-year-old woman with sepsis secondary to pneumonia is started on piperacillin-tazobactam. She has a history of penicillin allergy and reports a rash after taking amoxicillin in the past.",
-        "stem": "Calculate the total daily dose in mg. Round to the nearest whole number.",
-        "message": "Counseling-focused clinical vignette is paired with an unrelated dispense or calculation stem (e.g. tablet count when the patient asks about bleeding risk)."
-      }
-    ],
     "naplex_stem_lead_in": [
       {
         "itemId": "cmr31dd4e002sjs04llzlzqgk",

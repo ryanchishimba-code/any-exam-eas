@@ -76,6 +76,16 @@ import { NPTE_VESTIBULAR_BALANCE_MODULE } from "./npte-vestibular-balance";
 import { NPTE_PEDS_GERIATRICS_MODULE } from "./npte-peds-geriatrics-rehab";
 import { NPTE_SAFETY_RED_FLAGS_MODULE } from "./npte-safety-red-flags";
 import { AANP_FNP_SYSTEM_REVIEW_MODULES } from "./aanp-fnp-system-modules";
+import {
+  NAPLEX_CALCULATIONS_MODULE,
+  NAPLEX_ASTHMA_COPD_MODULE,
+  NAPLEX_PSYCHOTROPICS_MODULE,
+  NAPLEX_RENAL_CKD_MODULE,
+  NAPLEX_TOXICOLOGY_MODULE,
+  NAPLEX_GERIATRICS_MODULE,
+  NAPLEX_TDM_MODULE,
+  NAPLEX_GI_PHARMACOTHERAPY_MODULE,
+} from "./naplex-pharm-modules";
 
 export {
   ACS_MODULE,
@@ -139,6 +149,14 @@ export {
   INFECTION_CONTROL_NCLEX_MODULE,
   INFECTIOUS_DISEASE_USMLE_MODULE,
   SEPSIS_MODULE,
+  NAPLEX_CALCULATIONS_MODULE,
+  NAPLEX_ASTHMA_COPD_MODULE,
+  NAPLEX_PSYCHOTROPICS_MODULE,
+  NAPLEX_RENAL_CKD_MODULE,
+  NAPLEX_TOXICOLOGY_MODULE,
+  NAPLEX_GERIATRICS_MODULE,
+  NAPLEX_TDM_MODULE,
+  NAPLEX_GI_PHARMACOTHERAPY_MODULE,
 };
 
 export const REVIEW_MODULE_CONTENT_BY_SLUG: Record<string, ReviewModuleContent> = {
@@ -203,5 +221,13 @@ export const REVIEW_MODULE_CONTENT_BY_SLUG: Record<string, ReviewModuleContent> 
   "sata-mastery": SATA_MASTERY_NCLEX_MODULE,
   "bow-tie-ngn": BOW_TIE_NCLEX_MODULE,
   "case-study-ngn": CASE_STUDY_NCLEX_MODULE,
+  "calculations-workshop": NAPLEX_CALCULATIONS_MODULE,
+  "asthma-copd-inhalers": NAPLEX_ASTHMA_COPD_MODULE,
+  "psychotropics-monitoring": NAPLEX_PSYCHOTROPICS_MODULE,
+  "renal-ckd-pharmacotherapy": NAPLEX_RENAL_CKD_MODULE,
+  "toxicology-antidotes": NAPLEX_TOXICOLOGY_MODULE,
+  "geriatrics-beers": NAPLEX_GERIATRICS_MODULE,
+  "tdm-monitoring": NAPLEX_TDM_MODULE,
+  "gi-pharmacotherapy": NAPLEX_GI_PHARMACOTHERAPY_MODULE,
   ...AANP_FNP_SYSTEM_REVIEW_MODULES,
 };

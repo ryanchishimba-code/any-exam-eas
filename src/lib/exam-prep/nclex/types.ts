@@ -9,7 +9,7 @@ export const NCLEX_FULL_EXAM_VERSION = "gpt-4o-nclex-full-exam-v2";
 export const NCLEX_GENERATION_MODEL = "gpt-4o";
 
 /** Target best-tier serve bank after curation. */
-export const NCLEX_BEST_TARGET_TOTAL = 4000;
+export const NCLEX_BEST_TARGET_TOTAL = 6000;
 
 export function resolveNclexGenerationModel(): string {
   const raw = process.env.NCLEX_GENERATION_MODEL?.trim();
@@ -24,6 +24,16 @@ export const NCLEX_PUBLISHED_SERVE_TOTAL = 5000;
 
 /** Default questions per full-length practice exam (NCLEX minimum pass range). */
 export const NCLEX_FULL_EXAM_DEFAULT_COUNT = 80;
+
+/** Serve-ready NGN format targets (2026 test plan: ~18 case-study + ~10% stand-alone CJ). */
+export const NCLEX_NGN_SERVE_TARGETS: Record<string, number> = {
+  select_all: 500,
+  ngn_bowtie: 150,
+  ngn_matrix: 100,
+  ordered_response: 75,
+  ngn_highlight: 50,
+  case_study: 180,
+};
 
 /** Items per OpenAI call — satisfies batch-of-10 diversity rules. */
 export const NCLEX_GENERATION_CHUNK_SIZE = 10;
