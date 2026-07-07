@@ -14,6 +14,7 @@ import { AANP_FNP_HIGH_YIELD_TOPICS } from "./high-yield-aanp-fnp";
 import { NPTE_PT_HIGH_YIELD_TOPICS } from "./high-yield-npte-pt";
 import { mergeReviewModules } from "./review-module-topics";
 import { tagUsmleTopicSteps } from "@/lib/edtech/usmle-library-catalog";
+import { enrichUsmleTopics } from "@/lib/exam-prep/usmle/topic-registry";
 
 const USMLE_ALL_TOPICS = [
   ...USMLE_HIGH_YIELD_TOPICS,
@@ -26,7 +27,7 @@ export const HIGH_YIELD_BY_EXAM: Record<ExamSlug, HighYieldTopic[]> = {
   nclex: enrichNclexTopics(
     mergeReviewModules([...NCLEX_HIGH_YIELD_TOPICS, ...NCLEX_EXTENDED_TOPICS], "nclex")
   ),
-  usmle: mergeReviewModules(USMLE_ALL_TOPICS, "usmle"),
+  usmle: enrichUsmleTopics(mergeReviewModules(USMLE_ALL_TOPICS, "usmle")),
   naplex: enrichNaplexTopics(
     mergeReviewModules([...NAPLEX_HIGH_YIELD_TOPICS, ...NAPLEX_EXTENDED_TOPICS], "naplex")
   ),

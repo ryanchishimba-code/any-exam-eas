@@ -25,14 +25,38 @@ import {
   groupNaplexTopicsByDomain,
   NAPLEX_CONTENT_DOMAINS,
 } from "@/lib/exam-prep/naplex/topic-registry";
+import {
+  getUsmleLearningPath,
+  getNextUsmleTopicInPath,
+  sortTopicsByUsmlePath,
+} from "@/lib/exam-prep/usmle/topic-learning-path";
+import {
+  groupUsmleTopicsByDomain,
+  getUsmleStudyDomains,
+  usmleStepFromShortLabel,
+} from "@/lib/exam-prep/usmle/topic-registry";
 import { studyUi } from "@/lib/study/study-ui";
 import type { ExamSlug, HighYieldTopic, TopicProgressMap } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
 type ViewMode = "guide" | "browse";
 
-const GUIDE_EXAMS: ExamSlug[] = ["nclex", "naplex"];
+const GUIDE_EXAMS: ExamSlug[] = ["nclex", "naplex", "usmle"];
 const GUIDE_TOPIC_THRESHOLD = 12;
+
+function sortTopicsByUsmleDomain(
+  topics: HighYieldTopic[],
+  stepLabel?: string
+): HighYieldTopic[] {
+  const step = usmleStepFromShortLabel(stepLabel);
+  const domainOrder = new Map(getUsmleStudyDomains(step).map((d, i) => [d.id, i]));
+  return [...topics].sort((a, b) => {
+    const da = domainOrder.get(a.clientNeedsDomain ?? "") ?? 99;
+    const db = domainOrder.get(b.clientNeedsDomain ?? "") ?? 99;
+    if (da !== db) return da - db;
+    return a.title.localeCompare(b.title);
+  });
+}
 
 function sortTopicsByNaplexDomain(topics: HighYieldTopic[]): HighYieldTopic[] {
   const domainOrder = new Map(NAPLEX_CONTENT_DOMAINS.map((d, i) => [d.id, i]));
@@ -72,6 +96,8 @@ export function HighYieldTopicsClient({
   const exam = EXAM_CATALOG[examSlug];
   const initializedExpand = useRef(false);
 
+  const usmleStep = usmleStepFromShortLabel(usmleStepLabel);
+
   const categories = useMemo(() => {
     if (examSlug === "nclex") {
       return NCLEX_CLIENT_NEEDS_DOMAINS.map((d) => d.label);
@@ -79,9 +105,12 @@ export function HighYieldTopicsClient({
     if (examSlug === "naplex") {
       return NAPLEX_CONTENT_DOMAINS.map((d) => d.label);
     }
+    if (examSlug === "usmle") {
+      return getUsmleStudyDomains(usmleStep).map((d) => d.label);
+    }
     const cats = new Set(topics.map((t) => t.category));
     return [...cats].sort();
-  }, [examSlug, topics]);
+  }, [examSlug, topics, usmleStep]);
 
   useEffect(() => {
     setProgressMap(initialProgress);
@@ -96,9 +125,14 @@ export function HighYieldTopicsClient({
   const effectiveView: ViewMode = supportsGuide && !isFiltering ? viewMode : "browse";
 
   const pathOrderMap = useMemo(() => {
-    if (examSlug !== "nclex") return undefined;
-    return new Map(NCLEX_LEARNING_PATH_ORDER.map((slug, index) => [slug, index]));
-  }, [examSlug]);
+    if (examSlug === "nclex") {
+      return new Map(NCLEX_LEARNING_PATH_ORDER.map((slug, index) => [slug, index]));
+    }
+    if (examSlug === "usmle") {
+      return new Map(getUsmleLearningPath(usmleStep).map((slug, index) => [slug, index]));
+    }
+    return undefined;
+  }, [examSlug, usmleStep]);
 
   const topicGroups = useMemo(() => {
     if (examSlug === "nclex") {
@@ -109,8 +143,12 @@ export function HighYieldTopicsClient({
       const grouped = groupNaplexTopicsByDomain(filtered);
       return buildTopicGroups(grouped, progressMap, sortTopicsByNaplexDomain);
     }
+    if (examSlug === "usmle") {
+      const grouped = groupUsmleTopicsByDomain(filtered, usmleStep);
+      return buildTopicGroups(grouped, progressMap, (t) => sortTopicsByUsmlePath(t, usmleStep));
+    }
     return [];
-  }, [examSlug, filtered, progressMap]);
+  }, [examSlug, filtered, progressMap, usmleStep]);
 
   const displayGroups = useMemo(() => {
     if (!focusedDomainId) return topicGroups;
@@ -121,8 +159,9 @@ export function HighYieldTopicsClient({
     if (isFiltering) return filtered;
     if (examSlug === "nclex") return sortTopicsByNclexPath(filtered);
     if (examSlug === "naplex") return sortTopicsByNaplexDomain(filtered);
+    if (examSlug === "usmle") return sortTopicsByUsmlePath(filtered, usmleStep);
     return filtered;
-  }, [examSlug, filtered, isFiltering]);
+  }, [examSlug, filtered, isFiltering, usmleStep]);
 
   const nextTopic = useMemo(() => {
     if (examSlug === "nclex") {
@@ -132,8 +171,11 @@ export function HighYieldTopicsClient({
       const ordered = sortTopicsByNaplexDomain(topics);
       return ordered.find((t) => (progressMap[t.id]?.reviewCount ?? 0) === 0) ?? ordered[0] ?? null;
     }
+    if (examSlug === "usmle") {
+      return getNextUsmleTopicInPath(topics, progressMap, usmleStep);
+    }
     return null;
-  }, [examSlug, topics, progressMap]);
+  }, [examSlug, topics, progressMap, usmleStep]);
 
   const grouped = useMemo(() => {
     if (examSlug === "nclex" && (category === null || category === "all")) {
@@ -148,6 +190,12 @@ export function HighYieldTopicsClient({
         sortTopicsByNaplexDomain(domainTopics),
       ] as const);
     }
+    if (examSlug === "usmle" && (category === null || category === "all")) {
+      return groupUsmleTopicsByDomain(filtered, usmleStep).map(({ domain, topics: domainTopics }) => [
+        domain.label,
+        sortTopicsByUsmlePath(domainTopics, usmleStep),
+      ] as const);
+    }
     const map = new Map<string, HighYieldTopic[]>();
     for (const topic of filtered) {
       const list = map.get(topic.category) ?? [];
@@ -155,7 +203,7 @@ export function HighYieldTopicsClient({
       map.set(topic.category, list);
     }
     return [...map.entries()].sort(([a], [b]) => a.localeCompare(b));
-  }, [examSlug, filtered, category]);
+  }, [examSlug, filtered, category, usmleStep]);
 
   const skipFilterReset = useRef(true);
 

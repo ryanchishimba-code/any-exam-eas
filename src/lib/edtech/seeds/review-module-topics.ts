@@ -69,6 +69,22 @@ import {
   NAPLEX_GERIATRICS_MODULE,
   NAPLEX_TDM_MODULE,
   NAPLEX_GI_PHARMACOTHERAPY_MODULE,
+  PHYSIOLOGY_SYSTEMS_STEP1_MODULE,
+  BIOCHEMISTRY_METABOLISM_STEP1_MODULE,
+  MICROBIOLOGY_IMMUNOLOGY_STEP1_MODULE,
+  ANATOMY_EMBRYOLOGY_STEP1_MODULE,
+  CARDIOVASCULAR_USMLE_MODULE,
+  PULMONARY_USMLE_MODULE,
+  GASTROENTEROLOGY_USMLE_MODULE,
+  HEMATOLOGY_ONCOLOGY_USMLE_MODULE,
+  RHEUMATOLOGY_USMLE_MODULE,
+  OBSTETRICS_USMLE_MODULE,
+  PEDIATRICS_USMLE_MODULE,
+  PSYCHIATRY_USMLE_MODULE,
+  EMERGENCY_TOXICOLOGY_USMLE_MODULE,
+  DERMATOLOGY_ALLERGIC_USMLE_MODULE,
+  ETHICS_BIOSTATS_USMLE_MODULE,
+  PHARMACEUTICAL_ADS_ABSTRACTS_STEP3_MODULE,
 } from "@/lib/edtech/review-modules/content";
 import type { HighYieldTopic } from "@/types/edtech";
 
@@ -598,6 +614,166 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     practiceTopicSlug: "internal-medicine",
     reviewModule: CCS_CASE_MANAGEMENT_USMLE_MODULE,
     sortOrder: 22,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "pharmaceutical-ads-abstracts",
+    title: "Pharmaceutical Ads & Medical Abstracts",
+    overview:
+      "Critically appraise drug advertisements and journal abstracts — NNT, surrogate endpoints, and study design traps for Step 3.",
+    practiceTopicSlug: "pharmacology",
+    reviewModule: PHARMACEUTICAL_ADS_ABSTRACTS_STEP3_MODULE,
+    sortOrder: 23,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "physiology-systems",
+    title: "Physiology: Cardiac, Renal, Respiratory & Acid-Base",
+    overview:
+      "Pressure-volume loops, nephron segments, V/Q matching, and acid-base interpretation — integrated Step 1 physiology module.",
+    practiceTopicSlug: "physiology",
+    reviewModule: PHYSIOLOGY_SYSTEMS_STEP1_MODULE,
+    sortOrder: 12,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "biochemistry-metabolism",
+    title: "Biochemistry: Metabolic Pathways & Nutrition",
+    overview:
+      "Glycolysis, urea cycle, inborn errors, lysosomal storage, and vitamin deficiencies — mechanism-to-phenotype Step 1 module.",
+    practiceTopicSlug: "biochemistry",
+    reviewModule: BIOCHEMISTRY_METABOLISM_STEP1_MODULE,
+    sortOrder: 13,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "microbiology-immunology",
+    title: "Microbiology & Immunology: Bugs, Drugs & Host Defense",
+    overview:
+      "Gram algorithm, HBV serology, hypersensitivity types, and primary immunodeficiencies — Step 1 micro/immuno module.",
+    practiceTopicSlug: "microbiology",
+    reviewModule: MICROBIOLOGY_IMMUNOLOGY_STEP1_MODULE,
+    sortOrder: 14,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "anatomy-embryology",
+    title: "Anatomy & Embryology: Landmarks & Malformations",
+    overview:
+      "Cranial nerves, inguinal hernias, pharyngeal arches, and congenital defects — spatial Step 1 anatomy module.",
+    practiceTopicSlug: "anatomy",
+    reviewModule: ANATOMY_EMBRYOLOGY_STEP1_MODULE,
+    sortOrder: 15,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "cardiovascular",
+    title: "Cardiovascular: ACS, HF & Valvular Disease",
+    overview:
+      "STEMI pathways, HFrEF GDMT, valvular urgency, tamponade, and arrhythmia essentials — Step 2 CK cardiovascular module.",
+    practiceTopicSlug: "cardiology",
+    reviewModule: CARDIOVASCULAR_USMLE_MODULE,
+    sortOrder: 5,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "pulmonary",
+    title: "Pulmonary: COPD, Asthma, PE & Pleural Disease",
+    overview:
+      "COPD exacerbation, BiPAP criteria, PE workup, asthma step-up, and Light criteria — Step 2 CK pulmonary module.",
+    practiceTopicSlug: "pulmonology",
+    reviewModule: PULMONARY_USMLE_MODULE,
+    sortOrder: 6,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "gastroenterology",
+    title: "Gastroenterology: GI Bleed, Liver & IBD",
+    overview:
+      "Variceal bleed protocol, cirrhosis complications, pancreatitis, IBD, and C diff — Step 2 CK GI module.",
+    practiceTopicSlug: "gastroenterology",
+    reviewModule: GASTROENTEROLOGY_USMLE_MODULE,
+    sortOrder: 7,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "hematology-oncology",
+    title: "Hematology & Oncology: Anemia, Clotting & Emergencies",
+    overview:
+      "Anemia workup, TTP vs ITP, APL with ATRA, tumor lysis, and oncologic emergencies — Step 2 CK heme/onc module.",
+    practiceTopicSlug: "hematology",
+    reviewModule: HEMATOLOGY_ONCOLOGY_USMLE_MODULE,
+    sortOrder: 8,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "rheumatology",
+    title: "Rheumatology: RA, SLE, Gout & Vasculitis",
+    overview:
+      "RA vs OA, SLE flares, crystal arthropathies, GCA, and ANCA vasculitis — Step 2 CK rheumatology module.",
+    practiceTopicSlug: "rheumatology",
+    reviewModule: RHEUMATOLOGY_USMLE_MODULE,
+    sortOrder: 9,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "obstetrics",
+    title: "Obstetrics: Preeclampsia, Labor & OB Emergencies",
+    overview:
+      "Hypertensive disorders, third-trimester bleeding, ectopic pregnancy, and postpartum hemorrhage — Step 2 CK OB module.",
+    practiceTopicSlug: "obstetrics",
+    reviewModule: OBSTETRICS_USMLE_MODULE,
+    sortOrder: 10,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "pediatrics",
+    title: "Pediatrics: Milestones, Infections & Congenital Disease",
+    overview:
+      "Febrile infant workup, Kawasaki, bronchiolitis, vaccines, and child abuse red flags — Step 2 CK pediatrics module.",
+    practiceTopicSlug: "pediatrics",
+    reviewModule: PEDIATRICS_USMLE_MODULE,
+    sortOrder: 11,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "psychiatry",
+    title: "Psychiatry: Mood, Psychosis & Substance Use",
+    overview:
+      "Depression, bipolar, schizophrenia, serotonin syndrome vs NMS, and withdrawal — Step 2 CK psychiatry module.",
+    practiceTopicSlug: "psychiatry",
+    reviewModule: PSYCHIATRY_USMLE_MODULE,
+    sortOrder: 12,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "emergency-toxicology",
+    title: "Emergency Medicine & Toxicology",
+    overview:
+      "ATLS, toxidromes, antidote pairing, acetaminophen nomogram, and TCA overdose — Step 2 CK emergency module.",
+    practiceTopicSlug: "emergency-medicine",
+    reviewModule: EMERGENCY_TOXICOLOGY_USMLE_MODULE,
+    sortOrder: 13,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "dermatology-allergic",
+    title: "Dermatology & Allergy: Rashes, Anaphylaxis & Drug Eruptions",
+    overview:
+      "Anaphylaxis protocol, SJS/TEN, cellulitis vs nec fasc, psoriasis, and Lyme — Step 2 CK derm/allergy module.",
+    practiceTopicSlug: "dermatology",
+    reviewModule: DERMATOLOGY_ALLERGIC_USMLE_MODULE,
+    sortOrder: 14,
+  }),
+  defineReviewModuleTopic({
+    examSlug: "usmle",
+    slug: "ethics-biostats",
+    title: "Ethics & Biostatistics Cross-Cutting",
+    overview:
+      "Capacity, consent, Tarasoff, NNT/ARR, and study design appraisal — cross-step ethics and biostatistics module.",
+    practiceTopicSlug: "internal-medicine",
+    reviewModule: ETHICS_BIOSTATS_USMLE_MODULE,
+    sortOrder: 24,
   }),
   defineReviewModuleTopic({
     examSlug: "pance",
