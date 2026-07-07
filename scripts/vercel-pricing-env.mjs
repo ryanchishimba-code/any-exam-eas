@@ -135,6 +135,18 @@ function resolveValues(env) {
   return values;
 }
 
+async function validateToken(token, projectId, teamId) {
+  const res = await fetch(
+    `https://api.vercel.com/v9/projects/${projectId}?teamId=${teamId}`,
+    { headers: { Authorization: `Bearer ${token}` } }
+  );
+  if (res.status === 403) {
+    const body = await res.text();
+    if (/invalidToken/i.test(body)) return false;
+  }
+  return res.ok;
+}
+
 async function pushViaApi({ token, projectId, teamId, values, targets }) {
   const base = `https://api.vercel.com/v10/projects/${projectId}/env?teamId=${teamId}&upsert=true`;
   for (const target of targets) {
@@ -255,7 +267,21 @@ async function main() {
   console.log(`  Targets: ${targets.join(", ")}\n`);
 
   if (token) {
-    await pushViaApi({ token, projectId, teamId, values, targets });
+    const valid = await validateToken(token, projectId, teamId);
+    if (valid) {
+      await pushViaApi({ token, projectId, teamId, values, targets });
+    } else {
+      console.warn("VERCEL_TOKEN invalid or expired — falling back to Vercel CLI.\n");
+      if (!pushViaCli(values, targets)) {
+        console.error(`
+Could not push env vars. Fix one of:
+  A) Add VERCEL_TOKEN to .env (https://vercel.com/account/tokens) and re-run
+  B) Run: npx vercel login
+  C) Add vars manually in Vercel → Settings → Environment Variables
+`);
+        process.exit(1);
+      }
+    }
   } else {
     console.log("No VERCEL_TOKEN — using Vercel CLI (run `npx vercel login` if this fails).\n");
     if (!pushViaCli(values, targets)) {

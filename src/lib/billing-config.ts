@@ -1,5 +1,7 @@
 /** Billing/trial constants — edge-safe (no Stripe SDK). */
 
+import { PRO_MONTHLY_PRICE_USD } from "@/lib/pricing-defaults";
+
 /** App-native free trial (days) — starts at signup without a payment method. */
 export const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "3");
 
@@ -17,7 +19,7 @@ export const FREE_TIER_LIFETIME_QUESTIONS = Number(
 export const TRIAL_INTRO_PRICE_USD = Number(process.env.TRIAL_INTRO_PRICE_USD ?? "17.99");
 
 /** @deprecated Use TIER_MONTHLY_USD from subscription-tiers — kept for API compat (Pro monthly). */
-export const MONTHLY_PRICE_USD = Number(process.env.PRO_MONTHLY_PRICE_USD ?? process.env.MONTHLY_PRICE_USD ?? "27.99");
+export const MONTHLY_PRICE_USD = PRO_MONTHLY_PRICE_USD;
 
 /** Percent savings vs paying monthly for the same period. */
 export const BILLING_INTERVAL_SAVINGS = {

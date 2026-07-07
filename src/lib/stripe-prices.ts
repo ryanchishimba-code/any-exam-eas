@@ -4,6 +4,7 @@ import {
   type BillingInterval,
 } from "@/lib/billing-config";
 import { intervalTotalUsd } from "@/lib/billing-plans";
+import { COMMITTED_STRIPE_PRO_PRICE_IDS } from "@/lib/pricing-defaults";
 import type { SubscriptionTier } from "@/lib/subscription-tiers";
 
 /** Env var for each Stripe Price object (Pro × interval). */
@@ -79,6 +80,9 @@ export function getStripePriceId(
   tier: SubscriptionTier,
   interval: BillingInterval
 ): string | undefined {
+  const committed = COMMITTED_STRIPE_PRO_PRICE_IDS[interval]?.trim();
+  if (tier === "pro" && committed?.startsWith("price_")) return committed;
+
   const key = STRIPE_PRICE_ENV_KEYS[tier][interval];
   const value = process.env[key]?.trim();
   if (value?.startsWith("price_")) return value;

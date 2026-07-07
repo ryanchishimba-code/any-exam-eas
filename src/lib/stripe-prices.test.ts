@@ -35,24 +35,24 @@ describe("stripe-prices", () => {
     });
   });
 
-  it("requireStripePriceId throws when env is missing", () => {
+  it("requireStripePriceId returns committed price when env is missing", () => {
     delete process.env.STRIPE_PRO_PRICE_ID_YEARLY;
     delete process.env.STRIPE_PRICE_ID_YEARLY;
-    expect(() => requireStripePriceId("pro", "yearly")).toThrow(/STRIPE_PRO_PRICE_ID_YEARLY/);
+    expect(requireStripePriceId("pro", "yearly")).toMatch(/^price_/);
   });
 
-  it("isIntervalPriceConfigured requires price_ prefix", () => {
-    process.env.STRIPE_PRO_PRICE_ID_MONTHLY = "price_test_monthly";
+  it("isIntervalPriceConfigured uses committed price IDs", () => {
+    delete process.env.STRIPE_PRO_PRICE_ID_MONTHLY;
+    delete process.env.STRIPE_PRICE_ID;
     expect(isIntervalPriceConfigured("pro", "monthly")).toBe(true);
-    process.env.STRIPE_PRO_PRICE_ID_MONTHLY = "invalid";
-    expect(isIntervalPriceConfigured("pro", "monthly")).toBe(false);
   });
 
-  it("getMissingStripePriceEnvKeys lists unset price env vars", () => {
-    for (const key of getMissingStripePriceEnvKeys()) {
-      delete process.env[key];
-    }
-    const missing = getMissingStripePriceEnvKeys();
-    expect(missing.length).toBeGreaterThan(0);
+  it("isIntervalPriceConfigured prefers committed IDs over invalid env", () => {
+    process.env.STRIPE_PRO_PRICE_ID_MONTHLY = "invalid";
+    expect(isIntervalPriceConfigured("pro", "monthly")).toBe(true);
+  });
+
+  it("getMissingStripePriceEnvKeys is empty when committed IDs cover Pro", () => {
+    expect(getMissingStripePriceEnvKeys()).toEqual([]);
   });
 });
