@@ -5,7 +5,19 @@ import {
   libraryTopicHref,
 } from "@/lib/edtech/practice-links";
 import { getAnatomyStructuresForTopicSlug, type AnatomyStructureLink } from "@/lib/anatomy/topic-links";
-import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
+import {
+  resolveNclexTopicSlugForBlueprint,
+  resolveNclexTopicSlugForSubject,
+} from "@/lib/exam-prep/nclex/topic-registry";
+import {
+  buildTopicDrugClassLinks,
+  buildTopicDrugLinks,
+  buildTopicPresetLinks,
+  type TopicDrugClassLink,
+  type TopicDrugLink,
+  type TopicPresetLink,
+} from "@/lib/exam-prep/nclex/topic-drug-links";
+import { getHighYieldTopic } from "@/lib/edtech/seeds";
 import type { FullExamTopicBreakdown } from "@/types/full-exam";
 import type { ExamSlug } from "@/types/edtech";
 import { getMemoryCardIdsForTopic, normalizeWeakAreaTopicKey } from "./weak-area-map";
@@ -23,6 +35,12 @@ export type ExamTopicStudyLinks = {
   deepDiveHref?: string;
   firstCardHref?: string;
   anatomyStructures: AnatomyStructureLink[];
+  /** NCLEX: linked high-yield topic slugs for this blueprint/subject area. */
+  relatedTopicSlugs?: string[];
+  drugLinks?: TopicDrugLink[];
+  drugClassLinks?: TopicDrugClassLink[];
+  presetLinks?: TopicPresetLink[];
+  topicsHubHref?: string;
 };
 
 export function topicNameToSlug(topic: string): string {
@@ -34,31 +52,54 @@ export function topicNameToSlug(topic: string): string {
     .replace(/^-|-$/g, "");
 }
 
-function resolveTopicKey(topic: string): string {
+function resolveTopicKey(examSlug: ExamSlug, topic: string): string {
   const slug = topicNameToSlug(topic);
+  if (examSlug === "nclex") {
+    const fromBlueprint = resolveNclexTopicSlugForBlueprint(slug);
+    if (fromBlueprint) return fromBlueprint;
+    const fromSubject = resolveNclexTopicSlugForSubject(slug);
+    if (fromSubject) return fromSubject;
+  }
   if (getMemoryCardIdsForTopic(slug).length > 0) return slug;
   const normalized = normalizeWeakAreaTopicKey(topic);
   if (getMemoryCardIdsForTopic(normalized).length > 0) return normalized;
   return slug;
 }
 
+function resolveNclexLinks(examSlug: ExamSlug, topic: string): Partial<ExamTopicStudyLinks> {
+  if (examSlug !== "nclex") return {};
+  const topicKey = resolveTopicKey(examSlug, topic);
+  const card = getHighYieldTopic("nclex", topicKey);
+  if (!card) {
+    return {
+      relatedTopicSlugs: [topicKey],
+      topicsHubHref: `/dashboard/topics?exam=nclex&topic=${encodeURIComponent(topicKey)}`,
+    };
+  }
+  return {
+    relatedTopicSlugs: [card.slug],
+    drugLinks: buildTopicDrugLinks(card),
+    drugClassLinks: buildTopicDrugClassLinks(card),
+    presetLinks: buildTopicPresetLinks(examSlug, card),
+    topicsHubHref: `/dashboard/topics?exam=nclex&topic=${encodeURIComponent(card.slug)}`,
+  };
+}
+
 export function getExamTopicStudyLinks(
   examSlug: ExamSlug,
   topic: string
 ): ExamTopicStudyLinks {
-  const topicKey = resolveTopicKey(topic);
+  const topicKey = resolveTopicKey(examSlug, topic);
   const memoryCardIds = getMemoryCardIdsForTopic(topicKey);
-  const reviewModule = REVIEW_MODULE_TOPICS.find(
-    (m) =>
-      m.examSlug === examSlug &&
-      (m.slug === topicKey || m.practiceTopicSlug === topicKey)
-  );
+  const card = getHighYieldTopic(examSlug, topicKey);
 
   const cardStructureIds = memoryCardIds.flatMap((id) => {
-    const card = MEMORY_CARDS.find((c) => c.id === id);
-    return card?.structureIds ?? [];
+    const cardEntry = MEMORY_CARDS.find((c) => c.id === id);
+    return cardEntry?.structureIds ?? [];
   });
-  const moduleStructureIds = reviewModule?.relatedStructureIds ?? [];
+  const moduleStructureIds = card?.relatedStructureIds ?? [];
+
+  const nclexExtras = resolveNclexLinks(examSlug, topic);
 
   return {
     topic,
@@ -66,25 +107,23 @@ export function getExamTopicStudyLinks(
     libraryHref: libraryTopicHref(examSlug, topicKey),
     practiceHref: practiceTopicHref(
       examSlug,
-      reviewModule?.practiceTopicSlug ?? topicKey,
+      card?.practiceTopicSlug ?? topicKey,
       10
     ),
     memoryCardIds,
-    reviewModuleSlug: reviewModule?.slug,
-    deepDiveHref: reviewModule?.slug
-      ? deepDiveTopicHref(examSlug, reviewModule.slug)
+    reviewModuleSlug: card?.slug,
+    deepDiveHref: card?.reviewModule
+      ? deepDiveTopicHref(examSlug, card.slug)
       : undefined,
     firstCardHref:
       memoryCardIds[0] != null
         ? libraryCardHref(examSlug, memoryCardIds[0]!)
         : undefined,
-    anatomyStructures: getAnatomyStructuresForTopicSlug(
-      reviewModule?.slug ?? topicKey,
-      {
-        memoryCardIds,
-        structureIds: [...moduleStructureIds, ...cardStructureIds],
-      }
-    ),
+    anatomyStructures: getAnatomyStructuresForTopicSlug(card?.slug ?? topicKey, {
+      memoryCardIds,
+      structureIds: [...moduleStructureIds, ...cardStructureIds],
+    }),
+    ...nclexExtras,
   };
 }
 

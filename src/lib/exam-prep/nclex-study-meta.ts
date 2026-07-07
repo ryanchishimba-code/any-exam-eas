@@ -38,6 +38,39 @@ const KEYWORD_REVIEW_MODULES: Array<{ slug: string; pattern: RegExp }> = [
   },
   { slug: "pediatrics", pattern: /\bpediatric|infant|fontanel|immunization schedule|child abuse\b/i },
   { slug: "legal-ethical", pattern: /\binformed consent|hipaa|mandatory report|advance directive\b/i },
+  {
+    slug: "cardiovascular",
+    pattern: /\b(?:acute coronary|myocardial infarction|STEMI|NSTEMI|chest pain.*diaphoresis|heart failure exacerbation|nitroglycerin|troponin)\b/i,
+  },
+  {
+    slug: "respiratory",
+    pattern: /\b(?:COPD|asthma exacerbation|silent chest|pulmonary embolism|incentive spirometry|chest tube|hypercapnia)\b/i,
+  },
+  {
+    slug: "diabetes",
+    pattern: /\b(?:DKA|HHS|diabetic ketoacidosis|hypoglycemia|15.?15|sick.day rule|insulin drip)\b/i,
+  },
+  {
+    slug: "renal",
+    pattern: /\b(?:acute kidney injury|AKI|dialysis|hemodialysis|AV fistula|peritoneal dialysis|oliguria|anuria)\b/i,
+  },
+  {
+    slug: "neurologic",
+    pattern: /\b(?:ischemic stroke|tPA|thrombolytic|seizure precaution|increased ICP|autonomic dysreflexia|NIHSS|last known well)\b/i,
+  },
+  {
+    slug: "pain-opioids",
+    pattern: /\b(?:PCA pump|opioid.*respiratory|naloxone|multimodal analgesia|bowel regimen.*opioid|extended.release opioid)\b/i,
+  },
+  { slug: "anticoagulation-nursing", pattern: /\b(?:warfarin|INR|heparin|enoxaparin|DOAC|apixaban|rivaroxaban|HIT|protamine)\b/i },
+  { slug: "antibiotics-nursing", pattern: /\b(?:vancomycin|C\.?\s*diff|blood culture.*antibiotic|red man syndrome|aminoglycoside)\b/i },
+  { slug: "psychotropics-nursing", pattern: /\b(?:serotonin syndrome|extrapyramidal|EPS|lithium level|MAOI|tyramine)\b/i },
+  { slug: "dosage-calculations", pattern: /\b(?:mg\/kg|mL\/hr|drip rate|reconstitut|units\/mL|weight-based dose)\b/i },
+  { slug: "sata-mastery", pattern: /\bselect all that apply|SATA\b/i },
+  { slug: "bow-tie-ngn", pattern: /\bbow.?tie|conditions to monitor|actions to take\b/i },
+  { slug: "disaster-triage", pattern: /\b(?:START triage|mass casualty|MCI|expectant tag)\b/i },
+  { slug: "critical-lab-values", pattern: /\bcritical (?:lab|value)|troponin trend|critical INR\b/i },
+  { slug: "immunization-schedules", pattern: /\b(?:live vaccine|MMR|contraindicated in pregnancy|immunization schedule)\b/i },
 ];
 
 function itemText(item: BankItem): string {

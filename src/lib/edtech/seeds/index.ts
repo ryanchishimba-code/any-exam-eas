@@ -1,5 +1,7 @@
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 import { NCLEX_HIGH_YIELD_TOPICS } from "./high-yield-nclex";
+import { NCLEX_EXTENDED_TOPICS } from "./high-yield-nclex-extended";
+import { enrichNclexTopics } from "@/lib/exam-prep/nclex/topic-registry";
 import { USMLE_HIGH_YIELD_TOPICS } from "./high-yield-usmle";
 import { USMLE_2026_HIGH_YIELD_TOPICS } from "./high-yield-usmle-2026";
 import { USMLE_STEP1_HIGH_YIELD_TOPICS } from "./high-yield-usmle-step1";
@@ -19,7 +21,9 @@ const USMLE_ALL_TOPICS = [
 ].map(tagUsmleTopicSteps);
 
 export const HIGH_YIELD_BY_EXAM: Record<ExamSlug, HighYieldTopic[]> = {
-  nclex: mergeReviewModules(NCLEX_HIGH_YIELD_TOPICS, "nclex"),
+  nclex: enrichNclexTopics(
+    mergeReviewModules([...NCLEX_HIGH_YIELD_TOPICS, ...NCLEX_EXTENDED_TOPICS], "nclex")
+  ),
   usmle: mergeReviewModules(USMLE_ALL_TOPICS, "usmle"),
   naplex: mergeReviewModules(NAPLEX_HIGH_YIELD_TOPICS, "naplex"),
   pance: mergeReviewModules(PANCE_HIGH_YIELD_TOPICS, "pance"),

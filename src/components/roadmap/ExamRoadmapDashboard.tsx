@@ -227,6 +227,38 @@ function PriorityRow({ topic }: { topic: RoadmapTopicRow }) {
  >
  {topic.readinessLabel}
  </span>
+ {topic.deepDiveHref ? (
+ <Link
+ href={topic.deepDiveHref}
+ className="rounded-lg border border-violet-200 bg-violet-50 px-3 py-1.5 text-xs font-bold text-violet-800 hover:bg-violet-100"
+ >
+ Deep dive
+ </Link>
+ ) : null}
+ {topic.topicsHubHref ? (
+ <Link
+ href={topic.topicsHubHref}
+ className="rounded-lg border border-teal-200 bg-teal-50 px-3 py-1.5 text-xs font-bold text-teal-800 hover:bg-teal-100"
+ >
+ Study topic
+ </Link>
+ ) : null}
+ {topic.drugClassHref ? (
+ <Link
+ href={topic.drugClassHref}
+ className="rounded-lg border border-cyan-200 bg-cyan-50 px-3 py-1.5 text-xs font-bold text-cyan-900 hover:bg-cyan-100"
+ >
+ {topic.drugClassLabel ? `${topic.drugClassLabel} drugs` : "Drug flashcards"}
+ </Link>
+ ) : null}
+ {topic.presetHref ? (
+ <Link
+ href={topic.presetHref}
+ className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-900 hover:bg-amber-100"
+ >
+ {topic.presetLabel ?? "Study preset"}
+ </Link>
+ ) : null}
  <Link
  href={topic.practiceHref}
  className="inline-flex items-center gap-1 rounded-lg bg-[var(--color-accent)] px-3 py-1.5 text-xs font-bold text-white"
@@ -277,6 +309,30 @@ function RoadmapTopicCard({ topic }: { topic: RoadmapTopicRow }) {
  className="rounded-lg border border-violet-200 bg-violet-50 px-3 py-1.5 text-xs font-bold text-violet-800 hover:bg-violet-100"
  >
  Deep dive
+ </Link>
+ ) : null}
+ {topic.topicsHubHref ? (
+ <Link
+ href={topic.topicsHubHref}
+ className="rounded-lg border border-teal-200 bg-teal-50 px-3 py-1.5 text-xs font-bold text-teal-800 hover:bg-teal-100"
+ >
+ Topics
+ </Link>
+ ) : null}
+ {topic.drugClassHref ? (
+ <Link
+ href={topic.drugClassHref}
+ className="rounded-lg border border-cyan-200 bg-cyan-50 px-3 py-1.5 text-xs font-bold text-cyan-900 hover:bg-cyan-100"
+ >
+ Drugs
+ </Link>
+ ) : null}
+ {topic.presetHref ? (
+ <Link
+ href={topic.presetHref}
+ className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-bold text-amber-900 hover:bg-amber-100"
+ >
+ Preset
  </Link>
  ) : null}
  <Link

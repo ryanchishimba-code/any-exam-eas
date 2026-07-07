@@ -206,6 +206,16 @@ export function parseAnatomyPracticeReturn(
   };
 }
 
+/** Top 500 drug flashcards filtered by therapeutic class. */
+export function drugs300ClassHref(drugClass: string): string {
+  return `${ROUTES.drugs300}?class=${encodeURIComponent(drugClass)}`;
+}
+
+/** Top 500 drug flashcard for a specific generic slug. */
+export function drugs300DrugHref(drugSlug: string): string {
+  return `${ROUTES.drugs300}?drug=${encodeURIComponent(drugSlug)}`;
+}
+
 /** Topic review module return takes precedence over anatomy when both are set. */
 export function parsePracticeReturn(
   params: Pick<URLSearchParams, "get">

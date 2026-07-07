@@ -29,11 +29,33 @@ import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 
 const GRADES: ReviewGrade[] = [0, 1, 2, 3];
 
+const DRUG_CLASS_IDS: DrugClassId[] = [
+  "all",
+  "cardiovascular",
+  "endocrine",
+  "antibiotics",
+  "cns-psych",
+  "respiratory",
+  "gastrointestinal",
+  "pain-inflammation",
+  "immunologic-other",
+];
+
+function drugClassFromParams(params: URLSearchParams): DrugClassId {
+  const raw = params.get("class");
+  if (raw && DRUG_CLASS_IDS.includes(raw as DrugClassId)) {
+    return raw as DrugClassId;
+  }
+  return "all";
+}
+
 export function DrugReviewStudio() {
   const searchParams = useSearchParams();
   const [dashboard, setDashboard] = useState<DrugReviewDashboard | null>(null);
   const [cards, setCards] = useState<DrugCardDto[]>([]);
-  const [activeClass, setActiveClass] = useState<DrugClassId>("all");
+  const [activeClass, setActiveClass] = useState<DrugClassId>(() =>
+    drugClassFromParams(searchParams)
+  );
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [mnemonic, setMnemonic] = useState<string | null>(null);

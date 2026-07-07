@@ -16,6 +16,8 @@ import {
   List,
   CheckCircle2,
   Lock,
+  Pill,
+  Zap,
 } from "lucide-react";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import { DeepDiveReviewPlayer } from "@/components/edtech/DeepDiveReviewPlayer";
@@ -25,6 +27,11 @@ import {
 } from "@/components/edtech/ReviewModuleScrollView";
 import { RelatedMemoryCardsCollapsible } from "@/components/edtech/RelatedMemoryCardsCollapsible";
 import { practiceTopicHref } from "@/lib/edtech/practice-links";
+import {
+  buildTopicDrugClassLinks,
+  buildTopicDrugLinks,
+  buildTopicPresetLinks,
+} from "@/lib/exam-prep/nclex/topic-drug-links";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getRelatedMemoryCards } from "@/lib/edtech/topic-graph";
 import { getAnatomyDiseasePearlsForReviewModule, getAnatomyStructuresForTopicSlug } from "@/lib/anatomy/topic-links";
@@ -96,6 +103,19 @@ export function HighYieldTopicPanel({
     if (!topic?.slug) return [];
     return getAnatomyDiseasePearlsForReviewModule(topic.slug);
   }, [topic?.slug]);
+
+  const drugLinks = useMemo(
+    () => (topic && examSlug === "nclex" ? buildTopicDrugLinks(topic) : []),
+    [topic, examSlug]
+  );
+  const drugClassLinks = useMemo(
+    () => (topic && examSlug === "nclex" ? buildTopicDrugClassLinks(topic) : []),
+    [topic, examSlug]
+  );
+  const presetLinks = useMemo(
+    () => (topic && examSlug === "nclex" ? buildTopicPresetLinks(examSlug, topic) : []),
+    [topic, examSlug]
+  );
 
   useBodyScrollLock(open);
 
@@ -284,6 +304,56 @@ export function HighYieldTopicPanel({
                   cards={relatedCards}
                   className="mb-6 mt-6"
                 />
+              ) : null}
+
+              {examSlug === "nclex" &&
+              (drugLinks.length > 0 || drugClassLinks.length > 0 || presetLinks.length > 0) ? (
+                <section className="mb-6 mt-6 space-y-3 rounded-2xl border border-teal-200/60 bg-teal-50/40 p-4">
+                  <h3 className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wide text-teal-900">
+                    <Pill className="h-3.5 w-3.5" aria-hidden />
+                    Integrated study links
+                  </h3>
+                  {drugClassLinks.length > 0 ? (
+                    <div className="flex flex-wrap gap-2">
+                      {drugClassLinks.map((link) => (
+                        <Link
+                          key={link.classId}
+                          href={link.href}
+                          className="rounded-full border border-teal-300/80 bg-white px-3 py-1 text-[11px] font-semibold text-teal-900 hover:bg-teal-100"
+                        >
+                          {link.label} flashcards
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                  {drugLinks.length > 0 ? (
+                    <div className="flex flex-wrap gap-1.5">
+                      {drugLinks.map((link) => (
+                        <Link
+                          key={link.id}
+                          href={link.href}
+                          className="rounded-lg bg-white px-2.5 py-1 text-[11px] font-medium text-teal-800 ring-1 ring-teal-200/80 hover:bg-teal-100"
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                  {presetLinks.length > 0 ? (
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {presetLinks.map((link) => (
+                        <Link
+                          key={link.id}
+                          href={link.href}
+                          className="inline-flex items-center gap-1 rounded-full bg-teal-700 px-3 py-1 text-[11px] font-semibold text-white hover:bg-teal-800"
+                        >
+                          <Zap className="h-3 w-3" aria-hidden />
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                </section>
               ) : null}
 
               {!topic.reviewModule ? (

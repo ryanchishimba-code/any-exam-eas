@@ -7,6 +7,10 @@ import { HighYieldTopicPanel } from "@/components/edtech/HighYieldTopicPanel";
 import { HighYieldTopicsHeader } from "@/components/edtech/HighYieldTopicsHeader";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { filterHighYieldTopics, clampTopicIndex } from "@/lib/edtech/topic-selection";
+import {
+  groupNclexTopicsByDomain,
+  NCLEX_CLIENT_NEEDS_DOMAINS,
+} from "@/lib/exam-prep/nclex/topic-registry";
 import { studyUi } from "@/lib/study/study-ui";
 import type { ExamSlug, HighYieldTopic, TopicProgressMap } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -33,9 +37,12 @@ export function HighYieldTopicsClient({
   const exam = EXAM_CATALOG[examSlug];
 
   const categories = useMemo(() => {
+    if (examSlug === "nclex") {
+      return NCLEX_CLIENT_NEEDS_DOMAINS.map((d) => d.label);
+    }
     const cats = new Set(topics.map((t) => t.category));
     return [...cats].sort();
-  }, [topics]);
+  }, [examSlug, topics]);
 
   useEffect(() => {
     setProgressMap(initialProgress);
@@ -47,6 +54,12 @@ export function HighYieldTopicsClient({
   );
 
   const grouped = useMemo(() => {
+    if (examSlug === "nclex" && (category === null || category === "all")) {
+      return groupNclexTopicsByDomain(filtered).map(({ domain, topics: domainTopics }) => [
+        domain.weightPct > 0 ? `${domain.label} (${domain.weightPct}%)` : domain.label,
+        domainTopics,
+      ] as const);
+    }
     const map = new Map<string, HighYieldTopic[]>();
     for (const topic of filtered) {
       const list = map.get(topic.category) ?? [];
@@ -54,7 +67,7 @@ export function HighYieldTopicsClient({
       map.set(topic.category, list);
     }
     return [...map.entries()].sort(([a], [b]) => a.localeCompare(b));
-  }, [filtered]);
+  }, [examSlug, filtered, category]);
 
   const skipFilterReset = useRef(true);
 

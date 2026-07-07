@@ -4,7 +4,7 @@ import { sigCodeAbbreviationTopic } from "./sig-code-abbreviations";
 export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   {
     slug: "infection-control",
-    category: "Safety",
+    category: "Safety & Infection Control",
     title: "Infection Control & PPE",
     overview:
       "Standard and transmission-based precautions — the foundation of safe nursing practice on every unit.",
@@ -35,7 +35,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   },
   {
     slug: "prioritization",
-    category: "Clinical Judgment",
+    category: "Management of Care",
     title: "Prioritization & ABCs",
     overview:
       "Rank nursing actions using airway-breathing-circulation, Maslow, and acute vs. chronic framing.",
@@ -65,7 +65,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   },
   {
     slug: "delegation",
-    category: "Management",
+    category: "Management of Care",
     title: "Delegation & Scope of Practice",
     overview:
       "Assign tasks safely to LPN/LVN and UAP while retaining RN accountability for outcomes.",
@@ -95,7 +95,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   },
   {
     slug: "electrolytes",
-    category: "Physiological",
+    category: "Physiological Adaptation",
     title: "Electrolyte Imbalances",
     overview:
       "Recognize causes, ECG changes, and nursing priorities for sodium, potassium, calcium, and magnesium.",
@@ -125,7 +125,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   },
   {
     slug: "medication-safety",
-    category: "Pharmacology",
+    category: "Pharmacological Therapies",
     title: "Medication Administration Safety",
     overview:
       "Rights of medication administration, high-alert drugs, and error-prevention strategies.",
@@ -156,7 +156,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   },
   {
     slug: "postpartum",
-    category: "OB",
+    category: "Health Promotion",
     title: "Postpartum Complications",
     overview:
       "Hemorrhage, infection, preeclampsia progression, and thromboembolism in the fourth trimester.",
@@ -186,7 +186,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   },
   {
     slug: "pediatrics",
-    category: "OB/Peds",
+    category: "Health Promotion",
     title: "Pediatric Assessment & Safety",
     overview:
       "Age-specific vitals, dehydration clues, fever workups, and family-centered care.",
@@ -216,7 +216,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   },
   {
     slug: "psychiatric",
-    category: "Mental Health",
+    category: "Psychosocial Integrity",
     title: "Psychiatric Nursing & Suicide Risk",
     overview:
       "Therapeutic communication, crisis safety, and monitoring for psychotropic adverse effects.",
@@ -246,7 +246,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   },
   {
     slug: "cardiovascular",
-    category: "Med-Surg",
+    category: "Physiological Adaptation",
     title: "Cardiovascular Emergencies",
     overview:
       "ACS protocols, heart failure management, and antihypertensive nursing surveillance.",
@@ -276,7 +276,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   },
   {
     slug: "respiratory",
-    category: "Med-Surg",
+    category: "Physiological Adaptation",
     title: "Respiratory & Oxygen Therapy",
     overview:
       "Oxygen delivery, COPD/asthma management, and recognizing impending respiratory failure.",
@@ -306,7 +306,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   },
   {
     slug: "diabetes",
-    category: "Endocrine",
+    category: "Physiological Adaptation",
     title: "Diabetes Management",
     overview:
       "Hypoglycemia treatment, DKA/HHS recognition, and insulin safety across care settings.",
@@ -336,7 +336,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   },
   {
     slug: "renal",
-    category: "Med-Surg",
+    category: "Physiological Adaptation",
     title: "Renal & Fluid Balance",
     overview:
       "AKI recognition, dialysis nursing care, and accurate fluid volume assessment.",
@@ -366,7 +366,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   },
   {
     slug: "neurologic",
-    category: "Med-Surg",
+    category: "Physiological Adaptation",
     title: "Neurologic Assessment & Stroke",
     overview:
       "GCS trending, stroke timelines, seizure safety, and increased ICP warning signs.",
@@ -396,7 +396,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   },
   {
     slug: "pain-opioids",
-    category: "Pharmacology",
+    category: "Basic Care & Comfort",
     title: "Pain Management & Opioid Safety",
     overview:
       "Multimodal analgesia, opioid monitoring, and naloxone readiness on med-surg units.",
@@ -426,7 +426,7 @@ export const NCLEX_HIGH_YIELD_TOPICS = defineExamTopics("nclex", [
   },
   {
     slug: "legal-ethical",
-    category: "Ethics",
+    category: "Management of Care",
     title: "Legal & Ethical Nursing Practice",
     overview:
       "Informed consent, capacity, mandatory reporting, and professional boundaries.",

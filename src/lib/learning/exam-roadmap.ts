@@ -16,6 +16,17 @@ import {
   type ExamBlueprint,
 } from "@/lib/engine/blueprints";
 import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
+import { drugs300ClassHref } from "@/lib/edtech/practice-links";
+import { getDrugClassMeta } from "@/lib/drugs300/drug-classes";
+import {
+  resolveNclexTopicSlugForBlueprint,
+  resolveNclexTopicSlugForSubject,
+} from "@/lib/exam-prep/nclex/topic-registry";
+import { getHighYieldTopic } from "@/lib/edtech/seeds";
+import {
+  getNclexStudyPreset,
+  nclexPresetPracticeHref,
+} from "@/lib/exam-prep/nclex/study-presets";
 import { prisma } from "@/lib/prisma";
 
 export type RoadmapReadinessKey = "strong" | "needs_review" | "needs_more_work";
@@ -39,6 +50,13 @@ export type RoadmapTopicRow = {
   highYieldTopics: string[];
   practiceHref: string;
   deepDiveHref?: string;
+  /** NCLEX study hub topic slugs for this blueprint category. */
+  studyTopicSlugs?: string[];
+  topicsHubHref?: string;
+  drugClassHref?: string;
+  drugClassLabel?: string;
+  presetHref?: string;
+  presetLabel?: string;
   /** Target readiness score for first-attempt pass focus. */
   passTargetScore?: number;
   /** Points below pass target (0 if at/above). */
@@ -158,6 +176,44 @@ function buildTopicRow(
   const primarySubject = category.subjectIds?.[0] ?? category.id;
   const topicLinks = getExamTopicStudyLinks(examSlug, primarySubject);
 
+  let studyTopicSlugs = topicLinks.relatedTopicSlugs;
+  let drugClassHref = topicLinks.drugClassLinks?.[0]?.href;
+  let drugClassLabel = topicLinks.drugClassLinks?.[0]?.label;
+  let presetHref = topicLinks.presetLinks?.[0]?.href;
+  let presetLabel = topicLinks.presetLinks?.[0]?.label;
+  let topicsHubHref = topicLinks.topicsHubHref;
+  let deepDiveHref = topicLinks.deepDiveHref;
+
+  if (examSlug === "nclex") {
+    const fromSubject = resolveNclexTopicSlugForSubject(category.id);
+    const fromBlueprint = category.highYieldTopics?.[0]
+      ? resolveNclexTopicSlugForBlueprint(category.highYieldTopics[0])
+      : undefined;
+    const primarySlug = fromSubject ?? fromBlueprint;
+    if (primarySlug) {
+      const card = getHighYieldTopic("nclex", primarySlug);
+      if (card) {
+        studyTopicSlugs = [card.slug];
+        topicsHubHref = `/dashboard/topics?exam=nclex&topic=${encodeURIComponent(card.slug)}`;
+        if (card.reviewModule) {
+          deepDiveHref = topicLinks.deepDiveHref ?? `/dashboard/topics?exam=nclex&topic=${encodeURIComponent(card.slug)}&mode=deep`;
+        }
+        if (card.relatedDrugClasses?.[0]) {
+          const classMeta = getDrugClassMeta(card.relatedDrugClasses[0]);
+          drugClassHref = drugs300ClassHref(card.relatedDrugClasses[0]);
+          drugClassLabel = classMeta.shortLabel;
+        }
+        if (card.relatedPresetIds?.[0]) {
+          const preset = getNclexStudyPreset(card.relatedPresetIds[0]);
+          if (preset) {
+            presetHref = nclexPresetPracticeHref(examSlug, preset);
+            presetLabel = preset.title;
+          }
+        }
+      }
+    }
+  }
+
   return {
     categoryId: category.id,
     label: category.label,
@@ -173,7 +229,13 @@ function buildTopicRow(
         : null,
     highYieldTopics: category.highYieldTopics ?? [],
     practiceHref: practiceTopicHref(examSlug, primarySubject, 15),
-    deepDiveHref: topicLinks.deepDiveHref,
+    deepDiveHref,
+    studyTopicSlugs,
+    topicsHubHref,
+    drugClassHref,
+    drugClassLabel,
+    presetHref,
+    presetLabel,
     passTargetScore: 75,
     gapToPass: Math.max(0, 75 - readinessScore),
   };

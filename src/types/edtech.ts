@@ -4,6 +4,8 @@ export type ExamSlug = "nclex" | "usmle" | "naplex" | "pance" | "aanp-fnp" | "np
 export type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
 
 import type { ReviewModuleContent } from "@/lib/edtech/review-modules/types";
+import type { DrugClassId } from "@/lib/drugs300/drug-classes";
+import type { NclexStudyPresetId } from "@/lib/exam-prep/nclex/study-presets";
 
 export type ExamDefinition = {
   slug: ExamSlug;
@@ -38,6 +40,16 @@ export type HighYieldTopic = {
   relatedStructureIds?: string[];
   /** Premium 8-section textbook-style module (when present, panel renders full module UI). */
   reviewModule?: ReviewModuleContent;
+  /** NCLEX 2026 Client Needs domain id (nclex topics only). */
+  clientNeedsDomain?: string;
+  /** Granular NCSBN blueprint topic slugs this card covers. */
+  blueprintTopicSlugs?: string[];
+  /** Top 500 drug therapeutic classes linked for flashcard review. */
+  relatedDrugClasses?: Exclude<DrugClassId, "all">[];
+  /** Specific Top 500 generic drug slugs for quick review links. */
+  top500DrugSlugs?: string[];
+  /** NCLEX study preset ids that pair with this topic. */
+  relatedPresetIds?: NclexStudyPresetId[];
   /** When set, topic appears only for these USMLE steps in library/topics views. */
   usmleSteps?: ("step1" | "step2" | "step3")[];
 };
