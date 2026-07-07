@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
   eslint: { ignoreDuringBuilds: onVercel },
   typescript: { ignoreBuildErrors: onVercel },
   experimental: {
+    // Single-threaded compile on Vercel avoids OOM SIGKILL during large app builds.
+    ...(onVercel ? { cpus: 1, workerThreads: false } : {}),
     optimizePackageImports: [
       "lucide-react",
       "framer-motion",
@@ -20,6 +22,14 @@ const nextConfig: NextConfig = {
       "three",
     ],
   },
+  ...(onVercel
+    ? {
+        webpack: (config) => {
+          config.parallelism = 1;
+          return config;
+        },
+      }
+    : {}),
   images: {
     remotePatterns: [],
     qualities: [75, 82, 90],
