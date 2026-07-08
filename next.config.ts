@@ -11,9 +11,10 @@ const nextConfig: NextConfig = {
   // CI runs lint + typecheck; skipping both on Vercel avoids build OOM on this app.
   eslint: { ignoreDuringBuilds: onVercel },
   typescript: { ignoreBuildErrors: onVercel },
+  productionBrowserSourceMaps: false,
   experimental: {
     // Single-threaded compile on Vercel avoids OOM SIGKILL during large app builds.
-    ...(onVercel ? { cpus: 1, workerThreads: false } : {}),
+    ...(onVercel ? { cpus: 1, workerThreads: false, webpackMemoryOptimizations: true } : {}),
     staleTimes: {
       dynamic: 30,
       static: 300,
