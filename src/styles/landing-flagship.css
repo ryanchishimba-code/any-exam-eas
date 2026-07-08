@@ -2807,3 +2807,25 @@
   }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes aee-hero-enter {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .aee-hero-enter {
+    animation: aee-hero-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .aee-hero-enter--delay {
+    animation-duration: 0.6s;
+    animation-delay: 0.1s;
+  }
+}
+

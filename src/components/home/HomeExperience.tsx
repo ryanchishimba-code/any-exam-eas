@@ -3,14 +3,20 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Hero } from "@/components/Hero";
+import { LandingHeroSkeleton } from "@/components/landing/v2/LandingHeroSkeleton";
+import { useLandingBankCounts } from "@/lib/client/use-landing-bank-counts";
 import { useUserAccess } from "@/lib/client/use-user-access";
+import { LANDING_FALLBACK_BANK_COUNTS } from "@/lib/marketing/landing-fallback-counts";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 import type { LandingSuccessStory } from "@/lib/landing/content";
 import { useSession } from "next-auth/react";
 
 const LandingFlagship = dynamic(
   () => import("@/components/landing/v2/LandingFlagshipV2").then((m) => m.LandingFlagshipV2),
-  { ssr: true }
+  {
+    ssr: false,
+    loading: () => <LandingHeroSkeleton bankCounts={LANDING_FALLBACK_BANK_COUNTS} />,
+  }
 );
 
 const SubscriberHome = dynamic(
@@ -34,12 +40,13 @@ const SubscriberHome = dynamic(
 );
 
 export function HomeExperience({
-  bankCounts,
+  bankCounts: initialBankCounts,
   testimonials,
 }: {
   bankCounts: LandingBankCountsDisplay;
   testimonials?: LandingSuccessStory[];
 }) {
+  const bankCounts = useLandingBankCounts(initialBankCounts);
   const { status } = useSession();
   const { hasPremiumAccess, loading: accessLoading } = useUserAccess();
   const [accessTimedOut, setAccessTimedOut] = useState(false);

@@ -10,7 +10,6 @@
  */
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Check, Flame, Map as MapIcon, ShieldCheck, Sparkles, XCircle } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { NoPaymentTrialCallout } from "@/components/marketing/NoPaymentTrialCallout";
@@ -167,8 +166,6 @@ function HeroMockup({ totalLabel }: { totalLabel: string }) {
 }
 
 export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
-  const reduceMotion = useReducedMotion();
-
   return (
     <section
       className="aee-flagship-hero relative overflow-hidden bg-[var(--color-bg)] pb-16 pt-28 sm:pb-24 sm:pt-32"
@@ -180,12 +177,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
       />
 
       <div className="relative mx-auto max-w-3xl px-5 text-center sm:px-6">
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-center"
-        >
+        <div className="aee-hero-enter flex flex-col items-center">
           <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)]">
             NCLEX · USMLE · NAPLEX · PANCE · FNP · NPTE · Updated for 2026
           </p>
@@ -296,20 +288,16 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
               </li>
             ))}
           </ul>
-        </motion.div>
+        </div>
       </div>
 
       {/* Product demo — autoplay video in a phone frame, with the static in-code
           mockup preserved as the reduced-motion fallback. */}
-      <motion.div
-        className="relative mx-auto mt-12 max-w-4xl px-5 sm:px-6"
-        initial={reduceMotion ? false : { opacity: 0, y: 24, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-      >
-        {reduceMotion ? (
+      <div className="aee-hero-enter aee-hero-enter--delay relative mx-auto mt-12 max-w-4xl px-5 sm:px-6">
+        <div className="motion-reduce:block hidden">
           <HeroMockup totalLabel={bankCounts.totalLabel} />
-        ) : (
+        </div>
+        <div className="motion-reduce:hidden">
           <div className="relative flex justify-center">
             {/* Phone frame */}
             <div className="relative w-[268px] sm:w-[296px]">
@@ -325,7 +313,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
                   muted
                   loop
                   playsInline
-                  preload="auto"
+                  preload="metadata"
                   aria-label="Any Exam Easy product demo"
                 >
                   Your browser does not support the video tag.
@@ -347,8 +335,8 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
               </p>
             </div>
           </div>
-        )}
-      </motion.div>
+        </div>
+      </div>
     </section>
   );
 }
