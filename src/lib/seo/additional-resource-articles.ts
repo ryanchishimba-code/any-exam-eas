@@ -42,7 +42,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "uworld-alternative-multi-exam-prep-2026",
     title: "Best UWorld Alternative for Multi-Exam Board Prep (2026)",
     metaDescription:
-      "Compare AnyExamEasy vs UWorld for NCLEX, USMLE, and NAPLEX — one subscription, adaptive Blueprint Roadmaps, AI Tutor, and 37,558+ QA-gated questions.",
+      "Compare AnyExamEasy vs UWorld for NCLEX, USMLE, and NAPLEX — one subscription, adaptive Blueprint Roadmaps, AI Tutor, and 43,009+ QA-gated questions.",
     examTags: ["nclex", "usmle", "naplex"],
     keywords: [
       "UWorld alternative",

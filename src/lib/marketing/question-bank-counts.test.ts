@@ -92,7 +92,7 @@ describe("question-bank-counts display", () => {
     const snapshot = snapshotWithServed({});
     snapshot.degraded = true;
 
-    expect(displayQuestionCountForField("pharmacy", snapshot)).toBe("6,500");
-    expect(displayTotalQuestionCount(snapshot)).toBe("56,514");
+    expect(displayQuestionCountForField("pharmacy", snapshot)).toBe("7,595");
+    expect(displayTotalQuestionCount(snapshot)).toBe("43,009");
   });
 });

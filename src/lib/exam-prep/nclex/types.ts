@@ -20,7 +20,7 @@ export function resolveNclexGenerationModel(): string {
 export const NCLEX_TARGET_TOTAL = 7000;
 
 /** Published serve-ready NCLEX floor for marketing when live counts are unavailable. */
-export const NCLEX_PUBLISHED_SERVE_TOTAL = 5000;
+export const NCLEX_PUBLISHED_SERVE_TOTAL = 6200;
 
 /** Default questions per full-length practice exam (NCLEX minimum pass range). */
 export const NCLEX_FULL_EXAM_DEFAULT_COUNT = 80;

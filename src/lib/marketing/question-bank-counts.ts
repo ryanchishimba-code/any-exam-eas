@@ -7,6 +7,7 @@ import {
   formatExactServeReadyCount,
   formatExactServeReadyQuestions,
   publishedQuestionCountForField,
+  PUBLISHED_QUESTION_BANK_TOTAL,
 } from "./bank-stats";
 
 const DB_RETRY_ATTEMPTS = 2;
@@ -235,9 +236,8 @@ export function displayTotalQuestionCount(
     const total = landingServedTotal(snapshot);
     if (total > 0) return formatExactServeReadyCount(total);
   }
-  return formatExactServeReadyCount(
-    EXAM_FIELD_IDS.reduce((sum, fieldId) => sum + publishedQuestionCountForField(fieldId), 0)
-  );
+  // Prefer the curated marketing total so offline/SSR paint matches live hydrate.
+  return formatExactServeReadyCount(PUBLISHED_QUESTION_BANK_TOTAL);
 }
 
 export function displayQuestionCountDetailForField(
@@ -256,11 +256,7 @@ export function displayTotalQuestionsDetail(
     const total = landingServedTotal(snapshot);
     if (total > 0) return formatExactServeReadyQuestions(total);
   }
-  const fallback = EXAM_FIELD_IDS.reduce(
-    (sum, fieldId) => sum + publishedQuestionCountForField(fieldId),
-    0
-  );
-  return formatExactServeReadyQuestions(fallback);
+  return formatExactServeReadyQuestions(PUBLISHED_QUESTION_BANK_TOTAL);
 }
 
 /** Social proof band on the landing compare section — uses live totals when available. */
