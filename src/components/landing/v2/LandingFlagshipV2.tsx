@@ -5,8 +5,8 @@
  *
  * Flow:
  *   Hero (countdown + 1 CTA + product mockup)
- *     → Visual showcase (question, analytics, drug card, anatomy)
  *     → Pick your board (tactile scroll wheel + live counts)
+ *     → Offering + visual showcase
  *     → Six-exam comparison table
  *     → Why choose us (UWorld/AMBOSS compare + proof)
  *     → Pro benefits
@@ -60,11 +60,11 @@ export function LandingFlagshipV2({
 
       <LandingHeroV2 bankCounts={bankCounts} />
 
+      <ChooseYourExam bankCounts={bankCounts} />
+
       <LandingOfferingV2 />
 
       <LandingShowcaseV2 />
-
-      <ChooseYourExam bankCounts={bankCounts} />
 
       <LandingCrossExamComparison />
 
