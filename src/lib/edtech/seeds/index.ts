@@ -9,6 +9,9 @@ import { USMLE_STEP3_HIGH_YIELD_TOPICS } from "./high-yield-usmle-step3";
 import { NAPLEX_HIGH_YIELD_TOPICS } from "./high-yield-naplex";
 import { NAPLEX_EXTENDED_TOPICS } from "./high-yield-naplex-extended";
 import { enrichNaplexTopics } from "@/lib/exam-prep/naplex/topic-registry";
+import { enrichPanceTopics } from "@/lib/exam-prep/pance/topic-registry";
+import { enrichAanpFnpTopics } from "@/lib/exam-prep/aanp-fnp/topic-registry";
+import { enrichNptePtTopics } from "@/lib/exam-prep/npte-pt/topic-registry";
 import { PANCE_HIGH_YIELD_TOPICS } from "./high-yield-pance";
 import { AANP_FNP_HIGH_YIELD_TOPICS } from "./high-yield-aanp-fnp";
 import { NPTE_PT_HIGH_YIELD_TOPICS } from "./high-yield-npte-pt";
@@ -31,9 +34,9 @@ export const HIGH_YIELD_BY_EXAM: Record<ExamSlug, HighYieldTopic[]> = {
   naplex: enrichNaplexTopics(
     mergeReviewModules([...NAPLEX_HIGH_YIELD_TOPICS, ...NAPLEX_EXTENDED_TOPICS], "naplex")
   ),
-  pance: mergeReviewModules(PANCE_HIGH_YIELD_TOPICS, "pance"),
-  "aanp-fnp": mergeReviewModules(AANP_FNP_HIGH_YIELD_TOPICS, "aanp-fnp"),
-  "npte-pt": mergeReviewModules(NPTE_PT_HIGH_YIELD_TOPICS, "npte-pt"),
+  pance: enrichPanceTopics(mergeReviewModules(PANCE_HIGH_YIELD_TOPICS, "pance")),
+  "aanp-fnp": enrichAanpFnpTopics(mergeReviewModules(AANP_FNP_HIGH_YIELD_TOPICS, "aanp-fnp")),
+  "npte-pt": enrichNptePtTopics(mergeReviewModules(NPTE_PT_HIGH_YIELD_TOPICS, "npte-pt")),
 };
 
 export function getHighYieldTopics(examSlug: ExamSlug): HighYieldTopic[] {

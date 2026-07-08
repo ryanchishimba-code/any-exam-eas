@@ -12,8 +12,9 @@ import { USMLE_STUDY_PRESETS, type UsmleStudyPresetId } from "./study-presets";
 import { REVIEW_MODULE_CONTENT_BY_SLUG } from "@/lib/edtech/review-modules/content";
 import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
 import { USMLE_2026_STUDY_CONTENT } from "@/lib/edtech/seeds/usmle-2026-high-yield-content";
-import { getHighYieldTopic } from "@/lib/edtech/seeds";
+import { getHighYieldTopic, getHighYieldTopics } from "@/lib/edtech/seeds";
 import { getExamBlueprint } from "@/lib/engine/blueprints";
+import { resolveUsmleTopicPracticeParams } from "./topic-practice";
 
 export type UsmleTopicQaIssue = {
   code: string;
@@ -243,6 +244,48 @@ function topicNameToSlug(topic: string): string {
     .replace(/^-|-$/g, "");
 }
 
+function auditPracticeAlignment(): UsmleTopicQaIssue[] {
+  const issues: UsmleTopicQaIssue[] = [];
+
+  for (const topic of getHighYieldTopics("usmle")) {
+    const params = resolveUsmleTopicPracticeParams(topic);
+
+    if (!params.blueprintTopics?.length) {
+      issues.push({
+        code: "practice_not_aligned",
+        message: `"${topic.slug}" practice resolves to subject-only pool (no blueprint filter)`,
+        slug: topic.slug,
+      });
+    }
+
+    if (topic.slug === "pharmacology-moa" && params.fieldId !== "usmle-step-1") {
+      issues.push({
+        code: "step1_wrong_field",
+        message: `"pharmacology-moa" should pull usmle-step-1, got "${params.fieldId}"`,
+        slug: topic.slug,
+      });
+    }
+
+    if (topic.slug === "ccs-case-management" && params.fieldId !== "usmle-step-3") {
+      issues.push({
+        code: "step3_wrong_field",
+        message: `"ccs-case-management" should pull usmle-step-3, got "${params.fieldId}"`,
+        slug: topic.slug,
+      });
+    }
+
+    if (topic.slug === "acute-coronary-syndrome" && params.subjectId !== "cardiology") {
+      issues.push({
+        code: "acs_wrong_subject",
+        message: `"acute-coronary-syndrome" should pull cardiology subject, got "${params.subjectId}"`,
+        slug: topic.slug,
+      });
+    }
+  }
+
+  return issues;
+}
+
 /** Run all static USMLE topic integration checks. */
 export function auditUsmleTopicIntegration(): UsmleTopicQaIssue[] {
   return [
@@ -252,6 +295,7 @@ export function auditUsmleTopicIntegration(): UsmleTopicQaIssue[] {
     ...auditPresetLinks(),
     ...auditRoadmapCategoryLinks(),
     ...auditWeakAreaBridge(),
+    ...auditPracticeAlignment(),
   ];
 }
 

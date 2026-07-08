@@ -345,6 +345,7 @@ const USMLE_TOPIC_REGISTRY: Record<string, UsmleTopicMeta> = {
   "dermatology-allergic": {
     studyDomain: "usmle-s2-derm",
     primary: true,
+    blueprintTopicSlugs: ["dermatology-allergic"],
     relatedDrugClasses: ["respiratory", "immunologic-other"],
   },
   "ethics-biostats": { studyDomain: "usmle-s3-biostatistics" },
@@ -361,7 +362,7 @@ const USMLE_TOPIC_REGISTRY: Record<string, UsmleTopicMeta> = {
     primary: true,
     relatedPresetIds: ["step3-ccs-drill"],
   },
-  "pharmaceutical-ads-abstracts": { studyDomain: "usmle-s3-evidence", primary: true },
+  "pharmaceutical-ads-abstracts": { studyDomain: "usmle-s3-evidence", primary: true, blueprintTopicSlugs: ["pharmaceutical-ads-abstracts"] },
   "next-best-step": {
     studyDomain: "usmle-s3-ccs",
     primary: true,
@@ -401,6 +402,10 @@ const USMLE_TOPIC_REGISTRY: Record<string, UsmleTopicMeta> = {
     studyDomain: "usmle-s2-emergency",
     relatedDrugClasses: ["cardiovascular"],
     top500DrugSlugs: ["epinephrine", "amiodarone", "atropine"],
+  },
+  "sig-code-abbreviations": {
+    studyDomain: "usmle-s1-pharmacology",
+    blueprintTopicSlugs: ["drug-moa-side-effects", "pharmacology-interactions"],
   },
 };
 

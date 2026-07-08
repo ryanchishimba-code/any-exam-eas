@@ -143,6 +143,10 @@ export async function GET(req: Request) {
         .filter(Boolean)
     : undefined;
   const naplexTopic = searchParams.get("naplexTopic")?.trim() || undefined;
+  const usmleTopic = searchParams.get("usmleTopic")?.trim() || undefined;
+  const panceTopic = searchParams.get("panceTopic")?.trim() || undefined;
+  const aanpFnpTopic = searchParams.get("aanpFnpTopic")?.trim() || undefined;
+  const nptePtTopic = searchParams.get("nptePtTopic")?.trim() || undefined;
 
   let nclexPresetConfig: Awaited<
     ReturnType<(typeof import("@/lib/exam-prep/nclex/study-presets"))["getNclexStudyPreset"]>
@@ -251,6 +255,10 @@ export async function GET(req: Request) {
       taskCategory,
       blueprintTopics,
       naplexTopic,
+      usmleTopic,
+      panceTopic,
+      aanpFnpTopic,
+      nptePtTopic,
     });
   } else {
     items = await sampleQuestionBankItems({
@@ -302,6 +310,64 @@ export async function GET(req: Request) {
         topicSlug: naplexTopic,
       })
     ).slice(0, limit);
+  } else if (
+    (fieldId === "usmle-step-1" ||
+      fieldId === "usmle-step-2" ||
+      fieldId === "usmle-step-3") &&
+    bankPractice &&
+    (blueprintTopics?.length || usmleTopic)
+  ) {
+    const { filterItemsForUsmleTopicPractice } = await import(
+      "@/lib/exam-prep/usmle/topic-practice-filter"
+    );
+    const { shuffleBankItems } = await import("@/lib/exam-prep/nclex/session-preset-filters");
+    items = shuffleBankItems(
+      filterItemsForUsmleTopicPractice(items, {
+        blueprintTopics,
+        topicSlug: usmleTopic,
+      })
+    ).slice(0, limit);
+  } else if (fieldId === "pance" && bankPractice && (blueprintTopics?.length || panceTopic)) {
+    const { filterItemsForPanceTopicPractice } = await import(
+      "@/lib/exam-prep/pance/topic-practice-filter"
+    );
+    const { shuffleBankItems } = await import("@/lib/exam-prep/nclex/session-preset-filters");
+    items = shuffleBankItems(
+      filterItemsForPanceTopicPractice(items, {
+        blueprintTopics,
+        topicSlug: panceTopic,
+      })
+    ).slice(0, limit);
+  } else if (
+    fieldId === "aanp-fnp" &&
+    bankPractice &&
+    (blueprintTopics?.length || aanpFnpTopic)
+  ) {
+    const { filterItemsForAanpFnpTopicPractice } = await import(
+      "@/lib/exam-prep/aanp-fnp/topic-practice-filter"
+    );
+    const { shuffleBankItems } = await import("@/lib/exam-prep/nclex/session-preset-filters");
+    items = shuffleBankItems(
+      filterItemsForAanpFnpTopicPractice(items, {
+        blueprintTopics,
+        topicSlug: aanpFnpTopic,
+      })
+    ).slice(0, limit);
+  } else if (
+    fieldId === "npte-pt" &&
+    bankPractice &&
+    (blueprintTopics?.length || nptePtTopic)
+  ) {
+    const { filterItemsForNptePtTopicPractice } = await import(
+      "@/lib/exam-prep/npte-pt/topic-practice-filter"
+    );
+    const { shuffleBankItems } = await import("@/lib/exam-prep/nclex/session-preset-filters");
+    items = shuffleBankItems(
+      filterItemsForNptePtTopicPractice(items, {
+        blueprintTopics,
+        topicSlug: nptePtTopic,
+      })
+    ).slice(0, limit);
   } else if (nclexPresetConfig) {
     const { filterItemsForNclexPreset, shuffleBankItems } = await import(
       "@/lib/exam-prep/nclex/session-preset-filters"
@@ -328,6 +394,61 @@ export async function GET(req: Request) {
     const pool = filterItemsForNaplexBlueprintTopics(items, blueprintTopics, {
       contentMatch: true,
       topicSlug: naplexTopic,
+    });
+    const minPool = Math.min(5, limit);
+    if (bankPractice || pool.length >= minPool) {
+      items = shuffleBankItems(pool).slice(0, limit);
+    }
+  } else if (
+    (fieldId === "usmle-step-1" ||
+      fieldId === "usmle-step-2" ||
+      fieldId === "usmle-step-3") &&
+    blueprintTopics?.length
+  ) {
+    const { filterItemsForUsmleBlueprintTopics } = await import(
+      "@/lib/exam-prep/usmle/topic-blueprint-match"
+    );
+    const { shuffleBankItems } = await import("@/lib/exam-prep/nclex/session-preset-filters");
+    const pool = filterItemsForUsmleBlueprintTopics(items, blueprintTopics, {
+      contentMatch: true,
+      topicSlug: usmleTopic,
+    });
+    const minPool = Math.min(5, limit);
+    if (bankPractice || pool.length >= minPool) {
+      items = shuffleBankItems(pool).slice(0, limit);
+    }
+  } else if (fieldId === "pance" && blueprintTopics?.length) {
+    const { filterItemsForPanceBlueprintTopics } = await import(
+      "@/lib/exam-prep/pance/topic-blueprint-match"
+    );
+    const { shuffleBankItems } = await import("@/lib/exam-prep/nclex/session-preset-filters");
+    const pool = filterItemsForPanceBlueprintTopics(items, blueprintTopics, {
+      contentMatch: true,
+      topicSlug: panceTopic,
+    });
+    const minPool = Math.min(5, limit);
+    if (bankPractice || pool.length >= minPool) {
+      items = shuffleBankItems(pool).slice(0, limit);
+    }
+  } else if (fieldId === "aanp-fnp" && blueprintTopics?.length) {
+    const { filterItemsForAanpFnpBlueprintTopics } = await import(
+      "@/lib/exam-prep/aanp-fnp/topic-blueprint-match"
+    );
+    const { shuffleBankItems } = await import("@/lib/exam-prep/nclex/session-preset-filters");
+    const pool = filterItemsForAanpFnpBlueprintTopics(items, blueprintTopics, {
+      contentMatch: true,
+    });
+    const minPool = Math.min(5, limit);
+    if (bankPractice || pool.length >= minPool) {
+      items = shuffleBankItems(pool).slice(0, limit);
+    }
+  } else if (fieldId === "npte-pt" && blueprintTopics?.length) {
+    const { filterItemsForNptePtBlueprintTopics } = await import(
+      "@/lib/exam-prep/npte-pt/topic-blueprint-match"
+    );
+    const { shuffleBankItems } = await import("@/lib/exam-prep/nclex/session-preset-filters");
+    const pool = filterItemsForNptePtBlueprintTopics(items, blueprintTopics, {
+      contentMatch: true,
     });
     const minPool = Math.min(5, limit);
     if (bankPractice || pool.length >= minPool) {

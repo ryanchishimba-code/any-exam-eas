@@ -3,6 +3,13 @@ import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import { resolveNclexTopicPracticeParams } from "@/lib/exam-prep/nclex/topic-practice";
 import { resolveNaplexTopicPracticeParams } from "@/lib/exam-prep/naplex/topic-practice";
+import {
+  resolveUsmleTopicFieldId,
+  resolveUsmleTopicPracticeParams,
+} from "@/lib/exam-prep/usmle/topic-practice";
+import { resolvePanceTopicPracticeParams } from "@/lib/exam-prep/pance/topic-practice";
+import { resolveAanpFnpTopicPracticeParams } from "@/lib/exam-prep/aanp-fnp/topic-practice";
+import { resolveNptePtTopicPracticeParams } from "@/lib/exam-prep/npte-pt/topic-practice";
 import { isUsmleStep1Subject } from "@/lib/subjects/medicine/subject-splits";
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
@@ -15,10 +22,11 @@ export const MIXED_SUBJECT_ID = "__mixed__";
  * subjects (anatomy, physiology, …) live under Step 1, not the catalog default
  * (Step 2 CK), so without this they would 404 the question-bank API.
  */
-function topicFieldId(examSlug: ExamSlug, topicSlug: string): string {
+function topicFieldId(examSlug: ExamSlug, topicSlug: string, topic?: HighYieldTopic): string {
   const fieldId = EXAM_CATALOG[examSlug].fieldId;
-  if (fieldId.startsWith("usmle") && isUsmleStep1Subject(topicSlug)) {
-    return "usmle-step-1";
+  if (fieldId.startsWith("usmle")) {
+    if (topic) return resolveUsmleTopicFieldId(topic);
+    if (isUsmleStep1Subject(topicSlug)) return "usmle-step-1";
   }
   return fieldId;
 }
@@ -35,6 +43,11 @@ export type TopicPracticeFilters = {
   blueprintTopics?: string[];
   nclexPreset?: string;
   naplexTopic?: string;
+  usmleTopic?: string;
+  panceTopic?: string;
+  aanpFnpTopic?: string;
+  nptePtTopic?: string;
+  fieldId?: string;
 };
 
 /** Question bank practice filtered to a high-yield topic slug. */
@@ -47,9 +60,9 @@ export function practiceTopicHref(
 ): string {
   const isMixed = topicSlug === "mixed" || topicSlug === MIXED_SUBJECT_ID;
   const subjectId = isMixed ? MIXED_SUBJECT_ID : topicSlug;
-  const fieldId = isMixed
-    ? EXAM_CATALOG[examSlug].fieldId
-    : topicFieldId(examSlug, topicSlug);
+  const fieldId =
+    filters?.fieldId ??
+    (isMixed ? EXAM_CATALOG[examSlug].fieldId : topicFieldId(examSlug, topicSlug));
   const qs = new URLSearchParams({
     field: fieldId,
     mode: "bank",
@@ -64,6 +77,18 @@ export function practiceTopicHref(
   }
   if (filters?.naplexTopic) {
     qs.set("naplexTopic", filters.naplexTopic);
+  }
+  if (filters?.usmleTopic) {
+    qs.set("usmleTopic", filters.usmleTopic);
+  }
+  if (filters?.panceTopic) {
+    qs.set("panceTopic", filters.panceTopic);
+  }
+  if (filters?.aanpFnpTopic) {
+    qs.set("aanpFnpTopic", filters.aanpFnpTopic);
+  }
+  if (filters?.nptePtTopic) {
+    qs.set("nptePtTopic", filters.nptePtTopic);
   }
   if (returnTo) {
     qs.set("returnExam", examSlug);
@@ -105,6 +130,63 @@ export function highYieldTopicPracticeHref(
       {
         blueprintTopics: params.blueprintTopics,
         naplexTopic: params.topicSlug,
+      }
+    );
+  }
+
+  if (examSlug === "usmle") {
+    const params = resolveUsmleTopicPracticeParams(topic);
+    return practiceTopicHref(
+      examSlug,
+      params.subjectId,
+      count,
+      returnTo ?? { topicSlug: topic.slug, topicTitle: topic.title },
+      {
+        blueprintTopics: params.blueprintTopics,
+        usmleTopic: params.topicSlug,
+        fieldId: params.fieldId,
+      }
+    );
+  }
+
+  if (examSlug === "pance") {
+    const params = resolvePanceTopicPracticeParams(topic);
+    return practiceTopicHref(
+      examSlug,
+      params.subjectId,
+      count,
+      returnTo ?? { topicSlug: topic.slug, topicTitle: topic.title },
+      {
+        blueprintTopics: params.blueprintTopics,
+        panceTopic: params.topicSlug,
+      }
+    );
+  }
+
+  if (examSlug === "aanp-fnp") {
+    const params = resolveAanpFnpTopicPracticeParams(topic);
+    return practiceTopicHref(
+      examSlug,
+      params.subjectId,
+      count,
+      returnTo ?? { topicSlug: topic.slug, topicTitle: topic.title },
+      {
+        blueprintTopics: params.blueprintTopics,
+        aanpFnpTopic: params.topicSlug,
+      }
+    );
+  }
+
+  if (examSlug === "npte-pt") {
+    const params = resolveNptePtTopicPracticeParams(topic);
+    return practiceTopicHref(
+      examSlug,
+      params.subjectId,
+      count,
+      returnTo ?? { topicSlug: topic.slug, topicTitle: topic.title },
+      {
+        blueprintTopics: params.blueprintTopics,
+        nptePtTopic: params.topicSlug,
       }
     );
   }
