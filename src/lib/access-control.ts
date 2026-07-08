@@ -28,11 +28,11 @@ export type UserAccess = {
   subscription: SubscriptionAccess;
   /** Active trial or paid subscription — full product access (subject to tier). */
   hasPremiumAccess: boolean;
-  /** Post-trial restricted tier — dashboard + limited questions. */
+  /** Post-trial restricted tier — login + dashboard only (study locked). */
   hasFreeTierAccess: boolean;
   /** Dashboard and account surfaces (trial, paid, or free). */
   hasAppAccess: boolean;
-  /** Question bank / study entry (trial, paid, or free with caps). */
+  /** Question bank / study entry — trial and paid only (not post-trial free). */
   hasStudyAccess: boolean;
   blockReason?: "suspended" | "deleted" | "subscription" | "email_unverified";
 };
@@ -153,7 +153,8 @@ async function resolveUserAccess(userId: string): Promise<UserAccess> {
   let hasPremiumAccess =
     subscription.hasAccess && user.accountStatus === "active" && !hasFreeTierAccess;
   let hasAppAccess = (hasPremiumAccess || hasFreeTierAccess || staff) && user.accountStatus === "active";
-  let hasStudyAccess = hasAppAccess;
+  /** Post-trial free keeps dashboard only — study requires premium/trial/staff. */
+  let hasStudyAccess = (hasPremiumAccess || staff) && user.accountStatus === "active";
   let blockReason: UserAccess["blockReason"];
 
   if (user.accountStatus === "deleted") {

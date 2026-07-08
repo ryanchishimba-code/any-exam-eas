@@ -13,7 +13,7 @@ const require = createRequire(import.meta.url);
 const Stripe = require("stripe").default;
 
 const ENV_PATH = ".env";
-const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "3");
+const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "5");
 
 const TIERS = {
   pro: {

@@ -14,6 +14,8 @@ export type UserAccessState = {
   loading: boolean;
   hasPremiumAccess: boolean;
   hasAppAccess: boolean;
+  hasStudyAccess: boolean;
+  hasFreeTierAccess: boolean;
   status: string | null;
   role: string | null;
 };
@@ -22,6 +24,8 @@ const defaultState: UserAccessState = {
   loading: true,
   hasPremiumAccess: false,
   hasAppAccess: false,
+  hasStudyAccess: false,
+  hasFreeTierAccess: false,
   status: null,
   role: null,
 };
@@ -30,6 +34,8 @@ const loggedOutState: UserAccessState = {
   loading: false,
   hasPremiumAccess: false,
   hasAppAccess: false,
+  hasStudyAccess: false,
+  hasFreeTierAccess: false,
   status: null,
   role: null,
 };
@@ -54,6 +60,8 @@ async function fetchUserAccessOnce(): Promise<UserAccessState> {
   const data = (await res.json()) as {
     hasAccess?: boolean;
     hasAppAccess?: boolean;
+    hasStudyAccess?: boolean;
+    hasFreeTierAccess?: boolean;
     status?: string;
     role?: string;
   };
@@ -61,6 +69,8 @@ async function fetchUserAccessOnce(): Promise<UserAccessState> {
     loading: false,
     hasPremiumAccess: Boolean(data.hasAccess),
     hasAppAccess: Boolean(data.hasAppAccess ?? data.hasAccess),
+    hasStudyAccess: Boolean(data.hasStudyAccess ?? data.hasAccess),
+    hasFreeTierAccess: Boolean(data.hasFreeTierAccess),
     status: data.status ?? null,
     role: data.role ?? null,
   };

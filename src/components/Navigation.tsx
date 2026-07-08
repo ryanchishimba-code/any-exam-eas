@@ -49,7 +49,7 @@ export function Navigation() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const { data: session, status } = useSession();
-  const { hasPremiumAccess, hasAppAccess, loading: accessLoading } = useUserAccess();
+  const { hasPremiumAccess, hasAppAccess, hasStudyAccess, loading: accessLoading } = useUserAccess();
   const { signingOut, requestSignOut } = useSignOutConfirm({ callbackUrl: "/" });
 
   const isAuthenticated = status === "authenticated" && Boolean(session?.user);
@@ -61,13 +61,16 @@ export function Navigation() {
     if (!isAuthenticated) return guestLinks;
     if (hasPremiumAccess) return premiumLinks;
     if (hasAppAccess) {
-      return [
-        { href: ROUTES.dashboard, label: "Dashboard" },
-        { href: ROUTES.questionBank, label: "Question Bank" },
-      ];
+      // Post-trial: dashboard only in marketing chrome; study links stay behind checkout.
+      return hasStudyAccess
+        ? [
+            { href: ROUTES.dashboard, label: "Dashboard" },
+            { href: ROUTES.questionBank, label: "Question Bank" },
+          ]
+        : [{ href: ROUTES.dashboard, label: "Dashboard" }];
     }
     return guestLinks;
-  }, [hasPremiumAccess, hasAppAccess, isAuthenticated]);
+  }, [hasPremiumAccess, hasAppAccess, hasStudyAccess, isAuthenticated]);
 
   const closeMobile = useCallback(() => setOpen(false), []);
 

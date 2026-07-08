@@ -75,7 +75,7 @@ export function formatTrialLabel(): string {
   return `${TRIAL_DAYS}-day free trial`;
 }
 
-/** e.g. "60 practice questions during your 3-day trial" */
+/** e.g. "500 practice questions during your 5-day trial" */
 export function formatTrialQuestionLimit(): string {
   return `${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial`;
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Switch to standard $0 / 3-day trial (no $17.99 intro line item in Stripe Checkout).
+ * Switch to standard $0 / 5-day trial (no $17.99 intro line item in Stripe Checkout).
  *
  * - Clears STRIPE_TRIAL_INTRO_PRICE_ID in .env
  * - Removes STRIPE_TRIAL_INTRO_PRICE_ID from Vercel (production) if present

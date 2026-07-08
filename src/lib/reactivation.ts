@@ -78,7 +78,7 @@ export async function getReactivationInfo(params: {
   const message = isCanceled
     ? "Welcome back. Your subscription was canceled — resubscribe anytime to pick up where you left off."
     : params.access.status === "trial_expired"
-      ? "Your trial has ended — you still have dashboard access and a few free questions. Upgrade to unlock unlimited practice."
+      ? "Your trial has ended — you can still log in and open your dashboard. Subscribe to continue studying."
       : "Welcome back. Reactivate your account to restore full study access.";
 
   return {

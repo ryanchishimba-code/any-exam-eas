@@ -182,7 +182,7 @@ if (!configured) {
       ...sessionParams,
       subscription_data: {
         metadata: { userId: "payment-test-script", plan: "trial" },
-        trial_period_days: Number(process.env.TRIAL_DAYS ?? 3),
+        trial_period_days: Number(process.env.TRIAL_DAYS ?? 5),
       },
       metadata: { userId: "payment-test-script", plan: "trial" },
       payment_method_collection: "always",

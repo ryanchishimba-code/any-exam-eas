@@ -65,7 +65,7 @@ export async function requirePremiumApi(req?: Request): Promise<ApiAuthResult> {
   return authResult;
 }
 
-/** Trial, paid, or post-trial free tier — usage caps enforced downstream. */
+/** Trial or paid study access — post-trial free is dashboard-only. */
 export async function requireStudyApi(req?: Request): Promise<ApiAuthResult> {
   const authResult = await requireAuthenticatedApi(req);
   if (!authResult.ok) return authResult;

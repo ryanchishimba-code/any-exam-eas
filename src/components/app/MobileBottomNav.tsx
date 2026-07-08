@@ -8,15 +8,19 @@ import {
   BookOpen,
   Clock,
   LayoutGrid,
+  Lock,
   Map,
 } from "lucide-react";
+import { SubscribeToContinueHint } from "@/components/app/SubscribeToContinueHint";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
+import { useUserAccess } from "@/lib/client/use-user-access";
 import { questionBankHref } from "@/lib/edtech/practice-links-core";
 import { STUDY_NAV_COLOR } from "@/lib/layout/nav-motion";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 type NavItem = {
+  id: string;
   href: string;
   label: string;
   icon: typeof LayoutGrid;
@@ -31,17 +35,19 @@ function navHrefPath(href: string) {
 export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) {
   const pathname = usePathname();
   const { examSlug } = useAppPreferences();
+  const { hasStudyAccess, hasFreeTierAccess, loading: accessLoading } = useUserAccess();
+  const studyLocked = !accessLoading && hasFreeTierAccess && !hasStudyAccess;
 
   const items = useMemo((): NavItem[] => {
     const bankHref = examSlug ? questionBankHref(examSlug) : ROUTES.questionBank;
     const examHref = examSlug ? fullExamHref(examSlug) : ROUTES.fullExam;
 
     return [
-      { href: ROUTES.dashboard, label: "Home", icon: LayoutGrid, exact: true },
-      { href: ROUTES.roadmap, label: "Plan", icon: Map, ariaLabel: "Study Roadmap" },
-      { href: bankHref, label: "Bank", icon: BookOpen, ariaLabel: "Question Bank" },
-      { href: examHref, label: "Exam", icon: Clock, ariaLabel: "Full Exam" },
-      { href: ROUTES.analytics, label: "Stats", icon: BarChart3, ariaLabel: "Analytics" },
+      { id: "home", href: ROUTES.dashboard, label: "Home", icon: LayoutGrid, exact: true },
+      { id: "plan", href: ROUTES.roadmap, label: "Plan", icon: Map, ariaLabel: "Study Roadmap" },
+      { id: "bank", href: bankHref, label: "Bank", icon: BookOpen, ariaLabel: "Question Bank" },
+      { id: "exam", href: examHref, label: "Exam", icon: Clock, ariaLabel: "Full Exam" },
+      { id: "stats", href: ROUTES.analytics, label: "Stats", icon: BarChart3, ariaLabel: "Analytics" },
     ];
   }, [examSlug]);
 
@@ -54,17 +60,46 @@ export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) 
       aria-label="Mobile study navigation"
       aria-hidden={concealed}
     >
+      {studyLocked ? (
+        <div className="border-b border-black/[0.04] px-3 py-1.5">
+          <SubscribeToContinueHint compact />
+        </div>
+      ) : null}
       <ul className="mx-auto flex max-w-lg items-stretch justify-around px-2 pt-1">
         {items.map((item) => {
-          const { href, label, icon: Icon } = item;
+          const { href, label, icon: Icon, id } = item;
           const exact = item.exact;
           const ariaLabel = item.ariaLabel;
           const hrefPath = navHrefPath(href);
           const active = exact
             ? pathname === hrefPath
             : pathname === hrefPath || pathname.startsWith(`${hrefPath}/`);
+          const locked = studyLocked && id !== "home";
+
+          if (locked) {
+            return (
+              <li key={id} className="flex-1">
+                <span
+                  aria-disabled="true"
+                  aria-label={`${ariaLabel ?? label} — subscribe to continue studying`}
+                  title="Subscribe to continue studying"
+                  className={cn(
+                    "relative flex min-h-[3rem] cursor-not-allowed flex-col items-center justify-center gap-0.5 px-2 py-2 text-[10px] font-semibold opacity-40",
+                    "text-[var(--color-ink-muted)]"
+                  )}
+                >
+                  <span className="relative">
+                    <Icon className="h-5 w-5" aria-hidden />
+                    <Lock className="absolute -right-1.5 -top-0.5 h-2.5 w-2.5" aria-hidden />
+                  </span>
+                  <span className="relative">{label}</span>
+                </span>
+              </li>
+            );
+          }
+
           return (
-            <li key={href} className="flex-1">
+            <li key={id} className="flex-1">
               <Link
                 href={href}
                 aria-label={ariaLabel}

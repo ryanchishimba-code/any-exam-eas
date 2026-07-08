@@ -11,6 +11,7 @@ import {
   Stethoscope,
 } from "lucide-react";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
+import { useUserAccess } from "@/lib/client/use-user-access";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { questionBankHref } from "@/lib/edtech/practice-links-core";
 import { ROUTES } from "@/lib/routes";
@@ -98,6 +99,8 @@ export function FeatureShortcuts({
   onNavigate,
 }: FeatureShortcutsProps) {
   const { examSlug, loading: prefLoading } = useAppPreferences();
+  const { hasStudyAccess, hasFreeTierAccess, loading: accessLoading } = useUserAccess();
+  const studyLocked = !accessLoading && hasFreeTierAccess && !hasStudyAccess;
   const features = useMemo(
     () => featuresForUser(examSlug, prefLoading),
     [examSlug, prefLoading]
@@ -111,12 +114,24 @@ export function FeatureShortcuts({
         className={`aee-feature-shortcuts aee-feature-shortcuts--bar ${className}`.trim()}
         aria-label="Quick access"
       >
-        {features.map(({ href, label, icon: Icon }) => (
-          <Link key={href} href={href} className="aee-feature-shortcut-pill" onClick={onNavigate}>
-            <Icon className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
-            {label.replace("Start ", "").replace(" Mastery", "")}
-          </Link>
-        ))}
+        {features.map(({ href, label, icon: Icon }) =>
+          studyLocked ? (
+            <span
+              key={href}
+              aria-disabled="true"
+              title="Subscribe to continue studying"
+              className="aee-feature-shortcut-pill pointer-events-none cursor-not-allowed opacity-45"
+            >
+              <Icon className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
+              {label.replace("Start ", "").replace(" Mastery", "")}
+            </span>
+          ) : (
+            <Link key={href} href={href} className="aee-feature-shortcut-pill" onClick={onNavigate}>
+              <Icon className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
+              {label.replace("Start ", "").replace(" Mastery", "")}
+            </Link>
+          )
+        )}
       </nav>
     );
   }
@@ -128,24 +143,42 @@ export function FeatureShortcuts({
 
   return (
     <div className={`${cardClass} ${className}`.trim()}>
-      {features.map(({ href, label, description, icon: Icon, accent }) => (
-        <Link
-          key={href}
-          href={href}
-          className="aee-feature-shortcut-card"
-          onClick={onNavigate}
-          style={{ "--feature-accent": accent } as CSSProperties}
-        >
-          <span className="aee-feature-shortcut-card-icon" aria-hidden>
-            <Icon className="h-5 w-5" strokeWidth={2} />
+      {features.map(({ href, label, description, icon: Icon, accent }) =>
+        studyLocked ? (
+          <span
+            key={href}
+            aria-disabled="true"
+            title="Subscribe to continue studying"
+            className="aee-feature-shortcut-card pointer-events-none cursor-not-allowed opacity-45"
+            style={{ "--feature-accent": accent } as CSSProperties}
+          >
+            <span className="aee-feature-shortcut-card-icon" aria-hidden>
+              <Icon className="h-5 w-5" strokeWidth={2} />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="aee-feature-shortcut-card-label">{label}</span>
+              <span className="aee-feature-shortcut-card-desc">Subscribe to continue studying</span>
+            </span>
           </span>
-          <span className="min-w-0 flex-1">
-            <span className="aee-feature-shortcut-card-label">{label}</span>
-            <span className="aee-feature-shortcut-card-desc">{description}</span>
-          </span>
-          <ArrowRight className="ml-auto h-4 w-4 shrink-0 opacity-60" aria-hidden />
-        </Link>
-      ))}
+        ) : (
+          <Link
+            key={href}
+            href={href}
+            className="aee-feature-shortcut-card"
+            onClick={onNavigate}
+            style={{ "--feature-accent": accent } as CSSProperties}
+          >
+            <span className="aee-feature-shortcut-card-icon" aria-hidden>
+              <Icon className="h-5 w-5" strokeWidth={2} />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="aee-feature-shortcut-card-label">{label}</span>
+              <span className="aee-feature-shortcut-card-desc">{description}</span>
+            </span>
+            <ArrowRight className="ml-auto h-4 w-4 shrink-0 opacity-60" aria-hidden />
+          </Link>
+        )
+      )}
     </div>
   );
 }

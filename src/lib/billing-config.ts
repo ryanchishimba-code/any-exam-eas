@@ -3,16 +3,19 @@
 import { PRO_MONTHLY_PRICE_USD } from "@/lib/pricing-defaults";
 
 /** App-native free trial (days) — starts at signup without a payment method. */
-export const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "3");
+export const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "5");
 
 /** Lifetime question cap during app-native free trial (soft limit with full Pro access). */
 export const TRIAL_LIFETIME_QUESTIONS = Number(
-  process.env.TRIAL_LIFETIME_QUESTIONS ?? "150"
+  process.env.TRIAL_LIFETIME_QUESTIONS ?? "500"
 );
 
-/** Lifetime question cap after trial expires (restricted Free tier). */
+/**
+ * Lifetime question cap after trial expires.
+ * Post-trial users keep login + dashboard only — study surfaces are locked.
+ */
 export const FREE_TIER_LIFETIME_QUESTIONS = Number(
-  process.env.FREE_TIER_LIFETIME_QUESTIONS ?? "20"
+  process.env.FREE_TIER_LIFETIME_QUESTIONS ?? "0"
 );
 
 /** Optional paid intro (legacy). Omit STRIPE_TRIAL_INTRO_PRICE_ID for standard $0 trial. */

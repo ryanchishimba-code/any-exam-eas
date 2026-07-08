@@ -32,7 +32,7 @@ const PILLARS = [
   {
     icon: BadgeCheck,
     title: "Not the right fit? We'll make it right.",
-    body: "After your trial, keep dashboard access with 20 free questions, or upgrade when you're ready. Run into a quality issue? Reach out to support within 30 days and we'll do our best to resolve it.",
+    body: "After your trial, you can still log in and open your dashboard. Study tools stay locked until you subscribe. Run into a quality issue? Reach out to support within 30 days and we'll do our best to resolve it.",
   },
 ] as const;
 

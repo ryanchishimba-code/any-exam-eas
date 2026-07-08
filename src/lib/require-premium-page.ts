@@ -46,12 +46,15 @@ export async function requireAppPage(callbackPath = "/dashboard"): Promise<UserA
   return access;
 }
 
-/** Question bank / study entry — trial, paid, or free tier (usage caps apply in API). */
+/** Question bank / study entry — trial or paid only (post-trial free stays on dashboard). */
 export async function requireStudyPage(callbackPath = "/study"): Promise<UserAccess> {
   const session = await getCachedSession();
   const access = await loadPageAccess(callbackPath);
 
   if (!access.hasStudyAccess) {
+    if (access.hasFreeTierAccess) {
+      redirect(`/dashboard?upgrade=1&return=${encodeURIComponent(callbackPath)}`);
+    }
     const destination = await resolvePaywallRedirect(
       session!.user!.id,
       session!.user!.email,

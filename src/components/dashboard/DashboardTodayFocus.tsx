@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3 } from "lucide-react";
+import { ArrowRight, BarChart3, Lock } from "lucide-react";
 import { ReadinessRing } from "@/components/study/ReadinessRing";
 import {
   analyticsHref,
   questionBankHref,
   spacedReviewHref,
 } from "@/lib/edtech/practice-links-core";
+import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -69,6 +70,7 @@ export function DashboardTodayFocus({
   dueCount,
   topWeakTopic,
   hasRecent,
+  studyLocked = false,
 }: {
   examSlug: ExamSlug;
   examName: string;
@@ -77,14 +79,21 @@ export function DashboardTodayFocus({
   dueCount: number;
   topWeakTopic: string | null;
   hasRecent: boolean;
+  studyLocked?: boolean;
 }) {
-  const action = resolveNextAction({
-    examSlug,
-    examName,
-    dueCount,
-    topWeakTopic,
-    hasRecent,
-  });
+  const action = studyLocked
+    ? {
+        label: "Subscribe to continue studying",
+        href: postTrialCheckoutHref(),
+        reason: "Your trial has ended — study tools stay locked until you subscribe.",
+      }
+    : resolveNextAction({
+        examSlug,
+        examName,
+        dueCount,
+        topWeakTopic,
+        hasRecent,
+      });
 
   return (
     <section
@@ -105,13 +114,25 @@ export function DashboardTodayFocus({
 
           <div className="mt-3 flex flex-wrap items-center justify-center gap-2 sm:justify-start">
             <Link href={action.href} className={dbUi.primaryBtn}>
+              {studyLocked ? <Lock className="h-3.5 w-3.5" aria-hidden /> : null}
               {action.label}
               <ArrowRight className="h-3.5 w-3.5" aria-hidden />
             </Link>
-            <Link href={analyticsHref()} className={dbUi.ghostBtn}>
-              <BarChart3 className="h-3.5 w-3.5" aria-hidden />
-              Insights
-            </Link>
+            {studyLocked ? (
+              <span
+                aria-disabled="true"
+                title="Subscribe to continue studying"
+                className={cn(dbUi.ghostBtn, "pointer-events-none cursor-not-allowed opacity-45")}
+              >
+                <BarChart3 className="h-3.5 w-3.5" aria-hidden />
+                Insights
+              </span>
+            ) : (
+              <Link href={analyticsHref()} className={dbUi.ghostBtn}>
+                <BarChart3 className="h-3.5 w-3.5" aria-hidden />
+                Insights
+              </Link>
+            )}
           </div>
         </div>
       </div>

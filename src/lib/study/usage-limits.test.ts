@@ -56,14 +56,14 @@ describe("clampStudySessionSize", () => {
     expect(clampStudySessionSize("pro", 50, false)).toBe(50);
     expect(clampStudySessionSize("pro", 200, true)).toBe(200);
     expect(clampStudySessionSize("trial", 225, true)).toBe(225);
-    expect(clampStudySessionSize("free", 100, true)).toBe(10);
+    expect(clampStudySessionSize("free", 100, false)).toBe(0);
   });
 });
 
 describe("trial limits", () => {
   it("uses lifetime cap with full Pro feature access during trial", () => {
     expect(STUDY_USAGE_LIMITS.trial.dailyQuestions).toBeNull();
-    expect(STUDY_USAGE_LIMITS.trial.trialLifetimeQuestions).toBe(150);
+    expect(STUDY_USAGE_LIMITS.trial.trialLifetimeQuestions).toBe(500);
     expect(STUDY_USAGE_LIMITS.trial.trialMockAllowance).toBeNull();
     expect(STUDY_USAGE_LIMITS.trial.trialFullAdaptiveAllowance).toBe(1);
     expect(STUDY_USAGE_LIMITS.trial.allowShortMocks).toBe(true);
@@ -71,8 +71,9 @@ describe("trial limits", () => {
     expect(STUDY_USAGE_LIMITS.trial.allowAdaptive).toBe(true);
   });
 
-  it("restricts post-trial free tier to 20 lifetime questions", () => {
-    expect(STUDY_USAGE_LIMITS.free.trialLifetimeQuestions).toBe(20);
+  it("locks post-trial free tier to zero study questions", () => {
+    expect(STUDY_USAGE_LIMITS.free.trialLifetimeQuestions).toBe(0);
+    expect(STUDY_USAGE_LIMITS.free.maxPerSession).toBe(0);
     expect(STUDY_USAGE_LIMITS.free.allowShortMocks).toBe(false);
     expect(resolveStudyUsagePlan(mockAccess({ role: "free", hasPremiumAccess: false }))).toBe(
       "free"

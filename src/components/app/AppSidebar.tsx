@@ -11,11 +11,14 @@ import {
   Clock,
   LayoutGrid,
   Layers,
+  Lock,
   Map,
   Sparkles,
   type LucideIcon,
 } from "lucide-react";
+import { SubscribeToContinueHint } from "@/components/app/SubscribeToContinueHint";
 import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
+import { useUserAccess } from "@/lib/client/use-user-access";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { anatomyHref, questionBankHref } from "@/lib/edtech/practice-links-core";
@@ -71,13 +74,32 @@ function isNavActive(pathname: string, href: string, exact?: boolean) {
 function SidebarNavLink({
   item,
   active,
+  locked,
   onNavigate,
 }: {
   item: Pick<NavItem, "href" | "label" | "icon">;
   active: boolean;
+  locked?: boolean;
   onNavigate?: () => void;
 }) {
   const Icon = item.icon;
+
+  if (locked) {
+    return (
+      <span
+        aria-disabled="true"
+        title="Subscribe to continue studying"
+        className={cn(
+          "relative flex cursor-not-allowed items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium opacity-45",
+          "text-[var(--color-ink-muted)]"
+        )}
+      >
+        <Icon className="relative h-4 w-4 shrink-0" aria-hidden />
+        <span className="relative min-w-0 flex-1 truncate">{item.label}</span>
+        <Lock className="relative h-3.5 w-3.5 shrink-0" aria-hidden />
+      </span>
+    );
+  }
 
   return (
     <Link
@@ -113,8 +135,10 @@ function SidebarNavLink({
 export function AppSidebar({ embedded = false, onNavigate }: Props) {
   const pathname = usePathname();
   const { examSlug } = useAppPreferences();
+  const { hasStudyAccess, hasFreeTierAccess, loading: accessLoading } = useUserAccess();
   const clinical = hasClinicalStudyTools(examSlug);
   const examSwitchLocked = isExamPracticeLockedRoute(pathname);
+  const studyLocked = !accessLoading && hasFreeTierAccess && !hasStudyAccess;
 
   const navItems = useMemo(
     () =>
@@ -162,12 +186,18 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
               <SidebarNavLink
                 item={item}
                 active={isNavActive(pathname, item.href, item.exact)}
+                locked={studyLocked && item.id !== "dashboard"}
                 onNavigate={onNavigate}
               />
             </li>
           ))}
         </ul>
-        {embedded && !examSwitchLocked ? (
+        {studyLocked ? (
+          <div className="mt-3 rounded-xl border border-dashed border-black/[0.08] bg-[var(--color-surface)] px-3 py-2.5">
+            <SubscribeToContinueHint />
+          </div>
+        ) : null}
+        {embedded && !examSwitchLocked && !studyLocked ? (
           <Link
             href={`${ROUTES.selectExam}?switch=1`}
             onClick={onNavigate}

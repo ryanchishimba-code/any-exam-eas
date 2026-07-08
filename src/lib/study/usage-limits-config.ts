@@ -37,7 +37,7 @@ export const STUDY_USAGE_LIMITS: Record<StudyUsagePlan, StudyUsageLimits> = {
   free: {
     dailyQuestions: null,
     trialLifetimeQuestions: FREE_TIER_LIFETIME_QUESTIONS,
-    maxPerSession: 10,
+    maxPerSession: 0,
     maxTimedExamLength: null,
     allowPresetExams: false,
     allowShortMocks: false,
@@ -90,6 +90,7 @@ export function clampStudySessionSize(
   const limits = STUDY_USAGE_LIMITS[plan];
   const cap = timedExam ? limits.maxTimedExamLength : limits.maxPerSession;
   if (cap == null) return Math.max(1, requested);
+  if (cap <= 0) return 0;
   return Math.max(1, Math.min(requested, cap));
 }
 

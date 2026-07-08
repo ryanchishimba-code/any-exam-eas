@@ -1,11 +1,12 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Lock } from "lucide-react";
 import { DashboardUpgradeBanner, type DashboardUpgradeProps } from "@/components/dashboard/DashboardUpgradeBanner";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardTodayFocus } from "@/components/dashboard/DashboardTodayFocus";
 import { DashboardViewSections } from "@/components/app/DashboardViewSections";
 import { Skeleton } from "@/components/ui/skeleton";
+import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { ROUTES } from "@/lib/routes";
@@ -56,6 +57,7 @@ export function DashboardPageContent({
   const firstName = displayFirstName(userName);
   const showRecent = recentTests.length > 0;
   const isNewUser = stats.questionsAnswered === 0 && !showRecent;
+  const studyLocked = !hasPremiumAccess;
 
   return (
     <div className={dbUi.page}>
@@ -80,19 +82,28 @@ export function DashboardPageContent({
             Welcome to {exam.name} prep{firstName ? `, ${firstName}` : ""}.
           </h2>
           <p className={cn(dbUi.subtitle, "mt-1.5 max-w-xl")}>
-            Take your first practice set and we&apos;ll track readiness, weak topics, and your
-            streak here.
+            {studyLocked
+              ? "Subscribe to continue studying — question bank and study tools stay locked after your trial."
+              : "Take your first practice set and we'll track readiness, weak topics, and your streak here."}
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
-            <Link href={ROUTES.questionBank} className={dbUi.primaryBtn}>
-              Start practicing
-              <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-            </Link>
-            {hasPremiumAccess ? (
-              <Link href={ROUTES.library} className={dbUi.ghostBtn}>
-                Browse library
+            {studyLocked ? (
+              <Link href={postTrialCheckoutHref()} className={dbUi.primaryBtn}>
+                <Lock className="h-3.5 w-3.5" aria-hidden />
+                Subscribe to continue studying
+                <ArrowRight className="h-3.5 w-3.5" aria-hidden />
               </Link>
-            ) : null}
+            ) : (
+              <>
+                <Link href={ROUTES.questionBank} className={dbUi.primaryBtn}>
+                  Start practicing
+                  <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                </Link>
+                <Link href={ROUTES.library} className={dbUi.ghostBtn}>
+                  Browse library
+                </Link>
+              </>
+            )}
           </div>
         </section>
       ) : (
@@ -104,6 +115,7 @@ export function DashboardPageContent({
           dueCount={spacedReview.dueCount}
           topWeakTopic={weakTopics[0]?.name ?? null}
           hasRecent={showRecent}
+          studyLocked={studyLocked}
         />
       )}
 

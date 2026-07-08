@@ -37,7 +37,7 @@ const usage: StudyUsageSnapshot = {
   remainingToday: null,
   limits: {
     dailyQuestions: null,
-    trialLifetimeQuestions: 150,
+    trialLifetimeQuestions: 500,
     maxPerSession: null,
     maxTimedExamLength: null,
     allowPresetExams: true,

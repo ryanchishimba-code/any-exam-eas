@@ -19,7 +19,7 @@ const Stripe = require("stripe").default;
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const ENV_PATH = join(root, ".env");
 
-const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "3");
+const TRIAL_DAYS = Number(process.env.TRIAL_DAYS ?? "5");
 
 const TIERS = {
   pro: {

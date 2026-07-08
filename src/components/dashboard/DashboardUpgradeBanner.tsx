@@ -1,12 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import { Crown, Sparkles } from "lucide-react";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import {
   dashboardUpgradePricingHref,
+  POST_TRIAL_SUBSCRIBE_MESSAGE,
   PRO_DASHBOARD_UPGRADE_MESSAGE,
   type DashboardUpgradeContext,
 } from "@/lib/dashboard/upgrade-banner";
-import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 export type DashboardUpgradeProps = DashboardUpgradeContext;
@@ -30,14 +32,7 @@ function statusLine({ variant, daysRemaining, usage }: DashboardUpgradeProps): s
     return time;
   }
 
-  if (variant === "free") {
-    if (remainingQuestions != null) {
-      return `${remainingQuestions} question${remainingQuestions === 1 ? "" : "s"} left on Free plan`;
-    }
-    return "You're on the Free plan";
-  }
-
-  return "";
+  return "Dashboard access only — study tools are locked";
 }
 
 function headline(variant: DashboardUpgradeProps["variant"]): string {
@@ -45,7 +40,7 @@ function headline(variant: DashboardUpgradeProps["variant"]): string {
     case "trial":
       return "You're doing great — keep the momentum going.";
     case "free":
-      return "Your trial has ended — upgrade to keep studying.";
+      return "Subscribe to continue studying";
   }
 }
 
@@ -54,7 +49,7 @@ function eyebrow(variant: DashboardUpgradeProps["variant"]): string {
     case "trial":
       return "Free trial";
     case "free":
-      return "Upgrade to Pro";
+      return "Trial ended";
   }
 }
 
@@ -86,7 +81,7 @@ export function DashboardUpgradeBanner(props: DashboardUpgradeProps) {
           </h2>
           <p className="text-sm font-medium text-[var(--color-ink)]">{statusLine(props)}</p>
           <p className="max-w-xl text-sm leading-relaxed text-[var(--color-ink-muted)]">
-            {PRO_DASHBOARD_UPGRADE_MESSAGE}
+            {isTrial ? PRO_DASHBOARD_UPGRADE_MESSAGE : POST_TRIAL_SUBSCRIBE_MESSAGE}
           </p>
         </div>
         <div className="flex shrink-0 flex-wrap items-center gap-2">
@@ -94,16 +89,8 @@ export function DashboardUpgradeBanner(props: DashboardUpgradeProps) {
             href={pricingHref}
             className="inline-flex items-center justify-center rounded-xl bg-[var(--color-accent)] px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-95"
           >
-            Upgrade Now
+            {isTrial ? "Upgrade Now" : "Go to checkout"}
           </Link>
-          {variant === "free" ? (
-            <Link
-              href={ROUTES.questionBank}
-              className="inline-flex items-center justify-center rounded-xl border border-black/10 bg-white/80 px-4 py-2.5 text-sm font-medium text-[var(--color-ink)] transition hover:bg-white"
-            >
-              Practice
-            </Link>
-          ) : null}
         </div>
       </div>
     </section>
