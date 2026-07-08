@@ -78,6 +78,13 @@ export const RESOURCE_DOWNLOADS: ResourceDownload[] = [
   },
 ];
 
+function normalizeSection(section: ResourceSection): ResourceSection {
+  return {
+    ...section,
+    paragraphs: section.paragraphs ?? [],
+  };
+}
+
 function article(
   partial: Omit<
     ResourceArticle,
@@ -95,7 +102,7 @@ function article(
     keywords: partial.keywords ?? [],
     readingMinutes: partial.readingMinutes ?? 6,
     intro: partial.intro ?? "",
-    sections: partial.sections ?? [],
+    sections: (partial.sections ?? []).map(normalizeSection),
     publishedAt: partial.publishedAt ?? "2026-01-15",
     updatedAt: partial.updatedAt ?? "2026-06-01",
   };

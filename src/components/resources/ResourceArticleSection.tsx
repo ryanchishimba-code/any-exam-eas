@@ -4,7 +4,7 @@ export function ResourceArticleSection({ section }: { section: ResourceSection }
   return (
     <section className="mb-10">
       <h2 className="text-xl font-bold text-[var(--color-ink)]">{section.heading}</h2>
-      {section.paragraphs.map((paragraph) => (
+      {section.paragraphs?.map((paragraph) => (
         <p key={paragraph.slice(0, 48)} className="mt-3 leading-relaxed text-[var(--color-ink-muted)]">
           {paragraph}
         </p>
