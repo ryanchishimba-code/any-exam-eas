@@ -160,10 +160,11 @@ export const LANDING_HERO_EXAMS = [
 ] as const;
 
 /** Primary hero headline — benefit-driven, scannable above the fold. */
-export const LANDING_HERO_HEADLINE = "NCLEX, USMLE & NAPLEX Prep";
+export const LANDING_HERO_HEADLINE =
+  "Pass Your NCLEX, NAPLEX and USMLE With High-Quality Board-Style Questions";
 
-/** Accent line under the primary headline. */
-export const LANDING_HERO_HEADLINE_ACCENT = "One Plan. Best Value.";
+/** Accent line under the primary headline — empty when the full headline is in LANDING_HERO_HEADLINE. */
+export const LANDING_HERO_HEADLINE_ACCENT = "";
 
 /** Hero sub-headline body — pass live total via formatFlagshipHeroSubline(totalLabel). */
 export const LANDING_HERO_SUBLINE_BODY =

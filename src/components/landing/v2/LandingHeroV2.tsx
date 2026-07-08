@@ -188,8 +188,13 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
             id="hero-heading"
             className="mt-6 text-balance text-4xl font-bold leading-[1.05] tracking-tight text-[var(--color-ink)] sm:text-5xl lg:text-6xl"
           >
-            {LANDING_HERO_HEADLINE}.{" "}
-            <span className="aee-flagship-gradient-text">{LANDING_HERO_HEADLINE_ACCENT}</span>
+            {LANDING_HERO_HEADLINE}
+            {LANDING_HERO_HEADLINE_ACCENT ? (
+              <>
+                {" "}
+                <span className="aee-flagship-gradient-text">{LANDING_HERO_HEADLINE_ACCENT}</span>
+              </>
+            ) : null}
           </h1>
 
           <div className="mt-5" aria-label={`${bankCounts.totalQuestionsLabel} on the platform`}>

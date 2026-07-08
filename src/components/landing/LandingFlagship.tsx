@@ -75,8 +75,13 @@ function HeroSection({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
             id="flagship-hero-heading"
             className="mt-6 text-balance text-4xl font-bold tracking-tight text-[var(--color-ink)] sm:text-5xl lg:text-6xl"
           >
-            {LANDING_HERO_HEADLINE}{" "}
-            <span className="text-[var(--color-accent)]">{LANDING_HERO_HEADLINE_ACCENT}</span>
+            {LANDING_HERO_HEADLINE}
+            {LANDING_HERO_HEADLINE_ACCENT ? (
+              <>
+                {" "}
+                <span className="text-[var(--color-accent)]">{LANDING_HERO_HEADLINE_ACCENT}</span>
+              </>
+            ) : null}
           </h1>
 
           <div className="mt-5" aria-label={`${bankCounts.totalQuestionsLabel} on the platform`}>
