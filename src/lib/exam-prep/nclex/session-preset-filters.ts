@@ -46,6 +46,64 @@ export function matchesNclexDifficultyTier(item: BankItem, tier: NclexDifficulty
   return tags.includes("exam-level") || tags.includes("curated") || stemLen >= 280;
 }
 
+function parseLeadingAgeYears(head: string): number | null {
+  const yearMatch = head.match(/\b(\d{1,2})[- ]?(?:year|yr)s?[- ]?old\b/i);
+  if (yearMatch) return Number.parseInt(yearMatch[1]!, 10);
+  const monthMatch = head.match(/\b(\d{1,2})[- ]?(?:month|mo)s?[- ]?old\b/i);
+  if (monthMatch) return Number.parseInt(monthMatch[1]!, 10) / 12;
+  return null;
+}
+
+function matchesNclexPedsBlock(item: BankItem): boolean {
+  const text = itemText(item);
+  const vignette = (item.vignette ?? item.scenario ?? "").trim();
+  const head = vignette.slice(0, 160);
+  const ageYears = parseLeadingAgeYears(head);
+
+  if (
+    /medical-surgical|postmenopausal|menopause|hip fracture|obstetric|labor and delivery|postpartum/i.test(
+      head
+    )
+  ) {
+    return false;
+  }
+
+  if (/inpatient psychiatric|psychiatric unit/i.test(head) && ageYears !== null && ageYears >= 18) {
+    return false;
+  }
+
+  if (
+    /pediatric(?:\s+(?:unit|ward|clinic|emergency|department|floor|icu|intensive care|primary care|medical|clinic))|nicu|neonatal|well-child|school nurse/i.test(
+      head
+    )
+  ) {
+    return true;
+  }
+
+  if (/\b(?:infant|newborn|neonate|toddler|adolescent|preschooler|school-age child)\b/i.test(head)) {
+    return true;
+  }
+
+  if (ageYears !== null) {
+    if (ageYears >= 18) return false;
+    if (/assigned four clients|Room \d+:/i.test(vignette) && !/pediatric|nicu|neonatal|well-child/i.test(head)) {
+      return false;
+    }
+    return true;
+  }
+
+  if (/fontanel|immuniz|denver developmental|weight in kg|pediatric dose|live virus vaccine/i.test(text)) {
+    return true;
+  }
+
+  const topic = item.blueprintTopic ?? "";
+  if (/pediatric|immunization|febrile-infant|peds|growth|child/i.test(topic)) {
+    return true;
+  }
+
+  return false;
+}
+
 export function matchesNclexStudyPreset(item: BankItem, preset: NclexStudyPreset): boolean {
   const tags = itemTags(item);
   const text = itemText(item);
@@ -99,7 +157,7 @@ export function matchesNclexStudyPreset(item: BankItem, preset: NclexStudyPreset
         text
       );
     case "peds-block":
-      return /pediatric|infant|child|immuniz|fontanel|dehydration|adolescent/i.test(text);
+      return matchesNclexPedsBlock(item);
     case "legal-ethical-block":
       return /consent|hipaa|mandatory report|abuse|advance directive|assign.*objection|ethical/i.test(
         text
@@ -111,11 +169,18 @@ export function matchesNclexStudyPreset(item: BankItem, preset: NclexStudyPreset
   }
 }
 
-export function filterItemsForNclexPreset(items: BankItem[], preset: NclexStudyPreset): BankItem[] {
+export function filterItemsForNclexPreset(
+  items: BankItem[],
+  preset: NclexStudyPreset,
+  opts?: { strict?: boolean }
+): BankItem[] {
   const matched = items.filter((item) => matchesNclexStudyPreset(item, preset));
+  if (opts?.strict) return matched;
   if (matched.length >= Math.min(preset.count, 5)) return matched;
   return items;
 }
+
+export { filterItemsForNclexBlueprintTopics } from "./topic-blueprint-match";
 
 export function shuffleBankItems<T>(items: T[]): T[] {
   const copy = [...items];

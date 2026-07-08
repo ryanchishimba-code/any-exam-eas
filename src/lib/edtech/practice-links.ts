@@ -1,8 +1,9 @@
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
+import { resolveNclexTopicPracticeParams } from "@/lib/exam-prep/nclex/topic-practice";
 import { isUsmleStep1Subject } from "@/lib/subjects/medicine/subject-splits";
-import type { ExamSlug } from "@/types/edtech";
+import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
 
 /** Sentinel subjectId the question-bank API treats as a mixed-topic session. */
@@ -29,12 +30,18 @@ export type TopicPracticeReturnContext = {
   deepDive?: boolean;
 };
 
+export type TopicPracticeFilters = {
+  blueprintTopics?: string[];
+  nclexPreset?: string;
+};
+
 /** Question bank practice filtered to a high-yield topic slug. */
 export function practiceTopicHref(
   examSlug: ExamSlug,
   topicSlug: string,
   count = 10,
-  returnTo?: TopicPracticeReturnContext
+  returnTo?: TopicPracticeReturnContext,
+  filters?: TopicPracticeFilters
 ): string {
   const isMixed = topicSlug === "mixed" || topicSlug === MIXED_SUBJECT_ID;
   const subjectId = isMixed ? MIXED_SUBJECT_ID : topicSlug;
@@ -47,6 +54,12 @@ export function practiceTopicHref(
     subjectId,
     count: String(count),
   });
+  if (filters?.blueprintTopics?.length) {
+    qs.set("blueprintTopics", filters.blueprintTopics.join(","));
+  }
+  if (filters?.nclexPreset) {
+    qs.set("nclexPreset", filters.nclexPreset);
+  }
   if (returnTo) {
     qs.set("returnExam", examSlug);
     qs.set("returnTopic", returnTo.topicSlug);
@@ -54,6 +67,35 @@ export function practiceTopicHref(
     if (returnTo.deepDive) qs.set("returnMode", "deep");
   }
   return `${ROUTES.questionBank}?${qs.toString()}`;
+}
+
+/** Practice href aligned to a Study Hub card (NCLEX uses blueprint topic filters). */
+export function highYieldTopicPracticeHref(
+  examSlug: ExamSlug,
+  topic: HighYieldTopic,
+  count = 10,
+  returnTo?: TopicPracticeReturnContext
+): string {
+  if (examSlug === "nclex") {
+    const params = resolveNclexTopicPracticeParams(topic);
+    return practiceTopicHref(
+      examSlug,
+      params.subjectId,
+      count,
+      returnTo ?? { topicSlug: topic.slug, topicTitle: topic.title },
+      {
+        blueprintTopics: params.blueprintTopics,
+        nclexPreset: params.nclexPreset,
+      }
+    );
+  }
+
+  return practiceTopicHref(
+    examSlug,
+    topic.practiceTopicSlug,
+    count,
+    returnTo ?? { topicSlug: topic.slug, topicTitle: topic.title }
+  );
 }
 
 /** Parse return-to-module link from question bank URL params. */

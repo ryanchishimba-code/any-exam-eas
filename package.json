@@ -326,6 +326,8 @@
     "db:qa-gate-usmle-best": "bash scripts/run-with-node.sh npx tsx scripts/qa-gate-usmle-best.ts",
     "db:qa-gate-usmle-best:dry": "bash scripts/run-with-node.sh npx tsx scripts/qa-gate-usmle-best.ts --dry-run",
     "db:qa-gate-usmle-topics": "bash scripts/run-with-node.sh npx tsx scripts/usmle-topic-qa-gate.ts",
+    "db:qa-gate-nclex-topics": "bash scripts/run-with-node.sh npx tsx scripts/nclex-topic-qa-gate.ts",
+    "db:audit-nclex-topics": "bash scripts/run-with-node.sh npx tsx scripts/audit-nclex-topics-by-blueprint.ts",
     "db:qa-gate-usmle-serve": "npm run db:qa-gate -- --field usmle-step-1 && npm run db:qa-gate -- --field usmle-step-2 && npm run db:qa-gate -- --field usmle-step-3",
     "db:qa-gate-usmle-serve:dry": "npm run db:qa-gate:dry -- --field usmle-step-1 && npm run db:qa-gate:dry -- --field usmle-step-2 && npm run db:qa-gate:dry -- --field usmle-step-3",
     "db:audit-bank-quality": "npx tsx scripts/audit-bank-quality-summary.ts",

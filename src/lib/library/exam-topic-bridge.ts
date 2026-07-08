@@ -1,5 +1,6 @@
 import {
   deepDiveTopicHref,
+  highYieldTopicPracticeHref,
   practiceTopicHref,
   libraryCardHref,
   libraryTopicHref,
@@ -145,11 +146,9 @@ export function getExamTopicStudyLinks(
     topic,
     topicKey,
     libraryHref: libraryTopicHref(examSlug, topicKey),
-    practiceHref: practiceTopicHref(
-      examSlug,
-      card?.practiceTopicSlug ?? topicKey,
-      10
-    ),
+    practiceHref: card
+      ? highYieldTopicPracticeHref(examSlug, card, 10)
+      : practiceTopicHref(examSlug, topicKey, 10),
     memoryCardIds,
     reviewModuleSlug: card?.slug,
     deepDiveHref: card?.reviewModule

@@ -26,7 +26,7 @@ import {
   type ReviewModuleScrollProgress,
 } from "@/components/edtech/ReviewModuleScrollView";
 import { RelatedMemoryCardsCollapsible } from "@/components/edtech/RelatedMemoryCardsCollapsible";
-import { practiceTopicHref } from "@/lib/edtech/practice-links";
+import { highYieldTopicPracticeHref, practiceTopicHref } from "@/lib/edtech/practice-links";
 import {
   buildTopicDrugClassLinks,
   buildTopicDrugLinks,
@@ -163,9 +163,9 @@ export function HighYieldTopicPanel({
 
   if (!open || !topic) return null;
 
-  const practiceHref = practiceTopicHref(
+  const practiceHref = highYieldTopicPracticeHref(
     examSlug,
-    topic.practiceTopicSlug,
+    topic,
     practiceQuestionCount,
     {
       topicSlug: topic.slug,

@@ -9,6 +9,7 @@ export { getExamScopedStats } from "./stats";
 export { loadHighYieldTopics, recordTopicView } from "./topics-service";
 export {
   practiceTopicHref,
+  highYieldTopicPracticeHref,
   questionBankHref,
   simulatedExamHref,
   analyticsHref,

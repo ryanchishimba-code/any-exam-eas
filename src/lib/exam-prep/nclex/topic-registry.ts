@@ -86,7 +86,7 @@ export const NCLEX_TOPIC_REGISTRY: Record<string, NclexTopicMeta> = {
   },
   postpartum: {
     clientNeedsDomain: "health-promotion",
-    blueprintTopicSlugs: ["postpartum-bubble-he", "postpartum-bubble-he"],
+    blueprintTopicSlugs: ["postpartum-bubble-he"],
     relatedPresetIds: ["maternal-newborn-block"],
     primary: true,
   },
@@ -96,7 +96,7 @@ export const NCLEX_TOPIC_REGISTRY: Record<string, NclexTopicMeta> = {
   },
   pediatrics: {
     clientNeedsDomain: "health-promotion",
-    blueprintTopicSlugs: ["pediatric-milestones", "menopause-aging"],
+    blueprintTopicSlugs: ["pediatric-milestones", "immunization-schedules"],
     relatedPresetIds: ["peds-block"],
   },
   "developmental-milestones": {
@@ -130,6 +130,11 @@ export const NCLEX_TOPIC_REGISTRY: Record<string, NclexTopicMeta> = {
     top500DrugSlugs: ["insulin-glargine", "heparin", "warfarin", "morphine", "potassium-chloride"],
     relatedPresetIds: ["pharm-high-alert-block", "dosage-calc-sprint"],
     primary: true,
+  },
+  "sig-code-abbreviations": {
+    clientNeedsDomain: "pharmacology-nursing",
+    blueprintTopicSlugs: ["medication-error-prevention", "dosage-calculations"],
+    relatedPresetIds: ["pharm-high-alert-block"],
   },
   "anticoagulation-nursing": {
     clientNeedsDomain: "pharmacology-nursing",

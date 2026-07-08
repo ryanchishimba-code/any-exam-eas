@@ -135,6 +135,13 @@ export async function GET(req: Request) {
 
   const nclexPresetParam = searchParams.get("nclexPreset")?.trim() || undefined;
   const difficultyTier = searchParams.get("difficultyTier")?.trim() || undefined;
+  const blueprintTopicsParam = searchParams.get("blueprintTopics")?.trim();
+  const blueprintTopics = blueprintTopicsParam
+    ? blueprintTopicsParam
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean)
+    : undefined;
 
   let nclexPresetConfig: Awaited<
     ReturnType<(typeof import("@/lib/exam-prep/nclex/study-presets"))["getNclexStudyPreset"]>
@@ -241,6 +248,7 @@ export async function GET(req: Request) {
       subjectId: subjectId!,
       sessionLimit: limit,
       taskCategory,
+      blueprintTopics,
     });
   } else {
     items = await sampleQuestionBankItems({
@@ -262,14 +270,39 @@ export async function GET(req: Request) {
     });
   }
 
-  if (nclexPresetConfig) {
+  if (fieldId === "nursing" && bankPractice && (nclexPresetConfig || blueprintTopics?.length)) {
+    const { filterItemsForNclexTopicPractice } = await import(
+      "@/lib/exam-prep/nclex/topic-practice-filter"
+    );
+    const { shuffleBankItems } = await import("@/lib/exam-prep/nclex/session-preset-filters");
+    items = shuffleBankItems(
+      filterItemsForNclexTopicPractice(
+        items,
+        {
+          blueprintTopics,
+          nclexPreset: nclexPresetConfig,
+        },
+        { strict: true }
+      )
+    ).slice(0, limit);
+  } else if (nclexPresetConfig) {
     const { filterItemsForNclexPreset, shuffleBankItems } = await import(
       "@/lib/exam-prep/nclex/session-preset-filters"
     );
-    const pool = filterItemsForNclexPreset(items, nclexPresetConfig);
+    const pool = filterItemsForNclexPreset(items, nclexPresetConfig, { strict: bankPractice });
     const minPool = Math.min(5, limit);
-    const source = pool.length >= minPool ? pool : items;
+    const source = bankPractice ? pool : pool.length >= minPool ? pool : items;
     items = shuffleBankItems(source).slice(0, limit);
+  } else if (fieldId === "nursing" && blueprintTopics?.length) {
+    const { filterItemsForNclexBlueprintTopics } = await import(
+      "@/lib/exam-prep/nclex/topic-blueprint-match"
+    );
+    const { shuffleBankItems } = await import("@/lib/exam-prep/nclex/session-preset-filters");
+    const pool = filterItemsForNclexBlueprintTopics(items, blueprintTopics, { contentMatch: true });
+    const minPool = Math.min(5, limit);
+    if (bankPractice || pool.length >= minPool) {
+      items = shuffleBankItems(pool).slice(0, limit);
+    }
   } else if (fieldId === "nursing" && difficultyTier) {
     const { matchesNclexDifficultyTier, shuffleBankItems } = await import(
       "@/lib/exam-prep/nclex/session-preset-filters"

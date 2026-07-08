@@ -216,13 +216,19 @@ function usmleStepSeparationWhere(fieldId: string) {
   return {};
 }
 
-function activeSubjectWhere(fieldId: string, subjectId: string, taskCategory?: string | null) {
+function activeSubjectWhere(
+  fieldId: string,
+  subjectId: string,
+  taskCategory?: string | null,
+  blueprintTopics?: string[]
+) {
   return {
     fieldId,
     subjectId,
     active: true as const,
     qaPassed: true as const,
     ...(taskCategory?.trim() ? { taskCategory: taskCategory.trim() } : {}),
+    ...(blueprintTopics?.length ? { blueprintTopic: { in: blueprintTopics } } : {}),
     ...usmleStepSeparationWhere(fieldId),
   };
 }
@@ -269,6 +275,8 @@ export async function sampleQuestionBankItems(params: {
   poolMultiplier?: number;
   /** PANCE: optional NCCPA task-area filter. */
   taskCategory?: string | null;
+  /** NCLEX: restrict to granular 2026 blueprint topic slugs. */
+  blueprintTopics?: string[];
 }): Promise<BankItem[]> {
   await ensureBankAvailable(params.fieldId, params.subjectId);
 
@@ -304,7 +312,12 @@ export async function sampleQuestionBankItems(params: {
   }
 
   const want = Math.max(1, params.count);
-  const where = activeSubjectWhere(params.fieldId, params.subjectId, params.taskCategory);
+  const where = activeSubjectWhere(
+    params.fieldId,
+    params.subjectId,
+    params.taskCategory,
+    params.blueprintTopics
+  );
   const total = await prisma.questionBankItem.count({ where });
 
   if (total === 0 && params.taskCategory && isPanceFieldId(params.fieldId)) {
