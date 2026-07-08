@@ -2,20 +2,16 @@
 
 import { useCallback, useState, type ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import { motion, useReducedMotion } from "framer-motion";
 import { AppTopNav } from "@/components/app/AppTopNav";
 import { AppSidebar } from "@/components/app/AppSidebar";
 import { AppMobileDrawer } from "@/components/app/AppMobileDrawer";
 import { MobileBottomNav } from "@/components/app/MobileBottomNav";
 import { shellUi } from "@/lib/layout/shell-ui";
-import {
-  SHELL_CHROME_SPRING,
-  SHELL_LAYOUT_TRANSITION,
-} from "@/lib/layout/nav-motion";
+import { SHELL_LAYOUT_TRANSITION } from "@/lib/layout/nav-motion";
 import { isFullExamSessionRoute } from "@/lib/navigation/app-shell";
 import { cn } from "@/lib/utils";
 
-const SIDEBAR_WIDTH = 224; // w-56
+const SIDEBAR_WIDTH_CLASS = "w-56";
 
 export function AppShell({
   children,
@@ -26,12 +22,9 @@ export function AppShell({
 }) {
   const pathname = usePathname();
   const immersiveFullExam = isFullExamSessionRoute(pathname);
-  const reduceMotion = useReducedMotion();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const openDrawer = useCallback(() => setDrawerOpen(true), []);
   const closeDrawer = useCallback(() => setDrawerOpen(false), []);
-
-  const chromeTransition = reduceMotion ? { duration: 0 } : SHELL_CHROME_SPRING;
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)]">
@@ -50,20 +43,17 @@ export function AppShell({
               )
         )}
       >
-        <motion.div
-          initial={false}
-          animate={{
-            width: immersiveFullExam ? 0 : SIDEBAR_WIDTH,
-            opacity: immersiveFullExam ? 0 : 1,
-          }}
-          transition={chromeTransition}
-          className="hidden shrink-0 overflow-hidden lg:block"
+        <div
+          className={cn(
+            "hidden shrink-0 overflow-hidden transition-[width,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:block",
+            immersiveFullExam ? "w-0 opacity-0" : cn(SIDEBAR_WIDTH_CLASS, "opacity-100")
+          )}
           aria-hidden={immersiveFullExam}
         >
-          <div className="w-56">
+          <div className={SIDEBAR_WIDTH_CLASS}>
             <AppSidebar />
           </div>
-        </motion.div>
+        </div>
         <main
           id="main-content"
           className={cn(

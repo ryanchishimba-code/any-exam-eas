@@ -1,14 +1,7 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight, GraduationCap, Target } from "lucide-react";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
-import {
-  analyticsHref,
-  practiceTopicHref,
-  libraryTopicHref,
-} from "@/lib/edtech/practice-links";
-import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
+import { analyticsHref, libraryTopicHref, practiceTopicHref } from "@/lib/edtech/practice-links-core";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
@@ -48,7 +41,7 @@ export function DashboardWeakTopics({
       <ul className={dbUi.listSurface}>
         {weakTopics.slice(0, 5).map((topic) => {
           const slug = topic.id.replace(/^(tag|subject):/, "");
-          const links = getExamTopicStudyLinks(examSlug, slug);
+          const links = topic.studyLinks;
           return (
             <li key={topic.id} className="px-4 py-3.5">
               <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
@@ -65,24 +58,32 @@ export function DashboardWeakTopics({
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-1.5">
-                  {links.deepDiveHref ? (
+                  {links?.deepDiveHref ? (
                     <Link href={links.deepDiveHref} className={dbUi.ghostBtn}>
                       <GraduationCap className="h-3 w-3" aria-hidden />
                       Deep dive
                     </Link>
                   ) : null}
-                  <Link href={libraryTopicHref(examSlug, slug)} className={dbUi.ghostBtn}>
+                  <Link
+                    href={links?.libraryHref ?? libraryTopicHref(examSlug, slug)}
+                    className={dbUi.ghostBtn}
+                  >
                     Library
                   </Link>
-                  <Link href={practiceTopicHref(examSlug, slug, 10)} className={dbUi.ghostBtn}>
+                  <Link
+                    href={links?.practiceHref ?? practiceTopicHref(examSlug, slug, 10)}
+                    className={dbUi.ghostBtn}
+                  >
                     Practice
                     <ArrowRight className="h-3 w-3" aria-hidden />
                   </Link>
-                  <RelatedAnatomyLinks
-                    examSlug={examSlug}
-                    structures={links.anatomyStructures}
-                    variant="pill"
-                  />
+                  {links?.anatomyStructures?.length ? (
+                    <RelatedAnatomyLinks
+                      examSlug={examSlug}
+                      structures={links.anatomyStructures}
+                      variant="pill"
+                    />
+                  ) : null}
                 </div>
               </div>
             </li>

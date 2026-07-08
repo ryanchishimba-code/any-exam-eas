@@ -5,12 +5,20 @@ import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
 import { getLearningProfileSnapshot } from "./profile-service";
 import { CACHE_TTL, cacheGetOrSet, cacheKey, CACHE_STALE } from "@/lib/cache";
+import type { AnatomyStructureLink } from "@/lib/anatomy/topic-links";
 
 export type AccuracyTrendPoint = {
   date: string;
   label: string;
   accuracy: number | null;
   attempts: number;
+};
+
+export type WeakTopicStudyLinks = {
+  deepDiveHref?: string;
+  libraryHref: string;
+  practiceHref: string;
+  anatomyStructures: AnatomyStructureLink[];
 };
 
 export type WeakTopicRow = {
@@ -21,6 +29,8 @@ export type WeakTopicRow = {
   attempts: number;
   /** Share of total weakness weight (for pie chart). */
   weight: number;
+  /** Precomputed on the server so client cards avoid importing seed bundles. */
+  studyLinks?: WeakTopicStudyLinks;
 };
 
 export type RecentTestRow = {

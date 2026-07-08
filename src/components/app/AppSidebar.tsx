@@ -15,12 +15,11 @@ import {
   Sparkles,
   type LucideIcon,
 } from "lucide-react";
-import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
 import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
-import { anatomyHref, questionBankHref } from "@/lib/edtech/practice-links";
-import { STUDY_NAV_COLOR, STUDY_NAV_SPRING } from "@/lib/layout/nav-motion";
+import { anatomyHref, questionBankHref } from "@/lib/edtech/practice-links-core";
+import { STUDY_NAV_COLOR } from "@/lib/layout/nav-motion";
 import { isExamPracticeLockedRoute } from "@/lib/navigation/app-shell";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -73,14 +72,11 @@ function SidebarNavLink({
   item,
   active,
   onNavigate,
-  layoutId,
 }: {
   item: Pick<NavItem, "href" | "label" | "icon">;
   active: boolean;
   onNavigate?: () => void;
-  layoutId: string;
 }) {
-  const reduceMotion = useReducedMotion();
   const Icon = item.icon;
 
   return (
@@ -97,19 +93,10 @@ function SidebarNavLink({
       )}
     >
       {active ? (
-        reduceMotion ? (
-          <span
-            className="absolute inset-0 rounded-xl bg-[var(--color-accent)]/10 ring-1 ring-inset ring-[var(--color-accent)]/15"
-            aria-hidden
-          />
-        ) : (
-          <motion.span
-            layoutId={layoutId}
-            className="absolute inset-0 rounded-xl bg-[var(--color-accent)]/10 ring-1 ring-inset ring-[var(--color-accent)]/15 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
-            transition={STUDY_NAV_SPRING}
-            aria-hidden
-          />
-        )
+        <span
+          className="absolute inset-0 rounded-xl bg-[var(--color-accent)]/10 ring-1 ring-inset ring-[var(--color-accent)]/15 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
+          aria-hidden
+        />
       ) : null}
       <Icon
         className={cn(
@@ -128,7 +115,6 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
   const { examSlug } = useAppPreferences();
   const clinical = hasClinicalStudyTools(examSlug);
   const examSwitchLocked = isExamPracticeLockedRoute(pathname);
-  const pillId = embedded ? "study-sidebar-pill-mobile" : "study-sidebar-pill-desktop";
 
   const navItems = useMemo(
     () =>
@@ -170,20 +156,17 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
         )}
         aria-label="Study navigation"
       >
-        <LayoutGroup id={pillId}>
-          <ul className="space-y-0.5">
-            {navItems.map((item) => (
-              <li key={item.id}>
-                <SidebarNavLink
-                  item={item}
-                  active={isNavActive(pathname, item.href, item.exact)}
-                  onNavigate={onNavigate}
-                  layoutId={`${pillId}-indicator`}
-                />
-              </li>
-            ))}
-          </ul>
-        </LayoutGroup>
+        <ul className="space-y-0.5">
+          {navItems.map((item) => (
+            <li key={item.id}>
+              <SidebarNavLink
+                item={item}
+                active={isNavActive(pathname, item.href, item.exact)}
+                onNavigate={onNavigate}
+              />
+            </li>
+          ))}
+        </ul>
         {embedded && !examSwitchLocked ? (
           <Link
             href={`${ROUTES.selectExam}?switch=1`}

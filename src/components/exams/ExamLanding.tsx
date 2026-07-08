@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { ExamCard } from "@/components/exams/ExamCard";
 import { getExamHub } from "@/lib/exams/catalog";
-import { roadmapHref } from "@/lib/learning/exam-roadmap";
+import { roadmapHref } from "@/lib/learning/roadmap-links";
 import {
   PANCE_FEATURED_DRILLS,
   panceTaskPracticeHref,

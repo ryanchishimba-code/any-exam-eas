@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
   experimental: {
     // Single-threaded compile on Vercel avoids OOM SIGKILL during large app builds.
     ...(onVercel ? { cpus: 1, workerThreads: false } : {}),
+    staleTimes: {
+      dynamic: 30,
+      static: 300,
+    },
     optimizePackageImports: [
       "lucide-react",
       "framer-motion",

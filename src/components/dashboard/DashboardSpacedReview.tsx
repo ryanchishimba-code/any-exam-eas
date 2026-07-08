@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, Brain } from "lucide-react";
-import { spacedReviewHref } from "@/lib/edtech/practice-links";
+import { spacedReviewHref } from "@/lib/edtech/practice-links-core";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { SpacedReviewSummary } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";

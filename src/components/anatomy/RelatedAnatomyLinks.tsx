@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Bone } from "lucide-react";
-import { anatomyHref } from "@/lib/edtech/practice-links";
+import { anatomyHref } from "@/lib/edtech/practice-links-core";
 import type { AnatomyStructureLink } from "@/lib/anatomy/topic-links";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";

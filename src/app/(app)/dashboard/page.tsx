@@ -12,6 +12,7 @@ import { getUserEdtechMetadata, getExamTestDate } from "@/lib/edtech/user-metada
 import { getExamScopedStats } from "@/lib/edtech/stats";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
+import { enrichWeakTopicsWithStudyLinks } from "@/lib/learning/enrich-weak-topics";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -57,7 +58,10 @@ async function DashboardContent({
 
   const testDate = getExamTestDate(metadata, examSlug);
 
-  const weakTopics = dashboard.weakTopics.slice(0, 6);
+  const weakTopics = enrichWeakTopicsWithStudyLinks(
+    examSlug,
+    dashboard.weakTopics.slice(0, 6)
+  );
 
   return (
     <DashboardPageContent
@@ -86,8 +90,10 @@ export default async function DashboardPage() {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.dashboard)}`);
   }
 
-  const access = await requireAppPage(ROUTES.dashboard);
-  const pref = await getUserExamPreference(session.user.id);
+  const [access, pref] = await Promise.all([
+    requireAppPage(ROUTES.dashboard),
+    getUserExamPreference(session.user.id),
+  ]);
   if (!pref) redirect(ROUTES.selectExam);
 
   return (

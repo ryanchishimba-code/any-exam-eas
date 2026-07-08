@@ -1,10 +1,11 @@
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { ArrowRight } from "lucide-react";
-import { DashboardExamCountdown } from "@/components/dashboard/DashboardExamCountdown";
 import { DashboardUpgradeBanner, type DashboardUpgradeProps } from "@/components/dashboard/DashboardUpgradeBanner";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardTodayFocus } from "@/components/dashboard/DashboardTodayFocus";
 import { DashboardViewSections } from "@/components/app/DashboardViewSections";
+import { Skeleton } from "@/components/ui/skeleton";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { ROUTES } from "@/lib/routes";
@@ -13,6 +14,12 @@ import type { RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/lea
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
 import { displayFirstName } from "@/lib/display-name";
 import { cn } from "@/lib/utils";
+
+const DashboardExamCountdown = dynamic(
+  () =>
+    import("@/components/dashboard/DashboardExamCountdown").then((m) => m.DashboardExamCountdown),
+  { loading: () => <Skeleton className="h-24 w-full rounded-2xl" /> }
+);
 
 export type DashboardHeadline = {
   readinessScore: number;

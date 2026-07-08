@@ -9,40 +9,18 @@ import { RootChrome } from "@/components/layout/RootChrome";
 import { ClientRecovery } from "@/components/ClientRecovery";
 import { PwaRegister } from "@/components/PwaRegister";
 import { AppQueryProvider } from "@/lib/client/query-provider";
-import {
-  UserAccessProvider,
-  type UserAccessState,
-} from "@/lib/client/user-access-context";
+import { UserAccessProvider } from "@/lib/client/user-access-context";
 import { ThemeScript } from "@/components/theme/ThemeScript";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { buildRootMetadata } from "@/lib/seo";
-import { getCachedSession } from "@/lib/auth/session";
-import { getUserAccess } from "@/lib/access-control";
 
 export const metadata: Metadata = buildRootMetadata();
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let initialAccess: UserAccessState | null = null;
-  const session = await getCachedSession();
-  if (session?.user?.id) {
-    try {
-      const access = await getUserAccess(session.user.id);
-      initialAccess = {
-        loading: false,
-        hasPremiumAccess: access.hasPremiumAccess,
-        hasAppAccess: access.hasAppAccess,
-        status: access.subscription.status,
-        role: access.role,
-      };
-    } catch {
-      /* client will retry via /api/subscription/status */
-    }
-  }
-
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
@@ -56,7 +34,7 @@ export default async function RootLayout({
           <AppQueryProvider>
             <GoogleAnalytics />
             <SessionProvider>
-              <UserAccessProvider initialAccess={initialAccess}>
+              <UserAccessProvider>
                 <LoginModalRoot>
                   <ClientRecovery />
                   <PwaRegister />

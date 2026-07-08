@@ -5,7 +5,7 @@ import {
   analyticsHref,
   questionBankHref,
   spacedReviewHref,
-} from "@/lib/edtech/practice-links";
+} from "@/lib/edtech/practice-links-core";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";

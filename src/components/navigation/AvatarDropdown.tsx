@@ -14,7 +14,7 @@ import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import { questionBankHref } from "@/lib/edtech/practice-links";
+import { questionBankHref } from "@/lib/edtech/practice-links-core";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { STUDY_HUB_PATH, TOP_500_DRUGS_PATH } from "@/lib/study-hub/config";
 import { ROUTES } from "@/lib/routes";

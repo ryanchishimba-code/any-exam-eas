@@ -1,4 +1,4 @@
-import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links";
+import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 import type { HighYieldTopic } from "@/types/edtech";
 import { NCLEX_STUDY_PRESETS, type NclexStudyPreset, type NclexStudyPresetId } from "./study-presets";
 import { getNclexTopicMeta } from "./topic-registry";

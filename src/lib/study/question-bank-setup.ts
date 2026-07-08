@@ -3,7 +3,7 @@ import {
   type QuestionBankPace,
   type QuestionBankStyle,
 } from "@/lib/exam/modes";
-import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links";
+import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 
 export { MIXED_SUBJECT_ID };
 

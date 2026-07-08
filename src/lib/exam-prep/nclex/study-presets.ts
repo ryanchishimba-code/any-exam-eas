@@ -1,7 +1,7 @@
 /**
  * NCLEX first-attempt study presets — difficulty tiers, specialty blocks, and 4-week plan.
  */
-import { deepDiveTopicHref, MIXED_SUBJECT_ID, spacedReviewHref } from "@/lib/edtech/practice-links";
+import { deepDiveTopicHref, MIXED_SUBJECT_ID, spacedReviewHref } from "@/lib/edtech/practice-links-core";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import type { ExamSlug } from "@/types/edtech";
 

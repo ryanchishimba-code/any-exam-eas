@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, Bone, Layers } from "lucide-react";
-import { anatomyHref, top500Href } from "@/lib/edtech/practice-links";
+import { anatomyHref, top500Href } from "@/lib/edtech/practice-links-core";
 import { hasClinicalStudyTools } from "@/lib/edtech/exam-content-scope";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";

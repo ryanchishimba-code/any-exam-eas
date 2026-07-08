@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import { questionBankHref } from "@/lib/edtech/practice-links";
+import { questionBankHref } from "@/lib/edtech/practice-links-core";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 

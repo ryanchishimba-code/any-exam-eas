@@ -1,6 +1,6 @@
 import { ROUTES } from "@/lib/routes";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links";
+import { MIXED_SUBJECT_ID } from "@/lib/edtech/practice-links-core";
 import {
   PANCE_TASK_AREAS,
   type PanceTaskArea,

@@ -16,7 +16,7 @@ import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import {
   questionBankHref,
   libraryHref,
-} from "@/lib/edtech/practice-links";
+} from "@/lib/edtech/practice-links-core";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { STUDY_HUB_PATH } from "@/lib/study-hub/config";

@@ -11,7 +11,7 @@ import {
 import type { ExamRoadmapData, RoadmapTopicRow } from "@/lib/learning/exam-roadmap";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
 import { EXAM_SELECTION_THEMES } from "@/lib/edtech/exam-selection-theme";
-import { roadmapHref } from "@/lib/learning/exam-roadmap";
+import { roadmapHref } from "@/lib/learning/roadmap-links";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 

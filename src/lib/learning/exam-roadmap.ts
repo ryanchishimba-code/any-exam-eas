@@ -9,14 +9,14 @@ import {
   deepDiveTopicHref,
   practiceTopicHref,
   questionBankHref,
-} from "@/lib/edtech/practice-links";
+  drugs300ClassHref,
+} from "@/lib/edtech/practice-links-core";
 import {
   getExamBlueprint,
   type BlueprintCategory,
   type ExamBlueprint,
 } from "@/lib/engine/blueprints";
 import { getExamTopicStudyLinks, topicNameToSlug } from "@/lib/library/exam-topic-bridge";
-import { drugs300ClassHref } from "@/lib/edtech/practice-links";
 import { getDrugClassMeta } from "@/lib/drugs300/drug-classes";
 import {
   resolveNclexTopicSlugForBlueprint,
@@ -396,10 +396,7 @@ export async function getExamRoadmapData(
   };
 }
 
-export function roadmapHref(examSlug?: ExamSlug): string {
-  if (!examSlug) return "/dashboard/roadmap";
-  return `/dashboard/roadmap?exam=${encodeURIComponent(examSlug)}`;
-}
+export { roadmapHref } from "@/lib/learning/roadmap-links";
 
 export function roadmapCategoryBankHref(
   examSlug: ExamSlug,

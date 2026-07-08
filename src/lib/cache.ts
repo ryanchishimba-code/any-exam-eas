@@ -176,6 +176,7 @@ export const CACHE_TTL = {
   referenceBrief: 2 * 60 * 60 * 1000, // 2h — AI + OER synthesis per user/exam
   subscriptionStatus: 60 * 1000, // 60s per user — dedupes nav + home fetches
   questionBankSlice: 10 * 60 * 1000, // 10m
+  examScopedStats: 30 * 1000, // 30s per user/exam — dashboard header stats
 } as const;
 
 /** Stale windows for resilient cache reads when Neon is briefly unavailable. */
@@ -185,6 +186,7 @@ export const CACHE_STALE = {
   userAccess: 10 * 60 * 1000, // 10m
   examPreference: 10 * 60 * 1000, // 10m
   examCatalog: 60 * 60 * 1000, // 1h
+  examScopedStats: 5 * 60 * 1000, // 5m
 } as const;
 
 export function invalidateSubscriptionStatusCache(userId: string): void {
@@ -203,4 +205,5 @@ export function invalidateLearningDashboardCache(userId: string): void {
   cacheDeleteMatching(`${dashboardPrefix}:`);
   cacheDeleteMatching(`${cacheKey(["weak-topics", userId])}:`);
   cacheDeleteMatching(`${cacheKey(["library-hub-stats", userId])}:`);
+  cacheDeleteMatching(`${cacheKey(["exam-scoped-stats", userId])}:`);
 }

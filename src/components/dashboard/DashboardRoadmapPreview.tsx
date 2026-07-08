@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, Map } from "lucide-react";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
-import { roadmapHref } from "@/lib/learning/exam-roadmap";
+import { roadmapHref } from "@/lib/learning/roadmap-links";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
