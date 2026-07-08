@@ -247,6 +247,25 @@ describe("naplex format coherence", () => {
     expect(orphanGenericCalcStemIssue(item)?.codes).toContain("naplex_orphan_calc_stem");
   });
 
+  it("accepts weight-based IV infusion rate when mcg/kg/min, weight, and bag strength are present", () => {
+    const item: BankItem = {
+      subjectId: "compounding-calculations",
+      vignette:
+        "ICU | Dopamine 7 mcg/kg/min IV | Patient 80 kg | Final bag strength 1600 mcg/mL",
+      question:
+        "What infusion rate (mL/hr) delivers the ordered dose? (Round to nearest whole number.)",
+      options: [],
+      correctAnswer: "15",
+      explanation:
+        "7 mcg/kg/min × 80 kg = 560 mcg/min = 33,600 mcg/hr. Rate = 33,600 ÷ 1600 = 21 mL/hr. Verify pump programming before administration.",
+      itemType: "constructed_response",
+      ngnPayload: { kind: "constructed", unit: "mL/hr" },
+    };
+
+    expect(calculationContextSupportsStem(item)).toBe(true);
+    expect(orphanGenericCalcStemIssue(item)).toBeNull();
+  });
+
   it("flags uncalculable mg/mL concentration from mcg per actuation only", () => {
     const stem =
       "Calculate the concentration in mg/mL of the salmeterol/fluticasone inhaler if it contains 250 mcg of fluticasone and 50 mcg of salmeterol per actuation in a 120-actuation canister.";

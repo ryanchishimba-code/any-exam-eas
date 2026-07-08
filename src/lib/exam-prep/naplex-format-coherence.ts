@@ -177,7 +177,10 @@ export function concentrationStemLacksSolvableInputs(text: string): boolean {
         text
       )) ||
     /\d+(?:\.\d+)?\s*mg\/(?:5\s*mL|\d+\s*mL)/i.test(text) ||
-    /(?:alligation|C1V1|dilute to \d+(?:\.\d+)?\s*mL)/i.test(text);
+    /(?:alligation|C1V1|dilute to \d+(?:\.\d+)?\s*mL)/i.test(text) ||
+    (/(?:mcg|mg)\/mL/i.test(text) &&
+      /(?:mcg|mg)\/kg\/min/i.test(text) &&
+      /\d+\s*kg\b/i.test(text));
 
   return !hasSolvableConcInputs;
 }
@@ -201,8 +204,19 @@ export function calcStemMatchesVignetteData(item: BankItem): boolean {
     return !concentrationStemLacksSolvableInputs(blob);
   }
 
-  if (/mL\/hr|infusion pump/i.test(stem)) {
-    return /\d+(?:\.\d+)?\s*mL\b.{0,48}(?:over|in)\s*\d+(?:\.\d+)?\s*(?:h|hr|hours?)/i.test(blob);
+  if (/mL\/hr|infusion pump|infusion rate/i.test(stem)) {
+    if (/\d+(?:\.\d+)?\s*mL\b.{0,48}(?:over|in)\s*\d+(?:\.\d+)?\s*(?:h|hr|hours?)/i.test(blob)) {
+      return true;
+    }
+    // Weight-based continuous infusion: ordered mcg/kg/min (or mg/kg/min) + bag strength in mcg/mL or mg/mL.
+    if (
+      /(?:mcg|mg)\/kg\/min/i.test(blob) &&
+      /\d+\s*kg\b/i.test(blob) &&
+      /(?:mcg|mg)\/mL/i.test(blob)
+    ) {
+      return true;
+    }
+    return false;
   }
 
   if (/total volume in mL/i.test(stem)) {
@@ -611,6 +625,8 @@ function parsePediatricDoseDivisions(vignette: string): number {
 function isPediatricMgKgDoseCalcMismatch(item: BankItem): boolean {
   const vignette = resolveNaplexVignette(item);
   if (!/mg\/kg|mcg\/kg/i.test(vignette) || !/\d+\s*kg\b/i.test(vignette)) return false;
+  // Continuous IV infusion (mcg/kg/min) is a pump-rate calculation, not mg/kg/day per-dose math.
+  if (/(?:mcg|mg)\/kg\/min/i.test(vignette)) return false;
   if (!CALC_LEAD_IN.test(resolveNaplexStem(item))) return false;
   return !calcStemMatchesVignetteData(item);
 }

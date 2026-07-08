@@ -3,6 +3,7 @@
  * Formulas align with standard pharmacy references (FDA labels, USP compounding).
  */
 import type { EnrichedBankItem } from "./seed-helpers";
+import { ensureCalcExplanation, ensureCalcVignette } from "./naplex-calc-mcq-helpers";
 import { naplexCalcCase } from "./naplex-seed-factory";
 
 const A1 = "naplex-2026-medication-dispensing" as const;
@@ -13,6 +14,28 @@ const USP797 = { label: "USP <797> Sterile Compounding", url: "https://www.usp.o
 function fmt(n: number, decimals = 0): string {
   const v = decimals > 0 ? Number(n.toFixed(decimals)) : Math.round(n);
   return String(v);
+}
+
+function calcCase(
+  subjectId: string,
+  vignette: string,
+  stem: string,
+  correctValue: string,
+  unit: string,
+  explanation: string,
+  meta: Parameters<typeof naplexCalcCase>[6],
+  solutionSteps?: string[]
+): EnrichedBankItem {
+  return naplexCalcCase(
+    subjectId,
+    ensureCalcVignette(vignette),
+    stem,
+    correctValue,
+    unit,
+    ensureCalcExplanation(explanation),
+    meta,
+    solutionSteps
+  );
 }
 
 function pushIvRate(items: EnrichedBankItem[], seen: Set<string>) {
@@ -27,12 +50,12 @@ function pushIvRate(items: EnrichedBankItem[], seen: Set<string>) {
         for (const conc of [400, 800, 1200, 1600]) {
           const rate = (dose * weight * 60) / conc;
           const answer = fmt(rate, 0);
-          const vignette = `ICU | ${drug.name} ${dose} ${drug.unit} IV | Patient ${weight} kg | Bag concentration ${conc} ${drug.concLabel}`;
+          const vignette = `ICU | ${drug.name} ${dose} ${drug.unit} IV | Patient ${weight} kg | Final bag strength ${conc} ${drug.concLabel}`;
           const key = `${vignette}|${answer}`;
           if (seen.has(key)) continue;
           seen.add(key);
           items.push(
-            naplexCalcCase(
+            calcCase(
               "compounding-calculations",
               vignette,
               "What infusion rate (mL/hr) delivers the ordered dose? (Round to nearest whole number.)",
@@ -77,7 +100,7 @@ function pushPediatricVolume(items: EnrichedBankItem[], seen: Set<string>) {
           ? "How many milliliters per dose? (Round to one decimal.)"
           : `How many milliliters (mL) should be dispensed for the full ${drug.days}-day course? (Round to nearest whole mL.)`;
       items.push(
-        naplexCalcCase(
+        calcCase(
           "compounding-calculations",
           vignette,
           stem,
@@ -108,7 +131,7 @@ function pushCrCl(items: EnrichedBankItem[], seen: Set<string>) {
           if (seen.has(key)) continue;
           seen.add(key);
           items.push(
-            naplexCalcCase(
+            calcCase(
               "pharmacokinetics",
               vignette,
               "Estimated creatinine clearance (mL/min)? (Round to nearest whole number.)",
@@ -135,7 +158,7 @@ function pushKclStock(items: EnrichedBankItem[], seen: Set<string>) {
       if (seen.has(key)) continue;
       seen.add(key);
       items.push(
-        naplexCalcCase(
+        calcCase(
           "compounding-calculations",
           vignette,
           "How many mL of KCl stock are needed? (Round to one decimal.)",
@@ -160,7 +183,7 @@ function pushPumpRate(items: EnrichedBankItem[], seen: Set<string>) {
       if (seen.has(key)) continue;
       seen.add(key);
       items.push(
-        naplexCalcCase(
+        calcCase(
           "compounding-calculations",
           vignette,
           "Required pump rate (mL/hr)? (Round to nearest whole number.)",
@@ -185,7 +208,7 @@ function pushPercentWv(items: EnrichedBankItem[], seen: Set<string>) {
       if (seen.has(key)) continue;
       seen.add(key);
       items.push(
-        naplexCalcCase(
+        calcCase(
           "compounding-calculations",
           vignette,
           "How many mg of solute are in this preparation? (Round to nearest whole mg.)",
@@ -215,7 +238,7 @@ function pushAlligation(items: EnrichedBankItem[], seen: Set<string>) {
         if (seen.has(key)) continue;
         seen.add(key);
         items.push(
-          naplexCalcCase(
+          calcCase(
             "compounding-calculations",
             vignette,
             "Milliliters of higher-strength stock required? (Round to nearest whole mL.)",
@@ -242,7 +265,7 @@ function pushTabletDispense(items: EnrichedBankItem[], seen: Set<string>) {
         if (seen.has(key)) continue;
         seen.add(key);
         items.push(
-          naplexCalcCase(
+          calcCase(
             "compounding-calculations",
             vignette,
             "How many tablets should be dispensed for this order? (Round to nearest whole tablet.)",
@@ -270,7 +293,7 @@ function pushHeparinBolus(items: EnrichedBankItem[], seen: Set<string>) {
         if (seen.has(key)) continue;
         seen.add(key);
         items.push(
-          naplexCalcCase(
+          calcCase(
             "pharmacokinetics",
             vignette,
             "Bolus volume (mL)? (Round to one decimal.)",
@@ -296,7 +319,7 @@ function pushLevothyroxine(items: EnrichedBankItem[], seen: Set<string>) {
       if (seen.has(key)) continue;
       seen.add(key);
       items.push(
-        naplexCalcCase(
+        calcCase(
           "endocrine-rx",
           vignette,
           "Daily dose (mcg)? (Round to nearest whole mcg.)",
