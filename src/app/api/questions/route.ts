@@ -142,6 +142,7 @@ export async function GET(req: Request) {
         .map((s) => s.trim())
         .filter(Boolean)
     : undefined;
+  const naplexTopic = searchParams.get("naplexTopic")?.trim() || undefined;
 
   let nclexPresetConfig: Awaited<
     ReturnType<(typeof import("@/lib/exam-prep/nclex/study-presets"))["getNclexStudyPreset"]>
@@ -249,6 +250,7 @@ export async function GET(req: Request) {
       sessionLimit: limit,
       taskCategory,
       blueprintTopics,
+      naplexTopic,
     });
   } else {
     items = await sampleQuestionBankItems({
@@ -285,6 +287,21 @@ export async function GET(req: Request) {
         { strict: true }
       )
     ).slice(0, limit);
+  } else if (
+    fieldId === "pharmacy" &&
+    bankPractice &&
+    (blueprintTopics?.length || naplexTopic)
+  ) {
+    const { filterItemsForNaplexTopicPractice } = await import(
+      "@/lib/exam-prep/naplex/topic-practice-filter"
+    );
+    const { shuffleBankItems } = await import("@/lib/exam-prep/nclex/session-preset-filters");
+    items = shuffleBankItems(
+      filterItemsForNaplexTopicPractice(items, {
+        blueprintTopics,
+        topicSlug: naplexTopic,
+      })
+    ).slice(0, limit);
   } else if (nclexPresetConfig) {
     const { filterItemsForNclexPreset, shuffleBankItems } = await import(
       "@/lib/exam-prep/nclex/session-preset-filters"
@@ -299,6 +316,19 @@ export async function GET(req: Request) {
     );
     const { shuffleBankItems } = await import("@/lib/exam-prep/nclex/session-preset-filters");
     const pool = filterItemsForNclexBlueprintTopics(items, blueprintTopics, { contentMatch: true });
+    const minPool = Math.min(5, limit);
+    if (bankPractice || pool.length >= minPool) {
+      items = shuffleBankItems(pool).slice(0, limit);
+    }
+  } else if (fieldId === "pharmacy" && blueprintTopics?.length) {
+    const { filterItemsForNaplexBlueprintTopics } = await import(
+      "@/lib/exam-prep/naplex/topic-blueprint-match"
+    );
+    const { shuffleBankItems } = await import("@/lib/exam-prep/nclex/session-preset-filters");
+    const pool = filterItemsForNaplexBlueprintTopics(items, blueprintTopics, {
+      contentMatch: true,
+      topicSlug: naplexTopic,
+    });
     const minPool = Math.min(5, limit);
     if (bankPractice || pool.length >= minPool) {
       items = shuffleBankItems(pool).slice(0, limit);

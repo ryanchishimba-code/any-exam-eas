@@ -220,7 +220,8 @@ function activeSubjectWhere(
   fieldId: string,
   subjectId: string,
   taskCategory?: string | null,
-  blueprintTopics?: string[]
+  blueprintTopics?: string[],
+  itemType?: string | null
 ) {
   return {
     fieldId,
@@ -229,6 +230,7 @@ function activeSubjectWhere(
     qaPassed: true as const,
     ...(taskCategory?.trim() ? { taskCategory: taskCategory.trim() } : {}),
     ...(blueprintTopics?.length ? { blueprintTopic: { in: blueprintTopics } } : {}),
+    ...(itemType?.trim() ? { itemType: itemType.trim() } : {}),
     ...usmleStepSeparationWhere(fieldId),
   };
 }
@@ -277,6 +279,8 @@ export async function sampleQuestionBankItems(params: {
   taskCategory?: string | null;
   /** NCLEX: restrict to granular 2026 blueprint topic slugs. */
   blueprintTopics?: string[];
+  /** NAPLEX calc sessions: prefer constructed_response rows. */
+  itemType?: string | null;
 }): Promise<BankItem[]> {
   await ensureBankAvailable(params.fieldId, params.subjectId);
 
@@ -316,7 +320,8 @@ export async function sampleQuestionBankItems(params: {
     params.fieldId,
     params.subjectId,
     params.taskCategory,
-    params.blueprintTopics
+    params.blueprintTopics,
+    params.itemType
   );
   const total = await prisma.questionBankItem.count({ where });
 

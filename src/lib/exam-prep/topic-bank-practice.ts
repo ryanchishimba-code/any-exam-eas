@@ -9,6 +9,8 @@ import { isMpjeField } from "@/lib/mpje/config";
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { filterBankItemsForSessionPool } from "@/lib/exam-prep/prepare-bank-session";
 import { filterItemsForNclexBlueprintTopics } from "@/lib/exam-prep/nclex/topic-blueprint-match";
+import { filterItemsForNaplexBlueprintTopics } from "@/lib/exam-prep/naplex/topic-blueprint-match";
+import { isNaplexCalcTopicSlug, isNaplexCalculationItem } from "@/lib/exam-prep/naplex/calc-topic-qa";
 
 /** Single-subject question bank sessions (not mixed-field / not timed full exams). */
 export function supportsTopicBankPractice(fieldId: string): boolean {
@@ -21,6 +23,147 @@ export function resolveTopicBankSampleCount(limit: number): number {
 }
 
 const TOPIC_GATHER_MAX_ROUNDS = 2;
+const NAPLEX_TOPIC_GATHER_MAX_ROUNDS = 8;
+
+function naplexBlueprintFilter(
+  items: BankItem[],
+  blueprintTopics: string[],
+  naplexTopic?: string
+): BankItem[] {
+  return filterItemsForNaplexBlueprintTopics(items, blueprintTopics, {
+    contentMatch: true,
+    topicSlug: naplexTopic,
+  });
+}
+
+async function gatherNaplexBlueprintTopicPool(params: {
+  fieldId: string;
+  subjectId: string;
+  sessionLimit: number;
+  poolTarget: number;
+  minVetted: number;
+  blueprintTopics: string[];
+  naplexTopic?: string;
+  taskCategory?: string | null;
+  stateCode?: string;
+}): Promise<BankItem[]> {
+  const seen = new Set<string>();
+  const merged: BankItem[] = [];
+
+  const mergeAligned = (items: BankItem[]) => {
+    for (const item of items) {
+      const key = item.id ?? `${item.subjectId ?? ""}:${item.question.trim().toLowerCase()}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      merged.push(item);
+    }
+  };
+
+  for (let round = 0; round < NAPLEX_TOPIC_GATHER_MAX_ROUNDS; round++) {
+    const pull = await sampleQuestionBankItems({
+      fieldId: params.fieldId,
+      subjectId: params.subjectId,
+      count: params.poolTarget,
+      poolMultiplier: 4,
+      taskCategory: params.taskCategory,
+      stateCode: params.stateCode,
+    });
+    const vetted = filterBankItemsForSessionPool({
+      fieldId: params.fieldId,
+      items: pull,
+    });
+    mergeAligned(
+      naplexBlueprintFilter(vetted, params.blueprintTopics, params.naplexTopic)
+    );
+    if (merged.length >= params.minVetted) break;
+    if (merged.length >= params.sessionLimit) break;
+  }
+
+  if (merged.length < params.sessionLimit) {
+    for (let round = 0; round < NAPLEX_TOPIC_GATHER_MAX_ROUNDS; round++) {
+      const fieldPull = await sampleQuestionBankItemsForField({
+        fieldId: params.fieldId,
+        count: Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, params.poolTarget * 3),
+        taskCategory: params.taskCategory,
+      });
+      const fieldVetted = filterBankItemsForSessionPool({
+        fieldId: params.fieldId,
+        items: fieldPull,
+      });
+      mergeAligned(
+        naplexBlueprintFilter(fieldVetted, params.blueprintTopics, params.naplexTopic)
+      );
+      if (merged.length >= params.minVetted) break;
+      if (merged.length >= params.sessionLimit) break;
+    }
+  }
+
+  if (params.naplexTopic && isNaplexCalcTopicSlug(params.naplexTopic)) {
+    for (const subjectId of [params.subjectId, "compounding-calculations", "cardiovascular-rx"] as const) {
+      const calcPull = await sampleQuestionBankItems({
+        fieldId: params.fieldId,
+        subjectId,
+        count: params.poolTarget,
+        poolMultiplier: 4,
+        itemType: "constructed_response",
+      });
+      const calcVetted = filterBankItemsForSessionPool({
+        fieldId: params.fieldId,
+        items: calcPull,
+      });
+      mergeAligned(
+        naplexBlueprintFilter(calcVetted, params.blueprintTopics, params.naplexTopic)
+      );
+    }
+
+    if (merged.length < params.sessionLimit) {
+      const fieldPull = await sampleQuestionBankItemsForField({
+        fieldId: params.fieldId,
+        count: QUESTION_BANK_SAMPLE_MAX_PULL,
+        taskCategory: params.taskCategory,
+      });
+      const calcLike = filterBankItemsForSessionPool({
+        fieldId: params.fieldId,
+        items: fieldPull,
+      }).filter((item) => isNaplexCalculationItem(item));
+      mergeAligned(
+        naplexBlueprintFilter(calcLike, params.blueprintTopics, params.naplexTopic)
+      );
+    }
+  }
+
+  if (merged.length < params.sessionLimit) {
+    mergeAligned(
+      await naplexFallbackTopicScan({
+        fieldId: params.fieldId,
+        blueprintTopics: params.blueprintTopics,
+        naplexTopic: params.naplexTopic,
+      })
+    );
+  }
+
+  return dedupeBankItemsById(merged).slice(0, params.poolTarget);
+}
+
+async function naplexFallbackTopicScan(params: {
+  fieldId: string;
+  blueprintTopics: string[];
+  naplexTopic?: string;
+}): Promise<BankItem[]> {
+  const { getPrisma } = await import("@/lib/prisma");
+  const { enrichBankItemFromRow } = await import("@/lib/mpje/parse-bank-options");
+  const prisma = getPrisma();
+  const rows = await prisma.questionBankItem.findMany({
+    where: { fieldId: params.fieldId, active: true, qaPassed: true },
+    orderBy: { id: "asc" },
+  });
+  const items = rows.map((row) => enrichBankItemFromRow(row));
+  const vetted = filterBankItemsForSessionPool({
+    fieldId: params.fieldId,
+    items,
+  });
+  return naplexBlueprintFilter(vetted, params.blueprintTopics, params.naplexTopic);
+}
 
 /**
  * Pull and vet enough single-topic rows for an exact-count session.
@@ -32,8 +175,10 @@ export async function gatherTopicBankSessionPool(params: {
   sessionLimit: number;
   taskCategory?: string | null;
   stateCode?: string;
-  /** NCLEX: granular blueprint slugs for topic-faithful practice. */
+  /** NCLEX/NAPLEX: granular blueprint slugs for topic-faithful practice. */
   blueprintTopics?: string[];
+  /** NAPLEX: Study Hub topic slug for calc subtopic filters. */
+  naplexTopic?: string;
 }): Promise<BankItem[]> {
   const poolTarget = resolveTopicBankSampleCount(params.sessionLimit);
   const minVetted = Math.min(poolTarget, params.sessionLimit + 40);
@@ -52,6 +197,20 @@ export async function gatherTopicBankSessionPool(params: {
   };
 
   if (blueprintTopics?.length) {
+    if (params.fieldId === "pharmacy") {
+      return gatherNaplexBlueprintTopicPool({
+        fieldId: params.fieldId,
+        subjectId: params.subjectId,
+        sessionLimit: params.sessionLimit,
+        poolTarget,
+        minVetted,
+        blueprintTopics,
+        naplexTopic: params.naplexTopic,
+        taskCategory: params.taskCategory,
+        stateCode: params.stateCode,
+      });
+    }
+
     for (let round = 0; round < TOPIC_GATHER_MAX_ROUNDS; round++) {
       const pull = await sampleQuestionBankItems({
         fieldId: params.fieldId,
@@ -68,7 +227,10 @@ export async function gatherTopicBankSessionPool(params: {
         items: pull,
       });
 
-      mergeVetted(filterItemsForNclexBlueprintTopics(vetted, blueprintTopics, { contentMatch: true }));
+      const blueprintFiltered = filterItemsForNclexBlueprintTopics(vetted, blueprintTopics, {
+        contentMatch: true,
+      });
+      mergeVetted(blueprintFiltered);
 
       if (merged.length >= minVetted) break;
       if (merged.length >= params.sessionLimit) break;

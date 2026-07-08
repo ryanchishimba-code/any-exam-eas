@@ -2,6 +2,7 @@ import { ROUTES, fullExamHref } from "@/lib/routes";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { fullExamLaunchHref } from "@/lib/full-exam/config";
 import { resolveNclexTopicPracticeParams } from "@/lib/exam-prep/nclex/topic-practice";
+import { resolveNaplexTopicPracticeParams } from "@/lib/exam-prep/naplex/topic-practice";
 import { isUsmleStep1Subject } from "@/lib/subjects/medicine/subject-splits";
 import type { ExamSlug, HighYieldTopic } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
@@ -33,6 +34,7 @@ export type TopicPracticeReturnContext = {
 export type TopicPracticeFilters = {
   blueprintTopics?: string[];
   nclexPreset?: string;
+  naplexTopic?: string;
 };
 
 /** Question bank practice filtered to a high-yield topic slug. */
@@ -60,6 +62,9 @@ export function practiceTopicHref(
   if (filters?.nclexPreset) {
     qs.set("nclexPreset", filters.nclexPreset);
   }
+  if (filters?.naplexTopic) {
+    qs.set("naplexTopic", filters.naplexTopic);
+  }
   if (returnTo) {
     qs.set("returnExam", examSlug);
     qs.set("returnTopic", returnTo.topicSlug);
@@ -86,6 +91,20 @@ export function highYieldTopicPracticeHref(
       {
         blueprintTopics: params.blueprintTopics,
         nclexPreset: params.nclexPreset,
+      }
+    );
+  }
+
+  if (examSlug === "naplex") {
+    const params = resolveNaplexTopicPracticeParams(topic);
+    return practiceTopicHref(
+      examSlug,
+      params.subjectId,
+      count,
+      returnTo ?? { topicSlug: topic.slug, topicTitle: topic.title },
+      {
+        blueprintTopics: params.blueprintTopics,
+        naplexTopic: params.topicSlug,
       }
     );
   }
