@@ -1,7 +1,10 @@
 /**
  * Two-tier cache: in-process L1 + optional Upstash Redis L2 for cross-instance hits.
  * Hot paths (user access, subscription status, exam preference) use cacheGetOrSetDeduped.
- * Pass `staleTtlMs` to serve expired entries when the DB is temporarily unavailable.
+ * Pass `staleTtlMs` to serve expired L1 entries when the DB is temporarily unavailable.
+ *
+ * Important: Redis only stores the *fresh* TTL. Extending Redis with staleTtlMs made
+ * other serverless instances treat outdated values as fresh for minutes after a write.
  */
 import {
   redisCacheDelete,
@@ -20,7 +23,7 @@ const store = new Map<string, Entry<unknown>>();
 const MAX_ENTRIES = 500;
 
 export type CacheResilienceOptions = {
-  /** Keep serving expired entries for this long on transient DB errors. */
+  /** Keep serving expired L1 entries for this long on transient DB errors. */
   staleTtlMs?: number;
 };
 
@@ -72,6 +75,33 @@ export function cacheDelete(key: string): void {
   void redisCacheDelete(key);
 }
 
+/** Drop L1 only — used to simulate another serverless isolate reading Redis. */
+export function cacheDeleteLocal(key: string): void {
+  store.delete(key);
+}
+
+/** Await L1 + Redis delete so writers do not race other instances. */
+export async function cacheDeleteAsync(key: string): Promise<void> {
+  store.delete(key);
+  await redisCacheDelete(key);
+}
+
+/**
+ * Write-through helper for strongly consistent keys (exam preference, etc.).
+ * Updates L1 immediately and awaits Redis so other instances see the new value
+ * as soon as their local L1 entry expires (or on cold start).
+ */
+export async function cacheWriteThrough<T>(
+  key: string,
+  value: T,
+  ttlMs: number,
+  options?: CacheResilienceOptions
+): Promise<void> {
+  const staleTtlMs = options?.staleTtlMs ?? 0;
+  cacheSet(key, value, ttlMs, staleTtlMs);
+  await redisCacheSet(key, value, ttlMs);
+}
+
 /** Delete all entries whose key starts with `prefix` (L1 only — use targeted deletes for Redis). */
 export function cacheDeleteMatching(prefix: string): void {
   for (const key of store.keys()) {
@@ -101,8 +131,8 @@ async function readThroughCache<T>(
   try {
     const value = await factory();
     cacheSet(key, value, ttlMs, staleTtlMs);
-    const redisTtl = staleTtlMs > 0 ? ttlMs + staleTtlMs : ttlMs;
-    await redisCacheSet(key, value, redisTtl);
+    // Redis stores fresh TTL only — stale window is L1/DB-error resilience, not cross-instance freshness.
+    await redisCacheSet(key, value, ttlMs);
     return value;
   } catch (error) {
     if (staleTtlMs > 0 && l1 && isTransientDbError(error)) {
@@ -171,7 +201,8 @@ export const CACHE_TTL = {
   researchBrief: 60 * 60 * 1000, // 1h — Tavily + synthesis
   subjectCatalog: 30 * 60 * 1000, // 30m — topic counts change infrequently post-sync
   learningDashboard: 30 * 1000, // 30s per user
-  examPreference: 60 * 1000, // 60s per user
+  // Keep short — multi-instance L1 cannot see other isolates' invalidations until expiry.
+  examPreference: 5 * 1000, // 5s per user
   userAccess: 60 * 1000, // 60s per user — dedupes requirePremiumPage + nav
   referenceBrief: 2 * 60 * 60 * 1000, // 2h — AI + OER synthesis per user/exam
   subscriptionStatus: 60 * 1000, // 60s per user — dedupes nav + home fetches
@@ -179,12 +210,12 @@ export const CACHE_TTL = {
   examScopedStats: 30 * 1000, // 30s per user/exam — dashboard header stats
 } as const;
 
-/** Stale windows for resilient cache reads when Neon is briefly unavailable. */
+/** Stale windows for resilient L1 reads when Neon is briefly unavailable (not Redis freshness). */
 export const CACHE_STALE = {
   subjectCatalog: 2 * 60 * 60 * 1000, // 2h
   learningDashboard: 5 * 60 * 1000, // 5m
   userAccess: 10 * 60 * 1000, // 10m
-  examPreference: 10 * 60 * 1000, // 10m
+  examPreference: 60 * 1000, // 1m L1-only fallback on DB errors
   examCatalog: 60 * 60 * 1000, // 1h
   examScopedStats: 5 * 60 * 1000, // 5m
 } as const;
@@ -195,7 +226,12 @@ export function invalidateSubscriptionStatusCache(userId: string): void {
 }
 
 export function invalidateExamPreferenceCache(userId: string): void {
-  cacheDelete(cacheKey(["exam-preference", userId]));
+  void invalidateExamPreferenceCacheAsync(userId);
+}
+
+/** Awaitable invalidation used by exam-switch writers. */
+export async function invalidateExamPreferenceCacheAsync(userId: string): Promise<void> {
+  await cacheDeleteAsync(cacheKey(["exam-preference", userId]));
   invalidateLearningDashboardCache(userId);
 }
 

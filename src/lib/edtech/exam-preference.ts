@@ -2,12 +2,24 @@ import { cache } from "react";
 import { prisma } from "@/lib/prisma";
 import { ensureBoardExam } from "@/lib/edtech/board-exam-sync";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
-import { CACHE_TTL, cacheGetOrSetDeduped, cacheKey, invalidateExamPreferenceCache, CACHE_STALE } from "@/lib/cache";
+import {
+  CACHE_TTL,
+  CACHE_STALE,
+  cacheGetOrSetDeduped,
+  cacheKey,
+  cacheWriteThrough,
+  invalidateExamPreferenceCacheAsync,
+  invalidateLearningDashboardCache,
+} from "@/lib/cache";
 import type { ExamSlug, UserExamPreference } from "@/types/edtech";
+
+function examPreferenceCacheKey(userId: string): string {
+  return cacheKey(["exam-preference", userId]);
+}
 
 async function readUserExamPreference(userId: string): Promise<UserExamPreference | null> {
   return cacheGetOrSetDeduped(
-    cacheKey(["exam-preference", userId]),
+    examPreferenceCacheKey(userId),
     CACHE_TTL.examPreference,
     async () => {
       const row = await prisma.userExamPreference.findUnique({ where: { userId } });
@@ -43,7 +55,20 @@ export async function setUserExamPreference(userId: string, examSlug: ExamSlug):
     create: { userId, examSlug, lastStudiedAt: now, updatedAt: now },
     update: { examSlug, lastStudiedAt: now, updatedAt: now },
   });
-  invalidateExamPreferenceCache(userId);
+
+  const next: UserExamPreference = {
+    userId,
+    examSlug,
+    lastStudiedAt: now,
+  };
+
+  // Overwrite L1 + Redis with the new exam immediately. Other serverless instances
+  // still hold a short L1 TTL (CACHE_TTL.examPreference); once it expires they read
+  // this Redis value instead of the previous exam.
+  await cacheWriteThrough(examPreferenceCacheKey(userId), next, CACHE_TTL.examPreference, {
+    staleTtlMs: CACHE_STALE.examPreference,
+  });
+  invalidateLearningDashboardCache(userId);
 }
 
 export async function touchExamStudied(userId: string): Promise<void> {
@@ -52,7 +77,7 @@ export async function touchExamStudied(userId: string): Promise<void> {
     where: { userId },
     data: { lastStudiedAt: now, updatedAt: now },
   });
-  invalidateExamPreferenceCache(userId);
+  await invalidateExamPreferenceCacheAsync(userId);
 }
 
 export function resolveExamFieldId(examSlug: ExamSlug): string {
