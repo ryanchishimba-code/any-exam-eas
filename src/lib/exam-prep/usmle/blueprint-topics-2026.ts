@@ -329,6 +329,14 @@ export const USMLE_STEP3_TOPIC_GROUPS: Usmle2026TopicGroup[] = [
       topic("medication-monitoring", "Psychotropic monitoring & adherence"),
     ],
   },
+  {
+    categoryId: "pharm-advertising",
+    label: "Pharmaceutical Advertising & Abstracts",
+    stepLevel: "step3",
+    topics: [
+      topic("pharmaceutical-ads-abstracts", "Pharmaceutical ads & clinical trial abstracts"),
+    ],
+  },
 ];
 
 /** Cross-cutting themes tested across all USMLE steps. */
