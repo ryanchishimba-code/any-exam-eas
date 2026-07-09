@@ -1,6 +1,9 @@
+import { cacheGetOrSetDeduped, cacheKey, CACHE_TTL } from "@/lib/cache";
 import { prisma } from "@/lib/prisma";
 import { EXAM_CATALOG, EXAM_SLUGS, isExamSlug } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
+
+const BOARD_EXAM_BOOTSTRAP_KEY = cacheKey(["board-exams", "bootstrapped"]);
 
 function boardExamFields(slug: ExamSlug) {
   const exam = EXAM_CATALOG[slug];
@@ -34,7 +37,20 @@ export async function ensureBoardExam(slug: ExamSlug): Promise<void> {
   });
 }
 
-/** Idempotent bootstrap for all catalog exams — safe to call on page load. */
+/**
+ * Idempotent bootstrap for all catalog exams.
+ * Serialized upserts + cross-instance dedup — avoids P2024 pool timeouts when
+ * connection_limit=1 on Vercel serverless.
+ */
 export async function ensureAllBoardExams(): Promise<void> {
-  await Promise.all(EXAM_SLUGS.map((slug) => ensureBoardExam(slug)));
+  await cacheGetOrSetDeduped(
+    BOARD_EXAM_BOOTSTRAP_KEY,
+    CACHE_TTL.examCatalog,
+    async () => {
+      for (const slug of EXAM_SLUGS) {
+        await ensureBoardExam(slug);
+      }
+      return true;
+    }
+  );
 }

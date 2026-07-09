@@ -1,3 +1,4 @@
+import { ensureAllBoardExams } from "@/lib/edtech/board-exam-sync";
 import { Prisma } from "@prisma/client";
 import { createHash } from "crypto";
 import { prisma } from "@/lib/prisma";
@@ -250,6 +251,8 @@ async function runSync(): Promise<SyncQuestionBankResult> {
   const activeHashes = new Set<string>();
 
   try {
+    await ensureAllBoardExams();
+
     for (const row of seeds) {
       activeHashes.add(
         bankItemContentHash(row.fieldId, row.subjectId, row.item)
