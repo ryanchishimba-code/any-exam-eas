@@ -116,14 +116,17 @@ export function withPoolParams(url: string): string {
   if (!isPostgresDatabaseUrl(url)) return url;
   try {
     const parsed = new URL(url);
+    // Vercel serverless: 1 connection per isolate. Higher limits (3–5) exhaust
+    // Neon's pool under concurrent analytics/beacon traffic and cause P2024 /
+    // idle-in-transaction kills. Override with PRISMA_CONNECTION_LIMIT if needed.
     const connectionLimit =
       process.env.PRISMA_CONNECTION_LIMIT ??
-      (process.env.VERCEL ? "3" : "5");
+      (process.env.VERCEL ? "1" : "5");
     // Always enforce — Vercel Neon integration URLs often ship with limit=5.
     parsed.searchParams.set("connection_limit", connectionLimit);
     parsed.searchParams.set(
       "pool_timeout",
-      process.env.PRISMA_POOL_TIMEOUT ?? (process.env.VERCEL ? "30" : "20")
+      process.env.PRISMA_POOL_TIMEOUT ?? "20"
     );
     parsed.searchParams.set(
       "connect_timeout",

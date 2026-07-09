@@ -54,7 +54,7 @@ export function withPoolParams(url) {
     parsed.searchParams.set("connection_limit", connectionLimit);
     parsed.searchParams.set(
       "pool_timeout",
-      process.env.PRISMA_POOL_TIMEOUT ?? (process.env.VERCEL ? "30" : "20")
+      process.env.PRISMA_POOL_TIMEOUT ?? "20"
     );
     parsed.searchParams.set(
       "connect_timeout",

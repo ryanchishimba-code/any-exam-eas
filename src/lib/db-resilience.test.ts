@@ -39,13 +39,29 @@ describe("retryDelayMs", () => {
 });
 
 describe("getPrismaRetryOptions", () => {
-  it("uses longer timeouts on Vercel", () => {
+  it("uses bounded retries on Vercel to protect the Neon pool", () => {
     const prev = process.env.VERCEL;
+    const prevTimeout = process.env.PRISMA_QUERY_TIMEOUT_MS;
+    const prevAttempts = process.env.PRISMA_MAX_ATTEMPTS;
+    delete process.env.PRISMA_QUERY_TIMEOUT_MS;
+    delete process.env.PRISMA_MAX_ATTEMPTS;
     process.env.VERCEL = "1";
     const opts = getPrismaRetryOptions();
-    expect(opts.maxAttempts).toBeGreaterThanOrEqual(3);
-    expect(opts.timeoutMs).toBeGreaterThanOrEqual(15_000);
+    expect(opts.maxAttempts).toBe(2);
+    expect(opts.timeoutMs).toBe(12_000);
     process.env.VERCEL = prev;
+    if (prevTimeout === undefined) delete process.env.PRISMA_QUERY_TIMEOUT_MS;
+    else process.env.PRISMA_QUERY_TIMEOUT_MS = prevTimeout;
+    if (prevAttempts === undefined) delete process.env.PRISMA_MAX_ATTEMPTS;
+    else process.env.PRISMA_MAX_ATTEMPTS = prevAttempts;
+  });
+});
+
+describe("isTransientDbError race timeouts", () => {
+  it("does not retry Promise.race label_timeout (avoids pool pile-up)", () => {
+    expect(isTransientDbError(new Error("prisma:User.update_timeout"))).toBe(
+      false
+    );
   });
 });
 

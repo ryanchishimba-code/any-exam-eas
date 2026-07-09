@@ -37,9 +37,13 @@ export function getPrismaRetryOptions(): Required<
 > {
   const vercel = Boolean(process.env.VERCEL);
   return {
-    maxAttempts: Number(process.env.PRISMA_MAX_ATTEMPTS ?? (vercel ? 3 : 3)),
-    timeoutMs: Number(process.env.PRISMA_QUERY_TIMEOUT_MS ?? (vercel ? 35_000 : 15_000)),
-    baseDelayMs: vercel ? 150 : 200,
+    // Keep attempts low on Vercel: Promise.race timeouts do not cancel the
+    // underlying Prisma query, so retries can pile up and exhaust the pool.
+    maxAttempts: Number(process.env.PRISMA_MAX_ATTEMPTS ?? (vercel ? 2 : 3)),
+    timeoutMs: Number(
+      process.env.PRISMA_QUERY_TIMEOUT_MS ?? (vercel ? 12_000 : 15_000)
+    ),
+    baseDelayMs: vercel ? 250 : 200,
   };
 }
 
@@ -82,7 +86,13 @@ export function isTransientDbError(error: unknown): boolean {
   if (error instanceof Prisma.PrismaClientRustPanicError) return true;
 
   const msg = (error instanceof Error ? error.message : String(error)).toLowerCase();
-  if (msg.includes("_timeout") || msg.endsWith(" timeout")) return true;
+
+  // Our Promise.race label_timeout does NOT cancel the in-flight Prisma query.
+  // Retrying immediately opens another connection while the first still holds
+  // a pool slot — that caused production idle-in-transaction / P2024 storms.
+  if (msg.includes("_timeout")) return false;
+
+  if (msg.endsWith(" timeout")) return true;
 
   return (
     msg.includes("econnreset") ||
