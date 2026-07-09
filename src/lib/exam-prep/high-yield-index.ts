@@ -13,6 +13,7 @@ import { USMLE_QUALITY_V2 } from "./usmle-quality-v2";
 import { USMLE_STEP3_V3 } from "./usmle-step3-v3";
 import { NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/naplex-physician-educator-batch-01";
 import { NAPLEX_PHARMACEUTICS_BATCH_01 } from "@/lib/edtech/seeds/naplex-pharmaceutics-batch-01";
+import { NAPLEX_PHARMACEUTICS_BATCH_02 } from "@/lib/edtech/seeds/naplex-pharmaceutics-batch-02";
 import { PANCE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/pance-physician-educator-batch-01";
 import { collectPanceSeedItems } from "@/lib/edtech/seeds/pance-seed-registry";
 import { collectAanpFnpSeedItems } from "@/lib/edtech/seeds/aanp-fnp-seed-registry";
@@ -26,6 +27,7 @@ import { NAPLEX_VIGNETTE_SEEDS, USMLE_VIGNETTE_SEEDS } from "./vignette-seeds";
 export { PANCE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/pance-physician-educator-batch-01";
 export { NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/naplex-physician-educator-batch-01";
 export { NAPLEX_PHARMACEUTICS_BATCH_01 } from "@/lib/edtech/seeds/naplex-pharmaceutics-batch-01";
+export { NAPLEX_PHARMACEUTICS_BATCH_02 } from "@/lib/edtech/seeds/naplex-pharmaceutics-batch-02";
 export { USMLE_PHYSICIAN_EDUCATOR_BATCH_01 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-01";
 export { USMLE_PHYSICIAN_EDUCATOR_BATCH_02 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-02";
 export { USMLE_PHYSICIAN_EDUCATOR_BATCH_03 } from "@/lib/edtech/seeds/usmle-physician-educator-batch-03";
@@ -54,6 +56,7 @@ export function collectHighYieldSeedRows(): HighYieldSeedRow[] {
     ...NAPLEX_AREA3_V3,
     ...NAPLEX_PHYSICIAN_EDUCATOR_BATCH_01,
     ...NAPLEX_PHARMACEUTICS_BATCH_01,
+    ...NAPLEX_PHARMACEUTICS_BATCH_02,
   ]) {
     rows.push({
       fieldId: "pharmacy",
