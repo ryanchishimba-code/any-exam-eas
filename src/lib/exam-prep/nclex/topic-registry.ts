@@ -189,7 +189,7 @@ export const NCLEX_TOPIC_REGISTRY: Record<string, NclexTopicMeta> = {
   },
   "chemotherapy-toxicity": {
     clientNeedsDomain: "reduction-risk",
-    blueprintTopicSlugs: ["chemotherapy-side-effects", "ng-feeding-tube"],
+    blueprintTopicSlugs: ["chemotherapy-side-effects"],
   },
   electrolytes: {
     clientNeedsDomain: "physiological-adaptation",

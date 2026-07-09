@@ -49,6 +49,7 @@ async function main() {
             itemType: item.itemType ?? "vignette",
             blueprintTopic: item.blueprintTopic ?? null,
             tags: JSON.stringify(item.tags ?? []),
+            references: item.references ?? undefined,
             source: "curated",
             qaPassed,
             qaAuditedAt: new Date(),
@@ -58,7 +59,9 @@ async function main() {
         });
       }
       updated++;
-      console.log(`  ↻ ${existing.id} — ${item.question.slice(0, 60)}…`);
+      console.log(
+        `  ↻ ${existing.id} — ${item.question.slice(0, 60)}… (tier ${quality.tier}${qaPassed ? ", qaPassed" : ""})`
+      );
       continue;
     }
 
@@ -81,6 +84,7 @@ async function main() {
           itemType: item.itemType ?? "vignette",
           blueprintTopic: item.blueprintTopic ?? null,
           tags: JSON.stringify(item.tags ?? []),
+          references: item.references ?? undefined,
           source: "curated",
           contentHash: hash,
           qaPassed,

@@ -156,7 +156,8 @@ const STUDY_HUB_BLUEPRINT_KEYWORDS: { slug: string; pattern: RegExp }[] = [
   },
   {
     slug: "chemotherapy-side-effects",
-    pattern: /\bchemotherapy|\bneutropenic|\bnadir|\banticancer|\boncology/i,
+    pattern:
+      /\bchemotherapy|\bneutropenic(?:\s+fever)?|\bnadir|\banticancer|\bextravasation|\bmucositis|\boncology clinic|\bANC\b|\babsolute neutrophil/i,
   },
   { slug: "ng-feeding-tube", pattern: /\bNG tube|\bnasogastric|\bfeeding tube|\benteral feeding/i },
   {
@@ -185,7 +186,8 @@ const STUDY_HUB_BLUEPRINT_KEYWORDS: { slug: string; pattern: RegExp }[] = [
   },
   {
     slug: "hematology-oncology",
-    pattern: /\banemia|\bleukemia|\bsickle cell|\bthrombocytopenia|\bneutropenia|\bhemoglobin/i,
+    pattern:
+      /\bsickle cell|\bvaso-occlusive|\bleukemia|\bthrombocytopenia|\bneutropenia|\btumor lysis|\boncologic emergency|\bplatelet(?:s| count)?\b|\bANC\b|\babsolute neutrophil|\bpacked red blood|\bPRBC|\btransfusion reaction|\bbone marrow|\bsevere anemia|\bhemoglobin\s*(?:of\s*)?\d|\bHgb\s*\d/i,
   },
   { slug: "musculoskeletal", pattern: /\bfracture|\bcompartment syndrome|\bosteoporosis|\bjoint replacement|\bcast care/i },
   {
@@ -209,6 +211,10 @@ const BLUEPRINT_EXCLUSIONS: Partial<Record<string, RegExp>> = {
   "fluid-balance-io": /\bSTART triage|\bmass casualty|\bethical principles/i,
   "shock-sepsis": /\bErikson|\bPiaget|\bimmunization schedule/i,
   "therapeutic-communication": /\bdrip rate|\bmg\/kg|\bParkland formula/i,
+  "chemotherapy-side-effects":
+    /\bhemoglobin A1c|\bHbA1c|\bprenatal vitamin|\bcolonoscopy prep|\bSTART triage/i,
+  "hematology-oncology":
+    /\bhemoglobin A1c|\bHbA1c|\bprenatal vitamin|\bdiabetic foot|\bgestation|\btrimester|\bfirst prenatal/i,
 };
 
 const KEYWORD_BY_SLUG = new Map<string, RegExp>();

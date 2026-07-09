@@ -539,7 +539,7 @@ export async function gatherTopicBankSessionPool(params: {
       return dedupeBankItemsById(merged).slice(0, poolTarget);
     }
 
-    // Blueprint tags may be sparse — widen to subject pool; preset/post-filter narrows downstream.
+    // Blueprint tags may be sparse — widen subject/field pulls but keep blueprint alignment.
     for (let round = 0; round < TOPIC_GATHER_MAX_ROUNDS; round++) {
       const pull = await sampleQuestionBankItems({
         fieldId: params.fieldId,
@@ -555,22 +555,34 @@ export async function gatherTopicBankSessionPool(params: {
         items: pull,
       });
 
-      mergeVetted(vetted);
+      mergeVetted(
+        params.fieldId === "nursing"
+          ? filterItemsForNclexBlueprintTopics(vetted, blueprintTopics, {
+              contentMatch: true,
+            })
+          : vetted
+      );
 
       if (merged.length >= minVetted) break;
       if (merged.length >= params.sessionLimit) break;
     }
 
     if (params.fieldId === "nursing") {
+      // Sparse blueprint tags often live outside the topic's Client Needs subject —
+      // widen field-wide, but keep blueprint alignment (do not dilute with off-topic items).
       const fieldPull = await sampleQuestionBankItemsForField({
         fieldId: params.fieldId,
-        count: poolTarget,
+        count: Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, poolTarget * 3),
       });
       const fieldVetted = filterBankItemsForSessionPool({
         fieldId: params.fieldId,
         items: fieldPull,
       });
-      mergeVetted(fieldVetted);
+      mergeVetted(
+        filterItemsForNclexBlueprintTopics(fieldVetted, blueprintTopics, {
+          contentMatch: true,
+        })
+      );
     }
 
     return dedupeBankItemsById(merged).slice(0, poolTarget);

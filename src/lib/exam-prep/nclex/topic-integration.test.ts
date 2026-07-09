@@ -47,6 +47,21 @@ describe("NCLEX topic practice alignment", () => {
     expect(params.nclexPreset).toBeUndefined();
   });
 
+  it("chemotherapy-toxicity filters to chemo blueprint only (not NG tube)", () => {
+    const topic = getHighYieldTopic("nclex", "chemotherapy-toxicity")!;
+    const params = resolveNclexTopicPracticeParams(topic);
+    expect(params.subjectId).toBe("reduction-risk");
+    expect(params.blueprintTopics).toEqual(["chemotherapy-side-effects"]);
+    expect(params.blueprintTopics).not.toContain("ng-feeding-tube");
+  });
+
+  it("heme-oncology filters to hematology-oncology blueprint", () => {
+    const topic = getHighYieldTopic("nclex", "heme-oncology")!;
+    const params = resolveNclexTopicPracticeParams(topic);
+    expect(params.subjectId).toBe("physiological-adaptation");
+    expect(params.blueprintTopics).toEqual(["hematology-oncology"]);
+  });
+
   it("infection-control skips foundation-review preset when blueprints exist", () => {
     const topic = getHighYieldTopic("nclex", "infection-control")!;
     const params = resolveNclexTopicPracticeParams(topic);
