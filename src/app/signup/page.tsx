@@ -9,7 +9,7 @@ import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { isExamSlug } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
-import { MARKETING_DISCLAIMER } from "@/lib/site";
+import { MARKETING_DISCLAIMER, TRIAL_CTA_LABEL } from "@/lib/site";
 
 export const metadata = {
   title: "Sign Up — Any Exam Easy",
@@ -45,7 +45,7 @@ export default async function SignupPage({
   return (
     <PageShell
       eyebrow={isSubscribe ? "Get started" : "Free trial"}
-      title={isSubscribe ? "Create your account." : "Start your free trial."}
+      title={isSubscribe ? "Create your account." : `${TRIAL_CTA_LABEL}.`}
       description={
         isSubscribe
           ? "Create your account, then choose your plan and pay securely. Must be 18 or older."

@@ -16,7 +16,7 @@ import {
   Zap,
 } from "lucide-react";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
-import { formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
+import { formatTrialCtaLabel, formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
@@ -351,7 +351,7 @@ function TrialGateOverlay({ systemsExplored }: { systemsExplored: number }) {
           href={LANDING_TRIAL_HREF}
           className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-teal-600 to-cyan-600 px-6 py-3 text-sm font-bold text-white shadow-lg shadow-teal-900/25 transition hover:shadow-teal-900/40 hover:brightness-105"
         >
-          Start free trial — unlock everything
+          {formatTrialCtaLabel()} — unlock everything
           <ArrowRight
             className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
             aria-hidden

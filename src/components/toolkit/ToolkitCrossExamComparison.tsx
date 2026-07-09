@@ -5,6 +5,7 @@ import {
   CROSS_EXAM_SUMMARY,
 } from "@/lib/toolkit/cross-exam-comparison";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { formatTrialCtaLabel } from "@/lib/site";
 
 export function ToolkitCrossExamComparison() {
   return (
@@ -95,7 +96,7 @@ export function ToolkitCrossExamComparison() {
             href={LANDING_TRIAL_HREF}
             className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-accent)] hover:underline"
           >
-            Start free trial for all six exams
+            {formatTrialCtaLabel()} for all six exams
             <ArrowRight className="h-4 w-4" aria-hidden />
           </Link>
         </div>

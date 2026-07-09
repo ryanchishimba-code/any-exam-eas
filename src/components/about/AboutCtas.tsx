@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { ROUTES } from "@/lib/routes";
 import { analytics } from "@/lib/analytics";
+import { formatTrialCtaLabel } from "@/lib/site";
 
 export function AboutCtas() {
   return (
@@ -12,7 +13,7 @@ export function AboutCtas() {
         href={ROUTES.auth.signup}
         onClick={() => analytics.ctaClicked("start_free_trial", "about_hero")}
       >
-        Start free trial
+        {formatTrialCtaLabel()}
       </Button>
       <Button
         href={ROUTES.pricing}

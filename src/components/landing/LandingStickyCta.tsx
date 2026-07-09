@@ -26,7 +26,7 @@ export function LandingStickyCta() {
   if (!visible) return null;
 
   return (
-    <div className="aee-landing-sticky-cta" role="region" aria-label="Start your free trial">
+    <div className="aee-landing-sticky-cta" role="region" aria-label={formatTrialCtaLabel()}>
       <div className="aee-landing-sticky-cta__inner">
         <div className="aee-landing-sticky-cta__copy">
           <p className="aee-landing-sticky-cta__price">

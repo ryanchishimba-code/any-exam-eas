@@ -19,6 +19,7 @@ import {
   type ProFeatureHighlight,
 } from "@/lib/subscription-tiers";
 import { cn } from "@/lib/utils";
+import { TRIAL_CTA_LABEL } from "@/lib/site";
 
 const ICONS: Record<ProFeatureHighlight["icon"], LucideIcon> = {
   analytics: BarChart3,
@@ -34,7 +35,7 @@ const ICONS: Record<ProFeatureHighlight["icon"], LucideIcon> = {
 /** Pro value story — single-plan feature highlights. */
 export function ProBenefitsComparison({
   ctaHref = "/signup?plan=trial&interval=yearly&tier=pro",
-  ctaLabel = "Start free trial",
+  ctaLabel = TRIAL_CTA_LABEL,
   heading = PRICING_VALUE_HEADLINE,
   className,
 }: {

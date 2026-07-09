@@ -24,7 +24,7 @@ import {
   LANDING_TRIAL_HREF,
   formatFlagshipHeroSubline,
 } from "@/lib/landing/content";
-import { formatTrialLabel } from "@/lib/site";
+import { formatTrialCtaLabel, formatTrialLabel } from "@/lib/site";
 import { landingVideoSrc } from "@/lib/marketing/landing-visuals";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
@@ -223,7 +223,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
                 />
               }
             >
-              Start Your Free Trial
+              {formatTrialCtaLabel()}
             </LandingCta>
             <Link
               href="#showcase"

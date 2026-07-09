@@ -80,8 +80,11 @@ export function formatTrialQuestionLimit(): string {
   return `${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial`;
 }
 
+/** Primary marketing CTA label (buttons, sticky bars, nav). */
+export const TRIAL_CTA_LABEL = "Try for free";
+
 export function formatTrialCtaLabel(): string {
-  return `Start ${TRIAL_DAYS}-Day Free Trial`;
+  return TRIAL_CTA_LABEL;
 }
 
 export function formatLandingHeroSubline(): string {
@@ -153,7 +156,7 @@ export function formatLandingStickyDetail(): string {
 export const NO_PAYMENT_TRIAL_HEADLINE = "No payment method required";
 
 /** Supporting copy under the headline on prominent callouts. */
-export const NO_PAYMENT_TRIAL_SUBLINE = `Start your ${TRIAL_DAYS}-day free trial instantly with email or social login — no card, no checkout until you choose to upgrade.`;
+export const NO_PAYMENT_TRIAL_SUBLINE = `Try for free with email or social login — no card, no checkout until you choose to upgrade. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions instantly.`;
 
 /** Short badge label for CTAs and sticky bars. */
 export const NO_PAYMENT_TRIAL_BADGE = "No card required";

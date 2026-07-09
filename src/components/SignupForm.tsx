@@ -10,7 +10,7 @@ import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
 import { SocialLoginButton } from "@/components/social/SocialLoginButton";
 import { InlineError } from "@/components/ui/StatusMessage";
 import { AuthLoadingOverlay } from "@/components/ui/AuthLoadingOverlay";
-import { MARKETING_DISCLAIMER, SIGNUP_PAYMENT_REQUIRED_NOTE } from "@/lib/site";
+import { MARKETING_DISCLAIMER, SIGNUP_PAYMENT_REQUIRED_NOTE, TRIAL_CTA_LABEL } from "@/lib/site";
 import { NoPaymentTrialCallout } from "@/components/marketing/NoPaymentTrialCallout";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { LEGAL_DISCLAIMERS } from "@/lib/legal";
@@ -507,7 +507,7 @@ export function SignupForm({
                   Creating your account…
                 </>
               ) : plan === "trial" ? (
-                `Start my ${TRIAL_DAYS}-day free trial`
+                TRIAL_CTA_LABEL
               ) : (
                 "Create my account"
               )}

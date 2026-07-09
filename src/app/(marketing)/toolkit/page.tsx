@@ -5,6 +5,7 @@ import { ToolkitBackpackIllustration } from "@/components/toolkit/ToolkitBackpac
 import { ToolkitExamAccordion } from "@/components/toolkit/ToolkitExamAccordion";
 import { ToolkitCrossExamComparison } from "@/components/toolkit/ToolkitCrossExamComparison";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { formatTrialCtaLabel } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
 import { TOOLKIT_EXAMS } from "@/lib/toolkit/exam-breakdowns";
 import { ToolkitStudyGuides } from "@/components/toolkit/ToolkitStudyGuides";
@@ -42,7 +43,7 @@ export default function ToolkitPage() {
                 tools make sure you&apos;re truly ready on exam day.
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-                <LandingCta href={LANDING_TRIAL_HREF}>Get Started Free</LandingCta>
+                <LandingCta href={LANDING_TRIAL_HREF}>{formatTrialCtaLabel()}</LandingCta>
                 <LandingCta href={ROUTES.auth.login} variant="secondary">
                   Log in
                 </LandingCta>
@@ -131,7 +132,7 @@ export default function ToolkitPage() {
               licensing exams — one calm, confident toolkit.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <LandingCta href={LANDING_TRIAL_HREF}>Get Started Free</LandingCta>
+              <LandingCta href={LANDING_TRIAL_HREF}>{formatTrialCtaLabel()}</LandingCta>
               <Link
                 href={ROUTES.pricing}
                 className="text-sm font-semibold text-[var(--color-accent)] hover:underline"

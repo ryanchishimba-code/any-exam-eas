@@ -44,7 +44,7 @@ import {
 } from "@/lib/landing/content";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
-import { formatTrialLabel, MARKETING_DISCLAIMER, TRIAL_PAYMENT_DISCLOSURE } from "@/lib/site";
+import { formatTrialLabel, formatTrialCtaLabel, MARKETING_DISCLAIMER, TRIAL_PAYMENT_DISCLOSURE } from "@/lib/site";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
 export function LandingFlagshipV2({
@@ -122,7 +122,7 @@ export function LandingFlagshipV2({
                 />
               }
             >
-              Start Your Free Trial
+              {formatTrialCtaLabel()}
             </LandingCta>
             <LoginModalTrigger
               callbackUrl={`${ROUTES.settings}?reactivate=1`}

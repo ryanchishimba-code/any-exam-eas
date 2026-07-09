@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { formatTrialCtaLabel } from "@/lib/site";
 import {
   LANDING_HERO_HEADLINE,
   LANDING_HERO_HEADLINE_ACCENT,
@@ -48,7 +49,7 @@ export function LandingHeroSkeleton({ bankCounts }: { bankCounts: LandingBankCou
             href={LANDING_TRIAL_HREF}
             className="aee-flagship-cta aee-flagship-cta--hero aee-flagship-cta--xl aee-flagship-cta--primary group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full px-6 text-sm font-bold sm:w-auto"
           >
-            Start Your Free Trial
+            {formatTrialCtaLabel()}
             <ArrowRight className="h-5 w-5" aria-hidden />
           </a>
         </div>

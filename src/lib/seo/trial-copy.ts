@@ -1,4 +1,5 @@
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
+import { TRIAL_CTA_LABEL } from "@/lib/site";
 
 /** Meta description suffix for exam SEO pages. */
 export const SEO_TRIAL_META_SUFFIX = `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · no payment required`;
@@ -18,7 +19,7 @@ export function seoTrialIncludedFaq(): string {
 }
 
 export function seoTrialHeading(): string {
-  return `Start with a ${TRIAL_DAYS}-day free trial`;
+  return TRIAL_CTA_LABEL;
 }
 
 export function seoTrialTryNclexHeading(): string {

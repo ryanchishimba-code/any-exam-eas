@@ -4,7 +4,7 @@ import { auth } from "@/auth";
 import { EmbeddedStripeCheckout } from "@/components/EmbeddedStripeCheckout";
 import { PageShell } from "@/components/PageShell";
 import { CheckoutLiveCounts } from "@/components/checkout/CheckoutLiveCounts";
-import { formatTrialCheckoutDescription } from "@/lib/site";
+import { formatTrialCheckoutDescription, TRIAL_CTA_LABEL } from "@/lib/site";
 
 export const metadata = {
   title: "Checkout — Any Exam Easy",
@@ -31,7 +31,7 @@ export default async function CheckoutPage({
             ? "Reactivate with a free trial"
             : "Reactivate your subscription"
           : isTrial
-            ? "Start your free trial"
+            ? TRIAL_CTA_LABEL
             : "Subscribe"
       }
       description={

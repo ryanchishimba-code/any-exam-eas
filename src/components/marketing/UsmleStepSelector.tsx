@@ -13,6 +13,7 @@ import { ArrowRight, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { USMLE_STEPS } from "@/lib/exam-prep/usmle/steps";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
+import { formatTrialCtaLabel } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type StepOption = {
@@ -213,7 +214,7 @@ export function UsmleStepSelector() {
                 href="/signup?plan=trial"
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-ink)]"
               >
-                Start free trial
+                {formatTrialCtaLabel()}
                 <ArrowRight className="h-3.5 w-3.5" aria-hidden />
               </Link>
             </div>
