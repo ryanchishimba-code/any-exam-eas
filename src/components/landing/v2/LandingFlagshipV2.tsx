@@ -136,15 +136,15 @@ export function LandingFlagshipV2({
           <p className="aee-flagship-final-cta__legal mt-2">{MARKETING_DISCLAIMER}</p>
           <p className="aee-flagship-final-cta__legal mt-2">
             {LEGAL_ENTITY.productName} is a product of {LEGAL_ENTITY.companyName}.{" "}
-            <Link href={ROUTES.about} className="aee-flagship-final-cta__legal-link">
+            <Link href={ROUTES.about} prefetch={false} className="aee-flagship-final-cta__legal-link">
               About
             </Link>
             {" · "}
-            <Link href="/legal/terms" className="aee-flagship-final-cta__legal-link">
+            <Link href="/legal/terms" prefetch={false} className="aee-flagship-final-cta__legal-link">
               Terms
             </Link>
             {" · "}
-            <Link href="/legal/privacy" className="aee-flagship-final-cta__legal-link">
+            <Link href="/legal/privacy" prefetch={false} className="aee-flagship-final-cta__legal-link">
               Privacy
             </Link>
           </p>

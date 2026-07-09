@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { LogIn, LogOut, Menu, Shield, X } from "lucide-react";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { AvatarDropdown } from "@/components/navigation/AvatarDropdown";
@@ -137,6 +136,7 @@ export function Navigation() {
             <li key={l.href}>
               <Link
                 href={l.href}
+                prefetch={false}
                 className={`inline-flex items-center gap-1 text-xs ${navClass(linkActive)}`}
                 aria-current={linkActive ? "page" : undefined}
               >
@@ -193,15 +193,10 @@ export function Navigation() {
         </div>
       </nav>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
+      {open ? (
+          <div
             id={mobileMenuId}
-            className="aee-mobile-nav border-t border-black/[0.04] bg-[color-mix(in_srgb,var(--color-surface-elevated)_98%,transparent)] px-5 backdrop-blur-xl lg:hidden"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
+            className="aee-mobile-nav-panel aee-mobile-nav border-t border-black/[0.04] bg-[color-mix(in_srgb,var(--color-surface-elevated)_98%,transparent)] px-5 backdrop-blur-xl lg:hidden"
           >
             <div className="overflow-hidden py-4">
               {isAuthenticated && hasAppAccess ? (
@@ -213,6 +208,7 @@ export function Navigation() {
                     <Link
                       key={exam.slug}
                       href={exam.href}
+                      prefetch={false}
                       className={`block py-2 text-sm ${navClass(pathname === exam.href || pathname.startsWith(`${exam.href}/`))}`}
                       onClick={closeMobile}
                     >
@@ -230,6 +226,7 @@ export function Navigation() {
                 <Link
                   key={l.href}
                   href={l.href}
+                  prefetch={false}
                   className={`block py-2.5 text-sm ${navClass(linkActive)}`}
                   aria-current={linkActive ? "page" : undefined}
                   onClick={closeMobile}
@@ -264,18 +261,19 @@ export function Navigation() {
                   </div>
                   <Link
                     href={ROUTES.dashboard}
+                    prefetch={false}
                     className="aee-mobile-nav-item"
                     onClick={closeMobile}
                   >
                     Dashboard
                   </Link>
                   {!hasPremiumAccess && (
-                    <Link href={ROUTES.pricing} className="aee-mobile-nav-item" onClick={closeMobile}>
+                    <Link href={ROUTES.pricing} prefetch={false} className="aee-mobile-nav-item" onClick={closeMobile}>
                       Pricing
                     </Link>
                   )}
                   {isAdmin && (
-                    <Link href={ROUTES.admin.root} className="aee-mobile-nav-item flex items-center gap-2" onClick={closeMobile}>
+                    <Link href={ROUTES.admin.root} prefetch={false} className="aee-mobile-nav-item flex items-center gap-2" onClick={closeMobile}>
                       <Shield className="h-4 w-4" aria-hidden />
                       Admin dashboard
                     </Link>
@@ -292,9 +290,8 @@ export function Navigation() {
                 </div>
               )}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+      ) : null}
     </header>
   );
 }

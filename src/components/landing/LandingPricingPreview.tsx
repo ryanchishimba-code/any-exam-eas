@@ -146,7 +146,7 @@ export function LandingPricingPreview() {
         {formatTrialCtaLabel()}
       </LandingCta>
 
-      <Link href={ROUTES.pricing} className="aee-landing-pricing__full-link">
+      <Link href={ROUTES.pricing} prefetch={false} className="aee-landing-pricing__full-link">
         View full pricing &amp; plan details →
       </Link>
     </div>

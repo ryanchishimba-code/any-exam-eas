@@ -99,6 +99,7 @@ export function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
+                    prefetch={false}
                     className="text-sm text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
                   >
                     {l.label}
@@ -116,6 +117,7 @@ export function Footer() {
                 <li key={`${l.href}-${l.label}`}>
                   <Link
                     href={l.href}
+                    prefetch={false}
                     className="text-sm text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
                   >
                     {l.label}
@@ -133,6 +135,7 @@ export function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
+                    prefetch={false}
                     className="text-sm text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
                   >
                     {l.label}
@@ -142,6 +145,7 @@ export function Footer() {
               <li>
                 <Link
                   href={ROUTES.toolkit}
+                  prefetch={false}
                   className="text-sm font-semibold text-[var(--color-accent)] transition hover:underline"
                 >
                   All guides →
@@ -158,6 +162,7 @@ export function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
+                    prefetch={false}
                     className="text-sm text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
                   >
                     {l.label}

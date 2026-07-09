@@ -64,7 +64,7 @@ export function LandingCrossExamComparison() {
                     style={{ ["--exam-accent" as string]: row.accent }}
                   >
                     <td className="px-4 py-3.5 align-top">
-                      <Link href={row.prepHref} className="group block">
+                      <Link href={row.prepHref} prefetch={false} className="group block">
                         <span className="font-semibold text-[var(--color-ink)] group-hover:text-[var(--exam-accent)]">
                           {row.exam}
                         </span>

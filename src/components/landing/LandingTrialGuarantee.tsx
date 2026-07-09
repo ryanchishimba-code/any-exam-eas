@@ -125,7 +125,7 @@ export function LandingTrialGuarantee() {
           Payments are non-refundable; canceling ends future billing. If you
           cancel before your trial ends you will not be charged at all.
           See full{" "}
-          <Link href="/legal/terms" className="underline underline-offset-2">
+          <Link href="/legal/terms" prefetch={false} className="underline underline-offset-2">
             Terms of Service
           </Link>{" "}
           for details.

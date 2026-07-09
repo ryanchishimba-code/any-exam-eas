@@ -52,7 +52,7 @@ export function LandingExamShowcase({ bankCounts, className = "" }: LandingExamS
               className="aee-hero-exam-showcase__cell"
               style={{ "--exam-accent": exam.color } as CSSProperties}
             >
-              <Link href={exam.href} className="aee-hero-exam-showcase__link group">
+              <Link href={exam.href} prefetch={false} className="aee-hero-exam-showcase__link group">
                 <span className="aee-hero-exam-showcase__name">{shortLabel}</span>
                 <span className="aee-hero-exam-showcase__count">
                   <span className="aee-landing-question-count aee-landing-question-count--inline">

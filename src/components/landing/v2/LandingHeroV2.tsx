@@ -10,6 +10,7 @@
  */
 
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Check, Flame, Map as MapIcon, ShieldCheck, Sparkles, XCircle } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { NoPaymentTrialCallout } from "@/components/marketing/NoPaymentTrialCallout";
@@ -165,6 +166,80 @@ function HeroMockup({ totalLabel }: { totalLabel: string }) {
   );
 }
 
+/** Load the hero demo video only after the section nears the viewport. */
+function DeferredHeroVideo({ totalLabel }: { totalLabel: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [loadVideo, setLoadVideo] = useState(false);
+
+  useEffect(() => {
+    const node = containerRef.current;
+    if (!node) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) {
+          setLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "240px 0px" }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={containerRef} className="relative flex justify-center">
+      {!loadVideo ? (
+        <div className="w-full max-w-4xl">
+          <HeroMockup totalLabel={totalLabel} />
+        </div>
+      ) : (
+        <div className="relative w-[268px] sm:w-[296px]">
+          <div className="relative overflow-hidden rounded-[2.4rem] border-[7px] border-[var(--color-ink)] bg-[var(--color-ink)] shadow-[var(--shadow-apple-lg)]">
+            <span
+              className="absolute left-1/2 top-0 z-10 h-5 w-28 -translate-x-1/2 rounded-b-2xl bg-[var(--color-ink)]"
+              aria-hidden
+            />
+            <video
+              className="block h-auto w-full rounded-[1.9rem]"
+              src={landingVideoSrc("heroShowcase")}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="none"
+              aria-label="Any Exam Easy product demo"
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      )}
+
+      {loadVideo ? (
+        <>
+          <div className="pointer-events-none absolute left-0 top-1/4 hidden max-w-[190px] rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3.5 py-2.5 text-left shadow-[var(--shadow-apple-md)] lg:block">
+            <p className="text-xs font-bold text-[var(--color-ink)]">Knows what&apos;s next</p>
+            <p className="mt-0.5 text-[11px] leading-snug text-[var(--color-ink-muted)]">
+              Your Roadmap surfaces the weakest blueprint topics automatically.
+            </p>
+          </div>
+          <div className="pointer-events-none absolute bottom-1/4 right-0 hidden max-w-[190px] rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3.5 py-2.5 text-left shadow-[var(--shadow-apple-md)] lg:block">
+            <p className="text-xs font-bold text-[var(--color-ink)]">Review where it counts</p>
+            <p className="mt-0.5 text-[11px] leading-snug text-[var(--color-ink-muted)]">
+              Deep Dive modules open from the questions you miss.
+            </p>
+          </div>
+        </>
+      ) : null}
+    </div>
+  );
+}
+
 export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
   return (
     <section
@@ -227,6 +302,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
             </LandingCta>
             <Link
               href="#showcase"
+              prefetch={false}
               className="inline-flex h-12 items-center justify-center rounded-full px-5 text-sm font-semibold text-[var(--color-ink)] transition hover:text-[var(--color-accent)]"
             >
               See how it works
@@ -296,50 +372,13 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
         </div>
       </div>
 
-      {/* Product demo — autoplay video in a phone frame, with the static in-code
-          mockup preserved as the reduced-motion fallback. */}
+      {/* Product demo — static mockup first; video loads on scroll (reduced-motion keeps mockup). */}
       <div className="aee-hero-enter aee-hero-enter--delay relative mx-auto mt-12 max-w-4xl px-5 sm:px-6">
         <div className="motion-reduce:block hidden">
           <HeroMockup totalLabel={bankCounts.totalLabel} />
         </div>
         <div className="motion-reduce:hidden">
-          <div className="relative flex justify-center">
-            {/* Phone frame */}
-            <div className="relative w-[268px] sm:w-[296px]">
-              <div className="relative overflow-hidden rounded-[2.4rem] border-[7px] border-[var(--color-ink)] bg-[var(--color-ink)] shadow-[var(--shadow-apple-lg)]">
-                <span
-                  className="absolute left-1/2 top-0 z-10 h-5 w-28 -translate-x-1/2 rounded-b-2xl bg-[var(--color-ink)]"
-                  aria-hidden
-                />
-                <video
-                  className="block h-auto w-full rounded-[1.9rem]"
-                  src={landingVideoSrc("heroShowcase")}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  aria-label="Any Exam Easy product demo"
-                >
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
-
-            {/* Floating annotation callouts — desktop only */}
-            <div className="pointer-events-none absolute left-0 top-1/4 hidden max-w-[190px] rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3.5 py-2.5 text-left shadow-[var(--shadow-apple-md)] lg:block">
-              <p className="text-xs font-bold text-[var(--color-ink)]">Knows what&apos;s next</p>
-              <p className="mt-0.5 text-[11px] leading-snug text-[var(--color-ink-muted)]">
-                Your Roadmap surfaces the weakest blueprint topics automatically.
-              </p>
-            </div>
-            <div className="pointer-events-none absolute bottom-1/4 right-0 hidden max-w-[190px] rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3.5 py-2.5 text-left shadow-[var(--shadow-apple-md)] lg:block">
-              <p className="text-xs font-bold text-[var(--color-ink)]">Review where it counts</p>
-              <p className="mt-0.5 text-[11px] leading-snug text-[var(--color-ink-muted)]">
-                Deep Dive modules open from the questions you miss.
-              </p>
-            </div>
-          </div>
+          <DeferredHeroVideo totalLabel={bankCounts.totalLabel} />
         </div>
       </div>
     </section>
