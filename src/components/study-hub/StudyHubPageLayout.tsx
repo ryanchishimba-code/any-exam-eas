@@ -4,6 +4,7 @@ import { Suspense, type ReactNode } from "react";
 import { StudyHubNav } from "./StudyHubNav";
 import { StudyUsageBanner } from "@/components/study/StudyUsageBanner";
 import { displayFirstName } from "@/lib/display-name";
+import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
 
 export function StudyHubPageLayout({
   userName,
@@ -26,8 +27,8 @@ export function StudyHubPageLayout({
             {userName ? `Hi, ${displayFirstName(userName)}.` : "Study Hub"}
           </h1>
           <p className="mt-3 max-w-xl text-[1.0625rem] text-slate-600">
-            Choose your board — USMLE, NCLEX, NAPLEX, COMLEX, or AANP FNP — then pick timed exam or
-            question bank practice.
+            Choose your board — {PLATFORM_EXAM_LIST} — then pick timed exam or question bank
+            practice.
           </p>
           <StudyUsageBanner className="mt-6" />
           <div className="mt-10">{children}</div>

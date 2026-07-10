@@ -6,11 +6,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { getUserAccess } from "@/lib/access-control";
 import { ROUTES } from "@/lib/routes";
+import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
 
 export const metadata = {
   title: "Choose Your Exam — Any Exam Easy",
-  description:
-    "Bold, personalized prep for USMLE, NCLEX, NAPLEX, COMLEX, and AANP FNP.",
+  description: `Bold, personalized prep for ${PLATFORM_EXAM_LIST}.`,
 };
 
 export const dynamic = "force-dynamic";

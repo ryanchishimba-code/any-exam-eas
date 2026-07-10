@@ -22,5 +22,4 @@ export const EXAM_ACCENTS = {
   pance: "#FF5C9A",
   aanpFnp: "#E040FB",
   nptePt: "#22D3EE",
-  comlex: "#38bdf8",
 } as const;

@@ -5,6 +5,7 @@ import { Activity, ArrowRight, HeartPulse, Pill, Stethoscope } from "lucide-reac
 import { STUDY_HUB_EXAM_BANKS } from "@/lib/study-hub/config";
 import { examHref } from "@/lib/routes";
 import { cn } from "@/lib/utils";
+import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
 
 const EXAM_ICONS: Record<string, typeof Activity> = {
   nclex: Activity,
@@ -20,7 +21,7 @@ export function StudyHubExamBanks() {
         Question banks
       </h2>
       <p className="mt-1 text-sm text-slate-600">
-        Pick your board — USMLE, NCLEX, NAPLEX, COMLEX, or AANP FNP.
+        Pick your board — {PLATFORM_EXAM_LIST}.
       </p>
 
       <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

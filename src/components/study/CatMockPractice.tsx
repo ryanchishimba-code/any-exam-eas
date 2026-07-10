@@ -26,6 +26,9 @@ import {
   QuestionRenderer,
 } from "./questions/QuestionRenderer";
 import { InsightPanel } from "./InsightPanel";
+import { buildAiTutorRequest } from "./build-ai-tutor-request";
+import { buildInsightPreview } from "@/lib/learning/build-insight-preview";
+import { getFieldMeta } from "@/lib/fields";
 import type { LearningInsight, RemediationRecommendation } from "@/lib/learning/types";
 import type { ConfidenceLevel } from "@/lib/questions/types";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
@@ -56,6 +59,18 @@ export function CatMockPractice() {
   const startedAt = useRef(Date.now());
 
   const subjects = useMemo(() => getSubjectsForField(field), [field]);
+
+  const aiTutorRequest = useMemo(() => {
+    if (!current || !revealed) return null;
+    const fieldId = getFieldMeta(field)?.id ?? field;
+    return buildAiTutorRequest(fieldId, current, selected);
+  }, [field, current, revealed, selected]);
+
+  const displayInsight = useMemo(() => {
+    if (!current || !revealed || wasCorrect == null) return null;
+    if (insight) return insight;
+    return buildInsightPreview(current, wasCorrect === true, selected);
+  }, [current, revealed, wasCorrect, selected, insight]);
 
   useEffect(() => {
     const list = getSubjectsForField(field);
@@ -357,11 +372,13 @@ export function CatMockPractice() {
               <div className="space-y-4">
                 <AnswerFeedbackLabel correct={wasCorrect === true} />
                 <ExplanationPanel question={current} field={field} />
-                {insight && (
+                {displayInsight && (
                   <InsightPanel
-                    insight={insight}
+                    insight={displayInsight}
                     remediation={remediation}
                     correct={wasCorrect === true}
+                    aiTutor={aiTutorRequest}
+                    autoFetchOnMiss={wasCorrect === false}
                   />
                 )}
                 {showConfidence && (

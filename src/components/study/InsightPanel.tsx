@@ -1,18 +1,49 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, AlertTriangle } from "lucide-react";
+import { AlertTriangle, Check, Loader2, Sparkles } from "lucide-react";
 import type { LearningInsight, RemediationRecommendation } from "@/lib/learning/types";
 import { mistakeCategoryLabel } from "@/lib/learning/mistake-analysis";
+import { aiTutorExamLabel, isAiTutorFieldId } from "@/lib/learning/ai-tutor-fields";
 import Link from "next/link";
+import type { AiTutorRequest } from "./ai-tutor-types";
+import { useAiTutorExplanation } from "./useAiTutorExplanation";
 
 type Props = {
   insight: LearningInsight;
   remediation?: RemediationRecommendation[];
   correct: boolean;
+  /** When set and field is NCLEX/NAPLEX/USMLE, shows AI Tutor coaching. */
+  aiTutor?: AiTutorRequest | null;
+  /** Fetch AI coaching automatically on misses (NCLEX/NAPLEX/USMLE). */
+  autoFetchOnMiss?: boolean;
 };
 
-export function InsightPanel({ insight, remediation, correct }: Props) {
+export function InsightPanel({
+  insight,
+  remediation,
+  correct,
+  aiTutor,
+  autoFetchOnMiss = true,
+}: Props) {
+  const tutorEnabled = Boolean(aiTutor && isAiTutorFieldId(aiTutor.fieldId));
+  const {
+    displayInsight,
+    loading,
+    error,
+    source,
+    fetchExplanation,
+    canFetch,
+    hasAiEnhancement,
+  } = useAiTutorExplanation(insight, tutorEnabled ? aiTutor! : null, {
+    autoFetchOnMiss: tutorEnabled && autoFetchOnMiss,
+    correct,
+  });
+
+  const examLabel = aiTutor ? aiTutorExamLabel(aiTutor.fieldId) : "Board exam";
+  const showManualCta = tutorEnabled && canFetch && !hasAiEnhancement && !loading;
+  const enriched = hasAiEnhancement && source === "ai";
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
@@ -28,35 +59,108 @@ export function InsightPanel({ insight, remediation, correct }: Props) {
         >
           {correct ? <Check className="h-4 w-4" /> : <AlertTriangle className="h-4 w-4" />}
         </span>
-        <div>
-          <p className="text-sm font-semibold text-[var(--color-ink)]">
-            {correct ? "Insight — correct" : "Learn from this miss"}
-          </p>
-          <p className="mt-1 text-sm text-[var(--color-ink-muted)]">{insight.summary}</p>
-          {insight.mistakeAnalysis && (
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="text-sm font-semibold text-[var(--color-ink)]">
+              {correct ? "Insight — correct" : "Learn from this miss"}
+            </p>
+            {enriched && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-violet-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-violet-800">
+                <Sparkles className="h-3 w-3" aria-hidden />
+                AI Tutor
+              </span>
+            )}
+            {loading && (
+              <span className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase tracking-wide text-violet-700">
+                <Loader2 className="h-3 w-3 animate-spin" aria-hidden />
+                Coaching…
+              </span>
+            )}
+          </div>
+          <p className="mt-1 text-sm text-[var(--color-ink-muted)]">{displayInsight.summary}</p>
+          {displayInsight.mistakeAnalysis && (
             <p className="mt-2 text-xs font-medium text-[var(--a11y-warning-fg)]">
-              {mistakeCategoryLabel(insight.mistakeAnalysis.category)}
+              {mistakeCategoryLabel(displayInsight.mistakeAnalysis.category)}
             </p>
           )}
         </div>
       </div>
 
-      <div className="space-y-2 text-sm">
+      {showManualCta && (
+        <div className="rounded-xl border border-violet-200/80 bg-violet-50/60 px-4 py-3">
+          <p className="text-xs font-medium text-violet-900">
+            {correct
+              ? `${examLabel} AI Tutor — go deeper on the reasoning`
+              : `${examLabel} AI Tutor — walk through why you missed this`}
+          </p>
+          <button
+            type="button"
+            onClick={() => void fetchExplanation()}
+            className="mt-2 inline-flex items-center gap-2 rounded-full bg-violet-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-violet-700"
+          >
+            <Sparkles className="h-4 w-4" aria-hidden />
+            {correct ? "Explore with AI Tutor" : "Get AI Tutor walkthrough"}
+          </button>
+          {error && (
+            <p className="mt-2 text-xs text-red-700" role="alert">
+              {error}
+            </p>
+          )}
+        </div>
+      )}
+
+      {error && !showManualCta && (
+        <p className="rounded-lg bg-red-50 px-3 py-2 text-xs text-red-800" role="alert">
+          {error}{" "}
+          <button
+            type="button"
+            onClick={() => void fetchExplanation()}
+            className="font-semibold underline"
+          >
+            Try again
+          </button>
+        </p>
+      )}
+
+      <div
+        className={`space-y-2 text-sm ${enriched ? "rounded-xl border border-violet-100 bg-violet-50/30 p-4" : ""}`}
+      >
         <p>
           <span className="font-medium text-[var(--a11y-correct-fg)]">Why correct: </span>
-          <span className="text-[var(--color-ink-muted)]">{insight.whyCorrect}</span>
+          <span className="text-[var(--color-ink-muted)]">{displayInsight.whyCorrect}</span>
         </p>
-        {insight.keyTakeaways.length > 0 && (
+        {!correct && Object.keys(displayInsight.whyIncorrect).length > 0 && (
+          <div className="space-y-1.5">
+            <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+              Why other options fail
+            </p>
+            {Object.entries(displayInsight.whyIncorrect)
+              .slice(0, 6)
+              .map(([option, reason]) => (
+                <p key={option} className="text-[var(--color-ink-muted)]">
+                  <span className="font-medium text-[var(--color-ink)]">{option}: </span>
+                  {reason}
+                </p>
+              ))}
+          </div>
+        )}
+        {displayInsight.keyTakeaways.length > 0 && (
           <ul className="list-inside list-disc text-[var(--color-ink-muted)]">
-            {insight.keyTakeaways.map((t, i) => (
+            {displayInsight.keyTakeaways.map((t, i) => (
               <li key={i}>{t}</li>
             ))}
           </ul>
         )}
-        {insight.pearls.length > 0 && (
+        {displayInsight.pearls.length > 0 && (
           <p className="rounded-lg bg-sky-50 px-3 py-2 text-xs text-sky-900">
             <span className="font-semibold">Pearl: </span>
-            {insight.pearls[0]}
+            {displayInsight.pearls[0]}
+          </p>
+        )}
+        {displayInsight.relatedConcepts.length > 0 && enriched && (
+          <p className="text-xs text-[var(--color-ink-muted)]">
+            <span className="font-semibold">Related: </span>
+            {displayInsight.relatedConcepts.slice(0, 4).join(" · ")}
           </p>
         )}
       </div>

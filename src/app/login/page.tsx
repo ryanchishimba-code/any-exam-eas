@@ -3,6 +3,7 @@ import { LoginForm } from "@/components/LoginForm";
 import { PageShell } from "@/components/PageShell";
 import { AuthCard } from "@/components/ui/AuthCard";
 import { contentWidth } from "@/lib/layout/shell-ui";
+import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
 
 export const metadata = {
   title: "Log In — Any Exam Easy",
@@ -13,7 +14,7 @@ export default function LoginPage() {
     <PageShell
       eyebrow="Any Exam Easy"
       title="Log in to continue"
-      description="USMLE, NCLEX, NAPLEX, COMLEX, and AANP FNP practice — synced across devices."
+      description={`${PLATFORM_EXAM_LIST} practice — synced across devices.`}
       align="center"
       maxWidth={contentWidth.auth}
       variant="premium"

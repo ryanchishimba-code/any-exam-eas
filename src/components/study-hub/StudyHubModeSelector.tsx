@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, Clock, SlidersHorizontal } from "lucide-react";
 import { EXAM_MODES } from "@/lib/exam/modes";
 import { cn } from "@/lib/utils";
+import { PLATFORM_EXAM_LIST_MIDDOT } from "@/lib/landing/content";
 
 const MODE_STYLES = {
   timed: {
@@ -65,7 +66,7 @@ export function StudyHubModeSelector() {
                 />
               </span>
               <p className="mt-4 text-xs font-medium uppercase tracking-wide text-slate-500">
-                NCLEX · USMLE · NAPLEX · COMLEX · AANP FNP
+                {PLATFORM_EXAM_LIST_MIDDOT}
               </p>
             </Link>
           );

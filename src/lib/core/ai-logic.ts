@@ -24,7 +24,7 @@ export type PlanInput = {
   studyStreakDays?: number;
 };
 
-const explanationCache = new Map<string, AIExplanation>();
+const explanationCache = new Map<string, ExplanationResult>();
 
 function cacheKey(input: ExplanationInput): string {
   return `${input.stem.slice(0, 80)}|${input.correctAnswers.join(",")}`;
@@ -113,8 +113,31 @@ async function callStructuredOpenAI<T>(
   return null;
 }
 
+export type ExplanationResult = {
+  explanation: AIExplanation;
+  source: "ai" | "fallback";
+};
+
+function buildTutorUserPrompt(input: ExplanationInput): string {
+  const base = buildRationaleUserPrompt({
+    fieldId: input.field ?? "nursing",
+    question: input.stem,
+    options: input.options,
+    correctAnswer: input.correctAnswers[0] ?? "",
+    existingExplanation: input.explanation,
+    tags: input.tags,
+  });
+
+  const selected = input.selectedAnswers?.filter((s) => s.trim()) ?? [];
+  if (selected.length === 0) {
+    return `${base}\n\n=== COACHING MODE ===\nStudent answered correctly or did not select an option — reinforce the clinical reasoning and common traps.`;
+  }
+
+  return `${base}\n\n=== STUDENT SELECTED (personalize coaching to this miss) ===\n${selected.join("\n")}`;
+}
+
 export class AILogicEngine {
-  async generateQuestionExplanation(input: ExplanationInput): Promise<AIExplanation> {
+  async generateQuestionExplanation(input: ExplanationInput): Promise<ExplanationResult> {
     const key = cacheKey(input);
     const cached = explanationCache.get(key);
     if (cached) return cached;
@@ -125,20 +148,17 @@ export class AILogicEngine {
       AIExplanationSchema,
       `${buildRationaleMasterSystemPrompt(field)}
 
-Also return this legacy tutor JSON shape for the UI:
-{ "summary": string, "whyCorrect": string, "whyIncorrect": { "option text": "why wrong" }, "keyTakeaways": string[], "pearls": string[], "relatedConcepts": string[], "difficultyLabel": string }`,
-      buildRationaleUserPrompt({
-        fieldId: field,
-        vignette: undefined,
-        question: input.stem,
-        options: input.options,
-        correctAnswer: input.correctAnswers[0] ?? "",
-        existingExplanation: input.explanation,
-        tags: input.tags,
-      })
+You are coaching a student who just answered this question in practice. Be specific, empathetic, and board-exam practical.
+
+Return this JSON shape for the UI:
+{ "summary": string, "whyCorrect": string, "whyIncorrect": { "exact option text": "why wrong" }, "keyTakeaways": string[], "pearls": string[], "relatedConcepts": string[], "difficultyLabel": string }
+
+Include EVERY wrong option in whyIncorrect with option text matching exactly.`,
+      buildTutorUserPrompt(input)
     );
 
-    const result = ai ?? fallback;
+    const explanation = ai ?? fallback;
+    const result: ExplanationResult = { explanation, source: ai ? "ai" : "fallback" };
     explanationCache.set(key, result);
     return result;
   }

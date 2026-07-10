@@ -1,7 +1,7 @@
 {
   "name": "Any Exam Easy",
   "short_name": "AnyExamEasy",
-  "description": "USMLE, NCLEX, NAPLEX, COMLEX, and AANP FNP board exam prep with integrated Roadmaps and adaptive practice.",
+  "description": "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT board exam prep with integrated Roadmaps and adaptive practice.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

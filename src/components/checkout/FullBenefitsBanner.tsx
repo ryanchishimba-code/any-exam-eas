@@ -2,10 +2,11 @@
 
 import { Check, ShieldCheck } from "lucide-react";
 import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
+import { PLATFORM_EXAM_LIST_COMPACT } from "@/lib/landing/content";
 
 const BENEFITS = [
   `${MARKETING_QUESTION_COUNTS.total} board-style questions`,
-  "NCLEX, USMLE, NAPLEX, COMLEX & AANP FNP",
+  PLATFORM_EXAM_LIST_COMPACT,
   "Adaptive practice & performance analytics",
   "OER-backed rationales with citations",
 ];

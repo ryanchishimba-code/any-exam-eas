@@ -32,6 +32,10 @@ export const PLATFORM_EXAM_LIST = "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NP
 
 export const PLATFORM_EXAM_LIST_MIDDOT = "USMLE · NCLEX · NAPLEX · PANCE · AANP FNP · NPTE-PT";
 
+/** Compact list for banners, checkout, and PWA manifest (no Oxford "and"). */
+export const PLATFORM_EXAM_LIST_COMPACT =
+  "USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT";
+
 export type LandingExam = {
   id: string;
   label: string;

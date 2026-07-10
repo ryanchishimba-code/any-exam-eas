@@ -33,6 +33,8 @@ import type {
 import { AdaptiveReasoningChip } from "./AdaptiveReasoningChip";
 import type { LearningInsight, RemediationRecommendation } from "@/lib/learning/types";
 import { InsightPanel } from "./InsightPanel";
+import { buildAiTutorRequest } from "./build-ai-tutor-request";
+import { buildInsightPreview } from "@/lib/learning/build-insight-preview";
 import { AnswerFeedbackLabel } from "@/components/ui/StatusMessage";
 import {
   ExplanationPanel,
@@ -129,6 +131,17 @@ export function StudySessionPlayer({
   );
   const summary = summarizeSession(sessionState, questionList);
   const complete = isSessionComplete(sessionState, questionList) || timeUp;
+
+  const aiTutorRequest = useMemo(() => {
+    if (!current || !answer?.revealed) return null;
+    return buildAiTutorRequest(field, current, answer.selected);
+  }, [field, current, answer?.revealed, answer?.selected]);
+
+  const displayInsight = useMemo(() => {
+    if (!current || !answer?.revealed) return null;
+    if (insight) return insight;
+    return buildInsightPreview(current, answer.correct === true, answer.selected);
+  }, [current, answer, insight]);
 
   const persist = useCallback(
     (s: StudySessionState) => {
@@ -636,11 +649,13 @@ export function StudySessionPlayer({
                 flagged={isFlagged}
               />
               <ExplanationPanel question={current} field={field} />
-              {insight && (
+              {displayInsight && (
                 <InsightPanel
-                  insight={insight}
+                  insight={displayInsight}
                   remediation={remediation}
                   correct={answer.correct === true}
+                  aiTutor={aiTutorRequest}
+                  autoFetchOnMiss={!answer.correct}
                 />
               )}
             </div>
