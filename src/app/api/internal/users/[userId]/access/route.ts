@@ -59,11 +59,22 @@ export async function PATCH(req: Request, context: RouteContext) {
     const until = new Date();
     until.setDate(until.getDate() + body.grantCompDays);
     subUpdate.compAccessUntil = until;
-    subUpdate.status = "active";
+    // Access comes from compAccessUntil overlay — do not stamp durable "active"
+    // without a Stripe subscription (that would outlive the comp window).
   }
 
   if (body.revokeCompAccess) {
     subUpdate.compAccessUntil = null;
+    // If there is no Stripe subscription, demote off complimentary "active".
+    if (!user.subscription?.stripeSubscriptionId) {
+      const prior = user.subscription?.status;
+      if (prior === "active" || prior === "trialing") {
+        subUpdate.status =
+          user.subscription?.trialEndsAt && user.subscription.trialEndsAt <= new Date()
+            ? "trial_expired"
+            : "inactive";
+      }
+    }
   }
 
   if (Object.keys(subUpdate).length > 0) {

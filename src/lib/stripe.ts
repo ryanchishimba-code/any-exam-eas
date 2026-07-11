@@ -405,7 +405,8 @@ export async function applySubscriptionFromStripe(
   stripeSub: Stripe.Subscription,
   stripeCustomerId?: string
 ) {
-  const isPaid = stripeSub.status === "active" || stripeSub.status === "trialing";
+  const isPremiumStatus =
+    stripeSub.status === "active" || stripeSub.status === "trialing";
   const pendingInterval = stripeSub.metadata?.pendingInterval?.trim();
   const pendingTier = stripeSub.metadata?.pendingTier?.trim();
   const priceId = subscriptionItemPriceId(stripeSub);
@@ -435,18 +436,28 @@ export async function applySubscriptionFromStripe(
   const periodEnd = subscriptionCurrentPeriodEnd(stripeSub);
   const trialEndsAt = stripeUnixToDate(stripeSub.trial_end);
 
+  // Never elevate to premium from incomplete/unpaid Stripe states.
+  const nextStatus =
+    stripeSub.status === "canceled"
+      ? "canceled"
+      : isPremiumStatus
+        ? stripeSub.status
+        : stripeSub.status === "past_due"
+          ? "past_due"
+          : "inactive";
+
   await prisma.subscription.update({
     where: { userId },
     data: {
       ...(stripeCustomerId ? { stripeCustomerId } : {}),
       stripeSubscriptionId: stripeSub.id,
-      status: stripeSub.status === "canceled" ? "canceled" : stripeSub.status,
+      status: nextStatus,
       plan: signupPlan,
       planTier,
       planInterval,
       ...(periodEnd ? { currentPeriodEnd: periodEnd } : {}),
       ...(trialEndsAt ? { trialEndsAt } : {}),
-      ...(isPaid ? { gracePeriodEndsAt: null, canceledAt: null } : {}),
+      ...(isPremiumStatus ? { gracePeriodEndsAt: null, canceledAt: null } : {}),
       ...(stripeSub.status === "canceled" ? { canceledAt: new Date() } : {}),
     },
   });

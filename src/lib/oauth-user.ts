@@ -4,7 +4,7 @@ import { normalizeEmail } from "@/lib/validators/auth";
 import { normalizeStoredName } from "@/lib/display-name";
 import { isAtLeast18 } from "@/lib/age";
 import { trialEndsAtFromNow } from "@/lib/billing-config";
-import { recordTrialUsed } from "@/lib/trial-eligibility";
+import { hasConsumedTrial, recordTrialUsed } from "@/lib/trial-eligibility";
 
 const DEFAULT_DOB = new Date("1990-01-01");
 
@@ -65,6 +65,23 @@ export async function findOrCreateGoogleUser(params: {
 
   assertPublicSignupEmailAllowed(email);
 
+  const trialAlreadyUsed = await hasConsumedTrial(email);
+  const subscriptionCreate = trialAlreadyUsed
+    ? {
+        status: "inactive" as const,
+        trialEndsAt: null,
+        plan: "subscribe" as const,
+        planTier: "pro" as const,
+        planInterval: "yearly" as const,
+      }
+    : {
+        status: "trialing" as const,
+        trialEndsAt: trialEndsAtFromNow(),
+        plan: "trial" as const,
+        planTier: "pro" as const,
+        planInterval: "yearly" as const,
+      };
+
   const user = await prisma.user.create({
     data: {
       email,
@@ -73,13 +90,7 @@ export async function findOrCreateGoogleUser(params: {
       emailVerified: new Date(),
       dateOfBirth: DEFAULT_DOB,
       subscription: {
-        create: {
-          status: "trialing",
-          trialEndsAt: trialEndsAtFromNow(),
-          plan: "trial",
-          planTier: "pro",
-          planInterval: "yearly",
-        },
+        create: subscriptionCreate,
       },
       accounts: {
         create: {
@@ -95,11 +106,12 @@ export async function findOrCreateGoogleUser(params: {
     /* placeholder DOB for OAuth signups — user must be 18+ per terms */
   }
 
-  void recordTrialUsed(email, user.id);
-
-  void import("@/lib/trial-email-triggers").then((m) =>
-    m.triggerWelcomeTrialEmail(user.id)
-  );
+  if (!trialAlreadyUsed) {
+    void recordTrialUsed(email, user.id);
+    void import("@/lib/trial-email-triggers").then((m) =>
+      m.triggerWelcomeTrialEmail(user.id)
+    );
+  }
 
   return { id: user.id, role: user.role };
 }

@@ -105,7 +105,26 @@ export function evaluateSubscriptionAccess(
     ? new Date(subscription.trialEndsAt)
     : null;
 
+  const hasStripeSubscription = Boolean(subscription.stripeSubscriptionId?.trim());
+  const compAccessValid = Boolean(
+    subscription.compAccessUntil && new Date(subscription.compAccessUntil) > new Date()
+  );
+
   if (subscription.status === "active") {
+    // Durable "active" must be backed by a Stripe subscription or valid comp grant.
+    // Prevents orphan/test-mode rows from unlocking premium after trial.
+    if (!hasStripeSubscription && !compAccessValid) {
+      return {
+        hasAccess: false,
+        hasFreeAccess: false,
+        status: "inactive",
+        ...meta,
+        trialEndsAt,
+        daysRemaining: null,
+        canStartCheckout: true,
+        needsPaymentMethod: true,
+      };
+    }
     return {
       hasAccess: true,
       hasFreeAccess: false,

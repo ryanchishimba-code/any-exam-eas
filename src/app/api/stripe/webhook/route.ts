@@ -5,6 +5,7 @@ import {
   applySubscriptionFromStripe,
 } from "@/lib/stripe";
 import { stripeUnixToDate, subscriptionCurrentPeriodEnd } from "@/lib/stripe-period";
+import { stripeEventMatchesKeyMode } from "@/lib/stripe-livemode";
 import { prisma } from "@/lib/prisma";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
@@ -39,25 +40,47 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
   }
 
+  const modeCheck = stripeEventMatchesKeyMode(event);
+  if (!modeCheck.ok) {
+    console.warn("[stripe/webhook] ignored event due to livemode mismatch", {
+      type: event.type,
+      id: event.id,
+      livemode: event.livemode,
+      reason: modeCheck.reason,
+    });
+    return NextResponse.json({ received: true, ignored: modeCheck.reason });
+  }
+
   switch (event.type) {
     case "checkout.session.completed": {
       const session = event.data.object as Stripe.Checkout.Session;
       const userId = session.metadata?.userId;
-      if (userId && session.customer) {
-        let stripeSub: Stripe.Subscription | null = null;
-        if (session.subscription) {
-          stripeSub = await stripe.subscriptions.retrieve(String(session.subscription));
+      const subscriptionId =
+        typeof session.subscription === "string"
+          ? session.subscription
+          : session.subscription?.id;
+      if (userId && session.customer && subscriptionId) {
+        const stripeSub = await stripe.subscriptions.retrieve(subscriptionId);
+
+        // Only persist premium statuses that Stripe actually confirmed.
+        if (stripeSub.status !== "active" && stripeSub.status !== "trialing") {
+          console.warn("[stripe/webhook] checkout completed without premium status", {
+            userId,
+            status: stripeSub.status,
+            subscriptionId,
+          });
+          break;
         }
 
-        const periodEnd = stripeSub ? subscriptionCurrentPeriodEnd(stripeSub) : null;
-        const trialEndsAt = stripeSub ? stripeUnixToDate(stripeSub.trial_end) : null;
+        const periodEnd = subscriptionCurrentPeriodEnd(stripeSub);
+        const trialEndsAt = stripeUnixToDate(stripeSub.trial_end);
 
         await prisma.subscription.update({
           where: { userId },
           data: {
             stripeCustomerId: String(session.customer),
-            stripeSubscriptionId: String(session.subscription ?? ""),
-            status: stripeSub?.status ?? "active",
+            stripeSubscriptionId: subscriptionId,
+            status: stripeSub.status,
             plan: session.metadata?.plan === "trial" ? "trial" : "subscribe",
             planTier: parseSubscriptionTier(session.metadata?.tier),
             planInterval: parseBillingInterval(session.metadata?.interval),
@@ -81,10 +104,10 @@ export async function POST(req: Request) {
           userId,
           eventType: EVENT_TYPES.BILLING_CHECKOUT,
           category: "billing",
-          metadata: { status: stripeSub?.status ?? "active" },
+          metadata: { status: stripeSub.status, livemode: event.livemode },
         });
 
-        if (session.metadata?.plan === "trial" && stripeSub?.status === "trialing") {
+        if (session.metadata?.plan === "trial" && stripeSub.status === "trialing") {
           saveTypedConversion(
             CONVERSION_EVENTS.TRIAL_STARTED,
             {
