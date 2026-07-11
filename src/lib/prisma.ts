@@ -10,7 +10,7 @@ if (!isNextBuild) {
 }
 
 /** Bump when Prisma schema adds/changes models so dev HMR replaces stale clients. */
-const PRISMA_SCHEMA_VERSION = 6;
+const PRISMA_SCHEMA_VERSION = 7;
 
 type GlobalPrisma = typeof globalThis & {
   prisma?: PrismaClient;

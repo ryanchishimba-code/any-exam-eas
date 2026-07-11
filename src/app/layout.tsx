@@ -1,17 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { SessionProvider } from "@/components/SessionProvider";
-import { LoginModalRoot } from "@/components/auth/LoginModalRoot";
-import { PageViewTrackerBoundary } from "@/components/analytics/PageViewTrackerBoundary";
-import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
-import { ShareFabLazy } from "@/components/share/ShareFabLazy";
-import { RootChrome } from "@/components/layout/RootChrome";
-import { ClientRecovery } from "@/components/ClientRecovery";
-import { PwaRegister } from "@/components/PwaRegister";
-import { AppQueryProvider } from "@/lib/client/query-provider";
-import { UserAccessProvider } from "@/lib/client/user-access-context";
+import { AppProviders } from "@/components/providers/AppProviders";
 import { ThemeScript } from "@/components/theme/ThemeScript";
-import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { buildRootMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildRootMetadata();
@@ -30,22 +20,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link sr-only">
           Skip to main content
         </a>
-        <ThemeProvider>
-          <AppQueryProvider>
-            <GoogleAnalytics />
-            <SessionProvider>
-              <UserAccessProvider>
-                <LoginModalRoot>
-                  <ClientRecovery />
-                  <PwaRegister />
-                  <PageViewTrackerBoundary />
-                  <RootChrome>{children}</RootChrome>
-                  <ShareFabLazy />
-                </LoginModalRoot>
-              </UserAccessProvider>
-            </SessionProvider>
-          </AppQueryProvider>
-        </ThemeProvider>
+        <AppProviders>{children}</AppProviders>
       </body>
     </html>
   );

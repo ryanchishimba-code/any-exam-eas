@@ -190,6 +190,7 @@ describe("hasPermission", () => {
     expect(hasPermission("admin", "analytics.view_full")).toBe(true);
     expect(hasPermission("admin", "analytics.export")).toBe(true);
     expect(hasPermission("admin", "admin.actions")).toBe(true);
+    expect(hasPermission("admin", "admin.blog")).toBe(true);
     expect(hasPermission("admin", "system.metrics")).toBe(false);
   });
 

@@ -1,7 +1,5 @@
-import { MIN_QUESTIONS_PER_SUBJECT } from "@/lib/bulk-question-generator";
-import { TOP_500_COUNT } from "@/lib/drugs300/catalog";
+import { MIN_QUESTIONS_PER_SUBJECT } from "@/lib/question-bank/min-per-subject";
 import { EXAM_FIELD_IDS, type ExamFieldId } from "@/lib/subjects/field-ids";
-import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 import { NCLEX_PUBLISHED_SERVE_TOTAL, NCLEX_TARGET_TOTAL } from "@/lib/exam-prep/nclex/types";
 import { NAPLEX_TARGET_TOTAL } from "@/lib/exam-prep/naplex/types";
 import { AANP_FNP_TARGET_TOTAL } from "@/lib/exam-prep/aanp-fnp/types";
@@ -20,7 +18,7 @@ export function targetQuestionCountForField(fieldId: string): number {
   if (fieldId === "nursing") return NCLEX_TARGET_TOTAL;
   if (fieldId === "pharmacy") return NAPLEX_TARGET_TOTAL;
   if (fieldId === "usmle-step-2" || fieldId === "usmle") return USMLE_COMBINED_TARGET;
-  return getSubjectsForFieldId(fieldId).length * MIN_QUESTIONS_PER_SUBJECT;
+  return MIN_QUESTIONS_PER_SUBJECT;
 }
 
 /**
@@ -93,7 +91,8 @@ export const FALLBACK_QUESTION_COUNTS = {
 /** @deprecated Use FALLBACK_QUESTION_COUNTS or live bank-counts API. */
 export const MARKETING_QUESTION_COUNTS = FALLBACK_QUESTION_COUNTS;
 
-export const TOP_500_DRUGS_COUNT = TOP_500_COUNT;
+/** Keep in sync with `TOP_500_DRUGS.length` in drugs300 catalog — leaf constant for client. */
+export const TOP_500_DRUGS_COUNT = 500;
 
 /** User-facing deck name — product is branded Top 500; catalog count tracks curated cards. */
 export const DRUGS_DECK_MARKETING_TITLE = `Top ${TOP_500_DRUGS_COUNT} Drugs`;

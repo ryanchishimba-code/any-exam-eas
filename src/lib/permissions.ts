@@ -27,6 +27,7 @@ export type Permission =
   | "questions.edit"
   | "questions.publish"
   | "admin.actions"
+  | "admin.blog"
   | "system.metrics";
 
 const ROLE_PERMISSIONS: Record<StaffRole, Permission[]> = {
@@ -74,6 +75,7 @@ const ROLE_PERMISSIONS: Record<StaffRole, Permission[]> = {
     "questions.edit",
     "questions.publish",
     "admin.actions",
+    "admin.blog",
   ],
   super_admin: [
     "analytics.view_basic",
@@ -94,6 +96,7 @@ const ROLE_PERMISSIONS: Record<StaffRole, Permission[]> = {
     "questions.edit",
     "questions.publish",
     "admin.actions",
+    "admin.blog",
     "system.metrics",
   ],
 };

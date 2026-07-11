@@ -29,4 +29,10 @@ describe("resolvePathAfterExamSwitch", () => {
     );
     expect(href).toBe(`${ROUTES.fullExam}/naplex`);
   });
+
+  it("sends select-exam switch flow to the Study Hub dashboard", () => {
+    expect(
+      resolvePathAfterExamSwitch(ROUTES.selectExam, new URLSearchParams("switch=1"), "naplex")
+    ).toBe(ROUTES.dashboard);
+  });
 });

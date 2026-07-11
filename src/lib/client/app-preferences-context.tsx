@@ -60,8 +60,11 @@ export function AppPreferencesProvider({
     }
   }, []);
 
+  // Sync from server layout props only when they actually change to a new value.
+  // Avoid clobbering an optimistic setExamSlug during soft refresh races.
   useEffect(() => {
-    setExamSlugState(initialExamSlug);
+    if (initialExamSlug === undefined) return;
+    setExamSlugState((prev) => (prev === initialExamSlug ? prev : initialExamSlug));
   }, [initialExamSlug]);
 
   useEffect(() => {

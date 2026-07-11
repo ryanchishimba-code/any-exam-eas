@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { hardReloadAfterStaleChunk } from "@/lib/client/stale-chunk-recovery";
 
 export default function GlobalError({
   error,
@@ -19,10 +20,15 @@ export default function GlobalError({
       <p className="mt-2 text-sm text-slate-600">
         Try refreshing the page. If you just deployed, a hard refresh clears stale cached files.
       </p>
+      {process.env.NODE_ENV === "development" && error?.message ? (
+        <p className="mt-3 max-w-md break-words font-mono text-xs text-red-600">{error.message}</p>
+      ) : null}
       <div className="mt-6 flex flex-wrap justify-center gap-3">
         <button
           type="button"
-          onClick={() => window.location.reload()}
+          onClick={() => {
+            void hardReloadAfterStaleChunk();
+          }}
           className="rounded-xl bg-[var(--color-accent)] px-4 py-2.5 text-sm font-semibold text-white"
         >
           Refresh page

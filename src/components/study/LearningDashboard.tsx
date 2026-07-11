@@ -6,7 +6,7 @@ import type { PersonalizedPlan } from "@/lib/core/types";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_MODES } from "@/lib/exam/modes";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
-import { fieldIdForExamSlug } from "@/lib/edtech/question-bank-scope";
+import { fieldIdForExamSlug } from "@/lib/edtech/exam-field-ids";
 import { Button } from "@/components/ui/Button";
 import { ProgressMetricsNotice } from "@/components/legal/ProgressMetricsNotice";
 import { PRACTICE_PROGRESS_HINT, PRACTICE_PROGRESS_LABEL } from "@/lib/site";
@@ -25,20 +25,33 @@ export function LearningDashboard() {
       setLoading(false);
       return;
     }
+
+    const controller = new AbortController();
     const fieldId = fieldIdForExamSlug(examSlug);
+    setLoading(true);
+
     Promise.all([
-      fetch("/api/learning/profile").then((r) => r.json()),
-      fetch(`/api/learning/plan?field=${encodeURIComponent(fieldId)}`).then((r) => r.json()),
+      fetch("/api/learning/profile", { signal: controller.signal }).then((r) => r.json()),
+      fetch(`/api/learning/plan?field=${encodeURIComponent(fieldId)}`, {
+        signal: controller.signal,
+      }).then((r) => r.json()),
     ])
       .then(([profileRes, planRes]) => {
+        if (controller.signal.aborted) return;
         setProfile(profileRes.profile ?? null);
         setPlan(planRes.plan ?? null);
       })
-      .catch(() => {
+      .catch((err) => {
+        if (controller.signal.aborted) return;
+        if (err instanceof DOMException && err.name === "AbortError") return;
         setProfile(null);
         setPlan(null);
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false);
+      });
+
+    return () => controller.abort();
   }, [examSlug, prefLoading]);
 
   if (loading) {
@@ -60,7 +73,7 @@ export function LearningDashboard() {
   }
 
   return (
-    <div className="mt-8 space-y-10">
+    <div className="mt-8 space-y-10" key={examSlug ?? "none"}>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard label={PRACTICE_PROGRESS_LABEL} value={`${profile.readinessScore}%`} hint={PRACTICE_PROGRESS_HINT} />
         <MetricCard label="Study streak" value={`${profile.studyStreakDays}d`} hint="Consecutive study days" />

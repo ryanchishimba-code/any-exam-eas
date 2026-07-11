@@ -8,10 +8,14 @@ import {
   usePickerWheelScroll,
 } from "@/hooks/usePickerWheelScroll";
 import { EXAM_CATALOG, EXAM_SLUGS } from "@/lib/edtech/exams";
+import { persistExamPreference } from "@/lib/edtech/actions";
+import { prepareClientForExamSwitch } from "@/lib/client/exam-switch-reset";
 import { navigateHard } from "@/lib/client/navigate-hard";
+import { useAppPreferences } from "@/lib/client/use-app-preferences";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
+import { useQueryClient } from "@tanstack/react-query";
 
 /** Pixel height of a single wheel row — must match the row markup below. */
 const ITEM_H = 84;
@@ -31,6 +35,8 @@ type Props = {
  */
 export function LibraryExamWheel({ currentExam }: Props) {
   const reduceMotion = useReducedMotion();
+  const queryClient = useQueryClient();
+  const { setExamSlug } = useAppPreferences();
 
   const options = EXAM_SLUGS;
   const startIndex = Math.max(0, options.indexOf(currentExam));
@@ -65,12 +71,26 @@ export function LibraryExamWheel({ currentExam }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const open = useCallback(() => {
+  const open = useCallback(async () => {
     if (!selected) return;
-    if (selected === currentExam) return;
+    if (selected === currentExam) {
+      navigateHard(`${ROUTES.library}?exam=${selected}`);
+      return;
+    }
     setPending(true);
-    navigateHard(`${ROUTES.library}?exam=${selected}`);
-  }, [selected, currentExam]);
+    try {
+      const result = await persistExamPreference(selected);
+      if (!result.ok) {
+        setPending(false);
+        return;
+      }
+      prepareClientForExamSwitch(queryClient, selected);
+      setExamSlug(selected);
+      navigateHard(`${ROUTES.library}?exam=${selected}`);
+    } catch {
+      setPending(false);
+    }
+  }, [selected, currentExam, queryClient, setExamSlug]);
 
   const onKeyDown = useMemo(
     () =>

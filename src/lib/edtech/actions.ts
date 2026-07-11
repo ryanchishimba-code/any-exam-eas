@@ -20,10 +20,15 @@ function revalidateExamPreferencePaths() {
   revalidatePath("/analytics", "layout");
   revalidatePath("/library", "layout");
   revalidatePath("/settings", "layout");
+  revalidatePath("/full-exam", "layout");
   revalidatePath("/dashboard");
+  revalidatePath("/dashboard/roadmap");
+  revalidatePath("/dashboard/topics");
   revalidatePath("/question-bank");
+  revalidatePath("/analytics");
   revalidatePath("/library");
   revalidatePath("/select-exam");
+  revalidatePath("/full-exam");
 }
 
 /** Persist exam without redirect — client handles confetti + navigation. */

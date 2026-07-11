@@ -22,10 +22,7 @@ import { mpjePracticeExamHref, STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import { EXAM_CATALOG, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { persistUsmleStepPreference } from "@/lib/edtech/actions";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
-import {
-  fieldIdForExamSlug,
-  fieldMatchesExamSlug,
-} from "@/lib/edtech/question-bank-scope";
+import { fieldIdForExamSlug, fieldMatchesExamSlug } from "@/lib/edtech/exam-field-ids";
 import {
   fullExamLaunchHref,
   fullExamSessionHref,

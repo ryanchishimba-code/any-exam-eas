@@ -72,6 +72,7 @@ model User {
   socialPosts        UserSocialPost[]
   socialShares       SocialShare[]
   legalConsent       UserLegalConsent?
+  blogPosts          BlogPost[]
 }
 
 model Account {
@@ -1442,4 +1443,37 @@ model ScheduledSocialPost {
   @@index([status, scheduledAt])
   @@index([createdAt])
   @@map("scheduled_social_posts")
+}
+
+/// Marketing / study blog posts managed at /admin/blog. Only published + non-deleted rows are public.
+model BlogPost {
+  id              String    @id @default(cuid())
+  title           String
+  slug            String    @unique
+  excerpt         String    @default("")
+  /// TipTap HTML body.
+  content         String    @default("")
+  coverImage      String?
+  authorId        String
+  category        String    @default("Study Tips")
+  tags            String[]  @default([])
+  published       Boolean   @default(false)
+  publishedAt     DateTime?
+  /// Optional future publish time (cron can promote when due).
+  scheduledAt     DateTime?
+  readTime        Int       @default(1)
+  views           Int       @default(0)
+  metaTitle       String?
+  metaDescription String?
+  deletedAt       DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  author User @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([published, publishedAt])
+  @@index([deletedAt, published, publishedAt])
+  @@index([category, published])
+  @@index([deletedAt, updatedAt])
+  @@index([authorId])
 }

@@ -48,6 +48,7 @@ export function Footer() {
     : [
         { href: ROUTES.practiceHub, label: "Practice Hub" },
         { href: ROUTES.toolkit, label: "Toolkit" },
+        { href: ROUTES.blog, label: "Blog" },
         { href: ROUTES.pricing, label: "Pricing" },
         { href: "/about", label: "About" },
         ...MARKETING_EXAM_LINKS.slice(0, 3),

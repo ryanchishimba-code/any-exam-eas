@@ -1,6 +1,6 @@
 import type { QueryClient } from "@tanstack/react-query";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
-import { fieldIdForExamSlug } from "@/lib/edtech/question-bank-scope";
+import { fieldIdForExamSlug } from "@/lib/edtech/exam-field-ids";
 import { clearActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import { clearAllStudySessionsLocally } from "@/lib/questions/storage";
 import { fetchSubjectCounts } from "@/lib/study/subject-counts-client";
@@ -38,7 +38,16 @@ export function clearExamTransientClientState(): void {
 
 export function invalidateExamScopedQueries(queryClient: QueryClient): void {
   void queryClient.removeQueries({
-    predicate: (query) => query.queryKey[0] === "subject-counts",
+    predicate: (query) => {
+      const key0 = query.queryKey[0];
+      return (
+        key0 === "subject-counts" ||
+        key0 === "live-bank-counts" ||
+        key0 === "learning-dashboard" ||
+        key0 === "learning-plan" ||
+        key0 === "learning-profile"
+      );
+    },
   });
 }
 
@@ -123,6 +132,11 @@ export function resolvePathAfterExamSwitch(
     if (currentSlug && currentSlug in EXAM_CATALOG && currentSlug !== nextExamSlug) {
       return `/prep/${nextExamSlug}`;
     }
+  }
+
+  // Select-exam switch flow — land on Study Hub for the new exam.
+  if (pathname === ROUTES.selectExam || pathname.startsWith(`${ROUTES.selectExam}/`)) {
+    return ROUTES.dashboard;
   }
 
   return pathname;

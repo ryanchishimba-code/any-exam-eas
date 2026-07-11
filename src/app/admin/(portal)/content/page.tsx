@@ -1,5 +1,12 @@
 import Link from "next/link";
-import { FileText, ListChecks, Quote, Share2, Youtube, ArrowLeft } from "lucide-react";
+import {
+  ListChecks,
+  Quote,
+  Share2,
+  Youtube,
+  ArrowLeft,
+  Newspaper,
+} from "lucide-react";
 import { ROUTES } from "@/lib/routes";
 
 export const metadata = {
@@ -26,6 +33,26 @@ export default function AdminContentPage() {
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Link
+          href={ROUTES.admin.blog}
+          className="group rounded-xl border border-indigo-200/60 bg-white p-6 shadow-sm transition hover:border-indigo-300 hover:shadow-md dark:border-indigo-500/20 dark:bg-zinc-900"
+        >
+          <div className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-50 text-violet-700 dark:bg-violet-500/15 dark:text-violet-300">
+              <Newspaper className="h-5 w-5" aria-hidden />
+            </span>
+            <div>
+              <h2 className="font-semibold text-slate-900 group-hover:text-indigo-700 dark:text-zinc-100">
+                Blog
+              </h2>
+              <p className="text-xs text-slate-500 dark:text-zinc-400">Live at /blog</p>
+            </div>
+          </div>
+          <p className="mt-4 text-sm text-slate-600 dark:text-zinc-400">
+            Write, publish, and SEO-optimize study guides and product updates.
+          </p>
+        </Link>
+
         <Link
           href={ROUTES.admin.testimonials}
           className="group rounded-xl border border-indigo-200/60 bg-white p-6 shadow-sm transition hover:border-indigo-300 hover:shadow-md dark:border-indigo-500/20 dark:bg-zinc-900"
@@ -85,21 +112,6 @@ export default function AdminContentPage() {
             Approve community posts, publish official updates, and track share engagement.
           </p>
         </Link>
-
-        <section className="rounded-xl border border-dashed border-slate-300 bg-white p-6 dark:border-zinc-700 dark:bg-zinc-900">
-          <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-zinc-800">
-              <FileText className="h-5 w-5 text-slate-600 dark:text-zinc-300" aria-hidden />
-            </span>
-            <div>
-              <h2 className="font-semibold text-slate-900 dark:text-zinc-100">Blog</h2>
-              <p className="text-xs text-slate-500 dark:text-zinc-400">Coming soon</p>
-            </div>
-          </div>
-          <p className="mt-4 text-sm text-slate-600 dark:text-zinc-400">
-            Wire to a headless CMS or markdown repo when ready.
-          </p>
-        </section>
 
         <section className="rounded-xl border border-dashed border-slate-300 bg-white p-6 dark:border-zinc-700 dark:bg-zinc-900">
           <div className="flex items-center gap-3">

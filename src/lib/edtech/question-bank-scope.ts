@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { getFieldMeta } from "@/lib/fields";
-import { EXAM_CATALOG, examSlugFromFieldId } from "@/lib/edtech/exams";
+import {
+  examSlugForFieldId,
+  fieldIdForExamSlug,
+} from "@/lib/edtech/exam-field-ids";
 import { getUserExamPreference, setUserExamPreference } from "@/lib/edtech/exam-preference";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import {
@@ -16,25 +19,16 @@ import {
 } from "@/lib/subjects/field-ids";
 import type { ExamSlug } from "@/types/edtech";
 
-export function fieldIdForExamSlug(examSlug: ExamSlug): string {
-  return EXAM_CATALOG[examSlug].fieldId;
-}
-
-export function examSlugForFieldId(fieldId: string): ExamSlug | null {
-  return examSlugFromFieldId(fieldId);
-}
+export {
+  examSlugForFieldId,
+  fieldIdForExamSlug,
+  fieldMatchesExamSlug,
+} from "@/lib/edtech/exam-field-ids";
 
 /** Resolve API `field` query values (labels, aliases, ids) to a canonical exam field id. */
 export function resolveQuestionBankFieldId(field: string): string {
   const meta = getFieldMeta(field);
   return normalizeFieldId(meta?.id ?? field);
-}
-
-/** True when a study field id belongs to the user's selected exam. */
-export function fieldMatchesExamSlug(fieldId: string, examSlug: ExamSlug): boolean {
-  const normalized = normalizeFieldId(fieldId);
-  if (examSlug === "usmle") return isUsmleFieldId(normalized);
-  return fieldIdForExamSlug(examSlug) === normalized;
 }
 
 /** Canonical bank field for the user's current exam selection (USMLE step-aware). */

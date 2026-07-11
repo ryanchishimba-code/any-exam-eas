@@ -31,10 +31,11 @@ export function useExamFieldSessionReset(
     const onExamSwitch = (event: Event) => {
       const detail = (event as CustomEvent<ExamSwitchDetail>).detail;
       if (!detail?.examSlug) return;
-      if (scopeKey === detail.fieldId || scopeKey.startsWith(`${detail.examSlug}:`)) return;
+      // Always reset on a global exam switch — scopeKey may still hold the old
+      // field during the optimistic transition (e.g. naplex:nursing).
       resetRef.current();
     };
     window.addEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
     return () => window.removeEventListener(EXAM_SWITCH_EVENT, onExamSwitch);
-  }, [scopeKey]);
+  }, []);
 }

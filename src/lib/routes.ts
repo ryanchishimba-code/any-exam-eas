@@ -37,6 +37,7 @@ export const ROUTES = {
   /** Legacy hub URL — use `toolkit`; individual articles remain at `/resources/[slug]`. */
   resources: "/toolkit",
   toolkit: "/toolkit",
+  blog: "/blog",
   about: "/about",
   employers: "/employers",
   pricing: "/pricing",
@@ -55,6 +56,7 @@ export const ROUTES = {
     login: "/admin/login",
     analytics: "/admin/analytics",
     content: "/admin/content",
+    blog: "/admin/blog",
     questions: "/admin/questions",
     testimonials: "/admin/testimonials",
     social: "/admin/social",

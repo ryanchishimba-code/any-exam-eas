@@ -6,6 +6,7 @@ import { polishNclexBankItem } from "./engine/polish/nclex-polish";
 import { polishUsmleBankItem } from "./engine/polish/usmle-polish";
 import { polishMpjeBankItem } from "./engine/polish/mpje-polish";
 import { formatClinicalVignette } from "./engine/prompts/vignette";
+import { MIN_QUESTIONS_PER_SUBJECT } from "./question-bank/min-per-subject";
 import {
   normalizeUsmleBankItemFields,
   usmleBankItemHasClinicalScenario,
@@ -14,8 +15,7 @@ import {
 /** @deprecated Use SubjectArea */
 type FieldSubject = SubjectArea;
 
-/** Minimum active MCQs required per field + subject area. */
-export const MIN_QUESTIONS_PER_SUBJECT = 2000;
+export { MIN_QUESTIONS_PER_SUBJECT } from "./question-bank/min-per-subject";
 
 const AGES = [
   2, 4, 6, 8, 11, 14, 17, 19, 22, 25, 28, 31, 34, 37, 40, 43, 46, 49, 52, 55, 58, 61, 64, 67, 70,

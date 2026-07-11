@@ -55,7 +55,13 @@ export function StudentAnalyticsDashboard({
   const [loading, setLoading] = useState(!initialData);
 
   useEffect(() => {
-    if (initialData) return;
+    // Prefer fresh server payload when exam changes; otherwise fetch client-side.
+    if (initialData) {
+      setData(initialData);
+      setLoading(false);
+      return;
+    }
+    let cancelled = false;
     setLoading(true);
     Promise.all([
       fetch(`/api/learning/dashboard?examSlug=${encodeURIComponent(examSlug)}`).then((r) =>
@@ -64,13 +70,21 @@ export function StudentAnalyticsDashboard({
       fetch("/api/learning/profile").then((r) => r.json()),
     ])
       .then(([dashRes, profileRes]) => {
+        if (cancelled) return;
         setData({
           dashboard: dashRes.dashboard,
           profile: profileRes.profile ?? null,
         });
       })
-      .catch(() => setData(null))
-      .finally(() => setLoading(false));
+      .catch(() => {
+        if (!cancelled) setData(null);
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [examSlug, initialData]);
 
   if (loading) {

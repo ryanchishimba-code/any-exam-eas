@@ -67,7 +67,7 @@ export default async function AnalyticsPage() {
 
   return (
     <div className={studyUi.page}>
-      <Suspense fallback={<AnalyticsSkeleton />}>
+      <Suspense fallback={<AnalyticsSkeleton />} key={pref.examSlug}>
         <AnalyticsContent userId={session.user.id} examSlug={pref.examSlug} />
       </Suspense>
     </div>

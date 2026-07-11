@@ -27,6 +27,7 @@ const guestLinks: NavLink[] = [
   { href: ROUTES.home, label: "Home" },
   { href: ROUTES.about, label: "About Us" },
   { href: ROUTES.toolkit, label: "Toolkit" },
+  { href: ROUTES.blog, label: "Blog" },
   { href: ROUTES.feedback, label: "Contact Us" },
 ];
 

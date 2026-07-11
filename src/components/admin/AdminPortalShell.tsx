@@ -26,6 +26,7 @@ const navItems = [
   { href: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
   { href: "/admin/analytics", label: "Traffic & analytics", icon: BarChart3 },
   { href: "/admin/content", label: "Content", icon: FileText },
+  { href: "/admin/blog", label: "Blog", icon: FileText },
   { href: "/admin/questions", label: "Question bank", icon: ListChecks },
   { href: "/admin/testimonials", label: "Testimonials", icon: Quote },
   { href: "/admin/social", label: "Social & community", icon: Share2 },
