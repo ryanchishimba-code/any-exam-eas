@@ -89,6 +89,11 @@ export async function POST(req: Request) {
     }
   } catch (e) {
     const message = e instanceof Error ? e.message : "Billing price not configured";
+    console.error("[stripe/checkout] price config failed", {
+      tier,
+      interval,
+      message,
+    });
     return NextResponse.json({ error: message }, { status: 503 });
   }
 

@@ -80,9 +80,7 @@ export function getStripePriceId(
   tier: SubscriptionTier,
   interval: BillingInterval
 ): string | undefined {
-  const committed = COMMITTED_STRIPE_PRO_PRICE_IDS[interval]?.trim();
-  if (tier === "pro" && committed?.startsWith("price_")) return committed;
-
+  // Prefer env so local/test and production can use different Stripe accounts.
   const key = STRIPE_PRICE_ENV_KEYS[tier][interval];
   const value = process.env[key]?.trim();
   if (value?.startsWith("price_")) return value;
@@ -90,6 +88,9 @@ export function getStripePriceId(
   const legacyKey = LEGACY_STRIPE_PRICE_ENV_KEYS[interval];
   const legacy = process.env[legacyKey]?.trim();
   if (legacy?.startsWith("price_")) return legacy;
+
+  const committed = COMMITTED_STRIPE_PRO_PRICE_IDS[interval]?.trim();
+  if (tier === "pro" && committed?.startsWith("price_")) return committed;
 
   return undefined;
 }
