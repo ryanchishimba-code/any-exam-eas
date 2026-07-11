@@ -4,9 +4,11 @@ import { LandingCta } from "@/components/landing/LandingCta";
 import { ToolkitBackpackIllustration } from "@/components/toolkit/ToolkitBackpackIllustration";
 import { ToolkitExamAccordion } from "@/components/toolkit/ToolkitExamAccordion";
 import { ToolkitCrossExamComparison } from "@/components/toolkit/ToolkitCrossExamComparison";
-import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
-import { formatTrialCtaLabel } from "@/lib/site";
+import { LANDING_TRIAL_HREF, PLATFORM_EXAM_LIST } from "@/lib/landing/content";
+import { formatMonthlyPrice, formatTrialCtaLabel, SITE_NAME } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
+import { examMarketingPath } from "@/lib/seo/exam-config";
+import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 import { TOOLKIT_EXAMS } from "@/lib/toolkit/exam-breakdowns";
 import { ToolkitStudyGuides } from "@/components/toolkit/ToolkitStudyGuides";
 import { buildToolkitHubJsonLd, buildToolkitHubMetadata } from "@/lib/seo/marketing-metadata";
@@ -14,6 +16,29 @@ import { buildToolkitHubJsonLd, buildToolkitHubMetadata } from "@/lib/seo/market
 export const revalidate = 86400;
 
 export const metadata = buildToolkitHubMetadata();
+
+const RESOURCE_LINKS = [
+  {
+    href: examMarketingPath("nclex"),
+    title: "NCLEX question bank",
+    body: "NGN-ready NCLEX practice questions, clinical judgment, and prioritization drills.",
+  },
+  {
+    href: examMarketingPath("usmle"),
+    title: "USMLE question bank",
+    body: "Step 1, Step 2 CK, and Step 3 coverage on one USMLE track.",
+  },
+  {
+    href: ROUTES.blog,
+    title: "Study systems on the blog",
+    body: "High-yield articles for NCLEX, USMLE, NAPLEX, and multi-exam prep strategy.",
+  },
+  {
+    href: ROUTES.pricing,
+    title: "One plan pricing",
+    body: `See how one Pro subscription from ${formatMonthlyPrice("pro")}/mo unlocks all six banks.`,
+  },
+] as const;
 
 export default function ToolkitPage() {
   return (
@@ -29,18 +54,23 @@ export default function ToolkitPage() {
           <div className="relative mx-auto grid max-w-6xl items-center gap-12 pb-20 lg:grid-cols-2 lg:gap-16 lg:pb-28">
             <div className="text-center lg:text-left">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-accent)]">
-                Exam prep, organized
+                Free board exam resources
               </p>
-              <h1 className="apple-display mt-4 text-[clamp(2.5rem,6vw,3.5rem)] leading-[1.05]">
-                Toolkit
+              <h1 className="apple-display mt-4 text-[clamp(2.25rem,5.5vw,3.5rem)] leading-[1.05]">
+                Toolkit for NCLEX practice questions, USMLE prep &amp; six-exam study
               </h1>
               <p className="apple-subhead mt-4 text-[clamp(1.125rem,2.5vw,1.375rem)] font-medium text-[var(--color-ink)]">
-                Everything you need to pass — packed in one place.
+                Guides, breakdowns, and readiness tips — paired with one affordable question bank
+                plan.
               </p>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-[var(--color-ink-muted)] lg:max-w-none">
-                Your complete exam prep toolkit. School notes give you the foundation. AnyExamEasy
-                turns that knowledge into confidence with targeted practice and roadmaps. Testing
-                tools make sure you&apos;re truly ready on exam day.
+                School notes give you the foundation. {SITE_NAME} turns that knowledge into exam-day
+                confidence with a clinician-built{" "}
+                <strong className="font-semibold text-[var(--color-ink)]">NCLEX question bank</strong>,
+                a full{" "}
+                <strong className="font-semibold text-[var(--color-ink)]">USMLE question bank</strong>,
+                and matching depth for NAPLEX, PANCE, AANP FNP, and NPTE-PT —{" "}
+                {SEO_LIVE_STATS.questionCount} QA-gated items on one subscription.
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
                 <LandingCta href={LANDING_TRIAL_HREF}>{formatTrialCtaLabel()}</LandingCta>
@@ -55,46 +85,63 @@ export default function ToolkitPage() {
           </div>
         </section>
 
-        {/* Three-layer explainer */}
-        <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-14 sm:py-16">
-          <div className="mx-auto grid max-w-5xl gap-6 sm:grid-cols-3">
-            {[
-              {
-                title: "Your School Notes",
-                body: "Lectures, textbooks, and clinical rotations — the raw knowledge you already have.",
-                muted: true,
-              },
-              {
-                title: "AnyExamEasy",
-                body: "QA-gated question banks, blueprint roadmaps, and full-length simulations for all six boards.",
-                highlight: true,
-              },
-              {
-                title: "Testing & Readiness",
-                body: "Timed mocks, analytics, and readiness checks so exam day feels familiar — not frightening.",
-                muted: true,
-              },
-            ].map((layer) => (
-              <div
-                key={layer.title}
-                className={
-                  layer.highlight
-                    ? "rounded-3xl border-2 border-[var(--color-accent)] bg-[color-mix(in_srgb,var(--color-accent)_10%,var(--color-surface-elevated))] p-6 shadow-[0_0_32px_color-mix(in_srgb,var(--color-accent)_18%,transparent)]"
-                    : "rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6"
-                }
-              >
-                <h2
+        {/* How the Toolkit fits */}
+        <section
+          className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-14 sm:py-16"
+          aria-labelledby="toolkit-layers-heading"
+        >
+          <div className="mx-auto max-w-5xl">
+            <h2
+              id="toolkit-layers-heading"
+              className="text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] sm:text-3xl"
+            >
+              How to use this Toolkit with your question bank
+            </h2>
+            <p className="mx-auto mt-3 max-w-2xl text-center text-base leading-relaxed text-[var(--color-ink-muted)]">
+              Strategy first, then deliberate practice across {PLATFORM_EXAM_LIST} — without buying a
+              separate bank for each board.
+            </p>
+            <div className="mt-10 grid gap-6 sm:grid-cols-3">
+              {[
+                {
+                  title: "Your school notes",
+                  body: "Lectures, textbooks, and clinical rotations — the raw knowledge you already have.",
+                  muted: true,
+                },
+                {
+                  title: `${SITE_NAME} question banks`,
+                  body: "QA-gated NCLEX practice questions, USMLE vignettes, Blueprint Roadmaps, and full-length mocks for all six boards — one Pro plan.",
+                  highlight: true,
+                },
+                {
+                  title: "Testing & readiness",
+                  body: "Timed mocks, analytics, and readiness checks so exam day feels familiar — not frightening.",
+                  muted: true,
+                },
+              ].map((layer) => (
+                <div
+                  key={layer.title}
                   className={
                     layer.highlight
-                      ? "text-lg font-bold text-[var(--color-accent)]"
-                      : "text-lg font-bold text-[var(--color-ink)]"
+                      ? "rounded-3xl border-2 border-[var(--color-accent)] bg-[color-mix(in_srgb,var(--color-accent)_10%,var(--color-surface-elevated))] p-6 shadow-[0_0_32px_color-mix(in_srgb,var(--color-accent)_18%,transparent)]"
+                      : "rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6"
                   }
                 >
-                  {layer.title}
-                </h2>
-                <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">{layer.body}</p>
-              </div>
-            ))}
+                  <h3
+                    className={
+                      layer.highlight
+                        ? "text-lg font-bold text-[var(--color-accent)]"
+                        : "text-lg font-bold text-[var(--color-ink)]"
+                    }
+                  >
+                    {layer.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+                    {layer.body}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -105,11 +152,12 @@ export default function ToolkitPage() {
               id="toolkit-exams-heading"
               className="text-3xl font-bold tracking-tight text-[var(--color-ink)] sm:text-4xl"
             >
-              Find Out About Each Exam
+              Find out about each exam
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-[var(--color-ink-muted)]">
               Tap any exam below to expand a quick breakdown — format, scope, and what you need to
-              succeed.
+              succeed. Then open the matching prep page for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, or
+              NPTE-PT practice.
             </p>
           </div>
           <div className="mx-auto mt-12 max-w-xl">
@@ -118,6 +166,50 @@ export default function ToolkitPage() {
         </section>
 
         <ToolkitCrossExamComparison />
+
+        {/* Internal resource hub */}
+        <section
+          className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-16 sm:py-20"
+          aria-labelledby="toolkit-resources-heading"
+        >
+          <div className="mx-auto max-w-3xl">
+            <h2
+              id="toolkit-resources-heading"
+              className="text-3xl font-bold tracking-tight text-[var(--color-ink)] sm:text-4xl"
+            >
+              More ways to prep smarter
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-muted)]">
+              Pair these free Toolkit guides with live practice. Explore exam hubs, the{" "}
+              <Link href={ROUTES.blog} className="font-semibold text-[var(--color-accent)] hover:underline">
+                blog
+              </Link>
+              , and{" "}
+              <Link href={ROUTES.about} className="font-semibold text-[var(--color-accent)] hover:underline">
+                why we built one multi-exam plan
+              </Link>
+              .
+            </p>
+            <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+              {RESOURCE_LINKS.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="block h-full rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-5 shadow-[var(--shadow-apple-sm)] transition hover:border-[var(--color-accent)]/40"
+                  >
+                    <span className="text-base font-bold text-[var(--color-ink)]">{item.title}</span>
+                    <span className="mt-2 block text-sm leading-relaxed text-[var(--color-ink-muted)]">
+                      {item.body}
+                    </span>
+                    <span className="mt-3 inline-block text-sm font-semibold text-[var(--color-accent)]">
+                      Open →
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
 
         <ToolkitStudyGuides />
 
@@ -128,8 +220,8 @@ export default function ToolkitPage() {
               Pack the tool that makes the difference
             </h2>
             <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-muted)]">
-              Join students who trust AnyExamEasy for structured, board-caliber prep across six
-              licensing exams — one calm, confident toolkit.
+              Join students who trust {SITE_NAME} for structured, board-caliber prep across six
+              licensing exams — one calm, confident toolkit and one affordable subscription.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <LandingCta href={LANDING_TRIAL_HREF}>{formatTrialCtaLabel()}</LandingCta>

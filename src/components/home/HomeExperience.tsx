@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Hero } from "@/components/Hero";
 import { LandingFlagshipV2 } from "@/components/landing/v2/LandingFlagshipV2";
 import { LandingHeroSkeleton } from "@/components/landing/v2/LandingHeroSkeleton";
@@ -34,9 +34,12 @@ const SubscriberHome = dynamic(
 export function HomeExperience({
   bankCounts: initialBankCounts,
   testimonials,
+  children,
 }: {
   bankCounts: LandingBankCountsDisplay;
   testimonials?: LandingSuccessStory[];
+  /** Server-rendered SEO / long-form blocks (passed through to the guest landing). */
+  children?: ReactNode;
 }) {
   const bankCounts = useLandingBankCounts(initialBankCounts);
   const { status } = useSession();
@@ -71,5 +74,9 @@ export function HomeExperience({
     return <LandingHeroSkeleton bankCounts={bankCounts} />;
   }
 
-  return <LandingFlagshipV2 bankCounts={bankCounts} testimonials={testimonials} />;
+  return (
+    <LandingFlagshipV2 bankCounts={bankCounts} testimonials={testimonials}>
+      {children}
+    </LandingFlagshipV2>
+  );
 }

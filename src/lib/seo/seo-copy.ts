@@ -20,8 +20,9 @@ export const SEO_VALUE_PROPS = {
 /** High-intent keywords clustered for metadata helpers. */
 export const SEO_KEYWORD_CLUSTERS = {
   nclex: [
-    "NCLEX prep 2026",
+    "NCLEX question bank",
     "NCLEX practice questions",
+    "NCLEX prep 2026",
     "NGN NCLEX questions",
     "UWorld NCLEX alternative",
     "best NCLEX Qbank",
@@ -33,12 +34,14 @@ export const SEO_KEYWORD_CLUSTERS = {
     "best NAPLEX review",
   ],
   usmle: [
+    "USMLE question bank",
     "USMLE practice questions",
     "USMLE Step 2 CK Qbank",
     "UWorld USMLE alternative",
     "Step 1 practice questions 2026",
   ],
   multiExam: [
+    "one subscription six exams",
     "best value multi-exam prep",
     "UWorld alternative",
     "adaptive roadmap board prep",
@@ -56,8 +59,9 @@ export function seoPlatformPitch(totalLabel?: string): string {
 }
 
 /** Homepage H1 — keyword-led, visible content for Google and users. */
-export const SEO_HOME_H1 = "NCLEX, USMLE & NAPLEX Prep";
-export const SEO_HOME_H1_ACCENT = "One Plan. Best Value.";
+export const SEO_HOME_H1 =
+  "NCLEX Practice Questions & USMLE Question Bank — Six Exams, One Plan";
+export const SEO_HOME_H1_ACCENT = "";
 
 /** Homepage subline template; inject live question total when available. */
 export function seoHomeHeroSubline(totalLabel?: string): string {

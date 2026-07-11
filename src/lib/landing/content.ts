@@ -163,16 +163,16 @@ export const LANDING_HERO_EXAMS = [
   { label: "NPTE-PT", color: EXAM_ACCENTS.nptePt },
 ] as const;
 
-/** Primary hero headline — benefit-driven, scannable above the fold. */
+/** Primary hero headline — keyword-led H1 with clear multi-exam USP. */
 export const LANDING_HERO_HEADLINE =
-  "Pass Your NCLEX, NAPLEX and USMLE With High-Quality Board-Style Questions";
+  "NCLEX Practice Questions & USMLE Question Bank — Six Exams, One Plan";
 
 /** Accent line under the primary headline — empty when the full headline is in LANDING_HERO_HEADLINE. */
 export const LANDING_HERO_HEADLINE_ACCENT = "";
 
 /** Hero sub-headline body — pass live total via formatFlagshipHeroSubline(totalLabel). */
 export const LANDING_HERO_SUBLINE_BODY =
-  "Top 509 Drugs, AI Tutor, adaptive Blueprint Roadmaps, and Spaced Repetition for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT — clinician-built, QA-gated, not bulk filler.";
+  "One affordable subscription for NCLEX-RN, USMLE (Steps 1–3), NAPLEX, PANCE, AANP FNP & NPTE-PT — QA-gated question banks, AI Tutor, Blueprint Roadmaps, and Spaced Repetition. Clinician-built, not bulk filler.";
 
 export function formatFlagshipHeroSubline(totalLabel?: string): string {
   const count = totalLabel?.trim();

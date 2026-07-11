@@ -18,6 +18,7 @@
  */
 
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { ArrowRight, LogIn } from "lucide-react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { LandingCta } from "@/components/landing/LandingCta";
@@ -50,9 +51,12 @@ import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-cou
 export function LandingFlagshipV2({
   bankCounts,
   testimonials,
+  children,
 }: {
   bankCounts: LandingBankCountsDisplay;
   testimonials?: import("@/lib/landing/content").LandingSuccessStory[];
+  /** Long-form SEO guide rendered from the server page. */
+  children?: ReactNode;
 }) {
   return (
     <div className="aee-flagship aee-flagship--conversion">
@@ -100,6 +104,8 @@ export function LandingFlagshipV2({
       <LandingFaqV2 />
 
       <LandingTestimonialsV2 stories={testimonials} />
+
+      {children}
 
       <section className="aee-flagship-final-cta" aria-labelledby="final-cta-heading">
         <div className="aee-flagship-final-cta__bg" aria-hidden />

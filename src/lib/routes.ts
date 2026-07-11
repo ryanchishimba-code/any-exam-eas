@@ -39,6 +39,7 @@ export const ROUTES = {
   toolkit: "/toolkit",
   blog: "/blog",
   about: "/about",
+  compare: "/compare",
   employers: "/employers",
   pricing: "/pricing",
   feedback: "/feedback",

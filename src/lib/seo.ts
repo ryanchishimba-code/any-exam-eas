@@ -55,6 +55,9 @@ export function absoluteUrl(path: string): string {
 import { SEO_KEYWORD_CLUSTERS, SEO_LIVE_STATS, seoPlatformPitch } from "@/lib/seo/seo-copy";
 
 const HOME_KEYWORDS = [
+  "NCLEX question bank",
+  "NCLEX practice questions",
+  "USMLE question bank",
   ...SEO_KEYWORD_CLUSTERS.nclex,
   ...SEO_KEYWORD_CLUSTERS.naplex,
   ...SEO_KEYWORD_CLUSTERS.usmle,
@@ -64,13 +67,14 @@ const HOME_KEYWORDS = [
   "NPTE-PT board prep",
   "spaced repetition board prep",
   "clinician-built Qbank",
+  "one subscription six exams",
   "AnyExamEasy",
 ];
 
 export function buildHomeMetadata(totalQuestionsLabel?: string): Metadata {
   const countLabel = totalQuestionsLabel?.trim() || SEO_LIVE_STATS.questionCount;
-  const title = `${SITE_NAME} — NCLEX, USMLE & NAPLEX Prep | ${countLabel} Questions (2026)`;
-  const description = `${seoPlatformPitch(countLabel)} ${SEO_LIVE_STATS.trialDays}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day money-back guarantee · Pro at ${formatMonthlyPrice("pro")}/mo · ${formatTrialQuestionLimit()}.`;
+  const title = `NCLEX Question Bank & USMLE Prep | ${countLabel} Practice Questions (2026)`;
+  const description = `Affordable ${SITE_NAME} Pro: one subscription for NCLEX practice questions, a full USMLE question bank (Steps 1–3), NAPLEX, PANCE, AANP FNP & NPTE-PT. ${countLabel} QA-gated items · AI Tutor · Blueprint Roadmaps · ${SEO_LIVE_STATS.trialDays}-day free trial · from ${formatMonthlyPrice("pro")}/mo.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 

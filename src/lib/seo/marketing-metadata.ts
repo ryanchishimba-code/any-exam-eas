@@ -81,12 +81,15 @@ export function buildResourcesHubMetadata(): Metadata {
 }
 
 export function buildToolkitHubMetadata(): Metadata {
-  const title = `Board Exam Toolkit — NCLEX, USMLE & NAPLEX Study Guides (2026) | ${SITE_NAME}`;
-  const description = `${SEO_LIVE_STATS.questionCount} practice questions, ${SEO_LIVE_STATS.topDrugsLabel}, AI Tutor, and adaptive Blueprint Roadmaps for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT. ${SEO_LIVE_STATS.trialDays}-day free trial.`;
+  const title = `Board Exam Toolkit — NCLEX Question Bank Guides & USMLE Study Resources (2026)`;
+  const description = `Free Toolkit for NCLEX practice questions, USMLE question bank strategy, NAPLEX, PANCE, AANP FNP & NPTE-PT. Exam breakdowns, comparison guides, and readiness tips — plus ${SEO_LIVE_STATS.questionCount} QA-gated items on one ${SITE_NAME} plan.`;
   const path = "/toolkit";
   return {
     ...baseOpenGraph(title, description, path, { absoluteTitle: true }),
     keywords: [
+      "NCLEX question bank guide",
+      "NCLEX practice questions",
+      "USMLE question bank study guide",
       "board exam toolkit",
       "NCLEX study resources",
       "USMLE study guide",
@@ -184,15 +187,19 @@ export function buildCompareJsonLd() {
 }
 
 export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
-  const title = `About ${SITE_NAME} — Clinician-Built Board Prep (12+ Years)`;
+  const title = `About ${SITE_NAME} — NCLEX & USMLE Question Bank for Six Exams`;
   const countPhrase = serveReadyTotalLabel ?? SEO_LIVE_STATS.questionCount;
-  const description = `${SITE_NAME} is QA-gated, clinician-built board prep (${SEO_LIVE_STATS.clinicianYears} years combined) with ${countPhrase} practice questions, ${SEO_LIVE_STATS.topDrugsLabel}, AI Tutor, adaptive Blueprint Roadmaps, and Spaced Repetition for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE. Proudly built in Texas.`;
+  const description = `${SITE_NAME} is a clinician-built NCLEX question bank and USMLE question bank platform — plus NAPLEX, PANCE, AANP FNP & NPTE-PT — on one affordable subscription. ${countPhrase} QA-gated practice questions, AI Tutor, Blueprint Roadmaps. Built in Texas · ${SEO_LIVE_STATS.clinicianYears} years combined clinical experience.`;
   return {
     ...baseOpenGraph(title, description, "/about", { absoluteTitle: true }),
     keywords: [
       "about AnyExamEasy",
+      "NCLEX question bank",
+      "NCLEX practice questions",
+      "USMLE question bank",
       "affordable board exam prep",
       "clinician-curated question bank",
+      "one subscription six exams",
       "Top 509 drugs reference",
       "AI tutor board prep",
       "adaptive roadmap NCLEX USMLE NAPLEX",

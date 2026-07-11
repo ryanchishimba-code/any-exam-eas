@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HomeJsonLd } from "@/components/seo/HomeJsonLd";
 import { HomeExperience } from "@/components/home/HomeExperience";
+import { LandingSeoGuide } from "@/components/landing/LandingSeoGuide";
 import { LANDING_FALLBACK_BANK_COUNTS } from "@/lib/marketing/landing-fallback-counts";
 import { LANDING_SUCCESS_STORIES } from "@/lib/landing/content";
 import { buildHomeMetadata } from "@/lib/seo";
@@ -15,6 +16,7 @@ export const dynamic = "force-static";
  * - Static server shell (metadata + JSON-LD + instant hero skeleton)
  * - `HomeExperience` switches guest vs subscriber views client-side
  * - Live bank counts upgrade in the browser from the cached public API
+ * - Server-rendered SEO guide (children) for crawler-friendly long-form copy
  */
 export const metadata: Metadata = buildHomeMetadata();
 
@@ -25,7 +27,11 @@ export default function HomePage() {
       <HomeExperience
         bankCounts={LANDING_FALLBACK_BANK_COUNTS}
         testimonials={LANDING_SUCCESS_STORIES}
-      />
+      >
+        <LandingSeoGuide
+          questionCountLabel={LANDING_FALLBACK_BANK_COUNTS.totalQuestionsLabel}
+        />
+      </HomeExperience>
     </>
   );
 }
