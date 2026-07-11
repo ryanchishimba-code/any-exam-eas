@@ -8,6 +8,12 @@ import {
 import { parseBillingInterval, intervalTotalUsd } from "@/lib/billing-plans";
 import { CHECKOUT_PAYMENT_METHOD_TYPES } from "@/lib/payments";
 import { intervalFromPriceId, requireStripePriceId } from "@/lib/stripe-prices";
+import {
+  stripeUnixToDate,
+  subscriptionCurrentPeriodEnd,
+  subscriptionCurrentPeriodEndUnix,
+  subscriptionCurrentPeriodStart,
+} from "@/lib/stripe-period";
 import { parseSubscriptionTier, type SubscriptionTier } from "@/lib/subscription-tiers";
 
 export {
@@ -255,18 +261,17 @@ export async function getSubscriptionBillingDetails(stripeSubscriptionId: string
 
   const nextRecurringInterval = pendingPlanInterval ?? current.interval;
   const nextRecurringTier = pendingPlanTier ?? current.tier;
+  const periodEnd = subscriptionCurrentPeriodEnd(sub);
   const nextRecurringAt = onTrial
-    ? sub.trial_end
-      ? new Date(sub.trial_end * 1000)
-      : null
-    : new Date(sub.current_period_end * 1000);
+    ? stripeUnixToDate(sub.trial_end)
+    : periodEnd;
 
   return {
     planTier: current.tier,
     planInterval: current.interval,
     pendingPlanTier,
     pendingPlanInterval,
-    currentPeriodEnd: new Date(sub.current_period_end * 1000),
+    currentPeriodEnd: periodEnd ?? new Date(),
     status: sub.status,
     onTrial,
     nextRecurringTier,
@@ -314,8 +319,8 @@ export async function changeSubscriptionPlan(params: {
       data: {
         planTier: params.tier,
         planInterval: params.interval,
-        ...(updated.current_period_end
-          ? { currentPeriodEnd: new Date(updated.current_period_end * 1000) }
+        ...(subscriptionCurrentPeriodEnd(updated)
+          ? { currentPeriodEnd: subscriptionCurrentPeriodEnd(updated)! }
           : {}),
       },
     });
@@ -328,7 +333,11 @@ export async function changeSubscriptionPlan(params: {
     };
   }
 
-  const effectiveAt = new Date(sub.current_period_end * 1000);
+  const periodEndUnix = subscriptionCurrentPeriodEndUnix(sub);
+  if (periodEndUnix == null) {
+    throw new Error("Subscription is missing current_period_end");
+  }
+  const effectiveAt = new Date(periodEndUnix * 1000);
   const existingScheduleId =
     typeof sub.schedule === "string" ? sub.schedule : sub.schedule?.id;
 
@@ -340,8 +349,8 @@ export async function changeSubscriptionPlan(params: {
     scheduleId = created.id;
   }
 
-  let phase1Start = sub.current_period_start;
-  let phase1End = sub.current_period_end;
+  let phase1Start = subscriptionCurrentPeriodStart(sub) ?? Math.floor(Date.now() / 1000);
+  let phase1End = periodEndUnix;
 
   if (existingScheduleId) {
     const existing = await stripe.subscriptionSchedules.retrieve(scheduleId);
@@ -352,7 +361,7 @@ export async function changeSubscriptionPlan(params: {
     );
     if (currentPhase) {
       phase1Start = currentPhase.start_date;
-      phase1End = currentPhase.end_date ?? sub.current_period_end;
+      phase1End = currentPhase.end_date ?? periodEndUnix;
     }
   }
 
@@ -423,6 +432,8 @@ export async function applySubscriptionFromStripe(
   }
 
   const signupPlan = stripeSub.metadata?.plan === "trial" ? "trial" : "subscribe";
+  const periodEnd = subscriptionCurrentPeriodEnd(stripeSub);
+  const trialEndsAt = stripeUnixToDate(stripeSub.trial_end);
 
   await prisma.subscription.update({
     where: { userId },
@@ -433,10 +444,8 @@ export async function applySubscriptionFromStripe(
       plan: signupPlan,
       planTier,
       planInterval,
-      currentPeriodEnd: new Date(stripeSub.current_period_end * 1000),
-      ...(stripeSub.trial_end
-        ? { trialEndsAt: new Date(stripeSub.trial_end * 1000) }
-        : {}),
+      ...(periodEnd ? { currentPeriodEnd: periodEnd } : {}),
+      ...(trialEndsAt ? { trialEndsAt } : {}),
       ...(isPaid ? { gracePeriodEndsAt: null, canceledAt: null } : {}),
       ...(stripeSub.status === "canceled" ? { canceledAt: new Date() } : {}),
     },

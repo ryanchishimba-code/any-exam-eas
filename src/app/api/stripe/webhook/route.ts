@@ -4,6 +4,7 @@ import {
   resolveUserIdFromStripeSubscription,
   applySubscriptionFromStripe,
 } from "@/lib/stripe";
+import { stripeUnixToDate, subscriptionCurrentPeriodEnd } from "@/lib/stripe-period";
 import { prisma } from "@/lib/prisma";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
@@ -48,6 +49,9 @@ export async function POST(req: Request) {
           stripeSub = await stripe.subscriptions.retrieve(String(session.subscription));
         }
 
+        const periodEnd = stripeSub ? subscriptionCurrentPeriodEnd(stripeSub) : null;
+        const trialEndsAt = stripeSub ? stripeUnixToDate(stripeSub.trial_end) : null;
+
         await prisma.subscription.update({
           where: { userId },
           data: {
@@ -57,12 +61,8 @@ export async function POST(req: Request) {
             plan: session.metadata?.plan === "trial" ? "trial" : "subscribe",
             planTier: parseSubscriptionTier(session.metadata?.tier),
             planInterval: parseBillingInterval(session.metadata?.interval),
-            ...(stripeSub?.trial_end
-              ? { trialEndsAt: new Date(stripeSub.trial_end * 1000) }
-              : {}),
-            ...(stripeSub?.current_period_end
-              ? { currentPeriodEnd: new Date(stripeSub.current_period_end * 1000) }
-              : {}),
+            ...(trialEndsAt ? { trialEndsAt } : {}),
+            ...(periodEnd ? { currentPeriodEnd: periodEnd } : {}),
             canceledAt: null,
           },
         });
