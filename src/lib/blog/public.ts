@@ -26,6 +26,18 @@ export type PublicBlogPost = PublicBlogPostCard & {
   authorImage: string | null;
 };
 
+/** Prefer a cacheable cover URL over inlining multi-MB data: images in HTML. */
+export function publicCoverImageUrl(
+  slug: string,
+  coverImage: string | null | undefined
+): string | null {
+  const cover = coverImage?.trim();
+  if (!cover) return null;
+  if (/^https?:\/\//i.test(cover)) return cover;
+  if (cover.startsWith("data:")) return `/api/blog/${encodeURIComponent(slug)}/cover`;
+  return cover;
+}
+
 function toCard(row: {
   id: string;
   title: string;
@@ -43,7 +55,7 @@ function toCard(row: {
     title: row.title,
     slug: row.slug,
     excerpt: row.excerpt,
-    coverImage: row.coverImage,
+    coverImage: publicCoverImageUrl(row.slug, row.coverImage),
     category: row.category,
     tags: row.tags,
     readTime: row.readTime,

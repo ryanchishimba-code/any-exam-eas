@@ -247,11 +247,32 @@ export type PlanChangeResult = {
   interval: BillingInterval;
 };
 
+/** Fake/seed IDs must never call Stripe — they abort cron and settings. */
+export function isUsableStripeSubscriptionId(
+  stripeSubscriptionId: string | null | undefined
+): boolean {
+  const id = stripeSubscriptionId?.trim();
+  if (!id?.startsWith("sub_")) return false;
+  if (id.startsWith("sub_seed_") || id.includes("_seed_")) return false;
+  return true;
+}
+
 /** Read pending plan change and next recurring charge from Stripe. */
 export async function getSubscriptionBillingDetails(stripeSubscriptionId: string) {
   if (!stripe) return null;
+  if (!isUsableStripeSubscriptionId(stripeSubscriptionId)) return null;
 
-  const sub = await stripe.subscriptions.retrieve(stripeSubscriptionId);
+  let sub: Stripe.Subscription;
+  try {
+    sub = await stripe.subscriptions.retrieve(stripeSubscriptionId);
+  } catch (err) {
+    const code =
+      err && typeof err === "object" && "code" in err
+        ? String((err as { code?: unknown }).code)
+        : "";
+    if (code === "resource_missing") return null;
+    throw err;
+  }
   const pendingRaw = sub.metadata?.pendingInterval?.trim();
   const pendingTierRaw = sub.metadata?.pendingTier?.trim();
   const pendingPlanInterval = pendingRaw ? parseBillingInterval(pendingRaw) : null;

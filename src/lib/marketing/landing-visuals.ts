@@ -69,12 +69,12 @@ export function getLandingVisual(id: string): LandingVisualSpec | undefined {
 
 /** Public paths for generated landing assets in /public/images/landing/ */
 export const LANDING_VISUAL_PATHS: Record<keyof typeof LANDING_VISUALS, string> = {
-  "hero-app-mockup": "/images/landing/hero-app-mockup.png",
-  "feature-adaptive-learning": "/images/landing/feature-adaptive-learning.png",
-  "feature-pharmacology": "/images/landing/feature-pharmacology.png",
-  "pricing-value-stack": "/images/landing/pricing-value-stack.png",
-  "screenshot-question-bank": "/images/landing/screenshot-question-bank.png",
-  "screenshot-analytics": "/images/landing/screenshot-analytics.png",
+  "hero-app-mockup": "/images/landing/hero-app-mockup.jpg",
+  "feature-adaptive-learning": "/images/landing/feature-adaptive-learning.jpg",
+  "feature-pharmacology": "/images/landing/feature-pharmacology.jpg",
+  "pricing-value-stack": "/images/landing/pricing-value-stack.jpg",
+  "screenshot-question-bank": "/images/landing/screenshot-question-bank.jpg",
+  "screenshot-analytics": "/images/landing/screenshot-analytics.jpg",
 };
 
 export function landingVisualSrc(id: string): string | undefined {

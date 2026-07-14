@@ -34,6 +34,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = post.metaTitle || post.title;
   const description = post.metaDescription || post.excerpt || `${post.title} — ${SITE_NAME}`;
   const url = blogPostAbsoluteUrl(post.slug);
+  const coverAbsolute =
+    post.coverImage &&
+    (post.coverImage.startsWith("http")
+      ? post.coverImage
+      : `${url.replace(/\/blog\/[^/]+$/, "")}${post.coverImage}`);
 
   return {
     title: `${title} — ${SITE_NAME}`,
@@ -43,13 +48,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       type: "article",
       url,
-      images: post.coverImage ? [{ url: post.coverImage }] : undefined,
+      images: coverAbsolute ? [{ url: coverAbsolute }] : undefined,
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: post.coverImage ? [post.coverImage] : undefined,
+      images: coverAbsolute ? [coverAbsolute] : undefined,
     },
     alternates: { canonical: url },
   };

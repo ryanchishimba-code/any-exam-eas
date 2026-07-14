@@ -57,11 +57,16 @@ export async function runBillingReminderEmails(
     let amountUsd = intervalTotalUsd(tier, interval);
 
     if (sub.stripeSubscriptionId && isStripeConfigured()) {
-      const billing = await getSubscriptionBillingDetails(sub.stripeSubscriptionId);
-      if (billing?.nextRecurringInterval) {
-        interval = parseBillingInterval(billing.nextRecurringInterval);
+      try {
+        const billing = await getSubscriptionBillingDetails(sub.stripeSubscriptionId);
+        if (billing?.nextRecurringInterval) {
+          interval = parseBillingInterval(billing.nextRecurringInterval);
+        }
+        if (billing?.nextRecurringUsd) amountUsd = billing.nextRecurringUsd;
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        result.errors.push(`trial Stripe lookup ${sub.userId}: ${message}`);
       }
-      if (billing?.nextRecurringUsd) amountUsd = billing.nextRecurringUsd;
     }
 
     const sent = await sendTrialEndingUpgradeEmail({
@@ -111,11 +116,16 @@ export async function runBillingReminderEmails(
     let chargeAt = periodEnd;
 
     if (sub.stripeSubscriptionId && isStripeConfigured()) {
-      const billing = await getSubscriptionBillingDetails(sub.stripeSubscriptionId);
-      if (billing) {
-        interval = parseBillingInterval(billing.nextRecurringInterval);
-        amountUsd = billing.nextRecurringUsd;
-        if (billing.nextRecurringAt) chargeAt = billing.nextRecurringAt;
+      try {
+        const billing = await getSubscriptionBillingDetails(sub.stripeSubscriptionId);
+        if (billing) {
+          interval = parseBillingInterval(billing.nextRecurringInterval);
+          amountUsd = billing.nextRecurringUsd;
+          if (billing.nextRecurringAt) chargeAt = billing.nextRecurringAt;
+        }
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        result.errors.push(`billing Stripe lookup ${sub.userId}: ${message}`);
       }
     }
 

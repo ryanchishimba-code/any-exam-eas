@@ -16,7 +16,7 @@ type Props = {
 };
 
 /**
- * Landing graphic — uses PNG from /public/images/landing/ when available.
+ * Landing graphic — uses image from /public/images/landing/ when available.
  */
 export function LandingVisualSlot({
   visualId,

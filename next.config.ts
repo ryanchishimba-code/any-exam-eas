@@ -37,6 +37,7 @@ const nextConfig: NextConfig = {
     : {}),
   images: {
     remotePatterns: [],
+    formats: ["image/avif", "image/webp"],
     qualities: [75, 82, 90],
   },
   async headers() {
