@@ -1,6 +1,18 @@
-import { describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
+vi.mock("@/lib/edtech/exam-preference", () => ({
+  getUserExamPreference: vi.fn(),
+  setUserExamPreference: vi.fn(),
+}));
+
+vi.mock("@/lib/edtech/user-metadata", () => ({
+  getUserEdtechMetadata: vi.fn(async () => ({})),
+}));
+
+import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import {
   canonicalPracticeFieldId,
+  enforceQuestionBankFieldAccess,
   examSlugForFieldId,
   fieldIdForExamSlug,
   fieldMatchesExamSlug,
@@ -8,6 +20,41 @@ import {
 } from "./question-bank-scope";
 
 describe("question-bank-scope", () => {
+  beforeEach(() => {
+    vi.mocked(getUserExamPreference).mockReset();
+  });
+
+  it("allows matching exam field access without throwing", async () => {
+    vi.mocked(getUserExamPreference).mockResolvedValue({
+      userId: "user-1",
+      examSlug: "nclex",
+      lastStudiedAt: null,
+    });
+
+    const access = await enforceQuestionBankFieldAccess("user-1", "nursing");
+    expect(access.ok).toBe(true);
+    if (access.ok) {
+      expect(access.fieldId).toBe("nursing");
+      expect(access.examSlug).toBe("nclex");
+    }
+  });
+
+  it("rejects fields that do not match the selected exam", async () => {
+    vi.mocked(getUserExamPreference).mockResolvedValue({
+      userId: "user-1",
+      examSlug: "nclex",
+      lastStudiedAt: null,
+    });
+
+    const access = await enforceQuestionBankFieldAccess("user-1", "pharmacy");
+    expect(access.ok).toBe(false);
+    if (!access.ok) {
+      expect(access.response.status).toBe(403);
+      const body = await access.response.json();
+      expect(body.code).toBe("EXAM_FIELD_MISMATCH");
+    }
+  });
+
   it("maps exam slugs to field ids", () => {
     expect(fieldIdForExamSlug("nclex")).toBe("nursing");
     expect(fieldIdForExamSlug("naplex")).toBe("pharmacy");

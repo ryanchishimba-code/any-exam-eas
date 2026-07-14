@@ -167,15 +167,18 @@ export function UserAccessProvider({
 export function useUserAccess(): UserAccessState {
   const context = useContext(UserAccessContext);
   const { status: sessionStatus } = useSession();
-  const [localAccess, setLocalAccess] = useState<UserAccessState>(() =>
-    sessionStatus === "authenticated" && cachedAccess ? cachedAccess : defaultState
-  );
+  const [localAccess, setLocalAccess] = useState<UserAccessState>(() => {
+    if (sessionStatus === "authenticated" && cachedAccess) return cachedAccess;
+    if (sessionStatus === "unauthenticated") return loggedOutState;
+    return defaultState;
+  });
 
   useEffect(() => {
     if (context != null) return;
 
     if (sessionStatus === "loading") return;
 
+    // Logged-out: never hit /api/subscription/status.
     if (sessionStatus !== "authenticated") {
       setLocalAccess(loggedOutState);
       return;

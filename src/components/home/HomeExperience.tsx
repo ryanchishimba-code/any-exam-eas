@@ -58,6 +58,15 @@ export function HomeExperience({
     return () => window.clearTimeout(timer);
   }, [isAuthed, accessLoading]);
 
+  // Guests and unresolved session: paint conversion landing immediately (no access API).
+  if (status !== "authenticated") {
+    return (
+      <LandingFlagshipV2 bankCounts={bankCounts} testimonials={testimonials}>
+        {children}
+      </LandingFlagshipV2>
+    );
+  }
+
   // Confirmed premium only — avoid flashing the returning-user hero for unpaid sessions.
   if (showSubscriberHome) {
     return (

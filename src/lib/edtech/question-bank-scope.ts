@@ -3,6 +3,7 @@ import { getFieldMeta } from "@/lib/fields";
 import {
   examSlugForFieldId,
   fieldIdForExamSlug,
+  fieldMatchesExamSlug,
 } from "@/lib/edtech/exam-field-ids";
 import { getUserExamPreference, setUserExamPreference } from "@/lib/edtech/exam-preference";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
