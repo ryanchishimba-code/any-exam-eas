@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createExamSession } from "@/lib/exam-sessions/service";
+import { createExamInstance } from "@/lib/full-exam/exam-instance";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
 import { getUserExamPreference, touchExamStudied } from "@/lib/edtech/exam-preference";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
@@ -16,6 +16,12 @@ import { assembleTimedExamSessionItems } from "@/lib/exam-prep/compose/assemble-
 import { preparedTimedExamItemsForClient } from "@/lib/exam-prep/prepare-timed-exam-client-payload";
 import { resolveExamBankSampleCount } from "@/lib/questions/finalize-exam-session";
 import { recordStudyQuestionsServed } from "@/lib/study/usage-limits";
+import {
+  isFullExamLaunchMode,
+  type FullExamLaunchMode,
+} from "@/lib/full-exam/launch-modes";
+import { resolveSmartExamSelection } from "@/lib/full-exam/smart-exam-selection";
+import { loadBankItemsByIds } from "@/lib/full-exam/load-bank-items-by-ids";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
@@ -30,12 +36,16 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid exam" }, { status: 400 });
   }
 
+  const launchMode: FullExamLaunchMode = isFullExamLaunchMode(body.launchMode)
+    ? body.launchMode
+    : "new_exam";
+
   const preset = parseRequestedLengthPreset(body.lengthPreset);
   const timed = body.timed !== false;
   const nclexLength =
     body.nclexLength === "maximum" ? ("maximum" as const) : ("minimum" as const);
   const nclexCat = body.nclexCat === true || body.nclexCat === "1";
-  const focusAreas = Array.isArray(body.focusAreas)
+  const focusAreasRaw = Array.isArray(body.focusAreas)
     ? body.focusAreas.map(String).filter(Boolean)
     : Array.isArray(body.focus_areas)
       ? body.focus_areas.map(String).filter(Boolean)
@@ -72,6 +82,25 @@ export async function POST(req: Request) {
       sessionFieldId = requestedField;
     }
 
+    const smart = await resolveSmartExamSelection({
+      userId: premium.userId,
+      examSlug,
+      fieldId: sessionFieldId,
+      launchMode,
+      focusAreas: focusAreasRaw,
+    });
+
+    if (smart.resumeSessionId) {
+      return NextResponse.json({
+        sessionId: smart.resumeSessionId,
+        redirectUrl: fullExamSessionHref(examSlug, smart.resumeSessionId),
+        resumed: true,
+        launchMode,
+      });
+    }
+
+    const focusAreas = smart.focusAreas.length ? smart.focusAreas : focusAreasRaw;
+
     const config = buildSessionConfig(examSlug, preset, timed, {
       nclexLength: examSlug === "nclex" ? nclexLength : undefined,
       focusAreas,
@@ -99,42 +128,88 @@ export async function POST(req: Request) {
         { status: 403 }
       );
     }
-    const sampleCount = resolveExamBankSampleCount(sessionFieldId, limit, true);
-    const assembled = await assembleTimedExamSessionItems({
-      fieldId: sessionFieldId,
-      field: sessionFieldId,
-      limit,
-      focusAreas,
-      sampleCount,
-    });
 
-    if (!assembled || assembled.items.length < limit) {
-      return NextResponse.json(
-        {
-          error: `Could not compose a ${limit}-question exam aligned to the board blueprint. Try again shortly.`,
-          code: "EXAM_SESSION_UNAVAILABLE",
-        },
-        { status: 503 }
+    let clientPayload;
+    let assembleSource: string | undefined;
+    let excludeSeenApplied = false;
+
+    if (smart.retakeQuestionIds?.length) {
+      const items = await loadBankItemsByIds(sessionFieldId, smart.retakeQuestionIds);
+      if (items.length < Math.min(limit, smart.retakeQuestionIds.length)) {
+        return NextResponse.json(
+          {
+            error: "Could not reload your last exam. Start a new exam instead.",
+            code: "RETAKE_UNAVAILABLE",
+          },
+          { status: 503 }
+        );
+      }
+      const retakeLimit = Math.min(limit, items.length);
+      clientPayload = preparedTimedExamItemsForClient(
+        sessionFieldId,
+        sessionFieldId,
+        items,
+        retakeLimit
       );
+      assembleSource = "retake";
+    } else {
+      const sampleCount = resolveExamBankSampleCount(sessionFieldId, limit, true);
+      const assembled = await assembleTimedExamSessionItems({
+        fieldId: sessionFieldId,
+        field: sessionFieldId,
+        limit,
+        focusAreas,
+        sampleCount,
+        excludeQuestionIds: smart.excludeQuestionIds,
+      });
+
+      if (!assembled || assembled.items.length < limit) {
+        return NextResponse.json(
+          {
+            error: `Could not compose a ${limit}-question exam aligned to the board blueprint. Try again shortly.`,
+            code: "EXAM_SESSION_UNAVAILABLE",
+          },
+          { status: 503 }
+        );
+      }
+
+      clientPayload = preparedTimedExamItemsForClient(
+        sessionFieldId,
+        sessionFieldId,
+        assembled.items,
+        limit
+      );
+      assembleSource = assembled.source;
+      excludeSeenApplied = Boolean(assembled.excludeSeenApplied);
     }
 
-    const clientPayload = preparedTimedExamItemsForClient(
-      sessionFieldId,
-      sessionFieldId,
-      assembled.items,
-      limit
+    const sessionConfig = syncSessionConfigQuestionCount(
+      config,
+      examSlug,
+      clientPayload.questions.length
     );
 
-    const sessionConfig = syncSessionConfigQuestionCount(config, examSlug, limit);
+    const titleSuffix =
+      launchMode === "focus_weak"
+        ? " · Weak Areas"
+        : launchMode === "retake_last"
+          ? " · Retake"
+          : launchMode === "continue_learning"
+            ? " · Continue"
+            : "";
 
-    const sessionId = await createExamSession(premium.userId, examSlug, {
-      questionCount: limit,
+    const sessionId = await createExamInstance(premium.userId, examSlug, {
+      questionCount: clientPayload.questions.length,
       timeLimitSec: sessionConfig.timed ? sessionConfig.timeLimitSec : null,
       fieldId: sessionFieldId,
-      title: sessionTitle,
+      title: `${sessionTitle}${titleSuffix}`,
       sessionConfig,
       prefetchedQuestionIds: clientPayload.bankItemIds,
-      assembleSource: assembled.source,
+      assembleSource,
+      launchMode,
+      focusAreas,
+      excludeSeenApplied,
+      retakeOfSessionId: smart.retakeOfSessionId ?? undefined,
     });
 
     void touchExamStudied(premium.userId);
@@ -151,7 +226,8 @@ export async function POST(req: Request) {
       config: sessionConfig,
       questions: clientPayload.questions,
       bankItemIds: clientPayload.bankItemIds,
-      requested: limit,
+      requested: clientPayload.questions.length,
+      launchMode,
     });
   } catch (e) {
     const dbResponse = respondDbUnavailable(e);

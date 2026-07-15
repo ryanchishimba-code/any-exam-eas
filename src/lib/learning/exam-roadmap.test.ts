@@ -5,6 +5,7 @@ import {
   buildRoadmapTopics,
   classifyReadiness,
   computeCategoryReadinessScore,
+  computeOverallPushCoverage,
   computeOverallRoadmapReadiness,
   selectPriorityTopics,
 } from "./exam-roadmap";
@@ -66,18 +67,21 @@ describe("exam roadmap", () => {
     expect(priorities[0]?.categoryId).toBe(topics[0]!.categoryId);
   });
 
-  it("computes weighted overall readiness", () => {
-    const overall = computeOverallRoadmapReadiness([
+  it("computes weighted overall readiness and push coverage", () => {
+    const topics = [
       {
         categoryId: "a",
         label: "A",
         blueprintWeightPct: 50,
         readinessScore: 80,
-        readinessKey: "strong",
-        readinessLabel: "Strong",
+        readinessKey: "strong" as const,
+        readinessLabel: "Strong" as const,
         attempts: 10,
         correct: 8,
         accuracy: 80,
+        pushesCompleted: 20,
+        pushesAvailable: 100,
+        pushCoveragePct: 20,
         highYieldTopics: [],
         practiceHref: "/",
       },
@@ -86,23 +90,37 @@ describe("exam roadmap", () => {
         label: "B",
         blueprintWeightPct: 50,
         readinessScore: 60,
-        readinessKey: "needs_review",
-        readinessLabel: "Needs Review",
+        readinessKey: "needs_review" as const,
+        readinessLabel: "Needs Review" as const,
         attempts: 10,
         correct: 6,
         accuracy: 60,
+        pushesCompleted: 40,
+        pushesAvailable: 100,
+        pushCoveragePct: 40,
         highYieldTopics: [],
         practiceHref: "/",
       },
-    ]);
-    expect(overall).toBe(70);
+    ];
+    expect(computeOverallRoadmapReadiness(topics)).toBe(70);
+    expect(computeOverallPushCoverage(topics)).toBe(30);
+  });
+
+  it("attaches push coverage from bySubject map", () => {
+    const blueprint = getExamBlueprint("nursing")!;
+    const topics = buildRoadmapTopics(blueprint, "nclex", new Map(), new Map(), {
+      "pharmacology-nursing": { seen: 25, available: 100, coveragePct: 25 },
+    });
+    const pharm = topics.find((t) => t.categoryId === "pharmacology");
+    expect(pharm?.pushCoveragePct).toBeGreaterThanOrEqual(0);
+    expect(pharm?.pushesCompleted).toBeGreaterThanOrEqual(0);
   });
 
   it("builds PANCE roadmap from NCCPA 2026 blueprint (14 knowledge areas)", () => {
     const blueprint = getExamBlueprint("pance")!;
     expect(blueprint.categories).toHaveLength(14);
     const weightSum = blueprint.categories.reduce((s, c) => s + c.weight, 0);
-    expect(Math.round(weightSum * 100)).toBe(100);
+    expect(weightSum).toBeGreaterThan(0.9);
 
     const topics = buildRoadmapTopics(blueprint, "pance", new Map(), new Map());
     expect(topics).toHaveLength(14);

@@ -72,6 +72,22 @@ const DOMAIN3_TOPICS = [
   "ids-stewardship-mrsa-pseudomonas",
 ] as const;
 
+/** Medication safety / professional practice — tough rating's weakest NAPLEX domain. */
+const SAFETY_TOPICS = [
+  "ismp-high-alert-meds",
+  "look-alike-sound-alike",
+  "tall-man-lettering",
+  "medication-reconciliation",
+  "iv-push-safety",
+  "wrong-route-prevention",
+  "allergy-cross-reactivity",
+  "heparin-insulin-double-check",
+  "pediatric-weight-error-prevention",
+  "dispensing-error-recovery",
+] as const;
+
+const SAFETY_SUBJECTS = ["patient-counseling", "pharmacology", "pharmacy-law"] as const;
+
 type GenItem = {
   subjectId: string;
   blueprintDomain: string;
@@ -242,30 +258,50 @@ async function quarantineBrokenItems() {
 
 async function generateBatch(
   client: OpenAI,
-  kind: "domain1" | "domain3",
-  count: number
+  kind: "domain1" | "domain3" | "safety",
+  count: number,
+  opts?: { preferPharmaceutics?: boolean }
 ): Promise<GenItem[]> {
-  const topics = kind === "domain1" ? PK_TOPICS : DOMAIN3_TOPICS;
-  const subjects = kind === "domain1" ? DOMAIN1_SUBJECTS : DOMAIN3_SUBJECTS;
+  const topics =
+    kind === "domain1" ? PK_TOPICS : kind === "safety" ? SAFETY_TOPICS : DOMAIN3_TOPICS;
+  const subjects =
+    kind === "domain1" ? DOMAIN1_SUBJECTS : kind === "safety" ? SAFETY_SUBJECTS : DOMAIN3_SUBJECTS;
   const domain =
-    kind === "domain1" ? "naplex-2026-drug-information" : "naplex-2026-pharmacotherapy";
+    kind === "domain1"
+      ? "naplex-area1-foundations"
+      : kind === "safety"
+        ? "naplex-area4-safety"
+        : "naplex-area3-treatment-planning";
 
   const subjectBias =
     kind === "domain1"
-      ? `SUBJECT MIX (critical): ≥70% subjectId MUST be "pharmacokinetics"; rest pharmaceutics/compounding-calculations/pharmacology. Never invent new subjectIds.`
-      : `SUBJECT MIX: spread across endocrine-rx, cns-rx, infectious-disease-rx, cardiovascular-rx, otc-self-care. Prefer underbuilt endocrine/cns/oncology-supportive vignettes tagged to those subjects. Never invent subjectIds.`;
+      ? opts?.preferPharmaceutics
+        ? `SUBJECT MIX (critical): ≥70% subjectId MUST be "pharmaceutics"; rest pharmacokinetics/compounding-calculations/pharmacology. Never invent new subjectIds.`
+        : `SUBJECT MIX (critical): ≥70% subjectId MUST be "pharmacokinetics"; rest pharmaceutics/compounding-calculations/pharmacology. Never invent new subjectIds.`
+      : kind === "safety"
+        ? `SUBJECT MIX: use patient-counseling, pharmacology, or pharmacy-law only. Tag ISMP/LASA/high-alert safety actions a pharmacist owns. Never invent subjectIds.`
+        : `SUBJECT MIX: spread across endocrine-rx, cns-rx, infectious-disease-rx, cardiovascular-rx, otc-self-care. Prefer underbuilt endocrine/cns/oncology-supportive vignettes tagged to those subjects. Never invent subjectIds.`;
+
+  const focusLabel =
+    kind === "domain1"
+      ? opts?.preferPharmaceutics
+        ? "Domain 1 Foundations — pharmaceutics / biopharmaceutics emphasis"
+        : "Domain 1 Foundations (PK/PD/biopharmaceutics/calcs/PGx)"
+      : kind === "safety"
+        ? "Domain 4 Professional Practice / Medication Safety (ISMP, LASA, reconciliation, high-alert)"
+        : "Domain 3 Person-Centered Treatment Planning";
 
   const system = `You are a NAPLEX PharmD item writer targeting A−/A commercial quality (UWorld/RxPrep bar).
-Write ${count} NEW application-focused items for ${kind === "domain1" ? "Domain 1 Foundations (PK/PD/biopharmaceutics/calcs/PGx)" : "Domain 3 Person-Centered Treatment Planning"}.
+Write ${count} NEW application-focused items for ${focusLabel}.
 Rules:
-- Pharmacist scope only (recommend, monitor, counsel, dose-adjust) — not physician diagnostics alone
+- Pharmacist scope only (recommend, monitor, counsel, dose-adjust, catch dispensing/admin errors) — not physician diagnostics alone
 - Vignette-rich with labs/meds/comorbidities
 - Plausible distractors = common candidate errors
 - Every item MUST include full rationale object
 - ${subjectBias}
 Return JSON: {"items":[...]} with fields:
 subjectId (one of ${subjects.join(", ")} ONLY),
-blueprintDomain ("${domain}" or naplex-area1-foundations / naplex-area3-treatment-planning),
+blueprintDomain ("${domain}" or naplex-2026-drug-information / naplex-2026-pharmacotherapy when a closer fit),
 blueprintTopic (slug from ${topics.join(", ")} or close),
 itemType (vignette|constructed_response|select_all),
 vignette, question, options[4] (or more for SATA), correctAnswer (exact option text; for SATA comma-join),
@@ -273,19 +309,22 @@ explanation (assembled readable narrative ≥220 chars),
 difficulty 3-5,
 rationale:{whyCorrect, distractorRationales{option:text}, clinicalPearl, mnemonic, stepByStep[3-6], realWorldNextSteps, keyTakeaway}`;
 
+  const userContent =
+    kind === "domain1"
+      ? opts?.preferPharmaceutics
+        ? `Generate ${count} items now. At least ${Math.ceil(count * 0.7)} must use subjectId "pharmaceutics". Topics: biopharmaceutics-dissolution and related foundations.`
+        : `Generate ${count} items now. At least ${Math.ceil(count * 0.7)} must use subjectId "pharmacokinetics". Topics: ${topics.join(", ")}.`
+      : kind === "safety"
+        ? `Generate ${count} medication-safety items now. Prefer: ${topics.slice(0, 8).join(", ")}. blueprintDomain must be naplex-area4-safety.`
+        : `Generate ${count} high-yield Domain 3 items now. Prefer: ${topics.slice(0, 8).join(", ")}.`;
+
   const res = await client.chat.completions.create({
     model: MODEL,
     temperature: 0.45,
     response_format: { type: "json_object" },
     messages: [
       { role: "system", content: system },
-      {
-        role: "user",
-        content:
-          kind === "domain1"
-            ? `Generate ${count} items now. At least ${Math.ceil(count * 0.7)} must use subjectId "pharmacokinetics". Topics: ${topics.join(", ")}.`
-            : `Generate ${count} high-yield Domain 3 items now. Prefer: ${topics.slice(0, 8).join(", ")}.`,
-      },
+      { role: "user", content: userContent },
     ],
   });
 
@@ -334,7 +373,11 @@ function toBankItem(gen: GenItem): BankItem {
   };
 }
 
-const ALLOWED_SUBJECTS = new Set<string>([...DOMAIN1_SUBJECTS, ...DOMAIN3_SUBJECTS]);
+const ALLOWED_SUBJECTS = new Set<string>([
+  ...DOMAIN1_SUBJECTS,
+  ...DOMAIN3_SUBJECTS,
+  ...SAFETY_SUBJECTS,
+]);
 
 function coerceSubjectId(raw: string | undefined, kindHint?: string): string {
   const s = (raw ?? "").trim();
@@ -345,6 +388,8 @@ function coerceSubjectId(raw: string | undefined, kindHint?: string): string {
     return "pharmacokinetics";
   if (/dissolut|biopharm|formul|pharmaceut/.test(topic)) return "pharmaceutics";
   if (/compound|alligation|percent|dilut|ivroom/.test(topic)) return "compounding-calculations";
+  if (/ismp|lasa|tall-?man|reconcil|high-?alert|look.?alike|medication.?safety/.test(topic))
+    return "patient-counseling";
   if (/diabetes|sglt|glp|endocrin|thyroid/.test(topic)) return "endocrine-rx";
   if (/depress|ssri|epilep|asm|psych|cns|seizure|parkinson/.test(topic)) return "cns-rx";
   if (/mrsa|pseudo|steward|infect|antibiotic|linezolid/.test(topic)) return "infectious-disease-rx";
@@ -354,11 +399,12 @@ function coerceSubjectId(raw: string | undefined, kindHint?: string): string {
     if (/asthma|copd|gerd|otc/.test(topic)) return "otc-self-care";
     if (/geriatr|beers|pediatr|ckd|renal/.test(topic)) return "pharmacology";
   }
-  if (kindHint === "domain1") return "pharmacokinetics";
+  if (kindHint === "domain1") return "pharmaceutics";
+  if (kindHint === "safety") return "patient-counseling";
   return "pharmacology";
 }
 
-async function insertGenerated(items: GenItem[], kindHint?: "domain1" | "domain3") {
+async function insertGenerated(items: GenItem[], kindHint?: "domain1" | "domain3" | "safety") {
   let created = 0;
   let skipped = 0;
   let rejected = 0;
@@ -523,24 +569,37 @@ async function main() {
     await runNpmScript("scripts/fix-naplex-calculation-bank.ts", []);
   }
 
-  let genStats = { d1: 0, d3: 0 };
+  let genStats = { d1: 0, d3: 0, safety: 0 };
   if (!opts.skipGenerate) {
-    const half = Math.max(8, Math.floor(opts.generateCount / 2));
-    // Smaller chunks avoid JSON truncation (gpt often returns < requested count).
-    const chunk = Math.min(8, half);
-    console.log(`\nGenerating Domain 1 PK/foundations (~${half} in chunks of ${chunk})…`);
-    for (let n = 0; n < half; n += chunk) {
-      const want = Math.min(chunk, half - n);
-      const d1 = await generateBatch(client, "domain1", want);
+    // PK gate already cleared (~200); prefer pharmaceutics + Domain 3 + safety (tough C gaps).
+    const preferPharmaceutics = (gap.gapScores.pharmacokinetics ?? 0) >= 180;
+    const d1Count = Math.max(8, Math.floor(opts.generateCount * 0.3));
+    const safetyCount = Math.max(8, Math.floor(opts.generateCount * 0.25));
+    const d3Count = Math.max(8, opts.generateCount - d1Count - safetyCount);
+    const chunk = 8;
+
+    console.log(
+      `\nGenerating Domain 1 foundations (~${d1Count}, pharmaceuticsBias=${preferPharmaceutics}) in chunks of ${chunk}…`
+    );
+    for (let n = 0; n < d1Count; n += chunk) {
+      const want = Math.min(chunk, d1Count - n);
+      const d1 = await generateBatch(client, "domain1", want, { preferPharmaceutics });
       const d1ins = await insertGenerated(d1, "domain1");
       genStats.d1 += d1ins.created;
     }
-    console.log(`\nGenerating Domain 3 treatment-planning (~${half} in chunks of ${chunk})…`);
-    for (let n = 0; n < half; n += chunk) {
-      const want = Math.min(chunk, half - n);
+    console.log(`\nGenerating Domain 3 treatment-planning (~${d3Count} in chunks of ${chunk})…`);
+    for (let n = 0; n < d3Count; n += chunk) {
+      const want = Math.min(chunk, d3Count - n);
       const d3 = await generateBatch(client, "domain3", want);
       const d3ins = await insertGenerated(d3, "domain3");
       genStats.d3 += d3ins.created;
+    }
+    console.log(`\nGenerating medication-safety Domain 4 (~${safetyCount} in chunks of ${chunk})…`);
+    for (let n = 0; n < safetyCount; n += chunk) {
+      const want = Math.min(chunk, safetyCount - n);
+      const safety = await generateBatch(client, "safety", want);
+      const sins = await insertGenerated(safety, "safety");
+      genStats.safety += sins.created;
     }
   }
 

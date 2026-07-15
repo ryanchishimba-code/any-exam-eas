@@ -142,6 +142,18 @@ export function nclexNgnCorrectAnswerValid(item: BankItem): boolean {
   const correctAnswer = item.correctAnswer?.trim() ?? "";
   if (!correctAnswer) return false;
 
+  // Unfolding case steps are single-best-answer MCQs even when itemType is case_study.
+  if (
+    item.itemType === "case_study" ||
+    item.itemType === "unfolding_case" ||
+    kind === "case_study" ||
+    kind === "unfolding_case"
+  ) {
+    const options = (item.options ?? []).map(String);
+    if (options.length < 2) return false;
+    return options.some((option) => norm(option) === norm(correctAnswer));
+  }
+
   if (kind === "bow_tie" || item.itemType === "ngn_bowtie") {
     return validateBowTieAnswer(item);
   }
@@ -155,7 +167,22 @@ export function nclexNgnCorrectAnswerValid(item: BankItem): boolean {
   }
 
   const selectable = resolveNclexNgnSelectableOptions(item);
-  if (!selectable || selectable.length === 0) return false;
+  if (!selectable || selectable.length === 0) {
+    // SATA / ordered without payload.options: fall back to item.options.
+    if (
+      (kind === "select_all" || item.itemType === "select_all" || item.itemType === "sata") &&
+      (item.options?.length ?? 0) >= 3
+    ) {
+      return selectAllAnswersMatchOptions(item.options, correctAnswer);
+    }
+    if (
+      (kind === "ordered_response" || item.itemType === "ordered_response") &&
+      (item.options?.length ?? 0) >= 3
+    ) {
+      return validateOrderedResponseAnswer(item, item.options.map(String));
+    }
+    return false;
+  }
 
   if (kind === "select_all" || item.itemType === "select_all" || item.itemType === "sata") {
     return selectAllAnswersMatchOptions(selectable, correctAnswer);

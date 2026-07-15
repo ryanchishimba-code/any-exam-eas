@@ -10,6 +10,8 @@ import { defaultUsmleFieldId, isUsmleFieldId } from "@/lib/exam-prep/usmle/steps
 import { requirePremiumPage } from "@/lib/require-premium-page";
 import { getStudyUsageSnapshot } from "@/lib/study/usage-limits";
 import { resolveMockExamAccess, type MockExamAccess } from "@/lib/study/mock-exam-access";
+import { getUserExamHistory } from "@/lib/learning/exam-progress";
+import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { fullExamHref, ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -45,6 +47,7 @@ async function FullExamLauncherContent({
   timed,
   nclexCat,
   mockAccess,
+  userId,
 }: {
   examSlug: ExamSlug;
   fieldId?: string;
@@ -53,7 +56,14 @@ async function FullExamLauncherContent({
   timed?: string;
   nclexCat?: string;
   mockAccess: MockExamAccess;
+  userId: string;
 }) {
+  const [history, roadmap] = await Promise.all([
+    getUserExamHistory(userId, examSlug, { fieldId }),
+    getExamRoadmapData(userId, examSlug, {
+      usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
+    }),
+  ]);
   return (
     <FullExamLauncher
       key={`${fieldId ?? "default"}-${mode ?? "default"}-${autostart ?? "0"}-${timed ?? "1"}-${nclexCat ?? "0"}`}
@@ -64,6 +74,9 @@ async function FullExamLauncherContent({
       initialTimed={timed !== "0"}
       initialNclexCat={nclexCat === "1"}
       mockAccess={mockAccess}
+      hasRetake={history.hasRetake}
+      canContinue={history.canContinue}
+      focusAreas={roadmap?.launch.weakFocusAreas}
     />
   );
 }
@@ -124,6 +137,7 @@ export default async function FullExamLauncherPage({
         timed={sp.timed}
         nclexCat={sp.nclexCat}
         mockAccess={mockAccess}
+        userId={session.user.id}
       />
     </Suspense>
   );

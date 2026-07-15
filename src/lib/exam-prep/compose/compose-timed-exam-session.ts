@@ -14,6 +14,8 @@ export type ComposeTimedExamSessionParams = {
   numQuestions: number;
   /** Blueprint category ids/labels to overweight; omit for full board mix. */
   focusAreas?: string[];
+  /** Prefer excluding these bank item ids when the pool allows. */
+  excludeQuestionIds?: Set<string>;
   seed?: number;
   /** Live user request — single exact-fill tier with a capped pool. */
   liveFast?: boolean;
@@ -47,6 +49,7 @@ export async function composeBlueprintTimedExamSession(
   const result = await composePracticeExamProgressive(config.slug, {
     numQuestions,
     focusAreas: params.focusAreas?.length ? params.focusAreas : undefined,
+    excludeQuestionIds: params.excludeQuestionIds,
     outputFormat: "ids_only",
     seed,
     tiers: liveFast ? [EXACT_FILL_COMPOSE_TIER] : userFacingComposeTiers(params.fieldId),

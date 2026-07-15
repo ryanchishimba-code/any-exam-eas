@@ -132,9 +132,20 @@ async function main() {
         });
 
         const inserted = await insertNclexFullExamItems(prisma, exam);
+        const issueHist = new Map<string, number>();
+        for (const raw of exam.qaReport.issues ?? []) {
+          const key = String(raw).replace(/^slot-\d+:/, "").split(",")[0] || "unknown";
+          issueHist.set(key, (issueHist.get(key) ?? 0) + 1);
+        }
+        const topIssues = [...issueHist.entries()]
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 8)
+          .map(([k, n]) => `${k}:${n}`)
+          .join(" · ");
         log(
           `  Exam ${examCounter}: ${exam.qaReport.accepted}/${countPerExam} QA ok — +${inserted.created} items`
         );
+        if (topIssues) log(`  Reject top: ${topIssues}`);
       } catch (err) {
         log(`  Exam ${examCounter} failed: ${err instanceof Error ? err.message : String(err)}`);
       }

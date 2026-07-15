@@ -27,6 +27,7 @@ import {
 } from "./blueprint-quota";
 import { buildNclex2026TopicCatalogBlock, labelForNclex2026TopicSlug } from "./blueprint-topics-2026";
 import { assessNclexFullExamItem, nclexFullExamItemPasses } from "./quality-gate";
+import { repairGeneratedNclexNgnItem } from "../repair-generated-nclex-ngn";
 import { maybeEnrichExpertBankItemRationale } from "@/lib/engine/rationale/generate-expert-rationale";
 import { attachVisualRationaleToItem } from "@/lib/engine/rationale/enrich-visual-rationale";
 import type {
@@ -243,6 +244,13 @@ Each question object MUST include:
 - difficultyLabel (Easy | Medium | Hard)
 - ngnFormat (when assigned: bow_tie | matrix | select_all | ordered_response | highlight | unfolding_case)
 - caseStep (when case study: 1–6)
+- ngnPayload (REQUIRED when ngnFormat set):
+  - bow_tie: { kind:"bow_tie", actions:[4 strings], monitors:[4 strings], monitorPickCount:2, condition }
+    correctAnswer = "one action,monitor1,monitor2" using exact action/monitor strings
+  - matrix: { kind:"matrix", rows:[3+], columns:[2+] }
+    correctAnswer = "row|||column,row|||column" pairs
+  - select_all / ordered_response: { kind, options: same as options array }
+  - highlight: { kind:"highlight", highlights:[strings], text }
 - references (array with NCSBN NCLEX-RN Test Plan / CJMM citation)
 - tags (include "nclex-ngn", "curated", "full-exam-generated", and the assigned topic slug)`;
 }
@@ -415,14 +423,16 @@ function slotToBankItem(
     Object.assign(ngnPayload, exam.chartData);
   }
 
-  return normalizeGeneratedExplanation({
-    ...base,
-    itemType,
-    ngnPayload,
-    references: exam.references?.map((label) =>
-      typeof label === "string" ? { label } : label
-    ) ?? base.references,
-  });
+  return repairGeneratedNclexNgnItem(
+    normalizeGeneratedExplanation({
+      ...base,
+      itemType,
+      ngnPayload,
+      references: exam.references?.map((label) =>
+        typeof label === "string" ? { label } : label
+      ) ?? base.references,
+    })
+  );
 }
 
 async function generateChunk(params: {
@@ -473,22 +483,50 @@ async function generateChunk(params: {
       continue;
     }
 
-    if (countDistractorRationales(exam) < 3) {
+    const plannedType = resolveItemType(slot);
+    const isNgnSlot =
+      Boolean(slot.caseGroupId) || Boolean(slot.ngnFormat) || plannedType !== "vignette";
+
+    // Classic MCQ vignettes still need 3 distractor rationales; NGN formats often
+    // encode correctness in payload structure (bowtie/matrix/SATA) instead.
+    if (!isNgnSlot && countDistractorRationales(exam) < 3) {
       rejected++;
       issues.push(`slot-${slot.slotIndex}:missing_distractor_rationales`);
       continue;
     }
 
     try {
-      const item = normalizeGeneratedExplanation(
-        slotToBankItem(exam, slot, params.batchId, params.examNumber, 0)
+      let item = repairGeneratedNclexNgnItem(
+        normalizeGeneratedExplanation(
+          slotToBankItem(exam, slot, params.batchId, params.examNumber, 0)
+        )
       );
       const globalIndex = slot.slotIndex;
+      let qc = assessNclexFullExamItem(item, globalIndex);
 
-      if (!nclexFullExamItemPasses(item, globalIndex)) {
-        const qc = assessNclexFullExamItem(item, globalIndex);
+      if (!qc.ok) {
+        // Second repair pass after assessment mutates nothing — rebuild from slot type hints.
+        item = repairGeneratedNclexNgnItem({
+          ...item,
+          itemType: plannedType,
+          ngnPayload: {
+            ...(item.ngnPayload && typeof item.ngnPayload === "object"
+              ? (item.ngnPayload as Record<string, unknown>)
+              : {}),
+            kind: slot.ngnFormat ?? plannedType,
+          },
+        });
+        qc = assessNclexFullExamItem(item, globalIndex);
+      }
+
+      if (!qc.ok) {
         rejected++;
         issues.push(`slot-${slot.slotIndex}:${qc.issues.join(",")}`);
+        if (process.env.NCLEX_NGN_DEBUG === "1") {
+          console.warn(
+            `[ngn-debug] reject slot=${slot.slotIndex} type=${item.itemType} fmt=${slot.ngnFormat} opts=${item.options?.length ?? 0} ans=${JSON.stringify(item.correctAnswer).slice(0, 80)} issues=${qc.issues.join(",")}`
+          );
+        }
         continue;
       }
 
@@ -501,7 +539,7 @@ async function generateChunk(params: {
                 ...item.ngnPayload,
                 generationMeta: {
                   ...(item.ngnPayload?.generationMeta as NclexGenerationMeta),
-                  qcScore: assessNclexFullExamItem(item, globalIndex).score,
+                  qcScore: qc.score,
                 },
               },
             },

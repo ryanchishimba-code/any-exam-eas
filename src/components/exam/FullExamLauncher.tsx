@@ -7,6 +7,7 @@ import { ChevronRight, Zap } from "lucide-react";
 import { QuestionBankExamHero } from "@/components/study/question-bank/QuestionBankExamHero";
 import { QuestionBankSegment } from "@/components/study/question-bank/QuestionBankSection";
 import { FullExamLengthWheel } from "@/components/exam/FullExamLengthWheel";
+import { ExamLaunchActions } from "@/components/exam/ExamLaunchActions";
 import { StudyPageHeader } from "@/components/study/StudyPageHeader";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
@@ -43,6 +44,9 @@ type Props = {
   initialTimed?: boolean;
   initialNclexCat?: boolean;
   mockAccess: MockExamAccess;
+  hasRetake?: boolean;
+  canContinue?: boolean;
+  focusAreas?: string[];
 };
 
 export function FullExamLauncher({
@@ -53,6 +57,9 @@ export function FullExamLauncher({
   initialTimed = true,
   initialNclexCat = false,
   mockAccess,
+  hasRetake = false,
+  canContinue = false,
+  focusAreas,
 }: Props) {
   const router = useRouter();
   const exam = EXAM_CATALOG[examSlug];
@@ -126,6 +133,7 @@ export function FullExamLauncher({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           examSlug,
+          launchMode: "new_exam",
           lengthPreset: sessionConfig.lengthPreset,
           timed,
           fieldId: examSlug === "usmle" ? fieldId : undefined,
@@ -239,6 +247,18 @@ export function FullExamLauncher({
         <div className={cn(feUi.panel, feUi.panelInner)}>
           <div className="mx-auto w-full max-w-xl space-y-7">
             <QuestionBankExamHero exam={exam} examSlug={examSlug} />
+
+            <ExamLaunchActions
+              examSlug={examSlug}
+              fieldId={fieldId}
+              lengthPreset={preset}
+              timed={timed}
+              nclexCat={nclexCat}
+              hasRetake={hasRetake}
+              canContinue={canContinue}
+              focusAreas={focusAreas}
+              density="compact"
+            />
 
             {/* Length — tap presets with live counts. */}
             <div className="space-y-2">

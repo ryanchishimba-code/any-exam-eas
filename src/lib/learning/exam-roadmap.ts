@@ -38,6 +38,11 @@ import {
   type UsmleStudyPresetId,
 } from "@/lib/exam-prep/usmle/study-presets";
 import { prisma } from "@/lib/prisma";
+import {
+  getUserExamHistory,
+  getUserPushStats,
+  sumCategoryPushCoverage,
+} from "@/lib/learning/exam-progress";
 
 export type RoadmapReadinessKey = "strong" | "needs_review" | "needs_more_work";
 
@@ -57,6 +62,12 @@ export type RoadmapTopicRow = {
   attempts: number;
   correct: number;
   accuracy: number | null;
+  /** Unique question-bank items pushed in this category. */
+  pushesCompleted: number;
+  /** Active serve items available in this category. */
+  pushesAvailable: number;
+  /** Percentage of question-bank pushes completed (0–100). */
+  pushCoveragePct: number;
   highYieldTopics: string[];
   practiceHref: string;
   deepDiveHref?: string;
@@ -79,10 +90,20 @@ export type ExamRoadmapData = {
   fieldId: string;
   blueprintSource: string;
   overallReadiness: number;
+  /** Blueprint-weighted average of per-category bank coverage. */
+  overallPushCoveragePct: number;
+  pushesCompleted: number;
+  pushesAvailable: number;
   passFocusMessage: string;
   topics: RoadmapTopicRow[];
   priorityTopics: RoadmapTopicRow[];
   totalAttempts: number;
+  /** Launch affordances for shared Full Exam actions. */
+  launch: {
+    hasRetake: boolean;
+    canContinue: boolean;
+    weakFocusAreas: string[];
+  };
 };
 
 type SubjectStats = { attempts: number; correct: number };
@@ -180,12 +201,18 @@ function buildTopicRow(
   stats: SubjectStats,
   masteryScores: number[],
   examSlug: ExamSlug,
-  fieldId?: string
+  fieldId?: string,
+  coverage?: { pushesCompleted: number; pushesAvailable: number; pushCoveragePct: number }
 ): RoadmapTopicRow {
   const readinessScore = computeCategoryReadinessScore(stats, masteryScores);
   const { key, label } = classifyReadiness(readinessScore, stats.attempts);
   const primarySubject = category.subjectIds?.[0] ?? category.id;
   const topicLinks = getExamTopicStudyLinks(examSlug, primarySubject, { fieldId });
+  const pushCoverage = coverage ?? {
+    pushesCompleted: 0,
+    pushesAvailable: 0,
+    pushCoveragePct: 0,
+  };
 
   let studyTopicSlugs = topicLinks.relatedTopicSlugs;
   let drugClassHref = topicLinks.drugClassLinks?.[0]?.href;
@@ -271,6 +298,9 @@ function buildTopicRow(
       stats.attempts > 0
         ? Math.round((stats.correct / stats.attempts) * 100)
         : null,
+    pushesCompleted: pushCoverage.pushesCompleted,
+    pushesAvailable: pushCoverage.pushesAvailable,
+    pushCoveragePct: pushCoverage.pushCoveragePct,
     highYieldTopics: category.highYieldTopics ?? [],
     practiceHref: practiceTopicHref(examSlug, primarySubject, 15),
     deepDiveHref,
@@ -289,12 +319,23 @@ export function buildRoadmapTopics(
   blueprint: ExamBlueprint,
   examSlug: ExamSlug,
   attemptMap: Map<string, SubjectStats>,
-  masteryMap: Map<string, number>
+  masteryMap: Map<string, number>,
+  bySubject?: Parameters<typeof sumCategoryPushCoverage>[1]
 ): RoadmapTopicRow[] {
   return blueprint.categories.map((category) => {
     const stats = sumStatsForSubjects(category.subjectIds, attemptMap);
     const masteryScores = masteryForSubjects(category.subjectIds, masteryMap);
-    return buildTopicRow(category, stats, masteryScores, examSlug, blueprint.fieldId);
+    const coverage = bySubject
+      ? sumCategoryPushCoverage(category.subjectIds, bySubject)
+      : { pushesCompleted: 0, pushesAvailable: 0, pushCoveragePct: 0 };
+    return buildTopicRow(
+      category,
+      stats,
+      masteryScores,
+      examSlug,
+      blueprint.fieldId,
+      coverage
+    );
   });
 }
 
@@ -302,6 +343,15 @@ export function computeOverallRoadmapReadiness(topics: RoadmapTopicRow[]): numbe
   const totalWeight = topics.reduce((s, t) => s + t.blueprintWeightPct, 0) || 1;
   const weighted = topics.reduce(
     (s, t) => s + t.readinessScore * t.blueprintWeightPct,
+    0
+  );
+  return Math.round(weighted / totalWeight);
+}
+
+export function computeOverallPushCoverage(topics: RoadmapTopicRow[]): number {
+  const totalWeight = topics.reduce((s, t) => s + t.blueprintWeightPct, 0) || 1;
+  const weighted = topics.reduce(
+    (s, t) => s + t.pushCoveragePct * t.blueprintWeightPct,
     0
   );
   return Math.round(weighted / totalWeight);
@@ -359,7 +409,7 @@ export async function getExamRoadmapData(
   const blueprint = getExamBlueprint(fieldId);
   if (!blueprint) return null;
 
-  const [attempts, masteries] = await Promise.all([
+  const [attempts, masteries, pushStats, history] = await Promise.all([
     prisma.questionAttempt.findMany({
       where: { userId, fieldId },
       select: { subjectId: true, correct: true },
@@ -368,6 +418,8 @@ export async function getExamRoadmapData(
       where: { userId, fieldId },
       select: { conceptKey: true, masteryScore: true },
     }),
+    getUserPushStats(userId, examSlug, { fieldId }),
+    getUserExamHistory(userId, examSlug, { fieldId }),
   ]);
 
   const attemptMap = aggregateAttemptsBySubject(attempts);
@@ -375,9 +427,22 @@ export async function getExamRoadmapData(
     masteries.map((m) => [m.conceptKey, m.masteryScore] as const)
   );
 
-  const topics = buildRoadmapTopics(blueprint, examSlug, attemptMap, masteryMap);
+  const topics = buildRoadmapTopics(
+    blueprint,
+    examSlug,
+    attemptMap,
+    masteryMap,
+    pushStats.bySubject
+  );
   const overallReadiness = computeOverallRoadmapReadiness(topics);
+  const overallPushCoveragePct = computeOverallPushCoverage(topics);
   const priorityTopics = selectPriorityTopics(topics);
+  const weakFocusAreas = priorityTopics
+    .flatMap((t) => {
+      const cat = blueprint.categories.find((c) => c.id === t.categoryId);
+      return cat?.subjectIds?.length ? cat.subjectIds : [t.categoryId];
+    })
+    .slice(0, 8);
 
   return {
     examSlug,
@@ -385,6 +450,9 @@ export async function getExamRoadmapData(
     fieldId,
     blueprintSource: blueprint.sourceNote,
     overallReadiness,
+    overallPushCoveragePct,
+    pushesCompleted: pushStats.pushesCompleted,
+    pushesAvailable: pushStats.pushesAvailable,
     passFocusMessage: buildPassFocusMessage(
       blueprint.examName,
       overallReadiness,
@@ -393,6 +461,11 @@ export async function getExamRoadmapData(
     topics,
     priorityTopics,
     totalAttempts: attempts.length,
+    launch: {
+      hasRetake: history.hasRetake,
+      canContinue: history.canContinue,
+      weakFocusAreas,
+    },
   };
 }
 

@@ -336,31 +336,47 @@ export function planNclexGapFillExamSlots(params: {
   return injectCaseStudyGroups(slots, examNumber);
 }
 
-const NGN_STANDALONE_ROTATION = [
-  "select_all",
+/**
+ * Structured NGN formats still under target — case_study / highlight already met,
+ * so gap-fill converts case slots into standalone structured items.
+ */
+const NGN_STRUCTURED_ROTATION = [
   "bow_tie",
   "matrix",
   "ordered_response",
-  "highlight",
+  "bow_tie",
+  "select_all",
+  "matrix",
+  "ordered_response",
+  "bow_tie",
+  "matrix",
+  "select_all",
 ] as const;
 
 /**
- * NGN-heavy exam plan: 3 unfolding case studies (18 items) + stand-alone NGN formats.
- * Used to close the format gap vs real NCLEX (~15–25% NGN + 18 case-study items).
+ * NGN-heavy exam plan biased to remaining format deficits (bowtie / matrix / ordered / SATA).
+ * Case-group slots are converted to standalone structured NGN once case_study target is met.
  */
 export function planNclexNgnGapFillExamSlots(params: {
   examNumber: number;
   questionCount?: number;
+  /** When true (default), do not preserve unfolding case groups — maximize structured NGN. */
+  structuredOnly?: boolean;
 }): NclexGenerationSlot[] {
-  const { examNumber, questionCount = 80 } = params;
+  const { examNumber, questionCount = 80, structuredOnly = true } = params;
   const base = planNclexFullExamSlots({ examNumber, questionCount });
   let formatIdx = 0;
 
   return base.map((slot) => {
-    if (slot.caseGroupId) return slot;
-    const ngnFormat = NGN_STANDALONE_ROTATION[formatIdx % NGN_STANDALONE_ROTATION.length]!;
+    if (!structuredOnly && slot.caseGroupId) return slot;
+    const ngnFormat = NGN_STRUCTURED_ROTATION[formatIdx % NGN_STRUCTURED_ROTATION.length]!;
     formatIdx++;
-    return { ...slot, ngnFormat };
+    return {
+      ...slot,
+      caseGroupId: undefined,
+      caseStep: undefined,
+      ngnFormat,
+    };
   });
 }
 

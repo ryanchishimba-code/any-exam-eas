@@ -32,18 +32,38 @@ export async function createExamSession(
     sessionConfig?: Record<string, unknown>;
     prefetchedQuestionIds?: string[];
     assembleSource?: string;
+    /** Roadmap / Full Exam launch mode metadata (stored on analysis JSON). */
+    launchMode?: string;
+    focusAreas?: string[];
+    excludeSeenApplied?: boolean;
+    retakeOfSessionId?: string;
   }
 ) {
   const id = createId();
   const now = new Date();
-  const analysis =
-    opts?.sessionConfig || opts?.prefetchedQuestionIds?.length
+  const hasMeta =
+    opts?.sessionConfig ||
+    opts?.prefetchedQuestionIds?.length ||
+    opts?.assembleSource ||
+    opts?.launchMode ||
+    opts?.focusAreas?.length ||
+    opts?.excludeSeenApplied != null ||
+    opts?.retakeOfSessionId;
+  const analysis = hasMeta
       ? {
-          ...(opts.sessionConfig ? { sessionConfig: opts.sessionConfig } : {}),
-          ...(opts.prefetchedQuestionIds?.length
+          ...(opts?.sessionConfig ? { sessionConfig: opts.sessionConfig } : {}),
+          ...(opts?.prefetchedQuestionIds?.length
             ? { prefetchedQuestionIds: opts.prefetchedQuestionIds }
             : {}),
-          ...(opts.assembleSource ? { assembleSource: opts.assembleSource } : {}),
+          ...(opts?.assembleSource ? { assembleSource: opts.assembleSource } : {}),
+          ...(opts?.launchMode ? { launchMode: opts.launchMode } : {}),
+          ...(opts?.focusAreas?.length ? { focusAreas: opts.focusAreas } : {}),
+          ...(opts?.excludeSeenApplied != null
+            ? { excludeSeenApplied: opts.excludeSeenApplied }
+            : {}),
+          ...(opts?.retakeOfSessionId
+            ? { retakeOfSessionId: opts.retakeOfSessionId }
+            : {}),
         }
       : null;
   await withDrizzle("examSessions.create", () =>

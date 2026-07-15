@@ -2,10 +2,10 @@
  * Shared timed/full-exam assembly — mirrors /api/questions?mode=timed&scope=field.
  *
  * Live path order (latency budget ~20s):
- * 1. Fast gather (1–2 pulls, any length)
- * 2. Pre-composed preset exams (single DB read)
- * 3. Light progressive gather (≤2 tiers, 1 round each)
- * 4. Blueprint compose last resort (exact-fill tier, capped pool)
+ * 1. Fast gather (1–2 pulls, any length) — skipped when focusAreas set
+ * 2. Pre-composed preset exams (single DB read) — skipped when focusAreas set
+ * 3. Light progressive gather (≤2 tiers, 1 round each) — skipped when focusAreas set
+ * 4. Blueprint compose (supports focusAreas + excludeQuestionIds)
  * 5. Legacy gate pair
  */
 import type { BankItem } from "@/lib/question-bank";
@@ -28,6 +28,7 @@ import { tryLoadTimedPresetSession } from "@/lib/exam-prep/try-timed-preset-exam
 import { gatherSprintTimedExamPool } from "@/lib/exam-prep/gather-sprint-timed-pool";
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { filterBankItemsForPracticeField } from "@/lib/edtech/exam-item-scope";
+import { preferUnseenBankItems } from "@/lib/full-exam/smart-exam-selection";
 
 /** USMLE presets are step-scoped; skip the heavy preset join when it cannot match. */
 function skipTimedPresetForField(fieldId: string): boolean {
@@ -40,6 +41,8 @@ export type AssembleTimedExamSessionParams = {
   limit: number;
   focusAreas?: string[];
   sampleCount: number;
+  /** Prefer excluding these ids (top-up allowed if pool is thin). */
+  excludeQuestionIds?: Set<string>;
 };
 
 export type AssembleTimedExamSessionResult = {
@@ -47,6 +50,7 @@ export type AssembleTimedExamSessionResult = {
   source: "preset" | "blueprint" | "gather";
   tierId?: string;
   presetExamNumber?: number;
+  excludeSeenApplied?: boolean;
 };
 
 function prepareTimedExamItem(fieldId: string, item: BankItem): BankItem {
@@ -56,66 +60,92 @@ function prepareTimedExamItem(fieldId: string, item: BankItem): BankItem {
 function fillGatheredItems(
   gathered: BankItem[],
   limit: number,
-  tierId: string
+  tierId: string,
+  excludeQuestionIds?: Set<string>
 ): AssembleTimedExamSessionResult | null {
   if (gathered.length < limit) return null;
   const seed = (Date.now() ^ 0x51ed270b) >>> 0;
+  const preferred = preferUnseenBankItems(gathered, excludeQuestionIds, gathered.length);
   const filled = fillExamItemsToCount(
-    gathered.slice(0, limit),
-    gathered,
+    preferred.items.slice(0, limit),
+    preferred.items,
     limit,
     EXACT_FILL_COMPOSE_TIER,
     seed
   );
   if (filled.length < limit) return null;
-  return { items: filled.slice(0, limit), source: "gather", tierId };
+  const finalPick = preferUnseenBankItems(filled, excludeQuestionIds, limit);
+  return {
+    items: finalPick.items.slice(0, limit),
+    source: "gather",
+    tierId,
+    excludeSeenApplied: finalPick.excludeSeenApplied,
+  };
 }
 
 function scopeAssemblyResult(
   fieldId: string,
   limit: number,
-  result: AssembleTimedExamSessionResult | null
+  result: AssembleTimedExamSessionResult | null,
+  excludeQuestionIds?: Set<string>
 ): AssembleTimedExamSessionResult | null {
   if (!result) return null;
-  const items = filterBankItemsForPracticeField(result.items, fieldId).slice(0, limit);
+  let items = filterBankItemsForPracticeField(result.items, fieldId);
+  const preferred = preferUnseenBankItems(items, excludeQuestionIds, limit);
+  items = preferred.items;
   if (items.length < limit) return null;
-  return { ...result, items };
+  return {
+    ...result,
+    items: items.slice(0, limit),
+    excludeSeenApplied: preferred.excludeSeenApplied || result.excludeSeenApplied,
+  };
 }
 
 /** Load bank items for a timed mock using the same path as the questions API. */
 export async function assembleTimedExamSessionItems(
   params: AssembleTimedExamSessionParams
 ): Promise<AssembleTimedExamSessionResult | null> {
-  const { fieldId, limit, focusAreas, sampleCount } = params;
+  const { fieldId, limit, focusAreas, sampleCount, excludeQuestionIds } = params;
   const prepare = (item: BankItem) => prepareTimedExamItem(fieldId, item);
   const seed = (Date.now() ^ 0x51ed270b) >>> 0;
+  const hasFocus = Boolean(focusAreas?.length);
 
-  if (!focusAreas?.length) {
+  if (!hasFocus) {
     const fastItems = await gatherSprintTimedExamPool({
       fieldId,
-      limit,
+      limit: Math.max(limit, excludeQuestionIds?.size ? limit + 40 : limit),
       prepareItem: prepare,
     });
     if (fastItems.length >= limit) {
-      return scopeAssemblyResult(fieldId, limit, {
-        items: fastItems.slice(0, limit),
-        source: "gather",
-      });
+      return scopeAssemblyResult(
+        fieldId,
+        limit,
+        {
+          items: fastItems.slice(0, Math.max(limit, fastItems.length)),
+          source: "gather",
+        },
+        excludeQuestionIds
+      );
     }
   }
 
-  if (!focusAreas?.length && !skipTimedPresetForField(fieldId)) {
+  if (!hasFocus && !skipTimedPresetForField(fieldId)) {
     const preset = await tryLoadTimedPresetSession({ fieldId, limit, seed });
     if (preset) {
-      return scopeAssemblyResult(fieldId, limit, {
-        items: preset.items,
-        source: "preset",
-        presetExamNumber: preset.examNumber,
-      });
+      return scopeAssemblyResult(
+        fieldId,
+        limit,
+        {
+          items: preset.items,
+          source: "preset",
+          presetExamNumber: preset.examNumber,
+        },
+        excludeQuestionIds
+      );
     }
   }
 
-  if (!focusAreas?.length) {
+  if (!hasFocus) {
     const poolLimit = resolveProgressivePoolLimit(limit);
     const ladder = timedExamGatherLadderForField(fieldId);
     const gathered = await gatherProgressiveBankPool({
@@ -130,28 +160,58 @@ export async function assembleTimedExamSessionItems(
       prepareItem: prepare,
     });
 
-    const filled = fillGatheredItems(gathered, limit, EXACT_FILL_COMPOSE_TIER.id);
-    if (filled) return scopeAssemblyResult(fieldId, limit, filled);
+    const filled = fillGatheredItems(
+      gathered,
+      limit,
+      EXACT_FILL_COMPOSE_TIER.id,
+      excludeQuestionIds
+    );
+    if (filled) return scopeAssemblyResult(fieldId, limit, filled, excludeQuestionIds);
   }
 
-  // Live sprints (≤100) rarely need blueprint compose; long exams use gather below.
-  if (
-    fieldSupportsBlueprintTimedExam(fieldId) &&
-    !focusAreas?.length &&
-    limit <= 100
-  ) {
+  // Focused or blueprint-balanced compose — also used for weak-area launches.
+  if (fieldSupportsBlueprintTimedExam(fieldId) && (hasFocus || limit <= 100)) {
     const composed = await composeBlueprintTimedExamSession({
       fieldId,
       numQuestions: limit,
       focusAreas,
+      excludeQuestionIds,
       liveFast: true,
     });
     if (composed?.items.length && composed.items.length >= limit) {
-      return scopeAssemblyResult(fieldId, limit, {
-        items: composed.items,
-        source: "blueprint",
-        tierId: composed.tierId,
-      });
+      return scopeAssemblyResult(
+        fieldId,
+        limit,
+        {
+          items: composed.items,
+          source: "blueprint",
+          tierId: composed.tierId,
+        },
+        excludeQuestionIds
+      );
+    }
+  }
+
+  // Focus + longer exams: still try blueprint even above 100.
+  if (hasFocus && fieldSupportsBlueprintTimedExam(fieldId) && limit > 100) {
+    const composed = await composeBlueprintTimedExamSession({
+      fieldId,
+      numQuestions: limit,
+      focusAreas,
+      excludeQuestionIds,
+      liveFast: true,
+    });
+    if (composed?.items.length && composed.items.length >= limit) {
+      return scopeAssemblyResult(
+        fieldId,
+        limit,
+        {
+          items: composed.items,
+          source: "blueprint",
+          tierId: composed.tierId,
+        },
+        excludeQuestionIds
+      );
     }
   }
 
@@ -159,7 +219,7 @@ export async function assembleTimedExamSessionItems(
   const items = (
     await gatherTimedExamBankItems({
       fieldId,
-      limit,
+      limit: Math.max(limit, excludeQuestionIds?.size ? limit + 48 : limit),
       filterFn: gates.strict,
       relaxedFilterFn: gates.relaxed,
       initialSampleCount: Math.min(sampleCount, resolveProgressivePullSize(limit, limit + 32)),
@@ -169,6 +229,11 @@ export async function assembleTimedExamSessionItems(
 
   if (!items.length) return null;
 
-  const filled = fillGatheredItems(items, limit, EXACT_FILL_COMPOSE_TIER.id);
-  return scopeAssemblyResult(fieldId, limit, filled);
+  const filled = fillGatheredItems(
+    items,
+    limit,
+    EXACT_FILL_COMPOSE_TIER.id,
+    excludeQuestionIds
+  );
+  return scopeAssemblyResult(fieldId, limit, filled, excludeQuestionIds);
 }
