@@ -5,10 +5,9 @@ import { LEGAL_DISCLAIMERS, LEGAL_ENTITY } from "@/lib/legal";
 import { formatMonthlyPrice, formatPricingHeadline, formatTrialLabel } from "@/lib/site";
 import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
 import { PricingTiers } from "@/components/pricing/PricingTiers";
+import { PricingQueryNotices } from "@/components/pricing/PricingQueryNotices";
 import { HowWeCompare } from "@/components/home/HowWeCompare";
 import { PageShell } from "@/components/PageShell";
-import { PaywallNotice } from "@/components/PaywallNotice";
-import { ProUpgradeBanner } from "@/components/pricing/ProUpgradeBanner";
 import { LANDING_HERO_TRUST_SIGNALS } from "@/lib/landing/content";
 import {
   buildLandingBankCountsDisplay,
@@ -21,12 +20,7 @@ import { JsonLdScript } from "@/components/seo/JsonLdScript";
 export const metadata = buildPricingMetadata();
 export const revalidate = 3600;
 
-export default async function PricingPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ paywall?: string; return?: string; upgrade?: string; feature?: string }>;
-}) {
-  const { paywall, upgrade, feature } = await searchParams;
+export default async function PricingPage() {
   const bankSnapshot = await getCachedQuestionBankCounts();
   const bankCounts = buildLandingBankCountsDisplay(bankSnapshot);
 
@@ -40,8 +34,9 @@ export default async function PricingPage({
       align="center"
       maxWidth="max-w-5xl"
     >
-      {paywall && <PaywallNotice reason={paywall} />}
-      {upgrade === "pro" && <ProUpgradeBanner feature={feature} />}
+      <Suspense fallback={null}>
+        <PricingQueryNotices />
+      </Suspense>
 
       <div className="mx-auto mt-5 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
         <span className="inline-flex items-baseline gap-1.5 text-base font-bold text-[var(--color-ink)]">

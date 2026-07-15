@@ -1,14 +1,17 @@
-import { NextResponse } from "next/server";
+import { after, NextResponse } from "next/server";
 import { ZodError } from "zod";
 import { enforceRateLimit } from "@/lib/api-rate-limit";
 import { analyticsBeaconSchema } from "@/lib/analytics/beacon-schema";
-import { trackPageView, touchUserSession } from "@/lib/analytics/events";
+import { trackEventAsync, touchUserSession } from "@/lib/analytics/events";
+import { EVENT_TYPES } from "@/lib/analytics/types";
+import { isDbUserSessionId } from "@/lib/analytics/session-id";
 import { readOptionalSessionUser } from "@/lib/session-guard";
 
 export const runtime = "nodejs";
 
 export async function POST(req: Request) {
-  const limited = await enforceRateLimit(req, "analytics-beacon", 120, 60_000);
+  // Tighter limit: beacons were exhausting Neon pool slots under connection_limit=1.
+  const limited = await enforceRateLimit(req, "analytics-beacon", 40, 60_000);
   if (limited) return limited;
 
   try {
@@ -20,24 +23,34 @@ export async function POST(req: Request) {
       body = text ? JSON.parse(text) : {};
     }
     const input = analyticsBeaconSchema.parse(body);
-    const sessionUser = await readOptionalSessionUser();
 
     if (input.path.startsWith("/internal") || input.path.startsWith("/api/")) {
       return NextResponse.json({ ok: true, skipped: true });
     }
 
-    trackPageView({
-      path: input.path,
-      userId: sessionUser?.userId,
-      sessionId: input.sessionId,
-      durationSec: input.durationSec,
-      referrer: input.referrer,
-      req,
-    });
+    const sessionUser = await readOptionalSessionUser();
+    const headerSnapshot = new Headers(req.headers);
+    const requestUrl = req.url;
 
-    if (input.sessionId) {
-      void touchUserSession(input.sessionId, input.durationSec);
-    }
+    after(async () => {
+      const stubReq = new Request(requestUrl, { headers: headerSnapshot });
+      await trackEventAsync({
+        userId: sessionUser?.userId,
+        sessionId: input.sessionId,
+        eventType: EVENT_TYPES.PAGE_VIEW,
+        category: "engagement",
+        metadata: {
+          path: input.path,
+          durationSec: input.durationSec ?? 0,
+          referrer: input.referrer,
+        },
+        req: stubReq,
+      });
+
+      if (input.sessionId && isDbUserSessionId(input.sessionId)) {
+        await touchUserSession(input.sessionId, input.durationSec);
+      }
+    });
 
     return NextResponse.json({ ok: true });
   } catch (e) {

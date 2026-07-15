@@ -26,12 +26,15 @@ export function PageViewTracker() {
 
     if (lastPath.current && lastPath.current !== path) {
       const durationSec = Math.round((Date.now() - enteredAt.current) / 1000);
-      postBeacon({
-        path: lastPath.current,
-        durationSec,
-        sessionId: getOrCreateAnalyticsSessionId(),
-        referrer: document.referrer || undefined,
-      });
+      // Skip tiny bounce durations — halves double-beacon traffic on fast nav.
+      if (durationSec >= 2) {
+        postBeacon({
+          path: lastPath.current,
+          durationSec,
+          sessionId: getOrCreateAnalyticsSessionId(),
+          referrer: document.referrer || undefined,
+        });
+      }
       enteredAt.current = Date.now();
     }
 
@@ -41,6 +44,7 @@ export function PageViewTracker() {
       clearTimeout(pendingPageview.current);
     }
 
+    // Debounce SPA navigations so rapid clicks don't stampede the beacon API.
     pendingPageview.current = setTimeout(() => {
       postBeacon({
         path,
@@ -48,7 +52,7 @@ export function PageViewTracker() {
         referrer: document.referrer || undefined,
       });
       pendingPageview.current = null;
-    }, 120);
+    }, 400);
 
     return () => {
       if (pendingPageview.current) {

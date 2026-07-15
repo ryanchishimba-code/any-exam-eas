@@ -2,6 +2,12 @@ import { prisma } from "@/lib/prisma";
 import type { TrackEventInput } from "./types";
 import { EVENT_TYPES } from "./types";
 import { hashIp, getUserAgent, parseUserAgent } from "./request-context";
+import { isDbUserSessionId } from "./session-id";
+import { enqueueAnalyticsWrite } from "./write-queue";
+
+/** Per-isolate throttle so page views don't update User on every navigation. */
+const lastActiveTouchByUser = new Map<string, number>();
+const LAST_ACTIVE_MIN_INTERVAL_MS = 15 * 60_000;
 
 export function trackPageView(params: {
   path: string;
@@ -25,10 +31,15 @@ export function trackPageView(params: {
   });
 }
 
+/**
+ * Touch a real DB UserSession row. No-ops for client analytics UUIDs so we
+ * never burn a pooled connection on a guaranteed empty updateMany.
+ */
 export async function touchUserSession(
   sessionId: string,
   durationSec?: number
 ): Promise<void> {
+  if (!isDbUserSessionId(sessionId)) return;
   try {
     await prisma.userSession.updateMany({
       where: { id: sessionId },
@@ -46,7 +57,7 @@ export async function touchUserSession(
 
 /** Centralized, non-blocking event tracking. */
 export function trackEvent(input: TrackEventInput): void {
-  void trackEventAsync(input);
+  enqueueAnalyticsWrite(() => trackEventAsync(input));
 }
 
 export async function trackEventAsync(input: TrackEventInput): Promise<void> {
@@ -54,6 +65,7 @@ export async function trackEventAsync(input: TrackEventInput): Promise<void> {
     const ipHash = hashIp(input.req);
     const ua = getUserAgent(input.req);
     const parsed = parseUserAgent(ua ?? null);
+    const isPageView = input.eventType === EVENT_TYPES.PAGE_VIEW;
 
     await prisma.analyticsEvent.create({
       data: {
@@ -66,19 +78,31 @@ export async function trackEventAsync(input: TrackEventInput): Promise<void> {
       },
     });
 
-    if (input.userId) {
+    // Page views are high-frequency — skip User/DeviceHistory side effects so
+    // they don't starve product queries on connection_limit=1 isolates.
+    if (isPageView || !input.userId) return;
+
+    if (shouldTouchLastActive(input.userId)) {
       await prisma.user.update({
         where: { id: input.userId },
         data: { lastActiveAt: new Date() },
       });
+    }
 
-      if (ua) {
-        await upsertDeviceHistory(input.userId, ua, parsed, ipHash);
-      }
+    if (ua) {
+      await upsertDeviceHistory(input.userId, ua, parsed, ipHash);
     }
   } catch {
     /* analytics must not break product flows */
   }
+}
+
+function shouldTouchLastActive(userId: string): boolean {
+  const now = Date.now();
+  const prev = lastActiveTouchByUser.get(userId) ?? 0;
+  if (now - prev < LAST_ACTIVE_MIN_INTERVAL_MS) return false;
+  lastActiveTouchByUser.set(userId, now);
+  return true;
 }
 
 async function upsertDeviceHistory(
@@ -246,6 +270,15 @@ export async function startUserSession(
       create: { userId, loginCount: 1 },
       update: { loginCount: { increment: 1 } },
     });
+
+    // Login is a good time to refresh last-active + device history once.
+    await prisma.user.update({
+      where: { id: userId },
+      data: { lastActiveAt: new Date() },
+    });
+    if (ua) {
+      await upsertDeviceHistory(userId, ua, parsed, hashIp(req));
+    }
 
     return session.id;
   } catch {
