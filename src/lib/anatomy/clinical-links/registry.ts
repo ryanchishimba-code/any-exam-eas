@@ -2,6 +2,7 @@ import { getAnatomyStructure } from "@/lib/anatomy";
 import { getDrugById } from "@/lib/drugs300/catalog";
 import type { DrugEntry } from "@/lib/drugs300/types";
 import { CURATED_DISEASE_LINKS } from "./diseases-curated";
+import { enrichDiseaseLinkWithAuthorities } from "./disease-guideline-map";
 import { buildSupplementalDiseaseLinks } from "./matcher";
 import type {
   AnatomyDiseaseLink,
@@ -10,18 +11,29 @@ import type {
 } from "./types";
 
 let supplementalDiseaseLinks: AnatomyDiseaseLink[] | null = null;
+let curatedWithAuthorities: AnatomyDiseaseLink[] | null = null;
+
+function getCuratedWithAuthorities(): AnatomyDiseaseLink[] {
+  if (!curatedWithAuthorities) {
+    curatedWithAuthorities = CURATED_DISEASE_LINKS.map(enrichDiseaseLinkWithAuthorities);
+  }
+  return curatedWithAuthorities;
+}
 
 function getSupplementalDiseaseLinks(): AnatomyDiseaseLink[] {
   if (!supplementalDiseaseLinks) {
-    supplementalDiseaseLinks = buildSupplementalDiseaseLinks(CURATED_DISEASE_LINKS);
+    supplementalDiseaseLinks = buildSupplementalDiseaseLinks(CURATED_DISEASE_LINKS).map(
+      enrichDiseaseLinkWithAuthorities
+    );
   }
   return supplementalDiseaseLinks;
 }
 
-export const ANATOMY_DISEASE_LINKS: AnatomyDiseaseLink[] = CURATED_DISEASE_LINKS;
+/** Curated disease threads (authority-enriched). */
+export const ANATOMY_DISEASE_LINKS: AnatomyDiseaseLink[] = getCuratedWithAuthorities();
 
 function allDiseaseLinks(): AnatomyDiseaseLink[] {
-  return [...ANATOMY_DISEASE_LINKS, ...getSupplementalDiseaseLinks()];
+  return [...getCuratedWithAuthorities(), ...getSupplementalDiseaseLinks()];
 }
 
 function hydrateDrugs(ids: string[] | undefined): DrugEntry[] {
@@ -30,10 +42,11 @@ function hydrateDrugs(ids: string[] | undefined): DrugEntry[] {
 }
 
 export function resolveDiseaseLink(link: AnatomyDiseaseLink): ResolvedAnatomyDiseaseLink {
+  const enriched = enrichDiseaseLinkWithAuthorities(link);
   return {
-    ...link,
-    firstLineDrugs: hydrateDrugs(link.firstLineDrugIds),
-    adjunctDrugs: hydrateDrugs(link.adjunctDrugIds),
+    ...enriched,
+    firstLineDrugs: hydrateDrugs(enriched.firstLineDrugIds),
+    adjunctDrugs: hydrateDrugs(enriched.adjunctDrugIds),
   };
 }
 
@@ -61,13 +74,17 @@ export function getDiseaseLinkForPathology(
   pathologyLabel: string
 ): AnatomyDiseaseLink | undefined {
   const norm = pathologyLabel.toLowerCase();
-  return allDiseaseLinks().find(
-    (d) =>
-      d.structureIds.includes(structureId) &&
-      (d.pathologyLabel?.toLowerCase() === norm ||
-        d.name.toLowerCase() === norm ||
-        d.name.toLowerCase().includes(norm))
+  const candidates = allDiseaseLinks().filter((d) => d.structureIds.includes(structureId));
+  const byLabel = candidates.find((d) => d.pathologyLabel?.toLowerCase() === norm);
+  if (byLabel) return byLabel;
+  const byExactName = candidates.find((d) => d.name.toLowerCase() === norm);
+  if (byExactName) return byExactName;
+  // Prefer curated over generated when falling back to name substring.
+  const curatedHit = candidates.find(
+    (d) => !d.generated && d.name.toLowerCase().includes(norm)
   );
+  if (curatedHit) return curatedHit;
+  return candidates.find((d) => d.name.toLowerCase().includes(norm));
 }
 
 export function findDiseaseIdForPathology(
@@ -81,8 +98,7 @@ export function getDiseaseLinksForDrug(drugId: string): ResolvedAnatomyDiseaseLi
   return allDiseaseLinks()
     .filter(
       (d) =>
-        d.firstLineDrugIds.includes(drugId) ||
-        (d.adjunctDrugIds?.includes(drugId) ?? false)
+        d.firstLineDrugIds.includes(drugId) || (d.adjunctDrugIds ?? []).includes(drugId)
     )
     .map(resolveDiseaseLink);
 }
@@ -97,6 +113,9 @@ export function getClinicalContextForDrug(drugId: string): DrugClinicalContext {
   return { drugId, diseases, structureIds, structureNames };
 }
 
-export function drugUsedAsFirstLine(disease: AnatomyDiseaseLink, drugId: string): boolean {
+export function drugUsedAsFirstLine(
+  disease: AnatomyDiseaseLink | ResolvedAnatomyDiseaseLink,
+  drugId: string
+): boolean {
   return disease.firstLineDrugIds.includes(drugId);
 }

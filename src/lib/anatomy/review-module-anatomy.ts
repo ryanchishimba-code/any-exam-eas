@@ -15,18 +15,18 @@ export const REVIEW_MODULE_ANATOMY: Record<string, ReviewModuleAnatomyLink> = {
   },
   "sepsis-shock": {
     structureIds: ["heart", "lungs", "kidneys"],
-    diseaseIds: ["heart-failure-hfref"],
+    diseaseIds: ["community-pneumonia", "aki-prerenal"],
   },
   "infectious-disease": {
-    structureIds: ["lungs", "spinal-cord"],
-    diseaseIds: ["community-pneumonia", "ischemic-stroke-brain"],
+    structureIds: ["lungs", "brain"],
+    diseaseIds: ["community-pneumonia", "bacterial-meningitis"],
   },
   "heart-failure-gdmt": {
     structureIds: ["heart"],
     diseaseIds: ["heart-failure-hfref"],
   },
   "anticoagulation-reversal": {
-    structureIds: ["heart", "spinal-cord"],
+    structureIds: ["heart", "brain"],
     diseaseIds: ["atrial-fibrillation-stroke"],
   },
   "insulin-diabetes-management": {
@@ -51,23 +51,23 @@ export const REVIEW_MODULE_ANATOMY: Record<string, ReviewModuleAnatomyLink> = {
     structureIds: ["kidneys", "adrenal-glands"],
   },
   "neurology-stroke": {
-    structureIds: ["spinal-cord", "carotid-artery"],
+    structureIds: ["brain", "carotid-artery"],
     diseaseIds: ["ischemic-stroke-brain"],
   },
   "pathology-neoplasia": {
     structureIds: ["lungs", "liver", "spleen"],
   },
   "pharmacology-moa": {
-    structureIds: ["heart", "spinal-cord", "adrenal-glands"],
+    structureIds: ["heart", "brain", "adrenal-glands"],
   },
   "copd-exacerbation": {
     structureIds: ["lungs", "trachea", "diaphragm"],
   },
   "controlled-substances": {
-    structureIds: ["spinal-cord"],
+    structureIds: ["brain"],
   },
   "controlled-substances-pance": {
-    structureIds: ["spinal-cord"],
+    structureIds: ["brain"],
   },
   "ccs-case-management": {
     structureIds: ["heart", "lungs", "kidneys"],
@@ -76,7 +76,7 @@ export const REVIEW_MODULE_ANATOMY: Record<string, ReviewModuleAnatomyLink> = {
     structureIds: ["heart", "lungs", "stomach"],
   },
   "aanp-diagnose-domain": {
-    structureIds: ["heart", "spinal-cord", "lungs"],
+    structureIds: ["heart", "brain", "lungs"],
   },
   "aanp-plan-domain": {
     structureIds: ["heart", "pancreas", "lungs"],
@@ -85,16 +85,16 @@ export const REVIEW_MODULE_ANATOMY: Record<string, ReviewModuleAnatomyLink> = {
     structureIds: ["heart", "kidneys", "lungs"],
   },
   "aanp-geriatrics-high-yield": {
-    structureIds: ["spinal-cord", "heart", "kidneys"],
+    structureIds: ["brain", "heart", "kidneys"],
   },
   "aanp-pediatrics-high-yield": {
-    structureIds: ["heart", "lungs", "spinal-cord"],
+    structureIds: ["heart", "lungs", "brain"],
   },
   "msk-rehabilitation": {
     structureIds: ["femur", "humerus", "scapula", "vertebral-column"],
   },
   "stroke-rehabilitation": {
-    structureIds: ["spinal-cord", "carotid-artery"],
+    structureIds: ["brain", "carotid-artery"],
   },
   "cardiopulmonary-rehab": {
     structureIds: ["heart", "lungs", "diaphragm"],

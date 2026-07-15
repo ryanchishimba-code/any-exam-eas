@@ -9,6 +9,7 @@ import type { AtlasRegion, AtlasView } from "./types";
 export const ATLAS_REGIONS: AtlasRegion[] = [
   // —— Anterior ——
   { structureId: "skull", view: "anterior", cx: 120, cy: 44, rx: 28, ry: 32, primary: true },
+  { structureId: "brain", view: "anterior", cx: 120, cy: 40, rx: 22, ry: 24, primary: true },
   { structureId: "thyroid", view: "anterior", cx: 120, cy: 74, rx: 13, ry: 7, primary: true },
   { structureId: "trachea", view: "anterior", cx: 120, cy: 82, rx: 7, ry: 16, primary: true },
   { structureId: "carotid-artery", view: "anterior", cx: 106, cy: 78, rx: 9, ry: 14, primary: true },
@@ -30,6 +31,7 @@ export const ATLAS_REGIONS: AtlasRegion[] = [
   { structureId: "appendix", view: "anterior", cx: 148, cy: 236, rx: 9, ry: 14, primary: true },
   { structureId: "bladder", view: "anterior", cx: 120, cy: 258, rx: 20, ry: 15, primary: true },
   { structureId: "prostate", view: "anterior", cx: 120, cy: 272, rx: 15, ry: 9, primary: true },
+  { structureId: "pelvis", view: "anterior", cx: 120, cy: 286, rx: 36, ry: 22, primary: true },
   { structureId: "biceps-brachii", view: "anterior", cx: 68, cy: 142, rx: 14, ry: 30, primary: true },
   { structureId: "humerus", view: "anterior", cx: 64, cy: 148, rx: 11, ry: 34, primary: true },
   { structureId: "femur", view: "anterior", cx: 120, cy: 348, rx: 24, ry: 58, primary: true },
@@ -37,6 +39,7 @@ export const ATLAS_REGIONS: AtlasRegion[] = [
 
   // —— Posterior ——
   { structureId: "skull", view: "posterior", cx: 120, cy: 44, rx: 28, ry: 32 },
+  { structureId: "brain", view: "posterior", cx: 120, cy: 40, rx: 22, ry: 24 },
   { structureId: "spinal-cord", view: "posterior", cx: 120, cy: 158, rx: 6, ry: 88, primary: true },
   { structureId: "vertebral-column", view: "posterior", cx: 120, cy: 160, rx: 12, ry: 92, primary: true },
   { structureId: "scapula", view: "posterior", cx: 92, cy: 114, rx: 16, ry: 20 },
@@ -50,6 +53,7 @@ export const ATLAS_REGIONS: AtlasRegion[] = [
 
   // —— Left lateral ——
   { structureId: "skull", view: "left", cx: 108, cy: 44, rx: 30, ry: 32 },
+  { structureId: "brain", view: "left", cx: 112, cy: 40, rx: 24, ry: 22 },
   { structureId: "thyroid", view: "left", cx: 112, cy: 76, rx: 10, ry: 7 },
   { structureId: "carotid-artery", view: "left", cx: 118, cy: 80, rx: 8, ry: 14, primary: true },
   { structureId: "trachea", view: "left", cx: 114, cy: 84, rx: 7, ry: 14 },

@@ -106,7 +106,30 @@ export function DrugClinicalBridge({
                 >
                   {role}
                 </span>
+                {disease.generated ? (
+                  <span
+                    className={
+                      dark
+                        ? "rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-medium text-cyan-100/80"
+                        : "rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-600"
+                    }
+                  >
+                    Auto-linked
+                  </span>
+                ) : null}
               </div>
+              {!compact && disease.guidelines && disease.guidelines.length > 0 ? (
+                <p
+                  className={`mt-1.5 text-[10px] leading-snug ${
+                    dark ? "text-cyan-100/70" : "text-slate-500"
+                  }`}
+                >
+                  {disease.guidelines
+                    .slice(0, 2)
+                    .map((g) => g.label)
+                    .join(" · ")}
+                </p>
+              ) : null}
               {!compact && disease.diagnosticEndpoints && disease.diagnosticEndpoints.length > 0 ? (
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {disease.diagnosticEndpoints.slice(0, 2).map((ep) => (

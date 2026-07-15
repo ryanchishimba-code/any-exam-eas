@@ -1,6 +1,12 @@
 /** Cross-links rendered after the rationale (QuestionRelatedLinks) — merged into ngnPayload. */
 import { getReviewModuleAnatomy } from "@/lib/anatomy/review-module-anatomy";
+import { ANATOMY_STRUCTURES } from "@/lib/anatomy/structures";
+import { filterValidAnatomyStructureIds } from "@/lib/anatomy/structure-ids";
 import { inferAnatomyStructuresFromText } from "@/lib/anatomy/structure-inference";
+
+const STRUCTURE_PARENT_BY_ID = new Map(
+  ANATOMY_STRUCTURES.filter((s) => s.parentId).map((s) => [s.id, s.parentId as string])
+);
 
 export type RelatedStudyMeta = {
   /** Deep Dive review module on /dashboard/topics. */
@@ -16,7 +22,7 @@ export type RelatedStudyMeta = {
 };
 
 /** High-yield topic/system → default 3D structures (cardio, MSK, neuro first). */
-const TOPIC_STRUCTURE_IDS: Record<string, string[]> = {
+export const TOPIC_STRUCTURE_IDS_FOR_AUDIT: Record<string, string[]> = {
   cardiology: ["heart", "aorta"],
   cardiovascular: ["heart", "aorta", "carotid-artery"],
   "cardiovascular-rx": ["heart", "aorta"],
@@ -74,6 +80,9 @@ const TOPIC_STRUCTURE_IDS: Record<string, string[]> = {
   "reproductive-womens-health": ["pelvis", "bladder"],
 };
 
+/** @deprecated Prefer TOPIC_STRUCTURE_IDS_FOR_AUDIT — kept as alias for local lookups. */
+const TOPIC_STRUCTURE_IDS = TOPIC_STRUCTURE_IDS_FOR_AUDIT;
+
 const SYSTEM_STRUCTURE_IDS: Record<string, string[]> = {
   cardiovascular: ["heart", "aorta"],
   cardiac: ["heart"],
@@ -124,10 +133,18 @@ function idsFromTopicKeys(keys: (string | undefined)[]): string[] {
   return out;
 }
 
+/** Prefer top-level organs in related links (collapse named subregions to parent). */
+function toBrowsableStructureId(id: string): string {
+  const parentId = STRUCTURE_PARENT_BY_ID.get(id);
+  if (parentId && filterValidAnatomyStructureIds([parentId]).length) return parentId;
+  return id;
+}
+
 function mergeIds(existing: string[], next: string[], limit: number): string[] {
   const seen = new Set(existing);
   const out = [...existing];
-  for (const id of next) {
+  for (const rawId of next) {
+    const id = toBrowsableStructureId(rawId);
     if (seen.has(id)) continue;
     seen.add(id);
     out.push(id);
@@ -167,7 +184,7 @@ export function resolveStructureIdsForStudyItem(ctx: StudyStructureContext): str
     );
   }
 
-  return out.slice(0, limit);
+  return filterValidAnatomyStructureIds(out).slice(0, limit);
 }
 
 /** Merge resolved structureIds into RelatedStudyMeta without clobbering explicit seed tags. */

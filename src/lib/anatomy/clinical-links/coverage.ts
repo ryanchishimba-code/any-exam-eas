@@ -7,7 +7,7 @@ const CORE_STRUCTURE_IDS = new Set([
   "carotid-artery",
   "lungs",
   "trachea",
-  "spinal-cord",
+  "brain",
   "spinal-cord",
   "liver",
   "gallbladder",

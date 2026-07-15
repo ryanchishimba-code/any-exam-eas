@@ -34,6 +34,7 @@ export type AnatomyVideoHotspot = {
 export const ANATOMY_VIDEO_HOTSPOTS: AnatomyVideoHotspot[] = [
   // Anterior head & neck (0 – 1.8 s)
   { structureId: "skull", startSec: 0, endSec: 1.8, cx: 35, cy: 24, rx: 6, ry: 5 },
+  { structureId: "brain", startSec: 0, endSec: 1.8, cx: 35, cy: 22, rx: 5, ry: 4 },
   { structureId: "spinal-cord", startSec: 0, endSec: 1.8, cx: 35, cy: 52, rx: 2.5, ry: 22 },
   { structureId: "thyroid", startSec: 0, endSec: 1.8, cx: 35, cy: 32, rx: 4, ry: 2.5 },
   { structureId: "trachea", startSec: 0, endSec: 1.8, cx: 35, cy: 36, rx: 2.5, ry: 6 },
@@ -60,6 +61,7 @@ export const ANATOMY_VIDEO_HOTSPOTS: AnatomyVideoHotspot[] = [
   { structureId: "appendix", startSec: 0, endSec: 1.8, cx: 39, cy: 72, rx: 3, ry: 4 },
   { structureId: "bladder", startSec: 0, endSec: 2, cx: 35, cy: 78, rx: 5.5, ry: 4.5 },
   { structureId: "prostate", startSec: 0, endSec: 2, cx: 35, cy: 82, rx: 4.5, ry: 3 },
+  { structureId: "pelvis", startSec: 0, endSec: 2.2, cx: 35, cy: 86, rx: 10, ry: 6 },
 
   // Extremities — visible on anterior / early spin (0 – 2.5 s)
   { structureId: "biceps-brachii", startSec: 0, endSec: 2.2, cx: 23, cy: 50, rx: 3.5, ry: 8 },

@@ -114,6 +114,42 @@ export const DEA_CSA: ExamReference = {
   citation: "Schedule classification, prescribing, and dispensing controls",
 };
 
+export const ATA_THYROID: ExamReference = {
+  label: "American Thyroid Association Guidelines",
+  url: "https://www.thyroid.org/professionals/ata-professional-guidelines/",
+  citation: "Hyperthyroidism/hypothyroidism evaluation and treatment pathways",
+};
+
+export const GOLD_COPD: ExamReference = {
+  label: "GOLD COPD Report",
+  url: "https://goldcopd.org/",
+  citation: "COPD diagnosis, group classification, and inhaled therapy",
+};
+
+export const KDIGO_CKD: ExamReference = {
+  label: "KDIGO CKD / AKI Guidance",
+  url: "https://kdigo.org/guidelines/",
+  citation: "Kidney disease staging, AKI care, and nephrotoxin stewardship",
+};
+
+export const AHA_ASA_STROKE: ExamReference = {
+  label: "AHA/ASA Stroke Guidelines",
+  url: "https://www.heart.org/",
+  citation: "Acute ischemic stroke reperfusion and secondary prevention",
+};
+
+export const CHEST_ANTITHROMBOTIC: ExamReference = {
+  label: "CHEST Antithrombotic Guidelines",
+  url: "https://www.chestnet.org/",
+  citation: "VTE treatment and anticoagulant duration frameworks",
+};
+
+export const GINA_ASTHMA: ExamReference = {
+  label: "GINA Asthma Strategy",
+  url: "https://ginasthma.org/",
+  citation: "Asthma controller/reliever therapy and escalation steps",
+};
+
 // ── NCLEX-RN rules ──────────────────────────────────────────────────────────
 
 export const NCLEX_GUIDELINE_RULES: GuidelineRule[] = [

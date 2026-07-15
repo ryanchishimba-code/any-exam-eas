@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { getAnatomyStructure } from "@/lib/anatomy";
 import {
   ANATOMY_DISEASE_LINKS,
   anatomyDrugHref,
@@ -20,11 +21,42 @@ describe("anatomy clinical links", () => {
     expect(hypo?.firstLineDrugs[0]?.generic).toBe("Levothyroxine");
     expect(hypo?.firstLineDrugs[0]?.brand).toContain("Synthroid");
     expect(hypo?.diagnosticEndpoints?.some((e) => e.label === "TSH")).toBe(true);
+    expect(hypo?.guidelines?.some((g) => /Thyroid|FDA/i.test(g.label))).toBe(true);
   });
 
   it("matches pathology badge labels to disease links", () => {
     const graves = getDiseaseLinkForPathology("thyroid", "Graves disease");
     expect(graves?.id).toBe("hyperthyroidism-graves");
+  });
+
+  it("does not treat propranolol as disease-modifying first-line for Graves", () => {
+    const graves = resolveDiseaseLink(getDiseaseLinkForPathology("thyroid", "Graves disease")!);
+    expect(graves.firstLineDrugIds).not.toContain("propranolol");
+    expect(graves.adjunctDrugIds).toContain("propranolol");
+    expect(graves.guidelines?.some((g) => /Thyroid/i.test(g.label))).toBe(true);
+  });
+
+  it("includes ADA outcome agents for type 2 diabetes", () => {
+    const t2dm = getResolvedDiseaseLinksForStructure("pancreas").find(
+      (d) => d.id === "type-2-diabetes"
+    );
+    expect(t2dm?.firstLineDrugs.some((d) => d.id === "metformin")).toBe(true);
+    expect(t2dm?.adjunctDrugs.some((d) => d.id === "semaglutide")).toBe(true);
+    expect(t2dm?.adjunctDrugs.some((d) => d.id === "empagliflozin")).toBe(true);
+    expect(t2dm?.guidelines?.some((g) => /ADA/i.test(g.label))).toBe(true);
+  });
+
+  it("anchors ischemic stroke to brain + carotid", () => {
+    const stroke = getDiseaseLinkForPathology("brain", "Stroke");
+    expect(stroke?.id).toBe("ischemic-stroke-brain");
+    expect(stroke?.structureIds).toContain("brain");
+    expect(stroke?.structureIds).toContain("carotid-artery");
+    expect(stroke?.structureIds).not.toContain("spinal-cord");
+  });
+
+  it("publishes a brain structure in the catalog", () => {
+    expect(getAnatomyStructure("brain")?.name).toBe("Brain");
+    expect(getAnatomyStructure("brain")?.pathologies).toContain("Stroke");
   });
 
   it("curates endocarditis with MSSA antibiotics", () => {
@@ -44,6 +76,15 @@ describe("anatomy clinical links", () => {
     expect(curated.length).toBeGreaterThanOrEqual(80);
   });
 
+  it("attaches guidelines to every curated high-yield disease", () => {
+    const highYield = ANATOMY_DISEASE_LINKS.filter((d) => d.highYield && !d.generated);
+    expect(highYield.length).toBeGreaterThan(20);
+    for (const d of highYield) {
+      expect(d.guidelines?.length ?? 0).toBeGreaterThan(0);
+      expect(d.evidenceLevel).not.toBe("auto-matched");
+    }
+  });
+
   it("covers all core structure pathologies with drug threads", () => {
     const uncovered = getUncoveredCorePathologies();
     expect(uncovered).toEqual([]);
@@ -55,11 +96,15 @@ describe("anatomy clinical links", () => {
     expect(coverage.every((c) => c.hasDrugs)).toBe(true);
   });
 
-  it("matcher finds drugs for pneumonia", () => {
-    const { firstLine } = matchDrugsToPathologyForTest("Pneumonia", ["lung", "pulmonary"]);
-    expect(firstLine.length).toBeGreaterThan(0);
+  it("matcher finds review-only adjunct drugs for pneumonia (never false first-line)", () => {
+    const { firstLine, adjunct } = matchDrugsToPathologyForTest("Pneumonia", [
+      "lung",
+      "pulmonary",
+    ]);
+    expect(firstLine).toEqual([]);
+    expect(adjunct.length).toBeGreaterThan(0);
     expect(
-      firstLine.some((id) =>
+      adjunct.some((id) =>
         ["amoxicillin", "azithromycin", "levofloxacin", "cefuroxime"].includes(id)
       )
     ).toBe(true);
@@ -95,5 +140,6 @@ describe("anatomy clinical links", () => {
   it("builds deep links", () => {
     expect(anatomyDrugHref("levothyroxine")).toBe("/study/drugs300?drug=levothyroxine");
     expect(anatomyStructureHref("thyroid")).toBe("/anatomy?structure=thyroid");
+    expect(anatomyStructureHref("brain")).toBe("/anatomy?structure=brain");
   });
 });

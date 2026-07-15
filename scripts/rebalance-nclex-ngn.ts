@@ -140,12 +140,14 @@ async function main() {
       }
     }
 
-    log("▶ Best-tier QA gate");
+    // Soft serve QA — do NOT run best-tier gate here; it rejects authentic NGN formats
+    // (bowtie/matrix/case) that lack MCQ distractor rationales.
+    log("▶ NGN-preserving serve QA gate");
     const { spawn } = await import("node:child_process");
     await new Promise<void>((resolve) => {
       const child = spawn(
         process.execPath,
-        ["node_modules/tsx/dist/cli.mjs", "scripts/qa-gate-nclex-best.ts"],
+        ["node_modules/tsx/dist/cli.mjs", "scripts/qa-gate-nclex-ngn-serve.ts"],
         { cwd: process.cwd(), stdio: "inherit", env: process.env }
       );
       child.on("close", () => resolve());

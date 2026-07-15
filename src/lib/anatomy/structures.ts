@@ -106,6 +106,26 @@ const CORE_ANATOMY_STRUCTURES: AnatomyStructure[] = [
     keywords: ["airway", "carina", "bronchi", "intubation"],
   },
   {
+    id: "brain",
+    name: "Brain",
+    system: "nervous",
+    layer: "organ",
+    description:
+      "Intracranial CNS: cerebrum, cerebellum, and brainstem within the cranial vault. Vascular territories and meningeal spaces drive stroke and infection boards.",
+    clinicalFacts: [
+      "Time is brain — acute ischemic stroke needs last-known-well timing for thrombolysis/thrombectomy decisions",
+      "MCA territory: contralateral face/arm weakness ± aphasia (dominant) or neglect (non-dominant)",
+      "Meningitis: fever, nuchal rigidity, altered mentation — do not delay antibiotics when indicated",
+    ],
+    pathologies: ["Stroke", "Meningitis", "Seizure", "Raised ICP"],
+    highYield: true,
+    memoryCardIds: ["usmle-stroke-tpa", "usmle-tpa-exclusions", "usmle-meningitis-emergency"],
+    practiceTopicSlug: "neurology-stroke",
+    highYieldTopicSlug: "neurology-stroke",
+    meshId: "brain",
+    keywords: ["cerebrum", "stroke", "CNS", "cranial", "MCA", "ICP"],
+  },
+  {
     id: "spinal-cord",
     name: "Spinal Cord",
     system: "nervous",

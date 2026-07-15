@@ -37,7 +37,7 @@ function scoreDrugForPathology(
 function matchDrugsForPathology(
   pathology: string,
   structureKeywords: string[]
-): { firstLine: string[]; adjunct: string[] } {
+): { matched: string[]; topScore: number } {
   const terms = searchTermsForPathology(pathology);
   const matches: DrugMatch[] = [];
 
@@ -48,18 +48,16 @@ function matchDrugsForPathology(
       terms,
       structureKeywords
     );
-    if (score >= 6) matches.push({ drugId: drug.id, score });
+    // Raised bar: weak substring hits are not shown as therapies.
+    if (score >= 12) matches.push({ drugId: drug.id, score });
   }
 
   matches.sort((a, b) => b.score - a.score);
-  const top = matches.slice(0, 6);
-  const firstLine = top.filter((m) => m.score >= 10).map((m) => m.drugId).slice(0, 4);
-  const adjunct = top
-    .filter((m) => m.score >= 6 && !firstLine.includes(m.drugId))
-    .map((m) => m.drugId)
-    .slice(0, 3);
-
-  return { firstLine, adjunct };
+  const top = matches.slice(0, 5);
+  return {
+    matched: top.map((m) => m.drugId),
+    topScore: top[0]?.score ?? 0,
+  };
 }
 
 function curatedCoversPathology(
@@ -77,7 +75,10 @@ function curatedCoversPathology(
   );
 }
 
-/** Auto-link pathologies to Top 500 drugs via indication text matching. */
+/**
+ * Auto-link pathologies to Top 500 drugs via indication text matching.
+ * Matches are always adjunct-only (never first-line) and flagged auto-matched.
+ */
 export function buildSupplementalDiseaseLinks(
   curated: AnatomyDiseaseLink[]
 ): AnatomyDiseaseLink[] {
@@ -96,8 +97,8 @@ export function buildSupplementalDiseaseLinks(
     for (const pathology of pathologies) {
       if (curatedCoversPathology(curated, structure.id, pathology)) continue;
 
-      const { firstLine, adjunct } = matchDrugsForPathology(pathology, keywords);
-      if (firstLine.length === 0 && adjunct.length === 0) continue;
+      const { matched, topScore } = matchDrugsForPathology(pathology, keywords);
+      if (matched.length === 0 || topScore < 12) continue;
 
       supplemental.push({
         id: `gen-${structure.id}-${slugifyPathology(pathology)}`,
@@ -105,12 +106,16 @@ export function buildSupplementalDiseaseLinks(
         structureIds: [structure.id],
         pathologyLabel: pathology,
         pathophysiology: structure.description.split(".")[0] + ".",
-        presentation: structure.clinicalFacts.slice(0, 2),
-        firstLineDrugIds: firstLine,
-        adjunctDrugIds: adjunct.length ? adjunct : undefined,
+        presentation: [
+          "Matched therapies (review) — not guideline-verified first-line",
+          ...structure.clinicalFacts.slice(0, 1),
+        ],
+        firstLineDrugIds: [],
+        adjunctDrugIds: matched,
         examPearl: structure.clinicalFacts[0],
-        highYield: structure.highYield,
+        highYield: false,
         generated: true,
+        evidenceLevel: "auto-matched",
       });
     }
   }
@@ -122,5 +127,7 @@ export function matchDrugsToPathologyForTest(
   pathology: string,
   structureKeywords: string[] = []
 ): { firstLine: string[]; adjunct: string[] } {
-  return matchDrugsForPathology(pathology, structureKeywords);
+  const { matched } = matchDrugsForPathology(pathology, structureKeywords);
+  // Test helper preserves historical shape; auto-matches are adjunct-only.
+  return { firstLine: [], adjunct: matched };
 }

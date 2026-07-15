@@ -11,6 +11,8 @@ const CT_VIEWPORT_STRUCTURE_FALLBACKS: Record<string, string> = {
   trachea: "lungs",
   "trachea-carina": "lungs",
   skull: "spinal-cord",
+  // Viewport mesh fallback until Allen/VH brain GLB is registered in CT atlas.
+  // Catalog structure id "brain" remains canonical for deep links and disease threads.
   brain: "spinal-cord",
   gallbladder: "liver",
   "gallbladder-cystic-duct": "liver",

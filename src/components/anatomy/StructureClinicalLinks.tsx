@@ -89,14 +89,43 @@ function DiseaseCard({
         {disease.highYield ? (
           <Badge className="bg-amber-500/15 text-amber-200">High-yield</Badge>
         ) : null}
-        {disease.generated ? (
+        {disease.generated || disease.evidenceLevel === "auto-matched" ? (
           <Badge className="bg-white/[0.08] text-white/70">Auto-linked</Badge>
+        ) : disease.evidenceLevel === "guideline" ? (
+          <Badge className="bg-emerald-500/15 text-emerald-200">Guideline-backed</Badge>
+        ) : disease.evidenceLevel === "labeling" ? (
+          <Badge className="bg-sky-500/15 text-sky-200">Labeling</Badge>
         ) : null}
       </button>
 
       <p className="mt-1.5 text-xs leading-relaxed text-white/70">
         {disease.pathophysiology}
       </p>
+
+      {disease.guidelines && disease.guidelines.length > 0 ? (
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {disease.guidelines.slice(0, 4).map((g) =>
+            g.url ? (
+              <a
+                key={g.label}
+                href={g.url}
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-md bg-[#2f3a4a] px-2 py-1 text-[10px] font-medium text-cyan-100 ring-1 ring-cyan-500/20 transition hover:bg-[#3a4658]"
+              >
+                {g.label}
+              </a>
+            ) : (
+              <span
+                key={g.label}
+                className="rounded-md bg-[#2f3a4a] px-2 py-1 text-[10px] font-medium text-white/80 ring-1 ring-white/[0.06]"
+              >
+                {g.label}
+              </span>
+            )
+          )}
+        </div>
+      ) : null}
 
       {disease.presentation.length > 0 ? (
         <ul className="mt-2 space-y-1">
@@ -148,7 +177,11 @@ function DiseaseCard({
       {disease.adjunctDrugs.length > 0 ? (
         <div className="mt-2">
           <p className="text-[10px] font-bold uppercase tracking-wide text-white/70">
-            Adjunct / special situations
+            {disease.generated
+              ? "Matched therapies (review)"
+              : disease.firstLineDrugs.length === 0
+                ? "Catalog therapies / symptomatic support"
+                : "Adjunct / special situations"}
           </p>
           <ul className="mt-1.5 space-y-1.5">
             {disease.adjunctDrugs.map((drug) => (

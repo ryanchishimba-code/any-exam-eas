@@ -26,6 +26,7 @@ export const STRUCTURE_TO_ZYGOTE_ENTITY: Record<string, string> = {
   humerus: "l_humerus",
   tibia: "l_tibia",
   skull: "skull_cranium",
+  brain: "brain",
   sternum: "sternum",
   diaphragm: "diaphragm",
   "biceps-brachii": "l_bicep_brachii_long_head",
@@ -38,8 +39,11 @@ export const STRUCTURE_TO_ZYGOTE_ENTITY: Record<string, string> = {
   clavicle: "l_clavicle",
   scapula: "l_scapula",
   prostate: "prostate",
+  pelvis: "pelvis",
   "adrenal-glands": "l_adrenal_gland",
   "vertebral-column": "spinal_cord",
+  "spinal-cord": "spinal_cord",
+  trachea: "trachea",
 };
 
 export function getZygoteEntityForStructure(structureId: string): string | undefined {

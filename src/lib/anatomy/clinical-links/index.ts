@@ -1,5 +1,6 @@
 export type {
   AnatomyDiseaseLink,
+  AnatomyEvidenceLevel,
   ClinicalEndpoint,
   DrugClinicalContext,
   ResolvedAnatomyDiseaseLink,
@@ -8,6 +9,11 @@ export type {
 export { CURATED_DISEASE_LINKS } from "./diseases-curated";
 export { CURATED_DISEASE_LINKS_EXTENDED } from "./diseases-curated-extended";
 export { CURATED_DISEASE_LINKS_LONGTAIL } from "./diseases-curated-longtail";
+export {
+  DISEASE_GUIDELINE_MAP,
+  enrichDiseaseLinkWithAuthorities,
+  enrichDiseaseLinksWithAuthorities,
+} from "./disease-guideline-map";
 export { getCorePathologyCoverage, getUncoveredCorePathologies } from "./coverage";
 export { buildSupplementalDiseaseLinks, matchDrugsToPathologyForTest } from "./matcher";
 

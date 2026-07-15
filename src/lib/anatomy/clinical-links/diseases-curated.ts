@@ -43,14 +43,25 @@ export const CURATED_DISEASE_LINKS: AnatomyDiseaseLink[] = [
       "Exophthalmos, pretibial myxedema",
       "Suppressed TSH with ↑ free T4/T3",
     ],
-    firstLineDrugIds: ["propranolol"],
+    // ATDs (methimazole/PTU) are disease-modifying first-line per ATA but not in Top 500;
+    // catalog agents support symptomatic control while definitive therapy is planned.
+    firstLineDrugIds: [],
+    adjunctDrugIds: ["propranolol"],
     diagnosticEndpoints: [
       { label: "TSH", target: "Suppressed" },
       { label: "TSH receptor antibodies", target: "Positive (Graves)" },
     ],
-    monitoringEndpoints: [{ label: "HR, BP", target: "Symptom control on β-blocker" }],
-    treatmentGoals: ["Control adrenergic symptoms", "Definitive therapy (ATD, RAI, or surgery)"],
-    counselingPearl: "β-blocker treats symptoms only — plan definitive antithyroid therapy.",
+    monitoringEndpoints: [
+      { label: "HR, BP", target: "Symptom control on β-blocker" },
+      { label: "Free T4/T3", target: "Guide ATD titration (clinic)" },
+    ],
+    treatmentGoals: [
+      "Start antithyroid drug (methimazole preferred; PTU in 1st trimester/storm) — not in Top 500 catalog",
+      "β-blocker for adrenergic symptoms only",
+      "Plan definitive therapy (ATD course, RAI, or surgery)",
+    ],
+    counselingPearl:
+      "Propranolol treats symptoms only (ATA). Definitive therapy is methimazole/PTU, RAI, or surgery — coordinate endocrinology; do not call β-blocker disease-modifying first-line.",
     examPearl: "Thyroid storm: PTU + β-blocker + iodine (after ATD) + glucocorticoids.",
     highYield: true,
   },
@@ -61,7 +72,7 @@ export const CURATED_DISEASE_LINKS: AnatomyDiseaseLink[] = [
     pathophysiology: "Insulin resistance + progressive β-cell failure → hyperglycemia and ASCVD risk.",
     presentation: ["Polyuria, polydipsia when markedly elevated", "Often asymptomatic early"],
     firstLineDrugIds: ["metformin"],
-    adjunctDrugIds: ["semaglutide", "glipizide"],
+    adjunctDrugIds: ["semaglutide", "empagliflozin", "glipizide"],
     diagnosticEndpoints: [
       { label: "A1c", target: "≥6.5% diagnostic" },
       { label: "Fasting glucose", target: "≥126 mg/dL" },
@@ -70,8 +81,12 @@ export const CURATED_DISEASE_LINKS: AnatomyDiseaseLink[] = [
       { label: "A1c", target: "<7% individualized", frequency: "Every 3–6 mo" },
       { label: "eGFR", target: "Before metformin / dose adjust if low" },
     ],
-    treatmentGoals: ["Glycemic control", "ASCVD risk reduction"],
-    counselingPearl: "Metformin with meals; hold before contrast per protocol; monitor B12.",
+    treatmentGoals: [
+      "Glycemic control",
+      "ASCVD / HF / CKD risk reduction with GLP-1 RA or SGLT2i when indicated (ADA)",
+    ],
+    counselingPearl:
+      "Metformin with meals; hold before contrast per protocol; monitor B12. Prefer GLP-1 RA / SGLT2i when ASCVD, HF, or CKD drives therapy choice.",
     highYield: true,
   },
   {
@@ -148,8 +163,8 @@ export const CURATED_DISEASE_LINKS: AnatomyDiseaseLink[] = [
   {
     id: "atrial-fibrillation-stroke",
     name: "Atrial fibrillation / stroke prevention",
-    structureIds: ["heart", "carotid-artery", "spinal-cord"],
-    pathologyLabel: "Stroke",
+    structureIds: ["heart", "carotid-artery", "brain"],
+    pathologyLabel: "Cardioembolic stroke risk",
     pathophysiology: "Left atrial thrombus embolizes → anterior circulation stroke.",
     presentation: ["Sudden focal neuro deficit", "AF on ECG increases cardioembolic risk"],
     firstLineDrugIds: ["apixaban", "warfarin"],
@@ -306,9 +321,33 @@ export const CURATED_DISEASE_LINKS: AnatomyDiseaseLink[] = [
     highYield: true,
   },
   {
+    id: "seizure-epilepsy",
+    name: "Seizure / epilepsy",
+    structureIds: ["brain"],
+    pathologyLabel: "Seizure",
+    pathophysiology:
+      "Abnormal hypersynchronous neuronal firing → clinical seizure; status = continuous/recurrent without recovery.",
+    presentation: ["Convulsive or non-convulsive episodes", "Post-ictal confusion", "Status epilepticus medical emergency"],
+    firstLineDrugIds: ["levetiracetam", "lorazepam"],
+    adjunctDrugIds: ["phenytoin", "fosphenytoin"],
+    diagnosticEndpoints: [
+      { label: "Glucose / Na⁺ / imaging", target: "Rule out reversible causes" },
+      { label: "EEG", target: "Support epilepsy diagnosis when indicated" },
+    ],
+    monitoringEndpoints: [
+      { label: "Drug levels (phenytoin)", target: "Narrow therapeutic index" },
+      { label: "Mood / behavior (levetiracetam)", target: "Counsel irritability risk" },
+    ],
+    treatmentGoals: ["Stop acute seizure / status", "Prevent recurrence with ASM"],
+    counselingPearl:
+      "Lorazepam first for status; then load ASM. Keppra preferred for many new-onset seizures (fewer interactions).",
+    examPearl: "Status epilepticus: ABCs → benzos → fosphenytoin/levetiracetam/valproate load.",
+    highYield: true,
+  },
+  {
     id: "ischemic-stroke-brain",
     name: "Ischemic stroke",
-    structureIds: ["spinal-cord", "carotid-artery"],
+    structureIds: ["brain", "carotid-artery"],
     pathologyLabel: "Stroke",
     pathophysiology: "Arterial occlusion → focal brain ischemia in vascular territory.",
     presentation: ["Sudden unilateral weakness, speech change, visual loss"],
@@ -316,7 +355,10 @@ export const CURATED_DISEASE_LINKS: AnatomyDiseaseLink[] = [
     adjunctDrugIds: ["clopidogrel", "atorvastatin"],
     diagnosticEndpoints: [{ label: "Non-contrast CT", target: "Exclude hemorrhage" }],
     monitoringEndpoints: [{ label: "NIHSS", target: "Serial neuro checks" }],
-    treatmentGoals: ["Reperfusion if eligible", "Secondary prevention"],
+    treatmentGoals: ["Reperfusion if eligible (AHA/ASA)", "Secondary prevention"],
+    counselingPearl:
+      "Last-known-well drives tPA/thrombectomy eligibility; aspirin for non-cardioembolic secondary prevention after ICH excluded.",
+    examPearl: "tPA exclusions matter — blood pressure, glucose, recent surgery, active bleed.",
     highYield: true,
   },
   ...CURATED_DISEASE_LINKS_EXTENDED,
