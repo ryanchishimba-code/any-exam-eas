@@ -13,7 +13,7 @@ export const dynamic = "force-static";
  * AnyExamEasy.com — Flagship home route (`/`)
  *
  * Architecture:
- * - Static server shell (metadata + JSON-LD + instant hero skeleton)
+ * - Static server shell (metadata + JSON-LD + published floor counts)
  * - `HomeExperience` switches guest vs subscriber views client-side
  * - Live bank counts upgrade in the browser from the cached public API
  * - Server-rendered SEO guide (children) for crawler-friendly long-form copy
@@ -29,7 +29,7 @@ export default function HomePage() {
         testimonials={LANDING_SUCCESS_STORIES}
       >
         <LandingSeoGuide
-          questionCountLabel={LANDING_FALLBACK_BANK_COUNTS.totalQuestionsLabel}
+          questionCountLabel={LANDING_FALLBACK_BANK_COUNTS.totalLabel}
         />
       </HomeExperience>
     </>

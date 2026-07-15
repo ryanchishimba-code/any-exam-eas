@@ -1,7 +1,7 @@
 /** Canonical marketing stats for SEO copy — update when live counts change. */
 export const SEO_LIVE_STATS = {
-  questionCount: "43,009",
-  questionCountRaw: 37558,
+  questionCount: "43,581",
+  questionCountRaw: 43_581,
   topDrugsCount: 509,
   topDrugsLabel: "Top 509 Drugs",
   clinicianYears: "12+",

@@ -5,9 +5,9 @@ import { examSlugFromFieldId } from "@/lib/edtech/exams";
 
 /** Nav stat labels — mirrors FALLBACK_QUESTION_COUNTS in bank-stats.ts (avoids import cycle). */
 const EXAM_NAV_STATS = {
-  nursing: "6,200",
-  usmle: "17,392",
-  pharmacy: "7,595",
+  nursing: "6,304",
+  usmle: "17,390",
+  pharmacy: "8,065",
   aanpFnp: "4,781",
   nptePt: "4,240",
 } as const;

@@ -20,13 +20,14 @@ describe("marketing bank stats", () => {
 
   it("keeps the marketing total at or below the live served bank", () => {
     // Must never advertise the aspirational target — only the published served floor.
-    expect(MARKETING_QUESTION_COUNTS.total).toBe("43,009");
+    expect(MARKETING_QUESTION_COUNTS.total).toBe("43,581");
     expect(PUBLISHED_QUESTION_BANK_TOTAL).toBeLessThan(TOTAL_QUESTION_BANK_TARGET);
   });
 
   it("formats offline fallback labels as exact serve-ready counts", () => {
-    expect(MARKETING_QUESTION_COUNTS.nursing).toBe("6,200");
-    expect(MARKETING_QUESTION_COUNTS.usmle).toBe("17,392");
+    expect(MARKETING_QUESTION_COUNTS.nursing).toBe("6,304");
+    expect(MARKETING_QUESTION_COUNTS.usmle).toBe("17,390");
+    expect(MARKETING_QUESTION_COUNTS.pharmacy).toBe("8,065");
     expect(MARKETING_QUESTION_COUNTS.pance).toBe("2,801");
     expect(MARKETING_QUESTION_COUNTS.aanpFnp).toBe("4,781");
     expect(MARKETING_QUESTION_COUNTS.nptePt).toBe("4,240");
