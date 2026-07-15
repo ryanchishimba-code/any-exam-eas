@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { SubscriptionAccess } from "@/lib/subscription-access";
 import type { SubscriptionFeature } from "@/lib/subscription-features";
-import { PRO_FEATURE_LABELS } from "@/lib/require-pro-feature";
+import { PRO_FEATURE_LABELS } from "@/lib/pro-feature-labels";
 
 export function subscriptionRequiredResponse(access: SubscriptionAccess) {
   return NextResponse.json(

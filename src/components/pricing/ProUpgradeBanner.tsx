@@ -1,5 +1,5 @@
 import { Crown } from "lucide-react";
-import { PRO_FEATURE_LABELS } from "@/lib/require-pro-feature";
+import { PRO_FEATURE_LABELS } from "@/lib/pro-feature-labels";
 import type { SubscriptionFeature } from "@/lib/subscription-features";
 
 export function ProUpgradeBanner({

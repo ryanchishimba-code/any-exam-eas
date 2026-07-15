@@ -5,7 +5,7 @@ import { getUserAccess, userHasFeature } from "@/lib/access-control";
 import {
   PRO_FEATURE_LABELS,
   proUpgradeHref,
-} from "@/lib/require-pro-feature";
+} from "@/lib/pro-feature-labels";
 import type { SubscriptionFeature } from "@/lib/subscription-features";
 import { Button } from "@/components/ui/Button";
 import type { ReactNode } from "react";
