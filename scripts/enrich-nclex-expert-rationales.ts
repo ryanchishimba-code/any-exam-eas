@@ -28,6 +28,12 @@ const prisma = new PrismaClient();
 const BATCH = 40;
 const DELAY_MS = 500;
 
+const FAIL_COUNT_KEY = "rationaleEnrichFailCount";
+const FAIL_AT_KEY = "rationaleEnrichFailedAt";
+const FAIL_REASON_KEY = "rationaleEnrichFailReason";
+/** Skip items that already failed expert enrichment this many times (unless --force). */
+const SKIP_AFTER_FAILS = 1;
+
 function parseArgs() {
   const args = process.argv.slice(2);
   let limit = 50;
@@ -35,6 +41,7 @@ function parseArgs() {
   let serveOnly = true;
   let force = false;
   let missingExpert = false;
+  let afterId: string | undefined;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--limit" && args[i + 1]) limit = parseInt(args[++i]!, 10);
@@ -43,9 +50,21 @@ function parseArgs() {
     else if (args[i] === "--all-active") serveOnly = false;
     else if (args[i] === "--force") force = true;
     else if (args[i] === "--missing-expert") missingExpert = true;
+    else if (args[i] === "--after-id" && args[i + 1]) afterId = args[++i];
   }
 
-  return { limit, dryRun, serveOnly, force, missingExpert };
+  return { limit, dryRun, serveOnly, force, missingExpert, afterId };
+}
+
+function readMeta(row: { generationMeta: unknown }): Record<string, unknown> {
+  return typeof row.generationMeta === "object" && row.generationMeta
+    ? (row.generationMeta as Record<string, unknown>)
+    : {};
+}
+
+function priorFailCount(meta: Record<string, unknown>): number {
+  const n = meta[FAIL_COUNT_KEY];
+  return typeof n === "number" && Number.isFinite(n) ? n : 0;
 }
 
 function sleep(ms: number) {
@@ -53,14 +72,14 @@ function sleep(ms: number) {
 }
 
 async function main() {
-  const { limit, dryRun, serveOnly, force, missingExpert } = parseArgs();
+  const { limit, dryRun, serveOnly, force, missingExpert, afterId } = parseArgs();
   if (!dryRun) requireOpenAiKey();
 
   console.log(
-    `\nNCLEX expert rationale enrichment${serveOnly ? " [serve-ready]" : ""}${missingExpert ? " [missing-expert]" : ""}${dryRun ? " [dry-run]" : ""} limit ${limit}\n`
+    `\nNCLEX expert rationale enrichment${serveOnly ? " [serve-ready]" : ""}${missingExpert ? " [missing-expert]" : ""}${afterId ? ` [after ${afterId.slice(0, 8)}…]` : ""}${dryRun ? " [dry-run]" : ""} limit ${limit}\n`
   );
 
-  let lastId: string | undefined;
+  let lastId: string | undefined = afterId;
   let scanned = 0;
   let enriched = 0;
   let skipped = 0;
@@ -84,7 +103,14 @@ async function main() {
       scanned++;
       lastId = row.id;
 
+      const priorMeta = readMeta(row);
+
       if (!force && readExpertRationaleFromMeta(row.generationMeta)) {
+        skipped++;
+        continue;
+      }
+
+      if (!force && priorFailCount(priorMeta) >= SKIP_AFTER_FAILS) {
         skipped++;
         continue;
       }
@@ -119,7 +145,21 @@ async function main() {
 
       if (!result?.quality.ok) {
         failed++;
-        console.warn(`  ✗ ${row.id.slice(0, 8)}… — quality ${result?.quality.score ?? 0}`);
+        const reason = !result
+          ? "null_result_schema_or_api"
+          : `score_${result.quality.score}:${result.quality.issues.join(",") || "unknown"}`;
+        console.warn(`  ✗ ${row.id.slice(0, 8)}… — ${reason}`);
+        await prisma.questionBankItem.update({
+          where: { id: row.id },
+          data: {
+            generationMeta: {
+              ...priorMeta,
+              [FAIL_COUNT_KEY]: priorFailCount(priorMeta) + 1,
+              [FAIL_AT_KEY]: new Date().toISOString(),
+              [FAIL_REASON_KEY]: reason,
+            },
+          },
+        });
         await sleep(DELAY_MS);
         continue;
       }
@@ -142,11 +182,6 @@ async function main() {
         distractorRationale: result.assembled.distractorRationale,
       });
 
-      const priorMeta =
-        typeof row.generationMeta === "object" && row.generationMeta
-          ? (row.generationMeta as Record<string, unknown>)
-          : {};
-
       await prisma.questionBankItem.update({
         where: { id: row.id },
         data: {
@@ -165,6 +200,8 @@ async function main() {
             rationaleEnrichedAt: new Date().toISOString(),
             rationaleModel: result.model,
             rationaleQualityScore: result.quality.score,
+            [FAIL_COUNT_KEY]: 0,
+            [FAIL_REASON_KEY]: null,
           },
         },
       });

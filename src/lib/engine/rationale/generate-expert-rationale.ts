@@ -141,10 +141,30 @@ export async function generateExpertNclexRationale(
       });
 
       const raw = completion.choices[0]?.message?.content;
-      if (!raw) continue;
+      if (!raw) {
+        lastError = new Error("empty_completion_content");
+        continue;
+      }
 
-      const parsed = ExpertRationaleSchema.safeParse(JSON.parse(raw));
-      if (!parsed.success) continue;
+      let json: unknown;
+      try {
+        json = JSON.parse(raw);
+      } catch (err) {
+        lastError = err;
+        continue;
+      }
+
+      const parsed = ExpertRationaleSchema.safeParse(json);
+      if (!parsed.success) {
+        lastError = parsed.error;
+        if (attempt === maxRetries) {
+          console.warn(
+            "[generate-expert-rationale] zod:",
+            parsed.error.issues.slice(0, 4).map((i) => `${i.path.join(".")}: ${i.message}`)
+          );
+        }
+        continue;
+      }
 
       const quality = validateStructuredRationale(
         parsed.data,
@@ -168,7 +188,15 @@ export async function generateExpertNclexRationale(
     }
   }
 
-  if (lastError) console.warn("[generate-expert-rationale] failed:", lastError);
+  if (lastError) {
+    const msg =
+      lastError instanceof Error
+        ? lastError.message
+        : typeof lastError === "object" && lastError && "message" in lastError
+          ? String((lastError as { message: unknown }).message)
+          : String(lastError);
+    console.warn("[generate-expert-rationale] failed:", msg.slice(0, 240));
+  }
   return null;
 }
 
