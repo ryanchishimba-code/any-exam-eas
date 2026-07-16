@@ -648,7 +648,12 @@ export function StudySessionPlayer({
                 missed={answer.correct !== true}
                 flagged={isFlagged}
               />
-              <ExplanationPanel question={current} field={field} />
+              <ExplanationPanel
+                key={current.id}
+                question={current}
+                field={field}
+                incorrect={answer.correct !== true}
+              />
               {displayInsight && (
                 <InsightPanel
                   insight={displayInsight}

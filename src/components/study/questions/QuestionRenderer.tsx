@@ -238,13 +238,17 @@ export const QuestionRenderer = memo(function QuestionRenderer({
 export function ExplanationPanel({
   question,
   field,
+  incorrect = false,
 }: {
   question: StudyQuestion;
   field?: string;
+  /** After a miss, auto-expand expert depth and keep distractor “why wrong” visible. */
+  incorrect?: boolean;
 }) {
-  const [expanded, setExpanded] = useState(false);
   const { role } = useUserAccess();
   const conciseOnly = role === "free";
+  const autoExpand = incorrect && !conciseOnly;
+  const [expanded, setExpanded] = useState(autoExpand);
   const examSlug = (field ? examSlugFromFieldId(field) : null) ?? "nclex";
 
   const parsed = parseRationaleForDisplay(
@@ -260,16 +264,21 @@ export function ExplanationPanel({
     question.explanation?.slice(0, 220) ||
     "Tap below for the full breakdown.";
 
-  const hasDeepContent =
-    Boolean(question.clinicalReasoning && !parsed.isStructured) ||
+  const hasDistractors =
     Boolean(
       question.distractorRationale &&
         !parsed.isStructured &&
         Object.keys(question.distractorRationale).length > 0
-    ) ||
+    ) || parsed.wrongOptions.length > 0;
+
+  const hasDeepContent =
+    Boolean(question.clinicalReasoning && !parsed.isStructured) ||
+    hasDistractors ||
     Boolean(question.solutionSteps?.length && !parsed.keyTakeaway) ||
     Boolean(question.references?.length) ||
     hasExpert;
+
+  const showDistractors = (expanded || incorrect) && !conciseOnly;
 
   return (
     <div className="mt-6 space-y-4">
@@ -290,7 +299,11 @@ export function ExplanationPanel({
           </div>
         </div>
         {expanded ? (
-          <ExpertRationalePanel question={question} expertRationale={question.expertRationale} />
+          <ExpertRationalePanel
+            question={question}
+            expertRationale={question.expertRationale}
+            defaultDepth={incorrect && hasExpert ? "expert" : "concise"}
+          />
         ) : (
           <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
             {concisePreview}
@@ -323,7 +336,7 @@ export function ExplanationPanel({
         </div>
       )}
 
-      {expanded &&
+      {showDistractors &&
         question.distractorRationale &&
         !parsed.isStructured &&
         Object.keys(question.distractorRationale).length > 0 && (

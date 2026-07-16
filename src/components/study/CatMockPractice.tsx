@@ -371,7 +371,12 @@ export function CatMockPractice() {
             {revealed && (
               <div className="space-y-4">
                 <AnswerFeedbackLabel correct={wasCorrect === true} />
-                <ExplanationPanel question={current} field={field} />
+                <ExplanationPanel
+                  key={current.id}
+                  question={current}
+                  field={field}
+                  incorrect={wasCorrect !== true}
+                />
                 {displayInsight && (
                   <InsightPanel
                     insight={displayInsight}

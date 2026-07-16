@@ -129,11 +129,17 @@ function CoreRationaleBody({ parsed }: { parsed: ParsedRationaleDisplay }) {
 export type ExpertRationalePanelProps = {
   question: StudyQuestion;
   expertRationale?: ExpertStructuredRationale;
+  /** Prefer Expert depth after a miss so learners see CJMM / pearls immediately. */
+  defaultDepth?: "concise" | "expert";
 };
 
 /** UWorld-beating rationale UI — Concise vs Expert depth toggle. */
-export function ExpertRationalePanel({ question, expertRationale }: ExpertRationalePanelProps) {
-  const [depth, setDepth] = useState<"concise" | "expert">("concise");
+export function ExpertRationalePanel({
+  question,
+  expertRationale,
+  defaultDepth = "concise",
+}: ExpertRationalePanelProps) {
+  const [depth, setDepth] = useState<"concise" | "expert">(defaultDepth);
 
   const parsed = useMemo(
     () =>
