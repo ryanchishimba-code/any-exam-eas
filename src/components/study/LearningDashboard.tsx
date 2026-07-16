@@ -113,6 +113,9 @@ export function LearningDashboard() {
             <Button href="/study/practice?mode=bank&style=weak_areas" variant="secondary">
               Weak-area drill
             </Button>
+            <Button href="/study/practice?mode=bank&style=review_incorrect" variant="secondary">
+              Review incorrect
+            </Button>
           </div>
         </section>
       )}

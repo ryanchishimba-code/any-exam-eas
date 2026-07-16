@@ -126,10 +126,15 @@ export function validateQuestionBankSession(params: {
     };
   }
 
-  if (isMixedSubjectId(subjectId) && bankStyle !== "standard") {
+  if (
+    isMixedSubjectId(subjectId) &&
+    bankStyle !== "standard" &&
+    bankStyle !== "review_incorrect"
+  ) {
     return {
       ok: false,
-      message: "Mixed topics works with Standard selection only — pick a single topic for adaptive or weak-area drills.",
+      message:
+        "Mixed topics works with Standard or Review incorrect — pick a single topic for adaptive or weak-area drills.",
     };
   }
 

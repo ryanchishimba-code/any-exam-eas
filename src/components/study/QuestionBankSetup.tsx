@@ -43,6 +43,11 @@ const STYLE_OPTIONS: { id: QuestionBankStyle; label: string; hint: string }[] = 
   { id: "standard", label: "Standard", hint: "Topic pool in bank order" },
   { id: "adaptive", label: "Adaptive", hint: "Weak areas & spaced review" },
   { id: "weak_areas", label: "Weak areas", hint: "Focus on missed topics" },
+  {
+    id: "review_incorrect",
+    label: "Review incorrect",
+    hint: "Re-drill items you missed and have not yet gotten right",
+  },
 ];
 
 export function QuestionBankSetup({

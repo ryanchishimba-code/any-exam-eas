@@ -397,7 +397,7 @@ export function StudyBankPractice({
     ? "timed"
     : bankStyle === "weak_areas"
       ? "weak_area"
-      : bankStyle === "adaptive"
+      : bankStyle === "adaptive" || bankStyle === "review_incorrect"
         ? "adaptive"
         : bankPace === "timed"
           ? "timed"
@@ -582,7 +582,10 @@ export function StudyBankPractice({
 
     const styleParam = resolvePracticeSearchParam(searchParams, "style");
     const preferWeak =
-      styleParam === "weak_areas" || styleParam === "adaptive" || weakSubjectIds.length > 0;
+      styleParam === "weak_areas" ||
+      styleParam === "adaptive" ||
+      styleParam === "review_incorrect" ||
+      weakSubjectIds.length > 0;
     if (preferWeak) {
       const weakest = primaryWeakSubjectId(weakTopics, fieldId, list.map((s) => s.id));
       if (weakest) {
@@ -851,9 +854,54 @@ export function StudyBankPractice({
       }
 
       const useAdaptive = bankStyle === "adaptive" || bankStyle === "weak_areas";
+      const useReviewIncorrect = bankStyle === "review_incorrect";
       const effectiveSubjectId = subjectId || subjects[0]?.id || "";
       if (!effectiveSubjectId) {
         throw new Error("Choose a topic before starting practice.");
+      }
+
+      if (useReviewIncorrect) {
+        const res = await fetch("/api/study/review-incorrect", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            field,
+            subjectId: effectiveSubjectId,
+            count: limit,
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          setUpgradeHref(typeof data.upgradeUrl === "string" ? data.upgradeUrl : null);
+          throw new Error(
+            studyLimitMessage(data) || data.error || "Could not build review-incorrect session"
+          );
+        }
+
+        const metaIds = (data.bankItemIds as string[] | undefined) ?? [];
+        const raw = (data.questions as ExamQuestion[]).map((q, i) => ({
+          ...q,
+          id: i + 1,
+          field,
+          subjectId: (data.subjectId as string | undefined) ?? effectiveSubjectId,
+          bankItemId: metaIds[i] ?? `bank-${fieldId}-${i}`,
+        }));
+        if (raw.length === 0) {
+          throw new Error("No previously missed questions available to review.");
+        }
+        expectExactSessionCount(raw.length, limit);
+        setAdaptiveMeta({
+          sessionRationale: `Reviewing ${raw.length} items you missed and have not yet answered correctly.`,
+          questionReasoning: Object.fromEntries(
+            raw.map((q) => [
+              String(q.id),
+              "Previously incorrect — re-test until you get this right.",
+            ])
+          ),
+        });
+        if (isStale()) return;
+        setQuestions(raw);
+        return;
       }
 
       if (useAdaptive) {
@@ -1056,9 +1104,11 @@ export function StudyBankPractice({
             ? "Adaptive practice"
             : bankStyle === "weak_areas"
               ? "Weak areas"
-              : bankPace === "timed"
-                ? "Timed"
-                : "Untimed"
+              : bankStyle === "review_incorrect"
+                ? "Review incorrect"
+                : bankPace === "timed"
+                  ? "Timed"
+                  : "Untimed"
         }`;
 
     return (
@@ -1314,7 +1364,11 @@ export function StudyBankPractice({
               examLabel={lockedExam?.shortName ?? activeExamOption?.label}
               onSubjectChange={(id) => {
                 setSubjectId(id);
-                if (isMixedSubjectId(id) && bankStyle !== "standard") {
+                if (
+                  isMixedSubjectId(id) &&
+                  bankStyle !== "standard" &&
+                  bankStyle !== "review_incorrect"
+                ) {
                   setBankStyle("standard");
                   syncPracticeUrl({ subjectId: id, style: "standard" });
                   return;

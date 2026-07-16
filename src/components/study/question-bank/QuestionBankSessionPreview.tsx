@@ -24,6 +24,7 @@ type Props = {
 function styleLabel(style: QuestionBankStyle): string {
   if (style === "adaptive") return "Adaptive";
   if (style === "weak_areas") return "Weak areas";
+  if (style === "review_incorrect") return "Review incorrect";
   return "Standard";
 }
 
@@ -99,7 +100,9 @@ export function QuestionBankSessionPreview({
                   ? `Start adaptive · ${questionCount} questions`
                   : bankStyle === "weak_areas"
                     ? `Start weak-area drill · ${questionCount} questions`
-                    : `Start ${pace} practice · ${questionCount} questions`}
+                    : bankStyle === "review_incorrect"
+                      ? `Review incorrect · ${questionCount} questions`
+                      : `Start ${pace} practice · ${questionCount} questions`}
               <ArrowRight className="h-3.5 w-3.5" aria-hidden />
             </>
           )}
