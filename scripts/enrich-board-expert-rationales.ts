@@ -48,6 +48,7 @@ function parseArgs() {
   let dryRun = false;
   let serveOnly = true;
   let force = false;
+  let missingEnriched = false;
   const excludeFields: string[] = [];
 
   for (let i = 0; i < args.length; i++) {
@@ -58,22 +59,45 @@ function parseArgs() {
     else if (args[i] === "--serve-only") serveOnly = true;
     else if (args[i] === "--all-active") serveOnly = false;
     else if (args[i] === "--force") force = true;
+    else if (args[i] === "--missing-enriched") missingEnriched = true;
   }
 
-  return { fields: resolveBoardFieldArg(field, excludeFields), limit, dryRun, serveOnly, force };
+  return {
+    fields: resolveBoardFieldArg(field, excludeFields),
+    limit,
+    dryRun,
+    serveOnly,
+    force,
+    missingEnriched,
+  };
 }
 
 function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
+function hasRationaleEnrichedAt(meta: unknown): boolean {
+  return (
+    typeof meta === "object" &&
+    meta !== null &&
+    typeof (meta as { rationaleEnrichedAt?: unknown }).rationaleEnrichedAt === "string"
+  );
+}
+
 async function enrichField(
   fieldId: BoardFieldId,
-  opts: { limit: number; dryRun: boolean; serveOnly: boolean; force: boolean }
+  opts: {
+    limit: number;
+    dryRun: boolean;
+    serveOnly: boolean;
+    force: boolean;
+    /** Only items that have never been rationale-enriched (moves coverage %). */
+    missingEnriched: boolean;
+  }
 ) {
   const label = boardFieldLabel(fieldId);
   console.log(
-    `\n${label} rationale enrichment${opts.serveOnly ? " [serve-ready]" : ""}${opts.dryRun ? " [dry-run]" : ""} limit ${opts.limit}\n`
+    `\n${label} rationale enrichment${opts.serveOnly ? " [serve-ready]" : ""}${opts.missingEnriched ? " [missing-enriched]" : ""}${opts.dryRun ? " [dry-run]" : ""} limit ${opts.limit}\n`
   );
 
   let lastId: string | undefined;
@@ -106,6 +130,11 @@ async function enrichField(
         continue;
       }
 
+      if (opts.missingEnriched && !opts.force && hasRationaleEnrichedAt(row.generationMeta)) {
+        skipped++;
+        continue;
+      }
+
       const item = enrichBankItemFromRow(row);
       if (opts.serveOnly && !bankItemIsBoardServeReady(fieldId, item, { source: row.source })) {
         skipped++;
@@ -113,7 +142,8 @@ async function enrichField(
       }
 
       const check = needsRationaleEnrichment(item);
-      if (!opts.force && !check.needs) {
+      // Coverage pass: enrich never-flagged items even if heuristics say "good enough".
+      if (!opts.force && !opts.missingEnriched && !check.needs) {
         skipped++;
         continue;
       }
@@ -213,19 +243,25 @@ async function enrichField(
 }
 
 async function main() {
-  const { fields, limit, dryRun, serveOnly, force } = parseArgs();
+  const { fields, limit, dryRun, serveOnly, force, missingEnriched } = parseArgs();
   if (!dryRun) requireOpenAiKey();
 
   const reports = [];
   for (const fieldId of fields) {
-    reports.push(await enrichField(fieldId, { limit, dryRun, serveOnly, force }));
+    reports.push(
+      await enrichField(fieldId, { limit, dryRun, serveOnly, force, missingEnriched })
+    );
   }
 
   const out = path.join(process.cwd(), "artifacts", "board-expert-rationale-report.json");
   mkdirSync(path.dirname(out), { recursive: true });
   writeFileSync(
     out,
-    JSON.stringify({ dryRun, serveOnly, reports, completedAt: new Date().toISOString() }, null, 2)
+    JSON.stringify(
+      { dryRun, serveOnly, missingEnriched, reports, completedAt: new Date().toISOString() },
+      null,
+      2
+    )
   );
 
   const totalEnriched = reports.reduce((n, r) => n + r.enriched, 0);
