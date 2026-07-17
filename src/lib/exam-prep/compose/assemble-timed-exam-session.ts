@@ -29,6 +29,7 @@ import { gatherSprintTimedExamPool } from "@/lib/exam-prep/gather-sprint-timed-p
 import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { filterBankItemsForPracticeField } from "@/lib/edtech/exam-item-scope";
 import { preferUnseenBankItems } from "@/lib/full-exam/smart-exam-selection";
+import { selectWithNgnFormatMix } from "@/lib/full-exam/ngn-format-mix";
 
 /** USMLE presets are step-scoped; skip the heavy preset join when it cannot match. */
 function skipTimedPresetForField(fieldId: string): boolean {
@@ -61,6 +62,7 @@ function fillGatheredItems(
   gathered: BankItem[],
   limit: number,
   tierId: string,
+  fieldId: string,
   excludeQuestionIds?: Set<string>
 ): AssembleTimedExamSessionResult | null {
   if (gathered.length < limit) return null;
@@ -74,12 +76,13 @@ function fillGatheredItems(
     seed
   );
   if (filled.length < limit) return null;
-  const finalPick = preferUnseenBankItems(filled, excludeQuestionIds, limit);
+  const ranked = preferUnseenBankItems(filled, excludeQuestionIds, filled.length);
+  const mixed = selectWithNgnFormatMix(ranked.items, limit, fieldId, seed);
   return {
-    items: finalPick.items.slice(0, limit),
+    items: mixed.slice(0, limit),
     source: "gather",
     tierId,
-    excludeSeenApplied: finalPick.excludeSeenApplied,
+    excludeSeenApplied: ranked.excludeSeenApplied,
   };
 }
 
@@ -91,8 +94,8 @@ function scopeAssemblyResult(
 ): AssembleTimedExamSessionResult | null {
   if (!result) return null;
   let items = filterBankItemsForPracticeField(result.items, fieldId);
-  const preferred = preferUnseenBankItems(items, excludeQuestionIds, limit);
-  items = preferred.items;
+  const preferred = preferUnseenBankItems(items, excludeQuestionIds, items.length);
+  items = selectWithNgnFormatMix(preferred.items, limit, fieldId);
   if (items.length < limit) return null;
   return {
     ...result,
@@ -111,9 +114,14 @@ export async function assembleTimedExamSessionItems(
   const hasFocus = Boolean(focusAreas?.length);
 
   if (!hasFocus) {
+    // NCLEX: oversample so blueprint NGN quotas can fill from the fast pool.
+    const sprintTarget =
+      fieldId === "nursing"
+        ? Math.max(Math.ceil(limit * 2.2), limit + 48)
+        : Math.max(limit, excludeQuestionIds?.size ? limit + 40 : limit);
     const fastItems = await gatherSprintTimedExamPool({
       fieldId,
-      limit: Math.max(limit, excludeQuestionIds?.size ? limit + 40 : limit),
+      limit: sprintTarget,
       prepareItem: prepare,
     });
     if (fastItems.length >= limit) {
@@ -164,6 +172,7 @@ export async function assembleTimedExamSessionItems(
       gathered,
       limit,
       EXACT_FILL_COMPOSE_TIER.id,
+      fieldId,
       excludeQuestionIds
     );
     if (filled) return scopeAssemblyResult(fieldId, limit, filled, excludeQuestionIds);
@@ -233,6 +242,7 @@ export async function assembleTimedExamSessionItems(
     items,
     limit,
     EXACT_FILL_COMPOSE_TIER.id,
+    fieldId,
     excludeQuestionIds
   );
   return scopeAssemblyResult(fieldId, limit, filled, excludeQuestionIds);
