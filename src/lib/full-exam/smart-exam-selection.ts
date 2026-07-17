@@ -57,6 +57,43 @@ export function preferUnseenBankItems(
   };
 }
 
+const NGN_ITEM_TYPES = new Set([
+  "select_all",
+  "sata",
+  "ngn_bowtie",
+  "bow_tie",
+  "ngn_matrix",
+  "matrix",
+  "ordered_response",
+  "ngn_highlight",
+  "highlight",
+  "case_study",
+  "unfolding_case",
+]);
+
+function premiumPoolScore(item: BankItem): number {
+  let score = 0;
+  if (item.expertRationale) score += 4;
+  const meta = item.generationMeta;
+  if (meta && typeof meta === "object") {
+    if (typeof (meta as { rationaleEnrichedAt?: unknown }).rationaleEnrichedAt === "string") {
+      score += 2;
+    }
+    if ((meta as { expertRationale?: unknown }).expertRationale) score += 4;
+  }
+  const type = (item.itemType ?? "").trim();
+  if (NGN_ITEM_TYPES.has(type)) score += 3;
+  return score;
+}
+
+/**
+ * Bias Focus / weak-area pools toward expert rationales + NGN formats
+ * while preserving relative order within each premium tier.
+ */
+export function preferPremiumBankItems(items: BankItem[]): BankItem[] {
+  return [...items].sort((a, b) => premiumPoolScore(b) - premiumPoolScore(a));
+}
+
 export async function resolveSmartExamSelection(params: {
   userId: string;
   examSlug: ExamSlug;

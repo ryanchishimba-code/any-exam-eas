@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { preferUnseenBankItems } from "./smart-exam-selection";
+import { preferUnseenBankItems, preferPremiumBankItems } from "./smart-exam-selection";
 import type { BankItem } from "@/lib/question-bank";
 
 function item(id: string): BankItem {
@@ -33,5 +33,17 @@ describe("preferUnseenBankItems", () => {
     const pool = [item("a"), item("a"), item("b")];
     const { items } = preferUnseenBankItems(pool, undefined, 2);
     expect(items.map((i) => i.id)).toEqual(["a", "b"]);
+  });
+});
+
+describe("preferPremiumBankItems", () => {
+  it("ranks expert + NGN ahead of plain vignettes", () => {
+    const pool = [
+      { ...item("v"), itemType: "vignette" },
+      { ...item("e"), itemType: "vignette", expertRationale: { whyCorrect: { headline: "x".repeat(24) } } as never },
+      { ...item("n"), itemType: "ngn_bowtie" },
+    ];
+    const ranked = preferPremiumBankItems(pool as never);
+    expect(ranked.map((i) => i.id)).toEqual(["e", "n", "v"]);
   });
 });

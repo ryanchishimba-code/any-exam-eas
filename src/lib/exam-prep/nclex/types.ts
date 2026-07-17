@@ -51,9 +51,17 @@ export type NclexClientNeedsId =
   | "reduction-risk"
   | "physiological-adaptation";
 
+/** Lifespan / specialty subjects under-represented vs Client Needs buckets. */
+export type NclexLifespanSubjectId =
+  | "maternal-child"
+  | "pediatrics-nursing"
+  | "med-surg";
+
+export type NclexSlotSubjectId = NclexClientNeedsId | NclexLifespanSubjectId;
+
 export type NclexGenerationSlot = QuestionSlot & {
   slotIndex: number;
-  subjectId: NclexClientNeedsId;
+  subjectId: NclexSlotSubjectId;
   blueprintTopic: string;
   difficulty: number;
   stemFormat: string;

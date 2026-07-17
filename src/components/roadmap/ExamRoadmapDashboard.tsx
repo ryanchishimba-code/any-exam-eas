@@ -57,7 +57,18 @@ export function ExamRoadmapDashboard({ data }: Props) {
           <div>
             <p className={feUi.eyebrow}>Exam Roadmap</p>
             <h1 className={cn(feUi.title, "mt-1")}>{exam.name} Blueprint</h1>
-            <p className={cn(feUi.subtitle, "mt-2 max-w-2xl")}>{data.passFocusMessage}</p>
+            <p className={cn(feUi.subtitle, "mt-2 max-w-2xl")}>
+              {data.examSlug === "nclex"
+                ? "Client Needs accuracy & bank coverage — focus weak categories first."
+                : data.examSlug === "naplex"
+                  ? "NABP domain accuracy & bank coverage — focus thin treatment areas first."
+                  : data.passFocusMessage}
+            </p>
+            {data.examSlug !== "nclex" && data.examSlug !== "naplex" ? null : (
+              <p className="mt-1 max-w-2xl text-sm text-[var(--color-ink-muted)]">
+                {data.passFocusMessage}
+              </p>
+            )}
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-4 sm:justify-end">

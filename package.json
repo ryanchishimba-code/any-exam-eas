@@ -172,6 +172,8 @@
     "db:qa-gate-nclex-best:dry": "npx tsx scripts/qa-gate-nclex-best.ts --dry-run",
     "db:qa-gate-nclex-ngn-serve": "bash scripts/run-with-node.sh npx tsx scripts/qa-gate-nclex-ngn-serve.ts",
     "db:qa-gate-nclex-ngn-serve:dry": "bash scripts/run-with-node.sh npx tsx scripts/qa-gate-nclex-ngn-serve.ts --dry-run",
+    "db:fill-nclex-subject-holes": "OPENAI_GENERATION_ONLY=1 bash scripts/run-with-node.sh npx tsx scripts/fill-nclex-subject-holes.ts",
+    "db:fill-nclex-subject-holes:dry": "bash scripts/run-with-node.sh npx tsx scripts/fill-nclex-subject-holes.ts --dry-run",
     "db:trim-nclex-to-target": "npx tsx scripts/trim-nclex-to-target.ts",
     "db:trim-nclex-to-target:dry": "npx tsx scripts/trim-nclex-to-target.ts --dry-run",
     "db:trim-naplex-to-target": "bash scripts/run-with-node.sh npx tsx scripts/trim-naplex-to-target.ts",

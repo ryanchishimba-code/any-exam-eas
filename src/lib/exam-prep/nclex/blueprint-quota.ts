@@ -6,7 +6,12 @@ import {
   getExamBlueprint,
   type QuestionSlot,
 } from "@/lib/engine/blueprints";
-import type { NclexClientNeedsId, NclexGenerationSlot } from "./types";
+import type {
+  NclexClientNeedsId,
+  NclexGenerationSlot,
+  NclexLifespanSubjectId,
+  NclexSlotSubjectId,
+} from "./types";
 import { NCLEX_BEST_TARGET_TOTAL, NCLEX_NGN_SERVE_TARGETS } from "./types";
 import { SUBJECT_TO_CLIENT_NEEDS } from "@/lib/bank-curation/cluster-selection";
 import {
@@ -56,8 +61,84 @@ function resolveSubjectId(slot: QuestionSlot): NclexClientNeedsId {
   return "management-of-care";
 }
 
-function pickTopic(subjectId: NclexClientNeedsId, index: number, examSeed: number): string {
-  return pickNclex2026BlueprintTopic(subjectId, index, examSeed);
+function pickTopic(subjectId: NclexSlotSubjectId, index: number, examSeed: number): string {
+  const lifespan = LIFESPAN_SUBJECT_HOLES[subjectId as NclexLifespanSubjectId];
+  if (lifespan) {
+    return lifespan.topics[(index + examSeed) % lifespan.topics.length]!;
+  }
+  return pickNclex2026BlueprintTopic(subjectId as NclexClientNeedsId, index, examSeed);
+}
+
+/** Lifespan specialty holes — stored subjectId for bank analytics; mapped to Client Needs for prompts. */
+export const LIFESPAN_SUBJECT_HOLES: Record<
+  NclexLifespanSubjectId,
+  { categoryId: NclexClientNeedsId; categoryLabel: string; topics: string[] }
+> = {
+  "maternal-child": {
+    categoryId: "health-promotion",
+    categoryLabel: "Health Promotion",
+    topics: [
+      "labor-fetal-monitoring",
+      "postpartum-bubble-he",
+      "newborn-apgar-reflexes",
+      "pregnancy-complications",
+      "breastfeeding-nutrition",
+    ],
+  },
+  "pediatrics-nursing": {
+    categoryId: "health-promotion",
+    categoryLabel: "Health Promotion",
+    topics: [
+      "pediatric-milestones",
+      "immunization-schedules",
+      "pediatric-respiratory",
+      "pediatric-dehydration",
+      "pediatric-safety",
+    ],
+  },
+  "med-surg": {
+    categoryId: "physiological-adaptation",
+    categoryLabel: "Physiological Adaptation",
+    topics: [
+      "cardiac-emergencies",
+      "postoperative-monitoring",
+      "shock-sepsis",
+      "respiratory-emergencies",
+      "endocrine-emergencies",
+      "fluid-electrolyte-imbalance",
+    ],
+  },
+};
+
+/**
+ * Force-generate items tagged to under-built lifespan subjects (maternal / peds / med-surg).
+ * Category stays on the matching Client Needs bucket for blueprint coherence.
+ */
+export function planNclexLifespanSubjectHoleSlots(params: {
+  examNumber: number;
+  questionCount?: number;
+  subjectId: NclexLifespanSubjectId;
+}): NclexGenerationSlot[] {
+  const { examNumber, questionCount = 40, subjectId } = params;
+  const hole = LIFESPAN_SUBJECT_HOLES[subjectId];
+  const examSeed = examNumber * 23;
+
+  const slots: NclexGenerationSlot[] = [];
+  for (let i = 0; i < questionCount; i++) {
+    const blueprintTopic = hole.topics[(i + examSeed) % hole.topics.length]!;
+    slots.push({
+      categoryId: hole.categoryId,
+      categoryLabel: hole.categoryLabel,
+      subjectIds: [subjectId],
+      slotIndex: i,
+      subjectId,
+      blueprintTopic,
+      difficulty: 2 + ((i + examSeed) % 4),
+      stemFormat: pickStemFormat(i, examSeed, blueprintTopic),
+      highYieldFirst: true,
+    });
+  }
+  return slots;
 }
 
 function pickStemFormat(index: number, examSeed: number, blueprintTopic: string): string {
