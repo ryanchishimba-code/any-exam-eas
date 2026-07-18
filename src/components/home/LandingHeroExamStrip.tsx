@@ -19,19 +19,25 @@ type LandingHeroExamStripProps = {
   variant?: "hero" | "compact" | "chips";
 };
 
+type HeroExamLink = {
+  slug: string;
+  label: string;
+  color: string;
+  countLabel?: string;
+  questionsLabel?: string;
+};
+
 export function LandingHeroExamStrip({
   className = "",
   bankCounts,
   variant = "hero",
 }: LandingHeroExamStripProps) {
-  const exams =
+  const exams: HeroExamLink[] =
     bankCounts?.exams ??
     LANDING_HERO_EXAMS.map(({ slug, label, color }) => ({
       slug,
       label,
       color,
-      countLabel: undefined as string | undefined,
-      questionsLabel: undefined as string | undefined,
     }));
 
   const stripClass =
@@ -47,25 +53,18 @@ export function LandingHeroExamStrip({
         className={`${stripClass} ${className}`.trim()}
         aria-label="Start a free trial for your board exam"
       >
-        {exams.map((exam) => {
-          const slug =
-            "slug" in exam && typeof exam.slug === "string"
-              ? exam.slug
-              : LANDING_HERO_EXAMS.find((e) => e.label === exam.label)?.slug;
-          if (!slug) return null;
-          return (
-            <Link
-              key={slug}
-              href={landingTrialHrefForExam(slug)}
-              prefetch={false}
-              className="aee-hero-exam-chips__link"
-              style={{ color: exam.color }}
-              onClick={() => analytics.ctaClicked(`exam_chip_${slug}`, "hero")}
-            >
-              {exam.label}
-            </Link>
-          );
-        })}
+        {exams.map((exam) => (
+          <Link
+            key={exam.slug}
+            href={landingTrialHrefForExam(exam.slug)}
+            prefetch={false}
+            className="aee-hero-exam-chips__link"
+            style={{ color: exam.color }}
+            onClick={() => analytics.ctaClicked(`exam_chip_${exam.slug}`, "hero")}
+          >
+            {exam.label}
+          </Link>
+        ))}
       </nav>
     );
   }
@@ -75,45 +74,33 @@ export function LandingHeroExamStrip({
       className={`${stripClass} ${className}`.trim()}
       aria-label="Board exams we cover: USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT"
     >
-      {exams.map((exam, index) => {
-        const slug =
-          "slug" in exam && typeof exam.slug === "string"
-            ? exam.slug
-            : LANDING_HERO_EXAMS.find((e) => e.label === exam.label)?.slug;
-        return (
-          <span key={exam.label} className="aee-hero-exam-strip__item">
-            {index > 0 ? (
-              <span className="aee-hero-exam-strip__sep" aria-hidden>
-                |
+      {exams.map((exam, index) => (
+        <span key={exam.label} className="aee-hero-exam-strip__item">
+          {index > 0 ? (
+            <span className="aee-hero-exam-strip__sep" aria-hidden>
+              |
+            </span>
+          ) : null}
+          <Link
+            href={landingTrialHrefForExam(exam.slug)}
+            prefetch={false}
+            className="aee-hero-exam-strip__name"
+            style={{ color: exam.color }}
+            onClick={() => analytics.ctaClicked(`exam_strip_${exam.slug}`, "hero")}
+          >
+            {exam.label}
+            {exam.questionsLabel ?? exam.countLabel ? (
+              <span
+                className="aee-hero-exam-strip__count"
+                aria-label={`${exam.questionsLabel ?? exam.countLabel} questions`}
+              >
+                {" · "}
+                {exam.questionsLabel ?? `${exam.countLabel} questions`}
               </span>
             ) : null}
-            {slug ? (
-              <Link
-                href={landingTrialHrefForExam(slug)}
-                prefetch={false}
-                className="aee-hero-exam-strip__name"
-                style={{ color: exam.color }}
-                onClick={() => analytics.ctaClicked(`exam_strip_${slug}`, "hero")}
-              >
-                {exam.label}
-                {exam.questionsLabel ?? exam.countLabel ? (
-                  <span
-                    className="aee-hero-exam-strip__count"
-                    aria-label={`${exam.questionsLabel ?? exam.countLabel} questions`}
-                  >
-                    {" · "}
-                    {exam.questionsLabel ?? `${exam.countLabel} questions`}
-                  </span>
-                ) : null}
-              </Link>
-            ) : (
-              <span className="aee-hero-exam-strip__name" style={{ color: exam.color }}>
-                {exam.label}
-              </span>
-            )}
-          </span>
-        );
-      })}
+          </Link>
+        </span>
+      ))}
     </p>
   );
 }

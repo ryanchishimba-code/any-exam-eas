@@ -110,6 +110,18 @@ export default async function ResourceArticlePage({ params }: Props) {
                 Explore {EXAM_SEO_CONFIG[primaryExam].shortName} prep hub →
               </Link>
             </p>
+          ) : article.examTags.length > 0 ? (
+            <nav className="mt-5 flex flex-wrap justify-center gap-x-4 gap-y-2" aria-label="Exam prep hubs">
+              {article.examTags.slice(0, 6).map((tag) => (
+                <Link
+                  key={tag}
+                  href={examMarketingPath(tag)}
+                  className="text-sm font-semibold text-[var(--color-accent)] hover:underline"
+                >
+                  {EXAM_SEO_CONFIG[tag].shortName} prep →
+                </Link>
+              ))}
+            </nav>
           ) : null}
         </aside>
 

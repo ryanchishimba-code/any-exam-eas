@@ -65,7 +65,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "NCLEX",
     metaTitle: "NCLEX Prep 2026 — Qbank, NGN Questions & Adaptive Roadmap",
     metaDescription:
-      `${SEO_LIVE_STATS.questionCount} NCLEX-RN practice questions with NGN formats (SATA, bow-tie, matrix), AI Tutor, adaptive Blueprint Roadmap, and Spaced Repetition. Clinician-built, QA-gated. ${SEO_LIVE_STATS.trialDays}-day free trial · UWorld alternative on one multi-exam plan. ${SEO_TRIAL_META_WITH_BOARDS}.`,
+      `${SEO_LIVE_STATS.questionCount} NCLEX-RN practice questions with NGN formats (SATA, bow-tie, matrix), Blueprint Roadmaps, Deep Dives, and Full Exam simulations. Clinician-built, QA-gated. ${SEO_LIVE_STATS.trialDays}-day free trial · UWorld alternative on one multi-exam plan. ${SEO_TRIAL_META_WITH_BOARDS}.`,
     keywords: [
       "NCLEX prep 2026",
       "NCLEX practice questions",
@@ -78,7 +78,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       "NCLEX question bank",
       "UWorld NCLEX alternative",
       "best NCLEX Qbank 2026",
-      "AI tutor NCLEX prep",
+      "NCLEX blueprint roadmap",
       "AnyExamEasy NCLEX",
     ],
     h1: "NCLEX Board Prep 2026 — Practice Questions & Clinical Judgment",
@@ -141,7 +141,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "USMLE",
     metaTitle: "USMLE Practice Questions 2026 — Step 1, Step 2 CK & Step 3 Qbank",
     metaDescription:
-      `USMLE Qbank with Step 1, Step 2 CK & Step 3 vignettes, adaptive Blueprint Roadmaps, AI Tutor, and ${SEO_LIVE_STATS.topDrugsLabel}. ${seoPlatformPitch()} ${SEO_LIVE_STATS.trialDays}-day trial · UWorld alternative. ${SEO_TRIAL_META_SUFFIX}.`,
+      `USMLE Qbank with Step 1, Step 2 CK & Step 3 vignettes, Blueprint Roadmaps, Deep Dives, and Full Exam simulations. ${seoPlatformPitch()} ${SEO_LIVE_STATS.trialDays}-day trial · UWorld alternative. ${SEO_TRIAL_META_SUFFIX}.`,
     keywords: [
       "USMLE practice questions",
       "USMLE Step 1 practice questions",
@@ -154,7 +154,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       "USMLE clinical vignettes",
       "UWorld USMLE alternative",
       "best USMLE Qbank 2026",
-      "AI tutor USMLE prep",
+      "USMLE blueprint roadmap",
       "AnyExamEasy USMLE",
     ],
     h1: "USMLE Step 1, Step 2 CK & Step 3 — all on one plan",
@@ -218,7 +218,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     shortName: "NAPLEX",
     metaTitle: "NAPLEX Qbank 2026 — Practice Questions, Calculations & Blueprint",
     metaDescription:
-      `NAPLEX prep with calculations, patient cases, and pharmacotherapy vignettes. ${SEO_LIVE_STATS.topDrugsLabel}, adaptive Blueprint Roadmap, AI Tutor, and Spaced Repetition. ${SEO_LIVE_STATS.trialDays}-day free trial. ${SEO_TRIAL_META_SUFFIX}.`,
+      `NAPLEX prep with calculations, patient cases, and pharmacotherapy vignettes. Blueprint Roadmaps, Deep Dives, Full Exam simulations, and Spaced Repetition. ${SEO_LIVE_STATS.trialDays}-day free trial. ${SEO_TRIAL_META_SUFFIX}.`,
     keywords: [
       "NAPLEX Qbank",
       "NAPLEX review 2026",
@@ -246,14 +246,14 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
         detail: "Drug interactions, monitoring, and therapeutic substitution scenarios.",
       },
       {
-        title: "Top 509 Drugs deck",
-        detail: "High-yield pharmacology flashcards shared across pharmacy and clinical tracks.",
+        title: "Full Exam simulations",
+        detail: "Timed NAPLEX-style blocks with weak-area focus after every session.",
       },
     ],
     studyTips: [
       {
         heading: "How to pass NAPLEX on the first try",
-        body: "Split study time between calculations, brand/generic mastery, and case-based management — use timed mixed sets in the final month.",
+        body: "Split study time between calculations, case-based management, and Deep Dive review on misses — use timed Full Exam sets in the final month.",
       },
       {
         heading: "Free NAPLEX practice questions",
@@ -266,8 +266,9 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
         answer: "Yes. Our NAPLEX bank emphasizes calculations, compounding, and case-based pharmacotherapy with detailed rationales.",
       },
       {
-        question: "Is the Top 503 Drugs deck included?",
-        answer: "Yes — high-yield drug flashcards are included on every plan alongside all six board question banks.",
+        question: "Does NAPLEX include Deep Dives and Full Exams?",
+        answer:
+          "Yes. Missed NAPLEX items open Deep Dive review modules, and timed Full Exam simulations help you rehearse board-day pacing with weak-area focus.",
       },
       {
         question: "Can pharmacy students use the Roadmap?",

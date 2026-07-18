@@ -21,22 +21,22 @@ const RESOURCE_LINKS = [
   {
     href: examMarketingPath("nclex"),
     title: "NCLEX question bank",
-    body: "NGN-ready NCLEX practice questions, clinical judgment, and prioritization drills.",
+    body: "NGN-ready practice with Blueprint Roadmaps, Deep Dives from misses, and Full Exam pacing.",
   },
   {
     href: examMarketingPath("usmle"),
     title: "USMLE question bank",
-    body: "Step 1, Step 2 CK, and Step 3 coverage on one USMLE track.",
+    body: "Step 1, Step 2 CK, and Step 3 vignettes — Roadmaps and Full Exam sims on one track.",
   },
   {
-    href: ROUTES.blog,
-    title: "Study systems on the blog",
-    body: "High-yield articles for NCLEX, USMLE, NAPLEX, and multi-exam prep strategy.",
+    href: ROUTES.compare,
+    title: "Compare vs stacking QBanks",
+    body: "See how Roadmaps + Deep Dives + Full Exams stack up against per-exam banks.",
   },
   {
     href: ROUTES.pricing,
     title: "One plan pricing",
-    body: `See how one Pro subscription from ${formatMonthlyPrice("pro")}/mo unlocks all six banks.`,
+    body: `One Pro subscription from ${formatMonthlyPrice("pro")}/mo unlocks all six banks and the full study system.`,
   },
 ] as const;
 
@@ -54,23 +54,24 @@ export default function ToolkitPage() {
           <div className="relative mx-auto grid max-w-6xl items-center gap-12 pb-20 lg:grid-cols-2 lg:gap-16 lg:pb-28">
             <div className="text-center lg:text-left">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-accent)]">
-                Free board exam resources
+                {SITE_NAME} Toolkit
               </p>
               <h1 className="apple-display mt-4 text-[clamp(2.25rem,5.5vw,3.5rem)] leading-[1.05]">
-                Toolkit for NCLEX practice questions, USMLE prep &amp; six-exam study
+                NCLEX &amp; USMLE study system: Roadmaps, Deep Dives &amp; Full Exams
               </h1>
               <p className="apple-subhead mt-4 text-[clamp(1.125rem,2.5vw,1.375rem)] font-medium text-[var(--color-ink)]">
-                Guides, breakdowns, and readiness tips — paired with one affordable question bank
+                Free exam breakdowns and readiness guides — built around one affordable six-board
                 plan.
               </p>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-[var(--color-ink-muted)] lg:max-w-none">
-                School notes give you the foundation. {SITE_NAME} turns that knowledge into exam-day
-                confidence with a clinician-built{" "}
+                School notes give you the foundation. {SITE_NAME} turns that into exam-day confidence
+                with a clinician-built{" "}
                 <strong className="font-semibold text-[var(--color-ink)]">NCLEX question bank</strong>,
                 a full{" "}
                 <strong className="font-semibold text-[var(--color-ink)]">USMLE question bank</strong>,
                 and matching depth for NAPLEX, PANCE, AANP FNP, and NPTE-PT —{" "}
-                {SEO_LIVE_STATS.questionCount} QA-gated items on one subscription.
+                {SEO_LIVE_STATS.questionCount} QA-gated items with Blueprint Roadmaps, Deep Dives,
+                and Full Exam simulations on one subscription.
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
                 <LandingCta href={LANDING_TRIAL_HREF}>{formatTrialCtaLabel()}</LandingCta>
@@ -95,7 +96,7 @@ export default function ToolkitPage() {
               id="toolkit-layers-heading"
               className="text-center text-2xl font-bold tracking-tight text-[var(--color-ink)] sm:text-3xl"
             >
-              How to use this Toolkit with your question bank
+              The study loop: Roadmap → Deep Dive → Full Exam
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-center text-base leading-relaxed text-[var(--color-ink-muted)]">
               Strategy first, then deliberate practice across {PLATFORM_EXAM_LIST} — without buying a
@@ -104,18 +105,18 @@ export default function ToolkitPage() {
             <div className="mt-10 grid gap-6 sm:grid-cols-3">
               {[
                 {
-                  title: "Your school notes",
-                  body: "Lectures, textbooks, and clinical rotations — the raw knowledge you already have.",
+                  title: "Blueprint Roadmaps",
+                  body: "See which blueprint domains lag — then practice the gaps that actually move your score.",
                   muted: true,
                 },
                 {
-                  title: `${SITE_NAME} question banks`,
-                  body: "QA-gated NCLEX practice questions, USMLE vignettes, Blueprint Roadmaps, and full-length mocks for all six boards — one Pro plan.",
+                  title: "Deep Dive review",
+                  body: "Miss a vignette? Open a structured Deep Dive module — teaching that sticks, not a one-line rationale.",
                   highlight: true,
                 },
                 {
-                  title: "Testing & readiness",
-                  body: "Timed mocks, analytics, and readiness checks so exam day feels familiar — not frightening.",
+                  title: "Full Exam simulations",
+                  body: "Timed Full Exam blocks with weak-area focus so board day pacing feels familiar — not frightening.",
                   muted: true,
                 },
               ].map((layer) => (
@@ -217,11 +218,11 @@ export default function ToolkitPage() {
         <section className="border-t border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-16 sm:py-20">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-2xl font-bold tracking-tight text-[var(--color-ink)] sm:text-3xl">
-              Pack the tool that makes the difference
+              Put the Roadmap → Deep Dive → Full Exam loop to work
             </h2>
             <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-muted)]">
               Join students who trust {SITE_NAME} for structured, board-caliber prep across six
-              licensing exams — one calm, confident toolkit and one affordable subscription.
+              licensing exams — one study system and one affordable Pro subscription.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <LandingCta href={LANDING_TRIAL_HREF}>{formatTrialCtaLabel()}</LandingCta>

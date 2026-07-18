@@ -35,7 +35,7 @@ export function seoTrialNaplexStudyTip(): string {
 }
 
 export function seoResourcesCtaLine(): string {
-  return `Access all six board banks, Roadmaps, and reference tools — ${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial, no payment required.`;
+  return `Access all six board banks with Blueprint Roadmaps, Deep Dives, and Full Exam practice — ${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial, no payment required.`;
 }
 
 export function seoSixBoardTrialParagraph(): string {

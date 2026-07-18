@@ -147,7 +147,7 @@ export function PricingTiers({ className }: PricingTiersProps) {
             </p>
             <ul className="mt-2 space-y-1.5 text-xs text-[var(--color-ink)]">
               <li>· Unlimited questions across all 6 boards</li>
-              <li>· AI Tutor, analytics, SRS, Deep Dives & more</li>
+              <li>· Roadmaps, Deep Dives, Full Exams, analytics & more</li>
               <li>· Unlimited full-length mock exams</li>
             </ul>
           </div>

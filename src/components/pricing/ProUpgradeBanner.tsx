@@ -21,7 +21,7 @@ export function ProUpgradeBanner({
         Upgrade to Pro to unlock {label}
       </p>
       <p className="mt-1 text-xs text-[var(--color-ink-muted)]">
-        One plan — unlimited questions, AI Tutor, analytics, mock exams, and everything for all 6
+        One plan — unlimited questions, Roadmaps, Deep Dives, Full Exams, analytics, and everything for all 6
         boards.
       </p>
     </div>

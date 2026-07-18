@@ -11,7 +11,7 @@ export type DashboardUpgradeContext = {
 
 /** Pro upgrade pitch — reused on dashboard banner. */
 export const PRO_DASHBOARD_UPGRADE_MESSAGE =
-  "Unlock unlimited questions, rich goat-mode rationales, AI Tutor, and everything in Pro — one plan for all 6 boards.";
+  "Unlock unlimited questions, rich goat-mode rationales, Roadmaps, Deep Dives, Full Exams, and everything in Pro — one plan for all 6 boards.";
 
 export const POST_TRIAL_SUBSCRIBE_MESSAGE =
   "Subscribe to continue studying — question bank, Roadmap, exams, and all study tools stay locked until you upgrade.";

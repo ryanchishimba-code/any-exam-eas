@@ -44,7 +44,7 @@ export async function ProUpgradeGate({
         Upgrade to unlock {label}
       </h2>
       <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
-        {label} is included with Pro — unlimited questions, AI Tutor, analytics, mock exams, and
+        {label} is included with Pro — unlimited questions, Roadmaps, Deep Dives, Full Exams, analytics, and
         everything for all 6 boards.
       </p>
       <div className="mt-6 flex flex-col items-center gap-3">

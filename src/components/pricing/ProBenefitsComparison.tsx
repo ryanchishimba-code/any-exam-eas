@@ -7,7 +7,7 @@ import {
   Crown,
   FileDown,
   Layers,
-  MessageCircle,
+  Map,
   Repeat,
   Sparkles,
   type LucideIcon,
@@ -29,7 +29,7 @@ const ICONS: Record<ProFeatureHighlight["icon"], LucideIcon> = {
   notes: FileDown,
   explanations: BookOpen,
   priority: Sparkles,
-  tutor: MessageCircle,
+  roadmap: Map,
 };
 
 /** Pro value story — single-plan feature highlights. */
@@ -61,8 +61,8 @@ export function ProBenefitsComparison({
           {heading}
         </h2>
         <p className="mt-3 text-lg text-[var(--color-ink-muted)]">
-          One plan with everything — all 6 boards, unlimited questions, AI Tutor, analytics, and
-          more.
+          One plan with everything — all 6 boards, unlimited questions, Blueprint Roadmaps, Deep
+          Dives, Full Exams, and analytics.
         </p>
       </div>
 

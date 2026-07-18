@@ -256,9 +256,9 @@ export function ExamMarketingLanding({ examKey, questionCountLabel, usmleStepCou
               {[
                 `${config.shortName} question bank + ${formatTrialLabel()}`,
                 "Blueprint-aligned Exam Roadmap",
+                "Deep Dive modules from missed questions",
+                "Timed Full Exam simulations",
                 "Normal lab values & clinical calculators",
-                "Top 503 Drugs pharmacology deck",
-                "Timed full-length exam simulations",
                 "Five other board exams on the same subscription",
               ].map((item) => (
                 <li

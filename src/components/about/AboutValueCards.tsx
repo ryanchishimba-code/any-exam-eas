@@ -5,7 +5,8 @@
  * interactivity) so it stays fast and SEO-friendly.
  */
 
-import { Pill, Stethoscope, Sparkles, MapPin, type LucideIcon } from "lucide-react";
+import { BookOpen, Map, Stethoscope, Timer, type LucideIcon } from "lucide-react";
+import { SEO_LIVE_STATS, SEO_VALUE_PROPS } from "@/lib/seo/seo-copy";
 
 type ValueCard = {
   icon: LucideIcon;
@@ -17,32 +18,29 @@ type ValueCard = {
 
 const CARDS: ValueCard[] = [
   {
-    icon: Pill,
-    title: "Top 503 Drugs + clinical pearls",
-    kicker: "A reference you'll keep for years",
+    icon: Map,
+    title: "Blueprint Roadmaps that adapt",
+    kicker: "Know what to study next",
+    blurb: `${SEO_VALUE_PROPS.adaptiveRoadmap} — so you stop guessing and focus on the blueprint gaps that move your score.`,
+  },
+  {
+    icon: BookOpen,
+    title: "Deep Dives from every miss",
+    kicker: "Review that actually sticks",
+    blurb: `${SEO_VALUE_PROPS.deepDives}. Go from wrong answer → structured teaching in one click, not a passive explanation dump.`,
+  },
+  {
+    icon: Timer,
+    title: "Full Exam simulations",
+    kicker: "Board-day pacing, rehearsed",
     blurb:
-      "Not just exam cram. The drug database and pearls are built to live on your phone long after test day — the kind of thing you'll still pull up on shift.",
+      "Timed Full Exam blocks that feel like the real thing — weak-area focus before test day, not a surprise on the clock.",
   },
   {
     icon: Stethoscope,
-    title: "Curated by real clinicians",
-    kicker: "12+ years combined frontline experience",
-    blurb:
-      "Every question and rationale is shaped by licensed healthcare providers who've actually been at the bedside — so it's accurate, high-yield, and teachable.",
-  },
-  {
-    icon: Sparkles,
-    title: "AI that cuts the overwhelm",
-    kicker: "Less guessing, more progress",
-    blurb:
-      "Roadmaps and analytics point you at what actually moves your score next, so you stop drowning in a 38K-question pile and start making real progress.",
-  },
-  {
-    icon: MapPin,
-    title: "Texas-built, long-term value",
-    kicker: "Premium prep, non-premium price",
-    blurb:
-      "Six boards on one plan for less than a single competitor's per-exam bank. Straight-talking value, no padded price tag, no nonsense.",
+    title: "Clinician-built, six boards, one plan",
+    kicker: `${SEO_LIVE_STATS.clinicianYears} years combined frontline experience`,
+    blurb: `${SEO_VALUE_PROPS.qaGated}. NCLEX, USMLE, NAPLEX, PANCE, AANP FNP & NPTE-PT on one Pro subscription — premium prep without stacking banks.`,
   },
 ];
 

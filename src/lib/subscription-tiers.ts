@@ -30,14 +30,12 @@ export type TierDefinition = {
 /** Everything included in Pro — one plan, all features. */
 export const PRO_FEATURES = [
   "Full access to all 6 exam banks (USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, NPTE-PT)",
+  "Proprietary Blueprint Roadmaps",
+  "Full Deep Dive Modules",
+  "Unlimited full-length mock exams & Full Exam simulations",
   "Unlimited questions & rich goat-mode rationales",
-  "AI Tutor",
-  "Unlimited full-length mock exams",
   "Advanced analytics & weak-area targeting",
   "Spaced Repetition System",
-  "Full Deep Dive Modules",
-  "Proprietary Roadmaps",
-  "Top 509 Drugs deck & Anatomy Explorer",
   "Normal Lab Values + Clinical Calculators",
   "Exportable notes & progress reports",
   "Priority content updates",
@@ -58,12 +56,27 @@ export type ProFeatureHighlight = {
     | "notes"
     | "explanations"
     | "priority"
-    | "tutor";
+    | "roadmap";
   title: string;
   blurb: string;
 };
 
 export const PRO_FEATURE_HIGHLIGHTS: readonly ProFeatureHighlight[] = [
+  {
+    icon: "roadmap",
+    title: "Blueprint Roadmaps",
+    blurb: "Know what to study next — adaptive queues mapped to each licensing blueprint.",
+  },
+  {
+    icon: "deepdive",
+    title: "Full Deep Dive Modules",
+    blurb: "Open structured review from every miss — go beyond the answer choice.",
+  },
+  {
+    icon: "mock",
+    title: "Full Exam simulations",
+    blurb: "Rehearse board-day pacing with timed Full Exams and weak-area focus.",
+  },
   {
     icon: "analytics",
     title: "Advanced analytics & weak-area targeting",
@@ -75,29 +88,14 @@ export const PRO_FEATURE_HIGHLIGHTS: readonly ProFeatureHighlight[] = [
     blurb: "Lock in what you learn with reviews timed to the moment you're about to forget.",
   },
   {
-    icon: "mock",
-    title: "Unlimited full-length mock exams",
-    blurb: "Rehearse the real thing as many times as you want, under true exam-day conditions.",
-  },
-  {
-    icon: "tutor",
-    title: "AI Tutor",
-    blurb: "Get instant help on tough concepts without leaving your study flow.",
-  },
-  {
-    icon: "deepdive",
-    title: "Full Deep Dive Modules",
-    blurb: "Go beyond the answer with rich teaching woven into every question.",
+    icon: "explanations",
+    title: "Rich goat-mode explanations",
+    blurb: "Deeper, clearer rationales that explain the why, not just the what.",
   },
   {
     icon: "notes",
     title: "Exportable notes & progress reports",
     blurb: "Take your notes and performance data anywhere — study your way.",
-  },
-  {
-    icon: "explanations",
-    title: "Rich goat-mode explanations",
-    blurb: "Deeper, clearer rationales that explain the why, not just the what.",
   },
   {
     icon: "priority",
@@ -114,7 +112,7 @@ export const PRICING_VALUE_HEADLINE =
 /** Trial study limits — shown in marketing copy. */
 export const TRIAL_STUDY_LIMITS = [
   `${TRIAL_LIFETIME_QUESTIONS} practice questions during your ${TRIAL_DAYS}-day trial`,
-  "Full Pro access — all 6 banks, mocks, AI Tutor, analytics & more",
+  "Full Pro access — all 6 banks, Roadmaps, Deep Dives, Full Exams & analytics",
   "No payment required at signup · upgrade anytime for unlimited questions",
 ] as const;
 

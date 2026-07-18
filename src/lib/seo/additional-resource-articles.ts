@@ -1,10 +1,11 @@
-import type { ResourceArticle } from "@/lib/seo/resources-content";
+import type { ResourceArticle, ResourceSection } from "@/lib/seo/resources-content";
 import {
   seoSixBoardTrialParagraph,
   seoTrialHeading,
   seoTrialResourceParagraph,
 } from "@/lib/seo/trial-copy";
-import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
+import { SEO_LIVE_STATS, SEO_VALUE_PROPS } from "@/lib/seo/seo-copy";
+import { formatMonthlyPrice } from "@/lib/site";
 
 function normalizeSection(section: ResourceSection): ResourceSection {
   return {
@@ -32,33 +33,33 @@ function article(
     intro: partial.intro ?? "",
     sections: (partial.sections ?? []).map(normalizeSection),
     publishedAt: partial.publishedAt ?? "2026-06-15",
-    updatedAt: partial.updatedAt ?? "2026-07-01",
+    updatedAt: partial.updatedAt ?? "2026-07-17",
   };
 }
 
-/** SEO articles targeting UWorld alternative, AI tutor, and long-tail NCLEX/NAPLEX/USMLE queries. */
+/** SEO articles targeting UWorld alternative, Roadmaps/Full Exams/Deep Dives, and long-tail queries. */
 export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   article({
     slug: "uworld-alternative-multi-exam-prep-2026",
     title: "Best UWorld Alternative for Multi-Exam Board Prep (2026)",
-    metaDescription:
-      "Compare AnyExamEasy vs UWorld for NCLEX, USMLE, and NAPLEX — one subscription, adaptive Blueprint Roadmaps, AI Tutor, and 43,581+ QA-gated questions.",
+    metaDescription: `Compare AnyExamEasy vs UWorld for NCLEX, USMLE, and NAPLEX — one Pro plan from ${formatMonthlyPrice("pro")}/mo with ${SEO_LIVE_STATS.questionCount} QA-gated questions, Blueprint Roadmaps, Deep Dives, and Full Exams.`,
     examTags: ["nclex", "usmle", "naplex"],
     keywords: [
       "UWorld alternative",
       "UWorld alternative 2026",
       "best value multi-exam prep",
       "affordable board exam Qbank",
+      "Blueprint Roadmap board prep",
     ],
     readingMinutes: 9,
     intro:
-      "Stacking separate UWorld subscriptions for NCLEX, USMLE, and NAPLEX can exceed $1,000/year. A multi-exam platform with clinician-built content and adaptive roadmaps changes the cost equation — without sacrificing vignette quality.",
+      "Stacking separate UWorld subscriptions for NCLEX, USMLE, and NAPLEX can exceed $1,000/year. A multi-exam platform with clinician-built questions, Blueprint Roadmaps, Deep Dives, and Full Exam simulations changes the cost equation — without sacrificing vignette quality.",
     sections: [
       {
         heading: "Why students search for a UWorld alternative",
         paragraphs: [
           "UWorld remains a gold-standard reference, but per-exam pricing adds up fast when you need nursing, medical, and pharmacy prep in the same study window.",
-          "Multi-track students — RN-to-MD pipelines, dual-degree programs, or clinicians adding certifications — benefit most from one integrated Qbank.",
+          "Multi-track students — RN-to-MD pipelines, dual-degree programs, or clinicians adding certifications — benefit most from one integrated Qbank with a single study system.",
         ],
       },
       {
@@ -83,20 +84,29 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
             typicalQbank: "Performance stats; limited roadmap",
           },
           {
-            feature: "AI coaching",
-            anyExamEasy: "AI Tutor on missed items",
+            feature: "Miss review",
+            anyExamEasy: "Deep Dive modules from missed questions",
             typicalQbank: "Static rationales only",
           },
           {
-            feature: "Pharmacology deck",
-            anyExamEasy: SEO_LIVE_STATS.topDrugsLabel,
-            typicalQbank: "Separate purchase or absent",
+            feature: "Exam-day rehearsal",
+            anyExamEasy: "Timed Full Exam simulations + weak-area focus",
+            typicalQbank: "Mocks vary; often add-on",
           },
           {
             feature: "Free trial",
-            anyExamEasy: `${SEO_LIVE_STATS.trialDays}-day trial · 30-day guarantee`,
+            anyExamEasy: `${SEO_LIVE_STATS.trialDays}-day trial · ${SEO_LIVE_STATS.moneyBackDays}-day guarantee`,
             typicalQbank: "Limited demo or paid-only",
           },
+        ],
+      },
+      {
+        heading: "Study system: Roadmap → Deep Dive → Full Exam",
+        bullets: [
+          SEO_VALUE_PROPS.adaptiveRoadmap,
+          SEO_VALUE_PROPS.deepDives,
+          SEO_VALUE_PROPS.fullExam,
+          "One Pro checkout covers all six boards — no stacking renewals.",
         ],
       },
       {
@@ -109,13 +119,13 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "nclex-vs-uworld-comparison-2026",
     title: "NCLEX vs UWorld: Which Qbank Is Better Value in 2026?",
     metaDescription:
-      "NCLEX prep comparison — NGN question types, clinical judgment practice, adaptive Roadmaps, AI Tutor, pricing, and when to choose a multi-exam platform.",
+      "NCLEX prep comparison — NGN question types, clinical judgment practice, Blueprint Roadmaps, Deep Dives, Full Exams, pricing, and when a multi-exam plan wins.",
     examTags: ["nclex"],
     primaryExam: "nclex",
     keywords: ["NCLEX vs UWorld", "UWorld NCLEX alternative", "best NCLEX Qbank 2026"],
     readingMinutes: 8,
     intro:
-      "Both platforms can prepare you for NCLEX-RN — the decision comes down to NGN coverage, study workflow, and whether you need other board exams on the same subscription.",
+      "Both platforms can prepare you for NCLEX-RN — the decision comes down to NGN coverage, study workflow (Roadmaps + Deep Dives + Full Exams), and whether you need other board exams on the same subscription.",
     sections: [
       {
         heading: "NGN and clinical judgment coverage",
@@ -129,8 +139,8 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
         bullets: [
           "UWorld: Strong rationales and performance analytics; study path is largely self-directed.",
           "AnyExamEasy: Adaptive Blueprint Roadmap surfaces weak Client Needs after each session.",
-          "AnyExamEasy: AI Tutor coaches through missed rationales; Spaced Repetition queues weak topics.",
           "AnyExamEasy: Deep Dive modules open from missed questions for structured review.",
+          "AnyExamEasy: Timed Full Exam simulations rehearse board pacing with weak-area focus.",
         ],
       },
       {
@@ -146,29 +156,39 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
             typicalQbank: "NCLEX-only; other exams extra",
           },
           {
+            feature: "Study system",
+            anyExamEasy: "Roadmaps + Deep Dives + Full Exams",
+            typicalQbank: "QBank + analytics",
+          },
+          {
             feature: "Trial",
             anyExamEasy: `${SEO_LIVE_STATS.trialDays}-day free trial`,
             typicalQbank: "Varies",
           },
         ],
       },
+      {
+        heading: seoTrialHeading(),
+        paragraphs: [seoTrialResourceParagraph()],
+      },
     ],
   }),
   article({
     slug: "ai-tutor-adaptive-board-prep-2026",
-    title: "AI Tutor & Adaptive Roadmap Board Prep — 2026 Guide",
+    title: "Blueprint Roadmap Board Prep Workflow — 2026 Guide",
     metaDescription:
-      "How AI Tutor, adaptive Blueprint Roadmaps, and Spaced Repetition work together for NCLEX, USMLE, and NAPLEX study — a step-by-step workflow for 2026.",
+      "How Blueprint Roadmaps, Deep Dive modules, and Full Exam simulations work together for NCLEX, USMLE, and NAPLEX study — a step-by-step workflow for 2026.",
     examTags: ["nclex", "usmle", "naplex"],
     keywords: [
-      "AI tutor board prep 2026",
+      "blueprint roadmap board prep",
       "adaptive roadmap NCLEX",
       "adaptive USMLE study plan",
-      "spaced repetition board exam",
+      "deep dive board exam review",
+      "full exam simulation board prep",
     ],
     readingMinutes: 8,
     intro:
-      "Static question banks leave you guessing what to study next. Adaptive roadmaps, AI coaching on misses, and spaced repetition turn practice into a directed workflow — especially for high-stakes NCLEX, USMLE, and NAPLEX timelines.",
+      "Static question banks leave you guessing what to study next. Blueprint Roadmaps, Deep Dive review on misses, and Full Exam simulations turn practice into a directed workflow — especially for high-stakes NCLEX, USMLE, and NAPLEX timelines.",
     sections: [
       {
         heading: "Step 1 — Baseline with blueprint-aligned questions",
@@ -187,17 +207,21 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
         ],
       },
       {
-        heading: "Step 3 — AI Tutor + Spaced Repetition",
+        heading: "Step 3 — Deep Dive the misses",
         paragraphs: [
-          "AI Tutor walks through rationales on missed stems — useful for NGN prioritization and Step 2 next-best-step logic.",
-          "Spaced Repetition resurfaces weak topics and memory cards on an optimal interval before timed mocks.",
+          "Open Deep Dive modules from incorrect or flagged items the same day — structured review beats re-reading the same rationale once.",
+          "Use Spaced Repetition queues to resurface weak topics before timed mocks.",
         ],
       },
       {
-        heading: "Step 4 — Timed simulations",
+        heading: "Step 4 — Timed Full Exam simulations",
         paragraphs: [
-          "In the final 2–4 weeks, shift to timed blocks and full-length mocks. Roadmap accuracy should drive confidence — not total questions answered.",
+          "In the final 2–4 weeks, shift to timed Full Exam simulations. Roadmap accuracy and weak-area focus should drive confidence — not total questions answered.",
         ],
+      },
+      {
+        heading: seoTrialHeading(),
+        paragraphs: [seoSixBoardTrialParagraph()],
       },
     ],
   }),
@@ -205,7 +229,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "usmle-step-1-practice-questions-2026",
     title: "Best USMLE Step 1 Practice Questions (2026)",
     metaDescription:
-      "Step 1 Qbank guide — mechanisms, pathology, biostatistics, and systems integration with adaptive Roadmaps and AI Tutor on one multi-exam plan.",
+      "Step 1 Qbank guide — mechanisms, pathology, biostatistics, and systems integration with Blueprint Roadmaps, Deep Dives, and Full Exams on one multi-exam plan.",
     examTags: ["usmle"],
     primaryExam: "usmle",
     keywords: [
@@ -234,7 +258,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "Step 1 on the same plan as Step 2 CK",
         paragraphs: [
-          "AnyExamEasy includes dedicated Step 1, Step 2 CK, and Step 3 banks with step-specific Roadmaps — useful when Step 1 and Step 2 prep overlap in your calendar.",
+          "AnyExamEasy includes dedicated Step 1, Step 2 CK, and Step 3 banks with step-specific Roadmaps, Deep Dives, and Full Exam practice — useful when Step 1 and Step 2 prep overlap in your calendar.",
           seoTrialResourceParagraph(),
         ],
       },
@@ -244,7 +268,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "naplex-calculations-study-guide-2026",
     title: "NAPLEX Calculations Study Guide (2026) — Formulas & Practice",
     metaDescription:
-      "Master NAPLEX calculations — dosing, concentrations, IV flow, and alligation — with daily drills, patient cases, and NABP blueprint Roadmap tracking.",
+      "Master NAPLEX calculations — dosing, concentrations, IV flow, and alligation — with daily drills, patient cases, NABP blueprint Roadmaps, Deep Dives, and Full Exam blocks.",
     examTags: ["naplex"],
     primaryExam: "naplex",
     keywords: [
@@ -255,7 +279,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     ],
     readingMinutes: 9,
     intro:
-      "NAPLEX calculations are high-stakes and time-pressured. A structured drill schedule — paired with case-based pharmacotherapy — prevents math gaps from derailing an otherwise strong content foundation.",
+      "NAPLEX calculations are high-stakes and time-pressured. A structured drill schedule — paired with case-based pharmacotherapy and Roadmap tracking — prevents math gaps from derailing an otherwise strong content foundation.",
     sections: [
       {
         heading: "Core calculation types on NAPLEX",
@@ -275,24 +299,27 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
         comparisonRows: [
           { feature: "Mon–Wed", anyExamEasy: "15–20 calculation items/day, untimed", typicalQbank: "Self-selected math sets" },
           { feature: "Thu–Fri", anyExamEasy: "Mixed patient cases + 10 timed calculations", typicalQbank: "Case bank only" },
-          { feature: "Sat", anyExamEasy: "Full timed mixed block (cases + math)", typicalQbank: "Optional mock" },
-          { feature: "Sun", anyExamEasy: "Review misses + Top 509 Drugs deck", typicalQbank: "Manual review" },
+          { feature: "Sat", anyExamEasy: "Full Exam-style timed mixed block (cases + math)", typicalQbank: "Optional mock" },
+          { feature: "Sun", anyExamEasy: "Deep Dive review on calc misses + Roadmap weak domains", typicalQbank: "Manual review" },
         ],
       },
       {
-        heading: "Pair calculations with Top 509 Drugs",
+        heading: "Pair calculations with Deep Dive review",
         paragraphs: [
-          "Brand/generic mastery accelerates case stems that reference therapeutic substitution and interaction management.",
-          "AnyExamEasy links NAPLEX misses to Deep Dive modules and AI Tutor walkthroughs.",
+          "When a calc miss exposes a concept gap (renal dosing, alligation, IV rates), open the linked Deep Dive the same day.",
+          "AnyExamEasy Roadmaps surface weak NABP domains so math drills stay tied to blueprint weight — not random churn.",
         ],
+      },
+      {
+        heading: seoTrialHeading(),
+        paragraphs: [seoTrialResourceParagraph()],
       },
     ],
   }),
   article({
     slug: "best-value-multi-exam-board-prep-2026",
     title: "Best Value Multi-Exam Board Prep in 2026",
-    metaDescription:
-      "Compare subscription costs for NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE — why one Pro plan beats stacking per-exam QBanks.",
+    metaDescription: `Compare subscription costs for NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE — why one Pro plan from ${formatMonthlyPrice("pro")}/mo with Roadmaps, Deep Dives, and Full Exams beats stacking per-exam QBanks.`,
     examTags: ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"],
     keywords: ["best value multi-exam prep", "board exam subscription", "affordable board prep 2026"],
     readingMinutes: 7,
@@ -303,7 +330,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
         heading: "The cost of stacking per-exam subscriptions",
         paragraphs: [
           "Premium QBanks often charge $200–400+ per exam annually. Six exams can exceed $1,500 before textbooks and review courses.",
-          "AnyExamEasy Pro bundles all six banks, Roadmaps, AI Tutor, Spaced Repetition, and the Top 509 Drugs deck on one monthly plan.",
+          `AnyExamEasy Pro bundles all six banks with Blueprint Roadmaps, Deep Dive modules, and Full Exam simulations on one plan — from ${formatMonthlyPrice("pro")}/mo after a ${SEO_LIVE_STATS.trialDays}-day free trial.`,
         ],
       },
       {
@@ -311,10 +338,10 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
         bullets: [
           `${SEO_LIVE_STATS.questionCount} QA-gated questions across six exams`,
           "Adaptive Blueprint Roadmaps per licensing track",
-          "AI Tutor coaching on missed items",
-          "Spaced Repetition for weak topics and memory cards",
-          `${SEO_LIVE_STATS.topDrugsLabel} pharmacology deck`,
-          "Deep Dive modules, timed mocks, and advanced analytics (Pro)",
+          "Deep Dive modules opened from missed questions",
+          "Timed Full Exam simulations with weak-area focus",
+          "Spaced Repetition for weak topics",
+          "Advanced analytics and unlimited mocks (Pro)",
         ],
       },
       {
@@ -327,7 +354,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "nclex-vs-archer-comparison-2026",
     title: "NCLEX vs Archer Review: Which Qbank Is Better Value in 2026?",
     metaDescription:
-      "NCLEX prep comparison — Archer Review vs AnyExamEasy on price, unlimited CAT, NGN coverage, adaptive Roadmaps, and when a multi-exam plan saves money.",
+      "NCLEX prep comparison — Archer Review vs AnyExamEasy on price, unlimited CAT, NGN coverage, Blueprint Roadmaps, Deep Dives, Full Exams, and multi-exam savings.",
     examTags: ["nclex"],
     primaryExam: "nclex",
     keywords: [
@@ -338,7 +365,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     ],
     readingMinutes: 8,
     intro:
-      "Archer Review is a popular budget NCLEX option with unlimited CAT and strong mobile ratings. AnyExamEasy competes on multi-exam value — NCLEX plus USMLE, NAPLEX, and more on one subscription with adaptive Roadmaps and AI Tutor.",
+      "Archer Review is a popular budget NCLEX option with unlimited CAT and strong mobile ratings. AnyExamEasy competes on multi-exam value — NCLEX plus USMLE, NAPLEX, and more on one subscription with Blueprint Roadmaps, Deep Dives, and Full Exam simulations.",
     sections: [
       {
         heading: "Price: NCLEX-only vs six exams on one plan",
@@ -359,8 +386,8 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
             typicalQbank: "NCLEX-RN only",
           },
           {
-            feature: "CAT practice tests",
-            anyExamEasy: "Timed mocks + Roadmap-driven sets",
+            feature: "CAT / exam-day rehearsal",
+            anyExamEasy: "Timed Full Exams + Roadmap-driven sets",
             typicalQbank: "Unlimited CAT (strong Archer strength)",
           },
           {
@@ -369,9 +396,9 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
             typicalQbank: "Performance stats; self-directed schedule",
           },
           {
-            feature: "AI coaching",
-            anyExamEasy: "AI Tutor on missed rationales",
-            typicalQbank: "Not included on base QBank tier",
+            feature: "Miss review",
+            anyExamEasy: "Deep Dive modules from missed items",
+            typicalQbank: "Rationales on base QBank tier",
           },
         ],
       },
@@ -387,7 +414,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
         heading: "When AnyExamEasy wins",
         bullets: [
           "You need NCLEX plus another board (USMLE, NAPLEX, PANCE, FNP, or NPTE).",
-          "You want Roadmap, AI Tutor, Spaced Repetition, and Top 509 Drugs in one workflow.",
+          "You want Roadmaps, Deep Dives, and Full Exams in one workflow.",
           `${SEO_LIVE_STATS.trialDays}-day free trial and ${SEO_LIVE_STATS.moneyBackDays}-day guarantee reduce upfront risk.`,
         ],
       },
@@ -401,7 +428,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     slug: "naplex-vs-rxprep-comparison-2026",
     title: "NAPLEX vs RxPrep: Qbank, Calculations & Best Value (2026)",
     metaDescription:
-      "Compare AnyExamEasy vs RxPrep (UWorld Pharmacy) for NAPLEX — calculations drills, Top 509 Drugs, pricing, and when a multi-exam subscription beats pharmacy-only prep.",
+      "Compare AnyExamEasy vs RxPrep (UWorld Pharmacy) for NAPLEX — calculations drills, Blueprint Roadmaps, Deep Dives, Full Exams, pricing, and when a multi-exam plan beats pharmacy-only prep.",
     examTags: ["naplex"],
     primaryExam: "naplex",
     keywords: [
@@ -412,7 +439,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
     ],
     readingMinutes: 9,
     intro:
-      "RxPrep (UWorld Pharmacy) is the established NAPLEX brand with a calc-heavy QBank and premium video course. AnyExamEasy bundles NAPLEX with nursing and medical boards — plus Top 509 Drugs, calculation drills, and adaptive Roadmaps on one Pro plan.",
+      "RxPrep (UWorld Pharmacy) is the established NAPLEX brand with a calc-heavy QBank and premium video course. AnyExamEasy bundles NAPLEX with nursing and medical boards — plus calculation drills, Blueprint Roadmaps, Deep Dives, and Full Exam practice on one Pro plan.",
     sections: [
       {
         heading: "Pricing: pharmacy-only vs multi-exam Pro",
@@ -429,17 +456,17 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
           },
           {
             feature: "Calculations prep",
-            anyExamEasy: "Daily calc drills + timed mixed blocks",
+            anyExamEasy: "Daily calc drills + timed Full Exam-style mixed blocks",
             typicalQbank: "Strong calc coverage in RxPrep QBank",
           },
           {
-            feature: "Drug reference",
-            anyExamEasy: `${SEO_LIVE_STATS.topDrugsLabel} + case-linked review`,
+            feature: "Miss review",
+            anyExamEasy: "Deep Dive modules from missed questions",
             typicalQbank: "Course book + drug tables in premium tiers",
           },
           {
-            feature: "Video lectures",
-            anyExamEasy: "Deep Dive modules from missed questions",
+            feature: "Structured teaching",
+            anyExamEasy: "Deep Dives + teachable rationales",
             typicalQbank: "Full video course (premium RxPrep tier)",
           },
           {
@@ -461,7 +488,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
         heading: "When AnyExamEasy wins",
         bullets: [
           "You are PharmD plus RN, PA, or MD track and need more than pharmacy prep.",
-          "You want Top 509 Drugs, AI Tutor, and Spaced Repetition integrated with NAPLEX practice.",
+          "You want Roadmaps, Deep Dives, and Full Exams integrated with NAPLEX practice.",
           "Pro monthly pricing beats stacking RxPrep QBank with separate nursing or medical subscriptions.",
         ],
       },
@@ -471,9 +498,9 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
           "Pair 15–20 untimed calculation items daily with case-based pharmacotherapy blocks. AnyExamEasy Roadmap surfaces weak NABP domains after each session.",
         ],
         comparisonRows: [
-          { feature: "Mon–Wed", anyExamEasy: "Calc drills + Top 509 flashcards", typicalQbank: "RxPrep math sets" },
+          { feature: "Mon–Wed", anyExamEasy: "Calc drills + Deep Dive on misses", typicalQbank: "RxPrep math sets" },
           { feature: "Thu–Fri", anyExamEasy: "Mixed patient cases + timed calcs", typicalQbank: "QBank case sets" },
-          { feature: "Sat", anyExamEasy: "Full timed mock block", typicalQbank: "Self-assessment (add-on)" },
+          { feature: "Sat", anyExamEasy: "Full Exam timed mock block", typicalQbank: "Self-assessment (add-on)" },
         ],
         competitorLabel: "Typical schedule",
       },

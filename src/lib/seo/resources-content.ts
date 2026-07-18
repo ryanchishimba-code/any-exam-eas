@@ -30,7 +30,7 @@ export type ResourceDownload = {
 
 export type ResourceSection = {
   heading: string;
-  paragraphs: string[];
+  paragraphs?: string[];
   bullets?: string[];
   comparisonRows?: { feature: string; anyExamEasy: string; typicalQbank: string }[];
   /** Third column header for comparison tables (default: Typical QBank). */
@@ -69,12 +69,12 @@ export const RESOURCE_DOWNLOADS: ResourceDownload[] = [
     signupHref: "/signup?plan=trial&tier=pro&utm_source=resources&utm_content=study-planner",
   },
   {
-    slug: "top-pharmacy-drugs-list",
-    title: "Top 503 High-Yield Drugs List",
+    slug: "board-exam-weak-area-checklist",
+    title: "Board Exam Weak-Area Checklist",
     description:
-      "Access the interactive Top 503 Drugs deck with generic/brand, class, MOA, and adverse effects — included with every plan.",
-    examTags: ["naplex", "nclex", "usmle", "pance", "aanp-fnp"],
-    signupHref: "/signup?plan=trial&tier=pro&utm_source=resources&utm_content=top-drugs",
+      "Printable checklist to turn Blueprint Roadmap gaps into a weekly Deep Dive + Full Exam plan across NCLEX, USMLE, NAPLEX, and more.",
+    examTags: ["naplex", "nclex", "usmle", "pance", "aanp-fnp", "npte-pt"],
+    signupHref: "/signup?plan=trial&tier=pro&utm_source=resources&utm_content=weak-area-checklist",
   },
 ];
 
@@ -133,7 +133,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         heading: "Why a Roadmap beats random QBank churn",
         paragraphs: [
           "Random 75-question sets feel productive but hide weak Client Needs categories. A blueprint-aligned Roadmap surfaces gaps after every session.",
-          "AnyExamEasy links missed topics to Deep Dive modules and AI Tutor coaching so you can go from question → structured review in one click.",
+          "AnyExamEasy links missed topics to Deep Dive modules so you can go from question → structured review in one click — then rehearse with timed Full Exam simulations.",
         ],
       },
       {
@@ -143,8 +143,8 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
           "NGN formats: SATA, bow-tie, matrix, unfolding cases",
           "Clinical judgment stems with plausible distractors",
           "Blueprint category tracking (NCSBN Client Needs)",
-          "AI coaching or structured rationale review on misses",
-          "Timed mock exams matching board pacing",
+          "Deep Dive or structured rationale review on misses",
+          "Timed Full Exam simulations matching board pacing",
           "Multi-exam value if you also need USMLE or NAPLEX prep",
         ],
       },
@@ -182,7 +182,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
           { feature: "Week 1", anyExamEasy: "Diagnostic sets + Roadmap baseline", typicalQbank: "Untimed review blocks" },
           { feature: "Week 2", anyExamEasy: "Weak Client Needs + NGN formats daily", typicalQbank: "Random mixed sets" },
           { feature: "Week 3", anyExamEasy: "Timed blocks + Spaced Repetition queue", typicalQbank: "Self-scheduled mocks" },
-          { feature: "Week 4", anyExamEasy: "Full mocks + AI Tutor on flagged items", typicalQbank: "Light review only" },
+          { feature: "Week 4", anyExamEasy: "Full Exam mocks + Deep Dive on flagged items", typicalQbank: "Light review only" },
         ],
       },
     ],
@@ -226,8 +226,8 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         comparisonRows: [
           { feature: "Steps covered", anyExamEasy: "Step 1, Step 2 CK, Step 3", typicalQbank: "Often one step per plan" },
           { feature: "Study path", anyExamEasy: "Adaptive Blueprint Roadmap per step", typicalQbank: "Performance charts" },
-          { feature: "Pharmacology", anyExamEasy: SEO_LIVE_STATS.topDrugsLabel, typicalQbank: "Varies" },
-          { feature: "AI support", anyExamEasy: "AI Tutor on missed vignettes", typicalQbank: "Static explanations" },
+          { feature: "Miss review", anyExamEasy: "Deep Dive modules from missed vignettes", typicalQbank: "Static explanations" },
+          { feature: "Exam-day rehearsal", anyExamEasy: "Timed Full Exam simulations", typicalQbank: "Mocks vary" },
         ],
       },
     ],
@@ -280,7 +280,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         heading: "Balance math and clinical cases",
         paragraphs: [
           "Split weekly study between calculation drills and case-based management — both are heavily represented on NAPLEX.",
-          `AnyExamEasy includes ${SEO_LIVE_STATS.topDrugsLabel} for brand/generic mastery alongside the NAPLEX bank.`,
+          "AnyExamEasy pairs NAPLEX practice with Blueprint Roadmaps, Deep Dive review on misses, and timed Full Exam blocks.",
         ],
       },
       {
@@ -288,7 +288,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
         comparisonRows: [
           { feature: "Calculations", anyExamEasy: "Dedicated math + case mix", typicalQbank: "Varies by vendor" },
           { feature: "Blueprint tracking", anyExamEasy: "NABP five-domain Roadmap", typicalQbank: "Topic lists only" },
-          { feature: "Drug deck", anyExamEasy: SEO_LIVE_STATS.topDrugsLabel, typicalQbank: "Separate resource" },
+          { feature: "Miss review", anyExamEasy: "Deep Dive modules from misses", typicalQbank: "Static rationales" },
           { feature: "Multi-exam value", anyExamEasy: "NCLEX + USMLE + 4 more included", typicalQbank: "Pharmacy-only" },
         ],
       },
@@ -515,8 +515,8 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
       {
         heading: "What's included on every plan",
         paragraphs: [
-          "All six question banks, Exam Roadmaps, lab values, clinical calculators, Library, Memory Cards, and the Top 503 Drugs deck.",
-          "Pro adds Deep Dive modules, advanced analytics, spaced repetition, unlimited mock exams, and exportable notes.",
+          "All six question banks, Blueprint Roadmaps, lab values, clinical calculators, Library, and Memory Cards.",
+          "Pro adds Deep Dive modules, Full Exam simulations, advanced analytics, spaced repetition, unlimited mocks, and exportable notes.",
         ],
       },
       {

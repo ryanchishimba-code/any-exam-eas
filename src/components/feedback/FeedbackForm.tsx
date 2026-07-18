@@ -26,8 +26,8 @@ function StarRating({
           onClick={() => onChange(n)}
           className={`h-10 w-10 rounded-lg text-lg transition-colors ${
             n <= value
-              ? "bg-amber-400/20 text-amber-600"
-              : "bg-black/[0.04] text-black/30 hover:text-amber-500"
+              ? "bg-[color-mix(in_srgb,var(--color-accent)_18%,transparent)] text-[var(--color-accent)]"
+              : "bg-[var(--color-surface)] text-[var(--color-ink-muted)] hover:text-[var(--color-accent)]"
           }`}
         >
           ★
@@ -75,11 +75,14 @@ export function FeedbackForm() {
 
   if (success) {
     return (
-      <div className="a11y-banner a11y-banner--success flex-col items-center rounded-2xl p-8 text-center" role="status">
-        <CheckCircle2 className="mx-auto" aria-hidden />
-        <p className="mt-3 text-lg font-semibold">Thank you</p>
-        <p className="mt-2 text-sm">
-          Your feedback was received. We read every submission and use it to improve Any Exam Easy.
+      <div
+        className="flex flex-col items-center rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-8 text-center shadow-[var(--shadow-apple-sm)]"
+        role="status"
+      >
+        <CheckCircle2 className="h-8 w-8 text-[var(--color-accent)]" aria-hidden />
+        <p className="mt-3 text-lg font-semibold text-[var(--color-ink)]">Message sent</p>
+        <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
+          Thanks — we read every submission and use it to improve Any Exam Easy.
         </p>
         <Button
           type="button"
@@ -96,7 +99,7 @@ export function FeedbackForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-6 rounded-2xl border border-black/10 bg-white p-6 shadow-sm sm:p-8"
+      className="space-y-6 rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6 shadow-[var(--shadow-apple-sm)] sm:p-8"
     >
       <div className="grid gap-6 sm:grid-cols-2">
         <label className="block text-sm">
@@ -164,7 +167,7 @@ export function FeedbackForm() {
       {error && <InlineError>{error}</InlineError>}
 
       <Button type="submit" disabled={loading} className="w-full sm:w-auto">
-        {loading ? "Sending…" : "Submit feedback"}
+        {loading ? "Sending…" : "Send message"}
       </Button>
     </form>
   );

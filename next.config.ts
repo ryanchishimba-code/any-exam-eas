@@ -151,6 +151,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/contact",
+        destination: "/feedback",
+        permanent: true,
+      },
+      {
         source: "/employee/login",
         destination: "/auth/login?callbackUrl=%2Finternal",
         permanent: false,

@@ -88,23 +88,26 @@ export default async function AboutPage() {
         {/* ── 1. Hero ──────────────────────────────────────────────────── */}
         <section className="relative overflow-hidden px-6 pt-[var(--page-top)]">
           <div className="mx-auto max-w-4xl pb-16 text-center sm:pb-20">
-            <span className="inline-flex items-center gap-2 rounded-full border border-[color-mix(in_srgb,var(--color-accent)_30%,transparent)] bg-[color-mix(in_srgb,var(--color-accent)_10%,var(--color-surface-elevated))] px-4 py-1.5 text-sm font-bold text-[var(--color-accent)] shadow-[var(--shadow-apple-sm)]">
-              <MapPin className="h-4 w-4" aria-hidden />
-              Built in the heart of Texas
-            </span>
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
+              {SITE_NAME}
+            </p>
 
-            <h1 className="mt-6 text-balance text-[clamp(2.25rem,6vw,3.5rem)] font-bold leading-[1.05] tracking-tight text-[var(--color-ink)]">
-              The NCLEX &amp; USMLE question bank built for{" "}
-              <span className="aee-flagship-gradient-text">six exams, one price.</span>
+            <h1 className="mt-4 text-balance text-[clamp(2.25rem,6vw,3.5rem)] font-bold leading-[1.05] tracking-tight text-[var(--color-ink)]">
+              NCLEX &amp; USMLE prep with Roadmaps, Deep Dives &amp;{" "}
+              <span className="aee-flagship-gradient-text">Full Exams — six boards, one plan.</span>
             </h1>
 
             <p className="mx-auto mt-5 max-w-2xl text-balance text-lg leading-relaxed text-[var(--color-ink-muted)]">
-              {SITE_NAME} is a clinician-built platform for ambitious students who need serious{" "}
-              <strong className="font-semibold text-[var(--color-ink)]">NCLEX practice questions</strong>,
-              a full{" "}
-              <strong className="font-semibold text-[var(--color-ink)]">USMLE question bank</strong>, and
-              the same depth for NAPLEX, PANCE, AANP FNP, and NPTE-PT — without stacking six
-              subscriptions.
+              Clinician-built{" "}
+              <strong className="font-semibold text-[var(--color-ink)]">NCLEX practice questions</strong>{" "}
+              and a full{" "}
+              <strong className="font-semibold text-[var(--color-ink)]">USMLE question bank</strong>,
+              plus NAPLEX, PANCE, AANP FNP, and NPTE-PT — with Blueprint Roadmaps, Deep Dive review,
+              and timed Full Exam simulations on one Pro subscription.
+            </p>
+            <p className="mx-auto mt-3 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-ink-muted)]">
+              <MapPin className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
+              Built in Texas · {SEO_LIVE_STATS.clinicianYears} years combined clinical experience
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -145,7 +148,7 @@ export default async function AboutPage() {
               Why we built this
             </p>
             <h2 className="mt-3 text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-tight tracking-tight text-[var(--color-ink)]">
-              One affordable subscription should cover your NCLEX question bank — and everything after.
+              One Pro plan should cover your banks — plus Roadmaps, Deep Dives, and Full Exams.
             </h2>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-[var(--color-ink-muted)]">
               <p>
@@ -250,8 +253,9 @@ export default async function AboutPage() {
                 Built different on purpose.
               </h2>
               <p className="mt-3 text-lg leading-relaxed text-[var(--color-ink-muted)]">
-                Four things we refused to compromise on — so your NCLEX practice questions and USMLE
-                sets feel like coaching, not a content dump.
+                The study system that sets us apart: Blueprint Roadmaps, Deep Dives from misses, Full
+                Exam simulations, and clinician QA — so NCLEX and USMLE practice feels like coaching,
+                not a content dump.
               </p>
             </div>
             <div className="mt-10">
@@ -300,11 +304,11 @@ export default async function AboutPage() {
               The verdict
             </span>
             <p className="mx-auto mt-6 max-w-2xl text-balance text-[clamp(1.75rem,4.5vw,2.75rem)] font-extrabold leading-tight tracking-tight text-white">
-              One plan. Six question banks. The clear value winner.
+              One plan. Six banks. Roadmaps, Deep Dives &amp; Full Exams.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-base font-medium leading-relaxed text-white/90">
-              NCLEX, USMLE, NAPLEX, PANCE, AANP FNP &amp; NPTE-PT — most coverage, expert curation,
-              smartest price.
+              NCLEX, USMLE, NAPLEX, PANCE, AANP FNP &amp; NPTE-PT — clinician-built coverage at a
+              non-premium price.
             </p>
             <div className="mt-8 flex justify-center">
               <LandingCta

@@ -16,7 +16,8 @@ export function ToolkitStudyGuides() {
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-base leading-relaxed text-[var(--color-ink-muted)]">
           In-depth guides, comparisons, and step-by-step study plans — optimized for 2026 board prep
-          search topics including UWorld alternatives, AI tutor workflows, and adaptive roadmaps.
+          topics including UWorld alternatives, Blueprint Roadmaps, Deep Dives, and Full Exam
+          readiness.
         </p>
 
         <div className="mt-12 grid gap-10 lg:grid-cols-3">

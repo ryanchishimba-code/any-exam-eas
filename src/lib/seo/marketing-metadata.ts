@@ -81,8 +81,8 @@ export function buildResourcesHubMetadata(): Metadata {
 }
 
 export function buildToolkitHubMetadata(): Metadata {
-  const title = `Board Exam Toolkit — NCLEX Question Bank Guides & USMLE Study Resources (2026)`;
-  const description = `Free Toolkit for NCLEX practice questions, USMLE question bank strategy, NAPLEX, PANCE, AANP FNP & NPTE-PT. Exam breakdowns, comparison guides, and readiness tips — plus ${SEO_LIVE_STATS.questionCount} QA-gated items on one ${SITE_NAME} plan.`;
+  const title = `Board Exam Toolkit — NCLEX & USMLE Guides with Roadmaps, Deep Dives & Full Exams (2026)`;
+  const description = `Free Toolkit for NCLEX practice questions and USMLE prep — exam breakdowns, Blueprint Roadmap strategy, Deep Dive review tips, and Full Exam readiness for NAPLEX, PANCE, AANP FNP & NPTE-PT. ${SEO_LIVE_STATS.questionCount} QA-gated items on one ${SITE_NAME} plan.`;
   const path = "/toolkit";
   return {
     ...baseOpenGraph(title, description, path, { absoluteTitle: true }),
@@ -91,6 +91,9 @@ export function buildToolkitHubMetadata(): Metadata {
       "NCLEX practice questions",
       "USMLE question bank study guide",
       "board exam toolkit",
+      "blueprint roadmap board prep",
+      "deep dive exam review",
+      "full exam simulation",
       "NCLEX study resources",
       "USMLE study guide",
       "NAPLEX review",
@@ -187,9 +190,9 @@ export function buildCompareJsonLd() {
 }
 
 export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
-  const title = `About ${SITE_NAME} — NCLEX & USMLE Question Bank for Six Exams`;
+  const title = `About ${SITE_NAME} — Roadmaps, Deep Dives & Full Exams for Six Boards`;
   const countPhrase = serveReadyTotalLabel ?? SEO_LIVE_STATS.questionCount;
-  const description = `${SITE_NAME} is a clinician-built NCLEX question bank and USMLE question bank platform — plus NAPLEX, PANCE, AANP FNP & NPTE-PT — on one affordable subscription. ${countPhrase} QA-gated practice questions, Blueprint Roadmaps, Deep Dives. Built in Texas · ${SEO_LIVE_STATS.clinicianYears} years combined clinical experience.`;
+  const description = `${SITE_NAME} is a clinician-built NCLEX & USMLE question bank platform — plus NAPLEX, PANCE, AANP FNP & NPTE-PT — on one Pro plan. ${countPhrase} QA-gated questions with Blueprint Roadmaps, Deep Dive modules, and Full Exam simulations. Built in Texas · ${SEO_LIVE_STATS.clinicianYears} years combined clinical experience.`;
   return {
     ...baseOpenGraph(title, description, "/about", { absoluteTitle: true }),
     keywords: [
@@ -201,6 +204,8 @@ export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
       "clinician-curated question bank",
       "one subscription six exams",
       "blueprint roadmap board prep",
+      "deep dive exam review",
+      "full exam simulation",
       "multi-exam board prep",
       "adaptive roadmap NCLEX USMLE NAPLEX",
     ],
@@ -409,7 +414,7 @@ export function buildToolkitHubJsonLd() {
     name: "AnyExamEasy Toolkit",
     url,
     description:
-      "Complete board exam prep toolkit for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — exam breakdowns, study guides, and readiness tools.",
+      "Board exam prep toolkit for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — exam breakdowns, Blueprint Roadmap strategy, Deep Dive review tips, and Full Exam readiness guides.",
     hasPart: RESOURCE_ARTICLES.map((a) => ({
       "@type": "Article",
       name: a.title,
