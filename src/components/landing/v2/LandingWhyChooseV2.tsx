@@ -11,7 +11,6 @@
 import { Check, Minus } from "lucide-react";
 import { Reveal } from "@/components/landing/v2/Reveal";
 import { LANDING_SUCCESS_STORIES, LANDING_UNIQUE_FEATURES } from "@/lib/landing/content";
-import { TOP_500_DRUGS_COUNT } from "@/lib/marketing/bank-stats";
 import {
   buildLandingSocialProofStats,
   type LandingBankCountsDisplay,
@@ -58,10 +57,10 @@ const COMPARE_ROWS: CompareRow[] = [
     amboss: { text: "Not included" },
   },
   {
-    label: "Pharmacology deck",
-    us: { text: `${TOP_500_DRUGS_COUNT} Top Drugs included`, positive: true },
-    uworld: { text: "Often a separate purchase" },
-    amboss: { text: "Within content library" },
+    label: "Full Exam simulation",
+    us: { text: "Timed mocks · weak-area focus", positive: true },
+    uworld: { text: "Self-assembly / separate mocks" },
+    amboss: { text: "Varies by product" },
   },
 ];
 

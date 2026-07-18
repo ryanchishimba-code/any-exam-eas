@@ -77,7 +77,7 @@ export default async function AboutPage() {
       label: "Serve-ready questions",
     },
     { value: "6", label: "Boards, one plan" },
-    { value: String(SEO_LIVE_STATS.topDrugsCount), label: "Top drugs + pearls" },
+    { value: "Full Exam", label: "Timed simulations" },
     { value: "12+ yrs", label: "Clinician experience" },
   ];
 
@@ -172,16 +172,16 @@ export default async function AboutPage() {
                 <strong className="font-semibold text-[var(--color-ink)]">
                   one affordable subscription for six exam question banks
                 </strong>
-                . {bankCounts.totalQuestionsLabel}. AI Tutor on misses. Adaptive Blueprint Roadmaps.
-                Spaced Repetition. Full-length mocks. Clinician-built, QA-gated — not bulk filler.
+                . {bankCounts.totalQuestionsLabel}. Adaptive Blueprint Roadmaps.
+                Deep Dive modules. Full-length mocks. Clinician-built, QA-gated — not bulk filler.
               </p>
               <p>
-                And we didn&apos;t stop at exam day. The{" "}
+                And we didn&apos;t stop at exam day.{" "}
                 <strong className="font-semibold text-[var(--color-ink)]">
-                  {SEO_LIVE_STATS.topDrugsLabel}
+                  Lab values, clinical calculators, and Anatomy Explorer
                 </strong>{" "}
-                and clinical pearls are built to stay useful long after you pass — the kind of
-                resource you&apos;ll still open on a busy shift years from now.
+                stay useful long after you pass — the kind of resources you&apos;ll still open on a
+                busy shift years from now.
               </p>
             </div>
 

@@ -16,13 +16,12 @@ import { BadgeCheck, Calendar, Zap } from "lucide-react";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
-import { DRUGS_DECK_MARKETING_TITLE } from "@/lib/marketing/bank-stats";
 
 const PILLARS = [
   {
     icon: Zap,
     title: "Start practicing immediately",
-    body: `Explore all 6 exam banks, Roadmaps, ${DRUGS_DECK_MARKETING_TITLE}, Memory Cards, and calculators — ${TRIAL_LIFETIME_QUESTIONS} practice questions included during your ${TRIAL_DAYS}-day trial.`,
+    body: `Explore all 6 exam banks, Roadmaps, Memory Cards, Full Exams, and calculators — ${TRIAL_LIFETIME_QUESTIONS} practice questions included during your ${TRIAL_DAYS}-day trial.`,
   },
   {
     icon: Calendar,

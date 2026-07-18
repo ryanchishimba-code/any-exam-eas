@@ -2829,3 +2829,468 @@
   }
 }
 
+/* ─── Visual ATF — cinematic full-bleed product plane ─────────────────────── */
+.aee-hero-beat {
+  /*
+   * Fixed brand navy stage (matches dark --color-bg / --flagship-surface).
+   * Do not use --flagship-navy here — in dark mode that token becomes light ink.
+   * Transparent product cutout shares this field; bottom eases into page --color-bg.
+   */
+  --aee-hero-ink: #f5f5f7;
+  --aee-hero-muted: rgba(245, 245, 247, 0.7);
+  --aee-hero-quiet: rgba(245, 245, 247, 0.5);
+  --aee-hero-stage: #071a2c;
+  --aee-hero-stage-deep: #04101c;
+  --aee-hero-stage-lift: #0a2540;
+  --aee-hero-teal: #00d4c8;
+  width: 100%;
+  min-height: min(100dvh, 980px);
+  display: flex;
+  align-items: center;
+  padding-block: calc(var(--nav-height, 4rem) + 1.25rem) clamp(2.75rem, 7vw, 5rem);
+  background:
+    radial-gradient(
+      78% 68% at 76% 42%,
+      color-mix(in srgb, var(--aee-hero-teal) 14%, transparent) 0%,
+      transparent 70%
+    ),
+    linear-gradient(
+      155deg,
+      var(--aee-hero-stage-lift) 0%,
+      var(--aee-hero-stage) 48%,
+      var(--aee-hero-stage-deep) 100%
+    ) !important;
+  color: var(--aee-hero-ink);
+  color-scheme: dark;
+  overflow: hidden;
+}
+
+.aee-hero-beat__atmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      56% 58% at 74% 44%,
+      color-mix(in srgb, var(--aee-hero-teal) 12%, transparent) 0%,
+      rgba(60, 110, 160, 0.1) 42%,
+      transparent 76%
+    ),
+    radial-gradient(
+      40% 46% at 16% 26%,
+      rgba(255, 255, 255, 0.04) 0%,
+      transparent 64%
+    );
+}
+
+.aee-hero-beat__vignette {
+  display: block;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--aee-hero-stage-deep) 78%, transparent) 0%,
+    color-mix(in srgb, var(--aee-hero-stage-deep) 28%, transparent) 24%,
+    transparent 46%
+  );
+}
+
+.aee-hero-beat__shell {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: clamp(1.25rem, 3.5vw, 3.5rem);
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 2.75rem);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .aee-hero-beat__shell {
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    gap: clamp(1rem, 3vw, 2.5rem);
+    padding-left: clamp(2rem, 5.5vw, 5.5rem);
+    padding-right: 0;
+  }
+}
+
+.aee-hero-beat__copy {
+  max-width: 36rem;
+  justify-self: start;
+}
+
+@media (min-width: 1024px) {
+  .aee-hero-beat__copy {
+    max-width: 32rem;
+  }
+}
+
+.aee-hero-beat__brand {
+  margin: 0;
+  font-size: clamp(0.875rem, 1.4vw, 1rem);
+  font-weight: 750;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--aee-hero-ink);
+}
+
+.aee-hero-beat__headline {
+  margin: 1rem 0 0;
+  font-size: clamp(2.35rem, 5.6vw, 3.75rem);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  text-wrap: balance;
+  color: var(--aee-hero-ink);
+}
+
+.aee-hero-beat__subline {
+  margin: 1.1rem 0 0;
+  max-width: 30rem;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--aee-hero-muted);
+  text-wrap: pretty;
+}
+
+.aee-hero-exam-chips {
+  margin: 1.1rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1rem;
+  align-items: center;
+}
+
+.aee-hero-exam-chips__link {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  opacity: 0.92;
+  transition: opacity 0.15s ease;
+}
+
+.aee-hero-exam-chips__link:hover {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.aee-hero-beat__actions {
+  margin-top: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem 1.25rem;
+}
+
+.aee-hero-beat__cta {
+  min-width: min(100%, 15.5rem);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .aee-hero-beat__cta:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.aee-hero-beat__secondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--aee-hero-muted);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.aee-hero-beat__secondary:hover {
+  color: var(--aee-hero-ink);
+}
+
+.aee-hero-beat__meta {
+  margin: 1.1rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.5rem;
+  max-width: 28rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--aee-hero-quiet);
+}
+
+.aee-hero-beat__price {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem;
+  font-weight: 600;
+  color: var(--aee-hero-ink);
+}
+
+.aee-hero-beat .aee-price-highlight--hero {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 212, 200, 0.18) 0%,
+    rgba(0, 212, 200, 0.08) 100%
+  );
+  border-color: rgba(0, 212, 200, 0.45);
+  box-shadow:
+    0 4px 22px rgba(0, 212, 200, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.aee-hero-beat .aee-price-highlight__amount {
+  color: #5eeae0;
+}
+
+.aee-hero-beat .aee-price-highlight__period {
+  color: rgba(245, 245, 247, 0.62);
+}
+
+.aee-hero-beat__price-note {
+  font-weight: 500;
+  color: var(--aee-hero-quiet);
+}
+
+.aee-hero-beat__dot {
+  opacity: 0.55;
+}
+
+.aee-hero-beat__visual {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: min(52vw, 30rem);
+  --aee-hero-parallax: 0;
+  isolation: isolate;
+}
+
+@media (min-width: 1024px) {
+  .aee-hero-beat__visual {
+    min-height: min(68vh, 42rem);
+    justify-content: flex-end;
+    align-self: stretch;
+  }
+}
+
+/* Wide soft bloom — ambient teal in the same navy field (no separate plate) */
+.aee-hero-beat__stage-glow {
+  display: block;
+  position: absolute;
+  z-index: 0;
+  inset: 6% -8% 10% 4%;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 72% 62% at 58% 48%,
+      color-mix(in srgb, var(--aee-hero-teal, #00d4c8) 18%, transparent) 0%,
+      color-mix(in srgb, var(--aee-hero-stage-lift, #0a2540) 40%, transparent) 46%,
+      transparent 78%
+    );
+  filter: blur(44px);
+  opacity: 0.8;
+}
+
+/* Floating product — larger, bleeds toward the right edge */
+.aee-hero-beat__float {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 720px);
+  transform: translate3d(0, calc(var(--aee-hero-parallax, 0) * 1px - 18px), 0);
+  will-change: transform;
+}
+
+@media (min-width: 1024px) {
+  .aee-hero-beat__float {
+    width: min(112%, 920px);
+    margin-right: -3%;
+  }
+}
+
+@media (min-width: 1400px) {
+  .aee-hero-beat__float {
+    width: min(116%, 1020px);
+    margin-right: -4%;
+  }
+}
+
+/* True-alpha cutout — site atmosphere shows through (no baked plate) */
+.aee-hero-beat__product {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  line-height: 0;
+  background: transparent;
+  /* Soften left edge of the media box into the navy stage */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 10%,
+    #000 100%
+  );
+  mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 100%);
+}
+
+.aee-hero-beat__laptop {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: transparent !important;
+  /* Keep product RGB clean; stage light lives in CSS behind it */
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+
+.aee-hero-beat__shadow {
+  display: block;
+  width: 54%;
+  height: clamp(0.7rem, 1.5vw, 1.15rem);
+  margin-top: 0.4rem;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(2, 12, 24, 0.55) 0%,
+    color-mix(in srgb, var(--aee-hero-stage-deep, #04101c) 45%, transparent) 48%,
+    transparent 76%
+  );
+  filter: blur(12px);
+  transform: scaleX(1.1);
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .aee-hero-beat__copy {
+    animation: aee-hero-enter 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .aee-hero-beat__visual {
+    animation: aee-hero-enter 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+  }
+
+  .aee-hero-beat__float {
+    animation: aee-hero-float 6.5s ease-in-out infinite;
+  }
+
+  .aee-hero-beat__shadow {
+    animation: aee-hero-shadow-breathe 6.5s ease-in-out infinite;
+  }
+
+  .aee-hero-beat__stage-glow {
+    animation: aee-hero-glow-breathe 6.5s ease-in-out infinite;
+  }
+}
+
+@keyframes aee-hero-float {
+  0%,
+  100% {
+    transform: translate3d(0, calc(var(--aee-hero-parallax, 0) * 1px - 18px), 0);
+  }
+  50% {
+    transform: translate3d(0, calc(var(--aee-hero-parallax, 0) * 1px - 34px), 0);
+  }
+}
+
+@keyframes aee-hero-shadow-breathe {
+  0%,
+  100% {
+    transform: scaleX(1.12);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scaleX(0.86);
+    opacity: 0.45;
+  }
+}
+
+@keyframes aee-hero-glow-breathe {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aee-hero-beat__float {
+    transform: translate3d(0, -14px, 0);
+    will-change: auto;
+    animation: none;
+  }
+
+  .aee-hero-beat__shadow,
+  .aee-hero-beat__stage-glow {
+    animation: none;
+  }
+
+  .aee-hero-beat__shadow {
+    margin-top: 0.5rem;
+  }
+
+  .aee-hero-beat__laptop {
+    filter: none;
+  }
+}
+
+/* Bridge dark cinematic ATF into the page surface (light or dark) */
+.aee-hero-handoff {
+  position: relative;
+}
+
+.aee-hero-handoff::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: clamp(3.5rem, 8vw, 5.5rem);
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, #071a2c 55%, transparent) 0%,
+    transparent 100%
+  );
+  opacity: 0.55;
+}
+
+[data-theme="dark"] .aee-hero-handoff::before {
+  /* Same navy field in dark — almost invisible join */
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, #071a2c 35%, transparent) 0%,
+    transparent 100%
+  );
+  opacity: 0.35;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .aee-hero-handoff::before {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, #071a2c 35%, transparent) 0%,
+      transparent 100%
+    );
+    opacity: 0.35;
+  }
+}
+

@@ -4,8 +4,10 @@ import { useMemo, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { BoardScrollPicker, type BoardPickerItem } from "@/components/marketing/BoardScrollPicker";
-import { LANDING_EXAMS } from "@/lib/landing/content";
+import { LANDING_EXAMS, landingTrialHrefForExam } from "@/lib/landing/content";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
+import { analytics } from "@/lib/analytics";
+import { formatTrialCtaLabel } from "@/lib/site";
 
 const SHORT_LABEL: Record<string, string> = {
   usmle: "USMLE",
@@ -107,15 +109,24 @@ export function ChooseYourExam({ bankCounts }: ChooseYourExamProps) {
               </div>
 
               <Link
-                href={selected.href}
+                href={landingTrialHrefForExam(selected.id)}
                 className="aee-pick-board__summary-cta group"
-                aria-label={`Start ${selected.shortLabel} prep`}
+                aria-label={`Start ${selected.shortLabel} free trial`}
+                onClick={() => analytics.ctaClicked(`choose_exam_${selected.id}`, "choose_exam")}
               >
-                Start studying
+                {formatTrialCtaLabel()}
                 <ArrowRight
                   className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                   aria-hidden
                 />
+              </Link>
+
+              <Link
+                href={selected.href}
+                prefetch={false}
+                className="mt-3 inline-flex items-center justify-center text-sm font-semibold text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
+              >
+                Learn more about {selected.shortLabel}
               </Link>
 
               <p className="aee-pick-board__summary-note">

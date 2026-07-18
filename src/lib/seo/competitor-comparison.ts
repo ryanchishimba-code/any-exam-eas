@@ -132,19 +132,19 @@ export const MASTER_FEATURE_ROWS: ComparisonRow[] = [
     competitor: "Performance stats; limited roadmap",
   },
   {
-    feature: "AI Tutor",
-    anyExamEasy: "Rationale coaching on missed items",
-    competitor: "Varies — AMBOSS LiSA; most lack AI coaching",
+    feature: "Deep Dive modules",
+    anyExamEasy: "Opened from missed questions",
+    competitor: "Self-directed add-ons or video bundles",
   },
   {
-    feature: "Spaced repetition",
-    anyExamEasy: "Weak topics + memory cards",
-    competitor: "Flashcards on some platforms only",
+    feature: "Full Exam simulation",
+    anyExamEasy: "Timed mocks with weak-area weighting",
+    competitor: "Self-assembly or separate mock products",
   },
   {
-    feature: "Pharmacology deck",
-    anyExamEasy: SEO_LIVE_STATS.topDrugsLabel,
-    competitor: "Separate purchase or scattered in bank",
+    feature: "NGN + teachable rationales",
+    anyExamEasy: "NGN formats on NCLEX; structured/expert rationales (growing coverage)",
+    competitor: "Strong rationales; NGN varies by product",
   },
   {
     feature: "Free trial",

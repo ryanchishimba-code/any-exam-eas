@@ -1,20 +1,18 @@
 "use client";
 
 /**
- * LandingFlagshipV2 — rebuilt conversion-first landing page.
+ * LandingFlagshipV2 — conversion-first landing (UWorld-clarity + AEE wedge).
  *
  * Flow:
- *   Hero (countdown + 1 CTA + product mockup)
- *     → Pick your board (tactile scroll wheel + live counts)
- *     → Offering + visual showcase
- *     → Six-exam comparison table
- *     → Why choose us (UWorld/AMBOSS compare + proof)
- *     → Pro benefits
+ *   Full-bleed hero (brand + benefit H1 + laptop still + 1 CTA)
+ *     → Offering
+ *     → Product showcase
+ *     → Choose your exam
+ *     → Why choose us (vs stacking QBanks)
+ *     → Cross-exam comparison
+ *     → Trust + testimonials
  *     → Pricing
  *     → Final CTA + sticky bar
- *
- * Premium primitives (board wheel, pricing, Pro benefits, sticky CTA) are reused
- * from the existing design system; the section layout/markup is rebuilt.
  */
 
 import Link from "next/link";
@@ -39,7 +37,7 @@ import {
   ProBenefitsComparison,
 } from "@/components/landing/v2/LandingFlagshipSectionsLazy";
 import {
-  LANDING_HERO_CTA_DISCLOSURE,
+  LANDING_TRIAL_DETAIL,
   LANDING_TRIAL_HREF,
   PLATFORM_EXAM_LIST_MIDDOT,
 } from "@/lib/landing/content";
@@ -47,6 +45,7 @@ import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
 import { formatTrialLabel, formatTrialCtaLabel, MARKETING_DISCLAIMER, TRIAL_PAYMENT_DISCLOSURE } from "@/lib/site";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
+import { LandingSectionPageviews } from "@/components/landing/v2/LandingSectionPageviews";
 
 export function LandingFlagshipV2({
   bankCounts,
@@ -61,20 +60,23 @@ export function LandingFlagshipV2({
   return (
     <div className="aee-flagship aee-flagship--conversion">
       <LandingHashScroll />
+      <LandingSectionPageviews />
 
       <LandingHeroV2 bankCounts={bankCounts} />
-
-      <ChooseYourExam bankCounts={bankCounts} />
 
       <LandingOfferingV2 />
 
       <LandingShowcaseV2 />
 
-      <LandingCrossExamComparison />
+      <ChooseYourExam bankCounts={bankCounts} />
 
       <LandingWhyChooseV2 bankCounts={bankCounts} />
 
+      <LandingCrossExamComparison />
+
       <LandingClinicianTrust />
+
+      <LandingTestimonialsV2 stories={testimonials} />
 
       <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] py-20 sm:py-24">
         <ProBenefitsComparison />
@@ -103,8 +105,6 @@ export function LandingFlagshipV2({
 
       <LandingFaqV2 />
 
-      <LandingTestimonialsV2 stories={testimonials} />
-
       {children}
 
       <section className="aee-flagship-final-cta" aria-labelledby="final-cta-heading">
@@ -114,7 +114,7 @@ export function LandingFlagshipV2({
             Premium board prep starts here
           </h2>
           <p className="aee-flagship-final-cta__subtitle">
-            {formatTrialLabel()} · {LANDING_HERO_CTA_DISCLOSURE} · {PLATFORM_EXAM_LIST_MIDDOT}
+            {formatTrialLabel()} · {LANDING_TRIAL_DETAIL} · {PLATFORM_EXAM_LIST_MIDDOT}
           </p>
           <div className="aee-flagship-final-cta__actions">
             <LandingCta

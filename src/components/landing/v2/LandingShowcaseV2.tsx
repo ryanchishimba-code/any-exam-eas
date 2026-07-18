@@ -7,7 +7,7 @@
  * crisp in light/dark mode and never ships a broken image. Four proofs:
  *  1. The core question + teachable-rationale experience (browser-framed)
  *  2. Progress analytics with weak-area targeting
- *  3. A real Top 509 drug card
+ *  3. Blueprint Roadmap + Full Exam launch
  *  4. The Anatomy Explorer
  */
 
@@ -20,12 +20,12 @@ import {
   BookOpen,
   Check,
   HeartPulse,
-  Pill,
+  Map,
   Scan,
   Sparkles,
+  Timer,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/v2/Reveal";
-import { DRUGS_DECK_MARKETING_TITLE } from "@/lib/marketing/bank-stats";
 import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -187,50 +187,55 @@ function AnalyticsMockup() {
   );
 }
 
-function DrugCard() {
+function RoadmapCard() {
+  const topics = [
+    { name: "Med-Surg prioritization", pct: 42, weak: true },
+    { name: "Pharmacotherapy calculations", pct: 61, weak: false },
+    { name: "Infection control / isolation", pct: 78, weak: false },
+    { name: "Delegation & assignment", pct: 35, weak: true },
+  ];
   return (
     <div className="flex h-full flex-col rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-5 shadow-[var(--shadow-apple-md)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-apple-lg)]">
       <div>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-accent)]/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[var(--color-accent)]">
-          <Pill className="h-3 w-3" aria-hidden />
-          {DRUGS_DECK_MARKETING_TITLE}
+          <Map className="h-3 w-3" aria-hidden />
+          Blueprint Roadmap
         </span>
-        <h4 className="mt-2.5 text-lg font-bold text-[var(--color-ink)]">Atorvastatin</h4>
+        <h4 className="mt-2.5 text-lg font-bold text-[var(--color-ink)]">NCLEX-RN · Next up</h4>
         <p className="text-sm text-[var(--color-ink-muted)]">
-          Brand: Lipitor · HMG-CoA reductase inhibitor (statin)
+          Weak areas weighted · less question repeat
         </p>
       </div>
-      <dl className="mt-4 space-y-2.5 text-sm">
-        <div>
-          <dt className="text-[11px] font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
-            Mechanism
-          </dt>
-          <dd className="text-[var(--color-ink)]">
-            Inhibits HMG-CoA reductase &rarr; &darr; hepatic cholesterol synthesis, upregulates LDL
-            receptors &rarr; &darr; LDL-C.
-          </dd>
-        </div>
-        <div>
-          <dt className="text-[11px] font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
-            Key adverse effects
-          </dt>
-          <dd className="text-[var(--color-ink)]">
-            Myalgia/myopathy (rare rhabdomyolysis), &uarr; transaminases, new-onset diabetes.
-          </dd>
-        </div>
-        <div>
-          <dt className="text-[11px] font-bold uppercase tracking-wide text-[var(--color-ink-muted)]">
-            High-yield pearl
-          </dt>
-          <dd className="text-[var(--color-ink)]">
-            Long half-life — dose any time of day. Avoid grapefruit juice (CYP3A4).
-          </dd>
-        </div>
-      </dl>
-      <p className="mt-auto pt-4 text-[11px] font-semibold text-[var(--color-ink-muted)]">
-        Generic · brand · MOA · adverse effects — shared across nursing, medical, PA &amp; pharmacy
-        prep.
-      </p>
+      <ul className="mt-4 space-y-2.5">
+        {topics.map((t) => (
+          <li key={t.name} className="flex items-center gap-3">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center justify-between gap-2">
+                <span className="truncate text-sm font-medium text-[var(--color-ink)]">{t.name}</span>
+                <span
+                  className={`shrink-0 text-xs font-semibold ${
+                    t.weak ? "text-amber-600" : "text-[var(--color-ink-muted)]"
+                  }`}
+                >
+                  {t.pct}%
+                </span>
+              </div>
+              <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-[var(--color-surface)]">
+                <div
+                  className={`h-full rounded-full ${
+                    t.weak ? "bg-amber-500" : "bg-[var(--color-accent)]"
+                  }`}
+                  style={{ width: `${t.pct}%` }}
+                />
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <div className="mt-auto flex items-center gap-2 pt-4 text-[11px] font-semibold text-[var(--color-ink-muted)]">
+        <Timer className="h-3.5 w-3.5 text-[var(--color-accent)]" aria-hidden />
+        Launch Full Exam or weak-area drill in one tap
+      </div>
     </div>
   );
 }
@@ -297,7 +302,7 @@ function AnatomyCard() {
       </div>
 
       <p className="mt-auto pt-3 text-[11px] font-medium text-[var(--color-ink-muted)]">
-        32 structures · 9 systems · CT Atlas · guided tours · drug &amp; procedure links
+        32 structures · 9 systems · CT Atlas · guided tours · practice links
       </p>
     </div>
   );
@@ -322,7 +327,7 @@ export function LandingShowcaseV2() {
             A calm, focused workspace built to make hard prep feel simple.
           </h2>
           <p className="mt-4 text-lg text-[var(--color-ink-muted)]">
-            Practice, analytics, and a full reference hub — designed to cut study overwhelm and
+            Practice, analytics, Roadmaps, and Full Exams — designed to cut study overwhelm and
             point you at the next right thing.
           </p>
         </div>
@@ -373,20 +378,19 @@ export function LandingShowcaseV2() {
           </Reveal>
         </div>
 
-        {/* Reference hub proofs */}
+        {/* Roadmap + Anatomy proofs */}
         <div className="mt-16">
           <div className="mx-auto max-w-2xl text-center">
             <h3 className="text-2xl font-bold tracking-tight text-[var(--color-ink)]">
-              A reference hub that memorizes with you
+              A study system that knows what to do next
             </h3>
             <p className="mt-3 text-[var(--color-ink-muted)]">
-              High-yield drug cards and an interactive Anatomy Explorer — linked right from your
-              practice.
+              Blueprint Roadmaps and Full Exam launches — plus Anatomy Explorer linked from practice.
             </p>
           </div>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             <Reveal>
-              <DrugCard />
+              <RoadmapCard />
             </Reveal>
             <Reveal delay={0.05}>
               <AnatomyCard />

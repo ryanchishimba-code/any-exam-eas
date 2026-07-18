@@ -30,7 +30,7 @@ export function targetQuestionCountForField(fieldId: string): number {
 export function publishedQuestionCountForField(fieldId: string): number {
   if (fieldId === "usmle-step-2" || fieldId === "usmle") return USMLE_PUBLISHED_BANK_TOTAL;
   if (fieldId === "nursing") return NCLEX_PUBLISHED_SERVE_TOTAL;
-  if (fieldId === "pharmacy") return 8_065;
+  if (fieldId === "pharmacy") return 9_000;
   if (fieldId === "pance") return 2_801;
   if (fieldId === "aanp-fnp") return 4_781;
   if (fieldId === "npte-pt") return 4_240;
@@ -74,7 +74,8 @@ export const TOTAL_QUESTION_BANK_TARGET = EXAM_FIELD_IDS.reduce(
  * so the static hero never flashes a higher offline floor then drops after hydrate.
  * Never set it to the aspirational `TOTAL_QUESTION_BANK_TARGET`.
  */
-export const PUBLISHED_QUESTION_BANK_TOTAL = 43_581;
+/** Floors sum of per-field published counts — bump when serve-ready banks grow. */
+export const PUBLISHED_QUESTION_BANK_TOTAL = 44_516;
 
 /** Offline fallback when live DB counts are unavailable — exact serve-ready floors. */
 /** Offline fallback labels — use live counts from `/api/marketing/bank-counts` in UI. */

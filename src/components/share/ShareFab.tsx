@@ -13,7 +13,19 @@ export function ShareFab() {
   const aboveMobileNav =
     isAppShellRoute(pathname) && !isFullExamSessionRoute(pathname);
 
-  if (pathname.startsWith("/login") || pathname.startsWith("/signup")) {
+  if (
+    pathname === "/" ||
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/signup") ||
+    pathname.startsWith("/pricing") ||
+    pathname.startsWith("/about") ||
+    pathname.startsWith("/nclex") ||
+    pathname.startsWith("/usmle") ||
+    pathname.startsWith("/naplex") ||
+    pathname.startsWith("/pance") ||
+    pathname.startsWith("/fnp") ||
+    pathname.startsWith("/npte")
+  ) {
     return null;
   }
 

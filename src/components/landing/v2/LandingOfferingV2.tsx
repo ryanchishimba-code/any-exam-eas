@@ -12,7 +12,7 @@ import { LANDING_OFFERING_PILLARS } from "@/lib/landing/content";
 export function LandingOfferingV2() {
   return (
     <section
-      className="bg-[var(--color-bg)] py-16 sm:py-20"
+      className="aee-hero-handoff bg-[var(--color-bg)] py-16 sm:py-20"
       aria-labelledby="offering-heading"
     >
       <div className="mx-auto max-w-6xl px-5 sm:px-6">

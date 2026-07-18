@@ -14,7 +14,7 @@ import {
   Timer,
   type LucideIcon,
 } from "lucide-react";
-import { MARKETING_QUESTION_COUNTS, TOP_500_DRUGS_COUNT, DRUGS_DECK_MARKETING_TITLE, drugsDeckFeatureLine, drugsDeckShortDetail } from "@/lib/marketing/bank-stats";
+import { MARKETING_QUESTION_COUNTS } from "@/lib/marketing/bank-stats";
 import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { examMarketingPath } from "@/lib/seo/exam-config";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
@@ -122,16 +122,16 @@ export const LANDING_BENEFITS = [
       "Eight-section deep dives on sepsis, heart failure, delegation, and more — opened from questions or Memory Cards when you need textbook depth.",
   },
   {
-    visualId: "feature-pharmacology" as const,
-    title: `${TOP_500_DRUGS_COUNT} high-yield pharmacology flashcards`,
+    visualId: "screenshot-question-bank" as const,
+    title: "Full-length exams that match the blueprint",
     detail:
-      "Generic, brand, MOA, adverse effects, and guideline pearls — with anatomy links and searchable FDA reference across nursing, medical, pharmacy, and NP prep.",
+      "Timed mocks and full simulations built from the same QA-gated bank — weak areas weighted, less question repeat.",
   },
   {
     visualId: "feature-adaptive-learning" as const,
     title: "Anatomy Studio — 3D, video & CT Atlas",
     detail:
-      "Explore structures with clinical pearls, guided tours, scrollable CT slices, drug-to-anatomy links, and one-click jumps back to related practice.",
+      "Explore structures with clinical pearls, guided tours, scrollable CT slices, and one-click jumps back to related practice.",
   },
 ];
 
@@ -144,44 +144,51 @@ export const LANDING_PRICING_FEATURES = [
   "Performance analytics & weak-area targeting",
   "Normal lab values & clinical calculators",
   "Library, Memory Cards & timed full exams",
-  `${DRUGS_DECK_MARKETING_TITLE} deck + FDA reference search`,
 ] as const;
 
-export const LANDING_HERO_EYEBROW =
-  "6 board exams · QA-gated question bank · Updated 2026";
+export const LANDING_HERO_EYEBROW = "AnyExamEasy";
 
 /** Primary signup destination — Pro annual is the default conversion path. */
 export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=yearly&tier=pro";
 
-/** Large hero exam strip — short labels with brand accent colors. */
+/** Large hero exam strip — short labels with brand accent colors + signup deep links. */
 export const LANDING_HERO_EXAMS = [
-  { label: "USMLE", color: EXAM_ACCENTS.usmle },
-  { label: "NCLEX", color: EXAM_ACCENTS.nclex },
-  { label: "NAPLEX", color: EXAM_ACCENTS.naplex },
-  { label: "PANCE", color: EXAM_ACCENTS.pance },
-  { label: "AANP FNP", color: EXAM_ACCENTS.aanpFnp },
-  { label: "NPTE-PT", color: EXAM_ACCENTS.nptePt },
+  { slug: "usmle" as const, label: "USMLE", color: EXAM_ACCENTS.usmle },
+  { slug: "nclex" as const, label: "NCLEX", color: EXAM_ACCENTS.nclex },
+  { slug: "naplex" as const, label: "NAPLEX", color: EXAM_ACCENTS.naplex },
+  { slug: "pance" as const, label: "PANCE", color: EXAM_ACCENTS.pance },
+  { slug: "aanp-fnp" as const, label: "AANP FNP", color: EXAM_ACCENTS.aanpFnp },
+  { slug: "npte-pt" as const, label: "NPTE-PT", color: EXAM_ACCENTS.nptePt },
 ] as const;
 
-/** Primary hero headline — keyword-led H1 with clear multi-exam USP. */
-export const LANDING_HERO_HEADLINE =
-  "NCLEX Practice Questions & USMLE Question Bank — Six Exams, One Plan";
+/** Trial signup URL with optional preferred exam preselected. */
+export function landingTrialHrefForExam(examSlug?: string): string {
+  if (!examSlug) return LANDING_TRIAL_HREF;
+  return `${LANDING_TRIAL_HREF}&exam=${encodeURIComponent(examSlug)}`;
+}
+
+/** Primary hero headline — benefit-led (UWorld-clarity); exams live in subline + nav. */
+export const LANDING_HERO_HEADLINE = "Board exams are hard. Prep shouldn’t be.";
 
 /** Accent line under the primary headline — empty when the full headline is in LANDING_HERO_HEADLINE. */
 export const LANDING_HERO_HEADLINE_ACCENT = "";
 
 /** Hero sub-headline body — pass live total via formatFlagshipHeroSubline(totalLabel). */
 export const LANDING_HERO_SUBLINE_BODY =
-  "One affordable subscription for NCLEX-RN, USMLE (Steps 1–3), NAPLEX, PANCE, AANP FNP & NPTE-PT — QA-gated question banks, AI Tutor, Blueprint Roadmaps, and Spaced Repetition. Clinician-built, not bulk filler.";
+  "QA-gated questions and Blueprint Roadmaps — six boards, one plan.";
 
 export function formatFlagshipHeroSubline(totalLabel?: string): string {
   const count = totalLabel?.trim();
   if (!count) return LANDING_HERO_SUBLINE_BODY;
-  return `${count} QA-gated questions · ${LANDING_HERO_SUBLINE_BODY}`;
+  return `${count} questions. ${LANDING_HERO_SUBLINE_BODY}`;
 }
 
 /** Short reassurance directly under the primary hero CTA. */
 export const LANDING_HERO_CTA_DISCLOSURE =
+  `${TRIAL_DAYS}-day free trial · No card required`;
+
+/** Longer trial detail for pricing / final CTA (not the hero ATF). */
+export const LANDING_TRIAL_DETAIL =
   `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · No payment required · Upgrade anytime`;
 
 /** Three-column offering band below the hero. */
@@ -202,15 +209,15 @@ export const LANDING_OFFERING_PILLARS = [
     icon: Sparkles,
     title: "One Pro plan — everything included",
     detail:
-      `All six banks, Roadmaps, AI Tutor, analytics, unlimited mocks, ${DRUGS_DECK_MARKETING_TITLE}, and more — one simple subscription.`,
+      "All six banks, Roadmaps, analytics, unlimited mocks, and Deep Dives — one simple subscription.",
   },
 ] as const;
 
-/** Subtle trust signals below hero subheadline. */
+/** Subtle trust signals below hero subheadline — no pass-rate or UWorld-parity claims. */
 export const LANDING_HERO_TRUST_SIGNALS = [
   "QA-gated · clinician-built",
-  "AI Tutor + Roadmaps",
-  "UWorld alternative value",
+  "NGN formats on NCLEX",
+  "Teachable rationales",
   "6 exams · 1 plan",
 ] as const;
 
@@ -231,9 +238,10 @@ export const LANDING_UNIQUE_FEATURES = [
     proOnly: true,
   },
   {
-    icon: Pill,
-    title: `${DRUGS_DECK_MARKETING_TITLE} + FDA Reference`,
-    detail: drugsDeckShortDetail(),
+    icon: Timer,
+    title: "Full Exams & weak-area focus",
+    detail:
+      "Timed full simulations and weak-area launches from your Roadmap — same smart selection as the Full Exam tab.",
     proOnly: false,
   },
   {
@@ -245,16 +253,16 @@ export const LANDING_UNIQUE_FEATURES = [
   },
   {
     icon: BarChart3,
-    title: "Advanced Analytics & Spaced Repetition",
+    title: "Advanced Analytics",
     detail:
-      "Weak-area targeting, performance trends, and SRS scheduling so you focus where points are actually lost.",
+      "Weak-area targeting and performance trends so you focus where points are actually lost.",
     proOnly: true,
   },
   {
     icon: ShieldCheck,
     title: "Board-Style Question Quality",
     detail:
-      "Varied clinical vignettes with teachable rationales — not template-swapped distractors or repetitive stems.",
+      "Clinical vignettes with teachable rationales, plus NGN formats (bow-tie, matrix, SATA) on NCLEX — not template-swapped distractors. We do not claim UWorld parity or verified pass rates.",
     proOnly: false,
   },
 ] as const;
@@ -266,7 +274,7 @@ export const LANDING_HERO_HEADLINE_QUOTED = LANDING_HERO_HEADLINE;
 export const LANDING_HERO_BENEFITS = [
   "Only serve-ready items reach your sessions — weak bulk is filtered out",
   "Six licensing exams under one plan — no $200–400/exam stacking",
-  "Clinical vignettes with teachable rationales, not template distractors",
+  "NGN-ready NCLEX formats + teachable rationales (not template distractors)",
   "Deep Dive lessons open from the questions you miss (Pro)",
 ] as const;
 
@@ -454,7 +462,7 @@ export const LANDING_METRICS = [
   { value: "6", label: "Board exam tracks" },
   { value: "Roadmap", label: "Per-exam study plan" },
   { value: "Deep Dive", label: "Linked lessons" },
-  { value: String(TOP_500_DRUGS_COUNT), label: "Pharmacology cards" },
+  { value: "Full Exam", label: "Timed simulations" },
   { value: "Calc", label: "Clinical calculators" },
 ];
 
@@ -522,7 +530,7 @@ export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [
   },
   {
     quote:
-      "I switched after the trial. Better price, and I could prep NCLEX and pharmacology flashcards without a second bill.",
+      "I switched after the trial. Better price, and I could prep NCLEX with a real Roadmap without a second bill.",
     name: "Brittany V.",
     exam: "NCLEX-RN",
     initials: "BV",
@@ -534,7 +542,7 @@ export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [
     quote:
       "In intern year I was juggling Step 2 prep on top of rotations. Paying $300+ per exam for two banks wasn't sustainable — here I got both Step 1 and Step 2 CK tracks under one plan.",
     longQuote:
-      "During third-year rotations, I couldn't justify paying $300+ for separate Step 1 and Step 2 CK banks on top of everything else. Switching to AnyExamEasy gave me both USMLE tracks — plus pharmacology reference — in one place for a fraction of the cost. The savings alone covered months of subscriptions elsewhere.",
+      "During third-year rotations, I couldn't justify paying $300+ for separate Step 1 and Step 2 CK banks on top of everything else. Switching to AnyExamEasy gave me both USMLE tracks — plus linked Deep Dives — in one place for a fraction of the cost. The savings alone covered months of subscriptions elsewhere.",
     name: "Marcus W.",
     exam: "USMLE Step 1 · Step 2 CK",
     initials: "MW",
@@ -568,12 +576,12 @@ export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [
   },
   {
     quote:
-      "Primary-care vignettes paired with the curated drug deck and FDA reference search in one place. That combination didn't exist anywhere else at this price.",
+      "Primary-care vignettes paired with Blueprint Roadmaps and Deep Dives in one place. That combination didn't exist anywhere else at this price.",
     name: "Sofia R.",
     exam: "AANP FNP-C",
     initials: "SR",
     outcome: "Passed AANP FNP-C",
-    detail: "Primary care + pharmacology bundled",
+    detail: "Primary care + Roadmap bundled",
     avatarGradient: "linear-gradient(135deg, #96fbc4 0%, #f9f586 100%)",
   },
   {
@@ -588,12 +596,12 @@ export const LANDING_SUCCESS_STORIES: LandingSuccessStory[] = [
   },
   {
     quote:
-      "Calculations, pharmacotherapy vignettes, and the full drug deck in one subscription. I stopped patching together three separate prep resources.",
+      "Calculations, pharmacotherapy vignettes, and timed full exams in one subscription. I stopped patching together three separate prep resources.",
     name: "Rachel B.",
     exam: "NAPLEX",
     initials: "RB",
     outcome: "Passed NAPLEX",
-    detail: "NAPLEX calc + drug reference in one plan",
+    detail: "NAPLEX calc + full exams in one plan",
     avatarGradient: "linear-gradient(135deg, #30cfd0 0%, #330867 100%)",
   },
 ];
@@ -629,8 +637,8 @@ export const UWORLD_COMPARE_ROWS = [
     them: "Limited demo or paid upfront bundles",
   },
   {
-    label: "Pharmacology deck",
-    us: `${drugsDeckFeatureLine()} included`,
-    them: "Often a separate purchase or scattered in banks",
+    label: "Full Exam simulation",
+    us: "Timed full-length mocks with weak-area weighting",
+    them: "Self-assembly or separate mock products",
   },
 ] as const;

@@ -74,7 +74,7 @@ const HOME_KEYWORDS = [
 export function buildHomeMetadata(totalQuestionsLabel?: string): Metadata {
   const countLabel = totalQuestionsLabel?.trim() || SEO_LIVE_STATS.questionCount;
   const title = `NCLEX Question Bank & USMLE Prep | ${countLabel} Practice Questions (2026)`;
-  const description = `Affordable ${SITE_NAME} Pro: one subscription for NCLEX practice questions, a full USMLE question bank (Steps 1–3), NAPLEX, PANCE, AANP FNP & NPTE-PT. ${countLabel} QA-gated items · AI Tutor · Blueprint Roadmaps · ${SEO_LIVE_STATS.trialDays}-day free trial · from ${formatMonthlyPrice("pro")}/mo.`;
+  const description = `Affordable ${SITE_NAME} Pro: one subscription for NCLEX practice questions, a full USMLE question bank (Steps 1–3), NAPLEX, PANCE, AANP FNP & NPTE-PT. ${countLabel} QA-gated items · Blueprint Roadmaps · Deep Dives · ${SEO_LIVE_STATS.trialDays}-day free trial · from ${formatMonthlyPrice("pro")}/mo.`;
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 
@@ -215,7 +215,7 @@ export function buildHomeJsonLd() {
         "@type": "HowTo",
         name: "How to study for NCLEX, USMLE, or NAPLEX with AnyExamEasy",
         description:
-          "A blueprint-aligned study workflow using adaptive Roadmaps, AI Tutor review, and spaced repetition.",
+          "A blueprint-aligned study workflow using adaptive Roadmaps, Deep Dive review, and Full Exam simulations.",
         step: [
           {
             "@type": "HowToStep",
@@ -232,8 +232,8 @@ export function buildHomeJsonLd() {
           {
             "@type": "HowToStep",
             position: 3,
-            name: "Review with AI Tutor & Deep Dives",
-            text: "Open rationales, AI Tutor coaching, and eight-section Deep Dive modules for missed topics.",
+            name: "Review with Deep Dives",
+            text: "Open rationales and eight-section Deep Dive modules for missed topics.",
           },
           {
             "@type": "HowToStep",

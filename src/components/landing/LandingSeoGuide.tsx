@@ -71,10 +71,10 @@ export function LandingSeoGuide({ questionCountLabel }: { questionCountLabel?: s
             without buying a separate subscription for every licensing exam.
           </p>
           <p>
-            One Pro plan unlocks {PLATFORM_EXAM_LIST}: {count} QA-gated items, AI Tutor coaching on
-            misses, adaptive Blueprint Roadmaps, Spaced Repetition, and full-length mocks — starting
-            at {formatMonthlyPrice("pro")}/mo after a free trial. That is the unique selling point:
-            premium multi-exam prep at a student-friendly price.
+            One Pro plan unlocks {PLATFORM_EXAM_LIST}: {count} QA-gated items, adaptive Blueprint
+            Roadmaps, Deep Dive modules, and full-length mocks — starting at {formatMonthlyPrice("pro")}
+            /mo after a free trial. That is the unique selling point: premium multi-exam prep at a
+            student-friendly price.
           </p>
         </div>
 
@@ -136,8 +136,8 @@ export function LandingSeoGuide({ questionCountLabel }: { questionCountLabel?: s
           </p>
           <p>
             Ready to try the banks yourself? Start a free trial, run a short NCLEX or USMLE set, and
-            see how Blueprint Roadmaps + AI Tutor change the way you review misses. When you are
-            ready for unlimited access across all six exams, upgrade once — not six times.
+            see how Blueprint Roadmaps change the way you review misses. When you are ready for
+            unlimited access across all six exams, upgrade once — not six times.
           </p>
         </div>
 

@@ -81,6 +81,11 @@ export function landingVisualSrc(id: string): string | undefined {
   return LANDING_VISUAL_PATHS[id as keyof typeof LANDING_VISUALS];
 }
 
+/** Homepage hero product still — clean cutout, product RGB untouched (no CSS filters). */
+export const LANDING_HERO_LAPTOP_SRC = "/images/landing/hero-laptop-float-v5d.png";
+export const LANDING_HERO_LAPTOP_ALT =
+  "Laptop with a stethoscope showing NCLEX, NAPLEX, USMLE, PANCE, AANP FNP, and NPTE prep books — Any Exam Easy";
+
 /** Landing hero / marketing video assets in /public/videos/landing/ */
 export const LANDING_VIDEO_PATHS = {
   heroShowcase: "/videos/landing/hero-showcase.mp4",

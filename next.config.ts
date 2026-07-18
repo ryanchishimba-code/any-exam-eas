@@ -3,9 +3,19 @@ import type { NextConfig } from "next";
 /** Standalone is for Docker/AWS only — Vercel uses its own serverless output (faster builds). */
 const useStandaloneOutput = !process.env.VERCEL;
 const onVercel = !!process.env.VERCEL;
+const isProd = process.env.NODE_ENV === "production";
+
+/**
+ * In `next dev`, chunk URLs like `/_next/static/chunks/app/(marketing)/page.js` are stable.
+ * If they were ever served with `Cache-Control: immutable`, browsers keep the old JS forever
+ * and hydrate over correct SSR HTML. A per-process deploymentId appends `?dpl=…` to assets
+ * so those stale entries cannot match.
+ */
+const devDeploymentId = !isProd ? `dev-${Date.now()}` : undefined;
 
 const nextConfig: NextConfig = {
   ...(useStandaloneOutput ? { output: "standalone" as const } : {}),
+  ...(devDeploymentId ? { deploymentId: devDeploymentId } : {}),
   poweredByHeader: false,
   serverExternalPackages: ["stripe"],
   // CI runs lint + typecheck; skipping both on Vercel avoids build OOM on this app.
@@ -17,7 +27,8 @@ const nextConfig: NextConfig = {
     ...(onVercel ? { cpus: 1, workerThreads: false, webpackMemoryOptimizations: true } : {}),
     staleTimes: {
       dynamic: 30,
-      static: 300,
+      // Dev: avoid client router serving a 5‑minute-old static homepage shell.
+      static: isProd ? 300 : 0,
     },
     optimizePackageImports: [
       "lucide-react",
@@ -51,7 +62,7 @@ const nextConfig: NextConfig = {
       },
     ];
 
-    if (process.env.NODE_ENV === "production") {
+    if (isProd) {
       securityHeaders.push({
         key: "Strict-Transport-Security",
         value: "max-age=31536000; includeSubDomains",
@@ -79,7 +90,15 @@ const nextConfig: NextConfig = {
       {
         source: "/_next/static/:path*",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          {
+            key: "Cache-Control",
+            // Production builds use content-hashed filenames — immutable is correct.
+            // In `next dev` chunk URLs are stable, so immutable caching freezes stale JS
+            // (e.g. old homepage hero) across edits. Never cache those in development.
+            value: isProd
+              ? "public, max-age=31536000, immutable"
+              : "no-store, must-revalidate",
+          },
         ],
       },
       {
@@ -90,7 +109,14 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/(.*\\.(?:ico|png|jpg|jpeg|gif|svg|webp|woff2|txt|xml|mp4|webm))",
-        headers: [{ key: "Cache-Control", value: "public, max-age=86400, stale-while-revalidate=604800" }],
+        headers: [
+          {
+            key: "Cache-Control",
+            value: isProd
+              ? "public, max-age=86400, stale-while-revalidate=604800"
+              : "no-store, must-revalidate",
+          },
+        ],
       },
       {
         source: "/.well-known/apple-developer-merchantid-domain-association",
@@ -101,7 +127,19 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/:path*",
-        headers: securityHeaders,
+        headers: [
+          ...securityHeaders,
+          // Dev: do not let browsers / intermediaries cache HTML or RSC payloads.
+          // (Prod omits this — CDN / platform cache headers apply as usual.)
+          ...(isProd
+            ? []
+            : [
+                {
+                  key: "Cache-Control",
+                  value: "no-store, must-revalidate",
+                },
+              ]),
+        ],
       },
     ];
   },

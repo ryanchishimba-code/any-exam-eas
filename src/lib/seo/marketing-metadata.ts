@@ -111,7 +111,7 @@ export function buildResourceArticleMetadata(article: ResourceArticle): Metadata
 
 export function buildPricingMetadata(): Metadata {
   const title = `Pricing — Best Value Multi-Exam Board Prep | ${SITE_NAME} Pro (2026)`;
-  const description = `All 6 board exams (NCLEX, USMLE, NAPLEX, PANCE, FNP, NPTE) on one Pro plan at ${formatMonthlyPrice("pro")}/mo. ${SEO_LIVE_STATS.questionCount} questions · ${SEO_LIVE_STATS.topDrugsLabel} · AI Tutor · ${SEO_LIVE_STATS.trialDays}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day money-back guarantee.`;
+  const description = `All 6 board exams (NCLEX, USMLE, NAPLEX, PANCE, FNP, NPTE) on one Pro plan at ${formatMonthlyPrice("pro")}/mo. ${SEO_LIVE_STATS.questionCount} questions · Blueprint Roadmaps · Deep Dives · ${SEO_LIVE_STATS.trialDays}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day money-back guarantee.`;
   return {
     ...baseOpenGraph(title, description, "/pricing", { absoluteTitle: true }),
     keywords: [
@@ -169,7 +169,7 @@ export function buildCompareJsonLd() {
             name: "Is AnyExamEasy a good UWorld alternative for multi-exam prep?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: `${seoPlatformPitch()} One Pro subscription covers NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE with adaptive Blueprint Roadmaps and AI Tutor — without buying separate per-exam subscriptions.`,
+              text: `${seoPlatformPitch()} One Pro subscription covers NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE with adaptive Blueprint Roadmaps and Deep Dive modules — without buying separate per-exam subscriptions.`,
             },
           },
           {
@@ -177,7 +177,7 @@ export function buildCompareJsonLd() {
             name: "NCLEX vs Archer Review — which is better value?",
             acceptedAnswer: {
               "@type": "Answer",
-              text: "Archer Review starts around $79/month for NCLEX-only QBank + CAT. AnyExamEasy includes NCLEX plus five other board exams on one plan with Roadmaps, AI Tutor, and Spaced Repetition — better value if you need more than one licensing exam.",
+              text: "Archer Review starts around $79/month for NCLEX-only QBank + CAT. AnyExamEasy includes NCLEX plus five other board exams on one plan with Roadmaps, Deep Dives, and Full Exams — better value if you need more than one licensing exam.",
             },
           },
         ],
@@ -189,7 +189,7 @@ export function buildCompareJsonLd() {
 export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
   const title = `About ${SITE_NAME} — NCLEX & USMLE Question Bank for Six Exams`;
   const countPhrase = serveReadyTotalLabel ?? SEO_LIVE_STATS.questionCount;
-  const description = `${SITE_NAME} is a clinician-built NCLEX question bank and USMLE question bank platform — plus NAPLEX, PANCE, AANP FNP & NPTE-PT — on one affordable subscription. ${countPhrase} QA-gated practice questions, AI Tutor, Blueprint Roadmaps. Built in Texas · ${SEO_LIVE_STATS.clinicianYears} years combined clinical experience.`;
+  const description = `${SITE_NAME} is a clinician-built NCLEX question bank and USMLE question bank platform — plus NAPLEX, PANCE, AANP FNP & NPTE-PT — on one affordable subscription. ${countPhrase} QA-gated practice questions, Blueprint Roadmaps, Deep Dives. Built in Texas · ${SEO_LIVE_STATS.clinicianYears} years combined clinical experience.`;
   return {
     ...baseOpenGraph(title, description, "/about", { absoluteTitle: true }),
     keywords: [
@@ -200,8 +200,8 @@ export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
       "affordable board exam prep",
       "clinician-curated question bank",
       "one subscription six exams",
-      "Top 509 drugs reference",
-      "AI tutor board prep",
+      "blueprint roadmap board prep",
+      "multi-exam board prep",
       "adaptive roadmap NCLEX USMLE NAPLEX",
     ],
   };
@@ -250,7 +250,7 @@ export function buildExamJsonLd(key: ExamSeoKey) {
       {
         "@type": "HowTo",
         name: `How to study for ${config.shortName} with AnyExamEasy`,
-        description: `Blueprint-aligned ${config.shortName} study plan using adaptive Roadmaps, AI Tutor, and spaced repetition.`,
+        description: `Blueprint-aligned ${config.shortName} study plan using adaptive Roadmaps, Deep Dive modules, and Full Exam simulations.`,
         step: [
           {
             "@type": "HowToStep",
@@ -267,8 +267,8 @@ export function buildExamJsonLd(key: ExamSeoKey) {
           {
             "@type": "HowToStep",
             position: 3,
-            name: "Review misses with AI Tutor",
-            text: "Open rationales and AI Tutor coaching on every incorrect or flagged item the same day.",
+            name: "Review misses with Deep Dives",
+            text: "Open rationales and eight-section Deep Dive modules on every incorrect or flagged item the same day.",
           },
           {
             "@type": "HowToStep",
