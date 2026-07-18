@@ -119,6 +119,8 @@ function parseArgs() {
   let skipFix = false;
   let generateCount = 40;
   let enrichLimit = 150;
+  /** Force mix: calcs/PK-heavy, safety-heavy, or auto (foundations-health heuristic). */
+  let bias: "auto" | "calcs" | "safety" | "domain3" = "auto";
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--wave" && args[i + 1]) wave = Number(args[++i]);
@@ -128,8 +130,12 @@ function parseArgs() {
     else if (args[i] === "--skip-fix") skipFix = true;
     else if (args[i] === "--generate-count" && args[i + 1]) generateCount = Number(args[++i]);
     else if (args[i] === "--enrich-limit" && args[i + 1]) enrichLimit = Number(args[++i]);
+    else if (args[i] === "--bias" && args[i + 1]) {
+      const v = String(args[++i]).toLowerCase();
+      if (v === "calcs" || v === "safety" || v === "domain3" || v === "auto") bias = v;
+    }
   }
-  return { wave, auditOnly, skipGenerate, skipEnrich, skipFix, generateCount, enrichLimit };
+  return { wave, auditOnly, skipGenerate, skipEnrich, skipFix, generateCount, enrichLimit, bias };
 }
 
 async function audit() {
@@ -260,7 +266,7 @@ async function generateBatch(
   client: OpenAI,
   kind: "domain1" | "domain3" | "safety",
   count: number,
-  opts?: { preferPharmaceutics?: boolean }
+  opts?: { preferPharmaceutics?: boolean; complexCalcs?: boolean }
 ): Promise<GenItem[]> {
   const topics =
     kind === "domain1" ? PK_TOPICS : kind === "safety" ? SAFETY_TOPICS : DOMAIN3_TOPICS;
@@ -277,16 +283,20 @@ async function generateBatch(
     kind === "domain1"
       ? opts?.preferPharmaceutics
         ? `SUBJECT MIX (critical): ≥70% subjectId MUST be "pharmaceutics"; rest pharmacokinetics/compounding-calculations/pharmacology. Never invent new subjectIds.`
-        : `SUBJECT MIX (critical): ≥70% subjectId MUST be "pharmacokinetics"; rest pharmaceutics/compounding-calculations/pharmacology. Never invent new subjectIds.`
+        : opts?.complexCalcs
+          ? `SUBJECT MIX (critical): ≥50% subjectId "compounding-calculations", ≥30% "pharmacokinetics"; rest pharmaceutics/pharmacology. Every calc MUST show units in stem AND options; no unsafe/ambiguous math.`
+          : `SUBJECT MIX (critical): ≥70% subjectId MUST be "pharmacokinetics"; rest pharmaceutics/compounding-calculations/pharmacology. Never invent new subjectIds.`
       : kind === "safety"
         ? `SUBJECT MIX: use patient-counseling, pharmacology, or pharmacy-law only. Tag ISMP/LASA/high-alert safety actions a pharmacist owns. Never invent subjectIds.`
         : `SUBJECT MIX: spread across endocrine-rx, cns-rx, infectious-disease-rx, cardiovascular-rx, otc-self-care. Prefer underbuilt endocrine/cns/oncology-supportive vignettes tagged to those subjects. Never invent subjectIds.`;
 
   const focusLabel =
     kind === "domain1"
-      ? opts?.preferPharmaceutics
-        ? "Domain 1 Foundations — pharmaceutics / biopharmaceutics emphasis"
-        : "Domain 1 Foundations (PK/PD/biopharmaceutics/calcs/PGx)"
+      ? opts?.complexCalcs
+        ? "Domain 1 Foundations — HARD pharmacy calculations & PK with explicit units"
+        : opts?.preferPharmaceutics
+          ? "Domain 1 Foundations — pharmaceutics / biopharmaceutics emphasis"
+          : "Domain 1 Foundations (PK/PD/biopharmaceutics/calcs/PGx)"
       : kind === "safety"
         ? "Domain 4 Professional Practice / Medication Safety (ISMP, LASA, reconciliation, high-alert)"
         : "Domain 3 Person-Centered Treatment Planning";
@@ -298,6 +308,7 @@ Rules:
 - Vignette-rich with labs/meds/comorbidities
 - Plausible distractors = common candidate errors
 - Every item MUST include full rationale object
+- Calculations: always include units (mg, mL, mg/kg, mEq, AUC units); show multi-step work in rationale.stepByStep; never omit concentration/volume/time needed to solve
 - ${subjectBias}
 Return JSON: {"items":[...]} with fields:
 subjectId (one of ${subjects.join(", ")} ONLY),
@@ -311,9 +322,11 @@ rationale:{whyCorrect, distractorRationales{option:text}, clinicalPearl, mnemoni
 
   const userContent =
     kind === "domain1"
-      ? opts?.preferPharmaceutics
-        ? `Generate ${count} items now. At least ${Math.ceil(count * 0.7)} must use subjectId "pharmaceutics". Topics: biopharmaceutics-dissolution and related foundations.`
-        : `Generate ${count} items now. At least ${Math.ceil(count * 0.7)} must use subjectId "pharmacokinetics". Topics: ${topics.join(", ")}.`
+      ? opts?.complexCalcs
+        ? `Generate ${count} HARD calc/PK items now. Prefer CrCl dosing, TDM, IV rates, alligation, loading/maintenance, AUC. Every numeric answer option MUST include units. Topics: ${topics.join(", ")}.`
+        : opts?.preferPharmaceutics
+          ? `Generate ${count} items now. At least ${Math.ceil(count * 0.7)} must use subjectId "pharmaceutics". Topics: biopharmaceutics-dissolution and related foundations.`
+          : `Generate ${count} items now. At least ${Math.ceil(count * 0.7)} must use subjectId "pharmacokinetics". Topics: ${topics.join(", ")}.`
       : kind === "safety"
         ? `Generate ${count} medication-safety items now. Prefer: ${topics.slice(0, 8).join(", ")}. blueprintDomain must be naplex-area4-safety.`
         : `Generate ${count} high-yield Domain 3 items now. Prefer: ${topics.slice(0, 8).join(", ")}.`;
@@ -571,19 +584,40 @@ async function main() {
 
   let genStats = { d1: 0, d3: 0, safety: 0 };
   if (!opts.skipGenerate) {
-    // PK gate already cleared (~200); prefer pharmaceutics + Domain 3 + safety (tough C gaps).
-    const preferPharmaceutics = (gap.gapScores.pharmacokinetics ?? 0) >= 180;
-    const d1Count = Math.max(8, Math.floor(opts.generateCount * 0.3));
-    const safetyCount = Math.max(8, Math.floor(opts.generateCount * 0.25));
+    // PK gate already cleared (~200); prefer Domain 3 + safety when foundations are healthy
+    // (tough ratings keep docking medication-safety ~4 and treatment-planning coverage).
+    // --bias calcs forces PK/calc-heavy Domain 1 when calc readiness is the blocker.
+    const preferPharmaceutics =
+      opts.bias === "calcs" ? false : (gap.gapScores.pharmacokinetics ?? 0) >= 180;
+    const complexCalcs = opts.bias === "calcs";
+    const foundationsHealthy =
+      (gap.gapScores.pharmacokinetics ?? 0) >= 200 && (gap.gapScores.pharmaceutics ?? 0) >= 150;
+    let d1Frac = foundationsHealthy ? 0.15 : 0.3;
+    let safetyFrac = foundationsHealthy ? 0.4 : 0.25;
+    if (opts.bias === "calcs") {
+      d1Frac = 0.55;
+      safetyFrac = 0.15;
+    } else if (opts.bias === "safety") {
+      d1Frac = 0.15;
+      safetyFrac = 0.45;
+    } else if (opts.bias === "domain3") {
+      d1Frac = 0.15;
+      safetyFrac = 0.2;
+    }
+    const d1Count = Math.max(8, Math.floor(opts.generateCount * d1Frac));
+    const safetyCount = Math.max(8, Math.floor(opts.generateCount * safetyFrac));
     const d3Count = Math.max(8, opts.generateCount - d1Count - safetyCount);
     const chunk = 8;
 
     console.log(
-      `\nGenerating Domain 1 foundations (~${d1Count}, pharmaceuticsBias=${preferPharmaceutics}) in chunks of ${chunk}…`
+      `\nGenerating Domain 1 foundations (~${d1Count}, pharmaceuticsBias=${preferPharmaceutics}, bias=${opts.bias}) in chunks of ${chunk}…`
     );
     for (let n = 0; n < d1Count; n += chunk) {
       const want = Math.min(chunk, d1Count - n);
-      const d1 = await generateBatch(client, "domain1", want, { preferPharmaceutics });
+      const d1 = await generateBatch(client, "domain1", want, {
+        preferPharmaceutics,
+        complexCalcs,
+      });
       const d1ins = await insertGenerated(d1, "domain1");
       genStats.d1 += d1ins.created;
     }
