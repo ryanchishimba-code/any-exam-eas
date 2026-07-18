@@ -175,7 +175,7 @@ export const LANDING_HERO_HEADLINE_ACCENT = "";
 
 /** Hero sub-headline body — pass live total via formatFlagshipHeroSubline(totalLabel). */
 export const LANDING_HERO_SUBLINE_BODY =
-  "QA-gated questions and Blueprint Roadmaps — six boards, one plan.";
+  "QA-gated questions, 3D Anatomy explorer with treatment and disease explanations, Top 500 drug cards, and Blueprint Roadmaps — six boards, one plan.";
 
 export function formatFlagshipHeroSubline(totalLabel?: string): string {
   const count = totalLabel?.trim();

@@ -1,9 +1,9 @@
 /** Canonical marketing stats for SEO copy — update when live counts change. */
 export const SEO_LIVE_STATS = {
-  questionCount: "44,516",
-  questionCountRaw: 44_516,
+  questionCount: "46,337",
+  questionCountRaw: 46_337,
   topDrugsCount: 509,
-  topDrugsLabel: "Top 509 Drugs",
+  topDrugsLabel: "Top 500 Drugs",
   clinicianYears: "12+",
   trialDays: 5,
   moneyBackDays: 30,
@@ -69,5 +69,5 @@ export const SEO_HOME_H1_ACCENT = "";
 /** Homepage subline template; inject live question total when available. */
 export function seoHomeHeroSubline(totalLabel?: string): string {
   const count = totalLabel?.trim() || SEO_LIVE_STATS.questionCount;
-  return `${count} QA-gated questions, NGN-ready NCLEX formats, Blueprint Roadmaps, Deep Dives & Full Exams — clinician-built (${SEO_LIVE_STATS.clinicianYears} years). Multi-exam value vs stacking single-board QBanks.`;
+  return `${count} questions. QA-gated questions, 3D Anatomy explorer with treatment and disease explanations, Top 500 drug cards, and Blueprint Roadmaps — six boards, one plan.`;
 }
