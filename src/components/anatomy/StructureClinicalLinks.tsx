@@ -10,6 +10,8 @@ import {
   type ClinicalEndpoint,
   type ResolvedAnatomyDiseaseLink,
 } from "@/lib/anatomy/clinical-links";
+import { enrichDrug } from "@/lib/drugs300/enrichment";
+import type { DrugEntry } from "@/lib/drugs300/types";
 import type { AnatomyStructure } from "@/lib/anatomy/types";
 
 type Props = {
@@ -30,13 +32,14 @@ export function StructureClinicalLinks({
   if (diseases.length === 0) return null;
 
   return (
-    <section aria-label="Disease states and treatments">
+    <section aria-label="Diagnosis, treatment, and drugs">
       <div className="mb-2 flex items-center gap-2">
         <Stethoscope className="h-4 w-4 text-cyan-400" aria-hidden />
-        <h4 className="text-sm font-bold text-white">Disease → drug → endpoints</h4>
+        <h4 className="text-sm font-bold text-white">Diagnosis → treatment → drugs</h4>
       </div>
       <p className="mb-3 text-xs leading-relaxed text-white/70">
-        Tap a related condition above or explore each thread — drugs open the Top 500 card.
+        Best diagnosis, why we treat, and why each drug is used — with a brief mechanism of action.
+        Drugs open the Top 500 card.
       </p>
 
       <ul className="space-y-3">
@@ -102,6 +105,13 @@ function DiseaseCard({
         {disease.pathophysiology}
       </p>
 
+      {disease.bestDiagnosis ? (
+        <p className="mt-2 rounded-lg border border-sky-500/25 bg-sky-500/10 px-2.5 py-2 text-[11px] leading-relaxed text-sky-50">
+          <strong className="font-semibold text-sky-100">Best diagnosis:</strong>{" "}
+          {disease.bestDiagnosis}
+        </p>
+      ) : null}
+
       {disease.guidelines && disease.guidelines.length > 0 ? (
         <div className="mt-2 flex flex-wrap gap-1.5">
           {disease.guidelines.slice(0, 4).map((g) =>
@@ -148,6 +158,13 @@ function DiseaseCard({
         endpoints={disease.monitoringEndpoints}
       />
 
+      {disease.treatmentRationale ? (
+        <p className="mt-2 rounded-lg border border-emerald-500/25 bg-emerald-500/10 px-2.5 py-2 text-[11px] leading-relaxed text-emerald-50">
+          <strong className="font-semibold text-emerald-100">Treatment rationale:</strong>{" "}
+          {disease.treatmentRationale}
+        </p>
+      ) : null}
+
       {disease.treatmentGoals && disease.treatmentGoals.length > 0 ? (
         <div className="mt-2">
           <p className="text-[10px] font-bold uppercase tracking-wide text-emerald-400">Goals</p>
@@ -168,7 +185,7 @@ function DiseaseCard({
           </p>
           <ul className="mt-1.5 space-y-1.5">
             {disease.firstLineDrugs.map((drug) => (
-              <DrugRow key={drug.id} drug={drug} />
+              <DrugRow key={drug.id} drug={drug} disease={disease} />
             ))}
           </ul>
         </div>
@@ -185,7 +202,7 @@ function DiseaseCard({
           </p>
           <ul className="mt-1.5 space-y-1.5">
             {disease.adjunctDrugs.map((drug) => (
-              <DrugRow key={drug.id} drug={drug} subdued />
+              <DrugRow key={drug.id} drug={drug} disease={disease} subdued />
             ))}
           </ul>
         </div>
@@ -243,11 +260,17 @@ function EndpointGroup({
 
 function DrugRow({
   drug,
+  disease,
   subdued = false,
 }: {
-  drug: { id: string; generic: string; brand: string; therapeuticClass: string };
+  drug: DrugEntry;
+  disease: ResolvedAnatomyDiseaseLink;
   subdued?: boolean;
 }) {
+  const rationale = disease.drugRationales?.[drug.id];
+  const enrichment = enrichDrug(drug);
+  const moa = rationale?.briefMoa ?? enrichment.mechanism;
+
   return (
     <li>
       <Link
@@ -263,6 +286,18 @@ function DrugRow({
           <span className="mt-0.5 block text-[10px] text-white/70">
             {drug.therapeuticClass}
           </span>
+          {rationale?.whyUsed ? (
+            <span className="mt-1.5 block text-[11px] leading-snug text-violet-100/90">
+              <span className="font-semibold text-violet-200">Why used: </span>
+              {rationale.whyUsed}
+            </span>
+          ) : null}
+          {moa ? (
+            <span className="mt-1 block text-[11px] leading-snug text-cyan-100/85">
+              <span className="font-semibold text-cyan-200">MOA: </span>
+              {moa}
+            </span>
+          ) : null}
         </span>
       </Link>
     </li>

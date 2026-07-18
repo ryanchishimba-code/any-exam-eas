@@ -1,5 +1,6 @@
 export type {
   AnatomyDiseaseLink,
+  AnatomyDrugRationale,
   AnatomyEvidenceLevel,
   ClinicalEndpoint,
   DrugClinicalContext,
@@ -9,6 +10,11 @@ export type {
 export { CURATED_DISEASE_LINKS } from "./diseases-curated";
 export { CURATED_DISEASE_LINKS_EXTENDED } from "./diseases-curated-extended";
 export { CURATED_DISEASE_LINKS_LONGTAIL } from "./diseases-curated-longtail";
+export {
+  CLINICAL_DEPTH_BY_ID,
+  applyClinicalDepth,
+  type ClinicalDepthOverlay,
+} from "./clinical-depth";
 export {
   DISEASE_GUIDELINE_MAP,
   enrichDiseaseLinkWithAuthorities,

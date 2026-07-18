@@ -1,4 +1,5 @@
 import type { AnatomyDiseaseLink } from "./types";
+import { applyClinicalDepth } from "./clinical-depth";
 import { CURATED_DISEASE_LINKS_EXTENDED } from "./diseases-curated-extended";
 import { CURATED_DISEASE_LINKS_LONGTAIL } from "./diseases-curated-longtail";
 
@@ -16,6 +17,21 @@ export const CURATED_DISEASE_LINKS: AnatomyDiseaseLink[] = [
       "Dry skin, bradycardia, delayed reflex relaxation",
       "↑ TSH with low free T4",
     ],
+    bestDiagnosis: "↑ TSH + low free T4; anti-TPO supports Hashimoto thyroiditis.",
+    treatmentRationale:
+      "Replace missing thyroid hormone to restore euthyroidism and normalize TSH feedback.",
+    drugRationales: {
+      levothyroxine: {
+        whyUsed:
+          "Standard T4 replacement that converts peripherally to active T3 and is titrated to TSH.",
+        briefMoa: "Synthetic T4; deiodinated to T3 → nuclear thyroid receptor activation.",
+      },
+      liothyronine: {
+        whyUsed:
+          "Direct T3 when rapid effect or myxedema adjunct is needed — not routine first-line monotherapy.",
+        briefMoa: "Synthetic T3 binds thyroid receptors directly (short half-life).",
+      },
+    },
     firstLineDrugIds: ["levothyroxine"],
     adjunctDrugIds: ["liothyronine"],
     diagnosticEndpoints: [
@@ -363,4 +379,4 @@ export const CURATED_DISEASE_LINKS: AnatomyDiseaseLink[] = [
   },
   ...CURATED_DISEASE_LINKS_EXTENDED,
   ...CURATED_DISEASE_LINKS_LONGTAIL,
-];
+].map(applyClinicalDepth);

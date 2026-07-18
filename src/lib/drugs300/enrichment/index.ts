@@ -2,6 +2,7 @@ import type { DrugEntry } from "../types";
 import type { DrugEnrichment, EnrichedDrugView } from "./types";
 import { enrichmentFromClass } from "./class-pearls";
 import { DRUG_ENRICHMENT_OVERLAYS } from "./drug-overlays";
+import { DRUG_MECHANISM_OVERLAYS } from "./mechanism-overlays";
 
 export type { DrugEnrichment, EnrichedDrugView } from "./types";
 
@@ -36,8 +37,9 @@ function dedupeGuidelines(
 /** Attach guideline-aligned high-yield layer to a catalog drug row. */
 export function enrichDrug(drug: DrugEntry): EnrichedDrugView {
   const fromClass = enrichmentFromClass(drug);
+  const mechanism = DRUG_MECHANISM_OVERLAYS[drug.id];
   const overlay = DRUG_ENRICHMENT_OVERLAYS[drug.id];
-  const merged = mergeEnrichment(fromClass, overlay);
+  const merged = mergeEnrichment(mergeEnrichment(fromClass, mechanism), overlay);
 
   return {
     ...merged,

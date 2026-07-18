@@ -20,6 +20,7 @@ import {
   resolveDiseaseLink,
 } from "../src/lib/anatomy/clinical-links";
 import { getDrugById } from "../src/lib/drugs300/catalog";
+import { enrichDrug } from "../src/lib/drugs300/enrichment";
 import { TOPIC_STRUCTURE_IDS_FOR_AUDIT } from "../src/lib/exam-prep/anatomy-study-meta";
 import { ANATOMY_PROCEDURES } from "../src/lib/anatomy/procedures";
 
@@ -140,6 +141,40 @@ function main() {
     });
   }
 
+  // High-yield curated clinical depth (dx / treatment / why+MOA)
+  const highYieldCurated = curated.filter((d) => d.highYield && !d.generated);
+  const missingBestDiagnosis: string[] = [];
+  const missingTreatmentRationale: string[] = [];
+  const missingDrugRationale: Array<{ diseaseId: string; drugId: string }> = [];
+  const missingSharedMoa: string[] = [];
+
+  for (const link of highYieldCurated) {
+    if (!link.bestDiagnosis?.trim()) missingBestDiagnosis.push(link.id);
+    if (!link.treatmentRationale?.trim()) missingTreatmentRationale.push(link.id);
+    for (const drugId of [...link.firstLineDrugIds, ...(link.adjunctDrugIds ?? [])]) {
+      const why = link.drugRationales?.[drugId]?.whyUsed?.trim();
+      if (!why) missingDrugRationale.push({ diseaseId: link.id, drugId });
+      const drug = getDrugById(drugId);
+      if (!drug) continue;
+      const moa = link.drugRationales?.[drugId]?.briefMoa ?? enrichDrug(drug).mechanism;
+      if (!moa?.trim()) missingSharedMoa.push(drugId);
+    }
+  }
+
+  for (const id of missingBestDiagnosis) {
+    issues.push({ code: "missing_best_diagnosis", detail: id, severity: "warn" });
+  }
+  for (const id of missingTreatmentRationale) {
+    issues.push({ code: "missing_treatment_rationale", detail: id, severity: "warn" });
+  }
+  for (const row of missingDrugRationale) {
+    issues.push({
+      code: "missing_drug_rationale",
+      detail: `${row.diseaseId} → ${row.drugId}`,
+      severity: "warn",
+    });
+  }
+
   const coverage = getCorePathologyCoverage();
   const uncovered = getUncoveredCorePathologies();
   const weakGenerated = supplemental.filter(
@@ -154,6 +189,15 @@ function main() {
     highYieldWithGuidelines: ANATOMY_DISEASE_LINKS.filter(
       (d) => d.highYield && !d.generated && (d.guidelines?.length ?? 0) > 0
     ).length,
+    clinicalDepth: {
+      highYieldCurated: highYieldCurated.length,
+      withBestDiagnosis: highYieldCurated.length - missingBestDiagnosis.length,
+      withTreatmentRationale: highYieldCurated.length - missingTreatmentRationale.length,
+      missingBestDiagnosis,
+      missingTreatmentRationale,
+      missingDrugRationale,
+      missingSharedMoa: [...new Set(missingSharedMoa)].sort(),
+    },
     orphanDrugs,
     corePathologyCoverage: coverage.length,
     uncoveredCorePathologies: uncovered,
@@ -174,6 +218,7 @@ function main() {
       {
         curatedCount: report.curatedCount,
         generatedCount: report.generatedCount,
+        clinicalDepth: report.clinicalDepth,
         errorCount: report.errorCount,
         warnCount: report.warnCount,
         uncovered: uncovered.length,

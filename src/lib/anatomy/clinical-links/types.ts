@@ -14,6 +14,14 @@ export type AnatomyEvidenceLevel =
   | "board-standard"
   | "auto-matched";
 
+/** Disease-specific reason a Top 500 drug is used, with optional MOA override. */
+export type AnatomyDrugRationale = {
+  /** Why this drug is chosen for this disease (not generic class copy). */
+  whyUsed: string;
+  /** Short MOA when disease context differs from the shared drug overlay. */
+  briefMoa?: string;
+};
+
 /** Disease state anchored to anatomy structures with therapies and measurable endpoints. */
 export type AnatomyDiseaseLink = {
   id: string;
@@ -23,6 +31,12 @@ export type AnatomyDiseaseLink = {
   pathologyLabel?: string;
   pathophysiology: string;
   presentation: string[];
+  /** How you make the diagnosis — keys + confirmatory finding (one line). */
+  bestDiagnosis?: string;
+  /** Why this treatment strategy for this disease. */
+  treatmentRationale?: string;
+  /** Per Top 500 drugId: why used here + optional brief MOA. */
+  drugRationales?: Record<string, AnatomyDrugRationale>;
   /** Top 500 drug catalog ids — first-line therapies */
   firstLineDrugIds: string[];
   adjunctDrugIds?: string[];

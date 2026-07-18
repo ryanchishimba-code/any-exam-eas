@@ -7,8 +7,11 @@ import {
   anatomyStructureHref,
   drugUsedAsFirstLine,
   getClinicalContextForDrug,
+  type ResolvedAnatomyDiseaseLink,
 } from "@/lib/anatomy/clinical-links";
 import { getAnatomyStructure } from "@/lib/anatomy";
+import { enrichDrug } from "@/lib/drugs300/enrichment";
+import { getDrugById } from "@/lib/drugs300/catalog";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -118,6 +121,16 @@ export function DrugClinicalBridge({
                   </span>
                 ) : null}
               </div>
+              {!compact && disease.bestDiagnosis ? (
+                <p
+                  className={`mt-1.5 text-[11px] leading-snug ${
+                    dark ? "text-cyan-50/90" : "text-slate-700"
+                  }`}
+                >
+                  <span className="font-semibold">Dx: </span>
+                  {disease.bestDiagnosis}
+                </p>
+              ) : null}
               {!compact && disease.guidelines && disease.guidelines.length > 0 ? (
                 <p
                   className={`mt-1.5 text-[10px] leading-snug ${
@@ -129,6 +142,13 @@ export function DrugClinicalBridge({
                     .map((g) => g.label)
                     .join(" · ")}
                 </p>
+              ) : null}
+              {!compact ? (
+                <DrugWhyMoaLines
+                  disease={disease}
+                  drugId={drugId}
+                  dark={dark}
+                />
               ) : null}
               {!compact && disease.diagnosticEndpoints && disease.diagnosticEndpoints.length > 0 ? (
                 <div className="mt-2 flex flex-wrap gap-1.5">
@@ -229,5 +249,39 @@ export function DrugClinicalBridge({
       </p>
       <div className="mt-3">{linksBody}</div>
     </section>
+  );
+}
+
+function DrugWhyMoaLines({
+  disease,
+  drugId,
+  dark,
+}: {
+  disease: ResolvedAnatomyDiseaseLink;
+  drugId: string;
+  dark: boolean;
+}) {
+  const rationale = disease.drugRationales?.[drugId];
+  const drug = getDrugById(drugId);
+  const moa = rationale?.briefMoa ?? (drug ? enrichDrug(drug).mechanism : undefined);
+  if (!rationale?.whyUsed && !moa) return null;
+
+  return (
+    <div className={`mt-2 space-y-1 text-[11px] leading-snug ${dark ? "text-cyan-50/85" : "text-slate-600"}`}>
+      {rationale?.whyUsed ? (
+        <p>
+          <span className={`font-semibold ${dark ? "text-violet-200" : "text-violet-800"}`}>
+            Why used:{" "}
+          </span>
+          {rationale.whyUsed}
+        </p>
+      ) : null}
+      {moa ? (
+        <p>
+          <span className={`font-semibold ${dark ? "text-cyan-200" : "text-cyan-800"}`}>MOA: </span>
+          {moa}
+        </p>
+      ) : null}
+    </div>
   );
 }
