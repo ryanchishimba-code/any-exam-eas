@@ -3,20 +3,26 @@ import type { Metadata } from "next";
 import { listPublishedBlogPosts, type PublicBlogPostCard } from "@/lib/blog/public";
 import { MAX_BLOG_POSTS } from "@/lib/blog/limits";
 import { ROUTES } from "@/lib/routes";
-import { SITE_NAME } from "@/lib/site";
-
 /** ISR — public list is cached; admin writes call revalidatePublicBlog(). */
 export const revalidate = 60;
 
+const BLOG_TITLE = "Board Exam Prep Blog — Study Tips & Guides";
+const BLOG_DESCRIPTION =
+  "Study tips, exam roadmaps and Qbank strategy for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE. Practical guides written by clinician educators in 2026.";
+
 export const metadata: Metadata = {
-  title: `Blog — ${SITE_NAME}`,
-  description:
-    "High-yield study tips, exam strategy, and product updates for NCLEX, USMLE, NAPLEX, and more.",
+  title: { absolute: BLOG_TITLE },
+  description: BLOG_DESCRIPTION,
+  alternates: { canonical: "/blog" },
   openGraph: {
-    title: `Blog — ${SITE_NAME}`,
-    description:
-      "High-yield study tips, exam strategy, and product updates for board exam prep.",
+    title: BLOG_TITLE,
+    description: BLOG_DESCRIPTION,
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: BLOG_TITLE,
+    description: BLOG_DESCRIPTION,
   },
 };
 

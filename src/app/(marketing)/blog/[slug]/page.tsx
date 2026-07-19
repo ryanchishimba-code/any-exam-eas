@@ -10,6 +10,7 @@ import {
   listRelatedBlogPosts,
 } from "@/lib/blog/public";
 import { ROUTES } from "@/lib/routes";
+import { clampMetaDescription, clampMetaTitle } from "@/lib/seo/meta-budget";
 import { SITE_NAME } from "@/lib/site";
 
 /** ISR — post HTML is cached; view counts update client-side. */
@@ -31,8 +32,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = await getPublishedBlogPostBySlug(slug);
   if (!post) return { title: "Post not found" };
 
-  const title = post.metaTitle || post.title;
-  const description = post.metaDescription || post.excerpt || `${post.title} — ${SITE_NAME}`;
+  const rawTitle = post.metaTitle || post.title;
+  const title = clampMetaTitle(rawTitle);
+  const description = clampMetaDescription(
+    post.metaDescription || post.excerpt || `${post.title} — board exam prep tips from ${SITE_NAME}.`
+  );
   const url = blogPostAbsoluteUrl(post.slug);
   const coverAbsolute =
     post.coverImage &&
@@ -41,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : `${url.replace(/\/blog\/[^/]+$/, "")}${post.coverImage}`);
 
   return {
-    title: `${title} — ${SITE_NAME}`,
+    title: { absolute: title },
     description,
     openGraph: {
       title,

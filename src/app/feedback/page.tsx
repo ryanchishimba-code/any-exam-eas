@@ -6,15 +6,28 @@ import { SITE_NAME } from "@/lib/site";
 import { ROUTES } from "@/lib/routes";
 import type { Metadata } from "next";
 
+const CONTACT_TITLE = `Contact Us — ${SITE_NAME}`;
+const CONTACT_DESCRIPTION = `Contact ${SITE_NAME} for billing help, content questions, bug reports or product feedback. Email support or send a message — we reply to every note.`;
+
 export const metadata: Metadata = {
-  title: { absolute: `Contact Us — ${SITE_NAME}` },
-  description: `Contact ${SITE_NAME} for billing help, content questions, bug reports, or product feedback. Email ${LEGAL_ENTITY.supportEmail} or send a message — we read every submission.`,
+  title: { absolute: CONTACT_TITLE },
+  description: CONTACT_DESCRIPTION,
+  alternates: { canonical: "/feedback" },
   keywords: [
     "contact AnyExamEasy",
     "Any Exam Easy support",
     "board exam prep help",
     "AnyExamEasy feedback",
   ],
+  openGraph: {
+    title: CONTACT_TITLE,
+    description: CONTACT_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary",
+    title: CONTACT_TITLE,
+    description: CONTACT_DESCRIPTION,
+  },
 };
 
 export default function ContactPage() {

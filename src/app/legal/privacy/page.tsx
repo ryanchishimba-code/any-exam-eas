@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
 
-export const metadata = { title: "Privacy Policy — Any Exam Easy" };
+export const metadata: Metadata = {
+  title: { absolute: "Privacy Policy — Any Exam Easy" },
+  description:
+    "Read the Any Exam Easy Privacy Policy — how we collect, use and protect account data for NCLEX, USMLE and multi-exam board prep students today.",
+  alternates: { canonical: "/legal/privacy" },
+};
 
 export default function PrivacyPage() {
   const { companyName, productName, supportEmail, legalEmail, productDomain } = LEGAL_ENTITY;

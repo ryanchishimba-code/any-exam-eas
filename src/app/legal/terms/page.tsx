@@ -1,7 +1,13 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { LEGAL_DISCLAIMERS, LEGAL_ENTITY, LEGAL_LAST_UPDATED } from "@/lib/legal";
 
-export const metadata = { title: "Terms of Service — Any Exam Easy" };
+export const metadata: Metadata = {
+  title: { absolute: "Terms of Service — Any Exam Easy" },
+  description:
+    "Read the Any Exam Easy Terms of Service — subscription rules, trials, refunds and acceptable use for our online board exam prep platform today.",
+  alternates: { canonical: "/legal/terms" },
+};
 
 export default function TermsPage() {
   const { companyName, productName, supportEmail, legalEmail } = LEGAL_ENTITY;

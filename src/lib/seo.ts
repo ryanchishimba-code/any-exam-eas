@@ -8,6 +8,10 @@ import {
 } from "@/lib/site";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS, MONTHLY_PRICE_USD } from "@/lib/billing-config";
+import {
+  enforceMetaDescription,
+  enforceMetaTitle,
+} from "@/lib/seo/meta-budget";
 
 const PRODUCTION_SITE_URL = `https://www.${SITE_DOMAIN}`;
 
@@ -72,9 +76,16 @@ const HOME_KEYWORDS = [
 ];
 
 export function buildHomeMetadata(totalQuestionsLabel?: string): Metadata {
-  const countLabel = totalQuestionsLabel?.trim() || SEO_LIVE_STATS.questionCount;
-  const title = `NCLEX Question Bank & USMLE Prep | ${countLabel} Practice Questions (2026)`;
-  const description = `Affordable ${SITE_NAME} Pro: one subscription for NCLEX practice questions, a full USMLE question bank (Steps 1–3), NAPLEX, PANCE, AANP FNP & NPTE-PT. ${countLabel} QA-gated items · Blueprint Roadmaps · Deep Dives · ${SEO_LIVE_STATS.trialDays}-day free trial · from ${formatMonthlyPrice("pro")}/mo.`;
+  // Title/description stay budget-stable; live count belongs in on-page copy, not meta.
+  void totalQuestionsLabel;
+  const title = enforceMetaTitle(
+    "NCLEX & USMLE Qbank — 6 Exams, One Plan (2026)",
+    "home"
+  );
+  const description = enforceMetaDescription(
+    `${SEO_LIVE_STATS.questionCount} QA-gated NCLEX & USMLE questions with Roadmaps & Deep Dives. One Pro plan for six boards. Start a free ${SEO_LIVE_STATS.trialDays}-day trial — no card required.`,
+    "home"
+  );
   const url = getSiteUrl();
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 import { SignupForm } from "@/components/SignupForm";
 import { PageShell } from "@/components/PageShell";
@@ -9,10 +10,26 @@ import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { isExamSlug } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
-import { MARKETING_DISCLAIMER, TRIAL_CTA_LABEL } from "@/lib/site";
+import { MARKETING_DISCLAIMER, SITE_NAME, TRIAL_CTA_LABEL } from "@/lib/site";
 
-export const metadata = {
-  title: "Sign Up — Any Exam Easy",
+const SIGNUP_TITLE = `Sign Up — ${SITE_NAME}`;
+const SIGNUP_DESCRIPTION =
+  "Create your Any Exam Easy account for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE prep. Start a free trial today — no credit card is required now.";
+
+export const metadata: Metadata = {
+  title: { absolute: SIGNUP_TITLE },
+  description: SIGNUP_DESCRIPTION,
+  alternates: { canonical: "/signup" },
+  robots: { index: false, follow: true },
+  openGraph: {
+    title: SIGNUP_TITLE,
+    description: SIGNUP_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary",
+    title: SIGNUP_TITLE,
+    description: SIGNUP_DESCRIPTION,
+  },
 };
 
 function parseInitialPlan(plan?: string): SignupPlan | "" {

@@ -25,6 +25,10 @@ import {
   UWORLD_THREE_EXAM_MIN,
   threeExamSavingsPercent,
 } from "@/lib/seo/competitor-comparison";
+import {
+  enforceMetaDescription,
+  enforceMetaTitle,
+} from "@/lib/seo/meta-budget";
 
 function baseOpenGraph(
   title: string,
@@ -32,12 +36,14 @@ function baseOpenGraph(
   path: string,
   options?: { absoluteTitle?: boolean }
 ): Metadata {
+  const safeTitle = enforceMetaTitle(title, path);
+  const safeDescription = enforceMetaDescription(description, path);
   const url = absoluteUrl(path);
   const ogImage = absoluteUrl(DEFAULT_OG_IMAGE_PATH);
-  const titleField = options?.absoluteTitle ? { absolute: title } : title;
+  const titleField = options?.absoluteTitle ? { absolute: safeTitle } : safeTitle;
   return {
     title: titleField,
-    description,
+    description: safeDescription,
     metadataBase: new URL(getSiteUrl()),
     alternates: { canonical: path },
     openGraph: {
@@ -45,14 +51,14 @@ function baseOpenGraph(
       locale: "en_US",
       url,
       siteName: SITE_NAME,
-      title,
-      description,
-      images: [{ url: ogImage, width: 1200, height: 800, alt: title }],
+      title: safeTitle,
+      description: safeDescription,
+      images: [{ url: ogImage, width: 1200, height: 800, alt: safeTitle }],
     },
     twitter: {
       card: "summary_large_image",
-      title,
-      description,
+      title: safeTitle,
+      description: safeDescription,
       images: [ogImage],
     },
     robots: {
@@ -81,8 +87,9 @@ export function buildResourcesHubMetadata(): Metadata {
 }
 
 export function buildToolkitHubMetadata(): Metadata {
-  const title = `Board Exam Toolkit — NCLEX & USMLE Guides with Roadmaps, Deep Dives & Full Exams (2026)`;
-  const description = `Free Toolkit for NCLEX practice questions and USMLE prep — exam breakdowns, Blueprint Roadmap strategy, Deep Dive review tips, and Full Exam readiness for NAPLEX, PANCE, AANP FNP & NPTE-PT. ${SEO_LIVE_STATS.questionCount} QA-gated items on one ${SITE_NAME} plan.`;
+  const title = "Board Exam Toolkit — NCLEX & USMLE Guides";
+  const description =
+    "Free Toolkit for NCLEX & USMLE prep: exam guides, Blueprint Roadmap strategy, Deep Dive tips & Full Exam readiness for NAPLEX, PANCE, FNP & NPTE.";
   const path = "/toolkit";
   return {
     ...baseOpenGraph(title, description, path, { absoluteTitle: true }),
@@ -113,8 +120,8 @@ export function buildResourceArticleMetadata(article: ResourceArticle): Metadata
 }
 
 export function buildPricingMetadata(): Metadata {
-  const title = `Pricing — Best Value Multi-Exam Board Prep | ${SITE_NAME} Pro (2026)`;
-  const description = `All 6 board exams (NCLEX, USMLE, NAPLEX, PANCE, FNP, NPTE) on one Pro plan at ${formatMonthlyPrice("pro")}/mo. ${SEO_LIVE_STATS.questionCount} questions · Blueprint Roadmaps · Deep Dives · ${SEO_LIVE_STATS.trialDays}-day free trial · ${SEO_LIVE_STATS.moneyBackDays}-day money-back guarantee.`;
+  const title = "Pricing — 6 Board Exams, One Pro Plan";
+  const description = `One Pro plan for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE at ${formatMonthlyPrice("pro")}/mo. Includes Roadmaps & Deep Dives. Start a ${SEO_LIVE_STATS.trialDays}-day free trial — no card required.`;
   return {
     ...baseOpenGraph(title, description, "/pricing", { absoluteTitle: true }),
     keywords: [
@@ -128,8 +135,9 @@ export function buildPricingMetadata(): Metadata {
 }
 
 export function buildCompareMetadata(): Metadata {
-  const title = `Compare — AnyExamEasy vs UWorld, Archer, Kaplan & RxPrep (2026)`;
-  const description = `Side-by-side comparison: ${formatMonthlyPrice("pro")}/mo for 6 board exams vs ${formatUsd(UWORLD_THREE_EXAM_MIN)}+ stacking UWorld subscriptions. Features, pricing, NCLEX vs Archer, NAPLEX vs RxPrep. ${SEO_LIVE_STATS.trialDays}-day free trial.`;
+  const title = "Compare — vs UWorld, Archer, Kaplan & RxPrep";
+  const description =
+    "AnyExamEasy vs UWorld, Archer, Kaplan & RxPrep: six boards on one Pro plan. Compare features, pricing & multi-exam value. Start a free trial.";
   return {
     ...baseOpenGraph(title, description, "/compare", { absoluteTitle: true }),
     keywords: [
@@ -190,9 +198,11 @@ export function buildCompareJsonLd() {
 }
 
 export function buildAboutMetadata(serveReadyTotalLabel?: string): Metadata {
-  const title = `About ${SITE_NAME} — Roadmaps, Deep Dives & Full Exams for Six Boards`;
-  const countPhrase = serveReadyTotalLabel ?? SEO_LIVE_STATS.questionCount;
-  const description = `${SITE_NAME} is a clinician-built NCLEX & USMLE question bank platform — plus NAPLEX, PANCE, AANP FNP & NPTE-PT — on one Pro plan. ${countPhrase} QA-gated questions with Blueprint Roadmaps, Deep Dive modules, and Full Exam simulations. Built in Texas · ${SEO_LIVE_STATS.clinicianYears} years combined clinical experience.`;
+  const title = `About ${SITE_NAME} — 6-Board Qbank`;
+  // Keep description budget-stable even when live count labels grow (e.g. 50,000+).
+  const description =
+    "Clinician-built NCLEX & USMLE Qbank plus NAPLEX, PANCE, FNP & NPTE on one Pro plan. QA-gated items with Roadmaps & Deep Dives. Built in Texas.";
+  void serveReadyTotalLabel;
   return {
     ...baseOpenGraph(title, description, "/about", { absoluteTitle: true }),
     keywords: [

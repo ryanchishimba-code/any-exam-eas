@@ -6,6 +6,7 @@ import {
 } from "@/lib/seo/trial-copy";
 import { SEO_LIVE_STATS, SEO_VALUE_PROPS } from "@/lib/seo/seo-copy";
 import { formatMonthlyPrice } from "@/lib/site";
+import { clampMetaDescription, clampMetaTitle } from "@/lib/seo/meta-budget";
 
 function normalizeSection(section: ResourceSection): ResourceSection {
   return {
@@ -28,6 +29,8 @@ function article(
 ): ResourceArticle {
   return {
     ...partial,
+    title: clampMetaTitle(partial.title),
+    metaDescription: clampMetaDescription(partial.metaDescription),
     keywords: partial.keywords ?? [],
     readingMinutes: partial.readingMinutes ?? 7,
     intro: partial.intro ?? "",
@@ -41,8 +44,8 @@ function article(
 export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   article({
     slug: "uworld-alternative-multi-exam-prep-2026",
-    title: "Best UWorld Alternative for Multi-Exam Board Prep (2026)",
-    metaDescription: `Compare AnyExamEasy vs UWorld for NCLEX, USMLE, and NAPLEX — one Pro plan from ${formatMonthlyPrice("pro")}/mo with ${SEO_LIVE_STATS.questionCount} QA-gated questions, Blueprint Roadmaps, Deep Dives, and Full Exams.`,
+    title: "Best UWorld Alternative for Multi-Exam Prep (2026)",
+    metaDescription: `Compare AnyExamEasy vs UWorld for NCLEX, USMLE and NAPLEX — one Pro plan from ${formatMonthlyPrice("pro")}/mo with Roadmaps, Deep Dives and Full Exams.`,
     examTags: ["nclex", "usmle", "naplex"],
     keywords: [
       "UWorld alternative",
@@ -117,9 +120,9 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "nclex-vs-uworld-comparison-2026",
-    title: "NCLEX vs UWorld: Which Qbank Is Better Value in 2026?",
+    title: "NCLEX vs UWorld: Which Qbank Is Better in 2026?",
     metaDescription:
-      "NCLEX prep comparison — NGN question types, clinical judgment practice, Blueprint Roadmaps, Deep Dives, Full Exams, pricing, and when a multi-exam plan wins.",
+      "NCLEX prep comparison — NGN types, clinical judgment, Roadmaps, Deep Dives, Full Exams, pricing, and when a multi-exam plan wins.",
     examTags: ["nclex"],
     primaryExam: "nclex",
     keywords: ["NCLEX vs UWorld", "UWorld NCLEX alternative", "best NCLEX Qbank 2026"],
@@ -266,9 +269,9 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "naplex-calculations-study-guide-2026",
-    title: "NAPLEX Calculations Study Guide (2026) — Formulas & Practice",
+    title: "NAPLEX Calculations Study Guide (2026)",
     metaDescription:
-      "Master NAPLEX calculations — dosing, concentrations, IV flow, and alligation — with daily drills, patient cases, NABP blueprint Roadmaps, Deep Dives, and Full Exam blocks.",
+      "Master NAPLEX calculations — dosing, concentrations, IV flow and alligation — with drills, cases, Roadmaps, Deep Dives and Full Exam blocks.",
     examTags: ["naplex"],
     primaryExam: "naplex",
     keywords: [
@@ -319,7 +322,7 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   article({
     slug: "best-value-multi-exam-board-prep-2026",
     title: "Best Value Multi-Exam Board Prep in 2026",
-    metaDescription: `Compare subscription costs for NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE — why one Pro plan from ${formatMonthlyPrice("pro")}/mo with Roadmaps, Deep Dives, and Full Exams beats stacking per-exam QBanks.`,
+    metaDescription: `Compare NCLEX, USMLE, NAPLEX, PANCE, FNP and NPTE costs — why one Pro plan from ${formatMonthlyPrice("pro")}/mo with Roadmaps and Deep Dives beats stacking QBanks.`,
     examTags: ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"],
     keywords: ["best value multi-exam prep", "board exam subscription", "affordable board prep 2026"],
     readingMinutes: 7,
@@ -352,9 +355,9 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "nclex-vs-archer-comparison-2026",
-    title: "NCLEX vs Archer Review: Which Qbank Is Better Value in 2026?",
+    title: "NCLEX vs Archer Review: Better Value in 2026?",
     metaDescription:
-      "NCLEX prep comparison — Archer Review vs AnyExamEasy on price, unlimited CAT, NGN coverage, Blueprint Roadmaps, Deep Dives, Full Exams, and multi-exam savings.",
+      "NCLEX prep comparison — Archer vs AnyExamEasy on price, CAT, NGN coverage, Roadmaps, Deep Dives, Full Exams, and multi-exam savings.",
     examTags: ["nclex"],
     primaryExam: "nclex",
     keywords: [
@@ -426,9 +429,9 @@ export const ADDITIONAL_RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "naplex-vs-rxprep-comparison-2026",
-    title: "NAPLEX vs RxPrep: Qbank, Calculations & Best Value (2026)",
+    title: "NAPLEX vs RxPrep: Qbank & Best Value (2026)",
     metaDescription:
-      "Compare AnyExamEasy vs RxPrep (UWorld Pharmacy) for NAPLEX — calculations drills, Blueprint Roadmaps, Deep Dives, Full Exams, pricing, and when a multi-exam plan beats pharmacy-only prep.",
+      "Compare AnyExamEasy vs RxPrep for NAPLEX — calculations, Roadmaps, Deep Dives, Full Exams, pricing, and when a multi-exam plan wins.",
     examTags: ["naplex"],
     primaryExam: "naplex",
     keywords: [

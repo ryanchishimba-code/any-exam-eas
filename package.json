@@ -76,6 +76,8 @@
     "aws:deploy": "node scripts/aws-deploy.mjs",
     "aws:bootstrap": "bash scripts/bootstrap-aws.sh",
     "test": "npm run test:unit && npm run test:component && npm run test:smoke",
+    "audit:seo-metadata": "npx tsx scripts/audit-seo-metadata.mts",
+    "audit:seo-metadata:prod": "npx tsx scripts/audit-seo-metadata.mts --crawl https://www.anyexameasy.com",
     "test:unit": "vitest run --project unit",
     "test:component": "vitest run --project component",
     "test:component:watch": "vitest --project component",

@@ -3,14 +3,12 @@ import { EXAM_ACCENTS } from "@/lib/landing/tokens";
 import { TIER_MONTHLY_USD } from "@/lib/subscription-tiers";
 import type { ExamRouteSlug } from "@/lib/routes";
 import {
-  SEO_TRIAL_META_SUFFIX,
-  SEO_TRIAL_META_WITH_BOARDS,
   seoTrialIncludedFaq,
   seoTrialLengthFaq,
   seoTrialNaplexStudyTip,
   seoTrialTryBeforePayFaq,
 } from "@/lib/seo/trial-copy";
-import { SEO_LIVE_STATS, seoPlatformPitch } from "@/lib/seo/seo-copy";
+import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 
 export type ExamSeoKey = ExamRouteSlug;
 
@@ -63,9 +61,9 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     key: "nclex",
     displayName: "NCLEX-RN",
     shortName: "NCLEX",
-    metaTitle: "NCLEX Prep 2026 — Qbank, NGN Questions & Adaptive Roadmap",
+    metaTitle: "NCLEX Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `${SEO_LIVE_STATS.questionCount} NCLEX-RN practice questions with NGN formats (SATA, bow-tie, matrix), Blueprint Roadmaps, Deep Dives, and Full Exam simulations. Clinician-built, QA-gated. ${SEO_LIVE_STATS.trialDays}-day free trial · UWorld alternative on one multi-exam plan. ${SEO_TRIAL_META_WITH_BOARDS}.`,
+      `NCLEX practice questions with NGN formats, Blueprint Roadmaps, Deep Dives & Full Exams. Clinician-built Qbank. Start a ${SEO_LIVE_STATS.trialDays}-day free trial — no card.`,
     keywords: [
       "NCLEX prep 2026",
       "NCLEX practice questions",
@@ -139,9 +137,9 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     key: "usmle",
     displayName: "USMLE Step 1 · Step 2 CK · Step 3",
     shortName: "USMLE",
-    metaTitle: "USMLE Practice Questions 2026 — Step 1, Step 2 CK & Step 3 Qbank",
+    metaTitle: "USMLE Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `USMLE Qbank with Step 1, Step 2 CK & Step 3 vignettes, Blueprint Roadmaps, Deep Dives, and Full Exam simulations. ${seoPlatformPitch()} ${SEO_LIVE_STATS.trialDays}-day trial · UWorld alternative. ${SEO_TRIAL_META_SUFFIX}.`,
+      `USMLE practice questions for Step 1, 2 CK & 3 with Roadmaps, Deep Dives & Full Exams. Clinician-built Qbank. Start a ${SEO_LIVE_STATS.trialDays}-day free trial — no card.`,
     keywords: [
       "USMLE practice questions",
       "USMLE Step 1 practice questions",
@@ -216,9 +214,9 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     key: "naplex",
     displayName: "NAPLEX",
     shortName: "NAPLEX",
-    metaTitle: "NAPLEX Qbank 2026 — Practice Questions, Calculations & Blueprint",
+    metaTitle: "NAPLEX Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `NAPLEX prep with calculations, patient cases, and pharmacotherapy vignettes. Blueprint Roadmaps, Deep Dives, Full Exam simulations, and Spaced Repetition. ${SEO_LIVE_STATS.trialDays}-day free trial. ${SEO_TRIAL_META_SUFFIX}.`,
+      `NAPLEX practice questions, calculations, Blueprint Roadmaps, Deep Dives & Full Exams. Clinician-built Qbank. Start a ${SEO_LIVE_STATS.trialDays}-day free trial — no card.`,
     keywords: [
       "NAPLEX Qbank",
       "NAPLEX review 2026",
@@ -288,9 +286,9 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     key: "pance",
     displayName: "PANCE",
     shortName: "PANCE",
-    metaTitle: "PANCE Exam Prep 2026 — NCCPA Blueprint Practice Questions",
+    metaTitle: "PANCE Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `PANCE practice questions aligned to the NCCPA blueprint — cardiovascular, pulmonary, GI, MSK, and more. Roadmap, timed exams, Deep Dives. ${SEO_TRIAL_META_SUFFIX}.`,
+      `PANCE practice questions aligned to the NCCPA blueprint, with Roadmaps, Deep Dives & Full Exams. Clinician-built. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
     keywords: [
       "PANCE exam prep 2026",
       "PANCE practice questions",
@@ -354,9 +352,9 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     key: "aanp-fnp",
     displayName: "AANP FNP",
     shortName: "AANP FNP",
-    metaTitle: "AANP FNP Certification Prep 2026 — AANPCB Practice Questions",
+    metaTitle: "AANP FNP Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `AANP FNP board prep with primary-care vignettes across Assess, Diagnose, Plan, and Evaluate domains. Roadmap, Deep Dives, and analytics. ${SEO_TRIAL_META_SUFFIX}.`,
+      `AANP FNP practice questions across Assess–Evaluate domains, with Roadmaps & Deep Dives. Clinician-built Qbank. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
     keywords: [
       "AANP FNP prep 2026",
       "AANP FNP practice questions",
@@ -420,9 +418,9 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
     key: "npte-pt",
     displayName: "NPTE-PT",
     shortName: "NPTE",
-    metaTitle: "NPTE-PT Prep 2026 — Physical Therapy Board Practice Questions",
+    metaTitle: "NPTE-PT Prep 2026 — Practice Questions & Qbank",
     metaDescription:
-      `NPTE-PT exam prep with FSBPT blueprint scenarios — MSK, neuromuscular, cardiopulmonary, modalities, and safety. Roadmap + timed full exams. ${SEO_TRIAL_META_SUFFIX}.`,
+      `NPTE-PT practice questions with FSBPT blueprint scenarios, Roadmaps, Deep Dives & Full Exams. Clinician-built. Start a ${SEO_LIVE_STATS.trialDays}-day free trial today.`,
     keywords: [
       "NPTE prep 2026",
       "NPTE-PT practice questions",

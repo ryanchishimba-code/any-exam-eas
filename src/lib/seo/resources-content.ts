@@ -19,6 +19,7 @@ import {
 } from "@/lib/seo/trial-copy";
 import { SEO_LIVE_STATS } from "@/lib/seo/seo-copy";
 import { ADDITIONAL_RESOURCE_ARTICLES } from "@/lib/seo/additional-resource-articles";
+import { clampMetaDescription, clampMetaTitle } from "@/lib/seo/meta-budget";
 
 export type ResourceDownload = {
   slug: string;
@@ -99,6 +100,8 @@ function article(
 ): ResourceArticle {
   return {
     ...partial,
+    title: clampMetaTitle(partial.title),
+    metaDescription: clampMetaDescription(partial.metaDescription),
     keywords: partial.keywords ?? [],
     readingMinutes: partial.readingMinutes ?? 6,
     intro: partial.intro ?? "",
@@ -503,7 +506,7 @@ export const RESOURCE_ARTICLES: ResourceArticle[] = [
   }),
   article({
     slug: "six-board-exams-one-subscription",
-    title: "Six Board Exams, One Subscription — NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE",
+    title: "Six Board Exams, One Subscription — 2026 Guide",
     metaDescription:
       "Why students switch from per-exam QBanks to AnyExamEasy — six licensing tracks, Roadmaps, Deep Dives, and one Pro plan.",
     examTags: ["nclex", "usmle", "naplex", "pance", "aanp-fnp", "npte-pt"],
