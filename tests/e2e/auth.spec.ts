@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import { DEV_USER, loginWithCredentials } from "./fixtures/auth";
 import { isAuthBackendReady } from "./helpers/auth-health";
+import { fillDateOfBirth } from "./helpers/forms";
 
 test.describe("Authentication", () => {
   test("login page renders", async ({ page }) => {
@@ -35,7 +36,7 @@ test.describe("Authentication", () => {
     await page.getByPlaceholder("Full name").fill("QA Tester");
     await page.getByPlaceholder("Email").fill(`qa-${Date.now()}@example.com`);
     await page.getByPlaceholder(/password/i).fill("TestPassword1!");
-    await page.locator("#signup-dob").fill("1995-06-15");
+    await fillDateOfBirth(page, "1995-06-15");
 
     const submit = page.getByRole("button", { name: /start.*trial|create account/i });
     await expect(submit).toBeDisabled();

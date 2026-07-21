@@ -8,8 +8,12 @@ export async function fillControlledInput(locator: Locator, value: string) {
   await expect(locator).toHaveValue(value);
 }
 
+/** Fill signup DOB using US typed format (mm/dd/yyyy). Accepts ISO `YYYY-MM-DD`. */
 export async function fillDateOfBirth(page: Page, isoDate: string) {
-  await page.locator("#signup-dob").fill(isoDate);
+  const match = isoDate.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  const display = match ? `${match[2]}/${match[3]}/${match[1]}` : isoDate;
+  const dob = page.locator("#signup-dob");
+  await fillControlledInput(dob, display);
 }
 
 export async function acceptSignupTerms(page: Page) {
