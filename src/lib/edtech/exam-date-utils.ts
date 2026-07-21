@@ -65,29 +65,29 @@ export function calendarDaysUntil(isoDate: string, now = Date.now()): number {
   return Math.round((target.getTime() - today.getTime()) / 86_400_000);
 }
 
-/** ISO `YYYY-MM-DD` → `DD/MM/YYYY` for typed entry. */
-export function isoToDdmmyyyy(iso: string): string {
+/** ISO `YYYY-MM-DD` → `MM/DD/YYYY` for typed entry. */
+export function isoToMmddyyyy(iso: string): string {
   const match = iso.match(/^(\d{4})-(\d{2})-(\d{2})$/);
   if (!match) return "";
   const [, year, month, day] = match;
-  return `${day}/${month}/${year}`;
+  return `${month}/${day}/${year}`;
 }
 
-/** Insert slashes while typing digits for `DD/MM/YYYY`. */
-export function formatDdmmyyyyDigits(digits: string): string {
+/** Insert slashes while typing digits for `MM/DD/YYYY` (MMDDYYYY). */
+export function formatMmddyyyyDigits(digits: string): string {
   const d = digits.replace(/\D/g, "").slice(0, 8);
   if (d.length <= 2) return d;
   if (d.length <= 4) return `${d.slice(0, 2)}/${d.slice(2)}`;
   return `${d.slice(0, 2)}/${d.slice(2, 4)}/${d.slice(4)}`;
 }
 
-/** Parse `DD/MM/YYYY` (with or without slashes) to ISO date, or null when invalid. */
-export function parseDdmmyyyy(raw: string): string | null {
+/** Parse `MM/DD/YYYY` or `MMDDYYYY` to ISO date, or null when invalid. */
+export function parseMmddyyyy(raw: string): string | null {
   const digits = raw.replace(/\D/g, "");
   if (digits.length !== 8) return null;
 
-  const day = digits.slice(0, 2);
-  const month = digits.slice(2, 4);
+  const month = digits.slice(0, 2);
+  const day = digits.slice(2, 4);
   const year = digits.slice(4, 8);
   const monthNum = Number(month);
   const dayNum = Number(day);

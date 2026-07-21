@@ -6,12 +6,12 @@ import {
   addMonthsToIso,
   calendarDaysUntil,
   defaultBirthDatePreview,
-  formatDdmmyyyyDigits,
+  formatMmddyyyyDigits,
   formatExamDateLong,
   formatExamDateShort,
-  isoToDdmmyyyy,
+  isoToMmddyyyy,
   isIsoWithinBounds,
-  parseDdmmyyyy,
+  parseMmddyyyy,
   todayIso,
 } from "@/lib/edtech/exam-date-utils";
 import { cn } from "@/lib/utils";
@@ -56,8 +56,8 @@ function typedInputError(
   const digits = raw.replace(/\D/g, "");
   if (digits.length === 0) return null;
   if (digits.length < 8) return null;
-  const iso = parseDdmmyyyy(raw);
-  if (!iso) return "Enter a valid date (dd/mm/yyyy)";
+  const iso = parseMmddyyyy(raw);
+  if (!iso) return "Enter a valid date (mm/dd/yyyy)";
   if (!isIsoWithinBounds(iso, { minDate, maxDate })) {
     if (isBirthDate && maxDate && iso > maxDate) return "You must be at least 18 years old";
     if (isBirthDate && minDate && iso < minDate) return "Enter a valid birth year";
@@ -67,7 +67,7 @@ function typedInputError(
   return null;
 }
 
-/** Exam / DOB date entry — typed dd/mm/yyyy with auto-formatting (works on mobile). */
+/** Exam / DOB date entry — typed mm/dd/yyyy (MMDDYYYY) with auto-formatting. */
 export function ExamDatePicker({
   value,
   minDate,
@@ -91,10 +91,10 @@ export function ExamDatePicker({
   const quickBase = minDate ?? today;
   const birthExample = useMemo(() => defaultBirthDatePreview(today), [today]);
 
-  const [typed, setTyped] = useState(() => (value ? isoToDdmmyyyy(value) : ""));
+  const [typed, setTyped] = useState(() => (value ? isoToMmddyyyy(value) : ""));
 
   useEffect(() => {
-    setTyped(value ? isoToDdmmyyyy(value) : "");
+    setTyped(value ? isoToMmddyyyy(value) : "");
   }, [value]);
 
   const quickOptions = useMemo(
@@ -108,21 +108,21 @@ export function ExamDatePicker({
 
   const digits = typed.replace(/\D/g, "");
   const inputError = typedInputError(typed, { minDate, maxDate, isBirthDate });
-  const parsedIso = digits.length === 8 ? parseDdmmyyyy(typed) : null;
+  const parsedIso = digits.length === 8 ? parseMmddyyyy(typed) : null;
   const displayIso =
     parsedIso && isIsoWithinBounds(parsedIso, { minDate, maxDate }) ? parsedIso : value;
 
   function commitTypedValue(raw: string) {
     const d = raw.replace(/\D/g, "");
     if (d.length !== 8) return;
-    const iso = parseDdmmyyyy(raw);
+    const iso = parseMmddyyyy(raw);
     if (iso && isIsoWithinBounds(iso, { minDate, maxDate })) {
       onChange(iso);
     }
   }
 
   function handleTypedChange(raw: string) {
-    const formatted = formatDdmmyyyyDigits(raw);
+    const formatted = formatMmddyyyyDigits(raw);
     setTyped(formatted);
     commitTypedValue(formatted);
   }
@@ -177,7 +177,7 @@ export function ExamDatePicker({
                 enterKeyHint="done"
                 spellCheck={false}
                 value={typed}
-                placeholder="dd/mm/yyyy"
+                placeholder="mm/dd/yyyy"
                 onChange={(e) => handleTypedChange(e.target.value)}
                 onBlur={() => commitTypedValue(typed)}
                 aria-label={label}
@@ -202,11 +202,11 @@ export function ExamDatePicker({
                 <p id={`${inputId}-hint`} className="mt-1 text-[12px] text-[var(--color-ink-muted)]">
                   {isBirthDate ? (
                     <>
-                      Example: {isoToDdmmyyyy(birthExample)} ({formatExamDateShort(birthExample)})
+                      Example: {isoToMmddyyyy(birthExample)} ({formatExamDateShort(birthExample)})
                     </>
                   ) : (
                     <>
-                      Example: {isoToDdmmyyyy(addMonthsToIso(today, 3))} (
+                      Example: {isoToMmddyyyy(addMonthsToIso(today, 3))} (
                       {formatExamDateShort(addMonthsToIso(today, 3))})
                     </>
                   )}
