@@ -139,7 +139,8 @@ export function LandingPricingPreview() {
       </div>
 
       <p className="aee-landing-pricing__anchor">
-        Pro at {formatMonthlyPrice("pro")}/mo · {BILLING_TRIAL_DISCLOSURE}
+        Pro at {formatMonthlyPrice("pro")}/mo for NCLEX, USMLE, NAPLEX, PANCE, FNP &amp; NPTE —
+        typically less than stacking per-exam QBanks · {BILLING_TRIAL_DISCLOSURE}
       </p>
 
       <LandingCta href={LANDING_TRIAL_HREF} className="aee-flagship-cta--hero aee-flagship-cta--xl group mx-auto mt-6 w-full max-w-md">

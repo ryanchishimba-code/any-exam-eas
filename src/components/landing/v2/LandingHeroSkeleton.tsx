@@ -34,6 +34,9 @@ export function LandingHeroSkeleton({ bankCounts }: { bankCounts: LandingBankCou
               {formatTrialCtaLabel()}
               <ArrowRight className="h-5 w-5" aria-hidden />
             </a>
+            <a href="#pricing" className="aee-hero-beat__secondary">
+              See pricing
+            </a>
           </div>
         </div>
         <div className="aee-hero-beat__visual" aria-hidden>

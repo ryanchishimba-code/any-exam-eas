@@ -4,14 +4,14 @@
  * LandingFlagshipV2 — conversion-first landing (UWorld-clarity + AEE wedge).
  *
  * Flow:
- *   Full-bleed hero (brand + benefit H1 + laptop still + 1 CTA)
+ *   Full-bleed hero (brand + benefit H1 + laptop still + trial CTA, no price)
  *     → Offering
  *     → Product showcase
  *     → Choose your exam
  *     → Why choose us (vs stacking QBanks)
  *     → Cross-exam comparison
  *     → Trust + testimonials
- *     → Pricing
+ *     → Pricing (price + multi-exam savings)
  *     → Final CTA + sticky bar
  */
 
@@ -43,7 +43,7 @@ import {
 } from "@/lib/landing/content";
 import { LEGAL_ENTITY } from "@/lib/legal";
 import { ROUTES } from "@/lib/routes";
-import { formatTrialLabel, formatTrialCtaLabel, MARKETING_DISCLAIMER, TRIAL_PAYMENT_DISCLOSURE } from "@/lib/site";
+import { formatMonthlyPrice, formatTrialLabel, formatTrialCtaLabel, MARKETING_DISCLAIMER, TRIAL_PAYMENT_DISCLOSURE } from "@/lib/site";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 import { LandingSectionPageviews } from "@/components/landing/v2/LandingSectionPageviews";
 
@@ -92,7 +92,8 @@ export function LandingFlagshipV2({
               One plan. Every board. Start free.
             </h2>
             <p className="mt-4 text-lg text-[var(--color-ink-muted)]">
-              {formatTrialLabel()} · all six boards · cancel anytime.
+              Pro at {formatMonthlyPrice("pro")}/mo for all six boards — typically less than
+              stacking per-exam QBanks. {formatTrialLabel()} · cancel anytime.
             </p>
           </div>
           <div className="mt-10">

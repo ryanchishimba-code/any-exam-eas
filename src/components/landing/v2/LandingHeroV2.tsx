@@ -2,7 +2,7 @@
 
 /**
  * LandingHeroV2 — visual ATF: darker full-bleed stage + floating product still.
- * Brand + benefit H1 + quiet exam links + one CTA + laptop.
+ * Brand + benefit H1 + quiet exam links + trial CTA (no price in ATF) + laptop.
  */
 
 import Image from "next/image";
@@ -10,7 +10,6 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
-import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
 import { LandingHeroExamStrip } from "@/components/home/LandingHeroExamStrip";
 import {
   LANDING_HERO_CTA_DISCLOSURE,
@@ -88,20 +87,12 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
             >
               {formatTrialCtaLabel()}
             </LandingCta>
-            <Link href="#showcase" prefetch={false} className="aee-hero-beat__secondary">
-              See how it works
+            <Link href="#pricing" prefetch={false} className="aee-hero-beat__secondary">
+              See pricing
             </Link>
           </div>
 
-          <p className="aee-hero-beat__meta">
-            <span className="aee-hero-beat__price">
-              From <HighlightedPrice size="hero" period="/mo" />
-            </span>
-            <span className="aee-hero-beat__dot" aria-hidden>
-              ·
-            </span>
-            <span>{LANDING_HERO_CTA_DISCLOSURE}</span>
-          </p>
+          <p className="aee-hero-beat__meta">{LANDING_HERO_CTA_DISCLOSURE}</p>
         </div>
 
         <div ref={visualRef} className="aee-hero-beat__visual">
