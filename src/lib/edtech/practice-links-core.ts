@@ -5,7 +5,7 @@
  */
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { EXAM_CATALOG, isExamSlug } from "@/lib/edtech/exams";
-import { fullExamLaunchHref } from "@/lib/full-exam/config";
+import { fullExamLaunchHref } from "@/lib/full-exam/hrefs";
 import { isUsmleStep1Subject } from "@/lib/subjects/medicine/subject-splits";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";

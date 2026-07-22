@@ -4,6 +4,14 @@ import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset, FullExamSessionConfig } from "@/types/full-exam";
 
+export {
+  fullExamHref,
+  fullExamLaunchHref,
+  fullExamResultsHref,
+  fullExamSessionHref,
+  parseFullExamLengthPreset,
+} from "@/lib/full-exam/hrefs";
+
 export type LengthOption = {
   preset: FullExamLengthPreset;
   label: string;
@@ -110,24 +118,6 @@ export function formatHms(totalSec: number): string {
   return `${h}:${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
 }
 
-export function fullExamHref(examSlug: ExamSlug): string {
-  return `/full-exam/${examSlug}`;
-}
-
-export function fullExamSessionHref(examSlug: ExamSlug, sessionId: string): string {
-  return `/full-exam/${examSlug}/${sessionId}`;
-}
-
-export function fullExamResultsHref(
-  examSlug: ExamSlug,
-  sessionId: string,
-  opts?: { review?: boolean }
-): string {
-  const base = `/full-exam/${examSlug}/${sessionId}/results`;
-  if (!opts?.review) return base;
-  return `${base}?review=1`;
-}
-
 /** Map a target question count back to a launcher length preset for any board. */
 export function resolveLengthPresetFromQuestionCount(
   examSlug: ExamSlug,
@@ -155,37 +145,6 @@ export function resolveLengthPresetFromQuestionCount(
   if (questionCount <= 50) return "50";
   if (questionCount <= 100) return "100";
   return "full";
-}
-
-export function parseFullExamLengthPreset(
-  value: string | null | undefined
-): FullExamLengthPreset {
-  const normalized = value?.trim().toLowerCase().replace(/\s+/g, "") ?? "";
-  if (normalized === "50" || normalized === "50q") return "50";
-  if (normalized === "100" || normalized === "100q") return "100";
-  if (
-    normalized === "full" ||
-    normalized === "fulllength" ||
-    normalized === "full-length" ||
-    normalized === "fulllengthadaptive"
-  ) {
-    return "full";
-  }
-  return "50";
-}
-
-/** Launcher URL with optional preset + autostart for dashboard / hub shortcuts. */
-export function fullExamLaunchHref(
-  examSlug: ExamSlug,
-  opts?: { mode?: FullExamLengthPreset; autostart?: boolean; timed?: boolean; nclexCat?: boolean }
-): string {
-  const params = new URLSearchParams();
-  if (opts?.mode) params.set("mode", opts.mode);
-  if (opts?.autostart) params.set("autostart", "1");
-  if (opts?.timed === false) params.set("timed", "0");
-  if (opts?.nclexCat) params.set("nclexCat", "1");
-  const query = params.toString();
-  return query ? `${fullExamHref(examSlug)}?${query}` : fullExamHref(examSlug);
 }
 
 export function fullExamModeTitle(

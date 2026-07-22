@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, Beaker } from "lucide-react";
-import { TOP_500_DRUGS_PATH } from "@/lib/study-hub/config";
+
+/** Literal path — avoid pulling study-hub/config → routes into home client chunks. */
+const TOP_500_DRUGS_PATH = "/study/drugs300";
 
 export function Top500DrugsCard() {
   return (

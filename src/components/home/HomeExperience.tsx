@@ -14,6 +14,9 @@ import { useSession } from "next-auth/react";
 const SubscriberHome = dynamic(
   () => import("@/components/home/SubscriberHome").then((m) => m.SubscriberHome),
   {
+    // Logged-in premium shell only — skip SSR so webpack never blocks the static
+    // marketing homepage on this (previously oversized) client chunk.
+    ssr: false,
     loading: () => (
       <section className="bg-[var(--color-surface)] py-12 sm:py-16" aria-hidden>
         <div className="mx-auto max-w-3xl px-5 sm:px-6">

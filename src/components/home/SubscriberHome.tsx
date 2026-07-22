@@ -13,15 +13,22 @@ import { AnatomyExplorerCard } from "@/components/study-hub/AnatomyExplorerCard"
 import { Top500DrugsCard } from "@/components/study-hub/Top500DrugsCard";
 import { firstName } from "@/lib/client/returning-user";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
-import {
-  questionBankHref,
-  libraryHref,
-} from "@/lib/edtech/practice-links-core";
-import { fullExamLaunchHref } from "@/lib/full-exam/config";
+import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { fullExamLaunchHref } from "@/lib/full-exam/hrefs";
 import { dbUi } from "@/lib/study/dashboard-ui";
-import { STUDY_HUB_PATH } from "@/lib/study-hub/config";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
+
+/** Keep this chunk free of practice-links-core / subject-registry (ChunkLoadError in dev). */
+const STUDY_HUB_PATH = "/dashboard";
+
+function questionBankHref(examSlug: ExamSlug): string {
+  return `/question-bank?field=${encodeURIComponent(EXAM_CATALOG[examSlug].fieldId)}`;
+}
+
+function libraryHref(examSlug: ExamSlug): string {
+  return `/library?exam=${encodeURIComponent(examSlug)}`;
+}
 
 const QUICK_ACTIONS = [
   {

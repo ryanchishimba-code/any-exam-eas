@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ArrowRight, Bone } from "lucide-react";
-import { ANATOMY_EXPLORER_PATH } from "@/lib/study-hub/config";
+
+/** Literal path — avoid pulling study-hub/config → routes into home client chunks. */
+const ANATOMY_EXPLORER_PATH = "/anatomy";
 
 export function AnatomyExplorerCard() {
   return (
