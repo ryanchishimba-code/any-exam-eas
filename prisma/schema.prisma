@@ -124,7 +124,7 @@ model PasswordResetToken {
   @@index([expiresAt])
 }
 
-/// Discount codes — validated at signup; registration always proceeds.
+/// Discount codes — validated at signup/checkout; redeemed after successful payment.
 model PromoCode {
   id               String    @id @default(cuid())
   code             String    @unique

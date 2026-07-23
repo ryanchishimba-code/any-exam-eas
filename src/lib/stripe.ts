@@ -53,6 +53,8 @@ type CheckoutBaseParams = {
   interval?: BillingInterval;
   stripeCustomerId?: string | null;
   stripeCouponId?: string | null;
+  /** App promo code string — stored in metadata and redeemed after successful checkout */
+  promoCode?: string | null;
   /** @deprecated App DB trial end sync — Stripe sets trial via trial_period_days at checkout. */
   trialEndUnix?: number;
 };
@@ -78,6 +80,9 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
       plan: params.plan ?? "subscribe",
       tier,
       interval,
+      ...(params.promoCode?.trim()
+        ? { promoCode: params.promoCode.trim().toUpperCase() }
+        : {}),
     },
   };
 
@@ -101,6 +106,9 @@ function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
       plan: params.plan ?? "subscribe",
       tier,
       interval,
+      ...(params.promoCode?.trim()
+        ? { promoCode: params.promoCode.trim().toUpperCase() }
+        : {}),
     },
     ...(isTrialPlan || params.plan === "subscribe"
       ? { payment_method_collection: "always" as const }
@@ -431,6 +439,7 @@ export async function convertTrialSubscriptionToPaid(params: {
   tier: SubscriptionTier;
   interval: BillingInterval;
   stripeCouponId?: string | null;
+  promoCode?: string | null;
 }): Promise<{ status: string; stripeSubscriptionId: string }> {
   if (!stripe) throw new Error("Stripe is not configured");
   if (!isUsableStripeSubscriptionId(params.stripeSubscriptionId)) {
@@ -483,6 +492,9 @@ export async function convertTrialSubscriptionToPaid(params: {
       interval: params.interval,
       pendingTier: "",
       pendingInterval: "",
+      ...(params.promoCode?.trim()
+        ? { promoCode: params.promoCode.trim().toUpperCase() }
+        : {}),
     },
   };
 
@@ -503,6 +515,12 @@ export async function convertTrialSubscriptionToPaid(params: {
     updated,
     updatedCustomerId ?? customerId
   );
+
+  if (params.promoCode?.trim()) {
+    void import("@/lib/promo").then((m) =>
+      m.redeemPromoCode(params.userId, params.promoCode!.trim())
+    );
+  }
 
   return { status: updated.status, stripeSubscriptionId: updated.id };
 }

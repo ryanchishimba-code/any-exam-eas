@@ -116,6 +116,7 @@ export async function POST(req: Request) {
   }
 
   let stripeCouponId: string | null = null;
+  let promoCode: string | null = null;
   let promoValidation = null;
   if (typeof body?.promoCode === "string" && body.promoCode.trim()) {
     const { validateDiscount } = await import("@/lib/discount");
@@ -126,8 +127,11 @@ export async function POST(req: Request) {
       userId: session.user.id,
     });
     promoValidation = promo;
-    if (promo.valid && promo.stripeCouponId) {
-      stripeCouponId = promo.stripeCouponId;
+    if (promo.valid) {
+      promoCode = promo.code;
+      if (promo.stripeCouponId) {
+        stripeCouponId = promo.stripeCouponId;
+      }
     }
   }
 
@@ -144,6 +148,7 @@ export async function POST(req: Request) {
         tier,
         interval,
         stripeCouponId,
+        promoCode,
       });
       return NextResponse.json({
         upgraded: true,
@@ -173,6 +178,7 @@ export async function POST(req: Request) {
     tier,
     interval,
     stripeCouponId,
+    promoCode,
     successUrl: embedded
       ? `${origin}/checkout/return?session_id={CHECKOUT_SESSION_ID}`
       : `${origin}${ROUTES.dashboard}?checkout=success`,

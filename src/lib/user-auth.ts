@@ -232,11 +232,8 @@ export async function registerUser(
       m.sendEmailVerification(user.id, user.email)
     );
 
-    if (parsed.promoCode?.trim()) {
-      void import("@/lib/promo").then((m) =>
-        m.redeemPromoCode(user.id, parsed.promoCode!.trim())
-      );
-    }
+    // Do not redeem promo codes at signup — that blocked checkout reuse after
+    // abandoned or mid-trial upgrades. Redemption happens on successful Stripe pay.
 
     return {
       ...toSafeUser(user),

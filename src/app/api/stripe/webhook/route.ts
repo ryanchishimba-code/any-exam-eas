@@ -130,6 +130,13 @@ export async function POST(req: Request) {
           metadata: { status: stripeSub.status, livemode: event.livemode },
         });
 
+        const promoCode =
+          session.metadata?.promoCode?.trim() ||
+          stripeSub.metadata?.promoCode?.trim();
+        if (promoCode) {
+          void import("@/lib/promo").then((m) => m.redeemPromoCode(userId, promoCode));
+        }
+
         if (session.metadata?.plan === "trial" && stripeSub.status === "trialing") {
           saveTypedConversion(
             CONVERSION_EVENTS.TRIAL_STARTED,
