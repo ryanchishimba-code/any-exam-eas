@@ -1,11 +1,7 @@
 import Link from "next/link";
-import { ArrowRight, BarChart3, Lock } from "lucide-react";
+import { ArrowRight, Lock } from "lucide-react";
 import { ReadinessRing } from "@/components/study/ReadinessRing";
-import {
-  analyticsHref,
-  questionBankHref,
-  spacedReviewHref,
-} from "@/lib/edtech/practice-links-core";
+import { questionBankHref, spacedReviewHref } from "@/lib/edtech/practice-links-core";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
@@ -45,20 +41,20 @@ function resolveNextAction({
     return {
       label: `Strengthen ${topWeakTopic}`,
       href: spacedReviewHref(examSlug, 15),
-      reason: "Your weakest area — a short adaptive set will help.",
+      reason: "Your weakest area — a short set will help.",
     };
   }
   if (hasRecent) {
     return {
       label: `Practice ${examName}`,
       href: questionBankHref(examSlug),
-      reason: "Nothing due — keep your streak with a focused set.",
+      reason: "Nothing due — keep momentum with a focused set.",
     };
   }
   return {
     label: "Start your first set",
     href: questionBankHref(examSlug),
-    reason: "Unlock readiness, streaks, and spaced review.",
+    reason: "Begin practicing to unlock readiness and review.",
   };
 }
 
@@ -85,7 +81,7 @@ export function DashboardTodayFocus({
     ? {
         label: "Subscribe to continue studying",
         href: postTrialCheckoutHref(),
-        reason: "Your trial has ended — study tools stay locked until you subscribe.",
+        reason: "Your trial has ended — subscribe to unlock study tools.",
       }
     : resolveNextAction({
         examSlug,
@@ -112,27 +108,12 @@ export function DashboardTodayFocus({
           </p>
           <p className={cn(dbUi.sectionHint, "mt-1")}>{action.reason}</p>
 
-          <div className="mt-3 flex flex-wrap items-center justify-center gap-2 sm:justify-start">
+          <div className="mt-3 flex justify-center sm:justify-start">
             <Link href={action.href} className={dbUi.primaryBtn}>
               {studyLocked ? <Lock className="h-3.5 w-3.5" aria-hidden /> : null}
               {action.label}
               <ArrowRight className="h-3.5 w-3.5" aria-hidden />
             </Link>
-            {studyLocked ? (
-              <span
-                aria-disabled="true"
-                title="Subscribe to continue studying"
-                className={cn(dbUi.ghostBtn, "pointer-events-none cursor-not-allowed opacity-45")}
-              >
-                <BarChart3 className="h-3.5 w-3.5" aria-hidden />
-                Insights
-              </span>
-            ) : (
-              <Link href={analyticsHref()} className={dbUi.ghostBtn}>
-                <BarChart3 className="h-3.5 w-3.5" aria-hidden />
-                Insights
-              </Link>
-            )}
           </div>
         </div>
       </div>

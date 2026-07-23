@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 const DashboardExamCountdown = dynamic(
   () =>
     import("@/components/dashboard/DashboardExamCountdown").then((m) => m.DashboardExamCountdown),
-  { loading: () => <Skeleton className="h-24 w-full rounded-2xl" /> }
+  { loading: () => <Skeleton className="h-12 w-full rounded-2xl" /> }
 );
 
 export type DashboardHeadline = {
@@ -60,15 +60,11 @@ export function DashboardPageContent({
   const studyLocked = !hasPremiumAccess;
 
   return (
-    <div className={dbUi.page}>
+    <div className={cn(dbUi.page, "apple-animate-in")}>
       <DashboardHeader
         examName={exam.name}
         userName={userName}
-        readinessScore={headline.readinessScore}
-        accuracyPct={stats.accuracyPct}
         streakDays={stats.streakDays}
-        questionsToday={stats.questionsToday}
-        trendDelta={headline.trendDelta}
       />
 
       <DashboardExamCountdown examSlug={examSlug} examName={exam.name} testDate={testDate} />
@@ -83,8 +79,8 @@ export function DashboardPageContent({
           </h2>
           <p className={cn(dbUi.subtitle, "mt-1.5 max-w-xl")}>
             {studyLocked
-              ? "Subscribe to continue studying — question bank and study tools stay locked after your trial."
-              : "Take your first practice set and we'll track readiness, weak topics, and your streak here."}
+              ? "Subscribe to unlock the question bank and study tools."
+              : "Take your first practice set — we'll track readiness and review here."}
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {studyLocked ? (
@@ -94,15 +90,10 @@ export function DashboardPageContent({
                 <ArrowRight className="h-3.5 w-3.5" aria-hidden />
               </Link>
             ) : (
-              <>
-                <Link href={ROUTES.questionBank} className={dbUi.primaryBtn}>
-                  Start practicing
-                  <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-                </Link>
-                <Link href={ROUTES.library} className={dbUi.ghostBtn}>
-                  Browse library
-                </Link>
-              </>
+              <Link href={ROUTES.questionBank} className={dbUi.primaryBtn}>
+                Start practicing
+                <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+              </Link>
             )}
           </div>
         </section>
