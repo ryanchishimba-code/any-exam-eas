@@ -1,7 +1,4 @@
-import { and, eq } from "drizzle-orm";
 import { prisma } from "@/lib/prisma";
-import { requireDb } from "@/db";
-import { promoCodes, promoRedemptions } from "@/db/schema";
 import { buildPlanPricing } from "@/lib/promo-pricing";
 import { messageForErrorCode } from "./messages";
 import type {
@@ -12,7 +9,7 @@ import type {
 import { FULL_ACCESS_COPY } from "./access";
 
 type PromoRow = {
-  id?: string;
+  id: string;
   code: string;
   discountPercent: number | null;
   discountAmount: number | null;
@@ -23,62 +20,67 @@ type PromoRow = {
   stripeCouponId: string | null;
 };
 
-async function findPromoRow(code: string): Promise<PromoRow | null> {
-  try {
-    const db = requireDb();
-    const [row] = await db
-      .select({
-        id: promoCodes.id,
-        code: promoCodes.code,
-        discountPercent: promoCodes.discountPercent,
-        discountAmount: promoCodes.discountAmount,
-        expiryDate: promoCodes.expiryDate,
-        maxUses: promoCodes.maxUses,
-        currentUses: promoCodes.currentUses,
-        active: promoCodes.active,
-        stripeCouponId: promoCodes.stripeCouponId,
-      })
-      .from(promoCodes)
-      .where(eq(promoCodes.code, code))
-      .limit(1);
-    return row ?? null;
-  } catch {
-    const row = await prisma.promoCode.findUnique({ where: { code } });
-    if (!row) return null;
-    return {
-      id: row.id,
-      code: row.code,
-      discountPercent: row.discountPercent,
-      discountAmount: row.discountAmount,
-      expiryDate: row.expiryDate,
-      maxUses: row.maxUses,
-      currentUses: row.currentUses,
-      active: row.active,
-      stripeCouponId: row.stripeCouponId,
-    };
+/** Short TTL so debounced typing doesn't hammer Neon on every keystroke. */
+const PROMO_CACHE_TTL_MS = 30_000;
+const promoCache = new Map<string, { row: PromoRow | null; expiresAt: number }>();
+
+function readPromoCache(code: string): PromoRow | null | undefined {
+  const hit = promoCache.get(code);
+  if (!hit) return undefined;
+  if (hit.expiresAt < Date.now()) {
+    promoCache.delete(code);
+    return undefined;
+  }
+  return hit.row;
+}
+
+function writePromoCache(code: string, row: PromoRow | null): void {
+  promoCache.set(code, { row, expiresAt: Date.now() + PROMO_CACHE_TTL_MS });
+  if (promoCache.size > 200) {
+    const oldest = promoCache.keys().next().value;
+    if (oldest) promoCache.delete(oldest);
   }
 }
 
-async function userAlreadyRedeemed(promoId: string, userId: string): Promise<boolean> {
-  try {
-    const db = requireDb();
-    const [row] = await db
-      .select({ id: promoRedemptions.id })
-      .from(promoRedemptions)
-      .where(
-        and(
-          eq(promoRedemptions.promoCodeId, promoId),
-          eq(promoRedemptions.userId, userId)
-        )
-      )
-      .limit(1);
-    return Boolean(row);
-  } catch {
-    const row = await prisma.promoRedemption.findUnique({
-      where: { promoCodeId_userId: { promoCodeId: promoId, userId } },
-    });
-    return Boolean(row);
+/** Invalidate after redeem/clear so maxUses stays accurate. */
+export function invalidatePromoCache(code?: string): void {
+  if (!code) {
+    promoCache.clear();
+    return;
   }
+  promoCache.delete(code.trim().toUpperCase());
+}
+
+async function findPromoRow(code: string): Promise<PromoRow | null> {
+  const cached = readPromoCache(code);
+  if (cached !== undefined) return cached;
+
+  const row = await prisma.promoCode.findUnique({ where: { code } });
+  if (!row) {
+    writePromoCache(code, null);
+    return null;
+  }
+  const mapped: PromoRow = {
+    id: row.id,
+    code: row.code,
+    discountPercent: row.discountPercent,
+    discountAmount: row.discountAmount,
+    expiryDate: row.expiryDate,
+    maxUses: row.maxUses,
+    currentUses: row.currentUses,
+    active: row.active,
+    stripeCouponId: row.stripeCouponId,
+  };
+  writePromoCache(code, mapped);
+  return mapped;
+}
+
+async function userAlreadyRedeemed(promoId: string, userId: string): Promise<boolean> {
+  const row = await prisma.promoRedemption.findUnique({
+    where: { promoCodeId_userId: { promoCodeId: promoId, userId } },
+    select: { id: true },
+  });
+  return Boolean(row);
 }
 
 function fail(
@@ -128,7 +130,7 @@ export async function validateDiscount(
     return fail(code, "max_uses", plan);
   }
 
-  if (userId && row.id) {
+  if (userId) {
     const redeemed = await userAlreadyRedeemed(row.id, userId);
     if (redeemed) {
       return fail(code, "already_redeemed", plan);

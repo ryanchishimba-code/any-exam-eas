@@ -53,4 +53,16 @@ describe("sanitizeDiscountForPublic", () => {
     });
     expect(out.errorCode).toBe("already_redeemed");
   });
+
+  it("strips stripeCouponId from public payloads", () => {
+    const out = sanitizeDiscountForPublic({
+      valid: true,
+      code: "AEE50",
+      message: "ok",
+      stripeCouponId: "coup_secret",
+      fullAccessIncluded: true,
+    });
+    expect(out.valid).toBe(true);
+    expect(out.stripeCouponId).toBeUndefined();
+  });
 });

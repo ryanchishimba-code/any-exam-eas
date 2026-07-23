@@ -10,6 +10,13 @@ describe("promo-pricing", () => {
     expect(pricing.primary.discounted).toBeCloseTo(TIER_MONTHLY_USD.pro * 0.9, 2);
   });
 
+  it("rounds 50% AEE-style savings without float residue", () => {
+    const pricing = buildPlanPricing("subscribe", "pro", "monthly", 50);
+    expect(pricing.primary.discounted).toBe(14);
+    expect(pricing.totalSavings).toBe(13.99);
+    expect(Number.isInteger(pricing.totalSavings * 100)).toBe(true);
+  });
+
   it("applyDiscount subtracts fixed amount", () => {
     expect(applyDiscount(TIER_MONTHLY_USD.pro, null, 10)).toBeCloseTo(TIER_MONTHLY_USD.pro - 10, 2);
   });

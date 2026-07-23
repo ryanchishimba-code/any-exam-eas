@@ -14,13 +14,16 @@ const PUBLIC_INVALID_MESSAGE =
 export function sanitizeDiscountForPublic(
   result: DiscountValidation
 ): DiscountValidation {
-  if (result.valid) return result;
-  if (result.errorCode && ENUMERABLE_FAILURE_CODES.has(result.errorCode)) {
+  // Never expose Stripe coupon IDs to the browser — checkout re-validates server-side.
+  const { stripeCouponId: _coupon, ...safe } = result;
+
+  if (safe.valid) return safe;
+  if (safe.errorCode && ENUMERABLE_FAILURE_CODES.has(safe.errorCode)) {
     return {
-      ...result,
+      ...safe,
       errorCode: "invalid_code",
       message: PUBLIC_INVALID_MESSAGE,
     };
   }
-  return result;
+  return safe;
 }

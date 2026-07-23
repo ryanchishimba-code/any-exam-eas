@@ -1,9 +1,9 @@
-import { and, eq, sql } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { prisma } from "@/lib/prisma";
 import { requireDb } from "@/db";
 import { promoCodes, promoRedemptions } from "@/db/schema";
 import { createId } from "@/lib/id";
-import { validateDiscount } from "@/lib/discount/validate";
+import { invalidatePromoCache, validateDiscount } from "@/lib/discount/validate";
 import type { DiscountValidation } from "@/lib/discount/types";
 import type { SignupPlan } from "@/lib/validators/auth";
 
@@ -51,6 +51,7 @@ export async function redeemPromoCode(userId: string, code: string): Promise<voi
       .update(promoCodes)
       .set({ currentUses: sql`${promoCodes.currentUses} + 1`, updatedAt: new Date() })
       .where(eq(promoCodes.id, promo.id));
+    invalidatePromoCache(normalized);
   } catch {
     const promo = await prisma.promoCode.findUnique({ where: { code: normalized } });
     if (!promo) return;
@@ -63,6 +64,7 @@ export async function redeemPromoCode(userId: string, code: string): Promise<voi
         where: { id: promo.id },
         data: { currentUses: { increment: 1 } },
       });
+      invalidatePromoCache(normalized);
     } catch {
       /* unique violation — already redeemed */
     }
@@ -77,47 +79,20 @@ export async function clearPromoRedemption(userId: string, code: string): Promis
   const normalized = code.trim().toUpperCase();
   if (!normalized || !userId) return false;
 
-  try {
-    const db = requireDb();
-    const [promo] = await db
-      .select({ id: promoCodes.id, currentUses: promoCodes.currentUses })
-      .from(promoCodes)
-      .where(eq(promoCodes.code, normalized))
-      .limit(1);
-    if (!promo) return false;
+  const promo = await prisma.promoCode.findUnique({ where: { code: normalized } });
+  if (!promo) return false;
 
-    const deleted = await db
-      .delete(promoRedemptions)
-      .where(
-        and(eq(promoRedemptions.promoCodeId, promo.id), eq(promoRedemptions.userId, userId))
-      )
-      .returning({ id: promoRedemptions.id });
+  const result = await prisma.promoRedemption.deleteMany({
+    where: { promoCodeId: promo.id, userId },
+  });
+  if (result.count === 0) return false;
 
-    if (deleted.length === 0) return false;
-
-    if (promo.currentUses > 0) {
-      await db
-        .update(promoCodes)
-        .set({
-          currentUses: sql`GREATEST(${promoCodes.currentUses} - 1, 0)`,
-          updatedAt: new Date(),
-        })
-        .where(eq(promoCodes.id, promo.id));
-    }
-    return true;
-  } catch {
-    const promo = await prisma.promoCode.findUnique({ where: { code: normalized } });
-    if (!promo) return false;
-    const result = await prisma.promoRedemption.deleteMany({
-      where: { promoCodeId: promo.id, userId },
+  if (promo.currentUses > 0) {
+    await prisma.promoCode.update({
+      where: { id: promo.id },
+      data: { currentUses: Math.max(0, promo.currentUses - 1) },
     });
-    if (result.count === 0) return false;
-    if (promo.currentUses > 0) {
-      await prisma.promoCode.update({
-        where: { id: promo.id },
-        data: { currentUses: Math.max(0, promo.currentUses - 1) },
-      });
-    }
-    return true;
   }
+  invalidatePromoCache(normalized);
+  return true;
 }

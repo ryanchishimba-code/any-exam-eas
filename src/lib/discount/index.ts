@@ -3,7 +3,7 @@ export type {
   DiscountValidation,
   ValidateDiscountInput,
 } from "./types";
-export { validateDiscount } from "./validate";
+export { validateDiscount, invalidatePromoCache } from "./validate";
 export {
   DISCOUNT_ERROR_MESSAGES,
   messageForErrorCode,

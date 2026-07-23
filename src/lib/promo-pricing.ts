@@ -44,7 +44,12 @@ export function applyDiscount(
   if (discountAmount && discountAmount > 0) {
     price = price - discountAmount;
   }
-  return Math.max(0, Math.round(price * 100) / 100);
+  return Math.max(0, roundCents(price));
+}
+
+/** Avoid float residue like 13.989999999999998 in API payloads. */
+function roundCents(amount: number): number {
+  return Math.round(amount * 100) / 100;
 }
 
 function recurringLineLabel(
@@ -76,8 +81,9 @@ export function buildPlanPricing(
     const periodOriginal = periodTotal;
     const periodDiscounted = applyDiscount(periodOriginal, discountPercent, discountAmount);
 
-    const todaySavings = Math.max(0, dueTodayOriginal - dueTodayDiscounted);
-    const periodSavings = Math.max(0, periodOriginal - periodDiscounted);
+    const todaySavings = roundCents(Math.max(0, dueTodayOriginal - dueTodayDiscounted));
+    const periodSavings = roundCents(Math.max(0, periodOriginal - periodDiscounted));
+    const totalSavings = roundCents(todaySavings + periodSavings);
 
     return {
       plan,
@@ -93,16 +99,16 @@ export function buildPlanPricing(
         original: periodOriginal,
         discounted: periodDiscounted,
       },
-      totalSavings: todaySavings + periodSavings,
+      totalSavings,
       formattedPrimary: formatUsd(dueTodayDiscounted),
       formattedRecurring: formatUsd(periodDiscounted),
-      formattedSavings: formatUsd(todaySavings + periodSavings),
+      formattedSavings: formatUsd(totalSavings),
     };
   }
 
   const periodOriginal = periodTotal;
   const periodDiscounted = applyDiscount(periodOriginal, discountPercent, discountAmount);
-  const savings = Math.max(0, periodOriginal - periodDiscounted);
+  const savings = roundCents(Math.max(0, periodOriginal - periodDiscounted));
 
   return {
     plan,
