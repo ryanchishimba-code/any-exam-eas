@@ -11,7 +11,7 @@ import { SHELL_LAYOUT_TRANSITION } from "@/lib/layout/nav-motion";
 import { isFullExamSessionRoute } from "@/lib/navigation/app-shell";
 import { cn } from "@/lib/utils";
 
-const SIDEBAR_WIDTH_CLASS = "w-56";
+const SIDEBAR_WIDTH_CLASS = "w-60";
 
 export function AppShell({
   children,

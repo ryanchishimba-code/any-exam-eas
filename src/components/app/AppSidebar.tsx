@@ -5,17 +5,19 @@ import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 import {
   BarChart3,
-  BookMarked,
-  BookOpen,
   Bone,
   Clock,
+  FileText,
   LayoutGrid,
-  Layers,
   Lock,
   Map,
-  Sparkles,
+  PenLine,
+  RefreshCw,
+  SlidersHorizontal,
+  Square,
   type LucideIcon,
 } from "lucide-react";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 import { SubscribeToContinueHint } from "@/components/app/SubscribeToContinueHint";
 import { GlobalExamSwitcher } from "@/components/navigation/GlobalExamSwitcher";
 import { useUserAccess } from "@/lib/client/use-user-access";
@@ -36,22 +38,74 @@ type NavItem = {
   clinicalOnly?: boolean;
 };
 
-const BASE_NAV_ITEMS: NavItem[] = [
-  { id: "dashboard", href: ROUTES.dashboard, label: "Dashboard", icon: LayoutGrid, exact: true },
-  { id: "roadmap", href: ROUTES.roadmap, label: "Roadmap", icon: Map },
-  { id: "library", href: ROUTES.library, label: "Library", icon: BookMarked },
-  { id: "full-exam", href: "__full_exam__", label: "Full Exam", icon: Clock },
-  { id: "question-bank", href: "__question_bank__", label: "Question Bank", icon: BookOpen },
+type NavSection = {
+  id: string;
+  label: string | null;
+  items: NavItem[];
+};
+
+const NAV_SECTIONS: NavSection[] = [
   {
-    id: "anatomy",
-    href: "__anatomy__",
-    label: "Anatomy Explorer",
-    icon: Bone,
-    clinicalOnly: true,
+    id: "primary",
+    label: null,
+    items: [
+      {
+        id: "dashboard",
+        href: ROUTES.dashboard,
+        label: "Dashboard",
+        icon: SlidersHorizontal,
+        exact: true,
+      },
+      { id: "roadmap", href: ROUTES.roadmap, label: "Roadmap", icon: Map },
+      {
+        id: "question-bank",
+        href: "__question_bank__",
+        label: "Question Bank",
+        icon: PenLine,
+      },
+    ],
   },
-  { id: "analytics", href: ROUTES.analytics, label: "Analytics", icon: BarChart3 },
-  { id: "high-yield", href: ROUTES.highYieldTopics, label: "High-Yield Topics", icon: Sparkles },
-  { id: "top-500", href: ROUTES.drugs300, label: "Top 500", icon: Layers, clinicalOnly: true },
+  {
+    id: "study-tools",
+    label: "Study Tools",
+    items: [
+      {
+        id: "high-yield",
+        href: ROUTES.highYieldTopics,
+        label: "High-Yield Topics",
+        icon: Square,
+      },
+      { id: "library", href: ROUTES.library, label: "Library", icon: FileText },
+    ],
+  },
+  {
+    id: "clinical",
+    label: "Clinical",
+    items: [
+      {
+        id: "anatomy",
+        href: "__anatomy__",
+        label: "Anatomy Explorer",
+        icon: Bone,
+        clinicalOnly: true,
+      },
+      {
+        id: "top-500",
+        href: ROUTES.drugs300,
+        label: "Top 500 Drugs",
+        icon: RefreshCw,
+        clinicalOnly: true,
+      },
+    ],
+  },
+  {
+    id: "practice",
+    label: "Practice",
+    items: [
+      { id: "full-exam", href: "__full_exam__", label: "Full Exam", icon: Clock },
+      { id: "analytics", href: ROUTES.analytics, label: "Analytics", icon: BarChart3 },
+    ],
+  },
 ];
 
 type Props = {
@@ -69,6 +123,19 @@ function isNavActive(pathname: string, href: string, exact?: boolean) {
     return pathname === path || pathname.startsWith(`${path}/`);
   }
   return exact ? pathname === path : pathname === path || pathname.startsWith(`${path}/`);
+}
+
+function resolveHref(item: NavItem, examSlug: string | null | undefined): string {
+  if (item.href === "__question_bank__") {
+    return examSlug ? questionBankHref(examSlug) : ROUTES.questionBank;
+  }
+  if (item.href === "__full_exam__") {
+    return examSlug ? fullExamHref(examSlug) : ROUTES.fullExam;
+  }
+  if (item.href === "__anatomy__") {
+    return examSlug ? anatomyHref(examSlug) : ROUTES.anatomy;
+  }
+  return item.href;
 }
 
 function SidebarNavLink({
@@ -90,13 +157,13 @@ function SidebarNavLink({
         aria-disabled="true"
         title="Subscribe to continue studying"
         className={cn(
-          "relative flex cursor-not-allowed items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium opacity-45",
+          "flex cursor-not-allowed items-center gap-3 rounded-full px-3.5 py-2.5 text-[15px] font-medium opacity-45",
           "text-[var(--color-ink-muted)]"
         )}
       >
-        <Icon className="relative h-4 w-4 shrink-0" aria-hidden />
-        <span className="relative min-w-0 flex-1 truncate">{item.label}</span>
-        <Lock className="relative h-3.5 w-3.5 shrink-0" aria-hidden />
+        <Icon className="h-[18px] w-[18px] shrink-0" strokeWidth={1.75} aria-hidden />
+        <span className="min-w-0 flex-1 truncate">{item.label}</span>
+        <Lock className="h-3.5 w-3.5 shrink-0" aria-hidden />
       </span>
     );
   }
@@ -107,28 +174,31 @@ function SidebarNavLink({
       onClick={onNavigate}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "relative flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-sm font-medium",
+        "flex items-center gap-3 rounded-full px-3.5 py-2.5 text-[15px] font-medium",
         STUDY_NAV_COLOR,
         active
-          ? "text-[var(--color-accent)]"
-          : "text-[var(--color-ink-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-ink)]"
+          ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
+          : "text-[var(--color-ink)] hover:bg-black/[0.04]"
       )}
     >
-      {active ? (
-        <span
-          className="absolute inset-0 rounded-xl bg-[var(--color-accent)]/10 ring-1 ring-inset ring-[var(--color-accent)]/15 shadow-[0_1px_2px_rgba(0,0,0,0.04)]"
-          aria-hidden
-        />
-      ) : null}
       <Icon
         className={cn(
-          "relative h-4 w-4 shrink-0 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]",
-          active && "scale-[1.06]"
+          "h-[18px] w-[18px] shrink-0",
+          active ? "text-[var(--color-accent)]" : "text-[var(--color-ink)]"
         )}
+        strokeWidth={active ? 2 : 1.75}
         aria-hidden
       />
-      <span className="relative min-w-0 flex-1 truncate">{item.label}</span>
+      <span className="min-w-0 flex-1 truncate">{item.label}</span>
     </Link>
+  );
+}
+
+function SidebarSectionLabel({ label }: { label: string }) {
+  return (
+    <p className="mb-1.5 mt-5 px-3.5 text-[13px] font-bold tracking-tight text-[var(--color-ink)] first:mt-0">
+      {label}
+    </p>
   );
 }
 
@@ -140,34 +210,22 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
   const examSwitchLocked = isExamPracticeLockedRoute(pathname);
   const studyLocked = !accessLoading && hasFreeTierAccess && !hasStudyAccess;
 
-  const navItems = useMemo(
+  const sections = useMemo(
     () =>
-      BASE_NAV_ITEMS.filter((item) => !item.clinicalOnly || clinical).map((item) => {
-        if (item.href === "__question_bank__") {
-          return {
+      NAV_SECTIONS.map((section) => ({
+        ...section,
+        items: section.items
+          .filter((item) => !item.clinicalOnly || clinical)
+          .map((item) => ({
             ...item,
-            href: examSlug ? questionBankHref(examSlug) : ROUTES.questionBank,
-          };
-        }
-        if (item.href === "__full_exam__") {
-          return {
-            ...item,
-            href: examSlug ? fullExamHref(examSlug) : ROUTES.fullExam,
-          };
-        }
-        if (item.href === "__anatomy__") {
-          return {
-            ...item,
-            href: examSlug ? anatomyHref(examSlug) : ROUTES.anatomy,
-          };
-        }
-        return item;
-      }),
+            href: resolveHref(item, examSlug),
+          })),
+      })).filter((section) => section.items.length > 0),
     [clinical, examSlug]
   );
 
   return (
-    <aside className={cn(embedded ? "block w-full" : "w-56 shrink-0")}>
+    <aside className={cn(embedded ? "block w-full" : "w-60 shrink-0")}>
       {embedded ? (
         <div className="mb-4">
           <GlobalExamSwitcher variant="mobile" onNavigate={onNavigate} />
@@ -175,25 +233,44 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
       ) : null}
       <nav
         className={cn(
-          "rounded-2xl border border-black/[0.06] bg-white p-3 shadow-[var(--shadow-apple-sm)]",
+          "rounded-2xl border border-black/[0.06] bg-white px-2.5 py-4 shadow-[var(--shadow-apple-sm)]",
           embedded ? "static" : "sticky top-[calc(var(--nav-height)+1rem)]"
         )}
         aria-label="Study navigation"
       >
-        <ul className="space-y-0.5">
-          {navItems.map((item) => (
-            <li key={item.id}>
-              <SidebarNavLink
-                item={item}
-                active={isNavActive(pathname, item.href, item.exact)}
-                locked={studyLocked && item.id !== "dashboard"}
-                onNavigate={onNavigate}
-              />
-            </li>
+        <div className="mb-5 flex items-center gap-2.5 px-2.5">
+          <BrandLogo href={ROUTES.dashboard} variant="nav" className="h-9 w-auto" />
+          <Link
+            href={ROUTES.dashboard}
+            onClick={onNavigate}
+            className="truncate text-[17px] font-bold tracking-tight text-[var(--color-ink)]"
+          >
+            AnyExamEasy
+          </Link>
+        </div>
+
+        <div className="space-y-0.5">
+          {sections.map((section) => (
+            <div key={section.id}>
+              {section.label ? <SidebarSectionLabel label={section.label} /> : null}
+              <ul className="space-y-0.5">
+                {section.items.map((item) => (
+                  <li key={item.id}>
+                    <SidebarNavLink
+                      item={item}
+                      active={isNavActive(pathname, item.href, item.exact)}
+                      locked={studyLocked && item.id !== "dashboard"}
+                      onNavigate={onNavigate}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
+
         {studyLocked ? (
-          <div className="mt-3 rounded-xl border border-dashed border-black/[0.08] bg-[var(--color-surface)] px-3 py-2.5">
+          <div className="mt-4 rounded-xl border border-dashed border-black/[0.08] bg-[var(--color-surface)] px-3 py-2.5">
             <SubscribeToContinueHint />
           </div>
         ) : null}
@@ -202,12 +279,12 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
             href={`${ROUTES.selectExam}?switch=1`}
             onClick={onNavigate}
             className={cn(
-              "mt-2 flex items-center gap-2.5 rounded-xl border border-dashed border-black/[0.08] px-3 py-2.5 text-sm font-medium text-[var(--color-ink-muted)]",
+              "mt-3 flex items-center gap-3 rounded-full border border-dashed border-black/[0.08] px-3.5 py-2.5 text-[15px] font-medium text-[var(--color-ink-muted)]",
               STUDY_NAV_COLOR,
               "hover:border-teal-300 hover:bg-[var(--color-surface)] hover:text-teal-700"
             )}
           >
-            <LayoutGrid className="h-4 w-4 shrink-0" aria-hidden />
+            <LayoutGrid className="h-[18px] w-[18px] shrink-0" strokeWidth={1.75} aria-hidden />
             Switch exam
           </Link>
         ) : null}
