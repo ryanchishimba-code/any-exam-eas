@@ -232,7 +232,7 @@ export const USMLE_STEP2_2026_BLUEPRINT: ExamBlueprint = {
       id: "surgery-acute-care",
       label: "Surgery / Acute Care",
       weight: 0.1,
-      subjectIds: ["emergency-medicine"],
+      subjectIds: ["surgery", "emergency-medicine"],
       highYieldTopics: [
         "acute abdomen",
         "appendicitis",

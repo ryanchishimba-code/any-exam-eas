@@ -295,6 +295,8 @@
     "db:raise-usmle-exam-ready": "npx tsx scripts/raise-usmle-exam-ready.ts",
     "db:raise-usmle-exam-ready:step1": "npx tsx scripts/raise-usmle-exam-ready.ts --field usmle-step-1 --skip-curation",
     "db:raise-usmle-exam-ready:step3": "npx tsx scripts/raise-usmle-exam-ready.ts --field usmle-step-3 --skip-curation",
+    "db:elevate-usmle-step3:audit": "bash scripts/run-with-node.sh npx tsx scripts/elevate-usmle-step3-a-quality.mts --audit-only",
+    "db:elevate-usmle-step3:wave1": "bash scripts/run-with-node.sh npx tsx scripts/elevate-usmle-step3-a-quality.mts --wave 1",
     "db:rebalance-usmle": "OPENAI_GENERATION_ONLY=1 bash scripts/run-with-node.sh npx tsx scripts/rebalance-usmle-blueprint.ts",
     "db:rebalance-usmle:dry": "bash scripts/run-with-node.sh npx tsx scripts/rebalance-usmle-blueprint.ts --dry-run",
     "db:rebalance-usmle:step3-formats": "OPENAI_GENERATION_ONLY=1 bash scripts/run-with-node.sh npx tsx scripts/rebalance-usmle-blueprint.ts --field usmle-step-3 --step3-formats --max-batches 25",

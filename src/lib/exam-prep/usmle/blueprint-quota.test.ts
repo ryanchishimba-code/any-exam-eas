@@ -41,6 +41,14 @@ describe("USMLE blueprint resolver", () => {
     ).toBe("surgery-acute-care");
   });
 
+  it("maps Step 2 surgery subject to surgery-acute-care", () => {
+    expect(
+      resolveUsmleBlueprintCategory("usmle-step-2", {
+        subjectId: "surgery",
+      })
+    ).toBe("surgery-acute-care");
+  });
+
   it("maps Step 3 item types before subject", () => {
     expect(
       resolveUsmleBlueprintCategory("usmle-step-3", {

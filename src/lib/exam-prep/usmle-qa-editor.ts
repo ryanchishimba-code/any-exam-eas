@@ -16,6 +16,7 @@ import {
 import type { BankItem } from "@/lib/question-bank";
 import { isUsmleStep1Subject } from "@/lib/subjects/medicine/subject-splits";
 import { splitUsmleBankItem } from "./usmle-bank-split";
+import { USMLE_STEP3_NON_VIGNETTE_ITEM_TYPES } from "./usmle/steps";
 
 export type UsmleQaDimension =
   | "vignetteQuality"
@@ -127,14 +128,47 @@ function pushIssue(
   issues.push({ code, message, severity, dimension });
 }
 
+/** Pull Step 3 abstract / drug-ad / CCS stimulus text from ngnPayload when vignette is empty. */
+function formatStimulusFromPayload(item: BankItem): string {
+  const payload = item.ngnPayload;
+  if (!payload || typeof payload !== "object") return "";
+  const p = payload as Record<string, unknown>;
+  const abstract = p.abstract;
+  if (abstract && typeof abstract === "object") {
+    const a = abstract as Record<string, unknown>;
+    return [a.title, a.source, a.body].filter((x) => typeof x === "string" && x.trim()).join("\n");
+  }
+  const ad = p.ad;
+  if (ad && typeof ad === "object") {
+    const d = ad as Record<string, unknown>;
+    return [d.drug, d.headline, d.indications, d.warnings]
+      .filter((x) => typeof x === "string" && x.trim())
+      .join("\n");
+  }
+  const caseData = p.caseData;
+  if (caseData && typeof caseData === "object") {
+    const c = caseData as Record<string, unknown>;
+    return [c.setting, c.presentation, c.vitals, c.timeline]
+      .filter((x) => typeof x === "string" && x.trim())
+      .join("\n");
+  }
+  return "";
+}
+
 export function auditUsmleQaEditor(
   item: BankItem,
   meta: { fieldId: string; source?: string; itemId?: string; difficulty?: number | null }
 ): UsmleQaReport {
   const issues: UsmleQaIssue[] = [];
   const recommendations: string[] = [];
+  const itemType = item.itemType ?? "mcq";
+  const step3Format =
+    meta.fieldId === "usmle-step-3" && USMLE_STEP3_NON_VIGNETTE_ITEM_TYPES.has(itemType);
   const { vignette: splitVignette, stem } = splitUsmleBankItem(item);
-  const vignette = splitVignette?.trim() ?? "";
+  let vignette = splitVignette?.trim() ?? "";
+  if (!vignette && step3Format) {
+    vignette = formatStimulusFromPayload(item).trim();
+  }
   const options = Array.isArray(item.options) ? item.options : [];
   const explanation = item.explanation?.trim() ?? "";
   const tags = item.tags ?? [];
@@ -146,12 +180,28 @@ export function auditUsmleQaEditor(
   // ── Vignette quality ──
   let vignetteQuality = 5;
   if (!vignette) {
-    if (step1Recall) {
-      vignetteQuality = 7;
+    if (step1Recall || step3Format) {
+      // Step 1 recall and Step 3 format stimuli (abstract/ad/CCS) may omit classic patient vignettes.
+      vignetteQuality = step3Format ? 6 : 7;
+      if (step3Format) {
+        pushIssue(
+          issues,
+          "format_stimulus_thin",
+          "Step 3 format item lacks abstract/ad/CCS stimulus text.",
+          "vignetteQuality",
+          "warn"
+        );
+      }
     } else {
       vignetteQuality -= 3;
       pushIssue(issues, "missing_vignette", "No clinical vignette separated from stem.", "vignetteQuality", "error");
     }
+  } else if (step3Format) {
+    // Format stimulus: score on substance, not demographics/vitals.
+    if (vignette.length >= 80) vignetteQuality += 2;
+    else pushIssue(issues, "format_stimulus_thin", "Format stimulus is short.", "vignetteQuality", "warn");
+    if (vignette.length >= 160) vignetteQuality += 1;
+    if (/\d/.test(vignette)) vignetteQuality += 0.5;
   } else {
     if (isVignetteRich(vignette)) vignetteQuality += 2;
     else pushIssue(issues, "thin_vignette", "Vignette lacks demographics, objective data, or depth.", "vignetteQuality", "error");
@@ -168,13 +218,13 @@ export function auditUsmleQaEditor(
     if (vignetteHasEtiologyClues(vignette)) vignetteQuality += 0.5;
   }
 
-  if (!step1Recall) {
+  if (!step1Recall && !step3Format) {
     for (const msg of validateClinicalVignette(examQ)) {
       vignetteQuality -= 0.8;
       pushIssue(issues, "vignette_validation", msg, "vignetteQuality", "warn");
     }
   }
-  if (hasOrphanDeicticStem(examQ)) {
+  if (!step3Format && hasOrphanDeicticStem(examQ)) {
     vignetteQuality -= 1.5;
     pushIssue(issues, "orphan_stem", "Stem references findings without adequate vignette.", "vignetteQuality", "error");
   }

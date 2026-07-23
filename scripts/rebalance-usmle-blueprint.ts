@@ -51,6 +51,8 @@ function parseArgs() {
   let fillDeficits = false;
   let categories: string[] = [];
   let subjects: string[] = [];
+  /** When set with --subjects, stop once each subject reaches this qa/active count. */
+  let subjectTarget = 0;
 
   for (let i = 0; i < args.length; i++) {
     const a = args[i];
@@ -65,6 +67,8 @@ function parseArgs() {
       categories = args[++i]!.split(",").map((s) => s.trim()).filter(Boolean);
     } else if (a === "--subjects" && args[i + 1]) {
       subjects = args[++i]!.split(",").map((s) => s.trim()).filter(Boolean);
+    } else if (a === "--subject-target" && args[i + 1]) {
+      subjectTarget = parseInt(args[++i]!, 10);
     } else if (a === "--step3-formats") {
       categories = [...USMLE_STEP3_FORMAT_CATEGORY_IDS];
       field = "usmle-step-3";
@@ -82,6 +86,7 @@ function parseArgs() {
     fillDeficits,
     categories,
     subjects,
+    subjectTarget,
   };
 }
 
@@ -115,6 +120,26 @@ async function categoryCounts(fieldId: string, metric: "active" | "qaPassed") {
   return { counts, total: rows.length };
 }
 
+async function subjectCounts(fieldId: string, metric: "active" | "qaPassed") {
+  const grouped = await prisma.questionBankItem.groupBy({
+    by: ["subjectId"],
+    where: {
+      fieldId,
+      active: true,
+      ...(metric === "qaPassed" ? { qaPassed: true } : {}),
+    },
+    _count: true,
+  });
+  const counts: Record<string, number> = {};
+  let total = 0;
+  for (const g of grouped) {
+    const key = g.subjectId?.trim() || "unknown";
+    counts[key] = g._count;
+    total += g._count;
+  }
+  return { counts, total };
+}
+
 async function main() {
   const {
     field,
@@ -126,6 +151,7 @@ async function main() {
     fillDeficits,
     categories,
     subjects,
+    subjectTarget: subjectTargetArg,
   } = parseArgs();
 
   const stepLevel = FIELD_TO_STEP[field];
@@ -155,7 +181,7 @@ async function main() {
   }
 
   log(
-    `USMLE rebalance — ${field} (${metric}), ${examsPerBatch} exam(s) × ${countPerExam}, max ${maxBatches}${dryRun ? " [dry-run]" : ""}${fillDeficits ? " [fill-deficits]" : ` [focus: ${staticFocus.join(", ")}]`}`
+    `USMLE rebalance — ${field} (${metric}), ${examsPerBatch} exam(s) × ${countPerExam}, max ${maxBatches}${dryRun ? " [dry-run]" : ""}${fillDeficits ? " [fill-deficits]" : ` [focus: ${staticFocus.join(", ")}]${subjectMode ? ` [subject-target: ${subjectTargetArg || "auto"}]` : ""}`}`
   );
 
   let batches = 0;
@@ -165,17 +191,57 @@ async function main() {
   while (batches < maxBatches) {
     const { counts, total } = await categoryCounts(field, metric);
     const quotas = mergeUsmleQuotaWithCounts(blueprint, counts, total);
-    const focusRotation = fillDeficits
-      ? quotas.filter((q) => (q.deficit ?? 0) > 0).map((q) => q.categoryId)
-      : staticFocus;
-    const under = fillDeficits
-      ? quotas.filter((q) => (q.deficit ?? 0) > 0)
-      : quotas.filter((q) => focusRotation.includes(q.categoryId) && (q.deficit ?? 0) > 0);
-    const totalDeficit = under.reduce((s, q) => s + (q.deficit ?? 0), 0);
 
-    log(`Deficit in focus areas: ${totalDeficit} across ${under.length} categories`);
+    type FocusRow = {
+      key: string;
+      label: string;
+      currentCount: number;
+      targetCount: number;
+      deficit: number;
+    };
+
+    let under: FocusRow[] = [];
+    let focusRotation: string[] = [];
+
+    if (subjectMode) {
+      const { counts: bySubject } = await subjectCounts(field, metric);
+      const target =
+        subjectTargetArg > 0
+          ? subjectTargetArg
+          : Math.max(200, Math.ceil(total * 0.04));
+      under = subjects.map((s) => {
+        const current = bySubject[s] ?? 0;
+        return {
+          key: s,
+          label: `subject:${s}`,
+          currentCount: current,
+          targetCount: target,
+          deficit: Math.max(0, target - current),
+        };
+      }).filter((q) => q.deficit > 0);
+      focusRotation = under.map((q) => q.key);
+    } else {
+      focusRotation = fillDeficits
+        ? quotas.filter((q) => (q.deficit ?? 0) > 0).map((q) => q.categoryId)
+        : staticFocus;
+      under = (
+        fillDeficits
+          ? quotas.filter((q) => (q.deficit ?? 0) > 0)
+          : quotas.filter((q) => focusRotation.includes(q.categoryId) && (q.deficit ?? 0) > 0)
+      ).map((q) => ({
+        key: q.categoryId,
+        label: q.label,
+        currentCount: q.currentCount ?? 0,
+        targetCount: q.targetCount,
+        deficit: q.deficit ?? 0,
+      }));
+    }
+
+    const totalDeficit = under.reduce((s, q) => s + q.deficit, 0);
+
+    log(`Deficit in focus areas: ${totalDeficit} across ${under.length} ${subjectMode ? "subjects" : "categories"}`);
     for (const q of under.slice(0, 12)) {
-      log(`  ${q.label}: ${q.currentCount ?? 0}/${q.targetCount} (need ${q.deficit})`);
+      log(`  ${q.label}: ${q.currentCount}/${q.targetCount} (need ${q.deficit})`);
     }
     if (under.length > 12) log(`  … and ${under.length - 12} more`);
 

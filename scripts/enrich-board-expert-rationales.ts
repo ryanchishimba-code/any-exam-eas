@@ -39,7 +39,39 @@ import { bankItemContentHash } from "../src/lib/sync-question-bank";
 
 const prisma = new PrismaClient();
 const BATCH = 40;
-const DELAY_MS = 500;
+/** Override via ENRICH_DELAY_MS (ms). Lower = faster OpenAI throughput; 0 is fine with good rate limits. */
+const DELAY_MS = (() => {
+  const raw = process.env.ENRICH_DELAY_MS?.trim();
+  if (!raw) return 150;
+  const n = Number(raw);
+  return Number.isFinite(n) && n >= 0 ? n : 150;
+})();
+
+const TRANSIENT_PRISMA = new Set(["P1017", "P1001", "P1002", "P1008"]);
+
+async function withDbRetry<T>(label: string, fn: () => Promise<T>, attempts = 5): Promise<T> {
+  let last: unknown;
+  for (let i = 1; i <= attempts; i++) {
+    try {
+      return await fn();
+    } catch (err) {
+      last = err;
+      const code =
+        err && typeof err === "object" && "code" in err
+          ? String((err as { code?: unknown }).code ?? "")
+          : "";
+      const msg = err instanceof Error ? err.message : String(err);
+      const transient =
+        TRANSIENT_PRISMA.has(code) ||
+        /Server has closed the connection|Can't reach database server|Connection reset/i.test(msg);
+      if (!transient || i === attempts) throw err;
+      const waitMs = Math.min(30_000, 1000 * 2 ** (i - 1));
+      console.warn(`[enrich-board] ${label} DB retry ${i}/${attempts} (${code || "conn"}) in ${waitMs}ms`);
+      await sleep(waitMs);
+    }
+  }
+  throw last;
+}
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -108,16 +140,18 @@ async function enrichField(
   const perFieldLimit = opts.limit;
 
   while (enriched < perFieldLimit) {
-    const rows = await prisma.questionBankItem.findMany({
-      where: {
-        fieldId,
-        active: true,
-        ...(opts.serveOnly ? { qaPassed: true } : {}),
-        ...(lastId ? { id: { gt: lastId } } : {}),
-      },
-      orderBy: { id: "asc" },
-      take: BATCH,
-    });
+    const rows = await withDbRetry(`findMany:${fieldId}`, () =>
+      prisma.questionBankItem.findMany({
+        where: {
+          fieldId,
+          active: true,
+          ...(opts.serveOnly ? { qaPassed: true } : {}),
+          ...(lastId ? { id: { gt: lastId } } : {}),
+        },
+        orderBy: { id: "asc" },
+        take: BATCH,
+      })
+    );
     if (!rows.length) break;
 
     for (const row of rows) {
@@ -176,27 +210,29 @@ async function enrichField(
             ? (row.generationMeta as Record<string, unknown>)
             : {};
 
-        await prisma.questionBankItem.update({
-          where: { id: row.id },
-          data: {
-            explanation: result.assembled.explanation,
-            options: serializeBankOptions({
-              ...item,
-              distractorRationale: result.assembled.distractorRationale,
-              clinicalReasoning: result.assembled.clinicalReasoning,
-              keyTakeaways: result.assembled.keyTakeaways,
-            }),
-            contentHash: hash,
-            generationMeta: {
-              ...priorMeta,
-              [EXPERT_RATIONALE_META_KEY]: result.structured,
-              expertRationaleVersion: EXPERT_RATIONALE_VERSION,
-              rationaleEnrichedAt: new Date().toISOString(),
-              rationaleModel: result.model,
-              rationaleQualityScore: result.quality.score,
+        await withDbRetry(`update:${row.id.slice(0, 8)}`, () =>
+          prisma.questionBankItem.update({
+            where: { id: row.id },
+            data: {
+              explanation: result.assembled.explanation,
+              options: serializeBankOptions({
+                ...item,
+                distractorRationale: result.assembled.distractorRationale,
+                clinicalReasoning: result.assembled.clinicalReasoning,
+                keyTakeaways: result.assembled.keyTakeaways,
+              }),
+              contentHash: hash,
+              generationMeta: {
+                ...priorMeta,
+                [EXPERT_RATIONALE_META_KEY]: result.structured,
+                expertRationaleVersion: EXPERT_RATIONALE_VERSION,
+                rationaleEnrichedAt: new Date().toISOString(),
+                rationaleModel: result.model,
+                rationaleQualityScore: result.quality.score,
+              },
             },
-          },
-        });
+          })
+        );
 
         enriched++;
         console.log(`  ✓ ${row.id.slice(0, 8)}… — expert score ${result.quality.score}`);
@@ -216,20 +252,22 @@ async function enrichField(
             ? (row.generationMeta as Record<string, unknown>)
             : {};
 
-        await prisma.questionBankItem.update({
-          where: { id: row.id },
-          data: {
-            explanation: applied.explanation,
-            options: serializeBankOptions(applied),
-            contentHash: hash,
-            generationMeta: {
-              ...priorMeta,
-              rationaleEnrichedAt: new Date().toISOString(),
-              rationaleModel: gen.model,
-              rationaleQualityScore: gen.quality.score,
+        await withDbRetry(`update:${row.id.slice(0, 8)}`, () =>
+          prisma.questionBankItem.update({
+            where: { id: row.id },
+            data: {
+              explanation: applied.explanation,
+              options: serializeBankOptions(applied),
+              contentHash: hash,
+              generationMeta: {
+                ...priorMeta,
+                rationaleEnrichedAt: new Date().toISOString(),
+                rationaleModel: gen.model,
+                rationaleQualityScore: gen.quality.score,
+              },
             },
-          },
-        });
+          })
+        );
 
         enriched++;
         console.log(`  ✓ ${row.id.slice(0, 8)}… — score ${gen.quality.score}`);

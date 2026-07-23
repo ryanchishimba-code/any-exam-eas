@@ -85,6 +85,13 @@ export function usmleBankItemIsServeReady(item: BankItem, fieldId: string): bool
     difficulty: normalized.difficulty ?? null,
   });
 
+  const itemType = normalized.itemType ?? "mcq";
+  // Step 3 abstracts / drug ads / CCS / biostats / ethics use format stimuli, not classic
+  // patient vignettes — hold a 7.0 editorial floor (no errors) instead of the vignette ≥8 bar.
+  if (fieldId === "usmle-step-3" && USMLE_STEP3_NON_VIGNETTE_ITEM_TYPES.has(itemType)) {
+    return report.overallScore >= 7 && !report.issues.some((i) => i.severity === "error");
+  }
+
   return report.examReady;
 }
 

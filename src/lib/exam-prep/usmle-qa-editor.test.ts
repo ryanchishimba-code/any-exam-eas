@@ -56,6 +56,44 @@ describe("usmle-qa-editor", () => {
     expect(report.issues.some((i) => i.code === "missing_vignette" && i.severity === "error")).toBe(false);
   });
 
+  it("scores Step 3 abstract/drug-ad formats without requiring patient vignettes", () => {
+    const abstractItem: BankItem = {
+      subjectId: "biostatistics",
+      itemType: "abstract",
+      vignette:
+        "Abstract — Non-inferiority trial of DOAC vs warfarin\nSource: Lancet\nPrimary hypothesis: DOAC non-inferior to warfarin for stroke (margin 1.5%). Event rates 1.2% vs 1.4%; upper CI 0.9%. Superiority p=0.42.",
+      question: "Most accurate interpretation?",
+      options: [
+        "Non-inferiority demonstrated; superiority claim not supported",
+        "Superiority of DOAC proven because primary p<0.05",
+        "Trial proves DOAC is always safer than warfarin",
+        "Open-label design eliminates performance bias entirely",
+      ],
+      correctAnswer: "Non-inferiority demonstrated; superiority claim not supported",
+      explanation:
+        "Non-inferiority uses a prespecified margin; meeting it does not imply superiority. Incorrect options confuse p-values and bias.",
+      tags: ["v3", "abstract"],
+      source: "seed",
+      ngnPayload: {
+        kind: "abstract",
+        abstract: {
+          title: "Non-inferiority trial",
+          source: "Lancet",
+          body: "Event rates 1.2% vs 1.4%; upper CI 0.9%.",
+        },
+      },
+    };
+    const report = auditUsmleQaEditor(abstractItem, {
+      fieldId: "usmle-step-3",
+      source: "seed",
+      itemId: "abs-1",
+    });
+    expect(report.issues.some((i) => i.code === "missing_vignette" && i.severity === "error")).toBe(
+      false
+    );
+    expect(report.scores.vignetteQuality).toBeGreaterThanOrEqual(6);
+  });
+
   it("flags thin items without vignettes", () => {
     const weak: BankItem = {
       subjectId: "pathology",

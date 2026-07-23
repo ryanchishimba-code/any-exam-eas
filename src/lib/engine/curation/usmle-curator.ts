@@ -143,7 +143,14 @@ function isAcceptable(item: BankItem, opts: UsmleCuratorOptions): boolean {
   if (opts.requireExamReady) {
     return auditItem(item, opts).examReady;
   }
-  return usmleBankItemIsServeReady(item, opts.fieldId);
+  if (!usmleBankItemIsServeReady(item, opts.fieldId)) return false;
+  // Honor CLI --min-accept: serve-ready alone (~8.0) must not short-circuit when the
+  // operator asked for a higher craft bar (e.g. 8.5) — otherwise soft items are
+  // counted "accepted" and never AI-rewritten, and shouldPersist rejects the rest.
+  if (typeof opts.minAcceptScore === "number") {
+    return auditItem(item, opts).overallScore >= opts.minAcceptScore;
+  }
+  return true;
 }
 
 function toRetrievedChunk(

@@ -128,9 +128,11 @@ export function usmleAbstract(
   explanation: string,
   meta: UsmleMeta
 ): EnrichedBankItem {
+  const vignette = `Abstract — ${abstract.title}\nSource: ${abstract.source}\n${abstract.body}`;
   return enrichItem(
     {
       subjectId,
+      vignette,
       question: stem,
       options,
       correctAnswer: correct,
@@ -154,9 +156,11 @@ export function usmleDrugAd(
   explanation: string,
   meta: UsmleMeta
 ): EnrichedBankItem {
+  const vignette = `Pharmaceutical advertisement — ${ad.drug}\n${ad.headline}\nIndications: ${ad.indications}\nWarnings: ${ad.warnings}`;
   return enrichItem(
     {
       subjectId,
+      vignette,
       question: stem,
       options,
       correctAnswer: correct,

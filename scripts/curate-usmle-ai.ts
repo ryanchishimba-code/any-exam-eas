@@ -177,13 +177,17 @@ function hashForRow(
 function shouldPersist(
   result: UsmleCurationResult,
   fieldId: string,
-  requireExamReady?: boolean
+  requireExamReady?: boolean,
+  minAccept?: number
 ): boolean {
   if (result.action === "accepted") return false;
   const { vignette } = splitUsmleBankItem(result.item);
   if (!vignette || vignette.length < 40) return false;
   if (!result.item.options.includes(result.item.correctAnswer)) return false;
   if (requireExamReady) return result.after.examReady;
+  // Honor CLI --min-accept: do not persist AI rewrites that only clear the serve floor (~8)
+  // when the operator asked for a higher craft bar (e.g. 8.5).
+  if (typeof minAccept === "number" && result.after.overallScore < minAccept) return false;
   return usmleBankItemIsServeReady(result.item, fieldId);
 }
 
@@ -244,7 +248,7 @@ async function main() {
   const fieldMinAccept = examReady
     ? minAccept
     : field && usmleServeMinQaScore(field) != null
-      ? usmleServeMinQaScore(field)!
+      ? Math.max(minAccept, usmleServeMinQaScore(field)!)
       : minAccept;
   const effectiveMaxScore = examReady ? 10 : maxScore;
 
@@ -257,6 +261,11 @@ async function main() {
   let ids = fromDb
     ? await idsFromDb(field)
     : parseCsvIds(csv, effectiveMaxScore, effectiveLimit, field, examReady);
+
+  // --from-db previously ignored --limit; cap after fetch (unless --all).
+  if (fromDb && !all && ids.length > effectiveLimit) {
+    ids = ids.slice(0, effectiveLimit);
+  }
 
   if (all && !fromDb) {
     ids = parseCsvIds(csv, effectiveMaxScore, Number.MAX_SAFE_INTEGER, field, examReady);
@@ -334,6 +343,13 @@ async function main() {
     });
     qaBeforeSum += beforeQa.overallScore;
 
+    if (processedThisRun <= 3 || processedThisRun % 10 === 0) {
+      logLine(
+        `  … ${processedThisRun}/${ids.length} start ${id.slice(0, 10)}… QA ${beforeQa.overallScore.toFixed(1)}`,
+        runLogPath
+      );
+    }
+
     try {
       let result: UsmleCurationResult = await curateUsmleBankItem(item, {
         fieldId: row.fieldId,
@@ -364,7 +380,7 @@ async function main() {
         continue;
       }
 
-      if (!shouldPersist(result, row.fieldId, examReady)) {
+      if (!shouldPersist(result, row.fieldId, examReady, fieldMinAccept)) {
         checkpoint.counts.rejected = (checkpoint.counts.rejected ?? 0) + 1;
         checkpoint.processed.push(id);
         continue;
@@ -394,7 +410,7 @@ async function main() {
         qaPassed = examReady
           ? result.after.examReady
           : usmleBankItemIsServeReady(result.item, row.fieldId);
-        if (!shouldPersist(result, row.fieldId, examReady)) {
+        if (!shouldPersist(result, row.fieldId, examReady, fieldMinAccept)) {
           checkpoint.counts.rejected = (checkpoint.counts.rejected ?? 0) + 1;
           checkpoint.processed.push(id);
           continue;
