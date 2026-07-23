@@ -60,7 +60,7 @@ export function DashboardPageContent({
   const studyLocked = !hasPremiumAccess;
 
   return (
-    <div className={cn(dbUi.page, "apple-animate-in")}>
+    <div className={dbUi.page}>
       <DashboardHeader
         examName={exam.name}
         userName={userName}

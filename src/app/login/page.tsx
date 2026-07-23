@@ -38,7 +38,15 @@ export default function LoginPage() {
       variant="premium"
     >
       <AuthCard>
-        <Suspense fallback={null}>
+        <Suspense
+          fallback={
+            <div className="space-y-3 py-1" aria-hidden>
+              <div className="h-12 animate-pulse rounded-xl bg-[var(--color-surface)]" />
+              <div className="h-12 animate-pulse rounded-xl bg-[var(--color-surface)]" />
+              <div className="h-11 animate-pulse rounded-xl bg-[var(--color-surface)]" />
+            </div>
+          }
+        >
           <LoginForm />
         </Suspense>
       </AuthCard>

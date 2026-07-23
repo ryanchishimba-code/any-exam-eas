@@ -80,7 +80,9 @@ export default async function ExamRoadmapPage({
           <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
             USMLE step
           </p>
-          <Suspense fallback={null}>
+          <Suspense
+            fallback={<div className="h-10 animate-pulse rounded-xl bg-[var(--color-surface)]" aria-hidden />}
+          >
             <UsmleStepTabs />
           </Suspense>
         </div>
