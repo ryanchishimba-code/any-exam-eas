@@ -68,7 +68,16 @@ export const authConfig = {
       }
 
       if (isExamSelect || isSettings || isStudyHub || isPremium) {
-        return isLoggedIn;
+        if (isLoggedIn) return true;
+        // Prefer a relative callbackUrl (path + query). NextAuth's default uses an
+        // absolute href and keeps leftover search params on /auth/login, which
+        // breaks sanitizeCallbackUrl and drops checkout plan/tier/interval.
+        const loginUrl = request.nextUrl.clone();
+        loginUrl.pathname = "/auth/login";
+        loginUrl.search = "";
+        const callback = `${path}${request.nextUrl.search}`;
+        loginUrl.searchParams.set("callbackUrl", callback);
+        return NextResponse.redirect(loginUrl);
       }
 
       return true;

@@ -39,6 +39,7 @@ import {
   resolveSignInFailure,
 } from "@/lib/auth-client";
 import { MemberLoginLink } from "@/components/auth/MemberLoginLink";
+import { CheckoutPlanSelector } from "@/components/checkout/CheckoutPlanSelector";
 import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/lib/client/returning-user";
 import { markTrialWelcomePending } from "@/lib/client/trial-welcome";
 import { analytics } from "@/lib/analytics";
@@ -76,13 +77,20 @@ export function SignupForm({
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState<1 | 2>(1);
 
-  // Plan, tier, and billing interval are chosen at checkout (after the account
-  // exists). Registration always starts the free trial unless the visitor
-  // explicitly arrived from a "subscribe now" link.
-  const plan: SignupPlan = initialPlan === "subscribe" ? "subscribe" : "trial";
+  // Preselect from ?plan= when present; default to free trial. User can switch.
+  const [plan, setPlan] = useState<SignupPlan>(
+    initialPlan === "subscribe" ? "subscribe" : "trial"
+  );
 
   const googleEnabled = process.env.NEXT_PUBLIC_GOOGLE_AUTH_ENABLED === "true";
   const linkedinEnabled = process.env.NEXT_PUBLIC_LINKEDIN_AUTH_ENABLED === "true";
+
+  const promoQs = initialPromo.trim()
+    ? `&promo=${encodeURIComponent(initialPromo.trim())}`
+    : "";
+  const subscribeCheckoutPath = `/checkout?plan=subscribe&interval=${initialInterval}&tier=${initialTier}${promoQs}`;
+  const oauthCallbackUrl =
+    plan === "subscribe" ? subscribeCheckoutPath : "/dashboard";
 
   // Mirror the shared password policy so users get instant feedback instead of
   // a rejected round-trip.
@@ -114,6 +122,10 @@ export function SignupForm({
   useEffect(() => {
     if (initialExam) setExamSlug(initialExam);
   }, [initialExam]);
+
+  useEffect(() => {
+    setPlan(initialPlan === "subscribe" ? "subscribe" : "trial");
+  }, [initialPlan]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -194,12 +206,8 @@ export function SignupForm({
         { persist: false }
       );
 
-      const promoQs = initialPromo.trim()
-        ? `&promo=${encodeURIComponent(initialPromo.trim())}`
-        : "";
-
       if (plan === "subscribe") {
-        window.location.href = `/checkout?plan=subscribe&interval=${initialInterval}&tier=${initialTier}${promoQs}`;
+        window.location.href = subscribeCheckoutPath;
       } else {
         markTrialWelcomePending(TRIAL_DAYS);
         const examQs = examSlug ? `exam=${examSlug}&` : "";
@@ -230,24 +238,32 @@ export function SignupForm({
         message="Creating your account…"
         className="rounded-2xl"
       />
-      {plan === "trial" && (
-        <div className="space-y-4">
-          <NoPaymentTrialCallout variant="prominent" />
-          <div className="rounded-2xl border border-[var(--color-border)]/80 bg-[var(--color-surface)]/50 p-4">
-            <p className="text-sm font-semibold text-[var(--color-ink)]">
-              Your {TRIAL_DAYS}-day free trial includes
-            </p>
-            <ul className="mt-3 space-y-2">
-              {trialHighlights.map((item) => (
-                <li key={item} className="flex items-start gap-2 text-xs leading-relaxed text-[var(--color-ink-muted)]">
-                  <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-accent)]" aria-hidden />
-                  {item}
-                </li>
-              ))}
-            </ul>
+
+      <CheckoutPlanSelector value={plan} onChange={setPlan} context="signup" />
+
+      {step === 1 &&
+        (plan === "trial" ? (
+          <div className="space-y-4">
+            <NoPaymentTrialCallout variant="prominent" />
+            <div className="rounded-2xl border border-[var(--color-border)]/80 bg-[var(--color-surface)]/50 p-4">
+              <p className="text-sm font-semibold text-[var(--color-ink)]">
+                Your {TRIAL_DAYS}-day free trial includes
+              </p>
+              <ul className="mt-3 space-y-2">
+                {trialHighlights.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+                    <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-accent)]" aria-hidden />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-        </div>
-      )}
+        ) : (
+          <p className="rounded-2xl border border-[var(--color-border)]/80 bg-[var(--color-surface)]/50 px-4 py-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+            Create your account, then pay securely at checkout to unlock Pro. Promo codes apply at checkout.
+          </p>
+        ))}
 
       {configWarning && (
         <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
@@ -285,6 +301,7 @@ export function SignupForm({
               {googleEnabled && (
                 <GoogleSignInButton
                   large
+                  callbackUrl={oauthCallbackUrl}
                   onClick={() => {
                     const trimmedEmail = email.trim();
                     if (trimmedEmail) {
@@ -300,6 +317,7 @@ export function SignupForm({
               <SocialLoginButton
                 provider="linkedin"
                 large
+                callbackUrl={oauthCallbackUrl}
                 onClick={() => {
                   const trimmedEmail = email.trim();
                   if (trimmedEmail) {
@@ -509,14 +527,14 @@ export function SignupForm({
               ) : plan === "trial" ? (
                 TRIAL_CTA_LABEL
               ) : (
-                "Create my account"
+                "Create account & subscribe"
               )}
             </Button>
             <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
               {plan === "trial" ? (
                 <span className="font-semibold text-emerald-800">{SIGNUP_PAYMENT_REQUIRED_NOTE}</span>
               ) : (
-                "Next: choose your plan and enter payment securely."
+                "Next: confirm billing and pay securely at checkout."
               )}
             </p>
             {!examSlug ? (

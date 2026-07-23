@@ -38,7 +38,7 @@ function statusLine({ variant, daysRemaining, usage }: DashboardUpgradeProps): s
 function headline(variant: DashboardUpgradeProps["variant"]): string {
   switch (variant) {
     case "trial":
-      return "You're doing great — keep the momentum going.";
+      return "Upgrade to Pro anytime — even before your trial ends.";
     case "free":
       return "Subscribe to continue studying";
   }

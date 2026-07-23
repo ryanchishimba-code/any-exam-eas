@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Check, Crown, Shield, Sparkles } from "lucide-react";
 import type { BillingInterval } from "@/lib/billing-config";
@@ -24,6 +23,7 @@ import {
   TRIAL_STUDY_LIMITS,
 } from "@/lib/subscription-tiers";
 import { BillingIntervalPicker } from "@/components/pricing/BillingIntervalPicker";
+import { UpgradeIntervalChoice } from "@/components/checkout/UpgradeIntervalChoice";
 import { PricingGuarantees } from "@/components/pricing/PricingGuarantees";
 import { NoPaymentTrialCallout } from "@/components/marketing/NoPaymentTrialCallout";
 import { PaymentMethodBadges } from "@/components/PaymentMethodBadges";
@@ -46,9 +46,102 @@ type PricingTiersProps = {
 
 const INTERVALS: BillingInterval[] = ["monthly", "quarterly", "semiannual", "yearly"];
 
+function TrialUpgradePricing({
+  interval,
+  onIntervalChange,
+  daysRemaining,
+  className,
+}: {
+  interval: BillingInterval;
+  onIntervalChange: (interval: BillingInterval) => void;
+  daysRemaining: number | null;
+  className?: string;
+}) {
+  const plan = getBillingPlanTier("pro", interval);
+  const checkoutHref = (() => {
+    const params = new URLSearchParams({
+      plan: "subscribe",
+      tier: "pro",
+      interval,
+    });
+    return `/checkout?${params.toString()}`;
+  })();
+
+  const timeLeft =
+    daysRemaining == null
+      ? null
+      : daysRemaining <= 0
+        ? "Your trial has ended"
+        : daysRemaining === 1
+          ? "1 day left in your trial"
+          : `${daysRemaining} days left in your trial`;
+
+  return (
+    <div className={cn("mx-auto max-w-lg space-y-8", className)}>
+      <div className="text-center">
+        <p className="text-sm font-semibold text-[var(--color-accent)]">Upgrade to Pro</p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-3xl">
+          Keep studying without limits
+        </h2>
+        <p className="mx-auto mt-3 max-w-md text-sm text-[var(--color-ink-muted)]">
+          {timeLeft ? `${timeLeft}. ` : ""}
+          Unlock unlimited questions and every Pro study tool across all 6 boards.
+        </p>
+      </div>
+
+      <div className="rounded-[28px] border border-[var(--color-accent)]/30 bg-white p-5 shadow-[var(--shadow-apple-sm)] sm:p-6">
+        <div className="flex items-baseline justify-between gap-2">
+          <h3 className="text-lg font-semibold text-[var(--color-ink)]">Pro</h3>
+          {plan.savingsBadge && (
+            <span className="text-xs font-semibold text-emerald-700">{plan.savingsBadge}</span>
+          )}
+        </div>
+
+        <p className="mt-4 flex items-baseline gap-1">
+          <span className="text-4xl font-semibold tracking-tight text-[var(--color-ink)]">
+            {formatPlanUsd(plan.totalUsd)}
+          </span>
+          <span className="text-sm text-[var(--color-ink-muted)]">
+            {interval === "monthly" ? "/mo" : `/${plan.shortLabel}`}
+          </span>
+        </p>
+        {interval !== "monthly" && (
+          <p className="mt-1 text-xs text-[var(--color-ink-muted)]">
+            ≈ {formatPlanUsd(plan.monthlyEquivalentUsd)}/mo
+          </p>
+        )}
+
+        <div className="mt-6">
+          <UpgradeIntervalChoice value={interval} onChange={onIntervalChange} tier="pro" />
+        </div>
+
+        <Button
+          href={checkoutHref}
+          className="mt-6 w-full"
+          variant="primary"
+          onClick={() => analytics.planSelected(`pro_${interval}`, { tier: "pro", interval })}
+        >
+          Continue to checkout
+        </Button>
+        <p className="mt-3 text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
+          {BILLING_POLICY_SHORT}
+        </p>
+      </div>
+
+      <ul className="mx-auto max-w-md space-y-2">
+        {PRO_FEATURES.slice(0, 5).map((item) => (
+          <li key={item} className="flex items-start gap-2 text-sm text-[var(--color-ink-muted)]">
+            <Check className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent)]" aria-hidden />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export function PricingTiers({ className }: PricingTiersProps) {
   const { data: session } = useSession();
-  const searchParams = useSearchParams();
   const [interval, setInterval] = useState<BillingInterval>("yearly");
   const [access, setAccess] = useState<AccessInfo | null>(null);
 
@@ -71,11 +164,12 @@ export function PricingTiers({ className }: PricingTiersProps) {
     analytics.planSelected(`pro_${billingInterval}`, { tier: "pro", interval: billingInterval });
   }
 
+  const upgradingFromTrial =
+    access?.status === "trialing" ||
+    access?.status === "trial_expired" ||
+    Boolean(access?.hasAppAccess && !access?.hasAccess);
+
   function checkoutHref() {
-    const upgradingFromTrial =
-      access?.status === "trialing" ||
-      access?.status === "trial_expired" ||
-      Boolean(access?.hasAppAccess && !access?.hasAccess);
     const plan = session?.user && upgradingFromTrial ? "subscribe" : "trial";
     const params = new URLSearchParams({ plan, interval, tier: "pro" });
     return session?.user
@@ -100,6 +194,17 @@ export function PricingTiers({ className }: PricingTiersProps) {
           </Link>
         </div>
       </div>
+    );
+  }
+
+  if (session?.user && upgradingFromTrial) {
+    return (
+      <TrialUpgradePricing
+        interval={interval}
+        onIntervalChange={setInterval}
+        daysRemaining={access?.daysRemaining ?? null}
+        className={className}
+      />
     );
   }
 

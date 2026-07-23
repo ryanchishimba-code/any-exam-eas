@@ -72,6 +72,29 @@ export async function POST(req: Request) {
           break;
         }
 
+        // Mid-trial upgrade via Checkout can create a new sub while an old trial sub
+        // still exists — cancel the previous one so the customer isn't double-billed.
+        const prior = await prisma.subscription.findUnique({
+          where: { userId },
+          select: { stripeSubscriptionId: true },
+        });
+        if (
+          prior?.stripeSubscriptionId &&
+          prior.stripeSubscriptionId !== subscriptionId &&
+          prior.stripeSubscriptionId.startsWith("sub_") &&
+          !prior.stripeSubscriptionId.includes("_seed_")
+        ) {
+          try {
+            await stripe.subscriptions.cancel(prior.stripeSubscriptionId);
+          } catch (err) {
+            console.warn("[stripe/webhook] could not cancel prior subscription", {
+              userId,
+              priorId: prior.stripeSubscriptionId,
+              err,
+            });
+          }
+        }
+
         const periodEnd = subscriptionCurrentPeriodEnd(stripeSub);
         const trialEndsAt = stripeUnixToDate(stripeSub.trial_end);
 

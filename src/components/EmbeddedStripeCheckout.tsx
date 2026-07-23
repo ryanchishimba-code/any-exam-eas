@@ -49,7 +49,9 @@ export function EmbeddedStripeCheckout() {
   const [allIntervalsConfigured, setAllIntervalsConfigured] = useState(true);
   const [missingKeys, setMissingKeys] = useState<string[]>([]);
   const [error, setError] = useState("");
+  const [upgradeBusy, setUpgradeBusy] = useState(false);
   const [checkoutKey, setCheckoutKey] = useState(0);
+  const [prefetchedClientSecret, setPrefetchedClientSecret] = useState<string | null>(null);
 
   useEffect(() => {
     setSelectedPlan(plan);
@@ -77,6 +79,12 @@ export function EmbeddedStripeCheckout() {
   const promoCode = appliedDiscount?.valid ? appliedDiscount.code : "";
 
   const fetchClientSecret = useCallback(async () => {
+    if (prefetchedClientSecret) {
+      const secret = prefetchedClientSecret;
+      setPrefetchedClientSecret(null);
+      return secret;
+    }
+
     const res = await fetch("/api/stripe/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -97,13 +105,25 @@ export function EmbeddedStripeCheckout() {
           : "Could not start checkout. Check Stripe keys and restart the server."
       );
     }
+    if (data.upgraded && typeof data.redirectTo === "string") {
+      window.location.assign(data.redirectTo);
+      return new Promise<string>(() => {});
+    }
     if (!data.clientSecret) {
       throw new Error("Checkout did not return a client secret.");
     }
     return data.clientSecret as string;
-  }, [selectedPlan, selectedTier, selectedInterval, promoCode, checkoutKey, reactivating]);
+  }, [
+    selectedPlan,
+    selectedTier,
+    selectedInterval,
+    promoCode,
+    checkoutKey,
+    reactivating,
+    prefetchedClientSecret,
+  ]);
 
-  function handleContinueToPayment(
+  async function handleContinueToPayment(
     discount: DiscountValidation | null,
     nextPlan: SignupPlan,
     nextTier: SubscriptionTier,
@@ -114,15 +134,64 @@ export function EmbeddedStripeCheckout() {
     setSelectedInterval(nextInterval);
     const qs = new URLSearchParams({ plan: nextPlan, tier: nextTier, interval: nextInterval });
     if (discount?.code) qs.set("promo", discount.code);
+    if (reactivating) qs.set("reactivate", "1");
+    const returnPath = searchParams.get("return");
+    if (returnPath) qs.set("return", returnPath);
     window.history.replaceState(null, "", `/checkout?${qs.toString()}`);
     setAppliedDiscount(discount);
+    setError("");
+
+    // Subscribe upgrades: attempt mid-trial convert first (ends trial + bills card on file).
+    // No-payment trials and converts without a card fall through to embedded Checkout.
+    if (nextPlan === "subscribe") {
+      setUpgradeBusy(true);
+      try {
+        const res = await fetch("/api/stripe/checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            embedded: true,
+            plan: nextPlan,
+            tier: nextTier,
+            interval: nextInterval,
+            promoCode: discount?.valid ? discount.code : undefined,
+            reactivate: reactivating || undefined,
+          }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          setError(
+            typeof data.error === "string"
+              ? data.error
+              : "Could not start upgrade. Try again or open Settings → Billing."
+          );
+          return;
+        }
+        if (data.upgraded && typeof data.redirectTo === "string") {
+          window.location.assign(data.redirectTo);
+          return;
+        }
+        if (typeof data.clientSecret === "string") {
+          setPrefetchedClientSecret(data.clientSecret);
+          setCheckoutKey((k) => k + 1);
+          setPhase("payment");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          return;
+        }
+        setError("Could not start checkout.");
+        return;
+      } catch {
+        setError("Could not start upgrade. Check your connection and try again.");
+        return;
+      } finally {
+        setUpgradeBusy(false);
+      }
+    }
+
+    setPrefetchedClientSecret(null);
     setCheckoutKey((k) => k + 1);
     setPhase("payment");
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  if (error) {
-    return <InlineError>{error}</InlineError>;
   }
 
   if (!configured) {
@@ -146,7 +215,7 @@ export function EmbeddedStripeCheckout() {
   if (phase === "review") {
     return (
       <div>
-        <CheckoutStepIndicator step="review" />
+        <CheckoutStepIndicator step="review" mode={plan === "subscribe" ? "upgrade" : "default"} />
         {!allIntervalsConfigured && missingKeys.length > 0 && (
           <StatusMessage variant="warning" className="mb-6">
             Some billing intervals are missing Stripe prices ({missingKeys.join(", ")}). Run{" "}
@@ -154,12 +223,14 @@ export function EmbeddedStripeCheckout() {
             all plans.
           </StatusMessage>
         )}
+        {error ? <InlineError className="mb-4">{error}</InlineError> : null}
         <CheckoutReview
           initialPlan={plan}
           initialTier={tier}
           initialInterval={interval}
           initialPromo={initialPromo}
           onContinue={handleContinueToPayment}
+          continueBusy={upgradeBusy}
         />
       </div>
     );
@@ -174,12 +245,13 @@ export function EmbeddedStripeCheckout() {
 
   return (
     <div className="mx-auto max-w-lg space-y-6">
-      <CheckoutStepIndicator step="payment" />
+      <CheckoutStepIndicator step="payment" mode={selectedPlan === "subscribe" ? "upgrade" : "default"} />
 
       <button
         type="button"
         onClick={() => {
           setPhase("review");
+          setPrefetchedClientSecret(null);
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         className="text-sm font-medium text-[var(--color-accent)] hover:underline"

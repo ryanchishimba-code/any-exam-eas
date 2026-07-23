@@ -10,8 +10,11 @@ describe("trial lifecycle email URLs", () => {
   });
 
   it("builds upgrade links with email context", () => {
+    expect(upgradeEmailUrl("welcome")).toContain("/pricing?");
     expect(upgradeEmailUrl("welcome")).toContain("from=email-welcome");
     expect(upgradeEmailUrl("welcome")).toContain("highlight=pro");
+    expect(upgradeEmailUrl("trial-ending")).toContain("/checkout?");
+    expect(upgradeEmailUrl("trial-ending")).toContain("plan=subscribe");
     expect(upgradeEmailUrl("trial-ending")).toContain("from=email-trial-ending");
   });
 });

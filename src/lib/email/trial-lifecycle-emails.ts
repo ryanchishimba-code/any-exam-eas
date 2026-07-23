@@ -42,10 +42,19 @@ export function dashboardEmailUrl(): string {
 }
 
 export function upgradeEmailUrl(context: "welcome" | "trial-ending"): string {
+  if (context === "trial-ending") {
+    const params = new URLSearchParams({
+      plan: "subscribe",
+      tier: "pro",
+      interval: "yearly",
+      from: "email-trial-ending",
+    });
+    return `${appBaseUrl()}/checkout?${params.toString()}`;
+  }
   const params = new URLSearchParams({
     upgrade: "pro",
     highlight: "pro",
-    from: context === "welcome" ? "email-welcome" : "email-trial-ending",
+    from: "email-welcome",
   });
   return `${appBaseUrl()}/pricing?${params.toString()}`;
 }

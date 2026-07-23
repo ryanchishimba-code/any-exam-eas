@@ -4,6 +4,8 @@ import type { StudyUsageSnapshot } from "@/lib/study/usage-limits";
 import {
   resolveDashboardUpgradeContext,
   shouldShowDashboardUpgradeBanner,
+  dashboardUpgradePricingHref,
+  trialUpgradeCheckoutHref,
 } from "@/lib/dashboard/upgrade-banner";
 
 function mockAccess(partial: Partial<UserAccess>): UserAccess {
@@ -119,5 +121,27 @@ describe("shouldShowDashboardUpgradeBanner", () => {
       )
     ).toBe(false);
     expect(shouldShowDashboardUpgradeBanner(mockAccess({ role: "trial" }))).toBe(true);
+  });
+});
+
+describe("dashboardUpgradePricingHref", () => {
+  it("sends trial users straight to subscribe checkout", () => {
+    const href = dashboardUpgradePricingHref("trial");
+    expect(href).toContain("/checkout?");
+    expect(href).toContain("plan=subscribe");
+    expect(href).toContain("interval=yearly");
+    expect(href).not.toContain("reactivate=1");
+  });
+
+  it("sends free users to reactivate checkout", () => {
+    const href = dashboardUpgradePricingHref("free");
+    expect(href).toContain("/checkout?");
+    expect(href).toContain("reactivate=1");
+  });
+
+  it("trialUpgradeCheckoutHref defaults to yearly Pro", () => {
+    expect(trialUpgradeCheckoutHref()).toBe(
+      "/checkout?plan=subscribe&tier=pro&interval=yearly&return=%2Fdashboard"
+    );
   });
 });

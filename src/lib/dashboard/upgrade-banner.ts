@@ -11,10 +11,21 @@ export type DashboardUpgradeContext = {
 
 /** Pro upgrade pitch — reused on dashboard banner. */
 export const PRO_DASHBOARD_UPGRADE_MESSAGE =
-  "Unlock unlimited questions, rich goat-mode rationales, Roadmaps, Deep Dives, Full Exams, and everything in Pro — one plan for all 6 boards.";
+  "Upgrade anytime before your trial ends — unlock unlimited questions, rich goat-mode rationales, Roadmaps, Deep Dives, Full Exams, and everything in Pro for all 6 boards.";
 
 export const POST_TRIAL_SUBSCRIBE_MESSAGE =
   "Subscribe to continue studying — question bank, Roadmap, exams, and all study tools stay locked until you upgrade.";
+
+/** Checkout for active trial users upgrading to paid Pro (no reactivate flag). */
+export function trialUpgradeCheckoutHref(returnPath = "/dashboard"): string {
+  const params = new URLSearchParams({
+    plan: "subscribe",
+    tier: "pro",
+    interval: "yearly",
+    return: returnPath,
+  });
+  return `/checkout?${params.toString()}`;
+}
 
 /** Default post-trial checkout destination. */
 export function postTrialCheckoutHref(returnPath = "/dashboard"): string {
@@ -69,10 +80,6 @@ export function dashboardUpgradePricingHref(variant: DashboardUpgradeVariant): s
   if (variant === "free") {
     return postTrialCheckoutHref("/dashboard");
   }
-  const params = new URLSearchParams({
-    upgrade: "pro",
-    from: "dashboard",
-    context: variant,
-  });
-  return `/pricing?${params.toString()}`;
+  // Trial users go straight to checkout — skip the marketing pricing wall.
+  return trialUpgradeCheckoutHref("/dashboard");
 }

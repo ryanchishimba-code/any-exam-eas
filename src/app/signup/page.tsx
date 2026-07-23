@@ -10,11 +10,12 @@ import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { isExamSlug } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
-import { MARKETING_DISCLAIMER, SITE_NAME, TRIAL_CTA_LABEL } from "@/lib/site";
+import type { SignupPlan } from "@/lib/validators/auth";
+import { formatMonthlyPrice, MARKETING_DISCLAIMER, SITE_NAME } from "@/lib/site";
 
 const SIGNUP_TITLE = `Sign Up — ${SITE_NAME}`;
 const SIGNUP_DESCRIPTION =
-  "Create your Any Exam Easy account for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE prep. Start a free trial today — no credit card is required now.";
+  "Create your Any Exam Easy account for NCLEX, USMLE, NAPLEX, PANCE, FNP & NPTE prep. Start a free trial or subscribe to Pro.";
 
 export const metadata: Metadata = {
   title: { absolute: SIGNUP_TITLE },
@@ -57,17 +58,12 @@ export default async function SignupPage({
   const initialInterval = interval ? parseBillingInterval(interval) : "yearly";
   const initialTier = parseSubscriptionTier(tier);
   const initialExam = parseInitialExam(exam);
-  const isSubscribe = initialPlan === "subscribe";
 
   return (
     <PageShell
-      eyebrow={isSubscribe ? "Get started" : "Free trial"}
-      title={isSubscribe ? "Create your account." : `${TRIAL_CTA_LABEL}.`}
-      description={
-        isSubscribe
-          ? "Create your account, then choose your plan and pay securely. Must be 18 or older."
-          : `Create your account with email or social login — no payment required. Your ${TRIAL_DAYS}-day free trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions instantly. Must be 18 or older.`
-      }
+      eyebrow="Get started"
+      title="Create your account."
+      description={`Start a ${TRIAL_DAYS}-day free trial (no card) or subscribe to Pro from ${formatMonthlyPrice("pro")}/mo. Your trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions. Must be 18 or older.`}
       align="center"
       maxWidth={contentWidth.auth}
       variant="premium"

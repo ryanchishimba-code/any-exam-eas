@@ -8,9 +8,11 @@ import { cn } from "@/lib/utils";
 type CheckoutPlanSelectorProps = {
   value: SignupPlan;
   onChange: (plan: SignupPlan) => void;
+  /** Signup uses no-card trial copy; checkout keeps payment-aware trial wording. */
+  context?: "checkout" | "signup";
 };
 
-const OPTIONS: { id: SignupPlan; label: string; sub: string }[] = [
+const CHECKOUT_OPTIONS: { id: SignupPlan; label: string; sub: string }[] = [
   {
     id: "trial",
     label: "Free trial",
@@ -23,18 +25,39 @@ const OPTIONS: { id: SignupPlan; label: string; sub: string }[] = [
   },
 ];
 
-export function CheckoutPlanSelector({ value, onChange }: CheckoutPlanSelectorProps) {
+const SIGNUP_OPTIONS: { id: SignupPlan; label: string; sub: string }[] = [
+  {
+    id: "trial",
+    label: "Start free trial",
+    sub: `${formatTrialTodayPrice()} · ${TRIAL_DAYS} days · no card`,
+  },
+  {
+    id: "subscribe",
+    label: "Subscribe to Pro",
+    sub: `From ${formatMonthlyPrice()}/mo`,
+  },
+];
+
+export function CheckoutPlanSelector({
+  value,
+  onChange,
+  context = "checkout",
+}: CheckoutPlanSelectorProps) {
+  const options = context === "signup" ? SIGNUP_OPTIONS : CHECKOUT_OPTIONS;
+  const legend = context === "signup" ? "How do you want to start?" : "Plan";
+  const ariaLabel = context === "signup" ? "Start with free trial or subscribe" : "Plan type";
+
   return (
     <fieldset className="space-y-3">
       <legend className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-        Plan
+        {legend}
       </legend>
       <div
         className="flex rounded-full bg-black/[0.04] p-1"
         role="radiogroup"
-        aria-label="Plan type"
+        aria-label={ariaLabel}
       >
-        {OPTIONS.map((opt) => {
+        {options.map((opt) => {
           const selected = value === opt.id;
           return (
             <button

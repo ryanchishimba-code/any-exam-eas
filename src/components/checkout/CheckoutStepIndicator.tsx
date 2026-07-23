@@ -4,15 +4,26 @@ import { cn } from "@/lib/utils";
 
 type CheckoutStepIndicatorProps = {
   step: "review" | "payment";
+  /** Shorter labels for upgrade/subscribe flow */
+  mode?: "default" | "upgrade";
 };
 
-const STEPS = [
+const STEPS_DEFAULT = [
   { id: "review" as const, label: "Review" },
   { id: "payment" as const, label: "Pay" },
 ];
 
-export function CheckoutStepIndicator({ step }: CheckoutStepIndicatorProps) {
+const STEPS_UPGRADE = [
+  { id: "review" as const, label: "Plan" },
+  { id: "payment" as const, label: "Pay" },
+];
+
+export function CheckoutStepIndicator({
+  step,
+  mode = "default",
+}: CheckoutStepIndicatorProps) {
   const activeIndex = step === "review" ? 0 : 1;
+  const STEPS = mode === "upgrade" ? STEPS_UPGRADE : STEPS_DEFAULT;
 
   return (
     <nav aria-label="Checkout progress" className="mb-8">

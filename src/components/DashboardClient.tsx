@@ -132,7 +132,12 @@ export function DashboardClient({
               </Button>
             ) : access.status === "trialing" ? (
               <>
-                <ManageBillingButton label="Upgrade to Pro" />
+                <Button
+                  href={`/checkout?plan=subscribe&tier=pro&interval=yearly&return=${encodeURIComponent("/dashboard")}`}
+                  variant="secondary"
+                >
+                  Upgrade Now
+                </Button>
               </>
             ) : access.canStartCheckout ? (
               <SubscribeButton variant="secondary" />

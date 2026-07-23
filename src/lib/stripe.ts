@@ -421,6 +421,92 @@ export async function changeSubscriptionPlan(params: {
   };
 }
 
+/**
+ * Mid-trial upgrade: end Stripe trial immediately, switch to the paid price,
+ * and charge the payment method already on file.
+ */
+export async function convertTrialSubscriptionToPaid(params: {
+  stripeSubscriptionId: string;
+  userId: string;
+  tier: SubscriptionTier;
+  interval: BillingInterval;
+  stripeCouponId?: string | null;
+}): Promise<{ status: string; stripeSubscriptionId: string }> {
+  if (!stripe) throw new Error("Stripe is not configured");
+  if (!isUsableStripeSubscriptionId(params.stripeSubscriptionId)) {
+    throw new Error("Invalid Stripe subscription");
+  }
+
+  const sub = await stripe.subscriptions.retrieve(params.stripeSubscriptionId);
+
+  if (sub.status !== "trialing") {
+    throw new Error("Subscription is not on a trial");
+  }
+
+  const item = sub.items.data[0];
+  if (!item?.id) throw new Error("Subscription has no billable items");
+
+  const customerId =
+    typeof sub.customer === "string" ? sub.customer : sub.customer?.id;
+  const subPm =
+    typeof sub.default_payment_method === "string"
+      ? sub.default_payment_method
+      : sub.default_payment_method?.id;
+
+  if (!subPm && customerId) {
+    const methods = await stripe.paymentMethods.list({
+      customer: customerId,
+      type: "card",
+      limit: 1,
+    });
+    if (methods.data.length === 0) {
+      const err = new Error("NO_PAYMENT_METHOD");
+      err.name = "NoPaymentMethodError";
+      throw err;
+    }
+  } else if (!subPm) {
+    const err = new Error("NO_PAYMENT_METHOD");
+    err.name = "NoPaymentMethodError";
+    throw err;
+  }
+
+  const newPriceId = requireStripePriceId(params.tier, params.interval);
+  const updateParams: Stripe.SubscriptionUpdateParams = {
+    items: [{ id: item.id, price: newPriceId }],
+    trial_end: "now",
+    proration_behavior: "none",
+    metadata: {
+      ...sub.metadata,
+      userId: params.userId,
+      plan: "subscribe",
+      tier: params.tier,
+      interval: params.interval,
+      pendingTier: "",
+      pendingInterval: "",
+    },
+  };
+
+  if (params.stripeCouponId) {
+    updateParams.discounts = [{ coupon: params.stripeCouponId }];
+  }
+
+  const updated = await stripe.subscriptions.update(
+    params.stripeSubscriptionId,
+    updateParams
+  );
+
+  const updatedCustomerId =
+    typeof updated.customer === "string" ? updated.customer : updated.customer?.id;
+
+  await applySubscriptionFromStripe(
+    params.userId,
+    updated,
+    updatedCustomerId ?? customerId
+  );
+
+  return { status: updated.status, stripeSubscriptionId: updated.id };
+}
+
 export async function applySubscriptionFromStripe(
   userId: string,
   stripeSub: Stripe.Subscription,

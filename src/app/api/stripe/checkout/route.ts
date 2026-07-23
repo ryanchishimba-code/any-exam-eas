@@ -1,8 +1,10 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import {
+  convertTrialSubscriptionToPaid,
   createCheckoutSession,
   createEmbeddedCheckoutSession,
+  isUsableStripeSubscriptionId,
 } from "@/lib/stripe";
 import { getSubscriptionAccess } from "@/lib/subscription-access";
 import { isStripeConfigured } from "@/lib/payments";
@@ -40,6 +42,13 @@ export async function POST(req: Request) {
     where: { userId: session.user.id },
   });
 
+  const body = await req.json().catch(() => ({}));
+  const embedded = body?.embedded === true;
+  const reactivating = body?.reactivate === true;
+  let plan = body?.plan === "trial" ? ("trial" as const) : ("subscribe" as const);
+  const tier = parseSubscriptionTier(body?.tier ?? sub?.planTier);
+  const interval = parseBillingInterval(body?.interval ?? sub?.planInterval);
+
   if (access.hasAccess && access.status === "active") {
     return NextResponse.json(
       { error: "You already have an active subscription. Change your plan in Settings." },
@@ -57,22 +66,22 @@ export async function POST(req: Request) {
     );
   }
 
-  if (sub?.stripeSubscriptionId && access.status === "trialing" && !access.needsPaymentMethod) {
+  // Already on a Stripe trial — allow paid upgrade (convert), block starting another trial.
+  if (
+    access.status === "trialing" &&
+    isUsableStripeSubscriptionId(sub?.stripeSubscriptionId) &&
+    plan === "trial" &&
+    !reactivating
+  ) {
     return NextResponse.json(
       {
         error:
-          "Your trial is already set up. Change your billing plan in Settings → Subscription.",
+          "Your trial is already active. Choose Upgrade to Pro to start paid billing now.",
+        code: "TRIAL_ALREADY_ACTIVE",
       },
       { status: 400 }
     );
   }
-
-  const body = await req.json().catch(() => ({}));
-  const embedded = body?.embedded === true;
-  const reactivating = body?.reactivate === true;
-  let plan = body?.plan === "trial" ? ("trial" as const) : ("subscribe" as const);
-  const tier = parseSubscriptionTier(body?.tier ?? sub?.planTier);
-  const interval = parseBillingInterval(body?.interval ?? sub?.planInterval);
 
   if (session.user.email && (reactivating || plan === "trial")) {
     if (await hasConsumedTrial(session.user.email)) {
@@ -119,6 +128,40 @@ export async function POST(req: Request) {
     promoValidation = promo;
     if (promo.valid && promo.stripeCouponId) {
       stripeCouponId = promo.stripeCouponId;
+    }
+  }
+
+  // Mid-trial upgrade with Stripe sub + card on file: end trial now and start billing.
+  if (
+    plan === "subscribe" &&
+    access.status === "trialing" &&
+    isUsableStripeSubscriptionId(sub?.stripeSubscriptionId)
+  ) {
+    try {
+      const converted = await convertTrialSubscriptionToPaid({
+        stripeSubscriptionId: sub!.stripeSubscriptionId!,
+        userId: session.user.id,
+        tier,
+        interval,
+        stripeCouponId,
+      });
+      return NextResponse.json({
+        upgraded: true,
+        status: converted.status,
+        redirectTo: `${ROUTES.dashboard}?checkout=success`,
+        promo: promoValidation,
+        tier,
+        interval,
+      });
+    } catch (e) {
+      if (e instanceof Error && (e.name === "NoPaymentMethodError" || e.message === "NO_PAYMENT_METHOD")) {
+        // Fall through to Checkout Session to collect a payment method.
+        console.info("[stripe/checkout] trial convert needs payment method — opening checkout");
+      } else {
+        const message = e instanceof Error ? e.message : "Could not upgrade trial";
+        console.error("[stripe/checkout] trial convert failed", { message });
+        return NextResponse.json({ error: message }, { status: 500 });
+      }
     }
   }
 
