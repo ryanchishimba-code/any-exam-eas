@@ -3,6 +3,7 @@ import { auth } from "@/auth";
 import { getUserAccess, userHasFeature, type UserAccess } from "@/lib/access-control";
 import { subscriptionRequiredResponse, proFeatureRequiredResponse } from "@/lib/api-subscription";
 import { isAccountDisabled } from "@/lib/account-security";
+import { respondDbUnavailable } from "@/lib/api-db-error";
 import type { SubscriptionFeature } from "@/lib/subscription-features";
 
 export type ApiAuthResult =
@@ -27,7 +28,14 @@ export async function requireAuthenticatedApi(_req?: Request): Promise<ApiAuthRe
     };
   }
 
-  const access = await getUserAccess(session.user.id);
+  let access: UserAccess;
+  try {
+    access = await getUserAccess(session.user.id);
+  } catch (error) {
+    const dbResponse = respondDbUnavailable(error);
+    if (dbResponse) return { ok: false, response: dbResponse };
+    throw error;
+  }
   if (isAccountDisabled(access.accountStatus)) {
     return { ok: false, response: accountDisabledResponse(access.accountStatus) };
   }

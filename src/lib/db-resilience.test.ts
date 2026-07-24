@@ -4,6 +4,8 @@ import {
   DbUnavailableError,
   executeWithRetry,
   getPrismaRetryOptions,
+  isQueryTimeoutError,
+  isRetryableDbError,
   isTransientDbError,
   retryDelayMs,
 } from "@/lib/db-resilience";
@@ -15,6 +17,7 @@ describe("isTransientDbError", () => {
       clientVersion: "6.0.0",
     });
     expect(isTransientDbError(err)).toBe(true);
+    expect(isRetryableDbError(err)).toBe(true);
   });
 
   it("does not retry unique constraint violations", () => {
@@ -23,6 +26,7 @@ describe("isTransientDbError", () => {
       clientVersion: "6.0.0",
     });
     expect(isTransientDbError(err)).toBe(false);
+    expect(isRetryableDbError(err)).toBe(false);
   });
 
   it("detects socket reset messages", () => {
@@ -57,11 +61,19 @@ describe("getPrismaRetryOptions", () => {
   });
 });
 
-describe("isTransientDbError race timeouts", () => {
+describe("query race timeouts", () => {
+  const timeout = new Error("prisma:User.update_timeout");
+
+  it("detects Promise.race label_timeout", () => {
+    expect(isQueryTimeoutError(timeout)).toBe(true);
+  });
+
   it("does not retry Promise.race label_timeout (avoids pool pile-up)", () => {
-    expect(isTransientDbError(new Error("prisma:User.update_timeout"))).toBe(
-      false
-    );
+    expect(isRetryableDbError(timeout)).toBe(false);
+  });
+
+  it("still maps race timeouts as user-facing unavailable", () => {
+    expect(isTransientDbError(timeout)).toBe(true);
   });
 });
 
@@ -91,6 +103,15 @@ describe("executeWithRetry", () => {
       executeWithRetry(fn, { label: "test", maxAttempts: 2, baseDelayMs: 1 })
     ).rejects.toBeInstanceOf(DbUnavailableError);
     expect(fn).toHaveBeenCalledTimes(2);
+  });
+
+  it("maps race timeouts to DbUnavailableError without retrying", async () => {
+    const fn = vi.fn().mockRejectedValue(new Error("prisma:User.find_timeout"));
+
+    await expect(
+      executeWithRetry(fn, { label: "test", maxAttempts: 3, baseDelayMs: 1 })
+    ).rejects.toBeInstanceOf(DbUnavailableError);
+    expect(fn).toHaveBeenCalledTimes(1);
   });
 
   it("does not retry non-transient errors", async () => {

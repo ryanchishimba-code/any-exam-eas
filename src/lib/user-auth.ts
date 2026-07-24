@@ -20,7 +20,8 @@ import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { hasConsumedTrial, recordTrialUsed } from "@/lib/trial-eligibility";
 import { trialEndsAtFromNow } from "@/lib/billing-config";
 
-const REGISTER_RETRIES = 6;
+/** Outer wrap stays light — Prisma $extends already retries; stacking caused pool pile-up. */
+const REGISTER_RETRIES = 2;
 
 async function withRegisterRetry<T>(fn: () => Promise<T>): Promise<T> {
   return executeWithRetry(fn, {

@@ -17,7 +17,7 @@ import {
   checkAndRecordAccountIp,
 } from "@/lib/account-ip-limit";
 import { formatDisplayName } from "@/lib/display-name";
-import { DbUnavailableError } from "@/lib/db-resilience";
+import { DbUnavailableError, isTransientDbError } from "@/lib/db-resilience";
 
 class DatabaseUnavailable extends CredentialsSignin {
   code = "database_unavailable";
@@ -129,7 +129,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           rememberMe,
         };
         } catch (err) {
-          if (err instanceof DbUnavailableError) throw new DatabaseUnavailable();
+          if (err instanceof DbUnavailableError || isTransientDbError(err)) {
+            throw new DatabaseUnavailable();
+          }
           throw err;
         }
       },
@@ -171,6 +173,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           if (e instanceof OAuthLinkBlockedError || e instanceof OAuthAccountDisabledError) {
             return false;
           }
+          if (e instanceof DbUnavailableError || isTransientDbError(e)) {
+            return "/login?error=database_unavailable";
+          }
           throw e;
         }
       }
@@ -190,13 +195,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.email &&
         !token.id
       ) {
-        const dbUser = await prisma.user.findUnique({
-          where: { email: String(token.email).toLowerCase() },
-          select: { id: true, role: true },
-        });
-        if (dbUser) {
-          token.id = dbUser.id;
-          token.role = dbUser.role;
+        try {
+          const dbUser = await prisma.user.findUnique({
+            where: { email: String(token.email).toLowerCase() },
+            select: { id: true, role: true },
+          });
+          if (dbUser) {
+            token.id = dbUser.id;
+            token.role = dbUser.role;
+          }
+        } catch (error) {
+          console.warn(
+            "[auth/jwt] user lookup unavailable:",
+            error instanceof Error ? error.message : error
+          );
         }
       } else if (token.id && token.exp == null) {
         token.exp = Math.floor(Date.now() / 1000) + SESSION_DAY_SEC;

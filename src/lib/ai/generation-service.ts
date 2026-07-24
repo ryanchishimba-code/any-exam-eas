@@ -6,6 +6,7 @@ import { generateExam, type ExamQuestion } from "@/lib/ai";
 import { gatherStudyMaterial } from "@/lib/research";
 import { getExamHub, type ExamSlug } from "@/lib/exams/catalog";
 import { BATCH_DIVERSITY_USER_REMINDER } from "@/lib/engine/prompts/batch-diversity";
+import { withDrizzle } from "@/lib/db-resilience";
 
 const EXAM_SYSTEM_PROMPTS: Record<ExamSlug, string> = {
   nclex:
@@ -81,18 +82,20 @@ export async function generateAndStoreQuestions(input: GenerateQuestionsInput) {
   for (let i = 0; i < exam.questions.length; i++) {
     const mapped = mapExamQuestion(exam.questions[i], i);
     const id = createId();
-    await db.insert(generatedQuestions).values({
-      id,
-      userId: input.userId,
-      examType: input.examType,
-      topic: input.topic,
-      questionText: mapped.questionText,
-      options: mapped.options,
-      answer: mapped.answer,
-      explanation: mapped.explanation,
-      source: input.source ?? "topic",
-      metadata: mapped.metadata,
-    });
+    await withDrizzle("ai.generatedQuestions.insert", () =>
+      db.insert(generatedQuestions).values({
+        id,
+        userId: input.userId,
+        examType: input.examType,
+        topic: input.topic,
+        questionText: mapped.questionText,
+        options: mapped.options,
+        answer: mapped.answer,
+        explanation: mapped.explanation,
+        source: input.source ?? "topic",
+        metadata: mapped.metadata,
+      })
+    );
     stored.push({ id, ...mapped });
   }
 
@@ -101,12 +104,14 @@ export async function generateAndStoreQuestions(input: GenerateQuestionsInput) {
 
 export async function listGeneratedQuestions(userId: string, examType: string, limit = 50) {
   const db = requireDb();
-  return db
-    .select()
-    .from(generatedQuestions)
-    .where(
-      and(eq(generatedQuestions.userId, userId), eq(generatedQuestions.examType, examType))
-    )
-    .orderBy(desc(generatedQuestions.createdAt))
-    .limit(limit);
+  return withDrizzle("ai.generatedQuestions.list", () =>
+    db
+      .select()
+      .from(generatedQuestions)
+      .where(
+        and(eq(generatedQuestions.userId, userId), eq(generatedQuestions.examType, examType))
+      )
+      .orderBy(desc(generatedQuestions.createdAt))
+      .limit(limit)
+  );
 }

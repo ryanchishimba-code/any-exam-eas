@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ROUTES } from "@/lib/routes";
 
@@ -10,12 +11,23 @@ export default function DashboardError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const retried = useRef(false);
+
+  useEffect(() => {
+    if (retried.current) return;
+    retried.current = true;
+    const t = window.setTimeout(() => {
+      reset();
+    }, 1200);
+    return () => window.clearTimeout(t);
+  }, [reset]);
+
   return (
     <div className="mx-auto max-w-lg space-y-4 px-6 py-16 text-center">
       <h1 className="text-xl font-semibold text-[var(--color-ink)]">Dashboard unavailable</h1>
       <p className="text-sm leading-relaxed text-[var(--color-ink-muted)]">
         We could not load your study data. This is usually a temporary database connection issue —
-        try again in a moment.
+        retrying automatically…
       </p>
       {process.env.NODE_ENV === "development" ? (
         <p className="text-xs text-rose-600">{error.message}</p>

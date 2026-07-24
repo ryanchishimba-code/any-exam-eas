@@ -74,8 +74,23 @@ export function retryDelayMs(attempt: number, baseDelayMs: number): number {
   return exp + jitter;
 }
 
-export function isTransientDbError(error: unknown): boolean {
-  if (error instanceof DbUnavailableError) return true;
+function errorMessage(error: unknown): string {
+  return (error instanceof Error ? error.message : String(error)).toLowerCase();
+}
+
+/**
+ * Promise.race label_timeout from withTimeout — does NOT cancel the in-flight
+ * Prisma query. Never retry these (avoids pool pile-up); still treat as unavailable
+ * for user-facing 503 / redirects.
+ */
+export function isQueryTimeoutError(error: unknown): boolean {
+  return errorMessage(error).includes("_timeout");
+}
+
+/** Whether we should backoff and retry the operation (excludes race timeouts). */
+export function isRetryableDbError(error: unknown): boolean {
+  if (error instanceof DbUnavailableError) return error.retryable;
+  if (isQueryTimeoutError(error)) return false;
 
   if (error instanceof Prisma.PrismaClientKnownRequestError) {
     if (NON_RETRY_PRISMA_CODES.has(error.code)) return false;
@@ -85,12 +100,7 @@ export function isTransientDbError(error: unknown): boolean {
   if (error instanceof Prisma.PrismaClientInitializationError) return true;
   if (error instanceof Prisma.PrismaClientRustPanicError) return true;
 
-  const msg = (error instanceof Error ? error.message : String(error)).toLowerCase();
-
-  // Our Promise.race label_timeout does NOT cancel the in-flight Prisma query.
-  // Retrying immediately opens another connection while the first still holds
-  // a pool slot — that caused production idle-in-transaction / P2024 storms.
-  if (msg.includes("_timeout")) return false;
+  const msg = errorMessage(error);
 
   if (msg.endsWith(" timeout")) return true;
 
@@ -106,8 +116,18 @@ export function isTransientDbError(error: unknown): boolean {
     msg.includes("server closed the connection") ||
     msg.includes("database is locked") ||
     msg.includes("sqlite_busy") ||
-    msg.includes("neon") && msg.includes("timeout")
+    (msg.includes("neon") && msg.includes("timeout"))
   );
+}
+
+/**
+ * User-facing / stale-cache / 503 mapping — includes race timeouts that must
+ * not be retried but should still surface as "database unavailable".
+ */
+export function isTransientDbError(error: unknown): boolean {
+  if (error instanceof DbUnavailableError) return true;
+  if (isQueryTimeoutError(error)) return true;
+  return isRetryableDbError(error);
 }
 
 async function withTimeout<T>(
@@ -152,11 +172,11 @@ export async function executeWithRetry<T>(
     } catch (error) {
       lastError = error;
       const elapsed = Date.now() - started;
-      const transient = isTransientDbError(error);
+      const retryable = isRetryableDbError(error);
       const isLast = attempt + 1 >= maxAttempts;
 
-      if (!transient || isLast) {
-        if (transient) {
+      if (!retryable || isLast) {
+        if (isTransientDbError(error)) {
           console.error(
             `[db] ${label} failed after ${attempt + 1} attempts (${elapsed}ms):`,
             error instanceof Error ? error.message : error
@@ -175,7 +195,11 @@ export async function executeWithRetry<T>(
     }
   }
 
-  throw lastError instanceof Error ? lastError : new DbUnavailableError();
+  throw lastError instanceof Error && isTransientDbError(lastError)
+    ? new DbUnavailableError()
+    : lastError instanceof Error
+      ? lastError
+      : new DbUnavailableError();
 }
 
 /** Prisma query wrapper — use for TCP pool operations. */

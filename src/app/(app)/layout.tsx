@@ -5,13 +5,26 @@ import { AppShell } from "@/components/app/AppShell";
 import { AppQueryNotices } from "@/components/app/AppQueryNotices";
 import { TrialWelcomeRoot } from "@/components/auth/TrialWelcomeRoot";
 import { SiteBottomBar } from "@/components/layout/SiteBottomBar";
+import type { ExamSlug } from "@/types/edtech";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const session = await getCachedSession();
-  const pref = session?.user?.id ? await getUserExamPreference(session.user.id) : null;
+  let prefExamSlug: ExamSlug | null = null;
+  if (session?.user?.id) {
+    try {
+      const pref = await getUserExamPreference(session.user.id);
+      prefExamSlug = pref?.examSlug ?? null;
+    } catch (error) {
+      // Don't take down every app page for a transient Neon pref lookup failure.
+      console.warn(
+        "[app/layout] exam preference unavailable:",
+        error instanceof Error ? error.message : error
+      );
+    }
+  }
 
   return (
-    <AppPreferencesProvider initialExamSlug={pref?.examSlug ?? null}>
+    <AppPreferencesProvider initialExamSlug={prefExamSlug}>
       <TrialWelcomeRoot />
       <AppShell
         footer={<SiteBottomBar className="mt-10 border-black/[0.05] pt-8" />}

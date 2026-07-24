@@ -4,6 +4,7 @@ import { requireDb } from "@/db";
 import { promoCodes, promoRedemptions } from "@/db/schema";
 import { createId } from "@/lib/id";
 import { invalidatePromoCache, validateDiscount } from "@/lib/discount/validate";
+import { withDrizzle } from "@/lib/db-resilience";
 import type { DiscountValidation } from "@/lib/discount/types";
 import type { SignupPlan } from "@/lib/validators/auth";
 
@@ -28,30 +29,32 @@ export async function redeemPromoCode(userId: string, code: string): Promise<voi
   if (!normalized || !userId) return;
 
   try {
-    const db = requireDb();
-    const [promo] = await db
-      .select({ id: promoCodes.id })
-      .from(promoCodes)
-      .where(eq(promoCodes.code, normalized))
-      .limit(1);
+    await withDrizzle("promo.redeem", async () => {
+      const db = requireDb();
+      const [promo] = await db
+        .select({ id: promoCodes.id })
+        .from(promoCodes)
+        .where(eq(promoCodes.code, normalized))
+        .limit(1);
 
-    if (!promo) return;
+      if (!promo) return;
 
-    const inserted = await db
-      .insert(promoRedemptions)
-      .values({ id: createId(), promoCodeId: promo.id, userId })
-      .onConflictDoNothing({
-        target: [promoRedemptions.promoCodeId, promoRedemptions.userId],
-      })
-      .returning({ id: promoRedemptions.id });
+      const inserted = await db
+        .insert(promoRedemptions)
+        .values({ id: createId(), promoCodeId: promo.id, userId })
+        .onConflictDoNothing({
+          target: [promoRedemptions.promoCodeId, promoRedemptions.userId],
+        })
+        .returning({ id: promoRedemptions.id });
 
-    if (inserted.length === 0) return;
+      if (inserted.length === 0) return;
 
-    await db
-      .update(promoCodes)
-      .set({ currentUses: sql`${promoCodes.currentUses} + 1`, updatedAt: new Date() })
-      .where(eq(promoCodes.id, promo.id));
-    invalidatePromoCache(normalized);
+      await db
+        .update(promoCodes)
+        .set({ currentUses: sql`${promoCodes.currentUses} + 1`, updatedAt: new Date() })
+        .where(eq(promoCodes.id, promo.id));
+      invalidatePromoCache(normalized);
+    });
   } catch {
     const promo = await prisma.promoCode.findUnique({ where: { code: normalized } });
     if (!promo) return;

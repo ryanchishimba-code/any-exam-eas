@@ -13,6 +13,7 @@ import { getExamScopedStats } from "@/lib/edtech/stats";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import { getStudentDashboardData } from "@/lib/learning/student-dashboard";
 import { enrichWeakTopicsWithStudyLinks } from "@/lib/learning/enrich-weak-topics";
+import { runPageDb } from "@/lib/page-access-error";
 import { ROUTES } from "@/lib/routes";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -35,6 +36,15 @@ function DashboardSkeleton() {
   );
 }
 
+async function settled<T>(promise: Promise<T>, fallback: T, label: string): Promise<T> {
+  try {
+    return await promise;
+  } catch (error) {
+    console.warn(`[dashboard] ${label} degraded:`, error instanceof Error ? error.message : error);
+    return fallback;
+  }
+}
+
 async function DashboardContent({
   userId,
   userName,
@@ -48,15 +58,22 @@ async function DashboardContent({
 }) {
   const fieldId = resolveExamFieldId(examSlug);
 
-  const [stats, dashboard, roadmap, metadata, usage] = await Promise.all([
-    getExamScopedStats(userId, examSlug),
-    getStudentDashboardData(userId, [fieldId]),
-    getExamRoadmapData(userId, examSlug),
-    getUserEdtechMetadata(userId),
-    getStudyUsageSnapshot(access),
+  // Wave 1: core study state (keep concurrency low — Prisma connection_limit=1 on Vercel).
+  const [stats, dashboard] = await runPageDb(() =>
+    Promise.all([
+      getExamScopedStats(userId, examSlug),
+      getStudentDashboardData(userId, [fieldId]),
+    ])
+  );
+
+  // Wave 2: secondary panels — degrade instead of blanking the whole dashboard.
+  const [roadmap, metadata, usage] = await Promise.all([
+    settled(getExamRoadmapData(userId, examSlug), null, "roadmap"),
+    settled(getUserEdtechMetadata(userId), null, "metadata"),
+    settled(getStudyUsageSnapshot(access), null, "usage"),
   ]);
 
-  const testDate = getExamTestDate(metadata, examSlug);
+  const testDate = metadata ? getExamTestDate(metadata, examSlug) : null;
 
   const weakTopics = enrichWeakTopicsWithStudyLinks(
     examSlug,
@@ -79,7 +96,7 @@ async function DashboardContent({
       userName={userName}
       testDate={testDate}
       hasPremiumAccess={access.hasPremiumAccess}
-      upgrade={resolveDashboardUpgradeContext(access, usage)}
+      upgrade={usage ? resolveDashboardUpgradeContext(access, usage) : null}
     />
   );
 }
@@ -90,10 +107,12 @@ export default async function DashboardPage() {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.dashboard)}`);
   }
 
-  const [access, pref] = await Promise.all([
-    requireAppPage(ROUTES.dashboard),
-    getUserExamPreference(session.user.id),
-  ]);
+  const [access, pref] = await runPageDb(() =>
+    Promise.all([
+      requireAppPage(ROUTES.dashboard),
+      getUserExamPreference(session.user.id),
+    ])
+  );
   if (!pref) redirect(ROUTES.selectExam);
 
   return (
