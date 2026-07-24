@@ -124,13 +124,14 @@ export function withPoolParams(url: string): string {
       (process.env.VERCEL ? "1" : "5");
     // Always enforce — Vercel Neon integration URLs often ship with limit=5.
     parsed.searchParams.set("connection_limit", connectionLimit);
+    // Cold Neon compute can take >10s to accept TCP; give connect a bit more room.
     parsed.searchParams.set(
       "pool_timeout",
       process.env.PRISMA_POOL_TIMEOUT ?? "20"
     );
     parsed.searchParams.set(
       "connect_timeout",
-      process.env.PRISMA_CONNECT_TIMEOUT ?? "10"
+      process.env.PRISMA_CONNECT_TIMEOUT ?? (process.env.VERCEL ? "15" : "10")
     );
     if (process.env.VERCEL) {
       parsed.searchParams.set("pgbouncer", "true");

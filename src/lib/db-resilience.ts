@@ -37,14 +37,29 @@ export function getPrismaRetryOptions(): Required<
 > {
   const vercel = Boolean(process.env.VERCEL);
   return {
-    // Keep attempts low on Vercel: Promise.race timeouts do not cancel the
-    // underlying Prisma query, so retries can pile up and exhaust the pool.
-    maxAttempts: Number(process.env.PRISMA_MAX_ATTEMPTS ?? (vercel ? 2 : 3)),
-    timeoutMs: Number(
-      process.env.PRISMA_QUERY_TIMEOUT_MS ?? (vercel ? 12_000 : 15_000)
-    ),
-    baseDelayMs: vercel ? 250 : 200,
+    // 3 attempts: first often fails while Neon compute is waking;
+    // backoff waits long enough for wake before retrying TCP.
+    // Promise.race timeouts still do not retry (see isRetryableDbError).
+    maxAttempts: Number(process.env.PRISMA_MAX_ATTEMPTS ?? 3),
+    timeoutMs: Number(process.env.PRISMA_QUERY_TIMEOUT_MS ?? 15_000),
+    // Longer base delay on Vercel so Neon scale-to-zero can finish waking.
+    baseDelayMs: vercel ? 1_500 : 200,
   };
+}
+
+/** Neon autosuspend / unreachable host — needs longer backoff than socket blips. */
+export function isNeonColdStartError(error: unknown): boolean {
+  if (error instanceof Prisma.PrismaClientKnownRequestError) {
+    if (error.code === "P1001" || error.code === "P1017") return true;
+  }
+  if (error instanceof Prisma.PrismaClientInitializationError) return true;
+  const msg = errorMessage(error);
+  return (
+    msg.includes("can't reach database") ||
+    msg.includes("server closed the connection") ||
+    msg.includes("connection reset") ||
+    msg.includes("error in postgresql connection")
+  );
 }
 
 const TRANSIENT_PRISMA_CODES = new Set([
@@ -186,7 +201,10 @@ export async function executeWithRetry<T>(
         throw error;
       }
 
-      const waitMs = retryDelayMs(attempt, baseDelayMs);
+      const waitBase = isNeonColdStartError(error)
+        ? Math.max(baseDelayMs, 2_500)
+        : baseDelayMs;
+      const waitMs = retryDelayMs(attempt, waitBase);
       console.warn(
         `[db] ${label} transient error (attempt ${attempt + 1}/${maxAttempts}, ${elapsed}ms) — retry in ${waitMs}ms:`,
         error instanceof Error ? error.message : error

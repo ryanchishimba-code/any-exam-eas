@@ -100,6 +100,7 @@ describe("withPoolParams", () => {
     const pooled = withPoolParams(process.env.DATABASE_URL!);
     expect(pooled).toContain("connection_limit=1");
     expect(pooled).toContain("pool_timeout=20");
+    expect(pooled).toContain("connect_timeout=15");
     expect(pooled).toContain("pgbouncer=true");
   });
 });

@@ -58,7 +58,7 @@ export function withPoolParams(url) {
     );
     parsed.searchParams.set(
       "connect_timeout",
-      process.env.PRISMA_CONNECT_TIMEOUT ?? "10"
+      process.env.PRISMA_CONNECT_TIMEOUT ?? (process.env.VERCEL ? "15" : "10")
     );
     if (process.env.VERCEL) {
       parsed.searchParams.set("pgbouncer", "true");

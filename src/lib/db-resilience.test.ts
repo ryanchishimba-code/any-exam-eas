@@ -4,6 +4,7 @@ import {
   DbUnavailableError,
   executeWithRetry,
   getPrismaRetryOptions,
+  isNeonColdStartError,
   isQueryTimeoutError,
   isRetryableDbError,
   isTransientDbError,
@@ -43,7 +44,7 @@ describe("retryDelayMs", () => {
 });
 
 describe("getPrismaRetryOptions", () => {
-  it("uses bounded retries on Vercel to protect the Neon pool", () => {
+  it("uses cold-start-aware retries on Vercel", () => {
     const prev = process.env.VERCEL;
     const prevTimeout = process.env.PRISMA_QUERY_TIMEOUT_MS;
     const prevAttempts = process.env.PRISMA_MAX_ATTEMPTS;
@@ -51,13 +52,29 @@ describe("getPrismaRetryOptions", () => {
     delete process.env.PRISMA_MAX_ATTEMPTS;
     process.env.VERCEL = "1";
     const opts = getPrismaRetryOptions();
-    expect(opts.maxAttempts).toBe(2);
-    expect(opts.timeoutMs).toBe(12_000);
+    expect(opts.maxAttempts).toBe(3);
+    expect(opts.timeoutMs).toBe(15_000);
+    expect(opts.baseDelayMs).toBe(1_500);
     process.env.VERCEL = prev;
     if (prevTimeout === undefined) delete process.env.PRISMA_QUERY_TIMEOUT_MS;
     else process.env.PRISMA_QUERY_TIMEOUT_MS = prevTimeout;
     if (prevAttempts === undefined) delete process.env.PRISMA_MAX_ATTEMPTS;
     else process.env.PRISMA_MAX_ATTEMPTS = prevAttempts;
+  });
+});
+
+describe("isNeonColdStartError", () => {
+  it("detects unreachable Neon hosts", () => {
+    const err = new Prisma.PrismaClientKnownRequestError("Can't reach database server", {
+      code: "P1001",
+      clientVersion: "6.0.0",
+    });
+    expect(isNeonColdStartError(err)).toBe(true);
+    expect(
+      isNeonColdStartError(
+        new Error("Can't reach database server at ep-x-pooler.aws.neon.tech:5432")
+      )
+    ).toBe(true);
   });
 });
 

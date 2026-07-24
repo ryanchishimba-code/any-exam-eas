@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { runBillingReminderEmails } from "@/lib/billing-reminders";
+import { DbUnavailableError, isTransientDbError } from "@/lib/db-resilience";
+import { warmNeonCompute } from "@/lib/neon-warmup";
 
 export const maxDuration = 60;
 export const runtime = "nodejs";
@@ -21,10 +23,30 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const result = await runBillingReminderEmails();
+  try {
+    // Wake Neon HTTP first so Prisma TCP does not burn 10s on a sleeping compute.
+    await warmNeonCompute("cron.billing-reminders");
+    const result = await runBillingReminderEmails();
 
-  return NextResponse.json({
-    ok: result.errors.length === 0,
-    ...result,
-  });
+    return NextResponse.json({
+      ok: result.errors.length === 0,
+      ...result,
+    });
+  } catch (error) {
+    if (error instanceof DbUnavailableError || isTransientDbError(error)) {
+      console.warn(
+        "[cron/billing-reminders] database unavailable:",
+        error instanceof Error ? error.message : error
+      );
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "database_unavailable",
+          retryable: true,
+        },
+        { status: 503, headers: { "Retry-After": "60" } }
+      );
+    }
+    throw error;
+  }
 }

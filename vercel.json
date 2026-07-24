@@ -3,6 +3,10 @@
   "installCommand": "npm ci",
   "crons": [
     {
+      "path": "/api/cron/db-keepalive",
+      "schedule": "*/5 * * * *"
+    },
+    {
       "path": "/api/cron/sync-question-bank",
       "schedule": "0 5 * * *"
     },
