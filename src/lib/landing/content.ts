@@ -222,6 +222,8 @@ export function formatExamHeroSubline(
     (examSlug && EXAM_HERO_SUBLINE_BODIES[examSlug]) || LANDING_HERO_SUBLINE_BODY;
   const count = countLabel?.trim();
   if (!count) return body;
+  // questionsLabel already includes "serve-ready questions"; countLabel is bare.
+  if (/question/i.test(count)) return `${count}. ${body}`;
   return `${count} serve-ready questions. ${body}`;
 }
 
