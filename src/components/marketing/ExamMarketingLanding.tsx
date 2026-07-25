@@ -21,8 +21,8 @@ import { getArticlesForExam } from "@/lib/seo/resources-content";
 import {
   LANDING_HERO_CTA_DISCLOSURE,
   LANDING_HERO_TRUST_SIGNALS,
-  LANDING_TRIAL_HREF,
   PLATFORM_EXAM_LIST_MIDDOT,
+  landingTrialHrefForExam,
 } from "@/lib/landing/content";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { NoPaymentTrialCallout } from "@/components/marketing/NoPaymentTrialCallout";
@@ -149,7 +149,9 @@ export function ExamMarketingLanding({ examKey, questionCountLabel, usmleStepCou
 
             <div className="mt-4 flex flex-wrap items-center gap-3">
               <LandingCta
-                href={LANDING_TRIAL_HREF}
+                href={landingTrialHrefForExam(examKey)}
+                ctaName={`exam_hero_trial_${examKey}`}
+                location="exam_marketing_hero"
                 className="aee-flagship-cta--hero group w-full sm:w-auto"
                 icon={
                   <ArrowRight
@@ -474,7 +476,9 @@ export function ExamMarketingLanding({ examKey, questionCountLabel, usmleStepCou
             </p>
             <div className="aee-flagship-final-cta__actions mt-6">
               <LandingCta
-                href={LANDING_TRIAL_HREF}
+                href={landingTrialHrefForExam(examKey)}
+                ctaName={`exam_final_trial_${examKey}`}
+                location="exam_marketing_final"
                 variant="primary"
                 className="aee-flagship-cta--hero group aee-flagship-cta--on-dark"
                 icon={

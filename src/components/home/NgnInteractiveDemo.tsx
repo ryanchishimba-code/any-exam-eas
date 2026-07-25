@@ -25,7 +25,16 @@ const tabs = [
   { id: 2, label: "Unfolding case" },
 ];
 
-export function NgnInteractiveDemo() {
+type NgnInteractiveDemoProps = {
+  /** Hide page chrome when nested in LandingSamplePractice. */
+  embedded?: boolean;
+  trialHref?: string;
+};
+
+export function NgnInteractiveDemo({
+  embedded = false,
+  trialHref = "/signup?plan=trial&interval=yearly&tier=pro&exam=nclex",
+}: NgnInteractiveDemoProps) {
   const [activeTab, setActiveTab] = useState(0);
   const [selected, setSelected] = useState<string[]>([]);
   const [revealed, setRevealed] = useState(false);
@@ -88,29 +97,8 @@ export function NgnInteractiveDemo() {
 
   const correct = revealed ? isAnswerCorrect(question, selected) : null;
 
-  return (
-    <section
-      id="ngn-demo"
-      className="aee-section aee-section-alt scroll-mt-24 py-6 sm:py-7"
-      aria-labelledby="ngn-demo-heading"
-    >
-      <div className="mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <p className="aee-badge mx-auto w-fit">
-            <Sparkles className="mr-1.5 inline h-3.5 w-3.5" aria-hidden />
-            Try it — no signup
-          </p>
-          <h2 id="ngn-demo-heading" className="aee-display-md mt-3">
-            Try real NCLEX question formats —{" "}
-            <span className="aee-display-accent">no signup required.</span>
-          </h2>
-          <p className="aee-lede mx-auto mt-2.5">
-            This is the same interactive player used in the app — bow-tie, matrix, and unfolding
-            case items like you will see on the NCLEX.
-          </p>
-        </div>
-
-        <div className="mx-auto mt-5 max-w-3xl">
+  const player = (
+        <div className={embedded ? undefined : "mx-auto mt-5 max-w-3xl"}>
           <div
             className="flex flex-wrap justify-center gap-2"
             role="tablist"
@@ -179,27 +167,58 @@ export function NgnInteractiveDemo() {
             </motion.div>
           </AnimatePresence>
 
-          <p className="mt-6 text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-            Sample items for demonstration. Full question bank includes OER-backed rationales and
-            timed exam and flexible question bank modes.
-          </p>
+          {!embedded ? (
+            <>
+              <p className="mt-6 text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+                Sample items for demonstration. Full question bank includes OER-backed rationales and
+                timed exam and flexible question bank modes.
+              </p>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/full-exam/nclex"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-surface-elevated)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-surface)]"
-            >
-              Start NCLEX timed exam
-              <ArrowRight className="h-4 w-4" aria-hidden />
-            </Link>
-            <Link
-              href="/signup?plan=trial"
-              className="text-sm font-semibold text-[var(--color-accent)] hover:underline"
-            >
-              {formatTrialCtaLabel()}
-            </Link>
-          </div>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+                <Link
+                  href="/full-exam/nclex"
+                  className="inline-flex items-center gap-2 rounded-full bg-[var(--color-surface-elevated)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--color-surface)]"
+                >
+                  Start NCLEX timed exam
+                  <ArrowRight className="h-4 w-4" aria-hidden />
+                </Link>
+                <Link
+                  href={trialHref}
+                  className="text-sm font-semibold text-[var(--color-accent)] hover:underline"
+                >
+                  {formatTrialCtaLabel()}
+                </Link>
+              </div>
+            </>
+          ) : null}
         </div>
+  );
+
+  if (embedded) return player;
+
+  return (
+    <section
+      id="ngn-demo"
+      className="aee-section aee-section-alt scroll-mt-24 py-6 sm:py-7"
+      aria-labelledby="ngn-demo-heading"
+    >
+      <div className="mx-auto max-w-[1080px] px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="aee-badge mx-auto w-fit">
+            <Sparkles className="mr-1.5 inline h-3.5 w-3.5" aria-hidden />
+            Try it — no signup
+          </p>
+          <h2 id="ngn-demo-heading" className="aee-display-md mt-3">
+            Try real NCLEX question formats —{" "}
+            <span className="aee-display-accent">no signup required.</span>
+          </h2>
+          <p className="aee-lede mx-auto mt-2.5">
+            This is the same interactive player used in the app — bow-tie, matrix, and unfolding
+            case items like you will see on the NCLEX.
+          </p>
+        </div>
+
+        {player}
       </div>
     </section>
   );

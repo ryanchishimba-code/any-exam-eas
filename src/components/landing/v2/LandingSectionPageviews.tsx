@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { analytics } from "@/lib/analytics";
 
 const SECTION_IDS = [
+  "try-a-question",
   "showcase",
   "choose-exam",
   "why",

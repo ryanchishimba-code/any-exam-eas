@@ -183,10 +183,51 @@ export function formatFlagshipHeroSubline(totalLabel?: string): string {
   return `${count} questions. ${LANDING_HERO_SUBLINE_BODY}`;
 }
 
+const EXAM_HERO_HEADLINES: Record<string, string> = {
+  nclex: "NCLEX prep that feels like the real exam.",
+  usmle: "USMLE vignettes built for Step-day reasoning.",
+  naplex: "NAPLEX math and cases without the fluff.",
+  pance: "PANCE clinical judgment, blueprint-aligned.",
+  "aanp-fnp": "AANP FNP primary-care cases that teach.",
+  "npte-pt": "NPTE-PT scenarios for clinical decisions.",
+};
+
+const EXAM_HERO_SUBLINE_BODIES: Record<string, string> = {
+  nclex:
+    "NGN formats, teachable rationales, and a Blueprint Roadmap — try a free sample below.",
+  usmle:
+    "Mechanism-first stems, competitive distractors, and Roadmaps for Step 1 · 2 · 3.",
+  naplex:
+    "Calculations, counseling cases, and drug interactions with work-shown rationales.",
+  pance:
+    "Next-best-step vignettes across the NCCPA blueprint — one Pro plan.",
+  "aanp-fnp":
+    "Assess → Diagnose → Plan → Evaluate across the lifespan, evidence-based.",
+  "npte-pt":
+    "MSK, neuro, cardio-pulm, and professional practice — exam-day pacing.",
+};
+
+/** Exam-led ATF headline when a board chip is selected. */
+export function formatExamHeroHeadline(examSlug?: string): string {
+  if (!examSlug) return LANDING_HERO_HEADLINE;
+  return EXAM_HERO_HEADLINES[examSlug] ?? LANDING_HERO_HEADLINE;
+}
+
+/** Exam-led ATF subline with optional live bank count for that board. */
+export function formatExamHeroSubline(
+  examSlug?: string,
+  countLabel?: string
+): string {
+  const body =
+    (examSlug && EXAM_HERO_SUBLINE_BODIES[examSlug]) || LANDING_HERO_SUBLINE_BODY;
+  const count = countLabel?.trim();
+  if (!count) return body;
+  return `${count} serve-ready questions. ${body}`;
+}
+
 /** Short reassurance directly under the primary hero CTA. */
 export const LANDING_HERO_CTA_DISCLOSURE =
   `${TRIAL_DAYS}-day free trial · No card required`;
-
 /** Longer trial detail for pricing / final CTA (not the hero ATF). */
 export const LANDING_TRIAL_DETAIL =
   `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · No payment required · Upgrade anytime`;

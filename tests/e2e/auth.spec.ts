@@ -32,7 +32,7 @@ test.describe("Authentication", () => {
   });
 
   test("signup form blocks submit until terms are accepted", async ({ page }) => {
-    await page.goto("/signup?plan=trial");
+    await page.goto("/signup?plan=trial&exam=nclex");
     await page.getByPlaceholder("Full name").fill("QA Tester");
     await page.getByPlaceholder("Email").fill(`qa-${Date.now()}@example.com`);
     await page.getByPlaceholder(/password/i).fill("TestPassword1!");

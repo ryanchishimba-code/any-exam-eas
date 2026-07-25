@@ -75,6 +75,11 @@ const LandingStickyCta = dynamic(
   { ssr: false }
 );
 
+const LandingSamplePractice = dynamic(
+  () => import("./LandingSamplePractice").then((m) => m.LandingSamplePractice),
+  { ...clientSection, loading: () => <SectionPlaceholder className="py-16" /> }
+);
+
 export {
   LandingOfferingV2,
   LandingShowcaseV2,
@@ -88,4 +93,5 @@ export {
   LandingFaqV2,
   LandingTestimonialsV2,
   LandingStickyCta,
+  LandingSamplePractice,
 };

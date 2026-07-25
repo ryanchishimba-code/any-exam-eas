@@ -1,8 +1,8 @@
 "use client";
 
 /**
- * Quiet linked exam row for the beat hero — each board deep-links into trial signup
- * with that exam preselected. Not a pill cluster: text links with accent color only.
+ * Exam chips for the beat hero — selecting a board updates ATF copy + sample
+ * practice; links still deep-link trial signup with that exam preselected.
  */
 
 import Link from "next/link";
@@ -12,11 +12,16 @@ import {
 } from "@/lib/landing/content";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 import { analytics } from "@/lib/analytics";
+import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
+import type { ExamSlug } from "@/types/edtech";
+import { cn } from "@/lib/utils";
 
 type LandingHeroExamStripProps = {
   className?: string;
   bankCounts?: LandingBankCountsDisplay;
   variant?: "hero" | "compact" | "chips";
+  /** When true (chips default on V2), chips select exam for ATF/sample. */
+  selectable?: boolean;
 };
 
 type HeroExamLink = {
@@ -31,7 +36,10 @@ export function LandingHeroExamStrip({
   className = "",
   bankCounts,
   variant = "hero",
+  selectable = variant === "chips",
 }: LandingHeroExamStripProps) {
+  const { selectedExam, setSelectedExam } = useLandingExamSelection();
+
   const exams: HeroExamLink[] =
     bankCounts?.exams ??
     LANDING_HERO_EXAMS.map(({ slug, label, color }) => ({
@@ -51,20 +59,39 @@ export function LandingHeroExamStrip({
     return (
       <nav
         className={`${stripClass} ${className}`.trim()}
-        aria-label="Start a free trial for your board exam"
+        aria-label="Choose your board exam"
       >
-        {exams.map((exam) => (
-          <Link
-            key={exam.slug}
-            href={landingTrialHrefForExam(exam.slug)}
-            prefetch={false}
-            className="aee-hero-exam-chips__link"
-            style={{ color: exam.color }}
-            onClick={() => analytics.ctaClicked(`exam_chip_${exam.slug}`, "hero")}
-          >
-            {exam.label}
-          </Link>
-        ))}
+        {exams.map((exam) => {
+          const isSelected = selectable && selectedExam === exam.slug;
+          return (
+            <Link
+              key={exam.slug}
+              href={landingTrialHrefForExam(exam.slug)}
+              prefetch={false}
+              className={cn(
+                "aee-hero-exam-chips__link",
+                isSelected && "aee-hero-exam-chips__link--selected"
+              )}
+              style={{ color: exam.color }}
+              aria-current={isSelected ? "true" : undefined}
+              onClick={(e) => {
+                if (selectable) {
+                  e.preventDefault();
+                  setSelectedExam(exam.slug as ExamSlug);
+                  analytics.ctaClicked(`exam_chip_${exam.slug}`, "hero");
+                  const sample = document.getElementById("try-a-question");
+                  if (sample) {
+                    sample.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                  }
+                } else {
+                  analytics.ctaClicked(`exam_chip_${exam.slug}`, "hero");
+                }
+              }}
+            >
+              {exam.label}
+            </Link>
+          );
+        })}
       </nav>
     );
   }

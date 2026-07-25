@@ -1,32 +1,40 @@
 "use client";
 
 /**
- * LandingHeroV2 — visual ATF: darker full-bleed stage + floating product still.
- * Brand + benefit H1 + quiet exam links + trial CTA (no price in ATF) + laptop.
+ * LandingHeroV2 — exam-led ATF: brand, exam-aware H1, chips, trial CTA + price meta, product still.
  */
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { LandingHeroExamStrip } from "@/components/home/LandingHeroExamStrip";
+import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
 import {
-  LANDING_HERO_CTA_DISCLOSURE,
   LANDING_HERO_EYEBROW,
-  LANDING_HERO_HEADLINE,
-  LANDING_TRIAL_HREF,
-  formatFlagshipHeroSubline,
+  formatExamHeroHeadline,
+  formatExamHeroSubline,
 } from "@/lib/landing/content";
 import {
   LANDING_HERO_LAPTOP_ALT,
   LANDING_HERO_LAPTOP_SRC,
 } from "@/lib/marketing/landing-visuals";
-import { formatTrialCtaLabel } from "@/lib/site";
+import { analytics } from "@/lib/analytics";
+import { formatLandingStickyDetail, formatTrialCtaLabel } from "@/lib/site";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
 export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
   const visualRef = useRef<HTMLDivElement>(null);
+  const { selectedExam, trialHref } = useLandingExamSelection();
+
+  const examCount = useMemo(() => {
+    const row = bankCounts.exams?.find((e) => e.slug === selectedExam);
+    return row?.questionsLabel ?? row?.countLabel;
+  }, [bankCounts.exams, selectedExam]);
+
+  const headline = formatExamHeroHeadline(selectedExam);
+  const subline = formatExamHeroSubline(selectedExam, examCount);
 
   useEffect(() => {
     const el = visualRef.current;
@@ -56,6 +64,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
     <section
       className="aee-hero-beat relative w-full overflow-hidden"
       aria-labelledby="hero-heading"
+      data-landing-hero
     >
       <div className="aee-hero-beat__atmosphere" aria-hidden />
       <div className="aee-hero-beat__vignette" aria-hidden />
@@ -65,18 +74,23 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
           <p className="aee-hero-beat__brand">{LANDING_HERO_EYEBROW}</p>
 
           <h1 id="hero-heading" className="aee-hero-beat__headline">
-            {LANDING_HERO_HEADLINE}
+            {headline}
           </h1>
 
-          <p className="aee-hero-beat__subline">
-            {formatFlagshipHeroSubline(bankCounts.totalLabel)}
-          </p>
+          <p className="aee-hero-beat__subline">{subline}</p>
 
-          <LandingHeroExamStrip variant="chips" bankCounts={bankCounts} className="aee-hero-beat__exams" />
+          <LandingHeroExamStrip
+            variant="chips"
+            selectable
+            bankCounts={bankCounts}
+            className="aee-hero-beat__exams"
+          />
 
           <div className="aee-hero-beat__actions">
             <LandingCta
-              href={LANDING_TRIAL_HREF}
+              href={trialHref}
+              ctaName="hero_trial"
+              location="hero"
               className="aee-flagship-cta--hero aee-flagship-cta--xl aee-flagship-cta--primary aee-flagship-cta--on-dark group aee-hero-beat__cta"
               icon={
                 <ArrowRight
@@ -87,12 +101,17 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
             >
               {formatTrialCtaLabel()}
             </LandingCta>
-            <Link href="#pricing" prefetch={false} className="aee-hero-beat__secondary">
+            <Link
+              href="#pricing"
+              prefetch={false}
+              className="aee-hero-beat__secondary"
+              onClick={() => analytics.ctaClicked("hero_see_pricing", "hero")}
+            >
               See pricing
             </Link>
           </div>
 
-          <p className="aee-hero-beat__meta">{LANDING_HERO_CTA_DISCLOSURE}</p>
+          <p className="aee-hero-beat__meta">{formatLandingStickyDetail()}</p>
         </div>
 
         <div ref={visualRef} className="aee-hero-beat__visual">

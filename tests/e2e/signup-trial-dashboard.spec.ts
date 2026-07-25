@@ -11,16 +11,17 @@ test.describe("Signup → trial → dashboard", () => {
   test("trial signup surfaces plan disclosure and routes toward checkout", async ({ page }) => {
     const uniqueEmail = `e2e-trial-${Date.now()}@example.com`;
 
-    await page.goto("/signup?plan=trial", { waitUntil: "domcontentloaded" });
+    await page.goto("/signup?plan=trial&exam=nclex", { waitUntil: "domcontentloaded" });
 
     await expect(page.getByText(/add payment|free trial|\$0/i).first()).toBeVisible();
+    await expect(page.getByText(/preparing for nclex/i)).toBeVisible();
     await page.getByPlaceholder("Full name").fill("E2E Trial User");
     await page.getByPlaceholder("Email").fill(uniqueEmail);
     await page.getByPlaceholder(/password/i).fill("E2eTrialPass1!");
     await fillDateOfBirth(page, "1992-03-20");
     await acceptSignupTerms(page);
 
-    const submit = page.getByRole("button", { name: /start.*trial|create account|continue/i });
+    const submit = page.getByRole("button", { name: /start.*trial|create account/i });
     await expect(submit).toBeEnabled();
     await submit.click();
 

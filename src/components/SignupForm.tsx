@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { signIn } from "next-auth/react";
-import { Check, Eye, EyeOff, Loader2 } from "lucide-react";
+import { Check, ChevronDown, Eye, EyeOff, Loader2 } from "lucide-react";
 import { LegalCheckbox } from "./LegalCheckbox";
 import { Button } from "./ui/Button";
 import { GoogleSignInButton } from "@/components/auth/GoogleSignInButton";
@@ -44,13 +43,6 @@ import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/l
 import { markTrialWelcomePending } from "@/lib/client/trial-welcome";
 import { analytics } from "@/lib/analytics";
 
-const stepMotion = {
-  initial: { opacity: 0, y: 10 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -8 },
-  transition: { duration: 0.22, ease: [0.25, 0.1, 0.25, 1] as const },
-};
-
 export function SignupForm({
   initialPlan = "",
   initialPromo = "",
@@ -64,6 +56,7 @@ export function SignupForm({
   initialTier?: SubscriptionTier;
   initialExam?: ExamSlug | "";
 }) {
+  const examLocked = Boolean(initialExam);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -71,11 +64,11 @@ export function SignupForm({
   const [dob, setDob] = useState(() => defaultBirthDatePreview());
   const [examSlug, setExamSlug] = useState<ExamSlug | "">(initialExam);
   const [testDate, setTestDate] = useState("");
+  const [showTestDate, setShowTestDate] = useState(false);
   const [accepted, setAccepted] = useState(false);
   const [error, setError] = useState("");
   const [configWarning, setConfigWarning] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [step, setStep] = useState<1 | 2>(1);
 
   // Preselect from ?plan= when present; default to free trial. User can switch.
   const [plan, setPlan] = useState<SignupPlan>(
@@ -92,25 +85,8 @@ export function SignupForm({
   const oauthCallbackUrl =
     plan === "subscribe" ? subscribeCheckoutPath : "/dashboard";
 
-  // Mirror the shared password policy so users get instant feedback instead of
-  // a rejected round-trip.
   const passwordChecks = checkPassword(password);
   const passwordValid = isPasswordValid(password);
-
-  // Step 1 collects the account; step 2 collects the exam + consent. Final
-  // submit still enforces everything server-side, so this only gates perceived
-  // length — it never relaxes validation.
-  const step1Valid =
-    name.trim().length > 0 && email.trim().length > 0 && passwordValid && dob.length > 0;
-
-  function goToExamStep() {
-    if (!step1Valid) {
-      setError("Add your name, email, a valid password, and date of birth to continue.");
-      return;
-    }
-    setError("");
-    setStep(2);
-  }
 
   useEffect(() => {
     fetchAuthHealthWarning().then(setConfigWarning);
@@ -131,9 +107,8 @@ export function SignupForm({
     e.preventDefault();
     setError("");
 
-    // Enter key on a step-1 field should advance, not submit.
-    if (step === 1) {
-      goToExamStep();
+    if (!name.trim() || !email.trim() || !dob) {
+      setError("Add your name, email, and date of birth to continue.");
       return;
     }
 
@@ -145,6 +120,11 @@ export function SignupForm({
     const pwError = passwordError(password);
     if (pwError) {
       setError(pwError);
+      return;
+    }
+
+    if (!accepted) {
+      setError("Accept the terms to continue.");
       return;
     }
 
@@ -230,6 +210,16 @@ export function SignupForm({
   const examDatePreview = useMemo(() => defaultExamDatePreview(today), [today]);
   const birthMin = useMemo(() => oldestBirthDateIso(today), [today]);
   const birthMax = useMemo(() => eighteenYearsAgoIso(today), [today]);
+  const lockedExam = examLocked && examSlug ? EXAM_CATALOG[examSlug] : null;
+  const canSubmit =
+    !loading &&
+    accepted &&
+    Boolean(examSlug) &&
+    passwordValid &&
+    name.trim().length > 0 &&
+    email.trim().length > 0 &&
+    dob.length > 0 &&
+    !configWarning;
 
   return (
     <form onSubmit={handleSubmit} noValidate className="relative w-full space-y-6">
@@ -241,29 +231,32 @@ export function SignupForm({
 
       <CheckoutPlanSelector value={plan} onChange={setPlan} context="signup" />
 
-      {step === 1 &&
-        (plan === "trial" ? (
-          <div className="space-y-4">
-            <NoPaymentTrialCallout variant="prominent" />
-            <div className="rounded-2xl border border-[var(--color-border)]/80 bg-[var(--color-surface)]/50 p-4">
-              <p className="text-sm font-semibold text-[var(--color-ink)]">
-                Your {TRIAL_DAYS}-day free trial includes
-              </p>
-              <ul className="mt-3 space-y-2">
-                {trialHighlights.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-xs leading-relaxed text-[var(--color-ink-muted)]">
-                    <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-accent)]" aria-hidden />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+      {plan === "trial" ? (
+        <div className="space-y-4">
+          <NoPaymentTrialCallout variant="prominent" />
+          <div className="rounded-2xl border border-[var(--color-border)]/80 bg-[var(--color-surface)]/50 p-4">
+            <p className="text-sm font-semibold text-[var(--color-ink)]">
+              Your {TRIAL_DAYS}-day free trial includes
+            </p>
+            <ul className="mt-3 space-y-2">
+              {trialHighlights.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-2 text-xs leading-relaxed text-[var(--color-ink-muted)]"
+                >
+                  <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-accent)]" aria-hidden />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
-        ) : (
-          <p className="rounded-2xl border border-[var(--color-border)]/80 bg-[var(--color-surface)]/50 px-4 py-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
-            Create your account, then pay securely at checkout to unlock Pro. Promo codes apply at checkout.
-          </p>
-        ))}
+        </div>
+      ) : (
+        <p className="rounded-2xl border border-[var(--color-border)]/80 bg-[var(--color-surface)]/50 px-4 py-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+          Create your account, then pay securely at checkout to unlock Pro. Promo codes apply at
+          checkout.
+        </p>
+      )}
 
       {configWarning && (
         <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
@@ -271,178 +264,156 @@ export function SignupForm({
         </p>
       )}
 
-      <ol className="flex items-center gap-2 text-xs font-semibold" aria-label="Sign up progress">
-        <li
-          className={`rounded-full px-2.5 py-1 transition-colors ${
-            step === 1
-              ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
-              : "text-[var(--color-ink-muted)]"
-          }`}
-        >
-          1. Your account
-        </li>
-        <li aria-hidden className="text-[var(--color-ink-muted)]">›</li>
-        <li
-          className={`rounded-full px-2.5 py-1 transition-colors ${
-            step === 2
-              ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
-              : "text-[var(--color-ink-muted)]"
-          }`}
-        >
-          2. Your exam
-        </li>
-      </ol>
-
-      <AnimatePresence mode="wait" initial={false}>
-        {step === 1 ? (
-          <motion.div key="signup-step-1" {...stepMotion} className="space-y-6">
-          {(googleEnabled || linkedinEnabled) && !configWarning && (
-            <div className="space-y-4">
-              {googleEnabled && (
-                <GoogleSignInButton
-                  large
-                  callbackUrl={oauthCallbackUrl}
-                  onClick={() => {
-                    const trimmedEmail = email.trim();
-                    if (trimmedEmail) {
-                      saveReturningUserHint({
-                        email: trimmedEmail,
-                        name: name.trim() || undefined,
-                        lastMethod: "google",
-                      });
-                    }
-                  }}
-                />
-              )}
-              <SocialLoginButton
-                provider="linkedin"
-                large
-                callbackUrl={oauthCallbackUrl}
-                onClick={() => {
-                  const trimmedEmail = email.trim();
-                  if (trimmedEmail) {
-                    saveReturningUserHint({
-                      email: trimmedEmail,
-                      name: name.trim() || undefined,
-                      lastMethod: "linkedin",
-                    });
-                  }
-                }}
-              />
-              <div className="relative py-1">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-black/[0.06]" />
-                </div>
-                <p className="relative mx-auto w-fit bg-[var(--color-surface-elevated)] px-3 text-xs font-medium text-[var(--color-ink-muted)]">
-                  or sign up with email
-                </p>
-              </div>
-            </div>
+      {(googleEnabled || linkedinEnabled) && !configWarning && (
+        <div className="space-y-4">
+          {googleEnabled && (
+            <GoogleSignInButton
+              large
+              callbackUrl={oauthCallbackUrl}
+              onClick={() => {
+                const trimmedEmail = email.trim();
+                if (trimmedEmail) {
+                  saveReturningUserHint({
+                    email: trimmedEmail,
+                    name: name.trim() || undefined,
+                    lastMethod: "google",
+                  });
+                }
+              }}
+            />
           )}
+          <SocialLoginButton
+            provider="linkedin"
+            large
+            callbackUrl={oauthCallbackUrl}
+            onClick={() => {
+              const trimmedEmail = email.trim();
+              if (trimmedEmail) {
+                saveReturningUserHint({
+                  email: trimmedEmail,
+                  name: name.trim() || undefined,
+                  lastMethod: "linkedin",
+                });
+              }
+            }}
+          />
+          <div className="relative py-1">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-black/[0.06]" />
+            </div>
+            <p className="relative mx-auto w-fit bg-[var(--color-surface-elevated)] px-3 text-xs font-medium text-[var(--color-ink-muted)]">
+              or sign up with email
+            </p>
+          </div>
+        </div>
+      )}
 
-          <fieldset className="space-y-4" disabled={loading}>
+      <fieldset className="space-y-4" disabled={loading}>
+        <input
+          required
+          placeholder="Full name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="apple-input"
+        />
+        <input
+          required
+          type="text"
+          inputMode="email"
+          autoComplete="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          onBlur={(e) => rememberEmail(e.target.value, { name: name.trim() || undefined })}
+          className="apple-input"
+        />
+        <div>
+          <div className="relative">
             <input
               required
-              placeholder="Full name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="apple-input"
+              type={showPassword ? "text" : "password"}
+              minLength={10}
+              autoComplete="new-password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="apple-input pr-12"
             />
-            <input
-              required
-              type="text"
-              inputMode="email"
-              autoComplete="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onBlur={(e) => rememberEmail(e.target.value, { name: name.trim() || undefined })}
-              className="apple-input"
-            />
-            <div>
-              <div className="relative">
-                <input
-                  required
-                  type={showPassword ? "text" : "password"}
-                  minLength={10}
-                  autoComplete="new-password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="apple-input pr-12"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword((v) => !v)}
-                  aria-label={showPassword ? "Hide password" : "Show password"}
-                  className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-ink)]"
-                >
-                  {showPassword ? (
-                    <EyeOff className="h-4 w-4" aria-hidden />
-                  ) : (
-                    <Eye className="h-4 w-4" aria-hidden />
-                  )}
-                </button>
-              </div>
-              {password.length > 0 && (
-                <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
-                  {passwordRequirements.map((req) => {
-                    const ok = passwordChecks[req.id];
-                    return (
-                      <li
-                        key={req.id}
-                        className={`flex items-center gap-1 text-[0.6875rem] ${
-                          ok
-                            ? "text-[var(--color-accent)]"
-                            : "text-[var(--color-ink-muted)]"
-                        }`}
-                      >
-                        <Check
-                          className={`h-3 w-3 shrink-0 ${ok ? "opacity-100" : "opacity-30"}`}
-                          aria-hidden
-                        />
-                        {req.label}
-                      </li>
-                    );
-                  })}
-                </ul>
+            <button
+              type="button"
+              onClick={() => setShowPassword((v) => !v)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+              className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-ink)]"
+            >
+              {showPassword ? (
+                <EyeOff className="h-4 w-4" aria-hidden />
+              ) : (
+                <Eye className="h-4 w-4" aria-hidden />
               )}
-            </div>
-            <div>
-              <label id="signup-dob-label" className="apple-label">
-                Date of birth (18+ required)
-              </label>
-              <div className="mt-2" aria-labelledby="signup-dob-label">
-                <ExamDatePicker
-                  id="signup-dob"
-                  value={dob}
-                  minDate={birthMin}
-                  maxDate={birthMax}
-                  ariaLabel="Date of birth"
-                  variant="compact"
-                  onChange={setDob}
-                />
-              </div>
-            </div>
-          </fieldset>
+            </button>
+          </div>
+          {password.length > 0 && (
+            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+              {passwordRequirements.map((req) => {
+                const ok = passwordChecks[req.id];
+                return (
+                  <li
+                    key={req.id}
+                    className={`flex items-center gap-1 text-[0.6875rem] ${
+                      ok ? "text-[var(--color-accent)]" : "text-[var(--color-ink-muted)]"
+                    }`}
+                  >
+                    <Check
+                      className={`h-3 w-3 shrink-0 ${ok ? "opacity-100" : "opacity-30"}`}
+                      aria-hidden
+                    />
+                    {req.label}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </div>
+        <div>
+          <label id="signup-dob-label" className="apple-label">
+            Date of birth (18+ required)
+          </label>
+          <div className="mt-2" aria-labelledby="signup-dob-label">
+            <ExamDatePicker
+              id="signup-dob"
+              value={dob}
+              minDate={birthMin}
+              maxDate={birthMax}
+              ariaLabel="Date of birth"
+              variant="compact"
+              onChange={setDob}
+            />
+          </div>
+        </div>
+      </fieldset>
 
-          {error && <InlineError>{error}</InlineError>}
-
-          <Button
-            type="button"
-            onClick={goToExamStep}
-            disabled={loading || !step1Valid || !!configWarning}
-            className="w-full"
+      <fieldset className="space-y-3" disabled={loading || examLocked}>
+        <legend className="apple-label">
+          {lockedExam ? "Your exam" : "Which exam are you preparing for?"}
+        </legend>
+        {lockedExam ? (
+          <div
+            className="flex items-center justify-between gap-2 rounded-2xl border border-[var(--color-accent)] bg-[var(--color-accent)]/[0.06] px-4 py-3 ring-2 ring-[var(--color-accent)]/15"
+            role="status"
+            aria-live="polite"
           >
-            Continue
-          </Button>
-
-          <MemberLoginLink className="text-center" showEmailHint />
-          </motion.div>
+            <span className="min-w-0">
+              <span className="block text-sm font-semibold text-[var(--color-ink)]">
+                Preparing for {lockedExam.shortName}
+              </span>
+              <span className="mt-0.5 block truncate text-[0.6875rem] text-[var(--color-ink-muted)]">
+                {lockedExam.name} · locked from your trial link
+              </span>
+            </span>
+            <Check className="h-4 w-4 shrink-0 text-[var(--color-accent)]" aria-hidden />
+          </div>
         ) : (
-          <motion.div key="signup-step-2" {...stepMotion} className="space-y-6">
-          <fieldset className="space-y-3" disabled={loading}>
-            <legend className="apple-label">Which exam are you preparing for?</legend>
+          <>
             <p className="text-xs leading-relaxed text-[var(--color-ink-muted)]">
               We&apos;ll open your dashboard to this exam. You can switch anytime later.
             </p>
@@ -478,18 +449,38 @@ export function SignupForm({
                 );
               })}
             </div>
+          </>
+        )}
 
-            {examSlug && (
-              <div className="pt-2">
+        {examSlug ? (
+          <div className="pt-1">
+            <button
+              type="button"
+              onClick={() => setShowTestDate((v) => !v)}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
+              aria-expanded={showTestDate}
+            >
+              <ChevronDown
+                className={`h-3.5 w-3.5 transition-transform ${showTestDate ? "rotate-180" : ""}`}
+                aria-hidden
+              />
+              {showTestDate || testDate
+                ? "Test date"
+                : "Add test date (optional)"}
+            </button>
+            {(showTestDate || testDate) && (
+              <div className="mt-2">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <label id="signup-test-date-label" className="apple-label">
-                    When&apos;s your test?{" "}
-                    <span className="font-normal text-[var(--color-ink-muted)]">(optional)</span>
+                  <label id="signup-test-date-label" className="sr-only">
+                    When&apos;s your test?
                   </label>
                   {testDate ? (
                     <button
                       type="button"
-                      onClick={() => setTestDate("")}
+                      onClick={() => {
+                        setTestDate("");
+                        setShowTestDate(false);
+                      }}
                       className="text-[0.6875rem] font-semibold text-[var(--color-ink-muted)] transition hover:text-[var(--color-accent)]"
                     >
                       Skip for now
@@ -502,69 +493,58 @@ export function SignupForm({
                     value={testDate || examDatePreview}
                     minDate={today}
                     variant="compact"
-                    onChange={setTestDate}
+                    onChange={(value) => {
+                      setTestDate(value);
+                      setShowTestDate(true);
+                    }}
                   />
                 </div>
               </div>
             )}
-          </fieldset>
-
-          <LegalCheckbox checked={accepted} onChange={setAccepted} />
-
-          {error && <InlineError>{error}</InlineError>}
-
-          <div className="space-y-2">
-            <Button
-              type="submit"
-              disabled={loading || !accepted || !examSlug || !passwordValid || !!configWarning}
-              className="w-full gap-2"
-            >
-              {loading ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
-                  Creating your account…
-                </>
-              ) : plan === "trial" ? (
-                TRIAL_CTA_LABEL
-              ) : (
-                "Create account & subscribe"
-              )}
-            </Button>
-            <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-              {plan === "trial" ? (
-                <span className="font-semibold text-emerald-800">{SIGNUP_PAYMENT_REQUIRED_NOTE}</span>
-              ) : (
-                "Next: confirm billing and pay securely at checkout."
-              )}
-            </p>
-            {!examSlug ? (
-              <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
-                Pick the exam you&apos;re preparing for above to continue.
-              </p>
-            ) : !accepted ? (
-              <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
-                Accept the terms above to continue.
-              </p>
-            ) : null}
           </div>
+        ) : null}
+      </fieldset>
 
-          <button
-            type="button"
-            onClick={() => {
-              setError("");
-              setStep(1);
-            }}
-            className="mx-auto block text-xs font-medium text-[var(--color-ink-muted)] transition-colors hover:text-[var(--color-ink)]"
-          >
-            ← Back to account details
-          </button>
+      <LegalCheckbox checked={accepted} onChange={setAccepted} />
 
-          <p className="text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
-            {LEGAL_DISCLAIMERS.ageRequirement} {MARKETING_DISCLAIMER}
+      {error && <InlineError>{error}</InlineError>}
+
+      <div className="space-y-2">
+        <Button type="submit" disabled={!canSubmit} className="w-full gap-2">
+          {loading ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+              Creating your account…
+            </>
+          ) : plan === "trial" ? (
+            TRIAL_CTA_LABEL
+          ) : (
+            "Create account & subscribe"
+          )}
+        </Button>
+        <p className="text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+          {plan === "trial" ? (
+            <span className="font-semibold text-emerald-800">{SIGNUP_PAYMENT_REQUIRED_NOTE}</span>
+          ) : (
+            "Next: confirm billing and pay securely at checkout."
+          )}
+        </p>
+        {!examSlug ? (
+          <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
+            Pick the exam you&apos;re preparing for above to continue.
           </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        ) : !accepted ? (
+          <p className="text-center text-[0.6875rem] text-[var(--color-ink-muted)]">
+            Accept the terms above to continue.
+          </p>
+        ) : null}
+      </div>
+
+      <MemberLoginLink className="text-center" showEmailHint />
+
+      <p className="text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
+        {LEGAL_DISCLAIMERS.ageRequirement} {MARKETING_DISCLAIMER}
+      </p>
     </form>
   );
 }

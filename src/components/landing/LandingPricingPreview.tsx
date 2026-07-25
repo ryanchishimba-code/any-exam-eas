@@ -64,7 +64,12 @@ function PreviewProCard({ interval }: { interval: BillingInterval }) {
         ) : null}
       </div>
 
-      <LandingCta href={href} className="aee-flagship-cta--hero aee-flagship-cta--xl group w-full">
+      <LandingCta
+        href={href}
+        ctaName="pricing_preview_pro"
+        location="pricing"
+        className="aee-flagship-cta--hero aee-flagship-cta--xl group w-full"
+      >
         {formatTrialCtaLabel()}
       </LandingCta>
 
@@ -143,7 +148,12 @@ export function LandingPricingPreview() {
         typically less than stacking per-exam QBanks · {BILLING_TRIAL_DISCLOSURE}
       </p>
 
-      <LandingCta href={LANDING_TRIAL_HREF} className="aee-flagship-cta--hero aee-flagship-cta--xl group mx-auto mt-6 w-full max-w-md">
+      <LandingCta
+        href={LANDING_TRIAL_HREF}
+        ctaName="pricing_preview_bottom"
+        location="pricing"
+        className="aee-flagship-cta--hero aee-flagship-cta--xl group mx-auto mt-6 w-full max-w-md"
+      >
         {formatTrialCtaLabel()}
       </LandingCta>
 

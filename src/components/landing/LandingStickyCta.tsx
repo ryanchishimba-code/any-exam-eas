@@ -3,16 +3,27 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
-import { formatTrialCtaLabel, formatLandingStickyDetail, NO_PAYMENT_TRIAL_BADGE } from "@/lib/site";
+import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
+import { analytics } from "@/lib/analytics";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import {
+  formatTrialCtaLabel,
+  formatLandingStickyDetail,
+  NO_PAYMENT_TRIAL_BADGE,
+} from "@/lib/site";
 
 /** Fixed bottom bar — appears after the hero scrolls out of view. */
 export function LandingStickyCta() {
   const [visible, setVisible] = useState(false);
+  const { trialHref } = useLandingExamSelection();
+  const href = trialHref || LANDING_TRIAL_HREF;
 
   useEffect(() => {
-    const hero = document.querySelector(".aee-flagship-hero");
+    const hero =
+      document.querySelector("[data-landing-hero]") ??
+      document.querySelector(".aee-hero-beat") ??
+      document.querySelector(".aee-flagship-hero");
     if (!hero) return;
 
     const observer = new IntersectionObserver(
@@ -37,7 +48,11 @@ export function LandingStickyCta() {
           </p>
           <p className="aee-landing-sticky-cta__detail">{formatLandingStickyDetail()}</p>
         </div>
-        <Link href={LANDING_TRIAL_HREF} className="aee-landing-sticky-cta__btn group">
+        <Link
+          href={href}
+          className="aee-landing-sticky-cta__btn group"
+          onClick={() => analytics.ctaClicked("sticky_trial", "sticky")}
+        >
           {formatTrialCtaLabel()}
           <ArrowRight
             className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5"
