@@ -49,7 +49,11 @@ export function CheckoutPlanSelector({
 
   return (
     <fieldset className="space-y-3">
-      <legend className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+      {/*
+        This control sits on light surfaces (AuthCard / checkout cards). Do not use
+        `--color-ink*` — those flip to near-white in dark theme and wash out on white pills.
+      */}
+      <legend className="text-xs font-semibold uppercase tracking-wide text-slate-500">
         {legend}
       </legend>
       <div
@@ -69,14 +73,24 @@ export function CheckoutPlanSelector({
               className={cn(
                 "min-w-0 flex-1 rounded-full px-4 py-3 text-center transition-all duration-200",
                 selected
-                  ? "bg-white shadow-[var(--shadow-apple-sm)]"
-                  : "hover:text-[var(--color-ink)]"
+                  ? "bg-white text-slate-900 shadow-[var(--shadow-apple-sm)]"
+                  : "text-slate-600 hover:text-slate-900"
               )}
             >
-              <span className="block text-sm font-semibold text-[var(--color-ink)]">
+              <span
+                className={cn(
+                  "block text-sm font-semibold",
+                  selected ? "text-slate-900" : "text-slate-700"
+                )}
+              >
                 {opt.label}
               </span>
-              <span className="mt-0.5 block text-[0.6875rem] text-[var(--color-ink-muted)]">
+              <span
+                className={cn(
+                  "mt-0.5 block text-[0.6875rem]",
+                  selected ? "text-slate-600" : "text-slate-500"
+                )}
+              >
                 {opt.sub}
               </span>
             </button>

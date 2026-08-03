@@ -156,7 +156,7 @@ export function formatLandingStickyDetail(): string {
 export const NO_PAYMENT_TRIAL_HEADLINE = "No payment method required";
 
 /** Supporting copy under the headline on prominent callouts. */
-export const NO_PAYMENT_TRIAL_SUBLINE = `Try for free with email or social login — no card, no checkout until you choose to upgrade. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions instantly.`;
+export const NO_PAYMENT_TRIAL_SUBLINE = `Try for free with email — no card, no checkout until you choose to upgrade. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions instantly.`;
 
 /** Short badge label for CTAs and sticky bars. */
 export const NO_PAYMENT_TRIAL_BADGE = "No card required";

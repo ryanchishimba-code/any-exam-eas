@@ -372,7 +372,7 @@ export const LANDING_STEPS = [
     step: "01",
     icon: Layers,
     title: "Create your account",
-    detail: `Sign up with email or social login — no payment required. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions instantly.`,
+    detail: `Sign up with email — no payment required. Your ${TRIAL_DAYS}-day trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions instantly.`,
   },
   {
     step: "02",

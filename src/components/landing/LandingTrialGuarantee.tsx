@@ -26,7 +26,7 @@ const PILLARS = [
   {
     icon: Calendar,
     title: `${TRIAL_DAYS} days to explore — no card required`,
-    body: "Create your account with email or social login. No payment method needed. Upgrade anytime for unlimited questions and Pro features.",
+    body: "Create your account with email. No payment method needed. Upgrade anytime for unlimited questions and Pro features.",
   },
   {
     icon: BadgeCheck,
