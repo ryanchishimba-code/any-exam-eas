@@ -55,7 +55,8 @@ const MCQ_LEAD_IN =
 const CALC_LEAD_IN =
   /\b(?:calculate|how many|how much|at what rate|round to|what is the (?:rate|dose|volume|concentration|quantity|total|amount|number|daily dose|infusion rate))\b/i;
 
-const NUMERIC_ANSWER = /^\s*-?\d+(?:\.\d+)?\s*(?:mg|mcg|g|mL|ml|mL\/hr|mcg\/mL|mEq|units|%|tablets|capsules|hr|hours?)?\s*$/i;
+const NUMERIC_ANSWER =
+  /^\s*-?\d+(?:\.\d+)?\s*(?:mg\/mL|mcg\/mL|mL\/hr|mg|mcg|g|mL|ml|mEq|units|%|tablets|capsules|hr|hours?)?\s*$/i;
 
 function blob(item: BankItem): string {
   const vignette = resolveNaplexVignette(item);
@@ -105,7 +106,7 @@ export function vignetteSupportsCalculation(item: BankItem): boolean {
 
   const numericAnchors =
     vignette.match(
-      /\d+(?:\.\d+)?\s*(?:mg\/kg|mcg\/kg|mg\/m²|mg\/mL|mcg\/mL|mL\/hr|g\/kg|mEq\/mL|units\/mL|mg\/\d+\s*mL)/gi
+      /\d+(?:\.\d+)?\s*(?:mg\/kg|mcg\/kg|units\/kg|mEq\/kg|mg\/m²|mg\/mL|mcg\/mL|mL\/hr|g\/kg|mEq\/mL|units\/mL|mg\/\d+\s*mL)/gi
     ) ?? [];
   if (numericAnchors.length >= 1) return true;
 
@@ -115,7 +116,33 @@ export function vignetteSupportsCalculation(item: BankItem): boolean {
   if (hasOrder && dosePairs.length >= 2) return true;
 
   if (/\d+\s*(?:mg|mcg|g|mL)\b.*(?:every|q\d+h|over \d+|× \d+ day)/i.test(vignette)) return true;
-  if (/(?:BSA|CrCl|ideal body weight|IBW|4-2-1|alligation|C1V1)/i.test(vignette)) return true;
+  if (
+    /(?:BSA|CrCl|Cockcroft|Calvert|AUC\s*\d+|GFR|ideal body weight|IBW|4-2-1|alligation|C1V1)/i.test(
+      vignette
+    )
+  ) {
+    return true;
+  }
+
+  // Insulin dosing math: carb ratio / ISF / correction + meal carbs or weight-based basal start.
+  if (
+    /(?:carb(?:ohydrate)? ratio|ISF|correction factor|insulin sensitivity)/i.test(vignette) &&
+    /(?:\d+\s*g(?:rams?)?\s*(?:carb|carbohydrate)|pre-?meal|BG|blood glucose)/i.test(vignette)
+  ) {
+    return true;
+  }
+  if (/units\/kg(?:\/day)?/i.test(vignette) && /\d+\s*kg\b/i.test(vignette)) return true;
+
+  // Oral dispense math: strength + schedule + course duration.
+  if (
+    hasTabletDispenseDaySupply(vignette) &&
+    /\d+(?:\.\d+)?\s*(?:mg|mcg|g)\b/i.test(vignette) &&
+    /(?:every \d+|q\d+h|times daily|twice daily|three times|once daily|daily|tid|bid|qid)/i.test(
+      vignette
+    )
+  ) {
+    return true;
+  }
 
   return false;
 }
@@ -160,7 +187,8 @@ export function stemIsSelfContainedCalc(stem: string): boolean {
     return true;
   }
 
-  if (/(?:alligation|C1V1|4-2-1|dextrose|normal saline|NS\b|D5W|dilute to \d+)/i.test(s)) {
+  // Require word boundaries on NS so "contains" / "response" do not false-positive as normal saline.
+  if (/(?:alligation|C1V1|4-2-1|dextrose|normal saline|\bNS\b|D5W|dilute to \d+)/i.test(s)) {
     return true;
   }
 
@@ -192,20 +220,33 @@ export function hasTabletDispenseDaySupply(text: string): boolean {
   );
 }
 
+/** True when the stem is asking the examinee to compute a concentration (not merely citing product strength). */
+export function stemAsksForConcentration(stem: string): boolean {
+  const s = stem.trim();
+  return (
+    /^Calculate the concentration in mg\/mL/i.test(s) ||
+    /\bcalculate (?:the )?concentration\b/i.test(s) ||
+    /\bwhat is the concentration\b/i.test(s) ||
+    /\bconcentration in mg\/mL\b/i.test(s)
+  );
+}
+
 /** Calculation lead-in must match the numeric data present (dose vs concentration vs rate). */
 export function calcStemMatchesVignetteData(item: BankItem): boolean {
   const stem = resolveNaplexStem(item).trim();
   const vignette = resolveNaplexVignette(item);
   const blob = [vignette, stem].filter(Boolean).join("\n");
 
-  const asksConcentration =
-    /\bconcentration\b/i.test(stem) || /^Calculate the concentration in mg\/mL/i.test(stem);
-  if (asksConcentration) {
+  if (stemAsksForConcentration(stem)) {
     return !concentrationStemLacksSolvableInputs(blob);
   }
 
-  if (/mL\/hr|infusion pump|infusion rate/i.test(stem)) {
-    if (/\d+(?:\.\d+)?\s*mL\b.{0,48}(?:over|in)\s*\d+(?:\.\d+)?\s*(?:h|hr|hours?)/i.test(blob)) {
+  if (/mL\/hr|infusion pump|infusion rate|pump rate/i.test(stem)) {
+    if (
+      /\d+(?:\.\d+)?\s*mL\b.{0,48}(?:over|in|to run over)\s*\d+(?:\.\d+)?\s*(?:h|hr|hours?|min|minutes?)/i.test(
+        blob
+      )
+    ) {
       return true;
     }
     // Weight-based continuous infusion: ordered mcg/kg/min (or mg/kg/min) + bag strength in mcg/mL or mg/mL.
@@ -216,11 +257,36 @@ export function calcStemMatchesVignetteData(item: BankItem): boolean {
     ) {
       return true;
     }
+    // Heparin / unit-based infusions: units/kg/hr (or units/kg/min) + bag strength in units/mL.
+    if (
+      /units\/kg\/(?:hr|h|min)/i.test(blob) &&
+      /\d+\s*kg\b/i.test(blob) &&
+      /units\/mL/i.test(blob)
+    ) {
+      return true;
+    }
     return false;
   }
 
   if (/total volume in mL/i.test(stem)) {
     return /reconstitut|dilut|compound|prepare \d+\s*mL|C1V1|alligation/i.test(blob);
+  }
+
+  // Draw-up / dose volume stems: need ordered dose (or mg/kg + weight) and a product strength.
+  if (
+    /(?:what |daily )?volume \(?mL\)?|how many mL|mL (?:should be |to )?(?:drawn|provide|needed|required)/i.test(
+      stem
+    )
+  ) {
+    const hasStrength =
+      /(?:mg|mcg|units|mEq)\/mL|\d+(?:\.\d+)?\s*%|\d+(?:\.\d+)?\s*(?:mg|mcg|units|mEq)(?:\s+\w+){0,3}\/\d+\s*mL/i.test(
+        blob
+      );
+    const hasDose =
+      /(?:mg|mcg|units|mEq)\/kg/i.test(blob) ||
+      /\d+(?:\.\d+)?\s*(?:mg|mcg|units|mEq)\b/i.test(blob);
+    const hasWeightIfNeeded = !/(?:mg|mcg|units|mEq)\/kg/i.test(blob) || /\d+\s*kg\b/i.test(blob);
+    return hasStrength && hasDose && hasWeightIfNeeded;
   }
 
   if (/how many tablets/i.test(stem)) {
@@ -232,8 +298,14 @@ export function calcStemMatchesVignetteData(item: BankItem): boolean {
     );
   }
 
-  if (/calculate the dose in mg|milligrams of drug are required|for this preparation/i.test(stem)) {
-    if (/mg\/kg|mcg\/kg/i.test(vignette) && /\d+\s*kg\b/i.test(vignette)) return true;
+  if (
+    /calculate(?:d)? the dose in mg|milligrams of drug are required|for this preparation|calculated dose \(mg\)/i.test(
+      stem
+    )
+  ) {
+    if (/mg\/kg|mcg\/kg|units\/kg/i.test(vignette) && /\d+\s*kg\b/i.test(vignette)) return true;
+    // Carboplatin / AUC dosing — require explicit Calvert/AUC construct (not bare eGFR counseling cases).
+    if (/(?:Calvert|target AUC|AUC\s*[:=]?\s*\d+)/i.test(blob)) return true;
     return /reconstitut|compound|prepare\s+\d|dilut|alligation|C1V1|vial contains|add to.*\d+\s*mL|final volume|suspension.*\d+/i.test(
       blob
     );
@@ -243,7 +315,23 @@ export function calcStemMatchesVignetteData(item: BankItem): boolean {
     return (
       /\d+(?:\.\d+)?\s*(?:mg|mcg|g)\b.*(?:every|q\d+h|\/day|daily|times daily|three times|twice)/i.test(
         blob
-      ) || (/mg\/kg|mcg\/kg/i.test(vignette) && /\d+\s*kg\b/i.test(vignette))
+      ) || (/mg\/kg|mcg\/kg|units\/kg/i.test(vignette) && /\d+\s*kg\b/i.test(vignette))
+    );
+  }
+
+  if (/creatinine clearance|CrCl|mL\/min/i.test(stem)) {
+    return (
+      /(?:Cockcroft|SCr|serum creatinine|mg\/dL)/i.test(blob) &&
+      /\d+\s*kg\b/i.test(blob) &&
+      /\d+(?:\.\d+)?\s*(?:y\/o|yo|years?|age)/i.test(blob)
+    );
+  }
+
+  if (/insulin|glargine|correction|carb(?:ohydrate)?/i.test(stem)) {
+    return (
+      (/(?:carb(?:ohydrate)? ratio|ISF|correction|insulin sensitivity)/i.test(blob) &&
+        /(?:\d+\s*g(?:rams?)?\s*(?:carb|carbohydrate)|pre-?meal|BG|blood glucose)/i.test(blob)) ||
+      (/units\/kg/i.test(blob) && /\d+\s*kg\b/i.test(blob))
     );
   }
 
@@ -254,7 +342,9 @@ export function calcStemMatchesVignetteData(item: BankItem): boolean {
 export function calculationContextSupportsStem(item: BankItem): boolean {
   const stem = resolveNaplexStem(item);
   const text = [resolveNaplexVignette(item), stem].filter(Boolean).join("\n");
-  if (concentrationStemLacksSolvableInputs(text)) return false;
+  // Only apply concentration solvability when the stem asks for concentration.
+  // Product strength (mg/mL) is a normal INPUT for volume/dose stems and must not fail them.
+  if (stemAsksForConcentration(stem) && concentrationStemLacksSolvableInputs(text)) return false;
   if (!calcStemMatchesVignetteData(item)) return false;
   if (vignetteSupportsCalculation(item)) return true;
   return stemIsSelfContainedCalc(stem);
@@ -390,7 +480,7 @@ function inferMcqStemFromVignette(vignette: string): string {
   if (/emergency|severe|chest pain|st-segment|st elevation/.test(v)) {
     return "What is the next best step in management?";
   }
-  return "Which recommendation is most appropriate for this patient?";
+  return "What is the most appropriate recommendation for this patient?";
 }
 
 export function detectNaplexFormatIssues(item: BankItem): NaplexFormatIssue[] {
@@ -593,7 +683,7 @@ function buildAsthmaPoorControlMcq(item: BankItem): BankItem {
     ...item,
     vignette,
     scenario: vignette,
-    question: "Which recommendation is most appropriate for this patient?",
+    question: "What is the most appropriate recommendation for this patient?",
     options,
     correctAnswer,
     explanation: sabaOnly
@@ -832,7 +922,7 @@ function buildCopdWorseningMcq(item: BankItem): BankItem {
     ...item,
     vignette,
     scenario: vignette,
-    question: "Which recommendation is most appropriate for this patient?",
+    question: "What is the most appropriate recommendation for this patient?",
     options,
     correctAnswer,
     explanation:
@@ -1076,7 +1166,7 @@ function buildHeartFailureOrthostaticHypotensionMcq(item: BankItem): BankItem {
     ...item,
     vignette,
     scenario: vignette,
-    question: "Which recommendation is most appropriate for this patient?",
+    question: "What is the most appropriate recommendation for this patient?",
     options,
     correctAnswer,
     explanation:
@@ -1354,7 +1444,7 @@ function buildPenicillinAllergyCounselingMcq(item: BankItem): BankItem {
     ...item,
     vignette,
     scenario: vignette,
-    question: "Which recommendation is most appropriate for this patient?",
+    question: "What is the most appropriate recommendation for this patient?",
     options,
     correctAnswer,
     explanation:
@@ -1817,6 +1907,12 @@ export function isPsychiatricSuicideRiskOptionsMismatch(item: BankItem): boolean
 
 function isPsychiatricUnitPrioritizationVignette(vignette: string, stem?: string): boolean {
   const blob = [vignette, stem].filter(Boolean).join("\n").toLowerCase();
+  // ED / L&D / med-surg multi-room triage must not be classified as psych unit just because one
+  // room mentions "suicidal" or "contract for safety".
+  if (isEmergencyDepartmentPrioritizationVignette(vignette, stem)) return false;
+  if (/\b(?:labor and delivery|med-surg|medical-surgical|pediatric emergency|peds ed)\b/.test(blob)) {
+    return false;
+  }
   const roomCount = countAssignmentRooms(vignette);
   const multiClient =
     /\b(?:four clients|assigned(?:\s+to)?\s+four|four assigned clients|assignment context)\b/.test(blob) ||
@@ -1824,7 +1920,8 @@ function isPsychiatricUnitPrioritizationVignette(vignette: string, stem?: string
   const psychUnit =
     /\b(?:inpatient psychiatric|psychiatric unit|mental health unit|behavioral health unit)\b/.test(blob) ||
     (roomCount >= 3 &&
-      /\b(?:depression|suicidal|alcohol withdrawal|manic episode|grief|safety contract)\b/.test(vignette));
+      /\b(?:depression|suicidal|alcohol withdrawal|manic episode|grief|safety contract)\b/.test(vignette) &&
+      !/\b(?:denies suicidal|no suicidal|contract for safety, vitals stable)\b/.test(vignette));
   return multiClient && psychUnit;
 }
 
@@ -1838,8 +1935,13 @@ function optionsRelateToPsychiatricPrioritization(options: string[]): boolean {
 
 function scorePsychiatricUrgency(text: string): number {
   const t = text.toLowerCase();
+  // Explicit denial / stable voluntary admission is low acuity, not imminent suicide risk.
+  if (/\b(?:denies suicidal|no suicidal plan|denies si)\b/.test(t) && !/\b(?:goodbye note|how i would do it|kill myself)\b/.test(t)) {
+    return 20;
+  }
   if (
-    /\b(?:goodbye note|how i would do it|suicidal|kill myself|end my life)\b/.test(t) ||
+    /\b(?:goodbye note|how i would do it|kill myself|end my life)\b/.test(t) ||
+    (/\bsuicidal\b/.test(t) && !/\bdenies suicidal\b/.test(t)) ||
     (/\bdepression\b/.test(t) && /\b(?:plan|goodbye|poor eye contact)\b/.test(t))
   ) {
     return 100;

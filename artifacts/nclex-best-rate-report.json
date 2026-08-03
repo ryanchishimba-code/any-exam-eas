@@ -1,18 +1,17 @@
 {
-  "total": 4084,
-  "best": 4000,
-  "bestRatePercent": 97.94319294809011,
+  "total": 8078,
+  "best": 7993,
+  "bestRatePercent": 98.94775934637286,
   "topBlockers": {
-    "weak_distractor_rationales": 1,
+    "weak_distractor_rationales": 2,
+    "empty_explanation": 19,
     "missing_vignette": 35,
     "explanation_too_short": 80,
     "missing_distractor_rationales": 83,
     "missing_guideline_reference": 47,
     "score_below_best_bar": 71,
-    "empty_explanation": 19,
     "duplicate_vignette_in_stem": 13,
-    "not_curated_source": 36,
-    "ngn_answer_invalid": 4,
+    "not_curated_source": 1,
     "empty_question": 3
   }
 }

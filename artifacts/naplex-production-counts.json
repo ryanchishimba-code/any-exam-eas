@@ -1,92 +1,92 @@
 {
-  "generatedAt": "2026-06-14T04:25:38.605Z",
+  "generatedAt": "2026-08-03T05:02:19.924Z",
   "targetAPlus": 16691,
-  "total": 29813,
-  "active": 22317,
-  "inactive": 7496,
-  "qaPassedServed": 16792,
-  "bestTierScored": 21192,
-  "activeBestTier": 21190,
-  "activeQaPassedNotBest": 101,
-  "activeNotQaPassed": 1026,
-  "inactiveBestTier": 2,
-  "acceptableTier": 4468,
-  "rejectTier": 4153,
+  "total": 11789,
+  "active": 9216,
+  "inactive": 2573,
+  "qaPassedServed": 9098,
+  "bestTierScored": 11401,
+  "activeBestTier": 9098,
+  "activeQaPassedNotBest": 0,
+  "activeNotQaPassed": 118,
+  "inactiveBestTier": 2303,
+  "acceptableTier": 81,
+  "rejectTier": 307,
   "servedMatchesBestTier": false,
   "premiumTargetMet": true,
-  "gapFromLocalReviewTarget": 101,
+  "gapFromLocalReviewTarget": -7593,
   "bySubject": {
     "cardiovascular-rx": {
-      "total": 2486,
-      "best": 1821,
-      "qaPassed": 1457,
-      "active": 1909
+      "total": 1704,
+      "best": 1485,
+      "qaPassed": 1075,
+      "active": 1085
     },
     "cns-rx": {
-      "total": 2459,
-      "best": 1799,
-      "qaPassed": 1436,
-      "active": 1884
+      "total": 606,
+      "best": 597,
+      "qaPassed": 591,
+      "active": 599
     },
     "compounding-calculations": {
-      "total": 2360,
-      "best": 1923,
-      "qaPassed": 1651,
-      "active": 1972
+      "total": 1522,
+      "best": 1504,
+      "qaPassed": 1253,
+      "active": 1263
     },
     "endocrine-rx": {
-      "total": 2475,
-      "best": 1810,
-      "qaPassed": 1452,
-      "active": 1899
+      "total": 546,
+      "best": 534,
+      "qaPassed": 529,
+      "active": 541
     },
     "infectious-disease-rx": {
-      "total": 2456,
-      "best": 1790,
-      "qaPassed": 1455,
-      "active": 1877
+      "total": 693,
+      "best": 681,
+      "qaPassed": 675,
+      "active": 685
     },
     "oncology-rx": {
-      "total": 2442,
-      "best": 1784,
-      "qaPassed": 1429,
-      "active": 1867
+      "total": 4,
+      "best": 2,
+      "qaPassed": 0,
+      "active": 2
     },
     "otc-self-care": {
-      "total": 2460,
-      "best": 1802,
-      "qaPassed": 1437,
-      "active": 1886
+      "total": 886,
+      "best": 880,
+      "qaPassed": 726,
+      "active": 730
     },
     "patient-counseling": {
-      "total": 2506,
-      "best": 1723,
-      "qaPassed": 1356,
-      "active": 1826
+      "total": 3484,
+      "best": 3436,
+      "qaPassed": 2239,
+      "active": 2252
     },
     "pharmaceutics": {
-      "total": 2445,
-      "best": 1782,
-      "qaPassed": 1435,
-      "active": 1867
+      "total": 340,
+      "best": 311,
+      "qaPassed": 304,
+      "active": 330
     },
     "pharmacokinetics": {
-      "total": 2448,
-      "best": 1782,
-      "qaPassed": 1446,
-      "active": 1871
+      "total": 277,
+      "best": 269,
+      "qaPassed": 262,
+      "active": 270
     },
     "pharmacology": {
-      "total": 2674,
-      "best": 1629,
-      "qaPassed": 1151,
-      "active": 1778
+      "total": 1547,
+      "best": 1530,
+      "qaPassed": 1274,
+      "active": 1284
     },
     "pharmacy-law": {
-      "total": 2602,
-      "best": 1547,
-      "qaPassed": 1091,
-      "active": 1681
+      "total": 180,
+      "best": 172,
+      "qaPassed": 170,
+      "active": 175
     }
   }
 }

@@ -84,7 +84,7 @@ function buildBuprenorphineOudPainMcq(item: BankItem): BankItem {
     ...item,
     question: /which recommendation|most appropriate/i.test(item.question ?? "")
       ? item.question!
-      : "Which recommendation is most appropriate for this patient?",
+      : "What is the most appropriate recommendation for this patient?",
     options,
     correctAnswer,
     explanation:
@@ -106,7 +106,7 @@ function buildGenericClinicalRecommendationMcq(item: BankItem): BankItem {
     ...item,
     question: /which recommendation|most appropriate/i.test(item.question ?? "")
       ? item.question!
-      : "Which recommendation is most appropriate for this patient?",
+      : "What is the most appropriate recommendation for this patient?",
     options,
     correctAnswer,
     explanation:
@@ -138,7 +138,7 @@ function buildDiabetesHypertensionFollowUpMcq(item: BankItem): BankItem {
   const correctAnswer = options[0]!;
   return {
     ...item,
-    question: "Which recommendation is most appropriate for this patient?",
+    question: "What is the most appropriate recommendation for this patient?",
     options,
     correctAnswer,
     explanation:
@@ -170,7 +170,7 @@ function buildHyperkalemiaSpironolactoneMcq(item: BankItem): BankItem {
   const correctAnswer = options[0]!;
   return {
     ...item,
-    question: "Which recommendation is most appropriate for this patient?",
+    question: "What is the most appropriate recommendation for this patient?",
     options,
     correctAnswer,
     explanation:
@@ -288,7 +288,7 @@ function buildAsthmaPoorControlMcq(item: BankItem): BankItem {
     ...item,
     question: /which recommendation|most appropriate/i.test(item.question ?? "")
       ? item.question!
-      : "Which recommendation is most appropriate for this patient?",
+      : "What is the most appropriate recommendation for this patient?",
     options,
     correctAnswer,
     explanation:
@@ -329,7 +329,7 @@ function buildPediatricAsthmaRescueOveruseMcq(item: BankItem): BankItem {
   return {
     ...item,
     question: /which recommendation|most appropriate/i.test(item.question ?? "")
-      ? "Which recommendation is most appropriate for this patient?"
+      ? "What is the most appropriate recommendation for this patient?"
       : "Which counseling point is most important?",
     options,
     correctAnswer,
@@ -526,20 +526,31 @@ function buildCounselingRepair(item: BankItem): BankItem | null {
 function shouldPreferCounselingRepair(item: BankItem): boolean {
   const vignette = resolveNaplexVignette(item);
   const stem = resolveNaplexStem(item);
-  if (vignetteSupportsCalculation(item)) return false;
-  if (CALC_STEM.test(stem) && !calculationContextSupportsStem(item)) return true;
-  if (CLINICAL_MCQ_STEM.test(stem) && !CALC_STEM.test(stem)) return true;
-  if (COUNSELING_VIGNETTE.test(vignette)) return true;
   const unit = optionUnit(item.options);
+  // Tablet/capsule/rate options with order data belong on a calculation stem — check before clinical MCQ.
   if (unit === "tablet" || unit === "capsule" || unit === "ml/hr") return false;
   if (/\b(?:dispense|Rx:|three times daily|twice daily|every \d+ hours|for \d+ days)\b/i.test(vignette)) {
     return false;
   }
+  if (vignetteSupportsCalculation(item)) return false;
+  if (CALC_STEM.test(stem) && !calculationContextSupportsStem(item)) return true;
+  if (CLINICAL_MCQ_STEM.test(stem) && !CALC_STEM.test(stem)) return true;
+  if (COUNSELING_VIGNETTE.test(vignette)) return true;
   return true;
 }
 
 function shouldReclassifyNumericOptionsToCalc(item: BankItem): boolean {
   const stem = resolveNaplexStem(item);
+  const unit = optionUnit(item.options);
+  const vignette = resolveNaplexVignette(item);
+  // Bare tablet/capsule counts with an explicit course length are dispense calculations.
+  if (
+    (unit === "tablet" || unit === "capsule") &&
+    /\bfor \d+\s*days?\b|\b\d+\s*-?\s*day\b/i.test(vignette) &&
+    /\d+(?:\.\d+)?\s*(?:mg|mcg|g)\b/i.test(vignette)
+  ) {
+    return true;
+  }
   if (CLINICAL_MCQ_STEM.test(stem) && !CALC_STEM.test(stem)) return false;
   if (CALC_STEM.test(stem) && !calculationContextSupportsStem(item)) return false;
   return true;
