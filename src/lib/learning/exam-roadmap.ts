@@ -3,6 +3,7 @@
  * Performance is derived from practice attempts mapped to blueprint subjectIds.
  */
 
+import { CACHE_STALE, CACHE_TTL, cacheGetOrSet, cacheKey } from "@/lib/cache";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
 import {
@@ -39,8 +40,10 @@ import {
 } from "@/lib/exam-prep/usmle/study-presets";
 import { prisma } from "@/lib/prisma";
 import {
+  computeCoveragePct,
+  countServeBankBySubject,
+  countUserSeenBySubject,
   getUserExamHistory,
-  getUserPushStats,
   sumCategoryPushCoverage,
 } from "@/lib/learning/exam-progress";
 
@@ -396,7 +399,7 @@ export function getBlueprintForExamSlug(
   return getExamBlueprint(EXAM_CATALOG[examSlug].fieldId);
 }
 
-export async function getExamRoadmapData(
+async function loadExamRoadmapData(
   userId: string,
   examSlug: ExamSlug,
   options?: { usmleFieldId?: string }
@@ -409,30 +412,61 @@ export async function getExamRoadmapData(
   const blueprint = getExamBlueprint(fieldId);
   if (!blueprint) return null;
 
-  const [attempts, masteries, pushStats, history] = await Promise.all([
-    prisma.questionAttempt.findMany({
-      where: { userId, fieldId },
-      select: { subjectId: true, correct: true },
-    }),
-    prisma.conceptMastery.findMany({
-      where: { userId, fieldId },
-      select: { conceptKey: true, masteryScore: true },
-    }),
-    getUserPushStats(userId, examSlug, { fieldId }),
-    getUserExamHistory(userId, examSlug, { fieldId }),
-  ]);
+  // One attempt scan for subject aggregates + push stats (avoid a second full table read).
+  const [attempts, masteries, serveBySubject, seenBySubject, history] =
+    await Promise.all([
+      prisma.questionAttempt.findMany({
+        where: { userId, fieldId },
+        select: {
+          subjectId: true,
+          correct: true,
+          bankItemId: true,
+          questionKey: true,
+        },
+      }),
+      prisma.conceptMastery.findMany({
+        where: { userId, fieldId },
+        select: { conceptKey: true, masteryScore: true },
+      }),
+      countServeBankBySubject(fieldId),
+      countUserSeenBySubject(userId, fieldId),
+      getUserExamHistory(userId, examSlug, { fieldId }),
+    ]);
 
   const attemptMap = aggregateAttemptsBySubject(attempts);
   const masteryMap = new Map(
     masteries.map((m) => [m.conceptKey, m.masteryScore] as const)
   );
 
+  let pushesAvailable = 0;
+  for (const n of serveBySubject.values()) pushesAvailable += n;
+
+  const bySubject: Record<
+    string,
+    { seen: number; available: number; coveragePct: number }
+  > = {};
+  for (const [subjectId, available] of serveBySubject) {
+    const seen = seenBySubject.get(subjectId) ?? 0;
+    bySubject[subjectId] = {
+      seen,
+      available,
+      coveragePct: computeCoveragePct(seen, available),
+    };
+  }
+
+  const uniqueKeys = new Set<string>();
+  for (const row of attempts) {
+    const key = row.bankItemId ?? row.questionKey;
+    if (key) uniqueKeys.add(key);
+  }
+  const pushesCompleted = uniqueKeys.size;
+
   const topics = buildRoadmapTopics(
     blueprint,
     examSlug,
     attemptMap,
     masteryMap,
-    pushStats.bySubject
+    bySubject
   );
   const overallReadiness = computeOverallRoadmapReadiness(topics);
   const overallPushCoveragePct = computeOverallPushCoverage(topics);
@@ -451,8 +485,8 @@ export async function getExamRoadmapData(
     blueprintSource: blueprint.sourceNote,
     overallReadiness,
     overallPushCoveragePct,
-    pushesCompleted: pushStats.pushesCompleted,
-    pushesAvailable: pushStats.pushesAvailable,
+    pushesCompleted,
+    pushesAvailable,
     passFocusMessage: buildPassFocusMessage(
       blueprint.examName,
       overallReadiness,
@@ -467,6 +501,24 @@ export async function getExamRoadmapData(
       weakFocusAreas,
     },
   };
+}
+
+/** Cached per user/exam — soft nav dashboard ↔ roadmap should hit L1/Redis within TTL. */
+export async function getExamRoadmapData(
+  userId: string,
+  examSlug: ExamSlug,
+  options?: { usmleFieldId?: string }
+): Promise<ExamRoadmapData | null> {
+  const fieldKey =
+    examSlug === "usmle" && options?.usmleFieldId
+      ? options.usmleFieldId
+      : examSlug;
+  return cacheGetOrSet(
+    cacheKey(["exam-roadmap", userId, fieldKey]),
+    CACHE_TTL.learningDashboard,
+    () => loadExamRoadmapData(userId, examSlug, options),
+    { staleTtlMs: CACHE_STALE.learningDashboard }
+  );
 }
 
 export { roadmapHref } from "@/lib/learning/roadmap-links";

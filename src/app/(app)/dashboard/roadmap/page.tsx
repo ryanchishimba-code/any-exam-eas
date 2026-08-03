@@ -60,9 +60,11 @@ export default async function ExamRoadmapPage({
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.roadmap)}`);
   }
 
-  await requirePremiumPage(ROUTES.roadmap);
-
-  const pref = await getUserExamPreference(session.user.id);
+  // Parallel gates — same pattern as dashboard (avoid sequential Neon round-trips).
+  const [pref] = await Promise.all([
+    getUserExamPreference(session.user.id),
+    requirePremiumPage(ROUTES.roadmap),
+  ]);
   if (!pref) redirect(ROUTES.selectExam);
 
   const examSlug = pref.examSlug;
