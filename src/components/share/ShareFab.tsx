@@ -19,6 +19,7 @@ export function ShareFab() {
     pathname.startsWith("/signup") ||
     pathname.startsWith("/pricing") ||
     pathname.startsWith("/about") ||
+    pathname.startsWith("/daily") ||
     pathname.startsWith("/nclex") ||
     pathname.startsWith("/usmle") ||
     pathname.startsWith("/naplex") ||
