@@ -13,12 +13,15 @@ import { qotdPath } from "@/lib/demo/qotd";
 
 type Props = { params: Promise<{ exam: string }> };
 
+/** Only the six board slugs are valid under /daily/[exam]. */
+export const dynamicParams = false;
+
+/** Recompute “today” on every request so QOTD rotates at UTC midnight. */
+export const dynamic = "force-dynamic";
+
 export function generateStaticParams() {
   return EXAM_SLUGS.map((exam) => ({ exam }));
 }
-
-/** Only the six board slugs are valid under /daily/[exam]. */
-export const dynamicParams = false;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { exam } = await params;

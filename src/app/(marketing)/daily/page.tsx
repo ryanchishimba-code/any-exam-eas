@@ -14,6 +14,9 @@ import { getSiteUrl } from "@/lib/seo";
 import { LandingCta } from "@/components/landing/LandingCta";
 import type { ExamSlug } from "@/types/edtech";
 
+/** “Today” must resolve at request time — never freeze the hub at build/deploy. */
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Question of the Day — Free Board Exam Practice",
   description:
