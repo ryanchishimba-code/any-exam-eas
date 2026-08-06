@@ -5,6 +5,7 @@
 import type { ExamQuestion } from "@/lib/ai";
 import type { BankItem } from "@/lib/question-bank";
 import { normalizeFieldId } from "@/lib/subjects/field-ids";
+import { listWrongBankOptions } from "../rationale/validate-rationale";
 
 /** Structured rationale returned by the AI — single source of truth before storage. */
 export type StructuredRationale = {
@@ -146,9 +147,7 @@ export type RationaleGenerationInput = {
 };
 
 export function buildRationaleUserPrompt(input: RationaleGenerationInput): string {
-  const wrongOptions = input.options.filter(
-    (o) => o.trim().toLowerCase() !== input.correctAnswer.trim().toLowerCase()
-  );
+  const wrongOptions = listWrongBankOptions(input.options, input.correctAnswer);
 
   return [
     "Generate a complete structured rationale for this item.",

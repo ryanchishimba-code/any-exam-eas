@@ -6,6 +6,8 @@
  *   npm run db:enrich-nclex-expert -- --missing-expert --limit 500
  *   npm run db:enrich-nclex-expert:dry -- --limit 10
  *   npm run db:enrich-nclex-expert -- --serve-only --limit 200
+ *   bash scripts/run-with-node.sh npx tsx scripts/enrich-nclex-expert-rationales.ts \
+ *     --subjects maternal-child,fundamentals --missing-expert --limit 500
  *
  * Requires OPENAI_API_KEY.
  */
@@ -42,6 +44,8 @@ function parseArgs() {
   let force = false;
   let missingExpert = false;
   let afterId: string | undefined;
+  let subjects: string[] | undefined;
+  let tagsContains: string | undefined;
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--limit" && args[i + 1]) limit = parseInt(args[++i]!, 10);
@@ -51,9 +55,17 @@ function parseArgs() {
     else if (args[i] === "--force") force = true;
     else if (args[i] === "--missing-expert") missingExpert = true;
     else if (args[i] === "--after-id" && args[i + 1]) afterId = args[++i];
+    else if (args[i] === "--subjects" && args[i + 1]) {
+      subjects = args[++i]!
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean);
+    } else if (args[i] === "--tags-contains" && args[i + 1]) {
+      tagsContains = args[++i];
+    }
   }
 
-  return { limit, dryRun, serveOnly, force, missingExpert, afterId };
+  return { limit, dryRun, serveOnly, force, missingExpert, afterId, subjects, tagsContains };
 }
 
 function readMeta(row: { generationMeta: unknown }): Record<string, unknown> {
@@ -72,11 +84,12 @@ function sleep(ms: number) {
 }
 
 async function main() {
-  const { limit, dryRun, serveOnly, force, missingExpert, afterId } = parseArgs();
+  const { limit, dryRun, serveOnly, force, missingExpert, afterId, subjects, tagsContains } =
+    parseArgs();
   if (!dryRun) requireOpenAiKey();
 
   console.log(
-    `\nNCLEX expert rationale enrichment${serveOnly ? " [serve-ready]" : ""}${missingExpert ? " [missing-expert]" : ""}${afterId ? ` [after ${afterId.slice(0, 8)}…]` : ""}${dryRun ? " [dry-run]" : ""} limit ${limit}\n`
+    `\nNCLEX expert rationale enrichment${serveOnly ? " [serve-ready]" : ""}${missingExpert ? " [missing-expert]" : ""}${subjects?.length ? ` [subjects=${subjects.join(",")}]` : ""}${tagsContains ? ` [tags~${tagsContains}]` : ""}${afterId ? ` [after ${afterId.slice(0, 8)}…]` : ""}${dryRun ? " [dry-run]" : ""} limit ${limit}\n`
   );
 
   let lastId: string | undefined = afterId;
@@ -91,6 +104,8 @@ async function main() {
         fieldId: "nursing",
         active: true,
         ...(serveOnly ? { qaPassed: true } : {}),
+        ...(subjects?.length ? { subjectId: { in: subjects } } : {}),
+        ...(tagsContains ? { tags: { contains: tagsContains } } : {}),
         ...(lastId ? { id: { gt: lastId } } : {}),
       },
       orderBy: { id: "asc" },
@@ -216,6 +231,8 @@ async function main() {
     field: "nursing",
     dryRun,
     serveOnly,
+    subjects: subjects ?? null,
+    tagsContains: tagsContains ?? null,
     scanned,
     enriched,
     skipped,

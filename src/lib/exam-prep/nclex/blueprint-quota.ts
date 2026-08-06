@@ -108,6 +108,24 @@ export const LIFESPAN_SUBJECT_HOLES: Record<
       "fluid-electrolyte-imbalance",
     ],
   },
+  fundamentals: {
+    categoryId: "basic-care-comfort",
+    categoryLabel: "Basic Care and Comfort",
+    topics: [
+      "adls-positioning",
+      "pressure-injury-staging",
+      "wound-care-dressings",
+      "pain-management",
+      "nutrition-feeding",
+      "elimination-catheter",
+      "mobility-assistive-devices",
+      "vital-sign-trending",
+      "ethical-principles",
+      "informed-consent-advance-directives",
+      "standard-precautions-hand-hygiene",
+      "fall-prevention-restraints",
+    ],
+  },
 };
 
 /**

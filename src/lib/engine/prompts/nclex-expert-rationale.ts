@@ -2,6 +2,7 @@
  * NCLEX expert rationale prompts — designed to exceed UWorld depth.
  */
 import type { RationaleGenerationInput } from "./rationale-generation";
+import { listWrongBankOptions } from "../rationale/validate-rationale";
 
 export const NCLEX_EXPERT_RATIONALE_JSON_SCHEMA = `{
   "whyCorrect": {
@@ -98,9 +99,7 @@ Quality bar:
 }
 
 export function buildNclexExpertUserPrompt(input: RationaleGenerationInput): string {
-  const wrongOptions = input.options.filter(
-    (o) => o.trim().toLowerCase() !== input.correctAnswer.trim().toLowerCase()
-  );
+  const wrongOptions = listWrongBankOptions(input.options, input.correctAnswer);
 
   return [
     "Generate an EXPERT-tier NCLEX rationale (UWorld-beating depth).",

@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Fill NCLEX lifespan subject holes (maternal-child, pediatrics-nursing, med-surg).
+ * Fill NCLEX lifespan / fundamentals subject holes.
  *
  * Usage:
  *   bash scripts/run-with-node.sh npx tsx scripts/fill-nclex-subject-holes.ts
- *   bash scripts/run-with-node.sh npx tsx scripts/fill-nclex-subject-holes.ts --subjects maternal-child --batches 3 --count 40
+ *   bash scripts/run-with-node.sh npx tsx scripts/fill-nclex-subject-holes.ts --subjects maternal-child,fundamentals --batches 4 --count 40
  */
 import { loadEnvFiles, requireOpenAiKey } from "./load-env";
 
@@ -23,6 +23,7 @@ const ALL_SUBJECTS: NclexLifespanSubjectId[] = [
   "maternal-child",
   "pediatrics-nursing",
   "med-surg",
+  "fundamentals",
 ];
 
 function parseArgs() {

@@ -8,7 +8,7 @@ import {
   buildNclexExpertUserPrompt,
 } from "../prompts/nclex-expert-rationale";
 import type { RationaleGenerationInput } from "../prompts/rationale-generation";
-import { validateStructuredRationale } from "./validate-rationale";
+import { validateStructuredRationale, matchRationaleOptionToBank } from "./validate-rationale";
 import {
   assembleExpertRationale,
   type AssembledExpertRationale,
@@ -110,6 +110,48 @@ export type GenerateExpertRationaleResult = {
 
 const openai = getOpenAiClient("enrichment");
 
+/** Drop broken visualBlocks so zod parse can succeed (lab_table with <2 rows, etc.). */
+function sanitizeExpertJson(json: unknown): unknown {
+  if (!json || typeof json !== "object") return json;
+  const obj = { ...(json as Record<string, unknown>) };
+  if (!Array.isArray(obj.visualBlocks)) return obj;
+
+  const cleaned = obj.visualBlocks.filter((block) => {
+    if (!block || typeof block !== "object") return false;
+    const b = block as Record<string, unknown>;
+    if (b.kind === "lab_table") {
+      return Array.isArray(b.rows) && b.rows.length >= 2;
+    }
+    if (b.kind === "comparison") {
+      return Array.isArray(b.rows) && b.rows.length >= 1 && Array.isArray(b.headers);
+    }
+    if (b.kind === "flow") {
+      return Array.isArray(b.steps) && b.steps.length >= 3;
+    }
+    return false;
+  });
+
+  if (cleaned.length === 0) {
+    delete obj.visualBlocks;
+  } else {
+    obj.visualBlocks = cleaned;
+  }
+  return obj;
+}
+
+function alignWhyIncorrectOptions<T extends { whyIncorrect: Array<{ option: string }> }>(
+  rationale: T,
+  options: string[]
+): T {
+  return {
+    ...rationale,
+    whyIncorrect: rationale.whyIncorrect.map((entry) => {
+      const matched = matchRationaleOptionToBank(entry.option, options);
+      return matched ? { ...entry, option: matched } : entry;
+    }),
+  };
+}
+
 export async function generateExpertNclexRationale(
   input: RationaleGenerationInput,
   opts?: { maxRetries?: number; temperature?: number }
@@ -148,7 +190,7 @@ export async function generateExpertNclexRationale(
 
       let json: unknown;
       try {
-        json = JSON.parse(raw);
+        json = sanitizeExpertJson(JSON.parse(raw));
       } catch (err) {
         lastError = err;
         continue;
@@ -166,15 +208,16 @@ export async function generateExpertNclexRationale(
         continue;
       }
 
+      const aligned = alignWhyIncorrectOptions(parsed.data, input.options);
       const quality = validateStructuredRationale(
-        parsed.data,
+        aligned,
         input.options,
         input.correctAnswer
       );
 
       if (!quality.ok && attempt < maxRetries) continue;
 
-      const withVisuals = augmentExpertVisualBlocks(parsed.data as ExpertStructuredRationale);
+      const withVisuals = augmentExpertVisualBlocks(aligned as ExpertStructuredRationale);
       const assembled = assembleExpertRationale(withVisuals);
       return {
         structured: withVisuals,

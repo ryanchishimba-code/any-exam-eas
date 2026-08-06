@@ -55,7 +55,8 @@ export type NclexClientNeedsId =
 export type NclexLifespanSubjectId =
   | "maternal-child"
   | "pediatrics-nursing"
-  | "med-surg";
+  | "med-surg"
+  | "fundamentals";
 
 export type NclexSlotSubjectId = NclexClientNeedsId | NclexLifespanSubjectId;
 

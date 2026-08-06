@@ -1,8 +1,8 @@
 /**
  * Detect bank items that need structured rationale enrichment.
  */
-import type { BankItem } from "@/lib/question-bank";
 import { cleanOptionText } from "@/lib/question-format";
+import { listWrongBankOptions } from "./validate-rationale";
 
 const GENERIC_PHRASES = [
   "does not apply",
@@ -50,10 +50,7 @@ export function needsRationaleEnrichment(item: BankItem): {
   else if (explanation.length < 200) reasons.push("too_short");
 
   const options = item.options ?? [];
-  const correct = cleanOptionText(item.correctAnswer).toLowerCase();
-  const wrongOptions = options.filter(
-    (o) => cleanOptionText(o).toLowerCase() !== correct
-  );
+  const wrongOptions = listWrongBankOptions(options, item.correctAnswer);
 
   const distractor = item.distractorRationale ?? {};
   const distractorKeys = Object.keys(distractor);

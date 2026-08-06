@@ -72,6 +72,27 @@ const DOMAIN3_TOPICS = [
   "ids-stewardship-mrsa-pseudomonas",
 ] as const;
 
+/** Medication Use Process (NABP Domain 2) — tough rating's emptiest outline domain. */
+const DOMAIN2_TOPICS = [
+  "prescription-verification",
+  "dispensing-labeling-auxiliary",
+  "tdm-vancomycin-aminoglycosides",
+  "adherence-barriers-assessment",
+  "medication-reconciliation",
+  "administration-devices-inhalers",
+  "drug-information-resources",
+  "ismp-high-alert-meds",
+  "look-alike-sound-alike",
+  "iv-push-safety",
+] as const;
+
+const DOMAIN2_SUBJECTS = [
+  "patient-counseling",
+  "pharmacology",
+  "pharmacokinetics",
+  "compounding-calculations",
+] as const;
+
 /** Medication safety / professional practice — tough rating's weakest NAPLEX domain. */
 const SAFETY_TOPICS = [
   "ismp-high-alert-meds",
@@ -119,8 +140,8 @@ function parseArgs() {
   let skipFix = false;
   let generateCount = 40;
   let enrichLimit = 150;
-  /** Force mix: calcs/PK-heavy, safety-heavy, or auto (foundations-health heuristic). */
-  let bias: "auto" | "calcs" | "safety" | "domain3" = "auto";
+  /** Force mix: calcs/PK-heavy, Domain 2 medication-use, safety-heavy, Domain 3, or auto. */
+  let bias: "auto" | "calcs" | "safety" | "domain3" | "domain2" | "coverage" = "auto";
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--wave" && args[i + 1]) wave = Number(args[++i]);
@@ -132,7 +153,16 @@ function parseArgs() {
     else if (args[i] === "--enrich-limit" && args[i + 1]) enrichLimit = Number(args[++i]);
     else if (args[i] === "--bias" && args[i + 1]) {
       const v = String(args[++i]).toLowerCase();
-      if (v === "calcs" || v === "safety" || v === "domain3" || v === "auto") bias = v;
+      if (
+        v === "calcs" ||
+        v === "safety" ||
+        v === "domain3" ||
+        v === "domain2" ||
+        v === "coverage" ||
+        v === "auto"
+      ) {
+        bias = v;
+      }
     }
   }
   return { wave, auditOnly, skipGenerate, skipEnrich, skipFix, generateCount, enrichLimit, bias };
@@ -264,20 +294,34 @@ async function quarantineBrokenItems() {
 
 async function generateBatch(
   client: OpenAI,
-  kind: "domain1" | "domain3" | "safety",
+  kind: "domain1" | "domain2" | "domain3" | "safety",
   count: number,
   opts?: { preferPharmaceutics?: boolean; complexCalcs?: boolean }
 ): Promise<GenItem[]> {
   const topics =
-    kind === "domain1" ? PK_TOPICS : kind === "safety" ? SAFETY_TOPICS : DOMAIN3_TOPICS;
+    kind === "domain1"
+      ? PK_TOPICS
+      : kind === "domain2"
+        ? DOMAIN2_TOPICS
+        : kind === "safety"
+          ? SAFETY_TOPICS
+          : DOMAIN3_TOPICS;
   const subjects =
-    kind === "domain1" ? DOMAIN1_SUBJECTS : kind === "safety" ? SAFETY_SUBJECTS : DOMAIN3_SUBJECTS;
+    kind === "domain1"
+      ? DOMAIN1_SUBJECTS
+      : kind === "domain2"
+        ? DOMAIN2_SUBJECTS
+        : kind === "safety"
+          ? SAFETY_SUBJECTS
+          : DOMAIN3_SUBJECTS;
   const domain =
     kind === "domain1"
       ? "naplex-area1-foundations"
-      : kind === "safety"
-        ? "naplex-area4-safety"
-        : "naplex-area3-treatment-planning";
+      : kind === "domain2"
+        ? "naplex-area2-therapeutics"
+        : kind === "safety"
+          ? "naplex-area4-safety"
+          : "naplex-area3-treatment-planning";
 
   const subjectBias =
     kind === "domain1"
@@ -286,9 +330,11 @@ async function generateBatch(
         : opts?.complexCalcs
           ? `SUBJECT MIX (critical): ≥50% subjectId "compounding-calculations", ≥30% "pharmacokinetics"; rest pharmaceutics/pharmacology. Every calc MUST show units in stem AND options; no unsafe/ambiguous math.`
           : `SUBJECT MIX (critical): ≥70% subjectId MUST be "pharmacokinetics"; rest pharmaceutics/compounding-calculations/pharmacology. Never invent new subjectIds.`
-      : kind === "safety"
-        ? `SUBJECT MIX: use patient-counseling, pharmacology, or pharmacy-law only. Tag ISMP/LASA/high-alert safety actions a pharmacist owns. Never invent subjectIds.`
-        : `SUBJECT MIX: spread across endocrine-rx, cns-rx, infectious-disease-rx, cardiovascular-rx, otc-self-care. Prefer underbuilt endocrine/cns/oncology-supportive vignettes tagged to those subjects. Never invent subjectIds.`;
+      : kind === "domain2"
+        ? `SUBJECT MIX: use patient-counseling, pharmacology, pharmacokinetics, or compounding-calculations. Focus on Medication Use Process (verify Rx, dispense, administer devices, TDM, adherence, reconciliation) — pharmacist owns the action. Never invent subjectIds.`
+        : kind === "safety"
+          ? `SUBJECT MIX: use patient-counseling, pharmacology, or pharmacy-law only. Tag ISMP/LASA/high-alert safety actions a pharmacist owns. Never invent subjectIds.`
+          : `SUBJECT MIX: spread across endocrine-rx, cns-rx, infectious-disease-rx, cardiovascular-rx, otc-self-care. Prefer underbuilt endocrine/cns/oncology-supportive vignettes tagged to those subjects. Never invent subjectIds.`;
 
   const focusLabel =
     kind === "domain1"
@@ -297,9 +343,11 @@ async function generateBatch(
         : opts?.preferPharmaceutics
           ? "Domain 1 Foundations — pharmaceutics / biopharmaceutics emphasis"
           : "Domain 1 Foundations (PK/PD/biopharmaceutics/calcs/PGx)"
-      : kind === "safety"
-        ? "Domain 4 Professional Practice / Medication Safety (ISMP, LASA, reconciliation, high-alert)"
-        : "Domain 3 Person-Centered Treatment Planning";
+      : kind === "domain2"
+        ? "Domain 2 Medication Use Process (verify → dispense → administer → monitor → adhere)"
+        : kind === "safety"
+          ? "Domain 4 Professional Practice / Medication Safety (ISMP, LASA, reconciliation, high-alert)"
+          : "Domain 3 Person-Centered Treatment Planning";
 
   const system = `You are a NAPLEX PharmD item writer targeting A−/A commercial quality (UWorld/RxPrep bar).
 Write ${count} NEW application-focused items for ${focusLabel}.
@@ -312,7 +360,7 @@ Rules:
 - ${subjectBias}
 Return JSON: {"items":[...]} with fields:
 subjectId (one of ${subjects.join(", ")} ONLY),
-blueprintDomain ("${domain}" or naplex-2026-drug-information / naplex-2026-pharmacotherapy when a closer fit),
+blueprintDomain ("${domain}"),
 blueprintTopic (slug from ${topics.join(", ")} or close),
 itemType (vignette|constructed_response|select_all),
 vignette, question, options[4] (or more for SATA), correctAnswer (exact option text; for SATA comma-join),
@@ -327,9 +375,11 @@ rationale:{whyCorrect, distractorRationales{option:text}, clinicalPearl, mnemoni
         : opts?.preferPharmaceutics
           ? `Generate ${count} items now. At least ${Math.ceil(count * 0.7)} must use subjectId "pharmaceutics". Topics: biopharmaceutics-dissolution and related foundations.`
           : `Generate ${count} items now. At least ${Math.ceil(count * 0.7)} must use subjectId "pharmacokinetics". Topics: ${topics.join(", ")}.`
-      : kind === "safety"
-        ? `Generate ${count} medication-safety items now. Prefer: ${topics.slice(0, 8).join(", ")}. blueprintDomain must be naplex-area4-safety.`
-        : `Generate ${count} high-yield Domain 3 items now. Prefer: ${topics.slice(0, 8).join(", ")}.`;
+      : kind === "domain2"
+        ? `Generate ${count} Domain 2 Medication Use Process items now. Prefer: ${topics.slice(0, 8).join(", ")}. blueprintDomain MUST be naplex-area2-therapeutics.`
+        : kind === "safety"
+          ? `Generate ${count} medication-safety items now. Prefer: ${topics.slice(0, 8).join(", ")}. blueprintDomain must be naplex-area4-safety.`
+          : `Generate ${count} high-yield Domain 3 items now. Prefer: ${topics.slice(0, 8).join(", ")}.`;
 
   const res = await client.chat.completions.create({
     model: MODEL,
@@ -343,7 +393,7 @@ rationale:{whyCorrect, distractorRationales{option:text}, clinicalPearl, mnemoni
 
   const raw = res.choices[0]?.message?.content ?? "{}";
   const parsed = JSON.parse(raw) as { items?: GenItem[] };
-  return Array.isArray(parsed.items) ? parsed.items : [];
+  return Array.isArray(parsed.items) ? parsed.items.slice(0, count) : [];
 }
 
 function toBankItem(gen: GenItem): BankItem {
@@ -388,6 +438,7 @@ function toBankItem(gen: GenItem): BankItem {
 
 const ALLOWED_SUBJECTS = new Set<string>([
   ...DOMAIN1_SUBJECTS,
+  ...DOMAIN2_SUBJECTS,
   ...DOMAIN3_SUBJECTS,
   ...SAFETY_SUBJECTS,
 ]);
@@ -401,7 +452,7 @@ function coerceSubjectId(raw: string | undefined, kindHint?: string): string {
     return "pharmacokinetics";
   if (/dissolut|biopharm|formul|pharmaceut/.test(topic)) return "pharmaceutics";
   if (/compound|alligation|percent|dilut|ivroom/.test(topic)) return "compounding-calculations";
-  if (/ismp|lasa|tall-?man|reconcil|high-?alert|look.?alike|medication.?safety/.test(topic))
+  if (/ismp|lasa|tall-?man|reconcil|high-?alert|look.?alike|medication.?safety|dispens|adheren|verify|inhaler|device/.test(topic))
     return "patient-counseling";
   if (/diabetes|sglt|glp|endocrin|thyroid/.test(topic)) return "endocrine-rx";
   if (/depress|ssri|epilep|asm|psych|cns|seizure|parkinson/.test(topic)) return "cns-rx";
@@ -413,11 +464,14 @@ function coerceSubjectId(raw: string | undefined, kindHint?: string): string {
     if (/geriatr|beers|pediatr|ckd|renal/.test(topic)) return "pharmacology";
   }
   if (kindHint === "domain1") return "pharmaceutics";
-  if (kindHint === "safety") return "patient-counseling";
+  if (kindHint === "domain2" || kindHint === "safety") return "patient-counseling";
   return "pharmacology";
 }
 
-async function insertGenerated(items: GenItem[], kindHint?: "domain1" | "domain3" | "safety") {
+async function insertGenerated(
+  items: GenItem[],
+  kindHint?: "domain1" | "domain2" | "domain3" | "safety"
+) {
   let created = 0;
   let skipped = 0;
   let rejected = 0;
@@ -426,6 +480,17 @@ async function insertGenerated(items: GenItem[], kindHint?: "domain1" | "domain3
     const item = toBankItem(gen);
     const subjectId = coerceSubjectId(item.subjectId, kindHint);
     item.subjectId = subjectId;
+    const forcedDomain =
+      kindHint === "domain1"
+        ? "naplex-area1-foundations"
+        : kindHint === "domain2"
+          ? "naplex-area2-therapeutics"
+          : kindHint === "domain3"
+            ? "naplex-area3-treatment-planning"
+            : kindHint === "safety"
+              ? "naplex-area4-safety"
+              : item.blueprintDomain ?? null;
+    item.blueprintDomain = forcedDomain ?? item.blueprintDomain;
     const hash = bankItemContentHash("pharmacy", subjectId, item);
     const existing = await prisma.questionBankItem.findUnique({
       where: { contentHash: hash },
@@ -455,7 +520,7 @@ async function insertGenerated(items: GenItem[], kindHint?: "domain1" | "domain3
         itemType: item.itemType ?? "vignette",
         difficulty: item.difficulty ?? 4,
         topicCategory: subjectId,
-        blueprintDomain: item.blueprintDomain ?? null,
+        blueprintDomain: forcedDomain ?? item.blueprintDomain ?? null,
         blueprintTopic: item.blueprintTopic ?? null,
         tags: JSON.stringify(item.tags ?? []),
         source: "ai-curated",
@@ -582,31 +647,44 @@ async function main() {
     await runNpmScript("scripts/fix-naplex-calculation-bank.ts", []);
   }
 
-  let genStats = { d1: 0, d3: 0, safety: 0 };
+  let genStats = { d1: 0, d2: 0, d3: 0, safety: 0 };
   if (!opts.skipGenerate) {
     // PK gate already cleared (~200); prefer Domain 3 + safety when foundations are healthy
     // (tough ratings keep docking medication-safety ~4 and treatment-planning coverage).
     // --bias calcs forces PK/calc-heavy Domain 1 when calc readiness is the blocker.
+    // --bias coverage / domain2 fills the nearly empty Domain 2 Medication Use Process bucket.
     const preferPharmaceutics =
       opts.bias === "calcs" ? false : (gap.gapScores.pharmacokinetics ?? 0) >= 180;
     const complexCalcs = opts.bias === "calcs";
     const foundationsHealthy =
       (gap.gapScores.pharmacokinetics ?? 0) >= 200 && (gap.gapScores.pharmaceutics ?? 0) >= 150;
     let d1Frac = foundationsHealthy ? 0.15 : 0.3;
+    let d2Frac = 0;
     let safetyFrac = foundationsHealthy ? 0.4 : 0.25;
     if (opts.bias === "calcs") {
       d1Frac = 0.55;
       safetyFrac = 0.15;
+      d2Frac = 0.15;
     } else if (opts.bias === "safety") {
       d1Frac = 0.15;
       safetyFrac = 0.45;
     } else if (opts.bias === "domain3") {
       d1Frac = 0.15;
       safetyFrac = 0.2;
+    } else if (opts.bias === "domain2") {
+      d1Frac = 0.2;
+      d2Frac = 0.55;
+      safetyFrac = 0.1;
+    } else if (opts.bias === "coverage") {
+      // Phase 2: foundations + Domain 2 therapeutics hole
+      d1Frac = 0.35;
+      d2Frac = 0.45;
+      safetyFrac = 0.1;
     }
     const d1Count = Math.max(8, Math.floor(opts.generateCount * d1Frac));
+    const d2Count = d2Frac > 0 ? Math.max(8, Math.floor(opts.generateCount * d2Frac)) : 0;
     const safetyCount = Math.max(8, Math.floor(opts.generateCount * safetyFrac));
-    const d3Count = Math.max(8, opts.generateCount - d1Count - safetyCount);
+    const d3Count = Math.max(8, opts.generateCount - d1Count - d2Count - safetyCount);
     const chunk = 8;
 
     console.log(
@@ -620,6 +698,17 @@ async function main() {
       });
       const d1ins = await insertGenerated(d1, "domain1");
       genStats.d1 += d1ins.created;
+    }
+    if (d2Count > 0) {
+      console.log(
+        `\nGenerating Domain 2 Medication Use Process (~${d2Count} in chunks of ${chunk})…`
+      );
+      for (let n = 0; n < d2Count; n += chunk) {
+        const want = Math.min(chunk, d2Count - n);
+        const d2 = await generateBatch(client, "domain2", want);
+        const d2ins = await insertGenerated(d2, "domain2");
+        genStats.d2 += d2ins.created;
+      }
     }
     console.log(`\nGenerating Domain 3 treatment-planning (~${d3Count} in chunks of ${chunk})…`);
     for (let n = 0; n < d3Count; n += chunk) {

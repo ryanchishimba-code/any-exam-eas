@@ -192,6 +192,13 @@ function buildSlotPrompt(
     researchBrief: "",
   });
 
+  const specialtySubjects = new Set([
+    "maternal-child",
+    "pediatrics-nursing",
+    "med-surg",
+    "fundamentals",
+  ]);
+
   const slotLines = slots.map((s, i) => {
     const parts = [
       `Client Needs: ${s.categoryLabel}`,
@@ -201,6 +208,11 @@ function buildSlotPrompt(
       `difficulty: ${s.difficulty}/5`,
       `stem style: ${s.stemFormat}`,
     ];
+    if (specialtySubjects.has(s.subjectId)) {
+      parts.push(
+        `SPECIALTY FOCUS: vignette + stem must be squarely ${s.subjectId} nursing (entry-level RN scope; priority/action/teaching — not physician diagnosis)`
+      );
+    }
     if (s.ngnFormat) parts.push(`NGN format: ${s.ngnFormat}`);
     if (s.caseGroupId) {
       parts.push(`case study group: ${s.caseGroupId}, step ${s.caseStep}/6`);
