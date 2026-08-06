@@ -93,21 +93,35 @@ const DOMAIN2_SUBJECTS = [
   "compounding-calculations",
 ] as const;
 
-/** Medication safety / professional practice — tough rating's weakest NAPLEX domain. */
+/** Domain 4 Professional Practice — ethics, law, counseling communication, public health. */
 const SAFETY_TOPICS = [
+  "hipaa-privacy",
+  "controlled-substances-dea",
+  "ethics-scope-of-practice",
+  "teach-back-counseling",
+  "cultural-competency-health-equity",
   "ismp-high-alert-meds",
   "look-alike-sound-alike",
-  "tall-man-lettering",
   "medication-reconciliation",
-  "iv-push-safety",
-  "wrong-route-prevention",
-  "allergy-cross-reactivity",
-  "heparin-insulin-double-check",
-  "pediatric-weight-error-prevention",
-  "dispensing-error-recovery",
+  "error-reporting-medwatch",
+  "public-health-emergency-preparedness",
 ] as const;
 
 const SAFETY_SUBJECTS = ["patient-counseling", "pharmacology", "pharmacy-law"] as const;
+
+/** Domain 5 Pharmacy Management & Leadership (~5% outline). */
+const MANAGEMENT_TOPICS = [
+  "inventory-drug-shortages",
+  "formulary-cost-effectiveness",
+  "pharmacy-operations-workflow",
+  "usp-797-795-quality",
+  "dea-fda-regulatory-compliance",
+  "billing-reimbursement-insurance",
+  "human-resources-leadership",
+  "quality-assurance-accreditation",
+] as const;
+
+const MANAGEMENT_SUBJECTS = ["pharmacy-law", "patient-counseling", "pharmaceutics"] as const;
 
 type GenItem = {
   subjectId: string;
@@ -140,8 +154,15 @@ function parseArgs() {
   let skipFix = false;
   let generateCount = 40;
   let enrichLimit = 150;
-  /** Force mix: calcs/PK-heavy, Domain 2 medication-use, safety-heavy, Domain 3, or auto. */
-  let bias: "auto" | "calcs" | "safety" | "domain3" | "domain2" | "coverage" = "auto";
+  /** Force mix: calcs/PK, Domain 2, Domain 4 practice, Domain 5 management, Domain 3, or auto. */
+  let bias:
+    | "auto"
+    | "calcs"
+    | "safety"
+    | "management"
+    | "domain3"
+    | "domain2"
+    | "coverage" = "auto";
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--wave" && args[i + 1]) wave = Number(args[++i]);
@@ -156,6 +177,7 @@ function parseArgs() {
       if (
         v === "calcs" ||
         v === "safety" ||
+        v === "management" ||
         v === "domain3" ||
         v === "domain2" ||
         v === "coverage" ||
@@ -294,7 +316,7 @@ async function quarantineBrokenItems() {
 
 async function generateBatch(
   client: OpenAI,
-  kind: "domain1" | "domain2" | "domain3" | "safety",
+  kind: "domain1" | "domain2" | "domain3" | "safety" | "management",
   count: number,
   opts?: { preferPharmaceutics?: boolean; complexCalcs?: boolean }
 ): Promise<GenItem[]> {
@@ -305,7 +327,9 @@ async function generateBatch(
         ? DOMAIN2_TOPICS
         : kind === "safety"
           ? SAFETY_TOPICS
-          : DOMAIN3_TOPICS;
+          : kind === "management"
+            ? MANAGEMENT_TOPICS
+            : DOMAIN3_TOPICS;
   const subjects =
     kind === "domain1"
       ? DOMAIN1_SUBJECTS
@@ -313,7 +337,9 @@ async function generateBatch(
         ? DOMAIN2_SUBJECTS
         : kind === "safety"
           ? SAFETY_SUBJECTS
-          : DOMAIN3_SUBJECTS;
+          : kind === "management"
+            ? MANAGEMENT_SUBJECTS
+            : DOMAIN3_SUBJECTS;
   const domain =
     kind === "domain1"
       ? "naplex-area1-foundations"
@@ -321,7 +347,9 @@ async function generateBatch(
         ? "naplex-area2-therapeutics"
         : kind === "safety"
           ? "naplex-area4-safety"
-          : "naplex-area3-treatment-planning";
+          : kind === "management"
+            ? "naplex-area5-management"
+            : "naplex-area3-treatment-planning";
 
   const subjectBias =
     kind === "domain1"
@@ -333,8 +361,10 @@ async function generateBatch(
       : kind === "domain2"
         ? `SUBJECT MIX: use patient-counseling, pharmacology, pharmacokinetics, or compounding-calculations. Focus on Medication Use Process (verify Rx, dispense, administer devices, TDM, adherence, reconciliation) — pharmacist owns the action. Never invent subjectIds.`
         : kind === "safety"
-          ? `SUBJECT MIX: use patient-counseling, pharmacology, or pharmacy-law only. Tag ISMP/LASA/high-alert safety actions a pharmacist owns. Never invent subjectIds.`
-          : `SUBJECT MIX: spread across endocrine-rx, cns-rx, infectious-disease-rx, cardiovascular-rx, otc-self-care. Prefer underbuilt endocrine/cns/oncology-supportive vignettes tagged to those subjects. Never invent subjectIds.`;
+          ? `SUBJECT MIX: use pharmacy-law or patient-counseling primarily (pharmacology OK for allergy/cross-reactivity). Focus on HIPAA, controlled substances, ethics/scope, teach-back, cultural competency, ISMP/LASA. Never invent subjectIds.`
+          : kind === "management"
+            ? `SUBJECT MIX: use pharmacy-law, patient-counseling, or pharmaceutics. Focus on inventory, formulary, USP <797>/<795>, DEA/FDA compliance, billing/reimbursement, operations. Never invent subjectIds.`
+            : `SUBJECT MIX: spread across endocrine-rx, cns-rx, infectious-disease-rx, cardiovascular-rx, otc-self-care. Prefer underbuilt endocrine/cns/oncology-supportive vignettes tagged to those subjects. Never invent subjectIds.`;
 
   const focusLabel =
     kind === "domain1"
@@ -346,8 +376,10 @@ async function generateBatch(
       : kind === "domain2"
         ? "Domain 2 Medication Use Process (verify → dispense → administer → monitor → adhere)"
         : kind === "safety"
-          ? "Domain 4 Professional Practice / Medication Safety (ISMP, LASA, reconciliation, high-alert)"
-          : "Domain 3 Person-Centered Treatment Planning";
+          ? "Domain 4 Professional Practice (ethics, law, counseling communication, public health, medication safety)"
+          : kind === "management"
+            ? "Domain 5 Pharmacy Management & Leadership (inventory, formulary, USP, DEA, reimbursement)"
+            : "Domain 3 Person-Centered Treatment Planning";
 
   const system = `You are a NAPLEX PharmD item writer targeting A−/A commercial quality (UWorld/RxPrep bar).
 Write ${count} NEW application-focused items for ${focusLabel}.
@@ -378,8 +410,10 @@ rationale:{whyCorrect, distractorRationales{option:text}, clinicalPearl, mnemoni
       : kind === "domain2"
         ? `Generate ${count} Domain 2 Medication Use Process items now. Prefer: ${topics.slice(0, 8).join(", ")}. blueprintDomain MUST be naplex-area2-therapeutics.`
         : kind === "safety"
-          ? `Generate ${count} medication-safety items now. Prefer: ${topics.slice(0, 8).join(", ")}. blueprintDomain must be naplex-area4-safety.`
-          : `Generate ${count} high-yield Domain 3 items now. Prefer: ${topics.slice(0, 8).join(", ")}.`;
+          ? `Generate ${count} Domain 4 Professional Practice items now. Prefer: ${topics.slice(0, 8).join(", ")}. blueprintDomain MUST be naplex-area4-safety.`
+          : kind === "management"
+            ? `Generate ${count} Domain 5 Pharmacy Management items now. Prefer: ${topics.slice(0, 8).join(", ")}. blueprintDomain MUST be naplex-area5-management.`
+            : `Generate ${count} high-yield Domain 3 items now. Prefer: ${topics.slice(0, 8).join(", ")}.`;
 
   const res = await client.chat.completions.create({
     model: MODEL,
@@ -441,6 +475,7 @@ const ALLOWED_SUBJECTS = new Set<string>([
   ...DOMAIN2_SUBJECTS,
   ...DOMAIN3_SUBJECTS,
   ...SAFETY_SUBJECTS,
+  ...MANAGEMENT_SUBJECTS,
 ]);
 
 function coerceSubjectId(raw: string | undefined, kindHint?: string): string {
@@ -464,13 +499,14 @@ function coerceSubjectId(raw: string | undefined, kindHint?: string): string {
     if (/geriatr|beers|pediatr|ckd|renal/.test(topic)) return "pharmacology";
   }
   if (kindHint === "domain1") return "pharmaceutics";
-  if (kindHint === "domain2" || kindHint === "safety") return "patient-counseling";
+  if (kindHint === "domain2") return "patient-counseling";
+  if (kindHint === "safety" || kindHint === "management") return "pharmacy-law";
   return "pharmacology";
 }
 
 async function insertGenerated(
   items: GenItem[],
-  kindHint?: "domain1" | "domain2" | "domain3" | "safety"
+  kindHint?: "domain1" | "domain2" | "domain3" | "safety" | "management"
 ) {
   let created = 0;
   let skipped = 0;
@@ -489,7 +525,9 @@ async function insertGenerated(
             ? "naplex-area3-treatment-planning"
             : kindHint === "safety"
               ? "naplex-area4-safety"
-              : item.blueprintDomain ?? null;
+              : kindHint === "management"
+                ? "naplex-area5-management"
+                : item.blueprintDomain ?? null;
     item.blueprintDomain = forcedDomain ?? item.blueprintDomain;
     const hash = bankItemContentHash("pharmacy", subjectId, item);
     const existing = await prisma.questionBankItem.findUnique({
@@ -647,7 +685,7 @@ async function main() {
     await runNpmScript("scripts/fix-naplex-calculation-bank.ts", []);
   }
 
-  let genStats = { d1: 0, d2: 0, d3: 0, safety: 0 };
+  let genStats = { d1: 0, d2: 0, d3: 0, safety: 0, management: 0 };
   if (!opts.skipGenerate) {
     // PK gate already cleared (~200); prefer Domain 3 + safety when foundations are healthy
     // (tough ratings keep docking medication-safety ~4 and treatment-planning coverage).
@@ -661,30 +699,42 @@ async function main() {
     let d1Frac = foundationsHealthy ? 0.15 : 0.3;
     let d2Frac = 0;
     let safetyFrac = foundationsHealthy ? 0.4 : 0.25;
+    let managementFrac = 0;
     if (opts.bias === "calcs") {
       d1Frac = 0.55;
       safetyFrac = 0.15;
       d2Frac = 0.15;
     } else if (opts.bias === "safety") {
-      d1Frac = 0.15;
-      safetyFrac = 0.45;
+      d1Frac = 0.08;
+      safetyFrac = 0.75;
+      managementFrac = 0.1;
+    } else if (opts.bias === "management") {
+      d1Frac = 0.08;
+      safetyFrac = 0.15;
+      managementFrac = 0.7;
     } else if (opts.bias === "domain3") {
       d1Frac = 0.15;
       safetyFrac = 0.2;
     } else if (opts.bias === "domain2") {
-      d1Frac = 0.2;
-      d2Frac = 0.55;
-      safetyFrac = 0.1;
+      // Near-pure Domain 2 Medication Use Process fill (outline ~25%).
+      d1Frac = 0.08;
+      d2Frac = 0.8;
+      safetyFrac = 0.05;
     } else if (opts.bias === "coverage") {
-      // Phase 2: foundations + Domain 2 therapeutics hole
-      d1Frac = 0.35;
-      d2Frac = 0.45;
-      safetyFrac = 0.1;
+      // Phase 2: foundations + Domain 2 Medication Use Process hole
+      d1Frac = 0.2;
+      d2Frac = 0.65;
+      safetyFrac = 0.05;
     }
     const d1Count = Math.max(8, Math.floor(opts.generateCount * d1Frac));
     const d2Count = d2Frac > 0 ? Math.max(8, Math.floor(opts.generateCount * d2Frac)) : 0;
     const safetyCount = Math.max(8, Math.floor(opts.generateCount * safetyFrac));
-    const d3Count = Math.max(8, opts.generateCount - d1Count - d2Count - safetyCount);
+    const managementCount =
+      managementFrac > 0 ? Math.max(8, Math.floor(opts.generateCount * managementFrac)) : 0;
+    const d3Count = Math.max(
+      0,
+      opts.generateCount - d1Count - d2Count - safetyCount - managementCount
+    );
     const chunk = 8;
 
     console.log(
@@ -710,19 +760,32 @@ async function main() {
         genStats.d2 += d2ins.created;
       }
     }
-    console.log(`\nGenerating Domain 3 treatment-planning (~${d3Count} in chunks of ${chunk})…`);
-    for (let n = 0; n < d3Count; n += chunk) {
-      const want = Math.min(chunk, d3Count - n);
-      const d3 = await generateBatch(client, "domain3", want);
-      const d3ins = await insertGenerated(d3, "domain3");
-      genStats.d3 += d3ins.created;
+    if (d3Count > 0) {
+      console.log(`\nGenerating Domain 3 treatment-planning (~${d3Count} in chunks of ${chunk})…`);
+      for (let n = 0; n < d3Count; n += chunk) {
+        const want = Math.min(chunk, d3Count - n);
+        const d3 = await generateBatch(client, "domain3", want);
+        const d3ins = await insertGenerated(d3, "domain3");
+        genStats.d3 += d3ins.created;
+      }
     }
-    console.log(`\nGenerating medication-safety Domain 4 (~${safetyCount} in chunks of ${chunk})…`);
+    console.log(`\nGenerating Domain 4 Professional Practice (~${safetyCount} in chunks of ${chunk})…`);
     for (let n = 0; n < safetyCount; n += chunk) {
       const want = Math.min(chunk, safetyCount - n);
       const safety = await generateBatch(client, "safety", want);
       const sins = await insertGenerated(safety, "safety");
       genStats.safety += sins.created;
+    }
+    if (managementCount > 0) {
+      console.log(
+        `\nGenerating Domain 5 Pharmacy Management (~${managementCount} in chunks of ${chunk})…`
+      );
+      for (let n = 0; n < managementCount; n += chunk) {
+        const want = Math.min(chunk, managementCount - n);
+        const mgmt = await generateBatch(client, "management", want);
+        const mins = await insertGenerated(mgmt, "management");
+        genStats.management += mins.created;
+      }
     }
   }
 

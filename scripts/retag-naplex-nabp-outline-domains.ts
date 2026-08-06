@@ -21,9 +21,10 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 const dryRun = process.argv.includes("--dry-run");
 
-const AREA3 = "naplex-area3-treatment-planning";
-const AREA4 = "naplex-area4-safety";
 const AREA1 = "naplex-area1-foundations";
+const AREA2 = "naplex-area2-therapeutics"; // NABP Domain 2: Medication Use Process
+const AREA3 = "naplex-area3-treatment-planning";
+const AREA4 = "naplex-area4-safety"; // Professional Practice
 
 const DOMAIN3_SUBJECTS = [
   "cardiovascular-rx",
@@ -33,13 +34,26 @@ const DOMAIN3_SUBJECTS = [
   "otc-self-care",
 ] as const;
 
-const SAFETY_SUBJECTS = ["patient-counseling", "pharmacy-law"] as const;
+/** Med-use process (adherence, devices, counseling) — Domain 2, not professional practice. */
+const DOMAIN2_SUBJECTS = ["patient-counseling"] as const;
+
+/** Keep law/ops in Domain 4 Professional Practice only. */
+const SAFETY_SUBJECTS = ["pharmacy-law"] as const;
 
 const FOUNDATIONS_SUBJECTS = [
   "pharmacokinetics",
   "pharmaceutics",
   "compounding-calculations",
 ] as const;
+
+/** Legacy blueprintDomain strings → current NABP outline ids. */
+const LEGACY_DOMAIN_MAP: Record<string, string> = {
+  "naplex-2026-drug-information": AREA2,
+  "naplex-2026-medication-dispensing": AREA2,
+  "naplex-2026-pharmacist-tasks": AREA2,
+  "naplex-2026-pharmacotherapy": AREA3,
+  "naplex-2026-patient-centered-care": AREA3,
+};
 
 /** Critical-flagged mismatch / unsafe-calc / non-pharmacy items from tough samples. */
 const QUARANTINE_IDS = [
@@ -72,31 +86,59 @@ async function retagSubject(
   subjectIds: readonly string[],
   blueprintDomain: string
 ): Promise<number> {
+  // Never overwrite a correctly tagged Domain 2/3 item when sweeping subjects into D4.
+  const protectDomains =
+    blueprintDomain === AREA4
+      ? [AREA1, AREA2, AREA3]
+      : blueprintDomain === AREA2
+        ? [AREA1, AREA3]
+        : blueprintDomain === AREA3
+          ? [AREA1, AREA2]
+          : [AREA2, AREA3];
+
+  const where = {
+    fieldId: "pharmacy" as const,
+    active: true,
+    subjectId: { in: [...subjectIds] },
+    OR: [
+      { blueprintDomain: null },
+      { NOT: { blueprintDomain: { in: [blueprintDomain, ...protectDomains] } } },
+    ],
+  };
+
   if (dryRun) {
-    return prisma.questionBankItem.count({
-      where: {
-        fieldId: "pharmacy",
-        active: true,
-        subjectId: { in: [...subjectIds] },
-        OR: [{ blueprintDomain: null }, { NOT: { blueprintDomain } }],
-      },
-    });
+    return prisma.questionBankItem.count({ where });
   }
   const result = await prisma.questionBankItem.updateMany({
-    where: {
-      fieldId: "pharmacy",
-      active: true,
-      subjectId: { in: [...subjectIds] },
-      OR: [{ blueprintDomain: null }, { NOT: { blueprintDomain } }],
-    },
+    where,
     data: { blueprintDomain, updatedAt: new Date() },
   });
   return result.count;
 }
 
+async function retagLegacyDomains(): Promise<Record<string, number>> {
+  const out: Record<string, number> = {};
+  for (const [from, to] of Object.entries(LEGACY_DOMAIN_MAP)) {
+    if (dryRun) {
+      out[from] = await prisma.questionBankItem.count({
+        where: { fieldId: "pharmacy", active: true, qaPassed: true, blueprintDomain: from },
+      });
+      continue;
+    }
+    const result = await prisma.questionBankItem.updateMany({
+      where: { fieldId: "pharmacy", active: true, blueprintDomain: from },
+      data: { blueprintDomain: to, updatedAt: new Date() },
+    });
+    out[from] = result.count;
+  }
+  return out;
+}
+
 async function main() {
   console.log(`\nNAPLEX NABP outline domain retag${dryRun ? " [dry-run]" : ""}\n`);
 
+  const legacy = await retagLegacyDomains();
+  const d2 = await retagSubject(DOMAIN2_SUBJECTS, AREA2);
   const d3 = await retagSubject(DOMAIN3_SUBJECTS, AREA3);
   const safety = await retagSubject(SAFETY_SUBJECTS, AREA4);
   const foundations = await retagSubject(FOUNDATIONS_SUBJECTS, AREA1);
@@ -134,7 +176,13 @@ async function main() {
   const summary = {
     dryRun,
     completedAt: new Date().toISOString(),
-    retagged: { area3: d3, area4: safety, area1: foundations },
+    retagged: {
+      legacy,
+      area2: d2,
+      area3: d3,
+      area4: safety,
+      area1: foundations,
+    },
     quarantined,
     byDomain,
   };
