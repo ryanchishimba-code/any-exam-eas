@@ -11,6 +11,8 @@ const base = (process.argv[2] ?? "http://127.0.0.1:3000").replace(/\/$/, "");
 const concurrency = Number(process.argv[3] ?? 20);
 /** Max parallel signups (SQLite: ~15; Postgres pooler: ~25–30). */
 const registerPool = Number(process.argv[4] ?? (concurrency >= 100 ? 15 : 5));
+const readsOnly =
+  process.argv.includes("--reads-only") || process.env.LOAD_TEST_READS_ONLY === "1";
 const runId = Date.now();
 
 const READ_PATHS = ["/", "/signup", "/pricing", "/login", "/api/health"];
@@ -103,7 +105,7 @@ function statusOk(path, status) {
 }
 
 console.log(
-  `Load test: ${concurrency} concurrent users (${registerPool} parallel signups) → ${base}\n`
+  `Load test: ${concurrency} concurrent users${readsOnly ? " (reads-only)" : ` (${registerPool} parallel signups)`} → ${base}\n`
 );
 
 const healthRuns = await Promise.all(
@@ -122,14 +124,8 @@ const readRuns = await Promise.all(
   })
 );
 
-const registerIndices = Array.from({ length: concurrency }, (_, i) => i);
-const registerRuns = await runPool(registerIndices, registerPool, async (i) =>
-  timed(`register-${i}`, () => registerUser(i))
-);
-
 const healthSummary = summarize(healthRuns);
 const readSummary = summarize(readRuns);
-const registerSummary = summarize(registerRuns);
 
 const healthOk = healthRuns.filter(
   (r) => r.ok && statusOk("/api/health", r.result?.status)
@@ -139,22 +135,8 @@ const readOk = readRuns.filter(
   (r) => r.ok && statusOk(r.result?.path ?? "/", r.result?.status)
 ).length;
 
-const regOk = registerRuns.filter(
-  (r) => r.ok && r.result?.status === 200
-).length;
-const reg429 = registerRuns.filter(
-  (r) => r.ok && r.result?.status === 429
-).length;
-const regFail = registerRuns.filter(
-  (r) => !r.ok || (r.result?.status !== 200 && r.result?.status !== 429)
-).length;
-
 const minHealthOk = concurrency;
 const minReadOk = Math.floor(concurrency * 0.98);
-const minRegOk =
-  concurrency >= 100
-    ? Math.min(40, Math.floor(concurrency * 0.35))
-    : Math.max(1, concurrency - 2);
 
 console.log(`Health (${concurrency} parallel):`);
 console.log(
@@ -165,10 +147,6 @@ console.log(`\nRead traffic (${concurrency} parallel, mixed pages):`);
 console.log(
   `  ${readOk}/${concurrency} ok, avg ${readSummary.avgMs}ms, p95 ${readSummary.p95Ms}ms`
 );
-
-console.log(`\nRegister (${concurrency} attempts, pool ${registerPool}):`);
-console.log(`  ${regOk} created, ${reg429} rate-limited, ${regFail} hard-failed`);
-console.log(`  avg ${registerSummary.avgMs}ms, p95 ${registerSummary.p95Ms}ms`);
 
 if (healthOk < minHealthOk) {
   console.log("\nFAIL: health checks did not all succeed under load.");
@@ -187,6 +165,36 @@ if (readOk < minReadOk) {
   );
   process.exit(1);
 }
+
+if (readsOnly) {
+  console.log("\nLoad test passed (reads-only).");
+  process.exit(0);
+}
+
+const registerIndices = Array.from({ length: concurrency }, (_, i) => i);
+const registerRuns = await runPool(registerIndices, registerPool, async (i) =>
+  timed(`register-${i}`, () => registerUser(i))
+);
+const registerSummary = summarize(registerRuns);
+
+const regOk = registerRuns.filter(
+  (r) => r.ok && r.result?.status === 200
+).length;
+const reg429 = registerRuns.filter(
+  (r) => r.ok && r.result?.status === 429
+).length;
+const regFail = registerRuns.filter(
+  (r) => !r.ok || (r.result?.status !== 200 && r.result?.status !== 429)
+).length;
+
+const minRegOk =
+  concurrency >= 100
+    ? Math.min(40, Math.floor(concurrency * 0.35))
+    : Math.max(1, concurrency - 2);
+
+console.log(`\nRegister (${concurrency} attempts, pool ${registerPool}):`);
+console.log(`  ${regOk} created, ${reg429} rate-limited, ${regFail} hard-failed`);
+console.log(`  avg ${registerSummary.avgMs}ms, p95 ${registerSummary.p95Ms}ms`);
 
 if (regOk < minRegOk && reg429 + regOk < minRegOk) {
   console.log(

@@ -196,8 +196,11 @@ Permanent mitigations in this repo:
 1. Public `/api/health` → `ok: true`
 2. Detailed health → `databaseUrl=postgresql`, `databasePing=ok`, Prisma/bank healthy
 3. `/api/cron/db-keepalive` → Neon HTTP + Prisma warm succeed
+4. **100 concurrent** public page/health requests succeed (reads-only capacity gate)
 
 Add repo secret `CRON_SECRET` (same value as Vercel) so both workflows can probe the DB. Without it, the every-other-day job **fails** on purpose so you notice.
+
+**100 concurrent users:** Vercel serverless + Neon pooler is sized for this (and well beyond). Live probe target: `npm run test:load:100:prod:reads`. Full authenticated study-session load: `npm run test:load:k6:best` (needs test account). See [SCALE_5000_MAU.md](./SCALE_5000_MAU.md) — ~100 concurrent is a normal peak for several thousand MAU.
 
 **External (optional):** [Better Stack](https://betterstack.com/uptime) or [UptimeRobot](https://uptimerobot.com) on `https://www.anyexameasy.com/api/health` — expect HTTP 200 and `"ok":true`.
 

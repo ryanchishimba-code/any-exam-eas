@@ -39,3 +39,8 @@ jobs:
           PRODUCTION_URL: https://www.anyexameasy.com
           HEALTH_TIMEOUT_MS: "30000"
         run: node scripts/production-health-check.mjs --database
+
+      - name: 100 concurrent public users (reads)
+        env:
+          PRODUCTION_URL: https://www.anyexameasy.com
+        run: node scripts/load-test-concurrent.mjs https://www.anyexameasy.com 100 20 --reads-only

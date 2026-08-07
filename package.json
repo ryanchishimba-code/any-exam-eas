@@ -457,6 +457,7 @@
     "test:load": "node scripts/load-test-concurrent.mjs http://127.0.0.1:3000 20 5",
     "test:load:100": "node scripts/load-test-concurrent.mjs http://127.0.0.1:3000 100 8",
     "test:load:100:prod": "node scripts/load-test-concurrent.mjs https://www.anyexameasy.com 100 20",
+    "test:load:100:prod:reads": "node scripts/load-test-concurrent.mjs https://www.anyexameasy.com 100 20 --reads-only",
     "test:load:k6:install": "node scripts/k6-install.mjs",
     "test:load:k6": "node scripts/k6-run.mjs -e BASE_URL=https://www.anyexameasy.com -e MAX_VUS=4000 -e RAMP_DURATION=5m -e HOLD_DURATION=2m -e RAMP_DOWN=1m -e LOAD_TEST_EMAIL=test-premium@anyexameasy.test -e LOAD_TEST_PASSWORD=TestLogin1! loadtests/k6/main.js",
     "test:load:k6:smoke": "node scripts/k6-run.mjs -e BASE_URL=https://www.anyexameasy.com -e MAX_VUS=10 -e RAMP_DURATION=30s -e HOLD_DURATION=30s -e RAMP_DOWN=15s -e LOAD_TEST_EMAIL=test-premium@anyexameasy.test -e LOAD_TEST_PASSWORD=TestLogin1! loadtests/k6/main.js",
