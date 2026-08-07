@@ -1,0 +1,511 @@
+{
+  "checkedAt": "2026-08-06T03:02:23.725Z",
+  "model": "gpt-4o",
+  "standard": "NBME/USMLE UWorld-bar proxy",
+  "structure": {
+    "fieldId": "usmle-step-2",
+    "active": 5713,
+    "serve": 5602,
+    "enrichedCount": 5273,
+    "enrichedPct": 94.1,
+    "bySubject": {
+      "pediatrics": 820,
+      "cardiology": 711,
+      "nephrology": 616,
+      "obgyn": 539,
+      "emergency-medicine": 510,
+      "pulmonology": 508,
+      "neurology": 480,
+      "internal-medicine": 477,
+      "psychiatry": 384,
+      "surgery": 209,
+      "ethics": 177,
+      "biostatistics": 171
+    },
+    "byType": {
+      "ethics": 35,
+      "exhibit": 82,
+      "vignette": 1532,
+      "sequential": 67,
+      "mcq": 3886
+    },
+    "thinSubjects": []
+  },
+  "itemScores": [
+    {
+      "id": "cmpnjkwjd0hlj1ymx4j4dd9i5",
+      "score": 2,
+      "wouldAppearOnUsmle": false,
+      "strengths": [],
+      "weaknesses": [
+        "The vignette is missing, which is crucial for setting the clinical context.",
+        "The item is misclassified under pediatrics when it clearly pertains to adult cardiology.",
+        "The options are weakly constructed with some being easily dismissible."
+      ],
+      "criticalFlags": [
+        "Misclassification of the subject area."
+      ],
+      "localIssues": []
+    },
+    {
+      "id": "cmpnjkwjd0hlk1ymxdnzvx9vg",
+      "score": 3,
+      "wouldAppearOnUsmle": false,
+      "strengths": [],
+      "weaknesses": [
+        "The vignette is missing, which is crucial for setting the clinical context.",
+        "The item is misclassified under pediatrics when it pertains to adult endocrinology.",
+        "The distractors are not well-balanced, making the correct answer too obvious."
+      ],
+      "criticalFlags": [
+        "Misclassification of the subject area."
+      ],
+      "localIssues": []
+    },
+    {
+      "id": "cmrvm6c3d0056jw04zolw710g",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "The vignette is well-constructed and provides a clear clinical scenario.",
+        "The options are relevant and plausible, testing the understanding of stroke etiology."
+      ],
+      "weaknesses": [
+        "The explanation could be more concise and focused on key teaching points."
+      ],
+      "criticalFlags": [],
+      "localIssues": []
+    },
+    {
+      "id": "cmrvm6c3d0057jw04zap47xjw",
+      "score": 5,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "The vignette provides a clear clinical scenario."
+      ],
+      "weaknesses": [
+        "The options are not well-balanced, with some being easily dismissible.",
+        "The item lacks depth in testing clinical reasoning beyond recognition of heart failure."
+      ],
+      "criticalFlags": [],
+      "localIssues": []
+    },
+    {
+      "id": "cmpnjk0j50d291ymx94n5o9nh",
+      "score": 6,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "The item tests clinical reasoning and management of acute kidney injury."
+      ],
+      "weaknesses": [
+        "The vignette is missing, which is crucial for setting the clinical context.",
+        "Some distractors are not plausible, reducing the challenge of the question."
+      ],
+      "criticalFlags": [],
+      "localIssues": []
+    },
+    {
+      "id": "cmpnjk0j50d2c1ymx9473i1yg",
+      "score": 2,
+      "wouldAppearOnUsmle": false,
+      "strengths": [],
+      "weaknesses": [
+        "The vignette is missing, which is crucial for setting the clinical context.",
+        "The item is a duplicate of another question, testing the same concept without variation.",
+        "The options are weakly constructed with some being easily dismissible."
+      ],
+      "criticalFlags": [
+        "Duplicate content."
+      ],
+      "localIssues": []
+    },
+    {
+      "id": "cmpnjl6j00izd1ymxnxaw1bzf",
+      "score": 4,
+      "wouldAppearOnUsmle": false,
+      "strengths": [],
+      "weaknesses": [
+        "Lack of vignette context",
+        "Repetitive information in explanation"
+      ],
+      "criticalFlags": [
+        "Missing vignette context"
+      ],
+      "comments": "The item lacks a vignette context, making it difficult to assess the clinical scenario fully. The explanation is repetitive and does not add significant value beyond the stem."
+    },
+    {
+      "id": "cmpnjl6j10izh1ymxv46sk5qu",
+      "score": 6,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Clear clinical scenario",
+        "Correct diagnosis based on provided data"
+      ],
+      "weaknesses": [
+        "Lack of clinical decision-making framework"
+      ],
+      "criticalFlags": [],
+      "comments": "The question presents a clear clinical scenario with appropriate lab findings. However, it lacks a decision-making framework that would be expected on the USMLE."
+    },
+    {
+      "id": "cmpnjlznh0n741ymxgqhmk7ri",
+      "score": 5,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Clear diagnosis based on symptoms and lab findings"
+      ],
+      "weaknesses": [
+        "Repetitive information in explanation",
+        "Lack of vignette context"
+      ],
+      "criticalFlags": [
+        "Missing vignette context"
+      ],
+      "comments": "The item provides a clear diagnosis but lacks vignette context and has repetitive information in the explanation."
+    },
+    {
+      "id": "cmpnjlznh0n7c1ymxt7ae1cay",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Strong clinical scenario",
+        "Immediate management decision"
+      ],
+      "weaknesses": [
+        "Explanation could be more concise"
+      ],
+      "criticalFlags": [],
+      "comments": "The item presents a strong clinical scenario with a clear management decision, suitable for USMLE. The explanation could be more concise."
+    },
+    {
+      "id": "cmpnjjpgg0bgt1ymx0vxsb57s",
+      "score": 6,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Clear management plan"
+      ],
+      "weaknesses": [
+        "Lack of vignette context",
+        "Repetitive information in explanation"
+      ],
+      "criticalFlags": [
+        "Missing vignette context"
+      ],
+      "comments": "The item provides a clear management plan but lacks vignette context and has repetitive information in the explanation."
+    },
+    {
+      "id": "cmpnjjpgg0bgu1ymxkqyzstm0",
+      "score": 8,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Strong clinical scenario",
+        "Clear treatment guidelines"
+      ],
+      "weaknesses": [
+        "Explanation could be more concise"
+      ],
+      "criticalFlags": [],
+      "comments": "The item presents a strong clinical scenario with clear treatment guidelines, suitable for USMLE. The explanation could be more concise."
+    },
+    {
+      "id": "cmpnjk9j90eit1ymx0p3mk9xd",
+      "score": 5,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Addresses acute heart failure management"
+      ],
+      "weaknesses": [
+        "Lacks a complete vignette",
+        "Options are not well-balanced",
+        "Explanation is incomplete"
+      ],
+      "criticalFlags": [
+        "Missing vignette"
+      ]
+    },
+    {
+      "id": "cmpnjk9ja0eix1ymxarcx4gfw",
+      "score": 6,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Covers acute pancreatitis management"
+      ],
+      "weaknesses": [
+        "Vignette is incomplete",
+        "Options are not well-balanced"
+      ],
+      "criticalFlags": [
+        "Missing vignette"
+      ]
+    },
+    {
+      "id": "cmr877lug00e71yr9gm87tle5",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Good clinical integration",
+        "Clear vignette"
+      ],
+      "weaknesses": [
+        "Distractors could be stronger"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr877m3a00ea1yr9arn7wmqi",
+      "score": 6,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Addresses heart failure management"
+      ],
+      "weaknesses": [
+        "Vignette is not very detailed",
+        "Options are not well-balanced"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrqhwmm9007h1ypxne58nfkw",
+      "score": 8,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Clear vignette",
+        "Good differentiation of anxiety disorders"
+      ],
+      "weaknesses": [
+        "Could include more clinical reasoning"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrqhwmpt007i1ypx2mn2k9ms",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Addresses overdose management",
+        "Clear contraindication"
+      ],
+      "weaknesses": [
+        "Explanation could be more detailed"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrpw0ous004s1ylucxwr37vf",
+      "score": 4,
+      "wouldAppearOnUsmle": false,
+      "strengths": [],
+      "weaknesses": [
+        "Weak distractors",
+        "Incorrect focus on preventive measure rather than immediate management"
+      ],
+      "criticalFlags": [
+        "Incorrect teaching point: Tetanus prophylaxis is not the most immediate priority in acute burn management."
+      ],
+      "explanation": "The item incorrectly emphasizes tetanus prophylaxis as the most appropriate preventive measure in the acute setting of severe burns, where fluid resuscitation is critical."
+    },
+    {
+      "id": "cmrpw0oxj004t1ylunhd5azf3",
+      "score": 8,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Clear vignette with relevant clinical findings",
+        "Strong distractors"
+      ],
+      "weaknesses": [],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr877mod00eh1yr9f80zeyuc",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Clear clinical scenario",
+        "Relevant distractors"
+      ],
+      "weaknesses": [
+        "Slightly cues towards the correct answer with emphasis on diuretics"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr877mre00ei1yr9dxq5nyul",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Clear vignette",
+        "Appropriate clinical reasoning"
+      ],
+      "weaknesses": [
+        "Mild cueing towards IV treatment"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmpnjl2bu0igc1ymxhlzro7c7",
+      "score": 5,
+      "wouldAppearOnUsmle": false,
+      "strengths": [],
+      "weaknesses": [
+        "Non-vignette laundry list",
+        "Lacks clinical integration"
+      ],
+      "criticalFlags": [
+        "Vignette missing, making it difficult to assess clinical context."
+      ],
+      "explanation": "The item lacks a vignette, making it difficult to assess the clinical context and apply clinical reasoning."
+    },
+    {
+      "id": "cmpnjl2bu0igg1ymx79osvr4k",
+      "score": 5,
+      "wouldAppearOnUsmle": false,
+      "strengths": [],
+      "weaknesses": [
+        "Non-vignette laundry list",
+        "Lacks clinical integration"
+      ],
+      "criticalFlags": [
+        "Vignette missing, making it difficult to assess clinical context."
+      ],
+      "explanation": "The item lacks a vignette, making it difficult to assess the clinical context and apply clinical reasoning."
+    },
+    {
+      "id": "cmrpvvg9c002i1ylu0u9cosiz",
+      "score": 5,
+      "wouldAppearOnUsmle": "unlikely",
+      "strengths": [
+        "Clinical vignette is relevant to burns management",
+        "Correct application of Parkland formula"
+      ],
+      "weaknesses": [
+        "Lacks units for fluid rate calculation",
+        "Distractors are not well-balanced",
+        "Explanation is overly detailed for a simple calculation"
+      ],
+      "criticalFlags": [
+        "Missing units on fluid rate calculation"
+      ]
+    },
+    {
+      "id": "cmrpw0om6004p1ylufjz2ktwu",
+      "score": 6,
+      "wouldAppearOnUsmle": "possibly",
+      "strengths": [
+        "Clear vignette with relevant clinical details",
+        "Correct initial management step identified"
+      ],
+      "weaknesses": [
+        "Options could be more challenging",
+        "Explanation is slightly incomplete"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrpwg5ga00bi1ylubs5u45k7",
+      "score": 4,
+      "wouldAppearOnUsmle": "unlikely",
+      "strengths": [
+        "Addresses contraindications in bowel obstruction"
+      ],
+      "weaknesses": [
+        "Vignette lacks depth and complexity",
+        "Distractors are weak and not challenging"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrqhfllm002f1ypx6tkhaw2l",
+      "score": 7,
+      "wouldAppearOnUsmle": "possibly",
+      "strengths": [
+        "Clear differentiation between depressive disorders",
+        "Relevant clinical vignette"
+      ],
+      "weaknesses": [
+        "Distractors could be more challenging",
+        "Explanation is slightly verbose"
+      ],
+      "criticalFlags": []
+    }
+  ],
+  "bank": {
+    "overallScore": 5,
+    "overallLetter": "C",
+    "dimensions": [
+      {
+        "name": "Bank size & dedicated volume",
+        "score": 7,
+        "letter": "B",
+        "evidence": "The QBank contains 5713 active questions with a high percentage (94.1%) of enriched content. The distribution across subjects is reasonably balanced, with pediatrics, cardiology, and nephrology having substantial representation.",
+        "gap": "While the volume is impressive, the presence of duplicate content and misclassified items suggests a need for better curation."
+      },
+      {
+        "name": "NBME blueprint / systems coverage",
+        "score": 6,
+        "letter": "C",
+        "evidence": "The QBank covers a wide range of subjects relevant to Step 2, including pediatrics, cardiology, and ob-gyn. However, some subjects like surgery and ethics are underrepresented.",
+        "gap": "Thin coverage in certain areas like surgery and ethics could leave gaps in comprehensive exam preparation."
+      },
+      {
+        "name": "Item craft (stem/options/clinical reasoning)",
+        "score": 4,
+        "letter": "D",
+        "evidence": "Many items lack a complete vignette, have weak distractors, or are misclassified. This affects the quality of clinical reasoning and decision-making assessment.",
+        "gap": "The absence of well-crafted vignettes and balanced options reduces the effectiveness of the questions in testing clinical reasoning."
+      },
+      {
+        "name": "Basic-science ↔ clinical integration (or next-step management for Step 2/3)",
+        "score": 5,
+        "letter": "C",
+        "evidence": "Some questions demonstrate integration of clinical scenarios with basic science concepts, but many lack depth and complexity in the vignettes.",
+        "gap": "Improvement is needed in integrating clinical scenarios with underlying mechanisms or management steps to enhance learning."
+      },
+      {
+        "name": "Biostats / ethics / CCS readiness (as applicable)",
+        "score": 5,
+        "letter": "C",
+        "evidence": "Biostatistics and ethics are present but not robustly covered. The QBank lacks depth in these areas, which are crucial for Step 2/3.",
+        "gap": "A more comprehensive approach to biostatistics and ethics is necessary to ensure readiness for these components of the exam."
+      },
+      {
+        "name": "Rationale / teachability (UWorld-depth proxy)",
+        "score": 5,
+        "letter": "C",
+        "evidence": "Explanations are often verbose or repetitive, lacking the concise and focused teaching points seen in high-quality resources like UWorld.",
+        "gap": "Explanations need to be more concise and focused on key teaching points to enhance their educational value."
+      },
+      {
+        "name": "High-yield disease & pharm readiness",
+        "score": 6,
+        "letter": "C",
+        "evidence": "The QBank covers high-yield topics but often lacks depth in pharmacology and disease mechanisms, which are critical for Step 2/3.",
+        "gap": "Greater emphasis on high-yield pharmacology and disease mechanisms is needed to ensure comprehensive exam preparation."
+      },
+      {
+        "name": "Quality gates & consistency",
+        "score": 4,
+        "letter": "D",
+        "evidence": "Inconsistencies in item classification and the presence of duplicate content indicate a lack of rigorous quality control.",
+        "gap": "Implementing stricter quality control measures could improve consistency and reliability across the QBank."
+      }
+    ],
+    "examTakerVerdict": "The QBank offers a substantial volume of questions, but the quality and consistency issues may hinder effective preparation. It is advisable to supplement with other resources for a more comprehensive review.",
+    "topStrengths": [
+      "Large volume of questions with a wide subject range.",
+      "High percentage of enriched content.",
+      "Reasonable distribution across major Step 2 subjects."
+    ],
+    "topGaps": [
+      "Lack of well-crafted vignettes and balanced options.",
+      "Inconsistent quality control and item classification.",
+      "Insufficient depth in biostatistics, ethics, and pharmacology."
+    ],
+    "prioritizedActions": [
+      "Enhance vignette quality and ensure balanced distractors to improve clinical reasoning assessment.",
+      "Increase coverage and depth in underrepresented subjects like surgery and ethics.",
+      "Implement stricter quality control measures to eliminate duplicate content and misclassifications.",
+      "Focus on concise, focused explanations to improve the educational value of rationales.",
+      "Strengthen integration of clinical scenarios with basic science and management principles."
+    ]
+  }
+}

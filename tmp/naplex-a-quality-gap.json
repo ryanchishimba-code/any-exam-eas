@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-08-06T13:50:54.947Z",
+  "serve": 10335,
+  "bySubject": {
+    "cardiovascular-rx": 1088,
+    "cns-rx": 621,
+    "compounding-calculations": 1381,
+    "endocrine-rx": 549,
+    "infectious-disease-rx": 688,
+    "otc-self-care": 740,
+    "patient-counseling": 2527,
+    "pharmaceutics": 445,
+    "pharmacokinetics": 466,
+    "pharmacology": 1327,
+    "pharmacy-law": 503
+  },
+  "byType": {
+    "exhibit": 3,
+    "vignette": 9459,
+    "ordered_response": 1,
+    "constructed_response": 80,
+    "select_all": 61,
+    "case_based": 20,
+    "mcq": 469,
+    "ngn_highlight": 242
+  },
+  "enrichedRationales": 8992,
+  "enrichedPct": 87,
+  "gapScores": {
+    "pharmacokinetics": 466,
+    "pharmaceutics": 445,
+    "domain1Proxy": 2292,
+    "domain3Core": 2946,
+    "ordered_response": 1,
+    "select_all": 61
+  },
+  "targets": {
+    "pharmacokineticsServe": 200,
+    "pharmaceuticsServe": 150,
+    "enrichedPct": 15
+  },
+  "flags": []
+}

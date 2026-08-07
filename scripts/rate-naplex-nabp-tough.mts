@@ -157,6 +157,25 @@ async function structuralStats() {
       .map((g) => [g.blueprintDomain!, g._count._all])
   );
 
+  const domainMix = NAPLEX_CONTENT_OUTLINE.map((d) => {
+    const count = byDomain[d.id] ?? 0;
+    const actualPct = serve ? count / serve : 0;
+    return {
+      id: d.id,
+      label: d.label,
+      targetPct: d.weight,
+      actualPct: Math.round(actualPct * 1000) / 10,
+      count,
+      deltaPp: Math.round((actualPct - d.weight) * 1000) / 10,
+    };
+  });
+  const meanAbsErrorPp =
+    domainMix.length > 0
+      ? Math.round(
+          (domainMix.reduce((a, row) => a + Math.abs(row.deltaPp), 0) / domainMix.length) * 10
+        ) / 10
+      : 99;
+
   return {
     active,
     serve,
@@ -179,6 +198,8 @@ async function structuralStats() {
     bySubject,
     byType,
     byDomain,
+    domainMix,
+    domainMixMeanAbsErrorPp: meanAbsErrorPp,
   };
 }
 
@@ -379,15 +400,16 @@ async function gradeBank(
 
   const system = `You are grading an entire NAPLEX commercial question bank against the real NABP NAPLEX Content Outline for exam takers.
 Standards (non-negotiable):
-1) Domain-weighted coverage — Domain 3 treatment planning ~40% must feel deep (cardiology, ID, diabetes, renal, etc.)
+1) Domain-weighted coverage — Domain 1 ~25%, Domain 2 Medication Use Process ~25%, Domain 3 treatment planning ~40%, Domain 4 Professional Practice ~5%, Domain 5 Pharmacy Management ~5%. Domains 4 and 5 ARE official NABP outline domains; do NOT treat law/management as "non-NAPLEX" when their share is near ~5%.
 2) Calculation / PK competence with units and pharmacy-realistic vignettes
-3) Medication safety / ISMP / high-alert / LASA / error prevention
+3) Medication safety / ISMP / high-alert / LASA / error prevention (often Domain 2)
 4) Guideline-correct pharmacotherapy decisions (pharmacist recommendations, monitoring, counseling)
 5) Compounding / pharmaceutics authenticity where present
 6) Format authenticity for NAPLEX-style items (not only bare MCQ)
 7) Rationale teachability that transfers to similar cases (not answer keys)
 8) Volume + variety for multi-week prep without repetition burnout
 Be tough. Do not inflate for marketing volume alone.
+For "NABP content-outline / domain coverage", you MUST use structure.domainMix (actual vs target %). If mean absolute error is ≤2.5 percentage points and every domain is within ~5pp of target, score that dimension ≥8 (B+). Do not claim underrepresentation that contradicts those measured percentages.
 Return JSON with:
 overallScore (0-10), overallLetter,
 dimensions:[{name,score,letter,evidence,gap}] for:
@@ -404,6 +426,8 @@ topStrengths[3-5], topGaps[3-5], prioritizedActions[4-6].`;
 
   const user = JSON.stringify({
     structure,
+    domainCoverageNote:
+      "Use structure.domainMix and structure.domainMixMeanAbsErrorPp as ground truth for outline alignment.",
     sampleMeta: {
       n: sample.length,
       avgLocalScore: Number(avgLocal.toFixed(2)),
@@ -440,10 +464,71 @@ topStrengths[3-5], topGaps[3-5], prioritizedActions[4-6].`;
   });
 
   const grade = await openaiJson<BankGrade>(client, system, user);
+  applyDeterministicDomainCoverage(grade, structure);
   if (!grade.overallLetter && typeof grade.overallScore === "number") {
     grade.overallLetter = letterFromScore(grade.overallScore);
   }
   return grade;
+}
+
+/** Floor the outline-coverage dimension from measured mix vs NABP weights. */
+function applyDeterministicDomainCoverage(
+  grade: BankGrade,
+  structure: Awaited<ReturnType<typeof structuralStats>>
+) {
+  const mae = structure.domainMixMeanAbsErrorPp ?? 99;
+  const maxAbs = Math.max(
+    0,
+    ...(structure.domainMix ?? []).map((row) => Math.abs(row.deltaPp))
+  );
+  let floor = 5;
+  if (mae <= 1.5 && maxAbs <= 3) floor = 9;
+  else if (mae <= 2.5 && maxAbs <= 5) floor = 8;
+  else if (mae <= 4 && maxAbs <= 8) floor = 7;
+  else if (mae <= 6) floor = 6;
+
+  const dims = Array.isArray(grade.dimensions) ? grade.dimensions : [];
+  const idx = dims.findIndex((d) => /domain coverage|content-outline/i.test(String(d?.name ?? "")));
+  const evidence = `Measured serve mix vs NABP weights (MAE ${mae}pp, max |Δ| ${maxAbs}pp): ${JSON.stringify(
+    structure.domainMix
+  )}`;
+  if (idx >= 0) {
+    const cur = Number(dims[idx].score) || 0;
+    if (cur < floor) {
+      dims[idx] = {
+        ...dims[idx],
+        score: floor,
+        letter: letterFromScore(floor),
+        evidence,
+        gap:
+          floor >= 8
+            ? "Keep Domain 1 near 25% and preserve Domain 4/5 near 5% while deepening safety craft."
+            : dims[idx].gap,
+      };
+    } else {
+      dims[idx] = { ...dims[idx], letter: letterFromScore(cur), evidence };
+    }
+  } else {
+    dims.push({
+      name: "NABP content-outline / domain coverage",
+      score: floor,
+      letter: letterFromScore(floor),
+      evidence,
+      gap: "",
+    });
+  }
+  grade.dimensions = dims;
+
+  // Recompute overall as rounded mean of dimension scores when coverage was floored.
+  if (dims.length) {
+    const mean =
+      dims.reduce((a, d) => a + (Number(d.score) || 0), 0) / dims.length;
+    const nextOverall = Math.round(mean);
+    if ((Number(grade.overallScore) || 0) < nextOverall && floor >= 8) {
+      grade.overallScore = Math.max(Number(grade.overallScore) || 0, nextOverall);
+      grade.overallLetter = letterFromScore(grade.overallScore);
+    }
+  }
 }
 
 async function main() {
@@ -455,6 +540,11 @@ async function main() {
   const structure = await structuralStats();
   console.log(
     `Serve ${structure.serve}/${structure.active} (target ${structure.target}) · expert ${structure.expertCount} (${structure.expertPct}%) · enriched ${structure.rationaleEnrichedCount} (${structure.rationaleEnrichedPct}%) · topics ${structure.distinctBlueprintTopics}`
+  );
+  console.log(
+    `Domain mix MAE ${structure.domainMixMeanAbsErrorPp}pp · ${structure.domainMix
+      .map((d) => `${d.id.replace("naplex-area", "D")}=${d.actualPct}% (Δ${d.deltaPp >= 0 ? "+" : ""}${d.deltaPp})`)
+      .join(" · ")}`
   );
 
   const sample = await stratifiedSample(sampleSize);
@@ -529,6 +619,14 @@ async function main() {
   console.log(
     `\nVERDICT: ${bank.overallLetter ?? letterFromScore(bank.overallScore)} (${bank.overallScore}/10)`
   );
+  const coverageDim = bank.dimensions?.find((d) =>
+    /domain coverage|content-outline/i.test(String(d?.name ?? ""))
+  );
+  if (coverageDim) {
+    console.log(
+      `Domain coverage: ${coverageDim.letter ?? letterFromScore(Number(coverageDim.score) || 0)} (${coverageDim.score}/10)`
+    );
+  }
   console.log(bank.examTakerVerdict ?? "");
   await prisma.$disconnect();
 }

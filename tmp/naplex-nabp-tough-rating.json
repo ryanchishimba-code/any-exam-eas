@@ -1,0 +1,1177 @@
+{
+  "checkedAt": "2026-08-06T13:52:13.692Z",
+  "model": "gpt-4o",
+  "standard": "NABP NAPLEX Content Outline (May 2025 / 2026) — tough commercial bar",
+  "structure": {
+    "active": 10487,
+    "serve": 10335,
+    "target": 6500,
+    "serveVsTargetPct": 159,
+    "expertCount": 3711,
+    "expertPct": 35.9,
+    "rationaleEnrichedCount": 8992,
+    "rationaleEnrichedPct": 87,
+    "distinctBlueprintTopics": 98,
+    "outlineDomains": [
+      {
+        "id": "naplex-area1-foundations",
+        "label": "Foundational Knowledge for Pharmacy Practice",
+        "weightLabel": "~25%"
+      },
+      {
+        "id": "naplex-area2-therapeutics",
+        "label": "Medication Use Process",
+        "weightLabel": "~25%"
+      },
+      {
+        "id": "naplex-area3-treatment-planning",
+        "label": "Person-Centered Assessment & Treatment Planning",
+        "weightLabel": "~40%"
+      },
+      {
+        "id": "naplex-area4-safety",
+        "label": "Professional Practice",
+        "weightLabel": "Professional practice"
+      },
+      {
+        "id": "naplex-area5-management",
+        "label": "Pharmacy Management & Leadership",
+        "weightLabel": "Management & leadership"
+      }
+    ],
+    "bySubject": {
+      "patient-counseling": 2527,
+      "compounding-calculations": 1381,
+      "pharmacology": 1327,
+      "cardiovascular-rx": 1088,
+      "otc-self-care": 740,
+      "infectious-disease-rx": 688,
+      "cns-rx": 621,
+      "endocrine-rx": 549,
+      "pharmacy-law": 503,
+      "pharmacokinetics": 466,
+      "pharmaceutics": 445
+    },
+    "byType": {
+      "exhibit": 3,
+      "vignette": 9459,
+      "ordered_response": 1,
+      "constructed_response": 80,
+      "select_all": 61,
+      "case_based": 20,
+      "mcq": 469,
+      "ngn_highlight": 242
+    },
+    "byDomain": {
+      "naplex-area3-treatment-planning": 4305,
+      "naplex-area2-therapeutics": 2576,
+      "naplex-area1-foundations": 2382,
+      "naplex-area4-safety": 561,
+      "naplex-area5-management": 511
+    },
+    "domainMix": [
+      {
+        "id": "naplex-area1-foundations",
+        "label": "Foundational Knowledge for Pharmacy Practice",
+        "targetPct": 0.25,
+        "actualPct": 23,
+        "count": 2382,
+        "deltaPp": -2
+      },
+      {
+        "id": "naplex-area2-therapeutics",
+        "label": "Medication Use Process",
+        "targetPct": 0.25,
+        "actualPct": 24.9,
+        "count": 2576,
+        "deltaPp": -0.1
+      },
+      {
+        "id": "naplex-area3-treatment-planning",
+        "label": "Person-Centered Assessment & Treatment Planning",
+        "targetPct": 0.4,
+        "actualPct": 41.7,
+        "count": 4305,
+        "deltaPp": 1.7
+      },
+      {
+        "id": "naplex-area4-safety",
+        "label": "Professional Practice",
+        "targetPct": 0.05,
+        "actualPct": 5.4,
+        "count": 561,
+        "deltaPp": 0.4
+      },
+      {
+        "id": "naplex-area5-management",
+        "label": "Pharmacy Management & Leadership",
+        "targetPct": 0.05,
+        "actualPct": 4.9,
+        "count": 511,
+        "deltaPp": -0.1
+      }
+    ],
+    "domainMixMeanAbsErrorPp": 0.9
+  },
+  "sample": {
+    "size": 40,
+    "avgLocalGateScore": 0.9,
+    "localOkRate": 100,
+    "avgOpenAiItemScore": 7.4,
+    "wouldAppearOnNaplexRate": 92.5,
+    "expertOrEnrichedInSample": 38,
+    "calcLikeInSample": 4
+  },
+  "itemScores": [
+    {
+      "id": "cmr0cx8rj001r1ynj1r01ndak",
+      "score": 7,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Relevant to OTC recommendations",
+        "Focus on patient safety and efficacy"
+      ],
+      "weaknesses": [
+        "Limited explanation for incorrect options"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr0cx8va001s1ynjctg0blmf",
+      "score": 8,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses renal function impact on drug safety",
+        "Focus on serious side effect counseling"
+      ],
+      "weaknesses": [
+        "Could include more detail on why other options are less critical"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrmt6ryu00001y58qt99qohl",
+      "score": 6,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses BCS classification and absorption",
+        "Practical dietary advice"
+      ],
+      "weaknesses": [
+        "Limited explanation for incorrect options",
+        "Could include more on PK/PD principles"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrmt6s4k00011y580vdtnsfy",
+      "score": 7,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Focus on formulation and dissolution",
+        "Practical application for patient care"
+      ],
+      "weaknesses": [
+        "Limited explanation for incorrect options"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrlgjwi5000a1yu0oav68lr8",
+      "score": 9,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses renal dosing adjustments",
+        "Focus on patient safety and toxicity prevention"
+      ],
+      "weaknesses": [
+        "Could include more on monitoring parameters"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrlgjwlh000b1yu02zb2fud0",
+      "score": 8,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses therapeutic drug monitoring",
+        "Focus on PK principles and dose adjustment"
+      ],
+      "weaknesses": [
+        "Limited explanation for incorrect options"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr4kvth0003d1ywzqhd3jey8",
+      "score": 7,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Relevant to drug interactions and patient safety",
+        "Covers renal function considerations"
+      ],
+      "weaknesses": [
+        "Vignette lacks specific lab values for creatinine",
+        "Explanation is overly verbose"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr7sbsho00061y2vtmy8slqc",
+      "score": 5,
+      "wouldAppearOnNaplex": false,
+      "strengths": [
+        "Addresses INR monitoring and warfarin management"
+      ],
+      "weaknesses": [
+        "Misclassified under opioid stewardship",
+        "Lacks depth in therapeutic decision-making"
+      ],
+      "criticalFlags": [
+        "Misaligned blueprint topic"
+      ]
+    },
+    {
+      "id": "cmrd1hpba0028l904xo7dshmm",
+      "score": 8,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Covers aseptic technique and device management",
+        "Sequential task order is clear"
+      ],
+      "weaknesses": [
+        "Could include more detail on aseptic technique"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmra6lymb0032ic04n4piguxi",
+      "score": 9,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Accurate calculation of infusion rate",
+        "Relevant to anticoagulation management"
+      ],
+      "weaknesses": [
+        "Limited context on clinical implications"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrd1hnpg000wl90433nixeil",
+      "score": 9,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Accurate calculation of total volume",
+        "Relevant to pediatric dosing"
+      ],
+      "weaknesses": [
+        "Limited context on clinical implications"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr0pfh99001t1yajs7210rx3",
+      "score": 6,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses acetaminophen toxicity and liver monitoring"
+      ],
+      "weaknesses": [
+        "Vignette could include more clinical details",
+        "Explanation lacks depth on treatment interventions"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr0pfhhu001w1yajm4m4hs8g",
+      "score": 8,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses common side effect of ACE inhibitors",
+        "Guideline-based therapeutic decision"
+      ],
+      "weaknesses": [
+        "Explanation could be more concise"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmra5pues00051ymcaffdyd43",
+      "score": 7,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Focuses on patient counseling and medication adherence",
+        "Relevant to COPD management"
+      ],
+      "weaknesses": [
+        "Explanation lacks depth in rationale"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmra5puho00061ymcdxf8oa9x",
+      "score": 6,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses asthma management and monitoring",
+        "Guideline-based therapeutic decision"
+      ],
+      "weaknesses": [
+        "Explanation could be more detailed"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr4bs1lm000p1ycjlsqhyold",
+      "score": 5,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses medication adherence",
+        "Relevant to hypertension management"
+      ],
+      "weaknesses": [
+        "Explanation is repetitive"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr4bs1pa000q1ycjpmpkgubf",
+      "score": 4,
+      "wouldAppearOnNaplex": false,
+      "strengths": [
+        "Recognizes critical ECG finding"
+      ],
+      "weaknesses": [
+        "Focuses on diagnostics without pharmacy action"
+      ],
+      "criticalFlags": [
+        "Physician diagnostics without pharmacy action"
+      ]
+    },
+    {
+      "id": "cmsfy4i92000p1yth695vs2mk",
+      "score": 9,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses drug interaction and therapeutic monitoring",
+        "Guideline-based therapeutic decision"
+      ],
+      "weaknesses": [
+        "None significant"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmsfy4ibz000q1ytha7uv847u",
+      "score": 8,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses medication safety and error correction",
+        "Emphasizes immediate patient safety actions"
+      ],
+      "weaknesses": [
+        "Options could be more varied to test deeper understanding"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmsfy5mw3000r1ythe2g3pqcj",
+      "score": 9,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Focuses on renal dosing adjustments",
+        "Incorporates lab values into decision-making"
+      ],
+      "weaknesses": [
+        "Could include more complex distractors"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmsfy5myv000s1ythixremqtp",
+      "score": 7,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Highlights importance of drug interactions",
+        "Reinforces patient counseling"
+      ],
+      "weaknesses": [
+        "Auxiliary label options could be more challenging"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmsfy5n1n000t1ytheg8b36p8",
+      "score": 9,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Incorporates TDM and dosing adjustments",
+        "Addresses potential toxicity"
+      ],
+      "weaknesses": [
+        "Could include more complex distractors"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmsfy5n4n000u1yth26ll8qqp",
+      "score": 8,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Focuses on adherence and regimen simplification",
+        "Addresses chronic disease management"
+      ],
+      "weaknesses": [
+        "Options could be more varied to test deeper understanding"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmsfy5n7m000v1yth5yjfrbzi",
+      "score": 8,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses medication reconciliation and renal safety",
+        "Incorporates patient-specific factors"
+      ],
+      "weaknesses": [
+        "Options could be more varied to test deeper understanding"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmsfy5naa000w1ythlg3oiu1z",
+      "score": 8,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses a common issue in asthma management",
+        "Focuses on pharmacist's role in patient education"
+      ],
+      "weaknesses": [
+        "Could include more specific guideline references"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmsfy5nh8000x1ythpbywjswd",
+      "score": 9,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Emphasizes safety in medication administration",
+        "Highlights pharmacist's role in preventing adverse effects"
+      ],
+      "weaknesses": [
+        "Could include more detailed guideline references"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmsfy5nm4000y1yth39daizk1",
+      "score": 8,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Focuses on preventing dispensing errors",
+        "Highlights pharmacist's verification role"
+      ],
+      "weaknesses": [
+        "Could include more context on look-alike/sound-alike strategies"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr4i26j8003r1yei2h4ylr3a",
+      "score": 7,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses guideline-based statin therapy",
+        "Focuses on optimizing existing therapy"
+      ],
+      "weaknesses": [
+        "Could include more detailed rationale for LDL targets"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr4i26mv003s1yeiyg358u8k",
+      "score": 8,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Emphasizes importance of renal monitoring with metformin",
+        "Focuses on preventing serious complications"
+      ],
+      "weaknesses": [
+        "Could include more context on monitoring frequency"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr4i26ri003t1yei11j6xxr3",
+      "score": 7,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses common side effects of SSRIs",
+        "Focuses on adherence through side effect management"
+      ],
+      "weaknesses": [
+        "Could include more detailed guideline references"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr4i26xn003u1yeij9tth6r8",
+      "score": 8,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Guideline-based pharmacotherapy for migraine prophylaxis",
+        "Clear rationale for correct and incorrect options"
+      ],
+      "weaknesses": [
+        "Limited explanation for why other options are incorrect"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr4i2725003v1yeitj3932nx",
+      "score": 7,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Focus on medication side effects and patient safety",
+        "Relevant to pharmacist's role in monitoring therapy"
+      ],
+      "weaknesses": [
+        "Persistent cough as a distractor may not be immediate follow-up without more context"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr4i276o003w1yeiqbvbv7qo",
+      "score": 6,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Addresses hypoglycemia risk in diabetes management",
+        "Considers patient-specific factors"
+      ],
+      "weaknesses": [
+        "May benefit from more guideline-based rationale for choice"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr4i27as003x1yei57rfmttb",
+      "score": 8,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Guideline-based management of COPD exacerbation",
+        "Clear rationale for correct choice"
+      ],
+      "weaknesses": [
+        "Limited explanation for why other options are incorrect"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr4i27eb003y1yeiw5mofrjf",
+      "score": 9,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Focus on INR monitoring and anticoagulation management",
+        "Clear rationale for therapeutic change"
+      ],
+      "weaknesses": [
+        "Could include more context on INR target ranges"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr4i27ia003z1yeivs4tmsuu",
+      "score": 7,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Guideline-based diabetes management",
+        "Considers patient-specific factors"
+      ],
+      "weaknesses": [
+        "Limited explanation for why other options are incorrect"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr4i27lv00401yeiqdl3qs0l",
+      "score": 4,
+      "wouldAppearOnNaplex": false,
+      "strengths": [
+        "Addresses asthma exacerbation management",
+        "Considers patient's history and symptoms"
+      ],
+      "weaknesses": [
+        "Lacks pharmacy-specific action",
+        "Focuses on physician diagnostics"
+      ],
+      "criticalFlags": [
+        "Physician diagnostics without pharmacy action"
+      ]
+    },
+    {
+      "id": "cmr0ul2kx004s1yifi49n4aot",
+      "score": 6,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Focuses on immediate management of hypotension",
+        "Considers patient's vital signs and history"
+      ],
+      "weaknesses": [
+        "Limited pharmacy-specific intervention"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr0ul2s0004t1yif0ozg1k0z",
+      "score": 7,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Considers renal function in hypertension management",
+        "Focuses on guideline-based pharmacotherapy"
+      ],
+      "weaknesses": [
+        "Limited explanation for incorrect options"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr0ul2v1004u1yifjuzri3z4",
+      "score": 8,
+      "wouldAppearOnNaplex": true,
+      "strengths": [
+        "Focuses on monitoring parameters for COPD management",
+        "Considers pharmacotherapy and patient monitoring"
+      ],
+      "weaknesses": [
+        "Limited explanation for incorrect options"
+      ],
+      "criticalFlags": []
+    }
+  ],
+  "bank": {
+    "overallScore": 8,
+    "overallLetter": "B+",
+    "dimensions": [
+      {
+        "name": "Bank size & CAT-style volume",
+        "score": 9,
+        "letter": "A-",
+        "evidence": "The question bank contains 10,487 active items, significantly exceeding the target of 6,500, with a serveVsTargetPct of 159%.",
+        "gap": "None significant; volume is more than sufficient for comprehensive preparation."
+      },
+      {
+        "name": "NABP content-outline / domain coverage",
+        "score": 9,
+        "letter": "A",
+        "evidence": "Measured serve mix vs NABP weights (MAE 0.9pp, max |Δ| 2pp): [{\"id\":\"naplex-area1-foundations\",\"label\":\"Foundational Knowledge for Pharmacy Practice\",\"targetPct\":0.25,\"actualPct\":23,\"count\":2382,\"deltaPp\":-2},{\"id\":\"naplex-area2-therapeutics\",\"label\":\"Medication Use Process\",\"targetPct\":0.25,\"actualPct\":24.9,\"count\":2576,\"deltaPp\":-0.1},{\"id\":\"naplex-area3-treatment-planning\",\"label\":\"Person-Centered Assessment & Treatment Planning\",\"targetPct\":0.4,\"actualPct\":41.7,\"count\":4305,\"deltaPp\":1.7},{\"id\":\"naplex-area4-safety\",\"label\":\"Professional Practice\",\"targetPct\":0.05,\"actualPct\":5.4,\"count\":561,\"deltaPp\":0.4},{\"id\":\"naplex-area5-management\",\"label\":\"Pharmacy Management & Leadership\",\"targetPct\":0.05,\"actualPct\":4.9,\"count\":511,\"deltaPp\":-0.1}]",
+        "gap": "Minor underrepresentation in Domain 1 by 2 percentage points."
+      },
+      {
+        "name": "Item craft (stem/options/clinical judgment)",
+        "score": 7,
+        "letter": "B",
+        "evidence": "Items generally align with NAPLEX style, but some focus too much on diagnostics without pharmacy action, and explanations can be repetitive.",
+        "gap": "Improve focus on pharmacy-specific actions and reduce redundancy in explanations."
+      },
+      {
+        "name": "Calculations & PK readiness",
+        "score": 8,
+        "letter": "B+",
+        "evidence": "Includes 1,381 compounding-calculation items and 466 pharmacokinetics items, with accurate calculations in best items.",
+        "gap": "Some items could benefit from more detailed PK/PD principles."
+      },
+      {
+        "name": "Medication safety & dispensing authenticity",
+        "score": 8,
+        "letter": "B+",
+        "evidence": "Items address safety and toxicity prevention, with some focus on look-alike/sound-alike strategies.",
+        "gap": "Could include more context on medication safety strategies."
+      },
+      {
+        "name": "Rationale / teachability",
+        "score": 7,
+        "letter": "B",
+        "evidence": "87% of items are rationale-enriched, but explanations often lack depth for incorrect options.",
+        "gap": "Enhance explanations for why other options are incorrect."
+      },
+      {
+        "name": "High-yield disease-state pharmacotherapy",
+        "score": 8,
+        "letter": "B+",
+        "evidence": "Items cover a wide range of therapeutic areas, with guideline-based decisions in best items.",
+        "gap": "Some items could include more detailed guideline references."
+      },
+      {
+        "name": "Quality gates & consistency",
+        "score": 8,
+        "letter": "B+",
+        "evidence": "High local gate pass rate and consistent item quality, with a 92.5% appearance rate on NAPLEX.",
+        "gap": "Minor inconsistencies in item classification and depth."
+      }
+    ],
+    "examTakerVerdict": "This question bank offers a comprehensive and well-structured preparation resource for the NAPLEX, with a strong alignment to the NABP content outline. The volume and variety of items support multi-week preparation without significant repetition. However, some items could benefit from enhanced pharmacy-specific focus and more detailed rationales for incorrect options.",
+    "topStrengths": [
+      "Extensive question bank volume exceeding target by 59%.",
+      "Strong alignment with NABP domain coverage targets.",
+      "High percentage of rationale-enriched items."
+    ],
+    "topGaps": [
+      "Some items focus too much on diagnostics without pharmacy action.",
+      "Explanations often lack depth for incorrect options.",
+      "Minor underrepresentation in Domain 1."
+    ],
+    "prioritizedActions": [
+      "Enhance focus on pharmacy-specific actions in item stems.",
+      "Improve depth of explanations for incorrect options.",
+      "Address minor underrepresentation in Domain 1.",
+      "Include more detailed PK/PD principles in relevant items.",
+      "Incorporate more context on medication safety strategies."
+    ]
+  },
+  "samplesForReview": [
+    {
+      "id": "cmr0cx8rj001r1ynj1r01ndak",
+      "subjectId": "pharmacology",
+      "itemType": "vignette",
+      "blueprintTopic": "formulary management",
+      "blueprintDomain": "naplex-area5-management",
+      "looksLikeCalc": false,
+      "localScore": 0.7999999999999999,
+      "localTier": "best",
+      "stem": "Which OTC selection is most appropriate for this patient?"
+    },
+    {
+      "id": "cmr0cx8va001s1ynjctg0blmf",
+      "subjectId": "pharmacology",
+      "itemType": "vignette",
+      "blueprintTopic": "drug shortage alternatives",
+      "blueprintDomain": "naplex-area5-management",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "Which counseling point is most important?"
+    },
+    {
+      "id": "cmrmt6ryu00001y58qt99qohl",
+      "subjectId": "pharmaceutics",
+      "itemType": "vignette",
+      "blueprintTopic": "biopharmaceutics-dissolution",
+      "blueprintDomain": "naplex-area1-foundations",
+      "looksLikeCalc": false,
+      "localScore": 0.7999999999999999,
+      "localTier": "best",
+      "stem": "Which recommendation should the pharmacist make to enhance the dissolution and absorption of Drug X?"
+    },
+    {
+      "id": "cmrmt6s4k00011y580vdtnsfy",
+      "subjectId": "pharmaceutics",
+      "itemType": "vignette",
+      "blueprintTopic": "biopharmaceutics-dissolution",
+      "blueprintDomain": "naplex-area1-foundations",
+      "looksLikeCalc": true,
+      "localScore": 0.7999999999999999,
+      "localTier": "best",
+      "stem": "What formulation change could improve the dissolution rate of Drug Y?"
+    },
+    {
+      "id": "cmrlgjwi5000a1yu0oav68lr8",
+      "subjectId": "pharmacokinetics",
+      "itemType": "vignette",
+      "blueprintTopic": "renal-elimination-crcl",
+      "blueprintDomain": "naplex-area1-foundations",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "How should the dosing of gentamicin be adjusted for this patient?"
+    },
+    {
+      "id": "cmrlgjwlh000b1yu02zb2fud0",
+      "subjectId": "pharmacokinetics",
+      "itemType": "vignette",
+      "blueprintTopic": "half-life-steady-state",
+      "blueprintDomain": "naplex-area1-foundations",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "What is the most appropriate action regarding his phenytoin dosing?"
+    },
+    {
+      "id": "cmr4kvth0003d1ywzqhd3jey8",
+      "subjectId": "infectious-disease-rx",
+      "itemType": "select_all",
+      "blueprintTopic": "sepsis antibiotics",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.74,
+      "localTier": "best",
+      "stem": "Which drug interaction poses the greatest risk?"
+    },
+    {
+      "id": "cmr7sbsho00061y2vtmy8slqc",
+      "subjectId": "cardiovascular-rx",
+      "itemType": "select_all",
+      "blueprintTopic": "opioid stewardship",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.74,
+      "localTier": "best",
+      "stem": "Which laboratory value warrants a therapeutic change?"
+    },
+    {
+      "id": "cmrd1hpba0028l904xo7dshmm",
+      "subjectId": "pharmaceutics",
+      "itemType": "ordered_response",
+      "blueprintTopic": null,
+      "blueprintDomain": "naplex-area1-foundations",
+      "looksLikeCalc": false,
+      "localScore": 0.8,
+      "localTier": "best",
+      "stem": "Order the high-level pharmacist safety sequence for a pump refill visit:"
+    },
+    {
+      "id": "cmra6lymb0032ic04n4piguxi",
+      "subjectId": "cardiovascular-rx",
+      "itemType": "constructed_response",
+      "blueprintTopic": null,
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": true,
+      "localScore": 0.86,
+      "localTier": "best",
+      "stem": "Infusion rate (mL/hr)? (Round to one decimal.)"
+    },
+    {
+      "id": "cmrd1hnpg000wl90433nixeil",
+      "subjectId": "infectious-disease-rx",
+      "itemType": "constructed_response",
+      "blueprintTopic": null,
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": true,
+      "localScore": 0.86,
+      "localTier": "best",
+      "stem": "Total volume to dispense (mL)? (Round to nearest whole mL.)"
+    },
+    {
+      "id": "cmr0pfh99001t1yajs7210rx3",
+      "subjectId": "pharmacology",
+      "itemType": "vignette",
+      "blueprintTopic": "clinical trial design",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "Which monitoring parameter is most critical in this patient?"
+    },
+    {
+      "id": "cmr0pfhhu001w1yajm4m4hs8g",
+      "subjectId": "otc-self-care",
+      "itemType": "vignette",
+      "blueprintTopic": "preventive screening",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "What is the next best step in management?"
+    },
+    {
+      "id": "cmra5pues00051ymcaffdyd43",
+      "subjectId": "patient-counseling",
+      "itemType": "mcq",
+      "blueprintTopic": "pregnancy/lactation",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": false,
+      "localScore": 0.82,
+      "localTier": "best",
+      "stem": "Which statement by the patient indicates a need for further counseling?"
+    },
+    {
+      "id": "cmra5puho00061ymcdxf8oa9x",
+      "subjectId": "patient-counseling",
+      "itemType": "mcq",
+      "blueprintTopic": "pediatric dosing",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": false,
+      "localScore": 0.82,
+      "localTier": "best",
+      "stem": "Which laboratory value warrants a therapeutic change?"
+    },
+    {
+      "id": "cmr4bs1lm000p1ycjlsqhyold",
+      "subjectId": "infectious-disease-rx",
+      "itemType": "vignette",
+      "blueprintTopic": "hypertension",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "Which statement by the patient indicates a need for further counseling?"
+    },
+    {
+      "id": "cmr4bs1pa000q1ycjpmpkgubf",
+      "subjectId": "infectious-disease-rx",
+      "itemType": "vignette",
+      "blueprintTopic": "opioid stewardship",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.7999999999999999,
+      "localTier": "best",
+      "stem": "Which finding requires immediate follow-up?"
+    },
+    {
+      "id": "cmsfy4i92000p1yth695vs2mk",
+      "subjectId": "patient-counseling",
+      "itemType": "vignette",
+      "blueprintTopic": "ismp-high-alert-meds",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "What action should the pharmacist take regarding the patient's warfarin therapy?"
+    },
+    {
+      "id": "cmsfy4ibz000q1ytha7uv847u",
+      "subjectId": "patient-counseling",
+      "itemType": "vignette",
+      "blueprintTopic": "look-alike-sound-alike",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": false,
+      "localScore": 0.86,
+      "localTier": "best",
+      "stem": "What is the most appropriate action for the pharmacist to take after discovering this dispensing error?"
+    },
+    {
+      "id": "cmsfy5mw3000r1ythe2g3pqcj",
+      "subjectId": "patient-counseling",
+      "itemType": "vignette",
+      "blueprintTopic": "prescription-verification",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": false,
+      "localScore": 0.96,
+      "localTier": "best",
+      "stem": "What is the most appropriate action for the pharmacist to take regarding the new digoxin prescription?"
+    },
+    {
+      "id": "cmsfy5myv000s1ythixremqtp",
+      "subjectId": "patient-counseling",
+      "itemType": "vignette",
+      "blueprintTopic": "dispensing-labeling-auxiliary",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "Which auxiliary label should be included on the warfarin prescription bottle?"
+    },
+    {
+      "id": "cmsfy5n1n000t1ytheg8b36p8",
+      "subjectId": "pharmacokinetics",
+      "itemType": "vignette",
+      "blueprintTopic": "tdm-vancomycin-aminoglycosides",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "What is the most appropriate action for the pharmacist regarding the vancomycin dosing regimen?"
+    },
+    {
+      "id": "cmsfy5n4n000u1yth26ll8qqp",
+      "subjectId": "patient-counseling",
+      "itemType": "vignette",
+      "blueprintTopic": "adherence-barriers-assessment",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "What is the most appropriate intervention to improve the patient's medication adherence?"
+    },
+    {
+      "id": "cmsfy5n7m000v1yth5yjfrbzi",
+      "subjectId": "patient-counseling",
+      "itemType": "vignette",
+      "blueprintTopic": "medication-reconciliation",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": false,
+      "localScore": 0.86,
+      "localTier": "best",
+      "stem": "What is the most appropriate recommendation for the pharmacist to make during medication reconciliation?"
+    },
+    {
+      "id": "cmsfy5naa000w1ythlg3oiu1z",
+      "subjectId": "patient-counseling",
+      "itemType": "vignette",
+      "blueprintTopic": "administration-devices-inhalers",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": false,
+      "localScore": 0.86,
+      "localTier": "best",
+      "stem": "What is the most appropriate step for the pharmacist to take to address the patient's asthma control?"
+    },
+    {
+      "id": "cmsfy5nh8000x1ythpbywjswd",
+      "subjectId": "patient-counseling",
+      "itemType": "vignette",
+      "blueprintTopic": "ismp-high-alert-meds",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": true,
+      "localScore": 0.96,
+      "localTier": "best",
+      "stem": "What is the most appropriate recommendation for the pharmacist to make regarding the administration of IV furosemide?"
+    },
+    {
+      "id": "cmsfy5nm4000y1yth39daizk1",
+      "subjectId": "patient-counseling",
+      "itemType": "vignette",
+      "blueprintTopic": "look-alike-sound-alike",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "What is the most appropriate action for the pharmacist to take to prevent a dispensing error?"
+    },
+    {
+      "id": "cmr4i26j8003r1yei2h4ylr3a",
+      "subjectId": "infectious-disease-rx",
+      "itemType": "vignette",
+      "blueprintTopic": "heart failure GDMT",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "Which medication is the best choice?"
+    },
+    {
+      "id": "cmr4i26mv003s1yeiyg358u8k",
+      "subjectId": "infectious-disease-rx",
+      "itemType": "vignette",
+      "blueprintTopic": "anticoagulation",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "Which monitoring parameter is most critical?"
+    },
+    {
+      "id": "cmr4i26ri003t1yei11j6xxr3",
+      "subjectId": "infectious-disease-rx",
+      "itemType": "vignette",
+      "blueprintTopic": "diabetes pharmacotherapy",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.7999999999999999,
+      "localTier": "best",
+      "stem": "Which counseling point is most important for this patient?"
+    },
+    {
+      "id": "cmr4i26xn003u1yeij9tth6r8",
+      "subjectId": "infectious-disease-rx",
+      "itemType": "vignette",
+      "blueprintTopic": "community-acquired pneumonia",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.7999999999999999,
+      "localTier": "best",
+      "stem": "Which medication is the best choice for prophylaxis of his migraines?"
+    },
+    {
+      "id": "cmr4i2725003v1yeitj3932nx",
+      "subjectId": "infectious-disease-rx",
+      "itemType": "vignette",
+      "blueprintTopic": "hypertension",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "Which finding requires immediate follow-up?"
+    },
+    {
+      "id": "cmr4i276o003w1yeiqbvbv7qo",
+      "subjectId": "infectious-disease-rx",
+      "itemType": "vignette",
+      "blueprintTopic": "opioid stewardship",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.7999999999999999,
+      "localTier": "best",
+      "stem": "Which medication is the best choice to add to her regimen?"
+    },
+    {
+      "id": "cmr4i27as003x1yei57rfmttb",
+      "subjectId": "infectious-disease-rx",
+      "itemType": "vignette",
+      "blueprintTopic": "sepsis antibiotics",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.7999999999999999,
+      "localTier": "best",
+      "stem": "Which alternative therapy is most appropriate?"
+    },
+    {
+      "id": "cmr4i27eb003y1yeiw5mofrjf",
+      "subjectId": "infectious-disease-rx",
+      "itemType": "vignette",
+      "blueprintTopic": "asthma/COPD inhalers",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "Which laboratory value warrants a therapeutic change?"
+    },
+    {
+      "id": "cmr4i27ia003z1yeivs4tmsuu",
+      "subjectId": "infectious-disease-rx",
+      "itemType": "vignette",
+      "blueprintTopic": "heart failure GDMT",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.7999999999999999,
+      "localTier": "best",
+      "stem": "Which recommendation is most appropriate for this patient?"
+    },
+    {
+      "id": "cmr4i27lv00401yeiqdl3qs0l",
+      "subjectId": "infectious-disease-rx",
+      "itemType": "vignette",
+      "blueprintTopic": "anticoagulation",
+      "blueprintDomain": "naplex-area3-treatment-planning",
+      "looksLikeCalc": false,
+      "localScore": 0.7999999999999999,
+      "localTier": "best",
+      "stem": "Which action should the pharmacist take first?"
+    },
+    {
+      "id": "cmr0ul2kx004s1yifi49n4aot",
+      "subjectId": "patient-counseling",
+      "itemType": "vignette",
+      "blueprintTopic": "controlled substance monitoring",
+      "blueprintDomain": "naplex-area4-safety",
+      "looksLikeCalc": false,
+      "localScore": 0.7999999999999999,
+      "localTier": "best",
+      "stem": "What is the most appropriate initial management step for this patient?"
+    },
+    {
+      "id": "cmr0ul2s0004t1yif0ozg1k0z",
+      "subjectId": "patient-counseling",
+      "itemType": "vignette",
+      "blueprintTopic": "collaborative practice",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": false,
+      "localScore": 0.86,
+      "localTier": "best",
+      "stem": "Which medication is the best choice to manage this patient's hypertension considering her renal function?"
+    },
+    {
+      "id": "cmr0ul2v1004u1yifjuzri3z4",
+      "subjectId": "patient-counseling",
+      "itemType": "vignette",
+      "blueprintTopic": "transitions of care",
+      "blueprintDomain": "naplex-area2-therapeutics",
+      "looksLikeCalc": false,
+      "localScore": 0.8999999999999999,
+      "localTier": "best",
+      "stem": "Which monitoring parameter is most critical for this patient following the initiation of tiotropium?"
+    }
+  ]
+}

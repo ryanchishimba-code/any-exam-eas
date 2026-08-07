@@ -701,17 +701,19 @@ async function main() {
     let safetyFrac = foundationsHealthy ? 0.4 : 0.25;
     let managementFrac = 0;
     if (opts.bias === "calcs") {
-      d1Frac = 0.55;
-      safetyFrac = 0.15;
-      d2Frac = 0.15;
+      // Near-pure Domain 1 foundations fill (outline ~25%).
+      d1Frac = 0.85;
+      safetyFrac = 0.05;
+      d2Frac = 0.05;
     } else if (opts.bias === "safety") {
       d1Frac = 0.08;
       safetyFrac = 0.75;
       managementFrac = 0.1;
     } else if (opts.bias === "management") {
-      d1Frac = 0.08;
-      safetyFrac = 0.15;
-      managementFrac = 0.7;
+      // Near-pure Domain 5 management fill (outline ~5%).
+      d1Frac = 0.05;
+      safetyFrac = 0.05;
+      managementFrac = 0.9;
     } else if (opts.bias === "domain3") {
       d1Frac = 0.15;
       safetyFrac = 0.2;

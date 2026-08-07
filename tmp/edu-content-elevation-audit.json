@@ -1,0 +1,258 @@
+{
+  "checkedAt": "2026-07-15T01:13:34.304Z",
+  "standard": {
+    "nclex": "NCLEX-RN 2026 Client Needs + NGN CJMM item types",
+    "naplex": "NABP NAPLEX Content Outline (May 2025 / 2026) 5 domains"
+  },
+  "rationaleTemplateVersion": {
+    "nclex": "nclex-expert-v1 → generationMeta.expertRationale",
+    "naplex": "structured + rationaleEnrichedAt (board expert pipeline)"
+  },
+  "nclex": {
+    "fieldId": "nursing",
+    "active": 6348,
+    "serve": 6304,
+    "distinctBlueprintTopics": 176,
+    "missingBlueprintTopic": 39,
+    "missingBlueprintDomain": 18,
+    "expertRationaleCount": 330,
+    "expertPct": 5.2,
+    "rationaleEnrichedCount": 330,
+    "enrichedPct": 5.2,
+    "bySubject": {
+      "management-of-care": 1127,
+      "pharmacology-nursing": 1005,
+      "physiological-adaptation": 893,
+      "safety-infection": 821,
+      "reduction-risk": 746,
+      "health-promotion": 579,
+      "basic-care-comfort": 559,
+      "psychosocial": 540,
+      "pediatrics-nursing": 11,
+      "med-surg": 10,
+      "maternal-child": 9,
+      "fundamentals": 4
+    },
+    "byType": {
+      "vignette": 5918,
+      "ordered_response": 4,
+      "ngn_bowtie": 8,
+      "select_all": 173,
+      "ngn_matrix": 14,
+      "case_study": 4,
+      "mcq": 76,
+      "ngn_highlight": 107
+    },
+    "byDomain": {
+      "nclex-physiological": 2811,
+      "nclex-safe-care": 1824,
+      "nclex-health-promotion": 1028,
+      "pharmacology": 166,
+      "physiological-adaptation": 112,
+      "basic-care": 84,
+      "safety-infection": 73,
+      "health-promotion": 68,
+      "risk-reduction": 50,
+      "management-of-care": 48,
+      "psychosocial": 20,
+      "nclex-psychosocial": 2
+    },
+    "ngnGaps": {
+      "select_all": {
+        "have": 173,
+        "target": 500,
+        "gap": 327
+      },
+      "ngn_bowtie": {
+        "have": 8,
+        "target": 150,
+        "gap": 142
+      },
+      "ngn_matrix": {
+        "have": 14,
+        "target": 100,
+        "gap": 86
+      },
+      "ordered_response": {
+        "have": 4,
+        "target": 75,
+        "gap": 71
+      },
+      "ngn_highlight": {
+        "have": 107,
+        "target": 50,
+        "gap": 0
+      },
+      "case_study": {
+        "have": 4,
+        "target": 180,
+        "gap": 176
+      }
+    },
+    "clientNeedsExpected": [
+      {
+        "id": "management-of-care",
+        "label": "Management of Care",
+        "weightPct": {
+          "min": 15,
+          "max": 21
+        },
+        "serve": 1127
+      },
+      {
+        "id": "safety-infection",
+        "label": "Safety and Infection Prevention and Control",
+        "weightPct": {
+          "min": 10,
+          "max": 16
+        },
+        "serve": 821
+      },
+      {
+        "id": "health-promotion",
+        "label": "Health Promotion and Maintenance",
+        "weightPct": {
+          "min": 6,
+          "max": 12
+        },
+        "serve": 579
+      },
+      {
+        "id": "psychosocial",
+        "label": "Psychosocial Integrity",
+        "weightPct": {
+          "min": 6,
+          "max": 12
+        },
+        "serve": 540
+      },
+      {
+        "id": "basic-care-comfort",
+        "label": "Basic Care and Comfort",
+        "weightPct": {
+          "min": 6,
+          "max": 12
+        },
+        "serve": 559
+      },
+      {
+        "id": "pharmacology-nursing",
+        "label": "Pharmacological and Parenteral Therapies",
+        "weightPct": {
+          "min": 13,
+          "max": 19
+        },
+        "serve": 1005
+      },
+      {
+        "id": "reduction-risk",
+        "label": "Reduction of Risk Potential",
+        "weightPct": {
+          "min": 9,
+          "max": 15
+        },
+        "serve": 746
+      },
+      {
+        "id": "physiological-adaptation",
+        "label": "Physiological Adaptation",
+        "weightPct": {
+          "min": 11,
+          "max": 17
+        },
+        "serve": 893
+      }
+    ],
+    "flags": [
+      "expert_rationale_coverage_low:5.2%",
+      "ngn_gap:select_all:327",
+      "ngn_gap:ngn_bowtie:142",
+      "ngn_gap:ngn_matrix:86",
+      "ngn_gap:ordered_response:71",
+      "ngn_gap:case_study:176"
+    ]
+  },
+  "naplex": {
+    "fieldId": "pharmacy",
+    "active": 7729,
+    "serve": 7604,
+    "distinctBlueprintTopics": 47,
+    "missingBlueprintTopic": 61,
+    "missingBlueprintDomain": 0,
+    "expertRationaleCount": 0,
+    "expertPct": 0,
+    "rationaleEnrichedCount": 100,
+    "enrichedPct": 1.3,
+    "bySubject": {
+      "patient-counseling": 2169,
+      "compounding-calculations": 1225,
+      "pharmacology": 1123,
+      "cardiovascular-rx": 993,
+      "otc-self-care": 611,
+      "infectious-disease-rx": 604,
+      "cns-rx": 360,
+      "endocrine-rx": 355,
+      "pharmacy-law": 123,
+      "pharmaceutics": 39,
+      "pharmacokinetics": 2
+    },
+    "byType": {
+      "exhibit": 3,
+      "vignette": 6802,
+      "ordered_response": 6,
+      "constructed_response": 55,
+      "select_all": 60,
+      "case_based": 20,
+      "mcq": 434,
+      "ngn_highlight": 224
+    },
+    "byDomain": {
+      "naplex-2026-pharmacotherapy": 2321,
+      "naplex-2026-medication-dispensing": 1221,
+      "naplex-2026-pharmacist-tasks": 1176,
+      "naplex-2026-patient-centered-care": 1133,
+      "naplex-2026-drug-information": 1120,
+      "naplex-2026-health-wellness": 611,
+      "naplex-area3-treatment-planning": 11,
+      "naplex-area1-foundations": 4,
+      "naplex-area4-safety": 4,
+      "naplex-area2-therapeutics": 3
+    },
+    "outlineGaps": [
+      {
+        "id": "naplex-area1-foundations",
+        "label": "Foundational Knowledge for Pharmacy Practice",
+        "weight": "~25%",
+        "proxyServe": 2389
+      },
+      {
+        "id": "naplex-area2-therapeutics",
+        "label": "Medication Use Process",
+        "weight": "~25%",
+        "proxyServe": 2397
+      },
+      {
+        "id": "naplex-area3-treatment-planning",
+        "label": "Person-Centered Assessment & Treatment Planning",
+        "weight": "~40%",
+        "proxyServe": 4633
+      },
+      {
+        "id": "naplex-area4-safety",
+        "label": "Professional Practice",
+        "weight": "Professional practice",
+        "proxyServe": 2292
+      },
+      {
+        "id": "naplex-area5-management",
+        "label": "Pharmacy Management & Leadership",
+        "weight": "Management & leadership",
+        "proxyServe": 611
+      }
+    ],
+    "flags": [
+      "enriched_rationale_coverage_low:1.3%",
+      "critical_pk_underbuild"
+    ]
+  }
+}

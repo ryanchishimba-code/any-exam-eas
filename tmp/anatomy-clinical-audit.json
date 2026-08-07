@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-07-18T13:15:06.576Z",
+  "structures": 262,
+  "curatedCount": 102,
+  "generatedCount": 206,
+  "highYieldWithGuidelines": 93,
+  "clinicalDepth": {
+    "highYieldCurated": 93,
+    "withBestDiagnosis": 93,
+    "withTreatmentRationale": 93,
+    "missingBestDiagnosis": [],
+    "missingTreatmentRationale": [],
+    "missingDrugRationale": [],
+    "missingSharedMoa": []
+  },
+  "orphanDrugs": [],
+  "corePathologyCoverage": 104,
+  "uncoveredCorePathologies": [],
+  "weakGenerated": [],
+  "issues": [],
+  "errorCount": 0,
+  "warnCount": 0
+}

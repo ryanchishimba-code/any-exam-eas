@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-07-21T07:11:48.108Z",
+  "fieldId": "usmle-step-3",
+  "active": 10389,
+  "serve": 9413,
+  "bySubject": {
+    "internal-medicine": 2952,
+    "emergency-medicine": 1443,
+    "pediatrics": 1019,
+    "obgyn": 931,
+    "cardiology": 854,
+    "nephrology": 628,
+    "neurology": 534,
+    "pulmonology": 498,
+    "psychiatry": 432,
+    "pharmacology": 119,
+    "biostatistics": 2,
+    "obstetrics": 1
+  },
+  "byType": {
+    "abstract": 2,
+    "biostats": 757,
+    "ethics": 801,
+    "exhibit": 7,
+    "vignette": 2434,
+    "drug_ad": 3,
+    "sequential": 693,
+    "ccs_prompt": 7,
+    "mcq": 4709
+  },
+  "enrichedRationales": 4500,
+  "enrichedPct": 47.8,
+  "gapScores": {
+    "biostats": 757,
+    "ethics": 801,
+    "abstract": 2,
+    "drug_ad": 3,
+    "ccs_prompt": 7,
+    "sequential": 693,
+    "formatPool": 2263,
+    "ccsPool": 700
+  },
+  "targets": {
+    "biostats": 200,
+    "ethics": 150,
+    "abstract": 80,
+    "drug_ad": 80,
+    "ccs_prompt": 120,
+    "enrichedPct": 15,
+    "formatPool": 600
+  },
+  "flags": [
+    "abstract_thin",
+    "drug_ad_thin",
+    "ccs_prompt_thin"
+  ]
+}

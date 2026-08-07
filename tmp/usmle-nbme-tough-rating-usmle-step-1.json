@@ -1,0 +1,518 @@
+{
+  "checkedAt": "2026-08-06T03:01:42.766Z",
+  "model": "gpt-4o",
+  "standard": "NBME/USMLE UWorld-bar proxy",
+  "structure": {
+    "fieldId": "usmle-step-1",
+    "active": 3519,
+    "serve": 3399,
+    "enrichedCount": 3178,
+    "enrichedPct": 93.5,
+    "bySubject": {
+      "biochemistry": 536,
+      "microbiology": 511,
+      "pathology": 433,
+      "pharmacology": 398,
+      "anatomy": 320,
+      "physiology": 246,
+      "hematology": 221,
+      "nephrology": 216,
+      "hepatology": 201,
+      "biostatistics": 155,
+      "ethics": 126,
+      "internal-medicine": 14,
+      "pulmonology": 8,
+      "cardiology": 4,
+      "psychiatry": 4,
+      "neurology": 3,
+      "obgyn": 3
+    },
+    "byType": {
+      "biostats": 73,
+      "exhibit": 130,
+      "vignette": 1703,
+      "sequential": 84,
+      "mcq": 1409
+    },
+    "thinSubjects": [
+      {
+        "subjectId": "internal-medicine",
+        "n": 14
+      },
+      {
+        "subjectId": "pulmonology",
+        "n": 8
+      },
+      {
+        "subjectId": "cardiology",
+        "n": 4
+      },
+      {
+        "subjectId": "psychiatry",
+        "n": 4
+      },
+      {
+        "subjectId": "neurology",
+        "n": 3
+      },
+      {
+        "subjectId": "obgyn",
+        "n": 3
+      }
+    ]
+  },
+  "itemScores": [
+    {
+      "id": "cmr8dyo0u007q1yazqt84dhk7",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Clear clinical presentation",
+        "Relevant laboratory findings"
+      ],
+      "weaknesses": [
+        "Explanation lacks depth in discussing why other options are incorrect"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr8dyo3s007r1yaz5b1ycrk6",
+      "score": 6,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Good use of clinical signs like Murphy's sign"
+      ],
+      "weaknesses": [
+        "Explanation is cut off, missing complete reasoning for incorrect options"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmq0g7jl7003y1y4fxm86zwir",
+      "score": 5,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Clear presentation of stroke symptoms"
+      ],
+      "weaknesses": [
+        "Non-vignette format",
+        "Missing clinical integration with microbiology topic"
+      ],
+      "criticalFlags": [
+        "Mismatch between subject and content"
+      ]
+    },
+    {
+      "id": "cmq0g7jnv003z1y4fhxca6osf",
+      "score": 6,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Clear presentation of preeclampsia features"
+      ],
+      "weaknesses": [
+        "Explanation is cut off, missing complete reasoning for incorrect options"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr8ccjxd01661yw2p1anttp1",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Clear clinical presentation of ischemic stroke"
+      ],
+      "weaknesses": [
+        "Explanation is cut off, missing complete reasoning for incorrect options"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr8cck0b01671yw2z6g4up2m",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Clear presentation of SSRI withdrawal symptoms"
+      ],
+      "weaknesses": [
+        "Explanation is cut off, missing complete reasoning for incorrect options"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmqkgns000ezml304vh4lnbx9",
+      "score": 8,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Clear clinical vignette",
+        "Correct mechanism explanation"
+      ],
+      "weaknesses": [
+        "Distractors could be stronger"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmqkgns0w0f0dl304ndsr2wsy",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Relevant clinical scenario",
+        "Correct mechanism"
+      ],
+      "weaknesses": [
+        "Distractors are weak and not plausible"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmpnjhn4q00p61ymxn7z6xe5z",
+      "score": 5,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Correct mechanism identified"
+      ],
+      "weaknesses": [
+        "Repetitive vignette",
+        "Weak distractors",
+        "Lack of clinical integration"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmpnjhnb600pd1ymxsdkadago",
+      "score": 5,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Correct mechanism identified"
+      ],
+      "weaknesses": [
+        "Repetitive vignette",
+        "Weak distractors",
+        "Lack of clinical integration"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr8adxa800t31yw24cymq8r1",
+      "score": 9,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Strong clinical vignette",
+        "Correct mechanism explanation",
+        "Good clinical integration"
+      ],
+      "weaknesses": [],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr8adxhn00t51yw2f4ez0wlk",
+      "score": 8,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Clear clinical vignette",
+        "Correct mechanism explanation"
+      ],
+      "weaknesses": [
+        "Distractors could be more challenging"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrpvuw6c00061yh5acmkpbof",
+      "score": 6,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Clear vignette with relevant clinical details",
+        "Correct pathophysiological explanation"
+      ],
+      "weaknesses": [
+        "Options could be more challenging",
+        "Explanation lacks depth for incorrect options"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrpvuw9500071yh5mo0pstv8",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Relevant clinical scenario for SLE",
+        "Correct diagnosis with supporting lab findings"
+      ],
+      "weaknesses": [
+        "Options could be more challenging",
+        "Explanation for incorrect options is incomplete"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrrtm6fc004n1y8wh427mmqo",
+      "score": 8,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Strong vignette with clear clinical presentation",
+        "Correct diagnosis with classic findings"
+      ],
+      "weaknesses": [
+        "Explanation for incorrect options could be more detailed"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrrtm6is004o1y8w0grll80h",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Clear explanation of warfarin's mechanism",
+        "Relevant clinical scenario"
+      ],
+      "weaknesses": [
+        "Options could be more challenging"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrpwiviq006i1yrtnrhgws4q",
+      "score": 5,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Clear vignette with relevant symptoms"
+      ],
+      "weaknesses": [
+        "Options are too straightforward",
+        "Lacks depth in explanation for incorrect options"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrpwivmb006j1yrtgnldm6hy",
+      "score": 6,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Relevant clinical scenario for stroke"
+      ],
+      "weaknesses": [
+        "Options could be more challenging",
+        "Explanation lacks depth for incorrect options"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrruxupb00m61y8wxfpj3vq6",
+      "score": 6,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Clear vignette with relevant clinical details",
+        "Correct answer aligns with common clinical knowledge"
+      ],
+      "weaknesses": [
+        "Options could be more challenging",
+        "Explanation lacks depth in discussing why other options are incorrect"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrruxus600m71y8w3fcooit6",
+      "score": 5,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Vignette presents a clear clinical scenario"
+      ],
+      "weaknesses": [
+        "Options are not challenging; the correct answer is too obvious",
+        "Explanation is incomplete and lacks depth"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr89p34d00nn1yw2ctz2kntq",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Vignette provides a clear clinical picture",
+        "Correct answer is relevant to clinical practice"
+      ],
+      "weaknesses": [
+        "Options could be more challenging",
+        "Explanation could be more comprehensive"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr89p3ad00no1yw2c3le2tdz",
+      "score": 6,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Vignette presents a relevant clinical scenario"
+      ],
+      "weaknesses": [
+        "Options are not equally plausible",
+        "Explanation lacks depth in discussing incorrect options"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmpnjj5a6088t1ymxvqlm63v9",
+      "score": 8,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Strong clinical vignette with clear presentation of DKA",
+        "Correct answer is well-explained"
+      ],
+      "weaknesses": [
+        "Some distractors are weak and not plausible"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmpnjj5a6088w1ymxwmldeldg",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Vignette clearly describes acute pancreatitis",
+        "Correct answer is relevant to clinical practice"
+      ],
+      "weaknesses": [
+        "Some distractors are not plausible",
+        "Explanation could be more detailed"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr8ei1xf009t1yazy6xurc1d",
+      "score": 7,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Clear clinical vignette",
+        "Relevant differential diagnosis"
+      ],
+      "weaknesses": [
+        "Explanation lacks depth on why other options are incorrect"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr8f0ke400cu1yaz89mfr18a",
+      "score": 8,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Strong clinical presentation of PCOS",
+        "Good differential diagnosis"
+      ],
+      "weaknesses": [
+        "Explanation could expand on why other options are incorrect"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr8dn2ia003g1yazc25kz6uu",
+      "score": 5,
+      "wouldAppearOnUsmle": false,
+      "strengths": [
+        "Clear vignette for STEMI"
+      ],
+      "weaknesses": [
+        "Misclassified as biostats",
+        "Lacks depth in explanation of incorrect options"
+      ],
+      "criticalFlags": [
+        "Misclassification of item type"
+      ]
+    },
+    {
+      "id": "cmr8dn2lw003h1yaz9obme2z7",
+      "score": 6,
+      "wouldAppearOnUsmle": true,
+      "strengths": [
+        "Addresses common pathophysiology in CKD"
+      ],
+      "weaknesses": [
+        "Explanation is somewhat superficial",
+        "Misclassified as biostats"
+      ],
+      "criticalFlags": [
+        "Misclassification of item type"
+      ]
+    }
+  ],
+  "bank": {
+    "overallScore": 5,
+    "overallLetter": "C",
+    "dimensions": [
+      {
+        "name": "Bank size & dedicated volume",
+        "score": 7,
+        "letter": "B",
+        "evidence": "The bank has a substantial number of items (3519 active, 3399 served), with a high enrichment percentage (93.5%).",
+        "gap": "While the volume is impressive, the distribution across subjects is uneven, with some critical areas like cardiology and neurology underrepresented."
+      },
+      {
+        "name": "NBME blueprint / systems coverage",
+        "score": 4,
+        "letter": "C",
+        "evidence": "The distribution of questions is heavily skewed towards basic sciences like biochemistry and microbiology, with clinical subjects like cardiology and neurology having very few items.",
+        "gap": "The lack of balance in subject coverage means that students may not be adequately prepared for the full range of topics on the USMLE."
+      },
+      {
+        "name": "Item craft (stem/options/clinical reasoning)",
+        "score": 5,
+        "letter": "C",
+        "evidence": "Many items suffer from weak distractors and lack depth in explanations, with several items not meeting USMLE standards.",
+        "gap": "Improvement is needed in crafting more challenging options and providing comprehensive rationales for incorrect answers."
+      },
+      {
+        "name": "Basic-science ↔ clinical integration",
+        "score": 5,
+        "letter": "C",
+        "evidence": "There is a noted lack of clinical integration in many items, with some misclassified as biostats and others missing clinical reasoning.",
+        "gap": "Better integration of basic science concepts with clinical scenarios is necessary to enhance learning and application."
+      },
+      {
+        "name": "Biostats / ethics / CCS readiness",
+        "score": 4,
+        "letter": "C",
+        "evidence": "Biostatistics and ethics are present but not robustly covered, with some misclassifications noted.",
+        "gap": "A more thorough and accurate representation of biostats and ethics is needed to ensure readiness."
+      },
+      {
+        "name": "Rationale / teachability",
+        "score": 5,
+        "letter": "C",
+        "evidence": "Explanations often lack depth, with many cut off or missing complete reasoning for incorrect options.",
+        "gap": "Enhancing the depth and completeness of rationales would improve the educational value of the bank."
+      },
+      {
+        "name": "High-yield disease & pharm readiness",
+        "score": 6,
+        "letter": "B",
+        "evidence": "High-yield topics are covered, but the lack of balance in subject distribution affects readiness.",
+        "gap": "Ensuring a more balanced coverage of high-yield topics across all subjects would improve readiness."
+      },
+      {
+        "name": "Quality gates & consistency",
+        "score": 5,
+        "letter": "C",
+        "evidence": "Inconsistencies in item classification and quality of distractors are noted.",
+        "gap": "Implementing stricter quality control measures would enhance consistency and reliability."
+      }
+    ],
+    "examTakerVerdict": "The QBank provides a substantial volume of questions, but the uneven subject distribution and lack of depth in explanations may limit its effectiveness as a comprehensive study tool. Improvements in item craft and clinical integration are needed to meet UWorld-level standards.",
+    "topStrengths": [
+      "Substantial volume of questions with high enrichment percentage.",
+      "Coverage of high-yield topics in basic sciences.",
+      "Presence of biostatistics and ethics questions."
+    ],
+    "topGaps": [
+      "Uneven distribution across subjects, with clinical areas underrepresented.",
+      "Weak distractors and lack of depth in explanations.",
+      "Insufficient clinical integration and reasoning."
+    ],
+    "prioritizedActions": [
+      "Increase the number of questions in underrepresented clinical subjects like cardiology and neurology.",
+      "Enhance the quality of distractors and provide comprehensive rationales for all options.",
+      "Improve the integration of basic science concepts with clinical scenarios.",
+      "Implement stricter quality control measures to ensure consistency and accuracy.",
+      "Expand the coverage and depth of biostatistics and ethics questions."
+    ]
+  }
+}
