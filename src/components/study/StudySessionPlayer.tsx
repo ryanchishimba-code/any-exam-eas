@@ -81,8 +81,8 @@ export function StudySessionPlayer({
   onComplete,
   returnTo,
 }: Props) {
-  const initial = useMemo(
-    () => {
+  const initial = useMemo(() => {
+    try {
       const created = createStudySession({
         questions: rawQuestions,
         field,
@@ -97,9 +97,28 @@ export function StudySessionPlayer({
         created.session.adaptiveMeta = adaptiveMeta;
       }
       return created;
-    },
-    [rawQuestions, field, subjectId, sourceType, sourceId, mode, adaptiveMeta, timedSessionSeconds]
-  );
+    } catch (error) {
+      console.error("[StudySessionPlayer] failed to create session", error);
+      // Fall back to an empty session shell so the page error boundary is not triggered.
+      const now = new Date().toISOString();
+      return {
+        session: {
+          sessionId: `sess-fallback-${Date.now()}`,
+          mode: mode ?? "practice",
+          field,
+          subjectId,
+          sourceType,
+          sourceId,
+          order: [],
+          currentIndex: 0,
+          answers: {},
+          startedAt: now,
+          updatedAt: now,
+        } satisfies StudySessionState,
+        questions: [] as StudyQuestion[],
+      };
+    }
+  }, [rawQuestions, field, subjectId, sourceType, sourceId, mode, adaptiveMeta, timedSessionSeconds]);
 
   const [sessionState, setSessionState] = useState<StudySessionState>(initial.session);
   const [questionList] = useState<StudyQuestion[]>(initial.questions);
@@ -487,6 +506,21 @@ export function StudySessionPlayer({
   }, [complete, summary, onComplete, sourceId, sourceType]);
 
   if (!current) {
+    if (questionList.length === 0) {
+      return (
+        <div className={`${studyUi.sessionShell} mt-8 space-y-4 p-6 text-center`}>
+          <h2 className="text-lg font-semibold text-[var(--color-ink)]">Couldn’t start this session</h2>
+          <p className="text-sm text-[var(--color-ink-muted)]">
+            No usable questions loaded for this attempt. Go back and try again — if this keeps
+            happening, pick a different topic or shorten the session.
+          </p>
+          <EndActivityControl
+            kind={sourceType === "exam" || sessionState.mode === "timed" ? "exam" : "activity"}
+            onConfirm={exitSession}
+          />
+        </div>
+      );
+    }
     if (returnTo) {
       return (
         <TopicPracticeReturnCompletion

@@ -17,8 +17,11 @@ import {
   parseBowTieLayout,
   parseMatrixLayout,
 } from "./ngn-structures";
+import { coerceOptionList } from "./option-coerce";
 import { shufflePreservingSequentialSets } from "./sequential-sets";
 import type { RawQuestionInput, StudyQuestion, StudyQuestionType } from "./types";
+
+export { coerceOptionList } from "./option-coerce";
 
 function toCorrectAnswers(type: StudyQuestionType, correct: string, options: string[] = []): string[] {
   if (type === "drag_drop") {
@@ -60,18 +63,18 @@ export function examQuestionToStudy(
   opts?: { shuffleOptions?: boolean }
 ): StudyQuestion {
   const type = inferStudyQuestionType(q);
-  let options = q.options ?? [];
-  let correctAnswer = q.correctAnswer;
+  let options = coerceOptionList(q.options);
+  let correctAnswer = String(q.correctAnswer ?? "");
 
   if (type === "true_false") {
     options = ["True", "False"];
     const c = cleanOptionText(correctAnswer).toLowerCase();
     correctAnswer = c.startsWith("t") ? "True" : "False";
   } else if (type === "bow_tie") {
-    const layout = parseBowTieLayout(q);
+    const layout = parseBowTieLayout({ ...q, options, correctAnswer });
     options = [...layout.actions, ...layout.monitors];
   } else if (type === "matrix") {
-    const layout = parseMatrixLayout(q);
+    const layout = parseMatrixLayout({ ...q, options, correctAnswer });
     options = matrixOptionsFromLayout(layout);
   } else if (type === "highlight") {
     options = toCorrectAnswers(type, correctAnswer);
@@ -121,6 +124,10 @@ export function examQuestionToStudy(
     }
   }
 
+  if (!stem) {
+    stem = vignette?.slice(0, 160) || "Clinical judgment item";
+  }
+
   return {
     id: `q-${index + 1}-${hashStem(stem)}`,
     sourceIndex: q.id ?? index + 1,
@@ -154,7 +161,18 @@ export function prepareQuestionsForSession(
   raw: RawQuestionInput[],
   opts?: { shuffleOrder?: boolean }
 ): StudyQuestion[] {
-  const prepared = raw.map((q, i) => examQuestionToStudy(q, i));
+  const prepared: StudyQuestion[] = [];
+  for (let i = 0; i < raw.length; i++) {
+    try {
+      prepared.push(examQuestionToStudy(raw[i]!, i));
+    } catch (error) {
+      console.warn(
+        "[prepareQuestionsForSession] skipped bad item",
+        raw[i]?.bankItemId ?? raw[i]?.id ?? i,
+        error instanceof Error ? error.message : error
+      );
+    }
+  }
 
   if (opts?.shuffleOrder === false) return prepared;
 

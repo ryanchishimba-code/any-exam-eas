@@ -119,7 +119,19 @@ function blockIcon(kind: VisualRationaleBlock["kind"]) {
 }
 
 export function RationaleVisualPanel({ blocks }: { blocks: VisualRationaleBlock[] }) {
-  if (blocks.length === 0) return null;
+  if (!Array.isArray(blocks) || blocks.length === 0) return null;
+
+  const safeBlocks = blocks.filter((block) => {
+    if (!block || typeof block !== "object" || !("kind" in block)) return false;
+    if (block.kind === "lab_table") return Array.isArray(block.rows);
+    if (block.kind === "comparison") {
+      return Array.isArray(block.headers) && Array.isArray(block.rows);
+    }
+    if (block.kind === "flow") return Array.isArray(block.steps);
+    return false;
+  });
+
+  if (safeBlocks.length === 0) return null;
 
   return (
     <div className="space-y-3" aria-label="Visual rationale aids">
@@ -127,7 +139,7 @@ export function RationaleVisualPanel({ blocks }: { blocks: VisualRationaleBlock[
         <Table2 className="h-3.5 w-3.5" aria-hidden />
         Clinical reference
       </p>
-      {blocks.map((block) => {
+      {safeBlocks.map((block) => {
         const Icon = blockIcon(block.kind);
         return (
           <div key={`${block.kind}-${block.title}`}>

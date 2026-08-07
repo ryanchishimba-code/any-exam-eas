@@ -1,5 +1,6 @@
 import type { ExamQuestion } from "@/lib/ai";
 import { stripShiftNotes } from "@/lib/questions/shift-notes";
+import { coerceOptionList } from "@/lib/questions/option-coerce";
 import type { BankItem } from "@/lib/question-bank";
 import type { ExamItemType } from "./types";
 
@@ -90,7 +91,8 @@ export function ngnPayloadToChartData(
 
 function splitStemAndVignette(item: BankItem): { vignette?: string; stem: string } {
   const vignette = stripShiftNotes(item.vignette?.trim() || item.scenario?.trim() || "");
-  const q = item.question.trim();
+  const q = String(item.question ?? "").trim();
+  if (!q) return { vignette: vignette || undefined, stem: vignette?.slice(0, 160) || "Clinical judgment item" };
   if (vignette && q.startsWith(vignette)) {
     const stem = q.slice(vignette.length).replace(/^\s*\n+\s*/, "").trim();
     return { vignette, stem: stem || q };
@@ -114,7 +116,7 @@ export function bankItemToExamQuestion(
   const type = itemTypeToExamType(item.itemType);
   const ngnFormat = itemTypeToNgnFormat(item.itemType);
 
-  let options = [...item.options];
+  let options = [...coerceOptionList(item.options)];
   if (item.itemType === "select_all" || item.ngnPayload?.kind === "select_all") {
     const fromPayload = item.ngnPayload?.options;
     if (Array.isArray(fromPayload)) options = fromPayload.map(String);
@@ -135,7 +137,7 @@ export function bankItemToExamQuestion(
     id: index + 1,
     type,
     vignette,
-    question: stem,
+    question: stem || vignette?.slice(0, 160) || "Clinical judgment item",
     options,
     correctAnswer: item.correctAnswer,
     explanation: item.explanation,

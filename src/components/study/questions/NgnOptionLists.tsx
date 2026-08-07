@@ -12,16 +12,18 @@ type OptionProps = {
 };
 
 export function McqOptions({ question, selected, revealed, onToggle }: OptionProps) {
+  const options = Array.isArray(question.options) ? question.options : [];
+  const correctAnswers = Array.isArray(question.correctAnswers) ? question.correctAnswers : [];
   return (
     <ul className="mt-6 space-y-2.5">
-      {question.options.map((opt, i) => (
+      {options.map((opt, i) => (
         <OptionRow
           key={i}
           index={i}
           option={opt}
           selected={selected.includes(opt)}
           revealed={revealed}
-          isCorrect={question.correctAnswers.some(
+          isCorrect={correctAnswers.some(
             (c) => cleanOptionText(c).toLowerCase() === cleanOptionText(opt).toLowerCase()
           )}
           multi={false}

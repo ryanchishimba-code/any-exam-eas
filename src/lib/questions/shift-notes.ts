@@ -26,8 +26,9 @@ export function hasShiftNoteArtifacts(text: string): boolean {
 }
 
 /** Remove leading question-bank id + unit/room line when unrelated chart metadata. */
-export function stripLeadingShiftNoteBlock(text: string): string {
-  const t = text.trim();
+export function stripLeadingShiftNoteBlock(text: string | null | undefined): string {
+  const t = String(text ?? "").trim();
+  if (!t) return "";
   const m = t.match(/^(\d{3,4}\s*—\s*)([^?\n]+?)(\.\s*)/);
   if (!m) return t;
   const header = m[2] ?? "";

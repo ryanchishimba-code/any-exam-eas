@@ -8,6 +8,7 @@ import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import { isExamSlug } from "@/lib/edtech/exams";
 import { defaultUsmleFieldId, isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { requirePremiumPage } from "@/lib/require-premium-page";
+import { runPageDb } from "@/lib/page-access-error";
 import { getStudyUsageSnapshot } from "@/lib/study/usage-limits";
 import { resolveMockExamAccess, type MockExamAccess } from "@/lib/study/mock-exam-access";
 import { getUserExamHistory } from "@/lib/learning/exam-progress";
@@ -58,12 +59,14 @@ async function FullExamLauncherContent({
   mockAccess: MockExamAccess;
   userId: string;
 }) {
-  const [history, roadmap] = await Promise.all([
-    getUserExamHistory(userId, examSlug, { fieldId }),
-    getExamRoadmapData(userId, examSlug, {
-      usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
-    }),
-  ]);
+  const [history, roadmap] = await runPageDb(() =>
+    Promise.all([
+      getUserExamHistory(userId, examSlug, { fieldId }),
+      getExamRoadmapData(userId, examSlug, {
+        usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
+      }),
+    ])
+  );
   return (
     <FullExamLauncher
       key={`${fieldId ?? "default"}-${mode ?? "default"}-${autostart ?? "0"}-${timed ?? "1"}-${nclexCat ?? "0"}`}
@@ -106,7 +109,7 @@ export default async function FullExamLauncherPage({
     usedTrialFullAdaptive: usage.usedTrialFullAdaptive,
   });
 
-  const pref = await getUserExamPreference(session.user.id);
+  const pref = await runPageDb(() => getUserExamPreference(session.user.id));
   if (!pref) redirect(ROUTES.selectExam);
   if (pref.examSlug !== examSlug) {
     const qs = new URLSearchParams();
@@ -120,7 +123,7 @@ export default async function FullExamLauncherPage({
 
   let usmleFieldId: string | undefined;
   if (examSlug === "usmle") {
-    const meta = await getUserEdtechMetadata(session.user.id);
+    const meta = await runPageDb(() => getUserEdtechMetadata(session.user.id));
     const resolved = meta.usmleFieldId && isUsmleFieldId(meta.usmleFieldId)
       ? meta.usmleFieldId
       : defaultUsmleFieldId();

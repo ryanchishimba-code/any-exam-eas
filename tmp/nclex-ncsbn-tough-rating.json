@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-08-06T03:01:50.815Z",
+  "checkedAt": "2026-08-07T03:52:44.451Z",
   "model": "gpt-4o",
   "standard": "NCSBN NCLEX-RN / NGN Clinical Judgment Measurement Model (tough commercial bar)",
   "structure": {
@@ -66,381 +66,601 @@
     }
   },
   "sample": {
-    "size": 28,
-    "avgLocalGateScore": 0.9,
+    "size": 40,
+    "avgLocalGateScore": 1,
     "localOkRate": 100,
     "avgOpenAiItemScore": 7.8,
-    "wouldAppearOnNclexRate": 100,
-    "expertInSample": 5
+    "wouldAppearOnNclexRate": 97.5,
+    "expertInSample": 8
   },
   "itemScores": [
     {
-      "id": "cmr0yyqi7000w1ybaat6h9b0l",
+      "id": "cmr0w0r7k00451ymhmmdjt5bw",
       "score": 8,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Focuses on therapeutic communication, a key NCLEX topic",
-        "Correct answer aligns with nonverbal support in psychiatric care"
+        "Prioritization of respiratory assessment in a postoperative patient with asthma history.",
+        "Clear rationale for why respiratory rate is prioritized over other vital signs."
       ],
       "weaknesses": [
-        "Options could be more challenging; some are easily dismissible"
+        "The explanation could be more concise, focusing on the immediate need for respiratory assessment."
       ],
       "criticalFlags": []
     },
     {
-      "id": "cmr0yyr2b00131yba87faufvn",
-      "score": 7,
-      "wouldAppearOnNclex": true,
-      "strengths": [
-        "Emphasizes assessment before intervention, a critical nursing process step"
-      ],
-      "weaknesses": [
-        "Scenario lacks complexity; could include more variables for prioritization"
-      ],
-      "criticalFlags": []
-    },
-    {
-      "id": "cmr7d3elo004c1yvxk80fw9gc",
+      "id": "cmr0w0t8b004q1ymhy0u994bs",
       "score": 9,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Prioritizes critical symptoms in infectious disease management",
-        "Correctly identifies hemoptysis as a priority in TB"
+        "Correctly identifies hyperglycemia as a priority in a preoperative diabetic patient.",
+        "Strong rationale linking blood glucose management to surgical outcomes."
       ],
       "weaknesses": [
-        "Minor distractors could be more challenging"
+        "Options could be more challenging to better assess critical thinking."
       ],
       "criticalFlags": []
     },
     {
-      "id": "cmr7d8ij9005o1yvxwhkmq138",
+      "id": "cmr0w0tbp004r1ymh4m4q52xe",
+      "score": 9,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Correctly prioritizes immediate safety through a safety plan for a patient post-suicide attempt.",
+        "Strong focus on mental health nursing priorities."
+      ],
+      "weaknesses": [
+        "Options could be more varied to challenge decision-making skills."
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr7aep26008a1ybbrxqmh1kw",
+      "score": 9,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Correct prioritization of PPE use in a suspected TB case.",
+        "Clear explanation of the importance of N95 respirators."
+      ],
+      "weaknesses": [
+        "The vignette could include more context to challenge critical thinking."
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr7aepp4008i1ybbzoocr0z3",
       "score": 8,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Addresses immediate interventions for respiratory distress",
-        "Correctly prioritizes non-pharmacological intervention first"
+        "Correct prioritization of surgical mask use for droplet precautions.",
+        "Clear explanation of droplet precautions."
       ],
       "weaknesses": [
-        "Could include more complex distractors related to COPD management"
+        "Options could be more challenging to assess critical thinking."
       ],
       "criticalFlags": []
     },
     {
-      "id": "cmrlzjtm9003e1yf1d8ku9dsh",
+      "id": "cmr7akvs5009l1ybboaaqdy91",
       "score": 9,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Focuses on fetal monitoring and immediate nursing actions",
-        "Correctly prioritizes repositioning to improve fetal oxygenation"
+        "Correct prioritization of airborne precautions in a suspected TB case.",
+        "Strong rationale for infection control measures."
       ],
       "weaknesses": [
-        "Explanation could better differentiate between similar interventions"
+        "Options could be more challenging to assess critical thinking."
       ],
       "criticalFlags": []
     },
     {
-      "id": "cmrlzjtpf003f1yf1f62ayzzr",
-      "score": 9,
+      "id": "cmr8ps3wc002b1yvfcox56kbp",
+      "score": 7,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Prioritizes fetal monitoring and potential distress",
-        "Correctly identifies variable decelerations as a priority"
+        "Focuses on fetal monitoring, a key aspect of labor management",
+        "Prioritizes fetal well-being, aligning with NCLEX priorities"
       ],
       "weaknesses": [
-        "Could include more nuanced distractors related to maternal and fetal assessment"
+        "Explanation could better emphasize the rationale for continuous monitoring over other options",
+        "Ambulation is not clearly addressed as a potential benefit"
       ],
       "criticalFlags": []
     },
     {
-      "id": "cmr8p5bl3009j1y5ngcqoyygd",
+      "id": "cmr8pxp9l00481yvf5ervnaz3",
       "score": 8,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Addresses elder abuse, a critical safety issue",
-        "Prioritizes immediate safety concerns"
+        "Correctly prioritizes medication administration for withdrawal management",
+        "Addresses acute withdrawal symptoms, a critical nursing intervention"
       ],
       "weaknesses": [
-        "Could include more specific cues for abuse"
+        "Could include more detail on the risks of not administering lorazepam promptly"
       ],
       "criticalFlags": []
     },
     {
-      "id": "cmr8p5bwh009n1y5nw1ykxkt8",
-      "score": 7,
+      "id": "cmr8pxpf3004a1yvf1twmgu7t",
+      "score": 8,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Focuses on airway management, a key priority in respiratory distress"
+        "Correctly identifies insulin administration as a priority for hyperglycemia",
+        "Focuses on immediate intervention to prevent complications"
       ],
       "weaknesses": [
-        "Does not consider potential contraindications for bronchodilator use"
+        "Could provide more context on the role of fluid intake in managing hyperglycemia"
       ],
       "criticalFlags": []
     },
     {
-      "id": "cmr8najml00241yh6g66o904h",
-      "score": 7,
+      "id": "cmr7gpy8d00co1y592f8zy4gl",
+      "score": 9,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Emphasizes airway management in COPD"
+        "Correctly identifies hyperkalemia management as a priority",
+        "Appropriately advises holding spironolactone and notifying the provider"
       ],
       "weaknesses": [
-        "Similar to another item, lacks variety in options"
+        "Could expand on the role of furosemide in managing hyperkalemia"
       ],
       "criticalFlags": []
     },
     {
-      "id": "cmr8nak9d002c1yh6nwkmcw3k",
+      "id": "cmr7gwcwa00061yx3xjo538o0",
+      "score": 9,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Correctly prioritizes the presence of a suicide plan as the highest risk",
+        "Focuses on immediate safety interventions"
+      ],
+      "weaknesses": [
+        "Could provide more context on the role of antidepressants in suicide risk management"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr7gwdgy000c1yx3c2djdtfy",
       "score": 6,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Provides accurate information about vaccine safety"
+        "Correctly identifies the need for airborne precautions in TB management",
+        "Emphasizes the importance of using an N95 respirator"
       ],
       "weaknesses": [
-        "Stem is confusing with two questions"
+        "Explanation could better clarify the role of gowns and gloves in TB precautions",
+        "The 'Select all that apply' format requires clearer guidance on multiple correct answers"
       ],
       "criticalFlags": []
     },
     {
-      "id": "cmr8thpup000b1y0yqibb6alz",
-      "score": 9,
-      "wouldAppearOnNclex": true,
-      "strengths": [
-        "Emphasizes safety by verifying allergy history"
-      ],
-      "weaknesses": [
-        "Could include more context about the client's condition"
-      ],
-      "criticalFlags": []
-    },
-    {
-      "id": "cmr8thqmz000j1y0yjko5wubt",
+      "id": "cmr7fgoox001w1y59og06h618",
       "score": 6,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Addresses non-pharmacological pain relief"
+        "Addresses infection control and contact precautions",
+        "Includes relevant options for MRSA precautions"
       ],
       "weaknesses": [
-        "Immediate delivery option is unrealistic at 7 cm dilation"
+        "Correct answer not fully aligned with stem asking for 'all that apply'",
+        "Explanation lacks clarity on why hand hygiene is the only correct answer"
       ],
       "criticalFlags": [
-        "Cartoon distractor: 'Prepare for immediate delivery due to rapid labor progression'"
+        "Cueing with absolute language in explanation"
       ]
     },
     {
-      "id": "cmr7ecevu00421y9txmzx4z9m",
+      "id": "cmr7fgovx001y1y59x468sw1k",
       "score": 8,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Prioritizes safety in postoperative care",
-        "Addresses potential orthostatic hypotension"
+        "Prioritization of acute symptoms",
+        "Clear clinical reasoning"
       ],
       "weaknesses": [
-        "Options could be more challenging",
-        "Explanation is lengthy and could be more concise"
+        "Could include more context on potential differential diagnoses"
       ],
       "criticalFlags": []
     },
     {
-      "id": "cmr7ecf1b00441y9tzaynmyoq",
+      "id": "cmr7fgpkb00251y59mcpqxjcc",
+      "score": 8,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Prioritizes immediate respiratory intervention",
+        "Clear rationale for prioritization"
+      ],
+      "weaknesses": [
+        "Could include more context on COPD management"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrm1yiv5005h1ygag9yvauzn",
       "score": 7,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Focuses on infection control",
-        "Recognizes airborne precautions for TB"
+        "Focus on patient safety and education",
+        "Clear prioritization of bleeding risk"
       ],
       "weaknesses": [
-        "Explanation lacks depth in clinical reasoning",
-        "Options could be more varied"
+        "Could include more context on overall discharge planning"
       ],
       "criticalFlags": []
     },
     {
-      "id": "cmrmtp72t009y1y3j628a3gp7",
+      "id": "cmrm1yixu005i1yga9dnqla6v",
       "score": 9,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Addresses respiratory emergencies",
-        "Requires understanding of lab values"
+        "Addresses common patient misconception",
+        "Clear focus on antibiotic adherence"
       ],
       "weaknesses": [
-        "Explanation could be more concise"
+        "Limited context on potential consequences of non-adherence"
       ],
       "criticalFlags": []
     },
     {
-      "id": "cmrmtp75l009z1y3jy1a17o36",
-      "score": 8,
-      "wouldAppearOnNclex": true,
-      "strengths": [
-        "Focuses on infection control",
-        "Recognizes symptoms of bacterial meningitis"
-      ],
-      "weaknesses": [
-        "Options could be more challenging"
-      ],
-      "criticalFlags": []
-    },
-    {
-      "id": "cmrm1eie8000q1ygagc228l0k",
-      "score": 9,
-      "wouldAppearOnNclex": true,
-      "strengths": [
-        "Prioritizes client safety",
-        "Addresses immediate risk of self-harm"
-      ],
-      "weaknesses": [
-        "Options could be more varied"
-      ],
-      "criticalFlags": []
-    },
-    {
-      "id": "cmrm1eihk000r1ygakfgd5bu3",
-      "score": 8,
-      "wouldAppearOnNclex": true,
-      "strengths": [
-        "Focuses on pain management",
-        "Addresses severe postoperative pain"
-      ],
-      "weaknesses": [
-        "Options could be more challenging"
-      ],
-      "criticalFlags": []
-    },
-    {
-      "id": "cmrmtsqkw00c61y3jnou449j6",
-      "score": 8,
-      "wouldAppearOnNclex": true,
-      "strengths": [
-        "Addresses a common endocrine emergency (DKA)",
-        "Incorporates clinical judgment steps effectively"
-      ],
-      "weaknesses": [
-        "Explanation is cut off, reducing clarity"
-      ],
-      "criticalFlags": []
-    },
-    {
-      "id": "cmrmtwpn700de1y3jh0dyely4",
+      "id": "cmrm24f4600731ygao9garc3r",
       "score": 6,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Tests delegation and assignment knowledge",
-        "Includes appropriate options for UAP delegation"
+        "Addresses patient concerns about medication side effects",
+        "Encourages holistic pain management"
       ],
       "weaknesses": [
-        "Correct answer includes incorrect options (administering medication)",
-        "Explanation is incomplete"
+        "Includes incorrect option that could lead to unsafe practice",
+        "Lacks clarity on safe dosage limits"
       ],
       "criticalFlags": [
-        "Incorrect delegation of medication administration to UAP"
-      ]
-    },
-    {
-      "id": "cmrm5cx33004y1yno2lch2ywb",
-      "score": 9,
-      "wouldAppearOnNclex": true,
-      "strengths": [
-        "Focuses on critical lab value interpretation in DKA",
-        "Clear prioritization of hypokalemia"
-      ],
-      "weaknesses": [
-        "Slightly complex for entry-level RN"
-      ],
-      "criticalFlags": []
-    },
-    {
-      "id": "cmrm5cxva00581ynobs4bwivt",
-      "score": 9,
-      "wouldAppearOnNclex": true,
-      "strengths": [
-        "Addresses high-risk suicide prevention",
-        "Clear prioritization of immediate safety measures"
-      ],
-      "weaknesses": [
-        "Some options are less relevant (safety contract)"
-      ],
-      "criticalFlags": []
-    },
-    {
-      "id": "cmrmu0ags00gh1y3jo6mz3l61",
-      "score": 8,
-      "wouldAppearOnNclex": true,
-      "strengths": [
-        "Tests knowledge of airborne precautions",
-        "Clear prioritization of infection control measures"
-      ],
-      "weaknesses": [
-        "Options could be more distinct in priority"
-      ],
-      "criticalFlags": []
-    },
-    {
-      "id": "cmrmu0auz00gl1y3jydhhchoc",
-      "score": 5,
-      "wouldAppearOnNclex": true,
-      "strengths": [
-        "Addresses common side effect of ACE inhibitors",
-        "Promotes communication with healthcare provider"
-      ],
-      "weaknesses": [
-        "Correct answer sequence includes inappropriate actions",
-        "Reassurance and OTC suggestions are not appropriate"
-      ],
-      "criticalFlags": [
-        "Suggesting stopping medication without provider input"
+        "Unsafe teaching with option to take an extra dose"
       ]
     },
     {
       "id": "cmra7t0em00901ylww2ea2m8c",
-      "score": 8,
-      "wouldAppearOnNclex": true,
-      "strengths": [
-        "Addresses immediate nursing action for hypoglycemia",
-        "Uses clinical judgment model effectively"
-      ],
-      "weaknesses": [
-        "Options could be more challenging to differentiate"
-      ],
-      "criticalFlags": []
-    },
-    {
-      "id": "cmra7t0pn00931ylwa0aaut3j",
-      "score": 7,
-      "wouldAppearOnNclex": true,
-      "strengths": [
-        "Prioritizes respiratory distress in heart failure",
-        "Uses clinical judgment model effectively"
-      ],
-      "weaknesses": [
-        "Options are somewhat straightforward, reducing difficulty"
-      ],
-      "criticalFlags": []
-    },
-    {
-      "id": "cmrm2a7py008x1ygaenvpl3bs",
       "score": 9,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Addresses medication adherence and digoxin toxicity",
-        "Uses clinical judgment model effectively"
+        "Clear clinical reasoning process",
+        "Correct prioritization of hypoglycemia management",
+        "Appropriate entry-level RN scope"
       ],
       "weaknesses": [
-        "Minor cueing in the explanation"
+        "Could include more detailed rationale for incorrect options"
       ],
       "criticalFlags": []
     },
     {
-      "id": "cmrm2a7sn008y1yganvwyv80v",
+      "id": "cmra7t0ij00911ylwqgsss6iv",
       "score": 8,
       "wouldAppearOnNclex": true,
       "strengths": [
-        "Focuses on critical lab value for bleeding risk",
-        "Uses clinical judgment model effectively"
+        "Focus on safety and fall prevention",
+        "Appropriate prioritization for post-procedural care"
       ],
       "weaknesses": [
-        "Options could be more challenging to differentiate"
+        "Could provide more detail on why notifying the provider is not immediate priority"
       ],
       "criticalFlags": []
+    },
+    {
+      "id": "cmrcz63mz00001yw25gx9dp4m",
+      "score": 10,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Correct identification of oncologic emergency",
+        "Clear explanation of why other options are incorrect",
+        "Strong clinical reasoning"
+      ],
+      "weaknesses": [],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr7ifyfe000x1y66k5epyukh",
+      "score": 9,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Correct prioritization of hypoxemia",
+        "Clear explanation of why other options are less critical"
+      ],
+      "weaknesses": [
+        "Could include more detail on interventions for hypoxemia"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr7intms001y1y66w0fvnvup",
+      "score": 9,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Correct prioritization of cardiac stabilization in hyperkalemia",
+        "Clear explanation of why other options are less immediate"
+      ],
+      "weaknesses": [
+        "Could provide more detail on the mechanism of calcium gluconate"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmr7inufu00281y66wyvw2br0",
+      "score": 9,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Correct prioritization of insulin administration for hyperglycemia",
+        "Clear explanation of why other options are less appropriate"
+      ],
+      "weaknesses": [
+        "Could include more detail on the risks of hyperglycemia"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrm24ed8006t1yga4e64jhiy",
+      "score": 8,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Addresses infection control and safety, which are critical topics.",
+        "Includes multiple correct actions, reflecting real-world nursing practice."
+      ],
+      "weaknesses": [
+        "The explanation could be more concise and focused on the rationale for each option."
+      ],
+      "criticalFlags": [
+        "The correct answer should include more than one action, such as wearing gown and gloves."
+      ],
+      "localGate": {
+        "score": 0.96,
+        "tier": "best",
+        "ok": true,
+        "issues": []
+      }
+    },
+    {
+      "id": "cmrm24eio006v1yga0u2sh514",
+      "score": 9,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Prioritizes a critical intervention for a potentially life-threatening situation.",
+        "Uses clinical reasoning to justify the priority intervention."
+      ],
+      "weaknesses": [
+        "The explanation could be more concise."
+      ],
+      "criticalFlags": [],
+      "localGate": {
+        "score": 1,
+        "tier": "best",
+        "ok": true,
+        "issues": []
+      }
+    },
+    {
+      "id": "cmsewv2us007l1y56y7v8f3sb",
+      "score": 7,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Addresses client education and safety during labor.",
+        "Includes a clear rationale for the correct answer."
+      ],
+      "weaknesses": [
+        "The item is somewhat cluttered with options that are not clearly delineated as actions or statements."
+      ],
+      "criticalFlags": [
+        "The correct answer should focus on identifying the incorrect client statement."
+      ],
+      "localGate": {
+        "score": 0.8600000000000001,
+        "tier": "best",
+        "ok": true,
+        "issues": []
+      }
+    },
+    {
+      "id": "cmsewyr5v00901y56x5geo21t",
+      "score": 6,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Focuses on addressing client anxiety, a common nursing concern.",
+        "Includes multiple interventions, reflecting holistic care."
+      ],
+      "weaknesses": [
+        "The explanation is lengthy and could be more focused on the priority action."
+      ],
+      "criticalFlags": [
+        "The correct answer should prioritize a single most important action."
+      ],
+      "localGate": {
+        "score": 0.7800000000000001,
+        "tier": "best",
+        "ok": true,
+        "issues": []
+      }
+    },
+    {
+      "id": "cmrmu46vb00ij1y3jdkoj2iar",
+      "score": 5,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Addresses pain management, a key nursing responsibility.",
+        "Includes multiple interventions, reflecting comprehensive care."
+      ],
+      "weaknesses": [
+        "The correct answer should focus on a single most important intervention.",
+        "The explanation is somewhat confusing and lacks clarity on the priority intervention."
+      ],
+      "criticalFlags": [
+        "The correct answer should prioritize a single most important action."
+      ],
+      "localGate": {
+        "score": 0.96,
+        "tier": "best",
+        "ok": true,
+        "issues": []
+      }
+    },
+    {
+      "id": "cmrmu476900im1y3jaag1owd0",
+      "score": 7,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Focuses on therapeutic communication, a critical nursing skill.",
+        "Includes clear rationale for therapeutic and non-therapeutic responses."
+      ],
+      "weaknesses": [
+        "The explanation could be more concise and focused on the rationale for each option."
+      ],
+      "criticalFlags": [
+        "The correct answer should focus on a single most therapeutic response."
+      ],
+      "localGate": {
+        "score": 0.96,
+        "tier": "best",
+        "ok": true,
+        "issues": []
+      }
+    },
+    {
+      "id": "cmrocas6m00021ybk05vnsuod",
+      "score": 3,
+      "wouldAppearOnNclex": false,
+      "strengths": [
+        "Addresses client anxiety",
+        "Provides reassurance"
+      ],
+      "weaknesses": [
+        "Lacks clear prioritization",
+        "Does not provide specific information about tests"
+      ],
+      "criticalFlags": [
+        "Incorrect ordering of responses",
+        "Defers responsibility to physician without addressing immediate concern"
+      ]
+    },
+    {
+      "id": "cmrocasow00061ybkz5y4q3s0",
+      "score": 5,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Recognizes hypotension as a priority",
+        "Addresses immediate physiological needs"
+      ],
+      "weaknesses": [
+        "Incorrect ordering of responses",
+        "Nitroglycerin contraindicated in hypotension"
+      ],
+      "criticalFlags": [
+        "Suggests unsafe practice (administering nitroglycerin in hypotension)"
+      ]
+    },
+    {
+      "id": "cmra7t0pn00931ylwa0aaut3j",
+      "score": 8,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Correctly prioritizes respiratory distress",
+        "Focuses on immediate life-threatening condition"
+      ],
+      "weaknesses": [
+        "Could provide more context on interventions"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrlyrym800021ynovn4jq0o1",
+      "score": 9,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Correctly prioritizes bronchodilator administration",
+        "Addresses immediate respiratory needs"
+      ],
+      "weaknesses": [
+        "Could include more rationale for not increasing oxygen first"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrlyrypo00031ynonmxmnrtx",
+      "score": 7,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Correctly identifies aspirin as a priority in MI",
+        "Addresses immediate risk of clot formation"
+      ],
+      "weaknesses": [
+        "Could better explain the role of nitroglycerin"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrogjzx8007m1ymrmbn3pmgi",
+      "score": 9,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Correctly prioritizes bronchodilator administration",
+        "Addresses immediate respiratory needs"
+      ],
+      "weaknesses": [
+        "Could include more rationale for not increasing oxygen first"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrogk01b007n1ymra1b8uydm",
+      "score": 7,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Addresses infection control, a critical nursing responsibility",
+        "Includes a 'Select all that apply' format, common on NCLEX"
+      ],
+      "weaknesses": [
+        "The explanation could better emphasize the importance of gloves in standard precautions"
+      ],
+      "criticalFlags": [
+        "Surgical mask option is a cartoon distractor for airborne precautions"
+      ]
+    },
+    {
+      "id": "cmrogk056007o1ymr6l7nblzh",
+      "score": 8,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Addresses vaccine safety, a relevant public health topic",
+        "Provides balanced information, aligning with patient education standards"
+      ],
+      "weaknesses": [
+        "Option 'Vaccines are optional and not necessary for all children' is a cartoon distractor"
+      ],
+      "criticalFlags": [
+        "Absolute language in 'Vaccines are completely safe and have no side effects'"
+      ]
+    },
+    {
+      "id": "cmrogk0aa007p1ymrwvufgoj3",
+      "score": 9,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Prioritizes immediate safety, a key nursing responsibility",
+        "Reflects critical thinking in mental health scenarios"
+      ],
+      "weaknesses": [
+        "Options could be more challenging to better assess prioritization skills"
+      ],
+      "criticalFlags": []
+    },
+    {
+      "id": "cmrogk0eb007q1ymrw6sqfc11",
+      "score": 6,
+      "wouldAppearOnNclex": true,
+      "strengths": [
+        "Focuses on pain management, a fundamental nursing skill",
+        "Includes clinical reasoning steps"
+      ],
+      "weaknesses": [
+        "Option 'Encourage increased physical activity' is a cartoon distractor for severe pain"
+      ],
+      "criticalFlags": [
+        "Encouraging increased physical activity could be unsafe for severe pain"
+      ]
     }
   ],
   "bank": {
@@ -450,288 +670,234 @@
       {
         "name": "Bank size & CAT volume",
         "score": 9,
-        "letter": "A-",
-        "evidence": "The bank contains 8390 active items, with a strong representation across NGN formats, exceeding target numbers in all categories.",
-        "gap": "While the volume is impressive, ensuring consistent quality across such a large pool is challenging."
+        "letter": "A",
+        "evidence": "The question bank contains 8,390 active items, with a diverse mix of question types and a high volume of NGN formats exceeding targets.",
+        "gap": "While the volume is excellent, ensuring consistent quality across all items remains a challenge."
       },
       {
         "name": "Blueprint / Client Needs coverage",
         "score": 8,
         "letter": "B+",
-        "evidence": "Coverage spans 188 distinct blueprint topics with a balanced distribution across client needs categories.",
-        "gap": "Some areas like med-surg and pediatrics nursing have lower item counts, which might affect comprehensive coverage."
+        "evidence": "Coverage spans 188 distinct blueprint topics, with strong representation in key areas like pharmacology and management of care.",
+        "gap": "Some areas like med-surg and pediatrics nursing have lower item counts, which could impact comprehensive preparation."
       },
       {
         "name": "Item craft (stem/options/CJ)",
         "score": 7,
         "letter": "B",
-        "evidence": "Items generally align with the Clinical Judgment Measurement Model, but some have confusing stems or unrealistic options.",
-        "gap": "Improvement needed in crafting more complex scenarios and realistic distractors to enhance critical thinking."
+        "evidence": "Items generally align with clinical judgment models, but some lack clear prioritization or contain unsafe distractors.",
+        "gap": "Improving clarity and ensuring safe practice in all items is necessary to meet high standards."
       },
       {
         "name": "NGN / exam-native formats",
         "score": 9,
-        "letter": "A-",
-        "evidence": "Strong representation in NGN formats, with bowtie, matrix, and highlight items exceeding targets.",
-        "gap": "Ensuring these items consistently meet the depth and complexity of real exam scenarios is crucial."
+        "letter": "A",
+        "evidence": "The bank exceeds NGN format targets, with a strong presence of bowtie, matrix, and highlight questions.",
+        "gap": "Continued innovation in NGN formats and ensuring all items meet exam standards is crucial."
       },
       {
         "name": "Rationale / teachability",
         "score": 7,
         "letter": "B",
-        "evidence": "Rationales are generally informative but sometimes lack depth in clinical reasoning or are overly lengthy.",
-        "gap": "Focus on concise, insightful rationales that enhance understanding of clinical judgment."
+        "evidence": "Rationales are generally informative but sometimes lack focus on priority actions or clarity.",
+        "gap": "Enhancing rationales to better teach clinical judgment and decision-making is needed."
       },
       {
         "name": "High-yield safety & pharm readiness",
         "score": 8,
         "letter": "B+",
-        "evidence": "Items emphasize safety and pharmacology, with a strong focus on airway management and critical symptoms.",
-        "gap": "Some items could better address contraindications and nuanced pharmacological considerations."
+        "evidence": "Strong focus on pharmacology and safety, with many items addressing critical nursing responsibilities.",
+        "gap": "Ensuring all items avoid unsafe practices and clearly communicate safety priorities is essential."
       },
       {
         "name": "Quality gates & consistency",
         "score": 7,
         "letter": "B",
-        "evidence": "Quality is generally high, but some items have critical flags or inconsistencies in delegation and prioritization.",
-        "gap": "Implement stricter quality checks to minimize errors and ensure all items meet high standards."
+        "evidence": "Quality control is evident, but some items still contain critical flags or lack prioritization.",
+        "gap": "Implementing stricter quality checks and refining item consistency will improve overall reliability."
       }
     ],
-    "examTakerVerdict": "This question bank provides a robust preparation resource with a wide variety of items and strong NGN format coverage. However, some items need refinement in terms of complexity and realism to better mirror the NCLEX-RN standards. Candidates will benefit from the extensive volume but should be aware of occasional inconsistencies in item quality.",
+    "examTakerVerdict": "This question bank offers a robust preparation tool for NCLEX-RN candidates, with a wide range of question types and strong coverage of client needs. However, some items need refinement to ensure clarity and safety. Candidates should supplement their study with additional resources to address any gaps in specific content areas.",
     "topStrengths": [
-      "Extensive item bank with diverse NGN format coverage.",
-      "Strong emphasis on safety and pharmacology, crucial for entry-level RNs.",
-      "Balanced distribution across client needs categories."
+      "High volume of NGN format questions exceeding targets.",
+      "Comprehensive coverage of pharmacology and management of care.",
+      "Strong focus on safety and clinical judgment in many items."
     ],
     "topGaps": [
-      "Some items have confusing stems or unrealistic options.",
-      "Rationales occasionally lack depth or are overly lengthy.",
-      "Inconsistencies in quality, with some items having critical flags."
+      "Inconsistent clarity and prioritization in some items.",
+      "Presence of unsafe distractors in a few questions.",
+      "Lower item counts in med-surg and pediatrics nursing."
     ],
     "prioritizedActions": [
-      "Enhance item complexity and realism to better reflect real-world scenarios.",
-      "Refine rationales to be more concise and insightful, focusing on clinical judgment.",
-      "Implement stricter quality control to minimize errors and inconsistencies.",
+      "Enhance rationales to focus more on teaching clinical judgment and decision-making.",
+      "Implement stricter quality checks to ensure all items meet safety and clarity standards.",
       "Increase item counts in underrepresented areas like med-surg and pediatrics nursing.",
-      "Ensure all NGN format items meet the depth and complexity required for the exam."
+      "Refine distractors to better mirror common candidate errors without compromising safety.",
+      "Continue innovating NGN formats to maintain alignment with exam standards."
     ]
   },
   "samplesForReview": [
     {
-      "id": "cmr0yyqi7000w1ybaat6h9b0l",
+      "id": "cmr0w0r7k00451ymhmmdjt5bw",
+      "subjectId": "management-of-care",
+      "itemType": "vignette",
+      "blueprintTopic": "informed consent",
+      "localScore": 0.9200000000000002,
+      "localTier": "best",
+      "stem": "Which finding is the highest priority for the nurse to address?"
+    },
+    {
+      "id": "cmr0w0t8b004q1ymhy0u994bs",
       "subjectId": "management-of-care",
       "itemType": "vignette",
       "blueprintTopic": "advocacy",
       "localScore": 1,
       "localTier": "best",
-      "stem": "Which therapeutic communication technique is most appropriate for the nurse to use?"
+      "stem": "Which finding is the highest priority?"
     },
     {
-      "id": "cmr0yyr2b00131yba87faufvn",
+      "id": "cmr0w0tbp004r1ymh4m4q52xe",
       "subjectId": "management-of-care",
       "itemType": "vignette",
-      "blueprintTopic": "prioritization",
+      "blueprintTopic": "discharge planning",
       "localScore": 1,
       "localTier": "best",
       "stem": "Which action should the nurse take first?"
     },
     {
-      "id": "cmr7d3elo004c1yvxk80fw9gc",
+      "id": "cmr7aep26008a1ybbrxqmh1kw",
+      "subjectId": "safety-infection",
+      "itemType": "vignette",
+      "blueprintTopic": "standard-precautions-hand-hygiene",
+      "localScore": 0.9200000000000002,
+      "localTier": "best",
+      "stem": "Which finding is the highest priority?"
+    },
+    {
+      "id": "cmr7aepp4008i1ybbzoocr0z3",
+      "subjectId": "safety-infection",
+      "itemType": "vignette",
+      "blueprintTopic": "ppe-donning-doffing",
+      "localScore": 0.8400000000000001,
+      "localTier": "best",
+      "stem": "Which intervention is the priority for this client?"
+    },
+    {
+      "id": "cmr7akvs5009l1ybboaaqdy91",
       "subjectId": "safety-infection",
       "itemType": "vignette",
       "blueprintTopic": "isolation-transport",
-      "localScore": 0.8400000000000001,
-      "localTier": "best",
-      "stem": "Which finding is the highest priority?"
-    },
-    {
-      "id": "cmr7d8ij9005o1yvxwhkmq138",
-      "subjectId": "safety-infection",
-      "itemType": "vignette",
-      "blueprintTopic": "transmission-based-precautions",
-      "localScore": 1,
-      "localTier": "best",
-      "stem": "Which action should the nurse take first to improve the client's oxygenation?"
-    },
-    {
-      "id": "cmrlzjtm9003e1yf1d8ku9dsh",
-      "subjectId": "health-promotion",
-      "itemType": "case_study",
-      "blueprintTopic": "labor-fetal-monitoring",
       "localScore": 0.9200000000000002,
       "localTier": "best",
-      "stem": "Which nursing action is most appropriate?"
+      "stem": "Which action should the nurse take first?"
     },
     {
-      "id": "cmrlzjtpf003f1yf1f62ayzzr",
+      "id": "cmr8ps3wc002b1yvfcox56kbp",
       "subjectId": "health-promotion",
-      "itemType": "case_study",
+      "itemType": "vignette",
       "blueprintTopic": "labor-fetal-monitoring",
+      "localScore": 1,
+      "localTier": "best",
+      "stem": "Which nursing action is most appropriate during this stage of labor?"
+    },
+    {
+      "id": "cmr8pxp9l00481yvf5ervnaz3",
+      "subjectId": "health-promotion",
+      "itemType": "vignette",
+      "blueprintTopic": "immunization-schedules",
+      "localScore": 1,
+      "localTier": "best",
+      "stem": "Which intervention is the priority for this client?"
+    },
+    {
+      "id": "cmr8pxpf3004a1yvf1twmgu7t",
+      "subjectId": "health-promotion",
+      "itemType": "vignette",
+      "blueprintTopic": "prenatal-fetal-development",
+      "localScore": 1,
+      "localTier": "best",
+      "stem": "Which intervention is the priority for this client?"
+    },
+    {
+      "id": "cmr7gpy8d00co1y592f8zy4gl",
+      "subjectId": "psychosocial",
+      "itemType": "vignette",
+      "blueprintTopic": "therapeutic-communication",
+      "localScore": 1,
+      "localTier": "best",
+      "stem": "Which nursing action is most appropriate given the client's lab results?"
+    },
+    {
+      "id": "cmr7gwcwa00061yx3xjo538o0",
+      "subjectId": "psychosocial",
+      "itemType": "vignette",
+      "blueprintTopic": "suicide-risk",
       "localScore": 1,
       "localTier": "best",
       "stem": "Which finding is the highest priority?"
     },
     {
-      "id": "cmr8p5bl3009j1y5ngcqoyygd",
+      "id": "cmr7gwdgy000c1yx3c2djdtfy",
       "subjectId": "psychosocial",
       "itemType": "vignette",
       "blueprintTopic": "abuse-neglect",
       "localScore": 0.9200000000000002,
       "localTier": "best",
-      "stem": "Which intervention is the priority for this client?"
+      "stem": "Which precautions should the nurse implement? Select all that apply.?"
     },
     {
-      "id": "cmr8p5bwh009n1y5nw1ykxkt8",
-      "subjectId": "psychosocial",
-      "itemType": "vignette",
-      "blueprintTopic": "anxiety-crisis-intervention",
-      "localScore": 0.9200000000000002,
-      "localTier": "best",
-      "stem": "Which intervention is the priority for this client?"
-    },
-    {
-      "id": "cmr8najml00241yh6g66o904h",
-      "subjectId": "basic-care-comfort",
-      "itemType": "vignette",
-      "blueprintTopic": "elimination-catheter",
-      "localScore": 0.9200000000000002,
-      "localTier": "best",
-      "stem": "Which intervention is the priority for this client?"
-    },
-    {
-      "id": "cmr8nak9d002c1yh6nwkmcw3k",
+      "id": "cmr7fgoox001w1y59og06h618",
       "subjectId": "basic-care-comfort",
       "itemType": "vignette",
       "blueprintTopic": "pressure-injury-staging",
       "localScore": 0.8400000000000001,
       "localTier": "best",
-      "stem": "What should the nurse tell the client about receiving the influenza vaccine during pregnancy Which action should the nurse take first?"
+      "stem": "Which precautions should the nurse implement for this client? Select all that apply.?"
     },
     {
-      "id": "cmr8thpup000b1y0yqibb6alz",
-      "subjectId": "pharmacology-nursing",
+      "id": "cmr7fgovx001y1y59x468sw1k",
+      "subjectId": "basic-care-comfort",
       "itemType": "vignette",
-      "blueprintTopic": "anti-infectives",
+      "blueprintTopic": "pain-management",
+      "localScore": 1,
+      "localTier": "best",
+      "stem": "Which finding is the highest priority?"
+    },
+    {
+      "id": "cmr7fgpkb00251y59mcpqxjcc",
+      "subjectId": "basic-care-comfort",
+      "itemType": "vignette",
+      "blueprintTopic": "elimination-catheter",
+      "localScore": 1,
+      "localTier": "best",
+      "stem": "Which intervention is the priority for this client?"
+    },
+    {
+      "id": "cmrm1yiv5005h1ygag9yvauzn",
+      "subjectId": "pharmacology-nursing",
+      "itemType": "select_all",
+      "blueprintTopic": "cardiovascular-meds",
       "localScore": 1,
       "localTier": "best",
       "stem": "Which action should the nurse take first?"
     },
     {
-      "id": "cmr8thqmz000j1y0yjko5wubt",
+      "id": "cmrm1yixu005i1yga9dnqla6v",
       "subjectId": "pharmacology-nursing",
-      "itemType": "vignette",
-      "blueprintTopic": "endocrine-meds",
+      "itemType": "ngn_highlight",
+      "blueprintTopic": "anti-infectives",
       "localScore": 1,
       "localTier": "best",
-      "stem": "Which intervention is the priority for this client?"
+      "stem": "Which statement by the client indicates a need for further teaching?"
     },
     {
-      "id": "cmr7ecevu00421y9txmzx4z9m",
-      "subjectId": "reduction-risk",
-      "itemType": "vignette",
-      "blueprintTopic": "diagnostic-tests",
-      "localScore": 1,
-      "localTier": "best",
-      "stem": "Which action should the nurse take first to manage the client's postoperative care?"
-    },
-    {
-      "id": "cmr7ecf1b00441y9tzaynmyoq",
-      "subjectId": "reduction-risk",
-      "itemType": "vignette",
-      "blueprintTopic": "vital-sign-trending",
-      "localScore": 0.9200000000000002,
-      "localTier": "best",
-      "stem": "Select all precautions the nurse should implement.?"
-    },
-    {
-      "id": "cmrmtp72t009y1y3j628a3gp7",
-      "subjectId": "physiological-adaptation",
-      "itemType": "ngn_matrix",
-      "blueprintTopic": "respiratory-emergencies",
-      "localScore": 0.96,
-      "localTier": "best",
-      "stem": "Which laboratory value requires immediate follow-up?"
-    },
-    {
-      "id": "cmrmtp75l009z1y3jy1a17o36",
-      "subjectId": "physiological-adaptation",
-      "itemType": "select_all",
-      "blueprintTopic": "neurological-emergencies",
-      "localScore": 1,
-      "localTier": "best",
-      "stem": "Which nursing action is most appropriate?"
-    },
-    {
-      "id": "cmrm1eie8000q1ygagc228l0k",
-      "subjectId": "physiological-adaptation",
-      "itemType": "select_all",
-      "blueprintTopic": "respiratory-emergencies",
-      "localScore": 1,
-      "localTier": "best",
-      "stem": "Which nursing intervention is most appropriate for this client?"
-    },
-    {
-      "id": "cmrm1eihk000r1ygakfgd5bu3",
-      "subjectId": "physiological-adaptation",
-      "itemType": "select_all",
-      "blueprintTopic": "neurological-emergencies",
-      "localScore": 1,
-      "localTier": "best",
-      "stem": "What is the most appropriate nursing action to address the client's pain?"
-    },
-    {
-      "id": "cmrmtsqkw00c61y3jnou449j6",
-      "subjectId": "physiological-adaptation",
-      "itemType": "ngn_bowtie",
-      "blueprintTopic": "endocrine-emergencies",
-      "localScore": 0.96,
-      "localTier": "best",
-      "stem": "Which intervention is the priority for this client?"
-    },
-    {
-      "id": "cmrmtwpn700de1y3jh0dyely4",
-      "subjectId": "management-of-care",
-      "itemType": "ngn_bowtie",
-      "blueprintTopic": "delegation-assignment",
-      "localScore": 0.88,
-      "localTier": "best",
-      "stem": "Which action should the nurse delegate to the UAP?"
-    },
-    {
-      "id": "cmrm5cx33004y1yno2lch2ywb",
+      "id": "cmrm24f4600731ygao9garc3r",
       "subjectId": "pharmacology-nursing",
-      "itemType": "ngn_matrix",
-      "blueprintTopic": "endocrine-emergencies",
+      "itemType": "select_all",
+      "blueprintTopic": "pain-opioids-nsaids",
       "localScore": 0.96,
       "localTier": "best",
-      "stem": "Which laboratory value requires immediate follow-up?"
-    },
-    {
-      "id": "cmrm5cxva00581ynobs4bwivt",
-      "subjectId": "psychosocial",
-      "itemType": "ngn_matrix",
-      "blueprintTopic": "suicide-risk",
-      "localScore": 0.96,
-      "localTier": "best",
-      "stem": "Which nursing action is most appropriate?"
-    },
-    {
-      "id": "cmrmu0ags00gh1y3jo6mz3l61",
-      "subjectId": "safety-infection",
-      "itemType": "ordered_response",
-      "blueprintTopic": "transmission-based-precautions",
-      "localScore": 0.96,
-      "localTier": "best",
-      "stem": "Which action should the nurse take first to ensure proper infection control for this client?"
-    },
-    {
-      "id": "cmrmu0auz00gl1y3jydhhchoc",
-      "subjectId": "physiological-adaptation",
-      "itemType": "ordered_response",
-      "blueprintTopic": "neurological-emergencies",
-      "localScore": 0.8600000000000001,
-      "localTier": "best",
-      "stem": "What is the most appropriate nursing action regarding this client's report?"
+      "stem": "Which response by the nurse is therapeutic? (Select all that apply)?"
     },
     {
       "id": "cmra7t0em00901ylww2ea2m8c",
@@ -743,6 +909,123 @@
       "stem": "What is the most appropriate nursing action?"
     },
     {
+      "id": "cmra7t0ij00911ylwqgsss6iv",
+      "subjectId": "reduction-risk",
+      "itemType": "select_all",
+      "blueprintTopic": "vital-sign-trending",
+      "localScore": 1,
+      "localTier": "best",
+      "stem": "Which intervention is the priority for this client?"
+    },
+    {
+      "id": "cmrcz63mz00001yw25gx9dp4m",
+      "subjectId": "reduction-risk",
+      "itemType": "vignette",
+      "blueprintTopic": "chemotherapy-side-effects",
+      "localScore": 0.94,
+      "localTier": "best",
+      "stem": "What is the nurse's priority action?"
+    },
+    {
+      "id": "cmr7ifyfe000x1y66k5epyukh",
+      "subjectId": "physiological-adaptation",
+      "itemType": "vignette",
+      "blueprintTopic": "cardiac-emergencies",
+      "localScore": 1,
+      "localTier": "best",
+      "stem": "Which finding is the highest priority?"
+    },
+    {
+      "id": "cmr7intms001y1y66w0fvnvup",
+      "subjectId": "physiological-adaptation",
+      "itemType": "vignette",
+      "blueprintTopic": "renal-urinary",
+      "localScore": 1,
+      "localTier": "best",
+      "stem": "Which action should the nurse take first to address the client's hyperkalemia?"
+    },
+    {
+      "id": "cmr7inufu00281y66wyvw2br0",
+      "subjectId": "physiological-adaptation",
+      "itemType": "vignette",
+      "blueprintTopic": "respiratory-emergencies",
+      "localScore": 1,
+      "localTier": "best",
+      "stem": "Which intervention is the priority for this client?"
+    },
+    {
+      "id": "cmrm24ed8006t1yga4e64jhiy",
+      "subjectId": "safety-infection",
+      "itemType": "select_all",
+      "blueprintTopic": "needle-safety-waste",
+      "localScore": 0.96,
+      "localTier": "best",
+      "stem": "Select all actions the nurse should take to ensure safety and infection control.?"
+    },
+    {
+      "id": "cmrm24eio006v1yga0u2sh514",
+      "subjectId": "health-promotion",
+      "itemType": "select_all",
+      "blueprintTopic": "piaget-cognitive",
+      "localScore": 1,
+      "localTier": "best",
+      "stem": "Which intervention is the priority for this client?"
+    },
+    {
+      "id": "cmsewv2us007l1y56y7v8f3sb",
+      "subjectId": "maternal-child",
+      "itemType": "ngn_bowtie",
+      "blueprintTopic": "labor-fetal-monitoring",
+      "localScore": 0.8600000000000001,
+      "localTier": "best",
+      "stem": "Which statement by the client indicates a need for further teaching?"
+    },
+    {
+      "id": "cmsewyr5v00901y56x5geo21t",
+      "subjectId": "fundamentals",
+      "itemType": "ngn_bowtie",
+      "blueprintTopic": "elimination-catheter",
+      "localScore": 0.7800000000000001,
+      "localTier": "best",
+      "stem": "Which nursing action should be prioritized to address the client's anxiety?"
+    },
+    {
+      "id": "cmrmu46vb00ij1y3jdkoj2iar",
+      "subjectId": "pharmacology-nursing",
+      "itemType": "ngn_matrix",
+      "blueprintTopic": "endocrine-meds",
+      "localScore": 0.96,
+      "localTier": "best",
+      "stem": "Which intervention is most important for the nurse to implement to manage this client's pain?"
+    },
+    {
+      "id": "cmrmu476900im1y3jaag1owd0",
+      "subjectId": "physiological-adaptation",
+      "itemType": "ngn_matrix",
+      "blueprintTopic": "shock-sepsis",
+      "localScore": 0.96,
+      "localTier": "best",
+      "stem": "Which response by the nurse is therapeutic?"
+    },
+    {
+      "id": "cmrocas6m00021ybk05vnsuod",
+      "subjectId": "management-of-care",
+      "itemType": "ordered_response",
+      "blueprintTopic": "client-advocacy-education",
+      "localScore": 0.8600000000000001,
+      "localTier": "best",
+      "stem": "Which response by the nurse is therapeutic?"
+    },
+    {
+      "id": "cmrocasow00061ybkz5y4q3s0",
+      "subjectId": "physiological-adaptation",
+      "itemType": "ordered_response",
+      "blueprintTopic": "shock-sepsis",
+      "localScore": 0.96,
+      "localTier": "best",
+      "stem": "Which action should the nurse take first?"
+    },
+    {
       "id": "cmra7t0pn00931ylwa0aaut3j",
       "subjectId": "physiological-adaptation",
       "itemType": "ngn_highlight",
@@ -752,22 +1035,67 @@
       "stem": "Which finding is the highest priority?"
     },
     {
-      "id": "cmrm2a7py008x1ygaenvpl3bs",
-      "subjectId": "pharmacology-nursing",
+      "id": "cmrlyrym800021ynovn4jq0o1",
+      "subjectId": "physiological-adaptation",
       "itemType": "case_study",
-      "blueprintTopic": "interactions-antidotes",
-      "localScore": 0.9200000000000002,
+      "blueprintTopic": "shock-sepsis",
+      "localScore": 1,
       "localTier": "best",
-      "stem": "Which statement by the client indicates a need for further teaching?"
+      "stem": "Which action should the nurse take first?"
     },
     {
-      "id": "cmrm2a7sn008y1yganvwyv80v",
-      "subjectId": "pharmacology-nursing",
+      "id": "cmrlyrypo00031ynonmxmnrtx",
+      "subjectId": "physiological-adaptation",
       "itemType": "case_study",
-      "blueprintTopic": "interactions-antidotes",
+      "blueprintTopic": "shock-sepsis",
       "localScore": 0.9200000000000002,
       "localTier": "best",
-      "stem": "Which laboratory value requires immediate follow-up?"
+      "stem": "Which intervention is the priority for this client?"
+    },
+    {
+      "id": "cmrogjzx8007m1ymrmbn3pmgi",
+      "subjectId": "pediatrics-nursing",
+      "itemType": "vignette",
+      "blueprintTopic": "pediatric-milestones",
+      "localScore": 1,
+      "localTier": "best",
+      "stem": "Which action should the nurse take first?"
+    },
+    {
+      "id": "cmrogk01b007n1ymra1b8uydm",
+      "subjectId": "pediatrics-nursing",
+      "itemType": "vignette",
+      "blueprintTopic": "immunization-schedules",
+      "localScore": 0.9200000000000002,
+      "localTier": "best",
+      "stem": "Which precautions should the nurse implement for this client? Select all that apply.?"
+    },
+    {
+      "id": "cmrogk056007o1ymr6l7nblzh",
+      "subjectId": "pediatrics-nursing",
+      "itemType": "vignette",
+      "blueprintTopic": "pediatric-respiratory",
+      "localScore": 0.8400000000000001,
+      "localTier": "best",
+      "stem": "Which statement by the nurse is most appropriate to address the mother's concern?"
+    },
+    {
+      "id": "cmrogk0aa007p1ymrwvufgoj3",
+      "subjectId": "pediatrics-nursing",
+      "itemType": "vignette",
+      "blueprintTopic": "pediatric-dehydration",
+      "localScore": 1,
+      "localTier": "best",
+      "stem": "Which nursing intervention is most important for this client?"
+    },
+    {
+      "id": "cmrogk0eb007q1ymrw6sqfc11",
+      "subjectId": "pediatrics-nursing",
+      "itemType": "vignette",
+      "blueprintTopic": "pediatric-safety",
+      "localScore": 1,
+      "localTier": "best",
+      "stem": "Which nursing intervention is most appropriate to manage this client's pain?"
     }
   ]
 }

@@ -5,6 +5,7 @@ import { QuestionBankPracticeLoader } from "@/components/study/question-bank/Que
 import { Skeleton } from "@/components/ui/skeleton";
 import { getCachedSession } from "@/lib/auth/session";
 import { requireStudyPage } from "@/lib/require-premium-page";
+import { runPageDb } from "@/lib/page-access-error";
 import { ROUTES } from "@/lib/routes";
 import { resolveQuestionBankRoute } from "@/lib/study/question-bank-route";
 import type { ExamSlug } from "@/types/edtech";
@@ -13,6 +14,9 @@ export const metadata = {
   title: "Question Bank — Any Exam Easy",
   description: "Adaptive question bank with topic filters and detailed rationales.",
 };
+
+/** Nursing/NCLEX subject counts + preference lookups can cold-start Neon. */
+export const maxDuration = 60;
 
 function QuestionBankPracticeSkeleton() {
   return (
@@ -59,7 +63,7 @@ export default async function QuestionBankPage({
   }
 
   await requireStudyPage(ROUTES.questionBank);
-  const route = await resolveQuestionBankRoute(session.user.id, sp);
+  const route = await runPageDb(() => resolveQuestionBankRoute(session.user.id, sp));
 
   return (
     <div className="w-full space-y-5">

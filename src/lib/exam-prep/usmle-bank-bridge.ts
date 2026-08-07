@@ -1,5 +1,6 @@
 import type { ExamQuestion } from "@/lib/ai";
 import type { BankItem } from "@/lib/question-bank";
+import { coerceOptionList } from "@/lib/questions/option-coerce";
 import { splitUsmleBankItem } from "./usmle-clinical-gate";
 
 const USMLE_ITEM_MAP: Record<string, ExamQuestion["type"]> = {
@@ -31,8 +32,8 @@ export function bankItemToUsmleExam(item: BankItem, index: number): ExamQuestion
     id: index + 1,
     type: usmleItemToExamType(itemType),
     vignette,
-    question: stem,
-    options: [...item.options],
+    question: stem || vignette?.slice(0, 160) || "Clinical vignette item",
+    options: coerceOptionList(item.options),
     correctAnswer: item.correctAnswer,
     explanation: item.explanation,
     solutionSteps: item.solutionSteps,

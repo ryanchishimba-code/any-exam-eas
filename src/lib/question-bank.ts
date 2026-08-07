@@ -18,6 +18,7 @@ import {
   finalizeExamSessionQuestions,
 } from "./questions/finalize-exam-session";
 import { studyQuestionsToExamQuestions } from "./questions/prepare";
+import { coerceOptionList } from "./questions/option-coerce";
 import type { RawQuestionInput } from "./questions/types";
 import type { ExpertStructuredRationale } from "@/lib/engine/rationale/expert-rationale-types";
 
@@ -378,8 +379,8 @@ function bankItemToQuestion(item: BankItem, id: number): ExamQuestion {
   return toQuizletStyleQuestion({
     id,
     type: "multiple_choice",
-    question: item.question,
-    options: [...item.options],
+    question: String(item.question ?? "").trim() || "Board practice item",
+    options: coerceOptionList(item.options),
     correctAnswer: item.correctAnswer,
     explanation: item.explanation,
     solutionSteps: item.solutionSteps,

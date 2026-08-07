@@ -1,5 +1,6 @@
 import type { ExamQuestion } from "@/lib/ai";
 import type { BankItem } from "@/lib/question-bank";
+import { coerceOptionList } from "@/lib/questions/option-coerce";
 import type { ExamItemType } from "./types";
 
 const PHARMACY_ITEM_MAP: Record<string, ExamQuestion["type"]> = {
@@ -23,7 +24,8 @@ export function pharmacyItemToFormat(itemType?: string): string | undefined {
 
 function splitStemVignette(item: BankItem): { vignette?: string; stem: string } {
   const vignette = item.vignette?.trim() || item.scenario?.trim();
-  const q = item.question.trim();
+  const q = String(item.question ?? "").trim();
+  if (!q) return { vignette, stem: vignette?.slice(0, 160) || "Pharmacy practice item" };
   if (vignette && !q.includes(vignette.slice(0, 40))) return { vignette, stem: q };
   const parts = q.split(/\n\n+/);
   if (parts.length >= 2 && parts[0].length >= 30) {
@@ -41,7 +43,7 @@ function resolveOptions(item: BankItem): string[] {
   if (payload?.kind === "drag_drop" && Array.isArray(payload.options)) {
     return payload.options.map(String);
   }
-  return [...item.options];
+  return coerceOptionList(item.options);
 }
 
 export function bankItemToNaplexExam(item: BankItem, index: number): ExamQuestion {
