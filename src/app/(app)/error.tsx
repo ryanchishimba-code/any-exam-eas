@@ -2,7 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ROUTES } from "@/lib/routes";
+
+const AUTO_RETRY_KEY = "aee:app-error-auto-retry";
 
 export default function AppError({
   error,
@@ -13,9 +14,18 @@ export default function AppError({
 }) {
   const retried = useRef(false);
 
-  // Neon/Vercel pool blips are usually gone within a second — auto-retry once.
+  useEffect(() => {
+    console.error("[app/error]", error.message, error.digest);
+  }, [error]);
+
   useEffect(() => {
     if (retried.current) return;
+    try {
+      if (sessionStorage.getItem(AUTO_RETRY_KEY) === "1") return;
+      sessionStorage.setItem(AUTO_RETRY_KEY, "1");
+    } catch {
+      /* private mode */
+    }
     retried.current = true;
     const t = window.setTimeout(() => {
       reset();
@@ -28,7 +38,7 @@ export default function AppError({
       <h1 className="text-xl font-semibold text-[var(--color-ink)]">Something went wrong</h1>
       <p className="text-sm leading-relaxed text-[var(--color-ink-muted)]">
         We hit a temporary problem loading this page — often a brief database connection blip on
-        Neon. Retrying automatically…
+        Neon. Tap try again in a moment.
       </p>
       {process.env.NODE_ENV === "development" ? (
         <p className="text-xs text-rose-600">{error.message}</p>
@@ -36,7 +46,14 @@ export default function AppError({
       <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
         <button
           type="button"
-          onClick={() => reset()}
+          onClick={() => {
+            try {
+              sessionStorage.removeItem(AUTO_RETRY_KEY);
+            } catch {
+              /* ignore */
+            }
+            reset();
+          }}
           className="rounded-full bg-[var(--color-accent)] px-5 py-2.5 text-sm font-semibold text-white"
         >
           Try again

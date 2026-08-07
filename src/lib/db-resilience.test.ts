@@ -52,9 +52,9 @@ describe("getPrismaRetryOptions", () => {
     delete process.env.PRISMA_MAX_ATTEMPTS;
     process.env.VERCEL = "1";
     const opts = getPrismaRetryOptions();
-    expect(opts.maxAttempts).toBe(4);
-    expect(opts.timeoutMs).toBe(20_000);
-    expect(opts.baseDelayMs).toBe(1_800);
+    expect(opts.maxAttempts).toBe(3);
+    expect(opts.timeoutMs).toBe(12_000);
+    expect(opts.baseDelayMs).toBe(1_200);
     process.env.VERCEL = prev;
     if (prevTimeout === undefined) delete process.env.PRISMA_QUERY_TIMEOUT_MS;
     else process.env.PRISMA_QUERY_TIMEOUT_MS = prevTimeout;

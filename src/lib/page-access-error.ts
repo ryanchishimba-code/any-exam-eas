@@ -4,6 +4,16 @@ import { ensureNeonReady } from "@/lib/neon-warmup";
 
 /** Avoid treating Neon blips as logged-out — send users to a retry page instead. */
 export function redirectIfDbUnavailable(error: unknown): never {
+  // Next.js navigation control flow must never be remapped to service-unavailable.
+  if (
+    error &&
+    typeof error === "object" &&
+    "digest" in error &&
+    typeof (error as { digest?: unknown }).digest === "string" &&
+    String((error as { digest: string }).digest).startsWith("NEXT_")
+  ) {
+    throw error;
+  }
   if (error instanceof DbUnavailableError || isTransientDbError(error)) {
     redirect("/service-unavailable");
   }

@@ -9,6 +9,33 @@ export type QuestionBankHubStats = {
   streakDays: number;
 };
 
+function withSoftTimeout<T>(
+  promise: Promise<T>,
+  ms: number,
+  fallback: T,
+  label: string
+): Promise<T> {
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => {
+      console.warn(`[question-bank] ${label} soft-timeout after ${ms}ms`);
+      resolve(fallback);
+    }, ms);
+    promise
+      .then((value) => {
+        clearTimeout(timer);
+        resolve(value);
+      })
+      .catch((error) => {
+        clearTimeout(timer);
+        console.warn(
+          `[question-bank] ${label} soft-fail:`,
+          error instanceof Error ? error.message : error
+        );
+        resolve(fallback);
+      });
+  });
+}
+
 export async function QuestionBankPracticeLoader({
   userId,
   examSlug,
@@ -22,14 +49,21 @@ export async function QuestionBankPracticeLoader({
   hubStats?: QuestionBankHubStats;
   usmleStepLabel?: string;
 }) {
-  const [countsResult, weakTopicsResult] = await Promise.allSettled([
-    loadSubjectCountsForUser(userId, fieldParam),
-    getStudentWeakTopics(userId, examFieldIds(examSlug)),
+  // Cap DB waits so Neon blips never blank the whole question-bank route.
+  const [countsPayload, weakTopics] = await Promise.all([
+    withSoftTimeout(
+      loadSubjectCountsForUser(userId, fieldParam),
+      8_000,
+      null,
+      "subject-counts"
+    ),
+    withSoftTimeout(
+      getStudentWeakTopics(userId, examFieldIds(examSlug)),
+      8_000,
+      [],
+      "weak-topics"
+    ),
   ]);
-  const countsPayload =
-    countsResult.status === "fulfilled" ? countsResult.value : null;
-  const weakTopics =
-    weakTopicsResult.status === "fulfilled" ? weakTopicsResult.value : [];
 
   const totalQuestions = countsPayload?.counts
     ? Object.values(countsPayload.counts).reduce((sum, n) => sum + n, 0)

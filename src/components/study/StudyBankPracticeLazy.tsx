@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import type { ComponentProps } from "react";
+import { useEffect, type ComponentProps } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 function StudyBankPracticeSkeleton() {
@@ -23,6 +23,14 @@ const StudyBankPractice = dynamic(
 export function StudyBankPracticeLazy(
   props: ComponentProps<typeof StudyBankPractice>
 ) {
+  useEffect(() => {
+    try {
+      sessionStorage.removeItem("aee:qb-error-auto-retry");
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
   const scopeKey = `${props.preferredExamSlug ?? "open"}:${props.initialFieldId ?? "default"}`;
   return <StudyBankPractice key={scopeKey} {...props} />;
 }

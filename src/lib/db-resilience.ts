@@ -39,10 +39,11 @@ export function getPrismaRetryOptions(): Required<
   return {
     // First attempt often fails while Neon compute is waking; backoff waits
     // for wake before retrying TCP. Race timeouts get one warm+retry on Vercel.
-    maxAttempts: Number(process.env.PRISMA_MAX_ATTEMPTS ?? (vercel ? 4 : 3)),
-    timeoutMs: Number(process.env.PRISMA_QUERY_TIMEOUT_MS ?? (vercel ? 20_000 : 15_000)),
+    maxAttempts: Number(process.env.PRISMA_MAX_ATTEMPTS ?? (vercel ? 3 : 3)),
+    // Keep page/API worst-case under typical Vercel route budgets (60s QB).
+    timeoutMs: Number(process.env.PRISMA_QUERY_TIMEOUT_MS ?? (vercel ? 12_000 : 15_000)),
     // Longer base delay on Vercel so Neon scale-to-zero can finish waking.
-    baseDelayMs: vercel ? 1_800 : 200,
+    baseDelayMs: vercel ? 1_200 : 200,
   };
 }
 
