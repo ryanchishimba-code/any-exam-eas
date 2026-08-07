@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getCachedSession } from "@/lib/auth/session";
 import { getUserAccess, type UserAccess } from "@/lib/access-control";
 import { redirectIfDbUnavailable } from "@/lib/page-access-error";
+import { ensureNeonReady } from "@/lib/neon-warmup";
 import { resolvePaywallRedirect } from "@/lib/reactivation";
 
 async function loadPageAccess(callbackPath: string): Promise<UserAccess> {
@@ -12,6 +13,7 @@ async function loadPageAccess(callbackPath: string): Promise<UserAccess> {
 
   let access: UserAccess;
   try {
+    await ensureNeonReady("access");
     access = await getUserAccess(session.user.id);
   } catch (error) {
     redirectIfDbUnavailable(error);

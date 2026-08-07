@@ -37,13 +37,12 @@ export function getPrismaRetryOptions(): Required<
 > {
   const vercel = Boolean(process.env.VERCEL);
   return {
-    // 3 attempts: first often fails while Neon compute is waking;
-    // backoff waits long enough for wake before retrying TCP.
-    // Promise.race timeouts still do not retry (see isRetryableDbError).
-    maxAttempts: Number(process.env.PRISMA_MAX_ATTEMPTS ?? 3),
-    timeoutMs: Number(process.env.PRISMA_QUERY_TIMEOUT_MS ?? 15_000),
+    // First attempt often fails while Neon compute is waking; backoff waits
+    // for wake before retrying TCP. Race timeouts get one warm+retry on Vercel.
+    maxAttempts: Number(process.env.PRISMA_MAX_ATTEMPTS ?? (vercel ? 4 : 3)),
+    timeoutMs: Number(process.env.PRISMA_QUERY_TIMEOUT_MS ?? (vercel ? 20_000 : 15_000)),
     // Longer base delay on Vercel so Neon scale-to-zero can finish waking.
-    baseDelayMs: vercel ? 1_500 : 200,
+    baseDelayMs: vercel ? 1_800 : 200,
   };
 }
 
@@ -187,8 +186,18 @@ export async function executeWithRetry<T>(
     } catch (error) {
       lastError = error;
       const elapsed = Date.now() - started;
-      const retryable = isRetryableDbError(error);
       const isLast = attempt + 1 >= maxAttempts;
+
+      // Race timeouts normally do not retry (in-flight query still holds a slot).
+      // On Vercel: one warm+retry for Prisma; Neon HTTP warm may retry timeouts
+      // across attempts so scale-to-zero wake can finish.
+      const timeoutWarmRetry =
+        isQueryTimeoutError(error) &&
+        !isLast &&
+        Boolean(process.env.VERCEL) &&
+        (attempt === 0 || label.startsWith("neon:"));
+
+      const retryable = isRetryableDbError(error) || timeoutWarmRetry;
 
       if (!retryable || isLast) {
         if (isTransientDbError(error)) {
@@ -199,6 +208,19 @@ export async function executeWithRetry<T>(
           throw new DbUnavailableError();
         }
         throw error;
+      }
+
+      if (timeoutWarmRetry || isNeonColdStartError(error)) {
+        // Only warm via Neon HTTP when a Prisma TCP op stalled — never recurse
+        // into warmNeonCompute from an already-in-progress neon:/drizzle: warm.
+        if (label.startsWith("prisma:")) {
+          try {
+            const { warmNeonCompute } = await import("@/lib/neon-warmup");
+            await warmNeonCompute(`${label}.retry-warm`);
+          } catch {
+            /* warm best-effort */
+          }
+        }
       }
 
       const waitBase = isNeonColdStartError(error)

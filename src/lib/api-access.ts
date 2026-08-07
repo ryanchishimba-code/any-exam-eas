@@ -30,6 +30,8 @@ export async function requireAuthenticatedApi(_req?: Request): Promise<ApiAuthRe
 
   let access: UserAccess;
   try {
+    const { ensureNeonReady } = await import("@/lib/neon-warmup");
+    await ensureNeonReady("api-access");
     access = await getUserAccess(session.user.id);
   } catch (error) {
     const dbResponse = respondDbUnavailable(error);

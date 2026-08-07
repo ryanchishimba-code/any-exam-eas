@@ -74,6 +74,25 @@ describe("assertRuntimeDatabaseUrl", () => {
     process.env = {};
     expect(() => assertRuntimeDatabaseUrl()).toThrow("DATABASE_URL is not set");
   });
+
+  it("requires a Neon pooler hostname on Vercel production", () => {
+    process.env = {
+      VERCEL: "1",
+      NODE_ENV: "production",
+      DATABASE_URL:
+        "postgresql://user:pass@ep-example.us-east-1.aws.neon.tech/neondb?sslmode=require",
+    };
+    expect(() => assertRuntimeDatabaseUrl()).toThrow("pooled hostname");
+  });
+
+  it("accepts a Neon pooler hostname on Vercel production", () => {
+    process.env = {
+      VERCEL: "1",
+      NODE_ENV: "production",
+      DATABASE_URL: REAL_URL,
+    };
+    expect(() => assertRuntimeDatabaseUrl()).not.toThrow();
+  });
 });
 
 describe("getNeonHttpDatabaseUrl", () => {

@@ -52,9 +52,9 @@ describe("getPrismaRetryOptions", () => {
     delete process.env.PRISMA_MAX_ATTEMPTS;
     process.env.VERCEL = "1";
     const opts = getPrismaRetryOptions();
-    expect(opts.maxAttempts).toBe(3);
-    expect(opts.timeoutMs).toBe(15_000);
-    expect(opts.baseDelayMs).toBe(1_500);
+    expect(opts.maxAttempts).toBe(4);
+    expect(opts.timeoutMs).toBe(20_000);
+    expect(opts.baseDelayMs).toBe(1_800);
     process.env.VERCEL = prev;
     if (prevTimeout === undefined) delete process.env.PRISMA_QUERY_TIMEOUT_MS;
     else process.env.PRISMA_QUERY_TIMEOUT_MS = prevTimeout;
@@ -122,14 +122,65 @@ describe("executeWithRetry", () => {
     expect(fn).toHaveBeenCalledTimes(2);
   });
 
-  it("maps race timeouts to DbUnavailableError without retrying", async () => {
+  it("maps race timeouts to DbUnavailableError without retrying off Vercel", async () => {
+    const prev = process.env.VERCEL;
+    delete process.env.VERCEL;
     const fn = vi.fn().mockRejectedValue(new Error("prisma:User.find_timeout"));
 
     await expect(
       executeWithRetry(fn, { label: "test", maxAttempts: 3, baseDelayMs: 1 })
     ).rejects.toBeInstanceOf(DbUnavailableError);
     expect(fn).toHaveBeenCalledTimes(1);
+    if (prev === undefined) delete process.env.VERCEL;
+    else process.env.VERCEL = prev;
   });
+
+  it("retries one race timeout on Vercel for Prisma labels", async () => {
+    const prev = process.env.VERCEL;
+    process.env.VERCEL = "1";
+    const fn = vi
+      .fn()
+      .mockRejectedValueOnce(new Error("prisma:User.find_timeout"))
+      .mockResolvedValue("ok");
+
+    await expect(
+      executeWithRetry(fn, {
+        label: "prisma:User.find",
+        maxAttempts: 3,
+        baseDelayMs: 1,
+        timeoutMs: 50,
+      })
+    ).resolves.toBe("ok");
+    expect(fn).toHaveBeenCalledTimes(2);
+    if (prev === undefined) delete process.env.VERCEL;
+    else process.env.VERCEL = prev;
+  });
+
+  it(
+    "retries neon HTTP race timeouts across attempts on Vercel",
+    async () => {
+      const prev = process.env.VERCEL;
+      process.env.VERCEL = "1";
+      const fn = vi
+        .fn()
+        .mockRejectedValueOnce(new Error("neon:warmup_timeout"))
+        .mockRejectedValueOnce(new Error("neon:warmup_timeout"))
+        .mockResolvedValue("ok");
+
+      await expect(
+        executeWithRetry(fn, {
+          label: "neon:warmup",
+          maxAttempts: 3,
+          baseDelayMs: 1,
+          timeoutMs: 50,
+        })
+      ).resolves.toBe("ok");
+      expect(fn).toHaveBeenCalledTimes(3);
+      if (prev === undefined) delete process.env.VERCEL;
+      else process.env.VERCEL = prev;
+    },
+    15_000
+  );
 
   it("does not retry non-transient errors", async () => {
     const err = new Prisma.PrismaClientKnownRequestError("unique", {

@@ -194,6 +194,17 @@ export function assertRuntimeDatabaseUrl() {
     );
   }
 
+  if (
+    process.env.VERCEL &&
+    process.env.NODE_ENV === "production" &&
+    isPostgresDatabaseUrl(url) &&
+    !isNeonPooledUrl(url)
+  ) {
+    throw new Error(
+      "DATABASE_URL must use the Neon pooled hostname (-pooler) on Vercel. Copy the pooled string from Neon Console → Connect."
+    );
+  }
+
   if (process.env.NODE_ENV === "production" && isPostgresDatabaseUrl(url) && !isNeonPooledUrl(url)) {
     console.warn(
       "[db] DATABASE_URL may not use Neon pooler. For 3k+ MAU use the pooled connection string (-pooler hostname)."

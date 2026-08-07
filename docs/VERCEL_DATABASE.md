@@ -156,7 +156,7 @@ npm run dev
 | Production has few questions vs local | Vercel Neon integration (`exameasy_*`) may point at a **different** branch than `.env`. Run `npm run vercel:fix-neon-db` to set `DATABASE_URL` on production/preview/development from local `.env`, then redeploy |
 | `DATABASE_URL` empty after `vercel env pull` | Production var may be `sensitive` or unset; app falls back to `exameasy_DATABASE_URL`. Fix with `npm run vercel:fix-neon-db` |
 
-## Production hardening (recommended)
+## Production hardening (required for reliability)
 
 ### 1. Lock canonical Neon URL on Vercel
 
@@ -165,17 +165,33 @@ After any Neon or env change:
 ```bash
 npm run vercel:fix-neon-db          # sync DATABASE_URL + POSTGRES_* from .env.local
 npm run vercel:fix-neon-db:verify   # audit only — no writes
+npm run vercel:fix-neon-db:deploy   # sync + redeploy + verify question bank
 ```
 
 This sets explicit `DATABASE_URL`, `POSTGRES_URL`, and `POSTGRES_PRISMA_URL` on **production, preview, and development**, overriding stale Vercel Neon integration vars (`exameasy_*`).
 
-In the Vercel dashboard, ensure those vars are also checked for **Build**.
+In the Vercel dashboard, ensure those vars are also checked for **Build**. Runtime refuses non-pooled Neon hosts on Vercel production.
 
-### 2. Uptime monitoring
+### 2. Keep Neon compute awake (scale-to-zero)
+
+Neon Free suspends compute after **~5 minutes** idle. That causes Prisma `P1001` / “Something went wrong” on the next study request.
+
+Permanent mitigations in this repo:
+
+| Layer | What it does |
+|-------|----------------|
+| Vercel cron `/api/cron/db-keepalive` every **3 minutes** | HTTP + Prisma `SELECT 1` so compute never reaches the 5-minute sleep window |
+| `ensureNeonReady()` on study pages + `withDbCatch` APIs | Wakes Neon over HTTP before Prisma TCP |
+| Prisma `$extends` retries | Backoff + one warm-and-retry on Vercel query timeouts |
+| GitHub Actions uptime | Pings `/api/health` and keepalive when `CRON_SECRET` is set |
+
+**Paid Neon:** disable Scale to Zero on the production compute (Neon Console → Branches → Compute → disable autosuspend) for always-on latency. Free plan cannot disable it — rely on the 3-minute keepalive.
+
+### 3. Uptime monitoring
 
 **GitHub Actions (included):** `.github/workflows/production-uptime.yml` pings `/api/health` every 5 minutes and on every `main` push. Failed runs appear under **Actions → Production uptime**.
 
-Optional: add repo secret `CRON_SECRET` to enable the detailed DB/prisma check step.
+Add repo secret `CRON_SECRET` to enable the detailed DB/prisma check **and** Neon keepalive probe.
 
 **External (optional):** [Better Stack](https://betterstack.com/uptime) or [UptimeRobot](https://uptimerobot.com) on `https://www.anyexameasy.com/api/health` — expect HTTP 200 and `"ok":true`.
 
@@ -184,6 +200,7 @@ Local check:
 ```bash
 npm run ops:health
 CRON_SECRET=... npm run ops:health:detailed
+npm run vercel:fix-neon-db:verify
 ```
 
 ## Related

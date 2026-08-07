@@ -39,3 +39,18 @@ jobs:
           report="$(curl -fsS -m 25 -H "Authorization: Bearer ${CRON_SECRET}" "${PRODUCTION_URL}/api/health")"
           echo "$report" | grep -q '"databasePing"[[:space:]]*:[[:space:]]*"ok"'
           echo "$report" | grep -q '"databaseUrl"[[:space:]]*:[[:space:]]*"postgresql"'
+
+      - name: Neon keepalive probe (optional)
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          PRODUCTION_URL: https://www.anyexameasy.com
+        run: |
+          set -euo pipefail
+          if [ -z "${CRON_SECRET:-}" ]; then
+            echo "Skipping keepalive probe (add CRON_SECRET repo secret to enable)"
+            exit 0
+          fi
+          # Dual monitor: Vercel cron keeps Neon warm every 3m; this catches cron gaps.
+          body="$(curl -fsS -m 30 -H "Authorization: Bearer ${CRON_SECRET}" "${PRODUCTION_URL}/api/cron/db-keepalive")"
+          echo "$body"
+          echo "$body" | grep -q '"ok"[[:space:]]*:[[:space:]]*true'

@@ -4,7 +4,7 @@
   "crons": [
     {
       "path": "/api/cron/db-keepalive",
-      "schedule": "*/5 * * * *"
+      "schedule": "*/3 * * * *"
     },
     {
       "path": "/api/cron/sync-question-bank",
@@ -30,6 +30,9 @@
   "functions": {
     "src/app/api/questions/route.ts": {
       "maxDuration": 300
+    },
+    "src/app/api/cron/db-keepalive/route.ts": {
+      "maxDuration": 60
     },
     "src/app/api/cron/sync-question-bank/route.ts": {
       "maxDuration": 300

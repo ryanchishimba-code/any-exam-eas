@@ -65,6 +65,18 @@ export function getPrisma(): PrismaClient {
   return client;
 }
 
+/**
+ * Prefer this on Vercel study paths: wakes Neon over HTTP (cached) then returns Prisma.
+ * Safe to call on every request — warm is cached ~45s per isolate.
+ */
+export async function getReadyPrisma(): Promise<PrismaClient> {
+  if (process.env.VERCEL || process.env.NODE_ENV === "production") {
+    const { ensureNeonReady } = await import("@/lib/neon-warmup");
+    await ensureNeonReady("prisma");
+  }
+  return getPrisma();
+}
+
 /** Lazy proxy so importing `@/lib/prisma` does not open a DB connection at module load. */
 export const prisma: PrismaClient = new Proxy({} as PrismaClient, {
   get(_target, prop, receiver) {

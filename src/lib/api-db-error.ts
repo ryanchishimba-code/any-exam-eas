@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { DbUnavailableError, toUserFacingDbError } from "@/lib/db-resilience";
+import { ensureNeonReady } from "@/lib/neon-warmup";
 
 /** Map DB failures to a safe 503 JSON response for API routes. */
 export function respondDbUnavailable(error?: unknown) {
@@ -34,6 +35,7 @@ export function withDbCatch<TArgs extends unknown[]>(
 ): RouteHandler<TArgs> {
   return async (...args: TArgs) => {
     try {
+      await ensureNeonReady("api");
       return await handler(...args);
     } catch (error) {
       const dbResponse = respondDbUnavailable(error);
