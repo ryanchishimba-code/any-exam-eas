@@ -26,7 +26,7 @@ export async function resolveQuestionBankRoute(
   const pref = await getUserExamPreference(userId);
   if (!pref) redirect(ROUTES.selectExam);
 
-  let examSlug = pref.examSlug;
+  const examSlug = pref.examSlug;
   const defaultFieldId = fieldIdForExamSlug(examSlug);
   let fieldParam = defaultFieldId;
   let usmleStepLabel: string | undefined;
