@@ -187,11 +187,17 @@ Permanent mitigations in this repo:
 
 **Paid Neon:** disable Scale to Zero on the production compute (Neon Console → Branches → Compute → disable autosuspend) for always-on latency. Free plan cannot disable it — rely on the 3-minute keepalive.
 
-### 3. Uptime monitoring
+### 3. Uptime + database monitoring
 
-**GitHub Actions (included):** `.github/workflows/production-uptime.yml` pings `/api/health` every 5 minutes and on every `main` push. Failed runs appear under **Actions → Production uptime**.
+**Frequent liveness:** `.github/workflows/production-uptime.yml` pings `/api/health` every 5 minutes and on every `main` push. Failed runs appear under **Actions → Production uptime**.
 
-Add repo secret `CRON_SECRET` to enable the detailed DB/prisma check **and** Neon keepalive probe.
+**Every-other-day database check:** `.github/workflows/database-health.yml` runs at **15:00 UTC on every other day** (and via **Run workflow**). It requires repo secret `CRON_SECRET` and verifies:
+
+1. Public `/api/health` → `ok: true`
+2. Detailed health → `databaseUrl=postgresql`, `databasePing=ok`, Prisma/bank healthy
+3. `/api/cron/db-keepalive` → Neon HTTP + Prisma warm succeed
+
+Add repo secret `CRON_SECRET` (same value as Vercel) so both workflows can probe the DB. Without it, the every-other-day job **fails** on purpose so you notice.
 
 **External (optional):** [Better Stack](https://betterstack.com/uptime) or [UptimeRobot](https://uptimerobot.com) on `https://www.anyexameasy.com/api/health` — expect HTTP 200 and `"ok":true`.
 
@@ -200,6 +206,7 @@ Local check:
 ```bash
 npm run ops:health
 CRON_SECRET=... npm run ops:health:detailed
+CRON_SECRET=... npm run ops:health:database
 npm run vercel:fix-neon-db:verify
 ```
 

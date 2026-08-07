@@ -1,0 +1,41 @@
+name: Database health (every other day)
+
+on:
+  schedule:
+    # Every other day at 15:00 UTC (~10:00 AM US Central)
+    - cron: "0 15 */2 * *"
+  workflow_dispatch:
+
+concurrency:
+  group: database-health
+  cancel-in-progress: false
+
+jobs:
+  database:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Require CRON_SECRET
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+        run: |
+          set -euo pipefail
+          if [ -z "${CRON_SECRET:-}" ]; then
+            echo "::error::Add repo secret CRON_SECRET (same value as Vercel CRON_SECRET) so this check can hit /api/health details and /api/cron/db-keepalive."
+            exit 1
+          fi
+
+      - name: Production database check
+        env:
+          CRON_SECRET: ${{ secrets.CRON_SECRET }}
+          PRODUCTION_URL: https://www.anyexameasy.com
+          HEALTH_TIMEOUT_MS: "30000"
+        run: node scripts/production-health-check.mjs --database

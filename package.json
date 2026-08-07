@@ -68,6 +68,7 @@
     "vercel:fix-neon-db:deploy": "node scripts/fix-vercel-neon-database.mjs --redeploy",
     "ops:health": "node scripts/production-health-check.mjs",
     "ops:health:detailed": "node scripts/production-health-check.mjs --detailed",
+    "ops:health:database": "node scripts/production-health-check.mjs --database",
     "vercel:connect-neon": "node scripts/connect-vercel-neon.mjs",
     "vercel:stripe": "node scripts/vercel-stripe-push.mjs --redeploy",
     "vercel:pricing-env": "node scripts/vercel-pricing-env.mjs --redeploy",
