@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
-import { ProBenefitsCallout } from "@/components/ProBenefitsCallout";
 import { QuestionBankPracticeLoader } from "@/components/study/question-bank/QuestionBankPracticeLoader";
+import { StudyBankPracticeLazy } from "@/components/study/StudyBankPracticeLazy";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getCachedSession } from "@/lib/auth/session";
 import { requireStudyPage } from "@/lib/require-premium-page";
@@ -17,6 +17,7 @@ export const metadata = {
 
 /** Nursing/NCLEX subject counts + preference lookups can cold-start Neon. */
 export const maxDuration = 60;
+export const dynamic = "force-dynamic";
 
 function QuestionBankPracticeSkeleton() {
   return (
@@ -41,14 +42,34 @@ async function QuestionBankContent({
   fieldParam: string;
   usmleStepLabel?: string;
 }) {
-  return (
-    <QuestionBankPracticeLoader
-      userId={userId}
-      examSlug={examSlug}
-      fieldParam={fieldParam}
-      usmleStepLabel={usmleStepLabel}
-    />
-  );
+  try {
+    return (
+      <QuestionBankPracticeLoader
+        userId={userId}
+        examSlug={examSlug}
+        fieldParam={fieldParam}
+        usmleStepLabel={usmleStepLabel}
+      />
+    );
+  } catch (error) {
+    // Last-resort shell so NCLEX/NAPLEX never blank on a loader race.
+    console.error(
+      "[question-bank] loader crashed; rendering empty setup shell:",
+      error instanceof Error ? error.message : error
+    );
+    return (
+      <StudyBankPracticeLazy
+        preferredExamSlug={examSlug}
+        lockExam
+        initialFieldId={fieldParam}
+        initialSubjectCounts={null}
+        weakTopics={[]}
+        usmleStepLabel={usmleStepLabel}
+        topicCount={null}
+        totalQuestions={null}
+      />
+    );
+  }
 }
 
 export default async function QuestionBankPage({
@@ -67,7 +88,6 @@ export default async function QuestionBankPage({
 
   return (
     <div className="w-full space-y-5">
-      <ProBenefitsCallout />
       <Suspense fallback={<QuestionBankPracticeSkeleton />}>
         <QuestionBankContent userId={session.user.id} {...route} />
       </Suspense>
