@@ -383,7 +383,7 @@ export function CatMockPractice() {
                     remediation={remediation}
                     correct={wasCorrect === true}
                     aiTutor={aiTutorRequest}
-                    autoFetchOnMiss={wasCorrect === false}
+                    autoFetchOnMiss={false}
                   />
                 )}
                 {showConfidence && (

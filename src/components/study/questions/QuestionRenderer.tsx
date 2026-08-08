@@ -242,13 +242,13 @@ export function ExplanationPanel({
 }: {
   question: StudyQuestion;
   field?: string;
-  /** After a miss, auto-expand expert depth and keep distractor “why wrong” visible. */
+  /** Prefer expert depth when the user chooses to open the explanation after a miss. */
   incorrect?: boolean;
 }) {
   const { role } = useUserAccess();
   const conciseOnly = role === "free";
-  const autoExpand = incorrect && !conciseOnly;
-  const [expanded, setExpanded] = useState(autoExpand);
+  // Always start collapsed so users can Next without a wall of text.
+  const [expanded, setExpanded] = useState(false);
   const examSlug = (field ? examSlugFromFieldId(field) : null) ?? "nclex";
 
   const parsed = parseRationaleForDisplay(
@@ -260,9 +260,9 @@ export function ExplanationPanel({
     question.expertRationale?.whyCorrect?.headline ||
     parsed.keyTakeaway ||
     parsed.whyCorrectHeadline ||
-    parsed.legacyBody?.slice(0, 220) ||
-    question.explanation?.slice(0, 220) ||
-    "Tap below for the full breakdown.";
+    parsed.legacyBody?.slice(0, 140) ||
+    question.explanation?.slice(0, 140) ||
+    "Open the explanation when you want the full breakdown.";
 
   const hasDistractors =
     Boolean(
@@ -278,7 +278,7 @@ export function ExplanationPanel({
     Boolean(question.references?.length) ||
     hasExpert;
 
-  const showDistractors = (expanded || incorrect) && !conciseOnly;
+  const showDistractors = expanded && !conciseOnly;
 
   return (
     <div className="mt-6 space-y-4">
@@ -305,7 +305,7 @@ export function ExplanationPanel({
             defaultDepth={incorrect && hasExpert ? "expert" : "concise"}
           />
         ) : (
-          <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
             {concisePreview}
           </p>
         )}
@@ -313,14 +313,19 @@ export function ExplanationPanel({
           <button
             type="button"
             onClick={() => setExpanded((v) => !v)}
-            className="mt-3 text-sm font-semibold text-[var(--color-accent)] transition hover:opacity-80"
+            className="mt-3 inline-flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3.5 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)]"
             aria-expanded={expanded}
           >
-            {expanded ? "Show less" : "View full explanation"}
+            {expanded ? "Hide explanation" : "View explanation"}
           </button>
         ) : conciseOnly && hasDeepContent ? (
           <p className="mt-3 text-xs text-[var(--color-ink-muted)]">
             Upgrade to Pro for rich, detailed explanations.
+          </p>
+        ) : null}
+        {!expanded && !conciseOnly ? (
+          <p className="mt-2 text-xs text-[var(--color-ink-muted)]">
+            Optional — you can keep moving with Next.
           </p>
         ) : null}
       </div>
@@ -375,10 +380,11 @@ export function ExplanationPanel({
         </div>
       )}
 
-      <QuestionRelatedLinks question={question} examSlug={examSlug} sections="anatomy" />
-
       {expanded ? (
-        <QuestionRelatedLinks question={question} examSlug={examSlug} sections="non-anatomy" />
+        <>
+          <QuestionRelatedLinks question={question} examSlug={examSlug} sections="anatomy" />
+          <QuestionRelatedLinks question={question} examSlug={examSlug} sections="non-anatomy" />
+        </>
       ) : null}
 
       {expanded && question.references && question.references.length > 0 && (
@@ -404,15 +410,17 @@ export function ExplanationPanel({
       )}
 
       {/* Spoiler-safe: shares a "studying" message, never the answer. */}
-      <div className="flex justify-end border-t border-black/[0.06] pt-3 dark:border-white/[0.08]">
-        <SocialShareBar
-          entityType="question"
-          entityId={question.id}
-          text={`Sharpening my ${examSlug.toUpperCase()} prep with AnyExamEasy 💪`}
-          url="https://www.anyexameasy.com"
-          size="sm"
-        />
-      </div>
+      {expanded ? (
+        <div className="flex justify-end border-t border-black/[0.06] pt-3 dark:border-white/[0.08]">
+          <SocialShareBar
+            entityType="question"
+            entityId={question.id}
+            text={`Sharpening my ${examSlug.toUpperCase()} prep with AnyExamEasy 💪`}
+            url="https://www.anyexameasy.com"
+            size="sm"
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

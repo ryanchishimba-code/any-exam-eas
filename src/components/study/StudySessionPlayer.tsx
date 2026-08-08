@@ -696,7 +696,7 @@ export function StudySessionPlayer({
                   remediation={remediation}
                   correct={answer.correct === true}
                   aiTutor={aiTutorRequest}
-                  autoFetchOnMiss={!answer.correct}
+                  autoFetchOnMiss={false}
                 />
               )}
             </div>
