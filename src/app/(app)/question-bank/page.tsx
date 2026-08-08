@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { QuestionBankPracticeLoader } from "@/components/study/question-bank/QuestionBankPracticeLoader";
-import { StudyBankPracticeLazy } from "@/components/study/StudyBankPracticeLazy";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getCachedSession } from "@/lib/auth/session";
 import { requireStudyPage } from "@/lib/require-premium-page";
@@ -42,34 +41,16 @@ async function QuestionBankContent({
   fieldParam: string;
   usmleStepLabel?: string;
 }) {
-  try {
-    return (
-      <QuestionBankPracticeLoader
-        userId={userId}
-        examSlug={examSlug}
-        fieldParam={fieldParam}
-        usmleStepLabel={usmleStepLabel}
-      />
-    );
-  } catch (error) {
-    // Last-resort shell so NCLEX/NAPLEX never blank on a loader race.
-    console.error(
-      "[question-bank] loader crashed; rendering empty setup shell:",
-      error instanceof Error ? error.message : error
-    );
-    return (
-      <StudyBankPracticeLazy
-        preferredExamSlug={examSlug}
-        lockExam
-        initialFieldId={fieldParam}
-        initialSubjectCounts={null}
-        weakTopics={[]}
-        usmleStepLabel={usmleStepLabel}
-        topicCount={null}
-        totalQuestions={null}
-      />
-    );
-  }
+  // Retries live in the loader / Neon HTTP path. After they are exhausted,
+  // this throws into question-bank/error.tsx (final fallback UI).
+  return (
+    <QuestionBankPracticeLoader
+      userId={userId}
+      examSlug={examSlug}
+      fieldParam={fieldParam}
+      usmleStepLabel={usmleStepLabel}
+    />
+  );
 }
 
 export default async function QuestionBankPage({

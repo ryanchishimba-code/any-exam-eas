@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getFieldMeta } from "@/lib/fields";
 import { getFieldSubject } from "@/lib/field-subjects";
+import { withDbRetry } from "@/lib/db";
 import {
   countActiveQuestions,
   sampleQuestionBankItems,
@@ -206,68 +207,96 @@ export async function GET(req: Request) {
   let items: BankItem[];
   let preAssembledTimed = false;
 
-  if (mixed && timedExam) {
-    const { assembleTimedExamSessionItems } = await import(
-      "@/lib/exam-prep/compose/assemble-timed-exam-session"
-    );
-    const assembled = await assembleTimedExamSessionItems({
-      fieldId,
-      field,
-      limit,
-      focusAreas,
-      sampleCount,
-    });
-
-    if (!assembled) {
-      if (fieldSupportsBlueprintTimedExam(fieldId)) {
-        return NextResponse.json(
-          {
-            error: `Could not compose a ${limit}-question exam aligned to the board blueprint. Try again shortly.`,
-            code: "EXAM_SESSION_UNAVAILABLE",
-          },
-          { status: 503 }
-        );
-      }
-      return NextResponse.json(
-        {
-          error: "No questions available for this selection.",
-          code: "EMPTY_BANK",
-          fieldId,
-          subjectId: MIXED_SUBJECT_ID,
-        },
-        { status: 404 }
+  const sampled = await withDbRetry(async () => {
+    if (mixed && timedExam) {
+      const { assembleTimedExamSessionItems } = await import(
+        "@/lib/exam-prep/compose/assemble-timed-exam-session"
       );
+      const assembled = await assembleTimedExamSessionItems({
+        fieldId,
+        field,
+        limit,
+        focusAreas,
+        sampleCount,
+      });
+
+      if (!assembled) {
+        return { kind: "empty-timed" as const };
+      }
+
+      return {
+        kind: "ok" as const,
+        items: assembled.items,
+        preAssembledTimed: assembled.items.length >= limit,
+      };
     }
 
-    items = assembled.items;
-    preAssembledTimed = items.length >= limit;
-  } else if (mixed) {
-    items = await sampleQuestionBankItemsForField({
-      fieldId,
-      count: presetSampleCount,
-      taskCategory,
-    });
-  } else if (bankPractice) {
-    items = await gatherTopicBankSessionPool({
-      fieldId,
-      subjectId: subjectId!,
-      sessionLimit: limit,
-      taskCategory,
-      blueprintTopics,
-      naplexTopic,
-      usmleTopic,
-      panceTopic,
-      aanpFnpTopic,
-      nptePtTopic,
-    });
-  } else {
-    items = await sampleQuestionBankItems({
-      fieldId,
-      subjectId: subjectId!,
-      count: presetSampleCount,
-      taskCategory,
-    });
+    if (mixed) {
+      return {
+        kind: "ok" as const,
+        items: await sampleQuestionBankItemsForField({
+          fieldId,
+          count: presetSampleCount,
+          taskCategory,
+        }),
+        preAssembledTimed: false,
+      };
+    }
+
+    if (bankPractice) {
+      return {
+        kind: "ok" as const,
+        items: await gatherTopicBankSessionPool({
+          fieldId,
+          subjectId: subjectId!,
+          sessionLimit: limit,
+          taskCategory,
+          blueprintTopics,
+          naplexTopic,
+          usmleTopic,
+          panceTopic,
+          aanpFnpTopic,
+          nptePtTopic,
+        }),
+        preAssembledTimed: false,
+      };
+    }
+
+    return {
+      kind: "ok" as const,
+      items: await sampleQuestionBankItems({
+        fieldId,
+        subjectId: subjectId!,
+        count: presetSampleCount,
+        taskCategory,
+      }),
+      preAssembledTimed: false,
+    };
+  }, "api-questions-sample");
+
+  if (sampled.kind === "empty-timed") {
+    if (fieldSupportsBlueprintTimedExam(fieldId)) {
+      return NextResponse.json(
+        {
+          error: `Could not compose a ${limit}-question exam aligned to the board blueprint. Try again shortly.`,
+          code: "EXAM_SESSION_UNAVAILABLE",
+        },
+        { status: 503 }
+      );
+    }
+    return NextResponse.json(
+      {
+        error: "No questions available for this selection.",
+        code: "EMPTY_BANK",
+        fieldId,
+        subjectId: MIXED_SUBJECT_ID,
+      },
+      { status: 404 }
+    );
   }
+
+  items = sampled.items;
+  preAssembledTimed = sampled.preAssembledTimed;
 
   if (items.length > 0 && !(mixed && timedExam) && !bankPractice) {
     items = prepareBankItemsForSession({

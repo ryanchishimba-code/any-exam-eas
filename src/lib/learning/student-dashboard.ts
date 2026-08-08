@@ -265,17 +265,22 @@ export async function getStudentWeakTopics(
 ): Promise<WeakTopicRow[]> {
   const scopeKey = fieldIds?.length ? fieldIds.join(",") : "all";
   try {
-    return await cacheGetOrSet(
-      cacheKey(["weak-topics", userId, scopeKey]),
-      CACHE_TTL.learningDashboard,
-      async () => {
-        const masteries = await prisma.conceptMastery.findMany({
-          where: { userId, ...fieldWhere(fieldIds) },
-          orderBy: { masteryScore: "asc" },
-          take: 6,
-        });
-        return mapWeakTopics(masteries);
-      }
+    const { withDbRetry } = await import("@/lib/db");
+    return await withDbRetry(
+      () =>
+        cacheGetOrSet(
+          cacheKey(["weak-topics", userId, scopeKey]),
+          CACHE_TTL.learningDashboard,
+          async () => {
+            const masteries = await prisma.conceptMastery.findMany({
+              where: { userId, ...fieldWhere(fieldIds) },
+              orderBy: { masteryScore: "asc" },
+              take: 6,
+            });
+            return mapWeakTopics(masteries);
+          }
+        ),
+      "weak-topics"
     );
   } catch (error) {
     console.warn(

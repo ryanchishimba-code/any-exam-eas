@@ -9,33 +9,6 @@ export type QuestionBankHubStats = {
   streakDays: number;
 };
 
-function withSoftTimeout<T>(
-  promise: Promise<T>,
-  ms: number,
-  fallback: T,
-  label: string
-): Promise<T> {
-  return new Promise((resolve) => {
-    const timer = setTimeout(() => {
-      console.warn(`[question-bank] ${label} soft-timeout after ${ms}ms`);
-      resolve(fallback);
-    }, ms);
-    promise
-      .then((value) => {
-        clearTimeout(timer);
-        resolve(value);
-      })
-      .catch((error) => {
-        clearTimeout(timer);
-        console.warn(
-          `[question-bank] ${label} soft-fail:`,
-          error instanceof Error ? error.message : error
-        );
-        resolve(fallback);
-      });
-  });
-}
-
 export async function QuestionBankPracticeLoader({
   userId,
   examSlug,
@@ -49,21 +22,12 @@ export async function QuestionBankPracticeLoader({
   hubStats?: QuestionBankHubStats;
   usmleStepLabel?: string;
 }) {
-  // Cap DB waits so Neon blips never blank the whole question-bank route.
-  const [countsPayload, weakTopics] = await Promise.all([
-    withSoftTimeout(
-      loadSubjectCountsForUser(userId, fieldParam),
-      8_000,
-      null,
-      "subject-counts"
-    ),
-    withSoftTimeout(
-      getStudentWeakTopics(userId, examFieldIds(examSlug)),
-      8_000,
-      [],
-      "weak-topics"
-    ),
-  ]);
+  // Critical path retries inside loadSubjectCountsForUser / Neon HTTP.
+  // After they are exhausted, let the error bubble to question-bank/error.tsx.
+  const countsPayload = await loadSubjectCountsForUser(userId, fieldParam);
+
+  // Weak topics soft-fail after their own retries — never blank the bank.
+  const weakTopics = await getStudentWeakTopics(userId, examFieldIds(examSlug));
 
   const totalQuestions = countsPayload?.counts
     ? Object.values(countsPayload.counts).reduce((sum, n) => sum + n, 0)

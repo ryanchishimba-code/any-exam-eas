@@ -1,4 +1,5 @@
 import { cacheGetOrSet, cacheKey, CACHE_TTL, CACHE_STALE } from "@/lib/cache";
+import { withDbRetry } from "@/lib/db";
 import { enforceQuestionBankFieldAccess, resolveQuestionBankFieldId } from "@/lib/edtech/question-bank-scope";
 import { getSubjectServedCountsWithRetry } from "@/lib/question-bank-db";
 
@@ -13,22 +14,21 @@ export async function loadSubjectCountsForUser(
   userId: string,
   fieldParam: string
 ): Promise<SubjectCountsPayload | null> {
-  const access = await enforceQuestionBankFieldAccess(userId, fieldParam);
+  const access = await withDbRetry(
+    () => enforceQuestionBankFieldAccess(userId, fieldParam),
+    "qb-field-access"
+  );
   if (!access.ok) return null;
 
   const fieldId = resolveQuestionBankFieldId(fieldParam);
 
-  try {
-    const counts = await cacheGetOrSet(
-      cacheKey(["subject-served-counts", fieldId]),
-      CACHE_TTL.subjectCatalog,
-      () => getSubjectServedCountsWithRetry(fieldId),
-      { staleTtlMs: CACHE_STALE.subjectCatalog }
-    );
-    const total = Object.values(counts).reduce((sum, n) => sum + n, 0);
-    return { fieldId, counts, total };
-  } catch (error) {
-    console.error("[load-subject-counts] lookup failed:", { fieldId, fieldParam, error });
-    return null;
-  }
+  // Errors propagate after Neon HTTP retries so the question-bank error UI can show.
+  const counts = await cacheGetOrSet(
+    cacheKey(["subject-served-counts", fieldId]),
+    CACHE_TTL.subjectCatalog,
+    () => getSubjectServedCountsWithRetry(fieldId),
+    { staleTtlMs: CACHE_STALE.subjectCatalog }
+  );
+  const total = Object.values(counts).reduce((sum, n) => sum + n, 0);
+  return { fieldId, counts, total };
 }

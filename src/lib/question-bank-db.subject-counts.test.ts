@@ -23,7 +23,7 @@ type Row = {
   stepLevel: string | null;
 };
 
-const { DATA, matchWhere } = vi.hoisted(() => {
+const { DATA, matchWhere, neonSql } = vi.hoisted(() => {
   const DATA: Array<{
     fieldId: string;
     subjectId: string;
@@ -61,7 +61,24 @@ const { DATA, matchWhere } = vi.hoisted(() => {
     });
   }
 
-  return { DATA, matchWhere };
+  /** Mimic Neon HTTP bulk count for the SQL shapes used by getSubjectServedCounts. */
+  async function neonSql(
+    strings: TemplateStringsArray,
+    ...values: unknown[]
+  ): Promise<Array<{ subjectId: string; count: number }>> {
+    const fieldId = String(values[0] ?? "");
+    const sqlText = strings.join("?");
+    const excludeStep3 = sqlText.includes("step3");
+    const groups = new Map<string, number>();
+    for (const r of DATA) {
+      if (r.fieldId !== fieldId || !r.active || !r.qaPassed) continue;
+      if (excludeStep3 && r.stepLevel === "step3") continue;
+      groups.set(r.subjectId, (groups.get(r.subjectId) ?? 0) + 1);
+    }
+    return [...groups.entries()].map(([subjectId, count]) => ({ subjectId, count }));
+  }
+
+  return { DATA, matchWhere, neonSql };
 });
 
 vi.mock("@/lib/prisma", () => ({
@@ -85,6 +102,13 @@ vi.mock("@/lib/prisma", () => ({
       ),
     },
   },
+}));
+
+vi.mock("@/lib/db", () => ({
+  sql: neonSql,
+  getSql: () => neonSql,
+  withDbRetry: async <T>(fn: () => Promise<T>) => fn(),
+  getNeonSql: () => neonSql,
 }));
 
 import {

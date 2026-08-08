@@ -666,32 +666,55 @@ export async function countActiveSubjectQuestions(
 /**
  * Serve-ready question counts for every subject in a field, in one query.
  *
- * Groups by `subjectId` using the field-level serve filter (`activeFieldWhere`),
- * which is `activeSubjectWhere` minus the subject predicate — so each per-subject
- * total here equals `countActiveSubjectQuestions(fieldId, subjectId)` by
- * construction. Returns a plain map keyed by `subjectId`.
+ * Uses Neon HTTP (`neon()`) against the pooled DATABASE_URL. Predicate matches
+ * `activeFieldWhere` (active + qaPassed + USMLE Step 2 / Step 3 separation).
  */
 export async function getSubjectServedCounts(
   fieldId: string
 ): Promise<Record<string, number>> {
-  const rows = await prisma.questionBankItem.groupBy({
-    by: ["subjectId"],
-    where: activeFieldWhere(fieldId),
-    _count: { _all: true },
-  });
+  const { sql } = await import("@/lib/db");
+
+  type CountRow = { subjectId: string; count: number };
+
+  const rows =
+    fieldId === "usmle-step-2"
+      ? await sql<CountRow>`
+          SELECT "subjectId", COUNT(*)::int AS count
+          FROM "QuestionBankItem"
+          WHERE "fieldId" = ${fieldId}
+            AND active = true
+            AND "qaPassed" = true
+            AND ("stepLevel" IS NULL OR "stepLevel" <> 'step3')
+          GROUP BY "subjectId"
+        `
+      : await sql<CountRow>`
+          SELECT "subjectId", COUNT(*)::int AS count
+          FROM "QuestionBankItem"
+          WHERE "fieldId" = ${fieldId}
+            AND active = true
+            AND "qaPassed" = true
+          GROUP BY "subjectId"
+        `;
 
   const counts: Record<string, number> = {};
   for (const row of rows) {
-    counts[row.subjectId] = row._count._all;
+    counts[row.subjectId] = Number(row.count) || 0;
   }
   return counts;
 }
 
-/** Resilient wrapper for topic picker / API — retries via global Prisma extension. */
+/**
+ * Topic picker / API path — Neon HTTP with fixed 3-attempt backoff
+ * (500ms → 1000ms → 2000ms).
+ */
 export async function getSubjectServedCountsWithRetry(
   fieldId: string
 ): Promise<Record<string, number>> {
-  return getSubjectServedCounts(fieldId);
+  const { withDbRetry } = await import("@/lib/db");
+  return withDbRetry(
+    () => getSubjectServedCounts(fieldId),
+    "subject-served-counts"
+  );
 }
 
 /**
