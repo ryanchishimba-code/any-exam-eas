@@ -90,6 +90,10 @@ function parseSimpleSection(block: string): string {
   return block.replace(/\*\*/g, "").trim();
 }
 
+function asStringArray(value: unknown): string[] {
+  return Array.isArray(value) ? value.map((v) => String(v ?? "")).filter(Boolean) : [];
+}
+
 /** Build display model from persisted expert JSON (preferred over markdown parse). */
 export function parseExpertRationaleForDisplay(
   expert: ExpertStructuredRationale
@@ -99,18 +103,19 @@ export function parseExpertRationaleForDisplay(
   );
   return {
     ...base,
-    stepByStepReasoning: expert.stepByStepReasoning,
+    // Partial generationMeta payloads are common — never leave arrays undefined for UI `.length`.
+    stepByStepReasoning: asStringArray(expert.stepByStepReasoning),
     clinicalPearl: expert.clinicalPearl,
     pharmacologyTieIn: expert.pharmacologyTieIn,
-    highYieldFacts: expert.highYieldFacts,
-    commonPitfalls: expert.commonPitfalls,
+    highYieldFacts: asStringArray(expert.highYieldFacts),
+    commonPitfalls: asStringArray(expert.commonPitfalls),
     nextStepInCare: expert.nextStepInCare,
     testTakingTip: expert.testTakingTip,
     realWorldApplication: expert.realWorldApplication,
     layeredDepth: expert.layeredDepth,
-    visualCues: expert.visualCues ?? [],
-    visualBlocks: expert.visualBlocks ?? [],
-    crossReferences: expert.crossReferences ?? [],
+    visualCues: Array.isArray(expert.visualCues) ? expert.visualCues : [],
+    visualBlocks: Array.isArray(expert.visualBlocks) ? expert.visualBlocks : [],
+    crossReferences: Array.isArray(expert.crossReferences) ? expert.crossReferences : [],
     isExpert: true,
     isStructured: true,
   };
@@ -118,7 +123,9 @@ export function parseExpertRationaleForDisplay(
 
 /** Minimal markdown for reusing base parser on expert JSON. */
 function assembleExpertMarkdownHeadersOnly(expert: ExpertStructuredRationale): string {
-  const wrongSection = expert.whyIncorrect
+  const whyIncorrect = Array.isArray(expert.whyIncorrect) ? expert.whyIncorrect : [];
+  const conceptBreakdown = asStringArray(expert.whyCorrect?.conceptBreakdown);
+  const wrongSection = whyIncorrect
     .map(
       (e) =>
         `**${e.option}**\n• Trap: ${e.misconception}\n• Why it fails here: ${e.correction}\n• Remember: ${e.conceptLink}`
@@ -127,13 +134,15 @@ function assembleExpertMarkdownHeadersOnly(expert: ExpertStructuredRationale): s
 
   return [
     "## Why this answer is correct",
-    expert.whyCorrect.headline,
-    ...expert.whyCorrect.conceptBreakdown.map((b) => `• ${b}`),
-    `**In practice:** ${expert.whyCorrect.clinicalContext}`,
+    expert.whyCorrect?.headline,
+    ...conceptBreakdown.map((b) => `• ${b}`),
+    expert.whyCorrect?.clinicalContext
+      ? `**In practice:** ${expert.whyCorrect.clinicalContext}`
+      : "",
     "## Why the other options are wrong",
     wrongSection,
     "## Key takeaway",
-    `**${expert.keyTakeaway}**`,
+    expert.keyTakeaway ? `**${expert.keyTakeaway}**` : "",
     expert.memoryHook ? `**Memory hook:** ${expert.memoryHook}` : "",
   ]
     .filter(Boolean)

@@ -85,4 +85,20 @@ describe("expert rationale assembly", () => {
     expect(parsed.wrongOptions.length).toBe(3);
     expect(assembled.concisePreview).toContain("Contact precautions");
   });
+
+  it("tolerates partial expert JSON without crashing UI array access", () => {
+    const partial = {
+      whyCorrect: { headline: "Prioritize airway first." },
+      keyTakeaway: "Airway before comfort.",
+    } as ExpertStructuredRationale;
+    const parsed = parseExpertRationaleForDisplay(partial);
+    expect(parsed.isExpert).toBe(true);
+    expect(parsed.stepByStepReasoning).toEqual([]);
+    expect(parsed.highYieldFacts).toEqual([]);
+    expect(parsed.commonPitfalls).toEqual([]);
+    expect(parsed.wrongOptions).toEqual([]);
+    expect(parsed.visualCues).toEqual([]);
+    expect(parsed.crossReferences).toEqual([]);
+    expect(parsed.stepByStepReasoning.length).toBe(0);
+  });
 });

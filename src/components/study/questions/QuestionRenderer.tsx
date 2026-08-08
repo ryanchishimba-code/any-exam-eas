@@ -257,7 +257,7 @@ export function ExplanationPanel({
   );
   const hasExpert = Boolean(question.expertRationale || parsed.isExpert);
   const concisePreview =
-    question.expertRationale?.whyCorrect.headline ||
+    question.expertRationale?.whyCorrect?.headline ||
     parsed.keyTakeaway ||
     parsed.whyCorrectHeadline ||
     parsed.legacyBody?.slice(0, 220) ||
@@ -269,7 +269,7 @@ export function ExplanationPanel({
       question.distractorRationale &&
         !parsed.isStructured &&
         Object.keys(question.distractorRationale).length > 0
-    ) || parsed.wrongOptions.length > 0;
+    ) || (parsed.wrongOptions?.length ?? 0) > 0;
 
   const hasDeepContent =
     Boolean(question.clinicalReasoning && !parsed.isStructured) ||
@@ -392,11 +392,11 @@ export function ExplanationPanel({
         </div>
       )}
 
-      {question.type === "matrix" && question.correctAnswers.length > 0 && (
+      {question.type === "matrix" && (question.correctAnswers?.length ?? 0) > 0 && (
         <div className="text-xs text-[var(--color-ink-muted)]">
           <span className="font-semibold uppercase tracking-wide">Correct cells</span>
           <ul className="mt-1 list-inside list-disc">
-            {question.correctAnswers.map((k) => (
+            {(question.correctAnswers ?? []).map((k) => (
               <li key={k}>{formatMatrixAnswer(k)}</li>
             ))}
           </ul>
