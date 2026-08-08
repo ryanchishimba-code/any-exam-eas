@@ -84,6 +84,8 @@ function ExpertSection({
 }
 
 function CoreRationaleBody({ parsed }: { parsed: ParsedRationaleDisplay }) {
+  const conceptBullets = parsed.conceptBullets ?? [];
+  const wrongOptions = parsed.wrongOptions ?? [];
   return (
     <>
       {parsed.whyCorrectHeadline && (
@@ -91,9 +93,9 @@ function CoreRationaleBody({ parsed }: { parsed: ParsedRationaleDisplay }) {
           {renderInlineBold(parsed.whyCorrectHeadline)}
         </p>
       )}
-      {parsed.conceptBullets.length > 0 && (
+      {conceptBullets.length > 0 && (
         <ul className="mt-2 list-inside list-disc space-y-1.5 text-sm text-[var(--color-ink-muted)]">
-          {parsed.conceptBullets.map((bullet) => (
+          {conceptBullets.map((bullet) => (
             <li key={bullet}>{renderInlineBold(bullet)}</li>
           ))}
         </ul>
@@ -104,12 +106,12 @@ function CoreRationaleBody({ parsed }: { parsed: ParsedRationaleDisplay }) {
           {parsed.clinicalContext}
         </p>
       )}
-      {parsed.wrongOptions.length > 0 && (
+      {wrongOptions.length > 0 && (
         <div className="mt-4 space-y-3 border-t border-black/[0.06] pt-3">
           <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
             Why the other options are wrong
           </p>
-          {parsed.wrongOptions.map(({ option, body }) => (
+          {wrongOptions.map(({ option, body }) => (
             <div
               key={option}
               className="rounded-lg border border-black/[0.06] bg-[var(--color-surface)]/60 px-3 py-2.5"
@@ -141,13 +143,23 @@ export function ExpertRationalePanel({
 }: ExpertRationalePanelProps) {
   const [depth, setDepth] = useState<"concise" | "expert">(defaultDepth);
 
-  const parsed = useMemo(
-    () =>
-      expertRationale
-        ? parseExpertRationaleForDisplay(expertRationale)
-        : parseRationaleForDisplay(question.explanation),
-    [expertRationale, question.explanation]
-  );
+  const parsed = useMemo(() => {
+    const raw = expertRationale
+      ? parseExpertRationaleForDisplay(expertRationale)
+      : parseRationaleForDisplay(question.explanation);
+    // Defensive: older/partial parse shapes must never crash UI `.length` checks.
+    return {
+      ...raw,
+      conceptBullets: raw.conceptBullets ?? [],
+      wrongOptions: raw.wrongOptions ?? [],
+      stepByStepReasoning: raw.stepByStepReasoning ?? [],
+      highYieldFacts: raw.highYieldFacts ?? [],
+      commonPitfalls: raw.commonPitfalls ?? [],
+      visualCues: raw.visualCues ?? [],
+      visualBlocks: raw.visualBlocks ?? [],
+      crossReferences: raw.crossReferences ?? [],
+    };
+  }, [expertRationale, question.explanation]);
 
   const showExpertToggle = parsed.isExpert || Boolean(expertRationale);
 

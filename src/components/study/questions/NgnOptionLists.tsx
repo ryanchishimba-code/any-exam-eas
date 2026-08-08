@@ -69,7 +69,7 @@ export function OrderedResponseOptions({
   return (
     <>
       <p className="mt-4 text-xs text-[var(--color-ink-muted)]">
-        Tap options in priority order ({question.correctAnswers.length} steps).
+        Tap options in priority order ({question.correctAnswers?.length ?? 0} steps).
       </p>
       {selected.length > 0 && (
         <ol className="mt-3 flex flex-wrap gap-2">

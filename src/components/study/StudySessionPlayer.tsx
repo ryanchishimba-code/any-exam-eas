@@ -406,19 +406,20 @@ export function StudySessionPlayer({
 
   function canSubmitSelection(): boolean {
     if (!current || selected.length === 0) return false;
+    const correctCount = current.correctAnswers?.length ?? 0;
     if (current.type === "ordered_response") {
-      return selected.length === current.correctAnswers.length;
+      return selected.length === correctCount;
     }
     if (current.type === "bow_tie") {
       const layout = parseBowTieLayout(current);
       return bowTieSelectionValid(selected, layout);
     }
     if (current.type === "matrix") {
-      return selected.length === current.correctAnswers.length;
+      return selected.length === correctCount;
     }
     if (current.type === "drag_drop") {
       const prompts = (current.ngnPayload as { prompts?: string[] } | undefined)?.prompts;
-      const need = prompts?.length ?? current.correctAnswers.length;
+      const need = prompts?.length ?? correctCount;
       return selected.length === need && need > 0;
     }
     if (current.type === "short_answer") {
@@ -475,7 +476,8 @@ export function StudySessionPlayer({
 
       if (!current) return;
       const num = Number(e.key);
-      if (num >= 1 && num <= current.options.length) {
+      const optionCount = current.options?.length ?? 0;
+      if (num >= 1 && num <= optionCount) {
         toggleSelect(current.options[num - 1]);
       }
       if (e.key === "Enter" && selected.length > 0) {
@@ -661,12 +663,12 @@ export function StudySessionPlayer({
               className={`mt-8 w-full sm:w-auto sm:px-10 ${studyUi.sessionPrimaryBtn}`}
             >
               {current.type === "ordered_response" &&
-              selected.length !== current.correctAnswers.length
-                ? `Select ${current.correctAnswers.length - selected.length} more`
+              selected.length !== (current.correctAnswers?.length ?? 0)
+                ? `Select ${(current.correctAnswers?.length ?? 0) - selected.length} more`
                 : current.type === "bow_tie" && !canSubmitSelection()
                   ? "Complete bow-tie selections"
                   : current.type === "matrix" && !canSubmitSelection()
-                    ? `Select ${current.correctAnswers.length} cells`
+                    ? `Select ${current.correctAnswers?.length ?? 0} cells`
                     : "Check"}
             </button>
           )}
