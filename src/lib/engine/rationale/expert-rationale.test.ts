@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { assembleExpertRationale } from "./assemble-expert-rationale";
-import { parseExpertRationaleForDisplay } from "./parse-rationale-display";
+import {
+  parseExpertRationaleForDisplay,
+  parseRationaleForDisplay,
+} from "./parse-rationale-display";
 import type { ExpertStructuredRationale } from "./expert-rationale-types";
 
 const SAMPLE: ExpertStructuredRationale = {
@@ -98,7 +101,26 @@ describe("expert rationale assembly", () => {
     expect(parsed.commonPitfalls).toEqual([]);
     expect(parsed.wrongOptions).toEqual([]);
     expect(parsed.visualCues).toEqual([]);
+    expect(parsed.visualBlocks).toEqual([]);
     expect(parsed.crossReferences).toEqual([]);
     expect(parsed.stepByStepReasoning.length).toBe(0);
+  });
+
+  it("includes visualBlocks when parsing structured markdown explanations", () => {
+    const parsed = parseRationaleForDisplay(`## Why this answer is correct
+Airway first.
+
+## Why the other options are wrong
+**Call family first**
+• Trap: prioritizes comfort over safety
+• Why it fails here: airway is the immediate threat
+• Remember: ABCs
+
+## Key takeaway
+**Protect the airway before secondary tasks.**
+`);
+    expect(parsed.isStructured).toBe(true);
+    expect(Array.isArray(parsed.visualBlocks)).toBe(true);
+    expect(parsed.visualBlocks.length).toBe(0);
   });
 });

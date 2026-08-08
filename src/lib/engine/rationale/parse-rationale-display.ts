@@ -271,6 +271,7 @@ export function parseRationaleForDisplay(
     realWorldApplication: rwBlock ? parseSimpleSection(rwBlock) : undefined,
     layeredDepth,
     visualCues,
+    visualBlocks: [],
     crossReferences,
     isStructured: true,
     isExpert,
