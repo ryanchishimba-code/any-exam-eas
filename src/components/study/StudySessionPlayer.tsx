@@ -674,10 +674,61 @@ export function StudySessionPlayer({
           )}
 
           {answer?.revealed && (
-            <div className="space-y-3">
+            <div className="mt-6 space-y-4">
               <p className="text-sm">
                 <AnswerFeedbackLabel correct={answer.correct === true} />
               </p>
+
+              {/* Keep Next above long rationale so movers don't scroll; readers continue below. */}
+              {!showReturnActions && !showCompletion ? (
+                <div className="space-y-3 rounded-xl border border-[var(--color-border)]/70 bg-[var(--color-surface)]/90 p-3 sm:p-4">
+                  <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <button
+                      type="button"
+                      onClick={goPrev}
+                      disabled={sessionState.currentIndex === 0}
+                      className={`w-full sm:w-auto ${studyUi.sessionGhostBtn}`}
+                    >
+                      Back
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => goNext()}
+                      className={`w-full sm:w-auto ${studyUi.sessionPrimaryBtn}`}
+                    >
+                      Next
+                    </button>
+                  </div>
+                  {showConfidence ? (
+                    <div className="flex flex-wrap items-center gap-2 border-t border-[var(--color-border)]/50 pt-3">
+                      <span className="text-xs font-medium text-[var(--color-ink-muted)]">
+                        Confidence
+                      </span>
+                      {([1, 2, 3, 4, 5] as ConfidenceLevel[]).map((n) => (
+                        <button
+                          key={n}
+                          type="button"
+                          onClick={() => onConfidence(n)}
+                          className="h-8 w-8 rounded-full border text-sm hover:bg-black/[0.04]"
+                        >
+                          {n}
+                        </button>
+                      ))}
+                    </div>
+                  ) : null}
+                  <p className={`${studyUi.keyboardHint} !mt-0`} aria-hidden>
+                    <kbd className="rounded border border-[var(--color-border)]/60 px-1.5 py-0.5 font-sans">
+                      J
+                    </kbd>
+                    {" Next · "}
+                    <kbd className="rounded border border-[var(--color-border)]/60 px-1.5 py-0.5 font-sans">
+                      K
+                    </kbd>
+                    {" Back"}
+                  </p>
+                </div>
+              ) : null}
+
               <StudyThisTopicButton
                 links={studyLinks}
                 examSlug={examSlug}
@@ -696,24 +747,9 @@ export function StudySessionPlayer({
                   remediation={remediation}
                   correct={answer.correct === true}
                   aiTutor={aiTutorRequest}
-                  autoFetchOnMiss={!answer.correct}
+                  autoFetchOnMiss={false}
                 />
               )}
-            </div>
-          )}
-
-          {showConfidence && (
-            <div className="mt-6 flex flex-wrap gap-2">
-              {([1, 2, 3, 4, 5] as ConfidenceLevel[]).map((n) => (
-                <button
-                  key={n}
-                  type="button"
-                  onClick={() => onConfidence(n)}
-                  className="h-9 w-9 rounded-full border text-sm hover:bg-black/[0.04]"
-                >
-                  {n}
-                </button>
-              ))}
             </div>
           )}
       </article>
@@ -728,38 +764,26 @@ export function StudySessionPlayer({
         <SessionCompletionCard summary={summary} onReview={startReview} />
       ) : null}
 
-      {!showReturnActions && !showCompletion ? (
-      <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
-        <button
-          type="button"
-          onClick={goPrev}
-          disabled={sessionState.currentIndex === 0}
-          className={`w-full sm:w-auto ${studyUi.sessionGhostBtn}`}
-        >
-          Back
-        </button>
-        <button
-          type="button"
-          onClick={() => (answer?.revealed ? goNext() : void revealAnswer(selected))}
-          disabled={!answer?.revealed && !selected.length}
-          className={`w-full sm:w-auto ${studyUi.sessionPrimaryBtn}`}
-        >
-          Next
-        </button>
-      </div>
-      ) : null}
-
-      {answer?.revealed && !showReturnActions && !showCompletion ? (
-        <p className={studyUi.keyboardHint} aria-hidden>
-          <kbd className="rounded border border-[var(--color-border)]/60 px-1.5 py-0.5 font-sans">J</kbd>
-          {" / "}
-          <kbd className="rounded border border-[var(--color-border)]/60 px-1.5 py-0.5 font-sans">K</kbd>
-          {" to navigate · "}
-          <kbd className="rounded border border-[var(--color-border)]/60 px-1.5 py-0.5 font-sans">1</kbd>
-          –
-          <kbd className="rounded border border-[var(--color-border)]/60 px-1.5 py-0.5 font-sans">9</kbd>
-          {" select on next question"}
-        </p>
+      {/* Pre-reveal only: after Check, Next moves up next to feedback. */}
+      {!answer?.revealed && !showReturnActions && !showCompletion ? (
+        <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-between">
+          <button
+            type="button"
+            onClick={goPrev}
+            disabled={sessionState.currentIndex === 0}
+            className={`w-full sm:w-auto ${studyUi.sessionGhostBtn}`}
+          >
+            Back
+          </button>
+          <button
+            type="button"
+            onClick={() => void revealAnswer(selected)}
+            disabled={!selected.length}
+            className={`w-full sm:w-auto ${studyUi.sessionPrimaryBtn}`}
+          >
+            Next
+          </button>
+        </div>
       ) : null}
 
       <ReportQuestionDialog

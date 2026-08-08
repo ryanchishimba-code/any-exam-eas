@@ -369,27 +369,13 @@ export function CatMockPractice() {
             )}
 
             {revealed && (
-              <div className="space-y-4">
+              <div className="mt-6 space-y-4">
                 <AnswerFeedbackLabel correct={wasCorrect === true} />
-                <ExplanationPanel
-                  key={current.id}
-                  question={current}
-                  field={field}
-                  incorrect={wasCorrect !== true}
-                />
-                {displayInsight && (
-                  <InsightPanel
-                    insight={displayInsight}
-                    remediation={remediation}
-                    correct={wasCorrect === true}
-                    aiTutor={aiTutorRequest}
-                    autoFetchOnMiss={wasCorrect === false}
-                  />
-                )}
+                {/* Advance controls sit above long rationale so movers skip scroll. */}
                 {showConfidence && (
-                  <div className="border-t border-black/[0.06] pt-4">
+                  <div className="rounded-xl border border-black/[0.08] bg-[var(--color-surface)]/90 p-4">
                     <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-                      How confident were you?
+                      How confident were you? · tap to continue
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {([1, 2, 3, 4, 5] as ConfidenceLevel[]).map((n) => (
@@ -404,6 +390,21 @@ export function CatMockPractice() {
                       ))}
                     </div>
                   </div>
+                )}
+                <ExplanationPanel
+                  key={current.id}
+                  question={current}
+                  field={field}
+                  incorrect={wasCorrect !== true}
+                />
+                {displayInsight && (
+                  <InsightPanel
+                    insight={displayInsight}
+                    remediation={remediation}
+                    correct={wasCorrect === true}
+                    aiTutor={aiTutorRequest}
+                    autoFetchOnMiss={false}
+                  />
                 )}
               </div>
             )}
