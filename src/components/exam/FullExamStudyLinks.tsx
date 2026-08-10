@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { BookMarked, BookOpen, GraduationCap, Sparkles } from "lucide-react";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
+import { practiceTopicHref } from "@/lib/edtech/practice-links-core";
 import {
   getExamTopicStudyLinks,
   getWeakTopicsFromBreakdown,
@@ -15,9 +16,18 @@ import { cn } from "@/lib/utils";
 type Props = {
   examSlug: ExamSlug;
   topicBreakdown: FullExamTopicBreakdown[];
+  /** Question-bank session size for the Practice CTA (default 10). */
+  practiceCount?: number;
+  /** Autostart the practice session (used after practice CAT). */
+  autostartPractice?: boolean;
 };
 
-export function FullExamStudyLinks({ examSlug, topicBreakdown }: Props) {
+export function FullExamStudyLinks({
+  examSlug,
+  topicBreakdown,
+  practiceCount = 10,
+  autostartPractice = false,
+}: Props) {
   const weak = getWeakTopicsFromBreakdown(topicBreakdown, 70).slice(0, 5);
   if (weak.length === 0) return null;
 
@@ -39,6 +49,10 @@ export function FullExamStudyLinks({ examSlug, topicBreakdown }: Props) {
       <ul className="mt-4 space-y-3">
         {weak.map((row) => {
           const links = getExamTopicStudyLinks(examSlug, row.topic);
+          const practiceHref = (() => {
+            const base = practiceTopicHref(examSlug, links.topicKey, practiceCount);
+            return autostartPractice ? `${base}&autostart=1` : base;
+          })();
           return (
             <li
               key={row.topic}
@@ -63,11 +77,11 @@ export function FullExamStudyLinks({ examSlug, topicBreakdown }: Props) {
                     Library
                   </Link>
                   <Link
-                    href={links.practiceHref}
+                    href={practiceHref}
                     className={cn(feUi.footerBtn, "px-3 py-1.5 text-xs")}
                   >
                     <BookOpen className="h-3.5 w-3.5" aria-hidden />
-                    Practice 10
+                    Practice {practiceCount}
                   </Link>
                   {links.firstCardHref ? (
                     <Link

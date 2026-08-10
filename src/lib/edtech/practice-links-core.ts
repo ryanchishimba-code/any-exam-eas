@@ -72,6 +72,34 @@ export function practiceTopicHref(
   return `${ROUTES.questionBank}?${qs.toString()}`;
 }
 
+/**
+ * Closed-loop topic retest after a miss or Deep Dive.
+ * Defaults to autostart so students land in the session immediately.
+ */
+export function topicRetestHref(
+  examSlug: ExamSlug,
+  topicSlug: string,
+  count: 5 | 10 | 25 = 5,
+  opts?: {
+    returnTo?: TopicPracticeReturnContext;
+    filters?: TopicPracticeFilters;
+    autostart?: boolean;
+  }
+): string {
+  const base = practiceTopicHref(
+    examSlug,
+    topicSlug,
+    count,
+    opts?.returnTo,
+    opts?.filters
+  );
+  const url = new URL(base, "https://anyexameasy.local");
+  if (opts?.autostart !== false) {
+    url.searchParams.set("autostart", "1");
+  }
+  return `${url.pathname}?${url.searchParams.toString()}`;
+}
+
 export function parseTopicPracticeReturn(
   params: Pick<URLSearchParams, "get">
 ): { href: string; label: string } | null {

@@ -104,10 +104,20 @@ describe("question-bank-setup", () => {
     expect(resolveWheelCountValue(25, options)).toBe(25);
   });
 
-  it("blocks non-wheel counts when pool is known", () => {
+  it("allows short retest counts when the pool can fill them", () => {
     const result = validateQuestionBankSession({
       subjectId: "pulm",
       questionCount: 10,
+      subjectCounts: counts,
+      bankStyle: "standard",
+    });
+    expect(result.ok).toBe(true);
+  });
+
+  it("blocks non-wheel non-retest counts when pool is known", () => {
+    const result = validateQuestionBankSession({
+      subjectId: "pulm",
+      questionCount: 15,
       subjectCounts: counts,
       bankStyle: "standard",
     });
@@ -118,5 +128,11 @@ describe("question-bank-setup", () => {
     expect(resolveQuestionBankSessionCount(40)).toBe(25);
     expect(resolveQuestionBankSessionCount(40, 40)).toBe(25);
     expect(resolveQuestionBankSessionCount(60)).toBe(50);
+  });
+
+  it("preserves closed-loop retest session counts", () => {
+    expect(resolveQuestionBankSessionCount(5, 40)).toBe(5);
+    expect(resolveQuestionBankSessionCount(10, 40)).toBe(10);
+    expect(resolveQuestionBankSessionCount(5, 3)).toBe(25); // pool too small → wheel
   });
 });

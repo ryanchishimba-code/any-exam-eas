@@ -25,6 +25,7 @@ import { feUi } from "@/lib/study/full-exam-ui";
 import { cn } from "@/lib/utils";
 import { FullExamStudyLinks } from "@/components/exam/FullExamStudyLinks";
 import { FullExamResultsInsights } from "@/components/exam/FullExamResultsInsights";
+import { FullExamCatPracticeBand } from "@/components/exam/FullExamCatPracticeBand";
 import { StudyThisTopicButton } from "@/components/study/StudyThisTopicButton";
 import { QuestionRelatedLinks } from "@/components/study/questions/QuestionRelatedLinks";
 import { resolveQuestionStudyLinks } from "@/lib/library/question-study-links";
@@ -349,6 +350,10 @@ export function FullExamResults({
         </div>
       ) : null}
 
+      {analysis.catOutcome ? (
+        <FullExamCatPracticeBand catOutcome={analysis.catOutcome} />
+      ) : null}
+
       <FullExamResultsInsights
         examSlug={examSlug}
         score={score}
@@ -384,7 +389,12 @@ export function FullExamResults({
         </div>
       ) : null}
 
-      <FullExamStudyLinks examSlug={examSlug} topicBreakdown={analysis.topicBreakdown} />
+      <FullExamStudyLinks
+        examSlug={examSlug}
+        topicBreakdown={analysis.topicBreakdown}
+        practiceCount={analysis.catOutcome ? 25 : 10}
+        autostartPractice={Boolean(analysis.catOutcome)}
+      />
 
       {questions.length > 0 ? (
         <div className="flex flex-wrap justify-center gap-2 border-t border-black/[0.06] pt-6">

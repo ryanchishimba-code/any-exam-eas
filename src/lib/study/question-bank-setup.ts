@@ -12,6 +12,14 @@ export const QUESTION_BANK_WHEEL_PRESETS = [25, 50, 75] as const;
 
 export type QuestionBankWheelPreset = (typeof QUESTION_BANK_WHEEL_PRESETS)[number];
 
+/**
+ * Short closed-loop retest sizes (miss → Deep Dive → retest).
+ * Allowed even when the launcher wheel only shows 25 / 50 / 75.
+ */
+export const QUESTION_BANK_RETEST_COUNTS = [5, 10, 25] as const;
+
+export type QuestionBankRetestCount = (typeof QUESTION_BANK_RETEST_COUNTS)[number];
+
 export const MIXED_SUBJECT_LABEL = "Mixed topics";
 
 export type QuestionBankCountOption = {
@@ -70,17 +78,25 @@ export function isQuestionBankWheelCount(value: number): value is QuestionBankWh
   return (QUESTION_BANK_WHEEL_PRESETS as readonly number[]).includes(value);
 }
 
-/** Resolve a bank session size to 25 / 50 / 75 (optionally capped by topic pool). */
+export function isRetestSessionCount(value: number): value is QuestionBankRetestCount {
+  return (QUESTION_BANK_RETEST_COUNTS as readonly number[]).includes(value);
+}
+
+/** Resolve a bank session size — preserves short retest counts when the pool can fill them. */
 export function resolveQuestionBankSessionCount(
   requested: number,
   maxAvailable?: number | null
-): QuestionBankWheelPreset {
+): number {
+  const clamped = clampQuestionBankCount(requested);
+  if (isRetestSessionCount(clamped)) {
+    if (maxAvailable == null || maxAvailable >= clamped) return clamped;
+  }
   const options = questionBankCountOptionsForAvailable(maxAvailable ?? null);
   const resolved = resolveWheelCountValue(
     requested,
     options.length > 0 ? options : questionBankCountOptions()
   );
-  return resolved as QuestionBankWheelPreset;
+  return resolved;
 }
 
 export function isMixedSubjectId(subjectId: string): boolean {
@@ -142,10 +158,10 @@ export function validateQuestionBankSession(params: {
   const count = clampQuestionBankCount(questionCount);
 
   if (maxAvailable === null) {
-    if (!isQuestionBankWheelCount(count)) {
-      return { ok: false, message: "Choose 25, 50, or 75 questions for this session." };
+    if (isRetestSessionCount(count) || isQuestionBankWheelCount(count)) {
+      return { ok: true };
     }
-    return { ok: true };
+    return { ok: false, message: "Choose 25, 50, or 75 questions for this session." };
   }
 
   if (maxAvailable <= 0) {
@@ -156,6 +172,11 @@ export function validateQuestionBankSession(params: {
         : "No serve-ready questions for this topic yet.",
       maxAvailable: 0,
     };
+  }
+
+  // Closed-loop retests (5 / 10 / 25) — allow when the topic pool can fill them.
+  if (isRetestSessionCount(count) && maxAvailable >= count) {
+    return { ok: true, maxAvailable };
   }
 
   const options = questionBankCountOptionsForAvailable(maxAvailable);

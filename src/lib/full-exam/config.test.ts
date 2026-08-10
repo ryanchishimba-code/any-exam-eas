@@ -37,6 +37,14 @@ describe("buildSessionConfig", () => {
     expect(buildSessionConfig("nclex", "full", true, { nclexCat: true }).adaptive).toBe(true);
     expect(buildSessionConfig("nclex", "full", true, { nclexCat: true }).nclexCat).toBe(true);
   });
+
+  it("prefeches CAT_MAX pool when nclexCat is set (supports early stop)", () => {
+    expect(buildSessionConfig("nclex", "full", true, { nclexCat: true }).questionCount).toBe(145);
+    expect(
+      buildSessionConfig("nclex", "full", true, { nclexCat: true, nclexLength: "maximum" })
+        .questionCount
+    ).toBe(145);
+  });
 });
 
 describe("parseFullExamLengthPreset", () => {

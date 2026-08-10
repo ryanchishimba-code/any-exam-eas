@@ -306,7 +306,7 @@ export function FullExamLauncher({
                 <span>
                   <span className="font-medium text-[var(--color-ink)]">CAT-style adaptive</span>
                   <span className="mt-0.5 block text-xs text-[var(--color-ink-muted)]">
-                    Mixed blueprint exam with 75–145Q stop rules (practice simulation).
+                    Variable length 75–145 · practice only (not Pearson VUE).
                   </span>
                 </span>
               </label>

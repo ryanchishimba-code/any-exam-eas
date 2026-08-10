@@ -8,7 +8,7 @@ import type { StudentDashboardData } from "@/lib/learning/student-dashboard";
 import type { LearningProfileSnapshot } from "@/lib/learning/types";
 import { EXAM_CATALOG, examFieldIds, examSlugFromFieldId } from "@/lib/edtech/exams";
 import { recentTestHref } from "@/lib/edtech/recent-test-links";
-import { libraryTopicHref, spacedReviewHref } from "@/lib/edtech/practice-links";
+import { libraryTopicHref, spacedReviewHref, topicRetestHref } from "@/lib/edtech/practice-links";
 import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import {
   getMemoryCardIdsForTopic,
@@ -271,7 +271,8 @@ export function StudentAnalyticsDashboard({
                 <li key={t.id}>
                   <div className="flex items-center justify-between gap-2 text-sm">
                     <span className="font-medium">{t.name}</span>
-                    <span className="flex items-center gap-2">
+                    <span className="flex flex-wrap items-center justify-end gap-2">
+                      <WeakTopicFixLink conceptKey={t.id} fieldId={t.fieldId} />
                       <WeakTopicDeepDiveLink conceptKey={t.id} fieldId={t.fieldId} />
                       <WeakTopicCardsLink conceptKey={t.id} fieldId={t.fieldId} />
                       <span className="tabular-nums text-[var(--color-ink-muted)]">
@@ -372,6 +373,31 @@ function WeakTopicDeepDiveLink({
     >
       <GraduationCap className="h-3 w-3" aria-hidden />
       Deep dive
+    </Link>
+  );
+}
+
+/** One-tap closed-loop retest for a weak topic. */
+function WeakTopicFixLink({
+  conceptKey,
+  fieldId,
+}: {
+  conceptKey: string;
+  fieldId: string;
+}) {
+  const topicKey = normalizeWeakAreaTopicKey(conceptKey);
+  const examSlug = examSlugFromFieldId(fieldId);
+  if (!examSlug) return null;
+  const links = getExamTopicStudyLinks(examSlug, topicKey);
+  const href = topicRetestHref(examSlug, links.topicKey, 5);
+
+  return (
+    <Link
+      href={href}
+      className="inline-flex items-center gap-1 rounded-full bg-[var(--color-accent)] px-2 py-0.5 text-[11px] font-semibold text-white transition hover:opacity-90"
+    >
+      <ArrowRight className="h-3 w-3" aria-hidden />
+      Fix this weakness
     </Link>
   );
 }

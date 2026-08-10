@@ -40,10 +40,21 @@ import { parseBowTieLayout, parseMatrixKey } from "@/lib/questions/ngn-structure
 import { isAnswerCorrect } from "@/lib/questions/prepare";
 import { mapApiQuestionsToStudy } from "@/lib/questions/finalize-exam-session";
 import { getSequentialSetContext } from "@/lib/questions/sequential-sets";
+import {
+  CAT_MAX_QUESTIONS,
+  CAT_MIN_QUESTIONS,
+  catPracticeBand,
+  initCatSession,
+  updateCatSession,
+  type CatDifficulty,
+  type CatSessionState,
+} from "@/lib/questions/cat-engine";
+import { mapDifficultyToCatBand, pickCatNext } from "@/lib/questions/cat-select";
 import type { RawQuestionInput, StudyQuestion } from "@/lib/questions/types";
 import type { ExamSlug } from "@/types/edtech";
 import type {
   FullExamAnswerState,
+  FullExamCatOutcome,
   FullExamSessionConfig,
 } from "@/types/full-exam";
 import { ExamLoadingProgress } from "@/components/exam/ExamLoadingProgress";
@@ -57,6 +68,8 @@ const ENCOURAGEMENT = [
   "Trust your training — read carefully, then commit.",
   "Steady pace wins. Flag anything uncertain and move on.",
 ];
+
+type CatPoolItem = StudyQuestion & { difficultyBand: CatDifficulty };
 
 type Props = {
   sessionId: string;
@@ -108,8 +121,12 @@ export function FullExamSimulator({
 }: Props) {
   const router = useRouter();
   const exam = EXAM_CATALOG[examSlug];
+  const isCatMode = Boolean(config.nclexCat);
 
   const [questions, setQuestions] = useState<StudyQuestion[]>([]);
+  const [catPool, setCatPool] = useState<CatPoolItem[]>([]);
+  const [catState, setCatState] = useState<CatSessionState>(() => initCatSession());
+  const [catCommittedCount, setCatCommittedCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [loadAttempt, setLoadAttempt] = useState(0);
@@ -191,7 +208,13 @@ export function FullExamSimulator({
         }));
         const prepared = mapApiQuestionsToStudy(raw, { shuffleOptions: false });
         const delivered = prepared.slice(0, expectedCount);
-        if (delivered.length !== expectedCount) {
+        if (isCatMode) {
+          if (delivered.length < CAT_MIN_QUESTIONS) {
+            throw new Error(
+              `Practice CAT needs at least ${CAT_MIN_QUESTIONS} questions but received ${delivered.length}. Try again shortly.`
+            );
+          }
+        } else if (delivered.length !== expectedCount) {
           throw new Error(
             `Expected ${expectedCount} questions but received ${delivered.length}. Try again in a moment or choose a shorter exam length.`
           );
@@ -204,6 +227,29 @@ export function FullExamSimulator({
         }));
       }
 
+      function applyLoaded(items: StudyQuestion[]) {
+        if (isCatMode) {
+          const pool: CatPoolItem[] = items.map((q, i) => ({
+            ...q,
+            difficultyBand: mapDifficultyToCatBand(q.difficulty, i),
+          }));
+          const first = pickCatNext(initCatSession(), pool, new Set());
+          if (!first) {
+            throw new Error("Could not start practice CAT — empty question pool.");
+          }
+          setCatPool(pool);
+          setCatState(initCatSession());
+          setCatCommittedCount(0);
+          setQuestions([first]);
+          setIndex(0);
+          return;
+        }
+        setCatPool([]);
+        setCatState(initCatSession());
+        setCatCommittedCount(0);
+        setQuestions(items);
+      }
+
       const cached = takeFullExamSessionPayload(sessionId);
       if (cached?.questions?.length && cached.questions.length >= expectedCount) {
         try {
@@ -211,7 +257,7 @@ export function FullExamSimulator({
             cached.questions as RawQuestionInput[],
             cached.bankItemIds
           );
-          if (!cancelled) setQuestions(items);
+          if (!cancelled) applyLoaded(items);
           return;
         } catch (e) {
           if (!cancelled) {
@@ -238,7 +284,7 @@ export function FullExamSimulator({
               prefetchData.questions,
               prefetchData.bankItemIds ?? []
             );
-            if (!cancelled) setQuestions(items);
+            if (!cancelled) applyLoaded(items);
             return;
           }
         }
@@ -261,7 +307,7 @@ export function FullExamSimulator({
     return () => {
       cancelled = true;
     };
-  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.focusAreas, loadAttempt, sessionId]);
+  }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.focusAreas, config.nclexCat, loadAttempt, sessionId, isCatMode]);
 
   useEffect(() => {
     if (loading || submitting || paused) return;
@@ -310,6 +356,116 @@ export function FullExamSimulator({
     },
     [questions, sessionId]
   );
+
+  const bandForQuestion = useCallback(
+    (q: StudyQuestion): CatDifficulty => {
+      const fromPool = catPool.find((p) => p.id === q.id);
+      return fromPool?.difficultyBand ?? mapDifficultyToCatBand(q.difficulty, 0);
+    },
+    [catPool]
+  );
+
+  /** Feed answered items into the CAT engine up through `throughIndex` (inclusive). */
+  const commitCatThrough = useCallback(
+    (
+      throughIndex: number,
+      state: CatSessionState,
+      committed: number,
+      qs: StudyQuestion[],
+      ans: Record<number, FullExamAnswerState>
+    ): { state: CatSessionState; committed: number } => {
+      let nextState = state;
+      let nextCommitted = committed;
+      for (let i = nextCommitted; i <= throughIndex && i < qs.length; i++) {
+        const q = qs[i];
+        const a = ans[i] ?? defaultAnswer();
+        if (!q || !hasSelection(a.selected)) break;
+        const correct = isAnswerCorrect(q, a.selected);
+        nextState = updateCatSession(nextState, correct, bandForQuestion(q));
+        nextCommitted = i + 1;
+      }
+      return { state: nextState, committed: nextCommitted };
+    },
+    [bandForQuestion]
+  );
+
+  const goToCatReview = useCallback((state: CatSessionState) => {
+    setCatState(state);
+    setHasEnteredReview(true);
+    setPhase("review");
+  }, []);
+
+  /** Advance in CAT: navigate within served list, or commit + pick next / stop. */
+  const advanceCat = useCallback(() => {
+    if (!isCatMode) {
+      setIndex((i) => Math.min(i + 1, questions.length - 1));
+      return;
+    }
+
+    if (index < questions.length - 1) {
+      setIndex((i) => i + 1);
+      return;
+    }
+
+    const ans = answers[index] ?? defaultAnswer();
+    if (!hasSelection(ans.selected)) return;
+
+    const { state, committed } = commitCatThrough(
+      index,
+      catState,
+      catCommittedCount,
+      questions,
+      answers
+    );
+    setCatCommittedCount(committed);
+    setCatState(state);
+
+    if (state.isComplete) {
+      goToCatReview(state);
+      return;
+    }
+
+    const used = new Set(questions.map((q) => q.id));
+    const next = pickCatNext(state, catPool, used);
+    if (!next) {
+      const exhausted: CatSessionState = {
+        ...state,
+        isComplete: true,
+        stopReason: state.stopReason ?? "maximum",
+      };
+      goToCatReview(exhausted);
+      return;
+    }
+
+    setQuestions((prev) => [...prev, next]);
+    setIndex((i) => i + 1);
+  }, [
+    isCatMode,
+    index,
+    questions,
+    answers,
+    catState,
+    catCommittedCount,
+    catPool,
+    commitCatThrough,
+    goToCatReview,
+  ]);
+
+  const openReviewPhase = useCallback(() => {
+    if (isCatMode) {
+      const { state, committed } = commitCatThrough(
+        questions.length - 1,
+        catState,
+        catCommittedCount,
+        questions,
+        answers
+      );
+      setCatCommittedCount(committed);
+      setCatState(state);
+    }
+    setHasEnteredReview(true);
+    setPhase("review");
+  }, [isCatMode, commitCatThrough, questions, catState, catCommittedCount, answers]);
 
   const toggleSelect = useCallback(
     (option: string) => {
@@ -428,12 +584,35 @@ export function FullExamSimulator({
       setSubmitting(true);
       setSubmitError(null);
 
+      let finalCatState = catState;
+      let finalCommitted = catCommittedCount;
+      if (isCatMode) {
+        const finalized = commitCatThrough(
+          questions.length - 1,
+          catState,
+          catCommittedCount,
+          questions,
+          answers
+        );
+        finalCatState = finalized.state;
+        finalCommitted = finalized.committed;
+        setCatState(finalCatState);
+        setCatCommittedCount(finalCommitted);
+      }
+
       const log = buildAnswerLog();
       const score = calculateExamScorePercent(log, questions.length);
       const topicBreakdown = buildTopicBreakdown(questions, log);
       const timeUsedSec = config.timed
         ? config.timeLimitSec - remainingSec
         : elapsedSec;
+
+      const catOutcome: FullExamCatOutcome | undefined = isCatMode
+        ? {
+            ...finalCatState,
+            practiceBand: catPracticeBand(finalCatState),
+          }
+        : undefined;
 
       try {
         const res = await fetch(`/api/exam-sessions/${sessionId}/answer`, {
@@ -461,7 +640,10 @@ export function FullExamSimulator({
               })),
               summary: endedEarly
                 ? "Session ended early. Your saved answers were scored."
-                : `Completed ${exam.name} simulation.`,
+                : isCatMode
+                  ? `Completed ${exam.name} practice CAT (${finalCatState.questionNumber} questions).`
+                  : `Completed ${exam.name} simulation.`,
+              ...(catOutcome ? { catOutcome } : {}),
             },
           }),
         });
@@ -488,6 +670,11 @@ export function FullExamSimulator({
       exam.name,
       examSlug,
       router,
+      isCatMode,
+      catState,
+      catCommittedCount,
+      commitCatThrough,
+      answers,
     ]
   );
 
@@ -499,18 +686,40 @@ export function FullExamSimulator({
       }
       if (e.key === " " || e.key === "Enter") {
         e.preventDefault();
-        if (index < questions.length - 1) setIndex((i) => i + 1);
-        else {
-          setHasEnteredReview(true);
-          setPhase("review");
+        if (isCatMode) {
+          if (index < questions.length - 1) setIndex((i) => i + 1);
+          else if (catState.isComplete) openReviewPhase();
+          else advanceCat();
+        } else if (index < questions.length - 1) {
+          setIndex((i) => i + 1);
+        } else {
+          openReviewPhase();
         }
       }
       if (e.key === "ArrowLeft" && index > 0) setIndex((i) => i - 1);
-      if (e.key === "ArrowRight" && index < questions.length - 1) setIndex((i) => i + 1);
+      if (e.key === "ArrowRight") {
+        if (isCatMode) {
+          if (index < questions.length - 1) setIndex((i) => i + 1);
+          else advanceCat();
+        } else if (index < questions.length - 1) {
+          setIndex((i) => i + 1);
+        }
+      }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [current, currentAnswer.flagged, index, questions.length, submitting, updateAnswer]);
+  }, [
+    current,
+    currentAnswer.flagged,
+    index,
+    questions.length,
+    submitting,
+    updateAnswer,
+    isCatMode,
+    catState.isComplete,
+    advanceCat,
+    openReviewPhase,
+  ]);
 
   useEffect(() => {
     if (!timeUp || submitting) return;
@@ -612,7 +821,11 @@ export function FullExamSimulator({
     );
   }
 
-  const progressPct = ((index + 1) / questions.length) * 100;
+  const displayTotal = isCatMode ? CAT_MAX_QUESTIONS : questions.length;
+  const progressPct = ((index + 1) / Math.max(1, displayTotal)) * 100;
+  const atLastServed = index + 1 >= questions.length;
+  const showCatReviewCta = isCatMode && catState.isComplete;
+  const showStandardReviewCta = !isCatMode && atLastServed;
 
   if (phase === "review") {
     const flaggedList = [...flaggedIndices].sort((a, b) => a - b);
@@ -632,10 +845,21 @@ export function FullExamSimulator({
           timed={config.timed}
           paused={paused}
           questionsCompleted={answeredCount}
-          questionsTotal={questions.length}
+          questionsTotal={isCatMode ? CAT_MAX_QUESTIONS : questions.length}
         />
 
         <main className="mx-auto max-w-2xl space-y-5 px-4 py-6 pb-36 sm:px-6">
+          {isCatMode ? (
+            <p className="rounded-[14px] border border-teal-200/60 bg-teal-50/50 px-3 py-2 text-[12px] text-teal-950">
+              Practice CAT complete after {questions.length} questions
+              {catState.stopReason === "confidence"
+                ? " (confidence stop)"
+                : catState.stopReason === "maximum"
+                  ? " (maximum length)"
+                  : ""}
+              . Review and submit when ready.
+            </p>
+          ) : null}
           <div className="grid gap-3 sm:grid-cols-2">
             <ReviewStatCard
               title={`Flagged (${flaggedList.length})`}
@@ -722,7 +946,10 @@ export function FullExamSimulator({
           <div className="hidden text-right sm:block">
             <p className="text-[13px] font-semibold tabular-nums text-[var(--color-ink)]">
               {index + 1}
-              <span className="font-normal text-[var(--color-ink-muted)]"> / {questions.length}</span>
+              <span className="font-normal text-[var(--color-ink-muted)]">
+                {" "}
+                / {isCatMode ? `up to ${CAT_MAX_QUESTIONS}` : questions.length}
+              </span>
             </p>
           </div>
           <div className="w-24 sm:w-40">
@@ -738,7 +965,7 @@ export function FullExamSimulator({
         timed={config.timed}
         paused={paused}
         questionsCompleted={answeredCount}
-        questionsTotal={questions.length}
+        questionsTotal={displayTotal}
       />
 
       <div className="mx-auto flex max-w-[1400px] gap-0 lg:gap-6">
@@ -750,7 +977,11 @@ export function FullExamSimulator({
               answers={answers}
               onSelect={setIndex}
             />
-
+            {isCatMode ? (
+              <p className="px-1 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
+                Variable length 75–145 · practice only
+              </p>
+            ) : null}
             {flaggedIndices.length > 0 ? (
               <div className="rounded-2xl border border-amber-200/80 bg-amber-50/50 p-3">
                 <p className="text-xs font-semibold uppercase tracking-wide text-amber-800">
@@ -776,7 +1007,8 @@ export function FullExamSimulator({
 
         <main className="min-w-0 flex-1 px-4 py-5 pb-36 sm:px-6 lg:pb-32">
           <p className="mb-3 text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)] lg:hidden">
-            Question {index + 1} of {questions.length}
+            Question {index + 1}
+            {isCatMode ? ` of up to ${CAT_MAX_QUESTIONS}` : ` of ${questions.length}`}
           </p>
 
           <article className={feUi.questionPanel}>
@@ -838,20 +1070,21 @@ export function FullExamSimulator({
               </button>
             ) : null}
 
-            {index + 1 >= questions.length ? (
+            {showStandardReviewCta || showCatReviewCta ? (
               <button
                 type="button"
                 disabled={submitting}
-                onClick={() => {
-                  setHasEnteredReview(true);
-                  setPhase("review");
-                }}
+                onClick={() => openReviewPhase()}
                 className={feUi.footerBtnPrimary}
               >
                 Review & submit
               </button>
             ) : (
-              <button type="button" onClick={() => setIndex((i) => i + 1)} className={feUi.footerBtnDark}>
+              <button
+                type="button"
+                onClick={() => (isCatMode ? advanceCat() : setIndex((i) => i + 1))}
+                className={feUi.footerBtnDark}
+              >
                 Next <ChevronRight className="h-4 w-4" />
               </button>
             )}

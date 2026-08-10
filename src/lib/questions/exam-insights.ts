@@ -1,4 +1,5 @@
 import { spacedReviewHref } from "@/lib/edtech/practice-links";
+import { practiceTopicHref } from "@/lib/edtech/practice-links-core";
 import { getExamTopicStudyLinks, getWeakTopicsFromBreakdown } from "@/lib/library/exam-topic-bridge";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamResultsAnalysis, FullExamTopicBreakdown } from "@/types/full-exam";
@@ -49,17 +50,30 @@ export function buildFullExamInsights(
   const weakTopics = getWeakTopicsFromBreakdown(analysis.topicBreakdown, 70).slice(0, 5);
   const missedCount = answers.filter((a) => !a.correct).length;
   const flaggedCount = answers.filter((a) => a.flagged).length;
-  const { headline, subline } = performanceHeadline(score);
+  const isCat = Boolean(analysis.catOutcome);
+
+  const { headline, subline } = isCat
+    ? {
+        headline: "Practice CAT complete — focus weak areas",
+        subline:
+          analysis.catOutcome?.practiceBand.hint ??
+          "Use the practice band below as a study guide, not a pass prediction.",
+      }
+    : performanceHeadline(score);
 
   const actions: FullExamInsightAction[] = [];
+  const practiceCount = isCat ? 25 : 10;
 
   if (missedCount > 0) {
     const topWeak = weakTopics[0];
     if (topWeak) {
       const links = getExamTopicStudyLinks(examSlug, topWeak.topic);
+      const href = `${practiceTopicHref(examSlug, links.topicKey, practiceCount)}${
+        isCat ? "&autostart=1" : ""
+      }`;
       actions.push({
-        label: `Practice ${topWeak.topic}`,
-        href: links.practiceHref,
+        label: `Practice ${topWeak.topic} (${practiceCount}Q)`,
+        href,
         description: `${topWeak.pct}% on this topic — targeted drill`,
         priority: "high",
       });
@@ -74,9 +88,12 @@ export function buildFullExamInsights(
 
   for (const row of weakTopics.slice(0, 3)) {
     const links = getExamTopicStudyLinks(examSlug, row.topic);
+    const href = `${practiceTopicHref(examSlug, links.topicKey, practiceCount)}${
+      isCat ? "&autostart=1" : ""
+    }`;
     actions.push({
       label: row.topic,
-      href: links.practiceHref,
+      href,
       description: `${row.correct}/${row.total} correct (${row.pct}%)`,
       priority: row.pct < 50 ? "high" : "medium",
     });

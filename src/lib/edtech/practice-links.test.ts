@@ -6,6 +6,7 @@ import {
   parseTopicPracticeReturn,
   practiceTopicHref,
   structurePracticeHref,
+  topicRetestHref,
 } from "./practice-links";
 
 describe("highYieldTopicsHref", () => {
@@ -36,6 +37,31 @@ describe("practiceTopicHref return path", () => {
       deepDive: true,
     });
     const url = new URL(href, "http://localhost");
+    expect(url.searchParams.get("returnMode")).toBe("deep");
+  });
+});
+
+describe("topicRetestHref", () => {
+  it("builds a 5Q autostart retest session", () => {
+    const href = topicRetestHref("nclex", "pharmacology", 5);
+    const url = new URL(href, "http://localhost");
+    expect(url.searchParams.get("count")).toBe("5");
+    expect(url.searchParams.get("autostart")).toBe("1");
+    expect(url.searchParams.get("subjectId")).toBe("pharmacology");
+  });
+
+  it("can disable autostart and attach deep-dive return", () => {
+    const href = topicRetestHref("nclex", "pharmacology", 25, {
+      autostart: false,
+      returnTo: {
+        topicSlug: "sepsis-shock",
+        topicTitle: "Sepsis",
+        deepDive: true,
+      },
+    });
+    const url = new URL(href, "http://localhost");
+    expect(url.searchParams.get("count")).toBe("25");
+    expect(url.searchParams.get("autostart")).toBeNull();
     expect(url.searchParams.get("returnMode")).toBe("deep");
   });
 });

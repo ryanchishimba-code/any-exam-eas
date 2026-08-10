@@ -1,7 +1,13 @@
 import type { ExamSlug } from "@/types/edtech";
+import type { CatSessionState } from "@/lib/questions/cat-engine";
 
 /** User-selected exam length preset on the launcher. */
 export type FullExamLengthPreset = "50" | "100" | "full";
+
+/** Persisted NCLEX practice-CAT outcome (not a pass/fail prediction). */
+export type FullExamCatOutcome = CatSessionState & {
+  practiceBand: { label: string; hint: string };
+};
 
 export type FullExamSessionConfig = {
   lengthPreset: FullExamLengthPreset;
@@ -58,6 +64,8 @@ export type FullExamResultsAnalysis = {
   questionIds: string[];
   questionSnapshots: FullExamQuestionSnapshot[];
   summary: string;
+  /** Present when the session ran live NCLEX practice CAT stop rules. */
+  catOutcome?: FullExamCatOutcome;
 };
 
 export type FullExamSlug = ExamSlug;

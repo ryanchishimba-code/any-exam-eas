@@ -79,6 +79,7 @@ import { qbUi } from "@/lib/study/question-bank-ui";
 import {
   availableQuestionCount,
   estimateQuestionBankSessionMinutes,
+  isRetestSessionCount,
   questionBankCountOptions,
   questionBankCountOptionsForAvailable,
   readPersistedQuestionBankSetup,
@@ -527,7 +528,9 @@ export function StudyBankPractice({
     const snapToWheel = (raw: number) =>
       resolveWheelCountValue(raw, questionBankCountOptions());
     if (countParam) {
-      setQuestionCount(snapToWheel(Number(countParam)));
+      const raw = Number(countParam);
+      // Preserve closed-loop retest sizes (5 / 10 / 25) from Deep Dive / miss CTAs.
+      setQuestionCount(isRetestSessionCount(raw) ? raw : snapToWheel(raw));
     } else {
       const persisted = readPersistedQuestionBankSetup(fieldId);
       if (persisted?.count) setQuestionCount(snapToWheel(persisted.count));
@@ -625,13 +628,15 @@ export function StudyBankPractice({
   }, [isTimedExam, countsLoading, subjectCounts, subjectId, fieldId]);
 
   // Snap count to a valid 25 / 50 / 75 preset for the current topic pool.
+  // Keep short retest counts (5 / 10 / 25) when the pool can still fill them.
   useEffect(() => {
     if (isTimedExam || countsLoading || !subjectCounts || !subjectId) return;
     const max = availableQuestionCount(subjectId, subjectCounts);
     if (max === null || max <= 0) return;
-    const options = questionBankCountOptionsForAvailable(max);
-    if (options.length === 0) return;
     setQuestionCount((current) => {
+      if (isRetestSessionCount(current) && max >= current) return current;
+      const options = questionBankCountOptionsForAvailable(max);
+      if (options.length === 0) return current;
       const resolved = resolveWheelCountValue(current, options);
       if (resolved !== current) {
         syncPracticeUrl({ count: resolved });

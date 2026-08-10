@@ -1,6 +1,7 @@
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { resolveBoardFullQuestionCount } from "@/lib/exam/exam-lengths";
 import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
+import { CAT_MAX_QUESTIONS } from "@/lib/questions/cat-engine";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset, FullExamSessionConfig } from "@/types/full-exam";
 
@@ -86,8 +87,9 @@ export function buildSessionConfig(
   if (examSlug === "nclex" && opts?.nclexLength === "maximum") {
     questionCount = 150;
   }
+  // Prefetch the full CAT pool so live stop rules (75–145) can fire early.
   if (examSlug === "nclex" && opts?.nclexCat) {
-    questionCount = opts.nclexLength === "maximum" ? 145 : 85;
+    questionCount = CAT_MAX_QUESTIONS;
   }
   const nclexCat = examSlug === "nclex" && opts?.nclexCat === true;
   return {

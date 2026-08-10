@@ -26,7 +26,7 @@ import {
   type ReviewModuleScrollProgress,
 } from "@/components/edtech/ReviewModuleScrollView";
 import { RelatedMemoryCardsCollapsible } from "@/components/edtech/RelatedMemoryCardsCollapsible";
-import { highYieldTopicPracticeHref, practiceTopicHref } from "@/lib/edtech/practice-links";
+import { highYieldTopicPracticeHref } from "@/lib/edtech/practice-links";
 import {
   buildTopicDrugClassLinks,
   buildTopicDrugLinks,
@@ -42,6 +42,12 @@ import { studyUi } from "@/lib/study/study-ui";
 import { cn } from "@/lib/utils";
 
 type ViewMode = "scroll" | "deep";
+
+function withAutostart(href: string): string {
+  const url = new URL(href, "https://anyexameasy.local");
+  url.searchParams.set("autostart", "1");
+  return `${url.pathname}?${url.searchParams.toString()}`;
+}
 
 export function HighYieldTopicPanel({
   topic,
@@ -75,7 +81,8 @@ export function HighYieldTopicPanel({
   const [moduleProgress, setModuleProgress] = useState<ReviewModuleScrollProgress | null>(
     null
   );
-  const practiceQuestionCount = 10;
+  // Deep Dive closes the loop with a short retest; scroll mode keeps a 10Q drill.
+  const practiceQuestionCount = viewMode === "deep" ? 5 : 10;
 
   const handleModuleProgress = useCallback((progress: ReviewModuleScrollProgress) => {
     setModuleProgress(progress);
@@ -163,16 +170,23 @@ export function HighYieldTopicPanel({
 
   if (!open || !topic) return null;
 
-  const practiceHref = highYieldTopicPracticeHref(
+  const returnTo = {
+    topicSlug: topic.slug,
+    topicTitle: topic.title,
+    deepDive: viewMode === "deep",
+  };
+  const practiceHrefRaw = highYieldTopicPracticeHref(
     examSlug,
     topic,
     practiceQuestionCount,
-    {
-      topicSlug: topic.slug,
-      topicTitle: topic.title,
-      deepDive: viewMode === "deep",
-    }
+    returnTo
   );
+  const practiceHref =
+    viewMode === "deep" ? withAutostart(practiceHrefRaw) : practiceHrefRaw;
+  const practiceBlockHref =
+    viewMode === "deep"
+      ? withAutostart(highYieldTopicPracticeHref(examSlug, topic, 25, returnTo))
+      : null;
   const hasPrev = topicIndex > 0;
   const hasNext = topicIndex < topicCount - 1;
 
@@ -275,6 +289,9 @@ export function HighYieldTopicPanel({
                   content={topic.reviewModule}
                   memoryCards={relatedCards}
                   practiceHref={practiceHref}
+                  practiceSecondaryHref={practiceBlockHref ?? undefined}
+                  practiceLabel={`Retest ${practiceQuestionCount} questions`}
+                  practiceSecondaryLabel="Practice 25"
                   onPracticeClick={trackPracticeLaunch}
                   examSlug={examSlug}
                   moduleSlug={topic.slug}
@@ -463,7 +480,9 @@ export function HighYieldTopicPanel({
                 className={cn(studyUi.primaryBtn, "w-full py-3")}
               >
                 {topic.reviewModule && moduleProgress?.complete
-                  ? `Practice ${practiceQuestionCount} questions`
+                  ? viewMode === "deep"
+                    ? `Retest ${practiceQuestionCount} questions`
+                    : `Practice ${practiceQuestionCount} questions`
                   : `Practice ${practiceQuestionCount} related questions`}
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </Link>

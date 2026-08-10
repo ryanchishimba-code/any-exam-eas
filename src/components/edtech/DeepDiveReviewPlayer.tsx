@@ -20,6 +20,10 @@ type Props = {
   content: ReviewModuleContent;
   memoryCards: MemoryCard[];
   practiceHref: string;
+  /** Optional longer block after Deep Dive (e.g. Practice 25). */
+  practiceSecondaryHref?: string;
+  practiceLabel?: string;
+  practiceSecondaryLabel?: string;
   onPracticeClick?: () => void;
   examSlug: ExamSlug;
   moduleSlug?: string;
@@ -31,6 +35,9 @@ export function DeepDiveReviewPlayer({
   content,
   memoryCards,
   practiceHref,
+  practiceSecondaryHref,
+  practiceLabel = "Retest 5 questions",
+  practiceSecondaryLabel = "Practice 25",
   onPracticeClick,
   examSlug,
   anatomyStructures = [],
@@ -171,13 +178,24 @@ export function DeepDiveReviewPlayer({
           </button>
 
           {atEnd && phase === "sections" ? (
-            <Link
-              href={practiceHref}
-              onClick={onPracticeClick}
-              className="inline-flex items-center gap-1 rounded-xl bg-[var(--color-accent)] px-4 py-2 text-sm font-semibold text-white hover:opacity-95"
-            >
-              Practice questions
-            </Link>
+            <div className="flex flex-wrap items-center justify-end gap-2">
+              {practiceSecondaryHref ? (
+                <Link
+                  href={practiceSecondaryHref}
+                  onClick={onPracticeClick}
+                  className="inline-flex items-center gap-1 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-800 hover:bg-slate-50"
+                >
+                  {practiceSecondaryLabel}
+                </Link>
+              ) : null}
+              <Link
+                href={practiceHref}
+                onClick={onPracticeClick}
+                className="inline-flex items-center gap-1 rounded-xl bg-[var(--color-accent)] px-4 py-2 text-sm font-semibold text-white hover:opacity-95"
+              >
+                {practiceLabel}
+              </Link>
+            </div>
           ) : (
             <button
               type="button"
