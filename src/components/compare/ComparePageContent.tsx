@@ -3,6 +3,8 @@ import { ArrowRight, Check, Minus } from "lucide-react";
 import {
   AEE_MONTHLY,
   AEE_YEARLY,
+  COMPARE_HONESTY_DISCLAIMER,
+  COMPETITOR_MAY_WIN,
   COMPETITOR_PROFILES,
   EXAM_ONE_PAGER_LINKS,
   MASTER_FEATURE_ROWS,
@@ -75,8 +77,11 @@ export function ComparePageContent() {
         </h1>
         <p className="mt-4 text-base leading-relaxed text-[var(--color-ink-muted)]">
           One Pro plan covers NCLEX, USMLE, NAPLEX, PANCE, FNP, and NPTE — with Blueprint Roadmaps,
-          Deep Dive modules, and Full Exam simulations. See how we compare on price, features, and
-          multi-exam value.
+          Deep Dive modules, and Full Exam simulations. We compare on price, features, and
+          multi-exam value — without claiming UWorld parity or unverified pass rates.
+        </p>
+        <p className="mt-3 text-xs leading-relaxed text-[var(--color-ink-muted)]">
+          {COMPARE_HONESTY_DISCLAIMER}
         </p>
       </header>
 
@@ -222,11 +227,7 @@ export function ComparePageContent() {
           <li className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
             When a competitor may win
           </li>
-          {[
-            "NCLEX-only with unlimited budget for UWorld depth and NGN CAT fidelity.",
-            "Pharmacy students who want RxPrep video course + established NAPLEX brand at any price.",
-            "Students who need live Kaplan classes and a pass guarantee on a full course.",
-          ].map((item) => (
+          {COMPETITOR_MAY_WIN.map((item) => (
             <li key={item} className="flex gap-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
               <Minus className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
               {item}
@@ -246,10 +247,7 @@ export function ComparePageContent() {
             aria-hidden
           />
         </Link>
-        <p className="max-w-md text-xs text-[var(--color-ink-muted)]">
-          Competitor pricing from public listings ({new Date().getFullYear()}); may vary. Not
-          affiliated with UWorld, Archer Review, Kaplan, AMBOSS, or RxPrep.
-        </p>
+        <p className="max-w-2xl text-xs text-[var(--color-ink-muted)]">{COMPARE_HONESTY_DISCLAIMER}</p>
       </div>
     </div>
   );
