@@ -104,6 +104,29 @@ describe("question-bank-setup", () => {
     expect(resolveWheelCountValue(25, options)).toBe(25);
   });
 
+  it("suggests Mixed topics when a thin topic cannot fill 25Q", () => {
+    const result = validateQuestionBankSession({
+      subjectId: "cardio",
+      questionCount: 25,
+      subjectCounts: { cardio: 12, pulm: 60 },
+      bankStyle: "standard",
+    });
+    expect(result.ok).toBe(false);
+    expect(result.suggestMixed).toBe(true);
+    expect(result.message).toMatch(/Mixed topics/i);
+  });
+
+  it("does not suggest Mixed when already on Mixed", () => {
+    const result = validateQuestionBankSession({
+      subjectId: MIXED_SUBJECT_ID,
+      questionCount: 25,
+      subjectCounts: { cardio: 10, pulm: 10 },
+      bankStyle: "standard",
+    });
+    expect(result.ok).toBe(false);
+    expect(result.suggestMixed).toBeFalsy();
+  });
+
   it("blocks non-wheel counts when pool is known", () => {
     const result = validateQuestionBankSession({
       subjectId: "pulm",

@@ -103,6 +103,8 @@ export type QuestionBankSessionValidation = {
   ok: boolean;
   message?: string;
   maxAvailable?: number;
+  /** Offer a one-tap switch to Mixed topics when the selected topic cannot fill a session. */
+  suggestMixed?: boolean;
 };
 
 /** Pre-flight check before starting a bank session. */
@@ -140,6 +142,14 @@ export function validateQuestionBankSession(params: {
 
   const maxAvailable = availableQuestionCount(subjectId, subjectCounts);
   const count = clampQuestionBankCount(questionCount);
+  const mixedPool =
+    subjectCounts && Object.keys(subjectCounts).length > 0
+      ? availableQuestionCount(MIXED_SUBJECT_ID, subjectCounts)
+      : null;
+  const canSuggestMixed =
+    !isMixedSubjectId(subjectId) &&
+    mixedPool != null &&
+    mixedPool >= QUESTION_BANK_WHEEL_PRESETS[0];
 
   if (maxAvailable === null) {
     if (!isQuestionBankWheelCount(count)) {
@@ -153,8 +163,11 @@ export function validateQuestionBankSession(params: {
       ok: false,
       message: isMixedSubjectId(subjectId)
         ? "No serve-ready questions in this exam bank yet."
-        : "No serve-ready questions for this topic yet.",
+        : canSuggestMixed
+          ? "No serve-ready questions for this topic yet. Try Mixed topics for a full session."
+          : "No serve-ready questions for this topic yet.",
       maxAvailable: 0,
+      suggestMixed: canSuggestMixed,
     };
   }
 
@@ -164,8 +177,11 @@ export function validateQuestionBankSession(params: {
       ok: false,
       message: isMixedSubjectId(subjectId)
         ? "Not enough serve-ready questions in this exam bank for a 25-question session."
-        : "This topic needs at least 25 serve-ready questions. Try another topic.",
+        : canSuggestMixed
+          ? `This topic has ${maxAvailable.toLocaleString()} serve-ready question${maxAvailable === 1 ? "" : "s"} — need 25 to start. Try Mixed topics instead.`
+          : "This topic needs at least 25 serve-ready questions. Try another topic.",
       maxAvailable,
+      suggestMixed: canSuggestMixed,
     };
   }
   if (!options.some((o) => o.value === count)) {

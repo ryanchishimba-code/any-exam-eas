@@ -131,13 +131,25 @@ export function QuestionBankSetup({
           <div>
             <p className={cn(qbUi.sectionHint, "mb-3 px-0.5")}>Number of Questions</p>
             {countOptions.length === 0 ? (
-              <p className="text-center text-[12px] text-amber-800" role="status">
-                {maxAvailable != null &&
-                maxAvailable > 0 &&
-                maxAvailable < QUESTION_BANK_WHEEL_PRESETS[0]
-                  ? `This topic has ${maxAvailable.toLocaleString()} serve-ready question${maxAvailable === 1 ? "" : "s"} — choose a topic with at least 25 to start.`
-                  : "Not enough serve-ready questions for this topic yet."}
-              </p>
+              <div className="space-y-2 text-center" role="status">
+                <p className="text-[12px] text-amber-800">
+                  {validation.message ??
+                    (maxAvailable != null &&
+                    maxAvailable > 0 &&
+                    maxAvailable < QUESTION_BANK_WHEEL_PRESETS[0]
+                      ? `This topic has ${maxAvailable.toLocaleString()} serve-ready question${maxAvailable === 1 ? "" : "s"} — need 25 to start.`
+                      : "Not enough serve-ready questions for this topic yet.")}
+                </p>
+                {validation.suggestMixed ? (
+                  <button
+                    type="button"
+                    onClick={() => onSubjectChange(MIXED_SUBJECT_ID)}
+                    className="inline-flex items-center justify-center rounded-full bg-[var(--color-accent)] px-3.5 py-1.5 text-[12px] font-semibold text-white transition hover:opacity-90"
+                  >
+                    Try {MIXED_SUBJECT_LABEL}
+                  </button>
+                ) : null}
+              </div>
             ) : (
               <QuestionBankCountWheel
                 options={countOptions}
@@ -145,10 +157,19 @@ export function QuestionBankSetup({
                 onChange={onQuestionCountChange}
               />
             )}
-            {!validation.ok && validation.message ? (
-              <p className="mt-2 text-center text-[12px] text-amber-800" role="status">
-                {validation.message}
-              </p>
+            {!validation.ok && validation.message && countOptions.length > 0 ? (
+              <div className="mt-2 space-y-2 text-center" role="status">
+                <p className="text-[12px] text-amber-800">{validation.message}</p>
+                {validation.suggestMixed ? (
+                  <button
+                    type="button"
+                    onClick={() => onSubjectChange(MIXED_SUBJECT_ID)}
+                    className="inline-flex items-center justify-center rounded-full bg-[var(--color-accent)] px-3.5 py-1.5 text-[12px] font-semibold text-white transition hover:opacity-90"
+                  >
+                    Try {MIXED_SUBJECT_LABEL}
+                  </button>
+                ) : null}
+              </div>
             ) : null}
           </div>
 
