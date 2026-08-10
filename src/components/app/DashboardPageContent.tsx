@@ -3,11 +3,13 @@ import dynamic from "next/dynamic";
 import { ArrowRight, Lock } from "lucide-react";
 import { DashboardUpgradeBanner, type DashboardUpgradeProps } from "@/components/dashboard/DashboardUpgradeBanner";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
+import { DashboardReadinessHome } from "@/components/dashboard/DashboardReadinessHome";
 import { DashboardTodayFocus } from "@/components/dashboard/DashboardTodayFocus";
 import { DashboardViewSections } from "@/components/app/DashboardViewSections";
 import { Skeleton } from "@/components/ui/skeleton";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { buildPracticeReadinessSummary } from "@/lib/learning/honest-readiness";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import { ROUTES } from "@/lib/routes";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
@@ -58,6 +60,9 @@ export function DashboardPageContent({
   const showRecent = recentTests.length > 0;
   const isNewUser = stats.questionsAnswered === 0 && !showRecent;
   const studyLocked = !hasPremiumAccess;
+  const readinessSummary = roadmap ? buildPracticeReadinessSummary(roadmap) : null;
+  const categoriesLabel =
+    examSlug === "nclex" ? "Client Needs (practice scores)" : "Blueprint domains (practice scores)";
 
   return (
     <div className={dbUi.page}>
@@ -70,6 +75,14 @@ export function DashboardPageContent({
       <DashboardExamCountdown examSlug={examSlug} examName={exam.name} testDate={testDate} />
 
       {upgrade ? <DashboardUpgradeBanner {...upgrade} /> : null}
+
+      {readinessSummary ? (
+        <DashboardReadinessHome
+          examSlug={examSlug}
+          summary={readinessSummary}
+          categoriesLabel={categoriesLabel}
+        />
+      ) : null}
 
       {isNewUser ? (
         <section className={cn(dbUi.surface, "p-4 sm:p-5")}>
@@ -101,12 +114,19 @@ export function DashboardPageContent({
         <DashboardTodayFocus
           examSlug={examSlug}
           examName={exam.name}
-          readinessScore={headline.readinessScore}
-          motivationalMessage={headline.motivationalMessage}
+          readinessScore={
+            readinessSummary?.overallScore ?? headline.readinessScore
+          }
+          motivationalMessage={
+            readinessSummary
+              ? `${readinessSummary.bandLabel} — ${readinessSummary.reason}`
+              : headline.motivationalMessage
+          }
           dueCount={spacedReview.dueCount}
           topWeakTopic={weakTopics[0]?.name ?? null}
           hasRecent={showRecent}
           studyLocked={studyLocked}
+          practiceBandLabel={readinessSummary?.bandLabel}
         />
       )}
 
@@ -117,6 +137,7 @@ export function DashboardPageContent({
         roadmap={roadmap}
         recentTests={recentTests}
         srsInFocus={!isNewUser && spacedReview.dueCount > 0}
+        hideRoadmapPreview={Boolean(readinessSummary)}
       />
     </div>
   );

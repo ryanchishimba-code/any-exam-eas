@@ -3,6 +3,7 @@ import { ArrowRight, Lock } from "lucide-react";
 import { ReadinessRing } from "@/components/study/ReadinessRing";
 import { questionBankHref, spacedReviewHref } from "@/lib/edtech/practice-links-core";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
+import { PRACTICE_PROGRESS_HINT } from "@/lib/site";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -67,6 +68,7 @@ export function DashboardTodayFocus({
   topWeakTopic,
   hasRecent,
   studyLocked = false,
+  practiceBandLabel,
 }: {
   examSlug: ExamSlug;
   examName: string;
@@ -76,6 +78,8 @@ export function DashboardTodayFocus({
   topWeakTopic: string | null;
   hasRecent: boolean;
   studyLocked?: boolean;
+  /** When set, ring uses Ready / Almost / Not yet instead of generic Ready. */
+  practiceBandLabel?: string;
 }) {
   const action = studyLocked
     ? {
@@ -97,7 +101,7 @@ export function DashboardTodayFocus({
       className={cn(dbUi.surface, "p-4 sm:p-5")}
     >
       <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-5">
-        <ReadinessRing score={readinessScore} />
+        <ReadinessRing score={readinessScore} label={practiceBandLabel ?? "Practice"} />
 
         <div className="min-w-0 flex-1 text-center sm:text-left">
           <p id="dashboard-focus-heading" className={dbUi.eyebrow}>
@@ -107,6 +111,7 @@ export function DashboardTodayFocus({
             {motivationalMessage}
           </p>
           <p className={cn(dbUi.sectionHint, "mt-1")}>{action.reason}</p>
+          <p className="mt-1 text-[11px] text-[var(--color-ink-muted)]">{PRACTICE_PROGRESS_HINT}</p>
 
           <div className="mt-3 flex justify-center sm:justify-start">
             <Link href={action.href} className={dbUi.primaryBtn}>

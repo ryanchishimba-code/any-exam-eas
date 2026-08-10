@@ -22,7 +22,7 @@ export function ReadinessRing({
       className="relative shrink-0"
       style={{ width: size, height: size }}
       role="img"
-      aria-label={`Readiness ${clamped} percent`}
+      aria-label={`Practice progress ${clamped} percent`}
     >
       <svg width={size} height={size} className="-rotate-90">
         <circle
