@@ -140,7 +140,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unknown subject for this field." }, { status: 400 });
     }
 
-    let items = await gatherTopicBankSessionPool({
+    const items = await gatherTopicBankSessionPool({
       fieldId,
       subjectId,
       sessionLimit: sessionCount,
