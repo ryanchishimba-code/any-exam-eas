@@ -24,6 +24,7 @@ import { useLongRunningProgress } from "@/hooks/use-long-running-progress";
 import { feUi } from "@/lib/study/full-exam-ui";
 import { ROUTES } from "@/lib/routes";
 import { stashFullExamSessionPayload } from "@/lib/full-exam/session-payload-cache";
+import { catLauncherBriefing } from "@/lib/questions/cat-psychology";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset } from "@/types/full-exam";
 import type { ExamQuestion } from "@/lib/ai";
@@ -296,20 +297,41 @@ export function FullExamLauncher({
             </div>
 
             {examSlug === "nclex" && preset === "full" ? (
-              <label className="mx-auto flex max-w-sm cursor-pointer items-center gap-3 rounded-xl border border-black/[0.06] bg-white px-4 py-3 text-sm">
-                <input
-                  type="checkbox"
-                  checked={nclexCat}
-                  onChange={(e) => setNclexCat(e.target.checked)}
-                  className="h-4 w-4 rounded border-slate-300"
-                />
-                <span>
-                  <span className="font-medium text-[var(--color-ink)]">CAT-style adaptive</span>
-                  <span className="mt-0.5 block text-xs text-[var(--color-ink-muted)]">
-                    Variable length 75–145 · practice only (not Pearson VUE).
+              <div className="mx-auto w-full max-w-sm space-y-2">
+                <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-black/[0.06] bg-white px-4 py-3 text-sm">
+                  <input
+                    type="checkbox"
+                    checked={nclexCat}
+                    onChange={(e) => setNclexCat(e.target.checked)}
+                    className="mt-0.5 h-4 w-4 rounded border-slate-300"
+                  />
+                  <span>
+                    <span className="font-medium text-[var(--color-ink)]">CAT-style adaptive</span>
+                    <span className="mt-0.5 block text-xs text-[var(--color-ink-muted)]">
+                      Variable length 75–145 · practice only (not Pearson VUE).
+                    </span>
                   </span>
-                </span>
-              </label>
+                </label>
+                {nclexCat ? (
+                  <div
+                    className="rounded-xl border border-teal-200/60 bg-teal-50/50 px-3.5 py-3 text-left"
+                    role="note"
+                    aria-label="Practice CAT briefing"
+                  >
+                    <p className="text-[11px] font-semibold uppercase tracking-wide text-teal-900">
+                      Test-day psychology (practice)
+                    </p>
+                    <ul className="mt-2 space-y-2">
+                      {catLauncherBriefing().map((bullet) => (
+                        <li key={bullet.title} className="text-[12px] leading-snug text-teal-950/90">
+                          <span className="font-semibold">{bullet.title}. </span>
+                          {bullet.body}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+              </div>
             ) : null}
 
             {pending ? (

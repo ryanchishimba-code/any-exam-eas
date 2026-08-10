@@ -50,6 +50,11 @@ import {
   type CatSessionState,
 } from "@/lib/questions/cat-engine";
 import { mapDifficultyToCatBand, pickCatNext } from "@/lib/questions/cat-select";
+import {
+  catInExamTip,
+  catSessionStopSummary,
+} from "@/lib/questions/cat-psychology";
+import { analytics } from "@/lib/analytics";
 import type { RawQuestionInput, StudyQuestion } from "@/lib/questions/types";
 import type { ExamSlug } from "@/types/edtech";
 import type {
@@ -150,10 +155,13 @@ export function FullExamSimulator({
   const [phase, setPhase] = useState<"exam" | "review">("exam");
   const [hasEnteredReview, setHasEnteredReview] = useState(false);
   const [reportOpen, setReportOpen] = useState(false);
+  const [catTipDismissed, setCatTipDismissed] = useState(false);
   const [encouragement] = useState(
     () => ENCOURAGEMENT[Math.floor(Math.random() * ENCOURAGEMENT.length)]
   );
   const loadProgress = useLongRunningProgress(loading);
+  const catStartedTracked = useRef(false);
+  const catStoppedTracked = useRef(false);
 
   const pauseAccumSec = useRef(0);
   const pauseStarted = useRef<number | null>(null);
@@ -308,6 +316,13 @@ export function FullExamSimulator({
       cancelled = true;
     };
   }, [fieldId, config.questionCount, config.adaptive, config.nclexLength, config.focusAreas, config.nclexCat, loadAttempt, sessionId, isCatMode]);
+
+  // Practice CAT telemetry — start once the first item is ready.
+  useEffect(() => {
+    if (!isCatMode || loading || questions.length === 0 || catStartedTracked.current) return;
+    catStartedTracked.current = true;
+    analytics.ctaClicked("nclex_cat_started", "full_exam_cat");
+  }, [isCatMode, loading, questions.length]);
 
   useEffect(() => {
     if (loading || submitting || paused) return;
@@ -614,6 +629,12 @@ export function FullExamSimulator({
           }
         : undefined;
 
+      if (isCatMode && !catStoppedTracked.current) {
+        catStoppedTracked.current = true;
+        const reason = finalCatState.stopReason ?? (endedEarly ? "ended_early" : "submitted");
+        analytics.ctaClicked(`nclex_cat_stopped_${reason}`, "full_exam_cat");
+      }
+
       try {
         const res = await fetch(`/api/exam-sessions/${sessionId}/answer`, {
           method: "PATCH",
@@ -641,7 +662,7 @@ export function FullExamSimulator({
               summary: endedEarly
                 ? "Session ended early. Your saved answers were scored."
                 : isCatMode
-                  ? `Completed ${exam.name} practice CAT (${finalCatState.questionNumber} questions).`
+                  ? `Completed ${exam.name} practice CAT — ${catSessionStopSummary(finalCatState)}`
                   : `Completed ${exam.name} simulation.`,
               ...(catOutcome ? { catOutcome } : {}),
             },
@@ -851,13 +872,7 @@ export function FullExamSimulator({
         <main className="mx-auto max-w-2xl space-y-5 px-4 py-6 pb-36 sm:px-6">
           {isCatMode ? (
             <p className="rounded-[14px] border border-teal-200/60 bg-teal-50/50 px-3 py-2 text-[12px] text-teal-950">
-              Practice CAT complete after {questions.length} questions
-              {catState.stopReason === "confidence"
-                ? " (confidence stop)"
-                : catState.stopReason === "maximum"
-                  ? " (maximum length)"
-                  : ""}
-              . Review and submit when ready.
+              {catSessionStopSummary(catState)} Review and submit when ready.
             </p>
           ) : null}
           <div className="grid gap-3 sm:grid-cols-2">
@@ -979,7 +994,7 @@ export function FullExamSimulator({
             />
             {isCatMode ? (
               <p className="px-1 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
-                Variable length 75–145 · practice only
+                {CAT_MIN_QUESTIONS}–{CAT_MAX_QUESTIONS}Q · Pause for breaks · practice only
               </p>
             ) : null}
             {flaggedIndices.length > 0 ? (
@@ -1010,6 +1025,22 @@ export function FullExamSimulator({
             Question {index + 1}
             {isCatMode ? ` of up to ${CAT_MAX_QUESTIONS}` : ` of ${questions.length}`}
           </p>
+
+          {isCatMode && !catTipDismissed ? (
+            <div
+              className="mb-3 flex items-start gap-2 rounded-xl border border-teal-200/60 bg-teal-50/60 px-3 py-2.5 text-[12px] leading-snug text-teal-950"
+              role="status"
+            >
+              <p className="min-w-0 flex-1">{catInExamTip()}</p>
+              <button
+                type="button"
+                onClick={() => setCatTipDismissed(true)}
+                className="shrink-0 rounded-md px-1.5 py-0.5 text-[11px] font-semibold text-teal-800 hover:bg-teal-100/80"
+              >
+                Got it
+              </button>
+            </div>
+          ) : null}
 
           <article className={feUi.questionPanel}>
             <QuestionRenderer
@@ -1145,6 +1176,7 @@ export function FullExamSimulator({
         open={pauseDialog}
         onConfirm={confirmPause}
         onCancel={() => setPauseDialog(false)}
+        catMode={isCatMode}
       />
       <TimeUpDialog open={timeUp && !submitting} onFinish={() => void submitExam(true)} />
 
