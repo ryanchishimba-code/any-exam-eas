@@ -139,7 +139,7 @@ async function resolveUserAccess(userId: string): Promise<UserAccess> {
   }
 
   const staff = isStaffRole(user.role);
-  let sub = normalizeSubscriptionForRead(user.subscription);
+  const sub = normalizeSubscriptionForRead(user.subscription);
   let subscription = evaluateSubscriptionAccess(sub);
   subscription = applyCompAndGrace(sub, subscription);
 
