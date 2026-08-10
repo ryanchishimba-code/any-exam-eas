@@ -1477,6 +1477,18 @@ export function StudyBankPractice({
             estimatedMinutes={previewEstimatedMinutes}
             availableCount={previewAvailableCount}
             validationMessage={bankSessionValidation.ok ? undefined : bankSessionValidation.message}
+            suggestMixed={Boolean(
+              !bankSessionValidation.ok &&
+                "suggestMixed" in bankSessionValidation &&
+                bankSessionValidation.suggestMixed
+            )}
+            onTryMixed={() => {
+              setSubjectId(MIXED_SUBJECT_ID);
+              if (bankStyle !== "standard" && bankStyle !== "review_incorrect") {
+                setBankStyle("standard");
+              }
+              syncPracticeUrl({ subjectId: MIXED_SUBJECT_ID, style: "standard" });
+            }}
             loading={loading || countsLoading}
             disabled={!(canStartBank || canStartTimed)}
             onStart={() => void start()}

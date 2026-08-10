@@ -7,6 +7,7 @@ import type { LearningInsight, RemediationRecommendation } from "@/lib/learning/
 import { mistakeCategoryLabel } from "@/lib/learning/mistake-analysis";
 import { aiTutorExamLabel, isAiTutorFieldId } from "@/lib/learning/ai-tutor-fields";
 import Link from "next/link";
+import { analytics } from "@/lib/analytics";
 import type { AiTutorRequest } from "./ai-tutor-types";
 import { useAiTutorExplanation } from "./useAiTutorExplanation";
 
@@ -46,6 +47,26 @@ export function InsightPanel({
   const showManualCta =
     expanded && tutorEnabled && canFetch && !hasAiEnhancement && !loading;
   const enriched = hasAiEnhancement && source === "ai";
+  const pearl = displayInsight.pearls[0];
+  const trap = displayInsight.commonTraps[0];
+  const primaryNext = !correct ? remediation?.[0] : undefined;
+
+  function toggleExpanded() {
+    setExpanded((v) => {
+      const next = !v;
+      if (next) {
+        analytics.ctaClicked(
+          correct ? "insight_view_details" : "miss_view_details",
+          "insight_panel"
+        );
+      }
+      return next;
+    });
+  }
+
+  function trackDoThisNext() {
+    analytics.ctaClicked("miss_do_this_next", "insight_panel");
+  }
 
   return (
     <motion.div
@@ -91,9 +112,44 @@ export function InsightPanel({
         </div>
       </div>
 
+      {/* Phase 1 miss card — pearl + trap + do-this-next without forcing expand */}
+      {!correct && !expanded ? (
+        <div className="space-y-2 rounded-xl border border-amber-200/50 bg-amber-50/40 px-3 py-3">
+          {pearl ? (
+            <p className="text-sm text-sky-950">
+              <span className="font-semibold">Pearl: </span>
+              {pearl}
+            </p>
+          ) : null}
+          {trap ? (
+            <p className="text-sm text-amber-950">
+              <span className="font-semibold">Trap: </span>
+              {trap}
+            </p>
+          ) : null}
+          {primaryNext ? (
+            <Link
+              href={primaryNext.href}
+              onClick={trackDoThisNext}
+              className="mt-1 flex items-start justify-between gap-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3 py-2.5 text-sm transition hover:border-[var(--color-accent)]/40"
+            >
+              <span>
+                <span className="block text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+                  Do this next
+                </span>
+                <span className="font-semibold text-[var(--color-ink)]">{primaryNext.title}</span>
+                <span className="mt-0.5 block text-xs text-[var(--color-ink-muted)]">
+                  {primaryNext.description}
+                </span>
+              </span>
+            </Link>
+          ) : null}
+        </div>
+      ) : null}
+
       <button
         type="button"
-        onClick={() => setExpanded((v) => !v)}
+        onClick={toggleExpanded}
         className="inline-flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3.5 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)]"
         aria-expanded={expanded}
       >
@@ -191,6 +247,7 @@ export function InsightPanel({
                   <li key={r.href}>
                     <Link
                       href={r.href}
+                      onClick={trackDoThisNext}
                       className="block rounded-xl border border-black/[0.06] px-3 py-2 text-sm hover:bg-black/[0.02]"
                     >
                       <span className="font-medium">{r.title}</span>

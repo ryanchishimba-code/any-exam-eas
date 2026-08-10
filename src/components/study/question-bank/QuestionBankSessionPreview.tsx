@@ -13,6 +13,9 @@ type Props = {
   estimatedMinutes: number;
   availableCount: number | null;
   validationMessage?: string;
+  /** Show Mixed-topics escape hatch when the selected topic cannot fill a session. */
+  suggestMixed?: boolean;
+  onTryMixed?: () => void;
   loading: boolean;
   disabled: boolean;
   onStart: () => void;
@@ -36,6 +39,8 @@ export function QuestionBankSessionPreview({
   estimatedMinutes,
   availableCount,
   validationMessage,
+  suggestMixed = false,
+  onTryMixed,
   loading,
   disabled,
   onStart,
@@ -72,12 +77,23 @@ export function QuestionBankSessionPreview({
         {validationMessage ? (
           <div
             className={cn(
-              "flex items-start gap-2 rounded-xl border border-amber-200/60 bg-amber-500/6 px-3 py-2.5 text-[12px] text-amber-950"
+              "space-y-2 rounded-xl border border-amber-200/60 bg-amber-500/6 px-3 py-2.5 text-[12px] text-amber-950"
             )}
             role="alert"
           >
-            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
-            <span>{validationMessage}</span>
+            <div className="flex items-start gap-2">
+              <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
+              <span>{validationMessage}</span>
+            </div>
+            {suggestMixed && onTryMixed ? (
+              <button
+                type="button"
+                onClick={onTryMixed}
+                className="ml-6 inline-flex items-center justify-center rounded-full bg-[var(--color-accent)] px-3 py-1.5 text-[12px] font-semibold text-white transition hover:opacity-90"
+              >
+                Try Mixed topics
+              </button>
+            ) : null}
           </div>
         ) : null}
 
