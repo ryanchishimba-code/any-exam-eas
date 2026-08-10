@@ -3,16 +3,20 @@
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { catPauseDialogBody } from "@/lib/questions/cat-psychology";
 import { feUi } from "@/lib/study/full-exam-ui";
 
 export function PauseExamDialog({
   open,
   onConfirm,
   onCancel,
+  catMode = false,
 }: {
   open: boolean;
   onConfirm: () => void;
   onCancel: () => void;
+  /** NCLEX practice CAT — explain self-managed breaks. */
+  catMode?: boolean;
 }) {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -44,7 +48,9 @@ export function PauseExamDialog({
               Pause exam?
             </h2>
             <p className="mt-2 text-[14px] leading-relaxed text-[var(--color-ink-muted)]">
-              The timer stops while paused. Take a breath — you&apos;ve got this.
+              {catMode
+                ? catPauseDialogBody()
+                : "The timer stops while paused. Take a breath — you\u2019ve got this."}
             </p>
             <div className="mt-6 flex gap-2">
               <button type="button" onClick={onCancel} className="flex-1 rounded-full border border-black/[0.08] py-2.5 text-[14px] font-semibold text-[var(--color-ink)] hover:bg-black/[0.02]">
