@@ -38,6 +38,7 @@ import {
 import { QuestionRelatedLinks } from "./QuestionRelatedLinks";
 import { examSlugFromFieldId } from "@/lib/edtech/exams";
 import { useUserAccess } from "@/lib/client/use-user-access";
+import { analytics } from "@/lib/analytics";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
 
 const ExpertRationalePanel = dynamic(
@@ -312,7 +313,18 @@ export function ExplanationPanel({
         {(hasDeepContent || !expanded) && !conciseOnly ? (
           <button
             type="button"
-            onClick={() => setExpanded((v) => !v)}
+            onClick={() =>
+              setExpanded((v) => {
+                const next = !v;
+                if (next) {
+                  analytics.ctaClicked(
+                    hasExpert ? "rationale_open_expert" : "rationale_open",
+                    "explanation_panel"
+                  );
+                }
+                return next;
+              })
+            }
             className="mt-3 inline-flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3.5 py-2 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/40 hover:text-[var(--color-accent)]"
             aria-expanded={expanded}
           >
