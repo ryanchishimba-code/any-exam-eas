@@ -47,8 +47,8 @@ export const COMPETITOR_PROFILES: CompetitorProfile[] = [
     pricingNote: "NCLEX from $139/30d · Step 2 CK from $349/30d · NAPLEX QBank from $299/60d — separate subscriptions",
     strengths: [
       "Industry-leading rationales and NGN/CAT fidelity",
-      "Self-assessments with pass probability",
-      "Strong institutional adoption and pass-rate marketing",
+      "Self-assessments with their own readiness metrics",
+      "Strong institutional adoption and brand trust",
     ],
     weaknesses: [
       "One exam per subscription — multi-board prep gets expensive fast",
@@ -81,7 +81,7 @@ export const COMPETITOR_PROFILES: CompetitorProfile[] = [
     pricingNote: "Self-paced NCLEX from $349/6 mo · Live online from $549 · QBank-only from $99",
     strengths: [
       "Live online classes and structured curriculum",
-      "Pass guarantee on full prep courses",
+      "Pass guarantee on full prep courses (their product terms)",
       "Decision Tree method aligned to clinical judgment",
     ],
     weaknesses: [
@@ -89,7 +89,7 @@ export const COMPETITOR_PROFILES: CompetitorProfile[] = [
       "Per-exam pricing for USMLE and NAPLEX stacks",
       "Less flexible for self-directed adaptive workflows",
     ],
-    bestFor: "Students who learn best with live instruction and want a pass guarantee",
+    bestFor: "Students who learn best with live instruction and want a course-backed guarantee",
   },
   {
     id: "rxprep",
@@ -108,6 +108,21 @@ export const COMPETITOR_PROFILES: CompetitorProfile[] = [
     ],
     bestFor: "PharmD students who want the established NAPLEX brand and video course",
   },
+];
+
+/**
+ * Honest stance for compare surfaces — no fabricated pass rates or UWorld parity claims.
+ * Competitor strengths above describe *their* products, not ours.
+ */
+export const COMPARE_HONESTY_DISCLAIMER =
+  "We do not claim UWorld parity, publish unverified pass rates, or guarantee board outcomes. Competitor pricing is from public listings and may change. Not affiliated with UWorld, Archer Review, Kaplan, AMBOSS, or RxPrep.";
+
+/** When a dedicated competitor is the better fit — shown on landing + /compare. */
+export const COMPETITOR_MAY_WIN: string[] = [
+  "NCLEX-only with budget for UWorld-level rationale depth and CAT fidelity.",
+  "Pharmacy students who want RxPrep’s video course and NAPLEX brand at any price.",
+  "Students who need live Kaplan classes and a course pass guarantee.",
+  "Anyone who already trusts a single-exam brand and only sits one board.",
 ];
 
 export const MASTER_FEATURE_ROWS: ComparisonRow[] = [

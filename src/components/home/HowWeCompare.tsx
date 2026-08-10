@@ -9,9 +9,11 @@ import {
   UWORLD_COMPARE_ROWS,
 } from "@/lib/landing/content";
 import {
-  formatMonthlyPrice,
+  COMPARE_HONESTY_DISCLAIMER,
+  COMPETITOR_MAY_WIN,
+} from "@/lib/seo/competitor-comparison";
+import {
   formatTrialCtaLabel,
-  formatTrialLabel,
   formatTrialPlanDetail,
   formatTrialTodayPrice,
   TRIAL_PAYMENT_DISCLOSURE,
@@ -34,19 +36,20 @@ export function CompareSectionHeading({
   return (
     <div className={`${alignClass} ${className}`.trim()}>
       <p className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-teal-600 dark:text-teal-400">
-        Why students choose us
+        Honest comparison
       </p>
       <h2
         id={id}
         className="mt-1 text-xl font-extrabold tracking-tight text-[var(--color-ink)] sm:text-2xl lg:text-3xl"
       >
-        Why Students Choose{" "}
+        How we compare{" "}
         <span className="bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent dark:from-teal-400 dark:to-cyan-300">
-          AnyExamEasy Over UWorld
+          on multi-exam value
         </span>
       </h2>
       <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-[var(--color-ink-muted)]">
-        {PLATFORM_TAGLINE}
+        {PLATFORM_TAGLINE} We win on one plan for six boards — not by claiming UWorld parity or
+        unverified pass rates.
       </p>
     </div>
   );
@@ -229,10 +232,39 @@ function CompareRow({
   );
 }
 
+function WhenTheyWin({ compact }: { compact?: boolean }) {
+  return (
+    <div
+      className={
+        compact
+          ? "mt-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)]/60 p-3 text-left"
+          : "mt-5 w-full max-w-2xl rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)]/60 p-4 text-left sm:p-5"
+      }
+    >
+      <p
+        className={`font-semibold uppercase tracking-wide text-[var(--color-ink-muted)] ${
+          compact ? "text-[0.6rem]" : "text-xs"
+        }`}
+      >
+        When UWorld (or another specialist) may win
+      </p>
+      <ul className={`mt-2 space-y-1.5 ${compact ? "text-[0.7rem]" : "text-sm"}`} role="list">
+        {COMPETITOR_MAY_WIN.map((item) => (
+          <li key={item} className="flex gap-2 leading-relaxed text-[var(--color-ink-muted)]">
+            <Minus className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: boolean }) {
   if (isInline) {
     return (
       <div className="mt-3 space-y-2 lg:mt-4">
+        <WhenTheyWin compact />
         <Link
           href={LANDING_TRIAL_HREF}
           className="aee-flagship-cta aee-flagship-cta--primary group inline-flex w-full items-center justify-center sm:w-auto"
@@ -241,8 +273,7 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
         </Link>
         <p className="text-[0.625rem] leading-relaxed text-[var(--color-ink-muted)]">
-          UWorld pricing from public listings ({new Date().getFullYear()}); may vary. Not affiliated
-          with UWorld.
+          {COMPARE_HONESTY_DISCLAIMER}
         </p>
       </div>
     );
@@ -256,6 +287,7 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
           : "mt-5 flex flex-col items-center gap-3 text-center"
       }
     >
+      <WhenTheyWin />
       <Link
         href={LANDING_TRIAL_HREF}
         className="aee-flagship-cta aee-flagship-cta--primary aee-flagship-cta--hero group inline-flex w-full max-w-md items-center justify-center sm:w-auto"
@@ -272,9 +304,8 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
       <p className="max-w-md text-[0.625rem] leading-relaxed text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted)]">
         {TRIAL_PAYMENT_DISCLOSURE}
       </p>
-      <p className="max-w-md text-[0.625rem] leading-relaxed text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted)]">
-        UWorld pricing from public listings ({new Date().getFullYear()}); may vary. Not affiliated
-        with UWorld.
+      <p className="max-w-2xl text-[0.625rem] leading-relaxed text-[var(--color-ink-muted)] dark:text-[var(--color-ink-muted)]">
+        {COMPARE_HONESTY_DISCLAIMER}
       </p>
     </div>
   );
