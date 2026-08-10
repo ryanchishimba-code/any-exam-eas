@@ -22,7 +22,7 @@ export function DashboardRoadmapPreview({
       <section aria-labelledby="dashboard-roadmap-heading" className="space-y-2.5">
         <Header examSlug={examSlug} overall={roadmap.overallReadiness} />
         <p className={cn(dbUi.surface, "px-4 py-3 text-[13px] text-[var(--color-ink-muted)]")}>
-          Strong across all blueprint areas — keep timed practice to stay exam-ready.
+          Strong across all blueprint areas — keep timed practice to stay sharp.
         </p>
       </section>
     );

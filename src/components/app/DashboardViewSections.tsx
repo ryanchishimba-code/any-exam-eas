@@ -13,6 +13,7 @@ export function DashboardViewSections({
   roadmap,
   recentTests,
   srsInFocus = false,
+  hideRoadmapPreview = false,
 }: {
   examSlug: ExamSlug;
   /** Kept for call-site compatibility; weak topics live on Roadmap now. */
@@ -22,13 +23,17 @@ export function DashboardViewSections({
   recentTests: RecentTestRow[];
   /** When Today's focus already surfaces SRS, skip the duplicate card. */
   srsInFocus?: boolean;
+  /** When Practice readiness home already shows domain bars. */
+  hideRoadmapPreview?: boolean;
 }) {
   const showRecent = recentTests.length > 0;
   const showSpacedReview = spacedReview.dueCount > 0 && !srsInFocus;
 
   return (
     <>
-      {roadmap ? <DashboardRoadmapPreview examSlug={examSlug} roadmap={roadmap} /> : null}
+      {!hideRoadmapPreview && roadmap ? (
+        <DashboardRoadmapPreview examSlug={examSlug} roadmap={roadmap} />
+      ) : null}
 
       {showSpacedReview ? (
         <DashboardSpacedReview examSlug={examSlug} spacedReview={spacedReview} />
