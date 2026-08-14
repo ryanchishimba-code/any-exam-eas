@@ -17,6 +17,7 @@ export function Button({
   variant = "primary",
   href,
   className = "",
+  type = "button",
   ...props
 }: {
   children: ReactNode;
@@ -42,7 +43,7 @@ export function Button({
   }
 
   return (
-    <button type="button" className={classes} {...props}>
+    <button type={type} className={classes} {...props}>
       {children}
     </button>
   );

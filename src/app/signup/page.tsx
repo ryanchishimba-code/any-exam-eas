@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
 import { SignupForm } from "@/components/SignupForm";
 import { PageShell } from "@/components/PageShell";
 import { AuthCard } from "@/components/ui/AuthCard";
+import { getCachedSession } from "@/lib/auth/session";
 import { contentWidth } from "@/lib/layout/shell-ui";
 import { TRIAL_DAYS, TRIAL_LIFETIME_QUESTIONS } from "@/lib/billing-config";
 import { parseBillingInterval } from "@/lib/billing-plans";
@@ -12,6 +14,7 @@ import { isExamSlug } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
 import type { SignupPlan } from "@/lib/validators/auth";
 import { formatMonthlyPrice, MARKETING_DISCLAIMER, SITE_NAME } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 
 const SIGNUP_TITLE = `Sign Up — ${SITE_NAME}`;
 const SIGNUP_DESCRIPTION =
@@ -53,6 +56,11 @@ export default async function SignupPage({
     exam?: string;
   }>;
 }) {
+  const session = await getCachedSession();
+  if (session?.user?.id) {
+    redirect(ROUTES.dashboard);
+  }
+
   const { plan, promo, interval, tier, exam } = await searchParams;
   const initialPlan = parseInitialPlan(plan);
   const initialInterval = interval ? parseBillingInterval(interval) : "yearly";
