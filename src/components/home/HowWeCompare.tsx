@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Minus } from "lucide-react";
 import {
@@ -12,8 +11,8 @@ import {
   COMPARE_HONESTY_DISCLAIMER,
   COMPETITOR_MAY_WIN,
 } from "@/lib/seo/competitor-comparison";
+import { TrialCtaLink } from "@/components/marketing/TrialCtaLink";
 import {
-  formatTrialCtaLabel,
   formatTrialPlanDetail,
   formatTrialTodayPrice,
   TRIAL_PAYMENT_DISCLOSURE,
@@ -265,13 +264,15 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
     return (
       <div className="mt-3 space-y-2 lg:mt-4">
         <WhenTheyWin compact />
-        <Link
+        <TrialCtaLink
           href={LANDING_TRIAL_HREF}
+          ctaName="compare_trial"
+          location="how_we_compare"
           className="aee-flagship-cta aee-flagship-cta--primary group inline-flex w-full items-center justify-center sm:w-auto"
-        >
-          {formatTrialCtaLabel()}
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
-        </Link>
+          icon={
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+          }
+        />
         <p className="text-[0.625rem] leading-relaxed text-[var(--color-ink-muted)]">
           {COMPARE_HONESTY_DISCLAIMER}
         </p>
@@ -288,16 +289,18 @@ function CompareFooter({ isInline, isOverlap }: { isInline: boolean; isOverlap: 
       }
     >
       <WhenTheyWin />
-      <Link
+      <TrialCtaLink
         href={LANDING_TRIAL_HREF}
+        ctaName="compare_trial"
+        location="how_we_compare"
         className="aee-flagship-cta aee-flagship-cta--primary aee-flagship-cta--hero group inline-flex w-full max-w-md items-center justify-center sm:w-auto"
-      >
-        {formatTrialCtaLabel()}
-        <ArrowRight
-          className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
-          aria-hidden
-        />
-      </Link>
+        icon={
+          <ArrowRight
+            className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
+            aria-hidden
+          />
+        }
+      />
       <p className="max-w-md text-xs text-[var(--color-ink-muted)]">
         {formatTrialPlanDetail()} · all six exams
       </p>

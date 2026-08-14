@@ -19,7 +19,7 @@ import { useClickOutside } from "@/hooks/useClickOutside";
 import { ROUTES, EXAM_NAV_ITEMS } from "@/lib/routes";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import { formatTrialCtaLabel } from "@/lib/site";
+import { TrialCtaLink } from "@/components/marketing/TrialCtaLink";
 
 type NavLink = { href: string; label: string };
 
@@ -175,9 +175,12 @@ export function Navigation() {
                 <LogIn className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden />
                 <span className="max-[380px]:hidden">Sign in</span>
               </LoginModalTrigger>
-              <Link href={LANDING_TRIAL_HREF} className="aee-nav-cta text-[0.8125rem] max-[380px]:px-3">
-                {formatTrialCtaLabel()}
-              </Link>
+              <TrialCtaLink
+                href={LANDING_TRIAL_HREF}
+                ctaName="nav_trial"
+                location="nav"
+                className="aee-nav-cta text-[0.8125rem] max-[380px]:px-3"
+              />
             </div>
           )}
 
@@ -246,13 +249,13 @@ export function Navigation() {
                     <LogIn className="h-4 w-4" strokeWidth={2.25} aria-hidden />
                     Sign in
                   </LoginModalTrigger>
-                  <Link
+                  <TrialCtaLink
                     href={LANDING_TRIAL_HREF}
+                    ctaName="nav_trial_mobile"
+                    location="nav_mobile"
                     className="aee-nav-cta block py-3 text-center text-sm"
                     onClick={closeMobile}
-                  >
-                    {formatTrialCtaLabel()}
-                  </Link>
+                  />
                 </div>
               )}
               {!resolvingAuth && isAuthenticated && (

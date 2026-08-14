@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowLeft } from "lucide-react";
+import { AlreadySignedInSignupPanel } from "@/components/auth/AlreadySignedInSignupPanel";
 import { SignupForm } from "@/components/SignupForm";
 import { PageShell } from "@/components/PageShell";
 import { AuthCard } from "@/components/ui/AuthCard";
@@ -13,8 +13,8 @@ import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { isExamSlug } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
 import type { SignupPlan } from "@/lib/validators/auth";
-import { formatMonthlyPrice, MARKETING_DISCLAIMER, SITE_NAME } from "@/lib/site";
-import { ROUTES } from "@/lib/routes";
+import { displayFirstName } from "@/lib/display-name";
+import { formatMonthlyPrice, formatTrialCtaLabel, MARKETING_DISCLAIMER, SITE_NAME } from "@/lib/site";
 
 const SIGNUP_TITLE = `Sign Up — ${SITE_NAME}`;
 const SIGNUP_DESCRIPTION =
@@ -57,21 +57,22 @@ export default async function SignupPage({
   }>;
 }) {
   const session = await getCachedSession();
-  if (session?.user?.id) {
-    redirect(ROUTES.dashboard);
-  }
-
   const { plan, promo, interval, tier, exam } = await searchParams;
   const initialPlan = parseInitialPlan(plan);
   const initialInterval = interval ? parseBillingInterval(interval) : "yearly";
   const initialTier = parseSubscriptionTier(tier);
   const initialExam = parseInitialExam(exam);
+  const alreadySignedIn = Boolean(session?.user?.id);
 
   return (
     <PageShell
       eyebrow="Get started"
-      title="Create your account."
-      description={`Start a ${TRIAL_DAYS}-day free trial (no card) or subscribe to Pro from ${formatMonthlyPrice("pro")}/mo. Your trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions. Must be 18 or older.`}
+      title={alreadySignedIn ? "Welcome back." : "Create your account."}
+      description={
+        alreadySignedIn
+          ? `${formatTrialCtaLabel()} still works — you already have access, so we will take you into Study Hub.`
+          : `Start a ${TRIAL_DAYS}-day free trial (no card) or subscribe to Pro from ${formatMonthlyPrice("pro")}/mo. Your trial includes ${TRIAL_LIFETIME_QUESTIONS} practice questions. Must be 18 or older.`
+      }
       align="center"
       maxWidth={contentWidth.auth}
       variant="premium"
@@ -86,13 +87,19 @@ export default async function SignupPage({
         </Link>
       </div>
       <AuthCard>
-        <SignupForm
-          initialPlan={initialPlan}
-          initialPromo={promo?.trim() ?? ""}
-          initialInterval={initialInterval}
-          initialTier={initialTier}
-          initialExam={initialExam}
-        />
+        {alreadySignedIn ? (
+          <AlreadySignedInSignupPanel
+            firstName={displayFirstName(session?.user?.name, session?.user?.email)}
+          />
+        ) : (
+          <SignupForm
+            initialPlan={initialPlan}
+            initialPromo={promo?.trim() ?? ""}
+            initialInterval={initialInterval}
+            initialTier={initialTier}
+            initialExam={initialExam}
+          />
+        )}
       </AuthCard>
       <p className="mx-auto mt-6 max-w-md text-center text-[0.6875rem] leading-relaxed text-[var(--color-ink-muted)]">
         {MARKETING_DISCLAIMER}

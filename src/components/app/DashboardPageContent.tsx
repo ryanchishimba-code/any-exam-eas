@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { ArrowRight, Lock } from "lucide-react";
@@ -5,6 +6,7 @@ import { DashboardUpgradeBanner, type DashboardUpgradeProps } from "@/components
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
 import { DashboardReadinessHome } from "@/components/dashboard/DashboardReadinessHome";
 import { DashboardTodayFocus } from "@/components/dashboard/DashboardTodayFocus";
+import { DashboardTryForFreeBanner } from "@/components/dashboard/DashboardTryForFreeBanner";
 import { DashboardViewSections } from "@/components/app/DashboardViewSections";
 import { Skeleton } from "@/components/ui/skeleton";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
@@ -71,6 +73,10 @@ export function DashboardPageContent({
         userName={userName}
         streakDays={stats.streakDays}
       />
+
+      <Suspense fallback={null}>
+        <DashboardTryForFreeBanner />
+      </Suspense>
 
       <DashboardExamCountdown examSlug={examSlug} examName={exam.name} testDate={testDate} />
 

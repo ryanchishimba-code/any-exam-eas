@@ -201,6 +201,12 @@ export function SignupForm({
     }
   }
 
+  useEffect(() => {
+    if (!error) return;
+    const el = document.getElementById("signup-feedback");
+    el?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [error]);
+
   const trialHighlights = [
     `${TRIAL_LIFETIME_QUESTIONS} practice questions across every exam bank during your trial`,
     "Full Pro access — Roadmaps, Deep Dives, and all six board banks",
@@ -511,32 +517,42 @@ export function SignupForm({
 
       <LegalCheckbox checked={accepted} onChange={setAccepted} />
 
-      {error ? <InlineError>{error}</InlineError> : null}
-      {existingAccountError ? (
-        <div className="rounded-xl border border-teal-500/30 bg-teal-50/80 px-4 py-3 text-sm text-[var(--color-ink)] dark:bg-teal-950/30">
-          <p className="font-semibold">You already have an account.</p>
-          <p className="mt-1 text-[var(--color-ink-muted)]">
-            Sign in with this email instead of creating a new trial.
-          </p>
-          <p className="mt-3">
-            <LoginModalTrigger
-              callbackUrl="/dashboard"
-              className="font-semibold text-teal-700 underline-offset-2 hover:underline dark:text-teal-300"
-            >
-              Log in to continue
-            </LoginModalTrigger>
-          </p>
-        </div>
-      ) : null}
+      <div id="signup-feedback" className="space-y-3">
+        {error ? <InlineError>{error}</InlineError> : null}
+        {existingAccountError ? (
+          <div className="rounded-xl border border-teal-500/30 bg-teal-50/80 px-4 py-3 text-sm text-[var(--color-ink)] dark:bg-teal-950/30">
+            <p className="font-semibold">You already have an account.</p>
+            <p className="mt-1 text-[var(--color-ink-muted)]">
+              Sign in with this email instead of creating a new trial.
+            </p>
+            <p className="mt-3">
+              <LoginModalTrigger
+                callbackUrl="/dashboard"
+                className="font-semibold text-teal-700 underline-offset-2 hover:underline dark:text-teal-300"
+              >
+                Log in to continue
+              </LoginModalTrigger>
+            </p>
+          </div>
+        ) : null}
+        {configWarning ? (
+          <InlineError>{configWarning}</InlineError>
+        ) : null}
+      </div>
 
       <div className="space-y-2">
         <Button
           type="submit"
-          disabled={loading || Boolean(configWarning)}
+          disabled={loading}
           className="w-full gap-2"
-          aria-disabled={!canSubmit}
           onClick={(e) => {
-            if (canSubmit || loading || configWarning) return;
+            if (loading) return;
+            if (configWarning) {
+              e.preventDefault();
+              setError(configWarning);
+              return;
+            }
+            if (canSubmit) return;
             e.preventDefault();
             if (!name.trim() || !email.trim() || !dob) {
               setError("Add your name, email, and date of birth to continue.");
