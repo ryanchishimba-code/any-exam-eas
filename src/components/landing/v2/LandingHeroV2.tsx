@@ -21,12 +21,14 @@ import {
   LANDING_HERO_LAPTOP_SRC,
 } from "@/lib/marketing/landing-visuals";
 import { analytics } from "@/lib/analytics";
-import { formatLandingStickyDetail, formatTrialCtaLabel } from "@/lib/site";
+import { formatLandingStickyDetail } from "@/lib/site";
+import { useTrialCtaTarget } from "@/lib/client/use-trial-cta-target";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
 export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDisplay }) {
   const visualRef = useRef<HTMLDivElement>(null);
   const { selectedExam, trialHref } = useLandingExamSelection();
+  const trialCta = useTrialCtaTarget(trialHref);
 
   const examCount = useMemo(() => {
     const row = bankCounts.exams?.find((e) => e.slug === selectedExam);
@@ -88,8 +90,8 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
 
           <div className="aee-hero-beat__actions">
             <LandingCta
-              href={trialHref}
-              ctaName="hero_trial"
+              href={trialCta.href}
+              ctaName={trialCta.isMemberContinue ? "hero_continue" : "hero_trial"}
               location="hero"
               className="aee-flagship-cta--hero aee-flagship-cta--xl aee-flagship-cta--primary aee-flagship-cta--on-dark group aee-hero-beat__cta"
               icon={
@@ -99,7 +101,7 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
                 />
               }
             >
-              {formatTrialCtaLabel()}
+              {trialCta.label}
             </LandingCta>
             <Link
               href="#pricing"

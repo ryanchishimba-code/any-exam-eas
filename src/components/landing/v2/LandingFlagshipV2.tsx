@@ -43,20 +43,21 @@ import { ROUTES } from "@/lib/routes";
 import {
   formatMonthlyPrice,
   formatTrialLabel,
-  formatTrialCtaLabel,
   MARKETING_DISCLAIMER,
   TRIAL_PAYMENT_DISCLOSURE,
 } from "@/lib/site";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 import { LandingSectionPageviews } from "@/components/landing/v2/LandingSectionPageviews";
 import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
+import { useTrialCtaTarget } from "@/lib/client/use-trial-cta-target";
 
 function FinalCta() {
   const { trialHref, selectedExam } = useLandingExamSelection();
+  const trialCta = useTrialCtaTarget(trialHref || LANDING_TRIAL_HREF);
   return (
     <LandingCta
-      href={trialHref || LANDING_TRIAL_HREF}
-      ctaName="final_trial"
+      href={trialCta.href}
+      ctaName={trialCta.isMemberContinue ? "final_continue" : "final_trial"}
       location="final_cta"
       variant="primary"
       className="aee-flagship-cta--hero aee-flagship-cta--xl group aee-flagship-cta--on-dark"
@@ -67,7 +68,7 @@ function FinalCta() {
         />
       }
     >
-      {formatTrialCtaLabel()}
+      {trialCta.label}
       <span className="sr-only"> for {selectedExam}</span>
     </LandingCta>
   );

@@ -7,8 +7,8 @@ import { HighlightedPrice } from "@/components/landing/HighlightedPrice";
 import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
 import { analytics } from "@/lib/analytics";
 import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { useTrialCtaTarget } from "@/lib/client/use-trial-cta-target";
 import {
-  formatTrialCtaLabel,
   formatLandingStickyDetail,
   NO_PAYMENT_TRIAL_BADGE,
 } from "@/lib/site";
@@ -17,7 +17,8 @@ import {
 export function LandingStickyCta() {
   const [visible, setVisible] = useState(false);
   const { trialHref } = useLandingExamSelection();
-  const href = trialHref || LANDING_TRIAL_HREF;
+  const trialCta = useTrialCtaTarget(trialHref || LANDING_TRIAL_HREF);
+  const href = trialCta.href;
 
   useEffect(() => {
     const hero =
@@ -37,7 +38,7 @@ export function LandingStickyCta() {
   if (!visible) return null;
 
   return (
-    <div className="aee-landing-sticky-cta" role="region" aria-label={formatTrialCtaLabel()}>
+    <div className="aee-landing-sticky-cta" role="region" aria-label={trialCta.label}>
       <div className="aee-landing-sticky-cta__inner">
         <div className="aee-landing-sticky-cta__copy">
           <p className="aee-landing-sticky-cta__price">
@@ -51,9 +52,14 @@ export function LandingStickyCta() {
         <Link
           href={href}
           className="aee-landing-sticky-cta__btn group"
-          onClick={() => analytics.ctaClicked("sticky_trial", "sticky")}
+          onClick={() =>
+            analytics.ctaClicked(
+              trialCta.isMemberContinue ? "sticky_continue" : "sticky_trial",
+              "sticky"
+            )
+          }
         >
-          {formatTrialCtaLabel()}
+          {trialCta.label}
           <ArrowRight
             className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5"
             aria-hidden

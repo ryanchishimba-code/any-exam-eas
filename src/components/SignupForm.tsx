@@ -38,6 +38,7 @@ import {
   resolveSignInFailure,
 } from "@/lib/auth-client";
 import { MemberLoginLink } from "@/components/auth/MemberLoginLink";
+import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { CheckoutPlanSelector } from "@/components/checkout/CheckoutPlanSelector";
 import { loadReturningUserHint, rememberEmail, saveReturningUserHint } from "@/lib/client/returning-user";
 import { markTrialWelcomePending } from "@/lib/client/trial-welcome";
@@ -220,6 +221,9 @@ export function SignupForm({
     email.trim().length > 0 &&
     dob.length > 0 &&
     !configWarning;
+
+  const existingAccountError =
+    /already exists|already used a free trial/i.test(error);
 
   return (
     <form onSubmit={handleSubmit} noValidate className="relative w-full space-y-6">
@@ -507,10 +511,50 @@ export function SignupForm({
 
       <LegalCheckbox checked={accepted} onChange={setAccepted} />
 
-      {error && <InlineError>{error}</InlineError>}
+      {error ? <InlineError>{error}</InlineError> : null}
+      {existingAccountError ? (
+        <div className="rounded-xl border border-teal-500/30 bg-teal-50/80 px-4 py-3 text-sm text-[var(--color-ink)] dark:bg-teal-950/30">
+          <p className="font-semibold">You already have an account.</p>
+          <p className="mt-1 text-[var(--color-ink-muted)]">
+            Sign in with this email instead of creating a new trial.
+          </p>
+          <p className="mt-3">
+            <LoginModalTrigger
+              callbackUrl="/dashboard"
+              className="font-semibold text-teal-700 underline-offset-2 hover:underline dark:text-teal-300"
+            >
+              Log in to continue
+            </LoginModalTrigger>
+          </p>
+        </div>
+      ) : null}
 
       <div className="space-y-2">
-        <Button type="submit" disabled={!canSubmit} className="w-full gap-2">
+        <Button
+          type="submit"
+          disabled={loading || Boolean(configWarning)}
+          className="w-full gap-2"
+          aria-disabled={!canSubmit}
+          onClick={(e) => {
+            if (canSubmit || loading || configWarning) return;
+            e.preventDefault();
+            if (!name.trim() || !email.trim() || !dob) {
+              setError("Add your name, email, and date of birth to continue.");
+              return;
+            }
+            if (!examSlug) {
+              setError("Choose the exam you're preparing for to continue.");
+              return;
+            }
+            if (!passwordValid) {
+              setError(passwordError(password) ?? "Enter a stronger password.");
+              return;
+            }
+            if (!accepted) {
+              setError("Accept the terms to continue.");
+            }
+          }}
+        >
           {loading ? (
             <>
               <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
