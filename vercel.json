@@ -19,6 +19,10 @@
       "schedule": "15 6 * * *"
     },
     {
+      "path": "/api/cron/nightly-traffic-report",
+      "schedule": "30 6 * * *"
+    },
+    {
       "path": "/api/cron/analytics-retention",
       "schedule": "0 7 * * 0"
     },
@@ -39,6 +43,9 @@
     },
     "src/app/api/cron/analytics-retention/route.ts": {
       "maxDuration": 300
+    },
+    "src/app/api/cron/nightly-traffic-report/route.ts": {
+      "maxDuration": 120
     },
     "src/app/api/full-exam/start/route.ts": {
       "maxDuration": 60
