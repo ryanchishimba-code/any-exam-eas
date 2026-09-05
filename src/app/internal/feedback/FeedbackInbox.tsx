@@ -7,6 +7,7 @@ import {
   type FeedbackSort,
 } from "@/lib/feedback/types";
 import { InlineError } from "@/components/ui/StatusMessage";
+import { displayFirstLastInitial } from "@/lib/display-name";
 
 type FeedbackInboxProps = {
   apiBase?: string;
@@ -198,7 +199,9 @@ export default function FeedbackInbox({
                   </span>
                 </div>
                 <p className="mt-2 text-sm font-medium">
-                  {item.name || "Anonymous"}
+                  {item.name
+                    ? displayFirstLastInitial(item.name, item.email)
+                    : "Anonymous"}
                   {item.email ? (
                     <span className="font-normal text-black/50"> · {item.email}</span>
                   ) : null}

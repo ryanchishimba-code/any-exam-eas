@@ -7,6 +7,7 @@ import { AdminAccessControls } from "@/components/crm/AdminAccessControls";
 import { StaffRoleControls } from "@/components/crm/StaffRoleControls";
 import { summarizeBillingCycle } from "@/lib/crm/billing-cycle";
 import { summarizeConsentForList } from "@/lib/legal/consent-record";
+import { displayFirstLastInitial } from "@/lib/display-name";
 
 type SupportNote = {
   id: string;
@@ -335,7 +336,10 @@ export default function UserProfileCRM({
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="text-xs text-black/60">
-                      {n.author?.name ?? "Staff"} •{" "}
+                      {n.author?.name
+                        ? displayFirstLastInitial(n.author.name, n.author.email)
+                        : "Staff"}{" "}
+                      •{" "}
                       {new Date(n.createdAt).toLocaleString()}
                     </div>
                     {n.pinned && <div className="text-xs font-semibold">Pinned</div>}

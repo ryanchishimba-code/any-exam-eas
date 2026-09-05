@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { InlineError } from "@/components/ui/StatusMessage";
+import { displayFirstLastInitial } from "@/lib/display-name";
 
 type UserRow = {
   id: string;
@@ -91,7 +92,7 @@ export function AdminUserSearch() {
                         className="font-medium text-cyan-700 hover:underline"
                         href={`/admin/users/${u.id}`}
                       >
-                        {u.name ?? u.email}
+                        {displayFirstLastInitial(u.name, u.email)}
                       </Link>
                       <div className="mt-1 text-xs text-slate-500">{u.email}</div>
                     </td>

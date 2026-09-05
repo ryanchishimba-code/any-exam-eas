@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { CustomerServiceTools } from "@/components/admin/CustomerServiceTools";
 import { InlineError } from "@/components/ui/StatusMessage";
+import { displayFirstLastInitial } from "@/lib/display-name";
 
 type UserRow = {
   id: string;
@@ -117,7 +118,9 @@ export function AdminSupportConsole() {
                       : "hover:bg-slate-50 text-slate-800"
                   }`}
                 >
-                  <span className="font-medium">{u.name ?? u.email}</span>
+                  <span className="font-medium">
+                    {displayFirstLastInitial(u.name, u.email)}
+                  </span>
                   <span
                     className={`mt-0.5 block text-xs ${
                       selectedId === u.id ? "text-slate-300" : "text-slate-500"

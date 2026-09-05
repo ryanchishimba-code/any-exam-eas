@@ -25,7 +25,16 @@ export const examSlugSchema = z.enum([
 export const signUpSchema = z.object({
   email: z.string().trim().email().transform(normalizeEmail),
   password: passwordSchema,
-  name: z.string().trim().min(1, "Name is required."),
+  firstName: z
+    .string()
+    .trim()
+    .min(1, "First name is required.")
+    .max(60, "First name is too long."),
+  lastName: z
+    .string()
+    .trim()
+    .min(1, "Last name is required.")
+    .max(60, "Last name is too long."),
   dateOfBirth: z.string().min(1, "Date of birth is required."),
   acceptedTerms: z.literal(true, {
     errorMap: () => ({ message: "You must accept the terms to create an account." }),

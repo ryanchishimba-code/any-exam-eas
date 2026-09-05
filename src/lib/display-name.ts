@@ -31,6 +31,31 @@ export function displayFirstName(name?: string | null, email?: string): string {
   return "there";
 }
 
+/**
+ * Admin / behind-the-scenes label: first name + last initial.
+ * "Ryan Chishimba" → "Ryan C." ; single-token names stay as-is.
+ */
+export function displayFirstLastInitial(
+  name?: string | null,
+  email?: string
+): string {
+  const formatted = formatDisplayName(name);
+  if (formatted) {
+    const parts = formatted.split(/\s+/).filter(Boolean);
+    if (parts.length === 1) return parts[0]!;
+    const first = parts[0]!;
+    const last = parts[parts.length - 1]!;
+    const initial = last.charAt(0);
+    return initial ? `${first} ${initial}.` : first;
+  }
+  return displayFirstName(name, email);
+}
+
+/** Join signup first/last into a single stored display name. */
+export function joinPersonName(firstName: string, lastName: string): string {
+  return `${firstName.trim()} ${lastName.trim()}`.replace(/\s+/g, " ").trim();
+}
+
 /** Normalize name for persistence (signup, OAuth, profile updates). */
 export function normalizeStoredName(name?: string | null): string | null {
   return formatDisplayName(name);

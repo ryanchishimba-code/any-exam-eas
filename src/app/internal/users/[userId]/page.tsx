@@ -3,6 +3,7 @@ import { requireInternalPermission } from "@/lib/internal/auth";
 import { hasPermission } from "@/lib/permissions";
 import { PageShell } from "@/components/PageShell";
 import { getCrmUserProfile } from "@/lib/crm/user-profile";
+import { displayFirstLastInitial } from "@/lib/display-name";
 import UserProfileCRM from "./UserProfileCRM";
 
 type Props = { params: Promise<{ userId: string }> };
@@ -25,7 +26,7 @@ export default async function InternalUserProfilePage({ params }: Props) {
 
   return (
     <PageShell
-      title={profile.user.name ?? profile.user.email}
+      title={displayFirstLastInitial(profile.user.name, profile.user.email)}
       eyebrow="Customer profile"
       description={`Role: ${profile.user.role} • Status: ${profile.user.accountStatus}`}
       maxWidth="max-w-5xl"

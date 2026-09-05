@@ -58,7 +58,8 @@ export function SignupForm({
   initialExam?: ExamSlug | "";
 }) {
   const examLocked = Boolean(initialExam);
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -93,7 +94,11 @@ export function SignupForm({
     fetchAuthHealthWarning().then(setConfigWarning);
     const hint = loadReturningUserHint();
     if (hint?.email) setEmail(hint.email);
-    if (hint?.name) setName(hint.name);
+    if (hint?.name) {
+      const parts = hint.name.trim().split(/\s+/);
+      setFirstName(parts[0] ?? "");
+      setLastName(parts.slice(1).join(" "));
+    }
   }, []);
 
   useEffect(() => {
@@ -108,8 +113,10 @@ export function SignupForm({
     e.preventDefault();
     setError("");
 
-    if (!name.trim() || !email.trim() || !dob) {
-      setError("Add your name, email, and date of birth to continue.");
+    const trimmedFirst = firstName.trim();
+    const trimmedLast = lastName.trim();
+    if (!trimmedFirst || !trimmedLast || !email.trim() || !dob) {
+      setError("Add your first name, last name, email, and date of birth to continue.");
       return;
     }
 
@@ -133,11 +140,13 @@ export function SignupForm({
 
     try {
       const trimmedEmail = email.trim();
+      const fullName = `${trimmedFirst} ${trimmedLast}`;
       const res = await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: name.trim(),
+          firstName: trimmedFirst,
+          lastName: trimmedLast,
           email: trimmedEmail,
           password,
           dateOfBirth: dob,
@@ -173,7 +182,7 @@ export function SignupForm({
 
       saveReturningUserHint({
         email: trimmedEmail,
-        name: name.trim(),
+        name: fullName,
         lastMethod: "email",
       });
 
@@ -217,7 +226,8 @@ export function SignupForm({
     accepted &&
     Boolean(examSlug) &&
     passwordValid &&
-    name.trim().length > 0 &&
+    firstName.trim().length > 0 &&
+    lastName.trim().length > 0 &&
     email.trim().length > 0 &&
     dob.length > 0 &&
     !configWarning;
@@ -279,7 +289,9 @@ export function SignupForm({
                 if (trimmedEmail) {
                   saveReturningUserHint({
                     email: trimmedEmail,
-                    name: name.trim() || undefined,
+                    name:
+                      [firstName.trim(), lastName.trim()].filter(Boolean).join(" ") ||
+                      undefined,
                     lastMethod: "google",
                   });
                 }
@@ -295,7 +307,9 @@ export function SignupForm({
               if (trimmedEmail) {
                 saveReturningUserHint({
                   email: trimmedEmail,
-                  name: name.trim() || undefined,
+                  name:
+                    [firstName.trim(), lastName.trim()].filter(Boolean).join(" ") ||
+                    undefined,
                   lastMethod: "linkedin",
                 });
               }
@@ -313,13 +327,24 @@ export function SignupForm({
       )}
 
       <fieldset className="space-y-4" disabled={loading}>
-        <input
-          required
-          placeholder="Full name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="apple-input"
-        />
+        <div className="grid gap-4 sm:grid-cols-2">
+          <input
+            required
+            autoComplete="given-name"
+            placeholder="First name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+            className="apple-input"
+          />
+          <input
+            required
+            autoComplete="family-name"
+            placeholder="Last name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+            className="apple-input"
+          />
+        </div>
         <input
           required
           type="text"
@@ -328,7 +353,13 @@ export function SignupForm({
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          onBlur={(e) => rememberEmail(e.target.value, { name: name.trim() || undefined })}
+          onBlur={(e) =>
+            rememberEmail(e.target.value, {
+              name:
+                [firstName.trim(), lastName.trim()].filter(Boolean).join(" ") ||
+                undefined,
+            })
+          }
           className="apple-input"
         />
         <div>
@@ -538,8 +569,8 @@ export function SignupForm({
           onClick={(e) => {
             if (canSubmit || loading || configWarning) return;
             e.preventDefault();
-            if (!name.trim() || !email.trim() || !dob) {
-              setError("Add your name, email, and date of birth to continue.");
+            if (!firstName.trim() || !lastName.trim() || !email.trim() || !dob) {
+              setError("Add your first name, last name, email, and date of birth to continue.");
               return;
             }
             if (!examSlug) {

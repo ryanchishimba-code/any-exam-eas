@@ -55,7 +55,8 @@ async function registerUser(i) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      name: `Load User ${i}`,
+      firstName: "Load",
+      lastName: `User${i}`,
       email,
       password: "LoadTestPass1!",
       dateOfBirth: "1990-06-15",

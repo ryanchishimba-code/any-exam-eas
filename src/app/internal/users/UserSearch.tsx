@@ -6,6 +6,7 @@ import { FileCheck2, RefreshCw, ShieldCheck } from "lucide-react";
 import { InlineError } from "@/components/ui/StatusMessage";
 import type { BillingCycleSummary } from "@/lib/crm/billing-cycle";
 import type { ConsentListSummary } from "@/lib/legal/consent-record";
+import { displayFirstLastInitial } from "@/lib/display-name";
 
 type InternalUserRow = {
   id: string;
@@ -173,7 +174,7 @@ export default function UserSearch({ showAdminColumns = false }: { showAdminColu
                   <tr key={u.id} className="border-t border-black/5 align-top">
                     <td className="px-3 py-3">
                       <Link className="link" href={`/internal/users/${u.id}`}>
-                        {u.name ?? u.email}
+                        {displayFirstLastInitial(u.name, u.email)}
                       </Link>
                       <div className="mt-1 text-xs text-black/50">{u.email}</div>
                     </td>

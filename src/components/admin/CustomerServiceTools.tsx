@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { InlineError, StatusMessage } from "@/components/ui/StatusMessage";
+import { displayFirstLastInitial } from "@/lib/display-name";
 
 type ActivityRow = {
   id: string;
@@ -94,7 +95,9 @@ export function CustomerServiceTools({
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="rounded-lg bg-slate-50 p-4 text-sm">
-          <p className="font-medium text-slate-900">{name ?? email}</p>
+          <p className="font-medium text-slate-900">
+            {displayFirstLastInitial(name, email)}
+          </p>
           <p className="mt-1 text-slate-600">{email}</p>
           <p className="mt-2 text-xs text-slate-500">
             Status: {accountStatus}

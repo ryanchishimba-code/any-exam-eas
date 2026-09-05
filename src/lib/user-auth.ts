@@ -14,7 +14,7 @@ import {
   verifyPassword,
 } from "@/lib/password-hash";
 import { signUpSchema, normalizeEmail, type SignUpInput } from "@/lib/validators/auth";
-import { normalizeStoredName } from "@/lib/display-name";
+import { joinPersonName, normalizeStoredName } from "@/lib/display-name";
 import { parseBillingInterval } from "@/lib/billing-plans";
 import { parseSubscriptionTier } from "@/lib/subscription-tiers";
 import { hasConsumedTrial, recordTrialUsed } from "@/lib/trial-eligibility";
@@ -200,7 +200,10 @@ export async function registerUser(
           return tx.user.create({
             data: {
               email: parsed.email,
-              name: normalizeStoredName(parsed.name) ?? parsed.name,
+              name:
+                normalizeStoredName(
+                  joinPersonName(parsed.firstName, parsed.lastName)
+                ) ?? joinPersonName(parsed.firstName, parsed.lastName),
               ...passwordCredentialFields(passwordHash),
               dateOfBirth: dob,
               subscription: { create: subscriptionData },

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { InlineError } from "@/components/ui/StatusMessage";
+import { displayFirstLastInitial } from "@/lib/display-name";
 
 type StaffRow = {
   id: string;
@@ -210,7 +211,7 @@ export function StaffManagementPanel() {
                     <tr key={row.id} className="border-t border-black/5">
                       <td className="px-3 py-3">
                         <Link className="link" href={`/internal/users/${row.id}`}>
-                          {row.name ?? row.email}
+                          {displayFirstLastInitial(row.name, row.email)}
                         </Link>
                         <div className="mt-1 text-xs text-black/50">{row.email}</div>
                       </td>

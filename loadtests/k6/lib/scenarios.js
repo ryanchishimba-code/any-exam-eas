@@ -256,7 +256,8 @@ export function scenarioRegistration() {
   const res = http.post(
     `${BASE_URL}/api/register`,
     JSON.stringify({
-      name: `K6 User ${__VU}`,
+      firstName: "K6",
+      lastName: `User${__VU}`,
       email,
       password: 'TestLogin1!Aa',
       dateOfBirth: '1990-01-15',

@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { signOutAndCleanup } from "@/lib/client/sign-out";
+import { displayFirstLastInitial } from "@/lib/display-name";
 
 const navItems = [
   { href: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
@@ -63,7 +64,9 @@ export function AdminPortalShell({ children }: { children: React.ReactNode }) {
           </p>
         </div>
         <p className="mt-3 truncate text-sm font-semibold text-slate-900 dark:text-zinc-100">
-          {session?.user?.name ?? "Administrator"}
+          {session?.user?.name
+            ? displayFirstLastInitial(session.user.name, session.user.email)
+            : "Administrator"}
         </p>
         <p className="truncate text-xs text-slate-500 dark:text-zinc-400">{session?.user?.email}</p>
         {(session?.user as { role?: string })?.role && (

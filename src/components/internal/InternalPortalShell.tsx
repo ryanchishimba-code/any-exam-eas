@@ -18,6 +18,7 @@ import {
 import { useState } from "react";
 import { signOutAndCleanup } from "@/lib/client/sign-out";
 import { hasMinRole } from "@/lib/permissions";
+import { displayFirstLastInitial } from "@/lib/display-name";
 
 const navItems = [
   { href: "/internal", label: "Overview", icon: LayoutDashboard, exact: true },
@@ -62,7 +63,9 @@ export function InternalPortalShell({ children }: { children: React.ReactNode })
           Employee portal
         </p>
         <p className="mt-1 truncate text-sm font-semibold text-[var(--color-ink)]">
-          {session?.user?.name ?? "Staff"}
+          {session?.user?.name
+            ? displayFirstLastInitial(session.user.name, session.user.email)
+            : "Staff"}
         </p>
         <p className="truncate text-xs text-black/50">{session?.user?.email}</p>
         {(session?.user as { role?: string })?.role && (
