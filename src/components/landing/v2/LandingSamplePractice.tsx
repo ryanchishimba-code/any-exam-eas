@@ -5,7 +5,7 @@
  * NCLEX uses real NGN formats; other boards use curated interactive MCQs.
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
@@ -14,7 +14,6 @@ import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getLandingMcqSample } from "@/lib/demo/landing-samples";
 import { formatTrialCtaLabel } from "@/lib/site";
 import { cn } from "@/lib/utils";
-
 
 const NgnInteractiveDemo = dynamic(
   () =>
@@ -51,11 +50,7 @@ function LandingMcqPractice({ examSlug }: { examSlug: string }) {
       <header className="aee-landing-sample__card-head">
         <span
           className="aee-landing-sample__badge"
-          style={{
-            color: sample.examColor,
-            borderColor: `${sample.examColor}40`,
-            backgroundColor: `${sample.examColor}12`,
-          }}
+          style={{ background: sample.accent }}
         >
           {sample.examLabel}
         </span>
@@ -66,17 +61,17 @@ function LandingMcqPractice({ examSlug }: { examSlug: string }) {
 
       <ul className="aee-landing-sample__options" role="listbox" aria-label="Answer choices">
         {sample.options.map((opt, i) => {
-          const isSelected = selected === opt;
-          const isCorrectOpt = revealed && opt === sample.correct;
-          const isWrong = revealed && isSelected && opt !== sample.correct;
+          const isSelected = selected === opt.id;
+          const isCorrectOpt = revealed && opt.id === sample.correct;
+          const isWrong = revealed && isSelected && opt.id !== sample.correct;
           return (
-            <li key={opt}>
+            <li key={opt.id}>
               <button
                 type="button"
                 role="option"
                 aria-selected={isSelected}
                 disabled={revealed}
-                onClick={() => setSelected(opt)}
+                onClick={() => setSelected(opt.id)}
                 className={cn(
                   "aee-landing-sample__option",
                   isSelected && !revealed && "aee-landing-sample__option--selected",
@@ -85,12 +80,9 @@ function LandingMcqPractice({ examSlug }: { examSlug: string }) {
                 )}
               >
                 <span className="aee-landing-sample__letter" aria-hidden>
-                  {LABELS[i] ?? "?"}
+                  {LABELS[i]}
                 </span>
-                <span className="flex-1 text-left">{opt}</span>
-                {isCorrectOpt ? (
-                  <Check className="h-4 w-4 shrink-0 text-[var(--color-accent)]" aria-hidden />
-                ) : null}
+                {opt.text}
               </button>
             </li>
           );
@@ -104,6 +96,7 @@ function LandingMcqPractice({ examSlug }: { examSlug: string }) {
           onClick={() => setRevealed(true)}
           className="aee-landing-sample__check"
         >
+          <Check className="h-4 w-4" aria-hidden />
           Check answer
         </button>
       ) : (
@@ -114,24 +107,63 @@ function LandingMcqPractice({ examSlug }: { examSlug: string }) {
               correct ? "aee-landing-sample__verdict--ok" : "aee-landing-sample__verdict--miss"
             )}
           >
-            {correct ? "Correct" : "Not quite — review the rationale"}
+            {correct ? "Correct" : "Not quite"}
           </p>
-          <p className="aee-landing-sample__rationale">
-            <strong>Rationale:</strong> {sample.rationale}
-          </p>
+          <p className="aee-landing-sample__rationale">{sample.rationale}</p>
           <button
             type="button"
-            className="aee-landing-sample__retry"
             onClick={() => {
               setSelected(null);
               setRevealed(false);
             }}
+            className="aee-landing-sample__retry"
           >
             Try again
           </button>
         </div>
       )}
     </article>
+  );
+}
+
+/** Mount heavy NGN player only when the sample stage is near the viewport. */
+function DeferredNgnSample({ trialHref }: { trialHref: string }) {
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const el = hostRef.current;
+    if (!el || shouldLoad) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      setShouldLoad(true);
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setShouldLoad(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "240px 0px", threshold: 0.01 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [shouldLoad]);
+
+  return (
+    <div ref={hostRef}>
+      {shouldLoad ? (
+        <NgnInteractiveDemo embedded trialHref={trialHref} />
+      ) : (
+        <div
+          className="aee-landing-sample__card min-h-[280px] animate-pulse"
+          aria-hidden
+        />
+      )}
+    </div>
   );
 }
 
@@ -163,7 +195,7 @@ export function LandingSamplePractice() {
 
         <div className="aee-landing-sample__stage">
           {selectedExam === "nclex" ? (
-            <NgnInteractiveDemo embedded trialHref={trialHref} />
+            <DeferredNgnSample trialHref={trialHref} />
           ) : (
             <LandingMcqPractice examSlug={selectedExam} />
           )}

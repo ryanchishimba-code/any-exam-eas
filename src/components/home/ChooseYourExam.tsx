@@ -58,7 +58,7 @@ export function ChooseYourExam({ bankCounts }: ChooseYourExamProps) {
   return (
     <section
       id="choose-exam"
-      className="aee-landing-section aee-pick-board scroll-mt-24"
+      className="aee-pick-board scroll-mt-24 py-[var(--landing-section-py)]"
       aria-labelledby="choose-exam-heading"
     >
       <div className="aee-flagship-inner">

@@ -1,5 +1,7 @@
 "use client";
 
+import "@/styles/landing-page.css";
+
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";

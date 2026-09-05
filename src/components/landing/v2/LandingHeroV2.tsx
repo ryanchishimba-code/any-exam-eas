@@ -126,7 +126,8 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
                 width={1024}
                 height={576}
                 priority
-                unoptimized
+                fetchPriority="high"
+                quality={82}
                 className="aee-hero-beat__laptop"
                 sizes="(max-width: 1024px) 94vw, 58vw"
               />

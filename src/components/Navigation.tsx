@@ -122,7 +122,13 @@ export function Navigation() {
   return (
     <header ref={headerRef} className="apple-glass aee-nav fixed top-0 z-50 w-full dark:border-teal-500/10">
       <nav className="aee-nav-inner mx-auto max-w-[1140px] px-5 sm:px-6" aria-label="Main navigation">
-        <BrandLogo href={brandHref} variant="nav" linkClassName="aee-nav-brand" priority />
+        <BrandLogo
+          href={brandHref}
+          variant="nav"
+          linkClassName="aee-nav-brand"
+          /* Never compete with homepage hero LCP for preload bandwidth. */
+          priority={pathname !== "/"}
+        />
 
         <ul className="aee-nav-links hidden lg:flex lg:items-center lg:gap-5" role="list">
           {isAuthenticated && hasAppAccess ? (

@@ -1,5 +1,7 @@
 "use client";
 
+import "@/styles/landing-page.css";
+
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useEffect, useState, type ReactNode } from "react";

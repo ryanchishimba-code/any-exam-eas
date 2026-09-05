@@ -1,5 +1,7 @@
 "use client";
 
+import "@/styles/landing-page.css";
+
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Minus } from "lucide-react";

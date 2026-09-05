@@ -50,6 +50,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [],
     formats: ["image/avif", "image/webp"],
     qualities: [75, 82, 90],
+    // Cache optimized images at the CDN edge for a day (hero LCP benefit on repeat visits).
+    minimumCacheTTL: 86400,
   },
   async headers() {
     const securityHeaders = [

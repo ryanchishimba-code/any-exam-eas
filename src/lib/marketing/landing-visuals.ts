@@ -81,8 +81,11 @@ export function landingVisualSrc(id: string): string | undefined {
   return LANDING_VISUAL_PATHS[id as keyof typeof LANDING_VISUALS];
 }
 
-/** Homepage hero product still — clean cutout, product RGB untouched (no CSS filters). */
-export const LANDING_HERO_LAPTOP_SRC = "/images/landing/hero-laptop-float-v5d.png";
+/**
+ * Homepage hero product still — WebP with alpha (~40KB vs ~450KB PNG).
+ * Keep the PNG on disk as source/fallback; Next Image further serves AVIF/WebP sizes.
+ */
+export const LANDING_HERO_LAPTOP_SRC = "/images/landing/hero-laptop-float-v5d.webp";
 export const LANDING_HERO_LAPTOP_ALT =
   "Laptop with a stethoscope showing NCLEX, NAPLEX, USMLE, PANCE, AANP FNP, and NPTE prep books — Any Exam Easy";
 
