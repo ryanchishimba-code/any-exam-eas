@@ -41,6 +41,10 @@ function pickTopicPracticePreset(
 
 const TOPIC_SUBJECT_OVERRIDES: Partial<Record<string, string>> = {
   pediatrics: "pediatrics-nursing",
+  postpartum: "maternal-child",
+  "newborn-assessment": "maternal-child",
+  "critical-lab-values": "reduction-risk",
+  "chemotherapy-toxicity": "reduction-risk",
 };
 
 function resolveNclexTopicSubjectId(topic: HighYieldTopic, preset?: NclexStudyPreset): string {

@@ -3,6 +3,11 @@
  * Used when DB blueprintTopic tags are missing or sparse.
  */
 import type { BankItem } from "@/lib/question-bank";
+import {
+  canonicalizeNclexBlueprintTopic,
+  expandNclexBlueprintTopicMatchers,
+  nclexBlueprintTopicMatchesAllowed,
+} from "./blueprint-topic-aliases";
 import { NCLEX_2026_TOPIC_KEYWORDS } from "./blueprint-topics-2026";
 import { inferNclexBlueprint } from "./infer-blueprint-topic";
 
@@ -299,13 +304,19 @@ export function filterItemsForNclexBlueprintTopics(
   opts?: { contentMatch?: boolean }
 ): BankItem[] {
   if (blueprintTopics.length === 0) return items;
-  const allowed = new Set(blueprintTopics);
+  const allowed = new Set(expandNclexBlueprintTopicMatchers(blueprintTopics));
+  const contentSlugs = [
+    ...new Set(
+      blueprintTopics
+        .map((slug) => canonicalizeNclexBlueprintTopic(slug) ?? slug.trim())
+        .filter(Boolean)
+    ),
+  ];
 
   return items.filter((item) => {
-    const topic = item.blueprintTopic?.trim();
-    if (topic && allowed.has(topic)) return true;
+    if (nclexBlueprintTopicMatchesAllowed(item.blueprintTopic, allowed)) return true;
     if (!opts?.contentMatch) return false;
-    return blueprintTopics.some((slug) => matchesNclexBlueprintTopic(item, slug));
+    return contentSlugs.some((slug) => matchesNclexBlueprintTopic(item, slug));
   });
 }
 

@@ -329,7 +329,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Cardiovascular Emergencies",
     overview:
       "ACS protocols, heart failure monitoring, anticoagulant safety, and dysrhythmia nursing priorities.",
-    practiceTopicSlug: "med-surg",
+    practiceTopicSlug: "physiological-adaptation",
     reviewModule: CARDIOVASCULAR_NCLEX_MODULE,
     sortOrder: 10,
   }),
@@ -339,7 +339,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Respiratory & Oxygen Therapy",
     overview:
       "COPD O₂ targets, asthma escalation, PE suspicion, chest tubes, and post-op lung expansion.",
-    practiceTopicSlug: "med-surg",
+    practiceTopicSlug: "physiological-adaptation",
     reviewModule: RESPIRATORY_NCLEX_MODULE,
     sortOrder: 11,
   }),
@@ -349,7 +349,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Diabetes Management",
     overview:
       "Hypoglycemia 15-15 rule, DKA/HHS sequencing, insulin safety, sick-day rules, and foot care.",
-    practiceTopicSlug: "med-surg",
+    practiceTopicSlug: "physiological-adaptation",
     reviewModule: DIABETES_NCLEX_MODULE,
     sortOrder: 12,
   }),
@@ -359,7 +359,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Renal & Fluid Balance",
     overview:
       "AKI recognition, dialysis access care, daily weights, hyperkalemia response, and contrast precautions.",
-    practiceTopicSlug: "med-surg",
+    practiceTopicSlug: "physiological-adaptation",
     reviewModule: RENAL_NCLEX_MODULE,
     sortOrder: 13,
   }),
@@ -369,7 +369,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Neurologic Assessment & Stroke",
     overview:
       "Stroke timelines, seizure safety, increased ICP, spinal precautions, and autonomic dysreflexia.",
-    practiceTopicSlug: "med-surg",
+    practiceTopicSlug: "physiological-adaptation",
     reviewModule: NEUROLOGIC_NCLEX_MODULE,
     sortOrder: 14,
   }),
@@ -487,7 +487,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     slug: "gi-emergencies",
     title: "GI Bleed, Pancreatitis & Liver Failure",
     overview: "GI hemorrhage, NG decompression, pancreatitis NPO/fluids, hepatic encephalopathy.",
-    practiceTopicSlug: "med-surg",
+    practiceTopicSlug: "physiological-adaptation",
     reviewModule: GI_EMERGENCIES_NCLEX_MODULE,
     sortOrder: 27,
   }),

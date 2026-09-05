@@ -9,7 +9,7 @@ import {
   filterItemsForNclexTopicPractice,
   matchesNclexTopicPracticeItem,
 } from "./topic-practice-filter";
-import { matchesNclexBlueprintTopic } from "./topic-blueprint-match";
+import { matchesNclexBlueprintTopic, filterItemsForNclexBlueprintTopics } from "./topic-blueprint-match";
 
 describe("NCLEX peds-block preset filtering", () => {
   const preset = getNclexStudyPreset("peds-block")!;
@@ -115,5 +115,54 @@ describe("NCLEX topic practice combined filter", () => {
       blueprintTopics: ["fluid-balance-io"],
       nclexPreset: electrolytesPreset,
     })).toBe(true);
+  });
+});
+
+describe("NCLEX blueprint alias matching at serve time", () => {
+  it("keeps legacy electrolyte tags when Study Hub asks for fluid-balance-io", () => {
+    const legacyTagged: BankItem = {
+      subjectId: "med-surg",
+      blueprintTopic: "electrolytes",
+      vignette: "Med-surg. Client with sodium 128 and confusion.",
+      question: "Which finding is the priority?",
+      options: ["Confusion", "Dry skin", "Thirst", "Orthostasis"],
+      correctAnswer: "Confusion",
+      explanation: "Hyponatremia with neuro change is urgent.",
+    };
+    const offTopic: BankItem = {
+      subjectId: "physiological-adaptation",
+      blueprintTopic: "prioritization",
+      vignette: "ED. Four clients. Who is seen first?",
+      question: "Which client first?",
+      options: ["A", "B", "C", "D"],
+      correctAnswer: "A",
+      explanation: "Unstable first.",
+    };
+
+    const filtered = filterItemsForNclexBlueprintTopics(
+      [legacyTagged, offTopic],
+      ["fluid-balance-io"],
+      { contentMatch: false }
+    );
+    expect(filtered).toHaveLength(1);
+    expect(filtered[0]?.blueprintTopic).toBe("electrolytes");
+  });
+
+  it("includes correctly tagged items even when subjectId is wrong for the topic", () => {
+    const misfiled: BankItem = {
+      subjectId: "management-of-care",
+      blueprintTopic: "shock-sepsis",
+      vignette: "ICU. Fever, MAP 55, lactate 4.8.",
+      question: "Priority intervention?",
+      options: ["Fluids", "Antipyretic", "Culture only", "Wait"],
+      correctAnswer: "Fluids",
+      explanation: "Resuscitate septic shock.",
+    };
+
+    expect(
+      filterItemsForNclexBlueprintTopics([misfiled], ["shock-sepsis"], {
+        contentMatch: false,
+      })
+    ).toHaveLength(1);
   });
 });

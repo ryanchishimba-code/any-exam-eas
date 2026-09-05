@@ -57,7 +57,7 @@ export const NCLEX_TOPIC_REGISTRY: Record<string, NclexTopicMeta> = {
   },
   "disaster-triage": {
     clientNeedsDomain: "management-of-care",
-    blueprintTopicSlugs: ["disaster-triage", "leadership-conflict-resolution"],
+    blueprintTopicSlugs: ["disaster-triage"],
   },
   "quality-improvement": {
     clientNeedsDomain: "management-of-care",
@@ -86,7 +86,7 @@ export const NCLEX_TOPIC_REGISTRY: Record<string, NclexTopicMeta> = {
   },
   postpartum: {
     clientNeedsDomain: "health-promotion",
-    blueprintTopicSlugs: ["postpartum-bubble-he"],
+    blueprintTopicSlugs: ["postpartum-bubble-he", "postpartum-hemorrhage"],
     relatedPresetIds: ["maternal-newborn-block"],
     primary: true,
   },

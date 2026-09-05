@@ -2,12 +2,14 @@ import {
   dedupeBankItemsById,
   QUESTION_BANK_SAMPLE_MAX_PULL,
   sampleQuestionBankItems,
+  sampleQuestionBankItemsByBlueprintTopics,
   sampleQuestionBankItemsForField,
 } from "@/lib/question-bank-db";
 import type { BankItem } from "@/lib/question-bank";
 import { isMpjeField } from "@/lib/mpje/config";
 import { isPracticeFieldId } from "@/lib/subjects/field-ids";
 import { filterBankItemsForSessionPool } from "@/lib/exam-prep/prepare-bank-session";
+import { expandNclexBlueprintTopicMatchers } from "@/lib/exam-prep/nclex/blueprint-topic-aliases";
 import { filterItemsForNclexBlueprintTopics } from "@/lib/exam-prep/nclex/topic-blueprint-match";
 import { filterItemsForNaplexBlueprintTopics } from "@/lib/exam-prep/naplex/topic-blueprint-match";
 import { filterItemsForUsmleBlueprintTopics } from "@/lib/exam-prep/usmle/topic-blueprint-match";
@@ -400,6 +402,101 @@ async function gatherExamBlueprintTopicPool(params: {
   return dedupeBankItemsById(merged).slice(0, params.poolTarget);
 }
 
+async function gatherNclexBlueprintTopicPool(params: {
+  fieldId: string;
+  subjectId: string;
+  sessionLimit: number;
+  poolTarget: number;
+  minVetted: number;
+  blueprintTopics: string[];
+  taskCategory?: string | null;
+  stateCode?: string;
+}): Promise<BankItem[]> {
+  const matchers = expandNclexBlueprintTopicMatchers(params.blueprintTopics);
+  const seen = new Set<string>();
+  const merged: BankItem[] = [];
+
+  const mergeAligned = (items: BankItem[]) => {
+    for (const item of items) {
+      const key = item.id ?? `${item.subjectId ?? ""}:${item.question.trim().toLowerCase()}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      merged.push(item);
+    }
+  };
+
+  const align = (items: BankItem[]) =>
+    filterItemsForNclexBlueprintTopics(
+      filterBankItemsForSessionPool({ fieldId: params.fieldId, items }),
+      params.blueprintTopics,
+      { contentMatch: true }
+    );
+
+  // 1) Tag-first across the whole nursing field — subject filing cannot hide on-topic items.
+  mergeAligned(
+    align(
+      await sampleQuestionBankItemsByBlueprintTopics({
+        fieldId: params.fieldId,
+        blueprintTopics: matchers,
+        count: params.poolTarget,
+      })
+    )
+  );
+
+  if (merged.length >= params.minVetted || merged.length >= params.sessionLimit) {
+    return dedupeBankItemsById(merged).slice(0, params.poolTarget);
+  }
+
+  // 2) Preferred Client Needs subject + tag (including alias labels).
+  for (let round = 0; round < TOPIC_GATHER_MAX_ROUNDS; round++) {
+    const pull = await sampleQuestionBankItems({
+      fieldId: params.fieldId,
+      subjectId: params.subjectId,
+      count: params.poolTarget,
+      poolMultiplier: 3,
+      taskCategory: params.taskCategory,
+      stateCode: params.stateCode,
+      blueprintTopics: matchers,
+    });
+    mergeAligned(align(pull));
+    if (merged.length >= params.minVetted) break;
+    if (merged.length >= params.sessionLimit) break;
+  }
+
+  if (merged.length >= params.minVetted || merged.length >= params.sessionLimit) {
+    return dedupeBankItemsById(merged).slice(0, params.poolTarget);
+  }
+
+  // 3) Subject widen with content match (sparse tags).
+  for (let round = 0; round < TOPIC_GATHER_MAX_ROUNDS; round++) {
+    const pull = await sampleQuestionBankItems({
+      fieldId: params.fieldId,
+      subjectId: params.subjectId,
+      count: params.poolTarget,
+      poolMultiplier: 3,
+      taskCategory: params.taskCategory,
+      stateCode: params.stateCode,
+    });
+    mergeAligned(align(pull));
+    if (merged.length >= params.minVetted) break;
+    if (merged.length >= params.sessionLimit) break;
+  }
+
+  if (merged.length >= params.sessionLimit) {
+    return dedupeBankItemsById(merged).slice(0, params.poolTarget);
+  }
+
+  // 4) Field-wide content match — still blueprint-aligned, never off-topic dilute.
+  const fieldPull = await sampleQuestionBankItemsForField({
+    fieldId: params.fieldId,
+    count: Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, params.poolTarget * 3),
+    taskCategory: params.taskCategory,
+  });
+  mergeAligned(align(fieldPull));
+
+  return dedupeBankItemsById(merged).slice(0, params.poolTarget);
+}
+
 /**
  * Pull and vet enough single-topic rows for an exact-count session.
  * Re-samples when serve gates thin the first pull.
@@ -510,6 +607,19 @@ export async function gatherTopicBankSessionPool(params: {
       });
     }
 
+    if (params.fieldId === "nursing") {
+      return gatherNclexBlueprintTopicPool({
+        fieldId: params.fieldId,
+        subjectId: params.subjectId,
+        sessionLimit: params.sessionLimit,
+        poolTarget,
+        minVetted,
+        blueprintTopics,
+        taskCategory: params.taskCategory,
+        stateCode: params.stateCode,
+      });
+    }
+
     for (let round = 0; round < TOPIC_GATHER_MAX_ROUNDS; round++) {
       const pull = await sampleQuestionBankItems({
         fieldId: params.fieldId,
@@ -556,33 +666,13 @@ export async function gatherTopicBankSessionPool(params: {
       });
 
       mergeVetted(
-        params.fieldId === "nursing"
-          ? filterItemsForNclexBlueprintTopics(vetted, blueprintTopics, {
-              contentMatch: true,
-            })
-          : vetted
+        filterItemsForNclexBlueprintTopics(vetted, blueprintTopics, {
+          contentMatch: true,
+        })
       );
 
       if (merged.length >= minVetted) break;
       if (merged.length >= params.sessionLimit) break;
-    }
-
-    if (params.fieldId === "nursing") {
-      // Sparse blueprint tags often live outside the topic's Client Needs subject —
-      // widen field-wide, but keep blueprint alignment (do not dilute with off-topic items).
-      const fieldPull = await sampleQuestionBankItemsForField({
-        fieldId: params.fieldId,
-        count: Math.min(QUESTION_BANK_SAMPLE_MAX_PULL, poolTarget * 3),
-      });
-      const fieldVetted = filterBankItemsForSessionPool({
-        fieldId: params.fieldId,
-        items: fieldPull,
-      });
-      mergeVetted(
-        filterItemsForNclexBlueprintTopics(fieldVetted, blueprintTopics, {
-          contentMatch: true,
-        })
-      );
     }
 
     return dedupeBankItemsById(merged).slice(0, poolTarget);

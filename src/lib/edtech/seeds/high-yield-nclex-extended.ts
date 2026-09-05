@@ -213,7 +213,7 @@ export const NCLEX_EXTENDED_TOPICS = defineExamTopics("nclex", [
     mustKnowFacts: ["Coffee-ground emesis suggests upper GI bleed"],
     pearls: ["Lactulose titrated to 2–3 soft stools/day"],
     pitfalls: ["Feeding patient with suspected obstruction"],
-    practiceTopicSlug: "med-surg",
+    practiceTopicSlug: "physiological-adaptation",
   },
   {
     slug: "heme-oncology",
@@ -232,7 +232,7 @@ export const NCLEX_EXTENDED_TOPICS = defineExamTopics("nclex", [
     mustKnowFacts: ["No aspirin/NSAIDs in thrombocytopenia unless ordered — bleeding risk"],
     pearls: ["Sickle cell: avoid dehydration and extreme temperature"],
     pitfalls: ["IM injection with platelets <50,000 unless emergent"],
-    practiceTopicSlug: "med-surg",
+    practiceTopicSlug: "physiological-adaptation",
   },
   {
     slug: "burns-trauma",
@@ -251,7 +251,7 @@ export const NCLEX_EXTENDED_TOPICS = defineExamTopics("nclex", [
     mustKnowFacts: ["Cool thermal burn briefly — do not ice — then cover with clean dry dressing"],
     pearls: ["Circumferential burn may compromise circulation — monitor distal pulses"],
     pitfalls: ["Underestimating fluid needs in large TBSA burns"],
-    practiceTopicSlug: "med-surg",
+    practiceTopicSlug: "physiological-adaptation",
   },
   {
     slug: "anticoagulation-nursing",

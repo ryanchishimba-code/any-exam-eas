@@ -836,3 +836,35 @@ export async function sampleQuestionBankItemsForField(params: {
   const rows = await sampleQuestionBankRows({ where, pull: pullTarget, total });
   return shuffleBankItems(dedupeSamplePool(rows.map(rowToBankItem))).slice(0, want);
 }
+
+/**
+ * Subject-agnostic sample keyed by blueprintTopic tags.
+ * Used for NCLEX Study Hub topic practice so wrongly filed subjects still serve on-topic items.
+ */
+export async function sampleQuestionBankItemsByBlueprintTopics(params: {
+  fieldId: string;
+  blueprintTopics: string[];
+  count: number;
+}): Promise<BankItem[]> {
+  const topics = params.blueprintTopics.map((t) => t.trim()).filter(Boolean);
+  if (topics.length === 0) return [];
+
+  const want = Math.max(1, params.count);
+  const where = {
+    fieldId: params.fieldId,
+    active: true as const,
+    qaPassed: true as const,
+    blueprintTopic: { in: topics },
+    ...usmleStepSeparationWhere(params.fieldId),
+  };
+
+  const total = await prisma.questionBankItem.count({ where });
+  if (total === 0) return [];
+
+  const pull = Math.min(
+    QUESTION_BANK_SAMPLE_MAX_PULL,
+    Math.max(want * 4, want + 20)
+  );
+  const rows = await sampleQuestionBankRows({ where, pull, total });
+  return dedupeSamplePool(shuffleBankItems(rows.map(rowToBankItem))).slice(0, want);
+}
