@@ -1,7 +1,7 @@
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { resolveBoardFullQuestionCount } from "@/lib/exam/exam-lengths";
 import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
-import { CAT_MAX_QUESTIONS } from "@/lib/questions/cat-engine";
+import { CAT_MAX_QUESTIONS, NCLEX_CAT_TIME_LIMIT_SEC } from "@/lib/questions/cat-engine";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset, FullExamSessionConfig } from "@/types/full-exam";
 
@@ -26,6 +26,30 @@ export function getLengthOptions(examSlug: ExamSlug, fieldId?: string): LengthOp
   let full = exam.simulatedQuestionCount;
   if (examSlug === "usmle" && fieldId) {
     full = resolveBoardFullQuestionCount(fieldId);
+  }
+
+  if (examSlug === "nclex") {
+    return [
+      {
+        preset: "50",
+        label: "50 Questions",
+        description: "Focused sprint — great for a daily simulation.",
+        questionCount: 50,
+      },
+      {
+        preset: "100",
+        label: "100 Questions",
+        description: "Extended run — builds stamina and pacing.",
+        questionCount: 100,
+      },
+      {
+        preset: "full",
+        label: "Full NCLEX (CAT)",
+        description:
+          "85–150 items · 5 hours · Client Needs + NGN case studies (practice CAT).",
+        questionCount: full,
+      },
+    ];
   }
 
   return [
@@ -70,6 +94,18 @@ export function computeTimeLimitSec(
   return Math.round(secPerQuestion * questionCount);
 }
 
+/**
+ * Whether NCLEX full-length should run practice CAT.
+ * Full preset defaults ON (real NCLEX is always CAT); pass `nclexCat: false` for fixed 85.
+ */
+export function resolveNclexCatEnabled(
+  preset: FullExamLengthPreset,
+  nclexCat?: boolean
+): boolean {
+  if (preset !== "full") return nclexCat === true;
+  return nclexCat !== false;
+}
+
 export function buildSessionConfig(
   examSlug: ExamSlug,
   preset: FullExamLengthPreset,
@@ -87,16 +123,22 @@ export function buildSessionConfig(
   if (examSlug === "nclex" && opts?.nclexLength === "maximum") {
     questionCount = 150;
   }
-  // Prefetch the full CAT pool so live stop rules (75–145) can fire early.
-  if (examSlug === "nclex" && opts?.nclexCat) {
+  const nclexCat =
+    examSlug === "nclex" && resolveNclexCatEnabled(preset, opts?.nclexCat);
+  // Prefetch the full CAT pool so live stop rules (85–150) can fire early.
+  if (nclexCat) {
     questionCount = CAT_MAX_QUESTIONS;
   }
-  const nclexCat = examSlug === "nclex" && opts?.nclexCat === true;
+  const timeLimitSec = nclexCat
+    ? timed
+      ? NCLEX_CAT_TIME_LIMIT_SEC
+      : 0
+    : computeTimeLimitSec(examSlug, questionCount, timed, opts?.fieldId);
   return {
     lengthPreset: preset,
     questionCount,
     timed,
-    timeLimitSec: computeTimeLimitSec(examSlug, questionCount, timed, opts?.fieldId),
+    timeLimitSec,
     adaptive: (preset === "full" && examSlug !== "nclex") || nclexCat,
     ...(examSlug === "nclex"
       ? { nclexLength: opts?.nclexLength ?? "minimum", nclexCat }
@@ -135,11 +177,14 @@ export function resolveLengthPresetFromQuestionCount(
   if (sprint100 && questionCount === sprint100.questionCount) return "100";
 
   if (examSlug === "nclex") {
-    const nclexFull =
-      opts?.nclexLength === "maximum"
-        ? buildSessionConfig("nclex", "full", true, { nclexLength: "maximum" }).questionCount
-        : buildSessionConfig("nclex", "full", true).questionCount;
-    if (questionCount === nclexFull) return "full";
+    // Fixed 85, CAT pool 150, or explicit maximum all map to the full preset.
+    if (
+      questionCount === EXAM_CATALOG.nclex.simulatedQuestionCount ||
+      questionCount === CAT_MAX_QUESTIONS ||
+      (opts?.nclexLength === "maximum" && questionCount === 150)
+    ) {
+      return "full";
+    }
   } else if (full && questionCount === full.questionCount) {
     return "full";
   }

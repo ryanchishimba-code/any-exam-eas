@@ -3,8 +3,10 @@ import {
   buildSessionConfig,
   parseFullExamLengthPreset,
   resolveLengthPresetFromQuestionCount,
+  resolveNclexCatEnabled,
 } from "./config";
 import { EXAM_SLUGS } from "@/lib/edtech/exams";
+import { CAT_MAX_QUESTIONS, NCLEX_CAT_TIME_LIMIT_SEC } from "@/lib/questions/cat-engine";
 
 describe("buildSessionConfig", () => {
   it("uses length wheel counts for 50/100 sprints on every board", () => {
@@ -17,7 +19,6 @@ describe("buildSessionConfig", () => {
   });
 
   it("uses catalog full-length counts for full mocks", () => {
-    expect(buildSessionConfig("nclex", "full", true).questionCount).toBe(85);
     expect(buildSessionConfig("naplex", "full", true).questionCount).toBe(225);
     expect(buildSessionConfig("pance", "full", true).questionCount).toBe(300);
     expect(buildSessionConfig("aanp-fnp", "full", true).questionCount).toBe(135);
@@ -30,20 +31,41 @@ describe("buildSessionConfig", () => {
 
   it("enables adaptive mix for full-length non-NCLEX exams", () => {
     expect(buildSessionConfig("naplex", "full", true).adaptive).toBe(true);
-    expect(buildSessionConfig("nclex", "full", true).adaptive).toBe(false);
   });
 
-  it("enables NCLEX CAT adaptive when nclexCat is set", () => {
-    expect(buildSessionConfig("nclex", "full", true, { nclexCat: true }).adaptive).toBe(true);
-    expect(buildSessionConfig("nclex", "full", true, { nclexCat: true }).nclexCat).toBe(true);
+  it("defaults NCLEX full-length to practice CAT (85–150, 5h)", () => {
+    const cfg = buildSessionConfig("nclex", "full", true);
+    expect(cfg.adaptive).toBe(true);
+    expect(cfg.nclexCat).toBe(true);
+    expect(cfg.questionCount).toBe(CAT_MAX_QUESTIONS);
+    expect(cfg.timeLimitSec).toBe(NCLEX_CAT_TIME_LIMIT_SEC);
+  });
+
+  it("allows fixed 85 NCLEX when CAT is explicitly disabled", () => {
+    const cfg = buildSessionConfig("nclex", "full", true, { nclexCat: false });
+    expect(cfg.nclexCat).toBe(false);
+    expect(cfg.adaptive).toBe(false);
+    expect(cfg.questionCount).toBe(85);
+    expect(cfg.timeLimitSec).toBe(5 * 60 * 60); // 300 min catalog base for 85Q
   });
 
   it("prefeches CAT_MAX pool when nclexCat is set (supports early stop)", () => {
-    expect(buildSessionConfig("nclex", "full", true, { nclexCat: true }).questionCount).toBe(145);
+    expect(buildSessionConfig("nclex", "full", true, { nclexCat: true }).questionCount).toBe(
+      CAT_MAX_QUESTIONS
+    );
     expect(
       buildSessionConfig("nclex", "full", true, { nclexCat: true, nclexLength: "maximum" })
         .questionCount
-    ).toBe(145);
+    ).toBe(CAT_MAX_QUESTIONS);
+  });
+});
+
+describe("resolveNclexCatEnabled", () => {
+  it("defaults full to CAT and keeps sprints fixed unless opted in", () => {
+    expect(resolveNclexCatEnabled("full")).toBe(true);
+    expect(resolveNclexCatEnabled("full", false)).toBe(false);
+    expect(resolveNclexCatEnabled("50")).toBe(false);
+    expect(resolveNclexCatEnabled("50", true)).toBe(true);
   });
 });
 

@@ -32,10 +32,15 @@ export const PRACTICE_MODES: PracticeModeDefinition[] = [
     description:
       "Board-length timed exam with mixed topics — mirrors real USMLE, NAPLEX, NCLEX, or PANCE format.",
     icon: "clock",
-    href: (fieldId) =>
-      examSlugFromFieldId(fieldId)
-        ? fullExamLaunchHref(examSlugFromFieldId(fieldId)!, { mode: "full", autostart: true })
-        : ROUTES.fullExam,
+    href: (fieldId) => {
+      const slug = examSlugFromFieldId(fieldId);
+      if (!slug) return ROUTES.fullExam;
+      return fullExamLaunchHref(slug, {
+        mode: "full",
+        autostart: true,
+        ...(slug === "nclex" ? { nclexCat: true } : {}),
+      });
+    },
     timing: "Full length",
     bestFor: "Endurance and exam-day readiness",
   },
@@ -149,7 +154,13 @@ export function practiceModeLaunchHref(
 
   if (modeId === "simulator") {
     const slug = examSlugFromFieldId(fieldId);
-    if (slug) return fullExamLaunchHref(slug, { mode: "full", autostart: true });
+    if (slug) {
+      return fullExamLaunchHref(slug, {
+        mode: "full",
+        autostart: true,
+        ...(slug === "nclex" ? { nclexCat: true } : {}),
+      });
+    }
   }
 
   const raw = mode.href(fieldId);

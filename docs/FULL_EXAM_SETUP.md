@@ -2,10 +2,23 @@
 
 Premium board exam simulator at `/full-exam/[examSlug]`.
 
+## NCLEX-RN fidelity (practice CAT)
+
+Aligned to the NCSBN Candidate Bulletin / 2026 Test Plan shape (not Pearson scoring):
+
+| Real NCLEX | Our full exam |
+|---|---|
+| Variable-length CAT **85–150** | Practice CAT stop rules 85–150 |
+| **5-hour** clock | Fixed 5-hour timer in CAT mode |
+| Client Needs + **18** case-study items (3×6) on min exam | Blueprint weights + NGN mix with ≥18 unfolding-case target on pools ≥85 |
+| Pass/fail via IRT / 95% CI | Practice ability band only — never claimed as pass/fail |
+
+50 / 100 remain fixed-length sprints. Uncheck “CAT-style adaptive” for a fixed 85Q timed mock.
+
 ## User flow
 
-1. **Study Hub** → "Full Simulated Exam" card → `/full-exam/nclex` (or usmle, naplex, mpje)
-2. Choose **50 / 100 / Full-length adaptive** and **Timed vs Untimed**
+1. **Study Hub** → "Full Simulated Exam" card → `/full-exam/nclex` (or usmle, naplex, …)
+2. Choose **50 / 100 / Full NCLEX (CAT)** and **Timed vs Untimed**
 3. **Start exam** → creates `exam_sessions` row → `/full-exam/[slug]/[sessionId]`
 4. Complete → `/full-exam/[slug]/[sessionId]/results` with score, topic breakdown, rationales
 

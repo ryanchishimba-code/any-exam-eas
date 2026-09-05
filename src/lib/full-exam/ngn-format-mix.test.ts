@@ -30,6 +30,13 @@ describe("planNgnFormatTargets", () => {
     expect(targets.some((t) => t.format === "bow_tie")).toBe(true);
     expect(targets.some((t) => t.format === "select_all")).toBe(true);
   });
+
+  it("floors unfolding case items to 18 on full-length NCLEX pools", () => {
+    const bp = getExamBlueprint("nursing")!;
+    const targets = planNgnFormatTargets(150, bp);
+    const cases = targets.find((t) => t.format === "unfolding_case");
+    expect(cases?.count).toBeGreaterThanOrEqual(18);
+  });
 });
 
 describe("selectWithNgnFormatMix", () => {

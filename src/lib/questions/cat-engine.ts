@@ -12,9 +12,12 @@ export type CatSessionState = {
   stopReason?: "minimum" | "maximum" | "confidence";
 };
 
-export const CAT_MIN_QUESTIONS = 75;
-export const CAT_MAX_QUESTIONS = 145;
+export const CAT_MIN_QUESTIONS = 85;
+export const CAT_MAX_QUESTIONS = 150;
 export const CAT_CONFIDENCE_THRESHOLD = 0.72;
+
+/** Official NCLEX-RN wall clock (Candidate Bulletin) — fixed regardless of item count. */
+export const NCLEX_CAT_TIME_LIMIT_SEC = 5 * 60 * 60;
 
 const DIFFICULTY_WEIGHT: Record<CatDifficulty, number> = {
   easy: -0.35,

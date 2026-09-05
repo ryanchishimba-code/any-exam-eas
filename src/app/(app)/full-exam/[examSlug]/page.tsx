@@ -75,7 +75,9 @@ async function FullExamLauncherContent({
       initialMode={mode ?? null}
       autostart={autostart === "1"}
       initialTimed={timed !== "0"}
-      initialNclexCat={nclexCat === "1"}
+      initialNclexCat={
+        nclexCat === "1" ? true : nclexCat === "0" ? false : undefined
+      }
       mockAccess={mockAccess}
       hasRetake={history.hasRetake}
       canContinue={history.canContinue}

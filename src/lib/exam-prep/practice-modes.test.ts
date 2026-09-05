@@ -32,7 +32,7 @@ describe("practice modes", () => {
       "/full-exam/naplex?mode=full&autostart=1"
     );
     expect(practiceModeLaunchHref("nursing", "simulator", "/study/practice")).toBe(
-      "/full-exam/nclex?mode=full&autostart=1"
+      "/full-exam/nclex?mode=full&autostart=1&nclexCat=1"
     );
   });
 });

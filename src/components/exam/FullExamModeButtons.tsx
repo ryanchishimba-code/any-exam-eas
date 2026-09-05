@@ -33,12 +33,16 @@ export function FullExamModeButtons({
         {options.map((opt) => (
           <Link
             key={opt.preset}
-            href={fullExamLaunchHref(examSlug, { mode: opt.preset, autostart: true })}
+            href={fullExamLaunchHref(examSlug, {
+              mode: opt.preset,
+              autostart: true,
+              ...(examSlug === "nclex" && opt.preset === "full" ? { nclexCat: true } : {}),
+            })}
             className={cn(
               "inline-flex shrink-0 rounded-full border border-black/[0.06] bg-white px-3.5 py-2 text-[12px] font-semibold text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] transition hover:border-[var(--color-accent)]/30 hover:text-[var(--color-accent)]"
             )}
           >
-            {SHORT_LABELS[opt.preset]}
+            {examSlug === "nclex" && opt.preset === "full" ? "Full CAT" : SHORT_LABELS[opt.preset]}
           </Link>
         ))}
       </div>

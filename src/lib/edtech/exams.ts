@@ -11,7 +11,7 @@ export const EXAM_CATALOG: Record<ExamSlug, ExamDefinition> = {
     fieldId: "nursing",
     description: "Clinical judgment, prioritization, and Next-Gen NCLEX formats.",
     accentClass: "from-sky-500/15 to-blue-600/10 border-sky-200/70",
-    simulatedDurationMin: 180,
+    simulatedDurationMin: 300,
     simulatedQuestionCount: 85,
   },
   usmle: {

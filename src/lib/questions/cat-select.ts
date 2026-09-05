@@ -50,7 +50,7 @@ export function catStopReasonLabel(
   reason: CatSessionState["stopReason"]
 ): string | null {
   if (reason === "confidence") return "Practice confidence threshold reached";
-  if (reason === "maximum") return "Reached maximum practice length (145)";
+  if (reason === "maximum") return "Reached maximum practice length (150)";
   if (reason === "minimum") return "Minimum practice length reached";
   return null;
 }

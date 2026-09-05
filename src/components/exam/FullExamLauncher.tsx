@@ -43,6 +43,7 @@ type Props = {
   initialMode?: string | null;
   autostart?: boolean;
   initialTimed?: boolean;
+  /** When undefined, NCLEX full-length defaults to practice CAT. */
   initialNclexCat?: boolean;
   mockAccess: MockExamAccess;
   hasRetake?: boolean;
@@ -56,7 +57,7 @@ export function FullExamLauncher({
   initialMode,
   autostart = false,
   initialTimed = true,
-  initialNclexCat = false,
+  initialNclexCat,
   mockAccess,
   hasRetake = false,
   canContinue = false,
@@ -79,15 +80,29 @@ export function FullExamLauncher({
   });
   const presetRef = useRef<FullExamLengthPreset>(preset);
   const [timed, setTimed] = useState(initialTimed);
-  const [nclexCat, setNclexCat] = useState(initialNclexCat && examSlug === "nclex");
+  const [nclexCat, setNclexCat] = useState(() => {
+    if (examSlug !== "nclex") return false;
+    if (typeof initialNclexCat === "boolean") return initialNclexCat;
+    const fromUrl = initialMode ? parseFullExamLengthPreset(initialMode) : null;
+    const startPreset =
+      fromUrl && options.some((o) => o.preset === fromUrl) ? fromUrl : defaultPreset;
+    return startPreset === "full";
+  });
   const [pending, setPending] = useState(autostart);
   const [error, setError] = useState<string | null>(null);
   const startingRef = useRef(false);
 
-  const handlePresetChange = useCallback((next: FullExamLengthPreset) => {
-    presetRef.current = next;
-    setPreset(next);
-  }, []);
+  const handlePresetChange = useCallback(
+    (next: FullExamLengthPreset) => {
+      presetRef.current = next;
+      setPreset(next);
+      if (examSlug === "nclex") {
+        // Full NCLEX defaults to practice CAT; sprints stay fixed-length.
+        setNclexCat(next === "full");
+      }
+    },
+    [examSlug]
+  );
 
   useEffect(() => {
     presetRef.current = preset;
@@ -308,7 +323,7 @@ export function FullExamLauncher({
                   <span>
                     <span className="font-medium text-[var(--color-ink)]">CAT-style adaptive</span>
                     <span className="mt-0.5 block text-xs text-[var(--color-ink-muted)]">
-                      Variable length 75–145 · practice only (not Pearson VUE).
+                      Variable length 85–150 · 5-hour clock · practice only (not Pearson VUE).
                     </span>
                   </span>
                 </label>

@@ -66,6 +66,9 @@ function isClassicItem(item: BankItem): boolean {
   return true;
 }
 
+/** Official minimum-length NCLEX includes 18 case-study items (3×6 CJMM). */
+export const NCLEX_CASE_STUDY_ITEM_TARGET = 18;
+
 /** Plan integer NGN slot counts from blueprint mix (mirrors assignNgnFormats). */
 export function planNgnFormatTargets(
   questionCount: number,
@@ -90,6 +93,24 @@ export function planNgnFormatTargets(
       count: capped,
       itemTypes: FORMAT_ITEM_TYPES[mix.format] ?? [mix.format],
     });
+  }
+
+  // Full-length / CAT pools: reserve ~18 unfolding case items like the real exam.
+  if (blueprint.fieldId === "nursing" && questionCount >= 85) {
+    const caseIdx = targets.findIndex((t) => t.format === "unfolding_case");
+    const floor = Math.min(NCLEX_CASE_STUDY_ITEM_TARGET, questionCount);
+    if (caseIdx >= 0) {
+      const current = targets[caseIdx]!;
+      if (current.count < floor) {
+        targets[caseIdx] = { ...current, count: floor };
+      }
+    } else {
+      targets.unshift({
+        format: "unfolding_case",
+        count: floor,
+        itemTypes: FORMAT_ITEM_TYPES.unfolding_case,
+      });
+    }
   }
 
   return targets;
