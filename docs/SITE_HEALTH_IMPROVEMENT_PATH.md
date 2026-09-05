@@ -33,7 +33,14 @@ Track progress in the Cursor canvas `site-health-review` and the long-running go
 
 **Done when:** Web Analytics is no longer `not_found` for the project.
 
-**Status (2026-09-04):** Code wired — `@vercel/analytics` installed and `<VercelWebAnalytics />` added to `src/app/layout.tsx`. Query API still returns `Web Analytics not found` until the project product is enabled (Dashboard → Analytics → Enable, or `vercel project web-analytics enable`).
+**Status (2026-09-05):** Code live on production (`bd224e0`) — `@vercel/analytics` in layout; client chunk confirms package shipped. **Product still disabled:** API returns `Web Analytics not found`. CLI refuses non-interactive enable (Pro paid feature). **User must run in a terminal and confirm:**
+
+```bash
+vercel project web-analytics enable any-exam-eas --scope ryanchishimba-codes-projects
+```
+
+Or Dashboard → Analytics → Enable: https://vercel.com/ryanchishimba-codes-projects/any-exam-eas/analytics
+
 
 ---
 
