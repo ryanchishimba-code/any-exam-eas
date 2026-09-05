@@ -59,6 +59,26 @@ export function userHasFeature(
 const REQUIRE_EMAIL_VERIFICATION =
   process.env.REQUIRE_EMAIL_VERIFICATION === "true";
 
+/**
+ * Trial-only: when verification is required, unverified trialing users lose product access.
+ * Paid subscribers and post-trial free tiers are not gated by email verification.
+ */
+export function blocksUnverifiedTrialAccess(params: {
+  requireVerification?: boolean;
+  emailVerified: boolean;
+  staff: boolean;
+  subscriptionStatus: string;
+}): boolean {
+  const requireVerification =
+    params.requireVerification ?? REQUIRE_EMAIL_VERIFICATION;
+  return (
+    requireVerification &&
+    !params.emailVerified &&
+    !params.staff &&
+    params.subscriptionStatus === "trialing"
+  );
+}
+
 function mapAccessRole(
   staff: boolean,
   subscription: SubscriptionAccess
@@ -171,7 +191,13 @@ async function resolveUserAccess(userId: string): Promise<UserAccess> {
     blockReason = "suspended";
   } else if (!hasPremiumAccess && !hasFreeTierAccess && !staff) {
     blockReason = "subscription";
-  } else if (REQUIRE_EMAIL_VERIFICATION && !emailVerified && !staff) {
+  } else if (
+    blocksUnverifiedTrialAccess({
+      emailVerified,
+      staff,
+      subscriptionStatus: subscription.status,
+    })
+  ) {
     hasPremiumAccess = false;
     hasFreeTierAccess = false;
     hasAppAccess = false;

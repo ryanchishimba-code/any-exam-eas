@@ -19,7 +19,7 @@ Production-ready access control built on **NextAuth (JWT)** + **Prisma** + **Str
 | Layer | Responsibility |
 |-------|----------------|
 | `src/middleware.ts` | Requires login for `/dashboard`, `/internal`, premium study routes |
-| `src/lib/access-control.ts` | Single `getUserAccess()` — subscription + suspend + email verify |
+| `src/lib/access-control.ts` | Single `getUserAccess()` — subscription + suspend + **trial-only** email verify |
 | `src/lib/api-access.ts` | `requirePremiumApi()` for JSON routes |
 | `src/components/PremiumGate.tsx` | Server component paywall for pages |
 | `src/lib/subscription-access.ts` | Trial expiry, status evaluation |
@@ -59,6 +59,9 @@ MONTHLY_PRICE_USD=3.99
 YEARLY_PRICE_USD=39.99
 
 # Email verification (off by default locally)
+# When true in production: unverified *trialing* users are blocked until they
+# confirm the magic link. Paid subscribers are not gated. Free-trial signup
+# also rejects known disposable / temp-mail domains.
 REQUIRE_EMAIL_VERIFICATION=false
 RESEND_API_KEY=
 EMAIL_FROM=onboarding@resend.dev
@@ -80,9 +83,10 @@ STRIPE_PRICE_ID_YEARLY=   # yearly price id (optional)
 
 1. `npx prisma migrate deploy` (or `npm run db:push` on SQLite dev).
 2. Set all env vars on Vercel; redeploy.
-3. Stripe Dashboard → Webhook → `https://your-app/api/stripe/webhook` (checkout, subscription, invoice events).
-4. Enable Google OAuth redirect: `{NEXTAUTH_URL}/api/auth/callback/google`.
-5. `npm run db:seed-admin` for staff access; sign out/in to refresh JWT.
+3. Set `REQUIRE_EMAIL_VERIFICATION=true` in production (trial access only; needs working Resend).
+4. Stripe Dashboard → Webhook → `https://your-app/api/stripe/webhook` (checkout, subscription, invoice events).
+5. Enable Google OAuth redirect: `{NEXTAUTH_URL}/api/auth/callback/google`.
+6. `npm run db:seed-admin` for staff access; sign out/in to refresh JWT.
 
 ## Admin actions
 

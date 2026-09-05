@@ -149,7 +149,9 @@ export async function registerUser(
   input: SignUpInput
 ): Promise<SafeUser & { plan: "trial" | "subscribe"; promoCode?: string }> {
   const parsed = signUpSchema.parse(input);
-  assertPublicSignupEmailAllowed(parsed.email);
+  assertPublicSignupEmailAllowed(parsed.email, {
+    blockDisposable: parsed.plan === "trial",
+  });
 
   const dob = new Date(parsed.dateOfBirth);
   if (!isAtLeast18(dob)) {

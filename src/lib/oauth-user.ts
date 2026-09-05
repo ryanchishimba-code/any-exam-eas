@@ -63,9 +63,10 @@ export async function findOrCreateGoogleUser(params: {
     return { id: existing.id, role: existing.role };
   }
 
-  assertPublicSignupEmailAllowed(email);
-
   const trialAlreadyUsed = await hasConsumedTrial(email);
+  assertPublicSignupEmailAllowed(email, {
+    blockDisposable: !trialAlreadyUsed,
+  });
   const subscriptionCreate = trialAlreadyUsed
     ? {
         status: "inactive" as const,

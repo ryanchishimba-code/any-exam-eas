@@ -3,9 +3,13 @@ import { prisma } from "@/lib/prisma";
 import { isStaffRole } from "@/lib/permissions";
 import { isValidPasswordHash } from "@/lib/password-hash";
 import { isInternalTestEmail } from "@/lib/test-accounts";
+import { isDisposableEmail } from "@/lib/disposable-email-domains";
 
 export const RESERVED_EMAIL_MESSAGE =
   "This email domain is reserved for internal testing and cannot be used for public signup.";
+
+export const DISPOSABLE_EMAIL_MESSAGE =
+  "Please use a permanent email address. Temporary or disposable emails are not allowed for free trials.";
 
 export function isReservedInternalEmail(email: string | null | undefined): boolean {
   return isInternalTestEmail(email);
@@ -48,10 +52,21 @@ export class OAuthAccountDisabledError extends Error {
   }
 }
 
+export type PublicSignupEmailOptions = {
+  /** When true (trial signup), reject known disposable / temp-mail domains. */
+  blockDisposable?: boolean;
+};
+
 /** Public signup and OAuth auto-create must not claim internal test inboxes. */
-export function assertPublicSignupEmailAllowed(email: string): void {
+export function assertPublicSignupEmailAllowed(
+  email: string,
+  options: PublicSignupEmailOptions = {}
+): void {
   if (isReservedInternalEmail(email)) {
     throw new Error(RESERVED_EMAIL_MESSAGE);
+  }
+  if (options.blockDisposable && isDisposableEmail(email)) {
+    throw new Error(DISPOSABLE_EMAIL_MESSAGE);
   }
 }
 
