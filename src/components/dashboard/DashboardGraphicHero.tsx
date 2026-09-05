@@ -9,7 +9,6 @@ import {
 } from "@/lib/edtech/practice-links-core";
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import type { PracticeReadinessSummary } from "@/lib/learning/honest-readiness";
-import { roadmapHref } from "@/lib/learning/roadmap-links";
 import { domainTilesFromReadiness } from "@/lib/study/domain-map";
 import { ROUTES } from "@/lib/routes";
 import { dbUi } from "@/lib/study/dashboard-ui";
@@ -162,18 +161,9 @@ export function DashboardGraphicHero({
 
       {tiles.length > 0 ? (
         <div className="mt-5 border-t border-[var(--color-border)]/50 pt-4">
-          <div className="mb-2.5 flex items-center justify-between gap-2">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
-              {categoriesLabel}
-            </p>
-            <Link
-              href={roadmapHref(examSlug)}
-              className="inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--color-accent)] hover:underline"
-            >
-              Full map
-              <ArrowRight className="h-3 w-3" aria-hidden />
-            </Link>
-          </div>
+          <p className="mb-2.5 text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            {categoriesLabel}
+          </p>
           <DomainMap tiles={tiles} variant="compact" aria-label={categoriesLabel} />
         </div>
       ) : null}

@@ -203,6 +203,11 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
+        source: "/dashboard/roadmap",
+        destination: "/dashboard",
+        permanent: true,
+      },
+      {
         source: "/exams/:exam",
         destination: "/:exam",
         permanent: true,

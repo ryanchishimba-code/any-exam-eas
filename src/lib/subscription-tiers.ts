@@ -64,8 +64,8 @@ export type ProFeatureHighlight = {
 export const PRO_FEATURE_HIGHLIGHTS: readonly ProFeatureHighlight[] = [
   {
     icon: "roadmap",
-    title: "Blueprint Roadmaps",
-    blurb: "Know what to study next — adaptive queues mapped to each licensing blueprint.",
+    title: "Blueprint readiness on Study Hub",
+    blurb: "Know what to study next — domain maps and adaptive queues on your Study Hub home.",
   },
   {
     icon: "deepdive",

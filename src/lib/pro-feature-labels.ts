@@ -4,7 +4,7 @@ import type { SubscriptionFeature } from "@/lib/subscription-features";
 export const PRO_FEATURE_LABELS: Record<SubscriptionFeature, string> = {
   question_bank: "Question banks",
   practice_exams: "Practice exams",
-  roadmap_tools: "Exam Roadmaps",
+  roadmap_tools: "Study Hub blueprint readiness",
   lab_values: "Lab values",
   clinical_calculators: "Clinical calculators",
   drug_database: "Drug database",

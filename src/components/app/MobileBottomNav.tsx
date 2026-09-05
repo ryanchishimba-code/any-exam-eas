@@ -9,7 +9,7 @@ import {
   Clock,
   LayoutGrid,
   Lock,
-  Map,
+  Square,
 } from "lucide-react";
 import { SubscribeToContinueHint } from "@/components/app/SubscribeToContinueHint";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
@@ -44,7 +44,13 @@ export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) 
 
     return [
       { id: "home", href: ROUTES.dashboard, label: "Home", icon: LayoutGrid, exact: true },
-      { id: "plan", href: ROUTES.roadmap, label: "Plan", icon: Map, ariaLabel: "Study Roadmap" },
+      {
+        id: "topics",
+        href: ROUTES.highYieldTopics,
+        label: "Topics",
+        icon: Square,
+        ariaLabel: "High-Yield Topics",
+      },
       { id: "bank", href: bankHref, label: "Bank", icon: BookOpen, ariaLabel: "Question Bank" },
       { id: "exam", href: examHref, label: "Exam", icon: Clock, ariaLabel: "Full Exam" },
       { id: "stats", href: ROUTES.analytics, label: "Stats", icon: BarChart3, ariaLabel: "Analytics" },

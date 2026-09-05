@@ -16,7 +16,6 @@ const EXAM_NAV_STATS = {
 export const ROUTES = {
   home: "/",
   dashboard: "/dashboard",
-  roadmap: "/dashboard/roadmap",
   learn: "/learn",
   /** @deprecated use dashboard */
   practiceHub: "/dashboard",

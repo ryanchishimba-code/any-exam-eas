@@ -22,7 +22,6 @@ function revalidateExamPreferencePaths() {
   revalidatePath("/settings", "layout");
   revalidatePath("/full-exam", "layout");
   revalidatePath("/dashboard");
-  revalidatePath("/dashboard/roadmap");
   revalidatePath("/dashboard/topics");
   revalidatePath("/question-bank");
   revalidatePath("/analytics");

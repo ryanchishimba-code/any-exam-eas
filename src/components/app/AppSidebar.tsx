@@ -10,7 +10,6 @@ import {
   FileText,
   LayoutGrid,
   Lock,
-  Map,
   PenLine,
   RefreshCw,
   SlidersHorizontal,
@@ -56,7 +55,6 @@ const NAV_SECTIONS: NavSection[] = [
         icon: SlidersHorizontal,
         exact: true,
       },
-      { id: "roadmap", href: ROUTES.roadmap, label: "Roadmap", icon: Map },
       {
         id: "question-bank",
         href: "__question_bank__",

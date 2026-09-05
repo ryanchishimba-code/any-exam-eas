@@ -29,7 +29,7 @@ import {
   NPTE_PT_TOPIC_MODULES,
   nptePtModulesForStage,
 } from "./npte-pt-learning-paths";
-import { roadmapHref } from "@/lib/learning/exam-roadmap";
+import { studyHubHref } from "@/lib/learning/exam-roadmap";
 
 export type DailyAssignmentTask = {
   id: string;
@@ -180,11 +180,11 @@ export function buildPanceDailyAssignment(weakTopicSlugs: string[] = []): DailyA
 
   const tasks: DailyAssignmentTask[] = [
     {
-      id: "roadmap",
+      id: "study-hub",
       kind: "review",
-      title: "PANCE Exam Roadmap",
+      title: "PANCE Study Hub readiness",
       description: "NCCPA blueprint readiness across all 15 medical content categories.",
-      href: roadmapHref("pance"),
+      href: studyHubHref("pance"),
       estimatedMinutes: 10,
     },
     {
@@ -279,11 +279,11 @@ export function buildAanpFnpDailyAssignment(weakTopicSlugs: string[] = []): Dail
       meta: { system: mod.system, questionCount: mod.questions.reviewCount },
     },
     {
-      id: "roadmap",
+      id: "study-hub",
       kind: "reference",
-      title: "Exam roadmap",
+      title: "Study Hub readiness",
       description: "Readiness by Assess, Diagnose, Plan, and Evaluate domains.",
-      href: roadmapHref("aanp-fnp"),
+      href: studyHubHref("aanp-fnp"),
       estimatedMinutes: 5,
     },
     {
@@ -336,11 +336,11 @@ export function buildNptePtDailyAssignment(weakTopicSlugs: string[] = []): Daily
 
   const tasks: DailyAssignmentTask[] = [
     {
-      id: "roadmap",
+      id: "study-hub",
       kind: "review",
-      title: "NPTE-PT Exam Roadmap",
+      title: "NPTE-PT Study Hub readiness",
       description: "FSBPT blueprint readiness across body systems and non-systems categories.",
-      href: roadmapHref("npte-pt"),
+      href: studyHubHref("npte-pt"),
       estimatedMinutes: 10,
     },
     {

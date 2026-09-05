@@ -525,7 +525,7 @@ export async function getExamRoadmapData(
   );
 }
 
-export { roadmapHref } from "@/lib/learning/roadmap-links";
+export { studyHubHref, roadmapHref } from "@/lib/learning/roadmap-links";
 
 export function roadmapCategoryBankHref(
   examSlug: ExamSlug,

@@ -1,5 +1,5 @@
 /**
- * Weighted blueprint domain map — shared by Study Hub hero and /dashboard/roadmap.
+ * Weighted blueprint domain map — shown on Study Hub (dashboard).
  * Tile size ≈ exam weight; fill ≈ practice readiness; color ≈ Strong / Review / More work.
  */
 import Link from "next/link";

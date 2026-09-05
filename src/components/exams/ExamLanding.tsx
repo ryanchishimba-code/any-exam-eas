@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { ExamCard } from "@/components/exams/ExamCard";
 import { getExamHub } from "@/lib/exams/catalog";
-import { roadmapHref } from "@/lib/learning/roadmap-links";
+import { studyHubHref } from "@/lib/learning/roadmap-links";
 import {
   PANCE_FEATURED_DRILLS,
   panceTaskPracticeHref,
@@ -92,11 +92,11 @@ export function ExamLanding({ slug }: Props) {
       </motion.div>
 
       {slug === "pance" && (
-        <section className="mt-10 aee-card p-6" aria-labelledby="pance-roadmap">
+        <section className="mt-10 aee-card p-6" aria-labelledby="pance-study-hub">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
-              <h2 id="pance-roadmap" className="text-lg font-semibold text-[var(--color-ink)]">
-                NCCPA Exam Roadmap
+              <h2 id="pance-study-hub" className="text-lg font-semibold text-[var(--color-ink)]">
+                NCCPA blueprint on Study Hub
               </h2>
               <p className="mt-1 max-w-xl text-sm text-[var(--color-ink-muted)]">
                 Track readiness across 14 NCCPA knowledge areas and 8 task areas — cardiovascular,
@@ -104,11 +104,11 @@ export function ExamLanding({ slug }: Props) {
               </p>
             </div>
             <Link
-              href={roadmapHref("pance")}
+              href={studyHubHref("pance")}
               className="inline-flex items-center gap-2 rounded-xl bg-rose-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-rose-700"
             >
               <Map className="h-4 w-4" aria-hidden />
-              Open roadmap
+              Open Study Hub
             </Link>
           </div>
         </section>
