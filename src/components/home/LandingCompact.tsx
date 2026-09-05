@@ -22,6 +22,7 @@ import {
   drugsDeckShortDetail,
 } from "@/lib/marketing/bank-stats";
 import { formatTrialCtaLabel, formatTrialHeroOffer } from "@/lib/site";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 
 const EXAMS = [
   {
@@ -247,7 +248,7 @@ export function LandingCompact() {
 
               <div className="mt-auto pt-4">
                 <Link
-                  href="/signup?plan=trial"
+                  href={LANDING_TRIAL_HREF}
                   className="aee-btn-hero-xl group inline-flex w-full items-center justify-center gap-2"
                 >
                   {formatTrialCtaLabel()}

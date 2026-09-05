@@ -12,6 +12,7 @@ import { loadReturningUserHint } from "@/lib/client/returning-user";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { completeLoginFlow } from "@/lib/client/post-login";
 import { messageForSignInError } from "@/lib/auth-client";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 
 const panelMotion = {
   initial: { opacity: 0, y: 12 },
@@ -118,7 +119,7 @@ export function LoginForm() {
             <p className="text-center text-xs text-[var(--color-ink-muted)]">
               Need access?{" "}
               <Link
-                href="/signup?plan=trial"
+                href={LANDING_TRIAL_HREF}
                 className="font-medium text-[var(--color-accent)] hover:underline"
               >
                 Start trial

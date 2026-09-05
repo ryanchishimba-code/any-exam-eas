@@ -16,6 +16,7 @@ import { formatTrialEntryPrice, formatTrialLabel } from "@/lib/site";
 import { displayFirstName } from "@/lib/display-name";
 import { ROUTES } from "@/lib/routes";
 import { useAppPreferences } from "@/lib/client/use-app-preferences";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 
 export function StudentHub({ suppressHero = false }: { suppressHero?: boolean }) {
   const { data: session } = useSession();
@@ -75,7 +76,7 @@ export function StudentHub({ suppressHero = false }: { suppressHero?: boolean })
 
           {!session?.user && (
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
-              <Button href="/signup?plan=trial">
+              <Button href={LANDING_TRIAL_HREF}>
                 Start {formatTrialLabel()} — {formatTrialEntryPrice()} today
               </Button>
               <AppleLink href="/login">Log in</AppleLink>

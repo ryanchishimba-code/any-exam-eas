@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "./ui/Button";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import {
   formatTrialEntryPrice,
   formatTrialLabel,
@@ -34,7 +35,7 @@ export function PaywallNotice({
             {SIGNUP_PAYMENT_REQUIRED_NOTE} {formatTrialPlanDetail()}.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Button href="/signup?plan=trial">
+            <Button href={LANDING_TRIAL_HREF}>
               Start {formatTrialLabel()} — {formatTrialEntryPrice()} today
             </Button>
             <Button href="/checkout?plan=trial&interval=yearly" variant="secondary">

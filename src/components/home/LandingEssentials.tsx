@@ -18,7 +18,7 @@ import {
   formatTrialLabel,
   formatTrialQuestionLimit,
 } from "@/lib/site";
-import { LANDING_PRICING_FEATURES } from "@/lib/landing/content";
+import {LANDING_PRICING_FEATURES, LANDING_TRIAL_HREF} from "@/lib/landing/content";
 
 const exams: { id: string; title: string; href: string; icon: LucideIcon; benefit: string }[] = [
   {
@@ -160,7 +160,7 @@ export function LandingEssentials() {
                 </li>
               </ul>
               <Link
-                href="/signup?plan=trial"
+                href={LANDING_TRIAL_HREF}
                 className="aee-btn-hero-xl aee-btn-hero-light group inline-flex w-full items-center justify-center gap-2 sm:w-auto"
               >
                 Start {formatTrialLabel()}

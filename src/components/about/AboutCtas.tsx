@@ -4,16 +4,18 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { ROUTES } from "@/lib/routes";
 import { analytics } from "@/lib/analytics";
-import { formatTrialCtaLabel } from "@/lib/site";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { useTrialCtaTarget } from "@/lib/client/use-trial-cta-target";
 
 export function AboutCtas() {
+  const trialCta = useTrialCtaTarget(LANDING_TRIAL_HREF);
   return (
     <div className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
       <Button
-        href={ROUTES.auth.signup}
+        href={trialCta.href}
         onClick={() => analytics.ctaClicked("start_free_trial", "about_hero")}
       >
-        {formatTrialCtaLabel()}
+        {trialCta.label}
       </Button>
       <Button
         href={ROUTES.pricing}

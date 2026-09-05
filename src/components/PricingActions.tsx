@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { Button } from "./ui/Button";
 import { SubscribeButton } from "./SubscribeButton";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import { formatMonthlyPrice, formatTrialCtaLabel, formatTrialLabel } from "@/lib/site";
 
 type AccessInfo = {
@@ -36,7 +37,7 @@ export function PricingActions() {
               : "Your subscription is active."}
           </p>
           {(access.status === "inactive" || access.status === "trialing") && access.needsPaymentMethod ? (
-            <Button href="/checkout?plan=trial">Complete checkout</Button>
+            <Button href="/checkout?plan=trial&interval=yearly&tier=pro">Complete checkout</Button>
           ) : (
             <Button href="/study">Continue studying</Button>
           )}
@@ -46,7 +47,7 @@ export function PricingActions() {
 
     return (
       <div className="flex flex-col gap-3">
-        <Button href="/checkout?plan=trial">{formatTrialCtaLabel()}</Button>
+        <Button href="/checkout?plan=trial&interval=yearly&tier=pro">{formatTrialCtaLabel()}</Button>
         <SubscribeButton label={`Subscribe Now — from ${formatMonthlyPrice()}/mo`} variant="secondary" />
       </div>
     );
@@ -54,8 +55,8 @@ export function PricingActions() {
 
   return (
     <div className="flex flex-col gap-3">
-      <Button href="/signup?plan=trial">{formatTrialCtaLabel()}</Button>
-      <Button href="/signup?plan=subscribe" variant="secondary">
+      <Button href={LANDING_TRIAL_HREF}>{formatTrialCtaLabel()}</Button>
+      <Button href="/signup?plan=subscribe&interval=yearly&tier=pro" variant="secondary">
         Subscribe Now — from {formatMonthlyPrice()}/month
       </Button>
       <p className="text-center text-xs text-[var(--color-ink-muted)]">

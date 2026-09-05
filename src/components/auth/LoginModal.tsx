@@ -12,6 +12,7 @@ import {
 import { DEFAULT_AUTH_CALLBACK } from "@/lib/client/auth-routes";
 import { ForgotPasswordPanel, type ForgotPasswordStep } from "@/components/auth/ForgotPasswordPanel";
 import { LoginPanel } from "@/components/auth/LoginPanel";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 
 type LoginModalProps = {
   open: boolean;
@@ -208,7 +209,7 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
                     <p className="mt-4 text-center text-xs text-slate-500">
                       New here?{" "}
                       <Link
-                        href="/signup?plan=trial"
+                        href={LANDING_TRIAL_HREF}
                         onClick={onClose}
                         className="font-semibold text-teal-600 hover:text-teal-700"
                       >

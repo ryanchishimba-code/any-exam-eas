@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { MemberLoginLink } from "@/components/auth/MemberLoginLink";
 import { HeroSocialAuth } from "@/components/home/HeroSocialAuth";
 import { DEFAULT_AUTH_CALLBACK } from "@/lib/client/auth-routes";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import {
   formatMonthlyPrice,
   formatTrialEntryPrice,
@@ -23,7 +24,7 @@ export function HeroPrimaryCta({
   return (
     <div className={`space-y-6 ${className}`}>
       <Link
-        href="/signup?plan=trial"
+        href={LANDING_TRIAL_HREF}
         className="aee-btn-hero group flex w-full items-center justify-center gap-2.5"
       >
         Start {formatTrialLabel()} — {formatTrialEntryPrice()}
@@ -33,7 +34,7 @@ export function HeroPrimaryCta({
         />
       </Link>
 
-      <Link href="/signup?plan=subscribe" className="aee-btn-hero-secondary block w-full text-center">
+      <Link href="/signup?plan=subscribe&interval=yearly&tier=pro" className="aee-btn-hero-secondary block w-full text-center">
         Subscribe — {formatMonthlyPrice()}/mo · full access
       </Link>
 

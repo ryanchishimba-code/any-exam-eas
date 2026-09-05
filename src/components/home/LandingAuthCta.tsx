@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { ReturningQuickSignIn } from "@/components/auth/ReturningQuickSignIn";
 import { DEFAULT_AUTH_CALLBACK } from "@/lib/client/auth-routes";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import {
   formatMonthlyPrice,
   formatTrialEntryPrice,
@@ -28,7 +29,7 @@ export function LandingAuthCta({
         className={`flex flex-col gap-3 ${compact ? "" : "sm:flex-row sm:items-stretch"}`}
       >
         <Link
-          href="/signup?plan=trial"
+          href={LANDING_TRIAL_HREF}
           className={`aee-btn-primary group flex flex-1 items-center justify-center gap-2 ${
             compact ? "px-6 py-3.5 text-[0.9375rem]" : "px-8 py-4 text-base"
           }`}
@@ -51,7 +52,7 @@ export function LandingAuthCta({
       </div>
 
       {!compact && (
-        <Link href="/signup?plan=subscribe" className="aee-btn-secondary text-center">
+        <Link href="/signup?plan=subscribe&interval=yearly&tier=pro" className="aee-btn-secondary text-center">
           Subscribe — {formatMonthlyPrice()}/mo
         </Link>
       )}

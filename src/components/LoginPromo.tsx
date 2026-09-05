@@ -2,6 +2,7 @@ import { Button } from "./ui/Button";
 import { AppleLink } from "./ui/AppleLink";
 import { LoginPromoGraphic } from "./LoginPromoGraphic";
 import { formatTrialEntryPrice, formatTrialLabel } from "@/lib/site";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 
 export function LoginPromo() {
   return (
@@ -27,7 +28,7 @@ export function LoginPromo() {
           </div>
           <p className="mt-6 text-sm text-[var(--color-ink-muted)]">
             New here?{" "}
-            <AppleLink href="/signup?plan=trial" className="!text-sm">
+            <AppleLink href={LANDING_TRIAL_HREF} className="!text-sm">
               Start {formatTrialLabel()} — {formatTrialEntryPrice()} today
             </AppleLink>
           </p>

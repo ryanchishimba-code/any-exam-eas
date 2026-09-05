@@ -9,6 +9,7 @@ import { AppleLink } from "@/components/ui/AppleLink";
 import { LoginModalTrigger } from "@/components/auth/LoginModalTrigger";
 import { LoginPromoGraphic } from "@/components/LoginPromoGraphic";
 import { formatTrialEntryPrice, formatTrialLabel, PRACTICE_PROGRESS_LABEL } from "@/lib/site";
+import { LANDING_TRIAL_HREF } from "@/lib/landing/content";
 import {
   firstName,
   loadReturningUserHint,
@@ -195,7 +196,7 @@ export function WelcomeBackSection() {
           {!session?.user && (
             <p className="mt-5 text-sm text-[var(--color-ink-muted)]">
               New here?{" "}
-              <AppleLink href="/signup?plan=trial" className="!text-sm">
+              <AppleLink href={LANDING_TRIAL_HREF} className="!text-sm">
                 Start {formatTrialLabel()} — {formatTrialEntryPrice()} today
               </AppleLink>
             </p>
