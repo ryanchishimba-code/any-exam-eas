@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { VercelWebAnalytics } from "@/components/analytics/VercelWebAnalytics";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { ThemeScript } from "@/components/theme/ThemeScript";
 import { buildRootMetadata } from "@/lib/seo";
@@ -21,6 +22,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <AppProviders>{children}</AppProviders>
+        <VercelWebAnalytics />
       </body>
     </html>
   );

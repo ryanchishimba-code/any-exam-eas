@@ -6,14 +6,31 @@
  */
 
 import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
-import { NgnInteractiveDemo } from "@/components/home/NgnInteractiveDemo";
 import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getLandingMcqSample } from "@/lib/demo/landing-samples";
 import { formatTrialCtaLabel } from "@/lib/site";
 import { cn } from "@/lib/utils";
+
+
+const NgnInteractiveDemo = dynamic(
+  () =>
+    import("@/components/home/NgnInteractiveDemo").then(
+      (m) => m.NgnInteractiveDemo
+    ),
+  {
+    ssr: false,
+    loading: () => (
+      <div
+        className="aee-landing-sample__card min-h-[280px] animate-pulse"
+        aria-hidden
+      />
+    ),
+  }
+);
 
 const LABELS = ["A", "B", "C", "D"] as const;
 

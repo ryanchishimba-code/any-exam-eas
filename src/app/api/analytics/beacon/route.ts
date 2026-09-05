@@ -55,6 +55,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   } catch (e) {
     if (e instanceof ZodError) {
+      // Sample ~10% of invalid beacons so we can tell bots vs broken clients
+      // without flooding logs (or Neon) under traffic.
+      if (Math.random() < 0.1) {
+        const keys = e.issues
+          .slice(0, 6)
+          .map((issue) => issue.path.join(".") || "(root)");
+        console.warn("[analytics/beacon] invalid payload", {
+          keys: [...new Set(keys)],
+          issueCount: e.issues.length,
+        });
+      }
       return NextResponse.json({ error: "Invalid beacon." }, { status: 400 });
     }
     return NextResponse.json({ ok: true });

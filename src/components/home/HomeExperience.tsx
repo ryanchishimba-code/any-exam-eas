@@ -34,6 +34,66 @@ const SubscriberHome = dynamic(
   }
 );
 
+function GuestLanding({
+  bankCounts,
+  testimonials,
+  children,
+}: {
+  bankCounts: LandingBankCountsDisplay;
+  testimonials?: LandingSuccessStory[];
+  children?: ReactNode;
+}) {
+  return (
+    <LandingFlagshipV2 bankCounts={bankCounts} testimonials={testimonials}>
+      {children}
+    </LandingFlagshipV2>
+  );
+}
+
+/** Authed-only branch so guests never pay for /api/subscription/status work. */
+function AuthenticatedHomeBranch({
+  bankCounts,
+  testimonials,
+  children,
+}: {
+  bankCounts: LandingBankCountsDisplay;
+  testimonials?: LandingSuccessStory[];
+  children?: ReactNode;
+}) {
+  const { hasPremiumAccess, loading: accessLoading } = useUserAccess();
+  const [accessTimedOut, setAccessTimedOut] = useState(false);
+  const resolvingPremiumAccess = accessLoading && !accessTimedOut;
+  const showSubscriberHome = !accessLoading && hasPremiumAccess;
+
+  useEffect(() => {
+    if (!accessLoading) {
+      setAccessTimedOut(false);
+      return;
+    }
+    const timer = window.setTimeout(() => setAccessTimedOut(true), 4000);
+    return () => window.clearTimeout(timer);
+  }, [accessLoading]);
+
+  if (showSubscriberHome) {
+    return (
+      <>
+        <Hero />
+        <SubscriberHome />
+      </>
+    );
+  }
+
+  if (resolvingPremiumAccess) {
+    return <LandingHeroSkeleton bankCounts={bankCounts} />;
+  }
+
+  return (
+    <GuestLanding bankCounts={bankCounts} testimonials={testimonials}>
+      {children}
+    </GuestLanding>
+  );
+}
+
 export function HomeExperience({
   bankCounts: initialBankCounts,
   testimonials,
@@ -46,49 +106,22 @@ export function HomeExperience({
 }) {
   const bankCounts = useLandingBankCounts(initialBankCounts);
   const { status } = useSession();
-  const { hasPremiumAccess, loading: accessLoading } = useUserAccess();
-  const [accessTimedOut, setAccessTimedOut] = useState(false);
-  const isAuthed = status === "authenticated";
-  const resolvingPremiumAccess = isAuthed && accessLoading && !accessTimedOut;
-  const showSubscriberHome = isAuthed && !accessLoading && hasPremiumAccess;
-
-  useEffect(() => {
-    if (!isAuthed || !accessLoading) {
-      setAccessTimedOut(false);
-      return;
-    }
-    const timer = window.setTimeout(() => setAccessTimedOut(true), 4000);
-    return () => window.clearTimeout(timer);
-  }, [isAuthed, accessLoading]);
 
   // Guests and unresolved session: paint conversion landing immediately (no access API).
   if (status !== "authenticated") {
     return (
-      <LandingFlagshipV2 bankCounts={bankCounts} testimonials={testimonials}>
+      <GuestLanding bankCounts={bankCounts} testimonials={testimonials}>
         {children}
-      </LandingFlagshipV2>
+      </GuestLanding>
     );
-  }
-
-  // Confirmed premium only — avoid flashing the returning-user hero for unpaid sessions.
-  if (showSubscriberHome) {
-    return (
-      <>
-        <Hero />
-        <SubscriberHome />
-      </>
-    );
-  }
-
-  // While premium access is still resolving, keep the marketing-aligned shell so unpaid
-  // users never briefly see "Keep going…" then jump to the conversion landing.
-  if (resolvingPremiumAccess) {
-    return <LandingHeroSkeleton bankCounts={bankCounts} />;
   }
 
   return (
-    <LandingFlagshipV2 bankCounts={bankCounts} testimonials={testimonials}>
+    <AuthenticatedHomeBranch
+      bankCounts={bankCounts}
+      testimonials={testimonials}
+    >
       {children}
-    </LandingFlagshipV2>
+    </AuthenticatedHomeBranch>
   );
 }
