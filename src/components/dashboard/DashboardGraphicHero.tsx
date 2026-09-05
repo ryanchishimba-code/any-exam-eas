@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Lock } from "lucide-react";
+import { DomainMap } from "@/components/dashboard/DomainMap";
 import { ReadinessRing } from "@/components/study/ReadinessRing";
 import {
   practiceTopicHref,
@@ -9,10 +10,10 @@ import {
 import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import type { PracticeReadinessSummary } from "@/lib/learning/honest-readiness";
 import { roadmapHref } from "@/lib/learning/roadmap-links";
+import { domainTilesFromReadiness } from "@/lib/study/domain-map";
 import { ROUTES } from "@/lib/routes";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
-import { cn } from "@/lib/utils";
 
 type NextAction = {
   label: string;
@@ -85,12 +86,6 @@ export function weakTopicPracticeHref(
   });
 }
 
-const BAND_BAR: Record<PracticeReadinessSummary["bandKey"], string> = {
-  ready: "bg-emerald-500",
-  almost: "bg-amber-500",
-  not_yet: "bg-[var(--color-ink-muted)]",
-};
-
 export function DashboardGraphicHero({
   examSlug,
   examName,
@@ -130,10 +125,7 @@ export function DashboardGraphicHero({
       });
 
   const bandLabel = readinessSummary?.bandLabel ?? "Practice";
-  const bars = readinessSummary?.categoryBars ?? [];
-  const barClass = readinessSummary
-    ? BAND_BAR[readinessSummary.bandKey]
-    : "bg-[var(--color-accent)]";
+  const tiles = readinessSummary ? domainTilesFromReadiness(readinessSummary) : [];
 
   return (
     <section
@@ -168,7 +160,7 @@ export function DashboardGraphicHero({
         </div>
       </div>
 
-      {bars.length > 0 ? (
+      {tiles.length > 0 ? (
         <div className="mt-5 border-t border-[var(--color-border)]/50 pt-4">
           <div className="mb-2.5 flex items-center justify-between gap-2">
             <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
@@ -178,44 +170,11 @@ export function DashboardGraphicHero({
               href={roadmapHref(examSlug)}
               className="inline-flex items-center gap-1 text-[12px] font-semibold text-[var(--color-accent)] hover:underline"
             >
-              Roadmap
+              Full map
               <ArrowRight className="h-3 w-3" aria-hidden />
             </Link>
           </div>
-          <ul className="grid gap-2.5 sm:grid-cols-2" role="list">
-            {bars.slice(0, 6).map((bar) => (
-              <li key={bar.categoryId}>
-                <Link
-                  href={bar.practiceHref}
-                  className="block rounded-xl px-0.5 py-0.5 transition hover:opacity-90"
-                >
-                  <div className="flex items-baseline justify-between gap-2">
-                    <span className="min-w-0 truncate text-[12px] font-medium text-[var(--color-ink)]">
-                      {bar.label}
-                    </span>
-                    <span className="shrink-0 text-[11px] tabular-nums text-[var(--color-ink-muted)]">
-                      {bar.readinessScore}%
-                    </span>
-                  </div>
-                  <div
-                    className={cn(dbUi.sparkTrack, "mt-1")}
-                    role="meter"
-                    aria-valuenow={bar.readinessScore}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    aria-label={`${bar.label} practice score ${bar.readinessScore}%`}
-                  >
-                    <div
-                      className={cn(dbUi.sparkBar, barClass)}
-                      style={{
-                        width: `${Math.max(4, Math.min(100, bar.readinessScore))}%`,
-                      }}
-                    />
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <DomainMap tiles={tiles} variant="compact" aria-label={categoriesLabel} />
         </div>
       ) : null}
 

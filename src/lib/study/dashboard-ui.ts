@@ -3,7 +3,7 @@ export const dbUi = {
   page: "dashboard-ui mx-auto w-full min-w-0 max-w-5xl space-y-4 overflow-x-hidden pb-10",
   surface:
     "rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)]",
-  /** Graphic-first hero — one composition for ring + sparks + CTA. */
+  /** Graphic-first hero — ring + domain map + one CTA. */
   heroSurface:
     "apple-animate-in rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] p-4 sm:p-6",
   heroLayout:

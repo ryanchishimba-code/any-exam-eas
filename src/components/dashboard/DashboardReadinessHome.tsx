@@ -1,29 +1,23 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { DomainMap } from "@/components/dashboard/DomainMap";
 import type { PracticeReadinessSummary } from "@/lib/learning/honest-readiness";
 import { roadmapHref } from "@/lib/learning/roadmap-links";
+import { domainTilesFromReadiness } from "@/lib/study/domain-map";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
 
-const BAND_STYLES: Record<
-  PracticeReadinessSummary["bandKey"],
-  { badge: string; bar: string }
-> = {
-  ready: {
-    badge: "bg-emerald-600/15 text-emerald-800 dark:text-emerald-300",
-    bar: "bg-emerald-500",
-  },
-  almost: {
-    badge: "bg-amber-500/15 text-amber-900 dark:text-amber-200",
-    bar: "bg-amber-500",
-  },
-  not_yet: {
-    badge: "bg-[var(--color-surface)] text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]",
-    bar: "bg-[var(--color-ink-muted)]",
-  },
+const BAND_STYLES: Record<PracticeReadinessSummary["bandKey"], string> = {
+  ready: "bg-emerald-600/15 text-emerald-800",
+  almost: "bg-amber-500/15 text-amber-900",
+  not_yet:
+    "bg-[var(--color-surface)] text-[var(--color-ink-muted)] ring-1 ring-[var(--color-border)]",
 };
 
+/** Legacy readiness panel — prefers DomainMap when used outside the graphic hero. */
 export function DashboardReadinessHome({
   examSlug,
   summary,
@@ -31,11 +25,9 @@ export function DashboardReadinessHome({
 }: {
   examSlug: ExamSlug;
   summary: PracticeReadinessSummary;
-  /** e.g. "Client Needs" for NCLEX */
   categoriesLabel?: string;
 }) {
-  const styles = BAND_STYLES[summary.bandKey];
-  const bars = summary.categoryBars;
+  const tiles = domainTilesFromReadiness(summary);
 
   return (
     <section
@@ -55,61 +47,29 @@ export function DashboardReadinessHome({
             <span
               className={cn(
                 "rounded-full px-2 py-0.5 text-[11px] font-bold uppercase tracking-wide",
-                styles.badge
+                BAND_STYLES[summary.bandKey]
               )}
             >
               {summary.overallScore}% practice
             </span>
           </div>
           <p className={cn(dbUi.sectionHint, "mt-1.5 max-w-xl")}>{summary.reason}</p>
-          <p className="mt-1 text-[11px] text-[var(--color-ink-muted)]">
-            {summary.totalAttempts} answers · {summary.overallCoveragePct}% bank coverage
-          </p>
         </div>
         <Link
           href={roadmapHref(examSlug)}
           className="inline-flex shrink-0 items-center gap-1 text-[12px] font-semibold text-[var(--color-accent)] hover:underline"
         >
-          Full roadmap
+          Full map
           <ArrowRight className="h-3.5 w-3.5" aria-hidden />
         </Link>
       </div>
 
-      {bars.length > 0 ? (
+      {tiles.length > 0 ? (
         <div className="mt-4">
-          <p className="text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+          <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
             {categoriesLabel}
           </p>
-          <ul className="mt-2 space-y-2.5" role="list">
-            {bars.map((bar) => (
-              <li key={bar.categoryId}>
-                <div className="flex items-baseline justify-between gap-2">
-                  <Link
-                    href={bar.practiceHref}
-                    className="min-w-0 truncate text-[13px] font-medium text-[var(--color-ink)] hover:text-[var(--color-accent)] hover:underline"
-                  >
-                    {bar.label}
-                  </Link>
-                  <span className="shrink-0 text-[11px] tabular-nums text-[var(--color-ink-muted)]">
-                    {bar.readinessScore}% · {bar.blueprintWeightPct}% of exam
-                  </span>
-                </div>
-                <div
-                  className="mt-1 h-1.5 overflow-hidden rounded-full bg-[var(--color-border)]/70"
-                  role="meter"
-                  aria-valuenow={bar.readinessScore}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  aria-label={`${bar.label} practice score ${bar.readinessScore}%`}
-                >
-                  <div
-                    className={cn("h-full rounded-full transition-[width] duration-500", styles.bar)}
-                    style={{ width: `${Math.max(4, Math.min(100, bar.readinessScore))}%` }}
-                  />
-                </div>
-              </li>
-            ))}
-          </ul>
+          <DomainMap tiles={tiles} variant="compact" aria-label={categoriesLabel} />
         </div>
       ) : null}
 

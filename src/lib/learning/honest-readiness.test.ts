@@ -124,6 +124,7 @@ describe("buildPracticeReadinessSummary", () => {
     expect(summary.bandKey).toBe("almost");
     expect(summary.categoryBars).toHaveLength(1);
     expect(summary.categoryBars[0]?.label).toBe("Pharmacological Therapies");
+    expect(summary.categoryBars[0]?.readinessKey).toBe("needs_review");
     expect(summary.disclaimer).toMatch(/do not predict/i);
     expect(summary.criteria.length).toBeGreaterThanOrEqual(3);
   });

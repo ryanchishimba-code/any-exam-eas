@@ -21,11 +21,11 @@ export function DashboardWeakTopicChips({
       <div className="flex items-center gap-2 px-0.5">
         <Target className="h-3.5 w-3.5 text-[var(--color-accent)]" aria-hidden />
         <h2 id="dashboard-weak-chips-heading" className={dbUi.sectionTitle}>
-          Weak topics
+          Recent misses
         </h2>
       </div>
       <ul className="flex flex-wrap gap-2" role="list">
-        {weakTopics.slice(0, 6).map((topic) => {
+        {weakTopics.slice(0, 3).map((topic) => {
           const slug = topic.id.replace(/^(tag|subject):/, "");
           const href =
             topic.studyLinks?.practiceHref ??

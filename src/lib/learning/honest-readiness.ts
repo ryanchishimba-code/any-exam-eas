@@ -24,6 +24,7 @@ export type PracticeReadinessSummary = {
     blueprintWeightPct: number;
     readinessScore: number;
     readinessLabel: string;
+    readinessKey: RoadmapTopicRow["readinessKey"];
     practiceHref: string;
   }>;
   overallScore: number;
@@ -132,6 +133,7 @@ export function buildPracticeReadinessSummary(
     blueprintWeightPct: t.blueprintWeightPct,
     readinessScore: t.readinessScore,
     readinessLabel: t.readinessLabel,
+    readinessKey: t.readinessKey,
     practiceHref: t.practiceHref,
   }));
 

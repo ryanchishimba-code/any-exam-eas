@@ -1,6 +1,5 @@
 "use client";
 
-import { DashboardRoadmapPreview } from "@/components/dashboard/DashboardRoadmapPreview";
 import { DashboardRecentActivity } from "@/components/dashboard/DashboardRecentActivity";
 import { DashboardSpacedReview } from "@/components/dashboard/DashboardSpacedReview";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
@@ -10,21 +9,20 @@ import type { ExamSlug } from "@/types/edtech";
 export function DashboardViewSections({
   examSlug,
   spacedReview,
-  roadmap,
   recentTests,
   srsInFocus = false,
-  hideRoadmapPreview = false,
   practiceFieldId,
 }: {
   examSlug: ExamSlug;
-  /** Kept for call-site compatibility; weak topics live on Roadmap now. */
+  /** Kept for call-site compatibility; weak topics live on hero chips. */
   weakTopics?: WeakTopicRow[];
   spacedReview: SpacedReviewSummary;
-  roadmap: ExamRoadmapData | null;
+  /** Kept for call-site compatibility; blueprint map lives on the hero + /roadmap. */
+  roadmap?: ExamRoadmapData | null;
   recentTests: RecentTestRow[];
   /** When Today's focus already surfaces SRS, skip the duplicate card. */
   srsInFocus?: boolean;
-  /** When Practice readiness home already shows domain bars. */
+  /** @deprecated Roadmap preview removed — hero DomainMap is the Home graphic. */
   hideRoadmapPreview?: boolean;
   practiceFieldId?: string;
 }) {
@@ -33,10 +31,6 @@ export function DashboardViewSections({
 
   return (
     <>
-      {!hideRoadmapPreview && roadmap ? (
-        <DashboardRoadmapPreview examSlug={examSlug} roadmap={roadmap} />
-      ) : null}
-
       {showSpacedReview ? (
         <DashboardSpacedReview
           examSlug={examSlug}

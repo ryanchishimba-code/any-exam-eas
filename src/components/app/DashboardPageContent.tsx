@@ -119,10 +119,8 @@ export function DashboardPageContent({
         examSlug={examSlug}
         weakTopics={weakTopics}
         spacedReview={spacedReview}
-        roadmap={roadmap}
         recentTests={recentTests}
         srsInFocus={!isNewUser && spacedReview.dueCount > 0}
-        hideRoadmapPreview={Boolean(readinessSummary)}
         practiceFieldId={fieldId}
       />
     </div>
