@@ -266,8 +266,8 @@ export function buildHomeJsonLd() {
  * - Use `next/dynamic` for below-the-fold client sections (see page.tsx)
  */
 export const PERFORMANCE_HINTS = [
-  "Hero image uses priority loading and responsive sizes",
-  "Below-fold sections are code-split via next/dynamic",
+  "Hero image uses priority loading, WebP, and responsive sizes (no unoptimized PNG)",
+  "Below-fold landing sections mount via DeferredMount + next/dynamic",
+  "Nav logo uses a compact asset with explicit sizes to avoid oversized preloads",
   "Local /public assets avoid third-party image latency",
-  "Prefer WebP/AVIF exports of hero.jpg for smaller LCP payload",
 ] as const;
