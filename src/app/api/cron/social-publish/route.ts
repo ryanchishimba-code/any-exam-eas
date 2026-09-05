@@ -15,7 +15,7 @@ function isAuthorized(req: Request): boolean {
   return cronHeader === "1" && Boolean(process.env.VERCEL);
 }
 
-/** Every few minutes — publish brand posts whose scheduled time has arrived. */
+/** Hourly — publish brand posts whose scheduled time has arrived. */
 export async function GET(req: Request) {
   if (!isAuthorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
