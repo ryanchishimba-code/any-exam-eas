@@ -18,6 +18,14 @@ export const authConfig = {
     authorized({ auth, request }) {
       const isLoggedIn = !!auth?.user;
       const path = request.nextUrl.pathname;
+
+      // Standalone roadmap removed — Study Hub owns blueprint readiness.
+      if (path === "/dashboard/roadmap" || path.startsWith("/dashboard/roadmap/")) {
+        const dest = request.nextUrl.clone();
+        dest.pathname = "/dashboard";
+        return NextResponse.redirect(dest);
+      }
+
       const isStudyHub =
         path.startsWith("/dashboard") ||
         path.startsWith("/question-bank") ||
