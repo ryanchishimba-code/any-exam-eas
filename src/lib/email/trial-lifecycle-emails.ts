@@ -81,7 +81,7 @@ export async function sendWelcomeTrialEmail(
       `Start a <strong>practice block</strong> in the question bank — even 10 questions builds momentum.`,
     ]),
     emailParagraph(
-      "When you're ready for unlimited questions, goat-mode rationales, AI Tutor, and full-length mocks, upgrading takes one click."
+      "When you're ready for unlimited questions, teachable rationales, AI Tutor, and full-length mocks, upgrading takes one click."
     ),
   ].join("");
 
@@ -156,7 +156,7 @@ export async function sendTrialEndingUpgradeEmail(
       `Your AnyExamEasy trial ends in about <strong>24 hours</strong> (${when}). After that, you'll move to our free tier — dashboard access plus a limited question allowance unless you upgrade.`
     ),
     emailParagraph(
-      "You've already started building real study momentum. Keep it going with unlimited questions, rich goat-mode rationales, AI Tutor, spaced repetition, and full-length mocks on Pro."
+      "You've already started building real study momentum. Keep it going with unlimited questions, teachable rationales, AI Tutor, spaced repetition, and full-length mocks on Pro."
     ),
     billingNoteHtml,
     emailParagraph(
@@ -172,7 +172,7 @@ export async function sendTrialEndingUpgradeEmail(
     `Your trial ends in about 24 hours (${when}).`,
     "After that, access downgrades to the free tier unless you upgrade.",
     "",
-    "Keep your momentum — upgrade for unlimited questions, goat-mode rationales, AI Tutor, and Pro tools.",
+    "Keep your momentum — upgrade for unlimited questions, teachable rationales, AI Tutor, and Pro tools.",
     billingNoteText,
     "",
     `Upgrade: ${upgradeUrl}`,

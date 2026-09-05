@@ -199,7 +199,7 @@ export const EXAM_SEO_CONFIG: Record<ExamSeoKey, ExamSeoConfig> = {
       {
         question: "Are USMLE explanations detailed?",
         answer:
-          "Every item includes a teachable rationale. Pro includes enhanced goat-mode explanations and Deep Dive modules on missed topics.",
+          "Every item includes a teachable rationale. Pro includes deeper explanations and Deep Dive modules on missed topics.",
       },
     ],
     relatedResourceSlugs: [

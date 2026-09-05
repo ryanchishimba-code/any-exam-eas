@@ -181,7 +181,7 @@ export function LandingSamplePractice() {
         <header className="aee-landing-sample__intro">
           <p className="aee-landing-sample__eyebrow">
             <Sparkles className="h-3.5 w-3.5" aria-hidden />
-            Try before you signup
+            Try before you sign up
           </p>
           <h2 id="try-a-question-heading" className="aee-landing-sample__title">
             Answer a real {examName} item —{" "}

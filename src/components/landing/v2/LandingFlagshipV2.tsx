@@ -145,7 +145,7 @@ export function LandingFlagshipV2({
               Premium board prep starts here
             </h2>
             <p className="aee-flagship-final-cta__subtitle">
-              {formatTrialLabel()} · {LANDING_TRIAL_DETAIL} · {PLATFORM_EXAM_LIST_MIDDOT}
+              {LANDING_TRIAL_DETAIL} · {PLATFORM_EXAM_LIST_MIDDOT}
             </p>
             <div className="aee-flagship-final-cta__actions">
               <FinalCta />

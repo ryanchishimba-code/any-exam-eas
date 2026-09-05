@@ -240,7 +240,7 @@ export function LandingFlagship({ bankCounts }: { bankCounts: LandingBankCountsD
             Premium board prep starts here
           </h2>
           <p className="aee-flagship-final-cta__subtitle">
-            {formatTrialLabel()} · {LANDING_HERO_CTA_DISCLOSURE} · {PLATFORM_EXAM_LIST_MIDDOT}
+            {LANDING_HERO_CTA_DISCLOSURE} · {PLATFORM_EXAM_LIST_MIDDOT}
           </p>
           <div className="aee-flagship-final-cta__actions">
             <LandingCta

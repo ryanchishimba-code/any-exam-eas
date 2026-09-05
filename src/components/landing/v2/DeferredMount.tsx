@@ -8,6 +8,11 @@ type Props = {
   /** Expand the intersection root so chunks prefetch slightly before scroll. */
   rootMargin?: string;
   className?: string;
+  /**
+   * Always mount after this many ms even if never near the viewport.
+   * Prevents empty skeleton bands when IO is slow/missed (hash jumps, tall ATF).
+   */
+  maxWaitMs?: number;
 };
 
 /**
@@ -19,6 +24,7 @@ export function DeferredMount({
   fallback,
   rootMargin = "280px 0px",
   className,
+  maxWaitMs = 1800,
 }: Props) {
   const hostRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
@@ -42,8 +48,20 @@ export function DeferredMount({
       { rootMargin, threshold: 0.01 }
     );
     io.observe(el);
-    return () => io.disconnect();
-  }, [ready, rootMargin]);
+
+    const timer =
+      maxWaitMs > 0
+        ? window.setTimeout(() => {
+            setReady(true);
+            io.disconnect();
+          }, maxWaitMs)
+        : undefined;
+
+    return () => {
+      io.disconnect();
+      if (timer != null) window.clearTimeout(timer);
+    };
+  }, [ready, rootMargin, maxWaitMs]);
 
   return (
     <div ref={hostRef} className={className}>

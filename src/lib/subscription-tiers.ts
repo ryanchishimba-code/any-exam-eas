@@ -33,7 +33,7 @@ export const PRO_FEATURES = [
   "Proprietary Blueprint Roadmaps",
   "Full Deep Dive Modules",
   "Unlimited full-length mock exams & Full Exam simulations",
-  "Unlimited questions & rich goat-mode rationales",
+  "Unlimited questions & teachable rationales",
   "Advanced analytics & weak-area targeting",
   "Spaced Repetition System",
   "Normal Lab Values + Clinical Calculators",
@@ -89,8 +89,8 @@ export const PRO_FEATURE_HIGHLIGHTS: readonly ProFeatureHighlight[] = [
   },
   {
     icon: "explanations",
-    title: "Rich goat-mode explanations",
-    blurb: "Deeper, clearer rationales that explain the why, not just the what.",
+    title: "Teachable rationales",
+    blurb: "Deeper, clearer explanations that teach the why — not just the what.",
   },
   {
     icon: "notes",

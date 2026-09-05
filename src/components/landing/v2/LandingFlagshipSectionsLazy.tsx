@@ -142,11 +142,8 @@ function ProBenefitsComparison(props: ComponentProps<typeof ProBenefitsCompariso
 }
 
 function LandingPricingPreview(props: ComponentProps<typeof LandingPricingPreviewInner>) {
-  return (
-    <DeferredMount fallback={<SectionPlaceholder className="py-12" />}>
-      <LandingPricingPreviewInner {...props} />
-    </DeferredMount>
-  );
+  // Conversion-critical (#pricing hash) — mount immediately; still code-split via dynamic.
+  return <LandingPricingPreviewInner {...props} />;
 }
 
 function LandingTrialGuarantee(props: ComponentProps<typeof LandingTrialGuaranteeInner>) {
