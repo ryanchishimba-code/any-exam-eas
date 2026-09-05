@@ -28,22 +28,23 @@ const STATUS_LABEL: Record<RoadmapReadinessKey, string> = {
   needs_more_work: "Focus",
 };
 
+/** Brand-aligned readiness palette — teal / gold / indigo (no pink). */
 const STATUS_BAR: Record<RoadmapReadinessKey, string> = {
-  strong: "bg-gradient-to-r from-emerald-500 to-emerald-400",
-  needs_review: "bg-gradient-to-r from-amber-500 to-amber-400",
-  needs_more_work: "bg-gradient-to-r from-rose-500 to-rose-400",
+  strong: "bg-[linear-gradient(90deg,var(--db-ready-strong),var(--db-ready-strong-end))]",
+  needs_review: "bg-[linear-gradient(90deg,var(--db-ready-review),var(--db-ready-review-end))]",
+  needs_more_work: "bg-[linear-gradient(90deg,var(--db-ready-focus),var(--db-ready-focus-end))]",
 };
 
 const STATUS_DOT: Record<RoadmapReadinessKey, string> = {
-  strong: "bg-emerald-500",
-  needs_review: "bg-amber-500",
-  needs_more_work: "bg-rose-500",
+  strong: "bg-[var(--db-ready-strong)]",
+  needs_review: "bg-[var(--db-ready-review)]",
+  needs_more_work: "bg-[var(--db-ready-focus)]",
 };
 
 const STATUS_TEXT: Record<RoadmapReadinessKey, string> = {
-  strong: "text-emerald-700",
-  needs_review: "text-amber-700",
-  needs_more_work: "text-rose-700",
+  strong: "text-[var(--db-ready-strong-text)]",
+  needs_review: "text-[var(--db-ready-review-text)]",
+  needs_more_work: "text-[var(--db-ready-focus-text)]",
 };
 
 const NCLEX_SHORT = new Map(
@@ -172,8 +173,8 @@ export function DomainMap({
 
                   <div
                     className={cn(
-                      "mt-1.5 h-2 overflow-hidden rounded-full bg-[var(--color-border)]/40",
-                      isFull && "h-2.5 mt-2"
+                      "mt-1.5 h-2.5 overflow-hidden rounded-full bg-[var(--db-ready-track)]",
+                      isFull && "h-3 mt-2"
                     )}
                     role="presentation"
                   >

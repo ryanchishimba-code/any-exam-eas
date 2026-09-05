@@ -623,7 +623,46 @@ body {
   --db-ink: var(--color-ink);
   --db-muted: var(--color-ink-muted);
   --db-line: color-mix(in srgb, var(--color-border) 70%, transparent);
+  /* Readiness chart: teal / gold / indigo — no pink */
+  --db-ready-strong: #0d9488;
+  --db-ready-strong-end: #06b6d4;
+  --db-ready-review: #d97706;
+  --db-ready-review-end: #eab308;
+  --db-ready-focus: #4f46e5;
+  --db-ready-focus-end: #6366f1;
+  --db-ready-strong-text: #0f766e;
+  --db-ready-review-text: #b45309;
+  --db-ready-focus-text: #4338ca;
+  --db-ready-track: color-mix(in srgb, var(--color-border) 55%, #e2e8f0);
   position: relative;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .dashboard-ui {
+    --db-ready-strong: #14b8a6;
+    --db-ready-strong-end: #22d3ee;
+    --db-ready-review: #f59e0b;
+    --db-ready-review-end: #fbbf24;
+    --db-ready-focus: #818cf8;
+    --db-ready-focus-end: #a5b4fc;
+    --db-ready-strong-text: #5eead4;
+    --db-ready-review-text: #fcd34d;
+    --db-ready-focus-text: #c7d2fe;
+    --db-ready-track: color-mix(in srgb, var(--color-border) 80%, #1e293b);
+  }
+}
+
+[data-theme="dark"] .dashboard-ui {
+  --db-ready-strong: #14b8a6;
+  --db-ready-strong-end: #22d3ee;
+  --db-ready-review: #f59e0b;
+  --db-ready-review-end: #fbbf24;
+  --db-ready-focus: #818cf8;
+  --db-ready-focus-end: #a5b4fc;
+  --db-ready-strong-text: #5eead4;
+  --db-ready-review-text: #fcd34d;
+  --db-ready-focus-text: #c7d2fe;
+  --db-ready-track: color-mix(in srgb, var(--color-border) 80%, #1e293b);
 }
 
 .dashboard-ui::before {
