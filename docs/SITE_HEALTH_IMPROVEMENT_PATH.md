@@ -33,14 +33,7 @@ Track progress in the Cursor canvas `site-health-review` and the long-running go
 
 **Done when:** Web Analytics is no longer `not_found` for the project.
 
-**Status (2026-09-05):** Code live on production (`bd224e0`) — `@vercel/analytics` in layout; client chunk confirms package shipped. **Product still disabled:** API returns `Web Analytics not found`. CLI refuses non-interactive enable (Pro paid feature). **User must run in a terminal and confirm:**
-
-```bash
-vercel project web-analytics enable any-exam-eas --scope ryanchishimba-codes-projects
-```
-
-Or Dashboard → Analytics → Enable: https://vercel.com/ryanchishimba-codes-projects/any-exam-eas/analytics
-
+**Status (2026-09-05):** **Enabled.** Project `webAnalytics.id` present (`hasData: true`). Visits query API returns pageviews. `@vercel/analytics` wired in root layout and live on production. Insights script `/_vercel/insights/script.js` → 200.
 
 ---
 
@@ -102,7 +95,7 @@ Or Dashboard → Analytics → Enable: https://vercel.com/ryanchishimba-codes-pr
 | Date | Phase | Decision | Owner |
 |------|-------|----------|-------|
 | 2026-09-04 | 1 | Keep db-keepalive `*/3` (pooled URL confirmed; Scale to Zero still unverified in Console) | Eng |
-| 2026-09-04 | 2 | Ship `@vercel/analytics` in layout; enable product in Vercel dashboard / CLI | Eng |
+| 2026-09-05 | 2 | Web Analytics enabled (product toggle + layout package); visits API healthy | Eng |
 | 2026-09-04 | 3 | Sample 10% of invalid beacon Zod errors to logs | Eng |
 | 2026-09-04 | 4 | Defer access hook + dynamic-load NGN demo on homepage | Eng |
 | 2026-09-04 | 5 | social-publish cron `*/15` → hourly | Eng |
