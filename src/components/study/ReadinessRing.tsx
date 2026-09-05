@@ -1,4 +1,4 @@
-/** Calm circular readiness gauge — accent arc on a track, score in the center. */
+/** Calm circular readiness gauge — accent arc on a soft track, score centered. */
 export function ReadinessRing({
   score,
   size = 104,
@@ -9,12 +9,12 @@ export function ReadinessRing({
   label?: string;
 }) {
   const clamped = Math.max(0, Math.min(100, Math.round(score)));
-  const stroke = Math.max(7, Math.round(size * 0.086));
+  const stroke = Math.max(8, Math.round(size * 0.09));
   const radius = (size - stroke) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (clamped / 100) * circumference;
-  const scoreSize = size >= 140 ? 34 : size >= 104 ? 26 : 22;
-  const suffixSize = size >= 140 ? 16 : size >= 104 ? 14 : 12;
+  const scoreSize = size >= 140 ? 36 : size >= 104 ? 28 : 22;
+  const suffixSize = size >= 140 ? 15 : size >= 104 ? 13 : 11;
   const labelSize = size >= 140 ? 11 : size >= 104 ? 10 : 9;
 
   return (
@@ -24,13 +24,13 @@ export function ReadinessRing({
       role="img"
       aria-label={`Practice progress ${clamped} percent`}
     >
-      <svg width={size} height={size} className="-rotate-90">
+      <svg width={size} height={size} className="-rotate-90" aria-hidden>
         <circle
           cx={size / 2}
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="color-mix(in srgb, var(--color-border) 85%, transparent)"
+          stroke="color-mix(in srgb, var(--color-border) 70%, transparent)"
           strokeWidth={stroke}
         />
         <circle
@@ -43,12 +43,12 @@ export function ReadinessRing({
           strokeLinecap="round"
           strokeDasharray={circumference}
           strokeDashoffset={offset}
-          style={{ transition: "stroke-dashoffset 700ms cubic-bezier(0.22, 1, 0.36, 1)" }}
+          style={{ transition: "stroke-dashoffset 800ms cubic-bezier(0.22, 1, 0.36, 1)" }}
         />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span
-          className="font-bold leading-none tabular-nums tracking-[-0.04em] text-[var(--color-ink)]"
+          className="font-bold leading-none tabular-nums tracking-[-0.045em] text-[var(--color-ink)]"
           style={{ fontSize: scoreSize }}
         >
           {clamped}
@@ -61,7 +61,7 @@ export function ReadinessRing({
         </span>
         {label ? (
           <span
-            className="mt-0.5 font-semibold uppercase tracking-[0.1em] text-[var(--color-ink-muted)]"
+            className="mt-1 font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]"
             style={{ fontSize: labelSize }}
           >
             {label}

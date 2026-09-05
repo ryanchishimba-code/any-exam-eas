@@ -1,9 +1,15 @@
 import { describe, expect, it } from "vitest";
-import { domainTileSpan, shortenDomainLabel } from "@/components/dashboard/DomainMap";
+import {
+  displayDomainLabel,
+  domainTileSpan,
+  rankDomainTiles,
+  shortenDomainLabel,
+  type DomainMapTile,
+} from "@/components/dashboard/DomainMap";
 import { pickHighlightedDomainId } from "@/lib/study/domain-map";
 
 describe("domainTileSpan", () => {
-  it("spans two columns for high-weight Client Needs", () => {
+  it("marks high-weight domains", () => {
     expect(domainTileSpan(18)).toBe(2);
     expect(domainTileSpan(14)).toBe(2);
     expect(domainTileSpan(13)).toBe(1);
@@ -16,6 +22,51 @@ describe("shortenDomainLabel", () => {
       true
     );
     expect(shortenDomainLabel("Safety")).toBe("Safety");
+  });
+});
+
+describe("displayDomainLabel", () => {
+  it("uses NCLEX short labels when available", () => {
+    expect(displayDomainLabel("pharmacology-nursing", "Pharmacological Therapies")).toBe(
+      "Pharmacology"
+    );
+    expect(displayDomainLabel("management-of-care", "Management of Care")).toBe("Management");
+  });
+
+  it("falls back to the provided label", () => {
+    expect(displayDomainLabel("unknown-domain", "Custom Domain")).toBe("Custom Domain");
+  });
+});
+
+describe("rankDomainTiles", () => {
+  it("ranks Focus before Review before Strong, then by lower score", () => {
+    const tiles: DomainMapTile[] = [
+      {
+        id: "strong",
+        label: "Strong",
+        weightPct: 18,
+        score: 90,
+        status: "strong",
+        practiceHref: "/a",
+      },
+      {
+        id: "review",
+        label: "Review",
+        weightPct: 12,
+        score: 55,
+        status: "needs_review",
+        practiceHref: "/b",
+      },
+      {
+        id: "focus",
+        label: "Focus",
+        weightPct: 14,
+        score: 40,
+        status: "needs_more_work",
+        practiceHref: "/c",
+      },
+    ];
+    expect(rankDomainTiles(tiles).map((t) => t.id)).toEqual(["focus", "review", "strong"]);
   });
 });
 

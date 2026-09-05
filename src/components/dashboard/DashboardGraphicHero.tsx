@@ -90,7 +90,8 @@ export function DashboardGraphicHero({
   examName,
   readinessScore,
   readinessSummary,
-  categoriesLabel = "Domains",
+  categoriesLabel = "Your blueprint",
+  categoriesHint = "Official exam blueprint · ranked by need · tap to practice",
   dueCount,
   topWeakTopic,
   hasRecent,
@@ -102,6 +103,7 @@ export function DashboardGraphicHero({
   readinessScore: number;
   readinessSummary: PracticeReadinessSummary | null;
   categoriesLabel?: string;
+  categoriesHint?: string;
   dueCount: number;
   topWeakTopic: DashboardWeakFocus | null;
   hasRecent: boolean;
@@ -161,9 +163,14 @@ export function DashboardGraphicHero({
 
       {tiles.length > 0 ? (
         <div className="mt-6 border-t border-[var(--color-border)]/45 pt-5">
-          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
-            {categoriesLabel}
-          </p>
+          <div className="mb-3.5">
+            <h3 className="text-[15px] font-semibold tracking-tight text-[var(--color-ink)]">
+              {categoriesLabel}
+            </h3>
+            <p className="mt-0.5 text-[12px] leading-relaxed text-[var(--color-ink-muted)]">
+              {categoriesHint}
+            </p>
+          </div>
           <DomainMap tiles={tiles} variant="compact" aria-label={categoriesLabel} />
         </div>
       ) : null}

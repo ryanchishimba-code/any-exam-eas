@@ -77,7 +77,11 @@ export function DashboardPageContent({
   const isNewUser = stats.questionsAnswered === 0 && !showRecent;
   const studyLocked = !hasPremiumAccess;
   const readinessSummary = roadmap ? buildPracticeReadinessSummary(roadmap) : null;
-  const categoriesLabel = examSlug === "nclex" ? "Client Needs" : "Blueprint domains";
+  const categoriesLabel = examSlug === "nclex" ? "Your NCLEX domains" : "Your blueprint";
+  const categoriesHint =
+    examSlug === "nclex"
+      ? "Official Client Needs · ranked by need · tap to practice"
+      : "Official exam blueprint · ranked by need · tap to practice";
   const fieldId = practiceFieldId ?? exam.fieldId;
 
   return (
@@ -100,6 +104,7 @@ export function DashboardPageContent({
         readinessScore={readinessSummary?.overallScore ?? headline.readinessScore}
         readinessSummary={readinessSummary}
         categoriesLabel={categoriesLabel}
+        categoriesHint={categoriesHint}
         dueCount={spacedReview.dueCount}
         topWeakTopic={topWeakFocus(examSlug, weakTopics, fieldId)}
         hasRecent={showRecent}

@@ -17,7 +17,7 @@ export type PracticeReadinessSummary = {
   reason: string;
   /** Written criteria — shown as footnotes, not marketing. */
   criteria: string[];
-  /** Blueprint categories for Client Needs / domain bars. */
+  /** Blueprint categories for domain readiness bars. */
   categoryBars: Array<{
     categoryId: string;
     label: string;
