@@ -346,4 +346,347 @@ export const NCLEX_STRATEGY_QUESTION_SEEDS: BankItem[] = [
       "Maintain IV access with normal saline through new tubing, notify the provider and blood bank, and monitor vital signs for acute hemolytic transfusion reaction.",
     explanation: `Correct: Suspected acute hemolytic reaction — stop transfusion, keep IV with NS on new tubing, notify provider/blood bank, monitor. Do not restart the same unit (NCSBN NCLEX-RN Test Plan).${DISTRACTOR_BLOCK}`,
   }),
+
+  // --- Disaster triage / mass casualty (Study Hub: disaster-triage) ---
+  mcq({
+    subjectId: "management-of-care",
+    blueprintTopic: "disaster-triage",
+    tags: ["curated", "nclex-strategy", "disaster-triage", "exam-level"],
+    vignette:
+      "Mass casualty incident after a highway pileup. The nurse is triage officer using START. Four casualties arrive: A walks to the treatment area with a forearm laceration; B is apneic after one airway reposition and has no respirations; C has RR 36 with capillary refill greater than 2 seconds; D follows commands with a closed femur fracture and RR 18.",
+    question: "Which casualty should receive a red (immediate) tag?",
+    options: [
+      "Casualty C — abnormal respirations and delayed perfusion are immediate, salvageable threats under START.",
+      "Casualty A — walking wounded should be treated first to clear the triage area.",
+      "Casualty B — apnea after airway maneuver warrants prolonged CPR at the scene before tagging others.",
+      "Casualty D — closed femur fracture always receives an immediate red tag.",
+    ],
+    correctAnswer:
+      "Casualty C — abnormal respirations and delayed perfusion are immediate, salvageable threats under START.",
+    explanation: `Correct: START red tags go to salvageable casualties with immediate RPM threats. Walking wounded are green; apnea after a simple airway maneuver is expectant/black in resource-scarce MCI; stable delayed injuries are yellow (NCSBN NCLEX-RN Test Plan — disaster triage).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "management-of-care",
+    blueprintTopic: "disaster-triage",
+    tags: ["curated", "nclex-strategy", "disaster-triage", "exam-level"],
+    vignette:
+      "Emergency department surge during a mass casualty incident. Resources cannot meet demand. A casualty is not breathing. After opening the airway with a simple maneuver, respirations remain absent.",
+    question: "Which START triage tag is most appropriate?",
+    options: [
+      "Black (expectant/deceased) — do not consume scarce resources on prolonged resuscitation at the scene.",
+      "Red (immediate) — begin full ACLS and remain with the client until ROSC.",
+      "Yellow (delayed) — reassess after all green tags are treated.",
+      "Green (minimal) — instruct the casualty to walk to the minor treatment area.",
+    ],
+    correctAnswer:
+      "Black (expectant/deceased) — do not consume scarce resources on prolonged resuscitation at the scene.",
+    explanation: `Correct: In START during MCI, apnea after a simple airway maneuver is tagged expectant/black so resources go to salvageable immediate casualties (NCSBN NCLEX-RN Test Plan).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "management-of-care",
+    blueprintTopic: "disaster-triage",
+    tags: ["curated", "nclex-strategy", "disaster-triage", "exam-level"],
+    vignette:
+      "Community disaster drill. Multiple injured clients arrive. One adult is ambulatory with minor abrasions and asks when they will be seen. Triage is using START color tags.",
+    question: "Which action by the nurse is most appropriate for this client?",
+    options: [
+      "Assign a green (minimal) tag and direct the client to the walking-wounded treatment area for delayed care.",
+      "Assign a red tag so the client is seen before critically injured casualties.",
+      "Begin a full primary survey and stay with the client until diagnostics are complete.",
+      "Refuse to tag the client because ambulatory status means they are not part of the MCI.",
+    ],
+    correctAnswer:
+      "Assign a green (minimal) tag and direct the client to the walking-wounded treatment area for delayed care.",
+    explanation: `Correct: Walking wounded receive green/minimal tags and are directed away from immediate care lanes (NCSBN NCLEX-RN Test Plan — disaster & triage).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "management-of-care",
+    blueprintTopic: "disaster-triage",
+    tags: ["curated", "nclex-strategy", "disaster-triage", "exam-level"],
+    vignette:
+      "Chemical plant explosion with possible hazardous exposure. Contaminated casualties are arriving at the ED entrance. The charge nurse is organizing the disaster response.",
+    question: "What is the nurse's priority action before providing definitive treatment?",
+    options: [
+      "Ensure decontamination occurs before casualties enter the main treatment areas when feasible.",
+      "Bring all casualties directly into trauma bays to start IV fluids immediately.",
+      "Send family members into the hot zone to identify victims faster.",
+      "Delay triage tagging until laboratory results confirm toxin levels.",
+    ],
+    correctAnswer:
+      "Ensure decontamination occurs before casualties enter the main treatment areas when feasible.",
+    explanation: `Correct: For chemical/radiation events, decontaminate before definitive care when feasible to protect staff and other clients (NCSBN NCLEX-RN Test Plan — disaster management).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "management-of-care",
+    blueprintTopic: "disaster-triage",
+    tags: ["curated", "nclex-strategy", "disaster-triage", "exam-level"],
+    vignette:
+      "START triage. An adult casualty has a respiratory rate of 12/min, capillary refill under 2 seconds, and cannot follow simple commands after a building collapse.",
+    question: "Which triage tag should the nurse apply?",
+    options: [
+      "Red (immediate) — inability to follow commands indicates altered mental status requiring immediate care under START RPM.",
+      "Green (minimal) — normal respiratory rate means the casualty can wait indefinitely.",
+      "Black (expectant) — any altered mentation is non-survivable in an MCI.",
+      "Yellow (delayed) — only open fractures receive immediate tags.",
+    ],
+    correctAnswer:
+      "Red (immediate) — inability to follow commands indicates altered mental status requiring immediate care under START RPM.",
+    explanation: `Correct: START uses Respirations, Perfusion, and Mental status (commands). Failure to follow commands with otherwise adequate RPM → immediate/red (NCSBN NCLEX-RN Test Plan).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "management-of-care",
+    blueprintTopic: "disaster-triage",
+    tags: ["curated", "nclex-strategy", "disaster-triage", "exam-level"],
+    vignette:
+      "Hospital incident command during a city-wide mass casualty. ICU beds and ventilators are limited. The nurse is asked how to allocate scarce critical-care resources.",
+    question: "Which principle should guide nursing advocacy in this situation?",
+    options: [
+      "Greatest good for the greatest number — prioritize salvageable clients most likely to benefit from scarce resources.",
+      "First-come, first-served regardless of injury severity or resource need.",
+      "Provide prolonged one-to-one ICU care at the scene before tagging any casualties.",
+      "Treat only pediatric clients until adult resources are exhausted.",
+    ],
+    correctAnswer:
+      "Greatest good for the greatest number — prioritize salvageable clients most likely to benefit from scarce resources.",
+    explanation: `Correct: MCI ethics emphasize utilitarianism — allocate scarce resources to maximize lives saved (NCSBN NCLEX-RN Test Plan — disaster triage).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "management-of-care",
+    blueprintTopic: "disaster-triage",
+    tags: ["curated", "nclex-strategy", "disaster-triage", "exam-level"],
+    vignette:
+      "Field triage after a train derailment. A casualty has a respiratory rate of 40/min. Capillary refill is delayed. The nurse opens the airway; the client continues to breathe rapidly.",
+    question: "What is the correct triage decision?",
+    options: [
+      "Tag red (immediate) and move the casualty toward urgent life-saving interventions.",
+      "Tag green because the casualty is still breathing without assistance.",
+      "Tag black because tachypnea alone is non-survivable.",
+      "Withhold a tag until a full set of laboratory values is available.",
+    ],
+    correctAnswer:
+      "Tag red (immediate) and move the casualty toward urgent life-saving interventions.",
+    explanation: `Correct: RR >30 (or marked distress) and delayed perfusion meet START immediate criteria — tag and move, do not stay for prolonged workup (NCSBN NCLEX-RN Test Plan).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "management-of-care",
+    blueprintTopic: "disaster-triage",
+    tags: ["curated", "nclex-strategy", "disaster-triage", "exam-level"],
+    vignette:
+      "ED charge nurse during MCI. A well-appearing visitor insists the nurse leave triage to provide bedside comfort to one mildly injured relative while critically tagged clients wait.",
+    question: "What is the nurse's best response?",
+    options: [
+      "Explain that during mass casualty, triage and care follow tag priority to save the most lives, and offer appropriate support resources for the family.",
+      "Abandon triage immediately to provide one-to-one comfort care as requested.",
+      "Re-tag all yellow clients as red to satisfy family requests.",
+      "Stop documenting triage tags because families find the colors upsetting.",
+    ],
+    correctAnswer:
+      "Explain that during mass casualty, triage and care follow tag priority to save the most lives, and offer appropriate support resources for the family.",
+    explanation: `Correct: RN role in MCI is triage/coordination by priority, with compassionate communication — not abandoning the system for one request (NCSBN NCLEX-RN Test Plan).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "management-of-care",
+    blueprintTopic: "disaster-triage",
+    tags: ["curated", "nclex-strategy", "disaster-triage", "exam-level"],
+    vignette:
+      "Reverse triage discussion during hospital evacuation after infrastructure failure. Stable inpatients may be moved first so critically ill clients can be transferred with support.",
+    question: "Which statement shows correct understanding of reverse triage?",
+    options: [
+      "Move the most stable clients first so limited staff and equipment can support the critically ill during evacuation.",
+      "Evacuate only expectant/black-tagged clients and leave stable clients in place indefinitely.",
+      "Ignore triage categories and evacuate rooms in numerical order only.",
+      "Keep all ventilated clients last without a transfer plan because they cannot be moved.",
+    ],
+    correctAnswer:
+      "Move the most stable clients first so limited staff and equipment can support the critically ill during evacuation.",
+    explanation: `Correct: Reverse triage in evacuation moves stable clients first so resources can escort the critically ill (NCSBN NCLEX-RN Test Plan — disaster management).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "management-of-care",
+    blueprintTopic: "disaster-triage",
+    tags: ["curated", "nclex-strategy", "disaster-triage", "exam-level"],
+    vignette:
+      "START triage documentation. The nurse assigns a yellow tag to a casualty with a closed tibial fracture who follows commands, has RR 18, and capillary refill under 2 seconds.",
+    question: "Which documentation element is most important at the time of tagging?",
+    options: [
+      "Record the triage tag color and time on the casualty so reassessment and handoff remain accurate.",
+      "Omit the tag time to avoid legal liability if priorities change.",
+      "Document only the mechanism of injury and skip vital observations.",
+      "Wait to document until the client reaches the OR.",
+    ],
+    correctAnswer:
+      "Record the triage tag color and time on the casualty so reassessment and handoff remain accurate.",
+    explanation: `Correct: Tag color and time support ongoing triage accuracy and handoff during MCI (NCSBN NCLEX-RN Test Plan).${DISTRACTOR_BLOCK}`,
+  }),
+
+  // --- Burns & trauma resuscitation (Study Hub: burns-trauma) ---
+  mcq({
+    subjectId: "physiological-adaptation",
+    blueprintTopic: "burns-trauma",
+    tags: ["curated", "nclex-strategy", "burns-trauma", "exam-level"],
+    vignette:
+      "ED. A 70 kg adult has partial- and full-thickness burns estimated at 40% TBSA from a house fire. Parkland formula fluids are ordered. The burn occurred 30 minutes ago; two large-bore IVs are placed.",
+    question: "Which urine output goal best indicates adequate fluid resuscitation in the first 24 hours?",
+    options: [
+      "Approximately 0.5–1 mL/kg/hr of urine output while titrating crystalloid per protocol.",
+      "Anuria for the first 8 hours to avoid fluid overload.",
+      "Urine output of 5 mL/kg/hr continuously regardless of hemodynamics.",
+      "No need to monitor urine output if blood pressure is normal on arrival.",
+    ],
+    correctAnswer:
+      "Approximately 0.5–1 mL/kg/hr of urine output while titrating crystalloid per protocol.",
+    explanation: `Correct: Parkland-guided resuscitation is titrated to urine output (~0.5–1 mL/kg/hr in adults) as the key end-organ perfusion marker (NCSBN NCLEX-RN Test Plan — burns).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "physiological-adaptation",
+    blueprintTopic: "burns-trauma",
+    tags: ["curated", "nclex-strategy", "burns-trauma", "exam-level"],
+    vignette:
+      "Burn unit admission. Facial burns, singed nasal hairs, and carbonaceous sputum are noted after a closed-space fire. The client is currently talking in short sentences.",
+    question: "What is the nurse's priority concern?",
+    options: [
+      "Airway compromise from inhalation injury — prepare for early advanced airway management and continuous monitoring.",
+      "Delayed wound dressing changes before any airway assessment.",
+      "Immediate full-thickness grafting in the ED before airway evaluation.",
+      "Restricting oxygen because talking means the airway is definitively secure.",
+    ],
+    correctAnswer:
+      "Airway compromise from inhalation injury — prepare for early advanced airway management and continuous monitoring.",
+    explanation: `Correct: Facial burns, soot, and closed-space fire strongly suggest inhalation injury — airway is the priority even if the client is still speaking (NCSBN NCLEX-RN Test Plan).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "physiological-adaptation",
+    blueprintTopic: "burns-trauma",
+    tags: ["curated", "nclex-strategy", "burns-trauma", "exam-level"],
+    vignette:
+      "Adult with circumferential full-thickness burns of the right forearm. Distal pulses are diminishing, pain is out of proportion, and the hand is cool with delayed capillary refill after fluid resuscitation.",
+    question: "Which complication should the nurse anticipate and escalate?",
+    options: [
+      "Compartment syndrome / constricting eschar — notify the provider; escharotomy may be required to restore perfusion.",
+      "Expected pain from superficial burns that needs only oral acetaminophen.",
+      "Hypervolemia from over-resuscitation as the only explanation for cool extremities.",
+      "Delay notification until pulses are completely absent for 2 hours.",
+    ],
+    correctAnswer:
+      "Compartment syndrome / constricting eschar — notify the provider; escharotomy may be required to restore perfusion.",
+    explanation: `Correct: Circumferential full-thickness burns can act like a tourniquet — rising pain, coolness, and fading pulses need urgent escalation for possible escharotomy (NCSBN NCLEX-RN Test Plan).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "physiological-adaptation",
+    blueprintTopic: "burns-trauma",
+    tags: ["curated", "nclex-strategy", "burns-trauma", "exam-level"],
+    vignette:
+      "Nurse is estimating TBSA using the rule of nines for an adult. The entire left arm and the entire anterior trunk are burned.",
+    question: "Which TBSA estimate is most accurate?",
+    options: [
+      "27% TBSA — arm 9% plus anterior trunk 18%.",
+      "9% TBSA — only the arm counts in rule of nines.",
+      "45% TBSA — anterior trunk is counted as 36%.",
+      "18% TBSA — the arm is not included when the trunk is burned.",
+    ],
+    correctAnswer: "27% TBSA — arm 9% plus anterior trunk 18%.",
+    explanation: `Correct: Adult rule of nines: each arm 9%, anterior trunk 18% → 27% (NCSBN NCLEX-RN Test Plan — burn assessment).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "physiological-adaptation",
+    blueprintTopic: "burns-trauma",
+    tags: ["curated", "nclex-strategy", "burns-trauma", "exam-level"],
+    vignette:
+      "Parkland formula ordered: 4 mL × kg × %TBSA of lactated Ringer's for the first 24 hours, with half given in the first 8 hours from time of burn. Client is 80 kg with 25% TBSA; burn time was 2 hours ago.",
+    question: "Which nursing action is essential when starting resuscitation?",
+    options: [
+      "Calculate total 24-hour volume, give half over the first 8 hours from burn time (accounting for fluids already given), and monitor urine output closely.",
+      "Give the entire 24-hour volume as a single bolus on arrival.",
+      "Use D5W as the primary resuscitation fluid for large TBSA burns.",
+      "Ignore burn time and restart the 8-hour clock when the client reaches the ICU.",
+    ],
+    correctAnswer:
+      "Calculate total 24-hour volume, give half over the first 8 hours from burn time (accounting for fluids already given), and monitor urine output closely.",
+    explanation: `Correct: Parkland timing starts at burn time; half the volume in the first 8 hours with UOP monitoring (NCSBN NCLEX-RN Test Plan).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "physiological-adaptation",
+    blueprintTopic: "burns-trauma",
+    tags: ["curated", "nclex-strategy", "burns-trauma", "exam-level"],
+    vignette:
+      "Burn dressing change. Partial-thickness burns are being cleansed. The client reports severe pain before the procedure begins.",
+    question: "Which nursing action is most appropriate?",
+    options: [
+      "Administer prescribed analgesia so peak effect coincides with the dressing change, then proceed with sterile technique.",
+      "Withhold analgesia so the client can report burn depth more accurately during cleaning.",
+      "Perform the dressing change as quickly as possible without pain medication to finish faster.",
+      "Use only ice directly on open burn wounds for comfort.",
+    ],
+    correctAnswer:
+      "Administer prescribed analgesia so peak effect coincides with the dressing change, then proceed with sterile technique.",
+    explanation: `Correct: Premedicate for burn care; sterile technique protects healing tissue — do not withhold analgesia or apply ice to open burns (NCSBN NCLEX-RN Test Plan).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "physiological-adaptation",
+    blueprintTopic: "burns-trauma",
+    tags: ["curated", "nclex-strategy", "burns-trauma", "exam-level"],
+    vignette:
+      "Electrical burn from high-voltage contact. Entry and exit wounds appear small. Cardiac monitoring is in place. The client reports dark urine.",
+    question: "Which complication should the nurse prioritize monitoring for?",
+    options: [
+      "Myoglobinuria and deep tissue injury with risk of acute kidney injury — maintain ordered fluids and monitor urine output and cardiac rhythm.",
+      "Only superficial skin injury because external wounds look small.",
+      "Hypernatremia as the sole expected finding after electrical injury.",
+      "Immediate discharge if the ECG strip is normal on arrival.",
+    ],
+    correctAnswer:
+      "Myoglobinuria and deep tissue injury with risk of acute kidney injury — maintain ordered fluids and monitor urine output and cardiac rhythm.",
+    explanation: `Correct: Electrical burns cause deep tissue and muscle injury; dark urine suggests myoglobin — fluids, renal and cardiac monitoring are priorities (NCSBN NCLEX-RN Test Plan).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "physiological-adaptation",
+    blueprintTopic: "burns-trauma",
+    tags: ["curated", "nclex-strategy", "burns-trauma", "exam-level"],
+    vignette:
+      "Trauma bay. A client with 55% TBSA burns develops progressive hoarseness, stridor, and SpO₂ 90% on face mask oxygen after smoke exposure.",
+    question: "What is the priority nursing action?",
+    options: [
+      "Prepare for emergent advanced airway placement and notify the provider/rapid response immediately.",
+      "Increase oral fluids and postpone airway intervention until chest radiograph returns.",
+      "Remove oxygen because high FiO₂ worsens carbon monoxide readings only.",
+      "Focus first on estimating TBSA before addressing the airway.",
+    ],
+    correctAnswer:
+      "Prepare for emergent advanced airway placement and notify the provider/rapid response immediately.",
+    explanation: `Correct: Stridor and hoarseness after inhalation injury signal impending airway loss — airway first (NCSBN NCLEX-RN Test Plan — ABC/burns).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "physiological-adaptation",
+    blueprintTopic: "burns-trauma",
+    tags: ["curated", "nclex-strategy", "burns-trauma", "exam-level"],
+    vignette:
+      "Nurse is teaching a family about infection prevention after major burn injury. The client has open wounds and intermittent fever workups.",
+    question: "Which teaching point is most important?",
+    options: [
+      "Strict hand hygiene and aseptic wound care reduce infection risk in burn clients with lost skin barrier.",
+      "Fresh flowers and plants at the bedside help recovery and pose no infection risk.",
+      "Visitors with active respiratory infections may sit close without masks if visits are short.",
+      "Skip wound cleansing on days the client feels well.",
+    ],
+    correctAnswer:
+      "Strict hand hygiene and aseptic wound care reduce infection risk in burn clients with lost skin barrier.",
+    explanation: `Correct: Loss of skin barrier makes infection a leading burn mortality risk — hygiene and aseptic care are essential teaching (NCSBN NCLEX-RN Test Plan).${DISTRACTOR_BLOCK}`,
+  }),
+  mcq({
+    subjectId: "physiological-adaptation",
+    blueprintTopic: "burns-trauma",
+    tags: ["curated", "nclex-strategy", "burns-trauma", "exam-level"],
+    vignette:
+      "First 24 hours after a large TBSA burn. The nurse reviews fluid orders and notes blood pressure is trending down while urine output falls below the goal despite ordered crystalloid.",
+    question: "What should the nurse do next?",
+    options: [
+      "Notify the provider of inadequate perfusion markers so resuscitation can be reassessed and adjusted per protocol.",
+      "Stop all IV fluids immediately to prevent pulmonary edema without notifying the team.",
+      "Switch to free water boluses only and discontinue lactated Ringer's independently.",
+      "Document the findings and wait until the next shift change to report.",
+    ],
+    correctAnswer:
+      "Notify the provider of inadequate perfusion markers so resuscitation can be reassessed and adjusted per protocol.",
+    explanation: `Correct: Falling UOP and BP during burn resuscitation require prompt escalation — do not unilaterally stop fluids or delay reporting (NCSBN NCLEX-RN Test Plan).${DISTRACTOR_BLOCK}`,
+  }),
 ];

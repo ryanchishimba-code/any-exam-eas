@@ -23,4 +23,22 @@ describe("expandNclexBlueprintTopicMatchers", () => {
       ])
     ).toBe(true);
   });
+
+  it("maps spaced legacy bank labels and garbage stem topics", () => {
+    expect(canonicalizeNclexBlueprintTopic("standard precautions")).toBe(
+      "standard-precautions-hand-hygiene"
+    );
+    expect(canonicalizeNclexBlueprintTopic("mass casualty")).toBe("disaster-triage");
+    expect(
+      canonicalizeNclexBlueprintTopic(
+        "heart-failure-exacerbation-the-nurse-is-assigned-four-clients-on"
+      )
+    ).toBe("cardiac-emergencies");
+  });
+
+  it("does not treat musculoskeletal as burns-trauma", () => {
+    const matchers = expandNclexBlueprintTopicMatchers(["burns-trauma"]);
+    expect(matchers).toEqual(expect.arrayContaining(["burns-trauma", "burns", "trauma"]));
+    expect(matchers).not.toContain("musculoskeletal");
+  });
 });

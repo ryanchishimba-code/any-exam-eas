@@ -18,7 +18,10 @@ loadEnvFiles();
 ensureDatabaseUrlEnv();
 
 import { PrismaClient } from "@prisma/client";
-import { canonicalizeNclexBlueprintTopic } from "../src/lib/exam-prep/nclex/blueprint-topic-aliases";
+import {
+  canonicalizeNclexBlueprintTopic,
+  repairGarbageNclexBlueprintTopic,
+} from "../src/lib/exam-prep/nclex/blueprint-topic-aliases";
 import { allNclex2026TopicSlugs } from "../src/lib/exam-prep/nclex/blueprint-topics-2026";
 import { inferNclexBlueprint } from "../src/lib/exam-prep/nclex/infer-blueprint-topic";
 import { enrichBankItemFromRow } from "../src/lib/mpje/parse-bank-options";
@@ -47,6 +50,8 @@ const PROTECTED_PREFIXES = [
 function isProtectedTopic(topic: string | null): boolean {
   if (!topic) return false;
   const t = topic.toLowerCase();
+  // Garbage stem tags that merely contain "pediatric" / "prenatal" still need repair.
+  if (repairGarbageNclexBlueprintTopic(topic)) return false;
   return PROTECTED_PREFIXES.some((p) => t.includes(p));
 }
 
@@ -79,7 +84,7 @@ type Update = {
   id: string;
   prevTopic: string | null;
   nextTopic: string;
-  reason: "alias" | "content" | "infer";
+  reason: "alias" | "garbage" | "content" | "infer";
 };
 
 async function main() {
@@ -103,10 +108,18 @@ async function main() {
   });
 
   const updates: Update[] = [];
-  const byReason = { alias: 0, content: 0, infer: 0 };
+  const byReason = { alias: 0, garbage: 0, content: 0, infer: 0 };
 
   for (const row of rows) {
     const prev = row.blueprintTopic?.trim() || null;
+
+    const garbage = repairGarbageNclexBlueprintTopic(prev);
+    if (garbage && CANONICAL.has(garbage) && garbage !== prev) {
+      updates.push({ id: row.id, prevTopic: prev, nextTopic: garbage, reason: "garbage" });
+      byReason.garbage++;
+      continue;
+    }
+
     const aliasedRaw = canonicalizeNclexBlueprintTopic(prev);
     const aliased =
       aliasedRaw && aliasedRaw !== prev && CANONICAL.has(aliasedRaw) ? aliasedRaw : null;

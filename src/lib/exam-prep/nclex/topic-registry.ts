@@ -242,7 +242,8 @@ export const NCLEX_TOPIC_REGISTRY: Record<string, NclexTopicMeta> = {
   },
   "burns-trauma": {
     clientNeedsDomain: "physiological-adaptation",
-    blueprintTopicSlugs: ["burns-trauma", "musculoskeletal"],
+    // Keep MSK separate — musculoskeletal tags are fractures/compartment, not burn resuscitation.
+    blueprintTopicSlugs: ["burns-trauma"],
   },
   "sata-mastery": {
     clientNeedsDomain: "ngn-strategy",
