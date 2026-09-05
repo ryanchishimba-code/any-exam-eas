@@ -17,7 +17,7 @@ export function DashboardViewSections({
   /** Kept for call-site compatibility; weak topics live on hero chips. */
   weakTopics?: WeakTopicRow[];
   spacedReview: SpacedReviewSummary;
-  /** Kept for call-site compatibility; blueprint map lives on the hero + /roadmap. */
+  /** Kept for call-site compatibility; blueprint map lives on the Study Hub hero. */
   roadmap?: ExamRoadmapData | null;
   recentTests: RecentTestRow[];
   /** When Today's focus already surfaces SRS, skip the duplicate card. */
