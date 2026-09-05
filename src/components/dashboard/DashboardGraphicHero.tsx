@@ -132,18 +132,18 @@ export function DashboardGraphicHero({
       className={dbUi.heroSurface}
     >
       <div className={dbUi.heroLayout}>
-        <ReadinessRing score={readinessScore} size={148} label={bandLabel} />
+        <ReadinessRing score={readinessScore} size={158} label={bandLabel} />
 
         <div className="min-w-0 flex-1 w-full text-center sm:text-left">
-          <p className={dbUi.eyebrow}>Today</p>
+          <p className={dbUi.eyebrow}>Today&apos;s focus</p>
           <h2
             id="dashboard-hero-heading"
-            className="mt-0.5 text-[18px] font-semibold tracking-tight text-[var(--color-ink)] sm:text-[20px]"
+            className="mt-1 text-[22px] font-semibold tracking-[-0.03em] text-[var(--color-ink)] sm:text-[26px]"
           >
             {action.status}
           </h2>
 
-          <div className="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+          <div className="mt-5 flex flex-col items-center gap-2.5 sm:flex-row sm:flex-wrap sm:items-center">
             <Link href={action.href} className={dbUi.primaryBtn}>
               {studyLocked ? <Lock className="h-3.5 w-3.5" aria-hidden /> : null}
               {action.label}
@@ -151,7 +151,7 @@ export function DashboardGraphicHero({
             </Link>
             <Link
               href={ROUTES.analytics}
-              className="text-[12px] font-semibold text-[var(--color-accent)] hover:underline"
+              className="text-[13px] font-semibold text-[var(--color-accent)] hover:underline"
             >
               See trends
             </Link>
@@ -160,8 +160,8 @@ export function DashboardGraphicHero({
       </div>
 
       {tiles.length > 0 ? (
-        <div className="mt-5 border-t border-[var(--color-border)]/50 pt-4">
-          <p className="mb-2.5 text-[11px] font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+        <div className="mt-6 border-t border-[var(--color-border)]/45 pt-5">
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-[var(--color-ink-muted)]">
             {categoriesLabel}
           </p>
           <DomainMap tiles={tiles} variant="compact" aria-label={categoriesLabel} />
@@ -169,7 +169,7 @@ export function DashboardGraphicHero({
       ) : null}
 
       {readinessSummary ? (
-        <details className="mt-4 rounded-xl border border-[var(--color-border)]/60 bg-[var(--color-surface)]/40 px-3 py-2">
+        <details className="mt-5 rounded-2xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/50 px-3.5 py-2.5">
           <summary className="cursor-pointer text-[12px] font-semibold text-[var(--color-ink-muted)]">
             Why {readinessSummary.bandLabel}?
           </summary>
@@ -181,7 +181,7 @@ export function DashboardGraphicHero({
               <li key={line}>{line}</li>
             ))}
           </ul>
-          <p className="border-t border-[var(--color-border)]/60 pt-2 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
+          <p className="border-t border-[var(--color-border)]/50 pt-2 text-[11px] leading-relaxed text-[var(--color-ink-muted)]">
             {readinessSummary.disclaimer}
           </p>
         </details>

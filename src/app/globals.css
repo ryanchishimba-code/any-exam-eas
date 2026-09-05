@@ -615,6 +615,200 @@ body {
   animation: apple-fade-up 0.8s var(--ease-apple) both;
 }
 
+/* —— Study dashboard (Apple Health / Fitness clarity) —— */
+.dashboard-ui {
+  --db-card: color-mix(in srgb, var(--color-surface-elevated) 92%, white);
+  --db-wash: color-mix(in srgb, var(--color-accent) 9%, transparent);
+  --db-wash-soft: color-mix(in srgb, var(--color-accent) 5%, transparent);
+  --db-ink: var(--color-ink);
+  --db-muted: var(--color-ink-muted);
+  --db-line: color-mix(in srgb, var(--color-border) 70%, transparent);
+  position: relative;
+}
+
+.dashboard-ui::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: -1.5rem -1rem auto;
+  height: 18rem;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 80% at 12% 0%, var(--db-wash), transparent 62%),
+    radial-gradient(ellipse 55% 70% at 92% 8%, var(--db-wash-soft), transparent 58%);
+}
+
+.dashboard-ui > * {
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="dark"] .dashboard-ui {
+  --db-card: color-mix(in srgb, var(--color-surface-elevated) 88%, #0a1628);
+  --db-wash: color-mix(in srgb, var(--color-accent) 14%, transparent);
+  --db-wash-soft: color-mix(in srgb, var(--color-accent) 8%, transparent);
+}
+
+.db-exam-day {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  border: 1px solid var(--db-line);
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, var(--color-accent) 12%, var(--db-card)) 0%,
+      var(--db-card) 48%,
+      color-mix(in srgb, #38bdf8 6%, var(--db-card)) 100%
+    );
+  box-shadow: var(--shadow-apple-sm);
+  padding: 1.25rem 1.35rem 1.35rem;
+}
+
+.db-exam-day--urgent {
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, #f59e0b 14%, var(--db-card)) 0%,
+      var(--db-card) 52%,
+      color-mix(in srgb, var(--color-accent) 6%, var(--db-card)) 100%
+    );
+}
+
+.db-exam-day--today {
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, #34d399 16%, var(--db-card)) 0%,
+      var(--db-card) 50%,
+      color-mix(in srgb, var(--color-accent) 8%, var(--db-card)) 100%
+    );
+}
+
+.db-exam-day--empty {
+  background:
+    linear-gradient(
+      155deg,
+      color-mix(in srgb, var(--color-accent) 8%, var(--db-card)) 0%,
+      var(--db-card) 100%
+    );
+}
+
+.db-exam-day__glow {
+  pointer-events: none;
+  position: absolute;
+  right: -18%;
+  top: -40%;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-accent) 22%, transparent),
+    transparent 68%
+  );
+}
+
+.db-exam-day__ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 7.25rem;
+  height: 7.25rem;
+  flex-shrink: 0;
+}
+
+.db-exam-day__ring svg {
+  position: absolute;
+  inset: 0;
+}
+
+.db-exam-day__count {
+  position: relative;
+  font-size: 2.75rem;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--db-ink);
+}
+
+.db-exam-day__count-unit {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--db-muted);
+}
+
+.db-exam-day__copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.db-exam-day__eyebrow {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--db-muted);
+}
+
+.db-exam-day__title {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.25rem, 3.2vw, 1.625rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--db-ink);
+  text-wrap: balance;
+}
+
+.db-exam-day__meta {
+  margin: 0.45rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--db-muted);
+}
+
+.db-exam-day__action {
+  margin-top: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 9999px;
+  border: 1px solid var(--db-line);
+  background: color-mix(in srgb, var(--color-surface-elevated) 80%, transparent);
+  padding: 0.45rem 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  transition: background 0.2s var(--ease-apple), border-color 0.2s var(--ease-apple);
+}
+
+.db-exam-day__action:hover {
+  background: var(--color-surface-elevated);
+  border-color: color-mix(in srgb, var(--color-accent) 28%, transparent);
+}
+
+@media (min-width: 640px) {
+  .db-exam-day {
+    padding: 1.5rem 1.75rem;
+  }
+
+  .db-exam-day__ring {
+    width: 8.5rem;
+    height: 8.5rem;
+  }
+
+  .db-exam-day__count {
+    font-size: 3.25rem;
+  }
+}
+
 /* fill-mode:both starts at opacity:0 — never leave content invisible when motion is reduced */
 @media (prefers-reduced-motion: reduce) {
   .apple-animate-in {

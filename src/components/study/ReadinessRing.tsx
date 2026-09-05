@@ -30,7 +30,7 @@ export function ReadinessRing({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="var(--color-border)"
+          stroke="color-mix(in srgb, var(--color-border) 85%, transparent)"
           strokeWidth={stroke}
         />
         <circle
@@ -48,7 +48,7 @@ export function ReadinessRing({
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span
-          className="font-bold leading-none tabular-nums tracking-tight text-[var(--color-ink)]"
+          className="font-bold leading-none tabular-nums tracking-[-0.04em] text-[var(--color-ink)]"
           style={{ fontSize: scoreSize }}
         >
           {clamped}

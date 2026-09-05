@@ -40,7 +40,7 @@ export function DashboardViewSections({
       ) : null}
 
       {showRecent ? (
-        <details className="group rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)]">
+        <details className="group rounded-3xl border border-[var(--color-border)]/55 bg-[var(--db-card,var(--color-surface-elevated))] shadow-[var(--shadow-apple-sm)]">
           <summary className="cursor-pointer list-none px-4 py-3.5 text-[13px] font-semibold text-[var(--color-ink)] marker:content-none [&::-webkit-details-marker]:hidden">
             <span className="flex items-center justify-between gap-3">
               <span>Recent sessions</span>
@@ -52,7 +52,7 @@ export function DashboardViewSections({
               </span>
             </span>
           </summary>
-          <div className="border-t border-[var(--color-border)]/60">
+          <div className="border-t border-[var(--color-border)]/50">
             <DashboardRecentActivity examSlug={examSlug} recentTests={recentTests} embedded />
           </div>
         </details>

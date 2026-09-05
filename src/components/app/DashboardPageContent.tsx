@@ -19,7 +19,7 @@ import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
 const DashboardExamCountdown = dynamic(
   () =>
     import("@/components/dashboard/DashboardExamCountdown").then((m) => m.DashboardExamCountdown),
-  { loading: () => <Skeleton className="h-12 w-full rounded-2xl" /> }
+  { loading: () => <Skeleton className="h-36 w-full rounded-3xl" /> }
 );
 
 export type DashboardHeadline = {
