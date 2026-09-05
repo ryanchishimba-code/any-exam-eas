@@ -8,7 +8,6 @@ import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import type { ExamSlug } from "@/types/edtech";
 import {
   deepDiveTopicHref,
-  practiceTopicHref,
   questionBankHref,
   drugs300ClassHref,
 } from "@/lib/edtech/practice-links-core";
@@ -18,6 +17,10 @@ import {
   type ExamBlueprint,
 } from "@/lib/engine/blueprints";
 import { getExamTopicStudyLinks, topicNameToSlug } from "@/lib/library/exam-topic-bridge";
+import {
+  topicNodeFromBlueprintCategory,
+  topicNodePracticeHref,
+} from "@/lib/topics/topic-node";
 import { getDrugClassMeta } from "@/lib/drugs300/drug-classes";
 import {
   resolveNclexTopicSlugForBlueprint,
@@ -210,6 +213,7 @@ function buildTopicRow(
   const readinessScore = computeCategoryReadinessScore(stats, masteryScores);
   const { key, label } = classifyReadiness(readinessScore, stats.attempts);
   const primarySubject = category.subjectIds?.[0] ?? category.id;
+  const topicNode = topicNodeFromBlueprintCategory(examSlug, category, { fieldId });
   const topicLinks = getExamTopicStudyLinks(examSlug, primarySubject, { fieldId });
   const pushCoverage = coverage ?? {
     pushesCompleted: 0,
@@ -305,7 +309,7 @@ function buildTopicRow(
     pushesAvailable: pushCoverage.pushesAvailable,
     pushCoveragePct: pushCoverage.pushCoveragePct,
     highYieldTopics: category.highYieldTopics ?? [],
-    practiceHref: practiceTopicHref(examSlug, primarySubject, 15),
+    practiceHref: topicNodePracticeHref(topicNode, 15),
     deepDiveHref,
     studyTopicSlugs,
     topicsHubHref,
@@ -529,9 +533,13 @@ export function roadmapCategoryBankHref(
 ): string {
   const blueprint = getBlueprintForExamSlug(examSlug);
   const category = blueprint?.categories.find((c) => c.id === categoryId);
-  const subjectId = category?.subjectIds?.[0];
-  if (subjectId) {
-    return practiceTopicHref(examSlug, subjectId, 15);
+  if (category) {
+    return topicNodePracticeHref(
+      topicNodeFromBlueprintCategory(examSlug, category, {
+        fieldId: blueprint.fieldId,
+      }),
+      15
+    );
   }
   return questionBankHref(examSlug);
 }

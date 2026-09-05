@@ -20,39 +20,62 @@ function formatTimeLeft(days: number | null): string {
 
 function statusLine({ variant, daysRemaining, usage }: DashboardUpgradeProps): string {
   const remainingQuestions = usage.remainingTrialTotal;
-  const totalCap = usage.limits.trialLifetimeQuestions;
 
   if (variant === "trial") {
     const time = formatTimeLeft(daysRemaining);
-    if (remainingQuestions != null && totalCap != null) {
-      return `${time} · ${remainingQuestions} question${remainingQuestions === 1 ? "" : "s"} left`;
+    if (remainingQuestions != null) {
+      return `${time} · ${remainingQuestions} Q left`;
     }
     return time;
   }
 
-  return "Study tools locked — subscribe to continue";
+  return "Subscribe to unlock study tools";
+}
+
+function trialProgressPct(daysRemaining: number | null): number | null {
+  if (daysRemaining == null) return null;
+  if (daysRemaining <= 0) return 100;
+  return Math.min(100, Math.max(0, Math.round(((TRIAL_DAYS - daysRemaining) / TRIAL_DAYS) * 100)));
 }
 
 export function DashboardUpgradeBanner(props: DashboardUpgradeProps) {
-  const { variant } = props;
+  const { variant, daysRemaining } = props;
   const pricingHref = dashboardUpgradePricingHref(variant);
   const isTrial = variant === "trial";
+  const usedPct = isTrial ? trialProgressPct(daysRemaining) : null;
 
   return (
     <section
       className={cn(
-        "flex flex-col gap-3 rounded-2xl border px-4 py-3 sm:flex-row sm:items-center sm:justify-between",
+        "flex flex-col gap-2.5 rounded-2xl border px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4",
         "border-[color-mix(in_srgb,var(--color-accent)_28%,transparent)]",
         "bg-[color-mix(in_srgb,var(--color-accent)_6%,var(--color-surface-elevated))]"
       )}
     >
-      <div className="min-w-0 flex items-start gap-2 sm:items-center">
-        {isTrial ? (
-          <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent)] sm:mt-0" aria-hidden />
-        ) : (
-          <Crown className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-accent)] sm:mt-0" aria-hidden />
-        )}
-        <p className="text-[13px] font-medium text-[var(--color-ink)]">{statusLine(props)}</p>
+      <div className="min-w-0 flex-1 space-y-1.5">
+        <div className="flex items-center gap-2">
+          {isTrial ? (
+            <Sparkles className="h-4 w-4 shrink-0 text-[var(--color-accent)]" aria-hidden />
+          ) : (
+            <Crown className="h-4 w-4 shrink-0 text-[var(--color-accent)]" aria-hidden />
+          )}
+          <p className="text-[13px] font-medium text-[var(--color-ink)]">{statusLine(props)}</p>
+        </div>
+        {usedPct != null ? (
+          <div
+            className="h-1 overflow-hidden rounded-full bg-[var(--color-border)]/60"
+            role="meter"
+            aria-valuenow={usedPct}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label={`Trial ${usedPct}% elapsed`}
+          >
+            <div
+              className="h-full rounded-full bg-[var(--color-accent)] transition-[width] duration-500"
+              style={{ width: `${Math.max(4, usedPct)}%` }}
+            />
+          </div>
+        ) : null}
       </div>
       <Link
         href={pricingHref}

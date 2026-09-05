@@ -1,22 +1,20 @@
-import Link from "next/link";
 import dynamic from "next/dynamic";
-import { ArrowRight, Lock } from "lucide-react";
 import { DashboardUpgradeBanner, type DashboardUpgradeProps } from "@/components/dashboard/DashboardUpgradeBanner";
 import { DashboardHeader } from "@/components/dashboard/DashboardHeader";
-import { DashboardReadinessHome } from "@/components/dashboard/DashboardReadinessHome";
-import { DashboardTodayFocus } from "@/components/dashboard/DashboardTodayFocus";
+import {
+  DashboardGraphicHero,
+  weakTopicPracticeHref,
+  type DashboardWeakFocus,
+} from "@/components/dashboard/DashboardGraphicHero";
+import { DashboardWeakTopicChips } from "@/components/dashboard/DashboardWeakTopicChips";
 import { DashboardViewSections } from "@/components/app/DashboardViewSections";
 import { Skeleton } from "@/components/ui/skeleton";
-import { postTrialCheckoutHref } from "@/lib/dashboard/upgrade-banner";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { buildPracticeReadinessSummary } from "@/lib/learning/honest-readiness";
 import { dbUi } from "@/lib/study/dashboard-ui";
-import { ROUTES } from "@/lib/routes";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import type { RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
-import { displayFirstName } from "@/lib/display-name";
-import { cn } from "@/lib/utils";
 
 const DashboardExamCountdown = dynamic(
   () =>
@@ -30,6 +28,22 @@ export type DashboardHeadline = {
   trendDelta: number | null;
 };
 
+function topWeakFocus(
+  examSlug: ExamSlug,
+  weakTopics: WeakTopicRow[],
+  practiceFieldId?: string
+): DashboardWeakFocus | null {
+  const topic = weakTopics[0];
+  if (!topic) return null;
+  const slug = topic.id.replace(/^(tag|subject):/, "");
+  return {
+    name: topic.name,
+    href:
+      topic.studyLinks?.practiceHref ??
+      weakTopicPracticeHref(examSlug, slug, practiceFieldId),
+  };
+}
+
 export function DashboardPageContent({
   examSlug,
   stats,
@@ -42,6 +56,7 @@ export function DashboardPageContent({
   testDate = null,
   upgrade,
   hasPremiumAccess = true,
+  practiceFieldId,
 }: {
   examSlug: ExamSlug;
   stats: StudyHubQuickStats;
@@ -54,15 +69,16 @@ export function DashboardPageContent({
   testDate?: string | null;
   upgrade?: DashboardUpgradeProps | null;
   hasPremiumAccess?: boolean;
+  /** Canonical bank field (USMLE step-aware). */
+  practiceFieldId?: string;
 }) {
   const exam = EXAM_CATALOG[examSlug];
-  const firstName = displayFirstName(userName);
   const showRecent = recentTests.length > 0;
   const isNewUser = stats.questionsAnswered === 0 && !showRecent;
   const studyLocked = !hasPremiumAccess;
   const readinessSummary = roadmap ? buildPracticeReadinessSummary(roadmap) : null;
-  const categoriesLabel =
-    examSlug === "nclex" ? "Client Needs (practice scores)" : "Blueprint domains (practice scores)";
+  const categoriesLabel = examSlug === "nclex" ? "Client Needs" : "Blueprint domains";
+  const fieldId = practiceFieldId ?? exam.fieldId;
 
   return (
     <div className={dbUi.page}>
@@ -70,65 +86,34 @@ export function DashboardPageContent({
         examName={exam.name}
         userName={userName}
         streakDays={stats.streakDays}
+        dueCount={spacedReview.dueCount}
+        questionsAnswered={stats.questionsAnswered}
       />
 
       <DashboardExamCountdown examSlug={examSlug} examName={exam.name} testDate={testDate} />
 
       {upgrade ? <DashboardUpgradeBanner {...upgrade} /> : null}
 
-      {readinessSummary ? (
-        <DashboardReadinessHome
+      <DashboardGraphicHero
+        examSlug={examSlug}
+        examName={exam.name}
+        readinessScore={readinessSummary?.overallScore ?? headline.readinessScore}
+        readinessSummary={readinessSummary}
+        categoriesLabel={categoriesLabel}
+        dueCount={spacedReview.dueCount}
+        topWeakTopic={topWeakFocus(examSlug, weakTopics, fieldId)}
+        hasRecent={showRecent}
+        studyLocked={studyLocked}
+        practiceFieldId={fieldId}
+      />
+
+      {!isNewUser ? (
+        <DashboardWeakTopicChips
           examSlug={examSlug}
-          summary={readinessSummary}
-          categoriesLabel={categoriesLabel}
+          weakTopics={weakTopics}
+          practiceFieldId={fieldId}
         />
       ) : null}
-
-      {isNewUser ? (
-        <section className={cn(dbUi.surface, "p-4 sm:p-5")}>
-          <p className={dbUi.eyebrow}>Get started</p>
-          <h2 className="mt-1 text-lg font-semibold text-[var(--color-ink)]">
-            Welcome to {exam.name} prep{firstName ? `, ${firstName}` : ""}.
-          </h2>
-          <p className={cn(dbUi.subtitle, "mt-1.5 max-w-xl")}>
-            {studyLocked
-              ? "Subscribe to unlock the question bank and study tools."
-              : "Take your first practice set — we'll track readiness and review here."}
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {studyLocked ? (
-              <Link href={postTrialCheckoutHref()} className={dbUi.primaryBtn}>
-                <Lock className="h-3.5 w-3.5" aria-hidden />
-                Subscribe to continue studying
-                <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-              </Link>
-            ) : (
-              <Link href={ROUTES.questionBank} className={dbUi.primaryBtn}>
-                Start practicing
-                <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-              </Link>
-            )}
-          </div>
-        </section>
-      ) : (
-        <DashboardTodayFocus
-          examSlug={examSlug}
-          examName={exam.name}
-          readinessScore={
-            readinessSummary?.overallScore ?? headline.readinessScore
-          }
-          motivationalMessage={
-            readinessSummary
-              ? `${readinessSummary.bandLabel} — ${readinessSummary.reason}`
-              : headline.motivationalMessage
-          }
-          dueCount={spacedReview.dueCount}
-          topWeakTopic={weakTopics[0]?.name ?? null}
-          hasRecent={showRecent}
-          studyLocked={studyLocked}
-          practiceBandLabel={readinessSummary?.bandLabel}
-        />
-      )}
 
       <DashboardViewSections
         examSlug={examSlug}
@@ -138,6 +123,7 @@ export function DashboardPageContent({
         recentTests={recentTests}
         srsInFocus={!isNewUser && spacedReview.dueCount > 0}
         hideRoadmapPreview={Boolean(readinessSummary)}
+        practiceFieldId={fieldId}
       />
     </div>
   );

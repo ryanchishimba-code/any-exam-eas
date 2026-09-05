@@ -115,10 +115,10 @@ export function parseTopicPracticeReturn(
   };
 }
 
-export function questionBankHref(examSlug?: ExamSlug): string {
+export function questionBankHref(examSlug?: ExamSlug, fieldIdOverride?: string): string {
   if (!examSlug) return ROUTES.questionBank;
-  const fieldId = EXAM_CATALOG[examSlug].fieldId;
-  return `${ROUTES.questionBank}?field=${encodeURIComponent(fieldId)}`;
+  const fieldId = fieldIdOverride ?? EXAM_CATALOG[examSlug].fieldId;
+  return `${ROUTES.questionBank}?field=${encodeURIComponent(fieldId)}&mode=bank`;
 }
 
 export function simulatedExamHref(
@@ -135,8 +135,12 @@ export function analyticsHref(): string {
   return ROUTES.analytics;
 }
 
-export function spacedReviewHref(examSlug: ExamSlug, count = 20): string {
-  const fieldId = EXAM_CATALOG[examSlug].fieldId;
+export function spacedReviewHref(
+  examSlug: ExamSlug,
+  count = 20,
+  fieldIdOverride?: string
+): string {
+  const fieldId = fieldIdOverride ?? EXAM_CATALOG[examSlug].fieldId;
   const qs = new URLSearchParams({
     field: fieldId,
     mode: "bank",

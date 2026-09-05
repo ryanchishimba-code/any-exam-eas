@@ -7,7 +7,8 @@ import { resolveDashboardUpgradeContext } from "@/lib/dashboard/upgrade-banner";
 import type { UserAccess } from "@/lib/access-control";
 import { DashboardPageContent } from "@/components/app/DashboardPageContent";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getUserExamPreference, resolveExamFieldId } from "@/lib/edtech/exam-preference";
+import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import { resolveCanonicalPracticeFieldId } from "@/lib/edtech/question-bank-scope";
 import { getUserEdtechMetadata, getExamTestDate } from "@/lib/edtech/user-metadata";
 import { getExamScopedStats } from "@/lib/edtech/stats";
 import { getExamRoadmapData } from "@/lib/learning/exam-roadmap";
@@ -56,19 +57,26 @@ async function DashboardContent({
   access: UserAccess;
   examSlug: ExamSlug;
 }) {
-  const fieldId = resolveExamFieldId(examSlug);
+  // USMLE-aware field so stats, weak topics, and roadmap match the question bank.
+  const fieldId = await resolveCanonicalPracticeFieldId(userId, examSlug);
 
   // Wave 1: core study state (keep concurrency low — Prisma connection_limit=1 on Vercel).
   const [stats, dashboard] = await runPageDb(() =>
     Promise.all([
-      getExamScopedStats(userId, examSlug),
+      getExamScopedStats(userId, examSlug, fieldId),
       getStudentDashboardData(userId, [fieldId]),
     ])
   );
 
   // Wave 2: secondary panels — degrade instead of blanking the whole dashboard.
   const [roadmap, metadata, usage] = await Promise.all([
-    settled(getExamRoadmapData(userId, examSlug), null, "roadmap"),
+    settled(
+      getExamRoadmapData(userId, examSlug, {
+        usmleFieldId: examSlug === "usmle" ? fieldId : undefined,
+      }),
+      null,
+      "roadmap"
+    ),
     settled(getUserEdtechMetadata(userId), null, "metadata"),
     settled(getStudyUsageSnapshot(access), null, "usage"),
   ]);
@@ -77,7 +85,8 @@ async function DashboardContent({
 
   const weakTopics = enrichWeakTopicsWithStudyLinks(
     examSlug,
-    dashboard.weakTopics.slice(0, 6)
+    dashboard.weakTopics.slice(0, 6),
+    { fieldId }
   );
 
   return (
@@ -97,6 +106,7 @@ async function DashboardContent({
       testDate={testDate}
       hasPremiumAccess={access.hasPremiumAccess}
       upgrade={usage ? resolveDashboardUpgradeContext(access, usage) : null}
+      practiceFieldId={fieldId}
     />
   );
 }

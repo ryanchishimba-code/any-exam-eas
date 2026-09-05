@@ -14,6 +14,7 @@ export function DashboardViewSections({
   recentTests,
   srsInFocus = false,
   hideRoadmapPreview = false,
+  practiceFieldId,
 }: {
   examSlug: ExamSlug;
   /** Kept for call-site compatibility; weak topics live on Roadmap now. */
@@ -25,6 +26,7 @@ export function DashboardViewSections({
   srsInFocus?: boolean;
   /** When Practice readiness home already shows domain bars. */
   hideRoadmapPreview?: boolean;
+  practiceFieldId?: string;
 }) {
   const showRecent = recentTests.length > 0;
   const showSpacedReview = spacedReview.dueCount > 0 && !srsInFocus;
@@ -36,7 +38,11 @@ export function DashboardViewSections({
       ) : null}
 
       {showSpacedReview ? (
-        <DashboardSpacedReview examSlug={examSlug} spacedReview={spacedReview} />
+        <DashboardSpacedReview
+          examSlug={examSlug}
+          spacedReview={spacedReview}
+          practiceFieldId={practiceFieldId}
+        />
       ) : null}
 
       {showRecent ? (

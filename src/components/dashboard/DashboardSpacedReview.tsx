@@ -11,9 +11,11 @@ import { cn } from "@/lib/utils";
 export function DashboardSpacedReview({
   examSlug,
   spacedReview,
+  practiceFieldId,
 }: {
   examSlug: ExamSlug;
   spacedReview: SpacedReviewSummary;
+  practiceFieldId?: string;
 }) {
   const { dueCount, weakDueCount } = spacedReview;
   if (dueCount === 0) return null;
@@ -35,7 +37,7 @@ export function DashboardSpacedReview({
       </div>
 
       <Link
-        href={spacedReviewHref(examSlug, reviewCount)}
+        href={spacedReviewHref(examSlug, reviewCount, practiceFieldId)}
         className={cn(dbUi.exploreLink, "w-full justify-between")}
       >
         <div className="min-w-0">

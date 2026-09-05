@@ -15,9 +15,9 @@ const EMPTY: StudyHubQuickStats = {
 
 async function loadExamScopedStats(
   userId: string,
-  examSlug: ExamSlug
+  examSlug: ExamSlug,
+  fieldId: string
 ): Promise<StudyHubQuickStats> {
-  const fieldId = resolveExamFieldId(examSlug);
   const since = new Date();
   since.setUTCDate(since.getUTCDate() - 30);
 
@@ -76,16 +76,18 @@ async function loadExamScopedStats(
   };
 }
 
-/** Quick stats scoped to the user's selected exam field. */
+/** Quick stats scoped to the user's selected exam field (USMLE step-aware when fieldId passed). */
 export async function getExamScopedStats(
   userId: string,
-  examSlug: ExamSlug
+  examSlug: ExamSlug,
+  fieldIdOverride?: string
 ): Promise<StudyHubQuickStats> {
+  const fieldId = fieldIdOverride ?? resolveExamFieldId(examSlug);
   try {
     return await cacheGetOrSetDeduped(
-      cacheKey(["exam-scoped-stats", userId, examSlug]),
+      cacheKey(["exam-scoped-stats", userId, examSlug, fieldId]),
       CACHE_TTL.examScopedStats,
-      () => loadExamScopedStats(userId, examSlug),
+      () => loadExamScopedStats(userId, examSlug, fieldId),
       { staleTtlMs: CACHE_STALE.examScopedStats }
     );
   } catch {

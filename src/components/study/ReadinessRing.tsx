@@ -13,9 +13,9 @@ export function ReadinessRing({
   const radius = (size - stroke) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (clamped / 100) * circumference;
-  const scoreSize = size >= 104 ? 26 : 22;
-  const suffixSize = size >= 104 ? 14 : 12;
-  const labelSize = size >= 104 ? 10 : 9;
+  const scoreSize = size >= 140 ? 34 : size >= 104 ? 26 : 22;
+  const suffixSize = size >= 140 ? 16 : size >= 104 ? 14 : 12;
+  const labelSize = size >= 140 ? 11 : size >= 104 ? 10 : 9;
 
   return (
     <div

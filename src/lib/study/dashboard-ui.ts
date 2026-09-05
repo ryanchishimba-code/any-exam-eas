@@ -1,8 +1,22 @@
 /** Calm dashboard tokens — aligned with library and study-ui. */
 export const dbUi = {
-  page: "dashboard-ui mx-auto w-full min-w-0 max-w-5xl space-y-5 overflow-x-hidden pb-10",
+  page: "dashboard-ui mx-auto w-full min-w-0 max-w-5xl space-y-4 overflow-x-hidden pb-10",
   surface:
     "rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)]",
+  /** Graphic-first hero — one composition for ring + sparks + CTA. */
+  heroSurface:
+    "apple-animate-in rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] p-4 sm:p-6",
+  heroLayout:
+    "flex flex-col items-center gap-5 sm:flex-row sm:items-center sm:gap-8",
+  sparkTrack:
+    "h-1.5 overflow-hidden rounded-full bg-[var(--color-border)]/70",
+  sparkBar: "h-full rounded-full transition-[width] duration-500 motion-reduce:transition-none",
+  statusPill:
+    "inline-flex items-center gap-1 rounded-full bg-[var(--color-surface)] px-2.5 py-1 text-[11px] font-medium tabular-nums text-[var(--color-ink-muted)]",
+  statusPillAccent:
+    "inline-flex items-center gap-1 rounded-full bg-[var(--color-accent)]/10 px-2.5 py-1 text-[11px] font-semibold tabular-nums text-[var(--color-accent)]",
+  weakChip:
+    "inline-flex max-w-full items-center gap-2 rounded-full border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] px-3 py-1.5 text-[12px] font-medium text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/30 hover:text-[var(--color-accent)]",
   eyebrow:
     "text-[10px] font-semibold uppercase tracking-[0.14em] text-[var(--color-ink-muted)]",
   title: "text-[22px] font-semibold tracking-tight text-[var(--color-ink)] sm:text-[26px]",
@@ -21,7 +35,7 @@ export const dbUi = {
   exploreLink:
     "group flex items-center gap-3 rounded-2xl border border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] px-3.5 py-3 transition hover:border-[var(--color-accent)]/20 hover:bg-[var(--color-surface)]/40",
   primaryBtn:
-    "inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-4 py-2.5 text-[13px] font-semibold text-white shadow-sm transition hover:opacity-95 active:scale-[0.98]",
+    "inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-5 py-3 text-[14px] font-semibold text-white shadow-sm transition hover:opacity-95 active:scale-[0.98]",
   ghostBtn:
     "inline-flex items-center justify-center gap-1.5 rounded-xl border border-[var(--color-border)]/70 bg-[var(--color-surface-elevated)] px-3 py-2 text-[12px] font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/25 hover:text-[var(--color-accent)]",
   switchExam:
