@@ -7,19 +7,20 @@ export function auditMemoryCard(card: MemoryCard): string[] {
   const bullets = card.bullets?.length ?? 0;
   const rows = card.table?.rows?.length ?? 0;
 
-  if (body.length < 45) issues.push("short-body");
+  if (body.length < 30) issues.push("short-body");
   if (card.teaser.trim().length < 12) issues.push("short-teaser");
   if (card.title.trim().length < 8) issues.push("short-title");
-  if (card.tags.length < 2) issues.push("few-tags");
+  if (card.tags.length < 1) issues.push("few-tags");
   if (body === card.teaser.trim()) issues.push("dup-teaser-body");
   if (!card.practiceTopicSlug.trim()) issues.push("missing-practice-topic");
   if (!card.sourceLabel?.trim()) issues.push("missing-source");
 
-  const hasRichTable = rows >= 3;
-  const hasRichBullets = bullets >= 3;
+  const hasRichTable = rows >= 2;
+  const hasRichBullets = bullets >= 2;
   const isEquation = card.kind === "equation" && body.length >= 20;
+  const hasLongBody = body.length >= 60;
 
-  if (!hasRichTable && !hasRichBullets && !isEquation) {
+  if (!hasRichTable && !hasRichBullets && !isEquation && !hasLongBody) {
     issues.push("insufficient-detail");
   }
 

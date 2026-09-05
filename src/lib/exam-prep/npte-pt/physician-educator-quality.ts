@@ -133,8 +133,8 @@ export function assessNptePtPhysicianEducatorItem(
     push("batch_tag", 'Missing "physician-educator" tag for curated batch tracking.');
   }
 
-  if (!tags.includes("NPTE-PT-2024")) {
-    push("blueprint_tag", 'Missing "NPTE-PT-2024" blueprint tag.');
+  if (!tags.includes("NPTE-PT-2026") && !tags.includes("NPTE-PT-2024")) {
+    push("blueprint_tag", 'Missing "NPTE-PT-2026" blueprint tag.');
   }
 
   for (const pattern of AI_TELLTALE_PATTERNS) {

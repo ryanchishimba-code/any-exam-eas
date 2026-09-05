@@ -36,6 +36,30 @@ export const PHARMACOLOGY_MOA_STEP1_MODULE: ReviewModuleContent = {
       ],
     },
     {
+      id: "comparisons",
+      title: T.comparisons,
+      tables: [
+        {
+          caption: "Agonist classes at a glance",
+          headers: ["Class", "Efficacy", "Exam clue"],
+          rows: [
+            ["Full agonist", "Maximal", "Can be displaced by competitive antagonist"],
+            ["Partial agonist", "Submaximal", "Acts as antagonist in presence of full agonist"],
+            ["Inverse agonist", "Below basal", "Reduces constitutive receptor activity"],
+          ],
+        },
+      ],
+    },
+    {
+      id: "visual-aids",
+      title: T["visual-aids"],
+      bullets: [
+        "Dose-response: parallel right shift = competitive antagonism; downshift = noncompetitive",
+        "Therapeutic index = TD50/ED50 — narrow index drugs need monitoring",
+        "Loading dose ≈ Css × Vd; maintenance ≈ Css × CL",
+      ],
+    },
+    {
       id: "misconceptions",
       title: T.misconceptions,
       bullets: [

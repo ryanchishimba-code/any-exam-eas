@@ -4,6 +4,7 @@ import type { BankItem } from "@/lib/question-bank";
 export function isNptePtCuratedItem(item: Pick<BankItem, "tags">): boolean {
   const tags = item.tags ?? [];
   if (tags.includes("physician-educator")) return true;
+  if (tags.includes("NPTE-PT-2026") && tags.includes("clinical-vignette")) return true;
   if (tags.includes("NPTE-PT-2024") && tags.includes("clinical-vignette")) return true;
   if (tags.includes("npte-pt-seed") && !tags.includes("bulk-bank")) return true;
   return false;

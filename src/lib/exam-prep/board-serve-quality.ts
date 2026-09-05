@@ -30,13 +30,14 @@ function isMcqLike(type: string | undefined): boolean {
 function mcqOptionsMeetBoardBar(
   options: string[] | undefined,
   correctAnswer: string | undefined,
-  type: string | undefined
+  type: string | undefined,
+  minOptionCount = BOARD_SERVE_MCQ_OPTION_COUNT
 ): boolean {
   if (!isMcqLike(type)) return true;
 
   const opts = options ?? [];
   if (type === "multiple_choice" || !type || type === "true_false") {
-    if (opts.length < BOARD_SERVE_MCQ_OPTION_COUNT) return false;
+    if (opts.length < minOptionCount) return false;
   }
   if (opts.length > 0 && hasGenericPlaceholderOptions(opts)) return false;
 

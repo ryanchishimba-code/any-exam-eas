@@ -46,6 +46,33 @@ function buildSystemModule(
         ],
       },
       {
+        id: "comparisons",
+        title: T.comparisons,
+        bullets: [
+          "Most likely diagnosis vs most appropriate next step — pick the stem that matches the question verb",
+          "Screening vs diagnostic testing — USPSTF asymptomatic care vs evaluating a symptomatic patient",
+          "First-line vs alternative therapy when comorbidities, pregnancy, or allergies constrain options",
+        ],
+      },
+      {
+        id: "visual-aids",
+        title: T["visual-aids"],
+        bullets: [
+          "Primary-care algorithm: assess → diagnose → plan → evaluate with clear recheck intervals",
+          "Red-flag box: chest pain, neuro deficit, respiratory distress, suicidal ideation — escalate first",
+          "Drug monitoring card: labs, timing, and stop criteria for high-risk meds in this system",
+        ],
+      },
+      {
+        id: "misconceptions",
+        title: T.misconceptions,
+        bullets: [
+          "Ordering every possible test is safer — choose the single result that changes the plan",
+          "Specialty guidelines always override primary-care context — start with outpatient standards of care",
+          "Patient education is optional — counseling is often the scored next step",
+        ],
+      },
+      {
         id: "pearls",
         title: T.pearls,
         bullets: [

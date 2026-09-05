@@ -744,7 +744,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Gastroenterology: GI Bleed, Liver & IBD",
     overview:
       "Variceal bleed protocol, cirrhosis complications, pancreatitis, IBD, and C diff — Step 2 CK GI module.",
-    practiceTopicSlug: "gastroenterology",
+    practiceTopicSlug: "internal-medicine",
     reviewModule: GASTROENTEROLOGY_USMLE_MODULE,
     sortOrder: 7,
   }),
@@ -754,7 +754,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Hematology & Oncology: Anemia, Clotting & Emergencies",
     overview:
       "Anemia workup, TTP vs ITP, APL with ATRA, tumor lysis, and oncologic emergencies — Step 2 CK heme/onc module.",
-    practiceTopicSlug: "hematology",
+    practiceTopicSlug: "internal-medicine",
     reviewModule: HEMATOLOGY_ONCOLOGY_USMLE_MODULE,
     sortOrder: 8,
   }),
@@ -764,7 +764,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Rheumatology: RA, SLE, Gout & Vasculitis",
     overview:
       "RA vs OA, SLE flares, crystal arthropathies, GCA, and ANCA vasculitis — Step 2 CK rheumatology module.",
-    practiceTopicSlug: "rheumatology",
+    practiceTopicSlug: "internal-medicine",
     reviewModule: RHEUMATOLOGY_USMLE_MODULE,
     sortOrder: 9,
   }),
@@ -774,7 +774,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Obstetrics: Preeclampsia, Labor & OB Emergencies",
     overview:
       "Hypertensive disorders, third-trimester bleeding, ectopic pregnancy, and postpartum hemorrhage — Step 2 CK OB module.",
-    practiceTopicSlug: "obstetrics",
+    practiceTopicSlug: "obgyn",
     reviewModule: OBSTETRICS_USMLE_MODULE,
     sortOrder: 10,
   }),
@@ -814,7 +814,7 @@ export const REVIEW_MODULE_TOPICS: HighYieldTopic[] = [
     title: "Dermatology & Allergy: Rashes, Anaphylaxis & Drug Eruptions",
     overview:
       "Anaphylaxis protocol, SJS/TEN, cellulitis vs nec fasc, psoriasis, and Lyme — Step 2 CK derm/allergy module.",
-    practiceTopicSlug: "dermatology",
+    practiceTopicSlug: "internal-medicine",
     reviewModule: DERMATOLOGY_ALLERGIC_USMLE_MODULE,
     sortOrder: 14,
   }),

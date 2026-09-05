@@ -20,7 +20,7 @@ const CATEGORY_TO_SUBJECT: Record<string, string> = {
   "respiratory-renal": "pulmonology",
   gastrointestinal: "internal-medicine",
   "reproductive-endocrine": "internal-medicine",
-  "hematology-immunology": "hematology",
+  "hematology-immunology": "pathology",
   musculoskeletal: "internal-medicine",
   "behavioral-nervous": "neurology",
   "pharmacology-microbiology": "pharmacology",

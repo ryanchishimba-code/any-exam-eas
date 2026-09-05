@@ -43,6 +43,9 @@ const testUsers = [
       planInterval: "yearly",
       trialEndsAt: null,
       currentPeriodEnd: daysFromNow(30),
+      // Access control requires Stripe sub id or valid comp for durable "active".
+      stripeCustomerId: "cus_seed_test_premium",
+      stripeSubscriptionId: "sub_seed_test_premium",
     },
   },
 ];

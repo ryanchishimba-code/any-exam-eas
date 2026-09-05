@@ -3,6 +3,8 @@ import { describe, expect, it, vi, beforeEach } from "vitest";
 import { useSession } from "next-auth/react";
 import { Hero } from "@/components/Hero";
 import * as returningUser from "@/lib/client/returning-user";
+import { LANDING_HERO_HEADLINE, LANDING_TRIAL_HREF } from "@/lib/landing/content";
+import { formatTrialCtaLabel } from "@/lib/site";
 
 vi.mock("@/lib/client/returning-user", () => ({
   firstName: (name?: string | null, email?: string) =>
@@ -45,13 +47,12 @@ describe("Hero", () => {
 
     expect(
       screen.getByRole("heading", {
-        name: /pass your boards with confidence/i,
+        name: new RegExp(LANDING_HERO_HEADLINE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"),
       })
     ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /start.*trial/i })).toHaveAttribute(
-      "href",
-      "/signup?plan=trial&interval=yearly"
-    );
+    expect(
+      screen.getByRole("link", { name: new RegExp(formatTrialCtaLabel(), "i") })
+    ).toHaveAttribute("href", LANDING_TRIAL_HREF);
     expect(screen.getByRole("link", { name: /try free nclex demo/i })).toHaveAttribute(
       "href",
       "#ngn-demo"
@@ -75,7 +76,9 @@ describe("Hero", () => {
       "href",
       "/dashboard"
     );
-    expect(screen.queryByRole("link", { name: /start.*trial/i })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("link", { name: new RegExp(formatTrialCtaLabel(), "i") })
+    ).not.toBeInTheDocument();
   });
 
   it("welcomes returning visitors with login CTA", () => {
@@ -108,7 +111,9 @@ describe("Hero", () => {
 
     render(<Hero compareLayout />);
 
-    const region = screen.getByRole("region", { name: /pass your boards with confidence/i });
+    const region = screen.getByRole("region", {
+      name: new RegExp(LANDING_HERO_HEADLINE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i"),
+    });
     expect(region).toHaveAttribute("aria-labelledby", "hero-heading");
   });
 });

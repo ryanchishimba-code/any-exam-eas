@@ -7,7 +7,7 @@ import { examSlugFromFieldId } from "@/lib/edtech/exams";
 const EXAM_NAV_STATS = {
   nursing: "6,304",
   usmle: "17,390",
-  pharmacy: "8,065",
+  pharmacy: "9,000",
   aanpFnp: "4,781",
   nptePt: "4,240",
 } as const;

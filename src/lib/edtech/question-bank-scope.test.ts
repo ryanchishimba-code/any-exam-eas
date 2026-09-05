@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("@/lib/edtech/exam-preference", () => ({
   getUserExamPreference: vi.fn(),
+  getUserExamPreferenceFresh: vi.fn(),
   setUserExamPreference: vi.fn(),
 }));
 
@@ -9,7 +10,7 @@ vi.mock("@/lib/edtech/user-metadata", () => ({
   getUserEdtechMetadata: vi.fn(async () => ({})),
 }));
 
-import { getUserExamPreference } from "@/lib/edtech/exam-preference";
+import { getUserExamPreferenceFresh } from "@/lib/edtech/exam-preference";
 import {
   canonicalPracticeFieldId,
   enforceQuestionBankFieldAccess,
@@ -21,11 +22,11 @@ import {
 
 describe("question-bank-scope", () => {
   beforeEach(() => {
-    vi.mocked(getUserExamPreference).mockReset();
+    vi.mocked(getUserExamPreferenceFresh).mockReset();
   });
 
   it("allows matching exam field access without throwing", async () => {
-    vi.mocked(getUserExamPreference).mockResolvedValue({
+    vi.mocked(getUserExamPreferenceFresh).mockResolvedValue({
       userId: "user-1",
       examSlug: "nclex",
       lastStudiedAt: null,
@@ -40,7 +41,7 @@ describe("question-bank-scope", () => {
   });
 
   it("rejects fields that do not match the selected exam", async () => {
-    vi.mocked(getUserExamPreference).mockResolvedValue({
+    vi.mocked(getUserExamPreferenceFresh).mockResolvedValue({
       userId: "user-1",
       examSlug: "nclex",
       lastStudiedAt: null,

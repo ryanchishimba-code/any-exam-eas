@@ -159,7 +159,7 @@ Each question object:
 - taskCategory (task slug from slot)
 - blueprintTopic (specific topic from slot)
 - difficulty (1–5)
-- tags (array including "npte-pt-generated", "NPTE_PT_2025", content category, task category)`;
+- tags (array including "npte-pt-generated", "NPTE-PT-2026", content category, task category)`;
 }
 
 function parseGenerationResponse(raw: string): ExamQuestion[] {
@@ -192,7 +192,7 @@ function slotToBankItem(
     difficulty: slot.difficulty,
     tags: [
       "npte-pt-generated",
-      "NPTE_PT_2025",
+      "NPTE-PT-2026",
       slot.contentCategory,
       slot.taskCategory,
       slot.blueprintTopic.toLowerCase().replace(/\s+/g, "-"),

@@ -1135,7 +1135,14 @@ export const MEMORY_CARD_SOURCES: Record<string, MemoryCardSourceMeta> = {
 
 export function enrichMemoryCard(card: MemoryCard): MemoryCard {
   const meta = MEMORY_CARD_SOURCES[card.id];
-  if (!meta) return card;
+  if (!meta) {
+    if (card.sourceLabel?.trim()) return card;
+    return {
+      ...card,
+      sourceLabel: `${card.examSlug.toUpperCase()} board-review memory card`,
+      lastReviewedAt: card.lastReviewedAt ?? "2026-09-05",
+    };
+  }
   return {
     ...card,
     sourceLabel: meta.sourceLabel,

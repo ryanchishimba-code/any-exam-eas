@@ -49,12 +49,39 @@ export const NPTE_PEDS_GERIATRICS_MODULE: ReviewModuleContent = {
       ],
     },
     {
+      id: "visual-aids",
+      title: T["visual-aids"],
+      bullets: [
+        "GMFCS levels I–V: map motor function to expected community participation",
+        "Fall risk triad: strength + balance + environment — address all three in the plan",
+        "Infant torticollis stretch: lateral flexion away from tight SCM, rotation toward tight side",
+      ],
+    },
+    {
       id: "misconceptions",
       title: T.misconceptions,
       bullets: [
         "Children are small adults — growth, development, and family context change every plan",
         "Geriatric patients cannot exercise — modified progressive activity reduces falls and deconditioning",
         "Wait until torticollis resolves spontaneously — early treatment improves outcomes",
+      ],
+    },
+    {
+      id: "pearls",
+      title: T.pearls,
+      bullets: [
+        "Family coaching beats therapist-only sessions for pediatric carryover",
+        "Start geriatric programs at low dose and titrate — underdosing is safer than overreaching",
+        "Asymmetric head preference after 4 months warrants referral beyond basic stretch advice",
+      ],
+    },
+    {
+      id: "quick-summary",
+      title: T["quick-summary"],
+      bullets: [
+        "Pediatrics: development + family context drive dosing and goals",
+        "Geriatrics: multifactorial fall risk — strength, balance, meds, environment",
+        "Early torticollis care prevents secondary plagiocephaly and delay",
       ],
     },
   ],

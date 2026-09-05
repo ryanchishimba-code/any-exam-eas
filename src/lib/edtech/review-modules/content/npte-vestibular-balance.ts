@@ -50,12 +50,39 @@ export const NPTE_VESTIBULAR_BALANCE_MODULE: ReviewModuleContent = {
       ],
     },
     {
+      id: "visual-aids",
+      title: T["visual-aids"],
+      bullets: [
+        "Dix-Hallpike: head extended off table, turn 45° toward test ear — watch for upbeat torsional nystagmus",
+        "Epley sequence: Dix-Hallpike → roll to opposite side → sit up; pause at each position until nystagmus settles",
+        "VOR x1: eyes fixed on target while head turns slowly; progress speed as tolerance improves",
+      ],
+    },
+    {
       id: "misconceptions",
       title: T.misconceptions,
       bullets: [
         "All vertigo is BPPV — central and hypofunction causes require different interventions",
         "Avoid all head movement — controlled head movement is essential for adaptation",
         "Epley maneuver is contraindicated in all neck pain — screen for appropriate candidates",
+      ],
+    },
+    {
+      id: "pearls",
+      title: T.pearls,
+      bullets: [
+        "Direction-changing nystagmus or neurologic signs → central until proven otherwise",
+        "Treat suspected APL-level urgency for central red flags: do not keep repositioning",
+        "Habituation works for motion sensitivity after peripheral hypofunction, not for untreated BPPV",
+      ],
+    },
+    {
+      id: "quick-summary",
+      title: T["quick-summary"],
+      bullets: [
+        "BPPV → repositioning; hypofunction → gaze stabilization + balance; central → urgent referral",
+        "Dix-Hallpike distinguishes canalithiasis from hypofunction before choosing the plan",
+        "Progress dual-task balance once VOR and positional symptoms are controlled",
       ],
     },
   ],

@@ -17,26 +17,28 @@ function examPreferenceCacheKey(userId: string): string {
   return cacheKey(["exam-preference", userId]);
 }
 
+async function readUserExamPreferenceFromDb(userId: string): Promise<UserExamPreference | null> {
+  const row = await prisma.userExamPreference.findUnique({ where: { userId } });
+  if (!row) return null;
+
+  let examSlug = row.examSlug;
+  if (examSlug === "mpje" || !isExamSlug(examSlug)) {
+    examSlug = "pance";
+    await setUserExamPreference(userId, "pance");
+  }
+
+  return {
+    userId: row.userId,
+    examSlug: examSlug as ExamSlug,
+    lastStudiedAt: row.lastStudiedAt,
+  };
+}
+
 async function readUserExamPreference(userId: string): Promise<UserExamPreference | null> {
   return cacheGetOrSetDeduped(
     examPreferenceCacheKey(userId),
     CACHE_TTL.examPreference,
-    async () => {
-      const row = await prisma.userExamPreference.findUnique({ where: { userId } });
-      if (!row) return null;
-
-      let examSlug = row.examSlug;
-      if (examSlug === "mpje" || !isExamSlug(examSlug)) {
-        examSlug = "pance";
-        await setUserExamPreference(userId, "pance");
-      }
-
-      return {
-        userId: row.userId,
-        examSlug: examSlug as ExamSlug,
-        lastStudiedAt: row.lastStudiedAt,
-      };
-    },
+    () => readUserExamPreferenceFromDb(userId),
     { staleTtlMs: CACHE_STALE.examPreference }
   );
 }
@@ -45,6 +47,16 @@ async function readUserExamPreference(userId: string): Promise<UserExamPreferenc
 export const getUserExamPreference = cache(async (userId: string): Promise<UserExamPreference | null> => {
   return readUserExamPreference(userId);
 });
+
+/**
+ * Authoritative preference for access/enforcement paths.
+ * Bypasses L1/Redis so multi-instance switches cannot 403 on a stale isolate.
+ */
+export async function getUserExamPreferenceFresh(
+  userId: string
+): Promise<UserExamPreference | null> {
+  return readUserExamPreferenceFromDb(userId);
+}
 
 export async function setUserExamPreference(userId: string, examSlug: ExamSlug): Promise<void> {
   await ensureBoardExam(examSlug);

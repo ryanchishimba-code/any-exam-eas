@@ -616,7 +616,7 @@ export const NAPLEX_EXTENDED_MEMORY_CARDS: MemoryCard[] = [
   },
   // —— TDM ——
   {
-    id: "naplex-vanc-auc",
+    id: "naplex-vanc-auc-tdm",
     examSlug: "naplex",
     subject: "TDM",
     topic: "Vancomycin",

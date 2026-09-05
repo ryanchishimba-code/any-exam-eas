@@ -7,12 +7,35 @@ const base = (process.argv[2] ?? "http://localhost:3000").replace(/\/$/, "");
 const email = process.env.LOAD_TEST_EMAIL ?? "test-premium@anyexameasy.test";
 const password = process.env.LOAD_TEST_PASSWORD ?? "TestLogin1!";
 
-const EXAM_FIELD_IDS = ["nursing", "usmle-step-2", "pharmacy", "mpje"];
-const RETIRED_FIELD_IDS = ["dentistry", "sat", "math", "biology", "chemistry", "medicine", "inbde"];
+/** Matches live `/api/catalog/subjects` field ids (USMLE steps are separate fields). */
+const EXAM_FIELD_IDS = [
+  "nursing",
+  "usmle-step-1",
+  "usmle-step-2",
+  "usmle-step-3",
+  "pharmacy",
+  "pance",
+  "aanp-fnp",
+  "npte-pt",
+];
+const RETIRED_FIELD_IDS = [
+  "dentistry",
+  "sat",
+  "math",
+  "biology",
+  "chemistry",
+  "medicine",
+  "inbde",
+  "mpje",
+];
 const EXAM_QUESTION_SAMPLES = [
-  { field: "nursing", subjectId: "pharmacology-nursing" },
-  { field: "usmle-step-2", subjectId: "cardiology" },
-  { field: "pharmacy", subjectId: "pharmacology" },
+  { field: "nursing", subjectId: "pharmacology-nursing", examSlug: "nclex" },
+  // Default stored USMLE step is Step 1 unless the learner picks Step 2/3 in select-exam.
+  { field: "usmle-step-1", subjectId: "pathology", examSlug: "usmle" },
+  { field: "pharmacy", subjectId: "pharmacology", examSlug: "naplex" },
+  { field: "pance", subjectId: "cardiovascular", examSlug: "pance" },
+  { field: "aanp-fnp", subjectId: "assess", examSlug: "aanp-fnp" },
+  { field: "npte-pt", subjectId: "cardiovascular-pulmonary", examSlug: "npte-pt" },
 ];
 
 const PUBLIC_PAGES = [
@@ -165,9 +188,9 @@ try {
     const ids = json.subjects.map((s) => s.fieldId).sort();
     const expected = [...EXAM_FIELD_IDS].sort();
     if (JSON.stringify(ids) === JSON.stringify(expected)) {
-      ok("catalog has 4 exams", ids.join(", "));
+      ok("catalog exam ids", ids.join(", "));
     } else {
-      fail("catalog exam ids", `got [${ids.join(", ")}]`);
+      fail("catalog exam ids", `got [${ids.join(", ")}] expected [${expected.join(", ")}]`);
     }
     const total = json.totalQuestions ?? json.subjects.reduce((n, s) => n + (s.questionCount ?? 0), 0);
     total > 0 ? ok("question bank populated", `${total} questions`) : fail("question bank populated", "0 questions");
@@ -212,67 +235,117 @@ if (auth?.cookie) {
     : fail("/api/me", `status ${me.status}`);
 
   const sub = await fetchJson("/api/subscription/status", { headers: authHeaders });
-  sub.status === 200 ? ok("/api/subscription/status", sub.json?.status ?? "ok") : fail("/api/subscription/status", `status ${sub.status}`);
+  sub.status === 200
+    ? ok("/api/subscription/status", sub.json?.status ?? "ok")
+    : fail("/api/subscription/status", `status ${sub.status}`);
 
-  const profile = await fetchJson("/api/learning/profile", { headers: authHeaders });
-  profile.status === 200 ? ok("/api/learning/profile") : fail("/api/learning/profile", `status ${profile.status}`);
-
-  const dash = await fetchJson("/api/learning/dashboard", { headers: authHeaders });
-  dash.status === 200 ? ok("/api/learning/dashboard") : fail("/api/learning/dashboard", `status ${dash.status}`);
-
-  console.log("\nQuestion bank (authenticated)");
-  for (const { field, subjectId } of EXAM_QUESTION_SAMPLES) {
-    const q = await fetchJson(
-      `/api/questions?field=${encodeURIComponent(field)}&subjectId=${encodeURIComponent(subjectId)}&limit=5`,
-      { headers: authHeaders }
+  const hasStudyAccess = Boolean(sub.json?.hasStudyAccess ?? sub.json?.hasAccess);
+  if (!hasStudyAccess) {
+    fail(
+      "premium study access",
+      `${email} is ${sub.json?.status ?? "unknown"} — run npm run db:seed-test-users (or :prod) to restore Pro`
     );
-    if (q.status === 200) {
-      const questions = q.json?.questions ?? q.json?.items ?? [];
-      const count = Array.isArray(questions) ? questions.length : 0;
-      count > 0 ? ok(`${field}/${subjectId}`, `${count} questions`) : fail(`${field}/${subjectId}`, "empty bank");
-    } else {
-      fail(`${field}/${subjectId}`, `status ${q.status}`);
-    }
-  }
-
-  console.log("\nStudy attempt (mock)");
-  const mockQuestion = {
-    id: "flow-test-1",
-    sourceIndex: 1,
-    type: "multiple_choice",
-    stem: "A patient with heart failure reports sudden weight gain. What is the priority assessment?",
-    options: ["Dry cough", "Bilateral crackles and edema", "Normal BP", "Clear lungs"],
-    correctAnswers: ["Bilateral crackles and edema"],
-    explanation: "Fluid overload manifests as crackles and edema.",
-    field: "nursing",
-    subjectId: "pharmacology-nursing",
-    tags: ["cardiac"],
-    difficulty: "medium",
-    highYield: true,
-  };
-  const attempt = await fetch(`${base}/api/study/attempt`, {
-    method: "POST",
-    headers: { ...authHeaders, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      question: mockQuestion,
-      correct: true,
-      confidence: 4,
-      durationMs: 12000,
-      selectedAnswer: "Bilateral crackles and edema",
-      sessionId: `flow-test-${Date.now()}`,
-    }),
-  });
-  if (attempt.status === 200) {
-    const body = await attempt.json();
-    body.ok === true ? ok("/api/study/attempt") : fail("/api/study/attempt", "ok !== true");
+    console.log("  (skipped study APIs — account lacks study access)");
   } else {
-    fail("/api/study/attempt", `status ${attempt.status}`);
-  }
+    const profile = await fetchJson("/api/learning/profile", { headers: authHeaders });
+    profile.status === 200
+      ? ok("/api/learning/profile")
+      : fail("/api/learning/profile", `status ${profile.status}`);
 
-  console.log("\nDrugs300 APIs");
-  for (const path of ["/api/drugs300/due", "/api/drugs300/progress"]) {
-    const r = await fetchJson(path, { headers: authHeaders });
-    r.status === 200 ? ok(path) : fail(path, `status ${r.status}`);
+    const dash = await fetchJson("/api/learning/dashboard", { headers: authHeaders });
+    dash.status === 200
+      ? ok("/api/learning/dashboard")
+      : fail("/api/learning/dashboard", `status ${dash.status}`);
+
+    console.log("\nQuestion bank (authenticated)");
+    for (const { field, subjectId, examSlug } of EXAM_QUESTION_SAMPLES) {
+      const pref = await fetch(`${base}/api/user/exam-preference`, {
+        method: "POST",
+        headers: { ...authHeaders, "Content-Type": "application/json" },
+        body: JSON.stringify({ examSlug }),
+      });
+      if (!pref.ok) {
+        fail(`${field}/${subjectId}`, `exam preference ${pref.status}`);
+        continue;
+      }
+
+      // Production caches exam preference per isolate; poll until GET matches.
+      let ready = false;
+      for (let attempt = 0; attempt < 8; attempt++) {
+        const check = await fetchJson("/api/user/exam-preference", { headers: authHeaders });
+        if (check.json?.examSlug === examSlug) {
+          ready = true;
+          break;
+        }
+        await new Promise((r) => setTimeout(r, 400));
+      }
+      if (!ready) {
+        fail(`${field}/${subjectId}`, `preference stuck after switch to ${examSlug}`);
+        continue;
+      }
+
+      let q = null;
+      for (let attempt = 0; attempt < 10; attempt++) {
+        q = await fetchJson(
+          `/api/questions?field=${encodeURIComponent(field)}&subjectId=${encodeURIComponent(subjectId)}&limit=5`,
+          { headers: authHeaders }
+        );
+        if (q.status !== 403 || q.json?.code !== "EXAM_FIELD_MISMATCH") break;
+        await new Promise((r) => setTimeout(r, 500));
+      }
+      if (q.status === 200) {
+        const questions = q.json?.questions ?? q.json?.items ?? [];
+        const count = Array.isArray(questions) ? questions.length : 0;
+        count > 0
+          ? ok(`${field}/${subjectId}`, `${count} questions`)
+          : fail(`${field}/${subjectId}`, "empty bank");
+      } else {
+        fail(
+          `${field}/${subjectId}`,
+          `status ${q.status}${q.json?.code ? ` ${q.json.code}` : ""}`
+        );
+      }
+    }
+
+    console.log("\nStudy attempt (mock)");
+    const mockQuestion = {
+      id: "flow-test-1",
+      sourceIndex: 1,
+      type: "multiple_choice",
+      stem: "A patient with heart failure reports sudden weight gain. What is the priority assessment?",
+      options: ["Dry cough", "Bilateral crackles and edema", "Normal BP", "Clear lungs"],
+      correctAnswers: ["Bilateral crackles and edema"],
+      explanation: "Fluid overload manifests as crackles and edema.",
+      field: "nursing",
+      subjectId: "pharmacology-nursing",
+      tags: ["cardiac"],
+      difficulty: "medium",
+      highYield: true,
+    };
+    const attempt = await fetch(`${base}/api/study/attempt`, {
+      method: "POST",
+      headers: { ...authHeaders, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        question: mockQuestion,
+        correct: true,
+        confidence: 4,
+        durationMs: 12000,
+        selectedAnswer: "Bilateral crackles and edema",
+        sessionId: `flow-test-${Date.now()}`,
+      }),
+    });
+    if (attempt.status === 200) {
+      const body = await attempt.json();
+      body.ok === true ? ok("/api/study/attempt") : fail("/api/study/attempt", "ok !== true");
+    } else {
+      fail("/api/study/attempt", `status ${attempt.status}`);
+    }
+
+    console.log("\nDrugs300 APIs");
+    for (const path of ["/api/drugs300/due", "/api/drugs300/progress"]) {
+      const r = await fetchJson(path, { headers: authHeaders });
+      r.status === 200 ? ok(path) : fail(path, `status ${r.status}`);
+    }
   }
 } else {
   console.log("  (skipped authenticated flows — login failed)");

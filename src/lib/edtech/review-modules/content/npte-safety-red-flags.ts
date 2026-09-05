@@ -50,12 +50,39 @@ export const NPTE_SAFETY_RED_FLAGS_MODULE: ReviewModuleContent = {
       ],
     },
     {
+      id: "visual-aids",
+      title: T["visual-aids"],
+      bullets: [
+        "Red-flag decision tree: systemic signs → hold PT → refer; local mechanical signs → proceed with caution",
+        "Contact precautions: gown + gloves; airborne: N95; droplet: surgical mask",
+        "Stop-exercise cues: chest pain, unexplained dyspnea, neuro deficit, unstable vitals",
+      ],
+    },
+    {
       id: "misconceptions",
       title: T.misconceptions,
       bullets: [
         "PTs treat all patients who walk in — screening for red flags is mandatory before intervention",
         "Gloves replace hand hygiene — wash or sanitize before and after glove use",
         "Pain alone always contraindicates exercise — distinguish acceptable discomfort from harmful activity",
+      ],
+    },
+    {
+      id: "pearls",
+      title: T.pearls,
+      bullets: [
+        "Document screening findings even when clearing for treatment",
+        "When in doubt on spinal cord or cauda equina signs — do not mobilize; escalate",
+        "Infection control is part of every session, not only isolation rooms",
+      ],
+    },
+    {
+      id: "quick-summary",
+      title: T["quick-summary"],
+      bullets: [
+        "Screen → clear or refer before dosing exercise",
+        "Match PPE to transmission route; hygiene always",
+        "Stop for systemic or neurologic red flags immediately",
       ],
     },
   ],

@@ -37,6 +37,30 @@ export const PATHOLOGY_NEOPLASIA_STEP1_MODULE: ReviewModuleContent = {
       ],
     },
     {
+      id: "comparisons",
+      title: T.comparisons,
+      tables: [
+        {
+          caption: "Metaplasia vs dysplasia vs neoplasia",
+          headers: ["Process", "Reversible?", "Key feature"],
+          rows: [
+            ["Metaplasia", "Often yes", "One differentiated cell type replaces another"],
+            ["Dysplasia", "May progress", "Disordered growth within epithelium"],
+            ["Neoplasia", "No (clonal)", "Uncontrolled growth; invasion defines malignancy"],
+          ],
+        },
+      ],
+    },
+    {
+      id: "visual-aids",
+      title: T["visual-aids"],
+      bullets: [
+        "Caseating granuloma: central necrosis + Langhans giant cells → TB until proven otherwise",
+        "Auer rods in blasts → AML lineage clue",
+        "Red vs pale infarct: dual vs single arterial supply tissues",
+      ],
+    },
+    {
       id: "misconceptions",
       title: T.misconceptions,
       bullets: [

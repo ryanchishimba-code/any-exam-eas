@@ -3,7 +3,7 @@ import { getSubjectsForField } from "@/lib/field-subjects";
 import { ANATOMY_STRUCTURES } from "@/lib/anatomy/structures";
 import { REVIEW_MODULE_ANATOMY } from "@/lib/anatomy/review-module-anatomy";
 import { isValidAnatomyStructureId } from "@/lib/anatomy/structure-ids";
-import { EXAM_CATALOG } from "@/lib/edtech/exams";
+import { EXAM_CATALOG, examFieldIds } from "@/lib/edtech/exams";
 import { getHighYieldTopics } from "@/lib/edtech/seeds";
 import { REVIEW_MODULE_TOPICS } from "@/lib/edtech/seeds/review-module-topics";
 import { REVIEW_MODULE_CONTENT_BY_SLUG } from "@/lib/edtech/review-modules/content";
@@ -31,8 +31,11 @@ import type { ExamSlug } from "@/types/edtech";
 const EXAM_SLUGS = Object.keys(EXAM_CATALOG) as ExamSlug[];
 
 function validSubjectIds(examSlug: ExamSlug): Set<string> {
-  const subjects = getSubjectsForField(EXAM_CATALOG[examSlug].fieldId);
-  return new Set(subjects.map((s) => s.id));
+  const ids = new Set<string>();
+  for (const fieldId of examFieldIds(examSlug)) {
+    for (const s of getSubjectsForField(fieldId)) ids.add(s.id);
+  }
+  return ids;
 }
 
 const SUBJECTS_BY_EXAM = new Map(EXAM_SLUGS.map((slug) => [slug, validSubjectIds(slug)]));

@@ -5,7 +5,7 @@ import {
   fieldIdForExamSlug,
   fieldMatchesExamSlug,
 } from "@/lib/edtech/exam-field-ids";
-import { getUserExamPreference, setUserExamPreference } from "@/lib/edtech/exam-preference";
+import { getUserExamPreferenceFresh, setUserExamPreference } from "@/lib/edtech/exam-preference";
 import { getUserEdtechMetadata } from "@/lib/edtech/user-metadata";
 import {
   defaultUsmleFieldId,
@@ -70,7 +70,7 @@ export async function enforceUserExamSlugAccess(
   userId: string,
   examSlug: ExamSlug
 ): Promise<ExamSlugAccess> {
-  const pref = await getUserExamPreference(userId);
+  const pref = await getUserExamPreferenceFresh(userId);
   if (!pref) {
     return {
       ok: false,
@@ -117,7 +117,7 @@ export async function enforceQuestionBankFieldAccess(
   userId: string,
   field: string
 ): Promise<QuestionBankFieldAccess> {
-  const pref = await getUserExamPreference(userId);
+  const pref = await getUserExamPreferenceFresh(userId);
   if (!pref) {
     return {
       ok: false,
