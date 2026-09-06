@@ -22,6 +22,8 @@ import {
 import { dedupeItemsByClinicalCase, sessionDedupeKey } from "@/lib/exam-prep/diverse-session-selection";
 import { auditExamSimilarity } from "@/lib/exam-prep/exam-similarity";
 import { finalizeExamSessionItems } from "@/lib/exam-prep/finalize-exam-selection";
+import { selectUsmleSessionBankItems } from "@/lib/exam-prep/usmle/session-selection";
+import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
 import { sequenceItems } from "@/lib/exam-prep/sequencing/anti-cluster-sequencer";
 import type {
   SequenceItem,
@@ -251,10 +253,24 @@ async function composeForConfigWithTier(
 
   let selected: BankItem[];
   if (tier.useDiverseSelection) {
-    selected = finalizeExamSessionItems(casePool, numQuestions, {
-      seed,
-      requestedCount: numQuestions,
-    });
+    if (isUsmleFieldId(config.fieldId)) {
+      const stepLevel =
+        config.fieldId === "usmle-step-1"
+          ? "step1"
+          : config.fieldId === "usmle-step-3"
+            ? "step3"
+            : "step2";
+      selected = selectUsmleSessionBankItems(casePool, numQuestions, {
+        seed,
+        stepLevel,
+        weakSystemIds: params.focusAreas,
+      });
+    } else {
+      selected = finalizeExamSessionItems(casePool, numQuestions, {
+        seed,
+        requestedCount: numQuestions,
+      });
+    }
   } else {
     selected = shuffleWithSeed(casePool, seed).slice(0, numQuestions);
   }

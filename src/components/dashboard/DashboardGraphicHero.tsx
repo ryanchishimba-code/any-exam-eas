@@ -14,7 +14,7 @@ import { domainTilesFromReadiness } from "@/lib/study/domain-map";
 import { ROUTES } from "@/lib/routes";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
-import { isTodayEngineEnabled, isTodayEngineNaplexEnabled } from "@/lib/engine/mastery/feature-flag";
+import { isTodayEngineEnabled, isTodayEngineNaplexEnabled, isTodayEngineUsmleEnabled } from "@/lib/engine/mastery/feature-flag";
 
 type NextAction = {
   label: string;
@@ -51,6 +51,13 @@ export function resolveDashboardNextAction({
       label: "Today",
       href: todayPracticeHref("naplex", 40, practiceFieldId),
       status: "Your NAPLEX mastery set",
+    };
+  }
+  if (examSlug === "usmle" && isTodayEngineUsmleEnabled()) {
+    return {
+      label: "Today",
+      href: todayPracticeHref("usmle", 40, practiceFieldId),
+      status: "Your organ-system mastery set",
     };
   }
   if (examSlug === "nclex" && isTodayEngineEnabled()) {

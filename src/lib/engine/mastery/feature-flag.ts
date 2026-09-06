@@ -23,3 +23,17 @@ export function isTodayEngineNaplexEnabled(): boolean {
   // Inherit global Today kill-switch when NAPLEX-specific flag is unset.
   return isTodayEngineEnabled();
 }
+
+/**
+ * USMLE Mastery / Today — organ-system spine cells.
+ * Defaults on when unset; set TODAY_ENGINE_USMLE=false to disable.
+ */
+export function isTodayEngineUsmleEnabled(): boolean {
+  const raw =
+    process.env.NEXT_PUBLIC_TODAY_ENGINE_USMLE ??
+    process.env.TODAY_ENGINE_USMLE ??
+    "";
+  if (raw === "false" || raw === "0") return false;
+  if (raw === "true" || raw === "1") return true;
+  return isTodayEngineEnabled();
+}

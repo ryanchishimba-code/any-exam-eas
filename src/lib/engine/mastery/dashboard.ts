@@ -2,19 +2,22 @@
  * Dashboard helpers — load Mastery rollup + domain tiles colored by cell state.
  */
 
-import { buildNclexSkillCells, buildNaplexSkillCells } from "@/lib/engine/mastery/cells";
+import { buildNclexSkillCells, buildNaplexSkillCells, buildUsmleSkillCells } from "@/lib/engine/mastery/cells";
 import { computeMasteryRollup } from "@/lib/engine/mastery/rollup";
 import { loadUserCellStates } from "@/lib/engine/mastery/persist";
 import { cellStateToRoadmapKey, emptyCellState } from "@/lib/engine/mastery/transitions";
 import {
   isTodayEngineEnabled,
   isTodayEngineNaplexEnabled,
+  isTodayEngineUsmleEnabled,
 } from "@/lib/engine/mastery/feature-flag";
 import type { MasteryRollup } from "@/lib/engine/mastery/types";
 import type { DomainMapTile } from "@/components/dashboard/DomainMap";
 import { practiceTopicHref, todayPracticeHref } from "@/lib/edtech/practice-links-core";
 import { clientNeeds2026 } from "@/lib/nursing/client-needs-2026";
 import { NAPLEX_OUTLINE_2025 } from "@/lib/pharmacy/naplex-outline-2025";
+import { USMLE_ORGAN_SYSTEMS, organSystemWeightsForStep } from "@/lib/exam-prep/usmle/official-content-model";
+import type { UsmleStepLevel } from "@/lib/exam-prep/usmle/types";
 
 export async function loadNclexMasteryDashboard(userId: string): Promise<{
   rollup: MasteryRollup;
@@ -126,6 +129,69 @@ export async function loadNaplexMasteryDashboard(userId: string): Promise<{
       score,
       status: cellStateToRoadmapKey(worst),
       practiceHref: todayPracticeHref("naplex", 40),
+      coveragePct: Math.min(
+        100,
+        Math.round((answered / Math.max(1, systemCells.length * 5)) * 100)
+      ),
+    };
+  });
+
+  return { rollup, mapTiles };
+}
+
+/** Organ-system USMLE map tiles + rollup for Practice Hub. */
+export async function loadUsmleMasteryDashboard(
+  userId: string,
+  step: UsmleStepLevel = "step2"
+): Promise<{
+  rollup: MasteryRollup;
+  mapTiles: DomainMapTile[];
+} | null> {
+  if (!isTodayEngineUsmleEnabled()) return null;
+
+  const cells = buildUsmleSkillCells(step);
+  const states = await loadUserCellStates(userId, "usmle");
+  const rollup = computeMasteryRollup({ cells, states });
+  const weights = organSystemWeightsForStep(step);
+
+  const mapTiles: DomainMapTile[] = USMLE_ORGAN_SYSTEMS.map((sys) => {
+    const systemCells = cells.filter((c) => c.systemKey === sys.id);
+    const systemStates = systemCells.map(
+      (c) => states.get(c.cellKey) ?? emptyCellState(c.cellKey)
+    );
+    const rank = (s: string) =>
+      s === "shaky"
+        ? 0
+        : s === "learning"
+          ? 1
+          : s === "primed" || s === "unseen"
+            ? 2
+            : s === "stable"
+              ? 3
+              : 4;
+    const worst =
+      systemStates.sort((a, b) => rank(a.state) - rank(b.state))[0]?.state ?? "unseen";
+    const answered = systemStates.reduce((n, s) => n + s.itemsAnswered, 0);
+    const score =
+      worst === "exam_ready"
+        ? 90
+        : worst === "stable"
+          ? 75
+          : worst === "learning"
+            ? 55
+            : worst === "shaky"
+              ? 35
+              : answered > 0
+                ? 40
+                : 10;
+
+    return {
+      id: sys.id,
+      label: sys.shortLabel,
+      weightPct: Math.round((weights[sys.id] ?? 0.05) * 100),
+      score,
+      status: cellStateToRoadmapKey(worst),
+      practiceHref: todayPracticeHref("usmle", 40),
       coveragePct: Math.min(
         100,
         Math.round((answered / Math.max(1, systemCells.length * 5)) * 100)

@@ -6,6 +6,7 @@ import { bankItemToUsmleExam } from "./usmle-bank-bridge";
 import { isUsmleFieldId, USMLE_STEP3_NON_VIGNETTE_ITEM_TYPES } from "./usmle/steps";
 import { nptePtBankItemIsExamFillReady, nptePtBankItemIsServeReady } from "./npte-pt/clinical-gate";
 import { serveQaPassedBankItems } from "./serve-qa-passed";
+import { selectUsmleSessionBankItems } from "./usmle/session-selection";
 import { hasGenericPlaceholderOptions } from "@/lib/question-format";
 import { BOARD_SERVE_MIN_EXPLANATION_CHARS } from "./board-serve-quality";
 
@@ -136,8 +137,11 @@ export function prepareUsmleItemsForSession({
   fieldId,
   limit,
 }: PrepareUsmleItemsParams): BankItem[] {
-  return serveQaPassedBankItems(
-    items.filter((item) => usmleBankItemIsServeReady(item, fieldId)),
-    limit
-  );
+  const vetted = items.filter((item) => usmleBankItemIsServeReady(item, fieldId));
+  if (isUsmleFieldId(fieldId)) {
+    const stepLevel =
+      fieldId === "usmle-step-1" ? "step1" : fieldId === "usmle-step-3" ? "step3" : "step2";
+    return selectUsmleSessionBankItems(vetted, limit, { stepLevel });
+  }
+  return serveQaPassedBankItems(vetted, limit);
 }

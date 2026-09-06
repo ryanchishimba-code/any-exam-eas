@@ -19,6 +19,7 @@ import {
   resolveLegacyUsmleTopicAlias,
 } from "../src/lib/exam-prep/usmle/infer-blueprint-topic";
 import { getUsmle2026Topic } from "../src/lib/exam-prep/usmle/blueprint-topics-2026";
+import { resolveOrganSystemId } from "../src/lib/exam-prep/usmle/content-spine";
 
 const USMLE_FIELDS = ["usmle-step-1", "usmle-step-2", "usmle-step-3"] as const;
 
@@ -47,7 +48,11 @@ function resolveStepLevel(stepLevel: string | null | undefined, fieldId: string)
 }
 
 function expectedDomainForTopic(topic: string, stepLevel: "step1" | "step2" | "step3") {
-  return getUsmle2026Topic(topic)?.categoryId ?? null;
+  return (
+    resolveOrganSystemId(null, topic, null) ??
+    getUsmle2026Topic(topic)?.categoryId ??
+    null
+  );
 }
 
 function shouldUpdateRow(

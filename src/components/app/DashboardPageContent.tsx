@@ -92,13 +92,17 @@ export function DashboardPageContent({
       ? "Your NCLEX domains"
       : examSlug === "naplex"
         ? "Your NAPLEX domains"
-        : "Your blueprint";
+        : examSlug === "usmle"
+          ? "Your organ systems"
+          : "Your blueprint";
   const categoriesHint =
     examSlug === "nclex"
       ? "Official Client Needs · ranked by need · tap to practice"
       : examSlug === "naplex"
         ? "NABP 2025 Content Outline · Domain 3 is 40% · tap Today"
-        : "Official exam blueprint · ranked by need · tap to practice";
+        : examSlug === "usmle"
+          ? "NBME organ systems · ranked by need · tap Today"
+          : "Official exam blueprint · ranked by need · tap to practice";
   const fieldId = practiceFieldId ?? exam.fieldId;
   const showNaplexPanel = examSlug === "naplex" && isTodayEngineNaplexEnabled();
 

@@ -13,6 +13,7 @@ import {
   PANCE_KNOWLEDGE_AREAS,
   PANCE_OUTLINE_SOURCE,
 } from "@/lib/exam-prep/pance/content-outline";
+import { buildSpineExamBlueprint } from "@/lib/exam-prep/usmle/content-spine";
 
 export type BlueprintCategory = {
   id: string;
@@ -162,140 +163,41 @@ const NCLEX_RN: ExamBlueprint = {
 
 /** USMLE Step 1 — basic sciences. */
 const USMLE_STEP_1: ExamBlueprint = {
-  fieldId: "usmle-step-1",
-  examName: "USMLE Step 1",
-  sourceNote: "USMLE Content Outline — Step 1 basic sciences",
-  vignetteMinRatio: 0.55,
-  categories: [
-    {
-      id: "anatomy",
-      label: "Anatomy",
-      weight: 0.18,
-      subjectIds: ["anatomy"],
-      highYieldTopics: ["regional anatomy", "embryology", "histology", "cranial nerves"],
-    },
-    {
-      id: "physiology",
-      label: "Physiology",
-      weight: 0.18,
-      subjectIds: ["physiology"],
-      highYieldTopics: ["cardiovascular", "renal", "respiratory", "endocrine", "acid-base"],
-    },
-    {
-      id: "pathology",
-      label: "Pathology",
-      weight: 0.18,
-      subjectIds: ["pathology"],
-      highYieldTopics: ["inflammation", "neoplasia", "hemodynamics", "mechanisms of disease"],
-    },
-    {
-      id: "pharmacology",
-      label: "Pharmacology",
-      weight: 0.16,
-      subjectIds: ["pharmacology"],
-      highYieldTopics: ["MOA", "adverse effects", "interactions", "autonomic drugs"],
-    },
-    {
-      id: "biochemistry",
-      label: "Biochemistry",
-      weight: 0.15,
-      subjectIds: ["biochemistry"],
-      highYieldTopics: ["metabolic pathways", "enzymes", "nutrition", "genetics"],
-    },
-    {
-      id: "microbiology",
-      label: "Microbiology & Immunology",
-      weight: 0.15,
-      subjectIds: ["microbiology"],
-      highYieldTopics: ["bacteria", "viruses", "hypersensitivity", "vaccines"],
-    },
+  ...buildSpineExamBlueprint("usmle-step-1", "USMLE Step 1", "step1", {
+    vignetteMinRatio: 0.55,
+  }),
+  ngnMix: [
+    { format: "lab_interpretation", weight: 0.12, label: "Lab interpretation" },
+    { format: "image_based", weight: 0.08, label: "Image / exhibit" },
+    { format: "sequential", weight: 0.06, label: "Multi-step sequential" },
+    { format: "biostats", weight: 0.05, label: "Biostatistics / epidemiology" },
+    { format: "calculation", weight: 0.08, label: "Quantitative calculation" },
   ],
 };
 
-/** USMLE Step 2 CK — clinical sciences. */
+/** USMLE Step 2 CK — official organ-system spine + clinical emphasis. */
 const USMLE_STEP_2: ExamBlueprint = {
-  fieldId: "usmle-step-2",
-  examName: "USMLE Step 2 CK",
-  sourceNote: "USMLE Content Outline — Step 2 CK clinical sciences",
-  vignetteMinRatio: 0.75,
-  categories: [
-    {
-      id: "cardiovascular",
-      label: "Cardiovascular",
-      weight: 0.12,
-      subjectIds: ["cardiology", "internal-medicine"],
-      highYieldTopics: ["ACS", "heart failure", "hypertension", "arrhythmias", "valvular disease"],
-    },
-    {
-      id: "respiratory",
-      label: "Respiratory",
-      weight: 0.1,
-      subjectIds: ["pulmonology", "internal-medicine"],
-      highYieldTopics: ["COPD", "asthma", "pneumonia", "PE", "respiratory failure"],
-    },
-    {
-      id: "gastrointestinal",
-      label: "Gastrointestinal",
-      weight: 0.07,
-      subjectIds: ["internal-medicine"],
-      highYieldTopics: ["GERD", "PUD", "IBD", "hepatitis", "pancreatitis", "GI bleeding"],
-    },
-    {
-      id: "endocrine",
-      label: "Endocrine",
-      weight: 0.07,
-      subjectIds: ["internal-medicine"],
-      highYieldTopics: ["diabetes", "DKA/HHS", "thyroid disorders", "adrenal insufficiency"],
-    },
-    {
-      id: "infectious-disease",
-      label: "Infectious Disease",
-      weight: 0.07,
-      subjectIds: ["internal-medicine"],
-      highYieldTopics: ["sepsis", "HIV", "UTI", "meningitis", "antibiotic selection"],
-    },
-    {
-      id: "internal-medicine",
-      label: "Internal Medicine (other)",
-      weight: 0.05,
-      subjectIds: ["internal-medicine", "nephrology"],
-      highYieldTopics: ["AKI", "electrolytes", "anemia", "rheumatology"],
-    },
-    {
-      id: "surgery",
-      label: "Surgery & Acute Care",
-      weight: 0.14,
-      subjectIds: ["emergency-medicine"],
-      highYieldTopics: ["acute abdomen", "trauma", "post-op complications", "wound care"],
-    },
-    {
-      id: "pediatrics",
-      label: "Pediatrics",
-      weight: 0.12,
-      subjectIds: ["pediatrics"],
-      highYieldTopics: ["development", "vaccines", "neonatal jaundice", "febrile infant"],
-    },
-    {
-      id: "obgyn",
-      label: "OB/GYN",
-      weight: 0.12,
-      subjectIds: ["obgyn"],
-      highYieldTopics: ["prenatal care", "labor complications", "contraception", "preeclampsia"],
-    },
-    {
-      id: "psychiatry",
-      label: "Psychiatry",
-      weight: 0.07,
-      subjectIds: ["psychiatry"],
-      highYieldTopics: ["mood disorders", "psychosis", "substance use", "suicide risk"],
-    },
-    {
-      id: "emergency-medicine",
-      label: "Emergency Medicine",
-      weight: 0.07,
-      subjectIds: ["emergency-medicine"],
-      highYieldTopics: ["anaphylaxis", "shock", "toxicology", "ACLS"],
-    },
+  ...buildSpineExamBlueprint("usmle-step-2", "USMLE Step 2 CK", "step2", {
+    vignetteMinRatio: 0.75,
+  }),
+  ngnMix: [
+    { format: "lab_interpretation", weight: 0.1, label: "Lab interpretation" },
+    { format: "sequential", weight: 0.08, label: "Multi-step sequential" },
+    { format: "biostats", weight: 0.05, label: "Biostatistics / epidemiology" },
+    { format: "ethics", weight: 0.05, label: "Ethics / professionalism" },
+  ],
+};
+
+/** USMLE Step 3 — organ-system spine + management / CCS-style formats. */
+const USMLE_STEP_3: ExamBlueprint = {
+  ...buildSpineExamBlueprint("usmle-step-3", "USMLE Step 3", "step3", {
+    vignetteMinRatio: 0.65,
+  }),
+  ngnMix: [
+    { format: "biostats", weight: 0.12, label: "Biostatistics / epidemiology" },
+    { format: "calculation", weight: 0.08, label: "Quantitative calculation" },
+    { format: "ethics", weight: 0.08, label: "Medical ethics" },
+    { format: "sequential", weight: 0.08, label: "CCS-style sequential management" },
   ],
 };
 
@@ -516,85 +418,6 @@ const NPTE_PT: ExamBlueprint = {
       weight: 0.016 / NPTE_PT_CONTENT_WEIGHT_SUM,
       subjectIds: ["research-evidence"],
       highYieldTopics: ["sensitivity", "specificity", "outcome measures", "RCT appraisal"],
-    },
-  ],
-};
-
-/** USMLE Step 3 — Day 1 MCQs, biostatistics, ethics, abstracts, and CCS-style cases. */
-const USMLE_STEP_3: ExamBlueprint = {
-  fieldId: "usmle-step-3",
-  examName: "USMLE Step 3",
-  sourceNote: "USMLE Content Outline — Step 3 clinical encounter & independent practice",
-  vignetteMinRatio: 0.65,
-  ngnMix: [
-    { format: "biostats", weight: 0.12, label: "Biostatistics / epidemiology" },
-    { format: "calculation", weight: 0.08, label: "Quantitative calculation" },
-    { format: "ethics", weight: 0.08, label: "Medical ethics" },
-    { format: "sequential", weight: 0.05, label: "Multi-step sequential" },
-  ],
-  categories: [
-    {
-      id: "internal-medicine",
-      label: "Internal Medicine",
-      weight: 0.25,
-      subjectIds: ["internal-medicine", "cardiology", "nephrology"],
-      highYieldTopics: ["hypertension", "diabetes", "COPD", "CHF", "AKI"],
-    },
-    {
-      id: "surgery",
-      label: "Surgery & Acute Care",
-      weight: 0.12,
-      subjectIds: ["emergency-medicine"],
-      highYieldTopics: ["post-op fever", "acute abdomen", "trauma", "wound care"],
-    },
-    {
-      id: "pediatrics",
-      label: "Pediatrics",
-      weight: 0.12,
-      subjectIds: ["pediatrics"],
-      highYieldTopics: ["well-child", "vaccines", "febrile infant", "asthma"],
-    },
-    {
-      id: "obgyn",
-      label: "OB/GYN",
-      weight: 0.1,
-      subjectIds: ["obgyn"],
-      highYieldTopics: ["prenatal care", "labor", "contraception", "postpartum"],
-    },
-    {
-      id: "psychiatry",
-      label: "Psychiatry",
-      weight: 0.08,
-      subjectIds: ["psychiatry"],
-      highYieldTopics: ["depression", "psychosis", "substance use", "suicide risk"],
-    },
-    {
-      id: "biostatistics",
-      label: "Biostatistics & Epidemiology",
-      weight: 0.1,
-      subjectIds: ["internal-medicine"],
-      highYieldTopics: ["sensitivity", "specificity", "NNT", "study design", "bias"],
-    },
-    {
-      id: "ethics",
-      label: "Medical Ethics & Legal",
-      weight: 0.08,
-      subjectIds: ["internal-medicine"],
-      highYieldTopics: ["informed consent", "capacity", "confidentiality", "mandatory reporting"],
-    },
-    {
-      id: "pharm-advertising",
-      label: "Pharmaceutical Ads & Abstracts",
-      weight: 0.07,
-      subjectIds: ["pharmacology"],
-      highYieldTopics: ["drug ad interpretation", "abstract appraisal", "trial endpoints"],
-    },
-    {
-      id: "ccs",
-      label: "CCS-Style Case Management",
-      weight: 0.08,
-      subjectIds: ["internal-medicine", "emergency-medicine"],
-      highYieldTopics: ["initial workup", "monitoring", "escalation", "disposition"],
     },
   ],
 };

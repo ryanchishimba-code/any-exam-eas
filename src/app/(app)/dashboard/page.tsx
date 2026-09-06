@@ -95,7 +95,21 @@ async function DashboardContent({
             null,
             "mastery"
           )
-        : Promise.resolve(null),
+        : examSlug === "usmle"
+          ? settled(
+              import("@/lib/engine/mastery/dashboard").then((m) => {
+                const step =
+                  fieldId === "usmle-step-1"
+                    ? "step1"
+                    : fieldId === "usmle-step-3"
+                      ? "step3"
+                      : "step2";
+                return m.loadUsmleMasteryDashboard(userId, step);
+              }),
+              null,
+              "mastery"
+            )
+          : Promise.resolve(null),
   ]);
 
   const testDate = metadata ? getExamTestDate(metadata, examSlug) : null;

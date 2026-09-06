@@ -20,6 +20,16 @@ import {
   naplexDomainById,
   naplexDomainByNumber,
 } from "@/lib/pharmacy/naplex-outline-2025";
+import {
+  USMLE_ORGAN_SYSTEMS,
+  organSystemWeightsForStep,
+  isUsmleOrganSystemId,
+} from "@/lib/exam-prep/usmle/official-content-model";
+import {
+  USMLE_TOPIC_NODES,
+  resolveOrganSystemId,
+} from "@/lib/exam-prep/usmle/content-spine";
+import type { UsmleStepLevel } from "@/lib/exam-prep/usmle/types";
 import type { SkillCellDef } from "./types";
 
 export function skillCellKey(
@@ -91,10 +101,14 @@ export function resolveCellKeyFromQuestion(input: {
   topicCategory?: string | null;
   clientNeeds?: string | null;
   naplexDomain?: number | null;
+  blueprintTopic?: string | null;
 }): string | null {
   const examSlug = input.examSlug ?? "nclex";
   if (examSlug === "naplex") {
     return resolveNaplexCellKeyFromQuestion(input);
+  }
+  if (examSlug === "usmle") {
+    return resolveUsmleCellKeyFromQuestion(input);
   }
   const topicKey =
     input.subjectId ||
@@ -200,4 +214,64 @@ export function resolveNaplexCellKeyFromQuestion(input: {
 
   // Person-Centered Assessment is the largest share — safe default.
   return skillCellKey("naplex", "naplex-area3-treatment-planning", topicKey);
+}
+
+/**
+ * Skill Cells for USMLE — exam + organ-system spine + granular topic.
+ * Weights from official midpoints for the active step (default Step 2 CK).
+ */
+export function buildUsmleSkillCells(step: UsmleStepLevel = "step2"): SkillCellDef[] {
+  const examSlug = "usmle";
+  const weights = organSystemWeightsForStep(step);
+  const labelById = new Map(USMLE_ORGAN_SYSTEMS.map((s) => [s.id, s.label] as const));
+  const cells: SkillCellDef[] = [];
+
+  for (const node of USMLE_TOPIC_NODES) {
+    if (node.stepLevel !== step && node.legacyCategoryId !== "cross-cutting") continue;
+    const systemKey = node.systemId;
+    cells.push({
+      cellKey: skillCellKey(examSlug, systemKey, node.slug),
+      examSlug,
+      systemKey,
+      systemLabel: labelById.get(systemKey) ?? systemKey,
+      topicKey: node.slug,
+      topicLabel: node.label,
+      blueprintWeight: weights[systemKey] ?? 0.05,
+    });
+  }
+
+  for (const sys of USMLE_ORGAN_SYSTEMS) {
+    if (cells.some((c) => c.systemKey === sys.id)) continue;
+    cells.push({
+      cellKey: skillCellKey(examSlug, sys.id, "_system"),
+      examSlug,
+      systemKey: sys.id,
+      systemLabel: sys.label,
+      topicKey: "_system",
+      topicLabel: sys.label,
+      blueprintWeight: weights[sys.id] ?? 0.05,
+    });
+  }
+
+  return cells;
+}
+
+export function resolveUsmleCellKeyFromQuestion(input: {
+  blueprintDomain?: string | null;
+  subjectId?: string | null;
+  topicCategory?: string | null;
+  blueprintTopic?: string | null;
+}): string | null {
+  const topicKey =
+    input.blueprintTopic?.trim() ||
+    input.subjectId ||
+    input.topicCategory ||
+    "_system";
+  const system =
+    resolveOrganSystemId(input.blueprintDomain, input.blueprintTopic, input.subjectId) ??
+    (input.blueprintDomain && isUsmleOrganSystemId(input.blueprintDomain)
+      ? input.blueprintDomain
+      : null);
+  if (!system) return null;
+  return skillCellKey("usmle", system, topicKey);
 }

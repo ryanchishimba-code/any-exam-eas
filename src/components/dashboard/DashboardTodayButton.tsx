@@ -10,10 +10,12 @@ import { cn } from "@/lib/utils";
 export const AEE_TODAY_SESSION_KEY = "aee-today-session-v1";
 
 type Props = {
-  examSlug: "naplex" | "nclex";
+  examSlug: "naplex" | "nclex" | "usmle";
   size?: 20 | 40 | 60;
   className?: string;
   label?: string;
+  /** USMLE step field (usmle-step-1/2/3). */
+  fieldId?: string;
 };
 
 /** Primary Today CTA — builds a Mastery set and opens the existing quiz player. */
@@ -22,6 +24,7 @@ export function DashboardTodayButton({
   size = 40,
   className,
   label = "Today",
+  fieldId,
 }: Props) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -34,7 +37,7 @@ export function DashboardTodayButton({
       const res = await fetch("/api/study/today", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ examSlug, size }),
+        body: JSON.stringify({ examSlug, size, fieldId }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -62,7 +65,7 @@ export function DashboardTodayButton({
       setError(e instanceof Error ? e.message : "Could not start Today");
       setLoading(false);
     }
-  }, [examSlug, size, router]);
+  }, [examSlug, size, fieldId, router]);
 
   return (
     <div className={cn("flex flex-col items-center gap-1.5 sm:items-start", className)}>

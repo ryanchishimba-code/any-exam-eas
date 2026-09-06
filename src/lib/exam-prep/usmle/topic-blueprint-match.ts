@@ -3,6 +3,7 @@
  * DB blueprintTopic tags use kebab-case 2026 slugs; content match fills sparse tags.
  */
 import type { BankItem } from "@/lib/question-bank";
+import { expandUsmleBlueprintTopicMatchers } from "./blueprint-topic-aliases";
 import {
   allUsmle2026TopicSlugs,
   labelForUsmle2026TopicSlug,
@@ -216,9 +217,13 @@ export function filterItemsForUsmleBlueprintTopics(
 ): BankItem[] {
   if (blueprintTopics.length === 0) return items;
 
+  const expanded = [
+    ...new Set(blueprintTopics.flatMap((slug) => expandUsmleBlueprintTopicMatchers(slug))),
+  ];
+
   return items.filter((item) => {
     const stored = item.blueprintTopic?.trim();
-    if (stored && blueprintTopics.some((slug) => blueprintTagsMatch(stored, slug))) {
+    if (stored && expanded.some((slug) => blueprintTagsMatch(stored, slug))) {
       return true;
     }
     if (!opts?.contentMatch) return false;

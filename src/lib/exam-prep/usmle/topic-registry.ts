@@ -23,185 +23,81 @@ export type UsmleStudyDomain = {
   stepLevel: UsmleStepLevel;
 };
 
-/** Step 1 — basic science disciplines (First Aid / Pathoma lecture order). */
-export const USMLE_STEP1_DOMAINS: UsmleStudyDomain[] = [
-  {
-    id: "usmle-s1-pathology",
-    label: "Pathology & Neoplasia (~22%)",
-    shortLabel: "Pathology",
-    weightPct: 22,
-    sortOrder: 0,
-    stepLevel: "step1",
-  },
-  {
-    id: "usmle-s1-pharmacology",
-    label: "Pharmacology (~18%)",
-    shortLabel: "Pharmacology",
-    weightPct: 18,
-    sortOrder: 1,
-    stepLevel: "step1",
-  },
-  {
-    id: "usmle-s1-physiology",
-    label: "Physiology & Systems Integration (~16%)",
-    shortLabel: "Physiology",
-    weightPct: 16,
-    sortOrder: 2,
-    stepLevel: "step1",
-  },
-  {
-    id: "usmle-s1-biochemistry",
-    label: "Biochemistry & Genetics (~14%)",
-    shortLabel: "Biochemistry",
-    weightPct: 14,
-    sortOrder: 3,
-    stepLevel: "step1",
-  },
-  {
-    id: "usmle-s1-micro-immuno",
-    label: "Microbiology & Immunology (~14%)",
-    shortLabel: "Micro/Immuno",
-    weightPct: 14,
-    sortOrder: 4,
-    stepLevel: "step1",
-  },
-  {
-    id: "usmle-s1-anatomy",
-    label: "Anatomy & Embryology (~8%)",
-    shortLabel: "Anatomy",
-    weightPct: 8,
-    sortOrder: 5,
-    stepLevel: "step1",
-  },
-  {
-    id: "usmle-s1-biostatistics",
-    label: "Biostatistics & Behavioral (~8%)",
-    shortLabel: "Biostatistics",
-    weightPct: 8,
-    sortOrder: 6,
-    stepLevel: "step1",
-  },
-];
+/** Step-aware Study Hub domains = official organ-system spine. */
+function buildOrganSystemDomains(step: UsmleStepLevel): UsmleStudyDomain[] {
+  // Lazy import avoided — midpoints inlined from official midpoints / 100 for display.
+  const midpoints: Record<UsmleStepLevel, Record<string, number>> = {
+    step1: {
+      "human-development": 2,
+      "blood-lymph-immune": 11,
+      "behavioral-nervous": 12,
+      "msk-skin": 10,
+      cardiovascular: 9,
+      "respiratory-renal": 13,
+      gastrointestinal: 8,
+      "reproductive-endocrine": 14,
+      multisystem: 10,
+      "biostats-epi": 5,
+      "social-sciences": 8,
+    },
+    step2: {
+      "human-development": 3,
+      "blood-lymph-immune": 8,
+      "behavioral-nervous": 12,
+      "msk-skin": 9,
+      cardiovascular: 9,
+      "respiratory-renal": 12,
+      gastrointestinal: 8,
+      "reproductive-endocrine": 10,
+      multisystem: 6,
+      "biostats-epi": 4,
+      "social-sciences": 12,
+    },
+    step3: {
+      "human-development": 2,
+      "blood-lymph-immune": 8,
+      "behavioral-nervous": 12,
+      "msk-skin": 8,
+      cardiovascular: 10,
+      "respiratory-renal": 12,
+      gastrointestinal: 8,
+      "reproductive-endocrine": 10,
+      multisystem: 8,
+      "biostats-epi": 8,
+      "social-sciences": 10,
+    },
+  };
+  const labels: Record<string, { label: string; short: string }> = {
+    "human-development": { label: "Human Development", short: "Development" },
+    "blood-lymph-immune": { label: "Blood / Lymph / Immune", short: "Heme/Immune" },
+    "behavioral-nervous": { label: "Behavioral Health & Nervous Systems", short: "Neuro/Psych" },
+    "msk-skin": { label: "Musculoskeletal & Skin", short: "MSK/Skin" },
+    cardiovascular: { label: "Cardiovascular System", short: "CV" },
+    "respiratory-renal": { label: "Respiratory & Renal / Urinary", short: "Resp/Renal" },
+    gastrointestinal: { label: "Gastrointestinal System", short: "GI" },
+    "reproductive-endocrine": { label: "Reproductive & Endocrine", short: "Repro/Endo" },
+    multisystem: { label: "Multisystem Processes & Disorders", short: "Multisystem" },
+    "biostats-epi": { label: "Biostatistics & Epidemiology", short: "Biostats" },
+    "social-sciences": { label: "Ethics, Communication & SBP", short: "Ethics/SBP" },
+  };
+  const order = Object.keys(labels);
+  return order.map((id, i) => {
+    const pct = midpoints[step][id] ?? 5;
+    const meta = labels[id]!;
+    return {
+      id: `usmle-${id}`,
+      label: `${meta.label} (~${pct}%)`,
+      shortLabel: meta.short,
+      weightPct: pct,
+      sortOrder: i,
+      stepLevel: step,
+    };
+  });
+}
 
-/** Step 2 CK — clerkship-aligned organ systems. */
-export const USMLE_STEP2_DOMAINS: UsmleStudyDomain[] = [
-  {
-    id: "usmle-s2-cardiopulmonary",
-    label: "Cardiovascular & Pulmonary (~25%)",
-    shortLabel: "Cardiopulmonary",
-    weightPct: 25,
-    sortOrder: 0,
-    stepLevel: "step2",
-  },
-  {
-    id: "usmle-s2-nephro-endocrine",
-    label: "Renal, Endocrine & Electrolytes (~18%)",
-    shortLabel: "Renal/Endocrine",
-    weightPct: 18,
-    sortOrder: 1,
-    stepLevel: "step2",
-  },
-  {
-    id: "usmle-s2-gi-hepatology",
-    label: "GI & Hepatology (~12%)",
-    shortLabel: "GI/Hepatology",
-    weightPct: 12,
-    sortOrder: 2,
-    stepLevel: "step2",
-  },
-  {
-    id: "usmle-s2-infectious",
-    label: "Infectious Disease (~12%)",
-    shortLabel: "Infectious",
-    weightPct: 12,
-    sortOrder: 3,
-    stepLevel: "step2",
-  },
-  {
-    id: "usmle-s2-neuro",
-    label: "Neurology (~10%)",
-    shortLabel: "Neurology",
-    weightPct: 10,
-    sortOrder: 4,
-    stepLevel: "step2",
-  },
-  {
-    id: "usmle-s2-heme-rheum",
-    label: "Hematology, Oncology & Rheumatology (~10%)",
-    shortLabel: "Heme/Rheum",
-    weightPct: 10,
-    sortOrder: 5,
-    stepLevel: "step2",
-  },
-  {
-    id: "usmle-s2-ob-peds",
-    label: "OB/GYN & Pediatrics (~10%)",
-    shortLabel: "OB/Peds",
-    weightPct: 10,
-    sortOrder: 6,
-    stepLevel: "step2",
-  },
-  {
-    id: "usmle-s2-psych",
-    label: "Psychiatry (~6%)",
-    shortLabel: "Psychiatry",
-    weightPct: 6,
-    sortOrder: 7,
-    stepLevel: "step2",
-  },
-  {
-    id: "usmle-s2-emergency",
-    label: "Emergency & Toxicology (~5%)",
-    shortLabel: "Emergency",
-    weightPct: 5,
-    sortOrder: 8,
-    stepLevel: "step2",
-  },
-  {
-    id: "usmle-s2-derm",
-    label: "Dermatology & Allergy (~2%)",
-    shortLabel: "Derm/Allergy",
-    weightPct: 2,
-    sortOrder: 9,
-    stepLevel: "step2",
-  },
-];
-
-/** Step 3 — CCS, biostatistics, ethics, evidence appraisal. */
-export const USMLE_STEP3_DOMAINS: UsmleStudyDomain[] = [
-  {
-    id: "usmle-s3-ccs",
-    label: "CCS Case Management (~35%)",
-    shortLabel: "CCS",
-    weightPct: 35,
-    sortOrder: 0,
-    stepLevel: "step3",
-  },
-  {
-    id: "usmle-s3-biostatistics",
-    label: "Biostatistics & Epidemiology (~25%)",
-    shortLabel: "Biostatistics",
-    weightPct: 25,
-    sortOrder: 1,
-    stepLevel: "step3",
-  },
-  {
-    id: "usmle-s3-ethics",
-    label: "Ethics & Legal Medicine (~20%)",
-    shortLabel: "Ethics",
-    weightPct: 20,
-    sortOrder: 2,
-    stepLevel: "step3",
-  },
-  {
-    id: "usmle-s3-evidence",
-    label: "Pharmaceutical Ads & Abstracts (~20%)",
-    shortLabel: "Evidence",
-    weightPct: 20,
-    sortOrder: 3,
-    stepLevel: "step3",
-  },
-];
+export const USMLE_STEP1_DOMAINS: UsmleStudyDomain[] = buildOrganSystemDomains("step1");
+export const USMLE_STEP2_DOMAINS: UsmleStudyDomain[] = buildOrganSystemDomains("step2");
+export const USMLE_STEP3_DOMAINS: UsmleStudyDomain[] = buildOrganSystemDomains("step3");
 
 export type UsmleTopicMeta = {
   studyDomain: UsmleStudyDomainId;
@@ -212,199 +108,217 @@ export type UsmleTopicMeta = {
   primary?: boolean;
 };
 
-/** Maps blueprint categoryId → study domain per step. */
+/** Maps blueprint categoryId / spine system → study domain per step. */
 const STEP1_CATEGORY_DOMAIN: Record<string, UsmleStudyDomainId> = {
-  cardiovascular: "usmle-s1-pathology",
-  "respiratory-renal": "usmle-s1-physiology",
-  gastrointestinal: "usmle-s1-pathology",
-  "reproductive-endocrine": "usmle-s1-pathology",
-  "hematology-immunology": "usmle-s1-micro-immuno",
-  musculoskeletal: "usmle-s1-pathology",
-  "behavioral-nervous": "usmle-s1-anatomy",
-  "pharmacology-microbiology": "usmle-s1-pharmacology",
-  "biochemistry-genetics": "usmle-s1-biochemistry",
+  cardiovascular: "usmle-cardiovascular",
+  "respiratory-renal": "usmle-respiratory-renal",
+  gastrointestinal: "usmle-gastrointestinal",
+  "reproductive-endocrine": "usmle-reproductive-endocrine",
+  "hematology-immunology": "usmle-blood-lymph-immune",
+  "blood-lymph-immune": "usmle-blood-lymph-immune",
+  musculoskeletal: "usmle-msk-skin",
+  "msk-skin": "usmle-msk-skin",
+  "behavioral-nervous": "usmle-behavioral-nervous",
+  "pharmacology-microbiology": "usmle-multisystem",
+  "biochemistry-genetics": "usmle-biostats-epi",
+  "biostats-epi": "usmle-biostats-epi",
+  "human-development": "usmle-human-development",
+  multisystem: "usmle-multisystem",
+  "social-sciences": "usmle-social-sciences",
+  anatomy: "usmle-msk-skin",
+  physiology: "usmle-multisystem",
+  pathology: "usmle-multisystem",
+  pharmacology: "usmle-multisystem",
+  biochemistry: "usmle-biostats-epi",
+  microbiology: "usmle-blood-lymph-immune",
 };
 
 const STEP2_CATEGORY_DOMAIN: Record<string, UsmleStudyDomainId> = {
-  "internal-medicine": "usmle-s2-cardiopulmonary",
-  "surgery-acute-care": "usmle-s2-emergency",
-  pediatrics: "usmle-s2-ob-peds",
-  obgyn: "usmle-s2-ob-peds",
-  psychiatry: "usmle-s2-psych",
+  ...STEP1_CATEGORY_DOMAIN,
+  "internal-medicine": "usmle-multisystem",
+  "surgery-acute-care": "usmle-multisystem",
+  pediatrics: "usmle-human-development",
+  obgyn: "usmle-reproductive-endocrine",
+  psychiatry: "usmle-behavioral-nervous",
+  cardiology: "usmle-cardiovascular",
+  pulmonology: "usmle-respiratory-renal",
+  nephrology: "usmle-respiratory-renal",
+  neurology: "usmle-behavioral-nervous",
+  "emergency-medicine": "usmle-multisystem",
 };
 
 const STEP3_CATEGORY_DOMAIN: Record<string, UsmleStudyDomainId> = {
-  "internal-medicine": "usmle-s3-ccs",
-  surgery: "usmle-s3-ccs",
-  ccs: "usmle-s3-ccs",
-  biostatistics: "usmle-s3-biostatistics",
-  ethics: "usmle-s3-ethics",
-  "pharm-advertising": "usmle-s3-evidence",
+  ...STEP2_CATEGORY_DOMAIN,
+  surgery: "usmle-multisystem",
+  ccs: "usmle-multisystem",
+  biostatistics: "usmle-biostats-epi",
+  ethics: "usmle-social-sciences",
+  "pharm-advertising": "usmle-biostats-epi",
 };
 
 /** Flagship review-module and broad topic slugs — explicit domain mapping. */
 const USMLE_TOPIC_REGISTRY: Record<string, UsmleTopicMeta> = {
   // Step 1 flagship modules
   "pathology-neoplasia": {
-    studyDomain: "usmle-s1-pathology",
+    studyDomain: "usmle-multisystem",
     primary: true,
     relatedPresetIds: ["step1-path-drill"],
   },
   "pharmacology-moa": {
-    studyDomain: "usmle-s1-pharmacology",
+    studyDomain: "usmle-multisystem",
     primary: true,
     relatedDrugClasses: ["cardiovascular", "antibiotics", "cns-psych", "endocrine"],
     top500DrugSlugs: ["metoprolol", "lisinopril", "amoxicillin", "sertraline", "metformin"],
     relatedPresetIds: ["step1-pharm-drill"],
   },
-  "physiology-systems": { studyDomain: "usmle-s1-physiology", primary: true },
-  "biochemistry-metabolism": { studyDomain: "usmle-s1-biochemistry", primary: true },
+  "physiology-systems": { studyDomain: "usmle-respiratory-renal", primary: true },
+  "biochemistry-metabolism": { studyDomain: "usmle-biostats-epi", primary: true },
   "microbiology-immunology": {
-    studyDomain: "usmle-s1-micro-immuno",
+    studyDomain: "usmle-blood-lymph-immune",
     primary: true,
     relatedDrugClasses: ["antibiotics", "immunologic-other"],
     top500DrugSlugs: ["amoxicillin", "azithromycin", "vancomycin"],
   },
-  "anatomy-embryology": { studyDomain: "usmle-s1-anatomy", primary: true },
+  "anatomy-embryology": { studyDomain: "usmle-msk-skin", primary: true },
 
   // Step 2 flagship modules
   "acute-coronary-syndrome": {
-    studyDomain: "usmle-s2-cardiopulmonary",
+    studyDomain: "usmle-cardiovascular",
     primary: true,
     relatedDrugClasses: ["cardiovascular", "pain-inflammation"],
     top500DrugSlugs: ["aspirin", "metoprolol", "lisinopril", "atorvastatin", "heparin"],
     relatedPresetIds: ["step2-cardiology-block"],
   },
   cardiovascular: {
-    studyDomain: "usmle-s2-cardiopulmonary",
+    studyDomain: "usmle-cardiovascular",
     primary: true,
     relatedDrugClasses: ["cardiovascular"],
     top500DrugSlugs: ["metoprolol", "furosemide", "amlodipine", "losartan"],
     relatedPresetIds: ["step2-cardiology-block"],
   },
   pulmonary: {
-    studyDomain: "usmle-s2-cardiopulmonary",
+    studyDomain: "usmle-respiratory-renal",
     primary: true,
     relatedDrugClasses: ["respiratory"],
     top500DrugSlugs: ["albuterol", "montelukast", "prednisone"],
     relatedPresetIds: ["step2-pulmonary-block"],
   },
   "renal-electrolytes": {
-    studyDomain: "usmle-s2-nephro-endocrine",
+    studyDomain: "usmle-respiratory-renal",
     primary: true,
     relatedDrugClasses: ["cardiovascular", "endocrine"],
     top500DrugSlugs: ["furosemide", "hydrochlorothiazide", "potassium-chloride"],
   },
   "endocrine-dm": {
-    studyDomain: "usmle-s2-nephro-endocrine",
+    studyDomain: "usmle-reproductive-endocrine",
     primary: true,
     relatedDrugClasses: ["endocrine"],
     top500DrugSlugs: ["metformin", "insulin-glargine", "levothyroxine", "glucagon"],
     relatedPresetIds: ["step2-endocrine-block"],
   },
   gastroenterology: {
-    studyDomain: "usmle-s2-gi-hepatology",
+    studyDomain: "usmle-gastrointestinal",
     primary: true,
     relatedDrugClasses: ["gastrointestinal"],
     top500DrugSlugs: ["omeprazole", "pantoprazole", "ondansetron"],
   },
   "infectious-disease": {
-    studyDomain: "usmle-s2-infectious",
+    studyDomain: "usmle-blood-lymph-immune",
     primary: true,
     relatedDrugClasses: ["antibiotics"],
     top500DrugSlugs: ["vancomycin", "azithromycin", "amoxicillin", "ciprofloxacin"],
     relatedPresetIds: ["step2-id-block"],
   },
   "neurology-stroke": {
-    studyDomain: "usmle-s2-neuro",
+    studyDomain: "usmle-behavioral-nervous",
     primary: true,
     relatedDrugClasses: ["cardiovascular", "cns-psych"],
     top500DrugSlugs: ["alteplase", "levetiracetam", "aspirin"],
   },
   "hematology-oncology": {
-    studyDomain: "usmle-s2-heme-rheum",
+    studyDomain: "usmle-blood-lymph-immune",
     primary: true,
     relatedDrugClasses: ["immunologic-other"],
   },
-  rheumatology: { studyDomain: "usmle-s2-heme-rheum", primary: true },
-  obstetrics: { studyDomain: "usmle-s2-ob-peds", primary: true },
-  pediatrics: { studyDomain: "usmle-s2-ob-peds", primary: true },
+  rheumatology: { studyDomain: "usmle-blood-lymph-immune", primary: true },
+  obstetrics: { studyDomain: "usmle-human-development", primary: true },
+  pediatrics: { studyDomain: "usmle-human-development", primary: true },
   psychiatry: {
-    studyDomain: "usmle-s2-psych",
+    studyDomain: "usmle-behavioral-nervous",
     primary: true,
     relatedDrugClasses: ["cns-psych"],
     top500DrugSlugs: ["sertraline", "escitalopram", "bupropion", "gabapentin"],
     relatedPresetIds: ["step2-psych-block"],
   },
   "emergency-toxicology": {
-    studyDomain: "usmle-s2-emergency",
+    studyDomain: "usmle-multisystem",
     primary: true,
     relatedDrugClasses: ["pain-inflammation", "cns-psych"],
     top500DrugSlugs: ["naloxone", "epinephrine", "acetaminophen"],
   },
   "dermatology-allergic": {
-    studyDomain: "usmle-s2-derm",
+    studyDomain: "usmle-msk-skin",
     primary: true,
     blueprintTopicSlugs: ["dermatology-allergic"],
     relatedDrugClasses: ["respiratory", "immunologic-other"],
   },
-  "ethics-biostats": { studyDomain: "usmle-s3-biostatistics" },
+  "ethics-biostats": { studyDomain: "usmle-biostats-epi" },
 
   // Step 3 flagship modules
   "biostatistics-epidemiology": {
-    studyDomain: "usmle-s3-biostatistics",
+    studyDomain: "usmle-biostats-epi",
     primary: true,
     relatedPresetIds: ["step3-biostats-sprint"],
   },
-  "medical-ethics-legal": { studyDomain: "usmle-s3-ethics", primary: true },
+  "medical-ethics-legal": { studyDomain: "usmle-social-sciences", primary: true },
   "ccs-case-management": {
-    studyDomain: "usmle-s3-ccs",
+    studyDomain: "usmle-multisystem",
     primary: true,
     relatedPresetIds: ["step3-ccs-drill"],
   },
-  "pharmaceutical-ads-abstracts": { studyDomain: "usmle-s3-evidence", primary: true, blueprintTopicSlugs: ["pharmaceutical-ads-abstracts"] },
+  "pharmaceutical-ads-abstracts": { studyDomain: "usmle-biostats-epi", primary: true, blueprintTopicSlugs: ["pharmaceutical-ads-abstracts"] },
   "next-best-step": {
-    studyDomain: "usmle-s3-ccs",
+    studyDomain: "usmle-multisystem",
     primary: true,
     relatedPresetIds: ["step3-ccs-drill"],
   },
   "ccs-monitoring-escalation": {
-    studyDomain: "usmle-s3-ccs",
+    studyDomain: "usmle-multisystem",
     primary: true,
     relatedPresetIds: ["step3-ccs-drill"],
   },
   "ccs-initial-workup": {
-    studyDomain: "usmle-s3-ccs",
+    studyDomain: "usmle-multisystem",
     primary: true,
     relatedPresetIds: ["step3-ccs-drill"],
   },
   "ambulatory-chronic-care": {
-    studyDomain: "usmle-s3-ccs",
+    studyDomain: "usmle-multisystem",
     primary: true,
   },
   "nnt-arr": {
-    studyDomain: "usmle-s3-biostatistics",
+    studyDomain: "usmle-biostats-epi",
     primary: true,
     relatedPresetIds: ["step3-biostats-sprint"],
   },
 
   // Cross-cutting 2026 topics
-  "biostatistics-interpretation": { studyDomain: "usmle-s3-biostatistics" },
-  "ethics-professionalism": { studyDomain: "usmle-s3-ethics" },
-  "sdoh-health-equity": { studyDomain: "usmle-s3-ethics" },
-  "diagnostic-test-interpretation": { studyDomain: "usmle-s3-biostatistics" },
+  "biostatistics-interpretation": { studyDomain: "usmle-biostats-epi" },
+  "ethics-professionalism": { studyDomain: "usmle-social-sciences" },
+  "sdoh-health-equity": { studyDomain: "usmle-social-sciences" },
+  "diagnostic-test-interpretation": { studyDomain: "usmle-biostats-epi" },
   "pharmacology-interactions": {
-    studyDomain: "usmle-s1-pharmacology",
+    studyDomain: "usmle-multisystem",
     relatedDrugClasses: ["cardiovascular", "antibiotics", "cns-psych", "endocrine"],
     top500DrugSlugs: ["warfarin", "simvastatin", "sertraline"],
   },
   "emergency-acls": {
-    studyDomain: "usmle-s2-emergency",
+    studyDomain: "usmle-multisystem",
     relatedDrugClasses: ["cardiovascular"],
     top500DrugSlugs: ["epinephrine", "amiodarone", "atropine"],
   },
   "sig-code-abbreviations": {
-    studyDomain: "usmle-s1-pharmacology",
+    studyDomain: "usmle-multisystem",
     blueprintTopicSlugs: ["drug-moa-side-effects", "pharmacology-interactions"],
   },
 };
@@ -434,7 +348,7 @@ function build2026Registry(): Record<string, UsmleTopicMeta> {
   }
   for (const t of USMLE_CROSS_CUTTING_TOPICS) {
     if (!out[t.slug]) {
-      out[t.slug] = { studyDomain: "usmle-s3-biostatistics", blueprintTopicSlugs: [t.slug] };
+      out[t.slug] = { studyDomain: "usmle-biostats-epi", blueprintTopicSlugs: [t.slug] };
     }
   }
   return out;

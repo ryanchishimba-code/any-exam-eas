@@ -13,267 +13,17 @@ import type {
   UsmleQuestionFormat,
   UsmleStepLevel,
 } from "./types";
-import {
-  pickUsmle2026BlueprintTopic,
-} from "./blueprint-topics-2026";
+import { topicsForOrganSystem } from "./content-spine";
+import type { UsmleOrganSystemId } from "./official-content-model";
+import { isUsmleOrganSystemId } from "./official-content-model";
 
-/** USMLE Step 1 — integrated organ systems (2026 content outline weights). */
-export const USMLE_STEP1_2026_BLUEPRINT: ExamBlueprint = {
-  fieldId: "usmle-step-1",
-  examName: "USMLE Step 1",
-  sourceNote:
-    "USMLE Content Outline 2026 — Step 1 integrated organ systems: Repro/Endocrine 12–16%, Resp/Renal 11–15%, Behavioral/Nervous 10–14%, Cardiovascular 8–12%, GI 8–10%, MSK 7–9%, Heme/Immuno 7–9%, Biochem/Genetics 6–8%",
-  vignetteMinRatio: 0.55,
-  ngnMix: [
-    { format: "lab_interpretation", weight: 0.12, label: "Lab interpretation" },
-    { format: "image_based", weight: 0.08, label: "Image / exhibit" },
-    { format: "sequential", weight: 0.06, label: "Multi-step sequential" },
-    { format: "biostats", weight: 0.05, label: "Biostatistics / epidemiology" },
-    { format: "calculation", weight: 0.08, label: "Quantitative calculation" },
-  ],
-  categories: [
-    {
-      id: "reproductive-endocrine",
-      label: "Reproductive / Endocrine",
-      weight: 0.14,
-      subjectIds: ["obgyn", "internal-medicine", "physiology"],
-      highYieldTopics: [
-        "diabetes pathophysiology",
-        "thyroid disorders",
-        "adrenal insufficiency",
-        "PCOS",
-        "preeclampsia mechanism",
-        "DKA biochemistry",
-        "contraception pharmacology",
-        "hypogonadism",
-      ],
-    },
-    {
-      id: "respiratory-renal",
-      label: "Respiratory / Renal",
-      weight: 0.13,
-      subjectIds: ["pulmonology", "nephrology", "physiology"],
-      highYieldTopics: [
-        "acid-base",
-        "AKI mechanisms",
-        "nephrotic syndrome",
-        "COPD pathophysiology",
-        "pulmonary embolism",
-        "tubular defects",
-        "ventilation-perfusion",
-        "pneumonia organisms",
-      ],
-    },
-    {
-      id: "behavioral-nervous",
-      label: "Behavioral Health / Nervous",
-      weight: 0.12,
-      subjectIds: ["psychiatry", "neurology", "pathology"],
-      highYieldTopics: [
-        "depression pharmacology",
-        "schizophrenia",
-        "stroke localization",
-        "multiple sclerosis",
-        "seizure mechanisms",
-        "dementia pathology",
-        "substance use",
-        "cranial nerve lesions",
-      ],
-    },
-    {
-      id: "cardiovascular",
-      label: "Cardiovascular",
-      weight: 0.1,
-      subjectIds: ["cardiology", "pathology", "pharmacology"],
-      highYieldTopics: [
-        "heart failure mechanisms",
-        "ACS pathophysiology",
-        "arrhythmia electrophysiology",
-        "valvular disease",
-        "hypertension pharmacology",
-        "cholesterol metabolism",
-        "shock hemodynamics",
-        "ECG interpretation",
-      ],
-    },
-    {
-      id: "gastrointestinal",
-      label: "Gastrointestinal",
-      weight: 0.09,
-      subjectIds: ["internal-medicine", "pathology"],
-      highYieldTopics: [
-        "liver cirrhosis",
-        "IBD mechanisms",
-        "PUD acid secretion",
-        "pancreatitis enzymes",
-        "biliary obstruction",
-        "celiac disease",
-        "GI bleeding sources",
-        "hepatitis serology",
-      ],
-    },
-    {
-      id: "musculoskeletal",
-      label: "Musculoskeletal / Skin",
-      weight: 0.08,
-      subjectIds: ["pathology", "anatomy"],
-      highYieldTopics: [
-        "autoimmune arthritis",
-        "osteoporosis",
-        "gout crystals",
-        "dermatology histology",
-        "nerve entrapment",
-        "bone tumors",
-        "collagen disorders",
-        "myopathies",
-      ],
-    },
-    {
-      id: "hematology-immunology",
-      label: "Hematology / Immunology",
-      weight: 0.08,
-      subjectIds: ["hematology", "microbiology", "pathology"],
-      highYieldTopics: [
-        "anemia workup",
-        "coagulation cascade",
-        "hypersensitivity",
-        "HIV immunology",
-        "leukemia classification",
-        "transfusion reactions",
-        "complement deficiency",
-        "autoimmune hemolysis",
-      ],
-    },
-    {
-      id: "biochemistry-genetics",
-      label: "Biochemistry / Genetics",
-      weight: 0.07,
-      subjectIds: ["biochemistry", "pathology"],
-      highYieldTopics: [
-        "inborn errors of metabolism",
-        "lysosomal storage",
-        "DNA repair defects",
-        "enzyme kinetics",
-        "vitamin deficiencies",
-        "glycolysis/gluconeogenesis",
-        "lipid disorders",
-        "molecular inheritance",
-      ],
-    },
-    {
-      id: "pharmacology-microbiology",
-      label: "Pharmacology / Microbiology",
-      weight: 0.19,
-      subjectIds: ["pharmacology", "microbiology"],
-      highYieldTopics: [
-        "autonomic pharmacology",
-        "antibiotic mechanisms",
-        "antiviral agents",
-        "chemotherapy MOA",
-        "toxicology antidotes",
-        "gram-positive organisms",
-        "gram-negative organisms",
-        "fungal/parasitic pathogens",
-      ],
-    },
-  ],
-};
+/** @deprecated Prefer getExamBlueprint("usmle-step-1") — spine-aligned. */
+export const USMLE_STEP1_2026_BLUEPRINT: ExamBlueprint =
+  getExamBlueprint("usmle-step-1")!;
 
-/** USMLE Step 2 CK — clinical disciplines (2026 content outline weights). */
-export const USMLE_STEP2_2026_BLUEPRINT: ExamBlueprint = {
-  fieldId: "usmle-step-2",
-  examName: "USMLE Step 2 CK",
-  sourceNote:
-    "USMLE Content Outline 2026 — Step 2 CK: Internal Medicine 55–65%, Pediatrics 17–27%, Surgery 8–12%, Psychiatry 5–8%, OB/GYN 8–12%",
-  vignetteMinRatio: 0.75,
-  ngnMix: [
-    { format: "lab_interpretation", weight: 0.1, label: "Lab interpretation" },
-    { format: "image_based", weight: 0.07, label: "Image / exhibit" },
-    { format: "sequential", weight: 0.08, label: "Multi-step sequential" },
-    { format: "ethics", weight: 0.04, label: "Ethics / professionalism" },
-    { format: "calculation", weight: 0.06, label: "Quantitative calculation" },
-  ],
-  categories: [
-    {
-      id: "internal-medicine",
-      label: "Internal Medicine",
-      weight: 0.55,
-      subjectIds: ["internal-medicine", "cardiology", "pulmonology", "nephrology"],
-      highYieldTopics: [
-        "ACS management",
-        "heart failure GDMT",
-        "sepsis bundles",
-        "DKA/HHS",
-        "AKI workup",
-        "COPD exacerbation",
-        "hepatitis management",
-        "anemia evaluation",
-        "hypertension",
-        "infectious disease antibiotics",
-      ],
-    },
-    {
-      id: "pediatrics",
-      label: "Pediatrics",
-      weight: 0.2,
-      subjectIds: ["pediatrics"],
-      highYieldTopics: [
-        "vaccine schedule",
-        "febrile infant",
-        "neonatal jaundice",
-        "asthma in children",
-        "UTI in pediatrics",
-        "development milestones",
-        "child abuse red flags",
-        "Kawasaki disease",
-      ],
-    },
-    {
-      id: "surgery-acute-care",
-      label: "Surgery / Acute Care",
-      weight: 0.1,
-      subjectIds: ["surgery", "emergency-medicine"],
-      highYieldTopics: [
-        "acute abdomen",
-        "appendicitis",
-        "bowel obstruction",
-        "trauma ATLS",
-        "post-op complications",
-        "cholecystitis",
-        "testicular torsion",
-        "burns management",
-      ],
-    },
-    {
-      id: "obgyn",
-      label: "OB/GYN",
-      weight: 0.1,
-      subjectIds: ["obgyn"],
-      highYieldTopics: [
-        "preeclampsia",
-        "ectopic pregnancy",
-        "labor complications",
-        "contraception",
-        "abnormal uterine bleeding",
-        "STIs in pregnancy",
-      ],
-    },
-    {
-      id: "psychiatry",
-      label: "Psychiatry",
-      weight: 0.05,
-      subjectIds: ["psychiatry"],
-      highYieldTopics: [
-        "major depression",
-        "bipolar disorder",
-        "psychosis workup",
-        "suicide risk",
-        "substance withdrawal",
-        "eating disorders",
-      ],
-    },
-  ],
-};
+/** @deprecated Prefer getExamBlueprint("usmle-step-2") — spine-aligned. */
+export const USMLE_STEP2_2026_BLUEPRINT: ExamBlueprint =
+  getExamBlueprint("usmle-step-2")!;
 
 const PHYSICIAN_TASKS: UsmlePhysicianTaskId[] = [
   "diagnosis",
@@ -332,11 +82,15 @@ function resolveStepLevel(examNumber: number, override?: UsmleStepLevel): UsmleS
 }
 
 function resolveBlueprint(stepLevel: UsmleStepLevel): ExamBlueprint {
-  if (stepLevel === "step1") return USMLE_STEP1_2026_BLUEPRINT;
-  if (stepLevel === "step3") {
-    return getExamBlueprint("usmle-step-3") ?? USMLE_STEP2_2026_BLUEPRINT;
-  }
-  return USMLE_STEP2_2026_BLUEPRINT;
+  const field =
+    stepLevel === "step1"
+      ? "usmle-step-1"
+      : stepLevel === "step3"
+        ? "usmle-step-3"
+        : "usmle-step-2";
+  const bp = getExamBlueprint(field);
+  if (!bp) throw new Error(`Missing USMLE blueprint for ${field}`);
+  return bp;
 }
 
 function resolveSubjectId(slot: { categoryId: string; subjectIds?: string[] }, index: number): string {
@@ -360,7 +114,15 @@ function pickTopic(
   index: number,
   examSeed: number
 ): string {
-  return pickUsmle2026BlueprintTopic(stepLevel, systemId, index, examSeed);
+  const sid = isUsmleOrganSystemId(systemId) ? (systemId as UsmleOrganSystemId) : null;
+  const nodes = sid
+    ? topicsForOrganSystem(sid, stepLevel)
+    : topicsForOrganSystem("multisystem", stepLevel);
+  if (nodes.length === 0) {
+    const fallback = topicsForOrganSystem("multisystem");
+    return fallback[(index + examSeed) % Math.max(fallback.length, 1)]?.slug ?? "next-best-step";
+  }
+  return nodes[(index + examSeed) % nodes.length]!.slug;
 }
 
 function pickPhysicianTask(index: number, examSeed: number): UsmlePhysicianTaskId {
@@ -391,9 +153,10 @@ export const USMLE_STEP3_FORMAT_CATEGORY_IDS = [
 ] as const;
 
 const CATEGORY_NGN_FORMAT: Record<string, string | undefined> = {
-  biostatistics: "biostats",
-  ethics: "ethics",
-  ccs: "sequential",
+  "biostats-epi": "biostats",
+  "social-sciences": "ethics",
+  multisystem: "sequential",
+  "human-development": undefined,
 };
 
 function allocateUsmleCategoryFocused(
@@ -439,14 +202,19 @@ export function planUsmleFullExamSlots(params: {
   return baseSlots.map((slot, slotIndex) => {
     const questionFormat = resolveQuestionFormat(slot.ngnFormat);
     const subjectId = resolveSubjectId(slot, slotIndex + examSeed);
+    const systemId = isUsmleOrganSystemId(slot.categoryId)
+      ? slot.categoryId
+      : "multisystem";
 
     return {
       ...slot,
+      categoryId: systemId,
+      categoryLabel: slot.categoryLabel,
       slotIndex,
       stepLevel,
       subjectId,
-      blueprintSystem: slot.categoryId,
-      blueprintTopic: pickTopic(stepLevel, slot.categoryId, slotIndex, examSeed),
+      blueprintSystem: systemId,
+      blueprintTopic: pickTopic(stepLevel, systemId, slotIndex, examSeed),
       physicianTask: pickPhysicianTask(slotIndex, examSeed),
       difficulty: 2 + ((slotIndex + examSeed) % 4),
       stemFormat: pickStemFormat(stepLevel, slotIndex, examSeed),

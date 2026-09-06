@@ -1,5 +1,5 @@
 /**
- * POST /api/study/today — Mastery Engine Today set for NCLEX or NAPLEX.
+ * POST /api/study/today — Mastery Engine Today set for NCLEX, NAPLEX, or USMLE.
  * Returns prepared StudyQuestions for the existing StudySessionPlayer.
  */
 
@@ -8,10 +8,12 @@ import { z } from "zod";
 import {
   isTodayEngineEnabled,
   isTodayEngineNaplexEnabled,
+  isTodayEngineUsmleEnabled,
 } from "@/lib/engine/mastery/feature-flag";
 import {
   buildNclexTodayForUser,
   buildNaplexTodayForUser,
+  buildUsmleTodayForUser,
 } from "@/lib/engine/mastery/today-service";
 import { parseMasteryItemTags } from "@/lib/engine/mastery/item-tags";
 import type { MasteryItemTags } from "@/lib/engine/mastery/types";
@@ -26,7 +28,8 @@ export const runtime = "nodejs";
 
 const bodySchema = z.object({
   size: z.union([z.literal(20), z.literal(40), z.literal(60)]).optional(),
-  examSlug: z.enum(["nclex", "naplex"]).optional(),
+  examSlug: z.enum(["nclex", "naplex", "usmle"]).optional(),
+  fieldId: z.string().optional(),
 });
 
 function masteryTagsToStudyTags(tags: MasteryItemTags): string[] {
@@ -53,6 +56,13 @@ export async function POST(req: Request) {
         { status: 404 }
       );
     }
+  } else if (examSlug === "usmle") {
+    if (!isTodayEngineUsmleEnabled()) {
+      return NextResponse.json(
+        { error: "USMLE Today engine is not enabled.", code: "TODAY_ENGINE_USMLE_OFF" },
+        { status: 404 }
+      );
+    }
   } else if (!isTodayEngineEnabled()) {
     return NextResponse.json(
       { error: "Today engine is not enabled.", code: "TODAY_ENGINE_OFF" },
@@ -71,10 +81,16 @@ export async function POST(req: Request) {
             userId: premium.userId,
             size: body.size,
           })
-        : await buildNclexTodayForUser({
-            userId: premium.userId,
-            size: body.size,
-          });
+        : examSlug === "usmle"
+          ? await buildUsmleTodayForUser({
+              userId: premium.userId,
+              size: body.size,
+              fieldId: body.fieldId,
+            })
+          : await buildNclexTodayForUser({
+              userId: premium.userId,
+              size: body.size,
+            });
 
     if (built.bankItemIds.length === 0) {
       return NextResponse.json(

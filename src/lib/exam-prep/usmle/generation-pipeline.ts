@@ -39,6 +39,7 @@ import {
   normalizeUsmleFullExamItem,
   usmleFullExamItemPasses,
 } from "./quality-gate";
+import { lockGenerationSlotToSpine } from "./spine-lock";
 import type {
   UsmleFullExamBundle,
   UsmleGenerationMeta,
@@ -253,37 +254,38 @@ function slotToBankItem(
   examNumber: number,
   qcScore: number
 ): BankItem {
+  const locked = lockGenerationSlotToSpine(slot);
   const meta: UsmleGenerationMeta = {
     batchId,
     examNumber,
-    slotIndex: slot.slotIndex,
-    stepLevel: slot.stepLevel,
+    slotIndex: locked.slotIndex,
+    stepLevel: locked.stepLevel,
     model: "gpt-4o-mini",
     pipelineVersion: USMLE_FULL_EXAM_VERSION,
     qcScore,
     generatedAt: new Date().toISOString(),
   };
 
-  const itemType = resolveItemType(slot.questionFormat);
+  const itemType = resolveItemType(locked.questionFormat);
   const tags = [
     "usmle-full-exam",
     "USMLE-2026",
     "curated",
     "full-exam-generated",
-    slot.stepLevel,
+    locked.stepLevel,
     `exam-${examNumber}`,
-    slot.blueprintSystem,
-    slot.physicianTask,
-    slot.subjectId,
-    slot.blueprintTopic.replace(/\s+/g, "-"),
+    locked.blueprintSystem,
+    locked.physicianTask,
+    locked.subjectId,
+    locked.blueprintTopic.replace(/\s+/g, "-"),
     `batch-${batchId}`,
   ];
 
   const base = examQuestionToBankItem(exam, {
-    subjectId: slot.subjectId,
-    topicCategory: slot.categoryLabel,
-    blueprintDomain: slot.blueprintSystem,
-    difficulty: slot.difficulty,
+    subjectId: locked.subjectId,
+    topicCategory: locked.categoryLabel,
+    blueprintDomain: locked.blueprintSystem,
+    difficulty: locked.difficulty,
     tags,
     source: "ai-curated",
   });
@@ -291,11 +293,11 @@ function slotToBankItem(
   const chartData = exam.chartData ?? exam.ngnPayload;
   const ngnPayload: Record<string, unknown> = {
     ...base.ngnPayload,
-    kind: slot.questionFormat === "mcq" ? "vignette" : slot.questionFormat,
-    stepLevel: slot.stepLevel,
-    blueprintSystem: slot.blueprintSystem,
-    blueprintTopic: slot.blueprintTopic,
-    physicianTask: slot.physicianTask,
+    kind: locked.questionFormat === "mcq" ? "vignette" : locked.questionFormat,
+    stepLevel: locked.stepLevel,
+    blueprintSystem: locked.blueprintSystem,
+    blueprintTopic: locked.blueprintTopic,
+    physicianTask: locked.physicianTask,
     generationMeta: meta,
     ...(chartData ?? {}),
   };
@@ -406,6 +408,7 @@ function processChunkQuestions(params: {
         stepLevel: slot.stepLevel,
         blueprintSystem: slot.blueprintSystem,
         physicianTask: slot.physicianTask,
+        blueprintTopic: slot.blueprintTopic,
       }
     );
     const globalIndex = slot.slotIndex;

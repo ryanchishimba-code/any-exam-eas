@@ -9,6 +9,9 @@ import {
   usmleBankItemHasClinicalScenario,
 } from "../usmle-clinical-gate";
 import type { UsmleStepLevel } from "./types";
+import { bankItemHasValidSpineTags } from "./spine-lock";
+import { resolveOrganSystemId } from "./content-spine";
+import { isUsmleOrganSystemId } from "./official-content-model";
 
 export type UsmleFullExamQcReport = {
   ok: boolean;
@@ -41,16 +44,30 @@ export function normalizeUsmleFullExamItem(item: BankItem, slotMeta?: {
   stepLevel?: UsmleStepLevel;
   blueprintSystem?: string;
   physicianTask?: string;
+  blueprintTopic?: string;
 }): BankItem {
   let normalized = normalizeUsmleBankItemFields(item);
   const ngn = { ...(normalized.ngnPayload ?? {}) };
 
+  const system =
+    resolveOrganSystemId(
+      slotMeta?.blueprintSystem ?? normalized.blueprintDomain,
+      slotMeta?.blueprintTopic ??
+        (typeof ngn.blueprintTopic === "string" ? ngn.blueprintTopic : null),
+      normalized.subjectId
+    ) ??
+    (slotMeta?.blueprintSystem && isUsmleOrganSystemId(slotMeta.blueprintSystem)
+      ? slotMeta.blueprintSystem
+      : null) ??
+    (normalized.blueprintDomain && isUsmleOrganSystemId(normalized.blueprintDomain)
+      ? normalized.blueprintDomain
+      : "multisystem");
+
   if (slotMeta?.stepLevel) ngn.stepLevel = slotMeta.stepLevel;
-  if (slotMeta?.blueprintSystem) {
-    ngn.blueprintSystem = slotMeta.blueprintSystem;
-    normalized = { ...normalized, blueprintDomain: normalized.blueprintDomain ?? slotMeta.blueprintSystem };
-  }
+  ngn.blueprintSystem = system;
+  normalized = { ...normalized, blueprintDomain: system };
   if (slotMeta?.physicianTask) ngn.physicianTask = slotMeta.physicianTask;
+  if (slotMeta?.blueprintTopic) ngn.blueprintTopic = slotMeta.blueprintTopic;
 
   const tags = [...new Set([...(normalized.tags ?? []), "usmle-full-exam", "USMLE-2026"])];
 
@@ -142,6 +159,24 @@ export function assessUsmleFullExamItem(
   if (step !== "step1" && step !== "step2" && step !== "step3") issues.push("step_level");
 
   if (!normalized.tags?.includes("usmle-full-exam")) issues.push("missing_exam_tag");
+
+  if (
+    !bankItemHasValidSpineTags({
+      blueprintDomain: normalized.blueprintDomain,
+      blueprintTopic:
+        typeof normalized.ngnPayload?.blueprintTopic === "string"
+          ? normalized.ngnPayload.blueprintTopic
+          : null,
+      subjectId: normalized.subjectId,
+      physicianTask:
+        typeof normalized.ngnPayload?.physicianTask === "string"
+          ? normalized.ngnPayload.physicianTask
+          : null,
+      ngnPayload: normalized.ngnPayload,
+    })
+  ) {
+    issues.push("spine_tags_invalid");
+  }
 
   const uniqueIssues = [...new Set(issues)];
   const clinicalOk =

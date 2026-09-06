@@ -16,20 +16,22 @@ import { matchesUsmleBlueprintTopic } from "./topic-blueprint-match";
 import { resolveUsmleBlueprintCategory } from "./blueprint-resolver";
 import type { UsmleStepLevel } from "./types";
 import { USMLE_STEP3_NON_VIGNETTE_ITEM_TYPES } from "./steps";
+import { normalizeUsmleBlueprintTopic } from "./blueprint-topic-aliases";
+import { resolveOrganSystemId } from "./content-spine";
 
 const VALID_SLUGS = new Set([
   ...allUsmle2026TopicSlugs(),
   ...USMLE_CROSS_CUTTING_TOPICS.map((t) => t.slug),
 ]);
 
-/** Step 1 discipline blueprint ids → 2026 organ-system category. */
+/** Step 1 discipline blueprint ids → spine organ systems. */
 const STEP1_DISCIPLINE_TO_CATEGORY: Record<string, string> = {
-  anatomy: "musculoskeletal",
+  anatomy: "msk-skin",
   physiology: "respiratory-renal",
-  pathology: "hematology-immunology",
-  pharmacology: "pharmacology-microbiology",
-  biochemistry: "biochemistry-genetics",
-  microbiology: "pharmacology-microbiology",
+  pathology: "multisystem",
+  pharmacology: "multisystem",
+  biochemistry: "biostats-epi",
+  microbiology: "blood-lymph-immune",
 };
 
 const STEP3_ITEM_TYPE_TOPIC: Record<string, string> = {
@@ -362,17 +364,32 @@ export function inferUsmleBlueprint(
   if (existing && isValidUsmle2026BlueprintTopic(existing, stepLevel)) {
     return {
       blueprintTopic: existing,
-      blueprintDomain: topicMeta(existing, stepLevel).categoryId,
+      blueprintDomain:
+        resolveOrganSystemId(null, existing, categoryId) ??
+        topicMeta(existing, stepLevel).categoryId,
       source: "existing",
     };
   }
 
   if (existing) {
+    const sharedAlias = normalizeUsmleBlueprintTopic(existing);
+    if (sharedAlias && isValidUsmle2026BlueprintTopic(sharedAlias, stepLevel)) {
+      return {
+        blueprintTopic: sharedAlias,
+        blueprintDomain:
+          resolveOrganSystemId(null, sharedAlias, categoryId) ??
+          topicMeta(sharedAlias, stepLevel).categoryId,
+        source: "legacy-alias",
+      };
+    }
+
     const alias = resolveLegacyUsmleTopicAlias(existing, stepLevel);
     if (alias) {
       return {
         blueprintTopic: alias,
-        blueprintDomain: topicMeta(alias, stepLevel).categoryId,
+        blueprintDomain:
+          resolveOrganSystemId(null, alias, categoryId) ??
+          topicMeta(alias, stepLevel).categoryId,
         source: "legacy-alias",
       };
     }
@@ -381,7 +398,9 @@ export function inferUsmleBlueprint(
     if (VALID_SLUGS.has(normalized) && topicMatchesStep(normalized, stepLevel)) {
       return {
         blueprintTopic: normalized,
-        blueprintDomain: topicMeta(normalized, stepLevel).categoryId,
+        blueprintDomain:
+          resolveOrganSystemId(null, normalized, categoryId) ??
+          topicMeta(normalized, stepLevel).categoryId,
         source: "normalized",
       };
     }

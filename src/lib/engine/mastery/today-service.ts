@@ -8,6 +8,7 @@ import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import {
   buildNclexSkillCells,
   buildNaplexSkillCells,
+  buildUsmleSkillCells,
   buildTodaySession,
   loadUserCellStates,
   parseMasteryItemTags,
@@ -18,6 +19,7 @@ import {
   type SessionCandidate,
   type StudyItemMode,
 } from "@/lib/engine/mastery";
+import type { UsmleStepLevel } from "@/lib/exam-prep/usmle/types";
 import {
   isNaplexOutlineDomainId,
   naplexDomainById,
@@ -350,5 +352,133 @@ export async function buildNaplexTodayForUser(input: {
     size: built.size,
     fieldId,
     domainShare,
+  };
+}
+
+function usmleFieldForStep(step: UsmleStepLevel): string {
+  if (step === "step1") return "usmle-step-1";
+  if (step === "step3") return "usmle-step-3";
+  return "usmle-step-2";
+}
+
+/** USMLE Today — organ-system spine weighted by official midpoints. */
+export async function buildUsmleTodayForUser(input: {
+  userId: string;
+  size?: number;
+  mode?: StudyItemMode;
+  stepLevel?: UsmleStepLevel;
+  fieldId?: string;
+}): Promise<{
+  questionIds: string[];
+  bankItemIds: string[];
+  primers: Array<{ beforeQuestionId: string; cardId: string; cellKey: string }>;
+  cellKeys: string[];
+  size: number;
+  fieldId: string;
+}> {
+  const size = resolveTodaySize(input.size);
+  const step: UsmleStepLevel =
+    input.stepLevel ??
+    (input.fieldId === "usmle-step-1"
+      ? "step1"
+      : input.fieldId === "usmle-step-3"
+        ? "step3"
+        : "step2");
+  const fieldId = input.fieldId ?? usmleFieldForStep(step);
+  const cells = buildUsmleSkillCells(step);
+  const states = await loadUserCellStates(input.userId, "usmle");
+
+  const dueMastery = await prisma.questionMastery.findMany({
+    where: {
+      userId: input.userId,
+      fieldId,
+      nextDue: { lte: new Date() },
+    },
+    select: { questionKey: true },
+    take: 400,
+  });
+  const dueKeys = new Set(dueMastery.map((m) => m.questionKey));
+
+  const bank = await prisma.questionBankItem.findMany({
+    where: {
+      fieldId,
+      active: true,
+      qaPassed: true,
+    },
+    select: {
+      id: true,
+      subjectId: true,
+      blueprintDomain: true,
+      blueprintTopic: true,
+      topicCategory: true,
+      clientNeeds: true,
+      cjmmFunction: true,
+      tags: true,
+      generationMeta: true,
+      curationMeta: true,
+      qualityScore: true,
+    },
+    take: 2500,
+  });
+
+  const candidates: SessionCandidate[] = [];
+
+  for (const item of bank) {
+    const tags = parseMasteryItemTags({
+      clientNeeds: item.clientNeeds,
+      cjmmFunction: item.cjmmFunction,
+      tags: item.tags,
+      generationMeta: item.generationMeta,
+      curationMeta: item.curationMeta,
+    });
+
+    let cellKey = resolveCellKeyFromQuestion({
+      examSlug: "usmle",
+      blueprintDomain: item.blueprintDomain,
+      subjectId: item.subjectId,
+      topicCategory: item.topicCategory,
+      blueprintTopic: item.blueprintTopic,
+    });
+
+    if (!cellKey) {
+      cellKey = skillCellKey(
+        "usmle",
+        "multisystem",
+        item.blueprintTopic || item.subjectId || "_system"
+      );
+    }
+
+    const cellDef = cells.find((c) => c.cellKey === cellKey);
+    const parts = cellKey.split(":");
+    const systemKey = cellDef?.systemKey ?? parts[1] ?? "multisystem";
+    const snap = states.get(cellKey) ?? emptyCellState(cellKey);
+    const tutorAcc =
+      snap.recentTutor.length > 0
+        ? snap.recentTutor.filter((o) => o.correct).length / snap.recentTutor.length
+        : null;
+
+    candidates.push({
+      questionId: item.id,
+      bankItemId: item.id,
+      cellKey,
+      systemKey,
+      weight: (cellDef?.blueprintWeight ?? 0.05) * 100,
+      distanceBelowBar: distanceBelowBar(snap.state, tutorAcc),
+      cellState: snap.state,
+      highYield: (item.qualityScore ?? 0) >= 0.75 || Boolean(tags.primerCardId),
+      dueForSpacing: dueKeys.has(item.id),
+      tags,
+    });
+  }
+
+  const built = buildTodaySession(candidates, { size });
+
+  return {
+    questionIds: built.questionIds,
+    bankItemIds: built.questionIds,
+    primers: built.primers,
+    cellKeys: built.cellKeys,
+    size: built.size,
+    fieldId,
   };
 }

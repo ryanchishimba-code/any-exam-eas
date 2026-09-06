@@ -6,4 +6,4 @@ export * from "./cells";
 export * from "./item-tags";
 export * from "./feature-flag";
 export { loadUserCellStates, loadUserCellState, recordCellAttempt } from "./persist";
-export { buildNclexTodayForUser, buildNaplexTodayForUser } from "./today-service";
+export { buildNclexTodayForUser, buildNaplexTodayForUser, buildUsmleTodayForUser } from "./today-service";

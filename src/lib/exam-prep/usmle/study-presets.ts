@@ -8,13 +8,18 @@ import type { UsmleStepLevel } from "./types";
 export type UsmleStudyPresetId =
   | "step1-pharm-drill"
   | "step1-path-drill"
+  | "step1-pass-foundations"
+  | "step1-pass-systems-mix"
   | "step2-cardiology-block"
   | "step2-pulmonary-block"
   | "step2-id-block"
   | "step2-endocrine-block"
   | "step2-psych-block"
+  | "step2-pass-systems-mix"
+  | "step2-pass-full-block"
   | "step3-biostats-sprint"
-  | "step3-ccs-drill";
+  | "step3-ccs-drill"
+  | "step3-pass-management";
 
 export type UsmleStudyPreset = {
   id: UsmleStudyPresetId;
@@ -46,6 +51,26 @@ export const USMLE_STUDY_PRESETS: UsmleStudyPreset[] = [
     stepLevel: "step1",
     subjectId: "pathology",
     reviewModuleSlug: "pathology-neoplasia",
+  },
+  {
+    id: "step1-pass-foundations",
+    title: "Step 1 Pass Path — Foundations",
+    description: "40 integrative items across organ systems — mechanisms first.",
+    count: 40,
+    stepLevel: "step1",
+    subjectId: "pathology",
+    timed: true,
+    timeLimitMin: 55,
+  },
+  {
+    id: "step1-pass-systems-mix",
+    title: "Step 1 Pass Path — Systems Mix",
+    description: "40 blueprint-balanced items spanning the official organ-system spine.",
+    count: 40,
+    stepLevel: "step1",
+    subjectId: "physiology",
+    timed: true,
+    timeLimitMin: 55,
   },
   {
     id: "step2-cardiology-block",
@@ -95,6 +120,26 @@ export const USMLE_STUDY_PRESETS: UsmleStudyPreset[] = [
     reviewModuleSlug: "psychiatry",
   },
   {
+    id: "step2-pass-systems-mix",
+    title: "Step 2 Pass Path — Systems Mix",
+    description: "40 CK vignettes balanced across the official organ-system spine.",
+    count: 40,
+    stepLevel: "step2",
+    subjectId: "internal-medicine",
+    timed: true,
+    timeLimitMin: 50,
+  },
+  {
+    id: "step2-pass-full-block",
+    title: "Step 2 Pass Path — Timed Block",
+    description: "80-question block-style practice — diagnosis and next-step emphasis.",
+    count: 80,
+    stepLevel: "step2",
+    subjectId: "internal-medicine",
+    timed: true,
+    timeLimitMin: 100,
+  },
+  {
     id: "step3-biostats-sprint",
     title: "Step 3 Biostatistics Sprint",
     description: "15 biostat/epi items — sensitivity, NNT, and study design.",
@@ -111,6 +156,16 @@ export const USMLE_STUDY_PRESETS: UsmleStudyPreset[] = [
     stepLevel: "step3",
     subjectId: "internal-medicine",
     reviewModuleSlug: "ccs-case-management",
+  },
+  {
+    id: "step3-pass-management",
+    title: "Step 3 Pass Path — Management",
+    description: "40 next-best-step and CCS-style items — ambulatory + inpatient orders.",
+    count: 40,
+    stepLevel: "step3",
+    subjectId: "internal-medicine",
+    timed: true,
+    timeLimitMin: 50,
   },
 ];
 

@@ -38,6 +38,23 @@ describe("resolveDashboardNextAction", () => {
     expect(action.href).toContain("field=pharmacy");
   });
 
+  it("uses Today as the primary CTA for USMLE when Mastery Engine is on", () => {
+    const action = resolveDashboardNextAction({
+      examSlug: "usmle",
+      examName: "USMLE",
+      dueCount: 12,
+      topWeakTopic: {
+        name: "Cardiology",
+        href: weakTopicPracticeHref("usmle", "cardiology", "usmle-step-2"),
+      },
+      hasRecent: true,
+      practiceFieldId: "usmle-step-2",
+    });
+    expect(action.label).toBe("Today");
+    expect(action.href).toContain("style=today");
+    expect(action.href).toContain("field=usmle-step-2");
+  });
+
   it("still opens weak-topic practice for non-mastery exams", () => {
     const topicHref = weakTopicPracticeHref(
       "pance",
