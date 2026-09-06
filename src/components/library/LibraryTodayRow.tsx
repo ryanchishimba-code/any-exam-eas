@@ -9,6 +9,7 @@ import { getRecommendedMemoryCards } from "@/lib/library/memory-cards";
 import { getPinnedMemoryCardIds } from "@/lib/library/pinned-essentials";
 import { resolveRecentMemoryCards } from "@/lib/library/recent-cards";
 import { libUi } from "@/lib/library/library-ui";
+import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
@@ -38,6 +39,7 @@ function buildPickedCards(
     resolveRecentMemoryCards(cards, examSlug).slice(0, 4).map((c) => c.id)
   );
   const pinnedIds = new Set(getPinnedMemoryCardIds(examSlug));
+  const facingWeak = filterStudentFacingWeakTopics(weakTopics);
 
   const ordered: PickedCard[] = [];
   const seen = new Set<string>();
@@ -57,7 +59,7 @@ function buildPickedCards(
   for (const card of getRecommendedMemoryCards(cards, topicKey)) {
     push(card, topicKey ? "Topic" : undefined);
   }
-  for (const topic of weakTopics) {
+  for (const topic of facingWeak) {
     const slug = topic.id.replace(/^(tag|subject):/, "");
     for (const card of getRecommendedMemoryCards(cards, slug)) {
       push(card, "Weak area");
@@ -81,9 +83,10 @@ export function LibraryTodayRow({
   briefCardIds,
   onOpenCard,
 }: Props) {
-  const picked = buildPickedCards(cards, examSlug, weakTopics, topicKey, briefCardIds);
+  const facingWeak = filterStudentFacingWeakTopics(weakTopics);
+  const picked = buildPickedCards(cards, examSlug, facingWeak, topicKey, briefCardIds);
 
-  if (picked.length === 0 && weakTopics.length === 0) return null;
+  if (picked.length === 0 && facingWeak.length === 0) return null;
 
   return (
     <section id="hub-picks" aria-labelledby="hub-picks-heading" className="space-y-3">
@@ -101,9 +104,9 @@ export function LibraryTodayRow({
         </div>
       </div>
 
-      {weakTopics.length > 0 ? (
+      {facingWeak.length > 0 ? (
         <div className={libUi.chipRow}>
-          {weakTopics.slice(0, 4).map((topic) => {
+          {facingWeak.slice(0, 4).map((topic) => {
             const slug = topic.id.replace(/^(tag|subject):/, "");
             return (
               <div key={topic.id} className="inline-flex shrink-0 snap-start items-center overflow-hidden rounded-full border border-amber-200/70 bg-amber-50/80">

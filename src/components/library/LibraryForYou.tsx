@@ -9,6 +9,7 @@ import { getRecommendedMemoryCards } from "@/lib/library/memory-cards";
 import { resolveCardsNeedingReview } from "@/lib/library/card-mastery";
 import { getPinnedMemoryCardIds } from "@/lib/library/pinned-essentials";
 import type { MemoryCard } from "@/lib/library/types";
+import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
 
@@ -29,10 +30,11 @@ export function LibraryForYou({
 }: Props) {
   const pinnedIds = getPinnedMemoryCardIds(examSlug);
   const byId = new Map(cards.map((c) => [c.id, c]));
+  const facingWeak = filterStudentFacingWeakTopics(weakTopics);
 
   const dueCards = resolveCardsNeedingReview(cards, examSlug, 3);
   const topicRecommended = getRecommendedMemoryCards(cards, topicKey);
-  const weakRecommended = weakTopics.flatMap((t) =>
+  const weakRecommended = facingWeak.flatMap((t) =>
     getRecommendedMemoryCards(cards, t.id.replace(/^(tag|subject):/, ""))
   );
   const pinned = pinnedIds.map((id) => byId.get(id)).filter((c): c is MemoryCard => Boolean(c));
@@ -46,7 +48,7 @@ export function LibraryForYou({
     if (forYou.length >= 6) break;
   }
 
-  if (forYou.length === 0 && weakTopics.length === 0) return null;
+  if (forYou.length === 0 && facingWeak.length === 0) return null;
 
   return (
     <section id="for-you" aria-labelledby="for-you-heading" className="space-y-4">
@@ -57,16 +59,16 @@ export function LibraryForYou({
             For you today
           </h3>
         </div>
-        {weakTopics.length > 0 ? (
+        {facingWeak.length > 0 ? (
           <p className="text-xs text-[var(--color-ink-muted)]">
             Based on your practice analytics
           </p>
         ) : null}
       </div>
 
-      {weakTopics.length > 0 ? (
+      {facingWeak.length > 0 ? (
         <div className="flex flex-wrap gap-2">
-          {weakTopics.slice(0, 4).map((topic, i) => {
+          {facingWeak.slice(0, 4).map((topic, i) => {
             const slug = topic.id.replace(/^(tag|subject):/, "");
             return (
             <motion.div

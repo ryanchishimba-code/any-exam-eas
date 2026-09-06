@@ -7,6 +7,7 @@ import { getExamTopicStudyLinks } from "@/lib/library/exam-topic-bridge";
 import { getPinnedMemoryCardIds } from "@/lib/library/pinned-essentials";
 import { useSessionTone } from "@/lib/library/session-tone";
 import { libUi } from "@/lib/library/library-ui";
+import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { MemoryCard } from "@/lib/library/types";
 import type { ExamSlug } from "@/types/edtech";
@@ -39,7 +40,8 @@ function buildRecommendations(
 ): Recommendation[] {
   const recs: Recommendation[] = [];
 
-  for (const topic of weakTopics.slice(0, MAX_RECOMMENDATIONS)) {
+  for (const topic of filterStudentFacingWeakTopics(weakTopics)) {
+    if (recs.length >= MAX_RECOMMENDATIONS) break;
     const slug = topic.id.replace(/^(tag|subject):/, "");
     const links = getExamTopicStudyLinks(examSlug, topic.name);
     recs.push({

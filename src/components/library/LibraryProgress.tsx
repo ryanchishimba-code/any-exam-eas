@@ -6,6 +6,7 @@ import { ChevronDown } from "lucide-react";
 import { practiceTopicHref } from "@/lib/edtech/practice-links";
 import type { LibraryHubStats } from "@/components/library/LibraryHubHeader";
 import { libUi } from "@/lib/library/library-ui";
+import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
 import { cn } from "@/lib/utils";
@@ -18,6 +19,7 @@ type Props = {
 
 export function LibraryProgress({ examSlug, weakTopics, stats }: Props) {
   const [open, setOpen] = useState(false);
+  const facingWeak = filterStudentFacingWeakTopics(weakTopics);
 
   return (
     <section aria-labelledby="library-progress-heading" className={cn(libUi.surface, "overflow-hidden")}>
@@ -48,9 +50,9 @@ export function LibraryProgress({ examSlug, weakTopics, stats }: Props) {
 
       {open ? (
         <div className={cn(libUi.sectionDivider, "px-4 pb-4 pt-1")}>
-          {weakTopics.length > 0 ? (
+          {facingWeak.length > 0 ? (
             <ul className="space-y-1">
-              {weakTopics.map((topic) => {
+              {facingWeak.map((topic) => {
                 const slug = topic.id.replace(/^(tag|subject):/, "");
                 return (
                   <li key={topic.id}>

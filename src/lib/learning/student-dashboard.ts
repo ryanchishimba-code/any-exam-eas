@@ -6,6 +6,12 @@ import { normalizeFieldId } from "@/lib/subjects/field-ids";
 import { getLearningProfileSnapshot } from "./profile-service";
 import { CACHE_TTL, cacheGetOrSet, cacheKey, CACHE_STALE } from "@/lib/cache";
 import type { AnatomyStructureLink } from "@/lib/anatomy/topic-links";
+import {
+  formatConceptLabel,
+  isInternalMasteryConceptKey,
+  studentFacingConceptLabel,
+} from "@/lib/learning/concept-labels";
+import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 
 export type AccuracyTrendPoint = {
   date: string;
@@ -65,10 +71,17 @@ export type StudentDashboardData = {
 };
 
 const TREND_DAYS = 14;
+/** Over-fetch so we can drop generation-batch keys and still fill the UI. */
+const WEAK_TOPIC_FETCH = 24;
+const WEAK_TOPIC_DISPLAY = 6;
 
-function formatConceptLabel(key: string): string {
-  const raw = key.replace(/^(tag|subject):/, "").replace(/[-_]/g, " ");
-  return raw.replace(/\b\w/g, (c) => c.toUpperCase());
+function subjectLabelForConcept(fieldId: string, conceptKey: string): string | null {
+  const slug = conceptKey.replace(/^(tag|subject):/, "");
+  try {
+    return getSubjectsForFieldId(fieldId).find((s) => s.id === slug)?.label ?? null;
+  } catch {
+    return null;
+  }
 }
 
 function buildMotivationalMessage(
@@ -242,20 +255,29 @@ function mapWeakTopics(
     attempts: number;
   }[]
 ): WeakTopicRow[] {
-  const weaknessWeights = masteries.map((m) => {
+  const studentFacing = masteries
+    .filter((m) => !isInternalMasteryConceptKey(m.conceptKey))
+    .slice(0, WEAK_TOPIC_DISPLAY);
+  const weaknessWeights = studentFacing.map((m) => {
     const gap = Math.max(0, 100 - m.masteryScore);
     return { ...m, weight: gap * Math.sqrt(Math.max(m.attempts, 1)) };
   });
   const totalWeight = weaknessWeights.reduce((s, w) => s + w.weight, 0) || 1;
 
-  return weaknessWeights.map((m) => ({
-    id: m.conceptKey,
-    name: formatConceptLabel(m.conceptKey),
-    fieldId: m.fieldId,
-    masteryScore: Math.round(m.masteryScore),
-    attempts: m.attempts,
-    weight: Math.round((m.weight / totalWeight) * 100),
-  }));
+  return weaknessWeights.map((m) => {
+    const name =
+      studentFacingConceptLabel(m.conceptKey, {
+        subjectLabel: subjectLabelForConcept(m.fieldId, m.conceptKey),
+      }) ?? formatConceptLabel(m.conceptKey);
+    return {
+      id: m.conceptKey,
+      name,
+      fieldId: m.fieldId,
+      masteryScore: Math.round(m.masteryScore),
+      attempts: m.attempts,
+      weight: Math.round((m.weight / totalWeight) * 100),
+    };
+  });
 }
 
 /** Lightweight weak-topic fetch for question bank setup (skips trend/recent tests). */
@@ -275,7 +297,7 @@ export async function getStudentWeakTopics(
             const masteries = await prisma.conceptMastery.findMany({
               where: { userId, ...fieldWhere(fieldIds) },
               orderBy: { masteryScore: "asc" },
-              take: 6,
+              take: WEAK_TOPIC_FETCH,
             });
             return mapWeakTopics(masteries);
           }
@@ -381,7 +403,7 @@ async function loadStudentDashboardData(
     prisma.conceptMastery.findMany({
       where: { userId, ...fieldWhere(fieldIds) },
       orderBy: { masteryScore: "asc" },
-      take: 6,
+      take: WEAK_TOPIC_FETCH,
     }),
     prisma.progressRecord.findMany({
       where: {
