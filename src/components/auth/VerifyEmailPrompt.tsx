@@ -13,11 +13,11 @@ type VerifyEmailPromptProps = {
 };
 
 /**
- * Plain, Apple-like direction after signup: check inbox → verify → start trial.
+ * Plain, Apple-like direction after signup: check inbox → verify email.
  */
 export function VerifyEmailPrompt({
   email,
-  required = false,
+  required: _required = false,
   className,
 }: VerifyEmailPromptProps) {
   const [message, setMessage] = useState<string | null>(null);
@@ -62,14 +62,9 @@ export function VerifyEmailPrompt({
         Please verify your email
       </h2>
       <p className="relative mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-        A verification email has been sent to{" "}
+        We sent a link to{" "}
         <span className="font-medium text-[var(--color-ink)]">{displayEmail}</span>.
-        {required
-          ? " Verify to start your trial."
-          : " Please verify to start your trial."}
-      </p>
-      <p className="relative mx-auto mt-2 max-w-sm text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
-        Open the link in that email, then come back here.
+        Please verify your email to continue.
       </p>
       <div className="relative mt-7 flex flex-col items-center gap-3">
         <button

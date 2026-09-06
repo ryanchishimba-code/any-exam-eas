@@ -175,12 +175,12 @@ export async function sendVerificationEmail({
         to: [to],
         subject: "Verify your Any Exam Easy email",
         html: `
-          <p>Thanks for signing up. Please verify your email to unlock full access.</p>
+          <p>Thanks for signing up. Please verify your email.</p>
           <p><a href="${verifyUrl}">Verify email address</a></p>
           <p>This link expires in 48 hours.</p>
           <p style="color:#666;font-size:12px">${verifyUrl}</p>
         `,
-        text: `Verify your Any Exam Easy email:\n${verifyUrl}\n\nThis link expires in 48 hours.`,
+        text: `Thanks for signing up. Please verify your email:\n${verifyUrl}\n\nThis link expires in 48 hours.`,
       }),
     });
 

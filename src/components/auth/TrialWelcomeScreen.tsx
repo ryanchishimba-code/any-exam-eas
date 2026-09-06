@@ -87,7 +87,7 @@ export function TrialWelcomeScreen({
         </h2>
         <p className="aee-trial-dashboard-lead">
           {showVerifyPrompt
-            ? "After you verify, your trial is ready — practice exams, drug review, and analytics."
+            ? "After you verify, you’re all set to start studying."
             : "Your trial is active — practice exams, drug review, and analytics are ready when you are."}
         </p>
       </div>
