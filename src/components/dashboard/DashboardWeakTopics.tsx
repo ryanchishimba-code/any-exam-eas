@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, GraduationCap, Target } from "lucide-react";
 import { RelatedAnatomyLinks } from "@/components/anatomy/RelatedAnatomyLinks";
 import { analyticsHref, libraryTopicHref, practiceTopicHref } from "@/lib/edtech/practice-links-core";
+import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
@@ -14,7 +15,8 @@ export function DashboardWeakTopics({
   examSlug: ExamSlug;
   weakTopics: WeakTopicRow[];
 }) {
-  if (weakTopics.length === 0) return null;
+  const facing = filterStudentFacingWeakTopics(weakTopics).slice(0, 5);
+  if (facing.length === 0) return null;
 
   return (
     <section aria-labelledby="dashboard-weak-heading" className="space-y-2.5">
@@ -39,7 +41,7 @@ export function DashboardWeakTopics({
       </div>
 
       <ul className={dbUi.listSurface}>
-        {weakTopics.slice(0, 5).map((topic) => {
+        {facing.map((topic) => {
           const slug = topic.id.replace(/^(tag|subject):/, "");
           const links = topic.studyLinks;
           return (

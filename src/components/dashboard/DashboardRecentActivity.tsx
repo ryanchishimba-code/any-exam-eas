@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { ChevronRight, Clock } from "lucide-react";
 import { recentTestHref } from "@/lib/edtech/recent-test-links";
+import { studentFacingSessionTitle } from "@/lib/learning/concept-labels";
+import { getFieldMeta } from "@/lib/fields";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { RecentTestRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
@@ -27,11 +29,16 @@ export function DashboardRecentActivity({
           month: "short",
           day: "numeric",
         });
+        const fieldLabel = getFieldMeta(test.field)?.label ?? test.field;
+        const title = studentFacingSessionTitle(test.title, {
+          fieldLabel,
+          fallback: "Practice exam",
+        });
         return (
           <Link key={test.id} href={recentTestHref(examSlug, test)} className={dbUi.listRow}>
             <div className="min-w-0 flex-1">
               <p className="truncate text-[13px] font-medium text-[var(--color-ink)]">
-                {test.title}
+                {title}
               </p>
               <p className={dbUi.sectionHint}>{when}</p>
             </div>

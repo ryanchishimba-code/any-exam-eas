@@ -10,7 +10,9 @@ import {
   formatConceptLabel,
   isInternalMasteryConceptKey,
   studentFacingConceptLabel,
+  studentFacingSessionTitle,
 } from "@/lib/learning/concept-labels";
+import { getFieldMeta } from "@/lib/fields";
 import { getSubjectsForFieldId } from "@/lib/subjects/registry";
 
 export type AccuracyTrendPoint = {
@@ -291,7 +293,7 @@ export async function getStudentWeakTopics(
     return await withDbRetry(
       () =>
         cacheGetOrSet(
-          cacheKey(["weak-topics", userId, scopeKey]),
+          cacheKey(["weak-topics-v2", userId, scopeKey]),
           CACHE_TTL.learningDashboard,
           async () => {
             const masteries = await prisma.conceptMastery.findMany({
@@ -319,7 +321,7 @@ export async function getStudentDashboardData(
 ): Promise<StudentDashboardData> {
   const scopeKey = fieldIds?.length ? fieldIds.join(",") : "all";
   return cacheGetOrSet(
-    cacheKey(["student-dashboard", userId, scopeKey]),
+    cacheKey(["student-dashboard-v2", userId, scopeKey]),
     CACHE_TTL.learningDashboard,
     () => loadStudentDashboardData(userId, fieldIds),
     { staleTtlMs: CACHE_STALE.learningDashboard }
@@ -465,11 +467,16 @@ async function loadStudentDashboardData(
         /* ignore */
       }
     }
+    const fieldRaw = exam?.field ?? "General";
+    const fieldLabel = getFieldMeta(fieldRaw)?.label ?? fieldRaw;
     return {
       id: r.id,
       examId: r.entityId,
-      title: exam?.title ?? "Practice exam",
-      field: exam?.field ?? "General",
+      title: studentFacingSessionTitle(exam?.title, {
+        fieldLabel,
+        fallback: "Practice exam",
+      }),
+      field: fieldRaw,
       score: Math.round(r.score ?? 0),
       correct,
       total: total ?? exam?.questionCount ?? null,

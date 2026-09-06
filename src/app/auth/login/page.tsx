@@ -42,9 +42,9 @@ export default function AuthLoginPage() {
         <Suspense
           fallback={
             <div className="space-y-3 py-1" aria-hidden>
-              <div className="h-12 animate-pulse rounded-xl bg-[var(--color-surface)]" />
-              <div className="h-12 animate-pulse rounded-xl bg-[var(--color-surface)]" />
-              <div className="h-11 animate-pulse rounded-xl bg-[var(--color-surface)]" />
+              <div className="h-12 animate-pulse rounded-xl bg-[color-mix(in_srgb,var(--color-ink)_8%,var(--color-surface))]" />
+              <div className="h-12 animate-pulse rounded-xl bg-[color-mix(in_srgb,var(--color-ink)_8%,var(--color-surface))]" />
+              <div className="h-11 animate-pulse rounded-xl bg-[color-mix(in_srgb,var(--color-ink)_8%,var(--color-surface))]" />
             </div>
           }
         >

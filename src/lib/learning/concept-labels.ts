@@ -1,6 +1,6 @@
 /**
- * Student-facing labels for conceptMastery keys.
- * Generation batch IDs must never appear in Library / dashboard "Focus next" UI.
+ * Student-facing labels for conceptMastery keys and session titles.
+ * Generation batch IDs must never appear in Library / dashboard UI.
  */
 
 const INTERNAL_PREFIX_RE = /^(tag:|subject:)?batch[-_\s]/i;
@@ -54,4 +54,21 @@ export function filterStudentFacingWeakTopics<T extends { id: string; name?: str
       !isInternalMasteryConceptKey(t.id) &&
       !(t.name && isInternalMasteryConceptKey(t.name))
   );
+}
+
+/**
+ * Replace batch/generation exam titles with a clean practice label.
+ * Used for Recent activity and similar history rows.
+ */
+export function studentFacingSessionTitle(
+  title: string | null | undefined,
+  options?: { fieldLabel?: string | null; fallback?: string }
+): string {
+  const raw = title?.trim() || "";
+  const fallback = options?.fallback?.trim() || "Practice set";
+  if (!raw || isInternalMasteryConceptKey(raw)) {
+    const field = options?.fieldLabel?.trim();
+    return field ? `${field} practice` : fallback;
+  }
+  return raw;
 }

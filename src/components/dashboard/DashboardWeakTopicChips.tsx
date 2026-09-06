@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Target } from "lucide-react";
 import { weakTopicPracticeHref } from "@/components/dashboard/DashboardGraphicHero";
+import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
@@ -14,7 +15,8 @@ export function DashboardWeakTopicChips({
   weakTopics: WeakTopicRow[];
   practiceFieldId?: string;
 }) {
-  if (weakTopics.length === 0) return null;
+  const facing = filterStudentFacingWeakTopics(weakTopics).slice(0, 3);
+  if (facing.length === 0) return null;
 
   return (
     <section aria-labelledby="dashboard-weak-chips-heading" className="space-y-2.5">
@@ -25,7 +27,7 @@ export function DashboardWeakTopicChips({
         </h2>
       </div>
       <ul className="flex flex-wrap gap-2" role="list">
-        {weakTopics.slice(0, 3).map((topic) => {
+        {facing.map((topic) => {
           const slug = topic.id.replace(/^(tag|subject):/, "");
           const href =
             topic.studyLinks?.practiceHref ??

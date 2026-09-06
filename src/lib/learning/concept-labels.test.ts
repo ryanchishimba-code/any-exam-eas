@@ -3,6 +3,7 @@ import {
   formatConceptLabel,
   isInternalMasteryConceptKey,
   studentFacingConceptLabel,
+  studentFacingSessionTitle,
 } from "./concept-labels";
 
 describe("isInternalMasteryConceptKey", () => {
@@ -40,6 +41,22 @@ describe("studentFacingConceptLabel", () => {
   it("title-cases student-facing slugs", () => {
     expect(formatConceptLabel("subject:basic-care-and-comfort")).toBe(
       "Basic Care And Comfort"
+    );
+  });
+});
+
+describe("studentFacingSessionTitle", () => {
+  it("replaces batch titles with field practice labels", () => {
+    expect(
+      studentFacingSessionTitle("Batch Nclex Gap 2026 07 05 Zm54j9", {
+        fieldLabel: "NCLEX",
+      })
+    ).toBe("NCLEX practice");
+  });
+
+  it("keeps real session titles", () => {
+    expect(studentFacingSessionTitle("Management of Care · 25 Q")).toBe(
+      "Management of Care · 25 Q"
     );
   });
 });

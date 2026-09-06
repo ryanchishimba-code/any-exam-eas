@@ -196,7 +196,6 @@ export function LoginModal({ open, onClose, callbackUrl = DEFAULT_AUTH_CALLBACK 
                   <motion.div key="login-panel" {...panelMotion}>
                     <LoginPanel
                       callbackUrl={callbackUrl}
-                      onSuccess={onClose}
                       onForgotPassword={() => setView("forgot")}
                       forgotLinkClassName="text-teal-600 hover:text-teal-700"
                     />

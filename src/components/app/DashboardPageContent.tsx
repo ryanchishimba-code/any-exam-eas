@@ -14,6 +14,7 @@ import { buildPracticeReadinessSummary } from "@/lib/learning/honest-readiness";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamRoadmapData } from "@/lib/learning/exam-roadmap";
 import type { RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/learning/student-dashboard";
+import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import { MasteryReadinessStrip } from "@/components/dashboard/MasteryReadinessStrip";
 import { NaplexMasteryPanel } from "@/components/dashboard/NaplexMasteryPanel";
 import type { MasteryRollup } from "@/lib/engine/mastery/types";
@@ -38,7 +39,7 @@ function topWeakFocus(
   weakTopics: WeakTopicRow[],
   practiceFieldId?: string
 ): DashboardWeakFocus | null {
-  const topic = weakTopics[0];
+  const topic = filterStudentFacingWeakTopics(weakTopics)[0];
   if (!topic) return null;
   const slug = topic.id.replace(/^(tag|subject):/, "");
   return {

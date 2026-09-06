@@ -91,6 +91,8 @@ export type CompleteLoginResult = {
   isPremium: boolean;
 };
 
+let loginFlowInFlight: Promise<CompleteLoginResult> | null = null;
+
 export async function completeLoginFlow(params: {
   router: AppRouterInstance;
   callbackUrl: string;
@@ -98,43 +100,66 @@ export async function completeLoginFlow(params: {
   name?: string | null;
   method: LoginMethod;
 }): Promise<CompleteLoginResult> {
-  const safeCallback = sanitizeCallbackUrl(params.callbackUrl);
-  const name = params.name?.trim() || (await fetchAccountName());
+  if (loginFlowInFlight) return loginFlowInFlight;
 
-  saveReturningUserHint({
-    email: params.email,
-    name,
-    lastMethod: params.method === "magic" ? "email" : params.method,
-  });
+  loginFlowInFlight = (async () => {
+    const safeCallback = sanitizeCallbackUrl(params.callbackUrl);
+    const name = params.name?.trim() || (await fetchAccountName());
 
-  for (let attempt = 0; attempt < 2; attempt++) {
-    const session = await getSession();
-    if (session?.user?.email) break;
-    await new Promise((resolve) => setTimeout(resolve, 120 * (attempt + 1)));
-  }
-  params.router.refresh();
+    saveReturningUserHint({
+      email: params.email,
+      name,
+      lastMethod: params.method === "magic" ? "email" : params.method,
+    });
 
-  const [status, examSlug] = await Promise.all([
-    fetchSubscriptionStatus(),
-    fetchExamSlug(),
-  ]);
-  let destination = await resolvePostLoginDestination(safeCallback, status, examSlug);
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const session = await getSession();
+      if (session?.user?.email) break;
+      await new Promise((resolve) => setTimeout(resolve, 120 * (attempt + 1)));
+    }
 
-  if (
-    status?.status === "trialing" &&
-    status.hasAccess &&
-    !destination.includes("welcome=trial")
-  ) {
-    if (!examSlug) {
-      markTrialWelcomePending(status.daysRemaining ?? TRIAL_DAYS);
-      destination += destination.includes("?") ? "&welcome=trial" : "?welcome=trial";
+    const [status, examSlug] = await Promise.all([
+      fetchSubscriptionStatus(),
+      fetchExamSlug(),
+    ]);
+    let destination = await resolvePostLoginDestination(safeCallback, status, examSlug);
+
+    if (
+      status?.status === "trialing" &&
+      status.hasAccess &&
+      !destination.includes("welcome=trial")
+    ) {
+      if (!examSlug) {
+        markTrialWelcomePending(status.daysRemaining ?? TRIAL_DAYS);
+        destination += destination.includes("?") ? "&welcome=trial" : "?welcome=trial";
+      }
+    }
+
+    // Hard navigation avoids soft-nav races (modal close on `/`, refresh on /login)
+    // that briefly flash the marketing homepage before Study Hub.
+    if (typeof window !== "undefined") {
+      window.location.assign(destination);
+    } else {
+      params.router.replace(destination);
+    }
+
+    return {
+      destination,
+      isPremium: Boolean(status?.hasAccess),
+    };
+  })();
+
+  try {
+    return await loginFlowInFlight;
+  } finally {
+    // Keep the promise cached briefly so a remounted LoginForm effect shares it.
+    const clear = () => {
+      loginFlowInFlight = null;
+    };
+    if (typeof window !== "undefined") {
+      window.setTimeout(clear, 2_000);
+    } else {
+      clear();
     }
   }
-
-  params.router.replace(destination);
-
-  return {
-    destination,
-    isPremium: Boolean(status?.hasAccess),
-  };
 }

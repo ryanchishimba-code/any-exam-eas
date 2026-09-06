@@ -20,6 +20,11 @@ import type { ExamSlug } from "@/types/edtech";
 import { Button } from "@/components/ui/Button";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
 import { cn } from "@/lib/utils";
+import {
+  filterStudentFacingWeakTopics,
+  formatConceptLabel,
+  isInternalMasteryConceptKey,
+} from "@/lib/learning/concept-labels";
 
 type AnalyticsPayload = {
   dashboard: StudentDashboardData;
@@ -124,11 +129,16 @@ export function StudentAnalyticsDashboard({
 
   // The API already scopes the payload to this exam; keep a defensive client
   // filter so nothing from another exam can ever leak into the view.
-  const weakTopics = dashboard.weakTopics.filter((t) => fieldIds.includes(t.fieldId));
+  const weakTopics = filterStudentFacingWeakTopics(
+    dashboard.weakTopics.filter((t) => fieldIds.includes(t.fieldId))
+  );
 
   const strongTopics =
     profile?.strongestConcepts
-      ?.filter((c) => fieldIds.includes(c.fieldId))
+      ?.filter(
+        (c) =>
+          fieldIds.includes(c.fieldId) && !isInternalMasteryConceptKey(c.conceptKey)
+      )
       .slice(0, 5)
       .map((c) => c.conceptKey) ?? [];
   const primaryExamSlug = examSlug;
@@ -309,7 +319,7 @@ export function StudentAnalyticsDashboard({
                 key={c}
                 className="rounded-full border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-3 py-1 text-xs font-medium text-[var(--color-ink)]"
               >
-                {c}
+                {formatConceptLabel(c)}
               </li>
             ))}
           </ul>
