@@ -129,7 +129,7 @@ describe("dashboardUpgradePricingHref", () => {
     const href = dashboardUpgradePricingHref("trial");
     expect(href).toContain("/checkout?");
     expect(href).toContain("plan=subscribe");
-    expect(href).toContain("interval=yearly");
+    expect(href).toContain("interval=monthly");
     expect(href).not.toContain("reactivate=1");
   });
 
@@ -139,9 +139,9 @@ describe("dashboardUpgradePricingHref", () => {
     expect(href).toContain("reactivate=1");
   });
 
-  it("trialUpgradeCheckoutHref defaults to yearly Pro", () => {
+  it("trialUpgradeCheckoutHref defaults to monthly Pro", () => {
     expect(trialUpgradeCheckoutHref()).toBe(
-      "/checkout?plan=subscribe&tier=pro&interval=yearly&return=%2Fdashboard"
+      "/checkout?plan=subscribe&tier=pro&interval=monthly&return=%2Fdashboard"
     );
   });
 });

@@ -148,8 +148,8 @@ export const LANDING_PRICING_FEATURES = [
 
 export const LANDING_HERO_EYEBROW = "AnyExamEasy";
 
-/** Primary signup destination — Pro annual is the default conversion path. */
-export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=yearly&tier=pro";
+/** Primary signup destination — Pro monthly is the default conversion path. */
+export const LANDING_TRIAL_HREF = "/signup?plan=trial&interval=monthly&tier=pro";
 
 /** Large hero exam strip — short labels with brand accent colors + signup deep links. */
 export const LANDING_HERO_EXAMS = [

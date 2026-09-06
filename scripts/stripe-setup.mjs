@@ -143,7 +143,7 @@ Stripe secret key required.
   console.log(`
 Done. Updated .env with Pro billing prices.
 
-Next: npm run dev → /signup?plan=trial&tier=pro&interval=yearly
+Next: npm run dev → /signup?plan=trial&tier=pro&interval=monthly
 Webhook: stripe listen --forward-to localhost:3000/api/stripe/webhook
 `);
 }

@@ -43,7 +43,7 @@ type BillingStatus = {
 export function BillingSettingsSection() {
   const [status, setStatus] = useState<BillingStatus | null>(null);
   const [tier, setTier] = useState<SubscriptionTier>("pro");
-  const [interval, setInterval] = useState<BillingInterval>("yearly");
+  const [interval, setInterval] = useState<BillingInterval>("monthly");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");

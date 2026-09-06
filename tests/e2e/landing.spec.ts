@@ -24,9 +24,9 @@ test.describe("Landing page", () => {
   test("trial CTA links to signup and signup page renders", async ({ page }) => {
     await page.goto("/", { waitUntil: "domcontentloaded" });
 
-    const trialCta = page.locator('a[href*="/signup?plan=trial"][href*="interval=yearly"]').first();
+    const trialCta = page.locator('a[href*="/signup?plan=trial"][href*="interval=monthly"]').first();
     await expect(trialCta).toBeVisible();
-    await expect(trialCta).toHaveAttribute("href", /\/signup\?plan=trial.*interval=yearly/);
+    await expect(trialCta).toHaveAttribute("href", /\/signup\?plan=trial.*interval=monthly/);
 
     const href = await trialCta.getAttribute("href");
     expect(href).toBeTruthy();

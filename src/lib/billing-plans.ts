@@ -141,7 +141,7 @@ export function parseBillingInterval(value: unknown): BillingInterval {
   ) {
     return value;
   }
-  return "yearly";
+  return "monthly";
 }
 
 export function intervalRenewalLabel(tier: SubscriptionTier, interval: BillingInterval): string {

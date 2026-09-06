@@ -21,7 +21,7 @@ export function trialUpgradeCheckoutHref(returnPath = "/dashboard"): string {
   const params = new URLSearchParams({
     plan: "subscribe",
     tier: "pro",
-    interval: "yearly",
+    interval: "monthly",
     return: returnPath,
   });
   return `/checkout?${params.toString()}`;
@@ -32,7 +32,7 @@ export function postTrialCheckoutHref(returnPath = "/dashboard"): string {
   const params = new URLSearchParams({
     plan: "subscribe",
     tier: "pro",
-    interval: "yearly",
+    interval: "monthly",
     reactivate: "1",
     return: returnPath,
   });

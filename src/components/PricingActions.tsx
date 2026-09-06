@@ -37,7 +37,7 @@ export function PricingActions() {
               : "Your subscription is active."}
           </p>
           {(access.status === "inactive" || access.status === "trialing") && access.needsPaymentMethod ? (
-            <Button href="/checkout?plan=trial&interval=yearly&tier=pro">Complete checkout</Button>
+            <Button href="/checkout?plan=trial&interval=monthly&tier=pro">Complete checkout</Button>
           ) : (
             <Button href="/study">Continue studying</Button>
           )}
@@ -47,7 +47,7 @@ export function PricingActions() {
 
     return (
       <div className="flex flex-col gap-3">
-        <Button href="/checkout?plan=trial&interval=yearly&tier=pro">{formatTrialCtaLabel()}</Button>
+        <Button href="/checkout?plan=trial&interval=monthly&tier=pro">{formatTrialCtaLabel()}</Button>
         <SubscribeButton label={`Subscribe Now — from ${formatMonthlyPrice()}/mo`} variant="secondary" />
       </div>
     );
@@ -56,7 +56,7 @@ export function PricingActions() {
   return (
     <div className="flex flex-col gap-3">
       <Button href={LANDING_TRIAL_HREF}>{formatTrialCtaLabel()}</Button>
-      <Button href="/signup?plan=subscribe&interval=yearly&tier=pro" variant="secondary">
+      <Button href="/signup?plan=subscribe&interval=monthly&tier=pro" variant="secondary">
         Subscribe Now — from {formatMonthlyPrice()}/month
       </Button>
       <p className="text-center text-xs text-[var(--color-ink-muted)]">

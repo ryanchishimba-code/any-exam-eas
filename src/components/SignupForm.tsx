@@ -47,7 +47,7 @@ import { analytics } from "@/lib/analytics";
 export function SignupForm({
   initialPlan = "",
   initialPromo = "",
-  initialInterval = "yearly",
+  initialInterval = "monthly",
   initialTier = "pro",
   initialExam = "",
 }: {

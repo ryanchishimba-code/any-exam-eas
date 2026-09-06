@@ -30,7 +30,7 @@ export function CheckoutOrderSummary({
   pricing,
   discount,
   planLabel,
-  interval = "yearly",
+  interval = "monthly",
   tier = "pro",
   className,
   sticky = false,

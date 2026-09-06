@@ -152,7 +152,7 @@ desktop Chrome + mobile (real device or DevTools device toolbar).
 - [ ] **Pricing clarity** — `/pricing` loads; the trial/price callout is prominent
       and consistent with the homepage and exam pages.
 - [ ] **Start trial CTA** — Homepage + About + exam pages "Start free trial" links
-      all go to `/signup?plan=trial&interval=yearly`.
+      all go to `/signup?plan=trial&interval=monthly`.
 - [ ] **Signup** — Create account succeeds; validation errors show for bad email /
       weak password / mismatched fields; no double-submit.
 - [ ] **Checkout** — Pricing → Stripe Checkout opens with the right plan/interval;

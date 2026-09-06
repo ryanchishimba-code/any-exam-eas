@@ -93,7 +93,7 @@ export function formatLandingHeroSubline(): string {
 
 export function formatTrialCtaWithSavings(
   tier: SubscriptionTier = "pro",
-  interval: BillingInterval = "yearly"
+  interval: BillingInterval = "monthly"
 ): string {
   const plan = getBillingPlanTier(tier, interval);
   if (plan.savingsPercent === 0) {
@@ -107,7 +107,7 @@ export function formatTrialCtaWithSavings(
 
 export function formatTrialCtaSubline(
   tier: SubscriptionTier = "pro",
-  interval: BillingInterval = "yearly"
+  interval: BillingInterval = "monthly"
 ): string {
   const plan = getBillingPlanTier(tier, interval);
   const afterTrial = formatTierAfterTrialLine(tier, interval).replace(/^After trial: /, "");

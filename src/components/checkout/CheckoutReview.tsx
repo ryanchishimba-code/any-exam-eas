@@ -43,7 +43,7 @@ type CheckoutReviewProps = {
 export function CheckoutReview({
   initialPlan,
   initialTier = "pro",
-  initialInterval = "yearly",
+  initialInterval = "monthly",
   onContinue,
   initialPromo = "",
   continueBusy = false,

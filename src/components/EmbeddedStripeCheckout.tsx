@@ -34,7 +34,7 @@ export function EmbeddedStripeCheckout() {
   }, [searchParams]);
   const interval = useMemo(() => {
     const raw = searchParams.get("interval");
-    return raw ? parseBillingInterval(raw) : "yearly";
+    return raw ? parseBillingInterval(raw) : "monthly";
   }, [searchParams]);
   const initialPromo = searchParams.get("promo") ?? "";
   const reactivating = searchParams.get("reactivate") === "1";

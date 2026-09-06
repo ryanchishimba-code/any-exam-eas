@@ -58,7 +58,7 @@ export default async function CheckoutPage({
         isReactivate
           ? "Pick your plan and enter payment — full access restores automatically once payment is received."
           : isUpgrade
-            ? "Upgrade anytime before your trial ends. Choose annual for the best rate — billing starts when you confirm."
+            ? "Upgrade anytime before your trial ends. Start with monthly — or pick annual to save. Billing starts when you confirm."
             : formatTrialCheckoutDescription()
       }
       maxWidth="max-w-2xl"

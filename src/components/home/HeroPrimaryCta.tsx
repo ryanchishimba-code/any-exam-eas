@@ -34,7 +34,7 @@ export function HeroPrimaryCta({
         />
       </Link>
 
-      <Link href="/signup?plan=subscribe&interval=yearly&tier=pro" className="aee-btn-hero-secondary block w-full text-center">
+      <Link href="/signup?plan=subscribe&interval=monthly&tier=pro" className="aee-btn-hero-secondary block w-full text-center">
         Subscribe — {formatMonthlyPrice()}/mo · full access
       </Link>
 

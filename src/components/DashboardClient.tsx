@@ -133,7 +133,7 @@ export function DashboardClient({
             ) : access.status === "trialing" ? (
               <>
                 <Button
-                  href={`/checkout?plan=subscribe&tier=pro&interval=yearly&return=${encodeURIComponent("/dashboard")}`}
+                  href={`/checkout?plan=subscribe&tier=pro&interval=monthly&return=${encodeURIComponent("/dashboard")}`}
                   variant="secondary"
                 >
                   Upgrade Now

@@ -21,7 +21,7 @@ export function SubscriptionBanner({ access }: { access: SubscriptionAccess }) {
           trial ends. Cancel anytime before then for no charge.
         </p>
         <div className="mt-3 flex flex-wrap gap-3">
-          <Button href="/checkout?plan=trial&interval=yearly" variant="secondary">
+          <Button href="/checkout?plan=trial&interval=monthly" variant="secondary">
             Add payment method
           </Button>
           <Button href="/settings" variant="ghost">

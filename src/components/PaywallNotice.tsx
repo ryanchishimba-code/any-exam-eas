@@ -38,7 +38,7 @@ export function PaywallNotice({
             <Button href={LANDING_TRIAL_HREF}>
               Start {formatTrialLabel()} — {formatTrialEntryPrice()} today
             </Button>
-            <Button href="/checkout?plan=trial&interval=yearly" variant="secondary">
+            <Button href="/checkout?plan=trial&interval=monthly" variant="secondary">
               Already have an account? Add payment
             </Button>
           </div>

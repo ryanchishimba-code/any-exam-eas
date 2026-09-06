@@ -34,7 +34,7 @@ const ICONS: Record<ProFeatureHighlight["icon"], LucideIcon> = {
 
 /** Pro value story — single-plan feature highlights. */
 export function ProBenefitsComparison({
-  ctaHref = "/signup?plan=trial&interval=yearly&tier=pro",
+  ctaHref = "/signup?plan=trial&interval=monthly&tier=pro",
   ctaLabel = TRIAL_CTA_LABEL,
   heading = PRICING_VALUE_HEADLINE,
   className,

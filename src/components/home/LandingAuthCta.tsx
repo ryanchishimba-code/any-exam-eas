@@ -52,7 +52,7 @@ export function LandingAuthCta({
       </div>
 
       {!compact && (
-        <Link href="/signup?plan=subscribe&interval=yearly&tier=pro" className="aee-btn-secondary text-center">
+        <Link href="/signup?plan=subscribe&interval=monthly&tier=pro" className="aee-btn-secondary text-center">
           Subscribe — {formatMonthlyPrice()}/mo
         </Link>
       )}

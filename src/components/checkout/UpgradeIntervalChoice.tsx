@@ -14,7 +14,7 @@ type UpgradeIntervalChoiceProps = {
   className?: string;
 };
 
-const PRIMARY: BillingInterval[] = ["yearly", "monthly"];
+const PRIMARY: BillingInterval[] = ["monthly", "yearly"];
 const MORE: BillingInterval[] = ["semiannual", "quarterly"];
 
 function priceLine(tier: SubscriptionTier, interval: BillingInterval): string {

@@ -86,7 +86,7 @@ function PreviewProCard({ interval }: { interval: BillingInterval }) {
 }
 
 export function LandingPricingPreview() {
-  const [interval, setInterval] = useState<BillingInterval>("yearly");
+  const [interval, setInterval] = useState<BillingInterval>("monthly");
 
   return (
     <div className="aee-landing-pricing">

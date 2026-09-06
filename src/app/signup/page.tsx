@@ -63,7 +63,7 @@ export default async function SignupPage({
 
   const { plan, promo, interval, tier, exam } = await searchParams;
   const initialPlan = parseInitialPlan(plan);
-  const initialInterval = interval ? parseBillingInterval(interval) : "yearly";
+  const initialInterval = interval ? parseBillingInterval(interval) : "monthly";
   const initialTier = parseSubscriptionTier(tier);
   const initialExam = parseInitialExam(exam);
 

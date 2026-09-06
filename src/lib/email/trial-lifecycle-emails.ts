@@ -46,7 +46,7 @@ export function upgradeEmailUrl(context: "welcome" | "trial-ending"): string {
     const params = new URLSearchParams({
       plan: "subscribe",
       tier: "pro",
-      interval: "yearly",
+      interval: "monthly",
       from: "email-trial-ending",
     });
     return `${appBaseUrl()}/checkout?${params.toString()}`;

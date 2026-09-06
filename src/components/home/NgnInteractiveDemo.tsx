@@ -36,7 +36,7 @@ type NgnInteractiveDemoProps = {
 
 export function NgnInteractiveDemo({
   embedded = false,
-  trialHref = "/signup?plan=trial&interval=yearly&tier=pro&exam=nclex",
+  trialHref = "/signup?plan=trial&interval=monthly&tier=pro&exam=nclex",
 }: NgnInteractiveDemoProps) {
   const [activeTab, setActiveTab] = useState(0);
   const [selected, setSelected] = useState<string[]>([]);

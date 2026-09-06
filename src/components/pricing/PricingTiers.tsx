@@ -142,7 +142,7 @@ function TrialUpgradePricing({
 
 export function PricingTiers({ className }: PricingTiersProps) {
   const { data: session } = useSession();
-  const [interval, setInterval] = useState<BillingInterval>("yearly");
+  const [interval, setInterval] = useState<BillingInterval>("monthly");
   const [access, setAccess] = useState<AccessInfo | null>(null);
 
   useEffect(() => {
@@ -226,7 +226,7 @@ export function PricingTiers({ className }: PricingTiersProps) {
 
       <div className="mx-auto max-w-md">
         <p className="mb-3 text-center text-sm font-medium text-[var(--color-ink)]">
-          Choose your billing cycle — annual saves the most
+          Choose your billing cycle — monthly is flexible, annual saves more
         </p>
         <BillingIntervalPicker value={interval} onChange={setInterval} variant="pricing" tier="pro" />
       </div>
