@@ -30,9 +30,9 @@ export function PageShell({
             {eyebrow}
           </p>
         )}
-        <h1 className="apple-display text-[clamp(2rem,5vw,2.75rem)]">{title}</h1>
+        <h1 className="apple-display">{title}</h1>
         {description && (
-          <p className={`apple-subhead mt-4 max-w-xl text-[1.0625rem] ${centered ? "mx-auto" : ""}`}>
+          <p className={`apple-subhead mt-5 max-w-xl ${centered ? "mx-auto" : ""}`}>
             {description}
           </p>
         )}

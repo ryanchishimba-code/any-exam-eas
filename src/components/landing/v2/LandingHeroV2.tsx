@@ -58,13 +58,13 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
             {LANDING_HERO_HEADLINE}
           </h1>
 
+          <p className="aee-hero-beat__subline">{LANDING_HERO_SUBLINE_BODY}</p>
+
           {examCountLine ? (
             <p className="aee-hero-beat__countline" aria-live="polite">
               {examCountLine}
             </p>
           ) : null}
-
-          <p className="aee-hero-beat__subline">{LANDING_HERO_SUBLINE_BODY}</p>
 
           <LandingHeroExamStrip
             variant="chips"
@@ -91,34 +91,35 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
               </LandingCta>
             ) : (
               <>
+                <LandingCta
+                  href={trialCta.href}
+                  ctaName="hero_trial"
+                  location="hero"
+                  className="aee-flagship-cta--hero aee-flagship-cta--xl aee-flagship-cta--primary aee-flagship-cta--on-dark group aee-hero-beat__cta"
+                  icon={
+                    <ArrowRight
+                      className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
+                      aria-hidden
+                    />
+                  }
+                >
+                  Start free trial
+                </LandingCta>
                 <button
                   type="button"
-                  className="aee-flagship-cta aee-flagship-cta--hero aee-flagship-cta--xl aee-flagship-cta--primary aee-flagship-cta--on-dark group aee-hero-beat__cta"
+                  className="aee-hero-beat__secondary"
                   onClick={() => {
                     analytics.ctaClicked("hero_try_question", "hero");
                     focusHeroPractice();
                   }}
                 >
                   Try a free question
-                  <ArrowRight
-                    className="h-5 w-5 transition-transform group-hover:translate-x-0.5"
-                    aria-hidden
-                  />
                 </button>
-                <LandingCta
-                  href={trialCta.href}
-                  ctaName="hero_trial"
-                  location="hero"
-                  variant="ghost-on-dark"
-                  className="aee-hero-beat__secondary aee-hero-beat__secondary--trial"
-                >
-                  Start free trial
-                </LandingCta>
               </>
             )}
           </div>
 
-          <p className="aee-hero-beat__meta">{LANDING_HERO_CTA_DISCLOSURE}</p>
+          <p className="aee-hero-beat__meta aee-hero-beat__meta--quiet">{LANDING_HERO_CTA_DISCLOSURE}</p>
         </div>
 
         <div className="aee-hero-beat__visual aee-hero-beat__visual--practice">

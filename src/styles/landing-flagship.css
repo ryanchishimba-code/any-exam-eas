@@ -3050,6 +3050,12 @@ button.aee-flagship-cta {
   color: var(--aee-hero-quiet);
 }
 
+.aee-hero-beat__meta--quiet {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
 .aee-hero-beat__price {
   display: inline-flex;
   flex-wrap: wrap;

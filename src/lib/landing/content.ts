@@ -173,9 +173,9 @@ export const LANDING_HERO_HEADLINE = "One study system. Six boards.";
 /** Accent line under the primary headline — empty when the full headline is in LANDING_HERO_HEADLINE. */
 export const LANDING_HERO_HEADLINE_ACCENT = "";
 
-/** Hero sub-headline — locked six-board promise. */
+/** Hero sub-headline — one clear line; exam list lives in chips. */
 export const LANDING_HERO_SUBLINE_BODY =
-  "QA-gated questions, Blueprint Roadmaps, and full-length mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT — clinician-built, not bulk filler.";
+  "Clinician-built practice with Roadmaps and Deep Dives — one login for every board.";
 
 export function formatFlagshipHeroSubline(_totalLabel?: string): string {
   return LANDING_HERO_SUBLINE_BODY;
