@@ -155,7 +155,7 @@ export function Navigation() {
         </ul>
 
         <div className="aee-nav-actions">
-          <ThemeToggle />
+          <ThemeToggle className="hidden sm:inline-flex" />
           {isAuthenticated && !accessLoading ? (
             <div className="hidden lg:block">
               <GlobalExamSwitcher variant="nav" />

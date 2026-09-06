@@ -3239,6 +3239,175 @@
   }
 }
 
+/* Smartphone / tablet portrait fold — one ATF composition (copy + CTA + product plane) */
+@media (max-width: 1023px) {
+  .aee-hero-beat {
+    /* svh avoids mobile browser chrome making 100dvh taller than the visible fold */
+    min-height: 100svh;
+    max-height: 100svh;
+    align-items: stretch;
+    padding-block: calc(var(--nav-height, 3.25rem) + 0.75rem) 0;
+    overflow: hidden;
+  }
+
+  .aee-hero-beat__shell {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    min-height: calc(100svh - var(--nav-height, 3.25rem) - 0.75rem);
+    max-height: calc(100svh - var(--nav-height, 3.25rem) - 0.75rem);
+    padding-inline: 1.25rem;
+  }
+
+  .aee-hero-beat__copy {
+    position: relative;
+    z-index: 2;
+    max-width: none;
+    flex: 0 0 auto;
+  }
+
+  .aee-hero-beat__brand {
+    font-size: 0.8125rem;
+    letter-spacing: 0.14em;
+  }
+
+  .aee-hero-beat__headline {
+    margin-top: 0.6rem;
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+    line-height: 1.08;
+  }
+
+  .aee-hero-beat__subline {
+    margin-top: 0.65rem;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+
+  .aee-hero-exam-chips {
+    margin-top: 0.8rem;
+    flex-wrap: nowrap;
+    gap: 0.35rem 0.75rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-inline: -0.15rem;
+    padding-inline: 0.15rem;
+    padding-bottom: 0.15rem;
+  }
+
+  .aee-hero-exam-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .aee-hero-exam-chips__link {
+    flex: 0 0 auto;
+    font-size: 0.75rem;
+  }
+
+  .aee-hero-beat__actions {
+    margin-top: 1rem;
+    flex-wrap: nowrap;
+    gap: 0.75rem 1rem;
+  }
+
+  .aee-hero-beat__cta {
+    min-width: 0;
+    width: auto;
+    flex: 0 1 auto;
+  }
+
+  .aee-hero-beat__secondary {
+    min-height: 2.5rem;
+    white-space: nowrap;
+  }
+
+  .aee-hero-beat__meta {
+    margin-top: 0.65rem;
+    font-size: 0.6875rem;
+    line-height: 1.35;
+    max-width: none;
+  }
+
+  .aee-hero-beat__visual {
+    position: relative;
+    z-index: 1;
+    flex: 1 1 auto;
+    min-height: 0;
+    margin-top: 0.35rem;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .aee-hero-beat__float {
+    width: min(100%, 26rem);
+    transform: translate3d(0, 12%, 0);
+    will-change: auto;
+    animation: none !important;
+  }
+
+  .aee-hero-beat__shadow {
+    display: none;
+  }
+
+  .aee-hero-beat__stage-glow {
+    inset: 18% -12% -8% -12%;
+    opacity: 0.5;
+    filter: blur(36px);
+    animation: none !important;
+  }
+
+  .aee-hero-beat__product {
+    /* Fade top + bottom so the product reads as a stage plane, not a clipped card */
+    -webkit-mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      #000 14%,
+      #000 78%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      #000 14%,
+      #000 78%,
+      transparent 100%
+    );
+  }
+}
+
+/* Short phones — keep headline + CTA in the first viewport */
+@media (max-width: 1023px) and (max-height: 700px) {
+  .aee-hero-beat__headline {
+    font-size: clamp(1.55rem, 6.5vw, 1.95rem);
+  }
+
+  .aee-hero-beat__subline {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
+  .aee-hero-exam-chips {
+    margin-top: 0.55rem;
+  }
+
+  .aee-hero-beat__actions {
+    margin-top: 0.75rem;
+  }
+
+  .aee-hero-beat__meta {
+    margin-top: 0.5rem;
+  }
+
+  .aee-hero-beat__float {
+    transform: translate3d(0, 18%, 0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .aee-hero-beat__float {
     transform: translate3d(0, -14px, 0);
