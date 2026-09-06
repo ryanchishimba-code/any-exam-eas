@@ -1,5 +1,5 @@
 /**
- * Generate UWorld-caliber expert NCLEX rationales via OpenAI.
+ * Generate UWorld-caliber expert rationales (NCLEX + USMLE) via OpenAI.
  */
 import { z } from "zod";
 import { getOpenAiClient } from "@/lib/openai-client";
@@ -7,6 +7,10 @@ import {
   buildNclexExpertSystemPrompt,
   buildNclexExpertUserPrompt,
 } from "../prompts/nclex-expert-rationale";
+import {
+  buildUsmleExpertSystemPrompt,
+  buildUsmleExpertUserPrompt,
+} from "../prompts/usmle-expert-rationale";
 import type { RationaleGenerationInput } from "../prompts/rationale-generation";
 import { validateStructuredRationale, matchRationaleOptionToBank } from "./validate-rationale";
 import {
@@ -16,7 +20,14 @@ import {
 import { attachVisualRationaleToItem } from "./enrich-visual-rationale";
 import type { VisualRationaleBlock } from "./visual-rationale-types";
 import type { ExpertStructuredRationale } from "./expert-rationale-types";
-import { EXPERT_RATIONALE_META_KEY, EXPERT_RATIONALE_VERSION } from "./expert-rationale-types";
+import {
+  EXPERT_RATIONALE_META_KEY,
+  EXPERT_RATIONALE_VERSION,
+  USMLE_EXPERT_RATIONALE_VERSION,
+} from "./expert-rationale-types";
+import { scoreUsmleExplanationQuality } from "./usmle-explanation-quality";
+import { isUsmleFieldId } from "@/lib/exam-prep/usmle/steps";
+import { isNclexField } from "@/lib/exam/exam-lengths";
 
 const ExpertRationaleSchema = z.object({
   whyCorrect: z.object({
@@ -103,7 +114,7 @@ const ExpertRationaleSchema = z.object({
 export type GenerateExpertRationaleResult = {
   structured: ExpertStructuredRationale;
   assembled: AssembledExpertRationale;
-  quality: ReturnType<typeof validateStructuredRationale>;
+  quality: { ok: boolean; score: number; issues: string[] };
   model: string;
   version: string;
 };
@@ -152,15 +163,27 @@ function alignWhyIncorrectOptions<T extends { whyIncorrect: Array<{ option: stri
   };
 }
 
-export async function generateExpertNclexRationale(
+type ExpertBoard = "nclex" | "usmle";
+
+async function generateExpertRationaleWithPrompts(
   input: RationaleGenerationInput,
+  board: ExpertBoard,
   opts?: { maxRetries?: number; temperature?: number }
 ): Promise<GenerateExpertRationaleResult | null> {
   if (!openai) return null;
 
   const maxRetries = opts?.maxRetries ?? 2;
-  const system = buildNclexExpertSystemPrompt();
-  const user = buildNclexExpertUserPrompt(input);
+  const system =
+    board === "usmle"
+      ? buildUsmleExpertSystemPrompt(input.fieldId)
+      : buildNclexExpertSystemPrompt();
+  const user =
+    board === "usmle"
+      ? buildUsmleExpertUserPrompt(input)
+      : buildNclexExpertUserPrompt(input);
+  const version =
+    board === "usmle" ? USMLE_EXPERT_RATIONALE_VERSION : EXPERT_RATIONALE_VERSION;
+  const logTag = board === "usmle" ? "generate-expert-usmle" : "generate-expert-rationale";
 
   let lastError: unknown;
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -176,7 +199,7 @@ export async function generateExpertNclexRationale(
             role: "user",
             content:
               attempt > 0
-                ? `${user}\n\nPrevious JSON failed validation. Include ALL wrong options with vignette-specific corrections, 3+ stepByStepReasoning steps, and 2+ highYieldFacts. JSON only.`
+                ? `${user}\n\nPrevious JSON failed validation. Include ALL wrong options with vignette-specific corrections, 3+ stepByStepReasoning steps, a substantive clinicalPearl, and 2+ highYieldFacts. JSON only.`
                 : user,
           },
         ],
@@ -201,7 +224,7 @@ export async function generateExpertNclexRationale(
         lastError = parsed.error;
         if (attempt === maxRetries) {
           console.warn(
-            "[generate-expert-rationale] zod:",
+            `[${logTag}] zod:`,
             parsed.error.issues.slice(0, 4).map((i) => `${i.path.join(".")}: ${i.message}`)
           );
         }
@@ -209,22 +232,31 @@ export async function generateExpertNclexRationale(
       }
 
       const aligned = alignWhyIncorrectOptions(parsed.data, input.options);
-      const quality = validateStructuredRationale(
-        aligned,
-        input.options,
-        input.correctAnswer
-      );
+      const withVisuals = augmentExpertVisualBlocks(aligned as ExpertStructuredRationale);
+
+      const quality =
+        board === "usmle"
+          ? scoreUsmleExplanationQuality(
+              withVisuals,
+              input.options,
+              input.correctAnswer,
+              input.fieldId
+            )
+          : validateStructuredRationale(aligned, input.options, input.correctAnswer);
 
       if (!quality.ok && attempt < maxRetries) continue;
 
-      const withVisuals = augmentExpertVisualBlocks(aligned as ExpertStructuredRationale);
       const assembled = assembleExpertRationale(withVisuals);
       return {
         structured: withVisuals,
         assembled,
-        quality,
+        quality: {
+          ok: quality.ok,
+          score: quality.score,
+          issues: quality.issues.map(String),
+        },
         model: "gpt-4o-mini",
-        version: EXPERT_RATIONALE_VERSION,
+        version,
       };
     } catch (err) {
       lastError = err;
@@ -238,7 +270,36 @@ export async function generateExpertNclexRationale(
         : typeof lastError === "object" && lastError && "message" in lastError
           ? String((lastError as { message: unknown }).message)
           : String(lastError);
-    console.warn("[generate-expert-rationale] failed:", msg.slice(0, 240));
+    console.warn(`[${logTag}] failed:`, msg.slice(0, 240));
+  }
+  return null;
+}
+
+export async function generateExpertNclexRationale(
+  input: RationaleGenerationInput,
+  opts?: { maxRetries?: number; temperature?: number }
+): Promise<GenerateExpertRationaleResult | null> {
+  return generateExpertRationaleWithPrompts(input, "nclex", opts);
+}
+
+export async function generateExpertUsmleRationale(
+  input: RationaleGenerationInput,
+  opts?: { maxRetries?: number; temperature?: number }
+): Promise<GenerateExpertRationaleResult | null> {
+  return generateExpertRationaleWithPrompts(input, "usmle", opts);
+}
+
+/** Route expert generation by bank field (nursing → NCLEX, usmle-step-* → USMLE). */
+export async function generateExpertRationaleForField(
+  fieldId: string,
+  input: RationaleGenerationInput,
+  opts?: { maxRetries?: number; temperature?: number }
+): Promise<GenerateExpertRationaleResult | null> {
+  if (isUsmleFieldId(fieldId) || isUsmleFieldId(input.fieldId)) {
+    return generateExpertUsmleRationale({ ...input, fieldId: input.fieldId || fieldId }, opts);
+  }
+  if (isNclexField(fieldId) || fieldId === "nursing") {
+    return generateExpertNclexRationale(input, opts);
   }
   return null;
 }
@@ -263,13 +324,15 @@ function finalizeEnrichedItem(
   return attachVisualRationaleToItem(item);
 }
 
-/** Expert-tier enrich for NCLEX generation when RATIONALE_ENRICH_ON_GENERATE=1. */
+/** Expert-tier enrich when RATIONALE_ENRICH_ON_GENERATE=1 (NCLEX + USMLE). */
 export async function maybeEnrichExpertBankItemRationale(
   item: import("@/lib/question-bank").BankItem,
   fieldId: string
 ): Promise<import("@/lib/question-bank").BankItem> {
   if (process.env.RATIONALE_ENRICH_ON_GENERATE !== "1") return finalizeEnrichedItem(item);
-  if (fieldId !== "nursing") {
+
+  const useExpert = fieldId === "nursing" || isNclexField(fieldId) || isUsmleFieldId(fieldId);
+  if (!useExpert) {
     const { maybeEnrichBankItemRationale } = await import("./generate-rationale");
     return maybeEnrichBankItemRationale(item, fieldId);
   }
@@ -282,7 +345,10 @@ export async function maybeEnrichExpertBankItemRationale(
   const check = needsRationaleEnrichment(item);
   if (!check.needs) return finalizeEnrichedItem(item);
 
-  const result = await generateExpertNclexRationale(rationaleInputFromBankItem(item, fieldId));
+  const result = await generateExpertRationaleForField(
+    fieldId,
+    rationaleInputFromBankItem(item, fieldId)
+  );
   if (!result?.quality.ok) {
     return finalizeEnrichedItem(await maybeEnrichBankItemRationale(item, fieldId));
   }

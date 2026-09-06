@@ -39,6 +39,7 @@ export {
 export {
   EXPERT_RATIONALE_META_KEY,
   EXPERT_RATIONALE_VERSION,
+  USMLE_EXPERT_RATIONALE_VERSION,
   readExpertRationaleFromMeta,
   type ExpertStructuredRationale,
   type LayeredDepth,
@@ -54,12 +55,27 @@ export {
 
 export {
   generateExpertNclexRationale,
+  generateExpertUsmleRationale,
+  generateExpertRationaleForField,
   maybeEnrichExpertBankItemRationale,
   type GenerateExpertRationaleResult,
 } from "./generate-expert-rationale";
+
+export {
+  scoreUsmleExplanationQuality,
+  type UsmleExplanationQualityIssue,
+  type UsmleExplanationQualityVerdict,
+} from "./usmle-explanation-quality";
 
 export {
   buildNclexExpertSystemPrompt,
   buildNclexExpertUserPrompt,
   NCLEX_EXPERT_RATIONALE_JSON_SCHEMA,
 } from "../prompts/nclex-expert-rationale";
+
+export {
+  buildUsmleExpertSystemPrompt,
+  buildUsmleExpertUserPrompt,
+  resolveUsmleExpertStepTone,
+  USMLE_EXPERT_RATIONALE_JSON_SCHEMA,
+} from "../prompts/usmle-expert-rationale";

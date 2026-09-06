@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 /**
- * Bulk-upgrade board exam rationales — expert tier for NCLEX, structured tier for other exams.
+ * Bulk-upgrade board exam rationales — expert tier for NCLEX + USMLE, structured for others.
  *
  * Usage:
  *   npm run db:enrich-board-expert -- --field nursing --limit 200
+ *   npm run db:enrich-board-expert -- --field usmle-step-2 --serve-only --limit 200
  *   npm run db:enrich-board-expert -- --field pance --serve-only --limit 500
  *   npm run db:enrich-board-expert -- --field all --serve-only --limit 100
  *
@@ -24,18 +25,19 @@ import {
 } from "../src/lib/exam-prep/board-serve-registry";
 import {
   EXPERT_RATIONALE_META_KEY,
-  EXPERT_RATIONALE_VERSION,
   readExpertRationaleFromMeta,
 } from "../src/lib/engine/rationale/expert-rationale-types";
-import { generateExpertNclexRationale } from "../src/lib/engine/rationale/generate-expert-rationale";
+import { generateExpertRationaleForField } from "../src/lib/engine/rationale/generate-expert-rationale";
 import {
   applyAssembledRationale,
   generateStructuredRationale,
   needsRationaleEnrichment,
   rationaleInputFromBankItem,
 } from "../src/lib/engine/rationale";
+import { isUsmleFieldId } from "../src/lib/exam-prep/usmle/steps";
 import { enrichBankItemFromRow, serializeBankOptions } from "../src/lib/mpje/parse-bank-options";
 import { bankItemContentHash } from "../src/lib/sync-question-bank";
+import { isNclexField } from "../src/lib/exam/exam-lengths";
 
 const prisma = new PrismaClient();
 const BATCH = 40;
@@ -188,18 +190,23 @@ async function enrichField(
         continue;
       }
 
-      if (fieldId === "nursing") {
-        const result = await generateExpertNclexRationale(
+      const useExpertPath = fieldId === "nursing" || isNclexField(fieldId) || isUsmleFieldId(fieldId);
+
+      if (useExpertPath) {
+        const result = await generateExpertRationaleForField(
+          fieldId,
           rationaleInputFromBankItem(item, fieldId)
         );
         if (!result?.quality.ok) {
           failed++;
-          console.warn(`  ✗ ${row.id.slice(0, 8)}… — expert quality ${result?.quality.score ?? 0}`);
+          console.warn(
+            `  ✗ ${row.id.slice(0, 8)}… — expert quality ${result?.quality.score ?? 0}`
+          );
           await sleep(DELAY_MS);
           continue;
         }
 
-        const hash = bankItemContentHash(fieldId, item.subjectId ?? "nursing", {
+        const hash = bankItemContentHash(fieldId, item.subjectId ?? fieldId, {
           ...item,
           explanation: result.assembled.explanation,
           distractorRationale: result.assembled.distractorRationale,
@@ -225,7 +232,7 @@ async function enrichField(
               generationMeta: {
                 ...priorMeta,
                 [EXPERT_RATIONALE_META_KEY]: result.structured,
-                expertRationaleVersion: EXPERT_RATIONALE_VERSION,
+                expertRationaleVersion: result.version,
                 rationaleEnrichedAt: new Date().toISOString(),
                 rationaleModel: result.model,
                 rationaleQualityScore: result.quality.score,
@@ -235,7 +242,9 @@ async function enrichField(
         );
 
         enriched++;
-        console.log(`  ✓ ${row.id.slice(0, 8)}… — expert score ${result.quality.score}`);
+        console.log(
+          `  ✓ ${row.id.slice(0, 8)}… — expert ${result.version} score ${result.quality.score}`
+        );
       } else {
         const gen = await generateStructuredRationale(rationaleInputFromBankItem(item, fieldId));
         if (!gen?.quality.ok) {

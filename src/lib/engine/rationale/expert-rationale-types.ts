@@ -43,6 +43,8 @@ export type ExpertStructuredRationale = StructuredRationale & {
 
 export const EXPERT_RATIONALE_META_KEY = "expertRationale" as const;
 export const EXPERT_RATIONALE_VERSION = "nclex-expert-v1" as const;
+/** USMLE attending-tier expert rationales (Steps 1–3). */
+export const USMLE_EXPERT_RATIONALE_VERSION = "usmle-expert-v1" as const;
 
 export function readExpertRationaleFromMeta(
   meta: unknown
