@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { formatTrialCtaLabel } from "@/lib/site";
+import { analytics } from "@/lib/analytics";
 import { NGN_DEMO_QUESTIONS } from "@/lib/demo/ngn-samples";
 import { examQuestionToStudy, isAnswerCorrect } from "@/lib/questions/prepare";
 import type { StudyQuestion } from "@/lib/questions/types";
@@ -145,7 +146,10 @@ export function NgnInteractiveDemo({
                 <button
                   type="button"
                   disabled={!canCheck}
-                  onClick={() => setRevealed(true)}
+                  onClick={() => {
+                    setRevealed(true);
+                    analytics.ctaClicked("sample_check_answer_nclex", "hero_practice");
+                  }}
                   className="mt-8 w-full rounded-full bg-[var(--color-accent)] py-3.5 text-sm font-semibold text-white disabled:opacity-40 sm:w-auto sm:px-10"
                 >
                   Check answer

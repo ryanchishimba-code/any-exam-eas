@@ -72,12 +72,6 @@ const LandingTestimonialsV2Inner = dynamic(
   { ...clientSection, loading: () => <SectionPlaceholder className="py-12" /> }
 );
 
-/** Sample sits just under the hero — load on hydrate (NGN inside is still viewport-gated). */
-const LandingSamplePractice = dynamic(
-  () => import("./LandingSamplePractice").then((m) => m.LandingSamplePractice),
-  { ...clientSection, loading: () => <SectionPlaceholder className="py-16" /> }
-);
-
 const LandingStickyCta = dynamic(
   () => import("@/components/landing/LandingStickyCta").then((m) => m.LandingStickyCta),
   { ssr: false }
@@ -183,5 +177,4 @@ export {
   LandingFaqV2,
   LandingTestimonialsV2,
   LandingStickyCta,
-  LandingSamplePractice,
 };

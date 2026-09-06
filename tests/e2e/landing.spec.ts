@@ -11,7 +11,12 @@ test.describe("Landing page", () => {
         name: /nclex prep that feels like the real exam/i,
       })
     ).toBeVisible();
-    await expect(page.getByRole("link", { name: /start.*trial|try.*free/i }).first()).toBeVisible();
+    await expect(page.locator("[data-hero-practice]")).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: /try a free question/i }).or(
+        page.getByRole("link", { name: /start.*trial|try.*free|continue/i })
+      ).first()
+    ).toBeVisible();
     await expect(page.getByRole("link", { name: /pricing/i }).first()).toBeVisible();
     await expect(page.getByRole("navigation", { name: /main navigation/i })).toBeVisible();
   });
@@ -38,7 +43,7 @@ test.describe("Landing page", () => {
     await expect(page.locator("[data-landing-hero]")).toBeVisible();
     await expect(page.locator(".aee-landing-sticky-cta")).toHaveCount(0);
 
-    await page.locator("#try-a-question").scrollIntoViewIfNeeded();
+    await page.locator("#pricing").scrollIntoViewIfNeeded();
     await expect(page.locator(".aee-landing-sticky-cta")).toBeVisible({ timeout: 10_000 });
   });
 

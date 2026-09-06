@@ -194,17 +194,17 @@ const EXAM_HERO_HEADLINES: Record<string, string> = {
 
 const EXAM_HERO_SUBLINE_BODIES: Record<string, string> = {
   nclex:
-    "NGN formats, teachable rationales, and a Blueprint Roadmap — try a free sample below.",
+    "NGN formats, teachable rationales, and a Blueprint Roadmap — answer a free item now.",
   usmle:
-    "Mechanism-first stems, competitive distractors, and Roadmaps for Step 1 · 2 · 3.",
+    "Mechanism-first stems and Roadmaps for Step 1 · 2 · 3 — try a free vignette now.",
   naplex:
-    "Calculations, counseling cases, and drug interactions with work-shown rationales.",
+    "Calculations and counseling cases with work-shown rationales — try one free.",
   pance:
-    "Next-best-step vignettes across the NCCPA blueprint — one Pro plan.",
+    "Next-best-step vignettes across the NCCPA blueprint — try a free case now.",
   "aanp-fnp":
-    "Assess → Diagnose → Plan → Evaluate across the lifespan, evidence-based.",
+    "Assess → Diagnose → Plan → Evaluate — try a free primary-care case now.",
   "npte-pt":
-    "MSK, neuro, cardio-pulm, and professional practice — exam-day pacing.",
+    "MSK, neuro, cardio-pulm, and professional practice — try a free item now.",
 };
 
 /** Exam-led ATF headline when a board chip is selected. */

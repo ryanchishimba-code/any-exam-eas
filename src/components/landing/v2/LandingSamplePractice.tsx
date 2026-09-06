@@ -1,19 +1,24 @@
 "use client";
 
 /**
- * First section under the hero — interactive sample for the selected board.
- * NCLEX uses real NGN formats; other boards use curated interactive MCQs.
+ * Interactive sample for the selected board.
+ * - variant="hero": compact player for ATF (product-in-hero)
+ * - variant="section": full mid-page block (legacy / optional)
+ *
+ * NCLEX uses NGN formats; other boards use curated interactive MCQs.
  */
 
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
-import { ArrowRight, Check, Sparkles } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
 import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { getLandingMcqSample } from "@/lib/demo/landing-samples";
+import { analytics } from "@/lib/analytics";
 import { formatTrialCtaLabel } from "@/lib/site";
 import { cn } from "@/lib/utils";
+import type { ExamSlug } from "@/types/edtech";
 
 const NgnInteractiveDemo = dynamic(
   () =>
@@ -24,7 +29,7 @@ const NgnInteractiveDemo = dynamic(
     ssr: false,
     loading: () => (
       <div
-        className="aee-landing-sample__card min-h-[280px] animate-pulse"
+        className="aee-landing-sample__card aee-landing-sample__card--hero min-h-[200px] animate-pulse"
         aria-hidden
       />
     ),
@@ -33,8 +38,14 @@ const NgnInteractiveDemo = dynamic(
 
 const LABELS = ["A", "B", "C", "D"] as const;
 
-function LandingMcqPractice({ examSlug }: { examSlug: string }) {
-  const sample = getLandingMcqSample(examSlug as import("@/types/edtech").ExamSlug);
+function LandingMcqPractice({
+  examSlug,
+  compact = false,
+}: {
+  examSlug: string;
+  compact?: boolean;
+}) {
+  const sample = getLandingMcqSample(examSlug as ExamSlug);
   const [selected, setSelected] = useState<string | null>(null);
   const [revealed, setRevealed] = useState(false);
 
@@ -46,7 +57,12 @@ function LandingMcqPractice({ examSlug }: { examSlug: string }) {
   const correct = revealed && selected === sample.correct;
 
   return (
-    <article className="aee-landing-sample__card">
+    <article
+      className={cn(
+        "aee-landing-sample__card",
+        compact && "aee-landing-sample__card--hero"
+      )}
+    >
       <header className="aee-landing-sample__card-head">
         <span
           className="aee-landing-sample__badge"
@@ -93,7 +109,10 @@ function LandingMcqPractice({ examSlug }: { examSlug: string }) {
         <button
           type="button"
           disabled={!selected}
-          onClick={() => setRevealed(true)}
+          onClick={() => {
+            setRevealed(true);
+            analytics.ctaClicked(`sample_check_answer_${examSlug}`, "hero_practice");
+          }}
           className="aee-landing-sample__check"
         >
           <Check className="h-4 w-4" aria-hidden />
@@ -126,14 +145,21 @@ function LandingMcqPractice({ examSlug }: { examSlug: string }) {
   );
 }
 
-/** Mount heavy NGN player only when the sample stage is near the viewport. */
-function DeferredNgnSample({ trialHref }: { trialHref: string }) {
+/** Mount heavy NGN player when near viewport (or immediately for hero). */
+function DeferredNgnSample({
+  trialHref,
+  eager = false,
+}: {
+  trialHref: string;
+  eager?: boolean;
+}) {
   const hostRef = useRef<HTMLDivElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(eager);
 
   useEffect(() => {
+    if (eager || shouldLoad) return;
     const el = hostRef.current;
-    if (!el || shouldLoad) return;
+    if (!el) return;
 
     if (typeof IntersectionObserver === "undefined") {
       setShouldLoad(true);
@@ -151,7 +177,7 @@ function DeferredNgnSample({ trialHref }: { trialHref: string }) {
     );
     io.observe(el);
     return () => io.disconnect();
-  }, [shouldLoad]);
+  }, [eager, shouldLoad]);
 
   return (
     <div ref={hostRef}>
@@ -159,7 +185,7 @@ function DeferredNgnSample({ trialHref }: { trialHref: string }) {
         <NgnInteractiveDemo embedded trialHref={trialHref} />
       ) : (
         <div
-          className="aee-landing-sample__card min-h-[280px] animate-pulse"
+          className="aee-landing-sample__card aee-landing-sample__card--hero min-h-[200px] animate-pulse"
           aria-hidden
         />
       )}
@@ -167,40 +193,98 @@ function DeferredNgnSample({ trialHref }: { trialHref: string }) {
   );
 }
 
+export function LandingPracticeStage({
+  compact = false,
+  eagerNgn = false,
+}: {
+  compact?: boolean;
+  eagerNgn?: boolean;
+}) {
+  const { selectedExam, trialHref } = useLandingExamSelection();
+
+  return (
+    <div className={cn("aee-landing-sample__stage", compact && "aee-landing-sample__stage--hero")}>
+      {selectedExam === "nclex" ? (
+        <DeferredNgnSample trialHref={trialHref} eager={eagerNgn} />
+      ) : (
+        <LandingMcqPractice examSlug={selectedExam} compact={compact} />
+      )}
+    </div>
+  );
+}
+
+/** ATF product visual — interactive player for the selected exam. */
+export function LandingHeroPractice() {
+  const { selectedExam, trialHref } = useLandingExamSelection();
+  const examName = EXAM_CATALOG[selectedExam]?.shortName ?? "your exam";
+
+  return (
+    <div
+      id="try-a-question"
+      className="aee-hero-practice"
+      data-hero-practice
+      tabIndex={-1}
+      aria-label={`Try a free ${examName} question`}
+    >
+      <div className="aee-hero-practice__chrome">
+        <div className="aee-hero-practice__chrome-bar" aria-hidden>
+          <span />
+          <span />
+          <span />
+        </div>
+        <p className="aee-hero-practice__label">
+          Free {examName} sample · no account
+        </p>
+        <LandingPracticeStage compact eagerNgn />
+        <div className="aee-hero-practice__footer">
+          <LandingCta
+            href={trialHref}
+            ctaName={`sample_trial_${selectedExam}`}
+            location="hero_practice"
+            className="aee-flagship-cta--hero aee-hero-practice__trial group"
+            icon={
+              <ArrowRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                aria-hidden
+              />
+            }
+          >
+            Start {examName} free trial
+          </LandingCta>
+          <p className="aee-hero-practice__meta">{formatTrialCtaLabel()} · no card required</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/** Thin proof under the hero — avoids a second competing sample block. */
+export function LandingSampleProof() {
+  return (
+    <p className="aee-landing-sample-proof">
+      Same interactive player as Study Hub — answer above, then start free with no card.
+    </p>
+  );
+}
+
+/** @deprecated Prefer LandingHeroPractice in ATF; kept for any external imports. */
 export function LandingSamplePractice() {
   const { selectedExam, trialHref } = useLandingExamSelection();
   const examName = EXAM_CATALOG[selectedExam]?.shortName ?? "your exam";
 
   return (
     <section
-      id="try-a-question"
       className="aee-landing-sample scroll-mt-24"
       aria-labelledby="try-a-question-heading"
     >
       <div className="aee-landing-sample__inner">
         <header className="aee-landing-sample__intro">
-          <p className="aee-landing-sample__eyebrow">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden />
-            Try before you sign up
-          </p>
           <h2 id="try-a-question-heading" className="aee-landing-sample__title">
             Answer a real {examName} item —{" "}
             <span className="aee-landing-sample__title-accent">no account needed.</span>
           </h2>
-          <p className="aee-landing-sample__lede">
-            Same interactive player as the app. Switch boards with the chips above to preview
-            another exam.
-          </p>
         </header>
-
-        <div className="aee-landing-sample__stage">
-          {selectedExam === "nclex" ? (
-            <DeferredNgnSample trialHref={trialHref} />
-          ) : (
-            <LandingMcqPractice examSlug={selectedExam} />
-          )}
-        </div>
-
+        <LandingPracticeStage />
         <div className="aee-landing-sample__cta">
           <LandingCta
             href={trialHref}
@@ -216,7 +300,6 @@ export function LandingSamplePractice() {
           >
             Try {examName} free
           </LandingCta>
-          <p className="aee-landing-sample__cta-meta">{formatTrialCtaLabel()} · no card required</p>
         </div>
       </div>
     </section>

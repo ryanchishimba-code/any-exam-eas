@@ -4,8 +4,7 @@
  * LandingFlagshipV2 — conversion-first landing (UWorld-clarity + AEE wedge).
  *
  * Flow:
- *   Exam-led hero (price/trial meta + chips)
- *     → Interactive sample for selected exam
+ *   Exam-led hero with interactive practice (product-in-hero)
  *     → Offering → Showcase → Choose exam → Why → …
  *     → Pricing → Final CTA + sticky bar
  */
@@ -25,7 +24,6 @@ import {
   LandingFaqV2,
   LandingOfferingV2,
   LandingPricingPreview,
-  LandingSamplePractice,
   LandingShowcaseV2,
   LandingStickyCta,
   LandingTestimonialsV2,
@@ -33,6 +31,7 @@ import {
   LandingWhyChooseV2,
   ProBenefitsComparison,
 } from "@/components/landing/v2/LandingFlagshipSectionsLazy";
+import { LandingSampleProof } from "@/components/landing/v2/LandingSamplePractice";
 import {
   LANDING_TRIAL_DETAIL,
   LANDING_TRIAL_HREF,
@@ -92,7 +91,7 @@ export function LandingFlagshipV2({
 
         <LandingHeroV2 bankCounts={bankCounts} />
 
-        <LandingSamplePractice />
+        <LandingSampleProof />
 
         <LandingOfferingV2 />
 
