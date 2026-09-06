@@ -36,26 +36,26 @@ Unknown / unmapped: 0
 
 ## usmle-step-2
 
-- Serve-ready: **5682**
-- With blueprintTopic: **5682** (100%)
-- Valid 2026 topic: **5682** (100%)
-- Resolvable spine domain: **5682** (100%)
+- Serve-ready: **5762**
+- With blueprintTopic: **5762** (100%)
+- Valid 2026 topic: **5762** (100%)
+- Resolvable spine domain: **5762** (100%)
 - Null topic: 0 | Orphan/legacy topic: 0
-- Systems outside ±3 pts: **9**/11 (cardiovascular +10.8, human-development +10.3, social-sciences -9.9, respiratory-renal -9.5, blood-lymph-immune -7.5, msk-skin -7.4, biostats-epi +7, reproductive-endocrine +5.1, gastrointestinal +3.1)
+- Systems outside ±3 pts: **8**/11 (cardiovascular +10.6, human-development +10.2, respiratory-renal -9.6, social-sciences -9.3, msk-skin -7.4, biostats-epi +6.9, blood-lymph-immune -6.8, reproductive-endocrine +4.9)
 
 | System | Count | Actual % | Target % | Δ pts |
 |---|---:|---:|---:|---:|
-| cardiovascular | 1149 | 20.2 | 9.4 | 10.8 |
-| human-development | 765 | 13.5 | 3.1 | 10.3 |
-| social-sciences | 177 | 3.1 | 13 | -9.9 |
-| respiratory-renal | 347 | 6.1 | 15.6 | -9.5 |
-| blood-lymph-immune | 16 | 0.3 | 7.8 | -7.5 |
+| cardiovascular | 1149 | 19.9 | 9.4 | 10.6 |
+| human-development | 765 | 13.3 | 3.1 | 10.2 |
+| respiratory-renal | 347 | 6 | 15.6 | -9.6 |
+| social-sciences | 217 | 3.8 | 13 | -9.3 |
 | msk-skin | 114 | 2 | 9.4 | -7.4 |
-| biostats-epi | 637 | 11.2 | 4.2 | 7 |
-| reproductive-endocrine | 882 | 15.5 | 10.4 | 5.1 |
-| gastrointestinal | 621 | 10.9 | 7.8 | 3.1 |
-| behavioral-nervous | 576 | 10.1 | 13 | -2.9 |
-| multisystem | 398 | 7 | 6.3 | 0.8 |
+| biostats-epi | 637 | 11.1 | 4.2 | 6.9 |
+| blood-lymph-immune | 56 | 1 | 7.8 | -6.8 |
+| reproductive-endocrine | 882 | 15.3 | 10.4 | 4.9 |
+| behavioral-nervous | 576 | 10 | 13 | -3 |
+| gastrointestinal | 621 | 10.8 | 7.8 | 3 |
+| multisystem | 398 | 6.9 | 6.3 | 0.7 |
 
 Unknown / unmapped: 0
 
