@@ -5,11 +5,17 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { firstName } from "@/lib/client/returning-user";
 import { TrialFeatureShortcuts } from "@/components/dashboard/TrialFeatureShortcuts";
+import { VerifyEmailPrompt } from "@/components/auth/VerifyEmailPrompt";
 
 type TrialWelcomeScreenProps = {
   daysRemaining: number;
   trialDays?: number;
   userName?: string | null;
+  userEmail?: string | null;
+  /** Show the verify-to-start-trial direction (post-signup). */
+  showVerifyPrompt?: boolean;
+  /** When true, verify is required before study access. */
+  verifyRequired?: boolean;
   onDismiss: () => void;
 };
 
@@ -30,12 +36,29 @@ export function TrialWelcomeScreen({
   daysRemaining,
   trialDays = 14,
   userName,
+  userEmail,
+  showVerifyPrompt = false,
+  verifyRequired = false,
   onDismiss,
 }: TrialWelcomeScreenProps) {
   const name = userName ? firstName(userName) : null;
   const tone = urgencyTone(daysRemaining);
   const elapsed = Math.max(0, Math.min(trialDays, trialDays - daysRemaining));
   const progressPct = Math.round((elapsed / trialDays) * 100);
+
+  if (showVerifyPrompt && verifyRequired) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -8 }}
+        transition={{ duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
+        className="mx-auto w-full max-w-lg"
+      >
+        <VerifyEmailPrompt email={userEmail} required />
+      </motion.div>
+    );
+  }
 
   return (
     <motion.section
@@ -48,16 +71,24 @@ export function TrialWelcomeScreen({
     >
       <div className="aee-trial-dashboard-glow" aria-hidden />
 
+      {showVerifyPrompt ? (
+        <div className="relative mb-5">
+          <VerifyEmailPrompt email={userEmail} />
+        </div>
+      ) : null}
+
       <div className="aee-trial-dashboard-header">
         <span className="aee-trial-dashboard-badge">
           <Sparkles className="h-3.5 w-3.5" aria-hidden />
           Trial active
         </span>
         <h2 id="trial-welcome-heading" className="aee-trial-dashboard-title">
-          {name ? `Welcome back, ${name}!` : "Welcome back!"}
+          {name ? `Welcome, ${name}` : "Welcome"}
         </h2>
         <p className="aee-trial-dashboard-lead">
-          Your trial is active — practice exams, drug review, and analytics are ready when you are.
+          {showVerifyPrompt
+            ? "After you verify, your trial is ready — practice exams, drug review, and analytics."
+            : "Your trial is active — practice exams, drug review, and analytics are ready when you are."}
         </p>
       </div>
 

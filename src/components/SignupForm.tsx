@@ -200,8 +200,10 @@ export function SignupForm({
         window.location.href = subscribeCheckoutPath;
       } else {
         markTrialWelcomePending(TRIAL_DAYS);
-        const examQs = examSlug ? `exam=${examSlug}&` : "";
-        window.location.href = `/select-exam?${examQs}welcome=trial`;
+        // Exam preference is already saved when examSlug is present — skip the bounce.
+        window.location.href = examSlug
+          ? `/dashboard?welcome=trial&verify=1`
+          : `/select-exam?welcome=trial&verify=1`;
       }
     } catch (err) {
       setError(messageFromUnknownAuthError(err));

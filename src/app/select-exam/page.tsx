@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 import { auth } from "@/auth";
+import { AccessBlockedNotice } from "@/components/AccessBlockedNotice";
 import { ExamSelectionScreen } from "@/components/edtech/ExamSelectionScreen";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
@@ -18,7 +19,7 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 30;
 
 type PageProps = {
-  searchParams: Promise<{ switch?: string }>;
+  searchParams: Promise<{ switch?: string; welcome?: string; verify?: string }>;
 };
 
 export default async function SelectExamPage({ searchParams }: PageProps) {
@@ -29,13 +30,26 @@ export default async function SelectExamPage({ searchParams }: PageProps) {
 
   const params = await searchParams;
   const switchMode = params.switch === "1" || params.switch === "true";
+  const access = await getUserAccess(session.user.id);
+
+  if (access.blockReason === "email_unverified") {
+    return (
+      <AccessBlockedNotice
+        reason="email_unverified"
+        email={session.user.email}
+      />
+    );
+  }
 
   const pref = await getUserExamPreference(session.user.id);
 
   if (pref && !switchMode) {
-    const access = await getUserAccess(session.user.id);
     if (access.hasAppAccess) {
-      redirect(ROUTES.dashboard);
+      const qs = new URLSearchParams();
+      if (params.welcome === "trial") qs.set("welcome", "trial");
+      if (params.verify === "1") qs.set("verify", "1");
+      const suffix = qs.toString() ? `?${qs.toString()}` : "";
+      redirect(`${ROUTES.dashboard}${suffix}`);
     }
     redirect("/settings?reactivate=1");
   }

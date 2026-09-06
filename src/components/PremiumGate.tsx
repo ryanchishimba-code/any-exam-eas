@@ -31,7 +31,12 @@ export async function PremiumGate({
   }
 
   if (access.blockReason === "email_unverified") {
-    return <AccessBlockedNotice reason="email_unverified" />;
+    return (
+      <AccessBlockedNotice
+        reason="email_unverified"
+        email={session.user.email}
+      />
+    );
   }
 
   if (!access.hasPremiumAccess) {

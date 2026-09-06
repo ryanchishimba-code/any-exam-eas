@@ -40,6 +40,12 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
   const [visible, setVisible] = useState(() => shouldShowTrialWelcome());
   const [daysRemaining, setDaysRemaining] = useState(initialTrialDaysRemaining);
   const [trialDays, setTrialDays] = useState(TRIAL_DAYS);
+  const [showVerifyPrompt, setShowVerifyPrompt] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      new URLSearchParams(window.location.search).get("verify") === "1"
+  );
+  const [verifyRequired, setVerifyRequired] = useState(false);
 
   useLayoutEffect(() => {
     onActiveChange?.(visible);
@@ -49,11 +55,13 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
     if (validated.current) return;
 
     const welcomeParam = searchParams.get("welcome") === "trial";
+    const verifyParam = searchParams.get("verify") === "1";
     const pending = peekTrialWelcomePending();
 
     if (!welcomeParam && !pending) return;
 
     setVisible(true);
+    if (verifyParam) setShowVerifyPrompt(true);
     if (pending) setDaysRemaining(pending.daysRemaining);
   }, [searchParams]);
 
@@ -61,6 +69,7 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
     if (status !== "authenticated" || validated.current) return;
 
     const welcomeParam = searchParams.get("welcome") === "trial";
+    const verifyParam = searchParams.get("verify") === "1";
     const pending = peekTrialWelcomePending();
     if (!welcomeParam && !pending && !visible) return;
 
@@ -70,12 +79,27 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
       const sub = await fetchSubscriptionStatus();
       clearTrialWelcomePending();
 
-      if (welcomeParam) {
+      if (welcomeParam || verifyParam) {
         router.replace(pathname, { scroll: false });
       }
 
+      const unverified =
+        sub?.emailVerified === false ||
+        sub?.blockReason === "email_unverified" ||
+        verifyParam;
+
+      if (unverified) {
+        setShowVerifyPrompt(true);
+        setVerifyRequired(sub?.blockReason === "email_unverified");
+      }
+
+      if (sub?.blockReason === "email_unverified") {
+        setVisible(true);
+        return;
+      }
+
       if (sub?.status !== "trialing" || !sub.hasAccess) {
-        setVisible(false);
+        if (!unverified) setVisible(false);
         return;
       }
 
@@ -101,6 +125,9 @@ export function TrialWelcomeHost({ onActiveChange }: TrialWelcomeHostProps) {
           daysRemaining={daysRemaining}
           trialDays={trialDays}
           userName={session?.user?.name}
+          userEmail={session?.user?.email}
+          showVerifyPrompt={showVerifyPrompt}
+          verifyRequired={verifyRequired}
           onDismiss={dismiss}
         />
       )}

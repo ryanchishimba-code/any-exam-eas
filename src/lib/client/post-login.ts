@@ -12,10 +12,13 @@ import { ROUTES } from "@/lib/routes";
 export type ClientSubscriptionStatus = {
   hasAccess?: boolean;
   hasAppAccess?: boolean;
+  hasStudyAccess?: boolean;
   status?: string;
   daysRemaining?: number | null;
   trialEndsAt?: string | null;
   trialDays?: number;
+  emailVerified?: boolean;
+  blockReason?: string | null;
   reactivation?: {
     method: "checkout" | "update_payment";
     checkoutPath?: string;
