@@ -372,7 +372,14 @@ export function FullExamResults({
 
       {analysis.topicBreakdown.length > 0 ? (
         <div className={cn(feUi.panel, "p-5 sm:p-6")}>
-          <h2 className={feUi.sectionTitle}>Topic breakdown</h2>
+          <h2 className={feUi.sectionTitle}>
+            {examSlug === "usmle" ? "Organ-system breakdown" : "Topic breakdown"}
+          </h2>
+          {examSlug === "usmle" ? (
+            <p className="mt-1 text-[12px] text-[var(--color-ink-muted)]">
+              In-app practice coverage by organ system — not a board score prediction.
+            </p>
+          ) : null}
           <div className="mt-4 space-y-4">
             {analysis.topicBreakdown.map((t) => (
               <div key={t.topic}>

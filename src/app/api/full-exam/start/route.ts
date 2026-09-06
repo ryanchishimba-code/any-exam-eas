@@ -78,7 +78,10 @@ export async function POST(req: Request) {
             : sessionFieldId;
       sessionFieldId = resolvedField;
       const step = usmleStepDefinition(resolvedField);
-      sessionTitle = `${step?.name ?? "USMLE"} Full Simulation`;
+      sessionTitle =
+        preset === "100"
+          ? `${step?.shortName ?? "USMLE"} Self-Assessment`
+          : `${step?.name ?? "USMLE"} Full Simulation`;
     } else if (requestedField) {
       sessionFieldId = requestedField;
     }

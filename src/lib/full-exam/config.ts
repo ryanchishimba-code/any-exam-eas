@@ -1,6 +1,13 @@
 import { EXAM_CATALOG } from "@/lib/edtech/exams";
 import { resolveBoardFullQuestionCount } from "@/lib/exam/exam-lengths";
 import { isUsmleFieldId, usmleStepDefinition } from "@/lib/exam-prep/usmle/steps";
+import {
+  fullExamLaunchHref,
+  fullExamHref,
+  fullExamResultsHref,
+  fullExamSessionHref,
+  parseFullExamLengthPreset,
+} from "@/lib/full-exam/hrefs";
 import { CAT_MAX_QUESTIONS, NCLEX_CAT_TIME_LIMIT_SEC } from "@/lib/questions/cat-engine";
 import type { ExamSlug } from "@/types/edtech";
 import type { FullExamLengthPreset, FullExamSessionConfig } from "@/types/full-exam";
@@ -11,7 +18,7 @@ export {
   fullExamResultsHref,
   fullExamSessionHref,
   parseFullExamLengthPreset,
-} from "@/lib/full-exam/hrefs";
+};
 
 export type LengthOption = {
   preset: FullExamLengthPreset;
@@ -47,6 +54,34 @@ export function getLengthOptions(examSlug: ExamSlug, fieldId?: string): LengthOp
         label: "Full NCLEX (CAT)",
         description:
           "85–150 items · 5 hours · Client Needs + NGN case studies (practice CAT).",
+        questionCount: full,
+      },
+    ];
+  }
+
+  // USMLE: 100-Q form is the lightweight self-assessment analogue (blueprint-balanced).
+  if (examSlug === "usmle") {
+    const stepName =
+      fieldId && isUsmleFieldId(fieldId)
+        ? usmleStepDefinition(fieldId)?.shortName ?? "USMLE"
+        : "USMLE";
+    return [
+      {
+        preset: "50",
+        label: "50 Questions",
+        description: "Timed sprint — one block of mixed organ systems.",
+        questionCount: 50,
+      },
+      {
+        preset: "100",
+        label: "Self-assessment form",
+        description: `100 blueprint-balanced items · ${stepName} practice coverage only — not a pass prediction.`,
+        questionCount: 100,
+      },
+      {
+        preset: "full",
+        label: "Full-length simulation",
+        description: `${full} questions · mimics real ${stepName} length with mixed organ systems.`,
         questionCount: full,
       },
     ];
@@ -201,6 +236,25 @@ export function fullExamModeTitle(
 ): string {
   const option = getLengthOptions(examSlug, fieldId).find((o) => o.preset === preset);
   if (!option) return `${EXAM_CATALOG[examSlug].shortName} Practice Test`;
+  if (examSlug === "usmle" && preset === "100") {
+    const step =
+      fieldId && isUsmleFieldId(fieldId)
+        ? usmleStepDefinition(fieldId)?.shortName
+        : null;
+    return step ? `${step} Self-Assessment` : "USMLE Self-Assessment";
+  }
   if (preset === "full") return `${EXAM_CATALOG[examSlug].shortName} Full-Length Exam`;
   return `${option.questionCount} Question Practice Test`;
+}
+
+/** Deep-link into the USMLE 100-Q self-assessment form (practice coverage only). */
+export function usmleSelfAssessmentHref(opts?: {
+  fieldId?: string;
+  autostart?: boolean;
+}): string {
+  return fullExamLaunchHref("usmle", {
+    mode: "100",
+    timed: true,
+    autostart: opts?.autostart ?? false,
+  });
 }

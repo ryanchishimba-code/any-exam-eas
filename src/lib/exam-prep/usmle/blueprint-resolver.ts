@@ -7,6 +7,7 @@ import {
   USMLE_STEP2_2026_BLUEPRINT,
 } from "./blueprint-quota";
 import { isUsmleCalculationItem } from "../usmle-calc-mcq-helpers";
+import { resolveOrganSystemId } from "./content-spine";
 
 export type UsmleBlueprintBankRow = {
   subjectId: string;
@@ -146,6 +147,10 @@ export function resolveUsmleBlueprintCategory(
   fieldId: string,
   row: UsmleBlueprintBankRow
 ): string | null {
+  // Prefer official organ-system spine whenever domain/topic/subject can resolve.
+  const spine = resolveOrganSystemId(row.blueprintDomain, row.blueprintTopic, row.subjectId);
+  if (spine) return spine;
+
   switch (fieldId) {
     case "usmle-step-1":
       return resolveStep1Category(row);

@@ -27,13 +27,20 @@ export function fullExamResultsHref(
 /** Launcher URL with optional preset + autostart for dashboard / hub shortcuts. */
 export function fullExamLaunchHref(
   examSlug: ExamSlug,
-  opts?: { mode?: FullExamLengthPreset; autostart?: boolean; timed?: boolean; nclexCat?: boolean }
+  opts?: {
+    mode?: FullExamLengthPreset;
+    autostart?: boolean;
+    timed?: boolean;
+    nclexCat?: boolean;
+    fieldId?: string;
+  }
 ): string {
   const params = new URLSearchParams();
   if (opts?.mode) params.set("mode", opts.mode);
   if (opts?.autostart) params.set("autostart", "1");
   if (opts?.timed === false) params.set("timed", "0");
   if (opts?.nclexCat) params.set("nclexCat", "1");
+  if (opts?.fieldId) params.set("fieldId", opts.fieldId);
   const query = params.toString();
   return query ? `${fullExamHref(examSlug)}?${query}` : fullExamHref(examSlug);
 }

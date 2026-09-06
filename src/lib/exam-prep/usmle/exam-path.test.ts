@@ -6,6 +6,12 @@ import {
 } from "@/lib/study/question-bank-setup";
 import { questionBankHref } from "@/lib/edtech/practice-links-core";
 import { buildSessionDomainBreakdown } from "@/lib/study/session-domain-breakdown";
+import {
+  fullExamModeTitle,
+  getLengthOptions,
+  usmleSelfAssessmentHref,
+} from "@/lib/full-exam/config";
+import { buildTopicBreakdown } from "@/lib/full-exam/topic-breakdown";
 import type { StudyQuestion } from "@/lib/questions/types";
 
 describe("USMLE exam-path phase", () => {
@@ -56,5 +62,32 @@ describe("USMLE exam-path phase", () => {
     const rows = buildSessionDomainBreakdown(questions, [{ correct: true }, { correct: false }]);
     expect(rows.length).toBeGreaterThanOrEqual(1);
     expect(rows.some((r) => r.id === "cardiovascular" || r.label.length > 0)).toBe(true);
+  });
+});
+
+describe("USMLE self-assessment form", () => {
+  it("labels 100-Q as self-assessment and deep-links to timed form", () => {
+    const opts = getLengthOptions("usmle", "usmle-step-2");
+    const sa = opts.find((o) => o.preset === "100");
+    expect(sa?.label).toMatch(/self-assessment/i);
+    expect(sa?.questionCount).toBe(100);
+    expect(fullExamModeTitle("usmle", "100", "usmle-step-2")).toBe("Step 2 CK Self-Assessment");
+
+    const href = usmleSelfAssessmentHref({ fieldId: "usmle-step-2" });
+    expect(href).toContain("/full-exam/usmle");
+    expect(href).toContain("mode=100");
+    expect(href).not.toContain("timed=0");
+  });
+
+  it("maps subject ids to organ-system labels in full-exam breakdown", () => {
+    const rows = buildTopicBreakdown(
+      [{ subjectId: "cardiology" }, { subjectId: "pulmonology" }],
+      [
+        { questionIndex: 0, correct: true, answeredAt: "2026-01-01T00:00:00.000Z" },
+        { questionIndex: 1, correct: false, answeredAt: "2026-01-01T00:00:00.000Z" },
+      ]
+    );
+    expect(rows.length).toBe(2);
+    expect(rows.some((r) => /cardio|cv|resp|renal/i.test(r.topic))).toBe(true);
   });
 });
