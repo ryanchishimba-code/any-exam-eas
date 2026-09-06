@@ -1,7 +1,7 @@
 /* ——— Flagship landing (Apple × Tesla × UWorld) ——— */
 
 .aee-flagship {
-  --flagship-section-py: clamp(3rem, 7vw, 4.75rem);
+  --flagship-section-py: clamp(3.5rem, 8vw, 6rem);
   --flagship-gap: clamp(0.625rem, 1.8vw, 1rem);
 }
 
@@ -101,14 +101,14 @@
   font-weight: 700;
   color: var(--flagship-navy);
   text-decoration: none;
-  background: linear-gradient(180deg, var(--flagship-teal) 0%, var(--flagship-teal-dim) 100%);
-  box-shadow: 0 4px 20px rgba(0, 212, 200, 0.35);
+  background: var(--flagship-teal);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .aee-landing-sticky-cta__btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 24px rgba(0, 212, 200, 0.45);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.14);
 }
 
 .aee-flagship-pricing-stack {
@@ -1293,7 +1293,7 @@
 
 .aee-flagship-title {
   margin-top: 0.375rem;
-  font-size: clamp(1.375rem, 3.2vw, 2rem);
+  font-size: clamp(2rem, 4.5vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.12;
@@ -1302,8 +1302,8 @@
 
 .aee-flagship-subtitle {
   margin-top: 0.75rem;
-  font-size: clamp(0.9375rem, 2vw, 1.0625rem);
-  line-height: 1.6;
+  font-size: clamp(1.125rem, 2.2vw, 1.375rem);
+  line-height: 1.55;
   color: var(--flagship-navy-soft);
 }
 
@@ -1317,10 +1317,11 @@
 }
 
 .aee-flagship-gradient-text {
-  background: linear-gradient(135deg, var(--flagship-teal) 0%, #4da3ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  /* Solid brand color — no rainbow gradient */
+  color: var(--flagship-teal);
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
 }
 
 /* CTAs */
@@ -1349,36 +1350,37 @@ button.aee-flagship-cta {
 }
 
 .aee-flagship-cta--primary {
-  background: linear-gradient(180deg, var(--flagship-teal) 0%, var(--flagship-teal-dim) 100%);
-  color: var(--flagship-navy);
-  box-shadow: 0 4px 24px rgba(0, 212, 200, 0.35);
+  background: var(--flagship-teal);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
 }
 
 @media (prefers-color-scheme: dark) {
   .aee-flagship-cta--primary {
     color: #071a2c;
-    box-shadow: 0 4px 28px rgba(0, 212, 200, 0.45);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   }
 
   .aee-flagship-cta--primary:hover {
-    box-shadow: 0 8px 36px rgba(0, 212, 200, 0.55);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   }
 }
 
 .aee-flagship-cta--primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 32px rgba(0, 212, 200, 0.45);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+  background: var(--flagship-teal-dim);
 }
 
 .aee-flagship-cta--hero {
   padding: 1rem 1.75rem;
   font-size: 1.0625rem;
   font-weight: 700;
-  box-shadow: 0 6px 28px rgba(0, 212, 200, 0.35);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.1);
 }
 
 .aee-flagship-cta--hero:hover {
-  box-shadow: 0 10px 36px rgba(0, 212, 200, 0.48);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.14);
   transform: translateY(-2px);
 }
 
@@ -2947,17 +2949,17 @@ button.aee-flagship-cta {
 
 .aee-hero-beat__headline {
   margin: 1rem 0 0;
-  font-size: clamp(2.35rem, 5.6vw, 3.75rem);
+  font-size: clamp(2.75rem, 8vw, 5.25rem);
   font-weight: 750;
   letter-spacing: -0.045em;
-  line-height: 1.05;
+  line-height: 1.02;
   text-wrap: balance;
   color: var(--aee-hero-ink);
 }
 
 .aee-hero-beat__countline {
   margin: 0.65rem 0 0;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 650;
   letter-spacing: 0.01em;
   color: var(--aee-hero-muted);
@@ -2965,10 +2967,10 @@ button.aee-flagship-cta {
 
 .aee-hero-beat__subline {
   margin: 1.1rem 0 0;
-  max-width: 30rem;
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
-  line-height: 1.55;
-  color: var(--aee-hero-muted);
+  max-width: 28rem;
+  font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--aee-hero-ink) 78%, transparent);
   text-wrap: pretty;
 }
 
@@ -3261,22 +3263,21 @@ button.aee-flagship-cta {
   }
 }
 
-/* Wide soft bloom — ambient teal in the same navy field (no separate plate) */
+/* Soft stage lift — flat confidence, not luminous bloom */
 .aee-hero-beat__stage-glow {
   display: block;
   position: absolute;
   z-index: 0;
-  inset: 6% -8% 10% 4%;
+  inset: 10% -4% 14% 8%;
   pointer-events: none;
   background:
     radial-gradient(
-      ellipse 72% 62% at 58% 48%,
-      color-mix(in srgb, var(--aee-hero-teal, #00d4c8) 18%, transparent) 0%,
-      color-mix(in srgb, var(--aee-hero-stage-lift, #0a2540) 40%, transparent) 46%,
-      transparent 78%
+      ellipse 70% 55% at 60% 50%,
+      color-mix(in srgb, var(--aee-hero-teal, #00d4c8) 8%, transparent) 0%,
+      transparent 70%
     );
-  filter: blur(44px);
-  opacity: 0.8;
+  filter: blur(28px);
+  opacity: 0.45;
 }
 
 /* Floating product — larger, bleeds toward the right edge */
@@ -3372,7 +3373,8 @@ button.aee-flagship-cta {
   }
 
   .aee-hero-beat__stage-glow {
-    animation: aee-hero-glow-breathe 6.5s ease-in-out infinite;
+    animation: none;
+    opacity: 0.4;
   }
 }
 
@@ -3444,13 +3446,13 @@ button.aee-flagship-cta {
 
   .aee-hero-beat__headline {
     margin-top: 0.6rem;
-    font-size: clamp(1.7rem, 7vw, 2.2rem);
-    line-height: 1.08;
+    font-size: clamp(2.5rem, 9vw, 3.25rem);
+    line-height: 1.05;
   }
 
   .aee-hero-beat__subline {
-    margin-top: 0.65rem;
-    font-size: 0.9375rem;
+    margin-top: 0.75rem;
+    font-size: 1.125rem;
     line-height: 1.45;
   }
 

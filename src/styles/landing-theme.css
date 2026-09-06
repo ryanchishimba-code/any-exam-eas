@@ -1,7 +1,27 @@
 /**
  * Landing / flagship theme sync — uses global data-theme tokens.
- * Imported from globals.css after base landing rules.
+ * Imported from marketing layout. Teal + contrast scoped to `.aee-marketing`
+ * so the product indigo accent stays intact on the dashboard.
  */
+
+.aee-marketing {
+  --color-accent: #0d9488;
+  --color-accent-hover: #0f766e;
+  --color-accent-light: #14b8a6;
+  --color-ink-muted: #334155;
+  --primary: #0d9488;
+  --landing-section-py: clamp(3.5rem, 8vw, 6rem);
+  color: var(--color-ink);
+  background: var(--color-bg);
+}
+
+[data-theme="dark"] .aee-marketing {
+  --color-accent: #2ee7dc;
+  --color-accent-hover: #00d4c8;
+  --color-accent-light: #5eead4;
+  --color-ink-muted: #94a3b8;
+  --primary: #2ee7dc;
+}
 
 .aee-flagship {
   --flagship-navy: var(--color-ink);
