@@ -3120,6 +3120,35 @@ button.aee-flagship-cta {
   outline: none;
 }
 
+/*
+ * Hero stage is cinematic dark; force a light study surface so NGN/MCQ
+ * panels stay readable (avoid dark-on-dark --color-surface-elevated).
+ */
+.aee-hero-practice .aee-landing-sample__stage--hero {
+  color-scheme: light;
+  --color-ink: #0f172a;
+  --color-ink-muted: #475569;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #ffffff;
+  --color-border: rgba(15, 23, 42, 0.12);
+  --color-bg: #f8fafc;
+  --color-accent: #0d9488;
+}
+
+.aee-hero-practice .aee-landing-sample__stage--hero [role="tabpanel"],
+.aee-hero-practice .aee-landing-sample__card--hero {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  box-shadow: 0 12px 28px -18px rgba(0, 0, 0, 0.45);
+}
+
+.aee-hero-practice .aee-landing-sample__stage--hero [role="tab"][aria-selected="false"] {
+  background: #f1f5f9 !important;
+  color: #334155 !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+}
+
 .aee-hero-practice__chrome {
   display: flex;
   flex-direction: column;

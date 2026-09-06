@@ -20,14 +20,25 @@ describe("marketing bank stats", () => {
 
   it("keeps the marketing total at or below the live served bank", () => {
     // Must never advertise the aspirational target — only the published served floor.
-    expect(MARKETING_QUESTION_COUNTS.total).toBe("44,516");
+    expect(MARKETING_QUESTION_COUNTS.total).toBe("47,969");
     expect(PUBLISHED_QUESTION_BANK_TOTAL).toBeLessThan(TOTAL_QUESTION_BANK_TARGET);
   });
 
+  it("keeps per-field floors summing to the published total", () => {
+    const sum =
+      Number(MARKETING_QUESTION_COUNTS.usmle.replace(/,/g, "")) +
+      Number(MARKETING_QUESTION_COUNTS.nursing.replace(/,/g, "")) +
+      Number(MARKETING_QUESTION_COUNTS.pharmacy.replace(/,/g, "")) +
+      Number(MARKETING_QUESTION_COUNTS.pance.replace(/,/g, "")) +
+      Number(MARKETING_QUESTION_COUNTS.aanpFnp.replace(/,/g, "")) +
+      Number(MARKETING_QUESTION_COUNTS.nptePt.replace(/,/g, ""));
+    expect(sum).toBe(PUBLISHED_QUESTION_BANK_TOTAL);
+  });
+
   it("formats offline fallback labels as exact serve-ready counts", () => {
-    expect(MARKETING_QUESTION_COUNTS.nursing).toBe("6,304");
-    expect(MARKETING_QUESTION_COUNTS.usmle).toBe("17,390");
-    expect(MARKETING_QUESTION_COUNTS.pharmacy).toBe("9,000");
+    expect(MARKETING_QUESTION_COUNTS.nursing).toBe("8,327");
+    expect(MARKETING_QUESTION_COUNTS.usmle).toBe("17,488");
+    expect(MARKETING_QUESTION_COUNTS.pharmacy).toBe("10,332");
     expect(MARKETING_QUESTION_COUNTS.pance).toBe("2,801");
     expect(MARKETING_QUESTION_COUNTS.aanpFnp).toBe("4,781");
     expect(MARKETING_QUESTION_COUNTS.nptePt).toBe("4,240");
