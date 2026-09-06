@@ -911,7 +911,7 @@ export function StudyBankPractice({
           field,
           subjectId: q.subjectId ?? MIXED_SUBJECT_ID,
           bankItemId: q.bankItemId ?? q.id,
-          type: q.type,
+          type: (q.type as RawQuestionInput["type"]) ?? "multiple_choice",
           vignette: q.vignette,
           tags: q.tags,
         }));

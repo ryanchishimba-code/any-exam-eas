@@ -1,4 +1,5 @@
 import { filterBankItemsForPracticeField } from "@/lib/edtech/exam-item-scope";
+import type { ExamQuestion } from "@/lib/ai";
 import type { BankItem } from "@/lib/question-bank";
 import { applyAnatomyStudyMetaToBankItem } from "./apply-bank-anatomy-meta";
 import { bankItemToRawQuestion } from "./ngn-bank-bridge";

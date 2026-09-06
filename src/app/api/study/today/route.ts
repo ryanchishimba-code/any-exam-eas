@@ -109,7 +109,7 @@ export async function POST(req: Request) {
         {
           ...raw,
           bankItemId: row.id,
-          subjectId: row.subjectId ?? raw.subjectId,
+          subjectId: row.subjectId ?? "mixed",
           field: fieldLabel,
         },
         i,

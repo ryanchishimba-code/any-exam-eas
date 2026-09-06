@@ -14,7 +14,7 @@ import { domainTilesFromReadiness } from "@/lib/study/domain-map";
 import { ROUTES } from "@/lib/routes";
 import { dbUi } from "@/lib/study/dashboard-ui";
 import type { ExamSlug } from "@/types/edtech";
-import { isTodayEngineEnabled } from "@/lib/engine/mastery/feature-flag";
+import { isTodayEngineEnabled, isTodayEngineNaplexEnabled } from "@/lib/engine/mastery/feature-flag";
 
 type NextAction = {
   label: string;
@@ -46,6 +46,13 @@ export function resolveDashboardNextAction({
   /** Canonical bank field (USMLE step-aware). */
   practiceFieldId?: string;
 }): NextAction {
+  if (examSlug === "naplex" && isTodayEngineNaplexEnabled()) {
+    return {
+      label: "Today",
+      href: todayPracticeHref("naplex", 40, practiceFieldId),
+      status: "Your NAPLEX mastery set",
+    };
+  }
   if (examSlug === "nclex" && isTodayEngineEnabled()) {
     return {
       label: "Today",
