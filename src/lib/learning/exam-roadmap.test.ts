@@ -38,6 +38,11 @@ describe("exam roadmap", () => {
     expect(score).toBeLessThanOrEqual(74);
   });
 
+  it("scores untouched categories at 0 (no false prior confidence)", () => {
+    expect(computeCategoryReadinessScore({ attempts: 0, correct: 0 }, [])).toBe(0);
+    expect(computeCategoryReadinessScore({ attempts: 0, correct: 0 }, [90])).toBe(0);
+  });
+
   it("builds NCLEX roadmap topics from official blueprint", () => {
     const blueprint = getExamBlueprint("nursing")!;
     const attemptMap = aggregateAttemptsBySubject([
@@ -60,8 +65,19 @@ describe("exam roadmap", () => {
       new Map()
     ).map((t, i) =>
       i === 0
-        ? { ...t, readinessScore: 40, readinessKey: "needs_more_work" as const, readinessLabel: "Needs More Work" as const, blueprintWeightPct: 20 }
-        : t
+        ? {
+            ...t,
+            readinessScore: 40,
+            readinessKey: "needs_more_work" as const,
+            readinessLabel: "Needs More Work" as const,
+            blueprintWeightPct: 20,
+          }
+        : {
+            ...t,
+            readinessScore: 90,
+            readinessKey: "strong" as const,
+            readinessLabel: "Strong" as const,
+          }
     );
     const priorities = selectPriorityTopics(topics, 3);
     expect(priorities[0]?.categoryId).toBe(topics[0]!.categoryId);

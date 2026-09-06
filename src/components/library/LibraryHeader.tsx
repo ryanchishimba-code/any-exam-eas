@@ -71,7 +71,7 @@ export function LibraryHeader({
             {cardCount} memory {cardCount === 1 ? "card" : "cards"} organized by subject.
           </p>
           <div className="flex flex-wrap gap-1.5 pt-0.5">
-            <span className={libUi.statPill}>{readinessScore}% ready</span>
+            <span className={libUi.statPill}>{readinessScore}% practice</span>
             <span className={libUi.statPill}>{cardCount} cards</span>
             {streakDays > 0 ? <span className={libUi.statPill}>{streakDays}d streak</span> : null}
           </div>

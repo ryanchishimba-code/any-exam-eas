@@ -121,6 +121,8 @@ export function computeCategoryReadinessScore(
   stats: SubjectStats,
   masteryScores: number[]
 ): number {
+  if (stats.attempts === 0) return 0;
+
   const PRIOR_CORRECT = 3;
   const PRIOR_TOTAL = 6;
   const smoothedAccuracy =
@@ -381,16 +383,16 @@ function buildPassFocusMessage(
   priorities: RoadmapTopicRow[]
 ): string {
   if (priorities.length === 0) {
-    return `Your ${examName} roadmap looks strong across blueprint areas — keep mixing timed practice to stay exam-ready.`;
+    return `Your ${examName} practice looks strong across blueprint areas — keep mixing timed sets to stay sharp.`;
   }
   const top = priorities.slice(0, 2).map((t) => t.label);
   if (overall < 65) {
-    return `To pass ${examName}, prioritize ${top.join(" and ")} — these blueprint areas need the most work right now.`;
+    return `For ${examName} practice progress, prioritize ${top.join(" and ")} — these blueprint areas need the most work right now.`;
   }
   if (overall < 80) {
-    return `You're building toward ${examName} readiness. Focus next on ${top.join(" and ")} before your exam date.`;
+    return `You're building ${examName} practice strength. Focus next on ${top.join(" and ")} before test day.`;
   }
-  return `Nearly exam-ready on ${examName}. Sharpen ${top[0]} to close remaining gaps.`;
+  return `Strong ${examName} practice progress. Sharpen ${top[0]} to close remaining gaps.`;
 }
 
 export function getBlueprintForExamSlug(

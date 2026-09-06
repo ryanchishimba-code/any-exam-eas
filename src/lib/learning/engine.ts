@@ -23,56 +23,17 @@ export async function processLearningAttempt(
     const result = await recordAttemptWithMastery(input);
     attemptId = result.attemptId;
   } catch {
-    /* non-blocking for UI */
+    /* non-blocking for UI — concept/SRS persistence failed */
   }
 
-  // Mastery Engine cell updates (NCLEX / NAPLEX) — non-blocking.
+  // Uniform Skill Cell write (NCLEX / NAPLEX / USMLE / blueprint boards) — fail-safe.
   try {
-    const {
-      isTodayEngineEnabled,
-      isTodayEngineNaplexEnabled,
-    } = await import("@/lib/engine/mastery/feature-flag");
-    const isNclex = input.fieldId === "nursing" && isTodayEngineEnabled();
-    const isNaplex = input.fieldId === "pharmacy" && isTodayEngineNaplexEnabled();
-    if (isNclex || isNaplex) {
-      const examSlug = isNaplex ? "naplex" : "nclex";
-      const { parseMasteryItemTags } = await import("@/lib/engine/mastery/item-tags");
-      const { resolveCellKeyFromQuestion, skillCellKey } = await import(
-        "@/lib/engine/mastery/cells"
-      );
-      const { recordCellAttempt } = await import("@/lib/engine/mastery/persist");
-      const tags = parseMasteryItemTags({
-        tags: input.question.tags?.join(",") ?? null,
-      });
-      const defaultSystem = isNaplex
-        ? "naplex-area3-treatment-planning"
-        : tags.clientNeeds || "physiological-adaptation";
-      const cellKey =
-        resolveCellKeyFromQuestion({
-          examSlug,
-          subjectId: input.question.subjectId,
-          clientNeeds: tags.clientNeeds,
-          naplexDomain: tags.naplexDomain,
-        }) ??
-        skillCellKey(
-          examSlug,
-          defaultSystem,
-          input.question.subjectId || "_system"
-        );
-      const parts = cellKey.split(":");
-      const mode =
-        input.studyMode === "timed" || input.studyMode === "mock" || input.studyMode === "cat"
-          ? ("timed" as const)
-          : ("tutor" as const);
-      void recordCellAttempt({
-        userId: input.userId,
-        examSlug,
-        cellKey,
-        systemKey: parts[1] ?? defaultSystem,
-        topicKey: parts[2] ?? input.question.subjectId ?? "_system",
-        correct: input.correct,
-        mode,
-      });
+    const { recordUniformCellAttempt } = await import(
+      "@/lib/engine/mastery/uniform-engine"
+    );
+    const cellResult = await recordUniformCellAttempt(input);
+    if (!cellResult.ok) {
+      console.warn("[learning/engine] uniform cell write:", cellResult.error);
     }
   } catch {
     /* non-blocking */

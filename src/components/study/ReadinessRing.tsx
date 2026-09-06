@@ -1,8 +1,10 @@
 /** Calm circular readiness gauge — accent arc on a soft track, score centered. */
+import { PRACTICE_PROGRESS_LABEL } from "@/lib/site";
+
 export function ReadinessRing({
   score,
   size = 104,
-  label = "Ready",
+  label = PRACTICE_PROGRESS_LABEL,
 }: {
   score: number;
   size?: number;

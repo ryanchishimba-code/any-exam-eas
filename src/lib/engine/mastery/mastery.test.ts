@@ -6,6 +6,15 @@ import {
 } from "@/lib/engine/mastery/transitions";
 import { buildTodaySession, resolveTodaySize } from "@/lib/engine/mastery/session-builder";
 import { computeMasteryRollup } from "@/lib/engine/mastery/rollup";
+import { getBoardMasteryCapabilities } from "@/lib/engine/mastery/board-capabilities";
+import {
+  resolveUniformCellKey,
+  studyModeToCellMode,
+} from "@/lib/engine/mastery/uniform-engine";
+import {
+  computeReadinessScore,
+  MASTERY_CONFIG,
+} from "@/lib/engine/mastery/canonical-readiness";
 import type { SessionCandidate, SkillCellDef, UserCellStateSnapshot } from "@/lib/engine/mastery/types";
 
 describe("mastery transitions", () => {
@@ -218,5 +227,117 @@ describe("mastery rollup", () => {
     expect(rollup.coveragePct).toBe(100);
     expect(rollup.competencePct).toBe(50);
     expect(rollup.topLeaks[0]?.cellKey).toBe("c1");
+  });
+});
+
+describe("uniform mastery engine", () => {
+  it("resolves NCLEX cells from subject + client needs", () => {
+    const { cellKey, systemKey } = resolveUniformCellKey({
+      examSlug: "nclex",
+      subjectId: "infection-control",
+      clientNeeds: "safety-infection-control",
+      cellStrategy: "ontology",
+    });
+    expect(cellKey).toContain("nclex:");
+    expect(systemKey).toBeTruthy();
+  });
+
+  it("resolves USMLE cells from organ system metadata", () => {
+    const { cellKey, systemKey, topicKey } = resolveUniformCellKey({
+      examSlug: "usmle",
+      subjectId: "acs",
+      blueprintDomain: "cardiovascular",
+      cellStrategy: "ontology",
+    });
+    expect(cellKey).toBe("usmle:cardiovascular:acs");
+    expect(systemKey).toBe("cardiovascular");
+    expect(topicKey).toBe("acs");
+  });
+
+  it("never returns empty cellKey — falls back for sparse boards", () => {
+    const { cellKey, systemKey, topicKey } = resolveUniformCellKey({
+      examSlug: "pance",
+      subjectId: "hypertension",
+      cellStrategy: "blueprint_fallback",
+    });
+    expect(cellKey).toBe("pance:cardiovascular:hypertension");
+    expect(systemKey).toBe("cardiovascular");
+    expect(topicKey).toBe("hypertension");
+  });
+
+  it("maps study modes to cell modes", () => {
+    expect(studyModeToCellMode("tutor")).toBe("tutor");
+    expect(studyModeToCellMode("timed")).toBe("timed");
+    expect(studyModeToCellMode("mock")).toBe("timed");
+    expect(studyModeToCellMode("cat")).toBe("timed");
+    expect(studyModeToCellMode(undefined)).toBe("tutor");
+  });
+
+  it("exposes cell write capability for NCLEX and USMLE by default", () => {
+    expect(getBoardMasteryCapabilities("nclex").cellWrites).toBe(true);
+    expect(getBoardMasteryCapabilities("usmle").cellWrites).toBe(true);
+    expect(getBoardMasteryCapabilities("naplex").conceptAndSrs).toBe(true);
+  });
+});
+
+describe("canonical readiness", () => {
+  it("weights confidence separately from mastery (no double-count)", () => {
+    const base = {
+      masteryScore: 80,
+      retentionStrength: 70,
+      attempts: 30,
+    };
+    const highConf = computeReadinessScore([
+      { ...base, confidenceReliability: 90 },
+    ]);
+    const lowConf = computeReadinessScore([
+      { ...base, confidenceReliability: 20 },
+    ]);
+    expect(highConf).toBeGreaterThan(lowConf);
+    // Old bug: confidence weight reused mastery → both scores identical.
+    expect(highConf - lowConf).toBe(
+      Math.round(70 * MASTERY_CONFIG.readinessWeights.confidenceReliability)
+    );
+  });
+
+  it("returns 0 with no attempted concepts", () => {
+    expect(computeReadinessScore([])).toBe(0);
+    expect(
+      computeReadinessScore([
+        {
+          masteryScore: 50,
+          retentionStrength: 50,
+          confidenceReliability: 50,
+          attempts: 0,
+        },
+      ])
+    ).toBe(0);
+  });
+
+  it("soft-caps score until enough evidence exists", () => {
+    const thin = computeReadinessScore([
+      {
+        masteryScore: 100,
+        retentionStrength: 100,
+        confidenceReliability: 100,
+        attempts: 3,
+      },
+    ]);
+    expect(thin).toBeLessThanOrEqual(
+      MASTERY_CONFIG.readinessEvidence.softCapBeforeAlmost
+    );
+
+    const mid = computeReadinessScore([
+      {
+        masteryScore: 100,
+        retentionStrength: 100,
+        confidenceReliability: 100,
+        attempts: 15,
+      },
+    ]);
+    expect(mid).toBeLessThanOrEqual(
+      MASTERY_CONFIG.readinessEvidence.softCapBeforeReady
+    );
+    expect(mid).toBeGreaterThan(thin);
   });
 });

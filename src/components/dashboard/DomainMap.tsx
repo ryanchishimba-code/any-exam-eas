@@ -149,7 +149,7 @@ export function DomainMap({
                   tile.highlighted &&
                     "border-[var(--color-accent)]/25 bg-[var(--color-accent)]/[0.04] domain-tile-pulse"
                 )}
-                aria-label={`${tile.label}: ${tile.score}% ready, ${tile.weightPct}% of exam, ${STATUS_LABEL[tile.status]}. Practice.`}
+                aria-label={`${tile.label}: ${tile.score}% practice progress, ${tile.weightPct}% of exam, ${STATUS_LABEL[tile.status]}. Practice.`}
               >
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">

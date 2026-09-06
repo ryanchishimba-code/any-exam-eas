@@ -124,14 +124,17 @@ async function refreshProfileReadiness(userId: string): Promise<void> {
     select: {
       masteryScore: true,
       retentionStrength: true,
+      confidenceReliability: true,
       attempts: true,
       lastAttemptAt: true,
     },
   });
 
   const decayed = masteries.map((m) => ({
-    ...m,
     masteryScore: applyRetentionDecay(m.masteryScore, m.lastAttemptAt),
+    retentionStrength: m.retentionStrength,
+    confidenceReliability: m.confidenceReliability,
+    attempts: m.attempts,
   }));
 
   const readinessScore = computeReadinessScore(decayed);
@@ -192,16 +195,31 @@ export async function getLearningProfileSnapshot(
           : "stable",
   }));
 
-  const byField = new Map<string, number[]>();
-  for (const s of snapshots) {
-    const list = byField.get(s.fieldId) ?? [];
-    list.push(s.masteryScore);
-    byField.set(s.fieldId, list);
+  // Per-field readiness uses the same formula as LearningProfile.readinessScore
+  // so scoped dashboards stay consistent with the uniform engine.
+  const byField = new Map<
+    string,
+    {
+      masteryScore: number;
+      retentionStrength: number;
+      confidenceReliability: number;
+      attempts: number;
+    }[]
+  >();
+  for (const m of masteries) {
+    const list = byField.get(m.fieldId) ?? [];
+    list.push({
+      masteryScore: applyRetentionDecay(m.masteryScore, m.lastAttemptAt),
+      retentionStrength: m.retentionStrength,
+      confidenceReliability: m.confidenceReliability,
+      attempts: m.attempts,
+    });
+    byField.set(m.fieldId, list);
   }
 
-  const fieldReadiness = Array.from(byField.entries()).map(([fieldId, scores]) => ({
+  const fieldReadiness = Array.from(byField.entries()).map(([fieldId, rows]) => ({
     fieldId,
-    score: Math.round(scores.reduce((a, b) => a + b, 0) / scores.length),
+    score: computeReadinessScore(rows),
   }));
 
   return {

@@ -44,7 +44,7 @@ export function LibraryHubHeader({
       </div>
 
       <div className={cn(libUi.chipRow, "w-full sm:w-auto sm:flex-wrap")}>
-        <StatPill icon={Target} label="Readiness" value={`${stats.readinessScore}%`} />
+        <StatPill icon={Target} label="Practice" value={`${stats.readinessScore}%`} />
         <StatPill icon={Flame} label="Streak" value={`${stats.studyStreakDays}d`} />
         {stats.overallAccuracy != null ? (
           <StatPill icon={TrendingUp} label="Accuracy" value={`${stats.overallAccuracy}%`} />

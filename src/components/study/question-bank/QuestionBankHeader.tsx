@@ -66,7 +66,7 @@ export function QuestionBankHeader({
           </p>
           <div className="flex flex-wrap gap-1.5 pt-0.5">
             {typeof readinessScore === "number" ? (
-              <span className={qbUi.statPill}>{readinessScore}% ready</span>
+              <span className={qbUi.statPill}>{readinessScore}% practice</span>
             ) : null}
             {typeof topicCount === "number" ? (
               <span className={qbUi.statPill}>

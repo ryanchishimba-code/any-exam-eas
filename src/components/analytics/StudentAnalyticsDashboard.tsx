@@ -20,6 +20,7 @@ import type { ExamSlug } from "@/types/edtech";
 import { Button } from "@/components/ui/Button";
 import { SocialShareBar } from "@/components/social/SocialShareBar";
 import { cn } from "@/lib/utils";
+import { PRACTICE_PROGRESS_HINT, PRACTICE_PROGRESS_LABEL } from "@/lib/site";
 import {
   filterStudentFacingWeakTopics,
   formatConceptLabel,
@@ -152,12 +153,12 @@ export function StudentAnalyticsDashboard({
           <p className={studyUi.eyebrow}>Analytics</p>
           <h1 className={studyUi.title}>Your {examName} insights</h1>
           <p className={cn(studyUi.subtitle, "mt-1 max-w-xl")}>
-            Readiness, accuracy trends, and weak areas — scoped to your active exam.
+            Practice progress, accuracy trends, and weak areas — scoped to your active exam.
           </p>
         </div>
         <SocialShareBar
           entityType="progress"
-          text={`I'm ${dashboard.headline.readinessScore}% ready for ${examName} with AnyExamEasy! 🎯`}
+          text={`My ${examName} ${PRACTICE_PROGRESS_LABEL.toLowerCase()} is ${dashboard.headline.readinessScore}% on AnyExamEasy — keeping at it.`}
           url="https://www.anyexameasy.com"
           size="sm"
         />
@@ -170,15 +171,18 @@ export function StudentAnalyticsDashboard({
           "flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8"
         )}
       >
-        <ReadinessRing score={dashboard.headline.readinessScore} />
+        <ReadinessRing
+          score={dashboard.headline.readinessScore}
+          label={PRACTICE_PROGRESS_LABEL}
+        />
         <div className="min-w-0 flex-1 space-y-2">
-          <p className={studyUi.eyebrow}>Readiness</p>
+          <p className={studyUi.eyebrow}>{PRACTICE_PROGRESS_LABEL}</p>
           <p className="text-[20px] font-semibold tracking-tight text-[var(--color-ink)] sm:text-[22px]">
             {dashboard.headline.readinessScore >= 75
-              ? "You're in strong shape — keep the momentum."
+              ? "Strong practice signal — keep timed sets in the mix."
               : dashboard.headline.readinessScore >= 50
-                ? "Solid progress — focus weak areas to climb faster."
-                : "Early stage — consistent practice builds readiness quickly."}
+                ? "Solid practice progress — focus weak areas to climb faster."
+                : "Early practice stage — consistency builds a trustworthy signal."}
           </p>
           <p className={studyUi.sectionHint}>
             {dashboard.headline.overallAccuracy != null
@@ -187,6 +191,9 @@ export function StudentAnalyticsDashboard({
             {dashboard.headline.studyStreakDays > 0
               ? ` · ${dashboard.headline.studyStreakDays}-day streak`
               : ""}
+          </p>
+          <p className={cn(studyUi.sectionHint, "text-[12px]")}>
+            {PRACTICE_PROGRESS_HINT}
           </p>
         </div>
       </section>
@@ -214,14 +221,14 @@ export function StudentAnalyticsDashboard({
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <MetricCard
-          label="Practice progress index"
-          value={`${progressIndex}%`}
-          hint="In-app metric only — not an exam pass prediction"
+          label={PRACTICE_PROGRESS_LABEL}
+          value={`${dashboard.headline.readinessScore}%`}
+          hint={PRACTICE_PROGRESS_HINT}
         />
         <MetricCard
-          label="Readiness score"
-          value={`${dashboard.headline.readinessScore}%`}
-          hint={`Composite from your ${examName} practice`}
+          label="Practice progress index"
+          value={`${progressIndex}%`}
+          hint="Secondary in-app index — not an exam pass prediction"
         />
         <MetricCard
           label="Overall accuracy"

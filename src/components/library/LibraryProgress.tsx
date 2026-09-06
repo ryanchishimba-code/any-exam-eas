@@ -9,6 +9,7 @@ import { libUi } from "@/lib/library/library-ui";
 import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import type { WeakTopicRow } from "@/lib/learning/student-dashboard";
 import type { ExamSlug } from "@/types/edtech";
+import { PRACTICE_PROGRESS_LABEL } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -34,7 +35,7 @@ export function LibraryProgress({ examSlug, weakTopics, stats }: Props) {
             Progress
           </p>
           <p className={cn(libUi.sectionHint, "mt-0.5")}>
-            {stats.readinessScore}% ready
+            {stats.readinessScore}% {PRACTICE_PROGRESS_LABEL.toLowerCase()}
             {stats.overallAccuracy != null ? ` · ${stats.overallAccuracy}% accuracy` : ""}
             {stats.studyStreakDays > 0 ? ` · ${stats.studyStreakDays}d streak` : ""}
           </p>
