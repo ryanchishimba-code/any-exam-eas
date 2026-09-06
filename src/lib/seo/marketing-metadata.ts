@@ -12,7 +12,9 @@ import {
 } from "@/lib/seo/resources-content";
 import {
   absoluteUrl,
+  DEFAULT_OG_IMAGE_HEIGHT,
   DEFAULT_OG_IMAGE_PATH,
+  DEFAULT_OG_IMAGE_WIDTH,
   getSiteUrl,
 } from "@/lib/seo";
 import { LEGAL_ENTITY } from "@/lib/legal";
@@ -53,7 +55,7 @@ function baseOpenGraph(
       siteName: SITE_NAME,
       title: safeTitle,
       description: safeDescription,
-      images: [{ url: ogImage, width: 1200, height: 800, alt: safeTitle }],
+      images: [{ url: ogImage, width: DEFAULT_OG_IMAGE_WIDTH, height: DEFAULT_OG_IMAGE_HEIGHT, alt: safeTitle }],
     },
     twitter: {
       card: "summary_large_image",

@@ -50,7 +50,9 @@ export function getSiteUrl(): string {
   return PRODUCTION_SITE_URL;
 }
 
-export const DEFAULT_OG_IMAGE_PATH = "/images/hero.jpg";
+export const DEFAULT_OG_IMAGE_PATH = "/images/og-share.jpg";
+export const DEFAULT_OG_IMAGE_WIDTH = 1200;
+export const DEFAULT_OG_IMAGE_HEIGHT = 630;
 
 export function absoluteUrl(path: string): string {
   return `${getSiteUrl()}${path.startsWith("/") ? path : `/${path}`}`;
@@ -109,9 +111,9 @@ export function buildHomeMetadata(totalQuestionsLabel?: string): Metadata {
       images: [
         {
           url: ogImage,
-          width: 1200,
-          height: 800,
-          alt: "Healthcare student using Any Exam Easy for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT board exam prep",
+          width: DEFAULT_OG_IMAGE_WIDTH,
+          height: DEFAULT_OG_IMAGE_HEIGHT,
+          alt: "AnyExamEasy — one subscription for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT",
         },
       ],
     },
@@ -261,7 +263,8 @@ export function buildHomeJsonLd() {
  * Performance tips (also configure in Vercel):
  * - Set NEXT_PUBLIC_SITE_URL for correct canonical/OG URLs
  * - Enable Vercel Speed Insights + Image Optimization
- * - hero.jpg: keep under 150KB WebP/JPEG; run `npx @squoosh/cli --webp auto public/images/hero.jpg`
+ * - og-share.jpg: 1200×630 social card; keep under ~200KB JPEG
+ * - hero.jpg: on-page hero only; keep under 150KB WebP/JPEG
  * - Use `next/dynamic` for below-the-fold client sections (see page.tsx)
  */
 export const PERFORMANCE_HINTS = [
