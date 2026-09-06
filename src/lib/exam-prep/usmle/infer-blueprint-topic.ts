@@ -268,8 +268,55 @@ function topicMeta(slug: string, stepLevel: UsmleStepLevel): { categoryId: strin
   if (fromCatalog) return { categoryId: fromCatalog.categoryId };
   const crossDomain = CROSS_CUTTING_DOMAIN[stepLevel]?.[slug];
   if (crossDomain) return { categoryId: crossDomain };
-  return { categoryId: stepLevel === "step3" ? "internal-medicine" : "internal-medicine" };
+  return { categoryId: "internal-medicine" };
 }
+
+/** Always emit official organ-system ids for blueprintDomain. */
+function spineDomainFor(topic: string, legacyCategory?: string | null): string {
+  return (
+    resolveOrganSystemId(null, topic, legacyCategory) ??
+    resolveOrganSystemId(legacyCategory, null, null) ??
+    "multisystem"
+  );
+}
+
+/**
+ * For Step 3 CCS / management dump topics, infer organ system from clinical
+ * content using Step 2 topic matchers (shared Content Outline systems).
+ */
+function clinicalSpineFromContent(item: BankItem): string | null {
+  const hits = slugsForStep("step2").filter((slug) => matchesUsmleBlueprintTopic(item, slug));
+  const ranked = hits
+    .map((slug) => ({
+      slug,
+      system: resolveOrganSystemId(null, slug, null),
+    }))
+    .filter(
+      (row): row is { slug: string; system: NonNullable<typeof row.system> } =>
+        Boolean(row.system) &&
+        row.system !== "multisystem" &&
+        row.system !== "biostats-epi" &&
+        row.system !== "social-sciences"
+    );
+  return ranked[0]?.system ?? null;
+}
+
+const STEP3_DUMP_TOPICS = new Set([
+  "next-best-step",
+  "ambulatory-chronic-care",
+  "inpatient-orders",
+  "lab-interpretation",
+  "ccs-initial-workup",
+  "ccs-monitoring-escalation",
+  "ccs-orders-sequence",
+  "ccs-discharge-planning",
+  "emergency-management",
+  "post-op-fever",
+  "preventive-screening",
+  "drug-moa-side-effects",
+  "pharmacology-interactions",
+]);
+
 function topicMatchesStep(slug: string, stepLevel: UsmleStepLevel): boolean {
   const meta = getUsmle2026Topic(slug);
   if (!meta) return USMLE_CROSS_CUTTING_TOPICS.some((t) => t.slug === slug);
@@ -349,7 +396,16 @@ export function isValidUsmle2026BlueprintTopic(
   const slug = topic.trim();
   if (!VALID_SLUGS.has(slug)) return false;
   if (!stepLevel) return true;
-  return topicMatchesStep(slug, stepLevel);
+  if (topicMatchesStep(slug, stepLevel)) return true;
+  // Step 2/3: accept neighboring-step clinical slugs from the shared outline.
+  if (stepLevel === "step2" && topicMatchesStep(slug, "step1")) return true;
+  if (
+    stepLevel === "step3" &&
+    (topicMatchesStep(slug, "step2") || topicMatchesStep(slug, "step1"))
+  ) {
+    return true;
+  }
+  return false;
 }
 
 export function inferUsmleBlueprint(
@@ -361,12 +417,47 @@ export function inferUsmleBlueprint(
   const categoryId = resolve2026CategoryId(fieldId, item, stepLevel);
   const existing = item.blueprintTopic?.trim();
 
+  /** Generic / dump topics — prefer a content organ-system hit when available. */
+  const GENERIC_TOPICS = STEP3_DUMP_TOPICS;
+
   if (existing && isValidUsmle2026BlueprintTopic(existing, stepLevel)) {
+    if (GENERIC_TOPICS.has(existing)) {
+      // Prefer Step 2 clinical topics for organ resolution on Step 3 dump tags.
+      const clinicalHits =
+        stepLevel === "step3"
+          ? slugsForStep("step2").filter(
+              (slug) => !GENERIC_TOPICS.has(slug) && matchesUsmleBlueprintTopic(item, slug)
+            )
+          : contentMatchCandidates(item, stepLevel).filter((slug) => !GENERIC_TOPICS.has(slug));
+      const contentPick = pickBestCandidate(clinicalHits, categoryId, item, stepLevel === "step3" ? "step2" : stepLevel);
+      if (contentPick) {
+        const domain =
+          (stepLevel === "step3" ? clinicalSpineFromContent(item) : null) ??
+          spineDomainFor(contentPick, categoryId);
+        return {
+          blueprintTopic: contentPick,
+          blueprintDomain: domain,
+          source: "content-match",
+        };
+      }
+      if (stepLevel === "step3") {
+        const clinicalDomain = clinicalSpineFromContent(item);
+        if (clinicalDomain) {
+          return {
+            blueprintTopic: existing,
+            blueprintDomain: clinicalDomain,
+            source: "existing",
+          };
+        }
+      }
+    }
+    const domain =
+      (stepLevel === "step3" && STEP3_DUMP_TOPICS.has(existing)
+        ? clinicalSpineFromContent(item)
+        : null) ?? spineDomainFor(existing, categoryId);
     return {
       blueprintTopic: existing,
-      blueprintDomain:
-        resolveOrganSystemId(null, existing, categoryId) ??
-        topicMeta(existing, stepLevel).categoryId,
+      blueprintDomain: domain,
       source: "existing",
     };
   }
@@ -376,9 +467,7 @@ export function inferUsmleBlueprint(
     if (sharedAlias && isValidUsmle2026BlueprintTopic(sharedAlias, stepLevel)) {
       return {
         blueprintTopic: sharedAlias,
-        blueprintDomain:
-          resolveOrganSystemId(null, sharedAlias, categoryId) ??
-          topicMeta(sharedAlias, stepLevel).categoryId,
+        blueprintDomain: spineDomainFor(sharedAlias, categoryId),
         source: "legacy-alias",
       };
     }
@@ -387,9 +476,7 @@ export function inferUsmleBlueprint(
     if (alias) {
       return {
         blueprintTopic: alias,
-        blueprintDomain:
-          resolveOrganSystemId(null, alias, categoryId) ??
-          topicMeta(alias, stepLevel).categoryId,
+        blueprintDomain: spineDomainFor(alias, categoryId),
         source: "legacy-alias",
       };
     }
@@ -398,9 +485,7 @@ export function inferUsmleBlueprint(
     if (VALID_SLUGS.has(normalized) && topicMatchesStep(normalized, stepLevel)) {
       return {
         blueprintTopic: normalized,
-        blueprintDomain:
-          resolveOrganSystemId(null, normalized, categoryId) ??
-          topicMeta(normalized, stepLevel).categoryId,
+        blueprintDomain: spineDomainFor(normalized, categoryId),
         source: "normalized",
       };
     }
@@ -419,7 +504,7 @@ export function inferUsmleBlueprint(
       contentHits.find((s) => topicMeta(s, stepLevel).categoryId === typeDomain) ?? slug;
     return {
       blueprintTopic: topic,
-      blueprintDomain: topicMeta(topic, stepLevel).categoryId,
+      blueprintDomain: spineDomainFor(topic, typeDomain),
       source: "item-type",
     };
   }
@@ -429,7 +514,7 @@ export function inferUsmleBlueprint(
   if (contentPick) {
     return {
       blueprintTopic: contentPick,
-      blueprintDomain: topicMeta(contentPick, stepLevel).categoryId,
+      blueprintDomain: spineDomainFor(contentPick, categoryId),
       source: "content-match",
     };
   }
@@ -439,7 +524,7 @@ export function inferUsmleBlueprint(
     if (categoryPick) {
       return {
         blueprintTopic: categoryPick,
-        blueprintDomain: categoryId,
+        blueprintDomain: spineDomainFor(categoryPick, categoryId),
         source: "category-default",
       };
     }
@@ -449,7 +534,7 @@ export function inferUsmleBlueprint(
   if (subjectPick) {
     return {
       blueprintTopic: subjectPick,
-      blueprintDomain: topicMeta(subjectPick, stepLevel).categoryId,
+      blueprintDomain: spineDomainFor(subjectPick, categoryId),
       source: "subject-default",
     };
   }
@@ -462,7 +547,7 @@ export function inferUsmleBlueprint(
         : "preventive-screening";
   return {
     blueprintTopic: fallback,
-    blueprintDomain: topicMeta(fallback, stepLevel).categoryId,
+    blueprintDomain: spineDomainFor(fallback, categoryId),
     source: "subject-default",
   };
 }

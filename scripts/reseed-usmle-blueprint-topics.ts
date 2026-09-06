@@ -50,8 +50,8 @@ function resolveStepLevel(stepLevel: string | null | undefined, fieldId: string)
 function expectedDomainForTopic(topic: string, stepLevel: "step1" | "step2" | "step3") {
   return (
     resolveOrganSystemId(null, topic, null) ??
-    getUsmle2026Topic(topic)?.categoryId ??
-    null
+    resolveOrganSystemId(getUsmle2026Topic(topic)?.categoryId ?? null, topic, null) ??
+    "multisystem"
   );
 }
 
@@ -64,6 +64,8 @@ function shouldUpdateRow(
 ): boolean {
   const existing = blueprintTopic?.trim() || null;
   if (!existing) return true;
+
+  if (existing !== inferredTopic) return true;
 
   const alias = resolveLegacyUsmleTopicAlias(existing, stepLevel);
   if (alias && alias !== existing) return true;
@@ -110,12 +112,12 @@ async function main() {
       const existing = row.blueprintTopic?.trim() || null;
       const nextTopic =
         existing && isValidUsmle2026BlueprintTopic(existing, stepLevel)
-          ? existing
+          ? // Prefer content-upgraded topic from infer when it differs.
+            inferred.blueprintTopic
           : inferred.blueprintTopic;
+      // Prefer inferred domain (may use Step 3 clinical content → organ system).
       const nextDomain =
-        existing && isValidUsmle2026BlueprintTopic(existing, stepLevel)
-          ? expectedDomainForTopic(existing, stepLevel) ?? inferred.blueprintDomain
-          : inferred.blueprintDomain;
+        inferred.blueprintDomain || expectedDomainForTopic(nextTopic, stepLevel);
 
       if (
         !shouldUpdateRow(
