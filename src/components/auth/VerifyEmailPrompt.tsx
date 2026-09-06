@@ -97,26 +97,36 @@ export function VerifyEmailPrompt({
       >
         Ready to start your exam prep
       </h2>
-      <p className="relative mx-auto mt-3 max-w-md text-[15px] leading-relaxed text-[var(--color-ink-muted)]">
-        Please look for the verification link we sent to{" "}
-        <span className="font-medium text-[var(--color-ink)]">{displayEmail}</span>. Open that
-        email, then come back here.
-      </p>
 
-      <div className="relative mt-6 flex flex-col items-center gap-3">
-        <button
-          type="button"
-          disabled={loading}
-          onClick={() => void resend()}
-          className="inline-flex min-h-11 items-center justify-center rounded-full bg-[var(--color-ink)] px-6 text-[14px] font-semibold text-white transition hover:opacity-90 disabled:opacity-50"
-        >
-          {loading ? "Sending…" : "Resend email"}
-        </button>
-        {message ? (
-          <p className="text-[13px] text-[var(--color-ink-muted)]" role="status">
-            {message}
-          </p>
-        ) : null}
+      <div
+        className="relative mx-auto mt-5 max-w-md rounded-2xl border border-teal-500/25 bg-teal-50 px-4 py-4 text-left dark:border-teal-400/30 dark:bg-teal-950/40"
+        role="status"
+      >
+        <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-teal-700 dark:text-teal-300">
+          Check your email
+        </p>
+        <p className="mt-1.5 text-[15px] font-medium leading-snug text-[var(--color-ink)]">
+          Please look for the verification link we sent to{" "}
+          <span className="font-semibold text-teal-800 dark:text-teal-200">{displayEmail}</span>.
+        </p>
+        <p className="mt-1 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+          Open that email, verify, then come back here.
+        </p>
+        <div className="mt-4 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
+          <button
+            type="button"
+            disabled={loading}
+            onClick={() => void resend()}
+            className="inline-flex min-h-10 items-center justify-center rounded-full bg-teal-700 px-5 text-[13px] font-semibold text-white transition hover:bg-teal-800 disabled:opacity-50 dark:bg-teal-600 dark:hover:bg-teal-500"
+          >
+            {loading ? "Sending…" : "Resend email"}
+          </button>
+          {message ? (
+            <p className="text-[13px] text-teal-800 dark:text-teal-200" role="status">
+              {message}
+            </p>
+          ) : null}
+        </div>
       </div>
 
       <div className="relative mx-auto mt-8 max-w-md text-left">
