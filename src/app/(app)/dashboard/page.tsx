@@ -6,6 +6,7 @@ import { getStudyUsageSnapshot } from "@/lib/study/usage-limits";
 import { resolveDashboardUpgradeContext } from "@/lib/dashboard/upgrade-banner";
 import type { UserAccess } from "@/lib/access-control";
 import { DashboardPageContent } from "@/components/app/DashboardPageContent";
+import { AccessBlockedNotice } from "@/components/AccessBlockedNotice";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserExamPreference } from "@/lib/edtech/exam-preference";
 import { resolveCanonicalPracticeFieldId } from "@/lib/edtech/question-bank-scope";
@@ -150,12 +151,15 @@ export default async function DashboardPage() {
     redirect(`${ROUTES.auth.login}?callbackUrl=${encodeURIComponent(ROUTES.dashboard)}`);
   }
 
-  const [access, pref] = await runPageDb(() =>
-    Promise.all([
-      requireAppPage(ROUTES.dashboard),
-      getUserExamPreference(session.user.id),
-    ])
-  );
+  const access = await runPageDb(() => requireAppPage(ROUTES.dashboard));
+
+  if (access.blockReason === "email_unverified") {
+    return (
+      <AccessBlockedNotice reason="email_unverified" email={session.user.email} />
+    );
+  }
+
+  const pref = await runPageDb(() => getUserExamPreference(session.user.id));
   if (!pref) redirect(ROUTES.selectExam);
 
   return (

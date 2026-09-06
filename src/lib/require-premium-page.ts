@@ -3,6 +3,7 @@ import { getCachedSession } from "@/lib/auth/session";
 import { getUserAccess, type UserAccess } from "@/lib/access-control";
 import { redirectIfDbUnavailable } from "@/lib/page-access-error";
 import { resolvePaywallRedirect } from "@/lib/reactivation";
+import { ROUTES } from "@/lib/routes";
 
 async function loadPageAccess(callbackPath: string): Promise<UserAccess> {
   const session = await getCachedSession();
@@ -24,17 +25,20 @@ async function loadPageAccess(callbackPath: string): Promise<UserAccess> {
     redirect("/pricing?paywall=suspended");
   }
 
-  if (access.blockReason === "email_unverified") {
-    redirect("/pricing?paywall=verify");
-  }
-
   return access;
 }
 
-/** Dashboard and account home — trial, paid, or post-trial free tier. */
+const VERIFY_EMAIL_PATH = `${ROUTES.dashboard}?verify=1`;
+
+/** Dashboard and account home — trial, paid, post-trial free, or email-verify gate. */
 export async function requireAppPage(callbackPath = "/dashboard"): Promise<UserAccess> {
   const session = await getCachedSession();
   const access = await loadPageAccess(callbackPath);
+
+  // Unverified trial users stay on dashboard verify UI — never send them to pricing.
+  if (access.blockReason === "email_unverified") {
+    return access;
+  }
 
   if (!access.hasAppAccess) {
     const destination = await resolvePaywallRedirect(
@@ -53,6 +57,10 @@ export async function requireAppPage(callbackPath = "/dashboard"): Promise<UserA
 export async function requireStudyPage(callbackPath = "/study"): Promise<UserAccess> {
   const session = await getCachedSession();
   const access = await loadPageAccess(callbackPath);
+
+  if (access.blockReason === "email_unverified") {
+    redirect(VERIFY_EMAIL_PATH);
+  }
 
   if (!access.hasStudyAccess) {
     if (access.hasFreeTierAccess) {
@@ -76,6 +84,10 @@ export async function requirePremiumPage(
 ): Promise<UserAccess> {
   const session = await getCachedSession();
   const access = await loadPageAccess(callbackPath);
+
+  if (access.blockReason === "email_unverified") {
+    redirect(VERIFY_EMAIL_PATH);
+  }
 
   if (!access.hasPremiumAccess) {
     if (access.hasFreeTierAccess) {

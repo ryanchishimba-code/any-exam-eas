@@ -1,9 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Check, ChevronDown, Mail } from "lucide-react";
 import { maskEmail } from "@/lib/client/returning-user";
 import { PLATFORM_EXAM_LIST_MIDDOT } from "@/lib/landing/content";
+import { formatMonthlyPrice } from "@/lib/site";
+import { ROUTES } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 type VerifyEmailPromptProps = {
@@ -27,7 +30,7 @@ const COMPARE_ROWS = [
   {
     label: "Exam coverage",
     us: PLATFORM_EXAM_LIST_MIDDOT,
-    them: "Usually one exam per subscription",
+    them: "Usually one exam at a time",
   },
   {
     label: "Study plan",
@@ -48,7 +51,7 @@ const COMPARE_ROWS = [
 
 /**
  * Calm post-signup direction: start prep → check email → verify.
- * Builds trust with features; keeps any account detail optional and collapsed.
+ * Pricing stays collapsed under Upgrade so nothing about money is forced.
  */
 export function VerifyEmailPrompt({
   email,
@@ -58,7 +61,9 @@ export function VerifyEmailPrompt({
   const [message, setMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
+  const [upgradeOpen, setUpgradeOpen] = useState(false);
   const displayEmail = email?.trim() ? maskEmail(email.trim()) : "your email";
+  const monthly = formatMonthlyPrice("pro");
 
   async function resend() {
     setLoading(true);
@@ -165,7 +170,7 @@ export function VerifyEmailPrompt({
         ))}
       </div>
 
-      <div className="relative mx-auto mt-5 max-w-md text-left">
+      <div className="relative mx-auto mt-5 max-w-md space-y-1 text-left">
         <button
           type="button"
           onClick={() => setDetailsOpen((v) => !v)}
@@ -179,10 +184,38 @@ export function VerifyEmailPrompt({
           />
         </button>
         {detailsOpen ? (
-          <p className="px-1 pb-1 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+          <p className="px-1 pb-2 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
             Verifying your email keeps your progress tied to you and lets us reach you if something
             needs attention. It takes a moment — then you can explore the product at your own pace.
           </p>
+        ) : null}
+
+        <button
+          type="button"
+          onClick={() => setUpgradeOpen((v) => !v)}
+          className="flex w-full items-center justify-between gap-2 rounded-xl px-1 py-2 text-left text-[13px] font-medium text-[var(--color-ink-muted)] transition hover:text-[var(--color-ink)]"
+          aria-expanded={upgradeOpen}
+        >
+          <span>Upgrade</span>
+          <ChevronDown
+            className={cn("h-4 w-4 shrink-0 transition-transform", upgradeOpen && "rotate-180")}
+            aria-hidden
+          />
+        </button>
+        {upgradeOpen ? (
+          <div className="rounded-xl border border-black/[0.06] bg-slate-50/80 px-3 py-3 text-[13px] leading-relaxed text-[var(--color-ink-muted)]">
+            <p>
+              When you&apos;re ready for unlimited practice, Pro is{" "}
+              <span className="font-medium text-[var(--color-ink)]">{monthly}/mo</span> for all six
+              boards. No rush — verify and explore first.
+            </p>
+            <Link
+              href={ROUTES.pricing}
+              className="mt-2 inline-flex text-[13px] font-semibold text-teal-700 hover:underline dark:text-teal-300"
+            >
+              View plans
+            </Link>
+          </div>
         ) : null}
       </div>
     </section>
