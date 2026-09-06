@@ -293,7 +293,7 @@ export async function getStudentWeakTopics(
     return await withDbRetry(
       () =>
         cacheGetOrSet(
-          cacheKey(["weak-topics-v2", userId, scopeKey]),
+          cacheKey(["weak-topics-v3", userId, scopeKey]),
           CACHE_TTL.learningDashboard,
           async () => {
             const masteries = await prisma.conceptMastery.findMany({
@@ -321,7 +321,7 @@ export async function getStudentDashboardData(
 ): Promise<StudentDashboardData> {
   const scopeKey = fieldIds?.length ? fieldIds.join(",") : "all";
   return cacheGetOrSet(
-    cacheKey(["student-dashboard-v2", userId, scopeKey]),
+    cacheKey(["student-dashboard-v3", userId, scopeKey]),
     CACHE_TTL.learningDashboard,
     () => loadStudentDashboardData(userId, fieldIds),
     { staleTtlMs: CACHE_STALE.learningDashboard }

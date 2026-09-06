@@ -175,7 +175,7 @@ export const LANDING_HERO_HEADLINE_ACCENT = "";
 
 /** Hero sub-headline — one clear line; exam list lives in chips. */
 export const LANDING_HERO_SUBLINE_BODY =
-  "Clinician-built practice with Roadmaps and Deep Dives — one login for every board.";
+  "Clinician-built practice for every board — one login across six exams.";
 
 export function formatFlagshipHeroSubline(_totalLabel?: string): string {
   return LANDING_HERO_SUBLINE_BODY;

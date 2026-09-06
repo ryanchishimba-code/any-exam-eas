@@ -57,8 +57,8 @@ export function LandingSeoGuide({ questionCountLabel }: { questionCountLabel?: s
           Six boards. One subscription.
         </h2>
         <p className="mt-5 text-lg leading-relaxed text-[var(--color-ink)]">
-          {SITE_NAME} unlocks {PLATFORM_EXAM_LIST} — {count} QA-gated items, Blueprint Roadmaps, and
-          Deep Dives from {formatMonthlyPrice("pro")}/mo after a free trial.
+          {SITE_NAME} unlocks {PLATFORM_EXAM_LIST} — {count} QA-gated items, Study Hub readiness,
+          and Deep Dive lessons from {formatMonthlyPrice("pro")}/mo after a free trial.
         </p>
 
         <ul className="mt-10 grid gap-3 sm:grid-cols-2" role="list">

@@ -1,6 +1,6 @@
 /**
  * Student-facing labels for conceptMastery keys and session titles.
- * Generation batch IDs must never appear in Library / dashboard UI.
+ * Generation batch IDs and pedagogy/meta tags must never appear in Library / dashboard UI.
  */
 
 const INTERNAL_PREFIX_RE = /^(tag:|subject:)?batch[-_\s]/i;
@@ -8,6 +8,36 @@ const NCLEX_GAP_BATCH_RE = /nclex[-_\s]?gap[-_\s]?\d{4}/i;
 const EXAM_LEVEL_RE = /^(tag:|subject:)?exam[-_\s]?level$/i;
 /** batch-…-zm54j9 style machine suffixes */
 const BATCH_WITH_SUFFIX_RE = /^(tag:|subject:)?batch[-_].+[-_][a-z0-9]{4,12}$/i;
+
+/**
+ * Pedagogy / provenance tags stored as conceptMastery keys (from question tags).
+ * These are seed bookkeeping — not Client Needs domains or clinical topics.
+ */
+const INTERNAL_PEDAGOGY_SLUGS = new Set([
+  "nclex-strategy",
+  "trap-tier",
+  "curated",
+  "high-yield",
+  "bulk-bank",
+  "foundation",
+  "select-all",
+  "select_all",
+  "sata-style",
+  "qa-passed",
+  "seed",
+  "cjmm-polished",
+  "nclex-polished",
+  "case-vignette",
+  "exam-level",
+]);
+
+function stripConceptPrefix(key: string): string {
+  return key
+    .replace(/^(tag:|subject:)/i, "")
+    .trim()
+    .toLowerCase()
+    .replace(/[\s_]+/g, "-");
+}
 
 /** True when the mastery key is an import/generation artifact, not a study topic. */
 export function isInternalMasteryConceptKey(key: string): boolean {
@@ -17,6 +47,13 @@ export function isInternalMasteryConceptKey(key: string): boolean {
   if (NCLEX_GAP_BATCH_RE.test(trimmed)) return true;
   if (EXAM_LEVEL_RE.test(trimmed)) return true;
   if (BATCH_WITH_SUFFIX_RE.test(trimmed)) return true;
+  const slug = stripConceptPrefix(trimmed);
+  if (INTERNAL_PEDAGOGY_SLUGS.has(slug)) return true;
+  if (/^v\d+$/i.test(slug)) return true;
+  if (/^ngn-/i.test(slug)) return true;
+  if (/-polished$/i.test(slug)) return true;
+  if (/^full-exam/i.test(slug)) return true;
+  if (/^exam-\d+/i.test(slug)) return true;
   return false;
 }
 

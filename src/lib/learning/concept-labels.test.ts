@@ -18,10 +18,18 @@ describe("isInternalMasteryConceptKey", () => {
     expect(isInternalMasteryConceptKey("subject:exam_level")).toBe(true);
   });
 
+  it("flags pedagogy and provenance tags", () => {
+    expect(isInternalMasteryConceptKey("tag:nclex-strategy")).toBe(true);
+    expect(isInternalMasteryConceptKey("Trap Tier")).toBe(true);
+    expect(isInternalMasteryConceptKey("Nclex Strategy")).toBe(true);
+    expect(isInternalMasteryConceptKey("curated")).toBe(true);
+  });
+
   it("keeps real topics", () => {
     expect(isInternalMasteryConceptKey("subject:management-of-care")).toBe(false);
     expect(isInternalMasteryConceptKey("physiological-adaptation")).toBe(false);
     expect(isInternalMasteryConceptKey("tag:fluid-balance-io")).toBe(false);
+    expect(isInternalMasteryConceptKey("postoperative-care")).toBe(false);
   });
 });
 

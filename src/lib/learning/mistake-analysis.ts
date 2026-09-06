@@ -1,5 +1,6 @@
 import type { StudyQuestion } from "@/lib/questions/types";
 import type { AttemptInput, MistakeAnalysis, MistakeCategory } from "./types";
+import { isInternalMasteryConceptKey } from "@/lib/learning/concept-labels";
 
 const STEM_CALC =
   /\b(calculate|dose|dosage|mg\/kg|mEq|concentration|half-life|equation|formula)\b/i;
@@ -60,7 +61,8 @@ function extractConceptKeys(question: StudyQuestion): string[] {
   const keys = new Set<string>();
   if (question.subjectId) keys.add(`subject:${question.subjectId}`);
   for (const tag of question.tags ?? []) {
-    keys.add(`tag:${tag.toLowerCase().trim()}`);
+    const key = `tag:${tag.toLowerCase().trim()}`;
+    if (!isInternalMasteryConceptKey(key)) keys.add(key);
   }
   if (keys.size === 0) keys.add("tag:general");
   return [...keys];

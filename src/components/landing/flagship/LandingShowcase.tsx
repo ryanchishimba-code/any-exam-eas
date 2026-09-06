@@ -271,7 +271,7 @@ export function LandingShowcase() {
               A study system that knows what to do next
             </h3>
             <p className="mt-3 text-[var(--color-ink-muted)]">
-              Blueprint Roadmaps and Full Exam launches — plus Anatomy Explorer linked from practice.
+              Domain readiness and Full Exam launches — plus Anatomy Explorer linked from practice.
             </p>
           </div>
           <div className="mt-8 grid gap-6 md:grid-cols-2">

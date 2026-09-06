@@ -60,10 +60,10 @@ function AuthenticatedHomeBranch({
   testimonials?: LandingSuccessStory[];
   children?: ReactNode;
 }) {
-  const { hasPremiumAccess, loading: accessLoading } = useUserAccess();
+  const { hasPremiumAccess, hasAppAccess, loading: accessLoading } = useUserAccess();
   const [accessTimedOut, setAccessTimedOut] = useState(false);
   const resolvingPremiumAccess = accessLoading && !accessTimedOut;
-  const showSubscriberHome = !accessLoading && hasPremiumAccess;
+  const showSubscriberHome = !accessLoading && (hasPremiumAccess || hasAppAccess);
 
   useEffect(() => {
     if (!accessLoading) {
@@ -107,7 +107,13 @@ export function HomeExperience({
   const bankCounts = useLandingBankCounts(initialBankCounts);
   const { status } = useSession();
 
-  // Guests and unresolved session: paint conversion landing immediately (no access API).
+  // While session resolves, don't flash the guest conversion landing for
+  // returning subscribers (looks like a post-login bounce to marketing).
+  if (status === "loading") {
+    return <LandingHeroSkeleton bankCounts={bankCounts} />;
+  }
+
+  // Guests: paint conversion landing immediately (no access API).
   if (status !== "authenticated") {
     return (
       <GuestLanding bankCounts={bankCounts} testimonials={testimonials}>
