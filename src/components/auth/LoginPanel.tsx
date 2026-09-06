@@ -64,7 +64,11 @@ export function LoginPanel({
     const stored = loadReturningUserHint();
     setHint(stored);
     setEmail(stored?.email ?? "");
-    fetchAuthHealthWarning().then(setConfigWarning);
+    // Defer health check so it doesn't compete with first paint / autofill.
+    const t = window.setTimeout(() => {
+      void fetchAuthHealthWarning().then(setConfigWarning);
+    }, 400);
+    return () => window.clearTimeout(t);
   }, []);
 
   const displayName = hint?.name
@@ -111,8 +115,10 @@ export function LoginPanel({
         return;
       }
 
-      onSuccess?.();
+      // Flip to redirecting immediately so the button stops waiting on routing APIs.
       setRedirecting(true);
+      setRedirectMessage("Welcome back! Opening your Study Hub…");
+      onSuccess?.();
       const result = await completeLoginFlow({
         router,
         callbackUrl: safeCallbackUrl,

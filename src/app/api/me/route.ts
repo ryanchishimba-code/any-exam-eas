@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
-import { findUserByEmail, toSafeUser } from "@/lib/user-auth";
+import { prisma } from "@/lib/prisma";
 import { requireSessionGuard } from "@/lib/session-guard";
+import { normalizeEmail } from "@/lib/validators/auth";
+import { normalizeStoredName } from "@/lib/display-name";
 
 export const runtime = "nodejs";
 
@@ -14,10 +16,46 @@ export async function GET(req: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const user = await findUserByEmail(email);
-  if (!user) {
+  // Prefer session userId — avoids a second email lookup when the cookie is fresh.
+  const byId = await prisma.user.findUnique({
+    where: { id: guard.userId },
+    select: {
+      id: true,
+      email: true,
+      name: true,
+      createdAt: true,
+      lastLoginAt: true,
+    },
+  });
+
+  if (byId) {
+    return NextResponse.json({
+      user: {
+        ...byId,
+        name: normalizeStoredName(byId.name) ?? byId.name,
+      },
+    });
+  }
+
+  const normalized = normalizeEmail(email);
+  const byEmail = await prisma.user.findUnique({
+    where: { email: normalized },
+    select: {
+      id: true,
+      email: true,
+      name: true,
+      createdAt: true,
+      lastLoginAt: true,
+    },
+  });
+  if (!byEmail) {
     return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 
-  return NextResponse.json({ user: toSafeUser(user) });
+  return NextResponse.json({
+    user: {
+      ...byEmail,
+      name: normalizeStoredName(byEmail.name) ?? byEmail.name,
+    },
+  });
 }

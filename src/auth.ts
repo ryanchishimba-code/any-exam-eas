@@ -89,6 +89,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       },
       async authorize(credentials, request) {
         try {
+        const { ensureNeonReady } = await import("@/lib/neon-warmup");
+        await ensureNeonReady("auth.credentials");
+
         const parsed = loginSchema.safeParse(credentials);
         if (!parsed.success) return null;
 

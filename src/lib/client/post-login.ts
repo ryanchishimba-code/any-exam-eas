@@ -1,13 +1,13 @@
 "use client";
 
 import type { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { getSession } from "next-auth/react";
 import type { LoginMethod } from "@/lib/client/returning-user";
 import { saveReturningUserHint } from "@/lib/client/returning-user";
 import { sanitizeCallbackUrl } from "@/lib/client/auth-routes";
 import { resolvePostLoginDestination as resolveDestination } from "@/lib/client/post-login-routing";
 import { TRIAL_DAYS } from "@/lib/billing-config";
 import { markTrialWelcomePending } from "@/lib/client/trial-welcome";
+import { ROUTES } from "@/lib/routes";
 
 export type ClientSubscriptionStatus = {
   hasAccess?: boolean;
@@ -26,44 +26,88 @@ export type ClientSubscriptionStatus = {
   } | null;
 };
 
+const POST_LOGIN_FETCH_TIMEOUT_MS = 2_500;
+
+async function fetchWithTimeout(
+  input: RequestInfo | URL,
+  init?: RequestInit,
+  timeoutMs = POST_LOGIN_FETCH_TIMEOUT_MS
+): Promise<Response | null> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await fetch(input, { ...init, signal: controller.signal, cache: "no-store" });
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 export async function fetchSubscriptionStatus(): Promise<ClientSubscriptionStatus | null> {
   const attempts = 2;
   for (let attempt = 0; attempt < attempts; attempt++) {
+    const statusRes = await fetchWithTimeout("/api/subscription/status?lite=1");
+    if (!statusRes) {
+      await new Promise((resolve) => setTimeout(resolve, 80 * (attempt + 1)));
+      continue;
+    }
+    if (statusRes.status === 401) {
+      await new Promise((resolve) => setTimeout(resolve, 80 * (attempt + 1)));
+      continue;
+    }
+    if (!statusRes.ok) {
+      await new Promise((resolve) => setTimeout(resolve, 80 * (attempt + 1)));
+      continue;
+    }
     try {
-      const statusRes = await fetch("/api/subscription/status?lite=1", { cache: "no-store" });
-      if (statusRes.status === 401) {
-        await new Promise((resolve) => setTimeout(resolve, 100 * (attempt + 1)));
-        continue;
-      }
-      if (!statusRes.ok) {
-        await new Promise((resolve) => setTimeout(resolve, 100 * (attempt + 1)));
-        continue;
-      }
       return (await statusRes.json()) as ClientSubscriptionStatus;
     } catch {
-      await new Promise((resolve) => setTimeout(resolve, 100 * (attempt + 1)));
+      return null;
     }
   }
   return null;
 }
 
 async function fetchExamSlug(): Promise<string | null> {
-  const attempts = 2;
-  for (let attempt = 0; attempt < attempts; attempt++) {
-    try {
-      const res = await fetch("/api/user/exam-preference", { cache: "no-store" });
-      if (res.status === 401) {
-        await new Promise((resolve) => setTimeout(resolve, 100 * (attempt + 1)));
-        continue;
-      }
-      if (!res.ok) return null;
-      const data = (await res.json()) as { examSlug?: string | null };
-      return data.examSlug ?? null;
-    } catch {
-      await new Promise((resolve) => setTimeout(resolve, 100 * (attempt + 1)));
-    }
+  const res = await fetchWithTimeout("/api/user/exam-preference");
+  if (!res || !res.ok) return null;
+  try {
+    const data = (await res.json()) as { examSlug?: string | null };
+    return data.examSlug ?? null;
+  } catch {
+    return null;
   }
-  return null;
+}
+
+/** Best-effort display name — never blocks navigation. */
+function rememberAccountNameInBackground(email: string, method: LoginMethod, knownName?: string | null) {
+  const trimmedKnown = knownName?.trim();
+  if (trimmedKnown) {
+    saveReturningUserHint({
+      email,
+      name: trimmedKnown,
+      lastMethod: method === "magic" ? "email" : method,
+    });
+    return;
+  }
+
+  void (async () => {
+    try {
+      const meRes = await fetchWithTimeout("/api/me", undefined, 4_000);
+      if (!meRes?.ok) return;
+      const data = (await meRes.json()) as { user?: { name?: string | null } };
+      const name = data.user?.name?.trim();
+      if (!name) return;
+      saveReturningUserHint({
+        email,
+        name,
+        lastMethod: method === "magic" ? "email" : method,
+      });
+    } catch {
+      /* ignore */
+    }
+  })();
 }
 
 export async function resolvePostLoginDestination(
@@ -75,17 +119,6 @@ export async function resolvePostLoginDestination(
   return resolveDestination(callbackUrl, status, slug);
 }
 
-async function fetchAccountName(): Promise<string | undefined> {
-  try {
-    const meRes = await fetch("/api/me", { cache: "no-store" });
-    if (!meRes.ok) return undefined;
-    const data = (await meRes.json()) as { user?: { name?: string | null } };
-    return data.user?.name?.trim() || undefined;
-  } catch {
-    return undefined;
-  }
-}
-
 export type CompleteLoginResult = {
   destination: string;
   isPremium: boolean;
@@ -93,6 +126,11 @@ export type CompleteLoginResult = {
 
 let loginFlowInFlight: Promise<CompleteLoginResult> | null = null;
 
+/**
+ * After credentials/OAuth succeed, resolve where to go and hard-navigate.
+ * Keeps the critical path to subscription + exam preference only — name/session
+ * polling used to add multi-second delays on cold Neon.
+ */
 export async function completeLoginFlow(params: {
   router: AppRouterInstance;
   callbackUrl: string;
@@ -104,25 +142,21 @@ export async function completeLoginFlow(params: {
 
   loginFlowInFlight = (async () => {
     const safeCallback = sanitizeCallbackUrl(params.callbackUrl);
-    const name = params.name?.trim() || (await fetchAccountName());
 
+    // Persist email/method immediately; name upgrades in the background.
     saveReturningUserHint({
       email: params.email,
-      name,
+      name: params.name?.trim() || undefined,
       lastMethod: params.method === "magic" ? "email" : params.method,
     });
-
-    for (let attempt = 0; attempt < 2; attempt++) {
-      const session = await getSession();
-      if (session?.user?.email) break;
-      await new Promise((resolve) => setTimeout(resolve, 120 * (attempt + 1)));
-    }
+    rememberAccountNameInBackground(params.email, params.method, params.name);
 
     const [status, examSlug] = await Promise.all([
       fetchSubscriptionStatus(),
       fetchExamSlug(),
     ]);
-    let destination = await resolvePostLoginDestination(safeCallback, status, examSlug);
+
+    let destination = resolveDestination(safeCallback, status, examSlug);
 
     if (
       status?.status === "trialing" &&
@@ -134,6 +168,9 @@ export async function completeLoginFlow(params: {
         destination += destination.includes("?") ? "&welcome=trial" : "?welcome=trial";
       }
     }
+
+    // If routing APIs timed out, still leave login — dashboard/middleware will gate.
+    if (!destination) destination = ROUTES.dashboard;
 
     // Hard navigation avoids soft-nav races (modal close on `/`, refresh on /login)
     // that briefly flash the marketing homepage before Study Hub.
