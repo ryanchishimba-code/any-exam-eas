@@ -7,10 +7,10 @@ import {
 import {
   MIXED_SUBJECT_ID,
   MIXED_SUBJECT_LABEL,
-  QUESTION_BANK_WHEEL_PRESETS,
   availableQuestionCount,
   isMixedSubjectId,
   questionBankCountOptionsForAvailable,
+  questionBankWheelPresetsForField,
   resolveWheelCountValue,
   validateQuestionBankSession,
 } from "@/lib/study/question-bank-setup";
@@ -34,6 +34,8 @@ type QuestionBankSetupProps = {
   bankStyle: QuestionBankStyle;
   onBankStyleChange: (style: QuestionBankStyle) => void;
   examLabel?: string;
+  /** Bank field — USMLE uses 40/50/80 wheel presets. */
+  fieldId?: string;
   weakSubjectIds?: string[];
   compact?: boolean;
   countsLoading?: boolean;
@@ -63,12 +65,13 @@ export function QuestionBankSetup({
   bankStyle,
   onBankStyleChange,
   examLabel,
+  fieldId,
   weakSubjectIds = [],
   compact = false,
   countsLoading = false,
 }: QuestionBankSetupProps) {
   const maxAvailable = availableQuestionCount(subjectId, subjectCounts);
-  const countOptions = questionBankCountOptionsForAvailable(maxAvailable);
+  const countOptions = questionBankCountOptionsForAvailable(maxAvailable, fieldId);
   const wheelValue = resolveWheelCountValue(questionCount, countOptions);
   const validation = validateQuestionBankSession({
     subjectId,
@@ -137,8 +140,8 @@ export function QuestionBankSetup({
                   {validation.message ??
                     (maxAvailable != null &&
                     maxAvailable > 0 &&
-                    maxAvailable < QUESTION_BANK_WHEEL_PRESETS[0]
-                      ? `This topic has ${maxAvailable.toLocaleString()} serve-ready question${maxAvailable === 1 ? "" : "s"} — need 25 to start.`
+                    maxAvailable < (questionBankWheelPresetsForField(fieldId ?? "")[0] ?? 25)
+                      ? `This topic has ${maxAvailable.toLocaleString()} serve-ready question${maxAvailable === 1 ? "" : "s"} — need ${questionBankWheelPresetsForField(fieldId ?? "")[0] ?? 25} to start.`
                       : "Not enough serve-ready questions for this topic yet.")}
                 </p>
                 {validation.suggestMixed ? (

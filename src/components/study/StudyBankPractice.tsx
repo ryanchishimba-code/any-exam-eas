@@ -537,22 +537,32 @@ export function StudyBankPractice({
 
     const countParam = resolvePracticeSearchParam(searchParams, "count");
     const snapToWheel = (raw: number) =>
-      resolveWheelCountValue(raw, questionBankCountOptions());
+      resolveWheelCountValue(raw, questionBankCountOptions(fieldId));
     if (countParam) {
       const raw = Number(countParam);
       // Preserve closed-loop retest sizes (5 / 10 / 25) from Deep Dive / miss CTAs.
       setQuestionCount(isRetestSessionCount(raw) ? raw : snapToWheel(raw));
     } else {
       const persisted = readPersistedQuestionBankSetup(fieldId);
-      if (persisted?.count) setQuestionCount(snapToWheel(persisted.count));
+      if (persisted?.count) {
+        setQuestionCount(snapToWheel(persisted.count));
+      } else if (isUsmleFieldId(fieldId)) {
+        setQuestionCount(40);
+      }
     }
 
-    const paceParam = resolvePracticeSearchParam(searchParams, "pace");
+    const paceParam =
+      resolvePracticeSearchParam(searchParams, "pace") ??
+      (resolvePracticeSearchParam(searchParams, "timed") === "1" ? "timed" : null);
     if (paceParam) {
       setBankPace(parseQuestionBankPace(paceParam));
     } else {
       const persisted = readPersistedQuestionBankSetup(fieldId);
-      if (persisted?.pace) setBankPace(persisted.pace);
+      if (persisted?.pace) {
+        setBankPace(persisted.pace);
+      } else if (isUsmleFieldId(fieldId)) {
+        setBankPace("timed");
+      }
     }
 
     const styleParam = resolvePracticeSearchParam(searchParams, "style");
@@ -646,7 +656,7 @@ export function StudyBankPractice({
     if (max === null || max <= 0) return;
     setQuestionCount((current) => {
       if (isRetestSessionCount(current) && max >= current) return current;
-      const options = questionBankCountOptionsForAvailable(max);
+      const options = questionBankCountOptionsForAvailable(max, fieldId);
       if (options.length === 0) return current;
       const resolved = resolveWheelCountValue(current, options);
       if (resolved !== current) {
@@ -878,16 +888,20 @@ export function StudyBankPractice({
       }
 
       if (useToday) {
+        const slug = examSlugFromFieldId(fieldId);
         const todayExamSlug =
-          fieldId === "pharmacy" || examSlugFromFieldId(fieldId) === "naplex"
+          fieldId === "pharmacy" || slug === "naplex"
             ? "naplex"
-            : "nclex";
+            : slug === "usmle" || isUsmleFieldId(fieldId)
+              ? "usmle"
+              : "nclex";
         const res = await fetch("/api/study/today", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             size: limit === 20 || limit === 60 ? limit : 40,
             examSlug: todayExamSlug,
+            fieldId: todayExamSlug === "usmle" ? fieldId : undefined,
           }),
         });
         const data = await res.json();
@@ -930,13 +944,17 @@ export function StudyBankPractice({
           sessionRationale:
             todayExamSlug === "naplex"
               ? `NAPLEX Today — ${raw.length} items weighted to the 2025 Content Outline (Domain 3 heaviest).`
-              : `Today’s Mastery set — ${raw.length} items across your Skill Cells.`,
+              : todayExamSlug === "usmle"
+                ? `USMLE Today — ${raw.length} items across your organ-system Skill Cells.`
+                : `Today’s Mastery set — ${raw.length} items across your Skill Cells.`,
           questionReasoning: Object.fromEntries(
             raw.map((q) => [
               String(q.id),
               todayExamSlug === "naplex"
                 ? "Queued by NAPLEX Mastery Engine for today’s focus."
-                : "Queued by Mastery Engine for today’s focus.",
+                : todayExamSlug === "usmle"
+                  ? "Queued by USMLE Mastery Engine for today’s organ-system focus."
+                  : "Queued by Mastery Engine for today’s focus.",
             ])
           ),
         });
@@ -1420,8 +1438,8 @@ export function StudyBankPractice({
                   const max = availableQuestionCount(subjectId, subjectCounts);
                   const options =
                     max != null && max > 0
-                      ? questionBankCountOptionsForAvailable(max)
-                      : questionBankCountOptions();
+                      ? questionBankCountOptionsForAvailable(max, fieldId)
+                      : questionBankCountOptions(fieldId);
                   const resolved = resolveWheelCountValue(count, options);
                   setBankStyle("standard");
                   setQuestionCount(resolved);
@@ -1446,6 +1464,7 @@ export function StudyBankPractice({
               subjects={subjects}
               subjectId={subjectId}
               subjectCounts={subjectCounts}
+              fieldId={fieldId}
               examLabel={lockedExam?.shortName ?? activeExamOption?.label}
               onSubjectChange={(id) => {
                 setSubjectId(id);

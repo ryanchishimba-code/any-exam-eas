@@ -21,6 +21,7 @@ import {
   type TopicPracticeReturn,
 } from "./TopicPracticeReturnBanner";
 import { SessionCompletionCard } from "./SessionCompletionCard";
+import { buildSessionDomainBreakdown } from "@/lib/study/session-domain-breakdown";
 import type { ActivitySessionSummary } from "@/lib/client/exam-session-summary";
 import type {
   AdaptiveSessionMeta,
@@ -173,6 +174,12 @@ export function StudySessionPlayer({
   );
   const summary = summarizeSession(sessionState, questionList);
   const complete = isSessionComplete(sessionState, questionList) || timeUp;
+  const examSlugForSession = examSlugFromFieldId(normalizeFieldId(field)) ?? "nclex";
+  const domainBreakdown = useMemo(() => {
+    if (examSlugForSession !== "usmle") return undefined;
+    const answers = questionList.map((q) => sessionState.answers[q.id]);
+    return buildSessionDomainBreakdown(questionList, answers);
+  }, [examSlugForSession, questionList, sessionState.answers]);
 
   const aiTutorRequest = useMemo(() => {
     if (!current || !answer?.revealed) return null;
@@ -560,6 +567,7 @@ export function StudySessionPlayer({
       <SessionCompletionCard
         title={title ? `${title} complete` : "Session complete"}
         summary={summary}
+        domainBreakdown={domainBreakdown}
         onReview={startReview}
       />
     );
@@ -808,7 +816,11 @@ export function StudySessionPlayer({
           onReview={startReview}
         />
       ) : showCompletion ? (
-        <SessionCompletionCard summary={summary} onReview={startReview} />
+        <SessionCompletionCard
+          summary={summary}
+          domainBreakdown={domainBreakdown}
+          onReview={startReview}
+        />
       ) : null}
 
       {/* Pre-reveal only: after Check, Next moves up next to feedback. */}

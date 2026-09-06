@@ -17,10 +17,11 @@ import type { RecentTestRow, SpacedReviewSummary, WeakTopicRow } from "@/lib/lea
 import { filterStudentFacingWeakTopics } from "@/lib/learning/concept-labels";
 import { MasteryReadinessStrip } from "@/components/dashboard/MasteryReadinessStrip";
 import { NaplexMasteryPanel } from "@/components/dashboard/NaplexMasteryPanel";
+import { UsmleExamPathPanel } from "@/components/dashboard/UsmleExamPathPanel";
 import type { MasteryRollup } from "@/lib/engine/mastery/types";
 import type { DomainMapTile } from "@/components/dashboard/DomainMap";
 import type { ExamSlug, StudyHubQuickStats } from "@/types/edtech";
-import { isTodayEngineNaplexEnabled } from "@/lib/engine/mastery/feature-flag";
+import { isTodayEngineNaplexEnabled, isTodayEngineUsmleEnabled } from "@/lib/engine/mastery/feature-flag";
 
 const DashboardExamCountdown = dynamic(
   () =>
@@ -105,6 +106,7 @@ export function DashboardPageContent({
           : "Official exam blueprint · ranked by need · tap to practice";
   const fieldId = practiceFieldId ?? exam.fieldId;
   const showNaplexPanel = examSlug === "naplex" && isTodayEngineNaplexEnabled();
+  const showUsmlePath = examSlug === "usmle" && isTodayEngineUsmleEnabled();
 
   return (
     <div className={dbUi.page}>
@@ -140,6 +142,7 @@ export function DashboardPageContent({
       ) : null}
 
       {showNaplexPanel ? <NaplexMasteryPanel /> : null}
+      {showUsmlePath ? <UsmleExamPathPanel practiceFieldId={fieldId} /> : null}
 
       {!isNewUser ? (
         <DashboardWeakTopicChips

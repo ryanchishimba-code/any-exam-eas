@@ -118,7 +118,17 @@ export function parseTopicPracticeReturn(
 export function questionBankHref(examSlug?: ExamSlug, fieldIdOverride?: string): string {
   if (!examSlug) return ROUTES.questionBank;
   const fieldId = fieldIdOverride ?? EXAM_CATALOG[examSlug].fieldId;
-  return `${ROUTES.questionBank}?field=${encodeURIComponent(fieldId)}&mode=bank`;
+  const qs = new URLSearchParams({
+    field: fieldId,
+    mode: "bank",
+  });
+  // USMLE defaults to a timed exam-style block.
+  if (examSlug === "usmle") {
+    qs.set("count", "40");
+    qs.set("pace", "timed");
+    qs.set("subjectId", "mixed");
+  }
+  return `${ROUTES.questionBank}?${qs.toString()}`;
 }
 
 export function simulatedExamHref(

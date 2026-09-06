@@ -12,6 +12,14 @@ export type SessionSummaryStats = {
   accuracy: number;
 };
 
+export type SessionDomainBreakdownRow = {
+  id: string;
+  label: string;
+  correct: number;
+  total: number;
+  pct: number;
+};
+
 export type SessionNotePreview = {
   questionNumber: number;
   text: string;
@@ -21,6 +29,7 @@ type Props = {
   title?: string;
   subtitle?: string;
   summary: SessionSummaryStats;
+  domainBreakdown?: SessionDomainBreakdownRow[];
   notes?: SessionNotePreview[];
   onReview?: () => void;
   reviewLabel?: string;
@@ -35,6 +44,7 @@ export function SessionCompletionCard({
   title = "Session complete",
   subtitle,
   summary,
+  domainBreakdown,
   notes,
   onReview,
   reviewLabel = "Review explanations",
@@ -87,6 +97,35 @@ export function SessionCompletionCard({
           return to {returnLabel}.
         </p>
       )}
+
+      {domainBreakdown && domainBreakdown.length > 0 ? (
+        <div
+          className={cn(
+            "rounded-xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/60 p-4",
+            compact ? "mt-3" : "mt-6"
+          )}
+        >
+          <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+            Organ-system breakdown
+          </p>
+          <p className="mt-1 text-[11px] text-[var(--color-ink-muted)]">
+            Practice coverage only — not a board score prediction.
+          </p>
+          <ul className="mt-3 space-y-2">
+            {domainBreakdown.slice(0, 8).map((row) => (
+              <li key={row.id} className="flex items-center gap-3 text-sm">
+                <span className="min-w-0 flex-1 truncate text-[var(--color-ink)]">{row.label}</span>
+                <span className="tabular-nums text-[var(--color-ink-muted)]">
+                  {row.correct}/{row.total}
+                </span>
+                <span className="w-10 text-right tabular-nums font-medium text-[var(--color-ink)]">
+                  {row.pct}%
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
 
       {notesWithText.length > 0 ? (
         <div className={cn("rounded-xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/60 p-4", compact ? "mt-3" : "mt-6")}>

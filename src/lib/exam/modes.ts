@@ -76,7 +76,8 @@ export type QuestionBankStyle =
   | "today";
 
 export function parseQuestionBankPace(value: string | null | undefined): QuestionBankPace {
-  return value === "timed" ? "timed" : "untimed";
+  if (value === "timed" || value === "1" || value === "true") return "timed";
+  return "untimed";
 }
 
 export function parseQuestionBankStyle(value: string | null | undefined): QuestionBankStyle {

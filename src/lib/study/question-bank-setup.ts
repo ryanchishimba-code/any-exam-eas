@@ -10,7 +10,17 @@ export { MIXED_SUBJECT_ID };
 /** Fixed question-bank wheel choices — not used by timed/mock exams. */
 export const QUESTION_BANK_WHEEL_PRESETS = [25, 50, 75] as const;
 
-export type QuestionBankWheelPreset = (typeof QUESTION_BANK_WHEEL_PRESETS)[number];
+/** USMLE uses exam-block sizes closer to real Step blocks. */
+export const USMLE_QUESTION_BANK_WHEEL_PRESETS = [40, 50, 80] as const;
+
+export type QuestionBankWheelPreset =
+  | (typeof QUESTION_BANK_WHEEL_PRESETS)[number]
+  | (typeof USMLE_QUESTION_BANK_WHEEL_PRESETS)[number];
+
+export function questionBankWheelPresetsForField(fieldId: string): readonly number[] {
+  if (fieldId.startsWith("usmle")) return USMLE_QUESTION_BANK_WHEEL_PRESETS;
+  return QUESTION_BANK_WHEEL_PRESETS;
+}
 
 /**
  * Short closed-loop retest sizes (miss → Deep Dive → retest).
@@ -34,29 +44,35 @@ function describeCountOption(value: number): Pick<QuestionBankCountOption, "labe
     description:
       value <= 25
         ? "Focused session"
-        : value <= 50
-          ? "Standard block"
-          : "Long block",
+        : value === 40
+          ? "Exam-style block"
+          : value <= 50
+            ? "Standard block"
+            : "Long block",
   };
 }
 
-/** Scroll-wheel options — 25 / 50 / 75 for every board exam question bank. */
-export function questionBankCountOptions(): QuestionBankCountOption[] {
-  return QUESTION_BANK_WHEEL_PRESETS.map((value) => ({
+/** Scroll-wheel options — 25 / 50 / 75 (or USMLE 40 / 50 / 80). */
+export function questionBankCountOptions(fieldId?: string): QuestionBankCountOption[] {
+  const presets = fieldId
+    ? questionBankWheelPresetsForField(fieldId)
+    : QUESTION_BANK_WHEEL_PRESETS;
+  return presets.map((value) => ({
     value,
     ...describeCountOption(value),
   }));
 }
 
-/** Limit wheel choices to presets the selected topic can fill (25 minimum). */
+/** Limit wheel choices to presets the selected topic can fill. */
 export function questionBankCountOptionsForAvailable(
-  maxAvailable: number | null
+  maxAvailable: number | null,
+  fieldId?: string
 ): QuestionBankCountOption[] {
-  const base = questionBankCountOptions();
+  const base = questionBankCountOptions(fieldId);
   if (maxAvailable == null) return base;
 
   const capped = Math.max(0, Math.floor(maxAvailable));
-  const minPreset = QUESTION_BANK_WHEEL_PRESETS[0];
+  const minPreset = base[0]?.value ?? 25;
   if (capped < minPreset) return [];
 
   return base.filter((option) => option.value <= capped);
@@ -74,8 +90,14 @@ export function resolveWheelCountValue(
   return options[0]?.value ?? clamped;
 }
 
-export function isQuestionBankWheelCount(value: number): value is QuestionBankWheelPreset {
-  return (QUESTION_BANK_WHEEL_PRESETS as readonly number[]).includes(value);
+export function isQuestionBankWheelCount(
+  value: number,
+  fieldId?: string
+): value is QuestionBankWheelPreset {
+  const presets = fieldId
+    ? questionBankWheelPresetsForField(fieldId)
+    : QUESTION_BANK_WHEEL_PRESETS;
+  return (presets as readonly number[]).includes(value);
 }
 
 export function isRetestSessionCount(value: number): value is QuestionBankRetestCount {
@@ -85,16 +107,17 @@ export function isRetestSessionCount(value: number): value is QuestionBankRetest
 /** Resolve a bank session size — preserves short retest counts when the pool can fill them. */
 export function resolveQuestionBankSessionCount(
   requested: number,
-  maxAvailable?: number | null
+  maxAvailable?: number | null,
+  fieldId?: string
 ): number {
   const clamped = clampQuestionBankCount(requested);
   if (isRetestSessionCount(clamped)) {
     if (maxAvailable == null || maxAvailable >= clamped) return clamped;
   }
-  const options = questionBankCountOptionsForAvailable(maxAvailable ?? null);
+  const options = questionBankCountOptionsForAvailable(maxAvailable ?? null, fieldId);
   const resolved = resolveWheelCountValue(
     requested,
-    options.length > 0 ? options : questionBankCountOptions()
+    options.length > 0 ? options : questionBankCountOptions(fieldId)
   );
   return resolved;
 }

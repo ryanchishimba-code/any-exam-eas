@@ -1,7 +1,6 @@
 /**
  * USMLE step-scoped study blocks — timed practice linked from topic hub & roadmap.
  */
-import { practiceTopicHref } from "@/lib/edtech/practice-links";
 import type { ExamSlug } from "@/types/edtech";
 import type { UsmleStepLevel } from "./types";
 
@@ -150,12 +149,15 @@ export const USMLE_STUDY_PRESETS: UsmleStudyPreset[] = [
   },
   {
     id: "step3-ccs-drill",
-    title: "Step 3 CCS Drill",
-    description: "10 case-management style items — workup, monitoring, and escalation.",
+    title: "Step 3 CCS-style Drill",
+    description:
+      "10 case-management style items — workup, monitoring, and escalation (CCS-style practice, not a Primum simulator).",
     count: 10,
     stepLevel: "step3",
     subjectId: "internal-medicine",
     reviewModuleSlug: "ccs-case-management",
+    timed: true,
+    timeLimitMin: 15,
   },
   {
     id: "step3-pass-management",
@@ -186,16 +188,21 @@ export function usmlePresetPracticeHref(
   preset: UsmleStudyPreset
 ): string {
   const field = usmlePresetFieldId(preset.stepLevel);
-  const base = practiceTopicHref(examSlug, preset.subjectId, preset.count);
   const qs = new URLSearchParams({
     field,
     mode: "bank",
+    subjectId: preset.subjectId || "mixed",
     count: String(preset.count),
     autostart: "1",
   });
-  if (preset.timed && preset.timeLimitMin) {
-    qs.set("timed", "1");
-    qs.set("timeLimitMin", String(preset.timeLimitMin));
+  if (preset.timed) {
+    qs.set("pace", "timed");
+    if (preset.timeLimitMin) qs.set("timeLimitMin", String(preset.timeLimitMin));
   }
-  return `/study?${qs.toString()}`;
+  if (preset.reviewModuleSlug) {
+    qs.set("returnExam", examSlug);
+    qs.set("returnTopic", preset.reviewModuleSlug);
+    qs.set("returnMode", "deep");
+  }
+  return `/question-bank?${qs.toString()}`;
 }
