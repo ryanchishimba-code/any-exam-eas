@@ -1589,6 +1589,39 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
+/* Homepage ATF — navy-matching transparent nav (no light gray bar on dark hero). */
+.aee-nav--on-hero {
+  background: transparent;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.aee-nav--on-hero .aee-nav-menu-btn--on-hero {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.aee-nav--on-hero .aee-nav-menu-btn--on-hero:hover {
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 1;
+}
+
+.aee-nav--on-hero .aee-nav-login--on-hero {
+  color: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.aee-nav--on-hero .aee-nav-login--on-hero:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.aee-nav--on-hero .aee-nav-brand {
+  filter: brightness(0) invert(1);
+}
+
 .aee-nav-inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);

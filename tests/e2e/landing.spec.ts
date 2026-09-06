@@ -8,7 +8,7 @@ test.describe("Landing page", () => {
     await expect(page.locator("[data-landing-hero]")).toBeVisible();
     await expect(
       page.getByRole("heading", {
-        name: /nclex prep that feels like the real exam/i,
+        name: /one study system\.?\s*six boards/i,
       })
     ).toBeVisible();
     await expect(page.locator("[data-hero-practice]")).toBeVisible();

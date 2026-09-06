@@ -2955,6 +2955,14 @@ button.aee-flagship-cta {
   color: var(--aee-hero-ink);
 }
 
+.aee-hero-beat__countline {
+  margin: 0.65rem 0 0;
+  font-size: 0.875rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  color: var(--aee-hero-muted);
+}
+
 .aee-hero-beat__subline {
   margin: 1.1rem 0 0;
   max-width: 30rem;

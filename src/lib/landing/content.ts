@@ -167,23 +167,22 @@ export function landingTrialHrefForExam(examSlug?: string): string {
   return `${LANDING_TRIAL_HREF}&exam=${encodeURIComponent(examSlug)}`;
 }
 
-/** Primary hero headline — benefit-led (UWorld-clarity); exams live in subline + nav. */
-export const LANDING_HERO_HEADLINE = "Board exams are hard. Prep shouldn’t be.";
+/** Primary hero headline — six boards, one system (single H1; exam pills do not change it). */
+export const LANDING_HERO_HEADLINE = "One study system. Six boards.";
 
 /** Accent line under the primary headline — empty when the full headline is in LANDING_HERO_HEADLINE. */
 export const LANDING_HERO_HEADLINE_ACCENT = "";
 
-/** Hero sub-headline body — pass live total via formatFlagshipHeroSubline(totalLabel). */
+/** Hero sub-headline — locked six-board promise. */
 export const LANDING_HERO_SUBLINE_BODY =
-  "QA-gated questions, 3D Anatomy explorer with treatment and disease explanations, Top 500 drug cards, and Blueprint Roadmaps — six boards, one plan.";
+  "QA-gated questions, Blueprint Roadmaps, and full-length mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT — clinician-built, not bulk filler.";
 
-export function formatFlagshipHeroSubline(totalLabel?: string): string {
-  const count = totalLabel?.trim();
-  if (!count) return LANDING_HERO_SUBLINE_BODY;
-  return `${count} questions. ${LANDING_HERO_SUBLINE_BODY}`;
+export function formatFlagshipHeroSubline(_totalLabel?: string): string {
+  return LANDING_HERO_SUBLINE_BODY;
 }
 
-const EXAM_HERO_HEADLINES: Record<string, string> = {
+/** Exam-specific headlines for marketing pages (homepage H1 stays fixed). */
+export const EXAM_MARKETING_HERO_HEADLINES: Record<string, string> = {
   nclex: "NCLEX prep that feels like the real exam.",
   usmle: "USMLE vignettes built for Step-day reasoning.",
   naplex: "NAPLEX math and cases without the fluff.",
@@ -192,44 +191,30 @@ const EXAM_HERO_HEADLINES: Record<string, string> = {
   "npte-pt": "NPTE-PT scenarios for clinical decisions.",
 };
 
-const EXAM_HERO_SUBLINE_BODIES: Record<string, string> = {
-  nclex:
-    "NGN formats, teachable rationales, and a Blueprint Roadmap — answer a free item now.",
-  usmle:
-    "Mechanism-first stems and Roadmaps for Step 1 · 2 · 3 — try a free vignette now.",
-  naplex:
-    "Calculations and counseling cases with work-shown rationales — try one free.",
-  pance:
-    "Next-best-step vignettes across the NCCPA blueprint — try a free case now.",
-  "aanp-fnp":
-    "Assess → Diagnose → Plan → Evaluate — try a free primary-care case now.",
-  "npte-pt":
-    "MSK, neuro, cardio-pulm, and professional practice — try a free item now.",
-};
-
-/** Exam-led ATF headline when a board chip is selected. */
-export function formatExamHeroHeadline(examSlug?: string): string {
-  if (!examSlug) return LANDING_HERO_HEADLINE;
-  return EXAM_HERO_HEADLINES[examSlug] ?? LANDING_HERO_HEADLINE;
+/** Homepage always uses the six-board H1. */
+export function formatExamHeroHeadline(_examSlug?: string): string {
+  return LANDING_HERO_HEADLINE;
 }
 
-/** Exam-led ATF subline with optional live bank count for that board. */
+/** Homepage subline stays locked; exam bank size is shown as a separate count line. */
 export function formatExamHeroSubline(
-  examSlug?: string,
-  countLabel?: string
+  _examSlug?: string,
+  _countLabel?: string
 ): string {
-  const body =
-    (examSlug && EXAM_HERO_SUBLINE_BODIES[examSlug]) || LANDING_HERO_SUBLINE_BODY;
+  return LANDING_HERO_SUBLINE_BODY;
+}
+
+/** Per-exam bank size line under the H1 when a chip is selected. */
+export function formatExamHeroCountLine(countLabel?: string): string | null {
   const count = countLabel?.trim();
-  if (!count) return body;
-  // questionsLabel already includes "serve-ready questions"; countLabel is bare.
-  if (/question/i.test(count)) return `${count}. ${body}`;
-  return `${count} serve-ready questions. ${body}`;
+  if (!count) return null;
+  if (/question/i.test(count)) return count;
+  return `${count} serve-ready questions in this bank`;
 }
 
 /** Short reassurance directly under the primary hero CTA. */
 export const LANDING_HERO_CTA_DISCLOSURE =
-  `${TRIAL_DAYS}-day free trial · No card required`;
+  `No card · ${monthly()}/mo after trial · ${TRIAL_DAYS}-day trial`;
 /** Longer trial detail for pricing / final CTA (not the hero ATF). */
 export const LANDING_TRIAL_DETAIL =
   `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · No payment required · Upgrade anytime`;

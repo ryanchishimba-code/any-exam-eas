@@ -149,7 +149,7 @@ export function formatLandingConversionSubtitle(): string {
 }
 
 export function formatLandingStickyDetail(): string {
-  return `No payment required · Pro at ${formatMonthlyPrice("pro")}/mo · ${formatTrialLabel()}`;
+  return `No card · Pro at ${formatMonthlyPrice("pro")}/mo after trial · ${formatTrialLabel()}`;
 }
 
 /** Primary headline for no-payment trial callouts. */

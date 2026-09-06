@@ -1,7 +1,12 @@
-/** Canonical marketing stats for SEO copy — update when live counts change. */
+/** Canonical marketing stats for SEO copy — keep in sync with bank-stats floors. */
+import {
+  FALLBACK_QUESTION_COUNTS,
+  PUBLISHED_QUESTION_BANK_TOTAL,
+} from "@/lib/marketing/bank-stats";
+
 export const SEO_LIVE_STATS = {
-  questionCount: "46,337",
-  questionCountRaw: 46_337,
+  questionCount: FALLBACK_QUESTION_COUNTS.total,
+  questionCountRaw: PUBLISHED_QUESTION_BANK_TOTAL,
   topDrugsCount: 509,
   topDrugsLabel: "Top 500 Drugs",
   clinicianYears: "12+",
@@ -61,13 +66,12 @@ export function seoPlatformPitch(totalLabel?: string): string {
   return `${seoQuestionBankPhrase(totalLabel)}, adaptive Blueprint Roadmaps, Deep Dive modules, and Full Exam simulations — built by licensed clinicians (${SEO_LIVE_STATS.clinicianYears} years combined).`;
 }
 
-/** Homepage H1 — keyword-led, visible content for Google and users. */
-export const SEO_HOME_H1 =
-  "NCLEX Practice Questions & USMLE Question Bank — Six Exams, One Plan";
+/** Homepage H1 — six-board system promise (not a single-exam pitch). */
+export const SEO_HOME_H1 = "One study system. Six boards.";
 export const SEO_HOME_H1_ACCENT = "";
 
 /** Homepage subline template; inject live question total when available. */
 export function seoHomeHeroSubline(totalLabel?: string): string {
   const count = totalLabel?.trim() || SEO_LIVE_STATS.questionCount;
-  return `${count} questions. QA-gated questions, 3D Anatomy explorer with treatment and disease explanations, Top 500 drug cards, and Blueprint Roadmaps — six boards, one plan.`;
+  return `${count} QA-gated questions, Blueprint Roadmaps, and full-length mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT — clinician-built, not bulk filler.`;
 }

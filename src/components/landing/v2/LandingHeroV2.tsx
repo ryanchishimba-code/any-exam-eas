@@ -1,10 +1,9 @@
 "use client";
 
 /**
- * LandingHeroV2 — exam-led ATF with interactive practice player (product-in-hero).
+ * LandingHeroV2 — six-board H1 + exam pills + interactive free-question widget.
  */
 
-import Link from "next/link";
 import { useMemo } from "react";
 import { ArrowRight } from "lucide-react";
 import { LandingCta } from "@/components/landing/LandingCta";
@@ -12,12 +11,13 @@ import { LandingHeroExamStrip } from "@/components/home/LandingHeroExamStrip";
 import { LandingHeroPractice } from "@/components/landing/v2/LandingSamplePractice";
 import { useLandingExamSelection } from "@/components/landing/v2/LandingExamSelectionContext";
 import {
+  LANDING_HERO_CTA_DISCLOSURE,
   LANDING_HERO_EYEBROW,
-  formatExamHeroHeadline,
-  formatExamHeroSubline,
+  LANDING_HERO_HEADLINE,
+  LANDING_HERO_SUBLINE_BODY,
+  formatExamHeroCountLine,
 } from "@/lib/landing/content";
 import { analytics } from "@/lib/analytics";
-import { formatLandingStickyDetail } from "@/lib/site";
 import { useTrialCtaTarget } from "@/lib/client/use-trial-cta-target";
 import type { LandingBankCountsDisplay } from "@/lib/marketing/question-bank-counts";
 
@@ -36,13 +36,10 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
   const { selectedExam, trialHref } = useLandingExamSelection();
   const trialCta = useTrialCtaTarget(trialHref);
 
-  const examCount = useMemo(() => {
+  const examCountLine = useMemo(() => {
     const row = bankCounts.exams?.find((e) => e.slug === selectedExam);
-    return row?.questionsLabel ?? row?.countLabel;
+    return formatExamHeroCountLine(row?.questionsLabel ?? row?.countLabel);
   }, [bankCounts.exams, selectedExam]);
-
-  const headline = formatExamHeroHeadline(selectedExam);
-  const subline = formatExamHeroSubline(selectedExam, examCount);
 
   return (
     <section
@@ -58,10 +55,16 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
           <p className="aee-hero-beat__brand">{LANDING_HERO_EYEBROW}</p>
 
           <h1 id="hero-heading" className="aee-hero-beat__headline">
-            {headline}
+            {LANDING_HERO_HEADLINE}
           </h1>
 
-          <p className="aee-hero-beat__subline">{subline}</p>
+          {examCountLine ? (
+            <p className="aee-hero-beat__countline" aria-live="polite">
+              {examCountLine}
+            </p>
+          ) : null}
+
+          <p className="aee-hero-beat__subline">{LANDING_HERO_SUBLINE_BODY}</p>
 
           <LandingHeroExamStrip
             variant="chips"
@@ -113,17 +116,9 @@ export function LandingHeroV2({ bankCounts }: { bankCounts: LandingBankCountsDis
                 </LandingCta>
               </>
             )}
-            <Link
-              href="#pricing"
-              prefetch={false}
-              className="aee-hero-beat__secondary"
-              onClick={() => analytics.ctaClicked("hero_see_pricing", "hero")}
-            >
-              See pricing
-            </Link>
           </div>
 
-          <p className="aee-hero-beat__meta">{formatLandingStickyDetail()}</p>
+          <p className="aee-hero-beat__meta">{LANDING_HERO_CTA_DISCLOSURE}</p>
         </div>
 
         <div className="aee-hero-beat__visual aee-hero-beat__visual--practice">

@@ -25,10 +25,9 @@ type NavLink = { href: string; label: string };
 
 const guestLinks: NavLink[] = [
   { href: ROUTES.home, label: "Home" },
-  { href: ROUTES.about, label: "About Us" },
   { href: ROUTES.toolkit, label: "Toolkit" },
-  { href: ROUTES.blog, label: "Blog" },
-  { href: ROUTES.feedback, label: "Contact Us" },
+  { href: `${ROUTES.home}#pricing`, label: "Pricing" },
+  { href: ROUTES.about, label: "About" },
 ];
 
 const premiumLinks: NavLink[] = [
@@ -37,7 +36,12 @@ const premiumLinks: NavLink[] = [
   { href: ROUTES.analytics, label: "Analytics" },
 ];
 
-function navClass(active: boolean) {
+function navClass(active: boolean, onHero = false) {
+  if (onHero) {
+    return active
+      ? "font-semibold text-white underline decoration-2 underline-offset-4 decoration-white/80"
+      : "text-white/75 hover:text-white hover:underline hover:underline-offset-4 transition-colors duration-200";
+  }
   return active
     ? "font-semibold text-[var(--color-ink)] underline decoration-2 underline-offset-4 decoration-[var(--color-accent)]"
     : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)] hover:underline hover:underline-offset-4 transition-colors duration-200";
@@ -78,6 +82,7 @@ export function Navigation() {
   useClickOutside(headerRef, closeMobile, open);
 
   function isActive(href: string) {
+    if (href.includes("#")) return false;
     if (href === "/") return pathname === "/";
     return pathname === href || pathname.startsWith(`${href}/`);
   }
@@ -119,8 +124,30 @@ export function Navigation() {
     pathname.startsWith("/question-bank") ||
     pathname.startsWith("/full-exam");
 
+  const onDarkHero = !isAuthenticated && pathname === "/";
+  const [heroScrolled, setHeroScrolled] = useState(false);
+
+  useEffect(() => {
+    if (!onDarkHero) {
+      setHeroScrolled(false);
+      return;
+    }
+    const onScroll = () => setHeroScrolled(window.scrollY > 48);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [onDarkHero]);
+
+  const navOnHero = onDarkHero && !heroScrolled;
+
   return (
-    <header ref={headerRef} className="apple-glass aee-nav fixed top-0 z-50 w-full dark:border-teal-500/10">
+    <header
+      ref={headerRef}
+      className={`aee-nav fixed top-0 z-50 w-full ${
+        navOnHero ? "aee-nav--on-hero" : "apple-glass dark:border-teal-500/10"
+      }`}
+      data-nav-on-hero={navOnHero ? "true" : undefined}
+    >
       <nav className="aee-nav-inner mx-auto max-w-[1140px] px-5 sm:px-6" aria-label="Main navigation">
         <BrandLogo
           href={brandHref}
@@ -144,7 +171,7 @@ export function Navigation() {
               <Link
                 href={l.href}
                 prefetch={false}
-                className={`inline-flex items-center gap-1 text-xs ${navClass(linkActive)}`}
+                className={`inline-flex items-center gap-1 text-xs ${navClass(linkActive, navOnHero)}`}
                 aria-current={linkActive ? "page" : undefined}
               >
                 {l.label}
@@ -155,7 +182,7 @@ export function Navigation() {
         </ul>
 
         <div className="aee-nav-actions">
-          <ThemeToggle className="hidden sm:inline-flex" />
+          {!navOnHero ? <ThemeToggle className="hidden sm:inline-flex" /> : null}
           {isAuthenticated && !accessLoading ? (
             <div className="hidden lg:block">
               <GlobalExamSwitcher variant="nav" />
@@ -163,7 +190,9 @@ export function Navigation() {
           ) : null}
           {resolvingAuth ? (
             <span
-              className="inline-block h-9 w-28 animate-pulse rounded-full bg-black/[0.06]"
+              className={`inline-block h-9 w-28 animate-pulse rounded-full ${
+                navOnHero ? "bg-white/15" : "bg-black/[0.06]"
+              }`}
               aria-hidden
             />
           ) : isAuthenticated ? (
@@ -175,7 +204,7 @@ export function Navigation() {
             <div className="aee-nav-auth-group">
               <LoginModalTrigger
                 callbackUrl={ROUTES.dashboard}
-                className="aee-nav-login max-[380px]:px-2.5"
+                className={`aee-nav-login max-[380px]:px-2.5 ${navOnHero ? "aee-nav-login--on-hero" : ""}`}
                 aria-label="Sign in to your account"
               >
                 <LogIn className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden />
@@ -189,7 +218,7 @@ export function Navigation() {
 
           <button
             type="button"
-            className="aee-nav-menu-btn lg:hidden"
+            className={`aee-nav-menu-btn lg:hidden ${navOnHero ? "aee-nav-menu-btn--on-hero" : ""}`}
             onClick={toggleMobile}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}

@@ -46,8 +46,8 @@ const FAQ: { q: string; a: string }[] = [
     a: `No prep service can honestly guarantee a pass — and we won't. What we can say: every item is QA-gated before it enters your session (no bulk filler or template-swapped distractors), Roadmaps are aligned to current blueprints, and rationales are written to build real understanding. Students who pass do so because of how consistently they study, not because of any single resource. We're a serious tool built by clinicians — not a test-dump shortcut.`,
   },
   {
-    q: "What if I'm only studying for one exam right now?",
-    a: "That's fine — you can focus entirely on a single board. The Roadmap, question bank, and Deep Dives are all scoped per exam, so you're never forced to juggle six tracks at once. The multi-exam value is there when you need it (think recertification, dual licensing, or a second credential), but it doesn't clutter your experience when you don't.",
+    q: "Are you affiliated with NCSBN, NABP, NBME, UWorld, or RxPrep?",
+    a: "No. AnyExamEasy is independent. We are not affiliated with NCSBN, NABP, NBME, UWorld, or RxPrep. Official board documents belong to those organizations — always read their materials before your exam.",
   },
 ];
 

@@ -55,4 +55,4 @@ export const NAPLEX_EXAM_FACTS = {
 } as const;
 
 export const NAPLEX_OFFICIAL_LINKS_DISCLAIMER =
-  "AnyExamEasy is an independent study platform and is not affiliated with, endorsed by, or sponsored by NABP or the boards of pharmacy. Always read the official NAPLEX Content Outline and candidate materials before your sitting.";
+  "Independent. These documents belong to NABP / the boards of pharmacy — we are not affiliated with them.";

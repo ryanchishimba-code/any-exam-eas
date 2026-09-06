@@ -1,12 +1,9 @@
 "use client";
 
 /**
- * LandingFlagshipV2 — conversion-first landing (UWorld-clarity + AEE wedge).
+ * LandingFlagshipV2 — conversion-first homepage.
  *
- * Flow:
- *   Exam-led hero with interactive practice (product-in-hero)
- *     → Offering → Showcase → Choose exam → Why → …
- *     → Pricing → Final CTA + sticky bar
+ * Flow: six-board hero + free sample → 3 stats → pricing → FAQ → final CTA
  */
 
 import Link from "next/link";
@@ -18,20 +15,12 @@ import { LandingHashScroll } from "@/components/landing/LandingHashScroll";
 import { LandingHeroV2 } from "@/components/landing/v2/LandingHeroV2";
 import { LandingExamSelectionProvider } from "@/components/landing/v2/LandingExamSelectionContext";
 import {
-  ChooseYourExam,
-  LandingClinicianTrust,
-  LandingCrossExamComparison,
   LandingFaqV2,
-  LandingOfferingV2,
   LandingPricingPreview,
-  LandingShowcaseV2,
   LandingStickyCta,
-  LandingTestimonialsV2,
   LandingTrialGuarantee,
-  LandingWhyChooseV2,
-  ProBenefitsComparison,
 } from "@/components/landing/v2/LandingFlagshipSectionsLazy";
-import { LandingSampleProof } from "@/components/landing/v2/LandingSamplePractice";
+import { LandingStatsStrip } from "@/components/landing/v2/LandingStatsStrip";
 import {
   LANDING_TRIAL_DETAIL,
   LANDING_TRIAL_HREF,
@@ -75,7 +64,7 @@ function FinalCta() {
 
 export function LandingFlagshipV2({
   bankCounts,
-  testimonials,
+  testimonials: _testimonials,
   children,
 }: {
   bankCounts: LandingBankCountsDisplay;
@@ -91,25 +80,7 @@ export function LandingFlagshipV2({
 
         <LandingHeroV2 bankCounts={bankCounts} />
 
-        <LandingSampleProof />
-
-        <LandingOfferingV2 />
-
-        <LandingShowcaseV2 />
-
-        <ChooseYourExam bankCounts={bankCounts} />
-
-        <LandingWhyChooseV2 bankCounts={bankCounts} />
-
-        <LandingCrossExamComparison />
-
-        <LandingClinicianTrust />
-
-        <LandingTestimonialsV2 stories={testimonials} />
-
-        <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] py-20 sm:py-24">
-          <ProBenefitsComparison />
-        </section>
+        <LandingStatsStrip bankCounts={bankCounts} />
 
         <section id="pricing" className="scroll-mt-24 bg-[var(--color-bg)] py-20 sm:py-24">
           <div className="mx-auto max-w-5xl px-5 sm:px-6">

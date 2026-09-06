@@ -18,7 +18,7 @@ export const dynamic = "force-static";
  * - Live bank counts upgrade in the browser from the cached public API
  * - Server-rendered SEO guide (children) for crawler-friendly long-form copy
  */
-export const metadata: Metadata = buildHomeMetadata();
+export const metadata: Metadata = buildHomeMetadata(LANDING_FALLBACK_BANK_COUNTS.totalLabel);
 
 export default function HomePage() {
   return (

@@ -76,14 +76,13 @@ const HOME_KEYWORDS = [
 ];
 
 export function buildHomeMetadata(totalQuestionsLabel?: string): Metadata {
-  // Title/description stay budget-stable; live count belongs in on-page copy, not meta.
-  void totalQuestionsLabel;
+  const count = totalQuestionsLabel?.trim() || SEO_LIVE_STATS.questionCount;
   const title = enforceMetaTitle(
-    "NCLEX & USMLE Qbank — 6 Exams, One Plan (2026)",
+    `One Study System. Six Boards. — ${count} Questions`,
     "home"
   );
   const description = enforceMetaDescription(
-    `${SEO_LIVE_STATS.questionCount} QA-gated NCLEX & USMLE questions with Roadmaps & Deep Dives. One Pro plan for six boards. Start a free ${SEO_LIVE_STATS.trialDays}-day trial — no card required.`,
+    `${count} QA-gated questions with Blueprint Roadmaps and full-length mocks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP & NPTE-PT. Free ${SEO_LIVE_STATS.trialDays}-day trial — no card.`,
     "home"
   );
   const url = getSiteUrl();
