@@ -25,7 +25,7 @@ const TIERS = {
   pro: {
     productName: "Any Exam Easy Pro",
     monthlyUsd: Number(process.env.PRO_MONTHLY_PRICE_USD ?? process.env.MONTHLY_PRICE_USD ?? "27.99"),
-    yearlyUsd: Number(process.env.PRO_YEARLY_PRICE_USD ?? process.env.YEARLY_PRICE_USD ?? "279.97"),
+    yearlyUsd: Number(process.env.PRO_YEARLY_PRICE_USD ?? process.env.YEARLY_PRICE_USD ?? "235.12"),
     envPrefix: "STRIPE_PRO_PRICE_ID",
     legacyKeys: {
       monthly: "STRIPE_PRICE_ID",
@@ -40,7 +40,7 @@ const INTERVALS = [
   { interval: "monthly", label: "Monthly", months: 1, savings: 0, stripe: { interval: "month", interval_count: 1 }, suffix: "MONTHLY" },
   { interval: "quarterly", label: "Every 3 months", months: 3, savings: 5, stripe: { interval: "month", interval_count: 3 }, suffix: "QUARTERLY" },
   { interval: "semiannual", label: "Every 6 months", months: 6, savings: 12, stripe: { interval: "month", interval_count: 6 }, suffix: "SEMIANNUAL" },
-  { interval: "yearly", label: "Yearly", months: 12, savings: 20, stripe: { interval: "year", interval_count: 1 }, suffix: "YEARLY" },
+  { interval: "yearly", label: "Yearly", months: 12, savings: 30, stripe: { interval: "year", interval_count: 1 }, suffix: "YEARLY" },
 ];
 
 function intervalTotalUsd(tierKey, spec) {

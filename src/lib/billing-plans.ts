@@ -18,7 +18,7 @@ export type BillingPlanTier = {
   savingsPercent: number;
   totalUsd: number;
   monthlyEquivalentUsd: number;
-  /** e.g. "Save 20%" — empty for monthly */
+  /** e.g. "Save 30%" — empty for monthly */
   savingsBadge: string | null;
   recommended: boolean;
 };

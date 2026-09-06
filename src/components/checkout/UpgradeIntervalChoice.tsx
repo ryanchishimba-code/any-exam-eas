@@ -81,6 +81,11 @@ export function UpgradeIntervalChoice({
               <span className="mt-1 block text-xs text-[var(--color-ink-muted)]">
                 {priceLine(tier, interval)}
               </span>
+              {interval === "monthly" && (
+                <span className="mt-1.5 block text-[0.6875rem] font-medium text-emerald-700">
+                  New members: 20% off first month
+                </span>
+              )}
             </button>
           );
         })}

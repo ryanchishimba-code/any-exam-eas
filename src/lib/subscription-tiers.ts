@@ -13,7 +13,7 @@ export const TIER_MONTHLY_USD: Record<SubscriptionTier, number> = {
   pro: PRO_MONTHLY_PRICE_USD,
 };
 
-/** Fixed annual totals (marketing-optimized; effective ~17% savings vs monthly). */
+/** Fixed annual totals (30% savings vs 12× monthly). */
 export const TIER_ANNUAL_USD: Record<SubscriptionTier, number> = {
   pro: PRO_YEARLY_PRICE_USD,
 };

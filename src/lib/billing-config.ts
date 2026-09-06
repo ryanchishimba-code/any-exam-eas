@@ -29,7 +29,7 @@ export const BILLING_INTERVAL_SAVINGS = {
   monthly: 0,
   quarterly: 5,
   semiannual: 12,
-  yearly: 20,
+  yearly: 30,
 } as const;
 
 export type BillingInterval = keyof typeof BILLING_INTERVAL_SAVINGS;
@@ -50,7 +50,7 @@ export const INTERVAL_DISPLAY_LABELS: Record<BillingInterval, string> = {
 };
 
 /** @deprecated Use intervalTotalUsd(tier, "yearly") from billing-plans. */
-export const YEARLY_PRICE_USD = Number(process.env.PRO_YEARLY_PRICE_USD ?? process.env.YEARLY_PRICE_USD ?? "279.97");
+export const YEARLY_PRICE_USD = Number(process.env.PRO_YEARLY_PRICE_USD ?? process.env.YEARLY_PRICE_USD ?? "235.12");
 
 export const GRACE_PERIOD_DAYS = Number(process.env.GRACE_PERIOD_DAYS ?? "3");
 

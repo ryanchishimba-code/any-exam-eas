@@ -202,7 +202,7 @@ export function buildHomeJsonLd() {
           "@type": "Offer",
           price: MONTHLY_PRICE_USD,
           priceCurrency: "USD",
-          description: `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · no payment required · Pro at ${formatMonthlyPrice("pro")}/mo · save up to 20% on annual`,
+          description: `${TRIAL_DAYS}-day free trial · ${TRIAL_LIFETIME_QUESTIONS} practice questions · no payment required · Pro at ${formatMonthlyPrice("pro")}/mo · save up to 30% on annual`,
           url: absoluteUrl("/pricing"),
         },
         description: seoPlatformPitch(),

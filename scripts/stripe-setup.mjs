@@ -19,7 +19,7 @@ const TIERS = {
   pro: {
     productName: "Any Exam Easy Pro",
     monthlyUsd: Number(process.env.PRO_MONTHLY_PRICE_USD ?? process.env.MONTHLY_PRICE_USD ?? "27.99"),
-    yearlyUsd: Number(process.env.PRO_YEARLY_PRICE_USD ?? process.env.YEARLY_PRICE_USD ?? "279.97"),
+    yearlyUsd: Number(process.env.PRO_YEARLY_PRICE_USD ?? process.env.YEARLY_PRICE_USD ?? "235.12"),
     envPrefix: "STRIPE_PRO_PRICE_ID",
     legacyKeys: {
       monthly: "STRIPE_PRICE_ID",

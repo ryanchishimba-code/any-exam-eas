@@ -10,6 +10,7 @@
 
 import { ChevronDown } from "lucide-react";
 import { PLATFORM_EXAM_LIST } from "@/lib/landing/content";
+import { PRO_ANNUAL_SAVINGS_PERCENT } from "@/lib/pricing-defaults";
 import { formatMonthlyPrice, formatTrialLabel, formatTrialQuestionLimit } from "@/lib/site";
 
 const FAQ: { q: string; a: string }[] = [
@@ -19,7 +20,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "How much does it cost?",
-    a: `Pro is ${formatMonthlyPrice("pro")}/month and includes all six exams. Annual billing saves roughly 17% versus monthly. That's typically less than a single per-exam UWorld or AMBOSS subscription.`,
+    a: `Pro is ${formatMonthlyPrice("pro")}/month and includes all six exams. Annual billing saves ${PRO_ANNUAL_SAVINGS_PERCENT}% versus monthly. That's typically less than a single per-exam UWorld or AMBOSS subscription.`,
   },
   {
     q: "Is there a free trial? Do I need a card?",

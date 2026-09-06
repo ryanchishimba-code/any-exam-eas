@@ -62,7 +62,7 @@ type CheckoutBaseParams = {
 function buildSubscriptionSessionParams(params: CheckoutBaseParams) {
   const isTrialPlan = params.plan === "trial";
   const tier = parseSubscriptionTier(params.tier);
-  const interval = params.interval ?? "yearly";
+  const interval = params.interval ?? "monthly";
   const introPriceId = process.env.STRIPE_TRIAL_INTRO_PRICE_ID;
   const useIntro = isTrialPlan && usesIntroTrialPricing() && introPriceId;
 

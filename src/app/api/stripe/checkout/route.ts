@@ -135,6 +135,27 @@ export async function POST(req: Request) {
     }
   }
 
+  // First-time Pro monthly: 20% off the first paid invoice (skipped when a promo coupon is already applied).
+  if (!stripeCouponId) {
+    const {
+      shouldApplyFirstMonthDiscount,
+      resolveFirstMonthCouponId,
+    } = await import("@/lib/billing/first-month-discount");
+    if (shouldApplyFirstMonthDiscount({ interval, sub })) {
+      try {
+        const { stripe: stripeClient } = await import("@/lib/stripe");
+        if (stripeClient) {
+          stripeCouponId = await resolveFirstMonthCouponId(stripeClient);
+        }
+      } catch (e) {
+        console.warn(
+          "[stripe/checkout] first-month coupon unavailable",
+          e instanceof Error ? e.message : e
+        );
+      }
+    }
+  }
+
   // Mid-trial upgrade with Stripe sub + card on file: end trial now and start billing.
   if (
     plan === "subscribe" &&

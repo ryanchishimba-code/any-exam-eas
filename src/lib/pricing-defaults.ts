@@ -2,7 +2,18 @@ import type { BillingInterval } from "@/lib/billing-config";
 
 /** Canonical Pro pricing — amounts used when Stripe Price unit_amount is asserted. */
 export const PRO_MONTHLY_PRICE_USD = 27.99;
-export const PRO_YEARLY_PRICE_USD = 279.97;
+
+/** Annual discount vs paying monthly for 12 months. */
+export const PRO_ANNUAL_SAVINGS_PERCENT = 30;
+
+/** Fixed annual total — 30% off 12× monthly ($27.99 × 12 × 0.7 = $235.12). */
+export const PRO_YEARLY_PRICE_USD =
+  Math.round(
+    PRO_MONTHLY_PRICE_USD * 12 * (1 - PRO_ANNUAL_SAVINGS_PERCENT / 100) * 100
+  ) / 100;
+
+/** First-time Pro monthly: percent off the first paid invoice only. */
+export const PRO_FIRST_MONTH_DISCOUNT_PERCENT = 20;
 
 /**
  * Stripe Price IDs for Pro (live mode — anyexameasy.com).
