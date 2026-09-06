@@ -95,6 +95,13 @@ const ExpertRationaleSchema = z.object({
           title: z.string().min(3),
           steps: z.array(z.string().min(8)).min(3).max(7),
         }),
+        z.object({
+          kind: z.literal("image"),
+          title: z.string().min(3),
+          url: z.string().min(8),
+          alt: z.string().min(5),
+          caption: z.string().optional(),
+        }),
       ])
     )
     .optional(),
@@ -138,6 +145,9 @@ function sanitizeExpertJson(json: unknown): unknown {
     }
     if (b.kind === "flow") {
       return Array.isArray(b.steps) && b.steps.length >= 3;
+    }
+    if (b.kind === "image") {
+      return typeof b.url === "string" && typeof b.alt === "string";
     }
     return false;
   });

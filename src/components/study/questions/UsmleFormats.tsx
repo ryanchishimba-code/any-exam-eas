@@ -5,6 +5,8 @@ import { getSequentialPayload } from "@/lib/questions/sequential-sets";
 import type { StudyQuestion } from "@/lib/questions/types";
 import { BookOpen, ClipboardList, FileText, Pill, Stethoscope } from "lucide-react";
 import { ExhibitTable } from "./NaplexFormats";
+import { ExhibitMedia } from "./ExhibitMedia";
+import type { UsmleFigureRef } from "@/lib/exam-prep/usmle/figure-assets";
 
 /** NBME-style scrollable clinical vignette (2026 shorter-block friendly). */
 export function UsmleCaseVignette({ text }: { text: string }) {
@@ -163,8 +165,22 @@ export function CcsPromptPanel({ question }: { question: StudyQuestion }) {
 
 export function UsmleExhibitBlock({ question }: { question: StudyQuestion }) {
   const kind = question.ngnPayload?.kind;
-  if (kind === "exhibit" || kind === "biostats") {
-    return <ExhibitTable question={question} />;
+  const media = (question.ngnPayload as { media?: UsmleFigureRef[] } | undefined)?.media;
+  const hasMedia = Array.isArray(media) && media.some((m) => m.reviewStatus === "approved");
+  const hasTable = Boolean(
+    (question.ngnPayload as { table?: { headers?: unknown[] } } | undefined)?.table?.headers
+      ?.length
+  );
+
+  if (kind === "exhibit" || kind === "biostats" || hasMedia || hasTable) {
+    return (
+      <div className="mb-1">
+        {hasMedia ? <ExhibitMedia figures={media!} /> : null}
+        {hasTable || kind === "exhibit" || kind === "biostats" ? (
+          <ExhibitTable question={question} />
+        ) : null}
+      </div>
+    );
   }
   return null;
 }

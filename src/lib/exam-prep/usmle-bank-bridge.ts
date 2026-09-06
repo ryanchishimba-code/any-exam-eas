@@ -41,7 +41,12 @@ export function bankItemToUsmleExam(item: BankItem, index: number): ExamQuestion
     highYield: true,
     ngnFormat: usmleItemToFormat(itemType),
     ngnPayload: payload,
-    chartData: payload?.table ? (payload as Record<string, unknown>) : undefined,
+    chartData:
+      payload?.table ||
+      (Array.isArray((payload as { media?: unknown } | undefined)?.media) &&
+        ((payload as { media: unknown[] }).media.length > 0))
+        ? (payload as Record<string, unknown>)
+        : undefined,
     topicCategory: item.topicCategory,
     difficultyLabel:
       item.difficulty != null

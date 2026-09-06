@@ -105,7 +105,19 @@ export function parseBankOptions(raw: string): ParsedBankOptions {
         };
       }
 
-      if (opts.length) return { options: opts, ...enrichment };
+      if (opts.length) {
+        // Exhibit / figure envelopes may omit `kind` but still carry stem media/tables.
+        const hasExhibitPayload =
+          obj.table != null ||
+          obj.media != null ||
+          obj.exhibit != null ||
+          obj.labTable != null ||
+          obj.chartData != null;
+        if (hasExhibitPayload) {
+          return { options: opts, ngnPayload: obj, ...enrichment };
+        }
+        return { options: opts, ...enrichment };
+      }
     }
   } catch {
     /* fall through */

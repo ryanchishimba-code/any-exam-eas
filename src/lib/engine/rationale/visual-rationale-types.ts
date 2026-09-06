@@ -1,4 +1,4 @@
-/** Structured visual aids for NCLEX rationales (UWorld-style lab tables & algorithms). */
+/** Structured visual aids for expert rationales (labs, algorithms, approved figures). */
 
 export type LabTableRow = {
   label: string;
@@ -27,6 +27,19 @@ export type FlowVisual = {
   steps: string[];
 };
 
-export type VisualRationaleBlock = LabTableVisual | ComparisonTableVisual | FlowVisual;
+/** Approved educational figure (SVG data-URI or CDN). */
+export type ImageVisual = {
+  kind: "image";
+  title: string;
+  url: string;
+  alt: string;
+  caption?: string;
+};
+
+export type VisualRationaleBlock =
+  | LabTableVisual
+  | ComparisonTableVisual
+  | FlowVisual
+  | ImageVisual;
 
 export const VISUAL_RATIONALE_META_KEY = "visualRationale" as const;

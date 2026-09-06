@@ -118,6 +118,31 @@ function blockIcon(kind: VisualRationaleBlock["kind"]) {
   return Activity;
 }
 
+function ImageBlock({
+  block,
+}: {
+  block: Extract<VisualRationaleBlock, { kind: "image" }>;
+}) {
+  return (
+    <figure className="overflow-hidden rounded-lg border border-[var(--color-border)]/70">
+      <p className="border-b border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)]/60 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
+        {block.title}
+      </p>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={block.url}
+        alt={block.alt}
+        className="mx-auto max-h-56 w-full object-contain bg-[#f8fafc]"
+      />
+      {block.caption ? (
+        <figcaption className="px-3 py-2 text-xs text-[var(--color-ink-muted)]">
+          {block.caption}
+        </figcaption>
+      ) : null}
+    </figure>
+  );
+}
+
 export function RationaleVisualPanel({ blocks }: { blocks: VisualRationaleBlock[] }) {
   if (!Array.isArray(blocks) || blocks.length === 0) return null;
 
@@ -128,6 +153,7 @@ export function RationaleVisualPanel({ blocks }: { blocks: VisualRationaleBlock[
       return Array.isArray(block.headers) && Array.isArray(block.rows);
     }
     if (block.kind === "flow") return Array.isArray(block.steps);
+    if (block.kind === "image") return Boolean(block.url && block.alt);
     return false;
   });
 
@@ -147,6 +173,8 @@ export function RationaleVisualPanel({ blocks }: { blocks: VisualRationaleBlock[
               <LabTableBlock block={block} />
             ) : block.kind === "comparison" ? (
               <ComparisonBlock block={block} />
+            ) : block.kind === "image" ? (
+              <ImageBlock block={block} />
             ) : (
               <FlowBlock block={block} />
             )}

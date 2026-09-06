@@ -156,9 +156,35 @@ export function deriveLabTableFromItem(item: BankItem): LabTableVisual | null {
   };
 }
 
+function deriveImageBlocksFromMedia(item: BankItem): VisualRationaleBlock[] {
+  const media = item.ngnPayload?.media;
+  if (!Array.isArray(media)) return [];
+  const blocks: VisualRationaleBlock[] = [];
+  for (const raw of media) {
+    if (!raw || typeof raw !== "object") continue;
+    const fig = raw as {
+      reviewStatus?: string;
+      url?: string;
+      alt?: string;
+      caption?: string;
+      kind?: string;
+    };
+    if (fig.reviewStatus !== "approved" || !fig.url || !fig.alt) continue;
+    blocks.push({
+      kind: "image",
+      title: fig.caption || fig.kind || "Clinical exhibit",
+      url: fig.url,
+      alt: fig.alt,
+      caption: fig.caption,
+    });
+  }
+  return blocks;
+}
+
 export function deriveVisualBlocksFromItem(item: BankItem): VisualRationaleBlock[] {
   const blocks: VisualRationaleBlock[] = [];
   const lab = deriveLabTableFromItem(item);
   if (lab) blocks.push(lab);
+  blocks.push(...deriveImageBlocksFromMedia(item));
   return blocks;
 }

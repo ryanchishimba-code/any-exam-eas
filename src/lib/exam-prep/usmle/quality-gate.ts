@@ -12,6 +12,11 @@ import type { UsmleStepLevel } from "./types";
 import { bankItemHasValidSpineTags } from "./spine-lock";
 import { resolveOrganSystemId } from "./content-spine";
 import { isUsmleOrganSystemId } from "./official-content-model";
+import { normalizeUsmleExhibitPayload } from "./normalize-exhibit";
+import {
+  attachFigureRefToNgn,
+  findApprovedFiguresForTopic,
+} from "./figure-assets";
 
 export type UsmleFullExamQcReport = {
   ok: boolean;
@@ -85,7 +90,27 @@ export function normalizeUsmleFullExamItem(item: BankItem, slotMeta?: {
     }
   }
 
-  return { ...normalized, tags, ngnPayload: ngn };
+  // World-class exhibits: normalize findings/labTable → renderable table + attach SVG figures.
+  let withExhibit = normalizeUsmleExhibitPayload({ ...normalized, tags, ngnPayload: ngn });
+  const topic =
+    slotMeta?.blueprintTopic ??
+    (typeof withExhibit.ngnPayload?.blueprintTopic === "string"
+      ? withExhibit.ngnPayload.blueprintTopic
+      : null);
+  const figures = findApprovedFiguresForTopic(topic, system);
+  if (figures[0]) {
+    const nextNgn = attachFigureRefToNgn(
+      { ...(withExhibit.ngnPayload ?? {}) },
+      figures[0]
+    );
+    withExhibit = {
+      ...withExhibit,
+      itemType: withExhibit.itemType === "biostats" ? "biostats" : "exhibit",
+      ngnPayload: nextNgn,
+    };
+  }
+
+  return withExhibit;
 }
 
 export function assessUsmleFullExamItem(

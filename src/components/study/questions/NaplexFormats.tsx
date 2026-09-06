@@ -29,34 +29,63 @@ export function NaplexCaseVignette({ text }: { text: string }) {
 export function ExhibitTable({ question }: { question: StudyQuestion }) {
   const payload = question.ngnPayload ?? question.chartData;
   const table = payload?.table as
-    | { headers: string[]; rows: string[][] }
+    | { title?: string; headers: string[]; rows: string[][]; abnormalRows?: boolean[] }
     | undefined;
   if (!table?.headers?.length) return null;
 
   return (
-    <div className="mb-4 overflow-x-auto rounded-xl border border-slate-200">
-      <table className="w-full min-w-[280px] text-left text-sm">
-        <thead className="bg-slate-100 text-xs uppercase tracking-wide text-slate-600">
-          <tr>
-            {table.headers.map((h, i) => (
-              <th key={i} className="px-3 py-2 font-semibold">
-                {h}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {table.rows.map((row, ri) => (
-            <tr key={ri} className="border-t border-slate-100 even:bg-slate-50/50">
-              {row.map((cell, ci) => (
-                <td key={ci} className="px-3 py-2 text-slate-800">
-                  {cell}
-                </td>
+    <div className="mb-4 overflow-hidden rounded-xl border border-slate-200 dark:border-zinc-700">
+      {table.title ? (
+        <div className="border-b border-slate-200 bg-slate-50 px-3 py-2 text-[10px] font-semibold uppercase tracking-wider text-slate-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-400">
+          {table.title}
+        </div>
+      ) : null}
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[280px] text-left text-sm">
+          <thead className="bg-slate-100 text-xs uppercase tracking-wide text-slate-600 dark:bg-zinc-900 dark:text-zinc-400">
+            <tr>
+              {table.headers.map((h, i) => (
+                <th key={i} className="px-3 py-2 font-semibold">
+                  {h}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {table.rows.map((row, ri) => {
+              const abnormal = Boolean(table.abnormalRows?.[ri]);
+              return (
+                <tr
+                  key={ri}
+                  className={
+                    abnormal
+                      ? "border-t border-rose-100 bg-rose-50/80 dark:border-rose-900/40 dark:bg-rose-950/30"
+                      : "border-t border-slate-100 even:bg-slate-50/50 dark:border-zinc-800 dark:even:bg-zinc-900/40"
+                  }
+                >
+                  {row.map((cell, ci) => (
+                    <td
+                      key={ci}
+                      className={
+                        abnormal && ci === 1
+                          ? "px-3 py-2 font-semibold tabular-nums text-rose-800 dark:text-rose-300"
+                          : "px-3 py-2 text-slate-800 dark:text-zinc-200"
+                      }
+                    >
+                      {cell}
+                      {abnormal && ci === 1 ? (
+                        <span className="ml-1.5 text-[10px] font-bold uppercase text-rose-600">
+                          Abn
+                        </span>
+                      ) : null}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

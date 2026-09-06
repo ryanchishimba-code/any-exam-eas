@@ -26,4 +26,29 @@ describe("derive-visual-rationale", () => {
     expect(table?.kind).toBe("lab_table");
     expect(table!.rows.length).toBeGreaterThanOrEqual(2);
   });
+
+  it("derives image visual blocks from approved stem media", async () => {
+    const { deriveVisualBlocksFromItem } = await import("./derive-visual-rationale");
+    const item = {
+      question: "Next step?",
+      options: ["A", "B", "C", "D"],
+      correctAnswer: "A",
+      explanation: "test",
+      ngnPayload: {
+        media: [
+          {
+            id: "ecg-test",
+            kind: "ecg",
+            url: "data:image/svg+xml,test",
+            alt: "Schematic ECG",
+            caption: "STEMI schematic",
+            reviewStatus: "approved",
+          },
+        ],
+      },
+    } as BankItem;
+
+    const blocks = deriveVisualBlocksFromItem(item);
+    expect(blocks.some((b) => b.kind === "image")).toBe(true);
+  });
 });

@@ -90,3 +90,4 @@ Report: `artifacts/board-expert-rationale-report.json`
 
 - NCLEX twin: [`docs/NCLEX_EXPERT_RATIONALES.md`](NCLEX_EXPERT_RATIONALES.md)
 - Official USMLE spine: [`docs/usmle-official-alignment.md`](usmle-official-alignment.md)
+- **Figures / media path:** [`docs/USMLE_WORLD_CLASS_FIGURES.md`](USMLE_WORLD_CLASS_FIGURES.md)
