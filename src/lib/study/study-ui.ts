@@ -46,18 +46,18 @@ export const studyUi = {
     "absolute inset-y-0 right-0 flex h-full w-full max-w-2xl flex-col border-l border-[var(--color-border)]/60 bg-[var(--color-surface-elevated)] shadow-2xl",
   sheetHeader: "border-b border-[var(--color-border)]/60 px-4 py-4 sm:px-5",
   sheetFooter: "border-t border-[var(--color-border)]/60 bg-[var(--color-surface)]/40 px-4 py-4 sm:px-5",
-  /** Immersive question viewer — distraction-free, generous padding. */
+  /** Immersive question viewer — Tesla-flat, distraction-free. */
   sessionShell: "mx-auto w-full min-w-0 max-w-3xl space-y-4",
   sessionCard:
-    "aee-question-enter rounded-2xl border border-[var(--color-border)]/70 bg-[var(--color-surface-elevated)] shadow-[var(--shadow-apple-sm)]",
+    "aee-question-enter rounded-2xl border border-[var(--color-border)]/80 bg-[var(--color-surface-elevated)]",
   sessionProgress:
     "h-1 overflow-hidden rounded-full bg-[var(--color-border)]/40",
   sessionProgressFill:
-    "h-full bg-[var(--color-accent)] transition-[width] duration-200 ease-[var(--ease-apple-smooth)]",
+    "h-full bg-[var(--color-accent)] transition-[width] duration-200 ease-out",
   sessionPrimaryBtn:
-    "rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-medium text-white shadow-[var(--shadow-apple-btn)] transition hover:shadow-[var(--shadow-apple-btn-hover)] active:scale-[0.98] disabled:opacity-40",
+    "rounded-full bg-[var(--color-accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_1px_2px_rgba(15,23,42,0.08)] transition hover:opacity-95 hover:shadow-[0_2px_8px_rgba(15,23,42,0.12)] active:scale-[0.98] disabled:opacity-40",
   sessionGhostBtn:
-    "rounded-full border border-[var(--color-border)]/70 px-5 py-2.5 text-sm text-[var(--color-ink)] transition hover:bg-[var(--color-surface)]/80 active:scale-[0.98] disabled:opacity-30",
+    "rounded-full border border-[var(--color-border)]/80 px-5 py-2.5 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/35 hover:bg-[var(--color-surface)]/80 active:scale-[0.98] disabled:opacity-30",
   keyboardHint:
     "text-center text-[11px] text-[var(--color-ink-muted)] tabular-nums",
 } as const;

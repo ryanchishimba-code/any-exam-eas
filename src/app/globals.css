@@ -615,6 +615,34 @@ body {
   animation: apple-fade-up 0.8s var(--ease-apple) both;
 }
 
+/* —— Question Bank (Tesla-flat: hairline borders, no wash bloom) —— */
+.question-bank-ui {
+  --qb-card: var(--color-surface-elevated);
+  --qb-ink: var(--color-ink);
+  --qb-muted: var(--color-ink-muted);
+  --qb-line: color-mix(in srgb, var(--color-border) 85%, transparent);
+  --qb-surface: var(--color-surface);
+  --qb-cta-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+  --qb-cta-shadow-hover: 0 2px 8px rgba(15, 23, 42, 0.12);
+  position: relative;
+}
+
+[data-theme="dark"] .question-bank-ui {
+  --qb-card: color-mix(in srgb, var(--color-surface-elevated) 94%, #0a1628);
+  --qb-line: color-mix(in srgb, var(--color-border) 90%, transparent);
+  --qb-cta-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --qb-cta-shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .question-bank-ui {
+    --qb-card: color-mix(in srgb, var(--color-surface-elevated) 94%, #0a1628);
+    --qb-line: color-mix(in srgb, var(--color-border) 90%, transparent);
+    --qb-cta-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    --qb-cta-shadow-hover: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+}
+
 /* —— Study dashboard (Apple Health / Fitness clarity) —— */
 .dashboard-ui {
   --db-card: color-mix(in srgb, var(--color-surface-elevated) 92%, white);

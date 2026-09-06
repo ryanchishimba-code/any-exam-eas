@@ -58,19 +58,21 @@ export function SessionCompletionCard({
       className={cn(
         compact
           ? "rounded-2xl border border-teal-200/70 bg-teal-50/50 p-4"
-          : "rounded-2xl border border-black/[0.08] bg-white p-6 shadow-sm sm:p-8",
+          : "rounded-2xl border border-[var(--color-border)]/80 bg-[var(--color-surface-elevated)] p-6 sm:p-8",
         className
       )}
     >
       {!compact ? (
         <>
           <div className="text-center">
-            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border-[5px] border-[var(--color-accent)]/20 bg-white shadow-[var(--shadow-apple-sm)]">
-              <span className={cn("text-2xl font-bold tabular-nums", scoreColor)}>
+            <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full border-[3px] border-[var(--color-accent)]/25 bg-[var(--color-surface)]">
+              <span className={cn("text-2xl font-bold tabular-nums tracking-tight", scoreColor)}>
                 {summary.accuracy}%
               </span>
             </div>
-            <p className="mt-4 text-lg font-semibold text-[var(--color-ink)]">{title}</p>
+            <p className="mt-4 text-xl font-semibold tracking-[-0.02em] text-[var(--color-ink)]">
+              {title}
+            </p>
             {subtitle ? (
               <p className="mt-1 text-sm text-[var(--color-ink-muted)]">{subtitle}</p>
             ) : null}
@@ -87,7 +89,7 @@ export function SessionCompletionCard({
       )}
 
       {notesWithText.length > 0 ? (
-        <div className={cn("rounded-xl bg-black/[0.03] p-4", compact ? "mt-3" : "mt-6")}>
+        <div className={cn("rounded-xl border border-[var(--color-border)]/50 bg-[var(--color-surface)]/60 p-4", compact ? "mt-3" : "mt-6")}>
           <p className="text-xs font-semibold uppercase tracking-wide text-[var(--color-ink-muted)]">
             Your notes
           </p>
@@ -119,7 +121,7 @@ export function SessionCompletionCard({
           <button
             type="button"
             onClick={onReview}
-            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-95 sm:w-auto sm:min-w-[12rem]"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[var(--color-accent)] px-5 py-3 text-sm font-semibold text-white shadow-[0_1px_2px_rgba(15,23,42,0.08)] transition hover:opacity-95 sm:w-auto sm:min-w-[12rem]"
           >
             <BookOpen className="h-4 w-4 shrink-0" aria-hidden />
             {reviewLabel}
@@ -128,8 +130,8 @@ export function SessionCompletionCard({
         <Link
           href={returnHref}
           className={cn(
-            "inline-flex w-full items-center justify-center gap-2 rounded-xl border border-black/[0.08] bg-white px-5 py-3 text-sm font-semibold text-[var(--color-ink)] shadow-sm transition hover:bg-black/[0.02] sm:w-auto sm:min-w-[12rem]",
-            !onReview && "bg-[var(--color-accent)] text-white hover:opacity-95"
+            "inline-flex w-full items-center justify-center gap-2 rounded-xl border border-[var(--color-border)]/80 bg-[var(--color-surface-elevated)] px-5 py-3 text-sm font-semibold text-[var(--color-ink)] transition hover:border-[var(--color-accent)]/35 sm:w-auto sm:min-w-[12rem]",
+            !onReview && "border-transparent bg-[var(--color-accent)] text-white hover:opacity-95"
           )}
         >
           <LayoutGrid className="h-4 w-4 shrink-0" aria-hidden />
