@@ -67,6 +67,39 @@ const EXAM_HUB_LINKS = [
   { href: examMarketingPath("npte-pt"), label: "NPTE-PT" },
 ] as const;
 
+const HOW_A_QUESTION_SHIPS = [
+  {
+    step: "1",
+    title: "Written to the blueprint",
+    body: "Items map to official Client Needs, content outlines, and high-yield domains — not random filler.",
+  },
+  {
+    step: "2",
+    title: "QA gate",
+    body: "Serve-ready only after editorial review. Soft stems and broken keys stay off the bank.",
+  },
+  {
+    step: "3",
+    title: "Deep Dive on the miss",
+    body: "Wrong answers open structured teaching in-product — then you return to practice in the same Skill Cell loop.",
+  },
+] as const;
+
+const OFFICIAL_PREP_DOCS = [
+  {
+    label: "NCLEX 2026 RN Test Plan (PDF)",
+    href: "https://www.ncsbn.org/public-files/2026_RN_Test-Plan_English-F.pdf",
+  },
+  {
+    label: "NCSBN exam test plans hub",
+    href: "https://www.ncsbn.org/exams/testplans.page",
+  },
+  {
+    label: "NAPLEX 2025 Content Outline (PDF)",
+    href: "https://nabp.pharmacy/wp-content/uploads/NAPLEX-Content-Outline.pdf",
+  },
+] as const;
+
 export default async function AboutPage() {
   const snapshot = await getCachedQuestionBankCounts();
   const bankCounts = buildLandingBankCountsDisplay(snapshot);
@@ -89,21 +122,16 @@ export default async function AboutPage() {
         <section className="relative overflow-hidden px-6 pt-[var(--page-top)]">
           <div className="mx-auto max-w-4xl pb-16 text-center sm:pb-20">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
-              {SITE_NAME}
+              AnyExamEasy · Built in Texas
             </p>
 
             <h1 className="mt-4 text-balance text-[clamp(2.25rem,6vw,3.5rem)] font-bold leading-[1.05] tracking-tight text-[var(--color-ink)]">
-              NCLEX &amp; USMLE prep with Roadmaps, Deep Dives &amp;{" "}
-              <span className="aee-flagship-gradient-text">Full Exams — six boards, one plan.</span>
+              Six boards. One standard of question.
             </h1>
 
             <p className="mx-auto mt-5 max-w-2xl text-balance text-lg leading-relaxed text-[var(--color-ink-muted)]">
-              Clinician-built{" "}
-              <strong className="font-semibold text-[var(--color-ink)]">NCLEX practice questions</strong>{" "}
-              and a full{" "}
-              <strong className="font-semibold text-[var(--color-ink)]">USMLE question bank</strong>,
-              plus NAPLEX, PANCE, AANP FNP, and NPTE-PT — with Blueprint Roadmaps, Deep Dive review,
-              and timed Full Exam simulations on one Pro subscription.
+              Clinician-built banks for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT. Same QA
+              gate, one Pro plan, Roadmaps and Deep Dives included — not six logins.
             </p>
             <p className="mx-auto mt-3 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-ink-muted)]">
               <MapPin className="h-4 w-4 text-[var(--color-accent)]" aria-hidden />
@@ -161,22 +189,16 @@ export default async function AboutPage() {
               </p>
               <p>
                 We thought that was backwards. So we built one Pro plan — from{" "}
-                {formatMonthlyPrice("pro")}/mo after a free trial — that unlocks a serious{" "}
-                <strong className="font-semibold text-[var(--color-ink)]">NCLEX question bank</strong>,
-                high-yield{" "}
-                <strong className="font-semibold text-[var(--color-ink)]">NCLEX practice questions</strong>{" "}
-                (including NGN-style clinical judgment), and a full{" "}
-                <strong className="font-semibold text-[var(--color-ink)]">USMLE question bank</strong>{" "}
-                spanning Steps 1, 2 CK, and 3 — plus NAPLEX, PANCE, AANP FNP, and NPTE-PT under the
-                same login.
+                {formatMonthlyPrice("pro")}/mo after a free trial — that unlocks clinician-built banks
+                for USMLE, NCLEX, NAPLEX, PANCE, AANP FNP, and NPTE-PT under the same login.
               </p>
               <p>
                 That is the unique selling point of {SITE_NAME}:{" "}
                 <strong className="font-semibold text-[var(--color-ink)]">
                   one affordable subscription for six exam question banks
                 </strong>
-                . {bankCounts.totalQuestionsLabel}. Adaptive Blueprint Roadmaps.
-                Deep Dive modules. Full-length mocks. Clinician-built, QA-gated — not bulk filler.
+                . {bankCounts.totalQuestionsLabel}. Adaptive Blueprint Roadmaps. Deep Dive modules.
+                Full-length mocks. Clinician-built, QA-gated — not bulk filler.
               </p>
               <p>
                 And we didn&apos;t stop at exam day.{" "}
@@ -196,8 +218,40 @@ export default async function AboutPage() {
           </div>
         </section>
 
-        {/* ── 3. Six exams ────────────────────────────────────────────── */}
+        {/* ── 3. How a question ships ─────────────────────────────────── */}
         <section className="px-6 py-20">
+          <div className="mx-auto max-w-5xl">
+            <div className="max-w-2xl">
+              <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
+                How a question ships
+              </p>
+              <h2 className="mt-3 text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-tight tracking-tight text-[var(--color-ink)]">
+                Blueprint → QA gate → Deep Dive on the miss.
+              </h2>
+            </div>
+            <ol className="mt-10 grid gap-5 sm:grid-cols-3">
+              {HOW_A_QUESTION_SHIPS.map((item) => (
+                <li
+                  key={item.step}
+                  className="rounded-3xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] p-6 shadow-[var(--shadow-apple-sm)]"
+                >
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--color-accent)]">
+                    Step {item.step}
+                  </p>
+                  <h3 className="mt-2 text-lg font-bold tracking-tight text-[var(--color-ink)]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+                    {item.body}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* ── 4. Six exams ────────────────────────────────────────────── */}
+        <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-20">
           <div className="mx-auto max-w-3xl">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
               What&apos;s included
@@ -237,13 +291,13 @@ export default async function AboutPage() {
               <Link href={ROUTES.blog} className="font-semibold text-[var(--color-accent)] hover:underline">
                 blog
               </Link>{" "}
-              for high-yield study systems across NCLEX, USMLE, and the rest of the board lineup.
+              for high-yield study systems across the full board lineup.
             </p>
           </div>
         </section>
 
-        {/* ── 4. What makes us different ──────────────────────────────── */}
-        <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-20">
+        {/* ── 5. What makes us different ──────────────────────────────── */}
+        <section className="px-6 py-20">
           <div className="mx-auto max-w-5xl">
             <div className="max-w-2xl">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
@@ -254,8 +308,8 @@ export default async function AboutPage() {
               </h2>
               <p className="mt-3 text-lg leading-relaxed text-[var(--color-ink-muted)]">
                 The study system that sets us apart: Blueprint Roadmaps, Deep Dives from misses, Full
-                Exam simulations, and clinician QA — so NCLEX and USMLE practice feels like coaching,
-                not a content dump.
+                Exam simulations, and clinician QA — so practice feels like coaching, not a content
+                dump.
               </p>
             </div>
             <div className="mt-10">
@@ -264,8 +318,8 @@ export default async function AboutPage() {
           </div>
         </section>
 
-        {/* ── 5. The Showdown (charts) ────────────────────────────────── */}
-        <section className="px-6 py-20">
+        {/* ── 6. The Showdown (charts) ────────────────────────────────── */}
+        <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-20">
           <div className="mx-auto max-w-5xl">
             <div className="mx-auto max-w-2xl text-center">
               <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
@@ -276,7 +330,7 @@ export default async function AboutPage() {
               </h2>
               <p className="mt-3 text-lg leading-relaxed text-[var(--color-ink-muted)]">
                 Per-exam banks add up. One {SITE_NAME} subscription covers six. Here&apos;s the honest
-                math — and why students comparing NCLEX and USMLE options land here.
+                math.
               </p>
             </div>
             <div className="mt-10">
@@ -296,7 +350,36 @@ export default async function AboutPage() {
           </div>
         </section>
 
-        {/* ── 6. Verdict band ─────────────────────────────────────────── */}
+        {/* ── 7. Official prep docs ───────────────────────────────────── */}
+        <section className="px-6 py-20">
+          <div className="mx-auto max-w-3xl">
+            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[var(--color-accent)]">
+              Official prep docs
+            </p>
+            <h2 className="mt-3 text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-tight tracking-tight text-[var(--color-ink)]">
+              Read the board&apos;s document. We do not replace it.
+            </h2>
+            <ul className="mt-8 space-y-3">
+              {OFFICIAL_PREP_DOCS.map((doc) => (
+                <li key={doc.href}>
+                  <a
+                    href={doc.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-elevated)] px-4 py-3 text-sm font-semibold text-[var(--color-ink)] shadow-[var(--shadow-apple-sm)] transition hover:border-[var(--color-accent)]/40"
+                  >
+                    {doc.label}
+                    <span className="text-[var(--color-accent)]" aria-hidden>
+                      ↗
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ── 8. Verdict band ─────────────────────────────────────────── */}
         <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-20">
           <div className="mx-auto max-w-4xl overflow-hidden rounded-[2rem] bg-[var(--color-accent)] px-8 py-14 text-center shadow-[var(--shadow-apple-lg)]">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3.5 py-1.5 text-sm font-bold text-white">
@@ -307,7 +390,7 @@ export default async function AboutPage() {
               One plan. Six banks. Roadmaps, Deep Dives &amp; Full Exams.
             </p>
             <p className="mx-auto mt-4 max-w-xl text-base font-medium leading-relaxed text-white/90">
-              NCLEX, USMLE, NAPLEX, PANCE, AANP FNP &amp; NPTE-PT — clinician-built coverage at a
+              USMLE, NCLEX, NAPLEX, PANCE, AANP FNP &amp; NPTE-PT — clinician-built coverage at a
               non-premium price.
             </p>
             <div className="mt-8 flex justify-center">
@@ -322,7 +405,7 @@ export default async function AboutPage() {
           </div>
         </section>
 
-        {/* ── 7. Clinician trust ──────────────────────────────────────── */}
+        {/* ── 9. Clinician trust ──────────────────────────────────────── */}
         <section className="px-6 py-20">
           <div className="mx-auto max-w-5xl">
             <div className="mx-auto max-w-2xl text-center">
@@ -336,8 +419,8 @@ export default async function AboutPage() {
                 <strong className="font-semibold text-[var(--color-ink)]">
                   {SEO_LIVE_STATS.clinicianYears} years of combined frontline experience
                 </strong>{" "}
-                from licensed healthcare providers — baked into every NCLEX rationale, USMLE vignette,
-                and multi-exam explanation.
+                from licensed healthcare providers — baked into rationales and vignettes across all
+                six boards.
               </p>
             </div>
 
@@ -365,15 +448,15 @@ export default async function AboutPage() {
           </div>
         </section>
 
-        {/* ── 8. Final CTA ────────────────────────────────────────────── */}
+        {/* ── 10. Final CTA ───────────────────────────────────────────── */}
         <section className="border-t border-[var(--color-border)] bg-[var(--color-surface)] px-6 py-24">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-[clamp(2rem,5vw,3rem)] font-bold leading-tight tracking-tight text-[var(--color-ink)]">
               Ready to prep like it&apos;s premium?
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-[var(--color-ink-muted)]">
-              Start free, no commitment. Try NCLEX practice questions or a USMLE set, then unlock all
-              six boards when you are ready — one upgrade, not six.
+              Start free, no commitment. Try a set on any board, then unlock all six when you are
+              ready — one upgrade, not six.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <LandingCta href={LANDING_TRIAL_HREF} icon={<ArrowRight className="h-4 w-4" />}>
@@ -388,6 +471,20 @@ export default async function AboutPage() {
             </div>
             <p className="mt-4 text-sm font-medium text-[var(--color-ink-muted)]">
               {formatTrialLabel()} · all 6 boards included
+            </p>
+          </div>
+        </section>
+
+        {/* ── 11. Independence ────────────────────────────────────────── */}
+        <section className="border-t border-[var(--color-border)] px-6 py-12">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-[var(--color-ink-muted)]">
+              Independence
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+              Any Exam Easy is independent and not affiliated with NCSBN, NABP, NBME, NCCPA, AANP,
+              FSBPT, UWorld, or RxPrep. Exam names are trademarks of their owners. We do not guarantee
+              exam results, licensure, or employment.
             </p>
           </div>
         </section>

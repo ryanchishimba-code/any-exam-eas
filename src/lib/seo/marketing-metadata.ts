@@ -87,20 +87,21 @@ export function buildResourcesHubMetadata(): Metadata {
 }
 
 export function buildToolkitHubMetadata(): Metadata {
-  const title = "Board Exam Toolkit — NCLEX & USMLE Guides";
+  const title = "Board Exam Toolkit — Official Links & Study Tools";
   const description =
-    "Free Toolkit for NCLEX & USMLE prep: exam guides, Blueprint Roadmap strategy, Deep Dive tips & Full Exam readiness for NAPLEX, PANCE, FNP & NPTE.";
+    "Toolkit directory for six boards: official blueprints, lab values & calculators, Top 509 drugs, Anatomy Explorer, Blueprint Roadmaps, and exam guides.";
   const path = "/toolkit";
   return {
     ...baseOpenGraph(title, description, path, { absoluteTitle: true }),
     keywords: [
-      "NCLEX question bank guide",
-      "NCLEX practice questions",
-      "USMLE question bank study guide",
       "board exam toolkit",
-      "blueprint roadmap board prep",
-      "deep dive exam review",
-      "full exam simulation",
+      "NCLEX test plan",
+      "NAPLEX content outline",
+      "USMLE official resources",
+      "lab values calculators",
+      "Top 509 drugs",
+      "Anatomy Explorer",
+      "blueprint roadmap",
       "NCLEX study resources",
       "USMLE study guide",
       "NAPLEX review",
@@ -424,7 +425,7 @@ export function buildToolkitHubJsonLd() {
     name: "AnyExamEasy Toolkit",
     url,
     description:
-      "Board exam prep toolkit for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — exam breakdowns, Blueprint Roadmap strategy, Deep Dive review tips, and Full Exam readiness guides.",
+      "Study-instrument directory for NCLEX, USMLE, NAPLEX, PANCE, AANP FNP, and NPTE-PT — official board documents, in-product tools, and exam guides.",
     hasPart: RESOURCE_ARTICLES.map((a) => ({
       "@type": "Article",
       name: a.title,
