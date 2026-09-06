@@ -27,8 +27,11 @@ export function QuestionBankHeader({
 }: Props) {
   return (
     <header className="space-y-4 px-0.5">
-      <nav aria-label="Breadcrumb" className={qbUi.eyebrow}>
-        <ol className="flex items-center gap-1">
+      <nav
+        aria-label="Breadcrumb"
+        className="inline-flex items-center gap-1 rounded-full border border-[var(--qb-line,var(--color-border))]/80 bg-[var(--qb-card,var(--color-surface-elevated))] px-2.5 py-1"
+      >
+        <ol className="flex items-center gap-1 text-[11px] font-semibold tracking-wide">
           <li>
             <Link
               href={ROUTES.dashboard}
@@ -47,7 +50,7 @@ export function QuestionBankHeader({
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="min-w-0 space-y-2">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-[var(--color-accent)]/10 px-2.5 py-0.5 text-[11px] font-semibold text-[var(--color-accent)]">
+            <span className="rounded-full border border-[var(--color-accent)]/25 bg-[var(--color-accent)]/10 px-2.5 py-0.5 text-[11px] font-semibold text-[var(--color-accent)]">
               {examName}
             </span>
             {usmleStepLabel ? (

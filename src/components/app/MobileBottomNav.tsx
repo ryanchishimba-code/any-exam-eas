@@ -60,14 +60,14 @@ export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) 
   return (
     <nav
       className={cn(
-        "fixed inset-x-0 bottom-0 z-50 border-t border-black/[0.06] bg-white/95 pb-[env(safe-area-inset-bottom,0px)] backdrop-blur-lg transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden",
+        "study-nav-panel fixed inset-x-0 bottom-0 z-50 rounded-none border-x-0 border-b-0 pb-[env(safe-area-inset-bottom,0px)] transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden",
         concealed ? "pointer-events-none translate-y-full opacity-0" : "translate-y-0 opacity-100"
       )}
       aria-label="Mobile study navigation"
       aria-hidden={concealed}
     >
       {studyLocked ? (
-        <div className="border-b border-black/[0.04] px-3 py-1.5">
+        <div className="border-b border-[var(--color-border)]/60 px-3 py-1.5">
           <SubscribeToContinueHint compact />
         </div>
       ) : null}
@@ -118,13 +118,13 @@ export function MobileBottomNav({ concealed = false }: { concealed?: boolean }) 
               >
                 {active ? (
                   <span
-                    className="absolute inset-x-1 top-1 bottom-1 rounded-xl bg-[var(--color-accent)]/10 ring-1 ring-inset ring-[var(--color-accent)]/12"
+                    className="absolute inset-x-1 top-1 bottom-1 rounded-xl bg-[var(--color-accent)]/10"
                     aria-hidden
                   />
                 ) : null}
                 <Icon
                   className={cn(
-                    "relative h-5 w-5 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                    "relative h-5 w-5 transition-transform duration-200 ease-out",
                     active && "scale-110"
                   )}
                   aria-hidden

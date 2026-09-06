@@ -12,14 +12,15 @@ import { useSignOutConfirm } from "@/lib/client/use-sign-out-confirm";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { shellUi } from "@/lib/layout/shell-ui";
 import { displayFirstName } from "@/lib/display-name";
+import { questionBankHref } from "@/lib/edtech/practice-links-core";
 import { ROUTES, fullExamHref } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
 function navLinkClass(active: boolean) {
   return cn(
-    "text-xs font-medium transition-colors",
+    "relative text-xs font-semibold tracking-tight transition-colors",
     active
-      ? "text-[var(--color-ink)] underline decoration-2 underline-offset-4 decoration-[var(--color-accent)]"
+      ? "text-[var(--color-ink)] after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:rounded-full after:bg-[var(--color-accent)]"
       : "text-[var(--color-ink-muted)] hover:text-[var(--color-ink)]"
   );
 }
@@ -37,6 +38,10 @@ export function AppTopNav({ onMenuClick }: Props) {
   const navLinks = useMemo(
     () => [
       { href: ROUTES.dashboard, label: "Dashboard" },
+      {
+        href: examSlug ? questionBankHref(examSlug) : ROUTES.questionBank,
+        label: "Bank",
+      },
       { href: ROUTES.analytics, label: "Analytics" },
       {
         href: examSlug ? fullExamHref(examSlug) : ROUTES.fullExam,
@@ -47,14 +52,15 @@ export function AppTopNav({ onMenuClick }: Props) {
   );
 
   function isActive(href: string) {
-    if (href.startsWith(`${ROUTES.fullExam}/`)) {
-      return pathname === href || pathname.startsWith(`${href}/`);
+    const path = href.split("?")[0]!;
+    if (path.startsWith(`${ROUTES.fullExam}/`)) {
+      return pathname === path || pathname.startsWith(`${path}/`);
     }
-    return pathname === href || pathname.startsWith(`${href}/`);
+    return pathname === path || pathname.startsWith(`${path}/`);
   }
 
   return (
-    <header className="apple-glass fixed top-0 z-50 w-full border-b border-[var(--color-border)]">
+    <header className="apple-glass fixed top-0 z-50 w-full border-b border-[var(--color-border)]/80">
       <nav
         className={cn(
           shellUi.container,
@@ -66,7 +72,7 @@ export function AppTopNav({ onMenuClick }: Props) {
           <button
             type="button"
             onClick={onMenuClick}
-            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-[var(--color-ink-muted)] transition hover:bg-black/[0.04] hover:text-[var(--color-ink)] lg:hidden"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-[var(--color-ink-muted)] transition hover:bg-[color-mix(in_srgb,var(--color-ink)_4%,transparent)] hover:text-[var(--color-ink)] lg:hidden"
             aria-label="Open study menu"
           >
             <Menu className="h-5 w-5" />
@@ -74,7 +80,7 @@ export function AppTopNav({ onMenuClick }: Props) {
 
           <BrandLogo href={ROUTES.dashboard} variant="nav" />
 
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden items-center gap-4 md:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.label}
@@ -94,7 +100,7 @@ export function AppTopNav({ onMenuClick }: Props) {
           <ThemeToggle />
           <Link
             href={ROUTES.settings}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-xl text-[var(--color-ink-muted)] transition hover:bg-black/[0.04] hover:text-[var(--color-ink)]"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-xl text-[var(--color-ink-muted)] transition hover:bg-[color-mix(in_srgb,var(--color-ink)_4%,transparent)] hover:text-[var(--color-ink)]"
             aria-label="Settings"
           >
             <Settings className="h-4 w-4" />
@@ -103,7 +109,7 @@ export function AppTopNav({ onMenuClick }: Props) {
             type="button"
             onClick={() => requestSignOut()}
             disabled={signingOut}
-            className="inline-flex items-center gap-1.5 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-[var(--color-ink-muted)] transition hover:bg-black/[0.04] hover:text-[var(--color-ink)] disabled:opacity-60"
+            className="inline-flex items-center gap-1.5 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-[var(--color-ink-muted)] transition hover:bg-[color-mix(in_srgb,var(--color-ink)_4%,transparent)] hover:text-[var(--color-ink)] disabled:opacity-60"
           >
             <User className="h-3.5 w-3.5 md:hidden" aria-hidden />
             <span className="hidden max-w-[8rem] truncate md:inline">

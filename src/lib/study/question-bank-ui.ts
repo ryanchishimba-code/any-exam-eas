@@ -6,10 +6,10 @@ export const qbUi = {
   eyebrow:
     "text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--qb-muted,var(--color-ink-muted))]",
   title:
-    "text-[24px] font-semibold tracking-[-0.03em] text-[var(--qb-ink,var(--color-ink))] sm:text-[28px]",
+    "text-[26px] font-semibold tracking-[-0.035em] text-[var(--qb-ink,var(--color-ink))] sm:text-[30px]",
   subtitle: "text-[15px] leading-relaxed text-[var(--qb-muted,var(--color-ink-muted))]",
   sectionTitle:
-    "text-[13px] font-semibold tracking-[-0.01em] text-[var(--qb-ink,var(--color-ink))]",
+    "text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--qb-muted,var(--color-ink-muted))]",
   sectionHint: "text-[12px] leading-relaxed text-[var(--qb-muted,var(--color-ink-muted))]",
   statPill:
     "inline-flex items-center gap-1 rounded-full bg-[var(--qb-surface,var(--color-surface))] px-2.5 py-1 text-[11px] font-medium tabular-nums text-[var(--qb-muted,var(--color-ink-muted))]",

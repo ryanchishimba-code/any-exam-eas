@@ -155,7 +155,7 @@ function SidebarNavLink({
         aria-disabled="true"
         title="Subscribe to continue studying"
         className={cn(
-          "flex cursor-not-allowed items-center gap-3 rounded-full px-3.5 py-2.5 text-[15px] font-medium opacity-45",
+          "study-nav-link cursor-not-allowed opacity-45",
           "text-[var(--color-ink-muted)]"
         )}
       >
@@ -171,18 +171,19 @@ function SidebarNavLink({
       href={item.href}
       onClick={onNavigate}
       aria-current={active ? "page" : undefined}
+      data-active={active ? "true" : "false"}
       className={cn(
-        "flex items-center gap-3 rounded-full px-3.5 py-2.5 text-[15px] font-medium",
+        "study-nav-link",
         STUDY_NAV_COLOR,
         active
-          ? "bg-[var(--color-accent)]/10 text-[var(--color-accent)]"
-          : "text-[var(--color-ink)] hover:bg-black/[0.04]"
+          ? "text-[var(--color-accent)]"
+          : "text-[var(--color-ink)] hover:bg-[color-mix(in_srgb,var(--color-ink)_4%,transparent)]"
       )}
     >
       <Icon
         className={cn(
           "h-[18px] w-[18px] shrink-0",
-          active ? "text-[var(--color-accent)]" : "text-[var(--color-ink)]"
+          active ? "text-[var(--color-accent)]" : "text-[var(--color-ink-muted)]"
         )}
         strokeWidth={active ? 2 : 1.75}
         aria-hidden
@@ -194,7 +195,7 @@ function SidebarNavLink({
 
 function SidebarSectionLabel({ label }: { label: string }) {
   return (
-    <p className="mb-1.5 mt-5 px-3.5 text-[13px] font-bold tracking-tight text-[var(--color-ink)] first:mt-0">
+    <p className="mb-1.5 mt-5 px-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-[var(--color-ink-muted)] first:mt-0">
       {label}
     </p>
   );
@@ -231,7 +232,7 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
       ) : null}
       <nav
         className={cn(
-          "rounded-2xl border border-black/[0.06] bg-white px-2.5 py-4 shadow-[var(--shadow-apple-sm)]",
+          "study-nav-panel rounded-2xl px-2.5 py-4",
           embedded ? "static" : "sticky top-[calc(var(--nav-height)+1rem)]"
         )}
         aria-label="Study navigation"
@@ -241,7 +242,7 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
           <Link
             href={ROUTES.dashboard}
             onClick={onNavigate}
-            className="truncate text-[17px] font-bold tracking-tight text-[var(--color-ink)]"
+            className="truncate text-[15px] font-bold tracking-tight text-[var(--color-ink)]"
           >
             AnyExamEasy
           </Link>
@@ -268,7 +269,7 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
         </div>
 
         {studyLocked ? (
-          <div className="mt-4 rounded-xl border border-dashed border-black/[0.08] bg-[var(--color-surface)] px-3 py-2.5">
+          <div className="mt-4 rounded-xl border border-dashed border-[var(--color-border)]/80 bg-[var(--color-surface)] px-3 py-2.5">
             <SubscribeToContinueHint />
           </div>
         ) : null}
@@ -277,9 +278,9 @@ export function AppSidebar({ embedded = false, onNavigate }: Props) {
             href={`${ROUTES.selectExam}?switch=1`}
             onClick={onNavigate}
             className={cn(
-              "mt-3 flex items-center gap-3 rounded-full border border-dashed border-black/[0.08] px-3.5 py-2.5 text-[15px] font-medium text-[var(--color-ink-muted)]",
+              "study-nav-link mt-3 border border-dashed border-[var(--color-border)]/70 text-[var(--color-ink-muted)]",
               STUDY_NAV_COLOR,
-              "hover:border-teal-300 hover:bg-[var(--color-surface)] hover:text-teal-700"
+              "hover:border-[var(--color-accent)]/40 hover:bg-[var(--color-surface)] hover:text-[var(--color-ink)]"
             )}
           >
             <LayoutGrid className="h-[18px] w-[18px] shrink-0" strokeWidth={1.75} aria-hidden />

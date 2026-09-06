@@ -25,7 +25,7 @@ export function DashboardHeader({
   return (
     <header className="flex flex-wrap items-end justify-between gap-3 px-0.5 pt-1">
       <div className="min-w-0">
-        <p className={dbUi.eyebrow}>Study Hub</p>
+        <p className={dbUi.eyebrow}>Study command</p>
         <h1 className={cn(dbUi.title, "mt-1 text-balance")}>
           {firstName ? `Hi, ${firstName}` : "Dashboard"}
         </h1>

@@ -27,7 +27,7 @@ export function AppShell({
   const closeDrawer = useCallback(() => setDrawerOpen(false), []);
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg)]">
+    <div className="min-h-screen bg-[var(--color-bg)] [background-image:radial-gradient(ellipse_80%_50%_at_50%_-20%,color-mix(in_srgb,var(--color-accent)_8%,transparent),transparent)]">
       <AppTopNav onMenuClick={openDrawer} />
       <AppMobileDrawer open={drawerOpen} onClose={closeDrawer} />
       <div
